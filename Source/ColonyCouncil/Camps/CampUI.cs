@@ -156,9 +156,9 @@ namespace ColonyCouncil
 
     /// <summary>
     /// Talking to a camp: their trader, the terms of their stay, gifts, hiring some of them, and asking them to go (or
-    /// making them).
+    /// making them). In Rimfolk's frame (key "Camp"), the camp's name in the title bar; wider, its acts take more room.
     /// </summary>
-    public class Dialog_Camp : Window
+    public class Dialog_Camp : FramedWindow
     {
         private readonly Camp camp;
         private bool fee, share, boundary, limit;
@@ -166,7 +166,16 @@ namespace ColonyCouncil
         private Vector2 scroll;
         private float height = 600f;
 
-        public Dialog_Camp(Camp camp, bool terms)
+        protected override string FrameTitle => camp == null ? "" : Title;
+
+        private string Title => camp.holding ? camp.HoldingName.CapitalizeFirst() : camp.kind.LabelCap.ToString();
+
+        protected override Texture2D FrameIcon => Icons.Visitor;
+
+        /// <summary>A row's acts and switches: as wide as they were, more on a wider window (DialogsMath).</summary>
+        private static float actW = 360f, checkW = 460f;
+
+        public Dialog_Camp(Camp camp, bool terms) : base("Camp")
         {
             this.camp = camp;
             fee = camp.termFee;
@@ -182,7 +191,7 @@ namespace ColonyCouncil
 
         public override Vector2 InitialSize => new Vector2(640f, 720f);
 
-        public override void DoWindowContents(Rect inRect)
+        protected override void DoFramedContents(Rect inRect)
         {
             // Leaving or at war since it was opened: nothing left to talk about (and no silver to hand over).
             if (camp == null || !camp.CanTalk)
@@ -190,7 +199,9 @@ namespace ColonyCouncil
                 Close();
                 return;
             }
-            float top = UiKit.PageHeader(inRect, Icons.Visitor, camp.holding ? camp.HoldingName.CapitalizeFirst() : camp.kind.LabelCap.ToString(), camp.faction?.Name ?? "", null, null, 0f, null);
+            float top = UiKit.DialogHeader(inRect, TitleInBar, Icons.Visitor, Title, camp.faction?.Name ?? "", null, null, 0f, null);
+            actW = FramedWindowsMath.DialogActWidth(inRect.width, 360f);
+            checkW = FramedWindowsMath.DialogActWidth(inRect.width, 460f);
             var outRect = new Rect(inRect.x, inRect.y + top, inRect.width, inRect.height - top - 50f);
             var view = new Rect(0f, 0f, outRect.width - 16f, height);
             Widgets.BeginScrollView(outRect, ref scroll, view);
@@ -210,7 +221,7 @@ namespace ColonyCouncil
                 {
                     y += UiKit.SectionTitle(0f, y, w, "CC_Camp_Dlg_Trade".Translate(), Icons.Trader, UiKit.Gold);
                     y += UiKit.Paragraph(0f, y, w, "CC_Camp_Dlg_TradeHow".Translate(camp.trader.Named("X")).Resolve(), UiKit.Faint) + 4f;
-                    if (Widgets.ButtonText(new Rect(0f, y, 200f, 28f), "CC_Camp_Dlg_ShowTrader".Translate(camp.trader.Named("X")).Resolve()))
+                    if (UiKit.Button(new Rect(0f, y, 200f, 28f), "CC_Camp_Dlg_ShowTrader".Translate(camp.trader.Named("X")).Resolve()))
                     {
                         CameraJumper.TryJumpAndSelect(camp.trader);
                         Close();
@@ -310,12 +321,12 @@ namespace ColonyCouncil
 
         private static void Check(ref float y, float w, string label, ref bool value, string tip, bool possible)
         {
-            var r = new Rect(0f, y, Mathf.Min(w, 460f), 26f);
-            if (possible) Widgets.CheckboxLabeled(r, label, ref value);
+            var r = new Rect(0f, y, Mathf.Min(w, checkW), 26f);
+            if (possible) UiKit.Toggle(r, label, ref value);
             else
             {
                 bool off = false;
-                Widgets.CheckboxLabeled(r, label, ref off, true);
+                UiKit.Toggle(r, label, ref off, null, true);
                 tip += "\n\n" + "CC_Camp_Term_NotForThem".Translate();
             }
             TooltipHandler.TipRegion(r, tip);
@@ -330,12 +341,12 @@ namespace ColonyCouncil
                 UiKit.Portrait(new Rect(0f, y, 28f, 28f), portrait, UiKit.StrangerColor);
                 x = 34f;
             }
-            var r = new Rect(x, y, 360f, 28f);
-            bool clicked = Widgets.ButtonText(r, label, true, true, active);
+            var r = new Rect(x, y, actW, 28f);
+            bool clicked = UiKit.Button(r, label, ButtonKind.Normal, active);
             string t = why ?? tip;
             if (!t.NullOrEmpty()) TooltipHandler.TipRegion(r, t);
             y += 34f;
-            return clicked && active;
+            return clicked;
         }
     }
 }

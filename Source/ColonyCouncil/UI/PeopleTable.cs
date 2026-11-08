@@ -289,7 +289,7 @@ namespace ColonyCouncil
                 new FloatMenuOption("CC_Table_ShowOnMap".Translate(p.LabelShort.Named("NAME")).Resolve(), () =>
                 {
                     if (!p.Spawned && p.CarriedBy == null) return;
-                    Find.MainTabsRoot.EscapeCurrentTab(false);
+                    Pages.LeaveForMap();
                     CameraJumper.TryJumpAndSelect(p);
                 }),
                 new FloatMenuOption("CC_Table_MoodTab".Translate(), () => MoodView.ShowMoodTab(p)),

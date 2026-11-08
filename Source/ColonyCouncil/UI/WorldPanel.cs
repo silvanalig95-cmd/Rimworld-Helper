@@ -28,8 +28,8 @@ namespace ColonyCouncil
     /// </summary>
     public static class WorldPanel
     {
-        private static readonly Color Threat = UiKit.Sour;
-        private static readonly Color Calm = UiKit.World;
+        private static Color Threat => UiKit.Sour;
+        private static Color Calm => UiKit.World;
 
         /// <summary>Countdown bars run over this many days: a fight five days off shows half a bar.</summary>
         private const int Horizon = GenDate.TicksPerDay * 10;

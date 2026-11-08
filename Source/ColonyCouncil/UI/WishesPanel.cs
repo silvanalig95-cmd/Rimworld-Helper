@@ -13,9 +13,9 @@ namespace ColonyCouncil
     public static class WishesPanel
     {
         // The interface's tokens (UI/UiKit.cs): spoiled and leaving sour, particular soon, a wish's progress under way.
-        private static readonly Color HighColor = UiKit.Sour;
-        private static readonly Color MediumColor = UiKit.Soon;
-        private static readonly Color ProgressColor = UiKit.Cool;
+        private static Color HighColor => UiKit.Sour;
+        private static Color MediumColor => UiKit.Soon;
+        private static Color ProgressColor => UiKit.Cool;
         private static int lastListenTick = -999999;
         private static Vector2 scroll;
         private static float height = 1000f;
@@ -281,7 +281,7 @@ namespace ColonyCouncil
                     var des = BuildCopyCommandUtility.FindAllowedDesignator(w.thingDef);
                     if (des != null)
                     {
-                        Find.MainTabsRoot.EscapeCurrentTab(false);
+                        Pages.LeaveForMap();
                         Find.DesignatorManager.Select(des);
                     }
                 }

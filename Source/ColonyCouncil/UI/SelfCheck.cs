@@ -521,15 +521,25 @@ namespace ColonyCouncil
         }
     }
 
-    /// <summary>The "Rimfolk: check myself" window: the report, with buttons to copy it, put it in the log, or check again.</summary>
-    public class Dialog_SelfCheck : Window
+    /// <summary>
+    /// The "Rimfolk: check myself" window: the report, with buttons to copy it, put it in the log, or check again. In
+    /// Rimfolk's frame (key "SelfCheck"). The report is made outside the window's drawing, so its colours and the count
+    /// of what needs a look are the same in either look.
+    /// </summary>
+    public class Dialog_SelfCheck : FramedWindow
     {
         private List<SelfCheck.Part> parts;
         private string plain;
         private Vector2 scroll;
         private float height = 600f;
+        private int bad, warn;
+        private bool again;
 
-        public Dialog_SelfCheck()
+        protected override string FrameTitle => "Rimfolk: check myself";
+
+        protected override Texture2D FrameIcon => Icons.Council;
+
+        public Dialog_SelfCheck() : base("SelfCheck")
         {
             doCloseX = true;
             closeOnClickedOutside = true;
@@ -544,13 +554,25 @@ namespace ColonyCouncil
         {
             parts = SelfCheck.Report();
             plain = SelfCheck.Plain(parts);
+            bad = parts.Count(p => p.color == UiKit.Bad);
+            warn = parts.Count(p => p.color == UiKit.Warn);
         }
 
-        public override void DoWindowContents(Rect inRect)
+        public override void WindowOnGUI()
         {
-            int bad = parts.Count(p => p.color == UiKit.Bad), warn = parts.Count(p => p.color == UiKit.Warn);
+            // "Check again" asked while drawing: made here, outside the look.
+            if (again)
+            {
+                again = false;
+                Build();
+            }
+            base.WindowOnGUI();
+        }
+
+        protected override void DoFramedContents(Rect inRect)
+        {
             string stat = bad > 0 ? bad + " need a look" : warn > 0 ? warn + " to note" : "all well";
-            float top = UiKit.PageHeader(new Rect(inRect.x, inRect.y, inRect.width - 24f, UiKit.HeaderHeight), Icons.Council, "Rimfolk: check myself",
+            float top = UiKit.DialogHeader(new Rect(inRect.x, inRect.y, inRect.width - (TitleInBar ? 0f : 24f), UiKit.HeaderHeight), TitleInBar, Icons.Council, "Rimfolk: check myself",
                 "What Rimfolk found when it looked at itself. Take a screenshot, or copy it, for a bug report.", stat,
                 bad > 0 ? UiKit.Bad : warn > 0 ? UiKit.Warn : UiKit.Good);
 
@@ -570,19 +592,19 @@ namespace ColonyCouncil
 
             float bw = 170f;
             var row = new Rect(inRect.x, inRect.yMax - buttonsH + 4f, bw, 30f);
-            if (Widgets.ButtonText(row, "Copy to clipboard"))
+            if (UiKit.Button(row, "Copy to clipboard"))
             {
                 GUIUtility.systemCopyBuffer = plain;
                 Messages.Message("Copied Rimfolk's check to the clipboard.", MessageTypeDefOf.SilentInput, false);
             }
             row.x += bw + 8f;
-            if (Widgets.ButtonText(row, "Write it to the log"))
+            if (UiKit.Button(row, "Write it to the log"))
             {
                 Log.Message(plain);
                 Messages.Message("Rimfolk's check is in the log.", MessageTypeDefOf.SilentInput, false);
             }
             row.x += bw + 8f;
-            if (Widgets.ButtonText(row, "Check again")) Build();
+            if (UiKit.Button(row, "Check again")) again = true;
         }
     }
 }

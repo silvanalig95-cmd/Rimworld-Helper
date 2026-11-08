@@ -212,8 +212,8 @@ namespace ColonyCouncil
         public string DayLabel => (wholeDay ? "CC_Clock_Col_LastDay" : "CC_Clock_Col_Today").Translate().Resolve();
     }
 
-    /// <summary>The "Rimfolk's clock" window (Debug actions, Rimfolk; next to "check myself").</summary>
-    public class Dialog_Clock : Window
+    /// <summary>The "Rimfolk's clock" window (Debug actions, Rimfolk; next to "check myself"). In Rimfolk's frame (key "Clock").</summary>
+    public class Dialog_Clock : FramedWindow
     {
         private const float RowH = 22f, NumW = 66f, Refresh = 0.5f;
 
@@ -223,7 +223,11 @@ namespace ColonyCouncil
         private float height = 600f;
         private string title, subtitle, colPass, colRuns, colMs, colPerRun, colWorst, storesTitle, worldTitle, reading, copy;
 
-        public Dialog_Clock()
+        protected override string FrameTitle => title;
+
+        protected override Texture2D FrameIcon => Icons.Council;
+
+        public Dialog_Clock() : base("Clock")
         {
             // Open beside the running game, to watch the figures change.
             doCloseX = true;
@@ -249,7 +253,7 @@ namespace ColonyCouncil
 
         private string hourLabel, dayLabel;
 
-        public override void DoWindowContents(Rect inRect)
+        protected override void DoFramedContents(Rect inRect)
         {
             float real = Time.realtimeSinceStartup;
             if (model == null || real - builtAt >= Refresh || real < builtAt)
@@ -260,7 +264,7 @@ namespace ColonyCouncil
                 builtAt = real;
             }
 
-            float top = UiKit.PageHeader(new Rect(inRect.x, inRect.y, inRect.width - 24f, UiKit.HeaderHeight), Icons.Council, title, subtitle, model.stat);
+            float top = UiKit.DialogHeader(new Rect(inRect.x, inRect.y, inRect.width - (TitleInBar ? 0f : 24f), UiKit.HeaderHeight), TitleInBar, Icons.Council, title, subtitle, model.stat);
 
             const float buttonsH = 34f;
             var outRect = new Rect(inRect.x, inRect.y + top, inRect.width, inRect.height - top - buttonsH - 6f);
@@ -314,7 +318,7 @@ namespace ColonyCouncil
             Widgets.EndScrollView();
 
             var button = new Rect(inRect.x, inRect.yMax - buttonsH + 4f, 170f, 30f);
-            if (Widgets.ButtonText(button, copy))
+            if (UiKit.Button(button, copy))
             {
                 GUIUtility.systemCopyBuffer = model.Plain();
                 Messages.Message("CC_Clock_Copied".Translate(), MessageTypeDefOf.SilentInput, false);

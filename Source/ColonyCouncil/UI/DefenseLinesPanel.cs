@@ -24,10 +24,10 @@ namespace ColonyCouncil
 
         // A line's steps in the design's colours for steps (UI/UiKit.cs's tokens): done in done's colour, the one it is at
         // gold, what waits on something cool, the rest quiet.
-        private static readonly Color DoneColor = UiKit.Done;
-        private static readonly Color NowColor = UiKit.Gold;
-        private static readonly Color LaterColor = UiKit.Dim;
-        private static readonly Color WaitColor = UiKit.Cool;
+        private static Color DoneColor => UiKit.Done;
+        private static Color NowColor => UiKit.Gold;
+        private static Color LaterColor => UiKit.Dim;
+        private static Color WaitColor => UiKit.Cool;
 
         private static float Measure(string text, float w, GameFont font)
         {
@@ -773,15 +773,21 @@ namespace ColonyCouncil
         }
     }
 
-    /// <summary>Asks for a defense line's name; an empty name gives it back the helper's.</summary>
-    public class Dialog_NameLine : Window
+    /// <summary>Asks for a defense line's name; an empty name gives it back the helper's. In Rimfolk's frame (key "NameLine").</summary>
+    public class Dialog_NameLine : FramedWindow
     {
         private string name;
         private readonly System.Action<string> done;
         private bool focused, finished;
         public const int MaxLength = 40;
 
-        public Dialog_NameLine(string suggested, System.Action<string> done)
+        private static string title;
+
+        protected override string FrameTitle => title ??= "CC_DefLine_NamePrompt".Translate().Resolve();
+
+        protected override Texture2D FrameIcon => Icons.Defenses ?? Icons.CatDefense;
+
+        public Dialog_NameLine(string suggested, System.Action<string> done) : base("NameLine")
         {
             name = suggested ?? "";
             this.done = done;
@@ -792,14 +798,20 @@ namespace ColonyCouncil
             closeOnAccept = false;
         }
 
-        public override Vector2 InitialSize => new Vector2(380f, 170f);
+        /// <summary>As it was, or with the frame's title bar the prompt's room (the prompt is the title).</summary>
+        public override Vector2 InitialSize => new Vector2(380f, WindowFrame.Shown ? 170f + WindowFrameMath.TitleH - 28f : 170f);
 
-        public override void DoWindowContents(Rect inRect)
+        protected override void DoFramedContents(Rect inRect)
         {
             Text.Font = GameFont.Small;
-            Widgets.Label(new Rect(0f, 0f, inRect.width, 28f), "CC_DefLine_NamePrompt".Translate());
-            GUI.SetNextControlName("RimfolkLineName");
-            name = Widgets.TextField(new Rect(0f, 32f, inRect.width, 32f), name, MaxLength);
+            // The prompt, unless it is the frame's title.
+            float top = 0f;
+            if (!TitleInBar)
+            {
+                Widgets.Label(new Rect(0f, 0f, inRect.width, 28f), "CC_DefLine_NamePrompt".Translate());
+                top = 32f;
+            }
+            name = UiKit.TextField(new Rect(0f, top, inRect.width, 32f), name, "RimfolkLineName", null, MaxLength);
             if (!focused)
             {
                 UI.FocusControl("RimfolkLineName", this);
@@ -807,7 +819,7 @@ namespace ColonyCouncil
             }
             Text.Font = GameFont.Tiny;
             GUI.color = UiKit.Faint;
-            Widgets.Label(new Rect(0f, 68f, inRect.width, 20f), "CC_DefLine_NameEmpty".Translate());
+            Widgets.Label(new Rect(0f, top + 36f, inRect.width, 20f), "CC_DefLine_NameEmpty".Translate());
             GUI.color = UiKit.Ink;
             Text.Font = GameFont.Small;
             if (UiKit.ActButton(new Rect(inRect.width / 2f - 70f, inRect.height - 38f, 140f, 34f), "OK".Translate(), null) || KeyBindingDefOf.Accept.KeyDownEvent)

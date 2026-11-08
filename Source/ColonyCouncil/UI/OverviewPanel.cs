@@ -15,7 +15,7 @@ namespace ColonyCouncil
     {
         // Colour by meaning only (UI/UiKit.cs's tokens): a graph and a tile take the colour of where they are heading
         // (warm rising, sour falling), the fights coming sour; their icons and words say which is which.
-        private static readonly Color Threat = UiKit.Sour;
+        private static Color Threat => UiKit.Sour;
         private static Vector2 scroll;
         private static float height = 700f;
 

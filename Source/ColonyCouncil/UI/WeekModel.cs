@@ -259,7 +259,7 @@ namespace ColonyCouncil
                     Cards.Open(p);
                     return;
                 }
-                Find.MainTabsRoot.EscapeCurrentTab(false);
+                Pages.LeaveForMap();
                 CameraJumper.TryJumpAndSelect(p, CameraJumper.MovementMode.Pan);
                 if (Find.Selector.SingleSelectedThing == p) InspectPaneUtility.OpenTab(tab);
             }

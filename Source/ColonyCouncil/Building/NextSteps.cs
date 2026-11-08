@@ -402,7 +402,7 @@ namespace ColonyCouncil
                     }));
                 acts.Add(("CC_Plan_OpenResearch".Translate().Resolve(), "CC_Plan_OpenResearchTip".Translate(r.LabelCap).Resolve(), () =>
                 {
-                    Find.MainTabsRoot.SetCurrentTab(MainButtonDefOf.Research);
+                    Pages.GoToGameTab(MainButtonDefOf.Research);
                     if (MainButtonDefOf.Research.TabWindow is MainTabWindow_Research w) w.Select(r);
                 }));
             }

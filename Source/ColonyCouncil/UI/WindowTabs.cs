@@ -79,6 +79,13 @@ namespace ColonyCouncil
             return body;
         }
 
+        /// <summary>
+        /// A window's tabs in the look it draws in: Rimfolk's own (<see cref="DrawOwn"/>, the corner in the title bar) or the
+        /// game's, with the corner beside them unless the title bar has it (<paramref name="cornerInTitle"/>).
+        /// </summary>
+        public static Rect DrawFor(Rect inRect, List<WindowTab> tabs, RimfolkWindow current, bool cornerInTitle) =>
+            UiKit.OwnLook ? DrawOwn(inRect, tabs) : Draw(inRect, tabs, current, !cornerInTitle);
+
         // ---------------- Rimfolk's own look ----------------
 
         /// <summary>The own look's row of tabs: its height, the gap between tabs, and the least a tab shrinks to (its icon alone).</summary>
@@ -339,12 +346,78 @@ namespace ColonyCouncil
 
         public override Vector2 RequestedTabSize => WindowTabs.Size;
 
-        /// <summary>Another of the four windows opening turns the page: the floating region window closes, as the tab would.</summary>
+        /// <summary>
+        /// One of the four as a tab opening turns the page: the floating windows close (a tab and its floating window are one
+        /// window, never both open; one of the four at a time).
+        /// </summary>
         public override void PreOpen()
         {
             base.PreOpen();
-            if (Which != RimfolkWindow.World) Window_Region.Shut(false);
+            FloatingWindows.ShutAll(false);
         }
+
+        // ---------------- The tab in Rimfolk's own look ----------------
+
+        /// <summary>The tab drawn in Rimfolk's own look: its frame, fixed in place as the tab is, the corner in its title bar.</summary>
+        private WindowFrame tabFrame;
+        private string title;
+        private Action<Rect> corner;
+
+        protected override float Margin => WindowFrame.OwnLookOn ? 0f : base.Margin;
+
+        public override void WindowOnGUI()
+        {
+            doWindowBackground = !WindowFrame.OwnLookOn;
+            base.WindowOnGUI();
+        }
+
+        /// <summary>
+        /// The tab (the window while Rimfolk's windows don't move): in the game's look as it always was, or in Rimfolk's own
+        /// with its frame's title bar, fixed at the screen's foot. Both draw <see cref="DrawContents"/>, as the floating
+        /// window does.
+        /// </summary>
+        public sealed override void DoWindowContents(Rect inRect)
+        {
+            if (!WindowFrame.OwnLookOn)
+            {
+                DrawContents(inRect, false);
+                return;
+            }
+            bool was = UiKit.BeginOwn();
+            try
+            {
+                if (tabFrame == null)
+                {
+                    FramedWindowsMath.TryKey(FramedWindowsMath.KeyOf(Which), out var k);
+                    tabFrame = new WindowFrame(k.key, k.leastW, k.leastH, k.Bottom);
+                }
+                title ??= Pages.WindowName(Which);
+                corner ??= r => Links(r, Which);
+                var body = tabFrame.Draw(this, inRect, title, IconOf(Which), LinksWidth, corner, true, false);
+                Widgets.BeginGroup(body);
+                try
+                {
+                    DrawContents(body.AtZero(), true);
+                }
+                finally
+                {
+                    Widgets.EndGroup();
+                }
+            }
+            finally
+            {
+                UiKit.EndOwn(was);
+            }
+        }
+
+        /// <summary>The window's contents (its views as tabs and the view showing), with the corner beside the tabs or, <paramref name="cornerInTitle"/>, in the title bar.</summary>
+        protected abstract void DrawContents(Rect inRect, bool cornerInTitle);
+
+        private static float LinksWidth => WindowTabs.LinksWidth;
+
+        private static Texture2D IconOf(RimfolkWindow w) => WindowTabs.IconOf(w);
+
+        private static void Links(Rect r, RimfolkWindow w) => WindowTabs.Links(r, w);
 
         /// <summary>Escape closes a card's drawer first, the window second.</summary>
         public override void OnCancelKeyPressed()

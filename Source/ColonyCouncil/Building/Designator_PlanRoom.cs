@@ -78,7 +78,7 @@ namespace ColonyCouncil
                 return;
             }
             var des = new Designator_PlanRoom(t) { upgradeMode = upgrade };
-            Find.MainTabsRoot.EscapeCurrentTab(false);
+            Pages.LeaveForMap();
             Find.DesignatorManager.Select(des);
             if (findSpot && !upgrade) des.SuggestSpot();
             if (upgrade) Messages.Message("CC_Upgrade_Pick".Translate(t.label), MessageTypeDefOf.SilentInput, false);

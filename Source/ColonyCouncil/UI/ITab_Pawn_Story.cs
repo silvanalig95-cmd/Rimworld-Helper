@@ -95,8 +95,8 @@ namespace ColonyCouncil
     /// </summary>
     public static class StoryView
     {
-        private static readonly Color Faint = UiKit.Faint;
-        private static readonly Color HeaderColor = UiKit.Heading;
+        private static Color Faint => UiKit.Faint;
+        private static Color HeaderColor => UiKit.Heading;
 
         /// <summary>The character page's sections the Culture tab shows (its views and faith).</summary>
         public static readonly string[] CultureKeys = { "talk.views", "faith" };

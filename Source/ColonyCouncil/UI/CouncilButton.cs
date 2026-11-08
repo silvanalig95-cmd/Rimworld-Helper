@@ -6,11 +6,12 @@ using Verse;
 namespace ColonyCouncil
 {
     /// <summary>
-    /// The council button on the bottom bar: the game's own button that opens its window, with the count of what waits on
-    /// the player on its corner (UI/Inbox.cs: the same number as This week's tab and the inbox in every window's corner),
-    /// while the setting "The count on the council button" is on. The count is worked out at most twice a second.
+    /// The council button on the bottom bar: the game's own button that opens its window (floating while Rimfolk's windows
+    /// move, UI/FloatingWindows.cs), with the count of what waits on the player on its corner (UI/Inbox.cs: the same number
+    /// as This week's tab and the inbox in every window's corner) while the setting "The count on the council button" is
+    /// on. The count is worked out at most twice a second.
     /// </summary>
-    public class MainButtonWorker_Council : MainButtonWorker_ToggleTab
+    public class MainButtonWorker_Council : MainButtonWorker_RimfolkWindow
     {
         private static bool broken;
 

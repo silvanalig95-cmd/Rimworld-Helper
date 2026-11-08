@@ -102,7 +102,7 @@ namespace ColonyCouncil
             TooltipHandler.TipRegion(r, tip);
             if (Widgets.ButtonInvisible(r))
             {
-                Find.MainTabsRoot.EscapeCurrentTab(false);
+                Pages.LeaveForMap();
                 CameraJumper.TryJump(cell, map);
             }
             return r;

@@ -27,11 +27,11 @@ namespace ColonyCouncil
         private static float pageHeight = 500f;
 
         // The interface's tokens (UI/UiKit.cs): headings in heading ink, what is read in ink, the rest faint.
-        private static readonly Color Faint = UiKit.Faint;
-        private static readonly Color QuoteColor = UiKit.Ink;
-        private static readonly Color Header = UiKit.Heading;
-        private static readonly Color TableHeader = UiKit.Heading;
-        private static readonly Color CardValue = UiKit.Ink;
+        private static Color Faint => UiKit.Faint;
+        private static Color QuoteColor => UiKit.Ink;
+        private static Color Header => UiKit.Heading;
+        private static Color TableHeader => UiKit.Heading;
+        private static Color CardValue => UiKit.Ink;
 
         /// <summary>The page open in the almanac, if any (remembered between sessions by the Almanac's window).</summary>
         public static AlmanacArticleDef Selected => selected;
@@ -188,14 +188,19 @@ namespace ColonyCouncil
 
         // ---------------- The categories, or the strip they fold into ----------------
 
+        private const string SearchControl = "RimfolkAlmanacSearch";
+        private static string searchHint;
+
         private static void DrawCategories(Rect rect)
         {
             float y = rect.y;
             Text.Font = GameFont.Small;
             var searchRect = new Rect(rect.x, y, rect.width, 28f);
             string before = search;
-            search = Widgets.TextField(searchRect, search);
-            if (search.NullOrEmpty())
+            // The kit's field: the game's own in the game's look, Rimfolk's with its quiet word in its own.
+            searchHint ??= "CC_Almanac_Search".Translate().Resolve();
+            search = UiKit.TextField(searchRect, search, SearchControl, searchHint);
+            if (search.NullOrEmpty() && !UiKit.OwnLook)
             {
                 GUI.color = Faint;
                 Widgets.Label(new Rect(searchRect.x + 6f, searchRect.y + 4f, searchRect.width, 24f), UiKit.Fit("CC_Almanac_Search".Translate(), searchRect.width - 10f));
@@ -227,16 +232,14 @@ namespace ColonyCouncil
             }
             Widgets.EndScrollView();
             bool all = showAllDlc;
-            Widgets.CheckboxLabeled(new Rect(rect.x, rect.yMax - checkH, rect.width, checkH), UiKit.Fit("CC_Almanac_AllDlc".Translate(), rect.width - 30f), ref showAllDlc);
+            UiKit.Toggle(new Rect(rect.x, rect.yMax - checkH, rect.width, checkH), UiKit.Fit("CC_Almanac_AllDlc".Translate(), rect.width - 30f), ref showAllDlc);
             if (all != showAllDlc) listScroll = Vector2.zero;
             TooltipHandler.TipRegion(new Rect(rect.x, rect.yMax - checkH, rect.width, checkH), "CC_Almanac_AllDlc".Translate());
         }
 
         private static bool DrawCategoryButton(Rect r, string label, int count, bool active, Texture2D icon)
         {
-            if (active) Widgets.DrawHighlightSelected(r);
-            else if (Mouse.IsOver(r)) Widgets.DrawHighlight(r);
-            if (active) Widgets.DrawBoxSolid(new Rect(r.x, r.y, 3f, r.height), UiKit.Gold);
+            UiKit.ListRow(r, active);
             UiKit.Icon(new Rect(r.x + 6f, r.y + 5f, 16f, 16f), icon, active ? UiKit.Gold : Faint);
             UiKit.LabelFit(new Rect(r.x + 28f, r.y, r.width - 56f, r.height), label, active ? UiKit.Ink : UiKit.WithAlpha(UiKit.Ink, 0.85f));
             UiKit.LabelFit(new Rect(r.xMax - 28f, r.y, 25f, r.height), count.ToString(), Faint, GameFont.Tiny, TextAnchor.MiddleRight);
@@ -249,7 +252,7 @@ namespace ColonyCouncil
         /// </summary>
         private static void DrawStrip(Rect r)
         {
-            Widgets.DrawMenuSection(r);
+            UiKit.Section(r);
             var inner = r.ContractedBy(2f);
             float y = inner.y + 2f;
             string unfold = "CC_Almanac_Unfold".Translate();
@@ -274,7 +277,7 @@ namespace ColonyCouncil
             var rest = new Rect(inner.x, y, inner.width, inner.yMax - y);
             if (rest.height > 10f)
             {
-                Widgets.DrawHighlightIfMouseover(rest);
+                UiKit.RowHover(rest);
                 TooltipHandler.TipRegion(rest, unfold);
                 if (Widgets.ButtonInvisible(rest)) SetFolded(false);
             }
@@ -315,7 +318,7 @@ namespace ColonyCouncil
 
         private static void DrawList(Rect rect)
         {
-            Widgets.DrawMenuSection(rect);
+            UiKit.Section(rect);
             var inner = rect.ContractedBy(4f);
             var view = new Rect(0f, 0f, inner.width - 16f, listHeight);
             // With everything (or a search) shown, each row gets its part's icon.
@@ -353,9 +356,7 @@ namespace ColonyCouncil
                 string title = a.LabelCap;
                 string sub = a.summary ?? "";
                 var row = new Rect(0f, y, view.width, h);
-                if (a == selected) Widgets.DrawHighlightSelected(row);
-                else if (Mouse.IsOver(row)) Widgets.DrawHighlight(row);
-                if (a == selected) Widgets.DrawBoxSolid(new Rect(row.x, row.y, 3f, row.height), UiKit.Gold);
+                UiKit.ListRow(row, a == selected);
                 if (icons) UiKit.Icon(new Rect(6f, y + 5f, 14f, 14f), Icons.For(a.category), a == selected ? UiKit.Gold : UiKit.Dim);
                 Text.Font = GameFont.Small;
                 Widgets.Label(new Rect(textX, y + 3f, view.width - textX - 4f, th), title);
@@ -484,10 +485,10 @@ namespace ColonyCouncil
                 var br = new Rect(0f, y, Mathf.Min(w, Mathf.Max(240f, Text.CalcSize(label).x + 24f)), buttonH);
                 // Greyed with why not as its tooltip and in a line under it where the colony can't build it yet; drawn at the
                 // Almanac's own text size (UiKit.ActButton draws at the windows'), so the button keeps the page's scale.
-                if (Widgets.ButtonText(br, label, true, true, reason == null) && reason == null)
+                if (UiKit.Button(br, label, ButtonKind.Normal, reason == null))
                 {
                     var des = new Designator_PlanRoom(a.template);
-                    Find.MainTabsRoot.EscapeCurrentTab(false);
+                    Pages.LeaveForMap();
                     Find.DesignatorManager.Select(des);
                 }
                 if (reason != null)
@@ -510,7 +511,7 @@ namespace ColonyCouncil
                         x = 0f;
                         y += seeH + 4f;
                     }
-                    if (Widgets.ButtonText(new Rect(x, y, bw, seeH), other.LabelCap)) Show(other);
+                    if (UiKit.Button(new Rect(x, y, bw, seeH), other.LabelCap)) Show(other);
                     x += bw + 6f;
                 }
                 y += seeH + m.paragraph;

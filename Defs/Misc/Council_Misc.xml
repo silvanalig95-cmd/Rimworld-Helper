@@ -36,6 +36,8 @@
     <label>defense</label>
     <description>The colony's defenses read from its map: the ways raiders walk in, what the colony faces, the defense lines, and the advice, each with a button that puts the plan down where it's needed.</description>
     <tabWindowClass>ColonyCouncil.MainTabWindow_Defenses</tabWindowClass>
+    <!-- Floats while Rimfolk's windows move and resize (UI/FloatingWindows.cs); the tab otherwise. -->
+    <workerClass>ColonyCouncil.MainButtonWorker_RimfolkWindow</workerClass>
     <order>1000</order>
     <iconPath>ColonyCouncil/Icons/Defenses</iconPath>
   </MainButtonDef>
@@ -47,6 +49,8 @@
     <label>planning</label>
     <description>Planning the base, in four views: the plan (the colony's next steps and the ground plan, with the advisor's priorities), the base looked over with what a click can put right, what you could make from the stock, and the rooms (the room plans with Rearrange a room, or every room at a glance, ready to plan).</description>
     <tabWindowClass>ColonyCouncil.MainTabWindow_Planning</tabWindowClass>
+    <!-- Floats while Rimfolk's windows move and resize (UI/FloatingWindows.cs); the tab otherwise. -->
+    <workerClass>ColonyCouncil.MainButtonWorker_RimfolkWindow</workerClass>
     <order>1000</order>
     <iconPath>ColonyCouncil/Icons/Plan</iconPath>
   </MainButtonDef>

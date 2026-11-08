@@ -408,7 +408,7 @@ namespace ColonyCouncil
             foreach (var s in card.sways)
             {
                 var r = new Rect(ix + 10f, cy, inner - 10f, Row);
-                Widgets.DrawHighlightIfMouseover(r);
+                UiKit.RowHover(r);
                 UiKit.DiscFill(new Rect(ix + 2f, cy + Row / 2f - 2.5f, 5f, 5f), UiKit.Cool);
                 LinkText.Line(r, s.shown ?? s.text, UiKit.Ink, GameFont.Tiny);
                 if (Previews.Shown.IsNone) TooltipHandler.TipRegion(r, s.tip);
@@ -467,7 +467,7 @@ namespace ColonyCouncil
             UiKit.Bar(new Rect(x + 8f, y + Face + 18f, FaceW - 22f, 6f), c, color);
             string word = FaithPeople.StateWord(c) + " " + c.ToStringPercent();
             UiKit.LabelFit(new Rect(x, y + Face + 25f, FaceW - 6f, 15f), word, color, GameFont.Tiny, TextAnchor.UpperCenter);
-            Widgets.DrawHighlightIfMouseover(area);
+            UiKit.RowHover(area);
             var who = ThingRefs.Of(p);
             if (over) Previews.Hover(who, area);
             if (Previews.Shown != who) TooltipHandler.TipRegion(area, b.tip);

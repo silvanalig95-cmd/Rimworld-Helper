@@ -32,7 +32,7 @@ namespace ColonyCouncil
         private static readonly Dictionary<(string, int, GameFont), float> heights = new Dictionary<(string, int, GameFont), float>();
 
         /// <summary>A plan the colony can't build yet: soon's colour on its edge and its reason (UI/UiKit.cs's tokens).</summary>
-        private static readonly Color HighColor = UiKit.Soon;
+        private static Color HighColor => UiKit.Soon;
 
         private const float LeftW = 330f;
         private const float Gap = 14f;
@@ -87,7 +87,7 @@ namespace ColonyCouncil
             TooltipHandler.TipRegion(again, "CC_Def_SurveyAgain_Tip".Translate());
             bool show = DefenseOverlay.Show;
             var showRect = new Rect(rect.xMax - 300f, rect.y + 8f, 150f, 24f);
-            Widgets.CheckboxLabeled(showRect, "CC_Def_ShowOnMap".Translate(), ref show);
+            UiKit.Toggle(showRect, "CC_Def_ShowOnMap".Translate(), ref show);
             TooltipHandler.TipRegion(showRect, "CC_Def_ShowOnMap_Tip".Translate());
             if (show != DefenseOverlay.Show) DefenseOverlay.Show = show;
             if (m.s == null)
@@ -325,7 +325,7 @@ namespace ColonyCouncil
             TooltipHandler.TipRegion(r, "CC_Def_MapTip".Translate());
             if (Widgets.ButtonInvisible(r))
             {
-                Find.MainTabsRoot.EscapeCurrentTab(false);
+                Pages.LeaveForMap();
                 CameraJumper.TryJump(new IntVec3(cx, 0, cz), s.map);
             }
         }
@@ -454,7 +454,7 @@ namespace ColonyCouncil
             {
                 if (UiKit.ActButton(new Rect(bx, by, ButtonsW, 24f), "CC_Show".Translate(), null, "CC_Plan_ShowTip".Translate()))
                 {
-                    Find.MainTabsRoot.EscapeCurrentTab(false);
+                    Pages.LeaveForMap();
                     DefenseOverlay.Show = true;
                     CameraJumper.TryJump(a.look, s.map);
                 }

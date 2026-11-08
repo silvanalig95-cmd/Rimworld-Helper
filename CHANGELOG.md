@@ -5,6 +5,16 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## All of Rimfolk's windows move, size and wear its own look
+
+*8 November 2026, version 0.179.0*
+
+- The council's windows, Planning and Defenses now float like the region window: moved by the title bar, sized from any edge, made large and back, left open while you play on the map, one of the four at a time, each opening where you last left it.
+- The Almanac and Rimfolk's dialogs, from the letter window, the journey planner and the camp to the market, the founding window, the hand-over and the small naming dialogs, have the same frame and remember their place and size.
+- Every page and dialog of Rimfolk's now draws its buttons, fields, switches and lists in Rimfolk's own look, and wider windows show more, such as three columns of This week or a longer list of who goes on a journey.
+- Leaving a page for the map, research, quests or work closes the floating window as the old tab did; previews and the search take the look of the window they come from.
+- The on-screen panels, the room and defense planners docked above the architect, and the game's own windows keep the game's look; turning Rimfolk's own look or moving windows off puts everything as before.
+
 ## Rimfolk's own look, and windows you can move and size
 
 *8 November 2026, version 0.178.0*

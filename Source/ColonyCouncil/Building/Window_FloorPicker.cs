@@ -12,7 +12,7 @@ namespace ColonyCouncil
     /// of different materials (wood, stone, metal) gets a material row once chosen. By default it only shows what the
     /// colony has the materials for; designs that still need research can be shown greyed out.
     /// </summary>
-    public class Window_FloorPicker : Window
+    public class Window_FloorPicker : FramedWindow
     {
         private readonly RoomTemplateDef template;
         private readonly RoomPlanConfig cfg;
@@ -39,7 +39,12 @@ namespace ColonyCouncil
             public Dictionary<TerrainDef, string> shortLabels;
         }
 
-        public Window_FloorPicker(RoomTemplateDef template, RoomPlanConfig cfg, Map map, Rect near)
+        protected override string FrameTitle => "CC_Floor_Title".Translate(template.label).Resolve();
+
+        protected override Texture2D FrameIcon => Icons.CatRoomDesign ?? Icons.Rooms;
+
+        /// <summary>In Rimfolk's frame (key "FloorPicker"), opening first beside the room planner.</summary>
+        public Window_FloorPicker(RoomTemplateDef template, RoomPlanConfig cfg, Map map, Rect near) : base("FloorPicker")
         {
             this.template = template;
             this.cfg = cfg;
@@ -57,11 +62,13 @@ namespace ColonyCouncil
             soundAppear = null;
         }
 
-        protected override float Margin => 10f;
+        protected override float UnframedMargin => 10f;
 
         public override Vector2 InitialSize => new Vector2(460f, 580f);
 
-        protected override void SetInitialSizeAndPosition()
+        protected override bool OwnFirstPlace => true;
+
+        protected override void PlaceUnframed()
         {
             var size = InitialSize;
             float x = near.width > 0f ? near.xMax + 6f : (UI.screenWidth - size.x) / 2f;
@@ -186,15 +193,11 @@ namespace ColonyCouncil
 
         // ---------------- Drawing ----------------
 
-        public override void DoWindowContents(Rect inRect)
+        protected override void DoFramedContents(Rect inRect)
         {
             var current = CurrentFloor();
             Keep(current);
-            float y = inRect.y;
-            Text.Font = GameFont.Medium;
-            Widgets.Label(new Rect(inRect.x, y, inRect.width - 30f, 32f), "CC_Floor_Title".Translate(template.label));
-            Text.Font = GameFont.Small;
-            y += 34f;
+            float y = TitleTop(inRect, FrameTitle, 30f, 34f, 32f);
 
             // Quick picks: none, and what the plan would use on its own.
             float bx = inRect.x;
@@ -202,9 +205,9 @@ namespace ColonyCouncil
             var suggested = suggestedKept;
             if (suggested != null && QuickButton(ref bx, y, "CC_Floor_Suggested".Translate(suggested.label), current == suggested)) Pick(suggested, !suggested.MadeFromStuff);
             y += 30f;
-            Widgets.CheckboxLabeled(new Rect(inRect.x, y, inRect.width, 24f), "CC_Floor_OnlyAffordable".Translate(area), ref onlyAffordable);
+            UiKit.Toggle(new Rect(inRect.x, y, inRect.width, 24f), "CC_Floor_OnlyAffordable".Translate(area), ref onlyAffordable);
             y += 26f;
-            Widgets.CheckboxLabeled(new Rect(inRect.x, y, inRect.width, 24f), "CC_Floor_ShowLocked".Translate(), ref showLocked);
+            UiKit.Toggle(new Rect(inRect.x, y, inRect.width, 24f), "CC_Floor_ShowLocked".Translate(), ref showLocked);
             y += 28f;
 
             var outRect = new Rect(inRect.x, y, inRect.width, inRect.yMax - y - 22f);
@@ -302,7 +305,7 @@ namespace ColonyCouncil
                 }
                 var r = new Rect(cx, cyy, w, 24f);
                 GUI.color = s == chosen ? Chosen : Have(s) >= need ? Color.white : Short;
-                if (Widgets.ButtonText(r, labels[i])) cfg.PickFloorStuff(s);
+                if (UiKit.Button(r, labels[i])) cfg.PickFloorStuff(s);
                 GUI.color = Color.white;
                 TooltipHandler.TipRegion(r, TipOf(floor, s));
                 cx += w + 4f;
@@ -325,7 +328,7 @@ namespace ColonyCouncil
             var row = new Rect(0f, y, width, h);
             if (hasCurrent) Widgets.DrawBoxSolid(row, new Color(0.3f, 0.45f, 0.3f, 0.25f));
             else Widgets.DrawLightHighlight(row);
-            Widgets.DrawHighlightIfMouseover(row);
+            UiKit.RowHover(row);
 
             Widgets.DefIcon(new Rect(4f, y + 4f, iconSize, iconSize), rep, StuffFor(rep));
             string title = fam.label.CapitalizeFirst();
@@ -353,7 +356,7 @@ namespace ColonyCouncil
                     var r = new Rect(cx, cyy, w, 24f);
                     bool locked = Locked(f);
                     GUI.color = f == current ? Chosen : locked ? LockedColor : Affordable(f) ? Color.white : Short;
-                    if (Widgets.ButtonText(r, label, true, true, !locked) && !locked) Pick(f, !f.MadeFromStuff);
+                    if (UiKit.Button(r, label, ButtonKind.Normal, !locked)) Pick(f, !f.MadeFromStuff);
                     GUI.color = Color.white;
                     TooltipHandler.TipRegion(r, TipOf(f, StuffFor(f)));
                     cx += w + 4f;
@@ -401,7 +404,7 @@ namespace ColonyCouncil
             var r = new Rect(x, y, w, 26f);
             x += w + 6f;
             GUI.color = active ? Chosen : Color.white;
-            bool clicked = Widgets.ButtonText(r, label);
+            bool clicked = UiKit.Button(r, label);
             GUI.color = Color.white;
             return clicked;
         }

@@ -242,14 +242,18 @@ namespace ColonyCouncil
         }
     }
 
-    /// <summary>A colonist's journal, newest first.</summary>
-    public class Dialog_Journal : Window
+    /// <summary>A colonist's journal, newest first. In Rimfolk's frame (key "Journal"), its title in the title bar.</summary>
+    public class Dialog_Journal : FramedWindow
     {
         private readonly PawnJournal journal;
         private Vector2 scroll;
         private float height = 400f;
 
-        public Dialog_Journal(PawnJournal journal)
+        protected override string FrameTitle => "CC_Journal_Title".Translate(journal.name).Resolve();
+
+        protected override Texture2D FrameIcon => Icons.Journal;
+
+        public Dialog_Journal(PawnJournal journal) : base("Journal")
         {
             this.journal = journal;
             doCloseX = true;
@@ -260,12 +264,10 @@ namespace ColonyCouncil
 
         public override Vector2 InitialSize => new Vector2(560f, 640f);
 
-        public override void DoWindowContents(Rect inRect)
+        protected override void DoFramedContents(Rect inRect)
         {
-            Text.Font = GameFont.Medium;
-            Widgets.Label(new Rect(inRect.x, inRect.y, inRect.width - 30f, 34f), "CC_Journal_Title".Translate(journal.name));
-            Text.Font = GameFont.Small;
-            var outRect = new Rect(inRect.x, inRect.y + 40f, inRect.width, inRect.height - 40f);
+            float top = TitleTop(inRect, FrameTitle, 30f, 40f);
+            var outRect = new Rect(inRect.x, top, inRect.width, inRect.yMax - top);
             var view = new Rect(0f, 0f, outRect.width - 16f, height);
             Widgets.BeginScrollView(outRect, ref scroll, view);
             float y = 0f;
@@ -273,11 +275,12 @@ namespace ColonyCouncil
             for (int i = journal.entries.Count - 1; i >= 0; i--)
             {
                 var e = journal.entries[i];
-                GUI.color = new Color(0.7f, 0.7f, 0.7f);
+                GUI.color = UiKit.Faint;
                 Text.Font = GameFont.Tiny;
                 Widgets.Label(new Rect(0f, y, view.width, 18f), e.date);
                 Text.Font = GameFont.Small;
-                GUI.color = new Color(1f, 0.95f, 0.85f);
+                // The journal's own warm parchment in the game's look; Rimfolk's ink in its own.
+                GUI.color = UiKit.OwnLook ? UiKit.Ink : new Color(1f, 0.95f, 0.85f);
                 float h = Text.CalcHeight(e.text, view.width - 10f);
                 Widgets.Label(new Rect(10f, y + 18f, view.width - 10f, h), e.text);
                 GUI.color = Color.white;

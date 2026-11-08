@@ -9,9 +9,10 @@ namespace ColonyCouncil
     /// <summary>
     /// Planning a feast with guests (Feasts.Plan): whom to invite (up to three notables, each greyed with why not), which
     /// contests (by what the colony has, each greyed with why not and its risk named before the choice), a prize from the
-    /// stores, the meals the stores hold against those wanted, and who writes the invitations. Sending sets it going.
+    /// stores, the meals the stores hold against those wanted, and who writes the invitations. Sending sets it going. In
+    /// Rimfolk's frame (key "Feast"), its title in the title bar.
     /// </summary>
-    public class Dialog_Feast : Window
+    public class Dialog_Feast : FramedWindow
     {
         private readonly Map home;
         private readonly HashSet<int> picked = new HashSet<int>();
@@ -23,7 +24,11 @@ namespace ColonyCouncil
         private List<Notable> candidates;
         private float builtAt = -1f;
 
-        public Dialog_Feast(Map home, Faction people = null, Notable notable = null)
+        protected override string FrameTitle => FeastWords.P("CC_Feast_Dlg_Title", FeastWords.Name(home).Named("FEAST")).CapitalizeFirst();
+
+        protected override Texture2D FrameIcon => Icons.Wedding ?? Icons.Visitor;
+
+        public Dialog_Feast(Map home, Faction people = null, Notable notable = null) : base("Feast")
         {
             this.home = home ?? Homes.Seat;
             forcePause = true;
@@ -78,13 +83,10 @@ namespace ColonyCouncil
             return Picked.Select(GuestWhy).FirstOrDefault(w => w != null);
         }
 
-        public override void DoWindowContents(Rect inRect)
+        protected override void DoFramedContents(Rect inRect)
         {
             if (Time.realtimeSinceStartup - builtAt > 2f) Build();
-            Text.Font = GameFont.Medium;
-            Widgets.Label(new Rect(0f, 0f, inRect.width - 30f, 34f), FeastWords.P("CC_Feast_Dlg_Title", FeastWords.Name(home).Named("FEAST")).CapitalizeFirst());
-            Text.Font = GameFont.Small;
-            float top = 38f;
+            float top = TitleTop(inRect, FrameTitle);
             var outRect = new Rect(0f, top, inRect.width, inRect.height - top - 48f);
             var view = new Rect(0f, 0f, outRect.width - 16f, height);
             Widgets.BeginScrollView(outRect, ref scroll, view);
@@ -116,7 +118,7 @@ namespace ColonyCouncil
             if (prize != null && (prize.Destroyed || !prize.Spawned)) prize = null;
             string prizeLabel = prize != null ? FeastWords.P("CC_Feast_Dlg_PrizeIs", PlayGive.Label(prize).Named("PRIZE"), Mathf.RoundToInt(prize.MarketValue * prize.stackCount).Named("VALUE"))
                 : FeastWords.P("CC_Feast_Dlg_NoPrize");
-            if (Widgets.ButtonText(new Rect(0f, y, Mathf.Min(w, 420f), 28f), prizeLabel.Truncate(400f)))
+            if (UiKit.Button(new Rect(0f, y, Mathf.Min(w, 420f), 28f), prizeLabel.Truncate(400f)))
             {
                 var opts = new List<FloatMenuOption> { new FloatMenuOption(FeastWords.P("CC_Feast_Dlg_NoPrize"), () => prize = null) };
                 foreach (var t in Feasts.Prizes(home))
@@ -145,7 +147,7 @@ namespace ColonyCouncil
 
             // Who writes.
             string writerLabel = FeastWords.P("CC_Feast_Dlg_Writer", (writer?.LabelShort ?? "?").Named("PAWN"));
-            if (Widgets.ButtonText(new Rect(0f, y, Mathf.Min(w, 420f), 28f), writerLabel.Truncate(400f)))
+            if (UiKit.Button(new Rect(0f, y, Mathf.Min(w, 420f), 28f), writerLabel.Truncate(400f)))
             {
                 var opts = NeighbourLetters.Writers(home).Select(p =>
                 {
@@ -162,7 +164,7 @@ namespace ColonyCouncil
             string why = SendWhyNot();
             if (UiKit.ActButton(new Rect(inRect.width - 220f, inRect.height - 38f, 220f, 34f), FeastWords.P("CC_Feast_Dlg_Send"), why, FeastWords.P("CC_Feast_Dlg_SendTip")))
                 Send();
-            if (Widgets.ButtonText(new Rect(0f, inRect.height - 38f, 140f, 34f), "CancelButton".Translate())) Close();
+            if (UiKit.Button(new Rect(0f, inRect.height - 38f, 140f, 34f), "CancelButton".Translate())) Close();
         }
 
         private float GuestRow(Notable n, float x, float y, float w, int index)

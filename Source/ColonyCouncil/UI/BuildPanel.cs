@@ -10,7 +10,7 @@ namespace ColonyCouncil
     public static class BuildPanel
     {
         /// <summary>A plan the colony can't build yet: soon's colour on its edge and its reason (UI/UiKit.cs's tokens).</summary>
-        private static readonly Color HighColor = UiKit.Soon;
+        private static Color HighColor => UiKit.Soon;
         private static Vector2 scroll;
         private static float height = 1000f;
         private static bool buildOnlyAvailable = true;
@@ -50,7 +50,7 @@ namespace ColonyCouncil
             int available = UiCache.Get(map, 51, () => ordered.Count(t => t.UnavailableReason(map) == null), 2f);
             float top = UiKit.PageHeader(rect, Icons.Rooms, "CC_Build_Header".Translate(), "CC_Build_Sub".Translate(),
                 "CC_UI_Stat_Plans".Translate(available).Resolve(), null, 270f);
-            Widgets.CheckboxLabeled(new Rect(rect.xMax - 260f, rect.y + 6f, 260f, 24f), "CC_Build_OnlyAvailable".Translate(), ref buildOnlyAvailable);
+            UiKit.Toggle(new Rect(rect.xMax - 260f, rect.y + 6f, 260f, 24f), "CC_Build_OnlyAvailable".Translate(), ref buildOnlyAvailable);
             if (UiKit.RowAct(new Rect(rect.xMax - 260f, rect.y + 30f, 126f, 22f), "CC_Yours_Save".Translate(), null, "CC_Yours_SaveDesc".Translate())) Designator_SaveRoom.Begin();
             if (UiKit.RowAct(new Rect(rect.xMax - 130f, rect.y + 30f, 130f, 22f), "CC_Rearr_Button".Translate(), null, "CC_Rearr_Desc".Translate())) Designator_RearrangeRoom.Begin();
 

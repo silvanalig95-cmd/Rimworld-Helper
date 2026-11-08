@@ -12,6 +12,85 @@ tree at once, alongside whatever runs. Each piece is merged as its own release, 
 
 ## State (5 November 2026)
 
+- 0.179.0, Rimfolk's own look, stage 2: the council's windows float, the Almanac and Rimfolk's dialogs in the frame (8 November
+  2026, stage 2 of `docs/design/rimfolk-look.md`, the player's explicit request of the same day: "for the rimfolk uis,
+  please also dont be withheld by the vanilla ui, for example for the diplomacy screen, i'd love to move the window
+  around, make it larger etc. you really don't have to stick to the rimworld design theme if you can otherwise make all
+  uis clearer, better to use, better looking, modern etc."). Not released: no version, no What's new round, About.xml
+  and CHANGELOG untouched. DESIGN.md "Rimfolk's own look, stage 2: the four windows float, the Almanac and Rimfolk's
+  dialogs in the frame" has all of it (and a sentence in "Rimfolk's windows"); `docs/design/interface.md` "The look"
+  (stage 2 built, component 20, the floating windows and dialogs in "What it takes"); `docs/design/rimfolk-look.md`
+  stage 2 marked built, with what was left as it was and the risks; README the own look's paragraph; the Almanac's guide
+  its paragraph (prose only, keywords unchanged).
+  - What: **the four windows float** (`UI/FloatingWindows.cs`): the council ("Council", least 680 by 460), Planning
+    ("Planning", 680 by 460) and Defenses ("Defense", 640 by 440) as the region window ("Region", 720 by 480) does, each
+    a `RimfolkFloatingWindow` drawing its tab's contents through one static draw (`DrawCouncil`, `DrawPlanning`,
+    `DrawDefenses`, `DrawRegion`), the corner in its title bar; one worker on the four buttons
+    (`MainButtonWorker_RimfolkWindow`, the council's and the region's deriving). **The registry** (`FloatingWindows`, by
+    `RimfolkWindow`) is what `Pages.Showing`, `Show`, `Close`, `OpenOrClose`, `OpenOrCloseSection` and `LeaveForMap`
+    ask: one of the four at a time (`FramedWindowsMath.ToClose`), a window opening the first time taking the place of
+    the one it turns the page from. The tabs (setting off) share one frame in the look (`RimfolkTabWindow`). **Off to
+    the map**: all twenty-three callers of `EscapeCurrentTab` go through `Pages.LeaveForMap` (floating windows and the
+    tab closed, the inspect pane kept); the research, quests and work tab openers in pages through `Pages.GoToGameTab`.
+    **The kit**: every `Widgets.ButtonText`, `TextField`, `CheckboxLabeled` and `DrawHighlightIfMouseover` in Rimfolk's
+    pages and dialogs is `UiKit.Button`, `TextField` (the game's length and validator overloads), `Toggle` (disabled,
+    near its word), `RowHover`, or the new `ListRow` and `Section`, each the game's own widget in its look; the 69
+    `static readonly Color` copies of tokens are properties. **The Almanac** ("Almanac", 560 by 400) in the frame, first
+    beside the windows, its text sizes kept. **Every dialog framed** with its key and least (`FramedWindowsMath.Keys`):
+    the letter window ("Letter", 580 by 740), the journey planner ("Journey", 760 by 540) and its picker, the camp, the
+    market ("Market", 820 by 400), the stall counter ("Stall", 980 by 560), the founding window ("Founding", 760 by
+    560), the card ("Card"), the feast, journal, news, calendar day, clock, self check, bar arranger, guest check,
+    newcomers, landing, hand-over, scenario start, both naming dialogs, shelf reserves and picker, floor picker, ground
+    plan, rearrange, outsider gift, panel options; titles in the title bar (`TitleTop`, `TitleAndLine`,
+    `UiKit.DialogHeader`), the game's close cross, close button, dragging and sizing giving way to the frame's. **Wider
+    shows more**: This week three columns from a page of 1500, the journey planner's and founding window's who-goes to
+    640 and 600 from 1400, the hand-over's and scenario list likewise, the camp's acts up to half again as wide, the
+    market's names. **Previews and the corner's search** take the look of the window their link is in; a card's model
+    kept for each look. **Left as they were**: the on-screen panels and their edit bar, the room and defense planners
+    docked above the architect menu, the search popup's place, the game's own windows (mod settings, the inspect pane,
+    the game's trade screen, choice letters).
+  - Code: new `UI/FloatingWindows.cs` (`FloatingWindows`, `RimfolkFloatingWindow`, `Window_Council`, `Window_Planning`,
+    `Window_Defenses`, `MainButtonWorker_RimfolkWindow`), `UI/FramedWindowsMath.cs` (pure, linked in Tests.csproj: the
+    four, `KeyOf`, `ToClose`, `AfterOpening`, `Keys`, `TryKey`, `WeekColumns`, `JourneyWhoWidth`, `FoundingWhoWidth`,
+    `DialogActWidth`). Touched: `UI/WindowFrame.cs` (`Known`, `Opening(want, first)`; `FramedWindow(key)`, `TitleInBar`,
+    `TitleTop`, `TitleAndLine`, `UnframedMargin`, `OwnFirstPlace`, `PlaceUnframed`, `handedPlace`, the game's flags, the
+    close button), `WindowFrameMath` (`LeastH` 160), `Window_Region` (one of the four), `WindowTabs` (`DrawFor`,
+    `RimfolkTabWindow`'s frame and `DrawContents`), the four `MainTabWindow_*`, `Pages`, `CouncilButton`, `UiKitSkin`
+    (`TextField`, `Toggle`, `Button`'s sound, `ListRow`, `Section`), `UiKitViews` (`DialogHeader`), `Cards` (a model set
+    per look), `Previews`, `Search`, `HudManager`, `Interactions`, `WeekPanel` and the pages' widgets, every dialog
+    listed above, `Defs/Misc/Council_Misc.xml` (the defense and planning buttons' worker), `Rimfolk_OwnLook.xml` (the
+    settings' words).
+  - Settings: none new; "Rimfolk's own look" and "Rimfolk's windows move and resize" cover every window now. Saved:
+    nothing in the game (the new places in the settings' `windowPlaces` by key). No Harmony patch, no Sched slot.
+  - Tests: `Tools/Tests/RimfolkLookStageTwoTests.cs` ("Rimfolk's own look, stage 2: ", some 1,700 checks: one at a time
+    for every set of open windows, every key's least on screens from 1024 by 768 to 4K at three scales, the four title
+    bars, the layouts from each least to 92% of 4K, the seams: no `EscapeCurrentTab` outside Pages, every Rimfolk window
+    framed but those left, each key in the table, no game widget left in the pages and dialogs, no token copied at
+    load). `RimfolkLookTests`, `PagesTests` and `LookTests` read the new seams.
+  - Riskiest (none of it could be run here): the four floating windows beside the game's tabs and the inspect pane
+    (which is on top; Escape to the topmost; a game tab opened from the HUD over a floating window); the place handed
+    from one floating window to another on a page turn; the game's close button drawn at a framed dialog's foot (the
+    camp, the journey picker, the bar arranger, the shelf dialogs) in the room the dialog left for it; the letter window
+    at its least on a 768 screen (its contents don't scroll); the dialogs' fields' focus inside the frame (the naming
+    dialogs focus theirs on opening); a preview taking its link's look through two levels; the market's columns at its
+    least.
+  - Try in the game (none of it could be run here): 1. Open the council from its button: a floating window with
+    "council" in a dark title bar, the corner's icons, a square and an X; This week as before. 2. Drag it aside, click
+    on the map, pick a colonist, open the game's Work tab: it stays. 3. From its corner open the region, then planning,
+    then defense: each replaces the one before (the first time each opens where the last one was); close one, reopen it
+    from its button: where you left it. 4. Make the council large (double-click the title): This week in three columns
+    on a wide screen; People's table with all its columns. 5. In the council, This week, click a colonist's row (the
+    jump): the window closes and the camera goes there; in Planning, put down a room plan: the window closes, the
+    designator is on. 6. Press Escape with a card in the council's drawer (the drawer closes), then again (the window
+    closes). 7. Open the Almanac from the corner's book: a framed window beside the council, its text size buttons as
+    before; drag it, close it, reopen it: where it was. 8. Write a letter to a neighbour (a town's card, Write): "Write
+    a letter" in the title bar, Send in amber; plan a journey and add from the stores: the picker opens beside the
+    planner, its Close at its foot. 9. Talk to a camp, open the stall counter (RimMarket), the market from a trade, the
+    founding window: each framed, each resizable, Escape and the X close them. 10. Rest the mouse on a name in the
+    council (a preview, rounded) and on the colonist bar's badge (the game's look). 11. Settings, How you're told:
+    "Rimfolk's own look" off (the game's look, the frames' title bars plain) and "Rimfolk's windows move and resize" off
+    (the four windows are tabs at the screen's foot again, the dialogs as they were, the Almanac the game's movable
+    window); "Put Rimfolk's windows back".
 - 0.178.0, Rimfolk's own look, stage 1: the window frame and the style kit, on the region window and the trade window (8 November
   2026, stage 1 of `docs/design/rimfolk-look.md`, the player's explicit request: "for the rimfolk uis, please also dont be
   withheld by the vanilla ui, for example for the diplomacy screen, i'd love to move the window around, make it larger

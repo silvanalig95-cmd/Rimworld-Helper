@@ -26,33 +26,58 @@ namespace ColonyCouncil
             }
         }
 
-        /// <summary>The window is open now (the region window as its tab or floating).</summary>
-        public static bool Showing(RimfolkWindow w)
+        /// <summary>Which of the four windows a bottom bar button opens, or none.</summary>
+        public static RimfolkWindow? WindowOfButton(MainButtonDef b)
         {
-            if (w == RimfolkWindow.World && Window_Region.Showing) return true;
+            if (b == null) return null;
+            foreach (var w in FramedWindowsMath.Floating)
+                if (ButtonOf(w) == b)
+                    return w;
+            return null;
+        }
+
+        /// <summary>The window is open as its tab.</summary>
+        private static bool TabShowing(RimfolkWindow w)
+        {
             var b = ButtonOf(w);
             return b != null && Find.MainTabsRoot?.OpenTab == b;
         }
 
-        /// <summary>Closes the window if it shows: the floating region window, or the tab (as the tab's own button would).</summary>
+        /// <summary>The window is open now, floating (UI/FloatingWindows.cs) or as its tab.</summary>
+        public static bool Showing(RimfolkWindow w) => FloatingWindows.Showing(w) || TabShowing(w);
+
+        /// <summary>Closes the window if it shows: the floating window, or the tab (as the tab's own button would).</summary>
         public static void Close(RimfolkWindow w)
         {
-            if (w == RimfolkWindow.World && Window_Region.Showing)
+            if (FloatingWindows.Showing(w))
             {
-                Window_Region.Shut();
+                FloatingWindows.Shut(w);
                 return;
             }
-            if (Showing(w)) Find.MainTabsRoot.EscapeCurrentTab();
+            if (TabShowing(w)) Find.MainTabsRoot.EscapeCurrentTab();
         }
 
         /// <summary>
-        /// Off to the map (a jump to someone, a tile picked on the world): the tab open closes, and so does the floating
-        /// region window, as the tab did before it floated.
+        /// Off to the map (a jump to someone or somewhere, a plan put down, a tile picked on the world): the floating windows
+        /// close, and the tab open, as the tab closed before the windows floated. The inspect pane stays (a jump picks who it
+        /// shows).
         /// </summary>
         public static void LeaveForMap()
         {
-            Find.MainTabsRoot?.EscapeCurrentTab(false);
-            Window_Region.Shut(false);
+            FloatingWindows.ShutAll(false);
+            var root = Find.MainTabsRoot;
+            if (root?.OpenTab != null && root.OpenTab != MainButtonDefOf.Inspect) root.EscapeCurrentTab(false);
+        }
+
+        /// <summary>
+        /// One of the game's tabs from a page of Rimfolk's (the research to unlock a thing, the quests): the window gives way
+        /// to it, as the tab did before the windows floated.
+        /// </summary>
+        public static void GoToGameTab(MainButtonDef tab)
+        {
+            if (tab == null || Find.MainTabsRoot == null) return;
+            FloatingWindows.ShutAll(false);
+            Find.MainTabsRoot.SetCurrentTab(tab);
         }
 
         /// <summary>A page of any of the windows (another part of Rimfolk's region pages too, and the Almanac), by its name or an old one.</summary>
@@ -180,7 +205,7 @@ namespace ColonyCouncil
             }
             if (Showing(RimfolkWindow.Council) && PagesMath.SectionOf(MainTabWindow_Council.Page) == section)
             {
-                Find.MainTabsRoot.EscapeCurrentTab();
+                Close(RimfolkWindow.Council);
                 return;
             }
             Open(MainTabWindow_Council.LastIn(section));
@@ -188,25 +213,25 @@ namespace ColonyCouncil
 
         /// <summary>
         /// Opens a window as its own button does (the region window on the map, the others where they were). One of the four
-        /// at a time, as the corner turns pages: the region window floats where Rimfolk's windows move, and opening it closes
-        /// another of Rimfolk's tabs; opening another closes it.
+        /// at a time, as the corner turns pages: where Rimfolk's windows move each floats (UI/FloatingWindows.cs), and opening
+        /// one closes the other floating three and any of Rimfolk's tabs; otherwise it is the tab, and opening it closes the
+        /// floating ones. Open already, a floating window comes to the front.
         /// </summary>
         public static void Show(RimfolkWindow w)
         {
             var root = Find.MainTabsRoot;
-            if (w == RimfolkWindow.World && Window_Region.Floats)
+            if (root == null) return;
+            if (FloatingWindows.Floats)
             {
-                if (Window_Region.Showing || root == null) return;
+                // A tab of Rimfolk's open (from before the windows floated, or opened by another mod) gives way.
                 var open = root.OpenTab;
-                if (open != null && (open == ButtonOf(RimfolkWindow.Council) || open == ButtonOf(RimfolkWindow.Defense) || open == ButtonOf(RimfolkWindow.Planning)
-                                     || open == ButtonOf(RimfolkWindow.World)))
-                    root.EscapeCurrentTab(false);
-                Window_Region.Open();
+                if (open != null && WindowOfButton(open) != null) root.EscapeCurrentTab(false);
+                FloatingWindows.Open(w);
                 return;
             }
             var b = ButtonOf(w);
-            if (b == null || root == null || root.OpenTab == b) return;
-            Window_Region.Shut(false);
+            if (b == null || root.OpenTab == b) return;
+            FloatingWindows.ShutAll(false);
             root.SetCurrentTab(b, false);
         }
 

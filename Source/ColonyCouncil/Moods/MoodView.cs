@@ -11,14 +11,14 @@ namespace ColonyCouncil
     {
         // The interface's tokens (UI/UiKit.cs): a good mood warm, a bad one sour, what would help gold; the bar fainter warm
         // while it is fine, then soon, sour and danger as it nears the minor, major and extreme break lines.
-        public static readonly Color Faint = UiKit.Faint;
-        public static readonly Color GoodColor = UiKit.Warm;
-        public static readonly Color BadColor = UiKit.Sour;
-        public static readonly Color AdviceColor = UiKit.Gold;
-        private static readonly Color OkColor = UiKit.WithAlpha(UiKit.Warm, 0.65f);
-        private static readonly Color MinorColor = UiKit.Soon;
-        private static readonly Color MajorColor = UiKit.Sour;
-        private static readonly Color ExtremeColor = UiKit.Danger;
+        public static Color Faint => UiKit.Faint;
+        public static Color GoodColor => UiKit.Warm;
+        public static Color BadColor => UiKit.Sour;
+        public static Color AdviceColor => UiKit.Gold;
+        private static Color OkColor => UiKit.WithAlpha(UiKit.Warm, 0.65f);
+        private static Color MinorColor => UiKit.Soon;
+        private static Color MajorColor => UiKit.Sour;
+        private static Color ExtremeColor => UiKit.Danger;
         private const float NumW = 52f;
 
         /// <summary>A line's text and layout, worked out once per refresh rather than every frame.</summary>
@@ -236,7 +236,7 @@ namespace ColonyCouncil
             {
                 float bw = Text.CalcSize(label).x + 16f;
                 if (bx + bw > x + w) return false;
-                bool clicked = Widgets.ButtonText(new Rect(bx, y, bw, 20f), label);
+                bool clicked = UiKit.Button(new Rect(bx, y, bw, 20f), label);
                 bx += bw + 6f;
                 return clicked;
             }
@@ -280,7 +280,7 @@ namespace ColonyCouncil
                     InspectPaneUtility.OpenTab(typeof(ITab_Pawn_Mood));
                     return;
                 }
-                if (Find.MainTabsRoot.OpenTab != null && Find.MainTabsRoot.OpenTab != MainButtonDefOf.Inspect) Find.MainTabsRoot.EscapeCurrentTab(false);
+                Pages.LeaveForMap();
                 CameraJumper.TryJumpAndSelect(p, CameraJumper.MovementMode.Pan);
                 // A carried baby or someone in a shuttle selects whoever holds them: don't show the wrong person.
                 if (Find.Selector.SingleSelectedThing == p) InspectPaneUtility.OpenTab(typeof(ITab_Pawn_Mood));

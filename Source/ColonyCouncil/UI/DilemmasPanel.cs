@@ -189,7 +189,7 @@ namespace ColonyCouncil
         private static void DrawLine(Rect r, Line l, int i)
         {
             UiKit.Zebra(r, i);
-            Widgets.DrawHighlightIfMouseover(r);
+            UiKit.RowHover(r);
             Widgets.DrawBoxSolid(new Rect(r.x, r.y + 4f, 2f, r.height - 8f), UiKit.WithAlpha(l.wentColor, 0.8f));
             Cell(r, 0, l.day, null, UiKit.Faint);
             Cell(r, 1, l.question, null, UiKit.Ink);

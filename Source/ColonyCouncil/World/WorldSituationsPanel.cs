@@ -13,7 +13,7 @@ namespace ColonyCouncil
     public static class WorldSituationsPanel
     {
         /// <summary>What goes on in the world: the world's colour (UI/UiKit.cs's tokens; the old tan gave way).</summary>
-        private static readonly Color Accent = UiKit.World;
+        private static Color Accent => UiKit.World;
         private const float IconX = 10f;
         private const float TextX = 46f;
 

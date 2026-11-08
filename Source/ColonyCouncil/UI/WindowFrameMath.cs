@@ -68,8 +68,8 @@ namespace ColonyCouncil
         /// <summary>The game's bottom bar, kept clear by a window that asks for it (the region window; a dialog may cover it).</summary>
         public const float BottomBar = 35f;
 
-        /// <summary>The smallest a window can be made anywhere (a window gives its own least, never below this).</summary>
-        public const float LeastW = 360f, LeastH = 240f;
+        /// <summary>The smallest a window can be made anywhere (a window gives its own least, never below this): a name asked for in a field and its OK.</summary>
+        public const float LeastW = 360f, LeastH = 160f;
 
         /// <summary>
         /// The region window's least size (its tabs and the corner in the title bar, a view under the map's panel laid over

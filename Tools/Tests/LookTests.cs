@@ -99,8 +99,8 @@ public static class LookTests
             }
         }
         // The page accents gave way: the Peoples cards' violet, the world's tan, the journeys' sage.
-        C(Read("Diplomacy/DiplomacyPanels.cs").Contains("Color Accent = UiKit.Link;"), "the Peoples cards' names are in link ink, not violet");
-        C(Read("World/WorldSituationsPanel.cs").Contains("Color Accent = UiKit.World;") && Read("World/FactionMemoryPanel.cs").Contains("Color Accent = UiKit.World;"),
+        C(Read("Diplomacy/DiplomacyPanels.cs").Contains("Color Accent => UiKit.Link;"), "the Peoples cards' names are in link ink, not violet");
+        C(Read("World/WorldSituationsPanel.cs").Contains("Color Accent => UiKit.World;") && Read("World/FactionMemoryPanel.cs").Contains("Color Accent => UiKit.World;"),
             "the world's panels in the world's colour, not tan or violet");
 
         // ---------------- The grid ----------------

@@ -20,7 +20,7 @@ namespace ColonyCouncil
         private static readonly List<string> Order = PagesMath.PagesIn(RimfolkWindow.Planning);
         private static string page = PagesMath.FirstOf(RimfolkWindow.Planning);
         private static readonly Dictionary<string, string> lastInView = new Dictionary<string, string>();
-        private readonly List<WindowTab> tabs = new List<WindowTab>();
+        private static readonly List<WindowTab> tabs = new List<WindowTab>();
         private static readonly Dictionary<string, string> labels = new Dictionary<string, string>();
         private static float labelsAt = -1f;
         private static readonly Dictionary<string, ViewHeadModel> heads = new Dictionary<string, ViewHeadModel>();
@@ -54,7 +54,13 @@ namespace ColonyCouncil
             lastInView[ViewOf(p)] = p;
         }
 
-        public override void DoWindowContents(Rect inRect)
+        protected override void DrawContents(Rect inRect, bool cornerInTitle) => DrawPlanning(inRect, cornerInTitle);
+
+        /// <summary>
+        /// The planning window's contents, the tab's and the floating window's alike: the four views as tabs (the corner beside
+        /// them, or in the title bar with <paramref name="cornerInTitle"/>), and the view showing with its drawer.
+        /// </summary>
+        internal static void DrawPlanning(Rect inRect, bool cornerInTitle)
         {
             map = Find.CurrentMap;
             comp = CouncilGameComponent.Instance;
@@ -70,7 +76,7 @@ namespace ColonyCouncil
                 string v = view;
                 tabs.Add(new WindowTab(ViewLabel(v), IconOf(PagesMath.ModesOf(RimfolkWindow.Planning, v)[0]), v == current, () => SetPage(LastIn(v)), ViewTip(v)));
             }
-            var body = WindowTabs.Draw(inRect, tabs, RimfolkWindow.Planning);
+            var body = WindowTabs.DrawFor(inRect, tabs, RimfolkWindow.Planning, cornerInTitle);
             var content = body.ContractedBy(12f);
 
             // The next and previous page keys step through the planning pages here.

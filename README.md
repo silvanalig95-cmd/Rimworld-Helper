@@ -61,15 +61,18 @@ switched off in the settings or put away under "more" is still a click away ther
 same place: 1010 by 720, or with **Window size** set to Large in the settings, up to 1280 by 860 on a screen with the
 room.
 
-**Rimfolk's own look.** The region window and the trade window (the council's windows next) have a look of their own:
-a calm dark ground, rounded cards with a faint edge, flat buttons that light under the mouse, tabs that read as tabs,
-one amber accent for what is chosen, and the stances in blue (allied, friendly) and orange (hostile), always with their
-word. Drag one by its title bar, size it from any edge or corner, and make it large (most of the screen) with the button
-in its title bar or a double-click on the title; each opens where you left it and as large, also after a restart. The
-region window floats beside the map: a click on the map or a colonist picked leaves it open, and its button, its key or
-the close button in its title bar shut it. "Rimfolk's own look" and "Rimfolk's windows move and resize" in the settings
-(both on) bring back the game's look and the region window as a tab at the screen's foot; "Put Rimfolk's windows back"
-opens every window where it first did.
+**Rimfolk's own look.** Every window of Rimfolk's (the council, the region, planning and defense, the Almanac, the trade
+window and its market, the stall counter, letters, the journey planner, the camp, the founding window, a card and every
+dialog) has a look of its own: a calm dark ground, rounded cards with a faint edge, flat buttons that light under the
+mouse, tabs that read as tabs, one amber accent for what is chosen, and the stances in blue (allied, friendly) and
+orange (hostile), always with their word. Drag one by its title bar, size it from any edge or corner, and make it large
+(most of the screen) with the button in its title bar or a double-click on the title; each opens where you left it and
+as large, also after a restart, and shows more when wider (This week in three columns, the journey planner's list of
+who goes wider). The four main windows float beside the map, one at a time: a click on the map or a colonist picked
+leaves them open, the corner turns from one to another, and their button, key or the close button in the title bar
+shut them; a jump to someone or a plan put down on the map closes them. A name's preview takes the look inside them.
+"Rimfolk's own look" and "Rimfolk's windows move and resize" in the settings (both on) bring back the game's look and
+the four windows as tabs at the screen's foot; "Put Rimfolk's windows back" opens every window where it first did.
 
 The **council** window, in four views along its top, each with its modes as small buttons under its title and a "?"
 beside the title that opens its page of the Almanac:

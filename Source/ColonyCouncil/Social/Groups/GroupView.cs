@@ -186,7 +186,7 @@ namespace ColonyCouncil
             UiKit.LabelFit(new Rect(x, y + Face + 1f, FaceW - 4f, 15f), p.LabelShort, new Color(1f, 1f, 1f, 0.6f + 0.4f * alpha), GameFont.Tiny, TextAnchor.UpperCenter);
             UiKit.LabelFit(new Rect(x, y + Face + 14f, FaceW - 4f, 15f), label, roleColor, GameFont.Tiny, TextAnchor.UpperCenter);
             var area = new Rect(x, y, FaceW - 4f, Face + 29f);
-            Widgets.DrawHighlightIfMouseover(area);
+            UiKit.RowHover(area);
             TooltipHandler.TipRegion(area, tip);
             if (Widgets.ButtonInvisible(area)) Cards.Open(p);
         }

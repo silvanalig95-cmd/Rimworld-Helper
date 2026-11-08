@@ -73,7 +73,7 @@ namespace ColonyCouncil
                 return;
             }
             var des = new Designator_PlanDefense(t) { choke = choke };
-            Find.MainTabsRoot.EscapeCurrentTab(false);
+            Pages.LeaveForMap();
             Find.DesignatorManager.Select(des);
             if (atSpot) des.SuggestSpot(true);
         }
@@ -94,7 +94,7 @@ namespace ColonyCouncil
                 return;
             }
             var des = new Designator_PlanDefense(t) { lineId = lineId, why = why, warn = warn };
-            Find.MainTabsRoot.EscapeCurrentTab(false);
+            Pages.LeaveForMap();
             Find.DesignatorManager.Select(des);
             var cfg = des.Config;
             cfg.rotation = TemplateMath.Norm(rot);
@@ -129,7 +129,7 @@ namespace ColonyCouncil
                 return;
             }
             var des = new Designator_PlanDefense(t) { lineId = line?.id ?? -1, why = why };
-            Find.MainTabsRoot.EscapeCurrentTab(false);
+            Pages.LeaveForMap();
             Find.DesignatorManager.Select(des);
             if (line != null)
             {

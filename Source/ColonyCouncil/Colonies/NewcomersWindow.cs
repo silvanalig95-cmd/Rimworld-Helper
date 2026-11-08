@@ -25,7 +25,7 @@ namespace ColonyCouncil
     /// game's own checks hold Confirm back until the chosen make the start, and its kit is made as they are confirmed.
     /// </para>
     /// </summary>
-    public class Dialog_Newcomers : Window
+    public class Dialog_Newcomers : FramedWindow
     {
         private readonly FoundingPlan plan;
         private int curPawnIndex;
@@ -54,7 +54,12 @@ namespace ColonyCouncil
         /// <summary>The count is the scenario's own: none added or taken away, only chosen among the candidates.</summary>
         private bool Fixed => start?.people != null;
 
-        public Dialog_Newcomers(FoundingPlan plan)
+        protected override string FrameTitle => "CC_Found_NewcomersTitle".Translate(plan.place.Named("PLACE")).Resolve();
+
+        protected override Texture2D FrameIcon => Icons.Visitor;
+
+        /// <summary>In Rimfolk's frame (key "Newcomers"), its title in the title bar.</summary>
+        public Dialog_Newcomers(FoundingPlan plan) : base("Newcomers")
         {
             this.plan = plan;
             doCloseX = true;
@@ -146,20 +151,25 @@ namespace ColonyCouncil
 
         private Map PayFrom => Homes.MapOf(plan.from) ?? Homes.Seat;
 
-        public override void DoWindowContents(Rect rect)
+        protected override void DoFramedContents(Rect rect)
         {
             if (!IsOpen) return;
-            Text.Font = GameFont.Medium;
-            Widgets.Label(new Rect(0f, 0f, rect.width, TitleAreaHeight), "CC_Found_NewcomersTitle".Translate(plan.place.Named("PLACE")).Resolve());
-            Text.Font = GameFont.Small;
+            // The title, unless the frame has it in its bar.
+            float titleH = TitleInBar ? 12f : TitleAreaHeight;
+            if (!TitleInBar)
+            {
+                Text.Font = GameFont.Medium;
+                Widgets.Label(new Rect(0f, 0f, rect.width, TitleAreaHeight), FrameTitle);
+                Text.Font = GameFont.Small;
+            }
             var body = rect;
-            body.yMin += TitleAreaHeight;
+            body.yMin += titleH;
             // A scenario's start: as which scenario has them, or that it isn't loaded any more.
             string scenarioLine = start != null ? "CC_ScenStart_WindowLine".Translate(start.Name.Named("SCENARIO")).Resolve()
                 : scenarioMissing ? "CC_ScenStart_Missing".Translate((plan.scenarioName ?? "?").Named("SCENARIO")).Resolve() : null;
             if (scenarioLine != null)
             {
-                UiKit.LabelFit(new Rect(0f, TitleAreaHeight - 12f, rect.width - 40f, 22f), scenarioLine, scenarioMissing ? UiKit.Warn : UiKit.Faint, GameFont.Tiny);
+                UiKit.LabelFit(new Rect(0f, titleH - 12f, rect.width - 40f, 22f), scenarioLine, scenarioMissing ? UiKit.Warn : UiKit.Faint, GameFont.Tiny);
                 body.yMin += 10f;
             }
             ScenarioStarts.NoPossessions(start);
@@ -184,7 +194,7 @@ namespace ColonyCouncil
             }
             UiKit.Paragraph(0f, confirm.y - 4f, confirm.x - 16f, line, why != null ? UiKit.Warn : UiKit.Faint, GameFont.Small);
             if (why != null) TooltipHandler.TipRegion(confirm, why);
-            if (Widgets.ButtonText(confirm, "Confirm".Translate(), true, true, why == null) && why == null)
+            if (UiKit.Button(confirm, "Confirm".Translate(), ButtonKind.Primary, why == null))
             {
                 Confirm(price);
                 return;
@@ -247,7 +257,7 @@ namespace ColonyCouncil
                 row.y += PawnEntryHeight;
             }
             row.y += 4f;
-            if (Pawns.Count < FoundingMath.MaxNewcomers && Widgets.ButtonText(new Rect(row.x, row.y, row.width, 25f), "+"))
+            if (Pawns.Count < FoundingMath.MaxNewcomers && UiKit.Button(new Rect(row.x, row.y, row.width, 25f), "+"))
             {
                 Find.GameInitData.startingPawnCount++;
                 StartingPawnUtility.SetGenerationRequest(generationIndex, Request);

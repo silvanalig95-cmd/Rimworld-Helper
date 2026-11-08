@@ -354,8 +354,8 @@ namespace ColonyCouncil
             }
         }
 
-        private static readonly Color Gain = UiKit.Warm;
-        private static readonly Color Loss = UiKit.Sour;
+        private static Color Gain => UiKit.Warm;
+        private static Color Loss => UiKit.Sour;
 
         private void Icon(Rect r, Item it)
         {

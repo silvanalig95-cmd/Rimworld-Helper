@@ -40,7 +40,7 @@ namespace ColonyCouncil
 
         private static readonly Color Backing = new Color(0.06f, 0.06f, 0.07f, 0.62f);
         private static readonly Color BackingHover = new Color(0.12f, 0.12f, 0.13f, 0.88f);
-        private static readonly Color StrainWorn = UiKit.Sour;
+        private static Color StrainWorn => UiKit.Sour;
 
         /// <summary>Seconds between two looks at one colonist.</summary>
         public const float RefreshSeconds = 1f;
@@ -396,7 +396,7 @@ namespace ColonyCouncil
         /// <summary>Select a colonist and open one of their tabs; if they can't be selected on a map, their council page.</summary>
         private static void ShowTab(Pawn p, Type tab)
         {
-            if (Find.MainTabsRoot.OpenTab != null && Find.MainTabsRoot.OpenTab != MainButtonDefOf.Inspect) Find.MainTabsRoot.EscapeCurrentTab(false);
+            Pages.LeaveForMap();
             CameraJumper.TryJumpAndSelect(p, CameraJumper.MovementMode.Pan);
             if (Find.Selector.SingleSelectedThing == p) InspectPaneUtility.OpenTab(tab);
             else MainTabWindow_Council.OpenPerson(p);

@@ -180,7 +180,7 @@ namespace ColonyCouncil
             const float dateW = 130f;
             var r = new Rect(x, y, w, 48f);
             UiKit.Zebra(r, index);
-            Widgets.DrawHighlightIfMouseover(r);
+            UiKit.RowHover(r);
             UiKit.Icon(new Rect(x + 6f, y + 6f, 20f, 20f), Icons.Office, UiKit.Gold);
             UiKit.LabelFit(new Rect(x + 32f, y + 3f, dateW, 22f), OfficeTracker.ElectionDay(e), UiKit.Gold);
             float nx = x + 32f + dateW + 8f;
@@ -203,7 +203,7 @@ namespace ColonyCouncil
             float h = Mathf.Max(48f, 28f + oh + 6f);
             var r = new Rect(x, y, w, h);
             UiKit.Zebra(r, index);
-            Widgets.DrawHighlightIfMouseover(r);
+            UiKit.RowHover(r);
             UiKit.Icon(new Rect(x + 6f, y + 6f, 20f, 20f), KindIcon(d), row.soon ? UiKit.Gold : UiKit.Faint);
 
             // The date column.
@@ -295,7 +295,7 @@ namespace ColonyCouncil
     /// birthday or an arrival keeps its own way; any other day can be kept as a feast, a remembrance, a rest day, games, a
     /// bonfire, a day of gifts or a hunt.
     /// </summary>
-    public class Dialog_CalendarDay : Window
+    public class Dialog_CalendarDay : FramedWindow
     {
         public const int MaxNameLength = 40;
 
@@ -320,7 +320,12 @@ namespace ColonyCouncil
         /// <summary>The faith a day kept as an evening of faith speaks for (by name, as the day keeps it).</summary>
         private string faithName;
 
-        public Dialog_CalendarDay(CalendarDay editing, ColonyCalendar cal)
+        protected override string FrameTitle => editing == null ? "CC_Cal_Dialog_New".Translate().Resolve() : "CC_Cal_Dialog_Change".Translate(editing.label.CapitalizeFirst()).Resolve();
+
+        protected override Texture2D FrameIcon => CalendarPanel.Icon ?? Icons.Chronicle;
+
+        /// <summary>In Rimfolk's frame (key "CalendarDay"), its title in the title bar.</summary>
+        public Dialog_CalendarDay(CalendarDay editing, ColonyCalendar cal) : base("CalendarDay")
         {
             this.editing = editing;
             this.cal = cal;
@@ -345,16 +350,12 @@ namespace ColonyCouncil
 
         public override Vector2 InitialSize => new Vector2(560f, 630f);
 
-        public override void DoWindowContents(Rect inRect)
+        protected override void DoFramedContents(Rect inRect)
         {
-            Text.Font = GameFont.Medium;
-            Widgets.Label(new Rect(0f, 0f, inRect.width - 30f, 34f), editing == null ? "CC_Cal_Dialog_New".Translate() : "CC_Cal_Dialog_Change".Translate(editing.label.CapitalizeFirst()));
-            Text.Font = GameFont.Small;
-            float y = 40f;
+            float y = TitleTop(inRect, FrameTitle, 30f, 40f);
             Widgets.Label(new Rect(0f, y, inRect.width, 24f), "CC_Cal_Dialog_Name".Translate());
             y += 24f;
-            GUI.SetNextControlName("RimfolkCalendarName");
-            name = Widgets.TextField(new Rect(0f, y, inRect.width, 30f), name, MaxNameLength);
+            name = UiKit.TextField(new Rect(0f, y, inRect.width, 30f), name, "RimfolkCalendarName", null, MaxNameLength);
             if (!focused)
             {
                 UI.FocusControl("RimfolkCalendarName", this);

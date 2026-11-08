@@ -22,9 +22,9 @@ namespace ColonyCouncil
         private static float height = 600f;
 
         // The interface's tokens (UI/UiKit.cs): in force warm, forced or a warning sour, asked for by someone soon.
-        private static readonly Color Good = UiKit.Warm;
-        private static readonly Color Bad = UiKit.Sour;
-        private static readonly Color Asked = UiKit.Soon;
+        private static Color Good => UiKit.Warm;
+        private static Color Bad => UiKit.Sour;
+        private static Color Asked => UiKit.Soon;
 
         private const float IconX = 12f;
         private const float TextX = 54f;

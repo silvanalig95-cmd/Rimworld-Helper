@@ -52,7 +52,7 @@ namespace ColonyCouncil
         public static void Begin()
         {
             if (Find.CurrentMap == null) return;
-            Find.MainTabsRoot.EscapeCurrentTab(false);
+            Pages.LeaveForMap();
             Find.DesignatorManager.Select(new Designator_RearrangeRoom());
             Messages.Message("CC_Rearr_PickRoom".Translate(), MessageTypeDefOf.SilentInput, false);
         }
@@ -178,8 +178,11 @@ namespace ColonyCouncil
         }
     }
 
-    /// <summary>What the council would move, what stays and why, and the button to go ahead.</summary>
-    public class Window_Rearrange : Window
+    /// <summary>
+    /// What the council would move, what stays and why, and the button to go ahead. In Rimfolk's frame (key "Rearrange"),
+    /// opening first at the screen's right as before.
+    /// </summary>
+    public class Window_Rearrange : FramedWindow
     {
         private readonly Designator_RearrangeRoom des;
         private Vector2 scroll;
@@ -246,7 +249,11 @@ namespace ColonyCouncil
             if (existing != null && existing.des == des) existing.Close(false);
         }
 
-        public Window_Rearrange(Designator_RearrangeRoom des)
+        protected override string FrameTitle => des.plan == null ? "" : "CC_Rearr_Title".Translate(des.plan.roomLabel).Resolve();
+
+        protected override Texture2D FrameIcon => Icons.Rooms;
+
+        public Window_Rearrange(Designator_RearrangeRoom des) : base("Rearrange")
         {
             this.des = des;
             layer = WindowLayer.GameUI;
@@ -260,11 +267,13 @@ namespace ColonyCouncil
             closeOnAccept = false;
         }
 
-        protected override float Margin => 10f;
+        protected override float UnframedMargin => 10f;
 
         public override Vector2 InitialSize => new Vector2(Width, Mathf.Min(560f, UI.screenHeight - 120f));
 
-        protected override void SetInitialSizeAndPosition()
+        protected override bool OwnFirstPlace => true;
+
+        protected override void PlaceUnframed()
         {
             var size = InitialSize;
             windowRect = new Rect(UI.screenWidth - size.x - 20f, 80f, size.x, size.y).Rounded();
@@ -276,7 +285,7 @@ namespace ColonyCouncil
             if (Find.DesignatorManager.SelectedDesignator == des) Find.DesignatorManager.Deselect();
         }
 
-        public override void DoWindowContents(Rect inRect)
+        protected override void DoFramedContents(Rect inRect)
         {
             var plan = des.plan;
             if (plan == null)
@@ -285,9 +294,14 @@ namespace ColonyCouncil
                 return;
             }
             float y = inRect.y;
-            UiKit.Icon(new Rect(inRect.x, y + 2f, 24f, 24f), Icons.Rooms, UiKit.Gold);
-            UiKit.LabelFit(new Rect(inRect.x + 30f, y, inRect.width - 30f, 30f), "CC_Rearr_Title".Translate(plan.roomLabel), Color.white, GameFont.Medium);
-            y += 32f;
+            // The title, unless the frame has it in its bar.
+            if (!TitleInBar)
+            {
+                UiKit.Icon(new Rect(inRect.x, y + 2f, 24f, 24f), Icons.Rooms, UiKit.Gold);
+                UiKit.LabelFit(new Rect(inRect.x + 30f, y, inRect.width - 30f, 30f), "CC_Rearr_Title".Translate(plan.roomLabel), Color.white, GameFont.Medium);
+                y += 32f;
+            }
+            else y += 4f;
             Text.Font = GameFont.Small;
             int moves = plan.Moves, kept = plan.KeptCount, stays = plan.StayCount;
             string summary = moves == 0 && kept + stays == 0 ? "CC_Rearr_Nothing".Translate().Resolve()
@@ -295,7 +309,7 @@ namespace ColonyCouncil
             y += UiKit.Paragraph(inRect.x, y, inRect.width, summary, UiKit.Faint) + 6f;
 
             bool before = MoveStocked;
-            Widgets.CheckboxLabeled(new Rect(inRect.x, y, inRect.width, 24f), "CC_Rearr_MoveStocked".Translate(), ref MoveStocked);
+            UiKit.Toggle(new Rect(inRect.x, y, inRect.width, 24f), "CC_Rearr_MoveStocked".Translate(), ref MoveStocked);
             TooltipHandler.TipRegion(new Rect(inRect.x, y, inRect.width, 24f), "CC_Rearr_MoveStockedTip".Translate());
             y += 28f;
             // The room's knobs (RoomArrangeMath.Tuning): how wide the aisles are kept, how firmly furniture keeps its place.
@@ -340,7 +354,7 @@ namespace ColonyCouncil
                 var lay = new Rect(6f, vy, view.width - 12f, 24f);
                 if (conduits > 0)
                 {
-                    Widgets.CheckboxLabeled(lay, "CC_Rearr_LayConduits".Translate(conduits), ref plan.layConduits);
+                    UiKit.Toggle(lay, "CC_Rearr_LayConduits".Translate(conduits), ref plan.layConduits);
                     TooltipHandler.TipRegion(lay, "CC_Rearr_LayConduitsTip".Translate());
                 }
                 else UiKit.Paragraph(6f, vy, view.width - 12f, "CC_Rearr_NoConduitRun".Translate(), UiKit.Faint);
@@ -367,7 +381,7 @@ namespace ColonyCouncil
             int underWay = queue?.CountIn(plan.rect) ?? 0;
             float bw = 150f;
             string go = "CC_Rearr_Go".Translate(moves).Resolve();
-            if (Widgets.ButtonText(new Rect(inRect.x, by, bw, 30f), go, true, true, moves > 0) && moves > 0)
+            if (UiKit.Button(new Rect(inRect.x, by, bw, 30f), go, ButtonKind.Primary, moves > 0))
             {
                 SoundDefOf.Tick_High.PlayOneShotOnCamera();
                 des.Go();
@@ -377,14 +391,14 @@ namespace ColonyCouncil
             if (underWay > 0)
             {
                 var stopRect = new Rect(inRect.x + bw + 8f, by, bw, 30f);
-                if (Widgets.ButtonText(stopRect, "CC_Rearr_Stop".Translate(underWay)))
+                if (UiKit.Button(stopRect, "CC_Rearr_Stop".Translate(underWay)))
                 {
                     queue.Cancel(plan.rect);
                     Messages.Message("CC_Rearr_Stopped".Translate(), MessageTypeDefOf.SilentInput, false);
                 }
                 TooltipHandler.TipRegion(stopRect, "CC_Rearr_StopTip".Translate());
             }
-            if (Widgets.ButtonText(new Rect(inRect.xMax - 110f, by, 110f, 30f), "CC_Rearr_Cancel".Translate())) Close(false);
+            if (UiKit.Button(new Rect(inRect.xMax - 110f, by, 110f, 30f), "CC_Rearr_Cancel".Translate())) Close(false);
         }
 
         /// <summary>What the arranging does for the walking and the floor, in a few lines of now and after (nothing when nothing changes).</summary>

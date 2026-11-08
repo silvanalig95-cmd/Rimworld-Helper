@@ -262,13 +262,22 @@ namespace ColonyCouncil
         }
     }
 
-    /// <summary>Every button of the bottom bar, ticked to stay on the bar or not ticked to be put away under More.</summary>
-    public class Dialog_ArrangeBar : Window
+    /// <summary>
+    /// Every button of the bottom bar, ticked to stay on the bar or not ticked to be put away under More. In Rimfolk's frame
+    /// (key "ArrangeBar"), its title in the title bar.
+    /// </summary>
+    public class Dialog_ArrangeBar : FramedWindow
     {
         private Vector2 scroll;
         private float height = 400f;
 
-        public Dialog_ArrangeBar()
+        private static string title;
+
+        protected override string FrameTitle => title ??= "CC_Bar_ArrangeTitle".Translate().Resolve();
+
+        protected override Texture2D FrameIcon => Icons.More;
+
+        public Dialog_ArrangeBar() : base("ArrangeBar")
         {
             doCloseX = true;
             doCloseButton = true;
@@ -279,11 +288,11 @@ namespace ColonyCouncil
 
         public override Vector2 InitialSize => new Vector2(Mathf.Min(520f, UI.screenWidth - 40f), Mathf.Min(680f, UI.screenHeight - 40f));
 
-        public override void DoWindowContents(Rect inRect)
+        protected override void DoFramedContents(Rect inRect)
         {
             var buttons = BarMore.Arrangeable();
             int putAway = buttons.Count(BarMore.IsAway);
-            float top = UiKit.PageHeader(new Rect(inRect.x, inRect.y, inRect.width - 24f, UiKit.HeaderHeight), Icons.More, "CC_Bar_ArrangeTitle".Translate(),
+            float top = UiKit.DialogHeader(new Rect(inRect.x, inRect.y, inRect.width - (TitleInBar ? 0f : 24f), UiKit.HeaderHeight), TitleInBar, Icons.More, "CC_Bar_ArrangeTitle".Translate(),
                 "CC_Bar_ArrangeSub".Translate(), putAway > 0 ? "CC_Bar_ArrangeStat".Translate(putAway).Resolve() : null, UiKit.Faint);
             float y = inRect.y + top;
             if (!BarMore.On)
@@ -300,7 +309,8 @@ namespace ColonyCouncil
                 var def = buttons[i];
                 var row = new Rect(0f, ry, view.width, rowH);
                 UiKit.Zebra(row, i);
-                if (Mouse.IsOver(row)) Widgets.DrawHighlight(row);
+                if (UiKit.OwnLook) UiKit.RowHover(row);
+                else if (Mouse.IsOver(row)) Widgets.DrawHighlight(row);
                 float x = 6f;
                 if (def.Icon != null)
                 {
@@ -311,7 +321,7 @@ namespace ColonyCouncil
                 bool was = onBar;
                 UiKit.LabelFit(new Rect(x, ry, view.width - x - 150f, rowH), def.LabelCap, onBar ? Color.white : UiKit.Faint);
                 var tick = new Rect(view.width - 144f, ry, 138f, rowH);
-                Widgets.CheckboxLabeled(tick, "CC_Bar_OnTheBar".Translate(), ref onBar);
+                UiKit.Toggle(tick, "CC_Bar_OnTheBar".Translate(), ref onBar);
                 if (!def.description.NullOrEmpty()) TooltipHandler.TipRegion(row, def.description);
                 if (onBar != was)
                 {
@@ -323,7 +333,7 @@ namespace ColonyCouncil
             height = Mathf.Max(ry, 40f);
             Widgets.EndScrollView();
             var all = new Rect(inRect.x, inRect.yMax - bottom - 36f, 260f, 32f);
-            if (putAway > 0 && Widgets.ButtonText(all, UiKit.Fit("CC_Bar_PinAll".Translate(), all.width - 12f))) BarMore.PinAllBack();
+            if (putAway > 0 && UiKit.Button(all, UiKit.Fit("CC_Bar_PinAll".Translate(), all.width - 12f))) BarMore.PinAllBack();
         }
     }
 }

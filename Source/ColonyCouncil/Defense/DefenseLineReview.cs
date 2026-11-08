@@ -293,7 +293,7 @@ namespace ColonyCouncil
             if (map == null || line == null) return;
             DefenseLines.Select(map, line);
             DefenseOverlay.Show = true;
-            Find.MainTabsRoot.EscapeCurrentTab(false);
+            Pages.LeaveForMap();
             CameraJumper.TryJump(at.IsValid && at.InBounds(map) ? at : line.gate, map);
         }
 
@@ -777,7 +777,7 @@ namespace ColonyCouncil
                 tip = "CC_DefLine_SelectGate_Tip".Translate(),
                 act = () =>
                 {
-                    Find.MainTabsRoot.EscapeCurrentTab(false);
+                    Pages.LeaveForMap();
                     CameraJumper.TryJumpAndSelect(door);
                 }
             });

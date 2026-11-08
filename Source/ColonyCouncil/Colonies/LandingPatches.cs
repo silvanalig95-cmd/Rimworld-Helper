@@ -233,7 +233,7 @@ namespace ColonyCouncil
 
         private static void Open()
         {
-            Find.MainTabsRoot.EscapeCurrentTab(false);
+            Pages.LeaveForMap();
             Dialog_Landing.Open();
         }
 

@@ -149,7 +149,7 @@ namespace ColonyCouncil
                     var m = r.shaky[i];
                     var row = new Rect(0f, y, w, UiKit.RowPortrait);
                     UiKit.Zebra(row, i);
-                    Widgets.DrawHighlightIfMouseover(row);
+                    UiKit.RowHover(row);
                     // Their portrait and name lead to their card; the rest of the row to their Mood tab.
                     var face = new Rect(4f, y + 5f, 30f, 30f);
                     UiKit.Portrait(face, m.pawn, StateColor(m));

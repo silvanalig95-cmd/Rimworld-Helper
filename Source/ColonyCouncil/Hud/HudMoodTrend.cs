@@ -24,8 +24,8 @@ namespace ColonyCouncil
         private int readVersion = -1, readDays = -1, nowHour;
         private string summary, rangeLabel, agoLabel, barLabel, barTip;
 
-        private static readonly Color AvgColor = UiKit.Gold;
-        private static readonly Color LowColor = UiKit.Sour;
+        private static Color AvgColor => UiKit.Gold;
+        private static Color LowColor => UiKit.Sour;
 
         public HudMoodTrend() : base(HudLayout.Trend)
         {

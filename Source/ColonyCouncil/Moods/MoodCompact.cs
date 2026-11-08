@@ -387,7 +387,7 @@ namespace ColonyCouncil
         private static float FoldedSummary(string text, CompactState st, float y, float w)
         {
             var r = new Rect(0f, y, w, 22f);
-            Widgets.DrawHighlightIfMouseover(r);
+            UiKit.RowHover(r);
             UiKit.Icon(new Rect(4f, y + 5f, 12f, 12f), TexButton.Reveal, UiKit.WithAlpha(MoodView.GoodColor, 0.7f));
             var oldFont = Text.Font;
             Text.Font = GameFont.Tiny;
@@ -432,7 +432,7 @@ namespace ColonyCouncil
             float f = MoodSortMath.BarFraction(r.mood, largest);
             var color = MoodView.ColorFor(r.mood);
             if (f > 0f) Widgets.DrawBoxSolid(new Rect(0f, y + 2f, Mathf.Max(2f, w * f), rh - 4f), UiKit.WithAlpha(color, 0.12f));
-            Widgets.DrawHighlightIfMouseover(row);
+            UiKit.RowHover(row);
 
             Text.Font = GameFont.Small;
             Text.Anchor = TextAnchor.MiddleRight;
@@ -617,7 +617,7 @@ namespace ColonyCouncil
             try
             {
                 Text.Font = GameFont.Tiny;
-                Widgets.DrawHighlightIfMouseover(r);
+                UiKit.RowHover(r);
                 if (line.width < 0f) line.width = Text.CalcSize(line.plain).x;
                 Text.Anchor = TextAnchor.MiddleLeft;
                 float x = r.x + 2f, right = r.xMax - 2f;

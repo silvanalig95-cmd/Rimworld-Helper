@@ -12,7 +12,7 @@ namespace ColonyCouncil
     /// </summary>
     public static class HistoryPanels
     {
-        private static readonly Color Gold = UiKit.Gold;
+        private static Color Gold => UiKit.Gold;
 
         // ---------------- Dreams ----------------
 
@@ -237,7 +237,7 @@ namespace ColonyCouncil
             }
             Widgets.EndScrollView();
 
-            Widgets.DrawMenuSection(right);
+            UiKit.Section(right);
             var inner = right.ContractedBy(10f);
             if (selectedJournal == null)
             {

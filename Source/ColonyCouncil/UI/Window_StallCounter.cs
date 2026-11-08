@@ -14,9 +14,10 @@ namespace ColonyCouncil
     /// the right only what is for sale, a card a line, with the count, the quality range, the price on a slider with what
     /// it fetches each and for all and how well it sells, and what has sold and lies on the counter; one price for every
     /// line at once; and at the foot what it all comes to and how often shoppers come at these prices. Every change goes
-    /// straight to the stall through RimMarket's own sale lines. The goods are counted at most every two seconds.
+    /// straight to the stall through RimMarket's own sale lines. The goods are counted at most every two seconds. In
+    /// Rimfolk's frame (key "Stall"), the stall's name in the title bar.
     /// </summary>
-    public class Window_StallCounter : Window
+    public class Window_StallCounter : FramedWindow
     {
         private readonly Thing stall;
 
@@ -96,9 +97,13 @@ namespace ColonyCouncil
 
         public override Vector2 InitialSize => new Vector2(Mathf.Min(1180f, UI.screenWidth - 40f), Mathf.Min(780f, UI.screenHeight - 60f));
 
-        protected override float Margin => 16f;
+        protected override float UnframedMargin => 16f;
 
-        public Window_StallCounter(Thing stall)
+        protected override string FrameTitle => "CC_Stall_Title".Translate(stall.LabelCap).Resolve();
+
+        protected override Texture2D FrameIcon => Icons.Trader;
+
+        public Window_StallCounter(Thing stall) : base("Stall")
         {
             this.stall = stall;
             doCloseX = true;
@@ -257,7 +262,7 @@ namespace ColonyCouncil
 
         // ---------------- Drawing ----------------
 
-        public override void DoWindowContents(Rect inRect)
+        protected override void DoFramedContents(Rect inRect)
         {
             if (stall == null || stall.Destroyed || !stall.Spawned || !RimMarketStall.IsColonyStall(stall))
             {
@@ -272,8 +277,8 @@ namespace ColonyCouncil
             float y = inRect.y;
             int articles = lines.Sum(l => l.toSell);
             string stat = lines.Count == 0 ? null : "CC_Stall_Stat".Translate(articles, lines.Count).Resolve();
-            y += UiKit.PageHeader(new Rect(inRect.x, y, inRect.width, UiKit.HeaderHeight), Icons.Trader, "CC_Stall_Title".Translate(stall.LabelCap).Resolve(),
-                (RimMarketStall.Keeps ? "CC_Stall_SubRefill" : "CC_Stall_Sub").Translate().Resolve(), stat, UiKit.Gold, 28f) + 6f;
+            y += UiKit.DialogHeader(new Rect(inRect.x, y, inRect.width, UiKit.HeaderHeight), TitleInBar, Icons.Trader, "CC_Stall_Title".Translate(stall.LabelCap).Resolve(),
+                (RimMarketStall.Keeps ? "CC_Stall_SubRefill" : "CC_Stall_Sub").Translate().Resolve(), stat, UiKit.Gold, TitleInBar ? 0f : 28f) + 6f;
             var body = new Rect(inRect.x, y, inRect.width, inRect.yMax - FooterH - y);
             float leftW = Mathf.Floor((body.width - Gap) * 0.42f);
             Goods(new Rect(body.x, body.y, leftW, body.height));
@@ -290,9 +295,9 @@ namespace ColonyCouncil
             float y = r.y;
             y += UiKit.SectionTitle(r.x, y, r.width, "CC_Stall_Goods".Translate(), Icons.Table, null,
                 "CC_Stall_GoodsCount".Translate(goods.Values.Count(g => g.onMapTotal > 0)).Resolve()) + 4f;
-            search.OnGUI(new Rect(r.x, y, r.width - 138f, 24f));
+            UiKit.SearchField(new Rect(r.x, y, r.width - 138f, 24f), search, null);
             var sortRect = new Rect(r.xMax - 132f, y, 132f, 24f);
-            if (Widgets.ButtonText(sortRect, ("CC_Stall_Sort_" + sort).Translate()))
+            if (UiKit.Button(sortRect, ("CC_Stall_Sort_" + sort).Translate()))
             {
                 sort = sort == Sort.Worth ? Sort.Count : sort == Sort.Count ? Sort.Name : Sort.Worth;
                 SoundDefOf.Click.PlayOneShotOnCamera();
@@ -357,7 +362,7 @@ namespace ColonyCouncil
         private void GoodRow(Rect r, Good g, int index)
         {
             UiKit.Zebra(r, index);
-            Widgets.DrawHighlightIfMouseover(r);
+            UiKit.RowHover(r);
             bool on = OnCounter(g.def);
             Widgets.ThingIcon(new Rect(r.x + 4f, r.y + 3f, 24f, 24f), g.def);
             float right = r.xMax - 4f;
@@ -428,7 +433,7 @@ namespace ColonyCouncil
             if (lines.Count > 0)
             {
                 var clear = new Rect(r.xMax - clearW, r.y, clearW, 24f);
-                if (Widgets.ButtonText(clear, "CC_Stall_ClearAll".Translate()))
+                if (UiKit.Button(clear, "CC_Stall_ClearAll".Translate()))
                     Find.WindowStack.Add(Dialog_MessageBox.CreateConfirmation("CC_Stall_ClearAllConfirm".Translate(), () =>
                     {
                         foreach (var l in lines.ToList()) RimMarketStall.SetLine(stall, l.def, 0, l.price, l.quality);
@@ -490,7 +495,7 @@ namespace ColonyCouncil
             if (g.hasQuality)
             {
                 var q = new Rect(right - 130f, r.y + 5f, 130f, 22f);
-                if (Widgets.ButtonText(q, RangeLabel(l.quality, true))) QualityMenu(l, g);
+                if (UiKit.Button(q, RangeLabel(l.quality, true))) QualityMenu(l, g);
                 TooltipHandler.TipRegion(q, "CC_Stall_QualityTip".Translate());
                 right = q.x - 6f;
             }
@@ -510,15 +515,15 @@ namespace ColonyCouncil
             int step = GenUI.CurrentAdjustmentMultiplier();
             var adjustTip = (l.refill && RimMarketStall.Keeps ? "CC_Stall_CountTipRefill" : "CC_Stall_CountTip").Translate();
             var minus = new Rect(x, cy, 24f, 24f);
-            if (Widgets.ButtonText(minus, "-") && l.toSell > 1) SetCount(l, Mathf.Max(1, l.toSell - step));
+            if (UiKit.Button(minus, "-") && l.toSell > 1) SetCount(l, Mathf.Max(1, l.toSell - step));
             TooltipHandler.TipRegion(minus, adjustTip);
             CountField(new Rect(minus.xMax + 3f, cy, 52f, 24f), l);
             var plus = new Rect(minus.xMax + 58f, cy, 24f, 24f);
-            if (Widgets.ButtonText(plus, "+") && l.toSell < most) SetCount(l, Mathf.Min(most, l.toSell + step));
+            if (UiKit.Button(plus, "+") && l.toSell < most) SetCount(l, Mathf.Min(most, l.toSell + step));
             TooltipHandler.TipRegion(plus, adjustTip);
             UiKit.LabelFit(new Rect(plus.xMax + 6f, cy, 56f, 24f), "CC_Stall_Of".Translate(most).Resolve(), UiKit.Faint);
             var all = new Rect(plus.xMax + 64f, cy, 40f, 24f);
-            if (Widgets.ButtonText(all, "CC_Stall_All".Translate()) && most > 0) SetCount(l, most);
+            if (UiKit.Button(all, "CC_Stall_All".Translate()) && most > 0) SetCount(l, most);
             TooltipHandler.TipRegion(all, "CC_Stall_AllTip".Translate(most));
 
             // The price: a slider, what it fetches each, and how well it sells.
@@ -547,7 +552,7 @@ namespace ColonyCouncil
             float ky = r.y + 76f;
             var refillRect = new Rect(x, ky, 110f, 24f);
             bool refill = l.refill;
-            Widgets.CheckboxLabeled(refillRect, "CC_Stall_Refill".Translate(), ref refill);
+            UiKit.Toggle(refillRect, "CC_Stall_Refill".Translate(), ref refill);
             TooltipHandler.TipRegion(refillRect, "CC_Stall_RefillTip".Translate());
             if (refill != l.refill)
             {
@@ -560,11 +565,11 @@ namespace ColonyCouncil
             var keepTip = "CC_Stall_KeepHomeTip".Translate();
             TooltipHandler.TipRegion(homeLabel, keepTip);
             var less = new Rect(homeLabel.xMax + 4f, ky, 24f, 24f);
-            if (Widgets.ButtonText(less, "-") && l.reserve > 0) SetReserve(l, Mathf.Max(0, l.reserve - step));
+            if (UiKit.Button(less, "-") && l.reserve > 0) SetReserve(l, Mathf.Max(0, l.reserve - step));
             TooltipHandler.TipRegion(less, keepTip);
             UiKit.LabelFit(new Rect(less.xMax + 4f, ky, 44f, 24f), l.reserve > 0 ? l.reserve.ToString() : "-", Color.white);
             var more = new Rect(less.xMax + 52f, ky, 24f, 24f);
-            if (Widgets.ButtonText(more, "+")) SetReserve(l, l.reserve + step);
+            if (UiKit.Button(more, "+")) SetReserve(l, l.reserve + step);
             TooltipHandler.TipRegion(more, keepTip);
         }
 
@@ -579,8 +584,7 @@ namespace ColonyCouncil
         {
             string name = FieldPrefix + l.def.defName;
             if (editing != l.def || !buffers.ContainsKey(l.def)) buffers[l.def] = l.toSell.ToString();
-            GUI.SetNextControlName(name);
-            string typed = Widgets.TextField(r, buffers[l.def], 6, Digits);
+            string typed = UiKit.TextField(r, buffers[l.def], name, null, 6, Digits);
             if (GUI.GetNameOfFocusedControl() != name) return;
             if (editing != null && editing != l.def) Commit();
             editing = l.def;
@@ -643,7 +647,7 @@ namespace ColonyCouncil
                 string text = key.Translate(price.ToStringPercent());
                 float w = Text.CalcSize(text).x + 20f;
                 var b = new Rect(x, r.y, w, 26f);
-                if (Widgets.ButtonText(b, text))
+                if (UiKit.Button(b, text))
                 {
                     foreach (var l in lines) RimMarketStall.SetPrice(l.order, price);
                     newPrice = price;
@@ -659,7 +663,7 @@ namespace ColonyCouncil
         {
             UiKit.Divider(r.x, r.y - 4f, r.width);
             var close = new Rect(r.xMax - 130f, r.y + 6f, 130f, 34f);
-            if (Widgets.ButtonText(close, "CloseButton".Translate())) Close();
+            if (UiKit.Button(close, "CloseButton".Translate())) Close();
             float w = close.x - r.x - 12f;
             if (lines.Count == 0)
             {

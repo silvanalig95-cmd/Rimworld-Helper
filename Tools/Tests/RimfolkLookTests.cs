@@ -310,22 +310,24 @@ public static class RimfolkLookTests
         C(frame.Contains("CouncilSettings.SaveNow()") && frame.Contains("WindowFrameMath.Opening(") && frame.Contains("public override void Notify_ResolutionChanged()"),
             "its place written to the settings, fitted on opening and when the screen changes");
         C(frame.Contains("UiKit.BeginOwn()") && frame.Contains("UiKit.EndOwn(was)") && Regex.IsMatch(frame, @"finally\s*\{\s*if \(ownLook\) UiKit\.EndOwn\(was\);"), "the look begins and always ends with the window's contents");
-        string region = Code("UI/Window_Region.cs");
-        C(region.Contains("class Window_Region : FramedWindow") && region.Contains("layer = WindowLayer.GameUI") && region.Contains("closeOnClickedOutside = false")
-          && region.Contains("MainTabWindow_World.DrawRegion(inRect, true)") && region.Contains("Drawer.Cancel(RimfolkWindow.World)"),
+        // Since stage 2 the region window is one of four floating windows (UI/FloatingWindows.cs) sharing one base and one worker.
+        string region = Code("UI/Window_Region.cs"), floating = Code("UI/FloatingWindows.cs");
+        C(region.Contains("class Window_Region : RimfolkFloatingWindow") && floating.Contains("layer = WindowLayer.GameUI") && floating.Contains("closeOnClickedOutside = false")
+          && region.Contains("MainTabWindow_World.DrawRegion(inRect, true)") && floating.Contains("Drawer.Cancel(Which)"),
             "the floating region window: the game's interface layer, left open by a click on the map, the same views, Escape for the drawer first");
-        C(region.Contains("class MainButtonWorker_Region : MainButtonWorker_ToggleTab") && region.Contains("base.Activate();"), "its button floats it, or opens the tab as before");
+        C(region.Contains("class MainButtonWorker_Region : MainButtonWorker_RimfolkWindow") && floating.Contains("class MainButtonWorker_RimfolkWindow : MainButtonWorker_ToggleTab")
+          && floating.Contains("base.Activate();"), "its button floats it, or opens the tab as before");
         var misc = XDocument.Load(Path.Combine(root, "Defs", "Misc", "Council_Misc.xml")).Root!.Elements("MainButtonDef").First(e => e.Element("defName")!.Value == "Rimfolk_WorldButton");
         C(misc.Element("workerClass")?.Value == "ColonyCouncil.MainButtonWorker_Region" && misc.Element("tabWindowClass")?.Value == "ColonyCouncil.MainTabWindow_World",
             "the region button keeps its tab and gains its worker");
         string pages = Code("UI/Pages.cs");
-        C(pages.Contains("if (w == RimfolkWindow.World && Window_Region.Showing) return true;") && pages.Contains("Window_Region.Open();") && pages.Contains("Window_Region.Shut(false);")
-          && pages.Contains("Close(w.Value);"), "Pages knows the floating window: showing, opened, closed, one of the four at a time");
-        C(Code("UI/WindowTabs.cs").Contains("if (Which != RimfolkWindow.World) Window_Region.Shut(false);"), "another of the four opening turns the page");
+        C(pages.Contains("FloatingWindows.Showing(w) || TabShowing(w)") && pages.Contains("FloatingWindows.Open(w);") && pages.Contains("FloatingWindows.ShutAll(false);")
+          && pages.Contains("Close(w.Value);"), "Pages knows the floating windows: showing, opened, closed, one of the four at a time");
+        C(Code("UI/WindowTabs.cs").Contains("FloatingWindows.ShutAll(false);"), "a tab of the four opening turns the page");
         C(Code("UI/Cards/Cards.cs").Contains("Pages.LeaveForMap();") && !Code("UI/Cards/Cards.cs").Contains("EscapeCurrentTab"), "a jump to the map leaves the floating window as it left the tab");
         string world = Code("UI/MainTabWindow_World.cs");
-        C(world.Contains("internal static void DrawRegion(Rect inRect, bool cornerInTitle)") && world.Contains("WindowTabs.DrawOwn(inRect, tabs)") && world.Contains("Window_Region.Shut(false);"),
-            "the tab and the floating window draw the same contents, never both open");
+        C(world.Contains("internal static void DrawRegion(Rect inRect, bool cornerInTitle)") && world.Contains("WindowTabs.DrawFor(inRect, tabs, RimfolkWindow.World, cornerInTitle)")
+          && Code("UI/WindowTabs.cs").Contains("UiKit.OwnLook ? DrawOwn(inRect, tabs)"), "the tab and the floating window draw the same contents, never both open");
         string trade = Code("Trade/Window_RimfolkTrade.cs");
         C(trade.Contains("class Window_RimfolkTrade : FramedWindow") && trade.Contains("base(\"Trade\", LeastW, LeastH, 0f)") && trade.Contains("protected override void DoFramedContents(Rect inRect)"),
             "the trade window in the frame, remembered as Trade");

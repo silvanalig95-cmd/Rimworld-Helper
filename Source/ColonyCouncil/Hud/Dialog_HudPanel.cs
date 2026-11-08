@@ -13,7 +13,7 @@ namespace ColonyCouncil
     /// inventory), the range (the trend), which rows or columns show, how many rows before "and N more", its scale and
     /// background. Changes show at once and are saved when the window closes.
     /// </summary>
-    public class Dialog_HudPanel : Window
+    public class Dialog_HudPanel : FramedWindow
     {
         private readonly string id;
         private Vector2 scroll;
@@ -32,7 +32,12 @@ namespace ColonyCouncil
             }
         }
 
-        public Dialog_HudPanel(string id)
+        protected override string FrameTitle => "CC_Pnl_OptionsTitle".Translate(HudLayout.Label(id)).Resolve();
+
+        protected override Texture2D FrameIcon => Icons.Pin;
+
+        /// <summary>In Rimfolk's frame (key "PanelOptions"), its title in the title bar.</summary>
+        public Dialog_HudPanel(string id) : base("PanelOptions")
         {
             this.id = id;
             doCloseX = true;
@@ -71,14 +76,19 @@ namespace ColonyCouncil
             }
         }
 
-        public override void DoWindowContents(Rect inRect)
+        protected override void DoFramedContents(Rect inRect)
         {
             var st = HudLayout.State(id);
             // Only a click, drag or key can change an option: the copy to compare against isn't made for every repaint.
             var ev = Event.current?.type ?? EventType.Repaint;
             var before = ev == EventType.Repaint || ev == EventType.Layout ? null : st.Copy();
-            UiKit.LabelFit(new Rect(inRect.x, inRect.y, inRect.width - 30f, 32f), "CC_Pnl_OptionsTitle".Translate(HudLayout.Label(id)), Color.white, GameFont.Medium);
-            var outRect = new Rect(inRect.x, inRect.y + 38f, inRect.width, inRect.height - 38f - 40f);
+            float top = inRect.y + 4f;
+            if (!TitleInBar)
+            {
+                UiKit.LabelFit(new Rect(inRect.x, inRect.y, inRect.width - 30f, 32f), FrameTitle, Color.white, GameFont.Medium);
+                top = inRect.y + 38f;
+            }
+            var outRect = new Rect(inRect.x, top, inRect.width, inRect.yMax - top - 40f);
             var view = new Rect(0f, 0f, outRect.width - 16f, viewHeight);
             Widgets.BeginScrollView(outRect, ref scroll, view);
             // One column: past its height the game's listing would start a second column out of sight, and the
@@ -181,7 +191,7 @@ namespace ColonyCouncil
             }
             // Rimfolk's settings, unless this was opened from there.
             if (!Find.WindowStack.IsOpen(typeof(RimWorld.Dialog_ModSettings)) &&
-                Widgets.ButtonText(new Rect(inRect.x, inRect.yMax - 32f, 200f, 32f), HudKit.T("CC_Pnl_AllOptions")))
+                UiKit.Button(new Rect(inRect.x, inRect.yMax - 32f, 200f, 32f), HudKit.T("CC_Pnl_AllOptions")))
                 HudManager.OpenSettings();
         }
 
@@ -204,7 +214,7 @@ namespace ColonyCouncil
                 if (cls == HudAlerts.WishesAlert && HudAlerts.HiddenByDefault(cls)) label += " " + HudKit.T("CC_Pnl_A_InCouncil");
                 var b = new Rect(row.xMax - 90f, row.y + 1f, 90f, 24f);
                 UiKit.LabelFit(new Rect(row.x + 12f, row.y, row.width - 106f, row.height), label, Color.white, GameFont.Small);
-                if (Widgets.ButtonText(b, HudKit.T("CC_Pnl_A_Unhide"))) HudAlerts.Unhide(st, cls);
+                if (UiKit.Button(b, HudKit.T("CC_Pnl_A_Unhide"))) HudAlerts.Unhide(st, cls);
             }
             if (hidden.Count > 1 && l.ButtonText(HudKit.T("CC_Pnl_A_ShowAll"))) HudAlerts.ShowAll(st);
         }
@@ -236,7 +246,7 @@ namespace ColonyCouncil
                 var b = new Rect(row.xMax - 90f, row.y + 1f, 90f, 24f);
                 if (def != null) Widgets.ThingIcon(new Rect(row.x + 12f, row.y + 2f, 22f, 22f), def);
                 UiKit.LabelFit(new Rect(row.x + 40f, row.y, row.width - 134f, row.height), def?.LabelCap ?? name, Color.white, GameFont.Small);
-                if (Widgets.ButtonText(b, HudKit.T("CC_Pnl_I_UnpinShort"))) st.pins.Remove(name);
+                if (UiKit.Button(b, HudKit.T("CC_Pnl_I_UnpinShort"))) st.pins.Remove(name);
             }
             if (st.folds.Count > 0 && l.ButtonText(HudKit.T("CC_Pnl_I_UnfoldAll"))) st.folds.Clear();
         }

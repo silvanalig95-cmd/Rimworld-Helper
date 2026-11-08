@@ -231,7 +231,7 @@ namespace ColonyCouncil
             topicIndex = Mathf.Clamp(topicIndex, 0, topics.Count - 1);
             var topic = topics[topicIndex];
             Widgets.Label(new Rect(inRect.x, y + 2f, 120f, 24f), "CC_LetterDlg_About".Translate());
-            if (Widgets.ButtonText(new Rect(inRect.x + 124f, y, inRect.width - 124f, 26f), topic.text.Truncate(inRect.width - 140f), true, true, topics.Count > 1))
+            if (UiKit.Button(new Rect(inRect.x + 124f, y, inRect.width - 124f, 26f), topic.text.Truncate(inRect.width - 140f), ButtonKind.Normal, topics.Count > 1))
             {
                 var opts = new List<FloatMenuOption>();
                 for (int i = 0; i < topics.Count; i++)
@@ -259,7 +259,7 @@ namespace ColonyCouncil
             var chosen = asks.FirstOrDefault(o => o.Code == now);
             Widgets.Label(new Rect(inRect.x, y + 2f, 120f, 24f), "CC_LetterDlg_Ask".Translate());
             string shown = chosen?.label ?? DipWords.P("CC_Dip_Dlg_NothingToAsk");
-            if (Widgets.ButtonText(new Rect(inRect.x + 124f, y, inRect.width - 124f, 26f), shown.Truncate(inRect.width - 140f)))
+            if (UiKit.Button(new Rect(inRect.x + 124f, y, inRect.width - 124f, 26f), shown.Truncate(inRect.width - 140f)))
                 Find.WindowStack.Add(new FloatMenu(asks.Select(o => o.why == null
                     ? new FloatMenuOption(o.label, () => Asked = o.Code)
                     : new FloatMenuOption("CC_Out_Disabled".Translate(o.label.Named("LABEL"), o.why.Named("WHY")).Resolve(), null)).ToList()));

@@ -65,16 +65,29 @@ namespace ColonyCouncil
 
         // ---------------- Where it opens ----------------
 
+        /// <summary>Whether this window has a place of its own yet (it was moved, sized or closed somewhere).</summary>
+        public bool Known
+        {
+            get
+            {
+                Load();
+                return known;
+            }
+        }
+
         /// <summary>
         /// Where the window opens on this screen: its remembered place fitted to the screen (large again at this screen's
-        /// large size), or <paramref name="want"/> in the middle of the screen the first time.
+        /// large size), or the first time <paramref name="first"/> (the window's own first place, kept on the screen) or
+        /// <paramref name="want"/> in the middle of the screen.
         /// </summary>
-        public Rect Opening(Vector2 want)
+        public Rect Opening(Vector2 want, Rect? first = null)
         {
             Load();
             FrameRect r = known
                 ? WindowFrameMath.Opening(place, UI.screenWidth, UI.screenHeight, minW, minH, bottom)
-                : WindowFrameMath.Centred(want.x, want.y, UI.screenWidth, UI.screenHeight, minW, minH, bottom);
+                : first.HasValue
+                    ? WindowFrameMath.Clamp(F(first.Value), UI.screenWidth, UI.screenHeight, minW, minH, bottom)
+                    : WindowFrameMath.Centred(want.x, want.y, UI.screenWidth, UI.screenHeight, minW, minH, bottom);
             if (!known)
             {
                 place.rect = r;
@@ -386,9 +399,11 @@ namespace ColonyCouncil
 
     /// <summary>
     /// A plain window in Rimfolk's frame (UI/WindowFrame.cs): placed where it was left, its title bar drawn, moved and
-    /// sized, its contents drawn in Rimfolk's own look while that is on. A window gives its key, its least size, the size
-    /// it first asks for, its title and icon, and draws its contents in <see cref="DoFramedContents"/>. With both of the
-    /// frame's settings off it is a window of the game's, as before.
+    /// sized, its contents drawn in Rimfolk's own look while that is on. A window gives its key (its least size and bottom
+    /// bar from <see cref="FramedWindowsMath.Keys"/>, or given), the size it first asks for, its title and icon, and draws
+    /// its contents in <see cref="DoFramedContents"/>. The game's own close cross, close button, dragging and resizing that a
+    /// window asked for give way to the frame's while the frame shows (the close button drawn in the kit where it was), and
+    /// come back with both of the frame's settings off, when it is a window of the game's as before.
     /// </summary>
     public abstract class FramedWindow : Window
     {
@@ -397,6 +412,13 @@ namespace ColonyCouncil
         protected FramedWindow(string key, float minW, float minH, float bottom)
         {
             frame = WindowFrame.For(key, minW, minH, bottom);
+        }
+
+        /// <summary>A window of a key in <see cref="FramedWindowsMath.Keys"/>: its least size and bottom bar from there.</summary>
+        protected FramedWindow(string key)
+        {
+            FramedWindowsMath.TryKey(key, out var k);
+            frame = WindowFrame.For(key, k.leastW, k.leastH, k.Bottom);
         }
 
         /// <summary>The title in the title bar.</summary>
@@ -416,12 +438,64 @@ namespace ColonyCouncil
         /// <summary>The window's contents in the body under the title bar (or in the whole window, the frame off).</summary>
         protected abstract void DoFramedContents(Rect inRect);
 
-        protected override float Margin => WindowFrame.Shown ? 0f : base.Margin;
+        /// <summary>The frame draws the title in its bar: a window that draws its own title at the top of its contents leaves it out.</summary>
+        protected static bool TitleInBar => WindowFrame.Shown;
 
-        protected override void SetInitialSizeAndPosition()
+        /// <summary>
+        /// A dialog's title at the top of its contents as the game's dialogs draw it (Medium, <paramref name="height"/> high,
+        /// <paramref name="clear"/> left clear at its right for the game's close cross), unless the frame has it in its bar.
+        /// Returns where the contents start: <paramref name="under"/> below the top, or just under the frame's bar.
+        /// </summary>
+        protected static float TitleTop(Rect inRect, string title, float clear = 30f, float under = 38f, float height = 34f)
         {
-            base.SetInitialSizeAndPosition();
-            if (WindowFrame.MovesOn) windowRect = frame.Opening(InitialSize);
+            if (TitleInBar) return inRect.y + 4f;
+            Text.Font = GameFont.Medium;
+            Widgets.Label(new Rect(inRect.x, inRect.y, inRect.width - clear, height), title);
+            Text.Font = GameFont.Small;
+            return inRect.y + under;
+        }
+
+        /// <summary>
+        /// A dialog's title with its quiet line under it (the founding, landing and hand-over windows'): the title unless the
+        /// frame has it in its bar, then the line. Returns where the contents start.
+        /// </summary>
+        protected static float TitleAndLine(Rect inRect, string title, string line, GameFont lineFont = GameFont.Small)
+        {
+            float lineY = inRect.y + 2f;
+            if (!TitleInBar)
+            {
+                Text.Font = GameFont.Medium;
+                Widgets.Label(new Rect(inRect.x, inRect.y, inRect.width - 40f, 34f), title);
+                Text.Font = GameFont.Small;
+                lineY = inRect.y + 32f;
+            }
+            UiKit.LabelFit(new Rect(inRect.x, lineY, inRect.width, 22f), line, UiKit.Faint, lineFont);
+            return lineY + 28f;
+        }
+
+        /// <summary>The window's margin without the frame: the game's, unless the window had one of its own.</summary>
+        protected virtual float UnframedMargin => StandardMargin;
+
+        protected sealed override float Margin => WindowFrame.Shown ? 0f : UnframedMargin;
+
+        /// <summary>
+        /// The window places itself the first time (beside what it belongs to, under the mouse) rather than in the middle of
+        /// the screen: <see cref="PlaceUnframed"/> is that place, kept on the screen and remembered afterwards as any other.
+        /// </summary>
+        protected virtual bool OwnFirstPlace => false;
+
+        /// <summary>Where the window opens without the frame moving it (the game's place, unless the window has its own).</summary>
+        protected virtual void PlaceUnframed() => base.SetInitialSizeAndPosition();
+
+        /// <summary>Another window's place, for this one's first opening (a floating window turning the page from another).</summary>
+        internal Rect? handedPlace;
+
+        protected sealed override void SetInitialSizeAndPosition()
+        {
+            PlaceUnframed();
+            Rect? first = handedPlace ?? (OwnFirstPlace ? windowRect : (Rect?)null);
+            handedPlace = null;
+            if (WindowFrame.MovesOn) windowRect = frame.Opening(InitialSize, first);
         }
 
         public override void Notify_ResolutionChanged()
@@ -430,9 +504,25 @@ namespace ColonyCouncil
             else base.Notify_ResolutionChanged();
         }
 
+        // The game's own close cross, close button, dragging and resizing as the window asked for them, read once.
+        private bool flagsRead, gameCloseX, gameCloseButton, gameDrag, gameResize;
+
         public override void WindowOnGUI()
         {
-            doWindowBackground = !(WindowFrame.Shown && WindowFrame.OwnLookOn);
+            if (!flagsRead)
+            {
+                flagsRead = true;
+                gameCloseX = doCloseX;
+                gameCloseButton = doCloseButton;
+                gameDrag = draggable;
+                gameResize = resizeable;
+            }
+            bool shown = WindowFrame.Shown;
+            doCloseX = gameCloseX && !shown;
+            doCloseButton = gameCloseButton && !shown;
+            draggable = gameDrag && !WindowFrame.MovesOn;
+            resizeable = gameResize && !WindowFrame.MovesOn;
+            doWindowBackground = !(shown && WindowFrame.OwnLookOn);
             frame.Follow(this);
             base.WindowOnGUI();
         }
@@ -442,6 +532,8 @@ namespace ColonyCouncil
             base.PostClose();
             frame.Closed(this);
         }
+
+        private static string closeLabel;
 
         public sealed override void DoWindowContents(Rect inRect)
         {
@@ -461,6 +553,13 @@ namespace ColonyCouncil
                 try
                 {
                     DoFramedContents(body.AtZero());
+                    // The game's close button where the window asked for one: in the kit, at the middle of its foot as it was.
+                    if (gameCloseButton)
+                    {
+                        closeLabel ??= "CloseButton".Translate().Resolve();
+                        var b = new Rect(body.width / 2f - CloseButSize.x / 2f, body.height - CloseButSize.y, CloseButSize.x, CloseButSize.y);
+                        if (UiKit.Button(b, closeLabel)) Close();
+                    }
                 }
                 finally
                 {

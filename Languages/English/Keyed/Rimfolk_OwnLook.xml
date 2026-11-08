@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LanguageData>
 
-  <!-- Rimfolk's own look and its windows that move and size (docs/design/rimfolk-look.md, stage 1: UI/WindowFrame.cs,
-       UI/UiKitSkin.cs, UI/Window_Region.cs). -->
+  <!-- Rimfolk's own look and its windows that move and size (docs/design/rimfolk-look.md, stages 1 and 2: UI/WindowFrame.cs,
+       UI/UiKitSkin.cs, UI/FloatingWindows.cs, UI/Window_Region.cs). -->
 
   <!-- Settings -->
   <CC_Settings_OwnLook>Rimfolk's own look</CC_Settings_OwnLook>
-  <CC_Settings_OwnLook_Tip>Rimfolk's windows drawn in a style of their own: a calm dark ground, rounded cards with a faint edge, flat buttons that light under the mouse, tabs that read as tabs, one amber accent for what is chosen, and the stances in blue (allied, friendly) and orange (hostile), always with their word beside them. So far the region window and the trade window; the council's windows follow. Off, they are drawn in the game's own look as before.</CC_Settings_OwnLook_Tip>
-  <CC_SetNote_OwnLook>The region and trade windows in Rimfolk's own style: rounded cards, flat buttons, clear tabs, one accent.</CC_SetNote_OwnLook>
+  <CC_Settings_OwnLook_Tip>Rimfolk's windows drawn in a style of their own: a calm dark ground, rounded cards with a faint edge, flat buttons that light under the mouse, tabs that read as tabs, one amber accent for what is chosen, and the stances in blue (allied, friendly) and orange (hostile), always with their word beside them. The council, the region, planning and defense, the Almanac, the trade windows, letters and Rimfolk's dialogs; a name's preview inside them too. Off, they are drawn in the game's own look as before.</CC_Settings_OwnLook_Tip>
+  <CC_SetNote_OwnLook>Rimfolk's windows and dialogs in Rimfolk's own style: rounded cards, flat buttons, clear tabs, one accent.</CC_SetNote_OwnLook>
   <CC_Settings_WindowsMove>Rimfolk's windows move and resize</CC_Settings_WindowsMove>
-  <CC_Settings_WindowsMove_Tip>Drag Rimfolk's windows by their title bar, size them from any edge or corner, and make them large (most of the screen) with the button in the title bar or a double-click on the title. Each opens where it was left, at the size it was left, also after a restart, kept on the screen when the resolution changes. The region window floats beside the map: a click on the map or a colonist picked leaves it open. Off, the region window is the tab at the screen's foot again and the trade window opens as it did.</CC_Settings_WindowsMove_Tip>
+  <CC_Settings_WindowsMove_Tip>Drag Rimfolk's windows by their title bar, size them from any edge or corner, and make them large (most of the screen) with the button in the title bar or a double-click on the title. Each opens where it was left, at the size it was left, also after a restart, kept on the screen when the resolution changes. The council, the region, planning and defense float beside the map, one of the four at a time: a click on the map or a colonist picked leaves them open. Off, those four are the tabs at the screen's foot again and the other windows open as they did.</CC_Settings_WindowsMove_Tip>
   <CC_SetNote_WindowsMove>Drag by the title bar, size from the edges, double-click the title for large; each opens where it was left.</CC_SetNote_WindowsMove>
   <CC_Settings_WindowsPlaceReset>Put Rimfolk's windows back</CC_Settings_WindowsPlaceReset>
   <CC_SetNote_WindowsPlaceReset>Every window of Rimfolk's opens where and how large it first did, the next time it opens.</CC_SetNote_WindowsPlaceReset>

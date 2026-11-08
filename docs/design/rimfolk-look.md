@@ -56,35 +56,53 @@ has all of it).
   sections in Here and away and Faces, a wider Peoples list, three columns of acts.
 - **Settings**: "Rimfolk's own look" and "Rimfolk's windows move and resize" (both on), and "Put Rimfolk's windows back".
 
-## Stage 2: what it needs
+## Stage 2: built (8 November 2026)
 
-- **The council's windows, Planning and Defenses** (`MainTabWindow_Council`, `MainTabWindow_Planning`,
-  `MainTabWindow_Defenses`): each as the region window, a floating `FramedWindow` while the windows move, its tab
-  otherwise. The pattern is `Window_Region` and `MainTabWindow_World.DrawRegion`: move the tab's `DoWindowContents`
-  into a static draw both call, give the bar button a worker like `MainButtonWorker_Region`, and teach `Pages.Showing`,
-  `Show`, `Close` and `Current` the floating window (`Window_Region.Showing` and its `Shut` today are the region's only:
-  a small registry of the four floating windows by `RimfolkWindow` is the next step, so `Pages` asks it rather than
-  naming each). `RimfolkTabWindow.PreOpen` closes the floating region window today; with four floating windows the
-  rule "one of the four at a time" becomes "opening one closes the other floating three", in `Pages.Show`. The window
-  keys: "Council", "Planning", "Defense". Their tabs draw `WindowTabs.DrawOwn` in the look, the corner in the title bar.
-- **Calls that close "the tab that's open"**: about twenty callers use `Find.MainTabsRoot.EscapeCurrentTab(false)` before
-  a jump or a designator (DefensePanel, the planners, NextSteps, PeopleTable, WishesPanel, BarBadges, WeekModel and
-  others). With the council's windows floating each of those is `Pages.LeaveForMap()`, which closes the floating ones
-  too. Search for `EscapeCurrentTab` once the windows float.
-- **The pages' own drawing**: the council's pages draw with the kit and the tokens already, so they take the look in a
-  framed window; what still draws the game's look directly: `Widgets.ButtonText` in the dialogs and a few pages (the
-  journey planner, the camp's dialog, the letter's window in `World/NeighboursPanel.cs`), `Widgets.TextField` in the
-  planners and the journey's counts, `Widgets.CheckboxLabeled` in the journey dialog and settings rows,
-  `Widgets.DrawHighlightIfMouseover` in lists, cached colours captured at load (`MoodView`, `HeartView`, `DecreePanel`,
-  `AlmanacPanel`, `DefenseLinesPanel` hold `static readonly Color` copies of tokens, which stay in the game's look:
-  make them properties). Swap each for `UiKit.Button`, `TextField`, `Toggle`, `RowHover`, `RowLit`: in the game's look
-  they draw exactly what was there.
-- **The Almanac** (`Almanac/Window_Almanac.cs`): already a movable window of its own; give it the frame (key
-  "Almanac") and the look, its text sizes kept.
-- **Rimfolk's dialogs** (the letter's window, the journey planner, the camp's dialog, the trade market, the stall
-  counter, the founding window, `Window_Card`): each a `FramedWindow` with its own key and least size.
-- **Previews and the on-screen panels** draw outside any framed window (immediate windows, the map's layer), so in the
-  game's look today. A preview could begin the look itself when the window under its link is in it.
-- **Risks to watch in the game** (none of stage 1 could be run here): the drag and size by polling the mouse, the
-  scrollbars' styles swapped and put back, the floating window beside the game's tabs and the inspect pane, focus in
-  the text fields with the game's key handling.
+The council's windows float, the Almanac and Rimfolk's dialogs are in the frame, and the pages draw with the kit
+(DESIGN.md, "Rimfolk's own look, stage 2" has all of it).
+
+- **The four windows float** (`UI/FloatingWindows.cs`): the council, Planning and Defenses as the region window does,
+  each a `RimfolkFloatingWindow` (keys "Council", "Planning", "Defense", "Region") drawing the same contents as its tab
+  (`MainTabWindow_Council.DrawCouncil`, `MainTabWindow_Planning.DrawPlanning`, `MainTabWindow_Defenses.DrawDefenses`,
+  `MainTabWindow_World.DrawRegion`), opened by one worker on all four buttons (`MainButtonWorker_RimfolkWindow`; the
+  council's and the region's keep their names). A registry, `FloatingWindows`, makes each once and is what
+  `Pages.Showing`, `Show`, `Close`, `OpenOrClose`, `OpenOrCloseSection` and `LeaveForMap` ask; one of the four at a time
+  (`FramedWindowsMath.ToClose`: opening one closes the other three), a window opening for the first time taking the
+  place of the one it turns the page from. The tabs (with "Rimfolk's windows move and resize" off) share one frame in
+  the look (`RimfolkTabWindow`), the corner in the title bar.
+- **Off to the map**: every caller that closed "the tab open" before a jump, a plan put down or a pick on the map
+  (twenty-three of them: the planners and designators, the defense page and its lines, This week, the people table,
+  wishes, making, the Almanac's room plans, the mood and bar badges' jumps) goes through `Pages.LeaveForMap`, which
+  closes the floating windows and the tab, the inspect pane kept. A page sending the player to the game's research,
+  quests or work tab gives way to it (`Pages.GoToGameTab`), as the tab did.
+- **The kit everywhere**: Rimfolk's pages and dialogs draw their buttons, text fields, labelled checkboxes and row
+  hovers with `UiKit.Button`, `TextField` (now with the game's length and validator overloads), `Toggle` (disabled, near
+  its word), `RowHover`, and the new `ListRow` and `Section`; in the game's look each draws exactly the game's widget
+  the page called before. The `static readonly Color` copies of tokens (69 of them: MoodView, HeartView, DecreePanel,
+  AlmanacPanel, DefenseLinesPanel, the world's panels, the on-screen panels and others) are properties, so they follow
+  the look.
+- **The Almanac** (`Almanac/Window_Almanac.cs`, key "Almanac", least 560 by 400): in the frame, first beside Rimfolk's
+  windows, its pages at their own text sizes; its search, switch, lists and buttons the kit's.
+- **Rimfolk's dialogs**, each a `FramedWindow` with its key and least size (`FramedWindowsMath.Keys`): the letter
+  window, the journey planner and its picker, the camp, the market, the stall counter, the founding window, the floating
+  card, and every other: the feast, the journal, the news, a calendar day, the clock, the self check, the bar's
+  arranger, the guest check, the newcomers, the landing, the hand-over, the scenario start, the two naming dialogs, a
+  shelf's reserves and its picker, the floor picker, the ground plan, rearranging a room, a gift for an outsider, a
+  panel's options. Their titles in the title bar (`TitleTop`, `TitleAndLine`, `UiKit.DialogHeader`: never said twice),
+  the game's close cross, close button, dragging and sizing giving way to the frame's while it shows.
+- **Wider shows more**: This week in three columns from a page of 1500; the journey planner's and the founding window's
+  list of who goes up to 640 and 600 from 1400; the hand-over's and the scenario list likewise; the camp's acts up to
+  half again as wide in a camp window made twice as wide; the market's goods' names take a wider window's room.
+- **Previews and the search**: a name's preview takes Rimfolk's look when the window its link is in draws in it, and so
+  does the corner's search; a card's model is kept for each look.
+- **Left as they were**: the on-screen panels and their edit bar (the map's layer), the room and defense planners docked
+  above the architect menu (sized to their content and placed each frame), the search (a popup under its icon), the
+  game's own windows and panes (the mod settings, the inspect pane's tabs, the game's trade screen, choice letters).
+
+## Risks to watch in the game
+
+None of stages 1 or 2 could be run here: the drag and size by polling the mouse, the scrollbars' styles swapped and put
+back, the floating windows beside the game's tabs and the inspect pane (which is on top; Escape to the topmost), focus
+in the text fields with the game's key handling, the game's close button drawn at a framed dialog's foot (its room is
+the dialog's own), a dialog's least size where its contents don't scroll (the letter window), a preview's look following
+its link.

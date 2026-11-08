@@ -394,10 +394,11 @@ a calm dark slate ground, rounded raised cards with a faint edge and a soft shad
 pressed states, tabs that read as tabs, segmented modes, pills for chips, a switch, a text field whose focus shows, a
 chosen row lit by the accent's edge, slim scrollbars, one amber accent and the stances in blue and orange, always with
 their word. The game's look stays as a setting ("Rimfolk's own look" off), drawn exactly as before. Stage 1 (built) is
-the frame and the kit on the region and trade windows; stage 2 the council's windows, Planning, Defenses, the Almanac
-and Rimfolk's dialogs. Underneath, one stricter grammar either way: Rimfolk already had most of the parts (`UiKit`'s
-cards, chips, pills, meters, section titles, empty states, `Folds`); this names them, gives each one measure, and
-draws them the same way everywhere.
+the frame and the kit on the region and trade windows; stage 2 (built) the council's windows, Planning and Defenses
+floating as the region window does, the Almanac and every dialog of Rimfolk's in the frame, the pages with the kit, and
+the layouts growing with the window. Underneath, one stricter grammar either way: Rimfolk already had most of the parts
+(`UiKit`'s cards, chips, pills, meters, section titles, empty states, `Folds`); this names them, gives each one measure,
+and draws them the same way everywhere.
 
 #### Spacing and sizes
 
@@ -474,6 +475,10 @@ Rimfolk's own look adds (`UI/UiKitSkin.cs`, `UI/WindowFrame.cs`; each draws the 
 19. **Segmented control** (the modes), **tabs** (`OwnTab`, the lit one joined to its panel), **switch** (`Toggle`),
     **text field** and **search field** (the accent's edge while focused), **lit row** (`RowLit`, the accent's edge) and
     `RowHover`, **scrollbars** that blend in.
+20. **Choosable row** (`ListRow`: the game's highlight and gold edge, or the lit row), **section ground** (`Section`: the
+    game's menu section, or a rounded panel) and a **dialog's header** (`DialogHeader`: the page header, or with the
+    title in the frame's bar only its line and stat). The field takes the game's length and validator, the switch its
+    disabled and near-its-word forms, the button its quiet mouseover, each drawing the game's own overload in its look.
 
 #### Icons
 
@@ -514,7 +519,14 @@ is drawn today.
   never loses the window), and draws the title bar and the grips in the window's contents with margin 0 and no game
   background. The region window floats as a plain `Window` (the interface layer, not closed by clicks outside it)
   rather than a main tab, because the game closes a main tab on any click on the map and whenever something is
-  selected; it stays one of the four windows through `Pages` (DESIGN.md, "Rimfolk's own look, stage 1").
+  selected; it stays one of the four windows through `Pages` (DESIGN.md, "Rimfolk's own look, stage 1"). Since stage 2
+  the council's, planning and defense windows float the same way (`RimfolkFloatingWindow`, one static draw each shared
+  with its tab), kept by a registry of the four by `RimfolkWindow` (`FloatingWindows`), which `Pages` asks: opening one
+  closes the other three; every jump, plan or pick on the map leaves through `Pages.LeaveForMap`.
+- **Dialogs in the frame.** A dialog is a `FramedWindow` with a key; its least size and bottom bar come from
+  `FramedWindowsMath.Keys`. The game's close cross, close button, dragging and sizing it asked for give way to the
+  frame's while the frame shows; its own margin and first place go through `UnframedMargin` and `PlaceUnframed`, so the
+  frame always places it; its title goes in the title bar (`TitleTop`, `TitleAndLine`, `DialogHeader`).
 - **Textures.** The rounded shapes are a few white textures made once at load (two texels a unit) and drawn as 9-slices
   with `GUI.DrawTextureWithTexCoords`, tinted by `GUI.color`: nine draws a shape, nothing made per frame. The scrollbars
   are the game's own styles with their thumb and track swapped while a framed window draws, put back after. The

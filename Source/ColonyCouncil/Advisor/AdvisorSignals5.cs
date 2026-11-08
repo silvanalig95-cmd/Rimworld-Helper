@@ -527,7 +527,7 @@ namespace ColonyCouncil
             var work = DefDatabase<MainButtonDef>.GetNamedSilentFail("Work");
             if (work != null && next != null)
             {
-                s.act = () => Find.MainTabsRoot.SetCurrentTab(work);
+                s.act = () => Pages.GoToGameTab(work);
                 s.actLabel = "CC_Adv_Act_WorkTab".Translate();
                 s.actTip = "CC_Adv_Act_WorkTabTip".Translate();
                 s.actOpens = true;

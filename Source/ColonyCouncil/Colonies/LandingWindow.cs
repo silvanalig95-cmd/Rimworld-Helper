@@ -14,7 +14,7 @@ namespace ColonyCouncil
     /// own sizes, the current one first chosen); and, plainly, what comes along and what is lost, worked out as the move
     /// works it out.
     /// </summary>
-    public class Dialog_Landing : Window
+    public class Dialog_Landing : FramedWindow
     {
         private bool same;
         private PlanetTile tile;
@@ -40,7 +40,12 @@ namespace ColonyCouncil
             Find.WindowStack.Add(new Dialog_Landing(picked ?? PlanetTile.Invalid, size));
         }
 
-        public Dialog_Landing(PlanetTile picked, int size)
+        protected override string FrameTitle => Landing.Label;
+
+        protected override Texture2D FrameIcon => Icons.World;
+
+        /// <summary>In Rimfolk's frame (key "Landing"), its title in the title bar.</summary>
+        public Dialog_Landing(PlanetTile picked, int size) : base("Landing")
         {
             forcePause = true;
             doCloseX = true;
@@ -90,7 +95,7 @@ namespace ColonyCouncil
             return Landing.TileWhyNot(tile, Home);
         }
 
-        public override void DoWindowContents(Rect inRect)
+        protected override void DoFramedContents(Rect inRect)
         {
             var map = Home;
             if (map == null || !Landing.Shows)
@@ -100,13 +105,9 @@ namespace ColonyCouncil
             }
             try
             {
-                Text.Font = GameFont.Medium;
-                Widgets.Label(new Rect(inRect.x, inRect.y, inRect.width - 40f, 34f), Landing.Label);
-                Text.Font = GameFont.Small;
                 string people = ("CC_Landing_People_" + Ages.Tag(Ages.Of(map))).Translate().Resolve();
-                UiKit.LabelFit(new Rect(inRect.x, inRect.y + 32f, inRect.width, 22f), "CC_Landing_Subtitle".Translate(people.Named("PEOPLE")).Resolve(), UiKit.Faint);
+                float top = TitleAndLine(inRect, Landing.Label, "CC_Landing_Subtitle".Translate(people.Named("PEOPLE")).Resolve());
                 const float bottomH = 44f;
-                float top = inRect.y + 60f;
                 var body = new Rect(inRect.x, top, inRect.width, inRect.yMax - top - bottomH);
                 DrawBody(body, map);
                 DrawBottom(new Rect(inRect.x, inRect.yMax - bottomH + 8f, inRect.width, bottomH - 8f));
@@ -153,7 +154,7 @@ namespace ColonyCouncil
             if (!same)
             {
                 var pick = new Rect(24f, y, 220f, 26f);
-                if (Widgets.ButtonText(pick, (tile.Valid ? "CC_Landing_PickAgain" : "CC_Landing_PickPlace").Translate())) pickNow = true;
+                if (UiKit.Button(pick, (tile.Valid ? "CC_Landing_PickAgain" : "CC_Landing_PickPlace").Translate())) pickNow = true;
                 y += 30f;
             }
             var place = same ? map.Tile : tile;
@@ -215,7 +216,7 @@ namespace ColonyCouncil
                 TooltipHandler.TipRegion(confirm, why);
                 UiKit.LabelFit(new Rect(rect.x, rect.y, rect.width - 420f, rect.height), why, UiKit.Warn, GameFont.Tiny);
             }
-            if (Widgets.ButtonText(confirm, (pods ? "CC_Landing_Confirm" : "CC_Landing_ConfirmStanding").Translate(), true, true, why == null) && why == null)
+            if (UiKit.Button(confirm, (pods ? "CC_Landing_Confirm" : "CC_Landing_ConfirmStanding").Translate(), ButtonKind.Primary, why == null))
             {
                 var to = same ? PlanetTile.Invalid : tile;
                 int s = size;
@@ -223,7 +224,7 @@ namespace ColonyCouncil
                 Landing.Begin(to, s);
                 return;
             }
-            if (Widgets.ButtonText(new Rect(confirm.x - 170f, rect.y, 160f, rect.height), "CloseButton".Translate())) Close();
+            if (UiKit.Button(new Rect(confirm.x - 170f, rect.y, 160f, rect.height), "CloseButton".Translate())) Close();
         }
 
         /// <summary>Another place: the game's world targeter, with Rimfolk's facts of the tile under the cursor and the game's own check.</summary>
