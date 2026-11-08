@@ -28,6 +28,7 @@
       <li Class="ColonyCouncil.HediffCompProperties_Ailment">
         <serious>true</serious>
         <key>BlackBane</key>
+        <restFrom>0.3</restFrom>
         <capped>true</capped>
         <names>
           <li>[tribal|medieval] black bane</li>
@@ -74,6 +75,7 @@
       <li>
         <minSeverity>0.05</minSeverity>
         <label>a black sore</label>
+        <restFallFactor>1.1</restFallFactor>
         <painOffset>0.05</painOffset>
         <capMods>
           <li><capacity>Consciousness</capacity><offset>-0.05</offset></li>
@@ -129,6 +131,7 @@
       <li Class="ColonyCouncil.HediffCompProperties_Ailment">
         <serious>true</serious>
         <key>ValleyFever</key>
+        <restFrom>0.3</restFrom>
         <capped>true</capped>
         <names>
           <li>[tribal|medieval] desert fever</li>
@@ -177,6 +180,7 @@
       <li>
         <minSeverity>0.05</minSeverity>
         <label>cough and fever</label>
+        <restFallFactor>1.15</restFallFactor>
         <painOffset>0.04</painOffset>
         <capMods>
           <li><capacity>Consciousness</capacity><offset>-0.05</offset></li>
@@ -231,6 +235,7 @@
       <li Class="ColonyCouncil.HediffCompProperties_Ailment">
         <serious>true</serious>
         <key>BirdFever</key>
+        <restFrom>0.3</restFrom>
         <capped>true</capped>
         <causes><li><trigger>BirdBarn</trigger><hours>1</hours><chance>0.0025</chance></li></causes>
         <childFactor>0</childFactor>
@@ -276,6 +281,7 @@
       <li>
         <minSeverity>0.05</minSeverity>
         <label>fever and headache</label>
+        <restFallFactor>1.15</restFallFactor>
         <painOffset>0.08</painOffset>
         <capMods>
           <li><capacity>Consciousness</capacity><offset>-0.08</offset></li>

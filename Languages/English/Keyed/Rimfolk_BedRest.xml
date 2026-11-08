@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <!-- Bed rest only when it makes sense (Source/ColonyCouncil/Health/BedRest.cs): the setting. -->
+  <CC_Settings_RestByNeed>Bed rest only when it makes sense</CC_Settings_RestByNeed>
+  <CC_Settings_RestByNeed_Tip>The game sends anyone to bed rest who has a tended wound still healing, however small, or an illness still building immunity, however mild, and keeps them there until it has passed: a tended scratch or a head cold can mean days in bed. With this on, only what needs bed sends them there. A serious wound while it heals (heavy bleeding, a vital part or an organ, a deep wound), or wounds that together bring strong pain or leave them lame or clumsy. An illness that can kill, until they are immune. A stage of any illness that brings strong pain or leaves consciousness, moving or breathing poor. Some of Rimfolk's serious illnesses from the stage they are really underway. And what the game makes urgent: down, an operation due, labor, bleeding. With anything else they keep working, and its pain, weakness and mood go on costing them; a cold, a fever's first days or a sprain has them sleep a little more at night, never all day. Small things to tend, such as a sunburn or a bruise, still bring them to bed to be tended and up again after, but while no doctor is free they keep working rather than wait in bed. Your own order to a medical bed ("rest until healed") and the council's rest when ill decree keep the game's rest. Each condition's tooltip on the health tab says whether it keeps them working or sends them to bed, and why. With Smart Medicine, a condition you take off bed rest in its menu stays off. Needs the deeper game hooks.</CC_Settings_RestByNeed_Tip>
+  <CC_SetNote_RestByNeed>Only what needs bed sends someone there: the flu or a deep wound does, a sunburn, a cold or a tended scratch doesn't.</CC_SetNote_RestByNeed>
+
+  <!-- The line under a condition's tooltip on the health tab, beside the medicine line. WHY is the reason, STAGE the stage's name. -->
+  <CC_Rest_Line_Rests>Rests in bed: {WHY}.</CC_Rest_Line_Rests>
+  <CC_Rest_Line_Heals>Rests in bed until it heals: {WHY}.</CC_Rest_Line_Heals>
+  <CC_Rest_Line_Stage>Rests in bed at this stage ({STAGE}): {WHY}.</CC_Rest_Line_Stage>
+  <CC_Rest_Line_Works>Keeps working.</CC_Rest_Line_Works>
+  <CC_Rest_Line_WorksSleeps>Keeps working, and sleeps a little more.</CC_Rest_Line_WorksSleeps>
+  <CC_Rest_Line_WorksTend>Keeps working, lying down only to be tended.</CC_Rest_Line_WorksTend>
+  <CC_Rest_Line_WorksTendSleeps>Keeps working and sleeps a little more, lying down only to be tended.</CC_Rest_Line_WorksTendSleeps>
+  <CC_Rest_Line_WorksTendLater>Keeps working, and lies down to be tended once a doctor is free.</CC_Rest_Line_WorksTendLater>
+  <CC_Rest_Line_WorksTendLaterSleeps>Keeps working and sleeps a little more, and lies down to be tended once a doctor is free.</CC_Rest_Line_WorksTendLaterSleeps>
+  <CC_Rest_Line_WorksBut>Keeps working with this alone, but is in bed now {WHY}.</CC_Rest_Line_WorksBut>
+  <CC_Rest_Line_ByHand>Keeps working: you took it off bed rest with Smart Medicine.</CC_Rest_Line_ByHand>
+
+  <!-- What else has them in bed (BedRestMath.InBed). OTHER is the condition that does. -->
+  <CC_Rest_InBed_Condition>for the {OTHER}</CC_Rest_InBed_Condition>
+  <CC_Rest_InBed_Other>for another condition</CC_Rest_InBed_Other>
+  <CC_Rest_InBed_Downed>since {PAWN_pronoun} can't stand</CC_Rest_InBed_Downed>
+  <CC_Rest_InBed_Surgery>for an operation</CC_Rest_InBed_Surgery>
+  <CC_Rest_InBed_Labor>giving birth</CC_Rest_InBed_Labor>
+  <CC_Rest_InBed_Tending>to be tended</CC_Rest_InBed_Tending>
+  <CC_Rest_InBed_Ordered>as you ordered</CC_Rest_InBed_Ordered>
+  <CC_Rest_InBed_Decree>by the council's decree to rest when ill</CC_Rest_InBed_Decree>
+  <CC_Rest_InBed_GameOwn>for a reason of the game's or another mod's</CC_Rest_InBed_GameOwn>
+
+  <!-- Why a wound has them in bed while it heals (by medicine by what is treated's reason, MedicineChoiceMath.Why). PART is the body part. -->
+  <CC_Rest_Wound_BleedingOut>{PAWN_pronoun} is bleeding out</CC_Rest_Wound_BleedingOut>
+  <CC_Rest_Wound_BleedsHeavily>a wound that bleeds heavily</CC_Rest_Wound_BleedsHeavily>
+  <CC_Rest_Wound_VitalPart>a wound on the {PART}, which {PAWN_pronoun} can't live without</CC_Rest_Wound_VitalPart>
+  <CC_Rest_Wound_Organ>a wound inside, on the {PART}</CC_Rest_Wound_Organ>
+  <CC_Rest_Wound_Deep>a deep wound</CC_Rest_Wound_Deep>
+  <CC_Rest_Wound_LifeThreatening>it threatens {PAWN_possessive} life</CC_Rest_Wound_LifeThreatening>
+  <CC_Rest_Wound_Other>a serious wound</CC_Rest_Wound_Other>
+
+  <!-- Why, by BedRestMath.Why. AMOUNT is a percentage. -->
+  <CC_Rest_Why_WoundsHurt>{PAWN_possessive} wounds together bring strong pain ({AMOUNT})</CC_Rest_Why_WoundsHurt>
+  <CC_Rest_Why_WoundsLame>{PAWN_possessive} wounds leave {PAWN_objective} moving at {AMOUNT}</CC_Rest_Why_WoundsLame>
+  <CC_Rest_Why_WoundsClumsy>{PAWN_possessive} wounds leave {PAWN_possessive} manipulation at {AMOUNT}</CC_Rest_Why_WoundsClumsy>
+  <CC_Rest_Why_Lethal>an illness that can kill, and bed helps the body fight it</CC_Rest_Why_Lethal>
+  <CC_Rest_Why_Pain>it brings strong pain ({AMOUNT})</CC_Rest_Why_Pain>
+  <CC_Rest_Why_Dazed>it takes {AMOUNT} off {PAWN_possessive} consciousness</CC_Rest_Why_Dazed>
+  <CC_Rest_Why_Unsteady>it takes {AMOUNT} off {PAWN_possessive} moving</CC_Rest_Why_Unsteady>
+  <CC_Rest_Why_Breathless>it takes {AMOUNT} off {PAWN_possessive} breathing</CC_Rest_Why_Breathless>
+  <CC_Rest_Why_Stage>from this stage on it needs bed</CC_Rest_Why_Stage>
+  <CC_Rest_Why_Decree>the council's decree to rest when ill</CC_Rest_Why_Decree>
+
+  <!-- A resting colonist's activity in the inspect pane, where the game says "resting.": WHAT is the condition. -->
+  <CC_Rest_Report>resting: {WHAT}.</CC_Rest_Report>
+
+</LanguageData>

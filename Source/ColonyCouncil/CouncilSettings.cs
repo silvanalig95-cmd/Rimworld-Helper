@@ -354,6 +354,12 @@ namespace ColonyCouncil
         public bool medicineByNeed = true;
         /// <summary>What harmless wounds (a bruise, a crack, the smallest scratch) get under medicine by what is treated.</summary>
         public HarmlessMedicine harmlessMedicine = HarmlessMedicine.None;
+        /// <summary>
+        /// Bed rest only when it makes sense (Health/BedRest.cs): only a serious wound, a dangerous illness, a stage too much
+        /// to work through, and what the game makes urgent send someone to bed; with a tended scratch, a cold or a sunburn they
+        /// keep working.
+        /// </summary>
+        public bool restByNeed = true;
         /// <summary>On-screen buttons for half and quarter speed, and where they sit (fractions of the screen; -1 = default).</summary>
         public bool slowButtons = true;
         public bool moodInsight = true;
@@ -848,6 +854,7 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref healerReputations, "healerReputations", true);
             Scribe_Values.Look(ref medicineByNeed, "medicineByNeed", true);
             Scribe_Values.Look(ref harmlessMedicine, "harmlessMedicine", HarmlessMedicine.None);
+            Scribe_Values.Look(ref restByNeed, "restByNeed", true);
             Scribe_Values.Look(ref slowButtons, "slowButtons", true);
             Scribe_Values.Look(ref moodInsight, "moodInsight", true);
             Scribe_Values.Look(ref deepHooks, "deepHooks", true);
