@@ -143,7 +143,7 @@ namespace ColonyCouncil
 
         private static float TabsRow(Rect r, PeopleEntry e)
         {
-            int towns = e.towns.Count, people = e.notables.Count, dealings = e.dip == null ? 0 : e.dip.ties.Count + e.dip.underway.Count;
+            int towns = e.towns.Count, people = e.notables.Count, dealings = (e.dip == null ? 0 : e.dip.ties.Count + e.dip.underway.Count) + ColonyCouncil.Dealings.With(e.f).Count(d => d.Live);
             if (tabTowns != towns || tabPeople != people || tabDealings != dealings)
             {
                 tabTowns = towns;
@@ -470,10 +470,13 @@ namespace ColonyCouncil
         private static float Dealings(PeopleEntry e, float w)
         {
             float y = 0f;
-            if (e.dip == null)
+            bool whole = ColonyCouncil.Dealings.With(e.f).Count > 0;
+            if (e.dip == null && !whole)
                 return y + UiKit.EmptyState(0f, y, w, Icons.Promise ?? Icons.Trust, e.Named("CC_PplP_NoDealings"), 80f);
+            // The colony's dealings with them as a whole and with their towns: contracts, works, rights, petitions (Dealings/).
+            if (whole) y += DealingActs.Draw(e.f, 4f, y, w - 4f);
             // Their head, their ties in their age's words (pacts, fealty, debts each way, marriages), what is under way.
-            y += DiplomacyPanels.PeopleBody(4f, y, w - 4f, e.dip, true);
+            if (e.dip != null) y += DiplomacyPanels.PeopleBody(4f, y, w - 4f, e.dip, true);
             return y + 8f;
         }
 

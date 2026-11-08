@@ -452,6 +452,8 @@ namespace ColonyCouncil
                 PostRider.Hourly(now);
                 OwnRiders.Hourly(now);
             });
+            // Dealings with whole peoples and towns, pen friends, the world's letters (Dealings/).
+            Safe("dealings", () => Dealings.Hourly(now));
         }
 
         private static void Safe(string what, Action a)

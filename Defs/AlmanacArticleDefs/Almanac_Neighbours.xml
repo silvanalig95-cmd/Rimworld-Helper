@@ -81,6 +81,15 @@ A colonist can write to any of them, or call them on a comms console. The writer
           <li>Spacer | None: shuttles reach anywhere</li>
         </table>
         <after>A Signal Line mast near the colony widens the range by half. Within it the post, passing carriers and your rider reach. Beyond it a letter is handed on through a nearer people's town on good terms (goodwill 20 or more, a day there), slower; your own rider can make the long trip. With no relay, or no way over land, a town is out of reach until radio, and its letters wait for someone going there itself.</after>
+        <after>A town out of reach may still be reached by introduction: through a town of a people at peace with the colony and with the far one, within the colony's range, who think well of the colony (goodwill 40) or count a pen friend of the colony among them. A day there to be introduced and a day further on, then on by their own means within twice their own range: slower than a relay. Its reach line says so, and the region map rings it amber.</after>
+      </li>
+      <li>
+        <heading>Pen friends</heading>
+        <text>Each letter of the colony's answered warmly or courteously is one of an exchange with whoever answered it. Three within 60 days, with their regard of the colony at 30 or more, make them a pen friend, and a letter says what that brings. While a letter still passes within 90 days and their regard stays at 15, a pen friend's messenger walks in with word of a raid by a people whose towns lie near theirs (within 20 tiles), some hours before it comes, once in 10 days; their people's traders give the colony 2% better terms; their people introduce the colony's letters to peoples beyond its reach; and after a season of friendship they offer a favor, a debt of honor of theirs, once in 60 days at most. Twelve pen friends at most. The setting "Pen friends" switches it off.</text>
+      </li>
+      <li>
+        <heading>When the world writes first</heading>
+        <text>Now and then a notable at peace who thinks well of the colony (10 or more) writes to it unasked: about once in two or three weeks, never two such letters waiting at once and never within six days of the last; pen friends write first more often. News of their town and region, a small request by their age (a few medicine, some wood, cloth or steel) or an invitation to their festival. It comes in the post from their town, opens at the mailbag, and waits for an answer: in the inbox, on their card ("Answer their letter") and on Peoples. The colony's answer is a letter like any other and leaves with the next carrier going their way. Read, it warms them, a request granted more; their porters then come to the gate for what was granted, and an invitation accepted is a journey to their festival by caravan. Left unanswered half a month, they think a little less of the colony. The setting "The world writes first" switches it off.</text>
       </li>
       <li>
         <heading>The answer</heading>

@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+  <!-- A guard detail hired from a town for the season by a letter to its council (Source/ColonyCouncil/Dealings/,
+       docs/design/diplomacy-screen.md step B, point 9): the Ashen Banner's contract (Camps/CampContract.cs) for any people
+       at peace with the colony. A camp of theirs by the colony that takes up arms against whatever comes at it while it
+       stands, one of them on watch at the colony's gate by day, by turns. On the fifth and the tenth day the wage is asked
+       by letter; paid, the silver is carried out to their fire (or met at the gate when the fire is far: CampMeet) and
+       they stay; turned down or let go, they strike camp and walk, and their people hear of it. At the season's end the
+       contract is kept, and they go. Never comes by itself (weight 0). -->
+
+  <ColonyCouncil.CampKindDef>
+    <defName>Rimfolk_Camp_HiredGuard</defName>
+    <label>hired guard detail</label>
+    <fights>true</fights>
+    <work>contract</work>
+    <weight>0</weight>
+    <people>3~5</people>
+    <days>15~15</days>
+    <ages>20~50</ages>
+    <huntsPerDay>0.2</huntsPerDay>
+    <chopsPerDay>0.2</chopsPerDay>
+    <armedHunters>false</armedHunters>
+    <hireChance>0</hireChance>
+    <joinChance>0.02</joinChance>
+    <helpChance>0</helpChance>
+    <pride>0.4</pride>
+    <breakTerms>0.02</breakTerms>
+    <tensionPerDay>0.3</tensionPerDay>
+    <canPay>false</canPay>
+    <extendChance>0</extendChance>
+    <structures>
+      <li><role>fire</role><defs><li>Campfire</li></defs></li>
+    </structures>
+    <sleep>Hut</sleep>
+    <works><li>Chop</li><li>Hunt</li></works>
+    <leaves>Employer</leaves>
+    <leavesWhy>a guard detail hired by the season builds its post for the one who pays: when the season ends the post is the colony's</leavesWhy>
+    <asks>
+      <li>
+        <key>wage</key>
+        <theyAsk>true</theyAsk>
+        <once>false</once>
+        <price>wage</price>
+        <needs>wageDue</needs>
+        <label>Pay the guards' wage ({COUNT} silver)</label>
+        <refuseLabel>Let them go unpaid</refuseLabel>
+        <tension>-2</tension>
+        <deed>traded</deed>
+        <askTexts>
+          <li>{X_nameDef} has come up from the guards' camp. Five days are kept, and the wage their council agreed is due: {COUNT} silver. Paid, the detail holds the next five days; unpaid, they go home.</li>
+          <li>[lowtech] {X_nameDef} is at the gate for the guards' wage, as their elders and the colony agreed: {COUNT} silver for five more days on the wall.</li>
+          <li>[hightech] {X_nameDef} brings the detail's timesheet up to the gate: five days covered, {COUNT} silver owed, as the contract with their council says.</li>
+        </askTexts>
+        <tip>{COUNT} silver is carried out to the guards' fire. Turned down, or left unanswered, they strike camp and go home, and their people hear of it.</tip>
+        <outcomes>
+          <li>{A_nameDef} carried {COUNT} silver out to the guards' fire, and {X_nameDef} counted it in front of the others.</li>
+          <li>The wage is going out to the guards' camp, and {X_nameDef} will count it there.</li>
+        </outcomes>
+        <refused>
+          <li>{X_nameDef} nodded once, and the detail began to strike camp.</li>
+          <li>No wage, no watch: {X_nameDef} said it plainly, and the guards are packing.</li>
+        </refused>
+        <refuseTension>0</refuseTension>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_BannerWage" />
+        </effects>
+      </li>
+    </asks>
+    <titles>
+      <li>Guards of {FACTION} for the season</li>
+      <li>A guard detail makes camp</li>
+    </titles>
+    <texts>
+      <li>The guard detail of {FACTION} the colony hired has made camp {PLACE} for the season. While it stands they take up arms against whatever comes at the colony, and one of them keeps watch at the gate by day. Their wage is asked every five days.</li>
+      <li>[lowtech] The spearmen {FACTION} sent have made camp {PLACE} for the season, as their elders and the colony agreed. They will stand with the colony against whatever comes, one of them at the gate by day, their wage asked every five days.</li>
+    </texts>
+    <settled>
+      <li>The guards' fire is going {PLACE}, weapons stacked within reach and someone always awake.</li>
+      <li>[shelter:hut] The guard detail {PLACE} has its post up: four walls, beds in a row, a watch kept by the door.</li>
+      <li>The guards {PLACE} have their camp squared away, and one of them is already looking at the colony's wall.</li>
+    </settled>
+    <joinTexts>
+      <li>{X_nameDef}, one of the guards camped {PLACE}, came to the gate with {X_possessive} pack on. The season is nearly done, {X_nameDef} says, and the wall here is one worth staying for; is there a place?</li>
+    </joinTexts>
+    <farewell>
+      <li>The guard detail packed its bedding {PLACE} at the season's end and went home, leaving its post to the colony that hired it. The contract was kept to its last day.</li>
+      <li>[carried] The guards of {FACTION} kept the season to its last day and went home, carrying their dead with them.</li>
+      <li>The guards' camp {PLACE} is empty, the fire raked out. {X_nameDef} raised a hand at the gate: paid to the day, held to the day.</li>
+    </farewell>
+    <lines>
+      <li>Who's on watch?</li>
+      <li>Quiet out there.</li>
+      <li>The wall is the work.</li>
+      <li>Keep your eyes on the road.</li>
+      <li>Paid to the day, held to the day.</li>
+    </lines>
+    <momentLines>
+      <li>[watch] My turn on the gate.</li>
+      <li>[watch] Nothing on the road yet.</li>
+      <li>[kill] Down, and stay down.</li>
+      <li>[butcher] Meat's meat.</li>
+    </momentLines>
+  </ColonyCouncil.CampKindDef>
+</Defs>

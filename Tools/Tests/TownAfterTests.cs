@@ -298,7 +298,9 @@ public static class TownAfterTests
         C(back.Contains("is DestroyedSettlement") && back.Contains("TownEnd.Settled"), "beaten when the game's destroyed settlement stands in its place; settled again with the game's own button");
         string memory = Code("World/FactionMemory.cs");
         C(memory.Contains("[\"townTaken\"] = K(DeedSide.Wrong, 45)") && memory.Contains("[\"townTakenFaith\"] = K(DeedSide.Wrong, 20)"), "the deeds, as heavy as the rule says");
-        C(Code("World/NotableMath.cs").Contains("        TakeBack\n    }") && Code("Diplomacy/DiplomacyLetters.cs").Contains("TownLetters.Owns(p)"),
+        // After the others; the dealings with a town's council (Dealings/, the diplomacy screen's step B) came after it.
+        C(Code("World/NotableMath.cs").Contains("        TakeBack,\n") && Code("World/NotableMath.cs").IndexOf("        TakeBack,\n") < Code("World/NotableMath.cs").IndexOf("        Dealing\n    }")
+          && Code("Diplomacy/DiplomacyLetters.cs").Contains("TownLetters.Owns(p)"),
             "asking for it back: a letter purpose of the neighbour letters' own, after the others");
         C(Code("World/NeighboursPanel.cs").Contains("TownLetters.Owns(p) && !TownLetters.Shows(to)"), "offered only in a letter to the head of a town the colony was");
 

@@ -61,7 +61,14 @@ by name and falls back to leading the beast; Vehicle Framework is not used (the 
 with..." on the Peoples view, the setting "Letters by occasion"; what each act is for and costs in
 `UI/Region/PeopleActMath.cs` and `Rimfolk_PeoplesScreen.xml` (DESIGN.md "The diplomacy screen: the peoples beside their
 page"). The invitation's "the colony would like visitors" is guest beds (Hospitality's) standing empty with nobody from
-outside staying; "a fair" is a day of the colony calendar kept with a gathering. Points 12 to 14 are still to come.*
+outside staying; "a fair" is a day of the colony calendar kept with a gathering. Points 12 to 14 built (8 November 2026)
+with the diplomacy screen's step B, in `Source/ColonyCouncil/Dealings/` (`PenFriends`, `WorldWrites`, the chain in
+`Post/PostReach.cs`; the rules in `DealingMath.cs`; DESIGN.md "Dealings with a whole people or town, pen friends and the
+world writing first"): three letters answered warmly or courteously in 60 days with regard 30 make a pen friend (word of
+raids near them, 2% better terms, introductions, a favor after a season); a notable who thinks well of the colony writes
+first about once in two or three weeks, news, a small request or an invitation, answered by a letter that leaves with
+the next carrier; a town out of reach goes by introduction through a people at peace with both (goodwill 40, or a pen
+friend among them), slower than a relay. Settings "Pen friends" and "The world writes first".*
 
 10. **Letters by occasion.** A town's card shows what could be written now and why: condolences only after a loss heard
    of, a warning when a threat to them is known, an invitation when there is a feast or fair to come, asking for help

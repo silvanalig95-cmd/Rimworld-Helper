@@ -211,7 +211,8 @@ namespace ColonyCouncil
                 {
                     name = f.Name, search = string.Join(" ", search).ToLowerInvariant(), relation = relation, permanentEnemy = f.def.permanentEnemy, hasGoodwill = f.HasGoodwill,
                     goodwill = f.HasGoodwill ? f.PlayerGoodwill : 0, age = age, neighbour = near.Contains(f), mail = e.mail > 0,
-                    dealings = e.dip != null && (e.dip.ties.Count > 0 || e.dip.underway.Count > 0)
+                    // Its ties and what is under way, and the colony's dealings with them as a whole (Dealings/).
+                    dealings = e.dip != null && (e.dip.ties.Count > 0 || e.dip.underway.Count > 0) || Dealings.AnyLive(f)
                 };
                 Nearest(e);
                 e.notables = PeopleActs.Notables(e);

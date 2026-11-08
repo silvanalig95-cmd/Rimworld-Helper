@@ -3284,6 +3284,28 @@ you know of a threat to them, an invitation when a feast or a gathering day is c
 asking for help when the stores are short of food or medicine, greetings at the turn of the year or with a gift, and
 asking for news always. Choosing a people lights its towns on the region map, and the map's list can sort closest first.
 
+**Dealings with a whole people or town.** Some business is with a town's council, not one person (the setting *Dealings
+with a whole people or town*, on). From a town's card, a people's card or "Do something with..." on Peoples: a supply
+contract (your surplus to them each season for their silver, or their goods to you for yours, for a year; their porters
+fetch it from the gate or bring it there, two seasons missed in a row break it); relief for a town in hard times you
+heard of (medicine or food, fetched by their porters; the town fares better and their whole people remember it); a fair
+day at the colony (their traders and folk come on its morning, on a gathering day of your calendar when one is near),
+friendship declared, or your trade terms posted (their caravan comes, and their traders deal on better terms for a
+season); a crew of harvest hands or a guard detail hired for the season (they walk in as a group, make camp and work,
+their wage asked at their camp); a petition about their raiders (kept away for two seasons, as a truce does), for amends
+(silver with their answer), to settle a refugee family camped with you at their town, or to take in a family of theirs;
+a road, a well, a bridge or a watchtower built together (your share fetched from the gate; the road is drawn on the
+world map and caravans and letters go faster on it, the watchtower's watch sends word ahead of raiders from that side);
+market rights in their town (better terms, their caravans more often); their whole town invited to your coming feast,
+fair or gathering day, or your entertainers sent to their festival by caravan. Each goes by letter to their council as
+letters go, and their council answers by their regard and their ways (traders like contracts, mercenaries hire out
+guards, the Empire takes no charity); what follows plays out on the map once the answer is in, shows on the Dealings tab
+and the town's card, and their whole people remember how it went. Letters have more reason now too: a steady exchange
+with one of their notables makes a pen friend (*Pen friends*, on: word ahead of raiders near them, better terms with
+their traders, your letters introduced to peoples beyond your reach, a favor after a season), the world now and then
+writes first with news, a small request or an invitation that waits for your answer (*The world writes first*, on), and
+a town out of reach may be reached by introduction through a people who knows them (slower).
+
 **Talking with outsiders, and doing it by themselves.** With a colonist selected, right-click someone from outside the
 colony for "Talk with...": news of their home, a meal or a drink, a gift, a good word at home, a lesson, something
 brought next time, an invitation to stay, getting to know them, courting, faith, a practice bout, hard words, a duel,
@@ -4600,7 +4622,7 @@ The pages:
   faces, rise and fall, trading posts, hamlets, small towns' maps); **bonds with other peoples** (favors owed and
   called in; pacts and truces, with pacts of fealty, the colony sworn to a stronger neighbor or keeping vassals of
   its own, and truces keeping raids away under them; ransom, envoys, feasts with guests, marriage alliances, wards and
-  hostages, colony renown, against their nature); neighbours and letters (notables, letters, the post and its pace: Seldom, As usual or Often, letters by occasion, talking with outsiders,
+  hostages, colony renown, against their nature); neighbours and letters (notables, letters, the post and its pace: Seldom, As usual or Often, letters by occasion, dealings with a whole people or town, pen friends, the world writing first, talking with outsiders,
   sparring, insults, duels, their chatter, the right-click's things done by themselves: off, free ones only or within
   limits); then the tools: journeys, many colonies (fresh starts, and newcomers for
   them, and handing a colony over), the weather (weather that changes like weather,
