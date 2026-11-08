@@ -118,7 +118,7 @@ namespace ColonyCouncil
             var group = (lord != null ? lord.ownedPawns.ToList() : new List<Pawn> { x }).Where(p => p.Spawned && !p.Dead && !p.Downed).ToList();
             if (group.Count == 0) return;
             if (lord != null) map.lordManager.RemoveLord(lord);
-            LordMaker.MakeNewLord(x.Faction, new LordJob_ExitMapBest(LocomotionUrgency.Walk, false, true), map, group);
+            LordMaker.MakeNewLord(x.Faction, new LordJob_ExitMapBest(Pace.Errand, false, true), map, group);
         }
     }
 

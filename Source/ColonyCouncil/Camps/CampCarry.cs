@@ -170,7 +170,7 @@ namespace ColonyCouncil
                 return null;
             }
             var bring = JobMaker.MakeJob(CampDefOf.Council_CampBring, cell);
-            bring.locomotionUrgency = LocomotionUrgency.Walk;
+            bring.locomotionUrgency = Pace.Errand;
             return bring;
         }
 

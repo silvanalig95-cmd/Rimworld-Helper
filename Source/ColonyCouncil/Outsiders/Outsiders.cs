@@ -470,7 +470,7 @@ namespace ColonyCouncil
             var job = JobMaker.MakeJob(OutsiderDefOf.Council_OutsiderTalk, x);
             job.count = (int)act + 100 * extra;
             job.thingDefToCarry = thing;
-            job.locomotionUrgency = act == OutsiderAct.Provoke ? LocomotionUrgency.Jog : LocomotionUrgency.Walk;
+            job.locomotionUrgency = act == OutsiderAct.Provoke ? LocomotionUrgency.Jog : Pace.Errand;
             if (!byThemselves) return c.jobs.TryTakeOrderedJob(job, JobTag.Misc);
             c.jobs.StartJob(job, JobCondition.InterruptForced, null, false, true);
             return c.CurJob == job;
@@ -755,7 +755,7 @@ namespace ColonyCouncil
                 var job = JobMaker.MakeJob(OutsiderDefOf.Council_OutsiderBring, target);
                 job.thingDefToCarry = f.def;
                 job.count = f.count;
-                job.locomotionUrgency = LocomotionUrgency.Walk;
+                job.locomotionUrgency = Pace.Errand;
                 bearer.jobs.StartJob(job, JobCondition.InterruptForced, null, false, true);
                 if (bearer.CurJobDef == OutsiderDefOf.Council_OutsiderBring) f.bearer = bearer;
             }
@@ -830,7 +830,7 @@ namespace ColonyCouncil
             if (by == null) return true;
             var job = JobMaker.MakeJob(OutsiderDefOf.Council_OutsiderTalk, x);
             job.count = (int)OutsiderAct.Letter;
-            job.locomotionUrgency = LocomotionUrgency.Walk;
+            job.locomotionUrgency = Pace.Errand;
             if (by == writer && justWritten) by.jobs.jobQueue.EnqueueFirst(job, JobTag.Misc);
             else by.jobs.StartJob(job, JobCondition.InterruptForced, null, false, true);
             return true;

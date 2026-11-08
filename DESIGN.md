@@ -6436,7 +6436,19 @@ written. Now (`World/LetterMath.cs`, pure and tested in `LettersPetitionsTests`;
   so does an invitation not taken up, or one taken up with nobody free to travel. A truce, a ransom, an envoy, a ward, a
   match and an oath give their own reasons (`LetterMath.OwnReasons`) and get no second one.
 
-### The post: letters that travel with someone (the player's request, 8 November 2026)
+#### How fast Rimfolk's people go (0.171.1)
+
+The game's "walk" urgency is half the ordinary pace and "amble" a third; the colony's own people go about their work at
+the ordinary pace ("jog"). After the player's report ("some of the npcs you create, including the earlier couriers, seem
+to walk only quite slowly on the map, never as fast as my colonists"), every errand and trip of Rimfolk's goes at the
+ordinary pace (`Pace.Errand`): couriers and the post's riders, envoys, ransom, match, truce, fealty and feast parties,
+wards, visitors and camps coming and going, people sent somewhere, someone freed or ransomed walking to the gate. Their
+lords' travel uses `LordToil_TravelOnErrand` (the game's own travel, whose duty would walk at half speed, set to the
+ordinary pace). Kept slower on purpose: a stroll or a dawn walk, a wander about a camp, browsing a market stall, a herd,
+a pack or a pet on its own business, a group keeping together in a play-out, someone carrying another, the banished
+walking out.
+
+## The post: letters that travel with someone (the player's request, 8 November 2026)
 
 The player: "the couriers it feels a bit weird being able to ... send a letter to some civilization and then a courier
 just randomly appears out of nowhere ... It should be more opportunistic, I guess, dynamic", "visitors and other random

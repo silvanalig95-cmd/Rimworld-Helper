@@ -5,6 +5,13 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## Couriers and visitors walk at a normal pace
+
+*8 November 2026, version 0.171.1*
+
+- Rimfolk's couriers, post riders, envoys and parties, visitors and camps coming and going, and anyone sent on an errand now move at the ordinary pace your own colonists work at; before, most of them walked at the game's slow walk, half that speed.
+- A stroll, a wander about a camp, browsing a stall, herds and pets on their own business, a group keeping together and someone carrying another still go slowly, as they should.
+
 ## The post: letters travel with someone
 
 *8 November 2026, version 0.171.0*

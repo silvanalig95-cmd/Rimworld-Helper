@@ -143,7 +143,7 @@ namespace ColonyCouncil
                                         && !Strangers.IsHospitalityGuest(p)).Distinct().ToList();
             foreach (var p in list) p.GetLord()?.RemovePawn(p);
             foreach (var g in list.GroupBy(p => new { p.Map, p.Faction }))
-                LordMaker.MakeNewLord(g.Key.Faction, new LordJob_ExitMapBest(LocomotionUrgency.Walk, false, true), g.Key.Map, g.ToList());
+                LordMaker.MakeNewLord(g.Key.Faction, new LordJob_ExitMapBest(Pace.Errand, false, true), g.Key.Map, g.ToList());
             foreach (var p in pawns.Where(p => p != null && !p.Spawned)) Release(p);
         }
 

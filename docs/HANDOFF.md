@@ -12,6 +12,16 @@ tree at once, alongside whatever runs. Each piece is merged as its own release, 
 
 ## State (5 November 2026)
 
+- 0.171.1, couriers and visitors walk at a normal pace (8 November 2026, the player's report: "some of the npcs you create,
+  including the earlier couriers, seem to walk only quite slowly on the map, never as fast as my colonists move"). Cause:
+  42 of Rimfolk's errands and exits used the game's `LocomotionUrgency.Walk` (half the ordinary pace), and every lord's
+  `LordToil_Travel` walks at the travel duty's default, also Walk. Fix: `Source/ColonyCouncil/Pace.cs` (`Pace.Errand` =
+  Jog, `LordToil_TravelOnErrand` setting its duties' locomotion), used by couriers, the post, the diplomacy parties,
+  wards, visitors, camps' arrivals and leavings, strangers and missions leaving, the freed and ransomed. Kept slower on
+  purpose (DESIGN.md "How fast Rimfolk's people go"): camp wandering, stall browsing, herds, packs and pets, play-out
+  groups, carrying someone, the banished, the dawn and night walks. Test: `FieldReportTests` (the pace, and no Walk or
+  plain travel toil in the couriers', post's, envoys', parties', visitors' and camps' files). To try: a courier or the
+  post rider coming in keeps pace with a colonist walking beside it.
 - 0.171.0, the post: letters that travel with someone (8 November 2026, step 1 of `docs/design/post-and-letters.md`, approved by
   the player: "this all sounds really good! visitors and other random characters should perhaps also be able to take
   letters when going their direction", with their addition the same day: "i should also have some sort of diplomatic

@@ -909,7 +909,7 @@ namespace ColonyCouncil
                     .OrderBy(c => c.Position.DistanceToSquared(courier.Position)).FirstOrDefault();
             if (by == null) return;
             var job = JobMaker.MakeJob(NotableDefOf.Council_HandLetter, courier);
-            job.locomotionUrgency = LocomotionUrgency.Walk;
+            job.locomotionUrgency = Pace.Errand;
             by.jobs.StartJob(job, JobCondition.InterruptForced, null, false, true);
         }
 

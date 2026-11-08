@@ -296,7 +296,7 @@ namespace ColonyCouncil
             {
                 var f = wardens[0].Faction;
                 foreach (var w in wardens) w.GetLord()?.RemovePawn(w);
-                LordMaker.MakeNewLord(f, new LordJob_ExitMapBest(LocomotionUrgency.Walk, true, true), map, wardens);
+                LordMaker.MakeNewLord(f, new LordJob_ExitMapBest(Pace.Errand, true, true), map, wardens);
                 Tell.Message(NewsKind.Land, Importance.Flavor, map, "CC_PeoplesD_HuntGivenUp".Translate(f?.Name ?? "?", beast?.LabelShort ?? "?").Resolve(), new LookTargets(wardens),
                     MessageTypeDefOf.NeutralEvent);
             }

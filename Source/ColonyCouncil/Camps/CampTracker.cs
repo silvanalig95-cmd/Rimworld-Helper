@@ -888,7 +888,7 @@ namespace ColonyCouncil
                 try
                 {
                     var beasts = c.herd.Where(a => a.Spawned && !a.Dead).ToList();
-                    if (beasts.Count > 0) LordMaker.MakeNewLord(s.faction, new LordJob_ExitMapBest(LocomotionUrgency.Walk, false, false), map, beasts);
+                    if (beasts.Count > 0) LordMaker.MakeNewLord(s.faction, new LordJob_ExitMapBest(Pace.Errand, false, false), map, beasts);
                 }
                 catch (Exception e2)
                 {

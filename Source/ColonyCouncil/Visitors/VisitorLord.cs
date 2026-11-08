@@ -66,13 +66,13 @@ namespace ColonyCouncil
         public override StateGraph CreateGraph()
         {
             var graph = new StateGraph();
-            var travel = new LordToil_Travel(spot);
+            var travel = new LordToil_TravelOnErrand(spot);
             graph.StartingToil = travel;
             var here = new LordToil_VisitHere(spot, radius, tripId, indoors);
             graph.AddToil(here);
-            LordToil_Travel onward = exit.IsValid ? new LordToil_Travel(exit) : null;
+            LordToil_Travel onward = exit.IsValid ? new LordToil_TravelOnErrand(exit) : null;
             if (onward != null) graph.AddToil(onward);
-            var leave = new LordToil_ExitMap(LocomotionUrgency.Walk, false, true);
+            var leave = new LordToil_ExitMap(Pace.Errand, false, true);
             graph.AddToil(leave);
             var hurry = new LordToil_ExitMap(LocomotionUrgency.Jog, false, true);
             graph.AddToil(hurry);

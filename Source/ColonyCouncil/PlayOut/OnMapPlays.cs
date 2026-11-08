@@ -475,7 +475,7 @@ namespace ColonyCouncil
             // Food to hand out: to the stores for it first (phase 0), then round (phase 1).
             h.phase = p.what == Meals ? 0 : 1;
             var job = JobMaker.MakeJob(PlayOutDefOf.Council_PlayOutRounds);
-            job.locomotionUrgency = LocomotionUrgency.Walk;
+            job.locomotionUrgency = Pace.Errand;
             v.jobs.StartJob(job, JobCondition.InterruptForced, null, false, true);
             where = PlayWords.Names(order);
             return true;

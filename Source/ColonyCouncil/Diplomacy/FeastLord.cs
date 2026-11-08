@@ -43,11 +43,11 @@ namespace ColonyCouncil
         public override StateGraph CreateGraph()
         {
             var graph = new StateGraph();
-            var walk = new LordToil_Travel(focus);
+            var walk = new LordToil_TravelOnErrand(focus);
             graph.StartingToil = walk;
             var stay = new LordToil_FeastGuests();
             graph.AddToil(stay);
-            var leave = new LordToil_ExitMap(LocomotionUrgency.Walk, false, true);
+            var leave = new LordToil_ExitMap(Pace.Errand, false, true);
             graph.AddToil(leave);
             var flee = new LordToil_ExitMapAndDefendSelf();
             graph.AddToil(flee);
@@ -185,7 +185,7 @@ namespace ColonyCouncil
             this.FailOn(() => !FeastContests.Racing(pawn));
             this.FailOn(() => pawn.Map == null || pawn.Map.dangerWatcher.DangerRating == StoryDanger.High);
             var toLine = Toils_Goto.GotoCell(TargetIndex.B, PathEndMode.OnCell);
-            toLine.AddPreInitAction(() => job.locomotionUrgency = LocomotionUrgency.Walk);
+            toLine.AddPreInitAction(() => job.locomotionUrgency = Pace.Errand);
             yield return toLine;
             var wait = ToilMaker.MakeToil("FeastRunLine");
             wait.defaultCompleteMode = ToilCompleteMode.Never;

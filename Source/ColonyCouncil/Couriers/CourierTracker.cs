@@ -325,7 +325,7 @@ namespace ColonyCouncil
             t.nextTry = now + CourierMath.TicksPerHour;
             var at = t.spot.IsValid && t.spot.InBounds(t.map) && x.CanReach(t.spot, PathEndMode.OnCell, Danger.Some) ? t.spot : x.Position;
             var job = JobMaker.MakeJob(CourierDefOf.Council_CourierDrop, at);
-            job.locomotionUrgency = LocomotionUrgency.Walk;
+            job.locomotionUrgency = Pace.Errand;
             x.jobs.StartJob(job, JobCondition.InterruptForced, null, false, true);
         }
 
@@ -594,7 +594,7 @@ namespace ColonyCouncil
                     var to = t.preferred ?? t.faction;
                     if (to != null && x.Faction != to) x.SetFaction(to);
                     if (!x.Downed && ReachabilityUtility.CanReachMapEdge(x))
-                        LordMaker.MakeNewLord(x.Faction, new LordJob_ExitMapBest(LocomotionUrgency.Walk, false, false), x.Map, new List<Pawn> { x });
+                        LordMaker.MakeNewLord(x.Faction, new LordJob_ExitMapBest(Pace.Errand, false, false), x.Map, new List<Pawn> { x });
                     else
                     {
                         x.DeSpawn();
@@ -833,7 +833,7 @@ namespace ColonyCouncil
             var a = t.animal;
             if (a == null || !a.Spawned || a.Dead || a.Downed || a.Faction == null || a.Faction == Faction.OfPlayer) return;
             a.GetLord()?.RemovePawn(a);
-            LordMaker.MakeNewLord(a.Faction, new LordJob_ExitMapBest(LocomotionUrgency.Walk, false, true), a.Map, new List<Pawn> { a });
+            LordMaker.MakeNewLord(a.Faction, new LordJob_ExitMapBest(Pace.Errand, false, true), a.Map, new List<Pawn> { a });
         }
 
         // ---------------- Saving ----------------

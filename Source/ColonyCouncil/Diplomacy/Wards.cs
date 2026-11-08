@@ -937,7 +937,7 @@ namespace ColonyCouncil
                 if (p.Faction == Faction.OfPlayer && !p.Spawned && f != null && !f.defeated) p.SetFaction(f);
                 // Theirs again on a map with nobody to walk out with (on another map when the year ended): they walk out alone.
                 if (p.Spawned && p.Faction != Faction.OfPlayer && !p.Downed && p.GetLord() == null)
-                    LordMaker.MakeNewLord(p.Faction, new LordJob_ExitMapBest(LocomotionUrgency.Walk, false, true), p.Map, new List<Pawn> { p });
+                    LordMaker.MakeNewLord(p.Faction, new LordJob_ExitMapBest(Pace.Errand, false, true), p.Map, new List<Pawn> { p });
             }
             catch (Exception e)
             {

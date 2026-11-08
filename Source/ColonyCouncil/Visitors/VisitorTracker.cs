@@ -557,7 +557,7 @@ namespace ColonyCouncil
                 }
             }
             foreach (var g in walkers.Where(p => p.Spawned).GroupBy(p => p.Faction))
-                LordMaker.MakeNewLord(g.Key, new LordJob_ExitMapBest(LocomotionUrgency.Walk, false, true), t.map, g.ToList());
+                LordMaker.MakeNewLord(g.Key, new LordJob_ExitMapBest(Pace.Errand, false, true), t.map, g.ToList());
         }
 
         /// <summary>It's over without anyone (left) on the map: never came, the map gone.</summary>
@@ -617,7 +617,7 @@ namespace ColonyCouncil
             {
                 a.GetLord()?.RemovePawn(a);
                 if (!a.Downed && ReachabilityUtility.CanReachMapEdge(a))
-                    LordMaker.MakeNewLord(a.Faction, new LordJob_ExitMapBest(LocomotionUrgency.Walk, false, false), a.Map, new List<Pawn> { a });
+                    LordMaker.MakeNewLord(a.Faction, new LordJob_ExitMapBest(Pace.Errand, false, false), a.Map, new List<Pawn> { a });
             }
             catch (Exception e)
             {

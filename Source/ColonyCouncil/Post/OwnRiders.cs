@@ -108,7 +108,7 @@ namespace ColonyCouncil
             book.rides.Add(ride);
             l.packedBy = p;
             var job = JobMaker.MakeJob(PostDefOf.Rimfolk_RiderSetOut, spot, edge);
-            job.locomotionUrgency = LocomotionUrgency.Walk;
+            job.locomotionUrgency = Pace.Errand;
             p.jobs.StartJob(job, JobCondition.InterruptForced, null, false, true);
             if (mount != null)
             {

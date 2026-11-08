@@ -31,6 +31,16 @@ When you load a save after an update, a letter lists the newest round once. The 
     <rounds>
 
       <li>
+        <version>0.171.1</version>
+        <date>8 November 2026</date>
+        <title>Couriers and visitors walk at a normal pace</title>
+        <points>
+          <li>Rimfolk's couriers, post riders, envoys and parties, visitors and camps coming and going, and anyone sent on an errand now move at the ordinary pace your own colonists work at; before, most of them walked at the game's slow walk, half that speed.</li>
+          <li>A stroll, a wander about a camp, browsing a stall, herds and pets on their own business, a group keeping together and someone carrying another still go slowly, as they should.</li>
+        </points>
+      </li>
+
+      <li>
         <version>0.171.0</version>
         <date>8 November 2026</date>
         <title>The post: letters travel with someone</title>

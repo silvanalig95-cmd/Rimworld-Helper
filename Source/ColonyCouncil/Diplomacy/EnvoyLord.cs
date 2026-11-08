@@ -40,11 +40,11 @@ namespace ColonyCouncil
         public override StateGraph CreateGraph()
         {
             var graph = new StateGraph();
-            var walk = new LordToil_Travel(spot);
+            var walk = new LordToil_TravelOnErrand(spot);
             graph.StartingToil = walk;
             var stay = new LordToil_EnvoyStay(spot);
             graph.AddToil(stay);
-            var leave = new LordToil_ExitMap(LocomotionUrgency.Walk, false, true);
+            var leave = new LordToil_ExitMap(Pace.Errand, false, true);
             graph.AddToil(leave);
             var flee = new LordToil_ExitMapAndDefendSelf();
             graph.AddToil(flee);
