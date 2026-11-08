@@ -186,7 +186,7 @@ namespace ColonyCouncil
             UiKit.Icon(new Rect(row.x + 2f, row.y + 4f, 18f, 18f), Icons.Council, UiKit.Gold);
             UiKit.LabelFit(new Rect(row.x + 26f, row.y, Mathf.Max(0f, row.width - buttonW - 34f), h), text, UiKit.HeaderColor);
             var button = new Rect(row.xMax - buttonW, row.y + 1f, buttonW, h - 2f);
-            if (Widgets.ButtonText(button, "CC_Colony_Switch".Translate()))
+            if (UiKit.Button(button, "CC_Colony_Switch".Translate()))
             {
                 var options = new List<FloatMenuOption>();
                 foreach (var other in Homes.All)

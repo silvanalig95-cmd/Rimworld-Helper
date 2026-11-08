@@ -225,14 +225,14 @@ namespace ColonyCouncil
         /// primary in the accent, a quiet one without a fill until the mouse is on it), greyed when it can't be used; in the
         /// game's, the game's own button. Returns true when used.
         /// </summary>
-        public static bool Button(Rect r, string label, ButtonKind kind = ButtonKind.Normal, bool active = true, string tip = null, GameFont? font = null)
+        public static bool Button(Rect r, string label, ButtonKind kind = ButtonKind.Normal, bool active = true, string tip = null, GameFont? font = null, bool mouseoverSound = true)
         {
             if (!own)
             {
                 // The game's button in the font in use, as the pages drew it before (or the one asked for).
                 var oldFont = Text.Font;
                 if (font.HasValue) Text.Font = font.Value;
-                bool clicked = Widgets.ButtonText(r, label, true, true, active);
+                bool clicked = Widgets.ButtonText(r, label, true, mouseoverSound, active);
                 Text.Font = oldFont;
                 if (!tip.NullOrEmpty()) TooltipHandler.TipRegion(r, tip);
                 return clicked && active;
@@ -274,7 +274,7 @@ namespace ColonyCouncil
             if (!tip.NullOrEmpty()) TooltipHandler.TipRegion(r, tip);
             else if (s.Length != (label ?? "").Length) TooltipHandler.TipRegion(r, label);
             if (!active) return false;
-            MouseoverSounds.DoRegion(r);
+            if (mouseoverSound) MouseoverSounds.DoRegion(r);
             return Widgets.ButtonInvisible(r, false);
         }
 
@@ -330,6 +330,35 @@ namespace ColonyCouncil
                 return;
             }
             if (Mouse.IsOver(r)) Widgets.DrawBoxSolid(r, WithAlpha(Ink, 0.045f));
+        }
+
+        /// <summary>
+        /// A row of a list that can be chosen (the Almanac's parts and pages, a picker's things): in the game's look the
+        /// game's highlight, selected with the gold edge down its left, lit under the mouse; in Rimfolk's, the lit row with
+        /// the accent's edge, or the soft lift under the mouse.
+        /// </summary>
+        public static void ListRow(Rect r, bool chosen)
+        {
+            if (!own)
+            {
+                if (chosen) Widgets.DrawHighlightSelected(r);
+                else if (Mouse.IsOver(r)) Widgets.DrawHighlight(r);
+                if (chosen) Widgets.DrawBoxSolid(new Rect(r.x, r.y, 3f, r.height), Gold);
+                return;
+            }
+            if (chosen) RowLit(r);
+            else RowHover(r);
+        }
+
+        /// <summary>A section's ground (a list's, a page's): in Rimfolk's own look a rounded panel with its faint edge; in the game's, its menu section.</summary>
+        public static void Section(Rect r)
+        {
+            if (!own)
+            {
+                Widgets.DrawMenuSection(r);
+                return;
+            }
+            RoundBox(r, Panel, Edge, SkinMath.RadiusCard);
         }
 
         // ---------------- Text fields ----------------

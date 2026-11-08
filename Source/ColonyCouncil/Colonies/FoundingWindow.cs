@@ -134,9 +134,10 @@ namespace ColonyCouncil
     /// choice (decision 4A); the old colony kept (and the seat moved, decision 1A) or abandoned; the means the colony has;
     /// and the game's colony limit raised by one when needed, said plainly (decision 5B). "Found the colony" sets it going.
     /// The old colony's third choice is to hand it over in the same act (HandOver, Colonies/HandOvers.cs): the hand-over
-    /// window follows, the newcomers come free, and the party sets out once the hand-over's ceremony is over.
+    /// window follows, the newcomers come free, and the party sets out once the hand-over's ceremony is over. In Rimfolk's
+    /// frame (key "Founding"), its title in the title bar; wider, who goes takes more of it.
     /// </summary>
-    public class Dialog_Founding : Window
+    public class Dialog_Founding : FramedWindow
     {
         private readonly Map from;
         private readonly PlanetTile tile;
@@ -159,7 +160,11 @@ namespace ColonyCouncil
 
         public override Vector2 InitialSize => new Vector2(Mathf.Min(1000f, UI.screenWidth - 40f), Mathf.Min(780f, UI.screenHeight - 40f));
 
-        public Dialog_Founding(Map from, PlanetTile tile, bool handOver = false)
+        protected override string FrameTitle => "CC_Found_Title".Translate(Place.Named("PLACE")).Resolve();
+
+        protected override Texture2D FrameIcon => Icons.Colony;
+
+        public Dialog_Founding(Map from, PlanetTile tile, bool handOver = false) : base("Founding")
         {
             this.from = from;
             this.tile = tile;
@@ -233,7 +238,7 @@ namespace ColonyCouncil
             return null;
         }
 
-        public override void DoWindowContents(Rect inRect)
+        protected override void DoFramedContents(Rect inRect)
         {
             if (from == null || !Homes.IsHome(from))
             {
@@ -241,14 +246,20 @@ namespace ColonyCouncil
                 return;
             }
             Refresh();
-            Text.Font = GameFont.Medium;
-            Widgets.Label(new Rect(inRect.x, inRect.y, inRect.width - 40f, 34f), "CC_Found_Title".Translate(Place.Named("PLACE")).Resolve());
-            Text.Font = GameFont.Small;
-            UiKit.LabelFit(new Rect(inRect.x, inRect.y + 32f, inRect.width, 22f),
+            // The title, unless the frame has it in its bar; the line under it either way.
+            float sub = inRect.y + 2f;
+            if (!TitleInBar)
+            {
+                Text.Font = GameFont.Medium;
+                Widgets.Label(new Rect(inRect.x, inRect.y, inRect.width - 40f, 34f), FrameTitle);
+                Text.Font = GameFont.Small;
+                sub = inRect.y + 32f;
+            }
+            UiKit.LabelFit(new Rect(inRect.x, sub, inRect.width, 22f),
                 "CC_Found_Subtitle".Translate(Homes.Name(from).Named("HOME"), Ages.Form(AgeFeature.Party, Ages.Of(from), Ages.Of(from)).word.Named("PARTY")).Resolve(), UiKit.Faint);
-            float top = inRect.y + 60f;
+            float top = sub + 28f;
             const float bottomH = 44f;
-            float leftW = Mathf.Clamp(inRect.width * 0.46f, 300f, 460f);
+            float leftW = FramedWindowsMath.FoundingWhoWidth(inRect.width);
             var left = new Rect(inRect.x, top, leftW, inRect.height - (top - inRect.y) - bottomH);
             var right = new Rect(left.xMax + 14f, top, inRect.width - leftW - 14f, left.height);
             try
@@ -281,7 +292,7 @@ namespace ColonyCouncil
                 var row = new Rect(0f, y, w, 40f);
                 bool on = going.Contains(r.pawn);
                 if (on) Widgets.DrawBoxSolid(row, UiKit.WithAlpha(UiKit.Gold, 0.08f));
-                Widgets.DrawHighlightIfMouseover(row);
+                UiKit.RowHover(row);
                 UiKit.Portrait(new Rect(row.x + 28f, row.y + 3f, 34f, 34f), r.pawn, on ? UiKit.Gold : UiKit.Dim);
                 Widgets.CheckboxDraw(row.x + 2f, row.y + 8f, on, r.cant != null, 24f);
                 UiKit.LabelFit(new Rect(row.x + 68f, row.y + 1f, w - 190f, 20f), r.pawn.LabelShort + (r.grown ? "" : " " + "CC_Found_Child".Translate().Resolve()), r.cant == null ? Color.white : UiKit.Dim);
@@ -332,7 +343,7 @@ namespace ColonyCouncil
                 y += UiKit.SectionTitle(0f, y, w, "CC_Found_NewcomersHead".Translate().Resolve(), Icons.Visitor) + 2f;
                 var box = new Rect(4f, y, w - 8f, 24f);
                 bool was = newcomers;
-                Widgets.CheckboxLabeled(box, "CC_Found_NewcomersCheck".Translate(Ages.Form(AgeFeature.Call, Ages.Of(from), Ages.Of(from)).word.Named("CALL")).Resolve(), ref newcomers);
+                UiKit.Toggle(box, "CC_Found_NewcomersCheck".Translate(Ages.Form(AgeFeature.Call, Ages.Of(from), Ages.Of(from)).word.Named("CALL")).Resolve(), ref newcomers);
                 if (was != newcomers) dirty = true;
                 y += 26f;
                 string price;
@@ -360,7 +371,7 @@ namespace ColonyCouncil
             if (keepOld)
             {
                 var seatBox = new Rect(24f, y, w - 28f, 24f);
-                Widgets.CheckboxLabeled(seatBox, "CC_Found_MakeSeat".Translate(ColonySeat.Word(from).Named("SEAT")).Resolve(), ref makeSeat);
+                UiKit.Toggle(seatBox, "CC_Found_MakeSeat".Translate(ColonySeat.Word(from).Named("SEAT")).Resolve(), ref makeSeat);
                 TooltipHandler.TipRegion(seatBox, "CC_Found_MakeSeatTip".Translate());
                 y += 26f;
                 y += UiKit.Paragraph(24f, y, w - 28f, "CC_Found_KeepLine".Translate().Resolve(), UiKit.Faint, GameFont.Tiny) + 4f;
@@ -445,12 +456,12 @@ namespace ColonyCouncil
                 TooltipHandler.TipRegion(confirm, why);
                 UiKit.LabelFit(new Rect(rect.x, rect.y, rect.width - 420f, rect.height), why, UiKit.Warn, GameFont.Tiny);
             }
-            if (Widgets.ButtonText(confirm, (handOver ? "CC_HandOver_FoundConfirm" : "CC_Found_Confirm").Translate(), true, true, why == null) && why == null)
+            if (UiKit.Button(confirm, (handOver ? "CC_HandOver_FoundConfirm" : "CC_Found_Confirm").Translate(), ButtonKind.Primary, why == null))
             {
                 Found();
                 return;
             }
-            if (Widgets.ButtonText(new Rect(confirm.x - 170f, rect.y, 160f, rect.height), "CloseButton".Translate())) Close();
+            if (UiKit.Button(new Rect(confirm.x - 170f, rect.y, 160f, rect.height), "CloseButton".Translate())) Close();
         }
 
         private void Found()

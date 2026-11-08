@@ -236,7 +236,7 @@ namespace ColonyCouncil
             {
                 float bw = Text.CalcSize(label).x + 16f;
                 if (bx + bw > x + w) return false;
-                bool clicked = Widgets.ButtonText(new Rect(bx, y, bw, 20f), label);
+                bool clicked = UiKit.Button(new Rect(bx, y, bw, 20f), label);
                 bx += bw + 6f;
                 return clicked;
             }

@@ -15,9 +15,10 @@ namespace ColonyCouncil
     /// tools and gear, silver and trade goods, materials, everything) and by name, with how many there are and what one
     /// weighs. A click puts one on the list (Shift 10, Ctrl 100), "All" all there is; the line's kind follows the thing
     /// (food the travellers eat, medicine, a bedroll, a tent, feed, or other, which goes with the caravan's goods). The
-    /// window stays open to pick several, and the planner beside it shows the list and its totals as they change.
+    /// window stays open to pick several, and the planner beside it shows the list and its totals as they change. In
+    /// Rimfolk's frame (key "JourneyPick"), opening first beside the planner.
     /// </summary>
-    public class Dialog_JourneyPick : Window
+    public class Dialog_JourneyPick : FramedWindow
     {
         /// <summary>The picker's tabs.</summary>
         public enum Shelf
@@ -57,7 +58,15 @@ namespace ColonyCouncil
 
         private const float RowH = 30f, RefreshSeconds = 2f;
 
-        public Dialog_JourneyPick(JourneyPlan plan, Action changed, Rect place)
+        private static string title;
+
+        protected override string FrameTitle => title ??= "CC_JourneyPick_Title".Translate().Resolve();
+
+        protected override Texture2D FrameIcon => Icons.Trader;
+
+        protected override bool OwnFirstPlace => place.width > 0f && place.height > 0f;
+
+        public Dialog_JourneyPick(JourneyPlan plan, Action changed, Rect place) : base("JourneyPick")
         {
             this.plan = plan;
             this.changed = changed;
@@ -72,9 +81,9 @@ namespace ColonyCouncil
 
         public override Vector2 InitialSize => new Vector2(Mathf.Min(580f, UI.screenWidth - 20f), Mathf.Min(700f, UI.screenHeight - 20f));
 
-        protected override void SetInitialSizeAndPosition()
+        protected override void PlaceUnframed()
         {
-            if (place.width <= 0f || place.height <= 0f) base.SetInitialSizeAndPosition();
+            if (place.width <= 0f || place.height <= 0f) base.PlaceUnframed();
             else windowRect = place.Rounded();
         }
 
@@ -146,7 +155,7 @@ namespace ColonyCouncil
 
         // ---------------- Drawing ----------------
 
-        public override void DoWindowContents(Rect inRect)
+        protected override void DoFramedContents(Rect inRect)
         {
             if (plan?.map == null || !Find.Maps.Contains(plan.map) || Find.WindowStack.WindowOfType<Dialog_JourneyPlan>() == null)
             {
@@ -156,8 +165,9 @@ namespace ColonyCouncil
             if (Time.realtimeSinceStartup - countedAt > RefreshSeconds) Count();
             Text.Font = GameFont.Small;
             float y = inRect.y;
-            y += UiKit.PageHeader(new Rect(inRect.x, y, inRect.width - 24f, UiKit.HeaderHeight), Icons.Trader, "CC_JourneyPick_Title".Translate(), "CC_JourneyPick_Sub".Translate());
-            search.OnGUI(new Rect(inRect.x, y, inRect.width, 24f));
+            y += UiKit.DialogHeader(new Rect(inRect.x, y, inRect.width - (TitleInBar ? 0f : 24f), UiKit.HeaderHeight), TitleInBar, Icons.Trader, "CC_JourneyPick_Title".Translate(),
+                "CC_JourneyPick_Sub".Translate());
+            UiKit.SearchField(new Rect(inRect.x, y, inRect.width, 24f), search, null);
             y += 30f;
 
             // The tabs, wrapping, each with how many kinds of thing it holds; Ammunition only when there is some.
@@ -213,7 +223,7 @@ namespace ColonyCouncil
         private void Row(Rect r, Entry e, int index)
         {
             UiKit.Zebra(r, index);
-            Widgets.DrawHighlightIfMouseover(r);
+            UiKit.RowHover(r);
             int most = e.stores + e.carried + e.stall;
             var line = LineOf(e.def);
             bool listed = line != null && line.Taken;
@@ -250,10 +260,10 @@ namespace ColonyCouncil
 
             var about = new Rect(r.x, r.y, plusRect.x - r.x - 4f, r.height);
             if (Mouse.IsOver(about)) TooltipHandler.TipRegion(about, e.tip ??= Tip(e));
-            if (Widgets.ButtonText(plusRect, "+") && most > 0) Add(e, GenUI.CurrentAdjustmentMultiplier());
+            if (UiKit.Button(plusRect, "+") && most > 0) Add(e, GenUI.CurrentAdjustmentMultiplier());
             TooltipHandler.TipRegion(plusRect, "CC_Journey_StepTip".Translate());
             Text.Font = GameFont.Tiny;
-            if (Widgets.ButtonText(allRect, "CC_Journey_SetAll".Translate()) && most > 0) Add(e, int.MaxValue);
+            if (UiKit.Button(allRect, "CC_Journey_SetAll".Translate()) && most > 0) Add(e, int.MaxValue);
             Text.Font = GameFont.Small;
             TooltipHandler.TipRegion(allRect, "CC_Journey_SetAllTip".Translate(most));
             if (Widgets.ButtonInvisible(about) && most > 0) Add(e, GenUI.CurrentAdjustmentMultiplier());

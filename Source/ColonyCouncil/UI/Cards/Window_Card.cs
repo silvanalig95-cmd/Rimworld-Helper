@@ -12,9 +12,9 @@ namespace ColonyCouncil
     /// small floating window with the same card, a trail of the cards followed in it, and "Open in its window", which
     /// opens the card where it lives (a colonist in the People roster, a place on the region map, the rest in the region
     /// window's drawer). One at a time; a new card replaces the one showing. It never pauses the game and leaves the
-    /// camera free, as the inspect pane does.
+    /// camera free, as the inspect pane does. In Rimfolk's frame (key "Card"), the card's name in its title bar.
     /// </summary>
-    public class Window_Card : Window
+    public class Window_Card : FramedWindow
     {
         private readonly List<ThingRef> trail = new List<ThingRef>();
         private int at;
@@ -24,7 +24,7 @@ namespace ColonyCouncil
 
         public ThingRef Current => at >= 0 && at < trail.Count ? trail[at] : ThingRef.None;
 
-        public Window_Card(ThingRef r)
+        public Window_Card(ThingRef r) : base("Card")
         {
             trail.Add(r);
             at = 0;
@@ -38,6 +38,10 @@ namespace ColonyCouncil
             soundAppear = SoundDefOf.TabOpen;
             soundClose = SoundDefOf.TabClose;
         }
+
+        protected override string FrameTitle => ThingRefs.Name(Current);
+
+        protected override Texture2D FrameIcon => Icons.Pin;
 
         /// <summary>Shows a card in the floating window: the one open follows it (a trail), or a new one opens.</summary>
         public static void Show(ThingRef r)
@@ -66,7 +70,7 @@ namespace ColonyCouncil
             at = trail.Count - 1;
         }
 
-        public override void DoWindowContents(Rect inRect)
+        protected override void DoFramedContents(Rect inRect)
         {
             var r = Current;
             if (r.IsNone)
@@ -77,7 +81,8 @@ namespace ColonyCouncil
             try
             {
                 float y = inRect.y;
-                var bar = new Rect(inRect.x, y, inRect.width - 30f, 26f);
+                // Clear of the game's close cross; the frame's is in its title bar.
+                var bar = new Rect(inRect.x, y, inRect.width - (TitleInBar ? 0f : 30f), 26f);
                 float x = bar.x;
                 if (at > 0)
                 {
@@ -87,7 +92,7 @@ namespace ColonyCouncil
                 string open = "CC_Card_OpenInWindow".Translate();
                 Text.Font = GameFont.Small;
                 float bw = Mathf.Min(Text.CalcSize(open).x + 24f, bar.xMax - x);
-                if (Widgets.ButtonText(new Rect(x, y, bw, 26f), open))
+                if (UiKit.Button(new Rect(x, y, bw, 26f), open))
                 {
                     var thing = r;
                     Close();

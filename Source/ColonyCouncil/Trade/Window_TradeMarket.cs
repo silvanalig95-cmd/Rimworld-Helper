@@ -14,9 +14,10 @@ namespace ColonyCouncil
     /// change over the last 7 and 30 days and a small line of its last 60 days, and the colony's own last prices for it
     /// (Trade/TradeRecord.cs; without VTE, its best of the last 15 days too). Each column sorts on a click, again for the
     /// other way; the biggest movers come first, or without VTE the goods traded most lately. The columns that need VTE are
-    /// left out without it. Pointing at a good shows its card. Read only: it closes with the trade.
+    /// left out without it. Pointing at a good shows its card. Read only: it closes with the trade. In Rimfolk's frame (key
+    /// "Market"), its title in the title bar; wider, the goods' names take the room.
     /// </summary>
-    public class Window_TradeMarket : Window
+    public class Window_TradeMarket : FramedWindow
     {
         private sealed class Line
         {
@@ -63,10 +64,19 @@ namespace ColonyCouncil
 
         private static string W(string key, params NamedArgument[] args) => key.Translate(args).Resolve();
 
-        public override Vector2 InitialSize => new Vector2(Mathf.Min(columns.Sum(c => c.width) + Gap * (columns.Count - 1) + Margin * 2f + 20f, UI.screenWidth - 40f),
+        public override Vector2 InitialSize => new Vector2(Mathf.Min(columns.Sum(c => c.width) + Gap * (columns.Count - 1) + StandardMargin * 2f + 20f, UI.screenWidth - 40f),
             Mathf.Min(640f, UI.screenHeight - 60f));
 
-        public Window_TradeMarket()
+        protected override string FrameTitle => W(market ? "CC_Trade_Market_Title" : "CC_Trade_Market_TitleNoVte");
+
+        protected override Texture2D FrameIcon => Icons.Trader;
+
+        /// <summary>The room a wider window gives the goods' names (the other columns keep their widths).</summary>
+        private float goodExtra;
+
+        private float Width(Column c) => c.width + (c.col == Col.Good ? goodExtra : 0f);
+
+        public Window_TradeMarket() : base("Market")
         {
             doCloseX = true;
             closeOnClickedOutside = true;
@@ -181,7 +191,7 @@ namespace ColonyCouncil
 
         // ---------------- Drawing ----------------
 
-        public override void DoWindowContents(Rect inRect)
+        protected override void DoFramedContents(Rect inRect)
         {
             // It is the trade's: gone with it.
             if (!TradeScreen.Trading || TradeSession.deal != deal)
@@ -193,11 +203,17 @@ namespace ColonyCouncil
             var oldAnchor = Text.Anchor;
             try
             {
-                Text.Font = GameFont.Medium;
                 Text.Anchor = TextAnchor.UpperLeft;
-                Widgets.Label(new Rect(0f, 0f, inRect.width - 30f, TitleH), W(market ? "CC_Trade_Market_Title" : "CC_Trade_Market_TitleNoVte"));
+                float y = 0f;
+                // The title, unless the frame has it in its bar.
+                if (!TitleInBar)
+                {
+                    Text.Font = GameFont.Medium;
+                    Widgets.Label(new Rect(0f, 0f, inRect.width - 30f, TitleH), FrameTitle);
+                    y = TitleH + 2f;
+                }
                 Text.Font = GameFont.Small;
-                float y = TitleH + 2f;
+                goodExtra = Mathf.Clamp(inRect.width - 16f - columns.Sum(c => c.width) - Gap * (columns.Count - 1), 0f, 320f);
                 Header(new Rect(0f, y, inRect.width - 16f, HeadH));
                 y += HeadH + 2f;
                 var list = new Rect(0f, y, inRect.width, inRect.height - y - FootH);
@@ -221,7 +237,7 @@ namespace ColonyCouncil
             Text.Font = GameFont.Tiny;
             foreach (var c in columns)
             {
-                var cell = new Rect(x, r.y, c.width, r.height);
+                var cell = new Rect(x, r.y, Width(c), r.height);
                 bool active = sort == c.col;
                 if (Mouse.IsOver(cell)) Widgets.DrawHighlight(cell);
                 GUI.color = active ? UiKit.Gold : UiKit.Faint;
@@ -231,7 +247,7 @@ namespace ColonyCouncil
                 if (active) Widgets.DrawBoxSolid(new Rect(cell.x + 2f, cell.yMax - 2f, cell.width - 4f, 2f), UiKit.Gold);
                 TooltipHandler.TipRegion(cell, c.tip + "\n\n" + W(active ? "CC_Trade_Market_Sorted" : "CC_Trade_Market_SortBy"));
                 if (Widgets.ButtonInvisible(cell)) Click(c.col);
-                x += c.width + Gap;
+                x += cell.width + Gap;
             }
             Text.Anchor = TextAnchor.UpperLeft;
             Text.Font = GameFont.Small;
@@ -273,9 +289,9 @@ namespace ColonyCouncil
             float x = r.x;
             foreach (var c in columns)
             {
-                var cell = new Rect(x, r.y, c.width, r.height);
+                var cell = new Rect(x, r.y, Width(c), r.height);
                 Cell(cell, l, c.col);
-                x += c.width + Gap;
+                x += cell.width + Gap;
             }
         }
 

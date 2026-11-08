@@ -153,5 +153,21 @@ namespace ColonyCouncil
 
         /// <summary>This week's columns in a page this wide: one, two from 700, three on a window made large.</summary>
         public static int WeekColumns(float width) => width >= WeekThreeFrom ? 3 : CouncilLayoutMath.Columns(width);
+
+        // ---------------- Rimfolk's dialogs as they grow ----------------
+
+        /// <summary>The journey planner's overview of who goes: 45% of the planner, 280 to 500 wide, up to 640 from this width.</summary>
+        public const float JourneyWideFrom = 1400f;
+
+        public static float JourneyWhoWidth(float width) => Math.Max(280f, Math.Min(width * 0.45f, width >= JourneyWideFrom ? 640f : 500f));
+
+        /// <summary>The founding window's list of who goes: 46% of it, 300 to 460 wide, up to 600 from the journey's wide width.</summary>
+        public static float FoundingWhoWidth(float width) => Math.Max(300f, Math.Min(width * 0.46f, width >= JourneyWideFrom ? 600f : 460f));
+
+        /// <summary>
+        /// A dialog's row of acts or switches (the camp's): its usual width, and in a dialog made at least twice as wide, up
+        /// to half again as wide (never past half the dialog), so a long act stays on one line.
+        /// </summary>
+        public static float DialogActWidth(float width, float usual) => width >= usual * 2f ? Math.Max(usual, Math.Min(width * 0.5f, usual * 1.5f)) : usual;
     }
 }

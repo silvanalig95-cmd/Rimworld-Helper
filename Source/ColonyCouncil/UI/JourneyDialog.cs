@@ -22,9 +22,10 @@ namespace ColonyCouncil
     /// be typed into, stepped (Shift 10, Ctrl 100), set to all or none, put back to the planner's number or taken off,
     /// and anything in the stores can be added (UI/JourneyPick.cs). What the food and feed last against the road and the
     /// load against the room stay in sight at the foot of the window. The working copy is kept for the session while a
-    /// place is picked on the region map.
+    /// place is picked on the region map. In Rimfolk's frame (key "Journey"), its title in the title bar, its buttons,
+    /// switch and counts the kit's; wider, the overview of who goes takes more of it.
     /// </summary>
-    public class Dialog_JourneyPlan : Window
+    public class Dialog_JourneyPlan : FramedWindow
     {
         /// <summary>The planner's working copy, kept while the planner is closed to pick a place on the region map.</summary>
         public static JourneyPlan Draft;
@@ -71,7 +72,11 @@ namespace ColonyCouncil
 
         public override Vector2 InitialSize => new Vector2(Mathf.Min(1120f, UI.screenWidth - 40f), Mathf.Min(820f, UI.screenHeight - 40f));
 
-        private Dialog_JourneyPlan(JourneyPlan plan, bool editing)
+        protected override string FrameTitle => (editing ? "CC_Journey_TitleEdit" : "CC_Journey_Title").Translate().Resolve();
+
+        protected override Texture2D FrameIcon => Icons.Away ?? Icons.World;
+
+        private Dialog_JourneyPlan(JourneyPlan plan, bool editing) : base("Journey")
         {
             this.plan = plan;
             this.editing = editing;
@@ -254,7 +259,7 @@ namespace ColonyCouncil
 
         // ---------------- Drawing ----------------
 
-        public override void DoWindowContents(Rect inRect)
+        protected override void DoFramedContents(Rect inRect)
         {
             if (plan.map == null || !Find.Maps.Contains(plan.map))
             {
@@ -265,12 +270,17 @@ namespace ColonyCouncil
             if (dirty && Time.realtimeSinceStartup - computedAt > 0.3f) Compute();
             else if (Time.realtimeSinceStartup - heldAt > 2f) Count();
             if (Time.realtimeSinceStartup - adviceAt > 1f) BuildAdvice();
-            Text.Font = GameFont.Medium;
-            Widgets.Label(new Rect(inRect.x, inRect.y, inRect.width - 40f, 34f), (editing ? "CC_Journey_TitleEdit" : "CC_Journey_Title").Translate());
-            Text.Font = GameFont.Small;
-            float top = inRect.y + 38f;
+            // The title, unless the frame has it in its bar.
+            float top = inRect.y + 4f;
+            if (!TitleInBar)
+            {
+                Text.Font = GameFont.Medium;
+                Widgets.Label(new Rect(inRect.x, inRect.y, inRect.width - 40f, 34f), (editing ? "CC_Journey_TitleEdit" : "CC_Journey_Title").Translate());
+                Text.Font = GameFont.Small;
+                top = inRect.y + 38f;
+            }
             const float bottomH = 44f;
-            leftW = Mathf.Clamp(inRect.width * 0.45f, 280f, 500f);
+            leftW = FramedWindowsMath.JourneyWhoWidth(inRect.width);
             try
             {
                 // What the journey is for and the recommendation, under the title.
@@ -465,7 +475,7 @@ namespace ColonyCouncil
         {
             var r = new Rect(x, y, w, 26f);
             if (tip != null) TooltipHandler.TipRegion(r, tip);
-            return Widgets.ButtonText(r, label, true, true, active) && active;
+            return UiKit.Button(r, label, ButtonKind.Normal, active);
         }
 
         private float Where(float y, float w)
@@ -544,7 +554,7 @@ namespace ColonyCouncil
             if (plan.HasDestination && route.oneWayTicks > 0)
             {
                 bool back = plan.andBack;
-                Widgets.CheckboxLabeled(new Rect(4f, y, 260f, 24f), "CC_Journey_AndBack".Translate(), ref back);
+                UiKit.Toggle(new Rect(4f, y, 260f, 24f), "CC_Journey_AndBack".Translate(), ref back);
                 if (back != plan.andBack)
                 {
                     plan.andBack = back;
@@ -782,16 +792,16 @@ namespace ColonyCouncil
 
             int step = GenUI.CurrentAdjustmentMultiplier();
             string stepTip = "CC_Journey_StepTip".Translate();
-            if (Widgets.ButtonText(minus, "-")) SetCount(line, JourneyMath.StepCount(line.count, -step, toHand));
+            if (UiKit.Button(minus, "-")) SetCount(line, JourneyMath.StepCount(line.count, -step, toHand));
             TooltipHandler.TipRegion(minus, stepTip);
             CountBox(box, line, mine);
             TooltipHandler.TipRegion(box, "CC_Journey_CountTip".Translate(toHand));
-            if (Widgets.ButtonText(plus, "+")) SetCount(line, JourneyMath.StepCount(line.count, step, toHand));
+            if (UiKit.Button(plus, "+")) SetCount(line, JourneyMath.StepCount(line.count, step, toHand));
             TooltipHandler.TipRegion(plus, stepTip);
             Text.Font = GameFont.Tiny;
-            if (Widgets.ButtonText(all, "CC_Journey_SetAll".Translate())) SetCount(line, toHand);
+            if (UiKit.Button(all, "CC_Journey_SetAll".Translate())) SetCount(line, toHand);
             TooltipHandler.TipRegion(all, "CC_Journey_SetAllTip".Translate(toHand));
-            if (Widgets.ButtonText(none, "CC_Journey_SetNone".Translate())) SetCount(line, 0);
+            if (UiKit.Button(none, "CC_Journey_SetNone".Translate())) SetCount(line, 0);
             TooltipHandler.TipRegion(none, "CC_Journey_SetNoneTip".Translate());
             Text.Font = GameFont.Small;
             if (line.edited && !line.added)
@@ -831,7 +841,7 @@ namespace ColonyCouncil
             var back = new Rect(w - 112f, y + 3f, 110f, 24f);
             UiKit.LabelFit(new Rect(38f, y, Mathf.Max(0f, back.x - 44f), h), "CC_Journey_TakenOff".Translate(line.def.LabelCap).Resolve(), UiKit.Dim);
             Text.Font = GameFont.Tiny;
-            if (Widgets.ButtonText(back, "CC_Journey_PutBack".Translate()))
+            if (UiKit.Button(back, "CC_Journey_PutBack".Translate()))
             {
                 line.removed = false;
                 dirty = true;
@@ -900,9 +910,8 @@ namespace ColonyCouncil
             string key = Key(line);
             string name = CountControl + key;
             if (countEditing != key || !countText.ContainsKey(key)) countText[key] = line.count.ToString();
-            GUI.SetNextControlName(name);
             if (mine) GUI.color = UiKit.Gold;
-            string typed = Widgets.TextField(r, countText[key], 6, Digits);
+            string typed = UiKit.TextField(r, countText[key], name, null, 6, Digits);
             GUI.color = Color.white;
             if (GUI.GetNameOfFocusedControl() != name) return;
             if (countEditing != null && countEditing != key) CommitCount();
@@ -1242,7 +1251,7 @@ namespace ColonyCouncil
             float x = rect.x;
             if (editing && live != null)
             {
-                if (Widgets.ButtonText(new Rect(x, rect.y, 180f, rect.height), "CC_Journey_CallOffButton".Translate()))
+                if (UiKit.Button(new Rect(x, rect.y, 180f, rect.height), "CC_Journey_CallOffButton".Translate()))
                 {
                     JourneyRun.CallOff(live, "CC_Journey_CalledOff");
                     Draft = null;
@@ -1258,7 +1267,7 @@ namespace ColonyCouncil
                 : null;
             var confirm = new Rect(rect.xMax - 220f, rect.y, 220f, rect.height);
             if (why != null) TooltipHandler.TipRegion(confirm, why);
-            if (Widgets.ButtonText(confirm, (editing ? "CC_Journey_Save" : "CC_Journey_Confirm").Translate(), true, true, why == null) && why == null)
+            if (UiKit.Button(confirm, (editing ? "CC_Journey_Save" : "CC_Journey_Confirm").Translate(), ButtonKind.Primary, why == null))
             {
                 // A number still being typed counts.
                 CommitCount();
@@ -1270,7 +1279,7 @@ namespace ColonyCouncil
                 Close();
                 return;
             }
-            if (Widgets.ButtonText(new Rect(confirm.x - 170f, rect.y, 160f, rect.height), "CloseButton".Translate()))
+            if (UiKit.Button(new Rect(confirm.x - 170f, rect.y, 160f, rect.height), "CloseButton".Translate()))
             {
                 Draft = null;
                 Close();

@@ -9,17 +9,20 @@ namespace ColonyCouncil
     /// The Almanac in a window of its own (docs/design/interface.md, decision 4): movable and resizable, so it can sit
     /// beside what it explains. The "?" on every view's header opens it on that view's article, the book in every
     /// window's corner opens it where it was, and so do the old addresses ("Almanac", OpenAlmanac). One at a time; it
-    /// never pauses the game and leaves the camera free. Where it stood, how large it was and where each page was read to
-    /// are kept for the session; the page last read is kept in the settings for the next one.
+    /// never pauses the game and leaves the camera free. Since stage 2 of Rimfolk's own look it is in Rimfolk's frame (key
+    /// "Almanac"): moved by its title bar, sized from its edges, large and back, where it was left between games, in the
+    /// look while that is on, its pages at their own text sizes. With "Rimfolk's windows move and resize" off it is the
+    /// game's movable window as before, where it stood kept for the session. Where each page was read to is kept for the
+    /// session; the page last read is kept in the settings for the next one.
     /// </summary>
-    public class Window_Almanac : Window
+    public class Window_Almanac : FramedWindow
     {
         private static Rect? last;
         private static bool restored;
 
         public override Vector2 InitialSize => new Vector2(Mathf.Min(900f, UI.screenWidth - 40f), Mathf.Min(760f, UI.screenHeight - 100f));
 
-        public Window_Almanac()
+        public Window_Almanac() : base("Almanac")
         {
             doCloseX = true;
             draggable = true;
@@ -80,7 +83,16 @@ namespace ColonyCouncil
             if (page != null) AlmanacPanel.Show(page);
         }
 
-        protected override void SetInitialSizeAndPosition()
+        private static string title;
+
+        protected override string FrameTitle => title ??= "CC_Tab_Almanac".Translate().Resolve();
+
+        protected override Texture2D FrameIcon => Icons.Almanac;
+
+        /// <summary>The first time beside Rimfolk's windows (or where it stood this session, its frame not moving).</summary>
+        protected override bool OwnFirstPlace => true;
+
+        protected override void PlaceUnframed()
         {
             var size = InitialSize;
             Rect r;
@@ -100,12 +112,13 @@ namespace ColonyCouncil
             windowRect = r.Rounded();
         }
 
-        public override void DoWindowContents(Rect inRect)
+        protected override void DoFramedContents(Rect inRect)
         {
             try
             {
-                // The close button sits in the top right corner: the header's own buttons stay clear of it.
-                AlmanacPanel.Draw(inRect, 30f);
+                // The game's close button sits in the top right corner: the header's own buttons stay clear of it (the
+                // frame's is in its title bar).
+                AlmanacPanel.Draw(inRect, TitleInBar ? 0f : 30f);
             }
             catch (Exception e)
             {

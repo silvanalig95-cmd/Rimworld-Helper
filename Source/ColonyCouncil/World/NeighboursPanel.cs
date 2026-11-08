@@ -244,9 +244,10 @@ namespace ColonyCouncil
     /// Writing to a neighbour: whom (any notable of the same town), what for (each purpose, with why it can't be when it
     /// can't, and for a kind letter the occasion that makes it fit now: World/LetterOccasions.cs), what about (the loss,
     /// the threat, the help asked for), who writes (the speaker by default) and how (a
-    /// letter by hand, or a call on the comms console when both ends can), and in words how it is likely to be taken.
+    /// letter by hand, or a call on the comms console when both ends can), and in words how it is likely to be taken. In
+    /// Rimfolk's frame (key "Letter"), its title in the title bar, its buttons the kit's (Send the primary act).
     /// </summary>
-    public class Dialog_NeighbourLetter : Window
+    public class Dialog_NeighbourLetter : FramedWindow
     {
         private Notable to;
         private LetterPurpose purpose = LetterPurpose.Greetings;
@@ -297,7 +298,13 @@ namespace ColonyCouncil
 
         public override Vector2 InitialSize => new Vector2(600f, 790f);
 
-        public Dialog_NeighbourLetter(Notable n)
+        private static string title;
+
+        protected override string FrameTitle => title ??= "CC_LetterDlg_Title".Translate().Resolve();
+
+        protected override Texture2D FrameIcon => Icons.Journal;
+
+        public Dialog_NeighbourLetter(Notable n) : base("Letter")
         {
             to = n;
             map = HappeningTracker.HomeMap();
@@ -334,7 +341,7 @@ namespace ColonyCouncil
             if (by != null && NeighbourLetters.Writers(map, true).Contains(by)) writer = by;
         }
 
-        public override void DoWindowContents(Rect inRect)
+        protected override void DoFramedContents(Rect inRect)
         {
             try
             {
@@ -362,15 +369,20 @@ namespace ColonyCouncil
             }
             Look();
             float y = inRect.y;
-            Text.Font = GameFont.Medium;
-            Widgets.Label(new Rect(inRect.x, y, inRect.width, 34f), "CC_LetterDlg_Title".Translate());
-            Text.Font = GameFont.Small;
-            y += 38f;
+            // The title, unless the frame has it in its bar.
+            if (!TitleInBar)
+            {
+                Text.Font = GameFont.Medium;
+                Widgets.Label(new Rect(inRect.x, y, inRect.width, 34f), "CC_LetterDlg_Title".Translate());
+                Text.Font = GameFont.Small;
+                y += 38f;
+            }
+            else y += 4f;
             // Whom.
             UiKit.Portrait(new Rect(inRect.x, y, 44f, 44f), to.pawn, NotableBook.RegardColor(NotableBook.Opinion(to)));
             var whom = new Rect(inRect.x + 52f, y, inRect.width - 52f, 24f);
             var mates = NotableBook.Instance?.notables.Where(x => x.town == to.town && x.Alive).ToList() ?? new List<Notable>();
-            if (Widgets.ButtonText(new Rect(whom.x, whom.y, Mathf.Min(whom.width, 380f), 24f), NotableBook.Called(to), true, true, mates.Count > 1))
+            if (UiKit.Button(new Rect(whom.x, whom.y, Mathf.Min(whom.width, 380f), 24f), NotableBook.Called(to), ButtonKind.Normal, mates.Count > 1))
                 Find.WindowStack.Add(new FloatMenu(mates.Select(m => new FloatMenuOption(NotableBook.Called(m), () => Pick(m))).ToList()));
             int op = NotableBook.Opinion(to);
             UiKit.LabelFit(new Rect(whom.x, y + 26f, whom.width, 18f), NotableBook.RegardWords(op).CapitalizeFirst(), NotableBook.RegardColor(op), GameFont.Tiny);
@@ -403,7 +415,7 @@ namespace ColonyCouncil
             {
                 topicIndex = Mathf.Clamp(topicIndex, 0, topics.Count - 1);
                 Widgets.Label(new Rect(inRect.x, y + 2f, 120f, 24f), "CC_LetterDlg_About".Translate());
-                if (Widgets.ButtonText(new Rect(inRect.x + 124f, y, inRect.width - 124f, 26f), topics[topicIndex].text, true, true, topics.Count > 1))
+                if (UiKit.Button(new Rect(inRect.x + 124f, y, inRect.width - 124f, 26f), topics[topicIndex].text, ButtonKind.Normal, topics.Count > 1))
                     Find.WindowStack.Add(new FloatMenu(topics.Select((t, i) => new FloatMenuOption(t.text, () => topicIndex = i)).ToList()));
                 y += 30f;
             }
@@ -421,7 +433,7 @@ namespace ColonyCouncil
             var writers = NeighbourLetters.Writers(map, true);
             if (writer == null || !writers.Contains(writer)) writer = NeighbourLetters.DefaultWriter(map);
             Widgets.Label(new Rect(inRect.x, y + 2f, 120f, 24f), (NeighbourLetters.Spoken ? "CC_LetterDlg_WhoSpeaks" : "CC_LetterDlg_Who").Translate());
-            if (Widgets.ButtonText(new Rect(inRect.x + 124f, y, 260f, 26f), writer != null ? WriterLabel(writer) : "-", true, true, writers.Count > 0))
+            if (UiKit.Button(new Rect(inRect.x + 124f, y, Mathf.Min(inRect.width - 124f, 260f), 26f), writer != null ? WriterLabel(writer) : "-", ButtonKind.Normal, writers.Count > 0))
                 Find.WindowStack.Add(new FloatMenu(writers.Select(p => new FloatMenuOption(WriterLabel(p), () => writer = p)).ToList()));
             y += 30f;
             // How.
@@ -460,7 +472,7 @@ namespace ColonyCouncil
                     {
                         var riders = OwnRiders.Candidates(map);
                         if (rider == null || !riders.Contains(rider)) rider = riders.FirstOrDefault();
-                        if (Widgets.ButtonText(new Rect(inRect.x + 340f, y, 200f, 24f), rider?.LabelShort ?? "-", true, true, riders.Count > 1))
+                        if (UiKit.Button(new Rect(inRect.x + 340f, y, 200f, 24f), rider?.LabelShort ?? "-", ButtonKind.Normal, riders.Count > 1))
                             Find.WindowStack.Add(new FloatMenu(riders.Select(p => new FloatMenuOption(p.LabelShort, () => rider = p)).ToList()));
                     }
                 }
@@ -497,14 +509,14 @@ namespace ColonyCouncil
             // Send.
             bool ok = writer != null && purposeWhy == null && channelWhy == null && dipWhy == null;
             var send = new Rect(inRect.x, inRect.yMax - 34f, 200f, 32f);
-            if (Widgets.ButtonText(send, (channel == LetterChannel.Console ? "CC_LetterDlg_Call" : "CC_LetterDlg_Send").Translate(), true, true, ok) && ok)
+            if (UiKit.Button(send, (channel == LetterChannel.Console ? "CC_LetterDlg_Call" : "CC_LetterDlg_Send").Translate(), ButtonKind.Primary, ok))
             {
                 bool about = purpose == LetterPurpose.Condolences || purpose == LetterPurpose.Warning || DiplomacyLetters.Owns(purpose);
                 LetterTopic? topic = topics.Count > 0 && about ? topics[Mathf.Clamp(topicIndex, 0, topics.Count - 1)] : (LetterTopic?)null;
                 string asked = purpose == LetterPurpose.Help ? help : DiplomacyLetters.Owns(purpose) ? dipAsk : null;
                 if (NeighbourLetters.Send(to, purpose, channel, writer, topic, asked, bearer, channel == LetterChannel.Courier && riderChosen ? rider : null) != null) Close();
             }
-            if (Widgets.ButtonText(new Rect(inRect.xMax - 160f, inRect.yMax - 34f, 160f, 32f), "CC_LetterDlg_Cancel".Translate())) Close();
+            if (UiKit.Button(new Rect(inRect.xMax - 160f, inRect.yMax - 34f, 160f, 32f), "CC_LetterDlg_Cancel".Translate())) Close();
         }
 
         private void Pick(Notable n)

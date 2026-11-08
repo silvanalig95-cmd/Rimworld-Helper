@@ -136,6 +136,30 @@ namespace ColonyCouncil
             return height;
         }
 
+        /// <summary>
+        /// A dialog's header: the page header as before, or, with its title in the frame's bar
+        /// (<paramref name="titleInBar"/>), only the line under the title and the stat on its right, over the divider, so
+        /// the title is not said twice. Returns its height with the space below it.
+        /// </summary>
+        public static float DialogHeader(Rect rect, bool titleInBar, Texture2D icon, string title, string subtitle, string stat = null, Color? statColor = null,
+            float reserveRight = 0f, string tip = null)
+        {
+            if (!titleInBar) return PageHeader(rect, icon, title, subtitle, stat, statColor, reserveRight, tip);
+            float right = Mathf.Max(rect.x, rect.xMax - reserveRight);
+            float statW = 0f;
+            if (!stat.NullOrEmpty())
+            {
+                statW = Mathf.Min(KeptWidth(stat, GameFont.Small) + 6f, (right - rect.x) * 0.45f);
+                LabelFit(new Rect(right - statW, rect.y, statW, 24f), stat, statColor ?? Gold, GameFont.Small, TextAnchor.MiddleRight);
+                statW += 10f;
+            }
+            if (!subtitle.NullOrEmpty()) LabelFit(new Rect(rect.x, rect.y, Mathf.Max(0f, right - statW - rect.x), 24f), subtitle, Faint);
+            if (!tip.NullOrEmpty()) TooltipHandler.TipRegion(new Rect(rect.x, rect.y, Mathf.Max(0f, right - rect.x), 24f), tip);
+            if (subtitle.NullOrEmpty() && stat.NullOrEmpty()) return 4f;
+            Divider(rect.x, rect.y + 28f, rect.width);
+            return 36f;
+        }
+
         // Each mode's measured width, by its label (measured once).
         private static readonly Dictionary<string, float> modeWidths = new Dictionary<string, float>();
         private static float[] modeNatural = new float[0], modeX = new float[0], modeW = new float[0];
