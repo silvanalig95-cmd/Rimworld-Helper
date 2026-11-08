@@ -1398,10 +1398,10 @@ namespace Balance
             }
             // What a camp left behind (CampPackMath.Leaves): offal of a hunting camp gone in a hurry or sour that draws a
             // predator in, or embers in dry grass; the game's own beast or fire catches one of the colony a time in four.
-            var gk = rng("camp left");
-            if (gk.NextDouble() < CampsPerYear * CampLeftShare / Days && Comes(y, HarmKinds.CampLeft, gk, CampPackMath.OffalDrawChance) && gk.NextDouble() < CampLeftHurts)
+            var gcl = rng("camp left");
+            if (gcl.NextDouble() < CampsPerYear * CampLeftShare / Days && Comes(y, HarmKinds.CampLeft, gcl, CampPackMath.OffalDrawChance) && gcl.NextDouble() < CampLeftHurts)
             {
-                var p = Any(y, gk);
+                var p = Any(y, gcl);
                 y.today.Add((15, () => Hurt(y, p, HarmKinds.CampLeft)));
             }
             // The wild one too close: an encounter close to a wild animal, by the game's taming-revenge chance for its kind.

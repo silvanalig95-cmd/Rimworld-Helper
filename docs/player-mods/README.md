@@ -37,6 +37,11 @@ listed).
 | pawnkinds.tsv | pawn kinds | label, race, faction, combat power, apparel tags, weapon tags |
 | factions.tsv | factions | label, techLevel, hidden, permanent enemy, basic member kind |
 | memes.tsv | Ideology memes | label, category, exclusion tags |
+| buildings.tsv | buildings by what they are for (8 November 2026, for the camps: Camps/CampKit.cs): beds, bedrolls, tents, sleeping spots, fires, hearths, braziers, torches and lamps, tables, seats, work spots and benches, walls, doors, fences, storage, spots and hitching spots | label, techLevel, role (bed, bedroll, tent, sleepingspot, doublebed, medical, animalbed, crib; fire, hearth, brazier, torch, lamp; table, seat; workspot, bench; wall, door, fence; storage; spot, picket), size, stuff, stuffCount, cost, research, researchTech (the age of the research it needs, `Undefined` for none), minifiable, designation, thingClass, power, fuel, glow, heat, holdsRoof, passability, work (the work done at a bench: butcher, cook, craft, art, medicine), workToBuild |
+
+The buildings table was added on 8 November 2026 from the same collection, with the save of that day: every other table
+came out byte for byte the same, but for `mods.tsv`'s column inSave for Harvest and Haul (in the 7 November save, not in
+this one).
 
 `madeTech` is the age of the easiest way the player's active mods make or grow the thing: the tech level of the
 research its recipes (or recipe maker, or a sown crop) need, `Undefined` for one that needs none, blank when nothing

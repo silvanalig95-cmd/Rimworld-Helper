@@ -221,6 +221,10 @@
   <CC_Camp_Why_nofriends>No friendly people could send one: make peace with a neighbour first.</CC_Camp_Why_nofriends>
   <CC_Camp_Why_noroom>The colony's land reaches everywhere a camp could go: a camp keeps some forty cells from its home area and zones, on ground it can walk, clear and build on (open or wooded).</CC_Camp_Why_noroom>
 
+  <!-- Enemies on the land: a people allied to the colony fights beside it; enemies at their own camp, they defend it (Camps/CampLife.cs). -->
+  <CC_Camp_FightAlly>Enemies on the land: the {NAME} from {FACTION}, the colony's allies, take up their weapons beside it.</CC_Camp_FightAlly>
+  <CC_Camp_FightDefend>Enemies are at their camp {PLACE}: the {NAME} from {FACTION} take up their weapons to defend it.</CC_Camp_FightDefend>
+
   <!-- How they will sleep, and the day's work round their camp, for the letter that brings them (Camps/CampSite.cs, CampDay.cs). -->
   <CC_Camp_Facts_Shelter_hut>They will put up a hut for all of them, walls all round, a door and a roof.</CC_Camp_Facts_Shelter_hut>
   <CC_Camp_Facts_Shelter_huts>They will put up small huts to sleep in, two to a room.</CC_Camp_Facts_Shelter_huts>

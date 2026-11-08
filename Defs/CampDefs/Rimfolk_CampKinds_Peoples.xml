@@ -107,8 +107,8 @@
       <li>[fall] {FACTION}'s herders are bringing their herd down for the winter, and the colony's land lies on their way. {X_nameDef} asks {A_nameDef} whether they might stop {PLACE} for the cold months, with the beasts grazing past the ridge.</li>
     </texts>
     <settled>
-      <li>The herders of {FACTION} have made camp {PLACE}: a round house of logs, a fire, a windbreak, and their hay stacked where the herd can reach it. The beasts are out past the ridge already, nosing through the frost for grass.</li>
-      <li>{FACTION}'s winter camp is up {PLACE}, smoke rising from the round house's roof ring, and the herd is spread out over the far ground with a herder walking its edge.</li>
+      <li>The herders of {FACTION} have made camp {PLACE}: a house of logs, a fire, and their hay stacked where the herd can reach it. The beasts are out past the ridge already, nosing through the frost for grass.</li>
+      <li>{FACTION}'s winter camp is up {PLACE}, a house of logs by a fire that never goes out, and the herd is spread out over the far ground with a herder walking its edge.</li>
       <li>The herders have settled in {PLACE} for the cold months, and their herd is grazing the colony's far ground. The bells can be heard from the gate.</li>
     </settled>
     <joinTexts>

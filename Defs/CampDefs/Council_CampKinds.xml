@@ -3,12 +3,12 @@
 
   <!-- Kinds of camp (ColonyCouncil.CampKindDef): who makes camp on the colony's map, how long they stay, what they build,
        what they take from the land, and what they say. The arrival event is Council_Evt_Camp
-       (Defs/IncidentDefs/Council_Events_Camps.xml). Buildings are found by defName at runtime, the first that exists.
-       Tents from the tent mods come first where they fit and stand in only while their mod is loaded: Vanilla Factions
-       Expanded - Classical's one-person tent (VFEC_Tent, a bed) for those who sleep in bedrolls, and a tent of Medieval
-       Overhaul's hide or cloth walls (DankPyon_TentWall, which holds a roof) as the hut of a hunting party, traders,
-       healers and players, with Outland's tent flap (Outland_TentDoor) for its door where Outland is loaded; refugees
-       put up a windbreak of cloth. Without the mods, the bedrolls, the plain wooden windbreak and no hut. With RimMarket,
+       (Defs/IncidentDefs/Council_Events_Camps.xml). What they build is their people's age's kit
+       (Rimfolk_CampKits.xml: the player's mods' pieces first, the game's own last), laid out by Camps/CampBuildMath.cs:
+       <sleep> says how they sleep (round the fire, a hut for all, or tents), and a kind's own <structures> add its fire
+       and its own pieces (a shrine's spot, a stall, the austere kinds' sleeping spots). <works> are its callings,
+       <leaves> what it does with its constructions when it goes (standing, nobody's, unless it says why not), and
+       <leftovers> what it may leave behind (none listed: whatever its stay brings about). With RimMarket,
        one of them now and then buys at the colony's stalls what their <buys> lists, first first (Camps/CampMarket.cs);
        a kind without one buys what anyone on the road needs. -->
 
@@ -62,9 +62,11 @@
       <li>[fall] Fall is the hunting season, and a party of {FACTION} has followed the herds onto the colony's land. {X_nameDef} asked {A_nameDef}, politely enough, where the colony would rather they didn't shoot, then chose a spot {PLACE} for their camp.</li>
     </texts>
     <settled>
-      <li>The hunters from {FACTION} have their bedrolls down {PLACE}, a low fire going and a patch of ground cleared for dressing game.</li>
+      <li>The hunters from {FACTION} have their camp up {PLACE}, a low fire going and a butchering spot ready for the game.</li>
+      <li>[shelter:tentbeds] The hunters from {FACTION} have a tent each pitched round their fire {PLACE}, and a butchering spot ready for the game.</li>
+      <li>[shelter:tents] The hunters from {FACTION} have their tents up {PLACE}, two to a tent, and a low fire going before them.</li>
       <li>[lowtech] A drying rack already stands beside the hunters' fire {PLACE}, with their spears leaning against it.</li>
-      <li>[!lowtech] The hunters of {FACTION} have pitched camp {PLACE}. They cleaned their rifles before they unrolled a single bedroll.</li>
+      <li>[!lowtech] The hunters of {FACTION} have pitched camp {PLACE}. They cleaned their rifles before they unpacked anything else.</li>
       <li>The hunters from {FACTION} have made camp {PLACE}, with a fire low enough not to spook the game and a lookout in the nearest tree.</li>
     </settled>
     <joinTexts>
@@ -74,8 +76,9 @@
     </joinTexts>
     <farewell>
       <li>The herd moved on, and the hunters of {FACTION} went with it.</li>
-      <li>The hunters from {FACTION} rolled up their bedrolls, kicked earth over the fire {PLACE} and went off after fresh sign.</li>
+      <li>The hunters from {FACTION} packed their bedding, put out the fire {PLACE} and went off after fresh sign.</li>
       <li>The hunters from {FACTION} were gone before dawn. All that's left {PLACE} is a ring of ash and a few cracked bones.</li>
+      <li>The hunters from {FACTION} were gone before dawn, their bedding packed and their fire put out {PLACE}.</li>
       <li>The hunters of {FACTION} broke camp at first light. One of them lifted a hand toward the colony from a long way off, and then they were over the rise and out of sight.</li>
     </farewell>
     <lines>
@@ -243,9 +246,11 @@
       <li>[colony:Hospitable] A family of {FACTION} has come a long way on the word of strangers, who told them the colony takes people in and sends them on their way fed. {X_nameDef} asked {A_nameDef} whether it was true, and whether they might camp {PLACE} for a while.</li>
     </texts>
     <settled>
-      <li>The family from {FACTION} has a windbreak up {PLACE} and their beds laid out close around the fire, the way people sleep after a long time sleeping rough.</li>
-      <li>[winter] The family from {FACTION} has dug their camp into the lee of a bank {PLACE}, with every blanket they own around the fire.</li>
-      <li>The family's camp is up {PLACE}, and {X_nameDef} has already hung the washing out on the windbreak to dry.</li>
+      <li>[shelter:hut] The family from {FACTION} has a hut up {PLACE}, walls all round and a roof on, and their beds laid out inside after a long time sleeping rough.</li>
+      <li>The family from {FACTION} has their camp up {PLACE}, a bed for each of them, the way people sleep after a long time sleeping rough.</li>
+      <li>[winter,shelter:hut] The family from {FACTION} has their hut up {PLACE} against the cold, with every blanket they own on the beds.</li>
+      <li>[shelter:hut] The family's camp is up {PLACE}, and {X_nameDef} has already hung the washing out by the door to dry.</li>
+      <li>The family's camp is up {PLACE}, and {X_nameDef} has already hung the washing out to dry.</li>
       <li>The refugees' camp {PLACE} is small and tidy, their few things put away, and there's a cookpot on the fire with not much in it.</li>
     </settled>
     <joinTexts>
@@ -416,7 +421,7 @@
       <li>[ws:rush] Everyone with a pan is out in the hills for {SITUATION}, and a band of {FACTION}'s prospectors has decided the colony's ground is worth a look. {X_nameDef} told {A_nameDef} they'll camp {PLACE}, dig, and sell whatever turns up.</li>
     </texts>
     <settled>
-      <li>The prospectors from {FACTION} have their camp up {PLACE}, with a windbreak against the weather and a torch to dig by after dark.</li>
+      <li>The prospectors from {FACTION} have their camp up {PLACE}, with shelter against the weather and a torch to dig by after dark.</li>
       <li>The prospectors' camp {PLACE} is up, and the first test holes are already dug in a neat line toward the high ground.</li>
       <li>Sieves are stacked by the prospectors' fire {PLACE}, and a hand-drawn map is pinned flat under a rock beside them.</li>
     </settled>
@@ -563,6 +568,8 @@
     </seekTexts>
     <structures>
       <li><role>fire</role><defs><li>Campfire</li></defs></li>
+      <!-- They sleep on the ground: a sleeping place each, of their own ways, not their people's bedrolls. -->
+      <li><role>bed</role><defs><li>SleepingSpot</li></defs></li>
       <li><role>spot</role><defs><li>MeditationSpot</li><li>PartySpot</li></defs></li>
     </structures>
     <sleep>Ring</sleep>
@@ -1092,9 +1099,10 @@
       <li>{X_nameDef} turned up {PLACE} with an axe, a sack and a blackened pot, and started cutting poles without asking anyone. When {A_nameDef} went over to see, {X_nameDef}, once of {FACTION}, said only that {X_pronoun} would be gone by the end of the season.</li>
     </texts>
     <settled>
-      <li>{X_nameDef} finished a small hut {PLACE}, with a door, a roof and a fire outside it.</li>
-      <li>{X_nameDef}'s hut {PLACE} is finished: crooked, small and very solid. Smoke comes out of the roof in the mornings.</li>
-      <li>{X_nameDef} has a hut up {PLACE}, and a little garden fenced off beside it with sticks and twine.</li>
+      <li>[shelter:hut] {X_nameDef} finished a small hut {PLACE}, with a door, a roof and a fire outside it.</li>
+      <li>{X_nameDef} has a camp of one up {PLACE}: a fire, a bed and a woodpile.</li>
+      <li>[shelter:hut] {X_nameDef}'s hut {PLACE} is finished: crooked, small and very solid. Smoke rises from the fire before its door in the mornings.</li>
+      <li>[shelter:hut] {X_nameDef} has a hut up {PLACE}, and a woodpile stacked by its door.</li>
     </settled>
     <joinTexts>
       <li>{X_nameDef}, the hermit camped {PLACE}, came to the colony's door this evening. After a long silence, {X_pronoun} asked whether there might be room for one more.</li>

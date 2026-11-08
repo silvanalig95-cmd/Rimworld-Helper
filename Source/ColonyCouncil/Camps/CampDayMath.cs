@@ -53,8 +53,11 @@ namespace ColonyCouncil
             return CampHour.Evening;
         }
 
-        /// <summary>Hungry enough to sit down to a meal now: below this at a mealtime, below <see cref="Starving"/> at any hour.</summary>
-        public static float MealBelow(CampHour h) => h == CampHour.Morning || h == CampHour.Noon || h == CampHour.Supper ? 0.75f : Starving;
+        /// <summary>
+        /// Hungry enough to sit down to a meal now: below this at a mealtime (a meal of theirs fills about half the need, so
+        /// none is wasted), below <see cref="Starving"/> at any hour.
+        /// </summary>
+        public static float MealBelow(CampHour h) => h == CampHour.Morning || h == CampHour.Noon || h == CampHour.Supper ? 0.55f : Starving;
 
         public const float Starving = 0.3f;
 

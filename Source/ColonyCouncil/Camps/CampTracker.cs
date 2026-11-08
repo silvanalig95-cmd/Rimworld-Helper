@@ -654,7 +654,7 @@ namespace ColonyCouncil
             int rooms = CampSite.Rooms(plans).Count();
             if (rooms == 1 && plans.Count(p => p.role == "hutbed") > 2) return "hut";
             if (rooms >= 1) return plans.Any(p => p.role == "hut" && p.def != null && p.def.MadeFromStuff && p.stuff != null && !p.stuff.IsWithinCategory(ThingCategoryDefOf.ResourcesRaw)) ? "tents" : rooms == 1 ? "hut" : "huts";
-            if (plans.Any(p => p.role == "bed" && p.def?.comps != null && p.def.comps.Any(c => c.GetType().Name.IndexOf("Tent", StringComparison.Ordinal) >= 0))) return "tentbeds";
+            if (plans.Any(p => p.role == "bed" && CampSite.IsTent(p.def))) return "tentbeds";
             return "ring";
         }
 

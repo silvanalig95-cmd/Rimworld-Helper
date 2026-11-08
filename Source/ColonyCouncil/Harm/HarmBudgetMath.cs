@@ -168,7 +168,7 @@ namespace ColonyCouncil
         // ---------------- Camps that build and leave things behind (8 November 2026) ----------------
 
         /// <summary>What a camp left behind: offal that draws a predator in, embers in dry grass (Camps/CampPack.cs), the game's own beast or fire.</summary>
-        public static readonly HarmKind CampLeft = new HarmKind("campLeft", "what a camp left behind (offal, embers)", "campLeft", 0.0014f, false);
+        public static readonly HarmKind CampLeft = new HarmKind("campLeft", "what a camp left behind (offal, embers)", "campLeft", 0.0015f, false);
 
         /// <summary>Every kind, in the order they were built.</summary>
         public static readonly HarmKind[] All =

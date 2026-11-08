@@ -82,7 +82,7 @@
     </joinTexts>
     <!-- [carried]: they took up their dead lying on the land and carried them off with them (Camp.CarryDeadHome). -->
     <farewell>
-      <li>[carried] The war party of {FACTION} struck their camp {PLACE} and went home, carrying their dead with them. {FACTION} will remember who stood with them.</li>
+      <li>[carried] The war party of {FACTION} packed up their camp {PLACE} and went home, carrying their dead with them. {FACTION} will remember who stood with them.</li>
       <li>The fighters of {FACTION} are gone from {PLACE}, leaving a ring of trampled grass and a cold fire. {X_nameDef} said, at the gate: "Next time, you come to us."</li>
       <li>The war camp {PLACE} is empty. {FACTION}'s people marched off singing the same bad song.</li>
     </farewell>

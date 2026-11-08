@@ -34,6 +34,13 @@ namespace ColonyCouncil
         /// <summary>A building of theirs that can be uninstalled and carried (a bedroll, a tent, a stool, a table, a torch of a mod's).</summary>
         public static bool Portable(Building b) => b != null && b.def.Minifiable;
 
+        /// <summary>A bed of theirs given up: nobody of theirs holds it any more.</summary>
+        private static void Unclaim(Building b)
+        {
+            if (!(b is Building_Bed bed)) return;
+            foreach (var owner in bed.OwnersForReading.ToList()) owner.ownership?.UnclaimBed();
+        }
+
         /// <summary>What they still have to pack or take down before they go.</summary>
         private List<Building> ToPack()
         {
@@ -41,7 +48,7 @@ namespace ColonyCouncil
             return Buildings().Where(b => !b.Destroyed && b.Spawned && PackFateOf(b, true, hands) is PackFate f && (f == PackFate.Pack || f == PackFate.TakeDown)).ToList();
         }
 
-        private PackFate PackFateOf(Building b, bool orderly, bool hands) => CampPackMath.Fate(kind.leaves, Portable(b), orderly, hands);
+        private PackFate PackFateOf(Building b, bool orderly, bool hands) => CampPackMath.Fate(kind.leaves, Portable(b), orderly, hands, ending != "unpaid");
 
         /// <summary>
         /// Leaving in their own time: they pack first, on the map, for a few hours (CampPackMath.PackHours). False when there
@@ -52,7 +59,10 @@ namespace ColonyCouncil
             int hours = CampPackMath.PackHours(reason);
             if (hours <= 0 || !Settled || !LordAlive || ToPack().Count == 0) return false;
             packingFor = reason;
-            packUntil = Now + hours * GenDate.TicksPerHour;
+            // At night they sleep on and pack in the morning.
+            int hour = GenLocalDate.HourOfDay(map);
+            int wait = CampDayMath.HourOf(hour) == CampHour.Night ? (6 - hour + 24) % 24 : 0;
+            packUntil = Now + (wait + hours) * GenDate.TicksPerHour;
             SayLine(Here.Where(p => !p.Downed).RandomElementWithFallback(), "pack", 0.8f);
             return true;
         }
@@ -73,7 +83,8 @@ namespace ColonyCouncil
         {
             if (packingFor == null || p.DevelopmentalStage.Juvenile() || p.WorkTagIsDisabled(WorkTags.ManualDumb)) return null;
             var b = ToPack().OrderBy(x => PackFateOf(x, true, true) == PackFate.Pack ? 0 : 1).ThenBy(x => x.Position.DistanceToSquared(p.Position))
-                .FirstOrDefault(x => !Here.Any(o => o != p && o.CurJob?.def == CampDayDefOf.Rimfolk_CampPack && o.CurJob.targetA.Thing == x) && p.CanReserveAndReach(x, PathEndMode.Touch, Danger.Some));
+                .FirstOrDefault(x => !(x is Building_Bed bed && bed.CurOccupants.Any()) && !Here.Any(o => o != p && o.CurJob?.def == CampDayDefOf.Rimfolk_CampPack && o.CurJob.targetA.Thing == x)
+                                     && p.CanReserveAndReach(x, PathEndMode.Touch, Danger.Some));
             return b == null ? null : JobMaker.MakeJob(CampDayDefOf.Rimfolk_CampPack, b);
         }
 
@@ -90,6 +101,7 @@ namespace ColonyCouncil
                 if (fate == PackFate.Pack)
                 {
                     if (LordAlive) lord.ownedBuildings.Remove(b);
+                    Unclaim(b);
                     var mini = MinifyUtility.MakeMinified(b);
                     if (mini == null) return;
                     if (!p.inventory.innerContainer.TryAdd(mini))
@@ -130,6 +142,9 @@ namespace ColonyCouncil
         private void LeaveStanding(bool orderly, IntVec3 fire)
         {
             bool hands = Here.Any(p => !p.Downed && !p.DevelopmentalStage.Juvenile());
+            var carriers = Here.Where(p => p.inventory != null && !p.DevelopmentalStage.Juvenile()).ToList();
+            // Going at once in their own time (settlers off with the colony's caravan): they pack as they go.
+            bool atOnce = orderly && !packed && CampPackMath.PackHours(ending) == 0;
             var standing = new List<string>();
             bool handed = false;
             foreach (var b in Buildings())
@@ -138,6 +153,14 @@ namespace ColonyCouncil
                 try
                 {
                     var fate = PackFateOf(b, orderly, hands);
+                    Unclaim(b);
+                    if (fate == PackFate.Pack && atOnce && carriers.Count > 0)
+                    {
+                        if (LordAlive) lord.ownedBuildings.Remove(b);
+                        var mini = MinifyUtility.MakeMinified(b);
+                        if (mini != null && !carriers.RandomElement().inventory.innerContainer.TryAdd(mini) && !mini.Destroyed) mini.Destroy();
+                        continue;
+                    }
                     // A fire or a torch left standing is put out first.
                     var fuel = b.TryGetComp<CompRefuelable>();
                     if (fuel != null && fuel.HasFuel && orderly) fuel.ConsumeFuel(fuel.Fuel);
@@ -163,8 +186,8 @@ namespace ColonyCouncil
         /// <summary>A building left standing in the leaving message's words: their hut, their tents, a windbreak, the fire pit...</summary>
         private string StandingWord(CampPlan plan, Building b, bool unpacked)
         {
-            if (unpacked) return "CC_CampLeft_What_beds".Translate();
             string role = plan?.role;
+            if (unpacked && (role == "bed" || role == "hutbed")) return "CC_CampLeft_What_beds".Translate();
             switch (role)
             {
                 case "hut":
@@ -287,8 +310,9 @@ namespace ColonyCouncil
             var meat = goods.Where(t => t.def.IsMeat).OrderBy(t => t.stackCount).FirstOrDefault();
             if (meat != null) LeaveGoodsAt(new[] { meat }, at, 0.4f);
             if (!Harm.On || !Harm.SystemOn(HarmKinds.CampLeft.system) || !Harm.Roll(HarmKinds.CampLeft, CampPackMath.OffalDrawChance)) return true;
-            var kind = map.Biome?.AllWildAnimals?.Where(k => k.RaceProps.predator && k.RaceProps.baseBodySize <= 1.4f && map.mapTemperature.SeasonAndOutdoorTemperatureAcceptableFor(k.race))
-                .RandomElementByWeightWithFallback(k => map.Biome.CommonalityOfAnimal(k));
+            var biome = map.Biome;
+            var kind = biome == null ? null : BiomeAnimals.Of(biome).Where(k => k.RaceProps.predator && k.RaceProps.baseBodySize <= 1.4f && map.mapTemperature.SeasonAndOutdoorTemperatureAcceptableFor(k.race))
+                .RandomElementByWeightWithFallback(k => BiomeAnimals.Commonality(biome, k));
             if (kind == null || !RCellFinder.TryFindRandomPawnEntryCell(out var entry, map, CellFinder.EdgeRoadChance_Animal)) return true;
             var beast = PawnGenerator.GeneratePawn(kind);
             GenSpawn.Spawn(beast, entry, map);

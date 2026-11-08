@@ -136,7 +136,7 @@
       <li>{X_nameDef}, one of the wardens camped {PLACE}, came to the gate at the end of {X_possessive} watch. "I've kept other people's roads long enough," {X_pronoun} said. "I'd keep this one as one of yours, if there's a place."</li>
     </joinTexts>
     <farewell>
-      <li>The wardens of {FACTION} have struck their camp {PLACE} and ridden back to their people. The half-built post stands empty.</li>
+      <li>The wardens of {FACTION} have packed up {PLACE} and ridden back to their people. Their post stands empty.</li>
       <li>{FACTION}'s wardens are gone from {PLACE}, called back down the road. {X_nameDef} said, at the gate: "Keep the road for us a while."</li>
     </farewell>
     <lines>

@@ -282,8 +282,10 @@ namespace ColonyCouncil
                 why = "no beds";
                 return false;
             }
-            // Flood from the first bed without crossing walls: it must never leave the walls' bounds.
-            int minX = walls.Min(p => p.minX), maxX = walls.Max(p => p.maxX), minZ = walls.Min(p => p.minZ), maxZ = walls.Max(p => p.maxZ);
+            // Flood from the first bed without crossing walls (its own, or a neighbour's it shares): it must never leave the
+            // bounds of all the walls.
+            var all = pieces.Where(p => p.role == "hut" || p.role == "door").ToList();
+            int minX = all.Min(p => p.minX), maxX = all.Max(p => p.maxX), minZ = all.Min(p => p.minZ), maxZ = all.Max(p => p.maxZ);
             var start = (beds[0].minX, beds[0].minZ);
             var seen = new HashSet<(int, int)> { start };
             var todo = new Queue<(int, int)>();
@@ -328,18 +330,38 @@ namespace ColonyCouncil
             return true;
         }
 
-        /// <summary>The cells under a room's roof: its inside (everything its walls close in).</summary>
+        /// <summary>The cells under a room's roof: its inside (everything its walls close in, a wall it shares with the next tent too).</summary>
         public static List<(int x, int z)> Inside(List<CampPiece> pieces, int room)
         {
-            var walls = pieces.Where(p => p.room == room && (p.role == "hut" || p.role == "door")).ToList();
-            var list = new List<(int, int)>();
-            if (walls.Count == 0) return list;
-            int minX = walls.Min(p => p.minX), maxX = walls.Max(p => p.maxX), minZ = walls.Min(p => p.minZ), maxZ = walls.Max(p => p.maxZ);
-            var solid = new HashSet<(int, int)>(walls.SelectMany(p => p.Cells()));
-            for (int x = minX + 1; x < maxX; x++)
-                for (int z = minZ + 1; z < maxZ; z++)
-                    if (!solid.Contains((x, z))) list.Add((x, z));
-            return list;
+            var all = pieces.Where(p => p.role == "hut" || p.role == "door").ToList();
+            var beds = pieces.Where(p => p.room == room && p.role == "hutbed").ToList();
+            if (all.Count == 0 || beds.Count == 0) return new List<(int, int)>();
+            var solid = new HashSet<(int, int)>(all.SelectMany(p => p.Cells()));
+            return Flood(solid, beds.SelectMany(b => b.Cells()), all.Min(p => p.minX), all.Max(p => p.maxX), all.Min(p => p.minZ), all.Max(p => p.maxZ)) ?? new List<(int, int)>();
+        }
+
+        /// <summary>
+        /// The cells reached from <paramref name="start"/> without crossing <paramref name="solid"/>; null when that leaves
+        /// the bounds (the room isn't closed).
+        /// </summary>
+        public static List<(int x, int z)> Flood(HashSet<(int, int)> solid, IEnumerable<(int x, int z)> start, int minX, int maxX, int minZ, int maxZ)
+        {
+            var seen = new HashSet<(int, int)>();
+            var todo = new Queue<(int, int)>();
+            foreach (var s in start)
+                if (!solid.Contains(s) && seen.Add(s)) todo.Enqueue(s);
+            while (todo.Count > 0)
+            {
+                var (x, z) = todo.Dequeue();
+                if (x <= minX || x >= maxX || z <= minZ || z >= maxZ) return null;
+                foreach (var (dx, dz) in new[] { (1, 0), (-1, 0), (0, 1), (0, -1) })
+                {
+                    var n = (x + dx, z + dz);
+                    if (solid.Contains(n) || !seen.Add(n)) continue;
+                    todo.Enqueue(n);
+                }
+            }
+            return seen.ToList();
         }
 
         // ---------------- The whole camp ----------------
@@ -483,7 +505,8 @@ namespace ColonyCouncil
                         if (dist < from || dist > to) continue;
                         cands.Add((p, dist, (float)Math.Atan2(cz, cx)));
                     }
-            return cands.OrderBy(c => Math.Round(c.dist)).ThenBy(c => c.angle).Select(c => c.p);
+            // Nearest first; at a distance, the far side from the colony first (+z), then its sides, the colony's side last.
+            return cands.OrderBy(c => Math.Round(c.dist)).ThenBy(c => Math.Abs(c.angle - Math.PI / 2)).Select(c => c.p);
         }
 
         /// <summary>The first fitting places (up to <see cref="Weigh"/>), the cheapest of them taken; false when none fits.</summary>
@@ -570,6 +593,24 @@ namespace ColonyCouncil
                 }
             }
 
+            // ---- The windbreak just behind the beds round the fire (on the far side first) ----
+            if (spec.windbreak)
+            {
+                var beds = layout.pieces.Where(p => p.role == "bed").ToList();
+                int back = beds.Count > 0 ? Math.Min(Reach, beds.Where(p => p.minZ >= 0).Select(p => p.maxZ + 1).DefaultIfEmpty(3).Max()) : 3;
+                var places = new List<(List<CampPiece>, List<(int, int)>)>();
+                foreach (int side in new[] { 0, 1, 3, 2 })
+                    foreach (int len in new[] { 7, 5 })
+                        for (int z = Math.Max(3, back - 1); z <= Reach; z++)
+                            foreach (int shift in new[] { 0, -1, 1, -2, 2 })
+                            {
+                                var line = new List<CampPiece>();
+                                for (int x = -(len / 2); x <= len / 2; x++) line.Add(new CampPiece { role = "wall", minX = x + shift, maxX = x + shift, minZ = z, maxZ = z });
+                                places.Add((Turned(line, side, 0, 0), new List<(int, int)>()));
+                            }
+                if (!Place(g, places, layout)) layout.missing.Add("wall");
+            }
+
             // ---- The stash: room for their goods, out of the way of the rest ----
             {
                 int bestCost = int.MaxValue, seen = 0;
@@ -641,7 +682,9 @@ namespace ColonyCouncil
             One("craft", spec.craft, 3, 8);
             if (spec.stall)
             {
-                var places = Around((0, 0), "stall", 1, 2, 3, 7, true).Where(p => p.maxZ <= 0).Select(p => (new List<CampPiece> { p }, Around(p)));
+                // On the colony's side first, where the colony comes to trade; anywhere round the fire if that's full.
+                var cands = Around((0, 0), "stall", 1, 2, 3, 9, true).ToList();
+                var places = cands.Where(p => p.maxZ <= 0).Concat(cands.Where(p => p.maxZ > 0)).Select(p => (new List<CampPiece> { p }, Around(p)));
                 if (!Place(g, places, layout)) layout.missing.Add("stall");
             }
             One("spot", spec.spot, 3, 8);
@@ -652,22 +695,6 @@ namespace ColonyCouncil
                 var s = layout.stash;
                 var places = Around((s.x, s.z), "picket", 1, 1, 2, 5, false).Select(p => (new List<CampPiece> { p }, Ring((p.minX, p.minZ))));
                 if (!Place(g, places, layout)) layout.missing.Add("picket");
-            }
-
-            // ---- The windbreak behind the beds round the fire ----
-            if (spec.windbreak)
-            {
-                var beds = layout.pieces.Where(p => p.role == "bed").ToList();
-                int back = beds.Count > 0 ? beds.Max(p => p.maxZ) + 2 : 4;
-                var places = new List<(List<CampPiece>, List<(int, int)>)>();
-                for (int z = back; z <= back + 3; z++)
-                    foreach (int shift in new[] { 0, -1, 1, -2, 2 })
-                    {
-                        var line = new List<CampPiece>();
-                        for (int x = -3; x <= 3; x++) line.Add(new CampPiece { role = "wall", minX = x + shift, maxX = x + shift, minZ = z, maxZ = z });
-                        places.Add((line, new List<(int, int)>()));
-                    }
-                if (!Place(g, places, layout)) layout.missing.Add("wall");
             }
 
             layout.Livable = livable && !layout.missing.Contains("hut") && !layout.missing.Contains("tent") && !layout.missing.Contains("fire");

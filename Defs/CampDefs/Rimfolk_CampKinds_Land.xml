@@ -119,7 +119,7 @@
     </texts>
     <settled>
       <li>The fishers from {FACTION} have made camp {PLACE}, close to the water, with a fire for drying the catch.</li>
-      <li>The fishing family's camp is up {PLACE}: a fire, a windbreak, lines hung out to dry and a dog asleep by the baskets.</li>
+      <li>The fishing family's camp is up {PLACE}: a fire, shelter for the night, lines hung out to dry and a dog asleep by the baskets.</li>
       <li>The fishers have settled {PLACE} by the water, and one of them is already out at the edge with a line.</li>
     </settled>
     <joinTexts>
@@ -276,7 +276,7 @@
     </texts>
     <settled>
       <li>The salvagers from {FACTION} have made camp {PLACE}, near the ruins, with their tools laid out on a cloth by the fire.</li>
-      <li>The scrap crew's camp is up {PLACE}: a fire, a windbreak, and a pack beast tied up beside an empty space for the haul.</li>
+      <li>The scrap crew's camp is up {PLACE}: a fire, shelter for the night, and a pack beast tied up beside an empty space for the haul.</li>
     </settled>
     <joinTexts>
       <li>{X_nameDef} of the scrap crew says {X_pronoun} has pulled apart enough ruins for one life, and asks whether the colony needs someone who can build things up instead.</li>
@@ -402,7 +402,8 @@
       <li>[fall] The cold is coming, and a reaping crew of {FACTION} has come by with their sickles. {X_nameDef} asked {A_nameDef} for leave to camp {PLACE}, and said the colony's crop won't wait for the frost.</li>
     </texts>
     <settled>
-      <li>The harvest hands from {FACTION} have made camp {PLACE}: bedrolls round a fire, and their sickles sharpened before supper.</li>
+      <li>[shelter:hut] The harvest hands from {FACTION} have made camp {PLACE}: a hut for the lot of them by a fire, and their sickles sharpened before supper.</li>
+      <li>The harvest hands from {FACTION} have made camp {PLACE}: a fire, a bed for each of them, and their sickles sharpened before supper.</li>
       <li>The reaping crew's camp is up {PLACE}, and {X_nameDef} is already walking along the edge of the colony's fields, looking.</li>
     </settled>
     <joinTexts>
@@ -689,7 +690,7 @@
     </texts>
     <settled>
       <li>The watchers from {FACTION} have made camp {PLACE}, facing the monolith, and their lamp burns there all night.</li>
-      <li>The scholars' camp is up {PLACE}, with every bedroll turned toward the monolith.</li>
+      <li>The scholars' camp is up {PLACE}, with every eye in it turned toward the monolith.</li>
     </settled>
     <joinTexts>
       <li>{X_nameDef} of the watchers says {X_pronoun} would rather study the monolith from inside the colony's walls, and asks to stay.</li>

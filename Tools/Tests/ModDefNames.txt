@@ -242,3 +242,5 @@ RT_TalentRecruiter
 RT_TalentScholar
 RT_TalentScout
 RT_TalentVeterinarian
+# Alpha Memes 1.6 (sarg.alphamemes): the crude wooden table of the tribal camp kit (Rimfolk_CampKits.xml)
+AM_Neolithic_WoodenTable_1x2c

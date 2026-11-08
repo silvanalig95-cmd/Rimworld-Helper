@@ -64,7 +64,7 @@ public static class ImmersionTests
         "Rimfolk_Pool_WorkSlip", "Rimfolk_Pool_WorkedThrough", "Rimfolk_Pool_DoctorsWord",
         // Harm, parts 2 and 3: a camp's quarrel and those who join it, the champion's bout, a hunt's game turning, sickness
         // brought home, a rival's sabotage seen, told, passed on and had out, the hustings' shove and the call to order.
-        "Rimfolk_Pool_CampQuarrel", "Rimfolk_Pool_CampBrawlJoin", "Rimfolk_Pool_ChampionBegin", "Rimfolk_Pool_ChampionSorry", "Rimfolk_Pool_ChampionSneer",
+        "Rimfolk_Pool_CampQuarrel", "Rimfolk_Pool_CampBrawlJoin", "Rimfolk_Pool_CampEvening", "Rimfolk_Pool_CampWork", "Rimfolk_Pool_ChampionBegin", "Rimfolk_Pool_ChampionSorry", "Rimfolk_Pool_ChampionSneer",
         "Rimfolk_Pool_ChampionTook", "Rimfolk_Pool_GameTurns", "Rimfolk_Pool_SickHome", "Rimfolk_Pool_SabotageSeen", "Rimfolk_Pool_SabotageTold",
         "Rimfolk_Pool_SabotageWord", "Rimfolk_Pool_SabotageConfront", "Rimfolk_Pool_HustingsShove", "Rimfolk_Pool_HustingsOrder",
         // Harm, part 4: a sickness caught, a coughing guest, a cold night and the doctor's word, a hailstone, a felling, a build

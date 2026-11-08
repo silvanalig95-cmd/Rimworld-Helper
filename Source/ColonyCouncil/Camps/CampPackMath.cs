@@ -81,8 +81,9 @@ namespace ColonyCouncil
     {
         /// <summary>
         /// They leave in their own time: the end of their stay, asked to go, moved on, the colony's terms declined, hunger,
-        /// crowding, a contract unpaid, a quarrel of their own. Driven off, fleeing a raid or a hurt, the weather's danger,
-        /// a fallout, a fight, lost: they go with what they carry.
+        /// crowding, a contract unpaid, a quarrel of their own, the weather, neighbours gone in grief, settlers off with the
+        /// colony's caravan to their hamlet. Driven off, fleeing a raid or a hurt, a fallout, a fight, lost: they go with what
+        /// they carry.
         /// </summary>
         public static bool Orderly(string ending)
         {
@@ -97,28 +98,34 @@ namespace ColonyCouncil
                 case "unpaid":
                 case "brawlTheirs":
                 case "weather":
+                case "grief":
+                case "hamlet":
                     return true;
                 default:
                     return false;
             }
         }
 
-        /// <summary>How long packing takes before they set off: a few hours at the end of a stay, one in bad weather, none in flight.</summary>
-        public static int PackHours(string ending) => !Orderly(ending) ? 0 : ending == "weather" || ending == "hunger" ? 1 : 3;
+        /// <summary>
+        /// How long packing takes before they set off: a few hours at the end of a stay, one in bad weather or hunger, none in
+        /// flight, and none for settlers the colony's caravan takes along at once (they pack as they go).
+        /// </summary>
+        public static int PackHours(string ending) => !Orderly(ending) || ending == "hamlet" ? 0 : ending == "weather" || ending == "hunger" ? 1 : 3;
 
         /// <summary>
         /// What becomes of a building of theirs: <paramref name="portable"/> (furniture that can be uninstalled) goes with
         /// them when they leave in their own time and have hands to carry it, else it's left; a construction (a wall, a door,
-        /// a fire pit, a spot) stands, nobody's, unless the kind takes its own down or hands it to its employer.
+        /// a fire pit, a spot) stands, nobody's, unless the kind takes its own down or hands it to its employer (only when the
+        /// contract was <paramref name="kept"/>: a squad the colony didn't pay leaves its post to nobody).
         /// </summary>
-        public static PackFate Fate(CampLeaves leaves, bool portable, bool orderly, bool hands)
+        public static PackFate Fate(CampLeaves leaves, bool portable, bool orderly, bool hands, bool kept = true)
         {
             if (portable) return orderly && hands ? PackFate.Pack : PackFate.Leave;
             if (!orderly) return PackFate.Leave;
             switch (leaves)
             {
                 case CampLeaves.NoTrace: return hands ? PackFate.TakeDown : PackFate.Leave;
-                case CampLeaves.Employer: return PackFate.Hand;
+                case CampLeaves.Employer: return kept ? PackFate.Hand : PackFate.Leave;
                 default: return PackFate.Leave;
             }
         }

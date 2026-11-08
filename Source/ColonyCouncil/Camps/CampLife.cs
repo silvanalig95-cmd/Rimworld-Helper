@@ -323,8 +323,9 @@ namespace ColonyCouncil
             // A hut or a tent gets its roof once its walls and door stand all round (a room the game counts as one).
             foreach (int room in CampSite.Rooms(plans).ToList())
             {
-                var walls = plans.Where(p => (p.role == "hut" || p.role == "door") && p.room == room).ToList();
-                if (walls.Count < 8 || walls.Any(p => p.dropped || p.Built(map, faction) == null)) continue;
+                // Its own walls, and those it shares with the next tent: every wall of the camp's shelters standing.
+                var walls = plans.Where(p => p.role == "hut" || p.role == "door").ToList();
+                if (walls.Count(p => p.room == room) < 7 || walls.Any(p => p.dropped || p.Built(map, faction) == null)) continue;
                 foreach (var c in CampSite.HutInside(plans, room))
                     if (c.InBounds(map) && !c.Roofed(map)) map.roofGrid.SetRoof(c, RoofDefOf.RoofConstructed);
             }
@@ -810,21 +811,27 @@ namespace ColonyCouncil
             {
                 // Neighbours settled for good keep to their huts and hope; what they lose is counted after (Holding.cs).
                 if (holding) return false;
-                // A war party takes up arms again, as does a camp asked to stand guard; anyone else wants no part in the colony's fight.
-                if (kind.fights || guards)
+                // A war party takes up arms again, as does a camp asked to stand guard, and a people allied to the colony
+                // fights beside it; enemies come at their own camp, those of them with weapons defend it. Anyone else wants
+                // no part in the colony's fight.
+                bool ally = faction != null && !faction.IsPlayer && faction.PlayerRelationKind == FactionRelationKind.Ally;
+                bool defend = !kind.fights && !guards && !ally && EnemyNear(DefendRadius) && Here.Any(p => !p.Downed && !p.DevelopmentalStage.Juvenile() && p.equipment?.Primary != null && !p.WorkTagIsDisabled(WorkTags.Violent));
+                if (kind.fights || guards || ally || defend || fighting)
                 {
                     if (!fighting && LordAlive)
                     {
                         fighting = true;
+                        packingFor = null;
                         lord.ReceiveMemo(LordJob_Camp.MemoFight);
-                        Note(Text("CC_WarCamp_Again"), MessageTypeDefOf.NeutralEvent, Importance.Notable, now: true);
+                        string key = kind.fights || guards ? "CC_WarCamp_Again" : ally ? "CC_Camp_FightAlly" : "CC_Camp_FightDefend";
+                        Note(Text(key), MessageTypeDefOf.NeutralEvent, Importance.Notable, now: true);
                     }
                     return false;
                 }
                 Leave("raid", true);
                 return true;
             }
-            if (fighting && (kind.fights || guards) && !MapFacts.ThreatOn(map)) fighting = false;
+            if (fighting && !MapFacts.ThreatOn(map)) fighting = false;
             if (BadWeather() && (!holding || CampWeather.Hazard(map) != null))
             {
                 // Settled neighbours have shelter against the weather; only poisoned air or a sky on fire drives them off.
@@ -871,6 +878,17 @@ namespace ColonyCouncil
                 Leave("time");
                 return true;
             }
+            return false;
+        }
+
+        /// <summary>Enemies come this near their camp: they defend it rather than run through them.</summary>
+        public const float DefendRadius = 22f;
+
+        /// <summary>Any hostile to the colony (and so to them, at peace with it) up and about within <paramref name="radius"/> of their fire.</summary>
+        private bool EnemyNear(float radius)
+        {
+            foreach (var p in map.mapPawns.AllPawnsSpawned)
+                if (!p.Downed && !p.Dead && p.HostileTo(Faction.OfPlayer) && p.Position.InHorDistOf(center, radius) && (faction == null || p.HostileTo(faction))) return true;
             return false;
         }
 

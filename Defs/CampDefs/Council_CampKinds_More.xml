@@ -207,6 +207,8 @@
     </situationKinds>
     <structures>
       <li><role>fire</role><defs><li>Campfire</li></defs></li>
+      <!-- They sleep on the ground: a sleeping place each, of their own ways, not their people's bedrolls. -->
+      <li><role>bed</role><defs><li>SleepingSpot</li></defs></li>
       <li><role>spot</role><defs><li>MeditationSpot</li><li>PartySpot</li></defs></li>
     </structures>
     <sleep>Ring</sleep>
@@ -550,7 +552,7 @@
       <li>[ws:rush] With the whole region talking about {SITUATION}, {FACTION} have sent surveyors to map the rock properly. {X_nameDef} asked {A_nameDef} for a few days' camp {PLACE}, and offered to share whatever they find under the colony's own ground.</li>
     </texts>
     <settled>
-      <li>The surveyors from {FACTION} have their camp up {PLACE}, with a windbreak against the weather and their instruments wrapped in oilcloth.</li>
+      <li>The surveyors from {FACTION} have their camp up {PLACE}, with shelter against the weather and their instruments wrapped in oilcloth.</li>
       <li>The surveyors' camp {PLACE} is up, with a torch to work their figures by at night and a line of stakes running off into the hills.</li>
       <li>At the surveyors' camp {PLACE}, maps are weighted down with stones and a long cord marked off in paces lies coiled by the fire.</li>
     </settled>

@@ -87,7 +87,7 @@
       <li>{X_nameDef}, one of the trainers camped {PLACE}, came to the gate with {X_possessive} Pokémon and a question: would the colony have a trainer and a partner, for good?</li>
     </joinTexts>
     <farewell>
-      <li>The trainers of {FACTION} have struck their camp {PLACE} and gone on down the road, their Pokémon trotting behind. {X_nameDef} said they'd be back for a rematch.</li>
+      <li>The trainers of {FACTION} have packed up their camp {PLACE} and gone on down the road, their Pokémon trotting behind. {X_nameDef} said they'd be back for a rematch.</li>
       <li>The trainers' camp {PLACE} is empty this morning. They left early, {X_nameDef} said, to be at the next town by market day.</li>
     </farewell>
     <lines>

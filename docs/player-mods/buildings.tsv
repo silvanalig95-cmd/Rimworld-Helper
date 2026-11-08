@@ -1,0 +1,826 @@
+defName	mod	active	label	techLevel	role	size	stuff	stuffCount	cost	research	researchTech	minifiable	designation	thingClass	power	fuel	glow	heat	holdsRoof	passability	work	workToBuild
+AO_HouseholdFan	acutus.atmosphereoverhaul.release	no	Household Fan		lamp	(1,1)			Steel:35;ComponentIndustrial:1	Electricity	Industrial	yes	Temperature	Building	yes					PassThroughOnly		800
+AO_IndustrialBlower	acutus.atmosphereoverhaul.release	no	Industrial Blower		lamp	(2,1)			Steel:80;ComponentIndustrial:3	Machining	Industrial	yes	Temperature	Building	yes					PassThroughOnly		800
+AO_WaterFetchSpot	acutus.atmosphereoverhaul.release	no	water fetching spot		workspot	(1,1)					Undefined		Production	Building_WorkTable						Standable		0
+GSAnimalBedBig	animal.bedsnew	yes	big animal bed		animalbed	(2,2)	Fabric,Leathery	80			Undefined	yes	Furniture	AnimalBed.Building_BedHediffGiver						PassThroughOnly		500
+GSAnimalBedBigPrestige	animal.bedsnew	yes	prestige animal bed		animalbed	(2,2)	Fabric,Leathery	80	Gold:5		Undefined	yes	Furniture	AnimalBed.Building_BedHediffGiver						PassThroughOnly		750
+Stagz_WaterCandle	arquebus.stagzmerfolk	yes	floating lantern		torch	(1,1)	Woody	10	WoodLog:20		Undefined	yes	Furniture	Building		WoodLog	7	3.5		PassThroughOnly		100
+BotchJob_ProfaneAlchemyBench	botchjob.profaned	no	profane alchemy bench		bench	(3,2)	Stony	200	Silver:50;Cloth:50	BotchJob_ProfanedAdvanced	Undefined	yes	Production	Building_WorkTable						PassThroughOnly		4000
+BotchJob_ProfaneRitualCircle	botchjob.profaned	no	profane ritual circle		bench	(3,3)	Stony	150		BotchJob_ProfanedBasics	Undefined	yes	Production	Building_WorkTable						PassThroughOnly	butcher	3000
+BotchJob_ProfanedBed	botchjob.profaned	no	profaned bed	Medieval	bed	(1,2)	Stony	45	BotchJob_TaintedBone:2	Stonecutting,BotchJob_ProfanedBasics	Medieval	yes	Furniture	Building_Bed						PassThroughOnly		800
+BotchJob_ProfanedBrazier	botchjob.profaned	no	profaned brazier		brazier	(1,1)	Stony	40	Steel:20	Stonecutting,BotchJob_ProfanedBasics	Medieval	yes	Furniture	Building		WoodLog,DankPyon_Coal	8	3.5		PassThroughOnly		2000
+BotchJob_ProfanedBrazierBlood	botchjob.profaned	no	bloodflame profaned brazier		brazier	(1,1)	Stony	40	Steel:20	Stonecutting,BotchJob_ProfanedBasics	Medieval	yes	Furniture	Building		WoodLog	8	3.5		PassThroughOnly		2000
+BotchJob_ProfanedBrazierDarklight	botchjob.profaned	no	darklight profaned brazier		brazier	(1,1)	Stony	40	Steel:20	Stonecutting,BotchJob_ProfanedBasics	Medieval	yes	Furniture	Building		WoodLog	8	3.5		PassThroughOnly		2000
+BotchJob_ProfanedChair	botchjob.profaned	no	profaned chair		seat	(1,1)	Stony	45		Stonecutting,BotchJob_ProfanedBasics	Medieval	yes	Furniture	Building								4000
+BotchJob_ProfanedDoubleDoor	botchjob.profaned	no	profaned double door		door	(2,1)	Metallic,Woody,Stony	150		BotchJob_ProfanedBasics	Undefined		Structure	Building_MultiTileDoor					true			15000
+BotchJob_ProfanedLantern	botchjob.profaned	no	profaned lantern		torch	(1,1)			Steel:20;BotchJob_LuminousDust:1	BotchJob_ProfanedBasics	Undefined	yes	Furniture	Building			4			PassThroughOnly		2000
+BotchJob_ProfanedLanternBlood	botchjob.profaned	no	bloodflame profaned lantern		torch	(1,1)			Steel:20;BotchJob_LuminousDust:1	BotchJob_ProfanedBasics	Undefined	yes	Furniture	Building			3	2		PassThroughOnly		2000
+BotchJob_ProfanedLanternDarklight	botchjob.profaned	no	darklight profaned lantern		torch	(1,1)			Steel:20;BotchJob_LuminousDust:1	BotchJob_ProfanedBasics	Undefined	yes	Furniture	Building			3	2		PassThroughOnly		2000
+BotchJob_ProfanedRoyalBed	botchjob.profaned	no	profaned royal bed	Medieval	doublebed	(2,2)	Stony	100	Silver:30;BotchJob_TaintedBone:10	Stonecutting,BotchJob_ProfanedAdvanced	Medieval	yes	Furniture	Building_Bed						PassThroughOnly		50000
+BotchJob_ProfanedSingleDoor	botchjob.profaned	no	profaned door		door	(1,1)	Metallic,Woody,Stony	55		BotchJob_ProfanedBasics	Undefined		Structure	Building_Door					true			2500
+BotchJob_ProfanedTable	botchjob.profaned	no	profaned table		table	(2,2)	Stony	50		Stonecutting,BotchJob_ProfanedBasics	Medieval	yes	Furniture	Building						PassThroughOnly		5000
+BotchJob_ProfanedTableLarge	botchjob.profaned	no	large profaned table		table	(3,3)	Stony	80	Cloth:30;BotchJob_TaintedBone:5	Stonecutting,BotchJob_ProfanedBasics	Medieval	yes	Furniture	Building						PassThroughOnly		10000
+BotchJob_ProfanedThrone	botchjob.profaned	no	profaned throne		seat	(3,2)	Stony	200	Gold:50;BotchJob_TaintedBone:15	Stonecutting,BotchJob_ProfanedAdvanced	Medieval	yes	Furniture	Building_Throne								40000
+AmmoBench	ceteam.combatextended	no	loading bench		bench	(3,1)	Metallic,Woody	100	Steel:50;ComponentIndustrial:5	Gunsmithing	Industrial	yes	Production	Building_WorkTable						PassThroughOnly		3000
+CE_Embrasure	ceteam.combatextended	no	embrasure		wall	(1,1)	Metallic,Woody,Stony	5			Undefined		Structure	Building					true	Impassable		150
+CE_ReinforcedAutodoor	ceteam.combatextendedarmory	no	reinforced autodoor		door	(1,1)	Metallic,Woody,Stony,Metallic,Woody,Stony	25	Steel:75;ComponentIndustrial:2	Smithing,Autodoors	Industrial		Structure	Building_Door	yes				true			2000
+CE_ReinforcedDoor	ceteam.combatextendedarmory	no	reinforced door		door	(1,1)	Metallic,Woody,Stony,Metallic,Woody,Stony	25	Steel:25	Smithing	Medieval		Structure	Building_Door					true			1500
+CE_ReinforcedEmbrasure	ceteam.combatextendedarmory	no	reinforced embrasure		wall	(1,1)	Metallic,Woody,Stony	5	Steel:10	Smithing	Medieval		Structure	Building					true	Impassable		350
+CE_ReinforcedWall	ceteam.combatextendedarmory	no	reinforced wall		wall	(1,1)	Metallic,Woody,Stony	5	Steel:10	Smithing	Medieval		Structure	Building					true	Impassable		300
+AM_DuelSpot	co.uk.epicguru.meleeanimation	yes	duel spot		spot	(2,1)					Undefined		Misc	AM.Buildings.Building_DuelSpot								0
+DankPyon_AlchemyBench	dankpyon.medieval.overhaul	no	alchemy workbench	Medieval	bench	(3,2)	Woody,Stony,Metallic	100	DankPyon_IronIngot:25;DankPyon_ComponentBasic:3	DankPyon_Alchemy	Undefined	yes	Production	Building_WorkTable						PassThroughOnly	craft	5000
+DankPyon_Anvil	dankpyon.medieval.overhaul	no	anvil	Medieval	bench	(1,1)	Metallic	50		Smithing	Medieval	yes	Production	Building_WorkTable						PassThroughOnly		2000
+DankPyon_Bale1x2c	dankpyon.medieval.overhaul	no	hay bale (1x2)		storage	(2,1)			Hay:20	DankPyon_RusticStorage	Undefined	yes	DankPyon_RusticStorage	Building_Storage						PassThroughOnly		250
+DankPyon_BarrelCoalOre	dankpyon.medieval.overhaul	no	barrel of coal ore		storage	(1,1)	Woody	10		DankPyon_RusticStorage	Undefined	yes	DankPyon_RusticStorage	Building_Storage						PassThroughOnly		250
+DankPyon_BarrelComponentBasic	dankpyon.medieval.overhaul	no	barrel of basic components		storage	(1,1)	Woody	10		DankPyon_RusticStorage	Undefined	yes	DankPyon_RusticStorage	Building_Storage						PassThroughOnly		250
+DankPyon_BarrelGoldOre	dankpyon.medieval.overhaul	no	barrel of gold ore		storage	(1,1)	Woody	10		DankPyon_RusticStorage	Undefined	yes	DankPyon_RusticStorage	Building_Storage						PassThroughOnly		250
+DankPyon_BarrelGrape	dankpyon.medieval.overhaul	no	barrel of grape		storage	(1,1)	Woody	10		DankPyon_RusticStorage	Undefined	yes	DankPyon_RusticStorage	Building_Storage						PassThroughOnly		250
+DankPyon_BarrelIronOre	dankpyon.medieval.overhaul	no	barrel of iron ore		storage	(1,1)	Woody	10		DankPyon_RusticStorage	Undefined	yes	DankPyon_RusticStorage	Building_Storage						PassThroughOnly		250
+DankPyon_BarrelLeather	dankpyon.medieval.overhaul	no	barrel of leather		storage	(1,1)	Woody	10		DankPyon_RusticStorage	Undefined	yes	DankPyon_RusticStorage	Building_Storage						PassThroughOnly		250
+DankPyon_BarrelRawPlasteel	dankpyon.medieval.overhaul	no	barrel of raw plasteel		storage	(1,1)	Woody	10		DankPyon_RusticStorage	Undefined	yes	DankPyon_RusticStorage	Building_Storage						PassThroughOnly		250
+DankPyon_BarrelSilverOre	dankpyon.medieval.overhaul	no	barrel of silver ore		storage	(1,1)	Woody	10		DankPyon_RusticStorage	Undefined	yes	DankPyon_RusticStorage	Building_Storage						PassThroughOnly		250
+DankPyon_BarrelTextiles	dankpyon.medieval.overhaul	no	barrel of textiles		storage	(1,1)	Woody	10		DankPyon_RusticStorage	Undefined	yes	DankPyon_RusticStorage	Building_Storage						PassThroughOnly		250
+DankPyon_BarrelWoodLog	dankpyon.medieval.overhaul	no	barrel of wood		storage	(1,1)	Woody	10		DankPyon_RusticStorage	Undefined	yes	DankPyon_RusticStorage	Building_Storage						PassThroughOnly		250
+DankPyon_BedFur	dankpyon.medieval.overhaul	no	fur bed	Medieval	bed	(1,2)	Leathery	15	WoodLog:45	DankPyon_RusticFurniture	Undefined	yes	DankPyon_RusticFurniture	Building_Bed						PassThroughOnly		800
+DankPyon_BedFurDouble	dankpyon.medieval.overhaul	no	double fur bed	Medieval	doublebed	(2,2)	Leathery	30	WoodLog:85	DankPyon_RusticFurniture	Undefined	yes	DankPyon_RusticFurniture	Building_Bed						PassThroughOnly		1500
+DankPyon_BedLog	dankpyon.medieval.overhaul	no	log bed	Medieval	bed	(1,2)	DankPyon_RawWood	45			Undefined	yes	DankPyon_RusticFurniture	Building_Bed						PassThroughOnly		500
+DankPyon_BedLogDouble	dankpyon.medieval.overhaul	no	double log bed	Medieval	doublebed	(2,2)	DankPyon_RawWood	85			Undefined	yes	DankPyon_RusticFurniture	Building_Bed						PassThroughOnly		1350
+DankPyon_BedWicker	dankpyon.medieval.overhaul	no	wicker bed	Medieval	bed	(1,2)	Woody	45		DankPyon_Lumber	Undefined	yes	DankPyon_RusticFurniture	Building_Bed						PassThroughOnly		650
+DankPyon_BedWickerDouble	dankpyon.medieval.overhaul	no	double wicker bed	Medieval	doublebed	(2,2)	Woody	85		DankPyon_Lumber	Undefined	yes	DankPyon_RusticFurniture	Building_Bed						PassThroughOnly		1350
+DankPyon_Bed_RusticDouble_Blue	dankpyon.medieval.overhaul	no	rustic double bed (blue)	Medieval	doublebed	(2,2)	Metallic,Woody,Stony	100	DankPyon_Silk:50;DankPyon_Linen:20	ComplexFurniture	Medieval	yes	DankPyon_RusticFurniture	Building_Bed						PassThroughOnly		12500
+DankPyon_Bed_RusticDouble_Green	dankpyon.medieval.overhaul	no	rustic double bed (green)	Medieval	doublebed	(2,2)	Metallic,Woody,Stony	100	DankPyon_Silk:50;DankPyon_Linen:20	ComplexFurniture	Medieval	yes	DankPyon_RusticFurniture	Building_Bed						PassThroughOnly		12500
+DankPyon_Bed_RusticDouble_Red	dankpyon.medieval.overhaul	no	rustic double bed (red)	Medieval	doublebed	(2,2)	Metallic,Woody,Stony	100	DankPyon_Silk:50;DankPyon_Linen:20	ComplexFurniture	Medieval	yes	DankPyon_RusticFurniture	Building_Bed						PassThroughOnly		12500
+DankPyon_Bed_Rustic_Blue	dankpyon.medieval.overhaul	no	rustic bed (blue)	Medieval	bed	(1,2)	Metallic,Woody,Stony	50	DankPyon_Silk:25;DankPyon_Linen:10	ComplexFurniture	Medieval	yes	DankPyon_RusticFurniture	Building_Bed						PassThroughOnly		6250
+DankPyon_Bed_Rustic_Green	dankpyon.medieval.overhaul	no	rustic bed (green)	Medieval	bed	(1,2)	Metallic,Woody,Stony	50	DankPyon_Silk:25;DankPyon_Linen:10	ComplexFurniture	Medieval	yes	DankPyon_RusticFurniture	Building_Bed						PassThroughOnly		6250
+DankPyon_Bed_Rustic_Red	dankpyon.medieval.overhaul	no	rustic bed (red)	Medieval	bed	(1,2)	Metallic,Woody,Stony	50	DankPyon_Silk:25;DankPyon_Linen:10	ComplexFurniture	Medieval	yes	DankPyon_RusticFurniture	Building_Bed						PassThroughOnly		6250
+DankPyon_BlastFurnace	dankpyon.medieval.overhaul	no	blast furnace	Industrial	bench	(3,2)			Steel:200;ComponentIndustrial:2	Electricity	Industrial		Production	Building_WorkTable	yes		6	20		PassThroughOnly		6000
+DankPyon_Book_ScribeTable	dankpyon.medieval.overhaul	no	book scribe table	Medieval	bench	(3,1)	Woody	100			Undefined	yes	Production	Building_WorkTable						PassThroughOnly		2000
+DankPyon_Bricks1x1c	dankpyon.medieval.overhaul	no	bricks (1x1)		storage	(1,1)	Stony	10			Undefined	yes	DankPyon_RusticStorage	Building_Storage						PassThroughOnly		250
+DankPyon_Bricks1x2c	dankpyon.medieval.overhaul	no	bricks (1x2)		storage	(2,1)	Stony	20			Undefined	yes	DankPyon_RusticStorage	Building_Storage						PassThroughOnly		500
+DankPyon_Bricks2x2c	dankpyon.medieval.overhaul	no	bricks (2x2)		storage	(2,2)	Stony	40			Undefined	yes	DankPyon_RusticStorage	Building_Storage						PassThroughOnly		1000
+DankPyon_BundledSack1x1c	dankpyon.medieval.overhaul	no	bundled sack (1x1)		storage	(1,1)			DankPyon_Linen:10	DankPyon_RusticStorage	Undefined	yes	DankPyon_RusticStorage	Building_Storage						PassThroughOnly		250
+DankPyon_BundledSack2x2c	dankpyon.medieval.overhaul	no	bundled sack (2x2)		storage	(2,2)			DankPyon_Linen:40	DankPyon_RusticStorage	Undefined	yes	DankPyon_RusticStorage	Building_Storage						PassThroughOnly		1000
+DankPyon_ButchersBlock	dankpyon.medieval.overhaul	no	butcher's block	Medieval	bench	(1,1)	Woody,DankPyon_RawWood	50			Undefined	yes	Production	Building_WorkTable						PassThroughOnly	butcher,cook	1500
+DankPyon_Candelabra	dankpyon.medieval.overhaul	no	candlebra		torch	(1,1)	Woody,Metallic,Stony	25		DankPyon_RusticFurniture,DankPyon_CandleMaking	Undefined	yes	DankPyon_RusticFurniture	Building		DankPyon_Tallow,DankPyon_Wax	6	1		PassThroughOnly		1500
+DankPyon_Candle	dankpyon.medieval.overhaul	no	candle		torch	(1,1)			DankPyon_Tallow:10	DankPyon_CandleMaking	Undefined	yes	DankPyon_RusticFurniture	Building		DankPyon_Tallow,DankPyon_Wax	4	1		PassThroughOnly		250
+DankPyon_CandleStand	dankpyon.medieval.overhaul	no	candle stand		torch	(1,1)	Woody,Metallic,Stony	45	DankPyon_Tallow:15	DankPyon_RusticFurniture,DankPyon_CandleMaking	Undefined	yes	DankPyon_RusticFurniture	Building		DankPyon_Tallow,DankPyon_Wax	6	1		PassThroughOnly		1500
+DankPyon_Candle_Beeswax	dankpyon.medieval.overhaul	no	candle		torch	(1,1)			DankPyon_Wax:10	DankPyon_CandleMaking	Undefined	yes	DankPyon_RusticFurniture	Building		DankPyon_Tallow,DankPyon_Wax	6	1		PassThroughOnly		250
+DankPyon_Candles	dankpyon.medieval.overhaul	no	candles		torch	(1,1)			DankPyon_Tallow:15	DankPyon_CandleMaking	Undefined	yes	DankPyon_RusticFurniture	Building		DankPyon_Tallow,DankPyon_Wax	6	1		PassThroughOnly		250
+DankPyon_Candles_Beeswax	dankpyon.medieval.overhaul	no	candles		torch	(1,1)			DankPyon_Wax:15	DankPyon_CandleMaking	Undefined	yes	DankPyon_RusticFurniture	Building		DankPyon_Tallow,DankPyon_Wax	6	1		PassThroughOnly		250
+DankPyon_CastleWall	dankpyon.medieval.overhaul	no	castle wall		wall	(1,1)	Stony	15		Stonecutting	Medieval		Structure	Building					true	Impassable		800
+DankPyon_CastleWallEmbrasures	dankpyon.medieval.overhaul	no	castle wall embrasures		wall	(1,1)	Stony	10		Stonecutting	Medieval		Structure	Building					true	Impassable		800
+DankPyon_CleaningBench	dankpyon.medieval.overhaul	no	cleaning bench	Medieval	bench	(3,1)	Woody	100			Undefined	yes	Production	Building_WorkTable						PassThroughOnly	craft	2000
+DankPyon_ClothSpinner	dankpyon.medieval.overhaul	no	cloth spinner	Industrial	bench	(2,1)			Steel:75;ComponentIndustrial:2	ComplexClothing,Electricity	Industrial		Production	Building_WorkTable	yes					PassThroughOnly		4500
+DankPyon_Crate1x1c	dankpyon.medieval.overhaul	no	crate (1x1)		storage	(1,1)	Woody	10		DankPyon_RusticStorage	Undefined	yes	DankPyon_RusticStorage	Building_Storage						PassThroughOnly		250
+DankPyon_Crate1x2c	dankpyon.medieval.overhaul	no	crate (1x2)		storage	(2,1)	Woody	20		DankPyon_RusticStorage	Undefined	yes	DankPyon_RusticStorage	Building_Storage						PassThroughOnly		500
+DankPyon_Crate2x2_Bones	dankpyon.medieval.overhaul	no	large crate (bones)		storage	(2,2)	Woody	40		DankPyon_RusticStorage	Undefined	yes	DankPyon_RusticStorage	Building_Storage						PassThroughOnly		1000
+DankPyon_Crate2x2_Lindwurm	dankpyon.medieval.overhaul	no	large crate (lindwurm)		storage	(2,2)	Woody	40		DankPyon_RusticStorage	Undefined	yes	DankPyon_RusticStorage	Building_Storage						PassThroughOnly		1000
+DankPyon_Crate2x2_Unhold	dankpyon.medieval.overhaul	no	large crate (unhold)		storage	(2,2)	Woody	40		DankPyon_RusticStorage	Undefined	yes	DankPyon_RusticStorage	Building_Storage						PassThroughOnly		1000
+DankPyon_Crate2x2c	dankpyon.medieval.overhaul	no	crate (2x2)		storage	(2,2)	Woody	40		DankPyon_RusticStorage	Undefined	yes	DankPyon_RusticStorage	Building_Storage						PassThroughOnly		1000
+DankPyon_DiggingSpot	dankpyon.medieval.overhaul	no	digging spot		workspot	(1,1)					Undefined		Production	Building_WorkTable						Standable		0
+DankPyon_DryingRack_Small	dankpyon.medieval.overhaul	no	drying rack (1x2)		bench	(2,1)	DankPyon_RawWood	50		Pemmican	Neolithic		Production	Building_WorkTable						PassThroughOnly		500
+DankPyon_EmbPalisade	dankpyon.medieval.overhaul	no	palisade embrasures		wall	(1,1)	DankPyon_RawWood	8			Undefined		Structure	Building					true	Impassable		355
+DankPyon_FlaxBale1x2c	dankpyon.medieval.overhaul	no	flax bale (1x2)		storage	(2,1)			DankPyon_RawFlax:20	DankPyon_RusticStorage	Undefined	yes	DankPyon_RusticStorage	Building_Storage						PassThroughOnly		250
+DankPyon_FlaxBale2x2c	dankpyon.medieval.overhaul	no	flax bale (2x2)		storage	(2,2)			DankPyon_RawFlax:40	DankPyon_RusticStorage	Undefined	yes	DankPyon_RusticStorage	Building_Storage						PassThroughOnly		500
+DankPyon_FlaxPile1x2c	dankpyon.medieval.overhaul	no	flax pile		storage	(2,1)			DankPyon_RawFlax:20	DankPyon_RusticStorage	Undefined	yes	DankPyon_RusticStorage	Building_Storage						PassThroughOnly		250
+DankPyon_Furnace	dankpyon.medieval.overhaul	no	furnace	Medieval	bench	(3,2)	Stony	200		Smithing	Medieval	yes	Production	Building_WorkTable_HeatPush		DankPyon_Coal	6	9		PassThroughOnly	craft	3000
+DankPyon_Gate	dankpyon.medieval.overhaul	no	gate		door	(1,1)	Metallic,Woody	35			Undefined		Structure	Building_Door					true			1200
+DankPyon_Gate1x2c	dankpyon.medieval.overhaul	no	gate (1x2)		door	(2,1)	Metallic,Woody	75		DankPyon_RusticFurniture	Undefined		Structure	Building_MultiTileDoor					true			3600
+DankPyon_GoldIngots1x1c	dankpyon.medieval.overhaul	no	gold ingot stack(1x1)		storage	(1,1)			Gold:10		Undefined	yes	DankPyon_RusticStorage	Building_Storage						PassThroughOnly		250
+DankPyon_GoldIngots1x2c	dankpyon.medieval.overhaul	no	gold ingot stack(1x2)		storage	(2,1)			Gold:20		Undefined	yes	DankPyon_RusticStorage	Building_Storage						PassThroughOnly		500
+DankPyon_GoldIngots2x2c	dankpyon.medieval.overhaul	no	gold ingot stack(2x2)		storage	(2,2)			Gold:40		Undefined	yes	DankPyon_RusticStorage	Building_Storage						PassThroughOnly		1000
+DankPyon_Grill	dankpyon.medieval.overhaul	no	grill		fire,bench	(2,1)	Stony,Metallic	60		DankPyon_Grill	Undefined	yes	Production	Building_WorkTable_HeatPush		DankPyon_RawWood,DankPyon_Wood	3	6		PassThroughOnly	cook	2000
+DankPyon_HayBale2x2c	dankpyon.medieval.overhaul	no	hay bale (2x2)		storage	(2,2)			Hay:40	DankPyon_RusticStorage	Undefined	yes	DankPyon_RusticStorage	Building_Storage						PassThroughOnly		500
+DankPyon_HayPile1x2c	dankpyon.medieval.overhaul	no	hay pile		storage	(2,1)			Hay:20	DankPyon_RusticStorage	Undefined	yes	DankPyon_RusticStorage	Building_Storage						PassThroughOnly		250
+DankPyon_HerbTable	dankpyon.medieval.overhaul	no	herb table		bench	(1,1)	Woody,Stony,Metallic	50	MedicineHerbal:10	DankPyon_Alchemy	Undefined	yes	Misc	Building_WorkTable						PassThroughOnly		1500
+DankPyon_IceBlock_Maker	dankpyon.medieval.overhaul	no	ice block mold		bench	(1,1)	Woody	50		DankPyon_RusticFurniture	Undefined		Production	Building_WorkTable						PassThroughOnly		500
+DankPyon_IceCellar	dankpyon.medieval.overhaul	no	ice сellar	Medieval	storage	(3,3)	Stony,Metallic,Woody	100		Stonecutting	Medieval		DankPyon_RusticStorage	Building_Storage						Standable		3000
+DankPyon_IronIngots1x1c	dankpyon.medieval.overhaul	no	iron ingot stack(1x1)		storage	(1,1)			DankPyon_IronIngot:10		Undefined	yes	DankPyon_RusticStorage	Building_Storage						PassThroughOnly		250
+DankPyon_IronIngots1x2c	dankpyon.medieval.overhaul	no	iron ingot stack(1x2)		storage	(2,1)			DankPyon_IronIngot:20		Undefined	yes	DankPyon_RusticStorage	Building_Storage						PassThroughOnly		500
+DankPyon_IronIngots2x2c	dankpyon.medieval.overhaul	no	iron ingot stack(2x2)		storage	(2,2)			DankPyon_IronIngot:40		Undefined	yes	DankPyon_RusticStorage	Building_Storage						PassThroughOnly		1000
+DankPyon_JewelryBench	dankpyon.medieval.overhaul	no	jewelry bench	Medieval	bench	(3,1)	Woody	100		DankPyon_Jewelry	Undefined	yes	Production	Building_WorkTable						PassThroughOnly		2000
+DankPyon_Kiln	dankpyon.medieval.overhaul	no	kiln	Medieval	bench	(2,2)	Stony	120		Stonecutting	Medieval		Production	Building_WorkTable		DankPyon_Coal,DankPyon_Tar	5	15		PassThroughOnly		600
+DankPyon_LampPost	dankpyon.medieval.overhaul	no	lamp post		torch	(1,1)	Metallic,Woody	40	DankPyon_IronIngot:5	DankPyon_RusticFurniture,DankPyon_RusticFurniture	Undefined		DankPyon_RusticFurniture	Building		DankPyon_Coal,DankPyon_Tar	10	3.5		PassThroughOnly		600
+DankPyon_LargeShelfEmpty	dankpyon.medieval.overhaul	no	large empty shelf		storage	(2,2)	Woody	40		DankPyon_RusticStorage	Undefined	yes	DankPyon_RusticStorage	Building_Storage						PassThroughOnly		1000
+DankPyon_LargeShelf_Bread	dankpyon.medieval.overhaul	no	large bread shelf		storage	(2,2)	Woody	40		DankPyon_RusticStorage	Undefined	yes	DankPyon_RusticStorage	Building_Storage						PassThroughOnly		1000
+DankPyon_LargeShelf_Cheese	dankpyon.medieval.overhaul	no	large cheese shelf		storage	(2,2)	Woody	40		DankPyon_RusticStorage	Undefined	yes	DankPyon_RusticStorage	Building_Storage						PassThroughOnly		1000
+DankPyon_LargeShelf_Grain	dankpyon.medieval.overhaul	no	large grain shelf		storage	(2,2)	Woody	40		DankPyon_RusticStorage	Undefined	yes	DankPyon_RusticStorage	Building_Storage						PassThroughOnly		1000
+DankPyon_LargeShelf_Mead	dankpyon.medieval.overhaul	no	large mead shelf		storage	(2,2)	Woody	40		DankPyon_RusticStorage	Undefined	yes	DankPyon_RusticStorage	Building_Storage						PassThroughOnly		1000
+DankPyon_LargeShelf_Vegetables	dankpyon.medieval.overhaul	no	large vegetables shelf		storage	(2,2)	Woody	40		DankPyon_RusticStorage	Undefined	yes	DankPyon_RusticStorage	Building_Storage						PassThroughOnly		1000
+DankPyon_LargeShelf_Wine	dankpyon.medieval.overhaul	no	large wine shelf		storage	(2,2)	Woody	40		DankPyon_RusticStorage	Undefined	yes	DankPyon_RusticStorage	Building_Storage						PassThroughOnly		1000
+DankPyon_Large_Meat_Shelf	dankpyon.medieval.overhaul	no	large meat shelf		storage	(2,2)	Woody	40		DankPyon_RusticStorage	Undefined	yes	DankPyon_RusticStorage	Building_Storage						PassThroughOnly		1000
+DankPyon_LogBench1x2c	dankpyon.medieval.overhaul	no	log bench (1x2)		seat	(1,2)	DankPyon_RawWood	45			Undefined	yes	DankPyon_RusticFurniture	Building								3375
+DankPyon_LogBench1x3c	dankpyon.medieval.overhaul	no	log bench (1x3)		seat	(1,3)	DankPyon_RawWood	70			Undefined	yes	DankPyon_RusticFurniture	Building								4500
+DankPyon_LogBench1x4c	dankpyon.medieval.overhaul	no	log bench (1x4)		seat	(1,4)	DankPyon_RawWood	95			Undefined	yes	DankPyon_RusticFurniture	Building								5625
+DankPyon_LogChair	dankpyon.medieval.overhaul	no	log chair		seat	(1,1)	DankPyon_RawWood	25			Undefined	yes	DankPyon_RusticFurniture	Building								2250
+DankPyon_LogGate	dankpyon.medieval.overhaul	no	log gate		door	(1,1)	DankPyon_RawWood	25			Undefined		Structure	Building_Door					true			1200
+DankPyon_LogTable1x2c	dankpyon.medieval.overhaul	no	log table (1x2)		table	(1,2)	DankPyon_RawWood	28			Undefined	yes	DankPyon_RusticFurniture	Building						PassThroughOnly		2250
+DankPyon_LogTable1x3c	dankpyon.medieval.overhaul	no	log table (1x3)		table	(1,3)	DankPyon_RawWood	60			Undefined	yes	DankPyon_RusticFurniture	Building						PassThroughOnly		3375
+DankPyon_LogTable1x4c	dankpyon.medieval.overhaul	no	log table (1x4)		table	(1,4)	DankPyon_RawWood	72			Undefined	yes	DankPyon_RusticFurniture	Building						PassThroughOnly		4375
+DankPyon_LogTable2x4c	dankpyon.medieval.overhaul	no	log table (2x4)		table	(2,4)	DankPyon_RawWood	144			Undefined	yes	DankPyon_RusticFurniture	Building						PassThroughOnly		6375
+DankPyon_LogWall	dankpyon.medieval.overhaul	no	log wall		wall	(1,1)	DankPyon_RawWood	5			Undefined		Structure	Building					true	Impassable		535
+DankPyon_MendingBench	dankpyon.medieval.overhaul	no	mending bench	Medieval	bench	(2,1)	Woody	60	DankPyon_ComponentBasic:5	DankPyon_RusticFurniture	Undefined	yes	Production	Building_WorkTable		DankPyon_RepairTools				PassThroughOnly	craft	2000
+DankPyon_Millstone	dankpyon.medieval.overhaul	no	millstone		bench	(1,1)	Stony	30	WoodLog:20	DankPyon_BasicAgriculture	Undefined	yes	Production	Building_WorkTable						PassThroughOnly	cook	500
+DankPyon_MineShaft	dankpyon.medieval.overhaul	no	mine shaft	Medieval	bench	(3,3)	Woody	300	DankPyon_IronIngot:60;DankPyon_ComponentBasic:10	DankPyon_Mining	Undefined		Production	Building_WorkTable						Standable		6000
+DankPyon_MiningSpot	dankpyon.medieval.overhaul	no	mining spot		workspot	(1,1)					Undefined		Production	Building_WorkTable						Standable		0
+DankPyon_Palisade	dankpyon.medieval.overhaul	no	palisades		wall	(1,1)	DankPyon_RawWood	8			Undefined		Structure	Building					true	Impassable		355
+DankPyon_Plasteel1x1c	dankpyon.medieval.overhaul	no	plasteel stack(1x1)		storage	(1,1)			Plasteel:10		Undefined	yes	DankPyon_RusticStorage	Building_Storage						PassThroughOnly		250
+DankPyon_Plasteel1x2c	dankpyon.medieval.overhaul	no	plasteel stack(1x2)		storage	(2,1)			Plasteel:20		Undefined	yes	DankPyon_RusticStorage	Building_Storage						PassThroughOnly		500
+DankPyon_Plasteel2x2c	dankpyon.medieval.overhaul	no	plasteel stack(2x2)		storage	(2,2)			Plasteel:40		Undefined	yes	DankPyon_RusticStorage	Building_Storage						PassThroughOnly		1000
+DankPyon_Press_Paper	dankpyon.medieval.overhaul	no	paper press		bench	(2,2)	Woody	60	DankPyon_IronIngot:30;DankPyon_ComponentBasic:2	DankPyon_Presser	Undefined		Production	Building_WorkTable								2500
+DankPyon_Presser	dankpyon.medieval.overhaul	no	cheese press		bench	(2,1)	Woody	30	DankPyon_IronIngot:30;DankPyon_ComponentBasic:2	DankPyon_Presser	Undefined		Production	Building_WorkTable								600
+DankPyon_Pyre	dankpyon.medieval.overhaul	no	large square pyre		bench	(2,2)	Stony	50	WoodLog:100		Undefined		Temperature	Building_WorkTable		DankPyon_RawWood,DankPyon_Wood	25	80		PassThroughOnly		900
+DankPyon_PyreRound	dankpyon.medieval.overhaul	no	large round pyre		bench	(2,2)	Stony	50	WoodLog:100		Undefined		Temperature	Building_WorkTable		DankPyon_RawWood,DankPyon_Wood	25	80		PassThroughOnly		900
+DankPyon_RackEmpty	dankpyon.medieval.overhaul	no	empty rack		storage	(2,1)	Metallic,Woody,Stony	20		DankPyon_RusticStorage	Undefined	yes	DankPyon_RusticStorage	Building_Storage						PassThroughOnly		500
+DankPyon_RackMixed	dankpyon.medieval.overhaul	no	weapon rack		storage	(2,1)	Metallic,Woody,Stony	20		DankPyon_RusticStorage	Undefined	yes	DankPyon_RusticStorage	Building_Storage						PassThroughOnly		500
+DankPyon_RackSpear	dankpyon.medieval.overhaul	no	spear rack		storage	(2,1)	Metallic,Woody,Stony	20		DankPyon_RusticStorage	Undefined	yes	DankPyon_RusticStorage	Building_Storage						PassThroughOnly		500
+DankPyon_RackSword	dankpyon.medieval.overhaul	no	sword rack		storage	(2,1)	Metallic,Woody,Stony	20		DankPyon_RusticStorage	Undefined	yes	DankPyon_RusticStorage	Building_Storage						PassThroughOnly		500
+DankPyon_RawhideRack	dankpyon.medieval.overhaul	no	rawhide rack	Medieval	bench	(2,1)	DankPyon_RawWood	30			Undefined		Production	Building_WorkTable						PassThroughOnly		600
+DankPyon_ReinfocedLogGate	dankpyon.medieval.overhaul	no	reinforced log gate		door	(1,1)	DankPyon_RawWood	60		ComplexFurniture	Medieval		Structure	Building_MultiTileDoor					true			2400
+DankPyon_ReinforcedRusticTable1x1c	dankpyon.medieval.overhaul	no	reinforced table (1x1)		table	(1,1)	Metallic,Woody,Stony	15	DankPyon_IronIngot:5	DankPyon_RusticFurniture	Undefined	yes	DankPyon_RusticFurniture	Building						PassThroughOnly		625
+DankPyon_ReinforcedRusticTable1x2c	dankpyon.medieval.overhaul	no	reinforced table (1x2)		table	(1,2)	Metallic,Woody,Stony	28	DankPyon_IronIngot:10	DankPyon_RusticFurniture	Undefined	yes	DankPyon_RusticFurniture	Building						PassThroughOnly		1250
+DankPyon_ReinforcedRusticTable2x2c	dankpyon.medieval.overhaul	no	reinforced table (2x2)		table	(2,2)	Metallic,Woody,Stony	50	DankPyon_IronIngot:15	DankPyon_RusticFurniture	Undefined	yes	DankPyon_RusticFurniture	Building						PassThroughOnly		2500
+DankPyon_ReinforcedTable2x4c	dankpyon.medieval.overhaul	no	reinforced table (2x4)		table	(2,4)	Metallic,Woody,Stony	95	DankPyon_IronIngot:30	DankPyon_RusticFurniture	Undefined	yes	DankPyon_RusticFurniture	Building						PassThroughOnly		6000
+DankPyon_ResearchingSpot	dankpyon.medieval.overhaul	no	researching spot		spot	(1,1)					Undefined		Production	Building_ResearchBench						Standable		0
+DankPyon_RoyalArmchair	dankpyon.medieval.overhaul	no	royal armchair		seat	(1,1)	Fabric,Leathery	110	Gold:30	DankPyon_RoyalRusticFurniture	Undefined	yes	DankPyon_RusticFurniture	Building								14000
+DankPyon_RoyalTable2x2c	dankpyon.medieval.overhaul	no	royal table (2x2)		table	(2,2)	Metallic,Woody,Stony	50	Gold:50;DankPyon_Silk:50	DankPyon_RoyalRusticFurniture	Undefined	yes	DankPyon_RusticFurniture	Building						PassThroughOnly		15000
+DankPyon_RoyalTable2x4c	dankpyon.medieval.overhaul	no	royal table (2x4)		table	(2,4)	Metallic,Woody,Stony	95	Gold:100;DankPyon_Silk:100	DankPyon_RoyalRusticFurniture	Undefined	yes	DankPyon_RusticFurniture	Building						PassThroughOnly		30000
+DankPyon_RoyalThrone	dankpyon.medieval.overhaul	no	royal throne		seat	(1,1)	Woody,Stony,Metallic	125	DankPyon_Silk:50	DankPyon_RoyalRusticFurniture	Undefined	yes	DankPyon_RusticFurniture	Building								22000
+DankPyon_RoyalTudorBed	dankpyon.medieval.overhaul	no	royal tudor bed	Medieval	doublebed	(2,2)	Metallic,Woody,Stony	120	Gold:70;DankPyon_Silk:200	DankPyon_RoyalRusticFurniture	Undefined	yes	DankPyon_RusticFurniture	Building_Bed						PassThroughOnly		60000
+DankPyon_RusticBarrelBigClosed	dankpyon.medieval.overhaul	no	large barrel		storage	(2,2)	Woody	40	Steel:5	DankPyon_RusticStorage	Undefined	yes	DankPyon_RusticStorage	Building_Storage						PassThroughOnly		1000
+DankPyon_RusticBarrelBigClosedDown	dankpyon.medieval.overhaul	no	large barrel		storage	(2,2)	Woody	40	Steel:5	DankPyon_RusticStorage	Undefined	yes	DankPyon_RusticStorage	Building_Storage						PassThroughOnly		1000
+DankPyon_RusticBarrelBigGrape	dankpyon.medieval.overhaul	no	large grape barrel		storage	(2,2)	Woody	40	Steel:5	DankPyon_RusticStorage	Undefined	yes	DankPyon_RusticStorage	Building_Storage						PassThroughOnly		1000
+DankPyon_RusticBarrelClosed	dankpyon.medieval.overhaul	no	barrel		storage	(1,1)	Woody	10		DankPyon_RusticStorage	Undefined	yes	DankPyon_RusticStorage	Building_Storage						PassThroughOnly		250
+DankPyon_RusticBarrelStack	dankpyon.medieval.overhaul	no	barrel shelf		storage	(3,1)	Woody	30		DankPyon_RusticStorage	Undefined	yes	DankPyon_RusticStorage	Building_Storage						PassThroughOnly		750
+DankPyon_RusticChair	dankpyon.medieval.overhaul	no	rustic dining chair		seat	(1,1)	Woody	45		DankPyon_RusticFurniture	Undefined	yes	DankPyon_RusticFurniture	Building								8000
+DankPyon_RusticCounter1x3c	dankpyon.medieval.overhaul	no	counter (1x3)		table	(3,1)	Metallic,Woody,Stony	60		DankPyon_RusticFurniture	Undefined	yes	DankPyon_RusticFurniture	Building						PassThroughOnly		1000
+DankPyon_RusticCupboardBread	dankpyon.medieval.overhaul	no	bread cupboard		storage	(3,1)	Woody	30		DankPyon_RusticStorage	Undefined	yes	DankPyon_RusticStorage	Building_Storage						PassThroughOnly		750
+DankPyon_RusticCupboardCheese	dankpyon.medieval.overhaul	no	cheese cupboard		storage	(3,1)	Woody	30		DankPyon_RusticStorage	Undefined	yes	DankPyon_RusticStorage	Building_Storage						PassThroughOnly		750
+DankPyon_RusticCupboardEmpty	dankpyon.medieval.overhaul	no	cupboard		storage	(3,1)	Woody	30		DankPyon_RusticStorage	Undefined	yes	DankPyon_RusticStorage	Building_Storage						PassThroughOnly		750
+DankPyon_RusticCupboardWine	dankpyon.medieval.overhaul	no	wine cupboard		storage	(3,1)	Woody	30		DankPyon_RusticStorage	Undefined	yes	DankPyon_RusticStorage	Building_Storage						PassThroughOnly		750
+DankPyon_RusticDoor	dankpyon.medieval.overhaul	no	rustic door		door	(1,1)	Woody	25			Undefined		Structure	Building_Door					true			850
+DankPyon_RusticDoor1x2c	dankpyon.medieval.overhaul	no	rustic door (1x2)		door	(2,1)	Metallic,Woody,Stony	75		DankPyon_RusticFurniture	Undefined		Structure	Building_MultiTileDoor					true			3600
+DankPyon_RusticHearth	dankpyon.medieval.overhaul	no	hearth		fire,bench	(2,1)	Stony	60		DankPyon_RusticFurniture	Undefined	yes	DankPyon_RusticFurniture	Building_WorkTable		DankPyon_Coal,DankPyon_Tar	10	32		PassThroughOnly	cook	2000
+DankPyon_RusticLamp	dankpyon.medieval.overhaul	no	oil lamp		torch	(1,1)	Metallic	25	DankPyon_Tar:15	DankPyon_RusticFurniture,DankPyon_RusticFurniture,Smithing	Medieval	yes	DankPyon_RusticFurniture	Building		DankPyon_Tar	10	3.5		PassThroughOnly		2000
+DankPyon_RusticNobleChair	dankpyon.medieval.overhaul	no	rustic noble chair		seat	(1,1)	Woody	45		DankPyon_RusticFurniture	Undefined	yes	DankPyon_RusticFurniture	Building								12000
+DankPyon_RusticRoundTable2x2c	dankpyon.medieval.overhaul	no	rustic round table (2x2)		table	(2,2)	Metallic,Woody,Stony	50		DankPyon_RusticFurniture	Undefined	yes	DankPyon_RusticFurniture	Building						PassThroughOnly		1500
+DankPyon_RusticStool	dankpyon.medieval.overhaul	no	rustic round stool		seat	(1,1)	Woody	25		DankPyon_RusticFurniture	Undefined	yes	DankPyon_RusticFurniture	Building								450
+DankPyon_RusticTable1x1c	dankpyon.medieval.overhaul	no	rustic table (1x1)		table	(1,1)	Metallic,Woody,Stony	15		DankPyon_RusticFurniture	Undefined	yes	DankPyon_RusticFurniture	Building						PassThroughOnly		500
+DankPyon_RusticTable1x2c	dankpyon.medieval.overhaul	no	rustic table (1x2)		table	(1,2)	Metallic,Woody,Stony	28		DankPyon_RusticFurniture	Undefined	yes	DankPyon_RusticFurniture	Building						PassThroughOnly		750
+DankPyon_RusticTable1x3c	dankpyon.medieval.overhaul	no	rustic table (1x3)		table	(1,3)	Metallic,Woody,Stony	28		DankPyon_RusticFurniture	Undefined	yes	DankPyon_RusticFurniture	Building						PassThroughOnly		1125
+DankPyon_RusticTable2x2c	dankpyon.medieval.overhaul	no	rustic table (2x2)		table	(2,2)	Metallic,Woody,Stony	50		DankPyon_RusticFurniture	Undefined	yes	DankPyon_RusticFurniture	Building						PassThroughOnly		1500
+DankPyon_RusticTorchLamp	dankpyon.medieval.overhaul	no	rustic torch		torch	(1,1)	Woody,DankPyon_RawWood	20			Undefined		DankPyon_RusticFurniture	Building		DankPyon_Coal,DankPyon_Tar	10	3.5		PassThroughOnly		100
+DankPyon_SackApple	dankpyon.medieval.overhaul	no	sack of apples		storage	(1,1)			DankPyon_Linen:30	DankPyon_RusticStorage	Undefined	yes	DankPyon_RusticStorage	Building_Storage						PassThroughOnly		250
+DankPyon_SackClosed	dankpyon.medieval.overhaul	no	sack		storage	(1,1)			DankPyon_Linen:10	DankPyon_RusticStorage	Undefined	yes	DankPyon_RusticStorage	Building_Storage						PassThroughOnly		250
+DankPyon_SackFlour	dankpyon.medieval.overhaul	no	sack of flour		storage	(1,1)			DankPyon_Linen:30	DankPyon_RusticStorage	Undefined	yes	DankPyon_RusticStorage	Building_Storage						PassThroughOnly		250
+DankPyon_SackPotato	dankpyon.medieval.overhaul	no	sack of potatoes		storage	(1,1)			DankPyon_Linen:30	DankPyon_RusticStorage	Undefined	yes	DankPyon_RusticStorage	Building_Storage						PassThroughOnly		250
+DankPyon_SackWheat	dankpyon.medieval.overhaul	no	sack of wheat		storage	(1,1)			DankPyon_Linen:30	DankPyon_RusticStorage	Undefined	yes	DankPyon_RusticStorage	Building_Storage						PassThroughOnly		250
+DankPyon_SawTable	dankpyon.medieval.overhaul	no	table saw	Industrial	bench	(3,1)	DankPyon_RawWood,Woody	75	Steel:20;ComponentIndustrial:1	DankPyon_Lumber,Electricity	Industrial	yes	Production	Building_WorkTable	yes					PassThroughOnly	craft	2000
+DankPyon_ShelfEmpty	dankpyon.medieval.overhaul	no	empty shelf		storage	(2,1)	Woody	20		DankPyon_RusticStorage	Undefined	yes	DankPyon_RusticStorage	Building_Storage						PassThroughOnly		500
+DankPyon_ShelfFilled1c	dankpyon.medieval.overhaul	no	filled shelf		storage	(2,1)	Woody	20		DankPyon_RusticStorage	Undefined	yes	DankPyon_RusticStorage	Building_Storage						PassThroughOnly		500
+DankPyon_ShelfFilled2c	dankpyon.medieval.overhaul	no	filled shelf		storage	(2,1)	Woody	20		DankPyon_RusticStorage	Undefined	yes	DankPyon_RusticStorage	Building_Storage						PassThroughOnly		500
+DankPyon_ShelfFilledBook	dankpyon.medieval.overhaul	no	book filled shelf		storage	(2,1)	Woody	20	DankPyon_Book:2	DankPyon_RusticStorage	Undefined	yes	DankPyon_RusticStorage	Building_Storage						PassThroughOnly		500
+DankPyon_ShelfFilledChaliceGold	dankpyon.medieval.overhaul	no	gold chalice filled shelf		storage	(2,1)	Woody	20	DankPyon_ChaliceGold:2;DankPyon_Book:1	DankPyon_RusticStorage	Undefined	yes	DankPyon_RusticStorage	Building_Storage						PassThroughOnly		500
+DankPyon_ShelfFilledChaliceSilver	dankpyon.medieval.overhaul	no	silver chalice filled shelf		storage	(2,1)	Woody	20	DankPyon_ChaliceSilver:2;DankPyon_Book:1	DankPyon_RusticStorage	Undefined	yes	DankPyon_RusticStorage	Building_Storage						PassThroughOnly		500
+DankPyon_ShelfFilledEmerald	dankpyon.medieval.overhaul	no	emerald filled shelf		storage	(2,1)	Woody	20	DankPyon_Emerald:1	DankPyon_RusticStorage	Undefined	yes	DankPyon_RusticStorage	Building_Storage						PassThroughOnly		500
+DankPyon_ShelfFilledFood	dankpyon.medieval.overhaul	no	food filled shelf		storage	(2,1)	Woody	20		DankPyon_RusticStorage	Undefined	yes	DankPyon_RusticStorage	Building_Storage						PassThroughOnly		500
+DankPyon_ShelfFilledGoldware	dankpyon.medieval.overhaul	no	goldware filled shelf		storage	(2,1)	Woody	20	DankPyon_ChaliceGold:2;DankPyon_BowlGold:3	DankPyon_RusticStorage	Undefined	yes	DankPyon_RusticStorage	Building_Storage						PassThroughOnly		500
+DankPyon_ShelfFilledIngot	dankpyon.medieval.overhaul	no	ingot filled shelf		storage	(2,1)	Woody	20		DankPyon_RusticStorage	Undefined	yes	DankPyon_RusticStorage	Building_Storage						PassThroughOnly		500
+DankPyon_ShelfFilledRuby	dankpyon.medieval.overhaul	no	ruby filled shelf		storage	(2,1)	Woody	20	DankPyon_ChaliceGold:1;DankPyon_Ruby:1	DankPyon_RusticStorage	Undefined	yes	DankPyon_RusticStorage	Building_Storage						PassThroughOnly		500
+DankPyon_ShelfFilledSapphire	dankpyon.medieval.overhaul	no	sapphire filled shelf		storage	(2,1)	Woody	20	DankPyon_ChaliceSilver:1;DankPyon_Sapphire:1	DankPyon_RusticStorage	Undefined	yes	DankPyon_RusticStorage	Building_Storage						PassThroughOnly		500
+DankPyon_ShelfFilledSilverware	dankpyon.medieval.overhaul	no	silverware filled shelf		storage	(2,1)	Woody	20	DankPyon_ChaliceSilver:2;DankPyon_BowlSilver:3	DankPyon_RusticStorage	Undefined	yes	DankPyon_RusticStorage	Building_Storage						PassThroughOnly		500
+DankPyon_ShelfFilledWine	dankpyon.medieval.overhaul	no	wine filled shelf		storage	(2,1)	Woody	20		DankPyon_RusticStorage	Undefined	yes	DankPyon_RusticStorage	Building_Storage						PassThroughOnly		500
+DankPyon_Shelf_AssortedDrugsA	dankpyon.medieval.overhaul	no	shelf (assorted drugs a)		storage	(2,1)	Woody	20		DankPyon_RusticStorage	Undefined	yes	DankPyon_RusticStorage	Building_Storage						PassThroughOnly		500
+DankPyon_Shelf_AssortedDrugsB	dankpyon.medieval.overhaul	no	shelf (assorted drugs b)		storage	(2,1)	Woody	20		DankPyon_RusticStorage	Undefined	yes	DankPyon_RusticStorage	Building_Storage						PassThroughOnly		500
+DankPyon_Shelf_AssortedHerbs	dankpyon.medieval.overhaul	no	shelf (assorted herbs)		storage	(2,1)	Woody	20		DankPyon_RusticStorage	Undefined	yes	DankPyon_RusticStorage	Building_Storage						PassThroughOnly		500
+DankPyon_Shelf_BattleElixir	dankpyon.medieval.overhaul	no	shelf (battle elixir)		storage	(2,1)	Woody	20		DankPyon_RusticStorage	Undefined	yes	DankPyon_RusticStorage	Building_Storage						PassThroughOnly		500
+DankPyon_Shelf_GreenHerbs	dankpyon.medieval.overhaul	no	shelf (green herbs)		storage	(2,1)	Woody	20		DankPyon_RusticStorage	Undefined	yes	DankPyon_RusticStorage	Building_Storage						PassThroughOnly		500
+DankPyon_Shelf_HappyPowder	dankpyon.medieval.overhaul	no	shelf (happy powder)		storage	(2,1)	Woody	20		DankPyon_RusticStorage	Undefined	yes	DankPyon_RusticStorage	Building_Storage						PassThroughOnly		500
+DankPyon_Shelf_Luhix	dankpyon.medieval.overhaul	no	shelf (luhix)		storage	(2,1)	Woody	20		DankPyon_RusticStorage	Undefined	yes	DankPyon_RusticStorage	Building_Storage						PassThroughOnly		500
+DankPyon_Shelf_Paregoric	dankpyon.medieval.overhaul	no	shelf (paregoric)		storage	(2,1)	Woody	20		DankPyon_RusticStorage	Undefined	yes	DankPyon_RusticStorage	Building_Storage						PassThroughOnly		500
+DankPyon_Shelf_RedHerbs	dankpyon.medieval.overhaul	no	shelf (red herbs)		storage	(2,1)	Woody	20		DankPyon_RusticStorage	Undefined	yes	DankPyon_RusticStorage	Building_Storage						PassThroughOnly		500
+DankPyon_Shelf_Stardust	dankpyon.medieval.overhaul	no	shelf (stardust)		storage	(2,1)	Woody	20		DankPyon_RusticStorage	Undefined	yes	DankPyon_RusticStorage	Building_Storage						PassThroughOnly		500
+DankPyon_Shelf_VigorPill	dankpyon.medieval.overhaul	no	shelf (vigor pill)		storage	(2,1)	Woody	20		DankPyon_RusticStorage	Undefined	yes	DankPyon_RusticStorage	Building_Storage						PassThroughOnly		500
+DankPyon_SilkBed	dankpyon.medieval.overhaul	no	silk bed		bench	(1,1)	Woody	60	DankPyon_IronIngot:10	DankPyon_Silk	Undefined		Production	Building_WorkTable								600
+DankPyon_SilverIngots1x1c	dankpyon.medieval.overhaul	no	silver ingot stack(1x1)		storage	(1,1)			Silver:10		Undefined	yes	DankPyon_RusticStorage	Building_Storage						PassThroughOnly		250
+DankPyon_SilverIngots1x2c	dankpyon.medieval.overhaul	no	silver ingot stack(1x2)		storage	(2,1)			Silver:20		Undefined	yes	DankPyon_RusticStorage	Building_Storage						PassThroughOnly		500
+DankPyon_SilverIngots2x2c	dankpyon.medieval.overhaul	no	silver ingot stack(2x2)		storage	(2,2)			Silver:40		Undefined	yes	DankPyon_RusticStorage	Building_Storage						PassThroughOnly		1000
+DankPyon_SlabDoor	dankpyon.medieval.overhaul	no	slab door		door	(1,1)	Stony	55			Undefined		Structure	Building_Door					true			3000
+DankPyon_SlabDoor1x2c	dankpyon.medieval.overhaul	no	slab door (1x2)		door	(2,1)	Stony	75		DankPyon_RusticFurniture	Undefined		Structure	Building_MultiTileDoor					true			9000
+DankPyon_Smelter	dankpyon.medieval.overhaul	no	smelter	Medieval	bench	(2,2)	Stony	120	Steel:80	DankPyon_Steel	Undefined		Production	Building_WorkTable		DankPyon_Coal	6	9		PassThroughOnly		3000
+DankPyon_Smoker	dankpyon.medieval.overhaul	no	Smoker		bench	(2,1)	Woody	60	DankPyon_IronIngot:60	DankPyon_Smoker,DankPyon_RusticFurniture	Undefined	yes	Production	Building_WorkTable		DankPyon_RawWood,DankPyon_Wood		3		PassThroughOnly		2000
+DankPyon_SpinningWheel	dankpyon.medieval.overhaul	no	spinning wheel	Medieval	bench	(2,1)	Woody	20		DankPyon_TextileSpinning	Undefined	yes	Production	Building_WorkTable						PassThroughOnly	craft	2000
+DankPyon_Stall_Bow	dankpyon.medieval.overhaul	no	market stall (bow)		storage	(3,1)	Woody	30		DankPyon_RusticStorage	Undefined	yes	DankPyon_RusticStorage	Building_Storage						PassThroughOnly		750
+DankPyon_Stall_Bread	dankpyon.medieval.overhaul	no	market stall (bread)		storage	(3,1)	Woody	30		DankPyon_RusticStorage	Undefined	yes	DankPyon_RusticStorage	Building_Storage						PassThroughOnly		750
+DankPyon_Stall_Dairy	dankpyon.medieval.overhaul	no	market stall (dairy)		storage	(3,1)	Woody	30		DankPyon_RusticStorage	Undefined	yes	DankPyon_RusticStorage	Building_Storage						PassThroughOnly		750
+DankPyon_Stall_Empty	dankpyon.medieval.overhaul	no	empty market stall		storage	(3,1)	Woody	30		DankPyon_RusticStorage	Undefined	yes	DankPyon_RusticStorage	Building_Storage						PassThroughOnly		750
+DankPyon_Stall_Herb	dankpyon.medieval.overhaul	no	market stall (herb)		storage	(3,1)	Woody	30		DankPyon_RusticStorage	Undefined	yes	DankPyon_RusticStorage	Building_Storage						PassThroughOnly		750
+DankPyon_Stall_Meats	dankpyon.medieval.overhaul	no	market stall (meat)		storage	(3,1)	Woody	30		DankPyon_RusticStorage	Undefined	yes	DankPyon_RusticStorage	Building_Storage						PassThroughOnly		750
+DankPyon_Stall_MeleeWeapons	dankpyon.medieval.overhaul	no	market stall (weapons)		storage	(3,1)	Woody	30		DankPyon_RusticStorage	Undefined	yes	DankPyon_RusticStorage	Building_Storage						PassThroughOnly		750
+DankPyon_SteelIngots1x1c	dankpyon.medieval.overhaul	no	steel ingot stack(1x1)		storage	(1,1)			Steel:10		Undefined	yes	DankPyon_RusticStorage	Building_Storage						PassThroughOnly		250
+DankPyon_SteelIngots1x2c	dankpyon.medieval.overhaul	no	steel ingot stack(1x2)		storage	(2,1)			Steel:20		Undefined	yes	DankPyon_RusticStorage	Building_Storage						PassThroughOnly		500
+DankPyon_SteelIngots2x2c	dankpyon.medieval.overhaul	no	steel ingot stack(2x2)		storage	(2,2)			Steel:40		Undefined	yes	DankPyon_RusticStorage	Building_Storage						PassThroughOnly		1000
+DankPyon_StewPot	dankpyon.medieval.overhaul	no	soup pot		fire,bench	(2,1)	Metallic	100		DankPyon_StewPot,DankPyon_RusticFurniture	Undefined	yes	Production	Building_WorkTable_HeatPush		DankPyon_Coal,DankPyon_Tar	4			PassThroughOnly	cook	2000
+DankPyon_StoneOven	dankpyon.medieval.overhaul	no	rustic oven	Medieval	bench	(3,1)	Stony	60	WoodLog:20	DankPyon_Oven,DankPyon_RusticFurniture	Undefined	yes	Production	Building_WorkTable_HeatPush		DankPyon_Coal,DankPyon_Tar				PassThroughOnly	cook	2000
+DankPyon_StoneOvenLarge	dankpyon.medieval.overhaul	no	large oven	Medieval	bench	(2,2)	Stony	120		DankPyon_Oven,Stonecutting	Medieval	yes	Production	Building_WorkTable_HeatPush		DankPyon_Coal,DankPyon_Tar				PassThroughOnly	cook	3000
+DankPyon_StonecuttingSpot	dankpyon.medieval.overhaul	no	stonecutter's block		bench	(1,1)	Woody,DankPyon_RawWood	10			Undefined	yes	Production	Building_WorkTable						PassThroughOnly	craft	200
+DankPyon_Storage_Cart_Assorted	dankpyon.medieval.overhaul	no	assorted cart		storage	(2,2)	Woody	120	DankPyon_ComponentBasic:10	DankPyon_RusticStorage	Undefined	yes	DankPyon_RusticStorage	Building_Storage						PassThroughOnly		2500
+DankPyon_Storage_Cart_Empty	dankpyon.medieval.overhaul	no	empty cart		storage	(2,2)	Woody	120	DankPyon_ComponentBasic:10	DankPyon_RusticStorage	Undefined	yes	DankPyon_RusticStorage	Building_Storage						PassThroughOnly		2500
+DankPyon_Storage_Cart_Ore	dankpyon.medieval.overhaul	no	ore cart		storage	(2,2)	Woody	120	DankPyon_ComponentBasic:10	DankPyon_RusticStorage	Undefined	yes	DankPyon_RusticStorage	Building_Storage						PassThroughOnly		2500
+DankPyon_Storage_Cart_PlantRaw	dankpyon.medieval.overhaul	no	raw plant cart		storage	(2,2)	Woody	120	DankPyon_ComponentBasic:10	DankPyon_RusticStorage	Undefined	yes	DankPyon_RusticStorage	Building_Storage						PassThroughOnly		2500
+DankPyon_Storage_Cart_RawWood	dankpyon.medieval.overhaul	no	raw wood cart		storage	(2,2)	Woody	120	DankPyon_ComponentBasic:10	DankPyon_RusticStorage	Undefined	yes	DankPyon_RusticStorage	Building_Storage						PassThroughOnly		2500
+DankPyon_Storage_Cart_Textiles	dankpyon.medieval.overhaul	no	textiles cart		storage	(2,2)	Woody	120	DankPyon_ComponentBasic:10	DankPyon_RusticStorage	Undefined	yes	DankPyon_RusticStorage	Building_Storage						PassThroughOnly		2500
+DankPyon_StrawBale1x2c	dankpyon.medieval.overhaul	no	straw bale (1x2)		storage	(2,1)			DankPyon_Straw:20	DankPyon_RusticStorage	Undefined	yes	DankPyon_RusticStorage	Building_Storage						PassThroughOnly		250
+DankPyon_StrawBale2x2c	dankpyon.medieval.overhaul	no	straw bale (2x2)		storage	(2,2)			DankPyon_Straw:40	DankPyon_RusticStorage	Undefined	yes	DankPyon_RusticStorage	Building_Storage						PassThroughOnly		500
+DankPyon_StrawBed	dankpyon.medieval.overhaul	no	straw bed	Medieval	bed	(1,2)	Metallic,Woody,Stony,Metallic,Woody,Stony	45	DankPyon_Straw:15	DankPyon_Lumber	Undefined	yes	DankPyon_RusticFurniture	Building_Bed						PassThroughOnly		650
+DankPyon_StrawBedDouble	dankpyon.medieval.overhaul	no	double straw bed	Medieval	doublebed	(2,2)	Metallic,Woody,Stony	85	DankPyon_Straw:30	DankPyon_Lumber	Undefined	yes	DankPyon_RusticFurniture	Building_Bed						PassThroughOnly		1350
+DankPyon_StrawPile1x2c	dankpyon.medieval.overhaul	no	straw pile		storage	(2,1)			DankPyon_Straw:20	DankPyon_RusticStorage	Undefined	yes	DankPyon_RusticStorage	Building_Storage						PassThroughOnly		250
+DankPyon_Table2x4c	dankpyon.medieval.overhaul	no	rustic table (2x4)		table	(2,4)	Metallic,Woody,Stony	95		DankPyon_RusticFurniture	Undefined	yes	DankPyon_RusticFurniture	Building						PassThroughOnly		3000
+DankPyon_TableMarket_Bow	dankpyon.medieval.overhaul	no	table (bow)		storage	(3,1)	Woody	30		DankPyon_RusticStorage	Undefined	yes	DankPyon_RusticStorage	Building_Storage						PassThroughOnly		750
+DankPyon_TableMarket_Bread	dankpyon.medieval.overhaul	no	table (bread)		storage	(3,1)	Woody	30		DankPyon_RusticStorage	Undefined	yes	DankPyon_RusticStorage	Building_Storage						PassThroughOnly		750
+DankPyon_TableMarket_Dairy	dankpyon.medieval.overhaul	no	table (dairy)		storage	(3,1)	Woody	30		DankPyon_RusticStorage	Undefined	yes	DankPyon_RusticStorage	Building_Storage						PassThroughOnly		750
+DankPyon_TableMarket_Herb	dankpyon.medieval.overhaul	no	table (herb)		storage	(3,1)	Woody	30		DankPyon_RusticStorage	Undefined	yes	DankPyon_RusticStorage	Building_Storage						PassThroughOnly		750
+DankPyon_TableMarket_Meats	dankpyon.medieval.overhaul	no	table (meat)		storage	(3,1)	Woody	30		DankPyon_RusticStorage	Undefined	yes	DankPyon_RusticStorage	Building_Storage						PassThroughOnly		750
+DankPyon_TableMarket_MeleeWeapons	dankpyon.medieval.overhaul	no	table (weapons)		storage	(3,1)	Woody	30		DankPyon_RusticStorage	Undefined	yes	DankPyon_RusticStorage	Building_Storage						PassThroughOnly		750
+DankPyon_TanningDrum	dankpyon.medieval.overhaul	no	tanning drum	Industrial	bench	(2,1)			Steel:75;ComponentIndustrial:2	DankPyon_LeatherTanning,Electricity	Industrial		Production	Building_WorkTable	yes					PassThroughOnly		4500
+DankPyon_TanningRack	dankpyon.medieval.overhaul	no	tanning rack	Medieval	bench	(2,1)	DankPyon_RawWood	30		DankPyon_LeatherTanning	Undefined		Production	Building_WorkTable		DankPyon_TanningLiquor				PassThroughOnly		600
+DankPyon_TentWall	dankpyon.medieval.overhaul	no	tent		wall	(1,1)	Fabric,Leathery	5			Undefined		Structure	Building					true	Impassable		50
+DankPyon_Timber1x1c	dankpyon.medieval.overhaul	no	timber (1x1)		storage	(1,1)	Woody	10		DankPyon_Lumber	Undefined	yes	DankPyon_RusticStorage	Building_Storage						PassThroughOnly		250
+DankPyon_Timber1x2c	dankpyon.medieval.overhaul	no	timber (1x2)		storage	(2,1)	Woody	20		DankPyon_Lumber	Undefined	yes	DankPyon_RusticStorage	Building_Storage						PassThroughOnly		500
+DankPyon_Timber2x2c	dankpyon.medieval.overhaul	no	timber (2x2)		storage	(2,2)	Woody	40		DankPyon_Lumber	Undefined	yes	DankPyon_RusticStorage	Building_Storage						PassThroughOnly		1000
+DankPyon_Trestle	dankpyon.medieval.overhaul	no	trestle	Medieval	bench	(3,1)	DankPyon_RawWood,Woody	75		DankPyon_Lumber	Undefined	yes	Production	Building_WorkTable						PassThroughOnly	craft	2000
+DankPyon_TudorWall	dankpyon.medieval.overhaul	no	tudor wall		wall	(1,1)	Woody	2	DankPyon_Clay:3	Stonecutting	Medieval		Structure	Building					true	Impassable		150
+DankPyon_WallLamp	dankpyon.medieval.overhaul	no	wall oil lamp		torch	(1,1)	Metallic	15		DankPyon_RusticFurniture,Smithing	Medieval		DankPyon_RusticFurniture	Building		DankPyon_Tar	9	3.5		Standable		100
+DankPyon_WallTorch	dankpyon.medieval.overhaul	no	rustic wall torch		torch	(1,1)	Woody	15		DankPyon_RusticFurniture	Undefined		DankPyon_RusticFurniture	Building		DankPyon_Coal,DankPyon_Tar	9	3.5		Standable		100
+DankPyon_WaterSpot	dankpyon.medieval.overhaul	no	water gathering spot		workspot	(1,1)					Undefined		Production	Building_WorkTable						Standable	craft	0
+DankPyon_Well	dankpyon.medieval.overhaul	no	well		bench	(1,1)	Stony	50	WoodLog:20	DankPyon_Engineering	Undefined	yes	Production	Building_WorkTable						PassThroughOnly	craft	5000
+DankPyon_WoodLogs1x1c	dankpyon.medieval.overhaul	no	raw wood pile (1x1)		storage	(1,1)	DankPyon_RawWood	10			Undefined	yes	DankPyon_RusticStorage	Building_Storage						PassThroughOnly		250
+DankPyon_WoodLogs1x2c	dankpyon.medieval.overhaul	no	raw wood pile (1x2)		storage	(2,1)	DankPyon_RawWood	20			Undefined	yes	DankPyon_RusticStorage	Building_Storage						PassThroughOnly		500
+DankPyon_WoodLogs2x2c	dankpyon.medieval.overhaul	no	raw wood pile (2x2)		storage	(2,2)	DankPyon_RawWood	40			Undefined	yes	DankPyon_RusticStorage	Building_Storage						PassThroughOnly		1000
+DankPyon_Workbench	dankpyon.medieval.overhaul	no	workbench	Medieval	bench	(3,1)	Woody	100		DankPyon_Lumber	Undefined	yes	Production	Building_WorkTable						PassThroughOnly	craft	2000
+EGG_AdvancedWell	dankpyon.medieval.overhaul	no	water well		bench	(1,1)	Stony	50	Steel:50;WoodLog:20	Plumbing	Medieval		Hygiene	Building_WorkTable						PassThroughOnly	craft	15000
+BB_BunkBedDouble	darknote.bunkbeds	yes	double bunk bed	Medieval	bed	(1,2)	Metallic,Woody,Stony	85		ComplexFurniture	Medieval	yes	Furniture	Building_Bed						PassThroughOnly		1500
+BB_BunkBedTriple	darknote.bunkbeds	yes	triple bunk bed	Medieval	bed	(1,2)	Metallic,Woody,Stony	120		ComplexFurniture	Medieval	yes	Furniture	Building_Bed						PassThroughOnly		1500
+BB_Spacer_BunkBedDouble	darknote.bunkbeds	yes	spacer double bunk bed	Medieval	bed	(1,2)	Metallic,Woody,Stony	100	Steel:20;Plasteel:20;ComponentIndustrial:8;ComponentSpacer:4	ComplexFurniture	Medieval	yes	Furniture	Building_Bed						PassThroughOnly		1500
+BB_Spacer_BunkBedTriple	darknote.bunkbeds	yes	spacer triple bunk bed	Medieval	bed	(1,2)	Metallic,Woody,Stony	150	Steel:30;Plasteel:30;ComponentIndustrial:10;ComponentSpacer:6	ComplexFurniture	Medieval	yes	Furniture	Building_Bed						PassThroughOnly		1500
+DV_HallDoor	det.dwarvenstyle	no	hall door		door	(2,1)	Metallic,Woody,Stony,Stony	75		ComplexFurniture	Medieval		Structure	Building_MultiTileDoor					true			15000
+DV_HallDoorTimber	det.dwarvenstyle	no	timber hall door		door	(2,1)	Metallic,Woody,Stony,Stony,Metallic	75		ComplexFurniture	Medieval		Structure	Building_MultiTileDoor					true			15000
+DV_BasicClayWall	det.epochspottery	no	raw clay wall		wall	(1,1)			DV_Clay:6		Undefined		Structure	Building					true	Impassable		110
+DV_ClayTurningTable	det.epochspottery	no	potter's wheel		bench	(2,1)	Metallic,Woody	45	Steel:25	Stonecutting	Medieval	yes	Production	Building_WorkTable						PassThroughOnly		2200
+DV_CobbClayWall	det.epochspottery	no	cobb clay wall		wall	(1,1)			DV_Clay:8;Hay:4		Undefined		Structure	Building					true	Impassable		150
+DV_IndustrialClayTurningTable	det.epochspottery	no	clay-turning table		bench	(1,1)			Steel:45;ComponentIndustrial:5	Stonecutting,Electricity	Industrial	yes	Production	Building_WorkTable	yes					PassThroughOnly		3500
+CeilingFan	dubwise.dubsbadhygiene	yes	ceiling fan 2x2		lamp	(2,2)			Steel:40;ComponentIndustrial:1	Electricity	Industrial	yes	Temperature	DubsBadHygiene.Building_CeilingFan	yes		9		false	Standable		700
+CeilingFanS	dubwise.dubsbadhygiene	yes	ceiling fan 1x1		lamp	(1,1)			Steel:40;ComponentIndustrial:1	Electricity	Industrial	yes	Temperature	DubsBadHygiene.Building_CeilingFan	yes		9		false	Standable		700
+DBHSaunaHeaterElec	dubwise.dubsbadhygiene	yes	Electric Sauna Heater		lamp	(1,1)	Metallic,Stony	180	Steel:20;ComponentIndustrial:1	Saunas,Electricity	Industrial	yes	Joy	Building	yes		5			PassThroughOnly		1250
+DBHSaunaSeating	dubwise.dubsbadhygiene	yes	Sauna seating		seat	(1,1)	Metallic,Woody,Stony	2		Saunas	Medieval	yes	Joy	Building								450
+ToiletStallDoor	dubwise.dubsbadhygiene	yes	stall door		door	(1,1)	Metallic,Woody,Stony	5			Undefined		Hygiene	DubsBadHygiene.Building_StallDoor					false	Standable		250
+DU_Blastdoor	dubwise.rimatomics	yes	DU Blast door		door	(1,1)			DepletedUraniumPellets:25;Steel:40;ComponentIndustrial:2	Autodoors	Industrial		Rimatomics	Building_Door	yes				true			10000
+RadiationShielding	dubwise.rimatomics	yes	Reinforced DU Wall		wall	(1,1)			DepletedUraniumPellets:10;Steel:5		Undefined		Rimatomics	Building					true	Impassable		1250
+TableRimatomicsMachining	dubwise.rimatomics	yes	Rimatomics machining table		lamp	(5,2)			Steel:150;ComponentIndustrial:5	RimatomicsActivate	Industrial		Rimatomics	Rimatomics.Building_RimatomicsWorkbench	yes		5			PassThroughOnly	craft	10000
+DeepOilWell	dubwise.rimefeller	yes	deep oil well		lamp	(3,3)			Steel:120;ComponentIndustrial:6	DeepOilWells	Industrial		Rimefeller	Building	yes	Steel	6	6		PassThroughOnly		15000
+OilWell	dubwise.rimefeller	yes	oil well		lamp	(3,3)			Steel:120;ComponentIndustrial:6	OilDrilling	Industrial		Rimefeller	Building	yes	Steel	6	6		PassThroughOnly		15000
+RefineryLoadingBay	dubwise.rimefeller	yes	refinery unloading bay		storage	(1,1)			Steel:15	SynthyleneProduction	Industrial	yes	Rimefeller	Building_Storage						PassThroughOnly		300
+ElectricBrazier	electricbraziers.papercrane.rw	no	electric brazier		lamp	(1,1)	Metallic,Stony	50	Steel:10;ComponentIndustrial:1	ComplexFurniture,Electricity	Industrial	yes	Furniture	Building	yes		10	2		PassThroughOnly		100
+HolographicBrazier	electricbraziers.papercrane.rw	no	holographic brazier		lamp	(1,1)			Steel:10;Plasteel:10;ComponentIndustrial:2	Fabrication	Industrial	yes	Furniture	Building	yes		10			Standable		1000
+RimMarket_GuardRestSpot	forti.rimmarket	yes	guard rest spot		spot	(1,1)					Undefined		Misc	RimMarket.Buildings.Building_MarketSpot						Standable		0
+Greekcore_Fence	gerrymon.greekcorestyle	no	carved fence		fence	(1,1)	Stony	5			Undefined		Structure	Building						PassThroughOnly		140
+Greekcore_Kline	gerrymon.greekcorestyle	no	klinai	Medieval	bed	(1,2)	Metallic,Woody,Stony	45		ComplexFurniture	Medieval	yes	Furniture	Building_Bed						PassThroughOnly		20000
+GM_FenceBamboo	gmmp.fences	no	thin bamboo wall		fence	(1,1)			WoodLog:5		Undefined		Structure	Building						Impassable		70
+GM_FenceCorrugated	gmmp.fences	no	corrugated fence wall		fence	(1,1)	Metallic	5			Undefined		Structure	Building						Impassable		70
+GM_FenceGateBamboo	gmmp.fences	no	bamboo fence gate		door	(1,1)			WoodLog:25		Undefined		Structure	Building_Door					false			500
+GM_FenceGateBoard	gmmp.fences	no	board fence gate		door	(1,1)	Woody	25			Undefined		Structure	Building_Door					false			500
+GM_FenceGateCorrugated	gmmp.fences	no	corrugated fence gate		door	(1,1)	Metallic	25			Undefined		Structure	Building_Door					false			500
+GM_FenceGateJail	gmmp.fences	no	bars fence gate		door	(1,1)	Stony,Metallic	25			Undefined		Structure	Building_Door					false			500
+GM_FenceGateSticks	gmmp.fences	no	sticks fence gate		door	(1,1)	Woody	25			Undefined		Structure	Building_Door					false			500
+GM_FenceGateTape	gmmp.fences	no	barricade tape entrance		door	(1,1)			Steel:1		Undefined		Structure	Building_Door					false			500
+GM_FenceGateWroughIron	gmmp.fences	no	wrought fence gate		door	(1,1)	Stony,Metallic	25			Undefined		Structure	Building_Door					false			500
+GM_FenceIronBased	gmmp.fences	no	bars fence		fence	(1,1)	Stony,Metallic	1		Smithing	Medieval		Structure	Building						PassThroughOnly		70
+GM_FenceIronSpikes	gmmp.fences	no	spikes fence		fence	(1,1)	Stony,Metallic	1		Smithing	Medieval		Structure	Building						PassThroughOnly		70
+GM_FenceIronStone	gmmp.fences	no	spike bars wall		fence	(1,1)	Stony,Metallic	1		Smithing	Medieval		Structure	Building						Impassable		70
+GM_WallMetalBar	gmmp.fences	no	bars wall		fence	(1,1)	Stony,Metallic	5		Smithing	Medieval		Structure	Building						Impassable		70
+FM_AIManager	heaven.colonymanagerfork	yes	AI manager		lamp	(2,2)			Plasteel:75;Silver:5;AIPersonaCore:1	AdvancedManagingSoftware	Spacer	yes	Production	FluffyManager.Building_AIManager	yes		3			PassThroughOnly		5000
+HeronCurtainTribal	jecrell.doorsexpanded	yes	curtain (tribal)		door	(1,1)	Fabric,Leathery	25		ProjectHeron_Curtains	Neolithic	yes	Structure	DoorsExpanded.Building_DoorExpanded					true			850
+HeronCurtainTribalDouble	jecrell.doorsexpanded	yes			door	(2,1)	Fabric,Leathery	50		ProjectHeron_Curtains	Neolithic	yes	Structure	DoorsExpanded.Building_DoorExpanded					true			1700
+HeronCurtainTribalTriple	jecrell.doorsexpanded	yes			door	(3,1)	Fabric,Leathery	75		ProjectHeron_Curtains	Neolithic	yes	Structure	DoorsExpanded.Building_DoorExpanded					true			2550
+PH_AutodoorDouble	jecrell.doorsexpanded	yes			door	(2,1)	Metallic,Woody,Stony	50	Steel:80;ComponentIndustrial:4	Autodoors	Industrial		Structure	DoorsExpanded.Building_DoorExpanded	yes				true			2200
+PH_AutodoorTriple	jecrell.doorsexpanded	yes			door	(3,1)	Metallic,Woody,Stony	75	Steel:120;ComponentIndustrial:6	Autodoors	Industrial		Structure	DoorsExpanded.Building_DoorExpanded	yes				true			3300
+PH_DoorBlastDoor	jecrell.doorsexpanded	yes	blast door		door	(2,1)	Metallic	150	Steel:80;ComponentIndustrial:7	ProjectHeron_BlastDoors	Industrial		Structure	DoorsExpanded.Building_DoorExpanded	yes				true			4000
+PH_DoorBlastSingle	jecrell.doorsexpanded	yes	blast door		door	(1,1)	Metallic	75	Steel:40;ComponentIndustrial:4	ProjectHeron_BlastDoors	Industrial		Structure	DoorsExpanded.Building_DoorExpanded	yes				true			2000
+PH_DoorDouble	jecrell.doorsexpanded	yes			door	(2,1)	Metallic,Woody,Stony	50			Undefined		Structure	DoorsExpanded.Building_DoorExpanded					true			1700
+PH_DoorJail	jecrell.doorsexpanded	yes	jail door		door	(1,1)	Metallic,Woody,Stony	50	Steel:30;ComponentIndustrial:2	ProjectHeron_PrisonDoors	Medieval		Structure	DoorsExpanded.Building_DoorExpanded					true			1500
+PH_DoorRemoteDouble	jecrell.doorsexpanded	yes			door	(2,1)	Metallic	50	Steel:40;ComponentIndustrial:2	ProjectHeron_RemoteDoors	Industrial		Structure	DoorsExpanded.Building_DoorExpanded	yes				true			2000
+PH_DoorRemoteSingle	jecrell.doorsexpanded	yes	remote door		door	(1,1)	Metallic	25	Steel:20;ComponentIndustrial:1	ProjectHeron_RemoteDoors	Industrial		Structure	DoorsExpanded.Building_DoorExpanded	yes				true			1000
+PH_DoorRemoteTriple	jecrell.doorsexpanded	yes			door	(3,1)	Metallic	75	Steel:60;ComponentIndustrial:3	ProjectHeron_RemoteDoors	Industrial		Structure	DoorsExpanded.Building_DoorExpanded	yes				true			3000
+PH_DoorThickBlastDoor	jecrell.doorsexpanded	yes			door	(3,2)	Metallic	300	Steel:160;ComponentIndustrial:14	ProjectHeron_BlastDoors	Industrial		Structure	DoorsExpanded.Building_DoorExpanded	yes				true			8000
+PH_DoorTriple	jecrell.doorsexpanded	yes			door	(3,1)	Metallic,Woody,Stony	75			Undefined		Structure	DoorsExpanded.Building_DoorExpanded					true			2550
+PH_GateDoubleThick	jecrell.doorsexpanded	yes	gate		door	(2,1)	Metallic,Woody,Stony	100		ProjectHeron_Gates	Neolithic		Structure	DoorsExpanded.Building_DoorExpanded					true			2500
+Isekai_Forge	jellycreative.isekaileveling	no	refinement forge		bench	(3,1)			Steel:200;ComponentIndustrial:5	Smithing	Medieval	yes	Production	Building_WorkTable						PassThroughOnly		6000
+Isekai_RunicStation	jellycreative.isekaileveling	no	runic station		bench	(1,1)			Steel:150;Silver:100;Gold:50	Smithing	Medieval	yes	Production	Building_WorkTable						PassThroughOnly	craft	5000
+KK_MedievalWall	kongkim.medievalwalls	no	Medieval Wall		wall	(1,1)	Stony	10		Stonecutting	Medieval		Structure	Building					true	Impassable		800
+KK_MedievalWallEmbrasures	kongkim.medievalwalls	no	Medieval Embrasures		wall	(1,1)	Stony	10		Stonecutting	Medieval		Structure	Building					true	Impassable		800
+MDV_BulkheadDoor	local.moredoorvariants	yes	Bulkhead Door		door	(1,1)	Metallic	200	Plasteel:25	MDV_ProtectiveDoors	Industrial		Structure	MoreDoorVariants.Building_BulkheadDoor	yes				true			3200
+MDV_DoorCurtain	local.moredoorvariants	yes	Door curtain		door	(1,1)	Fabric,Leathery	25	Steel:10		Undefined		Structure	MoreDoorVariants.Building_DoorCurtain					true			650
+MDV_FleshmassDoor	local.moredoorvariants	yes	Fleshmass Door		door	(1,1)		0	Meat_Twisted:125;Shard:1	MutationWeaponry	Undefined		Structure	MoreDoorVariants.Building_FleshmassDoor					true			1200
+MDV_HayFlap	local.moredoorvariants	yes	Hay flap		door	(1,1)		0	Hay:20		Undefined	yes	Structure	MoreDoorVariants.Building_HayFlap					true			200
+MDV_LouverDoor	local.moredoorvariants	yes	Louver door		door	(1,1)	Metallic,Woody,Stony	30		ComplexFurniture	Medieval		Structure	MoreDoorVariants.Building_LouverDoor					true			850
+MDV_SingleDoor	local.moredoorvariants	yes	Single Door		door	(1,1)	Metallic,Woody,Stony	20		ComplexFurniture	Medieval		Structure	MoreDoorVariants.Building_SingleDoor					true			700
+MDV_SmallOrnateDoor	local.moredoorvariants	yes	Small Ornate door		door	(1,1)	Metallic,Woody,Stony	40	Gold:20	ComplexFurniture	Medieval		Structure	Building_Door					true			8500
+MDV_SpaceshipArchway	local.moredoorvariants	yes	Spaceship Archway		lamp	(1,1)	Metallic	80	ComponentIndustrial:1	MDV_ProtectiveDoors	Industrial		Structure	Building	yes		12		true	PassThroughOnly		2000
+MDV_SpaceshipBulwarkDoorA	local.moredoorvariants	yes	Spaceship Bulwark Door		door	(1,1)			Steel:250;Plasteel:30;ComponentIndustrial:3;RB_BallisticGlass:1	MDV_ProtectiveDoors	Industrial		Structure	MoreDoorVariants.Building_SpaceshipBulwarkDoor	yes				true			6600
+MDV_SpaceshipBulwarkDoorB	local.moredoorvariants	yes	Spaceship Bulwark Door		door	(2,1)			Steel:300;Plasteel:45;ComponentIndustrial:4;RB_BallisticGlass:3	MDV_ProtectiveDoors	Industrial		Structure	MoreDoorVariants.Building_SpaceshipBulwarkDoor	yes				true			6600
+MDV_SpaceshipBulwarkDoorC	local.moredoorvariants	yes	Spaceship Bulwark Door		door	(3,1)			Steel:350;Plasteel:60;ComponentIndustrial:5;RB_BallisticGlass:5	MDV_ProtectiveDoors	Industrial		Structure	MoreDoorVariants.Building_SpaceshipBulwarkDoor	yes				true			6600
+MDV_StonyArchway	local.moredoorvariants	yes	Stony Archway		door	(1,1)	Stony	90		ComplexFurniture	Medieval		Structure	MoreDoorVariants.Building_StonyArchway		WoodLog	10	3.5	true	PassThroughOnly		2800
+MDV_WoodyArchway	local.moredoorvariants	yes	Woody Archway		door	(1,1)			WoodLog:60		Undefined		Structure	MoreDoorVariants.Building_WoodyArchway					true	PassThroughOnly		1400
+AncientBed	ludeon.rimworld	yes	ancient bed	Medieval	bed	(1,2)					Undefined			Building_Bed								800
+AnimalBed	ludeon.rimworld	yes	animal bed		animalbed	(1,1)	Fabric,Leathery	40			Undefined	yes	Furniture	Building_Bed						PassThroughOnly		400
+AnimalFlap	ludeon.rimworld	yes	animal flap		door	(1,1)	Fabric,Leathery	25			Undefined		Structure	Building_Door					true			850
+AnimalSleepingBox	ludeon.rimworld	yes	animal sleeping box		animalbed	(1,1)	Metallic,Woody,Stony	25			Undefined	yes	Furniture	Building_Bed						PassThroughOnly		180
+AnimalSleepingSpot	ludeon.rimworld	yes	animal sleeping spot		animalbed	(1,1)					Undefined		Furniture	Building_Bed						Standable		0
+Armchair	ludeon.rimworld	yes	armchair		seat	(1,1)	Fabric,Leathery	110		ComplexFurniture	Medieval	yes	Furniture	Building								14000
+Autodoor	ludeon.rimworld	yes	autodoor		door	(1,1)	Metallic,Woody,Stony	25	Steel:40;ComponentIndustrial:2	Autodoors	Industrial		Structure	Building_Door	yes				true			1100
+Bed	ludeon.rimworld	yes	bed	Medieval	bed	(1,2)	Metallic,Woody,Stony	45		ComplexFurniture	Medieval	yes	Furniture	Building_Bed						PassThroughOnly		800
+Bedroll	ludeon.rimworld	yes	bedroll		bedroll	(1,2)	Fabric,Leathery	40			Undefined	yes	Furniture	Building_Bed						Standable		600
+BedrollDouble	ludeon.rimworld	yes	double bedroll		doublebed	(2,2)	Fabric,Leathery	85			Undefined	yes	Furniture	Building_Bed						Standable		1100
+BiofuelRefinery	ludeon.rimworld	yes	biofuel refinery		bench	(3,2)			Steel:150;ComponentIndustrial:3	BiofuelRefining	Industrial		Production	Building_WorkTable	yes					PassThroughOnly	craft	2000
+Brewery	ludeon.rimworld	yes	brewery		bench	(3,1)			WoodLog:120;Steel:30	Brewing	Neolithic	yes	Production	Building_WorkTable						PassThroughOnly	cook	2000
+ButcherSpot	ludeon.rimworld	yes	butcher spot		workspot	(1,1)					Undefined		Production	Building_WorkTable						Standable	butcher,cook	0
+Campfire	ludeon.rimworld	yes	campfire		fire,bench	(1,1)			WoodLog:20		Undefined		Temperature	Building_WorkTable		WoodLog	10	21		PassThroughOnly	cook	200
+CaravanPackingSpot	ludeon.rimworld	yes	caravan hitching spot		picket	(1,1)					Undefined		Misc	Building						Standable		0
+ChemfuelPoweredGenerator	ludeon.rimworld	yes	chemfuel powered generator		lamp	(2,2)			Steel:100;ComponentIndustrial:3	Electricity	Industrial		Power	Building	yes	Chemfuel	6	6		PassThroughOnly		2500
+Couch	ludeon.rimworld	yes	couch		seat	(2,1)	Fabric,Leathery	200		ComplexFurniture	Medieval	yes	Furniture	Building								20000
+CraftingSpot	ludeon.rimworld	yes	crafting spot		workspot	(1,1)					Undefined		Production	Building_WorkTable						Standable	art,cook,craft	0
+DiningChair	ludeon.rimworld	yes	dining chair		seat	(1,1)	Metallic,Woody	45		ComplexFurniture	Medieval	yes	Furniture	Building								8000
+Door	ludeon.rimworld	yes	door		door	(1,1)	Metallic,Woody,Stony	25			Undefined		Structure	Building_Door					true			850
+DoubleBed	ludeon.rimworld	yes	double bed	Medieval	doublebed	(2,2)	Metallic,Woody,Stony	85		ComplexFurniture	Medieval	yes	Furniture	Building_Bed						PassThroughOnly		1500
+DoubleSleepingSpot	ludeon.rimworld	yes	double sleeping spot		doublebed	(2,2)					Undefined		Furniture	Building_Bed						Standable		0
+DrugLab	ludeon.rimworld	yes	drug lab		bench	(3,1)	Metallic,Woody	50	Steel:75;ComponentIndustrial:6	DrugProduction	Industrial	yes	Production	Building_WorkTable						PassThroughOnly	cook	3500
+ElectricCrematorium	ludeon.rimworld	yes	electric crematorium		bench	(3,2)	Stony	150	Steel:20;ComponentIndustrial:2	Electricity	Industrial		Production	Building_WorkTable_HeatPush	yes		6	12		Impassable		4500
+ElectricSmelter	ludeon.rimworld	yes	electric smelter		bench	(3,1)			Steel:170;ComponentIndustrial:2	Electricity	Industrial	yes	Production	Building_WorkTable_HeatPush	yes		6	9		PassThroughOnly	cook,craft	3500
+ElectricSmithy	ludeon.rimworld	yes	electric smithy		bench	(3,1)			Steel:100;ComponentIndustrial:3	Smithing,Electricity	Industrial	yes	Production	Building_WorkTable	yes			4		PassThroughOnly	art,craft	3000
+ElectricStove	ludeon.rimworld	yes	electric stove		bench	(3,1)			Steel:80;ComponentIndustrial:2	Electricity	Industrial	yes	Production	Building_WorkTable_HeatPush	yes			3		PassThroughOnly	cook,craft	2000
+ElectricTailoringBench	ludeon.rimworld	yes	electric tailor bench		bench	(3,1)	Metallic,Woody	75	Steel:50;ComponentIndustrial:2	ComplexClothing,Electricity	Industrial	yes	Production	Building_WorkTable	yes					PassThroughOnly	art,craft	2500
+FabricationBench	ludeon.rimworld	yes	fabrication bench		bench	(5,2)			Steel:200;ComponentIndustrial:12;ComponentSpacer:2	Fabrication	Industrial		Production	Building_WorkTable	yes					PassThroughOnly	craft	5000
+Fence	ludeon.rimworld	yes	fence		fence	(1,1)	Metallic,Woody,Stony	1			Undefined		Structure	Building						PassThroughOnly		70
+FenceGate	ludeon.rimworld	yes	fence gate		door	(1,1)	Metallic,Woody,Stony	25			Undefined		Structure	Building_Door					false			500
+FloodLight	ludeon.rimworld	yes	flood light		lamp	(1,1)			Steel:50	Electricity,ColoredLights	Industrial	yes	Furniture	Building	yes		24			PassThroughOnly		600
+FueledSmithy	ludeon.rimworld	yes	fueled smithy		bench	(3,1)			Steel:100	Smithing	Medieval	yes	Production	Building_WorkTable		WoodLog				PassThroughOnly	art,craft	3000
+FueledStove	ludeon.rimworld	yes	fueled stove		bench	(3,1)			Steel:80		Undefined	yes	Production	Building_WorkTable_HeatPush		WoodLog		4		PassThroughOnly	cook,craft	2000
+HandTailoringBench	ludeon.rimworld	yes	hand tailor bench		bench	(3,1)	Metallic,Woody	75		ComplexClothing	Medieval	yes	Production	Building_WorkTable						PassThroughOnly	art,craft	2000
+Heater	ludeon.rimworld	yes	heater		lamp	(1,1)			Steel:50;ComponentIndustrial:1	Electricity	Industrial	yes	Temperature	Building_Heater	yes		3			PassThroughOnly		1000
+Hopper	ludeon.rimworld	yes	hopper		storage	(1,1)			Steel:15	NutrientPaste	Industrial		Production	Building_Storage						PassThroughOnly		300
+HospitalBed	ludeon.rimworld	yes	hospital bed	Industrial	medical	(1,2)	Metallic	40	Steel:80;ComponentIndustrial:5	HospitalBed	Industrial	yes	Furniture	Building_Bed						PassThroughOnly		2800
+MarriageSpot	ludeon.rimworld	yes	marriage spot		spot	(2,1)					Undefined		Misc	Building_MarriageSpot						Standable		0
+OrnateDoor	ludeon.rimworld	yes	ornate door		door	(2,1)	Metallic,Woody,Stony	75	Gold:50	ComplexFurniture	Medieval		Structure	Building_MultiTileDoor					true			15000
+PartySpot	ludeon.rimworld	yes	party spot		spot	(1,1)					Undefined		Misc	Building						Standable		0
+RoyalBed	ludeon.rimworld	yes	royal bed	Medieval	doublebed	(2,2)	Metallic,Woody,Stony	100	Gold:50	ComplexFurniture	Medieval	yes	Furniture	Building_Bed						PassThroughOnly		50000
+Shelf	ludeon.rimworld	yes	shelf		storage	(2,1)	Metallic,Woody,Stony	20		ComplexFurniture	Medieval	yes	Furniture	Building_Storage						PassThroughOnly		500
+ShelfSmall	ludeon.rimworld	yes	small shelf		storage	(1,1)	Metallic,Woody,Stony	10		ComplexFurniture	Medieval	yes	Furniture	Building_Storage						PassThroughOnly		250
+SleepingSpot	ludeon.rimworld	yes	sleeping spot		sleepingspot	(1,2)					Undefined		Furniture	Building_Bed						Standable		0
+StandingLamp	ludeon.rimworld	yes	standing lamp		lamp	(1,1)			Steel:20	Electricity	Industrial	yes	Furniture	Building	yes		12			PassThroughOnly		300
+Stool	ludeon.rimworld	yes	stool		seat	(1,1)	Metallic,Woody,Stony	25			Undefined	yes	Furniture	Building								450
+SunLamp	ludeon.rimworld	yes	sun lamp		lamp	(1,1)			Steel:40	Electricity	Industrial	yes	Furniture	Building_SunLamp	yes		14	3		PassThroughOnly		330
+Table1x2c	ludeon.rimworld	yes	table (1x2)		table	(1,2)	Metallic,Woody,Stony	28			Undefined	yes	Furniture	Building						PassThroughOnly		750
+Table2x2c	ludeon.rimworld	yes	table (2x2)		table	(2,2)	Metallic,Woody,Stony	50			Undefined	yes	Furniture	Building						PassThroughOnly		1500
+Table2x4c	ludeon.rimworld	yes	table (2x4)		table	(2,4)	Metallic,Woody,Stony	95			Undefined	yes	Furniture	Building						PassThroughOnly		3000
+Table3x3c	ludeon.rimworld	yes	table (3x3)		table	(3,3)	Metallic,Woody,Stony	100			Undefined	yes	Furniture	Building						PassThroughOnly		3300
+TableButcher	ludeon.rimworld	yes	butcher table		bench	(3,1)	Metallic,Woody	75	WoodLog:20		Undefined	yes	Production	Building_WorkTable						PassThroughOnly	butcher,cook	2000
+TableMachining	ludeon.rimworld	yes	machining table		bench	(3,1)			Steel:150;ComponentIndustrial:5	Machining	Industrial	yes	Production	Building_WorkTable	yes		5			PassThroughOnly	butcher,craft	3000
+TableSculpting	ludeon.rimworld	yes	art bench		bench	(3,1)	Metallic,Woody	75	Steel:50		Undefined	yes	Production	Building_WorkTable						PassThroughOnly		2500
+TableStonecutter	ludeon.rimworld	yes	stonecutter's table		bench	(3,1)	Metallic,Woody	75	Steel:30	Stonecutting	Medieval	yes	Production	Building_WorkTable_HeatPush						PassThroughOnly	craft	2000
+TorchLamp	ludeon.rimworld	yes	torch lamp		torch	(1,1)			WoodLog:20		Undefined		Furniture	Building		WoodLog	10	3.5		PassThroughOnly		100
+TorchWallLamp	ludeon.rimworld	yes	wall torch lamp		torch	(1,1)			WoodLog:15		Undefined		Furniture	Building		WoodLog	9	3.5		Standable		100
+Wall	ludeon.rimworld	yes	wall		wall	(1,1)	Metallic,Woody,Stony	5			Undefined		Structure	Building					true	Impassable		135
+WallLamp	ludeon.rimworld	yes	wall lamp		lamp	(1,1)			Steel:15	Electricity	Industrial	yes	Furniture	Building	yes		11			Standable		330
+WoodFiredGenerator	ludeon.rimworld	yes	wood-fired generator		lamp	(2,2)			Steel:100;ComponentIndustrial:2	Electricity	Industrial		Power	Building	yes	WoodLog	6	6		PassThroughOnly		2500
+AtmosphericHeater	ludeon.rimworld.anomaly	yes	atmospheric heater		lamp	(3,3)			Shard:2;Bioferrite:150;Steel:150;ComponentIndustrial:8	AtmosphericHeater	Undefined		Anomaly	Building	yes	Bioferrite	5	120		PassThroughOnly		12000
+BioferriteGenerator	ludeon.rimworld.anomaly	yes	bioferrite generator		lamp	(3,2)			Shard:1;ComponentIndustrial:4;Bioferrite:100;Steel:50	BioferriteGenerator	Undefined		Power	Building_BioferriteGenerator	yes	Bioferrite	8	12		PassThroughOnly		12000
+BioferriteShaper	ludeon.rimworld.anomaly	yes	bioferrite shaper		bench	(3,1)			ComponentIndustrial:2;Bioferrite:40;Steel:50	BioferriteShaping	Undefined	yes	Anomaly	Building_WorkTable	yes		5			PassThroughOnly	craft	3000
+HoldingSpot	ludeon.rimworld.anomaly	yes	holding spot		spot	(3,3)					Undefined		Anomaly	Building_HoldingPlatform						Standable		0
+ProximityDetector	ludeon.rimworld.anomaly	yes	proximity detector		lamp	(1,1)			ComponentIndustrial:1;Bioferrite:15	ProximityDetector	Undefined	yes	Anomaly	Building_ProximityDetector	yes		4.9			PassThroughOnly		6000
+PsychicRitualSpot	ludeon.rimworld.anomaly	yes	psychic ritual spot		spot	(3,3)				BasicPsychicRituals	Undefined		Anomaly	Building						Standable		0
+SecurityDoor	ludeon.rimworld.anomaly	yes	security door		door	(2,1)			Plasteel:50;ComponentIndustrial:2	SecurityDoor	Industrial		Structure	Building_MultiTileDoor	yes				true			6000
+SerumCentrifuge	ludeon.rimworld.anomaly	yes	serum lab		bench	(2,2)			Shard:1;ComponentIndustrial:2;Bioferrite:80;Steel:100	SerumSynthesis	Undefined	yes	Anomaly	Building_WorkTable	yes		5			PassThroughOnly		3000
+BabySleepingSpot	ludeon.rimworld.biotech	yes	baby sleeping spot		crib	(1,1)					Undefined		Furniture	Building_Bed						Standable		0
+Crib	ludeon.rimworld.biotech	yes	crib	Medieval	crib	(1,1)	Metallic,Woody,Stony	25			Undefined	yes	Furniture	Building_Bed						PassThroughOnly		400
+DeathrestCasket	ludeon.rimworld.biotech	yes	deathrest casket		bed	(1,2)			Steel:100;ComponentIndustrial:3	Deathrest	Industrial	yes	Biotech	Building_Bed	yes					PassThroughOnly		2500
+SubcoreEncoder	ludeon.rimworld.biotech	yes	subcore encoder		bench	(3,2)			Steel:100;ComponentIndustrial:3	BasicMechtech	Industrial	yes	Biotech	Building_WorkTable	yes					PassThroughOnly		8000
+Autobong	ludeon.rimworld.ideology	yes	autobong		lamp	(2,2)	Metallic,Woody	100	SmokeleafLeaves:25;ComponentIndustrial:3	MicroelectronicsBasics	Industrial		Ideology	Building	yes	SmokeleafLeaves	10			PassThroughOnly		800
+Darktorch	ludeon.rimworld.ideology	yes	darktorch		torch	(1,1)			WoodLog:20		Undefined		Furniture	Building		WoodLog	7	3.5		PassThroughOnly		100
+DarktorchFungus	ludeon.rimworld.ideology	yes	fungus darktorch		torch	(1,1)			RawFungus:20		Undefined		Furniture	Building		RawFungus	7	3.5		PassThroughOnly		100
+KneelPillow	ludeon.rimworld.ideology	yes	kneel pillow		seat	(1,1)	Fabric,Leathery	25			Undefined	yes	Ideology	Building								2400
+KneelSheet	ludeon.rimworld.ideology	yes	kneel sheet		seat	(2,2)	Fabric,Leathery	80			Undefined	yes	Ideology	Building								2400
+LightBall	ludeon.rimworld.ideology	yes	lightball		lamp	(1,1)			Steel:30;ComponentIndustrial:1	Electricity	Industrial	yes	Ideology	Building	yes		7			PassThroughOnly		1000
+Loudspeaker	ludeon.rimworld.ideology	yes	loudspeaker		lamp	(1,1)			Steel:80;ComponentIndustrial:2	Electricity	Industrial	yes	Ideology	Building	yes		3			PassThroughOnly		1000
+Pew	ludeon.rimworld.ideology	yes	pew		seat	(3,1)	Metallic,Woody,Stony	100			Undefined	yes	Ideology	Building								2400
+RitualSpot	ludeon.rimworld.ideology	yes	ritual spot		spot	(1,1)					Undefined		Ideology	Building						Standable		0
+SlabBed	ludeon.rimworld.ideology	yes	slab bed	Medieval	bed	(1,2)	Metallic,Woody,Stony	30		ComplexFurniture	Medieval	yes	Furniture	Building_Bed						PassThroughOnly		400
+SlabDoubleBed	ludeon.rimworld.ideology	yes	slab double bed	Medieval	doublebed	(2,2)	Metallic,Woody,Stony	85		ComplexFurniture	Medieval	yes	Furniture	Building_Bed						PassThroughOnly		750
+AncientDoubleBed	ludeon.rimworld.odyssey	yes	rusted double bed		doublebed	(2,2)					Undefined			Building_Bed						PassThroughOnly		800
+AncientSingleBed	ludeon.rimworld.odyssey	yes	rusted bed		bed	(1,2)					Undefined			Building_Bed						PassThroughOnly		800
+GravshipHull	ludeon.rimworld.odyssey	yes	gravship hull		wall	(1,1)	Metallic	7		BasicGravtech	Industrial		Odyssey	Building					true	Impassable		300
+Brazier	ludeon.rimworld.royalty	yes	brazier		brazier	(1,1)	Metallic,Stony	50		ComplexFurniture	Medieval	yes	Furniture	Building		WoodLog	10	3.5		PassThroughOnly		1000
+DarklightBrazier	ludeon.rimworld.royalty	yes	darklight brazier		brazier	(1,1)	Metallic,Stony	50		ComplexFurniture	Medieval	yes	Furniture	Building		WoodLog	10	3.5		PassThroughOnly		1000
+GrandThrone	ludeon.rimworld.royalty	yes	grand meditation throne		seat	(3,2)	Metallic,Stony	300	Gold:75	ComplexFurniture	Medieval	yes	Furniture	Building_Throne								40000
+MeditationSpot	ludeon.rimworld.royalty	yes	meditation spot		spot	(1,1)					Undefined		Misc	Building						Standable		0
+ShipLandingBeacon	ludeon.rimworld.royalty	yes	ship landing beacon		lamp	(1,1)			Steel:40;ComponentIndustrial:1	Electricity	Industrial	yes	Misc	Building	yes		2					800
+Throne	ludeon.rimworld.royalty	yes	meditation throne		seat	(1,1)	Metallic,Woody,Stony	125		ComplexFurniture	Medieval	yes	Furniture	Building_Throne								10000
+GrandThroneA	lumi.throneplus	no	Spiky Flat Grand Throne		seat	(1,1)	Metallic,Stony	300	Gold:75	ComplexFurniture	Medieval	yes	Furniture	Building_Throne								10000
+GrandThroneB	lumi.throneplus	no	Love Demand Grand Throne		seat	(1,1)	Metallic,Stony	300	Gold:75	ComplexFurniture	Medieval	yes	Furniture	Building_Throne								10000
+GrandThroneC	lumi.throneplus	no	Fancy Sit Grand Throne		seat	(1,1)	Fabric,Leathery	300	Gold:75	ComplexFurniture	Medieval	yes	Furniture	Building_Throne								10000
+ThroneA	lumi.throneplus	no	Raid Stabber throne		seat	(1,1)	Metallic,Woody,Stony	125		ComplexFurniture	Medieval	yes	Furniture	Building_Throne								10000
+ThroneB	lumi.throneplus	no	Round Back throne		seat	(1,1)	Metallic,Woody,Stony	125		ComplexFurniture	Medieval	yes	Furniture	Building_Throne								10000
+ThroneC	lumi.throneplus	no	Half chair throne		seat	(1,1)	Metallic,Woody,Stony	125		ComplexFurniture	Medieval	yes	Furniture	Building_Throne								10000
+LWM_BigShelf	lwm.deepstorage	yes	Big Shelf		storage	(2,1)	Metallic,Woody,Stony	75		ComplexFurniture	Medieval	yes	LWM_DS_Storage	Building_Storage						PassThroughOnly		1200
+LWM_Clothing_Rack	lwm.deepstorage	yes	Clothing Rack		storage	(2,1)	Metallic,Woody	50		ComplexFurniture	Medieval	yes	LWM_DS_Storage	Building_Storage						PassThroughOnly		580
+LWM_DeepStorage_Skip	lwm.deepstorage	yes	Skip		storage	(2,1)	Metallic	90		ComplexFurniture	Medieval	yes	LWM_DS_Storage	Building_Storage						PassThroughOnly		780
+LWM_FabricHamper	lwm.deepstorage	yes	Hampers		storage	(2,1)	Fabric,Leathery	90	Steel:25	ComplexFurniture	Medieval	yes	LWM_DS_Storage	Building_Storage						PassThroughOnly		300
+LWM_Food_Basket	lwm.deepstorage	yes	Food Basket		storage	(2,1)	Metallic,Woody,Stony	80			Undefined	yes	LWM_DS_Storage	Building_Storage						PassThroughOnly		600
+LWM_Hayloft	lwm.deepstorage	yes	Hayloft		storage	(2,1)	Woody,Metallic	85		ComplexFurniture	Medieval	yes	LWM_DS_Storage	Building_Storage						PassThroughOnly		600
+LWM_MealRack	lwm.deepstorage	yes	Meal Tray Rack		storage	(2,1)	Metallic,Woody	75		ComplexFurniture	Medieval	yes	LWM_DS_Storage	Building_Storage						PassThroughOnly		800
+LWM_Meat_Hook	lwm.deepstorage	yes	Meat Hook		storage	(1,1)	Metallic	75		Smithing	Medieval	yes	LWM_DS_Storage	Building_Storage						PassThroughOnly		600
+LWM_Medicine_Cabinet	lwm.deepstorage	yes	Medicine Cabinet		storage	(2,1)	Metallic,Woody	60		ComplexFurniture	Medieval	yes	LWM_DS_Storage	Building_Storage						PassThroughOnly		500
+LWM_Pallet	lwm.deepstorage	yes	Pallet		storage	(2,1)	Woody,Metallic	65		ComplexFurniture	Medieval	yes	LWM_DS_Storage	Building_Storage						PassThroughOnly		600
+LWM_Pallet_Covered	lwm.deepstorage	yes	Pallet with wrapping		storage	(2,1)	Woody,Metallic,Woody,Metallic	65	Cloth:40	ComplexFurniture	Medieval	yes	LWM_DS_Storage	Building_Storage						PassThroughOnly		800
+LWM_Safe	lwm.deepstorage	yes	Safe		storage	(1,1)	Metallic	300		ComplexFurniture,ComplexFurniture,Machining	Industrial	yes	LWM_DS_Storage	Building_Storage						PassThroughOnly		3000
+LWM_VeryBigShelf	lwm.deepstorage	yes	Very Big Shelves		storage	(2,1)	Metallic,Woody,Stony	120	Steel:45	ComplexFurniture	Medieval	yes	LWM_DS_Storage	Building_Storage						PassThroughOnly		1500
+LWM_WeaponsCabinet	lwm.deepstorage	yes	Weapons Cabinet		storage	(1,1)	Woody,Metallic	75		ComplexFurniture,ComplexFurniture	Medieval	yes	LWM_DS_Storage	Building_Storage						PassThroughOnly		600
+LWM_WeaponsLocker	lwm.deepstorage	yes	Weapons Locker		storage	(1,1)	Metallic	70		ComplexFurniture,ComplexFurniture,Machining	Industrial	yes	LWM_DS_Storage	Building_Storage						PassThroughOnly		600
+Maal_GravFieldExtender	maal.gravcamp	yes	camp torch	Neolithic	torch	(1,1)	Woody	50		Gravcamp_research	Neolithic	yes	Odyssey	Building		WoodLog	10	3.5		PassThroughOnly		750
+Maal_GravFieldExtender_light	maal.gravcamp	yes	camp light	Industrial	lamp	(1,1)			Steel:100	Gravcamp_research,ColoredLights	Industrial	yes	Odyssey	Building	yes		24			PassThroughOnly		3500
+Maal_PilotConsole	maal.gravcamp	yes	camp planning table	Neolithic	table	(2,3)	Metallic,Woody,Stony	150		Gravcamp_research	Neolithic	yes	Odyssey	Building						PassThroughOnly		2500
+BioReactor	mlie.bioreactor	no	BioReactor (2X2)		lamp	(2,2)			Steel:120;ComponentIndustrial:4	BiofuelRefining	Industrial		Power	BioReactor.Building_BioReactor	yes	Foods	4			PassThroughOnly		3200
+BioReactorBig	mlie.bioreactor	no	BioReactor (3X3)		lamp	(3,3)			Steel:240;ComponentIndustrial:6	BiofuelRefining	Industrial		Power	BioReactor.Building_BioReactor	yes	Foods	5			PassThroughOnly		7500
+BioReactorCircleEX	mlie.bioreactor	no	BioReactor (4X4)		lamp	(4,4)			Steel:360;ComponentIndustrial:8	BiofuelRefining	Industrial		Power	BioReactor.Building_BioReactor	yes	Foods	6			PassThroughOnly		12000
+BioReactorCircleLarge	mlie.bioreactor	no	BioReactor (3X3)		lamp	(3,3)			Steel:240;ComponentIndustrial:6	BiofuelRefining	Industrial		Power	BioReactor.Building_BioReactor	yes	Foods	5			PassThroughOnly		7500
+BioReactorEx	mlie.bioreactor	no	BioReactor (4X4)		lamp	(4,4)			Steel:360;ComponentIndustrial:8	BiofuelRefining	Industrial		Power	BioReactor.Building_BioReactor	yes	Foods	6			PassThroughOnly		12000
+DSP_Barrel	mlie.deepstorageplus	yes	Barrel		storage	(1,1)	Metallic	25	WoodLog:120	ComplexFurniture	Medieval	yes	LWM_DS_Storage	Building_Storage						PassThroughOnly		3000
+DSP_Bin	mlie.deepstorageplus	yes	Bin		storage	(1,1)	Metallic,Woody,Stony	100		ComplexFurniture,Machining	Industrial	yes	LWM_DS_Storage	Building_Storage						PassThroughOnly		600
+DSP_OrganFridge	mlie.deepstorageplus	yes	Organ Fridge		storage	(2,1)			Steel:120;ComponentIndustrial:3	ComplexFurniture,Machining,AirConditioning	Industrial	yes	LWM_DS_Storage	Building_Storage			2.5			PassThroughOnly		9000
+DSP_WoodRack	mlie.deepstorageplus	yes	Firewood Rack		storage	(2,1)	Metallic,Woody,Stony	150	WoodLog:60	ComplexFurniture,ComplexFurniture	Medieval	yes	LWM_DS_Storage	Building_Storage						PassThroughOnly		600
+Outland_BasicWorkbench	neronix17.outland.core	no	basic workbench		bench	(3,1)	Woody	200	Steel:30		Undefined	yes	Outland_Outland	Building_WorkTable						PassThroughOnly		2000
+Outland_DiggingSpot	neronix17.outland.core	no	digging spot		workspot	(1,1)					Undefined		Outland_Outland	Building_WorkTable						Standable		0
+Outland_Forge	neronix17.outland.core	no	forge	Medieval	bench	(3,2)	Stony	100	Steel:40	Smithing	Medieval	yes	Outland_Outland	Building_WorkTable		WoodLog	3			PassThroughOnly		5000
+Outland_FormingWorkbench	neronix17.outland.core	no	forming workbench		bench	(3,1)	Woody	200	Steel:30		Undefined	yes	Outland_Outland	Building_WorkTable						PassThroughOnly		2000
+Outland_Kiln	neronix17.outland.core	no	kiln	Medieval	bench	(2,2)	Stony	80	Steel:20		Undefined	yes	Outland_Outland	Building_WorkTableAutonomous		WoodLog	3			PassThroughOnly		5000
+Outland_ResearchingSpot	neronix17.outland.core	no	research spot		spot	(1,1)					Undefined		Outland_Outland	Building_ResearchBench						Standable		0
+Outland_StoneMedievalDoor	neronix17.outland.core	no	medieval door		door	(1,1)	Stony	30			Undefined		Outland_Outland	Building_Door					true			1000
+Outland_TentDoor	neronix17.outland.core	no	tent door		door	(1,1)	Fabric,Leathery	15			Undefined		Outland_Outland	Building_Door					false			35
+Outland_TimberFrameWall	neronix17.outland.core	no	timber frame wall		wall	(1,1)			Outland_Clay:2;WoodLog:1;Hay:2		Undefined		Outland_Outland	Building					true	Impassable		150
+Outland_WideDoorStone	neronix17.outland.core	no	wide medieval door		door	(2,1)	Stony	100		ComplexFurniture	Medieval		Outland_Outland	Building_MultiTileDoor					true			15000
+Outland_WideDoorWooden	neronix17.outland.core	no	wide medieval door		door	(2,1)	Woody	100		ComplexFurniture	Medieval		Outland_Outland	Building_MultiTileDoor					true			15000
+Outland_WoodMedievalDoor	neronix17.outland.core	no	medieval door		door	(1,1)	Woody	30			Undefined		Outland_Outland	Building_Door					true			1000
+Outland_Kamado	neronix17.outland.eastbornempire	no	kamado		bench	(3,1)	Stony	60	Steel:20		Undefined	yes	Outland_Outland	Building_WorkTable_HeatPush		WoodLog		4		PassThroughOnly		2000
+Outland_WallBoxLantern	neronix17.outland.eastbornempire	no	wall box lantern		torch	(1,1)	Woody	5		ComplexFurniture	Medieval	yes	Outland_Outland	Building		WoodLog,Chemfuel	9			Standable		100
+Outland_WallBoxLantern_Darklight	neronix17.outland.eastbornempire	no	wall box lantern (darklight)		torch	(1,1)	Woody	5		ComplexFurniture	Medieval	yes	Outland_Outland	Building		WoodLog,Chemfuel	9			Standable		100
+Outland_WideDoorShoji	neronix17.outland.eastbornempire	no	wide shoji door		door	(2,1)	Woody	100		ComplexFurniture	Medieval		Outland_Outland	Building_MultiTileDoor					true			15000
+Outland_1x1Table	neronix17.outland.furnitureanddecor	no	table (1x1)		table	(1,1)	Woody	25		ComplexFurniture	Medieval	yes	Outland_Outland	Building						PassThroughOnly		750
+Outland_1x2Table	neronix17.outland.furnitureanddecor	no	table (1x2)		table	(1,2)	Woody	100		ComplexFurniture	Medieval	yes	Outland_Outland	Building						PassThroughOnly		5000
+Outland_2x2Table	neronix17.outland.furnitureanddecor	no	table (2x2)		table	(2,2)	Woody	50		ComplexFurniture	Medieval	yes	Outland_Outland	Building						PassThroughOnly		1500
+Outland_2x4Table	neronix17.outland.furnitureanddecor	no	table (2x4)		table	(2,4)	Woody	180		ComplexFurniture	Medieval	yes	Outland_Outland	Building						PassThroughOnly		8000
+Outland_3x3Table	neronix17.outland.furnitureanddecor	no	table (3x3)		table	(3,3)	Woody	240		ComplexFurniture	Medieval	yes	Outland_Outland	Building						PassThroughOnly		8000
+Outland_3x3TableHearth	neronix17.outland.furnitureanddecor	no	table (hearth)		hearth,table	(3,3)	Woody	240		ComplexFurniture	Medieval	yes	Outland_Outland	Building		WoodLog	10	21		PassThroughOnly		8000
+Outland_Barrel	neronix17.outland.furnitureanddecor	no	barrel		seat	(1,1)	Woody	25		ComplexFurniture	Medieval	yes	Outland_Outland	Building								560
+Outland_BedDouble	neronix17.outland.furnitureanddecor	no	double bed	Medieval	doublebed	(2,2)	Woody	85		ComplexFurniture	Medieval	yes	Outland_Outland	Building_Bed						PassThroughOnly		1400
+Outland_BedSingle	neronix17.outland.furnitureanddecor	no	bed	Medieval	bed	(1,2)	Woody	45		ComplexFurniture	Medieval	yes	Outland_Outland	Building_Bed						PassThroughOnly		800
+Outland_Bench	neronix17.outland.furnitureanddecor	no	bench		seat	(2,1)	Woody	85		ComplexFurniture	Medieval	yes	Outland_Outland	Building								12000
+Outland_Chair	neronix17.outland.furnitureanddecor	no	chair		seat	(1,1)	Woody	45		ComplexFurniture	Medieval	yes	Outland_Outland	Building								5000
+Outland_DiningChair	neronix17.outland.furnitureanddecor	no	dining chair		seat	(1,1)	Woody	45		ComplexFurniture	Medieval	yes	Outland_Outland	Building								7000
+Outland_EndTableWithLamp	neronix17.outland.furnitureanddecor	no	end table with lamp		torch	(1,1)	Woody	30	Steel:10	ComplexFurniture	Medieval	yes	Outland_Outland	Building		WoodLog,Chemfuel	9	2.5		PassThroughOnly		1000
+Outland_OilLantern	neronix17.outland.furnitureanddecor	no	oil lantern		torch	(1,1)			WoodLog:5;Steel:10	ComplexFurniture	Medieval	yes	Outland_Outland	Building		WoodLog,Chemfuel	9			Standable		100
+Outland_OilStreetLamp	neronix17.outland.furnitureanddecor	no	oil street lamp		torch	(1,1)			Steel:40;WoodLog:2	ComplexFurniture	Medieval		Outland_Outland	Building		WoodLog,Chemfuel	15			PassThroughOnly		250
+Outland_Shelf	neronix17.outland.furnitureanddecor	no	shelf		storage	(2,1)	Woody	45		ComplexFurniture	Medieval	yes	Outland_Outland	Building_Storage						PassThroughOnly		500
+Outland_Stone1x1Table	neronix17.outland.furnitureanddecor	no	table (1x1)		table	(1,1)	Stony	25		ComplexFurniture	Medieval	yes	Outland_Outland	Building						PassThroughOnly		750
+Outland_Stone1x2Table	neronix17.outland.furnitureanddecor	no	table (1x2)		table	(1,2)	Stony	100		ComplexFurniture	Medieval	yes	Outland_Outland	Building						PassThroughOnly		5000
+Outland_Stone2x2Table	neronix17.outland.furnitureanddecor	no	table (2x2)		table	(2,2)	Stony	50		ComplexFurniture	Medieval	yes	Outland_Outland	Building						PassThroughOnly		1500
+Outland_Stone2x4Table	neronix17.outland.furnitureanddecor	no	table (2x4)		table	(2,4)	Stony	180		ComplexFurniture	Medieval	yes	Outland_Outland	Building						PassThroughOnly		8000
+Outland_Stone3x3Table	neronix17.outland.furnitureanddecor	no	table (3x3)		table	(3,3)	Stony	240		ComplexFurniture	Medieval	yes	Outland_Outland	Building						PassThroughOnly		8000
+Outland_Stone3x3TableHearth	neronix17.outland.furnitureanddecor	no	table (hearth)		hearth,table	(3,3)	Stony	240		ComplexFurniture	Medieval	yes	Outland_Outland	Building		WoodLog	10	21		PassThroughOnly		8000
+Outland_StoneEndTableWithLamp	neronix17.outland.furnitureanddecor	no	end table with lamp		torch	(1,1)	Stony	30	Steel:10	ComplexFurniture	Medieval	yes	Outland_Outland	Building		WoodLog,Chemfuel	9	2.5		PassThroughOnly		1000
+Outland_StoneOilLantern	neronix17.outland.furnitureanddecor	no	oil lantern		torch	(1,1)			WoodLog:5;Steel:10	ComplexFurniture	Medieval	yes	Outland_Outland	Building		WoodLog,Chemfuel	9			Standable		100
+Outland_StoneOilStreetLamp	neronix17.outland.furnitureanddecor	no	oil street lamp		torch	(1,1)			Steel:40;WoodLog:2	ComplexFurniture	Medieval		Outland_Outland	Building		WoodLog,Chemfuel	15			PassThroughOnly		250
+Outland_StoneShelf	neronix17.outland.furnitureanddecor	no	shelf		storage	(2,1)	Stony	45		ComplexFurniture	Medieval	yes	Outland_Outland	Building_Storage						PassThroughOnly		500
+Outland_StoneStool	neronix17.outland.furnitureanddecor	no	stool		seat	(1,1)	Stony	25		ComplexFurniture	Medieval	yes	Outland_Outland	Building								560
+Outland_Stool	neronix17.outland.furnitureanddecor	no	stool		seat	(1,1)	Woody	25		ComplexFurniture	Medieval	yes	Outland_Outland	Building								560
+Outland_WallLantern	neronix17.outland.furnitureanddecor	no	wall lantern	Medieval	torch	(1,1)			WoodLog:7	ComplexFurniture	Medieval	yes	Outland_Outland	Building		WoodLog,Chemfuel				Standable		100
+Outland_WallLantern_Darklight	neronix17.outland.furnitureanddecor	no	wall lantern (darklight)	Medieval	torch	(1,1)			WoodLog:7	ComplexFurniture	Medieval	yes	Outland_Outland	Building		WoodLog,Chemfuel				Standable		100
+Tav_1x1Table	ods.tavern	no	sturdy table (1x1)		table	(1,1)	Woody	15			Undefined	yes	TavernFurniture	Building						PassThroughOnly		400
+Tav_1x2Counter	ods.tavern	no	counter (1x2)		table	(1,2)	Woody	50			Undefined	yes	TavernFurniture	Building						PassThroughOnly		750
+Tav_1x2Table	ods.tavern	no	sturdy table (1x2)		table	(1,2)	Woody	30			Undefined	yes	TavernFurniture	Building						PassThroughOnly		750
+Tav_1x3Counter	ods.tavern	no	counter (1x3)		table	(1,3)	Woody	75			Undefined	yes	TavernFurniture	Building						PassThroughOnly		1000
+Tav_2x2RoundTable	ods.tavern	no	sturdy round table (2x2)		table	(2,2)	Woody	50			Undefined	yes	TavernFurniture	Building						PassThroughOnly		1500
+Tav_2x2Table	ods.tavern	no	sturdy table (2x2)		table	(2,2)	Woody	50			Undefined	yes	TavernFurniture	Building						PassThroughOnly		1500
+Tav_Candleholder	ods.tavern	no	candleholder		torch	(1,1)	Metallic	20	TavTallow:10		Undefined	yes	TavernFurniture	Building		TavTallow,DV_Tallow,DankPyon_Tallow	9	1.5		Standable		300
+Tav_ChairA	ods.tavern	no	sturdy chair		seat	(1,1)	Woody	65		ComplexFurniture	Medieval	yes	TavernFurniture	Building								6000
+Tav_KitchenButch	ods.tavern	no	butcher counter		bench	(2,1)	Stony	20	WoodLog:50	ComplexFurniture	Medieval	yes	TavernFurniture	Building_WorkTable						PassThroughOnly		3000
+Tav_Oven	ods.tavern	no	tavern oven		bench	(3,1)	Stony	40	WoodLog:80	ComplexFurniture	Medieval	yes	TavernFurniture	Building_WorkTable						PassThroughOnly	cook	3000
+Tav_SoftArmchair	ods.tavern	no	soft armchair		seat	(1,1)			TavPadding:50;WoodLog:75	ComplexFurniture	Medieval	yes	TavernFurniture	Building								10000
+Tav_SoftBed	ods.tavern	no	soft bed	Medieval	bed	(1,2)	Woody	45	TavPadding:20	ComplexFurniture	Medieval	yes	TavernFurniture	Building_Bed						PassThroughOnly		2500
+Tav_SoftChair	ods.tavern	no	soft chair		seat	(1,1)	Woody	60	TavPadding:10	ComplexFurniture	Medieval	yes	TavernFurniture	Building								8000
+Tav_SoftDoubleBed	ods.tavern	no	double soft bed	Medieval	doublebed	(2,2)	Woody	85	TavPadding:40	ComplexFurniture	Medieval	yes	TavernFurniture	Building_Bed						PassThroughOnly		4000
+Tav_SoftStool	ods.tavern	no	soft stool		seat	(1,1)	Woody	25	TavPadding:10		Undefined	yes	TavernFurniture	Building								1500
+Tav_StoolA	ods.tavern	no	sturdy stool		seat	(1,1)	Woody	25			Undefined	yes	TavernFurniture	Building								450
+Tav_TableDecor	ods.tavern	no	decor table		bench	(3,1)	Woody	120		ComplexFurniture	Medieval	yes	TavernFurniture	Building_WorkTable						PassThroughOnly	craft	3000
+Tav_TableLight	ods.tavern	no	tavern candle		torch	(1,1)			TavTallow:10		Undefined	yes	TavernFurniture	Building		TavTallow,DV_Tallow,DankPyon_Tallow	9	1.5		PassThroughOnly		250
+Tav_TavernBench	ods.tavern	no	sturdy bench		seat	(2,1)	Woody	50			Undefined	yes	TavernFurniture	Building								1500
+Chemlamp	oskarpotocki.vanillafactionsexpanded.settlersmodule	yes	chemlamp		torch	(1,1)			Steel:20;Chemfuel:10	ComplexFurniture	Medieval	yes	Furniture	Building		Chemfuel	10			Standable		100
+ChemlampPost	oskarpotocki.vanillafactionsexpanded.settlersmodule	yes	chemlamp post		torch	(1,1)	Metallic,Woody,Stony	20	Chemfuel:10	ComplexFurniture	Medieval	yes	Furniture	Building		Chemfuel	10			PassThroughOnly		100
+DoorSaloon	oskarpotocki.vanillafactionsexpanded.settlersmodule	yes	saloon door		door	(1,1)	Metallic,Woody,Stony	15			Undefined		Structure	VFE_Settlers.Buildings.Building_SaloonDoor					false			500
+StoolBar	oskarpotocki.vanillafactionsexpanded.settlersmodule	yes	bar stool		seat	(1,1)	Metallic,Woody,Stony	20		ComplexFurniture	Medieval	yes	Furniture	Building								450
+TableCircular	oskarpotocki.vanillafactionsexpanded.settlersmodule	yes	circular table		table	(1,1)	Metallic,Woody,Stony	40			Undefined	yes	Furniture	Building						PassThroughOnly		1500
+VVE_GarageAutoDoor	oskarpotocki.vanillavehiclesexpanded	yes	auto garage door (1x4)		door	(4,1)	Metallic,Woody,Stony	100	ComponentIndustrial:8	VVE_BasicVehicles	Industrial		VF_Vehicles	VanillaVehiclesExpanded.GarageAutoDoor	yes				true	Impassable		4000
+VVE_GarageAutoDoorLarge	oskarpotocki.vanillavehiclesexpanded	yes	auto garage door (1x5)		door	(5,1)	Metallic,Woody,Stony	125	ComponentIndustrial:10	VVE_BasicVehicles	Industrial		VF_Vehicles	VanillaVehiclesExpanded.GarageAutoDoor	yes				true	Impassable		4250
+VVE_GarageBench	oskarpotocki.vanillavehiclesexpanded	yes	garage bench		bench	(5,2)			Steel:220;ComponentIndustrial:8	VVE_BasicVehicles	Industrial		VF_Vehicles	Building_WorkTable	yes					PassThroughOnly		5000
+VVE_GarageDoor	oskarpotocki.vanillavehiclesexpanded	yes	garage door (1x4)		door	(4,1)	Metallic,Woody,Stony	100		VVE_BasicVehicles	Industrial		VF_Vehicles	VanillaVehiclesExpanded.GarageDoor					true	Impassable		4000
+VVE_GarageDoorLarge	oskarpotocki.vanillavehiclesexpanded	yes	garage door (1x5)		door	(5,1)	Metallic,Woody,Stony	125		VVE_BasicVehicles	Industrial		VF_Vehicles	VanillaVehiclesExpanded.GarageDoor					true	Impassable		4250
+VFEC_CraftingBench	oskarpotocki.vfe.classical	yes	crafting bench		bench	(3,1)			WoodLog:50;Steel:25	VFEC_CraftingBench	Neolithic	yes	Production	Building_WorkTable						PassThroughOnly		2000
+VFEC_Tent	oskarpotocki.vfe.classical	yes	tent		tent	(1,2)	Fabric,Leathery	60		VFEC_LegionaryArmaments	Neolithic	yes	Misc	Building_Bed						PassThroughOnly		1200
+VFEC_WoodFiredCrematorium	oskarpotocki.vfe.classical	yes	wood-fired crematorium		bench	(3,2)	Stony	150		VFEC_WoodfiredCrematorium	Neolithic		Production	Building_WorkTable_HeatPush		WoodLog	6	12		Impassable		4500
+VFEE_Candelabra	oskarpotocki.vfe.empire	yes	candelabra		lamp	(1,1)	Woody,Metallic	30	Steel:20	VFEE_NobleDecorations	Medieval	yes	Furniture	Building	yes		7.9			PassThroughOnly		1000
+VFEE_GrandChair	oskarpotocki.vfe.empire	yes	grand chair		seat	(1,1)	Metallic,Woody,Stony	100		VFEE_NobleDecorations	Medieval	yes	Furniture	Building								10000
+VFEE_GrandTable	oskarpotocki.vfe.empire	yes	grand table		table	(3,6)	Metallic,Woody,Stony	200	Gold:10	VFEE_NobleDecorations	Medieval	yes	Furniture	Building						PassThroughOnly		50000
+VFEE_RoyalStool	oskarpotocki.vfe.empire	yes	royal stool		seat	(1,1)	Leathery,Fabric	30	Gold:20	VFEE_NobleDecorations	Medieval	yes	Furniture	Building								550
+VFEE_StellicThrone	oskarpotocki.vfe.empire	yes	stellic meditation throne		seat	(5,3)	Metallic,Stony	600	Gold:180	VFEE_StellicThrone	Industrial	yes	Furniture	Building_Throne								90000
+VFEI2_HiveDoor	oskarpotocki.vfe.insectoid2	yes	hive door		door	(1,1)				VFEI2_BasicHivetech	Medieval		VFEI2_Insectoids	Building_MultiTileDoor					true			2000
+VFEI2_InsectJellyWall	oskarpotocki.vfe.insectoid2	yes	insect jelly wall		wall	(1,1)			InsectJelly:4	VFEI2_BasicHivetech	Medieval		VFEI2_Insectoids	Building					true	Impassable		2000
+VFEI2_RoyalJellyWall	oskarpotocki.vfe.insectoid2	yes	royal jelly wall		wall	(1,1)			VFEI2_RoyalInsectJelly:4	VFEI2_ExoticHivetech	Industrial		VFEI2_Insectoids	Building					true	Impassable		2000
+VFEI2_StaticPod	oskarpotocki.vfe.insectoid2	yes	staticpod		lamp	(1,1)			InsectJelly:40	VFEI2_ExoticHivetech	Industrial	yes	VFEI2_Insectoids	VFEInsectoids.StaticPod	yes		2.9			PassThroughOnly		1500
+VFEI_HiveWall	oskarpotocki.vfe.insectoid2	yes	hive wall		wall	(1,1)				VFEI2_BasicHivetech	Medieval		VFEI2_Insectoids	Building					true	Impassable		2000
+VFEM2_2x1CastleDoor	oskarpotocki.vfe.medieval2	yes	castle door (medium)		door	(2,1)	Stony	130		VFEM2_MedievalArchitecture	Medieval		Structure	Building_MultiTileDoor					true			5500
+VFEM2_2x1CastleGate	oskarpotocki.vfe.medieval2	yes	castle gate (medium)		door	(2,1)	Stony	130	Steel:65	VFEM2_MedievalArchitecture	Medieval		Structure	VFEMedieval.CastleGate					true			5000
+VFEM2_3x1CastleDoor	oskarpotocki.vfe.medieval2	yes	castle door (large)		door	(3,1)	Stony	200		VFEM2_MedievalArchitecture	Medieval		Structure	Building_MultiTileDoor					true			7700
+VFEM2_3x1CastleGate	oskarpotocki.vfe.medieval2	yes	castle gate (large)		door	(3,1)	Stony	200	Steel:130	VFEM2_MedievalArchitecture	Medieval		Structure	VFEMedieval.CastleGate					true			7000
+VFEM2_4x1CastleDoor	oskarpotocki.vfe.medieval2	yes	castle door (grand)		door	(4,1)	Stony	280		VFEM2_MedievalArchitecture	Medieval		Structure	Building_MultiTileDoor					true			11000
+VFEM2_4x1CastleGate	oskarpotocki.vfe.medieval2	yes	castle gate (grand)		door	(4,1)	Stony	280	Steel:180	VFEM2_MedievalArchitecture	Medieval		Structure	VFEMedieval.CastleGate					true			9000
+VFEM2_AilmentsShelf	oskarpotocki.vfe.medieval2	yes	ailment's shelf		storage	(1,1)	Metallic,Woody,Stony	10		ComplexFurniture	Medieval	yes	Furniture	Building_Storage						PassThroughOnly		1800
+VFEM2_AlchemicalWorkbench	oskarpotocki.vfe.medieval2	yes	fueled draught lab		bench	(3,1)	Metallic,Woody	75	Steel:50	VFEM2_Alchemy	Medieval	yes	Production	Building_WorkTable		WoodLog				PassThroughOnly	craft	3000
+VFEM2_AlchemicalWorkbench_Electric	oskarpotocki.vfe.medieval2	yes	electric draught lab		bench	(3,1)	Metallic	75	Steel:50;ComponentIndustrial:1	VFEM2_Alchemy,Electricity	Industrial	yes	Production	Building_WorkTable	yes					PassThroughOnly	craft	3500
+VFEM2_CastleWall	oskarpotocki.vfe.medieval2	yes	castle wall		wall	(1,1)	Stony	10		VFEM2_MedievalArchitecture	Medieval		Structure	VFEMedieval.CastleWall					true	Impassable		370
+VFEM2_ClothWall	oskarpotocki.vfe.medieval2	yes	cloth wall		wall	(1,1)	Leathery,Fabric	5		VFEM2_MedievalArchitecture	Medieval		Structure	Building					true	Impassable		65
+VFEM2_DoubleFurBed	oskarpotocki.vfe.medieval2	yes	double fur bed	Medieval	doublebed	(2,2)	Fabric,Leathery	75	WoodLog:45	ComplexFurniture	Medieval	yes	Furniture	Building_Bed						PassThroughOnly		1500
+VFEM2_FurBed	oskarpotocki.vfe.medieval2	yes	fur bed	Medieval	bed	(1,2)	Fabric,Leathery	35	WoodLog:25	ComplexFurniture	Medieval	yes	Furniture	Building_Bed						PassThroughOnly		750
+VFEM2_Hearth	oskarpotocki.vfe.medieval2	yes	hearth		hearth	(2,1)	Stony	150		ComplexFurniture	Medieval		Temperature	Building		WoodLog	15	32		PassThroughOnly		100
+VFEM2_HearthDarklight	oskarpotocki.vfe.medieval2	yes	darklight hearth		hearth	(2,1)	Stony	150		ComplexFurniture	Medieval		Temperature	Building		WoodLog	15	32		PassThroughOnly		100
+VFEM2_Palisade	oskarpotocki.vfe.medieval2	yes	palisade		fence	(1,1)	Woody	3			Undefined		Structure	Building					true	Impassable		200
+VFEM2_TimberedWall	oskarpotocki.vfe.medieval2	yes	timbered wall		wall	(1,1)	Stony	5	WoodLog:1	VFEM2_MedievalArchitecture	Medieval		Structure	Building					true	Impassable		200
+VFET_LargeFire	oskarpotocki.vfe.tribals	yes	large fire		hearth	(2,2)			WoodLog:150	VFET_Fire	Undefined		Temperature	VFETribals.LargeFire		WoodLog	18.17	42		PassThroughOnly		1200
+VFET_ResearchSpot	oskarpotocki.vfe.tribals	yes	research spot		spot	(1,1)				VFET_Culture	Undefined		Misc	Building_ResearchBench						Standable		0
+VFET_SittingSpot	oskarpotocki.vfe.tribals	yes	sitting spot		seat	(1,1)					Undefined		Furniture	Building						Standable		0
+pphhyy_Barbarians_Building_ArmorBench	pphhyy.barbariansmosubmod	no	Armor Bench		bench	(3,1)	Metallic,Stony,Woody	50		pphhyy_Barbarians_Research	Undefined	yes	Production	Building_WorkTable						PassThroughOnly	craft	2000
+pphhyy_Barbarians_Building_WeaponBench	pphhyy.barbariansmosubmod	no	Weapon Bench		bench	(3,1)	Metallic,Stony,Woody	50		pphhyy_Barbarians_Research	Undefined	yes	Production	Building_WorkTable						PassThroughOnly	craft	2000
+RimFridge_QuadRefrigerator	rimfridge.kv.rw	yes	Quad Refrigerator		lamp	(2,2)			Steel:60;ComponentIndustrial:2	AirConditioning	Industrial	yes	Temperature	RimFridge.RimFridge_Building	yes		2.5			PassThroughOnly		1800
+RimFridge_Refrigerator	rimfridge.kv.rw	yes	Dual Refrigerator		lamp	(2,1)			Steel:40;ComponentIndustrial:1	AirConditioning	Industrial	yes	Temperature	RimFridge.RimFridge_Building	yes		2.5			PassThroughOnly		1050
+RimFridge_SingleRefrigerator	rimfridge.kv.rw	yes	Single Refrigerator		lamp	(1,1)			Steel:20;ComponentIndustrial:1	AirConditioning	Industrial	yes	Temperature	RimFridge.RimFridge_Building	yes		2.5			PassThroughOnly		750
+RimFridge_SingleWallRefrigerator	rimfridge.kv.rw	yes	Wall Single Refrigerator		lamp,wall	(1,1)			Steel:20;ComponentIndustrial:1	AirConditioning	Industrial	yes	Temperature	RimFridge.RimFridge_MultiSidedWallBuilding	yes		2.5		true	Impassable		750
+RimFridge_WallRefrigerator	rimfridge.kv.rw	yes	Wall Dual Refrigerator		lamp,wall	(2,1)			Steel:40;ComponentIndustrial:1	AirConditioning	Industrial	yes	Temperature	RimFridge.RimFridge_MultiSidedWallBuilding	yes		2.5		true	Impassable		1050
+GDTable	rimsenal.core	yes	equipment assembly facility		bench	(3,1)			Steel:120;ComponentIndustrial:4	DefenceTech	Industrial	yes	Production	Building_WorkTable	yes		5			PassThroughOnly	craft	2800
+JITable	rimsenal.core	yes	magnetic forge		bench	(3,1)			Steel:150;Plasteel:20;ComponentIndustrial:8	MoltenTech	Spacer	yes	Production	Building_WorkTable	yes		5			PassThroughOnly	craft	4500
+TETable	rimsenal.core	yes	kinetic field manipulator		bench	(3,1)			Steel:75;Plasteel:30;ComponentIndustrial:8	KineticTech	Spacer	yes	Production	Building_WorkTable	yes		5			PassThroughOnly	craft	4500
+YPTable	rimsenal.core	yes	crystalline structure foundry		bench	(3,1)			Steel:20;Plasteel:40;ComponentIndustrial:8	ShardTech	Spacer	yes	Production	Building_WorkTable	yes		5			PassThroughOnly	craft	4500
+FedTable	rimsenal.federation	yes	energy crucible		bench	(3,1)			CrucibleCore:8;Foerum:60;Plasteel:15;ComponentIndustrial:6	CrucibleTech	Spacer	yes	Production	Building_WorkTable	yes		5			PassThroughOnly	craft	4500
+FeralTable	rimsenal.feral	yes	Scav bench		bench	(3,1)			ChunkSlagSteel:4;Steel:50;ComponentIndustrial:2	Smithing	Medieval	yes	Production	Building_WorkTable	yes		3			PassThroughOnly		3500
+Turret_SupTurret	rimsenal.security	yes	suppressor turret		lamp	(2,2)			Steel:175;Plasteel:35;ComponentIndustrial:3;ComponentSpacer:1	FocusTech	Spacer	yes	Security	Building_TurretGun	yes	Plasteel	2			PassThroughOnly		17000
+Turret_SuvTurret	rimsenal.security	yes	kinetic sniper Turret		lamp	(2,2)			Steel:175;Plasteel:35;ComponentIndustrial:3;ComponentSpacer:1	KineticTech	Spacer	yes	Security	Building_TurretGun	yes	Plasteel	2			PassThroughOnly		17000
+NutrientProcessor	rimsenal.spacer	yes	nutrient processor		bench	(2,2)			Steel:175;ComponentIndustrial:4;ComponentSpacer:2	NutrientProcessing	Spacer	yes	Production	Building_WorkTable_HeatPush	yes			3		PassThroughOnly	cook	3000
+PortableReactorSpacer	rimsenal.spacer	yes	portable reactor		lamp	(1,1)			Steel:175;Plasteel:75;ComponentIndustrial:16;Uranium:20	PortableReactor	Spacer	yes	Power	Building	yes	Uranium	4			PassThroughOnly		6500
+SurvivalStation	rimsenal.spacer	yes	survival station		bench	(1,1)			Steel:75;ComponentIndustrial:4;ComponentSpacer:1	Fabrication	Industrial	yes	Production	Building_WorkTable_HeatPush	yes		3	3		PassThroughOnly	butcher,cook,craft	2000
+AA_BlackJellyWall	sarg.alphaanimals	yes	black jelly wall		wall	(1,1)			AA_BlackInsectJelly:4	VFEI2_ExoticHivetech	Industrial		VFEI2_Insectoids	Building					true	Impassable		2000
+AA_HexagelCoreReactor	sarg.alphaanimals	yes	hexagel core reactor		lamp	(6,6)			Steel:100;AA_SkySteel:200;ComponentIndustrial:12;ComponentSpacer:2	AdvancedFabrication	Industrial		Power	Building	yes	AA_HexagelCore	8	6		Impassable		20000
+AB_ExoticAutoDoor	sarg.alphabiomes	yes	exotic autodoor		door	(1,1)	AB_Exotic,AB_ExoticWooden,AB_ExoticMetals	25	Steel:50;ComponentIndustrial:2	Autodoors	Industrial		Structure	Building_Door	yes				true			1100
+AB_ExoticDoor	sarg.alphabiomes	yes	exotic door		door	(1,1)	AB_Exotic,AB_ExoticWooden,AB_ExoticMetals	40			Undefined		Structure	AlphaBiomes.Building_FastDoor					true			850
+AB_ExoticWall	sarg.alphabiomes	yes	exotic wall		wall	(1,1)	AB_Exotic,AB_ExoticWooden,AB_ExoticMetals	6			Undefined		Structure	Building					true	Impassable		135
+AB_PropaneDrain	sarg.alphabiomes	yes	propane drain		storage	(1,1)			Steel:60	BiofuelRefining	Industrial	yes	Furniture	Building_Storage						Standable		600
+AB_PropaneFueledSmithy	sarg.alphabiomes	yes	propane smithy		bench	(3,1)			Steel:100;AB_CrystalWood:30	Smithing	Medieval	yes	Production	Building_WorkTable		AB_Propane				PassThroughOnly		3000
+AB_PropaneSmelter	sarg.alphabiomes	yes	propane smelter		bench	(3,1)			Steel:170;ComponentIndustrial:2;AB_CrystalWood:50	Electricity	Industrial	yes	Production	Building_WorkTable_HeatPush		AB_Propane	6			PassThroughOnly		3500
+AB_PropaneStove	sarg.alphabiomes	yes	propane stove		bench	(3,1)			Steel:90;AB_CrystalWood:30	Electricity	Industrial	yes	Furniture	Building_WorkTable_HeatPush		AB_Propane		4		PassThroughOnly		2000
+AB_PropaneTableMachining	sarg.alphabiomes	yes	propane machining table		bench	(3,1)			Steel:150;ComponentIndustrial:5;AB_CrystalWood:35	Machining	Industrial	yes	Production	Building_WorkTable		AB_Propane	5			PassThroughOnly		3000
+AB_PropaneTap	sarg.alphabiomes	yes	propane tap		storage	(1,1)			Steel:60	BiofuelRefining	Industrial	yes	Furniture	Building_Storage						PassThroughOnly		600
+AC_ArtisanWorkshop	sarg.alphacrafts	yes	artisan workshop		bench	(2,1)			Steel:15;WoodLog:50	AC_MiscellaneousArtisanalCrafting	Medieval	yes	Production	Building_WorkTable						PassThroughOnly	cook	800
+AC_ArtisanalGrinder	sarg.alphacrafts	yes	artisanal grinder		bench	(1,1)			Steel:50;Plasteel:5	AC_ArtisanalGrinding	Industrial	yes	Production	Building_WorkTable	yes					PassThroughOnly	cook	2000
+AC_BottlingStation	sarg.alphacrafts	yes	bottling station		bench	(2,1)			Steel:75;ComponentIndustrial:1	AC_BottlingTechniques	Industrial	yes	Production	Building_WorkTable	yes					PassThroughOnly	cook	1500
+AC_DairyProcessingStation	sarg.alphacrafts	yes	dairy processing station		bench	(1,1)			Steel:50;ComponentIndustrial:1	AC_ArtisanDairyProcessing	Industrial	yes	Production	Building_WorkTable	yes					PassThroughOnly	cook	1500
+AC_OilPressWorkshop	sarg.alphacrafts	yes	oil press workshop		bench	(1,1)			Steel:50;Chemfuel:10	AC_OilExtraction	Industrial	yes	Production	Building_WorkTable	yes					PassThroughOnly	cook	1000
+AG_ForsakenForge	sarg.alphagenes	yes	forsaken forge		bench	(3,1)			Steel:75;ComponentIndustrial:2	Smithing,Electricity	Industrial	yes	Production	Building_WorkTable	yes			4		PassThroughOnly		2000
+AG_RuinedHospitalBed	sarg.alphagenes	yes	ancient hospital bed	Industrial	medical	(1,2)	Metallic	40	Steel:80;ComponentIndustrial:5		Undefined	yes		Building_Bed						PassThroughOnly		2800
+AI_AdvancedAnimalProstheticsTable	sarg.alphaimplants	yes	advanced animal prosthetics and bionics table		bench	(2,1)			Steel:50;Plasteel:25;ComponentSpacer:1	AI_AdvancedAnimalBionics	Spacer	yes	Production	Building_WorkTable	yes					PassThroughOnly		15000
+AI_AnimalProstheticsTable	sarg.alphaimplants	yes	animal prosthetics and bionics table		bench	(2,1)			Steel:50;ComponentIndustrial:1	Electricity,Prosthetics	Industrial	yes	Production	Building_WorkTable	yes					PassThroughOnly		7500
+AM_AncientBed	sarg.alphamemes	yes	restored ancient bed	Medieval	bed	(1,2)	Metallic	30		ComplexFurniture	Medieval	yes	Furniture	Building_Bed						PassThroughOnly		800
+AM_AncientDoubleBed	sarg.alphamemes	yes	restored ancient double bed	Medieval	doublebed	(2,2)	Metallic	70		ComplexFurniture	Medieval	yes	Furniture	Building_Bed						PassThroughOnly		1500
+AM_AncientFence	sarg.alphamemes	yes	restored ancient fence		fence	(1,1)	Metallic,Stony	2			Undefined		Security	Building						PassThroughOnly		70
+AM_AncientOperatingTable	sarg.alphamemes	yes	restored ancient operating table	Industrial	medical	(1,2)	Metallic	35	Steel:80;ComponentIndustrial:5	HospitalBed	Industrial	yes	Furniture	Building_Bed						PassThroughOnly		2700
+AM_CubicBed	sarg.alphamemes	yes	cubic bed	Medieval	bed	(1,2)	Metallic,Woody,Stony	45		ComplexFurniture	Medieval	yes	Furniture	Building_Bed						PassThroughOnly		800
+AM_CubicHospitalBed	sarg.alphamemes	yes	cubic hospital bed	Industrial	medical	(1,2)	Metallic	40	Steel:80;ComponentIndustrial:5	HospitalBed	Industrial	yes	Furniture	Building_Bed						PassThroughOnly		2800
+AM_DoubleCubicBed	sarg.alphamemes	yes	double cubic bed	Medieval	doublebed	(2,2)	Metallic,Woody,Stony	85		ComplexFurniture	Medieval	yes	Furniture	Building_Bed						PassThroughOnly		1500
+AM_DoubleHoraxianBed	sarg.alphamemes	yes	double horaxian bed	Medieval	doublebed	(2,2)	Metallic,Woody,Stony	85		ComplexFurniture	Medieval	yes	Furniture	Building_Bed						PassThroughOnly		1500
+AM_DoubleStoneBedroll	sarg.alphamemes	yes	double stone-framed bedroll	Medieval	doublebed	(2,2)	Metallic,Woody,Stony	85		ComplexFurniture,ComplexFurniture	Medieval	yes	Furniture	Building_Bed						PassThroughOnly		2000
+AM_EatingMat	sarg.alphamemes	yes	eating mat (2x2)		table	(2,2)	Metallic,Woody,Stony		Hay:50		Undefined	yes	Furniture	Building						PassThroughOnly		1500
+AM_HoraxianBed	sarg.alphamemes	yes	horaxian bed	Medieval	bed	(1,2)	Metallic,Woody,Stony	45		ComplexFurniture	Medieval	yes	Furniture	Building_Bed						PassThroughOnly		800
+AM_Neolithic_StoneTable_1x2c	sarg.alphamemes	yes	crude stone table (1x2)		table	(1,2)	Stony	28			Undefined	yes	Furniture	Building						PassThroughOnly		750
+AM_Neolithic_StoneTable_2x2c	sarg.alphamemes	yes	crude stone table (2x2)		table	(2,2)	Stony	50			Undefined	yes	Furniture	Building						PassThroughOnly		1500
+AM_Neolithic_StoneTable_2x4c	sarg.alphamemes	yes	crude stone table (2x4)		table	(2,4)	Stony	95			Undefined	yes	Furniture	Building						PassThroughOnly		3000
+AM_Neolithic_StoneTable_3x3c	sarg.alphamemes	yes	crude stone table (3x3)		table	(3,3)	Stony	100			Undefined	yes	Furniture	Building						PassThroughOnly		3300
+AM_Neolithic_WoodenTable_1x2c	sarg.alphamemes	yes	crude wooden table (1x2)		table	(1,2)	Woody	28			Undefined	yes	Furniture	Building						PassThroughOnly		750
+AM_Neolithic_WoodenTable_2x2c	sarg.alphamemes	yes	crude wooden table (2x2)		table	(2,2)	Woody	50			Undefined	yes	Furniture	Building						PassThroughOnly		1500
+AM_Neolithic_WoodenTable_2x4c	sarg.alphamemes	yes	crude wooden table (2x4)		table	(2,4)	Woody	95			Undefined	yes	Furniture	Building						PassThroughOnly		3000
+AM_Neolithic_WoodenTable_3x3c	sarg.alphamemes	yes	crude wooden table (3x3)		table	(3,3)	Woody	100			Undefined	yes	Furniture	Building						PassThroughOnly		3300
+AM_StoneBedroll	sarg.alphamemes	yes	stone-framed bedroll	Medieval	bedroll	(1,2)	Metallic,Woody,Stony	45		ComplexFurniture,ComplexFurniture	Medieval	yes	Furniture	Building_Bed						PassThroughOnly		1500
+AP_PrefabDeliverySpot	sarg.alphaprefabs	yes	prefab delivery spot		spot	(1,1)					Undefined		Misc	Building						Standable		0
+VFEPD_AP_LamplightA_Functional	sarg.alphapropsparks	yes	street light, functional		lamp	(1,1)			Steel:20	Electricity	Industrial		Furniture	VFEProps.Building_SubstractsSilver	yes		12			Standable		300
+VFEPD_AP_LamplightB_Functional	sarg.alphapropsparks	yes	street light, functional		lamp	(1,1)			Steel:20	Electricity	Industrial		Furniture	VFEProps.Building_SubstractsSilver	yes		12			Standable		300
+VFEPD_AP_LamplightC_Functional	sarg.alphapropsparks	yes	street light, functional		lamp	(1,1)			Steel:20	Electricity	Industrial		Furniture	VFEProps.Building_SubstractsSilver	yes		12			Standable		300
+VFEPD_AP_LamplightD_Functional	sarg.alphapropsparks	yes	street light, functional		lamp	(1,1)			Steel:20	Electricity	Industrial		Furniture	VFEProps.Building_SubstractsSilver	yes		12			Standable		300
+VFEPD_AP_LamplightE_Functional	sarg.alphapropsparks	yes	street light, functional		lamp	(1,1)			Steel:20	Electricity	Industrial		Furniture	VFEProps.Building_SubstractsSilver	yes		12			Standable		300
+VFEPD_AP_LamplightL_Functional	sarg.alphapropsparks	yes	street light, functional		lamp	(1,1)			Steel:20	Electricity	Industrial		Furniture	VFEProps.Building_SubstractsSilver	yes		12			Standable		300
+VFEPD_AP_LamplightT_Functional	sarg.alphapropsparks	yes	street light, functional		lamp	(1,1)			Steel:20	Electricity	Industrial		Furniture	VFEProps.Building_SubstractsSilver	yes		12			Standable		300
+VFEPD_AP_ParkBench_Functional	sarg.alphapropsparks	yes	park bench, functional		seat	(2,1)	Metallic,Woody,Stony	25			Undefined		Furniture	VFEProps.Building_SubstractsSilver						PassThroughOnly		450
+VFEPD_AP_SimpleParkBench_Functional	sarg.alphapropsparks	yes	park bench, functional		seat	(2,1)	Metallic,Woody,Stony	25			Undefined		Furniture	VFEProps.Building_SubstractsSilver						PassThroughOnly		450
+VFEPD_AP_StoneBench_Functional	sarg.alphapropsparks	yes	stone bench, functional		seat	(2,1)	Stony	25			Undefined		Furniture	VFEProps.Building_SubstractsSilver						PassThroughOnly		450
+RB_Advanced_Honey_Centrifuge	sarg.rimbees	yes	advanced honey centrifuge		bench	(5,1)	Metallic	350	RB_ComponentBioInterface:10	RB_AdvancedCentrifugation,Electricity	Industrial		RB_Bees	Building_WorkTable	yes					PassThroughOnly		5500
+RB_BeeResearchTable	sarg.rimbees	yes	bee research table		bench	(1,1)	Woody	50		RB_BasicBeekeeping	Medieval		RB_Bees	Building_WorkTable						PassThroughOnly	craft	500
+RB_Beekeeping_Workbench_Building	sarg.rimbees	yes	beekeeping workbench		bench	(3,1)	Woody	150		RB_BasicBeekeeping	Medieval		RB_Bees	Building_WorkTable						PassThroughOnly	cook,craft	2500
+RB_Honey_Centrifuge	sarg.rimbees	yes	honey centrifuge		bench	(3,1)	Metallic	150		RB_BasicBeekeeping	Medieval		RB_Bees	Building_WorkTable	yes					PassThroughOnly		3500
+RB_WaxCandle	sarg.rimbees	yes	candle		torch	(1,1)	RB_Waxy	25		RB_BeeswaxLighting	Medieval	yes	RB_Bees	Building		RB_Beeswax	10	0.5		Standable		2500
+RF_ArcaneCraftingBench	sierra.rf.medievaloverhaul	no	arcane crafting bench		bench	(3,2)	Metallic,Woody,Stony	125	DankPyon_IronIngot:20;DankPyon_ComponentBasic:20	RF_ArcaneCrafting	Undefined	yes	Production	Building_WorkTable						PassThroughOnly		3000
+RF_DarkstoneLamp	sierra.rf.medievaloverhaul	no	darkstone lamp		torch	(1,1)	Metallic,Woody,Stony	30	DankPyon_Citrine:5;DankPyon_Sapphire:15	RF_ArcaneLighting	Undefined	yes	Furniture	Building			6	1		Standable		450
+RF_GlowstoneLamp	sierra.rf.medievaloverhaul	no	glowstone lamp		torch	(1,1)	Metallic,Woody,Stony	30	DankPyon_Citrine:20	RF_ArcaneLighting	Undefined	yes	Furniture	Building			6	1		Standable		450
+RF_VE_DarkstoneWallLamp	sierra.rf.medievaloverhaul	no	darkstone wall lamp		torch	(1,1)	Metallic,Woody,Stony	25	DankPyon_Citrine:5;DankPyon_Sapphire:10	RF_ArcaneLighting	Undefined		Furniture	Building				0.75		Standable		350
+RF_VE_GlowstoneWallLamp	sierra.rf.medievaloverhaul	no	glowstone wall lamp		torch	(1,1)	Metallic,Woody,Stony	25	DankPyon_Citrine:15	RF_ArcaneLighting	Undefined		Furniture	Building				0.75		Standable		350
+RF_VE_SunstoneWallLamp	sierra.rf.medievaloverhaul	no	sunstone wall lamp		torch	(1,1)	Metallic,Woody,Stony	25	DankPyon_Emerald:5;DankPyon_Sapphire:5;DankPyon_Ruby:5	RF_ArcaneLighting	Undefined		Furniture	Building				1		Standable		350
+BenchWoolLoom	telkir.tmods.morefloors	yes	wool loom		bench	(3,1)			Steel:20;WoodLog:40	CarpetMaking	Medieval	yes	Production	Building_WorkTable						PassThroughOnly	craft	750
+PW_FossilResurrector	themoonitself.pokeworld	yes	Fossil Resurrector		bench	(3,2)			Steel:150;ComponentIndustrial:4;ComponentSpacer:1	PW_FossilResurrectorResearch	Industrial		Production	Building_WorkTable	yes					Impassable		10000
+PW_PortableComputer	themoonitself.pokeworld	yes	Portable Computer		lamp	(1,1)			Steel:40;ComponentIndustrial:3	PW_StorageSystem	Industrial	yes	Misc	Pokeworld.Building_PortableComputer	yes		3			PassThroughOnly		5000
+TableGemcutting	torann.arimworldofmagic	yes	gemcrafting table		bench	(3,1)	Metallic,Stony	150	Steel:100	TM_Enchanting	Neolithic	yes	Production	Building_WorkTable						PassThroughOnly	craft	7800
+TableMagicPrinter	torann.arimworldofmagic	yes	scribing table		bench	(1,1)	Metallic,Stony,Woody	80	Steel:20	TM_MagicScribing	Neolithic	yes	Production	Building_WorkTable						PassThroughOnly		6000
+T_Cauldron	trickity.seal.spirits	no	rendering cauldron		fire,bench	(2,2)			Steel:200	T_BioferriteRend	Undefined	yes	Anomaly	Building_WorkTable		WoodLog	5	5		PassThroughOnly	cook	1000
+T_SealedDoor	trickity.seal.spirits	no	sealing door		door	(2,1)	Metallic,Woody,Stony,Metallic,Woody,Stony	250		T_SealedDoor	Undefined		Structure	Building_MultiTileDoor					true			6000
+DA_BloodCandles	van.dacrypts	no	blood candles		torch	(1,1)			WoodLog:5;HemogenPack:1	DA_BloodflameCatacomb	Undefined	yes	Furniture	Building			2	3.5		PassThroughOnly		250
+DA_BloodflameSepulchralBrazier	van.dacrypts	no	bloodflame sepulchral brazier		brazier	(1,1)	Metallic,Stony	60	HemogenPack:5	DA_BloodflameCatacomb	Undefined	yes	Furniture	Building		WoodLog	10	6.5				1800
+DA_Candles	van.dacrypts	no	candles		torch	(1,1)			WoodLog:5	DA_Catacombs	Undefined	yes	Furniture	Building			2	3.5		PassThroughOnly		250
+DA_DarkCandles	van.dacrypts	no	dark candles		torch	(1,1)			WoodLog:5	DA_Catacombs	Undefined	yes	Furniture	Building			2	3.5		PassThroughOnly		250
+DA_DarklightSepulchralBrazier	van.dacrypts	no	darklight sepulchral brazier		brazier	(1,1)	Metallic,Stony	60		DA_Catacombs	Undefined	yes	Furniture	Building		WoodLog	10	6.5				1800
+DA_OssuaryWall	van.dacrypts	no	ossuary wall		wall	(1,1)	Metallic,Woody,Stony	5		DA_Catacombs	Undefined		Structure	Building					true	Impassable		135
+DA_SepulchralBrazier	van.dacrypts	no	sepulchral brazier		brazier	(1,1)	Metallic,Stony	60		DA_Catacombs	Undefined	yes	Furniture	Building		WoodLog	10	6.5				1800
+VGE_Agrocell	vanillaexpanded.gravship	yes	agrocell		lamp	(1,3)			Steel:80;ComponentSpacer:1;GravlitePanel:30	AdvancedGravtech,Hydroponics	Spacer		Odyssey	VanillaGravshipExpanded.Building_Agrocell	yes		3			Standable		2800
+VGE_AstrofuelDrain	vanillaexpanded.gravship	yes	astrofuel drain		storage	(1,1)			Steel:50	BasicGravtech	Industrial		VGE_Fuel	Building_Storage						PassThroughOnly		600
+VGE_AstrofuelGenerator	vanillaexpanded.gravship	yes	astrofuel generator		lamp	(2,2)			Steel:100;ComponentIndustrial:3	VGE_GravshipPower	Spacer		VGE_Fuel	Building	yes	VGE_Astrofuel	6	6		PassThroughOnly		2500
+VGE_AstrofuelTap	vanillaexpanded.gravship	yes	astrofuel tap		storage	(1,1)			Steel:50	BasicGravtech	Industrial		VGE_Fuel	Building_Storage						PassThroughOnly		600
+VGE_CompactDrugLab	vanillaexpanded.gravship	yes	compact drug lab		bench	(2,1)			Steel:60;ComponentIndustrial:6;GravlitePanel:6	VGE_CompactWorkspaces,DrugProduction	Spacer	yes	Odyssey	Building_WorkTable						PassThroughOnly		4600
+VGE_CompactFabBench	vanillaexpanded.gravship	yes	compact fabrication bench		bench	(3,1)			Steel:160;ComponentIndustrial:12;ComponentSpacer:2;GravlitePanel:6	VGE_CompactWorkspaces,Fabrication	Spacer	yes	Odyssey	Building_WorkTable						PassThroughOnly		7000
+VGE_CompactMachiningTable	vanillaexpanded.gravship	yes	compact machining table		bench	(2,1)			Steel:100;ComponentIndustrial:6;GravlitePanel:6	VGE_CompactWorkspaces,Machining	Spacer	yes	Odyssey	Building_WorkTable			5			PassThroughOnly		4200
+VGE_CompactRefinery	vanillaexpanded.gravship	yes	compact biofuel refinery		bench	(2,1)			Steel:100;ComponentIndustrial:3;GravlitePanel:6	VGE_CompactWorkspaces,BiofuelRefining	Spacer	yes	Odyssey	Building_WorkTable						PassThroughOnly		2500
+VGE_CompactSmithy	vanillaexpanded.gravship	yes	compact smithy		bench	(2,1)			Steel:80;ComponentIndustrial:3;GravlitePanel:6	VGE_CompactWorkspaces,Smithing	Spacer	yes	Odyssey	Building_WorkTable				4		PassThroughOnly		4200
+VGE_CompactStove	vanillaexpanded.gravship	yes	compact stove		bench	(2,1)			Steel:60;ComponentIndustrial:2;GravlitePanel:6	VGE_GravshipLiving	Spacer	yes	Odyssey	Building_WorkTable_HeatPush				2.5		PassThroughOnly		2200
+VGE_CompactTailor	vanillaexpanded.gravship	yes	compact tailor bench		bench	(2,1)			Steel:90;ComponentIndustrial:2;GravlitePanel:6	VGE_CompactWorkspaces,ComplexClothing	Spacer	yes	Odyssey	Building_WorkTable						PassThroughOnly		3000
+VGE_CrewBunkBed	vanillaexpanded.gravship	yes	crew bunk bed	Spacer	bed	(1,2)	Metallic	60	GravlitePanel:10	VGE_GravshipLiving,ComplexFurniture	Spacer	yes	Odyssey	Building_Bed						PassThroughOnly		1600
+VGE_GravhulkEngine	vanillaexpanded.gravship	yes	gravhulk engine		lamp	(5,5)			Gravcore:5;GravlitePanel:200;ComponentSpacer:16;Plasteel:200	AdvancedGravtech	Spacer	yes	VGE_Platform	Building_GravEngine	yes		12			PassThroughOnly		94000
+VGE_GravjumperEngine	vanillaexpanded.gravship	yes	gravjumper engine		lamp	(1,1)			Gravcore:1;GravlitePanel:50;ComponentIndustrial:4;Steel:60	BasicGravtech	Industrial	yes	VGE_Platform	Building_GravEngine	yes		5			PassThroughOnly		18900
+VGE_GravshipShelf	vanillaexpanded.gravship	yes	gravship shelf	Spacer	storage	(2,1)	Metallic,Woody,Stony,Metallic	20	GravlitePanel:5	ComplexFurniture,VGE_GravshipLiving	Spacer	yes	Odyssey	Building_Storage						PassThroughOnly		1000
+VGE_GravshipStructuralBeam	vanillaexpanded.gravship	yes	gravship structural beam		wall	(1,1)		0	GravlitePanel:5;Steel:5	StandardGravtech	Industrial		VGE_Platform	Building					true	Impassable		750
+VGE_IndustrialAstrofuelGenerator	vanillaexpanded.gravship	yes	industrial astrofuel generator		lamp	(3,3)			Steel:180;ComponentIndustrial:6	VGE_AstrofuelRefining	Spacer		VGE_Fuel	Building	yes	VGE_Astrofuel	8	12		PassThroughOnly		3500
+VGE_LargeHeatsink	vanillaexpanded.gravship	yes	large heatsink		lamp	(3,3)			Steel:200;Gold:60;ComponentIndustrial:4	VGE_HeatDissipation	Spacer		VGE_Platform	Building	yes		9.17			PassThroughOnly		4800
+VGE_MedbayBed	vanillaexpanded.gravship	yes	medbay bed	Spacer	medical	(1,2)	Metallic	60	GravlitePanel:20;ComponentIndustrial:5	VGE_GravshipLiving,HospitalBed	Spacer	yes	Odyssey	Building_Bed						PassThroughOnly		3400
+VGE_OxygenCanisterEmptier	vanillaexpanded.gravship	yes	oxygen canister emptier		storage	(1,1)			Steel:50	VGE_OxygenNetwork	Spacer		VGE_Vacuum	Building_Storage						PassThroughOnly		600
+VGE_OxygenCanisterFiller	vanillaexpanded.gravship	yes	oxygen canister filler		storage	(1,1)			Steel:50	VGE_OxygenNetwork	Spacer		VGE_Vacuum	Building_Storage						PassThroughOnly		600
+VGE_SmallHeatsink	vanillaexpanded.gravship	yes	small heatsink		lamp	(2,2)			Steel:140;Gold:30;ComponentIndustrial:3	BasicGravtech	Industrial		VGE_Platform	Building	yes		7.17			PassThroughOnly		3260
+VGE_EnemyGravEngine	vanillaexpanded.gravship2	yes	enemy gravship engine		lamp	(3,3)			Gravcore:1;GravlitePanel:60;ComponentSpacer:4;Steel:90		Undefined		VGE_Designer	VanillaGravshipExpanded2.Building_EnemyGravEngine	yes		8			PassThroughOnly		
+VGE_EnemyGravhulkEngine	vanillaexpanded.gravship2	yes	enemy gravhulk engine		lamp	(5,5)			Gravcore:1;GravlitePanel:100;ComponentSpacer:8;Plasteel:100		Undefined		VGE_Designer	VanillaGravshipExpanded2.Building_EnemyGravEngine	yes		12			PassThroughOnly		
+VGE_EnemyGravjumperEngine	vanillaexpanded.gravship2	yes	enemy gravjumper engine		lamp	(1,1)			Gravcore:1;GravlitePanel:25;ComponentIndustrial:2;Steel:30		Undefined		VGE_Designer	VanillaGravshipExpanded2.Building_EnemyGravEngine	yes		5			PassThroughOnly		
+VGE_EnemyGravlockTether	vanillaexpanded.gravship2	yes	enemy gravlock tether		lamp	(5,5)			Gravcore:1;GravlitePanel:200;ComponentSpacer:12;Plasteel:150		Undefined		VGE_Designer	VanillaGravshipExpanded2.Building_EnemyGravEngine	yes		15			PassThroughOnly		
+VGE_GravshipArmor	vanillaexpanded.gravship2	yes	gravship armor		wall	(1,1)	Metallic	14	GravlitePanel:1	VGE_GravshipDefenses	Spacer		VGE_Platform	Building					true	Impassable		900
+VGE_OrbitalPirateFortifiedWall	vanillaexpanded.gravship2	yes	fortified wall		wall	(1,1)		0			Undefined		VGE_Designer	Building					true	Impassable		135
+VHGE_GasLamp	vanillaexpanded.helixiengas	yes	gas lamp		torch	(1,1)			Steel:20	VHGE_GasExtraction	Industrial	yes	Furniture	Building			12			PassThroughOnly		300
+VHGE_GasPoweredCrematorium	vanillaexpanded.helixiengas	yes	gas-powered crematorium		bench	(3,2)	Stony	150	Steel:20;ComponentIndustrial:2	VHGE_GasExtraction	Industrial		Production	PipeSystem.Building_ResourceWorkTable_HeatPush			6			Impassable		4500
+VHGE_GasPoweredRefinery	vanillaexpanded.helixiengas	yes	gas-powered refinery		bench	(3,2)			Steel:150;ComponentIndustrial:3	BiofuelRefining,VHGE_GasExtraction	Industrial		Production	PipeSystem.Building_ResourceWorkTable_HeatPush						PassThroughOnly		2000
+VHGE_GasPoweredSmelter	vanillaexpanded.helixiengas	yes	gas-powered smelter		bench	(3,1)			Steel:170;ComponentIndustrial:2	VHGE_GasExtraction	Industrial	yes	Production	PipeSystem.Building_ResourceWorkTable_HeatPush			6			PassThroughOnly		3500
+VHGE_GasPoweredSmithy	vanillaexpanded.helixiengas	yes	gas-powered smithy		bench	(3,1)			Steel:100;ComponentIndustrial:3	VHGE_GasExtraction	Industrial	yes	Production	PipeSystem.Building_ResourceWorkTable_HeatPush						PassThroughOnly		3000
+VHGE_GasPoweredStove	vanillaexpanded.helixiengas	yes	gas-powered stove		bench	(3,1)			Steel:80;ComponentIndustrial:2	VHGE_GasExtraction	Industrial	yes	Production	PipeSystem.Building_ResourceWorkTable_HeatPush						PassThroughOnly		2000
+VHGE_GasSunLamp	vanillaexpanded.helixiengas	yes	gas sun lamp		torch	(1,1)			Steel:50	Electricity,VHGE_GasExtraction	Industrial	yes	Furniture	Building_SunLamp			14	3		PassThroughOnly		330
+VHGE_GasWallLamp	vanillaexpanded.helixiengas	yes	gas wall lamp		torch	(1,1)			Steel:20	VHGE_GasExtraction	Industrial	yes	Furniture	Building			11			Standable		330
+VHGE_HelixienGenerator	vanillaexpanded.helixiengas	yes	gas powered generator		lamp	(2,2)			Steel:100;ComponentIndustrial:3	Electricity,VHGE_GasExtraction	Industrial		Power	Building	yes		6	6		PassThroughOnly		2500
+VHGE_IndustrialHelixienGenerator	vanillaexpanded.helixiengas	yes	industrial gas powered generator		lamp	(3,3)			Steel:180;ComponentIndustrial:6	VFE_IndustrialGenerators,VHGE_GasExtraction	Industrial		Power	Building	yes		8	12		PassThroughOnly		3500
+VDE_DryadNest	vanillaexpanded.ideo.dryads	yes	dryad nest		animalbed	(1,1)			WoodLog:75		Undefined	yes		Building_Bed						PassThroughOnly		400
+VRecyclingE_ElectricRecyclingWorkbench	vanillaexpanded.recycling	yes	electric-powered recycling bench		bench	(3,1)			Steel:120;ComponentIndustrial:4	VRecyclingE_BasicRecycling	Industrial	yes	Biotech	Building_WorkTable	yes					PassThroughOnly	craft	3000
+VRecyclingE_GarbageCompactor	vanillaexpanded.recycling	yes	garbage compactor		lamp	(3,2)	Stony,Metallic	150	Steel:40;ComponentIndustrial:2	VRecyclingE_ComplexRecycling	Spacer		Biotech	VanillaRecyclingExpanded.Building_Compactor	yes		3.44	12		Impassable		4500
+VRecyclingE_RecyclingWorkbench	vanillaexpanded.recycling	yes	recycling bench		bench	(3,1)			Steel:140	VRecyclingE_BasicRecycling	Industrial	yes	Biotech	Building_WorkTable						PassThroughOnly	craft	2200
+VTE_IndustrialHeater	vanillaexpanded.temperature	yes	industrial heater		lamp	(2,1)			Steel:90;ComponentIndustrial:2	Electricity	Industrial		Temperature	VanillaTemperatureExpanded.Buildings.Building_TwoCellHeater	yes		5.95			Impassable		2400
+VTE_WallHeater	vanillaexpanded.temperature	yes	wall heater		lamp,wall	(1,1)			Steel:60;ComponentIndustrial:1	AirConditioning	Industrial		Temperature	VanillaTemperatureExpanded.Buildings.Building_HeaterWithOffset	yes		3		true	Impassable		1200
+VTE_WallMountedHeater	vanillaexpanded.temperature	yes	wall-mounted heater		lamp	(1,1)			Steel:40;ComponentIndustrial:1	Electricity	Industrial		Temperature	VanillaTemperatureExpanded.Buildings.Building_HeaterWithOffset	yes		3			Standable		800
+VAERoy_SwanNest	vanillaexpanded.vaeroy	yes	swan nest		animalbed	(1,1)			WoodLog:1		Undefined			Building_Bed						PassThroughOnly		180
+VBE_TypewritersTable	vanillaexpanded.vbookse	yes	typewriter table		bench	(3,1)			WoodLog:100;Steel:20;ComponentIndustrial:1	VBE_Printing	Industrial	yes	Production	Building_WorkTable	yes					PassThroughOnly	art,cook,craft,medicine	3500
+VBE_WritersTable	vanillaexpanded.vbookse	yes	writers table		bench	(3,1)			WoodLog:120	VBE_Writing	Medieval	yes	Production	Building_WorkTable						PassThroughOnly	art,cook,craft,medicine	2000
+VBE_Bar	vanillaexpanded.vbrewe	yes	bar		bench	(3,1)	Metallic,Woody	150	Steel:30;ComponentIndustrial:2	VBE_MixologyResearch	Industrial	yes	Production	Building_WorkTable						PassThroughOnly	cook	2500
+VBE_EspressoMachineBuilding	vanillaexpanded.vbrewecandt	yes	espresso machine		bench	(1,1)			Steel:45;ComponentIndustrial:1	VBE_EspressoMachine	Industrial	yes	Production	Building_WorkTable	yes					PassThroughOnly	cook	800
+VCHE_ChemfuelDrain	vanillaexpanded.vchemfuele	yes	chemfuel drain		storage	(1,1)			Steel:60	BiofuelRefining	Industrial	yes	VCHE_PipeNetworks	Building_Storage						Standable		600
+VCHE_ChemfuelTap	vanillaexpanded.vchemfuele	yes	chemfuel tap		storage	(1,1)			Steel:60	BiofuelRefining	Industrial	yes	VCHE_PipeNetworks	Building_Storage						PassThroughOnly		600
+VCHE_DeepchemDrain	vanillaexpanded.vchemfuele	yes	deepchem drain		storage	(1,1)			Steel:60	BiofuelRefining	Industrial	yes	VCHE_PipeNetworks	Building_Storage						Standable		600
+VCHE_DeepchemTap	vanillaexpanded.vchemfuele	yes	deepchem tap		storage	(1,1)			Steel:60	BiofuelRefining	Industrial	yes	VCHE_PipeNetworks	Building_Storage						PassThroughOnly		600
+VCE_CanningMachine	vanillaexpanded.vcooke	yes	canning machine		bench	(1,1)			Steel:100;ComponentIndustrial:1	VCE_Canning,Electricity	Industrial	yes	Production	Building_WorkTable	yes					PassThroughOnly		1800
+VCE_CondimentPrepTable	vanillaexpanded.vcooke	yes	condiment prep table		bench	(2,1)			Steel:80	VCE_CondimentsResearch	Neolithic	yes	Production	Building_WorkTable						PassThroughOnly	cook	1000
+VCE_DeepFrier	vanillaexpanded.vcooke	yes	deep fryer		bench	(1,1)			Steel:75;Chemfuel:20	VCE_DeepFrying	Industrial	yes	Production	Building_WorkTable	yes	Chemfuel		6		PassThroughOnly		1500
+VCE_Grill	vanillaexpanded.vcooke	yes	grill		fire,bench	(1,1)			Steel:75;WoodLog:20	VCE_Grilling	Medieval	yes	Production	Building_WorkTable		WoodLog	3	6		PassThroughOnly	cook	800
+VCE_ElectricHauteSection	vanillaexpanded.vcookehaute	yes	electric haute section		bench	(3,2)			Steel:140;ComponentIndustrial:2;Silver:200	VCE_HauteCuisine	Industrial	yes	Production	Building_WorkTable	yes			3		PassThroughOnly	cook	4200
+VCE_SushiPrepTable	vanillaexpanded.vcookesushi	yes	sushi prep table		bench	(3,1)			WoodLog:80		Undefined	yes	Production	Building_WorkTable						PassThroughOnly	cook	850
+VFEArch_AnimalGate	vanillaexpanded.vfearchitect	yes	animal gate		door	(1,1)	Metallic,Woody,Stony,Metallic,Woody,Stony	25			Undefined		Structure	Building_Door					true			850
+VFEArch_ArmoredDoor	vanillaexpanded.vfearchitect	yes	armored door		door	(1,1)	Metallic	50		Fabrication	Industrial		Structure	Building_Door					true			1685
+VFEArch_ArmoredWall	vanillaexpanded.vfearchitect	yes	armored wall		wall	(1,1)	Metallic	10		Fabrication	Industrial		Structure	Building					true	Impassable		505
+VFEArch_BrickFence	vanillaexpanded.vfearchitect	yes	brick fence		fence	(1,1)	Stony	1		Stonecutting	Medieval		Structure	Building						PassThroughOnly		140
+VFEArch_CellDoor	vanillaexpanded.vfearchitect	yes	cell door		door	(1,1)	Metallic	25		Smithing	Medieval		Structure	Building_Door					true			850
+VFEArch_CellWall	vanillaexpanded.vfearchitect	yes	cell wall		wall	(1,1)	Metallic	5		Smithing	Medieval		Structure	Building					true	Impassable		135
+VFEArch_ChainlinkFence	vanillaexpanded.vfearchitect	yes	chain link fence		fence	(1,1)	Metallic	1		Smithing	Medieval		Structure	Building						PassThroughOnly		140
+VFEArch_FineWall	vanillaexpanded.vfearchitect	yes	fine wall		wall	(1,1)	Metallic,Woody,Stony	10			Undefined		Structure	Building					true	Impassable		335
+VFEArch_InvisibleFence	vanillaexpanded.vfearchitect	yes	invisible fence		fence	(1,1)					Undefined		Structure	Building						PassThroughOnly		5
+VFEArch_LogWall	vanillaexpanded.vfearchitect	yes	log wall		wall	(1,1)			WoodLog:5		Undefined		Structure	Building					true	Impassable		135
+VFEArch_LowFence	vanillaexpanded.vfearchitect	yes	low fence		fence	(1,1)	Metallic,Woody,Stony	1			Undefined		Structure	Building						PassThroughOnly		70
+VFEArch_PicketFence	vanillaexpanded.vfearchitect	yes	picket fence		fence	(1,1)	Woody	1			Undefined		Structure	Building						PassThroughOnly		70
+VFEArch_SingleDoor	vanillaexpanded.vfearchitect	yes	single door		door	(1,1)	Metallic,Woody,Stony	15			Undefined		Structure	VFEArchitect.Building_DoorSingle					true			650
+VFEArch_SingleDoor_Flipped	vanillaexpanded.vfearchitect	yes	single door (flipped)		door	(1,1)	Metallic,Woody,Stony	15			Undefined		Structure	VFEArchitect.Building_DoorSingleFlipped					true			650
+VFE_Wallpaper	vanillaexpanded.vfeart	yes	wallpaper		wall	(1,1)	Fabric,Leathery	2	WoodLog:5	VFE_Res_Wallpapers	Industrial		Structure	Building					true	Impassable		220
+Bed_DoubleErgonomic	vanillaexpanded.vfecore	yes	ergonomic double bed	Industrial	doublebed	(2,2)	Metallic,Woody	100	Steel:40;ComponentIndustrial:6	MF_ModernFurniture	Industrial	yes	Furniture	Building_Bed						PassThroughOnly		5500
+Bed_Ergonomic	vanillaexpanded.vfecore	yes	ergonomic bed	Industrial	bed	(1,2)	Metallic,Woody	50	Steel:20;ComponentIndustrial:3	MF_ModernFurniture	Industrial	yes	Furniture	Building_Bed						PassThroughOnly		3000
+Bed_Kingsize	vanillaexpanded.vfecore	yes	royal poster bed	Medieval	doublebed	(2,2)	Metallic,Woody,Stony	120	Gold:75	MF_RoyalFurniture	Medieval	yes	Furniture	Building_Bed						PassThroughOnly		75000
+Bed_Simple	vanillaexpanded.vfecore	yes	simple bed	Medieval	bed	(1,2)	Metallic,Woody,Stony	40		MF_BasicFurniture	Neolithic	yes	Furniture	Building_Bed						PassThroughOnly		600
+Bed_StoneSlab	vanillaexpanded.vfecore	yes	chiseled bed	Neolithic	bed	(1,2)	Stony	45		VFET_Furniture	Undefined	yes	Furniture	Building_Bed						PassThroughOnly		3000
+Light_Streetlamp	vanillaexpanded.vfecore	yes	outdoor lamp		lamp	(1,1)			Steel:40	Electricity,Electricity,ColoredLights	Industrial	yes	Furniture	Building	yes		19			PassThroughOnly		350
+Seat_Bench	vanillaexpanded.vfecore	yes	bench		seat	(1,1)	Metallic,Woody,Stony	25		MF_BasicFurniture	Neolithic		Furniture	Building								450
+Seat_Cushion	vanillaexpanded.vfecore	yes	sitting cushion		seat	(1,1)	Fabric,Leathery	30			Undefined	yes	Furniture	Building								3000
+Seat_ModernChair	vanillaexpanded.vfecore	yes	ergonomic chair		seat	(1,1)	Fabric,Leathery,Metallic	80	Steel:20;ComponentIndustrial:2	MF_ModernFurniture	Industrial	yes	Furniture	Building								16000
+Seat_RoyalArmchair	vanillaexpanded.vfecore	yes	royal armchair		seat	(1,1)	Fabric,Leathery	130	Gold:50	MF_RoyalFurniture	Medieval	yes	Furniture	Building								25000
+Seat_RoyalChair	vanillaexpanded.vfecore	yes	royal chair		seat	(1,1)	Fabric,Leathery	50	Gold:30	MF_RoyalFurniture	Medieval	yes	Furniture	Building								15000
+Seat_SquareChair	vanillaexpanded.vfecore	yes	school chair		seat	(1,1)	Metallic,Woody	45		ComplexFurniture	Medieval	yes	Furniture	Building								8000
+Shelf_WeaponRack	vanillaexpanded.vfecore	yes	weapon rack		storage	(2,1)	Metallic	25		ComplexFurniture,ComplexFurniture	Medieval	yes	Furniture	Building_Storage						PassThroughOnly		600
+Stone_Campfire	vanillaexpanded.vfecore	yes	firepit		bench	(1,1)	Stony	15		VFET_Fire	Undefined		Temperature	Building_WorkTable		WoodLog	10	21		PassThroughOnly		500
+Stone_DarklightCampfire	vanillaexpanded.vfecore	yes	dark firepit		bench	(1,1)	Stony	15		VFET_Fire	Undefined		Temperature	Building_WorkTable		WoodLog	9.55	21		PassThroughOnly		500
+Table_1x1c	vanillaexpanded.vfecore	yes	table (1x1)		table	(1,1)	Metallic,Woody,Stony	15			Undefined	yes	Furniture	Building						PassThroughOnly		500
+Table_Counter	vanillaexpanded.vfecore	yes	counter		table	(1,1)	Metallic,Woody,Stony	20		ComplexFurniture	Medieval	yes	Furniture	Building						PassThroughOnly		750
+Table_Royal1x1c	vanillaexpanded.vfecore	yes	royal table (1x1)		table	(1,1)	Metallic,Woody,Stony	20	Gold:10	MF_RoyalFurniture	Medieval	yes	Furniture	Building						PassThroughOnly		750
+Table_Royal1x2c	vanillaexpanded.vfecore	yes	royal table (1x2)		table	(1,2)	Metallic,Woody,Stony	35	Gold:20	MF_RoyalFurniture	Medieval	yes	Furniture	Building						PassThroughOnly		1000
+Table_Royal2x2c	vanillaexpanded.vfecore	yes	royal table (2x2)		table	(2,2)	Metallic,Woody,Stony	65	Gold:40	MF_RoyalFurniture	Medieval	yes	Furniture	Building						PassThroughOnly		2000
+Table_Royal2x4c	vanillaexpanded.vfecore	yes	royal table (2x4)		table	(2,4)	Metallic,Woody,Stony	120	Gold:60	MF_RoyalFurniture	Medieval	yes	Furniture	Building						PassThroughOnly		3750
+Table_Royal3x3c	vanillaexpanded.vfecore	yes	royal table (3x3)		table	(3,3)	Metallic,Woody,Stony	125	Gold:90	MF_RoyalFurniture	Medieval	yes	Furniture	Building						PassThroughOnly		4200
+VFE_Bed_SimpleDouble	vanillaexpanded.vfecore	yes	simple double bed	Medieval	doublebed	(2,2)	Metallic,Woody,Stony,Metallic,Woody,Stony	80		MF_BasicFurniture	Neolithic	yes	Furniture	Building_Bed						PassThroughOnly		1200
+VFE_Bed_StoneSlabDouble	vanillaexpanded.vfecore	yes	chiseled double bed	Neolithic	doublebed	(2,2)	Stony	85		VFET_Furniture	Undefined	yes	Furniture	Building_Bed						PassThroughOnly		5750
+VFE_DeskLamp	vanillaexpanded.vfecore	yes	desk lamp		lamp	(1,1)			Steel:15	Electricity	Industrial	yes	Furniture	Building	yes		9.55			PassThroughOnly		250
+VFE_FloorLamp	vanillaexpanded.vfecore	yes	floor lamp		lamp	(1,1)			Steel:20	Electricity,FlatscreenTelevision	Industrial	yes	Furniture	Building	yes		8.9			Standable		400
+VFE_Lounger	vanillaexpanded.vfecore	yes	lounger	Industrial	bed	(1,2)	Metallic,Woody	50		MF_ModernFurniture	Industrial	yes	Joy	Building_Bed						PassThroughOnly		1200
+VFE_ModularCouch	vanillaexpanded.vfecore	yes	modular couch		seat	(1,1)	Fabric,Leathery	90		MF_ModernFurniture	Industrial	yes	Furniture	Building								12000
+VFE_RoyalLamp	vanillaexpanded.vfecore	yes	royal standing lamp		lamp	(1,1)			Steel:20;Gold:5	Electricity,MF_RoyalFurniture	Industrial	yes	Furniture	Building	yes		10.75			PassThroughOnly		600
+VFE_Ecosystem	vanillaexpanded.vfefarming	yes	artificial ecosystem		lamp	(2,2)			Steel:100;Plasteel:20;ComponentSpacer:3	VFE_Res_AdvancedHydroponics	Spacer		Production	Building_PlantGrower	yes		3.0			PassThroughOnly		4200
+VFE_Ecosystem_Tilable	vanillaexpanded.vfefarming	yes	tilable artificial ecosystem		lamp	(1,1)			Steel:25;Plasteel:5;ComponentSpacer:1	VFE_Res_AdvancedHydroponics	Spacer		Production	Building_PlantGrower	yes		1.5			PassThroughOnly		1050
+Bed_CryptoBed	vanillaexpanded.vfemedical	yes	cryptosleep suspender	Spacer	medical	(1,2)			Steel:80;Uranium:2;ComponentIndustrial:2;ComponentSpacer:1	Cryptosleep	Spacer	yes	Misc	VanillaFurnitureEM.Building_CryptoBed						PassThroughOnly		2800
+Bed_OperatingTable	vanillaexpanded.vfemedical	yes	operating table	Industrial	medical	(1,2)	Metallic,Stony	80	Steel:40;ComponentIndustrial:2	ComplexFurniture	Medieval	yes	Misc	Building_Bed						PassThroughOnly		1200
+VFEM_Wall_Sterile	vanillaexpanded.vfemedical	yes	sterile wall		wall	(1,1)			Silver:20;Steel:5	SterileMaterials	Industrial		Structure	Building					true	Impassable		2000
+VFE_IndustrialChemfuelPoweredGenerator	vanillaexpanded.vfepower	yes	industrial chemfuel powered generator		lamp	(3,3)			Steel:180;ComponentIndustrial:6	VFE_IndustrialGenerators	Industrial		Power	Building	yes	Chemfuel	8	12		PassThroughOnly		3500
+VFE_IndustrialWoodFiredGenerator	vanillaexpanded.vfepower	yes	industrial wood-fired generator		lamp	(3,3)			Steel:180;ComponentIndustrial:4	VFE_IndustrialGenerators	Industrial		Power	Building	yes	WoodLog	8	12		PassThroughOnly		3500
+VFE_PortableChemfuelPoweredGenerator	vanillaexpanded.vfepower	yes	portable chemfuel powered generator		lamp	(1,1)			Steel:40;ComponentIndustrial:2	Electricity	Industrial	yes	Power	Building	yes	Chemfuel	6	6		PassThroughOnly		1500
+VFE_PortableWoodFiredGenerator	vanillaexpanded.vfepower	yes	portable wood-fired generator		lamp	(1,1)			Steel:40;ComponentIndustrial:1	Electricity	Industrial	yes	Power	Building	yes	WoodLog	6	6		PassThroughOnly		1500
+VFE_ComponentFabricationBench	vanillaexpanded.vfeproduction	yes	assembly bench		bench	(3,1)			Steel:100;ComponentIndustrial:4;ComponentSpacer:2	Fabrication	Industrial		Production	Building_WorkTable	yes					PassThroughOnly	craft	2500
+VFE_FueledSmelter	vanillaexpanded.vfeproduction	yes	fueled smelter		bench	(3,1)			Steel:170	Smithing	Medieval	yes	Production	Building_WorkTable_HeatPush		WoodLog		9		PassThroughOnly		2500
+VFE_TableButcherElectric	vanillaexpanded.vfeproduction	yes	electric butcher		bench	(3,1)	Metallic,Woody	60	Steel:20;ComponentIndustrial:4	Electricity	Industrial	yes	Production	Building_WorkTable	yes					PassThroughOnly	butcher,cook	3000
+VFE_TableDrugLabElectric	vanillaexpanded.vfeproduction	yes	electric drug lab		bench	(3,1)	Metallic,Woody	75	Steel:120;ComponentIndustrial:12	Electricity,DrugProduction	Industrial	yes	Production	Building_WorkTable	yes					PassThroughOnly		4000
+VFE_TableMachiningLarge	vanillaexpanded.vfeproduction	yes	large machining table		bench	(5,2)			Steel:300;ComponentIndustrial:10	Machining,VFE_Manufacturing	Industrial		Production	Building_WorkTable	yes					PassThroughOnly	butcher	5000
+VFE_TableSmithyLarge	vanillaexpanded.vfeproduction	yes	large electric smithy		bench	(5,2)			Steel:200;ComponentIndustrial:6	Smithing,VFE_Manufacturing	Industrial		Production	Building_WorkTable	yes			4		PassThroughOnly		5000
+VFE_TableStonecutterElectric	vanillaexpanded.vfeproduction	yes	electric stonecutter's table		bench	(3,1)	Metallic,Woody	150	Steel:60;ComponentIndustrial:6	Stonecutting,Electricity	Industrial	yes	Production	Building_WorkTable_HeatPush	yes					PassThroughOnly		4500
+VFE_TableStoveLarge	vanillaexpanded.vfeproduction	yes	large stove		bench	(5,2)			Steel:160;ComponentIndustrial:6	VFE_Manufacturing	Industrial		Production	Building_WorkTable_HeatPush	yes			3		PassThroughOnly		5000
+VFE_TableTailorLarge	vanillaexpanded.vfeproduction	yes	large tailoring table		bench	(5,2)	Metallic,Woody	150	Steel:100;ComponentIndustrial:4	ComplexClothing,VFE_Manufacturing	Industrial		Production	Building_WorkTable_HeatPush	yes			3		PassThroughOnly		4000
+VFES_Turret_Searchlight	vanillaexpanded.vfesecurity	yes	searchlight	Industrial	lamp	(1,1)	Metallic	30	Steel:50;ComponentIndustrial:3	GunTurrets	Industrial	yes	Security	VFESecurity.Building_TurretSearchlight	yes		3			PassThroughOnly		1800
+Bed_AdvBed	vanillaexpanded.vfespacer	yes	advanced bed	Spacer	bed	(1,2)	Metallic,Woody	60	Steel:25;ComponentIndustrial:3;ComponentSpacer:1	SpacerFurniture	Spacer	yes	Furniture	Building_Bed						PassThroughOnly		5000
+Bed_AdvDoubleBed	vanillaexpanded.vfespacer	yes	advanced double bed	Spacer	doublebed	(2,2)	Metallic,Woody	100	Steel:40;ComponentIndustrial:5;ComponentSpacer:2	SpacerFurniture	Spacer	yes	Furniture	Building_Bed						PassThroughOnly		9000
+Seat_AdvChair	vanillaexpanded.vfespacer	yes	advanced chair	Spacer	seat	(1,1)	Fabric,Leathery	100	Steel:30;ComponentIndustrial:2;ComponentSpacer:1	SpacerFurniture	Spacer	yes	Furniture	Building								24000
+Spacer_OutdoorLamp	vanillaexpanded.vfespacer	yes	outdoor solar lamp	Spacer	torch	(1,1)			Steel:30;ComponentIndustrial:1	Electricity,SpacerElectronics	Spacer	yes	Furniture	Building			12			PassThroughOnly		500
+Table_IlluminatedDresser	vanillaexpanded.vfespacer	yes	illuminated dresser	Industrial	lamp	(2,1)	Metallic,Woody	70	ComponentSpacer:1	SpacerFurniture	Spacer	yes	Furniture	Building	yes		8.5			PassThroughOnly		3000
+Table_IlluminatedEndTable	vanillaexpanded.vfespacer	yes	illuminated end table	Industrial	lamp	(1,1)	Metallic,Woody	50	ComponentSpacer:1	SpacerFurniture	Spacer	yes	Furniture	Building	yes		8.5			PassThroughOnly		1800
+Table_interactive_1x1c	vanillaexpanded.vfespacer	yes	interactive table (1x1)	Spacer	lamp,table	(1,1)	Woody,Metallic	30	ComponentSpacer:1	SpacerElectronics	Spacer	yes	Furniture	Building	yes		3.5			PassThroughOnly		3000
+Table_interactive_2x2c	vanillaexpanded.vfespacer	yes	interactive table (2x2)	Spacer	lamp,table	(2,2)	Woody,Metallic	120	ComponentSpacer:4	SpacerElectronics	Spacer	yes	Furniture	Building	yes		6.3			PassThroughOnly		12000
+VFES_ModernArmchair	vanillaexpanded.vfespacer	yes	modern armchair	Spacer	seat	(1,1)	Fabric,Leathery	90	Steel:20;ComponentIndustrial:1	SpacerFurniture	Spacer	yes	Furniture	Building								18000
+VFES_ModernCouch	vanillaexpanded.vfespacer	yes	modern couch	Spacer	seat	(2,1)	Fabric,Leathery	150	Steel:30;ComponentIndustrial:1	SpacerFurniture	Spacer	yes	Furniture	Building								22000
+VFES_Table_IlluminatedWardrobe	vanillaexpanded.vfespacer	yes	illuminated wardrobe	Industrial	lamp	(2,1)	Metallic,Woody	90	ComponentSpacer:1	SpacerFurniture	Spacer	yes	Furniture	Building	yes		8.5			PassThroughOnly		2500
+GR_GeneRecombinator	vanillaexpanded.vgeneticse	yes	genome recombinator		bench	(3,2)			Steel:140;ComponentSpacer:1;Gold:6	GR_GeneticDuplication	Industrial	yes	GR_GeneticsTab	Building_WorkTable	yes					PassThroughOnly		500
+GR_GeneticExtractionTable	vanillaexpanded.vgeneticse	yes	genome extractor table		bench	(3,1)			Steel:100;ComponentIndustrial:3	GR_GeneticAlteration	Industrial	yes	GR_GeneticsTab	Building_WorkTable	yes					PassThroughOnly		1500
+GR_GeneticsTinkeringTable	vanillaexpanded.vgeneticse	yes	genetics tinkering table		bench	(5,2)			Steel:210;ComponentIndustrial:6;ComponentSpacer:2	GR_GeneticEngineering	Industrial	yes	GR_GeneticsTab	Building_WorkTable	yes					PassThroughOnly		1200
+GR_NutrientVat	vanillaexpanded.vgeneticse	yes	nutrient vat		bench	(2,1)			Steel:75	GR_GeneticAlteration	Industrial	yes	GR_GeneticsTab	Building_WorkTable						PassThroughOnly		1800
+GR_TissueGrinder	vanillaexpanded.vgeneticse	yes	tissue grinder		bench	(3,2)			Steel:110;ComponentIndustrial:3	GR_GeneticAlteration	Industrial	yes	GR_GeneticsTab	Building_WorkTable	yes					PassThroughOnly		1200
+GR_TissueGrowingVat	vanillaexpanded.vgeneticse	yes	implant augmentator		bench	(2,1)			Steel:110;ComponentIndustrial:3	GR_HybridImplantology	Industrial	yes	GR_GeneticsTab	Building_WorkTable	yes					PassThroughOnly		500
+VME_AncientBed	vanillaexpanded.vmemese	yes	ancient bed	Medieval	bed	(1,2)					Undefined	yes		Building_Bed								800
+VCE_VegMilkExtractor	vanillaexpanded.vplantsemore	yes	vegetable milk extractor		bench	(2,1)			Steel:75;ComponentIndustrial:1	VCE_VegMilkExtraction	Industrial	yes	Production	Building_WorkTable	yes			6		PassThroughOnly		800
+VQEA_RustedHospitalBed	vanillaquestsexpanded.ancients	yes	rusted hospital bed	Medieval	medical	(1,2)			Steel:60;Synthread:8		Undefined	yes		Building_Bed						PassThroughOnly		2800
+VQEA_WheeledBed	vanillaquestsexpanded.ancients	yes	wheeled bed	Medieval	bed	(1,2)			Steel:60		Undefined	yes		Building_Bed						PassThroughOnly		2800
+VQE_RuinedHospitalBed	vanillaquestsexpanded.cryptoforge	yes	rusted ancient bed	Medieval	medical	(1,2)			Steel:70		Undefined	yes		Building_Bed						PassThroughOnly		2800
+VQED_RustedAncientCot	vanillaquestsexpanded.deadlife	yes	rusted ancient cot	Medieval	bed	(1,2)					Undefined	yes		Building_Bed						PassThroughOnly		2800
+VQE_DroneTinkeringBench	vanillaquestsexpanded.dronefactory	yes	drone tinkering bench		bench	(5,2)			Steel:160;ComponentIndustrial:16;ComponentSpacer:2	VQE_Dronetech	Industrial		Production	Building_WorkTable	yes					PassThroughOnly	craft	6500
+VQE_Genetron_WoodFired	vanillaquestsexpanded.generator	yes	wood-fired ARC		hearth	(6,6)			Steel:200;ComponentIndustrial:4		Undefined		Power	VanillaQuestsExpandedTheGenerator.Building_Genetron_WoodFired		WoodLog	15	12		Impassable		6000
+VREA_AndroidPartWorkbench	vanillaracesexpanded.android	yes	android part workbench		bench	(3,1)			Steel:220;ComponentIndustrial:8	VREA_AndroidTech	Ultra	yes	Biotech	Building_WorkTable	yes		5			PassThroughOnly		5000
+VREA_AndroidStandSpot	vanillaracesexpanded.android	yes	android stand spot		spot	(1,1)					Undefined		Biotech	VREAndroids.Building_AndroidStand						Standable		0
+VREA_NeutroCasket	vanillaracesexpanded.android	yes	neutro casket	Ultra	medical	(1,2)			Steel:180;ComponentIndustrial:3	VREA_AndroidTech	Ultra	yes	Biotech	VREAndroids.Building_NeutroCasket	yes	Neutroamine				PassThroughOnly		3200
+VREA_NeutroDrain	vanillaracesexpanded.android	yes	neutro drain		storage	(1,1)			Steel:60	VREA_NeutroamineLogistics	Spacer	yes	VCHE_PipeNetworks	Building_Storage						Standable		600
+VREA_NeutroTap	vanillaracesexpanded.android	yes	neutro tap		storage	(1,1)			Steel:60	VREA_NeutroamineLogistics	Spacer	yes	VCHE_PipeNetworks	Building_Storage						PassThroughOnly		600
+VRE_HemogenDrain	vanillaracesexpanded.sanguophage	yes	hemogen drain		storage	(1,1)			Steel:45;Gold:10	Deathrest	Industrial	yes	Biotech	Building_Storage						Standable		600
+VRE_HemogenTap	vanillaracesexpanded.sanguophage	yes	hemogen tap		storage	(1,1)			Steel:50;Gold:10	Deathrest	Industrial	yes	Biotech	Building_Storage						PassThroughOnly		600
+VESWW_RewardDropSpot	vanillastorytellersexpanded.winstonwave	yes	reward drop spot		spot	(1,1)					Undefined		Misc	Building						Standable		0
+VCE_FairyLamps	ve.vanillachristmasexpanded	yes	fairy lamps		lamp	(1,1)			Steel:5	Electricity	Industrial	yes	Furniture	Building	yes		3.11			Standable		330
+VCE_GrandFestiveTree	ve.vanillachristmasexpanded	yes	grand festive tree		lamp	(1,1)			Steel:60;WoodLog:120;Gold:10;Silver:60	Electricity	Industrial	yes	Furniture	VanillaChristmasExpanded.GrandFestiveTree	yes		11.72			PassThroughOnly		300
+VCE_StandingFestiveTree	ve.vanillachristmasexpanded	yes	standing festive tree		lamp	(1,1)			Steel:20;WoodLog:3	Electricity	Industrial	yes	Furniture	Building	yes		4.09			PassThroughOnly		300
+VRSteam_WallLamp	vr.fantasy.biotech	no	steam wall lamp		lamp	(1,1)			Steel:15	VR_SteamPower	Undefined	yes	Furniture	Building	yes		11			Standable		330
+VR_BasicDeathRestCasket	vr.fantasy.biotech	no	basic deathrest casket	Medieval	bed	(1,2)	Stony,Woody,Metallic	60		Deathrest	Industrial	yes	Biotech	Building_Bed						PassThroughOnly		2500
+VR_SubcoreEncoder_Steam	vr.fantasy.biotech	no	soulcore encoder	Medieval	bench	(3,2)			Steel:100	VR_BasicConstructTech	Undefined	yes	VR_Artifice	Building_WorkTable	yes					PassThroughOnly		8000
+Cults_AlcoveTorch	zal.cocc	no	alcove (torch)		torch	(1,1)	Metallic,Woody,Stony	25	WoodLog:20		Undefined		Structure	Building		WoodLog	6	3.5	false			250
+Cults_PewLinkable	zal.cocc	no	linkable pews		seat	(1,1)	Metallic,Woody,Stony	25			Undefined		Furniture	Building								1200
+Cults_PrayerPillow	zal.cocc	no	prayer pillow		seat	(1,1)	Fabric,Leathery	20			Undefined	yes	Furniture	Building								3000

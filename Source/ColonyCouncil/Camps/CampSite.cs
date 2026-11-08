@@ -346,6 +346,10 @@ namespace ColonyCouncil
             return fire != null && beds.Count > 0 && beds.Count(b => b.cell.InHorDistOf(fire.cell, CloseToFire + 1.6f)) * 2 >= beds.Count;
         }
 
+        /// <summary>A bed that is a tent of its own (Vanilla Factions Expanded - Classical's): a tent comp, or a tent by name.</summary>
+        public static bool IsTent(ThingDef def) =>
+            def != null && def.IsBed && ((def.comps?.Any(c => c.GetType().Name.IndexOf("Tent", StringComparison.Ordinal) >= 0) ?? false) || (" " + def.label).IndexOf(" tent", StringComparison.OrdinalIgnoreCase) >= 0);
+
         /// <summary>How a kind of camp sleeps, with what this people has (a mod's tent that is a bed makes tents of the beds themselves).</summary>
         public static CampLayoutSpec SpecFor(CampKindDef kind, int people, float days, bool cold, Faction f, out Dictionary<string, CampStructure> pieces)
         {
@@ -361,7 +365,7 @@ namespace ColonyCouncil
             var spec = new CampLayoutSpec { sleepers = Mathf.Max(1, people), sleep = kind.sleep };
             var bed = pieces.TryGetValue("bed", out var b) ? b.Def : null;
             var tent = pieces.TryGetValue("tent", out var t) ? t.Def : null;
-            if (spec.sleep == CampSleepForm.Tents && tent != null && tent.IsBed)
+            if (spec.sleep == CampSleepForm.Tents && IsTent(tent))
             {
                 spec.tentBeds = true;
                 bed = tent;
@@ -501,19 +505,18 @@ namespace ColonyCouncil
         /// <summary>The cells under each hut's or tent's roof (inside its walls), room by room; a save from before rooms, one hut.</summary>
         public static IEnumerable<IntVec3> HutInside(List<CampPlan> plans, int room = -1)
         {
-            foreach (var r in plans.Where(p => p.role == "hut" || p.role == "door").Select(p => p.room).Distinct())
+            var all = plans.Where(p => p.role == "hut" || p.role == "door").Select(p => p.cell).ToList();
+            if (all.Count < 8) yield break;
+            var solid = new HashSet<(int, int)>(all.Select(c => (c.x, c.z)));
+            int minX = all.Min(c => c.x), maxX = all.Max(c => c.x), minZ = all.Min(c => c.z), maxZ = all.Max(c => c.z);
+            foreach (var r in plans.Where(p => p.role == "hut" || p.role == "door").Select(p => p.room).Distinct().ToList())
             {
                 if (room >= 0 && r != room) continue;
-                var walls = plans.Where(p => (p.role == "hut" || p.role == "door") && p.room == r).Select(p => p.cell).ToList();
-                if (walls.Count < 8) continue;
-                var solid = new HashSet<IntVec3>(walls);
-                int minX = walls.Min(c => c.x), maxX = walls.Max(c => c.x), minZ = walls.Min(c => c.z), maxZ = walls.Max(c => c.z);
-                for (int x = minX + 1; x < maxX; x++)
-                    for (int z = minZ + 1; z < maxZ; z++)
-                    {
-                        var c = new IntVec3(x, 0, z);
-                        if (!solid.Contains(c)) yield return c;
-                    }
+                // Everything its walls close in, from its beds (a wall it shares with the next tent closes it too).
+                var beds = plans.Where(p => p.role == "hutbed" && p.room == r && p.def != null).SelectMany(p => p.Rect.Cells).Select(c => (c.x, c.z)).ToList();
+                var inside = CampBuildMath.Flood(solid, beds, minX, maxX, minZ, maxZ);
+                if (inside == null) continue;
+                foreach (var (x, z) in inside) yield return new IntVec3(x, 0, z);
             }
         }
 

@@ -183,7 +183,8 @@ namespace ColonyCouncil
             "{OTHER_nameDef} hauled the stone for most of these walls. We'll keep them standing.",
             "{OTHER_nameDef} stayed through the raids and the hungry seasons, and never talked about leaving.",
             // The text pass on the world's voices (6 November 2026). A camp's farewell is told as they pack up and set off
-            // (CampLife.Leave): what they take down goes with them (the fire too), and only the hermit, the healers and the
+            // (CampLife.Leave): what they can carry goes with them (since 8 November 2026 what they built stays standing,
+            // CampPack.cs), and only the hermit, the healers and the
             // mourners walk to the colony before they go (their farewellWalk). The lines that told of a wave, a bow or a word
             // at the gate nobody walked to, a sound heard after they were out of sight, or ash and bones left round a fire
             // that is gone. New farewells for each kind are in Rimfolk_CampWords_Voices.xml.
