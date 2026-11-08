@@ -24,8 +24,8 @@ namespace ColonyCouncil
         private const float BottomH = 34f;
 
         // The interface's tokens (UI/UiKit.cs): what the council suggests gold, what can't be built faint.
-        private static readonly Color Faint = UiKit.Faint;
-        private static readonly Color Suggested = UiKit.Gold;
+        private static Color Faint => UiKit.Faint;
+        private static Color Suggested => UiKit.Gold;
 
         private struct Block
         {

@@ -24,7 +24,7 @@ namespace ColonyCouncil
         public const string DiplomacyPage = "Diplomacy", HouseholdPage = "Household";
 
         /// <summary>A people's name on its card leads to it: link ink (UI/UiKit.cs's tokens; the page's own violet gave way).</summary>
-        private static readonly Color Accent = UiKit.Link;
+        private static Color Accent => UiKit.Link;
 
         static DiplomacyPanels()
         {

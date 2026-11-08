@@ -52,7 +52,7 @@ namespace ColonyCouncil
         public static void Begin()
         {
             if (Find.CurrentMap == null) return;
-            Find.MainTabsRoot.EscapeCurrentTab(false);
+            Pages.LeaveForMap();
             Find.DesignatorManager.Select(new Designator_RearrangeRoom());
             Messages.Message("CC_Rearr_PickRoom".Translate(), MessageTypeDefOf.SilentInput, false);
         }

@@ -14,8 +14,8 @@ namespace ColonyCouncil
     /// </summary>
     public static class PostRing
     {
-        private static readonly Color FarColor = UiKit.WithAlpha(UiKit.Warn, 0.45f);
-        private static readonly Color CutColor = UiKit.WithAlpha(UiKit.Faint, 0.45f);
+        private static Color FarColor => UiKit.WithAlpha(UiKit.Warn, 0.45f);
+        private static Color CutColor => UiKit.WithAlpha(UiKit.Faint, 0.45f);
 
         /// <summary>The home map at a region map's home tile (or the seat).</summary>
         public static Map HomeAt(PlanetTile tile) => Find.Maps.FirstOrDefault(m => m != null && m.IsPlayerHome && m.Tile == tile) ?? Homes.Seat;

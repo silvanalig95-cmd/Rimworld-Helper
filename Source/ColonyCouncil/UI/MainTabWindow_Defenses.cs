@@ -20,7 +20,7 @@ namespace ColonyCouncil
 
         private const string Page = "Defenses";
 
-        private readonly List<WindowTab> tabs = new List<WindowTab>();
+        private static readonly List<WindowTab> tabs = new List<WindowTab>();
         private static string label;
         /// <summary>The view's header extras: no modes (one way of looking), and the "?" to the defense planner's Almanac page.</summary>
         private static readonly ViewHeadModel head = new ViewHeadModel { article = PagesMath.ArticleOf(Page) };
@@ -29,14 +29,20 @@ namespace ColonyCouncil
 
         private static Texture2D Icon => Icons.Defenses ?? Icons.CatDefense;
 
-        public override void DoWindowContents(Rect inRect)
+        protected override void DrawContents(Rect inRect, bool cornerInTitle) => DrawDefenses(inRect, cornerInTitle);
+
+        /// <summary>
+        /// The defense window's contents, the tab's and the floating window's alike: its one view as a tab (the corner beside
+        /// it, or in the title bar with <paramref name="cornerInTitle"/>), the Defenses page with its drawer under it.
+        /// </summary>
+        internal static void DrawDefenses(Rect inRect, bool cornerInTitle)
         {
             Text.Font = GameFont.Small;
             GUI.color = UiKit.Ink;
             label ??= "CC_Tab_Defenses".Translate();
             tabs.Clear();
             tabs.Add(new WindowTab(label, Icon, true, null));
-            var body = WindowTabs.Draw(inRect, tabs, RimfolkWindow.Defense);
+            var body = WindowTabs.DrawFor(inRect, tabs, RimfolkWindow.Defense, cornerInTitle);
             var content = body.ContractedBy(12f);
             if (CouncilGameComponent.Instance == null)
             {

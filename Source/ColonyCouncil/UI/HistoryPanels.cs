@@ -12,7 +12,7 @@ namespace ColonyCouncil
     /// </summary>
     public static class HistoryPanels
     {
-        private static readonly Color Gold = UiKit.Gold;
+        private static Color Gold => UiKit.Gold;
 
         // ---------------- Dreams ----------------
 

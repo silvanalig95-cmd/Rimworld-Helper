@@ -350,7 +350,7 @@ namespace ColonyCouncil
         {
             var q = QuestOf(m);
             if (q == null) return;
-            Find.MainTabsRoot.SetCurrentTab(MainButtonDefOf.Quests);
+            Pages.GoToGameTab(MainButtonDefOf.Quests);
             (MainButtonDefOf.Quests.TabWindow as MainTabWindow_Quests)?.Select(q);
         }
 

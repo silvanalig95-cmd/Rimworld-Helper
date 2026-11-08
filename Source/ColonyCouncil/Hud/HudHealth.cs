@@ -48,9 +48,9 @@ namespace ColonyCouncil
         private const int MaxChipLines = 2;
 
         // The colours of what the words mean (HealthTone): green and red as everywhere, a clear yellow between them.
-        private static readonly Color Yellow = UiKit.Soon;
-        private static readonly Color LabelQuiet = UiKit.Faint;
-        private static readonly Color PassingBar = UiKit.WithAlpha(UiKit.Cool, 0.9f);
+        private static Color Yellow => UiKit.Soon;
+        private static Color LabelQuiet => UiKit.Faint;
+        private static Color PassingBar => UiKit.WithAlpha(UiKit.Cool, 0.9f);
 
         private sealed class Row
         {

@@ -56,6 +56,21 @@ namespace ColonyCouncil
         public override void PreOpen()
         {
             base.PreOpen();
+            Opening();
+        }
+
+        public override void PostClose()
+        {
+            base.PostClose();
+            Closing();
+        }
+
+        /// <summary>
+        /// The council window opens, as the tab or floating (UI/FloatingWindows.cs): on the page last looked at, or on This
+        /// week where the setting says so, unless a button asked for another page.
+        /// </summary>
+        internal static void Opening()
+        {
             RestorePage();
             // "Council window opens on: This week", unless a button asked for another page.
             if (!asked && Settings?.councilOpensOn == CouncilOpensOn.ThisWeek) SetPage("Week");
@@ -63,9 +78,9 @@ namespace ColonyCouncil
             WeekPanel.Dirty();
         }
 
-        public override void PostClose()
+        /// <summary>The council window closed, as the tab or floating: its page kept for next time.</summary>
+        internal static void Closing()
         {
-            base.PostClose();
             asked = false;
             RememberPage();
         }
@@ -116,14 +131,21 @@ namespace ColonyCouncil
             modeLabels = new Dictionary<string, string>(), modeTips = new Dictionary<string, string>();
         private static readonly Dictionary<string, float> headsAt = new Dictionary<string, float>();
         private static float labelsAt = -1f;
-        private readonly List<WindowTab> viewTabs = new List<WindowTab>();
+        private static readonly List<WindowTab> viewTabs = new List<WindowTab>();
         private static readonly Dictionary<string, ViewHeadModel> heads = new Dictionary<string, ViewHeadModel>();
         private static readonly System.Action<Rect> drawView = DrawView;
         private static readonly System.Action<Rect> drawPage = DrawPage;
         private static CouncilGameComponent comp;
         private static Map map;
 
-        public override void DoWindowContents(Rect inRect)
+        protected override void DrawContents(Rect inRect, bool cornerInTitle) => DrawCouncil(inRect, cornerInTitle);
+
+        /// <summary>
+        /// The council window's contents, the tab's and the floating window's alike: the four views as tabs (with the corner
+        /// beside them, or in the title bar above with <paramref name="cornerInTitle"/>), and the view showing with its
+        /// drawer in the body under them.
+        /// </summary>
+        internal static void DrawCouncil(Rect inRect, bool cornerInTitle)
         {
             map = Find.CurrentMap;
             comp = CouncilGameComponent.Instance;
@@ -145,7 +167,7 @@ namespace ColonyCouncil
                 var v = view;
                 viewTabs.Add(new WindowTab(Get(viewLabels, v, ViewLabel), ViewIcon(v), current == v, () => OpenView(v), Get(viewTips, v, ViewTip)));
             }
-            var body = WindowTabs.Draw(inRect, viewTabs, RimfolkWindow.Council);
+            var body = WindowTabs.DrawFor(inRect, viewTabs, RimfolkWindow.Council, cornerInTitle);
             var content = body.ContractedBy(12f);
 
             // The optional next and previous page keys (Options, Keyboard, Rimfolk).
@@ -415,7 +437,7 @@ namespace ColonyCouncil
         internal static void Jump(LookTargets look)
         {
             if (look == null || !look.IsValid) return;
-            Find.MainTabsRoot.EscapeCurrentTab(false);
+            Pages.LeaveForMap();
             CameraJumper.TryJumpAndSelect(look.PrimaryTarget);
         }
 

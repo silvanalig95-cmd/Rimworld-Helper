@@ -356,7 +356,7 @@ namespace ColonyCouncil
         public static void Begin()
         {
             if (Find.CurrentMap == null) return;
-            Find.MainTabsRoot.EscapeCurrentTab(false);
+            Pages.LeaveForMap();
             Find.DesignatorManager.Select(new Designator_SaveRoom());
             Messages.Message("CC_Yours_PickRoom".Translate(), MessageTypeDefOf.SilentInput, false);
         }

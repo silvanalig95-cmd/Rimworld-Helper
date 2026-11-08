@@ -274,7 +274,7 @@ namespace ColonyCouncil
         {
             if (s.map == null) return;
             var cells = s.Cells();
-            Find.MainTabsRoot.EscapeCurrentTab(false);
+            Pages.LeaveForMap();
             if (s.map != Find.CurrentMap) Current.Game.CurrentMap = s.map;
             if (cells.Count > 0)
             {

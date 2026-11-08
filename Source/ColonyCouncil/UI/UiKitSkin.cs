@@ -1,4 +1,5 @@
 using System;
+using System.Text.RegularExpressions;
 using RimWorld;
 using UnityEngine;
 using Verse;
@@ -362,14 +363,16 @@ namespace ColonyCouncil
         /// with a quiet word in it while empty (<paramref name="placeholder"/>); in the game's, the game's own field.
         /// <paramref name="name"/> names the control (its focus). Returns the text.
         /// </summary>
-        public static string TextField(Rect r, string text, string name, string placeholder = null, int maxLength = 0)
+        public static string TextField(Rect r, string text, string name, string placeholder = null, int maxLength = 0, Regex validator = null)
         {
             text ??= "";
             if (!own)
             {
+                // The game's own field, by the same overload the page called before.
                 if (name != null) GUI.SetNextControlName(name);
-                string t = Widgets.TextField(r, text);
-                return maxLength > 0 && t.Length > maxLength ? text : t;
+                if (validator != null) return Widgets.TextField(r, text, maxLength > 0 ? maxLength : int.MaxValue, validator);
+                if (maxLength > 0) return Widgets.TextField(r, text, maxLength);
+                return Widgets.TextField(r, text);
             }
             bool focused = name != null && GUI.GetNameOfFocusedControl() == name;
             bool over = Mouse.IsOver(r);
@@ -382,7 +385,8 @@ namespace ColonyCouncil
             GUI.color = Color.white;
             string got = GUI.TextField(new Rect(inner.x - 2f, r.y + (r.height - Text.LineHeight) / 2f - 2f, inner.width + 2f, Text.LineHeight + 4f), text, FieldStyle());
             GUI.color = oldColor;
-            return maxLength > 0 && got.Length > maxLength ? text : got;
+            if (maxLength > 0 && got.Length > maxLength) return text;
+            return validator != null && got != text && !validator.IsMatch(got) ? text : got;
         }
 
         private static readonly string[] searchNames = new string[8];
@@ -439,24 +443,30 @@ namespace ColonyCouncil
         /// A switch with its word (on or off, the word always beside it): in Rimfolk's own look a small track with a knob,
         /// the accent when on; in the game's, the game's labelled checkbox. Returns true when it was flipped.
         /// </summary>
-        public static bool Toggle(Rect r, string label, ref bool on, string tip = null)
+        public static bool Toggle(Rect r, string label, ref bool on, string tip = null, bool disabled = false, bool nearText = false)
         {
             bool was = on;
             if (!own)
             {
-                Widgets.CheckboxLabeled(r, label, ref on);
+                // The game's own labelled checkbox, by the same overload the page called before.
+                if (disabled || nearText) Widgets.CheckboxLabeled(r, label, ref on, disabled, null, null, nearText);
+                else Widgets.CheckboxLabeled(r, label, ref on);
                 if (!tip.NullOrEmpty()) TooltipHandler.TipRegion(r, tip);
                 return was != on;
             }
-            bool over = Mouse.IsOver(r);
+            bool over = !disabled && Mouse.IsOver(r);
             const float tw = 30f, th = 16f;
-            var track = new Rect(r.xMax - tw - 2f, r.y + (r.height - th) / 2f, tw, th);
-            Round(track, on ? (over ? AccentHover : Accent) : over ? EdgeStrong : Edge, SkinMath.RadiusCard);
+            // Near its word, the switch follows the word; otherwise it sits at the row's right, the word at its left.
+            float labelW = Mathf.Max(0f, r.width - tw - 8f);
+            if (nearText) labelW = Mathf.Min(labelW, KeptWidth(label ?? "", Text.Font) + 4f);
+            var track = new Rect(nearText ? r.x + labelW + 6f : r.xMax - tw - 2f, r.y + (r.height - th) / 2f, tw, th);
+            var trackFill = on ? (over ? AccentHover : Accent) : over ? EdgeStrong : Edge;
+            Round(track, disabled ? WithAlpha(trackFill, 0.45f) : trackFill, SkinMath.RadiusCard);
             var knob = new Rect(on ? track.xMax - th + 2f : track.x + 2f, track.y + 2f, th - 4f, th - 4f);
-            DiscFill(knob, on ? AccentInk : Ink);
-            LabelFit(new Rect(r.x, r.y, Mathf.Max(0f, track.x - r.x - 6f), r.height), label, over ? Ink : Faint);
+            DiscFill(knob, disabled ? Dim : on ? AccentInk : Ink);
+            LabelFit(new Rect(r.x, r.y, nearText ? labelW : Mathf.Max(0f, track.x - r.x - 6f), r.height), label, disabled ? Dim : over ? Ink : Faint);
             if (!tip.NullOrEmpty()) TooltipHandler.TipRegion(r, tip);
-            if (Widgets.ButtonInvisible(r, false))
+            if (!disabled && Widgets.ButtonInvisible(r, false))
             {
                 on = !on;
                 (on ? SoundDefOf.Checkbox_TurnedOn : SoundDefOf.Checkbox_TurnedOff).PlayOneShotOnCamera();

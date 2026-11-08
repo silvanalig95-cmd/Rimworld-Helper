@@ -32,7 +32,7 @@ namespace ColonyCouncil
         private static readonly Dictionary<(string, int, GameFont), float> heights = new Dictionary<(string, int, GameFont), float>();
 
         /// <summary>A plan the colony can't build yet: soon's colour on its edge and its reason (UI/UiKit.cs's tokens).</summary>
-        private static readonly Color HighColor = UiKit.Soon;
+        private static Color HighColor => UiKit.Soon;
 
         private const float LeftW = 330f;
         private const float Gap = 14f;
@@ -325,7 +325,7 @@ namespace ColonyCouncil
             TooltipHandler.TipRegion(r, "CC_Def_MapTip".Translate());
             if (Widgets.ButtonInvisible(r))
             {
-                Find.MainTabsRoot.EscapeCurrentTab(false);
+                Pages.LeaveForMap();
                 CameraJumper.TryJump(new IntVec3(cx, 0, cz), s.map);
             }
         }
@@ -454,7 +454,7 @@ namespace ColonyCouncil
             {
                 if (UiKit.ActButton(new Rect(bx, by, ButtonsW, 24f), "CC_Show".Translate(), null, "CC_Plan_ShowTip".Translate()))
                 {
-                    Find.MainTabsRoot.EscapeCurrentTab(false);
+                    Pages.LeaveForMap();
                     DefenseOverlay.Show = true;
                     CameraJumper.TryJump(a.look, s.map);
                 }

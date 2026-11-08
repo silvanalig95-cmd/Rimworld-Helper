@@ -64,7 +64,7 @@ namespace ColonyCouncil
         /// <summary>The overview's sections folded this session.</summary>
         private static readonly Folds WhoFolds = new Folds();
 
-        private static readonly Color Accent = UiKit.Heading;
+        private static Color Accent => UiKit.Heading;
         private const int HourTicks = GenDate.TicksPerHour;
         private const string CountControl = "CC_JourneyCount_";
         private static readonly Regex Digits = new Regex("^[0-9]*$");
@@ -1285,7 +1285,7 @@ namespace ColonyCouncil
     [StaticConstructorOnStartup]
     public static class JourneyPanel
     {
-        private static readonly Color Accent = UiKit.Heading;
+        private static Color Accent => UiKit.Heading;
 
         static JourneyPanel()
         {

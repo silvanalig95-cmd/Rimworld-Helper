@@ -27,11 +27,11 @@ namespace ColonyCouncil
         private static float pageHeight = 500f;
 
         // The interface's tokens (UI/UiKit.cs): headings in heading ink, what is read in ink, the rest faint.
-        private static readonly Color Faint = UiKit.Faint;
-        private static readonly Color QuoteColor = UiKit.Ink;
-        private static readonly Color Header = UiKit.Heading;
-        private static readonly Color TableHeader = UiKit.Heading;
-        private static readonly Color CardValue = UiKit.Ink;
+        private static Color Faint => UiKit.Faint;
+        private static Color QuoteColor => UiKit.Ink;
+        private static Color Header => UiKit.Heading;
+        private static Color TableHeader => UiKit.Heading;
+        private static Color CardValue => UiKit.Ink;
 
         /// <summary>The page open in the almanac, if any (remembered between sessions by the Almanac's window).</summary>
         public static AlmanacArticleDef Selected => selected;
@@ -487,7 +487,7 @@ namespace ColonyCouncil
                 if (Widgets.ButtonText(br, label, true, true, reason == null) && reason == null)
                 {
                     var des = new Designator_PlanRoom(a.template);
-                    Find.MainTabsRoot.EscapeCurrentTab(false);
+                    Pages.LeaveForMap();
                     Find.DesignatorManager.Select(des);
                 }
                 if (reason != null)

@@ -15,12 +15,12 @@ namespace ColonyCouncil
     public static class HeartView
     {
         // The interface's tokens (UI/UiKit.cs): steady warm, strained soon, worn sour, breaking danger.
-        public static readonly Color SteadyColor = UiKit.Warm;
-        public static readonly Color StrainedColor = UiKit.Soon;
-        public static readonly Color WornColor = UiKit.Sour;
-        public static readonly Color BreakingColor = UiKit.Danger;
+        public static Color SteadyColor => UiKit.Warm;
+        public static Color StrainedColor => UiKit.Soon;
+        public static Color WornColor => UiKit.Sour;
+        public static Color BreakingColor => UiKit.Danger;
         /// <summary>The heart's good side (in good heart, in high spirits).</summary>
-        public static readonly Color GoodColor = UiKit.Good;
+        public static Color GoodColor => UiKit.Good;
 
         public static Color BandColor(StrainBand b)
         {

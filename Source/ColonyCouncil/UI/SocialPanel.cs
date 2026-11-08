@@ -39,7 +39,7 @@ namespace ColonyCouncil
         private const float RowH = 28f;
 
         /// <summary>The colony's own circles: gold, the colony's colour (UI/UiKit.cs's tokens).</summary>
-        private static readonly Color CliqueColor = UiKit.Gold;
+        private static Color CliqueColor => UiKit.Gold;
 
         private static bool Shown(Pawn p) => p != null && !p.Dead && p.IsColonist;
 

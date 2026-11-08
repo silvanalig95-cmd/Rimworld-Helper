@@ -1,0 +1,157 @@
+using System;
+using System.Collections.Generic;
+
+namespace ColonyCouncil
+{
+    /// <summary>One of Rimfolk's windows in its frame: its key in the settings, its least size, and whether it keeps the game's bottom bar clear.</summary>
+    public struct FrameKey
+    {
+        public string key;
+        public float leastW, leastH;
+        /// <summary>It stands beside play (the four windows, the Almanac, a card) and stops above the bottom bar; a dialog may cover it.</summary>
+        public bool keepsBar;
+
+        public FrameKey(string key, float leastW, float leastH, bool keepsBar = false)
+        {
+            this.key = key;
+            this.leastW = leastW;
+            this.leastH = leastH;
+            this.keepsBar = keepsBar;
+        }
+
+        /// <summary>The bottom bar it keeps clear (<see cref="WindowFrameMath.BottomBar"/>) or none.</summary>
+        public float Bottom => keepsBar ? WindowFrameMath.BottomBar : 0f;
+    }
+
+    /// <summary>
+    /// The rules of Rimfolk's framed windows (docs/design/rimfolk-look.md, stage 2), free of game types so Tools/Tests try
+    /// them: every window's key and least size (the four windows that float, the Almanac, the card, the trade windows and
+    /// every dialog of Rimfolk's own), the floating windows' one-at-a-time rule (opening one of the four closes the other
+    /// three, as the corner turns pages), and how the council's pages lay out as the window grows (This week's columns).
+    /// </summary>
+    public static class FramedWindowsMath
+    {
+        // ---------------- The four windows that float ----------------
+
+        /// <summary>The four windows' keys: the region, the council, planning and defense.</summary>
+        public const string Region = "Region", Council = "Council", Planning = "Planning", Defense = "Defense";
+
+        /// <summary>The four, in the corner's order.</summary>
+        public static readonly RimfolkWindow[] Floating = { RimfolkWindow.Council, RimfolkWindow.World, RimfolkWindow.Defense, RimfolkWindow.Planning };
+
+        /// <summary>A floating window's key in the settings (where it was left).</summary>
+        public static string KeyOf(RimfolkWindow w)
+        {
+            switch (w)
+            {
+                case RimfolkWindow.World: return Region;
+                case RimfolkWindow.Planning: return Planning;
+                case RimfolkWindow.Defense: return Defense;
+                default: return Council;
+            }
+        }
+
+        /// <summary>
+        /// One of the four at a time: the floating windows to close when <paramref name="opening"/> opens, every other one
+        /// of the four that is open now (the opening one itself is left as it is).
+        /// </summary>
+        public static List<RimfolkWindow> ToClose(RimfolkWindow opening, IEnumerable<RimfolkWindow> open)
+        {
+            var list = new List<RimfolkWindow>();
+            if (open == null) return list;
+            foreach (var w in open)
+                if (w != opening && !list.Contains(w))
+                    list.Add(w);
+            return list;
+        }
+
+        /// <summary>The floating windows open after <paramref name="opening"/> opened: that one alone.</summary>
+        public static List<RimfolkWindow> AfterOpening(RimfolkWindow opening, IEnumerable<RimfolkWindow> open)
+        {
+            var after = new List<RimfolkWindow>();
+            var closed = ToClose(opening, open);
+            if (open != null)
+                foreach (var w in open)
+                    if (!closed.Contains(w) && !after.Contains(w))
+                        after.Add(w);
+            if (!after.Contains(opening)) after.Add(opening);
+            return after;
+        }
+
+        // ---------------- Every framed window's key and least size ----------------
+
+        /// <summary>The almanac's least: its categories, a page list and a page beside them at the smallest text.</summary>
+        public const float AlmanacLeastW = 560f, AlmanacLeastH = 400f;
+
+        /// <summary>
+        /// Every window of Rimfolk's in the frame, by key: the least it is sized to (the room its contents need; it grows
+        /// from there), and whether it keeps the bottom bar clear. A dialog's least is the size it was made for, so nothing
+        /// in it is cut; one whose contents scroll may be made smaller.
+        /// </summary>
+        public static readonly FrameKey[] Keys =
+        {
+            // The four windows: the tabs and the corner in the title bar, a view with its drawer laid over it.
+            new FrameKey(Region, WindowFrameMath.RegionLeastW, WindowFrameMath.RegionLeastH, true),
+            new FrameKey(Council, 680f, 460f, true),
+            new FrameKey(Planning, 680f, 460f, true),
+            new FrameKey(Defense, 640f, 440f, true),
+            // Beside play: the Almanac and a card in its floating window.
+            new FrameKey("Almanac", AlmanacLeastW, AlmanacLeastH, true),
+            new FrameKey("Card", 380f, 320f, true),
+            // The trade windows.
+            new FrameKey("Trade", WindowFrameMath.TradeLeastW, WindowFrameMath.TradeLeastH),
+            new FrameKey("Market", 640f, 420f),
+            new FrameKey("Stall", 900f, 560f),
+            // Letters, journeys, camps and the colony's founding.
+            new FrameKey("Letter", 600f, 790f),
+            new FrameKey("Journey", 900f, 600f),
+            new FrameKey("JourneyPick", 480f, 420f),
+            new FrameKey("Camp", 640f, 720f),
+            new FrameKey("Founding", 860f, 620f),
+            new FrameKey("Newcomers", 1020f, 790f),
+            new FrameKey("Landing", 640f, 560f),
+            new FrameKey("HandOver", 900f, 620f),
+            new FrameKey("ScenarioStart", 820f, 560f),
+            // The council's and the colony's own dialogs.
+            new FrameKey("Feast", 700f, 600f),
+            new FrameKey("Journal", 560f, 640f),
+            new FrameKey("News", 560f, 480f),
+            new FrameKey("CalendarDay", 560f, 630f),
+            new FrameKey("Clock", 760f, 560f),
+            new FrameKey("Gift", 520f, 480f),
+            new FrameKey("SelfCheck", 640f, 480f),
+            new FrameKey("ArrangeBar", 460f, 420f),
+            new FrameKey("PanelOptions", 380f, 420f),
+            new FrameKey("GuestCheck", 480f, 420f),
+            // Building and the defenses: the plans' small windows beside the map.
+            new FrameKey("NameLine", 380f, 170f),
+            new FrameKey("NameRoom", 360f, 160f),
+            new FrameKey("ShelfReserve", 560f, 480f),
+            new FrameKey("ShelfPick", 480f, 420f),
+            new FrameKey("FloorPicker", 420f, 460f),
+            new FrameKey("GroundPlan", 380f, 400f),
+            new FrameKey("Rearrange", 380f, 420f)
+        };
+
+        /// <summary>A window's key, its least size and its bottom bar; false for a key that is none of them.</summary>
+        public static bool TryKey(string key, out FrameKey k)
+        {
+            foreach (var f in Keys)
+                if (f.key == key)
+                {
+                    k = f;
+                    return true;
+                }
+            k = new FrameKey(key, WindowFrameMath.LeastW, WindowFrameMath.LeastH);
+            return false;
+        }
+
+        // ---------------- The council's pages as the window grows ----------------
+
+        /// <summary>This week's cards: one column, two from this width (CouncilLayoutMath), three from this one.</summary>
+        public const float WeekThreeFrom = 1500f;
+
+        /// <summary>This week's columns in a page this wide: one, two from 700, three on a window made large.</summary>
+        public static int WeekColumns(float width) => width >= WeekThreeFrom ? 3 : CouncilLayoutMath.Columns(width);
+    }
+}

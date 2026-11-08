@@ -1,7 +1,6 @@
 using RimWorld;
 using UnityEngine;
 using Verse;
-using Verse.Sound;
 
 namespace ColonyCouncil
 {
@@ -11,64 +10,32 @@ namespace ColonyCouncil
     /// them for both), in Rimfolk's frame, dragged by its title bar, sized from its edges, large and back, where it was
     /// left. It is a window of the game's interface layer, not a main tab: a click on the map, a colonist picked, the
     /// inspect pane or another of the game's tabs leave it open, so the player can play with it beside the map. It is
-    /// still one of Rimfolk's four windows: the corner and the other three buttons turn the page to another (it closes),
-    /// its button and its keys open and close it, Escape closes the drawer first, and every address (Pages.Open) and other
-    /// mods' region pages land in it as in the tab.
+    /// still one of Rimfolk's four windows (UI/FloatingWindows.cs keeps it with the other three since stage 2): the corner
+    /// and the other three buttons turn the page to another (it closes), its button and its keys open and close it, Escape
+    /// closes the drawer first, and every address (Pages.Open) and other mods' region pages land in it as in the tab.
     /// </summary>
-    public class Window_Region : FramedWindow
+    public class Window_Region : RimfolkFloatingWindow
     {
         /// <summary>The least size: room for the tabs and the corner, a view beside the map's panel laid over it.</summary>
         public const float LeastW = WindowFrameMath.RegionLeastW, LeastH = WindowFrameMath.RegionLeastH;
 
-        private static Window_Region instance;
-
-        public Window_Region() : base("Region", LeastW, LeastH, WindowFrameMath.BottomBar)
+        public Window_Region() : base(RimfolkWindow.World)
         {
-            layer = WindowLayer.GameUI;
-            doCloseX = false;
-            doCloseButton = false;
-            closeOnClickedOutside = false;
-            absorbInputAroundWindow = false;
-            preventCameraMotion = false;
-            closeOnAccept = false;
-            soundAppear = null;
-            soundClose = SoundDefOf.TabClose;
         }
+
+        public override RimfolkWindow Which => RimfolkWindow.World;
 
         /// <summary>The region window floats (its button opens this window rather than the tab).</summary>
-        public static bool Floats => WindowFrame.MovesOn;
+        public static bool Floats => FloatingWindows.Floats;
 
         /// <summary>The floating region window is open now.</summary>
-        public static bool Showing => instance != null && Find.WindowStack != null && Find.WindowStack.IsOpen(instance);
-
-        /// <summary>The floating window's place on the screen, when open (the on-screen panels step aside from a big one).</summary>
-        public static Rect? Shown => Showing ? instance.windowRect : (Rect?)null;
+        public static bool Showing => FloatingWindows.Showing(RimfolkWindow.World);
 
         /// <summary>Opens the floating region window (on the map, unless an address asked for a view).</summary>
-        public static void Open()
-        {
-            if (Showing || Find.WindowStack == null) return;
-            instance ??= new Window_Region();
-            Find.WindowStack.Add(instance);
-        }
+        public static void Open() => FloatingWindows.Open(RimfolkWindow.World);
 
         /// <summary>Closes it, if open.</summary>
-        public static void Shut(bool sound = true)
-        {
-            if (Showing) instance.Close(sound);
-        }
-
-        public override Vector2 InitialSize => WindowTabs.Size;
-
-        protected override string FrameTitle => title ??= Pages.WindowName(RimfolkWindow.World);
-        private static string title;
-
-        protected override Texture2D FrameIcon => Icons.World;
-
-        // The corner's tools in the title bar: back and forward, the search, the inbox, following, the Almanac, the four windows.
-        protected override float FrameToolsWidth => WindowTabs.LinksWidth;
-
-        protected override void DrawFrameTools(Rect r) => WindowTabs.Links(r, RimfolkWindow.World);
+        public static void Shut(bool sound = true) => FloatingWindows.Shut(RimfolkWindow.World, sound);
 
         public override void PreOpen()
         {
@@ -80,18 +47,6 @@ namespace ColonyCouncil
         {
             base.PostClose();
             MainTabWindow_World.Closing();
-            Previews.Hide();
-        }
-
-        /// <summary>Escape closes a card's drawer first, the window second.</summary>
-        public override void OnCancelKeyPressed()
-        {
-            if (Drawer.Cancel(RimfolkWindow.World))
-            {
-                Event.current.Use();
-                return;
-            }
-            base.OnCancelKeyPressed();
         }
 
         protected override void DoFramedContents(Rect inRect) => MainTabWindow_World.DrawRegion(inRect, true);
@@ -99,25 +54,9 @@ namespace ColonyCouncil
 
     /// <summary>
     /// The region button on the bottom bar: the floating region window while Rimfolk's windows move, else the tab as
-    /// before; clicked again while it shows, it closes it.
+    /// before; clicked again while it shows, it closes it (the worker of all four buttons, by its old name).
     /// </summary>
-    public class MainButtonWorker_Region : MainButtonWorker_ToggleTab
+    public class MainButtonWorker_Region : MainButtonWorker_RimfolkWindow
     {
-        public override void Activate()
-        {
-            if (Window_Region.Showing)
-            {
-                Window_Region.Shut();
-                return;
-            }
-            if (Window_Region.Floats)
-            {
-                // As the game's tab button sounds; opened from the corner or by an address it opens quietly, as the tab did.
-                Pages.Show(RimfolkWindow.World);
-                SoundDefOf.TabOpen.PlayOneShotOnCamera();
-                return;
-            }
-            base.Activate();
-        }
     }
 }

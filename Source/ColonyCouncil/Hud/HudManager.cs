@@ -105,9 +105,9 @@ namespace ColonyCouncil
         /// <summary>A main tab that covers much of the screen (Work, Research, the council's window), not the small ones (Architect, the inspect pane).</summary>
         private static bool BigTabOpen()
         {
-            // The floating region window counts as the tab it stands for.
-            var region = Window_Region.Shown;
-            if (region.HasValue && region.Value.width * region.Value.height >= UI.screenWidth * UI.screenHeight * 0.15f) return true;
+            // A floating window of Rimfolk's four counts as the tab it stands for.
+            var floating = FloatingWindows.Shown;
+            if (floating.HasValue && floating.Value.width * floating.Value.height >= UI.screenWidth * UI.screenHeight * 0.15f) return true;
             var open = Find.MainTabsRoot?.OpenTab;
             if (open == null || open == MainButtonDefOf.Inspect) return false;
             var w = open.TabWindow;

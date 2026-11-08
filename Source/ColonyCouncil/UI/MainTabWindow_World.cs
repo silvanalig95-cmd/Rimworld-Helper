@@ -152,9 +152,8 @@ namespace ColonyCouncil
 
         public override void PreOpen()
         {
+            // The tab and the floating window are one window, never both: the base closes the floating ones.
             base.PreOpen();
-            // The tab and the floating window are one window: never both.
-            Window_Region.Shut(false);
             Opening();
         }
 
@@ -200,52 +199,11 @@ namespace ColonyCouncil
         private static WorldPage drawing;
         private static readonly Action<Rect> drawPage = r => drawing?.draw(r);
         private static readonly Action<Rect> drawLegend = r => map.DrawEmpty(r);
-        private static readonly Action<Rect> drawCorner = r => WindowTabs.Links(r, RimfolkWindow.World);
-        private static string mapTip, title;
+        private static string mapTip;
         private static float mapTipAt = -100f;
 
-        /// <summary>The tab drawn in Rimfolk's own look: its frame (fixed in place, as the tab is), the corner in its title bar.</summary>
-        private static readonly WindowFrame tabFrame = new WindowFrame("Region", Window_Region.LeastW, Window_Region.LeastH, WindowFrameMath.BottomBar);
-
-        protected override float Margin => WindowFrame.OwnLookOn ? 0f : base.Margin;
-
-        public override void WindowOnGUI()
-        {
-            doWindowBackground = !WindowFrame.OwnLookOn;
-            base.WindowOnGUI();
-        }
-
-        /// <summary>
-        /// The tab (the region window while Rimfolk's windows don't move): in the game's look as it always was, or in
-        /// Rimfolk's own with its frame's title bar, fixed at the screen's foot.
-        /// </summary>
-        public override void DoWindowContents(Rect inRect)
-        {
-            if (!WindowFrame.OwnLookOn)
-            {
-                DrawRegion(inRect, false);
-                return;
-            }
-            bool was = UiKit.BeginOwn();
-            try
-            {
-                title ??= Pages.WindowName(RimfolkWindow.World);
-                var body = tabFrame.Draw(this, inRect, title, Icons.World, WindowTabs.LinksWidth, drawCorner, true, false);
-                Widgets.BeginGroup(body);
-                try
-                {
-                    DrawRegion(body.AtZero(), true);
-                }
-                finally
-                {
-                    Widgets.EndGroup();
-                }
-            }
-            finally
-            {
-                UiKit.EndOwn(was);
-            }
-        }
+        /// <summary>The tab (the region window while Rimfolk's windows don't move), in either look (RimfolkTabWindow frames it in Rimfolk's).</summary>
+        protected override void DrawContents(Rect inRect, bool cornerInTitle) => DrawRegion(inRect, cornerInTitle);
 
         /// <summary>
         /// The region window's contents, the tab's and the floating window's alike: the four views as tabs (with the corner
@@ -266,7 +224,7 @@ namespace ColonyCouncil
                 string n = v.name;
                 tabs.Add(new WindowTab(v.Label, v.icon, n == lit, () => page = n, n == RegionView.Map ? MapTip() : null));
             }
-            var body = UiKit.OwnLook ? WindowTabs.DrawOwn(inRect, tabs) : WindowTabs.Draw(inRect, tabs, RimfolkWindow.World, !cornerInTitle);
+            var body = WindowTabs.DrawFor(inRect, tabs, RimfolkWindow.World, cornerInTitle);
             var content = body.ContractedBy(12f);
 
             // The next and previous page keys step through the four views here.

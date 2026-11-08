@@ -170,7 +170,7 @@ namespace ColonyCouncil
                 base.OnClick();
                 return;
             }
-            Find.MainTabsRoot.SetCurrentTab(CouncilDefOf.Council_MainButton);
+            Pages.Show(RimfolkWindow.Council);
         }
     }
 

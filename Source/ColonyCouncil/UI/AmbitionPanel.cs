@@ -12,8 +12,8 @@ namespace ColonyCouncil
     public static class AmbitionPanel
     {
         // The interface's tokens (UI/UiKit.cs): an ambition reached is done, one under way gold (the colony's chosen aim).
-        private static readonly Color GoodColor = UiKit.Done;
-        private static readonly Color AmbitionColor = UiKit.Gold;
+        private static Color GoodColor => UiKit.Done;
+        private static Color AmbitionColor => UiKit.Gold;
         private static Vector2 scroll;
         private static float height = 1000f;
 

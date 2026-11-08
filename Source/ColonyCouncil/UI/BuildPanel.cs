@@ -10,7 +10,7 @@ namespace ColonyCouncil
     public static class BuildPanel
     {
         /// <summary>A plan the colony can't build yet: soon's colour on its edge and its reason (UI/UiKit.cs's tokens).</summary>
-        private static readonly Color HighColor = UiKit.Soon;
+        private static Color HighColor => UiKit.Soon;
         private static Vector2 scroll;
         private static float height = 1000f;
         private static bool buildOnlyAvailable = true;

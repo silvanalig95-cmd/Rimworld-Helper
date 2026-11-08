@@ -58,7 +58,7 @@ namespace ColonyCouncil
             if (open > 1 && UiKit.ActButton(new Rect(rect.xMax - 160f, rect.y + 6f, 160f, UiKit.RowStandard), "CC_Plan_SortUrgency".Translate(), null)) NextSteps.SortByUrgency(map);
             if (UiKit.ActButton(new Rect(rect.xMax - 160f, rect.y + 38f, 160f, UiKit.RowStandard - 2f), "CC_Ground_Button".Translate(), null, "CC_Ground_ButtonTip".Translate()))
             {
-                Find.MainTabsRoot.EscapeCurrentTab(false);
+                Pages.LeaveForMap();
                 GroundPlan.Show(map);
             }
 

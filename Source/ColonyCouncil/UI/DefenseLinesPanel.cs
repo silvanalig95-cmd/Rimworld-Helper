@@ -24,10 +24,10 @@ namespace ColonyCouncil
 
         // A line's steps in the design's colours for steps (UI/UiKit.cs's tokens): done in done's colour, the one it is at
         // gold, what waits on something cool, the rest quiet.
-        private static readonly Color DoneColor = UiKit.Done;
-        private static readonly Color NowColor = UiKit.Gold;
-        private static readonly Color LaterColor = UiKit.Dim;
-        private static readonly Color WaitColor = UiKit.Cool;
+        private static Color DoneColor => UiKit.Done;
+        private static Color NowColor => UiKit.Gold;
+        private static Color LaterColor => UiKit.Dim;
+        private static Color WaitColor => UiKit.Cool;
 
         private static float Measure(string text, float w, GameFont font)
         {

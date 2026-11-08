@@ -14,8 +14,8 @@ namespace ColonyCouncil
     public static class WaysPanel
     {
         // The interface's tokens (UI/UiKit.cs): the proud end warm, the chafing end sour.
-        private static readonly Color Pos = UiKit.Warm;
-        private static readonly Color Neg = UiKit.Sour;
+        private static Color Pos => UiKit.Warm;
+        private static Color Neg => UiKit.Sour;
         private static Vector2 scroll;
         private static float height = 600f;
         private static List<string> card;

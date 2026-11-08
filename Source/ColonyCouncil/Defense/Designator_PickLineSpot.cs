@@ -30,7 +30,7 @@ namespace ColonyCouncil
         public static void Begin()
         {
             if (Find.CurrentMap == null) return;
-            Find.MainTabsRoot.EscapeCurrentTab(false);
+            Pages.LeaveForMap();
             Find.DesignatorManager.Select(new Designator_PickLineSpot());
             DefenseOverlay.planning = true;
             Messages.Message("CC_DefLine_PickSpot_Msg".Translate(), MessageTypeDefOf.SilentInput, false);
