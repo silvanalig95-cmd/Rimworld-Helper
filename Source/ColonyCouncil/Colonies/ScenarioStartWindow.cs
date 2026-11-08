@@ -104,7 +104,7 @@ namespace ColonyCouncil
                 else
                 {
                     if (e.key == selected) Widgets.DrawHighlightSelected(row);
-                    Widgets.DrawHighlightIfMouseover(row);
+                    UiKit.RowHover(row);
                 }
                 UiKit.LabelFit(new Rect(8f, y, view.width - 12f, 26f), e.scenario.name ?? "?", Color.white);
                 if (Widgets.ButtonInvisible(row))

@@ -13,7 +13,7 @@ namespace ColonyCouncil
     /// click reserves one slot for it or takes it off again, and the window stays open to pick several; the shelf
     /// window sets how many slots each keeps.
     /// </summary>
-    public class Dialog_ShelfReservePick : Window
+    public class Dialog_ShelfReservePick : FramedWindow
     {
         private enum RowKind
         {
@@ -41,7 +41,14 @@ namespace ColonyCouncil
 
         private const float RowH = 28f;
 
-        public Dialog_ShelfReservePick(List<Building_Storage> shelves)
+        private static string title;
+
+        protected override string FrameTitle => title ??= "CC_ShelfPick_Title".Translate().Resolve();
+
+        protected override Texture2D FrameIcon => Icons.Pin;
+
+        /// <summary>In Rimfolk's frame (key "ShelfPick"), its title in the title bar.</summary>
+        public Dialog_ShelfReservePick(List<Building_Storage> shelves) : base("ShelfPick")
         {
             this.shelves = shelves;
             doCloseX = true;
@@ -141,7 +148,7 @@ namespace ColonyCouncil
             return shown;
         }
 
-        public override void DoWindowContents(Rect inRect)
+        protected override void DoFramedContents(Rect inRect)
         {
             var first = First;
             var comp = ShelfReserves.Of(first?.Map);
@@ -150,12 +157,12 @@ namespace ColonyCouncil
                 Close();
                 return;
             }
-            float top = UiKit.PageHeader(new Rect(inRect.x, inRect.y, inRect.width - 24f, UiKit.HeaderHeight), Icons.Pin, "CC_ShelfPick_Title".Translate(),
+            float top = UiKit.DialogHeader(new Rect(inRect.x, inRect.y, inRect.width - (TitleInBar ? 0f : 24f), UiKit.HeaderHeight), TitleInBar, Icons.Pin, "CC_ShelfPick_Title".Translate(),
                 "CC_ShelfPick_Sub".Translate());
             float y = inRect.y + top;
             var searchRect = new Rect(inRect.x, y, inRect.width, 28f);
             Widgets.Label(new Rect(searchRect.x, searchRect.y + 3f, 70f, 24f), "CC_ShelfPick_Search".Translate());
-            query = Widgets.TextField(new Rect(searchRect.x + 74f, searchRect.y, searchRect.width - 74f, 28f), query ?? "");
+            query = UiKit.TextField(new Rect(searchRect.x + 74f, searchRect.y, searchRect.width - 74f, 28f), query ?? "", "RimfolkShelfPickSearch");
             y += 36f;
 
             var kinds = comp.EntriesOf(first).Select(e => e.kind).ToList();
@@ -178,7 +185,8 @@ namespace ColonyCouncil
                 return;
             }
             UiKit.Zebra(row, index);
-            if (Mouse.IsOver(row)) Widgets.DrawHighlight(row);
+            if (UiKit.OwnLook) UiKit.RowHover(row);
+            else if (Mouse.IsOver(row)) Widgets.DrawHighlight(row);
             float x = 4f + r.depth * 14f;
             if (r.icon != null) GUI.DrawTexture(new Rect(x, row.y + 2f, 24f, 24f), r.icon);
             x += 30f;

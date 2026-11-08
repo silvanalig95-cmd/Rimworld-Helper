@@ -216,7 +216,7 @@ namespace ColonyCouncil
             const float dateW = 130f, h = 48f;
             var r = new Rect(x, y, w, h);
             UiKit.Zebra(r, index++);
-            Widgets.DrawHighlightIfMouseover(r);
+            UiKit.RowHover(r);
             UiKit.Icon(new Rect(x + 6f, y + 6f, 20f, 20f), Icons.Visitor, UiKit.Gold);
             float nx = x + 32f + dateW + 8f;
             if (p != null)

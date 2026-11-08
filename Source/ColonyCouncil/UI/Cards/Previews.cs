@@ -14,7 +14,9 @@ namespace ColonyCouncil
     /// scrolling, none with the setting off. Each is Rimfolk's own small immediate window on the layer the game's tooltips
     /// use (WindowStack.ImmediateWindow), asked for every frame while it shows, so it goes the moment nothing asks; the
     /// mouse inside one belongs to it (the window under it sees none, a click on its empty part goes no further), and
-    /// when it goes the window under it has the mouse back. Buttons and icons keep the game's own plain tooltips.
+    /// when it goes the window under it has the mouse back. Buttons and icons keep the game's own plain tooltips. A preview
+    /// takes Rimfolk's own look when the window its link is in draws in it (docs/design/rimfolk-look.md, stage 2): rounded,
+    /// in the look's palette; from the game's panes and the on-screen panels it is the game's as before.
     /// </summary>
     public static class Previews
     {
@@ -26,6 +28,8 @@ namespace ColonyCouncil
         private static int drawing;
         private static readonly Action[] drawWindows = { null, () => DrawWindow(1), () => DrawWindow(2) };
         private static readonly Func<ThingRef, float> heightOf = r => Height(Cards.Model(r));
+        /// <summary>Whether each level's link was drawn in Rimfolk's own look (its window's), so the preview takes it too.</summary>
+        private static readonly bool[] ownAt = new bool[PreviewMath.Levels + 2];
 
         private static CouncilSettings S => ColonyCouncilMod.Settings;
 
@@ -51,6 +55,9 @@ namespace ColonyCouncil
                 return;
             }
             stack.Hover(drawing, r, anchor, Time.realtimeSinceStartup, Time.frameCount);
+            // A link drawn at this level asks for the level after it.
+            int level = drawing + 1;
+            if (level < ownAt.Length) ownAt[level] = UiKit.OwnLook;
         }
 
         /// <summary>No preview now (a card opened, a window closed); none again for the name under the mouse until it leaves it.</summary>
@@ -108,13 +115,20 @@ namespace ColonyCouncil
             var rect = new Rect(0f, 0f, b.w, b.h);
             int was = drawing;
             drawing = level;
+            bool own = ownAt[level] && WindowFrame.OwnLookOn;
+            bool wasOwn = own && UiKit.BeginOwn();
             try
             {
                 var m = Cards.Model(thing);
-                Widgets.DrawBoxSolidWithOutline(rect, UiKit.PreviewFill, UiKit.PreviewEdge, 1);
+                if (UiKit.OwnLook) UiKit.RoundBox(rect, UiKit.PreviewFill, UiKit.PreviewEdge, SkinMath.RadiusCard);
+                else Widgets.DrawBoxSolidWithOutline(rect, UiKit.PreviewFill, UiKit.PreviewEdge, 1);
                 float x = Pad, y = Pad, w = rect.width - Pad * 2f;
                 var head = new Rect(x, y, w, Pic);
-                if (Mouse.IsOver(head)) Widgets.DrawBoxSolid(head.ExpandedBy(3f), UiKit.CardHover);
+                if (Mouse.IsOver(head))
+                {
+                    if (UiKit.OwnLook) UiKit.Round(head.ExpandedBy(3f), UiKit.CardHover, SkinMath.RadiusMedium);
+                    else Widgets.DrawBoxSolid(head.ExpandedBy(3f), UiKit.CardHover);
+                }
                 UiKit.Picture(new Rect(x, y, Pic, Pic), m.pawn, m.faction, m.icon, m.iconColor, m.ring);
                 float tx = x + Pic + 8f, tw = w - Pic - 8f;
                 UiKit.LabelFit(new Rect(tx, y - 1f, tw, 20f), m.title, UiKit.HeaderColor);
@@ -147,6 +161,7 @@ namespace ColonyCouncil
             finally
             {
                 drawing = was;
+                if (own) UiKit.EndOwn(wasOwn);
             }
         }
     }

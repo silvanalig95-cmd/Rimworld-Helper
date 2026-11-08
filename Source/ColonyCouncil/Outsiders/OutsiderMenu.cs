@@ -160,16 +160,21 @@ namespace ColonyCouncil
 
     /// <summary>
     /// A gift for an outsider: what's in the stores, one row a kind, the things that would suit them first, with what
-    /// it's worth and how it would be taken; a click sends the colonist off to fetch it and hand it over.
+    /// it's worth and how it would be taken; a click sends the colonist off to fetch it and hand it over. In Rimfolk's frame
+    /// (key "Gift"), its title in the title bar.
     /// </summary>
-    public class Dialog_OutsiderGift : Window
+    public class Dialog_OutsiderGift : FramedWindow
     {
         private readonly Pawn c, x;
         private List<Outsiders.GiftChoice> choices;
         private Vector2 scroll;
         private const float RowH = 32f;
 
-        public Dialog_OutsiderGift(Pawn c, Pawn x)
+        protected override string FrameTitle => x == null ? "" : "CC_Out_GiftTitle".Translate(x.Named("OTHER")).Resolve();
+
+        protected override Texture2D FrameIcon => Icons.Promise;
+
+        public Dialog_OutsiderGift(Pawn c, Pawn x) : base("Gift")
         {
             this.c = c;
             this.x = x;
@@ -182,7 +187,7 @@ namespace ColonyCouncil
 
         public override Vector2 InitialSize => new Vector2(Mathf.Min(560f, UI.screenWidth - 40f), Mathf.Min(620f, UI.screenHeight - 40f));
 
-        public override void DoWindowContents(Rect inRect)
+        protected override void DoFramedContents(Rect inRect)
         {
             try
             {
@@ -208,11 +213,7 @@ namespace ColonyCouncil
                 Close();
                 return;
             }
-            float y = inRect.y;
-            Text.Font = GameFont.Medium;
-            Widgets.Label(new Rect(inRect.x, y, inRect.width, 34f), "CC_Out_GiftTitle".Translate(x.Named("OTHER")).Resolve());
-            Text.Font = GameFont.Small;
-            y += 36f;
+            float y = TitleTop(inRect, FrameTitle, 0f, 36f);
             string sub = "CC_Out_GiftNote".Translate(c.Named("PAWN"), x.Named("OTHER")).Resolve();
             float sh = Text.CalcHeight(sub, inRect.width);
             GUI.color = UiKit.Faint;
@@ -231,7 +232,7 @@ namespace ColonyCouncil
                     ry += RowH;
                     continue;
                 }
-                Widgets.DrawHighlightIfMouseover(row);
+                UiKit.RowHover(row);
                 Widgets.ThingIcon(new Rect(row.x + 2f, row.y + 2f, 26f, 26f), g.thing);
                 string label = g.count > 1 ? Couriers.Amount(g.count, null, g.thing.def) : g.thing.LabelNoCount;
                 Widgets.Label(new Rect(row.x + 34f, row.y + 4f, row.width * 0.5f - 34f, 24f), label.CapitalizeFirst().Truncate(row.width * 0.5f - 34f));

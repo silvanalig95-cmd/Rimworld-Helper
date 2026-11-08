@@ -66,7 +66,7 @@ namespace ColonyCouncil
             {
                 float w = view.width;
                 Place(m, w);
-                int cols = CouncilLayoutMath.Columns(w);
+                int cols = FramedWindowsMath.WeekColumns(w);
                 float cw = CouncilLayoutMath.ColumnWidth(w, cols);
                 float bottom = 0f;
                 var cards = m.cards;
@@ -108,7 +108,7 @@ namespace ColonyCouncil
             if (placedModel == m && Mathf.Abs(placedWidth - width) < 0.5f) return;
             placedModel = m;
             placedWidth = width;
-            int cols = CouncilLayoutMath.Columns(width);
+            int cols = FramedWindowsMath.WeekColumns(width);
             var heights = new float[m.cards.Count];
             for (int i = 0; i < heights.Length; i++)
             {
@@ -159,7 +159,7 @@ namespace ColonyCouncil
             {
                 // "and 3 more" opens the rest in place; "Show fewer" folds them again.
                 var mr = new Rect(r.x + 4f, y, r.width - 8f, CouncilLayoutMath.RowHeight);
-                Widgets.DrawHighlightIfMouseover(mr);
+                UiKit.RowHover(mr);
                 UiKit.Icon(new Rect(mr.x + 8f, mr.y + (mr.height - 10f) / 2f, 10f, 10f), c.more != null ? TexButton.Reveal : TexButton.Collapse, UiKit.Dim);
                 UiKit.LabelFit(new Rect(mr.x + 26f, mr.y, mr.width - 30f, mr.height), fold, UiKit.Faint, GameFont.Tiny);
                 if (Widgets.ButtonInvisible(mr))

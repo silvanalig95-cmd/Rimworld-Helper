@@ -237,7 +237,7 @@ namespace ColonyCouncil
             }
             Widgets.EndScrollView();
 
-            Widgets.DrawMenuSection(right);
+            UiKit.Section(right);
             var inner = right.ContractedBy(10f);
             if (selectedJournal == null)
             {

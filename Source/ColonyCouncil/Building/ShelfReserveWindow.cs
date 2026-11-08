@@ -44,9 +44,10 @@ namespace ColonyCouncil
     /// <summary>
     /// The reserved kinds of a shelf (or of every shelf selected, set alike), two lines each: the kind and where it
     /// stands; then how many slots, "no more than that", the most per stack, and when it's kept. Below, "Reserve a slot
-    /// for..." (Dialog_ShelfReservePick) and "Keep what's on it now".
+    /// for..." (Dialog_ShelfReservePick) and "Keep what's on it now". In Rimfolk's frame (key "ShelfReserve"), its title in
+    /// the title bar.
     /// </summary>
-    public class Dialog_ShelfReserve : Window
+    public class Dialog_ShelfReserve : FramedWindow
     {
         private readonly List<Building_Storage> shelves;
         private Vector2 scroll;
@@ -63,7 +64,13 @@ namespace ColonyCouncil
             return defs != null && defs.Any() ? Math.Max(1, defs.Max(d => d.stackLimit)) : 75;
         }
 
-        public Dialog_ShelfReserve(List<Building_Storage> shelves)
+        private static string title;
+
+        protected override string FrameTitle => title ??= "CC_Shelf_Title".Translate().Resolve();
+
+        protected override Texture2D FrameIcon => Icons.Pin;
+
+        public Dialog_ShelfReserve(List<Building_Storage> shelves) : base("ShelfReserve")
         {
             this.shelves = shelves;
             doCloseX = true;
@@ -78,7 +85,7 @@ namespace ColonyCouncil
 
         private Building_Storage First => shelves.FirstOrDefault(s => s != null && !s.Destroyed && s.Map != null);
 
-        public override void DoWindowContents(Rect inRect)
+        protected override void DoFramedContents(Rect inRect)
         {
             var first = First;
             var comp = ShelfReserves.Of(first?.Map);
@@ -88,7 +95,7 @@ namespace ColonyCouncil
                 return;
             }
             string sub = shelves.Count > 1 ? "CC_Shelf_SubMany".Translate(shelves.Count).Resolve() : first.LabelCap;
-            float top = UiKit.PageHeader(new Rect(inRect.x, inRect.y, inRect.width - 24f, UiKit.HeaderHeight), Icons.Pin, "CC_Shelf_Title".Translate(), sub);
+            float top = UiKit.DialogHeader(new Rect(inRect.x, inRect.y, inRect.width - (TitleInBar ? 0f : 24f), UiKit.HeaderHeight), TitleInBar, Icons.Pin, "CC_Shelf_Title".Translate(), sub);
             float y = inRect.y + top;
             y += UiKit.Paragraph(inRect.x, y, inRect.width, "CC_Shelf_Explain".Translate(), UiKit.Faint) + 6f;
             if (!ShelfReserves.On)
@@ -148,7 +155,7 @@ namespace ColonyCouncil
                 // No more than those.
                 var only = new Rect(lx, ly - 1f, 118f, 24f);
                 bool wasOnly = entry.only;
-                Widgets.CheckboxLabeled(only, "CC_Shelf_Only".Translate(), ref entry.only, false, null, null, true);
+                UiKit.Toggle(only, "CC_Shelf_Only".Translate(), ref entry.only, null, false, true);
                 TooltipHandler.TipRegion(only, "CC_Shelf_OnlyTip".Translate());
                 if (entry.only != wasOnly) changed = true;
                 lx += 128f;
@@ -177,7 +184,7 @@ namespace ColonyCouncil
                 var whenRect = new Rect(lx, ly - 1f, Mathf.Max(80f, view.width - lx - 4f), 22f);
                 string whenLabel = (entry.when == ShelfKind.WhenPatient ? "CC_Shelf_WhenPatient" : "CC_Shelf_WhenAlways").Translate().Resolve();
                 TooltipHandler.TipRegion(whenRect, "CC_Shelf_WhenTip".Translate());
-                if (Widgets.ButtonText(whenRect, UiKit.Fit(whenLabel, whenRect.width - 10f)))
+                if (UiKit.Button(whenRect, UiKit.Fit(whenLabel, whenRect.width - 10f)))
                 {
                     var e = entry;
                     var options = new List<FloatMenuOption>
@@ -204,7 +211,7 @@ namespace ColonyCouncil
             if (changed) SetAll(entries);
 
             var add = new Rect(inRect.x, inRect.yMax - bottom - 36f, 260f, 32f);
-            if (Widgets.ButtonText(add, UiKit.Fit("CC_Shelf_Add".Translate(), add.width - 12f)) && !Find.WindowStack.IsOpen(typeof(Dialog_ShelfReservePick)))
+            if (UiKit.Button(add, UiKit.Fit("CC_Shelf_Add".Translate(), add.width - 12f)) && !Find.WindowStack.IsOpen(typeof(Dialog_ShelfReservePick)))
                 Find.WindowStack.Add(new Dialog_ShelfReservePick(shelves));
             // One slot for each kind on the shelf now that has none yet.
             var keep = new Rect(add.xMax + 8f, add.y, Mathf.Min(240f, inRect.xMax - add.xMax - 8f), 32f);
@@ -213,14 +220,14 @@ namespace ColonyCouncil
             int roomLeft = capacity > 0 ? capacity - reserved : onShelf.Count;
             TooltipHandler.TipRegion(keep, "CC_Shelf_KeepTip".Translate());
             bool canKeep = onShelf.Count > 0 && roomLeft > 0;
-            if (keep.width > 60f && Widgets.ButtonText(keep, UiKit.Fit("CC_Shelf_Keep".Translate(), keep.width - 12f), true, true, canKeep) && canKeep)
+            if (keep.width > 60f && UiKit.Button(keep, UiKit.Fit("CC_Shelf_Keep".Translate(), keep.width - 12f), ButtonKind.Normal, canKeep))
                 SetAll(entries.Concat(onShelf.Take(roomLeft).Select(raw => new ShelfKind { kind = raw })).ToList());
         }
 
         private static bool Step(Rect r, string label, bool active, string tip)
         {
             TooltipHandler.TipRegion(r, tip);
-            return Widgets.ButtonText(r, label, true, false, active) && active;
+            return UiKit.Button(r, label, ButtonKind.Normal, active, null, null, false);
         }
 
         private void SetWhen(string kind, string when)

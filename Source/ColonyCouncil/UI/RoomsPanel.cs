@@ -47,7 +47,7 @@ namespace ColonyCouncil
             // The view's header, with the same buttons as the list of room plans beside it.
             float topH = UiKit.PageHeader(inRect, Icons.Rooms, "CC_Rooms_Title".Translate(), "CC_Rooms_Sub".Translate(), null, null, 270f);
             Text.Font = GameFont.Small;
-            Widgets.CheckboxLabeled(new Rect(inRect.xMax - 260f, inRect.y + 6f, 260f, 24f), "CC_Build_OnlyAvailable".Translate(), ref onlyAvailable);
+            UiKit.Toggle(new Rect(inRect.xMax - 260f, inRect.y + 6f, 260f, 24f), "CC_Build_OnlyAvailable".Translate(), ref onlyAvailable);
             if (UiKit.RowAct(new Rect(inRect.xMax - 260f, inRect.y + 30f, 126f, 22f), "CC_Yours_Save".Translate(), null, "CC_Yours_SaveDesc".Translate())) Designator_SaveRoom.Begin();
             if (UiKit.RowAct(new Rect(inRect.xMax - 130f, inRect.y + 30f, 130f, 22f), "CC_Rearr_Button".Translate(), null, "CC_Rearr_Desc".Translate())) Designator_RearrangeRoom.Begin();
 
@@ -89,7 +89,7 @@ namespace ColonyCouncil
         {
             t.ResolveCached(map, out string reason);
             bool ok = reason == null;
-            Widgets.DrawHighlightIfMouseover(r);
+            UiKit.RowHover(r);
             if (suggestedBecause != null) Widgets.DrawBoxSolid(r, UiKit.WithAlpha(Suggested, 0.12f));
             GUI.color = ok ? UiKit.Ink : UiKit.WithAlpha(UiKit.Ink, 0.35f);
             GUI.DrawTexture(new Rect(r.x + 2f, r.y + 2f, r.height - 4f, r.height - 4f), t.Icon);

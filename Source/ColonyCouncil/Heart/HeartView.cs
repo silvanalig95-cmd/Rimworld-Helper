@@ -627,7 +627,7 @@ namespace ColonyCouncil
                 float ch = 0f;
                 if (!f.causes.NullOrEmpty()) ch = UiKit.Paragraph(0f, cy, w, f.causes, MoodView.Faint, GameFont.Tiny);
                 var all = new Rect(0f, y, w, UiKit.MeterHeight + ch);
-                Widgets.DrawHighlightIfMouseover(all);
+                UiKit.RowHover(all);
                 TooltipHandler.TipRegion(all, f.tip);
                 y += UiKit.MeterHeight + ch + 4f;
             }
@@ -640,7 +640,7 @@ namespace ColonyCouncil
                 UiKit.LabelFit(head, "CC_Heart_NeedsHeader".Translate(), UiKit.HeaderColor);
                 if (!m.needsTip.NullOrEmpty())
                 {
-                    Widgets.DrawHighlightIfMouseover(head);
+                    UiKit.RowHover(head);
                     TooltipHandler.TipRegion(head, m.needsTip);
                 }
                 y += 22f;
@@ -653,7 +653,7 @@ namespace ColonyCouncil
                     UiKit.Meter(new Rect(x, ry, colW, UiKit.MeterHeight), n.fill, NeedColor(n.fill), n.label, n.value);
                     if (!n.why.NullOrEmpty()) UiKit.LabelFit(new Rect(x, ry + UiKit.MeterHeight - 2f, colW, 16f), n.why, MoodView.Faint, GameFont.Tiny);
                     var cell = new Rect(x, ry, colW, UiKit.MeterHeight + 14f);
-                    Widgets.DrawHighlightIfMouseover(cell);
+                    UiKit.RowHover(cell);
                     if (!n.tip.NullOrEmpty()) TooltipHandler.TipRegion(cell, n.tip);
                 }
                 y += 2 * (UiKit.MeterHeight + 16f);
@@ -725,7 +725,7 @@ namespace ColonyCouncil
                 var r = m.rows[i];
                 var row = new Rect(0f, y, w, UiKit.RowPortrait);
                 UiKit.Zebra(row, i);
-                Widgets.DrawHighlightIfMouseover(row);
+                UiKit.RowHover(row);
                 // Their portrait and name lead to their card; the rest of the row to their Mood tab.
                 var face = new Rect(4f, y + 5f, 30f, 30f);
                 UiKit.Portrait(face, r.pawn, r.color);

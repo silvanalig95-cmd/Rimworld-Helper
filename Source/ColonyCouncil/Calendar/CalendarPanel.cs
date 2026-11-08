@@ -180,7 +180,7 @@ namespace ColonyCouncil
             const float dateW = 130f;
             var r = new Rect(x, y, w, 48f);
             UiKit.Zebra(r, index);
-            Widgets.DrawHighlightIfMouseover(r);
+            UiKit.RowHover(r);
             UiKit.Icon(new Rect(x + 6f, y + 6f, 20f, 20f), Icons.Office, UiKit.Gold);
             UiKit.LabelFit(new Rect(x + 32f, y + 3f, dateW, 22f), OfficeTracker.ElectionDay(e), UiKit.Gold);
             float nx = x + 32f + dateW + 8f;
@@ -203,7 +203,7 @@ namespace ColonyCouncil
             float h = Mathf.Max(48f, 28f + oh + 6f);
             var r = new Rect(x, y, w, h);
             UiKit.Zebra(r, index);
-            Widgets.DrawHighlightIfMouseover(r);
+            UiKit.RowHover(r);
             UiKit.Icon(new Rect(x + 6f, y + 6f, 20f, 20f), KindIcon(d), row.soon ? UiKit.Gold : UiKit.Faint);
 
             // The date column.

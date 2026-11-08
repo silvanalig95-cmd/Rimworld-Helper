@@ -290,7 +290,9 @@ namespace ColonyCouncil
     /// <summary>
     /// The search's field and its results, under the corner's field: the index made when it opens, the results grouped
     /// by kind as the player types, Enter (or a click) taking the one lit, the arrows moving it, Escape or a click outside
-    /// closing it. It never pauses the game.
+    /// closing it. It never pauses the game. Opened from the corner of a window in Rimfolk's own look, it takes the look
+    /// (rounded, the kit's field, the one lit with the accent's edge); otherwise it is the game's as before. It stays
+    /// under its icon: a popup, not a window that moves.
     /// </summary>
     public class Window_Search : Window
     {
@@ -310,11 +312,16 @@ namespace ColonyCouncil
 
         public override Vector2 InitialSize => new Vector2(Mathf.Min(400f, UI.screenWidth - 20f), Mathf.Min(460f, UI.screenHeight - 60f));
 
-        protected override float Margin => 10f;
+        /// <summary>Opened from a window in Rimfolk's own look: drawn in it.</summary>
+        private readonly bool own;
+
+        protected override float Margin => own ? 0f : 10f;
 
         public Window_Search(Rect anchor)
         {
             this.anchor = anchor;
+            own = UiKit.OwnLook && WindowFrame.OwnLookOn;
+            doWindowBackground = !own;
             layer = WindowLayer.Dialog;
             doCloseX = false;
             closeOnAccept = false;
@@ -368,6 +375,25 @@ namespace ColonyCouncil
 
         public override void DoWindowContents(Rect inRect)
         {
+            if (!own)
+            {
+                Contents(inRect);
+                return;
+            }
+            bool was = UiKit.BeginOwn();
+            try
+            {
+                UiKit.RoundBox(inRect, UiKit.WindowGround, UiKit.EdgeStrong, SkinMath.RadiusWindow);
+                Contents(inRect.ContractedBy(10f));
+            }
+            finally
+            {
+                UiKit.EndOwn(was);
+            }
+        }
+
+        private void Contents(Rect inRect)
+        {
             // The keys before the field takes them: Enter takes the one lit, the arrows move it.
             var e = Event.current;
             if (e.type == EventType.KeyDown)
@@ -386,8 +412,7 @@ namespace ColonyCouncil
             }
             var fieldRect = new Rect(inRect.x, inRect.y, inRect.width, 30f);
             UiKit.Icon(new Rect(fieldRect.x + 6f, fieldRect.y + 7f, 16f, 16f), Icons.Search, UiKit.Faint);
-            GUI.SetNextControlName(Field);
-            query = Widgets.TextField(new Rect(fieldRect.x + 28f, fieldRect.y, fieldRect.width - 28f, fieldRect.height), query ?? "");
+            query = UiKit.TextField(new Rect(fieldRect.x + 28f, fieldRect.y, fieldRect.width - 28f, fieldRect.height), query ?? "", Field);
             if (!focused)
             {
                 UI.FocusControl(Field, this);
@@ -428,7 +453,12 @@ namespace ColonyCouncil
                     foreach (var item in g.items)
                     {
                         var r = new Rect(0f, y, view.width, RowH);
-                        if (i == lit) Widgets.DrawBoxSolid(r, UiKit.CardSelected);
+                        if (UiKit.OwnLook)
+                        {
+                            if (i == lit) UiKit.RowLit(r);
+                            else UiKit.RowHover(r);
+                        }
+                        else if (i == lit) Widgets.DrawBoxSolid(r, UiKit.CardSelected);
                         else if (Mouse.IsOver(r)) Widgets.DrawBoxSolid(r, UiKit.CardHover);
                         Search.Picture(new Rect(4f, y + 5f, 24f, 24f), item);
                         UiKit.LabelFit(new Rect(34f, y + 1f, view.width - 38f, 18f), item.name, i == lit ? UiKit.Gold : Color.white);

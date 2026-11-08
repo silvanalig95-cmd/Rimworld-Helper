@@ -180,8 +180,11 @@ namespace ColonyCouncil
         }
     }
 
-    /// <summary>The ground plan's rooms, in order, each with its reasons and a button that opens the planner there.</summary>
-    public class Window_GroundPlan : Window
+    /// <summary>
+    /// The ground plan's rooms, in order, each with its reasons and a button that opens the planner there. In Rimfolk's
+    /// frame (key "GroundPlan"), opening first at the screen's right as before.
+    /// </summary>
+    public class Window_GroundPlan : FramedWindow
     {
         private Vector2 scroll;
         private float height = 300f;
@@ -195,7 +198,13 @@ namespace ColonyCouncil
             Find.WindowStack.Add(new Window_GroundPlan());
         }
 
-        public Window_GroundPlan()
+        private static string title;
+
+        protected override string FrameTitle => title ??= "CC_Ground_Title".Translate().Resolve();
+
+        protected override Texture2D FrameIcon => Icons.Plan;
+
+        public Window_GroundPlan() : base("GroundPlan")
         {
             layer = WindowLayer.GameUI;
             doCloseX = true;
@@ -208,11 +217,13 @@ namespace ColonyCouncil
             closeOnAccept = false;
         }
 
-        protected override float Margin => 10f;
+        protected override float UnframedMargin => 10f;
 
         public override Vector2 InitialSize => new Vector2(Width, Mathf.Min(520f, UI.screenHeight - 120f));
 
-        protected override void SetInitialSizeAndPosition()
+        protected override bool OwnFirstPlace => true;
+
+        protected override void PlaceUnframed()
         {
             var size = InitialSize;
             windowRect = new Rect(UI.screenWidth - size.x - 20f, 80f, size.x, size.y).Rounded();
@@ -224,7 +235,7 @@ namespace ColonyCouncil
             GroundPlan.Hide();
         }
 
-        public override void DoWindowContents(Rect inRect)
+        protected override void DoFramedContents(Rect inRect)
         {
             var map = Find.CurrentMap;
             if (map == null || !GroundPlan.Shown)
@@ -233,9 +244,14 @@ namespace ColonyCouncil
                 return;
             }
             float y = inRect.y;
-            UiKit.Icon(new Rect(inRect.x, y + 2f, 24f, 24f), Icons.Plan, UiKit.Gold);
-            UiKit.LabelFit(new Rect(inRect.x + 30f, y, inRect.width - 30f, 30f), "CC_Ground_Title".Translate(), Color.white, GameFont.Medium);
-            y += 32f;
+            // The title, unless the frame has it in its bar.
+            if (!TitleInBar)
+            {
+                UiKit.Icon(new Rect(inRect.x, y + 2f, 24f, 24f), Icons.Plan, UiKit.Gold);
+                UiKit.LabelFit(new Rect(inRect.x + 30f, y, inRect.width - 30f, 30f), FrameTitle, Color.white, GameFont.Medium);
+                y += 32f;
+            }
+            else y += 4f;
             Text.Font = GameFont.Small;
             y += UiKit.Paragraph(inRect.x, y, inRect.width, "CC_Ground_Sub".Translate(), UiKit.Faint) + 6f;
 
@@ -251,12 +267,12 @@ namespace ColonyCouncil
             Widgets.EndScrollView();
 
             float by = inRect.yMax - 30f;
-            if (Widgets.ButtonText(new Rect(inRect.x, by, 150f, 30f), "CC_Ground_Again".Translate()))
+            if (UiKit.Button(new Rect(inRect.x, by, 150f, 30f), "CC_Ground_Again".Translate()))
             {
                 SoundDefOf.Click.PlayOneShotOnCamera();
                 GroundPlan.Show(map);
             }
-            if (Widgets.ButtonText(new Rect(inRect.xMax - 110f, by, 110f, 30f), "CC_Ground_Close".Translate())) Close(false);
+            if (UiKit.Button(new Rect(inRect.xMax - 110f, by, 110f, 30f), "CC_Ground_Close".Translate())) Close(false);
         }
 
         private static float Row(float y, float width, GroundPlanRoom r, int n, Map map)
@@ -284,12 +300,12 @@ namespace ColonyCouncil
                 var reasons = spot.reasons;
                 if (reasons != null && reasons.Count > 0)
                     TooltipHandler.TipRegion(new Rect(0f, y, width - 170f, h), string.Join("\n", reasons.Select(x => (x.good ? "+ " : "- ") + x.text)));
-                if (Widgets.ButtonText(new Rect(width - 166f, y + 6f, 110f, 26f), "CC_Ground_PlanHere".Translate()))
+                if (UiKit.Button(new Rect(width - 166f, y + 6f, 110f, 26f), "CC_Ground_PlanHere".Translate()))
                 {
                     SoundDefOf.Tick_High.PlayOneShotOnCamera();
                     GroundPlan.PlanHere(r);
                 }
-                if (Widgets.ButtonText(new Rect(width - 52f, y + 6f, 48f, 26f), "CC_Ground_Show".Translate())) CameraJumper.TryJump(r.mid, map);
+                if (UiKit.Button(new Rect(width - 52f, y + 6f, 48f, 26f), "CC_Ground_Show".Translate())) CameraJumper.TryJump(r.mid, map);
             }
             return h;
         }

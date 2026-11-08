@@ -254,15 +254,19 @@ namespace ColonyCouncil
             return from + "\n" + since;
         }
 
+        private static string ownHint;
+
         private static float DrawAddOwn(float x, float y, float width, Map map)
         {
             float h = 34f;
             var row = new Rect(x, y, width, h);
             UiKit.Card(row, null, false, false);
             var field = new Rect(x + 8f, y + 5f, Mathf.Max(120f, width - 8f - 240f - 110f - 24f), 24f);
-            string shown = Widgets.TextField(field, newStep ?? "");
+            // The kit's field: the game's own in the game's look, Rimfolk's with its quiet word in its own.
+            ownHint ??= "CC_Plan_OwnHint".Translate().Resolve();
+            string shown = UiKit.TextField(field, newStep ?? "", "RimfolkOwnStep", UiKit.OwnLook ? ownHint : null);
             if (shown != newStep) newStep = shown.Length > 120 ? shown.Substring(0, 120) : shown;
-            if (newStep.NullOrEmpty())
+            if (newStep.NullOrEmpty() && !UiKit.OwnLook)
             {
                 GUI.color = UiKit.Dim;
                 Widgets.Label(new Rect(field.x + 6f, field.y + 2f, field.width - 8f, 22f), "CC_Plan_OwnHint".Translate());

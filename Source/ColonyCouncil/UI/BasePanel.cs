@@ -37,7 +37,7 @@ namespace ColonyCouncil
             if (UiKit.ActButton(new Rect(rect.xMax - 160f, rect.y + 6f, 160f, UiKit.RowStandard), "CC_Base_LookAgain".Translate(), null)) BaseReview.For(map, true);
             bool show = BaseOverlay.Show;
             var showRect = new Rect(rect.xMax - 320f, rect.y + 8f, 150f, 24f);
-            Widgets.CheckboxLabeled(showRect, "CC_Base_ShowOnMap".Translate(), ref show);
+            UiKit.Toggle(showRect, "CC_Base_ShowOnMap".Translate(), ref show);
             TooltipHandler.TipRegion(showRect, "CC_Base_ShowOnMap_Tip".Translate());
             if (show != BaseOverlay.Show) BaseOverlay.Show = show;
 

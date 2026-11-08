@@ -193,7 +193,7 @@ namespace ColonyCouncil
         {
             const float legendH = 26f;
             var area = new Rect(rect.x, rect.y, rect.width, rect.height - legendH - 4f);
-            Widgets.DrawMenuSection(area);
+            UiKit.Section(area);
             int n = m.colonists.Count;
             if (n == 0)
             {
@@ -646,7 +646,7 @@ namespace ColonyCouncil
                 var (s, line) = list[i];
                 var r = new Rect(0f, y, width, RowH);
                 UiKit.Zebra(r, i);
-                Widgets.DrawHighlightIfMouseover(r);
+                UiKit.RowHover(r);
                 var color = s.revealed ? (s.def.good ? UiKit.Warm : UiKit.Sour) : UiKit.Faint;
                 UiKit.Portrait(new Rect(4f, y + 3f, 22f, 22f), s.owner, color);
                 LinkText.Line(new Rect(32f, y, width - 36f, RowH), line, s.revealed ? UiKit.Ink : UiKit.Faint);
@@ -663,7 +663,7 @@ namespace ColonyCouncil
         private static void DrawTie(Rect r, SocialTie t, int i, string linked)
         {
             UiKit.Zebra(r, i);
-            Widgets.DrawHighlightIfMouseover(r);
+            UiKit.RowHover(r);
             var color = UiKit.TieColor(t.kind);
             // The two of them: overlapping portraits, then their names.
             UiKit.Portrait(new Rect(r.x + 4f, r.y + 3f, 22f, 22f), t.a, color);

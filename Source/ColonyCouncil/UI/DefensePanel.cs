@@ -87,7 +87,7 @@ namespace ColonyCouncil
             TooltipHandler.TipRegion(again, "CC_Def_SurveyAgain_Tip".Translate());
             bool show = DefenseOverlay.Show;
             var showRect = new Rect(rect.xMax - 300f, rect.y + 8f, 150f, 24f);
-            Widgets.CheckboxLabeled(showRect, "CC_Def_ShowOnMap".Translate(), ref show);
+            UiKit.Toggle(showRect, "CC_Def_ShowOnMap".Translate(), ref show);
             TooltipHandler.TipRegion(showRect, "CC_Def_ShowOnMap_Tip".Translate());
             if (show != DefenseOverlay.Show) DefenseOverlay.Show = show;
             if (m.s == null)

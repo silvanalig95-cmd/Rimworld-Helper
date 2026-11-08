@@ -152,27 +152,37 @@ namespace ColonyCouncil
 
         // ---------------- Models ----------------
 
-        private static readonly Dictionary<ThingRef, CardModel> models = new Dictionary<ThingRef, CardModel>();
+        /// <summary>
+        /// The models built lately, one set for each look (a card's colours are the look's tokens when it is built: the
+        /// same card in a window in Rimfolk's own look and in a panel in the game's keeps each its own).
+        /// </summary>
+        private static readonly Dictionary<ThingRef, CardModel> models = new Dictionary<ThingRef, CardModel>(), ownModels = new Dictionary<ThingRef, CardModel>();
 
         /// <summary>A thing's card model, built again when it is more than a second old (only cards that show ask).</summary>
         public static CardModel Model(ThingRef r)
         {
             float now = Time.realtimeSinceStartup;
-            if (models.TryGetValue(r, out var m) && now - m.builtAt < 1f && now >= m.builtAt) return m;
+            var built = UiKit.OwnLook ? ownModels : models;
+            if (built.TryGetValue(r, out var m) && now - m.builtAt < 1f && now >= m.builtAt) return m;
             m = Build(r);
             m.builtAt = now;
-            if (models.Count > 64) models.Clear();
-            models[r] = m;
+            if (built.Count > 64) built.Clear();
+            built[r] = m;
             return m;
         }
 
         /// <summary>Every model built again at the next ask (an act changed what they show).</summary>
-        public static void Dirty() => models.Clear();
+        public static void Dirty()
+        {
+            models.Clear();
+            ownModels.Clear();
+        }
 
         /// <summary>Forget the last game's cards (a game loaded).</summary>
         public static void Reset()
         {
             models.Clear();
+            ownModels.Clear();
             ThingRefs.Reset();
         }
 

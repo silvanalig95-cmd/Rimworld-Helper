@@ -121,7 +121,7 @@ namespace ColonyCouncil
             float barW = w - labelW * 2f - 20f;
             var row = new Rect(0f, y, w, rowH);
             UiKit.Zebra(row, index);
-            Widgets.DrawHighlightIfMouseover(row);
+            UiKit.RowHover(row);
             UiKit.LabelFit(new Rect(0f, y, labelW, rowH), CharacterTracker.PoleLabel(way, false).CapitalizeFirst(), tier < 0 ? Neg : UiKit.Faint, GameFont.Small, TextAnchor.MiddleRight);
             UiKit.LabelFit(new Rect(labelW + barW + 20f, y, labelW, rowH), CharacterTracker.PoleLabel(way, true).CapitalizeFirst(), tier > 0 ? Pos : UiKit.Faint);
             var bar = new Rect(labelW + 10f, y + 10f, barW, 10f);
@@ -157,7 +157,7 @@ namespace ColonyCouncil
                 float progress = Mathf.Clamp01(ch.traits.Progress(d));
                 var row = new Rect(0f, y, w, rowH);
                 UiKit.Zebra(row, i++);
-                Widgets.DrawHighlightIfMouseover(row);
+                UiKit.RowHover(row);
                 float labelW = Mathf.Min(160f, w * 0.3f);
                 UiKit.LabelFit(new Rect(6f, y, labelW, rowH), d.LabelCap, UiKit.Ink);
                 var bar = new Rect(labelW + 12f, y + 9f, Mathf.Max(20f, w - labelW - 140f), 8f);
