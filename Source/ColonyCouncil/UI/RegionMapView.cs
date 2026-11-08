@@ -282,6 +282,7 @@ namespace ColonyCouncil
                 Labels(marks, w, h);
                 // The lens's legend at the map's foot (the whole of it in the panel with nothing picked).
                 if (lens != null) UiKit.LegendStrip(new Rect(6f, 0f, local.width - 44f, local.height - 6f), lens.legend);
+                Lit(local);
 
                 // The zoom buttons, before the map's own mouse handling so a click on them stays theirs.
                 var zin = new Rect(local.xMax - 30f, 6f, 24f, 24f);
@@ -303,6 +304,33 @@ namespace ColonyCouncil
             Widgets.DrawBox(rect);
             GUI.color = Color.white;
         }
+
+        /// <summary>The people whose towns are lit (chosen on Peoples), in a chip at the map's top left; a click lets them go.</summary>
+        private static void Lit(Rect local)
+        {
+            var f = RegionView.lit;
+            if (f == null) return;
+            if (f.defeated)
+            {
+                RegionView.lit = null;
+                return;
+            }
+            if (litFor != f)
+            {
+                litFor = f;
+                litLabel = "CC_Region_Lit".Translate(f.Name.Named("PEOPLE")).Resolve();
+            }
+            float w = Mathf.Min(UiKit.KeptWidth(litLabel, GameFont.Tiny) + 34f, local.width * 0.6f);
+            var r = new Rect(local.x + 6f, local.y + 6f, w, 20f);
+            Widgets.DrawBoxSolidWithOutline(r, UiKit.Shade, UiKit.WithAlpha(UiKit.Gold, 0.6f));
+            UiKit.LabelFit(new Rect(r.x + 6f, r.y, r.width - 26f, r.height), litLabel, UiKit.Gold, GameFont.Tiny);
+            var x = new Rect(r.xMax - 18f, r.y + 3f, 14f, 14f);
+            if (Widgets.ButtonImage(x, TexButton.CloseXSmall)) RegionView.lit = null;
+            TooltipHandler.TipRegion(r, "CC_Region_LitTip".Translate());
+        }
+
+        private static RimWorld.Faction litFor;
+        private static string litLabel;
 
         private void Hover(List<RegionMark> marks, Vector2 mouse, bool over, double w, double h)
         {
@@ -400,6 +428,8 @@ namespace ColonyCouncil
                 else if (lens != null && lens.rings.TryGetValue(m.obj.ID, out var regard)) UiKit.RingDraw(r.ExpandedBy(4f), UiKit.WithAlpha(regard, 0.85f));
                 // The diplomatic range until radio (Post/PostReach.cs): a soft ring round a town far off (by relay) or out of reach.
                 if (m.obj is Settlement town && PostRing.Ring(map.home, town, out var reach)) UiKit.RingDraw(r.ExpandedBy(9f), reach);
+                // The towns of the people chosen on Peoples (UI/Region/PeoplesView.cs), lit in gold.
+                if (RegionView.lit != null && m.obj is Settlement litTown && litTown.Faction == RegionView.lit) UiKit.RingDraw(r.ExpandedBy(6f), UiKit.Gold);
                 if (m.obj == picked) UiKit.RingDraw(r.ExpandedBy(7f), Color.white);
                 else if (m == hoverMark) UiKit.RingDraw(r.ExpandedBy(5f), UiKit.WithAlpha(UiKit.Ink, 0.5f));
                 if (m.icon != null)
@@ -476,7 +506,7 @@ namespace ColonyCouncil
                 foreach (var m in marks)
                 {
                     if (m.label.NullOrEmpty()) continue;
-                    bool first = m.obj == picked || m == hoverMark;
+                    bool first = m.obj == picked || m == hoverMark || RegionView.lit != null && m.obj?.Faction == RegionView.lit && m.kind == RegionMarkKind.Settlement;
                     bool wanted = pass == 0 ? first : pass == 1 ? !first && m.kind == RegionMarkKind.Colony : !first && m.kind == RegionMarkKind.Settlement && roomy;
                     if (!wanted) continue;
                     ToScreen(view, w, h, m.x, m.y, out double sx, out double sy);

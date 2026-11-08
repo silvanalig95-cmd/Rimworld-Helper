@@ -36,7 +36,7 @@
   <CC_Mode_List_Tip>What the lens shows, as a list. A click on a row opens its card beside it.</CC_Mode_List_Tip>
   <CC_Mode_Peoples>Peoples</CC_Mode_Peoples>
   <CC_Mode_Faces>Faces</CC_Mode_Faces>
-  <CC_Mode_Peoples_Tip>Each people of the world, how it stands with the colony, whom it is at war with, what is owed each way and the ties between you.</CC_Mode_Peoples_Tip>
+  <CC_Mode_Peoples_Tip>Each people of the world in a list, closest first, and the one chosen on a page: how it stands with the colony, how to reach it, its towns, its people, your dealings and its history, and what the colony can do with it.</CC_Mode_Peoples_Tip>
   <CC_Mode_Faces_Tip>The people the colony knows by name, its old foes, those who left, and the faces it keeps up with.</CC_Mode_Faces_Tip>
 
   <!-- The region map's lenses (UI/Region/LensModel.cs, MapView.cs). -->
@@ -135,7 +135,7 @@
   <CC_Lens_FightComing>on its way</CC_Lens_FightComing>
 
   <!-- Region → Peoples, its two modes (UI/Region/PeoplesView.cs). -->
-  <CC_Peoples_Line>Each people of the world, how it stands with the colony, and what is owed each way.</CC_Peoples_Line>
+  <CC_Peoples_Line>Each people of the world, closest first: how it stands with the colony, and what to do with it.</CC_Peoples_Line>
   <CC_Faces_Line>The people the colony knows by name, and who is out there with the colony on their mind.</CC_Faces_Line>
   <CC_Faces_Stat>{COUNT} known by name</CC_Faces_Stat>
   <CC_Faces_Known>Known by name</CC_Faces_Known>

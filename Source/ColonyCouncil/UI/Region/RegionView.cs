@@ -7,9 +7,10 @@ namespace ColonyCouncil
 {
     /// <summary>
     /// Where the region window's views stand, kept for the session: the map's lens and whether it shows the map or the
-    /// List, and whether Peoples shows the peoples or their faces. An address (PagesMath.TryAddress: "Map/Trade/List",
-    /// "Peoples/Faces") sets them; the way back keeps them as a view's "within" (UI/Cards/Nav.cs). The words and icons of
-    /// the lenses and modes are here too, made once.
+    /// List (in its groups, or all closest first), whether Peoples shows the peoples or their faces, and the Peoples
+    /// view's sort, filters, search, the people chosen and the towns it lights on the map. An address
+    /// (PagesMath.TryAddress: "Map/Trade/List", "Peoples/Faces") sets them; the way back keeps them as a view's "within"
+    /// (UI/Cards/Nav.cs). The words and icons of the lenses and modes are here too, made once.
     /// </summary>
     public static class RegionView
     {
@@ -23,6 +24,35 @@ namespace ColonyCouncil
 
         /// <summary>Peoples shows their faces (the people the colony knows by name and those who left) rather than the peoples.</summary>
         public static bool faces;
+
+        /// <summary>The map's List all in one, closest first, rather than in its groups.</summary>
+        public static bool closest;
+
+        // The Peoples view (UI/Region/PeoplesView.cs): the list's sort, filters and search, the people chosen, its page's
+        // tab and what "Do something with..." is aimed at. The sort and the filters are the player's for the session (a new
+        // game keeps them); the rest starts afresh with a new game.
+
+        /// <summary>How the list of peoples is sorted: closest first unless the player chose another.</summary>
+        public static PeoplesSort sort = PeoplesSort.Closest;
+
+        public static PeoplesFilter filters = PeoplesFilter.None;
+
+        public static string query = "";
+
+        /// <summary>The people chosen (its loadID); <see cref="AllPeoples"/> for every people's debts and memories; <see cref="NoneChosen"/> to choose the first in the list.</summary>
+        public static int chosen = NoneChosen;
+
+        public const int NoneChosen = -1, AllPeoples = -2;
+
+        public static PeopleTab tab = PeopleTab.Overview;
+
+        /// <summary>"Do something with...": the whole people, a town of theirs (its id), one of their people (a notable's id).</summary>
+        public static ActTarget target = ActTarget.People;
+
+        public static int targetTown = -1, targetPerson = -1;
+
+        /// <summary>The people whose towns the region map lights (the one chosen on Peoples), or null.</summary>
+        public static RimWorld.Faction lit;
 
         /// <summary>An address puts the view as it names it: a mode it doesn't name is the view's first, a lens it doesn't name stays.</summary>
         public static void Apply(PagesMath.Address a)
@@ -49,6 +79,12 @@ namespace ColonyCouncil
             lens = Lens.Land;
             list = false;
             faces = false;
+            query = "";
+            chosen = NoneChosen;
+            tab = PeopleTab.Overview;
+            target = ActTarget.People;
+            targetTown = targetPerson = -1;
+            lit = null;
         }
 
         // ---------------- Words and icons ----------------
