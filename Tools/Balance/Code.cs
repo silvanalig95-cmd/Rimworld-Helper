@@ -28,7 +28,7 @@ namespace Balance
         // Dreams (Dreams/Dreams.cs)
         public static float DreamChance, DreamGapHours;
         // Ailments (Ailments/AilmentTracker.cs)
-        public static float EverydayCatchingDays, SeriousCatchingDays, MaxEverydayAtOnce;
+        public static float EverydayCatchingDays, SeriousCatchingDays, MaxEverydayAtOnce, SeriousGapDays;
         // World events (World/WorldSituations.cs)
         public static float SituationsMaxActive;
         // The gap between Rimfolk's questions (Lean/LetterGap.cs; 0 when the code has none)
@@ -91,6 +91,7 @@ namespace Balance
             EverydayCatchingDays = s.Num("days between catching ailments (a map)", ail, @"EverydayCatchingDays = ([\d.]+)f;", 20);
             SeriousCatchingDays = s.Num("days between serious illnesses (a map)", ail, @"SeriousCatchingDays = ([\d.]+)f;", 300);
             MaxEverydayAtOnce = s.Num("everyday ailments at once", ail, @"MaxEverydayAtOnce = (\d+);", 2);
+            SeriousGapDays = s.Num("days between two serious illnesses (the colony)", ail, @"SeriousGapDays = ([\d.]+)f;", 30);
 
             SituationsMaxActive = s.Num("world events at once", "World/WorldSituations.cs", @"MaxActive = (\d+);", 2);
 

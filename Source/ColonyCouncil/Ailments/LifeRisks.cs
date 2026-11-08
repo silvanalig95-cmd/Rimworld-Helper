@@ -226,8 +226,13 @@ namespace ColonyCouncil
             if (r.crowded > 0) why.Add("CC_Adv_Sickness_Crowded".Translate(r.crowded, r.people).Resolve());
             if (r.kitchen.HasValue && LifeRiskMath.KitchenFactor(r.kitchen.Value) > 1f) why.Add("CC_Adv_Sickness_Kitchen".Translate(r.kitchen.Value.ToString("0.0")).Resolve());
             if (LifeRiskMath.SizeFactor(r.people) > 1.1f) why.Add("CC_Adv_Sickness_Size".Translate(r.people).Resolve());
+            // With the shared illness budget, crowding and dirt don't bring more serious illness in all, only more of the kinds
+            // that go round and spread between roommates (Ailments/IllnessBudget.cs); and the council's last record on it.
+            string detail = (IllnessBudget.On ? "CC_Adv_Sickness_DetailShared" : "CC_Adv_Sickness_Detail").Translate(r.factor.ToString("0.0"), string.Join("; ", why)).Resolve();
+            string record = IllnessBudget.RecordLine(map);
+            if (!record.NullOrEmpty()) detail += " " + record;
             var s = Signal(0.2f + 0.3f * Math.Min(1f, (r.factor - LifeRiskMath.SicknessWorthSaying) / (LifeRiskMath.MaxSicknessFactor - LifeRiskMath.SicknessWorthSaying)),
-                "CC_Adv_Sickness_Title".Translate(), "CC_Adv_Sickness_Detail".Translate(r.factor.ToString("0.0"), string.Join("; ", why)).Resolve(), 0.4f);
+                "CC_Adv_Sickness_Title".Translate(), detail, 0.4f);
             if (r.kitchenRoom != null && LifeRiskMath.KitchenFactor(r.kitchen ?? 0f) > 1f) s.look = new LookTargets(r.kitchenRoom.Cells.First(), map);
             s.key = "sickness";
             yield return s;

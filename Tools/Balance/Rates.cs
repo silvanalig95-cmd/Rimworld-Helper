@@ -22,6 +22,21 @@ namespace Balance
         /// <summary>Days between big threats (raids, sieges, infestations) in a settled colony on Cassandra, middle difficulty.</summary>
         public const float BigThreatDays = 9f;
 
+        /// <summary>
+        /// The game's own human diseases on a temperate forest (Core's Biomes_Temperate.xml: diseaseMtbDays 50, rolled by the
+        /// storyteller's StorytellerComp_Disease for DiseaseHuman), times the storyteller's disease interval: 1 at Strive to
+        /// survive (Rough), 1.5 at Adventure story (Medium), 0.9 to 0.95 harder, 2.5 to 3 at the two gentlest. --illness
+        /// --interval sets it.
+        /// </summary>
+        public const float GameDiseaseMtbDays = 50f;
+        public static float GameDiseaseInterval = 1f;
+
+        /// <summary>
+        /// Of the game's human diseases there, those that can kill: the flu, the plague and malaria (100 each of the land's 460
+        /// commonality; gut worms, muscle parasites and the two mechanites can't).
+        /// </summary>
+        public const float GameDiseaseDeadly = 300f / 460f;
+
         /// <summary>Share of hours a kind of stranger is at home: visitors, traders, a lodger, a prisoner, the downed after a fight.</summary>
         public static readonly Dictionary<string, float> Present = new Dictionary<string, float>
         {
@@ -428,6 +443,11 @@ namespace Balance
             public float touchBuilt, traitPride, heirloom;
             /// <summary>Share of pairs who share a bedroom (couples, and barracks).</summary>
             public float sharedBedrooms;
+            /// <summary>
+            /// Share of colonists sleeping in barracks or without a bed, and the dirtiest kitchen's cleanliness: how much likelier
+            /// serious illness is caught (LifeRiskMath.SicknessFactor, the catching clock's serious one).
+            /// </summary>
+            public float barracks, kitchen;
         }
 
         public static readonly Style WellRun = new Style
@@ -451,7 +471,8 @@ namespace Balance
             setbackFactor = 0.6f, quietDays = 0f, researchIdle = 0f, bedroomEnvy = 0.05f, worries = 0.01f,
             nuisanceFits = 0.12f, frictionFactor = 0.7f,
             ways = new[] { 0f, 0.08f, 0.35f, 0.1f }, strain = new[] { 0.02f, 0f, 0f },
-            aspirationsPerYear = 0.5f, convalescencePerYear = 0.45f, pets = 0.9f, touchBuilt = 0.9f, traitPride = 0.15f, heirloom = 0.05f, sharedBedrooms = 0.15f
+            aspirationsPerYear = 0.5f, convalescencePerYear = 0.45f, pets = 0.9f, touchBuilt = 0.9f, traitPride = 0.15f, heirloom = 0.05f, sharedBedrooms = 0.15f,
+            barracks = 0f, kitchen = 0.5f
         };
 
         public static readonly Style Average = new Style
@@ -473,7 +494,8 @@ namespace Balance
             setbackFactor = 1f, quietDays = 0.15f, researchIdle = 0.05f, bedroomEnvy = 0.15f, worries = 0.02f,
             nuisanceFits = 0.4f, frictionFactor = 1f,
             ways = new[] { 0.02f, 0.13f, 0.2f, 0.04f }, strain = new[] { 0.08f, 0.02f, 0f },
-            aspirationsPerYear = 0.3f, convalescencePerYear = 0.7f, pets = 0.8f, touchBuilt = 0.6f, traitPride = 0.1f, heirloom = 0.05f, sharedBedrooms = 0.3f
+            aspirationsPerYear = 0.3f, convalescencePerYear = 0.7f, pets = 0.8f, touchBuilt = 0.6f, traitPride = 0.1f, heirloom = 0.05f, sharedBedrooms = 0.3f,
+            barracks = 0.15f, kitchen = -0.5f
         };
 
         public static readonly Style Neglectful = new Style
@@ -495,7 +517,8 @@ namespace Balance
             setbackFactor = 1.6f, quietDays = 0.6f, researchIdle = 0.15f, bedroomEnvy = 0.25f, worries = 0.04f,
             nuisanceFits = 0.75f, frictionFactor = 1.5f,
             ways = new[] { 0.05f, 0.2f, 0.1f, 0f }, strain = new[] { 0.2f, 0.08f, 0.02f },
-            aspirationsPerYear = 0.1f, convalescencePerYear = 1.1f, pets = 0.5f, touchBuilt = 0.2f, traitPride = 0.03f, heirloom = 0.05f, sharedBedrooms = 0.75f
+            aspirationsPerYear = 0.1f, convalescencePerYear = 1.1f, pets = 0.5f, touchBuilt = 0.2f, traitPride = 0.03f, heirloom = 0.05f, sharedBedrooms = 0.75f,
+            barracks = 0.6f, kitchen = -2.5f
         };
 
         public static readonly Style[] Styles = { WellRun, Average, Neglectful };

@@ -113,6 +113,8 @@ namespace Balance
     public sealed class Colony
     {
         public const int WarmupDays = 30, YearDays = 60;
+        /// <summary>Years measured after the warm-up: one for the report; --illness plays several, so a rare thing's turns settle.</summary>
+        public static int MeasuredYears = 1;
         /// <summary>BALANCE_DETAIL=1: the report's breakdown names every mood instead of its source.</summary>
         public static readonly bool Detail = Environment.GetEnvironmentVariable("BALANCE_DETAIL") == "1";
         private readonly DefSet defs;
@@ -158,6 +160,16 @@ namespace Balance
         private readonly List<(int dayOfYear, string kind)> calendar = new List<(int, string)>();
         private int lastDecreeRequest = -9999;
         private readonly Dictionary<string, int> catchingLast = new Dictionary<string, int>();
+        /// <summary>The colony's own room for a serious illness (AilmentTracker.SeriousRoom): the hour the last one started.</summary>
+        private int lastSeriousHour = -999999;
+        /// <summary>
+        /// The shared illness budget on the colony's one home (IllnessBudgetMath, as the game keeps it), and the game's own
+        /// diseases' draws, kept apart so the rest of the year draws as it always did.
+        /// </summary>
+        private readonly IllnessBudgetBook illBook = new IllnessBudgetBook();
+        private readonly Random diseaseRng;
+        /// <summary>Colonists sleeping in barracks or without a bed, for the catching clock's serious one (LifeRiskMath.SicknessFactor).</summary>
+        private readonly int barracksCount;
         private readonly int startHour;
         /// <summary>The heart's life for this play style, and its own draws (so the rest of the year draws as it always did).</summary>
         private readonly HeartLife heartLife;
@@ -188,6 +200,8 @@ namespace Balance
             heartLife = HeartState.For(style.key);
             heartRng = new Random(seed ^ 0x5eed);
             goodRng = new Random(seed ^ 0x600d);
+            diseaseRng = new Random(seed ^ 0x5157);
+            barracksCount = (int)Math.Round(style.barracks * n);
             for (int i = 0; i < n; i++)
             {
                 var c = new Colonist
@@ -800,7 +814,7 @@ namespace Balance
 
         public void Run()
         {
-            int total = (WarmupDays + YearDays) * 24;
+            int total = (WarmupDays + YearDays * MeasuredYears) * 24;
             if (scenes != null) SceneCalendar();
             for (hour = startHour; hour < total; hour++)
             {
@@ -816,6 +830,7 @@ namespace Balance
                     Nuisances();
                 }
                 if (HourOfDay == Rates.WakingFrom) Dreams();
+                GameDiseases();
                 Ailments();
                 Meetings();
                 Situations();
@@ -1571,12 +1586,61 @@ namespace Balance
 
         private int EverydayCount(Colonist c) => c.ails.Count(a => !a.info.serious);
 
-        private bool CanGet(Colonist c, AilmentInfo a)
+        private bool CanGet(Colonist c, AilmentInfo a, bool roomAsked = false)
         {
             if (!set.B("ailments") || (a.serious && !set.B("seriousIllnesses"))) return false;
             if (c.ails.Any(x => x.info == a)) return false;
             if (c.ailLast.TryGetValue(a.name, out int t) && hour - t < a.cooldownDays * 24) return false;
-            return a.serious || EverydayCount(c) < Code.MaxEverydayAtOnce;
+            if (a.serious) return roomAsked || SeriousRoom() && BudgetRoom();
+            return EverydayCount(c) < Code.MaxEverydayAtOnce;
+        }
+
+        // ---------------- Serious illness and the game's own diseases ----------------
+
+        /// <summary>The game's tick for this hour (from a day in, so nothing reads as never).</summary>
+        private int Tick => (hour + 24) * 2500;
+
+        /// <summary>The shared illness budget is on: its setting, serious illnesses and the deeper game hooks its hook needs.</summary>
+        private bool Budget => set.B("illnessBudget") && set.B("seriousIllnesses") && set.B("ailments") && set.B("deepHooks");
+
+        private static float GameMeanDays => Rates.GameDiseaseMtbDays * Rates.GameDiseaseInterval;
+
+        /// <summary>The colony's own room for a serious illness (AilmentTracker.SeriousRoom): none running, and the last a while ago.</summary>
+        private bool SeriousRoom() => hour - lastSeriousHour >= Code.SeriousGapDays * 24 && !people.Any(p => p.ails.Any(x => x.info.serious));
+
+        /// <summary>The shared illness budget's room on the home (IllnessBudget.Allows): a case it puts off is counted.</summary>
+        private bool BudgetRoom()
+        {
+            if (!Budget || IllnessBudgetMath.Room(illBook, Tick, IllnessBudgetMath.KeepDays(GameMeanDays)) == ColonyCouncil.BudgetRoom.Open) return true;
+            Count("serious illnesses put off");
+            return false;
+        }
+
+        /// <summary>A serious case of Rimfolk's started: the colony's gap, and its skip owed (IllnessBudget.Owe).</summary>
+        private void SeriousStarted()
+        {
+            lastSeriousHour = hour;
+            if (Budget) IllnessBudgetMath.Owe(illBook, Tick, "");
+        }
+
+        /// <summary>
+        /// The game's own human diseases on a temperate home (StorytellerComp_Disease's roll; Rates.GameDiseaseMtbDays),
+        /// counted, not played on the colonists: Rimfolk's moods never had them. With the shared illness budget, one is held
+        /// back for each serious case of Rimfolk's owed (IllnessBudget.TryHold), and one that comes puts Rimfolk's back by
+        /// the gap (IllnessBudget.Came).
+        /// </summary>
+        private void GameDiseases()
+        {
+            if (diseaseRng.NextDouble() >= 1.0 / (GameMeanDays * 24.0)) return;
+            int now = Tick;
+            if (Budget && IllnessBudgetMath.Hold(illBook, now, IllnessBudgetMath.KeepDays(GameMeanDays), out _))
+            {
+                Count("the game's diseases held back");
+                return;
+            }
+            Count("the game's diseases");
+            if (diseaseRng.NextDouble() < Rates.GameDiseaseDeadly) Count("the game's deadly diseases");
+            if (Budget) IllnessBudgetMath.GameCame(illBook, now);
         }
 
         /// <summary>How many days it lasts and how it feels: recovery (faster in bed), tending, or the immunity race (AilmentMath.Simulate).</summary>
@@ -1611,6 +1675,7 @@ namespace Balance
             var (days, mood) = Course(a, start);
             c.ails.Add(new Ail { info = a, until = hour + Math.Max(1, (int)(days * 24)), mood = mood });
             c.ailLast[a.name] = hour;
+            if (a.serious) SeriousStarted();
             Count(a.serious ? "serious illnesses" : a.lingering ? "after-effects" : "ailments");
             if (a.lingering) return;
             if (a.serious) Send("health", Channel.Letter);
@@ -1692,11 +1757,16 @@ namespace Balance
             if (!set.B("ailments")) return;
             float freq = Freq;
             if (Chance(1f / (Code.EverydayCatchingDays / freq * 24f))) Catching(false);
-            if (set.B("seriousIllnesses") && Chance(1f / (Code.SeriousCatchingDays / freq * 24f))) Catching(true);
+            // A crowded, dirty colony catches serious illness more often (LifeRisks.SicknessFactor); with the shared budget
+            // that only shifts the mix, as each case owes its skip.
+            float sick = set.B("crowdedSickness") ? LifeRiskMath.SicknessFactor(people.Count, barracksCount, style.kitchen) : 1f;
+            if (set.B("seriousIllnesses") && Chance(sick / (Code.SeriousCatchingDays / freq * 24f))) Catching(true);
         }
 
         private void Catching(bool serious)
         {
+            // A serious one needs the colony's own room (its incident can't fire without it) and then the budget's.
+            if (serious && (!SeriousRoom() || !BudgetRoom())) return;
             var pool = defs.catching.Where(x => defs.ailments.TryGetValue(x.hediff ?? "", out var a) && a.serious == serious
                                                && !(catchingLast.TryGetValue(x.name, out int t) && hour - t < x.minRefireDays * 24)).ToList();
             var pick = Weighted(pool, x => x.weight);
@@ -1706,7 +1776,7 @@ namespace Balance
             int n = Math.Min(pick.maxVictims, Math.Max(1, (int)Math.Round(people.Count * Range(pick.victimsMin, pick.victimsMax))));
             int got = 0;
             foreach (var c in people.OrderBy(_ => rng.Next()).Take(n))
-                if (CanGet(c, a))
+                if (CanGet(c, a, serious))
                 {
                     var (days, mood) = Course(a, a.initialSeverity);
                     c.ails.Add(new Ail { info = a, until = hour + Math.Max(1, (int)(days * 24)), mood = mood });
@@ -1714,6 +1784,7 @@ namespace Balance
                     got++;
                 }
             if (got == 0) return;
+            if (serious) SeriousStarted();
             Count(serious ? "serious illnesses" : "catching ailments");
             Send(serious ? "health" : "ailments", Channel.Letter);
         }

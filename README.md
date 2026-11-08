@@ -4241,6 +4241,18 @@ weeks of daily treatment and comes back if it stops early; rabies can only be st
 fresh food cures scurvy). Appendicitis can be cut out with a "remove appendix" operation. Steady tending beats every
 one of them. The Almanac's **ailments and illnesses** page has the tables.
 
+**Serious illness shares the game's own rate** (How hard, under serious illnesses, on by default). Rimfolk's serious
+illnesses and the game's own diseases draw on one clock, so in all serious illness comes about as often as in plain
+RimWorld, and some of the cases are Rimfolk's kinds. Each serious illness of Rimfolk's that starts holds back the next
+of the game's own diseases the storyteller sends to that home; once the game's own has come, Rimfolk's wait 30 days
+there; and Rimfolk takes at most about a third of the cases (two fifths at Adventure story's disease rate), so the
+game's own still come. Crowding and dirt bring more of the kinds that go round and spread between roommates, not more
+in all. A quest's outbreak, food poisoning, wound infections, animal diseases and other mods' sicknesses filed outside
+the game's disease category are left alone. The news says when one of the game's diseases passed the colony by and
+whose illness took its place, or when a case of Rimfolk's was put off; the serious illness's letter and the advisor's
+sickness line say so too. It needs the deeper game hooks; off, Rimfolk's serious illnesses come on top of the game's
+own, as before.
+
 With Rimfolk: ailments feed the heart's frustration and serious illnesses its fear (and so a little strain); doctors
 and patients write and talk about falling ill, getting better and the doctor who saw to them, in words that fit the
 season, the hour, their age and their temperament, and notice when it's the second time; a letter about one person's
@@ -4252,7 +4264,7 @@ course.
 
 **Realistic ways to die**, each with a warning, a way to fight it and its own switch. A crowded, dirty colony catches
 serious illness more often (barracks, no beds, a dirty kitchen, and a little more as it grows; the advisor says so,
-with the reasons). The frail fight any illness slower (old age from 60, small children, hunger, bad wounds: shown in
+with the reasons; while serious illness shares the game's own rate, more of the kinds that go round, not more in all). The frail fight any illness slower (old age from 60, small children, hunger, bad wounds: shown in
 the immunity gain speed's breakdown and the illness's letter); steady tending with good medicine still saves them,
 gaps can cost them their life. A wound left untended in the dirt or the open is likelier to become infected. And past
 78 a colonist may begin to fail: a letter says so, about a season of slowing down (slower with contentment, a room of
@@ -4538,8 +4550,8 @@ The pages:
   high standards don't make frictions sting more; **normal**, the default, a little under written strength; or
   **demanding**, half again as strong), rising standards, good things growing ordinary, quiet troubles, everyday
   frictions; how quickly strain builds (50% to 150%), the day off at the end of one's rope, the heart's good side;
-  how often ailments come (25% to 200%) and the serious (possibly fatal) illnesses on their own switch, crowding,
-  frailty, dirty wounds and the end of a long life; and **hurts from everyday life** (0% to 200%; the dangers on the map come only above nothing), the strength of
+  how often ailments come (25% to 200%) and the serious (possibly fatal) illnesses on their own switch, whether they
+  share the game's own rate, crowding, frailty, dirty wounds and the end of a long life; and **hurts from everyday life** (0% to 200%; the dangers on the map come only above nothing), the strength of
   fights in Rimfolk's scenarios and whether Rimfolk's events may bring fights.
 - **What's on**: a quick setup (*Everything on*, *Council only*, *Advisor only*, also with a list of what changes),
   reaching every part of the colony's life and its world; then each part by what it is about: the council (the

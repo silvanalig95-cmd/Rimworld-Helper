@@ -344,6 +344,11 @@ namespace ColonyCouncil
         public bool ailments = true;
         /// <summary>The rare serious illnesses, which can kill (tetanus, pneumonia, tuberculosis...).</summary>
         public bool seriousIllnesses = true;
+        /// <summary>
+        /// Rimfolk's serious illnesses share the game's own disease rate (Ailments/IllnessBudget.cs): each that starts holds
+        /// back the game's next disease on that home, so in all serious illness comes about as often as in plain RimWorld.
+        /// </summary>
+        public bool illnessBudget = true;
         /// <summary>A crowded, dirty colony catches serious illness more often (Ailments/LifeRisks.cs).</summary>
         public bool crowdedSickness = true;
         /// <summary>The old, small children, the hungry and the badly hurt fight illness slower (Ailments/LifeRisks.cs).</summary>
@@ -876,6 +881,7 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref strainSpeed, "strainSpeed", 1f);
             Scribe_Values.Look(ref ailments, "ailments", true);
             Scribe_Values.Look(ref seriousIllnesses, "seriousIllnesses", true);
+            Scribe_Values.Look(ref illnessBudget, "illnessBudget", true);
             Scribe_Values.Look(ref crowdedSickness, "crowdedSickness", true);
             Scribe_Values.Look(ref frailty, "frailty", true);
             Scribe_Values.Look(ref dirtyWounds, "dirtyWounds", true);

@@ -2890,7 +2890,7 @@ tending, the serious ones its immunity race with a hidden incubation (`Rimfolk_H
 - **The storyteller.** The new serious ones' chances lean as the catching clock does (`AilmentCauseMath.DiseaseLean`:
   one over the storyteller's disease interval, between a quarter and double, nothing with the game's diseases off);
   besides that, the serious illnesses' room in the colony (one kind at a time, none within 30 days) holds them as it
-  holds the others.
+  holds the others, and the shared illness budget's room on their home ("The shared illness budget", below).
 - **Mechanites.** Within three days of the part (`FreshMechanites`: only if they were a colonist for longer than the part
   is old, so a recruit with an old bionic arm has nothing new), the roll waits until the cap lets them be hurt (out of
   the sickbed), then comes once for that part (its load ID in `bitesRolled`).
