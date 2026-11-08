@@ -12,6 +12,65 @@ tree at once, alongside whatever runs. Each piece is merged as its own release, 
 
 ## State (5 November 2026)
 
+- Peoples whose age changes (8 November 2026, the first piece of `docs/design/peoples-third.md`, approved by the player:
+  "also changing over time: do both", "our older factions should also be able to grow and develop over time to reach
+  higher research levels"). Not released: no version, no What's new round, About.xml and CHANGELOG untouched. DESIGN.md
+  "Peoples whose age changes" has all of it (the rule, each people's pace and limit, the simulation's numbers, what
+  follows, where the game's own tech level couldn't follow); README a paragraph after the peoples; the Almanac's page on
+  the road league, the hospitallers and the herders a section *Their age over the years* (prose only, keywords unchanged);
+  `peoples-third.md` step 1 marked built.
+  - What: each of Rimfolk's peoples (and each that arose in their ways) is looked at once a season and moves toward the
+    next age at its ways' pace (`agePace`, years an age, and `ageLimit` in every def with a line of why: the society 6.5,
+    the Conclave and the league 7, the guild 8, the Wheel 10, the Banner 11, the Circuit 12, the enclave 8 at spacer
+    already, the hospitallers 12 to industrial, the Wardens and the river folk 13, the pilgrims 16, the Bell 17, the
+    herders 20 to industrial, the Mossborn 24 to medieval), quickened by the colony's trade (twice at 5000 silver a year),
+    gifts of books, techprints, components and tools, theirs who learned at the colony and their masters who taught the
+    colony's people, and an alliance or pact (three times at most); cut off (no trade with anyone for years, towns
+    burned, at war with most of the world: two of the three) it falls back an age in five to ten years, never more than
+    one below where it began. The Sunken Vault's way (`ageDeclines`, `ageDeclineYears`): built and tested, no people has it
+    yet. A letter for each change in their own voice (their leader's words by calling), their card and the region's page
+    of peoples show the age and heading with why. Their next pawns are dressed and armed for the age (new sets for nine
+    of the first seven peoples' fighting kinds; and the every-age pass, `AgeArms.ToAge`: nothing of a later age, a
+    fighter's bow becomes a gun of the age), their camps' kits, words, messengers, ransoms, travel and town stores follow
+    (`Peoples.TechOf` in some 60 of Rimfolk's reads), and their traders' caps move with the age. The numbers (400 worlds):
+    by themselves 0 of 15 rise in 5 years and 4.8 in 10; a typical game 2.0 in 5, 4.1 in 7.5, 6.1 in 10, the guild two
+    ages in half the worlds; all the colony's help takes the guild from medieval to spacer within 10 years in every world.
+  - Code: `Peoples/PeopleAgesMath.cs` (pure, linked in Tests.csproj; `PeopleAgesTests`, "peoples' ages: ", 360 checks:
+    the rule, the defs, the simulation, every kind of the fifteen in every age it can reach against the player's
+    catalogue, the seams), `PeopleAges.cs` (the record and book, the look from `RegionBook.Daily`, what the rule reads),
+    `PeopleAgeWords.cs` (the letter, the history's `world:age`, the card and page line), `PeopleAgePatches.cs`
+    (`Patch_PeopleAgeGiftThing` on `FactionGiftUtility.GiveGiftInternal`, `Patch_PeopleAgeGiftTraded` and
+    `Patch_PeopleAgeGiftPods` on the two `GiveGift`s, `Patch_PeopleAgeStock` on `ThingSetMaker_TraderStock.Generate`),
+    `PeopleAgesDebug.cs`; `Peoples.AgeOf` reads the record, `Peoples.BeganIn` and `TechOf` new; `PeopleGifts.cs` (kit-only
+    sets, a set's arms of the age, `AgeArms.ToAge`, genes only from the industrial age); two new deeds in
+    `FactionMemory.Kinds` (`gaveLearning`, `learnedHere`, noted by `MemoryHooks.MissionEnded` for the two hosted
+    learners); Keyed `Rimfolk_PeopleAges.xml`. Tests changed only where they read code that now reads the age
+    (PeoplesTests' no-book rule, WorldMechanicsTests' `Ages.Of`, RansomTests' pod, PeoplesGearTests' gifted kinds).
+  - Settings: `peopleAges` ("Peoples' ages change", the region's toggles, on). Saved: `PeopleAgeBook.ages` (one record a
+    people, `MaxRecords` 40, modelled in `save_estimate.py`).
+  - Where the game couldn't follow (its own methods read the def's field): what traders buy, the stuff of stock and of the
+    game's own gear, raids' drop pods, the game's own base where a plan doesn't fit, quests by tech level. Town plans are
+    the same in every age.
+  - Riskiest: the finalizer that puts a trader's caps back (a stock generator shared by every trader of that kind, changed
+    only while one stock is made); `GiveGiftInternal` by name (both gift paths are believed to go through it: a pod's gift
+    that doesn't is simply not counted); trade matched to a people by the trade record's names (its own and its towns',
+    trimmed as the record trims them); the every-age pass taking off what a pawn of another age wears (a mod's piece with
+    an odd tech level could come off; the signature piece and a set's kit never do); the History's counts over a year
+    once its oldest small events have folded (counts survive the folding); some 60 reads switched to `Peoples.TechOf`.
+  - Try in the game (dev mode; none of it could be run here): 1. "Peoples: every people's age and progress (log)": each
+    of the fifteen with its age, floor, limit, pace and fate, what the rule reads this season and what the next gives.
+    2. Trade with a people (sell and buy a few thousand silver) and gift it books or components: the log's trade and
+    gifts rise, its card and the region's Peoples page read "rising: trades with you, has your gifts of learning", and
+    the World page's memory lists "gave them books and components". 3. "Peoples: a people up an age now (testing)..." on
+    the hospitallers: the letter ("into the industrial age", the leader's words, what the colony will see); their card
+    "Rose into the industrial age lately"; send for one of their caravans and visitors (Debug actions, Execute incident):
+    sworn guards in flak with guns, lay archers with rifles, their caravan's clothes and weapons for sale of the industrial age; one
+    of their camps builds with the industrial kit. 4. "a people down an age now" on the league: a medieval league, no guns
+    or flak at the gate (bows, spears and swords), its caravan's weapons and clothes of the medieval age (the components and
+    medicine its trader always carries it still has). 5. Turn a people hostile with most
+    of the world and stop trading (or let years pass): "falling back: no trade with anyone for years, at war with most of
+    the world". 6. The setting off: every card back to the age it began in, nothing moves.
+
 - 0.167.0, camps that build properly, keep a day and leave things behind (8 November 2026, the player's explicit request and bug
   report with a screenshot of a war party of three with one bedroll and four lengths of log wall, and three follow-ups the
   same day: fell the trees in the way, pack what they carry and leave their constructions standing, leave things behind

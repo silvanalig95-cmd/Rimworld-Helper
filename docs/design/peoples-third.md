@@ -147,6 +147,9 @@ raid, and each is listed once in a new world.
 
 ## Order of building (one after another: same area)
 
-1. Ages that change over time, for the fifteen peoples there are.
+1. Ages that change over time, for the fifteen peoples there are (built: DESIGN.md, "Peoples whose age changes";
+   `Source/ColonyCouncil/Peoples/PeopleAges*.cs`, `PeopleAgeWords.cs`, `PeopleAgePatches.cs`, `Tools/Tests/PeopleAgesTests.cs`;
+   each people's pace and limit in its def; the Sunken Vault's way, `ageDeclines`, tested and waiting for its people in
+   the third piece).
 2. New peoples, first four: the Signal Line, the Deepwell Union, the Last Republic, the Hollow Fleet.
 3. New peoples, second four: the Helix Works, the Lattice, the Choir of the Spire, the Sunken Vault.

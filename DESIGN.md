@@ -5816,6 +5816,119 @@ pure rules in `PeoplesMath.cs` (`Tools/Tests/PeoplesTests.cs`, "peoples: ").
   (`FortuneTeller` and `Collector` read `HappeningExtension.prefers`). Release B's leans (`ArisingMath.Lean`, 13
   arguments: a band led by a psycaster, a fighter, a crafter or a grower). Nobody hurt.
 
+### Peoples whose age changes
+
+The player's words (8 November 2026): "different generations or time spans represented in factions, or that the
+factions actually kind of scale also with time", on the two ways offered "also changing over time: do both", and "our
+older factions should also be able to grow and develop over time to reach higher research levels". The first piece of
+`docs/design/peoples-third.md`, "Ages that change over time". The game keeps a faction's def tech level for good;
+Rimfolk keeps a people's age now beside it and reads that wherever it asks about a people's ways and means.
+
+- **The record** (`Peoples/PeopleAges.cs`: `PeopleAgeRecord`, `PeopleAgeBook`, a game component of its own): one a people
+  of Rimfolk's (the fifteen and every one that arose in their ways), made the first time the region's day looks at it:
+  its age now (0 tribal to 3 spacer), the age it began in (`Peoples.BeganIn`: its def's, or for one that arose the age of
+  what it came from, as release B gave it), its progress (-1 falls back an age, +1 rises one, starting from a head start
+  of up to a fifth by its id), when it was first heard of, looked at and last changed, the age before, and its heading
+  and why. `PeopleAgesMath.MaxRecords` (40) kept, gone peoples dropped on saving; modelled in `Tools/save_estimate.py`.
+  `Peoples.AgeOf` reads it (with the setting on); `Peoples.TechOf` gives Rimfolk's reads of a people's tech level the
+  age's own whenever it isn't the def's.
+- **The look**, once a season for each people on a day of its own (`PeopleAgesMath.LookDay` by its id), from
+  `RegionBook.Daily` (no Sched slot): the one rule, `PeopleAgesMath.Season`, pure and tested (`Tools/Tests/PeopleAgesTests.cs`,
+  "peoples' ages: ").
+  - *Its own pace.* A season's way toward the next age is `fate * step / (pace * 4)`: `pace` the years an age takes by its
+    ways (the def's `agePace`), `fate` its own 0.8 to 1.25 (by its id), `step` 1.2 from tribal, 1 from medieval, 0.7 from
+    industrial (the climb to the spacer age is the longest).
+  - *The colony quickens it* (`Boost`, times its own pace, at most 3): trade with it over the past year (up to +1 at 5000
+    silver), gifts of books, techprints, components and tools as it remembers them (up to +0.6 at 1500 silver), teaching
+    (+0.4 for each of theirs who learned at the colony this year, +0.2 for each of their masters who taught the colony's
+    people: an exchange of learning teaches both, at most +0.8), and an alliance (+0.5; a trade pact +0.25).
+  - *At its limit* (the def's `ageLimit`, never below the age it began in) it is settled in its ways, at the spacer age
+    "at the height of what anyone knows"; progress lost comes back up to nothing.
+  - *Cut off* (`CutOff`, three signs each 0 to 1 added): no trade with anyone for years (from 2 years, whole at 4; a people
+    the colony traded with this year is not alone), its towns burned (each that fell in a fight in two years half a sign,
+    its last town all of it), at war with most of the world (from half the world's peoples, the colony counted, whole at
+    85%). At 1.2 or more it doesn't rise and loses ground (`Severity`: half a pace at 1.2, all at 3; an age in 5 to 10
+    years), down to its floor (the def's `ageFloor`, else one below the age it began in).
+  - *The Sunken Vault's way* (the def's `ageDeclines`, `ageDeclineYears`): never rises on its own, loses an age every
+    so many years unless supplied (components and tools given or sold to it, `SupplyFull` 1500 silver a year holds it).
+    No people of the fifteen has it; tested, and left for the third piece of `peoples-third.md`.
+  - Past +1 it rises an age (never past its limit), past -1 it falls back one (never past its floor), and its progress
+    starts again from nothing.
+- **What the rule reads**, all of it what Rimfolk already records (`PeopleAges.Deeds`): the trade record's lines with the
+  people's name or a town of theirs over the year, or at least 300 silver for each fair trade the history holds
+  (`deed:traded`); the peoples' memory of the colony's gifts of learning (a new deed, `gaveLearning`: books,
+  techprints, components or tools in a gift the game gives, by caravan, the trade window's gift mode or pod,
+  `Patch_PeopleAgeGiftThing` on `FactionGiftUtility.GiveGiftInternal` and the two `GiveGift`s; weighed a point for 60
+  silver, read back the same way as it fades); the history's deeds over the year: `learnedHere` (a new deed, noted when
+  the Conclave's apprentice of the sky or the guild's wander-year ends well, `MemoryHooks.MissionEnded`) and `fostered`
+  (a ward fostered), and `taught` (their master teaching the colony's apprentice, a lesson at the gate, a ward abroad);
+  the game's alliance or a pact (`Pacts.With`); the last trade with anyone (the trade record, the history, a trade or
+  road world event of theirs running or ended); the ledger's fight ruins of theirs in two years (`LedgerRuin.Fight`)
+  against their towns standing; and the world's peoples at war with them (`Facts.Counts`, the colony with them).
+- **Each people's pace and limit** (years an age at its own pace, the highest age; each def has a line of why):
+  the learned society 6.5, spacer; the Stormglass Conclave and the road league 7, spacer; the Kiln Guild 8 (medieval),
+  spacer; the Wheel 10, spacer; the Ashen Banner 11 (medieval), spacer; the Circuit of Tamers 12, spacer; the spacer
+  enclave 8, spacer (at the height already: the one people that can't rise, it can fall back to the industrial age); the
+  hospitaller order 12 (medieval), industrial (their faith keeps the flesh as it was made); the Lantern Wardens and the
+  river folk 13 (medieval), industrial; the pilgrims 16 (medieval), industrial; the Quiet Bell 17 (medieval),
+  industrial; the herders 20 (tribal), industrial; the Mossborn 24 (tribal), medieval.
+- **The numbers** (`PeopleAgesTests`, 400 worlds of the fifteen, each its own fate and head start, looked at every
+  season): by themselves none rises an age in 5 years and 4.8 of 15 in 10. In a typical game (the colony trades 3500
+  silver a year with the road league and holds a trade pact, 1500 with the guild with a small gift of tools and a
+  journeyman's wander-year, 1200 with the hospitallers and is allied with them, 800 with the river folk and the society
+  with a gift of books and one of the society's masters teaching): 2.0 rise in 5 years, 4.1 in 7.5 and 6.1 in 10, and
+  half a people in 10 years (0.49, the guild) goes two ages. With all the colony's help (5000 silver a year, 1500 of
+  gifts, two journeymen a year, an alliance) the guild goes from the medieval to the spacer age in 10 years in every
+  world and in 7 in 77%. The herders and the Mossborn rise in none of the worlds in 10 years.
+- **What follows from it.** Everything that already took the form of a people's age follows `Peoples.AgeOf`: its
+  kinds' arms and kits of the age (`PeopleKindExtension.ageArms`), its gifts of the age (genes only from the industrial
+  age, `PeoplesGearMath.GenesAge`), its camps' kits and what its camps know how to build (`CampKit`), its words and the
+  form of each feature with it (`Ages.Of` reads `Peoples.TechOf`), its messengers and their lines, its letters' means
+  (radio or rider), its notables' travel and calls, ransoms by pod or at the edge, its visitors' and missions' lowtech or
+  hightech words, its town's stores (`PeopleTowns`, the loot by the age) and its traders' goods (below). Some 60 reads
+  of a people's def tech level in Rimfolk's code now read `Peoples.TechOf` (which is the def's own for every other people).
+- **Every age whole.** A people reaches every age from the one it began in (or any its template arises in) down to its
+  floor and up to its limit (`PeopleAgesMath.Reachable`). Its kinds' sets for an age (`ageArms`) may now be a kit alone,
+  worn by everyone of the kind; a set's arms are of no later age than the people's where one is (a mod's spacer rifle
+  under the game's Gun tag stays out of an industrial people's hands). New sets for nine of the first seven peoples'
+  fighting kinds (the hospitallers' sworn guards in flak with guns and their archers, the pilgrims', river folk's and herders'
+  archers with guns, the league's guards and outriders with crossbows and swords in the medieval age and charge rifles in
+  the spacer age, the society's proctors with maces or charge rifles, the enclave's marshals in flak with rifles in the
+  industrial age). And as a pawn of a people living in another age than its kind was made for is made
+  (`AgeArms.ToAge`, after its set), what it wears of a later age comes off (`PeopleAgesMath.Later`: guns and flak among
+  the tribes and the medieval, spacer gear in the industrial age; its people's signature piece and its set's kit stay)
+  and a bare body gets the age's plain clothes (tribal wear, or a shirt and trousers); a weapon of a later age, or a
+  fighter's bow in an age of guns, gives way to the base game's arms of the age within the kind's means
+  (`FallbackArms`). The tests check every kind of the fifteen in every age it can reach against the player's catalogue
+  (`docs/player-mods/`, active rows): armed by its set with a weapon of the age, a fighter at range with a gun from the
+  industrial age on, or its weapons of another age replaced by the base game's; the age's plain clothes are the game's;
+  a camp kit for every age.
+- **The traders' goods** (`Patch_PeopleAgeStock`, a prefix and finalizer on `ThingSetMaker_TraderStock.Generate`, the
+  one step every caravan's, town's and visiting trader's stock goes through): while a people's stock is made, each of its
+  trader's stock generators' caps on what it makes (`maxTechLevelGenerate`, set for its own age) moves as far as its age
+  moved (`PeopleAgesMath.ShiftedCap`: a cap left open stays for one that rose and closes at its age for one that fell
+  back), and is put back at once.
+- **Where the game's own tech level couldn't follow** (it reads the def's field inside its own methods, which only a
+  transpiler could change): what its traders buy (`maxTechLevelBuy`, read at trade time), the stuff of its stock and of
+  the game's own gear for its pawns (`GenStuff` by the def's tech level), its raids' arrival (drop pods from the
+  industrial age, `PawnsArrivalModeWorker`), the game's own base when a town's plan doesn't fit the land, and quests that
+  pick a people by tech level. The game's pawn generation reads its kinds' tags, not the faction's tech level, so a
+  people's gear follows through Rimfolk's sets and the every-age pass. Their towns' plans are the same in every age.
+- **Seen in play.** A letter for each change (`PeopleAgeWords.Tell`, through `Tell.Letter`, positive for a rise,
+  neutral for a fall, looking at their nearest town): the colony's means of hearing it (`Ages.Form`, the founding's
+  word), what they learned or lost by the age, their leader's words in their own voice by their calling (fifteen of each
+  way), what of it was the colony's doing (its largest part) or why they fell back, and what the colony will see of it;
+  and the history's line (`world:age`). Their card (`CardKind.People`, now) and the region's page of peoples give their
+  age and heading with why ("medieval age, rising: trades with you, learns from you"; "industrial age, falling back: no
+  trade with anyone for years"; "medieval age, settled in its ways"), and when they last changed. Their next visitors
+  and traders show it in their gear and goods.
+- **Setting**: `peopleAges` ("Peoples' ages change", the region's page, on). Off: every people lives in the age it began
+  in, and nothing moves; the records stay for when it is on again.
+- **Dev actions**: "Peoples: every people's age and progress (log)" (its age, floor and limit, progress, heading, pace
+  and fate, everything the rule reads for it this season, and what the next season gives), "a people up an age now
+  (testing)...", "a people down an age now (testing)..." (the letter as the years would bring it), "every people's
+  season now (testing)".
+
 ### The colony's animals with powers
 
 The player's pick "magic and powers" (7 November 2026, built without a proposal round): four parts that share one pass
