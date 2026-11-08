@@ -331,7 +331,8 @@ namespace ColonyCouncil
                         disabled = c.MealsInStore() < meals ? "CC_Dilemma_NotEnough".Translate(meals, "CC_Camp_Meals".Translate()).ToString() : null,
                         act = () => c.Parting("provisions")
                     });
-                    list.Add(new CampOption { label = c.Text("CC_Camp_Opt_Farewell"), act = () => null });
+                    // Only a word: they go when their stay is done (the player read "Let them go." as sending them off at once).
+                    list.Add(new CampOption { label = c.Text("CC_Camp_Opt_Farewell"), tip = c.Text("CC_Camp_Opt_Farewell_Tip"), act = () => null });
                     break;
                 }
                 case "raided":

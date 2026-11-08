@@ -5,6 +5,13 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## A camp's farewell says what it means
+
+*8 November 2026, version 0.170.1*
+
+- A camp's goodbye letter no longer offers "Let them go.", which read as sending them off at once: the plain answer is now "Wish them well on the road.", and its tip says they pack up and go when their stay is done, by daylight.
+- Nothing else changes: a camp whose stay ends at night waits for first light, packs for a few hours on the map, and walks off.
+
 ## More camps, bands against them, and old camp sites
 
 *8 November 2026, version 0.170.0*

@@ -31,6 +31,16 @@ When you load a save after an update, a letter lists the newest round once. The 
     <rounds>
 
       <li>
+        <version>0.170.1</version>
+        <date>8 November 2026</date>
+        <title>A camp's farewell says what it means</title>
+        <points>
+          <li>A camp's goodbye letter no longer offers "Let them go.", which read as sending them off at once: the plain answer is now "Wish them well on the road.", and its tip says they pack up and go when their stay is done, by daylight.</li>
+          <li>Nothing else changes: a camp whose stay ends at night waits for first light, packs for a few hours on the map, and walks off.</li>
+        </points>
+      </li>
+
+      <li>
         <version>0.170.0</version>
         <date>8 November 2026</date>
         <title>More camps, bands against them, and old camp sites</title>

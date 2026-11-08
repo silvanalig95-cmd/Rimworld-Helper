@@ -39,20 +39,28 @@ beside them.
    Line mast; they may not answer at once ("an aide takes a message").
 7. **Writing takes a writer.** A colonist who can write sits at a table for an hour to write; a tribal colony gives a
    spoken message to the carrier instead.
-8. **How to reach them now.** A town's card says it plainly: "by the next caravan north", "by your own rider (about two
+8. **Diplomatic range until comms** (the player: "i should also have some sort of diplomatic range, right? until
+   comms. where it will be more difficult having communications and interactions with bases further away or in
+   difficult terrain"). Reach is travel time over the world's own terrain, not straight distance: hills, mountains,
+   swamps and ice slow it, roads and rivers speed it, winter and snow count, and the carrier's means sets the pace. Within
+   range the post, passing carriers and the colony's rider reach; beyond it only a relay through a nearer people's town
+   (slower, on good terms) or a long ride; out of reach until radio. Mounts, roads, vehicles and the Signal Line's masts
+   widen it; a comms console removes it for peoples with radio, shuttles in the spacer age. Interactions by letter or
+   envoy follow it too. The map shows it as a soft shading where that is simple.
+9. **How to reach them now.** A town's card says it plainly: "by the next caravan north", "by your own rider (about two
    days)", "by radio (Signal Line mast)".
 
 ## Step 2: why write (options with a reason)
 
-9. **Letters by occasion.** A town's card shows what could be written now and why: condolences only after a loss heard
+10. **Letters by occasion.** A town's card shows what could be written now and why: condolences only after a loss heard
    of, a warning when a threat to them is known, an invitation when there is a feast or fair to come, asking for help
    when the colony is short, greetings at the turn of the year or with a gift. Those without a reason are greyed with it.
-10. **What each is for**, said with the option: what news brings, what an invitation brings, what a warning earns.
-11. **Pen friends.** A steady exchange with one of their notables becomes something: early warnings, better prices,
+11. **What each is for**, said with the option: what news brings, what an invitation brings, what a warning earns.
+12. **Pen friends.** A steady exchange with one of their notables becomes something: early warnings, better prices,
     introductions to peoples further away, a favour.
-12. **The world writes first more often**: news, requests and invitations that want an answer, answered when the next
+13. **The world writes first more often**: news, requests and invitations that want an answer, answered when the next
     carrier passes.
-13. **Distance.** Peoples far off are reached through a chain of neighbours (slower, introductions needed) until radio or
+14. **Distance.** Peoples far off are reached through a chain of neighbours (slower, introductions needed) until radio or
     shuttles.
 
 ## Order of building

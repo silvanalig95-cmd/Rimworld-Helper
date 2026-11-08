@@ -12,6 +12,14 @@ tree at once, alongside whatever runs. Each piece is merged as its own release, 
 
 ## State (5 November 2026)
 
+- 0.170.1, a camp's farewell says what it means (8 November 2026, the player's report with their save: "there was a pop up
+  about this camp wanting to leave, i selected an option where they leave but they are still on the map. is it scheduled
+  or bugged?"). Scheduled, not bugged: the war party's goodbye letter came at dusk (tick 1707827), its stay ran to
+  1730136 (night), and a stay ending at night waits for first light and packs on the map (0.167.0) before walking off.
+  The goodbye's plain answer "Let them go." read as sending them off now; it is "Wish them well on the road." with a tip
+  that they go when their stay is done, by daylight (`CC_Camp_Opt_Farewell`, `_Tip`, `CampAnswers.Options`). The
+  post's design gains the player's diplomatic range until comms (`docs/design/post-and-letters.md` point 8), passed to
+  the post being built.
 - 0.170.0, camps side by side, bands against a camp, old camps' sites (8 November 2026, the player's explicit requests: "my current
   map is quite huge, so i don't mind a fair amount of camps, would like to see where this goes. perhaps camps can also get
   attacked by enemy factions for example. maybe i can set a setting slider for different levels of amount of camps
