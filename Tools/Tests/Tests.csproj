@@ -122,6 +122,7 @@
     <Compile Include="../../Source/ColonyCouncil/Camps/CampLandMath.cs" Link="CampLandMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Camps/CampBuildMath.cs" Link="CampBuildMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Camps/CampTakeMath.cs" Link="CampTakeMath.cs" />
+    <Compile Include="../../Source/ColonyCouncil/Camps/CampMeetMath.cs" Link="CampMeetMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Camps/CampDayMath.cs" Link="CampDayMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Camps/CampPackMath.cs" Link="CampPackMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Camps/CampCrowdMath.cs" Link="CampCrowdMath.cs" />
@@ -257,5 +258,8 @@
     <Compile Include="../../Source/ColonyCouncil/Animals/AnimalNatureMath.cs" Link="AnimalNatureMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Beasts/BeastsMath.cs" Link="BeastsMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Post/PostMath.cs" Link="PostMath.cs" />
+    <Compile Include="../../Source/ColonyCouncil/UI/Region/PeoplesViewMath.cs" Link="PeoplesViewMath.cs" />
+    <Compile Include="../../Source/ColonyCouncil/UI/Region/PeopleActMath.cs" Link="PeopleActMath.cs" />
+    <Compile Include="../../Source/ColonyCouncil/World/LetterOccasionMath.cs" Link="LetterOccasionMath.cs" />
   </ItemGroup>
 </Project>

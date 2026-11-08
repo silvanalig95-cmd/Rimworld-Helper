@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <!-- The Peoples view (Source/ColonyCouncil/UI/Region/PeoplesView.cs, PeoplesList.cs, PeoplePage.cs, PeopleActs.cs;
+       docs/design/diplomacy-screen.md, step A): the list of peoples, the chosen people's page, "Do something with...",
+       letters by occasion and what each act is for (docs/design/post-and-letters.md, step 2, points 10 and 11). -->
+
+  <!-- The list -->
+  <CC_PplV_Search>Search peoples, towns and names</CC_PplV_Search>
+  <CC_PplV_SearchClear>Clear the search</CC_PplV_SearchClear>
+  <CC_PplV_Filter_Neighbours>Neighbors</CC_PplV_Filter_Neighbours>
+  <CC_PplV_Filter_Neighbours_Tip>Only peoples with a town within the region map's reach of a home.</CC_PplV_Filter_Neighbours_Tip>
+  <CC_PplV_Filter_Mail>Mail</CC_PplV_Filter_Mail>
+  <CC_PplV_Filter_Mail_Tip>Only peoples with mail for the colony: a letter on its way in by the post, a call of theirs waiting for the colony's answer, or a letter of theirs in the letter stack waiting for a choice.</CC_PplV_Filter_Mail_Tip>
+  <CC_PplV_Filter_Dealings>Dealings</CC_PplV_Filter_Dealings>
+  <CC_PplV_Filter_Dealings_Tip>Only peoples the colony has ties with (pacts, truces, debts of honor, marriages, fealty) or something under way with (letters, envoys, wards, feasts).</CC_PplV_Filter_Dealings_Tip>
+  <CC_PplV_Sort_Closest>Closest</CC_PplV_Sort_Closest>
+  <CC_PplV_Sort_Closest_Tip>Their nearest town first, by days on the road at the colony's means over the land's own way (hills, rivers, roads, the season), as the post reckons it. Towns no road reaches come last.</CC_PplV_Sort_Closest_Tip>
+  <CC_PplV_Sort_Regard>Regard</CC_PplV_Sort_Regard>
+  <CC_PplV_Sort_Regard_Tip>The warmest first, by their goodwill toward the colony.</CC_PplV_Sort_Regard_Tip>
+  <CC_PplV_Sort_Name>Name</CC_PplV_Sort_Name>
+  <CC_PplV_Sort_Name_Tip>By their name.</CC_PplV_Sort_Name_Tip>
+  <CC_PplV_Sort_Age>Age</CC_PplV_Sort_Age>
+  <CC_PplV_Sort_Age_Tip>By the age they live in, tribal first, then medieval, industrial and spacer.</CC_PplV_Sort_Age_Tip>
+  <CC_PplV_SortBy>Sort: {SORT}</CC_PplV_SortBy>
+  <CC_PplV_Group_Allies>Allies</CC_PplV_Group_Allies>
+  <CC_PplV_Group_Neutral>At peace</CC_PplV_Group_Neutral>
+  <CC_PplV_Group_War>At war</CC_PplV_Group_War>
+  <CC_PplV_All>All peoples</CC_PplV_All>
+  <CC_PplV_AllTip>What is owed each way between the colony and every people, and what each people remembers of the colony.</CC_PplV_AllTip>
+  <CC_PplV_NoneFits>No people fits the search and the filters that are on.</CC_PplV_NoneFits>
+  <CC_PplV_MailTip>Mail from them: {COUNT} on its way in or waiting for the colony.</CC_PplV_MailTip>
+  <CC_PplV_NearestTip>Nearest town: {TOWN}, {DAYS} on the road at the colony's means.</CC_PplV_NearestTip>
+  <CC_PplV_NoTown>no town</CC_PplV_NoTown>
+  <CC_PplV_NoRoad>no road</CC_PplV_NoRoad>
+  <CC_PplV_Day>1 day</CC_PplV_Day>
+  <CC_PplV_Days>{DAYS} days</CC_PplV_Days>
+  <CC_PplV_Size_Hamlet>hamlet</CC_PplV_Size_Hamlet>
+  <CC_PplV_Size_Post>trading post</CC_PplV_Size_Post>
+  <CC_PplV_Size_New>new town</CC_PplV_Size_New>
+  <CC_PplV_Size_Town>town</CC_PplV_Size_Town>
+  <CC_PplV_Std_Own>yours</CC_PplV_Std_Own>
+  <CC_PplV_Std_Allies>allies</CC_PplV_Std_Allies>
+  <CC_PplV_Std_Friendly>friendly</CC_PplV_Std_Friendly>
+  <CC_PplV_Std_Fair>fair terms</CC_PplV_Std_Fair>
+  <CC_PplV_Std_Cool>cool</CC_PplV_Std_Cool>
+  <CC_PplV_Std_Unfriendly>unfriendly</CC_PplV_Std_Unfriendly>
+  <CC_PplV_Std_Hostile>at war</CC_PplV_Std_Hostile>
+  <CC_PplV_Std_Enemies>everyone's foe</CC_PplV_Std_Enemies>
+  <CC_PplV_Std_NoDealings>no dealings</CC_PplV_Std_NoDealings>
+  <CC_PplV_Web>Who stands with whom</CC_PplV_Web>
+  <CC_PplV_WebLegend>Green: allies. Red: at war. The colony in gold at the middle.</CC_PplV_WebLegend>
+
+  <!-- The page -->
+  <CC_PplP_ShowTip>Show their towns on the region map, lit in gold.</CC_PplP_ShowTip>
+  <CC_PplP_AgeTip>The age they live in: the ways their messengers, traders and words follow.</CC_PplP_AgeTip>
+  <CC_PplP_Trend_Up>Warming this season: {WHY}.</CC_PplP_Trend_Up>
+  <CC_PplP_Trend_Down>Cooling this season: {WHY}.</CC_PplP_Trend_Down>
+  <CC_PplP_Trend_Steady>Steady this season: {WHY}.</CC_PplP_Trend_Steady>
+  <CC_PplP_Trend_Quiet>Nothing between you this season.</CC_PplP_Trend_Quiet>
+  <CC_PplP_Tab_Overview>Overview</CC_PplP_Tab_Overview>
+  <CC_PplP_Tab_Overview_Tip>What they want and fear, how to reach them now, and what the colony can do with them.</CC_PplP_Tab_Overview_Tip>
+  <CC_PplP_Tab_Towns>Towns</CC_PplP_Tab_Towns>
+  <CC_PplP_Tab_Towns_Tip>Each of their towns, closest first, with its size, its days on the road and how a letter reaches it. A click shows it on the region map.</CC_PplP_Tab_Towns_Tip>
+  <CC_PplP_Tab_People>People</CC_PplP_Tab_People>
+  <CC_PplP_Tab_People_Tip>Whom the colony knows of theirs by name, how each regards the colony, and who of theirs is at the colony now.</CC_PplP_Tab_People_Tip>
+  <CC_PplP_Tab_Dealings>Dealings</CC_PplP_Tab_Dealings>
+  <CC_PplP_Tab_Dealings_Tip>Pacts, truces and fealty, debts of honor each way, marriages, and what is under way with them.</CC_PplP_Tab_Dealings_Tip>
+  <CC_PplP_Tab_History>History</CC_PplP_Tab_History>
+  <CC_PplP_Tab_History_Tip>What they remember of the colony, and their timeline with it.</CC_PplP_Tab_History_Tip>
+  <CC_PplP_TabCount>{TAB} {COUNT}</CC_PplP_TabCount>
+  <CC_PplP_Wants>What they want and fear</CC_PplP_Wants>
+  <CC_PplP_Honours>They honor {HONORS}.</CC_PplP_Honours>
+  <CC_PplP_Fears>They fear {FEARS}.</CC_PplP_Fears>
+  <CC_PplP_FeastHope>At a feast they hope for {HOPE}.</CC_PplP_FeastHope>
+  <CC_PplP_HardTimes>Hard times among them: {EVENT}.</CC_PplP_HardTimes>
+  <CC_PplP_Threat>A threat to them the colony knows of: {THREAT}.</CC_PplP_Threat>
+  <CC_PplP_Asks>They ask the colony for {NEED}.</CC_PplP_Asks>
+  <CC_PplP_LittleKnown>The colony knows little of what they want yet: their traders, visitors and letters tell more.</CC_PplP_LittleKnown>
+  <CC_PplP_Reach>How to reach them now</CC_PplP_Reach>
+  <CC_PplP_Nearest>Their nearest town: {TOWN}, {DAYS} on the road.</CC_PplP_Nearest>
+  <CC_PplP_HereNow>Here at the colony now: {WHO}. A colonist can talk with them face to face.</CC_PplP_HereNow>
+  <CC_PplP_Acts>Do something with...</CC_PplP_Acts>
+  <CC_PplP_NoTowns>No town of {PEOPLE} is known on this world.</CC_PplP_NoTowns>
+  <CC_PplP_ActOnTownTip>Do something with this town: its acts on the Overview.</CC_PplP_ActOnTownTip>
+  <CC_PplP_ActOnPersonTip>Do something with this person: their acts on the Overview.</CC_PplP_ActOnPersonTip>
+  <CC_PplP_NobodyYet>The colony knows nobody of {PEOPLE} by name yet: a trader, a visitor or an answer to a letter brings their names.</CC_PplP_NobodyYet>
+  <CC_PplP_AtColony>At the colony now</CC_PplP_AtColony>
+  <CC_PplP_AtColonyLine>Here now: a colonist can talk with them face to face.</CC_PplP_AtColonyLine>
+  <CC_PplP_Faces>Everyone the colony knows: Faces</CC_PplP_Faces>
+  <CC_PplP_FacesTip>The view's Faces: everyone the colony knows by name, its old foes, those who left, and the faces it keeps up with.</CC_PplP_FacesTip>
+  <CC_PplP_NoDealings>No dealings with {PEOPLE} yet: pacts, debts of honor, letters and envoys show here once there are some.</CC_PplP_NoDealings>
+  <CC_PplP_RemembersNothing>They remember nothing of the colony yet.</CC_PplP_RemembersNothing>
+  <CC_PplP_Timeline>Their timeline with the colony</CC_PplP_Timeline>
+  <CC_PplP_TimelineNone>Nothing yet between them and the colony in the world's history.</CC_PplP_TimelineNone>
+  <CC_PplP_AllLine>What every people owes the colony and what the colony owes them, then what each remembers of it.</CC_PplP_AllLine>
+
+  <!-- Do something with... -->
+  <CC_PplAct_Target_People>The whole people</CC_PplAct_Target_People>
+  <CC_PplAct_Target_People_Tip>Their head receives the letters; pacts, truces, fealty, envoys, feasts, matches, wards and exchanges are with the whole people.</CC_PplAct_Target_People_Tip>
+  <CC_PplAct_Target_Town>A town</CC_PplAct_Target_Town>
+  <CC_PplAct_Target_Town_Tip>One of their towns, closest first: letters to its head, an envoy to it, and what the colony can do with that town.</CC_PplAct_Target_Town_Tip>
+  <CC_PplAct_Target_Person>A person</CC_PplAct_Target_Person>
+  <CC_PplAct_Target_Person_Tip>One of theirs the colony knows by name: letters to them, a match, a feast with them among the guests, their own debts.</CC_PplAct_Target_Person_Tip>
+  <CC_PplAct_NoTown>No town</CC_PplAct_NoTown>
+  <CC_PplAct_NoPerson>Nobody known</CC_PplAct_NoPerson>
+  <CC_PplAct_Group_Letters>Letters</CC_PplAct_Group_Letters>
+  <CC_PplAct_Group_Bonds>Pacts, truces and fealty</CC_PplAct_Group_Bonds>
+  <CC_PplAct_Group_People>Envoys, feasts, matches and wards</CC_PplAct_Group_People>
+  <CC_PplAct_Group_Debts>Debts of honor</CC_PplAct_Group_Debts>
+  <CC_PplAct_Group_Town>The town's own</CC_PplAct_Group_Town>
+  <CC_PplAct_Write>Write</CC_PplAct_Write>
+  <CC_PplAct_Speak>Send word</CC_PplAct_Speak>
+  <CC_PplAct_Do>Do it</CC_PplAct_Do>
+  <CC_PplAct_LetterTo>{LETTER}, to {NAME}</CC_PplAct_LetterTo>
+  <CC_PplAct_Why_NoOne>The colony knows nobody of {PEOPLE} by name to write to.</CC_PplAct_Why_NoOne>
+  <CC_PplAct_Face>Talk with {PAWN} face to face</CC_PplAct_Face>
+  <CC_PplAct_Face_Button>Show them</CC_PplAct_Face_Button>
+  <CC_PplAct_Way_Colonist>A colonist goes by caravan: about {DAYS} to {TOWN}.</CC_PplAct_Way_Colonist>
+  <CC_PplAct_Way_Colonist_NoRoad>A colonist goes by caravan, but no road reaches {TOWN} by land.</CC_PplAct_Way_Colonist_NoRoad>
+  <CC_PplAct_Way_Signal>Called from home at once; their band walks in some hours later.</CC_PplAct_Way_Signal>
+  <CC_PplAct_Way_Council>Decided at home.</CC_PplAct_Way_Council>
+  <CC_PplAct_Way_Face>Face to face, here at the colony.</CC_PplAct_Way_Face>
+  <CC_PplAct_Way_Call>By a call on the comms console.</CC_PplAct_Way_Call>
+  <CC_PplAct_Way_Messenger>By their messenger, who comes to the gate for it.</CC_PplAct_Way_Messenger>
+
+  <!-- What each is for: written from what each act does in the code. -->
+  <CC_PplAct_For_Greetings>A warm answer comes with a small gift; a cordial or cool one tells how their town is faring. Either warms their regard a little.</CC_PplAct_For_Greetings>
+  <CC_PplAct_For_Condolences>Mourning with them: their people remember it, and a warm answer warms their regard more than any other letter.</CC_PplAct_For_Condolences>
+  <CC_PplAct_For_Warning>Heeded warmly, their people owe the colony a debt of honor for it; heeded at all, they remember it, and their goodwill rises more than for kind words.</CC_PplAct_For_Warning>
+  <CC_PplAct_For_Warning_Alt>Heeded, their people remember it, and their goodwill rises more than for kind words.</CC_PplAct_For_Warning_Alt>
+  <CC_PplAct_For_News>Their answer tells what is going on around their town: up to three things with a warm or cordial answer, fewer with a cooler one.</CC_PplAct_For_News>
+  <CC_PplAct_For_Invitation>Granted, they come to visit the colony, or send their heir or envoy when they can't leave their seat.</CC_PplAct_For_Invitation>
+  <CC_PplAct_For_Help>Granted, the medicine or food asked for comes with their answer, and the colony owes them a good turn for it.</CC_PplAct_For_Help>
+  <CC_PplAct_For_Truce>Their raids on this home stop for the term, a season or a year, at the price agreed.</CC_PplAct_For_Truce>
+  <CC_PplAct_For_Truce_Alt>Peace sworn for a season or a year at the price agreed, at the gate by their envoy or by word.</CC_PplAct_For_Truce_Alt>
+  <CC_PplAct_For_Pact>A defense pact brings their band when the colony is attacked; a trade pact brings their traders each season and buys a cart of the colony's surplus.</CC_PplAct_For_Pact>
+  <CC_PplAct_For_CallPact>Their band walks in some hours later and fights beside the colony, nine times in ten.</CC_PplAct_For_CallPact>
+  <CC_PplAct_For_Swear>Their protection: when a people raids the colony, their band comes without a call, once a season at most.</CC_PplAct_For_Swear>
+  <CC_PplAct_For_Renounce>No more tribute or levies owed to them.</CC_PplAct_For_Renounce>
+  <CC_PplAct_For_AskEnvoy>Their envoy lives at the colony for a season: a good stay raises their head's regard by 12, and a very good one leaves their people owing the colony.</CC_PplAct_For_AskEnvoy>
+  <CC_PplAct_For_SendEnvoy>A colonist lives at their town for a season: their letters bring its news, its notables think better of the colony, and they come home better with people.</CC_PplAct_For_SendEnvoy>
+  <CC_PplAct_For_Feast>Up to three of their notables come for contests and the colony's table; a good welcome is a good turn their people remember, and their head thinks better of the colony.</CC_PplAct_For_Feast>
+  <CC_PplAct_For_InviteFeast>A feast with this notable among the guests: a good welcome is a good turn their people remember.</CC_PplAct_For_InviteFeast>
+  <CC_PplAct_For_Match>A marriage between one of the colony's and one of theirs binds the colony to their people, with gifts both ways at the gate.</CC_PplAct_For_Match>
+  <CC_PplAct_For_ProposeMatch>A match between one of the colony's and this person, or one of the town they head: a marriage binds the colony to their people.</CC_PplAct_For_ProposeMatch>
+  <CC_PplAct_For_AskWard>A youth of theirs lives and learns at the colony for a year: a fine year raises their head's regard by 20 and leaves their people owing the colony.</CC_PplAct_For_AskWard>
+  <CC_PplAct_For_SendWard>A youth of the colony's lives among them for a year and comes back with what their people are good at.</CC_PplAct_For_SendWard>
+  <CC_PplAct_For_Exchange>One of theirs in the colony's cells for one of the colony's they hold: agreed, both walk at the gate.</CC_PplAct_For_Exchange>
+  <CC_PplAct_For_CallDebt>What they owe, as the colony asks it: goods, a good word with a third people, a captive of the colony's freed, help toward peace, or their fighters.</CC_PplAct_For_CallDebt>
+  <CC_PplAct_For_AnswerDebt>Keeping the colony's word: answered, they remember it; refused or left unanswered, the debt is broken and they lose 5 goodwill toward the colony.</CC_PplAct_For_AnswerDebt>
+  <CC_PplAct_For_Levies>Their band, a third of the threat, walks in some hours later, once a season.</CC_PplAct_For_Levies>
+  <CC_PplAct_For_Level>How much they bring at harvest: light warms their head, heavy costs 3 goodwill each season.</CC_PplAct_For_Level>
+  <CC_PplAct_For_AskBack>Asks the town's head for the town back, to be the colony's home again; once a year at most.</CC_PplAct_For_AskBack>
+  <CC_PplAct_For_TakeBack>Its people agreed: the town is the colony's home again, its map as the colony left it.</CC_PplAct_For_TakeBack>
+  <CC_PplAct_For_Journey>Opens the journey planner with this town as the destination.</CC_PplAct_For_Journey>
+  <CC_PplAct_For_FaceToFace>A colonist walks over to talk: a gift, a good word, a favor called in, a pact or a match, answered face to face at once.</CC_PplAct_For_FaceToFace>
+
+  <!-- What each costs. -->
+  <CC_PplAct_Cost_Letter>About an hour of a writer's time.</CC_PplAct_Cost_Letter>
+  <CC_PplAct_Cost_Spoken>A spoken message given to the carrier at the gate.</CC_PplAct_Cost_Spoken>
+  <CC_PplAct_Cost_Invitation>About an hour of a writer's time, and a guest to host.</CC_PplAct_Cost_Invitation>
+  <CC_PplAct_Cost_Help>About an hour of a writer's time, and a little of their regard, granted or not.</CC_PplAct_Cost_Help>
+  <CC_PplAct_Cost_Truce>A price either way: silver, their captives returned, or a hostage for the term.</CC_PplAct_Cost_Truce>
+  <CC_PplAct_Cost_Pact>A trade pact: a cart of the colony's surplus each season, paid four fifths of its worth; a defense pact: the colony answers their call too.</CC_PplAct_Cost_Pact>
+  <CC_PplAct_Cost_CallPact>Without a working console, 20 wood for the signal fire; once a season.</CC_PplAct_Cost_CallPact>
+  <CC_PplAct_Cost_Swear>Tribute each season, 150 to 600 silver's worth by the colony's wealth, and its levies when they call.</CC_PplAct_Cost_Swear>
+  <CC_PplAct_Cost_Renounce>Their grudge and 30 goodwill, unless they failed to protect the colony this season.</CC_PplAct_Cost_Renounce>
+  <CC_PplAct_Cost_AskEnvoy>A bed, good meals and care for a season; an offended envoy costs their head's regard.</CC_PplAct_Cost_AskEnvoy>
+  <CC_PplAct_Cost_SendEnvoy>The colonist's work for a season, and food for the road.</CC_PplAct_Cost_SendEnvoy>
+  <CC_PplAct_Cost_Feast>The meals for the table, a prize if one is set, and the day.</CC_PplAct_Cost_Feast>
+  <CC_PplAct_Cost_InviteFeast>The meals for the table, a prize if one is set, and the day.</CC_PplAct_Cost_InviteFeast>
+  <CC_PplAct_Cost_Match>One of the colony's may move to them: where the couple lives is chosen each time.</CC_PplAct_Cost_Match>
+  <CC_PplAct_Cost_ProposeMatch>One of the colony's may move to them: where the couple lives is chosen each time.</CC_PplAct_Cost_ProposeMatch>
+  <CC_PplAct_Cost_AskWard>A bed of their own and a guardian's hour a day for a year.</CC_PplAct_Cost_AskWard>
+  <CC_PplAct_Cost_SendWard>The youth is away from the colony's work all year.</CC_PplAct_Cost_SendWard>
+  <CC_PplAct_Cost_Exchange>One of theirs in the colony's cells.</CC_PplAct_Cost_Exchange>
+  <CC_PplAct_Cost_CallDebt>The debt is spent either way: honored, or refused and remembered as their broken word.</CC_PplAct_Cost_CallDebt>
+  <CC_PplAct_Cost_AnswerDebt>What they ask of the colony.</CC_PplAct_Cost_AnswerDebt>
+  <CC_PplAct_Cost_Levies>Each of theirs who falls costs 6 of their head's regard, 20 at most.</CC_PplAct_Cost_Levies>
+
+  <!-- Letters by occasion: the reason a kind letter fits now, or what would bring one. -->
+  <CC_Occ_Always>Always open.</CC_Occ_Always>
+  <CC_Occ_Loss>Now: after {ABOUT}.</CC_Occ_Loss>
+  <CC_Occ_Threat>Now: about {ABOUT}.</CC_Occ_Threat>
+  <CC_Occ_Feast>Now: the colony's feast with guests is coming.</CC_Occ_Feast>
+  <CC_Occ_Gathering>Now: {ABOUT} is coming at the colony.</CC_Occ_Gathering>
+  <CC_Occ_Visitors>Now: the guest beds stand empty, and the colony would like visitors.</CC_Occ_Visitors>
+  <CC_Occ_ShortFood>Now: the stores are short of food.</CC_Occ_ShortFood>
+  <CC_Occ_ShortMedicine>Now: the colony is short of medicine.</CC_Occ_ShortMedicine>
+  <CC_Occ_NewYear>Now: the turn of the year.</CC_Occ_NewYear>
+  <CC_Occ_Gift>Now: to go with the gift the colony gave them lately.</CC_Occ_Gift>
+  <CC_Occ_None_Greetings>No reason now: greetings go at the turn of the year or with a gift.</CC_Occ_None_Greetings>
+  <CC_Occ_None_Condolences>No reason now: condolences follow a loss of theirs the colony has heard of.</CC_Occ_None_Condolences>
+  <CC_Occ_None_Warning>No reason now: a warning needs a threat to them the colony knows of.</CC_Occ_None_Warning>
+  <CC_Occ_None_Invitation>No reason now: invite them when a feast or a gathering day is coming, or the guest beds stand empty.</CC_Occ_None_Invitation>
+  <CC_Occ_None_Help>No reason now: ask for help when the colony is short of food or medicine.</CC_Occ_None_Help>
+
+  <!-- The setting -->
+  <CC_Settings_LetterOccasions>Letters by occasion</CC_Settings_LetterOccasions>
+  <CC_Settings_LetterOccasions_Tip>The kind letters wait for a reason: greetings at the turn of the year (its last three days and its first seven) or with a gift the colony gave them in the last 10 days; an invitation when the colony's feast with guests or a gathering day on its calendar is coming within a week, or its guest beds stand empty with nobody from outside staying; asking for help when the stores hold food for under 6 days or less than one medicine for each colonist. Condolences follow a loss heard of and a warning a threat known, as before; asking for news is always open. Without a reason a letter is greyed with what would bring one, in the letter's window and on Peoples. Off, greetings, invitations and asking for help can be written whenever their old checks allow.</CC_Settings_LetterOccasions_Tip>
+  <CC_SetNote_LetterOccasions>Greetings, invitations and asking for help only when there is a reason.</CC_SetNote_LetterOccasions>
+
+  <!-- The region map -->
+  <CC_Region_Lit>Towns of {PEOPLE} lit</CC_Region_Lit>
+  <CC_Region_LitTip>The people chosen on Peoples: their towns have a gold ring and their names. The cross lets them go.</CC_Region_LitTip>
+  <CC_Region_ClosestFirst>Closest first</CC_Region_ClosestFirst>
+  <CC_Region_ClosestFirst_Tip>The list all in one, nearest first, rather than in its groups.</CC_Region_ClosestFirst_Tip>
+
+</LanguageData>

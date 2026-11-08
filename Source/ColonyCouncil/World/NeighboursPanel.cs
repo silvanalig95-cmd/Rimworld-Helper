@@ -240,7 +240,8 @@ namespace ColonyCouncil
 
     /// <summary>
     /// Writing to a neighbour: whom (any notable of the same town), what for (each purpose, with why it can't be when it
-    /// can't), what about (the loss, the threat, the help asked for), who writes (the speaker by default) and how (a
+    /// can't, and for a kind letter the occasion that makes it fit now: World/LetterOccasions.cs), what about (the loss,
+    /// the threat, the help asked for), who writes (the speaker by default) and how (a
     /// letter by hand, or a call on the comms console when both ends can), and in words how it is likely to be taken.
     /// </summary>
     public class Dialog_NeighbourLetter : Window
@@ -267,6 +268,8 @@ namespace ColonyCouncil
         private Pawn rider;
         private List<string> reach = new List<string>();
         private readonly Dictionary<LetterPurpose, string> whyNot = new Dictionary<LetterPurpose, string>();
+        /// <summary>The reason a kind letter can be written now ("after the loss of their mayor"), shown beside it.</summary>
+        private readonly Dictionary<LetterPurpose, string> occasion = new Dictionary<LetterPurpose, string>();
         private List<LetterTopic> topics = new List<LetterTopic>();
 
         private void Look()
@@ -280,7 +283,13 @@ namespace ColonyCouncil
             byRider = byHand ?? OwnRiders.WhyNot(to, map);
             reach = PostWords.ReachLines(map, NotableBook.TownOf(to.town));
             whyNot.Clear();
-            foreach (LetterPurpose p in Enum.GetValues(typeof(LetterPurpose))) whyNot[p] = NeighbourLetters.WhyNot(to, p);
+            occasion.Clear();
+            // Letters by occasion (World/LetterOccasions.cs): a kind letter with no reason now is greyed with what would bring one.
+            foreach (LetterPurpose p in Enum.GetValues(typeof(LetterPurpose)))
+            {
+                whyNot[p] = LetterOccasions.WhyNot(to, p);
+                if (whyNot[p] == null && LetterOccasionMath.ByOccasion(p) && p != LetterPurpose.News) occasion[p] = LetterOccasions.Reason(to, p);
+            }
             topics = NeighbourLetters.Topics(to, purpose);
         }
 
@@ -297,7 +306,7 @@ namespace ColonyCouncil
             absorbInputAroundWindow = true;
             // The first purpose that can be written, and a letter by hand when a messenger can come.
             foreach (LetterPurpose p in Enum.GetValues(typeof(LetterPurpose)))
-                if (NeighbourLetters.WhyNot(n, p) == null)
+                if (LetterOccasions.WhyNot(n, p) == null)
                 {
                     purpose = p;
                     break;
@@ -309,7 +318,7 @@ namespace ColonyCouncil
         /// <summary>A letter for a purpose and what it's about, chosen beforehand (the Diplomacy page's "call it in": Diplomacy/DiplomacyPanels.cs).</summary>
         public Dialog_NeighbourLetter(Notable n, LetterPurpose p, string topicKey) : this(n)
         {
-            if (NeighbourLetters.WhyNot(n, p) != null) return;
+            if (LetterOccasions.WhyNot(n, p) != null) return;
             purpose = p;
             int i = NeighbourLetters.Topics(n, p).FindIndex(t => t.key == topicKey);
             topicIndex = Mathf.Max(0, i);
@@ -380,6 +389,8 @@ namespace ColonyCouncil
                     topicIndex = 0;
                 }
                 if (why != null) UiKit.LabelFit(new Rect(row.xMax + 12f, y, inRect.width - row.width - 32f, 24f), why, UiKit.Faint, GameFont.Tiny);
+                else if (occasion.TryGetValue(p, out var reason) && !reason.NullOrEmpty())
+                    UiKit.LabelFit(new Rect(row.xMax + 12f, y, inRect.width - row.width - 32f, 24f), reason, UiKit.Done, GameFont.Tiny);
                 y += 26f;
             }
             Look();
@@ -497,9 +508,9 @@ namespace ColonyCouncil
         {
             to = n;
             topicIndex = 0;
-            if (NeighbourLetters.WhyNot(n, purpose) != null)
+            if (LetterOccasions.WhyNot(n, purpose) != null)
                 foreach (LetterPurpose p in Enum.GetValues(typeof(LetterPurpose)))
-                    if (NeighbourLetters.WhyNot(n, p) == null)
+                    if (LetterOccasions.WhyNot(n, p) == null)
                     {
                         purpose = p;
                         break;

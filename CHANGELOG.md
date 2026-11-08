@@ -5,6 +5,23 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## A new diplomacy screen, and letters written for a reason
+
+*8 November 2026, version 0.173.0*
+
+- The region window's Peoples view is now a list of every people beside the chosen one's page: grouped allies, at peace and at war, with a search, filters for neighbours, mail and dealings, and a sort by closest (the default, in days on the road), regard, name or age.
+- Each people's page shows its age and which way it is heading, its regard with this season's trend and why, what they want and fear as far as you know it, and how to reach them now, with tabs for their towns (closest first), their people, your dealings and your history together.
+- A Do something with panel aims at the whole people, one of their towns or one person, and lists every act that fits, each saying what it brings, how it travels and what it costs, greyed with the reason when it isn't open.
+- Letters now wait for a reason: condolences after a loss you heard of, a warning when you know of a threat to them, an invitation when a feast or fair is near or guest beds stand empty, asking for help when food or medicine runs short, greetings at the turn of the year or after a gift; asking for news is always open. A setting, Letters by occasion, opens them all again.
+- Choosing a people lights its towns on the region map, and a small web shows who stands with whom.
+
+## A camp far off meets you at the gate
+
+*8 November 2026, version 0.172.1*
+
+- Paying a camp, sending a supper or meals, or anything else your colonists carry to a camp no longer sends them across the map when the camp is far: one of the camp walks to your gate to meet them, and the hand-over happens there.
+- Whoever of the camp is already at the gate, such as the woodcutter bringing the load of wood you bought, takes the payment there; a near camp is still met at its fire, and going over to learn from them or to help stays a walk to the camp.
+
 ## Four more peoples: the Signal Line, the Deepwell Union, the Last Republic, the Hollow Fleet
 
 *8 November 2026, version 0.172.0*

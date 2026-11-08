@@ -444,6 +444,8 @@ namespace ColonyCouncil
             // The post (Post/): the mailbag at the gate, carriers going that way, the regular post by the age, the range until radio.
             Toggle("post", "CC_Settings_Post", "CC_SetNote_Post", "neighbourLetters");
             Choice("postPace", "CC_Settings_PostPace", "CC_Settings_PostPace_Tip", "CC_PostPace_", "CC_SetNote_PostPace_", new[] { "Seldom", "Usual", "Often" }, "post");
+            // Letters by occasion (World/LetterOccasions.cs): the kind letters only when there is a reason to write them.
+            Toggle("letterOccasions", "CC_Settings_LetterOccasions", "CC_SetNote_LetterOccasions", "neighbourLetters");
             Toggle("outsiderTalk", "CC_Settings_OutsiderTalk", "CC_SetNote_OutsiderTalk");
             Toggle("outsiderSpar", "CC_Settings_OutsiderSpar", "CC_SetNote_OutsiderSpar", "outsiderTalk");
             Toggle("outsiderProvoke", "CC_Settings_OutsiderProvoke", "CC_SetNote_OutsiderProvoke", "outsiderTalk,deepHooks");
