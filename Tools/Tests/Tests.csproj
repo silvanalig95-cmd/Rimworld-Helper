@@ -293,5 +293,7 @@
     <Compile Include="../../Source/ColonyCouncil/UI/Region/PeopleActMath.cs" Link="PeopleActMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Dealings/DealingMath.cs" Link="DealingMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/World/LetterOccasionMath.cs" Link="LetterOccasionMath.cs" />
+    <Compile Include="../../Source/ColonyCouncil/Letters/LetterFormMath.cs" Link="LetterFormMath.cs" />
+    <Compile Include="../../Source/ColonyCouncil/Letters/LetterCultureMath.cs" Link="LetterCultureMath.cs" />
   </ItemGroup>
 </Project>

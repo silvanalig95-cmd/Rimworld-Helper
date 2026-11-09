@@ -76,10 +76,11 @@ namespace ColonyCouncil
                     if (coolest != null) coolest.since = -1;
                 }
                 var home = HappeningTracker.HomeMap() ?? Homes.Seat;
-                Tell.Letter(NewsKind.World, Importance.Notable, home, W("CC_Pen_Label", n.Name.Named("NAME")),
-                    W("CC_Pen_Text", NotableBook.Called(n).Named("CALLED"), n.Name.Named("NAME"), (n.townName ?? n.faction?.Name ?? "?").Named("TOWN"),
-                        (n.faction?.Name ?? "?").Named("PEOPLE"), DealingMath.PenFriendOffset.ToStringPercent().Named("TERMS")),
-                    LetterDefOf.PositiveEvent, LookTargets.Invalid, n.faction);
+                string text = W("CC_Pen_Text", NotableBook.Called(n).Named("CALLED"), n.Name.Named("NAME"), (n.townName ?? n.faction?.Name ?? "?").Named("TOWN"),
+                    (n.faction?.Name ?? "?").Named("PEOPLE"), DealingMath.PenFriendOffset.ToStringPercent().Named("TERMS"));
+                // Written out in full: their own word as a friend, and what it brings under it (Letters/LetterForm.cs).
+                text = LetterForm.Friend(n, "friendmade", new List<string> { text })?.full ?? text;
+                Tell.Letter(NewsKind.World, Importance.Notable, home, W("CC_Pen_Label", n.Name.Named("NAME")), text, LetterDefOf.PositiveEvent, LookTargets.Invalid, n.faction);
                 Dealings.Changed();
             }
             catch (Exception e)
@@ -122,8 +123,12 @@ namespace ColonyCouncil
                     var home = HappeningTracker.HomeMap() ?? Homes.Seat;
                     x.favourAt = now;
                     if (FavoursOwed.Make(n.faction, home, true, "penFriend") != null)
-                        Tell.Letter(NewsKind.World, Importance.Notable, home, W("CC_Pen_FavourLabel", n.Name.Named("NAME")),
-                            W("CC_Pen_Favour", n.Name.Named("NAME"), (n.faction?.Name ?? "?").Named("PEOPLE")), LetterDefOf.PositiveEvent, LookTargets.Invalid, n.faction);
+                    {
+                        string text = W("CC_Pen_Favour", n.Name.Named("NAME"), (n.faction?.Name ?? "?").Named("PEOPLE"));
+                        text = LetterForm.Friend(n, "friendfavour", new List<string> { text })?.full ?? text;
+                        Tell.Letter(NewsKind.World, Importance.Notable, home, W("CC_Pen_FavourLabel", n.Name.Named("NAME")), text, LetterDefOf.PositiveEvent, LookTargets.Invalid,
+                            n.faction);
+                    }
                 }
             }
         }
@@ -213,6 +218,8 @@ namespace ColonyCouncil
             string text = tower != null
                 ? Dealings.W("CC_Warn_Tower", raiders.Name.Named("RAIDERS"), tower.Name.Named("TOWN"), (from?.Name ?? "?").Named("PEOPLE"))
                 : Dealings.W("CC_Warn_Friend", raiders.Name.Named("RAIDERS"), friend.Name.Named("NAME"), (friend.townName ?? "?").Named("TOWN"));
+            // A friend's word in haste, written out in full, the warning's plain lines under it (Letters/LetterForm.cs).
+            if (tower == null) text = LetterForm.Friend(friend, "raidword", new List<string> { text }, raiders.Name)?.full ?? text;
             var townOf = tower ?? NotableBook.TownOf(friend.town);
             bool radio = NeighbourLetters.Console(map) != null && PostReach.Radio(from, townOf);
             if (radio)

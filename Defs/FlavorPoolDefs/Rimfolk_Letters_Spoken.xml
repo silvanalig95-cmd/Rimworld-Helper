@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Words passed on by mouth (Letters/LetterFormMath.cs, Spoken): never a letter. The one who carries them speaks first
+    (s:open) and last (s:close), and between, in quotes, the words they were given. {FROM} is the one who gave the words,
+    {TO} the one they are for, {TOWN} their town, {COLONY} the colony. By how the words were meant (warm, cordial, cool,
+    curt, refusal; war), the age of the one carrying them (w:tribal...), a medieval carrier's English (olde) and the side
+    (theirs: their words brought to the colony; ours: the colony's words, as its carrier will give them).
+  -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_LetterSpoken</defName>
+    <lines>
+      <plain>
+        <!-- Their words, brought to the colony -->
+        <li>[theirs,s:open] {FROM} bids me tell you this, and in these words:</li>
+        <li>[theirs,s:open] I carry words from {FROM} of {TOWN}. I have kept them as they were given:</li>
+        <li>[theirs,s:open,warm|cordial] {FROM} sends word, and smiled while giving it:</li>
+        <li>[theirs,s:open,cool|curt|refusal] {FROM} gave me this to say, and no more:</li>
+        <li>[theirs,s:open,war] Under the white feather, I bring {FROM}'s words:</li>
+        <li>[theirs,s:open,w:tribal] Listen. These are {FROM}'s words, carried from the fire at {TOWN}:</li>
+        <li>[theirs,s:close] That is all {FROM} said, though it was said twice so I would not drop it on the road.</li>
+        <li>[theirs,s:close] Those are the words. I have carried them as well as I can.</li>
+        <li>[theirs,s:close,warm|cordial] {FROM} said to say it warmly, so imagine it so.</li>
+        <li>[theirs,s:close,cool|curt|refusal] That is all. {FROM} did not want more said.</li>
+        <li>[theirs,s:close,w:tribal] The words are given. Now they are yours to keep.</li>
+        <!-- The colony's words, as its carrier will give them -->
+        <li>[ours,s:open] {FROM} of {COLONY} bids me tell you this:</li>
+        <li>[ours,s:open] I bring words from {COLONY}, from {FROM}, for {TO}:</li>
+        <li>[ours,s:open,w:tribal] Listen. These are {FROM}'s words, from the fire at {COLONY}:</li>
+        <li>[ours,s:close] Those are {FROM}'s words, as near as I could keep them.</li>
+        <li>[ours,s:close] That is the message. {FROM} said it twice, to be sure.</li>
+        <!-- A medieval carrier -->
+        <li>[theirs,olde,s:open] {FROM} biddeth me tell thee this, and in these words:</li>
+        <li>[theirs,olde,s:open] I bear words from {FROM} of {TOWN}, kept as they were given me:</li>
+        <li>[theirs,olde,s:open,cool|curt|refusal] {FROM} gave me this to say, and no more:</li>
+        <li>[theirs,olde,s:close] That is all {FROM} said, though it was said twice, lest I lose it upon the road.</li>
+        <li>[theirs,olde,s:close] Those be the words. I have borne them as well as I might.</li>
+        <li>[ours,olde,s:open] {FROM} of {COLONY} biddeth me tell thee this:</li>
+        <li>[ours,olde,s:close] Those be {FROM}'s words, as near as I could keep them.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+</Defs>

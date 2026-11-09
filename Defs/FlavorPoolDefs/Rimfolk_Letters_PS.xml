@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    A postscript (Letters/LetterFormMath.cs, PSChance and PSKind; the form puts "P.S." before it, a machine "ADDENDUM:").
+    The tags are the asides' (Rimfolk_Letters_Aside.xml): kind (joke, everyday, serious), register, side, address,
+    age, people, culture and kind, what the writer wants, speech. The colony's own claim nothing about the colony that
+    isn't so. The ancient's postscripts run longer than their letters, on purpose; the unschooled lines' misspellings are
+    deliberate.
+  -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_LetterPS</defName>
+    <lines>
+      <plain>
+        <!-- ================= Theirs, plain English ================= -->
+        <li>[theirs,joke,a:plain|a:friend,warmly] The goat says hello. The goat has also eaten the envelope, so I am folding this one twice.</li>
+        <li>[theirs,joke,a:plain|a:friend,warmly] I forgot to say how the pumpkin is doing. It is doing badly. It has been given a name anyway.</li>
+        <li>[theirs,joke,a:plain|a:friend,warmly] My neighbour has stopped singing. My neighbour has started playing the drum.</li>
+        <li>[theirs,joke,a:plain|a:friend,warmly] The children want to know if you have any frogs. I said I would ask.</li>
+        <li>[theirs,joke,a:plain|a:friend,warmly] I drew you a map of {TOWN} on the back of this. It is not to scale. Nothing here is to scale.</li>
+        <li>[theirs,joke,a:friend,warmly] If you see the one carrying this, ask them about the pie. Then watch their face.</li>
+        <li>[theirs,joke,a:plain|a:friend,warmly|cordial|cool] Please excuse the smudge in the second paragraph. It was raining, or I was eating. One of those.</li>
+        <li>[theirs,joke,a:plain|a:friend,warmly|cordial|cool] The courier asked me to mention that the road is terrible. The road is terrible.</li>
+        <li>[theirs,joke,a:plain|a:friend,warmly|cordial|cool] I have just reread this and it is longer than I meant. That is your fault for writing first.</li>
+        <li>[theirs,joke,a:plain|a:friend,cordial|cool] I am told a P.S. is the only part of a letter anyone reads. If so, hello.</li>
+        <li>[theirs,joke,a:plain|a:friend,cordial|cool] Ignore the second crossed-out line. I was going to say something about the weather, and thought better of it.</li>
+        <li>[theirs,joke,a:plain|a:friend,warmly|cordial|cool,w:tribal] The runner says your gate is the finest he has seen. He has seen two gates.</li>
+        <li>[theirs,joke,a:plain|a:friend,warmly|cordial|cool,w:industrial] If the mail run is late, it is because the driver stops at every farm for coffee. All of them.</li>
+        <li>[theirs,joke,a:plain|a:friend,warmly|cordial|cool,w:spacer] If this letter smells of engine grease, the shuttle pilot insists it does not.</li>
+        <li>[theirs,joke,a:plain|a:friend,warmly|cordial|cool,their:herders] The herd says nothing, but it says it loudly.</li>
+        <li>[theirs,joke,a:plain|a:friend,warmly|cordial|cool,their:scholars] Footnote: the cat is still on the shelf.</li>
+        <li>[theirs,joke,a:plain|a:friend,warmly|cordial|cool,their:traders] The backward clock says it is yesterday. I will answer your next letter before you send it.</li>
+        <li>[theirs,joke,a:plain|a:friend,warmly|cordial|cool,c:tea] We have settled the tea argument. Everyone was wrong.</li>
+        <li>[theirs,joke,a:plain|a:friend,warmly|cordial|cool,x:hulking] Sorry about the hole in the paper. Pressed too hard.</li>
+        <li>[theirs,everyday,a:plain|a:friend,warmly] Write back soon. The evenings are long, and your letters shorten them.</li>
+        <li>[theirs,everyday,a:plain|a:friend,warmly] Give my regards to whoever cooks at {COLONY}. Someone must.</li>
+        <li>[theirs,everyday,a:plain|a:friend,warmly|cordial] If any of you come this way, there is a bed and a meal at {TOWN}.</li>
+        <li>[theirs,everyday,a:plain|a:friend,warmly|cordial|cool] I enclose nothing, but I thought about enclosing something, which surely counts.</li>
+        <li>[theirs,everyday,a:plain|a:friend,cordial|cool] The road north is passable again, should anyone of yours need it.</li>
+        <li>[theirs,everyday,a:plain|a:friend,cordial|cool] Our market is on the first day of each season, should {COLONY} wish to send anyone.</li>
+        <li>[theirs,everyday,a:plain|a:friend,curt] Do not send the courier back without a reason.</li>
+        <li>[theirs,everyday,a:plain,cordial|cool,m:trade] We have salt, cloth and good iron this season, if {COLONY} is buying.</li>
+        <li>[theirs,everyday,a:plain,cordial|cool,m:trade] Ask for our caravan master by name when you trade with us. You will get a better price. Slightly.</li>
+        <li>[theirs,everyday,a:plain,cordial|cool,m:trade] Any surplus of yours, we will look at. Any at all.</li>
+        <li>[theirs,everyday,a:plain,cordial|cool,m:duty] Please address future letters to the town, not to me by name, so they reach whoever holds the office.</li>
+        <li>[theirs,everyday,a:plain,cordial|cool,m:duty] A copy of this letter is kept at {TOWN}, as all are.</li>
+        <li>[theirs,everyday,a:plain,cordial|cool,m:wary] Forgive the caution in this letter. Roads teach it.</li>
+        <li>[theirs,everyday,a:plain,cordial|cool,m:proud] We did not need to answer. We chose to. Remember that.</li>
+        <li>[theirs,everyday,a:plain|a:friend,cordial|cool,c:pious] Our priests will remember {COLONY} at the evening prayers, whether you ask it or not.</li>
+        <li>[theirs,everyday,a:plain|a:friend,warmly,m:friend] I have kept every one of your letters. This one too, once I have answered it.</li>
+        <li>[theirs,joke,a:plain|a:friend,warmly,m:friend] Write soon. I have run out of your old letters to reread.</li>
+        <li>[theirs,everyday,a:plain|a:friend,cordial|cool,m:friend] Answer when you can. I know how busy the season is.</li>
+        <li>[theirs,olde,everyday,a:plain|a:friend,warmly,m:friend] I have kept every letter of thine. This one also, once I have answered it.</li>
+        <li>[theirs,serious,a:plain|a:friend] Look after one another. That is all any of us can do.</li>
+        <li>[theirs,serious,a:plain|a:friend] If things grow worse here, I will write again. I hope I do not have to.</li>
+        <li>[theirs,serious,a:plain|a:friend,warning] We have sent word to the towns near us, too.</li>
+        <li>[theirs,serious,a:plain|a:friend,condolences] We lit a lamp for the dead last night. There was room in its light for yours.</li>
+        <li>[theirs,serious,a:war] Do not send the go-between again unless you mean it.</li>
+        <li>[theirs,serious,a:war] Some here would rather I had not written at all.</li>
+        <li>[theirs,serious,a:empire] The Empire remembers its friends.</li>
+        <li>[theirs,everyday,a:empire,warm|cordial|cool] My secretary insists I mention that this letter was written in my own hand. It was.</li>
+        <li>[theirs,joke,a:empire,warm|cordial|cool] I am told it is improper for one of my rank to add a postscript. Here is one regardless.</li>
+        <li>[theirs,serious,a:council] The council's full minutes may be had at {TOWN} by any who ask.</li>
+
+        <!-- ================= Ours, plain English ================= -->
+        <li>[ours,joke,a:plain|a:friend,warmly] Somebody here asked me to say hello to you. I am not sure they know who you are, but there it is.</li>
+        <li>[ours,joke,a:plain|a:friend,warmly|cordial|cool] I have just noticed a blot in the second paragraph. It is not a word. Ignore it.</li>
+        <li>[ours,joke,a:plain|a:friend,warmly|cordial|cool] I meant to say something clever here and have forgotten what.</li>
+        <li>[ours,joke,a:plain|a:friend,warmly|cordial|cool,v:blunt] That's the P.S.</li>
+        <li>[ours,joke,a:plain|a:friend,warmly|cordial,v:eloquent] I find I have more to say than paper, which is a common failing of mine.</li>
+        <li>[ours,joke,a:plain|a:friend,warmly|cordial|cool,colony:animals] One of our animals tried to eat this letter before it went. You may find teeth marks. We have discussed it with the animal.</li>
+        <li>[ours,joke,a:plain|a:friend,warmly|cordial,colony:children] One of the children wanted to add a drawing. I said no. There is a drawing in the corner anyway.</li>
+        <li>[ours,everyday,a:plain|a:friend,warmly] Write back when you can. We read every letter twice.</li>
+        <li>[ours,everyday,a:plain|a:friend,warmly|cordial] If anyone of yours comes this way, there is a meal for them at {COLONY}.</li>
+        <li>[ours,everyday,a:plain|a:friend,cordial|cool] Letters to us can be left with any carrier going our way.</li>
+        <li>[ours,everyday,a:plain|a:friend,cordial|cool,m:duty] I write for all of us here, so an answer to me is an answer to everyone.</li>
+        <li>[ours,serious,a:plain|a:friend] Whatever happens, you have neighbours here.</li>
+        <li>[ours,serious,a:plain|a:friend,warning] Tell the towns near you too.</li>
+        <li>[ours,serious,a:war] We will keep the white flag at the gate for your answer.</li>
+        <li>[ours,everyday,a:empire,warm|cordial|cool] We hope we have written properly. If not, forgive us: we are learning.</li>
+
+        <!-- ================= Medieval English (olde) ================= -->
+        <li>[theirs,olde,joke,a:plain|a:friend,warmly] The goat greeteth thee. The goat hath also eaten the wrapper, so I fold this one twice.</li>
+        <li>[theirs,olde,joke,a:plain|a:friend,warmly] My neighbour hath put down the lute. My neighbour hath taken up the drum.</li>
+        <li>[theirs,olde,joke,a:plain|a:friend,warmly|cordial|cool] Pardon the blot in the second part. It rained, or I was eating. One or the other.</li>
+        <li>[theirs,olde,joke,a:plain|a:friend,warmly|cordial|cool] The rider biddeth me say the road is foul. The road is foul.</li>
+        <li>[theirs,olde,joke,a:plain|a:friend,warmly|cordial|cool] I have read this over and it is longer than I meant. The fault is thine, for writing first.</li>
+        <li>[theirs,olde,joke,a:plain|a:friend,cordial|cool] They say the postscript is the only part a man readeth. If so, good morrow to thee.</li>
+        <li>[theirs,olde,everyday,a:plain|a:friend,warmly] Write anon. The evenings are long, and thy letters shorten them.</li>
+        <li>[theirs,olde,everyday,a:plain|a:friend,warmly|cordial] If any of thine come this way, there is a bed and a meal at {TOWN}.</li>
+        <li>[theirs,olde,everyday,a:plain|a:friend,cordial|cool] The north road is passable again, should any of thine have need of it.</li>
+        <li>[theirs,olde,everyday,a:plain|a:friend,cordial|cool] Our market is held the first day of each season, should {COLONY} wish to send any.</li>
+        <li>[theirs,olde,everyday,a:plain,cordial|cool,m:trade] We have salt, wool and good iron this season, if {COLONY} be buying.</li>
+        <li>[theirs,olde,everyday,a:plain,cordial|cool,m:duty] A copy of this letter is kept at {TOWN}, as all are.</li>
+        <li>[theirs,olde,everyday,a:plain,cordial|cool,m:wary] Forgive the caution herein. The roads teach it.</li>
+        <li>[theirs,olde,everyday,a:plain,cordial|cool,m:proud] We needed not to answer. We chose to. Remember it.</li>
+        <li>[theirs,olde,everyday,a:plain|a:friend,curt] Send not the rider back without good cause.</li>
+        <li>[theirs,olde,serious,a:plain|a:friend] Look ye to one another. It is all any of us can do.</li>
+        <li>[theirs,olde,serious,a:plain|a:friend,warning] We have sent word to the towns about us also.</li>
+        <li>[theirs,olde,serious,a:war] Send not the go-between again unless thou mean it.</li>
+        <li>[theirs,olde,serious,a:council] The council's full record may be had at {TOWN} by any who ask.</li>
+        <li>[theirs,olde,joke,a:plain|a:friend,warmly|cordial|cool,season:winter] The ink froze twice whilst I wrote. If the last words be faint, blame the frost.</li>
+        <li>[theirs,olde,serious,a:plain|a:friend] Keep a light in thy window. Some of us travel yet by night.</li>
+        <li>[theirs,olde,serious,a:plain|a:friend,help] We have little, but we shall not see neighbours starve.</li>
+        <li>[ours,olde,joke,a:plain|a:friend,warmly|cordial|cool] I meant to say somewhat clever here, and have forgot what.</li>
+        <li>[ours,olde,everyday,a:plain|a:friend,warmly] Write when thou canst. We read every letter twice.</li>
+        <li>[ours,olde,everyday,a:plain|a:friend,cordial|cool] Letters to us may be left with any carrier going our way.</li>
+        <li>[ours,olde,serious,a:plain|a:friend] Whatsoever befall, thou hast neighbours here.</li>
+        <li>[ours,olde,serious,a:war] We shall keep the white flag at the gate for thine answer.</li>
+
+        <li>[theirs,joke,a:plain|a:friend,warmly] Somebody here wants to know if you are married. I said I would not ask. I have asked.</li>
+        <li>[theirs,joke,a:plain|a:friend,warmly] The dog wants it known that she did not eat the last letter. She did.</li>
+        <li>[theirs,joke,a:plain|a:friend,warmly] I have enclosed a recipe. Do not make it. I just wanted someone else to suffer with me.</li>
+        <li>[theirs,joke,a:plain|a:friend,warmly|cordial|cool] The quill I wrote this with has had a hard life. You can tell from the second page.</li>
+        <li>[theirs,joke,a:plain|a:friend,warmly|cordial|cool] I am told the courier charges by the word. I have used a great many words. I apologise to whoever pays.</li>
+        <li>[theirs,joke,a:plain|a:friend,warmly|cordial|cool,home:desert] We had a cloud yesterday. Just the one. We named it.</li>
+        <li>[theirs,joke,a:plain|a:friend,warmly|cordial|cool,home:coast] A gull stole my lunch while I wrote this. It is the gull's lunch now. That is the way of things.</li>
+        <li>[theirs,joke,a:plain|a:friend,warmly|cordial|cool,season:winter] The ink froze twice while I wrote this. If the last words are faint, that is the cold talking.</li>
+        <li>[theirs,joke,a:plain|a:friend,warmly|cordial|cool,their:healers] If any of you are sick, do not write to us about it, come here. Writing about it is how you end up with my handwriting.</li>
+        <li>[theirs,joke,a:plain|a:friend,warmly|cordial|cool,their:mercenaries] The sergeant read this over my shoulder and said it needs more marching. It does not.</li>
+        <li>[theirs,joke,a:plain|a:friend,cordial|cool,m:trade] Our prices go up at the turn of the season. I mention it as a friend. Mostly as a seller.</li>
+        <li>[theirs,everyday,a:plain|a:friend,warmly] The children send a drawing. It is either you or a horse.</li>
+        <li>[theirs,everyday,a:plain|a:friend,warmly] Do tell me how the harvest goes. I find I want to know.</li>
+        <li>[theirs,everyday,a:plain|a:friend,warmly|cordial|cool] The courier knows the way to us now, so your next letter should come faster.</li>
+        <li>[theirs,everyday,a:plain|a:friend,cordial|cool] If you write again, the post rider comes through every week or two.</li>
+        <li>[theirs,everyday,a:plain|a:friend,cordial|cool,w:industrial|w:spacer] We have a radio now, if you have one. Call sometime.</li>
+        <li>[theirs,everyday,a:plain,cordial|cool,m:wary] We will know you better, in time. Write again.</li>
+        <li>[theirs,everyday,a:plain,cordial|cool,m:proud] Do not take the brevity of this letter as a slight. We are simply very busy, as important towns are.</li>
+        <li>[theirs,everyday,a:empire,curt|refusal] The court does not expect a reply.</li>
+        <li>[theirs,everyday,a:empire,curt] This letter is to be kept.</li>
+        <li>[theirs,serious,a:plain|a:friend] Keep a light in the window. Some of us still travel at night.</li>
+        <li>[theirs,serious,a:plain|a:friend,help] We have little, but we will not see neighbours starve.</li>
+        <li>[theirs,serious,a:war] There are those here who would not have let this letter go. Read it quickly.</li>
+        <li>[ours,joke,a:plain|a:friend,warmly|cordial|cool] I promised someone here I would keep this letter short. I have failed them, and they will know.</li>
+        <li>[ours,joke,a:plain|a:friend,warmly,v:cheerful] Everyone here says hello. I have counted. It is everyone.</li>
+        <li>[ours,everyday,a:plain|a:friend,warmly|cordial|cool,season:winter] The snow is deep here, so forgive us if the answer to your answer is slow.</li>
+        <li>[ours,everyday,a:plain|a:friend,warmly,v:kind] Do look after yourselves.</li>
+        <li>[ours,everyday,a:plain|a:friend,cordial|cool,v:blunt] Answer when you can.</li>
+        <li>[ours,serious,a:plain|a:friend,help] We will repay it. Whatever it is, we will repay it.</li>
+        <li>[ours,olde,everyday,a:plain|a:friend,warmly,v:kind] Look to thyself, I pray thee.</li>
+        <li>[theirs,olde,joke,a:plain|a:friend,warmly] The children send a drawing. It is either thee or a horse.</li>
+        <li>[theirs,olde,joke,a:plain|a:friend,warmly|cordial|cool] The rider chargeth by the word, I am told. I have used a great many. I crave pardon of whoever payeth.</li>
+        <li>[theirs,olde,everyday,a:plain|a:friend,warmly] Do tell me how thy harvest goeth. I find I would know.</li>
+        <li>[theirs,olde,everyday,a:plain|a:friend,cordial|cool] The post rider cometh through every week or two, shouldst thou write again.</li>
+
+        <!-- ================= Barely schooled and unschooled ================= -->
+        <li>[u:some,joke,warmly|cordial|cool] Sory about the spelling, the one who checks it was out.</li>
+        <li>[u:some,everyday,warmly|cordial|cool] Write back if you want.</li>
+        <li>[u:some,serious] Look after yourselfs.</li>
+        <li>[u:some,joke,warmly|cordial|cool] The goat says hello. Well, not reely, but she would if she could.</li>
+        <li>[u:some,everyday,cordial|cool] Our trader comes your way next month if you want anything.</li>
+        <li>[u:some,everyday,curt] Dont send that courier agin, he ate everything.</li>
+        <li>[u:some,serious] Things are hard. Keep your gate shut at nite.</li>
+        <li>[u:none,joke,warmly|cordial|cool] the goat sez hello. the goat cant rite. nor can i much</li>
+        <li>[u:none,everyday,warmly|cordial|cool] rite back if you want. or dont</li>
+        <li>[u:none,everyday,curt] dont send that one wot came last time agin he ate all the bread</li>
+        <li>[u:none,serious] be carefull out there. its bad all over</li>
+        <li>[u:none,serious,c:raider] gold. we want gold. or goald. you no wot we meen.</li>
+
+        <!-- ================= Strange voices ================= -->
+        <li>[sv:machine,everyday,warmly|cordial|cool] This letter has been checked for errors. None were found. One was left in deliberately, as a courtesy.</li>
+        <li>[sv:machine,joke,warmly|cordial|cool] The previous point about humour was a joke. This note confirms it.</li>
+        <li>[sv:machine,serious] Should circumstances change, a further record will follow.</li>
+        <li>[theirs,sv:hive,everyday,warmly|cordial|cool] We are still many. That is all the news.</li>
+        <li>[theirs,sv:hive,serious] Do not come to the tunnels without asking. We ask the same.</li>
+        <li>[sv:beast,joke,warmly|cordial|cool] The pup says hello. The pup also says many other things, mostly at night.</li>
+        <li>[sv:beast,everyday,warmly|cordial|cool] If you come through the woods, walk upwind, so we know it is you.</li>
+        <li>[sv:beast,serious] Something big moves in the north forest. We smell it. Keep your young close.</li>
+        <li>[sv:green,everyday,warmly|cordial|cool] We have pressed a leaf in this letter. It is not a gift. It is a greeting.</li>
+        <li>[sv:green,serious] When the frost comes, cover what you love.</li>
+        <li>[sv:fey,joke,warmly|cordial|cool] Do not eat anything we send you. Or do. We shall see.</li>
+        <li>[sv:fey,everyday,warmly|cordial|cool] Count the knots in the string that tied this letter. If there are seven, all is well. If there are eight, someone has been at it.</li>
+        <li>[sv:fey,serious] Keep iron by your door this month. You will know why.</li>
+        <li>[theirs,sv:ancient,everyday,warmly|cordial|cool] I should add, since I neglected to say so in the body of this letter, and since I find on rereading it that I have left out a great deal, that the settlement styled {COLONY} has been remarked upon here more than once, in terms I should describe as favourable on balance, though not without reservations as to its upkeep, its noise, and the general youth of its inhabitants, which is in my experience a condition that corrects itself with time, though not always in the way one hopes, and that I would therefore advise patience, a good roof, and the regular airing of linen, which last I mention only because nobody ever does.</li>
+        <li>[sv:ancient,everyday,cordial|cool] I note in passing, and at some length, since passing is a thing I have done a great deal of, that letters in my youth were sealed with wax, carried by hand over distances no shorter than these, and answered within the season as a matter of simple courtesy; that the custom has decayed is not your fault, but it is a fact, and I record it here so that it is recorded somewhere, by someone who remembers.</li>
+        <li>[sv:ancient,serious] I have watched many settlements make the mistake of believing the quiet will last. I do not say yours has made it. I say only that I have watched, at length, and that the quiet does not last, and that the walls one builds in a good year are the walls one is glad of in a bad one, which is a lesson I learned before your oldest grandmother was born, and which I pass to you now without charge.</li>
+        <li>[sv:deep,everyday,warmly|cordial|cool] Count the stars tonight. One more, there will be. Do not point.</li>
+        <li>[sv:deep,serious] Dig not below the third stone. Asked, you did not. Told, you are.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+</Defs>

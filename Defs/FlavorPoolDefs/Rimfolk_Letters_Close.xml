@@ -1,0 +1,298 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    How a letter ends, just before the signature (Letters/LetterFormMath.cs; the signature follows on the next line). The
+    tags are the salutations' (Rimfolk_Letters_Salute.xml): side, address, register, motive, age, people, culture and
+    kind, speech, the colony's writer's voice. The unschooled lines' misspellings are deliberate.
+  -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_LetterClose</defName>
+    <lines>
+      <plain>
+        <!-- ================= Theirs, plain English ================= -->
+        <li>[theirs,a:plain,warmly] With warm regards,</li>
+        <li>[theirs,a:plain,warmly] Warmly,</li>
+        <li>[theirs,a:plain,warmly] Write soon,</li>
+        <li>[theirs,a:plain,warmly] Yours, and gladly,</li>
+        <li>[theirs,a:plain,warmly] With love to all at {COLONY},</li>
+        <li>[theirs,a:plain,warmly] Until the next letter, and may it be soon,</li>
+        <li>[theirs,a:plain,warmly] Take care of yourselves,</li>
+        <li>[theirs,a:plain,warmly,w:tribal] May your fire never go out,</li>
+        <li>[theirs,a:plain,warmly,w:tribal] Walk softly and come back to us,</li>
+        <li>[theirs,a:plain,warmly,w:industrial] All the best, and then some,</li>
+        <li>[theirs,a:plain,warmly,w:spacer] Stay safe down there,</li>
+        <li>[theirs,a:plain,warmly,their:herders] May your grass be long and your wolves few,</li>
+        <li>[theirs,a:plain,warmly,their:healers] Be well, and if you cannot be well, come to us,</li>
+        <li>[theirs,a:plain,warmly,their:pilgrims] Until our roads cross again,</li>
+        <li>[theirs,a:plain,warmly,their:fishers] Fair water to you,</li>
+        <li>[theirs,a:plain,warmly,their:scholars] Yours, with footnotes,</li>
+        <li>[theirs,a:plain,warmly,their:sextons] May the bell be a long time ringing for you,</li>
+        <li>[theirs,a:plain,warmly,their:grovekeepers] Deep roots and green leaves,</li>
+        <li>[theirs,a:plain,warmly,their:tamers] Fair bouts and gentle beasts,</li>
+        <li>[theirs,a:plain,warmly,their:artisans] Yours, from the warm side of the kiln,</li>
+        <li>[theirs,a:plain,warmly,their:crew] Fair winds and full holds,</li>
+        <li>[theirs,a:plain,warmly,their:listeners] With the hum, and with us,</li>
+        <li>[theirs,a:plain,warmly,c:highlife] Pour yourself something good tonight, and think of us,</li>
+        <li>[theirs,a:plain,warmly,c:tea] Yours, over a fresh pot,</li>
+        <li>[theirs,a:plain,warmly,c:coffee] Yours, on my third cup,</li>
+        <li>[theirs,a:plain,warm|cordial] Yours,</li>
+        <li>[theirs,a:plain,warm|cordial] With good wishes,</li>
+        <li>[theirs,a:plain,warm|cordial,c:pious] Go with peace, and keep the faith,</li>
+        <li>[theirs,a:plain,warm|cordial,c:together] From all of us at {TOWN}, together,</li>
+        <li>[theirs,a:plain,cordial] With regards,</li>
+        <li>[theirs,a:plain,cordial] Kind regards,</li>
+        <li>[theirs,a:plain,cordial] Our best to {COLONY},</li>
+        <li>[theirs,a:plain,cordial,w:tribal] Go well,</li>
+        <li>[theirs,a:plain,cordial,w:industrial] Sincerely,</li>
+        <li>[theirs,a:plain,cordial,w:spacer] Regards, and clear skies,</li>
+        <li>[theirs,a:plain,cordial,their:traders] Good roads and fair prices,</li>
+        <li>[theirs,a:plain,cordial,their:citizens] For the Republic, and in friendship,</li>
+        <li>[theirs,a:plain,cordial,their:drillers] Safe shifts,</li>
+        <li>[theirs,a:plain,cordial,their:linesmen] Over and out, as we say on the line,</li>
+        <li>[theirs,a:plain,cordial,their:mercenaries] By the Roll,</li>
+        <li>[theirs,a:plain,cordial,their:salvagers] Keep it running,</li>
+        <li>[theirs,a:plain,cordial,their:editors] Yours, sequenced and signed,</li>
+        <li>[theirs,a:plain,cordial,their:mechanitors] Linked and listening,</li>
+        <li>[theirs,a:plain,cordial,their:vaultfolk] From below, with regards to everyone above,</li>
+        <li>[theirs,a:plain,cordial,their:hunters] Keep your lantern lit,</li>
+        <li>[theirs,a:plain,cordial,their:seers] Clear skies, as far as the glass can see,</li>
+        <li>[theirs,a:plain,cordial,c:loyal] In our leader's name,</li>
+        <li>[theirs,a:plain,cordial,c:martial] With a firm hand,</li>
+        <li>[theirs,a:plain,cordial,c:nature] Under the open sky,</li>
+        <li>[theirs,a:plain,cordial|cool,c:proud] As befits {PEOPLE},</li>
+        <li>[theirs,a:plain,cordial|cool,x:hulking] That is the letter. Yours,</li>
+        <li>[theirs,a:plain,cordial|cool,x:martial] Yours, in good order,</li>
+        <li>[theirs,a:plain,cordial|cool,x:refined] With every courtesy,</li>
+        <!-- Business, the wary, the proud -->
+        <li>[theirs,a:plain,cordial,m:trade] With an eye to future business,</li>
+        <li>[theirs,a:plain,cordial|cool,m:trade] Yours, and open for trade,</li>
+        <li>[theirs,a:plain,cordial|cool,m:trade] Ready to deal when you are,</li>
+        <li>[theirs,a:plain,cordial|cool,m:duty] On behalf of {TOWN},</li>
+        <li>[theirs,a:plain,cordial|cool,m:duty] As my duty requires,</li>
+        <li>[theirs,a:plain,cordial|cool,m:duty] For {TOWN} and its people,</li>
+        <li>[theirs,a:plain,cordial|cool,m:wary] We shall see how things go,</li>
+        <li>[theirs,a:plain,cordial|cool,m:wary] Yours, carefully,</li>
+        <li>[theirs,a:plain,cordial|cool,m:wary] Until we know each other better,</li>
+        <li>[theirs,a:plain,cordial|cool,m:proud] As {PEOPLE} have always written,</li>
+        <li>[theirs,a:plain,cordial|cool,m:proud] Yours, as one equal to another,</li>
+        <li>[theirs,a:plain,warmly,m:friend] Your friend at {TOWN},</li>
+        <li>[theirs,a:plain,warmly,m:friend] With all good wishes, from a friend,</li>
+        <li>[theirs,a:plain,cordial|cool,m:friend] As ever,</li>
+        <!-- Cool -->
+        <li>[theirs,a:plain,cool] Regards,</li>
+        <li>[theirs,a:plain,cool] That is all for now,</li>
+        <li>[theirs,a:plain,cool,w:industrial|w:spacer] Noted and answered,</li>
+        <li>[theirs,a:plain,cool,c:raider] Think on it,</li>
+        <!-- Curt and refusal -->
+        <li>[theirs,a:plain,curt] That is all.</li>
+        <li>[theirs,a:plain,curt] Nothing more to say.</li>
+        <li>[theirs,a:plain,curt] Do not expect more.</li>
+        <li>[theirs,a:plain,refusal] Do not write again.</li>
+        <li>[theirs,a:plain,refusal] We are done.</li>
+        <li>[theirs,a:plain,refusal] That is our answer, and it will not change.</li>
+        <li>[theirs,a:plain,curt|refusal,c:raider] Bar your gate. It won't help.</li>
+        <!-- A pen friend -->
+        <li>[theirs,a:friend,warmly] Your friend, always,</li>
+        <li>[theirs,a:friend,warmly] Ever your friend,</li>
+        <li>[theirs,a:friend,warmly] Until the next letter, which I am already looking forward to,</li>
+        <li>[theirs,a:friend,warmly] With all the fondness a page can carry,</li>
+        <li>[theirs,a:friend,warmly] Write back before I start to worry,</li>
+        <li>[theirs,a:friend,warmly,w:tribal] Your friend by the fire and away from it,</li>
+        <li>[theirs,a:friend,warmly,w:industrial|w:spacer] Talk soon, by letter or otherwise,</li>
+        <li>[theirs,a:friend,warm|cordial] Your friend,</li>
+        <li>[theirs,a:friend,cordial|cool|curt|refusal] Yours,</li>
+        <li>[theirs,a:friend,cool|curt|refusal] Regards, for now,</li>
+        <!-- At war -->
+        <li>[theirs,a:war] Under the white flag, and only under it,</li>
+        <li>[theirs,a:war] Until the fighting ends, or does not,</li>
+        <li>[theirs,a:war,warm|cordial] In the hope of better days,</li>
+        <li>[theirs,a:war,warm|cordial] From one side of a war to the other, with something like respect,</li>
+        <li>[theirs,a:war,cool|curt|refusal] Remember who you are writing to.</li>
+        <li>[theirs,a:war,curt|refusal] We will see you in the field.</li>
+        <!-- A council -->
+        <li>[theirs,a:council] Set down by order of the council,</li>
+        <li>[theirs,a:council] By the council's word,</li>
+        <li>[theirs,a:council] For the council,</li>
+        <li>[theirs,a:council,warm|cordial] With the council's thanks,</li>
+        <li>[theirs,a:council,w:tribal] As the elders said it at the fire,</li>
+        <li>[theirs,a:council,w:industrial|w:spacer] Recorded in the minutes and signed,</li>
+        <!-- The Empire -->
+        <li>[theirs,a:empire] In honour,</li>
+        <li>[theirs,a:empire] By my hand, and in the Empire's honour,</li>
+        <li>[theirs,a:empire] With the regard of the Empire,</li>
+        <li>[theirs,a:empire,warm|cordial] Under the Stellarch's light,</li>
+        <li>[theirs,a:empire,warm|cordial] With honour, and with some warmth, which I am told is permitted,</li>
+        <li>[theirs,a:empire,cool|curt|refusal] As is fitting,</li>
+
+        <!-- ================= Ours, plain English ================= -->
+        <li>[ours,a:plain,warmly] With warm regards,</li>
+        <li>[ours,a:plain,warmly] With good wishes from all of us,</li>
+        <li>[ours,a:plain,warmly] Write back when you can,</li>
+        <li>[ours,a:plain,warmly,v:kind] Look after yourselves,</li>
+        <li>[ours,a:plain,warmly,v:cheerful] With a smile from all of us,</li>
+        <li>[ours,a:plain,warmly,v:eloquent] I remain, with every good wish, yours,</li>
+        <li>[ours,a:plain,warmly,v:eloquent] With great respect and some fondness,</li>
+        <li>[ours,a:plain,warm|cordial] Yours,</li>
+        <li>[ours,a:plain,warm|cordial,v:gloomy] Yours, for what it is worth,</li>
+        <li>[ours,a:plain,warm|cordial,v:learned] Yours, in haste and in ink,</li>
+        <li>[ours,a:plain,warm|cordial,v:blunt] That's all.</li>
+        <li>[ours,a:plain,warm|cordial,v:blunt] Write back.</li>
+        <li>[ours,a:plain,warm|cordial,v:abrasive] That's the lot.</li>
+        <li>[ours,a:plain,warm|cordial,w:tribal] May your fire stay lit,</li>
+        <li>[ours,a:plain,cordial] With regards,</li>
+        <li>[ours,a:plain,cordial,v:eloquent] With respect, and in hope of your reply,</li>
+        <li>[ours,a:plain,cordial|cool,m:duty] On behalf of {COLONY},</li>
+        <li>[ours,a:plain,cordial|cool,m:duty,v:eloquent] Respectfully, on behalf of everyone at {COLONY},</li>
+        <li>[ours,a:plain,cordial|cool,m:wary] Yours, and we hope to know you better,</li>
+        <li>[ours,a:plain,cool] Regards,</li>
+        <li>[ours,a:plain,cool,v:eloquent] With respect,</li>
+        <li>[ours,a:plain,cool,v:blunt] That's it.</li>
+        <li>[ours,a:plain,curt|refusal] Regards.</li>
+        <li>[ours,a:plain,curt|refusal] That is all.</li>
+        <li>[ours,a:friend,warmly] Your friend,</li>
+        <li>[ours,a:friend,warmly] Until the next letter,</li>
+        <li>[ours,a:friend,warmly] Ever yours, and all of us here too,</li>
+        <li>[ours,a:friend,warmly,v:blunt] Write back, friend.</li>
+        <li>[ours,a:friend,warmly,v:eloquent] Yours, in friendship and in ink,</li>
+        <li>[ours,a:friend,warm|cordial|cool|curt] Yours, as ever,</li>
+        <li>[ours,a:war] Under the white flag,</li>
+        <li>[ours,a:war] In the hope of an end to it,</li>
+        <li>[ours,a:war,v:blunt] That's all we have to say.</li>
+        <li>[ours,a:council] With respect to the council,</li>
+        <li>[ours,a:council] For {COLONY},</li>
+        <li>[ours,a:council] With the colony's good wishes,</li>
+        <li>[ours,a:council,v:eloquent] Respectfully submitted to the council's judgement,</li>
+        <li>[ours,a:empire] With the respect due to your rank,</li>
+        <li>[ours,a:empire] Respectfully,</li>
+        <li>[ours,a:empire] In honour, as best we know it,</li>
+        <li>[ours,a:empire,v:blunt] With respect,</li>
+
+        <!-- ================= Medieval English (olde): theirs ================= -->
+        <li>[theirs,olde,a:plain,warmly] Fare thee well, and write anon,</li>
+        <li>[theirs,olde,a:plain,warmly] Thine in good faith and good cheer,</li>
+        <li>[theirs,olde,a:plain,warmly] Keep thee well, keep thee warm, and keep thy pen busy,</li>
+        <li>[theirs,olde,a:plain,warmly] With all the love I bear thee and thine,</li>
+        <li>[theirs,olde,a:plain,warmly] Thy friend at {TOWN}, who thinketh often of thee,</li>
+        <li>[theirs,olde,a:plain,warmly,their:healers] Be thou well, and if thou art not, come unto us,</li>
+        <li>[theirs,olde,a:plain,warmly,their:pilgrims] Until our roads do cross again,</li>
+        <li>[theirs,olde,a:plain,warmly,their:fishers] Fair water unto thee,</li>
+        <li>[theirs,olde,a:plain,warm|cordial] Fare thee well,</li>
+        <li>[theirs,olde,a:plain,warm|cordial] Thine,</li>
+        <li>[theirs,olde,a:plain,warm|cordial,c:pious] Go thou with peace, and keep the faith,</li>
+        <li>[theirs,olde,a:plain,cordial] Thy servant in this matter,</li>
+        <li>[theirs,olde,a:plain,cordial] Given in good faith,</li>
+        <li>[theirs,olde,a:plain,cordial] Speed thee well upon thy road,</li>
+        <li>[theirs,olde,a:plain,cordial,their:mercenaries] By the Roll,</li>
+        <li>[theirs,olde,a:plain,cordial,their:artisans] Thine, from the warm side of the kiln,</li>
+        <li>[theirs,olde,a:plain,cordial,their:sextons] May the bell be long in ringing for thee,</li>
+        <li>[theirs,olde,a:plain,cordial,their:hunters] Keep thy lantern lit,</li>
+        <li>[theirs,olde,a:plain,cordial|cool,m:trade] Thine, and ready to bargain,</li>
+        <li>[theirs,olde,a:plain,cordial|cool,m:trade] With an eye to honest trade,</li>
+        <li>[theirs,olde,a:plain,cordial|cool,m:duty] On behalf of {TOWN}, as is my charge,</li>
+        <li>[theirs,olde,a:plain,cordial|cool,m:duty] As my office requireth,</li>
+        <li>[theirs,olde,a:plain,cordial|cool,m:wary] We shall see how matters stand,</li>
+        <li>[theirs,olde,a:plain,cordial|cool,m:wary] Thine, with some caution,</li>
+        <li>[theirs,olde,a:plain,cordial|cool,m:proud] As befitteth {PEOPLE},</li>
+        <li>[theirs,olde,a:plain,cool] Given at {TOWN},</li>
+        <li>[theirs,olde,a:plain,cool] So be it,</li>
+        <li>[theirs,olde,a:plain,curt] I have no more to say.</li>
+        <li>[theirs,olde,a:plain,curt] Look for nothing further.</li>
+        <li>[theirs,olde,a:plain,refusal] Write not again.</li>
+        <li>[theirs,olde,a:plain,refusal] Thus endeth it, and it shall not be mended.</li>
+        <li>[theirs,olde,a:friend,warmly] Thy friend, now and ever,</li>
+        <li>[theirs,olde,a:friend,warmly] Thine own, as long as ink will run,</li>
+        <li>[theirs,olde,a:friend,warmly] Write back, I pray thee, ere I fret,</li>
+        <li>[theirs,olde,a:friend,warm|cordial] Thy friend,</li>
+        <li>[theirs,olde,a:friend,cordial|cool|curt|refusal] Thine,</li>
+        <li>[theirs,olde,a:war] Under the white flag, and only under it,</li>
+        <li>[theirs,olde,a:war,warm|cordial] In hope of better days, which I pray will come,</li>
+        <li>[theirs,olde,a:war,cool|curt|refusal] Remember to whom thou writest.</li>
+        <li>[theirs,olde,a:war,curt|refusal] We shall meet thee in the field.</li>
+        <li>[theirs,olde,a:council] Set down by order of the council,</li>
+        <li>[theirs,olde,a:council] By the council's word, and sealed,</li>
+        <li>[theirs,olde,a:council,warm|cordial] With the council's thanks and goodwill,</li>
+
+        <!-- ================= Medieval English (olde): ours ================= -->
+        <li>[ours,olde,a:plain,warmly] Fare thee well, and all at {TOWN},</li>
+        <li>[ours,olde,a:plain,warmly,v:kind] Keep thee well, I pray thee,</li>
+        <li>[ours,olde,a:plain,warmly,v:eloquent] I remain, with every good wish, thine,</li>
+        <li>[ours,olde,a:plain,warm|cordial] Thine,</li>
+        <li>[ours,olde,a:plain,warm|cordial,v:blunt] That is all.</li>
+        <li>[ours,olde,a:plain,cordial] With good regard,</li>
+        <li>[ours,olde,a:plain,cordial|cool,m:duty] On behalf of {COLONY},</li>
+        <li>[ours,olde,a:plain,cool] So be it,</li>
+        <li>[ours,olde,a:plain,curt|refusal] No more.</li>
+        <li>[ours,olde,a:friend,warmly] Thy friend, as ever,</li>
+        <li>[ours,olde,a:friend,warm|cordial|cool|curt] Thine, as ever,</li>
+        <li>[ours,olde,a:war] Under a white flag,</li>
+        <li>[ours,olde,a:war] In hope of an end to it,</li>
+        <li>[ours,olde,a:council] With respect unto the council,</li>
+        <li>[ours,olde,a:council] For {COLONY},</li>
+
+        <!-- ================= A barely schooled hand (u:some) ================= -->
+        <li>[u:some,warmly] Yours with best wishes and evrything,</li>
+        <li>[u:some,warm|cordial] Yours sincerly,</li>
+        <li>[u:some,cordial] Regards from evryone,</li>
+        <li>[u:some,cordial|cool] Yours,</li>
+        <li>[u:some,cool] Thats all for now,</li>
+        <li>[u:some,curt] Thats all.</li>
+        <li>[u:some,refusal] Dont write agin.</li>
+        <li>[u:some,a:war] Under the wite flag,</li>        <li>[u:some,warmly] Your frend,</li>
+        <li>[u:some,cordial|cool,c:raider] From the boss, wich is me,</li>
+        <li>[u:some,curt|refusal] Thats our anser.</li>
+
+
+        <!-- ================= An unschooled hand (u:none) ================= -->
+        <li>[u:none,warmly] yors truly and i mean it</li>
+        <li>[u:none,warm|cordial] yors</li>
+        <li>[u:none,cordial] all the best from us</li>
+        <li>[u:none,cordial|cool] thats the leter (crossed out) letter done</li>
+        <li>[u:none,cool] thats it</li>
+        <li>[u:none,curt] thats all we got to say</li>
+        <li>[u:none,refusal] dont rite agin or else</li>
+        <li>[u:none,curt|refusal,c:raider] we wil burn yor walls. after the rain stops.</li>
+        <li>[u:none,curt|refusal] or else. we meen it. mostly.</li>
+        <li>[u:none,a:war] under the wite flag so dont shoot the one wot brings this</li>
+
+        <!-- ================= Strange voices ================= -->
+        <li>[sv:machine,warmly] END OF LETTER. Affection: noted, and returned.</li>
+        <li>[sv:machine,warm|cordial] END OF LETTER.</li>
+        <li>[sv:machine,cordial|cool] END OF LETTER. No reply is required. A reply would be welcome.</li>
+        <li>[sv:machine,cool|curt] END.</li>
+        <li>[sv:machine,curt|refusal] END. FURTHER LETTERS WILL BE FILED, NOT READ.</li>
+        <li>[theirs,sv:hive,warmly] We are {TOWN}. We have written. We are glad.</li>
+        <li>[theirs,sv:hive,warm|cordial] We are {TOWN}. We have written.</li>
+        <li>[theirs,sv:hive,cordial|cool] We are {TOWN}. That is all of us.</li>
+        <li>[theirs,sv:hive,cool|curt] We are {TOWN}. Enough.</li>
+        <li>[theirs,sv:hive,curt|refusal] We are {TOWN}. We do not write again.</li>
+        <li>[sv:beast,warmly] Run well, sleep warm, and keep the den safe,</li>
+        <li>[sv:beast,warm|cordial] Good hunting,</li>
+        <li>[sv:beast,cordial|cool] Until the next moon,</li>
+        <li>[sv:beast,cool|curt] We have marked our tree. That is all.</li>
+        <li>[sv:beast,curt|refusal] Teeth bared, we close.</li>
+        <li>[sv:green,warmly] Grow well, and turn your face to the morning,</li>
+        <li>[sv:green,warm|cordial] Until the next leaf,</li>
+        <li>[sv:green,cordial|cool] Rooted where we are,</li>
+        <li>[sv:green,cool|curt] The sap is slow. So are we. Goodbye.</li>
+        <li>[sv:green,curt|refusal] We close, as a flower closes at dusk. Do not wait for morning.</li>
+        <li>[sv:fey,warmly] By leaf and by string, by the third hour of dew: it is said, and said gladly.</li>
+        <li>[sv:fey,warm|cordial] By leaf and by string, by the third hour of dew: it is said.</li>
+        <li>[sv:fey,cordial|cool] By leaf and by string: it is said.</li>
+        <li>[sv:fey,cool|curt] By leaf and by string, and no further: it is said.</li>
+        <li>[sv:fey,curt|refusal] By thorn, not by leaf: it is said, and it is ended.</li>
+        <li>[sv:ancient,warmly] I remain, as I have remained for longer than is reasonable, your correspondent, and gladly so,</li>
+        <li>[sv:ancient,warm|cordial] I remain, as I have remained for some considerable time, your correspondent,</li>
+        <li>[sv:ancient,cordial|cool] With the regard proper to the occasion,</li>
+        <li>[sv:ancient,cool|curt] Signed, sealed, and filed, as all things eventually are,</li>
+        <li>[sv:ancient,curt|refusal] I shall outlive this disagreement. You will not.</li>
+        <li>[sv:deep,warmly] Warm, we close. Strange, still.</li>
+        <li>[sv:deep,warm|cordial] Closed, the letter is. Open, the dark remains.</li>
+        <li>[sv:deep,cordial|cool] Said, it is. Below, we return.</li>
+        <li>[sv:deep,cool|curt] Ended. Listen, still, at night.</li>
+        <li>[sv:deep,curt|refusal] Ended. Do not dig.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+</Defs>

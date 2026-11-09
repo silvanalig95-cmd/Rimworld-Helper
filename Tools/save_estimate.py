@@ -77,6 +77,7 @@ C = {
     "PenFriends": const("Dealings/DealingMath.cs", "MaxFriends", 12),
     "PenLetters": const("Dealings/DealingMath.cs", "MaxExchanges", 8),
     "WorldWaiting": const("Dealings/DealingMath.cs", "MaxWaiting", 2),
+    "LetterExchanges": const("Letters/LetterBook.cs", "MaxExchanges", 60),
     "CourierPeople": const("Couriers/CourierMath.cs", "MaxPeople", 3),
     "VisitorTrips": const("Visitors/VisitorMath.cs", "MaxTrips", 8),
     "VisitorPeople": const("Visitors/VisitorMath.cs", "MaxPeople", 6),
@@ -495,6 +496,13 @@ MODEL = {
     "Dealings/DealingBook.cs:letters": ("fixed", C["PenLetters"], V, "per notable exchanging letters: when each passed, DealingMath.MaxExchanges at most (counted under friends)"),
     "Dealings/DealingBook.cs:asks": ("cap", (C["WorldWaiting"] + 6, 0.15), 260,
                                      "the world's letters waiting for an answer (DealingMath.MaxWaiting at once) and answered ones kept a month"),
+    # Letters written out in full, kept to be read again (Letters/LetterBook.cs, a game component of its own): one exchange a
+    # letter of the colony's or of theirs (about one every two or three days in a busy game), its pages (three at most) each
+    # capped at LetterFormMath.MaxKept characters and MaxNote for the narrator's lines; the newest MaxPerNotable with any one
+    # notable and MaxExchanges in all. A page of a letter is about 1300 bytes in the save, an exchange two of them.
+    "Letters/LetterBook.cs:exchanges": ("cap", (C["LetterExchanges"], 0.4), 2700,
+                                        "letters exchanged with the world, kept to be read: LetterBook.MaxExchanges at most (the newest LetterBook.MaxPerNotable with any one notable), each two or three pages"),
+    "Letters/LetterBook.cs:pages": ("fixed", 3, 1300, "per exchange: the colony's letter and theirs, or theirs first, the reply and their thanks; each capped (counted under exchanges)"),
     "World/Notables.cs:losses": ("fixed", 12, 120, "deaths among the neighbours the colony knows of, 30 days, 12 at most"),
     "World/Notables.cs:seen": ("fixed", 6, 120, "visitors and traders seen at the colony until they're home, 6 at most, three days"),
     # Talking with outsiders (Outsiders/OutsiderBook.cs): one line a colonist and outsider who did something together,

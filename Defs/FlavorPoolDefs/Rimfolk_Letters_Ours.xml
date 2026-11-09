@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    The heart of the colony's own letters (Letters/LetterForm.cs, Ours): what the letter is for, in the writer's voice. By
+    purpose (greetings, condolences {TOPIC}, warning {TOPIC}, news, invitation {DAY} with colony:daysoon, help {HELP} with
+    food or medicine, favour, pact {PACT}, truce {TERM}, ransom {CAPTIVE}, or an exchange {OURS} for {THEIRS}, envoy {ENVOY},
+    ward with ward:ask or ward:send, match {OURS} and {THEIRS}, fealty, takeback {TOWN}, dealing {DEAL} with its kind
+    deal:supply..., reply to their letter with k:news, k:request {GOODS} or k:invitation and yes or no), the writer's voice
+    (v:blunt, v:plain, v:eloquent, v:kind, v:abrasive, v:cheerful, v:gloomy, v:learned, v:proud), how the colony stands
+    with them (warm, cordial, cool, curt), war, the address. A line claims nothing about the colony beyond its own topic
+    and what the facts service tags. Medieval English (olde) and an unschooled hand (u:none) have their own. The unschooled
+    lines' misspellings are deliberate.
+  -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_LetterOurs</defName>
+    <lines>
+      <plain>
+        <!-- ================= Greetings ================= -->
+        <li>[greetings] We wanted to send our greetings, and to say that {TOWN} is often in our thoughts.</li>
+        <li>[greetings] All of us here send our good wishes to everyone at {TOWN}.</li>
+        <li>[greetings,v:plain] There is no great news here, and no great trouble either, which is its own kind of news. We hope it is the same with you.</li>
+        <li>[greetings,v:plain,cordial|cool] We would like to keep in touch with {TOWN}, and a letter now and then seemed the way to do it.</li>
+        <li>[greetings,v:blunt] Hello from {COLONY}. That's it. That's the letter.</li>
+        <li>[greetings,v:blunt] Everyone here is fine. Hope you are too.</li>
+        <li>[greetings,v:blunt,v:abrasive] Somebody here thought we should be friendlier with the neighbours. So: hello.</li>
+        <li>[greetings,v:eloquent] It is easy, out here, to forget that there are other lights burning in the dark. Your town is one of them, and we wanted you to know we see it.</li>
+        <li>[greetings,v:eloquent] I write for no reason but to keep the road between us open, which seems to me reason enough.</li>
+        <li>[greetings,v:eloquent,warm] Every letter between {COLONY} and {TOWN} makes the distance a little shorter, and I would like it shorter still.</li>
+        <li>[greetings,v:kind] We hope everyone at {TOWN} is well, and warm, and eating properly.</li>
+        <li>[greetings,v:cheerful] Things are good here, as good as they get, and we wanted to share a little of it.</li>
+        <li>[greetings,v:gloomy] We have had our troubles, as everyone has, but we are still here, and we wanted to say hello while we are.</li>
+        <li>[greetings,v:learned] I have been reading what little we have of the region's history, and {TOWN} turns up in it more than once. It seemed time we wrote.</li>
+        <li>[greetings,v:proud] {COLONY} is doing well, and we thought it proper to say so to our neighbours.</li>
+        <li>[greetings,cool|curt] We have not always seen eye to eye, but we would rather write than not.</li>
+        <li>[greetings,war] Our peoples are at war. I am writing anyway, because somebody should.</li>
+        <li>[greetings,penfriend] Another letter, as promised. You would be disappointed otherwise, and so would I.</li>
+        <!-- ================= Condolences ================= -->
+        <li>[condolences] We heard of your loss, and we are sorry. Everyone here is.</li>
+        <li>[condolences] We were sorry to hear of {TOPIC}. If there is anything we can do, you have only to ask.</li>
+        <li>[condolences,v:plain] News of {TOPIC} reached us, and we wanted you to know that you are in our thoughts.</li>
+        <li>[condolences,v:blunt] We heard about {TOPIC}. That's hard. I'm sorry.</li>
+        <li>[condolences,v:blunt] We heard. We're sorry. That's all there is to say, and it isn't enough.</li>
+        <li>[condolences,v:eloquent] We heard of {TOPIC}, and there are no words equal to it, so I will only say that we grieve with you, from as near as a letter can come.</li>
+        <li>[condolences,v:eloquent] Grief is a road everyone walks alone, they say. I do not believe it. Let this letter walk a little of it with you.</li>
+        <li>[condolences,v:kind] We heard of {TOPIC}. Please look after yourselves, and each other, in the days ahead.</li>
+        <li>[condolences,v:gloomy] We know something of loss here. I am sorry it has come to you.</li>
+        <li>[condolences,war] Our peoples are at war, but grief is grief. We are sorry for your dead.</li>
+        <!-- ================= Warning ================= -->
+        <li>[warning] We have word of a danger to you, and we would rather you heard it from us than found it at your gate.</li>
+        <li>[warning] Be on your guard against {TOPIC}. We have reason to think there is trouble coming your way.</li>
+        <li>[warning,v:plain] We have heard of {TOPIC}, and thought you should know as soon as possible.</li>
+        <li>[warning,v:blunt] {TOPIC}. Watch yourselves.</li>
+        <li>[warning,v:blunt] Trouble's coming your way: {TOPIC}. Double your watch.</li>
+        <li>[warning,v:eloquent] It falls to me to bring unwelcome news: there is {TOPIC} to be reckoned with, and I would not have you meet it unprepared.</li>
+        <li>[warning,v:kind] Please be careful. There is {TOPIC} near you, and we would hate for anyone at {TOWN} to come to harm.</li>
+        <li>[warning,war] We are at war, you and we, but there is {TOPIC} near you, and some things matter more.</li>
+        <li>[warning,war] Our peoples fight, but you should know of a danger worse than us.</li>
+        <!-- ================= News ================= -->
+        <li>[news] What do you hear out your way? Anything you can tell us of the roads and the towns near you would be welcome.</li>
+        <li>[news,v:plain] We would be grateful for any news of the region: who is at war, who is struggling, which roads are safe.</li>
+        <li>[news,v:blunt] What's going on out there? Tell us what you know.</li>
+        <li>[news,v:eloquent] We live at the edge of things here, and the world reaches us late and in pieces. Whatever you can tell us would be a great kindness.</li>
+        <li>[news,v:learned] I keep a record of what we hear, and would gladly add whatever you can tell me of your part of the world.</li>
+        <li>[news,m:wary] We would like to understand the region better before we make our plans, and you are better placed than most to tell us.</li>
+        <!-- ================= Invitation ================= -->
+        <li>[invitation] We would be glad to have you visit {COLONY}. There will be a place at our table, and a bed if you need one.</li>
+        <li>[invitation] Come and see us. It would be good to meet face to face.</li>
+        <li>[invitation,colony:daysoon] {DAY} is coming, and we would be glad to have you with us for it.</li>
+        <li>[invitation,v:plain] If you can spare the time, we would like you to come and visit.</li>
+        <li>[invitation,v:blunt] Come over. We'll feed you.</li>
+        <li>[invitation,v:blunt,colony:daysoon] {DAY} is coming. Come.</li>
+        <li>[invitation,v:eloquent] Letters are good, but faces are better. Come to {COLONY} when the road allows, and let us talk without the ink between us.</li>
+        <li>[invitation,v:eloquent,colony:daysoon] We keep {DAY} soon, and it would mean a great deal to have a guest from {TOWN} at our table for it.</li>
+        <li>[invitation,v:kind] We would love to see you here. Do come, if you can.</li>
+        <li>[invitation,v:cheerful] Come and visit. We promise good food, honest company, and only a little singing.</li>
+        <!-- ================= Help ================= -->
+        <li>[help] We are short of {HELP}, and would be grateful for whatever you can spare. We will remember it.</li>
+        <li>[help] I will not dress it up: we need {HELP}, and we hope you can help.</li>
+        <li>[help,food] We are short of food this season. Anything you can spare would see us through.</li>
+        <li>[help,medicine] We are short of medicine, and there are those here who need it.</li>
+        <li>[help,v:blunt] We need {HELP}. Anything you can spare. We'll pay it back.</li>
+        <li>[help,v:eloquent] It does not come easily, asking for help, but we are short of {HELP}, and I would rather ask a friend than lose what we cannot replace.</li>
+        <li>[help,v:proud] We are not in the habit of asking. But we are short of {HELP}, and if {TOWN} could spare some, it would not be forgotten.</li>
+        <li>[help,v:gloomy] We are short of {HELP}, and things are not good. Anything at all would help.</li>
+        <li>[help] We are short of what we need this season, and anything you can spare would see us through.</li>
+        <li>[help,v:blunt] We're short. Anything you can spare. We'll pay it back.</li>
+        <li>[help,v:eloquent] We find ourselves in want this season, and I would rather ask a neighbour than lose what cannot be replaced.</li>
+        <!-- ================= Favour ================= -->
+        <li>[favour] We write about what lies between our peoples, and we hope you will honour it.</li>
+        <li>[favour,v:plain] There is a debt between us, and we would like to settle it, one way or the other.</li>
+        <li>[favour,v:blunt] You owe us one. We're calling it in.</li>
+        <li>[favour,v:eloquent] There are debts that are written down and debts that are remembered. This is the second kind, and we trust you remember it as we do.</li>
+        <!-- ================= Pact ================= -->
+        <li>[pact] We propose a pact between our peoples, and we believe it would serve us both.</li>
+        <li>[pact] We would like to propose {PACT}, on fair terms for both sides.</li>
+        <li>[pact,v:blunt] We want {PACT} with you. Fair terms. Think about it.</li>
+        <li>[pact,v:blunt] A pact. Fair for both. What do you say?</li>
+        <li>[pact,v:eloquent] Neighbours who stand together stand longer. We propose {PACT}, and hope you will see in it what we do.</li>
+        <!-- ================= Truce ================= -->
+        <li>[truce] We offer a truce, and we hope you will take it.</li>
+        <li>[truce] We propose a truce {TERM}, and we mean it honestly.</li>
+        <li>[truce,v:blunt] Truce. {TERM}. We stop if you stop.</li>
+        <li>[truce,v:blunt] We're tired of this. So are you. Truce?</li>
+        <li>[truce,v:eloquent] Enough of ours and enough of yours have been lost. We offer a truce, and ask you to take it as it is meant.</li>
+        <!-- ================= Ransom ================= -->
+        <li>[ransom] We write about a captive, and we hope we can settle it fairly.</li>
+        <li>[ransom] We hold {CAPTIVE}, who is one of yours. They are fed and kept warm. We would like to settle their return.</li>
+        <li>[ransom] We would exchange {OURS} for {THEIRS}, if you are willing.</li>
+        <li>[ransom,v:blunt] We have {CAPTIVE}. Make us an offer.</li>
+        <li>[ransom,v:blunt] {OURS} for {THEIRS}. Straight swap.</li>
+        <li>[ransom,v:eloquent] {CAPTIVE} is with us, unharmed and well treated, and we would see them home if a fair arrangement can be made.</li>
+        <!-- ================= Envoy ================= -->
+        <li>[envoy] We would welcome your envoy at {COLONY} for a season, and would keep them well.</li>
+        <li>[envoy] We ask that {ENVOY} come and stay with us for a season. They will be our guest in every sense.</li>
+        <li>[envoy,v:blunt] Send {ENVOY}. We'll look after them.</li>
+        <li>[envoy,v:blunt] Send us your envoy for a season. We'll look after them.</li>
+        <li>[envoy,v:eloquent] Peoples who know each other well rarely come to blows. We would be honoured if your envoy stayed with us a season, and learned our ways as we learn yours.</li>
+        <!-- ================= Ward ================= -->
+        <li>[ward] We write about a young one, and a year spent with the other's people.</li>
+        <li>[ward,ward:ask] We would be glad to foster one of your young ones for a year, and to treat them as one of our own.</li>
+        <li>[ward,ward:send] One of our young ones would like to spend a year with your people, and we would be grateful if you would have them.</li>
+        <li>[ward,v:blunt] About a young one spending a year with the other side. We're for it.</li>
+        <!-- ================= Match ================= -->
+        <li>[match] We write with a proposal of a match between one of ours and one of yours.</li>
+        <li>[match] We propose a match between {OURS} and {THEIRS}, if both are willing.</li>
+        <li>[match,v:blunt] {OURS} and {THEIRS}. We think it's a good match. Do you?</li>
+        <li>[match,v:blunt] A match between one of ours and one of yours. Think it over.</li>
+        <li>[match,v:eloquent] Two people may build a bridge where two peoples cannot. We propose a match between {OURS} and {THEIRS}, with all the goodwill it deserves.</li>
+        <li>[match,v:cheerful] We have a proposal that has made at least two people here very nervous: a match between {OURS} and {THEIRS}.</li>
+        <!-- ================= Fealty ================= -->
+        <li>[fealty] We offer our fealty to {PEOPLE}, on terms we hope are fair to both.</li>
+        <li>[fealty,v:blunt] We'll swear to you. Here are the terms.</li>
+        <li>[fealty,v:eloquent] We would hold our land under your protection, and swear to {PEOPLE} as is your custom, if you will have us.</li>
+        <li>[fealty,v:proud] It is not easy for us to offer this, but we offer it: our fealty, on fair terms.</li>
+        <!-- ================= Take back ================= -->
+        <li>[takeback] We write to ask whether {TOWN} might be our home again.</li>
+        <li>[takeback,v:blunt] We want {TOWN} back. We'll make it worth your while.</li>
+        <li>[takeback,v:eloquent] {TOWN} was our home once, and part of us never left it. We ask, with respect, whether it might be ours again.</li>
+        <!-- ================= A dealing with a council ================= -->
+        <li>[dealing] We write to the council with a matter of business, and hope it will find favour.</li>
+        <li>[dealing] We propose {DEAL}, on terms we believe are fair to both.</li>
+        <li>[dealing,v:blunt] {DEAL}. Here are our terms.</li>
+        <li>[dealing,v:blunt] Business. Our terms are fair. Let us know.</li>
+        <li>[dealing,v:eloquent] We write to propose {DEAL}, in the belief that it would serve {TOWN} as well as it would serve us.</li>
+        <li>[dealing,deal:relief] We have heard of your hard times, and we would like to help, with no strings attached.</li>
+        <li>[dealing,deal:supply] We propose a supply contract, delivered season by season, at a fair price.</li>
+        <li>[dealing,deal:proclaim] We have something to announce, and we would like {TOWN} to hear it.</li>
+        <li>[dealing,deal:hire] We would like to hire from {TOWN} for a season, and we will pay fairly.</li>
+        <li>[dealing,deal:petition] We petition the council, and ask it to hear us out.</li>
+        <li>[dealing,deal:work] We propose a work done together, for the good of both our towns.</li>
+        <li>[dealing,deal:market] We would like a stall in your market, and will pay the fee.</li>
+        <li>[dealing,deal:invite] We would be glad to have the people of {TOWN} with us.</li>
+        <!-- ================= A reply to their letter ================= -->
+        <li>[reply] Thank you for writing. It was good to hear from {TOWN} unasked.</li>
+        <li>[reply,k:news] Thank you for the news. It was passed around here as fast as it was read.</li>
+        <li>[reply,k:news,v:blunt] Thanks for the news. Useful.</li>
+        <li>[reply,k:request,yes] We can spare the {GOODS}, and gladly. Send your porters when you like.</li>
+        <li>[reply,k:request,yes,v:blunt] You can have the {GOODS}. Send someone for them.</li>
+        <li>[reply,k:request,no] I am sorry, but we cannot spare the {GOODS} this season. We hope you find it elsewhere.</li>
+        <li>[reply,k:request,no,v:blunt] Can't spare it. Sorry.</li>
+        <li>[reply,k:invitation,yes] We would be glad to come to your festival, and some of us are already arguing about who goes.</li>
+        <li>[reply,k:invitation,yes,v:blunt] We'll come.</li>
+        <li>[reply,k:invitation,no] Thank you for the invitation. We cannot come this time, but we hope there will be another.</li>
+        <li>[reply,k:invitation,no,v:blunt] Can't come this year. Thanks though.</li>
+        <li>[reply,v:eloquent] Your letter was a pleasure to read, and I answer it with pleasure.</li>
+
+        <!-- ================= Medieval English (olde) ================= -->
+        <li>[olde,greetings] We would send our greetings, and say that {TOWN} is often in our thoughts.</li>
+        <li>[olde,greetings,v:blunt] Good day to thee from {COLONY}. That is the whole of it.</li>
+        <li>[olde,greetings,v:eloquent] Every letter betwixt {COLONY} and {TOWN} maketh the road a little shorter, and I would have it shorter still.</li>
+        <li>[olde,greetings,war] Our peoples are at war. I write all the same, for someone must.</li>
+        <li>[olde,condolences] We heard of thy loss, and we are sorry, every one of us.</li>
+        <li>[olde,condolences] We grieve to hear of {TOPIC}. If aught we can do, thou needst but ask.</li>
+        <li>[olde,condolences,v:blunt] We heard. We are sorry. It is not enough, but it is true.</li>
+        <li>[olde,condolences,v:eloquent] There are no words equal to {TOPIC}, so I shall say only that we grieve with thee, as near as a letter may come.</li>
+        <li>[olde,warning] We have word of a danger to thee, and would rather thou heardest it from us than found it at thy gate.</li>
+        <li>[olde,warning] Be on thy guard against {TOPIC}. We have cause to think there is trouble coming thy way.</li>
+        <li>[olde,warning,v:blunt] Trouble cometh thy way. Double thy watch.</li>
+        <li>[olde,news] What hearest thou out thy way? Any tidings of the roads and towns near thee would be welcome.</li>
+        <li>[olde,news,v:blunt] What news? Tell us what thou knowest.</li>
+        <li>[olde,invitation] We would be glad to have thee visit {COLONY}. There shall be a place at our table, and a bed if thou need one.</li>
+        <li>[olde,invitation,colony:daysoon] {DAY} draweth near, and we would be glad of thy company for it.</li>
+        <li>[olde,invitation,v:blunt] Come and see us. We shall feed thee.</li>
+        <li>[olde,help] We are short of {HELP}, and would be grateful for whatsoever thou canst spare. We shall remember it.</li>
+        <li>[olde,help] We are in want this season, and I will not dress it up: we need thy help.</li>
+        <li>[olde,help,v:blunt] We need help. Whatever thou canst spare. We shall repay it.</li>
+        <li>[olde,help,v:eloquent] We find ourselves in want this season, and I would sooner ask a neighbour than lose what cannot be replaced.</li>
+        <li>[olde,favour] We write touching what lieth between our peoples, and trust thou wilt honour it.</li>
+        <li>[olde,favour,v:blunt] Thou owest us. We call it in.</li>
+        <li>[olde,pact] We propose a pact between our peoples, and believe it would serve us both.</li>
+        <li>[olde,pact,v:blunt] A pact, fair to both. What sayest thou?</li>
+        <li>[olde,truce] We offer a truce, and pray thou wilt take it.</li>
+        <li>[olde,truce,v:blunt] We are weary of this, and so art thou. A truce?</li>
+        <li>[olde,ransom] We write touching a captive, and hope we may settle it fairly.</li>
+        <li>[olde,ransom] We hold {CAPTIVE}, who is one of thine. They are fed and kept warm, and we would settle their return.</li>
+        <li>[olde,envoy] We would welcome thine envoy at {COLONY} for a season, and keep them well.</li>
+        <li>[olde,ward] We write touching a young one, and a year spent among the other's people.</li>
+        <li>[olde,match] We write with a proposal of a match betwixt one of ours and one of thine.</li>
+        <li>[olde,match,v:cheerful] We have a proposal that hath made two people here very nervous: a match.</li>
+        <li>[olde,fealty] We offer our fealty to {PEOPLE}, on terms we trust are fair to both.</li>
+        <li>[olde,takeback] We write to ask whether {TOWN} might be our home once more.</li>
+        <li>[olde,dealing] We write unto the council with a matter of business, and hope it findeth favour.</li>
+        <li>[olde,dealing,v:blunt] Business, for the council. Our terms are fair.</li>
+        <li>[olde,reply] I thank thee for writing. It was good to hear from {TOWN} unbidden.</li>
+        <li>[olde,reply,k:request,yes] We can spare the {GOODS}, and gladly. Send thy porters when thou wilt.</li>
+        <li>[olde,reply,k:request,no] I am sorry, but we cannot spare the {GOODS} this season.</li>
+        <li>[olde,reply,k:invitation,yes] We would be glad to come to thy feast.</li>
+        <li>[olde,reply,k:invitation,no] I thank thee, but we cannot come this time.</li>
+
+        <!-- ================= An unschooled hand (u:none) ================= -->
+        <li>[u:none,greetings] hello from all of us at {COLONY}. hope yor well</li>
+        <li>[u:none,condolences] we herd about yor lost (crossed out) loss. sory. reely</li>
+        <li>[u:none,warning] wach out. there is truble coming yor way. we herd</li>
+        <li>[u:none,warning] wach out for {TOPIC}. we herd it is bad</li>
+        <li>[u:none,news] wots the news out yor way. we dont here much</li>
+        <li>[u:none,invitation] come visit us. we wil cook sumthing</li>
+        <li>[u:none,help] we need {HELP}. plese. we wil pay you back</li>
+        <li>[u:none,help] we are short. plese send wot you can spare. we wil pay you back</li>
+        <li>[u:none,favour] you owe us one. we want it now plese</li>
+        <li>[u:none,pact] we want a pakt (crossed out) pact with you. fair for both</li>
+        <li>[u:none,truce] lets stop fiting. we are tired and so are you</li>
+        <li>[u:none,ransom] we got one of yors. they are fine. lets sort it out</li>
+        <li>[u:none,envoy] send yor envoy to us. we wil look after them gud</li>
+        <li>[u:none,ward] about a yung one living with the other lot for a year. we are for it</li>
+        <li>[u:none,match] we think one of ours and one of yors shud get together. wot do you think</li>
+        <li>[u:none,fealty] we wil swear to you if the terms are fair</li>
+        <li>[u:none,takeback] we want {TOWN} back. it was ours first</li>
+        <li>[u:none,dealing] we got sum bizness for the councel. fair terms</li>
+        <li>[u:none,reply] thanks for yor leter. it was gud</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+</Defs>

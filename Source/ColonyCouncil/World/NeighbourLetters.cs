@@ -464,6 +464,8 @@ namespace ColonyCouncil
             if (c == LetterChannel.Courier && bearer == null && Spoken && !l.hostile)
             {
                 l.spoken = true;
+                // The words as the carrier will give them, kept to be read again (Letters/LetterForm.cs).
+                LetterForm.Ours(l, writer);
                 Outbox.Put(l, writer);
                 if (l.ownRider) OwnRiders.SetOut(l);
                 return l;
@@ -486,6 +488,8 @@ namespace ColonyCouncil
             l.stage = LetterStage.Cancelled;
             l.stageTick = Now;
             NotableBook.Changed();
+            // A letter that never left is not kept to be read again (Letters/LetterBook.cs).
+            LetterBook.Dropped(l);
             if (!why.NullOrEmpty())
                 // apart: what became of a letter, told in a message.
                 Notify.Message(why.Translate(l.WriterName.Named("PAWN"), (l.toName ?? "?").Named("TO")).Resolve(), LookTargets.Invalid, MessageTypeDefOf.NeutralEvent, Importance.Notable);
@@ -833,11 +837,13 @@ namespace ColonyCouncil
             l.stage = LetterStage.AwaitMessenger;
             l.stageTick = Now;
             Say(p, "written", n);
+            // Written out in the writer's voice and kept, to be read from the mailbag, the answer's card and the people page (Letters/LetterForm.cs).
+            bool kept = LetterForm.Ours(l, p) != null;
             // Someone of theirs at the colony carries it: the writer takes it over to them (Outsiders/).
             if (l.bearer != null && Outsiders.HandLetter(l, p))
             {
-                Notify.Message("CC_Letter_Msg_WrittenFor".Translate(p.Named("PAWN"), l.toName.Named("TO"), l.bearer.Named("BEARER")).Resolve(), new LookTargets(p),
-                    MessageTypeDefOf.NeutralEvent, Importance.Notable);
+                Notify.Message("CC_Letter_Msg_WrittenFor".Translate(p.Named("PAWN"), l.toName.Named("TO"), l.bearer.Named("BEARER")).Resolve() + CanRead(kept, n),
+                    new LookTargets(p), MessageTypeDefOf.NeutralEvent, Importance.Notable);
                 NotableBook.Changed();
                 return;
             }
@@ -849,10 +855,15 @@ namespace ColonyCouncil
                 if (l.ownRider) OwnRiders.SetOut(l);
                 return;
             }
-            Notify.Message("CC_Letter_Msg_Written".Translate(p.Named("PAWN"), l.toName.Named("TO")).Resolve(), new LookTargets(p), MessageTypeDefOf.NeutralEvent, Importance.Notable);
+            Notify.Message("CC_Letter_Msg_Written".Translate(p.Named("PAWN"), l.toName.Named("TO")).Resolve() + CanRead(kept, n), new LookTargets(p), MessageTypeDefOf.NeutralEvent,
+                Importance.Notable);
             Pickup(l, n);
             NotableBook.Changed();
         }
+
+        /// <summary>The message's last words when the letter was written out: where it can be read, the mailbag too while it waits there ("" when it wasn't).</summary>
+        public static string CanRead(bool kept, Notable n, bool inBag = false) =>
+            kept ? " " + (inBag ? "CC_LetterRead_Msg" : "CC_LetterRead_MsgPeople").Translate((n?.Name ?? "?").Named("NAME")).Resolve() : "";
 
         /// <summary>
         /// Handed to someone of their people at the colony (Outsiders/, the two face to face): it goes home with them,
@@ -1244,7 +1255,16 @@ namespace ColonyCouncil
             var facts = Facts.For(FactScene.Letter(n, speaker ?? l.writer, l.map, news || said?.brings == AnswerBrings.TownNews));
             // Help is in their words only when it comes with the answer (World/NotableMath.cs, Grants): what they send is what the letter says.
             string quote = Quote(l, n, tone, speaker, facts, l.purpose == LetterPurpose.Help && things.Count > 0);
-            if (!quote.NullOrEmpty()) parts.Add("\"" + quote + "\"");
+            // Written out in full (Letters/LetterForm.cs): their words as a letter, a call's transcript or words passed on,
+            // and everything below as the narrator's lines under it, set apart.
+            var full = LetterForm.Full ? new LetterForm.AnswerFacts { speaker = speaker, tone = tone, quote = quote, how = how, facts = facts } : null;
+            if (full != null)
+            {
+                parts.Clear();
+                if (DealingLetters.Owns(l.purpose)) DealingLetters.HeartTags(l, full.heartTags);
+                if (l.purpose == LetterPurpose.Help) full.tone = NotableMath.HelpQuoteTone(tone, things.Count > 0);
+            }
+            else if (!quote.NullOrEmpty()) parts.Add("\"" + quote + "\"");
             if (news) parts.Add(News(n, tone, facts));
             if (l.purpose == LetterPurpose.Help)
                 parts.Add(things.Count > 0 ? (l.channel == LetterChannel.Console ? "CC_Letter_HelpSent_Call" : "CC_Letter_HelpSent").Translate(Couriers.Describe(things).Named("GOODS")).Resolve()
@@ -1262,7 +1282,17 @@ namespace ColonyCouncil
             string why = WhyLine(l, n, said, writer);
             if (!why.NullOrEmpty()) parts.Add(why);
             parts.Add(RegardLine(n, tone, said, writer));
-            return string.Join("\n\n", parts);
+            if (full == null) return string.Join("\n\n", parts);
+            try
+            {
+                full.outcomes.AddRange(parts);
+                return LetterForm.Answer(l, n, full).full;
+            }
+            catch (Exception e)
+            {
+                CouncilLog.ErrorOnce("letters: an answer written out", e);
+                return string.Join("\n\n", new[] { quote.NullOrEmpty() ? null : "\"" + quote + "\"" }.Concat(parts).Where(x => !x.NullOrEmpty()));
+            }
         }
 
         /// <summary>What a letter's answer did beside its words, worked out as it is read, for its words.</summary>

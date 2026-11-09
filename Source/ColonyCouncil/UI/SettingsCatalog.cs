@@ -469,6 +469,8 @@ namespace ColonyCouncil
             Toggle("townDealings", "CC_Settings_TownDealings", "CC_SetNote_TownDealings", "neighbourLetters");
             Toggle("penFriends", "CC_Settings_PenFriends", "CC_SetNote_PenFriends", "neighbourLetters");
             Toggle("worldWrites", "CC_Settings_WorldWrites", "CC_SetNote_WorldWrites", "neighbourLetters");
+            // Letters written out in full (Letters/LetterForm.cs): letters that read like letters, both ways; off, the short form.
+            Toggle("lettersInFull", "CC_Settings_LettersInFull", "CC_SetNote_LettersInFull", "neighbourLetters");
             Toggle("outsiderTalk", "CC_Settings_OutsiderTalk", "CC_SetNote_OutsiderTalk");
             Toggle("outsiderSpar", "CC_Settings_OutsiderSpar", "CC_SetNote_OutsiderSpar", "outsiderTalk");
             Toggle("outsiderProvoke", "CC_Settings_OutsiderProvoke", "CC_SetNote_OutsiderProvoke", "outsiderTalk,deepHooks");

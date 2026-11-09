@@ -1,0 +1,391 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    The first paragraph of a letter, after the salutation (Letters/LetterFormMath.cs): how it came, how it was read, what
+    the writer turns to first. The tags are the salutations' (Rimfolk_Letters_Salute.xml), and what it is for: greetings,
+    condolences, warning, news, invitation, help, favour, pact, truce, ransom, envoy, ward, match, fealty, takeback, dealing
+    (the colony's to a council), reply (the colony's answer to a letter of theirs), council (a council's answer), first
+    (they write first), thanks (their answer to the colony's reply), friendmade, friendfavour, raidword; light (a letter
+    that may smile at itself) or grave. A line with no purpose fits any. The colony's own lines claim nothing about the
+    colony beyond the letter's own topic. The unschooled lines' misspellings are deliberate.
+  -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_LetterOpen</defName>
+    <lines>
+      <plain>
+        <!-- ================= Theirs, plain English, any purpose ================= -->
+        <li>[theirs,a:plain|a:friend,warmly] Your letter came to {TOWN} yesterday, and I sat down to answer it the same evening.</li>
+        <li>[theirs,a:plain|a:friend,warmly] I was glad to see your hand on the outside of a letter again.</li>
+        <li>[theirs,a:plain|a:friend,warmly] Your letter found me at home, which is rarer than it should be, and I read it twice.</li>
+        <li>[theirs,a:plain|a:friend,warmly] Thank you for writing. It meant more than you might think.</li>
+        <li>[theirs,a:plain|a:friend,warmly] It is good to hear from {COLONY}, and better to hear from you.</li>
+        <li>[theirs,a:plain|a:friend,warmly] I am answering before the ink on yours has had time to fade.</li>
+        <li>[theirs,a:plain|a:friend,warm|cordial] Your letter reached us safely, and was read by more people than it was written to.</li>
+        <li>[theirs,a:plain|a:friend,warm|cordial] I have your letter here beside me as I write this one.</li>
+        <li>[theirs,a:plain|a:friend,cordial] Thank you for your letter, which reached us safely.</li>
+        <li>[theirs,a:plain|a:friend,cordial] Your letter came to {TOWN} and has been read with care.</li>
+        <li>[theirs,a:plain|a:friend,cordial] I have read your letter and given it some thought.</li>
+        <li>[theirs,a:plain|a:friend,cordial] Your letter arrived in good order.</li>
+        <li>[theirs,a:plain|a:friend,cordial,w:tribal] Your words came to our fire, and were listened to.</li>
+        <li>[theirs,a:plain|a:friend,cordial|cool] Your letter reached us.</li>
+        <li>[theirs,a:plain|a:friend,cool] I have read what you wrote.</li>
+        <li>[theirs,a:plain|a:friend,cool] We received your letter.</li>
+        <li>[theirs,a:plain|a:friend,cool] Your letter came. I will answer it briefly.</li>
+        <li>[theirs,a:plain|a:friend,cool] I have your letter, and a few minutes, so here is an answer.</li>
+        <li>[theirs,a:plain|a:friend,cool,w:industrial|w:spacer] Your letter of the other week is in front of me.</li>
+        <li>[theirs,a:plain|a:friend,curt] Your letter came.</li>
+        <li>[theirs,a:plain|a:friend,curt] We read it.</li>
+        <li>[theirs,a:plain|a:friend,refusal] We have read your letter, and here is our answer.</li>
+        <li>[theirs,a:plain|a:friend,refusal] I will not keep you long.</li>
+        <!-- What the writer wants -->
+        <li>[theirs,a:plain,cordial|cool,m:trade] Your letter came, and since I have your ear, I will say up front that {TOWN} is always glad of a new customer.</li>
+        <li>[theirs,a:plain,cordial|cool,m:trade] Your letter reached me at the counting table, which is where most things reach me.</li>
+        <li>[theirs,a:plain,cordial|cool,m:trade] I have your letter, and I have a proposal of my own, but first, yours.</li>
+        <li>[theirs,a:plain,cordial|cool,m:trade] Letters are good for business, in my experience, so I answer them all.</li>
+        <li>[theirs,a:plain,cordial|cool,m:duty] I answer on behalf of {TOWN}, as is my duty.</li>
+        <li>[theirs,a:plain,cordial|cool,m:duty] It falls to me to answer the letters that come to {TOWN}, and so I answer yours.</li>
+        <li>[theirs,a:plain,cordial|cool,m:duty] Your letter was passed to me, as the town's letters are.</li>
+        <li>[theirs,a:plain,cordial|cool,m:duty,w:industrial|w:spacer] Your letter has been received, logged and passed to my desk.</li>
+        <li>[theirs,a:plain,cordial|cool,m:wary] I will be honest: we do not know {COLONY} well, and we would like to before we say much.</li>
+        <li>[theirs,a:plain,cordial|cool,m:wary] Your letter came, and I read it twice, the second time more slowly.</li>
+        <li>[theirs,a:plain,cordial|cool,m:wary] We get a good many letters from people who want things. I hope yours is different.</li>
+        <li>[theirs,a:plain,cordial|cool,m:wary] Forgive me if this answer is careful. We have learned to be.</li>
+        <li>[theirs,a:plain,cordial|cool,m:proud] {TOWN} receives a great many letters, and answers few. Yours is one of the few.</li>
+        <li>[theirs,a:plain,cordial|cool,m:proud] We of {PEOPLE} are not in the habit of writing first, nor of answering quickly, but here we are.</li>
+        <li>[theirs,a:plain,cordial|cool,m:proud] Your letter was read, and found worth an answer, which is not always the case.</li>
+        <li>[theirs,a:plain|a:friend,warmly,m:friend] Every letter from you is a small holiday here.</li>
+        <li>[theirs,a:plain|a:friend,warmly,m:friend] I was hoping there would be a letter from you this week, and there was.</li>
+        <li>[theirs,a:plain|a:friend,warmly,m:friend] Your letter arrived, and I put the kettle on before I opened it, because a letter from you deserves a kettle.</li>
+        <li>[theirs,a:plain|a:friend,warmly,m:friend] Reading your letter was the best part of a long week.</li>
+        <li>[theirs,a:plain|a:friend,cordial|cool,m:friend] Your letter came, and I have answered it before the others, as I always do.</li>
+        <!-- A letter that may smile at itself -->
+        <li>[theirs,a:plain|a:friend,warmly,light] Your letter came on the back of a very tired mule, and the mule would like it known that it has opinions about the road.</li>
+        <li>[theirs,a:plain|a:friend,warmly,light] I read your letter out at supper, and now everyone here thinks they know you.</li>
+        <li>[theirs,a:plain|a:friend,warmly,light] Your letter arrived in the middle of an argument about a fence, and ended it, because everyone stopped to listen.</li>
+        <li>[theirs,a:plain|a:friend,warmly,light] I was halfway through mending a boot when your letter came, so the boot will have to wait.</li>
+        <li>[theirs,a:plain|a:friend,warmly,light] Your letter came on a grey day and made it a little less grey, which is a lot to ask of paper.</li>
+        <li>[theirs,a:plain|a:friend,warmly,light,w:tribal] The runner who brought your words drank half our well and then told them to me twice, to be sure.</li>
+        <li>[theirs,a:plain|a:friend,warmly,light,w:tribal] Your words were painted on bark, and the children have already asked to keep the bark.</li>
+        <li>[theirs,a:plain|a:friend,warmly,light,w:industrial] The mail run brought your letter with two bills and a seed catalogue, and yours was the only one I opened gladly.</li>
+        <li>[theirs,a:plain|a:friend,warmly,light,w:spacer] Your letter came down with the shuttle, packed between a crate of filters and somebody's lost boot.</li>
+        <li>[theirs,a:plain|a:friend,cordial|cool,light] Your letter arrived damp but whole, which is more than can be said for the one who carried it.</li>
+        <li>[theirs,a:plain|a:friend,cordial|cool,light] The one who brought your letter asked for a meal, a bed and a better road, in that order.</li>
+        <li>[theirs,a:plain|a:friend,cordial|cool,light] Your letter took the long way round, by the look of its corners, but it got here.</li>
+        <li>[theirs,a:plain|a:friend,cordial|cool,light,w:industrial] Your letter came with a coffee ring on it that is not mine, so somebody on the road enjoyed it first.</li>
+        <li>[theirs,a:plain|a:friend,cordial|cool,light,w:spacer] We have every way of talking to each other there is, and still a letter on paper is the one that gets read.</li>
+        <li>[theirs,a:plain|a:friend,cool,light] Your letter came. So did the rain. Only one of them was expected.</li>
+        <!-- Their kind and culture -->
+        <li>[theirs,a:plain|a:friend,cordial|cool,x:hulking] Got your letter. Read it. Here is mine.</li>
+        <li>[theirs,a:plain|a:friend,warm|cordial,x:refined] Your letter came on good paper, and was read in a good chair, which is how letters ought to be read.</li>
+        <li>[theirs,a:plain|a:friend,cordial|cool,x:martial] Your letter reached me between drills.</li>
+        <li>[theirs,a:plain|a:friend,cordial|cool,x:underground] Your letter came down the long stair this morning, and we read it by lamplight, which is how we read everything.</li>
+        <li>[theirs,a:plain|a:friend,cordial|cool,x:sea] Your letter came across the water dry, which our people consider a small miracle.</li>
+        <li>[theirs,a:plain|a:friend,cordial|cool,x:space] Your letter came down on the supply drop, and was read in zero comfort, as all things here are.</li>
+        <li>[theirs,a:plain|a:friend,cordial|cool,c:pious] Your letter came on a holy day, which we take as a good sign.</li>
+        <li>[theirs,a:plain|a:friend,cool|curt,c:raider] Your letter came. Our people asked if they could keep the messenger. I said no. You are welcome.</li>
+        <li>[theirs,a:plain|a:friend,cordial|cool,c:together] Your letter was read out to everyone at {TOWN}, because that is how we do things, and this answer is all of ours.</li>
+        <!-- At war -->
+        <li>[theirs,a:war] Your letter came through the lines under a white flag, which is more than most things manage.</li>
+        <li>[theirs,a:war] A go-between brought your letter, and I read it, though some here said I should burn it.</li>
+        <li>[theirs,a:war] Your letter was brought to me. I read it.</li>
+        <li>[theirs,a:war,warm|cordial] I did not expect a letter from your side, and I did not expect to be glad of one.</li>
+        <li>[theirs,a:war,warm|cordial] It is strange, writing to someone our people are fighting, but here I am.</li>
+        <li>[theirs,a:war,cool|curt|refusal] We read your letter, as the white flag requires.</li>
+        <li>[theirs,a:war,w:tribal] The one under the white feather brought your words, and we let them speak.</li>
+        <!-- A council -->
+        <li>[theirs,a:council] The council has met and read your letter.</li>
+        <li>[theirs,a:council] Your letter was read aloud before the council, and we have talked it over.</li>
+        <li>[theirs,a:council] The council took up your letter at its last sitting.</li>
+        <li>[theirs,a:council,warm|cordial] The council was glad to hear from {COLONY}, and has answered as quickly as a council can, which is not very.</li>
+        <li>[theirs,a:council,w:tribal] Your words were spoken at the elders' fire, and the elders talked late into the night.</li>
+        <li>[theirs,a:council,w:industrial|w:spacer] Your letter was entered into the council's business and taken up at our last sitting.</li>
+        <!-- The Empire -->
+        <li>[theirs,a:empire] Your letter has been received, and read, and found courteous.</li>
+        <li>[theirs,a:empire] Your letter reached me at {TOWN}, and I have given it my attention.</li>
+        <li>[theirs,a:empire,warm|cordial] Your letter honours us, and I answer it gladly.</li>
+        <li>[theirs,a:empire,warm|cordial] It is not often that a letter from beyond the Empire is written so well.</li>
+        <li>[theirs,a:empire,cool|curt|refusal] Your letter has been received.</li>
+
+        <!-- ================= Theirs, plain English, by what it is for ================= -->
+        <li>[theirs,greetings,warmly] It is always good to be greeted, and better to be greeted by you.</li>
+        <li>[theirs,greetings,warm|cordial] Thank you for your greetings, which we return.</li>
+        <li>[theirs,greetings,cool] Your greetings were received.</li>
+        <li>[theirs,condolences,warmly] Your letter came at a hard time, and it helped.</li>
+        <li>[theirs,condolences,warm|cordial] We read your words of sympathy aloud to those who grieve most.</li>
+        <li>[theirs,condolences,warmly] I could not answer your letter at once. I needed a day, and then another.</li>
+        <li>[theirs,condolences,cordial|cool] Thank you for writing about our loss.</li>
+        <li>[theirs,condolences,curt|refusal] We have your letter about our dead.</li>
+        <li>[theirs,warning,warm|cordial] Your warning reached us in good time.</li>
+        <li>[theirs,warning,warm|cordial] We had your warning, and we acted on it the same day.</li>
+        <li>[theirs,warning,cool] We received your warning.</li>
+        <li>[theirs,news,warmly,light] You asked what we hear out here, and there is plenty, so pour yourself something.</li>
+        <li>[theirs,news,warm|cordial] You asked for news. Here is what we have.</li>
+        <li>[theirs,news,cordial] You asked what the roads say near us.</li>
+        <li>[theirs,news,cool|curt] You asked for news.</li>
+        <li>[theirs,invitation,warmly] Your invitation was a kind thought, and I read it more than once.</li>
+        <li>[theirs,invitation,cordial] Thank you for your invitation.</li>
+        <li>[theirs,invitation,cool|curt|refusal] Your invitation came.</li>
+        <li>[theirs,help,warmly] Your letter worried us, and we answered it as fast as we could.</li>
+        <li>[theirs,help,warm|cordial] We read your request and talked it over at once.</li>
+        <li>[theirs,help,cool|curt|refusal] We read your request.</li>
+        <li>[theirs,favour] Your letter about what is owed between us came.</li>
+        <li>[theirs,favour,warm|cordial] We have not forgotten what lies between our peoples, and your letter did not need to remind us.</li>
+        <li>[theirs,pact] Your proposal has been read with care.</li>
+        <li>[theirs,pact,warm|cordial] A pact is no small thing to ask, and we have thought hard about it.</li>
+        <li>[theirs,truce] Your offer of a truce came through the lines.</li>
+        <li>[theirs,truce,warm|cordial] An offer of peace deserves an answer, and here is ours.</li>
+        <li>[theirs,ransom] Your letter about the captive reached us.</li>
+        <li>[theirs,envoy] Your request for our envoy came.</li>
+        <li>[theirs,ward] Your letter about the young one came, and it was much talked of.</li>
+        <li>[theirs,match,light,warm|cordial] Your letter about a match caused more talk here than anything in a year.</li>
+        <li>[theirs,match] Your letter about a match has been read, and read again.</li>
+        <li>[theirs,fealty] Your offer has been weighed.</li>
+        <li>[theirs,fealty,warm|cordial] An offer of fealty is not made lightly, and we did not read it lightly.</li>
+        <li>[theirs,takeback] Your letter about {TOWN} came.</li>
+        <li>[theirs,thanks,warm|cordial] Your answer to my letter came, and I was glad of it.</li>
+        <li>[theirs,thanks] Your reply reached me.</li>
+        <li>[theirs,first,warm|cordial] It has been a while since I wrote to {COLONY}, so I am writing now.</li>
+        <li>[theirs,first,warmly] Nothing is wrong. I simply thought of you, and of the road between us.</li>
+        <li>[theirs,first,warmly,light] I had a quiet evening and a fresh sheet of paper, and the two of them together made me think of {COLONY}.</li>
+        <li>[theirs,first,cordial|cool] I write to {COLONY} unasked, and I hope that is not unwelcome.</li>
+        <li>[theirs,first,cordial|cool,m:wary] I write unasked, to see what sort of neighbours you are.</li>
+        <li>[theirs,first,cordial|cool,m:trade] I write unasked, because good neighbours make good customers, and the other way round.</li>
+        <li>[theirs,first,cordial|cool,m:proud] I do not often write first. Take it as the honour it is.</li>
+        <li>[theirs,first,cordial|cool,m:duty] I write on the town's behalf, as it falls to me to do.</li>
+        <li>[theirs,friendmade] Another letter from you, and another reason to sit by the window with a cup of something.</li>
+        <li>[theirs,friendmade] I keep your letters in a box now. That is how you know it has gone past courtesy.</li>
+        <li>[theirs,friendfavour] I have been meaning to write this for some time.</li>
+        <li>[theirs,raidword] I write in haste, and you must read in haste.</li>
+        <li>[theirs,raidword] There is no time for a proper letter, so this will be a short one.</li>
+
+        <!-- ================= Ours, plain English ================= -->
+        <li>[ours,greetings] I hope this finds you and everyone at {TOWN} well.</li>
+        <li>[ours,greetings] It has been a while since we wrote, so here is a letter.</li>
+        <li>[ours,greetings,v:plain] We think of {TOWN} more often than we write, and I mean to put that right.</li>
+        <li>[ours,greetings,v:blunt] Writing to say hello.</li>
+        <li>[ours,greetings,v:blunt] Nothing's wrong. I'm just writing.</li>
+        <li>[ours,greetings,v:eloquent] It has been too long since the road carried any word between {COLONY} and {TOWN}, and I mean to mend that.</li>
+        <li>[ours,greetings,v:eloquent] A letter is a small thing to send so far, but it is what we have.</li>
+        <li>[ours,greetings,v:kind,warmly] I have been thinking of all of you at {TOWN}, and wanted to say so.</li>
+        <li>[ours,greetings,v:cheerful] Greetings from {COLONY}, where somebody has just told me to say hello, so: hello.</li>
+        <li>[ours,greetings,v:gloomy] I am not much of a letter writer, but somebody here said I should try.</li>
+        <li>[ours,greetings,m:wary] We have not had much to do with {TOWN} so far, and I thought a letter might be a good start.</li>
+        <li>[ours,condolences] We heard the news, and I wanted to write at once.</li>
+        <li>[ours,condolences,v:plain] I write with sad news on my mind, yours and not ours.</li>
+        <li>[ours,condolences,v:eloquent] There are letters one never wishes to write, and this is one of them.</li>
+        <li>[ours,condolences,v:blunt] I'm no good at this, so I'll say it straight.</li>
+        <li>[ours,condolences,v:kind] I have started this letter three times. There is no good way to begin it.</li>
+        <li>[ours,warning] I write in haste, because this cannot wait.</li>
+        <li>[ours,warning,v:blunt] Read this one quickly.</li>
+        <li>[ours,warning,v:eloquent] Forgive the hurried hand. There is news you must have before anything else.</li>
+        <li>[ours,warning,v:plain] Please read this as soon as it reaches you.</li>
+        <li>[ours,news] We hear very little out here, and we would be glad of whatever you hear.</li>
+        <li>[ours,news,v:blunt] Got any news? We have none.</li>
+        <li>[ours,news,v:eloquent] News comes to {COLONY} slowly and in pieces, and I would be grateful for whatever you can spare of yours.</li>
+        <li>[ours,news,v:learned] I keep a record of what we hear of the world, and the record has grown thin of late.</li>
+        <li>[ours,invitation] I write with an invitation.</li>
+        <li>[ours,invitation,v:eloquent] I write in hope of your company.</li>
+        <li>[ours,invitation,v:blunt] Come and visit.</li>
+        <li>[ours,invitation,v:cheerful] I have good news for once: an invitation.</li>
+        <li>[ours,help] I write to ask for help, which does not come easily to us.</li>
+        <li>[ours,help,v:blunt] We need help. I'll be plain about it.</li>
+        <li>[ours,help,v:eloquent] It is a hard thing to put into a letter, and so I will put it simply.</li>
+        <li>[ours,help,v:gloomy] I would rather not be writing this letter.</li>
+        <li>[ours,help,v:proud] We are not in the habit of asking. I am asking.</li>
+        <li>[ours,favour] I write about what stands between our peoples.</li>
+        <li>[ours,favour,v:blunt] About what's owed.</li>
+        <li>[ours,favour,v:eloquent] I write, with respect, about an old matter between us.</li>
+        <li>[ours,pact] I write with a proposal, and I hope you will hear it out.</li>
+        <li>[ours,pact,v:blunt] I've got a proposal for you.</li>
+        <li>[ours,pact,v:eloquent] I write to propose something that I believe would serve both our peoples well.</li>
+        <li>[ours,truce] I write to ask whether there might be an end to the fighting.</li>
+        <li>[ours,truce,v:blunt] Enough of this. Let's talk.</li>
+        <li>[ours,truce,v:eloquent] I write across a war, which is a strange thing to do, in the hope that it need not go on.</li>
+        <li>[ours,ransom] I write about a captive.</li>
+        <li>[ours,ransom,v:blunt] About the prisoner.</li>
+        <li>[ours,ransom,v:eloquent] I write about someone held, which is a hard subject for a letter, and I will keep it plain.</li>
+        <li>[ours,envoy] I write with a request about your envoy.</li>
+        <li>[ours,envoy,v:blunt] About your envoy.</li>
+        <li>[ours,ward] I write about one of our young ones, and one of yours.</li>
+        <li>[ours,ward,v:blunt] About a young one.</li>
+        <li>[ours,match] I write with a proposal of a different kind than usual.</li>
+        <li>[ours,match,v:cheerful] I write with a proposal, and not the business kind.</li>
+        <li>[ours,match,v:blunt] About a match.</li>
+        <li>[ours,fealty] I write with an offer we did not make lightly.</li>
+        <li>[ours,fealty,v:blunt] We've talked it over. Here's our offer.</li>
+        <li>[ours,takeback] I write about {TOWN}, which was once our home.</li>
+        <li>[ours,takeback,v:blunt] About {TOWN}.</li>
+        <li>[ours,dealing] I write on the colony's behalf, with a matter of business for the council.</li>
+        <li>[ours,dealing,v:blunt] Business, for the council.</li>
+        <li>[ours,dealing,v:eloquent] I write on behalf of everyone at {COLONY}, with a proposal for the council's consideration.</li>
+        <li>[ours,reply] Thank you for your letter, which came safely.</li>
+        <li>[ours,reply,v:blunt] Got your letter.</li>
+        <li>[ours,reply,v:eloquent] Your letter was a welcome surprise, and I answer it gladly.</li>
+        <li>[ours,reply,v:kind,warmly] It was so good to hear from you unasked.</li>
+
+        <!-- ================= Medieval English (olde): theirs ================= -->
+        <li>[theirs,olde,a:plain|a:friend,warmly] Thy letter came to {TOWN} but yesterday, and I sat me down to answer it that selfsame eve.</li>
+        <li>[theirs,olde,a:plain|a:friend,warmly] Right glad was I to see thy hand upon a letter once more.</li>
+        <li>[theirs,olde,a:plain|a:friend,warmly] Thy letter found me at home, which is a rare thing, and I read it twice over.</li>
+        <li>[theirs,olde,a:plain|a:friend,warmly] I thank thee for writing. It meant more than thou mightest think.</li>
+        <li>[theirs,olde,a:plain|a:friend,warmly,m:friend] Every letter of thine is a small holiday here.</li>
+        <li>[theirs,olde,a:plain|a:friend,warmly,m:friend] I had hoped for a letter from thee this week, and lo, here it is.</li>
+        <li>[theirs,olde,a:plain|a:friend,cordial|cool,m:friend] Thy letter came, and I answer it before all others, as is my custom.</li>
+        <li>[theirs,olde,a:plain|a:friend,warm|cordial] Thy letter came safe to us, and was read by more folk than it was written to.</li>
+        <li>[theirs,olde,a:plain|a:friend,cordial] I thank thee for thy letter, which came to us safe and whole.</li>
+        <li>[theirs,olde,a:plain|a:friend,cordial] Thy letter came by the rider, sealed and whole, and hath been read with care.</li>
+        <li>[theirs,olde,a:plain|a:friend,cordial] I have read thy letter and given it some thought.</li>
+        <li>[theirs,olde,a:plain|a:friend,cordial|cool] Thy letter hath reached us.</li>
+        <li>[theirs,olde,a:plain|a:friend,cool] I have read what thou didst write.</li>
+        <li>[theirs,olde,a:plain|a:friend,cool] Thy letter came. I shall answer it briefly.</li>
+        <li>[theirs,olde,a:plain|a:friend,curt] Thy letter came.</li>
+        <li>[theirs,olde,a:plain|a:friend,refusal] We have read thy letter, and here is our answer.</li>
+        <li>[theirs,olde,a:plain,cordial|cool,m:trade] Thy letter came, and since I have thine ear, know that {TOWN} is ever glad of a new buyer.</li>
+        <li>[theirs,olde,a:plain,cordial|cool,m:trade] Thy letter found me at the counting board, where most things find me.</li>
+        <li>[theirs,olde,a:plain,cordial|cool,m:duty] I answer thee on behalf of {TOWN}, as is my charge.</li>
+        <li>[theirs,olde,a:plain,cordial|cool,m:duty] It falleth to me to answer such letters as come to {TOWN}, and so I answer thine.</li>
+        <li>[theirs,olde,a:plain,cordial|cool,m:wary] I shall be plain with thee: we know {COLONY} but little, and would know it better ere we say much.</li>
+        <li>[theirs,olde,a:plain,cordial|cool,m:wary] Forgive me if this answer be careful. We have learned to be.</li>
+        <li>[theirs,olde,a:plain,cordial|cool,m:proud] {TOWN} receiveth many letters and answereth few. Thine is one of the few.</li>
+        <li>[theirs,olde,a:plain,cordial|cool,m:proud] We of {PEOPLE} are not wont to answer quickly, yet here we are.</li>
+        <li>[theirs,olde,a:plain|a:friend,warmly,light] Thy letter came upon the back of a weary mule, and the mule would have thee know it hath opinions of the road.</li>
+        <li>[theirs,olde,a:plain|a:friend,warmly,light] I read thy letter aloud at supper, and now every soul here thinketh they know thee.</li>
+        <li>[theirs,olde,a:plain|a:friend,warmly,light] The seal upon thy letter was so fine that I nearly did not break it.</li>
+        <li>[theirs,olde,a:plain|a:friend,cordial|cool,light] The rider who brought thy letter wished very much to know what was in it, and I did not tell him.</li>
+        <li>[theirs,olde,a:plain|a:friend,cordial|cool,light] Thy letter came damp but whole, which is more than may be said of the rider.</li>
+        <li>[theirs,olde,a:plain|a:friend,cordial|cool,c:pious] Thy letter came upon a holy day, which we take for a good sign.</li>
+        <li>[theirs,olde,a:war] Thy letter came through the lines under a white flag, which is more than most things do.</li>
+        <li>[theirs,olde,a:war,warm|cordial] I looked for no letter from thy side, and still less to be glad of one.</li>
+        <li>[theirs,olde,a:war,cool|curt|refusal] We read thy letter, as the white flag requireth.</li>
+        <li>[theirs,olde,a:council] The council hath met and read thy letter.</li>
+        <li>[theirs,olde,a:council] Thy letter was read before the council in the great hall, and argued over in the usual way.</li>
+        <li>[theirs,olde,a:council,warm|cordial] The council was glad to hear from {COLONY}, and answereth as quickly as a council may, which is not very.</li>
+        <li>[theirs,olde,greetings,warmly] It is ever good to be greeted, and better still to be greeted by thee.</li>
+        <li>[theirs,olde,greetings,cordial|cool] Thy greeting was received, and we return it.</li>
+        <li>[theirs,olde,condolences,warm|cordial] Thy letter came in an hour of sorrow, and it was a comfort.</li>
+        <li>[theirs,olde,condolences,cordial|cool] I thank thee for writing of our loss.</li>
+        <li>[theirs,olde,warning,warm|cordial] Thy warning reached us in good time.</li>
+        <li>[theirs,olde,warning,cool] We received thy warning.</li>
+        <li>[theirs,olde,news,warm|cordial] Thou didst ask for tidings. Here be all we have.</li>
+        <li>[theirs,olde,news,cool|curt] Thou didst ask for tidings.</li>
+        <li>[theirs,olde,invitation,warmly] Thine invitation was a kind thought, and I read it more than once.</li>
+        <li>[theirs,olde,invitation,cordial|cool] I thank thee for thine invitation.</li>
+        <li>[theirs,olde,help,warm|cordial] Thy letter troubled us, and we answered it as swiftly as we might.</li>
+        <li>[theirs,olde,help,cool|curt] We have read thy request.</li>
+        <li>[theirs,olde,favour] Thy letter touching what is owed between us came.</li>
+        <li>[theirs,olde,pact] Thy proposal hath been read with care.</li>
+        <li>[theirs,olde,truce] Thine offer of truce came through the lines.</li>
+        <li>[theirs,olde,ransom] Thy letter touching the captive reached us.</li>
+        <li>[theirs,olde,envoy] Thy request for our envoy came.</li>
+        <li>[theirs,olde,ward] Thy letter touching the young one came, and was much talked of.</li>
+        <li>[theirs,olde,match] Thy letter touching a match hath caused more talk here than aught else this year.</li>
+        <li>[theirs,olde,fealty] Thine offer hath been weighed.</li>
+        <li>[theirs,olde,takeback] Thy letter touching {TOWN} came.</li>
+        <li>[theirs,olde,thanks] Thine answer to my letter came, and I was glad of it.</li>
+        <li>[theirs,olde,first,warm|cordial] It hath been long since I wrote to {COLONY}, and so I write now.</li>
+        <li>[theirs,olde,first,cordial|cool] I write to {COLONY} unbidden, and hope it be not unwelcome.</li>
+        <li>[theirs,olde,first,cordial|cool,m:trade] I write unbidden, for good neighbours make good buyers, and the other way about.</li>
+        <li>[theirs,olde,raidword] I write in haste, and thou must read in haste.</li>
+        <li>[theirs,olde,friendmade] Another letter from thee, and another cause to sit by the window with a cup.</li>
+        <li>[theirs,olde,friendfavour] I have long meant to write thee this.</li>
+
+        <!-- ================= Medieval English (olde): ours ================= -->
+        <li>[ours,olde,greetings] I trust this findeth thee and all at {TOWN} in good health.</li>
+        <li>[ours,olde,greetings,v:blunt] I write but to say good day.</li>
+        <li>[ours,olde,greetings,v:eloquent] Too long hath the road carried no word between {COLONY} and {TOWN}, and I mean to mend it.</li>
+        <li>[ours,olde,condolences] We heard the tidings, and I would write to thee at once.</li>
+        <li>[ours,olde,condolences,v:blunt] I am no hand at this, so I shall say it straight.</li>
+        <li>[ours,olde,condolences,v:eloquent] There be letters one would never write, and this is one.</li>
+        <li>[ours,olde,warning] I write in haste, for this will not wait.</li>
+        <li>[ours,olde,warning,v:blunt] Read this quickly.</li>
+        <li>[ours,olde,news] We hear little out here, and would be glad of whatever thou hearest.</li>
+        <li>[ours,olde,news,v:blunt] Hast thou any tidings? We have none.</li>
+        <li>[ours,olde,invitation] I write with an invitation.</li>
+        <li>[ours,olde,invitation,v:eloquent] I write in hope of thy company.</li>
+        <li>[ours,olde,help] I write to ask for help, which cometh not easily to us.</li>
+        <li>[ours,olde,help,v:blunt] We need help. I shall be plain.</li>
+        <li>[ours,olde,favour] I write touching what standeth between our peoples.</li>
+        <li>[ours,olde,pact] I write with a proposal, and pray thou wilt hear it out.</li>
+        <li>[ours,olde,truce] I write to ask whether there might be an end to the fighting.</li>
+        <li>[ours,olde,ransom] I write touching a captive.</li>
+        <li>[ours,olde,envoy] I write with a request touching thine envoy.</li>
+        <li>[ours,olde,ward] I write touching one of our young ones, and one of thine.</li>
+        <li>[ours,olde,match] I write with a proposal of another kind than is usual.</li>
+        <li>[ours,olde,fealty] I write with an offer we made not lightly.</li>
+        <li>[ours,olde,takeback] I write touching {TOWN}, which was once our home.</li>
+        <li>[ours,olde,dealing] I write on behalf of {COLONY}, with a matter of business for the council.</li>
+        <li>[ours,olde,reply] I thank thee for thy letter, which came safe.</li>
+        <li>[ours,olde,reply,v:blunt] Thy letter came.</li>
+
+        <!-- ================= A barely schooled hand (u:some) ================= -->
+        <li>[theirs,u:some,warmly] Your leter came and I was very glad of it, I read it twice.</li>
+        <li>[theirs,u:some,warm|cordial] Thank you for your letter which came safe.</li>
+        <li>[theirs,u:some,cordial] We got your letter and red it, here is our anser.</li>
+        <li>[theirs,u:some,cordial|cool] Your letter came to {TOWN} last week.</li>
+        <li>[theirs,u:some,cool] We got your letter.</li>
+        <li>[theirs,u:some,cool] I am not much good at letters but here is mine.</li>
+        <li>[theirs,u:some,curt] Got your leter.</li>
+        <li>[theirs,u:some,refusal] We read it and here is wat we think.</li>
+        <li>[theirs,u:some,warmly] It was good to get your letter, evryone here was pleased.</li>
+        <li>[theirs,u:some,cordial] Your letter came safe and we have talked it over.</li>
+        <li>[theirs,u:some,cordial|cool] We had somone read your letter to us twice to be sure.</li>
+        <li>[theirs,u:some,cool,c:raider] Your letter came. The boss says to anser it so here it is.</li>
+        <li>[ours,u:some,warm|cordial] I hope this finds you well, I am not much of a writer.</li>
+        <li>[ours,u:some,cordial|cool] I am writing for all of us here, so forgive the speling.</li>
+        <li>[ours,u:some,curt|refusal] Here is our letter.</li>
+
+        <!-- ================= An unschooled hand (u:none) ================= -->
+        <li>[theirs,u:none,warmly] we got yor leter and red it out loud and evryone was happy</li>
+        <li>[theirs,u:none,warm|cordial] got yor letter. good letter. here is ours</li>
+        <li>[theirs,u:none,cordial] we got yor leter (crossed out) letter and here is the anser</li>
+        <li>[theirs,u:none,cordial|cool] the one hoo can read sed wot yor letter sed</li>
+        <li>[theirs,u:none,cool] we got it</li>
+        <li>[theirs,u:none,cool,c:raider] we got yor leter. we used it to start the fire after but we red it first</li>
+        <li>[theirs,u:none,curt] got it</li>
+        <li>[theirs,u:none,refusal] we red yor leter and we sed no</li>
+        <li>[theirs,u:none,curt|refusal,a:war] yor leter came thru the lines. the boys wanted to shoot the one wot brought it. we didnt. yor welcum</li>
+        <li>[ours,u:none,warm|cordial] i am riting to you becos we sed someone shud</li>
+        <li>[ours,u:none,cordial|cool] this is the leter from us</li>
+
+        <!-- ================= Strange voices ================= -->
+        <li>[sv:machine,warmly] Your letter was received, read and found pleasing. Pleasing is not a word I use often.</li>
+        <li>[sv:machine,warm|cordial] Your letter was received and read in full.</li>
+        <li>[sv:machine,cordial|cool] Your letter was received. Its contents are addressed below, in order.</li>
+        <li>[sv:machine,cool|curt] Letter received. Response follows.</li>
+        <li>[sv:machine,curt|refusal] Letter received. Response is brief.</li>
+        <li>[theirs,sv:hive,warmly] Your letter came. We all read it. All of us were glad.</li>
+        <li>[theirs,sv:hive,warm|cordial] Your letter came. We read it, together.</li>
+        <li>[theirs,sv:hive,cordial|cool] Letter came. We read. We answer.</li>
+        <li>[theirs,sv:hive,cool|curt] Letter came. Read. Answer short.</li>
+        <li>[theirs,sv:hive,curt|refusal] Letter came. We are many. You are few.</li>
+        <li>[sv:beast,warmly] Your letter came on the wind, and we knew your scent before we broke the seal.</li>
+        <li>[sv:beast,warm|cordial] Your letter came. It smelled of your road: rain, dust, and someone's dinner.</li>
+        <li>[sv:beast,cordial|cool] We have your letter. We read it twice, and sniffed it once.</li>
+        <li>[sv:beast,cool|curt] Your letter came. We circled it before we read it.</li>
+        <li>[sv:beast,curt|refusal] Your letter came. It smelled of fear, or ink. We are not sure which.</li>
+        <li>[sv:green,warmly] Your letter came in the long light of the afternoon, and we read it slowly, as leaves read the sun.</li>
+        <li>[sv:green,warm|cordial] Your letter came. We read it in the light, and grew a little.</li>
+        <li>[sv:green,cordial|cool] Your letter came in the dry season. We have thought on it since.</li>
+        <li>[sv:green,cool|curt] Your letter came. The season turns. We answer.</li>
+        <li>[sv:green,curt|refusal] Your letter came at the wrong season.</li>
+        <li>[sv:fey,warmly] Your letter came on a moonless night, which is the best kind, and we read it in a ring.</li>
+        <li>[sv:fey,warm|cordial] Your letter came, and was read three times, because that is the number.</li>
+        <li>[sv:fey,cordial|cool] Your letter came. It was read thrice, as is proper.</li>
+        <li>[sv:fey,cool|curt] Your letter came, and was read once, which is not the number.</li>
+        <li>[sv:fey,curt|refusal] Your letter came. It was not read in a ring.</li>
+        <li>[sv:ancient,warmly] I have received your letter of the present season, and have read it entire, including the parts that were unnecessary, which I enjoyed most.</li>
+        <li>[sv:ancient,warm|cordial] I have received your letter of the present season, and have read it entire.</li>
+        <li>[sv:ancient,cordial|cool] Your communication arrived. I have read it, as one reads things, from the beginning to the end.</li>
+        <li>[sv:ancient,cool|curt] Your letter arrived in the usual manner of letters. I have considered it.</li>
+        <li>[sv:ancient,curt|refusal] Your letter arrived. I have outlived worse.</li>
+        <li>[sv:deep,warmly] Your letter, it came. In the dark, read it we did, and warm it was.</li>
+        <li>[sv:deep,warm|cordial] Your letter, it came. Read, it was, by many eyes.</li>
+        <li>[sv:deep,cordial|cool] Came, your letter. Down it went. Up comes this.</li>
+        <li>[sv:deep,cool|curt] Came, your letter. Heard, it was.</li>
+        <li>[sv:deep,curt|refusal] Came, your letter. Small, its voice.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+</Defs>

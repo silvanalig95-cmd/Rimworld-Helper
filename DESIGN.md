@@ -8150,6 +8150,113 @@ options should have some motivation to do them". Step B of `docs/design/diplomac
   60 days, a work built kept while it stands, 80 at most), the pen friends (with their letters' ticks, eight at most each),
   the world's letters waiting (two at once). Modelled in `Tools/save_estimate.py`.
 
+## Letters that read like letters (the player's request, 9 November 2026)
+
+The player: "letters exchanged from and to pawns should also read like actual letters, make a varied selection of
+interesting letters that read well and can also crack a joke sometimes, or be serious"; then, of their tone, "they don't
+necessarily have to be warm, just according to the situation and motivation"; of who writes, the writer's race and
+culture shape the tone and style, medieval writers in medieval English ("the player loves it"), "how a stupid bandit could
+not spell words correctly etc", and "you can also be experimentive with grammar, writing style, formatting, phrasing etc
+if it makes sense, like strange races or cultures". In `Source/ColonyCouncil/Letters/`: the pure rules `LetterFormMath.cs`
+and `LetterCultureMath.cs` (linked in Tests.csproj; `Tools/Tests/LetterFormTests.cs`, "letters: "), the game's side
+`LetterForm.cs`, the kept letters `LetterBook.cs`, the reading window `LetterReadWindow.cs`; the pools
+`Defs/FlavorPoolDefs/Rimfolk_Letters_*.xml`; keys `Rimfolk_LetterForm.xml`. Setting **Letters written out in full**
+(`lettersInFull`, the neighbours' section, on, needs the letters): off, the short form as before and nothing kept.
+
+- **The form** (`LetterFormMath.Compose`), shared by every letter a person writes, both ways: a heading now and then (the
+  place and the date as the writer would put it, `DateStyleOf`: a tribe by the season, a line of the When pool, "when the
+  geese came back"; the medieval age and the Empire in the court's words, "the 7th day of Decembary, in the year 5501",
+  the Empire's "Given at"; the industrial plainly; the spacer age by the standard date, "5501.2.05"; always from a council,
+  the Empire or the ancient, seven letters in ten otherwise, four at war or when curt), a salutation, an opening, the heart
+  (what the letter is for), sometimes an aside (`Aside`: a joke, an everyday detail or a serious line), the closing and the
+  signature in kind (`SignOf`: a person with their title and town, a council "by the hand of", the Empire's titled, the
+  colony's "for all of us at" the colony, a mark for one who can't write their name, "written down for them by" a helper,
+  a hive's many), sometimes a P.S. (`PSChance`, `PSKind`). The narrator's lines go under it, after a mark of their own
+  ("* * *"): in answer to which letter and how it came, what it brings, gifts set down, news told, why it went badly, how
+  far it moved them, a threat. Never inside the writer's words. A call reads as its transcript (`Call`: the log's head in
+  the console's age, "Comms log" or "Link record", and "Name: words" lines; called back, or a message left on the console);
+  words passed on by mouth as the carrier's ("Hessa bids me tell you this", the sender's words in quotes). Neither is
+  shaped as a letter.
+- **The tone follows the situation** (`Tags`, `ToneTag`, `Warmth`, `Business`, `Motive`): how they took the colony's
+  letter (warm, cordial, cool, curt, refusal) or, for the colony's own, how the two stand (`Stance`, by their regard: 40
+  warm, 5 cordial, -25 cool, else curt); at war; what the writer wants (`LetterMotive`: a pen friend or a neighbour who
+  thinks a good deal of the colony, 50, writes as a friend; a council, the Empire and the business between two peoples,
+  pacts, truces, ransoms, envoys, wards, fealty, a town asked back, a dealing, as a duty; one who thinks little of the
+  colony, under 5, or trusts nobody, persona trust -30, sounds it out; one whose pride is 40 or more won't ask outright; a
+  trader, by their role or a people of traders or brokers, angles for business); hard times at their town. A warm
+  register ("warmly") only for a warm letter that is no business, nor wary, nor proud, nor at war, or a courteous one
+  between friends (the colony's kind writer too, never its abrasive one); a warm answer that is business, wary or proud
+  reads courteous. Lines carry their register (warmly for a chatty, personal line; warm|cordial courteous enough for
+  either; cordial, cool, curt, refusal) and their motive (m:trade's pitches, m:duty's office, m:wary's caution, m:proud's
+  standing); a cool, curt or businesslike letter draws no warm line (tested over every purpose, tone, motive, address and
+  speech). Jokes: a warm letter jokes most (0.45 of its asides, by the writer's persona humour, -100 to 100, a fifth either
+  way), a courteous or cool one a dry remark now and then (0.2), the Empire half as often, a curt letter, a refusal, a
+  condolence, a warning, help asked, a truce, a ransom, war or hard times never. A council writes no aside.
+- **Who writes shapes how** (`LetterCultureMath.Read`, every name an active def of the player's in `docs/player-mods`,
+  tested): their age (w:tribal...), their people's ways (their:herders...), their ideoligion's memes as culture tags
+  (c:pious, c:raider, c:proud, c:loyal, c:nature, c:herd, c:together, c:free, c:transhuman, c:tunnel, c:dark, c:pain,
+  c:guilty, c:highlife, c:preach, c:craft, c:trade, c:peace, c:sea, c:tea, c:coffee, c:cannibal; Ideology and the meme
+  mods), their xenotype's kind (x:hulking, x:refined, x:martial, x:underground, x:toxic, x:fiery, x:cold, x:pig, x:sea,
+  x:space, x:elf; Biotech and the race mods). Anyone else writes plainly.
+- **Each writer's speech, drawn from alone** (`SpeechOf`, the pick's partition: a line's olde, u: or sv: tag against the
+  writer's): a strange voice of their own first; then an unschooled hand; then a medieval writer's English; else plain.
+  - *Medieval English* (`olde`): a medieval people's notables and the colony's own in its medieval age (`Ages.Ours`, the
+    colony's tech level), never a tribe (their own plain, image-rich voice) nor the Empire (its formal, titled style).
+    Authored as their own lines (thou for the subject, thee for the object, thy before a consonant, thine before a vowel
+    or standing alone; thou art, hast, wilt, dost; he hath, she doth; -eth sparingly), every part and every purpose and
+    tone, with their own hearts (`HeartSpeech`). Tested both ways: no "you" in a medieval line, no thee or thou in a plain one.
+  - *Schooling* (`SchoolingOf`): Intellectual skill, four less for an outlaw people (the pirates, bandits and savage
+    kingdoms of the player's factions), three for a slow learner, one for the tribal and medieval ages, six more for one
+    too smart or a scholar; 0 and under not at all (`u:none`: many slips, no capitals, a word crossed out and written again,
+    "gold" spelled two ways, a mark for a signature, a threat that undercuts itself), 1 or 2 barely (`u:some`: a slip or
+    two). A council and the Empire have scribes. Theirs a third of the time, the colony's half the time, written down for
+    them by someone a little better (`Helped`: the colony's free colonist of Intellectual 6 or more who writes best). The
+    misspellings are deliberate, written into the lines, never a corruption of text; the test only asks each such line to
+    show it, and no other check is loosened.
+  - *Strange voices* (`LetterCultureMath.Voices`, by xenotype or race, then meme): sv:machine (androids: a stamped record
+    for a head, numbered points, "END OF LETTER.", an addendum), sv:hive (insectors, hivelings, Korg, a gestalt: "we",
+    clipped, no salutation, signed as the many of their town, hearts of their own), sv:beast (lycans, wolfmen, saurids,
+    the awakened apes, Paws of Interest's: smells, tracks, seasons), sv:green (plant folk and fungoids: light and roots),
+    sv:fey (fairies and wood elves: a formula said first and said again at the end), sv:ancient (sanguophages and their
+    kin, the forsaken, high elves, archons, A RimWorld of Magic's spirits: a dated, overly literal register, always headed,
+    and a postscript longer than the letter), sv:deep (mind devourers, eldritch cults: words in an order of their own).
+    Readable, purposeful, never mockery; each drawn only by its own writers (tested).
+- **Their answer** (`LetterForm.Answer`, from `NeighbourLetters.Body` when written out): the answer pool's line
+  (`Rimfolk_Pool_NeighbourWrites`, its tags unchanged: purpose, tone, their age, Rimfolk's peoples, war, the facts' ties
+  and history) is the heart; a council's answer, a reply's thanks, a medieval, unschooled or hive writer take theirs from
+  `Rimfolk_Pool_LetterHeart` (a council's yes or no and the dealing's kind, `DealingLetters.HeartTags`). The opening,
+  aside, closing and P.S. are drawn around it. Everything the old body said below the quote becomes the narrator's lines.
+- **The colony's own letter** (`LetterForm.Ours`), composed as its writer finishes it (`NeighbourLetters.Written`; a
+  tribal colony's spoken message as it is given, `Send`): the writer's voice (`Voice`: blunt with Social 4 or less or
+  abrasive, eloquent with 12 and Intellectual 6 or 15, plain otherwise; kind, abrasive, cheerful or gloomy by persona
+  outlook or natural mood, learned at Intellectual 10, proud at persona pride 40; humour), the purpose and its topic (a
+  loss, a threat, food or medicine, the dealing's name, a ward asked or offered, a captive, a pact, an envoy, a reply's
+  yes or no), the colony's age, and what the facts service says is true at home (colony:harvest, colony:children, the
+  newcomer, the cook, a raid, hunger) with the season and the weather as it is written. Nothing claims a thing happened at
+  the colony that didn't; their jokes are about their own town and life. A call has no letter of the colony's.
+- **The world writing first** (`LetterForm.First`, from `WorldWrites.Write`): news, a request or an invitation by what the
+  writer wants (a trader's, a wary neighbour's, a proud one's "we do not, as a rule, ask anything of anyone", a duty, a
+  friend's), the old lines under it. **A friend's word** (`LetterForm.Friend`, from `PenFriends`): a pen friend made, their
+  favor, word of raiders in haste.
+- **Kept and read** (`LetterBook`, a game component of its own; an older save starts it empty): one exchange a letter of
+  the colony's or a first letter of theirs, its pages in order (the colony's letter and their answer; theirs first, the
+  reply and their thanks; a call's transcript; a friend's word), three at most, each capped (`LetterFormMath.MaxKept` 2400
+  characters, the narrator's `MaxNote` 900); the newest `MaxPerNotable` (8) with any one notable and `MaxExchanges` (60)
+  in all; a letter called off before it left is let go (`Dropped`). Modelled in `Tools/save_estimate.py` (about 160 KB at
+  most). The teller's letter is matched to the page it tells by its words (`Told`, from `Tell.Letter`). Read: the answer's
+  event card offers "Read Stace's letter" (`ReadAct`, an act on the card's first page; the card stays open); the Diplomacy
+  screen's People lists each notable's letters newest first under "Letters with ..." (`With`), a click opening both sides;
+  the mailbag's "Read a letter"; the "has written" messages say where it can be read. The reading window
+  (`LetterReadWindow`, frame key "LetterRead", 420 by 360 at least, several at once): each letter on a sheet of cream
+  paper with dark ink in either look, who wrote it and when above, the narrator's lines in a quieter hand under theirs.
+- **No repeats**: a part's line never one this session drew lately (`Flavor.Memory`, the LineMemory window for the part)
+  nor, while another fits, one already written in a kept letter, so a load forgets none.
+- **The library** (counted by the tests; about 1,870 lines): 240 salutations, 260 closings, 350 openings, 380 asides, 150 postscripts,
+  190 hearts of theirs and 190 of the colony's, 27 tribal dates, 56 call lines and 23 carriers' frames; of them about 450
+  in medieval English, 150 unschooled or barely schooled, and about 20 for each strange voice.
+- **Not changed**: what each answer does (tones, regard, goodwill, gifts, help, debts, threats, the post's carrying); the
+  colony's envoys' and wards' letters home and a town's letter (narrated, as before).
+
 ### Diplomacy
 
 Stage 2's base and its first item, favours owed and called in (docs/design/stage2-diplomacy.md, release 2a.1):

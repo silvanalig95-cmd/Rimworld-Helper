@@ -397,6 +397,7 @@ namespace ColonyCouncil
                     hereNow.Add(p);
                     hereNames.Add(ThingRefs.Link(p.LabelShort, ThingRefs.Of(p)));
                 }
+                Letters(e);
             }
             catch (Exception ex)
             {
@@ -416,6 +417,24 @@ namespace ColonyCouncil
             {
                 PersonRow(new Rect(0f, y, w, PersonH), all[i], i);
                 y += PersonH + 2f;
+            }
+            // The letters exchanged with each of them, newest first: each opens both letters to read (Letters/LetterReadWindow.cs).
+            foreach (var (n, rows) in letters)
+            {
+                y += 8f;
+                y += UiKit.SectionHeading(0f, y, w, "CC_LetterRead_With".Translate(n.Name.Named("NAME")).Resolve(), rows.Count, null, null, out _);
+                for (int i = 0; i < rows.Count; i++)
+                {
+                    var row = rows[i];
+                    var r = new Rect(0f, y, w, LetterRowH);
+                    UiKit.Zebra(r, i);
+                    UiKit.RowHover(r);
+                    UiKit.LabelFit(new Rect(r.x + 8f, r.y + 3f, r.width - 16f, 20f), row.head, Color.white);
+                    UiKit.LabelFit(new Rect(r.x + 8f, r.y + 22f, r.width - 16f, 18f), row.peek, UiKit.Faint, GameFont.Tiny);
+                    TooltipHandler.TipRegion(r, ReadTip);
+                    if (Widgets.ButtonInvisible(r)) LetterReadWindow.Open(row.x);
+                    y += LetterRowH + 2f;
+                }
             }
             if (hereNow.Count > 0)
             {
@@ -438,6 +457,61 @@ namespace ColonyCouncil
             }
             return y + 30f;
         }
+
+        // ================= Letters exchanged =================
+
+        private const float LetterRowH = 42f;
+
+        private sealed class LetterRow
+        {
+            public LetterExchange x;
+            public string head, peek;
+        }
+
+        private static readonly List<(Notable n, List<LetterRow> rows)> letters = new List<(Notable, List<LetterRow>)>();
+
+        /// <summary>The correspondence with each of their notables (LetterBook.With), newest first: who wrote and answered, when, and the first words of the newest.</summary>
+        private static void Letters(PeopleEntry e)
+        {
+            letters.Clear();
+            var home = HappeningTracker.HomeMap();
+            float lon = home != null ? Find.WorldGrid.LongLatOf(home.Tile).x : 0f;
+            foreach (var n in e.notables)
+            {
+                var xs = LetterBook.With(n.id);
+                if (xs.Count == 0) continue;
+                var rows = new List<LetterRow>();
+                foreach (var x in xs)
+                {
+                    var ours = x.Ours;
+                    var theirs = x.pages.LastOrDefault(p => !p.ours);
+                    bool first = x.pages.Count > 0 && !x.pages[0].ours;
+                    string key = ours != null && theirs != null ? first ? "CC_LetterRead_Row_TheirsReply" : "CC_LetterRead_Row_Both"
+                        : ours != null ? "CC_LetterRead_Row_Ours" : "CC_LetterRead_Row_Theirs";
+                    string date = GenDate.DateFullStringAt(GenDate.TickGameToAbs(x.Last), new Vector2(lon, 0f));
+                    var newest = x.pages.OrderByDescending(p => p.tick).First();
+                    rows.Add(new LetterRow
+                    {
+                        x = x, peek = Peek(newest.text),
+                        head = key.Translate((ours?.who ?? "?").Named("OURS"), (theirs?.who ?? n.Name).Named("THEIRS"), date.Named("DATE")).Resolve()
+                    });
+                }
+                letters.Add((n, rows));
+            }
+        }
+
+        /// <summary>A letter's first words past its heading and salutation, for the row.</summary>
+        private static string Peek(string text)
+        {
+            if (text.NullOrEmpty()) return "";
+            var paras = text.Split(new[] { "\n\n" }, StringSplitOptions.RemoveEmptyEntries);
+            string p = paras.FirstOrDefault(x => x.Length > 40) ?? paras[0];
+            p = p.Replace("\n", " ");
+            return p.Length > 120 ? p.Substring(0, 117).TrimEnd() + "..." : p;
+        }
+
+        private static string readTip;
+        private static string ReadTip => readTip ??= "CC_LetterRead_RowTip".Translate();
 
         private static void PersonRow(Rect r, PersonLine row, int i)
         {

@@ -99,8 +99,16 @@ namespace ColonyCouncil
                            + (news.Count > 0 ? "\n" + string.Join("\n", news.Select(x => "  - " + x)) : "\n  - " + W("CC_World_Text_NewsQuiet", town.Name.Named("TOWN"), n.Name.Named("NAME")));
                     break;
             }
-            if (PenFriends.Is(n)) body += "\n\n" + W("CC_World_Text_Friend", n.Name.Named("NAME"));
-            body += "\n\n" + W("CC_World_HowToAnswer", n.Name.Named("NAME"));
+            // Written out in full (Letters/LetterForm.cs): their own letter, by what they want of it, and the lines above under
+            // it as the narrator's (what they ask, their news, how to answer).
+            var full = LetterForm.Full ? LetterForm.First(n, k, k == ReplyKind.Request ? GoodsWord(a) : null,
+                new List<string> { body, W("CC_World_HowToAnswer", n.Name.Named("NAME")) }, a.id) : null;
+            if (full != null) body = full.full;
+            else
+            {
+                if (PenFriends.Is(n)) body += "\n\n" + W("CC_World_Text_Friend", n.Name.Named("NAME"));
+                body += "\n\n" + W("CC_World_HowToAnswer", n.Name.Named("NAME"));
+            }
             string label = W("CC_World_Label_" + k, n.Name.Named("NAME"));
             string bring = W("CC_World_Bring", n.Name.Named("NAME"));
             a.postId = MailIn.FromAbroadId(home, f, town, label, body, LetterDefOf.NeutralEvent, bring);
@@ -115,7 +123,7 @@ namespace ColonyCouncil
             return a;
         }
 
-        private static string GoodsWord(WorldAsk a)
+        public static string GoodsWord(WorldAsk a)
         {
             var def = GoodsDef(a, null);
             return def != null ? Couriers.Amount(a.count, null, def) : Couriers.Amount(a.count, a.goods, null);

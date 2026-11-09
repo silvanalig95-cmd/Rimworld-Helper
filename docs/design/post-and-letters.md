@@ -81,6 +81,32 @@ friend among them), slower than a relay. Settings "Pen friends" and "The world w
 14. **Distance.** Peoples far off are reached through a chain of neighbours (slower, introductions needed) until radio or
     shuttles.
 
+## Step 3: letters that read like letters
+
+The player (9 November 2026): "letters exchanged from and to pawns should also read like actual letters, make a varied
+selection of interesting letters that read well and can also crack a joke sometimes, or be serious"; of their tone, "they
+don't necessarily have to be warm, just according to the situation and motivation"; the writer's race and culture shape
+the tone and style; medieval writers in medieval English; "how a stupid bandit could not spell words correctly etc"; and
+"you can also be experimentive with grammar, writing style, formatting, phrasing etc if it makes sense, like strange races
+or cultures".
+
+*Built (9 November 2026), not released yet, in `Source/ColonyCouncil/Letters/` (`LetterFormMath`, `LetterCultureMath`,
+`LetterForm`, `LetterBook`, `LetterReadWindow`; the pools `Rimfolk_Letters_*.xml`; DESIGN.md "Letters that read like
+letters"). Setting "Letters written out in full" (on).*
+
+15. **A letter's form**, both ways: a heading now and then (the place, the date in the form of the writer's age), a
+    salutation by who writes to whom and how they stand, a few short paragraphs in the writer's own voice, a closing and a
+    signature in kind, now and then a P.S. What the game does with it goes under it as the narrator's plain lines.
+16. **The tone from the situation and the motive**: their regard and the answer's tone, at war, what the writer wants (a
+    friend, a trader angling, an official's duty, a wary neighbour, a proud one), hard times. A cool, curt or businesslike
+    letter is never warm; jokes where the writer and situation allow them, a dry remark in a cool letter.
+17. **Who writes shapes how**: their age and people, their culture and kind (memes, xenotype), a medieval writer's
+    English (thee and thou), an unschooled hand (deliberate misspellings, a mark for a signature), the truly strange in a
+    voice of their own (an android's record, a hive's "we", a fairy's formula, the ancient's long postscript).
+18. **The colony's own letters written out** as the writer finishes them, in their voice, for its purpose and topic,
+    true to what is so at home; kept, and read at the mailbag, from the answer's card and on the Diplomacy screen's People.
+19. **A call reads as a call, a spoken message as words passed on**, never as a letter.
+
 ## Order of building
 
-Step 1, then step 2, one after another (same area).
+Step 1, then step 2, one after another (same area); step 3 after both.

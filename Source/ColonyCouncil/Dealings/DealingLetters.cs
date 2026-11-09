@@ -250,6 +250,31 @@ namespace ColonyCouncil
             }
         }
 
+        /// <summary>
+        /// What their letter's heart is chosen by (Letters/LetterForm.cs): a council's yes or no and the dealing's kind
+        /// (deal:supply...), moot when events overtook it; their thanks for a reply, the world's letter's kind and the colony's
+        /// yes or no.
+        /// </summary>
+        public static void HeartTags(NeighbourLetter l, HashSet<string> tags)
+        {
+            if (l?.topicKey == null || tags == null) return;
+            var a = WorldWrites.AskOf(l.topicKey);
+            if (a != null)
+            {
+                tags.Add("k:" + a.kind.ToString().ToLowerInvariant());
+                tags.Add(l.help == ReplyPrefix + "yes" ? "yes" : "no");
+                return;
+            }
+            var d = DealingBook.Instance?.ByLetter(l.id);
+            if (d == null)
+            {
+                tags.Add("moot");
+                return;
+            }
+            tags.Add(d.yes ? "yes" : "no");
+            tags.Add("deal:" + d.kind.ToString().ToLowerInvariant());
+        }
+
         /// <summary>The answer's title: the council answers (a reply's, the one who wrote).</summary>
         public static string Title(NeighbourLetter l, Notable n)
         {
