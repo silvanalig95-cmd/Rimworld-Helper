@@ -2350,9 +2350,9 @@ mods, with the same numbers, is `docs/apparel/README.md`.
   what an outfit allows, so Rimfolk adds no "put it on themselves" of its own.
 
 ### Rimfolk's item card
-Food, drink, drugs and medicine, from the game, its DLCs and your mods, have **Rimfolk's item card** (more kinds of
-things come later: materials, art and the rest). It opens first wherever you open a thing's info (settings: **How
-you're told, Items**, *Open Rimfolk's item card first*, on); its button **All the game's stats** opens the game's own
+Food, drink, drugs, medicine, materials and art, from the game, its DLCs and your mods, have **Rimfolk's item card** (the
+rest, books, body parts, techprints and the like, comes later). It opens first wherever you open a thing's info (settings:
+**How you're told, Items**, *Open Rimfolk's item card first*, on); its button **All the game's stats** opens the game's own
 card, which keeps a button back, and links followed inside the game's card stay in it.
 - **At the top**: the thing's own picture, large, as it really is; its label with the stack and quality; what kind it is
   and its worth; and a line in plain words on what it is good for in this colony ("Fine meal: lifts the mood (+5), keeps
@@ -2373,6 +2373,22 @@ card, which keeps a button back, and links followed inside the game's card stay 
 - **The colony's stock**: how many you hold, your days of food or your medicine, short or spare; where it is made (a click
   on a bill goes to its bench and bills) or grown. **Trade**: its worth, the traders who deal in it, and, with Vanilla
   Trading Expanded, its market, with your own last prices.
+- **Materials** (metal, wood, stone blocks, cloth, leather, wool, chunks, components, chemfuel, silver, gold and your mods'
+  own): "Plasteel: the sturdiest metal there is, light and fireproof, but slow to work; 340 in store, the blueprints need 60
+  more." What it does to what is made of it beside steel and wood, or the stuff of its kind you hold most (armour, warmth,
+  hit points, beauty, how it burns, blades' and clubs' blows, work, worth and weight, the game's own numbers); what you can
+  make of it now, the best first, and what research would open; what waits on it (blueprints, bills with a click to the
+  bench, repairs for components, fuel and how many days it lasts) against what the trade advice keeps; where it comes from
+  here (rocks on the map with a click to one, a deep drill, trees, crops, your animals and wild ones, taking buildings
+  down, the recipes and their benches). Tags such as strong armour, sturdy, fireproof, beautiful, warm, light, soft,
+  flammable, heavy, slow to work, explodes in a fire, precious, money, building material, for clothes, fuel, for repairs,
+  raw material, needed now, spare to sell, research, a bench.
+- **Art**, held, packed or placed: "Grand sculpture, excellent: beauty 300 in the dining room, worth $1,400; selling it would
+  make the room merely slightly impressive." Its beauty by quality, the tale it shows (title, artist, the event and its date),
+  the room it stands in with it and without it by the game's own room numbers, keep or sell, and where it would lift a room
+  most when it's in storage (a click goes to the room); a noble's throne room or bedroom it stands in, faiths that care for
+  art, psycasters who meditate on it. Tags such as lifts the room, ugly, masterwork, tells a story, a gift for a people, for
+  a noble, a room.
 - It is worked out only while it is open (the live parts once a second, the colony's every ten seconds), so it costs the
   game nothing in play.
 

@@ -463,7 +463,7 @@ namespace ColonyCouncil
         public bool apparelSuggestions = true;
         /// <summary>Colonists ask for better clothes (Apparel/ApparelAsks.cs): now and then, for a clearly better piece or warmth they lack, one sentence in their free time.</summary>
         public bool apparelAsks = true;
-        /// <summary>Opening the info for food, a drink, a drug or medicine (the "i" button anywhere, the inspect pane) opens Rimfolk's item card instead of the game's (Items/ItemCardFirst.cs).</summary>
+        /// <summary>Opening the info for food, a drink, a drug, medicine, a material or a work of art (the "i" button anywhere, the inspect pane) opens Rimfolk's item card instead of the game's (Items/ItemCardFirst.cs).</summary>
         public bool itemCardFirst = true;
         public BarBadgeSize barBadgeSize = BarBadgeSize.Normal;
         public BarBadgeCorner barBadgeCorner = BarBadgeCorner.TopRight;

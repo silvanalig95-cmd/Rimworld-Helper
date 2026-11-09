@@ -132,7 +132,7 @@ for everything, although i fear that would take a lot of ressources?"
 5. **An item card for everything**, on the weapon card's pattern (and the apparel card's): the item's picture, what it is
    good for in Rimfolk (feasts, gifts, treatment, trade, its roles), its tags, the game's own numbers a button away.
    Built when opened and cached, nothing drawn or computed while it is closed, so it costs the game nothing in play; done
-   by kind of item, food, drink, drugs and medicine first, then materials, art and the rest (step 1 built, below).
+   by kind of item, food, drink, drugs and medicine first, then materials, art and the rest (steps 1 and 2 built, below).
 
 Not taken now: pawn tooltips as cards (the player doesn't use them), the settings window and the docked planners.
 
@@ -265,3 +265,40 @@ steps.
 - **Not run here**: the card in the game at its least width; the drug effects' words and durations for every high; a
   kind's thoughts with no thing in hand; a fridge mod's stack; the traders' price types; the jumps to a bench's bills and to
   a field; the first card's reading time with the player's mods.
+
+## Stage 3, point 5, step 2: built (9 November 2026)
+
+The item card for materials and art (DESIGN.md, "Rimfolk's own look, stage 3, point 5, step 2: the item card for materials
+and art" has all of it). Not released yet. The rest (books, body parts, techprints, trainers, genepacks, one-use artifacts,
+shells and the like) is step 3, and adds its kinds the same way (`ItemSort`, `ItemCardMath.KindOf`).
+
+- **Which things**: materials are what the game files as raw or manufactured resources, stuff and chunks (metal, wood,
+  stone blocks, cloth, leather, wool, the mods' own, stone chunks and slag, components, chemfuel, neutroamine, silver and
+  gold), read from the defs so the player's mods' materials come in on their own; art is anything with the game's art comp,
+  held, minified or placed (a grave whose art shows only once full, only when full). Weapons, apparel, food, drink, drugs
+  and medicine keep their cards; whatever is to be used, read, installed or fired stays the game's.
+- **A material's card**: the line in plain words ("Plasteel: the sturdiest metal there is, light and fireproof, but slow to
+  work; 340 in store, the blueprints need 60 more."), its tags, what it does to what is made of it against steel and wood or
+  the colony's most held of its kind (the game's stuff powers, stat factors and damage multipliers, in a small table), what
+  the colony can make of it now (buildings and floors, apparel, weapons, other things, the best first, and what research
+  would open), the stock and what waits on it (blueprints and frames, bills with a click to the bench, repairs for
+  components, the burners and the days a fuel lasts, the trade advice's verdict), where it comes from here (rocks on the
+  map with a click to one, a deep drill, trees, crops, the colony's and wild animals, deconstruction, the recipes and their
+  benches) and trade.
+- **A work of art's card**: the line ("Grand sculpture, excellent: beauty 300 in the dining room, worth $1,400; selling it
+  would make the room merely slightly impressive."), its beauty and worth (by quality, in its stuff), the tale it shows (the
+  title, the artist, the event and its date, the game's own description), where it stands and what it does there, keep or
+  sell, and the rules that care (a noble's throne room or bedroom, a faith's precepts on art, the artistic meditation focus).
+- **The room it stands in**: a placed piece is judged in the room its own cell belongs to. The room with it is the game's
+  own numbers (wealth, beauty, space, cleanliness, impressiveness) and stages; without it, the game's sums with the piece's
+  beauty over the room's beauty divisor (the game's own curve) and its worth taken out, applied as a difference to the
+  game's number. Outdoors or in storage it lifts no room, and the card names the colony's rooms whose impressiveness gives a
+  mood where it would do most, a click going to each. Nothing is moved.
+- **Opens first** through the same hook and setting ("Open Rimfolk's item card first"), the setting's words naming the new
+  kinds.
+- **Speed**: a kind's numbers and everything made of it, what yields it and what burns it read once a session; the model
+  built when the card opens, its live parts at most once a second, the colony's (stock, demand, deposits, rooms) every ten
+  seconds; the card draws only its model.
+- **Not run here**: the card in the game for every material and piece of art; the rocks' count from the map's things list;
+  the deep scanner's spots; the room numbers against the game's own with a piece taken out; a noble's room; the art comp's
+  tale through the game's private field; the first material card's reading time with the player's mods.

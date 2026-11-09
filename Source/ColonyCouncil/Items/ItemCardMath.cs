@@ -5,14 +5,19 @@ using System.Linq;
 
 namespace ColonyCouncil
 {
-    /// <summary>The kinds Rimfolk's item card shows so far (step 1): food, drink, drugs and medicine. Everything else opens the game's card.</summary>
+    /// <summary>
+    /// The kinds Rimfolk's item card shows so far: food, drink, drugs and medicine (step 1), materials and art (step 2).
+    /// Everything else opens the game's card; step 3 adds its kinds after these, read the same way (<see cref="ItemSort"/>).
+    /// </summary>
     public enum ItemKind
     {
         None,
         Food,
         Drink,
         Drug,
-        Medicine
+        Medicine,
+        Material,
+        Art
     }
 
     /// <summary>
@@ -109,15 +114,23 @@ namespace ColonyCouncil
         public int MedicineHeld = -1, People;
         /// <summary>The colony keeps food cold somewhere (a freezer, a fridge, a cold world).</summary>
         public bool ColdStore = true;
+
+        // ---------------- Materials and art (step 2: Items/ItemCardMaterialMath.cs) ----------------
+
+        /// <summary>A material's numbers, uses, stock and sources; null for other kinds.</summary>
+        public MaterialFacts Material;
+        /// <summary>A work of art's beauty, story and room; null for other kinds.</summary>
+        public ArtFacts ArtPiece;
     }
 
     /// <summary>
     /// The item card's rules, pure (no game types): which kind a thing is, its tags (the shared six categories of
     /// <see cref="TagCategory"/>, each from the thing's own numbers or Rimfolk's own rules, with why), the line in plain
     /// words, and the small sums the card shows (colonist-days of food, days before it rots, tending quality, whether the
-    /// colony is short). Tools/Tests checks them on the base game's food, drink, drugs and medicine.
+    /// colony is short). Tools/Tests checks them on the base game's food, drink, drugs and medicine. Materials' and art's
+    /// rules (step 2) are in Items/ItemCardMaterialMath.cs, their tags in this one vocabulary.
     /// </summary>
-    public static class ItemCardMath
+    public static partial class ItemCardMath
     {
         /// <summary>Nutrition a grown colonist eats a day (the game's human at "fed"; Rimfolk's days of food count the same).</summary>
         public const float NeedADay = 1.6f;
@@ -252,15 +265,17 @@ namespace ColonyCouncil
         private const TagCategory S = TagCategory.Strength, W = TagCategory.Weakness, R = TagCategory.Risk, X = TagCategory.Special,
             O = TagCategory.Role, Nd = TagCategory.Needs;
 
-        /// <summary>The item card's vocabulary (step 1): every tag, its category, its importance and its rule in words.</summary>
-        public static readonly TagDef[] Vocabulary =
+        /// <summary>The item card's one vocabulary: every tag, its category, its importance and its rule in words (step 1's, then step 2's for materials and art).</summary>
+        public static readonly TagDef[] Vocabulary = StepOneTags().Concat(StepTwoTags()).ToArray();
+
+        private static IEnumerable<TagDef> StepOneTags() => new[]
         {
-            D("of-person", "Of a person", R, 99, "human meat, or made with it: people who aren't cannibals are horrified to eat it"),
+            D("of-person", "Of a person", R, 99, "human meat or leather, or made with it: people who aren't cannibals are horrified to eat it or unhappy to wear it"),
             D("overdose", "Overdose risk", R, 97, "each dose adds toward an overdose, which kills at 100%"),
             D("addictive", "Addictive", R, 95, "each dose may addict, by the game's own chance"),
             D("food-poisoning", "Food poisoning", R, 93, "a chance of food poisoning: the stack's own (its cook, its kitchen), its kind's, or certain once it rots"),
             D("forbidden", "Forbidden to some", R, 91, "some of the colony's grown people won't have it: their faith, their diet or their nature rules it out"),
-            D("needed", "Needed now", O, 90, "the colony is short of it: under ten days of food, or less medicine than the trade advice's floor"),
+            D("needed", "Needed now", O, 90, "the colony is short of it: under ten days of food, less medicine than the trade advice's floor, or less of a material than its blueprints, bills or need"),
             D("mood-lift", "Mood lift", S, 88, "eating or taking it gives a good mood (the game's own thought)"),
             D("potent", "Potent", S, 87, "medicine at least as potent as industrial medicine"),
             D("for-serious", "For serious care", O, 86, "with medicine by what is treated, kept for heavy bleeding, deep wounds, a vital part, illness and infection"),
@@ -275,12 +290,12 @@ namespace ColonyCouncil
             D("insect", "Insect meat", R, 70, "insect meat, or made with it: most people are disgusted to eat it"),
             D("feast-dish", "Feast's dish", X, 68, "a fine or lavish meal a recipe cooks: what a feast sets on the table"),
             D("toast-drink", "Toast's drink", X, 68, "a social drink with alcohol, or one a teetotaler may have: poured at Rimfolk's toasts"),
-            D("gift", "Gift for a people", X, 64, "a fine drink worth 15 silver or more: a gift between peoples"),
+            D("gift", "Gift for a people", X, 64, "a fine drink worth 15 silver or more, a precious material or small art: a gift between peoples"),
             D("drug-policy", "Drug policy", Nd, 62, "colonists take it only as their drug policy allows"),
             D("recreation", "Recreation", S, 60, "a dose gives recreation"),
             D("cooking", "Cooking", Nd, 58, "raw food a recipe of the colony's cooks into a meal"),
             D("freezer", "Freezer", Nd, 56, "it spoils fast and the colony keeps nothing cold"),
-            D("spare", "Spare to sell", O, 54, "the colony holds more than twice what it needs (the trade advice's reserve)"),
+            D("spare", "Spare to sell", O, 54, "the colony holds more than twice what it needs (the trade advice's reserve), or a work of art no room of the colony's would rise with"),
             D("trade-good", "Trade good", O, 50, "it keeps, and is worth 50 silver a kilogram or more: much worth in a pack"),
         };
 
@@ -323,6 +338,16 @@ namespace ColonyCouncil
         {
             var tags = new List<ThingTag>();
             if (f == null || f.Kind == ItemKind.None) return tags;
+            if (f.Kind == ItemKind.Material)
+            {
+                MaterialTags(f, tags);
+                return tags;
+            }
+            if (f.Kind == ItemKind.Art)
+            {
+                ArtTags(f, tags);
+                return tags;
+            }
             bool food = ShowsFood(f);
 
             // What it is made of.
@@ -448,6 +473,8 @@ namespace ColonyCouncil
         public static string Plain(ItemFacts f)
         {
             if (f == null || f.Kind == ItemKind.None) return "";
+            if (f.Kind == ItemKind.Material) return MaterialPlain(f);
+            if (f.Kind == ItemKind.Art) return ArtPlain(f);
             var parts = new List<string>();
             switch (f.Kind)
             {

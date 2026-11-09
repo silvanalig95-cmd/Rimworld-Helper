@@ -10082,6 +10082,130 @@ drink, drugs and medicine first, then materials, art and the rest. Step 1 is bui
   and its bills tab, and to a field; the swap through the shared hook and "All the game's stats" coming back; how long the
   first card of a kind takes to read with the player's mods (the recipes and traders are looked through once).
 
+#### Rimfolk's own look, stage 3, point 5, step 2: the item card for materials and art (docs/design/rimfolk-look.md)
+
+The second step of the item card for everything (the player, 9 November 2026: "also like item card for everything, although i
+fear that would take a lot of ressources?"): materials and art. Not released yet. The rest (books, body parts, techprints,
+trainers, genepacks, one-use artifacts, shells, minified furniture) is step 3 and stays the game's card until then.
+
+- **Which things** (`ItemCardLive.KindOf(def, thing)` reads an `ItemSort`, the rule `ItemCardMath.KindOf(ItemSort)`, step 1's
+  kinds first): **art** is anything with the game's art comp (`CompProperties_Art`), an item or a building, held, minified
+  (read as the piece inside, `GetInnerIfMinified`, the picture the crate as it lies) or placed; a grave whose art shows only
+  once it is full (`mustBeFullGrave`) only while full and its art active. A **material** is an item that is stuff, or that the
+  game files under raw resources, manufactured goods or chunks (`IsWithinCategory` of `ResourcesRaw`, `Manufactured`, `Chunks`,
+  `StoneChunks`, so the mods' own categories under them come in), and is not a thing to use, read, install or fire (a shell,
+  a body part, an unfinished thing, a techprint, a trainer, anything with a use comp, a book, a genepack, a xenogerm or an
+  embryo: step 3's, `ToUse`). So metals, wood, stone blocks, cloth, leathers, wools, the mods' stuffs (beeswax, synthamide,
+  a mod's metal), stone chunks and slag, components, chemfuel, neutroamine, shards, silver and gold. Weapons, apparel and
+  pawns are never the item card's; step 1's food, drink, drugs and medicine keep theirs.
+- **The card** keeps step 1's head (picture in its quality's frame, label, kind and worth, "All the game's stats", the line,
+  the tags). The kind's words: "Metal, things are made of it" for stuff, the game's own filing otherwise ("Manufactured",
+  "Stone chunks"), "Art, excellent, of marble" for art.
+- **A material** (`Items/ItemCardMaterials.cs`):
+  - **What it does to what is made of it**: a small table of the game's own numbers on it (`StuffNumbers`, read once a
+    stuff): armour against sharp, blunt and heat and insulation against cold and heat (its stuff powers; only for apparel
+    stuff), hit points, beauty, an added beauty, flammability, work to build and to make (its stat factors and offsets), the
+    blows of blades and clubs (its damage multipliers; only for weapon stuff), worth and weight a unit. Beside it two others
+    (`ItemCardMath.RefsFor`): the colony's most held stuff of its kind (the plan ahead's hourly stock), then the base game's
+    usual, steel and wood for a hard material (granite blocks, plasteel after), cloth and plainleather for a soft one
+    (devilstrand after), never itself. Its own value in good ink where it beats both, bad where it trails both. Its stuff
+    kinds named.
+  - **What the colony can make of it now**: every building and floor it is the stuff of or a part of, and every recipe that
+    takes it (`RecipeDef.IsIngredient`), looked through once a kind; by research done (a building's own, a recipe's and its
+    bench's), in four rows (buildings and floors, apparel, weapons, other things), the best first by worth (its own, else
+    the game's sum: the stuff, the other ingredients and the work at `StatWorker_MarketValue.ValuePerWork`), three named and
+    "N more"; how many more research would open and the research that opens the most.
+  - **The colony's stock and what waits on it**: what it holds (on the map, not forbidden, and in packs); what the blueprints
+    and frames still need (`Making.BuildingWants`, the trade advice's own reading); the bills that take it, each a line going
+    to its bench and its bills (a batch's need, the bill's count; finite bills summed; one that can't start for want of it
+    marked); repairs for components (the colony's machines that break down, the game's mean days between one machine's
+    breakdowns read from `CompBreakdownable`, components a season); fuel (the buildings at home that burn it switched on,
+    `CompRefuelable`'s rate over its fuel multiplier, those that burn only while used named apart, the colony's record of use
+    where it has one, the days the stock lasts); the verdict by the trade advice's rules (`TradeAdvice.KindOf`,
+    `TradeAdviceMath.Need`/`Keep` with the record of use): short for the plans, short of the need, more than the colony
+    keeps, enough, or no count kept.
+  - **Where it comes from here**: rocks on the map that yield it and aren't fogged, with about what they give mined (their
+    yield, the drop chance for chunks, the storyteller's factor) and a click to one; a deep drill (where a ground-penetrating
+    scanner is active, the spots it shows and how much); trees on the map and what they give cut now; the crops that grow it
+    and the recipes that make it (step 1's lines, a click to the field or the bench and its bills); the colony's animals that
+    give it shorn, make it, or would give it butchered, and the wild ones on the map; the colony's buildings made with it and
+    what taking them down gives back; trade (step 1's part).
+- **A work of art** (`Items/ItemCardArt.cs`):
+  - **As art**: its beauty (the thing's, or a kind's in its stuff at normal quality), by quality (the game's stat for each
+    quality in its stuff), its worth, material and flammability.
+  - **Its story**: the art comp's title and artist, the tale's own name, the one it is about and its date (the tale through
+    the art comp's private reference), and the game's own description of the image.
+  - **Where it stands**: a placed piece is judged in the room its own cell belongs to, indoors when the room is a proper one
+    and not outdoors in the mind. The room's beauty and impressiveness with it are the game's own (`Room.GetStat`); without
+    it, the game's sums (`ItemCardMath.Without`: the piece's beauty over the room's beauty divisor, the game's own cell-count
+    curve read once from `RoomStatWorker_Beauty`, and its worth out of the wealth; space and cleanliness kept), and the
+    impressiveness as the game's number less the difference the game's formula gives (`ItemCardMath.Impressiveness`, the
+    game's `RoomStatWorker_Impressiveness`), so the room's own number is never second-guessed. The verdict is the game's
+    impressiveness stage (`RoomStatDef.GetScoreStage`), with and without; what the room's impressiveness does by its role
+    (bedroom, barracks, dining room, recreation room, throne room, hospital, prison cell). Outdoors or not placed, it lifts
+    no room: the card names the colony's rooms whose impressiveness gives a mood where it would do most, each with the piece
+    added by the same sums, a click going to each. Nothing is moved.
+  - **Keep or sell**: its worth against what the room loses ("Keep it: worth $1,400 to a trader, but the dining room would
+    fall from very impressive to slightly impressive without it."), the room better without it (poor work), or where to place
+    it.
+  - **Who cares for it**: a noble's throne room or bedroom it stands in (Royalty's `RoomRequirement_Impressiveness` of their
+    title, met with it and without it), a faith at home with precepts or memes about art (by their names' words: Alpha Memes'
+    artist, art quality and art desired; `ItemCardMath.ArtRelated`), the artistic meditation focus and the psycasters at home
+    who use it; small art Rimfolk's peoples carry and give (`ThingRole.SmallArt`).
+- **The tags**, step 2's in the one vocabulary (`ItemCardMath.Vocabulary`, step 1's first; at most eight, the first strength
+  and weakness kept), each from its own numbers against what it is compared with or Rimfolk's rules:
+  - **Strength**: *Strong armour* (a sharp armour power of 100% or more, above steel's 90%), *Sturdy* (half again steel's hit
+    points or more), *Fireproof* (a flammability of 5% or less), *Beautiful* (twice steel's beauty or more, or two beauty
+    added; a work of art's beauty), *Warm* and *Keeps cool* (20 degrees of insulation or more; cloth gives 18), *Light* (a
+    unit 60% of steel's weight or less: hard stuff and chunks, never the precious), *Sharp blades* (a tenth harder than
+    steel's), *Hard blows* (a fifth harder), *Lifts the room* (a piece that raises its room a stage, or would raise one of the
+    colony's once placed).
+  - **Weakness**: *Soft* (70% of steel's hit points or less, hard stuff), *Burns* (as flammable as wood or more; a piece of
+    50% or more), *Heavy* (160% of steel's weight or more; every chunk), *Slow to work* (half again the work or more),
+    *Ugly* (a piece whose beauty is below nothing).
+  - **Risk**: *Explodes in a fire* (the game's explosive comp: chemfuel), *Of a person* (human leather).
+  - **Special**: *Precious* (`ThingRole.Precious`), *Gift for a people* (`ThingRole.Gift` for a material, `SmallArt` for art),
+    *Masterwork* (masterwork or legendary), *Tells a story* (a tale is shown), *Valued by a faith*, *Meditation focus*.
+  - **Role**: *Money* (silver), *Building material* (buildings the colony can build now take it), *For clothes* (apparel the
+    colony can make is of it), *Fuel* (something at home burns it), *For repairs* (machines that break down), *Raw material*
+    (a recipe turns it into stuff), *For a noble* (a noble's room it stands in), *Needed now* (the blueprints and bills want
+    more than it holds, a bill can't start for want of it, or a stock the colony uses is under the advice's need; a count under
+    the floor alone is said, not tagged), *Spare to sell* (beyond the advice's keep and the plans' share; a piece no room would
+    rise with), *Trade good*.
+  - **Needs**: *Research* (nothing of it open yet, the research that opens most), *A bench* (the bench that makes it, or turns
+    it into stuff, isn't built), *A room* (a piece in storage, the room it would lift most).
+- **The line** (`ItemCardMath.Plain`): a material's lead (the money; mends the colony's machines; fuel for its burners; made
+  into what at which bench; the sturdiest of its kind there is; a precious one; a metal, timber, stone, fabric, leather or
+  wool for building, armour, clothes or weapons; an ingredient of so many things), two strengths and two weaknesses at most,
+  then its stock and what waits on it ("Plasteel: the sturdiest metal there is, light and fireproof, but slow to work; 340 in
+  store, the blueprints need 60 more."). A work of art's beauty where it stands and its worth, then what selling it would do
+  ("Grand sculpture, excellent: beauty 300 in the dining room, worth $1,400; selling it would make the room merely slightly
+  impressive."), or where it would go.
+- **Open it first**: the same hook (`Patch_WeaponCardFirst` asks `ItemCardFirst.Swapped`, now by the thing's own kind so a
+  minified piece and a full grave count) and setting (`itemCardFirst`, its words naming materials and art); the button back on
+  the game's card for these kinds too. The weapon and apparel cards are untouched.
+- **Speed.** A material's stuff numbers, everything made of it (every building, floor and recipe), what yields it (rocks,
+  trees, animals, the recipes that turn it into stuff) and what burns it are read once a kind and kept for the session
+  (`PartOf`); recipe benches come from `Avail.RecipeUsers` (remembered; step 1's lines use it too now). A work of art's tale
+  and its beauty by quality are read once a card. The colony's part (what it can make by research done, the stock, the
+  blueprints and bills, the buildings, the deposits and scanner, trees and animals, the room with it and without it, the
+  rooms it would lift, nobles, faiths) at most every ten seconds; the live parts at most once a second; the window draws only
+  the model. No saved game data, no Sched slot.
+- **Text**: `Languages/English/Keyed/Rimfolk_ItemCard.xml` (the table's rows `CC_ItemCard_Stuff_`, the rooms' roles
+  `CC_ItemCard_RoomDoes_`); the tags and the line in English from the pure rules. **Tests**: `Tools/Tests/ItemCardStepTwoTests.cs`
+  (458 checks): the kinds; the comparison (what each is compared with, the table's rows, values and tones); the sums (worth of
+  what is made, repairs, fuel days, short, needed and spare, words); the tags and the line for steel, wood, plasteel, uranium,
+  gold, silver, jade, cloth, devilstrand, hyperweave, plainleather, granite blocks, a granite chunk, components, advanced
+  components and chemfuel, on their own and at home; the game's room sums (the factor, the yard, the space's cap, the divisor,
+  with and without both ways, the game's number kept); a grand sculpture awful, normal, excellent and legendary in a dining
+  room with it and without it, a small one in a grand room, in storage, outdoors, nowhere to go, away from home, a noble's
+  throne room, a story, a gift, a faith, meditation, a wooden piece; the vocabulary; the seams.
+- **Not verified without the game**: the card for every material and piece of art in the player's mods; rocks counted from the
+  map's things list; the deep scanner's spots; the room numbers against the game's own with a piece really taken out (space
+  freed by a piece is not counted); a noble's throne room and bedroom; the art comp's tale through its private field and the
+  tale's words and date; `CompBreakdownable`'s mean days read by name; the burners' rate a day for every mod's fuel; the first
+  material card's reading time with the player's mods (every building, floor and recipe looked through once).
+
 #### The journey planner: who to bring and what to pack
 
 The player's request (5 November 2026): a better overview of the colonists in "Plan a journey", so they can judge

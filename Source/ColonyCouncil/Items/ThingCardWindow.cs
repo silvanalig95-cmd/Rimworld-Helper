@@ -8,7 +8,7 @@ namespace ColonyCouncil
 {
     /// <summary>
     /// Rimfolk's item card ("Rimfolk's item card", key "ItemCard" in Rimfolk's frame, on the item card's base; the player, 9
-    /// November 2026: "also like item card for everything"), step 1: food, drink, drugs and medicine. The thing's own picture
+    /// November 2026: "also like item card for everything"), step 1: food, drink, drugs and medicine; step 2 below. The thing's own picture
     /// large in its frame, its label with the stack and quality, what kind it is and its worth, a line in plain words on what
     /// it is good for in this colony, and its tags; then by kind: for food its nutrition and colonist-days, how long it keeps
     /// (this stack where it lies, and in the cold), the game's mood for eating it, food poisoning, the road, and who at home
@@ -17,9 +17,13 @@ namespace ColonyCouncil
     /// what Rimfolk's medicine by what is treated gives it to, and each doctor's tending with it and without. Then the
     /// colony's stock (how many, days of food or medicine, short or spare) with where it is made, a click going to the bench
     /// and its bills or the field; and trade (its worth, the traders who deal in it, Vanilla Trading Expanded's market, the
-    /// colony's own last prices). Its model is built when it opens (Items/ItemCardLive.cs) and refreshed rarely while it
-    /// stays open; nothing is worked out with it closed. Opens first in place of the game's card ("Open Rimfolk's item card
-    /// first", Items/ItemCardFirst.cs), and from a button at the foot of the game's card.
+    /// colony's own last prices). Step 2 adds materials (what it does to what is made of it against steel and wood or the
+    /// colony's most held of its kind, what the colony can make of it now, its stock and what waits on it, where it comes
+    /// from here, fuel) and art (its beauty and worth, the tale it shows, the room it stands in with it and without it, keep
+    /// or sell, the rules that care). Its model is built when it opens (Items/ItemCardLive.cs, ItemCardMaterials.cs,
+    /// ItemCardArt.cs) and refreshed rarely while it stays open; nothing is worked out with it closed. Opens first in place
+    /// of the game's card ("Open Rimfolk's item card first", Items/ItemCardFirst.cs), and from a button at the foot of the
+    /// game's card.
     /// </summary>
     public class ThingCardWindow : ItemCardWindow
     {
@@ -32,10 +36,10 @@ namespace ColonyCouncil
         {
         }
 
-        /// <summary>The card for a thing in hand (a stack, a drug in a pack). One card at a time.</summary>
+        /// <summary>The card for a thing in hand (a stack, a drug in a pack, a piece of art placed or minified). One card at a time.</summary>
         public static void Open(Thing t)
         {
-            if (t == null || !ItemCardLive.Covers(t.def)) return;
+            if (t == null || !ItemCardLive.Covers(t)) return;
             var w = Find.WindowStack.WindowOfType<ThingCardWindow>() ?? Added();
             w.Show(t, null, null, null);
         }
@@ -63,7 +67,8 @@ namespace ColonyCouncil
         {
             get
             {
-                if (model == null || model.thing != thing || model.def != def) model = ItemCardLive.Build(thing, def, stuff, Find.CurrentMap);
+                // A minified piece's model reads the piece inside (its def differs from the crate's): a thing is matched by itself.
+                if (model == null || model.thing != thing || thing == null && model.def != def) model = ItemCardLive.Build(thing, def, stuff, Find.CurrentMap);
                 else ItemCardLive.Refresh(model);
                 return model;
             }
@@ -73,7 +78,7 @@ namespace ColonyCouncil
 
         protected override Texture2D FrameIcon => Icons.CatFood;
 
-        protected override bool Rated => def != null && ItemCardLive.Covers(def);
+        protected override bool Rated => def != null && Model.kind != ItemKind.None;
 
         protected override string NotRated => "CC_ItemCard_NotCovered".Translate();
 
@@ -145,19 +150,99 @@ namespace ColonyCouncil
                 }
             }
 
-            // The colony's stock and where it is made.
-            y += UiKit.SectionTitle(0f, y, w, "CC_ItemCard_Sec_Stock".Translate());
-            if (!f.HasColony) y += UiKit.Paragraph(0f, y, w, "CC_ItemCard_NoColony".Translate(), UiKit.Faint) + 8f;
+            if (f.Kind == ItemKind.Material) y = MaterialParts(w, y, m);
+            else if (f.Kind == ItemKind.Art) y = ArtParts(w, y, m);
             else
             {
-                y = Rows(w, y, m.stock, 130f) + 4f;
-                y = GoLines(w, y, m.making) + 8f;
+                // The colony's stock and where it is made.
+                y += UiKit.SectionTitle(0f, y, w, "CC_ItemCard_Sec_Stock".Translate());
+                if (!f.HasColony) y += UiKit.Paragraph(0f, y, w, "CC_ItemCard_NoColony".Translate(), UiKit.Faint) + 8f;
+                else
+                {
+                    y = Rows(w, y, m.stock, 130f) + 4f;
+                    y = GoLines(w, y, m.making) + 8f;
+                }
             }
 
             // Trade.
             y += UiKit.SectionTitle(0f, y, w, "CC_ItemCard_Sec_Trade".Translate());
             y = Rows(w, y, m.trade, 130f) + 2f;
             foreach (var line in m.market) y += UiKit.Paragraph(0f, y, w, line, UiKit.Faint, GameFont.Tiny) + 2f;
+            return y;
+        }
+
+        /// <summary>A material: what it does to what is made of it, what the colony can make of it, the stock and what waits on it, where it comes from here.</summary>
+        private float MaterialParts(float w, float y, ItemCardModel m)
+        {
+            var f = m.facts;
+            if (m.stuffTable.Count > 0)
+            {
+                y += UiKit.SectionTitle(0f, y, w, "CC_ItemCard_Sec_AsStuff".Translate());
+                y = StuffTable(w, y, m) + 2f;
+                if (m.stuffKinds.Length > 0) y += UiKit.Paragraph(0f, y, w, m.stuffKinds, UiKit.Faint, GameFont.Tiny) + 2f;
+                y += 8f;
+            }
+            y += UiKit.SectionTitle(0f, y, w, "CC_ItemCard_Sec_MadeOf".Translate());
+            if (m.madeOf.Count == 0) y += UiKit.Paragraph(0f, y, w, "CC_ItemCard_MadeNothing".Translate(), UiKit.Faint) + 4f;
+            else y = Rows(w, y, m.madeOf, 130f) + 2f;
+            if (m.madeLater != null) y += UiKit.Paragraph(0f, y, w, m.madeLater, UiKit.Faint, GameFont.Tiny) + 2f;
+            y += 8f;
+            y += UiKit.SectionTitle(0f, y, w, "CC_ItemCard_Sec_Stock".Translate());
+            if (!f.HasColony) return y + UiKit.Paragraph(0f, y, w, "CC_ItemCard_NoColony".Translate(), UiKit.Faint) + 8f;
+            y = Rows(w, y, m.demand, 130f) + 4f;
+            if (m.bills.Count > 0) y = GoLines(w, y, m.bills) + 4f;
+            y += 4f;
+            y += UiKit.SectionTitle(0f, y, w, "CC_ItemCard_Sec_Sources".Translate());
+            y = GoLines(w, y, m.sources);
+            y = GoLines(w, y, m.making) + 8f;
+            return y;
+        }
+
+        /// <summary>The comparison: the material's column first, then each it is compared with; its own value in good or bad ink where it beats or trails them all.</summary>
+        private static float StuffTable(float w, float y, ItemCardModel m)
+        {
+            const float labelW = 130f;
+            int cols = Mathf.Max(1, m.stuffHeads.Count);
+            float colW = (w - labelW) / cols;
+            for (int i = 0; i < m.stuffHeads.Count; i++)
+                UiKit.LabelFit(new Rect(labelW + i * colW, y, colW - 4f, 20f), m.stuffHeads[i], i == 0 ? UiKit.Heading : UiKit.Faint, GameFont.Tiny);
+            y += 20f;
+            for (int r = 0; r < m.stuffTable.Count; r++)
+            {
+                var row = m.stuffTable[r];
+                UiKit.LabelFit(new Rect(0f, y, labelW, 20f), r < m.stuffLabels.Count ? m.stuffLabels[r] : row.Id, UiKit.Faint, GameFont.Small);
+                for (int i = 0; i < row.Values.Count && i < cols; i++)
+                    UiKit.LabelFit(new Rect(labelW + i * colW, y, colW - 4f, 20f), row.Values[i], i == 0 ? Tone(row.Tone) : UiKit.Dim, GameFont.Small);
+                y += 20f;
+            }
+            return y;
+        }
+
+        /// <summary>A work of art: the piece, its story, where it stands and what it does there, keep or sell, the rules that care.</summary>
+        private float ArtParts(float w, float y, ItemCardModel m)
+        {
+            var f = m.facts;
+            y += UiKit.SectionTitle(0f, y, w, "CC_ItemCard_Sec_Art".Translate());
+            y = Rows(w, y, m.art, 130f) + 8f;
+            if (m.story.Count > 0 || !m.storyText.NullOrEmpty())
+            {
+                y += UiKit.SectionTitle(0f, y, w, "CC_ItemCard_Sec_Story".Translate());
+                y = Rows(w, y, m.story, 130f) + 2f;
+                if (!m.storyText.NullOrEmpty()) y += UiKit.Paragraph(0f, y, w, m.storyText, UiKit.Faint, GameFont.Tiny) + 2f;
+                y += 8f;
+            }
+            y += UiKit.SectionTitle(0f, y, w, "CC_ItemCard_Sec_Room".Translate());
+            if (!f.HasColony) return y + UiKit.Paragraph(0f, y, w, "CC_ItemCard_NoColony".Translate(), UiKit.Faint) + 8f;
+            y = Rows(w, y, m.room, 130f) + 2f;
+            if (m.rooms.Count > 0) y = GoLines(w, y, m.rooms) + 2f;
+            if (m.keepSell.Length > 0) y += UiKit.Paragraph(0f, y, w, m.keepSell, UiKit.Ink) + 2f;
+            y += 8f;
+            if (m.rules.Count > 0)
+            {
+                y += UiKit.SectionTitle(0f, y, w, "CC_ItemCard_Sec_Rules".Translate());
+                foreach (var line in m.rules) y += UiKit.Paragraph(0f, y, w, line, UiKit.Ink, GameFont.Small) + 2f;
+                y += 8f;
+            }
             return y;
         }
 
