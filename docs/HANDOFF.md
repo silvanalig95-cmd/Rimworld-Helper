@@ -12,6 +12,45 @@ tree at once, alongside whatever runs. Each piece is merged as its own release, 
 
 ## State (5 November 2026)
 
+- 0.200.0, Rimfolk's item card, step 2: materials
+  and art (9 November 2026; `docs/design/rimfolk-look.md` stage 3, point 5, "step 2: built"; DESIGN.md "Rimfolk's own look,
+  stage 3, point 5, step 2" has all of it; README "Rimfolk's item card"). The player's words as for step 1. Step 3 (books,
+  body parts, techprints, trainers, genepacks, one-use artifacts, shells, minified furniture) is next and adds its kinds the
+  same way: a flag on `ItemSort`, a kind after these in `ItemCardMath.KindOf(ItemSort)`, a `ReadX`/`LiveX`/`ColonyX`/`RowsX` in a
+  partial `ItemCardLive` file, a `XParts` in `ThingCardWindow.Body`; `ToUse` in `ItemCardLive.cs` is where step 3's things
+  are held back now.
+  - Kinds (`ItemCardLive.KindOf(def, thing)` via `ItemSort`, step 1's first): art is anything with `CompProperties_Art`, item
+    or building, held, minified (read as the piece inside) or placed (a grave whose art needs it full, only full); a material is
+    an item that is stuff or filed under raw resources, manufactured or chunks, and not a thing to use (`ToUse`).
+  - Pure rules in `Items/ItemCardMaterialMath.cs` (linked in Tests.csproj; `ItemCardMath` is partial now, the one vocabulary
+    step 1's and step 2's, 31 new tags): the comparison (`RefsFor`: the colony's most held of its kind, then steel and wood,
+    or cloth and plainleather; `StuffTable` with ids keyed `CC_ItemCard_Stuff_`), `MadeWorth`, `RepairsASeason`, `DaysOf`,
+    `ShortBy`/`NeededNow`/`Spare` by the trade advice, the game's room sums (`Impressiveness`, `ImpressFactor`,
+    `BeautyDivisor`, `With`/`Without`, `StageIndex`), `ArtRelated`, the tags and the lines.
+  - The game's side: `Items/ItemCardMaterials.cs` (once a kind: stuff numbers, every building, floor and recipe it goes into,
+    rocks, trees, animals, burners; every ten seconds: made now by research, stock, blueprints via `Making.BuildingWants`,
+    bills with a click to the bench, machines and breakdown days, burners, the trade advice's reserve, deposits, deep scanner,
+    trees, animals, deconstruction) and `Items/ItemCardArt.cs` (beauty by quality, the tale via the art comp's private
+    `tale`, the room with it from `Room.GetStat` and without it by the sums, the game's own beauty curve read once, the
+    colony's rooms it would lift, a noble's room requirements, faiths, meditation). Step 1's recipe benches now from
+    `Avail.RecipeUsers` (remembered). Window: `ThingCardWindow.MaterialParts`/`ArtParts`, a small comparison table.
+  - Opening first: the same hook and setting; `ItemCardFirst.Swapped` and the button go by the thing's own kind
+    (`ItemCardLive.Covers(thing)`). Setting text and note name materials and art. No saved data, no Sched slot. Keys in
+    `Rimfolk_ItemCard.xml`. Tests `Tools/Tests/ItemCardStepTwoTests.cs` (458 checks).
+  - Not run here (none of it could be): the card in the game for every material and piece of art, least width; rocks counted
+    from `listerThings`; the deep scanner's spots; the room numbers against the game's with a piece really taken out (space a
+    piece frees isn't counted); a noble's throne room and bedroom; the tale through the private field, its words and date;
+    `CompBreakdownable.BreakdownMTBTicks` by name; every mod's fuel rate; the first material card's reading time with the
+    player's mods (every building, floor and recipe looked through once a kind).
+  - Try in the game: 1. Select a stack of steel, press "i": Rimfolk's card, "Steel: a metal for building, armour and weapons;
+    ... in store, ...", the table beside wood and granite blocks (or the colony's most held metal), what the colony can make of
+    it. 2. Plasteel with a blueprint of plasteel walls: Needed now, "the blueprints need N more". 3. Wood with campfires and
+    torches: Fuel, the burners and the days it lasts. 4. A granite chunk: "made into granite blocks at a stonecutter's
+    table", the granite rock on the map with a click to it. 5. Components with machines at home: For repairs, components a
+    season. 6. Chemfuel: Explodes in a fire, the generators. 7. A placed sculpture in the dining room, press "i": beauty, the
+    tale and its artist, the room with it and without it, keep or sell. 8. Uninstall it: in storage, the rooms it would lift
+    most, a click going to each. 9. A sculpture in a noble's throne room: their requirement met with it and without it. 10.
+    Settings, How you're told, Items: the note names materials and art; off, the game's card opens with the button at its foot.
 - 0.199.0, the inventory panel lists the weapons and apparel in storage, with a filter (9 November 2026). The player,
   with a picture of the panel: "could my weapons also be listed in the inventory? at the bottom perhaps", then apparel
   and filters, and no rating on wood ("only show ratings for actual weapons & apparell"). DESIGN.md "The weapons and

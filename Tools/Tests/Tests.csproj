@@ -284,6 +284,7 @@
     <Compile Include="../../Source/ColonyCouncil/Hauling/HaulMath.cs" Link="HaulMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Things/ThingRolesMath.cs" Link="ThingRolesMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Items/ItemCardMath.cs" Link="ItemCardMath.cs" />
+    <Compile Include="../../Source/ColonyCouncil/Items/ItemCardMaterialMath.cs" Link="ItemCardMaterialMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Animals/AnimalNatureMath.cs" Link="AnimalNatureMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Beasts/BeastsMath.cs" Link="BeastsMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Post/PostMath.cs" Link="PostMath.cs" />

@@ -1,23 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LanguageData>
 
-  <!-- Rimfolk's item card, step 1: food, drink, drugs and medicine (Source/ColonyCouncil/Items/, docs/design/rimfolk-look.md,
-       stage 3, point 5). The tags' labels and reasons and the line in plain words are made from the thing's numbers in
-       English (Items/ItemCardMath.cs), as the weapon and apparel tags are; everything else is here. -->
+  <!-- Rimfolk's item card, step 1: food, drink, drugs and medicine; step 2: materials and art (Source/ColonyCouncil/Items/,
+       docs/design/rimfolk-look.md, stage 3, point 5). The tags' labels and reasons and the line in plain words are made from
+       the thing's numbers in English (Items/ItemCardMath.cs, ItemCardMaterialMath.cs), as the weapon and apparel tags are;
+       everything else is here. -->
 
   <!-- The settings (How you're told, Items). -->
   <CC_SetSec_Items>Items</CC_SetSec_Items>
   <CC_Settings_ItemCardFirst>Open Rimfolk's item card first</CC_Settings_ItemCardFirst>
-  <CC_Settings_ItemCardFirst_Tip>Opening the info for food, a drink, a drug or medicine (the "i" button anywhere, a trade screen, a bill, a list, the inspect pane) opens Rimfolk's item card instead of the game's: what it is good for in this colony, its tags, how it keeps, who at home eats or takes it and why, the colony's stock and where it is made, and how traders value it. Its button "All the game's stats" opens the game's card, and the game's card keeps its button back. Links followed inside the game's card stay in it. Off, the game's card opens as before, with a button to Rimfolk's card at its foot. Materials, art and the rest come later.</CC_Settings_ItemCardFirst_Tip>
-  <CC_SetNote_ItemCardFirst>Food, drink, drugs and medicine open as Rimfolk's item card; the game's card is one button away.</CC_SetNote_ItemCardFirst>
+  <CC_Settings_ItemCardFirst_Tip>Opening the info for food, a drink, a drug, medicine, a material (metal, wood, stone blocks, cloth, leather, wool, chunks, components, chemfuel and the like) or a work of art, held or placed (the "i" button anywhere, a trade screen, a bill, a list, the inspect pane) opens Rimfolk's item card instead of the game's: what it is good for in this colony, its tags, how it keeps, who at home eats or takes it and why, what a material does to what is made of it and what waits on it, what a work of art does for its room, the colony's stock and where it comes from, and how traders value it. Its button "All the game's stats" opens the game's card, and the game's card keeps its button back. Links followed inside the game's card stay in it. Off, the game's card opens as before, with a button to Rimfolk's card at its foot. The rest (books, body parts, techprints and the like) comes later.</CC_Settings_ItemCardFirst_Tip>
+  <CC_SetNote_ItemCardFirst>Food, drink, drugs, medicine, materials and art open as Rimfolk's item card; the game's card is one button away.</CC_SetNote_ItemCardFirst>
 
   <!-- The card and its buttons. -->
   <CC_ItemCard_Title>Rimfolk's item card</CC_ItemCard_Title>
-  <CC_ItemCard_NotCovered>Rimfolk's item card shows food, drink, drugs and medicine for now; this opens in the game's own card.</CC_ItemCard_NotCovered>
+  <CC_ItemCard_NotCovered>Rimfolk's item card shows food, drink, drugs, medicine, materials and art for now; this opens in the game's own card.</CC_ItemCard_NotCovered>
   <CC_ItemCard_GameCard>All the game's stats</CC_ItemCard_GameCard>
   <CC_ItemCard_GameCard_Tip>Open the game's own info card for this, with every stat it lists. Its button "Rimfolk's item card" brings you back here.</CC_ItemCard_GameCard_Tip>
   <CC_ItemCard_OpenCard>Rimfolk's item card</CC_ItemCard_OpenCard>
-  <CC_ItemCard_OpenCard_Tip>Open Rimfolk's card for this: what it is good for in this colony, its tags, how it keeps, who at home eats or takes it and why, the colony's stock and where it is made, and how traders value it.</CC_ItemCard_OpenCard_Tip>
+  <CC_ItemCard_OpenCard_Tip>Open Rimfolk's card for this: what it is good for in this colony, its tags, the colony's stock and what waits on it, where it comes from, and how traders value it.</CC_ItemCard_OpenCard_Tip>
 
   <!-- What kind it is, and its worth (the head's quiet line). -->
   <CC_ItemCard_Kind_Medicine>Medicine, potency {POTENCY}</CC_ItemCard_Kind_Medicine>
@@ -214,5 +215,117 @@
   <CC_ItemCard_Cheapest>{TRADER}: {ASKS} of its worth</CC_ItemCard_Cheapest>
   <CC_ItemCard_Row_BestPay>Pays the most</CC_ItemCard_Row_BestPay>
   <CC_ItemCard_BestPay>{TRADER}: {PAYS} of its worth</CC_ItemCard_BestPay>
+
+  <!-- Step 2: materials (Items/ItemCardMaterials.cs). -->
+  <CC_ItemCard_Kind_Stuff>{NOUN}, things are made of it</CC_ItemCard_Kind_Stuff>
+  <CC_ItemCard_Sec_AsStuff>What it does to what is made of it</CC_ItemCard_Sec_AsStuff>
+  <CC_ItemCard_Sec_MadeOf>What the colony can make of it now</CC_ItemCard_Sec_MadeOf>
+  <CC_ItemCard_Sec_Sources>Where it comes from here</CC_ItemCard_Sec_Sources>
+  <CC_ItemCard_StuffKinds>Stuff of the kinds: {KINDS}.</CC_ItemCard_StuffKinds>
+  <CC_ItemCard_Stuff_ArmorSharp>Armour, sharp</CC_ItemCard_Stuff_ArmorSharp>
+  <CC_ItemCard_Stuff_ArmorBlunt>Armour, blunt</CC_ItemCard_Stuff_ArmorBlunt>
+  <CC_ItemCard_Stuff_ArmorHeat>Armour, heat</CC_ItemCard_Stuff_ArmorHeat>
+  <CC_ItemCard_Stuff_InsulationCold>Insulation, cold</CC_ItemCard_Stuff_InsulationCold>
+  <CC_ItemCard_Stuff_InsulationHeat>Insulation, heat</CC_ItemCard_Stuff_InsulationHeat>
+  <CC_ItemCard_Stuff_HitPoints>Hit points</CC_ItemCard_Stuff_HitPoints>
+  <CC_ItemCard_Stuff_Beauty>Beauty</CC_ItemCard_Stuff_Beauty>
+  <CC_ItemCard_Stuff_BeautyAdded>Beauty added</CC_ItemCard_Stuff_BeautyAdded>
+  <CC_ItemCard_Stuff_Flammability>Flammability</CC_ItemCard_Stuff_Flammability>
+  <CC_ItemCard_Stuff_MeleeSharp>Blades' blows</CC_ItemCard_Stuff_MeleeSharp>
+  <CC_ItemCard_Stuff_MeleeBlunt>Clubs' blows</CC_ItemCard_Stuff_MeleeBlunt>
+  <CC_ItemCard_Stuff_WorkToBuild>Work to build</CC_ItemCard_Stuff_WorkToBuild>
+  <CC_ItemCard_Stuff_WorkToMake>Work to make</CC_ItemCard_Stuff_WorkToMake>
+  <CC_ItemCard_Stuff_Worth>Worth a unit</CC_ItemCard_Stuff_Worth>
+  <CC_ItemCard_Stuff_Weight>Weight a unit</CC_ItemCard_Stuff_Weight>
+  <CC_ItemCard_Made_Buildings>Buildings, floors</CC_ItemCard_Made_Buildings>
+  <CC_ItemCard_Made_Apparel>Apparel</CC_ItemCard_Made_Apparel>
+  <CC_ItemCard_Made_Weapons>Weapons</CC_ItemCard_Made_Weapons>
+  <CC_ItemCard_Made_Others>Other things</CC_ItemCard_Made_Others>
+  <CC_ItemCard_MadeNow>{N}: {LIST}</CC_ItemCard_MadeNow>
+  <CC_ItemCard_MadeNothing>Nothing the colony can make now is made of it or with it.</CC_ItemCard_MadeNothing>
+  <CC_ItemCard_MadeLater>{N} more once researched; {RESEARCH} opens the most ({OPENS}).</CC_ItemCard_MadeLater>
+  <CC_ItemCard_MadeLaterNone>{N} more the colony can't make yet.</CC_ItemCard_MadeLaterNone>
+  <CC_ItemCard_Row_Blueprints>Blueprints</CC_ItemCard_Row_Blueprints>
+  <CC_ItemCard_Blueprints>The blueprints and frames still need {N}.</CC_ItemCard_Blueprints>
+  <CC_ItemCard_Row_Bills>Bills</CC_ItemCard_Row_Bills>
+  <CC_ItemCard_BillsNeed>{BILLS} bills take it; those with a count need {N} in all.</CC_ItemCard_BillsNeed>
+  <CC_ItemCard_BillsForever>{BILLS} bills take it, run on and on.</CC_ItemCard_BillsForever>
+  <CC_ItemCard_BillTakes>{RECIPE} at the {BENCH}: {BATCH} a batch ({REPEAT})</CC_ItemCard_BillTakes>
+  <CC_ItemCard_BillStarved>{RECIPE} at the {BENCH}: {BATCH} a batch, waiting for it</CC_ItemCard_BillStarved>
+  <CC_ItemCard_Row_Repairs>Repairs</CC_ItemCard_Row_Repairs>
+  <CC_ItemCard_Repairs>{N} machines here break down now and then, one about every {DAYS}; about {SEASON} components a season to mend them.</CC_ItemCard_Repairs>
+  <CC_ItemCard_Row_Fuel>Fuel</CC_ItemCard_Row_Fuel>
+  <CC_ItemCard_FuelBurns>The colony's {WHAT} burn about {ADAY} a day.</CC_ItemCard_FuelBurns>
+  <CC_ItemCard_FuelWhileUsed>The colony's {WHAT} burn it while they work.</CC_ItemCard_FuelWhileUsed>
+  <CC_ItemCard_FuelRecord>By the colony's record it uses about {ADAY} a day.</CC_ItemCard_FuelRecord>
+  <CC_ItemCard_FuelLasts>The stock lasts about {DAYS}.</CC_ItemCard_FuelLasts>
+  <CC_ItemCard_Row_Verdict>The reserve</CC_ItemCard_Row_Verdict>
+  <CC_ItemCard_MatShortPlans>Short by {N} for the blueprints and bills.</CC_ItemCard_MatShortPlans>
+  <CC_ItemCard_MatShortNeed>Short by {N} of the {NEED} the trade advice keeps as the need.</CC_ItemCard_MatShortNeed>
+  <CC_ItemCard_MatSpare>More than the {KEEP} the trade advice keeps: some could be sold.</CC_ItemCard_MatSpare>
+  <CC_ItemCard_MatEnough>Enough: the trade advice keeps {NEED} as the need.</CC_ItemCard_MatEnough>
+  <CC_ItemCard_MatNoReserve>The trade advice keeps no count of it.</CC_ItemCard_MatNoReserve>
+  <CC_ItemCard_FromRock>{N} {ROCK} on the map: about {YIELD} when mined.</CC_ItemCard_FromRock>
+  <CC_ItemCard_FromDeep>A deep drill brings it up where a ground-penetrating scanner finds it.</CC_ItemCard_FromDeep>
+  <CC_ItemCard_FromDeepFound>Deep under the map: {N} spots the scanner shows, about {COUNT} for a deep drill.</CC_ItemCard_FromDeepFound>
+  <CC_ItemCard_FromDeepNone>The scanner shows none of it deep under this map.</CC_ItemCard_FromDeepNone>
+  <CC_ItemCard_FromTrees>{N} {TREE} on the map: about {YIELD} if cut now.</CC_ItemCard_FromTrees>
+  <CC_ItemCard_FromShorn>{N} of the colony's animals give it when shorn.</CC_ItemCard_FromShorn>
+  <CC_ItemCard_FromAnimalsMake>{N} of the colony's animals make it now and then.</CC_ItemCard_FromAnimalsMake>
+  <CC_ItemCard_FromOwnLeather>{N} of the colony's animals would give about {YIELD} when butchered.</CC_ItemCard_FromOwnLeather>
+  <CC_ItemCard_FromWildLeather>{N} wild animals on the map give it when hunted and butchered.</CC_ItemCard_FromWildLeather>
+  <CC_ItemCard_FromAnimalsNone>Animals give it ({ANIMAL} among them); none here now.</CC_ItemCard_FromAnimalsNone>
+  <CC_ItemCard_FromDeconstruct>Taking down {N} of the colony's buildings made with it gives back about {BACK}.</CC_ItemCard_FromDeconstruct>
+  <CC_ItemCard_GoThing_Tip>Go to one.</CC_ItemCard_GoThing_Tip>
+
+  <!-- Step 2: art (Items/ItemCardArt.cs). -->
+  <CC_ItemCard_Kind_Art>Art</CC_ItemCard_Kind_Art>
+  <CC_ItemCard_OfStuff>of {STUFF}</CC_ItemCard_OfStuff>
+  <CC_ItemCard_Sec_Art>As art</CC_ItemCard_Sec_Art>
+  <CC_ItemCard_Sec_Story>Its story</CC_ItemCard_Sec_Story>
+  <CC_ItemCard_Sec_Room>Where it stands</CC_ItemCard_Sec_Room>
+  <CC_ItemCard_Sec_Rules>Who cares for it</CC_ItemCard_Sec_Rules>
+  <CC_ItemCard_Row_Beauty>Beauty</CC_ItemCard_Row_Beauty>
+  <CC_ItemCard_AtQuality>at {QUALITY} quality</CC_ItemCard_AtQuality>
+  <CC_ItemCard_Row_ByQuality>By quality</CC_ItemCard_Row_ByQuality>
+  <CC_ItemCard_Row_Material>Material</CC_ItemCard_Row_Material>
+  <CC_ItemCard_Row_Flammability>Flammability</CC_ItemCard_Row_Flammability>
+  <CC_ItemCard_Row_Title>Title</CC_ItemCard_Row_Title>
+  <CC_ItemCard_Row_Artist>Artist</CC_ItemCard_Row_Artist>
+  <CC_ItemCard_Row_Tale>The tale</CC_ItemCard_Row_Tale>
+  <CC_ItemCard_NoTale>No tale of its own: the artist's fancy.</CC_ItemCard_NoTale>
+  <CC_ItemCard_Row_Room>The room</CC_ItemCard_Row_Room>
+  <CC_ItemCard_RoomPlain>room</CC_ItemCard_RoomPlain>
+  <CC_ItemCard_Row_RoomBeauty>Its beauty</CC_ItemCard_Row_RoomBeauty>
+  <CC_ItemCard_WithWithout>{WITH} with it, {WITHOUT} without</CC_ItemCard_WithWithout>
+  <CC_ItemCard_Row_Impressive>Impressiveness</CC_ItemCard_Row_Impressive>
+  <CC_ItemCard_ImpressWithWithout>{WITH} ({STAGEWITH}) with it, {WITHOUT} ({STAGEWITHOUT}) without</CC_ItemCard_ImpressWithWithout>
+  <CC_ItemCard_RoomDoes_Bedroom>whoever sleeps here wakes to its impressiveness</CC_ItemCard_RoomDoes_Bedroom>
+  <CC_ItemCard_RoomDoes_Barracks>those who sleep here wake to its impressiveness</CC_ItemCard_RoomDoes_Barracks>
+  <CC_ItemCard_RoomDoes_DiningRoom>everyone who eats here feels its impressiveness</CC_ItemCard_RoomDoes_DiningRoom>
+  <CC_ItemCard_RoomDoes_RecRoom>recreation here is the better for its impressiveness</CC_ItemCard_RoomDoes_RecRoom>
+  <CC_ItemCard_RoomDoes_ThroneRoom>a noble's throne room, judged by its impressiveness</CC_ItemCard_RoomDoes_ThroneRoom>
+  <CC_ItemCard_RoomDoes_Hospital>patients here feel its impressiveness</CC_ItemCard_RoomDoes_Hospital>
+  <CC_ItemCard_RoomDoes_PrisonCell>the prisoner here feels its impressiveness</CC_ItemCard_RoomDoes_PrisonCell>
+  <CC_ItemCard_RoomDoes_PrisonBarracks>the prisoners here feel its impressiveness</CC_ItemCard_RoomDoes_PrisonBarracks>
+  <CC_ItemCard_RoomDoes_Other>its impressiveness gives no mood of its own</CC_ItemCard_RoomDoes_Other>
+  <CC_ItemCard_Outdoors>Outdoors: it lifts no room, only what passers-by see.</CC_ItemCard_Outdoors>
+  <CC_ItemCard_NotPlaced>Not placed: in storage it lifts nothing.</CC_ItemCard_NotPlaced>
+  <CC_ItemCard_RoomWouldRise>{ROOM}: {FROM} now, {TO} with it (+{GAIN})</CC_ItemCard_RoomWouldRise>
+  <CC_ItemCard_RoomWouldStay>{ROOM}: {FROM} now, the same with it (+{GAIN})</CC_ItemCard_RoomWouldStay>
+  <CC_ItemCard_GoRoom_Tip>Go to the room.</CC_ItemCard_GoRoom_Tip>
+  <CC_ItemCard_KeepIt>Keep it: worth {WORTH} to a trader, but the {ROOM} would fall from {WITH} to {WITHOUT} without it.</CC_ItemCard_KeepIt>
+  <CC_ItemCard_SellFree>Worth {WORTH} to a trader; the {ROOM} would stay {WITH} without it, {DROP} less impressive.</CC_ItemCard_SellFree>
+  <CC_ItemCard_SellBetter>Worth {WORTH} to a trader, and the {ROOM} would be {GAIN} more impressive without it.</CC_ItemCard_SellBetter>
+  <CC_ItemCard_PlaceIt>Place it in the {ROOM}: it would go from {FROM} to {TO}. Worth {WORTH} to a trader.</CC_ItemCard_PlaceIt>
+  <CC_ItemCard_SellIt>Worth {WORTH} to a trader; no room of the colony's would rise a stage with it.</CC_ItemCard_SellIt>
+  <CC_ItemCard_ThroneRoom>throne room</CC_ItemCard_ThroneRoom>
+  <CC_ItemCard_Bedroom>bedroom</CC_ItemCard_Bedroom>
+  <CC_ItemCard_RuleNobleNeedsIt>{WHO}'s {ROOM} needs impressiveness {NEED}: {WITH} with it, {WITHOUT} without. Without it the title's demand isn't met.</CC_ItemCard_RuleNobleNeedsIt>
+  <CC_ItemCard_RuleNobleMet>{WHO}'s {ROOM} needs impressiveness {NEED}: {WITH} with it, {WITHOUT} without.</CC_ItemCard_RuleNobleMet>
+  <CC_ItemCard_RuleNobleShort>{WHO}'s {ROOM} needs impressiveness {NEED}: only {WITH} even with it.</CC_ItemCard_RuleNobleShort>
+  <CC_ItemCard_RuleFaith>{FAITH} holds on art: {VIEWS}.</CC_ItemCard_RuleFaith>
+  <CC_ItemCard_FaithsCare>faiths at home with precepts on art: {FAITHS}</CC_ItemCard_FaithsCare>
+  <CC_ItemCard_RuleMeditation>A meditation focus: {N} psycasters at home meditate on art.</CC_ItemCard_RuleMeditation>
 
 </LanguageData>

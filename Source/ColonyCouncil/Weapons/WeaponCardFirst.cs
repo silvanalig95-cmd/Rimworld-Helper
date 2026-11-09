@@ -81,8 +81,8 @@ namespace ColonyCouncil
 
     /// <summary>
     /// A new info card about a weapon opens as Rimfolk's weapon card (WeaponCardFirst.Swapped), one about apparel as Rimfolk's
-    /// apparel card (ApparelCardFirst.Swapped), one about food, a drink, a drug or medicine as Rimfolk's item card
-    /// (Items/ItemCardFirst.cs); every other window is added as before.
+    /// apparel card (ApparelCardFirst.Swapped), one about food, a drink, a drug, medicine, a material or a work of art as
+    /// Rimfolk's item card (Items/ItemCardFirst.cs); every other window is added as before.
     /// </summary>
     [HarmonyPatch(typeof(WindowStack), nameof(WindowStack.Add))]
     public static class Patch_WeaponCardFirst

@@ -31,6 +31,20 @@ When you load a save after an update, a letter lists the newest round once. The 
     <rounds>
 
       <li>
+        <version>0.200.0</version>
+        <date>9 November 2026</date>
+        <title>An item card for materials and art</title>
+        <points>
+          <li>The info button on a material (steel, wood, cloth, leather, stone blocks, components, chemfuel, silver and the like, your mods' too) or a piece of art now opens Rimfolk's item card, with a line in plain words on what it is good for in your colony.</li>
+          <li>Materials compare what they do to things made of them with steel and wood or cloth and leather: armour, warmth, hit points, beauty, flammability, work and weight.</li>
+          <li>The card lists what the colony can make of a material now, what blueprints, bills and repairs wait on it against what you hold, and how many days a fuel lasts.</li>
+          <li>It shows where a material comes from on your map: rocks with a click to one, a deep drill, trees, crops, animals and the benches that make it.</li>
+          <li>Art shows its beauty, its story and artist, what it does for the room it stands in and the room without it, the rooms it would lift most when it sits in storage, and what a noble or a faith thinks of it.</li>
+          <li>New tags sum materials and art up with their reasons, such as Strong armour, Fireproof, Burns, Heavy, Explodes in a fire, Lifts the room or Masterwork.</li>
+        </points>
+      </li>
+
+      <li>
         <version>0.199.0</version>
         <date>9 November 2026</date>
         <title>Weapons and apparel in the inventory panel</title>

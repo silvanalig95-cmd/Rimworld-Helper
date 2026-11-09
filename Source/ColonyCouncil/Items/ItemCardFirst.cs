@@ -8,8 +8,8 @@ namespace ColonyCouncil
 {
     /// <summary>
     /// "Open Rimfolk's item card first" (the player, 9 November 2026: "also like item card for everything"): a new game info
-    /// card about food, a drink, a drug or medicine, the thing itself or its kind, opens as Rimfolk's item card instead,
-    /// wherever it is opened from. The weapons' one hook on the window stack (Patch_WeaponCardFirst) asks here; the item
+    /// card about food, a drink, a drug, medicine (step 1), a material or a work of art held, minified or placed (step 2), the
+    /// thing itself or its kind, opens as Rimfolk's item card instead, wherever it is opened from. The weapons' one hook on the window stack (Patch_WeaponCardFirst) asks here; the item
     /// card's kinds are never weapons or apparel, so the three cards never meet. What stays the game's: a card opened from
     /// inside the game's info card (its links and its back button move within it, WeaponCardFirst.insideGameCard), the game's
     /// card asked for from Rimfolk's card ("All the game's stats"), every other kind of thing, and everything with the setting
@@ -40,7 +40,8 @@ namespace ColonyCouncil
 
         /// <summary>
         /// A new game info card about to open: true when it opened as Rimfolk's item card instead (the game's isn't added).
-        /// Only a card about food, a drink, a drug or medicine, while playing, and not navigation inside the game's own card.
+        /// Only a card about food, a drink, a drug, medicine, a material or a work of art, while playing, and not navigation
+        /// inside the game's own card.
         /// </summary>
         public static bool Swapped(Dialog_InfoCard card)
         {
@@ -49,7 +50,8 @@ namespace ColonyCouncil
             var thing = CardThing(card);
             if (thing != null)
             {
-                if (thing is Pawn || !ItemCardLive.Covers(thing.def)) return false;
+                // A thing in hand by its own kind: a minified piece of art is the piece inside, a full grave's art counts.
+                if (thing is Pawn || !ItemCardLive.Covers(thing)) return false;
                 ThingCardWindow.Open(thing);
                 return true;
             }
@@ -81,7 +83,7 @@ namespace ColonyCouncil
             var thing = CardThing(card);
             if (thing is Pawn) return;
             var def = thing?.def ?? CardDef(card) as ThingDef;
-            if (!ItemCardLive.Covers(def)) return;
+            if (thing != null ? !ItemCardLive.Covers(thing) : !ItemCardLive.Covers(def)) return;
             string label = "CC_ItemCard_OpenCard".Translate();
             Text.Font = GameFont.Small;
             float w = Mathf.Min(260f, Text.CalcSize(label).x + 54f);

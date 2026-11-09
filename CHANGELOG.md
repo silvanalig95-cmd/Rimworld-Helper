@@ -5,6 +5,17 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## An item card for materials and art
+
+*9 November 2026, version 0.200.0*
+
+- The info button on a material (steel, wood, cloth, leather, stone blocks, components, chemfuel, silver and the like, your mods' too) or a piece of art now opens Rimfolk's item card, with a line in plain words on what it is good for in your colony.
+- Materials compare what they do to things made of them with steel and wood or cloth and leather: armour, warmth, hit points, beauty, flammability, work and weight.
+- The card lists what the colony can make of a material now, what blueprints, bills and repairs wait on it against what you hold, and how many days a fuel lasts.
+- It shows where a material comes from on your map: rocks with a click to one, a deep drill, trees, crops, animals and the benches that make it.
+- Art shows its beauty, its story and artist, what it does for the room it stands in and the room without it, the rooms it would lift most when it sits in storage, and what a noble or a faith thinks of it.
+- New tags sum materials and art up with their reasons, such as Strong armour, Fireproof, Burns, Heavy, Explodes in a fire, Lifts the room or Masterwork.
+
 ## Weapons and apparel in the inventory panel
 
 *9 November 2026, version 0.199.0*

@@ -62,35 +62,132 @@ namespace ColonyCouncil
         public readonly List<(string label, string value)> trade = new List<(string, string)>();
         public readonly List<string> market = new List<string>();
 
+        // ---------------- Materials (step 2) ----------------
+
+        /// <summary>What it does to what is made of it against what it is compared with: the columns' heads (it, then the others) and the rows.</summary>
+        public readonly List<string> stuffHeads = new List<string>();
+        public readonly List<StuffRow> stuffTable = new List<StuffRow>();
+        public readonly List<string> stuffLabels = new List<string>();
+        public string stuffKinds = "";
+        /// <summary>What the colony can make of it now, by kind (the best first), and what research would open more.</summary>
+        public readonly List<(string label, string value)> madeOf = new List<(string, string)>();
+        public string madeLater;
+        /// <summary>The colony's stock and what waits on it (blueprints, repairs, fuel, the trade advice's verdict), and the bills that take it.</summary>
+        public readonly List<(string label, string value)> demand = new List<(string, string)>();
+        public readonly List<ItemGoLine> bills = new List<ItemGoLine>();
+        /// <summary>Where it comes from here: deposits, a deep drill, trees and crops, animals, deconstruction, the recipes that make it.</summary>
+        public readonly List<ItemGoLine> sources = new List<ItemGoLine>();
+
+        // ---------------- Art (step 2) ----------------
+
+        /// <summary>The piece: beauty, by quality, worth, material, the artist.</summary>
+        public readonly List<(string label, string value)> art = new List<(string, string)>();
+        /// <summary>Its story: the title, the tale and its date, and the game's own description of the image.</summary>
+        public readonly List<(string label, string value)> story = new List<(string, string)>();
+        public string storyText;
+        /// <summary>Where it stands and what it does there, with it and without it; the keep-or-sell verdict.</summary>
+        public readonly List<(string label, string value)> room = new List<(string, string)>();
+        public string keepSell = "";
+        /// <summary>Not placed (or outdoors): the colony's rooms it would lift most, a click going to each.</summary>
+        public readonly List<ItemGoLine> rooms = new List<ItemGoLine>();
+        /// <summary>The rules that care: a noble's room, a faith's precepts, meditation.</summary>
+        public readonly List<string> rules = new List<string>();
+
         /// <summary>The colony's best cook and the chance in a meal of theirs (a kind of meal), and how many at home are addicted to it.</summary>
         internal string cookPoison;
         internal int addicted;
         internal float liveAt = -999f, colonyAt = -999f;
+        /// <summary>The thing the card reads: the piece inside a minified one, else the thing itself.</summary>
+        internal Thing inner;
+        /// <summary>A work of art's tale and its beauty by quality, read once a card.</summary>
+        internal bool storyRead;
+        internal string byQuality;
     }
 
     /// <summary>
-    /// The item card's reading of the game (Rimfolk's look, stage 3, point 5, step 1: food, drink, drugs and medicine). A
-    /// kind's own numbers are read once (its nutrition and rot, its taste, its drug's chemistry and effects, its potency,
-    /// Rimfolk's roles for it, the recipes and crops that make it, the traders who deal in it) and kept for the session;
-    /// the thing in hand and the colony are read when a card opens and while it stays open, never otherwise. Rules and
-    /// words in <see cref="ItemCardMath"/>; who may eat or take what in Wishes/Beliefs.cs; medicine by what is treated in
+    /// The item card's reading of the game (Rimfolk's look, stage 3, point 5: step 1 food, drink, drugs and medicine, step 2
+    /// materials and art, in Items/ItemCardMaterials.cs and Items/ItemCardArt.cs). A kind's own numbers are read once (its
+    /// nutrition and rot, its taste, its drug's chemistry and effects, its potency, a material's stuff numbers and what is
+    /// made of it, Rimfolk's roles for it, the recipes and crops that make it, the traders who deal in it) and kept for the
+    /// session; the thing in hand and the colony are read when a card opens and while it stays open, never otherwise. Rules
+    /// and words in <see cref="ItemCardMath"/>; who may eat or take what in Wishes/Beliefs.cs; medicine by what is treated in
     /// Health/MedicineChoiceMath.cs; the colony's reserves in Trade/TradeAdviceMath.cs.
     /// </summary>
-    public static class ItemCardLive
+    public static partial class ItemCardLive
     {
         /// <summary>The live parts are read at most this often (real seconds), the colony's at most this often.</summary>
         public const float LiveEvery = 1f, ColonyEvery = 10f;
 
-        /// <summary>The card's kind of a def (None: the game's card opens). Weapons, apparel, corpses, buildings and pawns are never its.</summary>
-        public static ItemKind KindOf(ThingDef d)
+        /// <summary>The card's kind of a def (None: the game's card opens). Weapons, apparel, corpses and pawns are never its; a building only as art.</summary>
+        public static ItemKind KindOf(ThingDef d) => KindOf(d, null);
+
+        /// <summary>The card's kind of a def, or of a thing in hand (a full grave's art counts; a minified piece is read as the piece inside).</summary>
+        public static ItemKind KindOf(ThingDef d, Thing t)
         {
-            if (d == null || d.category != ThingCategory.Item || d.IsCorpse || d.IsWeapon || d.IsApparel || d.race != null) return ItemKind.None;
-            if (!d.IsMedicine && d.ingestible == null) return ItemKind.None;
-            bool fluid = d.ingestible != null && (d.ingestible.foodType & (FoodTypeFlags.Fluid | FoodTypeFlags.Liquor)) != 0;
-            return ItemCardMath.KindOf(d.IsMedicine, d.IsDrug, fluid, d.IsNutritionGivingIngestible);
+            if (d == null || d.IsCorpse || d.IsWeapon || d.IsApparel || d.race != null || d.IsBlueprint || d.IsFrame) return ItemKind.None;
+            if (d.category != ThingCategory.Item && d.category != ThingCategory.Building) return ItemKind.None;
+            if (typeof(MinifiedThing).IsAssignableFrom(d.thingClass)) return ItemKind.None;
+            return ItemCardMath.KindOf(SortOf(d, t));
+        }
+
+        /// <summary>The card's kind of a thing in hand: a minified piece is the piece inside.</summary>
+        public static ItemKind KindOf(Thing t)
+        {
+            var inner = t?.GetInnerIfMinified();
+            return inner == null ? ItemKind.None : KindOf(inner.def, inner);
         }
 
         public static bool Covers(ThingDef d) => KindOf(d) != ItemKind.None;
+
+        public static bool Covers(Thing t) => KindOf(t) != ItemKind.None;
+
+        /// <summary>What a def is, for its kind (ItemCardMath.KindOf): step 1's food, drink, drugs and medicine, step 2's art and materials.</summary>
+        private static ItemSort SortOf(ThingDef d, Thing t)
+        {
+            var s = new ItemSort();
+            if (d.category == ThingCategory.Item && (d.IsMedicine || d.ingestible != null))
+            {
+                s.Medicine = d.IsMedicine;
+                s.Drug = d.IsDrug;
+                s.Fluid = d.ingestible != null && (d.ingestible.foodType & (FoodTypeFlags.Fluid | FoodTypeFlags.Liquor)) != 0;
+                s.Feeds = d.IsNutritionGivingIngestible;
+            }
+            var art = d.GetCompProperties<CompProperties_Art>();
+            if (art != null)
+            {
+                bool full = false;
+                if (art.mustBeFullGrave)
+                    try
+                    {
+                        full = t is Building_CorpseCasket g && g.HasCorpse && t.TryGetComp<CompArt>()?.Active == true;
+                    }
+                    catch
+                    {
+                        full = false;
+                    }
+                s.Art = !art.mustBeFullGrave || full;
+            }
+            if (d.category == ThingCategory.Item)
+            {
+                s.Stuff = d.IsStuff;
+                s.Resource = d.thingCategories != null && (d.IsWithinCategory(ThingCategoryDefOf.ResourcesRaw) || d.IsWithinCategory(ThingCategoryDefOf.Manufactured)
+                                                          || d.IsWithinCategory(ThingCategoryDefOf.Chunks) || d.IsWithinCategory(ThingCategoryDefOf.StoneChunks));
+                s.ToUse = ToUse(d);
+            }
+            return s;
+        }
+
+        /// <summary>Something to use, read, install or fire rather than build with: step 3's (a shell, a book, a techprint, a trainer, a genepack, a body part, an unfinished thing).</summary>
+        private static bool ToUse(ThingDef d)
+        {
+            if (d.IsShell || d.isTechHediff || d.isUnfinishedThing) return true;
+            if (d.IsWithinCategory(ThingCategoryDefOf.BodyParts) || d.IsWithinCategory(ThingCategoryDefOf.Techprints) || d.IsWithinCategory(ThingCategoryDefOf.Neurotrainers)) return true;
+            if (d.comps != null)
+                foreach (var c in d.comps)
+                    if (c is CompProperties_Usable || c is CompProperties_Techprint) return true;
+            string cls = d.thingClass?.Name ?? "";
+            return cls == "Book" || cls == "Genepack" || cls == "Xenogerm" || cls == "HumanEmbryo" || cls == "HumanOvum" || typeof(Book).IsAssignableFrom(d.thingClass);
+        }
 
         private static string W(string key, params NamedArgument[] args) => key.Translate(args).Resolve();
 
@@ -120,16 +217,22 @@ namespace ColonyCouncil
             public readonly List<ThingDef> crops = new List<ThingDef>();
             /// <summary>The kinds of trader who deal in it, with the share of its worth they ask when the colony buys and pay when it sells (the game's price types).</summary>
             public readonly List<(string label, float asks, float pays)> traders = new List<(string, float, float)>();
+            /// <summary>A material's own numbers and what is made of it, or a work of art's (step 2: Items/ItemCardMaterials.cs, Items/ItemCardArt.cs).</summary>
+            public MatPart mat;
+            public ArtPart art;
         }
 
         private static readonly Dictionary<ThingDef, DefPart> parts = new Dictionary<ThingDef, DefPart>();
         private static Dictionary<HediffDef, List<ThoughtDef>> hediffThoughts;
 
-        private static DefPart PartOf(ThingDef d)
+        private static DefPart PartOf(ThingDef d) => PartOf(d, KindOf(d));
+
+        /// <summary>A kind's own numbers, read once for the kind the card shows it as (a full grave is art though its kind on its own isn't).</summary>
+        private static DefPart PartOf(ThingDef d, ItemKind kind)
         {
-            if (parts.TryGetValue(d, out var p)) return p;
+            if (parts.TryGetValue(d, out var p) && p.kind == kind) return p;
             if (parts.Count > 300) parts.Clear();
-            p = new DefPart { def = d, kind = KindOf(d) };
+            p = new DefPart { def = d, kind = kind };
             try
             {
                 Read(p);
@@ -211,6 +314,8 @@ namespace ColonyCouncil
             p.toast = ToastDrinks.IsToastDrink(d);
             Makers(p);
             Traders(p);
+            if (p.kind == ItemKind.Material) ReadMaterial(p);
+            else if (p.kind == ItemKind.Art) ReadArt(p);
         }
 
         /// <summary>A drug's effects: each hediff its outcomes give (its stage at one dose, the game's words for it, how long it lasts, the mood of its thought), its tolerance and the needs it moves.</summary>
@@ -388,9 +493,11 @@ namespace ColonyCouncil
         /// <summary>A card's model for a thing in hand or a kind, on the map it is opened on (a home map, else no colony to speak of).</summary>
         public static ItemCardModel Build(Thing thing, ThingDef def, ThingDef stuff, Map map)
         {
-            var m = new ItemCardModel { thing = thing, def = thing?.def ?? def, stuff = thing?.Stuff ?? stuff };
+            // A minified piece of art is read as the piece inside it; the card's picture stays the thing as it lies.
+            var inner = thing?.GetInnerIfMinified();
+            var m = new ItemCardModel { thing = thing, inner = inner, def = inner?.def ?? def, stuff = inner != null ? inner.Stuff : stuff };
             if (m.def == null) return m;
-            m.kind = KindOf(m.def);
+            m.kind = inner != null ? KindOf(inner.def, inner) : KindOf(m.def);
             var home = thing != null && thing.MapHeld != null ? thing.MapHeld : map;
             m.map = home != null && home.IsPlayerHome ? home : null;
             Refresh(m, true);
@@ -408,15 +515,22 @@ namespace ColonyCouncil
             try
             {
                 // The thing's own facts first (the colony's reading asks what kind it is), then the colony's, then the lines.
-                var p = PartOf(m.def);
+                var p = PartOf(m.def, m.kind);
                 m.liveAt = now;
+                // A material's or a piece's own facts first: the kind's line in the head reads them.
+                if (m.kind == ItemKind.Material) LiveMaterial(m, p);
+                else if (m.kind == ItemKind.Art) LiveArt(m, p);
                 Live(m, p);
                 if (colony)
                 {
                     m.colonyAt = now;
                     Colony(m, p);
+                    if (m.kind == ItemKind.Material) ColonyMaterial(m, p);
+                    else if (m.kind == ItemKind.Art) ColonyArt(m, p);
                 }
                 Rows(m, p);
+                if (m.kind == ItemKind.Material) RowsMaterial(m, p);
+                else if (m.kind == ItemKind.Art) RowsArt(m, p);
                 m.tags = ItemCardMath.Tags(m.facts);
                 m.plain = ItemCardMath.Plain(m.facts);
             }
@@ -436,7 +550,7 @@ namespace ColonyCouncil
             f.Kind = p.kind;
             f.InHand = t != null;
             f.Count = t?.stackCount ?? 1;
-            f.Value = t != null ? t.MarketValue : p.value;
+            f.Value = m.inner != null ? m.inner.MarketValue : t != null ? t.MarketValue : p.value;
             f.Mass = p.mass;
             f.Tradeable = p.tradeable;
             f.Nutrition = p.nutrition;
@@ -515,6 +629,12 @@ namespace ColonyCouncil
                 case ItemKind.Drug:
                     kind = W(p.drugKind == 1 ? "CC_ItemCard_Kind_DrugMedical" : p.drugKind == 3 ? "CC_ItemCard_Kind_DrugHard" : "CC_ItemCard_Kind_DrugSocial");
                     break;
+                case ItemKind.Material:
+                    kind = MaterialKindWords(m, p);
+                    break;
+                case ItemKind.Art:
+                    kind = ArtKindWords(m, p);
+                    break;
                 default:
                     kind = !p.humanEdible ? W("CC_ItemCard_Kind_Feed")
                         : p.meal ? W("CC_ItemCard_Kind_Meal", W(p.pref >= ThingRolesMath.MealLavish ? "CC_ItemCard_Pref_Lavish" : p.pref == ThingRolesMath.MealFine ? "CC_ItemCard_Pref_Fine"
@@ -524,7 +644,7 @@ namespace ColonyCouncil
             }
             string worth = m.thing != null && m.thing.stackCount > 1
                 ? W("CC_ItemCard_WorthStack", (m.thing.MarketValue).ToStringMoney().Named("EACH"), (m.thing.MarketValue * m.thing.stackCount).ToStringMoney().Named("ALL"))
-                : W("CC_ItemCard_Worth", (m.thing?.MarketValue ?? p.value).ToStringMoney().Named("EACH"));
+                : W("CC_ItemCard_Worth", m.facts.Value.ToStringMoney().Named("EACH"));
             return kind + " · " + worth;
         }
 
@@ -665,7 +785,7 @@ namespace ColonyCouncil
                 }
                 if (!open) continue;
                 f.Cookable = true;
-                var users = r.AllRecipeUsers.ToList();
+                var users = Avail.RecipeUsers(r).ToList();
                 var bench = users.FirstOrDefault(u => map != null && map.listerBuildings.AllBuildingsColonistOfDef(u).Any()) ?? users.FirstOrDefault(u => u.IsResearchFinished) ?? users.FirstOrDefault();
                 f.CookAt = bench?.label ?? "";
                 if (map == null || bench != null && map.listerBuildings.AllBuildingsColonistOfDef(bench).Any()) break;
@@ -686,8 +806,9 @@ namespace ColonyCouncil
                 {
                     f.ColdStore = true;
                 }
-                Stock(m, p, people.Count);
-                Making(m, p);
+                // Materials and art have their own stock and demand (ColonyMaterial, ColonyArt); a material's makers are among its sources.
+                if (f.Kind != ItemKind.Material && f.Kind != ItemKind.Art) Stock(m, p, people.Count);
+                if (f.Kind != ItemKind.Art) Making(m, p);
             }
             Trade(m, p);
         }
@@ -1059,7 +1180,7 @@ namespace ColonyCouncil
                     continue;
                 }
                 bool any = false;
-                foreach (var benchDef in r.AllRecipeUsers)
+                foreach (var benchDef in Avail.RecipeUsers(r))
                 {
                     foreach (var b in map.listerBuildings.AllBuildingsColonistOfDef(benchDef).OfType<Building_WorkTable>())
                     {
@@ -1077,7 +1198,7 @@ namespace ColonyCouncil
                     if (m.making.Count >= 6) break;
                 }
                 if (any) continue;
-                var free = r.AllRecipeUsers.SelectMany(u => map.listerBuildings.AllBuildingsColonistOfDef(u)).OfType<Building_WorkTable>().FirstOrDefault();
+                var free = Avail.RecipeUsers(r).SelectMany(u => map.listerBuildings.AllBuildingsColonistOfDef(u)).OfType<Building_WorkTable>().FirstOrDefault();
                 if (free != null)
                     m.making.Add(new ItemGoLine
                     {
@@ -1086,7 +1207,7 @@ namespace ColonyCouncil
                 else
                     m.making.Add(new ItemGoLine
                     {
-                        text = W("CC_ItemCard_MakeNoBench", r.LabelCap.Named("RECIPE"), Find.ActiveLanguageWorker.WithIndefiniteArticle(r.AllRecipeUsers.FirstOrDefault()?.label ?? "?").Named("BENCH")), tone = 0
+                        text = W("CC_ItemCard_MakeNoBench", r.LabelCap.Named("RECIPE"), Find.ActiveLanguageWorker.WithIndefiniteArticle(Avail.RecipeUsers(r).FirstOrDefault()?.label ?? "?").Named("BENCH")), tone = 0
                     });
             }
             foreach (var crop in p.crops)
