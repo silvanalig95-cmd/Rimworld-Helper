@@ -5,6 +5,13 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## Foraging leaves the bees alone
+
+*9 November 2026, version 0.191.2*
+
+- Foraging days and the foraging decree now mark only wild plants whose harvest is food or medicine, such as berries, mushrooms, agave and healroot.
+- Trees with a wild beehive, and other plants harvested for something you can't eat or treat with, are left as they are.
+
 ## Colony news only on days that matter
 
 *9 November 2026, version 0.191.1*

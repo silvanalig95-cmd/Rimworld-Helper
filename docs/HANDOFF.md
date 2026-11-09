@@ -12,6 +12,11 @@ tree at once, alongside whatever runs. Each piece is merged as its own release, 
 
 ## State (5 November 2026)
 
+- 0.191.2, foraging leaves the bees alone (9 November 2026, the player: "i think the foraging decree also forages beehive
+  trees ... any bee related matters shouldn't be involved as these don't immedieatlly generate food"). Alpha Bees' trees
+  with a wild hive are plants harvested for a hive with the `Standard` harvest tag, and the game's `IsTree` holds only for
+  wood, so `YearFour.Forage` marked them. It now takes only plants whose harvest is food (`IsNutritionGivingIngestible`)
+  or medicine.
 - 0.191.1, the colony news only on days that matter (9 November 2026, the player: "the colonist news pop-up should only
   appear if there's something unusual, important, dangerous or requiring my action. the other information should just be
   kept in the journal/log if it's a day without anythign important"). The evening's digest (`NewsComponent.SendNow`)

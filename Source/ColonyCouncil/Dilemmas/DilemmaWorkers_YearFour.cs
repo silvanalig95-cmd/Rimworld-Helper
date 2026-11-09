@@ -196,7 +196,13 @@ namespace ColonyCouncil
 
         // ---------------- Wild plants ----------------
 
-        /// <summary>Wild plants ripe for picking (berries, wild healroot, agave, mushrooms) within reach of the colony, outside its zones.</summary>
+        /// <summary>
+        /// Wild plants ripe for picking (berries, wild healroot, agave, mushrooms) within reach of the colony, outside its zones:
+        /// only those whose harvest is food or medicine. The game counts a plant as a tree only when it yields wood, so Alpha
+        /// Bees' trees with a wild hive (and any plant harvested for something not eaten or used to treat) were marked too;
+        /// the player, 9 November 2026: "any bee related matters shouldn't be involved as these don't immedieatlly generate
+        /// food".
+        /// </summary>
         public static List<Plant> Forage(Map map, int count)
         {
             var center = TemplatePlanner.ColonyCenter(map);
@@ -205,7 +211,8 @@ namespace ColonyCouncil
             return map.listerThings.ThingsInGroup(ThingRequestGroup.HarvestablePlant).OfType<Plant>()
                 .Where(p => p.Spawned && !p.def.plant.IsTree && p.HarvestableNow && p.def.plant.harvestedThingDef != null && p.def.plant.harvestedThingDef != ThingDefOf.WoodLog
                             && p.Position.GetZone(map) == null && p.Position.DistanceToSquared(center) <= reach && dm.DesignationOn(p) == null && !p.Position.Fogged(map)
-                            && !p.IsForbidden(Faction.OfPlayer) && !p.def.plant.harvestedThingDef.IsDrug)
+                            && !p.IsForbidden(Faction.OfPlayer) && !p.def.plant.harvestedThingDef.IsDrug
+                            && (p.def.plant.harvestedThingDef.IsNutritionGivingIngestible || p.def.plant.harvestedThingDef.IsMedicine))
                 .OrderBy(p => p.Position.DistanceToSquared(center)).Take(Mathf.Max(0, count)).ToList();
         }
 

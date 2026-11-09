@@ -31,6 +31,16 @@ When you load a save after an update, a letter lists the newest round once. The 
     <rounds>
 
       <li>
+        <version>0.191.2</version>
+        <date>9 November 2026</date>
+        <title>Foraging leaves the bees alone</title>
+        <points>
+          <li>Foraging days and the foraging decree now mark only wild plants whose harvest is food or medicine, such as berries, mushrooms, agave and healroot.</li>
+          <li>Trees with a wild beehive, and other plants harvested for something you can't eat or treat with, are left as they are.</li>
+        </points>
+      </li>
+
+      <li>
         <version>0.191.1</version>
         <date>9 November 2026</date>
         <title>Colony news only on days that matter</title>
