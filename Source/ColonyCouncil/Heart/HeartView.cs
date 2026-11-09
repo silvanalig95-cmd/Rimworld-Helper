@@ -678,7 +678,7 @@ namespace ColonyCouncil
         /// now, what would help (with its buttons), and the good side's line. Nothing when the feature is off or they have no
         /// heart. With folds, a click on the heading folds it.
         /// </summary>
-        public static float DrawHeart(Pawn p, float y, float w, Folds folds = null)
+        public static float DrawHeart(Pawn p, float y, float w, Folds folds = null, bool summaryAbove = false)
         {
             var h = Heart.ForView(p);
             if (h == null) return y;
@@ -686,6 +686,7 @@ namespace ColonyCouncil
             if (!open) return y + 4f;
             if (!h.evaluated) return y + UiKit.Paragraph(0f, y, w, "CC_Heart_NotYet".Translate(), MoodView.Faint, GameFont.Tiny) + 8f;
             var m = ModelFor(p, h);
+            if (summaryAbove) return DrawHeartDetail(m, y, w);
             // Strain and the good side as meters, the same as the tab's summary (the day off's place is up there).
             y += HeartMeter.Draw(p, h, 0f, y, w, false);
             y += UiKit.Paragraph(0f, y, w, m.bandDesc, MoodView.Faint, GameFont.Tiny) + 2f;
@@ -712,6 +713,24 @@ namespace ColonyCouncil
                 if (!m.goodLine.NullOrEmpty()) y += UiKit.Paragraph(0f, y, w, m.goodLine, MoodView.Faint, GameFont.Tiny) + 2f;
                 if (m.doingGood != null) y += UiKit.Paragraph(0f, y, w, m.doingGood, GoodColor, GameFont.Tiny) + 2f;
             }
+            return y + 6f;
+        }
+
+        /// <summary>
+        /// The heart's section under the Mood tab's summary (Moods/MoodGlance.cs), which already shows the meters, what each
+        /// side does to them now, time off and what would help with its buttons: here only what the summary leaves out, what
+        /// built strain lately and what eased it, the weight under it, who close wore on or lifted them, and what filled the
+        /// good side, so nothing is said twice (the player, 9 November 2026: "the heart information is now essentially listed
+        /// twice, there should be no redundancy if there's no good reason for it").
+        /// </summary>
+        private static float DrawHeartDetail(PawnModel m, float y, float w)
+        {
+            y += UiKit.Paragraph(0f, y, w, m.built, Color.white, GameFont.Tiny) + 2f;
+            if (m.eased != null) y += UiKit.Paragraph(0f, y, w, m.eased, MoodView.Faint, GameFont.Tiny) + 2f;
+            if (m.weight != null) y += UiKit.Paragraph(0f, y, w, m.weight, MoodView.Faint, GameFont.Tiny) + 2f;
+            if (m.spread != null) y += UiKit.Paragraph(0f, y, w, m.spread, MoodView.Faint, GameFont.Tiny) + 2f;
+            if (m.goodLabel != null && !m.goodLine.NullOrEmpty())
+                y += 2f + UiKit.Paragraph(0f, y, w, m.goodLine, MoodView.Faint, GameFont.Tiny) + 2f;
             return y + 6f;
         }
 

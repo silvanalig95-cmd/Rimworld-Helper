@@ -5,6 +5,13 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## The heart said once on the Mood tab
+
+*9 November 2026, version 0.188.1*
+
+- The Heart section under the Mood tab's summary no longer repeats the bars, what the band does to them, the advice or the day off; those stay at the top.
+- It now holds only what the top leaves out: what built strain lately and what eased it, the weight under it, who close wore on them or lifted them, and what filled the good side.
+
 ## Strain and the good side as bars on the Mood tab
 
 *9 November 2026, version 0.188.0*

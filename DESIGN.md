@@ -1057,6 +1057,11 @@ names reach the lines as tags (`group:`, `grouprole:`, `rep:`), and the shared p
 - **Off means off.** With the setting off nothing new is said or kept, the old circles come back at once, talks under
   way stop, and the page shows nature alone; old saves and removed defs load (records of missing defs are dropped).
 
+- **Said once** (0.188.1, the player: "there should be no redundancy if there's no good reason for it"). Under the
+  summary the Heart section adds only what the summary leaves out: what built strain lately and what eased it, the weight
+  under it, who close wore on or lifted them, and what filled the good side (`HeartView.DrawHeartDetail`). The meters,
+  the band's effect lines, time off and the advice are the summary's alone.
+
 ### Character: nature, marks and the character page
 A colonist's character is eight sides from -100 to 100 (`Persona/`). Nature is worked out from the game (traits through
 `PersonaNatureDef`s, the Social skill, age, a stable personal lean) and never saved; what happened to them is (lasting

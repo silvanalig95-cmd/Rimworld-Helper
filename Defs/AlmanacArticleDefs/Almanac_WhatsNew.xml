@@ -31,6 +31,16 @@ When you load a save after an update, a letter lists the newest round once. The 
     <rounds>
 
       <li>
+        <version>0.188.1</version>
+        <date>9 November 2026</date>
+        <title>The heart said once on the Mood tab</title>
+        <points>
+          <li>The Heart section under the Mood tab's summary no longer repeats the bars, what the band does to them, the advice or the day off; those stay at the top.</li>
+          <li>It now holds only what the top leaves out: what built strain lately and what eased it, the weight under it, who close wore on them or lifted them, and what filled the good side.</li>
+        </points>
+      </li>
+
+      <li>
         <version>0.188.0</version>
         <date>9 November 2026</date>
         <title>Strain and the good side as bars on the Mood tab</title>

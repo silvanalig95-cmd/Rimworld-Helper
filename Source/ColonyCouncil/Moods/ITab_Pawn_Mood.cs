@@ -159,7 +159,8 @@ namespace ColonyCouncil
                 }
 
                 // The heart (Heart/): strain and the good side with what would help, its feelings, its needs.
-                cy = HeartView.DrawHeart(p, cy, w, sections);
+                // Under the summary, the heart's section adds only what the summary leaves out.
+                cy = HeartView.DrawHeart(p, cy, w, sections, glance != null);
                 cy = HeartView.DrawFeelings(p, cy, w, sections);
                 cy = HeartView.DrawNeeds(p, cy, w, sections);
 

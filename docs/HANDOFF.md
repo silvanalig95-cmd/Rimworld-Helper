@@ -12,6 +12,12 @@ tree at once, alongside whatever runs. Each piece is merged as its own release, 
 
 ## State (5 November 2026)
 
+- 0.188.1, the heart said once on the Mood tab (9 November 2026, the player: "the heart information is now essentially
+  listed twice, there should be no redundancy if there's no good reason for it"). Under the summary
+  (`Moods/MoodGlance.cs`, which shows the meters, what each side does now, time off and the advice with its buttons), the
+  Heart section (`HeartView.DrawHeart(..., summaryAbove: true)`, `DrawHeartDetail`) now shows only what built strain
+  lately and what eased it, the weight, who close wore on or lifted them, and what filled the good side; its meters, the
+  band's two effect lines, the advice and time off are gone from it. Without the summary it draws as before.
 - 0.188.0, the heart at a glance: meters, and the day off beside them (9 November 2026). The player's words on Avila's Mood tab (the heart a line of red text,
   "Heart: Worn down (60), down 7 today"; the day off a big heart on the command bar): "the strain level etc. should be
   graphically more easier to see, perhaps also like a level bar or so. the "give day off" should also be in this menu and
