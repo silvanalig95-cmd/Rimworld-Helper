@@ -138,6 +138,10 @@
       <li><trait>Psychopath</trait><reaction>Dislike</reaction></li>
       <li><trait>Industriousness</trait><degree>2</degree><reaction>Dislike</reaction></li>
     </reactions>
+    <!-- The heart's advice (Heart/HeartAdvice.cs): what it eases for a strained colonist, and what it costs. -->
+    <heartEases><li>Loss</li><li>Grief</li></heartEases>
+    <heartHelp>grief fades much faster</heartHelp>
+    <heartCost>everyone works 30% slower for two days</heartCost>
     <effects>
       <li>Everyone works 30% slower.</li>
       <li>Grief fades much faster, and mental breaks are less likely.</li>
@@ -260,6 +264,9 @@
       <li><trait>Industriousness</trait><degree>-2</degree><reaction>Love</reaction></li>
       <li><trait>Psychopath</trait><reaction>Neutral</reaction></li>
     </reactions>
+    <!-- The heart's advice (Heart/HeartAdvice.cs): what it eases for a strained colonist, and what it costs. -->
+    <heartHelp>strain drains about twice as fast</heartHelp>
+    <heartCost>everyone works 10% slower for three days</heartCost>
     <effects>
       <li>Everyone works 10% slower.</li>
       <li>Strain drains about twice as fast while it holds.</li>

@@ -19,7 +19,7 @@ namespace ColonyCouncil
     /// fine meal) only a little. It fades slowly.
     /// <para>
     /// Its bands are steady (from 20), in good heart and in high spirits, as the player approved them: each a small good
-    /// mood (+2, +3, +5: one situational thought reading the band, like strain's, and beside it); in good heart and in high
+    /// mood (+3, +6, +10 since the heart was made to count; one situational thought reading the band, like strain's, and beside it); in good heart and in high
     /// spirits also brighter dreams and a quicker recovery from strain for someone in good heart lately, and in high
     /// spirits, now and then, a release (GoodRelease). Below steady there is nothing to speak of yet. No work speed. With its
     /// setting off nothing fills, the bands give nothing and hardship builds strain as before. Old saves start at nothing.
@@ -179,7 +179,9 @@ namespace ColonyCouncil
         // The bands' words, steady's own among them (Rimfolk_GoodHeart_Bands.xml); the "CC_Good_Band_" keys before them are left unused.
         public static string BandLabel(GoodBand b) => ("CC_GoodSide_Band_" + b).Translate();
 
-        public static string BandDesc(GoodBand b) => ("CC_GoodSide_Band_" + b + "_Desc").Translate();
+        /// <summary>A band in words, with what it does by the settings as they are ({EFFECTS}: HeartEffects.DoingGood; {STEADY}, the mood from steady).</summary>
+        public static string BandDesc(GoodBand b) =>
+            ("CC_GoodSide_Band_" + b + "_Desc").Translate((HeartEffects.DoingGood(b) ?? "").Named("EFFECTS"), MoodView.Number(HeartEffects.GoodMoodNow(GoodBand.Steady)).Named("STEADY")).Resolve();
 
         public static string SourceLabel(GoodSource s) => ("CC_Good_Source_" + s).Translate();
 
@@ -245,7 +247,9 @@ namespace ColonyCouncil
             if (slower != null) sb.Append("\n").Append(slower);
             if (!h.releaseWhy.NullOrEmpty() && Find.TickManager.TicksGame - h.lastReleaseTick < GenDate.TicksPerDay * 15)
                 sb.Append("\n\n").Append("CC_Good_LastRelease".Translate(h.releaseWhy.Named("WHAT"), Ago(h.lastReleaseTick).Named("WHEN")).Resolve());
-            sb.Append("\n\n").Append("CC_GoodSide_Explain".Translate().ToString().Colorize(ColoredText.SubtleGrayColor));
+            sb.Append("\n\n").Append("CC_GoodSide_Explain".Translate(MoodView.Number(HeartEffects.GoodMoodNow(GoodBand.Steady)).Named("STEADY"),
+                MoodView.Number(HeartEffects.GoodMoodNow(GoodBand.GoodHeart)).Named("GOOD"), MoodView.Number(HeartEffects.GoodMoodNow(GoodBand.HighSpirits)).Named("HIGH")).Resolve()
+                .Colorize(ColoredText.SubtleGrayColor));
             return sb.ToString();
         }
 
@@ -300,9 +304,15 @@ namespace ColonyCouncil
         }
     }
 
-    /// <summary>The good side's mood, saying what filled it lately.</summary>
+    /// <summary>
+    /// The good side's mood, saying what filled it lately; its size by the band and how strongly the bands are felt. It grows
+    /// ordinary like any good mood (Moods/GoodLife.cs counts it in its sum, as a lasting one).
+    /// </summary>
     public class Thought_HeartGood : Thought_Situational, IExplainedThought
     {
+        /// <summary>The stage's size for the strength chosen (the stages in XML are the default, "felt").</summary>
+        protected override float BaseMoodOffset => HeartCountMath.GoodMood((GoodBand)(CurStageIndex + 1), ColonyCouncilMod.Settings?.heartBands ?? BandStrength.Felt);
+
         public string Why
         {
             get

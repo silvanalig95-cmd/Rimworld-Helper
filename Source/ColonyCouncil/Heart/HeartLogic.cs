@@ -68,6 +68,8 @@ namespace ColonyCouncil
             h.evaluated = true;
             HeartView.Refresh(p, h);
             Episodes.MaybeStart(p, h, m, now);
+            // From worn down, now and then a bad afternoon (Heart/HeartTimeOff.cs).
+            HeartTimeOff.Hour(p, h, m, now);
             GoodRelease.MaybeStart(p, h, m, now);
             // The heart on the map: a message when it turns, a line, a sign over the head, a small act (Heart/HeartFelt.cs).
             HeartFelt.AfterHour(p, h, m, now);
@@ -271,6 +273,15 @@ namespace ColonyCouncil
                 var f = h.feelings[i];
                 if (f.def.strainPerHour > 0f) Build(f.def.strainSource, f.def.strainPerHour * f.Share * hours);
             }
+            // Hearts spread a little: someone close worn down wears on them (never past HeartCountMath.SpreadCeiling, so one
+            // worn colonist can't wear the colony down alone), someone close in high spirits lifts them (a good thing below).
+            float lifted = Spread(p, h, out float spread, hours);
+            if (spread > 0f)
+            {
+                float share = speed * HeartMath.TraitFactor(StrainSource.Spread, traits);
+                float room = HeartCountMath.Spread(spread, h.strain + built, hours);
+                if (room > 0f && share > 0f) Build(StrainSource.Spread, room / Mathf.Max(1f, share));
+            }
 
             // ---- Relief ----
             float sleep = 0f, rec = 0f, quiet = 0f;
@@ -291,11 +302,15 @@ namespace ColonyCouncil
             factor *= decree;
             // A quicker recovery for someone in good heart lately (Heart/GoodHeart.cs).
             if (GoodHeart.On) factor *= HeartMath.RecoveryFactor(HeartMath.GoodBandFor(h.goodLately));
+            // A day off (Heart/HeartTimeOff.cs): rest eases faster, and time to themselves eases a little each hour besides.
+            bool dayOff = h.Off(TimeOffKind.DayOff);
+            if (dayOff) factor *= HeartCountMath.DayOffRestFactor;
             float council = decree > 1f && calm && p.IsFreeColonist ? 0.25f * hours : 0f;
+            float off = dayOff && calm ? HeartCountMath.DayOffPerHour * factor * hours : 0f;
             quiet *= factor * hours;
             sleep *= factor * hours;
             rec *= factor * hours;
-            float rest = quiet + sleep + rec + council;
+            float rest = quiet + sleep + rec + council + off;
 
             // ---- New memories: deaths and bad nights build it, gatherings, good talks and a cathartic cry drain it ----
             for (int i = 0; i < goodThings.Length; i++) goodThings[i] = 0f;
@@ -310,6 +325,8 @@ namespace ColonyCouncil
                 return added;
             }, out float comforts);
             goodThings[(int)GoodSource.Comforts] += comforts;
+            // Someone close in high spirits: a good thing, as a talk is.
+            goodThings[(int)GoodSource.Lifted] += lifted;
 
             // ---- Heavy things: a loss, a downing, a sickness in the house, a fight going badly leave a weight; strain sinks toward it ----
             HeartFelt.WeighLosses(h, losses, speed, traits, now);
@@ -335,6 +352,7 @@ namespace ColonyCouncil
                 h.recentRelief[(int)StrainRelief.Sleep] += sleep * share;
                 h.recentRelief[(int)StrainRelief.Recreation] += rec * share;
                 h.recentRelief[(int)StrainRelief.Council] += council * share;
+                h.recentRelief[(int)StrainRelief.Episode] += off * share;
             }
             h.recentRelief[(int)StrainRelief.Catharsis] += settled.catharsis;
             for (int i = 0; i < goodThings.Length; i++)
@@ -362,7 +380,48 @@ namespace ColonyCouncil
 
         /// <summary>The kind of relief a good thing is on strain's record.</summary>
         private static StrainRelief ReliefOf(GoodSource s) =>
-            s == GoodSource.Gathering ? StrainRelief.Gathering : s == GoodSource.Friends ? StrainRelief.Friends : StrainRelief.Joys;
+            s == GoodSource.Gathering ? StrainRelief.Gathering : s == GoodSource.Friends ? StrainRelief.Friends : s == GoodSource.Lifted ? StrainRelief.Lifted : StrainRelief.Joys;
+
+        /// <summary>
+        /// Hearts spread a little (the setting "Hearts spread a little"): the colony's people on the same map close to them (a
+        /// partner, kin, a friend by opinion; HeartCountMath.Closeness), each worn down or near breaking wearing on them a
+        /// little and each in high spirits lifting them. Returns the hour's lift (within its hour cap); <paramref name="spread"/>
+        /// is the hour's summed wear before its caps. Who it was is kept for the page (unsaved).
+        /// </summary>
+        private static float Spread(Pawn p, PawnHeart h, out float spread, float hours)
+        {
+            spread = 0f;
+            h.spreadFrom = h.liftedBy = null;
+            if (!(S?.heartSpread ?? true) || !p.Spawned || p.Map == null || p.relations == null) return 0f;
+            var tracker = HeartTracker.Instance;
+            float lift = 0f, mostWear = 0f, mostLift = 0f;
+            foreach (var o in p.Map.mapPawns.FreeColonistsSpawned)
+            {
+                if (o == p) continue;
+                var oh = tracker?.For(o);
+                if (oh == null) continue;
+                var band = oh.Band;
+                var good = GoodHeart.Band(oh);
+                // Only someone worn down or in high spirits matters: their closeness is looked at only then.
+                if (band < StrainBand.Worn && good != GoodBand.HighSpirits) continue;
+                float c = HeartAdvice.ClosenessOf(p, o);
+                if (c <= 0f) continue;
+                float wear = HeartCountMath.SpreadFrom(band, c), up = HeartCountMath.LiftFrom(good, c);
+                spread += wear;
+                lift += up;
+                if (wear > mostWear)
+                {
+                    mostWear = wear;
+                    h.spreadFrom = o.LabelShort;
+                }
+                if (up > mostLift)
+                {
+                    mostLift = up;
+                    h.liftedBy = o.LabelShort;
+                }
+            }
+            return HeartCountMath.Lift(lift, hours);
+        }
 
         private static bool SafeComfortable(Pawn p)
         {

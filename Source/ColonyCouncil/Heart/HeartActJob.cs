@@ -10,7 +10,7 @@ namespace ColonyCouncil
 {
     /// <summary>
     /// One of the heart's small acts (Heart/HeartActs.cs): go there (a chair, a spot outside, a partner's side, the far side
-    /// of a door), say the line on arriving, and stay a while facing what it is about, or pace up and down, or dance where
+    /// of a door, beside their own bed on a bad afternoon), say the line on arriving, and stay a while facing what it is about, or pace up and down, or dance where
     /// they stand, or let the door slam. Ends at any danger, when its setting goes off, when whom it is with walks off, and
     /// like any job at the player's word or a need that can't wait.
     /// </summary>
@@ -41,7 +41,9 @@ namespace ColonyCouncil
         {
             var ext = Ext;
             var kind = Kind;
-            this.FailOn(() => !StillOn(kind) || pawn.Map == null || pawn.Map.dangerWatcher.DangerRating != StoryDanger.None);
+            // Part of their time off (a day off, a bad afternoon): it runs while that does, whatever the acts' own settings.
+            bool timeOff = HeartActs.NoteOf(job)?.timeOff ?? false;
+            this.FailOn(() => !(timeOff ? HeartTimeOff.Running(pawn) : StillOn(kind)) || pawn.Map == null || pawn.Map.dangerWatcher.DangerRating != StoryDanger.None);
             if (Other != null) this.FailOn(() => Other.Dead || !Other.Spawned || Other.Map != pawn.Map);
             if (kind == HeartActKind.HomeFire) this.FailOn(() => job.targetB.Thing == null || !job.targetB.Thing.Spawned);
             switch (kind)
@@ -91,6 +93,8 @@ namespace ColonyCouncil
                 case HeartActKind.HomeFire: return HeartActs.FeelingsOn;
                 // Sit serves grief too when there is no grave or bed: either setting keeps it.
                 case HeartActKind.Sit: return HeartActs.BandsOn || HeartActs.FeelingsOn;
+                // A bad afternoon's own.
+                case HeartActKind.Cry: return HeartTimeOff.BadDaysOn;
                 default: return HeartActs.BandsOn;
             }
         }
@@ -169,6 +173,7 @@ namespace ColonyCouncil
                     else if (job.targetB.IsValid) pawn.rotationTracker.FaceCell(job.targetB.Cell);
                     break;
                 case HeartActKind.LostBed:
+                case HeartActKind.Cry:
                     if (job.targetB.IsValid) pawn.rotationTracker.FaceCell(job.targetB.Cell);
                     break;
                 case HeartActKind.StareOut:

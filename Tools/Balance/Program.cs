@@ -101,11 +101,14 @@ if (quick)
         results.Add(Runner.Run(defs, new Settings(defaults), style, 6, runs, null));
         // Without the heart's good side, on the same seeds (an empty label: the seed counts the label's length).
         results.Add(Runner.Run(defs, new Settings(new Dictionary<string, string>(defaults) { ["heartGoodSide"] = "false" }), style, 6, runs, ""));
+        // The bands felt mildly, as before the heart was made to count.
+        results.Add(Runner.Run(defs, new Settings(new Dictionary<string, string>(defaults) { ["heartBands"] = "Mild" }), style, 6, runs, "mild bands"));
     }
     foreach (var r in results)
     {
         var x = r.summary;
         Console.WriteLine($"{r.Key,-42} net {x.net,6:0.0} good {x.good,5:0.0} bad {x.bad,6:0.0} steady {x.steadyGood,4:0.0}/{x.steadyBad,5:0.0} mood {x.mood:P0} p10 {x.moodP10:P0} minor {x.underMinor:P1} strain {x.strained:P1}/{x.worn:P1}/{x.breaking:P1} ep {x.episodesPerYear:0.00} gameOrd {x.gameOrdinary:0.0} P99 {x.goodP99:0.0} high12 {x.goodHigh:P0}");
+        Console.WriteLine($"   breaks: under major {x.underMajor:P2}, extreme {x.underExtreme:P2}, {x.breaksPerYear:0.00} a colonist-year; bad afternoons {x.badDaysPerYear:0.00} a colonist-year");
         Console.WriteLine($"   good side: strain at nothing {x.noStrain:P0}, steady {x.steady:P1}, in good heart {x.goodHeart:P1}, in high spirits {x.highSpirits:P1}; inspirations {x.inspirationsPerYear:0.00}, kind words {x.kindWordsPerYear:0.00} a colonist-year");
         if (x.goodTenths != null) Console.WriteLine("   good side by tenths: " + string.Join(" ", x.goodTenths.Select(v => $"{v:P0}")));
         Console.WriteLine("   filled: " + string.Join(", ", x.goodBy.OrderByDescending(kv => kv.Value).Select(kv => $"{kv.Key} {kv.Value:0}")) + "; spent: " + string.Join(", ", x.goodSpentBy.OrderByDescending(kv => kv.Value).Select(kv => $"{kv.Key} {kv.Value:0}")));
@@ -130,6 +133,10 @@ foreach (var style in Rates.Styles)
 var asMoods = new Dictionary<string, string>(defaults) { ["smallMomentsOff"] = "true" };
 foreach (var style in Rates.Styles)
     results.Add(Runner.Run(defs, new Settings(asMoods), style, 6, runs, "letdowns and joys as moods"));
+// The heart's bands felt mildly (as before the heart was made to count): what the stronger bands change.
+var mildBands = new Dictionary<string, string>(defaults) { ["heartBands"] = "Mild" };
+foreach (var style in Rates.Styles)
+    results.Add(Runner.Run(defs, new Settings(mildBands), style, 6, runs, "mild bands"));
 // Without the heart's good side (its setting off): what it changes. On the default's seeds (an empty label: the seed counts its length).
 var noGood = new Dictionary<string, string>(defaults) { ["heartGoodSide"] = "false" };
 foreach (var style in Rates.Styles)

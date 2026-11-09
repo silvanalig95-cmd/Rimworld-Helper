@@ -537,10 +537,11 @@ richer layer under it without touching the number the game runs on.
 **The safety rule.** Vanilla mood stays the single number the game and every other mod use for mental breaks. Nothing
 here patches the mood need, the mood calculation, the mental breaker or which breaks the game picks. The layer lives in
 Rimfolk's own save data (`HeartTracker`, a game component of its own) and reaches the game only through things it
-already supports: one situational thought (it reads the strain band each time and stores nothing), one stat part on
-global work speed (an XML patch, conditional so it never fails), one mental state started on purpose, and Rimfolk's own
-systems (wishes, life goals, dreams, decrees, dilemmas, moments, the UI). With the feature off, the thought and the
-stat part contribute nothing and the hooks return 1.
+already supports: one situational thought (it reads the strain band each time and stores nothing), stat parts on global
+work speed, learning, the need for sleep, healing and immunity (an XML patch, conditional so it never fails; see "The
+heart, made to count"), one mental state started on purpose, time off through the colonist's timetable and a think-tree
+node of its own, and Rimfolk's own systems (wishes, life goals, dreams, decrees, dilemmas, moments, the UI). With the
+feature off, the thought and the stat parts contribute nothing and the hooks return 1.
 
 - **Strain** (0 to 100) is a slow reservoir. Each colonist is looked at once an hour, a tenth of the colony at a time.
   Sources build it (19: small letdowns among them, see "One heart" below, and heavy things sinking in toward their
@@ -550,11 +551,14 @@ stat part contribute nothing and the hooks return 1.
   of a heavy thing, with chunks for gatherings, good talks and catharsis. Small decaying totals per source and per kind of
   relief say what built it and what eased it lately. The pure math (bands, caps, trait factors, episode odds) is in
   `HeartMath`, covered by the tests.
-- **Bands** give the only direct effects: a mood of -3/-5/-8, work speed -5%/-10%, darker dreams.
+- **Bands** give the only direct effects: a mood of -4/-8/-14 (the setting "How strongly the bands are felt": -3/-5/-8
+  mild, as it shipped, or -5/-10/-18 strong), work speed -3%/-7%/-12% from strained and, from worn down, a little slower
+  learning, healing and immunity and a little more sleep (see "The heart, made to count"), darker dreams.
 - **The good side** is strain's other side, both at once since the player's change of 9 November 2026 (see "The
   heart's good side" and "The heart, felt" below): it fills slowly at any strain, slower the more there is, hardship
   spends part of it as a cushion, and its bands (steady, in good heart, in high spirits) give a second situational thought
-  of the same kind (+2/+3/+5) beside strain's, the upper two brighter dreams and a quicker recovery, never work speed.
+  of the same kind (+3/+6/+10, +2/+3/+5 mild) beside strain's, the upper two brighter dreams, a quicker recovery and a
+  little faster learning, healing and immunity, never work speed.
 - **Episodes** are the pressure valve, not a punishment: a custom mental state on vanilla's hide-in-room class, started
   silently by the heart (its own letter) and never by the game's break picker, since no MentalBreakDef names it. A think
   tree inserted after the mental states gives it its behavior. Strict conditions (no danger, enough hands, cooldowns,
@@ -695,9 +699,10 @@ strain, right? If they have positive impacts over an extended period"): one hear
   buy it). The day's joys cap counts what a joy eased or filled. It fades slowly (about 3% a day, `GoodFadePerHour`).
 - **The bands** (the player's names), as the player approved them (6 November 2026, "As I approved": three bands that
   each give a mood): steady from 20 (`SteadyAt`), in good heart from 45, in high spirits from 65; below 20 nothing to
-  speak of yet (`GoodBand.None`, no mood, the meter says "nothing yet"). A small good mood each, +2, +3 and +5
-  (`Council_Heart_GoodSide`, one stage a band, a situational thought reading the band like strain's, nothing stored in
-  memories; it grows ordinary like any good mood, and the pile of small moods leaves it out, `SmallMoments.Heavy`). In
+  speak of yet (`GoodBand.None`, no mood, the meter says "nothing yet"). A good mood each, +3, +6 and +10 since the heart
+  was made to count (+2, +3 and +5 before, now the mild choice; `Council_Heart_GoodSide`, one stage a band, a situational
+  thought reading the band like strain's, nothing stored in memories; it grows ordinary like any good mood, kept in good
+  things growing ordinary's sum as a lasting one, and the pile of small moods leaves it out, `SmallMoments.Heavy`). In
   good heart and in high spirits also brighter dreams (sweet dreams 1.2 and 1.4 times as likely, nightmares 0.85 and
   0.7, `Heart.DreamFactor`) and a quicker recovery from strain (rest eases 1.15 and 1.3 times as fast), read from how
   high the good side stood lately (`goodLately`, halving in about three days), so someone in good heart before a hard
@@ -815,7 +820,7 @@ safety rule holds: the game's mood need, mental breaker and break picker are unt
   day off a disaster. In the balance simulator (`Tools/Balance/HeartSim.cs`, brought to the same rules; 40 runs of six):
   a well-run colony strained 4% of the time, steady 44%, in good heart 35% and in high spirits 5% (48/28/3 before); an
   average one strained, worn and near breaking 12%, 4% and 1.6% (6/1/0 before), 0.14 days off a colonist-year; a
-  neglectful one 32%, 25% and 18% (29/17/8), 1.6 (0.72). The balance report (`docs/balance-report.md`) is from before.
+  neglectful one 32%, 25% and 18% (29/17/8), 1.6 (0.72). The balance report (`docs/balance-report.md`) was written again with release 2 ("The heart, made to count").
 - **Saves.** Values on the heart only (`weight`, `weightUntil`, `weightWhy`, `weightAbout`, `weightKind`, `held`,
   `heldUntil`, `heldWhy`, `heldAbout`, `heldKind`, `toldStrain`, `toldGood`); no new collection. An older save loads with
   no weight, and its bands are taken note of at the first look. What the hour notes on the side (whom a loss already
@@ -823,6 +828,147 @@ safety rule holds: the game's mood need, mental breaker and break picker are unt
   dead) is session memory.
 - **Dev mode**: "Heart: a heavy loss weighs on them (45)", "a small act now (if one fits)", "say how they feel now", "a
   sign over the head now".
+
+### The heart, made to count: stronger bands, effects beyond mood, bad afternoons, hearts spreading, advice and a day off (9 November 2026)
+
+Release 2 of `docs/design/heart-felt.md` (points 9 to 14), after the player had played release 1: "i think you can go
+ahead with this, if the strain is not noticeable it doesn't make too much sense. also include recommendations and advice
+on potential actions i can take to reduce strain. for example certain decrees. or i could for example also just grant a
+single stained pawn a break day or stuff like this". With it, the player's two requests for the same screens: "review
+the "mood" uI for colonists, so the most relevant details for strain and mood are visible at first glance, with
+additional details below that. also perhaps revisit the rimui integration to see if it could be improved as well". The
+rules are pure (`Heart/HeartCountMath.cs`, linked in the tests and the balance simulator); the game side is
+`HeartEffects.cs` (the stat parts and what the bands do in words), `HeartTimeOff.cs` (the bad afternoon and the day off,
+the think tree's node, the gizmo), `HeartAdvice.cs` (advice and its buttons), `Moods/MoodGlance.cs` (the Mood tab's top)
+and `Integrations/RimHud.cs`. The safety rule holds: the game's mood need, mental breaker and break picker are untouched;
+everything goes through the heart's two situational thoughts, stat parts, the timetable, a think-tree node of Rimfolk's
+own and Rimfolk's own acts. No new Sched slot; one Harmony patch (the gizmo on a colonist, `Pawn.GetGizmos`).
+
+- **Stronger bands** (9). Strain -4, -8 and -14 mood (strained, worn down, near breaking); the good side +3, +6 and +10
+  (steady, in good heart, in high spirits). The thoughts' stages are these, the default; the setting "How strongly the
+  bands are felt" (`heartBands`: Mild, Felt, Strong) sizes them in code through the thought itself
+  (`Thought_HeartStrain.BaseMoodOffset`, `Thought_HeartGood.BaseMoodOffset`, `HeartCountMath.StrainMood`, `GoodMood`):
+  mild is release 1's -3, -5, -8 and +2, +3, +5, strong -5, -10, -18 and +4, +8, +13. They go through the game's own mood,
+  so the worn down break more often, as they should. **The good side still grows ordinary** like any good mood: good
+  things growing ordinary (`Moods/GoodLife.cs`) keeps it in its sum as a lasting good mood (`SituationalOf`), the
+  everyday kind that shrinks most above the line their standards set, as it did; there is no exemption (the pile of small
+  moods leaves it out, `SmallMoments.Heavy`, as before). The bands' own words carry what they do by the settings as they
+  are (`{EFFECTS}`, `HeartEffects.DoingStrain`, `DoingGood`), so the mild and strong choices read true. Light touch sets
+  the bands mild and no bad afternoons.
+- **Effects beyond mood** (10), each a stat part in the heart's pattern (an XML patch with conditional operations in
+  `Patches/Council_Heart.xml`, contributing nothing with the setting "Effects beyond mood", `heartEffects`, or the heart
+  off): work from the first band (strained 3% slower, worn 7%, near breaking 12%; with the setting off, release 1's 5% and
+  10% from worn), learning (`GlobalLearningFactor`: worn 6% slower, near breaking 10%), the need for sleep
+  (`RestFallRateFactor`: worn 6% more, near breaking 10%), healing (`InjuryHealingFactor`: worn 5% slower, near breaking
+  10%) and immunity (`ImmunityGainSpeed`: worn 3% slower, near breaking 5%, never more: the player lost colonists to the
+  plague, `HeartCountMath.ImmunitySlowest`, tested at every pair of bands); in good heart and in high spirits a little
+  faster learning (4% and 8%), healing (3% and 6%) and immunity (2% and 5%). Both sides together are kept within bounds
+  (`HeartCountMath.Factor`). The good side never touches work or sleep. Each shows in the stat's own explanation ("Strain,
+  worn down: x94%", "Good side, in good heart: x104%", `HeartEffects.StatLines`), in the band's words on the heart's page,
+  on the card and at the top of the Mood tab ("Worn down: -8 mood, work -7%, learns 6% slower, needs 6% more sleep, heals
+  5% slower, fights off illness 3% slower, nightmares 1.6 times as likely").
+- **A bad afternoon** (11, `heartBadDays`). From worn down (55), in the afternoon (12 to 16), a chance an hour of 1 in 50
+  rising to 1 in 25 at 85 (`BadDayChancePerHour`), at most once a week for each colonist and once in two days in the
+  colony (`lastBadDayTick`, `HeartTracker.lastColonyBadDayTick`), under the day off's safety rules (`HeartTimeOff.Unsafe`:
+  at home, a free adult, not drafted, downed or in a mental state, no danger, not needing a doctor, not nursing a baby,
+  two others able to work; awake, at no gathering, not in the middle of caring for or carrying someone or fighting a fire,
+  `Episodes.Busy`). Off work for three to five hours, played out on the map: a while beside their own bed in their room
+  (a new act, `Cry`, else a quiet seat), a while looking out, a drink if they drink (alcohol from the stores or lying about
+  at home, any mod's by its chemical, only where their drug policy allows it for fun, they aren't teetotal, addicted or
+  just clean, and their faith allows it: `FirstPot.WillDrink`, `Beliefs.MindsEating`), the grave (the small habit's own
+  visit) or the bed of someone they grieve when the weight on them is a loss. A message says why ("Avila has had enough
+  for today (the plague and losing Ana) and leaves her work for the afternoon."), a line as it begins. It ends early when
+  danger comes, and eases 30% of their strain when it runs its course (half when cut short), below the weight too, as a
+  cry does.
+- **Hearts spread a little** (12, `heartSpread`). Each hour, the colony's people on the same map close to them
+  (`HeartCountMath.Closeness`: a partner 1, kin by blood 0.8, a friend by opinion 0.4 at 20 rising to 0.8 at 80; the
+  colony is the family, never a house): each worn down wears on them 0.06 an hour at full closeness (near breaking 0.1),
+  all together at most 0.15 an hour and 2.5 a day (a new source at the end of the list, `StrainSource.Spread`, "someone
+  close worn down"), and never past 45 (`SpreadCeiling`, short of worn down): since only the worn spread, one worn
+  colonist can't wear another down on their own and the colony can't spiral (tested: one colonist held near breaking for
+  eight weeks among seven close friends, none ever worn down). Each in high spirits lifts them 0.05 an hour (at most 0.1),
+  a good thing as a talk is (`GoodSource.Lifted`, `StrainRelief.Lifted`, both at the end of their lists): it eases strain
+  and fills the good side together, a share each (`GoodShare` 0.5, `GoodCap` 0.6 a day). A psychopath takes none of it.
+  The heart's page says who ("Bautista being worn down wears on her a little.").
+- **What would help** (13, `heartAdvice`, `HeartAdvice`). For each strained colonist, the few things that would ease
+  them most, ranked from what is wearing on them now (`HeartCountMath.Rank`: strain built lately by source, and how they
+  are, hungry, in pain, short of recreation, without a bed of their own, lonely, grieving) and what the colony has: a day
+  off (from strained), a gathering (a party, where there is a gathering spot), time with a friend (the one closest to
+  them who isn't worn down themselves), a proper meal, a better bed, recreation they like (naming what they're tired
+  of), their pain treated, a rest from fighting, time to grieve, more light; and **the council's decrees that ease
+  strain**, the best two for what wears on them (`HeartAdvice.Easing`: days of rest, with its strain relief, eases all of
+  strain; the others name what they answer in their defs, `heartEases`, with what they do and what they cost,
+  `heartHelp`, `heartCost`: festival days, quiet hours, days of mourning, shared meals, rest when ill, a feast day, a work
+  song, holy days). Each where Rimfolk can act has a button, greyed with why not: **give the day off**; **propose** a
+  decree, which puts it to the council through its own path, a petition by them (or by someone who likes it, if they
+  would rather not; `DecreeTracker.Petition`, a message and their line, lapsing after a few days as any petition does)
+  and opens the Decrees page where it is declared; **call a party** (the game's own, hosted by them if they can); **send
+  a friend over** (`HeartActs.FriendVisit`: one walks over in their free time for the game's deep talk, `Together.When`).
+  Where it can't act it says plainly what to do ("keep cooked meals in store and a table to eat at"). Built at most once
+  a game hour for each colonist (unsaved), never per frame. Shown on the heart's page (the Mood tab) with its buttons,
+  on the colonist's card (a section with its buttons, and the day off among the card's acts), in the message when
+  someone becomes worn down ("What would help: a day off, days of rest and a proper meal."), on the council's Moods page
+  for the whole colony (each decree and a party once, with everyone it would ease; each colonist's own first two) and in
+  RimHUD's tooltip.
+- **A day off for one colonist** (14, `heartDayOff`). Given by the player from strained on (the choice: a day off is for
+  someone the days have worn on, and the button on every colonist would only crowd the bar), from the Mood tab, the
+  card, the advice or a button on the selected colonist (`Patch_HeartDayOffGizmo`; while one runs, it ends it), once in
+  five days for each colonist (the button says when: "A day off (in 3 days)"), under the same safety rules (one other
+  able to work is enough). For a day their work hours (Work, Anything) are recreation in their timetable and their first
+  two waking hours a lie-in; a node of Rimfolk's own in the game's think tree (`Rimfolk_Heart_TimeOffTree`, inserted at
+  `Humanlike_PreMain`, before the colonist's main work: `ThinkNode_ConditionalHeartTimeOff`) keeps them from ordinary
+  work while their timetable says recreation: emergencies first (the game's own emergency work, a fire, someone needing
+  a doctor now), then food and sleep as they need, then now and then an act (a walk, their partner's company, the fire,
+  a friend sent for), then their recreation, then a wander about the colony. It stands down when they are drafted,
+  downed, need a doctor or danger comes, and the day off ends at once when danger comes (checked every slice of the
+  heart's hour, 250 ticks), so they can be drafted. The timetable's hours changed are saved on the heart (`offHours`,
+  "9=Work>Joy"), put back when it ends only where nobody changed them since; an hour the calendar's rest day had given is
+  taken over from it (`ColonyCalendar.TakeRestHour`), so each is put back once. While it runs rest eases a quarter faster
+  and time to themselves eases 0.3 an hour besides; when it runs its course it eases 12 more (half when cut short, below
+  the weight too). A line as it begins ("I'm going to sleep late and nobody can stop me."), a message, and one when it
+  ends. The work missed is real: they do no ordinary work for a day.
+- **The Mood tab, at a glance** (`ITab_Pawn_Mood`, `MoodGlance`). Its top answers without scrolling or opening
+  anything: the bar with the break lines and the sentence of where their mood is heading; the heart now ("Heart: worn
+  down 61, up 12 today · in good heart 48", strain in its band's colour and the good side in green, as the colonist bar's
+  heart line draws them, its tooltip strain in full), the weight under it ("Under it, a weight of 45 from losing Ana,
+  lifting over the days."), time off under way; what weighs on them and what lifts them most (the top three each across
+  the game's moods, other mods' and Rimfolk's, the heart's own two with what is behind them: "worn down (the plague) -8"),
+  each with its size as the list below has it; what each side is doing to them now, a line each; and the top advice with
+  its buttons. Below, in order of use, sections that fold and are remembered between sessions (`Folds.Remembered`, kept
+  with the settings through `PageMemory`, "mood.sections"): every mood (compact rows by what can be done, or every mood as
+  a card), the heart (strain and the good side, what built and eased it, the weight, who close wore on or lifted them,
+  what the bands do, what would help), its feelings, its needs, what has grown ordinary and where the moods come from,
+  and lately (strain against the day's start, the last day off, bad afternoon, day to themselves, overflow and break).
+  Built with the tab's model twice a second at most; every number is the sections' own (the moods' sizes from the same
+  lines, strain and the good side to the point, the weight as the page says it). Works at the inspect pane's width and as
+  the tab is resized (everything under the bar scrolls; `TabFitMath` sets its height).
+- **RimHUD** (by name, as before: its custom value and bar widgets, `GetParameters(Pawn)` by reflection; its DLL wasn't
+  in the player's upload and isn't needed). The strain line (`Council_Hud_Strain`) now reads like the summary: strain's
+  band and value in its colour, the good side's in green, the top cause while strained, and a day off or a bad afternoon
+  under way ("Worn down 61 · in good heart 48 · the plague · day off"); its tooltip leads with what would help, and a
+  click opens their Mood tab. The strain bar says time off in its value and opens the tab too. Two new widgets: the good
+  side as a bar (`Council_Hud_GoodBar`, marked at 20, 45 and 65) and what would help (`Council_Hud_HeartAdvice`, its
+  tooltip the advice in full).
+- **Measured** (`Tools/Tests/HeartFeltTests.cs`, 40 runs a case, the same pure rules hour by hour, release 1's targets
+  still held; `Tools/Balance`, `docs/balance-report.md` "The heart, made to count"). Breaks by the game's own lines and
+  mean times (35%, 20%, 5%; 4, 0.8 and 0.5 days), a colonist-year, with the bands felt against felt mildly: a calm colony
+  none either way; a plague season like the save's 0.32 against 0.14 (under the minor line 2.1% of the time against
+  1.0%); real disasters 0.55 against 0.27; in the balance simulator a well-run colony none, an average one 0.01 against
+  0.00, a neglected one 9.8 against 6.3 (under the minor line 46% against 35%). Bad afternoons: none in a calm colony,
+  0.01 a colonist-year well run, 0.26 average, 1.4 neglected, 0.34 in a plague season, about one for every two colonists
+  after a real disaster. A day off at strain 61 eases 45 in the day against 30 on an ordinary one (43 against 30 with a
+  weight of 30 under it). Spreading: one colonist held near breaking for eight weeks among seven close friends, none
+  ever worn down, spread building about 1 a day each. The day off at 85 a colonist-year: average 0.10, neglected 1.2
+  (release 1: 0.14 and 1.6), the bad afternoons easing some of it first. Rimfolk's mood in a well-run colony rises to
+  +7.3 (+12 or more 29% of the time), above the old target of +3 to +6: the good side's +3, +6 and +10 as the player
+  asked, still growing ordinary.
+- **Saves.** Values on the heart (`offKind`, `offStart`, `offUntil`, `offWhy`, `lastDayOffTick`, `lastBadDayTick`) and one
+  short list (`offHours`, the hours a day off changed, only while it runs; modelled in `Tools/save_estimate.py`); the
+  tracker's `lastColonyBadDayTick`. The heart's lists grow at their ends, padded with nothing on an older save
+  (`StrainSource.Spread`, `StrainRelief.Lifted`, `GoodSource.Lifted`). An older save has no time off under way and every
+  wait past. What advice there is, who spread or lifted this hour and when the time off's last act was are worked out
+  again (unsaved).
+- **Dev mode**: "Heart: a bad afternoon now (if safe)", "a day off now (the wait aside)", "end their time off now".
 
 ## Layer 8: Social life
 

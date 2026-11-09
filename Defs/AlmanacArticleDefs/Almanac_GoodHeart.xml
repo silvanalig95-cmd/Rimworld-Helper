@@ -40,11 +40,11 @@ It fills slowly and mostly from what can't be bought: friends close by, a purpos
         <heading>The bands</heading>
         <table>
           <li>Good side | Band | What it does</li>
-          <li>0 to 44 | Nothing yet below 20, steady from 20 | Steady: +2 mood, nothing else</li>
-          <li>45 to 64 | In good heart | +3 mood in place of steady's +2, brighter dreams (sweet ones a fifth likelier, nightmares 15% rarer), strain drains 15% faster</li>
-          <li>65 to 100 | In high spirits | +5 mood in place of +3, brighter dreams still (sweet ones 40% likelier, nightmares 30% rarer), strain drains 30% faster, and now and then something good comes of it</li>
+          <li>0 to 44 | Nothing yet below 20, steady from 20 | Steady: +3 mood, nothing else</li>
+          <li>45 to 64 | In good heart | +6 mood in place of steady's +3, brighter dreams (sweet ones a fifth likelier, nightmares 15% rarer), strain drains 15% faster, learning 4%, healing 3% and immunity 2% faster</li>
+          <li>65 to 100 | In high spirits | +10 mood in place of +6, brighter dreams still (sweet ones 40% likelier, nightmares 30% rarer), strain drains 30% faster, learning 8%, healing 6% and immunity 5% faster, and now and then something good comes of it</li>
         </table>
-        <after>The quicker recovery lasts a few days after the good side is spent, so someone who was in good heart before a hard spell gets over it sooner. It never changes work speed. The mood is one line on the Mood tab, like strain's, and it grows ordinary like any good mood.</after>
+        <after>The quicker recovery lasts a few days after the good side is spent, so someone who was in good heart before a hard spell gets over it sooner. It never changes work speed or sleep. The mood is one line on the Mood tab, like strain's, and it grows ordinary like any good mood. These are the moods as felt by default; "How strongly the bands are felt" makes them +2, +3 and +5 (mild, as the bands first were) or +4, +8 and +13 (strong). Someone in high spirits also lifts those close to them a little, as a good talk does.</after>
       </li>
       <li>
         <heading>When it overflows</heading>

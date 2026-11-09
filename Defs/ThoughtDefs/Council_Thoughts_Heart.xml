@@ -3,8 +3,10 @@
 
   <!--
     Feelings and strain (Source/ColonyCouncil/Heart/). The strain mood is situational: it reads the colonist's strain
-    band each time the game asks and stores nothing in their memories. Letting it out is an ordinary memory the episode
-    gives when it ends.
+    band each time the game asks and stores nothing in their memories. Its stages are the default sizes since the heart was
+    made to count (-4, -8, -14; docs/design/heart-felt.md, release 2); the setting "How strongly the bands are felt" makes
+    them -3, -5, -8 (mild) or -5, -10, -18 (strong) in code (Thought_HeartStrain). Letting it out is an ordinary memory the
+    episode gives when it ends.
   -->
 
   <ThoughtDef>
@@ -16,17 +18,17 @@
       <li>
         <label>under strain</label>
         <description>It's been one hard thing after another lately, and it's catching up with me.</description>
-        <baseMoodEffect>-3</baseMoodEffect>
+        <baseMoodEffect>-4</baseMoodEffect>
       </li>
       <li>
         <label>worn down</label>
         <description>I'm tired in a way a night's sleep doesn't fix. Everything takes more out of me than it should.</description>
-        <baseMoodEffect>-5</baseMoodEffect>
+        <baseMoodEffect>-8</baseMoodEffect>
       </li>
       <li>
         <label>at the end of my rope</label>
         <description>I snap at people over nothing and can't remember why after. One more thing could tip me over.</description>
-        <baseMoodEffect>-8</baseMoodEffect>
+        <baseMoodEffect>-14</baseMoodEffect>
       </li>
     </stages>
   </ThoughtDef>

@@ -13,13 +13,13 @@
   <CC_GoodSide_Band_Steady>steady</CC_GoodSide_Band_Steady>
   <CC_GoodSide_Band_GoodHeart>in good heart</CC_GoodSide_Band_GoodHeart>
   <CC_GoodSide_Band_HighSpirits>in high spirits</CC_GoodSide_Band_HighSpirits>
-  <CC_GoodSide_Band_None_Desc>Nothing to speak of yet. Good days fill the heart's good side, slower under strain; from 20 a colonist is steady (+2 mood).</CC_GoodSide_Band_None_Desc>
-  <CC_GoodSide_Band_Steady_Desc>Good days are adding up: +2 mood, and a hard knock spends some of it and builds less strain. From 45, in good heart.</CC_GoodSide_Band_Steady_Desc>
-  <CC_GoodSide_Band_GoodHeart_Desc>The good days have added up: +3 mood, brighter dreams, and they get over hard times sooner. A hard knock spends some of it and builds less strain.</CC_GoodSide_Band_GoodHeart_Desc>
-  <CC_GoodSide_Band_HighSpirits_Desc>+5 mood, brighter dreams still, a quicker recovery from strain, and now and then something good comes of it: an inspiration, or a kind word for someone close.</CC_GoodSide_Band_HighSpirits_Desc>
+  <CC_GoodSide_Band_None_Desc>Nothing to speak of yet. Good days fill the heart's good side, slower under strain; from 20 a colonist is steady ({STEADY} mood).</CC_GoodSide_Band_None_Desc>
+  <CC_GoodSide_Band_Steady_Desc>Good days are adding up: {EFFECTS}, and a hard knock spends some of it and builds less strain. From 45, in good heart.</CC_GoodSide_Band_Steady_Desc>
+  <CC_GoodSide_Band_GoodHeart_Desc>The good days have added up: {EFFECTS}, and they get over hard times sooner. A hard knock spends some of it and builds less strain.</CC_GoodSide_Band_GoodHeart_Desc>
+  <CC_GoodSide_Band_HighSpirits_Desc>All going right: {EFFECTS}, a quicker recovery from strain, and now and then something good comes of it: an inspiration, or a kind word for someone close.</CC_GoodSide_Band_HighSpirits_Desc>
 
   <!-- The good meter's tooltip, at its foot, and the council's Moods page. -->
-  <CC_GoodSide_Explain>The heart's good side is the other side of strain, and grows beside it: someone can be worn down by the plague and still in good heart for their friends. It fills slowly, slower the more strain there is, mostly from what can't be bought: friends close by, a purpose, deeds the colony speaks well of, gatherings, good talks and a run of small joys; the comforts of home only a little (4 a day at most in all). Good things ease strain and fill it together, a share each. A hard knock spends part of it as a cushion (about a third of the strain it would build), and it fades slowly. Steady from 20 (+2 mood), in good heart from 45 (+3 mood), in high spirits from 65 (+5 mood); in good heart and in high spirits also brighter dreams and a quicker recovery from strain.</CC_GoodSide_Explain>
+  <CC_GoodSide_Explain>The heart's good side is the other side of strain, and grows beside it: someone can be worn down by the plague and still in good heart for their friends. It fills slowly, slower the more strain there is, mostly from what can't be bought: friends close by, a purpose, deeds the colony speaks well of, gatherings, good talks and a run of small joys; the comforts of home only a little (4 a day at most in all). Good things ease strain and fill it together, a share each. A hard knock spends part of it as a cushion (about a third of the strain it would build), and it fades slowly. Steady from 20 ({STEADY} mood), in good heart from 45 ({GOOD} mood), in high spirits from 65 ({HIGH} mood); in good heart and in high spirits also brighter dreams and a quicker recovery from strain.</CC_GoodSide_Explain>
   <CC_GoodSide_ColonySummary>{STEADY} steady, {GOOD} in good heart, {HIGH} in high spirits.</CC_GoodSide_ColonySummary>
 
 </LanguageData>

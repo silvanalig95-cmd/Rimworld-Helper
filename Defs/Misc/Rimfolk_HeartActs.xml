@@ -172,4 +172,22 @@
     </modExtensions>
   </JobDef>
 
+  <!--
+    A bad afternoon (Source/ColonyCouncil/Heart/HeartTimeOff.cs): a while in their room beside their own bed (else on a
+    quiet seat), letting it come. Recreation of a quiet kind, so it eases them as any rest does.
+  -->
+  <JobDef>
+    <defName>Rimfolk_HeartAct_Cry</defName>
+    <driverClass>ColonyCouncil.JobDriver_HeartAct</driverClass>
+    <reportString>having a hard afternoon.</reportString>
+    <joyKind>Meditative</joyKind>
+    <joyGainRate>0.5</joyGainRate>
+    <checkOverrideOnDamage>Always</checkOverrideOnDamage>
+    <modExtensions>
+      <li Class="ColonyCouncil.HeartActExtension">
+        <kind>Cry</kind>
+      </li>
+    </modExtensions>
+  </JobDef>
+
 </Defs>

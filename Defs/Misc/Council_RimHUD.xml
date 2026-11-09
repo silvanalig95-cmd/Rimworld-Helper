@@ -72,6 +72,23 @@
     <apiVersion>1</apiVersion>
   </RimHUD.CustomBarDef>
 
+  <!-- The heart, made to count: the good side as a bar beside strain's, and what would help (its tooltip in full, a click opens the Mood tab). -->
+  <RimHUD.CustomBarDef MayRequire="jaxe.rimhud">
+    <defName>Council_Hud_GoodBar</defName>
+    <label>Rimfolk: the heart's good side (bar)</label>
+    <colorStyle>LowToMain</colorStyle>
+    <defClass>ColonyCouncil.RimHud_GoodBar</defClass>
+    <apiVersion>1</apiVersion>
+  </RimHUD.CustomBarDef>
+
+  <RimHUD.CustomValueDef MayRequire="jaxe.rimhud">
+    <defName>Council_Hud_HeartAdvice</defName>
+    <label>Rimfolk: what would help</label>
+    <textStyle>Small</textStyle>
+    <defClass>ColonyCouncil.RimHud_HeartAdvice</defClass>
+    <apiVersion>1</apiVersion>
+  </RimHUD.CustomValueDef>
+
   <RimHUD.CustomBarDef MayRequire="jaxe.rimhud">
     <defName>Council_Hud_BelongingBar</defName>
     <label>Rimfolk: belonging (bar)</label>

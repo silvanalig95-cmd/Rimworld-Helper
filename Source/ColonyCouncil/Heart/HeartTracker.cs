@@ -23,6 +23,8 @@ namespace ColonyCouncil
         public int lastColonyEpisodeTick = -999999;
         /// <summary>The last release of the heart's good side anywhere in the colony (one a day at most; Heart/GoodRelease.cs).</summary>
         public int lastColonyReleaseTick = -999999;
+        /// <summary>The last bad afternoon anywhere in the colony (one in two days at most; Heart/HeartTimeOff.cs).</summary>
+        public int lastColonyBadDayTick = -999999;
 
         private static HeartTracker cached;
         private static Game cachedGame;
@@ -98,6 +100,7 @@ namespace ColonyCouncil
             Scribe_Collections.Look(ref hearts, "hearts", LookMode.Reference, LookMode.Deep, ref tmpPawns, ref tmpHearts, false);
             Scribe_Values.Look(ref lastColonyEpisodeTick, "lastColonyEpisodeTick", -999999);
             Scribe_Values.Look(ref lastColonyReleaseTick, "lastColonyReleaseTick", -999999);
+            Scribe_Values.Look(ref lastColonyBadDayTick, "lastColonyBadDayTick", -999999);
             if (Scribe.mode == LoadSaveMode.PostLoadInit)
             {
                 if (hearts == null) hearts = new Dictionary<Pawn, PawnHeart>();
@@ -127,6 +130,16 @@ namespace ColonyCouncil
             }
             int slice = Sched.SliceTurn(now, GenDate.TicksPerHour, Slices, Sched.RareHeart);
             if (slice < 0) return;
+            // Time off under way (a day off, a bad afternoon): over when its hours are up, cut short when danger comes, put back
+            // quietly with the heart switched off. Every slice, so nobody sits out a raid for long; a plain loop over the hearts.
+            try
+            {
+                HeartTimeOff.Check(this, now);
+            }
+            catch (Exception e)
+            {
+                CouncilLog.ErrorOnce("heart time off", e);
+            }
             if (!Heart.On) return;
             using var clock = PassClock.Time(Pass.RareHeart);
             try
@@ -137,6 +150,7 @@ namespace ColonyCouncil
             {
                 CouncilLog.ErrorOnce("heart", e);
             }
+
             // Once an hour: forget the dead and those who left.
             if (slice == 0)
             {

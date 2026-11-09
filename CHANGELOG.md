@@ -5,6 +5,18 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## The heart counts: stronger moods, a day off, and what would help
+
+*9 November 2026, version 0.185.0*
+
+- Strain now weighs -4, -8 and -14 on mood by its band and the good side lifts +3, +6 and +10; a setting chooses mild, felt or strong.
+- Beyond mood, a worn colonist works and learns more slowly, needs a little more sleep and heals a little slower, while one in good heart learns and recovers a little faster; illness is fought off at most a twentieth slower.
+- From worn down, a colonist may have a bad afternoon: a few hours off work to cry beside their bed, look out over the land, have a drink or visit a grave, easing a good share of their strain.
+- Hearts spread a little: someone worn down wears on those close to them, someone in high spirits lifts them, never enough on its own to wear anyone down.
+- Each strained colonist gets advice on what would help most, from a proper meal or a better bed to a party, a friend sent over or a decree that eases strain, with a button wherever Rimfolk can do it.
+- Give a strained colonist a day off from a button: their work hours become free time with a lie-in, it eases far more than an ordinary day, once in five days each, and danger ends it.
+- The Mood tab shows mood, the heart, the three things weighing on them and lifting them most, what their state does to them and the best advice at the top, with every detail below in sections that fold; RimHUD's lines match it.
+
 ## The best weapon for each colonist, and the weapon card first
 
 *9 November 2026, version 0.184.0*

@@ -35,8 +35,10 @@ public static class GoodHeartTests
         C(HeartMath.GoodBandFor(float.NaN) == GoodBand.None && HeartMath.GoodBandFor(-5f) == GoodBand.None, "nothing yet from nothing");
         foreach (GoodBand b in Enum.GetValues(typeof(GoodBand)))
             C(HeartMath.GoodBandFor(HeartMath.GoodBandStart(b)) == b, "band start " + b);
-        C(HeartMath.GoodMood(GoodBand.None) == 0f && HeartMath.GoodMood(GoodBand.Steady) == 2f && HeartMath.GoodMood(GoodBand.GoodHeart) == 3f && HeartMath.GoodMood(GoodBand.HighSpirits) == 5f,
-            "nothing yet gives nothing; steady +2, in good heart +3, in high spirits +5");
+        C(HeartMath.GoodMood(GoodBand.None) == 0f && HeartMath.GoodMood(GoodBand.Steady) == 3f && HeartMath.GoodMood(GoodBand.GoodHeart) == 6f && HeartMath.GoodMood(GoodBand.HighSpirits) == 10f,
+            "nothing yet gives nothing; steady +3, in good heart +6, in high spirits +10 (the heart made to count; +2, +3, +5 mild)");
+        C(HeartCountMath.GoodMood(GoodBand.Steady, BandStrength.Mild) == 2f && HeartCountMath.GoodMood(GoodBand.GoodHeart, BandStrength.Mild) == 3f
+          && HeartCountMath.GoodMood(GoodBand.HighSpirits, BandStrength.Mild) == 5f, "mild: the bands as the player first approved them");
         C(HeartMath.GoodMood(GoodBand.Steady) < -HeartMath.MoodOffset(StrainBand.Strained) && HeartMath.GoodMood(GoodBand.GoodHeart) < -HeartMath.MoodOffset(StrainBand.Worn)
           && HeartMath.GoodMood(GoodBand.HighSpirits) < -HeartMath.MoodOffset(StrainBand.Breaking), "each smaller than strain's across from it");
         C(!Code("Heart/HeartData.cs").Contains("GoodBand") && !Code("Heart/HeartTracker.cs").Contains("GoodBand"), "the band is never saved: read from the value, so an old save's colonist above 20 is steady at once");
@@ -58,7 +60,8 @@ public static class GoodHeartTests
 
         // ---------- What fills it ----------
         C((int)GoodSource.Gathering == 0 && (int)GoodSource.Friends == 1 && (int)GoodSource.Joys == 2 && (int)GoodSource.Belonging == 3 && (int)GoodSource.Purpose == 4
-          && (int)GoodSource.Deeds == 5 && (int)GoodSource.Comforts == 6 && HeartMath.GoodSourceCount == 7, "its sources keep their places (saved by position)");
+          && (int)GoodSource.Deeds == 5 && (int)GoodSource.Comforts == 6 && (int)GoodSource.Lifted == 7 && HeartMath.GoodSourceCount == 8,
+            "its sources keep their places (saved by position; someone close in high spirits at the end)");
         foreach (GoodSource s in Enum.GetValues(typeof(GoodSource)))
         {
             C(HeartMath.GoodCap(s) > 0f && HeartMath.GoodCap(s) <= HeartMath.GoodDailyCap, s + ": a daily cap within the day's");
@@ -131,7 +134,10 @@ public static class GoodHeartTests
         C(Code("Heart/Heart.cs").Contains("HeartMath.SweetDreamFactor(good)") && Code("Heart/Heart.cs").Contains("HeartMath.GoodNightmareFactor(good)"), "the dreams ask for it");
         C(Code("Heart/HeartLogic.cs").Contains("factor *= HeartMath.RecoveryFactor(HeartMath.GoodBandFor(h.goodLately))"), "strain's relief asks how high it stood lately");
         string effects = Code("Heart/HeartEffects.cs");
-        C(!effects.Contains("GoodHeart") && !effects.Contains("good"), "no work speed: the stat part knows nothing of it");
+        int workAt = effects.IndexOf("public class StatPart_HeartStrain", StringComparison.Ordinal);
+        string work = workAt < 0 ? "" : effects.Substring(workAt, effects.IndexOf("/// The heart's effects beyond mood on one stat", workAt, StringComparison.Ordinal) - workAt);
+        C(work.Length > 0 && !work.Contains("GoodHeart") && !work.Contains("good") && HeartCountMath.GoodSide(HeartEffect.Work, GoodBand.HighSpirits) == 1f,
+            "no work speed: the work stat part knows nothing of it");
 
         // ---------- The release ----------
         C(HeartMath.ReleaseChancePerHour(HeartMath.HighSpiritsAt - 0.1f) == 0f && HeartMath.ReleaseChancePerHour(HeartMath.HighSpiritsAt) > 0f, "only in high spirits");
@@ -192,7 +198,7 @@ public static class GoodHeartTests
             C(keyed.ContainsKey("CC_GoodSide_Band_" + b) && keyed.ContainsKey("CC_GoodSide_Band_" + b + "_Desc"), "words for " + b);
         C(keyed["CC_GoodSide_Band_Steady"] == "steady" && keyed["CC_GoodSide_Band_GoodHeart"] == "in good heart" && keyed["CC_GoodSide_Band_HighSpirits"] == "in high spirits",
             "the player's names for the bands");
-        C(goodCode.Contains("(\"CC_GoodSide_Band_\" + b).Translate()") && goodCode.Contains("(\"CC_GoodSide_Band_\" + b + \"_Desc\").Translate()") && goodCode.Contains("\"CC_GoodSide_Explain\".Translate()")
+        C(goodCode.Contains("(\"CC_GoodSide_Band_\" + b).Translate()") && goodCode.Contains("(\"CC_GoodSide_Band_\" + b + \"_Desc\").Translate(") && goodCode.Contains("\"CC_GoodSide_Explain\".Translate(")
           && !goodCode.Contains("(\"CC_Good_Band_\" +") && !goodCode.Contains("\"CC_Good_Explain\".Translate") && !Code("Heart/HeartView.cs").Contains("\"CC_Good_ColonySummary\".Translate"),
             "the code reads the bands' new words, the old keys left unused");
         foreach (GoodSource s in Enum.GetValues(typeof(GoodSource)))
@@ -200,13 +206,15 @@ public static class GoodHeartTests
         foreach (var k in new[] { "CC_Settings_HeartGoodSide", "CC_Settings_HeartGoodSide_Tip", "CC_SetNote_HeartGoodSide" })
             C(keyed.ContainsKey(k), k + " is written");
         foreach (var b in new[] { GoodBand.Steady, GoodBand.GoodHeart, GoodBand.HighSpirits })
-            C(keyed["CC_GoodSide_Band_" + b + "_Desc"].Contains("+" + HeartMath.GoodMood(b).ToString("0") + " mood"), b + ": its words say its mood");
+            C(keyed["CC_GoodSide_Band_" + b + "_Desc"].Contains("{EFFECTS}"), b + ": its words say its mood and what else it does, by the settings as they are");
+        C(goodCode.Contains("(HeartEffects.DoingGood(b) ?? \"\").Named(\"EFFECTS\")") && Code("Heart/HeartEffects.cs").Contains("parts.Add(\"CC_Count_DoingMood\".Translate(MoodView.Number(HeartCountMath.GoodMood(good, s.heartBands)))"),
+            "the band's words carry its mood as the setting has it");
         C(keyed["CC_GoodSide_Band_None_Desc"].Contains(HeartMath.SteadyAt.ToString("0")), "nothing yet says where steady starts");
         string explain = keyed["CC_GoodSide_Explain"];
         C(new[] { HeartMath.SteadyAt, HeartMath.GoodHeartAt, HeartMath.HighSpiritsAt }.All(v => explain.Contains("from " + v.ToString("0")))
           && explain.Contains(HeartMath.GoodDailyCap.ToString("0") + " a day"), "the page's words say where the bands start and the day's cap");
-        C(new[] { GoodBand.Steady, GoodBand.GoodHeart, GoodBand.HighSpirits }.All(b => explain.Contains("(+" + HeartMath.GoodMood(b).ToString("0") + " mood)")), "and each band's mood");
-        C(keyed["CC_Settings_HeartGoodSide_Tip"].Contains("(+2, +3 and +5)"), "the setting's tooltip says the three moods");
+        C(new[] { "{STEADY}", "{GOOD}", "{HIGH}" }.All(k => explain.Contains("(" + k + " mood)")), "and each band's mood, as the setting has it");
+        C(keyed["CC_Settings_HeartGoodSide_Tip"].Contains("(+3, +6 and +10 by default"), "the setting's tooltip says the three moods");
         // Steady shows like the other two: the inspector line and RimHUD, the meter's line, the card, the Moods page's count.
         string view = Code("Heart/HeartView.cs");
         C(view.Contains("bool goodSide = good != GoodBand.None;") && view.Contains("string goodValue = good != GoodBand.None ?") && view.Contains("m.goodLine = (good != GoodBand.None ?"),

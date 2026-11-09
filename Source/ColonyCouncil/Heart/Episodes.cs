@@ -74,6 +74,9 @@ namespace ColonyCouncil
         /// <summary>Biotech's nursing mother (null without Biotech), looked up quietly.</summary>
         private static HediffDef Lactating => lactating ?? (lactating = DefDatabase<HediffDef>.GetNamedSilentFail("Lactating"));
 
+        /// <summary>A nursing mother: a baby may depend on her (Biotech's lactating; never without it).</summary>
+        internal static bool Nursing(Pawn p) => Lactating != null && (p?.health?.hediffSet?.HasHediff(Lactating) ?? false);
+
         /// <summary>The episode's mental state (Council_Heart_WornOut), looked up quietly.</summary>
         public static MentalStateDef Def
         {
@@ -132,7 +135,7 @@ namespace ColonyCouncil
         /// Doing something that can't just be dropped: an order from the player, caring for, feeding or carrying someone
         /// (a patient, a baby, a prisoner), fighting a fire. The day off waits an hour or two.
         /// </summary>
-        private static bool Busy(Pawn p)
+        internal static bool Busy(Pawn p)
         {
             if (p.carryTracker?.CarriedThing is Pawn) return true;
             var job = p.CurJob;

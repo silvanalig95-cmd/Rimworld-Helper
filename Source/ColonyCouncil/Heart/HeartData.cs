@@ -176,6 +176,19 @@ namespace ColonyCouncil
         /// <summary>The bands last told the player in a message (HeartFeltMath.Tell): -1, not looked at yet.</summary>
         public int toldStrain = -1, toldGood = -1;
 
+        // ---------------- The heart, made to count (Heart/HeartTimeOff.cs) ----------------
+
+        /// <summary>
+        /// Time off work under way (TimeOffKind: a day off the player gave, a bad afternoon): when it started and when it ends
+        /// (ticks; -1 none), and their old timetable for the hours it changed ("9=Work", "7=Sleep>Sleep" for a lie-in), put
+        /// back when it ends. <see cref="offWhy"/> is what wore them down to it, in a few words, for the page and the message.
+        /// </summary>
+        public int offKind, offStart = -1, offUntil = -1;
+        public List<string> offHours = new List<string>();
+        public string offWhy;
+        /// <summary>The last day off they were given and the last bad afternoon they had (for their cooldowns).</summary>
+        public int lastDayOffTick = -999999, lastBadDayTick = -999999;
+
         // ---------------- Worked out each hour, not saved ----------------
 
         [Unsaved] public List<FeelingNow> feelings = new List<FeelingNow>();
@@ -221,6 +234,20 @@ namespace ColonyCouncil
         [Unsaved] public int turnLineUntil = -1, lastLineTick = -999999, lastSignTick = -999999;
         /// <summary>Whom a loss already weighed for lately (by id, and when), so the memories of one death weigh once.</summary>
         [Unsaved] public Dictionary<int, (int tick, float weight)> weighedFor;
+        /// <summary>
+        /// The heart, made to count: what would help them now (Heart/HeartAdvice.cs), built at most once a game hour for the
+        /// page, the card and the bar; when it was built; the last act of their time off; who close wore on or lifted them
+        /// this hour, by name, for the page.
+        /// </summary>
+        [Unsaved] public List<HeartAdvice.Item> advice;
+        [Unsaved] public int adviceTick = -999999, offActTick = -999999;
+        [Unsaved] public string spreadFrom, liftedBy;
+
+        /// <summary>Time off work of this kind is under way.</summary>
+        public bool Off(TimeOffKind kind) => offKind == (int)kind && offUntil >= 0;
+
+        /// <summary>Any time off work under way.</summary>
+        public bool AnyOff => offKind != 0 && offUntil >= 0;
 
         /// <summary>A small letdown wore on them, or a joy eased them, by this much: the heart's page names the biggest few.</summary>
         public void Note(bool joy, string why, float amount)
@@ -394,6 +421,14 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref heldKind, "heldKind");
             Scribe_Values.Look(ref toldStrain, "toldStrain", -1);
             Scribe_Values.Look(ref toldGood, "toldGood", -1);
+            // The heart, made to count: an older save has no time off under way, and every cooldown is past.
+            Scribe_Values.Look(ref offKind, "offKind");
+            Scribe_Values.Look(ref offStart, "offStart", -1);
+            Scribe_Values.Look(ref offUntil, "offUntil", -1);
+            Scribe_Collections.Look(ref offHours, "offHours", LookMode.Value);
+            Scribe_Values.Look(ref offWhy, "offWhy");
+            Scribe_Values.Look(ref lastDayOffTick, "lastDayOffTick", -999999);
+            Scribe_Values.Look(ref lastBadDayTick, "lastBadDayTick", -999999);
             if (Scribe.mode == LoadSaveMode.PostLoadInit)
             {
                 good = HeartMath.Clamp(good);
@@ -404,6 +439,7 @@ namespace ColonyCouncil
                 if (recentBuild == null) recentBuild = new List<float>();
                 if (recentRelief == null) recentRelief = new List<float>();
                 if (today == null) today = new List<float>();
+                offHours ??= new List<string>();
                 strain = HeartMath.Clamp(strain);
                 EnsureLists();
             }

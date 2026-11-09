@@ -31,6 +31,10 @@
       <li><trait>Industriousness</trait><degree>2</degree><reaction>Dislike</reaction></li>
       <li><passion>Social</passion><reaction>Dislike</reaction></li>
     </reactions>
+    <!-- The heart's advice (Heart/HeartAdvice.cs): what it eases for a strained colonist, and what it costs. -->
+    <heartEases><li>BadSleep</li><li>Exhaustion</li></heartEases>
+    <heartHelp>better nights: everyone rests 15% faster in bed</heartHelp>
+    <heartCost>everyone works 5% slower for five days, and night owls hate it</heartCost>
     <effects>
       <li>Everyone rests 15% faster in bed, and social fights are much rarer.</li>
       <li>Everyone works 5% slower: nothing gets done after dark.</li>
@@ -73,6 +77,10 @@
       <li><trait>Ascetic</trait><reaction>Dislike</reaction></li>
       <li><trait>Industriousness</trait><degree>2</degree><reaction>Dislike</reaction></li>
     </reactions>
+    <!-- The heart's advice (Heart/HeartAdvice.cs): what it eases for a strained colonist, and what it costs. -->
+    <heartEases><li>Unmet</li><li>Despair</li></heartEases>
+    <heartHelp>company at every meal, and fewer quarrels</heartHelp>
+    <heartCost>everyone works 3% slower for five days</heartCost>
     <effects>
       <li>Social impact up 10%, social fights rarer, and everyone gets some practice at talking every hour.</li>
       <li>Everyone works 3% slower: work stops for meals.</li>
@@ -115,6 +123,10 @@
       <li><trait>Industriousness</trait><degree>-1</degree><reaction>Like</reaction></li>
       <li><trait>Industriousness</trait><degree>-2</degree><reaction>Like</reaction></li>
     </reactions>
+    <!-- The heart's advice (Heart/HeartAdvice.cs): what it eases for a strained colonist, and what it costs. -->
+    <heartEases><li>Pain</li><li>Downed</li></heartEases>
+    <heartHelp>the hurt and the ill rest in bed and heal faster</heartHelp>
+    <heartCost>everyone works 5% slower for five days, covering for the sick</heartCost>
     <effects>
       <li>Wounds heal 20% faster and immunity builds faster.</li>
       <li>Everyone works 5% slower, covering for the sick.</li>
@@ -238,6 +250,10 @@
       <li><trait>Industriousness</trait><degree>2</degree><reaction>Dislike</reaction></li>
       <li><trait>Psychopath</trait><reaction>Neutral</reaction></li>
     </reactions>
+    <!-- The heart's advice (Heart/HeartAdvice.cs): what it eases for a strained colonist, and what it costs. -->
+    <heartEases><li>Hunger</li><li>LowMood</li></heartEases>
+    <heartHelp>a day of feasting: full bellies and a lift</heartHelp>
+    <heartCost>a day with everyone working 15% slower and eating more, and standards rise a little</heartCost>
     <effects>
       <li>A day: everyone gets hungry 40% faster and eats more.</li>
       <li>Everyone works 15% slower, and standards rise slightly.</li>

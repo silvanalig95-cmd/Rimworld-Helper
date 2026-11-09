@@ -12,6 +12,107 @@ tree at once, alongside whatever runs. Each piece is merged as its own release, 
 
 ## State (5 November 2026)
 
+- 0.185.0, the heart, made to count (9 November 2026, release 2 of `docs/design/heart-felt.md`, points 9 to 14; the player's words: "if the strain is not noticeable it
+  doesn't make too much sense. also include recommendations and advice on potential actions i can take to reduce strain
+  ... i could for example also just grant a single stained pawn a break day"), with their two requests for the same
+  screens built beside it: the Mood tab at a glance first, and RimHUD brought to match ("review the "mood" uI for
+  colonists, so the most relevant details for strain and mood are visible at first glance ... also perhaps revisit the
+  rimui integration"). DESIGN.md "The heart, made to count" has all of it (and Layer 7's bands, "The heart's good side");
+  `docs/design/heart-felt.md` release 2 marked built with its choices; README "Feelings and strain" (the bands, felt as it
+  should be, a bad afternoon, hearts spread, what would help, a day off you give, where to see it) and the RimHUD lines;
+  the Almanac's "feelings and strain" (the bands with the old numbers as the mild choice, a bad afternoon, a day off you
+  give, hearts spread a little, what would help, where to see it) and "the heart's good side", prose only, keywords
+  unchanged. The balance report was written again (the illness tables by hand kept), with a new section "The heart,
+  made to count".
+  - What: **stronger bands** (9): strain -4, -8, -14, the good side +3, +6, +10 (the thoughts' stages; the setting
+    `heartBands` sizes them in code through the thought's `BaseMoodOffset`: Mild is release 1's, Strong -5, -10, -18 and
+    +4, +8, +13); the good side stays in good things growing ordinary's sum as a lasting good mood (no exemption, as it
+    was). The bands' own words carry what they do by the settings (`{EFFECTS}`). **Effects beyond mood** (10): stat parts
+    in the heart's pattern (`Patches/Council_Heart.xml`, conditional): work 3%, 7%, 12% slower from strained (5%, 10% from
+    worn with the setting off), learning (worn 6%, near breaking 10% slower; in good heart 4%, high spirits 8% faster),
+    the need for sleep (6%, 10% more), healing (5%, 10% slower; 3%, 6% faster), immunity (3%, 5% slower, never more, tested
+    at every pair of bands; 2%, 5% faster); each in the stat's explanation, the bands' words, the card and the Mood tab.
+    **A bad afternoon** (11): from 55, hours 12 to 16, 1 in 50 an hour rising to 1 in 25 at 85, a week for each colonist
+    and two days in the colony, under the day off's safety rules (`HeartTimeOff.Unsafe`, `Episodes.Busy`, `Episodes.Nursing`);
+    three to five hours off work through their timetable: a while beside their bed (a new act, `Cry`), looking out, a drink
+    if they drink (`FirstPot.WillDrink`, never addicted or just clean), the grave or the lost one's bed when grieving; a
+    message with why, a line; danger ends it; 30% of strain eased (half cut short). **Hearts spread** (12): partners 1, kin
+    0.8, friends by opinion 0.4 to 0.8 (`HeartCountMath.Closeness`), 0.06 an hour from someone worn, 0.1 near breaking, 0.15
+    an hour and 2.5 a day at most, never past 45 (`SpreadCeiling`); high spirits lift 0.05 an hour (at most 0.1) as a good
+    thing; new `StrainSource.Spread`, `StrainRelief.Lifted`, `GoodSource.Lifted` at the ends of their lists, padded.
+    **Advice** (13, `Heart/HeartAdvice.cs`): ranked from the heart's sources lately and how they are now
+    (`HeartCountMath.Rank`): a day off, the council's decrees that ease strain (days of rest; and the eight that name in
+    their defs what they ease, do and cost: `heartEases`, `heartHelp`, `heartCost` on festival days, quiet hours, mourning,
+    shared meals, rest when ill, a feast day, a work song, holy days), a gathering, a friend, a meal, a bed, recreation
+    (naming what they're tired of), pain, a rest from fighting, grieving, light; buttons: give the day off, propose (the
+    colonist's petition through `DecreeTracker.Petition`, the council's own path, then the Decrees page), call a party
+    (the game's), send a friend over (`HeartActs.FriendVisit`, a deep talk when the two meet). Built hourly, unsaved. On the
+    Mood tab, the card (a section with buttons, the day off among its acts), the message when worn down, the Moods page for
+    the colony, RimHUD's tooltip. **A day off** (14, `Heart/HeartTimeOff.cs`): from strained (the choice: a button on every
+    colonist would crowd the bar), from the gizmo on a selected colonist, the card, the Mood tab or the advice; a day of
+    Work/Anything hours as recreation and a two-hour lie-in, and a think-tree node of Rimfolk's own
+    (`Defs/HeartDefs/Rimfolk_Heart_TimeOff.xml`, at `Humanlike_PreMain`: emergency work first, food and sleep, an act now
+    and then, recreation, a wander; standing down when drafted, downed, needing a doctor or in danger); rest a quarter
+    faster and 0.3 an hour besides, 12 more at its end (half cut short); once in five days; danger ends it every slice;
+    the hours changed are saved and put back only where nobody changed them (the calendar's rest day's taken over). **The
+    Mood tab** (`Moods/MoodGlance.cs`, `ITab_Pawn_Mood.cs`): the top is the mood and where it heads with the break lines,
+    the heart now with today's move and the weight under it in the bar line's colours, what weighs and lifts most (the top
+    three across the game's, mods' and Rimfolk's moods, the heart's two with their causes), what each side does now, and
+    the top advice with buttons; below, folding sections remembered between sessions (`Folds.Remembered`, PageMemory):
+    every mood, the heart, feelings, needs, grown ordinary, lately. **RimHUD**: the strain line reads like the summary
+    (both sides in colour, the top cause, time off), its tooltip leads with the advice, a click opens the Mood tab; the
+    strain bar says time off; new widgets `Council_Hud_GoodBar` and `Council_Hud_HeartAdvice`. Its DLL isn't needed: only
+    the hooks the integration already used (value and bar widgets by name, `GetParameters(Pawn)`).
+  - Code: new `Heart/HeartCountMath.cs` (pure, linked in Tests.csproj and Balance.csproj), `Heart/HeartTimeOff.cs` (the
+    time off, its think node and job giver, the gizmo patch), `Heart/HeartAdvice.cs`, `Moods/MoodGlance.cs`,
+    `Defs/HeartDefs/Rimfolk_Heart_TimeOff.xml`, `Languages/English/Keyed/Rimfolk_HeartCounts.xml`. Touched: `HeartMath` (new
+    sources, the bands through the new math), `HeartEffects` (the stat parts, `HeartEffects.Doing`), `GoodHeart`,
+    `HeartLogic` (spreading, lift, the day off's rest, the bad afternoon from the hour), `HeartData`, `HeartTracker` (the
+    slice check), `HeartActs` and `HeartActJob` (the time off's jobs, the `Cry` act), `HeartFelt` (advice in the message),
+    `HeartView` (the heart's page split into three sections, the colony's advice, the HUD value), `HeartCard`, `HeartDebug`,
+    `Episodes`, `Decrees.cs` (`heartEases`, `heartHelp`, `heartCost`, `Petition`), `UI/RimfolkTab.cs` (remembered folds),
+    `Integrations/RimHud.cs`, `CouncilSettings`, `SettingsCatalog` (light touch: mild bands, no bad afternoons); defs: the
+    two band thoughts' stages, `Patches/Council_Heart.xml`, the act job `Rimfolk_HeartAct_Cry`, 27 new lines in
+    `Rimfolk_Pool_HeartAct`, nine decrees, two RimHUD defs. `Tools/Balance` (HeartSim's bad afternoons and spreading, the
+    mild bands' runs, breaks by the game's lines); `Tools/save_estimate.py` models `offHours`.
+  - Settings (How hard, under the heart's): `heartBands` "How strongly the bands are felt" (Mild, Felt, Strong; Felt),
+    `heartEffects` "Effects beyond mood", `heartBadDays` "A bad day from worn", `heartSpread` "Hearts spread a little",
+    `heartAdvice` "What would help", `heartDayOff` "A day off for one colonist" (each on). Saved: values on the heart
+    (`offKind`, `offStart`, `offUntil`, `offWhy`, `lastDayOffTick`, `lastBadDayTick`), one short list (`offHours`), the
+    tracker's `lastColonyBadDayTick`; the heart's lists grow at their ends. One Harmony patch (`Patch_HeartDayOffGizmo`),
+    no Sched slot.
+  - Measured (`Tools/Tests/HeartFeltTests.cs`, 40 runs a case; the release 1 targets still held: calm steady on day 6, in
+    good heart on day 18; a friend's death 7.1 days strained, a partner 9.8; a plague season all worn, 4 of 160 near
+    breaking): breaks by the game's own lines (35%, 20%, 5%; mean times 4, 0.8, 0.5 days) a colonist-year, felt against mild
+    bands: a calm colony 0.00 and 0.00, a plague season 0.32 and 0.14 (under the minor line 2.1% against 1.0%), real
+    disasters 0.55 and 0.27; bad afternoons none in a calm colony, 0.34 a colonist-year in a plague season, 154 among 320
+    colonists after a disaster; a day off at strain 61 eases 45 in the day against 30 on an ordinary one (43 against 30 with
+    a weight of 30 under it); one colonist held near breaking eight weeks among seven close friends: none ever worn down,
+    spread 1.0 a day each. Balance simulator (`docs/balance-report.md`, "The heart, made to count", 6 colonists, felt
+    against mild): well run no breaks either way, bad afternoons 0.01; average breaks 0.01 and 0.00, strained/worn/near
+    breaking 14/4/1%, bad afternoons 0.26, day off at 85 0.10 (0.14 in release 1); neglectful under the minor line 46%
+    against 35%, breaks 9.8 against 6.3, bad afternoons 1.38, day off at 85 1.21 (1.6 in release 1). Off target: Rimfolk's
+    mood well run +7.3 (target +3 to +6) and +12 or more 29% of the time (rare before): the good side's +3, +6, +10 as the
+    player asked; growing ordinary still takes its share. The neglected colony's time under the minor line (46%) is above
+    the old "no more than before" (34%): the worn down break more often, as release 2 meant.
+  - Riskiest (none of it could be run here): the think-tree node at `Humanlike_PreMain` (that it keeps them from ordinary
+    work in recreation hours once their joy is full, that the emergency work still comes, that queued jobs and gatherings
+    come before it); the timetable changed and put back across a save and load, with a curfew or the calendar's rest day at
+    the same time; the gizmo's placement and its greyed reason; the drink found and drunk (a mod's alcohol by its chemical);
+    the `Cry` act beside a bed in a shared room or barracks; the stat parts' lines in the info card and that
+    `RestFallRateFactor`, `GlobalLearningFactor`, `InjuryHealingFactor`, `ImmunityGainSpeed` take a part (conditional
+    patches, so nothing fails if not); the Mood tab's summary at the inspect pane's width with RimHUD's taller pane, and
+    the advice's buttons in both looks; the card's drawn advice section; the petition's message and line; the party
+    called from the advice; RimHUD showing the new widgets (defs by its API version 1, as the others) and the click
+    opening the Mood tab.
+  - Try in the game: 1. Avila (worn, 61): her Mood tab opens on "Heart: worn down 61 ..." with what weighs and lifts her,
+    "Worn down: -8 mood, work -7%, ..." and "What would help her:" with "Give a day off". 2. Give it: her schedule shows
+    recreation for a day and a lie-in, she walks, sits with her partner, doesn't work; a message and a line. 3. "Propose"
+    on days of rest: a petition by her, the Decrees page opens. 4. The info card's Global learning factor and Immunity
+    gain speed on her: the heart's lines. 5. Dev mode "Heart: a bad afternoon now (if safe)": she leaves her work, a
+    message with why, a while in her room. 6. A raid during a day off: it ends at once, she can be drafted. 7. RimHUD:
+    the strain line's tooltip and click; add "Rimfolk: what would help" and "the heart's good side (bar)". 8. Settings,
+    How hard: the bands mild and strong (the mood's size and the bands' words follow), and each new switch off in turn.
 - 0.184.0, weapons you can judge at a glance, step 3: the best weapon for each colonist, colonists who ask, and Rimfolk's
   card first (9 November 2026, `docs/design/weapons.md` points 8 and 9 and the player's "can the rimworld weapon card be
   the default screen"). DESIGN.md

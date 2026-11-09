@@ -280,10 +280,14 @@ MODEL = {
     "Heart/HeartData.cs:feelingSinceKeys": ("fixed", 4, 40, "per heart: feelings felt now"),
     "Heart/HeartData.cs:feelingSinceTicks": ("fixed", 4, V, "per heart"),
     "Heart/HeartData.cs:needLack": ("fixed", 4, V, "per heart: the four needs"),
-    # The heart's good side (Heart/GoodHeart.cs): one entry per source that fills it (7) or per strain source that spends it.
-    "Heart/HeartData.cs:goodToday": ("fixed", 7, V, "per heart: one per source of the good side"),
-    "Heart/HeartData.cs:goodRecent": ("fixed", 7, V, "per heart: one per source of the good side"),
-    "Heart/HeartData.cs:goodSpent": ("fixed", 19, V, "per heart: one per strain source"),
+    # The heart's good side (Heart/GoodHeart.cs): one entry per source that fills it (8) or per strain source that spends it (20).
+    "Heart/HeartData.cs:goodToday": ("fixed", 8, V, "per heart: one per source of the good side"),
+    "Heart/HeartData.cs:goodRecent": ("fixed", 8, V, "per heart: one per source of the good side"),
+    "Heart/HeartData.cs:goodSpent": ("fixed", 20, V, "per heart: one per strain source"),
+    # The heart, made to count (Heart/HeartTimeOff.cs): the hours a day off changed in their timetable ("9=Work>Joy"), put back
+    # when it ends; at most a day's 24, only while a day off or a bad afternoon runs (most hearts have none). Counted at
+    # its fullest for every heart, which is generous.
+    "Heart/HeartData.cs:offHours": ("fixed", 24, 40, "per heart: the hours a day off changed, only while it runs"),
     "Heart/HeartTracker.cs:hearts": ("colonists", 1, 1400, "one per colonist, the gone dropped hourly"),
     # Camps (one camp while it stays)
     "Building/Automations.cs:billKeys": ("fixed", 40, 40, "bills the council set (bench id and recipe), while they stand on the bench"),

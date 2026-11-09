@@ -21,6 +21,7 @@
     <Compile Include="../../Source/ColonyCouncil/Heart/HeartMath.cs" Link="HeartMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Heart/HeartNeedMath.cs" Link="HeartNeedMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Heart/HeartFeltMath.cs" Link="HeartFeltMath.cs" />
+    <Compile Include="../../Source/ColonyCouncil/Heart/HeartCountMath.cs" Link="HeartCountMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Ambitions/MeetingMath.cs" Link="MeetingMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Offices/ElectionMath.cs" Link="ElectionMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Offices/OfficeNamesMath.cs" Link="OfficeNamesMath.cs" />

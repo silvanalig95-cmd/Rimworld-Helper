@@ -248,6 +248,36 @@ namespace Balance
             }
             sb.AppendLine();
 
+            // ---------------- The heart, made to count ----------------
+            sb.AppendLine("## The heart, made to count");
+            sb.AppendLine();
+            sb.AppendLine("Release 2 of `docs/design/heart-felt.md` (`HeartCountMath`): the bands felt in mood at "
+                + string.Join(", ", new[] { ColonyCouncil.StrainBand.Strained, ColonyCouncil.StrainBand.Worn, ColonyCouncil.StrainBand.Breaking }.Select(b => ColonyCouncil.HeartMath.MoodOffset(b).ToString("0")))
+                + " for strain and +" + string.Join(", +", new[] { ColonyCouncil.GoodBand.Steady, ColonyCouncil.GoodBand.GoodHeart, ColonyCouncil.GoodBand.HighSpirits }.Select(b => ColonyCouncil.HeartMath.GoodMood(b).ToString("0")))
+                + " for the good side (\"mild bands\": -3, -5, -8 and +2, +3, +5, as before), a bad afternoon now and then from worn down, and hearts");
+            sb.AppendLine("spreading a little between friends. Breaks are the mood-caused breaks to expect a colonist-year by the game's own lines");
+            sb.AppendLine("and mean times (`MentalBreaker`: under 35% one in 4 days, under 20% one in 0.8, under 5% one in 0.5), from the whole");
+            sb.AppendLine("mood each sample; the game's own cooldowns and a break's own end would make the real count a little lower. 6 colonists,");
+            sb.AppendLine("the same seeds with the bands felt and felt mildly.");
+            sb.AppendLine();
+            sb.AppendLine("| Play | Bands | Whole mood (P10) | Under the minor / major line | Breaks a colonist-year | Strained / worn / near breaking | Bad afternoons a colonist-year | Day off at 85 a year |");
+            sb.AppendLine("|---|---|---|---|---|---|---|---|");
+            foreach (var r in results.Where(r => r.preset == null && r.colonists == 6))
+            {
+                var mild = results.FirstOrDefault(x => x.preset == "mild bands" && x.style == r.style);
+                foreach (var (label, res) in new[] { ("felt", r), ("mild", mild) })
+                {
+                    if (res == null) continue;
+                    var s = res.summary;
+                    sb.AppendLine($"| {r.style.name} | {label} | {P(s.mood)} ({P(s.moodP10)}) | {P(s.underMinor)} / {P(s.underMajor)} | {s.breaksPerYear:0.00} | {P(s.strained)} / {P(s.worn)} / {P(s.breaking)} | {s.badDaysPerYear:0.00} | {s.episodesPerYear:0.00} |");
+                }
+            }
+            sb.AppendLine();
+            sb.AppendLine("The plague and disaster cases, a colonist looked at hourly through the same rules over weeks, are measured in");
+            sb.AppendLine("`Tools/Tests/HeartFeltTests.cs` (printed when the tests run): breaks by the game's lines with the bands felt and felt");
+            sb.AppendLine("mildly, bad afternoons, how much a day off eases, and spreading held under its ceiling.");
+            sb.AppendLine();
+
             // ---------------- Trust ----------------
             sb.AppendLine("## Trust");
             sb.AppendLine();
@@ -383,7 +413,7 @@ namespace Balance
             sb.AppendLine("| A varied table | " + string.Join(" | ", Rates.Styles.Select(s => P(s.variedTable))) + " |");
             sb.AppendLine("| The same meal again (stage 1 / 2 / 3) | " + string.Join(" | ", Rates.Styles.Select(s => $"{P(s.sameMeal[1])} / {P(s.sameMeal[2])} / {P(s.sameMeal[3])}")) + " |");
             sb.AppendLine("| The same work again (stage 1 / 2 / 3) | " + string.Join(" | ", Rates.Styles.Select(s => $"{P(s.sameWork[1])} / {P(s.sameWork[2])} / {P(s.sameWork[3])}")) + " |");
-            sb.AppendLine("| Strained (-3 / -5 / -8) from life alone (the heart's life is set to it) | " + string.Join(" | ", Rates.Styles.Select(s => $"{P(s.strain[0])} / {P(s.strain[1])} / {P(s.strain[2])}")) + " |");
+            sb.AppendLine("| Strained / worn / near breaking from life alone (the heart's life is set to it) | " + string.Join(" | ", Rates.Styles.Select(s => $"{P(s.strain[0])} / {P(s.strain[1])} / {P(s.strain[2])}")) + " |");
             sb.AppendLine("| The colony's ways (-4 / -2 / +2 / +4) | " + string.Join(" | ", Rates.Styles.Select(s => string.Join(" / ", s.ways.Select(w => P(w))))) + " |");
             sb.AppendLine();
             sb.AppendLine("Not modelled: quirks, heirlooms and the colony's trait pride (small steady moods either way), decrees' own moods");

@@ -162,7 +162,7 @@ button to the Almanac's **Start here** page. Saves that already had Rimfolk neve
 The **Mood**, **Story** and **Culture** tabs fit the room above the inspect pane: on a small screen, at a big interface
 scale or above RimHUD's taller pane they get shorter and scroll instead of running off the top of the screen. A click
 on a section's heading (the heart, what weighs on them, their bonds...) folds it away, and each tab (and the Social
-tab's column) remembers that for the session.
+tab's column) remembers that for the session; the Mood tab's sections are remembered between sessions too.
 
 ### Priorities: what the colony needs (Planning, then Plan, Priorities)
 A ranked list of concerns (65 kinds of check), each with a short explanation, a rotating **"why it matters"** tip,
@@ -2531,10 +2531,13 @@ Each of these switches itself on only when its mod is there, and only asks for w
   canned goods count as food that keeps, and someone ill may wish for a pot of tea.
 - **Vanilla Outposts Expanded:** a wish waits while its colonist is posted at an outpost (up to five days, then it
   lapses and nobody is blamed), and people out there write home in their journals now and then.
-- **RimHUD:** seven lines for its pawn panel (trust, open wish, office, life goal, strain, feelings, the heart's
-  needs), with strain in its band's colour, each feeling in its own and the heart's needs green when all is well, plus
-  five bars: strain (filling and reddening as it builds, marked where it becomes strained, worn down and near
-  breaking) and belonging, purpose, safety and freedom (marked where each starts to be missed). Four more lines show
+- **RimHUD:** eight lines for its pawn panel (trust, open wish, office, life goal, strain, what would help, feelings,
+  the heart's needs), with strain in its band's colour beside the good side's in green, the top cause and a day off or
+  bad afternoon under way, each feeling in its own colour and the heart's needs green when all is well (strain's tooltip
+  leads with what would help, and a click on it opens the Mood tab), plus six bars: strain (filling and reddening as it
+  builds, marked where it becomes strained, worn down and near breaking), the heart's good side (marked where it is
+  steady, in good heart and in high spirits) and belonging, purpose, safety and freedom (marked where each starts to be
+  missed). Four more lines show
   Rimfolk's ailments (the doctor's notes in the tooltip), convalescence, the personal story under way and a doctor's
   or midwife's standing, and a recovery bar fills as strength comes back. One more is for the colony's animals: an
   animal's temperament and its friends and rivals, with its grief, its voice and what it did lately in the tooltip
@@ -4100,9 +4103,44 @@ alone never hold anyone past 76, short of the day off.
 | Strain | Band | What it does |
 |---|---|---|
 | 0 to 29 | steady | nothing |
-| 30 to 54 | strained | -3 mood, darker dreams |
-| 55 to 74 | worn down | -5 mood, 5% slower work, more nightmares |
-| 75 to 100 | near breaking | -8 mood, 10% slower work, many nightmares; from 85, a day off may come |
+| 30 to 54 | strained | -4 mood, 3% slower work, darker dreams |
+| 55 to 74 | worn down | -8 mood, 7% slower work, learns 6% slower, needs 6% more sleep, heals 5% and fights off illness 3% slower, more nightmares, now and then a bad afternoon |
+| 75 to 100 | near breaking | -14 mood, 12% slower work, learns 10% slower, needs 10% more sleep, heals 10% and fights off illness 5% slower, many nightmares; from 85, a day off may come |
+
+**Felt, as it should be.** The bands go through the game's own mood, so the worn down break more often (in the balance
+simulator a neglected colony's people spend 46% of the time under the minor-break line against 35% with the bands felt
+mildly, and a well-run colony's never). **How strongly the bands are felt** (How hard) makes them mild, as they first
+were (-3, -5 and -8, the good side +2, +3 and +5), or strong (-5, -10 and -18, +4, +8 and +13). **Effects beyond mood**
+(How hard) are the small ones in the table: each shows in the stat's own explanation in the info card; immunity is
+never more than 5% slower, healing never more than 10%. Off, only the old 5% and 10% slower work from worn down stays.
+
+**A bad afternoon.** Someone worn down now and then puts their work down for three to five hours (from strain 55, in
+the afternoon, about one in fifty an hour rising to one in twenty-five at 85, at most once a week for each colonist and
+once in two days in the colony): a while in their room beside their bed, a while looking out, a drink if they drink
+(only what their drug policy allows for fun and their faith allows, never for a teetotaler, someone addicted or just
+clean), a visit to a grave. A message says why. The same safety rules as the day off below; danger ends it at once. It
+eases 30% of their strain. In the balance simulator, about one a colonist every four years in an average colony and
+never in a well-run one.
+
+**Hearts spread a little.** Someone worn down wears a little on those close to them (a partner, kin, a friend), at most
+2.5 a day and never past 45 on its own, so one worn colonist can't wear the colony down; someone in high spirits lifts
+them a little, as a good talk does.
+
+**What would help.** For each strained colonist, the Mood tab, their card and the council's Moods page say the few
+things that would ease them most, from what has been wearing on them and how they are now: a day off, a decree of the
+council's that eases strain (days of rest, festival days, quiet hours, days of mourning, shared meals, rest when ill, a
+feast day, a work song or holy days, where each answers what wears on them, with what it costs), a gathering, time
+with a friend, a proper meal, a better bed, recreation they like, their pain treated, a rest from fighting, time to
+grieve, more light. Where Rimfolk can do it there's a button: give the day off, propose the decree (it goes to the
+council as their petition and the Decrees page opens), call a party, send a friend over for a talk. The message when
+someone becomes worn down names the first few.
+
+**A day off you give.** A button on a strained colonist (strain 30 or more), on their Mood tab, their card and in the
+advice gives them a day off: for a day their work hours become free time and the first hours after they wake a lie-in,
+so they rest, take their recreation, walk, sit with their partner and look up a friend, and do no ordinary work (a fire
+or someone needing a doctor now still comes first). It eases strain well beyond an ordinary day (at strain 61, about 45
+in the day against 30), once in five days for each colonist; danger ends it at once so they can be drafted, the button
+ends it early, and their schedule goes back as it was.
 
 **A day off.** At 85 or more, a colonist may stop and keep to their room for six to twelve hours ("worn out, needs a
 day"): they eat and sleep but don't work, and a letter says what wore them down and what would help. Never in danger,
@@ -4124,9 +4162,9 @@ a cushion (35% of the strain it would build comes off the good side instead), an
 | Good side | Band | What it does |
 |---|---|---|
 | 0 to 19 | nothing yet | nothing |
-| 20 to 44 | steady | +2 mood |
-| 45 to 64 | in good heart | +3 mood, brighter dreams, strain drains 15% faster |
-| 65 to 100 | in high spirits | +5 mood, brighter dreams still, strain drains 30% faster, and now and then something good comes of it |
+| 20 to 44 | steady | +3 mood |
+| 45 to 64 | in good heart | +6 mood, brighter dreams, strain drains 15% faster, learning 4%, healing 3% and immunity 2% faster |
+| 65 to 100 | in high spirits | +10 mood, brighter dreams still, strain drains 30% faster, learning 8%, healing 6% and immunity 5% faster, and now and then something good comes of it |
 
 **When it overflows.** In high spirits and safe, now and then (about once in four days held there, at most once in 10
 days for each colonist and once a day in the colony), one of the game's own inspirations comes, picked by the game by
@@ -4173,11 +4211,17 @@ restless); below 25 for about three days it adds 1 to 2 strain a day (3 at most)
 are at 60 or more, strain drains 20% faster. Hover a need anywhere it shows for what its value means, what raised it
 and held it down, what follows and what would help.
 
-**Where to see it:** the Heart section of the Mood tab (strain and its band, what built it, what would help, every
-feeling with its causes, the four needs), the strain list on the council's Moods page, a line in the inspector
-("Strain: worn down · restless, proud · lacks belonging", with a tooltip), the strain mood's tooltip and RimHUD. Settings: feelings and
-strain on or off (What's on), the day off and how quickly strain builds, 50% to 150% (How hard), the inspector line (How you're told). Switched off,
-everything stops and the strain mood and slowdown are gone.
+**Where to see it:** the Mood tab opens on the heart at a glance: their mood and where it's heading against the break
+lines, strain and the good side (with how strain moved today and the weight under it), what weighs on them and lifts
+them most (the game's moods, other mods' and Rimfolk's together, with their sizes), what the bands are doing to them
+right now, and what would help with its buttons. Below, sections that fold away and are remembered between sessions:
+every mood, the heart (strain and its band, what built and eased it, who close wore on them, what would help, the good
+side), the feelings with their causes, the four needs, what has grown ordinary, and what happened lately. Also the
+strain list and what would help the colony on the council's Moods page, a line in the inspector ("Strain: worn down ·
+restless, proud · lacks belonging", with a tooltip), the strain mood's tooltip and RimHUD. Settings: feelings and strain
+on or off (What's on); the day off, how quickly strain builds (50% to 150%), how strongly the bands are felt, effects
+beyond mood, a bad afternoon, hearts spreading, what would help and the day off you give (How hard); the inspector line
+(How you're told). Switched off, everything stops and the strain mood and slowdown are gone.
 
 **Safe to add and remove.** The strain mood and the work speed part store nothing, and strain itself is in
 Rimfolk's own save data. The only trace in a save is a colonist in the middle of a day off: with Rimfolk removed,
@@ -4790,8 +4834,9 @@ page, so a new setting needs a row there, and that every field before the five p
   (setting "RimMarket's stall goods for trade ships"). With Hospitality too, guests always may shop at the market's
   stalls, even where they stand outside their guest area, and go back into it after (setting "Guests always shop at
   the market").
-- **RimHUD** by Jaxe: can show trust, the open wish, office, life goal, strain, feelings and the heart's needs in
-  its pawn panel, with bars for strain and the heart's needs (see above).
+- **RimHUD** by Jaxe: can show trust, the open wish, office, life goal, strain (with the good side, its top cause
+  and time off), what would help, feelings and the heart's needs in its pawn panel, with bars for strain, the good side
+  and the heart's needs (see above).
 - **Move the Patient** by konstantynopolitaneczka: patients take the best free medical bed (its priority first,
   then the game's medical quality), and a lighter case is carried to another bed with its "Transfer to bed" for
   someone worse off or for an operation in the surgery bed (setting on the Your other mods page; see "Recovery, doctors

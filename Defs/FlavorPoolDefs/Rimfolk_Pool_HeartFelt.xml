@@ -203,36 +203,62 @@
         <li>[act:sharejoy,with] You'll never guess what happened today, {OTHER_nameDef}.</li>
         <li>[act:sharejoy,with] Come here, I've got good news.</li>
         <li>[act:sharejoy,with] I'm so happy I could burst, and you're the first I've told.</li>
+        <li>[act:badday] I can't do any more today, I'm sorry.</li>
+        <li>[act:badday] I'm putting this down, I need the afternoon.</li>
+        <li>[act:badday] Somebody else will have to finish this, I've had enough for today.</li>
+        <li>[act:badday] My hands won't stop shaking, I have to stop.</li>
+        <li>[act:badday,band:breaking] If I stay here one more hour I'll scream.</li>
+        <li>[act:cry] I'll just stay in here a while.</li>
+        <li>[act:cry] I don't want anyone to see me like this.</li>
+        <li>[act:cry] It all came at once and I couldn't hold it anymore.</li>
+        <li>[act:cry] Leave the door shut, please.</li>
+        <li>[act:dayoff] A whole day with nothing to do, I hardly know where to start.</li>
+        <li>[act:dayoff] I'm going to sleep late and nobody can stop me.</li>
+        <li>[act:dayoff] A day to myself, I didn't know how much I needed it.</li>
+        <li>[act:dayoff] No work today, just a walk and some company.</li>
+        <li>[act:friend,with] Have you got a minute, {OTHER_nameDef}, I could use the company.</li>
+        <li>[act:friend,with] Sit with me a while, I've missed talking with you.</li>
+        <li>[act:friend,with] I was hoping I'd find you, how have you been?</li>
+        <li>[act:friend,with] Walk with me, I'll tell you about my day if you tell me yours.</li>
       </plain>
       <warm>
         <li>[act:sit] Sit with me if you like, I'm only resting.</li>
         <li>[act:sitwith,with] I like it best when it's just the two of us.</li>
         <li>[act:linger,with] I'm glad you stayed, I like talking with you.</li>
         <li>[act:sharejoy,with] I wanted you to be the one I told.</li>
+        <li>[act:dayoff] I thought I might spend the day with the people I love.</li>
+        <li>[act:friend,with] I was thinking of you, so I came to find you.</li>
       </warm>
       <blunt>
         <li>[act:stepout] Five minutes, don't touch my work.</li>
         <li>[act:sharp] Not today.</li>
         <li>[act:door] Enough.</li>
         <li>[act:stareout] Don't follow me.</li>
+        <li>[act:badday] I'm done for today.</li>
+        <li>[act:dayoff] Don't come looking for me today.</li>
       </blunt>
       <cheerful>
         <li>[act:hum] Nothing like a tune to keep the hands moving!</li>
         <li>[act:dance] Faster, play it faster!</li>
         <li>[act:linger] Who's for another round of stories?</li>
         <li>[act:sharejoy,with] Best day in ages, I'm telling everyone!</li>
+        <li>[act:dayoff] A day off, and I mean to enjoy every minute!</li>
       </cheerful>
       <gloomy>
         <li>[act:sit] Nothing much to get up for.</li>
         <li>[act:pace] Sleep's not coming tonight either.</li>
         <li>[act:stareout] It all looks gray from here.</li>
         <li>[act:homefire] I'll never see home again, will I?</li>
+        <li>[act:badday] What's the point of any of it today.</li>
+        <li>[act:cry] I knew it would catch up with me.</li>
       </gloomy>
       <cold>
         <li>[act:sit] I'm resting, that's all.</li>
         <li>[act:stepout] I'll return shortly.</li>
         <li>[act:sharp] Spare me.</li>
         <li>[act:indoors] Safer inside.</li>
+        <li>[act:badday] I am not fit to work this afternoon.</li>
+        <li>[act:dayoff] Rest is sensible, I suppose.</li>
       </cold>
     </lines>
   </ColonyCouncil.FlavorPoolDef>

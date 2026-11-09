@@ -94,6 +94,24 @@ noticeable it doesn't make too much sense. also include recommendations and advi
 reduce strain. for example certain decrees. or i could for example also just grant a single stained pawn a break day or
 stuff like this". So points 9 to 12 as written, and 13 and 14 below.
 
+**Built** (9 November 2026, not released yet: DESIGN.md "The heart, made to count" has all of it), with the player's two
+requests for the same screens built beside it: the Mood tab at a glance first (`Moods/MoodGlance.cs`) and RimHUD
+brought to match. The choices: the bands are -4, -8, -14 and +3, +6, +10 by default, a setting choosing mild (release 1's)
+or strong; the good side stays in good things growing ordinary's sum as a lasting good mood, as it was; work from
+strained (3%, 7%, 12%), learning, sleep, healing (10% at most) and immunity (5% at most, tested at every pair of bands);
+a bad afternoon from 55, one in fifty to one in twenty-five an hour in the afternoon, a week for each colonist and two
+days in the colony, easing 30%; spreading 0.06 an hour from a worn partner, 2.5 a day at most and never past 45 alone;
+advice ranked from the heart's sources lately and how they are now, the decrees naming in their defs what they ease and
+cost, a decree proposed as the colonist's petition through the council's own path; the day off from strained (the
+button would only crowd every colonist otherwise), once in five days, played out through the timetable and a
+think-tree node of Rimfolk's own (no mental state, so they can be drafted), 12 more when it runs its course. Not built:
+"a better bed" and "a proper meal" have no button (Rimfolk can't build a room or cook on the player's behalf without
+taking over their work); they say what to do. Measured: at strain 61 a day off eases about 45 in the day against 30 on
+an ordinary one; breaks by the game's own lines rise in hard times (a plague season 0.32 a colonist-year against 0.14
+with the mild bands, real disasters 0.55 against 0.27, a neglected colony 9.8 against 6.3), never in a calm or
+well-run colony; bad afternoons 0.26 a colonist-year in an average colony, 1.4 in a neglected one, none in a calm one;
+one colonist held near breaking for eight weeks among seven close friends never wears another down.
+
 9. **Stronger bands**: strain -4, -8 and -14 mood; the good side +3, +6 and +10 (still growing ordinary like any good
    mood). These go through the game's mood, so worn colonists break more often, as they should.
 10. **Mild effects beyond mood**: worn learn slower, sleep longer and recover a little slower; in good heart a little
