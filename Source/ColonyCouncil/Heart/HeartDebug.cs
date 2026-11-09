@@ -67,6 +67,46 @@ namespace ColonyCouncil
                 Messages.Message("Nothing comes of it for " + p.LabelShort + ": " + (blocked ?? "no one close and no inspiration the game allows") + ".", p, MessageTypeDefOf.RejectInput, false);
         }
 
+        [DebugAction("Rimfolk", "Heart: a heavy loss weighs on them (45)", actionType = DebugActionType.ToolMapForPawns, allowedGameStates = AllowedGameStates.PlayingOnMap)]
+        private static void Weigh(Pawn p)
+        {
+            var h = Heart.On && Heart.Eligible(p) ? HeartTracker.Instance?.For(p, true) : null;
+            if (h == null) return;
+            HeartFelt.Weigh(h, WeightKind.Loss, 45f, "CC_Felt_Why_LossSomeone".Translate(), null, Find.TickManager.TicksGame);
+            HeartView.Refresh(p, h);
+            Messages.Message(p.LabelShort + ": a weight of " + HeartFelt.Floor(h).ToString("0") + "; strain sinks toward it over the next hours.", p,
+                MessageTypeDefOf.NeutralEvent, false);
+        }
+
+        [DebugAction("Rimfolk", "Heart: a small act now (if one fits)", actionType = DebugActionType.ToolMapForPawns, allowedGameStates = AllowedGameStates.PlayingOnMap)]
+        private static void ActNow(Pawn p)
+        {
+            var h = Heart.On && Heart.Eligible(p) ? HeartTracker.Instance?.For(p, true) : null;
+            if (h == null) return;
+            int now = Find.TickManager.TicksGame;
+            if (!HeartActs.Safe(p, HeartMapContext.For(p.MapHeld, now)) || !HeartActs.TryAny(p, h, h.Band, GoodHeart.Band(h), HeartActs.Strong(h)))
+                Messages.Message("No act fits " + p.LabelShort + " now (" + HeartView.BandsText(h.Band, GoodHeart.Band(h)) + ").", p, MessageTypeDefOf.RejectInput, false);
+        }
+
+        [DebugAction("Rimfolk", "Heart: say how they feel now", actionType = DebugActionType.ToolMapForPawns, allowedGameStates = AllowedGameStates.PlayingOnMap)]
+        private static void SayNow(Pawn p)
+        {
+            var h = Heart.On && Heart.Eligible(p) ? HeartTracker.Instance?.For(p, true) : null;
+            if (h == null) return;
+            string line = HeartFelt.BandLine(p, h, null);
+            if (line.NullOrEmpty() || !Speech.Say(p, line))
+                Messages.Message("Nothing to say for " + p.LabelShort + " (" + HeartView.BandsText(h.Band, GoodHeart.Band(h)) + ").", p, MessageTypeDefOf.RejectInput, false);
+        }
+
+        [DebugAction("Rimfolk", "Heart: a sign over the head now", actionType = DebugActionType.ToolMapForPawns, allowedGameStates = AllowedGameStates.PlayingOnMap)]
+        private static void SignNow(Pawn p)
+        {
+            var h = Heart.On && Heart.Eligible(p) ? Heart.ForView(p) : null;
+            var def = h?.feelings != null && h.feelings.Count > 0 ? h.feelings[0].def : DefDatabase<FeelingDef>.AllDefsListForReading.RandomElementWithFallback();
+            if (def == null || !HeartFelt.ShowSign(p, def))
+                Messages.Message("No sign for " + p.LabelShort + ".", p, MessageTypeDefOf.RejectInput, false);
+        }
+
         private static void Change(Pawn p, float amount)
         {
             if (!Heart.On || !Heart.Eligible(p)) return;

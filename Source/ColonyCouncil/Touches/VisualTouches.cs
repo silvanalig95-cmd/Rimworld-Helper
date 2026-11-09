@@ -474,6 +474,27 @@ namespace ColonyCouncil
         /// <summary>A few of this fleck over their head, one every other pulse after <paramref name="wait"/> (Immersion/).</summary>
         internal void QueueFleck(Pawn p, FleckDef def, int count, int wait) => Queue(p, def, count, wait);
 
+        /// <summary>
+        /// A few notes over someone's head (the heart's humming and singing, Heart/HeartActs.cs): one every other pulse while
+        /// they're in view; with the touches off, one at once.
+        /// </summary>
+        public static void Notes(Pawn p, int count)
+        {
+            if (p == null || !p.Spawned || count <= 0) return;
+            try
+            {
+                Look();
+                if (music == null) return;
+                var vt = On ? Instance : null;
+                if (vt != null) vt.Queue(p, music, count, 0);
+                else FleckMaker.ThrowMetaIcon(p.Position, p.Map, music);
+            }
+            catch (Exception e)
+            {
+                CouncilLog.ErrorOnce("notes over a head", e);
+            }
+        }
+
         private void Queue(Pawn p, FleckDef def, int count, int wait)
         {
             if (p == null || def == null || !p.Spawned || pending.Count >= MaxPending) return;

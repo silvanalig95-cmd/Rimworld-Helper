@@ -304,6 +304,12 @@ namespace ColonyCouncil
             Toggle("heartEpisodes", "CC_Settings_HeartEpisodes", "CC_SetNote_HeartEpisodes", "heart");
             // The heart's good side (Heart/GoodHeart.cs): in good heart, in high spirits.
             Toggle("heartGoodSide", "CC_Settings_HeartGoodSide", "CC_SetNote_HeartGoodSide", "heart");
+            // The heart on the map (Heart/HeartActs.cs, HeartFelt.cs): acts, lines, a sign over the head, messages.
+            Toggle("heartActs", "CC_Settings_HeartActs", "CC_SetNote_HeartActs", "heart");
+            Toggle("heartFeelingActs", "CC_Settings_HeartFeelingActs", "CC_SetNote_HeartFeelingActs", "heart");
+            Toggle("heartSays", "CC_Settings_HeartSays", "CC_SetNote_HeartSays", "heart");
+            Toggle("heartSigns", "CC_Settings_HeartSigns", "CC_SetNote_HeartSigns", "heart");
+            Toggle("heartMessages", "CC_Settings_HeartMessages", "CC_SetNote_HeartMessages", "heart");
             Section("CC_Settings_AilmentsHeader");
             Slider("ailmentFrequency", "CC_Settings_AilmentFrequency", "CC_SetNote_AilmentFrequency", 0.25f, 2f, 0.05f, "%", "ailments");
             Toggle("seriousIllnesses", "CC_Settings_SeriousIllnesses", "CC_SetNote_SeriousIllnesses", "ailments");
@@ -674,6 +680,7 @@ namespace ColonyCouncil
             Toggle("barBadgeWish", "CC_Settings_BarWish", "CC_SetNote_BarWish", "barBadges,enableWishes");
             Slider("barWishPatience", "CC_Settings_BarWishPatience", "CC_SetNote_BarWishPatience", 0.25f, 0.9f, 0.05f, "%", "barBadges,barBadgeWish,enableWishes");
             Toggle("barBadgeStrain", "CC_Settings_BarStrain", "CC_SetNote_BarStrain", "barBadges,heart");
+            Toggle("barHeartLine", "CC_Settings_BarHeartLine", "CC_SetNote_BarHeartLine", "deepHooks,heart");
             Toggle("barBadgeFaith", "CC_Settings_BarFaith", "CC_SetNote_BarFaith", "barBadges,faithLife");
             Toggle("barBadgePromise", "CC_Settings_BarPromise", "CC_SetNote_BarPromise", "barBadges,wishesTakenBack");
             Choice("barBadgeSize", "CC_SetLabel_BarBadgeSize", "CC_SetTip_BarBadgeSize", "CC_BarSize_", "CC_SetNote_BarSize_", new[] { "Small", "Normal", "Large" },

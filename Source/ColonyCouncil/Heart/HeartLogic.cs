@@ -69,6 +69,8 @@ namespace ColonyCouncil
             HeartView.Refresh(p, h);
             Episodes.MaybeStart(p, h, m, now);
             GoodRelease.MaybeStart(p, h, m, now);
+            // The heart on the map: a message when it turns, a line, a sign over the head, a small act (Heart/HeartFelt.cs).
+            HeartFelt.AfterHour(p, h, m, now);
         }
 
         /// <summary>Feelings, needs and the inspector line, worked out again without building or draining strain (after a load).</summary>
@@ -271,7 +273,7 @@ namespace ColonyCouncil
             }
 
             // ---- Relief ----
-            float relief = 0f, sleep = 0f, rec = 0f, quiet = 0f;
+            float sleep = 0f, rec = 0f, quiet = 0f;
             bool calm = !threatHere && !p.Downed && pain < 0.3f;
             if (calm) quiet = 0.15f;
             if (!awake)
@@ -293,15 +295,12 @@ namespace ColonyCouncil
             quiet *= factor * hours;
             sleep *= factor * hours;
             rec *= factor * hours;
-            h.recentRelief[(int)StrainRelief.Quiet] += quiet;
-            h.recentRelief[(int)StrainRelief.Sleep] += sleep;
-            h.recentRelief[(int)StrainRelief.Recreation] += rec;
-            h.recentRelief[(int)StrainRelief.Council] += council;
-            relief = quiet + sleep + rec + council;
+            float rest = quiet + sleep + rec + council;
 
             // ---- New memories: deaths and bad nights build it, gatherings, good talks and a cathartic cry drain it ----
             for (int i = 0; i < goodThings.Length; i++) goodThings[i] = 0f;
-            relief += Memories(p, h, since, now, Build, HeartMath.ReliefTraitFactor(traits), goodThings);
+            losses.Clear();
+            float catharsis = Memories(p, h, since, now, Build, HeartMath.ReliefTraitFactor(traits), goodThings, losses);
 
             // ---- Small letdowns and joys: the lasting ones while they hold, and every small mood once they pile up ----
             goodThings[(int)GoodSource.Joys] += SmallMoments.Hour(p, h, moodGroups, hours, now, (s, raw, why) =>
@@ -312,27 +311,51 @@ namespace ColonyCouncil
             }, out float comforts);
             goodThings[(int)GoodSource.Comforts] += comforts;
 
-            // ---- Rest first, then the good things: each eases what strain is left, and what is beyond fills the good side ----
-            float left = Mathf.Max(0f, h.strain + built - relief);
+            // ---- Heavy things: a loss, a downing, a sickness in the house, a fight going badly leave a weight; strain sinks toward it ----
+            HeartFelt.WeighLosses(h, losses, speed, traits, now);
+            losses.Clear();
+            HeartFelt.Downed(p, h, speed, traits, now);
+            HeartFelt.Hold(p, h, m, speed, traits, now);
+            float floor = HeartFelt.Floor(h);
+            float sink = HeartFeltMath.SinkIn(h.strain + built, floor, hours);
+            if (sink > 0f)
+            {
+                float added = GoodHeart.Spend(h, StrainSource.Heavy, sink);
+                h.recentBuild[(int)StrainSource.Heavy] += added;
+                built += added;
+            }
+
+            // ---- Rest (less the higher strain is, never below the weight), a cry, then the good things: each eases strain and fills the good side together ----
+            bool goodSide = GoodHeart.On;
+            float left = HeartFeltMath.Settle(h.strain + built, floor, rest, catharsis, goodThings, settled, goodSide);
+            if (rest > 0f)
+            {
+                float share = settled.rest / rest;
+                h.recentRelief[(int)StrainRelief.Quiet] += quiet * share;
+                h.recentRelief[(int)StrainRelief.Sleep] += sleep * share;
+                h.recentRelief[(int)StrainRelief.Recreation] += rec * share;
+                h.recentRelief[(int)StrainRelief.Council] += council * share;
+            }
+            h.recentRelief[(int)StrainRelief.Catharsis] += settled.catharsis;
             for (int i = 0; i < goodThings.Length; i++)
             {
-                float amount = goodThings[i];
-                if (amount <= 0f) continue;
-                float eased = Mathf.Min(left, amount);
-                left -= eased;
-                relief += eased;
-                var kind = ReliefOf((GoodSource)i);
-                h.recentRelief[(int)kind] += eased;
-                if (amount <= eased) continue;
-                // Strain is at nothing now: what is beyond fills the good side.
-                h.strain = 0f;
-                GoodHeart.Overflow(h, (GoodSource)i, amount - eased, now);
+                if (settled.eased[i] > 0f) h.recentRelief[(int)ReliefOf((GoodSource)i)] += settled.eased[i];
+                if (goodSide && settled.toGood[i] > 0f) GoodHeart.Fill(h, (GoodSource)i, settled.toGood[i], now);
             }
 
             h.lastHourBuild = built;
-            h.lastHourRelief = relief;
+            h.lastHourRelief = settled.rest + settled.catharsis + settled.GoodEased;
             h.strain = HeartMath.Clamp(left);
+            // Good things and a cry lift the weight a little too; it lifts with time, slowly at first.
+            HeartFelt.Ease(h, (settled.GoodEased + settled.catharsis) * HeartFeltMath.GoodEasesWeight, hours, now);
         }
+
+        private static readonly HeartFeltMath.Settled settled = new HeartFeltMath.Settled();
+        private static readonly HeartFeltMath.Settled settledJoys = new HeartFeltMath.Settled();
+        private static readonly float[] joysTmp = new float[HeartMath.GoodSourceCount];
+
+        /// <summary>The hour's deaths and losses, by whom (HeartFelt.NoteLoss): the heaviest memory of each.</summary>
+        private static readonly Dictionary<int, (float weight, string name)> losses = new Dictionary<int, (float, string)>();
 
         /// <summary>The good things of the hour (gatherings, talks, joys, comforts), by the good side's sources.</summary>
         private static readonly float[] goodThings = new float[HeartMath.GoodSourceCount];
@@ -523,11 +546,12 @@ namespace ColonyCouncil
 
         /// <summary>
         /// Counts each memory once, when it's new (born since the last look), and again only when the game renews it (a
-        /// second cold night). Returns the relief of letting it out; strain built goes through <paramref name="build"/>, and
-        /// what gatherings and good talks ease goes into <paramref name="good"/> (by GoodSource), for the hour to ease strain
-        /// with and fill the good side with the rest.
+        /// second cold night). Returns the relief of letting it out; strain built goes through <paramref name="build"/>, what
+        /// gatherings and good talks bring goes into <paramref name="good"/> (by GoodSource), for the hour to ease strain and
+        /// fill the good side with, and a death or a loss into <paramref name="lost"/>, for its lasting weight.
         /// </summary>
-        private static float Memories(Pawn p, PawnHeart h, int since, int now, Func<StrainSource, float, float> build, float reliefTraits, float[] good)
+        private static float Memories(Pawn p, PawnHeart h, int since, int now, Func<StrainSource, float, float> build, float reliefTraits, float[] good,
+            Dictionary<int, (float weight, string name)> lost)
         {
             var list = p.needs?.mood?.thoughts?.memories?.Memories;
             if (list == null) return 0f;
@@ -557,6 +581,7 @@ namespace ColonyCouncil
                     if (r.only > 0 && off >= 0f) continue;
                     if (r.only < 0 && off <= 0f) continue;
                 }
+                if (r.kind == RuleKind.Build && r.source == StrainSource.Loss) HeartFelt.NoteLoss(lost, mem);
                 switch (r.kind)
                 {
                     case RuleKind.Build:
@@ -584,7 +609,6 @@ namespace ColonyCouncil
                         break;
                     }
                     case RuleKind.Catharsis:
-                        h.recentRelief[(int)StrainRelief.Catharsis] += r.amount;
                         relief += r.amount;
                         break;
                 }
@@ -681,9 +705,9 @@ namespace ColonyCouncil
 
         /// <summary>
         /// Relief from a small joy that came as a moment (from outside the hour): their nature's way of letting go, within
-        /// the day's cap for joys, never more than the strain they have; with the heart's good side, what is beyond the
-        /// strain they have fills it at its share. On a day the hour hasn't reached yet, yesterday's count doesn't hold it
-        /// back. Returns what was eased.
+        /// the day's cap for joys; it eases strain and fills the good side together, a share each, as the hour's good things
+        /// do (HeartFeltMath.Settle), and lifts the weight a little. With the good side off it only eases strain, never more
+        /// than there is. On a day the hour hasn't reached yet, yesterday's count doesn't hold it back. Returns what was eased.
         /// </summary>
         public static float EaseJoys(Pawn p, float amount, string why)
         {
@@ -697,12 +721,17 @@ namespace ColonyCouncil
             if (!good) a = Mathf.Min(a, h.strain);
             float joys = SmallMomentMath.WithinJoyCap(a, h.todayJoys);
             if (joys <= 0f) return 0f;
-            float eased = Mathf.Min(joys, h.strain);
-            h.strain = HeartMath.Clamp(h.strain - eased);
+            for (int i = 0; i < joysTmp.Length; i++) joysTmp[i] = 0f;
+            joysTmp[(int)GoodSource.Joys] = joys;
+            float left = HeartFeltMath.Settle(h.strain, 0f, 0f, 0f, joysTmp, settledJoys, good);
+            float eased = settledJoys.eased[(int)GoodSource.Joys];
+            h.strain = HeartMath.Clamp(left);
             h.recentRelief[(int)StrainRelief.Joys] += eased;
+            HeartFelt.Lift(h, eased);
             // The day's cap for joys counts what eased strain and what filled the good side, not what neither could take.
             float used = eased;
-            if (joys > eased) used += GoodHeart.Overflow(h, GoodSource.Joys, joys - eased, now) / HeartMath.GoodShare(GoodSource.Joys);
+            float toGood = settledJoys.toGood[(int)GoodSource.Joys];
+            if (good && toGood > 0f) used += (joys - eased) * Mathf.Clamp01(GoodHeart.Fill(h, GoodSource.Joys, toGood, now) / toGood);
             JoysWithinCap(h, Mathf.Min(joys, used), why);
             HeartView.Refresh(p, h);
             return eased;
@@ -735,7 +764,12 @@ namespace ColonyCouncil
             h.strain = HeartMath.Clamp(h.strain + amount);
             float moved = h.strain - before;
             if (moved > 0f) h.recentBuild[(int)buildSource] += moved;
-            else if (moved < 0f) h.recentRelief[(int)reliefKind] += -moved;
+            else if (moved < 0f)
+            {
+                h.recentRelief[(int)reliefKind] += -moved;
+                // An answer that comforts, a day off, a cry: the weight lifts a little with it.
+                HeartFelt.Lift(h, -moved);
+            }
             HeartView.Refresh(p, h);
         }
     }

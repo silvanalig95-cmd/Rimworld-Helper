@@ -332,7 +332,7 @@
   <CC_Heart_BuiltBy>Built up lately: {0}.</CC_Heart_BuiltBy>
   <CC_Heart_EasedBy>Eased lately: {0}.</CC_Heart_EasedBy>
   <CC_Heart_WouldHelp>What would help: {0}.</CC_Heart_WouldHelp>
-  <CC_Heart_StrainExplain>Strain is separate from mood. It builds slowly from fighting, pain, losses, bad nights, hunger and low spirits (about 25 a day at most) and drains with sleep, free time, celebrations and good talks. Its only effect on mood is the strain mood itself.</CC_Heart_StrainExplain>
+  <CC_Heart_StrainExplain>Strain is separate from mood. It builds slowly from fighting, pain, losses, bad nights, hunger and low spirits (about 25 a day at most) and drains with sleep, free time, celebrations and good talks; the higher it is, the less rest alone eases it. A heavy thing (the death of someone close, being downed, a sickness in the house, a fight going badly) leaves a weight that rest can't ease strain below, lifting over the days. Its only effect on mood is the strain mood itself.</CC_Heart_StrainExplain>
   <CC_Heart_FeelingsHeader>Feelings</CC_Heart_FeelingsHeader>
   <CC_Heart_NeedsHeader>The heart's needs</CC_Heart_NeedsHeader>
   <CC_Heart_ColonyHeader>Worn down</CC_Heart_ColonyHeader>

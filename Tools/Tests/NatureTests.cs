@@ -49,8 +49,8 @@ public static class NatureTests
 
         // ================= The heart's new kinds =================
 
-        C((int)StrainSource.Nature == HeartMath.SourceCount - 2 && (int)StrainRelief.Nature == HeartMath.ReliefCount - 2,
-            "a new source and a new relief, each at the end of its list when it came (saved by position; the small letdowns and joys after)");
+        C((int)StrainSource.Nature == HeartMath.SourceCount - 3 && (int)StrainRelief.Nature == HeartMath.ReliefCount - 2,
+            "a new source and a new relief, each at the end of its list when it came (saved by position; the small letdowns and joys after, then heavy things)");
         C((int)StrainSource.Nature == 16 && (int)StrainRelief.Nature == 8, "the older kinds keep their places");
         C(HeartMath.SourceCap(StrainSource.Nature) == NatureMath.MaxStrain, "the source's daily cap is one act's most");
         float today = 0f, total = 0f;

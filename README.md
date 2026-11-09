@@ -4025,9 +4025,18 @@ ones take more; psychopaths take nothing from deaths, the bloodthirsty little fr
 pain.
 
 **How it drains:** slowly by itself in quiet hours, faster asleep in a warm bed and during recreation, faster still
-when their mood is high or they feel joy, pride, hope or calm. Parties, concerts, weddings, feasts and celebrations
-take a chunk off, and so do deep talks and good moments with friends; a good cry (catharsis) takes off 30. A colonist
-with a warm bed, free time and a decent mood sheds about 10 a day, so one hard day takes two or three to undo.
+when their mood is high or they feel joy, pride, hope or calm, and less the higher strain is (in full up to 30, 70% from
+90). Parties, concerts, weddings, feasts and celebrations take a chunk off, and so do deep talks and good moments with
+friends; a good cry (catharsis) takes off 30. A colonist with a warm bed, free time and a decent mood sheds about 10 a
+day at the low end, so the everyday trickle settles to nothing.
+
+**Heavy things stay.** A heavy thing leaves a lasting weight that rest can't ease strain below: a partner's or family
+member's death 58, a friend's 45 (strained for about a week), a bonded animal's 28, any colonist's 12 (barely felt),
+being downed 22; and while they last, their own sickness that can kill (up to 52 as it worsens), someone close badly
+ill (up to 50) and a fight at home with some of the colony down (up to 36). Strain sinks toward the weight within a day;
+the weight lifts slowly for about a week (longer the heavier), then faster, and gatherings, good talks, kind words and a
+cry lift it sooner. Several together make a real disaster (the heavier in full and 35% of the other), but the weights
+alone never hold anyone past 76, short of the day off.
 
 | Strain | Band | What it does |
 |---|---|---|
@@ -4044,13 +4053,14 @@ in 2 days in the colony and once in 10 days for each colonist. A threat ends it 
 too cold or too hot. Afterwards strain drops by about 40 and they feel lighter for a day and a half. To head it off,
 declare **days of rest**: everyone works 10% slower for three days, and strain drains about twice as fast.
 
-**The heart's good side.** Strain has another side, and a colonist is never on both at once. When strain is at
-nothing and good things keep coming over days, the heart fills on the other side (0 to 100): slowly, at most 4 a day,
-mostly from what can't be bought. Friends close by and a purpose (belonging and purpose well met, a life goal moving
-on, a seat on the council) fill it by the hour, a deed the colony speaks well of once, and gatherings, good talks and a
-run of small joys with part of what they ease beyond the strain there is; the comforts of home (a fine room, a fine
-meal) only a little, so a rich colony doesn't simply buy it. Hardship spends it before any strain builds, half a point
-for each point of strain it would have built, and it fades slowly (about 3% a day).
+**The heart's good side.** Strain has another side, and both grow at once: someone can be worn down by the plague and
+still in good heart for their friends. When good things keep coming over days, the heart fills on the other side (0 to
+100): slowly, at most 4 a day, slower the more strain there is (in full up to 10, 30% from 85, never shut), mostly from
+what can't be bought. Friends close by and a purpose (belonging and purpose well met, a life goal moving on, a seat on
+the council) fill it by the hour, a deed the colony speaks well of once, and gatherings, good talks and a run of small
+joys ease strain and fill it together (about a third of each to the good side while there is strain); the comforts of
+home (a fine room, a fine meal) only a little, so a rich colony doesn't simply buy it. A hard knock spends part of it as
+a cushion (35% of the strain it would build comes off the good side instead), and it fades slowly (about 3% a day).
 
 | Good side | Band | What it does |
 |---|---|---|
@@ -4063,11 +4073,24 @@ for each point of strain it would have built, and it fades slowly (about 3% a da
 days for each colonist and once a day in the colony), one of the game's own inspirations comes, picked by the game by
 their passions and its own rules; or they go and find someone close, the one under the most strain first, say a kind
 word face to face, and the other has a small joy of it. No work speed. The Heart section shows it as a second meter,
-"Good heart", with what filled it and what spent it; the inspector line reads "Heart: in good heart" from steady on,
-and the colonist's card says what filled it. Its setting is beside the heart's own; off, nothing fills it and the bands
-give nothing. A save from before starts at nothing. In the balance simulator a well-run colony's people are steady
-about 48% of the time, in good heart 28% and in high spirits 3%; an average colony's rarely get there (steady 2%), but
-the good side still takes their knocks (strained 8% to 6% of the time).
+"Good heart", with what filled it and what spent it; the inspector line shows both sides at once ("Heart: worn down, in
+good heart · grieving"), and so do RimHUD, the colonist's card and the council's Moods page. Its setting is beside the
+heart's own; off, nothing fills it and the bands give nothing. A save from before starts at nothing. In the balance
+simulator a well-run colony's people are steady about 44% of the time, in good heart 35% and in high spirits 5%; an
+average colony's rarely get there (steady 6%).
+
+**On the map.** How a colonist is shows in what they do, now and then, in their free time or at a break in ordinary
+work, each with a line over their head: strained, a while in a chair staring at nothing or just outside looking out;
+worn down, a few minutes outside from their work, pacing at night, a short word at someone; in good heart, humming at
+work or staying at the table to talk after a meal; in high spirits, singing at work and dancing at a gathering. A strong
+feeling acts: grief visits the grave or sits where the one lost slept, fear goes in near someone after dark, anger says
+a sharp word or slams a door, love sits beside a partner, homesickness talks of home at the evening's fire, joy goes to
+share it with a friend. Never in danger, drafted, downed, hungry or exhausted, never from urgent work; one act a
+colonist in 16 hours at most and one in the colony in 3. They say how they feel when strain or the good side turns
+("I keep setting a place for Ana."); a strong feeling shows as a sign over the head (a tear, a bolt, a heart), as the
+game shows a thought; a thin line under each name on the colonist bar shows strain and the good side, both at once; and
+a message says when someone becomes worn down or near breaking (and why), comes back from it, or is in good heart. Each
+has its own setting.
 
 **Feelings.** Each colonist has one or two feelings that stand out, out of twenty-six: grief, fear, dread (worry about
 what's coming), anger, shame, envy, disgust, loneliness, homesickness, frustration, despair and worry (for someone they

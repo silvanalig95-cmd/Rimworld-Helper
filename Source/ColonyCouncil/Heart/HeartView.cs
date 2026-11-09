@@ -51,6 +51,8 @@ namespace ColonyCouncil
             if (s == StrainSource.Nature && h != null && !h.natureEased && !h.natureWhy.NullOrEmpty()) return h.natureWhy;
             // Small letdowns: what they were ("small letdowns: the same meal and my idea turned down").
             if (s == StrainSource.Letdowns && h != null && !h.letdownsWhy.NullOrEmpty()) return "CC_Heart_Source_LetdownsWhat".Translate(h.letdownsWhy).Resolve();
+            // Heavy things: what they were ("heavy things: the plague and losing Ana").
+            if (s == StrainSource.Heavy && HeartFelt.Why(h) is string heavy) return "CC_Felt_Source_HeavyWhat".Translate(heavy.Named("WHAT")).Resolve();
             return SourceLabel(s);
         }
 
@@ -73,15 +75,15 @@ namespace ColonyCouncil
 
         /// <summary>
         /// "Strain: worn · restless, proud · lacks belonging" (built hourly and kept on the heart): the need comes in only
-        /// while one is missed (below 45), the one they lack most.
+        /// while one is missed (below 45), the one they lack most. With the good side from steady, both sides at once
+        /// ("Heart: worn, in good heart · grieving"), or the good side alone while strain is steady ("Heart: in good heart").
         /// </summary>
         public static string InspectLine(PawnHeart h)
         {
             Heart.Dominant(h, dominantTmp);
-            // On the good side, from steady, the heart reads by its band there ("Heart: in good heart · proud").
             var good = GoodHeart.Band(h);
             bool goodSide = good != GoodBand.None;
-            string band = goodSide ? GoodHeart.BandLabel(good) : BandLabel(h.Band);
+            string band = BandsText(h.Band, good);
             string line;
             if (dominantTmp.Count == 0) line = (goodSide ? "CC_Good_Inspect" : "CC_Heart_Inspect").Translate(band).Resolve();
             else line = (goodSide ? "CC_Good_InspectFeelings" : "CC_Heart_InspectFeelings").Translate(band, string.Join(", ", dominantTmp.Select(f => f.def.Adjective))).Resolve();
@@ -91,15 +93,27 @@ namespace ColonyCouncil
             return line;
         }
 
+        /// <summary>
+        /// The bands in a few words: strain's alone, the good side's alone while strain is steady, or both at once ("worn, in
+        /// good heart").
+        /// </summary>
+        public static string BandsText(StrainBand band, GoodBand good)
+        {
+            if (good == GoodBand.None) return BandLabel(band);
+            if (band == StrainBand.Steady) return GoodHeart.BandLabel(good);
+            return "CC_Felt_BothBands".Translate(BandLabel(band).Named("STRAIN"), GoodHeart.BandLabel(good).Named("GOOD")).Resolve();
+        }
+
         /// <summary>The heart changed: its inspector line and RimHUD values are built again (hourly, not per frame).</summary>
         public static void Refresh(Pawn p, PawnHeart h)
         {
             h.inspectLine = InspectLine(h);
-            // RimHUD's values, each in its own colour: the band's (the good side's while it shows), each feeling's, and the lacking need's.
+            // RimHUD's values, each in its own colour: strain's band and the good side's, both while both show, each feeling's,
+            // and the lacking need's.
             var good = GoodHeart.Band(h);
-            h.hudStrain = good != GoodBand.None
-                ? "CC_Heart_StrainValue".Translate(GoodHeart.BandLabel(good), h.good.ToString("0")).Resolve().Colorize(GoodColor)
-                : "CC_Heart_StrainValue".Translate(BandLabel(h.Band), h.strain.ToString("0")).Resolve().Colorize(BandColor(h.Band));
+            string strainValue = "CC_Heart_StrainValue".Translate(BandLabel(h.Band), h.strain.ToString("0")).Resolve().Colorize(BandColor(h.Band));
+            string goodValue = good != GoodBand.None ? "CC_Heart_StrainValue".Translate(GoodHeart.BandLabel(good), h.good.ToString("0")).Resolve().Colorize(GoodColor) : null;
+            h.hudStrain = goodValue == null ? strainValue : h.Band == StrainBand.Steady ? goodValue : strainValue + " · " + goodValue;
             h.hudFeelings = ColoredFeelings(h);
             var lack = Heart.LowestNeed(h, out float v);
             h.hudNeeds = h.needs == null ? null
@@ -192,6 +206,7 @@ namespace ColonyCouncil
                 case StrainSource.Unmet: return "CC_Heart_Help_Needs";
                 case StrainSource.Nature: return "CC_Heart_Help_Nature";
                 case StrainSource.Letdowns: return "CC_Heart_Help_Letdowns";
+                case StrainSource.Heavy: return "CC_Felt_Help_Heavy";
                 default: return "CC_Heart_Help_Sleep";
             }
         }
@@ -408,6 +423,9 @@ namespace ColonyCouncil
             var sb = new StringBuilder();
             sb.Append("CC_Heart_StrainTipHead".Translate(BandLabel(h.Band), h.strain.ToString("0")).Resolve());
             sb.Append("\n").Append(BandDesc(h.Band));
+            // The lasting weight of heavy things, which rest can't ease strain below.
+            string weight = HeartFelt.WeightLine(p, h);
+            if (weight != null) sb.Append("\n\n").Append(weight);
             string built = SourcesDetailed(h, 4);
             sb.Append("\n\n").Append(built == null ? "CC_Heart_NothingBuilt".Translate().ToString() : "CC_Heart_BuiltBy".Translate(built).Resolve());
             string eased = ReliefDetailed(h, 3);
@@ -509,7 +527,7 @@ namespace ColonyCouncil
         {
             public float builtAt = -1f;
             public int version;
-            public string strainLabel, strainValue, strainTip, bandDesc, built, help, needsSummary, needsTip;
+            public string strainLabel, strainValue, strainTip, bandDesc, built, weight, help, needsSummary, needsTip;
             public Color bandColor;
             public float fill;
             /// <summary>The heart's good side, its meter and its line (null while it is off).</summary>
@@ -552,6 +570,7 @@ namespace ColonyCouncil
             m.bandDesc = BandDesc(h.Band);
             string built = SourcesDetailed(h, 3);
             m.built = built == null ? "CC_Heart_NothingBuilt".Translate().ToString() : "CC_Heart_BuiltBy".Translate(built).Resolve();
+            m.weight = HeartFelt.WeightLine(p, h);
             m.help = h.strain >= 30f ? "CC_Heart_WouldHelp".Translate(HelpText(p, h, 3)).Resolve() : NatureHelp(h);
             if (GoodHeart.On)
             {
@@ -561,9 +580,11 @@ namespace ColonyCouncil
                 m.goodFill = h.good / HeartMath.Max;
                 m.goodTip = GoodHeart.Tip(p, h);
                 string filled = GoodHeart.BuiltDetailed(h, 3);
-                m.goodLine = good != GoodBand.None ? GoodHeart.BandDesc(good)
-                    : h.strain > 0f ? "CC_Good_WaitsForStrain".Translate(p.Named("PAWN")).Resolve()
-                    : filled != null ? "CC_Good_BuiltBy".Translate(filled.Named("WHAT")).Resolve() : "CC_Good_NothingBuilt".Translate().ToString();
+                // Both sides at once: the good side's band or what filled it, and how much slower it grows under strain.
+                string slower = GoodHeart.SlowerLine(p, h);
+                m.goodLine = (good != GoodBand.None ? GoodHeart.BandDesc(good)
+                    : filled != null ? "CC_Good_BuiltBy".Translate(filled.Named("WHAT")).Resolve() : "CC_Good_NothingBuilt".Translate().ToString())
+                    + (slower != null ? " " + slower : "");
             }
             foreach (var f in h.feelings)
             {
@@ -605,6 +626,7 @@ namespace ColonyCouncil
             y += UiKit.MeterHeight + 2f;
             y += UiKit.Paragraph(0f, y, w, m.bandDesc, MoodView.Faint, GameFont.Tiny) + 2f;
             y += UiKit.Paragraph(0f, y, w, m.built, Color.white, GameFont.Tiny) + 2f;
+            if (m.weight != null) y += UiKit.Paragraph(0f, y, w, m.weight, MoodView.Faint, GameFont.Tiny) + 2f;
             if (m.help != null) y += UiKit.Paragraph(0f, y, w, m.help, MoodView.AdviceColor, GameFont.Tiny) + 2f;
             // The other side of the one heart.
             if (m.goodLabel != null)
@@ -703,8 +725,11 @@ namespace ColonyCouncil
             foreach (var (p, h) in list.Where(x => x.h.strain >= 30f).OrderByDescending(x => x.h.strain).Take(8))
             {
                 string feelings = DominantText(h);
-                m.rows.Add((p, h.strain / HeartMath.Max, BandColor(h.Band), "CC_Heart_StrainValue".Translate(BandLabel(h.Band), h.strain.ToString("0")).Resolve(),
-                    feelings ?? "", StrainTip(p, h), ThingRefs.Link(p.LabelShort, ThingRefs.Of(p))));
+                // Both sides at once: someone worn may still be in good heart.
+                var good = GoodHeart.Band(h);
+                string band = "CC_Heart_StrainValue".Translate(BandLabel(h.Band), h.strain.ToString("0")).Resolve();
+                if (good != GoodBand.None) band += " · " + GoodHeart.BandLabel(good);
+                m.rows.Add((p, h.strain / HeartMath.Max, BandColor(h.Band), band, feelings ?? "", StrainTip(p, h), ThingRefs.Link(p.LabelShort, ThingRefs.Of(p))));
             }
             return m;
         }

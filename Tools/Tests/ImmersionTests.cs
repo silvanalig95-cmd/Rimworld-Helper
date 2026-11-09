@@ -183,6 +183,8 @@ public static class ImmersionTests
         "Council_Pool_PlayFire", "Council_Pool_PlayParty", "Council_Pool_PlaySong", "Council_Pool_PlayWords", "Council_Pool_PlaySaidAloud",
         // The heart's good side overflowing (Heart/GoodRelease.cs): a kind word face to face, and a word as an inspiration begins.
         "Rimfolk_Pool_GoodHeart_KindWord", "Rimfolk_Pool_GoodHeart_Inspired",
+        // The heart, felt (Heart/HeartFelt.cs, HeartActs.cs): how they are when the band turns, and the small acts' lines.
+        "Rimfolk_Pool_HeartBand", "Rimfolk_Pool_HeartAct",
         // The colony's animals with powers (Animals/AnimalPowers.cs): the Pokémon types at home seen at it, the calmed, a
         // spar's start and its blow; a familiar's binding, its taking and its death; an omen named, talked of and fallen; a
         // sacred animal fallen and a hunt marked on one.

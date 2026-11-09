@@ -137,7 +137,7 @@ namespace ColonyCouncil
 
         // ---------------- The good side (Heart/GoodHeart.cs) ----------------
 
-        /// <summary>The heart's good side (0 to 100): in good heart from 45, in high spirits from 65. Never with strain at once.</summary>
+        /// <summary>The heart's good side (0 to 100): in good heart from 45, in high spirits from 65. It grows beside strain, slower the more there is.</summary>
         public float good;
         /// <summary>What filled it already today, by source (GoodSource) and in all, for its daily caps.</summary>
         public List<float> goodToday = new List<float>();
@@ -153,6 +153,28 @@ namespace ColonyCouncil
         /// <summary>The good side's last release (GoodRelease), and what it was in words ("inspired", "a kind word for Ana").</summary>
         public int lastReleaseTick = -999999;
         public string releaseWhy;
+
+        // ---------------- The heart, felt (Heart/HeartFelt.cs) ----------------
+
+        /// <summary>
+        /// The lasting weight of heavy things (a loss, being downed): rest can't take strain below it (with <see cref="held"/>);
+        /// it lifts slowly until <see cref="weightUntil"/>, then faster. Its words ("losing Ana"), the kind of the heaviest
+        /// (WeightKind) and whom it is about (a name).
+        /// </summary>
+        public float weight;
+        public int weightUntil = -1;
+        public string weightWhy, weightAbout;
+        public int weightKind;
+        /// <summary>
+        /// The weight of what lasts now (a sickness in the house, a fight going badly): lifted to it each hour while it lasts,
+        /// and lifting after, slowly until <see cref="heldUntil"/>. Its words, kind and whom or what it is about.
+        /// </summary>
+        public float held;
+        public int heldUntil = -1;
+        public string heldWhy, heldAbout;
+        public int heldKind;
+        /// <summary>The bands last told the player in a message (HeartFeltMath.Tell): -1, not looked at yet.</summary>
+        public int toldStrain = -1, toldGood = -1;
 
         // ---------------- Worked out each hour, not saved ----------------
 
@@ -187,6 +209,18 @@ namespace ColonyCouncil
         [Unsaved] public bool lastingLooked;
         /// <summary>What small letdowns and joys built and eased lately, by their words (halving in about two days).</summary>
         [Unsaved] public Dictionary<string, float> wore, eased;
+        /// <summary>
+        /// The heart on the map (Heart/HeartFelt.cs, HeartActs.cs): whether they were downed at the last look (a downing
+        /// weighs once), the bands and the strong feeling at the last look (for a line when the band turns and a sign when a
+        /// feeling grows strong), a line waiting to be said, and when the last line and sign came.
+        /// </summary>
+        [Unsaved] public bool wasDowned;
+        [Unsaved] public int lastBand = -1, lastGood = -1;
+        [Unsaved] public FeelingDef lastStrong;
+        [Unsaved] public string turnLine;
+        [Unsaved] public int turnLineUntil = -1, lastLineTick = -999999, lastSignTick = -999999;
+        /// <summary>Whom a loss already weighed for lately (by id, and when), so the memories of one death weigh once.</summary>
+        [Unsaved] public Dictionary<int, (int tick, float weight)> weighedFor;
 
         /// <summary>A small letdown wore on them, or a joy eased them, by this much: the heart's page names the biggest few.</summary>
         public void Note(bool joy, string why, float amount)
@@ -347,9 +381,24 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref goalProgress, "goalProgress");
             Scribe_Values.Look(ref lastReleaseTick, "lastReleaseTick", -999999);
             Scribe_Values.Look(ref releaseWhy, "releaseWhy");
+            // The heart, felt: an older save has no weight, and its bands are taken note of at the first look.
+            Scribe_Values.Look(ref weight, "weight");
+            Scribe_Values.Look(ref weightUntil, "weightUntil", -1);
+            Scribe_Values.Look(ref weightWhy, "weightWhy");
+            Scribe_Values.Look(ref weightAbout, "weightAbout");
+            Scribe_Values.Look(ref weightKind, "weightKind");
+            Scribe_Values.Look(ref held, "held");
+            Scribe_Values.Look(ref heldUntil, "heldUntil", -1);
+            Scribe_Values.Look(ref heldWhy, "heldWhy");
+            Scribe_Values.Look(ref heldAbout, "heldAbout");
+            Scribe_Values.Look(ref heldKind, "heldKind");
+            Scribe_Values.Look(ref toldStrain, "toldStrain", -1);
+            Scribe_Values.Look(ref toldGood, "toldGood", -1);
             if (Scribe.mode == LoadSaveMode.PostLoadInit)
             {
                 good = HeartMath.Clamp(good);
+                weight = HeartMath.Clamp(weight);
+                held = HeartMath.Clamp(held);
                 // Saves from before the needs could wear on anyone have none: nobody has been lacking anything yet.
                 if (needLack == null) needLack = new List<float>();
                 if (recentBuild == null) recentBuild = new List<float>();

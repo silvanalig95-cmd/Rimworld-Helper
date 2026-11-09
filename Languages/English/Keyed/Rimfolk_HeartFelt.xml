@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <!-- The heart, felt (Source/ColonyCouncil/Heart/HeartFelt.cs, HeartActs.cs; docs/design/heart-felt.md, release 1). -->
+
+  <!-- What weighs on them, in a few words: for the heart's page, the messages and the card. -->
+  <CC_Felt_Why_Loss>losing {LOST}</CC_Felt_Why_Loss>
+  <CC_Felt_Why_LossSomeone>a loss</CC_Felt_Why_LossSomeone>
+  <CC_Felt_Why_Downed>being hurt</CC_Felt_Why_Downed>
+  <CC_Felt_Why_Raid>the fight going badly</CC_Felt_Why_Raid>
+  <CC_Felt_Why_SickSelf>{ILLNESS}</CC_Felt_Why_SickSelf>
+  <CC_Felt_Why_SickClose>{SICK} being so ill</CC_Felt_Why_SickClose>
+  <CC_Heart_Source_Heavy>heavy things</CC_Heart_Source_Heavy>
+  <CC_Felt_Source_HeavyWhat>heavy things ({WHAT})</CC_Felt_Source_HeavyWhat>
+  <CC_Felt_Help_Heavy>time, company and good talks (rest alone won't lift a heavy thing)</CC_Felt_Help_Heavy>
+  <CC_Felt_WeightLine>A weight of {WEIGHT} on {PAWN_objective}: rest won't ease strain below it, and it lifts over the days.</CC_Felt_WeightLine>
+  <CC_Felt_WeightLineWhy>A weight of {WEIGHT} from {WHY}: rest won't ease strain below it. It lifts slowly for some days, then faster, and gatherings, good talks and kind words lift it sooner.</CC_Felt_WeightLineWhy>
+
+  <!-- Both sides at once. -->
+  <CC_Felt_BothBands>{STRAIN}, {GOOD}</CC_Felt_BothBands>
+  <CC_Felt_GoodSlower>While strain is on {PAWN_objective}, the good side grows at {PACE} of its pace.</CC_Felt_GoodSlower>
+
+  <!-- A message when a heart turns. -->
+  <CC_Felt_Tell_Worn>{PAWN_nameDef} is worn down: {WHY}.</CC_Felt_Tell_Worn>
+  <CC_Felt_Tell_Worn_NoWhy>{PAWN_nameDef} is worn down.</CC_Felt_Tell_Worn_NoWhy>
+  <CC_Felt_Tell_Breaking>{PAWN_nameDef} is near breaking: {WHY}.</CC_Felt_Tell_Breaking>
+  <CC_Felt_Tell_Breaking_NoWhy>{PAWN_nameDef} is near breaking.</CC_Felt_Tell_Breaking_NoWhy>
+  <CC_Felt_Tell_Back>{PAWN_nameDef} is coming back from it, no longer worn down.</CC_Felt_Tell_Back>
+  <CC_Felt_Tell_GoodHeart>{PAWN_nameDef} is in good heart: {WHY}.</CC_Felt_Tell_GoodHeart>
+  <CC_Felt_Tell_GoodHeart_NoWhy>{PAWN_nameDef} is in good heart.</CC_Felt_Tell_GoodHeart_NoWhy>
+  <CC_Felt_Tell_HighSpirits>{PAWN_nameDef} is in high spirits: {WHY}.</CC_Felt_Tell_HighSpirits>
+  <CC_Felt_Tell_HighSpirits_NoWhy>{PAWN_nameDef} is in high spirits.</CC_Felt_Tell_HighSpirits_NoWhy>
+
+  <!-- Settings (the heart's page, How hard; the colonist bar's). -->
+  <CC_Settings_HeartActs>Small acts by how they are</CC_Settings_HeartActs>
+  <CC_Settings_HeartActs_Tip>Colonists show how they are on the map, now and then, in their free time or at a break in ordinary work: strained, a while in a chair staring at nothing or out looking over the land; worn down, a few minutes outside from their work, pacing at night, a short word at someone; in good heart, humming at work or staying at the table to talk after a meal; in high spirits, singing at work and dancing at a gathering. Each with a line. Never in danger, drafted or downed, never taking anyone from urgent work; one act a colonist in sixteen hours at most and one in the colony in three.</CC_Settings_HeartActs_Tip>
+  <CC_SetNote_HeartActs>Strain and the good side show on the map: a while sitting, a step outside, a hum at work, a dance.</CC_SetNote_HeartActs>
+  <CC_Settings_HeartFeelingActs>Strong feelings act</CC_Settings_HeartFeelingActs>
+  <CC_Settings_HeartFeelingActs_Tip>A strong feeling is something seen: grief visits the grave or sits where the one lost slept; fear, out after dark, goes in to be near someone; anger says a sharp word or goes through a door and slams it; love sits beside a partner; homesickness talks of home at the evening's fire; joy goes to share it with a friend. Each a short act with its line, in their free time, never in danger. The feelings' small nudges to wishes and moments stay as they are.</CC_Settings_HeartFeelingActs_Tip>
+  <CC_SetNote_HeartFeelingActs>Grief at the grave, fear indoors after dark, a slammed door, a partner's company.</CC_SetNote_HeartFeelingActs>
+  <CC_Settings_HeartSays>They say how they feel</CC_Settings_HeartSays>
+  <CC_Settings_HeartSays_Tip>A line over a colonist's head when strain or the good side turns, and now and then while it holds, naming the cause where there is one ("I keep setting a place for Ana."), in their own voice. Shown on the map being looked at, at the same easy pace as everything else said over a head.</CC_Settings_HeartSays_Tip>
+  <CC_SetNote_HeartSays>A line when they become worn down or in good heart, and now and then while it lasts.</CC_SetNote_HeartSays>
+  <CC_Settings_HeartSigns>A sign over the head for a strong feeling</CC_Settings_HeartSigns>
+  <CC_Settings_HeartSigns_Tip>A small sign over a colonist's head when a feeling grows strong (a tear for grief, a bolt for anger, a heart for love), in the feeling's colour, as the game shows a thought; now and then while it holds, once in eight hours at most.</CC_Settings_HeartSigns_Tip>
+  <CC_SetNote_HeartSigns>A tear, a bolt, a heart over the head while a feeling runs strong.</CC_SetNote_HeartSigns>
+  <CC_Settings_HeartMessages>Messages when a heart turns</CC_Settings_HeartMessages>
+  <CC_Settings_HeartMessages_Tip>A message when someone becomes worn down or near breaking, saying why ("Bautista is worn down: the plague and losing Ana."), when they come back from it, and when someone is in good heart or in high spirits, saying what filled it.</CC_Settings_HeartMessages_Tip>
+  <CC_SetNote_HeartMessages>Told when someone is worn down, near breaking, back from it, or in good heart.</CC_SetNote_HeartMessages>
+  <CC_Settings_BarHeartLine>Heart line under each portrait</CC_Settings_BarHeartLine>
+  <CC_Settings_BarHeartLine_Tip>A thin line under each colonist's name on the colonist bar: strain in its band's colour (softer below strained), the good side in green under it, both at once when both, each as long as it is full.</CC_Settings_BarHeartLine_Tip>
+  <CC_SetNote_BarHeartLine>Strain and the good side at a glance, under every name on the bar.</CC_SetNote_BarHeartLine>
+
+</LanguageData>

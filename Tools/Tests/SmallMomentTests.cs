@@ -56,8 +56,8 @@ public static class SmallMomentTests
           && SmallMomentMath.WithinJoyCap(1f, SmallMomentMath.JoyReliefCap) == 0f && SmallMomentMath.WithinJoyCap(-1f, 0f) == 0f, "joys ease within their day's cap");
 
         // ---------- The heart's caps and kinds ----------
-        C(StrainSource.Letdowns == Enum.GetValues(typeof(StrainSource)).Cast<StrainSource>().Last() && (int)StrainSource.Letdowns == 17,
-            "small letdowns: a new source at the end of the list (saved by position)");
+        C((int)StrainSource.Letdowns == 17 && (int)StrainSource.Heavy == 18 && StrainSource.Heavy == Enum.GetValues(typeof(StrainSource)).Cast<StrainSource>().Last(),
+            "small letdowns: a new source at the end of the list when it came (saved by position; heavy things after)");
         C(StrainRelief.Joys == Enum.GetValues(typeof(StrainRelief)).Cast<StrainRelief>().Last() && (int)StrainRelief.Joys == 9, "small joys: a new relief at the end of the list");
         C(HeartMath.SourceCap(StrainSource.Letdowns) > 0f && HeartMath.SourceCap(StrainSource.Letdowns) <= 3f, "small letdowns build a little a day at most");
         float today = 0f, total = 0f, built = 0f;

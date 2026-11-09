@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    The heart, felt (Source/ColonyCouncil/Heart/HeartFelt.cs, HeartActs.cs; docs/design/heart-felt.md, release 1). Said
+    over a head, one sentence each, in every age, in the speaker's own voice. {PAWN} is the speaker.
+
+    How they are (HeartFelt.BandLine): when their band turns, and now and then while it holds. The side that speaks gives
+    its band: strain's [band:strained], [band:worn], [band:breaking] (and [band:steady] with [back]), the good side's
+    [good:goodheart], [good:highspirits]; [both] while strain and the good side hold at once (either side may say a [both]
+    line); [turn] when it has just turned, [back] when strain has come down a band. The cause where it is known:
+    [why:loss] ({LOST}, the one lost), [why:sickself] ({ILLNESS}, their illness), [why:sickclose] ({SICK}, the one ill),
+    [why:downed], [why:raid], [why:fight], [why:sleep], [why:letdowns], [why:pain]; for the good side [why:friends],
+    [why:purpose], [why:gathering]. Every line here has a band, [both] or [back]: nobody is given a line for a heart
+    they don't have.
+  -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_HeartBand</defName>
+    <lines>
+      <plain>
+        <li>[band:strained] I keep losing my place in whatever I'm doing.</li>
+        <li>[band:strained] My shoulders have been up round my ears all week.</li>
+        <li>[band:strained] I'm tired in a way that sleep doesn't touch.</li>
+        <li>[band:strained] Everything takes twice as long as it should today.</li>
+        <li>[band:strained] I could do with one day where nothing happens.</li>
+        <li>[band:strained,turn] It's all starting to pile up on me.</li>
+        <li>[band:strained,turn] I've been carrying this around too long.</li>
+        <li>[band:strained,why:loss] I keep setting a place for {LOST}.</li>
+        <li>[band:strained,why:loss] I keep thinking {LOST} will walk in any minute.</li>
+        <li>[band:strained,why:loss] Every time someone laughs like that, I think of {LOST}.</li>
+        <li>[band:strained,why:sickself] This {ILLNESS} has taken everything out of me.</li>
+        <li>[band:strained,why:sickself] I'm sick of being sick.</li>
+        <li>[band:strained,why:sickclose] I can't stop checking on {SICK}.</li>
+        <li>[band:strained,why:sickclose] I don't sleep much with {SICK} that ill.</li>
+        <li>[band:strained,why:downed] I still feel that fall in every bone.</li>
+        <li>[band:strained,why:raid] We nearly didn't come through that one.</li>
+        <li>[band:strained,why:fight] Every bang at the gate and I'm reaching for a weapon.</li>
+        <li>[band:strained,why:sleep] I haven't had a proper night's sleep in days.</li>
+        <li>[band:strained,why:letdowns] It's been one small thing after another lately.</li>
+        <li>[band:strained,why:pain] The ache never quite goes, and it wears on you.</li>
+        <li>[band:strained,child] I don't like it when everyone is sad.</li>
+        <li>[band:worn] I'm worn to the bone.</li>
+        <li>[band:worn] Don't ask me how I am today.</li>
+        <li>[band:worn] I'm running on nothing at all.</li>
+        <li>[band:worn] Some mornings I can barely lift my head.</li>
+        <li>[band:worn,turn] I don't think I can take much more of this.</li>
+        <li>[band:worn,turn] Something's given way in me, and I can't find it.</li>
+        <li>[band:worn,why:loss] Nothing has been right since we lost {LOST}.</li>
+        <li>[band:worn,why:loss] I still can't believe {LOST} is gone.</li>
+        <li>[band:worn,why:loss] I keep hearing {LOST}'s voice out in the yard.</li>
+        <li>[band:worn,why:sickself] This {ILLNESS} is grinding me down to nothing.</li>
+        <li>[band:worn,why:sickself] I'm tired of lying here counting the roof beams.</li>
+        <li>[band:worn,why:sickclose] If {SICK} doesn't pull through, I don't know what I'll do.</li>
+        <li>[band:worn,why:sickclose] I sat up with {SICK} all night again.</li>
+        <li>[band:worn,why:raid] Too many of us went down out there.</li>
+        <li>[band:worn,why:downed] My body's mending faster than the rest of me.</li>
+        <li>[band:worn,why:fight] I close my eyes and I'm back in the fighting.</li>
+        <li>[band:worn,child] When will everything be normal again?</li>
+        <li>[band:breaking] I'm close to the end of my rope.</li>
+        <li>[band:breaking] One more thing and I'll come apart.</li>
+        <li>[band:breaking] I can't think straight anymore.</li>
+        <li>[band:breaking,turn] I can't do this anymore, I really can't.</li>
+        <li>[band:breaking,why:loss] I don't know how to do any of this without {LOST}.</li>
+        <li>[band:breaking,why:sickclose] Somebody please tell me {SICK} is going to live.</li>
+        <li>[band:breaking,why:sickself] I'm so tired of hurting.</li>
+        <li>[back] I feel more like myself today.</li>
+        <li>[back] I think the worst of it has passed.</li>
+        <li>[back] I slept the whole night through, first time in ages.</li>
+        <li>[back,why:loss] I can say {LOST}'s name now without my throat closing.</li>
+        <li>[back,why:sickself] The {ILLNESS} has let go of me, mostly.</li>
+        <li>[back,why:sickclose] {SICK} is turning the corner, and so am I.</li>
+        <li>[good:goodheart] Good people and good work, what more is there?</li>
+        <li>[good:goodheart] It's been a good stretch, hasn't it?</li>
+        <li>[good:goodheart] I like it here, I really do.</li>
+        <li>[good:goodheart] Whatever comes next, we'll manage it together.</li>
+        <li>[good:goodheart,turn] I don't know what's got into me, but I feel good.</li>
+        <li>[good:goodheart,turn] Things are finally settling, and I can feel it.</li>
+        <li>[good:goodheart,why:friends] I've got good friends here, and that's most of it.</li>
+        <li>[good:goodheart,why:purpose] I know what I'm here for now.</li>
+        <li>[good:goodheart,why:gathering] That was a night to remember.</li>
+        <li>[good:goodheart,child] Today was a good day.</li>
+        <li>[good:highspirits] I feel like I could take on the world today.</li>
+        <li>[good:highspirits] I keep catching myself singing.</li>
+        <li>[good:highspirits] Everything's going right for a change.</li>
+        <li>[good:highspirits,turn] I can't remember when I last felt this good.</li>
+        <li>[good:highspirits,why:friends] Look at us, I wouldn't trade this lot for anything.</li>
+        <li>[good:highspirits,why:purpose] Give me the hardest job you've got today.</li>
+        <li>[both] Hard days, but I've good people around me.</li>
+        <li>[both] I'm tired to the bone, but this lot keeps me going.</li>
+        <li>[both] It's been rough, and I still wouldn't be anywhere else.</li>
+        <li>[both,why:loss] We lost {LOST}, but we've still got each other.</li>
+        <li>[both,why:sickclose] {SICK} is so ill, but everyone has been so kind.</li>
+        <li>[both,why:sickself] This {ILLNESS} is wretched, but you've all looked after me well.</li>
+      </plain>
+      <warm>
+        <li>[band:strained] I'm alright, I just need a bit of quiet.</li>
+        <li>[band:worn,why:loss] I miss {LOST} more every day, not less.</li>
+        <li>[back] Thank you all for putting up with me lately.</li>
+        <li>[good:goodheart] I'm so glad we found each other out here.</li>
+        <li>[both] Even on the bad days, you lot make it bearable.</li>
+      </warm>
+      <blunt>
+        <li>[band:strained] I'm fine, so stop asking.</li>
+        <li>[band:worn] I need a day off, and I'm not getting one.</li>
+        <li>[band:breaking] Don't push me today.</li>
+        <li>[back] Right, I'm better, back to work.</li>
+        <li>[good:goodheart] Things are good, no complaints.</li>
+      </blunt>
+      <cheerful>
+        <li>[band:strained] Rough patch, that's all, it'll pass.</li>
+        <li>[back] Look who's back on their feet!</li>
+        <li>[good:goodheart] What a stretch of days we've had.</li>
+        <li>[good:highspirits] Best week I've had in years!</li>
+        <li>[both] Bad luck can't keep us down for long.</li>
+      </cheerful>
+      <gloomy>
+        <li>[band:strained] Of course it's all going wrong, it always does.</li>
+        <li>[band:worn] I'm not sure what's left of me some days.</li>
+        <li>[band:breaking] Leave me be, there's nothing anyone can do.</li>
+        <li>[back] I suppose it's a little better now.</li>
+        <li>[good:goodheart] It's good, for now, and I'm trying to enjoy it.</li>
+      </gloomy>
+      <cold>
+        <li>[band:strained] I'm working on fumes, but I'm working.</li>
+        <li>[band:worn] I'll keep going until I can't.</li>
+        <li>[back] I've recovered.</li>
+        <li>[good:goodheart] Things are in order, and I'm content with that.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!--
+    The heart's small acts (HeartActs.cs, JobDriver_HeartAct): said as the act begins. [act:...] names the act (sit,
+    stareout, stepout, pace, sharp, hum, sing, linger, dance, lostbed, indoors, door, sitwith, homefire, sharejoy); the
+    band or the feeling it comes from may be asked ([band:worn], [feeling:Grief]...); [with] when it is said to someone
+    ({OTHER}), [about] when a sharp word is for the one an anger is about, [lost] when {LOST} is the one lost.
+  -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_HeartAct</defName>
+    <lines>
+      <plain>
+        <li>[act:sit] I just need to sit a minute.</li>
+        <li>[act:sit] I'll get up in a bit, I promise.</li>
+        <li>[act:sit] Give me a moment, my head's full.</li>
+        <li>[act:sit,band:worn] My legs won't carry me another step.</li>
+        <li>[act:sit,feeling:Grief] I keep thinking about the ones we have lost.</li>
+        <li>[act:stareout] It's quiet out here, at least.</li>
+        <li>[act:stareout] I needed some air, that's all.</li>
+        <li>[act:stareout] Look at that sky, and none of it cares what happens to us.</li>
+        <li>[act:stareout,band:worn] I need to look at something that isn't work for a while.</li>
+        <li>[act:stepout] I need a minute, I'll be right back.</li>
+        <li>[act:stepout] Just a breath of air, then back to it.</li>
+        <li>[act:stepout] Back in a moment, I can't think in there.</li>
+        <li>[act:stepout,band:breaking] If I don't get out for a moment, I'll scream.</li>
+        <li>[act:pace] Can't sleep, can't sit still.</li>
+        <li>[act:pace] My head won't stop turning things over.</li>
+        <li>[act:pace] Every board in this floor creaks, and I've found them all.</li>
+        <li>[act:pace,band:breaking] Round and round, and it never comes out any different.</li>
+        <li>[act:sharp] Not now.</li>
+        <li>[act:sharp] Can you not, just for once?</li>
+        <li>[act:sharp,band:worn] I said I'll do it, so stop asking.</li>
+        <li>[act:sharp,band:breaking] Leave me alone, I mean it.</li>
+        <li>[act:sharp,feeling:Anger] Get out of my way.</li>
+        <li>[act:sharp,about] I've nothing to say to you, {OTHER_nameDef}.</li>
+        <li>[act:sharp,feeling:Anger,with] Don't even start with me today, {OTHER_nameDef}.</li>
+        <li>[act:hum] Hm, hm, hmm.</li>
+        <li>[act:hum] There's a tune in my head that won't leave.</li>
+        <li>[act:hum] This is going nicely today.</li>
+        <li>[act:hum,lowtech] My father hummed this one at the anvil.</li>
+        <li>[act:sing] Sing along if you know the words!</li>
+        <li>[act:sing] La, la, and then the bit I always forget.</li>
+        <li>[act:sing] Oh, the barley's tall and the river's high.</li>
+        <li>[act:sing,lowtech] My grandmother sang this one at the loom.</li>
+        <li>[act:sing,work:Growing] A song for the seedlings, they like it.</li>
+        <li>[act:linger] Stay a bit, the dishes can wait.</li>
+        <li>[act:linger] That was a good meal, let's not rush off.</li>
+        <li>[act:linger,with] So, {OTHER_nameDef}, what's the news?</li>
+        <li>[act:linger,with] Sit a while longer, {OTHER_nameDef}, tell me about your day.</li>
+        <li>[act:dance] Come on, everyone up!</li>
+        <li>[act:dance] My feet won't keep still.</li>
+        <li>[act:dance] Watch this, I've been practicing.</li>
+        <li>[act:lostbed,lost] It still smells of {LOST} in here.</li>
+        <li>[act:lostbed,lost] {LOST} always kept this so neat.</li>
+        <li>[act:lostbed,lost] I'm not ready to clear out {LOST}'s things.</li>
+        <li>[act:lostbed] I just wanted to sit here a while.</li>
+        <li>[act:indoors] I don't like being out there after dark.</li>
+        <li>[act:indoors] Better in here, with someone.</li>
+        <li>[act:indoors,with] Mind if I sit with you a while, {OTHER_nameDef}?</li>
+        <li>[act:indoors,with] Can I stay in here with you for a bit?</li>
+        <li>[act:door] Fine!</li>
+        <li>[act:door] I'm done with this.</li>
+        <li>[act:door] Leave me alone, all of you.</li>
+        <li>[act:door,feeling:Anger] I need to be somewhere else right now.</li>
+        <li>[act:sitwith,with] Shove up, I'll sit with you.</li>
+        <li>[act:sitwith,with] I missed you today.</li>
+        <li>[act:sitwith,with] Don't get up, I only came to be near you.</li>
+        <li>[act:sitwith,with] There you are, I was looking all over for you.</li>
+        <li>[act:homefire] Back home we'd be bringing the flocks down about now.</li>
+        <li>[act:homefire] My mother made a stew with juniper, and I'd give anything for a bowl.</li>
+        <li>[act:homefire] Have I told you about the river where I grew up?</li>
+        <li>[act:homefire] Where I come from, we'd sing on nights like this.</li>
+        <li>[act:sharejoy,with] I had to tell someone, today's been wonderful.</li>
+        <li>[act:sharejoy,with] You'll never guess what happened today, {OTHER_nameDef}.</li>
+        <li>[act:sharejoy,with] Come here, I've got good news.</li>
+        <li>[act:sharejoy,with] I'm so happy I could burst, and you're the first I've told.</li>
+      </plain>
+      <warm>
+        <li>[act:sit] Sit with me if you like, I'm only resting.</li>
+        <li>[act:sitwith,with] I like it best when it's just the two of us.</li>
+        <li>[act:linger,with] I'm glad you stayed, I like talking with you.</li>
+        <li>[act:sharejoy,with] I wanted you to be the one I told.</li>
+      </warm>
+      <blunt>
+        <li>[act:stepout] Five minutes, don't touch my work.</li>
+        <li>[act:sharp] Not today.</li>
+        <li>[act:door] Enough.</li>
+        <li>[act:stareout] Don't follow me.</li>
+      </blunt>
+      <cheerful>
+        <li>[act:hum] Nothing like a tune to keep the hands moving!</li>
+        <li>[act:dance] Faster, play it faster!</li>
+        <li>[act:linger] Who's for another round of stories?</li>
+        <li>[act:sharejoy,with] Best day in ages, I'm telling everyone!</li>
+      </cheerful>
+      <gloomy>
+        <li>[act:sit] Nothing much to get up for.</li>
+        <li>[act:pace] Sleep's not coming tonight either.</li>
+        <li>[act:stareout] It all looks gray from here.</li>
+        <li>[act:homefire] I'll never see home again, will I?</li>
+      </gloomy>
+      <cold>
+        <li>[act:sit] I'm resting, that's all.</li>
+        <li>[act:stepout] I'll return shortly.</li>
+        <li>[act:sharp] Spare me.</li>
+        <li>[act:indoors] Safer inside.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+</Defs>

@@ -12,6 +12,78 @@ tree at once, alongside whatever runs. Each piece is merged as its own release, 
 
 ## State (5 November 2026)
 
+- The heart, felt: it rises and stays, both sides at once, and it shows on the map (9 November 2026, release 1 of
+  `docs/design/heart-felt.md`, points 1 to 8; the player's words: "i feel like this impact of strain and all the emotions
+  is currently neglible, or hardly noticeable", and on the proposal: "the good side should also be able to develop at the
+  same time, not only when strain is at 0"). Not released: no version, no What's new round, About.xml and CHANGELOG
+  untouched. DESIGN.md "The heart, felt: it rises and stays, both sides at once, and it shows on the map" has all of it
+  (and Layer 7's strain and good side bullets, "The heart's good side": both sides at once, what fills it, the words);
+  `docs/design/heart-felt.md` release 1 marked built with its choices and what wasn't built; README "Feelings and strain"
+  (heavy things stay, the good side, on the map); the Almanac's "feelings and strain" (heavy things, rest, on the map, the
+  bands beside each other) and "the heart's good side" pages, prose only, keywords unchanged.
+  - What: **the lasting weight** (`Heart/HeartFeltMath.cs`, pure; `Heart/HeartFelt.cs`): a death or loss by the game's
+    memory (the heaviest of each person, once in three days: partner or family 58, family seen dying 50, a friend 45, a
+    bonded animal 28, any colonist 12, someone taken 10 to 30), being downed 22, and while it lasts their own sickness
+    that can kill (12 to 52), someone close badly ill (14 to 50 from a third of the way), a fight at home with ours down
+    (12 and 8 each, 36 at most); rest can't take strain below it, strain sinks toward it within a day (2.5 an hour,
+    "heavy things", `StrainSource.Heavy` at the end of the list), it lifts slowly then faster, good things lift it a
+    little, the weights alone never past 76. **Rest under strain**: in full up to 30, 70% from 90. **Both sides at once**:
+    the good side grows at any strain (`Growth`: in full up to 10, 30% from 85), good things ease strain and fill it
+    together (`Settle`, 35% to the good side), hardship spends 35% of itself from the good side as a cushion
+    (`HeartMath.Spend`, `CushionShare`), both band moods apply, and both are shown: the inspector line ("Heart: worn down,
+    in good heart · grieving"), RimHUD, the card's Now slot, the Moods page, the tooltips (the strain tooltip's weight
+    line, the good side's "grows at 60% of its pace"). **Acts** (`Heart/HeartActs.cs`, `HeartActJob.cs`,
+    `Defs/Misc/Rimfolk_HeartActs.xml`, eleven jobs): strained, sitting or looking out; worn, a step outside from ordinary
+    work, pacing at night, a short word; in good heart humming at work and lingering at the table; in high spirits singing
+    and dancing at a gathering; strong feelings: grief at the grave (the small habit's own) or where the one lost slept,
+    fear indoors near someone after dark, anger's sharp word or slammed door, love beside a partner, homesickness at the
+    evening's fire (or the small habit's look out), joy shared with a friend (`Together.When`). Safe and free only, one a
+    colonist in 16 hours and one in the colony in 3. **Lines** (`Rimfolk_Pool_HeartBand`, 97 lines, and
+    `Rimfolk_Pool_HeartAct`, 84): when a band turns and now and then while it holds, naming the cause ("I keep setting a
+    place for Ana."), through the touches' one rate. **A sign over the head** (the game's thought bubble, ten shapes in
+    `Textures/ColonyCouncil/Icons/Feelings` drawn by `Tools/make_feeling_icons.py`, tinted by the feeling). **The bar's
+    heart line** under each name (`BarBadges.HeartLine`, `BarBadgeMath.HeartLine`). **Messages** when worn down or near
+    breaking (with why), back from it, in good heart or high spirits (with what filled it), never twice for a hover.
+  - Code: new `Heart/HeartFeltMath.cs` (pure, linked in Tests.csproj and Balance.csproj), `Heart/HeartFelt.cs` (the
+    weight, `Tell`, `Lines`, `BandLine`, `Sign`, `FeelingIcons`), `Heart/HeartActs.cs`, `Heart/HeartActJob.cs`. Touched:
+    `HeartMath` (the cushion, `StrainSource.Heavy`), `HeartLogic` (the hour: the weight, the sink, `Settle`, the map
+    after; `EaseJoys` through `Settle`; `Change` lifts the weight), `GoodHeart` (`Fill` at any strain, `Growing`,
+    `SlowerLine`), `HeartData`, `HeartTracker` (the map's sick and downed), `HeartView`, `HeartCard`, `HeartDebug` (four
+    dev actions), `ColonistBar/BarBadges.cs`, `BarBadgeMath.cs`, `Touches/VisualTouches.cs` (`Notes`),
+    `Social/Family.cs` (the bed of the dead for grief), `CouncilSettings`, `SettingsCatalog`; keys in
+    `Rimfolk_HeartFelt.xml`, the good side's and strain's explanations updated; `Tools/DefValidator` knows `{SICK}`;
+    `Tools/Balance/HeartSim.cs` brought to the new rules.
+  - Settings (each on, the heart's How hard page; the bar's line in the colonist bar's): `heartActs` "Small acts by how
+    they are", `heartFeelingActs` "Strong feelings act", `heartSays` "They say how they feel", `heartSigns` "A sign over
+    the head for a strong feeling", `heartMessages` "Messages when a heart turns", `barHeartLine` "Heart line under each
+    portrait". Saved: values on the heart (`weight`, `weightUntil`, `weightWhy`, `weightAbout`, `weightKind`, `held`,
+    `heldUntil`, `heldWhy`, `heldAbout`, `heldKind`, `toldStrain`, `toldGood`), no new collection; older saves load with
+    no weight and take note of their bands at the first look. No Harmony patch, no Sched slot.
+  - Tests: `Tools/Tests/HeartFeltTests.cs` (200 checks: the rules, weeks of play against the targets, the acts' jobs and
+    pools, the causes, the signs, the bar line, the settings, the save, the safety rule); `GoodHeartTests` (both at once
+    in place of one axis), `SmallMomentTests` and `NatureTests` (the source list grew at its end), `ImmersionTests` (the
+    two pools, one sentence each). Measured: a calm colony steady on day 6 (median), in good heart on day 18, never
+    strained; a friend's death: those close strained 7.2 days, a partner 9.8, the rest at 12 at most; a plague season
+    like the save's: all worn three days or more, nobody near breaking; real disasters: someone near breaking every run,
+    0.9 days off a disaster; the good side fills 2.4 a day while strained (3.8 otherwise). Balance simulator (quick, 40
+    runs of six): well run strained 4%, steady/good heart/high spirits 44/35/5% (48/28/3); average 12/4/1.6% strained,
+    worn, near breaking (6/1/0), 0.14 days off a colonist-year (0.04); neglectful 32/25/18% (29/17/8), 1.6 (0.72).
+    `docs/balance-report.md` is still from before: regenerate it with the release.
+  - Riskiest (none of it could be run here): the acts' jobs on the map (the linger queued after a meal, the dance inside a
+    gathering's lord, the door walked through and its slam, pacing in a small room, a step outside then the work picked
+    up again); the thought bubble with a tinted icon (`MoteBubble.SetupMoteBubble` with a colour) over a pawn; the bar's
+    line placed under the game's name label (its 4 px lift and 12 px height assumed); how often acts and lines come in a
+    large colony (16 hours a colonist, 3 a colony); a message storm on the first hours of a disaster (one a colonist a
+    band); the weight's words for a modded illness's label with "the".
+  - Try in the game: 1. Dev mode, "Heart: a heavy loss weighs on them (45)" on a colonist: over the next hours their
+    strain rises to about 45 and stays there through sleep; the Heart section says "A weight of 45 ..."; the bar's line
+    under their name grows orange. 2. Let a friend of theirs die (or the dev action): a message "... is worn down" only
+    if it reaches 55, a line like "I keep setting a place for ..." when they're on screen. 3. "Heart: a small act now"
+    on someone strained (sits a while), worn and working (steps outside, then back to work), in good heart while eating
+    with someone (stays at the table), at a party in high spirits (dances). 4. A strong feeling (grief after a death): a
+    tear in a bubble over their head; "Heart: a sign over the head now". 5. Settings, How hard: each of the six off in
+    turn, its part gone.
+
 - 0.179.2, the mailbag's own picture (9 November 2026, the player's screenshot of a red cross: "the mailbag needs a
   proper sprite, please use all available options a reference"). `Rimfolk_Mailbag` pointed at
   `Things/Building/Misc/CaravanPackingSpot`, which the game doesn't have under that path. It now uses
