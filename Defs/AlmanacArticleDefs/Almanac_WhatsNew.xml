@@ -31,6 +31,18 @@ When you load a save after an update, a letter lists the newest round once. The 
     <rounds>
 
       <li>
+        <version>0.194.0</version>
+        <date>9 November 2026</date>
+        <title>The on-screen panels in Rimfolk's own look</title>
+        <points>
+          <li>Each on-screen panel is a card with a title row; its buttons show in that row under the mouse, and urgent rows carry a coloured stripe and an icon.</li>
+          <li>Values with a range are bars: mood with its break lines and the heart's strain and good side beneath, days of food, medicine, research, trust, each colonist's health and their food, rest and recreation.</li>
+          <li>The mood board and hover card mark a day off or a bad afternoon and an empty weapon slot, the inventory shows the change since yesterday and the weapons' ratings.</li>
+          <li>The new setting Classic on-screen panels brings back the panels exactly as they were; with Rimfolk's own look off they are always the classic ones.</li>
+        </points>
+      </li>
+
+      <li>
         <version>0.193.0</version>
         <date>9 November 2026</date>
         <title>Rimfolk's apparel card</title>

@@ -882,6 +882,57 @@ def g_research():
     return m
 
 
+def g_trend():
+    """The mood trend: a line rising and falling over a corner of axes, a dot at its newest point."""
+    m = new()
+    rect(m, 18, 22, 40, 236, r=8)
+    rect(m, 18, 214, 238, 236, r=8)
+    line(m, [(62, 178), (108, 118), (148, 152), (206, 74)], 24)
+    circle(m, 206, 74, 22)
+    return m
+
+
+def g_vitals():
+    """The colony's vitals: a pulse across a rounded frame."""
+    m = new()
+    rect(m, 16, 40, 240, 216, r=30)
+    rect(m, 38, 62, 218, 194, r=16, fill=OFF)
+    line(m, [(46, 134), (88, 134), (108, 92), (138, 176), (160, 112), (176, 134), (212, 134)], 20)
+    return m
+
+
+def g_stock():
+    """The inventory: a crate with its lid, a hand-hold cut in it."""
+    lid = new()
+    rect(lid, 16, 36, 240, 92, r=16)
+    body = new()
+    rect(body, 32, 84, 224, 234, r=18)
+    crate = over(lid, body, 10)
+    rect(crate, 98, 126, 158, 148, r=10, fill=OFF)
+    return crate
+
+
+def g_day_off():
+    """A day off, or a bad afternoon: the sun half over the horizon, its rays above."""
+    m = new()
+    circle(m, 128, 176, 62)
+    circle(m, 128, 176, 40, OFF)
+    clip_below(m, 168)
+    for deg in (-150, -115, -65, -30):
+        a = math.radians(deg)
+        line(m, [(128 + 84 * math.cos(a), 176 + 84 * math.sin(a)), (128 + 118 * math.cos(a), 176 + 118 * math.sin(a))], 20)
+    line(m, [(128, 92), (128, 46)], 20)
+    rect(m, 14, 186, 242, 208, r=10)
+    rect(m, 60, 222, 196, 240, r=9)
+    return m
+
+
+def g_kit_gap():
+    """An empty weapon slot: a sword's outline, nothing inside it."""
+    blade = sword(45)
+    return minus(grow(blade, 9), blade)
+
+
 # Almanac categories
 
 def g_cat_basics():
@@ -1061,6 +1112,7 @@ GLYPHS = [
     ("Strain", g_strain), ("Leaving", g_leaving), ("BarDot", g_bar_dot), ("BarRing", g_bar_ring),
     # on-screen panels
     ("Panels", g_panels), ("Power", g_power), ("Temperature", g_temperature), ("Research", g_research),
+    ("Trend", g_trend), ("Vitals", g_vitals), ("Stock", g_stock), ("DayOff", g_day_off), ("KitGap", g_kit_gap),
     # almanac categories
     ("CatBasics", g_cat_basics), ("CatFood", g_cat_food), ("CatDefense", g_cat_defense), ("CatHealth", g_cat_health),
     ("CatManagement", g_cat_management), ("CatLowTech", g_cat_lowtech), ("CatRoomDesign", g_cat_roomdesign),

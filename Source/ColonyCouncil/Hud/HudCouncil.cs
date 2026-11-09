@@ -239,6 +239,9 @@ namespace ColonyCouncil
             var line = Add(PartTrust, Icons.Trust, text, value, score, Tip("CC_Pnl_TrustTip".Translate(avg.ToString("0")).Resolve() + (trend != null ? "\n" + trend : ""),
                 ClickPage("Everyone")), Page("Everyone"));
             line.quiet = UiKit.TrustColor(avg);
+            // Rimfolk's look: trust as a bar either side of nothing, distrust leftwards and trust rightwards.
+            HudLookMath.TrustBar(avg, out line.spanFrom, out line.spanTo);
+            line.fillColor = UiKit.TrustColor(avg);
         }
 
         protected override void MenuOptions(List<FloatMenuOption> options)

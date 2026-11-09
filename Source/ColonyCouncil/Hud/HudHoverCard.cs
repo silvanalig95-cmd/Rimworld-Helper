@@ -16,7 +16,7 @@ namespace ColonyCouncil
     /// card is kept half a second per pawn, and it stays away while a button is held, something is being placed or
     /// targeted, a window or menu is under the mouse, or the world map is up.
     /// </summary>
-    public static class HudHoverCard
+    public static partial class HudHoverCard
     {
         private const int WindowId = 0x5A1E77;
 
@@ -32,6 +32,15 @@ namespace ColonyCouncil
             public string doing;
             public float at;
             public float width, height;
+
+            // Rimfolk's own look (Hud/Look/HudHoverCardLook.cs), made when the card is built (every half second).
+            public bool refined;
+            /// <summary>Each concern's words with what would help joined on (where it fits beside them).</summary>
+            public readonly List<string> joined = new List<string>();
+            /// <summary>Lines the look adds after the concerns: time off under way, an empty weapon slot.</summary>
+            public readonly List<(Texture2D icon, string text, Color color)> extra = new List<(Texture2D, string, Color)>();
+            public Rect drawRect;
+            public Action draw;
         }
 
         private static Pawn target;
@@ -86,6 +95,14 @@ namespace ColonyCouncil
                 if (!Place(c, out var rect)) return;
                 shownPawn = p;
                 shownFrame = Time.frameCount;
+                if (c.refined)
+                {
+                    // Its drawing made once for the card, not each frame.
+                    c.drawRect = rect.AtZero();
+                    c.draw ??= () => DrawLook(c, c.drawRect);
+                    Find.WindowStack.ImmediateWindow(WindowId, rect, WindowLayer.Super, c.draw, false, false, 0f);
+                    return;
+                }
                 Find.WindowStack.ImmediateWindow(WindowId, rect, WindowLayer.Super, () => Draw(c, rect.AtZero()), false, false, 0f);
             }
             catch (Exception e)
@@ -164,6 +181,7 @@ namespace ColonyCouncil
         private static Card CardFor(Pawn p, float now)
         {
             if (card != null && card.pawn == p && now - card.at < 0.5f && now >= card.at) return card;
+            if (HudLook.Refined) return card = CardLook(p, now);
             var c = new Card { pawn = p, at = now };
             if (p.needs?.mood != null) c.mood = HudMood.For(p);
             if (S.hoverConcerns)

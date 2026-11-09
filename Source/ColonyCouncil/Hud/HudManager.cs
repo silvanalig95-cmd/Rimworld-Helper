@@ -143,6 +143,8 @@ namespace ColonyCouncil
                 Find.WindowStack.Add(editBar);
             }
             else if (!bar && editBar != null && editBar.IsOpen) editBar.Close(false);
+            // The look changed (the setting, Rimfolk's own look, a timing run): every panel gathers and measures itself again.
+            HudLook.Watch(windows.Values);
             // Behind every other window, always (see HudWindowOrder).
             HudWindowOrder.KeepBehind(Find.WindowStack);
         }

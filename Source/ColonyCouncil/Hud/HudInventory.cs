@@ -26,7 +26,7 @@ namespace ColonyCouncil
     /// While it shows, the game's own resource list steps aside (<see cref="Patch_HudGameResources"/>, a setting on by
     /// default): only its drawing; the counts are the game's either way. Gathered at most twice a second.
     /// </summary>
-    public class HudInventory : HudPanel
+    public partial class HudInventory : HudPanel
     {
         public const string StyleClassic = "classic", StyleGrouped = "grouped", StyleGrid = "grid", StyleEssentials = "essentials";
         public static readonly string[] Styles = { StyleClassic, StyleGrouped, StyleGrid, StyleEssentials };
@@ -44,6 +44,16 @@ namespace ColonyCouncil
             /// <summary>For the essentials: a whole category (meals, medicine) instead of one item.</summary>
             public ThingCategoryDef cat;
             public string value;
+            // Rimfolk's look (Hud/Look/HudInventoryLook.cs): the words and the weapon rating, made when gathered.
+            public string label, countText, changeText;
+            /// <summary>The best stored one's weapon rating (below 0 for none), its words, its colour and its tooltip.</summary>
+            public float rating = -1f;
+            public string ratingText, ratingTip;
+            public Color ratingColor;
+            /// <summary>Meals' days of food as a bar against the warning line (below 0 for none).</summary>
+            public float fill = -1f;
+            /// <summary>The tooltip's maker (the tooltip itself is worked out only while it shows).</summary>
+            public Func<string> tip;
         }
 
         private sealed class Group
@@ -53,6 +63,8 @@ namespace ColonyCouncil
             public Texture2D icon;
             public bool folded;
             public readonly List<Item> items = new List<Item>();
+            /// <summary>Rimfolk's look: the total in words.</summary>
+            public string totalText;
         }
 
         private readonly List<Item> shown = new List<Item>();
@@ -185,6 +197,7 @@ namespace ColonyCouncil
             if (Style == StyleGrouped) GroupRows(st);
             if (hidden > 0) moreText = "CC_Pnl_AndMore".Translate(hidden).Resolve();
             if (shown.Count == 0 && searching) emptyText = HudKit.T("CC_Pnl_I_NoMatch");
+            if (Refined) RefreshLook();
         }
 
         /// <summary>The grouped style: a pinned group, then the game's categories in its order, each folded or not.</summary>
@@ -256,6 +269,9 @@ namespace ColonyCouncil
             string food = days >= 900f ? null : "CC_Pnl_I_FoodDays".Translate(days < 10f ? days.ToString("0.#") : days.ToString("0")).Resolve();
             if (meals == null) _ = Roots;
             Category(meals, ThingDefOf.MealSimple, food);
+            // Rimfolk's look: the meals' days of food as a bar, the warning line at its middle.
+            if (days < 900f && shown.Count > 0 && shown[shown.Count - 1].cat == meals)
+                shown[shown.Count - 1].fill = HudLookMath.FoodFill(days, Mathf.Max(S.hudFoodWarnDays, S.hudFoodBadDays));
             Category(ThingCategoryDefOf.Medicine, ThingDefOf.MedicineIndustrial, null);
             One(ThingDefOf.Silver);
             One(ThingDefOf.Steel);
@@ -264,6 +280,7 @@ namespace ColonyCouncil
             foreach (var e in entries)
                 if (e.pinned && defs.TryGetValue(e.key, out var d))
                     One(d);
+            if (Refined) RefreshLook();
         }
 
         // ---------------- Sizes ----------------
@@ -291,6 +308,7 @@ namespace ColonyCouncil
 
         protected override Vector2 Measure(float s)
         {
+            // The same size in Rimfolk's look (its title row is the panel's own).
             float pad = Mathf.Round(4f * s);
             float top = SearchH(s);
             float more = moreText != null ? Mathf.Round(16f * s) : 0f;
@@ -317,6 +335,11 @@ namespace ColonyCouncil
 
         protected override void DrawBody(Rect r, float s)
         {
+            if (Refined)
+            {
+                DrawLook(r, s);
+                return;
+            }
             float pad = Mathf.Round(4f * s);
             float y = r.y + pad + SearchH(s);
             // The search box itself is the window's (it takes the keyboard); painted here as a quiet copy, so it's there
@@ -637,7 +660,7 @@ namespace ColonyCouncil
             }
             float s = HudMath.ClampScale(Scale);
             float pad = Mathf.Round(4f * s);
-            var body = BodyLocal;
+            var body = ContentLocal;
             var r = new Rect(body.x + pad, body.y + pad - ScrollY, body.width - pad * 2f, Mathf.Round(24f * s));
             // Scrolled out of sight with the rows above it: not drawn (and not typed in) until it's back.
             if (r.y < body.y)
@@ -667,6 +690,16 @@ namespace ColonyCouncil
         {
             var st = St;
             string next = Styles[(Array.IndexOf(Styles, Style) + 1) % Styles.Length];
+            if (Refined)
+            {
+                float at = BarTextLook(bar, right, StyleLabel(Style), styleTip, out bool clicked);
+                if (clicked)
+                {
+                    SetStyle(st, next);
+                    HudLayout.Save();
+                }
+                return at;
+            }
             return BarText(bar, right, StyleLabel(Style), "CC_Pnl_I_StyleTip".Translate(StyleLabel(next)).Resolve(), () => SetStyle(st, next));
         }
 

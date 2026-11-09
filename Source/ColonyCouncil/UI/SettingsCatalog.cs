@@ -654,6 +654,8 @@ namespace ColonyCouncil
             // The on-screen panels and the hover card (Hud/): the same switches as the panels' own menus.
             Section("CC_SetSec_Panels");
             Toggle("hudShown", "CC_Settings_HudShown", "CC_SetNote_HudShown");
+            // The panels as they were, kept as the player's backup (Hud/Look/: the refined cards need Rimfolk's own look).
+            Toggle("hudClassic", "CC_Settings_HudClassic", "CC_SetNote_HudClassic", "hudShown");
             Action("hudPanelOptions", "CC_Settings_HudPanelOptions", null, "CC_SetNote_HudPanelOptions", "hudShown");
             Action("hudPanelOptions2", "CC_Settings_HudPanelOptions2", null, "CC_SetNote_HudPanelOptions2", "hudShown");
             Toggle("hudHideGameAlerts", "CC_Settings_HudHideGameAlerts", "CC_SetNote_HudHideGameAlerts", "hudShown");

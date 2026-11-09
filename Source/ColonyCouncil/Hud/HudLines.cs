@@ -30,6 +30,18 @@ namespace ColonyCouncil
         /// </summary>
         public Color? valueColor;
 
+        // Rimfolk's own look (Hud/Look/HudLinesLook.cs): a value with a range as a bar beside it, made when gathered.
+        /// <summary>The bar's share (days of food against the warning line, medicine against the advisor's, research done); below 0 for none.</summary>
+        public float fill = -1f;
+        /// <summary>Lines across the bar where something begins (the warning line, the bad one); below 0 for none.</summary>
+        public float tickA = -1f, tickB = -1f;
+        /// <summary>A bar filled from one share to another (trust either side of nothing), instead of from the start; below 0 for none.</summary>
+        public float spanFrom = -1f, spanTo = -1f;
+        /// <summary>The bar's colour when it isn't the line's own.</summary>
+        public Color? fillColor;
+        /// <summary>The compact cell's tooltip (the words and the tooltip together), made when gathered.</summary>
+        public string compactTip;
+
         public HudLevel Level => HudRank.LevelOf(score);
         public Color Color => HudKit.ColorOf(score, quiet);
 
@@ -42,7 +54,7 @@ namespace ColonyCouncil
     /// shared ranking, the ones that matter moved to the top when something does, and cut to the panel's rows with
     /// "and 3 more" (never the critical ones). Compact: icons and values only, two to a row.
     /// </summary>
-    public abstract class HudLinesPanel : HudPanel
+    public abstract partial class HudLinesPanel : HudPanel
     {
         protected readonly List<HudLine> lines = new List<HudLine>();
         private readonly List<HudLine> shown = new List<HudLine>();
@@ -74,6 +86,9 @@ namespace ColonyCouncil
             shown.Clear();
             foreach (int i in keep) shown.Add(visible[i]);
             moreText = hidden > 0 ? "CC_Pnl_AndMore".Translate(hidden).Resolve() : null;
+            if (Refined && st.compact)
+                foreach (var l in shown)
+                    l.compactTip = l.text + (l.tip.NullOrEmpty() ? "" : "\n\n" + l.tip);
         }
 
         private static float RowH(float s) => Mathf.Round(20f * s);
@@ -82,6 +97,7 @@ namespace ColonyCouncil
 
         protected override Vector2 Measure(float s)
         {
+            if (Refined) return MeasureLook(s);
             float pad = Mathf.Round(4f * s);
             float more = moreText != null ? Mathf.Round(16f * s) : 0f;
             if (shown.Count == 0) return new Vector2(Mathf.Round(190f * s), pad * 2f + RowH(s));
@@ -95,6 +111,11 @@ namespace ColonyCouncil
 
         protected override void DrawBody(Rect r, float s)
         {
+            if (Refined)
+            {
+                DrawLook(r, s);
+                return;
+            }
             float pad = Mathf.Round(4f * s);
             float rh = RowH(s);
             if (shown.Count == 0)

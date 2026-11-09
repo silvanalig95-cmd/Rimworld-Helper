@@ -29,7 +29,7 @@ namespace ColonyCouncil
     /// on (or every few seconds while paused); drawing only reads what was gathered. If a panel throws, it hides itself
     /// for the rest of the session with one line in the log (<see cref="HudManager.Fail"/>).
     /// </summary>
-    public abstract class HudPanel : Window
+    public abstract partial class HudPanel : Window
     {
         public readonly string id;
 
@@ -57,6 +57,11 @@ namespace ColonyCouncil
         private float nextRefresh = -1f;
         private int refreshedTick = -1;
         private bool dirty = true;
+        /// <summary>
+        /// Drawn in Rimfolk's own look (Hud/Look/, decided when the panel last gathered, so its size and its drawing always
+        /// agree), and with its title row inside the card (the look, not compact) instead of a bar over it.
+        /// </summary>
+        private bool look, inline;
 
         protected HudPanel(string id)
         {
@@ -156,8 +161,20 @@ namespace ColonyCouncil
             nextRefresh = Time.realtimeSinceStartup + 0.5f;
             refreshedTick = Find.TickManager?.TicksGame ?? 0;
             dirty = false;
-            Refresh();
-            size = Measure(HudMath.ClampScale(Scale));
+            look = HudLook.Refined;
+            inline = look && !St.compact;
+            // In Rimfolk's look what the panel gathers (its colours, its tooltips' inks) is in the look's colours too.
+            bool wasOwn = look && HudLook.Begin();
+            try
+            {
+                Refresh();
+                size = Measure(HudMath.ClampScale(Scale));
+            }
+            finally
+            {
+                if (look) HudLook.End(wasOwn);
+            }
+            if (inline) size.y += TitleH;
             size.x = Mathf.Max(60f, Mathf.Round(size.x));
             size.y = Mathf.Max(20f, Mathf.Round(size.y));
         }
@@ -210,11 +227,13 @@ namespace ColonyCouncil
                     var b = HudMath.FromFraction(place.x, place.y, place.right, place.bottom, size.x, size.y, sw, sh);
                     body = new Rect(b.x, b.y, b.w, b.h);
                 }
+                // In Rimfolk's look on whole pixels, so its icons and lines are never blurred between two.
+                if (look) body.position = new Vector2(Mathf.Round(body.x), Mathf.Round(body.y));
             }
             float hh = HeaderH;
             // Never past the bottom of the screen: down to the game's button bar (and room for the bar under it when it
             // shows below), the rest scrolls.
-            var fit = HudMath.FitOnScreen(new HudBox(body.x, body.y, body.width, body.height), size.y, sh - (HudMath.HeaderAbove(
+            var fit = HudMath.FitOnScreen(new HudBox(body.x, body.y, body.width, body.height), size.y, sh - (inline || HudMath.HeaderAbove(
                 new HudBox(body.x, body.y, body.width, body.height), hh) ? 0f : hh));
             body = new Rect(fit.x, fit.y, fit.w, fit.h);
             scrolls = size.y > body.height + 0.5f;
@@ -231,7 +250,8 @@ namespace ColonyCouncil
             if (hovered) hoverGrace = now + 0.35f;
             showHeader = dragging || HudManager.editing || hovered || now < hoverGrace;
             headerAbove = HudMath.HeaderAbove(new HudBox(body.x, body.y, body.width, body.height), hh);
-            if (!showHeader) frame = body;
+            // The title row inside the card holds the bar's buttons: nothing over the panel.
+            if (!showHeader || inline) frame = body;
             else if (headerAbove) frame = new Rect(body.x, body.y - hh, body.width, body.height + hh);
             else frame = new Rect(body.x, body.y, body.width, body.height + hh);
             // Stepped aside: no size for this frame, so the window is under the mouse nowhere (and nothing can pull it back on).
@@ -270,6 +290,12 @@ namespace ColonyCouncil
         {
             if (HudManager.Failed(id) || aside) return;
             var cur = Event.current;
+            // In Rimfolk's look nothing is laid out: the layout pass only keeps the search box's turn (the classic drew it all).
+            if (look && cur.type == EventType.Layout)
+            {
+                WindowExtras(false);
+                return;
+            }
             // Painted earlier in the frame, beneath the game's interface: the window only hands over the tooltips.
             if (cur.type == EventType.Repaint && PaintedThisFrame)
             {
@@ -297,6 +323,7 @@ namespace ColonyCouncil
         {
             if (HudManager.Failed(id) || !IsOpen) return;
             tips.Clear();
+            long clock = HudLook.Start();
             GUI.BeginGroup(frame);
             try
             {
@@ -306,12 +333,18 @@ namespace ColonyCouncil
             {
                 GUI.EndGroup();
             }
+            HudLook.Painted(look, clock);
             paintedFrame = Time.frameCount;
         }
 
         /// <summary>The panel's body and bar in its own coordinates: painted (the early pass), or for input and as a fallback (the window).</summary>
         private void Contents(bool paint)
         {
+            if (look)
+            {
+                ContentsLook(paint);
+                return;
+            }
             var oldFont = Text.Font;
             painting = paint;
             try
@@ -321,7 +354,7 @@ namespace ColonyCouncil
                 var bodyLocal = BodyLocal;
                 float scale = HudMath.ClampScale(Scale);
                 HudKit.Panel(bodyLocal, St.opacity, hovered || dragging);
-                if (scrolls) DrawScrolled(bodyLocal, scale, paint);
+                if (scrolls) DrawScrolled(bodyLocal, scale, paint, size.y);
                 else DrawBody(bodyLocal, scale);
                 if (HudManager.editing) Widgets.DrawBox(bodyLocal.ContractedBy(1f), 1, HudManager.EditLineTex);
                 if (showHeader) DrawHeader(new Rect(0f, headerAbove ? 0f : body.height, body.width, hh));
@@ -359,9 +392,8 @@ namespace ColonyCouncil
         /// A body taller than the screen allows: its content drawn through the visible part, moved by the wheel or the thin
         /// bar at the right (drag it, or click above or below the handle).
         /// </summary>
-        private void DrawScrolled(Rect view, float scale, bool paint)
+        private void DrawScrolled(Rect view, float scale, bool paint, float contentH)
         {
-            float contentH = size.y;
             var track = new Rect(view.xMax - ScrollBarW - 1f, view.y + 2f, ScrollBarW, Mathf.Max(8f, view.height - 4f));
             float handleH = Mathf.Max(18f, track.height * view.height / Mathf.Max(1f, contentH));
             float range = Mathf.Max(1f, contentH - view.height);
@@ -417,7 +449,25 @@ namespace ColonyCouncil
         }
 
         /// <summary>The body in the panel's own coordinates (below the bar when the bar is above it).</summary>
-        protected Rect BodyLocal => new Rect(0f, showHeader && headerAbove ? HeaderH : 0f, body.width, body.height);
+        protected Rect BodyLocal => new Rect(0f, showHeader && headerAbove && !inline ? HeaderH : 0f, body.width, body.height);
+
+        /// <summary>Where the panel's rows go: the body, below the title row when the card has one.</summary>
+        protected Rect ContentLocal
+        {
+            get
+            {
+                var b = BodyLocal;
+                if (!inline) return b;
+                float t = TitleH;
+                return new Rect(b.x, b.y + t, b.width, Mathf.Max(0f, b.height - t));
+            }
+        }
+
+        /// <summary>Whether the panel draws in Rimfolk's own look (as it last gathered).</summary>
+        protected bool Refined => look;
+
+        /// <summary>The card's title row at this panel's scale.</summary>
+        protected float TitleH => HudLookMath.At(HudLookMath.TitleHeight, HudMath.ClampScale(Scale));
 
         /// <summary>
         /// What only the window can draw (a text field, which needs the window's keyboard): every event of the window,

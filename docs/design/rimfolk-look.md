@@ -95,7 +95,8 @@ The council's windows float, the Almanac and Rimfolk's dialogs are in the frame,
   half again as wide in a camp window made twice as wide; the market's goods' names take a wider window's room.
 - **Previews and the search**: a name's preview takes Rimfolk's look when the window its link is in draws in it, and so
   does the corner's search; a card's model is kept for each look.
-- **Left as they were**: the on-screen panels and their edit bar (the map's layer), the room and defense planners docked
+- **Left as they were**: the on-screen panels and their edit bar (the map's layer; the panels take the look in stage 3,
+  point 3), the room and defense planners docked
   above the architect menu (sized to their content and placed each frame), the search (a popup under its icon), the
   game's own windows and panes (the mod settings, the inspect pane's tabs, the game's trade screen, choice letters; Rimfolk's
   own letters open as event cards since stage 3).
@@ -124,7 +125,7 @@ for everything, although i fear that would take a lot of ressources?"
 2. **The Story tab at a glance**, as the Mood tab: life goal with its progress, wish, quirks, standing in the colony,
    closest friends and rivals at the top; the whole story below in sections that fold.
 3. **The on-screen panels further refined** in the look (cards, bars, icons, the heart and weapon marks), with the current
-   panels kept as they are behind a setting ("Classic on-screen panels") as the player's backup.
+   panels kept as they are behind a setting ("Classic on-screen panels") as the player's backup (built, below).
 4. **A colonist card**: one framed window a colonist, portrait, heart's meters, mood, skills and passions, kit (weapons
    and armour with their ratings), wishes, life goal, standing, side by side; from the colonist bar and Rimfolk's windows.
 5. **An item card for everything**, on the weapon card's pattern (and the apparel card's): the item's picture, what it is
@@ -180,3 +181,31 @@ at a glance" has all of it). Released 0.191.0.
   the family tree keeps everyone.
 - **Both looks** through the kit: the game's in the inspect pane, Rimfolk's own on a colonist's card, which draws the same
   page. Built at most twice a second, drawn only from the model.
+
+## Stage 3, point 3: built (9 November 2026)
+
+The on-screen panels in the look (DESIGN.md, "Rimfolk's own look, stage 3, point 3: the on-screen panels" has all of it). Released 0.194.0.
+Not released yet: no version, no What's new round.
+
+- **The backup**: "Classic on-screen panels" (`hudClassic`, off, under On-screen panels): on, every panel and the hover
+  card draw through the code they drew with before, unchanged; with "Rimfolk's own look" off they always do. Each panel
+  keeps its classic drawing in its own file and branches to the look first (`Hud/Look/`, partial classes); places, sizes,
+  options, clicks, the edit bar and saved layouts are shared.
+- **Cards**: the look's rounded fill as solid as the panels' look says (its edge under the mouse), a title row inside
+  with the panel's icon and name whose right end holds the bar's buttons while the mouse is on it (compact panels keep
+  the bar over them, quieter), consistent padding, everything on whole pixels.
+- **Bars, not numbers**: the mood with its break lines (its number small beside it), the heart's strain and good side in
+  the heart's meters' colours and marks, health, food, rest and recreation, days of food and medicine against their
+  lines, the research under way, trust either side of nothing.
+- **Severity by form**: a stripe down an urgent row (pulsing for life and limb) and its icon in the level's colour, no
+  wash under the words; alerts with the warning icon on critical and high ones.
+- **Rimfolk's newer marks**: the heart's band, a day off or a bad afternoon under way, an empty weapon slot (from the
+  colony's kept choice, never worked out by the panels) on a colonist's row; the weapon rating's badge on the inventory.
+- **Hover card** in the same style. Five new icons (Trend, Vitals, Stock, DayOff, KitGap). Every text colour at 4.5:1 on
+  the card over the map (tested).
+- **Speed**: every word and number made when a panel gathers, widths measured once, no delegate or string a frame, words
+  drawn on repaint only, the layout pass skipped; the debug action "On-screen panels: time the classic and refined
+  drawing (log)" times both looks in the game.
+- **Not run here**: the look in the game at every scale and look, the timing, the title row's buttons and dragging, the
+  layout pass skipped, the day off and kit marks on real colonists, the rating badge (where the game counts weapons in
+  the stock), the hover card's link in the corner.

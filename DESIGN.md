@@ -9427,7 +9427,8 @@ Escape, the corner, the keys and the settings work as before, floating or as tab
   the game's panes and the on-screen panels; the corner's search opened from a window in the look is drawn in it (a
   rounded popup, the kit's field, the one lit with the accent's edge), the game's from its key. Both stay where they are
   (a preview at its link, the search under its icon).
-- **Left as they were**: the on-screen panels and their edit bar (the map's layer, their own look and options), the room
+- **Left as they were**: the on-screen panels and their edit bar (the map's layer, their own options; the panels take the
+  look in stage 3, point 3), the room
   and defense planners docked above the architect menu (placed and sized to their content every frame: a frame would
   fight them), the search popup (a popup, not a window that moves), and the game's own windows (the mod settings, the
   inspect pane's tabs, the game's trade screen, choice letters: Rimfolk's own open as its event cards since stage 3).
@@ -9602,6 +9603,105 @@ saved data, no Harmony patch, no Sched slot.
   (Show me leaving for the map, Promise greying at once), a friend's click selecting them with the tab staying open on
   them, the portraits' rings, the tooltips' order, the trust meter's ticks at 8 high, the card's narrower width in
   Rimfolk's look, a prisoner's and a slave's page.
+
+#### Rimfolk's own look, stage 3, point 3: the on-screen panels (docs/design/rimfolk-look.md)
+
+The player (9 November 2026): "on-screens overall look great now, but if you can improve them further, go ahead! perhaps
+keep the current setup as a backuip somewhere." So the panels and the hover card take Rimfolk's own look, aimed at a
+glance during play (less text, more shape), and the panels as they were stay behind a setting as the backup.
+
+- **The backup.** "Classic on-screen panels" (`hudClassic`, off, under On-screen panels; put back with the panels'
+  reset): on, every panel and the hover card draw through the code they drew with before, unchanged. The look is drawn
+  only with "Rimfolk's own look" on and the classic panels off (`HudLook.Refined`); with the look off they are always
+  the classic ones. Each panel is one class in two files: the classic file keeps its drawing as it was and branches to
+  the look at the top of `DrawBody` (and of `Measure` where the look's rows differ), and the look is in
+  `Hud/Look/<Panel>Look.cs` (`partial` classes). `HudPanel.Contents` branches to `ContentsLook` the same way, the hover
+  card's `CardFor` to `CardLook`. Places, sizes, options, clicks, menus, the edit bar and the layout are shared, and a
+  panel's saved state (`HudPanelState`) has nothing new: saved layouts are the same in either.
+- **Decided when a panel gathers.** `HudPanel.RefreshNow` latches the look (`look`) and whether the title row is inside the
+  card (`inline`: the look and not compact) before `Refresh` and `Measure`, so a panel's size and its drawing always
+  agree; gathering runs in the look's colours (`UiKit.BeginOwnColours`, new: the look's tokens without the scrollbars'
+  styles), so the colours a panel keeps and its tooltips' inks are the look's. `HudLook.Watch` (once a frame from
+  `HudManager.Update`) marks every panel to gather again and the hover card to be built again when the look changes (the
+  setting, Rimfolk's own look, a timing run).
+- **Cards** (`HudLook.Card`): the look's rounded fill (`UiKit.Round`, radius 8) in its panel colour (the darker and clear
+  looks in its window ground), as solid as the panels' look says (`HudLookMath.CardAlpha`: dark 0.95, darker 0.97, clear
+  0.72, times the panel's own opacity, fuller under the mouse) and its edge only while the mouse is on it (nine more draws
+  a panel every frame otherwise). A full card has a **title row** (16 at scale 1) with the panel's icon (`HudIcons.For`)
+  and name in the heading's ink; while the mouse is on the panel (or they are arranged) its right end holds the bar's
+  buttons (the panel's own, compact or full, the background, options, hide), the rest of the row drags it, a right-click
+  opens the menu, and nothing pops out over the panel (`frame` is the body). Compact panels keep the bar over them as
+  before, drawn as a quiet rounded strip. While arranging, an accent edge round each card. A card sits on whole pixels.
+- **Severity by form.** An urgent row has a stripe down its left edge (3 at scale 1) in the colour of how much it matters,
+  pulsing for life and limb, and its icon in that colour; no wash over the row (the danger red's words would fall under
+  4.5:1 on a reddened row over a bright map). Alerts: the stripe in the priority's colour (pulsing for critical), the
+  warning icon on critical and high ones, the count small at the right, the flash of a new one kept.
+- **Bars, not numbers, where a value has a range** (flat: a bar this small shows no corner, and a rounded one costs nine
+  draws): the mood with its break lines and where it is heading (`HudLook.MoodBar`), the number small beside it in the
+  bar's colour at full strength (`HudLook.MoodInk`); the heart's line under it (`HudLook.HeartLine`: strain in its band's
+  colour, strained's faintly below it, the marks where strained, worn down and near breaking begin once strain has reached
+  the first, the good side in its own colour under it; the heart's meters' colours and marks, `HeartMeterMath`); health as
+  their summary health under the name; food, rest and recreation as three short bars one over the other, a low one in the
+  danger colour; on the vitals, days of food against the warning line (its middle) with the bad line, medicine against
+  the advisor's two a colonist, the research under way; on the council, trust either side of nothing (`HudLookMath`:
+  `FoodFill`, `StockFill`, `TrustBar`); on the inventory's essentials, the meals' days of food. The numbers stay small
+  beside the bars and in the tooltips.
+- **Rimfolk's newer marks on a colonist's row** (`Hud/Look/HudLookFacts.cs`, gathered with the row at most twice a
+  second, the words made only when what they say changed): the heart's band (the heart's line, and the heart mark from
+  worn down), a day off or a bad afternoon under way (`HudIcons.DayOff`, new; its tooltip `HeartTimeOff.UntilText`; on
+  work and idle a chip in the idle mark's place, so their idling is explained), an empty slot in their weapon kit
+  (`HudIcons.KitGap`, new: read from the colony's kept choice, `WeaponPick.Current` and `Picks.Kit`, again only when the
+  choice was made again, never made here; "No melee weapon. Their gear tab says what the colony has for it."). On the
+  inventory a weapon the colony keeps carries the rating's badge (the best one in storage, `WeaponLive.Of`, read again
+  every five seconds at most; in its band's colour, `WeaponUi.RatingColour`), and the grid's tile a line in it.
+- **The panels.** Mood board: portrait ringed by the mood's line, the name as a link, the marks at the line's end (a
+  break, the heart from worn down, time off, an empty kit slot, a wish, faith wavering), the mood bar, its number, the
+  heart's line, what drags them down; compact cells with the mood filled light enough under the initials, the break
+  lines and the heart's band along the foot. Mood trend: the latest average and lowest beside a dot in each line's
+  colour, the values under the mouse (made for every point when the samples change), the part under the minor break
+  line washed once and the line drawn once (the classic's dashes were some thirty draws). Vitals, council and Following:
+  icon, words, the bar and the value. Alerts as above. Health: the stripe, the name and how they stand, the health bar,
+  the conditions as before (the classic's chips and lines, laid out once a gathering). Work and idle: the colony's lines
+  with their stripe, the rows with their chip and the three bars. Inventory (at the classic's sizes): the game's icons on
+  whole pixels, the change as a small arrow and number, the badge, grouped headers as quiet bands. The hover card:
+  rounded, portrait, name (a link in the corner), the mood small, the mood bar and the heart's line across, what matters
+  most with its stripe and icon, what would help beside or under it, time off and an empty kit slot, what they are doing.
+- **Icons tidied**: one size a row (`HudLook.IconSize`, 13 at scale 1; the marks 12), drawn square and on whole pixels
+  (`HudLook.Snap`, `ScaleMode.ScaleToFit`); five new glyphs in `Tools/make_icons.py` (Trend, Vitals, Stock for the title
+  rows; DayOff and KitGap for the marks), the same weight as Rimfolk's set.
+- **Readability**: the look's type scale (the title Tiny in the heading's ink, names and values in the panels' main font,
+  what is secondary Tiny in the faint ink) and contrast: every text colour holds 4.5:1 on the card over bright snow for
+  the dark and darker looks and over the game's soil for the clear one, on the row under the mouse too, and a compact
+  cell's initials on the mood's fill (tested). Coloured words never sit on a tint of their own colour (work's chips carry
+  their word in ink).
+- **Sizes and places.** The lines and alerts' rows are 18 (the classic's 20) and work's 18, so the cards, title rows and
+  all, still start clear of one another and of the game's interface where Rimfolk places them at 1080p and 1440p (the
+  classic test's typical sizes, in the look); the inventory keeps the classic's sizes, the mood board's rows are 36 (the
+  heart's line under the bar). A colonist's row is laid out by `HudLookMath.LayMoodRow` at every scale (0.75 to 1.5)
+  with nothing on top of anything else.
+- **Speed.** These draw every frame, so in the look: every word, number and percentage is made when the panel gathers
+  (twice a second) or from tables made once (`HudLookFacts.Percent`, the inventory's counts), a text's width is measured
+  once and kept (`HudLook.Width`), tooltips are made only while they show by a maker kept with the row (no delegate a
+  frame), words are drawn on repaint only, and the window skips the layout pass (the classic ran all its drawing code for
+  it as well). Counted from the code for the default panels and ten colonists: the classic makes some 240 objects
+  (percentages, "-8 No bedroom", counts, tooltips' delegates) and measures some 80 texts in each pass, and it runs two
+  passes a frame where the game sends the layout pass; the look makes none and measures none once its words are known, for
+  some 760 draws a frame against the classic's 670 (the cards' rounded fill, the title rows, the heart's line and the
+  bars, less the trend's thirty dashes). **The clock** (`HudLook`, `HudLookMath.Clock`): every panel's
+  painting is timed for the look it was drawn in (two stopwatch readings a panel), and the debug action "On-screen
+  panels: time the classic and refined drawing (log)" paints 300 frames in the look, then 300 classic, and writes both
+  in the log ("... painting time so far" writes them at any time).
+- **Keys** in `Languages/English/Keyed/Rimfolk_HudLook.xml`. **Tests**: `Tools/Tests/HudLookTests.cs` (contrast on every
+  card over the map and under the mouse, the compact cells, the card's solidity, the cards starting clear at 1080p and
+  1440p, a colonist's row at every scale, the bars, the clock and its timing run, the setting and its words, the classic
+  kept and branched from, the look latched when gathering, the layout pass skipped, nothing made in any drawing method of
+  the look, the kit read from the kept choice only, the marks, the icons, saved layouts untouched).
+- **Not verified without the game**: the look itself at every scale and look (dark, darker, clear) over real maps; the
+  timing (the debug action gives it); the title row's buttons and dragging by it; the layout pass skipped (that nothing
+  of the game's needs it, the inventory's search box above all); the heart's line at 2 pixels a side at small scales; the
+  day off and kit marks with a real day off and a real empty slot; the rating badge (the game's resource count includes
+  weapons only where a mod or the game counts them as resources); the compact bar in the look; the hover card in the
+  corner with its link.
 
 #### The journey planner: who to bring and what to pack
 
@@ -9800,7 +9900,9 @@ alerts in a movable panel "instead" of the game's list, health, work and idle, a
 the background so that I can still see them", the wishes alert hidden where the council panel repeats it, more health
 details ("whether it's tended, how far the healing process is"), and a movable inventory "with different styles". The
 rule for all of it, from the player: the most impactful and relevant data comes first. Everything lives in
-`Source/ColonyCouncil/Hud/`.
+`Source/ColonyCouncil/Hud/`. What follows is the panels' working and their classic drawing; since stage 3 of Rimfolk's
+own look they draw as cards in that look (`Hud/Look/`, "Rimfolk's own look, stage 3, point 3: the on-screen panels"
+above), and the classic drawing described here is the player's backup behind "Classic on-screen panels".
 
 - **One ranking** (`HudRank`, pure, tested): urgency times impact in three tiers that never overlap. Life and limb
   (300 to 399, in the player's order: bleeding by hours to death, a life-threatening stage not yet immune, starving,

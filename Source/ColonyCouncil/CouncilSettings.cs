@@ -758,6 +758,11 @@ namespace ColonyCouncil
         public bool hudHideGameAlerts = true;
         /// <summary>The inventory panel stands in for the game's resource list (Hud/Patch_HudGameResources.cs).</summary>
         public bool hudHideGameResources = true;
+        /// <summary>
+        /// The on-screen panels drawn as they were before Rimfolk's look reached them (docs/design/rimfolk-look.md, stage 3,
+        /// point 3: the player's backup); off, and with Rimfolk's own look on, the refined cards (Hud/Look/).
+        /// </summary>
+        public bool hudClassic = false;
         /// <summary>The on-screen panels' settings version, for one-time changes to older settings (HudLayout.Migrate).</summary>
         public int hudVersion = HudLayout.SettingsVersion;
         public bool hoverCard = true;
@@ -1190,6 +1195,7 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref hudFoodBadDays, "hudFoodBadDays", 4f);
             Scribe_Values.Look(ref hudHideGameAlerts, "hudHideGameAlerts", true);
             Scribe_Values.Look(ref hudHideGameResources, "hudHideGameResources", true);
+            Scribe_Values.Look(ref hudClassic, "hudClassic", false);
             Scribe_Values.Look(ref hudVersion, "hudVersion", 0);
             Scribe_Values.Look(ref hoverCard, "hoverCard", true);
             Scribe_Values.Look(ref hoverDelay, "hoverDelay", 0.4f);

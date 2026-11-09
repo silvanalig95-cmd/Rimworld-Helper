@@ -33,7 +33,7 @@ namespace ColonyCouncil
     /// full. The name gets a small health mark, the status word its colour (healing green, getting worse orange,
     /// bleeding or soon deadly red).
     /// </summary>
-    public class HudHealth : HudPanel
+    public partial class HudHealth : HudPanel
     {
         public const string PartDetails = "details", PartHealing = "healing", PartAilments = "ailments", PartFacts = "facts", PartVisuals = "visuals";
         public static readonly string[] Parts = { PartDetails, PartFacts, PartVisuals, PartHealing, PartAilments };
@@ -936,6 +936,7 @@ namespace ColonyCouncil
 
         protected override Vector2 Measure(float s)
         {
+            if (Refined) return MeasureLook(s);
             float pad = Mathf.Round(4f * s);
             float more = moreText != null ? Mathf.Round(16f * s) : 0f;
             if (rows.Count == 0) return new Vector2(Mathf.Round(150f * s), pad * 2f + Mathf.Round(20f * s));
@@ -1014,6 +1015,11 @@ namespace ColonyCouncil
 
         protected override void DrawBody(Rect r, float s)
         {
+            if (Refined)
+            {
+                DrawLook(r, s);
+                return;
+            }
             float pad = Mathf.Round(4f * s);
             if (rows.Count == 0)
             {

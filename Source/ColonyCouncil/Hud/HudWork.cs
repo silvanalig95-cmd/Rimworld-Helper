@@ -17,7 +17,7 @@ namespace ColonyCouncil
     /// switched on (a fire, someone to tend, marked plants or rock), looked for once every five seconds with a handful of
     /// cheap checks. Starving or exhausted first, then idle (longest first), then busy. A click goes to them.
     /// </summary>
-    public class HudWork : HudPanel
+    public partial class HudWork : HudPanel
     {
         public const string PartDoing = "doing", PartIdle = "idle", PartFood = "needfood", PartRest = "needrest", PartJoy = "needjoy", PartStatus = "status",
             PartDrafted = "drafted", PartColony = "colony", PartUnmanned = "unmanned";
@@ -33,6 +33,8 @@ namespace ColonyCouncil
             public float food = -1f, rest = -1f, joy = -1f;
             public bool foodLow, restLow, joyLow;
             public int barOrder;
+            /// <summary>Rimfolk's look: a day off or a bad afternoon under way (their idling explained).</summary>
+            public TimeOffKind off;
         }
 
         private sealed class Line
@@ -107,6 +109,7 @@ namespace ColonyCouncil
             moreText = hidden > 0 ? "CC_Pnl_AndMore".Translate(hidden).Resolve() : null;
             if (st.Shows(PartColony)) Colony(now);
             if (st.Shows(PartUnmanned)) Unmanned();
+            if (Refined) RefreshLook();
         }
 
         private Row RowFor(Pawn p, HudPanelState st, int now)
@@ -360,6 +363,7 @@ namespace ColonyCouncil
 
         protected override Vector2 Measure(float s)
         {
+            if (Refined) return new Vector2(rows.Count == 0 ? HudLookMath.At(170f, s) : Width(s), HudLookMath.WorkHeight(colony.Count, rows.Count, moreText != null, s));
             float pad = Mathf.Round(4f * s);
             float more = moreText != null ? Mathf.Round(16f * s) : 0f;
             float top = colony.Count > 0 ? colony.Count * LineH(s) + Mathf.Round(4f * s) : 0f;
@@ -371,6 +375,11 @@ namespace ColonyCouncil
 
         protected override void DrawBody(Rect r, float s)
         {
+            if (Refined)
+            {
+                DrawLook(r, s);
+                return;
+            }
             var st = St;
             float pad = Mathf.Round(4f * s);
             float y = r.y + pad;

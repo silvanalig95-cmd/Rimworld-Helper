@@ -4180,6 +4180,16 @@ a darker or clearer look, small or normal text, the food and mood lines, and the
 place, parts, size and background. Each panel gathers its data at most twice a second, and one that fails hides
 itself for the session with one line in the log. It complements RimHUD (the selected colonist in the inspect pane).
 
+**In Rimfolk's own look** the panels are cards: a rounded background with the panel's icon and name on a title row,
+whose right end holds the bar's buttons while the mouse is on it (a compact panel keeps the bar over it); bars where a
+value has a range, with the number small beside them: the mood with its break lines, the heart's strain and good side
+under it in the heart's own colours, health, food, rest and recreation, days of food and medicine against their warning
+lines, the research under way, the colony's trust. What is urgent has a coloured stripe down its edge (pulsing when it is
+life and limb) and its icon; a colonist's row also shows a day off or a bad afternoon under way and an empty slot in
+their weapon kit, and a weapon the colony keeps carries its rating's badge in the inventory. The hover card is drawn the
+same way. The panels as they were stay one switch away: **Classic on-screen panels** (Interface, On-screen panels; off
+by default), and they are always drawn so with Rimfolk's own look off. Places, sizes and options are the same either way.
+
 ## Feelings and strain
 Mood says how a colonist feels today. **Strain** says how worn down they are, and a fine meal or a nice room can't buy
 it off in an afternoon. It's a layer under mood, kept in Rimfolk's own save data: the game still decides mental breaks
@@ -4906,8 +4916,8 @@ The pages:
   put away, which page the council window opens on (**This week** by default, or the last page), the Almanac's text
   size, the window size, **Rimfolk's own look**, **Rimfolk's event cards** and **Rimfolk's windows move and resize**
   (all on) with "Put Rimfolk's windows back", the region map's reach; names and cards (previews and their pause); the **on-screen panels**
-  (each panel's options, lock, hiding, the game's own alert list, look, text size, the food and mood lines, putting
-  them back) and the **hover card** (the game's tooltip under it too); the **badges on the colonist bar** (each kind,
+  (the classic panels or Rimfolk's look, each panel's options, lock, hiding, the game's own alert list, look, text size,
+  the food and mood lines, putting them back) and the **hover card** (the game's tooltip under it too); the **badges on the colonist bar** (each kind,
   the break ring or dot and its early warning, the wish badge's threshold, size, corner and how many show).
 - **Your other mods**: only the mods you have loaded show, and the page's foot names the others Rimfolk works with:
   Hospitality (guests joining only when they would, guests in the colony's stories, recruiting spelled out on the

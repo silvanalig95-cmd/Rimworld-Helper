@@ -16,7 +16,7 @@ namespace ColonyCouncil
     /// under the major one. Click a row to jump to them, Shift-click (or the small button) for their Mood tab, hover for
     /// their five biggest moods. Compact: thin bars with initials in a grid, like raid frames.
     /// </summary>
-    public class HudMoodBoard : HudPanel
+    public partial class HudMoodBoard : HudPanel
     {
         // Parts that can be switched off (HudPanelState.hidden).
         public const string PartPortrait = "portrait", PartDrag = "drag", PartAct = "act", PartIcons = "icons", PartNumber = "number";
@@ -49,6 +49,7 @@ namespace ColonyCouncil
             var keep = HudMath.Keep(all.Select(h => h.risk).ToList(), st.maxRows, HudRank.LifeFloor, out hidden);
             foreach (int i in keep) rows.Add(all[i]);
             moreText = hidden > 0 ? "CC_Pnl_AndMore".Translate(hidden).Resolve() : null;
+            if (Refined) RefreshLook();
         }
 
         // ---------------- Sizes ----------------
@@ -69,6 +70,7 @@ namespace ColonyCouncil
 
         protected override Vector2 Measure(float s)
         {
+            if (Refined) return MeasureLook(s);
             float pad = Mathf.Round(4f * s);
             float more = moreText != null ? Mathf.Round(16f * s) : 0f;
             if (rows.Count == 0) return new Vector2(Mathf.Round(170f * s), Mathf.Round(26f * s));
@@ -85,6 +87,11 @@ namespace ColonyCouncil
 
         protected override void DrawBody(Rect r, float s)
         {
+            if (Refined)
+            {
+                DrawLook(r, s);
+                return;
+            }
             float pad = Mathf.Round(4f * s);
             if (rows.Count == 0)
             {
@@ -285,6 +292,17 @@ namespace ColonyCouncil
         {
             var st = St;
             bool risk = st.sort == HudSort.Risk;
+            if (Refined)
+            {
+                float at = BarTextLook(bar, right, HudKit.T(risk ? "CC_Pnl_SortRiskShort" : "CC_Pnl_SortBarShort"), HudKit.T(risk ? "CC_Pnl_SortRiskTip" : "CC_Pnl_SortBarTip"),
+                    out bool clicked);
+                if (clicked)
+                {
+                    st.sort = risk ? HudSort.Bar : HudSort.Risk;
+                    HudLayout.Save();
+                }
+                return at;
+            }
             return BarText(bar, right, HudKit.T(risk ? "CC_Pnl_SortRiskShort" : "CC_Pnl_SortBarShort"),
                 HudKit.T(risk ? "CC_Pnl_SortRiskTip" : "CC_Pnl_SortBarTip"), () => st.sort = risk ? HudSort.Bar : HudSort.Risk);
         }

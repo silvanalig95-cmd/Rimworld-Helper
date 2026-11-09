@@ -12,6 +12,37 @@ tree at once, alongside whatever runs. Each piece is merged as its own release, 
 
 ## State (5 November 2026)
 
+- 0.194.0, the on-screen panels in Rimfolk's own look, stage 3 point 3 (9 November 2026, `docs/design/rimfolk-look.md`; the player:
+  "on-screens overall look great now, but if you can improve them further, go ahead! perhaps keep the current setup as a
+  backuip somewhere."). DESIGN.md
+  "Rimfolk's own look, stage 3, point 3: the on-screen panels" has all of it; README "On-screen panels and the hover card".
+  - The backup: setting "Classic on-screen panels" (`hudClassic`, off, On-screen panels; reset with the panels): on, every
+    panel and the hover card draw through their old code, unchanged; with "Rimfolk's own look" off they always do
+    (`HudLook.Refined`). Each panel class is `partial`: the classic file branches at the top of `DrawBody`/`Measure`
+    (`if (Refined)`), the look is in `Hud/Look/<Panel>Look.cs`; `HudPanel.Contents` branches to `ContentsLook`, the hover
+    card's `CardFor` to `CardLook`. `HudPanel.RefreshNow` latches the look and the inline title row before gathering, and
+    gathers in the look's colours (`UiKit.BeginOwnColours`, new, no scrollbar swap). `HudPanelState` unchanged.
+  - The look (`Hud/HudLook.cs`, pure rules `Hud/HudLookMath.cs`, linked in Tests.csproj): a rounded card (edge only under
+    the mouse), a title row inside a full card with the icon (`HudIcons.For`) and name, the bar's buttons in it on hover;
+    flat bars (mood with break lines, the heart's line in `HeartMeter`'s colours and marks, health, needs, food days and
+    medicine against their lines, research, trust either side); a stripe and icon for urgency, no wash (the danger red
+    can't hold 4.5:1 on a reddened row over snow); marks for time off and an empty kit slot (`Hud/Look/HudLookFacts.cs`,
+    from `WeaponPick.Current`, re-read only when `picks.made` changes); the rating badge on the inventory's weapons. Rows
+    of the lines, alerts and work panels are 18 so the cards start clear at the shipped places. Five new icons (Trend,
+    Vitals, Stock, DayOff, KitGap; `Tools/make_icons.py`, only those PNGs written).
+  - Speed: nothing made while drawing (strings, widths, tooltips' makers made when gathering), words on repaint only, the
+    window's layout pass skipped in the look. A clock times every panel's paint per look; debug action "On-screen panels:
+    time the classic and refined drawing (log)" runs 300 frames each and logs both.
+  - Tests `Tools/Tests/HudLookTests.cs` (about 1,400 checks). Keys `Rimfolk_HudLook.xml`.
+  - Not run here: the look in the game at every scale and in the three looks; the timing itself; the title row's buttons
+    and drag; skipping the layout pass (the inventory's search box); the marks on real colonists; the rating badge (only
+    where the stock counts weapons); the compact bar; the hover card's corner link.
+  - Try in the game: 1. Load a colony: the panels are cards with title rows; hover one: its buttons in the title row,
+    drag it by the row. 2. A colonist worn down: the heart's line under their mood bar with its marks, the heart mark.
+    3. Give a day off: the sun mark on their row and a "Day off" chip on work and idle. 4. A colonist with a gun and no
+    blade (Simple Sidearms): the sword outline mark. 5. Settings, On-screen panels: "Classic on-screen panels" on, the
+    panels as before. 6. Dev mode, debug actions, "On-screen panels: time the classic and refined drawing (log)": wait ten
+    seconds, read the log line.
 - 0.193.0, armour and apparel you can judge at a glance, step 2: the rating in the game, Rimfolk's apparel card first, and the badge on the gear tab (9 November 2026,
   `docs/design/apparel.md` point 5; step 3, recommendations, not started). The player's words with a screenshot of the
   game's plain card for a "Bluefur parka (awful)": "i don't see the gear cards in game by default, is this implemented at

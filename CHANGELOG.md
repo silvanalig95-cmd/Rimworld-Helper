@@ -5,6 +5,15 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## The on-screen panels in Rimfolk's own look
+
+*9 November 2026, version 0.194.0*
+
+- Each on-screen panel is a card with a title row; its buttons show in that row under the mouse, and urgent rows carry a coloured stripe and an icon.
+- Values with a range are bars: mood with its break lines and the heart's strain and good side beneath, days of food, medicine, research, trust, each colonist's health and their food, rest and recreation.
+- The mood board and hover card mark a day off or a bad afternoon and an empty weapon slot, the inventory shows the change since yesterday and the weapons' ratings.
+- The new setting Classic on-screen panels brings back the panels exactly as they were; with Rimfolk's own look off they are always the classic ones.
+
 ## Rimfolk's apparel card
 
 *9 November 2026, version 0.193.0*

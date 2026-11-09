@@ -74,6 +74,7 @@ namespace ColonyCouncil
                 HudManager.NewGame();
                 HudHoverCard.Reset();
                 HudMood.Reset();
+                HudLookFacts.Reset();
                 // What the last game's panels kept (its alerts, wounds, idle times) means nothing in this one.
                 HudAlerts.Reset();
                 HudHealth.Reset();
