@@ -616,6 +616,8 @@ namespace ColonyCouncil
             arrange.covers = new[] { "barPutAway" };
             Choice("councilOpensOn", "CC_SetLabel_CouncilOpensOn", "CC_SetTip_CouncilOpensOn", "CC_CouncilOpens_", "CC_SetNote_CouncilOpens_",
                 new[] { "ThisWeek", "LastPage" });
+            Choice("planningOpensOn", "CC_SetLabel_PlanningOpensOn", "CC_SetTip_PlanningOpensOn", "CC_PlanningOpens_", "CC_SetNote_PlanningOpens_",
+                new[] { "AtAGlance", "LastPage" });
             Choice("almanacTextSize", "CC_SetLabel_AlmanacTextSize", "CC_SetTip_AlmanacTextSize", "CC_TextSize_", "CC_SetNote_TextSize_",
                 new[] { "Small", "Normal", "Large", "Larger" });
             // How large Rimfolk's four windows are (UI/WindowLayoutMath.cs): standard, or grown on a large screen.

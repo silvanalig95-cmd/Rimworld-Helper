@@ -210,6 +210,12 @@ namespace ColonyCouncil
 
         public override RimfolkWindow Which => RimfolkWindow.Planning;
 
+        public override void PreOpen()
+        {
+            base.PreOpen();
+            MainTabWindow_Planning.Opening();
+        }
+
         protected override void DoFramedContents(Rect inRect) => MainTabWindow_Planning.DrawPlanning(inRect, true);
     }
 

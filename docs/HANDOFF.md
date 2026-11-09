@@ -12,6 +12,13 @@ tree at once, alongside whatever runs. Each piece is merged as its own release, 
 
 ## State (5 November 2026)
 
+- 0.179.1, planning opens on every room at a glance (9 November 2026, the player's screenshot: "The 'rooms' -> 'at a
+  glance' should be the default window when opening the planner, as i use this the most by far"). A setting beside the
+  council window's, `planningOpensOn` (`PlanningOpensOn.AtAGlance`, the default, or `LastPage`; `UI/PageMemory.cs`,
+  `SettingsCatalog` "Planning window opens on", keys `CC_*PlanningOpens*` in `Rimfolk_Week.xml`).
+  `MainTabWindow_Planning.Opening()`, called from the tab's and the floating window's `PreOpen`, sets the page to "Build"
+  (Rooms, At a glance) unless `Select` was asked for a page by a link first. To try: open Planning from its button on any
+  other page last left: it opens at a glance; a jump to Base from elsewhere still lands on Base.
 - 0.179.0, Rimfolk's own look, stage 2: the council's windows float, the Almanac and Rimfolk's dialogs in the frame (8 November
   2026, stage 2 of `docs/design/rimfolk-look.md`, the player's explicit request of the same day: "for the rimfolk uis,
   please also dont be withheld by the vanilla ui, for example for the diplomacy screen, i'd love to move the window

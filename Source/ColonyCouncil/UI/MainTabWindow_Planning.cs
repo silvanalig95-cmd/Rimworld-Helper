@@ -35,10 +35,32 @@ namespace ColonyCouncil
 
         private static string ViewOf(string p) => PagesMath.SectionOf(p) ?? Views[0];
 
+        /// <summary>A link asked for a page: the window opens on it rather than its usual first page.</summary>
+        private static bool asked;
+
         /// <summary>The window is to open on this page (Pages.Open opens it).</summary>
         internal static void Select(string name)
         {
-            if (Order.Contains(name)) SetPage(name);
+            if (!Order.Contains(name)) return;
+            SetPage(name);
+            asked = true;
+        }
+
+        /// <summary>
+        /// The planning window opens, as the tab or floating (UI/FloatingWindows.cs): on Rooms, At a glance where the setting
+        /// says so (the default), else on the page last looked at, unless a link asked for another page.
+        /// </summary>
+        internal static void Opening()
+        {
+            if (!asked && (ColonyCouncilMod.Settings?.planningOpensOn ?? PlanningOpensOn.AtAGlance) == PlanningOpensOn.AtAGlance && Order.Contains("Build"))
+                SetPage("Build");
+            asked = false;
+        }
+
+        public override void PreOpen()
+        {
+            base.PreOpen();
+            Opening();
         }
 
         /// <summary>The mode last looked at in one of the window's views (its first before any).</summary>

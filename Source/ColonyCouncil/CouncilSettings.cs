@@ -670,6 +670,8 @@ namespace ColonyCouncil
         public bool moodDetails = false;
         /// <summary>Where the council window opens: This week (UI/WeekPanel.cs), or the page last looked at.</summary>
         public CouncilOpensOn councilOpensOn = CouncilOpensOn.LastPage;
+        /// <summary>Which page the planning window opens on with its button: Rooms, At a glance (the default) or the last page.</summary>
+        public PlanningOpensOn planningOpensOn = PlanningOpensOn.AtAGlance;
         /// <summary>How many tiles each way from the colony the region map shows (UI/RegionMapView.cs), also set at the top of the map.</summary>
         public int regionMapRadius = 35;
         /// <summary>A name in Rimfolk's windows shows a small preview of its card when the mouse rests on it (UI/Cards/Previews.cs).</summary>
@@ -1083,6 +1085,7 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref almanacFolded, "almanacFolded", false);
             Scribe_Values.Look(ref moodDetails, "moodDetails", false);
             Scribe_Values.Look(ref councilOpensOn, "councilOpensOn", CouncilOpensOn.LastPage);
+            Scribe_Values.Look(ref planningOpensOn, "planningOpensOn", PlanningOpensOn.AtAGlance);
             Scribe_Values.Look(ref regionMapRadius, "regionMapRadius", 35);
             Scribe_Values.Look(ref linkPreviews, "linkPreviews", true);
             Scribe_Values.Look(ref linkPreviewDelay, "linkPreviewDelay", 0.35f);

@@ -5,6 +5,13 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## Planning opens on every room at a glance
+
+*9 November 2026, version 0.179.1*
+
+- The planning window now opens on Rooms, at a glance, every room plan in columns, whenever you open it with its button; a link to another of its pages still opens that page.
+- A new setting, Planning window opens on, beside the council window's, can keep it on the page you last looked at instead.
+
 ## All of Rimfolk's windows move, size and wear its own look
 
 *8 November 2026, version 0.179.0*

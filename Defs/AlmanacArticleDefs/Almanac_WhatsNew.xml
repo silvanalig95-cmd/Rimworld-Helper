@@ -31,6 +31,16 @@ When you load a save after an update, a letter lists the newest round once. The 
     <rounds>
 
       <li>
+        <version>0.179.1</version>
+        <date>9 November 2026</date>
+        <title>Planning opens on every room at a glance</title>
+        <points>
+          <li>The planning window now opens on Rooms, at a glance, every room plan in columns, whenever you open it with its button; a link to another of its pages still opens that page.</li>
+          <li>A new setting, Planning window opens on, beside the council window's, can keep it on the page you last looked at instead.</li>
+        </points>
+      </li>
+
+      <li>
         <version>0.179.0</version>
         <date>8 November 2026</date>
         <title>All of Rimfolk's windows move, size and wear its own look</title>

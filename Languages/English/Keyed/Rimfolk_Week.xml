@@ -226,5 +226,13 @@
   <CC_CouncilOpens_LastPage_Tip>The page you last looked at, also after a restart.</CC_CouncilOpens_LastPage_Tip>
   <CC_SetNote_CouncilOpens_ThisWeek>The council window opens on This week, the page of what needs you.</CC_SetNote_CouncilOpens_ThisWeek>
   <CC_SetNote_CouncilOpens_LastPage>The council window opens where you left it, also after a restart.</CC_SetNote_CouncilOpens_LastPage>
+  <CC_SetLabel_PlanningOpensOn>Planning window opens on</CC_SetLabel_PlanningOpensOn>
+  <CC_SetTip_PlanningOpensOn>Which page the planning window shows when you open it with its button. A link that leads to another of its pages still opens that page.</CC_SetTip_PlanningOpensOn>
+  <CC_PlanningOpens_AtAGlance>Rooms, at a glance</CC_PlanningOpens_AtAGlance>
+  <CC_PlanningOpens_AtAGlance_Tip>Always every room plan in columns, the ones the advisor asks for marked.</CC_PlanningOpens_AtAGlance_Tip>
+  <CC_PlanningOpens_LastPage>Last page</CC_PlanningOpens_LastPage>
+  <CC_PlanningOpens_LastPage_Tip>The page you last looked at in the planning window.</CC_PlanningOpens_LastPage_Tip>
+  <CC_SetNote_PlanningOpens_AtAGlance>The planning window opens on Rooms, at a glance.</CC_SetNote_PlanningOpens_AtAGlance>
+  <CC_SetNote_PlanningOpens_LastPage>The planning window opens where you left it.</CC_SetNote_PlanningOpens_LastPage>
 
 </LanguageData>

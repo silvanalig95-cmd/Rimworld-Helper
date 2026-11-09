@@ -5,6 +5,16 @@ using Verse;
 namespace ColonyCouncil
 {
     /// <summary>Where the council window opens (the "Council window opens on" setting).</summary>
+    /// <summary>Which page the planning window opens on with its button (the player, 9 November 2026: "The 'rooms' -> 'at a
+    /// glance' should be the default window when opening the planner, as i use this the most by far").</summary>
+    public enum PlanningOpensOn
+    {
+        /// <summary>Rooms, At a glance: every room plan in columns.</summary>
+        AtAGlance,
+        /// <summary>The page last looked at.</summary>
+        LastPage
+    }
+
     public enum CouncilOpensOn
     {
         /// <summary>Colony → This week, whatever page was open last.</summary>
