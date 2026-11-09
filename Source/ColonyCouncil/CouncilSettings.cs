@@ -435,6 +435,8 @@ namespace ColonyCouncil
         public bool weaponSuggestions = true;
         /// <summary>Colonists now and then ask for a clearly better weapon lying in storage, in their own words (Weapons/WeaponAsks.cs).</summary>
         public bool weaponAsks = true;
+        /// <summary>With nothing to suggest, the gear tab (the game's and Nice Inventory Tab's) says so in one quiet line, what was compared on its tooltip (Weapons/WeaponPickUi.cs).</summary>
+        public bool weaponNoBetterLine = true;
         public BarBadgeSize barBadgeSize = BarBadgeSize.Normal;
         public BarBadgeCorner barBadgeCorner = BarBadgeCorner.TopRight;
         public int barBadgeMax = 2;
@@ -963,6 +965,7 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref weaponCardFirst, "weaponCardFirst", true);
             Scribe_Values.Look(ref weaponSuggestions, "weaponSuggestions", true);
             Scribe_Values.Look(ref weaponAsks, "weaponAsks", true);
+            Scribe_Values.Look(ref weaponNoBetterLine, "weaponNoBetterLine", true);
             Scribe_Values.Look(ref barBadgeSize, "barBadgeSize", BarBadgeSize.Normal);
             Scribe_Values.Look(ref barBadgeCorner, "barBadgeCorner", BarBadgeCorner.TopRight);
             Scribe_Values.Look(ref barBadgeMax, "barBadgeMax", 2);

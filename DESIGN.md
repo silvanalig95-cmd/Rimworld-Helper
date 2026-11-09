@@ -4332,8 +4332,8 @@ use". Not released yet.
   better weapon left over, or one left without takes another's while that one takes a leftover (three rounds at most).
   Alike weapons (one kind, stuff, quality, coding) are weighed once. Tested against the best total by brute force on 300
   random colonies: the best in nearly all, never under three quarters of it, never one weapon to two. Then trades between
-  two colonists not given one (each gains 0.3, the other kind 0.5 more, the two 0.8; never a bonded weapon), the biggest
-  first. Then Simple Sidearms (loaded): a weapon of the other kind than the one they will hold, within its default weights
+  two colonists (each gains 0.3, the other kind 0.5 more, the two 0.8; or, since the follow-up below, one gives up some for
+  the colony; never a bonded weapon), the most worth first. Then Simple Sidearms (loaded): a weapon of the other kind than the one they will hold, within its default weights
   (2.7 kg a gun, 1.9 kg a blade, never a one-use launcher, never a gun for a brawler), when it beats what they carry of that
   kind (or an empty slot, 3.0) by the threshold. Then Dual Wield (loaded): for someone keeping a one-handed weapon with
   nothing in the off hand, one of the same kind that may go there, when both hands together (`WeaponForMath.PairTogether`,
@@ -4371,9 +4371,8 @@ use". Not released yet.
   weapons", a line each (three at most): the weapon's picture, "Better for Ana: charge rifle (+1.4)", the reasons under it,
   Equip (or As sidearm, Off hand, Trade), with Simple Sidearms "As sidearm" for a weapon in hand light enough, and "not
   now"; the tooltip has the whole line, what it costs and where it lies, a click opens the weapon's card. Nice Inventory
-  Tab: a mark at its equipment box's title (`NiceInventoryTab.GroupBox.Draw`, the box read from
-  `ITab_Pawn_Gear_Patch.equipment_legacy_groupbox` and `equipment_alt_groupbox`, its colonist from `lastPawn`, all by name;
-  stands down without the mod): "▲ +1.4 charge rifle", its tooltip the lines, a click the choices. The weapon card: "Who
+  Tab: a row of its own in the equipment box since the follow-up below (first a mark on the box's title, which the player
+  didn't find). The weapon card: "Who
   should carry this", the three colonists it suits best by the same scores, with what it adds over what they have of its
   kind, a click choosing them below. The Defenses page (`UI/DefensePanel.cs`, after the advice): "Weapons for each
   colonist", a card per colonist with what they hold and its rating for them, each suggestion with its badge, gain and
@@ -4411,6 +4410,94 @@ use". Not released yet.
   the game's stats", let through once), anything else. The game's card's button "Rimfolk's weapon card" closes it when
   opening Rimfolk's with the setting on. A kind's card says how it is rated: "Its kind as made, for a colonist of Shooting
   8 · normal quality, steel".
+
+### The weapon you can see, and trades for the colony (the player's follow-ups, 9 November 2026)
+
+The player, with a picture of Nice Inventory Tab's gear view: "can the rimfolk item ui also please always have an image of
+the item included? it can have a prominent spot because they look cool" and "where do i see the weapon recommendation in
+this ui mod?"; then "pawns should also propose to switch weapons if there's more value to gain, e.g. a low shooting pawns
+is blocking the best weapon, even if the weak pawn gets an even worse shooting score. also it should perhaps also give a
+warning if a pawn has a lucky weapon and would lose it, but that should not block the exchange altogether". Not released.
+
+- **The item's picture** (`UiKit.ItemPortrait`, `UI/UiKitItems.cs`, for the apparel card to come too): the thing as it
+  looks, by the game's own `Widgets.ThingIcon` (its stuff's colour, its style or its faith's look, a unique or persona
+  weapon's own graphic, the variant a random graphic picked for this very thing, any mod's graphic), a kind by
+  `Widgets.DefIcon` in its usual stuff; on a dark tile framed in its quality's colour. The game has no colours for quality
+  (`QualityUtility` has none, in 1.6 or 1.7), so Rimfolk's look gives its own (`UI/ItemPortraitMath.cs`): awful brown, poor
+  grey, normal light, good green, excellent blue, masterwork violet, legendary gold, each 4.5:1 or better on the window's
+  ground and Nice Inventory Tab's, 3:1 on a raised card (tested). A large tile (64 and up) is framed twice and names its
+  quality on a strip at its foot; its tooltip is the label. A graphic a mod can't give leaves the tile empty, warned once.
+  The weapon card's head: the picture 96 to 128 pixels (a fifth of the card), beside it the badge, band and role, how it is
+  rated and the line in plain words. Small pictures wherever the card lists weapons: what a colonist holds, carries and has
+  in the off hand, what each one in "Who should carry this" holds now; and on the Defenses page.
+- **The suggestions in Nice Inventory Tab's equipment box** (`Weapons/WeaponNiceTab.cs`, read from its decompiled build,
+  all by name, standing down without it or a member it reads): the box (`ITab_Pawn_Gear_Patch.equipment_alt_groupbox` in
+  its alternative layout, the one in the player's picture, `equipment_legacy_groupbox` in its first) holds a scrolling list
+  (`GroupBox.Childs[0]`, a `VScrollLayout`) of rows of fixed height that it lays out itself (`Widget.Update`) and scrolls
+  when they are taller than the box. Rimfolk puts a row of its own in that list, under the last thing held (weapons,
+  sidearms, belts) and above the inventory's cells: one of its `LabelWidget`s with no text (it draws nothing itself) given
+  the suggestions' height (`Widget.SetFixedHeight`), so the box makes room as for its own rows and nothing overlaps or is
+  cut. A postfix on `ITab_Pawn_Gear_Patch.Recache(Pawn)` (each frame, after its own recache, before it draws) checks the
+  row's place and height (a short list of references, `WeaponNiceMath.Place`) and lays the box out again only when either
+  changed (Nice Inventory Tab adds its rows back after an equipment change, so the row is seen out of place and moved); a
+  postfix on `LabelWidget.Draw`, for Rimfolk's row only, draws the suggestions inside its scroll view, so they scroll and
+  clip with its rows. Widths (`WeaponNiceMath`): at its first tab width (760) a row is 363 pixels, 349 with the scroll bar;
+  at its narrowest (560) "Not now" becomes a cross with its words on the tooltip, so the widest acts still fit (tested).
+- **A suggestion's row**, the same on Nice Inventory Tab's box (in its own colours: `Assets.ColorBGD`, `ColorBG`,
+  `ColorStat`, `BuffColor`, `PenaltyColor`, `ColorBGL`, read by name) and under the game's gear tab's list (in the game's look,
+  its buttons; `WeaponPickGearTab.Row` with a `SuggestLook`): a dashed, softly tinted frame and a small "Suggested" tag
+  ("Asked for" when the colonist, or in a trade the other, asked lately), so it never reads as a weapon held; the weapon's
+  picture in a tile as wide as Nice Inventory Tab's own rows' pictures (1.2 its height); its name with its quality, its
+  rating for them (the badge) and the gain ("+1.4", a loss in a trade "-0.5"); why in one line, cut to fit (the whole line,
+  what it costs and where it lies on the tooltip); its buttons, real orders as before: Equip, As sidearm (Simple Sidearms),
+  Off hand (Dual Wield), "Trade with Bautista", Not now; or "on the way"; a warning line when it gives up something that
+  matters (a lucky weapon, an heirloom, a bonded persona weapon, a hunter's hunts). A click on the picture or the words opens
+  the weapon's card. Three rows at most (in hand, a sidearm, the off hand). The title's mark is gone.
+- **When there's nothing to suggest** ("Say when there's no better weapon", on, under Weapons): one quiet line in the box
+  (and under the game's list): "No better weapon in storage", its tooltip what was compared (what they hold and its rating
+  for them, how many weapons lie in storage, the fights weighed, the least gain), a click the colony's view on the Defenses
+  page; "Weapon suggestions set aside for Ana for now" (a click brings them back), or that they don't fight.
+- **Compare** on Nice Inventory Tab's weapon rows: a row has no room for a word more (its label, its own buttons, its
+  bars and its numbers fill it), so the rating's badge on its picture opens Rimfolk's card to compare, as the small button
+  beside it does (both clicks caught before the row's own), its tooltip saying so.
+- **How much each colonist fights** (`WeaponPickMath.FightWeight`, `PickColonist.Fights`, from 0.2 to 1): their best of
+  Shooting and Melee against the colony's best (two fifths), their time drafted (the game's `TimeDrafted` record) against
+  the colony's most (seven twentieths), their fights (the game's records: kills of people, mechanoids and entities, ten
+  shots' worth each, and shots fired) against the colony's most (a quarter); a hunter's hunts add a tenth; a doctor or
+  crafter is weighed at four fifths; with no hour drafted or fight in the colony yet the skill stands in. At 0.5 or less the
+  line says they rarely fight. The colony's assignment weighs each gain by it (greedy, exchanges and moves), so of two who'd
+  gain alike the best weapon goes to the front line; each must still gain enough for themselves.
+- **Trades for the colony** (`WeaponPickMath.Trade`): better for both as before, or one gives up some: the one who gains
+  gains 1.0 or more (`SwapGainer`, the other kind 0.5 more), the colony gains 0.8 or more (`SwapColony`), each one's gain or
+  loss by how much they fight, and the one who gives up some still holds something better than bare hands. A weak shot
+  holding the best gun: a good shot's +1.9 against a rarely fighting doctor's -0.6 is worth 1.72, suggested; +1.0 against
+  -1.0 between two who fight alike is worth nothing, not suggested (tested, with random colonies: nobody left without a
+  weapon who had one, no weapon to two, trades in pairs). A trade is weighed against what storage gave its two: worth more,
+  it replaces that, and storage is shared again among the rest. The line says both sides: "Charge rifle to Ana (+1.9),
+  Bautista takes her revolver (-0.6): the colony gains, and Bautista rarely fights."; the one who gives up some has no
+  reasons of their own, the colony's are theirs.
+- **A lucky weapon or an heirloom, never a bar** (`PickColonist.Keepsakes`): Rimfolk's lucky-item quirk on a weapon
+  (`Quirks/LuckyItems.cs`; its mood comes with any weapon of its kind on them, so another of the kind keeps it, and with
+  Simple Sidearms the weapon set down is kept as a sidearm when it fits its weights) and an heirloom carried
+  (`Lives/Legacy.cs`, the heir's comfort or anyone's), read only while those moods are on. Giving one up costs a little in
+  the choice (0.04 of a point for each point of mood between having it and not, at most 0.4: a lucky weapon's +3 and -4 is
+  0.28), where it weighs one weapon or trade against another (another autopistol keeping the luck may win over a slightly
+  better rifle), never against the threshold or a trade's rules, so it never stops a suggestion on its own; the line
+  always says it, with the real numbers:
+  "Bautista would be upset to give up his lucky autopistol (mood -4 without it, +3 with it)". Persona bonds stay as before.
+- **Trades proposed by the colonists** (`WeaponAsks.cs`, "Colonists ask for better weapons", pool
+  `Rimfolk_Pool_WeaponTrade`): when a colonist has no stored weapon to ask for, their best trade that stands where one of
+  the two gains 1.2 or more, the asks' own waits and chance; then said to the other once the two are together
+  (`Together.When`, up to four hours), both safe and both weapons still in their hands as the words say. The one who gains
+  asks ("Bautista, that charge rifle would do more in my hands, will you take my revolver?"), the one who gives up some offers
+  ("You should have this charge rifle, Ana, I can barely aim it.", tagged for a low skill or rarely fighting only when so),
+  two who both gain propose it; every age, every tone, one sentence each. Nobody asks for a suggestion that gives up their
+  own lucky weapon or heirloom; the other may still propose the trade, its line warning of it. The inbox's quiet row: "Ana
+  proposed a trade to Bautista: her revolver for his charge rifle (+1.9)", its act the trade's order; the gear tab's row is
+  tagged "Asked for". A trade proposed is kept as the colonist's last ask (with the other's id, `WeaponAskNote.other`).
+- **Tests**: `Tools/Tests/WeaponShowTests.cs` (the qualities' colours, the card's tile, Nice Inventory Tab's widths at every
+  tab width it allows, the room the box makes, where the row goes, the seams); `WeaponPickTests.cs` (how much each fights,
+  trades for the colony, a lucky weapon and an heirloom, the trades' pool in every age).
 
 ## Algorithms, not AI
 

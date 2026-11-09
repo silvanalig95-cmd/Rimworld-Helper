@@ -77,7 +77,7 @@
   <!-- The badge and the button on a weapon. -->
   <CC_Weapon_BadgeTip>Rated {RATING}: {BAND}, {ROLE}.</CC_Weapon_BadgeTip>
   <CC_Weapon_ForShort>For {PAWN}: {RATING}</CC_Weapon_ForShort>
-  <CC_Weapon_ClickForCard>Click for Rimfolk's weapon card.</CC_Weapon_ClickForCard>
+  <CC_Weapon_ClickForCard>Click for Rimfolk's weapon card, to compare it with what they hold.</CC_Weapon_ClickForCard>
   <CC_Weapon_Gizmo>Weapon card ({RATING})</CC_Weapon_Gizmo>
   <CC_Weapon_Gizmo_Desc>Open Rimfolk's card for this weapon.</CC_Weapon_Gizmo_Desc>
   <CC_Weapon_Step_Body>Body and gear</CC_Weapon_Step_Body>
@@ -212,11 +212,14 @@
   <CC_Settings_WeaponCardFirst_Tip>Opening the info for a weapon (the "i" button on the gear tab, Nice Inventory Tab, a trade screen, a list, the research or architect tab, the inspect pane) opens Rimfolk's weapon card instead of the game's. Its button "All the game's stats" opens the game's card, and the game's card keeps its button back. Links followed inside the game's card stay in it. Off, the game's card opens as before.</CC_Settings_WeaponCardFirst_Tip>
   <CC_SetNote_WeaponCardFirst>A weapon's info opens as Rimfolk's weapon card; the game's card is one button away.</CC_SetNote_WeaponCardFirst>
   <CC_Settings_WeaponSuggestions>Weapon suggestions</CC_Settings_WeaponSuggestions>
-  <CC_Settings_WeaponSuggestions_Tip>The best weapon for each colonist from what the colony has, by their skill, traits, passions and work, their faith, the weapon mods and the fights you meet, with why in a line: on the gear tab (the game's and Nice Inventory Tab's) with a button to equip it, on a weapon's card (who should carry it), and for the whole colony on the Defenses page, where "Equip all suggested" gives the orders. Two colonists are never told to take the same weapon.</CC_Settings_WeaponSuggestions_Tip>
+  <CC_Settings_WeaponSuggestions_Tip>The best weapon for each colonist from what the colony has, by their skill, traits, passions and work, their faith, the weapon mods and the fights you meet, with why in a line: on the gear tab (a row in Nice Inventory Tab's equipment box, or under the game's list) with a button to equip it, on a weapon's card (who should carry it), and for the whole colony on the Defenses page, where "Equip all suggested" gives the orders. Two colonists are never told to take the same weapon, and a trade between two is suggested when it is better for both, or when the colony gains clearly by putting the better weapon in the hands of the one who fights more. A lucky weapon or an heirloom given up is always said, never a bar.</CC_Settings_WeaponSuggestions_Tip>
   <CC_SetNote_WeaponSuggestions>The gear tab, a weapon's card and the Defenses page suggest a better weapon from the colony's stores.</CC_SetNote_WeaponSuggestions>
   <CC_Settings_WeaponAsks>Colonists ask for better weapons</CC_Settings_WeaponAsks>
-  <CC_Settings_WeaponAsks_Tip>Now and then a colonist says in one line that a clearly better weapon lying in storage would suit them, naming it and why, in their free time at home: at most once in five days each and once a day in the colony, and not while you have set their suggestions aside. A quiet entry stays in This week while it still lies there.</CC_Settings_WeaponAsks_Tip>
-  <CC_SetNote_WeaponAsks>Colonists sometimes ask for a clearly better weapon they've seen in storage.</CC_SetNote_WeaponAsks>
+  <CC_Settings_WeaponAsks_Tip>Now and then a colonist says in one line that a clearly better weapon lying in storage would suit them, naming it and why, or proposes a trade to another colonist once the two are together (the one who would gain asks, the one who rarely fights offers theirs), in their free time at home: at most once in five days each and once a day in the colony, and not while you have set their suggestions aside. Nobody offers up their own lucky weapon or heirloom. A quiet entry stays in This week while it still stands.</CC_Settings_WeaponAsks_Tip>
+  <CC_SetNote_WeaponAsks>Colonists sometimes ask for a clearly better weapon they've seen in storage, or propose a trade.</CC_SetNote_WeaponAsks>
+  <CC_Settings_WeaponNoBetterLine>Say when there's no better weapon</CC_Settings_WeaponNoBetterLine>
+  <CC_Settings_WeaponNoBetterLine_Tip>When nothing the colony has suits a colonist clearly better, their gear tab (Nice Inventory Tab's equipment box, or under the game's list) says so in one quiet line: "No better weapon in storage", what was compared on its tooltip, a click for every colonist's weapons on the Defenses page. Off, nothing shows until there is something to suggest.</CC_Settings_WeaponNoBetterLine_Tip>
+  <CC_SetNote_WeaponNoBetterLine>One quiet line on the gear tab when no stored weapon beats what a colonist has.</CC_SetNote_WeaponNoBetterLine>
 
   <!-- Who should carry a weapon, on its card. -->
   <CC_WeaponPick_Card_Who>Who should carry this</CC_WeaponPick_Card_Who>
@@ -265,14 +268,19 @@
   <CC_WeaponPick_Why_Unarmed>{PAWN_pronoun} has nothing in hand now</CC_WeaponPick_Why_Unarmed>
   <CC_WeaponPick_Why_Sidearm>light enough to carry beside {PAWN_possessive} {HELD}</CC_WeaponPick_Why_Sidearm>
   <CC_WeaponPick_Why_OffHand>both hands together rate {RATING}</CC_WeaponPick_Why_OffHand>
-  <CC_WeaponPick_Why_Swap>{OTHER} gains {GAIN} from the trade too</CC_WeaponPick_Why_Swap>
+  <CC_WeaponPick_Why_Swap>it suits both of them better</CC_WeaponPick_Why_Swap>
   <CC_WeaponPick_Cost_Bonded>{PAWN_possessive} bonded {BONDED} would go unused</CC_WeaponPick_Cost_Bonded>
   <CC_WeaponPick_Cost_Jealous>its jealous persona would sour {PAWN_possessive} mood</CC_WeaponPick_Cost_Jealous>
   <CC_WeaponPick_Cost_NoHunting>{PAWN_pronoun} couldn't hunt with it</CC_WeaponPick_Cost_NoHunting>
+  <CC_WeaponPick_Why_TradeColony>the colony gains</CC_WeaponPick_Why_TradeColony>
+  <CC_WeaponPick_Why_RarelyFights>{OTHER} rarely fights</CC_WeaponPick_Why_RarelyFights>
+  <CC_WeaponPick_Cost_Lucky>{OTHER} would be upset to give up {OTHER_possessive} lucky {WEAPON} (mood {WITHOUT} without it, {WITH} with it)</CC_WeaponPick_Cost_Lucky>
+  <CC_WeaponPick_Cost_Heirloom>{OTHER} would miss carrying {LOST}'s {WEAPON} (mood {WITH} while {OTHER_pronoun} has it)</CC_WeaponPick_Cost_Heirloom>
   <CC_WeaponPick_Nothing>nothing</CC_WeaponPick_Nothing>
   <CC_WeaponPick_And>{A}, and {B}</CC_WeaponPick_And>
   <CC_WeaponPick_Costs>Though {COST}.</CC_WeaponPick_Costs>
   <CC_WeaponPick_Full>{WEAPON}: {GAIN} for {PAWN}: {WHY}.</CC_WeaponPick_Full>
+  <CC_WeaponPick_FullTrade>{WEAPON} to {PAWN} ({GAIN}), {OTHER} takes {PAWN_possessive} {MINE} ({OTHERGAIN}): {WHY}.</CC_WeaponPick_FullTrade>
 
   <!-- The buttons. -->
   <CC_WeaponPick_Act_Primary>Equip</CC_WeaponPick_Act_Primary>
@@ -283,24 +291,32 @@
   <CC_WeaponPick_Act_OffHand_Tip>{PAWN} walks over and takes it in the off hand, by Dual Wield's own job.</CC_WeaponPick_Act_OffHand_Tip>
   <CC_WeaponPick_Act_Swap>Trade</CC_WeaponPick_Act_Swap>
   <CC_WeaponPick_Act_Swap_Tip>{PAWN} walks over to the other, and each hands the other what they hold.</CC_WeaponPick_Act_Swap_Tip>
+  <CC_WeaponPick_Act_SwapWith>Trade with {OTHER}</CC_WeaponPick_Act_SwapWith>
   <CC_WeaponPick_Act_AsSidearm>As sidearm</CC_WeaponPick_Act_AsSidearm>
   <CC_WeaponPick_Act_AsSidearm_Tip>{PAWN} walks over and takes it as a sidearm instead, by Simple Sidearms' own job, keeping what {PAWN_pronoun} holds.</CC_WeaponPick_Act_AsSidearm_Tip>
-  <CC_WeaponPick_Act_AsSidearmLong>Take the {WEAPON} as a sidearm</CC_WeaponPick_Act_AsSidearmLong>
   <CC_WeaponPick_OnTheWay>on the way</CC_WeaponPick_OnTheWay>
   <CC_WeaponPick_Gone>It no longer lies there.</CC_WeaponPick_Gone>
   <CC_WeaponPick_Busy>{PAWN} can't just now.</CC_WeaponPick_Busy>
   <CC_WeaponPick_Reserved>Someone else is about to take it.</CC_WeaponPick_Reserved>
   <CC_WeaponPick_NoSidearms>Simple Sidearms isn't loaded.</CC_WeaponPick_NoSidearms>
   <CC_WeaponPick_FromGround>Simple Sidearms takes a sidearm from the ground or a shelf, not from an outfit stand.</CC_WeaponPick_FromGround>
-  <CC_WeaponPick_NotNow>Not now for {PAWN}</CC_WeaponPick_NotNow>
   <CC_WeaponPick_NotNowShort>Not now</CC_WeaponPick_NotNowShort>
   <CC_WeaponPick_NotNow_Tip>Set {PAWN}'s suggestions aside for {DAYS} days: they don't show, {PAWN_pronoun} takes no weapon in the colony's choice and doesn't ask.</CC_WeaponPick_NotNow_Tip>
   <CC_WeaponPick_AskAgain>Show again</CC_WeaponPick_AskAgain>
   <CC_WeaponPick_AskAgain_Tip>Bring {PAWN}'s suggestions back now.</CC_WeaponPick_AskAgain_Tip>
   <CC_WeaponPick_ClickCard>Click for Rimfolk's weapon card.</CC_WeaponPick_ClickCard>
-  <CC_WeaponPick_CardOf>Rimfolk's card: {WEAPON}</CC_WeaponPick_CardOf>
-  <CC_WeaponPick_NiceClick>Click for the choices: equip it, as a sidearm, not now, its card.</CC_WeaponPick_NiceClick>
   <CC_WeaponPick_GearHeader>Suggested weapons</CC_WeaponPick_GearHeader>
+
+  <!-- The suggestion's row on the gear tab (the game's and Nice Inventory Tab's equipment box), and the quiet line. -->
+  <CC_WeaponPick_TagSuggested>Suggested</CC_WeaponPick_TagSuggested>
+  <CC_WeaponPick_TagAsked>Asked for</CC_WeaponPick_TagAsked>
+  <CC_WeaponPick_QuietNone>No better weapon in storage</CC_WeaponPick_QuietNone>
+  <CC_WeaponPick_QuietNone_Tip>Rimfolk compared what {PAWN} has in hand, {HELD}, with the {COUNT} weapons lying in storage, what {PAWN_pronoun} carries and what the others hold: none is better for {PAWN_objective} by {GAIN} or more, or one that is suits someone else more.</CC_WeaponPick_QuietNone_Tip>
+  <CC_WeaponPick_QuietHeld>the {WEAPON} ({RATING} for {PAWN_objective})</CC_WeaponPick_QuietHeld>
+  <CC_WeaponPick_QuietClick>Click for every colonist's weapons on the Defenses page.</CC_WeaponPick_QuietClick>
+  <CC_WeaponPick_QuietSetAside>Weapon suggestions set aside for {PAWN} for now</CC_WeaponPick_QuietSetAside>
+  <CC_WeaponPick_QuietSetAside_Tip>You set {PAWN_possessive} weapon suggestions aside. Click to show them again now.</CC_WeaponPick_QuietSetAside_Tip>
+  <CC_WeaponPick_QuietCantFight>{PAWN} doesn't fight, so no weapon is suggested</CC_WeaponPick_QuietCantFight>
 
   <!-- The colony's view on the Defenses page. -->
   <CC_WeaponPick_Section>Weapons for each colonist</CC_WeaponPick_Section>
@@ -323,6 +339,7 @@
 
   <!-- A colonist who asked, in This week (How people are). -->
   <CC_WeaponAsk_Inbox>{PAWN} would rather carry the {WEAPON} {PLACE} ({GAIN})</CC_WeaponAsk_Inbox>
+  <CC_WeaponAsk_InboxTrade>{PAWN} proposed a trade to {OTHER}: {PAWN_possessive} {MINE} for {OTHER_possessive} {THEIRS} ({GAIN})</CC_WeaponAsk_InboxTrade>
   <CC_WeaponAsk_InboxClick>Click to open {PAWN_possessive} gear.</CC_WeaponAsk_InboxClick>
   <CC_WeaponAsk_InboxAct>Look</CC_WeaponAsk_InboxAct>
   <CC_WeaponAsk_InboxAct_Tip>Weapons for each colonist, on the Defenses page.</CC_WeaponAsk_InboxAct_Tip>

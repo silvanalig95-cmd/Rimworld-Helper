@@ -12,6 +12,57 @@ tree at once, alongside whatever runs. Each piece is merged as its own release, 
 
 ## State (5 November 2026)
 
+- Not released: no version, no What's new round, About.xml and CHANGELOG untouched. Weapons you can judge at a glance,
+  the player's follow-ups (9 November 2026): "always have an image of the item included ... it can have a prominent spot",
+  "where do i see the weapon recommendation in this ui mod?", and trades that help the colony even when one gives up some,
+  with a warning for a lucky weapon that never blocks. DESIGN.md "The weapon you can see, and trades for the colony" has
+  all of it; README "Judging a weapon"; the Almanac's "judging a weapon" (prose only, keywords unchanged);
+  `docs/design/apparel.md` step 2 (the apparel card uses the same picture).
+  - The item's picture (`UiKit.ItemPortrait`, `UI/UiKitItems.cs`): the thing by the game's `Widgets.ThingIcon` (stuff,
+    style, unique and persona graphics, a random graphic's pick), a kind by `Widgets.DefIcon`, a dark tile framed in its
+    quality's colour, a large one naming its quality. The game has no quality colours (`QualityUtility` has none in 1.6 or
+    1.7), so they are Rimfolk's tokens (`UI/ItemPortraitMath.cs`, `UiKit.qualityColours`). The weapon card's head: the
+    picture 96 to 128 pixels; small ones in "Who should carry this", the colonist's rows, the Defenses page.
+  - Nice Inventory Tab (`Weapons/WeaponNiceTab.cs`, decompiled from the player's upload with ilspycmd 9.1 into the
+    scratchpad's `nit-decomp-a478`, by name, standing down without it or any member): a row of Rimfolk's own in the
+    equipment box's scrolling list (`ITab_Pawn_Gear_Patch.equipment_alt_groupbox`/`equipment_legacy_groupbox`,
+    `GroupBox.Childs[0]`): one of its `LabelWidget`s with no text, `SetFixedHeight` to the suggestions' height, under the
+    last `EquippedItem`; a postfix on `ITab_Pawn_Gear_Patch.Recache(Pawn)` keeps its place and height and calls the box's
+    `Update` only on a change; a postfix on `LabelWidget.Draw` (Rimfolk's widget only) draws the rows inside the box's
+    scroll view in its own colours (`Assets`). The title's mark (`Patch_WeaponPickNiceBox`) is gone. The badge on its
+    weapon rows now opens Rimfolk's card (no room for a "Compare" word). Widths in `Weapons/WeaponNiceMath.cs` (363 at its
+    first width, "Not now" a cross at its narrowest).
+  - The row (`WeaponPickGearTab.Row`, `Weapons/WeaponPickUi.cs`), the same on the game's gear tab (game look) and Nice
+    Inventory Tab's box (its look): dashed tinted frame, "Suggested" or "Asked for" tag, picture, name and quality, badge,
+    gain, why in a line, a warning line for costs, Equip / As sidearm / Off hand / Trade with whom / Not now. The quiet
+    line "No better weapon in storage" (setting `weaponNoBetterLine`, "Say when there's no better weapon", on), its tooltip
+    what was compared, a click the Defenses page; set aside or can't fight said instead.
+  - Trades for the colony (`WeaponPickMath.Trade`, `FightWeight`, `PickColonist.Fights`): how much each fights from their
+    skill against the colony's best, `TimeDrafted`, kills and shots (the game's records), hunter, doctor or crafter; the
+    assignment weighs gains by it; a trade where one gives up some needs the gainer's 1.0 and the colony's weighted 0.8, and
+    may replace what storage gave its two (storage then shared again). The line says both sides (`CC_WeaponPick_FullTrade`).
+    `GainText` shows a loss as "-0.6".
+  - Keepsakes (`PickColonist.Keepsakes`, `WeaponPick.Keepsakes`): Rimfolk's lucky-item quirk on a weapon (its thought's
+    real moods; any weapon of the kind keeps it; Simple Sidearms keeps the old one as a sidearm when it fits) and an
+    heirloom carried (`Council_Heirloom`'s stages): cost 0.04 a mood point (lucky 0.28) where one weapon or trade is weighed
+    against another (`KeepCost`, `Net` in the assignment, a trade's worth), never against the threshold or the rules;
+    always said as a cost line, never a bar. No other weapon bond of Rimfolk's found besides these (persona bonds as before).
+  - Trades proposed (`WeaponAsks.ProposeTrade`, pool `Rimfolk_Pool_WeaponTrade`, 39 lines: taker, giver with lowskill or
+    rarely, even; every age and tone): the asks' waits and chance, then `Together.When` (four hours), both safe and holding
+    what the words name; nobody speaks for a suggestion that gives up their own keepsake. `WeaponAskNote.other` (saved,
+    -1 by default; `Tools/save_estimate.py` updated); the inbox row's act gives the trade order.
+  - Tests: `Tools/Tests/WeaponShowTests.cs` (65 checks) and `WeaponPickTests.cs` (fights, trades, keepsakes, the trade pool).
+  - Not run here (none of it could be): the row in Nice Inventory Tab's box (its place after an equip, the scroll height,
+    clipping, the font and widths at the player's tab width, the hover info widget over it), the badge's click there,
+    `Widgets.ThingIcon` for modded, unique and persona weapons at 113 pixels, the quiet line, the trade proposals' timing
+    and words on the map, the records-based fighting weights on a real colony, the lucky warning's numbers in game.
+  - Try in the game: 1. Open a weapon's card: its picture large, framed in its quality. 2. With Nice Inventory Tab, a
+    colonist with a better rifle in storage: a "Suggested" row in the equipment box under their weapons, Equip walks them
+    there. 3. One with nothing better: "No better weapon in storage", hover it. 4. A good shot with a revolver and a doctor
+    holding a charge rifle: "Trade with" on both, the line naming both sides; over a few days one proposes it. 5. Give a
+    colonist a lucky weapon (dev: the quirk) and a better one in storage: the warning line. 6. Settings, Weapons: "Say when
+    there's no better weapon" off.
+
 - 0.184.0, weapons you can judge at a glance, step 3: the best weapon for each colonist, colonists who ask, and Rimfolk's
   card first (9 November 2026, `docs/design/weapons.md` points 8 and 9 and the player's "can the rimworld weapon card be
   the default screen"). DESIGN.md

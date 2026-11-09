@@ -170,7 +170,7 @@ namespace ColonyCouncil
                 if (w != null) return w;
                 w = new PickWeapon
                 {
-                    Key = key, Label = t.LabelNoCount, Group = GroupOf(t, r),
+                    Key = key, Label = t.LabelNoCount, Def = t.def.defName, Group = GroupOf(t, r),
                     Rating = r.Rating, Mass = r.Mass, OneUse = r.Ranged?.OneUse ?? false,
                     HuntingOk = r.Rating.Kind == "ranged" && r.Ranged != null && r.Ranged.HarmsHealth && r.Ranged.ExplosionRadius <= 0f,
                     CanOffHand = WeaponMods.CanBeOffHand(t.def) ?? false, TwoHanded = WeaponMods.IsTwoHand(t.def) ?? false
@@ -209,7 +209,9 @@ namespace ColonyCouncil
                     c.Bonded = Key(bonded);
                     c.BondJealous = Jealous(bonded);
                 }
+                Keepsakes(p, c, input);
             }
+            Fighting(colonists, input);
             // What lies in storage: the best kinds of each, as many of each as there are colonists.
             var stored = new List<(Thing t, WeaponReport r, bool stand)>();
             foreach (var t in map.listerThings.ThingsInGroup(ThingRequestGroup.Weapon))
@@ -315,6 +317,94 @@ namespace ColonyCouncil
                 Brawler = p.story?.traits?.HasTrait(TraitDefOf.Brawler) ?? false, Hunter = Hunts(p), Worker = WorkerOf(p),
                 NotNow = book?.IsNotNow(p) ?? false
             };
+        }
+
+        /// <summary>
+        /// How much each colonist fights (WeaponPickMath.FightWeight), against the rest of the colony: their best of Shooting
+        /// and Melee against the colony's best; their time drafted (the game's own record) against the colony's most; their
+        /// fights (the game's records: kills of people, mechanoids and entities, ten shots' worth each, and shots fired) against
+        /// the colony's most; a hunter; a doctor or crafter. With no hour drafted or no fight in the colony yet, the skill
+        /// stands in for that part.
+        /// </summary>
+        private static void Fighting(List<Pawn> colonists, PickInput input)
+        {
+            var draftedDef = DefDatabase<RecordDef>.GetNamedSilentFail("TimeDrafted");
+            var rows = new List<(PickColonist c, float skill, float drafted, float fights)>();
+            foreach (var p in colonists)
+            {
+                var c = input.Colonist(Key(p));
+                if (c == null) continue;
+                var rec = p.records;
+                float drafted = draftedDef != null && rec != null ? rec.GetValue(draftedDef) : 0f;
+                float kills = rec != null ? Math.Max(0f, rec.GetValue(RecordDefOf.Kills) - rec.GetValue(RecordDefOf.KillsAnimals)) : 0f;
+                float shots = rec != null ? rec.GetValue(RecordDefOf.ShotsFired) : 0f;
+                rows.Add((c, Math.Max(c.Shooting, c.Melee), drafted, kills * 10f + shots));
+            }
+            if (rows.Count == 0) return;
+            float topSkill = Math.Max(1f, rows.Max(r => r.skill)), topDrafted = rows.Max(r => r.drafted), topFights = rows.Max(r => r.fights);
+            foreach (var (c, skill, drafted, fights) in rows)
+            {
+                float skillShare = skill / topSkill;
+                float draftShare = topDrafted >= GenDate.TicksPerHour ? drafted / topDrafted : skillShare;
+                float fightShare = topFights >= 1f ? fights / topFights : skillShare;
+                c.Fights = WeaponPickMath.FightWeight(c.CanFight, skillShare, draftShare, fightShare, c.Hunter, c.Worker != null);
+            }
+        }
+
+        /// <summary>
+        /// The weapons on a colonist that mean something to them, for the warning and the small cost in the choice: Rimfolk's
+        /// lucky-item quirk on a weapon (Quirks/LuckyItems.cs: its mood comes with any weapon of its kind on them, by its own
+        /// thought's stages, a deep one's good side stronger), and an heirloom they carry (Lives/Legacy.cs: its comfort, the
+        /// heir's stage or anyone else's). Only while those moods are on (quirks and mood effects; heirlooms).
+        /// </summary>
+        private static void Keepsakes(Pawn p, PickColonist c, PickInput input)
+        {
+            var comp = CouncilGameComponent.Instance;
+            var s = S;
+            if (comp == null || s == null) return;
+            try
+            {
+                if (s.quirks && s.MoodEffects && comp.quirks != null)
+                    foreach (var q in comp.quirks.Of(p))
+                    {
+                        if (!LuckyItems.IsLucky(q) || q.item == null || !q.item.IsWeapon) continue;
+                        // The very thing when it is on them, else the one of its kind they have.
+                        var t = (q.thingId != 0 ? OnThem(p, q.thingId) : null) ?? LuckyItems.Carried(p, q.item);
+                        var stages = q.def.thought?.stages;
+                        if (t == null || input.Weapon(Key(t)) == null || stages == null || stages.Count < 2) continue;
+                        float with = PracticeMath.Mood(stages[0]?.baseMoodEffect ?? 0f, q.Deep), without = stages[1]?.baseMoodEffect ?? 0f;
+                        if (!s.Negatives) without = Math.Max(0f, without);
+                        c.Keepsakes.Add(new PickKeepsake { Kind = KeepsakeKind.Lucky, Weapon = Key(t), Def = q.item.defName, Label = q.item.label, MoodWith = with, MoodWithout = without });
+                    }
+                var h = s.heirlooms ? comp.legacy?.HeirloomCarriedBy(p) : null;
+                var thought = h?.thing != null && h.thing.def.IsWeapon ? DefDatabase<ThoughtDef>.GetNamedSilentFail("Council_Heirloom") : null;
+                if (thought?.stages != null && thought.stages.Count >= 2 && input.Weapon(Key(h.thing)) != null)
+                    c.Keepsakes.Add(new PickKeepsake
+                    {
+                        Kind = KeepsakeKind.Heirloom, Weapon = Key(h.thing), Def = h.thing.def.defName, Label = h.thing.def.label, Of = h.ofName ?? "",
+                        MoodWith = thought.stages[h.heir == p ? 0 : 1]?.baseMoodEffect ?? 0f
+                    });
+            }
+            catch (Exception e)
+            {
+                CouncilLog.ErrorOnce("a colonist's keepsakes, for the weapon suggestions", e);
+            }
+        }
+
+        /// <summary>The thing with this id on a colonist: in hand, equipped, or in their pack.</summary>
+        private static Thing OnThem(Pawn p, int id)
+        {
+            var eq = p.equipment?.AllEquipmentListForReading;
+            if (eq != null)
+                foreach (var t in eq)
+                    if (t?.thingIDNumber == id)
+                        return t;
+            var pack = p.inventory?.innerContainer;
+            if (pack != null)
+                foreach (var t in pack)
+                    if (t?.thingIDNumber == id)
+                        return t;
+            return null;
         }
 
         private static bool Works(Pawn p, WorkTypeDef w) =>
@@ -567,6 +657,19 @@ namespace ColonyCouncil
                     return "CC_WeaponPick_Cost_Jealous".Translate(p.Named("PAWN")).Resolve();
                 case PickWhy.NoHunting:
                     return "CC_WeaponPick_Cost_NoHunting".Translate(p.Named("PAWN")).Resolve();
+                case PickWhy.TradeColony:
+                    return "CC_WeaponPick_Why_TradeColony".Translate().Resolve();
+                case PickWhy.RarelyFights:
+                    return picks.Pawn(r.Text) is Pawn rare ? "CC_WeaponPick_Why_RarelyFights".Translate(rare.Named("OTHER")).Resolve() : "";
+                case PickWhy.Lucky:
+                    return picks.Pawn(r.Text) is Pawn lucky
+                        ? "CC_WeaponPick_Cost_Lucky".Translate(lucky.Named("OTHER"), r.Extra.Named("WEAPON"), MoodText(r.Level).Named("WITHOUT"),
+                            MoodText(r.Value).Named("WITH")).Resolve()
+                        : "";
+                case PickWhy.Heirloom:
+                    return picks.Pawn(r.Text) is Pawn heir
+                        ? "CC_WeaponPick_Cost_Heirloom".Translate(heir.Named("OTHER"), r.Extra.Named("WEAPON"), r.Of.Named("LOST"), MoodText(r.Value).Named("WITH")).Resolve()
+                        : "";
                 default:
                     return "CC_WeaponPick_Why_Better".Translate(p.Named("PAWN"), F1(s.Rating).Named("RATING"), (s.Before > 0f ? F1(s.Before) : "CC_WeaponPick_Nothing".Translate().Resolve()).Named("BEFORE")).Resolve();
             }
@@ -603,12 +706,26 @@ namespace ColonyCouncil
             return "CC_WeaponPick_Costs".Translate(joined.Named("COST")).Resolve();
         }
 
-        /// <summary>The whole line: "Charge rifle: +1.4 for Ana: her Shooting 14 makes its accuracy count, and ..." and what it costs.</summary>
+        /// <summary>A mood as the lines say it: "+3", "-4".</summary>
+        private static string MoodText(float v)
+        {
+            int n = (int)Math.Round(v);
+            return n > 0 ? "+" + n : n.ToString();
+        }
+
+        /// <summary>
+        /// The whole line: "Charge rifle: +1.4 for Ana: her Shooting 14 makes its accuracy count, and ..." and what it costs; a
+        /// trade says both sides: "Charge rifle to Ana (+1.6), Bautista takes her revolver (-0.5): the colony gains, and
+        /// Bautista rarely fights."
+        /// </summary>
         public static string Full(Picks picks, PickSuggestion s)
         {
             var p = picks.Pawn(s.Colonist);
-            string line = "CC_WeaponPick_Full".Translate(Label(picks, s.Weapon).CapitalizeFirst().Named("WEAPON"), Gain(s.Gain).Named("GAIN"), p.Named("PAWN"),
-                Why(picks, s).Named("WHY")).Resolve();
+            string line = s.Kind == PickKind.Swap
+                ? "CC_WeaponPick_FullTrade".Translate(Label(picks, s.Weapon).CapitalizeFirst().Named("WEAPON"), p.Named("PAWN"), Gain(s.Gain).Named("GAIN"),
+                    picks.Pawn(s.Other).Named("OTHER"), Label(picks, s.Instead).Named("MINE"), Gain(s.OtherGain).Named("OTHERGAIN"), Why(picks, s).Named("WHY")).Resolve()
+                : "CC_WeaponPick_Full".Translate(Label(picks, s.Weapon).CapitalizeFirst().Named("WEAPON"), Gain(s.Gain).Named("GAIN"), p.Named("PAWN"),
+                    Why(picks, s).Named("WHY")).Resolve();
             string costs = Costs(picks, s);
             return costs.NullOrEmpty() ? line : line + " " + costs;
         }

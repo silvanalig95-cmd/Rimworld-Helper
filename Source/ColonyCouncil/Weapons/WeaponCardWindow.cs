@@ -10,7 +10,8 @@ using Verse.Sound;
 namespace ColonyCouncil
 {
     /// <summary>
-    /// Rimfolk's own weapon card ("Rimfolk's weapon card", key "WeaponCard" in Rimfolk's frame): the rating's badge, the tags
+    /// Rimfolk's own weapon card ("Rimfolk's weapon card", key "WeaponCard" in Rimfolk's frame): the weapon's own picture large
+    /// in a tile framed in its quality's colour (and small ones wherever it lists other weapons), the rating's badge, the tags
     /// as coloured chips with their marks (the why on each), the line in plain words, the sub-ratings, a small chart of damage
     /// per second by distance against no armour, flak, marine armour and mechanoids (a melee weapon's bars by armour), the
     /// situations, the effects counted or named, the key numbers; then for one colonist: their own rating and why it
@@ -161,10 +162,19 @@ namespace ColonyCouncil
             return y;
         }
 
+        /// <summary>
+        /// The card's head: the weapon's own picture large in a tile framed in its quality's colour (UiKit.ItemPortrait: the
+        /// weapon in hand as it looks, its stuff, style, unique or persona graphic; a kind in its usual stuff), and beside it
+        /// the badge, its band and role, how it is rated, and the line in plain words.
+        /// </summary>
         private float Head(float w, float y, WeaponReport r)
         {
             var g = r.Rating;
-            var badge = new Rect(0f, y, 66f, 46f);
+            float side = ItemPortraitMath.CardTile(w);
+            var pic = new Rect(0f, y, side, side);
+            UiKit.ItemPortrait(pic, thing, def, stuff, true);
+            float x0 = pic.xMax + 12f;
+            var badge = new Rect(x0, y, 66f, 46f);
             WeaponUi.Badge(badge, g.Overall, () => "CC_Weapon_Info_RatingExpl".Translate(), 81726, GameFont.Medium);
             float x = badge.xMax + 10f;
             // The game's own info card for the same weapon or kind, let through when Rimfolk's card opens first.
@@ -183,9 +193,10 @@ namespace ColonyCouncil
             if (r.Rough) sub += " · " + "CC_Weapon_Rough".Translate();
             UiKit.LabelFit(new Rect(x, y + 24f, w - x, 20f), sub, UiKit.Faint, GameFont.Tiny);
             if (r.Rough) TooltipHandler.TipRegion(new Rect(x, y + 24f, w - x, 20f), "CC_Weapon_Info_Rough".Translate() + "\n" + string.Join("\n", r.Unsure.Select(u => "- " + u)));
-            y += 52f;
-            if (!r.Plain.NullOrEmpty()) y += UiKit.Paragraph(0f, y, w, r.Plain, UiKit.Ink) + 8f;
-            return y;
+            // The line in plain words beside the picture, under the badge (below it when it runs longer).
+            float ty = y + 54f;
+            if (!r.Plain.NullOrEmpty()) ty += UiKit.Paragraph(x0, ty, w - x0, r.Plain, UiKit.Ink) + 4f;
+            return Mathf.Max(pic.yMax, ty) + 10f;
         }
 
         private float Subs(float w, float y, WeaponReport r)
@@ -420,12 +431,16 @@ namespace ColonyCouncil
                 UiKit.LabelFit(new Rect(28f, y, 130f, 24f), p.LabelShortCap, UiKit.Ink);
                 WeaponUi.Badge(new Rect(162f, y + 3f, 34f, 18f), rating);
                 bool holds = thing != null && p.equipment?.Primary == thing;
+                // What they hold now, as it looks.
+                var held = p.equipment?.Primary;
+                if (held != null && !holds) UiKit.ItemPortrait(new Rect(202f, y + 2f, 20f, 20f), held);
                 string note = holds ? "CC_WeaponPick_Card_Holds".Translate(p.Named("PAWN")).Resolve()
                     : gain >= WeaponPickMath.Threshold ? "CC_WeaponPick_Card_Better".Translate(WeaponPickMath.GainText(gain).Named("GAIN"), p.Named("PAWN")).Resolve()
                     : gain > 0.05f ? "CC_WeaponPick_Card_Little".Translate(WeaponPickMath.GainText(gain).Named("GAIN")).Resolve()
                     : "CC_WeaponPick_Card_NoBetter".Translate(p.Named("PAWN")).Resolve();
-                UiKit.LabelFit(new Rect(202f, y, w - 202f, 24f), note, gain >= WeaponPickMath.Threshold && !holds ? UiKit.Good : UiKit.Faint, GameFont.Tiny);
-                TooltipHandler.TipRegion(row, "CC_WeaponPick_Card_WhoTip".Translate(p.Named("PAWN")).Resolve());
+                UiKit.LabelFit(new Rect(228f, y, w - 228f, 24f), note, gain >= WeaponPickMath.Threshold && !holds ? UiKit.Good : UiKit.Faint, GameFont.Tiny);
+                TooltipHandler.TipRegion(new Rect(0f, y, 200f, 24f), "CC_WeaponPick_Card_WhoTip".Translate(p.Named("PAWN")).Resolve());
+                TooltipHandler.TipRegion(new Rect(228f, y, w - 228f, 24f), "CC_WeaponPick_Card_WhoTip".Translate(p.Named("PAWN")).Resolve());
                 if (Widgets.ButtonInvisible(row)) Choose(p);
                 y += 26f;
             }
@@ -490,7 +505,7 @@ namespace ColonyCouncil
             foreach (var (t, role, rating, note) in v.rows)
             {
                 UiKit.LabelFit(new Rect(0f, y, 90f, 20f), role, UiKit.Faint, GameFont.Tiny);
-                Widgets.ThingIcon(new Rect(92f, y, 20f, 20f), t);
+                UiKit.ItemPortrait(new Rect(92f, y, 20f, 20f), t);
                 float bx = w - 40f;
                 if (rating.HasValue) WeaponUi.Badge(new Rect(bx, y + 1f, 36f, 18f), rating.Value);
                 UiKit.LabelFit(new Rect(116f, y, bx - 120f - (note.NullOrEmpty() ? 0f : 140f), 20f), t.LabelCapNoCount, UiKit.Ink);

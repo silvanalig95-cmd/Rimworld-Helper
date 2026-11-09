@@ -343,6 +343,9 @@ namespace ColonyCouncil
         /// <summary>A palette value as a colour.</summary>
         private static Color Hex(uint rgb, float alpha = 1f) => new Color(SkinMath.R(rgb), SkinMath.G(rgb), SkinMath.B(rgb), alpha);
 
+        /// <summary>The qualities' colours, awful to legendary (ItemPortraitMath: the game has none), the same in either look.</summary>
+        private static readonly Color[] qualityColours = Array.ConvertAll(ItemPortraitMath.QualityColours, c => Hex(c));
+
         // ---------------- End of the tokens ----------------
 
         /// <summary>A token a step quieter (toward Faint): "likes" beside "loves", "dislikes" beside "hates".</summary>

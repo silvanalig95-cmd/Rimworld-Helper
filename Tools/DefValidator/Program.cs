@@ -539,6 +539,8 @@ pawnPrefixes.Add("SUBJECT");
 wishPh.UnionWith(new[] { "DETAIL", "DATE" });
 // A colonist asking for a better weapon (Weapons/WeaponAsks.cs, Rimfolk_Pool_WeaponAsk): the weapon and where it lies ({PLACE}).
 wishPh.Add("WEAPON");
+// A colonist proposing a trade of weapons (Weapons/WeaponAsks.cs, Rimfolk_Pool_WeaponTrade): the other's weapon ({MINE} is the speaker's).
+wishPh.Add("THEIRS");
 var pawnSuffixes = new HashSet<string> { "nameDef", "nameFull", "labelShort", "pronoun", "possessive", "objective", "label", "definite", "indefinite", "gender", "kind" };
 foreach (var (file, doc) in docs)
 {

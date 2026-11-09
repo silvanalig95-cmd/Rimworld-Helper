@@ -2157,8 +2157,9 @@ about an assault rifle or a steel longsword. The review of every weapon in the p
 - **For a colonist:** their real shooting accuracy or melee hit chance, aim, cooldowns and blows, the weapon now in
   their hands taken out, with each step named: "Shooting 12: +0.6, careful shooter: +0.4, body and gear: -0.1". What
   stops them: incapable of violence, biocoded to someone else, a heavy weapon without Tough or an exoframe.
-- **Rimfolk's weapon card** (*Rimfolk's weapon card*, on): the badge, the tags as coloured chips with their marks, the
-  line, the sub-ratings, a chart of damage per second by distance against no armour, flak, marine armour and mechanoids
+- **Rimfolk's weapon card** (*Rimfolk's weapon card*, on): the weapon's own picture, large, framed in its quality's
+  colour and naming it (the weapon as it looks in hand: its stuff, style, a unique or persona weapon's look; small pictures
+  wherever it lists other weapons), the badge, the tags as coloured chips with their marks, the line, the sub-ratings, a chart of damage per second by distance against no armour, flak, marine armour and mechanoids
   (bars by armour for a blade), the situations it is best for and weak in, every effect, the key numbers, and for a
   colonist you choose: their rating and why, and what they hold and carry, each rated for them. It opens from a button
   at the foot of the info card, a button on a weapon selected on the map, and the small button beside each weapon on
@@ -2168,7 +2169,8 @@ about an assault rifle or a steel longsword. The review of every weapon in the p
   and links followed inside the game's card stay in it. A weapon's kind is rated as made, normal quality in its usual
   stuff, and says so. **Who should carry this**: the colonists it suits best, with what it adds for each.
 - **The gear tab** (*Ratings on the gear tab*, on): a small badge with the rating beside each weapon, the game's tab and
-  Nice Inventory Tab's, its tooltip the tags and the colonist's own rating.
+  Nice Inventory Tab's, its tooltip the tags and the colonist's own rating; on Nice Inventory Tab a click on it opens
+  Rimfolk's card to compare.
 - **The best weapon for each colonist** (*Weapon suggestions*, on): from what the colony has (what lies in storage they
   can reach and isn't forbidden, what they carry, a trade with another colonist when it is better for both), by their own
   rating, their passion for Shooting or Melee, the fights you meet (mechanoids, armoured raiders, crowds, sieges, from
@@ -2177,15 +2179,26 @@ about an assault rifle or a steel longsword. The review of every weapon in the p
   for a brawler, or anything for someone incapable of violence; leaving a bonded persona weapon unused takes much more,
   and says what it costs. Only a gain of 0.6 or more, one choice for the whole colony so no weapon goes to two, and a
   line saying why: "Charge rifle: +1.4 for Ana: her Shooting 14 makes its accuracy count, and it pierces the armour your
-  last raids wore." On the gear tab (a line under the temperatures, or a mark on Nice Inventory Tab's equipment box) with
-  **Equip** (a real job, walked out on the map), **As sidearm** with Simple Sidearms and **not now**; on the weapon card
+  last raids wore." On the gear tab, a row of its own in Nice Inventory Tab's equipment box under the weapons held (or
+  under the game's list), in a dashed frame marked **Suggested**: the weapon's picture, its name and quality, its rating
+  for them and the gain, why in a line, a warning when it gives up a lucky weapon or an heirloom, and **Equip** (a real
+  job, walked out on the map), **As sidearm** with Simple Sidearms, **Off hand** with Dual Wield, **Trade with** whom, and
+  **Not now**; with nothing better, one quiet line, "No better weapon in storage", what was compared on its tooltip
+  (*Say when there's no better weapon*, on); on the weapon card
   (who should carry it); on the Defenses page, **Weapons for each colonist**, every colonist with what they hold, its
   rating and the suggestion, and **Equip all suggested**, which only gives the orders. With Simple Sidearms a light
   sidearm of the other kind is suggested as one, with Dual Wield a weapon for the off hand where both hands add enough.
+  Each gain is weighed by how much the colonist fights (their skill against the colony's best, their time drafted, kills
+  and shots fired by the game's records), so the best weapons go to the best fighters: a trade is suggested when it is
+  better for both, or when the colony gains clearly though one gives up some ("Charge rifle to Ana (+1.9), Bautista takes
+  her revolver (-0.6): the colony gains, and Bautista rarely fights."). A lucky weapon or an heirloom given up counts a
+  little and is always said, never a bar.
 - **Colonists who ask** (*Colonists ask for better weapons*, on): now and then, in their free time at home and never in
   danger, a colonist says in one line that a clearly better weapon lying in storage would suit them, naming it, where it
   lies and why ("That charge rifle in the stockpile would do far more against the mechanoids we keep meeting."); at most
-  once in five days each and once a day in the colony. A quiet row in This week stays while it still lies there.
+  once in five days each and once a day in the colony. A quiet row in This week stays while it still lies there. They
+  propose trades too, to the other once the two are together: the one who would gain asks, the one who rarely fights
+  offers theirs; nobody offers up their own lucky weapon or heirloom.
 - **Simple Sidearms:** each sidearm rated for the colonist, the ones it remembers marked, and their sensible pair: the
   best gun and the best melee weapon they hold or carry, a sidearm within its default weights (2.7 kg, 1.9 kg).
   **Dual Wield:** the off-hand weapon rated with its penalties (cooldown 20% longer and aim 10% worse, more the lower
@@ -2452,7 +2465,7 @@ while that feature is off; nothing vanilla is changed or removed. A few things i
   its own job within its own limits (Judging a weapon).
 - **Dual Wield, Nice Inventory Tab, RunAndGun, Melee Animation:** read by name for the weapon card (Judging a weapon):
   the off hand with Dual Wield's penalties (and a weapon suggested for it, taken by its own job), the rating's badge on
-  Nice Inventory Tab's rows and cells (and the suggestions' mark on its equipment box), shooting on the move, a weapon's
+  Nice Inventory Tab's rows and cells (and the suggestions' rows in its equipment box), shooting on the move, a weapon's
   execution moves and duels. Without them nothing changes.
 - **Harvest and Haul, Pick Up And Haul:** Harvest and Haul is built into Rimfolk now (Carrying and hauling); while the
   standalone mod is loaded, Rimfolk's copy stands down, and it can be removed now (remove it to have benches, barrels

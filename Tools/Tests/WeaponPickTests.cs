@@ -242,9 +242,158 @@ public static class WeaponPickTests
             var s = k.Assign();
             C(s.Count == 2 && s.All(x => x.Kind == PickKind.Swap) && s.Any(x => x.Colonist == "ana" && x.Weapon == "rifle" && x.Other == "bo" && Near(x.OtherGain, 4f)),
                 "a shooter with a sword and a fighter with a rifle trade, each 4 better");
-            C(s.All(x => x.Reasons.Any(r => r.Kind == PickWhy.Swap)), "a trade's line names the other and their gain");
+            C(s.All(x => x.Reasons.Any(r => r.Kind == PickWhy.Swap)), "a trade's line says it suits both");
             k.I.Colonist("bo").Bonded = "rifle";
             C(k.Assign().Count == 0, "a bonded persona weapon is never traded");
+        }
+
+        // ---------- How much a colonist fights ----------
+        {
+            C(WeaponPickMath.FightWeight(false, 1f, 1f, 1f, true, false) == 0f, "someone incapable of violence doesn't fight at all");
+            C(Near(WeaponPickMath.FightWeight(true, 1f, 1f, 1f, false, false), 1f), "the colony's best fighter, most drafted, most fights: 1");
+            float doctor = WeaponPickMath.FightWeight(true, 0.5f, 0.05f, 0f, false, true);
+            C(doctor <= WeaponPickMath.RarelyFightsAt && doctor >= WeaponPickMath.FightFloor, $"a doctor rarely drafted, with no fights: rarely fights ({doctor:0.00})");
+            C(WeaponPickMath.FightWeight(true, 0f, 0f, 0f, false, true) >= WeaponPickMath.FightFloor - 1e-4f, "never under the floor");
+            C(WeaponPickMath.FightWeight(true, 0.6f, 0.3f, 0.3f, true, false) > WeaponPickMath.FightWeight(true, 0.6f, 0.3f, 0.3f, false, false), "a hunter's hunts add to it");
+            C(WeaponPickMath.FightWeight(true, 0.6f, 0.3f, 0.3f, false, true) < WeaponPickMath.FightWeight(true, 0.6f, 0.3f, 0.3f, false, false), "a doctor's or crafter's work takes from it");
+        }
+
+        // ---------- Trades that help the colony, even when one gives up some ----------
+        PickInput Weak()
+        {
+            // Ana shoots well and holds a revolver; Bo, a doctor who rarely fights, holds the charge rifle.
+            var k = new Colony();
+            var ana = k.C("ana", 14, 4, "revolver");
+            var bo = k.C("bo", 3, 3, "charge");
+            ana.Fights = 1f;
+            bo.Fights = 0.3f;
+            k.W("revolver", R("ranged", 4.5f), false, "ana");
+            k.W("charge", R("ranged", 6.7f), false, "bo");
+            k.O("ana", "revolver", 4.6f);
+            k.O("ana", "charge", 6.5f);
+            k.O("bo", "charge", 5f);
+            k.O("bo", "revolver", 4.4f);
+            return k.I;
+        }
+        {
+            var input = Weak();
+            var s = WeaponPickMath.Assign(input);
+            var ana = s.FirstOrDefault(x => x.Colonist == "ana");
+            var bo = s.FirstOrDefault(x => x.Colonist == "bo");
+            C(s.Count == 2 && ana?.Kind == PickKind.Swap && ana.Weapon == "charge" && bo?.Weapon == "revolver", "a weak shot holding the best gun: it goes to the good shot, who hands over the revolver");
+            C(ana != null && Near(ana.Gain, 1.9f) && bo != null && Near(bo.Gain, -0.6f) && Near(ana.Worth, 1.9f - 0.3f * 0.6f), "Ana gains 1.9, Bo gives up 0.6, worth 1.72 to the colony (Bo fights a third as much)");
+            C(ana != null && ana.Reasons.Any(r => r.Kind == PickWhy.TradeColony) && ana.Reasons.Any(r => r.Kind == PickWhy.RarelyFights && r.Text == "bo"),
+                "the line says the colony gains, and that Bo rarely fights");
+            C(bo != null && !bo.Reasons.Any(r => r.Kind == PickWhy.Better || r.Kind == PickWhy.SkillHigh) && bo.Reasons.Any(r => r.Kind == PickWhy.TradeColony),
+                "the one who gives up some has no reasons of their own: the colony's are theirs");
+            C(WeaponPickMath.GainText(-0.6f) == "-0.6" && WeaponPickMath.GainText(1.94f) == "+1.9", "a loss shows as one");
+            input.Colonist("bo").Fights = 1f;
+            var t = WeaponPickMath.Trade(input, input.Colonist("ana"), input.Colonist("bo"));
+            C(t.HasValue && Near(t.Value.worth, 1.3f), "with Bo fighting as much, it is still worth 1.3 to the colony");
+            input.Options[("ana", "charge")].Rating = 5.6f;
+            input.Options[("bo", "revolver")].Rating = 4f;
+            C(WeaponPickMath.Trade(input, input.Colonist("ana"), input.Colonist("bo")) == null && WeaponPickMath.Assign(input).Count == 0,
+                "a trade that only shuffles value between two who fight alike (+1.0 and -1.0) isn't suggested");
+            input.Colonist("bo").Fights = 0.3f;
+            C(WeaponPickMath.Trade(input, input.Colonist("ana"), input.Colonist("bo")) == null, "with Bo rarely fighting, +1.0 against his -1.0 is worth 0.7 to the colony: not enough");
+            input.Options[("ana", "charge")].Rating = 5.5f;
+            C(WeaponPickMath.Trade(input, input.Colonist("ana"), input.Colonist("bo")) == null, "the one who gains must gain a good deal (0.9 isn't 1.0)");
+        }
+        {
+            // Storage would give Ana the assault rifle first (+1.0 against Cy's +0.8); the trade is worth more (1.72), so she
+            // trades, and the rifle goes to Cy after all.
+            var input = Weak();
+            input.Weapons.Add(new PickWeapon { Key = "ar", Label = "ar", Rating = R("ranged", 5.8f), Stored = true, Mass = 3.5f, HuntingOk = true });
+            input.Weapons.Add(new PickWeapon { Key = "bolt", Label = "bolt", Rating = R("ranged", 4.9f), Holder = "cy", Mass = 4f, HuntingOk = true });
+            input.Colonists.Add(new PickColonist { Key = "cy", Name = "cy", Shooting = 8, Melee = 8, Holds = "bolt" });
+            input.Options[("ana", "ar")] = new PickOption { Rating = 5.6f };
+            input.Options[("bo", "ar")] = new PickOption { Rating = 4.8f };
+            input.Options[("cy", "ar")] = new PickOption { Rating = 5.6f };
+            input.Options[("cy", "bolt")] = new PickOption { Rating = 4.8f };
+            var s = WeaponPickMath.Assign(input);
+            C(s.Any(x => x.Colonist == "ana" && x.Kind == PickKind.Swap) && s.Any(x => x.Colonist == "cy" && x.Weapon == "ar" && x.Kind == PickKind.Primary) && !s.Any(x => x.Colonist == "ana" && x.Weapon == "ar"),
+                "the trade (worth 1.72) beats the assault rifle for Ana (1.0): she trades, and the rifle goes to Cy");
+        }
+        {
+            // Random colonies: nobody is left without a weapon who had one, no weapon goes to two.
+            var rnd = new Random(77);
+            int bad = 0, trades = 0, cases = 300;
+            for (int t = 0; t < cases; t++)
+            {
+                var k = new Colony();
+                int cs = rnd.Next(2, 6);
+                for (int i = 0; i < cs; i++)
+                {
+                    bool holds = rnd.NextDouble() < 0.8;
+                    var c = k.C("c" + i, holds: holds ? "h" + i : null);
+                    c.Fights = 0.2f + (float)rnd.NextDouble() * 0.8f;
+                    if (holds) k.W("h" + i, R("ranged", 2f + (float)rnd.NextDouble() * 6f), false, "c" + i);
+                }
+                for (int j = 0; j < rnd.Next(0, 3); j++) k.W("s" + j, R("ranged", 3f + (float)rnd.NextDouble() * 5f));
+                foreach (var c in k.I.Colonists)
+                    foreach (var w in k.I.Weapons)
+                        k.O(c.Key, w.Key, Math.Max(1.2f, w.Rating.Overall + (float)(rnd.NextDouble() * 3 - 1.5)));
+                var s = k.Assign();
+                trades += s.Count(x => x.Kind == PickKind.Swap);
+                var holding = k.I.Colonists.ToDictionary(c => c.Key, c => c.Holds);
+                var given = new List<string>();
+                foreach (var x in s.Where(x => x.Kind == PickKind.Primary || x.Kind == PickKind.Swap))
+                {
+                    holding[x.Colonist] = x.Weapon;
+                    given.Add(x.Weapon);
+                }
+                if (given.Distinct().Count() != given.Count) bad++;
+                if (k.I.Colonists.Any(c => c.Holds != null && holding[c.Key] == null)) bad++;
+                // A trade comes in pairs, its two trading what each holds.
+                foreach (var x in s.Where(x => x.Kind == PickKind.Swap))
+                    if (!s.Any(y => y.Kind == PickKind.Swap && y.Colonist == x.Other && y.Weapon == x.Instead && y.Instead == x.Weapon)) bad++;
+            }
+            C(bad == 0, $"random colonies: nobody left without a weapon who had one, no weapon to two, trades in pairs ({bad})");
+            C(trades > 0, $"random colonies: trades do come up ({trades / 2})");
+        }
+
+        // ---------- A lucky weapon or an heirloom: said, counted a little, never a bar ----------
+        {
+            var k = new Colony();
+            var bo = k.C("bo", holds: "auto");
+            k.W("auto", R("ranged", 4f), false, "bo").Def = "Gun_Autopistol";
+            k.W("ar", R("ranged", 5.8f)).Def = "Gun_AssaultRifle";
+            k.O("bo", "auto", 4f);
+            k.O("bo", "ar", 4.8f);
+            bo.Keepsakes.Add(new PickKeepsake { Kind = KeepsakeKind.Lucky, Weapon = "auto", Def = "Gun_Autopistol", Label = "autopistol", MoodWith = 3f, MoodWithout = -4f });
+            C(Near(WeaponPickMath.KeepsakeWeight(bo.Keepsakes[0]), 0.28f), "a lucky weapon (+3 with it, -4 without) costs 0.28 in the choice");
+            var s = k.Assign();
+            C(s.Count == 1 && Near(s[0].Gain, 0.8f) && s[0].Costs.Any(r => r.Kind == PickWhy.Lucky && r.Text == "bo" && r.Extra == "autopistol" && Near(r.Value, 3f) && r.Level == -4),
+                "never a bar: a gain of 0.8 is still suggested, and its line warns of the lucky autopistol, with its moods");
+            k.W("auto2", R("ranged", 5.6f)).Def = "Gun_Autopistol";
+            k.O("bo", "auto2", 4.65f);
+            k.O("bo", "ar", 4.8f);
+            s = k.Assign();
+            C(s.Count == 1 && s[0].Weapon == "auto2" && !s[0].Costs.Any(r => r.Kind == PickWhy.Lucky),
+                "counted a little: a finer autopistol (+0.65, the luck kept) wins over a slightly better rifle (+0.8 less 0.28)");
+            k.I.Weapons.RemoveAll(w => w.Key == "auto2");
+            k.O("bo", "ar", 5.6f);
+            s = k.Assign();
+            C(s.Count == 1 && WeaponPickMath.GivesUpKeepsake(s[0], "bo") && !WeaponAskMath.MaySpeakFor(s[0], true), "he never asks for it himself");
+            k.I.Rules.Sidearms = true;
+            k.I.Weapon("auto").Mass = 1.2f;
+            s = k.Assign();
+            C(s.Count == 1 && !s[0].Costs.Any(r => r.Kind == PickWhy.Lucky), "with Simple Sidearms he keeps it as a sidearm: nothing to warn of");
+            k.I.Rules.Sidearms = false;
+            k.I.Weapon("ar").Def = "Gun_Autopistol";
+            s = k.Assign();
+            C(s.Count == 1 && !s[0].Costs.Any(r => r.Kind == PickWhy.Lucky), "another of its kind keeps the luck: nothing to warn of");
+        }
+        {
+            var input = Weak();
+            input.Colonist("bo").Keepsakes.Add(new PickKeepsake { Kind = KeepsakeKind.Heirloom, Weapon = "charge", Def = "Gun_ChargeRifle", Label = "charge rifle", Of = "Hector", MoodWith = 4f });
+            var s = WeaponPickMath.Assign(input);
+            var ana = s.FirstOrDefault(x => x.Colonist == "ana");
+            var bo = s.FirstOrDefault(x => x.Colonist == "bo");
+            C(ana != null && ana.Kind == PickKind.Swap && ana.Costs.Any(r => r.Kind == PickWhy.Heirloom && r.Text == "bo" && r.Of == "Hector"),
+                "the trade still stands with Bo's heirloom in it, and both lines warn of it");
+            C(bo != null && WeaponPickMath.GivesUpKeepsake(bo, "bo") && !WeaponPickMath.GivesUpKeepsake(ana, "ana"), "Bo won't offer it himself; Ana may still ask");
+            C(ana != null && WeaponAskMath.TradeAskable(ana) && WeaponAskMath.TradeRole(ana) == "taker" && WeaponAskMath.TradeRole(bo) == "giver", "Ana asks as the one who gains, Bo would offer as the one who gives up some");
         }
 
         // ---------- Simple Sidearms: a sidearm ----------
@@ -428,6 +577,29 @@ public static class WeaponPickTests
             C(lines.All(l => l.Contains("{WEAPON}") && l.Contains("{PLACE}")), "every line names the weapon and where it lies");
             C(lines.All(l => reasons.Any(r => LineTags.Of(l)?.tags?.Contains(r) == true)), "every line has the reason it is said for, so its words are true");
             C(Read("Tools/Tests/ImmersionTests.cs").Contains("\"Rimfolk_Pool_WeaponAsk\""), "its lines are held to one sentence of 90 characters (ImmersionTests)");
+
+            // The trades proposed: a line for each side and kind, in every age; each names whom it is said to and the speaker's weapon.
+            C(pools.TryGetValue("Rimfolk_Pool_WeaponTrade", out var trade) && trade.Count >= 30, "the trades proposed have a pool of their own");
+            trade ??= new List<string>();
+            string[] roles = { "taker", "giver", "even" };
+            foreach (var era in new[] { "tribal", "medieval", "industrial", "spacer" })
+            {
+                var eras = new HashSet<string> { era };
+                if (era == "tribal" || era == "medieval") eras.Add("lowtech");
+                foreach (var role in roles)
+                    foreach (var kind in new[] { "ranged", "melee" })
+                    {
+                        var ctx = new HashSet<string>(eras) { role, kind };
+                        bool fits = trade.Any(l => LineTags.Of(l) is var p && p != null && LineTags.Match(p, ctx) > 0 && LineTags.EraFits(p, eras) && p.tags.Contains(role));
+                        C(fits, $"[{role}] has a line for a {kind} weapon in the {era} age");
+                    }
+            }
+            C(trade.All(l => roles.Count(r => LineTags.Of(l)?.tags?.Contains(r) == true) == 1), "every line has the speaker's side, one, so its words are true");
+            C(trade.All(l => l.Contains("{OTHER}") && (l.Contains("{MINE}") || l.Contains("{THEIRS}"))), "every line names whom it is said to and a weapon");
+            C(trade.Where(l => LineTags.Of(l)?.tags?.Contains("taker") == true).All(l => l.Contains("{THEIRS}")), "the one who gains names the weapon they want");
+            C(trade.Where(l => LineTags.Of(l)?.tags?.Contains("lowskill") == true || LineTags.Of(l)?.tags?.Contains("rarely") == true)
+                .All(l => LineTags.Of(l).tags.Contains("giver")), "only the one who gives up some says they can barely use it, or rarely fight");
+            C(Read("Tools/Tests/ImmersionTests.cs").Contains("\"Rimfolk_Pool_WeaponTrade\""), "its lines are held to one sentence of 90 characters (ImmersionTests)");
         }
 
         // ---------- The seams ----------
@@ -442,7 +614,7 @@ public static class WeaponPickTests
         string catalog = Read("Source/ColonyCouncil/UI/SettingsCatalog.cs");
         string keys = Read("Languages/English/Keyed/Rimfolk_Weapons.xml");
         foreach (var (field, label, needs) in new[] { ("weaponCardFirst", "WeaponCardFirst", "weaponRatings,weaponCard,deepHooks"), ("weaponSuggestions", "WeaponSuggestions", "weaponRatings,deepHooks"),
-                     ("weaponAsks", "WeaponAsks", "weaponRatings,deepHooks") })
+                     ("weaponAsks", "WeaponAsks", "weaponRatings,deepHooks"), ("weaponNoBetterLine", "WeaponNoBetterLine", "weaponRatings,weaponSuggestions,deepHooks") })
         {
             C(settings.Contains("public bool " + field + " = true;") && settings.Contains("Scribe_Values.Look(ref " + field + ", \"" + field + "\", true);"), $"{field}: a setting, on at first, saved");
             C(catalog.Contains("Toggle(\"" + field + "\", \"CC_Settings_" + label + "\", \"CC_SetNote_" + label + "\", \"" + needs + "\");"), $"{field}: on the settings page, under Weapons ({needs})");
@@ -460,9 +632,23 @@ public static class WeaponPickTests
         C(Read("Source/ColonyCouncil/Weapons/WeaponInfoCard.cs").Contains("if (WeaponCardFirst.On) card.Close(false);"), "the game's card's button back closes it when the weapon card opens first");
         // The gear tab, Nice Inventory Tab, the Defenses page, the card, the inbox.
         C(ui.Contains("[HarmonyPatch(typeof(ITab_Pawn_Gear), \"TryDrawComfyTemperatureRange\")]") && ui.Contains("ref float curY"), "the game's gear tab: the lines under the temperatures, the tab's height following");
-        int at = ui.IndexOf("class Patch_WeaponPickNiceBox", StringComparison.Ordinal);
-        string nice = at >= 0 ? ui.Substring(at, Math.Min(1200, ui.Length - at)) : "";
-        C(nice.Contains("Prepare()") && nice.Contains("TargetMethod()") && nice.Contains("StandsDownWhy()") && ui.Contains("NiceInventoryTab.GroupBox"), "Nice Inventory Tab's mark: by name, skipped cleanly without the mod");
+        string niceTab = Read("Source/ColonyCouncil/Weapons/WeaponNiceTab.cs");
+        foreach (var soft in new[] { "Patch_WeaponNiceSuggestedPlace", "Patch_WeaponNiceSuggestedDraw" })
+        {
+            int at = niceTab.IndexOf("class " + soft, StringComparison.Ordinal);
+            string nice = at >= 0 ? niceTab.Substring(at, Math.Min(1400, niceTab.Length - at)) : "";
+            C(nice.Contains("Prepare()") && nice.Contains("TargetMethod()") && nice.Contains("StandsDownWhy()") && nice.Contains("WeaponNiceTab.Ready"),
+                $"{soft}: by name, skipped cleanly without Nice Inventory Tab or a member it reads");
+        }
+        C(!ui.Contains("Patch_WeaponPickNiceBox") && !ui.Contains("NiceMark"), "the small mark on the equipment box's title is gone: the row in the box replaces it");
+        C(asks.Contains("Together.When(") && asks.Contains("Speech.Say(p, line, other)") && asks.Contains("p.equipment?.Primary != mine || other.equipment?.Primary != theirs"),
+            "a trade is proposed once the two are together, both weapons still in their hands as the words say");
+        C(asks.Contains("WeaponAskMath.MaySpeakFor(x, WeaponPickMath.GivesUpKeepsake(x, me))"), "nobody asks to give up their own lucky weapon or heirloom");
+        C(pick.Contains("LuckyItems.IsLucky(q)") && pick.Contains("HeirloomCarriedBy(p)") && pick.Contains("\"TimeDrafted\"") && pick.Contains("RecordDefOf.ShotsFired"),
+            "the keepsakes read from Rimfolk's lucky weapons and heirlooms; how much each fights from the game's records");
+        foreach (var key in new[] { "CC_WeaponPick_Why_TradeColony", "CC_WeaponPick_Why_RarelyFights", "CC_WeaponPick_Cost_Lucky", "CC_WeaponPick_Cost_Heirloom", "CC_WeaponPick_FullTrade",
+                     "CC_WeaponPick_Act_SwapWith", "CC_WeaponAsk_InboxTrade", "CC_WeaponPick_TagSuggested", "CC_WeaponPick_QuietNone", "CC_WeaponPick_QuietNone_Tip" })
+            C(keys.Contains("<" + key + ">"), $"the words for {key}");
         C(Read("Source/ColonyCouncil/UI/DefensePanel.cs").Contains("WeaponPickPanel.Draw(s.map, x, y, w, folds)"), "the colony's view on the Defenses page");
         C(card.Contains("WhoCarries(w, y, r)") && keys.Contains("<CC_WeaponPick_Card_Who>Who should carry this</CC_WeaponPick_Card_Who>"), "who should carry a weapon, on its card");
         C(Read("Source/ColonyCouncil/UI/InboxProviders.cs").Contains("Inbox.Register(\"weapon-asks\", InboxSection.People, 40f, WeaponAsks.InboxRows);") && asks.Contains("waits = false"),
