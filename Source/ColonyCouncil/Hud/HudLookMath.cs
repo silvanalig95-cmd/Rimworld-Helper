@@ -50,6 +50,9 @@ namespace ColonyCouncil
         /// <summary>A health row's bar for their summary health, under the name.</summary>
         public const float HealthBar = 3f;
 
+        /// <summary>The summary health line actually drawn: thin and muted under the name, below the illnesses in weight.</summary>
+        public const float HealthBarQuiet = 1.5f, HealthBarAlpha = 0.45f;
+
         /// <summary>A value at a scale, rounded to the pixel as the panels round it (Unity rounds halves to even, as here).</summary>
         public static float At(float v, float s) => (float)Math.Round(v * s);
 

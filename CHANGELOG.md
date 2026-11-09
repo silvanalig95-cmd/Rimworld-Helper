@@ -5,6 +5,13 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## Illnesses first in the health panel
+
+*9 November 2026, version 0.201.1*
+
+- In the health panel each illness or injury now shows in the panel's main font, with a wider, thicker bar and a larger icon, so it reads before anything else.
+- The overall health bar under each name is now a thin, quiet line, with how they stand still named at the right.
+
 ## An item card for everything else
 
 *9 November 2026, version 0.201.0*

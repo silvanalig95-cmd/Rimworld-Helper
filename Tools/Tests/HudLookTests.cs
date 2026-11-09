@@ -306,6 +306,9 @@ public static class HudLookTests
         C(inv.Contains("cat.icon != BaseContent.BadTex ? cat.icon : null") && inv.Contains("icon = CatIcon(cat),")
           && inv.Contains("icon = CatIcon(wc) ?? StandIn(apparel ? \"Apparel_BasicShirt\" : \"Gun_BoltActionRifle\", it.def)"),
             "no red cross on a group header: a category without its own icon gets none, the weapons and apparel a rifle and a shirt");
+        C(Code("Hud/Look/HudHealthLook.cs").Contains("HudLookMath.At(HudLookMath.HealthBarQuiet, s)") && Code("Hud/Look/HudHealthLook.cs").Contains("UiKit.WithAlpha(row.healthColor, HudLookMath.HealthBarAlpha)")
+          && Code("Hud/HudHealth.cs").Contains("private static GameFont LineFont(float s) => HudKit.Main(s);") && HudLookMath.HealthBarQuiet < HudLookMath.HealthBar,
+            "the health panel: the illness in the main font with a wider bar, the summary health a thin muted line under the name");
         C(Code("Hud/Look/HudWorkLook.cs").Contains("CC_Pnl_Look_DayOff") && Code("Hud/Look/HudWorkLook.cs").Contains("NeedsLook("), "work and idle: time off explains the idling; food, rest and recreation as bars");
 
         // ---------------- Icons ----------------

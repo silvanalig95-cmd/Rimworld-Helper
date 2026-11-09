@@ -31,6 +31,16 @@ When you load a save after an update, a letter lists the newest round once. The 
     <rounds>
 
       <li>
+        <version>0.201.1</version>
+        <date>9 November 2026</date>
+        <title>Illnesses first in the health panel</title>
+        <points>
+          <li>In the health panel each illness or injury now shows in the panel's main font, with a wider, thicker bar and a larger icon, so it reads before anything else.</li>
+          <li>The overall health bar under each name is now a thin, quiet line, with how they stand still named at the right.</li>
+        </points>
+      </li>
+
+      <li>
         <version>0.201.0</version>
         <date>9 November 2026</date>
         <title>An item card for everything else</title>

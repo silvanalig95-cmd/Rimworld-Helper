@@ -9820,7 +9820,7 @@ glance during play (less text, more shape), and the panels as they were stay beh
   bar's colour at full strength (`HudLook.MoodInk`); the heart's line under it (`HudLook.HeartLine`: strain in its band's
   colour, strained's faintly below it, the marks where strained, worn down and near breaking begin once strain has reached
   the first, the good side in its own colour under it; the heart's meters' colours and marks, `HeartMeterMath`); health as
-  their summary health under the name; food, rest and recreation as three short bars one over the other, a low one in the
+  their summary health under the name (a thin, muted line since 0.201.1, the illnesses under it in the main font with wider bars first: the player, "the illness should have more prominence than the health bar"); food, rest and recreation as three short bars one over the other, a low one in the
   danger colour; on the vitals, days of food against the warning line (its middle) with the bad line, medicine against
   the advisor's two a colonist, the research under way; on the council, trust either side of nothing (`HudLookMath`:
   `FoodFill`, `StockFill`, `TrustBar`); on the inventory's essentials, the meals' days of food. The numbers stay small

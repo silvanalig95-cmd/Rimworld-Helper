@@ -12,6 +12,11 @@ tree at once, alongside whatever runs. Each piece is merged as its own release, 
 
 ## State (5 November 2026)
 
+- 0.201.1, illnesses first in the health panel (9 November 2026). The player, with a picture of the panel in Rimfolk's look:
+  "the illness should have more prominence than the health bar in this window". The summary health bar under a name is
+  now a thin, muted line (`HudLookMath.HealthBarQuiet` 1.5, `HealthBarAlpha` 0.45; the row's layout unchanged); a
+  condition's line uses the panel's main font (`HudHealth.LineFont`, the line 19 high instead of 15 when it is Small), its
+  label at full colour, its bar 40 wide instead of 30 and thicker, its icon a little larger. Both looks.
 - 0.201.0, Rimfolk's item card, step 3: everything
   else (9 November 2026; `docs/design/rimfolk-look.md` stage 3, point 5, "step 3: built"; DESIGN.md "Rimfolk's own look, stage
   3, point 5, step 3" has all of it; README "Rimfolk's item card"). The player's words as for step 1. After it every item opens

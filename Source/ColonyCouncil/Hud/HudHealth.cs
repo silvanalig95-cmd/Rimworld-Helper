@@ -915,7 +915,17 @@ namespace ColonyCouncil
         private bool TwoLines => !St.compact && St.Shows(PartDetails);
         private float RowH(float s) => Mathf.Round((TwoLines ? 32f : 20f) * s);
         private float NameH(float s) => Mathf.Round(19f * s);
-        private float LineH(float s) => Mathf.Round(15f * s);
+        /// <summary>
+        /// A condition's own line: as tall as the panel's main font needs, for the illness reads before the health bar (the
+        /// player: "the illness should have more prominence than the health bar in this window").
+        /// </summary>
+        private float LineH(float s) => Mathf.Round((LineFont(s) == GameFont.Tiny ? 15f : 19f) * s);
+
+        /// <summary>A condition's name in the panel's main font (the colonist's name's size), not the small one.</summary>
+        private static GameFont LineFont(float s) => HudKit.Main(s);
+
+        /// <summary>A condition's little bar: wide and thick enough to read beside its name.</summary>
+        private static float LineBarW(float s) => Mathf.Round(40f * s);
         private float Width(float s) => Mathf.Round((St.compact ? 196f : LineEach && Details ? 276f : 252f) * s);
         /// <summary>A line of chips in the summary.</summary>
         private static float ChipLineH(float s) => Mathf.Round(14f * s);
@@ -1154,7 +1164,7 @@ namespace ColonyCouncil
             float cy = r.y + r.height / 2f;
             if (kind == HealthBar.Race)
             {
-                float bh = Mathf.Max(2f, Mathf.Round(3f * s));
+                float bh = Mathf.Max(2f, Mathf.Round(4f * s));
                 var b1 = new Rect(r.x, Mathf.Round(cy - bh - 0.5f), r.width, bh);
                 var b2 = new Rect(r.x, b1.yMax + 1f, r.width, bh);
                 Widgets.DrawBoxSolid(b1, UiKit.MeterBack);
@@ -1163,7 +1173,7 @@ namespace ColonyCouncil
                 Widgets.DrawBoxSolid(new Rect(b2.x, b2.y, b2.width * Mathf.Clamp01(b), bh), HudKit.BarBad);
                 return;
             }
-            float h = Mathf.Max(3f, Mathf.Round(4f * s));
+            float h = Mathf.Max(3f, Mathf.Round(5f * s));
             var bar = new Rect(r.x, Mathf.Round(cy - h / 2f), r.width, h);
             Widgets.DrawBoxSolid(bar, UiKit.MeterBack);
             if (a > 0f) Widgets.DrawBoxSolid(new Rect(bar.x, bar.y, Mathf.Max(1f, bar.width * Mathf.Clamp01(a)), h), color);
@@ -1206,11 +1216,11 @@ namespace ColonyCouncil
             if (l.immunity >= 0f)
             {
                 // Immunity (green) over the severity (orange): the race at a glance.
-                float bw = Mathf.Round(30f * s);
+                float bw = LineBarW(s);
                 DrawBar(new Rect(right - bw, lr.y, bw, lh), HealthBar.Race, l.immunity, l.severity, HudKit.BarOk, s);
                 right -= bw + 3f;
             }
-            HudKit.Label(new Rect(lr.x, lr.y, Mathf.Max(0f, right - lr.x), lh), l.label, UiKit.WithAlpha(l.labelColor, 0.85f), GameFont.Tiny);
+            HudKit.Label(new Rect(lr.x, lr.y, Mathf.Max(0f, right - lr.x), lh), l.label, l.labelColor, LineFont(s));
         }
 
         /// <summary>The line with icons and bars: the icon and the name; at the right the rest of the facts, the tending in its colour, and the little bar.</summary>
@@ -1232,16 +1242,16 @@ namespace ColonyCouncil
                 HudKit.Label(new Rect(right - w, lr.y, w, lh), l.tend, l.tendColor, GameFont.Tiny, TextAnchor.MiddleRight);
                 right -= w + 4f;
             }
-            float bw = Mathf.Round(30f * s);
+            float bw = LineBarW(s);
             if (l.bar != HealthBar.None && right - bw >= lr.x + lr.width * 0.3f)
             {
                 DrawBar(new Rect(right - bw, lr.y, bw, lh), l.bar, l.a, l.b, l.barColor, s);
                 right -= bw + 4f;
             }
-            float ic = Mathf.Min(IconSize(s), lh - 2f);
+            float ic = Mathf.Min(IconSize(s) + (LineFont(s) == GameFont.Tiny ? 0f : Mathf.Round(3f * s)), lh - 2f);
             if (l.icon != null && Event.current.type == EventType.Repaint) UiKit.Icon(new Rect(lr.x, Mathf.Round(lr.y + (lh - ic) / 2f), ic, ic), l.icon, l.iconColor);
             float x = lr.x + ic + PartGap(s);
-            HudKit.Label(new Rect(x, lr.y, Mathf.Max(0f, right - x), lh), l.label, UiKit.WithAlpha(l.labelColor, 0.9f), GameFont.Tiny);
+            HudKit.Label(new Rect(x, lr.y, Mathf.Max(0f, right - x), lh), l.label, l.labelColor, LineFont(s));
         }
 
         /// <summary>Left: select them and open their Health tab (their caravan when they're travelling). Right: the panel's menu.</summary>
