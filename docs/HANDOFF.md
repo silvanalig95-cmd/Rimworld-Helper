@@ -12,6 +12,52 @@ tree at once, alongside whatever runs. Each piece is merged as its own release, 
 
 ## State (5 November 2026)
 
+- The heart at a glance: meters, and the day off beside them (9 November 2026). **Not released: no version, no What's new
+  round, About.xml and CHANGELOG untouched.** The player's words on Avila's Mood tab (the heart a line of red text,
+  "Heart: Worn down (60), down 7 today"; the day off a big heart on the command bar): "the strain level etc. should be
+  graphically more easier to see, perhaps also like a level bar or so. the "give day off" should also be in this menu and
+  not in the pawn bar"; their RimHUD showed "Strain  jown (60) · fighting ...". DESIGN.md "The heart at a glance: meters,
+  and the day off beside them" has all of it; README "Feelings and strain" (a day off you give, where to see it) and the
+  RimHUD lines; the Almanac's "feelings and strain" (a day off you give, where to see it), prose only, keywords unchanged.
+  - The meters (`Heart/HeartMeter.cs`, pure rules in `Heart/HeartMeterMath.cs`, linked in Tests.csproj): right under the
+    mood bar, as tall as it, game look and Rimfolk's own. Strain filled in the colonist bar's heart line colours, faint
+    washes per band, coloured ticks with small number labels at 30, 55, 75 and 85 (85 only with `heartEpisodes`), the band
+    and value on the bar, a mark with a foot for the lasting weight (`HeartFelt.Floor`, from 5) with the held part
+    shaded, the trend beside it (`Icons.TrendUp`/`TrendDown`, "-7 today", from a move of 2). The good side in green with
+    ticks at 20, 45, 65, at any strain. Hover: a tick's band and effects, the mark's weight line, else the meter's tooltip
+    (band, effects line, today's move, built lately, eased lately, weight, advice); one tooltip at a time. Model per
+    colonist kept half a second, rebuilt after a click; labels that would touch give way (`LabelLefts`).
+  - The day off's place (`HeartMeterMath.Lay`: at the meters' right, its width the widest of its two buttons so it never
+    moves; under them below 170 for a bar): "Give a day off" greyed with the full reason as tooltip and a few words under
+    it (`HeartTimeOff.WhyNotDayOffKey`, `HeartMeterMath.ShortWhy`, `CC_Meter_Why_*`); while time off runs, "Day off until
+    9h tomorrow" / "Bad afternoon until 16h" (`HeartTimeOff.UntilText`) and "End it early" (`HeartTimeOff.EndEarly`, either
+    kind, half relief, "called back to work"). Free colonists only; hidden with days off off unless a bad afternoon runs.
+  - The summary (`Moods/MoodGlance.cs`): the meters first, then the mood's sentence, weighs/lifts, the effects lines and
+    the advice. The "Heart: ..." line, the weight's line and the time off line gave way (`HeartLine` kept for RimHUD's
+    tooltip; `CC_Glance_Weight`, `CC_Glance_WeightWhy`, `CC_Heart_StrainLabel` removed). The same meters in the heart's
+    section (`HeartView.DrawHeart`, its two plain `UiKit.Meter`s and their model fields gone) and on the card
+    (`HeartCard`, section "heart-meters" at 19.5, no day off's place: the card's act has it).
+  - The colonist's gizmo: only with the new setting `heartDayOffGizmo`, "Day off button on the colonist too" (How hard,
+    under the day off, off, needs `heart,heartDayOff,deepHooks`; `Patch_HeartDayOffGizmo.Wanted`). Still one patch.
+  - RimHUD (`Integrations/RimHud.cs`; RimHUD's public source read: a value too wide for its cell is drawn right-aligned
+    and clipped from the left, then "..."; a value widget has no bar): `RimHud_Strain` fitted to 112 in the small font
+    (`HeartMeterMath.Fit`, tags not measured, kept per colonist until `hudStrain` changes): "Worn 60", then time off, top
+    cause, good side as they fit; the whole line leads the tooltip when cut. `RimHud_StrainBar`: the number alone (its
+    value cell is 40 by default, "61, day off" was cut), ticks from `StrainTicks` (85 added). Defs unchanged.
+  - Keys in `Languages/English/Keyed/Rimfolk_HeartMeters.xml`. Tests: `Tools/Tests/HeartMeterTests.cs` (253 checks),
+    `LookTests` reads `Heart/HeartMeter.cs` for colours made outside the tokens. No saved data, no Sched slot.
+  - Not run here (none of it could be): the meters' look at the tab's width in both looks (the text on the bar over an
+    orange fill, the tick labels' row height in the Tiny font, the foot of the weight's mark beside a label), the
+    tooltips' hover regions inside the scroll view, the button's greyed state and its line, "End it early" on a bad
+    afternoon (its message), the card's section width in Rimfolk's frame, RimHUD's real cell width (112 in the small
+    font is a guess from the player's screenshot and RimHUD's default label width) and the strain bar's 85 mark.
+  - Try in the game: 1. Avila's Mood tab: two bars under the mood bar, "Strain: worn down 60" in orange, marks at 30 55
+    75 85, "-7 today" beside it, the good side in green; hover a mark, the weight's foot, each bar. 2. The button beside
+    them: "Give a day off"; once given, "Day off until 9h tomorrow" and "End it early". 3. A colonist below 30: the button
+    greyed, "not strained enough". 4. Her command bar: no day off button; Settings, How hard, "Day off button on the
+    colonist too" on: it's back. 5. Her card: the same two bars. 6. RimHUD: the strain line reads "Worn 60 · fighting",
+    whole in its tooltip; the strain bar's value "60".
+
 - 0.186.0, weapons you can judge at a glance, the player's follow-ups (9 November 2026): "always have an image of the item included ... it can have a prominent spot",
   "where do i see the weapon recommendation in this ui mod?", and trades that help the colony even when one gives up some,
   with a warning for a lucky weapon that never blocks. DESIGN.md "The weapon you can see, and trades for the colony" has

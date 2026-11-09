@@ -368,6 +368,8 @@ namespace ColonyCouncil
         public bool heartAdvice = true;
         /// <summary>A day off for one strained colonist, given by the player (Heart/HeartTimeOff.cs).</summary>
         public bool heartDayOff = true;
+        /// <summary>The day off's button on a selected colonist's command bar too, besides the Mood tab (Heart/HeartTimeOff.cs; off by default).</summary>
+        public bool heartDayOffGizmo = false;
         /// <summary>Everyday ailments (Ailments/): colds, strained backs, sunburn, and the like.</summary>
         public bool ailments = true;
         /// <summary>The rare serious illnesses, which can kill (tetanus, pneumonia, tuberculosis...).</summary>
@@ -946,6 +948,7 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref heartSpread, "heartSpread", true);
             Scribe_Values.Look(ref heartAdvice, "heartAdvice", true);
             Scribe_Values.Look(ref heartDayOff, "heartDayOff", true);
+            Scribe_Values.Look(ref heartDayOffGizmo, "heartDayOffGizmo", false);
             Scribe_Values.Look(ref ailments, "ailments", true);
             Scribe_Values.Look(ref seriousIllnesses, "seriousIllnesses", true);
             Scribe_Values.Look(ref illnessBudget, "illnessBudget", true);

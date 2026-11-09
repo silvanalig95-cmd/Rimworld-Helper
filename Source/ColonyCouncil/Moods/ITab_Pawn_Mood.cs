@@ -12,9 +12,9 @@ namespace ColonyCouncil
     /// the inspect pane (RimfolkTab); the name and the bar stay put, the rest scrolls.
     /// <para>
     /// At a glance first (the player, 9 November 2026: "so the most relevant details for strain and mood are visible at
-    /// first glance, with additional details below that"; MoodGlance): their mood and where it's heading, the heart now
-    /// with the weight under it, what weighs on them and lifts them most, what the bands are doing to them, and the top
-    /// advice with its buttons. Then, in order of use, sections that fold away and are remembered between sessions: every
+    /// first glance, with additional details below that"; MoodGlance): the heart as two meters under the mood bar with the
+    /// day off's button beside them (Heart/HeartMeter.cs), their mood and where it's heading, what weighs on them and lifts
+    /// them most, what the bands are doing to them, and the top advice with its buttons. Then, in order of use, sections that fold away and are remembered between sessions: every
     /// mood (compact: chips with each group's total, then the moods grouped by what the player can do, one line each, a
     /// click opening a line's whole card; details: every mood as a card; the switch in the header is remembered in the
     /// settings), the heart (strain and the good side, what built and eased it, what would help), its feelings, its needs,

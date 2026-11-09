@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using RimWorld;
 using UnityEngine;
 using Verse;
@@ -63,18 +64,92 @@ namespace ColonyCouncil
     }
 
     /// <summary>
-    /// The heart at a glance, as the Mood tab's summary has it (Moods/MoodGlance.cs): strain's band and value and the good
-    /// side's, each in the colonist bar's heart line colours, the top cause while strained, and a day off or bad afternoon
-    /// under way ("Worn down 61 · in good heart 48 · the plague · day off"). The tooltip is strain in full with what would
-    /// help first; a click opens their Mood tab (Heart/).
+    /// The heart at a glance, short enough for RimHUD's value cell (the player's screenshot of 9 November 2026: "Strain
+    /// jown (60) · fighting ...": RimHUD draws a value too long for its cell right-aligned and cut from the left, then
+    /// "..."): strain's band in a word and its value in its band's colour, then as much as fits of a day off or bad
+    /// afternoon under way, the top cause while strained and the good side in green ("Worn 60 · fighting"). The whole line
+    /// leads the tooltip ("Worn down (61) · in good heart (48) · the plague · day off"), then strain in full with what would
+    /// help first; a click opens their Mood tab (Heart/). The line is fitted once each time the heart changes, not per
+    /// frame. RimHUD's hooks give a value widget no bar of its own; strain's bar is its own widget (RimHud_StrainBar).
     /// </summary>
     public static class RimHud_Strain
     {
+        /// <summary>
+        /// The value's width in RimHUD's small text, which its cell shows whole: the cell beside the label at RimHUD's default
+        /// label width in a two-column pane, with room for its "...".
+        /// </summary>
+        public const float Budget = 112f;
+
+        /// <summary>Each colonist's line as fitted, and the full line it was fitted from (worked out again when that changes).</summary>
+        private static readonly Dictionary<int, (string from, string value)> fitted = new Dictionary<int, (string, string)>();
+
         public static (string label, string value, Func<string> tooltip, Action onHover, Action onClick) GetParameters(Pawn pawn)
         {
             var h = RimHudUtil.HeartOf(pawn);
             if (h == null) return (null, null, null, null, null);
-            return ("CC_Hud_Strain".Translate(), h.hudStrain, () => RimHudUtil.HeartTip(pawn, h), null, () => MoodView.ShowMoodTab(pawn, false));
+            string value = Compact(pawn, h);
+            bool cut = value != h.hudStrain;
+            return ("CC_Hud_Strain".Translate(), value, () => (cut ? h.hudStrain + "\n\n" : "") + RimHudUtil.HeartTip(pawn, h), null, () => MoodView.ShowMoodTab(pawn, false));
+        }
+
+        /// <summary>The line fitted to the cell, kept until the heart's full line changes (HeartView.Refresh, hourly or on a change).</summary>
+        public static string Compact(Pawn pawn, PawnHeart h)
+        {
+            string from = h.hudStrain ?? "";
+            if (fitted.TryGetValue(pawn.thingIDNumber, out var f) && ReferenceEquals(f.from, from)) return f.value;
+            string value;
+            try
+            {
+                value = HeartMeterMath.Fit(Parts(h), Width, Budget);
+            }
+            catch (Exception e)
+            {
+                CouncilLog.ErrorOnce("RimHUD: the strain line fitted", e);
+                value = from;
+            }
+            if (fitted.Count > 200) fitted.Clear();
+            fitted[pawn.thingIDNumber] = (from, value);
+            return value;
+        }
+
+        /// <summary>
+        /// The line's parts by how much they matter: the band in a word and its value (strain's, or the good side's while strain
+        /// is steady and it shows), time off under way, the top cause while strained, the good side beside strain.
+        /// </summary>
+        private static List<string> Parts(PawnHeart h)
+        {
+            var parts = new List<string>(4);
+            var good = GoodHeart.Band(h);
+            string Short(string band, float v) => "CC_Hud_ShortValue".Translate(band.Named("BAND"), v.ToString("0").Named("VALUE")).Resolve();
+            if (h.Band == StrainBand.Steady && good != GoodBand.None)
+                parts.Add(Short(("CC_Hud_GoodShort_" + good).Translate().Resolve().CapitalizeFirst(), h.good).Colorize(HeartView.GoodColor));
+            else parts.Add(Short(("CC_Hud_StrainShort_" + h.Band).Translate().Resolve(), h.strain).Colorize(HeartView.BandColor(h.Band)));
+            var off = HeartTimeOff.KindOf(h);
+            if (off != TimeOffKind.None) parts.Add(("CC_Count_OffShort_" + off).Translate().Resolve().Colorize(UiKit.Info));
+            if (h.Band >= StrainBand.Strained)
+            {
+                string cause = HeartView.TopCause(h);
+                if (!cause.NullOrEmpty()) parts.Add(cause.Colorize(UiKit.Faint));
+                if (good != GoodBand.None) parts.Add(Short(("CC_Hud_GoodShort_" + good).Translate().Resolve(), h.good).Colorize(HeartView.GoodColor));
+            }
+            return parts;
+        }
+
+        /// <summary>A part's width in the small font (RimHUD's small text is a point under it, so what fits here fits there).</summary>
+        private static float Width(string plain)
+        {
+            try
+            {
+                var old = Text.Font;
+                Text.Font = GameFont.Small;
+                float w = Text.CalcSize(plain).x;
+                Text.Font = old;
+                return w;
+            }
+            catch (Exception)
+            {
+                return plain.Length * 7f;
+            }
         }
     }
 
@@ -110,20 +185,19 @@ namespace ColonyCouncil
 
     /// <summary>
     /// Strain as a bar, like RimHUD's own needs: it fills and turns from the bar colour toward red as strain builds, with
-    /// marks where it becomes strained, worn down and near breaking. Hidden (fill below 0) when there's no heart.
+    /// marks where it becomes strained, worn down and near breaking, and at 85 where a day to themselves may come (the Mood
+    /// tab's meter has the same). Its value is the number alone: RimHUD's value cell beside a bar is 40 wide by default, so
+    /// "61, day off" was cut; time off under way is said in its tooltip. Hidden (fill below 0) when there's no heart.
     /// </summary>
     public static class RimHud_StrainBar
     {
-        private static readonly float[] Bands = { 0.30f, 0.55f, 0.75f };
+        private static readonly float[] Bands = Array.ConvertAll(HeartMeterMath.StrainTicks, t => t / HeartMath.Max);
 
         public static (string label, string value, float fill, float[] thresholds, Func<string> tooltip, Action onHover, Action onClick) GetParameters(Pawn pawn)
         {
             var h = RimHudUtil.HeartOf(pawn);
             if (h == null) return (null, null, -1f, null, null, null, null);
-            // With time off under way, the value says so ("61, day off").
-            var off = HeartTimeOff.KindOf(h);
-            string value = off == TimeOffKind.None ? h.strain.ToString("0") : h.strain.ToString("0") + ", " + ("CC_Count_OffShort_" + off).Translate().Resolve();
-            return ("CC_Hud_Strain".Translate(), value, Mathf.Clamp01(h.strain / HeartMath.Max), Bands, () => RimHudUtil.HeartTip(pawn, h), null,
+            return ("CC_Hud_Strain".Translate(), h.strain.ToString("0"), Mathf.Clamp01(h.strain / HeartMath.Max), Bands, () => RimHudUtil.HeartTip(pawn, h), null,
                 () => MoodView.ShowMoodTab(pawn, false));
         }
     }

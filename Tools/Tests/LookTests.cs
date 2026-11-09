@@ -20,7 +20,7 @@ public static class LookTests
     /// <summary>The pages Rimfolk draws outside UI/ (every file under UI/ is read too).</summary>
     private static readonly string[] PagesElsewhere =
     {
-        "Moods/MoodView.cs", "Moods/MoodsPanel.cs", "Calendar/CalendarPanel.cs", "Heart/HeartView.cs", "Almanac/AlmanacPanel.cs", "Almanac/Window_Almanac.cs",
+        "Moods/MoodView.cs", "Moods/MoodsPanel.cs", "Calendar/CalendarPanel.cs", "Heart/HeartView.cs", "Heart/HeartMeter.cs", "Almanac/AlmanacPanel.cs", "Almanac/Window_Almanac.cs",
         "Diplomacy/DiplomacyPanels.cs", "World/NeighboursPanel.cs", "World/FactionMemoryPanel.cs", "World/WorldSituationsPanel.cs", "Outsiders/OutsiderHeard.cs"
     };
 

@@ -58,6 +58,7 @@ namespace ColonyCouncil
             cachedGame = Current.Game;
             HeartMapContext.Clear();
             HeartView.Reset();
+            HeartMeter.Reset();
             HeartLogic.ResetSession();
             Heart.ResetCaches();
             Feelings.Reset();

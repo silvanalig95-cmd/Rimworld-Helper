@@ -6,18 +6,20 @@ using Verse;
 namespace ColonyCouncil
 {
     /// <summary>
-    /// The heart on the colonist's card (UI/Cards, the Now slot), both sides at once: a line while strain is strained or
-    /// worse, with why ("Worn down: the plague and losing Ana."), what the band does to them now and time off under way; a
-    /// line while the good side is steady, in good heart or in high spirits, with what filled it ("In good heart: friends
-    /// close by and a purpose."); and the last release while it's recent. Under them, what would help with its buttons
-    /// (Heart/HeartAdvice.cs), and the day off among the card's acts at its foot (Heart/HeartTimeOff.cs). Nothing for a
-    /// heart with nothing to speak of on either side.
+    /// The heart on the colonist's card (UI/Cards, the Now slot), both sides at once: the two meters first, as on the Mood
+    /// tab (Heart/HeartMeter.cs: strain in its band's colour with the band starts and the weight under it, the good side in
+    /// green); a line while strain is strained or worse, with why ("Worn down: the plague and losing Ana."), what the band
+    /// does to them now and time off under way; a line while the good side is steady, in good heart or in high spirits, with
+    /// what filled it ("In good heart: friends close by and a purpose."); and the last release while it's recent. Under
+    /// them, what would help with its buttons (Heart/HeartAdvice.cs), and the day off among the card's acts at its foot
+    /// (Heart/HeartTimeOff.cs). The meters for any colonist with a heart; the lines only with something to speak of.
     /// </summary>
     [StaticConstructorOnStartup]
     public static class HeartCard
     {
         static HeartCard()
         {
+            CardSections.Register(CardKind.Colonist, CardSlot.Now, 19.5f, Meters, null, "heart-meters");
             CardSections.RegisterLines(CardKind.Colonist, CardSlot.Now, 20f, Lines, null, "heart-good");
             CardSections.Register(CardKind.Colonist, CardSlot.Now, 20.5f, Advice, null, "heart-advice");
             CardActs.Register(CardKind.Colonist, DayOffLabel, DayOffWhyNot, r =>
@@ -25,6 +27,15 @@ namespace ColonyCouncil
                 var p = ThingRefs.Pawn(r);
                 if (p != null) HeartTimeOff.DayOffButton(p);
             }, DayOffShows, 45f, "CC_Count_DayOff_CardTip".Translate().Resolve(), "heart-dayoff");
+        }
+
+        /// <summary>Strain and the good side as meters (the day off is among the card's acts, so no place for it here).</summary>
+        private static float Meters(Rect rect, ThingRef r)
+        {
+            var p = ThingRefs.Pawn(r);
+            var h = p == null ? null : Heart.ForView(p);
+            if (h == null || !h.evaluated) return 0f;
+            return HeartMeter.Draw(p, h, rect.x, rect.y + 2f, rect.width, false) + 2f;
         }
 
         private static List<string> Lines(ThingRef r)

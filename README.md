@@ -2545,10 +2545,11 @@ Each of these switches itself on only when its mod is there, and only asks for w
 - **Vanilla Outposts Expanded:** a wish waits while its colonist is posted at an outpost (up to five days, then it
   lapses and nobody is blamed), and people out there write home in their journals now and then.
 - **RimHUD:** eight lines for its pawn panel (trust, open wish, office, life goal, strain, what would help, feelings,
-  the heart's needs), with strain in its band's colour beside the good side's in green, the top cause and a day off or
-  bad afternoon under way, each feeling in its own colour and the heart's needs green when all is well (strain's tooltip
+  the heart's needs), with strain short enough for its cell ("Worn 60 · fighting": its band in a word and value in its
+  colour, then a day off or bad afternoon under way, the top cause and the good side in green as they fit, the whole
+  line in its tooltip), each feeling in its own colour and the heart's needs green when all is well (strain's tooltip
   leads with what would help, and a click on it opens the Mood tab), plus six bars: strain (filling and reddening as it
-  builds, marked where it becomes strained, worn down and near breaking), the heart's good side (marked where it is
+  builds, marked where it becomes strained, worn down and near breaking and at 85), the heart's good side (marked where it is
   steady, in good heart and in high spirits) and belonging, purpose, safety and freedom (marked where each starts to be
   missed). Four more lines show
   Rimfolk's ailments (the doctor's notes in the tooltip), convalescence, the personal story under way and a doctor's
@@ -4148,12 +4149,14 @@ grieve, more light. Where Rimfolk can do it there's a button: give the day off, 
 council as their petition and the Decrees page opens), call a party, send a friend over for a talk. The message when
 someone becomes worn down names the first few.
 
-**A day off you give.** A button on a strained colonist (strain 30 or more), on their Mood tab, their card and in the
-advice gives them a day off: for a day their work hours become free time and the first hours after they wake a lie-in,
+**A day off you give.** The button beside the strain meter on a colonist's Mood tab (from strain 30; greyed with why
+not, "again in 3 days" while it waits), on their card and in the advice gives them a day off (a button on the colonist's
+command bar too with "Day off button on the colonist too", How hard, off by default): for a day their work hours become free time and the first hours after they wake a lie-in,
 so they rest, take their recreation, walk, sit with their partner and look up a friend, and do no ordinary work (a fire
 or someone needing a doctor now still comes first). It eases strain well beyond an ordinary day (at strain 61, about 45
-in the day against 30), once in five days for each colonist; danger ends it at once so they can be drafted, the button
-ends it early, and their schedule goes back as it was.
+in the day against 30), once in five days for each colonist; danger ends it at once so they can be drafted. While it
+runs, the same place says until when ("Day off until 9h tomorrow") with "End it early" (a bad afternoon too), and their
+schedule goes back as it was.
 
 **A day off.** At 85 or more, a colonist may stop and keep to their room for six to twelve hours ("worn out, needs a
 day"): they eat and sleep but don't work, and a letter says what wore them down and what would help. Never in danger,
@@ -4224,8 +4227,11 @@ restless); below 25 for about three days it adds 1 to 2 strain a day (3 at most)
 are at 60 or more, strain drains 20% faster. Hover a need anywhere it shows for what its value means, what raised it
 and held it down, what follows and what would help.
 
-**Where to see it:** the Mood tab opens on the heart at a glance: their mood and where it's heading against the break
-lines, strain and the good side (with how strain moved today and the weight under it), what weighs on them and lifts
+**Where to see it:** the Mood tab opens on the heart at a glance: under the mood bar, strain and the good side as two
+bars drawn like it (strain in its band's colour with marks where strained, worn down and near breaking begin and at 85,
+a mark under it for the weight rest can't take it below, and how it moved today, "-7 today"; the good side in green,
+marked at 20, 45 and 65; hover either for what it does to them, what built it and what eases it), the day off's button
+beside them, their mood and where it's heading against the break lines, what weighs on them and lifts
 them most (the game's moods, other mods' and Rimfolk's together, with their sizes), what the bands are doing to them
 right now, and what would help with its buttons. Below, sections that fold away and are remembered between sessions:
 every mood, the heart (strain and its band, what built and eased it, who close wore on them, what would help, the good

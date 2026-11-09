@@ -407,6 +407,7 @@ for (int r = 0; r < 4; r++)
         Console.WriteLine($"Checked {SmallMomentTests.Run(root, Check)} things about small letdowns and joys (the moment, what moves to the heart, every small mood's pile).");
         Console.WriteLine($"Checked {GoodHeartTests.Run(root, Check)} things about the heart's good side (the bands, filling and spending, the caps, the fade, the release, the setting, old saves, the words).");
         Console.WriteLine($"Checked {HeartFeltTests.Run(root, Check)} things about the heart, felt (the lasting weight, rest under strain, the two sides at once, weeks of play against the targets, the acts, lines, signs, bar line and messages, the settings and the save).");
+        Console.WriteLine($"Checked {HeartMeterTests.Run(root, Check)} things about the heart's meters (the ticks and their labels, the layout at the tab's width and narrower, the trend, the day off beside them and its reasons, the colonist's button behind its setting, RimHUD's strain line fitted to its cell).");
         Console.WriteLine($"Checked {YardTests.Run(Check)} things about where the colony gathers out of doors (terraces and seats, not the machinery).");
         Console.WriteLine($"Checked {CustomYearsTests.Run(root, Check)} things about customs kept year after year (their tags, lines that can come true, what's said at them).");
         Console.WriteLine($"Checked {OutcomeTests.Run(root, Check)} things about how answers are told (the risk's words, variants picked by tags, world situations' answers).");
