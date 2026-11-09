@@ -1536,7 +1536,7 @@ namespace ColonyCouncil
     }
 
     /// <summary>The steward suggests a feast with guests: plan it (the dialog opens with their notable picked), or not now.</summary>
-    public class ChoiceLetter_FeastSuggest : ChoiceLetter
+    public class ChoiceLetter_FeastSuggest : RimfolkLetter
     {
         public int home = HomesMath.None;
         public int notable = -1;

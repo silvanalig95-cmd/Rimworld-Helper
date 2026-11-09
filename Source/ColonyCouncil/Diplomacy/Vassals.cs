@@ -790,7 +790,7 @@ namespace ColonyCouncil
     }
 
     /// <summary>A vassal's head asks something of the colony (or a struggling town asks for its protection), as a letter with its choices.</summary>
-    public class ChoiceLetter_VassalAsk : ChoiceLetter
+    public class ChoiceLetter_VassalAsk : RimfolkLetter
     {
         public int home = HomesMath.None;
         public int town = -1;
@@ -845,6 +845,9 @@ namespace ColonyCouncil
                 yield return Option_Postpone;
             }
         }
+
+        /// <summary>The event card: the people it comes from.</summary>
+        public override void Describe(EventCardFacts facts) => facts.faction ??= people;
 
         public override void ExposeData()
         {

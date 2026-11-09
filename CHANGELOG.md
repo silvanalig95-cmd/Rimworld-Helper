@@ -5,6 +5,16 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## Rimfolk's letters open as event cards
+
+*9 November 2026, version 0.190.0*
+
+- Rimfolk's letters still arrive on the right as the game's do; opened, they show as a card in Rimfolk's own look that you can move and size.
+- The card shows who or what it is about with their portraits, the people it comes from with their stance, and a button to see it on the map.
+- Each answer is its own card with what it does, its costs and risks, and why it can't be chosen when it can't; a colony custom is marked as such.
+- Who is involved is shown with their mood and how strained they are, and where the council has voted, which way it leans.
+- Every answer still does exactly what the game's letter did; a setting, Rimfolk's event cards, brings back the game's letter window.
+
 ## A full kit for every colonist
 
 *9 November 2026, version 0.189.0*

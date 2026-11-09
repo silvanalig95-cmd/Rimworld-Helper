@@ -872,7 +872,7 @@ namespace ColonyCouncil
     }
 
     /// <summary>A people at peace offers to send their envoy to live at the colony for a season: accept, decline, or put it off.</summary>
-    public class ChoiceLetter_EnvoyOffer : ChoiceLetter
+    public class ChoiceLetter_EnvoyOffer : RimfolkLetter
     {
         public Faction people;
         public int home = HomesMath.None;
@@ -919,6 +919,9 @@ namespace ColonyCouncil
                 yield return Option_Postpone;
             }
         }
+
+        /// <summary>The event card: the people it comes from.</summary>
+        public override void Describe(EventCardFacts facts) => facts.faction ??= people;
 
         public override void ExposeData()
         {

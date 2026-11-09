@@ -409,7 +409,7 @@ namespace ColonyCouncil
     /// their messenger), give the colony's word on their side (a letter to their head), or refuse. Once the call has moved on
     /// (answered another way, broken, their people at war with the colony), only closing is left.
     /// </summary>
-    public class ChoiceLetter_FavourAsk : ChoiceLetter
+    public class ChoiceLetter_FavourAsk : RimfolkLetter
     {
         public int tie = -1;
         public int need = -1;

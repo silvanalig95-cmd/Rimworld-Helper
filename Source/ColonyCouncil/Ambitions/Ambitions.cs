@@ -1093,7 +1093,7 @@ namespace ColonyCouncil
     }
 
     /// <summary>The meeting letter: pick one of the pitched ambitions, or none.</summary>
-    public class ChoiceLetter_CouncilMeeting : ChoiceLetter
+    public class ChoiceLetter_CouncilMeeting : RimfolkLetter
     {
         public Map map;
         public List<AmbitionDef> options = new List<AmbitionDef>();
@@ -1142,6 +1142,25 @@ namespace ColonyCouncil
                 yield return none;
                 yield return Option_Postpone;
             }
+        }
+
+        /// <summary>
+        /// The event card: those who put their ideas, who backed which, and what the room leans to (the meeting's own
+        /// count: the idea with the most backers, or a split room), while the choice is still open.
+        /// </summary>
+        public override void Describe(EventCardFacts facts)
+        {
+            foreach (var p in proposers) facts.Person(p);
+            if (ArchivedOnly || options.Count == 0 || voterPawns.Count == 0) return;
+            for (int i = 0; i < voterPawns.Count && i < voterChoice.Count; i++) facts.Backer(voterChoice[i], voterPawns[i]);
+            int lean = EventCardMath.Lean(EventCardMath.Votes(voterChoice, options.Count));
+            if (lean < 0)
+            {
+                facts.leanText = "CC_Meeting_Split".Translate().Resolve();
+                return;
+            }
+            facts.lean = lean;
+            facts.leanText = "CC_Meeting_Leans".Translate((options[lean]?.label ?? "?").Named("AMBITION"), (lean < proposers.Count ? proposers[lean] : null).Named("PAWN")).Resolve();
         }
 
         public override void ExposeData()

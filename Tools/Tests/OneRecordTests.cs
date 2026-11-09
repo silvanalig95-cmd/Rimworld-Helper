@@ -95,7 +95,7 @@ public static class OneRecordTests
 
         var letters = new Dictionary<string, string>();
         foreach (var f in Directory.GetFiles(src, "*.cs", SearchOption.AllDirectories))
-            foreach (Match m in Regex.Matches(File.ReadAllText(f), @"public class (ChoiceLetter_\w+) : ChoiceLetter"))
+            foreach (Match m in Regex.Matches(File.ReadAllText(f), @"public class (ChoiceLetter_\w+) : (?:ChoiceLetter|RimfolkLetter)\b"))
                 letters[m.Groups[1].Value] = f;
         var notQuestions = new[] { "ChoiceLetter_News", "ChoiceLetter_Welcome", "ChoiceLetter_WhatsNew" };
         var questions = letters.Keys.Where(k => !notQuestions.Contains(k)).OrderBy(k => k).ToList();

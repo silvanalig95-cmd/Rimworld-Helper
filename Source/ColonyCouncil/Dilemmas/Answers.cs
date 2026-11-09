@@ -129,7 +129,8 @@ namespace ColonyCouncil
         /// <summary>An option's words (the game keeps them to itself).</summary>
         private static readonly AccessTools.FieldRef<DiaOption, string> OptionText = AccessTools.FieldRefAccess<DiaOption, string>("text");
 
-        private static string TextOf(DiaOption o)
+        /// <summary>An option's words as the game keeps them (null when they can't be read); Rimfolk's event cards read them too.</summary>
+        internal static string TextOf(DiaOption o)
         {
             try
             {

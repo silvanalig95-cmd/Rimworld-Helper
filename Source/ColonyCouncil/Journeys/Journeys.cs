@@ -399,7 +399,7 @@ namespace ColonyCouncil
     /// The hour came and someone wasn't ready: wait an hour, leave without them, or call the journey off. The choices do
     /// nothing once the plan is gone (they set off after all, or it was called off another way).
     /// </summary>
-    public class ChoiceLetter_Journey : ChoiceLetter
+    public class ChoiceLetter_Journey : RimfolkLetter
     {
         public int planId;
 

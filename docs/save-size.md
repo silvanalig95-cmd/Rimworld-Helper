@@ -7,8 +7,8 @@ colony of 20, with the game keeping 30 more people it knows and 5 more each year
 generous guesses; sizes are rough XML sizes. Caps named as constants are read from the source. "Counted under" rows are
 kept inside another record (a journal's lines, a heart's lists) and are already in that record's size.
 
-Saved collections found: 602; modelled: 602; growing without end: 0.
-Rimfolk's part of the save, roughly: **2,615 KB** after a year, **3,090 KB** after two, **3,316 KB** after five.
+Saved collections found: 603; modelled: 603; growing without end: 0.
+Rimfolk's part of the save, roughly: **2,625 KB** after a year, **3,100 KB** after two, **3,326 KB** after five.
 
 | Collection | Rule | Kind | 1 year | 2 years | 5 years | KB at 5 years |
 |---|---|---|---|---|---|---|
@@ -74,6 +74,7 @@ Rimfolk's part of the save, roughly: **2,615 KB** after a year, **3,090 KB** aft
 | `Camps/CampTracker.cs:camps` | per colony: the camps visiting, one at the usual level, four at most on a huge map at "How many camps": Crowded (CampCrowdMath.MostAtOnce); each one's rows (members, plans...) are counted once above, a second to fourth adds as much again | while | 4 | 4 | 4 | 10.2 |
 | `CouncilGameComponent.cs:nextSteps` | the colony's next steps: the plan, at most 8 proposals, done ones for 5 days, let-go ones for 15 (Building/NextSteps.cs) | fixed | 40 | 40 | 40 | 10.2 |
 | `Epithets/Epithets.cs:holdsSaved` | how each held name holds (NameMath.Pack: since, a challenger and their season, the last holder), one per name held | defs | 74 | 74 | 74 | 10.1 |
+| `UI/EventCards/EventCards.cs:plain` | Rimfolk's plain letters by their ID, so they open as event cards after a load: those still on the stack or in the History tab, the newest 400 (EventCardMath.MaxPlain) | cap | 400 | 400 | 400 | 9.8 |
 | `Colonies/LandingRecord.cs:kit` | the starting kit's stacks (a reference, the def and stuff, how many are the kit's, where it came from), a few dozen in a crashlanding; split loads merge back on the stockpile and used-up stacks are let go; only for the first 3 days | while | 60 | 60 | 60 | 9.4 |
 | `Building/Suggest/SameRules.cs:markedDefs` | with the above: which order | fixed | 300 | 300 | 300 | 8.8 |
 | `Hud/HudComponent.cs:stock` | the inventory panel's stock: one packed line (about 120 items) every six hours per home map, the last five; only while that panel is on | cap | 5 | 5 | 5 | 8.8 |

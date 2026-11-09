@@ -10,7 +10,7 @@ namespace ColonyCouncil
     /// candidate, or call a seat's vote off and appoint someone (a menu of the seats and their candidates, each with what
     /// it costs). The same choices are on the Decrees page while the campaign lasts.
     /// </summary>
-    public class ChoiceLetter_Election : ChoiceLetter
+    public class ChoiceLetter_Election : RimfolkLetter
     {
         public int year;
         /// <summary>Where the election is held: whose council's it is (an older letter has none: the seat's).</summary>

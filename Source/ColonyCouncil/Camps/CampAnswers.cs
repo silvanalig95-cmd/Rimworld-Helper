@@ -408,7 +408,7 @@ namespace ColonyCouncil
     }
 
     /// <summary>A question about the camp, with its answers worked out when it's opened (see <see cref="CampAnswers.Options"/>).</summary>
-    public class ChoiceLetter_Camp : ChoiceLetter
+    public class ChoiceLetter_Camp : RimfolkLetter
     {
         public int campId;
         public string what;
@@ -488,6 +488,9 @@ namespace ColonyCouncil
             int i = CampAnswers.DefaultIndex(what);
             if (i < opts.Count) Answer(camp, opts[i], this, true);
         }
+
+        /// <summary>The event card: the one the camp's question is about.</summary>
+        public override void Describe(EventCardFacts facts) => facts.Person(pawn);
 
         public override void ExposeData()
         {

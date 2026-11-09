@@ -104,8 +104,10 @@ namespace ColonyCouncil
             new FrameKey("Trade", WindowFrameMath.TradeLeastW, WindowFrameMath.TradeLeastH),
             new FrameKey("Market", 820f, 400f),
             new FrameKey("Stall", 980f, 560f),
-            // Letters, journeys, camps and the colony's founding.
+            // Letters, journeys, camps and the colony's founding. An event card (UI/EventCards/): its header, a few lines and
+            // an answer, the foot's buttons (EventCardMath.LeastW, LeastH); the rest scrolls.
             new FrameKey("Letter", 580f, 740f),
+            new FrameKey("EventCard", 520f, 440f),
             new FrameKey("Journey", 760f, 540f),
             new FrameKey("JourneyPick", 440f, 400f),
             new FrameKey("Camp", 560f, 480f),

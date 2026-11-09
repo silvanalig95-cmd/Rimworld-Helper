@@ -97,7 +97,8 @@ The council's windows float, the Almanac and Rimfolk's dialogs are in the frame,
   does the corner's search; a card's model is kept for each look.
 - **Left as they were**: the on-screen panels and their edit bar (the map's layer), the room and defense planners docked
   above the architect menu (sized to their content and placed each frame), the search (a popup under its icon), the
-  game's own windows and panes (the mod settings, the inspect pane's tabs, the game's trade screen, choice letters).
+  game's own windows and panes (the mod settings, the inspect pane's tabs, the game's trade screen, choice letters; Rimfolk's
+  own letters open as event cards since stage 3).
 
 ## Risks to watch in the game
 
@@ -115,8 +116,8 @@ great. on-screens overall look great now, but if you can improve them further, g
 as a backuip somewhere. tooltips on pawns i don't really use i noticed. colonist card would be cool! also like item card
 for everything, although i fear that would take a lot of ressources?"
 
-1. **Event cards.** Rimfolk's letters still arrive on the right side as the game's do (the letter stack, its sounds and
-   colours unchanged). Opening one (dilemmas, Rimfolk's choice letters, its event letters) shows a Rimfolk card in the
+1. **Event cards** (built, below). Rimfolk's letters still arrive on the right side as the game's do (the letter stack,
+   its sounds and colours unchanged). Opening one (dilemmas, Rimfolk's choice letters, its event letters) shows a Rimfolk card in the
    frame and the kit: a picture of who or what it is about (portraits, the visitor, the thing), the text, each choice as
    a card with its impact hints, who is involved with their mood and heart, what the council leans to. With "Rimfolk's
    own look" off, the game's letter window as now.
@@ -135,3 +136,26 @@ Not taken now: pawn tooltips as cards (the player doesn't use them), the setting
 
 Order: 1, 2 and 3 side by side (unrelated areas) as places free up; 4 after the Mood tab's meters; 5 after the apparel
 card.
+
+## Stage 3, point 1: built (9 November 2026)
+
+The event cards (DESIGN.md, "Rimfolk's own look, stage 3, point 1: event cards" has all of it). Not released yet: no
+version, no What's new round.
+
+- **Which letters**: every choice letter class of Rimfolk's (28) derives from `RimfolkLetter`, whose `OpenLetter` opens
+  the card while the cards are on and the game's own window otherwise; Rimfolk's plain letters (the game's
+  `StandardLetter`, from the teller and Rimfolk's world-news defs) through one patch on `ChoiceLetter.OpenLetter` that
+  acts only on that plain class and only on Rimfolk's (its def, or its ID kept by the teller in `EventCardsBook`). The
+  game's own letters and other mods' are untouched; the colony news with lines keeps its own window.
+- **The card** (`UI/EventCards/EventCardWindow.cs`, key "EventCard", least 520 by 440): a header with the picture
+  (portraits, the thing, the people's emblem, else the kind's mark), the title, the kind beside the letter's colour, the
+  people with their stance, the jump to the place; the text; each answer as a card with the line under it, its costs and
+  risks, why it can't be chosen; who is involved with their mood and the heart's band, a click to go to them; what the
+  council leans to where it voted (the meeting, a hand-over); the links, the quest, postpone and close at the foot. Wider,
+  a side column and two or three columns of answers.
+- **The game's behaviour kept**: the letter's own choices, made once as the game's window makes them, owned by a hidden
+  `Dialog_NodeTree` of the game's so its own `DiaOption.Activate` runs; pausing the game; the History tab; quests; a
+  letter's last tick wanting an answer (no close then).
+- **Setting**: "Rimfolk's event cards" (`eventCards`, on), under "Rimfolk's own look"; with either off, the game's window.
+- **Not run here**: every letter's pages through the hidden tree, the card's look in the game, the portraits of people off
+  the map, a plain letter from an older save (it opens in the game's window).

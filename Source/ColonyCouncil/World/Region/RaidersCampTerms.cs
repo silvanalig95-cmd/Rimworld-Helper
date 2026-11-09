@@ -48,7 +48,7 @@ namespace ColonyCouncil
     /// Their terms, as a letter: pay their price (greyed out without the silver) or refuse. Once the camp is gone, or
     /// paid by other means, only closing is left.
     /// </summary>
-    public class ChoiceLetter_RaidersCamp : ChoiceLetter
+    public class ChoiceLetter_RaidersCamp : RimfolkLetter
     {
         /// <summary>The home it threatens (Homes.KeyOf) and when the camp was set up, to know it is still the same one.</summary>
         public int home = HomesMath.None;

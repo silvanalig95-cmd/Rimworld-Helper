@@ -369,7 +369,7 @@ namespace ColonyCouncil
     }
 
     /// <summary>The evening's colony news. Opened, it shows the news under its headings, each line with a way to go there.</summary>
-    public class ChoiceLetter_News : ChoiceLetter
+    public class ChoiceLetter_News : RimfolkLetter
     {
         public List<NewsItem> items = new List<NewsItem>();
 

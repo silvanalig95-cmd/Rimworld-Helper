@@ -303,7 +303,7 @@ namespace ColonyCouncil
     }
 
     /// <summary>A people at peace offers a youth of theirs to live at the colony for a year: accept, decline, or leave it a while.</summary>
-    public class ChoiceLetter_WardOffer : ChoiceLetter
+    public class ChoiceLetter_WardOffer : RimfolkLetter
     {
         public Faction people;
         public int home = HomesMath.None;
@@ -353,6 +353,9 @@ namespace ColonyCouncil
             }
         }
 
+        /// <summary>The event card: the people it comes from.</summary>
+        public override void Describe(EventCardFacts facts) => facts.faction ??= people;
+
         public override void ExposeData()
         {
             base.ExposeData();
@@ -368,7 +371,7 @@ namespace ColonyCouncil
     /// anyway (the deed "forgave"), keep them (the warden arrests them by the game's own arrest, and ransom applies), or ask
     /// them to stay (only if they would join). Left unanswered, they slip away home after a few days.
     /// </summary>
-    public class ChoiceLetter_HostageForfeit : ChoiceLetter
+    public class ChoiceLetter_HostageForfeit : RimfolkLetter
     {
         public int ward = -1;
 

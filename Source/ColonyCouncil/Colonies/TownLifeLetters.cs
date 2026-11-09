@@ -12,7 +12,7 @@ namespace ColonyCouncil
     /// in, only the colony's own, or send them on). Each does nothing once what it asks about is gone (the town taken back
     /// or no longer theirs, those at the gate gone on).
     /// </summary>
-    public class ChoiceLetter_TownLife : ChoiceLetter
+    public class ChoiceLetter_TownLife : RimfolkLetter
     {
         public const int Back = 0, Gate = 1;
 

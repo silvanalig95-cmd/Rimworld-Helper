@@ -729,6 +729,8 @@ namespace ColonyCouncil
         public bool ownLook = true;
         /// <summary>Rimfolk's windows move by their title bar, size from their edges and go large; the region window floats.</summary>
         public bool windowsMove = true;
+        /// <summary>Rimfolk's letters open as its event cards while its own look is on (UI/EventCards/); off, the game's letter window.</summary>
+        public bool eventCards = true;
         /// <summary>Where each of Rimfolk's windows was left and how big, as "key=x;y;w;h" (UI/WindowFrameMath.cs), set by moving them.</summary>
         public System.Collections.Generic.List<string> windowPlaces = new System.Collections.Generic.List<string>();
 
@@ -1158,6 +1160,7 @@ namespace ColonyCouncil
                 councilPageState ??= new System.Collections.Generic.List<string>();
             Scribe_Values.Look(ref ownLook, "ownLook", true);
             Scribe_Values.Look(ref windowsMove, "windowsMove", true);
+            Scribe_Values.Look(ref eventCards, "eventCards", true);
             Scribe_Collections.Look(ref windowPlaces, "windowPlaces", LookMode.Value);
             if (Scribe.mode == LoadSaveMode.PostLoadInit || Scribe.mode == LoadSaveMode.LoadingVars)
                 windowPlaces ??= new System.Collections.Generic.List<string>();

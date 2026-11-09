@@ -9256,7 +9256,7 @@ Escape, the corner, the keys and the settings work as before, floating or as tab
 - **Left as they were**: the on-screen panels and their edit bar (the map's layer, their own look and options), the room
   and defense planners docked above the architect menu (placed and sized to their content every frame: a frame would
   fight them), the search popup (a popup, not a window that moves), and the game's own windows (the mod settings, the
-  inspect pane's tabs, the game's trade screen, choice letters).
+  inspect pane's tabs, the game's trade screen, choice letters: Rimfolk's own open as its event cards since stage 3).
 - **Settings**: none new; "Rimfolk's own look" and "Rimfolk's windows move and resize" now cover every window above
   (their words in `Rimfolk_OwnLook.xml` say so). Saved: nothing in the game; the new windows' places go in the settings'
   `windowPlaces` by their keys, as stage 1's.
@@ -9275,6 +9275,79 @@ Escape, the corner, the keys and the settings work as before, floating or as tab
   it; the letter window at its least on a short screen (its contents don't scroll); the dialogs' text fields' focus in
   the frame; a preview's look following its link through two levels; the market's columns with and without Vanilla
   Trading Expanded at the window's least.
+
+#### Rimfolk's own look, stage 3, point 1: event cards (docs/design/rimfolk-look.md)
+
+The player (9 November 2026), asked which of Rimfolk's other screens could take the new look: "like the events, assuming
+they still pop up the same way like normal game events do? i mean on the right side." So Rimfolk's letters arrive
+exactly as the game's do (the letter stack on the right, its sound, its colour, its arrival, right-click and timeout as
+before), and only the window that opens when one is clicked is Rimfolk's: an event card in the frame and the kit.
+
+- **Which letters.** Every choice letter class of Rimfolk's (28: the dilemma, the council's meeting, a calendar day, the
+  election, Rimfolk's events and the world's situations, the camps', the region's hamlet and raiders' camp, a journey,
+  the founding and town letters, every diplomacy letter: calls to arms, envoys, ransoms, vassals, wards and hostages,
+  matches, feasts, favours, fealty, pacts and truces; the colony news with no lines, the welcome and What's new) derives
+  from one base, `RimfolkLetter : ChoiceLetter` (`UI/EventCards/EventCards.cs`), whose only change is `OpenLetter`: the
+  card while the cards are on, else the game's own `ChoiceLetter.OpenLetter` as before. The colony news with lines keeps
+  its own window (`Dialog_News`). Rimfolk's plain letters are the game's own `StandardLetter` (the teller's `Tell.Letter`,
+  178 callers, with the game's kinds, and Rimfolk's own world-news LetterDefs): for these alone one patch, a prefix on
+  `ChoiceLetter.OpenLetter` (`Patch_EventCardPlainLetter`) that acts only when the letter is exactly `StandardLetter` and
+  Rimfolk's (its def from Rimfolk's content pack, or its ID kept by the teller), off with the deep hooks. The teller now
+  makes the letter with `LetterMaker.MakeLetter` (what `ReceiveLetter` did inside) and keeps its ID
+  (`EventCards.Mark`) in `EventCardsBook`, a small game component: the newest 400 (`EventCardMath.MaxPlain`), those no
+  longer on the stack or in the History tab let go at each save (modelled in `save_estimate.py`). The game's own letters
+  and other mods' are never touched; a death letter (the game's `DeathLetter`) stays the game's.
+- **Built on the letter's own data.** When the card opens it takes the letter's first page as the game's own window does
+  (`new DiaNode(Text)` with `Choices`, made once) and a hidden `Dialog_NodeTree` of the game's (`EventCardTree`, never
+  added to the window stack) as the options' owner: an option chosen runs the game's own `DiaOption.Activate` (found once
+  with `AccessTools`, the same steps written out if it can't be found), so its sound, the window closing (the tree's
+  `Close` closes the card), its action and the page it leads to are the game's own; a page an option leads to is shown on
+  the card. Disabled options keep their reasons; the letter's close, postpone and reject, its quest's page, its jump to
+  the place and its links to info cards are recognised by the game's own words for them (`EventCardMath.RoleOf`, the
+  answers' log's list) and drawn where they belong. Expiry, archiving and quests are untouched: the card, like the game's
+  letter window, pauses the game and holds the map (`forcePause`, `absorbInputAroundWindow`), the History tab opens it
+  through the same `OpenLetter`, the quest's button is the letter's own option. Its close button and Escape put it off
+  (the letter stays on the stack, as "Postpone" does), except on a letter's last tick, when the game opens it for an
+  answer and the card has no close (`EventCardMath.Closable`; `FramedWindow.FrameClosable`).
+- **The header**: a picture of who or what it is about (the people's portraits from the game's cache, up to three
+  overlapping, ringed in the letter's colour; else the thing in `UiKit.ItemPortrait`; else the people's emblem; else the
+  kind's mark in the letter's colour), the title in the large type, the letter's kind as a chip with the letter's own
+  colour beside its word (`EventCardMath.Kinds`: every LetterDef of Rimfolk's and the game's kinds its plain letters use,
+  26 words in `Rimfolk_EventCards.xml`), the people it comes from with their stance and goodwill, and the jump to the
+  place (the letter's own "Jump to location", else "Show on the map" where the camera can go). The title bar says
+  "Letter" and when it came, so the title is said once.
+- **The answers**, each a card: its words, the line under it as the setting "What each answer does" has it (the flavour
+  line, the hint in words, or the numbers), what it costs and risks (the answer's costs and its gamble, in words or in
+  numbers by the same setting, at most three and two lines, the rest named and all of it on hover), why it can't be
+  chosen now; the whole card answers. `DiaOption_Impact` keeps its own words apart from the line (`bare`) and the
+  answer's `OptionImpact` (`impact`), so the card reads what the letter read. On a dilemma that is a custom of the
+  colony's, the answer that keeps it is marked "The colony's custom" with how it stands (a tradition, or kept so many
+  years).
+- **Who is involved**: the people the letter names (its class's own, `RimfolkLetter.Describe`: a question's two, the
+  stranger, the second person, the pet, those who came; the meeting's proposers; the two of a match; the camp's one;
+  a hand-over's going; then everyone its look targets name), up to eight, each with their portrait, their mood on a bar
+  coloured by how near a break it is (the game's break thresholds), the heart's band as the colonist bar colours it
+  (`HeartView.BandColor`, the good side's own colour), or who they are to the colony (a prisoner, a slave, a guest's
+  people, an animal). A click goes to them on the map (the card closes, the letter stays).
+- **What the council leans to**, only where it has a view: the meeting's votes (`EventCardMath.Lean`: the idea most are
+  for, or a split room, in the meeting's own words) with each idea's backers on its card, and a hand-over's vote
+  (`LeanForAgainst`). The dilemmas have no council vote, so none is made up for them.
+- **The plumbing.** `EventCards.On`: Rimfolk's own look and the setting "Rimfolk's event cards" (`eventCards`, on, on the
+  How you're told page under the look). Off, or a card that can't be read or drawn, the game's own window opens as
+  before (`EventCards.OpenInGame`). The card is a `FramedWindow` with the key "EventCard" (least 520 by 440): it moves,
+  sizes, goes large and opens where it was left; wider, who is involved and what the council leans to stand in a column
+  beside the text (from a body of 760) and the answers go in two or three columns (`EventCardMath`, pure and tested).
+- **Speed**: portraits from the game's cache; the letter's choices, the people's mood and heart, the words and the
+  answers' lines are read once when the card opens (`EventCardModel`), the heights once a width; drawing is all a frame
+  does.
+- **Keys** in `Languages/English/Keyed/Rimfolk_EventCards.xml`. **Tests**: `Tools/Tests/EventCardTests.cs` (every
+  LetterDef's kind and its word, the options' roles, closing without an answer, the council's lean, the layout from the
+  least to 4K made large, the plain letters kept, the seams: one override, one patch on the plain class, the game's
+  Activate, the setting, nothing read per frame); `OneRecordTests` reads the letters on their new base.
+- **Not verified without the game**: the hidden node tree as the options' owner through every letter (the election's
+  menu pages above all), the jump and quest buttons, the card's look with a long letter at its least, the portraits of
+  people not on a map, the timing of a letter the game opens on its last tick, a plain letter from before this version
+  (not kept, so it opens in the game's window until it leaves the stack).
 
 #### The journey planner: who to bring and what to pack
 

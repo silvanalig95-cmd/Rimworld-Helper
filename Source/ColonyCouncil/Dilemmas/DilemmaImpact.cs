@@ -744,9 +744,9 @@ namespace ColonyCouncil
                     CouncilLog.ErrorOnce("answer impact", e);
                 }
                 opt = r == null || r.Empty ? new DiaOption(label)
-                    : Mode == ImpactShow.Exact ? new DiaOption_Impact(label, Compact(r), Full(r))
-                    : Mode == ImpactShow.Flavour ? new DiaOption_Impact(label, Flavour(r, seed, answer), HintFull(r))
-                    : new DiaOption_Impact(label, Hint(r), HintFull(r));
+                    : Mode == ImpactShow.Exact ? new DiaOption_Impact(label, Compact(r), Full(r), r)
+                    : Mode == ImpactShow.Flavour ? new DiaOption_Impact(label, Flavour(r, seed, answer), HintFull(r), r)
+                    : new DiaOption_Impact(label, Hint(r), HintFull(r), r);
             }
             else opt = new DiaOption(label);
             if (why != null) opt.Disable(why);
@@ -808,12 +808,18 @@ namespace ColonyCouncil
         public readonly string full;
         /// <summary>The hook draws the short line; false when it was written into the label instead.</summary>
         public readonly bool drawn;
+        /// <summary>The answer's own words, without the short line (Rimfolk's event card draws them apart).</summary>
+        public readonly string bare;
+        /// <summary>Everything the answer does, as it was read when the letter opened (the event card's costs and risks); null when not given.</summary>
+        public readonly OptionImpact impact;
 
-        public DiaOption_Impact(string label, string compact, string full)
+        public DiaOption_Impact(string label, string compact, string full, OptionImpact impact = null)
             : base(Hooked && !compact.NullOrEmpty() ? label : label + (compact.NullOrEmpty() ? "" : "\n" + compact.Colorize(ColoredText.SubtleGrayColor)))
         {
             this.compact = compact;
             this.full = full;
+            this.impact = impact;
+            bare = label;
             drawn = Hooked && !compact.NullOrEmpty();
         }
 

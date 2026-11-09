@@ -82,7 +82,7 @@ namespace ColonyCouncil
     }
 
     /// <summary>The welcome letter, with a button that opens the "Start here" page.</summary>
-    public class ChoiceLetter_Welcome : ChoiceLetter
+    public class ChoiceLetter_Welcome : RimfolkLetter
     {
         public override IEnumerable<DiaOption> Choices
         {

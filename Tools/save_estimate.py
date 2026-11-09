@@ -413,6 +413,8 @@ MODEL = {
     "Dilemmas/Answers.cs:started": ("fixed", 1, V, "per answer watched"),
     "UI/News.cs:waiting": ("cap", (C["NewsWaiting"], 10), 200, "the evening's news, 40 at most, sent each evening"),
     "UI/News.cs:items": ("cap", (C["NewsWaiting"], 10), 200, "per news letter; the game's archive keeps 200 letters"),
+    "UI/EventCards/EventCards.cs:plain": ("cap", (const("UI/EventCards/EventCardMath.cs", "MaxPlain", 400), 8), V,
+                                          "Rimfolk's plain letters by their ID, so they open as event cards after a load: those still on the stack or in the History tab, the newest 400 (EventCardMath.MaxPlain)"),
     "UI/WeekMemory.cs:pinnedPawns": ("fixed", 0, 40, "colonists pinned before following: read from an older save only, then followed; never written"),
     "UI/WeekMemory.cs:following": ("fixed", const("UI/FollowMath.cs", "Max", 12), 30, "FollowMath.Max: what the player follows, only their clicks, as text forms (\"p123\", \"t55\")"),
     "UI/WeekMemory.cs:pinnedWishes": ("fixed", 2, V, "pins of open wishes"),

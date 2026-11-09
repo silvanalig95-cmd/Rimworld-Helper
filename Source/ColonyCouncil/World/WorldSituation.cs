@@ -264,7 +264,7 @@ namespace ColonyCouncil
     }
 
     /// <summary>A world situation's question for the colony.</summary>
-    public class ChoiceLetter_Situation : ChoiceLetter
+    public class ChoiceLetter_Situation : RimfolkLetter
     {
         public SituationContext ctx;
         public string beatKey;
@@ -311,6 +311,9 @@ namespace ColonyCouncil
             base.Removed();
             if (!resolved) WorldSituations.Instance?.Resolve(this, Beat?.defaultOption ?? 0, true);
         }
+
+        /// <summary>The event card: who and what the situation's question is about.</summary>
+        public override void Describe(EventCardFacts facts) => facts.Context(ctx);
 
         public override void ExposeData()
         {

@@ -1117,7 +1117,7 @@ namespace ColonyCouncil
     /// Their offer for one of theirs in the colony's cells: accept their price, ask for more, let them go for nothing, keep
     /// them, or put it off within their day.
     /// </summary>
-    public class ChoiceLetter_RansomOffer : ChoiceLetter
+    public class ChoiceLetter_RansomOffer : RimfolkLetter
     {
         public int offer = -1;
 
@@ -1199,7 +1199,7 @@ namespace ColonyCouncil
     }
 
     /// <summary>Their demand for one of the colony's they hold, by their messenger at the gate: pay (greyed without the silver), refuse, or put it off within the game's day.</summary>
-    public class ChoiceLetter_RansomByHand : ChoiceLetter
+    public class ChoiceLetter_RansomByHand : RimfolkLetter
     {
         public int offer = -1;
 

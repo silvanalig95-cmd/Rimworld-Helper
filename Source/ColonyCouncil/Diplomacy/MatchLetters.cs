@@ -122,7 +122,7 @@ namespace ColonyCouncil
     }
 
     /// <summary>Their offer of a match, as a letter: agree (the colonist asked first), or decline.</summary>
-    public class ChoiceLetter_MatchOffer : ChoiceLetter
+    public class ChoiceLetter_MatchOffer : RimfolkLetter
     {
         public Faction people;
         public int home = HomesMath.None;
@@ -175,6 +175,14 @@ namespace ColonyCouncil
                 };
                 yield return Option_Postpone;
             }
+        }
+
+        /// <summary>The event card: the two to be matched, and their people.</summary>
+        public override void Describe(EventCardFacts facts)
+        {
+            facts.Person(ours);
+            facts.Person(theirs);
+            facts.faction ??= people;
         }
 
         public override void ExposeData()

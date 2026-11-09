@@ -373,7 +373,7 @@ namespace ColonyCouncil
     }
 
     /// <summary>A people's call for the colony's fighters, as a letter: send them (by caravan, within five days), or refuse.</summary>
-    public class ChoiceLetter_CallToArms : ChoiceLetter
+    public class ChoiceLetter_CallToArms : RimfolkLetter
     {
         public int tie = -1;
         public int town = -1;
