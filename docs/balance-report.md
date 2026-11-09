@@ -330,30 +330,80 @@ What fills the time (days per colonist per year, 6 colonists):
 "Serious, per colony" above is Rimfolk's serious illnesses as measured before the shared illness budget. Those and the
 game's own diseases, with the budget and without it, over six years a colony, are
 `dotnet run -c Release --project Tools/Balance -- --illness` (IllnessSim.cs; DESIGN.md, "The shared illness budget"),
-measured on 8 November 2026 (600 colony-years a case, the same seeds with it and without; written here by hand until
-the report is next written).
+measured on 9 November 2026 for the soft budget (600 colony-years a case, the same seeds and the same hours of the game's
+own with it and without; written here by hand until the report is next written). `IllnessBudgetTests` reads these
+tables against the targets in `IllnessBudgetMath` (Rimfolk's share 35% to 45% in an average colony, in all at most a
+fifth above the game's own kept well or fairly, well below no budget's neglected, two at once rare).
 
-A temperate forest at Strive to survive (the game's own every 50 days, 1.2 a year; Rimfolk's share at most 35%):
+A temperate forest at Strive to survive (the game's own every 50 days, 1.2 a year; held back three times in four, in all
+at most about a quarter above the game's own):
 
-| Case | Without: Rimfolk's | Without: the game's | Without: together | With: Rimfolk's | With: the game's | With: together | Held back | Put off | Rimfolk's share | The game's deadly, without / with |
-|---|---|---|---|---|---|---|---|---|---|---|
-| 6 colonists, well run | 0.19 | 1.17 | 1.36 | 0.10 | 1.09 | 1.18 | 0.08 | 0.10 | 8 % | 0.81 / 0.76 |
-| 6 colonists, average | 0.44 | 1.21 | 1.65 | 0.17 | 1.05 | 1.22 | 0.16 | 0.32 | 14 % | 0.78 / 0.67 |
-| 6 colonists, neglectful | 1.05 | 1.22 | 2.27 | 0.34 | 0.85 | 1.20 | 0.36 | 1.66 | 29 % | 0.80 / 0.56 |
-| 12 colonists, well run | 0.28 | 1.25 | 1.53 | 0.15 | 1.10 | 1.25 | 0.14 | 0.17 | 12 % | 0.80 / 0.70 |
-| 12 colonists, average | 0.63 | 1.25 | 1.88 | 0.27 | 0.98 | 1.25 | 0.27 | 0.58 | 21 % | 0.82 / 0.64 |
-| 12 colonists, neglectful | 1.40 | 1.16 | 2.56 | 0.37 | 0.78 | 1.16 | 0.38 | 3.63 | 32 % | 0.77 / 0.53 |
+| Case | The game's own | Without: Rimfolk's | Without: in all | With: Rimfolk's | With: the game's | With: in all | Above the game's own | Rimfolk's share | Held back | Came anyway | Put off | Two at once, without / with | The game's deadly, without / with |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| 6 colonists, well run | 1.17 | 0.19 | 1.36 | 0.31 | 0.95 | 1.27 | +8% | 25 % | 0.22 | 0.06 | 0.20 | 0.12 / 0.09 | 0.81 / 0.67 |
+| 6 colonists, average | 1.21 | 0.43 | 1.64 | 0.50 | 0.86 | 1.36 | +13% | 37 % | 0.35 | 0.13 | 0.46 | 0.17 / 0.09 | 0.78 / 0.56 |
+| 6 colonists, neglectful | 1.22 | 1.11 | 2.33 | 0.83 | 0.59 | 1.42 | +17% | 58 % | 0.63 | 0.18 | 2.88 | 0.20 / 0.06 | 0.80 / 0.39 |
+| 12 colonists, well run | 1.25 | 0.30 | 1.54 | 0.38 | 0.98 | 1.36 | +9% | 28 % | 0.27 | 0.09 | 0.32 | 0.23 / 0.16 | 0.80 / 0.63 |
+| 12 colonists, average | 1.25 | 0.63 | 1.89 | 0.62 | 0.78 | 1.39 | +11% | 44 % | 0.48 | 0.11 | 0.99 | 0.26 / 0.14 | 0.82 / 0.50 |
+| 12 colonists, neglectful | 1.16 | 1.40 | 2.56 | 0.91 | 0.55 | 1.46 | +26% | 62 % | 0.61 | 0.23 | 6.17 | 0.30 / 0.09 | 0.77 / 0.38 |
 
-At Adventure story's interval (`--interval 1.5`: every 75 days, 0.8 a year; Rimfolk's share at most 40%):
+Two serious illnesses at once on one colonist, a colony-year, by which came on which:
 
-| Case | Without: Rimfolk's | Without: the game's | Without: together | With: Rimfolk's | With: the game's | With: together | Held back | Put off | Rimfolk's share | The game's deadly, without / with |
-|---|---|---|---|---|---|---|---|---|---|---|
-| 6 colonists, well run | 0.19 | 0.78 | 0.97 | 0.12 | 0.68 | 0.79 | 0.11 | 0.09 | 15 % | 0.54 / 0.47 |
-| 6 colonists, average | 0.43 | 0.80 | 1.23 | 0.19 | 0.64 | 0.83 | 0.16 | 0.32 | 22 % | 0.53 / 0.42 |
-| 6 colonists, neglectful | 1.11 | 0.84 | 1.95 | 0.28 | 0.54 | 0.83 | 0.29 | 1.86 | 34 % | 0.54 / 0.36 |
-| 12 colonists, well run | 0.30 | 0.84 | 1.14 | 0.15 | 0.70 | 0.85 | 0.14 | 0.14 | 17 % | 0.53 / 0.43 |
-| 12 colonists, average | 0.63 | 0.81 | 1.44 | 0.24 | 0.58 | 0.82 | 0.23 | 0.56 | 30 % | 0.54 / 0.39 |
-| 12 colonists, neglectful | 1.40 | 0.77 | 2.17 | 0.28 | 0.46 | 0.74 | 0.31 | 3.78 | 38 % | 0.51 / 0.30 |
+| Case | Without: Rimfolk's on the game's | Without: the game's on Rimfolk's | Without: the game's own two | With: Rimfolk's on the game's | With: the game's on Rimfolk's | With: the game's own two |
+|---|---|---|---|---|---|---|
+| 6 colonists, well run | 0.008 | 0.008 | 0.105 | 0.000 | 0.010 | 0.080 |
+| 6 colonists, average | 0.033 | 0.028 | 0.105 | 0.000 | 0.018 | 0.068 |
+| 6 colonists, neglectful | 0.065 | 0.058 | 0.080 | 0.003 | 0.007 | 0.045 |
+| 12 colonists, well run | 0.020 | 0.028 | 0.185 | 0.003 | 0.008 | 0.147 |
+| 12 colonists, average | 0.045 | 0.025 | 0.190 | 0.002 | 0.005 | 0.137 |
+| 12 colonists, neglectful | 0.100 | 0.058 | 0.140 | 0.013 | 0.005 | 0.068 |
+
+Side by side, serious cases in all a colony-year: the game's own alone, 0.177.0's strict budget (as measured for it),
+the soft budget now, and no budget:
+
+| Case | The game's own | 0.177.0: in all | 0.177.0: Rimfolk's share | Now: in all | Now: above the game's own | Now: Rimfolk's share | Without the budget: in all |
+|---|---|---|---|---|---|---|---|
+| 6 colonists, well run | 1.17 | 1.18 | 8 % | 1.27 | +8% | 25 % | 1.36 |
+| 6 colonists, average | 1.21 | 1.22 | 14 % | 1.36 | +13% | 37 % | 1.64 |
+| 6 colonists, neglectful | 1.22 | 1.20 | 29 % | 1.42 | +17% | 58 % | 2.33 |
+| 12 colonists, well run | 1.25 | 1.25 | 12 % | 1.36 | +9% | 28 % | 1.54 |
+| 12 colonists, average | 1.25 | 1.25 | 21 % | 1.39 | +11% | 44 % | 1.89 |
+| 12 colonists, neglectful | 1.16 | 1.16 | 32 % | 1.46 | +26% | 62 % | 2.56 |
+
+At Adventure story's interval (`--interval 1.5`: every 75 days, 0.8 a year; Rimfolk's catching clock and the land's
+serious illnesses lean with the interval as in the game, which 0.177.0's measure didn't):
+
+| Case | The game's own | Without: Rimfolk's | Without: in all | With: Rimfolk's | With: the game's | With: in all | Above the game's own | Rimfolk's share | Held back | Came anyway | Put off | Two at once, without / with | The game's deadly, without / with |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| 6 colonists, well run | 0.78 | 0.14 | 0.92 | 0.15 | 0.69 | 0.84 | +7% | 18 % | 0.09 | 0.03 | 0.06 | 0.06 / 0.03 | 0.54 / 0.48 |
+| 6 colonists, average | 0.80 | 0.34 | 1.14 | 0.32 | 0.60 | 0.92 | +14% | 35 % | 0.21 | 0.07 | 0.22 | 0.07 / 0.04 | 0.53 / 0.39 |
+| 6 colonists, neglectful | 0.84 | 1.09 | 1.92 | 0.59 | 0.44 | 1.03 | +23% | 57 % | 0.40 | 0.15 | 1.84 | 0.12 / 0.04 | 0.54 / 0.27 |
+| 12 colonists, well run | 0.84 | 0.22 | 1.06 | 0.20 | 0.72 | 0.92 | +9% | 22 % | 0.13 | 0.05 | 0.12 | 0.11 / 0.08 | 0.53 / 0.45 |
+| 12 colonists, average | 0.81 | 0.61 | 1.41 | 0.40 | 0.52 | 0.92 | +14% | 43 % | 0.29 | 0.08 | 0.55 | 0.11 / 0.05 | 0.54 / 0.35 |
+| 12 colonists, neglectful | 0.77 | 1.41 | 2.18 | 0.64 | 0.34 | 0.99 | +28% | 65 % | 0.43 | 0.18 | 3.81 | 0.17 / 0.05 | 0.51 / 0.21 |
+
+Two serious illnesses at once on one colonist, a colony-year, by which came on which:
+
+| Case | Without: Rimfolk's on the game's | Without: the game's on Rimfolk's | Without: the game's own two | With: Rimfolk's on the game's | With: the game's on Rimfolk's | With: the game's own two |
+|---|---|---|---|---|---|---|
+| 6 colonists, well run | 0.008 | 0.002 | 0.048 | 0.000 | 0.000 | 0.030 |
+| 6 colonists, average | 0.020 | 0.005 | 0.045 | 0.002 | 0.003 | 0.032 |
+| 6 colonists, neglectful | 0.060 | 0.023 | 0.040 | 0.003 | 0.000 | 0.038 |
+| 12 colonists, well run | 0.010 | 0.013 | 0.083 | 0.000 | 0.005 | 0.072 |
+| 12 colonists, average | 0.018 | 0.018 | 0.070 | 0.000 | 0.003 | 0.043 |
+| 12 colonists, neglectful | 0.052 | 0.032 | 0.090 | 0.000 | 0.005 | 0.047 |
+
+Side by side, serious cases in all a colony-year: the game's own alone, 0.177.0's strict budget (as measured for it),
+the soft budget now, and no budget:
+
+| Case | The game's own | 0.177.0: in all | 0.177.0: Rimfolk's share | Now: in all | Now: above the game's own | Now: Rimfolk's share | Without the budget: in all |
+|---|---|---|---|---|---|---|---|
+| 6 colonists, well run | 0.78 | 0.79 | 15 % | 0.84 | +7% | 18 % | 0.92 |
+| 6 colonists, average | 0.80 | 0.83 | 22 % | 0.92 | +14% | 35 % | 1.14 |
+| 6 colonists, neglectful | 0.84 | 0.83 | 34 % | 1.03 | +23% | 57 % | 1.92 |
+| 12 colonists, well run | 0.84 | 0.85 | 17 % | 0.92 | +9% | 22 % | 1.06 |
+| 12 colonists, average | 0.81 | 0.82 | 30 % | 0.92 | +14% | 43 % | 1.41 |
+| 12 colonists, neglectful | 0.77 | 0.74 | 38 % | 0.99 | +28% | 65 % | 2.18 |
 
 ## The presets
 

@@ -20,6 +20,7 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref lastPaid, "lastPaid");
             Scribe_Values.Look(ref lastPutOff, "lastPutOff", IllnessBudgetMath.Never);
             Scribe_Values.Look(ref held, "held");
+            Scribe_Values.Look(ref cameAnyway, "cameAnyway");
             Scribe_Values.Look(ref putOff, "putOff");
             Scribe_Values.Look(ref note, "note");
             Scribe_Values.Look(ref noteTick, "noteTick", IllnessBudgetMath.Never);
@@ -32,10 +33,12 @@ namespace ColonyCouncil
     }
 
     /// <summary>
-    /// The shared illness budget, the game's side (the rules are IllnessBudgetMath): Rimfolk's serious illnesses take a share
-    /// of the game's own disease rate instead of adding to it. A serious case of Rimfolk's that starts on a home owes a skip,
-    /// and the game's next human disease the storyteller aims there is held back (<see cref="Patch_IllnessBudget"/>); once
-    /// the game's own disease has come, Rimfolk's wait their gap there; and Rimfolk takes at most about half the cases. The
+    /// The shared illness budget, the game's side (the rules are IllnessBudgetMath): Rimfolk's serious illnesses mostly take a
+    /// turn of the game's own diseases instead of adding one. A serious case of Rimfolk's that starts on a home owes a skip,
+    /// and the game's next human disease the storyteller aims there is held back three times in four
+    /// (<see cref="Patch_IllnessBudget"/>), the debt let go when it comes all the same; one debt at a time; once the game's
+    /// own disease has come, Rimfolk's rest a week there and come back over a month; with all that they come more readily,
+    /// and far less to someone already fighting a serious illness (<see cref="SeriousFactor"/>, <see cref="Spare"/>). The
     /// records say so: a line in the news when a disease is held back or a case put off, the serious illness's letter, the
     /// advisor's sickness line. "Serious illness shares the game's own rate" (How hard, the ailments) off, or the deeper game
     /// hooks off: as it was before.
@@ -98,9 +101,10 @@ namespace ColonyCouncil
         }
 
         /// <summary>
-        /// Whether a new serious illness of Rimfolk's may start on this home now, within the budget; when it may not, the
-        /// case is put off (counted, and now and then said). Asked once its own chance has come up and the colony's own room
-        /// (one kind at a time, none within thirty days of the last) is open.
+        /// Whether a new serious illness of Rimfolk's may start on this home now, within the budget: never while a debt is
+        /// owed or in the pause after the game's own, at a lowered chance in the weeks after it. When it may not, the case is
+        /// put off (counted, and now and then said). Asked once its own chance has come up and the colony's own room (one
+        /// serious illness at a time, none within thirty days of the last) is open.
         /// </summary>
         public static bool Allows(Map map, HediffDef def, Pawn p)
         {
@@ -108,10 +112,93 @@ namespace ColonyCouncil
             var b = LedgerOf(map, false);
             if (b == null) return true;
             int now = Now;
-            var room = IllnessBudgetMath.Room(b, now, KeepDays(map));
-            if (room == BudgetRoom.Open) return true;
-            PutOff(map, b, def, p, room, now);
+            float keep = KeepDays(map);
+            if (IllnessBudgetMath.Allows(b, now, keep, Rand.Value)) return true;
+            PutOff(map, b, def, p, IllnessBudgetMath.Room(b, now, keep), now);
             return false;
+        }
+
+        // ---------------- Two at once ----------------
+
+        private static HashSet<HediffDef> gameDiseases;
+        private static readonly Dictionary<HediffDef, bool> seriousKinds = new Dictionary<HediffDef, bool>();
+
+        /// <summary>
+        /// A serious illness, for the overlap rule: one of Rimfolk's serious ones, anything the game's human disease events
+        /// give (the game's own and mods'), or another illness that races immunity and can kill (a wound infection). Not the
+        /// everyday ailments, food poisoning or the like.
+        /// </summary>
+        public static bool IsSeriousIllness(HediffDef def)
+        {
+            if (def == null) return false;
+            if (seriousKinds.TryGetValue(def, out bool known)) return known;
+            bool serious;
+            var info = AilmentTracker.InfoOf(def);
+            if (info != null) serious = info.serious;
+            else
+            {
+                if (gameDiseases == null)
+                {
+                    gameDiseases = new HashSet<HediffDef>();
+                    foreach (var inc in DefDatabase<IncidentDef>.AllDefsListForReading)
+                        if (inc?.diseaseIncident != null && inc.category == IncidentCategoryDefOf.DiseaseHuman)
+                            gameDiseases.Add(inc.diseaseIncident);
+                }
+                serious = gameDiseases.Contains(def) || (def.isBad && def.lethalSeverity > 0f && def.CompProps<HediffCompProperties_Immunizable>() != null);
+            }
+            seriousKinds[def] = serious;
+            return serious;
+        }
+
+        /// <summary>Fighting a serious illness now (<see cref="IsSeriousIllness"/>), the game's or Rimfolk's, shown yet or not.</summary>
+        public static bool SeriouslyIll(Pawn p)
+        {
+            var hs = p?.health?.hediffSet?.hediffs;
+            if (hs == null) return false;
+            for (int i = 0; i < hs.Count; i++)
+                if (hs[i] != null && IsSeriousIllness(hs[i].def))
+                    return true;
+            return false;
+        }
+
+        /// <summary>
+        /// For a new serious illness of Rimfolk's starting on them (not one passed on): with the budget on its chance is
+        /// times <see cref="Readiness"/>, since most of them take a turn of the game's rather than add one, and times
+        /// <see cref="IllnessBudgetMath.OverlapFactor"/> for someone already fighting a serious illness.
+        /// </summary>
+        public static float SeriousFactor(Pawn p) => On ? Readiness * IllnessBudgetMath.Overlap(SeriouslyIll(p)) : 1f;
+
+        /// <summary>For a serious illness of Rimfolk's passed on between roommates: far less to someone already fighting one.</summary>
+        public static float SpreadFactor(Pawn p) => On ? IllnessBudgetMath.Overlap(SeriouslyIll(p)) : 1f;
+
+        /// <summary>
+        /// How much more readily Rimfolk's serious illnesses come with the budget on, by the storyteller's disease interval
+        /// (<see cref="IllnessBudgetMath.ReadinessAt"/>): for every new case and the catching clock's serious one. 1 with it off.
+        /// </summary>
+        public static float Readiness => On ? IllnessBudgetMath.ReadinessAt(Find.Storyteller?.difficulty?.diseaseIntervalFactor ?? 1f) : 1f;
+
+        /// <summary>
+        /// The catching clock's serious one, its victims picked: each already fighting a serious illness keeps their place
+        /// only at the overlap factor, else someone well from the rest of <paramref name="pool"/> takes it (none left: one
+        /// fewer). As picked with the budget off.
+        /// </summary>
+        public static List<Pawn> Spare(List<Pawn> chosen, IEnumerable<Pawn> pool)
+        {
+            if (!On || chosen == null || chosen.Count == 0) return chosen;
+            List<Pawn> well = null;
+            var kept = new List<Pawn>(chosen.Count);
+            foreach (var p in chosen)
+            {
+                if (!SeriouslyIll(p) || Rand.Chance(IllnessBudgetMath.OverlapFactor))
+                {
+                    kept.Add(p);
+                    continue;
+                }
+                well ??= (pool ?? Enumerable.Empty<Pawn>()).Where(o => o != null && !chosen.Contains(o) && !SeriouslyIll(o)).InRandomOrder().ToList();
+                var other = well.FirstOrDefault(o => !kept.Contains(o));
+                if (other != null) kept.Add(other);
+            }
+            return kept;
         }
 
         /// <summary>A serious case of Rimfolk's started (not one passed on): its home owes the game one skip.</summary>
@@ -148,8 +235,9 @@ namespace ColonyCouncil
         // ---------------- The game's side ----------------
 
         /// <summary>
-        /// The game's own counted disease is about to come to a home that owes a skip: held back (true), paying the oldest
-        /// debt there. Only one that would really have come is held: with no one it could take, it passes as it would have.
+        /// The game's own counted disease is about to come to a home that owes a skip: held back (true) three times in four,
+        /// paying the oldest debt there; otherwise it comes, and <see cref="Came"/> lets the debt go. Only one that would
+        /// really have come is asked: with no one it could take, it passes as it would have and the debt waits.
         /// </summary>
         public static bool TryHold(FiringIncident fi)
         {
@@ -161,16 +249,17 @@ namespace ColonyCouncil
             float keep = KeepDays(map);
             if (IllnessBudgetMath.Owing(b, now, keep) == 0) return false;
             if (!fi.def.Worker.CanFireNow(fi.parms)) return false;
-            if (!IllnessBudgetMath.Hold(b, now, keep, out string paidFor)) return false;
+            if (!IllnessBudgetMath.Hold(b, now, keep, Rand.Value, out string paidFor)) return false;
             Held(map, b, fi.def, paidFor, now);
             return true;
         }
 
-        /// <summary>The game's own counted disease came to a home: Rimfolk's serious illnesses wait their gap there.</summary>
+        /// <summary>The game's own counted disease came to a home: a debt it didn't hold back for is let go, and Rimfolk's serious illnesses rest there a while.</summary>
         public static void Came(FiringIncident fi)
         {
             if (Which(fi) != BudgetFiring.Counts) return;
-            IllnessBudgetMath.GameCame(LedgerOf((Map)fi.parms.target, true), Now);
+            var map = (Map)fi.parms.target;
+            IllnessBudgetMath.GameCame(LedgerOf(map, true), Now, KeepDays(map));
         }
 
         private static void Held(Map map, IllnessLedger b, IncidentDef disease, string paidFor, int now)
@@ -238,7 +327,8 @@ namespace ColonyCouncil
                 var b = LedgerOf(map, false);
                 sb.Append("  ").Append(map.Parent?.LabelCap ?? map.ToString()).Append(": the game's own every ")
                     .Append(float.IsInfinity(mean) ? "never" : mean.ToString("0") + " days (" + IllnessBudgetMath.GamePerYear(mean).ToString("0.00") + " a year)")
-                    .Append(", debts kept ").Append(keep.ToString("0")).Append(" days, Rimfolk's share at most ").Append(IllnessBudgetMath.MaxShare(mean).ToString("P0"));
+                    .Append(", debts kept ").Append(keep.ToString("0")).Append(" days, held back ").Append(IllnessBudgetMath.HoldChance.ToString("P0"))
+                    .Append(" of the time, in all at most ").Append((IllnessBudgetMath.MostInAll - 1f).ToString("P0")).Append(" above the game's own");
                 if (b == null)
                 {
                     sb.AppendLine("; nothing owed, nothing recorded.");
@@ -248,7 +338,8 @@ namespace ColonyCouncil
                 for (int i = 0; i < b.owed.Count; i++)
                     sb.Append(i == 0 ? " (" : ", ").Append(b.owedFor.Count > i ? b.owedFor[i] : "?").Append(" ").Append(((now - b.owed[i]) / (float)GenDate.TicksPerDay).ToString("0.0")).Append(" days ago").Append(i == b.owed.Count - 1 ? ")" : "");
                 sb.Append("; the game's last ").Append(Ago(b.lastGame, now)).Append(", last held back ").Append(Ago(b.lastSkip, now))
-                    .Append("; held back ").Append(b.held).Append(", put off ").Append(b.putOff).Append("; room now: ").Append(IllnessBudgetMath.Room(b, now, keep)).AppendLine(".");
+                    .Append("; held back ").Append(b.held).Append(", came anyway ").Append(b.cameAnyway).Append(", put off ").Append(b.putOff)
+                    .Append("; room now: ").Append(IllnessBudgetMath.Room(b, now, keep)).Append(" (chance ").Append(IllnessBudgetMath.Chance(b, now, keep).ToString("P0")).AppendLine(").");
                 if (!b.note.NullOrEmpty()) sb.Append("    last record (").Append(Ago(b.noteTick, now)).Append("): ").AppendLine(b.note);
             }
             return sb.ToString().TrimEnd();
@@ -259,7 +350,8 @@ namespace ColonyCouncil
 
     /// <summary>
     /// The shared illness budget's hook (IllnessBudget): the game's own human disease the storyteller aims at a home that
-    /// owes a skip is held back, not fired; one that comes is noted, so Rimfolk's serious illnesses wait their gap there.
+    /// owes a skip is held back three times in four, not fired; one that comes is noted (a debt let go, Rimfolk's serious
+    /// illnesses resting there a while).
     /// The other prefixes on the storyteller's firing hold raids (Dealings/DealingPatches.cs, Peoples/PeoplesFPatches.cs)
     /// and the sky's conditions (Peoples/PeoplesEPatches.cs), never a disease; and a firing another prefix has already
     /// held is left to it (<c>__runOriginal</c>), so no debt is paid for a disease that wasn't going to come.

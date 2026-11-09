@@ -12,6 +12,76 @@ tree at once, alongside whatever runs. Each piece is merged as its own release, 
 
 ## State (5 November 2026)
 
+- 0.180.0, the shared illness budget made soft (9 November 2026, the player's answer to how 0.177.0 works, "Rimfolk's illnesses
+  take a turn instead of adding one": "people should be able to suffer for different things, but it should just not be
+  common"; the lead's brief: Rimfolk's kinds met regularly, now and then two things at once, even on one person, serious
+  illness in all still uncommon).
+  DESIGN.md "The shared illness budget (the player's choice, 8 November 2026; made soft, 9 November 2026)" has all of it
+  with the tables (old, new and the game's own side by side), and "Save size"; docs/balance-report.md the illness tables;
+  README's paragraph and the crowding sentence; the Almanac's ailments page, *Sharing the game's own rate* (prose only,
+  keywords unchanged).
+  - What: **the hold is soft**: the game's next disease on a home that owes is held back three times in four
+    (`HoldChance` 0.75, the roll in `TryHold`); otherwise it comes and the debt is let go as it lands (`GameCame`, the
+    postfix; counted `cameAnyway`). **One debt at a time** stays (`MaxOwed` 1); 0.177.0's `GameTurn` (after a skip the
+    game's own first) is gone. **After the game's own**, a firm pause of 8 days (`PauseDays`, `BudgetRoom.Waiting`), then
+    a quarter of the chance coming back evenly to whole over four weeks (`EaseFrom`, `EaseDays`, `Eased`,
+    `BudgetRoom.Easing`), not a flat 30 days. **More readily**: with the budget on, every new serious case of Rimfolk's
+    (each cause of a colonist's day through `PersonFactor` and the diet's and after-cold's rolls, and the catching clock's
+    serious one) is 2.75 times as likely at the usual disease interval (`Readiness`), leaning with the storyteller's
+    interval by its power 1.5 (`ReadinessAt`: 1.5 times at Adventure story), since the budget's rules alone leave an
+    average colony of six at a fifth or so. **Two at once, rarely**: someone already fighting a serious illness (one of
+    Rimfolk's, anything a `DiseaseHuman` incident gives, or another lethal immunizable illness such as a wound infection:
+    `IllnessBudget.IsSeriousIllness`) gets a new one of Rimfolk's at a quarter of the chance (`OverlapFactor`), from
+    their day, from a roommate (`SpreadFactor`) and on the catching clock (`Spare`: someone well takes the place). The
+    game's own diseases pick as before. Unchanged: everyday ailments, frailty, dirty wounds, what counts as the game's
+    disease, the news lines (the held-back line is said only when the hold happened), the setting (on by default).
+    Words: the letter no longer says the case takes the place of one of the game's own ("the next of them will most
+    likely pass the colony by"); the setting's tip and note and the advisor's crowding line say "only a little more in
+    all".
+  - Code: `Ailments/IllnessBudgetMath.cs` (`HoldChance`, `PauseDays`, `EaseFrom`, `EaseDays`, `Readiness`,
+    `ReadinessAt`, `IntervalLean`, `OverlapFactor`, `Overlap`, `MostInAll`, `Eased`, `Chance`, `Allows(roll)`,
+    `Hold(roll)`, `GameCame(keep)`, `GapDays` for `WaitDays`, the targets `TargetShareMin/Max`, `TargetAbove`,
+    `TargetTwoAtOnce`, `TargetTwoAtOnceRimfolk`; `MaxShare` and `BudgetRoom.GameTurn` gone), `IllnessBudget.cs`
+    (`Allows` on the chance, `TryHold`'s roll, `Came` lets the debt go, `IsSeriousIllness`, `SeriouslyIll`,
+    `SeriousFactor`, `SpreadFactor`, `Readiness`, `Spare`, the report), `AilmentTracker.cs` (`PersonFactor` and
+    `SeriousFactor`, the diet's and after-cold's rolls, `Spread`, the clock's serious one), `IncidentWorker_Ailment`
+    (`ActualVictims` spares the ill), `IllnessBudgetDebug` (says when one came all the same), `Rimfolk_IllnessBudget.xml`.
+    Balance: `Sim.cs` plays the game's own diseases on the colonists (`Rates.GameDiseaseKinds`, a rough model: who and
+    for how long, own draws) and counts two at once by which came on which; the budget's own draws (`budgetRng`) so the
+    game's own come at the same hours on and off; the catching clocks and the land's serious ones lean with
+    `--interval` as in the game; `IllnessSim.cs` prints the new columns and the table of two at once.
+  - Tests: `IllnessBudgetTests` rewritten and extended (the soft hold over even rolls and its boundary, the debt let go,
+    the pause and the easing step by step, the readiness and its lean, the overlap factor, 4,000 years played out at five
+    rates of demand, the seams in the code, the words never promising a place, and the balance report's two tables read
+    against the targets).
+  - Saved: `IllnessLedger.cameAnyway` (an int, "cameAnyway"); a 0.177.0 ledger loads it as none, an older save has no
+    ledgers and owes nothing. `Tools/save_estimate.py` notes it in the budget's model.
+  - Balance (600 colony-years a case, temperate forest; the game's own / 0.177.0 / now / no budget, in all a
+    colony-year): Strive to survive, 6 colonists well run 1.17 / 1.18 / 1.27 / 1.36, average 1.21 / 1.22 / 1.36 / 1.64,
+    neglected 1.22 / 1.20 / 1.42 / 2.33; 12 colonists 1.25 / 1.25 / 1.36 / 1.54, 1.25 / 1.25 / 1.39 / 1.89, 1.16 / 1.16
+    / 1.46 / 2.56 (+8% to +13% kept well or fairly, +17% and +26% neglected). Rimfolk's share 25%, 37%, 58% (6) and 28%,
+    44%, 62% (12), where 0.177.0 had 8% to 32%; at Adventure story 0.84 to 0.92 kept well or fairly against the game's
+    0.78 to 0.84 (+7% to +14%), shares 35% and 43% average. Two at once 0.06 to 0.16 a colony-year at Strive to survive
+    and 0.03 to 0.08 at Adventure story (no budget 0.06 to 0.30), nearly all two of the game's own; with one of the two
+    Rimfolk's 0.02 at most.
+  - Riskiest (none of it could be run here): the readiness makes Rimfolk's serious illnesses come more often with the
+    setting on than off in a well-run colony (0.31 against 0.19 for six), while fewer come in all; the Almanac's
+    per-cause chances are those with it off (its budget section says so). `IsSeriousIllness` counts any lethal
+    immunizable hediff and every `DiseaseHuman` incident's hediff (mods' included), so a mod's mild disease filed there
+    counts as serious for the overlap. Pneumonia after the flu is a quarter as likely while the flu runs. The game's
+    deadly diseases fall to 0.5 to 0.67 a colony-year (from about 0.8) as Rimfolk's take their turns; Rimfolk's can
+    kill too, and the simulator counts no deaths. The victims and durations of the game's own in the simulator are a
+    rough model, so the two-at-once numbers are a guide. A neglected colony of twelve sits a little over the quarter
+    (+26% to +28%), from debts that lapse.
+  - Try in the game (dev mode; none of it could be run here): 1. Debug actions, Rimfolk, "Illness budget: one of
+    Rimfolk's serious illnesses now": the letter ends "the next of them will most likely pass the colony by"; "the ledger
+    of every home (log)": owed 1, room Owed (chance 0%). 2. "the game's own disease, as the storyteller sends it": three
+    times in four "held back by the budget" and the news line naming whose illness took its place; otherwise "it came all
+    the same ... the debt was let go", its own letter, and the log's "came anyway 1". 3. After one that came, the log's
+    room is Waiting (chance 0%) for 8 days, then Easing (25% rising), Open after four weeks more. 4. Give a colonist the
+    flu (dev: add hediff) and wait for a serious one of Rimfolk's to go round: someone else takes it unless the quarter
+    comes up. 5. Settings, How hard, "Serious illness shares the game's own rate" off: step 2 lets the game's disease come
+    at once, and nothing above holds.
 - 0.179.2, the mailbag's own picture (9 November 2026, the player's screenshot of a red cross: "the mailbag needs a
   proper sprite, please use all available options a reference"). `Rimfolk_Mailbag` pointed at
   `Things/Building/Misc/CaravanPackingSpot`, which the game doesn't have under that path. It now uses

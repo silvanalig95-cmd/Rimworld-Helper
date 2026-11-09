@@ -330,7 +330,7 @@ Rimfolk's part of the save, roughly: **2,606 KB** after a year, **3,081 KB** aft
 | `Decrees/Decrees.cs:requests` | one per decree at most | fixed | 3 | 3 | 3 | 0.4 |
 | `Heart/HeartData.cs:goodSpent` | per heart: one per strain source | fixed | 18 | 18 | 18 | 0.4 |
 | `Scenarios/ScenarioParts.cs:days` | a scenario part's days, fixed by the scenario | fixed | 3 | 3 | 3 | 0.4 |
-| `Ailments/AilmentTracker.cs:budget` | the shared illness budget: one ledger a home (its debts, the game's last disease and skip, the last record line); gone with the home or once all of it is older than a debt is kept; an older save has none and owes nothing | fixed | 1 | 1 | 1 | 0.4 |
+| `Ailments/AilmentTracker.cs:budget` | the shared illness budget: one ledger a home (its debts, the game's last disease and skip, the counts of those held back, came all the same and put off, the last record line); gone with the home or once all of it is older than a debt is kept; an older save has none and owes nothing | fixed | 1 | 1 | 1 | 0.4 |
 | `CouncilGameComponent.cs:herds` | one per colony: its herd's leader and line (the line's ids have rows of their own) | fixed | 1 | 1 | 1 | 0.4 |
 | `Building/Suggest/SameRules.cs:pieceCells` | per step: the blueprints an order-giving step placed (lamps, chairs, an airlock) | fixed | 16 | 16 | 16 | 0.4 |
 | `Calendar/ColonyCalendar.cs:forgotten` | days put away by hand: only the player's clicks | fixed | 10 | 10 | 10 | 0.4 |
@@ -492,7 +492,7 @@ Rimfolk's part of the save, roughly: **2,606 KB** after a year, **3,081 KB** aft
 | `Outsiders/OutsiderBook.cs:oldFavours` | an older save's favours, read on load and moved into the world ledger (Favour ties); never saved again | fixed | 0 | 0 | 0 | 0.0 |
 | `Outsiders/OutsiderBook.cs:oldWords` | an older save's good words, read on load and moved into the world ledger (Promise ties); never saved again | fixed | 0 | 0 | 0 | 0.0 |
 | `UI/WeekMemory.cs:pinnedPawns` | colonists pinned before following: read from an older save only, then followed; never written | fixed | 0 | 0 | 0 | 0.0 |
-| `Ailments/IllnessBudget.cs:owed` | a home's debts: one at a time (two with a forced case on top), each paid by the game's next disease or let go after two to five years (counted under budget) | fixed | 1 | 1 | 1 | (in its record) |
+| `Ailments/IllnessBudget.cs:owed` | a home's debts: one at a time (two with a forced case on top), each paid by the game's next disease (held back three times in four, else let go as it comes) or let go after two to five years (counted under budget) | fixed | 1 | 1 | 1 | (in its record) |
 | `Ailments/IllnessBudget.cs:owedFor` | beside owed: the illness and who had it (counted under budget) | fixed | 1 | 1 | 1 | (in its record) |
 | `Arcs/Arc.cs:told` | per story (counted under active and past) | fixed | 6 | 6 | 6 | (in its record) |
 | `Beasts/PackAlphas.cs:pack` | per alpha: its pack as it was named, those gone from the world let go when saving (counted under alphas) | fixed | 6 | 6 | 6 | (in its record) |

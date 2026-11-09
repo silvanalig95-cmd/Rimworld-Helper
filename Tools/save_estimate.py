@@ -867,9 +867,11 @@ MODEL = {
     "Ailments/AilmentTracker.cs:carrying": ("known", 0.1, 60, "illnesses had now that an ailment may follow; let go when over, known pawns only"),
     "Ailments/AilmentTracker.cs:healing": ("known", 0.3, 120, "injuries an ailment may follow; let go when healed, known pawns only"),
     # The shared illness budget (Ailments/IllnessBudget.cs): one ledger per home, gone with it, or once nothing in it is younger
-    # than a debt is kept (two to five years); an older save has none and every home starts owing nothing.
-    "Ailments/AilmentTracker.cs:budget": ("fixed", 1, 420, "the shared illness budget: one ledger a home (its debts, the game's last disease and skip, the last record line); gone with the home or once all of it is older than a debt is kept; an older save has none and owes nothing"),
-    "Ailments/IllnessBudget.cs:owed": ("fixed", 1, 25, "a home's debts: one at a time (two with a forced case on top), each paid by the game's next disease or let go after two to five years (counted under budget)"),
+    # than a debt is kept (two to five years); an older save has none and every home starts owing nothing. Since the soft
+    # budget (9 November 2026) a ledger also counts the game's diseases that came all the same ("cameAnyway", one int);
+    # a ledger from an older save loads it as none.
+    "Ailments/AilmentTracker.cs:budget": ("fixed", 1, 440, "the shared illness budget: one ledger a home (its debts, the game's last disease and skip, the counts of those held back, came all the same and put off, the last record line); gone with the home or once all of it is older than a debt is kept; an older save has none and owes nothing"),
+    "Ailments/IllnessBudget.cs:owed": ("fixed", 1, 25, "a home's debts: one at a time (two with a forced case on top), each paid by the game's next disease (held back three times in four, else let go as it comes) or let go after two to five years (counted under budget)"),
     "Ailments/IllnessBudget.cs:owedFor": ("fixed", 1, 60, "beside owed: the illness and who had it (counted under budget)"),
     # Advisor, building
     "Advisor/AdvisorCore.cs:wealthHistory": ("window", (60, 1), V, "60 days of wealth"),

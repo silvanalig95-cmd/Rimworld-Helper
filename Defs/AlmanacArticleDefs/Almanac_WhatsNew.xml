@@ -31,6 +31,19 @@ When you load a save after an update, a letter lists the newest round once. The 
     <rounds>
 
       <li>
+        <version>0.180.0</version>
+        <date>9 November 2026</date>
+        <title>Rimfolk's illnesses share the game's rate more gently</title>
+        <points>
+          <li>A serious illness of Rimfolk's still makes the game's next disease likely to pass the colony by, but three times in four rather than always, so different sicknesses can each be met now and then.</li>
+          <li>After one of the game's diseases, Rimfolk's serious ones rest for about a week, then come back slowly over the following weeks instead of all at once.</li>
+          <li>Rimfolk's own serious illnesses come a little more readily while the setting is on, so in an ordinary colony they are a third or more of the serious cases, while serious illness in all stays about a tenth above the game's own.</li>
+          <li>Someone already fighting a serious illness rarely catches a second one, and a healthy colonist is more likely to be the one who catches it from the sick.</li>
+          <li>The illness letter and the setting's note now say the game's next disease will most likely pass the colony by, rather than promising it.</li>
+        </points>
+      </li>
+
+      <li>
         <version>0.179.2</version>
         <date>9 November 2026</date>
         <title>The mailbag gets a picture of its own</title>

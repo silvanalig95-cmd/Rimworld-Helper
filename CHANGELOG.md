@@ -5,6 +5,16 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## Rimfolk's illnesses share the game's rate more gently
+
+*9 November 2026, version 0.180.0*
+
+- A serious illness of Rimfolk's still makes the game's next disease likely to pass the colony by, but three times in four rather than always, so different sicknesses can each be met now and then.
+- After one of the game's diseases, Rimfolk's serious ones rest for about a week, then come back slowly over the following weeks instead of all at once.
+- Rimfolk's own serious illnesses come a little more readily while the setting is on, so in an ordinary colony they are a third or more of the serious cases, while serious illness in all stays about a tenth above the game's own.
+- Someone already fighting a serious illness rarely catches a second one, and a healthy colonist is more likely to be the one who catches it from the sick.
+- The illness letter and the setting's note now say the game's next disease will most likely pass the colony by, rather than promising it.
+
 ## The mailbag gets a picture of its own
 
 *9 November 2026, version 0.179.2*

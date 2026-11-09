@@ -37,6 +37,23 @@ namespace Balance
         /// </summary>
         public const float GameDiseaseDeadly = 300f / 460f;
 
+        /// <summary>
+        /// The game's own human diseases there as the colony meets them, for --illness's count of a colonist with two serious
+        /// illnesses at once: the land's commonality, whether it can kill, the share of the colony it takes (at least one, at
+        /// most so many) and how long it lasts with the usual tending. A rough model of the game's own (the flu and the plague
+        /// a week or so, malaria two, the worms, parasites and mechanites a month or so), not read from its defs.
+        /// </summary>
+        public static readonly (string name, float weight, bool deadly, float shareMin, float shareMax, int most, float daysMin, float daysMax)[] GameDiseaseKinds =
+        {
+            ("flu", 100f, true, 0.2f, 0.4f, 5, 5f, 9f),
+            ("plague", 100f, true, 0.2f, 0.4f, 5, 7f, 12f),
+            ("malaria", 100f, true, 0.2f, 0.4f, 5, 10f, 16f),
+            ("gut worms", 50f, false, 0.1f, 0.25f, 3, 15f, 30f),
+            ("muscle parasites", 50f, false, 0.1f, 0.25f, 3, 15f, 30f),
+            ("fibrous mechanites", 30f, false, 0.05f, 0.15f, 1, 15f, 30f),
+            ("sensory mechanites", 30f, false, 0.05f, 0.15f, 1, 15f, 30f)
+        };
+
         /// <summary>Share of hours a kind of stranger is at home: visitors, traders, a lodger, a prisoner, the downed after a fight.</summary>
         public static readonly Dictionary<string, float> Present = new Dictionary<string, float>
         {

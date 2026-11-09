@@ -48,10 +48,11 @@ namespace ColonyCouncil
                 Messages.Message("None of the game's diseases of this land can come now.", MessageTypeDefOf.RejectInput, false);
                 return;
             }
-            int held = IllnessBudget.LedgerOf(map, false)?.held ?? 0;
+            int held = IllnessBudget.LedgerOf(map, false)?.held ?? 0, anyway = IllnessBudget.LedgerOf(map, false)?.cameAnyway ?? 0;
             bool fired = Find.Storyteller.TryFire(new FiringIncident(def, comp, parms));
-            bool wasHeld = (IllnessBudget.LedgerOf(map, false)?.held ?? 0) > held;
-            Messages.Message("The game's own " + def.label + ": " + (wasHeld ? "held back by the budget." : fired ? "it came." : "it couldn't come."), MessageTypeDefOf.NeutralEvent, false);
+            bool wasHeld = (IllnessBudget.LedgerOf(map, false)?.held ?? 0) > held, letGo = (IllnessBudget.LedgerOf(map, false)?.cameAnyway ?? 0) > anyway;
+            Messages.Message("The game's own " + def.label + ": " + (wasHeld ? "held back by the budget." : fired ? (letGo ? "it came all the same (the one-in-four), and the debt was let go." : "it came.") : "it couldn't come."),
+                MessageTypeDefOf.NeutralEvent, false);
         }
 
         [DebugAction("Rimfolk", "Illness budget: the ledger of every home (log)", allowedGameStates = AllowedGameStates.PlayingOnMap)]
