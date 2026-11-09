@@ -5,6 +5,13 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## Wood is not a weapon, and every book has its title
+
+*9 November 2026, version 0.188.2*
+
+- The trade window no longer lists wood under weapons; only what can be held as a weapon counts as one.
+- Books Rimfolk gave the colony without a title, shown as only "(normal)", are named the game's own way as soon as they are on the map, including those already in your stores.
+
 ## The heart said once on the Mood tab
 
 *9 November 2026, version 0.188.1*

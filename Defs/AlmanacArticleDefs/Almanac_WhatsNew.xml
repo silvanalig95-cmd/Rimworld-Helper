@@ -31,6 +31,16 @@ When you load a save after an update, a letter lists the newest round once. The 
     <rounds>
 
       <li>
+        <version>0.188.2</version>
+        <date>9 November 2026</date>
+        <title>Wood is not a weapon, and every book has its title</title>
+        <points>
+          <li>The trade window no longer lists wood under weapons; only what can be held as a weapon counts as one.</li>
+          <li>Books Rimfolk gave the colony without a title, shown as only "(normal)", are named the game's own way as soon as they are on the map, including those already in your stores.</li>
+        </points>
+      </li>
+
+      <li>
         <version>0.188.1</version>
         <date>9 November 2026</date>
         <title>The heart said once on the Mood tab</title>

@@ -283,7 +283,9 @@ namespace ColonyCouncil
             f.medicine = d.IsMedicine;
             f.drug = d.IsNonMedicalDrug;
             f.food = d.IsNutritionGivingIngestible && !d.IsCorpse;
-            f.weapon = d.IsWeapon;
+            // A weapon is what can be held as one: the game counts anything with an attack as a weapon (a mod gives wood logs
+            // one), which put wood under Weapons.
+            f.weapon = d.IsWeapon && d.equipmentType == EquipmentType.Primary;
             f.apparel = d.IsApparel;
             f.art = thing.TryGetComp<CompArt>() != null || d.IsWithinCategory(ThingCategoryDefOf.BuildingsArt);
             f.book = thing is Book;

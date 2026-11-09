@@ -12,6 +12,12 @@ tree at once, alongside whatever runs. Each piece is merged as its own release, 
 
 ## State (5 November 2026)
 
+- 0.188.2, two bugs from the player's trade window screenshot (9 November 2026). Wood was listed under Weapons: a mod gives
+  wood logs an attack, so the game's `IsWeapon` holds; the trade window's kind now needs a weapon that is held as one
+  (`equipmentType == Primary`, as `WeaponLive` already did). Two textbooks were nameless, "(normal)": the game names a book
+  with a quality when its quality is set (`Book.PostQualitySet`), and books Rimfolk made without setting it (it makes things
+  in some 60 places) kept an empty title. `Patches/Patch_BookTitle.cs` names any such book when it comes onto a map,
+  including those already saved, the game's own way (`Book.GenerateBook`).
 - 0.188.1, the heart said once on the Mood tab (9 November 2026, the player: "the heart information is now essentially
   listed twice, there should be no redundancy if there's no good reason for it"). Under the summary
   (`Moods/MoodGlance.cs`, which shows the meters, what each side does now, time off and the advice with its buttons), the
