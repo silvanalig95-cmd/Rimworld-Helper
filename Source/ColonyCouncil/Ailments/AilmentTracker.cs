@@ -343,7 +343,7 @@ namespace ColonyCouncil
                 var info = InfoOf(def);
                 if (info?.causes == null || (info.serious && !SeriousOn)) continue;
                 var diet = info.Cause(AilmentTrigger.Diet);
-                if (diet != null && DietKnown && without >= diet.hours && Rand.Chance(diet.chance * Freq) && CanGet(p, def, info, false))
+                if (diet != null && DietKnown && without >= diet.hours && Rand.Chance(diet.chance * Freq * SeriousFactor(p, info)) && CanGet(p, def, info, false))
                     Give(p, def, info, false);
                 var sweet = info.Cause(AilmentTrigger.Sweets);
                 if (sweet != null)
@@ -371,8 +371,14 @@ namespace ColonyCouncil
                 var rec = sd != null ? p.skills.GetSkill(sd) : null;
                 if (rec != null && !rec.TotallyDisabled) f *= AilmentMath.SkillFactor(rec.Level);
             }
-            return f;
+            return f * SeriousFactor(p, info);
         }
+
+        /// <summary>
+        /// A new serious illness within the shared illness budget (Ailments/IllnessBudget.cs): more readily while it's on, and
+        /// far less to someone already fighting a serious illness. Everything else as it was.
+        /// </summary>
+        private static float SeriousFactor(Pawn p, HediffCompProperties_Ailment info) => info.serious ? IllnessBudget.SeriousFactor(p) : 1f;
 
         // ---------------- Coming down with something ----------------
 
@@ -1157,7 +1163,7 @@ namespace ColonyCouncil
                 var info = InfoOf(def);
                 var cause = info?.Cause(AilmentTrigger.AfterCold);
                 if (cause == null) continue;
-                if (Rand.Chance(cause.chance * vulnerable * Freq) && CanGet(p, def, info, false))
+                if (Rand.Chance(cause.chance * vulnerable * Freq * SeriousFactor(p, info)) && CanGet(p, def, info, false))
                 {
                     Give(p, def, info, false);
                     return;
@@ -1192,7 +1198,7 @@ namespace ColonyCouncil
                     {
                         if (other == p || !Eligible(other) || RestUtility.Awake(other)) continue;
                         if (info.spreadNeedsDirt && !dirtyRoom && !AilmentChecks.Unwashed(other) && !AilmentChecks.Unwashed(p)) continue;
-                        if (!Rand.Chance(chance) || !CanGet(other, h.def, info, true)) continue;
+                        if (!Rand.Chance(chance * (info.serious ? IllnessBudget.SpreadFactor(other) : 1f)) || !CanGet(other, h.def, info, true)) continue;
                         Give(other, h.def, info, true);
                     }
                 }
@@ -1476,8 +1482,9 @@ namespace ColonyCouncil
                 float everyday = AilmentMath.CatchingMtbDays(EverydayCatchingDays, map.Biome.diseaseMtbDays, interval, Freq, situation);
                 if (Rand.MTBEventOccurs(everyday, GenDate.TicksPerDay, GenDate.TicksPerHour)) TryCatching(map, false);
                 if (!SeriousOn) continue;
-                // A crowded, dirty colony catches them more often (Ailments/LifeRisks.cs).
-                float serious = AilmentMath.CatchingMtbDays(SeriousCatchingDays, map.Biome.diseaseMtbDays, interval, Freq, situation / LifeRisks.SicknessFactor(map));
+                // A crowded, dirty colony catches them more often (Ailments/LifeRisks.cs), and so does one whose serious
+                // illnesses share the game's own rate (Ailments/IllnessBudget.cs: most of them take a turn of the game's).
+                float serious = AilmentMath.CatchingMtbDays(SeriousCatchingDays, map.Biome.diseaseMtbDays, interval, Freq, situation / (LifeRisks.SicknessFactor(map) * IllnessBudget.Readiness));
                 if (Rand.MTBEventOccurs(serious, GenDate.TicksPerDay, GenDate.TicksPerHour)) TryCatching(map, true);
             }
         }

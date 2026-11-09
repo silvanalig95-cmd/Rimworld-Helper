@@ -115,6 +115,8 @@ namespace Balance
     {
         public string name;
         public bool serious;
+        /// <summary>One of the land's and the work's, through the harm service's cap: the serious ones lean with the storyteller's disease interval (AilmentTracker.Lean).</summary>
+        public bool capped;
         public bool quiet;
         public bool lingering;
         public float cooldownDays = 15f;
@@ -584,6 +586,7 @@ namespace Balance
             {
                 name = Get(el, "defName"),
                 serious = (string)main.Element("serious") == "true",
+                capped = (string)main.Element("capped") == "true",
                 quiet = (string)main.Element("quiet") == "true",
                 lingering = (string)main.Element("lingering") == "true",
                 cooldownDays = F((string)main.Element("cooldownDays"), 15f),

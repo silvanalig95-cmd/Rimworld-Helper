@@ -88,10 +88,14 @@ namespace ColonyCouncil
             }
             var ext = Ext;
             var tracker = AilmentTracker.Instance;
-            if (ext == null || !ext.sameVictims || tracker == null || chosen.Count == 0) return chosen;
-            // The same people suffer it again: those who had it before go first, then the luck of the draw.
-            var pool = PotentialVictims(parms.target).ToList();
-            return pool.OrderByDescending(p => (tracker.HadBefore(p, def.diseaseIncident) ? 2f : 0f) + Rand.Value).Take(chosen.Count).ToList();
+            if (ext != null && ext.sameVictims && tracker != null && chosen.Count > 0)
+            {
+                // The same people suffer it again: those who had it before go first, then the luck of the draw.
+                var pool = PotentialVictims(parms.target).ToList();
+                chosen = pool.OrderByDescending(p => (tracker.HadBefore(p, def.diseaseIncident) ? 2f : 0f) + Rand.Value).Take(chosen.Count).ToList();
+            }
+            // A serious one rarely takes someone already fighting a serious illness: someone well goes in their place (Ailments/IllnessBudget.cs).
+            return Serious ? IllnessBudget.Spare(chosen, PotentialVictims(parms.target)) : chosen;
         }
 
         protected override bool TryExecuteWorker(IncidentParms parms)

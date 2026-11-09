@@ -56,6 +56,8 @@ namespace Balance
         public readonly List<int> grants = new List<int>();
         public readonly List<Mem> mems = new List<Mem>();
         public readonly List<Ail> ails = new List<Ail>();
+        /// <summary>The game's own diseases they have (--illness: who has two serious illnesses at once), and the hour each ends; nothing else reads them.</summary>
+        public readonly List<(string kind, int until)> gameSick = new List<(string, int)>();
         public readonly Dictionary<string, int> ailLast = new Dictionary<string, int>();
         public readonly Dictionary<string, int> momentLast = new Dictionary<string, int>();
         public readonly Dictionary<string, int> nuisanceLast = new Dictionary<string, int>();
@@ -168,6 +170,8 @@ namespace Balance
         /// </summary>
         private readonly IllnessBudgetBook illBook = new IllnessBudgetBook();
         private readonly Random diseaseRng;
+        /// <summary>The budget's own draws (the hold, the eased chance, the overlap) and who the game's diseases take, apart again, so the game's own come at the same hours with the budget on and off.</summary>
+        private readonly Random budgetRng, gameSickRng;
         /// <summary>Colonists sleeping in barracks or without a bed, for the catching clock's serious one (LifeRiskMath.SicknessFactor).</summary>
         private readonly int barracksCount;
         private readonly int startHour;
@@ -201,6 +205,8 @@ namespace Balance
             heartRng = new Random(seed ^ 0x5eed);
             goodRng = new Random(seed ^ 0x600d);
             diseaseRng = new Random(seed ^ 0x5157);
+            budgetRng = new Random(seed ^ 0xb0d6);
+            gameSickRng = new Random(seed ^ 0x51c4);
             barracksCount = (int)Math.Round(style.barracks * n);
             for (int i = 0; i < n; i++)
             {
@@ -1591,7 +1597,14 @@ namespace Balance
             if (!set.B("ailments") || (a.serious && !set.B("seriousIllnesses"))) return false;
             if (c.ails.Any(x => x.info == a)) return false;
             if (c.ailLast.TryGetValue(a.name, out int t) && hour - t < a.cooldownDays * 24) return false;
-            if (a.serious) return roomAsked || SeriousRoom() && BudgetRoom();
+            if (a.serious)
+            {
+                // The catching clock's victims were asked the colony's room and the budget's, and spared, as it picked them.
+                if (roomAsked) return true;
+                // Someone already fighting a serious illness rarely comes down with another of Rimfolk's (IllnessBudget.SeriousFactor).
+                if (Budget && SeriouslyIll(c) && !(budgetRng.NextDouble() < IllnessBudgetMath.OverlapFactor)) return false;
+                return SeriousRoom() && BudgetRoom();
+            }
             return EverydayCount(c) < Code.MaxEverydayAtOnce;
         }
 
@@ -1605,13 +1618,18 @@ namespace Balance
 
         private static float GameMeanDays => Rates.GameDiseaseMtbDays * Rates.GameDiseaseInterval;
 
+        private static float KeepDays => IllnessBudgetMath.KeepDays(GameMeanDays);
+
+        /// <summary>With the budget on, Rimfolk's serious illnesses come more readily, by the storyteller's disease interval (IllnessBudget.SeriousFactor).</summary>
+        private float Readiness => Budget ? IllnessBudgetMath.ReadinessAt(Rates.GameDiseaseInterval) : 1f;
+
         /// <summary>The colony's own room for a serious illness (AilmentTracker.SeriousRoom): none running, and the last a while ago.</summary>
         private bool SeriousRoom() => hour - lastSeriousHour >= Code.SeriousGapDays * 24 && !people.Any(p => p.ails.Any(x => x.info.serious));
 
-        /// <summary>The shared illness budget's room on the home (IllnessBudget.Allows): a case it puts off is counted.</summary>
+        /// <summary>The shared illness budget's room on the home (IllnessBudget.Allows, its chance on the budget's own draw): a case it puts off is counted.</summary>
         private bool BudgetRoom()
         {
-            if (!Budget || IllnessBudgetMath.Room(illBook, Tick, IllnessBudgetMath.KeepDays(GameMeanDays)) == ColonyCouncil.BudgetRoom.Open) return true;
+            if (!Budget || IllnessBudgetMath.Allows(illBook, Tick, KeepDays, (float)budgetRng.NextDouble())) return true;
             Count("serious illnesses put off");
             return false;
         }
@@ -1623,24 +1641,92 @@ namespace Balance
             if (Budget) IllnessBudgetMath.Owe(illBook, Tick, "");
         }
 
+        /// <summary>Fighting a serious illness now: one of Rimfolk's, or one of the game's own.</summary>
+        private bool SeriouslyIll(Colonist c) => c.ails.Any(x => x.info.serious) || c.gameSick.Any(g => g.until > hour);
+
         /// <summary>
-        /// The game's own human diseases on a temperate home (StorytellerComp_Disease's roll; Rates.GameDiseaseMtbDays),
-        /// counted, not played on the colonists: Rimfolk's moods never had them. With the shared illness budget, one is held
-        /// back for each serious case of Rimfolk's owed (IllnessBudget.TryHold), and one that comes puts Rimfolk's back by
-        /// the gap (IllnessBudget.Came).
+        /// A serious illness is about to start on them (Rimfolk's when <paramref name="rimfolk"/>, else the game's own): if
+        /// they're already fighting one, it's two at once, counted by which came on which.
+        /// </summary>
+        private void TwoAtOnce(Colonist c, bool rimfolk)
+        {
+            bool rim = c.ails.Any(x => x.info.serious), game = c.gameSick.Any(g => g.until > hour);
+            if (!rim && !game) return;
+            Count("two serious illnesses at once");
+            Count(rimfolk ? "two at once: Rimfolk's on the game's" : rim ? "two at once: the game's on Rimfolk's" : "two at once: the game's own two");
+        }
+
+        /// <summary>
+        /// The catching clock's serious one, as IncidentWorker_Ailment picks its victims with the budget on: each already
+        /// fighting a serious illness keeps their place at the overlap factor, else someone well not yet picked takes it (none
+        /// left: one fewer).
+        /// </summary>
+        private List<Colonist> Spare(List<Colonist> chosen, List<Colonist> order)
+        {
+            if (!Budget) return chosen;
+            var kept = new List<Colonist>();
+            foreach (var c in chosen)
+            {
+                if (!SeriouslyIll(c) || budgetRng.NextDouble() < IllnessBudgetMath.OverlapFactor)
+                {
+                    kept.Add(c);
+                    continue;
+                }
+                var other = order.FirstOrDefault(o => !chosen.Contains(o) && !kept.Contains(o) && !SeriouslyIll(o));
+                if (other != null) kept.Add(other);
+            }
+            return kept;
+        }
+
+        /// <summary>
+        /// The game's own human diseases on a temperate home (StorytellerComp_Disease's roll; Rates.GameDiseaseMtbDays). With
+        /// the shared illness budget, one owed a skip is held back three times in four (IllnessBudget.TryHold), and one that
+        /// comes lets the debt go and rests Rimfolk's (IllnessBudget.Came). Those that come take some of the colony for a while
+        /// (Rates.GameDiseaseKinds, on their own draws), read only for two serious illnesses at once: Rimfolk's moods never
+        /// had them.
         /// </summary>
         private void GameDiseases()
         {
             if (diseaseRng.NextDouble() >= 1.0 / (GameMeanDays * 24.0)) return;
             int now = Tick;
-            if (Budget && IllnessBudgetMath.Hold(illBook, now, IllnessBudgetMath.KeepDays(GameMeanDays), out _))
+            bool deadly = diseaseRng.NextDouble() < Rates.GameDiseaseDeadly;
+            if (Budget && IllnessBudgetMath.Hold(illBook, now, KeepDays, (float)budgetRng.NextDouble(), out _))
             {
                 Count("the game's diseases held back");
                 return;
             }
             Count("the game's diseases");
-            if (diseaseRng.NextDouble() < Rates.GameDiseaseDeadly) Count("the game's deadly diseases");
-            if (Budget) IllnessBudgetMath.GameCame(illBook, now);
+            if (deadly) Count("the game's deadly diseases");
+            if (Budget)
+            {
+                int owing = IllnessBudgetMath.Owing(illBook, now, KeepDays);
+                IllnessBudgetMath.GameCame(illBook, now, KeepDays);
+                if (owing > IllnessBudgetMath.Owing(illBook, now, KeepDays)) Count("the game's diseases came anyway");
+            }
+            // Which of the land's (deadly or not, as drawn) and whom it takes.
+            var kinds = Rates.GameDiseaseKinds.Where(k => k.deadly == deadly).ToList();
+            double r = gameSickRng.NextDouble() * kinds.Sum(k => k.weight);
+            var kind = kinds[kinds.Count - 1];
+            foreach (var k in kinds)
+            {
+                r -= k.weight;
+                if (r <= 0)
+                {
+                    kind = k;
+                    break;
+                }
+            }
+            var able = people.Where(p => !p.gameSick.Any(g => g.kind == kind.name && g.until > hour)).OrderBy(_ => gameSickRng.Next()).ToList();
+            if (able.Count == 0) return;
+            float share = kind.shareMin + (float)gameSickRng.NextDouble() * (kind.shareMax - kind.shareMin);
+            int n = Math.Min(kind.most, Math.Max(1, (int)Math.Round(able.Count * share)));
+            foreach (var c in able.Take(n))
+            {
+                TwoAtOnce(c, false);
+                c.gameSick.RemoveAll(g => g.until <= hour);
+                float days = kind.daysMin + (float)gameSickRng.NextDouble() * (kind.daysMax - kind.daysMin);
+                c.gameSick.Add((kind.name, hour + (int)(days * 24)));
+            }
         }
 
         /// <summary>How many days it lasts and how it feels: recovery (faster in bed), tending, or the immunity race (AilmentMath.Simulate).</summary>
@@ -1673,6 +1759,7 @@ namespace Balance
         private void Give(Colonist c, AilmentInfo a, float start)
         {
             var (days, mood) = Course(a, start);
+            if (a.serious) TwoAtOnce(c, true);
             c.ails.Add(new Ail { info = a, until = hour + Math.Max(1, (int)(days * 24)), mood = mood });
             c.ailLast[a.name] = hour;
             if (a.serious) SeriousStarted();
@@ -1742,6 +1829,9 @@ namespace Balance
                     // Gout: only from 45, half as often with fruit or vegetables lately.
                     if (a.minAge > 0f) chance *= Rates.ShareFromAge(a.minAge);
                     if (a.freshFactor != 1f) chance *= 1f + (a.freshFactor - 1f) * style.freshShare;
+                    // The land's and the work's serious ones lean with the storyteller's disease interval (AilmentTracker.Lean).
+                    if (a.serious && a.capped) chance *= IllnessBudgetMath.IntervalLean(Rates.GameDiseaseInterval);
+                    if (a.serious) chance *= Readiness;
                     if (Chance(chance) && CanGet(c, a))
                     {
                         Give(c, a, Range(a.startMin, a.startMax));
@@ -1756,11 +1846,13 @@ namespace Balance
         {
             if (!set.B("ailments")) return;
             float freq = Freq;
-            if (Chance(1f / (Code.EverydayCatchingDays / freq * 24f))) Catching(false);
+            // The storyteller's disease interval spaces the catching clock out as it does the game's own (AilmentMath.CatchingMtbDays).
+            float interval = Rates.GameDiseaseInterval;
+            if (Chance(1f / (Code.EverydayCatchingDays * interval / freq * 24f))) Catching(false);
             // A crowded, dirty colony catches serious illness more often (LifeRisks.SicknessFactor); with the shared budget
-            // that only shifts the mix, as each case owes its skip.
+            // that mostly shifts the mix, as each case owes its skip. With the budget on they come more readily too.
             float sick = set.B("crowdedSickness") ? LifeRiskMath.SicknessFactor(people.Count, barracksCount, style.kitchen) : 1f;
-            if (set.B("seriousIllnesses") && Chance(sick / (Code.SeriousCatchingDays / freq * 24f))) Catching(true);
+            if (set.B("seriousIllnesses") && Chance(sick * Readiness / (Code.SeriousCatchingDays * interval / freq * 24f))) Catching(true);
         }
 
         private void Catching(bool serious)
@@ -1775,10 +1867,14 @@ namespace Balance
             var a = defs.ailments[pick.hediff];
             int n = Math.Min(pick.maxVictims, Math.Max(1, (int)Math.Round(people.Count * Range(pick.victimsMin, pick.victimsMax))));
             int got = 0;
-            foreach (var c in people.OrderBy(_ => rng.Next()).Take(n))
+            var order = people.OrderBy(_ => rng.Next()).ToList();
+            var chosen = order.Take(n).ToList();
+            if (serious) chosen = Spare(chosen, order);
+            foreach (var c in chosen)
                 if (CanGet(c, a, serious))
                 {
                     var (days, mood) = Course(a, a.initialSeverity);
+                    if (serious) TwoAtOnce(c, true);
                     c.ails.Add(new Ail { info = a, until = hour + Math.Max(1, (int)(days * 24)), mood = mood });
                     c.ailLast[a.name] = hour;
                     got++;

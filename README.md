@@ -4303,16 +4303,19 @@ fresh food cures scurvy). Appendicitis can be cut out with a "remove appendix" o
 one of them. The Almanac's **ailments and illnesses** page has the tables.
 
 **Serious illness shares the game's own rate** (How hard, under serious illnesses, on by default). Rimfolk's serious
-illnesses and the game's own diseases draw on one clock, so in all serious illness comes about as often as in plain
-RimWorld, and some of the cases are Rimfolk's kinds. Each serious illness of Rimfolk's that starts holds back the next
-of the game's own diseases the storyteller sends to that home; once the game's own has come, Rimfolk's wait 30 days
-there; and Rimfolk takes at most about a third of the cases (two fifths at Adventure story's disease rate), so the
-game's own still come. Crowding and dirt bring more of the kinds that go round and spread between roommates, not more
-in all. A quest's outbreak, food poisoning, wound infections, animal diseases and other mods' sicknesses filed outside
-the game's disease category are left alone. The news says when one of the game's diseases passed the colony by and
-whose illness took its place, or when a case of Rimfolk's was put off; the serious illness's letter and the advisor's
-sickness line say so too. It needs the deeper game hooks; off, Rimfolk's serious illnesses come on top of the game's
-own, as before.
+illnesses mostly take a turn of the game's own diseases instead of adding one, so serious illness in all comes only a
+little more often than in plain RimWorld (about a tenth more where the colony is kept well or fairly, a quarter at
+most), and about two cases in five are Rimfolk's kinds in an average colony. Each serious illness of Rimfolk's that
+starts holds back the next of the game's own diseases the storyteller sends to that home three times in four; the
+fourth time it comes all the same. One is owed at a time. After one of the game's own, Rimfolk's rest a week there and
+then come back slowly over a month. With all that they come more readily than with the setting off, and someone already
+fighting a serious illness, the game's or Rimfolk's, catches another of Rimfolk's at a quarter of the usual chance, so
+two at once on one person happens, but rarely. Crowding and dirt bring more of the kinds that go round and spread
+between roommates, and only a little more in all. A quest's outbreak, food poisoning, wound infections, animal diseases
+and other mods' sicknesses filed outside the game's disease category are left alone. The news says when one of the
+game's diseases passed the colony by and whose illness took its place, or when a case of Rimfolk's was put off; the
+serious illness's letter and the advisor's sickness line say so too. It needs the deeper game hooks; off, Rimfolk's
+serious illnesses come on top of the game's own, as before.
 
 With Rimfolk: ailments feed the heart's frustration and serious illnesses its fear (and so a little strain); doctors
 and patients write and talk about falling ill, getting better and the doctor who saw to them, in words that fit the
@@ -4325,7 +4328,7 @@ course.
 
 **Realistic ways to die**, each with a warning, a way to fight it and its own switch. A crowded, dirty colony catches
 serious illness more often (barracks, no beds, a dirty kitchen, and a little more as it grows; the advisor says so,
-with the reasons; while serious illness shares the game's own rate, more of the kinds that go round, not more in all). The frail fight any illness slower (old age from 60, small children, hunger, bad wounds: shown in
+with the reasons; while serious illness shares the game's own rate, more of the kinds that go round, and only a little more in all). The frail fight any illness slower (old age from 60, small children, hunger, bad wounds: shown in
 the immunity gain speed's breakdown and the illness's letter); steady tending with good medicine still saves them,
 gaps can cost them their life. A wound left untended in the dirt or the open is likelier to become infected. And past
 78 a colonist may begin to fail: a letter says so, about a season of slowing down (slower with contentment, a room of
