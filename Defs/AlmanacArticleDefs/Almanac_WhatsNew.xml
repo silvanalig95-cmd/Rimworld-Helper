@@ -31,6 +31,18 @@ When you load a save after an update, a letter lists the newest round once. The 
     <rounds>
 
       <li>
+        <version>0.192.0</version>
+        <date>9 November 2026</date>
+        <title>Role clothes the colony can reach</title>
+        <points>
+          <li>When the game picks the clothes for your ideoligion's roles, it now leaves out pieces that need a dear research off the usual path, such as VFE Classical's togas, unless your colony has them or your ideoligion calls for them.</li>
+          <li>The mood for a role's clothes names each missing piece and how to get it: whether the colony has one, where it can be made, or which research it needs and how far along it is.</li>
+          <li>A new button, Choose other clothes for the role, shows the clothes the game allows for that role, those you can make first, and replaces the one you pick once you confirm, just as the game's own editor would.</li>
+          <li>Factions' ideoligions are left as the game makes them; a setting, Role clothes the colony can reach, turns the first part off.</li>
+        </points>
+      </li>
+
+      <li>
         <version>0.191.3</version>
         <date>9 November 2026</date>
         <title>Foraging is for food</title>

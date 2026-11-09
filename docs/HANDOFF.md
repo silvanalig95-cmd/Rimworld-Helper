@@ -12,6 +12,46 @@ tree at once, alongside whatever runs. Each piece is merged as its own release, 
 
 ## State (5 November 2026)
 
+- 0.192.0, role clothes the colony can reach (9 November 2026). The player's words, with a picture of "Want Inquisitor apparel" (-4, "...as the Inquisitor:
+  Toga"): "i keep getting toga as mandatory gear but it's not really a standard research or anything worth spending 1200
+  research points into... across several playthroughs and ideologies already". The cause: VFE Classical's
+  `Patches/Ideology.xml` puts its toga and wreath into every role's pool (`PreceptRoleMultiBase`, the moral guide, the
+  leader); both need `VFEC_Togas` (1200, neolithic, VE's own tab, only `ClassicalStart`). DESIGN.md "Role clothes the
+  colony can reach" has all of it; README "Mood tab and Moods page" and "Playing with other mods".
+  - The rule (`Faith/RoleClothesMath.cs`, pure, linked in Tests.csproj): out of reach when the colony has none and every
+    way to make it (recipe at bench, both's research) needs a project unfinished, off the usual path (not the main tab, or
+    a modded start's own project) and dear for its age (1.5 times the main tab's median of its tech level). Kept: what
+    the ideoligion calls for (a meme's rule, a desired apparel, a style's own look, or a culture, meme, style or the role
+    from the piece's mod), and what nothing makes (not judged).
+  - The game's choice (`Faith/RoleClothesPatch.cs`: `Patch_RoleClothesChoose` prefix and finalizer on
+    `Precept_Role.GenerateNewApparelRequirements`, `Patch_RoleClothesPool` postfix on `AllPossibleRequirements`): the first,
+    non-desperate draw leaves out what is out of reach, for the colony's ideoligions only (made for a player faction, or
+    held by the colony); the desperate draw and the editor's own list untouched; factions' ideoligions as the game makes
+    them. Setting "Role clothes the colony can reach" (`roleClothesReach`, on, Your other mods, Faiths from other mods,
+    needs the deeper hooks). Each patch stands down by its `Prepare`.
+  - The mood (`Faith/RoleClothes.cs`; `MoodInsight.Advice`, `MoodView`): for the colony's own ideoligions, "What to do"
+    names each piece lacked and how to get it ("Toga: needs the research Togas (1200), not started. Or choose other
+    clothes for the role."), and the card's first button opens `Dialog_RoleClothes` (`Faith/RoleClothesWindow.cs`, key
+    "RoleClothes"): what the role asks for now, the game's own pool for that role (`AllPossibleRequirements(..., true)`)
+    in reach first with icon, how to get it and whether the colony has one, greyed with the game's own reason; confirmed,
+    `RoleClothes.Replace` edits the role as the game's editor does and has its holders read their clothes again. New hint
+    `Council_Mood_RoleClothes` ("Get the role's clothes"). Keys `Languages/English/Keyed/Rimfolk_RoleClothes.xml`. Tests
+    `Tools/Tests/RoleClothesTests.cs`. No saved data, no Sched slot.
+  - The player's save: Federalism's Inquisitor asks for the toga, out of reach (togas not started); the Wise All-Theist's
+    headscarf and pelt coat are in the colony. The Inquisitor's 17 alternatives: headscarf and pelt coat (had), then 14 the
+    colony can make now (a cape, the Eltex cape counting too, war veil, hood, headwrap, broadwrap, burka, visage mask, Hats
+    and Rags' beads, brimless hat, fez, headbag, skullcap, wide hat, rags); the wreath out of reach.
+  - Not run here (none of it could be): the patches in a real ideoligion's making (the pages, a reform, Randomize in the
+    role's editor, a long event's thread); the dialog's look at its least and in both looks; `Replace` on a real
+    role and the mood going (the apparel tracker's caches after `Notify_RoleChanged`, the holder changing clothes by their
+    outfit); the advice's bench names and research costs as the game words them; `CanAddRequirement`'s reasons.
+  - Try in the game: 1. The Inquisitor's Mood tab: "Want Inquisitor apparel", its card says "Toga: needs the research Togas
+    (1200), not started. Or choose other clothes for the role." 2. "Choose other clothes for the role": the toga picked to
+    replace, the headscarf and pelt coat first, the wreath last as out of reach. 3. Pick the headscarf, confirm: the
+    message, the role's tooltip in the ideoligion's page lists the headscarf, the mood goes once they wear one. 4. Reform
+    the ideoligion and Randomize a role's clothes a few times: no toga or wreath. 5. Settings, Your other mods: the switch
+    off, Randomize may pick the toga again.
+
 - 0.191.2, foraging leaves the bees alone (9 November 2026, the player: "i think the foraging decree also forages beehive
   trees ... any bee related matters shouldn't be involved as these don't immedieatlly generate food"). Alpha Bees' trees
   with a wild hive are plants harvested for a hive with the `Standard` harvest tag, and the game's `IsTree` holds only for

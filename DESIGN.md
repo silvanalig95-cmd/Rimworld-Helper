@@ -1743,6 +1743,78 @@ colony of many ideoligions is a lever the player can pull, not one more drain.
 - **Saved** in `FaithCouncilTracker` (a game component that never ticks): the last evening and each ideoligion's, the
   evening waiting, the decree's ideoligion, and who heard which ideoligion lately (one each, 30 days, 40 at most).
 
+### Role clothes the colony can reach (the player's report, 9 November 2026)
+
+The player: "i keep getting toga as mandatory gear but it's not really a standard research or anything worth spending
+1200 research points into... across several playthroughs and ideologies already", with the mood "Want Inquisitor
+apparel" (-4, "I want to wear apparel appropriate for my role as the Inquisitor: Toga"). The cause: VFE Classical's
+`Patches/Ideology.xml` adds `VFEC_Toga` (torso and legs) and `VFEC_Wreath` to `PreceptRoleMultiBase`'s, the moral
+guide's and the leader's `roleApparelRequirements`, so every role's pool holds them; both need the research `VFEC_Togas`,
+1200, a neolithic project in VE's own tab with only the start tag `ClassicalStart`, given free only by that mod's own
+start. The pure rule is `Faith/RoleClothesMath.cs` (`RoleClothesTests`); the game's side `Faith/RoleClothes.cs`, the
+patches `Faith/RoleClothesPatch.cs`, the dialog `Faith/RoleClothesWindow.cs`.
+
+- **The rule.** A piece of clothing is out of reach when the colony has none and every way to make it (each recipe that
+  makes it, at each bench or spot that does it: the recipe's research and the bench's) needs a project that is all
+  three of: not finished (before the game begins: not given by the colony's start's tags or a meme's starting research);
+  off the usual path (in a research tab other than the game's main tab, or a modded start's own project: it carries a
+  start tag of a player faction from a mod, here `ClassicalStart`, and none of the colony's own start's tags or the
+  game's own starts' (`ClassicStart`, `TribalStart`), so the game's tribal projects on the main tab are on the path); and
+  dear for its age (its base cost at least 1.5 times the median base cost of the main tab's projects of its tech level,
+  knowledge projects left out; an age without one takes the nearest below, else above, else 1000). In the player's mods
+  the medians are 500 neolithic, 600 medieval, 1000 industrial, 2500 spacer, 2000 ultra, so togas (1200 neolithic) is
+  dear; Vanilla Apparel Expanded's casual wear (600 industrial, VE tab) is not; tree sowing (1000 neolithic, main tab,
+  `TribalStart`) is on the path. Kept all the same, whatever its research: a piece the ideoligion calls for (a meme's own
+  apparel rule asks for it; a desired-apparel precept names it; one of its styles has its own look for it in
+  `thingDefStyles`; its culture, a meme, a style or the role's own def comes from the mod that adds the piece, never by
+  the game's own content), so an ideoligion of VFE Classical's roman culture keeps its toga. A piece nothing makes
+  (bought or found only) isn't judged: the rule is about research. A requirement several pieces meet (by tags) is in
+  reach when any of them is.
+- **The game's choice** (setting "Role clothes the colony can reach", `roleClothesReach`, on, Your other mods, Faiths
+  from other mods, under the deeper hooks). `Precept_Role.GenerateNewApparelRequirements(FactionDef generatingFor)` draws
+  from `AllPossibleRequirements(ideo, def, desperate: false)` first and, only if the role is still short, again with
+  `desperate: true`. `Patch_RoleClothesChoose` (prefix and finalizer) marks the choice as the colony's while it runs: made
+  for the player's faction (`generatingFor.isPlayer`: the ideoligion pages, a reform, the game's randomize), or with no
+  faction given (the editor's Randomize, a precept added in the editor) an ideoligion the colony holds
+  (`Faction.OfPlayer.ideos.Has`); the mark is per thread, put back by the finalizer whatever happens.
+  `Patch_RoleClothesPool` (postfix) leaves what is out of reach out of the first draw of a marked choice only. The
+  desperate draw and the editor's own "Add..." list (which asks for the desperate pool) are left whole, so a role is
+  never left short and the player can still choose anything. **Only the colony's ideoligions**: a faction's ideoligion is
+  made for its own faction def and left as the game makes it, since the colony's research says nothing about what that
+  faction can make. Each patch's `Prepare` checks the game's method as expected (the pool's its parameter names), or it
+  isn't applied and the game chooses as before; without the first, the second never acts.
+- **The mood** (the game's `IdeoRoleApparelRequirementNotMet`, now its own hint `Council_Mood_RoleClothes`, "Get the
+  role's clothes"; `Council_Mood_IdeoBuildings` no longer claims it). For a role of one of the colony's own ideoligions,
+  "What to do" names each piece the colonist lacks (as the game's mood counts them: `IsActive` and not `IsMet`) and how
+  the colony can come by it: "the colony has 2", "can be made now at a hand tailoring bench", "needs the research Togas
+  (1200), not started" (the cost the research screen shows, "40% done" when begun, two projects at most then "and N
+  more"), "nothing here makes it; it can only be bought or found"; then "Or choose other clothes for the role." The same
+  line ends the game's Needs tab tooltip. The card's first button is **Choose other clothes for the role**; on the
+  council's Moods page only when everyone with the mood has the one role.
+- **The dialog** (`Dialog_RoleClothes`, key "RoleClothes", least 520 by 480): the role, its ideoligion and who holds it;
+  a line that it edits the ideoligion's role as the game's own ideoligion editor would; the clothes the role asks for now
+  (a radio to pick which to replace when there are several; what is out of reach picked first, else what the colonist
+  lacks), each with its icon, whether the colony has one ("the colony has 1", "none in the colony"), how to come by it,
+  and "out of reach" or "the ideoligion's own"; then the others the game's pool allows for that role and ideoligion
+  (`AllPossibleRequirements(ideo, def, true)`, what its editor offers, the ones asked for now left out), in the order of
+  `RoleClothesMath.Order` (in reach and allowed first, by the colony has one, can be made now, needs research, nothing
+  makes it, kept; then the research left, then the name; out of reach last under "Out of the colony's reach for now"),
+  each greyed with the game's own reason when it can't take the place of the one replaced (`CanAddRequirement` with the
+  rest, `RequirementOverlapsOther`), its tooltip the piece's description, the pieces a tag lets in, and for one out of
+  reach each project behind it with its age's usual cost. Nothing changes until the player confirms ("Ask for headscarf
+  instead of toga"); a meme that forbids role clothes forbids it in the game's own words. `RoleClothes.Replace` does what
+  the editor's Done does (a copy of the pool's requirement in its place, the overlap check with the game's
+  "OverlappingRoleApparel", `ApparelRequirements` set anew, every precept's tip cleared) and has whoever holds the role
+  read their clothes again (`Notify_RoleChanged`, so the game's own requirement cache doesn't keep the old piece); the
+  game's mood follows on its own. Only for the colony's own ideoligions.
+- **The player's save** (League of Toba): the colony's one ideoligion, Federalism, has two roles with clothes. The
+  Inquisitor asks for the toga (togas not started): out of reach. The Wise All-Theist asks for a headscarf and a pelt
+  coat, both in the colony. The Inquisitor's 17 alternatives, in the dialog's order: the headscarf and the pelt coat
+  (the colony has one each), then the 14 the colony can make now, by name (a cape, the Eltex cape counting too, war veil,
+  hood, headwrap, broadwrap, burka, visage mask, and Hats and Rags' beads, brimless hat, fez, headbag, skullcap, wide hat,
+  rags); last, out of reach, the wreath (togas too).
+- Nothing saved, no Sched slot. Keys in `Languages/English/Keyed/Rimfolk_RoleClothes.xml`.
+
 ## Real effects: answers that play out on the map
 
 A dilemma's answer, an event's answer or a calendar day used to give moods and a message and nothing else: "a victory

@@ -514,9 +514,19 @@
 
   <ColonyCouncil.MoodHintDef>
     <defName>Council_Mood_IdeoBuildings</defName>
-    <thoughts><li>IdeoBuildingMissing</li><li>IdeoBuildingDisrespected</li><li>IdeoRoleEmpty</li><li>IdeoRoleApparelRequirementNotMet</li></thoughts>
-    <fix>Their ideoligion wants something in place: the building it asks for, a role filled, or the role's clothes worn.</fix>
+    <thoughts><li>IdeoBuildingMissing</li><li>IdeoBuildingDisrespected</li><li>IdeoRoleEmpty</li></thoughts>
+    <fix>Their ideoligion wants something in place: the building it asks for, or a role filled.</fix>
     <act>Give their ideoligion what it asks</act>
+    <article>Council_Alm_7_10_PreceptsAndRoles</article>
+  </ColonyCouncil.MoodHintDef>
+
+  <!-- A role's clothes not worn. The Mood tab says each piece and how the colony can come by it, and offers to choose
+       other clothes for the role (Source/ColonyCouncil/Faith/RoleClothes.cs); this is the line where it can't say more. -->
+  <ColonyCouncil.MoodHintDef>
+    <defName>Council_Mood_RoleClothes</defName>
+    <thoughts><li>IdeoRoleApparelRequirementNotMet</li></thoughts>
+    <fix>Their role asks for clothes they aren't wearing: make or buy them, or choose other clothes for the role.</fix>
+    <act>Get the role's clothes</act>
     <article>Council_Alm_7_10_PreceptsAndRoles</article>
   </ColonyCouncil.MoodHintDef>
 

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <!-- Role clothes the colony can reach (Source/ColonyCouncil/Faith/RoleClothes.cs, RoleClothesMath.cs, RoleClothesPatch.cs,
+       RoleClothesWindow.cs). -->
+
+  <!-- The setting, on the page of other mods, under faiths from other mods. -->
+  <CC_Settings_RoleClothesReach>Role clothes the colony can reach</CC_Settings_RoleClothesReach>
+  <CC_Settings_RoleClothesReach_Tip>When the game chooses the clothes an ideoligion's roles ask for (a new ideoligion, a reform, a role added, Randomize in a role's editor), its first pick for the colony's own ideoligions leaves out clothes the colony can't reach: the colony has none, and every way to make them needs research that isn't finished, is off the usual path (a mod's own research tab, or a project meant for a special start such as Vanilla Factions Expanded - Classical's) and costs at least half again what a project of its age usually costs. That mod's toga, 1200 research for a neolithic project, is the case that asked for this. Clothes the ideoligion calls for stay (a meme or a desired apparel asks for them, or its culture, a meme or a style comes from the same mod), and when nothing else fits the game picks from everything as before. The factions' own ideoligions are left as the game makes them. Clothes a role already asks for don't change: "Choose other clothes for the role" on the Mood tab does that when you want it. Needs the deeper game hooks.</CC_Settings_RoleClothesReach_Tip>
+  <CC_SetNote_RoleClothesReach>New roles of your ideoligions don't ask for clothes behind costly research off the usual path.</CC_SetNote_RoleClothesReach>
+
+  <!-- How the colony can come by a piece. -->
+  <CC_RoleClothes_How_Has>the colony has {COUNT}</CC_RoleClothes_How_Has>
+  <CC_RoleClothes_How_Make>can be made now at {BENCH}</CC_RoleClothes_How_Make>
+  <CC_RoleClothes_How_MakeByHand>can be made now by hand</CC_RoleClothes_How_MakeByHand>
+  <CC_RoleClothes_How_Research>needs the research {RESEARCH}</CC_RoleClothes_How_Research>
+  <CC_RoleClothes_How_Unmade>nothing here makes it; it can only be bought or found</CC_RoleClothes_How_Unmade>
+  <CC_RoleClothes_ResearchPart>{RESEARCH} ({COST}), {STATE}</CC_RoleClothes_ResearchPart>
+  <CC_RoleClothes_TwoResearch>{A}, and {B}</CC_RoleClothes_TwoResearch>
+  <CC_RoleClothes_ManyResearch>{A}, and {B}, and {COUNT} more</CC_RoleClothes_ManyResearch>
+  <CC_RoleClothes_NotStarted>not started</CC_RoleClothes_NotStarted>
+  <CC_RoleClothes_PercentDone>{PCT}% done</CC_RoleClothes_PercentDone>
+  <CC_RoleClothes_WhyOut>{RESEARCH} costs {COST} and is off the usual research path (a tab of its own, or a special start's); a {AGE} project usually costs about {USUAL}.</CC_RoleClothes_WhyOut>
+
+  <!-- The mood's advice and its button. -->
+  <CC_RoleClothes_Line>{ITEM}: {HOW}.</CC_RoleClothes_Line>
+  <CC_RoleClothes_OrChoose>Or choose other clothes for the role.</CC_RoleClothes_OrChoose>
+  <CC_RoleClothes_Button>Choose other clothes for the role</CC_RoleClothes_Button>
+
+  <!-- The dialog. -->
+  <CC_RoleClothes_Title>Clothes for the {ROLE}</CC_RoleClothes_Title>
+  <CC_RoleClothes_Sub>{IDEO}'s {ROLE}, held by {WHO}.</CC_RoleClothes_Sub>
+  <CC_RoleClothes_SubNobody>{IDEO}'s {ROLE}, held by nobody now.</CC_RoleClothes_SubNobody>
+  <CC_RoleClothes_EditNote>This edits the ideoligion's role, as the game's own ideoligion editor would. Whoever holds the role is asked for the new clothes, and the mood follows on its own.</CC_RoleClothes_EditNote>
+  <CC_RoleClothes_Now>The role asks for</CC_RoleClothes_Now>
+  <CC_RoleClothes_Instead>It could ask for instead</CC_RoleClothes_Instead>
+  <CC_RoleClothes_OutHead>Out of the colony's reach for now</CC_RoleClothes_OutHead>
+  <CC_RoleClothes_NoneOffered>The game offers no other clothes for this role.</CC_RoleClothes_NoneOffered>
+  <CC_RoleClothes_AsksNothing>The role asks for no clothes.</CC_RoleClothes_AsksNothing>
+  <CC_RoleClothes_OutOfReach>out of reach</CC_RoleClothes_OutOfReach>
+  <CC_RoleClothes_Kept>the ideoligion's own</CC_RoleClothes_Kept>
+  <CC_RoleClothes_KeptTip>Kept all the same: the ideoligion calls for it (a meme or a desired apparel asks for it, or its culture, a meme, a style or the role comes from the same mod).</CC_RoleClothes_KeptTip>
+  <CC_RoleClothes_ReplaceTip>Pick this one to replace it.</CC_RoleClothes_ReplaceTip>
+  <CC_RoleClothes_HasCount>the colony has {COUNT}</CC_RoleClothes_HasCount>
+  <CC_RoleClothes_HasNone>none in the colony</CC_RoleClothes_HasNone>
+  <CC_RoleClothes_AnyOf>Any of these meets it: {WHAT}.</CC_RoleClothes_AnyOf>
+  <CC_RoleClothes_CantAdd>It can't be added to this role.</CC_RoleClothes_CantAdd>
+  <CC_RoleClothes_Confirm>Ask for {NEW} instead of {OLD}</CC_RoleClothes_Confirm>
+  <CC_RoleClothes_ConfirmEmpty>Ask for the new clothes</CC_RoleClothes_ConfirmEmpty>
+  <CC_RoleClothes_ConfirmTip>Changes the role in the ideoligion itself, as its editor does.</CC_RoleClothes_ConfirmTip>
+  <CC_RoleClothes_NothingToReplace>The role asks for no clothes to replace.</CC_RoleClothes_NothingToReplace>
+  <CC_RoleClothes_PickFirst>Pick what the role should ask for instead.</CC_RoleClothes_PickFirst>
+  <CC_RoleClothes_Done>The {ROLE} of {IDEO} now asks for {NEW} instead of {OLD}.</CC_RoleClothes_Done>
+
+</LanguageData>

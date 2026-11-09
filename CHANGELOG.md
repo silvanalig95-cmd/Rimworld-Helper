@@ -5,6 +5,15 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## Role clothes the colony can reach
+
+*9 November 2026, version 0.192.0*
+
+- When the game picks the clothes for your ideoligion's roles, it now leaves out pieces that need a dear research off the usual path, such as VFE Classical's togas, unless your colony has them or your ideoligion calls for them.
+- The mood for a role's clothes names each missing piece and how to get it: whether the colony has one, where it can be made, or which research it needs and how far along it is.
+- A new button, Choose other clothes for the role, shows the clothes the game allows for that role, those you can make first, and replaces the one you pick once you confirm, just as the game's own editor would.
+- Factions' ideoligions are left as the game makes them; a setting, Role clothes the colony can reach, turns the first part off.
+
 ## Foraging is for food
 
 *9 November 2026, version 0.191.3*

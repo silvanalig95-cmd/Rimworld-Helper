@@ -530,6 +530,8 @@ namespace ColonyCouncil
         public bool territoryNewsQuiet = true;
         /// <summary>A faith's precept against automated turrets gives its mood only on a map where the colony has one (Integrations/TurretFaith.cs).</summary>
         public bool faithTurretsHere = true;
+        /// <summary>When the game chooses a role's clothes for one of the colony's ideoligions, its first draw leaves out clothes out of the colony's reach (Faith/RoleClothes.cs).</summary>
+        public bool roleClothesReach = true;
         /// <summary>With Alpha Skills: a colonist with a drunken passion sometimes takes a drink before work that trains it (Integrations/BeforeWork.cs).</summary>
         public bool drinkBeforeWork = true;
         /// <summary>The drink before work may come before hot work too (cooking, smithing), with its small chance of a burn (Harm/Mishaps.cs).</summary>
@@ -1040,6 +1042,7 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref magicNeedRules, "magicNeedRules", true);
             Scribe_Values.Look(ref territoryNewsQuiet, "territoryNewsQuiet", true);
             Scribe_Values.Look(ref faithTurretsHere, "faithTurretsHere", true);
+            Scribe_Values.Look(ref roleClothesReach, "roleClothesReach", true);
             Scribe_Values.Look(ref drinkBeforeWork, "drinkBeforeWork", true);
             Scribe_Values.Look(ref drinkBeforeHotWork, "drinkBeforeHotWork", true);
             Scribe_Values.Look(ref smokeBeforeWork, "smokeBeforeWork", true);
