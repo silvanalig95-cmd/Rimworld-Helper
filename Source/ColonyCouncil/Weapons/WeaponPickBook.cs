@@ -48,10 +48,11 @@ namespace ColonyCouncil
     /// <summary>
     /// What the weapon suggestions keep with the game (docs/design/weapons.md, step 3): the raids the colony met lately (the
     /// last <see cref="MaxRaids"/>, for the fights the suggestions weigh), the colonists whose suggestions the player set
-    /// aside ("not now", for <see cref="WeaponAskMath.NotNowDays"/> days) and each colonist's last ask (one each), and the
-    /// colony's last ask. Its clock: every 250 ticks at <see cref="Sched.RareWeaponPicks"/>, a tenth of the colonists each
-    /// time (each once an hour): their ratings of the colony's weapons worked out ahead, and their look for a weapon to ask
-    /// for. A save from before has an empty one.
+    /// aside ("not now", for <see cref="WeaponAskMath.NotNowDays"/> days) and each colonist's last ask (one each), the
+    /// colony's last ask, and when each colonist last filled an empty slot of their kit themselves (a day, pruned daily).
+    /// Its clock: every 250 ticks at <see cref="Sched.RareWeaponPicks"/>, a tenth of the colonists each time (each once an
+    /// hour): their ratings of the colony's weapons worked out ahead, an empty slot filled themselves (WeaponKitSelf), else
+    /// their look for a weapon to ask for. A save from before has an empty one.
     /// </summary>
     public class WeaponPickBook : GameComponent
     {
@@ -62,6 +63,8 @@ namespace ColonyCouncil
         public Dictionary<int, int> notNow = new Dictionary<int, int>();
         public List<WeaponAskNote> asks = new List<WeaponAskNote>();
         public int lastAsk = -1;
+        /// <summary>When each colonist last went to fill an empty slot of their kit themselves (thingIDNumber: tick), for a day.</summary>
+        public Dictionary<int, int> fetched = new Dictionary<int, int>();
 
         private static WeaponPickBook cached;
         private static Game cachedGame;
@@ -102,11 +105,13 @@ namespace ColonyCouncil
             Scribe_Collections.Look(ref notNow, "notNow", LookMode.Value, LookMode.Value);
             Scribe_Collections.Look(ref asks, "asks", LookMode.Deep);
             Scribe_Values.Look(ref lastAsk, "lastAsk", -1);
+            Scribe_Collections.Look(ref fetched, "fetched", LookMode.Value, LookMode.Value);
             if (Scribe.mode == LoadSaveMode.PostLoadInit)
             {
                 raids ??= new List<WeaponRaidNote>();
                 notNow ??= new Dictionary<int, int>();
                 asks ??= new List<WeaponAskNote>();
+                fetched ??= new Dictionary<int, int>();
                 raids.RemoveAll(r => r == null);
                 asks.RemoveAll(a => a == null || a.pawn < 0);
             }
@@ -126,6 +131,16 @@ namespace ColonyCouncil
             if (aside) notNow[p.thingIDNumber] = Now + WeaponAskMath.NotNowDays * GenDate.TicksPerDay;
             else notNow.Remove(p.thingIDNumber);
             WeaponPick.Dirty();
+        }
+
+        // ---------------- A kit filled themselves ----------------
+
+        /// <summary>Whether a colonist may go and fill an empty slot themselves now: not within a day of the last time.</summary>
+        public bool MayFetch(Pawn p, int now) => p != null && (!fetched.TryGetValue(p.thingIDNumber, out var last) || now - last >= WeaponKitSelf.EachTicks || now < last);
+
+        public void Fetched(Pawn p, int now)
+        {
+            if (p != null) fetched[p.thingIDNumber] = now;
         }
 
         // ---------------- Asks ----------------
@@ -233,7 +248,7 @@ namespace ColonyCouncil
             if (tm == null) return;
             int now = tm.TicksGame;
             if (!Sched.Every(now, Sched.RareTicks, Sched.RareWeaponPicks)) return;
-            if (!WeaponPick.On && !WeaponAsks.On) return;
+            if (!WeaponPick.On && !WeaponAsks.On && !WeaponKitSelf.On) return;
             int slice = Sched.SliceTurn(now, Sched.HourTicks, Sched.Slices, Sched.RareWeaponPicks);
             if (slice < 0) return;
             using (PassClock.Time(Pass.RareWeaponPicks))
@@ -246,9 +261,12 @@ namespace ColonyCouncil
                         if (colonists.Count == 0) continue;
                         var picks = WeaponPick.Current(map);
                         foreach (var p in colonists) WeaponPick.Warm(picks, p);
-                        if (!WeaponAsks.On) continue;
+                        if (!WeaponAsks.On && !WeaponKitSelf.On) continue;
                         picks = WeaponPick.For(map);
-                        foreach (var p in colonists) WeaponAsks.Look(p, picks, now);
+                        // An empty slot filled themselves first; else, now and then, an ask.
+                        foreach (var p in colonists)
+                            if (!WeaponKitSelf.Look(p, picks, now) && WeaponAsks.On)
+                                WeaponAsks.Look(p, picks, now);
                     }
                     if (slice == 0 && Sched.FirstHourOfDay(now)) Prune(now);
                 }
@@ -259,10 +277,11 @@ namespace ColonyCouncil
             }
         }
 
-        /// <summary>Once a day: "not now" ended, and asks of colonists no longer here.</summary>
+        /// <summary>Once a day: "not now" ended, a kit filled more than a day ago, and asks of colonists no longer here.</summary>
         private void Prune(int now)
         {
             foreach (var k in notNow.Where(kv => kv.Value <= now).Select(kv => kv.Key).ToList()) notNow.Remove(k);
+            foreach (var k in fetched.Where(kv => now - kv.Value >= WeaponKitSelf.EachTicks || kv.Value > now).Select(kv => kv.Key).ToList()) fetched.Remove(k);
             var here = new HashSet<int>(Homes.FreeColonistsAnywhere().Select(p => p.thingIDNumber));
             asks.RemoveAll(a => !here.Contains(a.pawn) && now - a.tick > WeaponAskMath.SameWeaponDays * GenDate.TicksPerDay);
         }

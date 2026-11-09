@@ -44,8 +44,20 @@ namespace ColonyCouncil
             public readonly Dictionary<string, string> places = new Dictionary<string, string>();
             /// <summary>The kinds the choice rates, for working colonists' ratings out ahead.</summary>
             public readonly HashSet<WeaponReport> kinds = new HashSet<WeaponReport>();
-            /// <summary>Weapons lying in storage the colony could take, all kinds.</summary>
-            public int stored;
+            /// <summary>Weapons lying in storage the colony could take, all kinds; and those lying there forbidden.</summary>
+            public int stored, forbidden;
+            /// <summary>
+            /// Empty slots of a kit the choice leaves empty that a forbidden weapon in storage would fill
+            /// (WeaponKitMath.ForbiddenFills): never suggested or taken by a colonist themselves, only asked for.
+            /// </summary>
+            public List<PickSuggestion> kitAsks = new List<PickSuggestion>();
+
+            /// <summary>A colonist's kit as it stands (WeaponKitMath.Kit), or null when the choice isn't for them.</summary>
+            public List<KitView> Kit(Pawn p)
+            {
+                var c = p != null ? input.Colonist(Key(p)) : null;
+                return c == null ? null : WeaponKitMath.Kit(input, c);
+            }
 
             public IEnumerable<PickSuggestion> Of(Pawn p) => p == null ? Enumerable.Empty<PickSuggestion>() : list.Where(s => s.Colonist == Key(p));
 
@@ -100,7 +112,7 @@ namespace ColonyCouncil
         /// <summary>The colony's choice on a home map: kept, made again once an hour, or sooner when what it reads has changed.</summary>
         public static Picks For(Map map)
         {
-            if (map == null || !Homes.IsHome(map) || (!On && !WeaponAsks.On)) return null;
+            if (map == null || !Homes.IsHome(map) || (!On && !WeaponAsks.On && !WeaponKitSelf.On)) return null;
             var p = Current(map);
             if (p == null || Stale(p))
             {
@@ -142,7 +154,13 @@ namespace ColonyCouncil
                     h = h * 31 + (p.equipment.Primary?.thingIDNumber ?? 0);
                     h = h * 31 + (p.inventory?.innerContainer?.Count ?? 0);
                 }
-                h = h * 31 + map.listerThings.ThingsInGroup(ThingRequestGroup.Weapon).Count;
+                var weapons = map.listerThings.ThingsInGroup(ThingRequestGroup.Weapon);
+                h = h * 31 + weapons.Count;
+                int forbidden = 0;
+                foreach (var t in weapons)
+                    if (t != null && t.IsForbidden(Faction.OfPlayer))
+                        forbidden++;
+                h = h * 31 + forbidden;
                 h = h * 31 + (WeaponPickBook.Instance?.notNow.Count ?? 0);
                 return h;
             }
@@ -202,6 +220,10 @@ namespace ColonyCouncil
                     Add(t, r).CarriedBy = c.Key;
                     c.Carries.Add(Key(t));
                 }
+                // Simple Sidearms unloads what it doesn't remember: not part of their kit until it does.
+                foreach (var t in WeaponMods.Unremembered(p))
+                    if (c.Carries.Contains(Key(t)))
+                        c.Unremembered.Add(Key(t));
                 var off = WeaponMods.OffHand(p);
                 if (off != null) c.OffHand = Key(off);
                 if (p.equipment.bondedWeapon is ThingWithComps bonded && !bonded.Destroyed)
@@ -212,30 +234,33 @@ namespace ColonyCouncil
                 Keepsakes(p, c, input);
             }
             Fighting(colonists, input);
-            // What lies in storage: the best kinds of each, as many of each as there are colonists.
-            var stored = new List<(Thing t, WeaponReport r, bool stand)>();
+            // What lies in storage: the best kinds of each, as many of each as there are colonists; forbidden ones too (never
+            // suggested or taken by a colonist themselves, only asked for to fill an empty slot, and named where nothing fills it).
+            var stored = new List<(Thing t, WeaponReport r, bool stand, bool forbidden)>();
             foreach (var t in map.listerThings.ThingsInGroup(ThingRequestGroup.Weapon))
             {
-                if (t == null || !t.Spawned || !WeaponLive.Rateable(t.def) || t.IsForbidden(Faction.OfPlayer) || !t.IsInAnyStorage() || t.IsBurning()) continue;
+                if (t == null || !t.Spawned || !WeaponLive.Rateable(t.def) || !t.IsInAnyStorage() || t.IsBurning()) continue;
                 var r = WeaponLive.Of(t);
-                if (r != null) stored.Add((t, r, false));
+                if (r != null) stored.Add((t, r, false, t.IsForbidden(Faction.OfPlayer)));
             }
             foreach (var stand in map.listerBuildings.AllBuildingsColonistOfClass<Building_OutfitStand>())
             {
                 var t = stand?.HeldWeapon;
-                if (t == null || !stand.Spawned || stand.IsForbidden(Faction.OfPlayer) || !WeaponLive.Rateable(t.def)) continue;
+                if (t == null || !stand.Spawned || !WeaponLive.Rateable(t.def)) continue;
                 var r = WeaponLive.Of(t);
-                if (r != null) stored.Add((t, r, true));
+                if (r != null) stored.Add((t, r, true, stand.IsForbidden(Faction.OfPlayer)));
             }
-            picks.stored = stored.Count;
+            picks.stored = stored.Count(x => !x.forbidden);
+            picks.forbidden = stored.Count - picks.stored;
             int perKind = Math.Max(1, colonists.Count);
             foreach (var kind in stored.GroupBy(x => x.r.Rating.Kind))
                 foreach (var g in kind.GroupBy(x => x.r).OrderByDescending(g => g.Key.Rating.Overall).Take(TopKinds))
-                    foreach (var (t, r, stand) in g.Take(perKind))
+                    foreach (var (t, r, stand, forbidden) in g.OrderBy(x => x.forbidden).Take(perKind))
                     {
                         var w = Add(t, r);
                         w.Stored = true;
                         w.HandOnly = stand;
+                        w.Forbidden = forbidden;
                         picks.places[w.Key] = PlaceOf(t);
                     }
             // Each colonist with each weapon; alike weapons (one group: kind, stuff, quality, coding) are weighed once each.
@@ -251,7 +276,7 @@ namespace ColonyCouncil
                     string gk = w.Group + (w.Stored ? "/stored" : "/" + w.Key);
                     if (alike.TryGetValue(gk, out var same))
                     {
-                        input.Options[(c.Key, w.Key)] = new PickOption { Cant = same.Cant, Rating = same.Rating, Noble = same.Noble, Pair = same.Pair };
+                        input.Options[(c.Key, w.Key)] = new PickOption { Cant = same.Cant, Rating = same.Rating, Noble = same.Noble, Pair = same.Pair, SidearmCant = same.SidearmCant };
                         continue;
                     }
                     var o = new PickOption { Cant = CantFor(p, t, r) };
@@ -261,30 +286,33 @@ namespace ColonyCouncil
                         o.Noble = p.Ideo != null && p.Ideo.GetDispositionForWeapon(t.def) == IdeoWeaponDisposition.Noble;
                         if (dual != null && w.Stored && w.CanOffHand && !w.TwoHanded && mainReport != null && mainReport.Rating.Kind == r.Rating.Kind && c.OffHand == null)
                             o.Pair = Pair(p, mainReport, r, dual);
+                        // Simple Sidearms' own word on it as a sidearm for them now (its weights, slots and their free room).
+                        if (input.Rules.Sidearms && w.Stored && WeaponKitMath.FitsSidearm(input, w)) o.SidearmCant = SidearmWhyNot(t, p);
                     }
                     input.Options[(c.Key, w.Key)] = o;
                     alike[gk] = o;
                 }
             }
-            // The choice; a weapon a colonist can't walk to is taken out for them, and the choice made again.
+            // The choice; a weapon (or another's spare) a colonist can't walk to is taken out for them, and the choice made again.
             for (int round = 0; round < 3; round++)
             {
                 picks.list = WeaponPickMath.Assign(input);
                 bool again = false;
                 foreach (var s in picks.list)
                 {
-                    if (s.Kind == PickKind.Swap) continue;
+                    if (s.Kind == PickKind.Swap || s.Kind == PickKind.Keep) continue;
                     var p = picks.Pawn(s.Colonist);
                     var t = picks.Thing(s.Weapon);
-                    var target = Where(t);
-                    if (p == null || t == null || !target.IsValid || p.CanReach(target, PathEndMode.ClosestTouch, Danger.Deadly)) continue;
+                    var target = s.Kind == PickKind.Spare ? (LocalTargetInfo)picks.Pawn(s.Other) : Where(t);
+                    if (p == null || t == null || !target.IsValid || p.CanReach(target, s.Kind == PickKind.Spare ? PathEndMode.Touch : PathEndMode.ClosestTouch, Danger.Deadly)) continue;
                     input.Options[(s.Colonist, s.Weapon)].Cant = "NoPath".Translate().CapitalizeFirst();
                     again = true;
                 }
                 if (!again) break;
             }
+            picks.kitAsks = WeaponKitMath.ForbiddenFills(input, picks.list);
             // Each suggestion's reasons, with the steps of the colonist's own rating (their skill, their traits).
-            foreach (var s in picks.list)
+            foreach (var s in picks.list.Concat(picks.kitAsks))
             {
                 var p = picks.Pawn(s.Colonist);
                 var r = picks.Report(s.Weapon);
@@ -315,7 +343,9 @@ namespace ColonyCouncil
                 Shooting = shooting?.Level ?? 0, Melee = melee?.Level ?? 0,
                 ShootingPassion = shooting != null ? People.PassionLevel(shooting) : 0, MeleePassion = melee != null ? People.PassionLevel(melee) : 0,
                 Brawler = p.story?.traits?.HasTrait(TraitDefOf.Brawler) ?? false, Hunter = Hunts(p), Worker = WorkerOf(p),
-                NotNow = book?.IsNotNow(p) ?? false
+                NotNow = book?.IsNotNow(p) ?? false,
+                RoleNoRanged = WeaponMods.RoleBars(p, true), RoleNoMelee = WeaponMods.RoleBars(p, false),
+                OneHand = WeaponMods.DualWieldLoaded && WeaponMods.MissingHand(p)
             };
         }
 
@@ -549,7 +579,8 @@ namespace ColonyCouncil
 
         /// <summary>
         /// Whether a suggestion still stands as the map is now: the colonist here and up, a weapon from storage still lying
-        /// there (not forbidden, not taken), not already theirs; a trade's two still holding what they held.
+        /// there (not forbidden, not taken), not already theirs; a trade's two still holding what they held; a weapon in their
+        /// pack still not remembered by Simple Sidearms; another's spare still in their pack.
         /// </summary>
         public static bool Stands(Picks picks, PickSuggestion s)
         {
@@ -562,6 +593,12 @@ namespace ColonyCouncil
                 var other = picks.Pawn(s.Other);
                 var mine = picks.Thing(s.Instead);
                 return other != null && other.Spawned && !other.Dead && other.Map == picks.map && other.equipment?.Primary == t && p.equipment.Primary == mine;
+            }
+            if (s.Kind == PickKind.Keep) return p.inventory?.innerContainer != null && p.inventory.innerContainer.Contains(t) && WeaponMods.Unremembered(p).Contains(t);
+            if (s.Kind == PickKind.Spare)
+            {
+                var giver = picks.Pawn(s.Other);
+                return giver != null && giver.Spawned && !giver.Dead && giver.Map == picks.map && giver.inventory?.innerContainer != null && giver.inventory.innerContainer.Contains(t);
             }
             if (p.equipment.Primary == t || WeaponMods.OffHand(p) == t) return false;
             if (s.Kind != PickKind.Primary && p.inventory?.innerContainer != null && p.inventory.innerContainer.Contains(t)) return false;
@@ -593,11 +630,30 @@ namespace ColonyCouncil
         /// <summary>The weapon's label as the line names it.</summary>
         public static string Label(Picks picks, string key) => picks.Thing(key)?.LabelNoCount ?? picks.input.Weapon(key)?.Label ?? "?";
 
-        /// <summary>The head of a suggestion: "Better for Ana: charge rifle (+1.4)", "A sidearm for Ana: knife (+1.1)", a trade.</summary>
+        /// <summary>A colonist's own rating of the weapon a suggestion names (for the off hand, the weapon alone, not both hands together).</summary>
+        public static float OwnRating(Picks picks, PickSuggestion s) =>
+            picks.input.Option(picks.input.Colonist(s.Colonist), picks.input.Weapon(s.Weapon))?.Rating ?? s.Rating;
+
+        /// <summary>What an empty slot is, in words: "No melee weapon", "Nothing in hand".</summary>
+        public static string GapWords(KitSlot slot) => ("CC_WeaponKit_Gap_" + slot).Translate().Resolve();
+
+        /// <summary>
+        /// How an empty slot is filled, in words: "steel hatchet (3.8) as a sidearm", "the knife in her pack, kept as a
+        /// sidearm", "Bautista's spare knife (4.0)"; <paramref name="rating"/> false leaves the rating out (the row's badge shows it).
+        /// </summary>
+        public static string FillWords(Picks picks, PickSuggestion s, bool rating = true)
+        {
+            var p = picks.Pawn(s.Colonist);
+            string weapon = Label(picks, s.Weapon) + (rating ? " (" + F1(OwnRating(picks, s)) + ")" : "");
+            return ("CC_WeaponKit_Fill_" + s.Kind).Translate(p.Named("PAWN"), weapon.Named("WEAPON"), (picks.Pawn(s.Other)?.LabelShort ?? "?").Named("OTHER")).Resolve();
+        }
+
+        /// <summary>The head of a suggestion: "Better for Ana: charge rifle (+1.4)", "A sidearm for Ana: knife (+1.1)", a trade; an empty slot "No melee weapon: steel hatchet (3.8) as a sidearm".</summary>
         public static string Head(Picks picks, PickSuggestion s)
         {
             var p = picks.Pawn(s.Colonist);
             string weapon = Label(picks, s.Weapon);
+            if (s.Gap.HasValue) return "CC_WeaponKit_Head".Translate(GapWords(s.Gap.Value).Named("GAP"), FillWords(picks, s).Named("FILL")).Resolve();
             switch (s.Kind)
             {
                 case PickKind.Sidearm:
@@ -607,6 +663,10 @@ namespace ColonyCouncil
                 case PickKind.Swap:
                     var other = picks.Pawn(s.Other);
                     return "CC_WeaponPick_Head_Swap".Translate(p.Named("PAWN"), other.Named("OTHER"), weapon.Named("WEAPON"), Gain(s.Gain).Named("GAIN")).Resolve();
+                case PickKind.Keep:
+                    return "CC_WeaponPick_Head_Keep".Translate(p.Named("PAWN"), weapon.Named("WEAPON"), Gain(s.Gain).Named("GAIN")).Resolve();
+                case PickKind.Spare:
+                    return "CC_WeaponPick_Head_Spare".Translate(p.Named("PAWN"), picks.Pawn(s.Other).Named("OTHER"), weapon.Named("WEAPON"), Gain(s.Gain).Named("GAIN")).Resolve();
                 default:
                     return "CC_WeaponPick_Head_Primary".Translate(p.Named("PAWN"), weapon.Named("WEAPON"), Gain(s.Gain).Named("GAIN")).Resolve();
             }
@@ -666,6 +726,12 @@ namespace ColonyCouncil
                         ? "CC_WeaponPick_Cost_Lucky".Translate(lucky.Named("OTHER"), r.Extra.Named("WEAPON"), MoodText(r.Level).Named("WITHOUT"),
                             MoodText(r.Value).Named("WITH")).Resolve()
                         : "";
+                case PickWhy.Kit:
+                    return ("CC_WeaponKit_Why_" + r.Text.CapitalizeFirst()).Translate(p.Named("PAWN")).Resolve();
+                case PickWhy.Pack:
+                    return "CC_WeaponKit_Why_Pack".Translate(p.Named("PAWN")).Resolve();
+                case PickWhy.Spare:
+                    return picks.Pawn(r.Text) is Pawn giver ? "CC_WeaponKit_Why_Spare".Translate(giver.Named("OTHER")).Resolve() : "";
                 case PickWhy.Heirloom:
                     return picks.Pawn(r.Text) is Pawn heir
                         ? "CC_WeaponPick_Cost_Heirloom".Translate(heir.Named("OTHER"), r.Extra.Named("WEAPON"), r.Of.Named("LOST"), MoodText(r.Value).Named("WITH")).Resolve()
@@ -732,7 +798,7 @@ namespace ColonyCouncil
 
         // ---------------------------------------------------------------- acting on it
 
-        private static JobDef sidearmJob, offHandJob, swapJob;
+        private static JobDef sidearmJob, offHandJob, swapJob, spareJob;
         private static bool jobsLooked;
 
         private static void LookJobs()
@@ -742,6 +808,7 @@ namespace ColonyCouncil
             if (WeaponMods.SidearmsLoaded) sidearmJob = DefDatabase<JobDef>.GetNamedSilentFail("EquipSecondary");
             if (WeaponMods.DualWieldLoaded) offHandJob = DefDatabase<JobDef>.GetNamedSilentFail("DW_EquipOffhand");
             swapJob = DefDatabase<JobDef>.GetNamedSilentFail("Rimfolk_SwapWeapons");
+            spareJob = DefDatabase<JobDef>.GetNamedSilentFail("Rimfolk_TakeSpareWeapon");
         }
 
         /// <summary>Simple Sidearms' own job to take a weapon as a sidearm, when it is loaded (else no such button).</summary>
@@ -784,6 +851,7 @@ namespace ColonyCouncil
             if (job == null) return false;
             var t = picks.Thing(s.Weapon);
             if (s.Kind == PickKind.Swap) return job.def == swapJob && job.targetB.Thing == t;
+            if (s.Kind == PickKind.Spare) return job.def == spareJob && job.targetB.Thing == t;
             return (job.def == JobDefOf.Equip || job.def == sidearmJob || job.def == offHandJob) && job.targetA.Thing == t;
         }
 
@@ -800,6 +868,15 @@ namespace ColonyCouncil
             var t = picks.Thing(s.Weapon);
             if (p.Downed || p.InMentalState) return "CC_WeaponPick_Busy".Translate(p.Named("PAWN")).Resolve();
             if (!p.health.capacities.CapableOf(PawnCapacityDefOf.Manipulation)) return "Incapable".Translate().CapitalizeFirst();
+            if (s.Kind == PickKind.Keep) return WeaponMods.CanRemember ? null : "CC_WeaponPick_NoSidearms".Translate().Resolve();
+            if (s.Kind == PickKind.Spare)
+            {
+                if (spareJob == null) return "?";
+                var giver = picks.Pawn(s.Other);
+                if (giver.Downed || giver.InMentalState || giver.Drafted || !giver.Awake()) return "CC_WeaponPick_Busy".Translate(giver.Named("PAWN")).Resolve();
+                if (!p.CanReach(giver, PathEndMode.Touch, Danger.Deadly)) return "NoPath".Translate().CapitalizeFirst();
+                return null;
+            }
             if (s.Kind == PickKind.Swap)
             {
                 if (swapJob == null) return "?";
@@ -849,7 +926,16 @@ namespace ColonyCouncil
             Job job = null;
             try
             {
+                if (s.Kind == PickKind.Keep)
+                {
+                    // Already on them: Simple Sidearms is told it is one of their sidearms, so it isn't unloaded to storage.
+                    if (!WeaponMods.Remember(p, t)) return false;
+                    if (p.Spawned) FleckMaker.Static(p.DrawPos, p.Map, FleckDefOf.FeedbackEquip);
+                    Dirty();
+                    return true;
+                }
                 if (s.Kind == PickKind.Swap) job = JobMaker.MakeJob(swapJob, picks.Pawn(s.Other), t, picks.Thing(s.Instead));
+                else if (s.Kind == PickKind.Spare) job = JobMaker.MakeJob(spareJob, picks.Pawn(s.Other), t);
                 else if (s.Kind == PickKind.Sidearm || asSidearm) job = JobMaker.MakeJob(sidearmJob, t);
                 else if (s.Kind == PickKind.OffHand) job = JobMaker.MakeJob(offHandJob, t);
                 else if (!w.Stored)
@@ -879,6 +965,25 @@ namespace ColonyCouncil
             }
         }
 
+        /// <summary>
+        /// The job a colonist does of their own accord to fill an empty slot from storage (WeaponKitSelf): the game's Equip
+        /// into an empty hand, Simple Sidearms' own EquipSecondary as a sidearm, Dual Wield's own DW_EquipOffhand into the off
+        /// hand; null for anything else, or when the mod's job isn't there.
+        /// </summary>
+        public static Job FetchJob(Picks picks, PickSuggestion s)
+        {
+            LookJobs();
+            var t = picks?.Thing(s?.Weapon);
+            if (t == null || picks.input.Weapon(s.Weapon)?.Stored != true) return null;
+            switch (s.Kind)
+            {
+                case PickKind.Primary: return JobMaker.MakeJob(JobDefOf.Equip, t);
+                case PickKind.Sidearm: return sidearmJob != null ? JobMaker.MakeJob(sidearmJob, t) : null;
+                case PickKind.OffHand: return offHandJob != null ? JobMaker.MakeJob(offHandJob, t) : null;
+                default: return null;
+            }
+        }
+
         /// <summary>Do, after the game's own warning for a persona weapon that would bond, when there is one.</summary>
         public static void DoConfirmed(Picks picks, PickSuggestion s, bool asSidearm = false)
         {
@@ -892,12 +997,23 @@ namespace ColonyCouncil
         /// were already told (never one that would bond a persona weapon: that one asks first, from its own button). Only
         /// orders; nothing is done by itself later. Returns how many were ordered.
         /// </summary>
-        public static int DoAll(Picks picks)
+        public static int DoAll(Picks picks) => DoEach(picks, false);
+
+        /// <summary>
+        /// "Fill every kit": every empty slot's suggestion that stands and can be done now is ordered (each colonist's after
+        /// what they were already told; a weapon in their pack is made a sidearm at once). Only orders, never by itself.
+        /// </summary>
+        public static int DoKit(Picks picks) => DoEach(picks, true);
+
+        /// <summary>Whether a suggestion can be ordered now from "Equip all suggested" or "Fill every kit": it stands, isn't under way, nothing stops it, no persona weapon would bond.</summary>
+        public static bool Doable(Picks picks, PickSuggestion s) => Stands(picks, s) && !OnTheWay(picks, s) && WhyNot(picks, s) == null && Confirm(picks, s).NullOrEmpty();
+
+        private static int DoEach(Picks picks, bool kitOnly)
         {
             if (picks == null) return 0;
             int n = 0;
             var told = new HashSet<string>();
-            foreach (var s in picks.list.OrderBy(s => (int)s.Kind))
+            foreach (var s in picks.list.Where(x => !kitOnly || x.Gap.HasValue).OrderBy(x => x.Gap.HasValue ? 0 : 1).ThenBy(x => (int)x.Kind))
             {
                 if (!Stands(picks, s) || OnTheWay(picks, s) || WhyNot(picks, s) != null || !Confirm(picks, s).NullOrEmpty()) continue;
                 // A trade is given to one of the two, once.
@@ -912,9 +1028,9 @@ namespace ColonyCouncil
         }
 
         /// <summary>The colonists who can carry a weapon best (its card, "Who should carry this"), from the choice on the map in view.</summary>
-        public static List<(Pawn p, float rating, float gain)> WhoShouldCarry(Thing thing, ThingDef def, ThingDef stuff, int max = 3)
+        public static List<(Pawn p, float rating, float gain, bool lacks)> WhoShouldCarry(Thing thing, ThingDef def, ThingDef stuff, int max = 3)
         {
-            var list = new List<(Pawn, float, float)>();
+            var list = new List<(Pawn, float, float, bool)>();
             var map = Find.CurrentMap;
             var picks = On ? For(map) : null;
             if (picks == null) return list;
@@ -944,10 +1060,10 @@ namespace ColonyCouncil
             }
             try
             {
-                foreach (var (c, score, gain) in WeaponPickMath.WhoShouldCarry(input, w, max))
+                foreach (var (c, score, gain, lacks) in WeaponPickMath.WhoShouldCarry(input, w, max))
                 {
                     var p = picks.Pawn(c.Key);
-                    if (p != null) list.Add((p, input.Option(c, w)?.Rating ?? score, gain));
+                    if (p != null) list.Add((p, input.Option(c, w)?.Rating ?? score, gain, lacks));
                 }
             }
             finally

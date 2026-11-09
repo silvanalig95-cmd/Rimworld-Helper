@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    A colonist taking a weapon to fill an empty slot of their kit themselves (Source/ColonyCouncil/Weapons/WeaponKitSelf.cs),
+    said over their head through Speech as they pick it up, one sentence each. Every line has how it is carried, so its
+    words are true: hand (into an empty hand), sidearm (carried beside what they hold), offhand (into the off hand, the same
+    kind as the main hand), keep (one already in their pack, kept as a sidearm); and where the words need it, the weapon's
+    kind: ranged or melee. {WEAPON} is the weapon's label. The colony's age decides the words where they differ (a bow or a
+    spear on the back in the lower ages), the speaker's tone the voice.
+  -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_WeaponKitTake</defName>
+    <lines>
+      <plain>
+        <li>[hand] Better a {WEAPON} in my hand than nothing at all.</li>
+        <li>[hand,melee] I'll take this {WEAPON}, I've had nothing to fight with.</li>
+        <li>[hand,ranged] I'll carry this {WEAPON}, I've had nothing to fight with.</li>
+        <li>[sidearm,melee] I'll keep this {WEAPON} at my belt, in case they get close.</li>
+        <li>[sidearm,melee] Better a {WEAPON} at my side than nothing if it comes to that.</li>
+        <li>[sidearm,ranged] A {WEAPON} at my side, for the ones who run.</li>
+        <li>[sidearm,ranged] This {WEAPON} will reach the ones I can't get to.</li>
+        <li>[sidearm,ranged,lowtech] With this {WEAPON} on my back I can strike before they reach me.</li>
+        <li>[offhand] This {WEAPON} will do for my other hand.</li>
+        <li>[offhand,melee] A weapon in each hand now, this {WEAPON} for the second.</li>
+        <li>[offhand,ranged] Two to shoot with now, with this {WEAPON} in my other hand.</li>
+        <li>[keep] I'll hang on to this {WEAPON} after all.</li>
+        <li>[keep,melee] This {WEAPON} stays at my belt from now on.</li>
+        <li>[keep,ranged] This {WEAPON} stays with me from now on.</li>
+      </plain>
+      <warm>
+        <li>[sidearm] With this {WEAPON} too I can look after the others better.</li>
+        <li>[hand] There, a {WEAPON}, now I can stand with the rest of you.</li>
+        <li>[offhand] A {WEAPON} for my other hand, so I can keep you all safer.</li>
+      </warm>
+      <blunt>
+        <li>[sidearm,melee] Nothing for close work until now, so this {WEAPON} comes with me.</li>
+        <li>[sidearm,ranged] Nothing to shoot with until now, so this {WEAPON} comes with me.</li>
+        <li>[hand] Empty hands are no use in a fight, so I'm taking this {WEAPON}.</li>
+      </blunt>
+      <cheerful>
+        <li>[sidearm] A {WEAPON} of my own to carry, that's more like it!</li>
+        <li>[offhand] One in each hand, and this {WEAPON} feels just right!</li>
+        <li>[keep] Oh, I'd forgotten this {WEAPON}, it can stay with me!</li>
+      </cheerful>
+      <gloomy>
+        <li>[sidearm] I'll carry this {WEAPON}, for all the good it may do.</li>
+        <li>[hand] A {WEAPON}, then, since trouble always finds us.</li>
+      </gloomy>
+      <cold>
+        <li>[sidearm] The {WEAPON} fills the gap in my kit.</li>
+        <li>[offhand] The {WEAPON} for the off hand, as it should be.</li>
+        <li>[keep] The {WEAPON} stays in my kit.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+</Defs>

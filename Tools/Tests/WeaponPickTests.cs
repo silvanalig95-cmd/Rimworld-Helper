@@ -145,13 +145,16 @@ public static class WeaponPickTests
                 var s = k.Assign();
                 var stored = s.Where(x => x.Kind != PickKind.Swap).Select(x => x.Weapon).ToList();
                 if (stored.Distinct().Count() != stored.Count) worse += 1000;
+                // The kit first: as many of those with nothing in hand armed as can be, then the most gain.
+                int armed = s.Count(x => x.Kind == PickKind.Primary && x.Gap.HasValue);
                 float total = s.Where(x => x.Kind == PickKind.Primary).Sum(x => x.Gain);
-                float best = Best(k.I, 0, new HashSet<string>());
-                if (total >= best - 0.05f) optimal++;
-                else if (total < best * 0.75f) worse++;
-                if (s.Any(x => x.Kind == PickKind.Primary && x.Gain < WeaponPickMath.Threshold - 1e-4f)) worse += 1000;
+                var best = Best(k.I, 0, new HashSet<string>());
+                if (armed < best.armed) worse += 1000;
+                else if (total >= best.gain - 0.05f) optimal++;
+                else if (total < best.gain * 0.75f) worse++;
+                if (s.Any(x => x.Kind == PickKind.Primary && !x.Gap.HasValue && x.Gain < WeaponPickMath.Threshold - 1e-4f)) worse += 1000;
             }
-            C(worse < 1000, "random colonies: never one weapon to two, never a gain under the threshold");
+            C(worse < 1000, "random colonies: never one weapon to two, never an upgrade under the threshold, every empty hand armed that can be");
             C(optimal >= cases * 0.9, $"random colonies: the colony's best total in {optimal} of {cases}");
             C(worse == 0, $"random colonies: never under three quarters of the best total ({worse})");
         }
@@ -408,9 +411,9 @@ public static class WeaponPickTests
             k.O("ana", "knife", 4.5f);
             k.O("ana", "longsword", 6f);
             var s = k.Assign();
-            C(s.Count == 1 && s[0].Kind == PickKind.Sidearm && s[0].Weapon == "knife" && Near(s[0].Gain, 4.5f - WeaponPickMath.SidearmFloor),
-                "a knife as a sidearm beside her rifle; a longsword is past Simple Sidearms' default weight");
-            C(s[0].Reasons.First().Kind == PickWhy.Sidearm, "its line says it is carried beside her rifle");
+            C(s.Count == 1 && s[0].Kind == PickKind.Sidearm && s[0].Weapon == "knife" && s[0].Gap == KitSlot.Melee && Near(s[0].Gain, 4.5f - WeaponPickMath.Unarmed),
+                "a knife as a sidearm beside her rifle, filling her empty melee slot; a longsword is past Simple Sidearms' default weight");
+            C(s[0].Reasons.First().Kind == PickWhy.Kit && s[0].Reasons.Any(r => r.Kind == PickWhy.Sidearm), "its line says she has nothing for close work, and it is carried beside her rifle");
             k.I.Colonist("ana").Carries.Add("dagger");
             k.W("dagger", R("melee", 4.3f), false, mass: 0.5f).CarriedBy = "ana";
             k.O("ana", "dagger", 4.3f);
@@ -561,7 +564,7 @@ public static class WeaponPickTests
                     pools[(string)el.Element("defName")] = el.Element("lines")?.Descendants("li").Select(li => li.Value).ToList() ?? new List<string>();
             C(pools.TryGetValue("Rimfolk_Pool_WeaponAsk", out var lines) && lines.Count >= 40, "the colonists' asks have a pool of their own");
             lines ??= new List<string>();
-            string[] reasons = { "mechanoids", "armoured", "crowds", "siege", "choke", "skill", "trait", "hunting", "passion", "noble", "worker", "special", "sidearm", "offhand", "better" };
+            string[] reasons = { "mechanoids", "armoured", "crowds", "siege", "choke", "skill", "trait", "hunting", "passion", "noble", "worker", "special", "sidearm", "offhand", "better", "kit" };
             foreach (var era in new[] { "tribal", "medieval", "industrial", "spacer" })
             {
                 var eras = new HashSet<string> { era };
@@ -686,18 +689,24 @@ public static class WeaponPickTests
         return n;
     }
 
-    /// <summary>The best total of gains by brute force: each colonist one stored weapon worth it, or none.</summary>
-    static float Best(PickInput input, int i, HashSet<string> used)
+    /// <summary>
+    /// The best by brute force, the kit first: the most of those with nothing in hand armed (any weapon sensible for them,
+    /// WeaponKitMath.Floor), then the most gain; each colonist one stored weapon worth it, or none.
+    /// </summary>
+    static (int armed, float gain) Best(PickInput input, int i, HashSet<string> used)
     {
-        if (i >= input.Colonists.Count) return 0f;
+        if (i >= input.Colonists.Count) return (0, 0f);
         var c = input.Colonists[i];
-        float best = Best(input, i + 1, used);
+        bool gap = WeaponKitMath.HandEmpty(input, c);
+        var best = Best(input, i + 1, used);
         foreach (var w in input.Weapons.Where(w => w.Stored && !used.Contains(w.Key)))
         {
             var g = WeaponPickMath.PrimaryGain(input, c, w);
-            if (!g.HasValue || g.Value.gain < g.Value.need - 1e-4f) continue;
+            if (!g.HasValue || (gap ? g.Value.score < WeaponKitMath.Floor - 1e-4f : g.Value.gain < g.Value.need - 1e-4f)) continue;
             used.Add(w.Key);
-            best = Math.Max(best, g.Value.gain + Best(input, i + 1, used));
+            var rest = Best(input, i + 1, used);
+            var mine = (rest.armed + (gap ? 1 : 0), rest.gain + g.Value.gain);
+            if (mine.Item1 > best.armed || (mine.Item1 == best.armed && mine.Item2 > best.gain)) best = mine;
             used.Remove(w.Key);
         }
         return best;

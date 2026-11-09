@@ -451,6 +451,8 @@ namespace ColonyCouncil
         public bool weaponAsks = true;
         /// <summary>With nothing to suggest, the gear tab (the game's and Nice Inventory Tab's) says so in one quiet line, what was compared on its tooltip (Weapons/WeaponPickUi.cs).</summary>
         public bool weaponNoBetterLine = true;
+        /// <summary>A colonist whose kit has an empty slot (no ranged or melee weapon, a free off hand) goes and takes a fitting weapon from storage in their free time (Weapons/WeaponKitSelf.cs); off, it is only suggested and asked for.</summary>
+        public bool weaponKitSelf = true;
         public BarBadgeSize barBadgeSize = BarBadgeSize.Normal;
         public BarBadgeCorner barBadgeCorner = BarBadgeCorner.TopRight;
         public int barBadgeMax = 2;
@@ -987,6 +989,7 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref weaponSuggestions, "weaponSuggestions", true);
             Scribe_Values.Look(ref weaponAsks, "weaponAsks", true);
             Scribe_Values.Look(ref weaponNoBetterLine, "weaponNoBetterLine", true);
+            Scribe_Values.Look(ref weaponKitSelf, "weaponKitSelf", true);
             Scribe_Values.Look(ref barBadgeSize, "barBadgeSize", BarBadgeSize.Normal);
             Scribe_Values.Look(ref barBadgeCorner, "barBadgeCorner", BarBadgeCorner.TopRight);
             Scribe_Values.Look(ref barBadgeMax, "barBadgeMax", 2);

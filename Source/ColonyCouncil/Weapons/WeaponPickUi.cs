@@ -25,8 +25,12 @@ namespace ColonyCouncil
     /// name with its quality, its rating for the colonist and the gain, why in a line (the whole line on the tooltip), a
     /// warning when it gives up something that matters (a lucky weapon, an heirloom, a bonded persona weapon), and its
     /// buttons (Equip, As sidearm with Simple Sidearms, Off hand with Dual Wield, Trade with whom, Not now), each a real job
-    /// walked out on the map. With nothing to suggest, one quiet line says so ("Say when there's no better weapon"). What
-    /// is drawn is read from the colony's kept choice, worked out with its words once a real second.
+    /// walked out on the map. An empty slot of the kit (WeaponKitMath) is a row of its own kind: tagged "Missing", its
+    /// headline what is missing and how it is filled ("No melee weapon: steel hatchet as a sidearm"), the same picture,
+    /// rating and reasons, the right button (Equip, As sidearm, Off hand, Keep as sidearm, Take from whom). With nothing to
+    /// suggest, one quiet line says so ("Say when there's no better weapon"), honest about the kit: an empty slot nothing
+    /// fills is said ("No melee weapon in storage for Avila", under the rows too), its tooltip what was looked at and why
+    /// each was left out. What is drawn is read from the colony's kept choice, worked out with its words once a real second.
     /// </summary>
     public static class WeaponPickGearTab
     {
@@ -45,22 +49,32 @@ namespace ColonyCouncil
         private static Quiet quiet;
         private static string quietText;
 
-        /// <summary>What the quiet line says: nothing (none shown), no better weapon, set aside, can't fight.</summary>
+        /// <summary>What the quiet line says: nothing (none shown), no better weapon, set aside, can't fight, an empty slot nothing fills.</summary>
         private enum Quiet
         {
             None,
             NoBetter,
             SetAside,
-            CantFight
+            CantFight,
+            Gap
         }
+
+        /// <summary>The empty slots of the colonist in view that nothing fills (the quiet line's "No melee weapon in storage").</summary>
+        private static List<KitSlot> unfilled = new List<KitSlot>();
 
         /// <summary>What a row shows, worked out with the view (once a real second), so nothing is asked of the map per frame.</summary>
         private sealed class LineView
         {
             public string head, why, whyNot, whyNotSidearm, actTip, sidearmTip, notNowTip, name, gain, act, warning, tag;
-            public bool onTheWay, sidearms, asked;
+            public bool onTheWay, sidearms, asked, gap;
             public float actW, sidearmW;
         }
+
+        /// <summary>A suggestion's button label: "Equip", "As sidearm", "Off hand", "Keep as sidearm", "Trade with Bautista", "Take from Bautista".</summary>
+        public static string ActLabel(WeaponPick.Picks picks, PickSuggestion s) =>
+            s.Kind == PickKind.Swap ? "CC_WeaponPick_Act_SwapWith".Translate(picks.Pawn(s.Other).Named("OTHER")).Resolve()
+            : s.Kind == PickKind.Spare ? "CC_WeaponPick_Act_SpareFrom".Translate(picks.Pawn(s.Other).Named("OTHER")).Resolve()
+            : ("CC_WeaponPick_Act_" + s.Kind).Translate().Resolve();
 
         private static readonly Dictionary<PickSuggestion, LineView> lines = new Dictionary<PickSuggestion, LineView>();
 
@@ -73,19 +87,21 @@ namespace ColonyCouncil
             var v = new LineView
             {
                 head = WeaponPick.Head(picks, s), why = WeaponPick.Why(picks, s).CapitalizeFirst(), onTheWay = WeaponPick.OnTheWay(picks, s),
-                name = t?.LabelCapNoCount ?? WeaponPick.Label(picks, s.Weapon).CapitalizeFirst(), gain = WeaponPickMath.GainText(s.Gain)
+                name = t?.LabelCapNoCount ?? WeaponPick.Label(picks, s.Weapon).CapitalizeFirst(), gain = WeaponPickMath.GainText(s.Gain), gap = s.Gap.HasValue
             };
-            v.sidearms = s.Kind == PickKind.Primary && WeaponPick.CanTakeSidearms && picks.input.Weapon(s.Weapon) is PickWeapon w && w.Stored && !w.HandOnly &&
+            // An empty slot: the headline says what is missing and how it is filled (the rating is the badge beside it).
+            if (v.gap) v.name = "CC_WeaponKit_Head".Translate(WeaponPick.GapWords(s.Gap.Value).Named("GAP"), WeaponPick.FillWords(picks, s, false).Named("FILL")).Resolve();
+            v.sidearms = s.Kind == PickKind.Primary && !v.gap && WeaponPick.CanTakeSidearms && picks.input.Weapon(s.Weapon) is PickWeapon w && w.Stored && !w.HandOnly &&
                          w.Mass <= (w.Ranged ? picks.input.Rules.SidearmRangedMass : picks.input.Rules.SidearmMeleeMass) + 0.001f;
             if (!v.onTheWay)
             {
                 v.whyNot = WeaponPick.WhyNot(picks, s);
                 if (v.sidearms) v.whyNotSidearm = WeaponPick.WhyNot(picks, s, true);
             }
-            v.act = s.Kind == PickKind.Swap ? "CC_WeaponPick_Act_SwapWith".Translate(picks.Pawn(s.Other).Named("OTHER")).Resolve() : ("CC_WeaponPick_Act_" + s.Kind).Translate().Resolve();
+            v.act = ActLabel(picks, s);
             v.actW = ButtonW(v.act);
             v.sidearmW = ButtonW("CC_WeaponPick_Act_AsSidearm".Translate());
-            v.actTip = ("CC_WeaponPick_Act_" + s.Kind + "_Tip").Translate(p.Named("PAWN")).Resolve();
+            v.actTip = ("CC_WeaponPick_Act_" + s.Kind + "_Tip").Translate(p.Named("PAWN"), (picks.Pawn(s.Other)?.LabelShort ?? "").Named("OTHER")).Resolve();
             v.sidearmTip = "CC_WeaponPick_Act_AsSidearm_Tip".Translate(p.Named("PAWN")).Resolve();
             v.notNowTip = "CC_WeaponPick_NotNow_Tip".Translate(p.Named("PAWN"), WeaponAskMath.NotNowDays.Named("DAYS")).Resolve();
             // What it costs, said on its own line: a keepsake, a bonded persona weapon, a hunter's hunts.
@@ -96,7 +112,7 @@ namespace ColonyCouncil
             int now = Find.TickManager?.TicksGame ?? 0;
             bool AskedBy(Pawn who, Thing weapon) => who != null && weapon != null && book?.AskOf(who) is WeaponAskNote a && a.weapon == weapon.thingIDNumber && WeaponAskMath.Shows(now, a.tick, 0);
             v.asked = AskedBy(p, t) || (s.Kind == PickKind.Swap && AskedBy(picks.Pawn(s.Other), picks.Thing(s.Instead)));
-            v.tag = (v.asked ? "CC_WeaponPick_TagAsked" : "CC_WeaponPick_TagSuggested").Translate();
+            v.tag = (v.asked ? "CC_WeaponPick_TagAsked" : v.gap ? "CC_WeaponKit_TagMissing" : "CC_WeaponPick_TagSuggested").Translate();
             return v;
         }
 
@@ -114,7 +130,7 @@ namespace ColonyCouncil
             {
                 viewFor = p;
                 viewAt = now;
-                view = WeaponPick.Standing(p);
+                view = WeaponPick.Standing(p).OrderBy(s => s.Gap.HasValue ? 0 : 1).ToList();
                 viewPicks = WeaponPick.Current(p.Map);
                 lines.Clear();
                 if (viewPicks != null)
@@ -126,23 +142,43 @@ namespace ColonyCouncil
             return view;
         }
 
-        /// <summary>The quiet line, when there is nothing to suggest for one of the colonists the choice is for.</summary>
+        /// <summary>
+        /// The quiet line, for one of the colonists the choice is for: with nothing to suggest, set aside, can't fight, an empty
+        /// slot of their kit nothing fills, or no better weapon; with rows, only an empty slot nothing fills (under them).
+        /// </summary>
         private static void MakeQuiet(Pawn p)
         {
             quiet = Quiet.None;
             quietText = null;
-            if (view.Count > 0 || viewPicks == null || !QuietOn || !p.Spawned || !WeaponPick.Colonists(p.Map).Contains(p)) return;
+            unfilled = new List<KitSlot>();
+            if (viewPicks == null || !QuietOn || !p.Spawned || !WeaponPick.Colonists(p.Map).Contains(p)) return;
             if (WeaponPickBook.Instance?.IsNotNow(p) == true)
             {
+                if (view.Count > 0) return;
                 quiet = Quiet.SetAside;
                 quietText = "CC_WeaponPick_QuietSetAside".Translate(p.Named("PAWN")).Resolve();
+                return;
             }
-            else if (p.WorkTagIsDisabled(WorkTags.Violent))
+            if (p.WorkTagIsDisabled(WorkTags.Violent))
             {
+                if (view.Count > 0) return;
                 quiet = Quiet.CantFight;
                 quietText = "CC_WeaponPick_QuietCantFight".Translate(p.Named("PAWN")).Resolve();
+                return;
             }
-            else
+            // Honest about the kit: an empty slot no suggestion fills.
+            var kit = viewPicks.Kit(p);
+            if (kit != null)
+                foreach (var slot in kit.Where(k => k.State == KitState.Missing).Select(k => k.Slot))
+                    if (!view.Any(s => WeaponKitMath.Fills(viewPicks.input, s, slot)))
+                        unfilled.Add(slot);
+            if (unfilled.Count > 0)
+            {
+                quiet = Quiet.Gap;
+                string key = unfilled.Contains(KitSlot.Ranged) && unfilled.Contains(KitSlot.Melee) ? "Both" : unfilled[0].ToString();
+                quietText = ("CC_WeaponKit_Quiet_" + key).Translate(p.Named("PAWN")).Resolve();
+            }
+            else if (view.Count == 0)
             {
                 quiet = Quiet.NoBetter;
                 quietText = "CC_WeaponPick_QuietNone".Translate(p.Named("PAWN")).Resolve();
@@ -157,7 +193,7 @@ namespace ColonyCouncil
         public static float Height(Pawn p)
         {
             var list = For(p, out var picks);
-            if (list.Count > 0 && picks != null) return WeaponNiceMath.Height(list.Take(MaxRows).Select(HasWarning).ToList(), false);
+            if (list.Count > 0 && picks != null) return WeaponNiceMath.Height(list.Take(MaxRows).Select(HasWarning).ToList(), false, quiet == Quiet.Gap);
             return WeaponNiceMath.Height(null, quiet != Quiet.None);
         }
 
@@ -193,6 +229,13 @@ namespace ColonyCouncil
                 float h = WeaponNiceMath.RowHeight(HasWarning(s));
                 Row(new Rect(r.x, y, r.width, h), picks, s, look);
                 y += h;
+            }
+            // An empty slot nothing fills, said under the rows.
+            if (quiet == Quiet.Gap)
+            {
+                y += WeaponNiceMath.Gap;
+                QuietLine(new Rect(r.x, y, r.width, WeaponNiceMath.QuietH), p, look);
+                y += WeaponNiceMath.QuietH;
             }
             return y - r.y;
         }
@@ -345,7 +388,8 @@ namespace ColonyCouncil
             Label(new Rect(r.x + 24f, r.y, r.width - 28f, r.height), quietText, look.faint, GameFont.Tiny);
             var who = p;
             var kind = quiet;
-            TooltipHandler.TipRegion(r, () => QuietTip(who, kind), who.thingIDNumber ^ 0x0b7e);
+            var slots = unfilled;
+            TooltipHandler.TipRegion(r, () => QuietTip(who, kind, slots), who.thingIDNumber ^ 0x0b7e);
             if (quiet == Quiet.CantFight || !Widgets.ButtonInvisible(r)) return;
             if (quiet == Quiet.SetAside)
             {
@@ -356,10 +400,11 @@ namespace ColonyCouncil
         }
 
         /// <summary>What was compared, made only while the mouse is over the quiet line: what they hold and its rating for them, the weapons in storage, the fights weighed.</summary>
-        private static string QuietTip(Pawn p, Quiet kind)
+        private static string QuietTip(Pawn p, Quiet kind, List<KitSlot> slots)
         {
             if (kind == Quiet.SetAside) return "CC_WeaponPick_QuietSetAside_Tip".Translate(p.Named("PAWN")).Resolve();
             if (kind == Quiet.CantFight) return "CC_Weapon_CantFight".Translate(p.Named("PAWN")).Resolve();
+            if (kind == Quiet.Gap) return WeaponKitWords.LookedTip(WeaponPick.Current(p.Map), p, slots) + "\n\n" + "CC_WeaponPick_QuietClick".Translate().Resolve().Colorize(ColoredText.SubtleGrayColor);
             var picks = WeaponPick.Current(p.Map);
             var held = p.equipment?.Primary;
             var report = held != null ? WeaponLive.Of(held) : null;
@@ -408,10 +453,11 @@ namespace ColonyCouncil
     }
 
     /// <summary>
-    /// The colony's view on the Defenses page ("Weapons for each colonist"): every colonist with what they hold and its
-    /// rating for them, their suggestions with the gain and why, a button each, "not now" or "ask again", and "Equip all
-    /// suggested" at its heading, which only gives the orders. What the choice weighs is said under the heading. In
-    /// Rimfolk's look with the kit; its words worked out once a second.
+    /// The colony's view on the Defenses page ("Weapons for each colonist"): every colonist with their kit at a glance (ranged,
+    /// melee and, with Dual Wield, the off hand: each filled with its picture and rating for them, missing, or not for them
+    /// and why), their suggestions with the gain and why (an empty slot's first), a button each, "not now" or "ask again";
+    /// "Equip all suggested" at its heading and "Fill every kit" under it, which only give the orders. What the choice weighs
+    /// is said under the heading. In Rimfolk's look with the kit; its words worked out once a second.
     /// </summary>
     public static class WeaponPickPanel
     {
@@ -422,8 +468,8 @@ namespace ColonyCouncil
         private static float modelAt = -10f;
         private static WeaponPick.Picks modelPicks;
         private static readonly List<Row> rows = new List<Row>();
-        private static string weighs;
-        private static int doable;
+        private static string weighs, kitsLine;
+        private static int doable, kitDoable;
 
         private sealed class Row
         {
@@ -432,8 +478,14 @@ namespace ColonyCouncil
             public float? heldRating;
             public string heldLabel, cant;
             public bool notNow;
+            public List<WeaponKitWords.Chip> kit = new List<WeaponKitWords.Chip>();
             public readonly List<(PickSuggestion s, string head, string why, string whyNot, bool onTheWay)> picks = new List<(PickSuggestion, string, string, string, bool)>();
         }
+
+        /// <summary>A row's height: its name, its kit's chips, a line for each suggestion (or the one saying why there's none).</summary>
+        private static float RowHeight(Row row) => 30f + (row.kit.Count > 0 ? KitH : 0f) + Mathf.Max(1, row.picks.Count) * 40f;
+
+        private const float KitH = 24f;
 
         /// <summary>Opens the Defenses page at this view (the inbox's act).</summary>
         public static void Show(Map map)
@@ -458,7 +510,9 @@ namespace ColonyCouncil
             modelAt = Time.realtimeSinceStartup;
             modelPicks = WeaponPick.For(map);
             doable = 0;
+            kitDoable = 0;
             weighs = null;
+            kitsLine = null;
             var picks = modelPicks;
             if (picks == null) return;
             var book = WeaponPickBook.Instance;
@@ -472,7 +526,8 @@ namespace ColonyCouncil
                     var r = WeaponLive.Of(row.held);
                     if (r != null && row.cant == null) row.heldRating = WeaponPick.Rate(p, r);
                 }
-                foreach (var s in picks.Of(p).Where(x => WeaponPick.Stands(picks, x)).OrderBy(x => (int)x.Kind))
+                if (row.cant == null) row.kit = WeaponKitWords.Chips(picks, p);
+                foreach (var s in picks.Of(p).Where(x => WeaponPick.Stands(picks, x)).OrderBy(x => x.Gap.HasValue ? 0 : 1).ThenBy(x => (int)x.Kind))
                 {
                     bool onTheWay = WeaponPick.OnTheWay(picks, s);
                     string whyNot = onTheWay ? null : WeaponPick.WhyNot(picks, s);
@@ -480,10 +535,18 @@ namespace ColonyCouncil
                     string costs = WeaponPick.Costs(picks, s);
                     if (!costs.NullOrEmpty()) why += (why.NullOrEmpty() ? "" : ". ") + costs;
                     row.picks.Add((s, WeaponPick.Head(picks, s), why, whyNot, onTheWay));
-                    if (!onTheWay && whyNot == null && WeaponPick.Confirm(picks, s).NullOrEmpty()) doable++;
+                    if (!onTheWay && whyNot == null && WeaponPick.Confirm(picks, s).NullOrEmpty())
+                    {
+                        doable++;
+                        if (s.Gap.HasValue) kitDoable++;
+                    }
                 }
                 rows.Add(row);
             }
+            // The kits at a glance: how many have all they should carry.
+            var fighting = rows.Where(r => r.cant == null && r.kit.Count > 0).ToList();
+            int full = fighting.Count(r => r.kit.All(k => k.state != KitState.Missing));
+            if (fighting.Count > 0) kitsLine = "CC_WeaponKit_Panel_Full".Translate(full.Named("FULL"), fighting.Count.Named("COUNT")).Resolve();
             var sits = picks.input.Colony.Where(kv => kv.Value >= 0.05f).OrderByDescending(kv => kv.Value).Select(kv => ("CC_WeaponPick_Sit_" + WeaponPick.SituationWord(kv.Key)).Translate().Resolve()).ToList();
             weighs = (sits.Count > 0 ? "CC_WeaponPick_Weighs".Translate(sits.ToCommaList(true).Named("FIGHTS")).Resolve() : "CC_WeaponPick_WeighsNone".Translate().Resolve()) +
                      " " + "CC_WeaponPick_Stored".Translate(picks.stored.Named("COUNT")).Resolve();
@@ -507,6 +570,21 @@ namespace ColonyCouncil
             }
             if (!open) return y;
             if (!weighs.NullOrEmpty()) y += UiKit.Paragraph(x, y, w, weighs, UiKit.Faint, GameFont.Tiny) + 6f;
+            // The kits: how many are full, and "Fill every kit", which only gives the orders for the empty slots.
+            if (!kitsLine.NullOrEmpty())
+            {
+                string act = "CC_WeaponKit_Panel_Fill".Translate(kitDoable.Named("COUNT")).Resolve();
+                float bw = Mathf.Max(120f, UiKit.ActButtonWidth(act));
+                UiKit.LabelFit(new Rect(x, y, w - bw - 8f, 24f), kitsLine, UiKit.Faint, GameFont.Tiny);
+                if (UiKit.ActButton(new Rect(x + w - bw, y, bw, 24f), act, kitDoable > 0 ? null : "CC_WeaponKit_Panel_FillNone".Translate().Resolve(),
+                        "CC_WeaponKit_Panel_Fill_Tip".Translate().Resolve()) && modelPicks != null)
+                {
+                    WeaponPick.DoKit(modelPicks);
+                    SoundDefOf.Click.PlayOneShotOnCamera();
+                    modelAt = -10f;
+                }
+                y += 30f;
+            }
             if (rows.Count == 0) return y + UiKit.EmptyState(x, y, w, Icons.CatDefense, "CC_WeaponPick_NoColonists".Translate(), 70f) + 4f;
             foreach (var row in rows) y = DrawRow(row, x, y, w) + 4f;
             return y;
@@ -515,7 +593,7 @@ namespace ColonyCouncil
         private static float DrawRow(Row row, float x, float y, float w)
         {
             var picks = modelPicks;
-            float h = 30f + Mathf.Max(1, row.picks.Count) * 40f;
+            float h = RowHeight(row);
             var box = new Rect(x, y, w, h);
             UiKit.Card(box, row.picks.Count > 0 && !row.notNow ? UiKit.WithAlpha(UiKit.Good, 0.5f) : (Color?)null, false, false);
             var face = new Rect(x + 6f, y + 4f, 24f, 24f);
@@ -552,9 +630,18 @@ namespace ColonyCouncil
                 modelAt = -10f;
             }
             float ly = y + 30f;
+            // Their kit at a glance: ranged, melee, the off hand.
+            if (row.kit.Count > 0)
+            {
+                WeaponKitWords.DrawChips(new Rect(face.xMax + 6f, ly - 2f, w - (face.xMax - x) - 12f, KitH - 4f), row.kit);
+                ly += KitH;
+            }
             if (row.picks.Count == 0)
             {
-                string none = row.cant ?? (row.notNow ? "CC_WeaponPick_SetAside".Translate(row.p.Named("PAWN")).Resolve() : "CC_WeaponPick_KeepsIt".Translate(row.p.Named("PAWN")).Resolve());
+                var missing = row.kit.Where(k => k.state == KitState.Missing).ToList();
+                string none = row.cant ?? (row.notNow ? "CC_WeaponPick_SetAside".Translate(row.p.Named("PAWN")).Resolve()
+                    : missing.Count > 0 ? "CC_WeaponKit_Panel_NothingFills".Translate(string.Join(", ", missing.Select(k => k.label.ToLowerInvariant())).Named("SLOTS"), row.p.Named("PAWN")).Resolve()
+                    : "CC_WeaponPick_KeepsIt".Translate(row.p.Named("PAWN")).Resolve());
                 UiKit.LabelFit(new Rect(face.xMax + 6f, ly + 4f, w - 40f, 22f), none, UiKit.Faint, GameFont.Tiny);
                 return y + h;
             }
@@ -571,9 +658,9 @@ namespace ColonyCouncil
                 TooltipHandler.TipRegion(new Rect(line.x, ly, text.xMax - line.x, 38f), () => WeaponPickGearTab.Tip(picks, s), s.Weapon.GetHashCode() ^ 0x1d3);
                 if (t != null && WeaponCardWindow.On && Widgets.ButtonInvisible(new Rect(line.x, ly, text.xMax - line.x, 38f), false)) WeaponCardWindow.Open(t, row.p);
                 var b = new Rect(line.xMax - bw, ly + 7f, bw, 24f);
-                string act = s.Kind == PickKind.Swap ? "CC_WeaponPick_Act_SwapWith".Translate(picks.Pawn(s.Other).Named("OTHER")).Resolve() : ("CC_WeaponPick_Act_" + s.Kind).Translate().Resolve();
+                string act = WeaponPickGearTab.ActLabel(picks, s);
                 if (onTheWay) UiKit.LabelFit(b, "CC_WeaponPick_OnTheWay".Translate(), UiKit.Faint, GameFont.Tiny, TextAnchor.MiddleRight);
-                else if (UiKit.ActButton(b, act, whyNot, ("CC_WeaponPick_Act_" + s.Kind + "_Tip").Translate(row.p.Named("PAWN")).Resolve()))
+                else if (UiKit.ActButton(b, act, whyNot, ("CC_WeaponPick_Act_" + s.Kind + "_Tip").Translate(row.p.Named("PAWN"), (picks.Pawn(s.Other)?.LabelShort ?? "").Named("OTHER")).Resolve()))
                 {
                     WeaponPick.DoConfirmed(picks, s);
                     modelAt = -10f;

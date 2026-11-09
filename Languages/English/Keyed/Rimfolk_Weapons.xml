@@ -344,4 +344,93 @@
   <CC_WeaponAsk_InboxAct>Look</CC_WeaponAsk_InboxAct>
   <CC_WeaponAsk_InboxAct_Tip>Weapons for each colonist, on the Defenses page.</CC_WeaponAsk_InboxAct_Tip>
 
+  <!-- A full kit for every colonist (Source/ColonyCouncil/Weapons/WeaponKitMath.cs, WeaponKitSelf.cs, WeaponKitUi.cs): one
+       ranged and one melee weapon with Simple Sidearms, the off hand with Dual Wield; an empty slot suggested, filled by the
+       colonist themselves, asked for, and shown on the gear tab, the Defenses page and a weapon's card. -->
+  <CC_Settings_WeaponKitSelf>Colonists fill an empty weapon slot themselves</CC_Settings_WeaponKitSelf>
+  <CC_Settings_WeaponKitSelf_Tip>With Simple Sidearms every colonist who can fight should carry one ranged and one melee weapon, and with Dual Wield a weapon in the off hand where their hands and the weapons allow it. A colonist with an empty slot goes, in their free time at home and safe, and takes a fitting weapon from storage: into an empty hand, as a sidearm, or into the off hand, by the game's and the mods' own jobs; a weapon already in their pack is kept as a sidearm. Only empty slots, never in place of a weapon they hold; never a forbidden weapon (they may ask for it); at most once a day each, with a line as they take it. Off, an empty slot is only suggested, and colonists ask for it now and then.</CC_Settings_WeaponKitSelf_Tip>
+  <CC_SetNote_WeaponKitSelf>A colonist with no melee or ranged weapon, or a free off hand, takes a fitting one from storage in their free time.</CC_SetNote_WeaponKitSelf>
+
+  <!-- An empty slot: what is missing, how it is filled. -->
+  <CC_WeaponKit_Gap_Ranged>No ranged weapon</CC_WeaponKit_Gap_Ranged>
+  <CC_WeaponKit_Gap_Melee>No melee weapon</CC_WeaponKit_Gap_Melee>
+  <CC_WeaponKit_Gap_OffHand>No off-hand weapon</CC_WeaponKit_Gap_OffHand>
+  <CC_WeaponKit_Gap_Hand>Nothing in hand</CC_WeaponKit_Gap_Hand>
+  <CC_WeaponKit_Fill_Primary>{WEAPON} in hand</CC_WeaponKit_Fill_Primary>
+  <CC_WeaponKit_Fill_Sidearm>{WEAPON} as a sidearm</CC_WeaponKit_Fill_Sidearm>
+  <CC_WeaponKit_Fill_OffHand>{WEAPON} in the off hand</CC_WeaponKit_Fill_OffHand>
+  <CC_WeaponKit_Fill_Keep>the {WEAPON} in {PAWN_possessive} pack, kept as a sidearm</CC_WeaponKit_Fill_Keep>
+  <CC_WeaponKit_Fill_Spare>{OTHER}'s spare {WEAPON}</CC_WeaponKit_Fill_Spare>
+  <CC_WeaponKit_Head>{GAP}: {FILL}</CC_WeaponKit_Head>
+  <CC_WeaponKit_TagMissing>Missing</CC_WeaponKit_TagMissing>
+  <CC_WeaponKit_Why_Hand>{PAWN_pronoun} has nothing in hand</CC_WeaponKit_Why_Hand>
+  <CC_WeaponKit_Why_Ranged>{PAWN_pronoun} has nothing to reach them from afar</CC_WeaponKit_Why_Ranged>
+  <CC_WeaponKit_Why_Melee>{PAWN_pronoun} has nothing for close work</CC_WeaponKit_Why_Melee>
+  <CC_WeaponKit_Why_Offhand>{PAWN_possessive} other hand is free</CC_WeaponKit_Why_Offhand>
+  <CC_WeaponKit_Why_Pack>it is in {PAWN_possessive} pack already, but Simple Sidearms would unload it to storage</CC_WeaponKit_Why_Pack>
+  <CC_WeaponKit_Why_Spare>{OTHER} carries it beyond {OTHER_possessive} own kit</CC_WeaponKit_Why_Spare>
+  <CC_WeaponPick_Head_Keep>A sidearm for {PAWN}: the {WEAPON} in {PAWN_possessive} pack ({GAIN})</CC_WeaponPick_Head_Keep>
+  <CC_WeaponPick_Head_Spare>From {OTHER} for {PAWN}: {WEAPON} ({GAIN})</CC_WeaponPick_Head_Spare>
+  <CC_WeaponPick_Act_Keep>Keep as sidearm</CC_WeaponPick_Act_Keep>
+  <CC_WeaponPick_Act_Keep_Tip>{PAWN} keeps it as a sidearm: Simple Sidearms remembers it, so it isn't unloaded to storage. It is on {PAWN_objective} already.</CC_WeaponPick_Act_Keep_Tip>
+  <CC_WeaponPick_Act_Spare>Take it</CC_WeaponPick_Act_Spare>
+  <CC_WeaponPick_Act_SpareFrom>Take from {OTHER}</CC_WeaponPick_Act_SpareFrom>
+  <CC_WeaponPick_Act_Spare_Tip>{PAWN} walks over to {OTHER}, who hands it over: into an empty hand, else as a sidearm.</CC_WeaponPick_Act_Spare_Tip>
+
+  <!-- The quiet line, honest about the kit; what was looked at for an empty slot, and why each was left out. -->
+  <CC_WeaponKit_Quiet_Ranged>No ranged weapon in storage for {PAWN}</CC_WeaponKit_Quiet_Ranged>
+  <CC_WeaponKit_Quiet_Melee>No melee weapon in storage for {PAWN}</CC_WeaponKit_Quiet_Melee>
+  <CC_WeaponKit_Quiet_OffHand>No off-hand weapon in storage for {PAWN}</CC_WeaponKit_Quiet_OffHand>
+  <CC_WeaponKit_Quiet_Both>No weapon in storage for {PAWN}</CC_WeaponKit_Quiet_Both>
+  <CC_WeaponKit_Looked_Ranged>Looked at for {PAWN_possessive} ranged weapon:</CC_WeaponKit_Looked_Ranged>
+  <CC_WeaponKit_Looked_Melee>Looked at for {PAWN_possessive} melee weapon:</CC_WeaponKit_Looked_Melee>
+  <CC_WeaponKit_Looked_OffHand>Looked at for {PAWN_possessive} off hand:</CC_WeaponKit_Looked_OffHand>
+  <CC_WeaponKit_LookedNone>Nothing of its kind lies in storage, in {PAWN_possessive} pack or among the others' spares.</CC_WeaponKit_LookedNone>
+  <CC_WeaponKit_MayAsk>{PAWN} may ask for the forbidden {WEAPON}: allow it, and {PAWN_pronoun} can take it.</CC_WeaponKit_MayAsk>
+  <CC_WeaponKit_InPack>in {PAWN_possessive} pack</CC_WeaponKit_InPack>
+  <CC_WeaponKit_SpareOf>{OTHER}'s spare</CC_WeaponKit_SpareOf>
+  <CC_WeaponKit_Left_Fits>could fill it</CC_WeaponKit_Left_Fits>
+  <CC_WeaponKit_Left_Forbidden>forbidden</CC_WeaponKit_Left_Forbidden>
+  <CC_WeaponKit_Left_Cant>{WHY}</CC_WeaponKit_Left_Cant>
+  <CC_WeaponKit_Left_TooHeavy>{VALUE} kg, past Simple Sidearms' {LIMIT} kg for a sidearm</CC_WeaponKit_Left_TooHeavy>
+  <CC_WeaponKit_Left_SidearmRefused>Simple Sidearms won't take it: {WHY}</CC_WeaponKit_Left_SidearmRefused>
+  <CC_WeaponKit_Left_OneUse>it fires once, never a sidearm</CC_WeaponKit_Left_OneUse>
+  <CC_WeaponKit_Left_OnStand>on an outfit stand, taken only in hand</CC_WeaponKit_Left_OnStand>
+  <CC_WeaponKit_Left_TooWeak>only {VALUE} for {PAWN_objective}, under {LIMIT}</CC_WeaponKit_Left_TooWeak>
+  <CC_WeaponKit_Left_NoBetterThanBash>{VALUE} in close work, no better than the butt of {PAWN_possessive} gun ({LIMIT})</CC_WeaponKit_Left_NoBetterThanBash>
+  <CC_WeaponKit_Left_AddsLittle>adds only {VALUE} to both hands together</CC_WeaponKit_Left_AddsLittle>
+  <CC_WeaponKit_Left_NotOffHand>Dual Wield doesn't allow it in the off hand</CC_WeaponKit_Left_NotOffHand>
+  <CC_WeaponKit_Left_TwoHanded>it takes both hands</CC_WeaponKit_Left_TwoHanded>
+  <CC_WeaponKit_Left_Given>goes to {OTHER} in the colony's choice</CC_WeaponKit_Left_Given>
+
+  <!-- The kit at a glance (the Defenses page). -->
+  <CC_WeaponKit_Slot_Ranged>Ranged</CC_WeaponKit_Slot_Ranged>
+  <CC_WeaponKit_Slot_Melee>Melee</CC_WeaponKit_Slot_Melee>
+  <CC_WeaponKit_Slot_OffHand>Off hand</CC_WeaponKit_Slot_OffHand>
+  <CC_WeaponKit_Chip_Filled>{SLOT}: {WEAPON}, {RATING} for {PAWN_objective}.</CC_WeaponKit_Chip_Filled>
+  <CC_WeaponKit_Chip_Missing>missing</CC_WeaponKit_Chip_Missing>
+  <CC_WeaponKit_Chip_Suggested>Suggested: {FILL}.</CC_WeaponKit_Chip_Suggested>
+  <CC_WeaponKit_Chip_NothingFills>Nothing the colony has fills it for {PAWN_objective} now.</CC_WeaponKit_Chip_NothingFills>
+  <CC_WeaponKit_Bar_CantFight>{PAWN} doesn't fight.</CC_WeaponKit_Bar_CantFight>
+  <CC_WeaponKit_Bar_CantShoot>{PAWN} is incapable of shooting.</CC_WeaponKit_Bar_CantShoot>
+  <CC_WeaponKit_Bar_Brawler>a brawler: a gun in {PAWN_possessive} hands would sour {PAWN_possessive} mood.</CC_WeaponKit_Bar_Brawler>
+  <CC_WeaponKit_Bar_Role>{PAWN_possessive} role forbids it.</CC_WeaponKit_Bar_Role>
+  <CC_WeaponKit_Bar_OneWeapon>without Simple Sidearms a colonist carries one weapon.</CC_WeaponKit_Bar_OneWeapon>
+  <CC_WeaponKit_Bar_NoDualWield>without Dual Wield there is no off hand.</CC_WeaponKit_Bar_NoDualWield>
+  <CC_WeaponKit_Bar_OneHand>a hand or an arm missing: Dual Wield allows nothing in the off hand.</CC_WeaponKit_Bar_OneHand>
+  <CC_WeaponKit_Bar_NeedsMain>once {PAWN_pronoun} holds a one-handed weapon.</CC_WeaponKit_Bar_NeedsMain>
+  <CC_WeaponKit_Bar_TwoHanded>what {PAWN_pronoun} holds takes both hands.</CC_WeaponKit_Bar_TwoHanded>
+  <CC_WeaponKit_Panel_Full>Kits: {FULL} of {COUNT} colonists carry all they should.</CC_WeaponKit_Panel_Full>
+  <CC_WeaponKit_Panel_Fill>Fill every kit ({COUNT})</CC_WeaponKit_Panel_Fill>
+  <CC_WeaponKit_Panel_Fill_Tip>Give the orders for every empty slot below: each colonist walks to the weapon and takes it (in hand, as a sidearm or in the off hand), one after another; a weapon already in a pack is kept as a sidearm at once. Only the orders: nothing is done by itself later.</CC_WeaponKit_Panel_Fill_Tip>
+  <CC_WeaponKit_Panel_FillNone>No empty slot can be filled now.</CC_WeaponKit_Panel_FillNone>
+  <CC_WeaponKit_Panel_NothingFills>Nothing the colony has fills {PAWN_possessive} empty slots ({SLOTS}).</CC_WeaponKit_Panel_NothingFills>
+  <CC_WeaponKit_Card_Lacks_Ranged>{PAWN_pronoun} has no ranged weapon ({GAIN})</CC_WeaponKit_Card_Lacks_Ranged>
+  <CC_WeaponKit_Card_Lacks_Melee>{PAWN_pronoun} has no melee weapon ({GAIN})</CC_WeaponKit_Card_Lacks_Melee>
+
+  <!-- A forbidden weapon asked for to fill an empty slot, in This week. -->
+  <CC_WeaponAsk_InboxForbidden>{PAWN} asked for the forbidden {WEAPON} {PLACE}</CC_WeaponAsk_InboxForbidden>
+  <CC_WeaponAsk_InboxAllow>Allow</CC_WeaponAsk_InboxAllow>
+  <CC_WeaponAsk_InboxAllow_Tip>Allow the {WEAPON}: {PAWN} can then take it.</CC_WeaponAsk_InboxAllow_Tip>
+
 </LanguageData>

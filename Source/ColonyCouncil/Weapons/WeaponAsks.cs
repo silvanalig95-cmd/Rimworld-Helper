@@ -22,6 +22,12 @@ namespace ColonyCouncil
     /// two who both gain propose it; both weapons still in their hands as the words say. Nobody gives up their own keepsake
     /// (a lucky weapon, an heirloom) of their own accord; the other may still propose the trade, its line warning of it.
     /// </para>
+    /// <para>
+    /// An empty slot of their kit (WeaponKitMath) is asked for under the same waits and chance, whatever its gain, tagged
+    /// "kit" ("I've nothing for close work, can I take the knife in the stockpile?"): only when they don't fill it themselves
+    /// (WeaponKitSelf off, or it is something they can't take on their own: a forbidden weapon, one on an outfit stand for a
+    /// sidearm, one in place of what they hold, a persona weapon that would bond). A forbidden one's inbox row allows it.
+    /// </para>
     /// </summary>
     public static class WeaponAsks
     {
@@ -32,20 +38,20 @@ namespace ColonyCouncil
 
         public static bool On => WeaponLive.On && (ColonyCouncilMod.Settings?.weaponAsks ?? true);
 
-        /// <summary>Safe at home: up, awake, able to talk, not drafted or in a mental state, no threat on the map or near them, in the home area.</summary>
-        public static bool Safe(Pawn p)
+        /// <summary>Safe at home: up, awake, able to talk (unless <paramref name="talk"/> is false), not drafted or in a mental state, no threat on the map or near them, in the home area.</summary>
+        public static bool Safe(Pawn p, bool talk = true)
         {
             if (p == null || !p.Spawned || p.Dead || p.Downed || p.Drafted || p.InMentalState || !p.Awake()) return false;
             var map = p.Map;
             if (!Homes.IsHome(map) || !map.areaManager.Home[p.Position]) return false;
-            if (p.health?.capacities == null || !p.health.capacities.CapableOf(PawnCapacityDefOf.Talking)) return false;
+            if (talk && (p.health?.capacities == null || !p.health.capacities.CapableOf(PawnCapacityDefOf.Talking))) return false;
             return p.mindState?.enemyTarget == null && !GenHostility.AnyHostileActiveThreatToPlayer(map) && !PawnUtility.EnemiesAreNearby(p, 9, true);
         }
 
         /// <summary>In their free time at home and safe: <see cref="Safe"/>, and at recreation or idle.</summary>
-        public static bool FreeAndSafe(Pawn p)
+        public static bool FreeAndSafe(Pawn p, bool talk = true)
         {
-            if (!Safe(p)) return false;
+            if (!Safe(p, talk)) return false;
             bool joyHour = p.timetable?.CurrentAssignment == TimeAssignmentDefOf.Joy;
             bool joyJob = p.CurJob?.def?.joyKind != null;
             bool idle = p.mindState != null && p.mindState.IsIdle;
@@ -59,9 +65,11 @@ namespace ColonyCouncil
             var book = WeaponPickBook.Instance;
             if (book == null) return;
             string me = WeaponPick.Key(p);
+            // An empty slot first (one they don't fill themselves, or a forbidden weapon for it), then a clearly better weapon.
             var s = picks.Of(p).Where(x => WeaponAskMath.Askable(x) && picks.input.Weapon(x.Weapon)?.Stored == true && WeaponPick.Stands(picks, x)
-                                           && WeaponAskMath.MaySpeakFor(x, WeaponPickMath.GivesUpKeepsake(x, me)))
-                .OrderByDescending(x => x.Gain).FirstOrDefault();
+                                           && WeaponAskMath.MaySpeakFor(x, WeaponPickMath.GivesUpKeepsake(x, me)) && (!x.Gap.HasValue || !WeaponKitSelf.On || !WeaponKitSelf.CanFetch(picks, x, p)))
+                .Concat(picks.kitAsks.Where(x => x.Colonist == me && StandsForbidden(picks, x)))
+                .OrderBy(x => x.Gap.HasValue ? 0 : 1).ThenByDescending(x => x.Gain).FirstOrDefault();
             if (s == null)
             {
                 ProposeTrade(p, picks, now, book);
@@ -79,7 +87,25 @@ namespace ColonyCouncil
             book.Asked(p, t, place, s.Gain);
         }
 
-        /// <summary>Their line: tagged for why (mechanoids, armoured, crowds, siege, choke, skill, trait, hunting, passion, noble, worker, special, sidearm, offhand, better) and the weapon's kind; {WEAPON} its label, {PLACE} where it lies.</summary>
+        /// <summary>
+        /// A forbidden weapon that would fill an empty slot (WeaponKitMath.ForbiddenFills) still lies in storage and the slot is
+        /// still empty: the colonist here and up, the weapon there, still forbidden (allowed, the colony's choice takes it up).
+        /// </summary>
+        public static bool StandsForbidden(WeaponPick.Picks picks, PickSuggestion s)
+        {
+            var p = picks?.Pawn(s?.Colonist);
+            var t = picks?.Thing(s?.Weapon);
+            if (p == null || t == null || p.Dead || !p.Spawned || p.Map != picks.map || t.Destroyed) return false;
+            if (s.Kind == PickKind.Primary && p.equipment?.Primary != null) return false;
+            var where = t.ParentHolder is Building_OutfitStand stand ? (Thing)stand : t;
+            return where.Spawned && where.Map == picks.map && where.IsForbidden(Faction.OfPlayer) && (t.ParentHolder is Building_OutfitStand || t.IsInAnyStorage());
+        }
+
+        /// <summary>
+        /// Their line: tagged for why (mechanoids, armoured, crowds, siege, choke, skill, trait, hunting, passion, noble, worker,
+        /// special, sidearm, offhand, better; kit for an empty slot) and the weapon's kind (an empty off hand: offhand); {WEAPON}
+        /// its label, {PLACE} where it lies.
+        /// </summary>
         public static string Line(Pawn p, PickSuggestion s, Thing t, string place)
         {
             var pool = DefDatabase<FlavorPoolDef>.GetNamedSilentFail(Pool);
@@ -87,7 +113,7 @@ namespace ColonyCouncil
             var tags = Flavor.TagsFor(p);
             string why = WeaponPickMath.AskTag(s);
             tags.Add(why);
-            tags.Add(t.def.IsRangedWeapon ? "ranged" : "melee");
+            tags.Add(why == "kit" && s.Gap == KitSlot.OffHand ? "offhand" : t.def.IsRangedWeapon ? "ranged" : "melee");
             // Only a line for this reason (its words must be true); else one that only says it is better.
             if (!Flavor.AnyFits(pool.lines.AllLines(), tags))
             {
@@ -188,6 +214,29 @@ namespace ColonyCouncil
                 bool trade = a.other >= 0;
                 var s = picks?.Of(p).FirstOrDefault(x => picks.Thing(x.Weapon)?.thingIDNumber == a.weapon && (x.Kind == PickKind.Swap) == trade
                                                          && (!trade || picks.Pawn(x.Other)?.thingIDNumber == a.other));
+                // A forbidden weapon asked for to fill an empty slot: its row allows it.
+                var forbidden = s == null && !trade ? picks?.kitAsks.FirstOrDefault(x => x.Colonist == WeaponPick.Key(p) && picks.Thing(x.Weapon)?.thingIDNumber == a.weapon) : null;
+                if (forbidden != null && StandsForbidden(picks, forbidden))
+                {
+                    var t = picks.Thing(forbidden.Weapon);
+                    rows.Add(new WeekRow
+                    {
+                        pawn = p, sub = WeaponPick.Why(picks, forbidden).CapitalizeFirst(),
+                        text = "CC_WeaponAsk_InboxForbidden".Translate(WeekModel.Name(p).Named("PAWN"), WeaponPick.Label(picks, forbidden.Weapon).Named("WEAPON"),
+                            picks.Place(forbidden.Weapon).Named("PLACE")).Resolve(),
+                        tip = WeekModel.Tip(WeaponPick.Head(picks, forbidden), "CC_WeaponAsk_InboxClick".Translate(p.Named("PAWN")).Resolve()),
+                        click = WeekModel.Inspect(p, typeof(ITab_Pawn_Gear)), waits = false, order = -a.tick,
+                        act = "CC_WeaponAsk_InboxAllow".Translate(), actTip = "CC_WeaponAsk_InboxAllow_Tip".Translate(t.LabelNoCount.Named("WEAPON"), p.Named("PAWN")).Resolve(),
+                        actRun = () =>
+                        {
+                            var where = t.ParentHolder is Building_OutfitStand stand ? (Thing)stand : t;
+                            if (where.Spawned) where.SetForbidden(false, false);
+                            WeaponPick.Dirty();
+                            WeaponPickGearTab.Refresh();
+                        }
+                    });
+                    continue;
+                }
                 if (s == null || !WeaponPick.Stands(picks, s)) continue;
                 var who = p;
                 var row = new WeekRow

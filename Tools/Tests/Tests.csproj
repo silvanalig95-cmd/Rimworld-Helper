@@ -58,6 +58,7 @@
     <Compile Include="../../Source/ColonyCouncil/Weapons/WeaponWordsMath.cs" Link="WeaponWordsMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Weapons/WeaponForMath.cs" Link="WeaponForMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Weapons/WeaponPickMath.cs" Link="WeaponPickMath.cs" />
+    <Compile Include="../../Source/ColonyCouncil/Weapons/WeaponKitMath.cs" Link="WeaponKitMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Weapons/WeaponNiceMath.cs" Link="WeaponNiceMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/UI/ItemPortraitMath.cs" Link="ItemPortraitMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Apparel/ApparelRateMath.cs" Link="ApparelRateMath.cs" />

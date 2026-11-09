@@ -5,6 +5,16 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## A full kit for every colonist
+
+*9 November 2026, version 0.189.0*
+
+- With Simple Sidearms, every colonist who can fight should carry a gun and a melee weapon, and with Dual Wield a weapon in the off hand where it adds; an empty slot is filled before anyone gets an upgrade.
+- A gap is filled from storage, from a weapon they already carry, or from another colonist's spare, choosing what suits the slot: a light quick blade for a shooter, a light gun for a melee fighter.
+- The gear tab names what's missing and offers the right button, says plainly when nothing in storage can fill a gap and why, and the Defenses page shows every colonist's kit with a button to fill them all.
+- Colonists fill an empty slot themselves in their free time, at home and safe, at most once a day, never replacing what they hold; a setting turns this off, and then they only ask.
+- Restrictions always win: no kit for those who can't fight, no guns for brawlers, and their faith, heavy weapons, bonds and the mods' own rules are kept.
+
 ## Wood is not a weapon, and every book has its title
 
 *9 November 2026, version 0.188.2*

@@ -11,4 +11,14 @@
     <checkOverrideOnDamage>Always</checkOverrideOnDamage>
   </JobDef>
 
+  <!-- A colonist taking a weapon another carries beyond their own kit, to fill an empty slot of theirs
+       (Source/ColonyCouncil/Weapons/WeaponSwapJob.cs, WeaponKitMath.cs): they walk over and the other hands it over. -->
+  <JobDef>
+    <defName>Rimfolk_TakeSpareWeapon</defName>
+    <driverClass>ColonyCouncil.JobDriver_TakeSpareWeapon</driverClass>
+    <reportString>taking a spare weapon from TargetA.</reportString>
+    <casualInterruptible>false</casualInterruptible>
+    <checkOverrideOnDamage>Always</checkOverrideOnDamage>
+  </JobDef>
+
 </Defs>

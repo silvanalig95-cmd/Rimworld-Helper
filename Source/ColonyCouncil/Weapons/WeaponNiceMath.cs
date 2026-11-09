@@ -27,14 +27,17 @@ namespace ColonyCouncil
 
         public static float RowHeight(bool warning) => RowH + (warning ? WarnH : 0f);
 
-        /// <summary>The room the box gives the suggestions: their rows and the gaps between them, the quiet line alone, or none.</summary>
-        public static float Height(IList<bool> warnings, bool quiet)
+        /// <summary>
+        /// The room the box gives the suggestions: their rows and the gaps between them, the quiet line alone, or none; with
+        /// rows, <paramref name="gapLine"/> adds the quiet line under them (an empty slot of the kit nothing fills).
+        /// </summary>
+        public static float Height(IList<bool> warnings, bool quiet, bool gapLine = false)
         {
             if (warnings != null && warnings.Count > 0)
             {
                 float h = 0f;
                 for (int i = 0; i < warnings.Count; i++) h += RowHeight(warnings[i]) + (i > 0 ? Gap : 0f);
-                return h;
+                return h + (gapLine ? Gap + QuietH : 0f);
             }
             return quiet ? QuietH : 0f;
         }

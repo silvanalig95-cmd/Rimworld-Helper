@@ -689,6 +689,8 @@ namespace ColonyCouncil
             Toggle("weaponSuggestions", "CC_Settings_WeaponSuggestions", "CC_SetNote_WeaponSuggestions", "weaponRatings,deepHooks");
             Toggle("weaponAsks", "CC_Settings_WeaponAsks", "CC_SetNote_WeaponAsks", "weaponRatings,deepHooks");
             Toggle("weaponNoBetterLine", "CC_Settings_WeaponNoBetterLine", "CC_SetNote_WeaponNoBetterLine", "weaponRatings,weaponSuggestions,deepHooks");
+            // A full kit for every colonist (Weapons/WeaponKitMath.cs, WeaponKitSelf.cs): an empty slot filled by the colonist themselves.
+            Toggle("weaponKitSelf", "CC_Settings_WeaponKitSelf", "CC_SetNote_WeaponKitSelf", "weaponRatings,deepHooks");
             // The colonist bar's badges (ColonistBar/BarBadges.cs): what they show, and how.
             Section("CC_SetSec_ColonistBar");
             NoteUnder("CC_SetSec_ColonistBar_Note");
