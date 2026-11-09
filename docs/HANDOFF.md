@@ -12,6 +12,11 @@ tree at once, alongside whatever runs. Each piece is merged as its own release, 
 
 ## State (5 November 2026)
 
+- 0.200.1, no red cross on the inventory's group headers (9 November 2026). The player, with a picture of the grouped
+  look: the Weapons and Apparel headers drew the game's missing-texture mark ("either have no icon or just some random
+  weapon/apparell as placeholder"). The game's weapons and apparel categories have no `iconPath`, so their `icon` is
+  `BaseContent.BadTex`. `HudInventory.CatIcon` drops that mark for any category; the weapons and apparel headers take
+  the bolt-action rifle's and the basic shirt's pictures (`StandIn`), else the group's first item.
 - 0.200.0, Rimfolk's item card, step 2: materials
   and art (9 November 2026; `docs/design/rimfolk-look.md` stage 3, point 5, "step 2: built"; DESIGN.md "Rimfolk's own look,
   stage 3, point 5, step 2" has all of it; README "Rimfolk's item card"). The player's words as for step 1. Step 3 (books,

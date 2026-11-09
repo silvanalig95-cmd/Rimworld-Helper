@@ -31,6 +31,16 @@ When you load a save after an update, a letter lists the newest round once. The 
     <rounds>
 
       <li>
+        <version>0.200.1</version>
+        <date>9 November 2026</date>
+        <title>Pictures for the weapons and apparel headers</title>
+        <points>
+          <li>In the inventory panel's grouped look, the Weapons and Apparel headers showed a red cross because the game gives those categories no icon; they now show a rifle and a shirt.</li>
+          <li>Any other category without an icon of its own, such as one from a mod, shows none instead of the red cross.</li>
+        </points>
+      </li>
+
+      <li>
         <version>0.200.0</version>
         <date>9 November 2026</date>
         <title>An item card for materials and art</title>

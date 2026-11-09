@@ -10635,7 +10635,7 @@ above), and the classic drawing described here is the player's backup behind "Cl
   weapons, the apparel; pinned ones still at the top), ranged before melee and armour before utility before clothes,
   then by name (`HudInventoryMath.KindRank`); an apparel's kind by the apparel rating's role (body armour, a helmet or a
   shield is armour, utility its own), else by the game's categories (`HudInventoryMath.ApparelKind`), kept for the
-  session. In the grouped style each is a group of its own with the game's label and icon. **The rating's badge** (the
+  session. In the grouped style each is a group of its own with the game's label; the game gives its weapons and apparel categories no icon (their `icon` is `BaseContent.BadTex`, a red cross), so they show the bolt-action rifle's and the basic shirt's pictures, and any category without an icon shows none (0.200.1, `CatIcon`, `StandIn`). **The rating's badge** (the
   look): the best stored one's rating, a weapon's as before (`WeaponLive.Of`), apparel's by its stuff and quality
   (`ApparelLive.Of(def, stuff, quality)`, the pieces at half their hit points or more first); only on real weapons and
   apparel (`HudInventory.BadgeFor`: a weapon the game doesn't count, or one in its weapons category), so wood or a

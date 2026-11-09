@@ -416,7 +416,7 @@ namespace ColonyCouncil
                     g = new Group
                     {
                         key = apparel ? ApparelKey : WeaponsKey, label = wc != null ? (string)wc.LabelCap : HudKit.T(apparel ? "CC_Pnl_I_Apparel" : "CC_Pnl_I_Weapons"),
-                        icon = wc?.icon, total = total
+                        icon = CatIcon(wc) ?? StandIn(apparel ? "Apparel_BasicShirt" : "Gun_BoltActionRifle", it.def), total = total
                     };
                     byGroup[it.e.group] = g;
                 }
@@ -425,7 +425,7 @@ namespace ColonyCouncil
                     var cat = it.e.group < Roots.Count ? Roots[it.e.group] : null;
                     g = new Group
                     {
-                        key = cat?.defName ?? "other", label = cat != null ? (string)cat.LabelCap : HudKit.T("CC_Pnl_I_Other"), icon = cat?.icon,
+                        key = cat?.defName ?? "other", label = cat != null ? (string)cat.LabelCap : HudKit.T("CC_Pnl_I_Other"), icon = CatIcon(cat),
                         total = cat != null ? map.resourceCounter.GetCountIn(cat) : -1
                     };
                     byGroup[it.e.group] = g;
@@ -435,6 +435,23 @@ namespace ColonyCouncil
             if (pinned != null) groups.Add(pinned);
             foreach (var kv in byGroup.OrderBy(k => k.Key)) groups.Add(kv.Value);
             foreach (var g in groups) g.folded = st.folds.Contains(g.key);
+        }
+
+        /// <summary>
+        /// A category's own icon, or none where it has none: the game gives such a category its missing-texture mark (a red
+        /// cross), as it does its weapons and apparel.
+        /// </summary>
+        private static Texture2D CatIcon(ThingCategoryDef cat) => cat?.icon != null && cat.icon != BaseContent.BadTex ? cat.icon : null;
+
+        /// <summary>
+        /// The weapons' and apparel's header picture where their category has none: the base game's bolt-action rifle or
+        /// shirt, else the group's first item (the player: "either have no icon or just some random weapon/apparell as
+        /// placeholder").
+        /// </summary>
+        private static Texture2D StandIn(string defName, ThingDef first)
+        {
+            Texture2D Of(ThingDef d) => d?.uiIcon != null && d.uiIcon != BaseContent.BadTex ? d.uiIcon : null;
+            return Of(DefDatabase<ThingDef>.GetNamedSilentFail(defName)) ?? Of(first);
         }
 
         /// <summary>What most players watch: meals and days of food, medicine, silver, steel, components, wood, then the pinned.</summary>

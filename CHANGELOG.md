@@ -5,6 +5,13 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## Pictures for the weapons and apparel headers
+
+*9 November 2026, version 0.200.1*
+
+- In the inventory panel's grouped look, the Weapons and Apparel headers showed a red cross because the game gives those categories no icon; they now show a rifle and a shirt.
+- Any other category without an icon of its own, such as one from a mod, shows none instead of the red cross.
+
 ## An item card for materials and art
 
 *9 November 2026, version 0.200.0*

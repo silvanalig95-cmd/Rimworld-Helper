@@ -303,6 +303,9 @@ public static class HudLookTests
             "the change since yesterday only from a snapshot that counted them");
         C(Code("Hud/HudPanelState.cs").Contains("Scribe_Values.Look(ref filter, \"filter\", \"\");") && inv.Contains("FilterRow(") && invLook.Contains("FilterRow(r, s, true);"),
             "the filter kept with the panel and its row drawn in both looks");
+        C(inv.Contains("cat.icon != BaseContent.BadTex ? cat.icon : null") && inv.Contains("icon = CatIcon(cat),")
+          && inv.Contains("icon = CatIcon(wc) ?? StandIn(apparel ? \"Apparel_BasicShirt\" : \"Gun_BoltActionRifle\", it.def)"),
+            "no red cross on a group header: a category without its own icon gets none, the weapons and apparel a rifle and a shirt");
         C(Code("Hud/Look/HudWorkLook.cs").Contains("CC_Pnl_Look_DayOff") && Code("Hud/Look/HudWorkLook.cs").Contains("NeedsLook("), "work and idle: time off explains the idling; food, rest and recreation as bars");
 
         // ---------------- Icons ----------------
