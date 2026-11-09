@@ -12,6 +12,51 @@ tree at once, alongside whatever runs. Each piece is merged as its own release, 
 
 ## State (5 November 2026)
 
+- Weapons you can judge at a glance, step 2: the rating in the game, Rimfolk's weapon card and the weapon mods (9 November
+  2026, `docs/design/weapons.md` points 5 to 7; step 3, recommendations, not started). **Not released: no version, no
+  What's new round, About.xml and CHANGELOG untouched.** DESIGN.md "Weapons you can judge at a glance" has all of it;
+  README "Judging a weapon" and the mod list; the Almanac's "judging a weapon" (Defending, new keywords only).
+  - One reading for the review and the game: `Weapons/WeaponReadMath.cs` (pure; the facts a weapon's defs give, read,
+    rated, tagged; the review's `Inputs.cs`, `Program.cs` rating and `Words.Plain` moved here) and `WeaponWordsMath.cs`
+    (the line in plain words). `Tools/WeaponReview/Inputs.cs` is now only its JSON to facts; regenerating gives
+    `docs/weapons/weapons.json` and `README.md` byte for byte (checked), so all 747 defs read by the game's rules.
+  - The live reading (`Weapons/WeaponLive.cs`): the def as loaded (patches in it), the weapon's stats by the game's own
+    stat workers for the thing or a def, stuff and quality, a projectile's damage and piercing by its own methods, an
+    Odyssey unique weapon's traits (burst, speed, stopping power, damage override, extra damage, its ability's props), a
+    persona weapon's traits (equipped offsets as passives; Royalty's and Vanilla Persona Weapons Expanded's
+    `CompBladelinkWeapon`), biocoding named. Kept by def, stuff and quality; per weapon only with unique or persona
+    traits (an hour). For a colonist (`WeaponForMath.cs`, pure): real accuracy and melee hit read back through the game's
+    curves, the held weapon's offsets out, aim and cooldown and damage factors, their race's attacks; steps that add up
+    (skill, each trait, body and gear); what stops them (incapable of violence, coded to another, a heavy weapon without
+    Tough, an exoframe or the gene). Kept an hour; nothing re-rated per frame.
+  - Where it shows: the info card (`WeaponInfoCard.cs`: `ThingDef.SpecialDisplayStats` postfix, category
+    `Rimfolk_WeaponRating` in `Defs/Misc/Rimfolk_WeaponStats.xml` sorted first; a button at the card's foot from a
+    `Dialog_InfoCard.DoWindowContents` postfix); Rimfolk's card (`WeaponCardWindow.cs`, framed, key "WeaponCard",
+    `WeaponUi.cs` for the badge and chips); the gear tab (`WeaponGearTab.cs`: the game's `DrawThingRow` gives up 56 px;
+    Nice Inventory Tab's `EquippedItem.Draw` and `InventoryItem.Draw` by name, standing down without it); a button on a
+    weapon on the map (`WeaponGizmo.cs`, `ThingWithComps.GetGizmos`).
+  - The weapon mods (`WeaponMods.cs`, by name, decompiled from the player's upload into the scratchpad with ilspycmd
+    9.1, the old 8.2 trips on their assemblies): Simple Sidearms' memory and the sensible pair under its default weights;
+    Dual Wield's off hand, its allowed and two-handed lists and its six penalties from its settings; RunAndGun's settings
+    as its own code reads them (no settings file: every gun allowed, all counted heavy); Melee Animation's tweak data,
+    execution animations and duels.
+  - Settings (How you're told, Weapons; each on, the master needs the deeper game hooks): `weaponRatings` "Weapon
+    ratings", `weaponGearTab` "Ratings on the gear tab", `weaponCard` "Rimfolk's weapon card". No saved game data, no
+    Sched slot. Keys in `Languages/English/Keyed/Rimfolk_Weapons.xml`; the tags' labels and reasons and the plain line
+    stay English from the math (one place).
+  - Tests: `Tools/Tests/WeaponLiveTests.cs` (331 checks: eight base-game weapons built as the game builds them equal
+    `weapons.json` in every field, the weapon in hand, the colonist's rating against the review's trait ratings, the
+    pairs, Dual Wield, RunAndGun, the chart, the seams). `WeaponRateMath` gained the curves read backwards.
+  - Not run here (none of it could be): the badge and button placement on Nice Inventory Tab's rows and cells and on the
+    game's gear tab (row 28 px, the row's other buttons shifted left); the info card's button beside the close button;
+    the chart's lines (`Widgets.DrawLine`) and the procedural tag marks; the card above the game's info card (both
+    dialogs); Dual Wield's off hand read through its world component; Melee Animation's execution count per weapon;
+    a unique weapon's ability props after its trait set them; how long the first card of a modded weapon takes to read.
+  - Try in the game: 1. Open any gun's info card: "Weapon rating (Rimfolk)" heads it (an assault rifle 5.8 at normal
+    quality). 2. Its "Rimfolk's weapon card" button: the chart, chips, a colonist picked. 3. A careful shooter's gear
+    tab: the badge beside their rifle, its tooltip "careful shooter: +..." 4. With Nice Inventory Tab, the badge on the
+    rows' pictures and cells' corners, the small button opening the card. 5. A unique weapon (Odyssey): its card names its
+    traits and isn't marked rough. 6. Settings, How you're told, Weapons: each of the three off in turn.
 - 0.182.0, weapons you can judge at a glance, step 1: the rating, its tags and a review of every weapon (9 November 2026,
   the player's request in `docs/design/weapons.md`). No game-side code yet: only pure math that builds into the mod, the
   tools and the docs; the review is published as a tier-list page for the player.

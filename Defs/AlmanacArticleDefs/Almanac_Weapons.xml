@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- The Almanac page on judging a weapon: the rating, its tags and Rimfolk's weapon card (Source/ColonyCouncil/Weapons/;
+       docs/design/weapons.md; DESIGN.md "Weapons you can judge at a glance"). -->
+
+  <ColonyCouncil.AlmanacArticleDef>
+    <defName>Rimfolk_AlmDef_Weapons</defName>
+    <label>judging a weapon</label>
+    <category>Defending</category>
+    <order>95</order>
+    <summary>One number from 1 to 10 for every weapon, what it is good and weak at, and how it suits each colonist</summary>
+    <tip>A sniper rifle isn't marked down for being poor at five cells, nor a shotgun at forty: each weapon is judged at the distances its role is for.</tip>
+    <description>Every weapon a colonist can wield, from the game, its DLCs and your mods, has a rating from 1.0 to 10.0 at the top of its info card, worked out from what it really does in a fight by the game's own rules. Beside it: sub-ratings, colour-coded tags with the reason for each, a line in plain words, and its effects, counted or only named. Rimfolk's weapon card draws its damage by distance and sets it against what a colonist holds.</description>
+    <sections>
+      <li>
+        <heading>How the rating is made</heading>
+        <points>
+          <li>A colonist of Shooting 8 and Melee 8 with no traits fights the enemies a colony meets after its first year: a quarter raiders in plain clothes, two fifths in flak, a fifth in marine armour, the rest mechanoids. In the open, in daylight, without cover.</li>
+          <li>Guns: the chance to hit at each distance (the shooter's accuracy to the power of the distance, times the weapon's accuracy there), armour against its piercing, aim, burst and cooldown, blasts and their scatter, fire, stuns and EMP. A gun that can't reach a raider's rifle at 31 cells loses up to a quarter; damage dealt from beyond it counts double.</li>
+          <li>Melee weapons: the blows the game picks (its best three times in four), the fighter's hit chance and the target's dodge, armour, and what each blow carries.</li>
+          <li>What it does to whoever holds it counts too (move speed, aim, melee hit, dodge, damage taken), and so do the abilities it grants, up to half again its own worth. What a mod's own code does is valued where its code was read, and otherwise named and marked rough.</li>
+          <li>5.5 is the middle: about an assault rifle, a steel longsword or a warhammer. Near the middle a point is about a third more damage for a gun and a fifth more for a melee weapon; the scale flattens toward both ends.</li>
+        </points>
+      </li>
+      <li>
+        <heading>The weapon in hand</heading>
+        <points>
+          <li>A weapon's own quality and stuff change its rating, by the game's own stats: a legendary blade hits harder, an awful rifle aims worse.</li>
+          <li>An Odyssey unique weapon is rated with its rolled traits (burst, stopping power, its damage, extra damage, and what the traits do to its numbers); a persona weapon with its traits and its bond.</li>
+          <li>Biocoding doesn't change the rating; the card says who it is coded to.</li>
+        </points>
+      </li>
+      <li>
+        <heading>Tags</heading>
+        <text>Each weapon shows its most telling tags, seven at most, each given by a rule on its own numbers with the reason on its tooltip. Six kinds, each with its colour and its own mark: strengths (green, up), weaknesses (red, down), risks (orange, a warning), specials (violet, a star), roles (blue, a diamond) and what it needs (grey, a dot). The same tags and colours are on the tier list of every weapon in your mods.</text>
+      </li>
+      <li>
+        <heading>Rimfolk's weapon card</heading>
+        <points>
+          <li>The badge, the tags as chips, the line in plain words and the sub-ratings; a chart of damage per second by distance against no armour, flak, marine armour and mechanoids (bars by armour for a melee weapon); the situations it is best for and weak in; every effect; the key numbers.</li>
+          <li>For a colonist: their own rating from their real shooting accuracy or melee hit chance, aim, cooldowns and blows, each step that moves it named (their skill, a careful shooter, a brawler, their sight and gear). What stops them using it: incapable of violence, biocoded to someone else, a heavy weapon they can't carry.</li>
+          <li>It opens from a button at the foot of the game's info card, a button on a weapon selected on the map, and a small button beside each weapon on the gear tab.</li>
+        </points>
+      </li>
+      <li>
+        <heading>With the weapon mods</heading>
+        <points>
+          <li>Simple Sidearms: each weapon a colonist carries is rated for them, and the card names their sensible pair, the best gun and the best melee weapon they hold or carry, a sidearm only within its default weights (2.7 kg for a gun, 1.9 kg for a blade).</li>
+          <li>Dual Wield: the off-hand weapon is rated with Dual Wield's penalties, its cooldown 20% longer and its aim 10% worse, more the lower the skill (at skill 8, 80% and 16%), and both hands together when both are guns or both blades.</li>
+          <li>RunAndGun: whether the weapon can be fired on the move, 10% less accurate, and what it rates then.</li>
+          <li>Melee Animation: whether it animates the weapon's blows, how many execution moves are open to it at the colonist's Melee, and whether it is long enough for friendly duels.</li>
+          <li>Nice Inventory Tab and the game's gear tab: a small badge with the rating beside each weapon, its tooltip the tags and the colonist's own rating.</li>
+        </points>
+      </li>
+    </sections>
+    <keywords>
+      <li>weapon rating</li>
+      <li>weapon card</li>
+      <li>judging a weapon</li>
+      <li>tier list</li>
+      <li>weapon tags</li>
+      <li>damage per second</li>
+      <li>dual wield</li>
+      <li>simple sidearms</li>
+      <li>nice inventory tab</li>
+      <li>melee animation</li>
+    </keywords>
+    <seeAlso>
+      <li>Rimfolk_AlmDef_Mechanoids</li>
+      <li>Rimfolk_AlmDef_Killbox</li>
+    </seeAlso>
+  </ColonyCouncil.AlmanacArticleDef>
+
+</Defs>

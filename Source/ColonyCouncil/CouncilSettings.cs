@@ -423,6 +423,12 @@ namespace ColonyCouncil
         public bool barHeartLine = true;
         public bool barBadgeFaith = true;
         public bool barBadgePromise = true;
+        /// <summary>Weapon ratings (Weapons/): the rating, its tags and line at the top of a weapon's info card, a button to Rimfolk's card on a weapon.</summary>
+        public bool weaponRatings = true;
+        /// <summary>The rating's badge and the card's button beside each weapon on the gear tab, the game's and Nice Inventory Tab's (Weapons/WeaponGearTab.cs).</summary>
+        public bool weaponGearTab = true;
+        /// <summary>Rimfolk's own weapon card (Weapons/WeaponCardWindow.cs): the chart, the colonist's own rating, the pairs they carry.</summary>
+        public bool weaponCard = true;
         public BarBadgeSize barBadgeSize = BarBadgeSize.Normal;
         public BarBadgeCorner barBadgeCorner = BarBadgeCorner.TopRight;
         public int barBadgeMax = 2;
@@ -945,6 +951,9 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref barHeartLine, "barHeartLine", true);
             Scribe_Values.Look(ref barBadgeFaith, "barBadgeFaith", true);
             Scribe_Values.Look(ref barBadgePromise, "barBadgePromise", true);
+            Scribe_Values.Look(ref weaponRatings, "weaponRatings", true);
+            Scribe_Values.Look(ref weaponGearTab, "weaponGearTab", true);
+            Scribe_Values.Look(ref weaponCard, "weaponCard", true);
             Scribe_Values.Look(ref barBadgeSize, "barBadgeSize", BarBadgeSize.Normal);
             Scribe_Values.Look(ref barBadgeCorner, "barBadgeCorner", BarBadgeCorner.TopRight);
             Scribe_Values.Look(ref barBadgeMax, "barBadgeMax", 2);

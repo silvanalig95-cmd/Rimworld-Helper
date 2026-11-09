@@ -669,6 +669,11 @@ namespace ColonyCouncil
             Toggle("hoverHideGameTip", "CC_Settings_HoverHideGameTip", "CC_SetNote_HoverHideGameTip", "hoverCard");
             Slider("hoverScale", "CC_Settings_HoverScale", "CC_SetNote_HoverScale", 0.75f, 1.5f, 0.05f, "%", "hoverCard");
             Slider("hoverOpacity", "CC_Settings_HoverOpacity", "CC_SetNote_HoverOpacity", 0.3f, 1f, 0.05f, "%", "hoverCard");
+            // Weapons you can judge at a glance (Weapons/, docs/design/weapons.md): the rating on the info card, the gear tab, Rimfolk's card.
+            Section("CC_SetSec_Weapons");
+            Toggle("weaponRatings", "CC_Settings_WeaponRatings", "CC_SetNote_WeaponRatings", "deepHooks");
+            Toggle("weaponGearTab", "CC_Settings_WeaponGearTab", "CC_SetNote_WeaponGearTab", "weaponRatings,deepHooks");
+            Toggle("weaponCard", "CC_Settings_WeaponCard", "CC_SetNote_WeaponCard", "weaponRatings,deepHooks");
             // The colonist bar's badges (ColonistBar/BarBadges.cs): what they show, and how.
             Section("CC_SetSec_ColonistBar");
             NoteUnder("CC_SetSec_ColonistBar_Note");

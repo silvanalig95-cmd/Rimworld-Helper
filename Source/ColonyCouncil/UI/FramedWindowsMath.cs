@@ -98,6 +98,8 @@ namespace ColonyCouncil
             // Beside play: the Almanac and a card in its floating window.
             new FrameKey("Almanac", AlmanacLeastW, AlmanacLeastH, true),
             new FrameKey("Card", 380f, 320f, true),
+            // Rimfolk's weapon card (Weapons/WeaponCardWindow.cs): its badge, chips and chart at the least width; the rest scrolls.
+            new FrameKey("WeaponCard", 440f, 460f),
             // The trade windows.
             new FrameKey("Trade", WindowFrameMath.TradeLeastW, WindowFrameMath.TradeLeastH),
             new FrameKey("Market", 820f, 400f),
