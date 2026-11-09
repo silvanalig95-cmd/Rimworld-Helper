@@ -50,7 +50,28 @@ the gear tab), **RunAndGun - Continued** (`memegoddess.runandgun`), **Melee Anim
    with its penalties), Nice Inventory Tab (the rating beside each weapon), RunAndGun (shooting on the move noted),
    Melee Animation (its moves noted), all soft: nothing breaks without them.
 
-## Open (the player's "never mind")
+## Nuance (the player, the same day)
 
-Recommending the best weapon for each colonist on the gear tab, or colonists asking for a better one, is not built
-unless the player asks for it.
+"it just should be nuanced, you know, the rating and the description and recommendations that they keep, not just the
+blank values in mind, but also like special abilities, passive effects, situational use, etc." So:
+
+- **Abilities a weapon grants count in its rating** (equippable abilities of Royalty, Vanilla Persona Weapons Expanded,
+  Odyssey's unique weapons, A RimWorld of Magic's staffs), read from what the ability does; one whose effect lives in a
+  mod's code is named and marked as not counted.
+- **Passive effects count**, plus or minus, each named: what the weapon does to its wielder (move speed, dodge, aiming,
+  hit chance, psychic sensitivity, pain, mood), persona and bladelink traits, biocoding, drawbacks.
+- **Situational use**: each weapon's "best for" and "weak when" (mechanoids, crowds, heavy armour, a single strong
+  enemy or animal, a choke point or wall, kiting, sieges, hunting where explosives ruin the meat, capturing alive,
+  indoors where explosions and fire hit friends, a sidearm or an offhand), with situational sub-ratings where they make
+  sense, weighed into the overall by what the weapon is for.
+- **Plain lines as a seasoned player would say them** ("a fine sidearm; the EMP makes it the answer to mechanoids; too
+  slow to stop a charge"), not a list of stats.
+
+## Step 3: recommendations (the player said yes)
+
+8. **The best weapon for each colonist** on the gear tab (Nice Inventory Tab's too): from what the colony has, by the
+   colonist's skills and passions and traits (Shooting or Melee, Brawler, Trigger-happy, Careful shooter, Tough, Nimble,
+   Wimp), their role, what they already carry (Simple Sidearms' memory, Dual Wield's offhand) and the situations the
+   colony meets most (mechanoids, tribal crowds, armoured raiders), with the reason in a line; one click equips it.
+9. **Colonists sometimes ask** for a better weapon they've seen in the stockpile, one sentence in their own voice, rarely,
+   never when the difference is small.
