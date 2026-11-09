@@ -31,6 +31,18 @@ When you load a save after an update, a letter lists the newest round once. The 
     <rounds>
 
       <li>
+        <version>0.191.0</version>
+        <date>9 November 2026</date>
+        <title>The Story tab at a glance</title>
+        <points>
+          <li>Under a colonist's name, one line says who they are: the name the colony knows them by, their office, their age and where they come from.</li>
+          <li>The top of the Story tab shows their life goal with a progress bar, the story they're living, their wish with Show me and Promise, their quirks as tags, their standing on a small trust bar, and the newest line of their history.</li>
+          <li>Their closest friends and rivals sit beside it as small portraits with their opinion, and a click selects them.</li>
+          <li>Everything else follows in sections that fold and remember their state, from their whole story and every wish to family, dreams, secrets and the journal; nothing the tab showed was lost.</li>
+        </points>
+      </li>
+
+      <li>
         <version>0.190.0</version>
         <date>9 November 2026</date>
         <title>Rimfolk's letters open as event cards</title>

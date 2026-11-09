@@ -139,8 +139,7 @@ card.
 
 ## Stage 3, point 1: built (9 November 2026)
 
-The event cards (DESIGN.md, "Rimfolk's own look, stage 3, point 1: event cards" has all of it). Not released yet: no
-version, no What's new round.
+The event cards (DESIGN.md, "Rimfolk's own look, stage 3, point 1: event cards" has all of it). Released 0.190.0.
 
 - **Which letters**: every choice letter class of Rimfolk's (28) derives from `RimfolkLetter`, whose `OpenLetter` opens
   the card while the cards are on and the game's own window otherwise; Rimfolk's plain letters (the game's
@@ -159,3 +158,25 @@ version, no What's new round.
 - **Setting**: "Rimfolk's event cards" (`eventCards`, on), under "Rimfolk's own look"; with either off, the game's window.
 - **Not run here**: every letter's pages through the hidden tree, the card's look in the game, the portraits of people off
   the map, a plain letter from an older save (it opens in the game's window).
+
+## Stage 3, point 2: built (9 November 2026)
+
+The Story tab at a glance, on the Mood tab's pattern (DESIGN.md, "Rimfolk's own look, stage 3, point 2: the Story tab
+at a glance" has all of it). Released 0.191.0.
+
+- **Who they are, in one line** under their name: the name the colony knows them by, their office or the game's title,
+  their age, where they come from (a founder, born here, won over by someone, the people they lived among); each in full
+  in its tooltip.
+- **At a glance** (`UI/StoryGlance.cs`, rules in `UI/StoryGlanceMath.cs`): their character in words; their life goal
+  with a gold bar, its progress in its own words and how long they've held it; the story they're living; their wish
+  before the council (how long they've waited, what fulfils it, "Show me" and "Promise", the wish cards' own acts);
+  quirks as tags with what each does; standing (trust on a small meter with its bands, office, health, how many think
+  well or ill of them); up to three closest friends and three rivals with small portraits and their opinion, a click
+  selecting them; the newest line of their history.
+- **Below**, folding and remembered between sessions, in order of use: their story (the history, the way to the whole of
+  it, the stories lived through), wishes (now and what came of earlier ones), life goals, quirks and keepsakes in full,
+  every friend and rival, family, dreams, the character page's sections, the years, secrets and the journal. Nothing the
+  tab showed was lost; the family's portraits at the top gave way to the friends and rivals (the colony is the family),
+  the family tree keeps everyone.
+- **Both looks** through the kit: the game's in the inspect pane, Rimfolk's own on a colonist's card, which draws the same
+  page. Built at most twice a second, drawn only from the model.

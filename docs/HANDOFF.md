@@ -12,6 +12,45 @@ tree at once, alongside whatever runs. Each piece is merged as its own release, 
 
 ## State (5 November 2026)
 
+- 0.191.0, the Story tab at a glance (9 November 2026, `docs/design/rimfolk-look.md` stage 3, point 2). The player's words: "story tab sounds great", to "The Story
+  tab, done like the new Mood tab: at a glance, life goal with a progress bar, current wish, quirks, standing in the
+  colony, closest friends and rivals; the full history below in folding sections." DESIGN.md "Rimfolk's own look, stage
+  3, point 2: the Story tab at a glance" has all of it; README "Story, Culture and Social"; the Almanac's "family" (the
+  portraits at the top gone) and "Start here" (the Story tab at a glance), prose only, keywords unchanged.
+  - The head (`UI/ITab_Pawn_Story.cs`): under the name, who they are in one line (`StoryView.Who`, kept two seconds): the
+    name they're known by, their office or the game's title, age, where they come from in the Culture tab's words
+    (founder, born here, won over by, once among; `CultureView.RecruitedBy` now internal); each in full in its tooltip.
+  - At a glance (`UI/StoryGlance.cs`, pure rules `UI/StoryGlanceMath.cs` linked in Tests.csproj), built with the page's
+    model (twice a second at most, again after a promise; `StoryView.Stale`) and drawn only from it: character in words;
+    life goal ("Wants to ...", "held 12 days", a gold bar, the goal's own progress words and the share); the personal
+    story with its dots; their wish (their own first, nearest its last call, then oldest; waited, what fulfils it,
+    promised, "(+1 more)"; "Show me" and "Promise" beside it, under it where narrow, greyed "Already promised."); quirks,
+    keepsakes, vendettas, nemeses as tags; standing (trust on a small meter -100 to 100 with ticks at -45, -15, 25, 60;
+    office, health, "Liked by N" / "Disliked by N" from colonists' opinions of 20 or more, -20 or less); up to three
+    friends and three rivals (the game's opinion at 20 / -20, or an announced bond of friendship, fighting together or
+    teaching / of rivalry not contradicted by the opinion; closest first, then the bond; the colony's free colonists and
+    slaves, not babies or lodgers) with portraits, names and opinions, "+N" for the rest, a click selecting them in the
+    tab (`CameraJumper.TryJumpAndSelect`) or opening their card elsewhere, `SocialColumn.PairNote` on hover only; the
+    newest history line (`History.Of`, summaries passed over).
+  - Sections, folding and remembered (`Folds.Remembered("story.sections")`), story and wishes open: their story (ten
+    history lines with day links, "Its whole history (N)" to `WorldHistoryPage.ShowFor`, `ArcView.Past`), wishes (open
+    ones and the history's wish lines, "Every wish" to the Wishes page), life goals (the one under way in full, reached,
+    knacks), quirks and keepsakes in full, friends and rivals (every one, a row each; Rimfolk's bonds and those lost
+    while the Social column is off, the old "Bonds"), family, dreams, character sections, the years, secrets, journal
+    ("Read the journal" an act in the kit). The old overview card (`DrawOverview`, the family's portraits) is gone; its
+    pieces are in the glance or the sections. Keys `CC_Story_FamilyMore`, `CC_Story_FamilyElsewhere`,
+    `CC_Story_LifeSoFar` removed (unused). New keys in `Languages/English/Keyed/Rimfolk_StoryGlance.xml`.
+  - A colonist's card draws the same page (`StoryParts.Card`), so it has the glance too, in Rimfolk's own look.
+  - Tests: `Tools/Tests/StoryGlanceTests.cs`. No saved data, no Harmony patch, no Sched slot, no setting.
+  - Not run here (none of it could be): the glance's height at the tab's usual height (no scrolling with a long wish and
+    both rows of people), the who line beside the button, Show me and Promise, a friend's click with the tab staying
+    open on them, the trust meter's ticks, the card's narrower width in Rimfolk's look, a prisoner's and a slave's page.
+  - Try in the game: 1. A colonist's Story tab: the line under the name, then goal, wish, tags, trust, friends and
+    rivals, the newest line, without scrolling. 2. Hover the friend portraits and click one: they're selected, the tab
+    shows their story. 3. "Promise" on the wish: greys, "promised" beside the wait. 4. Fold and unfold sections, reload
+    the game: they stay as left. 5. "Its whole history" opens the region window's History on them. 6. Their card from
+    the council's People table: the same glance in Rimfolk's look.
+
 - 0.190.0, Rimfolk's event cards, stage 3 point 1 of Rimfolk's own look (9 November 2026, `docs/design/rimfolk-look.md`; the
   player: "like the events, assuming they still pop up the same way like normal game events do? i mean on the right
   side."). DESIGN.md "Rimfolk's own

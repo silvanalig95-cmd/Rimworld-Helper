@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <!--
+    The Story tab at a glance (Source/ColonyCouncil/UI/StoryGlance.cs, StoryGlanceMath.cs and ITab_Pawn_Story.cs; also at
+    the top of a colonist's card): who they are in one line, their life goal, their wish, their standing, their closest
+    friends and rivals, the newest line of their history, and the sections under it.
+  -->
+
+  <!-- Who they are, in one line under their name. -->
+  <CC_SGl_Founder>a founder</CC_SGl_Founder>
+  <CC_SGl_BornHere>born here</CC_SGl_BornHere>
+  <CC_SGl_WonOver>won over by {BY}</CC_SGl_WonOver>
+  <CC_SGl_Among>once among {PEOPLE}</CC_SGl_Among>
+
+  <!-- Their life goal. -->
+  <CC_SGl_Held>held {TIME}</CC_SGl_Held>
+  <CC_SGl_GoalSince>Set their heart on it on {DAY}.</CC_SGl_GoalSince>
+  <CC_SGl_NoGoal>No life goal yet.</CC_SGl_NoGoal>
+
+  <!-- Their wish before the council. -->
+  <CC_SGl_Wishes>Wishes for {WISH}</CC_SGl_Wishes>
+  <CC_SGl_WishedFor>{ASKER} wishes for {WISH}</CC_SGl_WishedFor>
+  <CC_SGl_MoreWishes>(+{COUNT} more)</CC_SGl_MoreWishes>
+  <CC_SGl_Waiting>waiting {TIME}</CC_SGl_Waiting>
+  <CC_SGl_NoWish>No wish before the council.</CC_SGl_NoWish>
+  <CC_SGl_ShowTip>Go to it on the map: what it is about, or who.</CC_SGl_ShowTip>
+  <CC_SGl_Promised>Already promised.</CC_SGl_Promised>
+
+  <!-- Their standing in the colony. -->
+  <CC_SGl_Trust>Trust: {LEVEL} {VALUE}</CC_SGl_Trust>
+  <CC_SGl_LikedBy>Liked by {COUNT}</CC_SGl_LikedBy>
+  <CC_SGl_DislikedBy>Disliked by {COUNT}</CC_SGl_DislikedBy>
+  <CC_SGl_LikedByTip>Think well of {PAWN_objective} (an opinion of 20 or more): {NAMES}.</CC_SGl_LikedByTip>
+  <CC_SGl_DislikedByTip>Think ill of {PAWN_objective} (an opinion of -20 or less): {NAMES}.</CC_SGl_DislikedByTip>
+
+  <!-- Their closest friends and their rivals. -->
+  <CC_SGl_Friends>Friends</CC_SGl_Friends>
+  <CC_SGl_Rivals>Rivals</CC_SGl_Rivals>
+  <CC_SGl_Nobody>No close friends or rivals yet.</CC_SGl_Nobody>
+  <CC_SGl_More>+{COUNT}</CC_SGl_More>
+  <CC_SGl_Opinion>{PAWN_nameDef} thinks {OPINION} of {OTHER_nameDef}, and {OTHER_nameDef} {BACK} of {PAWN_objective}.</CC_SGl_Opinion>
+  <CC_SGl_Relation>{OTHER_nameDef} is {PAWN_possessive} {RELATION}.</CC_SGl_Relation>
+  <CC_SGl_Theirs>theirs {BACK}</CC_SGl_Theirs>
+  <CC_SGl_ClickSelect>Click to select them.</CC_SGl_ClickSelect>
+
+  <!-- The sections under it. -->
+  <CC_SGl_Sec_Story>Their story</CC_SGl_Sec_Story>
+  <CC_SGl_WholeHistoryTip>Everything {PAWN_nameDef} took part in, on the region window's History.</CC_SGl_WholeHistoryTip>
+  <CC_SGl_Sec_Wishes>Wishes</CC_SGl_Sec_Wishes>
+  <CC_SGl_Earlier>What came of earlier wishes:</CC_SGl_Earlier>
+  <CC_SGl_WishesPage>Every wish</CC_SGl_WishesPage>
+  <CC_SGl_Sec_Goals>Life goals</CC_SGl_Sec_Goals>
+  <CC_SGl_Sec_Quirks>Quirks and keepsakes</CC_SGl_Sec_Quirks>
+  <CC_SGl_Sec_People>Friends and rivals</CC_SGl_Sec_People>
+  <CC_SGl_PeopleCount>friends {FRIENDS}, rivals {RIVALS}</CC_SGl_PeopleCount>
+
+</LanguageData>

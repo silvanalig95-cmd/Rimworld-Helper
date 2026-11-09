@@ -5,6 +5,15 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## The Story tab at a glance
+
+*9 November 2026, version 0.191.0*
+
+- Under a colonist's name, one line says who they are: the name the colony knows them by, their office, their age and where they come from.
+- The top of the Story tab shows their life goal with a progress bar, the story they're living, their wish with Show me and Promise, their quirks as tags, their standing on a small trust bar, and the newest line of their history.
+- Their closest friends and rivals sit beside it as small portraits with their opinion, and a click selects them.
+- Everything else follows in sections that fold and remember their state, from their whole story and every wish to family, dreams, secrets and the journal; nothing the tab showed was lost.
+
 ## Rimfolk's letters open as event cards
 
 *9 November 2026, version 0.190.0*
