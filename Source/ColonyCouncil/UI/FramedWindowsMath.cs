@@ -100,6 +100,8 @@ namespace ColonyCouncil
             new FrameKey("Card", 380f, 320f, true),
             // Rimfolk's weapon card (Weapons/WeaponCardWindow.cs): its badge, chips and chart at the least width; the rest scrolls.
             new FrameKey("WeaponCard", 440f, 460f),
+            // Rimfolk's apparel card (Apparel/ApparelCardWindow.cs): its badge, chips and body figure at the least width; the rest scrolls.
+            new FrameKey("ApparelCard", 440f, 460f),
             // The trade windows.
             new FrameKey("Trade", WindowFrameMath.TradeLeastW, WindowFrameMath.TradeLeastH),
             new FrameKey("Market", 820f, 400f),

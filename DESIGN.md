@@ -4700,7 +4700,7 @@ this ui mod?"; then "pawns should also propose to switch weapons if there's more
 is blocking the best weapon, even if the weak pawn gets an even worse shooting score. also it should perhaps also give a
 warning if a pawn has a lucky weapon and would lose it, but that should not block the exchange altogether". Not released.
 
-- **The item's picture** (`UiKit.ItemPortrait`, `UI/UiKitItems.cs`, for the apparel card to come too): the thing as it
+- **The item's picture** (`UiKit.ItemPortrait`, `UI/UiKitItems.cs`, the apparel card's too): the thing as it
   looks, by the game's own `Widgets.ThingIcon` (its stuff's colour, its style or its faith's look, a unique or persona
   weapon's own graphic, the variant a random graphic picked for this very thing, any mod's graphic), a kind by
   `Widgets.DefIcon` in its usual stuff; on a dark tile framed in its quality's colour. The game has no colours for quality
@@ -4866,6 +4866,107 @@ and suggest/equip them accordingly. also offhand if they have capacity & compati
   memories told by name.
 - **Saved:** `WeaponPickBook.fetched` (colonist: tick, a day), modelled in `Tools/save_estimate.py`. No new Harmony patch,
   no new Sched slot.
+
+## Armour and apparel you can judge at a glance (the player's request, 9 November 2026)
+
+"And maybe after you can do the whole thing, the same thing for armor and apparel." The plan is `docs/design/apparel.md`.
+Step 1 (0.187.0) built the rating (`Apparel/ApparelRateMath.cs`), the tags (`ApparelTagMath.cs`) and the review of every
+piece in the player's mods (`docs/apparel/`). Step 2 (point 5) brings it into the game, after the player's screenshot of
+the game's plain card for a "Bluefur parka (awful)": "i don't see the gear cards in game by default, is this implemented
+at all?" Step 3 (point 6, recommendations) is not started.
+
+- **One reading for the review and the game.** What a piece's defs say is plain data (`Apparel/ApparelReadMath.cs`, pure):
+  `ApparelDefFacts` (its stat bases and equipped offsets, stuff categories, layers, groups and tags, its apparel
+  properties, its comps and mod extensions as class names with simple fields, lists of names and maps of stats, its verbs
+  and their projectiles, the abilities it grants, the titles' and faiths' apparel rules it meets, whether it is made or
+  worn by a faction, the patches the review doesn't apply, its stuff and the stuffs it is also rated in, and for the
+  piece in hand its quality's factors, hit points, a dead wearer, the moods those give and whom it is biocoded to).
+  `ApparelRead.Facts` turns them into the rating's own facts (the review's `Inputs.Facts`, moved here: comps through
+  `ApparelRateMath.ReadComp`, verbs through `PowerOfVerb`, hediffs' stages, VEF's apparel extension, the code-only comps
+  named and marked rough); `ApparelRead.Full` rates it in its usual stuff with its role judged in plain stuff, rates it in
+  its other stuffs, and gives its tags, line and table. `Tools/ApparelReview/Inputs.cs` is now only the JSON to facts, and
+  `Program.cs` rates through `ApparelRead.Full`; regenerating gives `docs/apparel/apparel.json` and `README.md` byte for
+  byte (checked), so the game's rules are the review's for all 509 rated pieces. The usual stuff (devilstrand for
+  fabric, steel, plain leather, wood, granite) and the common stuffs of each kind are the extractor's own lists, ported.
+- **The live def as facts** (`Apparel/ApparelLive.cs`): its stat bases, offsets, comps (the piece in hand's own comps'
+  numbers over its props', so A RimWorld of Magic's rolled enchantment counts), extensions, verbs (a projectile's damage
+  and piercing by its own `GetDamageAmount` and `GetArmorPenetration`), abilities (the game's apparel abilities and a
+  comp's lists), the apparel rules of royal titles, memes and roles (read once by field name as the extractor reads them),
+  recipes and pawn kinds; its equipped offsets as the game gives them (`StatWorker.StatOffsetFromGear` for a thing, the
+  stat's parts for a kind); its quality's factors on armour and insulation by the game's own stats for this piece or kind,
+  stuff and quality (`StatRequest.For`), as the game's value over the rating's own sum of base and stuff, from a stat
+  not held at its 200% cap. Types' names as defs write them (a plain `CompProperties` by its comp class). Kept by def,
+  stuff and quality; by the piece itself only where it differs from its kind (worn below half its hit points, taken from
+  the dead, enchanted, biocoded), an hour of the game's time or until its wear stage changes. All forgotten with a new game.
+- **The piece in hand** (`ApparelRead.Facts`, the rating's `Moods`): the game's `ThoughtWorker_ApparelDamaged` thresholds
+  (below half its hit points, below a fifth; only where its wearer cares, `careIfDamaged`) and `ThoughtWorker_DeadMansApparel`
+  give their moods from the game's own thought stages; a mood point counts as the mental break threshold moved by a
+  hundredth (`ApparelRateMath.WorthPerMood`, 0.015), in the mind, and is named among the effects. Wear doesn't weaken armour
+  in the game (`ArmorUtility.ApplyArmor`: every hit that reaches a piece wears it by a quarter of its damage, its armour is
+  its stat), so the card says so rather than lowering the rating for it. Biocoding names whom it is coded to.
+- **For a colonist** (`Apparel/ApparelForMath.cs`, pure; the wearer read by `ApparelLive.Wearer`): steps from the usual
+  rating that add up. How they fight (a gun in hand a shooter, a blade a melee fighter; else a brawler in melee, and their
+  skills four levels apart; incapable of violence only lasting and walking; can't shoot, melee): the fight as the rating
+  works it out for that wearer, so a shield belt is 1.0 for a shooter. Their body: zones whose groups no part of theirs
+  carries any more are left out of where hits land (`ApparelForMath.BodyWithout`). Their weather (`ApparelLive.Climate`:
+  outside now; the season's three twelfths at the tile, `GenTemperature.AverageTemperatureAtTileForTwelfth`, less and more
+  the sun's 7 °C swing): warmth and cooling count by what the season asks of this piece beyond what they keep wearing (their
+  `ComfyTemperatureMin` and `Max` now, the insulation and comfort offsets of what it would replace and of itself taken back
+  out): the degrees asked with the role's weight and one more (the review's "in the cold"), the degrees beyond at a fifth of
+  the role's weight (`ApparelForMath.ClimateWorth`). Moods it would add: the apparel-damaged mood is one, at the worst stage
+  of what they wear, so a worn piece adds nothing to someone whose other clothes are as worn; the other gender's
+  (`WrongApparelGender`) unless something else they keep already gives it. What it would take the place of: what they wear
+  that `ApparelUtility.CanWearTogether` says can't stay, each rated for them. What stops them: `EquipmentUtility.CanEquip`
+  for a piece in hand (biocoded to another, their role, their age), the developmental stage and
+  `ApparelUtility.HasPartsToWear` for a kind. Kept an hour.
+- **The info card** (`ApparelInfoCard.cs`): a pass-through postfix on `ThingDef.SpecialDisplayStats` in its own
+  `StatCategoryDef` (`Rimfolk_ApparelRating`, display order 0): the rating (band, rough or not, whom it is rated for), a
+  shooter's and a melee fighter's where they differ by half a point, each sub-rating, the line, each tag with why and its
+  rule, the effects, the piece's hit points left with the game's thresholds and days of wear, and the wearer's or
+  carrier's own rating with its steps. A postfix on `Dialog_InfoCard.DoWindowContents` draws "Rimfolk's apparel card" at
+  the foot.
+- **Rimfolk's apparel card** (`ApparelCardWindow.cs`, key "ApparelCard", least 440 by 460, on `UI/ItemCardWindow.cs`):
+  the item card's base keeps the thing, kind, stuff and colonist (the last chosen remembered), the scroll and the error
+  handling, and draws what item cards share: the head (`UiKit.ItemPortrait` large in its quality's frame, the badge, band
+  and role, how it is rated, "All the game's stats", a second quiet line, the line in plain words), meters, situation bars,
+  effects, rows of numbers, the colonist's heading and picking. The weapon card can move onto it unchanged in what it
+  shows, and an item card for everything after it. The apparel card adds: the tags as chips; the sub-ratings; protection by
+  body part (three armour meters held at 200%; `ApparelUi.DrawFigure`, a figure of eight regions from
+  `ApparelForMath.Regions` filled by how much of each it covers, beside each region's share of the shots and its cover);
+  warmth against the weather (its warmth and cooling, outside now and the season's range, the comfortable range with it on
+  for the colonist or worn alone over a bare human, a strip with the season shaded, the comfort framed and now marked, a
+  verdict); the piece as it is (quality, material, hit points with a bar marked at the game's two thresholds and their
+  stage labels and moods, days of wear, wear and armour, from the dead, biocoded); other materials (`ByStuff`, its own
+  marked); situations; effects; key numbers; and the colonist (rating, steps, how they fight and why, their body, the other
+  gender, and what it would take the place of, a click opening that piece's card). Worked out for a colonist once every two
+  seconds.
+- **Open it first** (`ApparelCardFirst.cs`): the weapons' one prefix on `WindowStack.Add` (`Patch_WeaponCardFirst`) now
+  asks the weapon card and then the apparel card; a def is one or the other. Its own let-through for "All the game's
+  stats"; navigation inside the game's card stays the game's (`WeaponCardFirst.insideGameCard`, shared). Setting
+  `apparelCardFirst`.
+- **The gear tab** (`ApparelGearTab.cs`, "Ratings on the gear tab"): the game's `ITab_Pawn_Gear.DrawThingRow` gives up 56
+  pixels at an apparel row's end for the badge and the card's button (a patch class of its own beside the weapons');
+  Nice Inventory Tab (decompiled from the player's upload, read by name, never run): its `EquippedItem` rows (the legacy
+  layout's apparel box, belts and shields in its equipment box) get the badge on the picture and the button at its corner
+  as weapons do, its `InventoryItem` cells (apparel carried) the same; its `ApparelGridSlot` (the alternative layout's apparel
+  grid, whose `Draw` opens the game's card on a left click, puts its warning mark at the top left, its stars at the top's
+  middle, its lock and drop buttons at the right corners and its wear bar at the foot) gets the badge alone at its top left,
+  under the warning mark when its private `problems` shows one; the badge's click is caught in a prefix and opens
+  Rimfolk's card. Each Nice Inventory Tab patch returns no target without the mod and stands down on purpose.
+- **Settings** (How you're told, Apparel; each on): `apparelRatings` "Apparel ratings" (the master; needs the deeper game
+  hooks), `apparelGearTab` "Ratings on the gear tab", `apparelCardFirst` "Open Rimfolk's apparel card first". No saved
+  game data, no Sched slot.
+- **Text:** `Languages/English/Keyed/Rimfolk_Apparel.xml` (the words the weapon card shares are its keys); the tags' labels
+  and reasons and the line stay English from the math, as the weapons'. The Almanac's "judging armour and clothes"
+  (Defending).
+- **Tests:** `Tools/Tests/ApparelLiveTests.cs` (681 checks): thirteen of the base game's pieces (flak vest, shield belt,
+  jump pack, smokepop pack, parka, duster, tuque, cowboy hat, psychic foil helmet, marine armor, recon helmet, tribalwear,
+  T-shirt) built as the live reader builds them rate as `apparel.json` has them in every field (rating, a shooter's and a
+  melee fighter's, role, whom for, slot, table, every sub-rating and situation, tags and their reasons, the line, the
+  specials, the rating by stuff, armour, insulation, coverage, rough or not, the usual stuff); the extractor's stuff lists;
+  quality, the 200% cap, wear and its moods, a dead wearer, biocoding; a colonist's rating by how they fight, their body,
+  their weather, the moods it adds, and its steps adding up; regions; and the seams (settings, keys made from words, hooks,
+  frame, Almanac).
 
 ## Algorithms, not AI
 

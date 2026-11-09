@@ -36,6 +36,19 @@ tier-list page isn't made yet.
 
 ## Step 2: in the game
 
+**Built (9 November 2026, not released),** after the player's screenshot of the game's plain card for a "Bluefur parka
+(awful)": "i don't see the gear cards in game by default, is this implemented at all?" One reading for the review and the
+game (`Apparel/ApparelReadMath.cs`: the review's `Inputs.Facts` moved into the mod, so regenerating the review gives the
+same files byte for byte); the live def and the piece in hand as facts (`Apparel/ApparelLive.cs`: quality's factors by the
+game's own stats, the mood of worn clothes and of clothes taken from the dead, a rolled enchantment, biocoding); the rating
+for a colonist (`Apparel/ApparelForMath.cs`: how they fight, their body, their weather against what they keep wearing, the
+moods it adds); the info card's section (`ApparelInfoCard.cs`); Rimfolk's apparel card on a new item-card base
+(`ApparelCardWindow.cs`, `UI/ItemCardWindow.cs`: protection by body part as a figure, warmth against the weather, the piece
+as it is, other materials, for a colonist and what it would replace); opening first through the weapons' one window-stack
+hook (`ApparelCardFirst.cs`); the badge on the game's gear tab and Nice Inventory Tab's rows, cells and apparel slots
+(`ApparelGearTab.cs`); settings under How you're told, Apparel. DESIGN.md "Armour and apparel you can judge at a glance"
+has all of it; the Almanac's "judging armour and clothes". The suggestions' rows (below) are step 3's.
+
 5. The rating, tags and line at the top of the game's info card for apparel, Rimfolk's own apparel card (opened first,
    as the weapon card is), a badge on the gear tab and Nice Inventory Tab, the piece in hand with its quality, stuff,
    wear and any traits, and the rating for a chosen colonist (their body, temperature and work).
@@ -48,6 +61,9 @@ tier-list page isn't made yet.
    apparel box the same way as the equipment box's (`Weapons/WeaponNiceTab.cs`).
 
 ## Step 3: recommendations
+
+Not started. The colonist's rating it needs is built (`ApparelForMath.For`, `ApparelLive.ForColonist`: how they fight,
+their body, their weather, the moods, and what a piece would take the place of).
 
 6. Better armour and clothes for each colonist from what the colony has, by their role, the season and the raids met,
    their faith's and title's apparel rules, their body; one click to wear it; colonists sometimes ask, rarely.

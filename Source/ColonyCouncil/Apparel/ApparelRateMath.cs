@@ -150,6 +150,19 @@ namespace ColonyCouncil
         public List<string> Unsure = new List<string>();
         /// <summary>Named effects with no number to count (a heraldic tabard, a rum suit's rum).</summary>
         public List<string> Notes = new List<string>();
+
+        // ---- The piece in hand (left empty for a kind, as the review rates it) ----
+
+        /// <summary>
+        /// The moods its wearer has from this very piece as it is (the game's own thoughts: worn below half its hit points,
+        /// taken from the dead), each with its label and mood; counted in the mind (<see cref="ApparelRateMath.WorthPerMood"/>).
+        /// </summary>
+        public List<(string label, float mood)> Moods = new List<(string, float)>();
+        /// <summary>The one it is biocoded to, by name, or empty.</summary>
+        public string BiocodedTo = "";
+
+        /// <summary>A shallow copy (the same piece in another stuff shares its lists, which the rating only reads).</summary>
+        public ApparelFacts Clone() => (ApparelFacts)MemberwiseClone();
     }
 
     /// <summary>A named effect: whether the rating counts it, a short note, and its sign for the wearer.</summary>
@@ -1081,6 +1094,12 @@ namespace ColonyCouncil
             return 0.5f * (E("maxMP") + E("mpRegenRate") - E("coolDown") - E("mpCost") + 0.5f * E("xpGain") + 0.5f * E("arcaneDmg") + 0.25f * E("arcaneRes") + 0.5f * E("healthRegenRate"));
         }
 
+        /// <summary>
+        /// A mood point counts as the mental break threshold moved by a hundredth of the mood scale: 0.015 of a colonist
+        /// (<see cref="StatWorth"/>'s MentalBreakThreshold, -1.5 a full point). The tattered mood's -3 is 0.045.
+        /// </summary>
+        public const float WorthPerMood = 0.015f;
+
         /// <summary>Lower psychic sensitivity shelters the mind from psychic drones and lances, which come now and then: 0.15 a full point.</summary>
         public const float ShelterWorth = 0.15f;
 
@@ -1119,6 +1138,7 @@ namespace ColonyCouncil
                 if (p.Kind == "stabilize") w["work"] += 0.05f;
             }
             if (a.PreventsBleeding) w["fight"] += 0.1f;
+            foreach (var (_, mood) in a.Moods) w["mind"] += mood * WorthPerMood;
             float man = CapacityFactor(a, "Manipulation"), sight = CapacityFactor(a, "Sight");
             w["work"] -= (1f - man * sight) * 0.8f;
             return w;
@@ -1444,7 +1464,8 @@ namespace ColonyCouncil
             if (!string.IsNullOrEmpty(a.WorkDisables)) Add("workdisables", "its wearer can't do " + a.WorkDisables.ToLowerInvariant() + " work", true, -1);
             if (a.SkillGainZero) Add("noskill", "its wearer learns nothing while wearing it", true, -1);
             if (a.PreventsBleeding) Add("nobleed", "its wearer doesn't bleed", true);
-            if (a.Biocodable) Add("biocodable", "can be biocoded to one person", false, 0);
+            foreach (var (label, mood) in a.Moods) Add("mood", label + ": mood " + (mood > 0 ? "+" : "") + F(mood) + " for its wearer", true, mood > 0 ? 1 : -1);
+            if (a.Biocodable) Add("biocodable", string.IsNullOrEmpty(a.BiocodedTo) ? "can be biocoded to one person" : "biocoded to " + a.BiocodedTo, false, 0);
         }
 
         static void BestAndWeak(ApparelFacts a, ApparelRating r)

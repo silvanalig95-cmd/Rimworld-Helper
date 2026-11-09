@@ -1,0 +1,249 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <!-- Armour and apparel you can judge at a glance, step 2 (Source/ColonyCouncil/Apparel/, docs/design/apparel.md): the
+       rating on the game's info card, Rimfolk's apparel card, the gear tab's badges. The tags' labels and reasons and the
+       line in plain words are made from the piece's numbers in English (Apparel/ApparelTagMath.cs); words the weapon card
+       shares (sections, effects, the colonist's heading) are its keys in Rimfolk_Weapons.xml. -->
+
+  <!-- The settings (How you're told, Apparel). -->
+  <CC_SetSec_Apparel>Apparel</CC_SetSec_Apparel>
+  <CC_Settings_ApparelRatings>Apparel ratings</CC_Settings_ApparelRatings>
+  <CC_Settings_ApparelRatings_Tip>A rating from 1 to 10 for every piece of armour and clothing, from what it really does for whoever wears it by the game's own rules (armour by the parts it covers, warmth and cooling, what it costs and what it adds), with its sub-ratings, colour-coded tags and a line in plain words, at the top of the game's info card, and Rimfolk's own apparel card. Off, no apparel is rated anywhere.</CC_Settings_ApparelRatings_Tip>
+  <CC_SetNote_ApparelRatings>A piece's info card opens with its rating, tags and a line about it; Rimfolk's apparel card is a button away.</CC_SetNote_ApparelRatings>
+  <CC_Settings_ApparelGearTab>Ratings on the gear tab</CC_Settings_ApparelGearTab>
+  <CC_Settings_ApparelGearTab_Tip>A small badge with the rating beside each piece of apparel on the gear tab, the game's and Nice Inventory Tab's (its rows, its apparel slots and what a colonist carries), its tooltip the tags and the colonist's own rating. A click on it opens Rimfolk's apparel card.</CC_Settings_ApparelGearTab_Tip>
+  <CC_SetNote_ApparelGearTab>Each piece a colonist wears or carries shows its rating beside it.</CC_SetNote_ApparelGearTab>
+  <CC_Settings_ApparelCardFirst>Open Rimfolk's apparel card first</CC_Settings_ApparelCardFirst>
+  <CC_Settings_ApparelCardFirst_Tip>Opening the info for a piece of armour or clothing (the "i" button on the gear tab, Nice Inventory Tab, a trade screen, a list, the research or architect tab, the inspect pane) opens Rimfolk's apparel card instead of the game's. Its button "All the game's stats" opens the game's card, and the game's card keeps its button back. Links followed inside the game's card stay in it. Off, the game's card opens as before.</CC_Settings_ApparelCardFirst_Tip>
+  <CC_SetNote_ApparelCardFirst>A piece's info opens as Rimfolk's apparel card; the game's card is one button away.</CC_SetNote_ApparelCardFirst>
+
+  <!-- The game's info card. -->
+  <CC_Apparel_Info_Rating>Apparel rating</CC_Apparel_Info_Rating>
+  <CC_Apparel_Info_RatingExpl>How much this piece does for whoever wears it, for what it is made for, from 1 to 10, worked out by the game's own rules: its armour against the hits a colony meets (raiders' guns and blades, animals, mechanoids, fire) on the parts it covers, through the game's armour roll; its warmth and cooling; what it costs its wearer (speed, aim, work, the mood of wearing it) and what it adds (shields, jumps, smoke, psychic and work bonuses). Each kind of piece is judged against its own: body armour against body armour, a hat against hats. 5.5 is the middle.</CC_Apparel_Info_RatingExpl>
+  <CC_Apparel_Info_RatedAs>Judged as {ROLE}, rated {FOR}: a colonist of Shooting 8 and Melee 8 with an assault rifle or a steel longsword, the piece worn alone.</CC_Apparel_Info_RatedAs>
+  <CC_Apparel_Info_Both>For a shooter / a melee fighter</CC_Apparel_Info_Both>
+  <CC_Apparel_Info_BothExpl>The same piece rated for a colonist with an assault rifle and for one with a steel longsword. A shield belt stops its wearer's own shots; a jump pack carries a melee fighter onto the enemy; heavy armour costs a melee fighter more in the chase.</CC_Apparel_Info_BothExpl>
+  <CC_Apparel_Info_PlainExpl>The piece as a seasoned player would sum it up, made from its rating and its tags.</CC_Apparel_Info_PlainExpl>
+  <CC_Apparel_Info_Named>Named, not counted (what a mod's own code does, what only some can use):</CC_Apparel_Info_Named>
+  <CC_Apparel_Info_Wear>Hit points left</CC_Apparel_Info_Wear>
+  <CC_Apparel_Info_ForExpl>{PAWN} would rate it {RATING} against the usual {REFERENCE}, by how {PAWN_pronoun} fights, the body {PAWN_pronoun} has, the weather where {PAWN_pronoun} is, and what {PAWN_pronoun} keeps wearing.</CC_Apparel_Info_ForExpl>
+  <CC_Apparel_CantWear>can't wear it</CC_Apparel_CantWear>
+  <CC_Apparel_WearExpl>{HP} of {MAX} hit points. The game doesn't weaken armour as it wears, but its wearer minds it.</CC_Apparel_WearExpl>
+  <CC_Apparel_WearNoCare>Its wearer doesn't mind its wear.</CC_Apparel_WearNoCare>
+  <CC_Apparel_WearThresholds>Below {FRAYED} of its hit points its wearer is unhappy about it, more so below {TATTERED}.</CC_Apparel_WearThresholds>
+  <CC_Apparel_WearDays>About {DAYS} days of wear to {AT}.</CC_Apparel_WearDays>
+  <CC_Apparel_OpenCard>Rimfolk's apparel card</CC_Apparel_OpenCard>
+  <CC_Apparel_OpenCard_Tip>Open Rimfolk's card for this piece: where it protects, how warm it keeps a colonist in this weather, the piece as it is, its rating in other materials, and how it compares with what a colonist wears.</CC_Apparel_OpenCard_Tip>
+
+  <!-- Roles. -->
+  <CC_Apparel_Role_Bodyarmour>body armour</CC_Apparel_Role_Bodyarmour>
+  <CC_Apparel_Role_Helmet>a helmet</CC_Apparel_Role_Helmet>
+  <CC_Apparel_Role_Offhandshield>a shield for the off hand</CC_Apparel_Role_Offhandshield>
+  <CC_Apparel_Role_Utility>a belt, pack or accessory</CC_Apparel_Role_Utility>
+  <CC_Apparel_Role_Everydayclothing>everyday clothing</CC_Apparel_Role_Everydayclothing>
+  <CC_Apparel_Role_Headgear>headgear</CC_Apparel_Role_Headgear>
+  <CC_Apparel_Role_Coldweathergear>cold-weather gear</CC_Apparel_Role_Coldweathergear>
+  <CC_Apparel_Role_Hotweathergear>hot-weather gear</CC_Apparel_Role_Hotweathergear>
+  <CC_Apparel_Role_Hazardgear>hazard gear</CC_Apparel_Role_Hazardgear>
+  <CC_Apparel_Role_Ceremonialorpsychic>a ceremonial or psychic piece</CC_Apparel_Role_Ceremonialorpsychic>
+  <CC_Apparel_For_Anyone>for anyone</CC_Apparel_For_Anyone>
+  <CC_Apparel_For_Shooter>for a shooter</CC_Apparel_For_Shooter>
+  <CC_Apparel_For_Melee>for a melee fighter</CC_Apparel_For_Melee>
+  <CC_Apparel_BothLine>A shooter {SHOOTER}, a melee fighter {MELEE}</CC_Apparel_BothLine>
+
+  <!-- Sub-ratings and their meaning. -->
+  <CC_Apparel_Sub_Guns>Against guns</CC_Apparel_Sub_Guns>
+  <CC_Apparel_Sub_Melee>Against blades and claws</CC_Apparel_Sub_Melee>
+  <CC_Apparel_Sub_Mechanoids>Against mechanoids</CC_Apparel_Sub_Mechanoids>
+  <CC_Apparel_Sub_Fire>Against fire</CC_Apparel_Sub_Fire>
+  <CC_Apparel_Sub_Cold>Warmth</CC_Apparel_Sub_Cold>
+  <CC_Apparel_Sub_Heat>Cooling</CC_Apparel_Sub_Heat>
+  <CC_Apparel_Sub_Toxins>Toxins</CC_Apparel_Sub_Toxins>
+  <CC_Apparel_Sub_Vacuum>Vacuum</CC_Apparel_Sub_Vacuum>
+  <CC_Apparel_Sub_Psychic>Psycasting</CC_Apparel_Sub_Psychic>
+  <CC_Apparel_Sub_Psychicshelter>Psychic shelter</CC_Apparel_Sub_Psychicshelter>
+  <CC_Apparel_Sub_Work>Work</CC_Apparel_Sub_Work>
+  <CC_Apparel_Sub_Social>Talks and trade</CC_Apparel_Sub_Social>
+  <CC_Apparel_Sub_Mechanitor>Mechanitor</CC_Apparel_Sub_Mechanitor>
+  <CC_Apparel_Sub_Magic>Magic</CC_Apparel_Sub_Magic>
+  <CC_Apparel_Sub_Hunting>Hunting</CC_Apparel_Sub_Hunting>
+  <CC_Apparel_Sub_Carrying>Carrying</CC_Apparel_Sub_Carrying>
+  <CC_Apparel_SubExpl_Guns>How much longer its wearer lasts under raiders' guns, bows and grenades, by the parts it covers. A head piece against head pieces.</CC_Apparel_SubExpl_Guns>
+  <CC_Apparel_SubExpl_Melee>How much longer its wearer lasts against raiders' blades, clubs and fists and animals' claws and bites.</CC_Apparel_SubExpl_Melee>
+  <CC_Apparel_SubExpl_Mechanoids>How much longer its wearer lasts against mechanoids: lances, blades, blasters and needle guns.</CC_Apparel_SubExpl_Mechanoids>
+  <CC_Apparel_SubExpl_Fire>How much longer its wearer lasts against fire: incendiaries and burning.</CC_Apparel_SubExpl_Fire>
+  <CC_Apparel_SubExpl_Cold>Its cold insulation: how many degrees colder its wearer stays comfortable.</CC_Apparel_SubExpl_Cold>
+  <CC_Apparel_SubExpl_Heat>Its heat insulation: how many degrees warmer its wearer stays comfortable.</CC_Apparel_SubExpl_Heat>
+  <CC_Apparel_SubExpl_Toxins>How well it keeps out toxic fallout, gas and buildup.</CC_Apparel_SubExpl_Toxins>
+  <CC_Apparel_SubExpl_Vacuum>How well it keeps its wearer alive in vacuum.</CC_Apparel_SubExpl_Vacuum>
+  <CC_Apparel_SubExpl_Psychic>What it does for a psycaster: psychic sensitivity, psychic heat and focus.</CC_Apparel_SubExpl_Psychic>
+  <CC_Apparel_SubExpl_Psychicshelter>How well it shelters the mind from psychic drones and lances.</CC_Apparel_SubExpl_Psychicshelter>
+  <CC_Apparel_SubExpl_Work>What it does for its wearer's work.</CC_Apparel_SubExpl_Work>
+  <CC_Apparel_SubExpl_Social>What it does for talks, trade and the impression its wearer makes.</CC_Apparel_SubExpl_Social>
+  <CC_Apparel_SubExpl_Mechanitor>What it does for a mechanitor: bandwidth and control groups.</CC_Apparel_SubExpl_Mechanitor>
+  <CC_Apparel_SubExpl_Magic>What its enchantment does for a mage.</CC_Apparel_SubExpl_Magic>
+  <CC_Apparel_SubExpl_Hunting>What it does for a hunter: stealth and camouflage.</CC_Apparel_SubExpl_Hunting>
+  <CC_Apparel_SubExpl_Carrying>How much more its wearer can carry.</CC_Apparel_SubExpl_Carrying>
+
+  <!-- Situations. -->
+  <CC_Apparel_Sit_Guns>Gunfights</CC_Apparel_Sit_Guns>
+  <CC_Apparel_Sit_Melee>Melee and animals</CC_Apparel_Sit_Melee>
+  <CC_Apparel_Sit_Mechanoids>Mechanoid raids</CC_Apparel_Sit_Mechanoids>
+  <CC_Apparel_Sit_Fire>Fire</CC_Apparel_Sit_Fire>
+  <CC_Apparel_Sit_Cold>The cold</CC_Apparel_Sit_Cold>
+  <CC_Apparel_Sit_Heat>The heat</CC_Apparel_Sit_Heat>
+  <CC_Apparel_Sit_Toxins>Toxins</CC_Apparel_Sit_Toxins>
+  <CC_Apparel_Sit_Vacuum>Vacuum</CC_Apparel_Sit_Vacuum>
+  <CC_Apparel_Sit_Psychic>Psycasting</CC_Apparel_Sit_Psychic>
+  <CC_Apparel_Sit_Psychicshelter>Psychic attacks</CC_Apparel_Sit_Psychicshelter>
+  <CC_Apparel_Sit_Work>Work</CC_Apparel_Sit_Work>
+  <CC_Apparel_Sit_Social>Talks and trade</CC_Apparel_Sit_Social>
+  <CC_Apparel_Sit_Mechanitor>A mechanitor</CC_Apparel_Sit_Mechanitor>
+  <CC_Apparel_Sit_Magic>A mage</CC_Apparel_Sit_Magic>
+  <CC_Apparel_Sit_Hunting>Hunting</CC_Apparel_Sit_Hunting>
+  <CC_Apparel_Sit_Carrying>Carrying</CC_Apparel_Sit_Carrying>
+  <CC_Apparel_Sit_Forashooter>For a shooter</CC_Apparel_Sit_Forashooter>
+  <CC_Apparel_Sit_Forameleefighter>For a melee fighter</CC_Apparel_Sit_Forameleefighter>
+  <CC_Apparel_Sit_Inthecold>In a cold climate</CC_Apparel_Sit_Inthecold>
+  <CC_Apparel_Sit_Intheheat>In a hot climate</CC_Apparel_Sit_Intheheat>
+  <CC_Apparel_Sit_Whileworking>While working</CC_Apparel_Sit_Whileworking>
+  <CC_Apparel_Sit_Forsocialortrade>For talks or trade</CC_Apparel_Sit_Forsocialortrade>
+  <CC_Apparel_SitExpl_Guns>Against raiders' guns, bows and grenades.</CC_Apparel_SitExpl_Guns>
+  <CC_Apparel_SitExpl_Melee>Against blades, clubs, fists, claws and bites.</CC_Apparel_SitExpl_Melee>
+  <CC_Apparel_SitExpl_Mechanoids>Against lancers, scythers, centipedes, pikemen, militors and termites.</CC_Apparel_SitExpl_Mechanoids>
+  <CC_Apparel_SitExpl_Fire>Against incendiaries and burning.</CC_Apparel_SitExpl_Fire>
+  <CC_Apparel_SitExpl_Cold>Its warmth on its own.</CC_Apparel_SitExpl_Cold>
+  <CC_Apparel_SitExpl_Heat>Its cooling on its own.</CC_Apparel_SitExpl_Heat>
+  <CC_Apparel_SitExpl_Toxins>In toxic fallout, rot stink or tox gas.</CC_Apparel_SitExpl_Toxins>
+  <CC_Apparel_SitExpl_Vacuum>In vacuum, in space.</CC_Apparel_SitExpl_Vacuum>
+  <CC_Apparel_SitExpl_Psychic>For a psycaster.</CC_Apparel_SitExpl_Psychic>
+  <CC_Apparel_SitExpl_Psychicshelter>Under a psychic drone or a psychic lance.</CC_Apparel_SitExpl_Psychicshelter>
+  <CC_Apparel_SitExpl_Work>At work.</CC_Apparel_SitExpl_Work>
+  <CC_Apparel_SitExpl_Social>In talks, trade and recruiting.</CC_Apparel_SitExpl_Social>
+  <CC_Apparel_SitExpl_Mechanitor>For a mechanitor.</CC_Apparel_SitExpl_Mechanitor>
+  <CC_Apparel_SitExpl_Magic>For a mage of A RimWorld of Magic.</CC_Apparel_SitExpl_Magic>
+  <CC_Apparel_SitExpl_Hunting>For a hunter.</CC_Apparel_SitExpl_Hunting>
+  <CC_Apparel_SitExpl_Carrying>Carrying and caravans.</CC_Apparel_SitExpl_Carrying>
+  <CC_Apparel_SitExpl_Forashooter>Its fight for a colonist with an assault rifle: how much longer they last, how well they still shoot, how fast they walk.</CC_Apparel_SitExpl_Forashooter>
+  <CC_Apparel_SitExpl_Forameleefighter>Its fight for a colonist with a steel longsword: how much longer they last, how hard they still hit, how fast they close in.</CC_Apparel_SitExpl_Forameleefighter>
+  <CC_Apparel_SitExpl_Inthecold>The whole piece where it is cold, its warmth counting in full and its cooling not at all.</CC_Apparel_SitExpl_Inthecold>
+  <CC_Apparel_SitExpl_Intheheat>The whole piece where it is hot, its cooling counting in full and its warmth not at all.</CC_Apparel_SitExpl_Intheheat>
+  <CC_Apparel_SitExpl_Whileworking>What it does for its wearer's work.</CC_Apparel_SitExpl_Whileworking>
+  <CC_Apparel_SitExpl_Forsocialortrade>What it does for talks and trade.</CC_Apparel_SitExpl_Forsocialortrade>
+
+  <!-- The badge. -->
+  <CC_Apparel_BadgeTip>Rated {RATING}: {BAND}, {ROLE}, {FOR}.</CC_Apparel_BadgeTip>
+  <CC_Apparel_ForShort>For {PAWN}: {RATING}</CC_Apparel_ForShort>
+  <CC_Apparel_ClickForCard>Click for Rimfolk's apparel card, to compare it with what they wear.</CC_Apparel_ClickForCard>
+  <CC_Apparel_SameAsUsual>The same as usual.</CC_Apparel_SameAsUsual>
+
+  <!-- Rimfolk's apparel card. -->
+  <CC_Apparel_CardTitle>Apparel card</CC_Apparel_CardTitle>
+  <CC_Apparel_NotRated>This piece isn't rated: it can't be worn by a colonist, or apparel ratings are off.</CC_Apparel_NotRated>
+  <CC_Apparel_Card_RatedFor>Rated {FOR} · as it is: {MADE}</CC_Apparel_Card_RatedFor>
+  <CC_Apparel_Card_RatedForKind>Its kind as made, rated {FOR} · {MADE}</CC_Apparel_Card_RatedForKind>
+  <CC_Apparel_GameCard>All the game's stats</CC_Apparel_GameCard>
+  <CC_Apparel_GameCard_Tip>Open the game's own info card for this piece, with every stat it lists. Its button "Rimfolk's apparel card" brings you back here.</CC_Apparel_GameCard_Tip>
+
+  <!-- Protection by body part. -->
+  <CC_Apparel_Sec_Protection>Protection by body part</CC_Apparel_Sec_Protection>
+  <CC_Apparel_Armour_Sharp>Sharp</CC_Apparel_Armour_Sharp>
+  <CC_Apparel_Armour_Sharp_Tip>Its armour against bullets, arrows, blades and claws, with its stuff and quality, held at the game's 200%. Each hit rolls it less the hit's piercing: up to half of it turns the hit away, the rest of it halves the damage.</CC_Apparel_Armour_Sharp_Tip>
+  <CC_Apparel_Armour_Blunt>Blunt</CC_Apparel_Armour_Blunt>
+  <CC_Apparel_Armour_Blunt_Tip>Its armour against clubs, fists, kicks and blasts, and against a sharp hit it halved, which goes on as blunt.</CC_Apparel_Armour_Blunt_Tip>
+  <CC_Apparel_Armour_Heat>Heat</CC_Apparel_Armour_Heat>
+  <CC_Apparel_Armour_Heat_Tip>Its armour against fire and burns.</CC_Apparel_Armour_Heat_Tip>
+  <CC_Apparel_Region_Head>Head</CC_Apparel_Region_Head>
+  <CC_Apparel_Region_Neck>Neck</CC_Apparel_Region_Neck>
+  <CC_Apparel_Region_Shoulders>Shoulders</CC_Apparel_Region_Shoulders>
+  <CC_Apparel_Region_Torso>Torso</CC_Apparel_Region_Torso>
+  <CC_Apparel_Region_Arms>Arms</CC_Apparel_Region_Arms>
+  <CC_Apparel_Region_Hands>Hands</CC_Apparel_Region_Hands>
+  <CC_Apparel_Region_Legs>Legs</CC_Apparel_Region_Legs>
+  <CC_Apparel_Region_Feet>Feet</CC_Apparel_Region_Feet>
+  <CC_Apparel_RegionCovered>covers {COVERED} · {SHOTS} of shots land here</CC_Apparel_RegionCovered>
+  <CC_Apparel_RegionBare>bare · {SHOTS} of shots land here</CC_Apparel_RegionBare>
+  <CC_Apparel_RegionTip>{REGION}: {SHOTS} of the shots that hit a colonist land here (a hit on the head counted twice, as the rating counts it), and this piece covers {COVERED} of them.</CC_Apparel_RegionTip>
+  <CC_Apparel_Covers>Over {COVERAGE} of where shots land, by the game's own body: a shot can hit any part, a blow or a blast only an outer one.</CC_Apparel_Covers>
+  <CC_Apparel_OffHandCovers>A shield in the off hand: its armour meets hits on the parts it covers first, {COVERAGE} of where shots land, while its wearer holds a light weapon Dual Wield allows in the off hand.</CC_Apparel_OffHandCovers>
+
+  <!-- Warmth against the weather. -->
+  <CC_Apparel_Sec_Warmth>Warmth against the weather</CC_Apparel_Sec_Warmth>
+  <CC_Apparel_Keeps>Keeps its wearer comfortable {COLD} °C colder and {HEAT} °C warmer.</CC_Apparel_Keeps>
+  <CC_Apparel_NoClimate>No map to read the weather from.</CC_Apparel_NoClimate>
+  <CC_Apparel_Weather>Outside now {NOW} °C; this season from about {LOW} °C at night to {HIGH} °C by day.</CC_Apparel_Weather>
+  <CC_Apparel_ComfortFor>With it on and what else {PAWN} keeps wearing: comfortable from {MIN} °C to {MAX} °C.</CC_Apparel_ComfortFor>
+  <CC_Apparel_ComfortAlone>Worn alone by a colonist with nothing else on: comfortable from {MIN} °C to {MAX} °C.</CC_Apparel_ComfortAlone>
+  <CC_Apparel_VerdictOk>Comfortable through the season.</CC_Apparel_VerdictOk>
+  <CC_Apparel_VerdictCold>Too cold below {MIN} °C, and the season's nights reach {LOW} °C.</CC_Apparel_VerdictCold>
+  <CC_Apparel_VerdictHot>Too warm above {MAX} °C, and the season's days reach {HIGH} °C.</CC_Apparel_VerdictHot>
+  <CC_Apparel_StripTip>The season's range, from {LOW} °C at night to {HIGH} °C by day, shaded; the comfortable range with this piece on, from {MIN} °C to {MAX} °C, framed; now {NOW} °C, marked.</CC_Apparel_StripTip>
+  <CC_Apparel_Today>now {NOW} °C</CC_Apparel_Today>
+
+  <!-- The piece as it is. -->
+  <CC_Apparel_Sec_AsItIs>The piece as it is</CC_Apparel_Sec_AsItIs>
+  <CC_Apparel_Num_Quality>Quality</CC_Apparel_Num_Quality>
+  <CC_Apparel_NoQuality>no quality</CC_Apparel_NoQuality>
+  <CC_Apparel_KindQuality>{QUALITY}, its kind as made</CC_Apparel_KindQuality>
+  <CC_Apparel_Num_Material>Material</CC_Apparel_Num_Material>
+  <CC_Apparel_NoStuff>made as it is, of no material chosen</CC_Apparel_NoStuff>
+  <CC_Apparel_Num_HitPoints>Hit points</CC_Apparel_Num_HitPoints>
+  <CC_Apparel_WearMarks>Marked: {FRAYED} below {AT} (mood {MOOD}), {TATTERED} below {UNDER} (mood {WORSE}).</CC_Apparel_WearMarks>
+  <CC_Apparel_WearDaysLine>It wears {WEAR} hit points a day while worn: about {DAYS} days to {AT}.</CC_Apparel_WearDaysLine>
+  <CC_Apparel_WearPerDay>It wears {WEAR} hit points a day while worn.</CC_Apparel_WearPerDay>
+  <CC_Apparel_NoWear>It doesn't wear out while worn.</CC_Apparel_NoWear>
+  <CC_Apparel_WearArmour>Wear doesn't weaken its armour, by the game's own rules; every hit that reaches it wears it down by a quarter of the hit's damage.</CC_Apparel_WearArmour>
+  <CC_Apparel_FromTheDead>Taken from the dead: its wearer is unhappy wearing it (mood {MOOD}).</CC_Apparel_FromTheDead>
+  <CC_Apparel_FromTheDeadNoCare>Taken from the dead, which its wearer doesn't mind.</CC_Apparel_FromTheDeadNoCare>
+  <CC_Apparel_Biocoded>Biocoded to {WHO}: only {WHO} can wear it.</CC_Apparel_Biocoded>
+  <CC_Apparel_Mood_Frayed>worn below half its hit points</CC_Apparel_Mood_Frayed>
+  <CC_Apparel_Mood_Tattered>worn below a fifth of its hit points</CC_Apparel_Mood_Tattered>
+  <CC_Apparel_Mood_DeadMans>taken from the dead</CC_Apparel_Mood_DeadMans>
+
+  <!-- Other materials and key numbers. -->
+  <CC_Apparel_Sec_Stuffs>In other materials</CC_Apparel_Sec_Stuffs>
+  <CC_Apparel_ThisOne>this one</CC_Apparel_ThisOne>
+  <CC_Apparel_StuffsNote>This piece as it is, made of the common materials of its kind instead, judged as {ROLE}.</CC_Apparel_StuffsNote>
+  <CC_Apparel_Num_Armour>Armour (sharp / blunt / heat)</CC_Apparel_Num_Armour>
+  <CC_Apparel_Num_Insulation>Insulation</CC_Apparel_Num_Insulation>
+  <CC_Apparel_Num_InsulationValue>{COLD} °C against cold, {HEAT} °C against heat</CC_Apparel_Num_InsulationValue>
+  <CC_Apparel_Num_Covers>Covers</CC_Apparel_Num_Covers>
+  <CC_Apparel_Num_Layers>Layers</CC_Apparel_Num_Layers>
+  <CC_Apparel_Num_Move>Move speed</CC_Apparel_Num_Move>
+
+  <!-- For a colonist. -->
+  <CC_Apparel_ChooseColonist_Tip>Rate this piece for another colonist of this map: how they fight, the body they have, the weather where they are, and what they wear now.</CC_Apparel_ChooseColonist_Tip>
+  <CC_Apparel_NoneChosen>Choose a colonist to see the piece rated for them and set against what they wear now.</CC_Apparel_NoneChosen>
+  <CC_Apparel_ForLine>{PAWN}: {RATING} (usually {REFERENCE})</CC_Apparel_ForLine>
+  <CC_Apparel_ForTip>Rated for {PAWN}: as a shooter, a melee fighter, both, or someone who doesn't fight; on the body {PAWN_pronoun} has; with warmth and cooling counted by what the season asks of this piece beyond what {PAWN_pronoun} keeps wearing; and with the moods it would add. Each step says how much it moves the rating.</CC_Apparel_ForTip>
+  <CC_Apparel_HowTheyFight>Rated as {KIND}: {WHY}.</CC_Apparel_HowTheyFight>
+  <CC_Apparel_Kind_Shooter>a shooter</CC_Apparel_Kind_Shooter>
+  <CC_Apparel_Kind_Melee>a melee fighter</CC_Apparel_Kind_Melee>
+  <CC_Apparel_Kind_Both>someone who fights both ways</CC_Apparel_Kind_Both>
+  <CC_Apparel_Kind_None>someone who doesn't fight</CC_Apparel_Kind_None>
+  <CC_Apparel_KindWhy_NoViolence>{PAWN} is incapable of violence</CC_Apparel_KindWhy_NoViolence>
+  <CC_Apparel_KindWhy_NoShooting>{PAWN} can't shoot</CC_Apparel_KindWhy_NoShooting>
+  <CC_Apparel_KindWhy_Holds>{PAWN} holds {WEAPON}</CC_Apparel_KindWhy_Holds>
+  <CC_Apparel_KindWhy_Brawler>{PAWN} is a brawler</CC_Apparel_KindWhy_Brawler>
+  <CC_Apparel_KindWhy_Skills>Shooting {SHOOTING}, Melee {MELEE}</CC_Apparel_KindWhy_Skills>
+  <CC_Apparel_TheirBody>Rated on the body {PAWN} has, without: {MISSING}.</CC_Apparel_TheirBody>
+  <CC_Apparel_WrongGender>Made for the other gender: {PAWN} would be unhappy wearing it (mood {MOOD}).</CC_Apparel_WrongGender>
+  <CC_Apparel_Step_Shooter>As a shooter</CC_Apparel_Step_Shooter>
+  <CC_Apparel_Step_Melee>As a melee fighter</CC_Apparel_Step_Melee>
+  <CC_Apparel_Step_Both>Fighting both ways</CC_Apparel_Step_Both>
+  <CC_Apparel_Step_None>Not fighting</CC_Apparel_Step_None>
+  <CC_Apparel_Step_Body>Their body</CC_Apparel_Step_Body>
+  <CC_Apparel_Step_Climate>Their weather</CC_Apparel_Step_Climate>
+  <CC_Apparel_Step_WornAlready>Already in worn clothes</CC_Apparel_Step_WornAlready>
+  <CC_Apparel_Step_Gender>The other gender's</CC_Apparel_Step_Gender>
+  <CC_Apparel_Sec_Wears>What {PAWN} wears there now</CC_Apparel_Sec_Wears>
+  <CC_Apparel_WearsThis>{PAWN} wears this now.</CC_Apparel_WearsThis>
+  <CC_Apparel_NothingInPlace>Nothing in its place: it goes on over what {PAWN} wears.</CC_Apparel_NothingInPlace>
+  <CC_Apparel_WouldReplace>It would take the place of (the same layer over the same parts), each rated for {PAWN}:</CC_Apparel_WouldReplace>
+  <CC_Apparel_ThisOneDelta>this one {DELTA}</CC_Apparel_ThisOneDelta>
+  <CC_Apparel_CantWearAtAll>{PAWN} can't wear clothes.</CC_Apparel_CantWearAtAll>
+  <CC_Apparel_WrongAge>{PAWN} can't wear it: it is made for another age.</CC_Apparel_WrongAge>
+  <CC_Apparel_NoParts>{PAWN} has nothing left to wear it on.</CC_Apparel_NoParts>
+
+</LanguageData>

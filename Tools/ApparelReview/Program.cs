@@ -64,31 +64,16 @@ var scy = Inputs.Arr(threatDefs?["Mech_Scyther"], "tools").FirstOrDefault();
 if (scy == null || Inputs.F(scy, "power") != 20f) problems.Add("the scyther's blade differs from the defs");
 
 // ---------------------------------------------------------------- rate every piece
-string Plain(List<string> cats)
-{
-    foreach (var (cat, s) in new[] { ("Fabric", "Cloth"), ("Metallic", "Steel"), ("Leathery", "Leather_Plain"), ("Woody", "WoodLog"), ("Stony", "BlocksGranite") })
-        if (cats.Contains(cat) && data["stuffs"]?[s] != null) return s;
-    return null;
-}
 
+// Each piece read and rated by the mod's own reading (ApparelRead.Full, the game's too): in its usual stuff, its role judged
+// in plain stuff (cloth, steel, plain leather, wood, granite), its rating in its common stuffs, its tags, line and table.
 var all = new List<Piece>();
 var leftOut = new List<(JsonNode n, string why)>();
 foreach (var n in (JsonArray)data["apparel"])
 {
     if (Inputs.S(n, "leftOut") != "") { leftOut.Add((n, Inputs.S(n, "leftOut"))); continue; }
-    var a = Inputs.Facts(n);
-    string plainDef = a.StuffDef != "" ? Plain(a.StuffCategories) ?? a.StuffDef : null;
-    var r = ApparelRateMath.Rate(a, plainDef == null ? null : Inputs.WithStuff(a, plainDef));
-    var piece = new Piece { Node = n, Facts = a, Rating = r };
-    foreach (var s in Inputs.Strs(n, "stuffs"))
-    {
-        var b = Inputs.WithStuff(a, s);
-        piece.ByStuff[b.StuffLabel] = ApparelRateMath.Rate(b, r.Role).Overall;
-    }
-    piece.Tags = ApparelTagMath.For(r, a, byStuff: piece.ByStuff);
-    piece.Plain = ApparelTagMath.Line(r, piece.Tags);
-    piece.Table = a.Ages == "Child" ? "children" : r.Role;
-    all.Add(piece);
+    var rep = ApparelRead.Full(Inputs.DefFacts(n));
+    all.Add(new Piece { Node = n, Facts = rep.Facts, Rating = rep.Rating, Tags = rep.Tags, Plain = rep.Plain, ByStuff = rep.ByStuff, Table = rep.Table });
 }
 
 // The anchors as the review reads their defs must rate as the tests' anchors.

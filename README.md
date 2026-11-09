@@ -2245,6 +2245,41 @@ about an assault rifle or a steel longsword. The review of every weapon in the p
   the move, 10% less accurate, and what it rates then. **Melee Animation:** whether it animates the weapon, its execution
   moves at the colonist's Melee, and friendly duels. All read softly: without them nothing changes.
 
+### Judging armour and clothes
+Every piece of armour and clothing a colonist can wear, from the game, its DLCs and your mods, gets **a rating from 1.0
+to 10.0** at the top of its info card, worked out from what it really does for whoever wears it by the game's own rules
+(settings: **How you're told, Apparel**, *Apparel ratings*, on): its armour against the hits a colony meets (raiders'
+guns and blades, animals, mechanoids, fire) through the game's armour roll on the parts it covers, its warmth and
+cooling, what it costs and what it adds (shields, jumps, smoke, psychic and work bonuses). Each kind is judged against its
+own (body armour, helmets, belts and packs, weather gear, everyday clothes, hats, ceremonial pieces); 5.5 is the middle.
+Every piece is rated for a shooter and for a melee fighter, and one that clearly suits one of them (a shield belt stops
+its wearer's own shots) is rated for that one, both shown where they differ. The review of every piece in the player's
+mods, with the same numbers, is `docs/apparel/README.md`.
+- **On the info card**, in its own heading sorted first: the rating and whom it is rated for, a shooter's and a melee
+  fighter's where they differ, the sub-ratings (against guns, blades and claws, mechanoids, fire; warmth and cooling; and
+  what else it does), the piece in plain words, each tag in its colour with why, its effects counted or only named, the
+  piece's wear, and for a piece a colonist wears or carries, their own rating with its steps.
+- **The piece in hand:** its quality and stuff by the game's own stats (a legendary parka keeps warmer and turns more, an
+  awful one less); its wear (the game doesn't weaken armour as it wears, but below half its hit points, and more so below
+  a fifth, its wearer is unhappy, and that mood counts against it); taken from the dead (the same); A RimWorld of Magic's
+  enchantment as rolled on it; biocoding named; other mods' patches already in the def.
+- **Rimfolk's apparel card**: the piece's own picture, large, framed in its quality's colour, the badge, the tags as chips,
+  the line, the sub-ratings; **protection by body part** (a figure of the body filled where it covers, each region's share
+  of the shots that hit a colonist and how much of it the piece covers, its sharp, blunt and heat armour); **warmth
+  against the weather** (outside now and the season's range on the colonist's map against the range the piece keeps them
+  comfortable in with what else they wear, drawn as a strip, and whether that holds through the season); **the piece as
+  it is** (quality, material, hit points with the game's two marks for the mood of worn clothes, days of wear to the first,
+  from the dead, biocoded); its rating in other materials; the situations, effects and key numbers; and **for a colonist**
+  (the wearer, or one you choose): their rating and each step that moves it (as a shooter or a melee fighter, their body,
+  their weather, the moods it would add), and what it would take the place of, each rated for them. **It opens first**
+  (*Open Rimfolk's apparel card first*, on): the info for a piece, wherever you open it, is Rimfolk's card; its button
+  **All the game's stats** opens the game's own card, which keeps its button back, and links followed inside the game's
+  card stay in it. A piece's kind is rated as made, normal quality in its usual stuff (devilstrand for fabric, steel for
+  metal), and says so.
+- **The gear tab** (*Ratings on the gear tab*, on): a small badge with the rating beside each piece, the game's tab and
+  Nice Inventory Tab's (its rows, its apparel slots and what a colonist carries), its tooltip the tags and the colonist's
+  own rating; a click on it opens Rimfolk's card.
+
 ### A fresh start in the same world
 **Found a new colony** on a colony's card (the region map's Ours lens) picks a place on the game's world map, with
 what Rimfolk knows of the tile under the cursor: whose land it is, the towns near it and how their peoples stand with
@@ -2507,7 +2542,8 @@ while that feature is off; nothing vanilla is changed or removed. A few things i
 - **Dual Wield, Nice Inventory Tab, RunAndGun, Melee Animation:** read by name for the weapon card (Judging a weapon):
   the off hand with Dual Wield's penalties (and an empty off hand filled where it allows, taken by its own job), the rating's badge on
   Nice Inventory Tab's rows and cells (and the suggestions' rows in its equipment box), shooting on the move, a weapon's
-  execution moves and duels. Without them nothing changes.
+  execution moves and duels. Nice Inventory Tab's apparel rows, apparel slots and carried pieces get the apparel rating's
+  badge too (Judging armour and clothes). Without them nothing changes.
 - **Harvest and Haul, Pick Up And Haul:** Harvest and Haul is built into Rimfolk now (Carrying and hauling); while the
   standalone mod is loaded, Rimfolk's copy stands down, and it can be removed now (remove it to have benches, barrels
   and other work fill pockets too). What Rimfolk's carrying and hauling takes to storage goes through Pick Up And Haul's

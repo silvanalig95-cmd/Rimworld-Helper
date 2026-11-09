@@ -5,6 +5,16 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## Rimfolk's apparel card
+
+*9 November 2026, version 0.193.0*
+
+- Opening the info of a piece of armour or clothing now opens Rimfolk's apparel card first, with the picture, the rating, the shooter's and melee fighter's ratings where they differ, its tags and a plain line; All the game's stats opens the game's own card.
+- The card shows what it protects on a body figure with sharp, blunt and heat armour, and how warm or cool it keeps against today's weather and the season.
+- The piece in hand counts: its quality, its material, its wear with the marks where it becomes tattered, clothes taken from the dead, and magic enchantments.
+- For a chosen colonist it rates the piece by how they fight, their body and their weather, says why it differs, and shows what it would take the place of.
+- A rating badge sits beside apparel on the gear tab and in Nice Inventory Tab, a click opening the card; three settings under Apparel turn each part off.
+
 ## Role clothes the colony can reach
 
 *9 November 2026, version 0.192.0*

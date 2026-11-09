@@ -31,6 +31,19 @@ When you load a save after an update, a letter lists the newest round once. The 
     <rounds>
 
       <li>
+        <version>0.193.0</version>
+        <date>9 November 2026</date>
+        <title>Rimfolk's apparel card</title>
+        <points>
+          <li>Opening the info of a piece of armour or clothing now opens Rimfolk's apparel card first, with the picture, the rating, the shooter's and melee fighter's ratings where they differ, its tags and a plain line; All the game's stats opens the game's own card.</li>
+          <li>The card shows what it protects on a body figure with sharp, blunt and heat armour, and how warm or cool it keeps against today's weather and the season.</li>
+          <li>The piece in hand counts: its quality, its material, its wear with the marks where it becomes tattered, clothes taken from the dead, and magic enchantments.</li>
+          <li>For a chosen colonist it rates the piece by how they fight, their body and their weather, says why it differs, and shows what it would take the place of.</li>
+          <li>A rating badge sits beside apparel on the gear tab and in Nice Inventory Tab, a click opening the card; three settings under Apparel turn each part off.</li>
+        </points>
+      </li>
+
+      <li>
         <version>0.192.0</version>
         <date>9 November 2026</date>
         <title>Role clothes the colony can reach</title>
