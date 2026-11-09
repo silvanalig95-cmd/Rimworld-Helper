@@ -2350,8 +2350,8 @@ mods, with the same numbers, is `docs/apparel/README.md`.
   what an outfit allows, so Rimfolk adds no "put it on themselves" of its own.
 
 ### Rimfolk's item card
-Food, drink, drugs, medicine, materials and art, from the game, its DLCs and your mods, have **Rimfolk's item card** (the
-rest, books, body parts, techprints and the like, comes later). It opens first wherever you open a thing's info (settings:
+Every item, from the game, its DLCs and your mods, has **Rimfolk's item card** (weapons and apparel keep their own cards,
+corpses the game's). It opens first wherever you open a thing's info (settings:
 **How you're told, Items**, *Open Rimfolk's item card first*, on); its button **All the game's stats** opens the game's own
 card, which keeps a button back, and links followed inside the game's card stay in it.
 - **At the top**: the thing's own picture, large, as it really is; its label with the stack and quality; what kind it is
@@ -2389,6 +2389,31 @@ card, which keeps a button back, and links followed inside the game's card stay 
   most when it's in storage (a click goes to the room); a noble's throne room or bedroom it stands in, faiths that care for
   art, psycasters who meditate on it. Tags such as lifts the room, ugly, masterwork, tells a story, a gift for a people, for
   a noble, a room.
+- **Books** (novels, textbooks, schematics, tomes, maps, your mods' books): "Textbook, good: teaches shooting and melee up
+  to level 10, about 300 experience an hour; Bo would gain most." What reading gives at its quality (the skills, the
+  experience an hour and the level it teaches up to; the research and whether it is done; recreation; a tome's mental break
+  risk; a place revealed), the game's own words for it, how long a read lasts, and who at home gains most, with their skills
+  and passions, or why not (past its level, can't learn it, can't read).
+- **Body parts** (natural organs, prosthetics, bionics, archotech parts, your mods' implants): where it goes and its
+  efficiency against a natural part, what it changes and the abilities it gives, the operation's doctor and research and
+  your best doctor's chance; who at home could take it (missing the part first, or how much better than what they have), and
+  what each faith at home holds on an installed prosthetic, with each believer's mood.
+- **Techprints**: the project, how many are applied of how many, whether it can be studied yet and what it opens.
+- **Neurotrainers and psytrainers**: the skill and the experience, or the psycast and its level; who gains most (to which
+  level, by their passion), or who has the psylink for it.
+- **Genepacks, xenogerms and embryos**: each gene and what it does, complexity, metabolism and the hunger it brings, archite;
+  your gene assembler and whether a genepack fits it; who a xenogerm would suit, and whose faith forbids it.
+- **Things to use** (mech serums, pulsers, the psylink neuroformer, your mods' items): what a use does, to whom, whether it is
+  used up, its risks (brain damage, a people's goodwill, manhunters, a boss group), and who at home may use it.
+- **Shells**: the burst (damage, radius, armour piercing, fire or firefoam), whether the shell itself explodes, and your guns
+  that fire it, a click going to one.
+- **Furniture in a crate**: the piece inside (comfort, rest, beauty, work speed, recreation, power, what it links to), what
+  its room wants, how many stand and wait in crates, who sleeps without a bed of their own, a kind of recreation you lack,
+  and the room it would lift most (a click goes to the room).
+- **Anything else**: its own words and stats, an unfinished thing's work left and bench, your stock, where it comes from and
+  trade. Step 3's tags such as better than natural, teaches, gives research, opens new things, heals, blast, comfortable, makes
+  power, one use, already known, no use here, mental break risk, risky to use, against a faith, useful here, surgery, a
+  psylink, gene assembler, a gun to fire it.
 - It is worked out only while it is open (the live parts once a second, the colony's every ten seconds), so it costs the
   game nothing in play.
 

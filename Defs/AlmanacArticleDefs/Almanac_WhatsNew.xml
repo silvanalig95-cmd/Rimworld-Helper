@@ -31,6 +31,20 @@ When you load a save after an update, a letter lists the newest round once. The 
     <rounds>
 
       <li>
+        <version>0.201.0</version>
+        <date>9 November 2026</date>
+        <title>An item card for everything else</title>
+        <points>
+          <li>Every item now opens Rimfolk's item card, your mods' items too; weapons and apparel keep their own cards, and corpses, plants and standing buildings keep the game's.</li>
+          <li>Books show what reading teaches and to what level, research and recreation, and which colonists would gain most; techprints show their project and how many are still needed.</li>
+          <li>Body parts show what they replace, their efficiency against a natural part, who at home could use one, the surgery and your best doctor's chance, and what each faith thinks.</li>
+          <li>Neurotrainers and psytrainers name who gains most; genepacks and xenogerms list their genes in words, complexity and metabolism, and whom a xenogerm suits.</li>
+          <li>Usable items say what a use does and its risks, shells name the guns at home that fire them, and crated furniture shows comfort, beauty and the room it would lift most.</li>
+          <li>Anything else gets a plain card of its own with its stats, the colony's stock, where it is made and who trades in it.</li>
+        </points>
+      </li>
+
+      <li>
         <version>0.200.1</version>
         <date>9 November 2026</date>
         <title>Pictures for the weapons and apparel headers</title>

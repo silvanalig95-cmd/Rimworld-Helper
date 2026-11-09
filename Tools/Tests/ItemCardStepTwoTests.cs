@@ -548,8 +548,8 @@ public static class ItemCardStepTwoTests
           && art.Contains("stat.GetScoreStageIndex(with.Impressiveness)"), "a placed piece's room: the game's own numbers and stages, the game's divisor, Rimfolk's sums only for without");
         foreach (var id in ItemCardMath.StuffRowIds) C(keys.Contains("<CC_ItemCard_Stuff_" + id + ">"), $"the comparison row {id} has its words");
         foreach (var role in ItemCardMath.RolesThatMatter.Concat(new[] { "Other" })) C(keys.Contains("<CC_ItemCard_RoomDoes_" + role + ">"), $"what a {role} does has its words");
-        C(keys.Contains("<CC_SetNote_ItemCardFirst>Food, drink, drugs, medicine, materials and art open as Rimfolk's item card") && keys.Contains("a material (metal, wood, stone blocks"),
-            "the setting names the new kinds");
+        C(keys.Contains("<CC_SetNote_ItemCardFirst>Every item opens as Rimfolk's item card") && keys.Contains("a material (metal, wood, stone blocks"),
+            "the setting names materials and art among every kind");
         C(!keys.Contains("—") && !Regex.IsMatch(keys, @"<CC_[A-Za-z_]+>[^<]*!"), "no em dashes or exclamation marks in the keys");
         return n;
     }

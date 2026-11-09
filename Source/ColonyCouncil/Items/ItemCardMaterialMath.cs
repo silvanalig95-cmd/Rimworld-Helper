@@ -7,7 +7,7 @@ namespace ColonyCouncil
 {
     /// <summary>
     /// What the item card reads of a def to know its kind (Items/ItemCardLive.cs from the game, by hand in the tests). Step 1
-    /// reads food, drink, drugs and medicine; step 2 materials and art; step 3 adds its own flags and kinds here, after these.
+    /// reads food, drink, drugs and medicine; step 2 materials and art; step 3 the rest, after these.
     /// </summary>
     public sealed class ItemSort
     {
@@ -18,8 +18,23 @@ namespace ColonyCouncil
         public bool Stuff;
         /// <summary>Filed by the game as a raw or manufactured resource, or a chunk (stone, slag).</summary>
         public bool Resource;
-        /// <summary>Something to use, read or install rather than build with (a book, a techprint, a trainer, a genepack, a body part, a shell): the rest, step 3.</summary>
+        /// <summary>Something to use, read or install rather than build with (a book, a techprint, a trainer, a genepack, a body part, a shell, an unfinished thing): never a material.</summary>
         public bool ToUse;
+
+        // ---------------- Step 3 ----------------
+
+        /// <summary>A book (the game's book class or a reading comp), a techprint, a neurotrainer or psytrainer, a genepack, xenogerm or embryo.</summary>
+        public bool Book, Techprint, Trainer, Genes;
+        /// <summary>Something used from the hand (the game's use comp: a mech serum, a pulser, a neuroformer, a mod's item).</summary>
+        public bool Usable;
+        /// <summary>A body part or implant installed by surgery (the game's body part categories, or a tech hediff).</summary>
+        public bool BodyPart;
+        /// <summary>A shell a building's gun fires.</summary>
+        public bool Shell;
+        /// <summary>A building in a crate (read as the piece inside).</summary>
+        public bool Minified;
+        /// <summary>An item at all: anything else opens the generic card.</summary>
+        public bool Item;
     }
 
     /// <summary>
@@ -152,8 +167,10 @@ namespace ColonyCouncil
         // ---------------- The kind ----------------
 
         /// <summary>
-        /// The card's kind: step 1's first (medicine, drugs, drinks, food), then art, then materials (stuff, or a raw or
-        /// manufactured resource or a chunk) that are not things to use (step 3's). None: the game's card opens.
+        /// The card's kind: step 1's first (medicine, drugs, drinks, food), then art, then furniture in a crate, then
+        /// materials (stuff, or a raw or manufactured resource or a chunk) that are not things to use, then step 3's (a book,
+        /// a techprint, a trainer, genes, a usable item, a body part, a shell), and any other item last. None: the game's card
+        /// opens.
         /// </summary>
         public static ItemKind KindOf(ItemSort s)
         {
@@ -161,8 +178,9 @@ namespace ColonyCouncil
             var first = KindOf(s.Medicine, s.Drug, s.Fluid, s.Feeds);
             if (first != ItemKind.None) return first;
             if (s.Art) return ItemKind.Art;
+            if (s.Minified) return ItemKind.Furniture;
             if ((s.Stuff || s.Resource) && !s.ToUse) return ItemKind.Material;
-            return ItemKind.None;
+            return StepThreeKind(s);
         }
 
         // ---------------- Materials: thresholds ----------------
@@ -476,13 +494,13 @@ namespace ColonyCouncil
         private static IEnumerable<TagDef> StepTwoTags() => new[]
         {
             D("explosive", "Explodes in a fire", R, 96, "a stack explodes when fire reaches it (the game's explosive comp): kept away from fire and raids"),
-            D("lifts-room", "Lifts the room", S, 89, "a work of art that raises its room's impressiveness a stage, or would raise a room of the colony's a stage once placed"),
+            D("lifts-room", "Lifts the room", S, 89, "a work of art or piece of furniture that raises its room's impressiveness a stage, or would raise a room of the colony's a stage once placed"),
             D("strong-armour", "Strong armour", S, 88, "armour made of it stops sharp blows better than steel's (a sharp armour power of 100% or more)"),
             D("sturdy", "Sturdy", S, 86, "things made of it have half again steel's hit points or more"),
             D("ugly", "Ugly", W, 85, "a work of art whose beauty is below nothing: poor work spoils a room"),
             D("fireproof", "Fireproof", S, 84, "what is made of it hardly burns (a flammability of 5% or less)"),
             D("soft", "Soft", W, 84, "things made of it have 70% of steel's hit points or less"),
-            D("beautiful", "Beautiful", S, 82, "what is made of it is twice as beautiful as of steel or more; a work of art that lifts a room"),
+            D("beautiful", "Beautiful", S, 82, "what is made of it is twice as beautiful as of steel or more; a work of art that lifts a room; furniture of beauty 10 or more"),
             D("burns", "Burns", W, 82, "what is made of it burns as wood does or worse"),
             D("warm", "Warm", S, 80, "clothes of it keep out the cold: 20 degrees of insulation or more"),
             D("keeps-cool", "Keeps cool", S, 79, "clothes of it keep out the heat: 20 degrees of insulation or more"),
@@ -505,7 +523,7 @@ namespace ColonyCouncil
             D("raw-material", "Raw material", O, 60, "a recipe turns it into something the colony uses"),
             D("research", "Research", Nd, 59, "nothing made of it is open to the colony yet; research opens some"),
             D("bench", "A bench", Nd, 57, "the bench that makes it or works it isn't built"),
-            D("a-room", "A room", Nd, 55, "a work of art does nothing in storage: placed in a room, it lifts it"),
+            D("a-room", "A room", Nd, 55, "a work of art or furniture in a crate does nothing in storage: placed in a room, it does its work"),
         };
 
         /// <summary>A material's tags, each from its own numbers or Rimfolk's rules, with why.</summary>

@@ -132,7 +132,7 @@ for everything, although i fear that would take a lot of ressources?"
 5. **An item card for everything**, on the weapon card's pattern (and the apparel card's): the item's picture, what it is
    good for in Rimfolk (feasts, gifts, treatment, trade, its roles), its tags, the game's own numbers a button away.
    Built when opened and cached, nothing drawn or computed while it is closed, so it costs the game nothing in play; done
-   by kind of item, food, drink, drugs and medicine first, then materials, art and the rest (steps 1 and 2 built, below).
+   by kind of item, food, drink, drugs and medicine first, then materials, art and the rest (steps 1, 2 and 3 built, below).
 
 Not taken now: pawn tooltips as cards (the player doesn't use them), the settings window and the docked planners.
 
@@ -270,7 +270,7 @@ steps.
 
 The item card for materials and art (DESIGN.md, "Rimfolk's own look, stage 3, point 5, step 2: the item card for materials
 and art" has all of it). Released 0.200.0. The rest (books, body parts, techprints, trainers, genepacks, one-use artifacts,
-shells and the like) is step 3, and adds its kinds the same way (`ItemSort`, `ItemCardMath.KindOf`).
+shells and the like) is step 3, below, and adds its kinds the same way (`ItemSort`, `ItemCardMath.KindOf`).
 
 - **Which things**: materials are what the game files as raw or manufactured resources, stuff and chunks (metal, wood,
   stone blocks, cloth, leather, wool, the mods' own, stone chunks and slag, components, chemfuel, neutroamine, silver and
@@ -302,3 +302,36 @@ shells and the like) is step 3, and adds its kinds the same way (`ItemSort`, `It
 - **Not run here**: the card in the game for every material and piece of art; the rocks' count from the map's things list;
   the deep scanner's spots; the room numbers against the game's own with a piece taken out; a noble's room; the art comp's
   tale through the game's private field; the first material card's reading time with the player's mods.
+
+## Stage 3, point 5, step 3: built (9 November 2026)
+
+The item card for everything else (DESIGN.md, "Rimfolk's own look, stage 3, point 5, step 3: the item card for everything
+else" has all of it). Released 0.201.0. After it every item opens Rimfolk's card; weapons and apparel keep their own.
+
+- **Which things**: books (novels, textbooks, schematics, tomes, maps, the mods' books), body parts (natural organs,
+  prosthetics, bionics, archotech, the mods' implants), techprints, neurotrainers and psytrainers, genepacks, xenogerms and
+  embryos, things to use (mech serums, pulsers, the neuroformer, the mods' items), shells, furniture in a crate (read as the
+  piece inside), and any other item (a modest card of its own words and stats). Read from the defs' classes and comps, so the
+  player's mods' items come in on their own. Corpses keep the game's card (it is the dead one's own), and so does a building
+  standing on the map that isn't art.
+- **By kind**: what reading gives at its quality and who at home gains most (their skills and passions, who is past it or
+  can't learn it), how long a read lasts; what a part replaces, its efficiency against a natural one and what it adds, the
+  surgery's doctor and research and the colony's best doctor's chance, who could take it (missing it first), what each faith
+  holds on it; a techprint's project, applied of needed, whether it can be studied, what it opens; a trainer's skill or
+  psycast and who gains most by the game's own experience curve and passions, or who has the psylink; the genes and what each
+  does, complexity, metabolism and archite, the gene assembler, who a xenogerm would suit and whose faith forbids it; what a use
+  does, to whom, whether it is used up, its risks, who may use it; a shell's burst and the colony's guns that fire it; a
+  crate's piece (comfort, rest, beauty, work speed, recreation, power), its room, who sleeps without a bed, the room it would
+  lift most.
+- **Tags**: 34 more in the one vocabulary (better or worse than natural, heals, teaches, gives research, a psycast, opens new
+  things, blast, makes or needs power, comfortable, eats less or hungry, one use, already known, no use here, mental break
+  risk, risky to use, against or approved by a faith, natural part, archite, reveals a place, useful here, for the colony's
+  guns, surgery, earlier research, a psylink, gene assembler, a gun to fire it, work left), and the shared ones extended.
+- **Opens first** through the same hook and setting, its note now "every item".
+- **Speed**: a kind's numbers once (every recipe looked through once for a part's install recipes, every building once for a
+  shell's guns), the thing's own once a card, the colony's every ten seconds, the live parts once a second; drawn from the
+  model only.
+- **Not run here**: the card in the game for every kind; the book doers' private values and the game's level rule read by name;
+  the install recipes' parts and efficiencies on real colonists; the faiths' thoughts on a prosthetic; the surgery chance beside
+  the game's own; the xenogerm's fit on real colonists; the game's use check for each colonist; each mod's shells and guns; a
+  generator's power read as made; the first card of each kind's reading time with the player's mods.

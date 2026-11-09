@@ -5,6 +5,17 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## An item card for everything else
+
+*9 November 2026, version 0.201.0*
+
+- Every item now opens Rimfolk's item card, your mods' items too; weapons and apparel keep their own cards, and corpses, plants and standing buildings keep the game's.
+- Books show what reading teaches and to what level, research and recreation, and which colonists would gain most; techprints show their project and how many are still needed.
+- Body parts show what they replace, their efficiency against a natural part, who at home could use one, the surgery and your best doctor's chance, and what each faith thinks.
+- Neurotrainers and psytrainers name who gains most; genepacks and xenogerms list their genes in words, complexity and metabolism, and whom a xenogerm suits.
+- Usable items say what a use does and its risks, shells name the guns at home that fire them, and crated furniture shows comfort, beauty and the room it would lift most.
+- Anything else gets a plain card of its own with its stats, the colony's stock, where it is made and who trades in it.
+
 ## Pictures for the weapons and apparel headers
 
 *9 November 2026, version 0.200.1*
