@@ -72,7 +72,14 @@ namespace ColonyCouncil
             bool none = days >= 900f;
             string value = none ? "-" : "CC_Pnl_DaysValue".Translate(days < 10f ? days.ToString("0.#") : days.ToString("0")).Resolve();
             string tip = Tip("CC_Pnl_FoodTip".Translate(days.ToString("0.#"), warn.ToString("0"), bad.ToString("0")).Resolve(), HudKit.T("CC_Pnl_ClickAdvisor"));
-            Add(PartFood, Icons.CatFood, HudKit.T("CC_Pnl_Food"), value, none ? 10f : HudRank.Food(days, warn, bad), tip, () => MainTabWindow_Council.OpenTab("Priorities"));
+            var line = Add(PartFood, Icons.CatFood, HudKit.T("CC_Pnl_Food"), value, none ? 10f : HudRank.Food(days, warn, bad), tip, () => MainTabWindow_Council.OpenTab("Priorities"));
+            // Rimfolk's look: the days as a bar, the warning line at its middle and the bad one before it.
+            if (!none)
+            {
+                line.fill = HudLookMath.FoodFill(days, warn);
+                line.tickA = HudLookMath.FoodLine(warn, warn);
+                line.tickB = HudLookMath.FoodLine(bad, warn);
+            }
         }
 
         private void Medicine(Map map, MapFacts facts, int colonists)
@@ -87,8 +94,14 @@ namespace ColonyCouncil
                 }
             string tip = Tip("CC_Pnl_MedicineTip".Translate(meds, colonists * MedicinePerColonist).Resolve() + (tending ? "\n" + HudKit.T("CC_Pnl_MedicineTending") : ""),
                 HudKit.T("CC_Pnl_ClickAdvisor"));
-            Add(PartMedicine, Icons.CatHealth, HudKit.T("CC_Pnl_Medicine"), meds.ToString(), HudRank.Medicine(meds, colonists, tending, MedicinePerColonist), tip,
+            var line = Add(PartMedicine, Icons.CatHealth, HudKit.T("CC_Pnl_Medicine"), meds.ToString(), HudRank.Medicine(meds, colonists, tending, MedicinePerColonist), tip,
                 () => MainTabWindow_Council.OpenTab("Priorities"));
+            // Rimfolk's look: the count as a bar, the advisor's line (two for each colonist) at its middle.
+            if (colonists > 0)
+            {
+                line.fill = HudLookMath.StockFill(meds, colonists * MedicinePerColonist);
+                line.tickA = 0.5f;
+            }
         }
 
         private void Power(Map map)
@@ -278,8 +291,13 @@ namespace ColonyCouncil
                 if (tab != null) Find.MainTabsRoot.SetCurrentTab(tab);
             };
             if (proj != null)
-                Add(PartResearch, HudIcons.Research ?? Icons.Almanac, proj.LabelCap, proj.ProgressPercent.ToStringPercent(), HudRank.Research(true, available),
+            {
+                var line = Add(PartResearch, HudIcons.Research ?? Icons.Almanac, proj.LabelCap, proj.ProgressPercent.ToStringPercent(), HudRank.Research(true, available),
                     Tip("CC_Pnl_ResearchTip".Translate(proj.LabelCap, proj.ProgressPercent.ToStringPercent()).Resolve(), HudKit.T("CC_Pnl_ClickResearch")), open);
+                // Rimfolk's look: how far along, as a bar.
+                line.fill = proj.ProgressPercent;
+                line.fillColor = UiKit.Gold;
+            }
             else if (available)
                 Add(PartResearch, HudIcons.Research ?? Icons.Almanac, HudKit.T("CC_Pnl_NoResearch"), null, HudRank.Research(false, true),
                     Tip(HudKit.T("CC_Pnl_NoResearchTip"), HudKit.T("CC_Pnl_ClickResearch")), open);

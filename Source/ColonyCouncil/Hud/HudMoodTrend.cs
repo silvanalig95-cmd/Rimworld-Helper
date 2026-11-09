@@ -10,7 +10,7 @@ namespace ColonyCouncil
     /// days (from <see cref="HudComponent"/>'s hourly samples, saved with the game), with the line where minor breaks
     /// begin for most people (35%). Hover it for the time and the values at that point.
     /// </summary>
-    public class HudMoodTrend : HudPanel
+    public partial class HudMoodTrend : HudPanel
     {
         public const string PartAverage = "average", PartLowest = "lowest", PartLine = "line";
         public static readonly string[] Parts = { PartAverage, PartLowest, PartLine };
@@ -37,7 +37,11 @@ namespace ColonyCouncil
             nowHour = (Find.TickManager?.TicksGame ?? 0) / GenDate.TicksPerHour;
             if (comp == null) return;
             int days = St.days == 7 ? 7 : 3;
-            if (comp.Version == readVersion && days == readDays) return;
+            if (comp.Version == readVersion && days == readDays)
+            {
+                if (Refined) RefreshLook();
+                return;
+            }
             readVersion = comp.Version;
             readDays = days;
             int other = days == 7 ? 3 : 7;
@@ -63,6 +67,7 @@ namespace ColonyCouncil
             }
             summary = avg.Count == 0 ? null
                 : "CC_Pnl_TrendNow".Translate(avg[avg.Count - 1].ToStringPercent(), low[low.Count - 1].ToStringPercent()).Resolve();
+            if (Refined) RefreshLook();
         }
 
         protected override Vector2 Measure(float s) => new Vector2(Mathf.Round(224f * s), Mathf.Round((St.compact ? 62f : 100f) * s));
@@ -73,6 +78,11 @@ namespace ColonyCouncil
 
         protected override void DrawBody(Rect r, float s)
         {
+            if (Refined)
+            {
+                DrawLook(r, s);
+                return;
+            }
             var st = St;
             float pad = Mathf.Round(4f * s);
             float top = Mathf.Round(16f * s), bottom = st.compact ? 0f : Mathf.Round(13f * s);
@@ -205,6 +215,16 @@ namespace ColonyCouncil
         {
             var st = St;
             int other = st.days == 7 ? 3 : 7;
+            if (Refined)
+            {
+                float at = BarTextLook(bar, right, barLabel ?? "", barTip, out bool clicked);
+                if (clicked)
+                {
+                    st.days = other;
+                    HudLayout.Save();
+                }
+                return at;
+            }
             return BarText(bar, right, barLabel ?? "", barTip,
                 () => st.days = other);
         }

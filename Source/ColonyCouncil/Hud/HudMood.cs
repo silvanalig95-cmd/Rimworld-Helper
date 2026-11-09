@@ -44,6 +44,27 @@ namespace ColonyCouncil
         public float at = -10f, linesAt = -10f;
         public string tip;
         public int barOrder = int.MaxValue;
+
+        // Rimfolk's own look (Hud/Look/HudLookFacts.cs): what a refined row and the card show beyond the classic, made when
+        // gathered (HudLookFacts.Of, at most twice a second), never while drawing.
+        public float lookAt = -10f;
+        /// <summary>Their card's reference (a name drawn as a link), the mood in words, what drags them down as the board shows it.</summary>
+        public ThingRef thing;
+        public string nowText, dragLook;
+        /// <summary>Their name and initials, and the marks' and the Mood tab button's tooltips.</summary>
+        public string name, initials, breakTip, bandTip, wishTip, moodTabTip;
+        /// <summary>The row's tooltip, worked out only while it shows (made once for the colonist, not each frame).</summary>
+        public System.Func<string> tipLook;
+        /// <summary>The heart's line: strain and the good side, whether the heart shows and the good side with it, its tooltip.</summary>
+        public float strain, good;
+        public bool heartOn, goodOn;
+        public string heartTip;
+        /// <summary>Time off under way (a day off, a bad afternoon) and its words.</summary>
+        public TimeOffKind off;
+        public string offTip;
+        /// <summary>An empty slot in their weapon kit (the colony's kept choice, Weapons/WeaponPick.cs), and its words.</summary>
+        public bool kitGap;
+        public string kitTip, kitWords;
     }
 
     /// <summary>

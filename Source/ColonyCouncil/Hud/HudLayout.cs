@@ -177,6 +177,7 @@ namespace ColonyCouncil
             s.hudHideOnWorld = d.hudHideOnWorld;
             s.hudTheme = d.hudTheme;
             s.hudFont = d.hudFont;
+            s.hudClassic = d.hudClassic;
             s.hudMoodMargin = d.hudMoodMargin;
             s.hudFoodWarnDays = d.hudFoodWarnDays;
             s.hudFoodBadDays = d.hudFoodBadDays;

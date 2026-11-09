@@ -61,6 +61,7 @@ namespace ColonyCouncil
                     }
                 // The game's messages are drawn over the panels later: a box behind each that touches one keeps it readable.
                 HudMessages.Boxes(frames);
+                HudLook.Frame(frames.Count > 0);
             }
             catch (Exception e)
             {

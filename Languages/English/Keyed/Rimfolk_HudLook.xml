@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <!-- The on-screen panels in Rimfolk's own look (docs/design/rimfolk-look.md, stage 3, point 3: Source/ColonyCouncil/Hud/Look/).
+       The panels as they were stay behind the setting "Classic on-screen panels", the player's backup. -->
+
+  <!-- Settings -->
+  <CC_Settings_HudClassic>Classic on-screen panels</CC_Settings_HudClassic>
+  <CC_Settings_HudClassic_Tip>The panels as they were drawn before Rimfolk's own look reached them: square backgrounds, the numbers written out, the bar over a panel only while the mouse is on it. Off, each panel is a card in Rimfolk's own look: a title row with the panel's icon, bars where a value has a range (mood with its break lines, the heart's strain and good side, health, food and rest), a coloured stripe and an icon on what is urgent, and on a colonist's row the heart's band, a day off or a bad afternoon under way and an empty weapon slot. Their places, sizes, options and clicks are the same either way. With Rimfolk's own look off, the panels are always drawn this way.</CC_Settings_HudClassic_Tip>
+  <CC_SetNote_HudClassic>The panels as they were, kept as a backup: no cards, the numbers written out.</CC_SetNote_HudClassic>
+
+  <!-- A colonist's row -->
+  <CC_Pnl_Look_DayOff>Day off</CC_Pnl_Look_DayOff>
+  <CC_Pnl_Look_BadDay>Bad afternoon</CC_Pnl_Look_BadDay>
+  <CC_Pnl_Look_KitTip>{GAP}. Their gear tab says what the colony has for it.</CC_Pnl_Look_KitTip>
+
+  <!-- The mood trend's latest values -->
+  <CC_Pnl_Look_Avg>avg {0}</CC_Pnl_Look_Avg>
+  <CC_Pnl_Look_Low>low {0}</CC_Pnl_Look_Low>
+
+  <!-- The inventory: a weapon's rating -->
+  <CC_Pnl_Look_RatingTip>As a weapon, the best of these in storage rates {RATING} (Rimfolk's weapon rating; its card says why).</CC_Pnl_Look_RatingTip>
+
+</LanguageData>

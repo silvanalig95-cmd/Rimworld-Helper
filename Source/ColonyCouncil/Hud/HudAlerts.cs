@@ -26,7 +26,7 @@ namespace ColonyCouncil
     /// them to show again. Rimfolk's own "Colonist wishes" is hidden while the council panel shows the wishes, which it
     /// would only repeat (it can be shown again too). The game's own list, when it shows, is never changed.
     /// </summary>
-    public class HudAlerts : HudPanel
+    public partial class HudAlerts : HudPanel
     {
         public const string PartCritical = "critical", PartHigh = "high", PartMedium = "medium", PartCount = "count";
         public static readonly string[] Parts = { PartCritical, PartHigh, PartMedium, PartCount };
@@ -41,6 +41,9 @@ namespace ColonyCouncil
             public int priority, order, count;
             public float seen, score;
             public bool showCount;
+            /// <summary>Rimfolk's look: the count in words and the tooltip's maker, made when gathered.</summary>
+            public string countText;
+            public Func<string> tip;
         }
 
         private readonly List<Row> rows = new List<Row>();
@@ -200,6 +203,7 @@ namespace ColonyCouncil
             var keep = HudMath.Keep(all.Select(r => r.score).ToList(), st.maxRows, HudRank.LifeFloor, out hidden);
             foreach (int i in keep) rows.Add(all[i]);
             moreText = hidden > 0 ? "CC_Pnl_AndMore".Translate(hidden).Resolve() : null;
+            if (Refined) RefreshLook();
         }
 
         /// <summary>How many things the alert is about (its culprits), 0 when it doesn't say.</summary>
@@ -244,6 +248,7 @@ namespace ColonyCouncil
 
         protected override Vector2 Measure(float s)
         {
+            if (Refined) return MeasureLook(s);
             float pad = Mathf.Round(4f * s);
             float more = moreText != null ? Mathf.Round(16f * s) : 0f;
             if (rows.Count == 0) return new Vector2(Mathf.Round((readOk ? 150f : 220f) * s), pad * 2f + RowH(s));
@@ -256,6 +261,11 @@ namespace ColonyCouncil
 
         protected override void DrawBody(Rect r, float s)
         {
+            if (Refined)
+            {
+                DrawLook(r, s);
+                return;
+            }
             float pad = Mathf.Round(4f * s);
             float rh = RowH(s);
             if (rows.Count == 0)

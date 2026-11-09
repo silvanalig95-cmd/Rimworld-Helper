@@ -50,6 +50,20 @@ namespace ColonyCouncil
             own = was;
         }
 
+        /// <summary>
+        /// Rimfolk's own look's colours only, without the scrollbars' styles: the on-screen panels, painted every frame and with
+        /// no scrollbar of the game's (Hud/HudLook.cs). Returns how it was, for <see cref="EndOwnColours"/>.
+        /// </summary>
+        public static bool BeginOwnColours()
+        {
+            bool was = own;
+            own = true;
+            return was;
+        }
+
+        /// <summary>Back to how it was before <see cref="BeginOwnColours"/> (always in a finally).</summary>
+        public static void EndOwnColours(bool was) => own = was;
+
         // ---------------- The textures, made once at load ----------------
 
         /// <summary>A white 9-slice texture and the share of it its corner takes.</summary>
