@@ -8,7 +8,7 @@ Stagz_WaterCandle	arquebus.stagzmerfolk	yes	floating lantern		torch	(1,1)	Woody	
 BotchJob_ProfaneAlchemyBench	botchjob.profaned	no	profane alchemy bench		bench	(3,2)	Stony	200	Silver:50;Cloth:50	BotchJob_ProfanedAdvanced	Undefined	yes	Production	Building_WorkTable						PassThroughOnly		4000
 BotchJob_ProfaneRitualCircle	botchjob.profaned	no	profane ritual circle		bench	(3,3)	Stony	150		BotchJob_ProfanedBasics	Undefined	yes	Production	Building_WorkTable						PassThroughOnly	butcher	3000
 BotchJob_ProfanedBed	botchjob.profaned	no	profaned bed	Medieval	bed	(1,2)	Stony	45	BotchJob_TaintedBone:2	Stonecutting,BotchJob_ProfanedBasics	Medieval	yes	Furniture	Building_Bed						PassThroughOnly		800
-BotchJob_ProfanedBrazier	botchjob.profaned	no	profaned brazier		brazier	(1,1)	Stony	40	Steel:20	Stonecutting,BotchJob_ProfanedBasics	Medieval	yes	Furniture	Building		WoodLog,DankPyon_Coal	8	3.5		PassThroughOnly		2000
+BotchJob_ProfanedBrazier	botchjob.profaned	no	profaned brazier		brazier	(1,1)	Stony	40	Steel:20	Stonecutting,BotchJob_ProfanedBasics	Medieval	yes	Furniture	Building		WoodLog	8	3.5		PassThroughOnly		2000
 BotchJob_ProfanedBrazierBlood	botchjob.profaned	no	bloodflame profaned brazier		brazier	(1,1)	Stony	40	Steel:20	Stonecutting,BotchJob_ProfanedBasics	Medieval	yes	Furniture	Building		WoodLog	8	3.5		PassThroughOnly		2000
 BotchJob_ProfanedBrazierDarklight	botchjob.profaned	no	darklight profaned brazier		brazier	(1,1)	Stony	40	Steel:20	Stonecutting,BotchJob_ProfanedBasics	Medieval	yes	Furniture	Building		WoodLog	8	3.5		PassThroughOnly		2000
 BotchJob_ProfanedChair	botchjob.profaned	no	profaned chair		seat	(1,1)	Stony	45		Stonecutting,BotchJob_ProfanedBasics	Medieval	yes	Furniture	Building								4000
@@ -258,7 +258,7 @@ DankPyon_WoodLogs1x1c	dankpyon.medieval.overhaul	no	raw wood pile (1x1)		storage
 DankPyon_WoodLogs1x2c	dankpyon.medieval.overhaul	no	raw wood pile (1x2)		storage	(2,1)	DankPyon_RawWood	20			Undefined	yes	DankPyon_RusticStorage	Building_Storage						PassThroughOnly		500
 DankPyon_WoodLogs2x2c	dankpyon.medieval.overhaul	no	raw wood pile (2x2)		storage	(2,2)	DankPyon_RawWood	40			Undefined	yes	DankPyon_RusticStorage	Building_Storage						PassThroughOnly		1000
 DankPyon_Workbench	dankpyon.medieval.overhaul	no	workbench	Medieval	bench	(3,1)	Woody	100		DankPyon_Lumber	Undefined	yes	Production	Building_WorkTable						PassThroughOnly	craft	2000
-EGG_AdvancedWell	dankpyon.medieval.overhaul	no	water well		bench	(1,1)	Stony	50	Steel:50;WoodLog:20	Plumbing	Medieval		Hygiene	Building_WorkTable						PassThroughOnly	craft	15000
+EGG_AdvancedWell	dankpyon.medieval.overhaul	no	water well		bench	(1,1)	Stony	50	Steel:50;WoodLog:20		Undefined		Hygiene	Building_WorkTable						PassThroughOnly	craft	15000
 BB_BunkBedDouble	darknote.bunkbeds	yes	double bunk bed	Medieval	bed	(1,2)	Metallic,Woody,Stony	85		ComplexFurniture	Medieval	yes	Furniture	Building_Bed						PassThroughOnly		1500
 BB_BunkBedTriple	darknote.bunkbeds	yes	triple bunk bed	Medieval	bed	(1,2)	Metallic,Woody,Stony	120		ComplexFurniture	Medieval	yes	Furniture	Building_Bed						PassThroughOnly		1500
 BB_Spacer_BunkBedDouble	darknote.bunkbeds	yes	spacer double bunk bed	Medieval	bed	(1,2)	Metallic,Woody,Stony	100	Steel:20;Plasteel:20;ComponentIndustrial:8;ComponentSpacer:4	ComplexFurniture	Medieval	yes	Furniture	Building_Bed						PassThroughOnly		1500
@@ -269,10 +269,10 @@ DV_BasicClayWall	det.epochspottery	no	raw clay wall		wall	(1,1)			DV_Clay:6		Und
 DV_ClayTurningTable	det.epochspottery	no	potter's wheel		bench	(2,1)	Metallic,Woody	45	Steel:25	Stonecutting	Medieval	yes	Production	Building_WorkTable						PassThroughOnly		2200
 DV_CobbClayWall	det.epochspottery	no	cobb clay wall		wall	(1,1)			DV_Clay:8;Hay:4		Undefined		Structure	Building					true	Impassable		150
 DV_IndustrialClayTurningTable	det.epochspottery	no	clay-turning table		bench	(1,1)			Steel:45;ComponentIndustrial:5	Stonecutting,Electricity	Industrial	yes	Production	Building_WorkTable	yes					PassThroughOnly		3500
-CeilingFan	dubwise.dubsbadhygiene	yes	ceiling fan 2x2		lamp	(2,2)			Steel:40;ComponentIndustrial:1	Electricity	Industrial	yes	Temperature	DubsBadHygiene.Building_CeilingFan	yes		9		false	Standable		700
-CeilingFanS	dubwise.dubsbadhygiene	yes	ceiling fan 1x1		lamp	(1,1)			Steel:40;ComponentIndustrial:1	Electricity	Industrial	yes	Temperature	DubsBadHygiene.Building_CeilingFan	yes		9		false	Standable		700
-DBHSaunaHeaterElec	dubwise.dubsbadhygiene	yes	Electric Sauna Heater		lamp	(1,1)	Metallic,Stony	180	Steel:20;ComponentIndustrial:1	Saunas,Electricity	Industrial	yes	Joy	Building	yes		5			PassThroughOnly		1250
-DBHSaunaSeating	dubwise.dubsbadhygiene	yes	Sauna seating		seat	(1,1)	Metallic,Woody,Stony	2		Saunas	Medieval	yes	Joy	Building								450
+CeilingFan	dubwise.dubsbadhygiene	yes	ceiling fan 2x2		lamp	(2,2)			Steel:40;ComponentIndustrial:1		Undefined	yes	Temperature	DubsBadHygiene.Building_CeilingFan	yes		9		false	Standable		700
+CeilingFanS	dubwise.dubsbadhygiene	yes	ceiling fan 1x1		lamp	(1,1)			Steel:40;ComponentIndustrial:1		Undefined	yes	Temperature	DubsBadHygiene.Building_CeilingFan	yes		9		false	Standable		700
+DBHSaunaHeaterElec	dubwise.dubsbadhygiene	yes	Electric Sauna Heater		lamp	(1,1)	Metallic,Stony	180	Steel:20;ComponentIndustrial:1	Electricity	Industrial	yes	Joy	Building	yes		5			PassThroughOnly		1250
+DBHSaunaSeating	dubwise.dubsbadhygiene	yes	Sauna seating		seat	(1,1)	Metallic,Woody,Stony	2			Undefined	yes	Joy	Building								450
 ToiletStallDoor	dubwise.dubsbadhygiene	yes	stall door		door	(1,1)	Metallic,Woody,Stony	5			Undefined		Hygiene	DubsBadHygiene.Building_StallDoor					false	Standable		250
 DU_Blastdoor	dubwise.rimatomics	yes	DU Blast door		door	(1,1)			DepletedUraniumPellets:25;Steel:40;ComponentIndustrial:2	Autodoors	Industrial		Rimatomics	Building_Door	yes				true			10000
 RadiationShielding	dubwise.rimatomics	yes	Reinforced DU Wall		wall	(1,1)			DepletedUraniumPellets:10;Steel:5		Undefined		Rimatomics	Building					true	Impassable		1250
@@ -326,9 +326,9 @@ MDV_LouverDoor	local.moredoorvariants	yes	Louver door		door	(1,1)	Metallic,Woody
 MDV_SingleDoor	local.moredoorvariants	yes	Single Door		door	(1,1)	Metallic,Woody,Stony	20		ComplexFurniture	Medieval		Structure	MoreDoorVariants.Building_SingleDoor					true			700
 MDV_SmallOrnateDoor	local.moredoorvariants	yes	Small Ornate door		door	(1,1)	Metallic,Woody,Stony	40	Gold:20	ComplexFurniture	Medieval		Structure	Building_Door					true			8500
 MDV_SpaceshipArchway	local.moredoorvariants	yes	Spaceship Archway		lamp	(1,1)	Metallic	80	ComponentIndustrial:1	MDV_ProtectiveDoors	Industrial		Structure	Building	yes		12		true	PassThroughOnly		2000
-MDV_SpaceshipBulwarkDoorA	local.moredoorvariants	yes	Spaceship Bulwark Door		door	(1,1)			Steel:250;Plasteel:30;ComponentIndustrial:3;RB_BallisticGlass:1	MDV_ProtectiveDoors	Industrial		Structure	MoreDoorVariants.Building_SpaceshipBulwarkDoor	yes				true			6600
-MDV_SpaceshipBulwarkDoorB	local.moredoorvariants	yes	Spaceship Bulwark Door		door	(2,1)			Steel:300;Plasteel:45;ComponentIndustrial:4;RB_BallisticGlass:3	MDV_ProtectiveDoors	Industrial		Structure	MoreDoorVariants.Building_SpaceshipBulwarkDoor	yes				true			6600
-MDV_SpaceshipBulwarkDoorC	local.moredoorvariants	yes	Spaceship Bulwark Door		door	(3,1)			Steel:350;Plasteel:60;ComponentIndustrial:5;RB_BallisticGlass:5	MDV_ProtectiveDoors	Industrial		Structure	MoreDoorVariants.Building_SpaceshipBulwarkDoor	yes				true			6600
+MDV_SpaceshipBulwarkDoorA	local.moredoorvariants	yes	Spaceship Bulwark Door		door	(1,1)			Steel:250;Plasteel:30;ComponentIndustrial:3	MDV_ProtectiveDoors	Industrial		Structure	MoreDoorVariants.Building_SpaceshipBulwarkDoor	yes				true			6600
+MDV_SpaceshipBulwarkDoorB	local.moredoorvariants	yes	Spaceship Bulwark Door		door	(2,1)			Steel:300;Plasteel:45;ComponentIndustrial:4	MDV_ProtectiveDoors	Industrial		Structure	MoreDoorVariants.Building_SpaceshipBulwarkDoor	yes				true			6600
+MDV_SpaceshipBulwarkDoorC	local.moredoorvariants	yes	Spaceship Bulwark Door		door	(3,1)			Steel:350;Plasteel:60;ComponentIndustrial:5	MDV_ProtectiveDoors	Industrial		Structure	MoreDoorVariants.Building_SpaceshipBulwarkDoor	yes				true			6600
 MDV_StonyArchway	local.moredoorvariants	yes	Stony Archway		door	(1,1)	Stony	90		ComplexFurniture	Medieval		Structure	MoreDoorVariants.Building_StonyArchway		WoodLog	10	3.5	true	PassThroughOnly		2800
 MDV_WoodyArchway	local.moredoorvariants	yes	Woody Archway		door	(1,1)			WoodLog:60		Undefined		Structure	MoreDoorVariants.Building_WoodyArchway					true	PassThroughOnly		1400
 AncientBed	ludeon.rimworld	yes	ancient bed	Medieval	bed	(1,2)					Undefined			Building_Bed								800
@@ -509,7 +509,7 @@ Tav_1x2Table	ods.tavern	no	sturdy table (1x2)		table	(1,2)	Woody	30			Undefined	
 Tav_1x3Counter	ods.tavern	no	counter (1x3)		table	(1,3)	Woody	75			Undefined	yes	TavernFurniture	Building						PassThroughOnly		1000
 Tav_2x2RoundTable	ods.tavern	no	sturdy round table (2x2)		table	(2,2)	Woody	50			Undefined	yes	TavernFurniture	Building						PassThroughOnly		1500
 Tav_2x2Table	ods.tavern	no	sturdy table (2x2)		table	(2,2)	Woody	50			Undefined	yes	TavernFurniture	Building						PassThroughOnly		1500
-Tav_Candleholder	ods.tavern	no	candleholder		torch	(1,1)	Metallic	20	TavTallow:10		Undefined	yes	TavernFurniture	Building		TavTallow,DV_Tallow,DankPyon_Tallow	9	1.5		Standable		300
+Tav_Candleholder	ods.tavern	no	candleholder		torch	(1,1)	Metallic	20	TavTallow:10		Undefined	yes	TavernFurniture	Building		TavTallow	9	1.5		Standable		300
 Tav_ChairA	ods.tavern	no	sturdy chair		seat	(1,1)	Woody	65		ComplexFurniture	Medieval	yes	TavernFurniture	Building								6000
 Tav_KitchenButch	ods.tavern	no	butcher counter		bench	(2,1)	Stony	20	WoodLog:50	ComplexFurniture	Medieval	yes	TavernFurniture	Building_WorkTable						PassThroughOnly		3000
 Tav_Oven	ods.tavern	no	tavern oven		bench	(3,1)	Stony	40	WoodLog:80	ComplexFurniture	Medieval	yes	TavernFurniture	Building_WorkTable						PassThroughOnly	cook	3000
@@ -520,7 +520,7 @@ Tav_SoftDoubleBed	ods.tavern	no	double soft bed	Medieval	doublebed	(2,2)	Woody	8
 Tav_SoftStool	ods.tavern	no	soft stool		seat	(1,1)	Woody	25	TavPadding:10		Undefined	yes	TavernFurniture	Building								1500
 Tav_StoolA	ods.tavern	no	sturdy stool		seat	(1,1)	Woody	25			Undefined	yes	TavernFurniture	Building								450
 Tav_TableDecor	ods.tavern	no	decor table		bench	(3,1)	Woody	120		ComplexFurniture	Medieval	yes	TavernFurniture	Building_WorkTable						PassThroughOnly	craft	3000
-Tav_TableLight	ods.tavern	no	tavern candle		torch	(1,1)			TavTallow:10		Undefined	yes	TavernFurniture	Building		TavTallow,DV_Tallow,DankPyon_Tallow	9	1.5		PassThroughOnly		250
+Tav_TableLight	ods.tavern	no	tavern candle		torch	(1,1)			TavTallow:10		Undefined	yes	TavernFurniture	Building		TavTallow	9	1.5		PassThroughOnly		250
 Tav_TavernBench	ods.tavern	no	sturdy bench		seat	(2,1)	Woody	50			Undefined	yes	TavernFurniture	Building								1500
 Chemlamp	oskarpotocki.vanillafactionsexpanded.settlersmodule	yes	chemlamp		torch	(1,1)			Steel:20;Chemfuel:10	ComplexFurniture	Medieval	yes	Furniture	Building		Chemfuel	10			Standable		100
 ChemlampPost	oskarpotocki.vanillafactionsexpanded.settlersmodule	yes	chemlamp post		torch	(1,1)	Metallic,Woody,Stony	20	Chemfuel:10	ComplexFurniture	Medieval	yes	Furniture	Building		Chemfuel	10			PassThroughOnly		100

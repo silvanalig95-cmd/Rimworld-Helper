@@ -5,6 +5,14 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## Every weapon in your mods rated
+
+*9 November 2026, version 0.182.0*
+
+- Every weapon your mods add has a rating from 1.0 to 10.0, worked out by the game's own rules of hitting, armour and timing against plain, armoured and heavily armoured raiders and mechanoids, with its abilities and its effects on the wielder counted.
+- Each comes with colour-coded tags for its strengths, weaknesses, risks, specials, role and needs, and a plain line on what it is good and bad at; the review is in the docs/weapons folder beside the mod's files.
+- Weapons that only load with a mod you don't have are left out, and so are the Kiln Guild's arms that named such a weapon kind; the weapon card in the game and recommendations for each colonist come next.
+
 ## The heart is felt: strain that stays, joy beside it, and both shown on the map
 
 *9 November 2026, version 0.181.0*

@@ -874,7 +874,6 @@ Ammo_CrossbowBolt_Plasteel	ceteam.combatextended	no	crossbow bolt (plasteel)	Neo
 Ammo_CrossbowBolt_Steel	ceteam.combatextended	no	crossbow bolt (steel)	Neolithic	AmmoCrossbowBolts	CE_AmmoInjector,CE_Ammo,CE_PreIndustrialAmmo,CE_AutoEnableTrade,CE_AutoEnableCrafting_FueledSmithy,CE_AutoEnableCrafting_ElectricSmithy		Item	4000	None									CompProperties_Forbiddable										
 Ammo_CrossbowBolt_Stone	ceteam.combatextended	no	crossbow bolt (stone)	Neolithic	AmmoCrossbowBolts	CE_AmmoInjector,CE_Ammo,CE_PreIndustrialAmmo,CE_AutoEnableTrade,CE_AutoEnableCrafting_FueledSmithy,CE_AutoEnableCrafting_ElectricSmithy,CE_AutoEnableCrafting_CraftingSpot		Item	4000	None									CompProperties_Forbiddable										
 Ammo_CrossbowBolt_Venom	ceteam.combatextended	no	crossbow bolt (venom)	Neolithic	AmmoCrossbowBolts	CE_AmmoInjector,CE_Ammo,CE_PreIndustrialAmmo,CE_AutoEnableTrade,CE_AutoEnableCrafting_FueledSmithy,CE_AutoEnableCrafting_ElectricSmithy		Item	4000	None									CompProperties_Forbiddable										
-Ammo_CryptoCannon	ceteam.combatextended	no	Crypto Cannon Fuel	Spacer	AmmoCryptoCannon	CE_AmmoInjector,CE_Ammo,CE_AutoEnableTrade,CE_AutoEnableCrafting		Item	2500	None									CompProperties_Forbiddable										
 Ammo_DartRifle_NL	ceteam.combatextended	no	dart rifle cartridge	Industrial	Ammo762x51mmNATO	CE_AmmoInjector,CE_Ammo,CE_AutoEnableTrade,CE_AutoEnableCrafting		Item	5000	None									CompProperties_Forbiddable										
 Ammo_Dart_Venom	ceteam.combatextended	no	poison dart	Neolithic	AmmoArrows	CE_AmmoInjector,CE_Ammo,CE_PreIndustrialAmmo,CE_AutoEnableTrade,CE_AutoEnableCrafting_FueledSmithy,CE_AutoEnableCrafting_ElectricSmithy		Item	5000	None									CompProperties_Forbiddable										
 Ammo_FN57x28mm_AP	ceteam.combatextended	no	FN 5.7x28mm (AP)	Industrial	AmmoFN57x28mm	CE_AmmoInjector,CE_Ammo,CE_AutoEnableTrade,CE_AutoEnableCrafting		Item	5000	None									CompProperties_Forbiddable										
@@ -1694,7 +1693,6 @@ ChunkGlimmer	det.sbdelights	no	glimmerquartz chunk		StoneChunks			Item	1	None
 SD_Alkahest	det.sbdelights	no	alkahest	Ultra	Drugs	Drugs,ExoticMisc	75	Item	150		NeverForNutrition	Processed	Medical			SD_Alkahest			CompProperties_Forbiddable,CompProperties_Drug										
 SD_BeardWax	det.sbdelights	no	beard wax	Industrial	Drugs	Drugs	12	Item	35		NeverForNutrition	Processed	Social						CompProperties_Forbiddable,CompProperties_Drug									500	
 SD_BladerootCigar	det.sbdelights	no	bladeroot cigar	Neolithic	Drugs	Drugs	11	Item	150		NeverForNutrition	Plant, Processed	Social			SD_Bladeroot			CompProperties_Forbiddable,CompProperties_Drug									450	
-SD_Bullgrog	det.sbdelights	no	bullgrog	Neolithic	Drugs	Drugs	2	Item	30		NeverForNutrition	Fluid, Processed, Liquor	Social		0.06	SD_DwarvenDrink			CompProperties_Forbiddable,CompProperties_Drug,CompEquippable										
 SD_ElixirMush	det.sbdelights	no	elixir mush		Manufactured		3	Item	25									8	CompProperties_Forbiddable,CompProperties_Rottable										
 SD_FermentedShatterbrew	det.sbdelights	no	fermented shatterbrew	Industrial	Drugs	Drugs	100	Item	1		NeverForNutrition	Processed, Fluid	Hard			SD_DwarvenDrink			CompProperties_Forbiddable,CompProperties_Drug									2500	
 SD_Feywing	det.sbdelights	no	feywing		ItemsMisc	ExoticMisc	200	Item	12		NeverForNutrition	AnimalProduct						50	CompProperties_Forbiddable,CompProperties_Rottable										
@@ -1725,7 +1723,7 @@ BasinStuff	dubwise.dubsbadhygiene	yes	basin		BuildingsHygiene			Building								
 BathMat	dubwise.dubsbadhygiene	yes	Bath Mat		BuildingsFurniture			Building											CompQuality,CompProperties_Art				Fabric	(1,1)	Hygiene	MinifiedThing			
 BathtubStuff	dubwise.dubsbadhygiene	yes	bathtub		BuildingsHygiene			Building											CompQuality,CompProperties_Art,CompColorable,CompProperties_Forbiddable,CompProperties_Pipe,CompProperties_Blockage				Metallic,Woody,Stony	(1, 2)	Hygiene	MinifiedThing			
 BedPan	dubwise.dubsbadhygiene	yes	bed pan		Waste			Item	1	None																			
-BionicBladder	dubwise.dubsbadhygiene	yes	bionic bladder	Spacer	BodyPartsBionic	TechHediff,Bionic		Item											CompProperties_Forbiddable								Spacer	26000	
+BionicBladder	dubwise.dubsbadhygiene	yes	bionic bladder	Spacer	BodyPartsBionic	TechHediff,Bionic		Item											CompProperties_Forbiddable								Undefined	26000	
 Biosolids	dubwise.dubsbadhygiene	yes	biosolids		Waste		0.1	Item	250										CompProperties_Forbiddable										
 BiosolidsComposter	dubwise.dubsbadhygiene	yes	biosolids composter		BuildingsHygiene			Building											CompProperties_Composter,CompProperties_TemperatureRuinable,CompProperties_Forbiddable						Hygiene	MinifiedThing			
 CeilingFan	dubwise.dubsbadhygiene	yes	ceiling fan 2x2		BuildingsHygiene			Building											CompProperties_Power,CompPowerTrader,CompProperties_Flickable,CompProperties_Glower					(2,2)	Temperature	MinifiedThing			
@@ -1743,7 +1741,7 @@ FreezerUnit	dubwise.dubsbadhygiene	yes	walk-in freezer unit		BuildingsHygiene			
 GasBoiler	dubwise.dubsbadhygiene	yes	gas boiler		BuildingsHygiene			Building											CompColorable,CompProperties_Pipe,CompProperties_CompBoiler,CompProperties_Breakdownable,CompProperties_Flickable,CompProperties_Refuelable					(1,1)	Temperature	MinifiedThing			
 HotTub	dubwise.dubsbadhygiene	yes	hot tub		BuildingsHygiene			Building											CompQuality,CompProperties_Art,CompColorable,CompProperties_Forbiddable,CompProperties_Pipe,CompProperties_Blockage,CompProperties_Power,CompPowerTrader,CompProperties_Flickable				Metallic,Woody,Stony	(2, 2)	Joy	MinifiedThing			
 HotWaterTank	dubwise.dubsbadhygiene	yes	hot water tank		BuildingsHygiene			Building											CompProperties_Pipe,CompProperties_Flickable,CompProperties_HeatStore,CompHeatStore					(1,1)	Hygiene	MinifiedThing			
-HygieneEnhancer	dubwise.dubsbadhygiene	yes	hygiene enhancer	Spacer	BodyPartsBionic	TechHediff,Bionic		Item											CompProperties_Forbiddable								Spacer	26000	
+HygieneEnhancer	dubwise.dubsbadhygiene	yes	hygiene enhancer	Spacer	BodyPartsBionic	TechHediff,Bionic		Item											CompProperties_Forbiddable								Undefined	26000	
 IrrigationSprinkler	dubwise.dubsbadhygiene	yes	irrigation sprinkler		BuildingsHygiene			Building											CompProperties_Pipe,CompProperties_Flickable,CompProperties_Sprinkler,CompIrrigationSprinkler					(1,1)	Hygiene	MinifiedThing			
 KitchenSink	dubwise.dubsbadhygiene	yes	kitchen sink		BuildingsHygiene			Building											CompQuality,CompProperties_Art,CompColorable,CompProperties_Forbiddable,CompProperties_Pipe,CompProperties_Blockage				Metallic,Woody,Stony	(3,1)	Hygiene	MinifiedThing			
 LitterBox	dubwise.dubsbadhygiene	yes	litter box		BuildingsHygiene			Building											CompColorable,CompProperties_Forbiddable				Metallic,Woody,Stony		Hygiene	MinifiedThing			
@@ -2655,7 +2653,6 @@ RimTalk_BlackWhitePill	maiya.rimtalkdynamiccolors	no	黑白药丸	Neolithic	Drug
 RimTalk_ClearSoup	maiya.rimtalkdynamiccolors	no	环缘水	Neolithic	Drugs	Drugs	20	Item	150		NeverForNutrition	Fluid	Social						CompProperties_Forbiddable,CompProperties_Drug									400	
 RimTalk_RainbowCandy	maiya.rimtalkdynamiccolors	no	彩虹糖	Neolithic	Drugs	Drugs	15	Item	150		NeverForNutrition	Processed	Social						CompProperties_Forbiddable,CompProperties_Drug									300	
 MechSerumYouth	marvinkosh.sometimesraidsgowrong	yes	youth serum	Spacer	Items	Exotic	1400	Item	10	Sellable									CompProperties_Forbiddable,CompProperties_Usable,CompProperties_UseEffect,YouthSerum,CompProperties_UseEffectDestroySelf										
-GU_Mech_GiddyUpModule	memegoddess.giddyup	yes	Giddy-Up! module		Manufactured	TechHediff		Item	1										CompProperties_Forbiddable								Spacer	6000	
 ArchotechSkipdoor	migcorp.skiptech	yes	archotech skipdoor		BuildingsMisc	ExoticBuilding	3200	Building		Sellable									CompProperties_Skipdoor,CompProperties_Forbiddable,CompProperties_Flickable,CompProperties_Glower					(1,1)		MinifiedThing			
 MigcorpSkipdoor	migcorp.skiptech	yes	migcorp skipdoor		BuildingsMisc			Building											CompProperties_Skipdoor,CompProperties_Breakdownable,CompProperties_Forbiddable,CompProperties_Flickable,CompProperties_Power,CompPowerTrader,CompProperties_Skipdoor_Powered,CompProperties_Skipdoor_IndicatorOverlay					(1,1)	Misc	MinifiedThing			
 DSP_Barrel	mlie.deepstorageplus	yes	Barrel		BuildingsFurniture			Building											CompProperties_SecondLayer,Properties,CompProperties_SingleDeepStorage,CompQuality				Metallic	(1,1)	LWM_DS_Storage	MinifiedThing			
@@ -4961,8 +4958,8 @@ UnfinishedAdvArcane	torann.arimworldofmagic	yes	Unfinished Arcane Book	Neolithic
 UnfinishedArcane	torann.arimworldofmagic	yes	Unfinished Torn Script	Neolithic	TM_SkillBooks	Arcane	1400	Item	10										CompProperties_Forbiddable,CompProperties_Usable,CompProperties_UseEffect,CompUseEffect_WriteTornScript								Undefined		
 UnfinishedGem	torann.arimworldofmagic	yes	unfinished gem		Unfinished			Item		None									CompProperties_Forbiddable,CompProperties_Styleable										
 UnfinishedMartial	torann.arimworldofmagic	yes	Unfinished Martial Book	Neolithic	TM_SkillBooks	Arcane	2055	Item	10										CompProperties_Forbiddable,CompProperties_Usable,CompProperties_UseEffect,CompUseEffect_WriteMartialScript								Undefined		
-T_BuldingInhibitingIncense	trickity.seal.spirits	no	inhibiting incense		BuildingsFurniture			Building											CompProperties_Facility,CompProperties_Smoker				Metallic,Woody,Stony		Anomaly	MinifiedThing			
-T_Cauldron	trickity.seal.spirits	no	rendering cauldron		BuildingsProduction			Building											CompProperties_ReportWorkSpeed,CompProperties_Refuelable,CompProperties_Glower,CompProperties_HeatPusher,CompHeatPusherPowered,CompProperties_MeditationFocus,CompProperties_Smoker					(2,2)	Anomaly	MinifiedThing			
+T_BuldingInhibitingIncense	trickity.seal.spirits	no	inhibiting incense		BuildingsFurniture			Building											CompProperties_Facility				Metallic,Woody,Stony		Anomaly	MinifiedThing			
+T_Cauldron	trickity.seal.spirits	no	rendering cauldron		BuildingsProduction			Building											CompProperties_ReportWorkSpeed,CompProperties_Refuelable,CompProperties_Glower,CompProperties_HeatPusher,CompHeatPusherPowered,CompProperties_MeditationFocus					(2,2)	Anomaly	MinifiedThing			
 T_SealingPlatform	trickity.seal.spirits	no	sealing platform		BuildingsMisc			Building											CompProperties_AffectedByFacilities,CompProperties_MeditationFocus,CompProperties_AttachPoints,CompProperties_EntityHolderPlatform				Metallic,Woody,Stony	(3, 3)	Anomaly	MinifiedThing			
 DA_AllSeer	van.beasts	no	all-seer	Neolithic	Drugs	Drugs	150	Item	20		NeverForNutrition	Processed	Hard						CompProperties_Forbiddable,CompProperties_Drug										
 DA_BarogOil	van.beasts	no	barogoth oil	Medieval	Drugs	Drugs	10	Item	150		NeverForNutrition	Fluid	Medical						CompProperties_Forbiddable,CompProperties_Drug										
@@ -4991,10 +4988,10 @@ DA_Leather_Snaptoad	van.beasts	no	warty hide		Leathers		5	Item	75										CompP
 DA_Leather_Troll	van.beasts	no	trollpelt		Leathers		3.0	Item	75										CompProperties_Forbiddable	Leathery	1.3								
 DA_LeviathanChitin	van.beasts	no	leviathan hardchitin		ResourcesRaw		6	Item	75										CompProperties_Forbiddable	Metallic,Leathery	0.9								
 DA_LeviathanStripes	van.beasts	no	leviathan whitestripe		MeatRaw		3	Item	75		DesperateOnly	Meat			0.05			8	CompProperties_Forbiddable,CompProperties_Rottable										
-DA_MufftonMilk	van.beasts	no	muffton milk		AnimalProductRaw,DankPyon_Milk		1.9	Item	75		RawTasty	AnimalProduct, Fluid			0.05			10	CompProperties_Forbiddable,CompProperties_Rottable										
+DA_MufftonMilk	van.beasts	no	muffton milk		AnimalProductRaw		1.9	Item	75		RawTasty	AnimalProduct, Fluid			0.05			10	CompProperties_Forbiddable,CompProperties_Rottable										
 DA_PetrifyingGland	van.beasts	no	petrifying gland		ItemsMisc	ExoticMisc	650	Item	5										CompProperties_Forbiddable										
 DA_RedTear	van.beasts	no	red tear	Neolithic	Drugs	Drugs	25	Item	150	Sellable	NeverForNutrition	Processed, Fluid	Social		0.2	DA_RedTear			CompProperties_Forbiddable,CompProperties_Drug										
-DA_RegalMilk	van.beasts	no	regal milk		AnimalProductRaw,DankPyon_Milk		7	Item	75		MealFine	AnimalProduct, Fluid			0.08	DA_RegalMilk		8	CompProperties_Forbiddable,CompProperties_Rottable,CompProperties_Drug										
+DA_RegalMilk	van.beasts	no	regal milk		AnimalProductRaw		7	Item	75		MealFine	AnimalProduct, Fluid			0.08	DA_RegalMilk		8	CompProperties_Forbiddable,CompProperties_Rottable,CompProperties_Drug										
 DA_Sangonite	van.beasts	no	sangonite		ResourcesRaw		11	Item	75										CompProperties_Forbiddable	Metallic,Stony	1.2								
 DA_ScarletScent	van.beasts	no	scarlet scent	Neolithic	Drugs	Drugs	55	Item	20		NeverForNutrition	Processed	Hard						CompProperties_Forbiddable,CompProperties_Drug										
 DA_TrollMeat	van.beasts	no	troll slab		MeatRaw		4	Item	75		DesperateOnly	Meat			0.1			3	CompProperties_Forbiddable,CompProperties_Rottable										

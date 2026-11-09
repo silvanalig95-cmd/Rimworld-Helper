@@ -15,7 +15,11 @@ with 1.6 or 1.7". So:
 - Only mods that support 1.6 or 1.7 are catalogued; `mods.tsv` lists the others with `catalogued` no.
 
 The tables (one row per def, after resolving `ParentName` inheritance; patches are not applied, so a tag a mod adds to
-another mod's apparel by patch isn't seen). Only the folders RimWorld 1.7 loads are read: a mod's `LoadFolders.xml` for
+another mod's apparel by patch isn't seen). `MayRequire` and `MayRequireAnyOf` are honoured as the game honours them for
+the player's mod list (the game and its five DLCs always count as loaded; package ids compared without case or a
+`_steam` suffix): a def that names a package not loaded is left out (Melee Weapons For All's tenebral, kwazaari and solar
+weapons need BOR), so is every element inside a def that does (a weapon tag, a comp, a recipe's research), and an
+abstract parent with such a `MayRequire` is not there to inherit from (9 November 2026; until then all of them were read). Only the folders RimWorld 1.7 loads are read: a mod's `LoadFolders.xml` for
 1.7 (or the newest version before it), its `IfModActive`, `IfModActiveAll` and `IfModNotActive` read against the
 player's list, else its root, `Common` and its newest version folder; the mods in the player's load order, so a later def
 of the same name wins as in the game, and a def of a mod not in their list never stands for one that is (Combat
@@ -42,6 +46,15 @@ listed).
 The buildings table was added on 8 November 2026 from the same collection, with the save of that day: every other table
 came out byte for byte the same, but for `mods.tsv`'s column inSave for Harvest and Haul (in the 7 November save, not in
 this one).
+
+`weapon_numbers.json.gz` (9 November 2026, for the weapon rating: `docs/weapons`) holds every weapon of the active mods
+with the numbers the game resolves for it: its verbs and each verb's projectile (damage and armour piercing by the game's
+own rules, stopping power, explosion, fuse, extra damages), its melee tools with each capacity's damage, its stat bases and
+the stats it changes on its wielder, its comps and mod extensions (every simple field), the abilities it grants (resolved
+AbilityDefs), the stuff it is rated in, the research its recipe needs, why it is left out if a colonist can't wield it,
+and the active mods' patches that touch it (a `PatchOperationFindMod` followed as the player's mod list decides; patches
+still not applied). Built by `python3 Tools/weapon_extract.py <collected folder> docs/player-mods/weapon_numbers.json.gz`,
+which reads the collection through `mod_pool.py`'s own loader (its `Pool`); `Tools/WeaponReview` rates it.
 
 `madeTech` is the age of the easiest way the player's active mods make or grow the thing: the tech level of the
 research its recipes (or recipe maker, or a sown crop) need, `Undefined` for one that needs none, blank when nothing
