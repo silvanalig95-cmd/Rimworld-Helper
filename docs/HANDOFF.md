@@ -12,6 +12,13 @@ tree at once, alongside whatever runs. Each piece is merged as its own release, 
 
 ## State (5 November 2026)
 
+- 0.191.1, the colony news only on days that matter (9 November 2026, the player: "the colonist news pop-up should only
+  appear if there's something unusual, important, dangerous or requiring my action. the other information should just be
+  kept in the journal/log if it's a day without anythign important"). The evening's digest (`NewsComponent.SendNow`)
+  sends its letter only when one of its lines is important (`TellWeight.Important`) or bad news (its message type the
+  game's negative, threat or death sound: `News.BadNews`), by `TellMath.EveningLetter`; a quiet day's lines go to the
+  History tab's message log (`News.Archive`), counted in `Tell.NoteHistory`. Setting "Only on days that matter"
+  (`newsOnlyWhenItMatters`, on, under the colony news setting while it is the digest).
 - 0.191.0, the Story tab at a glance (9 November 2026, `docs/design/rimfolk-look.md` stage 3, point 2). The player's words: "story tab sounds great", to "The Story
   tab, done like the new Mood tab: at a glance, life goal with a progress bar, current wish, quirks, standing in the
   colony, closest friends and rivals; the full history below in folding sections." DESIGN.md "Rimfolk's own look, stage

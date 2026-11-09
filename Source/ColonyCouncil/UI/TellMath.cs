@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using System.Collections.Generic;
 
 namespace ColonyCouncil
@@ -82,6 +83,19 @@ namespace ColonyCouncil
 
         /// <summary>A line's place in the evening's letter: hard to miss first, then what the day held back, then the colony's and the world's.</summary>
         public static int EveningScore(int weight, bool held, int kind) => weight * 4 + (held ? 2 : 0) + (Weighty(kind) ? 1 : 0);
+
+        /// <summary>
+        /// Whether a line is worth an evening letter of its own (the player, 9 November 2026: "the colonist news pop-up should
+        /// only appear if there's something unusual, important, dangerous or requiring my action. the other information
+        /// should just be kept in the journal/log if it's a day without anythign important"): something hard to miss
+        /// (<see cref="TellWeight.Important"/>), or bad news (it would have come with the game's negative or threat sound).
+        /// A day with none of these sends no letter; its lines go to the History tab's message log.
+        /// </summary>
+        public static bool WorthALetter(int weight, bool badNews) => weight >= TellWeight.Important || badNews;
+
+        /// <summary>Whether the evening's news is a letter: always without the rule, else only when a line is worth one.</summary>
+        public static bool EveningLetter(bool onlyWhenItMatters, IEnumerable<(int weight, bool badNews)> lines) =>
+            !onlyWhenItMatters || lines.Any(l => WorthALetter(l.weight, l.badNews));
 
         /// <summary>
         /// Which of the evening's lines the letter carries: all of them up to <paramref name="max"/>, else the

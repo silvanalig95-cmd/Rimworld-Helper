@@ -5,6 +5,13 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## Colony news only on days that matter
+
+*9 November 2026, version 0.191.1*
+
+- The evening's Colony news comes as a letter only when one of the day's lines is important or bad news.
+- On a quiet day, a wish granted, a new friend, someone back at their work, the lines go to the message log in the History tab without a letter; the setting Only on days that matter brings back a letter every evening.
+
 ## The Story tab at a glance
 
 *9 November 2026, version 0.191.0*

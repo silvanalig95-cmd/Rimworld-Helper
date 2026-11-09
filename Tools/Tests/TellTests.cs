@@ -95,6 +95,12 @@ public static class TellTests
         // ---------------- The evening ----------------
 
         C(TellMath.EveningKeep(new[] { 1, 2, 3 }, 12).All(k => k), "an ordinary evening carries every line");
+        // The player: the colony news only on a day with something important or bad; a quiet day goes to the log.
+        C(!TellMath.EveningLetter(true, new[] { (Notable, false), (0, false) }), "a quiet day (a wish granted, a friend made) sends no letter");
+        C(TellMath.EveningLetter(true, new[] { (Notable, false), (Important, false) }), "a day with something important sends the letter");
+        C(TellMath.EveningLetter(true, new[] { (Notable, false), (Notable, true) }), "a day with bad news sends the letter");
+        C(TellMath.EveningLetter(false, new[] { (0, false) }), "with the setting off, every evening with news sends the letter");
+        C(!TellMath.EveningLetter(true, new (int, bool)[0]), "no lines, no letter");
         var scores = new List<int>();
         for (int i = 0; i < 16; i++) scores.Add(TellMath.EveningScore(Notable, false, i % 2 == 0 ? People : Colony));
         scores[15] = TellMath.EveningScore(Important, false, Land);

@@ -25,5 +25,8 @@
   <CC_SetNote_News_AsItHappens>A message for each piece of smaller news, the moment it happens.</CC_SetNote_News_AsItHappens>
   <CC_SetNote_News_Digest>The smaller news comes together in one Colony news letter each evening.</CC_SetNote_News_Digest>
   <CC_SetNote_News_Off>The smaller news goes only to the message log in the History tab.</CC_SetNote_News_Off>
+  <CC_Settings_NewsOnlyWhenItMatters>Only on days that matter</CC_Settings_NewsOnlyWhenItMatters>
+  <CC_Settings_NewsOnlyWhenItMatters_Tip>The evening's Colony news comes as a letter only when one of the day's lines is important or bad news. On a quiet day (a wish granted, a new friend, someone back at their work) the lines go to the message log in the History tab without a letter.</CC_Settings_NewsOnlyWhenItMatters_Tip>
+  <CC_SetNote_NewsOnlyWhenItMatters>On: a Colony news letter only on a day with something important or bad. Off: a letter every evening there is news.</CC_SetNote_NewsOnlyWhenItMatters>
 
 </LanguageData>

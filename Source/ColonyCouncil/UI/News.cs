@@ -103,6 +103,14 @@ namespace ColonyCouncil
         internal static void Archive(NewsItem item) =>
             Find.Archive.Add(new Message(item.text, item.type ?? MessageTypeDefOf.NeutralEvent, item.look ?? LookTargets.Invalid));
 
+        /// <summary>Bad news: a line that would have come with the game's negative or threat sound.</summary>
+        public static bool BadNews(NewsItem item)
+        {
+            var t = item?.type;
+            return t != null && (t == MessageTypeDefOf.NegativeEvent || t == MessageTypeDefOf.NegativeHealthEvent
+                                 || t == MessageTypeDefOf.ThreatBig || t == MessageTypeDefOf.ThreatSmall || t == MessageTypeDefOf.PawnDeath);
+        }
+
         public static string KindLabel(NewsKind k) => ("CC_News_Kind_" + k).Translate();
 
         public static Texture2D KindIcon(NewsKind k)
@@ -334,6 +342,24 @@ namespace ColonyCouncil
                 {
                     CouncilLog.ErrorOnce("colony news: a light line to the History tab", e);
                 }
+            }
+            // Only a day with something important or bad comes as a letter; a quiet day's lines go to the History tab.
+            if (!TellMath.EveningLetter(ColonyCouncilMod.Settings?.newsOnlyWhenItMatters ?? true, letter.Select(i => (i.weight, News.BadNews(i)))))
+            {
+                foreach (var item in letter)
+                {
+                    try
+                    {
+                        if (Find.Archive != null) News.Archive(item);
+                        quiet++;
+                    }
+                    catch (Exception e)
+                    {
+                        CouncilLog.ErrorOnce("colony news: a quiet day's line to the History tab", e);
+                    }
+                }
+                Tell.NoteHistory(quiet);
+                return;
             }
             Tell.NoteHistory(quiet);
             News.Send(letter);

@@ -462,6 +462,8 @@ namespace ColonyCouncil
         public MessageLevel messageLevel = MessageLevel.Notable;
         /// <summary>Where the smaller news goes: a message as it happens, one letter each evening (default), or only the History tab (UI/News.cs).</summary>
         public NewsMode colonyNews = NewsMode.Digest;
+        /// <summary>The evening's colony news comes as a letter only when a line is important or bad news; a quiet day's lines go to the History tab (UI/News.cs).</summary>
+        public bool newsOnlyWhenItMatters = true;
         /// <summary>
         /// The most messages a day the teller shows for one colony, all kinds of news together; past it, and for a person's,
         /// health and the land's news on a busy day, they wait for the evening's colony news (UI/Tell.cs). It was a cap per
@@ -1001,6 +1003,7 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref allDreamMessages, "allDreamMessages", false);
             Scribe_Values.Look(ref messageLevel, "messageLevel", MessageLevel.Notable);
             Scribe_Values.Look(ref colonyNews, "colonyNews", NewsMode.Digest);
+            Scribe_Values.Look(ref newsOnlyWhenItMatters, "newsOnlyWhenItMatters", true);
             Scribe_Values.Look(ref messagesADay, "messagesADay", TellMath.DefaultMessagesADay);
             Scribe_Values.Look(ref lettersADay, "lettersADay", TellMath.DefaultLettersADay);
             Scribe_Values.Look(ref gatheringsAWeek, "gatheringsAWeek", StageMath.DefaultAWeek);

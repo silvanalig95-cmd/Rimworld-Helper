@@ -590,6 +590,7 @@ namespace ColonyCouncil
             Section("CC_Settings_Messages");
             Choice("messageLevel", "CC_SetLabel_MessageLevel", "CC_SetTip_MessageLevel", "CC_MsgLevel_", "CC_SetNote_MsgLevel_", new[] { "Everything", "Notable", "LettersOnly" });
             Choice("colonyNews", "CC_SetLabel_ColonyNews", "CC_SetTip_ColonyNews", "CC_NewsMode_", "CC_SetNote_News_", new[] { "AsItHappens", "Digest", "Off" });
+            Toggle("newsOnlyWhenItMatters", "CC_Settings_NewsOnlyWhenItMatters", "CC_SetNote_NewsOnlyWhenItMatters", "colonyNews=Digest");
             Slider("messagesADay", "CC_Settings_TellMessagesADay", "CC_SetNote_TellMessagesADay", TellMath.MinMessagesADay, TellMath.MaxMessagesADay, 1f, "0");
             Slider("lettersADay", "CC_Settings_TellLettersADay", "CC_SetNote_TellLettersADay", TellMath.MinLettersADay, TellMath.MaxLettersADay, 1f, "0");
             Toggle("allDreamMessages", "CC_Settings_AllDreamMessages", "CC_SetNote_AllDreamMessages", "dreams");

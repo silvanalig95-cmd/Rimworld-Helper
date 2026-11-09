@@ -31,6 +31,16 @@ When you load a save after an update, a letter lists the newest round once. The 
     <rounds>
 
       <li>
+        <version>0.191.1</version>
+        <date>9 November 2026</date>
+        <title>Colony news only on days that matter</title>
+        <points>
+          <li>The evening's Colony news comes as a letter only when one of the day's lines is important or bad news.</li>
+          <li>On a quiet day, a wish granted, a new friend, someone back at their work, the lines go to the message log in the History tab without a letter; the setting Only on days that matter brings back a letter every evening.</li>
+        </points>
+      </li>
+
+      <li>
         <version>0.191.0</version>
         <date>9 November 2026</date>
         <title>The Story tab at a glance</title>
