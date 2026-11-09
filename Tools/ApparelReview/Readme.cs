@@ -75,6 +75,9 @@ public static class Readme
         L("  psychic (for a psycaster), psychic shelter, work, social and trade, mechanitor, magic, hunting and carrying where a piece");
         L("  does any of it. A head piece's protection and insulation are rated against head pieces: a marine helmet's 6.1 against");
         L("  guns means it does for the head what a body piece of 6.1 does for the body.");
+        L("- **Two wearers.** Every piece is rated for a shooter and for a melee fighter (the tables' \"Shooter / melee\" column,");
+        L("  `ratingShooter` and `ratingMelee` in `apparel.json`). A piece that clearly suits one of them is rated for that one and");
+        L("  tagged \"For shooters\" or \"For melee fighters\"; the others are rated for a mix of the two (below, \"Who it is for\").");
         L("- **Situations**: for a shooter, for a melee fighter, in the cold and in the heat (the overall with that climate's");
         L("  insulation counting in full and the other's not at all), while working, for social or trade, and the sub-ratings.");
         L("- *(rough)* after a rating: part of what the piece does is a mod's own code the review can't read, so it is rated on what it");
@@ -136,9 +139,14 @@ public static class Readme
         L($"  {ApparelRateMath.EnemyDownValue:0} damage it takes to down one, half again for berserk), an orbital strike three, a summoned turret or drone one, a tox");
         L("  pack half. A power with charges is used once a fight (a jump twice); one gone for good when its charges are spent counts");
         L("  at half. Powers add at most half again to the wearer's output, the weapon review's own cap.");
-        L($"- **Who it is for.** Three colonists in four fight with guns, so the overall weighs a shooter's fight three to one over a");
-        L("  melee fighter's. A piece that blocks its wearer's shots, an off-hand shield, or one that costs a shooter what it gives a");
-        L("  fighter is rated for a melee fighter.");
+        L("- **Who it is for.** Every piece is rated twice, on its role's scale: for the shooter and for the melee fighter. It");
+        L("  clearly suits one of them when it blocks its wearer's shots or is an off-hand shield (a melee fighter's), or when what it");
+        L("  does for one (how much longer they last times how much more they deal) is a tenth more than for the other. The walk is");
+        L("  left aside there: a slower walk costs every wearer, a melee fighter more, so plate armour isn't a shooter's for being");
+        L("  heavy. A piece that clearly suits one is rated for that one (its overall is that wearer's rating) and tagged \"For");
+        L("  shooters\" or \"For melee fighters\", with what it costs the other (\"Spoils your aim\", \"Blocks shooting\", \"Clumsy in");
+        L("  melee\") among its first weaknesses. Any other piece suits both: three colonists in four fight with guns, so its");
+        L("  overall weighs the shooter's fight three to one over the melee fighter's.");
         L();
         L("### The other areas: a share of what a colonist gets done");
         L();
@@ -241,25 +249,33 @@ public static class Readme
         foreach (var d in ApparelTagMath.ApparelTags.OrderBy(d => (int)d.Category).ThenByDescending(d => d.Importance))
             L($"| {WeaponTagMath.Style(d.Category).Symbol} {d.Label} | {WeaponTagMath.Style(d.Category).Label} | {d.Rule} |");
         L();
-        L("## The base game's pieces (the anchors)");
+        L("## The anchors");
         L();
         L("Normal quality, in the stuff named, the reference colonist. These are checked in `Tools/Tests/ApparelRateTests.cs`, so the");
         L("scale can't drift: body armour from the flak pieces through plate, recon and marine to cataphract armour, helmets from the");
         L("simple helmet to the cataphract helmet, the shield belt above the jump pack among utility, the parka and tribalwear low as");
-        L("armour and strong for cold.");
+        L("armour and strong for cold. Three more check the two wearers and what clothing made as armour is called: the gunlink");
+        L("(a shooter's), VFE Medieval 2's heavy plate helmet (a melee fighter's) and Vanilla Armour Expanded's plate gloves.");
         L();
-        L("| Piece | Role | Rating | Against guns / melee / fire / mechanoids | Cold / heat | In the cold / in the heat |");
-        L("|---|---|---|---|---|---|");
+        L("| Piece | Role | Rated for | Rating | Shooter / melee | Against guns / melee / fire / mechanoids | Cold / heat | In the cold / in the heat |");
+        L("|---|---|---|---|---|---|---|---|");
         foreach (var (name, r) in anchors)
         {
             var s = r.Sub;
-            L($"| {name} | {r.Role} | **{r.Overall:0.0}** | {s["guns"]:0.0} / {s["melee"]:0.0} / {s["fire"]:0.0} / {s["mechanoids"]:0.0} | {s["cold"]:0.0} / {s["heat"]:0.0} | {r.Situations["in the cold"]:0.0} / {r.Situations["in the heat"]:0.0} |");
+            L($"| {name} | {r.Role} | {r.For} | **{r.Overall:0.0}** | {r.OverallShooter:0.0} / {r.OverallMelee:0.0} | {s["guns"]:0.0} / {s["melee"]:0.0} / {s["fire"]:0.0} / {s["mechanoids"]:0.0} | {s["cold"]:0.0} / {s["heat"]:0.0} | {r.Situations["in the cold"]:0.0} / {r.Situations["in the heat"]:0.0} |");
         }
         L();
         L($"The flak vest ({A("flak vest").Overall:0.0}) rates above the flak jacket ({A("flak jacket").Overall:0.0}): its 100% sharp armour over the torso stops more");
         L("than the jacket's 55% over the torso and arms; the jacket's warmth and its place on the shell layer are its own gains (a");
         L("flak vest goes under a duster or a parka). Plate armour's steel stops nearly as much as recon armour, but its 0.8 cells a");
         L("second slower walk costs a fifth of a melee fighter's fight.");
+        L();
+        var hp = A("heavy plate helmet");
+        L($"The heavy plate helmet is a melee fighter's: 8 levels off shooting leave a shooter at x{hp.FightShooter:0.00} of their fight, a melee");
+        L($"fighter at x{hp.FightMelee:0.00}. It still rates {hp.OverallMelee:0.0} for them: its 2 levels off melee hit (74% to 68% a blow, about 8% less");
+        L("damage dealt) cost more than its armour gives: a steel simple helmet's and a tenth more, over the whole head, lasting its");
+        L("wearer about 2% longer. By the game's roll a helmet's armour counts for little: the head takes 6% of shots and 8% of");
+        L("blows, and a longsword's 35% piercing leaves 15% of the helmet's 50% sharp armour to roll against.");
         L();
         L("## Surprises");
         L();
@@ -269,7 +285,9 @@ public static class Readme
         L();
         L("## The review");
         L();
-        L("Sorted by rating within each table. Protection: against guns / melee / fire / mechanoids (how much longer the wearer");
+        L("Sorted by rating within each table. Shooter / melee: the piece's rating for a shooter and for a melee fighter, where they");
+        L("differ by half a point or more (the rating is the one it is made for, marked, or the mix when it suits both).");
+        L("Protection: against guns / melee / fire / mechanoids (how much longer the wearer");
         L("lasts, on the sub-ratings' scale). In the cold / heat: the overall in that climate. By stuff: the piece in each common stuff");
         L("of its kind. Tags in the order of importance; the line in plain words is the mod's own.");
         L();
@@ -281,14 +299,17 @@ public static class Readme
             L($"### {tableNames[t]} ({list.Count})");
             L();
             L(combat
-                ? "| Rating | Piece | Mod | Age | Stuff | Guns / melee / fire / mech | Cold / heat °C | In the cold / heat | By stuff | Tags | In plain words |"
-                : "| Rating | Piece | Mod | Age | Stuff | Sub-ratings | Cold / heat °C | In the cold / heat | By stuff | Tags | In plain words |");
-            L("|---|---|---|---|---|---|---|---|---|---|---|");
+                ? "| Rating | Shooter / melee | Piece | Mod | Age | Stuff | Guns / melee / fire / mech | Cold / heat °C | In the cold / heat | By stuff | Tags | In plain words |"
+                : "| Rating | Shooter / melee | Piece | Mod | Age | Stuff | Sub-ratings | Cold / heat °C | In the cold / heat | By stuff | Tags | In plain words |");
+            L("|---|---|---|---|---|---|---|---|---|---|---|---|");
             foreach (var p in list)
             {
                 var r = p.Rating;
                 string rating = $"**{r.Overall:0.0}**" + (p.Facts.Unsure.Count > 0 ? " *(rough)*" : "");
-                L($"| {rating} | {Cell(p.Facts.Label)} | {Cell(p.Facts.ModName)} | {Tech(p.Facts.TechLevel)} | {Cell(p.Facts.StuffLabel)} | {Subs(p, combat)} | " +
+                string both = Math.Abs(r.OverallShooter - r.OverallMelee) >= 0.5f
+                    ? (r.For == "a shooter" ? $"**{r.OverallShooter:0.0}** / {r.OverallMelee:0.0}" : r.For == "a melee fighter" ? $"{r.OverallShooter:0.0} / **{r.OverallMelee:0.0}**" : $"{r.OverallShooter:0.0} / {r.OverallMelee:0.0}")
+                    : "";
+                L($"| {rating} | {both} | {Cell(p.Facts.Label)} | {Cell(p.Facts.ModName)} | {Tech(p.Facts.TechLevel)} | {Cell(p.Facts.StuffLabel)} | {Subs(p, combat)} | " +
                   $"{r.Cold:0.#} / {r.HeatInsulation:0.#} | {r.Situations["in the cold"]:0.0} / {r.Situations["in the heat"]:0.0} | {Cell(Stuffs(p))} | {Cell(Tags(p))} | {Cell(p.Plain)} |");
             }
             L();

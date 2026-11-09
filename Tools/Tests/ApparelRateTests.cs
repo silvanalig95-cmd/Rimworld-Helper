@@ -132,6 +132,12 @@ public static class ApparelAnchors
         ["cowboy hat"] = () => Stuffed("cowboy hat", "DevilstrandCloth", 0.2f, 0.1f, 0.5f, new[] { "UpperHead" }, new[] { "Overhead" }, 80, 0.14f, ("SocialImpact", 0.1f)),
         ["psychic foil helmet"] = () => Made("psychic foil helmet", 0.09f, 0.09f, 0.27f, 2f, 1f, new[] { "UpperHead" }, new[] { "Overhead" }, 80, 1, ("PsychicSensitivity", -0.9f)),
         ["eltex skullcap"] = () => Made("eltex skullcap", 0f, 0f, 0f, 0f, 0f, new[] { "UpperHead" }, new[] { "Overhead" }, 80, 0.8f, ("PsychicSensitivityOffset", 0.4f), ("PsychicEntropyRecoveryRate", 0.091f)),
+        // For the two wearers: Royalty's gunlink (a shooter's), VFE Medieval 2's heavy plate helmet (a melee fighter's),
+        // and Vanilla Armour Expanded's plate gloves (made as armour, rated with clothing).
+        ["gunlink"] = () => Made("gunlink", 0f, 0f, 0f, 0f, 0f, new[] { "UpperHead" }, new[] { "Overhead" }, 120, 1f, ("ShootingAccuracyPawn", 3f)),
+        ["heavy plate helmet"] = () => Stuffed("heavy plate helmet", "Steel", 0.55f, 0.15f, 0f, new[] { "FullHead" }, new[] { "Overhead" }, 150, 3.5f,
+            ("MeleeHitChance", -2f), ("ShootingAccuracyPawn", -8f)),
+        ["plate gloves"] = () => Stuffed("plate gloves", "Steel", 0.4f, 0.15f, 0f, new[] { "Hands" }, new[] { "Middle" }, 100, 2.2f, ("WorkSpeedGlobal", -0.05f)),
     };
 
     /// <summary>A piece's role is judged in plain stuff (cloth for fabric, steel for metal), as the review judges it.</summary>
@@ -210,6 +216,8 @@ public static class ApparelRateTests
             "a shield that recharges faster than the fire never breaks, and still lets some through (an EMP shot, a heavy volley)");
         C(R["shield belt"].Role == "utility" && R["shield belt"].For == "a melee fighter" && R["shield belt"].Situations["for a shooter"] == 1f,
             "the shield belt is utility for a melee fighter, and nothing for a shooter");
+        C(R["shield belt"].OverallShooter == 1f && R["shield belt"].OverallMelee >= 7f && R["shield belt"].Overall == R["shield belt"].OverallMelee,
+            $"the shield belt rates {R["shield belt"].OverallMelee} for a melee fighter, 1.0 for a shooter, and is rated for the melee fighter");
         C(R["shield belt"].Toughness["guns"] > 1.6f && Near(R["shield belt"].Toughness["melee"], 1f), "it stops shots, not blows");
         C(R["jump pack"].FightMelee > R["jump pack"].FightShooter, "a jump helps a melee fighter's charge more than a shooter");
         C(R["smokepop pack"].Toughness["guns"] > 1.1f && Near(R["smokepop pack"].Toughness["melee"], 1f), "smoke spoils shots, not blows");
@@ -250,6 +258,37 @@ public static class ApparelRateTests
         foreach (var (name, r) in R)
             C(r.Overall >= 1f && r.Overall <= 10f && Math.Abs(r.Overall * 10f - Math.Round(r.Overall * 10f)) < 0.001f, name + " rates 1.0 to 10.0 with one decimal");
 
+        // ---------- Two wearers: a shooter and a melee fighter ----------
+        foreach (var (name, r) in R)
+        {
+            bool clear = r.For != "anyone";
+            float chosen = r.For == "a shooter" ? r.OverallShooter : r.For == "a melee fighter" ? r.OverallMelee : r.Overall;
+            C(chosen == r.Overall && (!clear || r.Overall >= Math.Min(r.OverallShooter, r.OverallMelee)),
+                $"{name}: rated for {r.For} ({r.Overall}; shooter {r.OverallShooter}, melee {r.OverallMelee})");
+            C(clear || r.Overall >= Math.Min(r.OverallShooter, r.OverallMelee) - 0.05f && r.Overall <= Math.Max(r.OverallShooter, r.OverallMelee) + 0.05f,
+                name + ": a piece for anyone rates between its shooter's and its melee fighter's ratings");
+        }
+        foreach (var name in new[] { "flak vest", "flak jacket", "marine armor", "cataphract armor", "recon helmet", "marine helmet", "parka" })
+            C(R[name].For == "anyone" && Math.Abs(R[name].OverallShooter - R[name].OverallMelee) <= 0.3f,
+                $"plain armour and clothes suit both: {name} {R[name].OverallShooter} for a shooter, {R[name].OverallMelee} for a melee fighter");
+        C(R["plate armor"].For == "anyone" && R["plate armor"].OverallShooter > R["plate armor"].OverallMelee,
+            "plate armour's slow walk costs a melee fighter more, but the walk alone doesn't make it a shooter's");
+        C(R["gunlink"].For == "a shooter" && R["gunlink"].Overall == R["gunlink"].OverallShooter && R["gunlink"].OverallShooter >= R["gunlink"].OverallMelee + 3f,
+            $"the gunlink is a shooter's: {R["gunlink"].OverallShooter} for a shooter, {R["gunlink"].OverallMelee} for a melee fighter");
+        C(R["jump pack"].For == "a melee fighter" && R["jump pack"].OverallMelee > R["jump pack"].OverallShooter,
+            $"the jump pack is a melee fighter's: {R["jump pack"].OverallMelee} against {R["jump pack"].OverallShooter}");
+        var hp = R["heavy plate helmet"];
+        C(hp.For == "a melee fighter" && hp.Role == "helmet" && hp.FightMelee > 2f * hp.FightShooter && hp.OverallMelee >= hp.OverallShooter,
+            $"VFE Medieval 2's heavy plate helmet is a melee fighter's (fight x{hp.FightMelee:0.00} against a shooter's x{hp.FightShooter:0.00}: 8 levels off shooting)");
+        C(hp.FightMelee < 1f && hp.OverallMelee <= 2f,
+            $"and by the game's numbers it still costs a melee fighter more than it gives: 2 levels off melee hit (74% to 68%) against a head's armour (x{hp.FightMelee:0.00}, {hp.OverallMelee})");
+        var gap = new ApparelFacts { Label = "small aim", Groups = new List<string> { "UpperHead" }, Layers = new List<string> { "Overhead" } };
+        gap.StatBases["MaxHitPoints"] = 80f;
+        gap.Offsets["ShootingAccuracyPawn"] = 0.5f;
+        C(ApparelRateMath.Rate(gap).For == "anyone", "a small aim bonus (under a tenth more for a shooter) suits both");
+        gap.Offsets["ShootingAccuracyPawn"] = 3f;
+        C(ApparelRateMath.Rate(gap).For == "a shooter", "a gunlink's aim (+3 levels) is a tenth more for a shooter: rated for one");
+
         // ---------- The scale ----------
         C(ApparelRateMath.Scale(0f, 0.5f, 0.5f) == 1f && ApparelRateMath.Scale(0.5f, 0.5f, 0.5f) == 5.5f, "no worth is 1.0, the role's middle is 5.5");
         C(ApparelRateMath.Scale(50f, 0.5f, 0.5f) < 10f || ApparelRateMath.Scale(50f, 0.5f, 0.5f) == 10f, "a soft top");
@@ -276,7 +315,21 @@ public static class ApparelRateTests
         var vestTags = ApparelTagMath.For(R["flak vest"], ApparelAnchors.Pieces["flak vest"]()).Select(x => x.Id).ToList();
         C(vestTags.Contains("slows") && vestTags.Contains("thin-cover"), "a flak vest slows you and covers little");
         var beltTags = ApparelTagMath.For(R["shield belt"], ApparelAnchors.Pieces["shield belt"]()).Select(x => x.Id).ToList();
-        C(beltTags.Contains("shield") && beltTags.Contains("blocks-shooting") && beltTags.Contains("melee-only"), "the shield belt: Shield, Blocks shooting, Melee fighters only");
+        C(beltTags.Contains("shield") && beltTags.Contains("blocks-shooting") && beltTags.Contains("role-melee"), "the shield belt: Shield, Blocks shooting, For melee fighters");
+        var helmTags = ApparelTagMath.For(hp, ApparelAnchors.Pieces["heavy plate helmet"]());
+        C(helmTags.Any(x => x.Id == "role-melee") && helmTags.First(x => x.Category == TagCategory.Weakness).Id == "worse-aim",
+            "the heavy plate helmet: For melee fighters, and Spoils your aim first among its weaknesses: " + string.Join(", ", helmTags.Select(x => x.Label)));
+        var gunTags = ApparelTagMath.For(R["gunlink"], ApparelAnchors.Pieces["gunlink"]()).Select(x => x.Id).ToList();
+        C(gunTags.Contains("role-shooter") && gunTags.Contains("aim") && !gunTags.Contains("role-melee"), "the gunlink: For shooters, Steadier aim");
+        C(ApparelTagMath.Line(R["gunlink"], ApparelTagMath.For(R["gunlink"], ApparelAnchors.Pieces["gunlink"]())).Contains("for a shooter"), "the gunlink's line says it is a shooter's");
+        var gloves = R["plate gloves"];
+        var gloveTags = ApparelTagMath.For(gloves, ApparelAnchors.Pieces["plate gloves"]());
+        string gloveLine = ApparelTagMath.Line(gloves, gloveTags);
+        C(gloves.Role == "everyday clothing" && gloveTags[0].Id == "role-armour-piece" && gloveTags[0].Label == "Armour for the hands" &&
+          !gloveTags.Any(x => x.Id == "role-everyday") && gloveLine.Contains("armour for the hands"),
+            "plate gloves, rated with clothing, say what they are: " + string.Join(", ", gloveTags.Select(x => x.Label)) + "; " + gloveLine);
+        var vestPiece = ApparelTagMath.For(R["flak vest"], ApparelAnchors.Pieces["flak vest"]()).Select(x => x.Id).ToList();
+        C(!vestPiece.Contains("role-armour-piece") && !vestPiece.Contains("role-melee") && !vestPiece.Contains("role-shooter"), "a flak vest is body armour for anyone, no more tags");
         var parkaTags = ApparelTagMath.For(R["parka"], ApparelAnchors.Pieces["parka"]()).Select(x => x.Id).ToList();
         C(parkaTags.Contains("warm") && parkaTags.Contains("role-cold"), "the parka: Cold-weather, Warm");
         var jumpTags = ApparelTagMath.For(R["jump pack"], ApparelAnchors.Pieces["jump pack"]()).Select(x => x.Id).ToList();

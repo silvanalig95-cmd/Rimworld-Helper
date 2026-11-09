@@ -38,10 +38,11 @@ namespace ColonyCouncil
             D("role-trader", "Trader's", O, 62, "makes its wearer's talks and trade 5% better or more"),
             D("role-medic", "Medic's", O, 60, "better tending or surgery"),
             D("role-hunter", "Hunter's", O, 60, "hunting stealth 20% or more, or camouflage"),
-            D("role-melee", "Melee fighter's", O, 64, "rated for a melee fighter (it blocks shooting or is an off-hand shield)"),
+            D("role-melee", "For melee fighters", O, 94, "rated for a melee fighter: it blocks shooting, is an off-hand shield, or does a tenth more for a melee fighter than for a shooter (how much longer they last times how much more they deal, the walk aside)"),
             D("role-spacer", "Spacefarer's", O, 62, "vacuum resistance of 30% or more, or an oxygen supply"),
             D("role-slave", "For slaves", O, 58, "slave apparel, or raises a slave's suppression"),
-            D("role-shooter", "Shooter's", O, 62, "better shooting accuracy, quicker aim or a shorter cooldown between shots"),
+            D("role-shooter", "For shooters", O, 94, "rated for a shooter: it does a tenth more for a shooter than for a melee fighter (how much longer they last times how much more they deal, the walk aside)"),
+            D("role-armour-piece", "Made as armour", O, 80, "not rated as body armour or a helmet, but made as armour (its stuff's armour counts at 40% or more): named for what it covers, armour for the hands, the feet or the head, an armoured cloak"),
             D("role-builder", "Builder's", O, 61, "better construction, smoothing or repairs"),
             D("role-researcher", "Researcher's", O, 61, "faster research or entity study"),
             D("role-cook", "Cook's", O, 61, "faster cooking or butchering, less food poisoning"),
@@ -58,7 +59,7 @@ namespace ColonyCouncil
             D("role-hat", "Hat", O, 50, "worn on the upper head"),
             D("role-mask", "Mask or hood", O, 50, "covers the face, the mouth or the whole head"),
             D("role-eyewear", "Eyewear", O, 50, "worn over the eyes"),
-            D("role-looks", "Worn for looks", O, 48, "it does little else: worth under 2% of a colonist in every area"),
+            D("role-looks", "Worn for looks", O, 48, "it does little else: worth under 2% of a colonist in every area, and not made as armour"),
             D("stops-bullets", "Stops bullets", S, 88, "rates 7 or more against guns"),
             D("turns-blades", "Turns blades", S, 86, "rates 7 or more against blades, fists and animals"),
             D("holds-mechs", "Holds off mechs", S, 84, "rates 7 or more against mechanoids"),
@@ -68,7 +69,7 @@ namespace ColonyCouncil
             D("light", "Light", S, 70, "armour of 5 kg or less that doesn't slow its wearer"),
             D("full-cover", "Full cover", S, 74, "armour over 80% or more of where shots land"),
             D("quick", "Quick feet", S, 72, "speeds its wearer up"),
-            D("aim", "Steadier aim", S, 72, "better shooting accuracy or quicker aim"),
+            D("aim", "Steadier aim", S, 72, "better shooting accuracy or quicker aim (with both a gain and a cost, by what a shooter deals in the end)"),
             D("melee-edge", "Melee edge", S, 70, "better melee hit, damage or dodge"),
             D("painproof", "Shrugs off pain", S, 70, "pain shock threshold up by 10% or more"),
             D("steady", "Steady nerves", S, 68, "a lower mental break threshold"),
@@ -83,8 +84,8 @@ namespace ColonyCouncil
             D("weak-blunt", "Weak to blunt", W, 72, "armour whose blunt rating is under a third of its sharp: fists, clubs and paws get through"),
             D("mechs-pierce", "Mechs pierce it", W, 70, "armour that rates 2 or more lower against mechanoids than against guns"),
             D("no-warmth", "No warmth", W, 64, "body armour with under 10 °C of cold insulation: useless in a blizzard"),
-            D("worse-aim", "Worse aim", W, 80, "lower shooting accuracy or slower aim"),
-            D("clumsy", "Clumsy", W, 74, "lower melee hit or dodge"),
+            D("worse-aim", "Spoils your aim", W, 80, "lower shooting accuracy or slower aim (first among the weaknesses on a piece for melee fighters)"),
+            D("clumsy", "Clumsy in melee", W, 74, "lower melee hit or dodge (first among the weaknesses on a piece for shooters)"),
             D("slows-work", "Slows work", W, 76, "lower work speed"),
             D("disables-work", "Bars work", W, 82, "its wearer can't do some work, or learns nothing"),
             D("off-putting", "Off-putting", W, 64, "lowers social impact or negotiation"),
@@ -130,7 +131,6 @@ namespace ColonyCouncil
             D("one-gender", "Women only", N, 76, "only one gender can wear it (or is meant to)"),
             D("children-only", "Children only", N, 88, "made for children"),
             D("one-handed", "Light weapon only", N, 82, "works only with a weapon under 1.65 kg that Dual Wield allows in the off hand"),
-            D("melee-only", "Melee fighters only", N, 88, "its shield stops its wearer's shots"),
             D("research", "Advanced research", N, 45, "made only after spacer or ultra research"),
             D("hard-to-get", "Hard to find", N, 89, "no recipe in the player's game makes it and no faction's people wear it"),
             D("biocoded", "Biocodable", N, 40, "can be biocoded to one colonist"),
@@ -175,7 +175,36 @@ namespace ColonyCouncil
             // ---- Role ----
             string roleId = RoleTag.TryGetValue(r.Role, out var rid) ? rid : "role-everyday";
             if (r.Role == "ceremonial or psychic" && r.Areas["psychic"] + r.Areas["magic"] > r.Areas["social"]) roleId = "role-psychic";
-            Add(roleId, roleId == "role-psychic" ? "its psychic or magic worth outweighs its fight" : RoleWhy(r));
+            string piece = ArmourPiece(r, a);
+            if (piece != null)
+            {
+                float mult = ApparelRateMath.Stat(a.StatBases, "StuffEffectMultiplierArmor");
+                bool clothes = r.Role == "everyday clothing" || r.Role == "headgear";
+                string why = (mult > 0f ? "its stuff's armour counts at " + P(mult) + (clothes ? " (" + (r.Slot == "head" ? "a helmet's" : "body armour's") + " line is 45%)" : "") + ": " : "") +
+                    P(r.Sharp) + " sharp" + (a.StuffLabel != "" ? " in " + a.StuffLabel : "") +
+                    (r.Slot == "body" && r.Coverage < 0.05f ? ", over only " + P(r.Coverage) + " of where shots land" : "") +
+                    (clothes ? "" : "; rated with " + RoleNoun(r.Role) + " for what it does most");
+                // Everyday clothing that is made as armour is named for what it is, in the role tag's place.
+                Add("role-armour-piece", why, piece, r.Role == "everyday clothing" ? 15 : 0);
+            }
+            if (piece == null || r.Role != "everyday clothing") Add(roleId, roleId == "role-psychic" ? "its psychic or magic worth outweighs its fight" : RoleWhy(r));
+            string both = "rates " + R1(r.OverallMelee) + " for a melee fighter, " + R1(r.OverallShooter) + " for a shooter";
+            if (r.For == "a melee fighter")
+                Add("role-melee", (ApparelRateMath.BlocksShooting(a) ? "its shield blocks shooting" : a.OffHandCovers != null ? "an off-hand shield, for a sword or a pistol"
+                    : Off("ShootingAccuracyPawn") < 0f ? "shooting accuracy " + F0(Off("ShootingAccuracyPawn")) + " levels"
+                    : Off("AimingDelayFactor") > 0f ? "aims " + P(Off("AimingDelayFactor")) + " slower"
+                    : Off("MeleeHitChance") > 0f ? "melee hit +" + F0(Off("MeleeHitChance")) + " levels"
+                    : Off("MeleeDodgeChance") > 0f ? "melee dodge +" + F0(Off("MeleeDodgeChance")) + " levels"
+                    : Off("MeleeDamageFactor") > 0f ? "melee damage +" + P(Off("MeleeDamageFactor"))
+                    : a.Powers.Exists(p => p.Kind == "jump" && p.Counted) ? "a jump closes the distance"
+                    : P((float)Math.Exp(r.Lean) - 1f) + " more for a melee fighter") + ": " + both);
+            if (r.For == "a shooter")
+                Add("role-shooter", (Off("ShootingAccuracyPawn") > 0f ? "shooting accuracy +" + F0(Off("ShootingAccuracyPawn")) + " levels"
+                    : Off("AimingDelayFactor") < 0f ? "aims " + P(-Off("AimingDelayFactor")) + " faster"
+                    : ApparelRateMath.RangedCooldownFactorOf(a) < 1f || Off("RangedCooldownFactor") < 0f ? "a shorter cooldown between shots"
+                    : Off("MeleeHitChance") < 0f ? "melee hit " + F0(Off("MeleeHitChance")) + " levels"
+                    : Off("MeleeDodgeChance") < 0f ? "melee dodge " + F0(Off("MeleeDodgeChance")) + " levels"
+                    : P((float)Math.Exp(-r.Lean) - 1f) + " more for a shooter") + ": " + both);
             if (a.Titles.Count > 0)
             {
                 var lowest = a.Titles[0];
@@ -188,13 +217,10 @@ namespace ColonyCouncil
             if (r.Areas["social"] >= 0.05f) Add("role-trader", "talks and trade about " + P(r.Areas["social"]) + " better");
             if (Off("MedicalTendQuality") > 0f || Off("MedicalSurgerySuccessChance") > 0f) Add("role-medic", "tending +" + P(Off("MedicalTendQuality")) + ", surgery +" + P(Off("MedicalSurgerySuccessChance")));
             if (Off("HuntingStealth") >= 0.2f || a.Camouflage) Add("role-hunter", a.Camouflage ? "camouflage" : "hunting stealth +" + P(Off("HuntingStealth")));
-            if (r.For == "a melee fighter") Add("role-melee", ApparelRateMath.BlocksShooting(a) ? "its shield blocks shooting: for a melee fighter" : "an off-hand shield for a sword or a pistol");
             float vac = Off("VacuumResistance");
             bool oxygen = a.Powers.Exists(p => p.Kind == "oxygen");
             if (vac >= 0.3f || oxygen) Add("role-spacer", oxygen ? "carries its own oxygen" : "vacuum resistance " + P(vac));
             if (a.SlaveApparel || Off("SlaveSuppressionOffset") > 0f) Add("role-slave", a.SlaveApparel ? "slave apparel" : "slave suppression +" + P(Off("SlaveSuppressionOffset")));
-            if (Off("ShootingAccuracyPawn") > 0f || Off("AimingDelayFactor") < 0f || ApparelRateMath.RangedCooldownFactorOf(a) < 1f || Off("RangedCooldownFactor") < 0f)
-                Add("role-shooter", "helps its wearer shoot");
             foreach (var (id, stats) in WorkKinds)
             {
                 string best = null;
@@ -235,8 +261,19 @@ namespace ColonyCouncil
             if (combat && mass > 0f && mass <= 5f && move >= 0f && r.Sharp >= 0.4f) Add("light", F0(mass) + " kg, no slower walk");
             if (combat && !head && r.Coverage >= 0.8f) Add("full-cover", "covers " + P(r.Coverage) + " of where shots land");
             if (move > 0f) Add("quick", "+" + F0(move) + " cells a second");
-            if (Off("ShootingAccuracyPawn") > 0f || Off("AimingDelayFactor") < 0f || ApparelRateMath.RangedCooldownFactorOf(a) < 1f)
-                Add("aim", Off("ShootingAccuracyPawn") > 0f ? "shooting accuracy +" + F0(Off("ShootingAccuracyPawn")) + " levels" :
+            // Aim up and aim down on one piece (a ghillie hood: a little more accurate, slower to aim) is one tag, by what a shooter deals.
+            bool aimUp = Off("ShootingAccuracyPawn") > 0f || Off("AimingDelayFactor") < 0f || ApparelRateMath.RangedCooldownFactorOf(a) < 1f;
+            bool aimDown = Off("ShootingAccuracyPawn") < 0f || Off("AimingDelayFactor") > 0f;
+            string aimBoth = "";
+            if (aimUp && aimDown)
+            {
+                float shot = ApparelRateMath.Output(a).shooter;
+                aimBoth = "shooting accuracy " + (Off("ShootingAccuracyPawn") > 0f ? "+" : "") + F0(Off("ShootingAccuracyPawn")) + " levels, aims " +
+                    P(Math.Abs(Off("AimingDelayFactor"))) + (Off("AimingDelayFactor") > 0f ? " slower" : " faster") + ": a shooter deals x" + shot.ToString("0.00", CultureInfo.InvariantCulture);
+                if (shot >= 1f) aimDown = false; else aimUp = false;
+            }
+            if (aimUp)
+                Add("aim", aimBoth != "" ? aimBoth : Off("ShootingAccuracyPawn") > 0f ? "shooting accuracy +" + F0(Off("ShootingAccuracyPawn")) + " levels" :
                     Off("AimingDelayFactor") < 0f ? "aims " + P(-Off("AimingDelayFactor")) + " faster" : "shorter cooldown between shots");
             if (Off("MeleeHitChance") > 0f || Off("MeleeDamageFactor") > 0f || Off("MeleeDodgeChance") > 0f)
                 Add("melee-edge", Off("MeleeDodgeChance") > 0f ? "melee dodge +" + F0(Off("MeleeDodgeChance")) + " levels" :
@@ -253,16 +290,18 @@ namespace ColonyCouncil
 
             // ---- Weaknesses ----
             if (move < 0f) Add("slows", "slows its wearer by " + F0(-move) + " cells a second (" + P(-move / ApparelRateMath.BaseMoveSpeed) + ")");
-            if (ApparelRateMath.BlocksShooting(a)) Add("blocks-shooting", "its wearer can't shoot while it is on");
+            if (ApparelRateMath.BlocksShooting(a)) Add("blocks-shooting", "its wearer can't shoot while it is on: " + R1(r.OverallShooter) + " for a shooter");
             if (ApparelRateMath.CapacityFactor(a, "Sight") < 0.5f) Add("blinds", "sight held at " + P(ApparelRateMath.CapacityFactor(a, "Sight")));
             if (combat && !head && r.Coverage < 0.5f && a.OffHandCovers == null) Add("thin-cover", "covers only " + P(r.Coverage) + " of where shots land");
             if (combat && r.Sharp >= 0.4f && r.Blunt < r.Sharp / 3f) Add("weak-blunt", "blunt armour " + P(r.Blunt) + " against sharp " + P(r.Sharp));
             if (combat && sGuns - sMech >= 2f) Add("mechs-pierce", "rates " + F0(sMech) + " against mechanoids, " + F0(sGuns) + " against guns");
             if (r.Role == "body armour" && r.Cold < 10f) Add("no-warmth", "only " + F0(r.Cold) + " °C of cold insulation");
-            if (Off("ShootingAccuracyPawn") < 0f || Off("AimingDelayFactor") > 0f)
-                Add("worse-aim", Off("ShootingAccuracyPawn") < 0f ? "shooting accuracy " + F0(Off("ShootingAccuracyPawn")) + " levels" : "aims " + P(Off("AimingDelayFactor")) + " slower");
+            if (aimDown)
+                Add("worse-aim", (aimBoth != "" ? aimBoth : Off("ShootingAccuracyPawn") < 0f ? "shooting accuracy " + F0(Off("ShootingAccuracyPawn")) + " levels" : "aims " + P(Off("AimingDelayFactor")) + " slower") +
+                    (r.For == "a melee fighter" ? ": " + R1(r.OverallShooter) + " for a shooter" : ""), null, r.For == "a melee fighter" ? 13 : 0);
             if (Off("MeleeHitChance") < 0f || Off("MeleeDodgeChance") < 0f)
-                Add("clumsy", Off("MeleeDodgeChance") < 0f ? "melee dodge " + F0(Off("MeleeDodgeChance")) + " levels" : "melee hit " + F0(Off("MeleeHitChance")) + " levels");
+                Add("clumsy", (Off("MeleeDodgeChance") < 0f ? "melee dodge " + F0(Off("MeleeDodgeChance")) + " levels" : "melee hit " + F0(Off("MeleeHitChance")) + " levels") +
+                    (r.For == "a shooter" ? ": " + R1(r.OverallMelee) + " for a melee fighter" : ""), null, r.For == "a shooter" ? 19 : 0);
             if (Off("WorkSpeedGlobal") < 0f) Add("slows-work", "work speed " + P(Off("WorkSpeedGlobal")));
             if (!string.IsNullOrEmpty(a.WorkDisables) || a.SkillGainZero) Add("disables-work", a.SkillGainZero ? "its wearer learns nothing" : "no " + a.WorkDisables.ToLowerInvariant() + " work");
             if (Off("SocialImpact") < 0f || Off("NegotiationAbility") < 0f) Add("off-putting", "social impact " + P(Off("SocialImpact")));
@@ -339,7 +378,6 @@ namespace ColonyCouncil
             if (a.Gender != "") Add("one-gender", a.Gender + " only", a.Gender == "Male" ? "Men only" : "Women only");
             if (a.Ages == "Child") Add("children-only", "made for children");
             if (a.OffHandCovers != null) Add("one-handed", "only with a weapon under 1.65 kg that Dual Wield takes in the off hand");
-            if (ApparelRateMath.BlocksShooting(a)) Add("melee-only", "its shield stops its wearer's shots");
             if (a.Research != "" && (a.ResearchTech == "Spacer" || a.ResearchTech == "Ultra" || a.ResearchTech == "Archotech")) Add("research", "needs " + a.Research + " to make");
             if (a.HardToGet) Add("hard-to-get", "no recipe makes it and no faction wears it: only a trader, a quest or an event brings it");
             if (a.Biocodable) Add("biocoded", "can be biocoded to one colonist");
@@ -364,7 +402,7 @@ namespace ColonyCouncil
                 }
             float any = 0f;
             foreach (var kv in r.Areas) any = Math.Max(any, Math.Abs(kv.Value));
-            if (any < 0.02f && a.Powers.Count == 0 && a.Shields.Count == 0) Add("role-looks", "no area is worth 2% of a colonist");
+            if (any < 0.02f && a.Powers.Count == 0 && a.Shields.Count == 0 && piece == null) Add("role-looks", "no area is worth 2% of a colonist");
             return WeaponTagMath.Pick(all, max);
         }
 
@@ -397,6 +435,35 @@ namespace ColonyCouncil
         }
 
         static string Pct(float v) => Math.Round(v * 100f).ToString("0", CultureInfo.InvariantCulture) + "%";
+
+        static string R1(float v) => v.ToString("0.0", CultureInfo.InvariantCulture);
+
+        static string RoleNoun(string role) => role == "everyday clothing" ? "everyday clothing" : role.EndsWith("gear") || role == "headgear" ? role
+            : role == "ceremonial or psychic" ? "ceremonial and psychic pieces" : role;
+
+        /// <summary>
+        /// A piece that isn't rated as body armour, a helmet or a shield but is made as armour (its stuff's armour counts at
+        /// 40% or more, or, made of no stuff, its own sharp armour is 40% or more): named for what it covers. Null otherwise.
+        /// </summary>
+        public static string ArmourPiece(ApparelRating r, ApparelFacts a)
+        {
+            if (r.Role == "body armour" || r.Role == "helmet" || r.Role == "off-hand shield" || r.Role == "utility") return null;
+            float mult = ApparelRateMath.Stat(a.StatBases, "StuffEffectMultiplierArmor");
+            bool made = a.StuffDef != "" ? mult >= 0.4f : r.Sharp >= 0.4f;
+            if (!made) return null;
+            if (r.Slot == "head") return "Armour for the head";
+            bool hands = true, feet = true;
+            foreach (var g in a.Groups)
+            {
+                if (g != "Hands" && g != "LeftHand" && g != "RightHand") hands = false;
+                if (g != "Feet") feet = false;
+            }
+            if (a.Groups.Count > 0 && hands) return "Armour for the hands";
+            if (a.Groups.Count > 0 && feet) return "Armour for the feet";
+            bool shell = a.Layers.Contains("Shell") || a.Layers.Contains("TM_Cloak");
+            if (shell && !a.Groups.Contains("Torso") && !a.Groups.Contains("Legs")) return "Armoured cloak";
+            return "Made as armour";
+        }
 
         // ---------------------------------------------------------------- the piece in plain words
 
@@ -445,6 +512,13 @@ namespace ColonyCouncil
                 : o >= 3.5f ? "A modest" : o >= 2.5f ? "A weak" : "A poor";
             string noun = Noun.TryGetValue(r.Role, out var n) ? n : "piece";
             if (r.Role == "helmet" && r.Sharp < 0.2f) noun = "piece of combat headgear";
+            // Everyday clothing is named for what it is: armour for the hands, an armoured cloak, a cloak.
+            if (r.Role == "everyday clothing")
+                foreach (var t in tags)
+                {
+                    if (t.Id == "role-armour-piece" && t.Label != "Made as armour") { noun = t.Label == "Armoured cloak" ? "armoured cloak" : "piece of " + t.Label.ToLowerInvariant(); break; }
+                    if (t.Id == "role-cloak") noun = "cloak";
+                }
             var parts = new List<string>();
             var good = new List<string>();
             var bad = new List<string>();
@@ -464,6 +538,7 @@ namespace ColonyCouncil
             }
             string head = q + " " + noun;
             if (r.For == "a melee fighter") head += " for a melee fighter";
+            else if (r.For == "a shooter") head += " for a shooter";
             return parts.Count == 0 ? head + "." : head + "; " + string.Join("; ", parts) + ".";
         }
     }

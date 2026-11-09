@@ -102,6 +102,7 @@ var anchorDefs = new Dictionary<string, string>
     ["low-shield pack"] = "Apparel_PackBroadshield", ["parka"] = "Apparel_Parka", ["tribalwear"] = "Apparel_TribalA", ["duster"] = "Apparel_Duster",
     ["jacket"] = "Apparel_Jacket", ["T-shirt"] = "Apparel_BasicShirt", ["button-down shirt"] = "Apparel_CollarShirt", ["pants"] = "Apparel_Pants",
     ["tuque"] = "Apparel_Tuque", ["cowboy hat"] = "Apparel_CowboyHat", ["psychic foil helmet"] = "Apparel_PsychicFoilHelmet", ["eltex skullcap"] = "Apparel_EltexSkullcap",
+    ["gunlink"] = "Apparel_Gunlink", ["heavy plate helmet"] = "VFEM2_Apparel_PlateHelmetHeavy", ["plate gloves"] = "VAE_Handwear_PlateGloves",
 };
 foreach (var (name, r) in ApparelAnchors.All())
 {
@@ -133,7 +134,7 @@ foreach (var t in tableOrder)
     Console.WriteLine("  bottom: " + string.Join(", ", list.AsEnumerable().Reverse().Take(6).Select(p => $"{p.Facts.Label} ({p.Facts.ModName}) {p.Rating.Overall:0.0}")));
 }
 foreach (var (name, r) in ApparelAnchors.All())
-    Console.WriteLine($"  anchor {name}: {r.Overall:0.0} ({r.Role}) worth {r.Worth:0.000} fight {r.Fight:0.000} guns {r.Sub["guns"]} melee {r.Sub["melee"]} mech {r.Sub["mechanoids"]} cold {r.Sub["cold"]} heat {r.Sub["heat"]}");
+    Console.WriteLine($"  anchor {name}: {r.Overall:0.0} ({r.Role}, for {r.For}; shooter {r.OverallShooter:0.0}, melee {r.OverallMelee:0.0}) worth {r.Worth:0.000} fight {r.Fight:0.000} guns {r.Sub["guns"]} melee {r.Sub["melee"]} mech {r.Sub["mechanoids"]} cold {r.Sub["cold"]} heat {r.Sub["heat"]}");
 return problems.Count == 0 ? 0 : 1;
 
 // ---------------------------------------------------------------- the JSON
@@ -149,7 +150,7 @@ string Json()
         {
             ["defName"] = a.DefName, ["label"] = a.Label, ["mod"] = a.Mod, ["modName"] = a.ModName, ["techLevel"] = a.TechLevel,
             ["role"] = r.Role, ["table"] = p.Table, ["tableLabel"] = tableNames[p.Table], ["slot"] = r.Slot, ["ratedFor"] = r.For,
-            ["rating"] = r.Overall, ["worth"] = Math.Round(r.Worth, 4),
+            ["rating"] = r.Overall, ["ratingShooter"] = r.OverallShooter, ["ratingMelee"] = r.OverallMelee, ["worth"] = Math.Round(r.Worth, 4),
             ["sub"] = Obj(r.Sub), ["situations"] = Obj(r.Situations), ["areas"] = Obj(r.Areas, 4), ["toughness"] = Obj(r.Toughness, 3),
             ["fight"] = new JsonObject { ["overall"] = Math.Round(r.Fight, 4), ["shooter"] = Math.Round(r.FightShooter, 4), ["melee"] = Math.Round(r.FightMelee, 4) },
             ["armour"] = new JsonObject { ["sharp"] = Math.Round(r.Sharp, 3), ["blunt"] = Math.Round(r.Blunt, 3), ["heat"] = Math.Round(r.Heat, 3) },
@@ -178,6 +179,7 @@ string Json()
     {
         ["about"] = "Every piece of armour and apparel of the player's active mods rated by Rimfolk's apparel rating (Source/ColonyCouncil/Apparel/ApparelRateMath.cs); see docs/apparel/README.md.",
         ["referenceWearer"] = "A human colonist, Shooting 8 and Melee 8, no traits, with an assault rifle (a shooter) or a steel longsword (a melee fighter); the piece alone, at normal quality, in its usual stuff.",
+        ["ratedFor"] = "Every piece is rated for the shooter (ratingShooter) and the melee fighter (ratingMelee). ratedFor is 'a melee fighter' when it blocks shooting, is an off-hand shield, or does a tenth more for a melee fighter (toughness times output, the walk aside); 'a shooter' when it does a tenth more for a shooter; then rating is that wearer's. Else 'anyone': rating weighs the shooter's fight three to one over the melee fighter's.",
         ["families"] = new JsonArray(ApparelRateMath.Families.Select(f => (JsonNode)new JsonObject
         {
             ["family"] = f, ["weight"] = ApparelRateMath.FamilyWeights[f],
@@ -201,7 +203,7 @@ string Json()
             ["id"] = d.Id, ["label"] = d.Label, ["category"] = d.Category.ToString(), ["importance"] = d.Importance, ["rule"] = d.Rule
         }).ToArray()),
         ["counts"] = new JsonObject { ["defs"] = all.Count + leftOut.Count, ["rated"] = all.Count, ["leftOut"] = leftOut.Count, ["unsure"] = all.Count(p => p.Facts.Unsure.Count > 0) },
-        ["anchors"] = new JsonArray(ApparelAnchors.All().Select(x => (JsonNode)new JsonObject { ["name"] = x.name, ["role"] = x.r.Role, ["rating"] = x.r.Overall, ["sub"] = Obj(x.r.Sub) }).ToArray()),
+        ["anchors"] = new JsonArray(ApparelAnchors.All().Select(x => (JsonNode)new JsonObject { ["name"] = x.name, ["role"] = x.r.Role, ["ratedFor"] = x.r.For, ["rating"] = x.r.Overall, ["ratingShooter"] = x.r.OverallShooter, ["ratingMelee"] = x.r.OverallMelee, ["sub"] = Obj(x.r.Sub) }).ToArray()),
     };
     var lo = new JsonArray(leftOut.Select(x => (JsonNode)new JsonObject { ["defName"] = Inputs.S(x.n, "defName"), ["label"] = Inputs.S(x.n, "label"), ["mod"] = Inputs.S(x.n, "mod"), ["modName"] = Inputs.S(x.n, "modName"), ["reason"] = x.why }).ToArray());
     var pretty = new JsonSerializerOptions { WriteIndented = true, Encoder = System.Text.Encodings.Web.JavaScriptEncoder.UnsafeRelaxedJsonEscaping };

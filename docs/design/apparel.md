@@ -16,7 +16,9 @@ numbers (`docs/player-mods/apparel_numbers.json.gz`, with the human body's zones
 races, the apparel rules of titles and faiths) and `Tools/ApparelReview` rates them all into `docs/apparel/README.md`
 (how it works, the reference wearer and enemies, the anchors, the tag legend, every table) and `docs/apparel/apparel.json`
 (everything, for the tier-list page and step 3). 509 of the 512 active pieces are rated, 3 left out (they vanish when
-taken off), 63 marked rough (part of what they do lives in a mod's own code, read from it where it could be). The
+taken off), 63 marked rough (part of what they do lives in a mod's own code, read from it where it could be). Every
+piece is rated for a shooter and for a melee fighter (`ratingShooter`, `ratingMelee`); one that clearly suits one of them
+(it blocks shooting, is an off-hand shield, or does a tenth more for one) is rated for that one and tagged so. The
 tier-list page isn't made yet.
 
 1. **One rating from 1.0 to 10.0** for what a piece does for whoever wears it, by the game's own rules: armour (sharp,

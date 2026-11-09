@@ -166,9 +166,16 @@ namespace ColonyCouncil
     {
         public string Role;
         public string Slot;
-        /// <summary>Who it is rated for: anyone, or a melee fighter (it blocks shooting, is an off-hand shield, or costs a shooter what it gives a fighter).</summary>
+        /// <summary>
+        /// Who it is rated for: "a shooter" or "a melee fighter" when it clearly suits one kind (<see cref="ApparelRateMath.SuitsGap"/>:
+        /// it blocks shooting, is an off-hand shield, or does a tenth more for one than for the other, the walk aside), else "anyone".
+        /// </summary>
         public string For = "anyone";
         public float Overall;
+        /// <summary>The overall for each wearer: a shooter (Shooting 8, an assault rifle) and a melee fighter (Melee 8, a steel longsword), on the same role and scale.</summary>
+        public float OverallShooter, OverallMelee;
+        /// <summary>How much more the piece does for a melee fighter than for a shooter, the walk aside: ln(melee / shooter), toughness times output.</summary>
+        public float Lean;
         /// <summary>The worth the overall is made from: what the piece adds to its wearer, as a share of a colonist, by its role's weights.</summary>
         public float Worth;
         public Dictionary<string, float> Sub = new Dictionary<string, float>();
@@ -198,7 +205,9 @@ namespace ColonyCouncil
     /// human body the piece covers, against the reference enemies' attacks: shots land anywhere by the body's coverage,
     /// blows and blasts on the outside, a sharp hit halved by armour goes on as blunt (the next layer meets it as blunt).
     /// What it does in a fight is the wearer's toughness (how many more hits they take before going down) times their
-    /// output (aim, melee hit, the weapon's cycle, what its powers add) times their feet (a slower walk). Everything else
+    /// output (aim, melee hit, the weapon's cycle, what its powers add) times their feet (a slower walk), for two wearers:
+    /// a shooter and a melee fighter. A piece that clearly suits one of them is rated for that one; else the two are mixed,
+    /// three shooters to one melee fighter. Everything else
     /// (warmth, work, talks, the mind, psycasts, mechanitors, magic, toxins, vacuum, carrying, hunting) is a share of what a
     /// colonist gets done. The role weighs the areas, and the scale is the weapon rating's own Laplace curve in the log of
     /// that worth, with a middle and width per role.
@@ -683,8 +692,14 @@ namespace ColonyCouncil
 
         /// <summary>A fight the wearer is in: 30 seconds under the fire of one to two raiders (6 damage a second reaching them).</summary>
         public const float FightSeconds = 30f, IncomingRangedDps = 6f;
-        /// <summary>How the overall weighs a shooter and a melee fighter: three colonists in four fight with guns.</summary>
+        /// <summary>How the overall weighs a shooter and a melee fighter when a piece suits both: three colonists in four fight with guns.</summary>
         public const float ShooterShare = 0.75f;
+        /// <summary>
+        /// A piece clearly suits one kind of fighter when what it does for them (how much longer they last times how much more
+        /// they deal) is a tenth more than for the other: ln 1.1. The walk is left aside, since a slower walk costs every wearer
+        /// (a melee fighter more, which is the weapon rating's own rule, not what the piece is made for).
+        /// </summary>
+        public static readonly float SuitsGap = (float)Math.Log(1.1);
         /// <summary>An enemy taken out of the fight (shocked, sent berserk, caught by a strike) counts as the damage it takes to down one: about 60.</summary>
         public const float EnemyDownValue = 60f;
         /// <summary>A melee fighter crosses about 20 cells under fire to reach the enemy, twice a fight.</summary>
@@ -1286,9 +1301,12 @@ namespace ColonyCouncil
             r.Protection = pS;
             r.FightShooter = pS * oS * mS;
             r.FightMelee = pM * oM * mM;
-            bool meleeOnly = BlocksShooting(a) || a.OffHandCovers != null || (r.FightShooter < 1f && r.FightMelee > 1f);
-            r.For = meleeOnly ? "a melee fighter" : "anyone";
-            r.Fight = meleeOnly ? r.FightMelee : (float)Math.Exp(ShooterShare * Math.Log(Math.Max(r.FightShooter, 0.01f)) + (1f - ShooterShare) * Math.Log(Math.Max(r.FightMelee, 0.01f)));
+            r.Lean = (float)(Math.Log(Math.Max(pM * oM, 0.01f)) - Math.Log(Math.Max(pS * oS, 0.01f)));
+            bool meleeOnly = BlocksShooting(a) || a.OffHandCovers != null || r.Lean >= SuitsGap;
+            bool shooterOnly = !meleeOnly && r.Lean <= -SuitsGap;
+            r.For = meleeOnly ? "a melee fighter" : shooterOnly ? "a shooter" : "anyone";
+            r.Fight = meleeOnly ? r.FightMelee : shooterOnly ? r.FightShooter
+                : (float)Math.Exp(ShooterShare * Math.Log(Math.Max(r.FightShooter, 0.01f)) + (1f - ShooterShare) * Math.Log(Math.Max(r.FightMelee, 0.01f)));
             var t = meleeOnly ? tMelee : tShoot;
             foreach (var fam in Families) r.Toughness[fam] = t[fam];
             r.Areas = AreaWorth(a, r.Fight);
@@ -1296,6 +1314,8 @@ namespace ColonyCouncil
             r.Worth = WorthFor(r.Areas, r.Role);
             var (mid, width) = RoleScale(r.Role);
             r.Overall = Scale(r.Worth, mid, width);
+            r.OverallShooter = Scale(WorthFor(AreaWorth(a, r.FightShooter), r.Role), mid, width);
+            r.OverallMelee = Scale(WorthFor(AreaWorth(a, r.FightMelee), r.Role), mid, width);
 
             // Sub-ratings: protection and insulation by slot, the rest on one scale.
             string slot = r.Slot;
@@ -1324,7 +1344,7 @@ namespace ColonyCouncil
 
             // Situations: the sub-ratings, the fight as a shooter and as a melee fighter, and the overall in the cold and the heat.
             foreach (var kv in r.Sub) r.Situations[kv.Key] = kv.Value;
-            r.Situations["for a shooter"] = meleeOnly && BlocksShooting(a) ? 1f : Sub("shooter", r.FightShooter - 1f);
+            r.Situations["for a shooter"] = BlocksShooting(a) ? 1f : Sub("shooter", r.FightShooter - 1f);
             r.Situations["for a melee fighter"] = Sub("melee fighter", r.FightMelee - 1f);
             r.Situations["in the cold"] = Scale(WorthIn(r.Areas, r.Role, "cold"), mid, width);
             r.Situations["in the heat"] = Scale(WorthIn(r.Areas, r.Role, "heat"), mid, width);
@@ -1334,7 +1354,7 @@ namespace ColonyCouncil
             Specials(a, r);
             BestAndWeak(a, r);
             r.Skill = r.Areas["mech"] > 0.05f ? "mechanitor" : r.Areas["psychic"] > 0.05f ? "psycaster" : r.Areas["magic"] > 0.05f ? "mage"
-                : meleeOnly ? "Melee" : Offset(a, "ShootingAccuracyPawn") > 0f || Offset(a, "AimingDelayFactor") < 0f ? "Shooting"
+                : meleeOnly ? "Melee" : shooterOnly || Offset(a, "ShootingAccuracyPawn") > 0f || Offset(a, "AimingDelayFactor") < 0f ? "Shooting"
                 : r.Areas["social"] > 0.03f ? "Social" : r.Areas["work"] > 0.03f ? "work" : "";
             return r;
         }
@@ -1448,6 +1468,7 @@ namespace ColonyCouncil
             B("magic", "mages", 6f);
             B("hunting", "hunting and stealth", 6f);
             B("for a melee fighter", "melee fighters", 7.5f);
+            B("for a shooter", "shooters", 7.5f);
             if (r.Role == "body armour" || r.Role == "helmet" || r.Role == "off-hand shield")
             {
                 W("guns", "under heavy fire", 3f);
@@ -1457,7 +1478,8 @@ namespace ColonyCouncil
             }
             if (r.Role == "cold-weather gear" && r.HeatInsulation < 2f) r.WeakWhen.Add("in the heat");
             if (r.Role == "hot-weather gear" && r.Cold < 8f) r.WeakWhen.Add("in the cold");
-            if (s.TryGetValue("for a shooter", out var sh) && sh <= 1.5f && BlocksShooting(a)) r.WeakWhen.Add("for a shooter");
+            if (r.For == "a melee fighter" && r.OverallShooter <= 2.5f && r.OverallMelee - r.OverallShooter >= 1f) r.WeakWhen.Add("for a shooter");
+            if (r.For == "a shooter" && r.OverallMelee <= 2.5f && r.OverallShooter - r.OverallMelee >= 1f) r.WeakWhen.Add("for a melee fighter");
             if (Feet(a).melee < 0.92f) r.WeakWhen.Add("chasing or fleeing");
             if (Sensitivity(a) < -0.2f) r.WeakWhen.Add("for a psycaster");
         }
