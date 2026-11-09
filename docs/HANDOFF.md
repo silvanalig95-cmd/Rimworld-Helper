@@ -12,6 +12,51 @@ tree at once, alongside whatever runs. Each piece is merged as its own release, 
 
 ## State (5 November 2026)
 
+- Not released: no version, no What's new round, About.xml and CHANGELOG untouched. Armour and apparel you can judge at a
+  glance, step 1: the rating, its tags and a review of every piece (9 November 2026, `docs/design/apparel.md` points 1 to
+  4). No game-side code: only pure math that builds into the mod, the tools and the docs. The tier-list page isn't made.
+  - The rating (`Source/ColonyCouncil/Apparel/ApparelRateMath.cs`, pure; the scale's shape, the reference fighters and
+    the ability values from `WeaponRateMath`): a piece worn alone by the weapon review's colonist (Shooting and Melee 8,
+    an assault rifle or a steel longsword) at normal quality in its usual stuff (fabric devilstrand, metal steel, leather
+    plain leather, wood, granite), and in the common stuffs of its kind. Protection: the game's armour roll layer by
+    layer (`ArmorUtility`: a sharp hit halved goes on as blunt, armour held at 200%) on the human body's 17 zones (where
+    shots, blows and blunt blows land by the game's coverage; a head hit counts double), against 12 raider guns, 7 melee
+    weapons, 6 animals, 7 mechanoid attacks and fire (guns 45%, melee 15%, animals 15%, mechanoids 20%, fire 5%).
+    The fight = toughness (bare damage over damage worn) x output (aim, melee hit, cooldown, a shield that stops shooting,
+    powers) x feet. A shield takes its share of 6 ranged damage a second over a 30-second fight, at most 85%; powers
+    (jump, smoke, low shield, firefoam, grenades, lances, targeters, summons) once a fight by `WeaponRateMath`'s ability
+    value, together at most half the output. Everything else (cold, heat, work, social, mind, psychic, mech, magic, toxic,
+    vacuum, carry, hunting) is a share of a colonist per stat point (the table in the README). Roles, judged in plain
+    stuff: body armour, helmet, off-hand shield, utility, cold- and hot-weather gear, hazard gear, everyday clothing,
+    headgear, ceremonial or psychic (children's pieces in their own table); each weighs the areas its own way and has
+    its own middle and width; rating = 1 + 9 x `WeaponRateMath.Spread`(ln(worth / middle) / width).
+  - The tags (`ApparelTagMath.cs`, pure): the weapons' one table of kinds, colours and symbols (`WeaponTagMath.Categories`,
+    shared, not copied); 116 tags, each from a threshold rule with the reason in the piece's own numbers, 3 to 7 per
+    piece, most important first; a line in plain words.
+  - The mods' code (decompiled with ilspycmd 9.1 into the scratchpad, never run): VEF's off-hand shields (usable only
+    with a weapon Dual Wield takes in the off hand), shield bubble and field and apparel extension, A RimWorld of Magic's
+    enchantments, VAE Accessories, Fairycore, Vanilla Psycasts Expanded, VFE Empire, Field Medic, Rimatomics, Rimsenal
+    Security and MVCF's mini-turrets. What can't be valued (PokeWorld's code isn't in the upload) is named and marked rough.
+  - Tools: `Tools/apparel_extract.py` (to `docs/player-mods/apparel_numbers.json.gz`: 512 pieces, the stuffs, the body's
+    zones, the reference enemies' weapons and races, title and faith apparel rules, hediffs, the patches that touch a
+    piece); `Tools/weapon_extract.py`'s `patches()` takes the parts and stats to look for (the weapon file it writes is
+    unchanged byte for byte); `Tools/ApparelReview/` (shares the pure files and the tests' anchors, checks the rating's
+    own copies of the body and the enemies against the defs) writes `docs/apparel/README.md` and `docs/apparel/apparel.json`
+    (weapons.json's shape plus situations, the rating by stuff, role, layers, body groups, cold and heat ratings, titles,
+    faiths, gender, ages, patches).
+  - Counts: 512 defs, 509 rated, 3 left out (they vanish when taken off: two mechanoid shield units, a disposable oxygen
+    pack), 63 rough, 32 hard to get. Patches touching 20 pieces are listed, not applied.
+  - Anchors (in the tests): flak vest 3.9, flak pants 2.1, flak jacket 3.2, plate 4.5, recon 6.8, marine 7.1, cataphract
+    7.5; simple helmet 3.5, flak 4.3, recon 7.1, marine 7.2, cataphract 7.4; shield belt 7.6, low-shield pack 5.9, jump
+    pack 5.3, smokepop 3.5; parka 7.1 as cold-weather gear (1.3 against guns), tribalwear 7.5 everyday (1.4), duster 6.5
+    hot-weather. The flak vest above the flak jacket is the numbers' honest answer (100% sharp over the torso against 55%
+    over torso and arms), said in the README.
+  - Tests: `Tools/Tests/ApparelRateTests.cs` (120 checks: the roll, the zones, layers, the cap, shields and powers, roles,
+    the anchors' order and bands, stuff, the scale, the tags' vocabulary, colours and rules).
+  - Soft spots to look at in step 2: VFE Medieval 2's heavy helmets rate 1.0 (8 levels off shooting and 2 off melee
+    outweigh a helmet's armour); small plate pieces (gloves, boots) are everyday clothing (they aren't made as armour by
+    the 45% rule); code-only packs (VFE Deserters', Rimsenal's fortification and omnifoam packs) rate 1.0 rough.
+
 - 0.184.0, weapons you can judge at a glance, step 3: the best weapon for each colonist, colonists who ask, and Rimfolk's
   card first (9 November 2026, `docs/design/weapons.md` points 8 and 9 and the player's "can the rimworld weapon card be
   the default screen"). DESIGN.md

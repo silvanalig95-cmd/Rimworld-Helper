@@ -56,6 +56,8 @@
     <Compile Include="../../Source/ColonyCouncil/Weapons/WeaponWordsMath.cs" Link="WeaponWordsMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Weapons/WeaponForMath.cs" Link="WeaponForMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Weapons/WeaponPickMath.cs" Link="WeaponPickMath.cs" />
+    <Compile Include="../../Source/ColonyCouncil/Apparel/ApparelRateMath.cs" Link="ApparelRateMath.cs" />
+    <Compile Include="../../Source/ColonyCouncil/Apparel/ApparelTagMath.cs" Link="ApparelTagMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/UI/Cards/PreviewMath.cs" Link="PreviewMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/UI/InboxMath.cs" Link="InboxMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/UI/FollowMath.cs" Link="FollowMath.cs" />

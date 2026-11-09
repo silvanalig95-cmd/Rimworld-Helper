@@ -56,6 +56,15 @@ and the active mods' patches that touch it (a `PatchOperationFindMod` followed a
 still not applied). Built by `python3 Tools/weapon_extract.py <collected folder> docs/player-mods/weapon_numbers.json.gz`,
 which reads the collection through `mod_pool.py`'s own loader (its `Pool`); `Tools/WeaponReview` rates it.
 
+`apparel_numbers.json.gz` (9 November 2026, for the apparel rating: `docs/apparel`) holds every piece of apparel of the
+active mods the same way: its stat bases, the stats it changes on its wearer, its layers, body part groups and tags, its
+apparel fields, comps and mod extensions, verbs and abilities, the stuff it is rated in and the common stuffs of its kind,
+the research its recipe needs, which faction kinds wear it, the title and faith apparel rules it meets, why it is left
+out, and the patches that touch it; beside them the stuffs, the human body's zones (where shots, blows and blunt blows
+land), the reference enemies' weapons and races, the hediffs pieces give and the damage defs. Built by
+`python3 Tools/apparel_extract.py <collected folder> docs/player-mods/apparel_numbers.json.gz`; `Tools/ApparelReview`
+rates it.
+
 `madeTech` is the age of the easiest way the player's active mods make or grow the thing: the tech level of the
 research its recipes (or recipe maker, or a sown crop) need, `Undefined` for one that needs none, blank when nothing
 makes it (a fermenting barrel's or a mod's processor's product, a ruined grill).
