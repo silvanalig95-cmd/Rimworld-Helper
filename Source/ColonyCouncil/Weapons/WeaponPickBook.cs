@@ -194,7 +194,19 @@ namespace ColonyCouncil
         }
 
         private Dictionary<string, float> situations;
+        private List<RaidSeen> seenNow;
         private int situationsAt = -1;
+
+        /// <summary>
+        /// The raids the colony met, as the suggestions read them (worked out with <see cref="Situations"/> once an hour):
+        /// Rimfolk's own record and the game's raid letters for those it doesn't have. The clothes read them too
+        /// (Apparel/ApparelPick.cs: how often raids come, and their mechanoids and crowds).
+        /// </summary>
+        public List<RaidSeen> Seen()
+        {
+            Situations();
+            return seenNow ?? new List<RaidSeen>();
+        }
 
         /// <summary>
         /// The situations the colony meets (WeaponPickMath.ColonySituations), worked out once an hour: Rimfolk's own record
@@ -208,6 +220,7 @@ namespace ColonyCouncil
             if (situations != null && situationsAt >= 0 && now - situationsAt < GenDate.TicksPerHour) return situations;
             situationsAt = now;
             var seen = raids.Select(r => r.Seen).ToList();
+            seenNow = seen;
             try
             {
                 var archive = Find.Archive?.ArchivablesListForReading;

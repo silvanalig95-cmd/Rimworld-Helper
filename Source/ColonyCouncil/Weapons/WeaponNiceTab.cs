@@ -50,6 +50,10 @@ namespace ColonyCouncil
         }
 
         private static readonly Spacer alt = new Spacer(), legacy = new Spacer();
+
+        /// <summary>Whether a widget is Rimfolk's suggested weapons' row (the suggested clothes' row goes under it, Apparel/ApparelNiceTab.cs).</summary>
+        internal static bool IsSpacer(object widget) => widget != null && (ReferenceEquals(widget, alt.widget) || ReferenceEquals(widget, legacy.widget));
+
         private static readonly List<WeaponNiceMath.Child> kinds = new List<WeaponNiceMath.Child>();
 
         /// <summary>After Nice Inventory Tab's own recache: Rimfolk's row in the box in use, in its place and of its height, or out of the boxes.</summary>

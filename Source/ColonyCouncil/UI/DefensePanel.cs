@@ -420,6 +420,23 @@ namespace ColonyCouncil
             {
                 CouncilLog.ErrorOnce("weapons for each colonist on the page", e);
             }
+            // Clothes and armour for each colonist (Apparel/ApparelPickUi.cs), next to the weapons: each colonist's gaps and
+            // the better pieces the colony has, opened here by the quiet line on the gear tab.
+            try
+            {
+                if (ApparelPickPanel.TakeFocus())
+                {
+                    if (!folds.IsOpen(ApparelPickPanel.FoldKey)) folds.Toggle(ApparelPickPanel.FoldKey);
+                    scroll.y = y;
+                }
+                float before = y;
+                y = ApparelPickPanel.Draw(s.map, x, y, w, folds);
+                if (y > before) y += SectionGap - 8f;
+            }
+            catch (System.Exception e)
+            {
+                CouncilLog.ErrorOnce("clothes and armour for each colonist on the page", e);
+            }
             y += UiKit.SectionHeading(x, y, w, "CC_Def_Plans".Translate(), m.plans.Count, folds, "plans", out bool plansOpen, "CC_Def_PlansSub".Translate().Resolve());
             if (plansOpen)
                 foreach (var (t, line, reason) in m.plans)

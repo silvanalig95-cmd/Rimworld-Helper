@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- A colonist taking a piece of clothing another carries unworn in their pack (Source/ColonyCouncil/Apparel/ApparelSwapJob.cs,
+       ApparelPick.cs): they walk over, it is handed over, and they put it on there. -->
+  <JobDef>
+    <defName>Rimfolk_TakeSpareApparel</defName>
+    <driverClass>ColonyCouncil.JobDriver_TakeSpareApparel</driverClass>
+    <reportString>taking clothes from TargetA.</reportString>
+    <casualInterruptible>false</casualInterruptible>
+    <checkOverrideOnDamage>Always</checkOverrideOnDamage>
+  </JobDef>
+
+  <!-- Two colonists trading armour, a suggestion better for both or for the colony (Source/ColonyCouncil/Apparel/ApparelSwapJob.cs,
+       ApparelPick.cs): the one ordered walks over to the other and each puts on the other's. -->
+  <JobDef>
+    <defName>Rimfolk_SwapApparel</defName>
+    <driverClass>ColonyCouncil.JobDriver_SwapApparel</driverClass>
+    <reportString>trading armour with TargetA.</reportString>
+    <casualInterruptible>false</casualInterruptible>
+    <checkOverrideOnDamage>Always</checkOverrideOnDamage>
+  </JobDef>
+
+</Defs>

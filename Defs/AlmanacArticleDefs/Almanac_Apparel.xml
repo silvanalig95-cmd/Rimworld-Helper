@@ -9,7 +9,7 @@
     <label>judging armour and clothes</label>
     <category>Defending</category>
     <order>96</order>
-    <summary>One number from 1 to 10 for every piece of armour and clothing, where it protects, how warm it keeps a colonist in your weather, and how it suits each colonist</summary>
+    <summary>One number from 1 to 10 for every piece of armour and clothing, where it protects, how warm it keeps a colonist in your weather, how it suits each colonist, and better clothes for each from what the colony has</summary>
     <tip>A parka isn't marked down for stopping no bullets, nor marine armour for its weight: each piece is judged against its own kind, body armour against body armour, a hat against hats.</tip>
     <description>Every piece a colonist can wear, from the game, its DLCs and your mods, has a rating from 1.0 to 10.0 at the top of its info card, worked out from what it really does for its wearer by the game's own rules. Beside it: sub-ratings, colour-coded tags with the reason for each, a line in plain words, and its effects, counted or only named. Rimfolk's apparel card shows where it protects, how warm it keeps a colonist in your weather, and how it compares with what they wear.</description>
     <sections>
@@ -60,6 +60,20 @@
       <li>
         <heading>On the gear tab</heading>
         <text>A small badge with the rating beside each piece a colonist wears or carries, on the game's gear tab and on Nice Inventory Tab's rows, apparel slots and inventory, its tooltip the tags and the colonist's own rating ("Ratings on the gear tab", on). A click on it opens Rimfolk's apparel card.</text>
+      </li>
+      <li>
+        <heading>Better clothes for each colonist</heading>
+        <points>
+          <li>With "Apparel suggestions" (on at first), Rimfolk looks at what each colonist wears against what the colony has: the pieces lying in storage (not forbidden) and on outfit stands, and what colonists carry unworn in their packs. One choice for the whole colony, so two colonists are never told to take the same piece, and a colonist's pieces always fit together.</li>
+          <li>Gaps come first. Anyone underdressed for the season ahead (the coldest night of this twelfth and the next two under 5 °C, as the game's "Need warm clothes" counts it, colder than they can bear in what they wear) gets warmth, the most lacking first: a coat, then a hat, filling empty layers. The heat the same past 30 °C. When raids come often (two this month, or four in two months), those who fight more than rarely get body armour and a helmet if they wear none, the one who fights most first. Clothes worn below half or taken from the dead are always worth replacing with anything no worse.</li>
+          <li>Then clear upgrades: 0.8 of a point or more on the rating's scale for them, with the season ahead, the raids you meet (armour against the mechanoids or crowds that come, counted by how much each fights), their work (an apron for a cook, a doctor's clothes that speed their tending) and the apparel their title, role or faith asks for that they lack. A piece in place of several is judged in each one's own role: marine armour in place of a flak vest and a parka gains as armour and loses as a coat. Nothing is suggested that would leave them colder than they can bear.</li>
+          <li>Their outfit is respected: a piece it doesn't allow is never suggested to wear. Where it would fill a need nothing allowed fills as well, or is a big upgrade, its row says so ("Outfit Worker doesn't allow it: parka") with a button that allows that kind of piece in the outfit, for everyone who wears it; when the outfit's quality or wear limits are what stop it, the button opens the outfit.</li>
+          <li>Nobody is moved off what their title, role or faith asks them to wear, except for another piece that meets it too; nothing they locked is taken off; a title's least quality is kept. A lucky piece or an heirloom that would come off is a warning on the row, never a block.</li>
+          <li>Armour can be traded between two colonists when it is clearly better for both, or for the colony: the front-line fighter in a flak vest and the doctor in recon armour who rarely fights.</li>
+          <li>On the gear tab (the game's, and Nice Inventory Tab's apparel box, or in its grid layout its equipment box under the suggested weapons) each suggestion is a row: the piece's picture, what it fills ("Warmth: parka (+40 °C)"), its rating for them and the gain, why, and Wear, which gives the game's own Wear: they walk over, put it on and drop what it takes the place of. With nothing to suggest, a quiet line says so, honest about what they lack: "No warmer clothes in storage for Bautista".</li>
+          <li>The Defenses page has "Clothes and armour for each colonist" next to the weapons: each colonist's gaps (degrees short, no armour, no helmet, worn out) and suggestions, and "Wear all suggested", which only gives the orders. Rimfolk's apparel card names who should wear the piece, those it fills a need for first.</li>
+          <li>With "Colonists ask for better clothes" (on at first), a colonist now and then asks for a piece that fills a need of theirs or is clearly better, in one sentence in their free time: "It's freezing; that parka in the stockpile would do me good." Rarely: at most once in six days each and once a day in the colony, warmth more often while it's freezing. The ask stays a few days in This week, its button the order itself.</li>
+        </points>
       </li>
     </sections>
     <keywords>

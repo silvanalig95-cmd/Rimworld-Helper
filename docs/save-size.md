@@ -7,8 +7,8 @@ colony of 20, with the game keeping 30 more people it knows and 5 more each year
 generous guesses; sizes are rough XML sizes. Caps named as constants are read from the source. "Counted under" rows are
 kept inside another record (a journal's lines, a heart's lists) and are already in that record's size.
 
-Saved collections found: 603; modelled: 603; growing without end: 0.
-Rimfolk's part of the save, roughly: **2,625 KB** after a year, **3,100 KB** after two, **3,326 KB** after five.
+Saved collections found: 605; modelled: 605; growing without end: 0.
+Rimfolk's part of the save, roughly: **2,631 KB** after a year, **3,106 KB** after two, **3,331 KB** after five.
 
 | Collection | Rule | Kind | 1 year | 2 years | 5 years | KB at 5 years |
 |---|---|---|---|---|---|---|
@@ -108,6 +108,7 @@ Rimfolk's part of the save, roughly: **2,625 KB** after a year, **3,100 KB** aft
 | `Camps/CampGround.cs:held` | who held each old site, the newest CampGroundMath.MostHolders of each of six sites | fixed | 36 | 36 | 36 | 5.6 |
 | `Visitors/VisitorTracker.cs:trips` | visits waiting or under way: VisitorMath.MaxTrips; ended ones dropped within a day | cap | 8 | 8 | 8 | 5.5 |
 | `CouncilGameComponent.cs:cooldowns` | dropped once over | window | 60 | 60 | 60 | 5.3 |
+| `Apparel/ApparelPickBook.cs:asks` | each colonist's last ask for better clothes (one each), those of the gone kept fifteen days | colonists | 20 | 20 | 20 | 5.1 |
 | `Building/Suggest/Suggestions.cs:done` | the steps done lately, SuggestMath.DoneKept at most, each with its undo and check | fixed | 20 | 20 | 20 | 5.1 |
 | `Hauling/HaulBook.cs:loads` | one per pawn carrying something for Rimfolk, dropped once it carries nothing | colonists | 20 | 20 | 20 | 5.1 |
 | `Building/BuildProjects.cs:projects` | rooms placed and followed in stages, BuildAheadTracker.MaxProjects at most; a finished one kept while its walls stand | fixed | 16 | 16 | 16 | 5.0 |
@@ -303,6 +304,7 @@ Rimfolk's part of the save, roughly: **2,625 KB** after a year, **3,100 KB** aft
 | `Camps/Camp.cs:asksMade` | asks made of the camp (once each, or once a day), while it stays | while | 15 | 15 | 15 | 0.6 |
 | `Secrets/Vendettas.cs:known` | known pawns only | known | 11 | 12 | 15 | 0.6 |
 | `Visitors/Callers.cs:commissions` | a piece the collector is owed, until collected or for 60 days at most; at most Callers.MaxCommissions | cap | 1 | 2 | 3 | 0.6 |
+| `Apparel/ApparelPickBook.cs:notNow` | colonists whose clothes suggestions are set aside, ten days each, the ended pruned daily | colonists | 6 | 6 | 6 | 0.5 |
 | `Building/ShelfReserves.cs:entries` | per shelf: the kinds it keeps slots for, with how they're kept | while | 6 | 6 | 6 | 0.5 |
 | `Faith/FaithCouncilTracker.cs:faithEvenings` | each faith's last evening of faith: one per faith, gone after 60 days or with the faith | fixed | 6 | 6 | 6 | 0.5 |
 | `Weapons/WeaponPickBook.cs:fetched` | colonists who filled an empty weapon slot themselves within the day, pruned daily | colonists | 6 | 6 | 6 | 0.5 |

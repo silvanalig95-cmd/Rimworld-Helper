@@ -5,6 +5,16 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## Better clothes and armour for each colonist
+
+*9 November 2026, version 0.196.0*
+
+- The gear tab suggests better clothes and armour for each colonist from what the colony has, with a reason: warmth first when the season ahead is cold, armour for those who fight when raids come often, worn and dead men's clothes replaced.
+- A suggestion weighs how they fight, their body, their work, the raids met, and what their title, role and faith ask them to wear; nothing is suggested that would leave them short of warmth.
+- One click sends them to put it on, to take a colleague's spare or to trade armour; if their outfit doesn't allow a piece, the row says so with a button to allow it.
+- The apparel card says who should wear a piece, and the Defenses page lists everyone's clothes and armour with the gaps and a button to give all the orders.
+- Now and then a colonist mentions a clearly better piece in storage, most of all a warm one when it is freezing; lucky clothes and heirlooms are a warning, never a block.
+
 ## The trade window in two lists
 
 *9 November 2026, version 0.195.0*

@@ -12,6 +12,69 @@ tree at once, alongside whatever runs. Each piece is merged as its own release, 
 
 ## State (5 November 2026)
 
+- 0.196.0, armour and apparel you can judge at a glance, step 3: better armour and clothes for each colonist, and colonists who ask (9 November 2026,
+  `docs/design/apparel.md` point 6). The plan the player approved: "Better armour and clothes for each colonist from what
+  the colony has, by their role, the season and the raids met, their faith's and title's apparel rules, their body; one
+  click to wear it; colonists sometimes ask, rarely." From their game: "Need warm clothes" and "Tattered apparel" at -25 °C,
+  Bautista in a ratty shirt. DESIGN.md "Step 3: better armour and clothes for each colonist, and colonists who ask" has all
+  of it; README "Judging armour and clothes" and the mod list; the Almanac's "judging armour and clothes" (a new section,
+  "Better clothes for each colonist", prose only, keywords unchanged).
+  - The choice, pure (`Apparel/ApparelPickMath.cs`, linked in Tests.csproj): `WearColonist`, `WearPiece`, `WearOption`,
+    `WearInput`, `WearSuggestion`. Score: their own rating (`ApparelForMath.For`) plus a rule they lack (title or role
+    1.5, faith's desired apparel 0.6), their work (`WorkLean`, 3% or more: +0.4, slower -0.3), armour's lean by the raids
+    (mechanoid and crowd shares, at most a point, by `Fights`). Gain over what it replaces judged in each replaced piece's
+    role (`ApparelForMath.For` gained an optional `asRole`; nothing else changes), or over nothing (1.0); never what
+    they can't wear, what takes off a locked piece or one kept for a rule it doesn't meet, what leaves them short of
+    warmth or cooling (`KeepsComfort`), what their outfit doesn't allow. The season ahead counted as the game's "Need warm
+    clothes" counts it (`Margin`: under 5 °C, over 30 °C). Gaps first (`Gaps`, `Fills`, floor 2.0): warmth (most lacking
+    first, two pieces), cooling, body armour and helmet for fighters (`Fights` over 0.5) when raid-heavy (`RaidHeavyAt` 2
+    weighed raids), worn-out and dead men's pieces (any no worse); upgrades 0.8 (`Threshold`), an empty slot only at 6.0
+    (`AddOnAt`) or for a rule; armour weighed by `Fights`. Trades of armour (the weapons' `SwapEach`/`SwapGainer` rules).
+    One outfit-blocked piece a colonist, said (`WearKind.Outfit`). Asks (`ApparelAskMath`): a gap or 1.6, six days each,
+    a day in the colony, fifteen days a piece, 10% a look, 20% for warmth while freezing.
+  - In the game (`Apparel/ApparelPick.cs`): colonists (slaves and children too, not babies or quest guests), worn and
+    carried pieces, storage and outfit stands (8 best kinds a role, 8 warmest and coolest when needed); the season ahead
+    (`Ahead`: this twelfth and the next two); title and role requirements (`AllRequirements`, `IsRequirementActive`,
+    `ApparelMeetsRequirement(def, false)`, `IsMet`), faith's `Precept_Apparel`, title's `requiredMinimumApparelQuality`;
+    the outfit (`ApparelPolicy.filter.Allows(thing)`; Allow is `SetAllow(def, true)`, else `Dialog_ManageApparelPolicies`);
+    raids from `WeaponPickBook.Seen()` (new, the weapons' own list); work (first by priority at skill 6+); keepsakes
+    (lucky apparel quirk, heirloom worn). Orders: the game's `Wear` (stand as source), own pack dropped and worn, a spare
+    (`Rimfolk_TakeSpareApparel`), a trade (`Rimfolk_SwapApparel`; `Apparel/ApparelSwapJob.cs`, `Defs/Misc/Rimfolk_ApparelPicks.xml`).
+    Kept an hour, rebuilt on change; ratings warmed a tenth of the colony every 250 ticks (`ApparelPickBook`,
+    `Sched.RareApparelPicks` 43, `Pass.RareApparelPicks`, key `CC_Clock_Pass_RareApparelPicks`).
+  - Shown (`Apparel/ApparelPickUi.cs`): the game's gear tab ("Suggested clothes", `Patch_ApparelPickGearTab`, low priority,
+    after the weapons'); Nice Inventory Tab (`Apparel/ApparelNiceTab.cs`): a spacer row in `apparel_legacy_groupbox`, and in
+    the grid layout in `equipment_alt_groupbox` under the weapons' row (`WeaponNiceTab.IsSpacer`, new), its own patches on
+    `Recache(Pawn)` and `LabelWidget.Draw`, standing down without the mod; the quiet line by gap ("No warmer clothes in
+    storage for Bautista"); the apparel card's "Who should wear this"; the Defenses page's "Clothes and armour for each
+    colonist" after the weapons (`ApparelPickPanel`, chips, "Wear all suggested"). Asks (`Apparel/ApparelAsks.cs`, pool
+    `Rimfolk_Pool_ApparelAsk`, 49 lines, in ImmersionTests; inbox `apparel-asks`, its act the order). DefValidator learned
+    `{APPAREL}`.
+  - Settings (How you're told, Apparel; each on): `apparelSuggestions` "Apparel suggestions", `apparelAsks` "Colonists ask for
+    better clothes". No self-wear setting: the game's `JobGiver_OptimizeApparel` already fills empty slots with what an
+    outfit allows, warmth first in the cold. Saved: `ApparelPickBook` (`notNow`, `asks`, `lastAsk`), modelled in
+    `Tools/save_estimate.py`. Keys in `Rimfolk_Apparel.xml`.
+  - Tests: `Tools/Tests/ApparelPickTests.cs` (thresholds, margins, raids, work, fits, Bautista, the outfit, title/role/faith,
+    locked, lucky and heirloom, armour gaps, the coldest first, the threshold and worn pieces, a piece judged in each
+    replaced role, warmth kept, trades, pack and spares, 300 random colonies, asks, who should wear, the base game's pieces
+    as another role, the lines in every age, the seams).
+  - Not run here (none of it could be): the game's `Wear` job with an outfit stand as its source; the forced flag on an
+    ordered Wear (the game's optimizer keeping it on); `ApparelRequirement.ApparelMeetsRequirement(def, false)` and
+    `IsMet` on real title and role apparel; `Precept_Apparel.TargetGender`; the title's quality rule as the game applies it;
+    `filter.Allows(thing)` with an outfit's quality, hit point and dead man's limits; the spare hand-over and the trade on
+    the map (the two meeting, what is dropped); the rows in Nice Inventory Tab's apparel box and its grid layout's
+    equipment box (place, height, scrolling, widths); the Defenses page's chips at its column width; the season ahead's
+    numbers on a real tile against the game's own alert; how often the asks come; the first choice's time on a big colony
+    with a full wardrobe.
+  - Try in the game: 1. Bautista at -25 °C in a ratty shirt, a parka in the stockpile: his gear tab shows "Needed: Warmth:
+    parka (+40 °C)" and "In place of ratty T-shirt: ..."; Wear walks him there and the old shirt is dropped. 2. Forbid
+    parkas in his outfit: the row turns to "Outfit Worker doesn't allow it: parka", Allow allows it and the row becomes
+    Wear. 3. Nice Inventory Tab, both layouts: the rows under his apparel (or under the suggested weapons). 4. A role
+    with required apparel: never suggested out of it. 5. A raid-heavy colony: a fighter without armour gets "No body
+    armour: flak vest"; the Defenses page's chips and "Wear all suggested". 6. Over a few cold days he may say "It's
+    freezing; that parka in the stockpile would do me good."; This week has its row. 7. Settings, How you're told,
+    Apparel: each of the two off in turn.
+
 - 0.195.0, the trade window's two lists, sell and buy (9 November 2026). The player's words, with a screenshot of the one table: "i quite like the new trading ui, but
   i find it still a bit confusing. could buy and sell be split into different tabs or some other setup? where I have
   separate lists can can organize it more easy ... also the name of the item doesn't even always fit." The plan told to

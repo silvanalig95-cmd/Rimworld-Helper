@@ -780,6 +780,11 @@ MODEL = {
     "Weapons/WeaponPickBook.cs:asks": ("colonists", 1, 250, "each colonist's last ask for a better weapon or trade proposed (one each), those of the gone kept fifteen days"),
     # A colonist filling an empty slot of their kit themselves (Weapons/WeaponKitSelf.cs): when each last did, a day, pruned daily.
     "Weapons/WeaponPickBook.cs:fetched": ("colonists", 0.3, D, "colonists who filled an empty weapon slot themselves within the day, pruned daily"),
+    # Better armour and clothes for each colonist (Apparel/ApparelPickBook.cs): colonists' clothes suggestions set aside
+    # ("not now", ten days, ended ones pruned daily) and each colonist's last ask for better clothes (one each; of those
+    # gone, kept fifteen days). The raids it reads are the weapons' record above.
+    "Apparel/ApparelPickBook.cs:notNow": ("colonists", 0.3, D, "colonists whose clothes suggestions are set aside, ten days each, the ended pruned daily"),
+    "Apparel/ApparelPickBook.cs:asks": ("colonists", 1, 260, "each colonist's last ask for better clothes (one each), those of the gone kept fifteen days"),
     # The colony's own trade record (Trade/TradeRecord.cs): a good (a thing and its stuff) a log, each with its newest few
     # lines; a busy colony meets a new kind of good most days it trades, so the cap fills within a year or two. A good's
     # size is its lines' too (five short lines of about 85 bytes each, their names one letter long).

@@ -459,6 +459,10 @@ namespace ColonyCouncil
         public bool apparelGearTab = true;
         /// <summary>Opening the info for a piece of apparel (the "i" button anywhere, the inspect pane) opens Rimfolk's apparel card instead of the game's (Apparel/ApparelCardFirst.cs).</summary>
         public bool apparelCardFirst = true;
+        /// <summary>Apparel suggestions (Apparel/ApparelPick.cs): better armour and clothes for each colonist from what the colony has, on the gear tab, the apparel card and the Defenses page.</summary>
+        public bool apparelSuggestions = true;
+        /// <summary>Colonists ask for better clothes (Apparel/ApparelAsks.cs): now and then, for a clearly better piece or warmth they lack, one sentence in their free time.</summary>
+        public bool apparelAsks = true;
         public BarBadgeSize barBadgeSize = BarBadgeSize.Normal;
         public BarBadgeCorner barBadgeCorner = BarBadgeCorner.TopRight;
         public int barBadgeMax = 2;
@@ -1010,6 +1014,8 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref apparelRatings, "apparelRatings", true);
             Scribe_Values.Look(ref apparelGearTab, "apparelGearTab", true);
             Scribe_Values.Look(ref apparelCardFirst, "apparelCardFirst", true);
+            Scribe_Values.Look(ref apparelSuggestions, "apparelSuggestions", true);
+            Scribe_Values.Look(ref apparelAsks, "apparelAsks", true);
             Scribe_Values.Look(ref barBadgeSize, "barBadgeSize", BarBadgeSize.Normal);
             Scribe_Values.Look(ref barBadgeCorner, "barBadgeCorner", BarBadgeCorner.TopRight);
             Scribe_Values.Look(ref barBadgeMax, "barBadgeMax", 2);

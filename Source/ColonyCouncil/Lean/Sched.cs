@@ -144,7 +144,14 @@ namespace ColonyCouncil
         /// with both its settings off.
         /// </summary>
         public const int RareWeaponPicks = 47;
-        public static readonly int[] RareOffsets = { RareWorldKeep, RarePlanQueue, RareHeart, RareCamp, RareMissions, RareWelcome, RareAilments, RareHealth, RareDefenseLines, RareFightSides, RareSmoke, RareBuildPriority, RareWeather, RareHarm, RarePowers, RareBeasts, RareWeaponPicks };
+
+        /// <summary>
+        /// Better armour and clothes for each colonist (Apparel/ApparelPickBook.cs): one tenth of the colonists (see
+        /// <see cref="SliceTurn"/>), their ratings of the colony's clothes worked out ahead, and their look for a clearly
+        /// better piece to ask for; nothing with both its settings off.
+        /// </summary>
+        public const int RareApparelPicks = 43;
+        public static readonly int[] RareOffsets = { RareWorldKeep, RarePlanQueue, RareHeart, RareCamp, RareMissions, RareWelcome, RareAilments, RareHealth, RareDefenseLines, RareFightSides, RareSmoke, RareBuildPriority, RareWeather, RareHarm, RarePowers, RareBeasts, RareWeaponPicks, RareApparelPicks };
 
         /// <summary>Passes on the 250-tick cycle that only run while something is waiting (the news of the evening, an answer playing out, the council window's memory).</summary>
         public const int RareNews = 167;
