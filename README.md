@@ -3614,6 +3614,25 @@ their traders, your letters introduced to peoples beyond your reach, a favor aft
 writes first with news, a small request or an invitation that waits for your answer (*The world writes first*, on), and
 a town out of reach may be reached by introduction through a people who knows them (slower).
 
+**Letters that read like letters.** Letters between your colony and the world are written out in full (*Letters written
+out in full*, on): a heading with the place and the date as the writer would put it (a tribe by the season, "when the
+geese came back", the medieval age and the Empire in the court's words, the industrial plainly, the spacer age by the
+standard date), a salutation that fits who writes to whom and how they stand, a few short paragraphs in the writer's own
+voice, a closing and a signature in kind, now and then a P.S. The tone follows the situation, never warm by default: how
+they took your letter, what the writer wants from it (a friend, a trader angling for business, an official doing their
+duty, a wary neighbour sounding you out, a proud one who won't ask outright), the purpose, hard times at their town. A
+warm letter may crack a joke about a goat or the road, a cool one only a dry remark, a condolence or a letter at war
+none. Who writes shapes how: their age and people, their culture (pious, raiders, the proud, herders, tea lovers...),
+their xenotype (a hulking writer breaks pens, a refined one copies the letter out fair), a medieval writer's thee and
+thou, a bandit's spelling ("we wil burn yor walls. after the rain stops."), and the truly strange in a voice of their own
+(an android's numbered record, a hive's "we", a fairy's formula, the ancient's postscript longer than the letter). What
+the answer brings, why it went badly and how far it moved them come under it as plain lines, set apart. A call reads as
+its transcript, a spoken message as words passed on by its carrier. Your colony's own letters are written out as your
+colonist finishes them, in their voice (Social and Intellectual, kind or abrasive, cheerful or gloomy, the purpose and
+what is true at home); one who barely writes gets a helper, or sends it as it is. Read them at the mailbag ("Read a
+letter"), from the answer's card ("Read Stace's letter") and on the Diplomacy screen's People, where each notable's
+letters are listed newest first and open both sides in a small window of paper.
+
 **Talking with outsiders, and doing it by themselves.** With a colonist selected, right-click someone from outside the
 colony for "Talk with...": news of their home, a meal or a drink, a gift, a good word at home, a lesson, something
 brought next time, an invitation to stay, getting to know them, courting, faith, a practice bout, hard words, a duel,

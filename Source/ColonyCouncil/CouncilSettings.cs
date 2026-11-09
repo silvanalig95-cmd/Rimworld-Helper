@@ -190,6 +190,11 @@ namespace ColonyCouncil
         public bool penFriends = true;
         /// <summary>The world writes first (Dealings/WorldWrites.cs): now and then a notable writes to the colony unasked, with news, a request or an invitation that wants an answer.</summary>
         public bool worldWrites = true;
+        /// <summary>
+        /// Letters written out in full (Letters/LetterForm.cs): letters to and from the colony read as letters (a heading, a salutation, the writer's
+        /// own words, a closing and a signature, now and then a P.S.), the colony's own written out and kept to be read; off, the short form.
+        /// </summary>
+        public bool lettersInFull = true;
         /// <summary>The region: each town within reach has a fortune that the world's events move, shown in its panel and its people's words (World/Region/).</summary>
         public bool regionFortunes = true;
         /// <summary>The region: a new town within reach has a founder, founding families and a reason, told in the news, its talk and a letter (World/Region/).</summary>
@@ -909,6 +914,7 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref townDealings, "townDealings", true);
             Scribe_Values.Look(ref penFriends, "penFriends", true);
             Scribe_Values.Look(ref worldWrites, "worldWrites", true);
+            Scribe_Values.Look(ref lettersInFull, "lettersInFull", true);
             Scribe_Values.Look(ref regionFortunes, "regionFortunes", true);
             Scribe_Values.Look(ref regionFaces, "regionFaces", true);
             Scribe_Values.Look(ref regionStock, "regionStock", true);

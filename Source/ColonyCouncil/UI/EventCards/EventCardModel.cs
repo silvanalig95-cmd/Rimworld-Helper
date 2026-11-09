@@ -226,6 +226,12 @@ namespace ColonyCouncil
                 else if (c.role == CardOptionRole.Link) links.Add(c);
                 else acts.Add(c);
             }
+            // An answer to one of the colony's letters: read the colony's letter beside it (Letters/LetterBook.cs), the card left open.
+            if (first)
+            {
+                var read = LetterBook.ReadAct(letter, out string readLabel);
+                if (read != null) acts.Insert(0, new EventCardOption { opt = read, role = CardOptionRole.Act, label = readLabel });
+            }
             if (first)
             {
                 leanText = facts.leanText;

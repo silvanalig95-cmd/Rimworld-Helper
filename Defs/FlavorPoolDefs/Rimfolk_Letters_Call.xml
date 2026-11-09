@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    The spoken lines of a call on the comms console, read as a transcript (Letters/LetterFormMath.cs, Call): never a
+    letter. Each line names its moment: call:hail (the colony's caller opens the call), call:pickup (they answer it), call:reply
+    (the colony's caller answers what they said), call:bye (they sign off), call:back (they call back), call:answer (the colony
+    picks up their call), call:word (the start of the message they left on the console), call:wordbye (its end); how they took
+    it (warm, cordial, cool, curt, refusal; war); the age of the people on the line (w:medieval for those who have the
+    Signal Line's radio without having grown up with it, w:industrial, w:spacer). {COLONY} is the colony, {TOWN} their
+    town, {FROM} the one of theirs on the line, {TO} the colonist. One short spoken line each.
+  -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_LetterCall</defName>
+    <lines>
+      <plain>
+        <!-- The colony calls -->
+        <li>[call:hail] {TOWN}, this is {COLONY}. Come in.</li>
+        <li>[call:hail] {COLONY} calling {TOWN}. Do you hear me?</li>
+        <li>[call:hail] Hello, {TOWN}? This is {TO} at {COLONY}.</li>
+        <li>[call:hail] {TOWN}, {COLONY} here. Is {FROM} there?</li>
+        <li>[call:hail,w:spacer] Opening a channel to {TOWN}. This is {TO} of {COLONY}.</li>
+        <li>[call:hail,war] {TOWN}, this is {COLONY}, under a white flag. Will you talk?</li>
+        <!-- They pick up -->
+        <li>[call:pickup,warm|cordial] {COLONY}, I hear you, and it's good to. Go ahead.</li>
+        <li>[call:pickup,warm] {TO}, is that you? Good to hear your voice.</li>
+        <li>[call:pickup,cordial] {FROM} here. I hear you clearly, {COLONY}.</li>
+        <li>[call:pickup,cordial|cool] {TOWN}. Go ahead.</li>
+        <li>[call:pickup,cool] This is {FROM}. What is it?</li>
+        <li>[call:pickup,curt|refusal] {FROM}. Make it quick.</li>
+        <li>[call:pickup,refusal] We know who you are. Say what you have to say.</li>
+        <li>[call:pickup,w:medieval] Is this the device? Is it working? Ah. This is {FROM}. Speak.</li>
+        <li>[call:pickup,w:spacer,cordial|cool] Channel open. {FROM} listening.</li>
+        <li>[call:pickup,war] We hear you, {COLONY}. Speak under your white flag.</li>
+        <!-- The colony's caller answers what was said -->
+        <li>[call:reply,warm] That's good to hear. Thank you, truly.</li>
+        <li>[call:reply,warm] I'll tell everyone here. They'll be glad.</li>
+        <li>[call:reply,cordial] Understood. Thank you for your time.</li>
+        <li>[call:reply,cordial] Thank you. We appreciate it.</li>
+        <li>[call:reply,cool] Understood.</li>
+        <li>[call:reply,cool] I see. Thank you all the same.</li>
+        <li>[call:reply,curt] Right. I'll pass that on.</li>
+        <li>[call:reply,refusal] I'm sorry to hear it.</li>
+        <li>[call:reply,refusal] That's your answer, then.</li>
+        <li>[call:reply,war] Then we'll keep listening, in case you change your mind.</li>
+        <!-- They sign off -->
+        <li>[call:bye,warm] Call again soon, {TO}. {TOWN} out.</li>
+        <li>[call:bye,warm] Good talking to you. Look after yourselves. {TOWN} out.</li>
+        <li>[call:bye,cordial] Good day to you, {COLONY}. {TOWN} out.</li>
+        <li>[call:bye,cordial] Until next time. Out.</li>
+        <li>[call:bye,cool] That is all. {TOWN} out.</li>
+        <li>[call:bye,cool] We're done here. Out.</li>
+        <li>[call:bye,curt] Out.</li>
+        <li>[call:bye,refusal] Don't call this line again.</li>
+        <li>[call:bye,refusal] Line closed.</li>
+        <li>[call:bye,w:medieval] Now how does one make it stop? Ah. Farewell.</li>
+        <li>[call:bye,w:spacer,cordial|cool] Closing channel.</li>
+        <!-- They call back -->
+        <li>[call:back] {COLONY}, this is {TOWN}, returning your call.</li>
+        <li>[call:back] {FROM} at {TOWN} for {COLONY}. You called earlier.</li>
+        <li>[call:back,warm] {COLONY}, {FROM} here. Sorry I missed you earlier.</li>
+        <li>[call:back,w:spacer] Incoming from {TOWN}. {FROM} returning your call.</li>
+        <li>[call:back,war] {COLONY}. {TOWN} returning your call, under your white flag.</li>
+        <!-- The colony picks up -->
+        <li>[call:answer] {COLONY} here. Go ahead, {TOWN}.</li>
+        <li>[call:answer] This is {TO}. We hear you.</li>
+        <li>[call:answer] Thanks for calling back. Go ahead.</li>
+        <li>[call:answer,war] {COLONY}. We hear you. Go on.</li>
+        <!-- A message left on the console -->
+        <li>[call:word] This is {FROM} at {TOWN}, for {COLONY}. Nobody answered, so I'll leave this.</li>
+        <li>[call:word] {COLONY}, {TOWN} here, returning your call. I'll leave word.</li>
+        <li>[call:word,warm|cordial] {FROM} for {COLONY}. Sorry to miss you. Here's my answer.</li>
+        <li>[call:word,cool|curt|refusal] {TOWN} for {COLONY}. You called. Here is our answer.</li>
+        <li>[call:word,w:medieval] Speak to the box, they say. Very well. This is {FROM} of {TOWN}.</li>
+        <li>[call:wordbye,warm] Call me when you can. {TOWN} out.</li>
+        <li>[call:wordbye,cordial] That's all. {TOWN} out.</li>
+        <li>[call:wordbye,cool|curt] End of message.</li>
+        <li>[call:wordbye,refusal] Don't call back.</li>
+        <li>[call:wordbye,w:medieval] Is it done? I think it is done.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+</Defs>

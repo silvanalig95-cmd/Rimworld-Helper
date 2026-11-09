@@ -188,6 +188,8 @@ namespace ColonyCouncil
             if (letter == null) return;
             EventCards.Mark(letter);
             Find.LetterStack.ReceiveLetter(letter);
+            // An answer to one of the colony's letters, written out: its card offers the colony's letter beside it (Letters/LetterBook.cs).
+            LetterBook.Told(letter);
         }
 
         // ---------------- The colony's story ----------------

@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    The heart of their letters where the answers' pool (Rimfolk_Pool_NeighbourWrites) has no line, or none in the writer's
+    speech (Letters/LetterFormMath.cs, HeartSpeech): a council's answer to a dealing (council, yes or no, the dealing's kind
+    deal:supply, deal:relief, deal:proclaim, deal:hire, deal:petition, deal:work, deal:market, deal:invite); the world
+    writing first (first, k:news, k:request {GOODS}, k:invitation, and what the writer wants: m:trade, m:wary, m:proud,
+    m:duty, m:friend); their thanks for the colony's reply (thanks, the kind, yes or no); a friend's word (friendmade,
+    friendfavour, raidword {RAIDERS}); and a medieval writer's (olde), an unschooled writer's (u:none) and a hive's
+    (sv:hive) own answer to every purpose, by how they took it (warm, cordial, cool, curt, refusal; war; food or medicine
+    for help asked). What it brings is said under the letter by the narrator, never here. The unschooled lines'
+    misspellings are deliberate.
+  -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_LetterHeart</defName>
+    <lines>
+      <plain>
+        <!-- ================= A council's answer (plain English) ================= -->
+        <li>[council] The council has weighed what you ask, with care and at some length.</li>
+        <li>[council,yes] The council is agreed, and the matter may go ahead.</li>
+        <li>[council,yes] After some argument, which is the council's way, we are of one mind: yes.</li>
+        <li>[council,no] The council cannot agree to it, and that is our answer.</li>
+        <li>[council,no] We have talked it through, and the answer is no, though not for want of good will.</li>
+        <li>[council,yes,deal:supply] We will hold to the contract season by season, and we expect the same of you.</li>
+        <li>[council,no,deal:supply] We cannot promise goods season after season. The fields here are too uncertain.</li>
+        <li>[council,yes,deal:relief] Your relief is accepted, with more gratitude than a council's letter usually holds.</li>
+        <li>[council,no,deal:relief] We thank you, but {TOWN} will see itself through.</li>
+        <li>[council,yes,deal:proclaim] Your proclamation was read out in the square, and there was some cheering.</li>
+        <li>[council,no,deal:proclaim] Your proclamation was read out in the square. There was no cheering.</li>
+        <li>[council,yes,deal:hire] We can spare what you ask, for a season, and they are good workers.</li>
+        <li>[council,no,deal:hire] We need every pair of hands at home this season.</li>
+        <li>[council,yes,deal:petition] We have heard your petition, and we grant it.</li>
+        <li>[council,no,deal:petition] We have heard your petition, and we cannot grant it.</li>
+        <li>[council,yes,deal:work] A work done together is a work that lasts. We are agreed.</li>
+        <li>[council,no,deal:work] We see no need for it, and no means either.</li>
+        <li>[council,yes,deal:market] There is a place in our market for {COLONY}, once the fee is paid.</li>
+        <li>[council,no,deal:market] Our market is for our own people.</li>
+        <li>[council,yes,deal:invite] Some of us will come, and the rest will hear about it for a year.</li>
+        <li>[council,no,deal:invite] Nobody can be spared to make the journey this time.</li>
+        <li>[council,moot] Things have changed since your letter was written, and there is nothing left for the council to decide.</li>
+
+        <!-- ================= They write first (plain English) ================= -->
+        <li>[first,k:news] There is news from our side of the hills, and I thought you should have it.</li>
+        <li>[first,k:news] Here is what the roads have brought us lately, for what it is worth to {COLONY}.</li>
+        <li>[first,k:news,m:trade] News first, then business: the roads are open, and so are our wagons.</li>
+        <li>[first,k:news,m:wary] I write with what news we have, and to see what news you send back.</li>
+        <li>[first,k:news,m:proud] We hear everything first at {TOWN}, as is only proper. Here is some of it.</li>
+        <li>[first,k:news,m:duty] It is the town's custom to send news to its neighbours, and so I send ours.</li>
+        <li>[first,k:news,m:friend] I have news, but more to the point, I wanted to write to you.</li>
+        <li>[first,k:request] We are short of {GOODS} this season, and would be grateful if {COLONY} could spare it.</li>
+        <li>[first,k:request,m:trade] We are short of {GOODS}. Sell it or spare it, and we will remember the price either way.</li>
+        <li>[first,k:request,m:wary] I would not ask, but we are short of {GOODS}. Whatever you can spare, we will not forget.</li>
+        <li>[first,k:request,m:proud] We do not, as a rule, ask anything of anyone. But if {COLONY} happened to have {GOODS} to spare, it would not go unnoticed here.</li>
+        <li>[first,k:request,m:duty] On the town's behalf I must ask whether {COLONY} could spare {GOODS}.</li>
+        <li>[first,k:request,m:friend] I hate to ask, but we are short of {GOODS}, and you were the first I thought of.</li>
+        <li>[first,k:invitation] Our festival is coming, and a few of yours would be welcome at our tables.</li>
+        <li>[first,k:invitation,m:trade] Our festival brings every trader for days around. Come, and bring something to sell.</li>
+        <li>[first,k:invitation,m:wary] Our festival is open to all, and you may as well come and see what we are like.</li>
+        <li>[first,k:invitation,m:proud] Our festival is the finest in the region. You will want to see it.</li>
+        <li>[first,k:invitation,m:duty] By the custom of {TOWN}, neighbours are invited to our festival, and so you are.</li>
+        <li>[first,k:invitation,m:friend] Come to our festival. Do not argue. Bring someone who dances.</li>
+        <li>[first] I write to {COLONY} with something on my mind, and I hope you will answer it.</li>
+
+        <!-- ================= Their thanks for the colony's reply (plain English) ================= -->
+        <li>[thanks] Thank you for answering. Not everyone does.</li>
+        <li>[thanks,k:news] Thank you for your news. It went round {TOWN} faster than the flu.</li>
+        <li>[thanks,k:request,yes] Thank you. Our porters will come for it, and we will not forget it.</li>
+        <li>[thanks,k:request,no] We understand, and we ask nothing more.</li>
+        <li>[thanks,k:invitation,yes] We will look for your people at the festival, and save them a bench.</li>
+        <li>[thanks,k:invitation,no] Another year, then. The festival will keep.</li>
+
+        <!-- ================= A friend's word (plain English) ================= -->
+        <li>[friendmade] I find I look forward to your letters more than to market day, and I do not say that lightly.</li>
+        <li>[friendmade] Somewhere between your second letter and your third, this stopped being courtesy and started being friendship.</li>
+        <li>[friendmade] I have begun telling people here about my friend at {COLONY}. They roll their eyes now. That is how you know.</li>
+        <li>[friendfavour] If ever {COLONY} needs a good turn, ask, and it is done. That is what all these letters have made of us.</li>
+        <li>[friendfavour] I owe you nothing, which is exactly why I want you to know you can call on me.</li>
+        <li>[raidword] Riders of {RAIDERS} passed us at dawn, heading your way. Bar your gate and get your people in.</li>
+        <li>[raidword] {RAIDERS} are on the road toward {COLONY}, armed and in no hurry to hide it. You have hours, not days.</li>
+
+        <!-- ================= Medieval English (olde): every purpose ================= -->
+        <li>[olde,greetings,warm|cordial] It gladdened all of us to hear from thee. Write again, and tell me how thy fields do.</li>
+        <li>[olde,greetings,warm|cordial] Thy words were read aloud in the hall, and the children begged to hear them twice.</li>
+        <li>[olde,greetings,warm|cordial] We think well of thy people here, and that is not said lightly at {TOWN}.</li>
+        <li>[olde,greetings,cordial] All is well at {TOWN}, and we wish the same to thee.</li>
+        <li>[olde,greetings,cool] Thy letter came. We are well enough, I thank thee.</li>
+        <li>[olde,greetings,curt] We have read thy letter. There is no more to say for now.</li>
+        <li>[olde,greetings,refusal] We care not to keep up a correspondence. Trouble us not again.</li>
+        <li>[olde,greetings,refusal,war] Thy people's hands are red yet with ours. Keep thy greetings.</li>
+        <li>[olde,greetings,cordial,war] Strange, to have a kind word from thy side. It shall be remembered, for what it is worth.</li>
+        <li>[olde,condolences,warm|cordial] Thy words touching {TOPIC} came when we most needed them. Thou art a true friend to {TOWN}.</li>
+        <li>[olde,condolences,warm|cordial] We read thy letter at the graveside and spoke thy colony's name among those who mourned.</li>
+        <li>[olde,condolences,cordial] I thank thee for thinking of us. These have been hard days, and kind words help.</li>
+        <li>[olde,condolences,cool] We thank thee for thy words. We grieve in our own way.</li>
+        <li>[olde,condolences,curt] Thy sympathy is noted.</li>
+        <li>[olde,condolences,refusal] We have no wish to share our grief with thy colony.</li>
+        <li>[olde,warning,warm|cordial] Thy warning touching {TOPIC} may well have saved lives here. We have doubled the watch, and we owe thee for it.</li>
+        <li>[olde,warning,cordial] We had heard somewhat of {TOPIC}, but not so much. I thank thee for the warning.</li>
+        <li>[olde,warning,cool] We know of {TOPIC}. We can look to ourselves, but I thank thee.</li>
+        <li>[olde,warning,curt] We know the danger. We needed not thy telling.</li>
+        <li>[olde,warning,refusal] We take no warnings from strangers. Mind thine own affairs.</li>
+        <li>[olde,news,warm|cordial] Thou didst ask what we hear out here, and so here is all of it. Come and trade when thou canst.</li>
+        <li>[olde,news,cordial] Here is what we know, for what it is worth. Travel with care.</li>
+        <li>[olde,news,cool] We can tell thee a little.</li>
+        <li>[olde,news,curt] What we know is our own business. This much, then.</li>
+        <li>[olde,news,refusal] We have naught to tell thy colony.</li>
+        <li>[olde,invitation,warm|cordial] Naught would please me more. Set a place at thy table, and I shall come as soon as the road alloweth.</li>
+        <li>[olde,invitation,cordial] I thank thee, and would be glad to see thy colony with mine own eyes.</li>
+        <li>[olde,invitation,cool] A kind thought, but the season is a busy one. Perchance another time.</li>
+        <li>[olde,invitation,curt] I am needed here and cannot come.</li>
+        <li>[olde,invitation,refusal] We visit not thy colony. Thou knowest why.</li>
+        <li>[olde,help,warm|cordial] Of course. What we have is thine, and we send {HELP} gladly.</li>
+        <li>[olde,help,warm|cordial,food] None goeth hungry while we have bread to share. It is on its way.</li>
+        <li>[olde,help,warm|cordial,medicine] Our healers made up what we could spare. Use it well, and be thou well.</li>
+        <li>[olde,help,cordial] It is not much, but we can spare some {HELP}. Remember us when we are the ones who ask.</li>
+        <li>[olde,help,cool] We can spare a little, and no more.</li>
+        <li>[olde,help,curt|refusal] We are sorry, but we have naught to spare this season.</li>
+        <li>[olde,help,refusal] We cannot help thee. Times are hard here also.</li>
+        <li>[olde,favour,warm|cordial] What we owe, we pay. Thou hadst only to ask.</li>
+        <li>[olde,favour,cordial] We remember what lieth between our peoples, and we shall honour it.</li>
+        <li>[olde,favour,cool] We have weighed what thou askest against what we owe. Here is our answer.</li>
+        <li>[olde,favour,curt|refusal] We owe thee less than thou thinkest.</li>
+        <li>[olde,pact,warm|cordial] A pact between us would serve us both, and we are glad thou didst propose it.</li>
+        <li>[olde,pact,cordial] We have thought hard on it, and the terms seem fair.</li>
+        <li>[olde,pact,cool] A pact is a weighty thing. We have weighed it.</li>
+        <li>[olde,pact,curt|refusal] We bind ourselves to no one. Not now.</li>
+        <li>[olde,truce,warm|cordial] Enough blood hath been spilt. If thou meanest it, so do we.</li>
+        <li>[olde,truce,cordial] An end to the fighting would suit us, if it be an honest one.</li>
+        <li>[olde,truce,cool] We have heard thine offer. We shall see whether thy people keep their word.</li>
+        <li>[olde,truce,curt|refusal] There is no truce to be had while our dead lie unanswered.</li>
+        <li>[olde,ransom,warm|cordial] We would have our own back, and we shall deal fairly to have them.</li>
+        <li>[olde,ransom,cordial] Name thy terms plainly, and we shall answer them plainly.</li>
+        <li>[olde,ransom,cool] We have read thy terms touching the captive. Here is our answer to them.</li>
+        <li>[olde,ransom,curt|refusal] We pay no ransom to such as thee.</li>
+        <li>[olde,envoy,warm|cordial] Our envoy shall come to thee gladly, and stay the season.</li>
+        <li>[olde,envoy,cordial] Our envoy may come, if thou keep them well.</li>
+        <li>[olde,envoy,cool] We have considered thy request for our envoy.</li>
+        <li>[olde,envoy,curt|refusal] Our envoy stayeth here.</li>
+        <li>[olde,ward,warm|cordial] A young one fostered is a bond made. We are glad of it.</li>
+        <li>[olde,ward,cordial] We have talked it over with the young one, which is only right.</li>
+        <li>[olde,ward,cool] We have considered it, carefully, as such things must be.</li>
+        <li>[olde,ward,curt|refusal] Our young stay with their own.</li>
+        <li>[olde,match,warm|cordial] Thy proposal hath made two people very nervous and the rest of us very merry.</li>
+        <li>[olde,match,cordial] We have spoken with the one concerned, and they are willing to hear more.</li>
+        <li>[olde,match,cool] A match is no small thing. We have thought on it.</li>
+        <li>[olde,match,curt|refusal] There shall be no match.</li>
+        <li>[olde,fealty,warm|cordial] We accept thine oath, and shall hold thee to it as we hold ourselves to ours.</li>
+        <li>[olde,fealty,cordial] Fealty is a heavy thing to offer, and we take it seriously.</li>
+        <li>[olde,fealty,cool] We have weighed thine offer of fealty.</li>
+        <li>[olde,fealty,curt|refusal] We want not thine oath.</li>
+        <li>[olde,takeback,warm|cordial] {TOWN} was thine before it was ours, and we have not forgotten it.</li>
+        <li>[olde,takeback,cordial] We understand why thou wouldst have {TOWN} back.</li>
+        <li>[olde,takeback,cool] {TOWN} is ours now. We have considered thy letter.</li>
+        <li>[olde,takeback,curt|refusal] {TOWN} is ours, and shall remain so.</li>
+        <li>[olde,council] The council hath weighed what thou askest, with care and at some length.</li>
+        <li>[olde,council,yes] The council is agreed, and the matter may go forward.</li>
+        <li>[olde,council,no] The council cannot agree to it, and that is our answer.</li>
+        <li>[olde,council,warm|cordial] The council is well disposed toward {COLONY}, and hath answered accordingly.</li>
+        <li>[olde,council,cool|curt|refusal] The council hath answered as it must.</li>
+        <li>[olde,first] I write to {COLONY} with somewhat upon my mind, and hope thou wilt answer it.</li>
+        <li>[olde,first,k:news] There are tidings from our side of the hills, and I thought thou shouldst have them.</li>
+        <li>[olde,first,k:request] We are short of {GOODS} this season, and would be grateful if {COLONY} could spare it.</li>
+        <li>[olde,first,k:request,m:proud] We ask nought of any man, as a rule. Yet if {COLONY} chanced to have {GOODS} to spare, it would not go unnoticed here.</li>
+        <li>[olde,first,k:invitation] Our feast-day cometh, and a few of thine would be welcome at our tables.</li>
+        <li>[olde,first,warm|cordial] It hath been long, and I would hear how thou farest.</li>
+        <li>[olde,first,cool|curt|refusal] I write because it is my duty to write.</li>
+        <li>[olde,thanks] I thank thee for answering. Not all do.</li>
+        <li>[olde,thanks,warm|cordial] Thy reply gladdened me, and I have read it twice.</li>
+        <li>[olde,thanks,cool|curt|refusal] Thy reply was received.</li>
+        <li>[olde,friendmade] I look for thy letters more than for market day, and I say not that lightly.</li>
+        <li>[olde,friendmade] Somewhere betwixt thy second letter and thy third, this ceased to be courtesy and became friendship.</li>
+        <li>[olde,friendfavour] If ever {COLONY} have need of a good turn, ask, and it is done.</li>
+        <li>[olde,friendfavour] I owe thee nothing, and that is why I would have thee know thou mayst call on me.</li>
+        <li>[olde,raidword] Riders of {RAIDERS} passed us at dawn, bound thy way. Bar thy gate and gather thy people in.</li>
+        <li>[olde,raidword] {RAIDERS} are upon the road toward {COLONY}. Thou hast hours, not days.</li>
+        <li>[olde,warm|cordial] Thy letter was welcome, and we answer it in the same spirit.</li>
+        <li>[olde,cool] We have read thy letter, and this is our answer.</li>
+        <li>[olde,curt|refusal] There is no more to be said.</li>
+
+        <li>[olde,greetings,warm|cordial,their:healers] All at the sickhouse send their greeting, and bid thee keep well.</li>
+        <li>[olde,news,warm|cordial,their:mercenaries] The Banner hears much upon the roads. Here is what is worth thy knowing.</li>
+        <li>[olde,invitation,warm|cordial,their:pilgrims] We shall walk to thee when next the road calleth, as pilgrims do.</li>
+        <li>[olde,help,warm|cordial,their:healers] The healers made up what they could spare, with a blessing on each jar.</li>
+        <li>[olde,truce,warm|cordial,war] Let it end, then, and let us both be glad of it.</li>
+
+        <!-- ================= An unschooled hand (u:none) ================= -->
+        <li>[u:none,greetings,warm|cordial] good to here from you. evryone here sez hello back</li>
+        <li>[u:none,greetings,cool] got yor leter. we are alrite</li>
+        <li>[u:none,greetings,curt|refusal] we dont want yor leters</li>
+        <li>[u:none,condolences,warm|cordial] thank you for the kind wurds. it was a bad time and they helpt</li>
+        <li>[u:none,condolences,cool|curt|refusal] we dont need yor sory</li>
+        <li>[u:none,warning,warm|cordial] thanks for the warnin. we put more on the wall at nite</li>
+        <li>[u:none,warning,cool|curt|refusal] we no about it alredy</li>
+        <li>[u:none,news,warm|cordial|cool] you wanted news. ok here is wot we herd</li>
+        <li>[u:none,news,curt|refusal] we dont tell news to strangers</li>
+        <li>[u:none,invitation,warm|cordial] yes we wil come. save us sum food</li>
+        <li>[u:none,invitation,cool|curt|refusal] we cant come. to bizzy</li>
+        <li>[u:none,help,warm|cordial] ok. we send wot we can spare. dont say we never gave you nothin</li>
+        <li>[u:none,help,cool|curt|refusal] we got nothin to spare. sory</li>
+        <li>[u:none,truce,warm|cordial] ok we stop fiting if you stop fiting. deal</li>
+        <li>[u:none,truce,cool|curt|refusal] no truce. we wil burn yor walls. after the rain stops. it is raining a lot</li>
+        <li>[u:none,ransom] we got yor peple (crossed out) people. you want them back you pay. gold. or goald. the yellow kind</li>
+        <li>[u:none,ransom,curt|refusal] no deal. we keep them. they eat a lot tho</li>
+        <li>[u:none,ransom] {CAPTIVE} is alrite. we didnt hurt them much. you want {CAPTIVE} back send gold</li>
+        <li>[u:none,warm|cordial] good leter. we liked it. here is ours back</li>
+        <li>[u:none,cool] we red yor leter. here is the anser</li>
+        <li>[u:none,curt] no</li>
+        <li>[u:none,refusal] the anser is no. dont ask agin or we wil come over there. evenchually</li>
+        <li>[u:none,refusal,c:raider] we are the strongest band on the road and evryone nos it. so no. also we are a bit busy</li>
+
+        <!-- ================= A hive (sv:hive) ================= -->
+        <li>[sv:hive,greetings,warm|cordial] We read your greeting. We greet back. All of us.</li>
+        <li>[sv:hive,greetings,cool|curt|refusal] Greeting received. Nothing more.</li>
+        <li>[sv:hive,condolences] We lost some. We know what losing is. We thank you.</li>
+        <li>[sv:hive,warning] Warning received. We guard the tunnels. We thank you.</li>
+        <li>[sv:hive,news] News: the hills are quiet. The roads are not. That is all we know.</li>
+        <li>[sv:hive,invitation,warm|cordial] We will send one of us. It will speak for all.</li>
+        <li>[sv:hive,invitation,cool|curt|refusal] We do not leave the tunnels for this.</li>
+        <li>[sv:hive,help,warm|cordial] We have stores. We share. It goes to you.</li>
+        <li>[sv:hive,help,cool|curt|refusal] We have nothing to share. We are many. We eat.</li>
+        <li>[sv:hive,truce] We stop if you stop. We do not forget.</li>
+        <li>[sv:hive,warm|cordial] Your letter was good. We agree. We are glad.</li>
+        <li>[sv:hive,cool] We have read. This is our answer.</li>
+        <li>[sv:hive,curt|refusal] No. We have spoken.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+</Defs>

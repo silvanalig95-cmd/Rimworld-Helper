@@ -543,6 +543,10 @@ wishPh.Add("WEAPON");
 wishPh.Add("THEIRS");
 // A colonist asking for better clothes (Apparel/ApparelAsks.cs, Rimfolk_Pool_ApparelAsk): the piece, and where it lies ({PLACE}).
 wishPh.Add("APPAREL");
+// Letters that read like letters (Letters/LetterForm.cs, Rimfolk_Pool_Letter*): the writer and the one written to, the
+// title of the one written to, their council, the purpose, a dealing's name, a request's goods, a pact, a truce's term,
+// a captive, two of the colony's and theirs (an exchange, a match), the one who wrote it down for someone who can't.
+wishPh.UnionWith(new[] { "FROM", "TO", "TOTITLE", "COUNCIL", "PURPOSE", "DEAL", "GOODS", "PACT", "TERM", "CAPTIVE", "OURS", "HELPER" });
 var pawnSuffixes = new HashSet<string> { "nameDef", "nameFull", "labelShort", "pronoun", "possessive", "objective", "label", "definite", "indefinite", "gender", "kind" };
 foreach (var (file, doc) in docs)
 {

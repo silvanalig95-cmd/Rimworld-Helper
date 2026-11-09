@@ -5,6 +5,17 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## Letters that read like letters
+
+*9 November 2026, version 0.202.0*
+
+- Letters from other peoples now read as real letters: a heading with place and date in the writer's own way, a greeting, a few paragraphs in their voice, a sign-off and sometimes a postscript; what the answer brings and how their regard moved follow underneath, set apart.
+- The tone follows the situation and what the writer wants: friends, traders angling for a deal, wary neighbours, officials doing their duty and proud leaders all write differently, and a cool letter stays cool, with a dry joke at most; condolences, warnings and war letters stay serious.
+- Who writes shapes how: medieval peoples and a medieval colony write in thee and thou, tribes keep a plain voice, the Empire its formal style, and unschooled bandits spell the way they talk.
+- Some of your mods' stranger peoples have voices of their own, such as an android's numbered record, a hive's we, or a fairy's ritual greeting.
+- Your colonists' own letters are now written out in their voice, and can be read from the answer's card, the Diplomacy screen's People page and the mailbag; calls read as a short transcript.
+- The setting "Letters written out in full" turns it off for the old short form.
+
 ## Illnesses first in the health panel
 
 *9 November 2026, version 0.201.1*

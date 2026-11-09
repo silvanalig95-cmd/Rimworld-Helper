@@ -7,8 +7,8 @@ colony of 20, with the game keeping 30 more people it knows and 5 more each year
 generous guesses; sizes are rough XML sizes. Caps named as constants are read from the source. "Counted under" rows are
 kept inside another record (a journal's lines, a heart's lists) and are already in that record's size.
 
-Saved collections found: 605; modelled: 605; growing without end: 0.
-Rimfolk's part of the save, roughly: **2,637 KB** after a year, **3,111 KB** after two, **3,337 KB** after five.
+Saved collections found: 607; modelled: 607; growing without end: 0.
+Rimfolk's part of the save, roughly: **2,700 KB** after a year, **3,238 KB** after two, **3,495 KB** after five.
 
 | Collection | Rule | Kind | 1 year | 2 years | 5 years | KB at 5 years |
 |---|---|---|---|---|---|---|
@@ -17,6 +17,7 @@ Rimfolk's part of the save, roughly: **2,637 KB** after a year, **3,111 KB** aft
 | `Social/Gossip/Deed.cs:heard` | who knows each deed (30 at most a deed), with its deed | cap | 2,000 | 2,000 | 2,000 | 214.8 |
 | `Persona/PersonaTracker.cs:memories` | PersonaTracker.MaxMemories, 8 per pair and 3 of a kind; past it by 60 the faintest go at once; faded ones and those of people the game no longer knows dropped at saving | cap | 300 | 600 | 600 | 187.5 |
 | `Persona/PersonaTracker.cs:peopleSaved` | the colony's own people the game still knows; empty records dropped at saving | known | 33 | 36 | 45 | 159.1 |
+| `Letters/LetterBook.cs:exchanges` | letters exchanged with the world, kept to be read: LetterBook.MaxExchanges at most (the newest LetterBook.MaxPerNotable with any one notable), each two or three pages | cap | 24 | 48 | 60 | 158.2 |
 | `World/Notables.cs:notables` | the towns' head, heir, envoy and trader (NotableMath.MaxNear + MaxDealt towns) and NotableMath.MaxAcquaintances faces met; with their notes and regards (a save that handed colonies over has four more for each town the colony was, HandOverMath.MaxTowns at most) | fixed | 42 | 42 | 42 | 106.6 |
 | `UI/WeekMemory.cs:dilemmas` | DilemmaLog.MaxRecords; each with what the answer was to do in numbers (about 500 characters, at most 1600), in words (about 400, at most 1200) and the flavour line under it (about 70, at most 200) | cap | 30 | 60 | 60 | 82.0 |
 | `World/Ledger/WorldLedger.cs:ties` | ties between two parties: 3 of a kind per pair, 60 per kind (regard 300), TieRules.MaxTies in all; closed ones dropped after 60 days | cap | 60 | 120 | 300 | 76.2 |
@@ -565,6 +566,7 @@ Rimfolk's part of the save, roughly: **2,637 KB** after a year, **3,111 KB** aft
 | `Hud/HudPanelState.cs:hidden` | per panel: the rows or columns switched off (settings file) | settings | 3 | 3 | 3 | (settings file) |
 | `Hud/HudPanelState.cs:pins` | the inventory's pinned items (settings file) | settings | 8 | 8 | 8 | (settings file) |
 | `Journal.cs:entries` | per journal: 60 lines (counted under journals) | fixed | 60 | 60 | 60 | (in its record) |
+| `Letters/LetterBook.cs:pages` | per exchange: the colony's letter and theirs, or theirs first, the reply and their thanks; each capped (counted under exchanges) | fixed | 3 | 3 | 3 | (in its record) |
 | `Missions/Missions.cs:goals` | per mission (counted under missions) | fixed | 3 | 3 | 3 | (in its record) |
 | `Outsiders/OutsiderBook.cs:asks` | per visit: the last 8 asks made of them (counted under visits) | fixed | 8 | 8 | 8 | (in its record) |
 | `Outsiders/OutsiderBook.cs:last` | per pair: when they last did each of the 16 things (counted under pairs) | fixed | 16 | 16 | 16 | (in its record) |

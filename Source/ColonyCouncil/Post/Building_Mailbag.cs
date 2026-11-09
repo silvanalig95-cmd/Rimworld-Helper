@@ -60,6 +60,15 @@ namespace ColonyCouncil
             };
             if (!Outbox.Any(Map)) back.Disable(PostWords.P("CC_Mail_Gizmo_None"));
             yield return back;
+            // The letters in the bag, written out in full: read one before it goes (Letters/LetterReadWindow.cs).
+            var readable = Outbox.Waiting(Map, true).Select(l => (l, x: LetterBook.ForLetter(l.id))).Where(t => t.x?.Ours != null).ToList();
+            var read = new Command_Action
+            {
+                defaultLabel = PostWords.P("CC_LetterRead_Gizmo"), defaultDesc = PostWords.P("CC_LetterRead_GizmoDesc"), icon = Icons.Journal,
+                action = () => Find.WindowStack.Add(new FloatMenu(readable.Select(t => new FloatMenuOption(LetterLabel(t.l), () => LetterReadWindow.Open(t.x))).ToList()))
+            };
+            if (readable.Count == 0) read.Disable(PostWords.P("CC_LetterRead_GizmoNone"));
+            yield return read;
         }
 
         private static string LetterLabel(NeighbourLetter l) => PostWords.P("CC_Mail_Gizmo_Letter", (l.toName ?? "?").Named("TO"), l.WriterName.Named("PAWN"));

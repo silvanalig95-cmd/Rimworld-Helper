@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    A tribal writer's date (Letters/LetterFormMath.cs, DateStyle.Season): not a day and a year but the time of year as
+    their people would put it, by the season at the writer's own place (season:spring, season:summer, season:autumn,
+    season:winter), now and then by their land (home:coast, home:desert, home:frozen, home:mountains) or their ways
+    (their:herders, their:grovekeepers). The heading reads "{PLACE}, " and one of these.
+  -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_LetterWhen</defName>
+    <lines>
+      <plain>
+        <li>[season:spring] when the geese came back</li>
+        <li>[season:spring] in the moon of the first green</li>
+        <li>[season:spring] when the river ran loud with the melt</li>
+        <li>[season:spring] when the calves stood up for the first time</li>
+        <li>[season:spring] the morning the frost let go of the ground</li>
+        <li>[season:spring,home:coast] when the fish came back up the river</li>
+        <li>[season:spring,their:herders] in the season of new lambs</li>
+        <li>[season:summer] in the time of the long days</li>
+        <li>[season:summer] when the berries were red on the low bushes</li>
+        <li>[season:summer] in the moon of the dry grass</li>
+        <li>[season:summer] when the nights were short and the children would not sleep</li>
+        <li>[season:summer] when the bees were loudest</li>
+        <li>[season:summer,home:desert] when the waterholes shrank to the size of a hand</li>
+        <li>[season:summer,their:grovekeepers] when the old trees were in full leaf</li>
+        <li>[season:autumn] when the nut trees let their nuts fall</li>
+        <li>[season:autumn] in the moon of the falling leaves</li>
+        <li>[season:autumn] when the geese went south</li>
+        <li>[season:autumn] when the smoke of the drying racks hung over the camp</li>
+        <li>[season:autumn] when the first frost came in the night</li>
+        <li>[season:autumn,their:herders] when the herds came down from the high grass</li>
+        <li>[season:winter] in the moon of the long dark</li>
+        <li>[season:winter] when the river froze</li>
+        <li>[season:winter] when the snow lay to the knee</li>
+        <li>[season:winter] when the wolves came close to the fires at night</li>
+        <li>[season:winter] in the season of old stories</li>
+        <li>[season:winter,home:frozen] in the dark that has no sunrise</li>
+        <li>[season:winter,home:mountains] when the passes closed</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+</Defs>

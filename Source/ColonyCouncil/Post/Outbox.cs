@@ -97,7 +97,10 @@ namespace ColonyCouncil
             var bag = Bag(map);
             // apart: the writer puts the letter in the mailbag (or keeps the words for a carrier); nobody else is there for it.
             string key = l.spoken ? "CC_Mail_Msg_Spoken" : bag != null ? "CC_Mail_Msg_InBag" : "CC_Mail_Msg_AtGate";
-            Notify.Message(key.Translate((by?.LabelShort ?? l.WriterName).Named("PAWN"), (l.toName ?? "?").Named("TO"), PostWords.Likely(l).Named("LIKELY")).Resolve(),
+            // Written out in full, it can be read at the mailbag and on the people page (Letters/LetterBook.cs).
+            bool kept = LetterBook.ForLetter(l.id)?.Ours != null;
+            Notify.Message(key.Translate((by?.LabelShort ?? l.WriterName).Named("PAWN"), (l.toName ?? "?").Named("TO"), PostWords.Likely(l).Named("LIKELY")).Resolve()
+                + NeighbourLetters.CanRead(kept, NotableBook.Instance?.Get(l.notable), true),
                 bag != null ? new LookTargets(bag) : by != null && by.Spawned ? new LookTargets(by) : LookTargets.Invalid, MessageTypeDefOf.NeutralEvent, Importance.Notable);
         }
 

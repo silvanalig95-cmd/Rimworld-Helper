@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <!-- Letters that read like letters (Source/ColonyCouncil/Letters/): the form's fixed words, the narrator's first line
+       under a letter, a call's log head, reading a letter again, the setting. -->
+
+  <!-- The form -->
+  <CC_LetterForm_Heading>{PLACE}, {DATE}</CC_LetterForm_Heading>
+  <CC_LetterForm_HeadingCourt>Given at {PLACE}, {DATE}</CC_LetterForm_HeadingCourt>
+  <CC_LetterForm_DateCourtly>the {ORD} day of {QUADRUM}, in the year {YEAR}</CC_LetterForm_DateCourtly>
+  <CC_LetterForm_DatePlain>{DAY} {QUADRUM} {YEAR}</CC_LetterForm_DatePlain>
+  <CC_LetterForm_DateStandard>{YEAR}.{Q}.{DD}</CC_LetterForm_DateStandard>
+  <CC_LetterForm_PS>P.S. {LINE}</CC_LetterForm_PS>
+  <CC_LetterForm_Mark>* * *</CC_LetterForm_Mark>
+  <CC_LetterForm_CallLine>{NAME}: {LINE}</CC_LetterForm_CallLine>
+  <CC_LetterForm_Quote>"{WORDS}"</CC_LetterForm_Quote>
+  <CC_LetterForm_SaluteFallback>{TO},</CC_LetterForm_SaluteFallback>
+  <CC_LetterForm_CloseFallback>Yours,</CC_LetterForm_CloseFallback>
+  <CC_LetterForm_SignPerson>{FROM}, {TITLE} of {TOWN}</CC_LetterForm_SignPerson>
+  <CC_LetterForm_SignUntitled>{FROM} of {TOWN}</CC_LetterForm_SignUntitled>
+  <CC_LetterForm_SignCouncil>{COUNCIL}, by the hand of {FROM}</CC_LetterForm_SignCouncil>
+  <CC_LetterForm_SignNoble>{FROM}, {TITLE}, at {TOWN}</CC_LetterForm_SignNoble>
+  <CC_LetterForm_SignOurs>{FROM}, for all of us at {COLONY}</CC_LetterForm_SignOurs>
+  <CC_LetterForm_SignOursTitled>{FROM}, {TITLE}, for all of us at {COLONY}</CC_LetterForm_SignOursTitled>
+  <CC_LetterForm_SignMark>X, the mark of {FROM}</CC_LetterForm_SignMark>
+  <CC_LetterForm_SignHelped>{FROM}, written down for them by {HELPER}</CC_LetterForm_SignHelped>
+  <CC_LetterForm_SignMany>The many of {TOWN}</CC_LetterForm_SignMany>
+  <CC_LetterForm_TheirHelper>the one in town who has letters</CC_LetterForm_TheirHelper>
+  <CC_LetterForm_MachineHead>RECORD {DATE}\nFROM: {FROM}, {PLACE}\nTO: {TO}\nSUBJECT: {PURPOSE}</CC_LetterForm_MachineHead>
+  <CC_LetterForm_MachinePoint>{N}. {LINE}</CC_LetterForm_MachinePoint>
+  <CC_LetterForm_MachinePS>ADDENDUM: {LINE}</CC_LetterForm_MachinePS>
+
+  <!-- The narrator's first line under their answer -->
+  <CC_LetterForm_Lead>In answer to {PAWN}'s letter of {PURPOSE}, from {NAME} of {TOWN}.</CC_LetterForm_Lead>
+  <CC_LetterForm_Lead_War>In answer to {PAWN}'s letter of {PURPOSE}, carried to {NAME} of {TOWN} under a white flag by a messenger of a people at peace with the colony, who has brought this back.</CC_LetterForm_Lead_War>
+  <CC_LetterForm_Lead_Call>{PAWN} called {NAME} of {TOWN} on the comms console with words of {PURPOSE}.</CC_LetterForm_Lead_Call>
+  <CC_LetterForm_Lead_Back>{NAME} of {TOWN} called back about the colony's words of {PURPOSE}, and {PAWN} took the call.</CC_LetterForm_Lead_Back>
+  <CC_LetterForm_Lead_Word>{NAME} of {TOWN} called back about the colony's words of {PURPOSE} while nobody was at the comms console, and left this message.</CC_LetterForm_Lead_Word>
+  <CC_LetterForm_Lead_Spoken>The answer to {PAWN}'s message of {PURPOSE}, passed on by mouth from {NAME} of {TOWN}.</CC_LetterForm_Lead_Spoken>
+  <CC_LetterForm_CallHead>Comms log, {PLACE} to {OTHER}, {DATE}</CC_LetterForm_CallHead>
+  <CC_LetterForm_CallHead_Spacer>Link record: {PLACE} and {OTHER}, {DATE}</CC_LetterForm_CallHead_Spacer>
+  <CC_LetterForm_CallHead_Word>Message left on the console at {PLACE}, {DATE}</CC_LetterForm_CallHead_Word>
+
+  <!-- Reading a letter again -->
+  <CC_LetterRead_Title>Letters with {NAME} of {TOWN}</CC_LetterRead_Title>
+  <CC_LetterRead_Ours>{PAWN} wrote, {DATE}</CC_LetterRead_Ours>
+  <CC_LetterRead_OursSpoken>{PAWN} gave these words to be carried, {DATE}</CC_LetterRead_OursSpoken>
+  <CC_LetterRead_Theirs>{PAWN} wrote, {DATE}</CC_LetterRead_Theirs>
+  <CC_LetterRead_TheirsSpoken>{PAWN}'s words, passed on by mouth, {DATE}</CC_LetterRead_TheirsSpoken>
+  <CC_LetterRead_Call>The call with {PAWN}, {DATE}</CC_LetterRead_Call>
+  <CC_LetterRead_NoAnswerYet>No answer yet.</CC_LetterRead_NoAnswerYet>
+  <CC_LetterRead_Act>Read {PAWN}'s letter</CC_LetterRead_Act>
+  <CC_LetterRead_Msg>It can be read at the mailbag, and with {NAME} on the Diplomacy screen's People.</CC_LetterRead_Msg>
+  <CC_LetterRead_MsgPeople>It can be read with {NAME} on the Diplomacy screen's People.</CC_LetterRead_MsgPeople>
+  <CC_LetterRead_With>Letters with {NAME}</CC_LetterRead_With>
+  <CC_LetterRead_Row_Both>{DATE}: {OURS}'s letter and {THEIRS}'s answer</CC_LetterRead_Row_Both>
+  <CC_LetterRead_Row_TheirsReply>{DATE}: {THEIRS}'s letter and {OURS}'s reply</CC_LetterRead_Row_TheirsReply>
+  <CC_LetterRead_Row_Ours>{DATE}: {OURS}'s letter, not answered yet</CC_LetterRead_Row_Ours>
+  <CC_LetterRead_Row_Theirs>{DATE}: {THEIRS}'s letter</CC_LetterRead_Row_Theirs>
+  <CC_LetterRead_RowTip>Read these letters.</CC_LetterRead_RowTip>
+  <CC_LetterRead_Gizmo>Read a letter</CC_LetterRead_Gizmo>
+  <CC_LetterRead_GizmoDesc>Read one of the letters in the mailbag before it goes.</CC_LetterRead_GizmoDesc>
+  <CC_LetterRead_GizmoNone>No letter in the mailbag is written out to read.</CC_LetterRead_GizmoNone>
+
+  <!-- The setting -->
+  <CC_Settings_LettersInFull>Letters written out in full</CC_Settings_LettersInFull>
+  <CC_Settings_LettersInFull_Tip>Letters between the colony and the world read as letters: a heading with the place and the date as the writer would put it, a salutation, a few short paragraphs in the writer's own voice (their age, their people's ways and culture, how well they were schooled, how the two sides stand and what they want from the letter), a closing and a signature, now and then a P.S. What the answer brings, why it went badly and how far it moved them go under it as plain lines. A call reads as its transcript, a spoken message as words passed on. The colony's own letters are written out in their writer's voice and kept, to be read at the mailbag, from the answer's card and on the Diplomacy screen's People. Off, the short form as before.</CC_Settings_LettersInFull_Tip>
+  <CC_SetNote_LettersInFull>Letters read like letters, and the colony's own are written out.</CC_SetNote_LettersInFull>
+
+</LanguageData>

@@ -1,0 +1,303 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    How a letter between the colony and someone out in the world begins (Source/ColonyCouncil/Letters/LetterFormMath.cs,
+    the letter's form; LetterForm.cs picks). The tags, shared by every part of a letter (Rimfolk_Letters_*.xml):
+    - theirs (they write to the colony) or ours (the colony writes);
+    - one address: a:plain, a:friend (a pen friend), a:war, a:council (a council writes or is written to), a:empire;
+    - the register, as the situation sets it: warmly (a warm letter that is no business, or a courteous one between
+      friends), warm|cordial (courteous enough for either), cordial, cool, curt, refusal; a war line may name none;
+    - what the writer wants: m:friend, m:trade (angling for business), m:duty (an official's duty), m:wary (sounding the
+      colony out), m:proud (one who won't ask outright); business marks a businesslike letter;
+    - the writer's age (w:tribal, w:industrial, w:spacer), their people (their:herders...), their culture (c:pious,
+      c:raider...) and kind (x:hulking, x:refined...);
+    - the speech, which a writer draws from alone: none (plain English), olde (a medieval writer's: thou for the subject,
+      thee for the object, thy before a consonant, thine before a vowel; thou art, thou hast; he hath), u:some (a barely
+      schooled hand, a slip or two, written so on purpose), u:none (an unschooled one, many slips, words crossed out and
+      written again, on purpose), sv:beast, sv:green, sv:fey, sv:ancient, sv:deep (strange voices; a hive and a machine
+      greet nobody);
+    - the colony's writer's voice (ours): v:blunt, v:plain, v:eloquent, v:kind, v:abrasive, v:cheerful, v:gloomy.
+    {TO} is the one written to, {FROM} the writer, {TOWN} their town, {COLONY} the colony, {PEOPLE} their people,
+    {COUNCIL} their council ("the council of Ashford"), {TOTITLE} the title of the one written to. A line is chosen only
+    when every placeholder in it has a value. The unschooled lines' misspellings are deliberate (DESIGN.md, "Letters that
+    read like letters": the exceptions), as are the strange voices' odd grammar.
+  -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_LetterSalute</defName>
+    <lines>
+      <plain>
+        <!-- ================= Theirs, plain English ================= -->
+        <!-- Warm -->
+        <li>[theirs,a:plain,warmly] My dear {TO},</li>
+        <li>[theirs,a:plain,warmly] Dear {TO}, and everyone at {COLONY},</li>
+        <li>[theirs,a:plain,warmly] To {TO} and all at {COLONY}, warm greetings from {TOWN},</li>
+        <li>[theirs,a:plain,warmly] Dear {TO}, with all our good wishes,</li>
+        <li>[theirs,a:plain,warmly] {TO}, it is good to be writing to you again,</li>
+        <li>[theirs,a:plain,warmly,w:tribal] {TO}, whose words came to our fire,</li>
+        <li>[theirs,a:plain,warmly,w:tribal] To {TO} of {COLONY}, from the fires of {TOWN}, warmly,</li>
+        <li>[theirs,a:plain,warmly,w:industrial] Dear {TO}, hello again,</li>
+        <li>[theirs,a:plain,warmly,w:spacer] {TO}, hello, and good to hear from you,</li>
+        <li>[theirs,a:plain,warmly,their:herders] {TO}, friend of the herd's road,</li>
+        <li>[theirs,a:plain,warmly,their:healers] To {TO}, in good health we hope, from the sickhouse at {TOWN},</li>
+        <li>[theirs,a:plain,warmly,their:pilgrims] To {TO}, a fellow traveller on the long road,</li>
+        <li>[theirs,a:plain,warmly,their:fishers] {TO}, greetings from the landing, where the river says hello too,</li>
+        <li>[theirs,a:plain,warmly,their:scholars] Dear {TO}, whose letters are filed here under Pleasant,</li>
+        <li>[theirs,a:plain,warmly,their:sextons] {TO}, the bell rings for the living too, and today it rings for you,</li>
+        <li>[theirs,a:plain,warmly,their:grovekeepers] {TO}, from under the old trees at {TOWN}, greetings that grow slowly but deep,</li>
+        <li>[theirs,a:plain,warmly,their:crew] {TO}, from the crew of {TOWN}, with fair winds,</li>
+        <li>[theirs,a:plain,warmly,c:highlife] {TO}, you splendid creature,</li>
+        <!-- Courteous enough for a warm letter or a courteous one -->
+        <li>[theirs,a:plain,warm|cordial] Dear {TO},</li>
+        <li>[theirs,a:plain,warm|cordial] Greetings, {TO},</li>
+        <li>[theirs,a:plain,warm|cordial,c:pious] {TO}, peace be with you and with all at {COLONY},</li>
+        <!-- Courteous -->
+        <li>[theirs,a:plain,cordial] To {TO} of {COLONY}, greetings,</li>
+        <li>[theirs,a:plain,cordial] {TO}, greetings from {TOWN},</li>
+        <li>[theirs,a:plain,cordial] To {TO} and the people of {COLONY},</li>
+        <li>[theirs,a:plain,cordial,w:tribal] To {TO} of {COLONY}, greetings from the fires of {TOWN},</li>
+        <li>[theirs,a:plain,cordial,w:tribal] {TO}, the elders at {TOWN} send greetings, and so do I,</li>
+        <li>[theirs,a:plain,cordial,w:industrial] Dear {TO}, greetings from {TOWN},</li>
+        <li>[theirs,a:plain,cordial,w:spacer] Greetings to {TO} and {COLONY},</li>
+        <li>[theirs,a:plain,cordial,their:traders] To {TO} of {COLONY}, with the league's greetings,</li>
+        <li>[theirs,a:plain,cordial,their:citizens] To {TO}, citizen of {COLONY} in all but name,</li>
+        <li>[theirs,a:plain,cordial,their:drillers] {TO}, greetings from the pit at {TOWN},</li>
+        <li>[theirs,a:plain,cordial,their:linesmen] To {TO} at {COLONY}, greetings down the line,</li>
+        <li>[theirs,a:plain,cordial,their:mercenaries] To {TO} of {COLONY}, the Banner's greetings,</li>
+        <li>[theirs,a:plain,cordial,c:loyal] To {TO} of {COLONY}, greetings in our leader's name,</li>
+        <li>[theirs,a:plain,cordial,c:together] To {TO} and the people of {COLONY}, from all of us at {TOWN} together,</li>
+        <!-- Business, the wary, the proud -->
+        <li>[theirs,a:plain,cordial,m:trade] To {TO} of {COLONY}, with an eye to good business,</li>
+        <li>[theirs,a:plain,cordial|cool,m:trade] To {TO} of {COLONY}, from the traders' table at {TOWN},</li>
+        <li>[theirs,a:plain,cordial|cool,m:duty] To {TO} of {COLONY}, on behalf of {TOWN},</li>
+        <li>[theirs,a:plain,cordial|cool,m:duty] To {TO}, in the matter of your letter to {TOWN},</li>
+        <li>[theirs,a:plain,cordial|cool,m:wary] To {TO}, at {COLONY},</li>
+        <li>[theirs,a:plain,cordial|cool,m:wary] To {TO} of {COLONY}, whom we know only by letter,</li>
+        <li>[theirs,a:plain,cordial|cool,m:proud] To {TO} of {COLONY}, from {TOWN}, which you will have heard of,</li>
+        <li>[theirs,a:plain,cordial|cool,m:proud] {TO} of {COLONY}, greetings from the first town of {PEOPLE},</li>
+        <!-- Cool -->
+        <li>[theirs,a:plain,cordial|cool] To {TO} of {COLONY},</li>
+        <li>[theirs,a:plain,cool] {TO},</li>
+        <li>[theirs,a:plain,cool] To {TO},</li>
+        <li>[theirs,a:plain,cool] To the people of {COLONY},</li>
+        <li>[theirs,a:plain,cool,w:spacer] {TO}, in reply to yours,</li>
+        <li>[theirs,a:plain,cool,c:raider] {TO} of {COLONY}, listen,</li>
+        <!-- Curt and refusal -->
+        <li>[theirs,a:plain,curt] {TO}.</li>
+        <li>[theirs,a:plain,curt] To {COLONY}.</li>
+        <li>[theirs,a:plain,curt] {TO} of {COLONY}:</li>
+        <li>[theirs,a:plain,curt,w:industrial|w:spacer] To {TO}, regarding your letter:</li>
+        <li>[theirs,a:plain,refusal] {TO}.</li>
+        <li>[theirs,a:plain,refusal] To {COLONY}:</li>
+        <li>[theirs,a:plain,refusal] To whoever reads this at {COLONY}:</li>
+        <li>[theirs,a:plain,curt|refusal,c:raider] {COLONY}. Read this and think hard.</li>
+        <!-- A pen friend -->
+        <li>[theirs,a:friend,warmly] My dear friend {TO},</li>
+        <li>[theirs,a:friend,warmly] Dear {TO}, old friend,</li>
+        <li>[theirs,a:friend,warmly] {TO}, my friend,</li>
+        <li>[theirs,a:friend,warmly] Dearest {TO}, my favourite correspondent,</li>
+        <li>[theirs,a:friend,warmly,w:tribal] Friend of my fire, {TO},</li>
+        <li>[theirs,a:friend,warmly,w:industrial|w:spacer] {TO}, you old so-and-so,</li>
+        <li>[theirs,a:friend,warm|cordial] Dear friend,</li>
+        <li>[theirs,a:friend,cordial|cool|curt|refusal] Dear {TO},</li>
+        <li>[theirs,a:friend,cool|curt|refusal] {TO},</li>
+        <!-- At war: any tone -->
+        <li>[theirs,a:war] To {TO} of {COLONY}, under the white flag:</li>
+        <li>[theirs,a:war] {TO} of {COLONY},</li>
+        <li>[theirs,a:war] To {COLONY}, from the other side of the war:</li>
+        <li>[theirs,a:war] To {TO}, by the go-between's hand:</li>
+        <li>[theirs,a:war,warm|cordial] {TO}, and I do not know what else to call you while our peoples fight,</li>
+        <li>[theirs,a:war,warm|cordial] To {TO} of {COLONY}, enemy by our peoples' choosing and not by mine,</li>
+        <li>[theirs,a:war,cool|curt|refusal] To the enemy at {COLONY}:</li>
+        <li>[theirs,a:war,curt|refusal] {COLONY}.</li>
+        <li>[theirs,a:war,w:tribal] To {COLONY}, from {TOWN}, where the war drums are not quiet:</li>
+        <li>[theirs,a:war,c:raider] To the walls of {COLONY}:</li>
+        <!-- A council -->
+        <li>[theirs,a:council] To the people of {COLONY}, from {COUNCIL}:</li>
+        <li>[theirs,a:council] To {TO} and the people of {COLONY}, on behalf of {COUNCIL}:</li>
+        <li>[theirs,a:council,warm|cordial] To our neighbours at {COLONY}, greetings from {COUNCIL},</li>
+        <li>[theirs,a:council,cool|curt|refusal] To {COLONY}, from {COUNCIL}:</li>
+        <li>[theirs,a:council,w:tribal] To {COLONY}, from the elders who sat at the fire of {TOWN}:</li>
+        <li>[theirs,a:council,w:industrial|w:spacer] To {COLONY}. From: {COUNCIL}. Concerning: your letter.</li>
+        <!-- The Empire -->
+        <li>[theirs,a:empire] To {TO} of {COLONY}, greetings, and the regard of the Empire,</li>
+        <li>[theirs,a:empire] To the people of {COLONY}, greetings, by the grace of the Empire,</li>
+        <li>[theirs,a:empire,warm|cordial] To {TO}, a friend to the Empire, greetings and honour,</li>
+        <li>[theirs,a:empire,warm|cordial] To {TO} of {COLONY}, whose courtesy does them honour,</li>
+        <li>[theirs,a:empire,cool] To {TO} of {COLONY}, by the Empire's leave,</li>
+        <li>[theirs,a:empire,curt|refusal] {TO} of {COLONY}, attend:</li>
+        <li>[theirs,a:empire,curt|refusal] To {COLONY}:</li>
+
+        <!-- ================= Ours, plain English ================= -->
+        <li>[ours,a:plain,warmly] Dear {TO}, and everyone at {TOWN},</li>
+        <li>[ours,a:plain,warmly,v:eloquent] My dear {TO},</li>
+        <li>[ours,a:plain,warmly,v:eloquent] To {TO} of {TOWN}, with every good wish,</li>
+        <li>[ours,a:plain,warmly,v:kind] Dear {TO}, I hope you are keeping well,</li>
+        <li>[ours,a:plain,warmly,v:cheerful] Hello, {TO},</li>
+        <li>[ours,a:plain,warm|cordial] Dear {TO},</li>
+        <li>[ours,a:plain,warm|cordial,v:blunt] {TO},</li>
+        <li>[ours,a:plain,cordial] Greetings, {TO},</li>
+        <li>[ours,a:plain,cordial] To {TO} of {TOWN}, greetings from {COLONY},</li>
+        <li>[ours,a:plain,cordial,v:eloquent] Esteemed {TO},</li>
+        <li>[ours,a:plain,cordial,v:blunt] {TO}, hello.</li>
+        <li>[ours,a:plain,cordial,w:tribal] {TO} of {TOWN}, greetings from our fire,</li>
+        <li>[ours,a:plain,cordial|cool,m:duty] To {TO} of {TOWN}, on behalf of {COLONY},</li>
+        <li>[ours,a:plain,cordial|cool,m:wary] To {TO} of {TOWN},</li>
+        <li>[ours,a:plain,cool] {TO},</li>
+        <li>[ours,a:plain,cool,v:eloquent] To the respected {TO} of {TOWN},</li>
+        <li>[ours,a:plain,curt|refusal] {TO}.</li>
+        <li>[ours,a:plain,curt|refusal] To {TO} of {TOWN}:</li>
+        <li>[ours,a:friend,warmly] Dear friend,</li>
+        <li>[ours,a:friend,warmly] {TO}, old friend,</li>
+        <li>[ours,a:friend,warmly,v:eloquent] My dear {TO}, my most faithful correspondent,</li>
+        <li>[ours,a:friend,warmly,v:blunt] {TO}, it's me again,</li>
+        <li>[ours,a:friend,warm|cordial|cool|curt] My dear {TO},</li>
+        <li>[ours,a:friend,cordial|cool|curt,v:blunt] {TO},</li>
+        <li>[ours,a:war] To {TO} of {TOWN}, under a white flag,</li>
+        <li>[ours,a:war] {TO},</li>
+        <li>[ours,a:war] To {TO}, across the war between us,</li>
+        <li>[ours,a:war,v:eloquent] To {TO} of {TOWN}, in the hope that a letter can cross where people cannot,</li>
+        <li>[ours,a:council] To {COUNCIL},</li>
+        <li>[ours,a:council] To the members of {COUNCIL}, greetings from {COLONY},</li>
+        <li>[ours,a:council] To {TO} and {COUNCIL},</li>
+        <li>[ours,a:council,v:eloquent] To the honoured members of {COUNCIL}, greetings,</li>
+        <li>[ours,a:council,v:blunt] To {COUNCIL}, from {COLONY}:</li>
+        <li>[ours,a:empire] To the honourable {TO}, {TOTITLE},</li>
+        <li>[ours,a:empire] To {TO}, {TOTITLE} of the Empire, the respects of {COLONY},</li>
+        <li>[ours,a:empire] {TOTITLE} {TO}, with respect,</li>
+        <li>[ours,a:empire] To the honourable {TO} of {TOWN},</li>
+        <li>[ours,a:empire,v:eloquent] To {TO}, {TOTITLE}, whose honour is known even at {COLONY},</li>
+        <li>[ours,a:empire,v:blunt] {TOTITLE} {TO},</li>
+
+        <!-- ================= Medieval English (olde): theirs ================= -->
+        <li>[theirs,olde,a:plain,warmly] My dear {TO}, well met by letter,</li>
+        <li>[theirs,olde,a:plain,warmly] Good {TO}, and good friend, greeting,</li>
+        <li>[theirs,olde,a:plain,warmly] To {TO} at {COLONY}, with the warmest greetings of {TOWN},</li>
+        <li>[theirs,olde,a:plain,warmly] Dear {TO}, whom I hold in high esteem,</li>
+        <li>[theirs,olde,a:plain,warmly] To mine own good {TO}, and to all who sit at thy table,</li>
+        <li>[theirs,olde,a:plain,warm|cordial] Good {TO}, greeting,</li>
+        <li>[theirs,olde,a:plain,warm|cordial] Well beloved {TO},</li>
+        <li>[theirs,olde,a:plain,warm|cordial,c:pious] {TO}, grace and peace be upon thee and upon {COLONY},</li>
+        <li>[theirs,olde,a:plain,cordial] To {TO} at {COLONY}, greeting and good health,</li>
+        <li>[theirs,olde,a:plain,cordial] Unto {TO} of {COLONY}, greeting,</li>
+        <li>[theirs,olde,a:plain,cordial] To the worthy {TO}, of {COLONY},</li>
+        <li>[theirs,olde,a:plain,cordial,their:healers] To {TO}, health and long days, from the sickhouse at {TOWN},</li>
+        <li>[theirs,olde,a:plain,cordial,their:pilgrims] To {TO}, a fellow walker upon the long road, greeting,</li>
+        <li>[theirs,olde,a:plain,cordial,their:mercenaries] To {TO} of {COLONY}, the Banner's greeting,</li>
+        <li>[theirs,olde,a:plain,cordial,their:artisans] To {TO} of {COLONY}, greeting from the guildhall at {TOWN},</li>
+        <li>[theirs,olde,a:plain,cordial|cool,m:trade] To {TO} of {COLONY}, greeting, and an honest bargain if thou wilt,</li>
+        <li>[theirs,olde,a:plain,cordial|cool,m:duty] To {TO} of {COLONY}, on behalf of {TOWN}, greeting,</li>
+        <li>[theirs,olde,a:plain,cordial|cool,m:wary] To {TO} of {COLONY}, whom I know but by thy letter,</li>
+        <li>[theirs,olde,a:plain,cordial|cool,m:proud] To {TO} of {COLONY}, from {TOWN}, whereof thou hast surely heard,</li>
+        <li>[theirs,olde,a:plain,cordial|cool] Unto {TO} of {COLONY},</li>
+        <li>[theirs,olde,a:plain,cool] {TO}, greeting,</li>
+        <li>[theirs,olde,a:plain,cool] To {TO} at {COLONY}, these,</li>
+        <li>[theirs,olde,a:plain,curt] {TO}, attend.</li>
+        <li>[theirs,olde,a:plain,curt] To {COLONY}, and no more.</li>
+        <li>[theirs,olde,a:plain,refusal] To {TO} of {COLONY}, and no further:</li>
+        <li>[theirs,olde,a:plain,curt|refusal] {TO}, mark well what followeth:</li>
+        <li>[theirs,olde,a:friend,warmly] Mine own dear friend {TO},</li>
+        <li>[theirs,olde,a:friend,warmly] {TO}, my true and trusty friend,</li>
+        <li>[theirs,olde,a:friend,warmly] Dearest {TO}, of all who write to me the most welcome,</li>
+        <li>[theirs,olde,a:friend,warm|cordial] Good friend {TO},</li>
+        <li>[theirs,olde,a:friend,cordial|cool|curt|refusal] {TO}, friend,</li>
+        <li>[theirs,olde,a:friend,cool|curt|refusal] {TO},</li>
+        <li>[theirs,olde,a:war] To {TO} of {COLONY}, under the white flag, these,</li>
+        <li>[theirs,olde,a:war] Unto {COLONY}, from the far side of the war,</li>
+        <li>[theirs,olde,a:war,warm|cordial] {TO}, whom I must call foe, though my heart is loath to,</li>
+        <li>[theirs,olde,a:war,cool|curt|refusal] To the foe at {COLONY}:</li>
+        <li>[theirs,olde,a:council] To the folk of {COLONY}, from {COUNCIL}, greeting:</li>
+        <li>[theirs,olde,a:council] Unto {TO} and the folk of {COLONY}, on behalf of {COUNCIL}:</li>
+        <li>[theirs,olde,a:council,warm|cordial] To our good neighbours at {COLONY}, {COUNCIL} sendeth greeting,</li>
+        <li>[theirs,olde,a:council,cool|curt|refusal] To {COLONY}, from {COUNCIL}, these:</li>
+
+        <!-- ================= Medieval English (olde): ours ================= -->
+        <li>[ours,olde,a:plain,warmly] My dear {TO}, and all at {TOWN},</li>
+        <li>[ours,olde,a:plain,warmly,v:eloquent] Most dear {TO}, whom we of {COLONY} hold in great affection,</li>
+        <li>[ours,olde,a:plain,warmly,v:kind] Good {TO}, I trust this findeth thee well,</li>
+        <li>[ours,olde,a:plain,warm|cordial] Good {TO}, greeting,</li>
+        <li>[ours,olde,a:plain,warm|cordial,v:blunt] {TO},</li>
+        <li>[ours,olde,a:plain,cordial] To {TO} of {TOWN}, greeting from {COLONY},</li>
+        <li>[ours,olde,a:plain,cordial,v:eloquent] Unto the worthy {TO} of {TOWN}, greeting,</li>
+        <li>[ours,olde,a:plain,cordial|cool,m:duty] To {TO} of {TOWN}, on behalf of {COLONY},</li>
+        <li>[ours,olde,a:plain,cordial|cool] Unto {TO} of {TOWN},</li>
+        <li>[ours,olde,a:plain,cool] {TO}, greeting,</li>
+        <li>[ours,olde,a:plain,curt|refusal] {TO}.</li>
+        <li>[ours,olde,a:friend,warmly] Mine own dear friend {TO},</li>
+        <li>[ours,olde,a:friend,warm|cordial|cool|curt] Good friend {TO},</li>
+        <li>[ours,olde,a:war] To {TO} of {TOWN}, under a white flag,</li>
+        <li>[ours,olde,a:war] Unto {TO}, across the war that lieth between us,</li>
+        <li>[ours,olde,a:council] To {COUNCIL}, greeting,</li>
+        <li>[ours,olde,a:council] Unto the worthy members of {COUNCIL}, greeting from {COLONY},</li>
+
+        <!-- ================= A barely schooled hand (u:some): a slip or two ================= -->
+        <li>[u:some,warmly] Dear {TO}, hello from {TOWN} and evryone here,</li>
+        <li>[u:some,warm|cordial] Dear {TO},</li>
+        <li>[theirs,u:some,cordial] To {TO} at {COLONY}, greetings,</li>
+        <li>[theirs,u:some,cordial] Greetings to {TO} of {COLONY} from {TOWN},</li>
+        <li>[theirs,u:some,cordial|cool] To {TO} of {COLONY}, in anser to yor letter,</li>
+        <li>[u:some,cool] To {TO},</li>
+        <li>[theirs,u:some,cool] To {TO} at {COLONY}, re your leter,</li>
+        <li>[u:some,curt|refusal] {TO}.</li>
+        <li>[theirs,u:some,curt|refusal] To {COLONY}, about yor letter:</li>
+        <li>[theirs,u:some,warm|cordial,a:war] To {TO} of {COLONY}, under the wite flag,</li>
+
+        <!-- ================= An unschooled hand (u:none): many slips, on purpose ================= -->
+        <li>[theirs,u:none,warmly] deer {TO} at {COLONY} hello</li>
+        <li>[u:none,warm|cordial] dear {TO}</li>
+        <li>[theirs,u:none,cordial] to {TO} at {COLONY}, gretings</li>
+        <li>[theirs,u:none,cordial|cool] to {TO} of {COLONY} or hoever reads it</li>
+        <li>[u:none,cool] {TO}</li>
+        <li>[theirs,u:none,cool] to the {COLONY} peple (crossed out) people</li>
+        <li>[theirs,u:none,curt] OI {COLONY}</li>
+        <li>[theirs,u:none,curt|refusal] to {COLONY} wot sent the leter</li>
+        <li>[theirs,u:none,refusal] {COLONY} lisen up</li>
+        <li>[theirs,u:none,curt|refusal,c:raider] to the walls at {COLONY} and the cowards behind them</li>
+
+        <li>[theirs,u:some,warmly] Dear {TO}, our good frend at {COLONY},</li>
+        <li>[theirs,u:some,cordial|cool,c:raider] To {TO} at {COLONY}, from the boss,</li>
+        <li>[ours,u:some,warm|cordial] Dear {TO} at {TOWN},</li>
+        <li>[ours,u:some,cordial|cool] To {TO} of {TOWN}, gretings from all of us,</li>
+        <li>[ours,u:some,curt|refusal] {TO}.</li>
+        <li>[ours,u:none,warmly] deer {TO} hello from all of us</li>
+        <li>[ours,u:none,warm|cordial] dear {TO} at {TOWN}</li>
+        <li>[ours,u:none,cordial|cool] to {TO} of {TOWN}</li>
+        <li>[ours,u:none,curt|refusal] {TO} at {TOWN}</li>
+        <li>[ours,u:none,a:war] to {TO} under the wite flag</li>
+
+        <!-- ================= Strange voices ================= -->
+        <!-- Animal-like: smells and tracks -->
+        <li>[sv:beast,warmly] {TO}, whose scent we remember kindly,</li>
+        <li>[theirs,sv:beast,warm|cordial] {TO} of {COLONY}, good hunting to your den,</li>
+        <li>[sv:beast,cordial|cool] {TO}. We have your letter, and the smell of your road on it.</li>
+        <li>[sv:beast,cool|curt] {TO}. Downwind of you, we write.</li>
+        <li>[theirs,sv:beast,curt|refusal] {COLONY}. Hackles up. Read.</li>
+        <!-- Plant folk: light and seasons -->
+        <li>[sv:green,warmly] {TO}, may the light find you early and leave you late,</li>
+        <li>[theirs,sv:green,warm|cordial] {TO} of {COLONY}, greetings, slowly, as all good greetings grow,</li>
+        <li>[sv:green,cordial|cool] {TO}, from the shade at {TOWN},</li>
+        <li>[sv:green,cool|curt] {TO}. The season is short. So is this.</li>
+        <li>[theirs,sv:green,curt|refusal] {COLONY}. Frost on the leaf.</li>
+        <!-- Fairies and wood elves: the formula, said first and said again at the end -->
+        <li>[sv:fey,warmly] By leaf and by string, by the third hour of dew: greetings, {TO}, and gladly.</li>
+        <li>[sv:fey,warm|cordial] By leaf and by string, by the third hour of dew: greetings, {TO}.</li>
+        <li>[sv:fey,cordial|cool] By leaf and by string: {TO}, hear us.</li>
+        <li>[sv:fey,cool|curt] By leaf and by string, and no further: {TO}.</li>
+        <li>[theirs,sv:fey,curt|refusal] By thorn, not by leaf: {COLONY}.</li>
+        <!-- The ancient: a dated, overly literal register -->
+        <li>[theirs,sv:ancient,warmly] To {TO}, of the settlement styled {COLONY}, from {FROM}, with a regard I find, to my surprise, entirely sincere:</li>
+        <li>[theirs,sv:ancient,warm|cordial] To {TO}, of the settlement styled {COLONY}, from {FROM}, at {TOWN}: greetings in the proper form.</li>
+        <li>[theirs,sv:ancient,cordial|cool] To the person {TO}, presently resident at {COLONY}: greetings, as custom requires.</li>
+        <li>[theirs,sv:ancient,cool|curt] To {TO}, of {COLONY}. Greetings are customary. Consider them given.</li>
+        <li>[theirs,sv:ancient,curt|refusal] To {COLONY}, which has written to me. Once.</li>
+        <!-- The eldritch: words in an order of their own -->
+        <li>[sv:deep,warmly] {TO}. Warm, the hand that writes you. Strange that it is so.</li>
+        <li>[sv:deep,warm|cordial] {TO}. Greeted, you are. By what greets, ask not.</li>
+        <li>[theirs,sv:deep,cordial|cool] {TO} of {COLONY}. Read, we have. Answer, we do.</li>
+        <li>[sv:deep,cool|curt] {TO}. Heard. Below, it was heard.</li>
+        <li>[theirs,sv:deep,curt|refusal] {COLONY}. Small, you are. Listen.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+</Defs>

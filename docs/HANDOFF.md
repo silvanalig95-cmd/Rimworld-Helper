@@ -12,6 +12,50 @@ tree at once, alongside whatever runs. Each piece is merged as its own release, 
 
 ## State (5 November 2026)
 
+- 0.202.0, letters that read like letters (9 November 2026). The player: "letters exchanged from and to pawns should also read like actual letters, make a
+  varied selection of interesting letters that read well and can also crack a joke sometimes, or be serious", then "they
+  don't necessarily have to be warm, just according to the situation and motivation", the writer's race and culture,
+  medieval English, "how a stupid bandit could not spell words correctly", and "you can also be experimentive with
+  grammar, writing style, formatting, phrasing etc ... like strange races or cultures". DESIGN.md "Letters that read like
+  letters" has all of it; `docs/design/post-and-letters.md` step 3; README "Letters that read like letters".
+  - Pure: `Letters/LetterFormMath.cs` (the form, the tone by situation and motive, the speeches and their partition, the
+    voice, schooling, dates, signatures, the call's transcript and words passed on, `Compose`) and
+    `Letters/LetterCultureMath.cs` (xenotypes, races, memes, outlaw peoples and traits by defName, each checked against
+    `docs/player-mods` active rows). Both linked in Tests.csproj; `Tools/Tests/LetterFormTests.cs` (about 515,000 checks:
+    the rules, every pool's coverage for every purpose, tone, motive, address and speech, no warm line in a cool, curt or
+    businesslike letter, each speech only for its writers, medieval and plain English kept apart, the culture names
+    against the player's mods, outcomes under the letter, calls and words passed on not shaped as letters, whole sample
+    letters printed with `RIMFOLK_LETTERS_PRINT=1`, the seams).
+  - Game side: `Letters/LetterForm.cs` (their answer from `NeighbourLetters.Body`, the colony's own from
+    `NeighbourLetters.Written` and a spoken message from `Send`, the world writing first from `WorldWrites.Write`, a
+    friend's word from `PenFriends`), `Letters/LetterBook.cs` (a game component: exchanges kept to read again, 60 at most,
+    8 a notable, pages capped; modelled in `save_estimate.py`; `Told` from `Tell.Letter` matches the game letter by its
+    words), `Letters/LetterReadWindow.cs` (frame key "LetterRead"). The answer's event card offers "Read Stace's letter"
+    (`EventCardModel.Page`), the Diplomacy screen's People lists "Letters with ..." (`PeoplePage`), the mailbag has "Read a
+    letter", the "has written" messages say where it can be read. `DealingLetters.HeartTags`, `WorldWrites.GoodsWord` made
+    public. The DefValidator knows the letters' placeholders. Setting `lettersInFull` "Letters written out in full" (on).
+    Keys in `Rimfolk_LetterForm.xml`. No Sched slot.
+  - Pools: `Defs/FlavorPoolDefs/Rimfolk_Letters_Salute`, `_Open`, `_Heart`, `_Aside`, `_Close`, `_PS`, `_When`, `_Ours`,
+    `_Call`, `_Spoken` (about 1,870 lines; 450 in medieval English, 150 unschooled, about 20 for each strange voice). The
+    unschooled lines' misspellings and the strange voices' grammar are deliberate (the pools' own comments say so; no
+    check needed an exception).
+  - Not done here: the colony's envoys' and wards' letters home and a town's letter stay narrated (they are the colony's
+    own people writing home: a "home" side of the form would be the next step if wanted).
+  - Not run here (none of it could be): every letter in the game (the card's text, its length and scroll, the act on the
+    card and the reading window over it, the people page's rows, the mailbag's gizmo); `Told` matching a told letter by
+    its first words when the teller holds it for the evening news (then there is no card, only the people page); the
+    persona of notables who are world pawns (`Persona.Values` from traits); `GenDate.Season` at a town's tile; the
+    xenotypes, memes and outlaw factions read from real pawns of the player's mods; a call's transcript in a long callback.
+  - Try in the game: 1. Write greetings to a notable who likes the colony: the "has written" message says it can be read;
+    select the mailbag, "Read a letter": the colony's letter in its writer's voice. 2. When the answer comes, open its
+    card: a heading, "Dear Stace,", their words, a closing and their signature, the narrator's lines under "* * *"; "Read
+    Stace's letter" at the foot opens both letters on paper. 3. Diplomacy screen, a people, People: "Letters with ..."
+    lists the exchange; click it. 4. Write to a medieval people: their answer in thee and thou. 5. A pirate or a bandit
+    gang's answer (a truce, a ransom): their spelling, a mark for a signature. 6. A call on the comms console: its
+    transcript, "Stace: ..." and "Dagna: ...". 7. A trader's answer, or a notable who thinks little of the colony: a
+    businesslike or careful letter, no warmth. 8. A tribal colony's spoken message: the reading window shows the words as
+    its carrier will give them. 9. Settings, the neighbours' section, "Letters written out in full" off: the short form as
+    before.
 - 0.201.1, illnesses first in the health panel (9 November 2026). The player, with a picture of the panel in Rimfolk's look:
   "the illness should have more prominence than the health bar in this window". The summary health bar under a name is
   now a thin, muted line (`HudLookMath.HealthBarQuiet` 1.5, `HealthBarAlpha` 0.45; the row's layout unchanged); a
