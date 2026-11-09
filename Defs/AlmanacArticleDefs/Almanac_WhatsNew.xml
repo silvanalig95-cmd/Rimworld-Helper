@@ -31,6 +31,16 @@ When you load a save after an update, a letter lists the newest round once. The 
     <rounds>
 
       <li>
+        <version>0.179.2</version>
+        <date>9 November 2026</date>
+        <title>The mailbag gets a picture of its own</title>
+        <points>
+          <li>The mailbag by the gate showed a red cross where its picture should be; it now shows a wooden post with a leather satchel on a peg, a brass post-horn plate and letters sticking out, one sealed in red wax.</li>
+          <li>It is drawn in the game's own style and colours, so it sits beside the caravan spot and the other markers without standing out.</li>
+        </points>
+      </li>
+
+      <li>
         <version>0.179.1</version>
         <date>9 November 2026</date>
         <title>Planning opens on every room at a glance</title>

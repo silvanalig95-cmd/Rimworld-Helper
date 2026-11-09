@@ -12,6 +12,13 @@ tree at once, alongside whatever runs. Each piece is merged as its own release, 
 
 ## State (5 November 2026)
 
+- 0.179.2, the mailbag's own picture (9 November 2026, the player's screenshot of a red cross: "the mailbag needs a
+  proper sprite, please use all available options a reference"). `Rimfolk_Mailbag` pointed at
+  `Things/Building/Misc/CaravanPackingSpot`, which the game doesn't have under that path. It now uses
+  `Textures/ColonyCouncil/Things/Mailbag.png` (128 by 128), drawn by `Tools/make_mailbag.py` (Pillow, drawn at four
+  times the size and scaled down; a wooden post with a cap, a peg, a leather satchel with a buckled flap, two letters,
+  one with a red wax seal, a brass post-horn plate, a soft shadow). The player's upload had no textures of their mods to
+  match, so it follows the game's own palette and dark outline. To try: place a mailbag by the gate.
 - 0.179.1, planning opens on every room at a glance (9 November 2026, the player's screenshot: "The 'rooms' -> 'at a
   glance' should be the default window when opening the planner, as i use this the most by far"). A setting beside the
   council window's, `planningOpensOn` (`PlanningOpensOn.AtAGlance`, the default, or `LastPage`; `UI/PageMemory.cs`,
