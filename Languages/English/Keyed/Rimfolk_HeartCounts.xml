@@ -119,8 +119,6 @@
   <CC_Glance_Heart>Heart: {WHAT}</CC_Glance_Heart>
   <CC_Glance_Up>up {0} today</CC_Glance_Up>
   <CC_Glance_Down>down {0} today</CC_Glance_Down>
-  <CC_Glance_Weight>Under it, a weight of {WEIGHT} that rest won't ease, lifting over the days.</CC_Glance_Weight>
-  <CC_Glance_WeightWhy>Under it, a weight of {WEIGHT} from {WHY}, lifting over the days.</CC_Glance_WeightWhy>
   <CC_Glance_Weighs>Weighing on {PAWN_objective} most: {WHAT}.</CC_Glance_Weighs>
   <CC_Glance_Lifts>Lifting {PAWN_objective} most: {WHAT}.</CC_Glance_Lifts>
   <CC_Glance_AllMoods>Every mood</CC_Glance_AllMoods>
@@ -162,7 +160,7 @@
   <CC_Settings_HeartAdvice_Tip>For each strained colonist, the few things that would ease them most, from what is wearing on them now and what the colony has: a day off, a decree of the council's that eases strain (with what it costs), a gathering, time with a friend, a proper meal, a better bed, recreation, their pain treated, a rest from fighting. On the Mood tab, their card, the council's Moods page and the message when someone is worn down, each with a button where Rimfolk can do it.</CC_Settings_HeartAdvice_Tip>
   <CC_SetNote_HeartAdvice>Advice you can act on, with a button where Rimfolk can do it.</CC_SetNote_HeartAdvice>
   <CC_Settings_HeartDayOff>A day off for one colonist</CC_Settings_HeartDayOff>
-  <CC_Settings_HeartDayOff_Tip>Give a strained colonist a day off from their Mood tab, their card, the advice or a button on them: for a day they rest, sleep in, take their recreation, walk and see friends, and do no ordinary work. It eases strain well beyond an ordinary day; the colony goes a day without their work. Once in five days for each colonist, and it ends early if danger comes.</CC_Settings_HeartDayOff_Tip>
+  <CC_Settings_HeartDayOff_Tip>Give a strained colonist a day off from their Mood tab (the button beside the strain meter), their card or the advice: for a day they rest, sleep in, take their recreation, walk and see friends, and do no ordinary work. It eases strain well beyond an ordinary day; the colony goes a day without their work. Once in five days for each colonist, and it ends early if danger comes.</CC_Settings_HeartDayOff_Tip>
   <CC_SetNote_HeartDayOff>A button for a strained colonist's day off.</CC_SetNote_HeartDayOff>
 
 </LanguageData>

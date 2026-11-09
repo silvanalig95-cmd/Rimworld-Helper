@@ -318,6 +318,8 @@ namespace ColonyCouncil
             Toggle("heartSpread", "CC_Settings_HeartSpread", "CC_SetNote_HeartSpread", "heart");
             Toggle("heartAdvice", "CC_Settings_HeartAdvice", "CC_SetNote_HeartAdvice", "heart");
             Toggle("heartDayOff", "CC_Settings_HeartDayOff", "CC_SetNote_HeartDayOff", "heart");
+            // The day off's button lives beside the heart's meters on the Mood tab; on the colonist's command bar too only with this.
+            Toggle("heartDayOffGizmo", "CC_Settings_HeartDayOffGizmo", "CC_SetNote_HeartDayOffGizmo", "heart,heartDayOff,deepHooks");
             Section("CC_Settings_AilmentsHeader");
             Slider("ailmentFrequency", "CC_Settings_AilmentFrequency", "CC_SetNote_AilmentFrequency", 0.25f, 2f, 0.05f, "%", "ailments");
             Toggle("seriousIllnesses", "CC_Settings_SeriousIllnesses", "CC_SetNote_SeriousIllnesses", "ailments");

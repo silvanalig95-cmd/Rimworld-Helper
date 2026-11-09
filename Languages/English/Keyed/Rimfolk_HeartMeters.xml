@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <!--
+    The heart's meters and the day off beside them (Source/ColonyCouncil/Heart/HeartMeter.cs, HeartMeterMath.cs; the Mood
+    tab's summary, the heart's section and the colonist's card), and RimHUD's strain line made to fit its cell
+    (Integrations/RimHud.cs).
+  -->
+
+  <!-- On the bars. -->
+  <CC_Meter_Strain>Strain: {BAND} {VALUE}</CC_Meter_Strain>
+  <CC_Meter_Good>Good side: {BAND} {VALUE}</CC_Meter_Good>
+  <CC_Meter_Today>{0} today</CC_Meter_Today>
+
+  <!-- Hovering a tick, the weight's mark, the meter. -->
+  <CC_Meter_TickTip>From {AT}, {BAND}: {EFFECTS}.</CC_Meter_TickTip>
+  <CC_Meter_TickTipPlain>From {AT}, {BAND}.</CC_Meter_TickTipPlain>
+  <CC_Meter_TickEpisode>From {AT}, someone at the end of their rope may need a day to themselves: they keep to their room for half a day or so, then come back lighter.</CC_Meter_TickEpisode>
+  <CC_Meter_FloorNote>The mark under the bar is the weight; the shaded part of the bar is what it holds.</CC_Meter_FloorNote>
+  <CC_Meter_EasesBy>What eases it: sleep in a warm bed, free time, good meals and good company.</CC_Meter_EasesBy>
+
+  <!-- The day off's place beside the meters. -->
+  <CC_Meter_EndEarly>End it early</CC_Meter_EndEarly>
+  <CC_Meter_EndBadDayDesc>Bring {PAWN_nameDef} back to work now: {PAWN_possessive} timetable goes back as it was, and the afternoon counts for half.</CC_Meter_EndBadDayDesc>
+  <CC_Meter_Off_DayOff_Today>Day off until {HOUR}h</CC_Meter_Off_DayOff_Today>
+  <CC_Meter_Off_DayOff_Tomorrow>Day off until {HOUR}h tomorrow</CC_Meter_Off_DayOff_Tomorrow>
+  <CC_Meter_Off_DayOff_Later>Day off until {HOUR}h in {DAYS} days</CC_Meter_Off_DayOff_Later>
+  <CC_Meter_Off_BadDay_Today>Bad afternoon until {HOUR}h</CC_Meter_Off_BadDay_Today>
+  <CC_Meter_Off_BadDay_Tomorrow>Bad afternoon until {HOUR}h tomorrow</CC_Meter_Off_BadDay_Tomorrow>
+  <CC_Meter_Off_BadDay_Later>Bad afternoon until {HOUR}h in {DAYS} days</CC_Meter_Off_BadDay_Later>
+  <CC_Meter_Why_Already>time off already</CC_Meter_Why_Already>
+  <CC_Meter_Why_NotStrained>not strained enough</CC_Meter_Why_NotStrained>
+  <CC_Meter_Why_Cooldown>again in {DAYS}</CC_Meter_Why_Cooldown>
+  <CC_Meter_Why_Away>away from home</CC_Meter_Why_Away>
+  <CC_Meter_Why_Child>a child</CC_Meter_Why_Child>
+  <CC_Meter_Why_Busy>not just now</CC_Meter_Why_Busy>
+  <CC_Meter_Why_Danger>not while in danger</CC_Meter_Why_Danger>
+  <CC_Meter_Why_Care>needs a doctor first</CC_Meter_Why_Care>
+  <CC_Meter_Why_Nursing>a baby to feed</CC_Meter_Why_Nursing>
+  <CC_Meter_Why_TooFew>nobody to carry on</CC_Meter_Why_TooFew>
+
+  <!-- RimHUD's strain line, short enough for its cell ("Worn 60 · fighting"); the whole of it in the tooltip. -->
+  <CC_Hud_ShortValue>{BAND} {VALUE}</CC_Hud_ShortValue>
+  <CC_Hud_StrainShort_Steady>Steady</CC_Hud_StrainShort_Steady>
+  <CC_Hud_StrainShort_Strained>Strained</CC_Hud_StrainShort_Strained>
+  <CC_Hud_StrainShort_Worn>Worn</CC_Hud_StrainShort_Worn>
+  <CC_Hud_StrainShort_Breaking>Breaking</CC_Hud_StrainShort_Breaking>
+  <CC_Hud_GoodShort_Steady>good side</CC_Hud_GoodShort_Steady>
+  <CC_Hud_GoodShort_GoodHeart>good heart</CC_Hud_GoodShort_GoodHeart>
+  <CC_Hud_GoodShort_HighSpirits>high spirits</CC_Hud_GoodShort_HighSpirits>
+
+  <!-- Settings (the heart's page, How hard). -->
+  <CC_Settings_HeartDayOffGizmo>Day off button on the colonist too</CC_Settings_HeartDayOffGizmo>
+  <CC_Settings_HeartDayOffGizmo_Tip>The day off's button on a selected strained colonist's command bar as well, beside the game's own buttons. Off (the default), it is on their Mood tab beside the strain meter, on their card and in the advice.</CC_Settings_HeartDayOffGizmo_Tip>
+  <CC_SetNote_HeartDayOffGizmo>A day off button on the colonist's command bar too.</CC_SetNote_HeartDayOffGizmo>
+
+</LanguageData>

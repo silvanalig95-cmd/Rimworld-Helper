@@ -912,7 +912,8 @@ own and Rimfolk's own acts. No new Sched slot; one Harmony patch (the gizmo on a
   RimHUD's tooltip.
 - **A day off for one colonist** (14, `heartDayOff`). Given by the player from strained on (the choice: a day off is for
   someone the days have worn on, and the button on every colonist would only crowd the bar), from the Mood tab, the
-  card, the advice or a button on the selected colonist (`Patch_HeartDayOffGizmo`; while one runs, it ends it), once in
+  card, the advice or a button on the selected colonist (`Patch_HeartDayOffGizmo`; while one runs, it ends it; since the
+  meters below, the Mood tab's button sits beside them and the colonist's is behind a setting, off), once in
   five days for each colonist (the button says when: "A day off (in 3 days)"), under the same safety rules (one other
   able to work is enough). For a day their work hours (Work, Anything) are recreation in their timetable and their first
   two waking hours a lie-in; a node of Rimfolk's own in the game's think tree (`Rimfolk_Heart_TimeOffTree`, inserted at
@@ -931,7 +932,8 @@ own and Rimfolk's own acts. No new Sched slot; one Harmony patch (the gizmo on a
   anything: the bar with the break lines and the sentence of where their mood is heading; the heart now ("Heart: worn
   down 61, up 12 today · in good heart 48", strain in its band's colour and the good side in green, as the colonist bar's
   heart line draws them, its tooltip strain in full), the weight under it ("Under it, a weight of 45 from losing Ana,
-  lifting over the days."), time off under way; what weighs on them and what lifts them most (the top three each across
+  lifting over the days."), time off under way (these three are meters and the day off's place since "The heart at a
+  glance" below); what weighs on them and what lifts them most (the top three each across
   the game's moods, other mods' and Rimfolk's, the heart's own two with what is behind them: "worn down (the plague) -8"),
   each with its size as the list below has it; what each side is doing to them now, a line each; and the top advice with
   its buttons. Below, in order of use, sections that fold and are remembered between sessions (`Folds.Remembered`, kept
@@ -946,7 +948,8 @@ own and Rimfolk's own acts. No new Sched slot; one Harmony patch (the gizmo on a
   in the player's upload and isn't needed). The strain line (`Council_Hud_Strain`) now reads like the summary: strain's
   band and value in its colour, the good side's in green, the top cause while strained, and a day off or a bad afternoon
   under way ("Worn down 61 · in good heart 48 · the plague · day off"); its tooltip leads with what would help, and a
-  click opens their Mood tab. The strain bar says time off in its value and opens the tab too. Two new widgets: the good
+  click opens their Mood tab. The strain bar says time off in its value and opens the tab too (since "The heart at a
+  glance" below, the line is shortened to its cell and the bar's value is the number alone). Two new widgets: the good
   side as a bar (`Council_Hud_GoodBar`, marked at 20, 45 and 65) and what would help (`Council_Hud_HeartAdvice`, its
   tooltip the advice in full).
 - **Measured** (`Tools/Tests/HeartFeltTests.cs`, 40 runs a case, the same pure rules hour by hour, release 1's targets
@@ -969,6 +972,60 @@ own and Rimfolk's own acts. No new Sched slot; one Harmony patch (the gizmo on a
   wait past. What advice there is, who spread or lifted this hour and when the time off's last act was are worked out
   again (unsaved).
 - **Dev mode**: "Heart: a bad afternoon now (if safe)", "a day off now (the wait aside)", "end their time off now".
+
+### The heart at a glance: meters, and the day off beside them (9 November 2026)
+
+The player's words on Avila's Mood tab, where the heart was a line of red text ("Heart: Worn down (60), down 7 today") and
+the day off a big heart on the colonist's command bar: "the strain level etc. should be graphically more easier to see,
+perhaps also like a level bar or so. the "give day off" should also be in this menu and not in the pawn bar". Their
+RimHUD panel showed "Strain  jown (60) · fighting ...": the value cut from the left. The rules are pure
+(`Heart/HeartMeterMath.cs`, linked in the tests); the drawing is `Heart/HeartMeter.cs`. No saved data, no Harmony patch,
+no Sched slot.
+
+- **Two meters, drawn like the mood bar** (`HeartMeter.Draw`), right under it at the top of the Mood tab, as tall as it,
+  in the game's look or Rimfolk's own (the kit's track, the fill rounded in its own look). **Strain**: 0 to 100, filled
+  in its band's colour as the colonist bar's heart line draws it (a band's colour from strained, strained's faintly
+  below); a faint wash where each band lies; ticks in the colour of what begins there, with small labels under the bar,
+  at strained 30, worn down 55, near breaking 75 and 85, where a day to themselves may come (only while that setting is
+  on); the band and value on the bar ("Strain: worn down 60"); a mark with a foot under the bar for **the lasting weight**,
+  the floor rest can't take strain below, the part of the fill it holds shaded; beside the bar **how it moved today**,
+  an arrow and "-7 today" (up in sour, down in warm, from a move of 2). **The good side** the same way in green, ticks at
+  steady 20, in good heart 45 and in high spirits 65, shown at any strain since both sides can be up at once. The labels
+  that would touch give way, the later first (`HeartMeterMath.LabelLefts`: at the tab's width all four show; narrow, 85
+  goes first). **Hovering** a tick says what begins there and what that band does by the settings as they are ("From 55,
+  worn down: -8 mood, work -7%, ..."); the mark says the weight and why ("A weight of 45 from losing Ana: ..."); the rest of
+  a meter its tooltip: the band and value, what it does to them now (the effects line), how it moved today, what built it
+  lately, what eased it, the weight, and what would help (the advice, or the plain words below strained); the good side's
+  is its own tooltip as before. One tooltip at a time. Built at most twice a second for each colonist and again after a
+  click (`HeartMeter.For`), nothing translated while drawn.
+- **The day off's place** at the meters' right on the Mood tab, always in the same spot (`HeartMeterMath.Lay`: as wide as
+  its widest button, so it never moves; under the meters where the width is short): "Give a day off", greyed with its
+  reason, the whole of it in the tooltip and a few words under it ("not strained enough", "again in 3 days", "not while
+  in danger", "needs a doctor first", "a baby to feed", "nobody to carry on", "away from home", "a child";
+  `HeartTimeOff.WhyNotDayOffKey`, `HeartMeterMath.ShortWhy`). While a day off or a bad afternoon runs, the same place says
+  until when in the day's hours ("Day off until 9h tomorrow", "Bad afternoon until 16h"; `HeartTimeOff.UntilText`) with
+  "End it early" (`HeartTimeOff.EndEarly`: either kind, counting for half, "called back to work", as when danger cuts it
+  short). Only for the colony's free people; hidden for prisoners and slaves, and with days off switched off unless a bad
+  afternoon runs. The advice's own day off button stays.
+- **The summary under them** keeps what adds something: the mood's sentence, what weighs and lifts most, what each band
+  does now and the top advice with its buttons. The "Heart: ..." line, the weight's line and the time off's line gave way
+  to the meters, the mark and the day off's place. Fits the inspect pane's width (464 inside the scroll view: bars 275,
+  the trend 72, the place about 110) and the tab squeezed above a tall pane (the meters scroll with the rest).
+- **The same meters** in the heart's section below (in place of its two plain meters; no day off's place there) and on
+  the colonist's card, before its lines (`HeartCard`, "heart-meters"; the day off stays among the card's acts).
+- **The colonist's command bar**: the day off's button is gone from it by default. The setting "Day off button on the
+  colonist too" (`heartDayOffGizmo`, How hard, under the day off; off; needs the deeper game hooks) brings it back for
+  players who want it there (`Patch_HeartDayOffGizmo.Wanted`).
+- **RimHUD** (`Integrations/RimHud.cs`; its source read: a value widget draws a value too wide for its cell right-aligned
+  and clipped, then "...", and a value widget can draw no bar of its own). The strain line is now short enough for its
+  cell: the band in a word and its value in its colour, then as much as fits of time off under way, the top cause while
+  strained and the good side ("Worn 60 · fighting"; the good side's band and value alone while strain is steady), cut
+  to 112 in the small font without cutting a word (`HeartMeterMath.Fit`, measured without the colour tags, fitted once
+  each time the heart's line changes). The whole line leads the tooltip when it was cut. Strain's bar
+  (`Council_Hud_StrainBar`, the bar version) gets the meter's ticks (85 added) and its value is the number alone: its
+  value cell is 40 wide by default, so "61, day off" was cut too; time off is in its tooltip.
+- **Tests**: `Tools/Tests/HeartMeterTests.cs` (the ticks against the bands, the labels at every width, the layout from 120
+  to 900 wide, the trend, until when, every reason's few words, the HUD line against the player's case, and the seams).
 
 ## Layer 8: Social life
 

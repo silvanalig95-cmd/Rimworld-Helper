@@ -5,6 +5,16 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## Strain and the good side as bars on the Mood tab
+
+*9 November 2026, version 0.188.0*
+
+- The Mood tab shows strain and the good side as two bars under the mood bar, in the colonist bar's colours, with marks where each band begins, the lasting weight under strain, and how far it moved today.
+- Hover a bar for the band, what it does to them now, what built it and what would help; hover a mark for what begins there.
+- The day off now has its own button beside the bars, greyed with the reason when it can't be given, and showing a day off or a bad afternoon under way with a way to end it early.
+- The day off button on the colonist's command bar is gone, unless the new setting puts it back; the colonist's card and the heart's section use the same bars.
+- RimHUD's strain line fits its cell again, and its strain bar shows the day-off mark.
+
 ## Every piece of armour and apparel in your mods rated
 
 *9 November 2026, version 0.187.0*

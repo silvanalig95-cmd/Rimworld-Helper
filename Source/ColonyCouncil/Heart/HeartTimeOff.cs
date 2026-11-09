@@ -11,10 +11,11 @@ namespace ColonyCouncil
     /// Time off work, for the heart (docs/design/heart-felt.md, release 2, points 11 and 14; the player's words of 9
     /// November 2026: "i could for example also just grant a single stained pawn a break day or stuff like this"):
     /// <list type="bullet">
-    /// <item>A day off the player gives one strained colonist (from strained on; from the heart's page, their card, the
-    /// advice or a button on them): for a day their work hours are recreation and their first waking hours a lie-in, so
-    /// they rest, take their recreation, walk and see friends, and do no ordinary work; it eases strain faster while it runs
-    /// and more when it runs its course. Once in five days for each colonist.</item>
+    /// <item>A day off the player gives one strained colonist (from strained on; from its place beside the heart's meters on
+    /// the Mood tab, their card, the advice, or a button on them with its setting): for a day their work hours are recreation
+    /// and their first waking hours a lie-in, so they rest, take their recreation, walk and see friends, and do no ordinary
+    /// work; it eases strain faster while it runs and more when it runs its course. Once in five days for each
+    /// colonist.</item>
     /// <item>A bad afternoon from worn down, now and then (HeartCountMath.BadDayChancePerHour): off work for a few hours, a
     /// while in their room, a walk, a drink if they drink, a visit to a grave; it eases a good share of strain.</item>
     /// </list>
@@ -71,18 +72,33 @@ namespace ColonyCouncil
             return able < others ? "CC_Count_WhyNot_TooFew" : null;
         }
 
+        /// <summary>
+        /// Why the player can't give them a day off now, as its key ("CC_Count_WhyNot_Cooldown"), or null when they can;
+        /// <paramref name="readyIn"/> is the days until the next may be given while it waits.
+        /// </summary>
+        public static string WhyNotDayOffKey(Pawn p, PawnHeart h, int now, out float readyIn)
+        {
+            readyIn = 0f;
+            if (!DayOffOn) return "CC_Count_WhyNot_Off";
+            if (h == null) return "CC_Count_WhyNot_NoHeart";
+            if (h.AnyOff) return "CC_Count_WhyNot_Already";
+            if (h.strain < HeartCountMath.DayOffFrom) return "CC_Count_WhyNot_NotStrained";
+            readyIn = HeartCountMath.DayOffReadyIn((now - h.lastDayOffTick) / (float)GenDate.TicksPerDay);
+            if (readyIn > 0f) return "CC_Count_WhyNot_Cooldown";
+            return Unsafe(p, HeartMapContext.For(p.MapHeld, now), 1);
+        }
+
+        /// <summary>The days until the next day off may be given, in words ("3 days").</summary>
+        public static string ReadyInText(float readyIn) => TextUtil.DaysString(UnityEngine.Mathf.CeilToInt(readyIn * GenDate.TicksPerDay));
+
         /// <summary>Why the player can't give them a day off now (in words), or null when they can.</summary>
         public static string WhyNotDayOff(Pawn p, PawnHeart h, int now)
         {
-            if (!DayOffOn) return "CC_Count_WhyNot_Off".Translate().Resolve();
-            if (h == null) return "CC_Count_WhyNot_NoHeart".Translate(p.Named("PAWN")).Resolve();
-            if (h.AnyOff) return "CC_Count_WhyNot_Already".Translate(p.Named("PAWN")).Resolve();
-            if (h.strain < HeartCountMath.DayOffFrom) return "CC_Count_WhyNot_NotStrained".Translate(p.Named("PAWN")).Resolve();
-            float readyIn = HeartCountMath.DayOffReadyIn((now - h.lastDayOffTick) / (float)GenDate.TicksPerDay);
-            if (readyIn > 0f)
-                return "CC_Count_WhyNot_Cooldown".Translate(p.Named("PAWN"), TextUtil.DaysString(UnityEngine.Mathf.CeilToInt(readyIn * GenDate.TicksPerDay)).Named("DAYS")).Resolve();
-            string key = Unsafe(p, HeartMapContext.For(p.MapHeld, now), 1);
-            return key?.Translate(p.Named("PAWN")).Resolve();
+            string key = WhyNotDayOffKey(p, h, now, out float readyIn);
+            if (key == null) return null;
+            if (key == "CC_Count_WhyNot_Off") return key.Translate().Resolve();
+            if (key == "CC_Count_WhyNot_Cooldown") return key.Translate(p.Named("PAWN"), ReadyInText(readyIn).Named("DAYS")).Resolve();
+            return key.Translate(p.Named("PAWN")).Resolve();
         }
 
         /// <summary>The day off's button: "A day off", or "A day off (in 3 days)" while it waits.</summary>
@@ -91,7 +107,7 @@ namespace ColonyCouncil
             if (h != null && h.Off(TimeOffKind.DayOff)) return "CC_Count_DayOff_End".Translate().Resolve();
             float readyIn = h == null ? 0f : HeartCountMath.DayOffReadyIn((now - h.lastDayOffTick) / (float)GenDate.TicksPerDay);
             return readyIn > 0f
-                ? "CC_Count_DayOff_ButtonIn".Translate(TextUtil.DaysString(UnityEngine.Mathf.CeilToInt(readyIn * GenDate.TicksPerDay)).Named("DAYS")).Resolve()
+                ? "CC_Count_DayOff_ButtonIn".Translate(ReadyInText(readyIn).Named("DAYS")).Resolve()
                 : "CC_Count_DayOff_Button".Translate().Resolve();
         }
 
@@ -102,6 +118,32 @@ namespace ColonyCouncil
             if (h == null) return;
             if (h.Off(TimeOffKind.DayOff)) End(p, h, Find.TickManager.TicksGame, false, "CC_Count_Cut_Player");
             else GiveDayOff(p);
+        }
+
+        /// <summary>
+        /// "End it early" beside the heart's meters (Heart/HeartMeter.cs): a day off or a bad afternoon under way ends now at
+        /// the player's word, their timetable put back and it counting for half, as when danger cuts it short.
+        /// </summary>
+        public static void EndEarly(Pawn p)
+        {
+            var h = Heart.Of(p);
+            if (h == null || !h.AnyOff) return;
+            End(p, h, Find.TickManager.TicksGame, false, "CC_Count_Cut_Player");
+        }
+
+        /// <summary>
+        /// Time off under way in the day's hours, for the place beside the heart's meters: "Day off until 9h tomorrow", "Bad
+        /// afternoon until 16h". Null with none.
+        /// </summary>
+        public static string UntilText(Pawn p, PawnHeart h, int now)
+        {
+            var kind = KindOf(h);
+            if (kind == TimeOffKind.None) return null;
+            var map = p?.MapHeld;
+            float hourNow = map != null ? GenLocalDate.HourFloat(map) : GenDate.HourFloat(GenTicks.TicksAbs, 0f);
+            HeartMeterMath.Until(hourNow, Math.Max(0, h.offUntil - now) / (float)GenDate.TicksPerHour, out int hour, out int days);
+            string key = "CC_Meter_Off_" + kind + (days <= 0 ? "_Today" : days == 1 ? "_Tomorrow" : "_Later");
+            return key.Translate(hour.Named("HOUR"), days.Named("DAYS")).Resolve();
         }
 
         // ---------------- A day off ----------------
@@ -402,14 +444,21 @@ namespace ColonyCouncil
         }
     }
 
-    /// <summary>The day off's button on a selected colonist, from strained on (or while their day off runs, to end it).</summary>
+    /// <summary>
+    /// The day off's button on a selected colonist's command bar, from strained on (or while their day off runs, to end it),
+    /// only with the setting "Day off button on the colonist too" (off by default: the player, 9 November 2026, "the "give
+    /// day off" should also be in this menu and not in the pawn bar"; its place is beside the heart's meters on the Mood tab).
+    /// </summary>
     [HarmonyLib.HarmonyPatch(typeof(Pawn), nameof(Pawn.GetGizmos))]
     public static class Patch_HeartDayOffGizmo
     {
+        /// <summary>The button shows on the colonist too (the setting, off by default).</summary>
+        public static bool Wanted => HeartTimeOff.DayOffOn && (ColonyCouncilMod.Settings?.heartDayOffGizmo ?? false);
+
         public static IEnumerable<Gizmo> Postfix(IEnumerable<Gizmo> __result, Pawn __instance)
         {
             foreach (var g in __result) yield return g;
-            if (!RimfolkPatches.On || !HeartTimeOff.DayOffOn) yield break;
+            if (!RimfolkPatches.On || !Wanted) yield break;
             Gizmo c = null;
             try
             {

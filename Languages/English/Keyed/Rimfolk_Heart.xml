@@ -325,7 +325,6 @@
   <CC_Table_SummaryNeeds>Heart's needs: {0}</CC_Table_SummaryNeeds>
   <CC_Heart_Section>Heart</CC_Heart_Section>
   <CC_Heart_NotYet>Their heart is looked at once an hour. Check back soon.</CC_Heart_NotYet>
-  <CC_Heart_StrainLabel>Strain</CC_Heart_StrainLabel>
   <CC_Heart_StrainValue>{0} ({1})</CC_Heart_StrainValue>
   <CC_Heart_StrainTipHead>Strain: {0} ({1} of 100)</CC_Heart_StrainTipHead>
   <CC_Heart_NothingBuilt>Nothing has built strain lately.</CC_Heart_NothingBuilt>

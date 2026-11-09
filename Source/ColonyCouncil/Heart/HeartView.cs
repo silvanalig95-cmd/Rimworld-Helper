@@ -562,12 +562,10 @@ namespace ColonyCouncil
         {
             public float builtAt = -1f;
             public int version;
-            public string strainLabel, strainValue, strainTip, bandDesc, built, eased, weight, help, needsSummary, needsTip;
+            public string bandDesc, built, eased, weight, help, needsSummary, needsTip;
             public Color bandColor;
-            public float fill;
-            /// <summary>The heart's good side, its meter and its line (null while it is off).</summary>
-            public string goodLabel, goodValue, goodTip, goodLine;
-            public float goodFill;
+            /// <summary>The heart's good side: its line (null while it is off). Both meters are HeartMeter's.</summary>
+            public string goodLabel, goodLine;
             /// <summary>The heart, made to count: what each side does to them now, time off under way, who close wore on or lifted them.</summary>
             public string doingStrain, doingGood, timeOff, spread;
             public List<(string label, string value, string causes, string tip, Color color, float share)> feelings = new List<(string, string, string, string, Color, float)>();
@@ -600,10 +598,6 @@ namespace ColonyCouncil
             m = new PawnModel { builtAt = now, version = version };
             models[p] = m;
             m.bandColor = BandColor(h.Band);
-            m.fill = h.strain / HeartMath.Max;
-            m.strainLabel = "CC_Heart_StrainLabel".Translate();
-            m.strainValue = "CC_Heart_StrainValue".Translate(BandLabel(h.Band), h.strain.ToString("0")).Resolve();
-            m.strainTip = StrainTip(p, h);
             m.bandDesc = BandDesc(h.Band);
             string built = SourcesDetailed(h, 3);
             m.built = built == null ? "CC_Heart_NothingBuilt".Translate().ToString() : "CC_Heart_BuiltBy".Translate(built).Resolve();
@@ -621,9 +615,6 @@ namespace ColonyCouncil
             {
                 var good = GoodHeart.Band(h);
                 m.goodLabel = "CC_Good_MeterLabel".Translate();
-                m.goodValue = "CC_Heart_StrainValue".Translate(GoodHeart.BandLabel(good), h.good.ToString("0")).Resolve();
-                m.goodFill = h.good / HeartMath.Max;
-                m.goodTip = GoodHeart.Tip(p, h);
                 string filled = GoodHeart.BuiltDetailed(h, 3);
                 // Both sides at once: the good side's band or what filled it, and how much slower it grows under strain.
                 string slower = GoodHeart.SlowerLine(p, h);
@@ -682,9 +673,10 @@ namespace ColonyCouncil
         }
 
         /// <summary>
-        /// The heart: strain's meter, its band, what built it and what eased it, the weight under it, who close wore on or
-        /// lifted them, time off under way, what each side does to them now, what would help (with its buttons), and the good
-        /// side's meter. Nothing when the feature is off or they have no heart. With folds, a click on the heading folds it.
+        /// The heart: its two meters (Heart/HeartMeter.cs, as at the top of the tab), strain's band, what built it and what
+        /// eased it, the weight under it, who close wore on or lifted them, time off under way, what each side does to them
+        /// now, what would help (with its buttons), and the good side's line. Nothing when the feature is off or they have no
+        /// heart. With folds, a click on the heading folds it.
         /// </summary>
         public static float DrawHeart(Pawn p, float y, float w, Folds folds = null)
         {
@@ -694,8 +686,8 @@ namespace ColonyCouncil
             if (!open) return y + 4f;
             if (!h.evaluated) return y + UiKit.Paragraph(0f, y, w, "CC_Heart_NotYet".Translate(), MoodView.Faint, GameFont.Tiny) + 8f;
             var m = ModelFor(p, h);
-            UiKit.Meter(new Rect(0f, y, w, UiKit.MeterHeight), m.fill, m.bandColor, m.strainLabel, m.strainValue, null, m.strainTip);
-            y += UiKit.MeterHeight + 2f;
+            // Strain and the good side as meters, the same as the tab's summary (the day off's place is up there).
+            y += HeartMeter.Draw(p, h, 0f, y, w, false);
             y += UiKit.Paragraph(0f, y, w, m.bandDesc, MoodView.Faint, GameFont.Tiny) + 2f;
             if (m.doingStrain != null) y += UiKit.Paragraph(0f, y, w, m.doingStrain, m.bandColor, GameFont.Tiny) + 2f;
             y += UiKit.Paragraph(0f, y, w, m.built, Color.white, GameFont.Tiny) + 2f;
@@ -713,12 +705,10 @@ namespace ColonyCouncil
                 y += 18f;
                 y += HeartAdvice.Draw(p, advice, 0f, y, w);
             }
-            // The other side of the one heart.
+            // The other side of the one heart (its meter is under strain's at the top of the section).
             if (m.goodLabel != null)
             {
                 y += 4f;
-                UiKit.Meter(new Rect(0f, y, w, UiKit.MeterHeight), m.goodFill, GoodColor, m.goodLabel, m.goodValue, null, m.goodTip);
-                y += UiKit.MeterHeight + 2f;
                 if (!m.goodLine.NullOrEmpty()) y += UiKit.Paragraph(0f, y, w, m.goodLine, MoodView.Faint, GameFont.Tiny) + 2f;
                 if (m.doingGood != null) y += UiKit.Paragraph(0f, y, w, m.doingGood, GoodColor, GameFont.Tiny) + 2f;
             }

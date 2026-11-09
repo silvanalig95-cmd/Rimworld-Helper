@@ -11,9 +11,12 @@ namespace ColonyCouncil
     /// relevant details for strain and mood are visible at first glance, with additional details below that"). Without
     /// scrolling or opening anything it answers:
     /// <list type="bullet">
+    /// <item>the heart now, as two meters right under the mood bar and drawn like it (Heart/HeartMeter.cs; the player, the
+    /// same day: "the strain level etc. should be graphically more easier to see, perhaps also like a level bar or so"):
+    /// strain in its band's colour with the band starts, the weight under it and how it moved today, the good side in green;
+    /// and beside them the day off's place, "Give a day off" (greyed with why not) or the time off under way with "End it
+    /// early" ("the "give day off" should also be in this menu and not in the pawn bar");</item>
     /// <item>their mood now and where it is heading, with the break lines (the bar above it and its sentence);</item>
-    /// <item>the heart now: strain's band and value and how it moved since the day began, the good side's band, and the
-    /// weight under it, in the colours of the colonist bar's heart line; time off under way;</item>
     /// <item>what weighs on them and what lifts them most: the top three each across the game's moods, other mods' and
     /// Rimfolk's, the heart's own two with their causes, each with its size as the list below has it;</item>
     /// <item>what the bands are doing to them right now, in a line each ("Worn down: -8 mood, work -7%, learns 6% slower...");</item>
@@ -25,7 +28,7 @@ namespace ColonyCouncil
     /// </summary>
     public sealed class MoodGlance
     {
-        public string mood, heart, weight, off, weighs, lifts, doing, doingGood, lately;
+        public string mood, weighs, lifts, doing, doingGood, lately;
         public PawnHeart h;
         public Pawn pawn;
 
@@ -45,13 +48,7 @@ namespace ColonyCouncil
             if (g.h == null) return g;
             h = g.h;
             int now = Find.TickManager.TicksGame;
-            g.heart = HeartLine(p, h);
-            float floor = HeartFelt.Floor(h);
-            string why = HeartFelt.Why(h);
-            if (floor >= 5f)
-                g.weight = why == null ? "CC_Glance_Weight".Translate(floor.ToString("0").Named("WEIGHT")).Resolve()
-                    : "CC_Glance_WeightWhy".Translate(floor.ToString("0").Named("WEIGHT"), why.Named("WHY")).Resolve();
-            g.off = HeartTimeOff.Line(p, h, now);
+            // The heart's band, value, weight and time off are the meters' (Heart/HeartMeter.cs), drawn above the mood's sentence.
             string doing = HeartEffects.Doing(h, false);
             if (doing != null) g.doing = "CC_Count_Doing".Translate(HeartView.BandLabel(h.Band).CapitalizeFirst().Named("BAND"), doing.Named("WHAT")).Resolve();
             string good = HeartEffects.Doing(h, true);
@@ -63,6 +60,7 @@ namespace ColonyCouncil
         /// <summary>
         /// "Heart: worn down 61, up 12 since the day began · in good heart 48", strain in its band's colour and the good side
         /// in green, as the colonist bar's heart line draws them; the good side alone while strain is steady and it shows.
+        /// RimHUD's tooltip leads with it; the Mood tab shows the same as meters.
         /// </summary>
         public static string HeartLine(Pawn p, PawnHeart h)
         {
@@ -121,21 +119,14 @@ namespace ColonyCouncil
         }
 
         /// <summary>
-        /// Draws the summary at y (the mood sentence, the heart, what weighs and lifts most, what the bands do, the top advice
-        /// with its buttons); returns the height used.
+        /// Draws the summary at y (the heart's meters with the day off's place, the mood's sentence, what weighs and lifts most,
+        /// what the bands do, the top advice with its buttons); returns the height used.
         /// </summary>
         public float Draw(float x, float y, float w)
         {
             float top = y;
+            if (h != null && pawn != null) y += HeartMeter.Draw(pawn, h, x, y, w, true) + 2f;
             if (!mood.NullOrEmpty()) y += UiKit.Paragraph(x, y, w, mood, Color.white) + 2f;
-            if (heart != null)
-            {
-                float hh = UiKit.Paragraph(x, y, w, heart, Color.white);
-                if (h != null && pawn != null) TooltipHandler.TipRegion(new Rect(x, y, w, hh), () => HeartView.StrainTip(pawn, h), 0x6A1A7CE5 ^ pawn.thingIDNumber);
-                y += hh + 1f;
-            }
-            if (weight != null) y += UiKit.Paragraph(x, y, w, weight, MoodView.Faint, GameFont.Tiny) + 1f;
-            if (off != null) y += UiKit.Paragraph(x, y, w, off, UiKit.Info, GameFont.Tiny) + 1f;
             if (weighs != null) y += UiKit.Paragraph(x, y, w, weighs, MoodView.BadColor, GameFont.Tiny) + 1f;
             if (lifts != null) y += UiKit.Paragraph(x, y, w, lifts, MoodView.GoodColor, GameFont.Tiny) + 1f;
             if (doing != null && h != null) y += UiKit.Paragraph(x, y, w, doing, HeartView.BandColor(h.Band), GameFont.Tiny) + 1f;
