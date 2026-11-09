@@ -527,7 +527,9 @@ namespace ColonyCouncil
             float s = EventCardMath.PersonPortrait;
             var moodColour = MoodColour(p.moodLevel);
             UiKit.Portrait(new Rect(r.x + 2f, r.y + (r.height - s) / 2f, s, s), p.pawn, p.mood >= 0f ? UiKit.WithAlpha(moodColour, 0.9f) : UiKit.Edge);
-            float x = r.x + s + 10f, w = r.xMax - x - 4f;
+            // One of the colony's own: their card's button at the row's right (UI/ColonistCard/), the rest of the row still going to them.
+            float card = ColonistCardWindow.On && ColonistCardWindow.Fits(p.pawn) ? 26f : 0f;
+            float x = r.x + s + 10f, w = r.xMax - x - 4f - card, end = r.xMax - card;
             UiKit.LabelFit(new Rect(x, r.y + 2f, w, 20f), p.name, UiKit.Ink);
             float y = r.y + 22f;
             if (p.mood >= 0f)
@@ -535,10 +537,11 @@ namespace ColonyCouncil
                 float bw = Mathf.Min(90f, w * 0.45f);
                 UiKit.Bar(new Rect(x, y + 6f, bw, 6f), p.mood, moodColour);
                 float cx = x + bw + 6f;
-                if (p.heart) UiKit.StateChip(cx, y, p.heartWord, HeartColour(p), Mathf.Max(30f, r.xMax - cx - 4f));
-                else if (p.sub != null) UiKit.LabelFit(new Rect(cx, y, r.xMax - cx - 4f, 20f), p.sub, UiKit.Faint, GameFont.Tiny);
+                if (p.heart) UiKit.StateChip(cx, y, p.heartWord, HeartColour(p), Mathf.Max(30f, end - cx - 4f));
+                else if (p.sub != null) UiKit.LabelFit(new Rect(cx, y, end - cx - 4f, 20f), p.sub, UiKit.Faint, GameFont.Tiny);
             }
             else if (p.sub != null) UiKit.LabelFit(new Rect(x, y, w, 20f), p.sub, UiKit.Faint, GameFont.Tiny);
+            if (card > 0f) ColonistCardEntry.RowButton(r, p.pawn);
             TooltipHandler.TipRegion(r, p.tip);
             if (p.canJump && Widgets.ButtonInvisible(r, false))
             {

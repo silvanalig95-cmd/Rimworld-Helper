@@ -53,6 +53,7 @@
     <Compile Include="../../Source/ColonyCouncil/UI/WindowLayoutMath.cs" Link="WindowLayoutMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/UI/WindowFrameMath.cs" Link="WindowFrameMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/UI/FramedWindowsMath.cs" Link="FramedWindowsMath.cs" />
+    <Compile Include="../../Source/ColonyCouncil/UI/ColonistCard/ColonistCardMath.cs" Link="ColonistCardMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/UI/EventCards/EventCardMath.cs" Link="EventCardMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/UI/SkinMath.cs" Link="SkinMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Weapons/WeaponRateMath.cs" Link="WeaponRateMath.cs" />

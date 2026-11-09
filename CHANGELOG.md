@@ -5,6 +5,15 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## The colonist card
+
+*9 November 2026, version 0.197.0*
+
+- Each colonist has a card of their own: their whole figure as dressed, who they are in one line, and in columns that fit the window their mood and heart, their skills with passions, their kit with ratings, and their life, goal, wish, quirks, standing and friends.
+- Their weapons and clothes show with pictures and ratings, a click opening the item's card, with any gaps in their kit and better weapons to hand.
+- Open it from a colonist's name or portrait anywhere in Rimfolk's windows and panels, with Ctrl and a click on the colonist bar, or from the small button by a selected colonist's name.
+- Several cards can be open at once, each moving and sizing on its own, with arrows to step to the next colonist; the buttons at the foot open their tabs, go to them or select them.
+
 ## Better clothes and armour for each colonist
 
 *9 November 2026, version 0.196.0*

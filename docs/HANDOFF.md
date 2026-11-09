@@ -12,6 +12,52 @@ tree at once, alongside whatever runs. Each piece is merged as its own release, 
 
 ## State (5 November 2026)
 
+- 0.197.0, the colonist card, stage 3 point 4 (9 November 2026, `docs/design/rimfolk-look.md`; the player: "colonist card
+  would be cool!"). DESIGN.md "Rimfolk's own
+  look, stage 3, point 4: the colonist card" has all of it; README "A colonist's card"; the Almanac's "Start here" (prose).
+  - The window (`UI/ColonistCard/ColonistCardWindow.cs`, key "ColonistCard", least 460 by 440): one per colonist, several
+    at once (`onlyOneOfTypeAllowed` off), each in a frame of its own (`WindowFrame.Own`, new; `FramedWindow(key, true)`),
+    the place shared under the key, a second card stepping a title bar down (`ColonistCardMath.Cascaded`). Header:
+    portrait from `PortraitsCache` (100 by 140), the heart's line in the bar's colours, full name, `StoryView.Who`, chips
+    (break, downed, drafted, ideoligion role, Empire title, where). Parts in 1 to 4 columns by width (`ColonistCardMath.Parts`,
+    fixed per count): Now (`MoodView.DrawBar` + `MoodGlance.Draw`, so the heart's meters with the day off's place), Skills
+    (own rows; passions the game's or VSE's by name, `Passions`), Kit (weapons in hand, off hand, carried, apparel by
+    slot, badges and ratings for them, `WeaponPick.Standing` lines with the gear tab's acts, kit gaps, dressed for the
+    season), Life (`StoryView.Glance`, new: the glance built without the page's sections; `StoryView.Staled`, new, so a
+    promise rebuilds the card). Foot: Mood/Story/Gear/Health tabs, Go to them, Select, Whole story (`OpenPerson`), More (the
+    `CardActs` other parts register for colonists). Arrows step in the colonist bar's order past cards already open.
+  - The colonist's card: `Cards.Open` sends the colony's own living colonists and slaves to it (`ColonistCardWindow.Takes`),
+    so every way the small card opened opens it; prisoners, the dead and everyone else keep the small card, which also
+    stays the "Whole story" drawer and gains "Their card". `HeartCard`'s meters and advice are in Now via `MoodGlance`;
+    other parts' lines and acts for `CardKind.Colonist` are read from the registries (less "heart-good", "heart-dayoff",
+    "knownas").
+  - Ways in from the game: `Patch_ColonistCardBarClick` (prefix on `ColonistBarColonistDrawer.HandleClicks`: Ctrl and a
+    left press on a portrait, taken; nothing else touched; right-click not used, the bar reorders with it) and
+    `Patch_ColonistCardPaneButton` (postfix on `MainTabWindow_Inspect.DoInspectPaneButtons`, a button left of the game's,
+    counted in `lineEndWidth`); event cards' "who is involved" rows get a card button (`ColonistCardEntry.RowButton`).
+    Not a gizmo (the player moved the day off off the command bar).
+  - Settings (How you're told, Rimfolk's buttons and windows; each on): `colonistCard` "Rimfolk's colonist card",
+    `colonistCardBar` and `colonistCardPane` (both need the card and the deeper hooks). Keys `Rimfolk_ColonistCard.xml`.
+    New icon ColonistCard (`Tools/make_icons.py`, only that PNG written). No saved data, no Sched slot.
+  - The hook for the apparel suggestions (the other piece of work on `Apparel/`): `ColonistCardHooks.KitLines(id, pawn =>
+    lines)`, each a `ColonistCardLine` (icon, words, tooltip, the thing, an act with why not), drawn under the apparel and
+    built with the kit every three seconds. Nothing registers it yet.
+  - Speed: built when opened; live parts (mood, heart line, chips, arrows) twice a second, heavy parts (who, skills, kit,
+    life, other parts' lines and acts, foot tooltips) every three seconds or after an act; drawing reads only the model.
+  - Tests `Tools/Tests/ColonistCardTests.cs` (~470 checks); `RimfolkLookStageTwoTests` lists "ColonistCard" among the windows
+    beside play.
+  - Not run here: the card in the game in both looks, least and large; the portrait's framing; the inspect pane button's
+    place (that the game's own buttons count themselves in `lineEndWidth` in 1.6 and 1.7, and other mods' there); the
+    Ctrl-click with the bar's other clicks unchanged; several cards, their place and step down; arrows across maps and
+    caravans; VSE's passion marks; tabs from the foot for someone on another map; the kit rows on real colonists with
+    Simple Sidearms and Dual Wield; the season's verdict; the event card's button.
+  - Try in the game: 1. Hold Ctrl and click a portrait in the colonist bar: their card opens; a plain click still selects,
+    a double-click still jumps. 2. Select a colonist: the card button by their name on the inspect pane (left of the "i").
+    3. Open the council's People table and click a row: the card; "Whole story" shows the drawer beside the table. 4. Open
+    two cards, move one, close both, open one: it opens where the moved one was; open a second: a title bar down. 5. The
+    arrows step to the next colonist, skipping one whose card is open. 6. Make the card narrow: the parts stack; wide: four
+    columns. 7. Click a weapon or a piece of apparel: Rimfolk's card for it. 8. A worn-down colonist: "Give a day off" in
+    Now. 9. Settings, How you're told: each of the three switches off.
 - 0.196.0, armour and apparel you can judge at a glance, step 3: better armour and clothes for each colonist, and colonists who ask (9 November 2026,
   `docs/design/apparel.md` point 6). The plan the player approved: "Better armour and clothes for each colonist from what
   the colony has, by their role, the season and the raids met, their faith's and title's apparel rules, their body; one

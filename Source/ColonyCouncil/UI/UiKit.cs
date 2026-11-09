@@ -87,6 +87,8 @@ namespace ColonyCouncil
         public static readonly Texture2D Heart = Load("Heart");
         public static readonly Texture2D TrendUp = Load("TrendUp");
         public static readonly Texture2D TrendDown = Load("TrendDown");
+        /// <summary>A colonist's card (UI/ColonistCard/): a card with someone's head and shoulders and three lines.</summary>
+        public static readonly Texture2D ColonistCard = Load("ColonistCard");
 
         // Almanac categories
         public static readonly Texture2D CatBasics = Load("CatBasics");

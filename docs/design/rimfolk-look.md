@@ -127,7 +127,8 @@ for everything, although i fear that would take a lot of ressources?"
 3. **The on-screen panels further refined** in the look (cards, bars, icons, the heart and weapon marks), with the current
    panels kept as they are behind a setting ("Classic on-screen panels") as the player's backup (built, below).
 4. **A colonist card**: one framed window a colonist, portrait, heart's meters, mood, skills and passions, kit (weapons
-   and armour with their ratings), wishes, life goal, standing, side by side; from the colonist bar and Rimfolk's windows.
+   and armour with their ratings), wishes, life goal, standing, side by side; from the colonist bar and Rimfolk's windows
+   (built, below).
 5. **An item card for everything**, on the weapon card's pattern (and the apparel card's): the item's picture, what it is
    good for in Rimfolk (feasts, gifts, treatment, trade, its roles), its tags, the game's own numbers a button away.
    Built when opened and cached, nothing drawn or computed while it is closed, so it costs the game nothing in play; done
@@ -209,3 +210,34 @@ Not released yet: no version, no What's new round.
 - **Not run here**: the look in the game at every scale and look, the timing, the title row's buttons and dragging, the
   layout pass skipped, the day off and kit marks on real colonists, the rating badge (where the game counts weapons in
   the stock), the hover card's link in the corner.
+
+## Stage 3, point 4: built (9 November 2026)
+
+The colonist card (DESIGN.md, "Rimfolk's own look, stage 3, point 4: the colonist card" has all of it). Not released yet:
+no version, no What's new round.
+
+- **One window per colonist** (`UI/ColonistCard/`, key "ColonistCard", least 460 by 440): several open at once, each
+  moving and sizing on its own; they share one remembered place (where the last was left), and a card opened while
+  others are open steps a title bar down from them. Arrows in the title bar step to the previous or next colonist in the
+  colonist bar's order, past those whose card is open already.
+- **The header**: their whole figure as dressed from the game's portrait cache, the heart's line under it in the colonist
+  bar's colours, their full name, who they are in the Story tab's one line, chips for a break, downed, drafted, their
+  ideoligion's role, the Empire's title and where they are.
+- **At a glance**, in up to four columns that fit the width (stacked when narrow): **Now** (the mood bar with its break
+  lines and where it heads, the heart's two meters with the day off's place, what weighs and lifts most, what the bands
+  do, the top advice), **Skills** (each a bar with its level and passion, the game's or Vanilla Skills Expanded's marks,
+  what they're best at, those they can't do marked), **Kit** (weapons in hand, off hand and carried, apparel by slot,
+  each with its picture, rating badge and rating for them, a click opening its card; the kit's gaps and better weapons
+  with their acts; dressed for the season or not; a hook for the apparel suggestions to come) and **Life** (the Story
+  tab's glance: life goal, wish with Show me and Promise, quirks, standing, friends and rivals).
+- **The foot**: the game's Mood, Story, Gear and Health tabs, go to them, select them, their whole story beside the People
+  table, and what else other parts let the colony do.
+- **The ways in**: wherever a colonist's card opened before (every name and portrait in Rimfolk's windows, panels and
+  tabs: `Cards.Open` sends the colony's own to it, the small card kept for everyone else and for their whole story);
+  Ctrl and a click on a portrait in the colonist bar; a small card button by a selected colonist's name on the inspect
+  pane; a button on each colonist in an event card's "who is involved". Settings "Rimfolk's colonist card", "Ctrl-click
+  on the colonist bar opens the card", "A card button on the inspect pane" (How you're told, Rimfolk's buttons and windows).
+- **Speed**: built when opened, the live parts twice a second, the heavy parts every three seconds; drawn only from that.
+- **Not run here**: the card's look in the game, the portrait from the cache, the inspect pane button's place beside the
+  game's own, the Ctrl-click with every other click of the bar unchanged, several cards and their places, Vanilla Skills
+  Expanded's passion marks, the rows and suggestions on real colonists, the event card's button.

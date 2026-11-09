@@ -76,7 +76,7 @@ public static class RimfolkLookStageTwoTests
             C(k.leastW >= WindowFrameMath.LeastW && k.leastH >= WindowFrameMath.LeastH, $"{k.key}: its least ({k.leastW:0}x{k.leastH:0}) no smaller than the frame's");
             C(k.leastW <= 1024f && k.leastH <= 768f - k.Bottom, $"{k.key}: its least fits a 1024 by 768 screen at scale 1");
             C(k.leastH + WindowFrameMath.TitleH <= 1000f && k.leastW > k.leastH * 0.3f, $"{k.key}: a least within reason");
-            C(k.keepsBar == (new[] { "Region", "Council", "Planning", "Defense", "Almanac", "Card" }.Contains(k.key)), $"{k.key}: {(k.keepsBar ? "stands beside play, above the bottom bar" : "a dialog, which may cover it")}");
+            C(k.keepsBar == (new[] { "Region", "Council", "Planning", "Defense", "Almanac", "Card", "ColonistCard" }.Contains(k.key)), $"{k.key}: {(k.keepsBar ? "stands beside play, above the bottom bar" : "a dialog, which may cover it")}");
             foreach (var (pw, ph) in screens)
             foreach (var s in scales)
             {

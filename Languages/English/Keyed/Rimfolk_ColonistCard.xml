@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <!-- A colonist's card (docs/design/rimfolk-look.md, stage 3, point 4: Source/ColonyCouncil/UI/ColonistCard/). One window per
+       colonist: their portrait, how they are now, their skills, kit and life at a glance. -->
+
+  <!-- Settings -->
+  <CC_Settings_ColonistCard>Rimfolk's colonist card</CC_Settings_ColonistCard>
+  <CC_Settings_ColonistCard_Tip>A colonist's card is a window of its own: their portrait as dressed with the heart's line under it, who they are, and side by side how they are now (their mood with its break lines, the heart's two meters, what weighs on them and lifts them most, a day off under way), their skills with their passions, their kit (weapons and apparel with their ratings, what is missing) and their life (life goal, wish, quirks, standing, friends and rivals). It opens wherever a colonist's name or portrait opens their card in Rimfolk's windows, panels and tabs, and from the ways below. Several can be open at once, one per colonist; the arrows in the title bar step to the previous or next colonist. Off, a colonist's name opens the small card in the drawer as before.</CC_Settings_ColonistCard_Tip>
+  <CC_SetNote_ColonistCard>A colonist's name or portrait opens their card: mood, heart, skills, kit and life in one window.</CC_SetNote_ColonistCard>
+  <CC_Settings_ColonistCardBar>Ctrl-click on the colonist bar opens the card</CC_Settings_ColonistCardBar>
+  <CC_Settings_ColonistCardBar_Tip>Hold Ctrl and click a colonist's portrait in the colonist bar at the top of the screen to open their card. A plain click still selects them, a double-click still goes to them, dragging with the right button still reorders the bar and Shift with a click still adds them to what is selected. Needs the deeper game hooks.</CC_Settings_ColonistCardBar_Tip>
+  <CC_SetNote_ColonistCardBar>Ctrl and a click on a portrait in the colonist bar opens that colonist's card.</CC_SetNote_ColonistCardBar>
+  <CC_Settings_ColonistCardPane>A card button on the inspect pane</CC_Settings_ColonistCardPane>
+  <CC_Settings_ColonistCardPane_Tip>With one colonist selected, a small card button by their name on the inspect pane at the bottom left, beside the game's own info button, opens their card. Needs the deeper game hooks.</CC_Settings_ColonistCardPane_Tip>
+  <CC_SetNote_ColonistCardPane>A small button by a selected colonist's name opens their card.</CC_SetNote_ColonistCardPane>
+
+  <!-- The ways in -->
+  <CC_CCard_PaneTip>Open this colonist's card: their mood, heart, skills, kit and life in one window. Ctrl and a click on their portrait in the colonist bar opens it too.</CC_CCard_PaneTip>
+  <CC_CCard_RowTip>Open this colonist's card.</CC_CCard_RowTip>
+  <CC_CCard_Open>Their card</CC_CCard_Open>
+
+  <!-- The header -->
+  <CC_CCard_PrevTip>The previous colonist: {PAWN_nameDef}.</CC_CCard_PrevTip>
+  <CC_CCard_NextTip>The next colonist: {PAWN_nameDef}.</CC_CCard_NextTip>
+  <CC_CCard_NoOther>No other colonist whose card isn't open already.</CC_CCard_NoOther>
+  <CC_CCard_InBreak>In a break: {BREAK}</CC_CCard_InBreak>
+  <CC_CCard_Downed>Down</CC_CCard_Downed>
+  <CC_CCard_Drafted>Drafted</CC_CCard_Drafted>
+  <CC_CCard_RoleTip>{PAWN_nameDef} is the {ROLE} of {IDEO}.</CC_CCard_RoleTip>
+  <CC_CCard_TitleTip>{PAWN_nameDef} holds the title of {TITLE} of {FACTION}.</CC_CCard_TitleTip>
+  <CC_CCard_InCaravan>In {CARAVAN}</CC_CCard_InCaravan>
+  <CC_CCard_Away>Away</CC_CCard_Away>
+  <CC_CCard_OnMap>At {PLACE}</CC_CCard_OnMap>
+
+  <!-- The parts -->
+  <CC_CCard_Now>Now</CC_CCard_Now>
+  <CC_CCard_Skills>Skills</CC_CCard_Skills>
+  <CC_CCard_Kit>Kit</CC_CCard_Kit>
+  <CC_CCard_Life>Life</CC_CCard_Life>
+  <CC_CCard_NoMood>{PAWN_nameDef} has no mood the game keeps.</CC_CCard_NoMood>
+
+  <!-- Skills -->
+  <CC_CCard_NoSkills>{PAWN_nameDef} has no skills yet.</CC_CCard_NoSkills>
+  <CC_CCard_Best>Best at {SKILLS}.</CC_CCard_Best>
+  <CC_CCard_Cant>can't</CC_CCard_Cant>
+  <CC_CCard_SkillCant>{PAWN_nameDef} can't do this at all.</CC_CCard_SkillCant>
+  <CC_CCard_SkillLevel>{LEVEL} ({WORD})</CC_CCard_SkillLevel>
+  <CC_CCard_SkillPassion>Passion: {PASSION}, learning at {RATE}.</CC_CCard_SkillPassion>
+  <CC_CCard_SkillRate>Learning at {RATE}.</CC_CCard_SkillRate>
+  <CC_CCard_SkillNext>{XP} of the {NEED} experience to the next level.</CC_CCard_SkillNext>
+  <CC_CCard_SkillAptitude>Aptitude {APTITUDE} from their genes or abilities.</CC_CCard_SkillAptitude>
+
+  <!-- Kit -->
+  <CC_CCard_Weapons>Weapons</CC_CCard_Weapons>
+  <CC_CCard_Apparel>Apparel</CC_CCard_Apparel>
+  <CC_CCard_InHand>In hand</CC_CCard_InHand>
+  <CC_CCard_OffHand>Off hand</CC_CCard_OffHand>
+  <CC_CCard_Sidearm>Sidearm</CC_CCard_Sidearm>
+  <CC_CCard_Carried>Carried</CC_CCard_Carried>
+  <CC_CCard_ForThem>{RATING} for {PAWN_objective}</CC_CCard_ForThem>
+  <CC_CCard_CantUse>can't use it</CC_CCard_CantUse>
+  <CC_CCard_ClickCard>Click to open its card.</CC_CCard_ClickCard>
+  <CC_CCard_NoWeapon>Nothing in {PAWN_possessive} hands.</CC_CCard_NoWeapon>
+  <CC_CCard_GapNothing>{GAP}, and none in storage</CC_CCard_GapNothing>
+  <CC_CCard_NoWorn>{PAWN_nameDef} wears nothing.</CC_CCard_NoWorn>
+  <CC_CCard_Slot_Head>Head</CC_CCard_Slot_Head>
+  <CC_CCard_Slot_Body>Body</CC_CCard_Slot_Body>
+  <CC_CCard_Slot_Legs>Legs</CC_CCard_Slot_Legs>
+  <CC_CCard_Slot_Hands>Hands</CC_CCard_Slot_Hands>
+  <CC_CCard_Slot_Feet>Feet</CC_CCard_Slot_Feet>
+  <CC_CCard_Slot_Belt>Belt</CC_CCard_Slot_Belt>
+  <CC_CCard_Slot_Other>Worn</CC_CCard_Slot_Other>
+  <CC_CCard_Worn>{LEFT} left</CC_CCard_Worn>
+  <CC_CCard_WeatherFine>Dressed for the season here.</CC_CCard_WeatherFine>
+  <CC_CCard_WeatherCold>Too cold for the season here: warmer clothes would help.</CC_CCard_WeatherCold>
+  <CC_CCard_WeatherHot>Too warm for the season here: lighter clothes would help.</CC_CCard_WeatherHot>
+  <CC_CCard_WeatherBoth>Not dressed for the season here: too cold at its coldest, too warm at its hottest.</CC_CCard_WeatherBoth>
+  <CC_CCard_WeatherRange>Comfortable from {MIN} to {MAX} as dressed. Outside now: {NOW}. The season here: {LOW} to {HIGH}.</CC_CCard_WeatherRange>
+
+  <!-- The foot -->
+  <CC_CCard_Foot_Mood>Mood</CC_CCard_Foot_Mood>
+  <CC_CCard_Foot_Mood_Tip>Select {PAWN_nameDef} and open {PAWN_possessive} Mood tab.</CC_CCard_Foot_Mood_Tip>
+  <CC_CCard_Foot_Story>Story</CC_CCard_Foot_Story>
+  <CC_CCard_Foot_Story_Tip>Select {PAWN_nameDef} and open {PAWN_possessive} Story tab.</CC_CCard_Foot_Story_Tip>
+  <CC_CCard_Foot_Gear>Gear</CC_CCard_Foot_Gear>
+  <CC_CCard_Foot_Gear_Tip>Select {PAWN_nameDef} and open {PAWN_possessive} Gear tab.</CC_CCard_Foot_Gear_Tip>
+  <CC_CCard_Foot_Health>Health</CC_CCard_Foot_Health>
+  <CC_CCard_Foot_Health_Tip>Select {PAWN_nameDef} and open {PAWN_possessive} Health tab.</CC_CCard_Foot_Health_Tip>
+  <CC_CCard_Foot_GoTo>Go to them</CC_CCard_Foot_GoTo>
+  <CC_CCard_Foot_GoTo_Tip>Move the view to {PAWN_nameDef}, leaving what is selected as it is.</CC_CCard_Foot_GoTo_Tip>
+  <CC_CCard_Foot_Select>Select</CC_CCard_Foot_Select>
+  <CC_CCard_Foot_Select_Tip>Select {PAWN_nameDef}, the view going to {PAWN_objective}.</CC_CCard_Foot_Select_Tip>
+  <CC_CCard_Foot_WholeStory>Whole story</CC_CCard_Foot_WholeStory>
+  <CC_CCard_Foot_WholeStory_Tip>{PAWN_nameDef}'s whole story beside the People table in the council window.</CC_CCard_Foot_WholeStory_Tip>
+  <CC_CCard_Foot_More>More</CC_CCard_Foot_More>
+  <CC_CCard_Foot_More_Tip>What else the colony can do about {PAWN_nameDef}.</CC_CCard_Foot_More_Tip>
+
+</LanguageData>

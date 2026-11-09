@@ -98,6 +98,9 @@ namespace ColonyCouncil
             // Beside play: the Almanac and a card in its floating window.
             new FrameKey("Almanac", AlmanacLeastW, AlmanacLeastH, true),
             new FrameKey("Card", 380f, 320f, true),
+            // A colonist's card (UI/ColonistCard/), one per colonist beside play: its header, a column of its parts (they
+            // scroll) and the foot's buttons in two rows.
+            new FrameKey("ColonistCard", ColonistCardMath.LeastW, ColonistCardMath.LeastH, true),
             // Rimfolk's weapon card (Weapons/WeaponCardWindow.cs): its badge, chips and chart at the least width; the rest scrolls.
             new FrameKey("WeaponCard", 440f, 460f),
             // Rimfolk's apparel card (Apparel/ApparelCardWindow.cs): its badge, chips and body figure at the least width; the rest scrolls.
