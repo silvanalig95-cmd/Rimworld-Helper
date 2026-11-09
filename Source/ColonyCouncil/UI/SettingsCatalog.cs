@@ -701,6 +701,9 @@ namespace ColonyCouncil
             Toggle("apparelRatings", "CC_Settings_ApparelRatings", "CC_SetNote_ApparelRatings", "deepHooks");
             Toggle("apparelGearTab", "CC_Settings_ApparelGearTab", "CC_SetNote_ApparelGearTab", "apparelRatings,deepHooks");
             Toggle("apparelCardFirst", "CC_Settings_ApparelCardFirst", "CC_SetNote_ApparelCardFirst", "apparelRatings,deepHooks");
+            // Rimfolk's item card (Items/, docs/design/rimfolk-look.md, stage 3, point 5): food, drink, drugs and medicine so far.
+            Section("CC_SetSec_Items");
+            Toggle("itemCardFirst", "CC_Settings_ItemCardFirst", "CC_SetNote_ItemCardFirst", "deepHooks");
             // The colonist bar's badges (ColonistBar/BarBadges.cs): what they show, and how.
             Section("CC_SetSec_ColonistBar");
             NoteUnder("CC_SetSec_ColonistBar_Note");

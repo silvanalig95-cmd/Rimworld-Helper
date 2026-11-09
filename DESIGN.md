@@ -9769,6 +9769,102 @@ glance during play (less text, more shape), and the panels as they were stay beh
   weapons only where a mod or the game counts them as resources); the compact bar in the look; the hover card in the
   corner with its link.
 
+#### Rimfolk's own look, stage 3, point 5, step 1: the item card for food, drink, drugs and medicine (docs/design/rimfolk-look.md)
+
+The player (9 November 2026): "also like item card for everything, although i fear that would take a lot of
+ressources?" They were told it is built only when opened and kept, costs nothing in play, and comes in steps: food,
+drink, drugs and medicine first, then materials, art and the rest. Step 1 is built. Not released yet.
+
+- **Which things** (`Items/ItemCardLive.KindOf`, the rule in `ItemCardMath.KindOf`): an item (never a weapon, apparel, a
+  corpse, a building or a creature) that is medicine; a drug, which is a drink when it is drunk (beer, tea, go-juice) and
+  a drug otherwise; food that is drunk (a mod's juice, milk) is a drink; anything else that feeds is food (meals, raw
+  food, animal feed). Everything else opens the game's card as before.
+- **The card** (`Items/ThingCardWindow.cs`, key "ItemCard", least 440 by 460, on `UI/ItemCardWindow.cs`, whose head now
+  draws without a rating's badge, `HeadFacts.NoBadge`): the thing's own picture large in its quality's frame
+  (`UiKit.ItemPortrait`, as it really is), its label with the stack and quality, what kind it is and its worth ("Meal,
+  fine · $20 each, $200 the stack"), "All the game's stats", and **a line in plain words** on what it is good for
+  here (`ItemCardMath.Plain`: "Fine meal: lifts the mood (+5), keeps 4 days, enough for 2 colonists' supper." "Herbal
+  medicine: fine for a cut or a cold, risky for surgery." "Yayo: a hard drug, lifts the mood (+35) for 18 hours, can
+  overdose, addictive."). Then its **tags** as the weapon card's chips (`WeaponUi.Chips`, the shared six categories of
+  `WeaponTagMath`), each with why in its own numbers or Rimfolk's own rule, at most eight, the first strength and
+  weakness kept (`ItemCardMath.Tags`):
+  - **Strength**: *Nutritious* (a meal's worth, 0.9, in a piece), *Keeps long* (never rots, or 20 days or more), *Mood
+    lift* (the game's thought for eating it, or the thought on a drug's high), *Potent* (medicine at least as potent as
+    industrial), *Recreation* (a dose gives joy).
+  - **Weakness**: *Spoils fast* (rots within 5 days above 10 °C), *Raw* (the game's "ate raw food" eaten as it is, and a
+    recipe of the colony's cooks it), *Bad taste* (another bad thought: paste, kibble), *Risky for surgery* (medicine
+    under industrial potency: surgery fails more often, tending stops lower).
+  - **Risk**: *Of a person* (human meat or made with it), *Overdose risk* (a dose adds toward an overdose, the range and
+    the chance of a large one named), *Addictive* (the game's chance a dose, and the tolerance it needs first), *Food
+    poisoning* (the stack's own chance from its cook and kitchen, its kind's for people, certain once it rots; half a
+    percent or more, by the storyteller's factor), *Forbidden to some* or *to most* (the colony's grown people whose
+    faith, diet or nature rules it out, named with why: Wishes/Beliefs.cs), *Insect meat*.
+  - **Special**: *Feast's dish* (`ThingRole.Feast`: a fine or lavish meal, what the Empire's guests expect), *Toast's
+    drink* (`ToastDrinks.IsToastDrink`: alcohol, or a drink a teetotaler may have for those who don't drink), *Gift for a
+    people* (`ThingRole.Gift`: a fine drink worth 15 silver or more).
+  - **Role**: *Provisions* (`ThingRole.Provisions`, the journey planner's road food: first when it never rots), *Trade
+    good* (keeps, and 50 silver a kilogram or more), *For serious care* or *For minor wounds* (with medicine by what is
+    treated on: `MedicineChoiceMath.NeedsCare`, herbal for the minor, better for the serious), *Needed now* (the colony is
+    under the trade advice's ten days of food, or under its medicine floor), *Spare to sell* (more than twice the ten
+    days, or more medicine than the trade advice keeps).
+  - **Needs**: *Cooking* (raw food a recipe the colony has unlocked makes a meal of, its bench named), *Drug policy*
+    (how many policies at home allow it), *Freezer* (it spoils fast and the colony keeps nothing cold).
+- **As food** (food, and a drink that isn't a drug): nutrition a piece, the stack's and its colonist-days (1.6 a day), or
+  how many make a meal's worth; how it keeps (its kind's days above 10 °C, slower in the cold, never at or below 0 °C,
+  and this stack's days left where it lies by the game's own `CompRottable.TicksUntilRotAtCurrentTemp`, or kept cold, or
+  rotting); the game's thought for eating it; food poisoning (the stack's own `CompFoodPoisonable.PoisonPercent`, its
+  kind's `FoodPoisonChanceFixedHuman`, or for a kind of meal the colony's surest cook's `FoodPoisonChance`); the road (the
+  journey planner's order, `ThingRolesMath.TravelRank`, and what it doesn't pack); a feast's dish. **Who at home eats it**:
+  each colonist with the mood it gives them (`FoodUtility.MoodFromIngesting`), or why they won't (their nature or title,
+  `FoodUtility.WillEat`; their food policy; their beliefs, `BeliefMath.WhyNotEat`: meat, alcohol, paste, fungus, insects,
+  fine meals only; a bad thought of their own from a precept or a trait, by name, such as eating human meat). The shared
+  raw or rotten mood is no refusal.
+- **What it does** (drinks and drugs): each hediff its doses give with how long one lasts (its severity over its fall a
+  day, or its own time to go), the game's own words for its stage (`HediffStatsUtility.SpecialDisplayStats`) and the mood
+  of its thought; needs a dose moves; recreation; addiction (the chance a dose, the tolerance first); tolerance (a dose's,
+  and its fall a day); overdose; the toast; a gift; how it keeps where it rots. **Who may take it**: each colonist's drug
+  policy for it (for recreation, on a schedule, only for an addiction, not allowed, not in the policy), their beliefs, an
+  addiction; each faith at home with its precepts on drugs and alcohol.
+- **As medicine**: its potency and the best tending it allows, the medical care that allows it, how it keeps (herbal
+  medicine rots in 150 days), what Rimfolk's medicine by what is treated gives it to (or the game's rule with that off),
+  and surgery's risk under industrial potency. **The doctors**: up to five, the best first, with their tending with it
+  and without any (`TendUtility`'s rule: the doctor's tend quality times the potency, held at the medicine's best;
+  `ItemCardMath.TendQuality`), and how much better industrial medicine would do for them.
+- **The colony's stock**: how many the colony holds (on the map, not forbidden, and in its people's packs); for food the
+  days of food in all (`MapFacts.FoodDays`) and this kind's share, short or spare by the trade advice's rules
+  (`TradeAdviceMath`); for medicine every kind together against the floor and reserve; for a drug who is addicted. **Where
+  it is made**: each recipe that makes it, its bill on a bench (a click goes to the bench and opens its bills), a bench
+  that could take one, the bench to build or the research it waits on; crops that grow it, a click going to the field.
+- **Trade**: its worth (each and the stack) and a kilogram's; the kinds of trader who deal in it (`TraderKindDef.WillTrade`),
+  who asks the least and who pays the most where the game's price types differ; Vanilla Trading Expanded's market for it
+  read as the trade window reads it (`TradeMarket.MarketLines`), and the colony's own last prices (`TradeMarket.RecordLines`).
+- **Open it first** (`Items/ItemCardFirst.cs`): the weapons' one prefix on `WindowStack.Add` (`Patch_WeaponCardFirst`) asks
+  the item card first (its kinds are never weapons or apparel), then the weapon and apparel cards as before. Its own
+  let-through for "All the game's stats"; navigation inside the game's card stays the game's
+  (`WeaponCardFirst.insideGameCard`); a postfix on `Dialog_InfoCard.DoWindowContents` (`Patch_ItemCardButton`) draws
+  "Rimfolk's item card" at the foot of the game's card for these kinds, so the way back is always there. Setting
+  `itemCardFirst` "Open Rimfolk's item card first" (How you're told, Items; on; needs the deeper game hooks).
+- **Speed.** Nothing is read while the card is closed, and nothing in play. A kind's own numbers (rot, taste, drug,
+  effects and their thoughts, potency, roles, the recipes and crops that make it, the traders) are read once when its
+  card first opens and kept for the session (`ItemCardLive.PartOf`). The card's model (`ItemCardModel`) is built when it
+  opens: the thing's live parts (the stack, how long it keeps where it lies, its poisoning) are read again at most once a
+  second, the colony's (who eats or takes it, the doctors, the stock, the bills, the market) at most every ten seconds; the
+  window draws only from the model's finished words.
+- **Text:** `Languages/English/Keyed/Rimfolk_ItemCard.xml`; the tags' labels and reasons and the line in plain words are
+  English from the pure rules, as the weapon and apparel tags are. **Tests:** `Tools/Tests/ItemCardTests.cs` (some 400
+  checks): the kinds; the sums (colonist-days, suppers, a meal's worth, tending, short and spare, poisoning odds, the
+  words for shares, days and moods); the tags and line of the base game's fine, simple and survival meals, pemmican,
+  potatoes, raw and rotting meat, a cooked stack, kibble, hay, human and insect meat, beer, a fine wine, tea, yayo, herbal,
+  industrial and glitterworld medicine, the colony short, spare, minding and without a cold store; the vocabulary, the cut
+  to eight, clean words; the seams (the hook and its pass-through, the button back, the setting, the frame, the head
+  without a badge, the model built once and refreshed rarely, nothing read from the game while drawing, every key).
+- **Not verified without the game**: the card's look at its least width and the head without a badge; the drug effects'
+  words from `HediffStatsUtility` for every base and modded high, and their durations from the hediffs' comps; the
+  thoughts on highs found by `ThoughtDef.hediff`; `FoodUtility.ThoughtsFromIngesting` and `MoodFromIngesting` for a kind
+  with no thing in hand; a fridge mod's stack read as kept cold; the game's price types per trader; the jump to a bench
+  and its bills tab, and to a field; the swap through the shared hook and "All the game's stats" coming back; how long the
+  first card of a kind takes to read with the player's mods (the recipes and traders are looked through once).
+
 #### The journey planner: who to bring and what to pack
 
 The player's request (5 November 2026): a better overview of the colonists in "Plan a journey", so they can judge

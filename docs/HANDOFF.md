@@ -12,6 +12,45 @@ tree at once, alongside whatever runs. Each piece is merged as its own release, 
 
 ## State (5 November 2026)
 
+- Rimfolk's item card, step 1: food, drink, drugs and medicine (9 November 2026; `docs/design/rimfolk-look.md` stage 3,
+  point 5). **Not released: no version, no What's new round, About.xml and CHANGELOG untouched.** The player's words: "also
+  like item card for everything, although i fear that would take a lot of ressources?"; told it is built only when opened
+  and kept, costs nothing in play, and comes in steps (food, drink, drugs and medicine first, then materials, art and the
+  rest). DESIGN.md "Rimfolk's own look, stage 3, point 5, step 1" has all of it; README "Rimfolk's item card".
+  - The card (`Items/ThingCardWindow.cs`, frame key "ItemCard" 440 by 460, on `UI/ItemCardWindow.cs`, whose head now draws
+    without a badge: `HeadFacts.NoBadge`, the apparel card unchanged): the picture, label with stack and quality, kind and
+    worth, "All the game's stats", a line in plain words, tags; by kind: food (nutrition and colonist-days, keeping here and
+    in the cold, the game's mood, food poisoning, the road, the feast; who at home eats it or won't and why), drinks and
+    drugs (effects and durations from the hediffs, addiction, tolerance, overdose, the toast; each colonist's policy,
+    beliefs and addiction; each faith's precepts), medicine (potency, care, what medicine by what is treated gives it to,
+    each doctor's tending with and without); the colony's stock (held, food days or medicine, short or spare by
+    `TradeAdviceMath`) and where it is made (a bill's bench, a click going to it and its bills; a bench without one; the
+    research; a field); trade (worth, traders by `TraderKindDef.WillTrade` and their price types, VTE's market lines, the
+    colony's record).
+  - Rules pure in `Items/ItemCardMath.cs` (linked in Tests.csproj): the kind, the tags in the shared six categories (27 in
+    the vocabulary, at most 8 shown, first strength and weakness kept), the line, the sums. The game's side in
+    `Items/ItemCardLive.cs`: a kind's numbers read once and kept (`PartOf`), the model built when the card opens, the live
+    parts refreshed at most once a second and the colony's every ten seconds, nothing while closed or while drawing.
+  - Opening first: `Patch_WeaponCardFirst.Prefix` asks `ItemCardFirst.Swapped(card)` first (its kinds are never weapons or
+    apparel; the weapon and apparel line unchanged); its own let-through; links inside the game's card stay
+    (`WeaponCardFirst.insideGameCard`); `Patch_ItemCardButton` draws "Rimfolk's item card" at the foot of the game's card.
+    Setting `itemCardFirst` "Open Rimfolk's item card first" (How you're told, new section Items; on; needs deep hooks).
+    No saved game data, no Sched slot. Keys in `Languages/English/Keyed/Rimfolk_ItemCard.xml`. Tests
+    `Tools/Tests/ItemCardTests.cs` (404 checks).
+  - Not run here (none of it could be): the card at its least width; the drug effects' words (`HediffStatsUtility`) and
+    durations for every high, base and modded; thoughts found on highs by `ThoughtDef.hediff`; `ThoughtsFromIngesting` and
+    `MoodFromIngesting` for a kind with no thing in hand (wrapped, falling back to the kind's taste); a fridge mod's stack;
+    the price types per trader; the jumps to a bench's bills and a field; the first card's reading time with the
+    player's mods (all recipes, crops and trader kinds looked through once a kind).
+  - Try in the game: 1. Select a stack of fine meals, press "i": Rimfolk's item card opens, the picture large, "Fine meal:
+    lifts the mood (+5), keeps ... more, enough for N colonists' supper."; "All the game's stats" opens the game's card,
+    whose "Rimfolk's item card" button brings it back. 2. The same stack in the freezer: "kept cold"; a stack left in the
+    sun: its days left fall. 3. Raw meat: Raw, Spoils fast, Food poisoning, Cooking at the colony's stove. 4. Beer with a
+    colonist whose faith forbids alcohol: "Forbidden to some", their name and why; their row under Who may take it. 5.
+    Yayo: Overdose risk, Addictive, the high and how long it lasts. 6. Herbal and industrial medicine: For minor wounds /
+    For serious care, each doctor's tending with and without. 7. A meal with a bill: click the bill line, the camera goes to
+    the stove and its bills tab opens. 8. Settings, How you're told, Items: "Open Rimfolk's item card first" off, the
+    game's card opens with the button at its foot.
 - 0.195.0, the trade window's two lists, sell and buy (9 November 2026). The player's words, with a screenshot of the one table: "i quite like the new trading ui, but
   i find it still a bit confusing. could buy and sell be split into different tabs or some other setup? where I have
   separate lists can can organize it more easy ... also the name of the item doesn't even always fit." The plan told to
