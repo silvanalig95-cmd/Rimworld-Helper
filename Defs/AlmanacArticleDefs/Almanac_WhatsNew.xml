@@ -31,6 +31,19 @@ When you load a save after an update, a letter lists the newest round once. The 
     <rounds>
 
       <li>
+        <version>0.195.0</version>
+        <date>9 November 2026</date>
+        <title>The trade window in two lists</title>
+        <points>
+          <li>Rimfolk's trade window now shows Ours to sell and Theirs to buy as two lists, side by side when the window is wide and as two tabs when it's narrow; a button chooses, and the choice is remembered.</li>
+          <li>Each list has a few clear columns: the picture and full name, never cut off, how many there are, the price with how it stands against the usual, a deal tag, what the colony needs or should keep, and the count.</li>
+          <li>Rows sit under their kind's heading instead of a Kind column; each list sorts by its own headings, and search and the chips filter both.</li>
+          <li>The arrows point where the goods go: in the sell list they sell, in the buy list they buy; Shift and Ctrl move ten and a hundred, and a good already in the deal the other way says so and is taken out with a click.</li>
+          <li>Hover a row for the rest: market value, mass, the price's breakdown and its share of value, why the deal got its grade, the advice, and the market card with its trend.</li>
+        </points>
+      </li>
+
+      <li>
         <version>0.194.0</version>
         <date>9 November 2026</date>
         <title>The on-screen panels in Rimfolk's own look</title>

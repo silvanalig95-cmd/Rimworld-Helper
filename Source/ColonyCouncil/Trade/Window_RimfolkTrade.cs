@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using RimWorld;
 using RimWorld.Planet;
 using UnityEngine;
@@ -12,19 +13,22 @@ namespace ColonyCouncil
 {
     /// <summary>
     /// Rimfolk's own trade window (DESIGN.md "The trade screen"; opened in place of the game's by Trade/TradeWindow.cs).
-    /// One table with the colony's side left of the count and the trader's right of it, as the game's arrows go: each
-    /// good's name and kind, its market value a piece, how many the colony has and what the trader pays, the game's
-    /// own count control, what the trader asks and how many it has, the deal's grade, Vanilla Trading Expanded's market
-    /// and trend, the mass and what the colony needs of it. Every price is the game's own (Tradeable.GetPriceFor), shown
-    /// with its share of the market value and against the usual price for this negotiator; every count is set through
-    /// the game's own control and the game's deal, and Accept is the game's own path (TryExecute, its confirmations,
-    /// the negotiator, the caravan and the pods). A search, kind chips and "only in the deal" above; column headers that
-    /// sort; on the right the best deals both ways (a click finds the row) and the deal's summary; at the foot Fill
-    /// suggested, Clear suggested, Reset, Accept, Cancel and each side's silver after the trade. The rules are
-    /// <see cref="TradeWindowMath"/>'s; the advice, the market and the record are Trade/'s own, read here and not
-    /// worked out again. If anything fails while it draws, the game's own screen takes the trade over. It is in Rimfolk's
-    /// frame (UI/WindowFrame.cs): moved by its title bar, sized from its edges, large and back, where it was left, and in
-    /// Rimfolk's own look while that is on (docs/design/rimfolk-look.md, stage 1); with both settings off, as it was.
+    /// Two lists, the colony's goods to sell and the trader's to buy (the player, 9 November 2026: "could buy and sell be
+    /// split into different tabs or some other setup? where I have separate lists"): side by side when the window is wide
+    /// enough, else as two tabs, Sell and Buy, the player's tab and choice remembered. Each list is grouped under its
+    /// kinds and has few columns: the good's picture and its whole name, how many there are, the price with a mark
+    /// against the usual, the deal's grade, the need, and a count control that goes one way (sold in the sell list,
+    /// bought in the buy list), set through the game's own limits and AdjustTo. Every price is the game's own
+    /// (Tradeable.GetPriceFor); a row's tooltip has the rest: its market value and mass, the price's share of the value
+    /// and the game's reckoning, why the deal is called what it is, the market and its trend, and the advice; the market
+    /// card beside it draws the trend. Accept is the game's own path (TryExecute, its confirmations, the negotiator, the
+    /// caravan and the pods). A search, kind chips and "only in the deal" above; headers that sort each list, and a menu
+    /// for the sorts the columns leave out; on the right the colony's silver, the best deals both ways (a click finds the
+    /// row) and the deal's summary; at the foot Fill suggested, Clear suggested, Reset, Accept, Cancel and each side's
+    /// silver after the trade. The rules are <see cref="TradeWindowMath"/>'s; the advice, the market and the record are
+    /// Trade/'s own, read here and not worked out again. Rows are read once a trade and drawn from what was read; a
+    /// name's wrapping is measured once for a width. If anything fails while it draws, the game's own screen takes the
+    /// trade over. It is in Rimfolk's frame (UI/WindowFrame.cs) and its own look while that is on.
     /// </summary>
     public class Window_RimfolkTrade : FramedWindow
     {
@@ -35,19 +39,71 @@ namespace ColonyCouncil
             public string label;
             public TradeCategory cat;
             public Pawn pawn;
-            public bool person, willTrade, canSell, canBuy;
+            public bool person, willTrade, canSell, canBuy, noSlaves;
             public int ours, theirs;
             public float value, mass, pay, ask, usualSell, usualBuy, bestSold, bestBought;
             public DealRating sell, buy;
             public TradeNote note;
             public MarketView market;
             public float? trend;
-            public TradeRowKeys keys;
+            public TradeRowKeys sellKeys, buyKeys;
+            // What the row draws, made when it is read.
+            public string payText, askText, payMark, askMark, need, needTip;
+            public int payPct, askPct, payBetter, askBetter;
+            public Color needColor;
+            public Func<string> nameTip;
+            public object sellCard, buyCard;
+            public int tipId;
+            public readonly RowSide ofSell = new RowSide(), ofBuy = new RowSide();
+
+            public RowSide Of(bool sale) => sale ? ofSell : ofBuy;
         }
 
-        private const float TopH = 52f, FootH = 44f, RowH = 36f, HeadH = 36f, ChipH = 24f, Gap = 4f, CaravanH = 40f, SideGap = 14f;
+        /// <summary>A row in one list: its name's height at the width it was measured for, its number box, its note when the good goes the other way.</summary>
+        private sealed class RowSide
+        {
+            public float nameH, nameFor = -1f;
+            public string field, typed, other;
+            public int otherFor = -1;
+        }
 
-        /// <summary>The least the window is sized to: the foot's buttons and the silver, the table's name and count, the side.</summary>
+        /// <summary>A heading or a row of a list, where it stands and how tall.</summary>
+        private struct Line
+        {
+            public Row row;
+            public string head, headCount;
+            public int nth;
+            public float top, height;
+        }
+
+        /// <summary>One of the two lists: the colony's goods to sell, or the trader's to buy.</summary>
+        private sealed class ListView
+        {
+            public readonly bool sale;
+            /// <summary>Every row of this side: what the colony has (to sell) or the trader has (to buy).</summary>
+            public readonly List<Row> rows = new List<Row>();
+            /// <summary>What is shown: the kinds' headings and their rows, in order.</summary>
+            public readonly List<Line> lines = new List<Line>();
+            public int shown, inDeal;
+            public Vector2 scroll;
+            public float viewH = 400f, contentH, placesW = -1f, measuredFor = -1f;
+            public bool dirty = true;
+            public List<ColumnPlace> places;
+            /// <summary>Each column's heading, the line under it, and its tooltip as sorted and not, made with the columns.</summary>
+            public string[] heads, legends, tipsSorted, tipsUnsorted;
+            public Row jumpTo;
+            public string title, titleTip, sub;
+
+            public ListView(bool sale)
+            {
+                this.sale = sale;
+            }
+        }
+
+        private const float TopH = 52f, FootH = 44f, HeadH = 36f, ChipH = 24f, CaravanH = 40f, SideGap = 14f, BarH = 30f;
+        private const float PictureSize = 32f, ArrowW = 22f, PawnIcons = 52f, NumberPad = 8f, ListsButtonW = 160f;
+
+        /// <summary>The least the window is sized to: the foot's buttons and the silver, a list with all its columns, the side.</summary>
         public const float LeastW = WindowFrameMath.TradeLeastW, LeastH = WindowFrameMath.TradeLeastH;
 
         /// <summary>The top's height: the title, the negotiator and the buttons; in the frame, the title is in the title bar.</summary>
@@ -56,10 +112,13 @@ namespace ColonyCouncil
         private const float FlashSeconds = 1.6f;
 
         private static readonly Color Great = new Color(0.32f, 0.95f, 0.5f), BarOff = new Color(1f, 1f, 1f, 0.14f);
+        private static readonly Regex Digits = new Regex("^[0-9]*$");
 
-        /// <summary>The column clicked last, kept for the session's next trade.</summary>
-        private static TradeColumn sortCol = TradeColumn.Category;
-        private static bool sortDesc;
+        /// <summary>Each list's sort (the sell list's first), kept for the session's next trade: the name from A until a header is clicked.</summary>
+        private static readonly TradeColumn[] sortCols = { TradeColumn.Name, TradeColumn.Name };
+        private static readonly bool[] sortDescs = { false, false };
+
+        private const string ListsKey = "trade.lists", TabKey = "trade.tab";
 
         private static Texture2D sellableIcon, sortUp, sortDown;
 
@@ -69,7 +128,7 @@ namespace ColonyCouncil
         private readonly bool playerIsCaravan, market;
         private readonly List<Thing> caravanThings;
         private readonly List<Row> rows = new List<Row>();
-        private List<Row> shown = new List<Row>();
+        private readonly ListView sellList = new ListView(true), buyList = new ListView(false);
         private readonly List<Row> bestSells = new List<Row>(), bestBuys = new List<Row>();
         private readonly List<Tradeable> goods = new List<Tradeable>();
         /// <summary>The chips: everything, then each kind this trade has, with how many goods of it.</summary>
@@ -79,14 +138,16 @@ namespace ColonyCouncil
         private TradeCategory? category;
         private bool inDealOnly, failed, switching, caravanDirty = true;
         private int stamp = int.MinValue;
-        private Vector2 listScroll, sideScroll;
-        private float listViewH = 400f, sideHeight = 600f;
+        private Vector2 sideScroll;
+        private float sideHeight = 600f;
         private Row flashRow;
+        private bool flashSale;
         private float flashAt = -99f;
-        private List<ColumnPlace> places;
-        private float placesWidth = -1f;
-        /// <summary>The chips' words and widths, made once a trade.</summary>
-        private readonly List<string> chipLabels = new List<string>();
+        /// <summary>The player's choice of side by side or tabs, and the tab shown (remembered with the settings); side by side as drawn last.</summary>
+        private TradeListsChoice listsChoice;
+        private bool tabSell, sideNow;
+        /// <summary>The chips' words, widths and tooltips, made once a trade.</summary>
+        private readonly List<string> chipLabels = new List<string>(), chipTips = new List<string>();
         private readonly List<float> chipWidths = new List<float>();
 
         // The deal as it stands, worked out when a count changes.
@@ -96,7 +157,21 @@ namespace ColonyCouncil
         private List<(string text, string tip)> readouts = new List<(string, string)>();
         private CaravanUIUtility.CaravanInfo caravanInfo;
 
+        // Words said in every row, made once.
+        private static string wontTrade, usualWord, otherBuyingTip, otherSellingTip;
+        private static readonly string[] tagWords = new string[5], kindWords = new string[Enum.GetValues(typeof(TradeCategory)).Length];
+        private static string offWord;
+
         private static string W(string key, params NamedArgument[] args) => key.Translate(args).Resolve();
+
+        private static readonly Dictionary<string, string> said = new Dictionary<string, string>();
+
+        /// <summary>A word without arguments, translated once (the words drawn every frame).</summary>
+        private static string K(string key)
+        {
+            if (!said.TryGetValue(key, out var s)) said[key] = s = W(key);
+            return s;
+        }
 
         private static string Money(float silver) => silver.ToStringMoney();
 
@@ -116,6 +191,12 @@ namespace ColonyCouncil
             soundClose = SoundDefOf.CommsWindow_Close;
             if (TradeSession.trader is PassingShip) soundAmbient = SoundDefOf.RadioComms_Ambience;
             market = TradeMarket.History;
+            listsChoice = PageMemory.GetEnum(ListsKey, TradeListsChoice.Auto);
+            tabSell = PageMemory.Get(TabKey) != "buy";
+            sellList.title = W("CC_TradeWin_ListSell");
+            sellList.titleTip = W("CC_TradeWin_ListSellTip");
+            buyList.title = W("CC_TradeWin_ListBuy");
+            buyList.titleTip = W("CC_TradeWin_ListBuyTip");
             // A caravan's pawns and goods, for its mass, speed and food after the trade, as the game's own screen reads them.
             var caravan = TradeSession.playerNegotiator.GetCaravan();
             if (caravan != null)
@@ -178,11 +259,13 @@ namespace ColonyCouncil
 
         // ---------------- Reading the trade ----------------
 
-        /// <summary>Every good of the trade a row, as the game's own screen lists them (what the trader won't deal in left out where its kind hides it).</summary>
+        /// <summary>Every good of the trade a row, as the game's own screen lists them (what the trader won't deal in left out where its kind hides it); the colony's in the sell list, the trader's in the buy list.</summary>
         private void Build()
         {
             rows.Clear();
             goods.Clear();
+            sellList.rows.Clear();
+            buyList.rows.Clear();
             currency = deal.CurrencyTradeable;
             var trader = TradeSession.trader;
             bool hide = trader.TraderKind?.hideThingsNotWillingToTrade ?? false;
@@ -194,11 +277,15 @@ namespace ColonyCouncil
                 if (t == null || t.IsCurrency || t.IsFavor || !t.HasAnyThing) continue;
                 goods.Add(t);
                 if (!t.TraderWillTrade && hide) continue;
-                rows.Add(Read(t, notes, book, now));
+                var r = Read(t, notes, book, now, rows.Count);
+                rows.Add(r);
+                if (r.ours > 0) sellList.rows.Add(r);
+                if (r.theirs > 0) buyList.rows.Add(r);
             }
             chips.Clear();
             chipLabels.Clear();
             chipWidths.Clear();
+            chipTips.Clear();
             chips.Add((null, rows.Count));
             chips.AddRange(rows.GroupBy(x => x.cat).OrderBy(g => (int)g.Key).Select(g => ((TradeCategory?)g.Key, g.Count())));
             if (category != null && !chips.Any(c => c.cat == category)) category = null;
@@ -210,7 +297,7 @@ namespace ColonyCouncil
             Refilter();
         }
 
-        private Row Read(Tradeable t, Dictionary<Tradeable, TradeNote> notes, TradeBook book, int now)
+        private Row Read(Tradeable t, Dictionary<Tradeable, TradeNote> notes, TradeBook book, int now, int index)
         {
             var thing = t.AnyThing;
             var r = new Row { t = t, label = t.LabelCap, pawn = thing as Pawn };
@@ -259,17 +346,76 @@ namespace ColonyCouncil
                     use = n != null && n.mark == TradeMark.Buy, graded = !r.person
                 });
             if (stats != null && stats.known && (stats.monthDays > 0 || stats.weekDays > 0)) r.trend = stats.monthDays > 0 ? stats.month : stats.week;
-            r.keys = new TradeRowKeys
+            // Each list's sort keys: its own count, price and deal.
+            float? marketKey = stats != null && stats.known ? stats.vsUsual : (float?)null;
+            float? needKey = n != null ? TradeAdviceMath.SortScore(n.mark, n.priority) : (float?)null;
+            r.sellKeys = new TradeRowKeys
             {
-                name = r.label, category = (int)r.cat, ours = r.ours, theirs = r.theirs, value = r.value, mass = r.mass,
-                pay = r.canSell ? r.pay : (float?)null, ask = r.canBuy ? r.ask : (float?)null, deal = TradeWindowMath.DealKey(r.sell, r.buy),
-                market = stats != null && stats.known ? stats.vsUsual : (float?)null, trend = r.trend,
-                need = n != null ? TradeAdviceMath.SortScore(n.mark, n.priority) : (float?)null
+                name = r.label, category = (int)r.cat, ours = r.ours, theirs = r.theirs, value = r.value, mass = r.mass, pay = r.canSell ? r.pay : (float?)null,
+                deal = TradeWindowMath.SideKey(r.sell), market = marketKey, trend = r.trend, need = needKey, off = !r.willTrade
             };
+            r.buyKeys = new TradeRowKeys
+            {
+                name = r.label, category = (int)r.cat, ours = r.ours, theirs = r.theirs, value = r.value, mass = r.mass, ask = r.canBuy ? r.ask : (float?)null,
+                deal = TradeWindowMath.SideKey(r.buy), market = marketKey, trend = r.trend, need = needKey, off = !r.willTrade
+            };
+            // What the row draws: the prices and their marks against the usual, the need's word.
+            if (r.canSell) Mark(r.pay, r.usualSell, true, out r.payText, out r.payPct, out r.payBetter, out r.payMark);
+            if (r.canBuy) Mark(r.ask, r.usualBuy, false, out r.askText, out r.askPct, out r.askBetter, out r.askMark);
+            NeedWord(r);
+            // Ideology: a negotiator who won't sell into slavery, as the game's own row asks.
+            r.noSlaves = ModsConfig.IdeologyActive && r.canSell && TransferableUIUtility.TradeIsPlayerSellingToSlavery(t, TradeSession.trader.Faction)
+                         && !new HistoryEvent(HistoryEventDefOf.SoldSlave, TradeSession.playerNegotiator.Named(HistoryEventArgsNames.Doer)).DoerWillingToDo();
+            r.nameTip = () => NameTip(t);
+            r.sellCard = (t, 0);
+            r.buyCard = (t, 1);
+            r.tipId = t.GetHashCode();
+            r.ofSell.field = "RimfolkTradeSell" + index;
+            r.ofBuy.field = "RimfolkTradeBuy" + index;
             return r;
         }
 
-        /// <summary>A thing's kind for the chips (TradeWindowMath.CategoryOf): read from the game's own def and categories, so every mod's goods find theirs.</summary>
+        /// <summary>A price's words: the silver, and its mark against the usual (how far above or under it, and whether that is better or worse for the colony).</summary>
+        private static void Mark(float price, float usual, bool sale, out string text, out int pct, out int better, out string mark)
+        {
+            text = Money(price);
+            pct = usual > 0f ? TradeWindowMath.VsUsual(price, usual) : 0;
+            better = TradeWindowMath.Better(sale, price, usual);
+            usualWord ??= W("CC_TradeWin_Usual");
+            mark = usual <= 0f ? null : Math.Abs(pct) < 2 ? usualWord : Math.Abs(pct).ToStringCached() + "%";
+        }
+
+        /// <summary>What the colony needs of it, from the advice: short (worth buying), spare (worth selling) or kept; for the trader's people, how they would join.</summary>
+        private static void NeedWord(Row r)
+        {
+            var n = r.note;
+            if (r.person && r.pawn.guest != null && !TransferableUIUtility.TransferableIsCaptive(r.t))
+            {
+                bool colonist = r.pawn.guest.joinStatus == JoinStatus.JoinAsColonist;
+                r.need = (colonist ? "JoinsAsColonist" : "JoinsAsSlave").Translate();
+                r.needTip = (colonist ? "JoinsAsColonistDesc" : "JoinsAsSlaveDesc").Translate();
+                r.needColor = UiKit.Faint;
+                return;
+            }
+            if (n == null || n.mark == TradeMark.None) return;
+            switch (n.mark)
+            {
+                case TradeMark.Buy:
+                    r.need = W("CC_TradeWin_Need_Buy", n.count.Named("COUNT"));
+                    r.needColor = TradeScreen.BuyColor;
+                    break;
+                case TradeMark.Sell:
+                    r.need = W("CC_TradeWin_Need_Sell", n.count.Named("COUNT"));
+                    r.needColor = TradeScreen.SellColor;
+                    break;
+                default:
+                    r.need = n.setAside >= n.have ? W("CC_TradeWin_Need_KeepAll") : W("CC_TradeWin_Need_Keep", n.setAside.Named("COUNT"));
+                    r.needColor = TradeScreen.KeepColor;
+                    break;
+            }
+        }
+
+        /// <summary>A thing's kind for the chips and the lists' headings (TradeWindowMath.CategoryOf): read from the game's own def and categories, so every mod's goods find theirs.</summary>
         private static TradeCategory CategoryOf(Thing thing)
         {
             var f = new TradeWindowMath.Facts();
@@ -295,15 +441,53 @@ namespace ColonyCouncil
             return TradeWindowMath.CategoryOf(f);
         }
 
-        /// <summary>The rows shown: the kind chosen, the search, only what is in the deal if asked; in the column's order, what the trader won't deal in last.</summary>
+        /// <summary>Both lists again: the kind chosen, the search, only what is in the deal its way if asked; under the kinds, in the list's order, what the trader won't deal in last.</summary>
         private void Refilter()
         {
-            var list = rows.Where(r => (category == null || r.cat == category.Value) && (!inDealOnly || r.t.CountToTransfer != 0)
-                                       && (!search.filter.Active || search.filter.Matches(r.label))).ToList();
-            var order = TradeWindowMath.Order(list.Select(r => r.keys).ToList(), sortCol, sortDesc);
-            var sorted = order.Select(i => list[i]).ToList();
-            shown = sorted.Where(r => r.willTrade).Concat(sorted.Where(r => !r.willTrade)).ToList();
-            search.noResultsMatched = shown.Count == 0 && search.filter.Active;
+            Fill(sellList);
+            Fill(buyList);
+            search.noResultsMatched = sellList.shown + buyList.shown == 0 && search.filter.Active;
+        }
+
+        private void Fill(ListView l)
+        {
+            var kept = new List<Row>();
+            var keys = new List<TradeRowKeys>();
+            foreach (var r in l.rows)
+            {
+                if (category != null && r.cat != category.Value) continue;
+                if (inDealOnly && TradeWindowMath.ThisWay(r.t.CountToTransfer, l.sale) == 0) continue;
+                if (search.filter.Active && !search.filter.Matches(r.label)) continue;
+                kept.Add(r);
+                keys.Add(l.sale ? r.sellKeys : r.buyKeys);
+            }
+            int side = l.sale ? 0 : 1;
+            l.lines.Clear();
+            int nth = 0;
+            foreach (var g in TradeWindowMath.Grouped(keys, sortCols[side], sortDescs[side]))
+            {
+                if (g.row < 0)
+                {
+                    l.lines.Add(new Line { head = GroupWord(g.group), headCount = g.count.ToStringCached() });
+                    nth = 0;
+                }
+                else l.lines.Add(new Line { row = kept[g.row], nth = nth++ });
+            }
+            l.shown = kept.Count;
+            l.dirty = true;
+            Sub(l);
+        }
+
+        private static string GroupWord(int group)
+        {
+            if (group == TradeWindowMath.OffGroup) return offWord ??= W("CC_TradeWin_Group_Off");
+            return kindWords[group] ??= W("CC_TradeWin_Cat_" + (TradeCategory)group);
+        }
+
+        /// <summary>The line beside a list's title: how many goods it shows, and how many of them are in the deal its way.</summary>
+        private static void Sub(ListView l)
+        {
+            l.sub = l.inDeal > 0 ? W("CC_TradeWin_ListSubDeal", l.shown.Named("COUNT"), l.inDeal.Named("DEAL")) : W("CC_TradeWin_ListSub", l.shown.Named("COUNT"));
         }
 
         // ---------------- The deal as it stands ----------------
@@ -326,14 +510,17 @@ namespace ColonyCouncil
             var lines = new List<DealLine>();
             impacts.Clear();
             var moved = new HashSet<ThingDef>();
+            int sold = 0, bought = 0;
             foreach (var r in rows)
             {
                 var t = r.t;
                 int c = t.CountToTransfer;
                 if (c == 0) continue;
                 var action = t.ActionToDo;
-                bool sold = action == TradeAction.PlayerSells;
-                lines.Add(new DealLine(sold, Math.Abs(c), t.GetPriceFor(action), sold ? r.usualSell : r.usualBuy, r.value));
+                bool sale = action == TradeAction.PlayerSells;
+                if (sale) sold++;
+                else bought++;
+                lines.Add(new DealLine(sale, Math.Abs(c), t.GetPriceFor(action), sale ? r.usualSell : r.usualBuy, r.value));
                 if (market && r.pawn == null) moved.Add(t.ThingDef);
             }
             sums = TradeWindowMath.Sum(lines);
@@ -348,7 +535,14 @@ namespace ColonyCouncil
                 if (!line.NullOrEmpty()) impacts.Add(W("CC_TradeWin_Impact", def.LabelCap.ToString().Named("GOOD"), line.Named("LINE")));
             }
             readouts = TradeScreen.ReadoutsOn ? TradeScreen.ReadoutLines() : new List<(string, string)>();
+            sellList.inDeal = sold;
+            buyList.inDeal = bought;
             if (inDealOnly) Refilter();
+            else
+            {
+                Sub(sellList);
+                Sub(buyList);
+            }
         }
 
         /// <summary>A caravan's mass, speed, food days, foraging and visibility after the trade: the game's own calculators, as its own screen reads them (here over every good, not only the ones its search shows).</summary>
@@ -457,40 +651,29 @@ namespace ColonyCouncil
             float filterH = Filters(new Rect(0f, y, tableW, 0f), false);
             Filters(new Rect(0f, y, tableW, filterH), true);
             y += filterH + 4f;
-            if (places == null || Mathf.Abs(placesWidth - (tableW - 16f)) > 0.5f)
+            // The two lists: side by side when there's room (or the player chose it), else the tab chosen.
+            sideNow = TradeWindowMath.SideBySide(tableW, listsChoice);
+            float each = TradeWindowMath.ListWidth(tableW, sideNow);
+            ListsBar(new Rect(0f, y, tableW, BarH), each);
+            y += BarH + 2f;
+            var area = new Rect(0f, y, tableW, footY - y - 6f);
+            TradeWindow.Drawing = true;
+            try
             {
-                placesWidth = tableW - 16f;
-                places = TradeWindowMath.Fit(Specs(), placesWidth, Gap);
+                if (sideNow)
+                {
+                    DrawList(sellList, new Rect(area.x, area.y, each, area.height));
+                    float bx = area.x + each + TradeWindowMath.ListGap;
+                    Widgets.DrawBoxSolid(new Rect(bx - TradeWindowMath.ListGap / 2f, area.y, 1f, area.height), UiKit.DividerColor);
+                    DrawList(buyList, new Rect(bx, area.y, each, area.height));
+                }
+                else DrawList(tabSell ? sellList : buyList, area);
             }
-            Header(new Rect(0f, y, placesWidth, HeadH));
-            y += HeadH + 2f;
-            List(new Rect(0f, y, tableW, footY - y - 6f));
+            finally
+            {
+                TradeWindow.Drawing = false;
+            }
             Foot(new Rect(0f, footY, w, FootH));
-        }
-
-        /// <summary>The columns and how soon each is left out of a narrow window (the name, the count and both sides' numbers stay).</summary>
-        private List<ColumnSpec> Specs()
-        {
-            var l = new List<ColumnSpec>
-            {
-                new ColumnSpec(TradeColumn.Name, 140f, 0, 330f),
-                new ColumnSpec(TradeColumn.Category, 82f, 11),
-                new ColumnSpec(TradeColumn.Value, 76f, 7),
-                new ColumnSpec(TradeColumn.Ours, 54f, 1),
-                new ColumnSpec(TradeColumn.Pay, 92f, 2),
-                new ColumnSpec(TradeColumn.Count, 212f, 0),
-                new ColumnSpec(TradeColumn.Ask, 92f, 2),
-                new ColumnSpec(TradeColumn.Theirs, 54f, 1),
-                new ColumnSpec(TradeColumn.Deal, 104f, 3)
-            };
-            if (market)
-            {
-                l.Add(new ColumnSpec(TradeColumn.Market, 84f, 9));
-                l.Add(new ColumnSpec(TradeColumn.Trend, 76f, 10));
-            }
-            l.Add(new ColumnSpec(TradeColumn.Mass, 64f, 12));
-            l.Add(new ColumnSpec(TradeColumn.Need, 92f, 8));
-            return l;
         }
 
         // ---------------- The top ----------------
@@ -506,19 +689,19 @@ namespace ColonyCouncil
             float by = WindowFrame.Shown ? r.y + (r.height - 30f) / 2f : r.y + 6f, bh = WindowFrame.Shown ? 30f : 32f;
             var toGame = new Rect(x - 150f, by, 150f, bh);
             x = toGame.x - 8f;
-            if (UiKit.Button(toGame, W("CC_TradeWin_ToGame"), ButtonKind.Quiet))
+            if (UiKit.Button(toGame, K("CC_TradeWin_ToGame"), ButtonKind.Quiet))
             {
                 SoundDefOf.Tick_High.PlayOneShotOnCamera();
                 TradeWindow.ToGame(this, game);
                 return false;
             }
-            TooltipHandler.TipRegion(toGame, W("CC_TradeWin_ToGameTip"));
+            TooltipHandler.TipRegion(toGame, K("CC_TradeWin_ToGameTip"));
             var faction = trader.Faction;
             if (faction != null && !faction.def.permanentEnemy)
             {
                 var gifts = new Rect(x - 120f, by, 120f, bh);
                 x = gifts.x - 8f;
-                if (UiKit.Button(gifts, W("CC_TradeWin_Gifts")))
+                if (UiKit.Button(gifts, K("CC_TradeWin_Gifts")))
                 {
                     SoundDefOf.Tick_High.PlayOneShotOnCamera();
                     TradeWindow.ToGame(this, game, true);
@@ -538,9 +721,9 @@ namespace ColonyCouncil
             {
                 var mk = new Rect(x - 100f, by, 100f, bh);
                 x = mk.x - 8f;
-                if (UiKit.Button(mk, W("CC_Trade_MarketButton")) && Find.WindowStack.WindowOfType<Window_TradeMarket>() == null)
+                if (UiKit.Button(mk, K("CC_Trade_MarketButton")) && Find.WindowStack.WindowOfType<Window_TradeMarket>() == null)
                     Find.WindowStack.Add(new Window_TradeMarket());
-                TooltipHandler.TipRegion(mk, W(TradeMarket.History ? "CC_Trade_MarketButtonTip" : "CC_Trade_MarketButtonTipNoVte"));
+                TooltipHandler.TipRegion(mk, K(TradeMarket.History ? "CC_Trade_MarketButtonTip" : "CC_Trade_MarketButtonTipNoVte"));
             }
             // The title: who, what kind of trader, and the negotiator (in the frame, the title is in its title bar above).
             float tw = Mathf.Max(60f, x - r.x - 8f);
@@ -575,11 +758,13 @@ namespace ColonyCouncil
                 // Made once a trade (the chips change only with Build).
                 chipLabels.Clear();
                 chipWidths.Clear();
+                chipTips.Clear();
                 foreach (var c in cats)
                 {
                     string l = (c.cat == null ? W("CC_TradeWin_Cat_All") : W("CC_TradeWin_Cat_" + c.cat.Value)) + " " + c.n.ToStringCached();
                     chipLabels.Add(l);
                     chipWidths.Add(Text.CalcSize(l).x + 16f);
+                    chipTips.Add(c.cat == null ? null : W("CC_TradeWin_ChipTip", W("CC_TradeWin_Cat_" + c.cat.Value).Named("LABEL")));
                 }
             }
             var labels = chipLabels;
@@ -608,7 +793,7 @@ namespace ColonyCouncil
                 Widgets.Label(cr, labels[i]);
                 GUI.color = Color.white;
                 Text.Anchor = TextAnchor.UpperLeft;
-                if (c.cat != null) TooltipHandler.TipRegion(cr, W("CC_TradeWin_ChipTip", W("CC_TradeWin_Cat_" + c.cat.Value).Named("LABEL")));
+                if (chipTips[i] != null) TooltipHandler.TipRegion(cr, chipTips[i]);
                 if (Widgets.ButtonInvisible(cr))
                 {
                     category = on || c.cat == null ? null : c.cat;
@@ -618,130 +803,343 @@ namespace ColonyCouncil
             }
             Text.Font = GameFont.Small;
             var inDeal = new Rect(r.xMax - inDealW, r.y + 2f, inDealW, 24f);
-            if (UiKit.Toggle(inDeal, W("CC_TradeWin_InDeal"), ref inDealOnly, W("CC_TradeWin_InDealTip"))) Refilter();
+            if (UiKit.Toggle(inDeal, K("CC_TradeWin_InDeal"), ref inDealOnly, K("CC_TradeWin_InDealTip"))) Refilter();
             return height;
         }
 
-        // ---------------- The table ----------------
+        // ---------------- The two lists ----------------
 
-        private static string HeadKey(TradeColumn c) => "CC_TradeWin_Col_" + c;
+        /// <summary>
+        /// Above the lists: side by side, each list's title over it; as tabs, Sell and Buy and the shown list's line; at the
+        /// right, the player's choice of side by side or tabs (a menu; its tooltip says when the window is too narrow for it).
+        /// </summary>
+        private void ListsBar(Rect r, float each)
+        {
+            var choice = new Rect(r.xMax - ListsButtonW, r.y + 3f, ListsButtonW, 24f);
+            bool narrow = listsChoice == TradeListsChoice.SideBySide && !sideNow;
+            if (UiKit.Button(choice, ListsWord(listsChoice), ButtonKind.Quiet, true, K(narrow ? "CC_TradeWin_ListsNarrow" : "CC_TradeWin_ListsTip"), GameFont.Tiny))
+                Find.WindowStack.Add(new FloatMenu(ListsOptions()));
+            if (sideNow)
+            {
+                Title(new Rect(r.x, r.y, each, r.height), sellList);
+                float bx = r.x + each + TradeWindowMath.ListGap;
+                Title(new Rect(bx, r.y, Mathf.Max(0f, choice.x - 8f - bx), r.height), buyList);
+                return;
+            }
+            Text.Font = GameFont.Small;
+            string sellWord = K("CC_TradeWin_TabSell"), buyWord = K("CC_TradeWin_TabBuy");
+            float tw = Mathf.Max(90f, Mathf.Max(UiKit.TabButtonWidth(sellWord, null), UiKit.TabButtonWidth(buyWord, null)));
+            var sellTab = new Rect(r.x, r.y + 1f, tw, r.height - 2f);
+            var buyTab = new Rect(sellTab.xMax + 4f, sellTab.y, tw, sellTab.height);
+            if (UiKit.TabButton(sellTab, sellWord, null, tabSell, sellList.titleTip) && !tabSell) SetTab(true);
+            if (UiKit.TabButton(buyTab, buyWord, null, !tabSell, buyList.titleTip) && tabSell) SetTab(false);
+            var l = tabSell ? sellList : buyList;
+            Title(new Rect(buyTab.xMax + 14f, r.y, Mathf.Max(0f, choice.x - 8f - buyTab.xMax - 14f), r.height), l);
+        }
 
-        /// <summary>A column's second line under its name, saying what the cell's small numbers are; null for none.</summary>
+        /// <summary>A list's title and the line beside it (how many goods it shows, and how many are in the deal its way).</summary>
+        private static void Title(Rect r, ListView l)
+        {
+            Text.Font = GameFont.Small;
+            float tw = Mathf.Min(UiKit.KeptWidth(l.title, GameFont.Small) + 4f, r.width);
+            UiKit.LabelFit(new Rect(r.x + 2f, r.y, tw, r.height), l.title, UiKit.Heading);
+            if (!l.sub.NullOrEmpty() && r.width - tw - 12f > 30f) UiKit.LabelFit(new Rect(r.x + tw + 10f, r.y + 1f, r.width - tw - 12f, r.height), l.sub, UiKit.Faint, GameFont.Tiny);
+            TooltipHandler.TipRegion(new Rect(r.x, r.y, tw + 4f, r.height), l.titleTip);
+        }
+
+        private static string ListsWord(TradeListsChoice c) =>
+            K(c == TradeListsChoice.SideBySide ? "CC_TradeWin_Lists_SideBySide" : c == TradeListsChoice.Tabs ? "CC_TradeWin_Lists_Tabs" : "CC_TradeWin_Lists_Auto");
+
+        private List<FloatMenuOption> ListsOptions()
+        {
+            var list = new List<FloatMenuOption>();
+            foreach (var c in new[] { TradeListsChoice.Auto, TradeListsChoice.SideBySide, TradeListsChoice.Tabs })
+            {
+                string label = W(c == TradeListsChoice.SideBySide ? "CC_TradeWin_ListsOpt_SideBySide" : c == TradeListsChoice.Tabs ? "CC_TradeWin_ListsOpt_Tabs" : "CC_TradeWin_ListsOpt_Auto");
+                if (c == listsChoice) label = W("CC_TradeWin_MenuNow", label.Named("LABEL"));
+                var chosen = c;
+                list.Add(new FloatMenuOption(label, () =>
+                {
+                    listsChoice = chosen;
+                    PageMemory.SetEnum(ListsKey, chosen);
+                    if (PageMemory.Flush()) CouncilSettings.SaveNow();
+                }));
+            }
+            return list;
+        }
+
+        /// <summary>The tab shown, remembered for the next trade.</summary>
+        private void SetTab(bool sell)
+        {
+            tabSell = sell;
+            PageMemory.Set(TabKey, sell ? "sell" : "buy");
+            if (PageMemory.Flush()) CouncilSettings.SaveNow();
+        }
+
+        /// <summary>A list: its columns' headings, then its kinds' headings and rows in a scroll view, only those in sight drawn.</summary>
+        private void DrawList(ListView l, Rect r)
+        {
+            float rowsW = TradeWindowMath.RowsWidth(r.width);
+            if (l.places == null || Mathf.Abs(l.placesW - rowsW) > 0.5f)
+            {
+                l.placesW = rowsW;
+                l.places = TradeWindowMath.Fit(TradeWindowMath.ListColumns(l.sale), rowsW, TradeWindowMath.ColGap);
+                Heads(l);
+            }
+            float nameW = NameWidth(l);
+            Measure(l, nameW);
+            Header(l, new Rect(r.x, r.y, rowsW, HeadH));
+            var area = new Rect(r.x, r.y + HeadH + 2f, r.width, r.height - HeadH - 2f);
+            l.viewH = area.height;
+            if (l.jumpTo != null)
+            {
+                foreach (var line in l.lines)
+                    if (line.row == l.jumpTo)
+                    {
+                        l.scroll.y = TradeWindowMath.ScrollToSpan(line.top, line.height, l.viewH, l.contentH);
+                        break;
+                    }
+                l.jumpTo = null;
+            }
+            if (l.lines.Count == 0)
+            {
+                Text.Anchor = TextAnchor.MiddleCenter;
+                GUI.color = UiKit.Faint;
+                Text.Font = GameFont.Small;
+                Widgets.Label(area, K(l.rows.Count > 0 ? "CC_TradeWin_NoneShown" : l.sale ? "CC_TradeWin_NoneToSell" : "CC_TradeWin_NoneToBuy"));
+                GUI.color = Color.white;
+                Text.Anchor = TextAnchor.UpperLeft;
+                return;
+            }
+            var view = new Rect(0f, 0f, rowsW, l.contentH);
+            string focused = GUI.GetNameOfFocusedControl();
+            Widgets.BeginScrollView(area, ref l.scroll, view);
+            try
+            {
+                for (int i = 0; i < l.lines.Count; i++)
+                {
+                    var line = l.lines[i];
+                    if (line.top + line.height < l.scroll.y || line.top > l.scroll.y + area.height) continue;
+                    var rect = new Rect(0f, line.top, view.width, line.height);
+                    if (line.row == null) Group(rect, line);
+                    else DrawRow(rect, line.row, l, line.nth, nameW, focused);
+                }
+            }
+            finally
+            {
+                Widgets.EndScrollView();
+            }
+        }
+
+        /// <summary>The name's own width in a list's name column: less the picture and the info card's button.</summary>
+        private static float NameWidth(ListView l) => Mathf.Max(40f, l.places[0].width - TradeWindowMath.PictureW - TradeWindowMath.InfoW);
+
+        /// <summary>Each line's height and where it stands: a row as tall as its name wrapped in its column needs (each measured once for a width).</summary>
+        private static void Measure(ListView l, float nameW)
+        {
+            if (!l.dirty && Mathf.Abs(l.measuredFor - nameW) < 0.5f) return;
+            var oldFont = Text.Font;
+            Text.Font = GameFont.Small;
+            Text.WordWrap = true;
+            float y = 0f;
+            for (int i = 0; i < l.lines.Count; i++)
+            {
+                var line = l.lines[i];
+                if (line.row == null) line.height = TradeWindowMath.GroupH;
+                else
+                {
+                    var s = line.row.Of(l.sale);
+                    float w = LabelWidth(line.row, nameW);
+                    if (Mathf.Abs(s.nameFor - w) > 0.5f)
+                    {
+                        s.nameH = Text.CalcHeight(line.row.label, w);
+                        s.nameFor = w;
+                    }
+                    line.height = Mathf.Round(TradeWindowMath.RowHeight(s.nameH));
+                }
+                line.top = y;
+                y += line.height;
+                l.lines[i] = line;
+            }
+            Text.Font = oldFont;
+            l.contentH = y;
+            l.measuredFor = nameW;
+            l.dirty = false;
+        }
+
+        /// <summary>The name's width in its row: an animal's or a person's keeps room for the game's own small icons (a bond, a pregnancy, a sale into slavery).</summary>
+        private static float LabelWidth(Row r, float nameW) => r.pawn != null ? Mathf.Max(40f, nameW - PawnIcons) : nameW;
+
+        private static string HeadKey(TradeColumn c, bool sale)
+        {
+            switch (c)
+            {
+                case TradeColumn.Need:
+                    return sale ? "CC_TradeWin_Col_Keep" : "CC_TradeWin_Col_Need";
+                case TradeColumn.Count:
+                    return sale ? "CC_TradeWin_Col_ToSell" : "CC_TradeWin_Col_ToBuy";
+                default:
+                    return "CC_TradeWin_Col_" + c;
+            }
+        }
+
+        /// <summary>A column's second line under its name, saying what the cell's small print is; null for none.</summary>
         private static string Legend(TradeColumn c)
         {
             switch (c)
             {
-                case TradeColumn.Value:
-                case TradeColumn.Mass:
-                    return W("CC_TradeWin_Leg_Piece");
                 case TradeColumn.Pay:
                 case TradeColumn.Ask:
                     return W("CC_TradeWin_Leg_Price");
                 case TradeColumn.Deal:
                     return W("CC_TradeWin_Leg_Deal");
-                case TradeColumn.Market:
-                    return W("CC_TradeWin_Leg_Market");
-                case TradeColumn.Trend:
-                    return W("CC_TradeWin_Leg_Trend");
                 default:
                     return null;
             }
         }
 
-        private void Header(Rect r)
+        /// <summary>A list's headings, legends and tooltips, made with its columns (not each frame).</summary>
+        private static void Heads(ListView l)
+        {
+            int n = l.places.Count;
+            l.heads = new string[n];
+            l.legends = new string[n];
+            l.tipsSorted = new string[n];
+            l.tipsUnsorted = new string[n];
+            for (int i = 0; i < n; i++)
+            {
+                var c = l.places[i].col;
+                string key = HeadKey(c, l.sale);
+                l.heads[i] = W(key);
+                l.legends[i] = Legend(c);
+                string tip = W(key + "Tip");
+                bool sortable = TradeWindowMath.Sortable(c);
+                l.tipsSorted[i] = sortable ? tip + "\n\n" + W("CC_TradeWin_Sorted") : tip;
+                l.tipsUnsorted[i] = sortable ? tip + "\n\n" + W("CC_TradeWin_SortBy") : tip;
+            }
+        }
+
+        /// <summary>The columns' headings: a click sorts the list by one (again for the other way); at the count's, a menu of every sort, those the columns leave out too.</summary>
+        private void Header(ListView l, Rect r)
         {
             sortUp ??= ContentFinder<Texture2D>.Get("UI/Icons/Sorting", false);
             sortDown ??= ContentFinder<Texture2D>.Get("UI/Icons/SortingDescending", false);
-            foreach (var p in places)
+            int side = l.sale ? 0 : 1;
+            for (int i = 0; i < l.places.Count; i++)
             {
+                var p = l.places[i];
                 var cell = new Rect(r.x + p.x, r.y, p.width, r.height);
-                bool sortable = TradeWindowMath.Sortable(p.col), active = sortable && sortCol == p.col;
-                if (sortable && Mouse.IsOver(cell)) Widgets.DrawHighlight(cell);
-                string label = p.col == TradeColumn.Count ? "PositiveBuysNegativeSells".Translate().Resolve() : W(HeadKey(p.col));
-                string legend = Legend(p.col);
+                bool sortable = TradeWindowMath.Sortable(p.col), active = sortable && sortCols[side] == p.col;
+                float menuW = 0f;
+                if (p.col == TradeColumn.Count)
+                {
+                    // Every sort this list has, the columns' and those they leave out (market value, the market, its trend, mass).
+                    menuW = 24f;
+                    var menu = new Rect(cell.xMax - menuW, cell.y + (cell.height - 22f) / 2f, 22f, 22f);
+                    if (UiKit.IconButton(menu, Icons.More, K("CC_TradeWin_SortMenuTip"))) Find.WindowStack.Add(new FloatMenu(SortOptions(l)));
+                }
+                var hit = new Rect(cell.x, cell.y, cell.width - menuW, cell.height);
+                if (sortable && Mouse.IsOver(hit)) Widgets.DrawHighlight(hit);
+                string legend = l.legends[i];
                 Text.Font = GameFont.Tiny;
                 bool number = UiKit.OwnLook && Number(p.col);
+                float left = p.col == TradeColumn.Name ? TradeWindowMath.PictureW : 0f;
                 Text.Anchor = p.col == TradeColumn.Name ? TextAnchor.MiddleLeft : number ? TextAnchor.MiddleRight : TextAnchor.MiddleCenter;
-                var top = new Rect(cell.x + (p.col == TradeColumn.Name ? 32f : 0f), cell.y + 2f, cell.width - (p.col == TradeColumn.Name ? 32f : 0f) - (number ? NumberPad + (active ? 10f : 0f) : 0f),
-                    legend != null ? 18f : cell.height - 4f);
+                var top = new Rect(cell.x + left, cell.y + 2f, cell.width - left - menuW - (number ? NumberPad + (active ? 10f : 0f) : 0f), legend != null ? 18f : cell.height - 4f);
                 GUI.color = active ? UiKit.Gold : UiKit.Heading;
-                Widgets.Label(top, label.Truncate(top.width));
+                Widgets.Label(top, UiKit.Fit(l.heads[i], top.width));
                 if (legend != null)
                 {
                     GUI.color = UiKit.Dim;
-                    Widgets.Label(new Rect(top.x, top.yMax - 2f, top.width, 16f), legend.Truncate(top.width));
+                    Widgets.Label(new Rect(top.x, top.yMax - 2f, top.width, 16f), UiKit.Fit(legend, top.width));
                 }
                 GUI.color = Color.white;
                 Text.Anchor = TextAnchor.UpperLeft;
                 if (active)
                 {
-                    var icon = sortDesc ? sortDown : sortUp;
-                    if (icon != null) GUI.DrawTexture(new Rect(cell.xMax - 12f, cell.y + 4f, 10f, 10f), icon);
-                    if (UiKit.OwnLook) UiKit.Round(new Rect(cell.x + 4f, cell.yMax - 3f, cell.width - 8f, 3f), UiKit.Gold, SkinMath.RadiusSmall);
-                    else Widgets.DrawBoxSolid(new Rect(cell.x + 2f, cell.yMax - 2f, cell.width - 4f, 2f), UiKit.Gold);
+                    var icon = sortDescs[side] ? sortDown : sortUp;
+                    if (icon != null) GUI.DrawTexture(new Rect(hit.xMax - 12f, cell.y + 4f, 10f, 10f), icon);
+                    if (UiKit.OwnLook) UiKit.Round(new Rect(cell.x + 4f, cell.yMax - 3f, hit.width - 8f, 3f), UiKit.Gold, SkinMath.RadiusSmall);
+                    else Widgets.DrawBoxSolid(new Rect(cell.x + 2f, cell.yMax - 2f, hit.width - 4f, 2f), UiKit.Gold);
                 }
-                string tip = p.col == TradeColumn.Count ? W("CC_TradeWin_Col_CountTip") : W(HeadKey(p.col) + "Tip");
-                if (sortable) tip += "\n\n" + W(active ? "CC_TradeWin_Sorted" : "CC_TradeWin_SortBy");
-                TooltipHandler.TipRegion(cell, tip);
-                if (sortable && Widgets.ButtonInvisible(cell))
+                TooltipHandler.TipRegion(hit, active ? l.tipsSorted[i] : l.tipsUnsorted[i]);
+                if (sortable && Widgets.ButtonInvisible(hit))
                 {
-                    if (sortCol == p.col) sortDesc = !sortDesc;
-                    else
-                    {
-                        sortCol = p.col;
-                        sortDesc = TradeWindowMath.DefaultDescending(p.col);
-                    }
+                    SortBy(l, p.col);
                     SoundDefOf.Tick_Tiny.PlayOneShotOnCamera();
-                    Refilter();
                 }
             }
             Text.Font = GameFont.Small;
             UiKit.Divider(r.x, r.yMax, r.width);
         }
 
-        private void List(Rect area)
+        /// <summary>A list sorted by a column: again the other way when it already is, else in the column's first direction.</summary>
+        private void SortBy(ListView l, TradeColumn c)
         {
-            listViewH = area.height;
-            if (shown.Count == 0)
+            int side = l.sale ? 0 : 1;
+            if (sortCols[side] == c) sortDescs[side] = !sortDescs[side];
+            else
             {
-                Text.Anchor = TextAnchor.MiddleCenter;
-                GUI.color = UiKit.Faint;
-                Widgets.Label(area, W(rows.Count == 0 ? "CC_TradeWin_NoGoods" : "CC_TradeWin_NoneShown"));
-                GUI.color = Color.white;
-                Text.Anchor = TextAnchor.UpperLeft;
-                return;
+                sortCols[side] = c;
+                sortDescs[side] = TradeWindowMath.DefaultDescending(c);
             }
-            var view = new Rect(0f, 0f, area.width - 16f, shown.Count * RowH);
-            Widgets.BeginScrollView(area, ref listScroll, view);
-            TradeWindow.Drawing = true;
-            try
-            {
-                for (int i = 0; i < shown.Count; i++)
-                {
-                    float top = i * RowH;
-                    if (top + RowH < listScroll.y || top > listScroll.y + area.height) continue;
-                    DrawRow(new Rect(0f, top, view.width, RowH), shown[i], i);
-                }
-            }
-            finally
-            {
-                TradeWindow.Drawing = false;
-                Widgets.EndScrollView();
-            }
+            Fill(l);
         }
 
-        private void DrawRow(Rect rect, Row r, int index)
+        /// <summary>The sort menu: the list's columns, then what they leave out (market value, with Vanilla Trading Expanded's history its market and trend, mass).</summary>
+        private List<FloatMenuOption> SortOptions(ListView l)
         {
-            if (UiKit.OwnLook) UiKit.Zebra(rect, index);
-            else if (index % 2 == 1) Widgets.DrawLightHighlight(rect);
-            if (r == flashRow && Time.realtimeSinceStartup - flashAt < FlashSeconds)
+            var cols = new List<TradeColumn>
+            {
+                TradeColumn.Name, l.sale ? TradeColumn.Ours : TradeColumn.Theirs, l.sale ? TradeColumn.Pay : TradeColumn.Ask, TradeColumn.Deal, TradeColumn.Need, TradeColumn.Value
+            };
+            if (market)
+            {
+                cols.Add(TradeColumn.Market);
+                cols.Add(TradeColumn.Trend);
+            }
+            cols.Add(TradeColumn.Mass);
+            var list = new List<FloatMenuOption>();
+            int side = l.sale ? 0 : 1;
+            foreach (var c in cols)
+            {
+                string label = W(HeadKey(c, l.sale));
+                if (sortCols[side] == c) label = W("CC_TradeWin_MenuNow", label.Named("LABEL"));
+                var col = c;
+                list.Add(new FloatMenuOption(label, () => SortBy(l, col)));
+            }
+            return list;
+        }
+
+        /// <summary>A kind's heading in a list: its name and how many of its goods are shown.</summary>
+        private static void Group(Rect r, Line line)
+        {
+            Text.Font = GameFont.Tiny;
+            float hw = UiKit.KeptWidth(line.head, GameFont.Tiny) + 2f;
+            var head = new Rect(r.x + 4f, r.y + 6f, Mathf.Min(hw, r.width - 8f), r.height - 8f);
+            UiKit.LabelFit(head, line.head, UiKit.Heading, GameFont.Tiny);
+            UiKit.LabelFit(new Rect(head.xMax + 6f, head.y, 60f, head.height), line.headCount, UiKit.Dim, GameFont.Tiny);
+            UiKit.Divider(r.x + 2f, r.yMax - 2f, r.width - 4f);
+            Text.Font = GameFont.Small;
+        }
+
+        private void DrawRow(Rect rect, Row r, ListView l, int nth, float nameW, string focused)
+        {
+            bool sale = l.sale;
+            int here = TradeWindowMath.ThisWay(r.t.CountToTransfer, sale);
+            if (UiKit.OwnLook) UiKit.Zebra(rect, nth);
+            else if (nth % 2 == 1) Widgets.DrawLightHighlight(rect);
+            if (r == flashRow && sale == flashSale && Time.realtimeSinceStartup - flashAt < FlashSeconds)
                 Widgets.DrawBoxSolid(rect, UiKit.WithAlpha(UiKit.Gold, 0.22f * (1f - (Time.realtimeSinceStartup - flashAt) / FlashSeconds)));
             if (UiKit.OwnLook) UiKit.RowHover(rect);
             else if (Mouse.IsOver(rect)) Widgets.DrawBoxSolid(rect, UiKit.CardHover);
+            // In the deal this list's way: a thin edge in the way's colour down its left.
+            if (here > 0) Widgets.DrawBoxSolid(new Rect(rect.x, rect.y + 3f, 3f, rect.height - 6f), sale ? TradeScreen.SellColor : TradeScreen.BuyColor);
             Widgets.BeginGroup(rect);
             try
             {
-                foreach (var p in places)
+                Rect pic = default, info = default, control = default;
+                foreach (var p in l.places)
                 {
                     var cell = new Rect(p.x, 0f, p.width, rect.height);
                     Text.Font = GameFont.Small;
@@ -750,46 +1148,34 @@ namespace ColonyCouncil
                     switch (p.col)
                     {
                         case TradeColumn.Name:
-                            NameCell(cell, r);
-                            break;
-                        case TradeColumn.Category:
-                            Tiny(cell, W("CC_TradeWin_Cat_" + r.cat), UiKit.Faint);
-                            break;
-                        case TradeColumn.Value:
-                            Num(cell, Money(r.value), UiKit.Ink);
-                            TooltipHandler.TipRegion(cell, new TipSignal(() => ValueTip(r), r.t.GetHashCode() ^ 0x51a7e));
+                            NameCell(cell, r, nameW, out pic, out info);
                             break;
                         case TradeColumn.Ours:
-                            CountCell(cell, r.ours, "ColonyCount");
+                        case TradeColumn.Theirs:
+                            CountCell(cell, sale ? r.ours : r.theirs);
                             break;
                         case TradeColumn.Pay:
-                            PriceCell(cell, r, true);
-                            break;
-                        case TradeColumn.Count:
-                            CountControl(cell, r, index);
-                            break;
                         case TradeColumn.Ask:
-                            PriceCell(cell, r, false);
-                            break;
-                        case TradeColumn.Theirs:
-                            CountCell(cell, r.theirs, "TraderCount");
+                            PriceCell(cell, r, sale);
                             break;
                         case TradeColumn.Deal:
-                            DealCell(cell, r);
-                            break;
-                        case TradeColumn.Market:
-                            MarketCell(cell, r);
-                            break;
-                        case TradeColumn.Trend:
-                            TrendCell(cell, r);
-                            break;
-                        case TradeColumn.Mass:
-                            Num(cell, r.mass.ToString("0.##") + " " + "kg".Translate(), UiKit.Faint, GameFont.Tiny);
+                            DealTag(cell, sale ? r.sell : r.buy);
                             break;
                         case TradeColumn.Need:
-                            NeedCell(cell, r);
+                            NeedCell(cell, r, sale);
+                            break;
+                        case TradeColumn.Count:
+                            control = cell;
+                            OneWay(cell, r, sale, focused);
                             break;
                     }
+                }
+                // The row's whole picture on its tooltip (the picture, the card's button and the count keep their own), and the market card beside it.
+                var whole = new Rect(0f, 0f, rect.width, rect.height);
+                if (Mouse.IsOver(whole) && !Mouse.IsOver(pic) && !Mouse.IsOver(info) && !Mouse.IsOver(control))
+                {
+                    TooltipHandler.TipRegion(whole, new TipSignal(() => RowTip(r, sale), r.tipId ^ (sale ? 0x5e11 : 0xb0b7)));
+                    if (TradeMarket.On) TradeMarket.Hover(r.t, sale ? r.sellCard : r.buyCard, whole);
                 }
             }
             finally
@@ -797,6 +1183,7 @@ namespace ColonyCouncil
                 GUI.color = Color.white;
                 Text.Anchor = TextAnchor.UpperLeft;
                 Text.Font = GameFont.Small;
+                Text.WordWrap = true;
                 Widgets.EndGroup();
             }
         }
@@ -806,19 +1193,13 @@ namespace ColonyCouncil
             Text.Font = font;
             Text.Anchor = TextAnchor.MiddleCenter;
             GUI.color = color;
-            Widgets.Label(cell, text.Truncate(cell.width - 4f));
+            Widgets.Label(cell, UiKit.Fit(text, cell.width - 4f));
             GUI.color = Color.white;
             Text.Font = GameFont.Small;
         }
 
-        private static void Tiny(Rect cell, string text, Color color) => Label(cell, text, color, GameFont.Tiny);
-
-        /// <summary>Room kept at a number's right in its column (Rimfolk's own look right-aligns them).</summary>
-        private const float NumberPad = 8f;
-
         /// <summary>The columns of numbers: right-aligned in Rimfolk's own look, centred in the game's as before.</summary>
-        private static bool Number(TradeColumn c) =>
-            c == TradeColumn.Value || c == TradeColumn.Ours || c == TradeColumn.Pay || c == TradeColumn.Ask || c == TradeColumn.Theirs || c == TradeColumn.Mass;
+        private static bool Number(TradeColumn c) => c == TradeColumn.Ours || c == TradeColumn.Pay || c == TradeColumn.Ask || c == TradeColumn.Theirs;
 
         /// <summary>A number in its cell: right-aligned in Rimfolk's own look, centred in the game's.</summary>
         private static void Num(Rect cell, string text, Color color, GameFont font = GameFont.Small)
@@ -832,7 +1213,7 @@ namespace ColonyCouncil
             Text.Anchor = TextAnchor.MiddleRight;
             GUI.color = color;
             var r = new Rect(cell.x, cell.y, cell.width - NumberPad, cell.height);
-            Widgets.Label(r, text.Truncate(r.width - 2f));
+            Widgets.Label(r, UiKit.Fit(text, r.width - 2f));
             GUI.color = Color.white;
             Text.Font = GameFont.Small;
         }
@@ -843,39 +1224,32 @@ namespace ColonyCouncil
             else Label(cell, "-", UiKit.Dim);
         }
 
-        /// <summary>The icon, the name, the game's own icons for an animal or a captive, and the info card: the game's own tooltip on the name.</summary>
-        private static void NameCell(Rect cell, Row r)
+        /// <summary>
+        /// The good's picture (its tooltip the game's own words on it), its whole name wrapped in its column, never cut, the
+        /// game's own small icons for an animal or a captive, and the info card's button.
+        /// </summary>
+        private static void NameCell(Rect cell, Row r, float nameW, out Rect pic, out Rect info)
         {
             var t = r.t;
-            var icon = new Rect(cell.x + 2f, cell.y + (cell.height - 27f) / 2f, 27f, 27f);
-            try
+            pic = new Rect(cell.x + 4f, cell.y + (cell.height - PictureSize) / 2f, PictureSize, PictureSize);
+            UiKit.ItemPortrait(pic, t.AnyThing, tip: r.nameTip);
+            info = new Rect(cell.xMax - 24f, cell.y + (cell.height - 24f) / 2f, 24f, 24f);
+            Widgets.InfoCardButton(info.x, info.y, t.AnyThing);
+            if (r.pawn != null)
             {
-                Widgets.ThingIcon(icon, t.AnyThing);
+                // The game's own small icons: a bond, a pregnancy, a ride, a sickness; a ransom or a sale into slavery.
+                float curX = info.x - 2f;
+                TransferableUIUtility.DoExtraIcons(t, new Rect(0f, cell.y, cell.width, cell.height), ref curX);
+                if (ModsConfig.IdeologyActive && TransferableUIUtility.TransferableIsCaptive(t) && (r.pawn.IsSlaveOfColony || r.pawn.IsPrisonerOfColony))
+                    TransferableUIUtility.DrawCaptiveTradeInfo(t, TradeSession.trader, new Rect(0f, cell.y, cell.width, cell.height), ref curX);
             }
-            catch (Exception e)
-            {
-                CouncilLog.ErrorOnce("trade window icon", e);
-            }
-            float curX = cell.xMax - 26f;
-            Widgets.InfoCardButton(curX, cell.y + (cell.height - 24f) / 2f, t.AnyThing);
-            curX -= 2f;
-            // The game's own small icons: a bond, a pregnancy, a ride, a sickness; a ransom or a sale into slavery.
-            TransferableUIUtility.DoExtraIcons(t, new Rect(0f, cell.y, cell.width, cell.height), ref curX);
-            if (ModsConfig.IdeologyActive && TransferableUIUtility.TransferableIsCaptive(t) && r.pawn != null && (r.pawn.IsSlaveOfColony || r.pawn.IsPrisonerOfColony))
-                TransferableUIUtility.DrawCaptiveTradeInfo(t, TradeSession.trader, new Rect(0f, cell.y, cell.width, cell.height), ref curX);
-            var label = new Rect(cell.x + 32f, cell.y, Mathf.Max(20f, curX - cell.x - 34f), cell.height);
+            var label = new Rect(cell.x + TradeWindowMath.PictureW, cell.y, LabelWidth(r, nameW), cell.height);
             Text.Font = GameFont.Small;
             Text.Anchor = TextAnchor.MiddleLeft;
-            Text.WordWrap = false;
-            GUI.color = r.willTrade ? UiKit.Ink : TradeUI.NoTradeColor;
-            Widgets.Label(label, r.label.Truncate(label.width));
-            GUI.color = Color.white;
             Text.WordWrap = true;
-            if (Mouse.IsOver(label))
-            {
-                Widgets.DrawHighlight(label);
-                TooltipHandler.TipRegion(label, new TipSignal(() => NameTip(t), t.GetHashCode()));
-            }
+            GUI.color = r.willTrade ? UiKit.Ink : TradeUI.NoTradeColor;
+            Widgets.Label(label, r.label);
+            GUI.color = Color.white;
         }
 
         /// <summary>The game's own tooltip on a good's name.</summary>
@@ -891,55 +1265,45 @@ namespace ColonyCouncil
             return text;
         }
 
-        private static void CountCell(Rect cell, int n, string tipKey)
+        private static void CountCell(Rect cell, int n)
         {
-            if (n == 0)
-            {
-                Dash(cell);
-                return;
-            }
-            Num(cell, n.ToStringCached(), UiKit.Ink);
-            if (Mouse.IsOver(cell)) Widgets.DrawHighlight(cell);
-            TooltipHandler.TipRegionByKey(cell, tipKey);
+            if (n == 0) Dash(cell);
+            else Num(cell, n.ToStringCached(), UiKit.Ink);
         }
 
-        /// <summary>What they pay or ask a piece, and under it that price's share of the market value and its side of the usual price, coloured by whether it is better or worse for the colony.</summary>
-        private void PriceCell(Rect cell, Row r, bool sale)
+        /// <summary>
+        /// What they pay or ask a piece, and under it its mark against the usual price for this negotiator: an arrow up when
+        /// above it, down when under, and how far, green when that is better for the colony and orange when worse.
+        /// </summary>
+        private static void PriceCell(Rect cell, Row r, bool sale)
         {
-            bool has = sale ? r.canSell : r.canBuy;
-            if (!has)
+            if (!(sale ? r.canSell : r.canBuy))
             {
                 Dash(cell);
                 return;
             }
-            float price = sale ? r.pay : r.ask, usual = sale ? r.usualSell : r.usualBuy;
-            int better = TradeWindowMath.Better(sale, price, usual);
+            int better = sale ? r.payBetter : r.askBetter, pct = sale ? r.payPct : r.askPct;
+            string mark = sale ? r.payMark : r.askMark;
             var color = better > 0 ? UiKit.Warm : better < 0 ? UiKit.Soon : UiKit.Ink;
             bool right = UiKit.OwnLook;
+            float top = cell.y + (cell.height - 36f) / 2f;
             Text.Font = GameFont.Small;
             Text.Anchor = right ? TextAnchor.MiddleRight : TextAnchor.MiddleCenter;
             GUI.color = color;
-            Widgets.Label(new Rect(cell.x, cell.y + 1f, cell.width - (right ? NumberPad : 0f), 20f), Money(price));
-            int share = TradeWindowMath.ShareOf(price, r.value);
-            string a = share >= 0 ? share + "%" : "-", b = usual > 0f ? TradeWindowMath.Signed(TradeWindowMath.VsUsual(price, usual)) : "-";
+            Widgets.Label(new Rect(cell.x, top, cell.width - (right ? NumberPad : 0f), 20f), sale ? r.payText : r.askText);
+            GUI.color = Color.white;
+            if (mark == null) return;
+            bool arrow = Math.Abs(pct) >= 2;
+            float tw = UiKit.KeptWidth(mark, GameFont.Tiny) + 2f, iw = arrow ? 12f : 0f;
+            float x0 = right ? cell.xMax - NumberPad - tw - iw : cell.x + (cell.width - tw - iw) / 2f;
+            var ink = better != 0 ? color : UiKit.Faint;
+            if (arrow) UiKit.Icon(new Rect(x0, top + 23f, 10f, 10f), pct > 0 ? Icons.TrendUp : Icons.TrendDown, ink);
             Text.Font = GameFont.Tiny;
-            float wa = Text.CalcSize(a + " · ").x, wb = Text.CalcSize(b).x;
-            float x0 = right ? cell.xMax - NumberPad - wa - wb : cell.x + (cell.width - wa - wb) / 2f;
             Text.Anchor = TextAnchor.UpperLeft;
-            GUI.color = UiKit.Faint;
-            Widgets.Label(new Rect(x0, cell.y + 19f, wa + 2f, 16f), a + " · ");
-            GUI.color = better != 0 ? color : UiKit.Faint;
-            Widgets.Label(new Rect(x0 + wa, cell.y + 19f, wb + 2f, 16f), b);
+            GUI.color = ink;
+            Widgets.Label(new Rect(x0 + iw, top + 19f, tw + 2f, 16f), mark);
             GUI.color = Color.white;
             Text.Font = GameFont.Small;
-            if (Mouse.IsOver(cell))
-            {
-                Widgets.DrawHighlight(cell);
-                var t = r.t;
-                TooltipHandler.TipRegion(cell, new TipSignal(() => PriceTip(r, sale), t.GetHashCode() * 297 + (sale ? 1 : 2)));
-            }
-            // The market card beside the mouse, as on the game's own screen, with its own setting.
-            if (TradeMarket.On) TradeMarket.Hover(r.t, (r.t, sale ? 0 : 1), cell);
         }
 
         private static string How(int pct)
@@ -959,57 +1323,70 @@ namespace ColonyCouncil
             return game + "\n\n" + ours;
         }
 
-        private string ValueTip(Row r)
+        /// <summary>
+        /// A row's whole picture, on its tooltip: how many there are, its market value and mass, the price's share of the
+        /// value with the game's own reckoning, why the deal is called what it is, the market and its trend, and what the
+        /// colony uses it for (the advice).
+        /// </summary>
+        private string RowTip(Row r, bool sale)
         {
-            string tip = W("CC_TradeWin_ValueTip", Money(r.value).Named("VALUE"));
-            if (r.market != null)
+            var parts = new List<string>
+            {
+                W(sale ? "CC_TradeWin_TipSell" : "CC_TradeWin_TipBuy", r.label.Named("GOOD"), (sale ? r.ours : r.theirs).Named("COUNT")),
+                W("CC_TradeWin_ValueTip", Money(r.value).Named("VALUE")) + " " + W("CC_TradeWin_TipMass", r.mass.ToStringMass().Named("MASS"))
+            };
+            if (sale ? r.canSell : r.canBuy) parts.Add(PriceTip(r, sale));
+            else if (!r.willTrade) parts.Add("TraderWillNotTrade".Translate());
+            if (r.person) parts.Add(W("CC_TradeWin_NoGradePeople"));
+            string why = DealTip(r, sale);
+            if (!why.NullOrEmpty()) parts.Add(why);
+            // The market in words, where the market card (its drawn trend, beside the tooltip) is off.
+            if (r.market != null && !TradeMarket.On)
             {
                 var lines = TradeMarket.MarketLines(r.market);
-                if (lines.Count > 0) tip += "\n\n" + string.Join("\n", lines);
+                string news = TradeMarket.NewsLine(r.market);
+                if (!news.NullOrEmpty()) lines.Add(news);
+                if (lines.Count > 0) parts.Add(string.Join("\n", lines));
             }
-            return tip;
+            if (r.note != null)
+            {
+                string advice = TradeAdvice.Tip(r.note, r.t);
+                if (!advice.NullOrEmpty()) parts.Add(advice);
+            }
+            else if (!r.needTip.NullOrEmpty()) parts.Add(r.needTip);
+            return string.Join("\n\n", parts);
         }
 
-        /// <summary>The game's own count control, or the game's own words where it won't trade (the trader doesn't deal in it, or the negotiator won't sell into slavery).</summary>
-        private void CountControl(Rect cell, Row r, int index)
+        /// <summary>Why a side's grade: the price against the usual, the market's reason, the colony's record, a cap; then what the grades mean.</summary>
+        private static string DealTip(Row r, bool sale)
         {
-            var t = r.t;
-            var rect = new Rect(cell.x, cell.y + (cell.height - 30f) / 2f, cell.width, 30f);
-            if (!r.willTrade)
+            var g = sale ? r.sell : r.buy;
+            if (!g.Graded) return null;
+            float price = sale ? r.pay : r.ask, usual = sale ? r.usualSell : r.usualBuy, best = sale ? r.bestSold : r.bestBought;
+            var lines = new List<string>
             {
-                WillNot(rect, "TraderWillNotTrade".Translate());
-                return;
-            }
-            if (ModsConfig.IdeologyActive && TransferableUIUtility.TradeIsPlayerSellingToSlavery(t, TradeSession.trader.Faction)
-                                          && !new HistoryEvent(HistoryEventDefOf.SoldSlave, TradeSession.playerNegotiator.Named(HistoryEventArgsNames.Doer)).DoerWillingToDo())
+                W(sale ? "CC_TradeWin_DealSell" : "CC_TradeWin_DealBuy", GradeWord(g.grade, sale).Named("GRADE"), Money(price).Named("PRICE"), Money(usual).Named("USUAL"),
+                    How(TradeWindowMath.VsUsual(price, usual)).Named("HOW"))
+            };
+            if (g.marketStep != 0)
             {
-                WillNot(rect, "NegotiatorWillNotTradeSlaves".Translate(TradeSession.playerNegotiator));
-                if (Mouse.IsOver(rect))
-                {
-                    Widgets.DrawHighlight(rect);
-                    TooltipHandler.TipRegion(rect, "NegotiatorWillNotTradeSlavesTip".Translate(TradeSession.playerNegotiator, TradeSession.playerNegotiator.Ideo.name));
-                }
-                return;
+                string hint = TradeMarket.HintLine(r.t.ThingDef, sale);
+                if (!hint.NullOrEmpty()) lines.Add(hint);
             }
-            Text.Font = GameFont.Small;
-            TransferableUIUtility.DoCountAdjustInterface(rect, t, index, t.GetMinimumToTransfer(), t.GetMaximumToTransfer());
-            Text.Anchor = TextAnchor.UpperLeft;
-        }
-
-        private static void WillNot(Rect rect, string text)
-        {
-            Text.Font = GameFont.Tiny;
-            Text.Anchor = TextAnchor.MiddleCenter;
-            GUI.color = TradeUI.NoTradeColor;
-            Widgets.Label(rect, text);
-            GUI.color = Color.white;
-            Text.Font = GameFont.Small;
-            Text.Anchor = TextAnchor.UpperLeft;
+            if (g.recordStep != 0 && best > 0f)
+                lines.Add(W(g.recordStep > 0 ? sale ? "CC_TradeWin_RecBetterSold" : "CC_TradeWin_RecBetterBought" : sale ? "CC_TradeWin_RecWorseSold" : "CC_TradeWin_RecWorseBought",
+                    Money(best).Named("PRICE"), TradeMarketMath.BestDays.Named("DAYS")));
+            if (g.capped) lines.Add(W(sale ? "CC_TradeWin_CappedSell" : "CC_TradeWin_CappedBuy"));
+            lines.Add(W("CC_TradeWin_DealHow"));
+            return string.Join("\n", lines);
         }
 
         private static Color GradeColor(DealGrade g) => g == DealGrade.Great ? Great : g == DealGrade.Good ? UiKit.Warm : g == DealGrade.Fair ? UiKit.Faint : UiKit.Soon;
 
         private static string GradeWord(DealGrade g, bool sale) => g == DealGrade.None ? "-" : W("CC_TradeWin_Grade_" + g + (sale ? "Sell" : "Buy"));
+
+        /// <summary>A grade's one word on its tag ("good"), made once.</summary>
+        private static string TagWord(DealGrade g) => tagWords[(int)g] ??= W("CC_TradeWin_Tag_" + g);
 
         /// <summary>Three bars for a grade, as many filled as it has (great three, good two, fair one, poor none).</summary>
         private static void Bars(Rect r, DealGrade g)
@@ -1024,180 +1401,159 @@ namespace ColonyCouncil
             }
         }
 
-        /// <summary>The row's better side's grade, in bars and words, and under it the other side's.</summary>
-        private void DealCell(Rect cell, Row r)
+        /// <summary>The side's grade as a tag: its bars and its word in its colour (so the colour is never the only sign).</summary>
+        private static void DealTag(Rect cell, DealRating g)
         {
-            if (!r.sell.Graded && !r.buy.Graded)
+            if (!g.Graded)
             {
                 Dash(cell);
-                if (r.person) TooltipHandler.TipRegion(cell, W("CC_TradeWin_NoGradePeople"));
                 return;
             }
-            // The side being traded leads once a count is set; the better one until then.
-            int c = r.t.CountToTransfer;
-            bool sale = c < 0 && r.sell.Graded || c == 0 && TradeWindowMath.SaleIsBetter(r.sell, r.buy) || c > 0 && !r.buy.Graded;
-            var main = sale ? r.sell : r.buy;
-            var other = sale ? r.buy : r.sell;
-            Bars(new Rect(cell.x + 6f, cell.y + 5f, 18f, 14f), main.grade);
-            Text.Font = GameFont.Small;
-            Text.Anchor = TextAnchor.MiddleLeft;
-            GUI.color = GradeColor(main.grade);
-            Widgets.Label(new Rect(cell.x + 28f, cell.y, cell.width - 30f, 22f), GradeWord(main.grade, sale).Truncate(cell.width - 30f));
-            if (other.Graded)
+            Bars(new Rect(cell.x + 4f, cell.center.y - 7f, 18f, 14f), g.grade);
+            UiKit.LabelFit(new Rect(cell.x + 26f, cell.y, cell.width - 28f, cell.height), TagWord(g.grade), GradeColor(g.grade));
+        }
+
+        /// <summary>The need's word: short, spare or kept (red when this trade sells into what is set aside); for the trader's people, how they would join.</summary>
+        private static void NeedCell(Rect cell, Row r, bool sale)
+        {
+            if (r.need == null)
             {
-                Text.Font = GameFont.Tiny;
-                GUI.color = UiKit.Dim;
-                Widgets.Label(new Rect(cell.x + 28f, cell.y + 18f, cell.width - 30f, 16f), GradeWord(other.grade, !sale).Truncate(cell.width - 30f));
+                Dash(cell);
+                return;
             }
+            var n = r.note;
+            var color = r.needColor;
+            int c = r.t.CountToTransfer;
+            // Red when this trade sells into what is set aside, as the old screen's pin.
+            if (sale && n != null && n.mark == TradeMark.Keep && c < 0 && n.have + c < n.setAside) color = TradeScreen.WarnColor;
+            Text.Font = GameFont.Tiny;
+            Text.Anchor = TextAnchor.MiddleCenter;
+            Text.WordWrap = true;
+            GUI.color = color;
+            Widgets.Label(new Rect(cell.x + 2f, cell.y, cell.width - 4f, cell.height), r.need);
+            GUI.color = Color.white;
+            Text.Font = GameFont.Small;
+        }
+
+        /// <summary>
+        /// How many go this list's way, in the game's own counts and limits: the arrows point where the goods go (right to
+        /// the trader, left to the colony), so in the sell list ">" sells one more and "<" takes one back, in the buy list
+        /// "<" buys one more and ">" puts one back; ten with Shift, a hundred with Ctrl; a double arrow all or none; a number
+        /// typed. Never over to the other way: a good in the deal the other way says so, and a click takes it out.
+        /// Where the trader won't deal in it, or the negotiator won't sell into slavery, the game's own words.
+        /// </summary>
+        private void OneWay(Rect cell, Row r, bool sale, string focused)
+        {
+            var t = r.t;
+            var rect = new Rect(cell.x, cell.y + (cell.height - 26f) / 2f, cell.width, 26f);
+            if (!r.willTrade)
+            {
+                WillNot(rect, wontTrade ??= "TraderWillNotTrade".Translate());
+                return;
+            }
+            if (sale && r.noSlaves)
+            {
+                WillNot(rect, "NegotiatorWillNotTradeSlaves".Translate(TradeSession.playerNegotiator));
+                if (Mouse.IsOver(rect))
+                {
+                    Widgets.DrawHighlight(rect);
+                    TooltipHandler.TipRegion(rect, "NegotiatorWillNotTradeSlavesTip".Translate(TradeSession.playerNegotiator, TradeSession.playerNegotiator.Ideo.name));
+                }
+                return;
+            }
+            int c = t.CountToTransfer;
+            var s = r.Of(sale);
+            if (TradeWindowMath.OtherWay(c, sale))
+            {
+                OtherWay(rect, r, sale, c, s);
+                return;
+            }
+            int least = t.GetMinimumToTransfer(), most = t.GetMaximumToTransfer();
+            int n = TradeWindowMath.ThisWay(c, sale), top = TradeWindowMath.MostThisWay(sale, least, most);
+            int step = GenUI.CurrentAdjustmentMultiplier();
+            // One piece (a person, an animal): single arrows only, as the game's own control has.
+            bool single = top <= 1;
+            bool leftMore = !sale;
+            float gap = 2f, field = single ? rect.width - 2f * (ArrowW * 2f + gap) : rect.width - 4f * ArrowW - 4f * gap;
+            float x = rect.x;
+            Text.Font = GameFont.Small;
+            if (!single)
+            {
+                Arrow(new Rect(x, rect.y, ArrowW, rect.height), "<<", t, leftMore ? TradeWindowMath.CountFor(sale, top, least, most) : 0, leftMore ? n < top : n > 0);
+                x += ArrowW + gap;
+            }
+            float aw = single ? ArrowW * 2f : ArrowW;
+            Arrow(new Rect(x, rect.y, aw, rect.height), "<", t, TradeWindowMath.Stepped(sale, c, leftMore, step, least, most), leftMore ? n < top : n > 0);
+            x += aw + gap;
+            Field(new Rect(x, rect.y, field, rect.height), t, sale, s, n, least, most, focused);
+            x += field + gap;
+            Arrow(new Rect(x, rect.y, aw, rect.height), ">", t, TradeWindowMath.Stepped(sale, c, !leftMore, step, least, most), leftMore ? n > 0 : n < top);
+            x += aw + gap;
+            if (!single) Arrow(new Rect(x, rect.y, ArrowW, rect.height), ">>", t, leftMore ? 0 : TradeWindowMath.CountFor(sale, top, least, most), leftMore ? n > 0 : n < top);
+            Text.Anchor = TextAnchor.UpperLeft;
+        }
+
+        /// <summary>An arrow: greyed where it can't move the count; a click sets the count it gives, by the game's own AdjustTo within its limits.</summary>
+        private static void Arrow(Rect r, string label, Tradeable t, int target, bool can)
+        {
+            bool active = can && target != t.CountToTransfer;
+            // Rimfolk's button keeps a margin its narrow arrows don't have room for: the arrow is drawn over it, whole.
+            bool clicked = UiKit.Button(r, UiKit.OwnLook ? "" : label, ButtonKind.Normal, active, null, GameFont.Small);
+            if (UiKit.OwnLook)
+            {
+                Text.Font = GameFont.Small;
+                Text.Anchor = TextAnchor.MiddleCenter;
+                GUI.color = active ? UiKit.Ink : UiKit.Dim;
+                Widgets.Label(r, label);
+                GUI.color = Color.white;
+                Text.Anchor = TextAnchor.UpperLeft;
+            }
+            if (!clicked) return;
+            if (!t.CanAdjustTo(target).Accepted) return;
+            bool more = Math.Abs(target) > Math.Abs(t.CountToTransfer);
+            t.AdjustTo(target);
+            (more ? SoundDefOf.Tick_High : SoundDefOf.Tick_Low).PlayOneShotOnCamera();
+        }
+
+        /// <summary>The number going this way, typed: set as it is typed, kept between none and all there is; an empty box is none.</summary>
+        private static void Field(Rect r, Tradeable t, bool sale, RowSide s, int n, int least, int most, string focused)
+        {
+            bool typing = focused == s.field;
+            if (!typing || s.typed == null) s.typed = n.ToStringCached();
+            string got = UiKit.TextField(r, s.typed, s.field, null, 7, Digits);
+            if (!typing || got == s.typed) return;
+            s.typed = got;
+            int want = got.Length == 0 ? 0 : int.TryParse(got, out int v) ? v : n;
+            int target = TradeWindowMath.CountFor(sale, want, least, most);
+            if (got.Length > 0 && Math.Abs(target) != want) s.typed = Math.Abs(target).ToStringCached();
+            if (target != t.CountToTransfer && t.CanAdjustTo(target).Accepted) t.AdjustTo(target);
+        }
+
+        /// <summary>A good in the deal the other way (one trade either buys or sells it): says so, and a click takes it out of the deal so it can go this way.</summary>
+        private static void OtherWay(Rect rect, Row r, bool sale, int c, RowSide s)
+        {
+            int n = Math.Abs(c);
+            if (s.other == null || s.otherFor != n)
+            {
+                s.other = W(sale ? "CC_TradeWin_OtherBuying" : "CC_TradeWin_OtherSelling", n.Named("COUNT"));
+                s.otherFor = n;
+            }
+            string tip = sale ? otherBuyingTip ??= W("CC_TradeWin_OtherBuyingTip") : otherSellingTip ??= W("CC_TradeWin_OtherSellingTip");
+            if (!UiKit.Button(rect, s.other, ButtonKind.Quiet, true, tip, GameFont.Tiny)) return;
+            if (!r.t.CanAdjustTo(0).Accepted) return;
+            r.t.AdjustTo(0);
+            SoundDefOf.Tick_Low.PlayOneShotOnCamera();
+        }
+
+        private static void WillNot(Rect rect, string text)
+        {
+            Text.Font = GameFont.Tiny;
+            Text.Anchor = TextAnchor.MiddleCenter;
+            GUI.color = TradeUI.NoTradeColor;
+            Widgets.Label(rect, text);
             GUI.color = Color.white;
             Text.Font = GameFont.Small;
             Text.Anchor = TextAnchor.UpperLeft;
-            if (Mouse.IsOver(cell))
-            {
-                Widgets.DrawHighlight(cell);
-                TooltipHandler.TipRegion(cell, new TipSignal(() => DealTip(r), r.t.GetHashCode() ^ 0x3d1a7));
-            }
-        }
-
-        /// <summary>Why each side's grade: the price against the usual, the market's reason, the colony's record, a cap; then the advice's own reasons.</summary>
-        private static string DealTip(Row r)
-        {
-            var parts = new List<string>();
-            foreach (bool sale in new[] { true, false })
-            {
-                var g = sale ? r.sell : r.buy;
-                if (!g.Graded) continue;
-                float price = sale ? r.pay : r.ask, usual = sale ? r.usualSell : r.usualBuy, best = sale ? r.bestSold : r.bestBought;
-                var lines = new List<string>
-                {
-                    W(sale ? "CC_TradeWin_DealSell" : "CC_TradeWin_DealBuy", GradeWord(g.grade, sale).Named("GRADE"), Money(price).Named("PRICE"), Money(usual).Named("USUAL"),
-                        How(TradeWindowMath.VsUsual(price, usual)).Named("HOW"))
-                };
-                if (g.marketStep != 0)
-                {
-                    string hint = TradeMarket.HintLine(r.t.ThingDef, sale);
-                    if (!hint.NullOrEmpty()) lines.Add(hint);
-                }
-                if (g.recordStep != 0 && best > 0f)
-                    lines.Add(W(g.recordStep > 0 ? sale ? "CC_TradeWin_RecBetterSold" : "CC_TradeWin_RecBetterBought" : sale ? "CC_TradeWin_RecWorseSold" : "CC_TradeWin_RecWorseBought",
-                        Money(best).Named("PRICE"), TradeMarketMath.BestDays.Named("DAYS")));
-                if (g.capped) lines.Add(W(sale ? "CC_TradeWin_CappedSell" : "CC_TradeWin_CappedBuy"));
-                parts.Add(string.Join("\n", lines));
-            }
-            parts.Add(W("CC_TradeWin_DealHow"));
-            if (r.note != null)
-            {
-                string advice = TradeAdvice.Tip(r.note, r.t);
-                if (!advice.NullOrEmpty()) parts.Add(advice);
-            }
-            return string.Join("\n\n", parts);
-        }
-
-        /// <summary>Vanilla Trading Expanded's market value now against the good's usual worth, and against its average of the last 30 days.</summary>
-        private static void MarketCell(Rect cell, Row r)
-        {
-            var s = r.market?.stats;
-            if (s == null || !s.known)
-            {
-                Dash(cell);
-                return;
-            }
-            Text.Font = GameFont.Tiny;
-            Text.Anchor = TextAnchor.MiddleCenter;
-            GUI.color = Color.white;
-            Widgets.Label(new Rect(cell.x, cell.y + 2f, cell.width, 16f), W("CC_TradeWin_Mkt_Usual", TradeWindowMath.Signed(TradeMarketMath.Percent(s.vsUsual)).Named("PCT")));
-            GUI.color = UiKit.Faint;
-            if (s.days >= 2)
-                Widgets.Label(new Rect(cell.x, cell.y + 18f, cell.width, 16f), W("CC_TradeWin_Mkt_Avg", TradeWindowMath.Signed(TradeMarketMath.Percent(s.vsAverage)).Named("PCT")));
-            GUI.color = Color.white;
-            Text.Font = GameFont.Small;
-            if (Mouse.IsOver(cell))
-            {
-                Widgets.DrawHighlight(cell);
-                TooltipHandler.TipRegion(cell, new TipSignal(() => string.Join("\n", TradeMarket.MarketLines(r.market)), r.t.GetHashCode() ^ 0x7e11d));
-            }
-        }
-
-        /// <summary>A line of the last 30 days on Vanilla Trading Expanded's market, its colour the way it went, and its change over them.</summary>
-        private static void TrendCell(Rect cell, Row r)
-        {
-            var v = r.market;
-            if (v?.points == null || v.points.Count < 2 || !r.trend.HasValue)
-            {
-                Dash(cell);
-                return;
-            }
-            int n = Math.Min(v.points.Count, TradeMarketMath.MonthDays + 1);
-            float min = float.MaxValue, max = float.MinValue;
-            for (int i = v.points.Count - n; i < v.points.Count; i++)
-            {
-                min = Mathf.Min(min, v.points[i]);
-                max = Mathf.Max(max, v.points[i]);
-            }
-            if (max - min < 0.0001f) max = min + 1f;
-            var color = UiKit.DaysColor(v.stats.heading);
-            UiKit.DaysLine(new Rect(cell.x + 4f, cell.y + 6f, cell.width - 8f, 14f), v.points, n, min, max, color);
-            Text.Font = GameFont.Tiny;
-            Text.Anchor = TextAnchor.MiddleCenter;
-            GUI.color = v.stats.heading != 0 ? color : UiKit.Faint;
-            Widgets.Label(new Rect(cell.x, cell.y + 19f, cell.width, 16f), TradeWindowMath.Signed(TradeMarketMath.Percent(r.trend.Value)));
-            GUI.color = Color.white;
-            Text.Font = GameFont.Small;
-            if (Mouse.IsOver(cell))
-            {
-                Widgets.DrawHighlight(cell);
-                TooltipHandler.TipRegion(cell, new TipSignal(() => TrendTip(r), r.t.GetHashCode() ^ 0x2b7e9));
-            }
-        }
-
-        private static string TrendTip(Row r)
-        {
-            var lines = TradeMarket.MarketLines(r.market);
-            string news = TradeMarket.NewsLine(r.market);
-            if (!news.NullOrEmpty()) lines.Add(news);
-            return string.Join("\n", lines);
-        }
-
-        /// <summary>What the colony needs of it, from the advice: short (worth buying), spare (worth selling) or kept; for people, how they would join.</summary>
-        private static void NeedCell(Rect cell, Row r)
-        {
-            var n = r.note;
-            if (r.person && r.pawn.guest != null && !TransferableUIUtility.TransferableIsCaptive(r.t))
-            {
-                bool colonist = r.pawn.guest.joinStatus == JoinStatus.JoinAsColonist;
-                Tiny(cell, (colonist ? "JoinsAsColonist" : "JoinsAsSlave").Translate(), UiKit.Faint);
-                TooltipHandler.TipRegion(cell, (colonist ? "JoinsAsColonistDesc" : "JoinsAsSlaveDesc").Translate());
-                return;
-            }
-            if (n == null || n.mark == TradeMark.None)
-            {
-                Dash(cell);
-                return;
-            }
-            string word;
-            Color color;
-            switch (n.mark)
-            {
-                case TradeMark.Buy:
-                    word = W("CC_TradeWin_Need_Buy", n.count.Named("COUNT"));
-                    color = TradeScreen.BuyColor;
-                    break;
-                case TradeMark.Sell:
-                    word = W("CC_TradeWin_Need_Sell", n.count.Named("COUNT"));
-                    color = TradeScreen.SellColor;
-                    break;
-                default:
-                    word = n.setAside >= n.have ? W("CC_TradeWin_Need_KeepAll") : W("CC_TradeWin_Need_Keep", n.setAside.Named("COUNT"));
-                    // Red when this trade sells into what is set aside, as the old screen's pin.
-                    color = r.t.CountToTransfer < 0 && n.have + r.t.CountToTransfer < n.setAside ? TradeScreen.WarnColor : TradeScreen.KeepColor;
-                    break;
-            }
-            Tiny(cell, word, color);
-            if (Mouse.IsOver(cell))
-            {
-                Widgets.DrawHighlight(cell);
-                TooltipHandler.TipRegion(cell, new TipSignal(() => TradeAdvice.Tip(n, r.t), r.t.GetHashCode() ^ 0x7a4de));
-            }
         }
 
         // ---------------- The side: the best deals and the deal ----------------
@@ -1211,10 +1567,10 @@ namespace ColonyCouncil
             try
             {
                 float x = 6f, w = view.width - 12f, y = 6f;
-                y = Heading(x, y, w, W("CC_TradeWin_Best"));
-                y = BestList(x, y, w, W("CC_TradeWin_BestSell"), bestSells, true, W("CC_TradeWin_BestNoneSell"));
-                y = BestList(x, y + 4f, w, W("CC_TradeWin_BestBuy"), bestBuys, false, W("CC_TradeWin_BestNoneBuy"));
-                y = Heading(x, y + 10f, w, W("CC_TradeWin_Deal"));
+                y = Heading(x, y, w, K("CC_TradeWin_Best"));
+                y = BestList(x, y, w, K("CC_TradeWin_BestSell"), bestSells, true, K("CC_TradeWin_BestNoneSell"));
+                y = BestList(x, y + 4f, w, K("CC_TradeWin_BestBuy"), bestBuys, false, K("CC_TradeWin_BestNoneBuy"));
+                y = Heading(x, y + 10f, w, K("CC_TradeWin_Deal"));
                 y = Summary(x, y, w);
                 sideHeight = y + 8f;
             }
@@ -1281,29 +1637,38 @@ namespace ColonyCouncil
                 if (Widgets.ButtonInvisible(line))
                 {
                     SoundDefOf.Tick_Tiny.PlayOneShotOnCamera();
-                    Jump(row);
+                    Jump(row, sale);
                 }
                 y += 26f;
             }
             return y;
         }
 
-        /// <summary>The row in the list, shown in the middle and lit for a moment; the filters cleared first if they hide it.</summary>
-        private void Jump(Row r)
+        /// <summary>The row in its list (the sell list for a sale, the buy list for a purchase), shown in the middle and lit for a moment: the filters cleared first if they hide it, its tab shown.</summary>
+        private void Jump(Row r, bool sale)
         {
-            int i = shown.IndexOf(r);
-            if (i < 0)
+            var l = sale ? sellList : buyList;
+            if (!Shows(l, r))
             {
                 search.Reset();
                 category = null;
                 inDealOnly = false;
                 Refilter();
-                i = shown.IndexOf(r);
             }
-            if (i < 0) return;
-            listScroll.y = TradeWindowMath.ScrollTo(i, RowH, listViewH, shown.Count * RowH);
+            if (!Shows(l, r)) return;
+            if (!sideNow && tabSell != sale) SetTab(sale);
+            l.jumpTo = r;
             flashRow = r;
+            flashSale = sale;
             flashAt = Time.realtimeSinceStartup;
+        }
+
+        private static bool Shows(ListView l, Row r)
+        {
+            foreach (var line in l.lines)
+                if (line.row == r)
+                    return true;
+            return false;
         }
 
         private static float Para(float x, float y, float w, string text, Color color, GameFont font = GameFont.Small, string tip = null)
@@ -1323,7 +1688,7 @@ namespace ColonyCouncil
         /// <summary>What the deal comes to: what is given and got against market value, against the usual prices, both by market value, the readouts, and what it may do to Vanilla Trading Expanded's prices.</summary>
         private float Summary(float x, float y, float w)
         {
-            if (!sums.Any) return Para(x, y, w, W("CC_TradeWin_DealEmpty"), UiKit.Faint, GameFont.Tiny);
+            if (!sums.Any) return Para(x, y, w, K("CC_TradeWin_DealEmpty"), UiKit.Faint, GameFont.Tiny);
             if (sums.soldPieces > 0)
                 y = Para(x, y, w, W("CC_TradeWin_Give", sums.soldPieces.Named("COUNT"), Money(sums.soldValue).Named("VALUE"), Money(sums.soldSilver).Named("SILVER"),
                     sums.SoldShare.ToStringPercent().Named("SHARE")), UiKit.Ink);
@@ -1337,8 +1702,8 @@ namespace ColonyCouncil
             int lean = TradeWindowMath.Leaning(sums);
             int pct = Mathf.RoundToInt(Mathf.Abs(sums.VsUsual) * 100f);
             y = Para(x, y + 2f, w, lean == 0 ? W("CC_TradeWin_VsUsualSame") : W(lean > 0 ? "CC_TradeWin_VsUsualBetter" : "CC_TradeWin_VsUsualWorse", pct.Named("PCT")),
-                lean > 0 ? UiKit.Warm : lean < 0 ? UiKit.Soon : UiKit.Faint, GameFont.Small, W("CC_TradeWin_VsUsualTip"));
-            y = Para(x, y, w, W("CC_TradeWin_ByValue", Money(sums.GiveWorth).Named("GIVE"), Money(sums.GetWorth).Named("GET")), UiKit.Faint, GameFont.Tiny, W("CC_TradeWin_ByValueTip"));
+                lean > 0 ? UiKit.Warm : lean < 0 ? UiKit.Soon : UiKit.Faint, GameFont.Small, K("CC_TradeWin_VsUsualTip"));
+            y = Para(x, y, w, W("CC_TradeWin_ByValue", Money(sums.GiveWorth).Named("GIVE"), Money(sums.GetWorth).Named("GET")), UiKit.Faint, GameFont.Tiny, K("CC_TradeWin_ByValueTip"));
             if (traderAfter < 0) y = Para(x, y + 2f, w, W("CC_TradeWin_TraderShort", (-traderAfter).Named("COUNT")), UiKit.Soon, GameFont.Tiny);
             if (colonyAfter < 0) y = Para(x, y + 2f, w, W("CC_TradeWin_ColonyShort", (-colonyAfter).Named("COUNT")), Short, GameFont.Tiny);
             foreach (var line in readouts) y = Para(x, y + 2f, w, line.text, UiKit.Faint, GameFont.Tiny, line.tip);
@@ -1363,7 +1728,7 @@ namespace ColonyCouncil
                     var fill = new Rect(r.x, accept.y, bw, 40f);
                     var clear = new Rect(fill.xMax + 8f, accept.y, bw, 40f);
                     bool any = TradeScreen.AnySuggested, some = TradeScreen.HasBasket;
-                    if (UiKit.Button(fill, W("CC_Trade_Fill"), ButtonKind.Normal, any))
+                    if (UiKit.Button(fill, K("CC_Trade_Fill"), ButtonKind.Normal, any))
                     {
                         if (any)
                         {
@@ -1372,8 +1737,8 @@ namespace ColonyCouncil
                         }
                         else SoundDefOf.ClickReject.PlayOneShotOnCamera();
                     }
-                    TooltipHandler.TipRegion(fill, W(any ? "CC_Trade_FillTip" : "CC_Trade_FillNone"));
-                    if (UiKit.Button(clear, W("CC_Trade_Clear"), ButtonKind.Normal, some))
+                    TooltipHandler.TipRegion(fill, K(any ? "CC_Trade_FillTip" : "CC_Trade_FillNone"));
+                    if (UiKit.Button(clear, K("CC_Trade_Clear"), ButtonKind.Normal, some))
                     {
                         if (some)
                         {
@@ -1382,7 +1747,7 @@ namespace ColonyCouncil
                         }
                         else SoundDefOf.ClickReject.PlayOneShotOnCamera();
                     }
-                    TooltipHandler.TipRegion(clear, W("CC_Trade_ClearTip"));
+                    TooltipHandler.TipRegion(clear, K("CC_Trade_ClearTip"));
                 }
             }
             if (UiKit.Button(reset, "ResetButton".Translate(), ButtonKind.Quiet))
@@ -1430,7 +1795,7 @@ namespace ColonyCouncil
             var inner = r.ContractedBy(10f);
             Text.Font = GameFont.Tiny;
             GUI.color = UiKit.Faint;
-            Widgets.Label(new Rect(inner.x, inner.y, inner.width, 18f), W("CC_TradeWin_WalletTitle"));
+            Widgets.Label(new Rect(inner.x, inner.y, inner.width, 18f), K("CC_TradeWin_WalletTitle"));
             Text.Font = GameFont.Medium;
             float numY = inner.y + 18f;
             string now = colonyNow.ToStringCached(), after = colonyAfter.ToStringCached();
@@ -1438,7 +1803,7 @@ namespace ColonyCouncil
             float nowW = Text.CalcSize(now).x;
             Widgets.Label(new Rect(inner.x, numY, nowW + 4f, 34f), now);
             GUI.color = UiKit.Faint;
-            Widgets.Label(new Rect(inner.x + nowW + 8f, numY, 30f, 34f), "\u2192");
+            Widgets.Label(new Rect(inner.x + nowW + 8f, numY, 30f, 34f), "→");
             GUI.color = shortOurs ? Short : colonyAfter < colonyNow ? UiKit.Gold : UiKit.Good;
             Widgets.Label(new Rect(inner.x + nowW + 38f, numY, inner.width - nowW - 38f, 34f), after);
             Text.Font = GameFont.Small;
@@ -1457,7 +1822,7 @@ namespace ColonyCouncil
                 : W("CC_TradeWin_WalletTheirs", traderNow.ToStringCached().Named("NOW"), traderAfter.ToStringCached().Named("AFTER")));
             GUI.color = Color.white;
             Text.Font = GameFont.Small;
-            TooltipHandler.TipRegion(r, W("CC_TradeWin_SilverTip"));
+            TooltipHandler.TipRegion(r, K("CC_TradeWin_SilverTip"));
         }
 
         /// <summary>Each side's silver now and after the trade, the colony's above, red where a side runs short; lit when the game says the silver won't do.</summary>
@@ -1476,7 +1841,7 @@ namespace ColonyCouncil
             GUI.color = Color.white;
             Text.Anchor = TextAnchor.UpperLeft;
             Text.Font = GameFont.Small;
-            TooltipHandler.TipRegion(r, W("CC_TradeWin_SilverTip"));
+            TooltipHandler.TipRegion(r, K("CC_TradeWin_SilverTip"));
         }
 
         /// <summary>

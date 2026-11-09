@@ -10,11 +10,13 @@ using ColonyCouncil;
 /// <summary>
 /// Rimfolk's own trade window (Source/ColonyCouncil/Trade/TradeWindow.cs, Window_RimfolkTrade.cs, TradeWindowMath.cs):
 /// each side's grade from the price against the usual one, the market and the record, the caps for need, the shares a
-/// price is of its value and of the usual, the order a column's click puts the rows in, what a deal comes to, the best
-/// deals, the columns that fit at 1920 and 1280 pixels wide, the chips' rows, the scroll to a row and the kinds; and
-/// from the files, that the window opens in place of the game's screen only for a silver trade with the setting and the
-/// deeper hooks on, uses the game's own prices, count control and Accept, falls back to the game's screen, switches
-/// both ways on the same deal, saves nothing, and says every word from its own Keyed file.
+/// price is of its value and of the usual, the order a column's click puts the rows in and the kinds they are grouped
+/// under, what a deal comes to, the best deals, the two lists side by side or as tabs at 1920, 1600 and 1280 pixels wide
+/// and at the window's least with the columns that fit each, the rows' heights, the chips' rows, the scroll to a row, the
+/// one-way counts and the kinds; and from the files, that the window opens in place of the game's screen only for a
+/// silver trade with the setting and the deeper hooks on, uses the game's own prices, count limits and Accept, falls
+/// back to the game's screen, switches both ways on the same deal, draws its rows from what it read, saves nothing but
+/// the lists' layout and tab with the settings, and says every word from its own Keyed file.
 /// </summary>
 public static class TradeWindowTests
 {
@@ -68,10 +70,9 @@ public static class TradeWindowTests
         C(TradeWindowMath.MarketStep(MarketHint.HighSellNow) == 1 && TradeWindowMath.MarketStep(MarketHint.FallingSellSooner) == 1 && TradeWindowMath.MarketStep(MarketHint.LowBuyNow) == 1
           && TradeWindowMath.MarketStep(MarketHint.RisingBuySooner) == 1 && TradeWindowMath.MarketStep(MarketHint.LowSellCanWait) == -1 && TradeWindowMath.MarketStep(MarketHint.HighBuyCanWait) == -1
           && TradeWindowMath.MarketStep(MarketHint.None) == 0, "the market's reasons: now a step up, wait a step down");
-        C(TradeWindowMath.SaleIsBetter(Sale(1.25f), Buy(1f)) && !TradeWindowMath.SaleIsBetter(Sale(1f), Buy(0.8f)) && TradeWindowMath.SaleIsBetter(Sale(1f), default)
-          && !TradeWindowMath.SaleIsBetter(default, Buy(1f)), "the better side leads");
-        C(TradeWindowMath.DealKey(Sale(1.25f), default) > TradeWindowMath.DealKey(Sale(1.19f), default) && TradeWindowMath.DealKey(Sale(1.19f), default) > TradeWindowMath.DealKey(Sale(1.1f), default)
-          && TradeWindowMath.DealKey(default, default) == null && TradeWindowMath.DealKey(Sale(1.4f, kept: true), default) < TradeWindowMath.DealKey(Sale(1.1f), default),
+        C(TradeWindowMath.SideKey(Sale(1.25f)) > TradeWindowMath.SideKey(Sale(1.19f)) && TradeWindowMath.SideKey(Sale(1.19f)) > TradeWindowMath.SideKey(Sale(1.1f))
+          && TradeWindowMath.SideKey(default) == null && TradeWindowMath.SideKey(Sale(1.4f, kept: true)) < TradeWindowMath.SideKey(Sale(1.1f))
+          && TradeWindowMath.SideKey(Buy(0.8f)) > TradeWindowMath.SideKey(Buy(0.95f)),
             "the deal column sorts by grade first, then by how far above the usual");
 
         // ---------- The shares ----------
@@ -96,15 +97,27 @@ public static class TradeWindowTests
         C(Names(TradeColumn.Value, false).SequenceEqual(new[] { "wood", "Arrow", "steel", "Beer" }), "and the lowest first on the second click");
         C(Names(TradeColumn.Pay, true).Last() == "Beer" && Names(TradeColumn.Pay, false).Last() == "Beer", "a row without that side goes last either way");
         C(Names(TradeColumn.Ask, true).SequenceEqual(new[] { "Beer", "steel", "Arrow", "wood" }), "what they ask, the dearest first, the rest by name");
-        C(Names(TradeColumn.Category, false).SequenceEqual(new[] { "steel", "wood", "Arrow", "Beer" }), "kinds in their order, each kind's goods by name");
         C(Names(TradeColumn.Deal, true).First() == "wood" && Names(TradeColumn.Deal, true).Last() == "Arrow", "the deal column: the best first, the ungraded last");
         C(Names(TradeColumn.Need, true).SequenceEqual(new[] { "wood", "steel", "Arrow", "Beer" }), "the need column: the advice's order, the rest last");
         C(Names(TradeColumn.Ours, true)[0] == "steel" && Names(TradeColumn.Theirs, true).SequenceEqual(new[] { "steel", "Beer", "Arrow", "wood" }) && Names(TradeColumn.Mass, true)[0] == "Arrow",
             "the counts and the mass");
-        C(!TradeWindowMath.DefaultDescending(TradeColumn.Name) && !TradeWindowMath.DefaultDescending(TradeColumn.Category) && TradeWindowMath.DefaultDescending(TradeColumn.Deal)
-          && TradeWindowMath.DefaultDescending(TradeColumn.Value), "a column's first click: names and kinds from A, numbers the highest first");
-        C(!TradeWindowMath.Sortable(TradeColumn.Count) && Enum.GetValues(typeof(TradeColumn)).Cast<TradeColumn>().Count(TradeWindowMath.Sortable) == 12,
-            "every column sorts but the count control");
+        C(!TradeWindowMath.DefaultDescending(TradeColumn.Name) && TradeWindowMath.DefaultDescending(TradeColumn.Deal) && TradeWindowMath.DefaultDescending(TradeColumn.Value),
+            "a column's first click: names from A, numbers the highest first");
+        C(!TradeWindowMath.Sortable(TradeColumn.Count) && Enum.GetValues(typeof(TradeColumn)).Cast<TradeColumn>().Count(TradeWindowMath.Sortable) == 11,
+            "every sort but the count control: the lists' columns, value, the market, its trend and mass");
+        // Grouped under the kinds, each kind's rows in the column's order, what the trader won't deal in last.
+        var grouped = new List<TradeRowKeys>
+        {
+            new TradeRowKeys { name = "wood", category = (int)TradeCategory.Raw, pay = 0.8f },
+            new TradeRowKeys { name = "pemmican", category = (int)TradeCategory.Food, pay = 1.5f },
+            new TradeRowKeys { name = "steel", category = (int)TradeCategory.Raw, pay = 1.3f },
+            new TradeRowKeys { name = "Beer", category = (int)TradeCategory.Drugs, off = true },
+            new TradeRowKeys { name = "Apple", category = (int)TradeCategory.Food, pay = 0.9f }
+        };
+        string Lines(TradeColumn c, bool d) => string.Join(",", TradeWindowMath.Grouped(grouped, c, d).Select(l => l.row < 0 ? "#" + l.group + ":" + l.count : grouped[l.row].name));
+        C(Lines(TradeColumn.Name, false) == "#0:2,Apple,pemmican,#2:2,steel,wood,#-1:1,Beer", $"under each kind, food first, by name; what they won't deal in last ({Lines(TradeColumn.Name, false)})");
+        C(Lines(TradeColumn.Pay, true) == "#0:2,pemmican,Apple,#2:2,steel,wood,#-1:1,Beer", "a header's sort orders each kind's rows, the kinds stay in their order");
+        C(TradeWindowMath.Grouped(null, TradeColumn.Name, false).Count == 0 && TradeWindowMath.Grouped(new List<TradeRowKeys>(), TradeColumn.Name, false).Count == 0, "no rows, no lines");
         C(TradeWindowMath.Order(null, TradeColumn.Name, false).Count == 0 && TradeWindowMath.Order(new List<TradeRowKeys>(), TradeColumn.Value, true).Count == 0, "no rows, no order");
 
         // ---------- What the deal comes to ----------
@@ -130,45 +143,90 @@ public static class TradeWindowTests
         C(TradeWindowMath.Best(sides, 10).SequenceEqual(new[] { 1, 3, 0, 6 }) && TradeWindowMath.Best(null, 3).Count == 0 && TradeWindowMath.Best(sides, 0).Count == 0,
             "never a fair, poor or held one");
 
-        // ---------- The layout ----------
+        // ---------- The two lists ----------
         string src = Path.Combine(root, "Source", "ColonyCouncil");
         string window = File.ReadAllText(Path.Combine(src, "Trade", "Window_RimfolkTrade.cs"));
-        // The window's own columns, read from its source, so the test lays out what the game draws.
-        var specs = Regex.Matches(window, @"new ColumnSpec\(TradeColumn\.(\w+), ([\d.]+)f, (\d+)(?:, ([\d.]+)f)?\)")
-            .Select(m => (col: Enum.Parse<TradeColumn>(m.Groups[1].Value), spec: new ColumnSpec(Enum.Parse<TradeColumn>(m.Groups[1].Value), float.Parse(m.Groups[2].Value, CultureInfo.InvariantCulture),
-                int.Parse(m.Groups[3].Value), m.Groups[4].Success ? float.Parse(m.Groups[4].Value, CultureInfo.InvariantCulture) : 0f))).Select(x => x.spec).ToList();
-        C(specs.Count == 13 && specs.Select(x => x.col).Distinct().Count() == 13, $"the window's thirteen columns, each once ({specs.Count})");
-        var withoutVte = specs.Where(x => x.col != TradeColumn.Market && x.col != TradeColumn.Trend).ToList();
-        // The window's own widths: the screen less 24 (at most 1800), less the margins, less the side (300 from 1500, else 240) and its gap, less the scroll bar.
-        float Table(float screen)
+        var sellCols = TradeWindowMath.ListColumns(true);
+        var buyCols = TradeWindowMath.ListColumns(false);
+        C(sellCols.Select(x => x.col).SequenceEqual(new[] { TradeColumn.Name, TradeColumn.Ours, TradeColumn.Pay, TradeColumn.Deal, TradeColumn.Need, TradeColumn.Count })
+          && buyCols.Select(x => x.col).SequenceEqual(new[] { TradeColumn.Name, TradeColumn.Theirs, TradeColumn.Ask, TradeColumn.Deal, TradeColumn.Need, TradeColumn.Count }),
+            "each list: the picture and name, how many there are, the price, the deal, the need, the count; ours and what they pay to sell, theirs and what they ask to buy");
+        C(sellCols.Zip(buyCols, (x, y) => x.width == y.width && x.priority == y.priority).All(x => x), "both lists alike in width");
+        C(sellCols.Where(x => x.priority <= 0).Select(x => x.col).SequenceEqual(new[] { TradeColumn.Name, TradeColumn.Pay, TradeColumn.Count })
+          && sellCols.OrderByDescending(x => x.priority).Select(x => x.col).Take(3).SequenceEqual(new[] { TradeColumn.Need, TradeColumn.Ours, TradeColumn.Deal }),
+            "the name, the price and the count always; in a narrow list the need gives way first, then how many, then the deal");
+        float all = TradeWindowMath.ColumnsWidth(sellCols, TradeWindowMath.ColGap, false), essentials = TradeWindowMath.ColumnsWidth(sellCols, TradeWindowMath.ColGap, true);
+        C(Near(all, 176f + 44f + 80f + 60f + 70f + 136f + 5 * 4f) && Near(essentials, 176f + 80f + 136f + 2 * 4f), $"every column {all:0}, the essentials {essentials:0}");
+        // The window's own widths: the screen less 24 (at most 1800), less its body's insets (10 a side in Rimfolk's look, 18
+        // in the game's), less the side (300 from 1500, else 240) and its gap.
+        float Table(float screen, bool own)
         {
-            float inner = Math.Min(screen - 24f, 1800f) - 36f;
-            return inner - (inner >= 1500f ? 300f : 240f) - 14f - 16f;
+            float inner = WindowFrameMath.BodyWidth(Math.Min(screen - 24f, 1800f), own);
+            return inner - (inner >= 1500f ? 300f : 240f) - 14f;
         }
-        foreach (var (wide, label) in new[] { (1920f, "1920"), (1280f, "1280") })
-        foreach (var (set, vte) in new[] { (specs, "with VTE"), (withoutVte, "without VTE") })
+        float leastTable = WindowFrameMath.BodyWidth(WindowFrameMath.TradeLeastW, true);
+        leastTable -= (leastTable >= 1500f ? 300f : 240f) + 14f;
+        foreach (bool own in new[] { true, false })
         {
-            float width = Table(wide);
-            var placed = TradeWindowMath.Fit(set, width, 4f);
+            string look = own ? "Rimfolk's look" : "the game's look";
+            C(TradeWindowMath.SideBySide(Table(1920f, own), TradeListsChoice.Auto), $"1920 wide, {look}: the two lists side by side");
+            C(TradeWindowMath.SideBySide(Table(1600f, own), TradeListsChoice.Auto), $"1600 wide, {look}: side by side still");
+            C(!TradeWindowMath.SideBySide(Table(1280f, own), TradeListsChoice.Auto), $"1280 wide, {look}: tabs");
+            C(TradeWindowMath.SideBySide(Table(1280f, own), TradeListsChoice.SideBySide), $"1280 wide, {look}: side by side when chosen, with the name, the price and the count");
+            C(!TradeWindowMath.SideBySide(Table(1920f, own), TradeListsChoice.Tabs), $"1920 wide, {look}: tabs when chosen");
+        }
+        C(!TradeWindowMath.SideBySide(leastTable, TradeListsChoice.Auto) && !TradeWindowMath.SideBySide(leastTable, TradeListsChoice.SideBySide),
+            $"the window at its least: tabs, even when side by side is chosen ({leastTable:0} wide)");
+        foreach (var (label, table, sideBy) in new[]
+                 {
+                     ("1920 side by side", Table(1920f, true), true), ("1600 side by side", Table(1600f, true), true), ("1280 as tabs", Table(1280f, true), false),
+                     ("1280 side by side by choice", Table(1280f, true), true), ("the least as tabs", leastTable, false), ("1920 in the game's look", Table(1920f, false), true)
+                 })
+        foreach (bool sale in new[] { true, false })
+        {
+            float rowsW = TradeWindowMath.RowsWidth(TradeWindowMath.ListWidth(table, sideBy));
+            var placed = TradeWindowMath.Fit(TradeWindowMath.ListColumns(sale), rowsW, TradeWindowMath.ColGap);
             var cols = placed.Select(p => p.col).ToList();
-            float right = placed.Count == 0 ? 0f : placed.Max(p => p.x + p.width);
-            C(right <= width + 0.5f, $"{label} wide, {vte}: the columns fit ({right:0} of {width:0})");
-            C(new[] { TradeColumn.Name, TradeColumn.Ours, TradeColumn.Pay, TradeColumn.Count, TradeColumn.Ask, TradeColumn.Theirs, TradeColumn.Deal, TradeColumn.Value, TradeColumn.Need }
-                .All(cols.Contains), $"{label} wide, {vte}: the name, both sides, the count, the grade, the value and the need are there");
-            C(placed.Zip(placed.Skip(1), (a, b) => b.x >= a.x + a.width + 3.9f).All(x => x), $"{label} wide, {vte}: left to right in order, apart");
-            C(placed.Select(p => (int)p.col).SequenceEqual(placed.Select(p => (int)p.col).OrderBy(x => x)), $"{label} wide, {vte}: in the columns' order");
-            var name = placed.First(p => p.col == TradeColumn.Name);
-            C(name.width >= 140f, $"{label} wide, {vte}: the name keeps its room ({name.width:0})");
-            if (wide >= 1920f) C(cols.Count == set.Count && name.width >= 300f, $"1920 wide, {vte}: every column, and room for long names ({name.width:0})");
+            string what = label + (sale ? ", selling" : ", buying");
+            float right = placed.Max(p => p.x + p.width);
+            C(right <= rowsW + 0.5f, $"{what}: the columns fit ({right:0} of {rowsW:0})");
+            C(placed.Zip(placed.Skip(1), (x, y) => y.x >= x.x + x.width + 3.9f).All(x => x), $"{what}: left to right, apart");
+            C(cols.Contains(TradeColumn.Name) && cols.Contains(sale ? TradeColumn.Pay : TradeColumn.Ask) && cols.Contains(TradeColumn.Count), $"{what}: the name, the price and the count");
+            float nameText = placed[0].width - TradeWindowMath.PictureW - TradeWindowMath.InfoW;
+            C(nameText >= 110f, $"{what}: the name has {nameText:0} for its words, wrapped, never cut");
+            bool full = label != "1280 side by side by choice";
+            if (full) C(cols.Count == 6, $"{what}: every column ({string.Join(", ", cols)})");
+            else C(cols.Contains(TradeColumn.Deal) && !cols.Contains(TradeColumn.Need), $"{what}: the deal kept, the need given way ({string.Join(", ", cols)})");
+            if (label == "1920 side by side") C(nameText >= 220f, $"1920 side by side: room for long names ({nameText:0})");
         }
-        var tiny = TradeWindowMath.Fit(specs, 300f, 4f);
-        C(tiny.Any(p => p.col == TradeColumn.Name) && tiny.Any(p => p.col == TradeColumn.Count), "however narrow, the name and the count stay");
+        var tiny = TradeWindowMath.Fit(sellCols, 300f, TradeWindowMath.ColGap);
+        C(tiny.Any(p => p.col == TradeColumn.Name) && tiny.Any(p => p.col == TradeColumn.Count) && tiny.Any(p => p.col == TradeColumn.Pay), "however narrow, the name, the price and the count stay");
+        C(TradeWindowMath.RowHeight(20f) == TradeWindowMath.RowMin && Near(TradeWindowMath.RowHeight(44f), 44f + TradeWindowMath.NamePad) && TradeWindowMath.RowHeight(0f) == TradeWindowMath.RowMin,
+            "a row as tall as its wrapped name needs, at least its least");
+        C(TradeWindowMath.RowMin >= 36f, "a row's least holds a price and its mark under it");
         var chips = TradeWindowMath.Flow(new[] { 50f, 60f, 70f, 40f }, 130f, 4f, 24f, out float chipsH);
         C(chips[0] == (0f, 0f) && chips[1] == (54f, 0f) && chips[2] == (0f, 28f) && chips[3] == (74f, 28f) && Near(chipsH, 52f), "the chips run on to a second row where they don't fit");
         TradeWindowMath.Flow(new[] { 50f }, 30f, 4f, 24f, out chipsH);
         C(Near(chipsH, 24f) && TradeWindowMath.Flow(null, 100f, 4f, 24f, out _).Count == 0, "a chip wider than the room stays on its row");
-        C(Near(TradeWindowMath.ScrollTo(20, 36f, 360f, 3600f), 20 * 36f - 162f) && TradeWindowMath.ScrollTo(1, 36f, 360f, 3600f) == 0f
-          && Near(TradeWindowMath.ScrollTo(99, 36f, 360f, 3600f), 3240f) && TradeWindowMath.ScrollTo(3, 36f, 360f, 200f) == 0f, "a row found from the best deals shows in the middle, the list kept in bounds");
+        C(Near(TradeWindowMath.ScrollToSpan(720f, 40f, 360f, 3600f), 720f - 160f) && TradeWindowMath.ScrollToSpan(40f, 40f, 360f, 3600f) == 0f
+          && Near(TradeWindowMath.ScrollToSpan(3560f, 40f, 360f, 3600f), 3240f) && TradeWindowMath.ScrollToSpan(100f, 40f, 360f, 200f) == 0f,
+            "a row found from the best deals shows in the middle, the list kept in bounds");
+
+        // ---------- One way: each list's count ----------
+        // The game's count: positive buys, negative sells; its limits here -8 (the colony has 8) and 5 (the trader has 5).
+        C(TradeWindowMath.ThisWay(-3, true) == 3 && TradeWindowMath.ThisWay(-3, false) == 0 && TradeWindowMath.ThisWay(4, false) == 4 && TradeWindowMath.ThisWay(4, true) == 0,
+            "each list counts its own way: sold in the sell list, bought in the buy list");
+        C(TradeWindowMath.OtherWay(4, true) && TradeWindowMath.OtherWay(-3, false) && !TradeWindowMath.OtherWay(0, true) && !TradeWindowMath.OtherWay(-3, true), "a good in the deal the other way is told apart");
+        C(TradeWindowMath.MostThisWay(true, -8, 5) == 8 && TradeWindowMath.MostThisWay(false, -8, 5) == 5 && TradeWindowMath.MostThisWay(true, 0, 5) == 0, "the most is all the colony has, or all the trader has");
+        C(TradeWindowMath.Stepped(true, -3, true, 1, -8, 5) == -4 && TradeWindowMath.Stepped(true, -3, false, 1, -8, 5) == -2, "selling: one more, one back");
+        C(TradeWindowMath.Stepped(true, -3, true, 10, -8, 5) == -8 && TradeWindowMath.Stepped(true, -3, false, 10, -8, 5) == 0, "ten with Shift, kept between none and all, never over to buying");
+        C(TradeWindowMath.Stepped(false, 2, true, 1, -8, 5) == 3 && TradeWindowMath.Stepped(false, 2, true, 100, -8, 5) == 5 && TradeWindowMath.Stepped(false, 2, false, 100, -8, 5) == 0,
+            "buying: one more, a hundred with Ctrl up to all they have, back to none and never over to selling");
+        C(TradeWindowMath.Stepped(true, 0, true, int.MaxValue, -8, 5) == -8, "no overflow on a large step");
+        C(TradeWindowMath.CountFor(true, 8, -8, 5) == -8 && TradeWindowMath.CountFor(false, 5, -8, 5) == 5 && TradeWindowMath.CountFor(true, 0, -8, 5) == 0,
+            "a double arrow: all, or none");
+        C(TradeWindowMath.CountFor(true, 30, -8, 5) == -8 && TradeWindowMath.CountFor(false, 30, -8, 5) == 5 && TradeWindowMath.CountFor(false, -4, -8, 5) == 0,
+            "a number typed: kept between none and all there is");
 
         // ---------- The kinds ----------
         TradeCategory K(TradeWindowMath.Facts f) => TradeWindowMath.CategoryOf(f);
@@ -185,6 +243,7 @@ public static class TradeWindowTests
 
         // ---------- The files ----------
         string math = File.ReadAllText(Path.Combine(src, "Trade", "TradeWindowMath.cs"));
+        string Method(string head) => Regex.Match(window, Regex.Escape(head) + @".*?\n        \}", RegexOptions.Singleline).Value;
         string opener = File.ReadAllText(Path.Combine(src, "Trade", "TradeWindow.cs"));
         string screen = File.ReadAllText(Path.Combine(src, "Trade", "TradeScreen.cs"));
         string advice = File.ReadAllText(Path.Combine(src, "Trade", "TradeAdvice.cs"));
@@ -200,8 +259,22 @@ public static class TradeWindowTests
             "if anything fails while it draws, the game's own screen takes the trade over");
         C(opener.Contains("Find.WindowStack.TryRemove(game, false);") && opener.Contains("letThrough = game;") && opener.Contains("Find.WindowStack.Add(game);"),
             "the switch both ways keeps the game's own screen and deal, never set up again");
-        C(window.Contains("TransferableUIUtility.DoCountAdjustInterface(rect, t, index, t.GetMinimumToTransfer(), t.GetMaximumToTransfer())"),
-            "counts are set with the game's own control, within the game's own limits");
+        string oneWay = Method("private void OneWay(") + Method("private static void Arrow(") + Method("private static void Field(") + Method("private static void OtherWay(");
+        C(oneWay.Contains("int least = t.GetMinimumToTransfer(), most = t.GetMaximumToTransfer();") && oneWay.Contains("GenUI.CurrentAdjustmentMultiplier()")
+          && Regex.Matches(oneWay, @"if \(!?[^\n]*CanAdjustTo\((target|0)\)\.Accepted\)").Count >= 3 && Regex.Matches(oneWay, @"\.AdjustTo\((target|0)\);").Count == 3,
+            "counts are set within the game's own limits, by its own CanAdjustTo and AdjustTo, a step one, ten or a hundred as its multiplier says");
+        C(oneWay.Contains("TradeWindowMath.OtherWay(c, sale)") && oneWay.Contains("TradeWindowMath.Stepped(") && oneWay.Contains("TradeWindowMath.CountFor(")
+          && oneWay.Contains("bool single = top <= 1;") && oneWay.Contains("\"TraderWillNotTrade\"") && oneWay.Contains("\"NegotiatorWillNotTradeSlaves\""),
+            "one way a list, never over to the other; one piece with single arrows; the game's words where it won't trade");
+        // Drawn from what was read: the rows' words made when read, the names' heights measured once for a width.
+        string drawn = Method("private void DrawRow(") + Method("private static void NameCell(") + Method("private static void PriceCell(") + Method("private static void DealTag(")
+                       + Method("private static void NeedCell(") + Method("private static void CountCell(");
+        C(drawn.Length > 2000 && !Regex.IsMatch(drawn, @"\bW\(|Money\(|CalcHeight|CalcSize|\.Translate\(|string\.Join|ToStringPercent|GetPriceFor"),
+            "a row draws from what was read: no words made, no price asked, no text measured as it draws");
+        C(Regex.Matches(window, @"Text\.CalcHeight\(line\.row\.label").Count == 1 && Method("private static void Measure(").Contains("if (Mathf.Abs(s.nameFor - w) > 0.5f)"),
+            "a name's wrapping measured once for a width");
+        C(Method("private Row Read(").Contains("r.payText") && Method("private void Refilter(").Length > 0 && window.Contains("PageMemory.SetEnum(ListsKey, chosen);")
+          && window.Contains("PageMemory.Set(TabKey, sell ? \"sell\" : \"buy\");"), "the lists' layout and the tab kept with the settings");
         C(window.Contains("t.GetPriceFor(TradeAction.PlayerSells)") && window.Contains("t.GetPriceFor(TradeAction.PlayerBuys)") && !Regex.IsMatch(window, @"\b0\.6f\b|\b1\.4f\b|GetPricePlayer"),
             "every price is the game's own: the price shown is the price paid");
         C(window.Contains("deal.TryExecute(out bool actuallyTraded)") && window.Contains("deal.DoesTraderHaveEnoughSilver()") && window.Contains("\"ConfirmTraderShortFunds\"")
@@ -214,7 +287,7 @@ public static class TradeWindowTests
         C(window.Contains("TradeScreen.Fill(null)") && window.Contains("TradeScreen.Clear(null)") && window.Contains("TradeAdvice.All") && window.Contains("TradeMarket.Known(")
           && window.Contains("TradeMarket.ImpactLine(") && window.Contains("TradeMarketMath.Best(") && window.Contains("TradeScreen.ReadoutLines()"),
             "the advice, the basket, the market and the record are Trade/'s own, not worked out again");
-        C(!Regex.IsMatch(window + opener + math, @"Scribe_|ExposeData|GameComponent"), "nothing is saved");
+        C(!Regex.IsMatch(window + opener + math, @"Scribe_|ExposeData|GameComponent"), "nothing is saved in the game");
         C(screen.Contains("|| TradeWindow.Open != null") && screen.Contains("TradeWindow.Drawing) return;") && screen.Contains("if (TradeWindow.Takes) TradeWindow.DrawBackButton(__instance);"),
             "the old screen's parts know Rimfolk's window: open, drawing, and the way back");
         C(advice.Contains("UsualPrices(thing, factor, gain, loss, out n.usualSell, out n.usualBuy)") && advice.Contains("public static void UsualFor(Tradeable t"),
@@ -234,18 +307,19 @@ public static class TradeWindowTests
         // Built from a name: a kind's chip, a column's header and tooltip, a grade's word.
         var built = new List<string>();
         foreach (TradeCategory k in Enum.GetValues(typeof(TradeCategory))) built.Add("CC_TradeWin_Cat_" + k);
+        // A column's heading from its name (the need's and the count's by the list), and the tooltip of each the lists show.
         foreach (TradeColumn k in Enum.GetValues(typeof(TradeColumn)))
-            if (k != TradeColumn.Count)
-            {
+            if (k != TradeColumn.Count && k != TradeColumn.Need)
                 built.Add("CC_TradeWin_Col_" + k);
-                built.Add("CC_TradeWin_Col_" + k + "Tip");
-            }
+        foreach (var k in new[] { "Name", "Ours", "Theirs", "Pay", "Ask", "Deal", "Need", "Keep", "ToSell", "ToBuy" }) built.Add("CC_TradeWin_Col_" + k + "Tip");
         foreach (var g in new[] { DealGrade.Great, DealGrade.Good, DealGrade.Fair, DealGrade.Poor })
         {
             built.Add("CC_TradeWin_Grade_" + g + "Sell");
             built.Add("CC_TradeWin_Grade_" + g + "Buy");
+            built.Add("CC_TradeWin_Tag_" + g);
         }
-        C(code.Contains("\"CC_TradeWin_Cat_\" + ") && code.Contains("\"CC_TradeWin_Col_\" + c") && code.Contains("\"CC_TradeWin_Grade_\" + g"), "the built names are built so");
+        C(code.Contains("\"CC_TradeWin_Cat_\" + ") && code.Contains("\"CC_TradeWin_Col_\" + c") && code.Contains("\"CC_TradeWin_Grade_\" + g") && code.Contains("\"CC_TradeWin_Tag_\" + g")
+          && code.Contains("W(key + \"Tip\")"), "the built names are built so");
         C(used.Count >= 40, $"found the window's words ({used.Count})");
         foreach (var k in used.Concat(built).Distinct()) C(keyed.ContainsKey(k), $"{k} exists");
         foreach (var k in keyed.Keys.Where(k => k.StartsWith("CC_TradeWin_"))) C(used.Contains(k) || built.Contains(k), $"{k} is said somewhere");

@@ -5,6 +5,16 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## The trade window in two lists
+
+*9 November 2026, version 0.195.0*
+
+- Rimfolk's trade window now shows Ours to sell and Theirs to buy as two lists, side by side when the window is wide and as two tabs when it's narrow; a button chooses, and the choice is remembered.
+- Each list has a few clear columns: the picture and full name, never cut off, how many there are, the price with how it stands against the usual, a deal tag, what the colony needs or should keep, and the count.
+- Rows sit under their kind's heading instead of a Kind column; each list sorts by its own headings, and search and the chips filter both.
+- The arrows point where the goods go: in the sell list they sell, in the buy list they buy; Shift and Ctrl move ten and a hundred, and a good already in the deal the other way says so and is taken out with a click.
+- Hover a row for the rest: market value, mass, the price's breakdown and its share of value, why the deal got its grade, the advice, and the market card with its trend.
+
 ## The on-screen panels in Rimfolk's own look
 
 *9 November 2026, version 0.194.0*

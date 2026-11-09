@@ -4344,19 +4344,16 @@ with the 0.150.0 and 0.151.0 parts below, stays one click away.
   game's screen taken off with `TryRemove` so its `Close` (which hands a trader's quest over) waits for the trade's end.
   The switch matters for Trade Helper, whose panel is drawn on the game's screen only. "Give gifts" goes to the game's
   screen in its gift mode.
-- **One table with sides, not two panes.** A `Tradeable` is one count both ways (a good both sides have is one row: you
-  either buy or sell it), and the game's arrows move a count left toward the colony and right toward the trader. So the
-  colony's count and what the trader pays stand left of the game's own count control, what it asks and its count right
-  of it, as on the game's screen; the rest of a row is the good's own (name, kind, value, the grade, the market, the
-  trend, mass, need). At 1920 by 1080 the thirteen columns fit with about 300 pixels for names beside a 300-pixel side
-  panel. At 1280 by 720 two panes would leave about 470 pixels each, too narrow for two prices, a grade and the game's
-  210-pixel count control; one table drops the columns in a set order (mass, kind, trend, market; `TradeWindowMath.Fit`,
-  tested at both sizes) and keeps the name, both sides, the count, the grade, the value and the need. What a dropped
-  column says stays in the tooltips and the chips.
+- **Two lists, sell and buy** (since the player's request of 9 November 2026, "Two lists, sell and buy" below): the
+  colony's goods to sell and the trader's to buy, side by side where the window has room, else as two tabs. The first
+  window was one table with sides (the colony's count and what the trader pays left of the game's own count control,
+  what it asks and its count right of it, thirteen columns dropped in a set order when narrow); the player found its
+  columns many and its two directions confusing, and the names cut.
 - **The game's deal underneath.** Each price is `Tradeable.GetPriceFor` (the price shown is the price paid; nothing is
-  priced here), each count is set by `TransferableUIUtility.DoCountAdjustInterface` within `GetMinimumToTransfer` and
-  `GetMaximumToTransfer` (an arrow one, Shift ten, Ctrl a hundred, a double arrow all or none, a number typed), with the
-  game's own "won't trade" and Ideology's "won't sell into slavery" in its place. Accept is the game's: its question
+  priced here), each count is set within the game's `GetMinimumToTransfer` and `GetMaximumToTransfer` by its own
+  `CanAdjustTo` and `AdjustTo` (an arrow one, Shift ten, Ctrl a hundred, a double arrow all or none, a number typed;
+  each list's control one way, below), with the game's own "won't trade" and Ideology's "won't sell into slavery" in its
+  place. Accept is the game's: its question
   when the trader is short of silver ("ConfirmTraderShortFunds", the rest let go as a gift), then `TradeDeal.TryExecute`
   (the negotiator, the ideoligion's word on organs, the goods handed over by pod or into the caravan, the faction told),
   the trade sound and the caravan's inventory. The one step done first here is the game's own check that the colony can
@@ -4364,46 +4361,115 @@ with the 0.150.0 and 0.151.0 parts below, stays one click away.
   A caravan's mass, speed, food days, foraging and visibility are the game's calculators drawn by its own strip
   (`CaravanUIUtility.DrawCaravanInfo`), over every good rather than the ones a search shows. On close, as the game's
   screen does, a trader with a quest hands it over; on opening, the game's word about a negotiator who can't talk or
-  hear well. So Vanilla Trading Expanded's prices, its contracts and any mod that patches `Tradeable`, `TradeDeal` or
-  the count control keep working.
-- **Two baselines in every row.** The market value a piece (`Tradeable.BaseMarketValue`: the thing's own, with quality
-  and hit points), and under each price its share of that value and its side of the usual price, the advice's own
-  (`TradeNote.usualSell`/`usualBuy`, the game's 60% and 140% of worth moved by the negotiator and difficulty, Vanilla
-  Trading Expanded's market divided out; for people and animals, which the advice doesn't read, `TradeAdvice.UsualFor`).
-  Against the value a sale is always under and a purchase over; against the usual a better trader shows: green 7% to
-  the good side, orange 7% to the bad, the sign saying which way. With VTE's history, a Market column (now against usual
-  and against the 30 days' average) and a Trend column (30 days drawn, the change in numbers).
+  hear well. So Vanilla Trading Expanded's prices, its contracts and any mod that patches `Tradeable` or `TradeDeal`
+  keep working; a mod that patches the game's own count control (`TransferableUIUtility.DoCountAdjustInterface`) works
+  on the game's screen, not in the two lists.
+- **Two baselines for every price.** The market value a piece (`Tradeable.BaseMarketValue`: the thing's own, with
+  quality and hit points) and the price's share of it, in the row's tooltip; and under each price its mark against the
+  usual price, the advice's own (`TradeNote.usualSell`/`usualBuy`, the game's 60% and 140% of worth moved by the
+  negotiator and difficulty, Vanilla Trading Expanded's market divided out; for people and animals, which the advice
+  doesn't read, `TradeAdvice.UsualFor`). Against the value a sale is always under and a purchase over; against the usual
+  a better trader shows: green 7% to the good side, orange 7% to the bad, an arrow up or down saying which way. With
+  VTE's history, the market now against usual and against the 30 days' average, and the 30 days drawn, on the market
+  card beside the row's tooltip.
 - **Grades a side at a time** (`TradeWindowMath.Rate`, tested): the price against the usual, 1 as usual and more better
   (a sale's price over it, a purchase's usual over the price); a step of 0.05 up or down for VTE's market reason
   (`TradeMarketMath.Hint`: a sale at a 60-day high or of a falling good, a buy at a low or of a rising one, up; the
   other ends, down) and for the colony's record (better than its best of the last 15 days, up; a tenth worse, down). A
   fifth better is great, 7% good, within 7% fair, worse poor. A purchase the advice doesn't mark worth buying (no need
   and no bargain on a stock it keeps) and a sale of what the colony is short of or keeps all of are held at fair. Three
-  bars and a word ("great sell", "poor buy"), so the colour is never the only sign. The better side leads (the traded
-  one once a count is set), the other under it; the tooltip gives both, the market's and the record's reason, the cap,
-  and the advice's own reasons. People aren't graded.
+  bars and a word, so the colour is never the only sign; each list shows its own side's grade ("good"), the tooltip
+  why: the market's and the record's reason, the cap, and the advice's own reasons. People aren't graded.
 - **Best deals and the summary** on the right: the top five sells and buys graded good or great, each a click from its
-  row (the filters cleared if they hide it, the row lit for a moment). Then the deal: what is sold and bought, at market
+  row in its list (the filters cleared if they hide it, its tab shown, the row lit for a moment). Then the deal: what is sold and bought, at market
   value and at what share of it; the net silver as the game counts it; against the usual prices ("about 12% better for
   you"; `DealSums.VsUsual`, the deal at this trader's prices against it at the usual, as a share of the latter); both
   ways by market value; a side short of silver; the old screen's food days at home and VTE's banks; and VTE's warning
   for each good this trade may move (`TradeMarket.ImpactLine`'s own words). Each side's silver now and after the trade at
   the foot right, lit when the game says the silver won't do.
-- **Sorting and overview.** Every header but the count's sorts on a click and again the other way (`TradeWindowMath.Order`:
-  names and kinds from A, numbers the highest first, a row without that side last either way, ties by name); the last
-  sort is kept for the session. A search (the game's own widget), a chip for each kind this trade has with its count
-  (food, medicine, raw materials, manufactured, weapons, apparel, art and books, drugs, animals, people, other; read
-  from the game's def and categories, so every mod's goods find theirs), and "only in the deal". What the trader won't
-  deal in goes last, greyed, as on the game's screen. The foot: Fill suggested and Clear suggested (the basket's own,
-  `TradeScreen.Fill(null)`), Reset, Accept, Cancel.
+- **Sorting and overview.** Every header but the count's sorts its list on a click and again the other way
+  (`TradeWindowMath.Order`: names from A, numbers the highest first, a row without that side last either way, ties by
+  name), within each kind; each list's last sort is kept for the session. A search (the game's own widget), a chip for
+  each kind this trade has with its count (food, medicine, raw materials, manufactured, weapons, apparel, art and books,
+  drugs, animals, people, other; read from the game's def and categories, so every mod's goods find theirs), and "only
+  in the deal". What the trader won't deal in goes last, greyed, as on the game's screen. The foot: Fill suggested and
+  Clear suggested (the basket's own, `TradeScreen.Fill(null)`), Reset, Accept, Cancel.
 - **Never without a trade screen.** If the window can't be made, the game's screen opens; if anything throws while it
   draws (every group and scroll view closed in a `finally`), the error is logged once and the game's screen takes the
-  trade over on the same counts. Nothing is saved; the sort column is session memory.
+  trade over on the same counts. Nothing is saved in the game; the sort is session memory, the lists' layout and tab
+  the settings'.
 - **The game's screen keeps its parts** (below): the sorts, the marks (which stand down inside Rimfolk's window, where
   the game's own row icons are drawn), the basket's buttons, the readouts and the market card. Trade Helper (its source
   isn't public) draws only there. Hospitality gives its guests a trader kind of its own (`TraderKinds_Guests.xml`), so a
   guest is traded with as any trader on the map, and opens Rimfolk's window unless Hospitality makes a screen of its own
   kind (its code isn't among the player's files, only its defs). Pick Up And Haul's files touch no part of a trade.
+
+### Two lists, sell and buy (the player's request, 9 November 2026)
+
+"i quite like the new trading ui, but i find it still a bit confusing. could buy and sell be split into different tabs
+or some other setup? where I have separate lists can can organize it more easy. does that make sense? because now i have
+a lot of different columns and i think it could be more clear if the two directions are somehow separate. also the name
+of the item doesn't even always fit." The plan told to the player, as built (`Trade/Window_RimfolkTrade.cs`, the rules in
+`Trade/TradeWindowMath.cs`):
+
+- **Two lists.** *Ours to sell*: every good the colony has within the trade (`CountHeldBy(Transactor.Colony) > 0`, what
+  the trader won't take included and greyed), with what the trader pays; *Theirs to buy*: every good the trader has,
+  with what it asks. A good both have is in both, its one count read in each. Side by side, the sell list on the left as
+  the colony's side is on the game's screen, where each list has room for all its columns (`TradeWindowMath.SideBySide`:
+  586 pixels of rows a list, so a table of 1216: 1920 and 1600 wide in both looks); else two tabs, Sell and Buy. The
+  button at the lists' right ("Lists: by width", "side by side", "tabs") opens the player's choice; side by side chosen
+  holds wherever the name, the price and the count fit (400 pixels of rows a list: 1280 wide, not the window at its
+  least), its tooltip saying when the window is too narrow. The choice and the tab are kept with the settings
+  (`PageMemory` "trade.lists" and "trade.tab", written when changed), and the tab turns to a best deal's list when it is
+  clicked. Each list's title has how many goods it shows and how many are in the deal its way.
+- **Six columns a list** (`TradeWindowMath.ListColumns`, the same widths both ways): the picture (`UiKit.ItemPortrait`,
+  framed in its quality's colour, the game's own words on it, the info card's button at the column's end) and the whole
+  name, wrapped to as many lines as it needs, the row as tall (`RowHeight`: 40 at least, else the name and 8); how many
+  there are (ours, theirs); the price with its mark against the usual (an arrow up or down and how far, green better for
+  the colony, orange worse, "usual" within 2%); the deal's tag (its bars and one word: great, good, fair, poor); the
+  need (the advice's word; headed "Keep" in the sell list, red when the trade sells into what is set aside); and the
+  count. A narrower list gives way in a set order (`Fit`): the need, then how many, then the deal; the name, the price
+  and the count stay. The kind column is gone: each list is grouped under kind headings (`Grouped`: the kinds in their
+  order, food first, each with how many it shows; what the trader won't deal in last under "Not traded here").
+- **The tooltip has the rest** (`RowTip`, made only while pointed at, over the row but its picture, its card's button
+  and its count): how many there are, the market value and mass a piece, the game's own reckoning of the price, its
+  share of the value and the usual, the grade's reasons (market, record, cap) and what the grades mean, and the advice.
+  The market card (`TradeMarket.Hover`, its own setting) shows beside it over the whole row, not only the price: VTE's
+  market in words, its last 60 days drawn, its news, the colony's record; with the card off, the market's words go into
+  the tooltip. So the price trend, the market's "usual / avg" and the price's "70% of value" leave the row.
+- **One way a list.** The game keeps one count a good (positive buys, negative sells) and its own control moves it both
+  ways; in two lists that would let the sell list buy, and a number typed in one list's box fight the other's. Each
+  list's control goes its own way (`OneWay`; the rules `ThisWay`, `Stepped`, `CountFor`, tested): the arrows point where
+  the goods go, as the game's do (right to the trader, left to the colony), so in the sell list ">" sells one more, ">>"
+  all of it, "<" takes one back and "<<" none; in the buy list "<" buys one more, "<<" all, ">" and ">>" back. Ten with
+  Shift and a hundred with Ctrl (`GenUI.CurrentAdjustmentMultiplier`), a number typed into the list's own box, a good of
+  one piece with single arrows, all within the game's own limits and set by its `CanAdjustTo` and `AdjustTo`; an arrow
+  that can't move the count is greyed. A good in the deal the other way shows "Buying 5" or "Selling 5" in place of the
+  count, and a click takes it out of the deal so it can go this way. Where the trader won't deal in it, or the
+  negotiator won't sell into slavery, the game's own words, as before. A row in the deal its way has a thin edge in that
+  way's colour.
+- **Sorting.** Each list its own sort for the session, the name from A at first: its headers (name, how many, price,
+  deal, need), and a menu at the count's heading with every sort, the columns' and those they leave out (market value,
+  with VTE's history its market and trend, mass). The rows sort within their kind. The search and the chips filter both
+  lists; "only in the deal" shows what goes each list's way.
+- **Kept as it was:** the silver box, the best deals and this deal on the right, the foot, the caravan's strip, the
+  market window, gifts and the game's screen both ways, Accept and its checks, the fall back to the game's screen; both
+  looks (Sell and Buy as the kit's tabs) and the frame.
+- **Nothing heavy per frame.** A row is read once a trade (`Read`): its price words and marks, its need's word, its sort
+  keys, its tooltip's id and its market card's key. A list's lines are made when the filters, a sort or (with "only in
+  the deal") the counts change; a name's height is measured once for a width (`Measure`); only the lines in sight are
+  drawn. The headings' words are made with the columns, the chips' tooltips with the chips, and words without arguments
+  are translated once.
+- Keys in `Languages/English/Keyed/Rimfolk_TradeWindow.xml` (the old Kind, Market, Trend and Mass headings and their
+  tooltips gone; Value, Market, Trend and Mass are the sort menu's words). Tests `Tools/Tests/TradeWindowTests.cs`: the
+  grouping, the lists at 1920, 1600, 1280 and the least in both looks, the columns of each, the rows' heights, the one-way
+  counts, the rows drawn from what was read. The Almanac's *the trade screen* in prose (keywords unchanged). Nothing saved
+  in the game; no Harmony patch, no Sched slot, no new setting.
+- **Not verified without the game:** the lists at the player's own screen and interface scale; a name wrapped in its
+  column and the row's height for it (Small's line height as the game measures it); the arrows' glyphs in the kit's
+  narrow buttons; the number box's focus inside a scroll view with two lists; the game's small icons beside an animal's
+  or a captive's name in the room kept for them; the market card over the whole row beside the tooltip; a mod that
+  patches the game's count control (none known in the player's list) no longer reaching Rimfolk's lists.
 
 ### The game's screen and the advice (0.150.0)
 
@@ -9309,7 +9375,7 @@ windows, Planning, Defenses, the Almanac and Rimfolk's dialogs are stage 2.
 - **The trade window in the look** (`Trade/Window_RimfolkTrade.cs`, a `FramedWindow` remembered as "Trade", least 980 by
   560, a dialog that may cover the bottom bar): "Trade with ..." in the title bar (the top keeps the negotiator's line and
   the buttons, the game's screen as a quiet button), the search as Rimfolk's field, the kind chips as pills (their words
-  made once a trade now, not each frame), "only in the deal" as a switch, the columns of numbers and their headings
+  made once a trade now, not each frame), "only in the deal" as a switch, Sell and Buy as the kit's tabs, the columns of numbers and their headings
   right-aligned, the rows zebra-striped and lifting under the mouse, the side a raised card, the silver box (0.173.1's) a
   raised card with its soft shadow, washed and edged in the danger colour with its words when the colony can't pay;
   Accept the primary (accent) button, Reset quiet, Cancel, Fill and Clear flat. The game's own count control stays the
