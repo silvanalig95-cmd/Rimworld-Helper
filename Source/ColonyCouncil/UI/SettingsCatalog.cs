@@ -757,6 +757,7 @@ namespace ColonyCouncil
             // Any mod's faith precept against turrets (TurretFaith.cs reads the precept, not one mod): always shown.
             Section("CC_SetSec_Mod_Faiths");
             Toggle("faithTurretsHere", "CC_Settings_FaithTurretsHere", "CC_SetNote_FaithTurretsHere", "deepHooks");
+            Toggle("roleClothesReach", "CC_Settings_RoleClothesReach", "CC_SetNote_RoleClothesReach", "deepHooks");
         }
 
         /// <summary>The carrying and hauling heading: its note says so when the standalone Harvest and Haul stands in for it.</summary>

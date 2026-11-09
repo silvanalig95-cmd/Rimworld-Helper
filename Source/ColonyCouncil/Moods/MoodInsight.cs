@@ -370,6 +370,12 @@ namespace ColonyCouncil
                 string small = SmallMoments.Advice(sm, bad);
                 if (!small.NullOrEmpty()) return small;
             }
+            // A role's clothes not worn: each piece and how the colony can come by it (Faith/RoleClothes.cs).
+            if (bad && RoleClothes.RoleOf(l.thought) is Precept_Role role)
+            {
+                string clothes = RoleClothes.Advice(l.pawn, role);
+                if (!clothes.NullOrEmpty()) return clothes;
+            }
             var hint = HintFor(l.def);
             string text = hint == null ? null : bad ? hint.fix : hint.keep;
             if (!text.NullOrEmpty()) return text;

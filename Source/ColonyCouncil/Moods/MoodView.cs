@@ -32,7 +32,10 @@ namespace ColonyCouncil
             public AdvisorSignal signal;
             public bool buttons;
             /// <summary>The buttons' labels, worked out with the texts (not every frame); null where there is no such button.</summary>
-            public string advisorButton, goToButton, readMoreButton;
+            public string advisorButton, goToButton, readMoreButton, roleClothesButton;
+            /// <summary>A role's clothes not worn, of one of the colony's ideoligions: its "Choose other clothes for the role" (Faith/RoleClothesWindow.cs), and whose mood it is.</summary>
+            public Precept_Role roleClothes;
+            public Pawn roleClothesPawn;
             public int tipId;
             public float width = -1f, th, mh, wh, ah, height;
         }
@@ -109,6 +112,11 @@ namespace ColonyCouncil
             };
             // A mood about someone (an insult, a talk, a bond) names them as a link where the why line says who.
             t.whyShown = t.why == null ? null : PaneLinks.Mark(t.why, OtherOf(l.thought));
+            if (t.bad)
+            {
+                t.roleClothes = RoleClothes.RoleOf(l.thought);
+                t.roleClothesPawn = t.roleClothes != null ? l.pawn : null;
+            }
             Finish(t, MoodInsight.Advice(l), l.pawn?.MapHeld);
             return t;
         }
@@ -126,6 +134,16 @@ namespace ColonyCouncil
                 hint = MoodInsight.HintFor(c.def),
                 tipId = Gen.HashCombineInt(c.def.shortHash, c.good ? 0x51A7 : 0x0BAD)
             };
+            // The role's clothes for everyone with this mood when it is one role (the colonist's own card has theirs).
+            if (t.bad)
+            {
+                var role = RoleClothes.RoleOf(c.sample.thought);
+                if (role != null && c.lines.All(l => RoleClothes.RoleOf(l.thought) == role))
+                {
+                    t.roleClothes = role;
+                    t.roleClothesPawn = c.sample.pawn;
+                }
+            }
             Finish(t, MoodInsight.Advice(c.sample), c.sample.pawn?.MapHeld);
             return t;
         }
@@ -148,8 +166,10 @@ namespace ColonyCouncil
         {
             if (!advice.NullOrEmpty()) t.advice = (t.bad ? "CC_Mood_Fix" : "CC_Mood_Keep").Translate(advice).Resolve();
             t.signal = t.bad ? ActiveSignal(t.hint, map) : null;
-            t.buttons = t.bad && t.hint != null && (t.hint.article != null || !t.hint.councilTab.NullOrEmpty() || t.signal != null);
+            t.buttons = t.bad && (t.roleClothes != null || t.hint != null && (t.hint.article != null || !t.hint.councilTab.NullOrEmpty() || t.signal != null));
             if (!t.buttons) return;
+            if (t.roleClothes != null) t.roleClothesButton = "CC_RoleClothes_Button".Translate().Resolve();
+            if (t.hint == null) return;
             if (t.signal != null) t.advisorButton = "CC_Mood_Advisor".Translate(TextUtil.ShortSpeech(t.signal.title, 40)).Resolve();
             if (!t.hint.councilTab.NullOrEmpty()) t.goToButton = "CC_Mood_GoTo".Translate(MainTabWindow_Council.TabName(t.hint.councilTab)).Resolve();
             if (t.hint.article != null) t.readMoreButton = "CC_Mood_ReadMore".Translate(t.hint.article.label).Resolve();
@@ -239,6 +259,14 @@ namespace ColonyCouncil
                 bool clicked = UiKit.Button(new Rect(bx, y, bw, 20f), label);
                 bx += bw + 6f;
                 return clicked;
+            }
+            // First, so the long label fits: choose other clothes for the role (Faith/RoleClothesWindow.cs).
+            if (t.roleClothes != null && Button(t.roleClothesButton ?? "CC_RoleClothes_Button".Translate().Resolve()))
+                Find.WindowStack.Add(new Dialog_RoleClothes(t.roleClothes, t.roleClothesPawn));
+            if (t.hint == null)
+            {
+                Text.Font = GameFont.Small;
+                return;
             }
             if (t.signal != null && Button(t.advisorButton ?? "CC_Mood_Advisor".Translate(TextUtil.ShortSpeech(t.signal.title, 40)).Resolve()))
                 MainTabWindow_Council.OpenTab("Priorities");

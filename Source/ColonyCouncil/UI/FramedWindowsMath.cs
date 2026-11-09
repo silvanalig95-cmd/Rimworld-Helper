@@ -127,6 +127,8 @@ namespace ColonyCouncil
             new FrameKey("ArrangeBar", 420f, 420f),
             new FrameKey("PanelOptions", 360f, 400f),
             new FrameKey("GuestCheck", 420f, 360f),
+            // Choosing other clothes for an ideoligion's role (Faith/RoleClothesWindow.cs): two rows asked for now, a few to pick from; the rest scrolls.
+            new FrameKey("RoleClothes", 520f, 480f),
             // Building and the defenses: the plans' small windows beside the map.
             new FrameKey("NameLine", 380f, 170f),
             new FrameKey("NameRoom", 360f, 160f),

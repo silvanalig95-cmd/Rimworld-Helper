@@ -118,7 +118,8 @@ public static class SettingsTests
         }
         Check(SettingsCatalog.Find("marketGuestsShop")?.mods?.Length == 2, "guests shopping at the market needs both RimMarket and Hospitality");
         Check(SettingsCatalog.All.Where(e => e.mods != null).All(e => e.page == SettingsPage.OtherMods), "only the other mods' page has rows for other mods");
-        Check(SettingsCatalog.On(SettingsPage.OtherMods).All(e => e.mods != null || e.id == "faithTurretsHere"), "every row there is for a mod (a faith's precept from any mod aside)");
+        Check(SettingsCatalog.On(SettingsPage.OtherMods).All(e => e.mods != null || e.id == "faithTurretsHere" || e.id == "roleClothesReach"),
+            "every row there is for a mod (a faith's precept and role clothes from any mod aside)");
         foreach (var kv in SettingsCatalog.ModSections)
             Check(SettingsCatalog.On(SettingsPage.OtherMods).Any(e => e.section == kv.Value && e.mods != null && e.mods.Contains(kv.Key)), $"{kv.Key}: its heading has its rows");
         // Fealty and vassals are a kind of pact (decision 14): their switch hangs under pacts and truces, on the same page.

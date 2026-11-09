@@ -2646,6 +2646,9 @@ Rimfolk reads these mods by name while the game runs: with one missing, its part
 - **The Empire and Vanilla Expanded peoples:** world events about a particular people: the Empire's levy (Royalty),
   deserters on the roads (Vanilla Factions Expanded - Empire), the republic votes (Classical) and gold fever
   (Settlers). Their visitors talk about court, the senate and the frontier.
+- **Role clothes from other mods (Vanilla Factions Expanded - Classical's toga and wreath, and any other):** the game no
+  longer has your ideoligions' roles ask for clothes behind costly research off the usual path, and a role that already
+  does can be given other clothes from its mood (see "Mood tab and Moods page").
 - **Which of these are in your game:** the Almanac's "What Rimfolk does with your mods" page is a table made when the
   game starts, from what Rimfolk finds: each mod it works with, whether it's here, how much is written for it, and
   what Rimfolk does with it. The self-check in the debug actions uses the same list.
@@ -4042,6 +4045,20 @@ and the game can't restyle a built thing, so it says when building them again he
 conversion or a reform will. A colonist with the bad mood gets a button, **Show the wrong-style things**, that selects
 them on the map, and a styled thing's inspect text names the colonists whose style it goes against ("Against Federalism's
 style: Aquason, Ian"). Nothing about the mood itself changes (the setting "Wrong-style things named", on by default).
+
+With Ideology, a **role's clothes** say how to get them. When a role's holder lacks what the role asks for ("Want
+Inquisitor apparel"), "What to do" names each piece and how the colony can come by it ("Toga: needs the research Togas
+(1200), not started."), and the mood's card has a button, **Choose other clothes for the role**: a small window with what
+the role asks for now and the others the game itself allows for that role and ideoligion, each with its icon, how to get
+it and whether the colony has one, what the colony can reach first. Pick one and confirm, and the role asks for it
+instead, as the game's own ideoligion editor would change it; nothing changes until you confirm, and only for the
+colony's own ideoligions. And when the game chooses a role's clothes for one of your ideoligions (a new one, a reform, a
+role added, Randomize), it no longer picks clothes out of the colony's reach unless nothing else fits: clothes no one in
+the colony has that need research not yet done, off the usual path (a mod's own research tab, or a project meant for
+another mod's special start) and costly for its age, as Vanilla Factions Expanded - Classical's toga is (1200 research for
+a neolithic project). Clothes the ideoligion calls for stay (its memes, a desired apparel, or a culture, meme or style
+from the same mod: a roman ideoligion keeps its toga). The factions' own ideoligions are left as the game makes them (the
+setting "Role clothes the colony can reach", on by default, on the page of your other mods).
 
 ## On-screen panels and the hover card
 What you keep checking, on the map, so you don't click through every colonist. Eight small panels, painted as a

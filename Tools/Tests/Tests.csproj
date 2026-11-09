@@ -40,6 +40,7 @@
     <Compile Include="../../Source/ColonyCouncil/Moods/SmallMomentMath.cs" Link="SmallMomentMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Moods/MoodSortMath.cs" Link="MoodSortMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Moods/StyleSurroundingsMath.cs" Link="StyleSurroundingsMath.cs" />
+    <Compile Include="../../Source/ColonyCouncil/Faith/RoleClothesMath.cs" Link="RoleClothesMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/UI/TabFitMath.cs" Link="TabFitMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/UI/BarMoreMath.cs" Link="BarMoreMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/UI/PagesMath.cs" Link="PagesMath.cs" />
