@@ -75,3 +75,15 @@ blank values in mind, but also like special abilities, passive effects, situatio
    colony meets most (mechanoids, tribal crowds, armoured raiders), with the reason in a line; one click equips it.
 9. **Colonists sometimes ask** for a better weapon they've seen in the stockpile, one sentence in their own voice, rarely,
    never when the difference is small.
+
+## After: the same for armour and apparel
+
+The player (9 November 2026): "And maybe after you can do the whole thing, the same thing for armor and apparel. But
+that's for to do after." A rating, a review and a clearer card for every piece of armour and apparel, with its specials,
+passive effects and situations, once the weapons are done.
+
+## What the player sends for the code
+
+The collected defs are XML only. The weapons, armour and gear that work through a mod's own code, and the mods Rimfolk
+fits to, need those mods' DLLs: `Tools/Collect-ModCode.ps1` collects them (by Steam Workshop id, the folders 1.7 loads),
+their settings (`Mod_*.xml`) and the game's own `Assembly-CSharp.dll`, into `RimfolkModCode.zip`.
