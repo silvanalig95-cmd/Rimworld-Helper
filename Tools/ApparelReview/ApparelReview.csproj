@@ -1,0 +1,23 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!--
+    The apparel review: rates every piece of armour and apparel of the player's active mods with the mod's own apparel
+    rating (linked below, so the numbers are exactly the in-game math's) from docs/player-mods/apparel_numbers.json.gz
+    (Tools/apparel_extract.py), and writes docs/apparel/README.md and docs/apparel/apparel.json. Run from the repository root:
+      dotnet run -c Release &#45;&#45;project Tools/ApparelReview
+  -->
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>disable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <RollForward>Major</RollForward>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="../../Source/ColonyCouncil/Apparel/ApparelRateMath.cs" Link="Linked/ApparelRateMath.cs" />
+    <Compile Include="../../Source/ColonyCouncil/Apparel/ApparelTagMath.cs" Link="Linked/ApparelTagMath.cs" />
+    <Compile Include="../../Source/ColonyCouncil/Weapons/WeaponRateMath.cs" Link="Linked/WeaponRateMath.cs" />
+    <Compile Include="../../Source/ColonyCouncil/Weapons/WeaponTagMath.cs" Link="Linked/WeaponTagMath.cs" />
+    <Compile Include="../../Source/ColonyCouncil/UI/SkinMath.cs" Link="Linked/SkinMath.cs" />
+    <Compile Include="../Tests/ApparelRateTests.cs" Link="Linked/ApparelRateTests.cs" />
+  </ItemGroup>
+</Project>

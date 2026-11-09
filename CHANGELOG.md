@@ -5,6 +5,14 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## Every piece of armour and apparel in your mods rated
+
+*9 November 2026, version 0.187.0*
+
+- Every piece of armour and apparel your mods add has a rating from 1.0 to 10.0, from the game's own armour roll layer by layer over the parts it covers, against guns, blades, animals, mechanoids and fire, with cold, heat, what it costs the wearer and what it adds counted.
+- Pieces made for one kind of fighter are rated for them: a shield belt for a melee fighter, a gunlink for a shooter, with both ratings kept side by side.
+- Each comes with the weapons' colour-coded tags and a plain line, and its rating in the common materials; the review is in the docs/apparel folder beside the mod's files, and the card in the game and suggestions for each colonist come next.
+
 ## Planning starts at a glance, as it should have
 
 *9 November 2026, version 0.186.1*

@@ -346,9 +346,11 @@ def patch_ops(node, names, gate=""):
                 yield from patch_ops(kids, names, gate or ("on its own setting" if own else ""))
 
 
-def patches(col, wanted):
-    """The active mods' patch operations that touch the combat numbers of a weapon or projectile in `wanted`."""
+def patches(col, wanted, parts=COMBAT_PARTS, skip_stats=NOT_COMBAT_STATS):
+    """The active mods' patch operations that touch the numbers of a def in `wanted`: a weapon's or projectile's combat
+    parts by default, or the parts given (Tools/apparel_extract.py passes an apparel def's), less the stats given."""
     out = {}
+    parts_wanted = parts
     mods = os.path.join(col.root, "Mods")
     active = set(col.pool.active)
     names = {name.strip().lower() for folder, (pid, name) in col.pool.folders.items() if pid in active}
@@ -378,15 +380,15 @@ def patches(col, wanted):
                         parts = [x for x in re.split(r"/", sub) if x]
                         if parts:
                             first = re.sub(r"\[.*", "", parts[0])
-                            if first not in COMBAT_PARTS:
+                            if first not in parts_wanted:
                                 continue
-                            if first == "statBases" and len(parts) > 1 and re.sub(r"\[.*", "", parts[1]) in NOT_COMBAT_STATS:
+                            if first == "statBases" and len(parts) > 1 and re.sub(r"\[.*", "", parts[1]) in skip_stats:
                                 continue
                             what = "/".join(re.sub(r"\[.*", "", x) for x in parts[:2])
                         else:
                             val = op.find("value")
                             tags = sorted({c.tag for c in (list(val) if val is not None else []) if isinstance(c.tag, str)})
-                            tags = [t for t in tags if t in COMBAT_PARTS]
+                            tags = [t for t in tags if t in parts_wanted]
                             if not tags:
                                 continue
                             what = ",".join(tags)
