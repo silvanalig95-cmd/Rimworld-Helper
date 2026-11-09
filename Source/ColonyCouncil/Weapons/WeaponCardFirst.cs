@@ -79,7 +79,10 @@ namespace ColonyCouncil
         }
     }
 
-    /// <summary>A new info card about a weapon opens as Rimfolk's weapon card (WeaponCardFirst.Swapped); every other window is added as before.</summary>
+    /// <summary>
+    /// A new info card about a weapon opens as Rimfolk's weapon card (WeaponCardFirst.Swapped), one about apparel as Rimfolk's
+    /// apparel card (ApparelCardFirst.Swapped); every other window is added as before.
+    /// </summary>
     [HarmonyPatch(typeof(WindowStack), nameof(WindowStack.Add))]
     public static class Patch_WeaponCardFirst
     {
@@ -90,7 +93,8 @@ namespace ColonyCouncil
             if (broken || !(window is Dialog_InfoCard card)) return true;
             try
             {
-                return !WeaponCardFirst.Swapped(card);
+                // The weapon card first, then the apparel card (Apparel/ApparelCardFirst.cs): a def is one or the other.
+                return !WeaponCardFirst.Swapped(card) && !ApparelCardFirst.Swapped(card);
             }
             catch (Exception e)
             {

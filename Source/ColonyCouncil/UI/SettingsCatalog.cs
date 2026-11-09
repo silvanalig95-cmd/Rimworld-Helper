@@ -691,6 +691,11 @@ namespace ColonyCouncil
             Toggle("weaponNoBetterLine", "CC_Settings_WeaponNoBetterLine", "CC_SetNote_WeaponNoBetterLine", "weaponRatings,weaponSuggestions,deepHooks");
             // A full kit for every colonist (Weapons/WeaponKitMath.cs, WeaponKitSelf.cs): an empty slot filled by the colonist themselves.
             Toggle("weaponKitSelf", "CC_Settings_WeaponKitSelf", "CC_SetNote_WeaponKitSelf", "weaponRatings,deepHooks");
+            // Armour and apparel you can judge at a glance (Apparel/, docs/design/apparel.md, step 2): the rating on the info card, Rimfolk's card, the gear tab.
+            Section("CC_SetSec_Apparel");
+            Toggle("apparelRatings", "CC_Settings_ApparelRatings", "CC_SetNote_ApparelRatings", "deepHooks");
+            Toggle("apparelGearTab", "CC_Settings_ApparelGearTab", "CC_SetNote_ApparelGearTab", "apparelRatings,deepHooks");
+            Toggle("apparelCardFirst", "CC_Settings_ApparelCardFirst", "CC_SetNote_ApparelCardFirst", "apparelRatings,deepHooks");
             // The colonist bar's badges (ColonistBar/BarBadges.cs): what they show, and how.
             Section("CC_SetSec_ColonistBar");
             NoteUnder("CC_SetSec_ColonistBar_Note");

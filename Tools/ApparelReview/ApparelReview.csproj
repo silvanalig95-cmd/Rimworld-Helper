@@ -15,6 +15,7 @@
   <ItemGroup>
     <Compile Include="../../Source/ColonyCouncil/Apparel/ApparelRateMath.cs" Link="Linked/ApparelRateMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Apparel/ApparelTagMath.cs" Link="Linked/ApparelTagMath.cs" />
+    <Compile Include="../../Source/ColonyCouncil/Apparel/ApparelReadMath.cs" Link="Linked/ApparelReadMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Weapons/WeaponRateMath.cs" Link="Linked/WeaponRateMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Weapons/WeaponTagMath.cs" Link="Linked/WeaponTagMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/UI/SkinMath.cs" Link="Linked/SkinMath.cs" />

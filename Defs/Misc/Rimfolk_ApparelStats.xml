@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- The apparel rating's own heading on the game's info card (Source/ColonyCouncil/Apparel/ApparelInfoCard.cs): sorted
+       first, above the game's basics (1), so a piece's card opens with its rating, tags and line in plain words, as a
+       weapon's does. -->
+  <StatCategoryDef>
+    <defName>Rimfolk_ApparelRating</defName>
+    <label>apparel rating (Rimfolk)</label>
+    <displayOrder>0</displayOrder>
+  </StatCategoryDef>
+
+</Defs>

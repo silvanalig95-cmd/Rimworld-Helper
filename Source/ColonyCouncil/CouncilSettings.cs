@@ -453,6 +453,12 @@ namespace ColonyCouncil
         public bool weaponNoBetterLine = true;
         /// <summary>A colonist whose kit has an empty slot (no ranged or melee weapon, a free off hand) goes and takes a fitting weapon from storage in their free time (Weapons/WeaponKitSelf.cs); off, it is only suggested and asked for.</summary>
         public bool weaponKitSelf = true;
+        /// <summary>Apparel ratings (Apparel/): the rating, its tags and line at the top of a piece's info card, Rimfolk's apparel card, the badge on the gear tab.</summary>
+        public bool apparelRatings = true;
+        /// <summary>The rating's badge (a click opens Rimfolk's apparel card) beside each piece of apparel on the gear tab, the game's and Nice Inventory Tab's (Apparel/ApparelGearTab.cs).</summary>
+        public bool apparelGearTab = true;
+        /// <summary>Opening the info for a piece of apparel (the "i" button anywhere, the inspect pane) opens Rimfolk's apparel card instead of the game's (Apparel/ApparelCardFirst.cs).</summary>
+        public bool apparelCardFirst = true;
         public BarBadgeSize barBadgeSize = BarBadgeSize.Normal;
         public BarBadgeCorner barBadgeCorner = BarBadgeCorner.TopRight;
         public int barBadgeMax = 2;
@@ -990,6 +996,9 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref weaponAsks, "weaponAsks", true);
             Scribe_Values.Look(ref weaponNoBetterLine, "weaponNoBetterLine", true);
             Scribe_Values.Look(ref weaponKitSelf, "weaponKitSelf", true);
+            Scribe_Values.Look(ref apparelRatings, "apparelRatings", true);
+            Scribe_Values.Look(ref apparelGearTab, "apparelGearTab", true);
+            Scribe_Values.Look(ref apparelCardFirst, "apparelCardFirst", true);
             Scribe_Values.Look(ref barBadgeSize, "barBadgeSize", BarBadgeSize.Normal);
             Scribe_Values.Look(ref barBadgeCorner, "barBadgeCorner", BarBadgeCorner.TopRight);
             Scribe_Values.Look(ref barBadgeMax, "barBadgeMax", 2);

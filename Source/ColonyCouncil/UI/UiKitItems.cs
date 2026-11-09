@@ -7,8 +7,8 @@ using Verse;
 namespace ColonyCouncil
 {
     /// <summary>
-    /// Things drawn as themselves: an item's own picture in a framed tile (the weapon card's header, the weapons it lists, the
-    /// suggestions; the apparel card to come), framed in its quality's colour.
+    /// Things drawn as themselves: an item's own picture in a framed tile (the weapon and apparel cards' heads, the pieces
+    /// they list, the suggestions), framed in its quality's colour.
     /// </summary>
     public static partial class UiKit
     {

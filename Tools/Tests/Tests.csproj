@@ -63,6 +63,8 @@
     <Compile Include="../../Source/ColonyCouncil/UI/ItemPortraitMath.cs" Link="ItemPortraitMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Apparel/ApparelRateMath.cs" Link="ApparelRateMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Apparel/ApparelTagMath.cs" Link="ApparelTagMath.cs" />
+    <Compile Include="../../Source/ColonyCouncil/Apparel/ApparelReadMath.cs" Link="ApparelReadMath.cs" />
+    <Compile Include="../../Source/ColonyCouncil/Apparel/ApparelForMath.cs" Link="ApparelForMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/UI/Cards/PreviewMath.cs" Link="PreviewMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/UI/InboxMath.cs" Link="InboxMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/UI/FollowMath.cs" Link="FollowMath.cs" />

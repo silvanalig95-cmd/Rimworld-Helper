@@ -12,6 +12,74 @@ tree at once, alongside whatever runs. Each piece is merged as its own release, 
 
 ## State (5 November 2026)
 
+- Not released: no version, no What's new round, About.xml and CHANGELOG untouched. Armour and apparel you can judge at a
+  glance, step 2: the rating in the game, Rimfolk's apparel card first, and the badge on the gear tab (9 November 2026,
+  `docs/design/apparel.md` point 5; step 3, recommendations, not started). The player's words with a screenshot of the
+  game's plain card for a "Bluefur parka (awful)": "i don't see the gear cards in game by default, is this implemented at
+  all?" DESIGN.md "Armour and apparel you can judge at a glance" has all of it; README "Judging armour and clothes" and the
+  mod list; the Almanac's new "judging armour and clothes" (Defending, new keywords only).
+  - One reading for the review and the game: `Apparel/ApparelReadMath.cs` (pure: `ApparelDefFacts`, `ApparelRead.Facts`,
+    `ApparelRead.Full`, `ApparelReport`); the review's `Inputs.Facts` moved into it, `Tools/ApparelReview/Inputs.cs` is now
+    only the JSON to facts and `Program.cs` rates through `ApparelRead.Full`. Regenerating the review gives
+    `docs/apparel/apparel.json` and `README.md` byte for byte (checked with `cmp`). The extractor's usual and common stuffs
+    are ported (`ApparelRead.UsualStuff`, `OtherStuffsFor`).
+  - The live reading (`Apparel/ApparelLive.cs`): the def as loaded (comps and extensions by reflection under the review's
+    names, a plain `CompProperties` by its comp class; verbs, projectiles, abilities; the titles', memes' and roles' apparel
+    rules read once by field name; made, worn by a faction); equipped offsets as the game gives them
+    (`StatWorker.StatOffsetFromGear`, a kind's by the stat's parts); quality's factors on armour and insulation as the game's
+    own stat over the rating's base-and-stuff sum (`StatRequest.For`, from a stat not at its 200% cap). The piece in hand:
+    the game's apparel-damaged mood below half and below a fifth of its hit points, and the dead wearer's, with the game's
+    own moods (`ThoughtDefOf`), counted in the mind at 0.015 a point (`ApparelRateMath.WorthPerMood`, new; the review is
+    unchanged since a kind has none); A RimWorld of Magic's enchantment as rolled on it (the comp's own fields over its
+    props'); biocoding named. Kept by def, stuff and quality; per piece only when it differs from its kind (an hour, or
+    until its wear stage changes). `ApparelLive.Reset` with a new game.
+  - For a colonist (`Apparel/ApparelForMath.cs`, pure): steps that add up: how they fight (a gun in hand a shooter, a blade
+    a melee fighter, else a brawler or their skills four apart; incapable of violence: lasting only), their body (zones whose
+    groups they lost left out), their weather (outside now and the season's three twelfths less and more the sun's 7 °C;
+    warmth and cooling count by what the season asks beyond what they keep wearing, the asked degrees at the role's weight
+    and one more, the spare ones at a fifth), the moods it adds (the damaged mood is one thought at its worst stage; the
+    other gender's). What it would replace: `ApparelUtility.CanWearTogether`. What stops them: `EquipmentUtility.CanEquip`,
+    the age filter, `HasPartsToWear`.
+  - The info card (`ApparelInfoCard.cs`, category `Rimfolk_ApparelRating` in `Defs/Misc/Rimfolk_ApparelStats.xml`, order 0):
+    rating and whom for, shooter and melee where they differ, sub-ratings, line, tags, effects, hit points left with the
+    thresholds and days of wear, the wearer's rating and steps; "Rimfolk's apparel card" at the foot.
+  - Rimfolk's apparel card (`ApparelCardWindow.cs`, frame key "ApparelCard" 440 by 460) on a new base,
+    `UI/ItemCardWindow.cs` (the head with the picture, badge, band, rated-for, "All the game's stats" and the line; meters,
+    situation bars, effects, rows, the colonist's heading and picking). The weapon card is untouched and can move onto it
+    later. Sections: tags, sub-ratings, protection by body part (armour meters, a body figure from `ApparelUi.DrawFigure`,
+    each region's share of shots and cover), warmth against the weather (a strip: season shaded, comfort framed, now
+    marked, and a verdict), the piece as it is (hit points with the game's two marks and stage labels, days of wear, from
+    the dead, biocoded), other materials, situations, effects, numbers, for a colonist (rating, steps, how they fight, body,
+    gender, what it would take the place of).
+  - Opening first: `Patch_WeaponCardFirst.Prefix` now returns `!WeaponCardFirst.Swapped(card) && !ApparelCardFirst.Swapped(card)`
+    (the one change in the weapon files); `ApparelCardFirst` has its own let-through and shares `insideGameCard`.
+  - The badge (`ApparelGearTab.cs`): the game's `DrawThingRow` (its own patch class); Nice Inventory Tab by name from the
+    decompile (`nit-decomp-a478`): `EquippedItem.Draw` (legacy apparel box, belts and shields; badge on the picture, button
+    at its corner, as weapons), `InventoryItem.Draw` (apparel carried), and new `ApparelGridSlot.Draw` (the alternative
+    layout's grid: badge alone at the top left, moved under the slot's warning mark when its private `problems` is set,
+    since its stars hold the top's middle and its lock and drop buttons the right corners); clicks caught in prefixes.
+  - Settings (How you're told, Apparel; each on): `apparelRatings` "Apparel ratings" (needs deep hooks), `apparelGearTab`
+    "Ratings on the gear tab", `apparelCardFirst` "Open Rimfolk's apparel card first". No saved data, no Sched slot. Keys in
+    `Languages/English/Keyed/Rimfolk_Apparel.xml`.
+  - Tests: `Tools/Tests/ApparelLiveTests.cs` (681 checks): thirteen base game pieces built as the live reader builds them
+    equal `apparel.json` in every field; quality, the cap, wear moods, a dead wearer, biocoding; the colonist's rating and
+    its steps; regions; the seams and every key the code names or makes from a word.
+  - Not run here (none of it could be): the live reader on real defs (comps' reflected fields against the review's names
+    for modded pieces, the abilities' and rules' field names, quality factors from the game's stats, StatOffsetFromGear on a
+    kind's request), the season's range from `AverageTemperatureAtTileForTwelfth` and a caravan's tile, the card's layout at
+    its least width (the body figure beside the region list, the strip's labels), the badge on Nice Inventory Tab's rows,
+    cells and apparel slots at the player's widths (its stars, warning mark and lock), the click caught before
+    `ApparelGridSlot`'s own, the swap through the shared hook and "All the game's stats" coming back, the game's stage
+    labels for the damaged mood, how long the first card of a modded piece takes to read.
+  - Try in the game: 1. Click the "i" on a parka on the gear tab: Rimfolk's apparel card opens, its picture large, "Cold-weather
+    gear"; "All the game's stats" opens the game's card, its button comes back. 2. The parka's card in summer and in
+    winter (or another map): warmth against the weather, the strip and its verdict; the colonist's rating moves with the
+    season ("their weather"). 3. A shield belt chosen for a shooter: 1.0, "as a shooter -6.6"; for a melee fighter 7.6. 4.
+    A worn duster below half its hit points: the mood among its effects, the bar's marks; a colonist already in worn clothes:
+    "already in worn clothes". 5. Nice Inventory Tab, both layouts: the badge on apparel rows, on the apparel slots' top
+    left (below a warning mark), on carried pieces; a click opens the card. 6. Settings, How you're told, Apparel: each of
+    the three off in turn.
+
 - 0.189.0, a full kit for every colonist (9 November 2026), the player's words with a picture of Avila's gear in Nice Inventory Tab (an autopistol and a belt, no melee weapon,
   "No better weapon in storage"): "the mod should also recognize if a pawn has no melee/ranged sidearm equipped and then
   offer one from the inventory. the pawns should always have a ranged and melee weapon, assuming they have no
