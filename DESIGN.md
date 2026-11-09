@@ -10498,6 +10498,34 @@ above), and the classic drawing described here is the player's backup behind "Cl
   prefix on `ResourceReadout.ResourceReadoutOnGUI` returning false; the setting "Hide the game's own resource list
   while the Inventory panel shows", on by default): only the drawing, never the counting; nothing hidden with the
   panels hidden, on the world map, with the game hooks off, or if the patch can't be applied or throws.
+- **The weapons and apparel in storage, and the filter** (the player, 9 November 2026, with a picture of the panel: "could
+  my weapons also be listed in the inventory? at the bottom perhaps", "i guess also apparell while we're at it, perhaps i
+  can then have filters for those as well", and of wood's 3.3: "for wood the rating doesn't need to be in the inventory
+  list (but still shown else where)", "only show ratings for actual weapons & apparell, not like ressources,
+  manufactured etc. that could be wealded as a weapon"). The game's counter leaves weapons and apparel out
+  (`ThingDef.CountAsResource`: `resourceReadoutPriority` Uncounted), so the panel counts them itself as the game counts
+  its resources: stacks in storage (`IsInAnyStorage`), not under fog, read from the map's own lists
+  (`ThingRequestGroup.Weapon` and `.Apparel`), so it stays quick however much is stored (`HudInventory.StoredKinds`). A
+  weapon is one held in the hand (`equipmentType` Primary) that the game doesn't count; apparel anything worn it doesn't
+  count; never a counted resource twice. They sit below the stock whatever the order (`StockEntry.tail`: the stock, the
+  weapons, the apparel; pinned ones still at the top), ranged before melee and armour before utility before clothes,
+  then by name (`HudInventoryMath.KindRank`); an apparel's kind by the apparel rating's role (body armour, a helmet or a
+  shield is armour, utility its own), else by the game's categories (`HudInventoryMath.ApparelKind`), kept for the
+  session. In the grouped style each is a group of its own with the game's label and icon. **The rating's badge** (the
+  look): the best stored one's rating, a weapon's as before (`WeaponLive.Of`), apparel's by its stuff and quality
+  (`ApparelLive.Of(def, stuff, quality)`, the pieces at half their hit points or more first); only on real weapons and
+  apparel (`HudInventory.BadgeFor`: a weapon the game doesn't count, or one in its weapons category), so wood or a
+  manufactured good a mod lets be swung shows none in the panel and keeps its rating on its cards. Apparel's tooltip
+  counts the pieces worn by the dead and those under half their hit points. **The filter** (a row under the search box,
+  the panel's part "filter", the choice kept with the panel as `filter`): everything, the stock, weapons (ranged or
+  melee), apparel (armour, utility or clothes), from a menu with each family's kinds under it
+  (`HudInventoryMath.Filters`, `FilterShows`): "everything" holds the weapons and apparel where their parts are on, a
+  filter chosen shows its own even with its part off; with the row hidden, or in the essentials, everything shows. The
+  change since yesterday: the snapshots count the weapons and apparel too, each with a mark (`~weapons`, `~apparel`),
+  and a kind's change shows only from a snapshot that has its mark (none from before this). Pinned weapons and apparel
+  show in the essentials too. Tests in `HudLayerTests` (the order, the filters, the kinds, the marks) and `HudLookTests`
+  (the seams). Not verified without the game: the filter row's look in both looks at the narrow classic width; how
+  long the first gathering takes with many apparel kinds (each kind's role read once).
 - **The game's tooltip under the card** (`Patch_HudGameTooltip`, a postfix on `Pawn.GetTooltip`, which the game calls
   from `TooltipGiverList.DispenseAllThingTooltips` only for the pawn under the mouse, on repaint): while the card was
   drawn for that same pawn this frame or the last (`HudHoverCard.ShowingFor`) and "Hide the game's tooltip for that

@@ -23,6 +23,10 @@ namespace ColonyCouncil
     /// while this panel is on). Hover an item for its name, description and where it's stored; click it to go to its
     /// stacks, one after another with each click, as the game's alerts do.
     ///
+    /// The colony's weapons in storage too, which the game's counter leaves out, kept at the bottom whatever the order
+    /// (the player: "could my weapons also be listed in the inventory? at the bottom perhaps"; a part of the panel, on by
+    /// default), each with the best stored one's rating in Rimfolk's look.
+    ///
     /// While it shows, the game's own resource list steps aside (<see cref="Patch_HudGameResources"/>, a setting on by
     /// default): only its drawing; the counts are the game's either way. Gathered at most twice a second.
     /// </summary>
@@ -31,8 +35,12 @@ namespace ColonyCouncil
         public const string StyleClassic = "classic", StyleGrouped = "grouped", StyleGrid = "grid", StyleEssentials = "essentials";
         public static readonly string[] Styles = { StyleClassic, StyleGrouped, StyleGrid, StyleEssentials };
 
-        public const string PartChange = "change", PartZero = "zero", PartSearch = "search", PartLabels = "labels";
-        public static readonly string[] Parts = { PartChange, PartLabels, PartZero, PartSearch };
+        public const string PartChange = "change", PartZero = "zero", PartSearch = "search", PartLabels = "labels", PartWeapons = "weapons",
+            PartApparel = "apparel", PartFilter = "filter";
+        public static readonly string[] Parts = { PartChange, PartLabels, PartZero, PartSearch, PartFilter, PartWeapons, PartApparel };
+
+        /// <summary>The weapons' and apparel's groups in the grouped style (keys of their own, so folding one never folds a category of the game's).</summary>
+        private const string WeaponsKey = "rimfolk-weapons", ApparelKey = "rimfolk-apparel";
 
         /// <summary>The inventory's orders, in its menus.</summary>
         public static readonly HudSort[] Sorts = { HudSort.Category, HudSort.Name, HudSort.Count, HudSort.Change };
@@ -72,6 +80,9 @@ namespace ColonyCouncil
         private readonly List<StockEntry> entries = new List<StockEntry>();
         private readonly Dictionary<string, ThingDef> defs = new Dictionary<string, ThingDef>();
         private readonly Dictionary<string, int> cycle = new Dictionary<string, int>();
+        private readonly Dictionary<ThingDef, int> weaponCounts = new Dictionary<ThingDef, int>(), apparelCounts = new Dictionary<ThingDef, int>();
+        private string filterText;
+        private static readonly Dictionary<ThingDef, string> apparelKinds = new Dictionary<ThingDef, string>();
         private readonly QuickSearchWidget search = new QuickSearchWidget();
         private bool searchFocused, unfocusSearch;
         private int hidden;
@@ -154,12 +165,16 @@ namespace ColonyCouncil
             var yesterday = st.Shows(PartChange) ? HudComponent.Instance?.Yesterday(map, hour) : null;
             bool zeros = st.Shows(PartZero);
             bool searching = st.Shows(PartSearch) && search.filter.Active;
+            string filter = Filter;
+            filterText = FilterLabel(filter);
             int order = 0;
+            bool stock = HudInventoryMath.FilterShows(filter, HudInventoryMath.TailStock, null, true);
             foreach (var kv in map.resourceCounter.AllCountedAmounts)
             {
                 var def = kv.Key;
                 if (def == null) continue;
                 order++;
+                if (!stock) continue;
                 int count = kv.Value;
                 bool pinned = st.pins.Contains(def.defName);
                 var e = new StockEntry
@@ -174,6 +189,14 @@ namespace ColonyCouncil
                 if (searching && !search.filter.Matches(def)) continue;
                 defs[def.defName] = def;
                 entries.Add(e);
+            }
+            // The weapons and apparel in storage, which the game's counter leaves out, below the stock.
+            StoredKinds(map, HudInventoryMath.TailWeapons, weaponCounts);
+            StoredKinds(map, HudInventoryMath.TailApparel, apparelCounts);
+            if (Style != StyleEssentials)
+            {
+                Kept(st, HudInventoryMath.TailWeapons, filter, yesterday, zeros, searching, ref order);
+                Kept(st, HudInventoryMath.TailApparel, filter, yesterday, zeros, searching, ref order);
             }
             HudInventoryMath.Sort(entries, st.sort);
             if (Style == StyleEssentials)
@@ -196,8 +219,176 @@ namespace ColonyCouncil
             }
             if (Style == StyleGrouped) GroupRows(st);
             if (hidden > 0) moreText = "CC_Pnl_AndMore".Translate(hidden).Resolve();
-            if (shown.Count == 0 && searching) emptyText = HudKit.T("CC_Pnl_I_NoMatch");
+            if (shown.Count == 0 && (searching || filter != HudInventoryMath.FilterAll)) emptyText = HudKit.T("CC_Pnl_I_NoMatch");
             if (Refined) RefreshLook();
+        }
+
+        /// <summary>
+        /// A kind the inventory lists among the weapons: a weapon held in the hand that the game's counter leaves out (so
+        /// never wood or another resource a mod lets be swung, which the game counts with the resources).
+        /// </summary>
+        public static bool StoredWeaponKind(ThingDef def) =>
+            def != null && def.IsWeapon && def.equipmentType == EquipmentType.Primary && !def.CountAsResource && !def.destroyOnDrop && !def.IsCorpse;
+
+        /// <summary>A kind the inventory lists among the apparel: anything worn that the game's counter leaves out.</summary>
+        public static bool StoredApparelKind(ThingDef def) => def != null && def.IsApparel && !def.CountAsResource && !def.destroyOnDrop && !def.IsCorpse;
+
+        private static bool KindOfTail(ThingDef def, int tail) => tail == HudInventoryMath.TailApparel ? StoredApparelKind(def) : StoredWeaponKind(def);
+
+        /// <summary>
+        /// Whether the inventory shows a weapon rating's badge on this kind: a weapon first, not a resource a mod lets be
+        /// swung (the player: "for wood the rating doesn't need to be in the inventory list"; its rating stays on its cards).
+        /// </summary>
+        public static bool BadgeFor(ThingDef def) =>
+            def != null && def.IsWeapon && (!def.CountAsResource || (ThingCategoryDefOf.Weapons?.ContainedInThisOrDescendant(def) ?? false));
+
+        /// <summary>
+        /// The weapons (or apparel) in storage on a map by kind, counted as the game counts its resources: stacks in a
+        /// stockpile or on a shelf, not under fog. Read from the map's own list of weapons or apparel, so it stays quick
+        /// however much else is stored.
+        /// </summary>
+        public static void StoredKinds(Map map, int tail, Dictionary<ThingDef, int> into)
+        {
+            into.Clear();
+            if (map?.listerThings == null) return;
+            var group = tail == HudInventoryMath.TailApparel ? ThingRequestGroup.Apparel : ThingRequestGroup.Weapon;
+            foreach (var t in map.listerThings.ThingsInGroup(group))
+            {
+                if (t == null || !t.Spawned || !KindOfTail(t.def, tail) || !t.IsInAnyStorage() || t.Position.Fogged(map)) continue;
+                into.TryGetValue(t.def, out int n);
+                into[t.def] = n + t.stackCount;
+            }
+        }
+
+        /// <summary>A kind's filter: ranged or melee for a weapon; armour, utility or clothes for apparel (kept for the session).</summary>
+        public static string KindFilter(ThingDef def, int tail)
+        {
+            if (tail != HudInventoryMath.TailApparel) return def.IsRangedWeapon ? HudInventoryMath.FilterRanged : HudInventoryMath.FilterMelee;
+            if (apparelKinds.TryGetValue(def, out var k)) return k;
+            string role = null;
+            try
+            {
+                role = ApparelLive.On ? ApparelLive.Of(def, null)?.Rating?.Role : null;
+            }
+            catch (Exception e)
+            {
+                CouncilLog.ErrorOnce("inventory: an apparel's role", e);
+            }
+            bool Under(string cat) => DefDatabase<ThingCategoryDef>.GetNamedSilentFail(cat)?.ContainedInThisOrDescendant(def) ?? false;
+            k = HudInventoryMath.ApparelKind(role, Under("ApparelArmor") || Under("ArmorHeadgear"), Under("ApparelUtility"));
+            apparelKinds[def] = k;
+            return k;
+        }
+
+        /// <summary>
+        /// The weapons or apparel in storage as items of the list, at its bottom (the weapons first, then the apparel):
+        /// ranged before melee, armour before utility before clothes, then by name; as the filter and the parts allow.
+        /// </summary>
+        private void Kept(HudPanelState st, int tail, string filter, Dictionary<string, int> yesterday, bool zeros, bool searching, ref int order)
+        {
+            var counts = tail == HudInventoryMath.TailApparel ? apparelCounts : weaponCounts;
+            bool partOn = st.Shows(tail == HudInventoryMath.TailApparel ? PartApparel : PartWeapons);
+            // Yesterday's change only where yesterday's snapshot counted these (none before they were added).
+            bool known = yesterday != null && yesterday.ContainsKey(HudInventoryMath.Mark(tail));
+            var kinds = new HashSet<ThingDef>(counts.Keys);
+            foreach (var pin in st.pins)
+            {
+                var d = DefDatabase<ThingDef>.GetNamedSilentFail(pin);
+                if (KindOfTail(d, tail)) kinds.Add(d);
+            }
+            if (zeros && known)
+                foreach (var kv in yesterday)
+                {
+                    if (kv.Value <= 0) continue;
+                    var d = DefDatabase<ThingDef>.GetNamedSilentFail(kv.Key);
+                    if (KindOfTail(d, tail)) kinds.Add(d);
+                }
+            foreach (var def in kinds.Select(d => (d, kind: KindFilter(d, tail))).OrderBy(x => HudInventoryMath.KindRank(x.kind))
+                         .ThenBy(x => x.d.label ?? x.d.defName, StringComparer.OrdinalIgnoreCase))
+            {
+                if (!HudInventoryMath.FilterShows(filter, tail, def.kind, partOn)) continue;
+                counts.TryGetValue(def.d, out int count);
+                bool pinned = st.pins.Contains(def.d.defName);
+                var e = new StockEntry
+                {
+                    key = def.d.defName, label = def.d.label ?? def.d.defName, count = count, pinned = pinned, order = ++order, group = Roots.Count + tail,
+                    tail = tail, kind = def.kind, hasChange = known
+                };
+                if (e.hasChange) e.change = HudInventoryMath.Change(count, yesterday, def.d.defName);
+                if (count <= 0 && !pinned && !(zeros && e.hasChange && e.change != 0)) continue;
+                if (searching && !search.filter.Matches(def.d)) continue;
+                defs[def.d.defName] = def.d;
+                entries.Add(e);
+            }
+        }
+
+        // ---------------- The filter ----------------
+
+        /// <summary>The filter in use: the panel's own, while its row shows (else everything) and never in the essentials.</summary>
+        private string Filter
+        {
+            get
+            {
+                var st = St;
+                if (!st.Shows(PartFilter) || Style == StyleEssentials) return HudInventoryMath.FilterAll;
+                string f = st.filter ?? "";
+                return Array.IndexOf(HudInventoryMath.Filters, f) >= 0 ? f : HudInventoryMath.FilterAll;
+            }
+        }
+
+        private static string FilterLabel(string filter) => HudKit.T("CC_Pnl_I_Filter_" + (string.IsNullOrEmpty(filter) ? "all" : filter));
+
+        private float FilterH(float s) => St.Shows(PartFilter) && Style != StyleEssentials ? Mathf.Round(22f * s) : 0f;
+
+        /// <summary>The search box and the filter row above the items.</summary>
+        private float TopH(float s) => SearchH(s) + FilterH(s);
+
+        /// <summary>The filter's row: what shows, and a click for the menu of filters (each family with its kinds under it).</summary>
+        private void FilterRow(Rect r, float s, bool look)
+        {
+            if (FilterH(s) <= 0f) return;
+            float pad = Mathf.Round(4f * s);
+            var fr = new Rect(r.x + pad, r.y + pad + SearchH(s), r.width - pad * 2f, Mathf.Round(20f * s));
+            bool over = Over(fr);
+            if (Event.current.type == EventType.Repaint)
+            {
+                if (look) UiKit.RoundBox(fr, over ? UiKit.CardHover : UiKit.MeterBack, UiKit.Edge, SkinMath.RadiusSmall);
+                else Widgets.DrawBoxSolid(fr, over ? UiKit.CardHover : new Color(0f, 0f, 0f, 0.25f));
+                float a = Mathf.Round(9f * s);
+                var arrow = TexButton.Reveal;
+                if (arrow != null)
+                {
+                    GUI.color = UiKit.Faint;
+                    GUI.DrawTexture(new Rect(fr.xMax - a - Mathf.Round(5f * s), fr.y + (fr.height - a) / 2f, a, a), arrow);
+                    GUI.color = Color.white;
+                }
+            }
+            bool narrowed = Filter != HudInventoryMath.FilterAll;
+            var text = new Rect(fr.x + Mathf.Round(6f * s), fr.y, fr.width - Mathf.Round(20f * s), fr.height);
+            if (look) HudLook.Label(text, filterText ?? FilterLabel(Filter), narrowed ? UiKit.Gold : UiKit.Ink, HudKit.Minor(s));
+            else HudKit.Label(text, filterText ?? FilterLabel(Filter), narrowed ? UiKit.Gold : UiKit.Faint, HudKit.Minor(s));
+            Tip(fr, HudKit.T("CC_Pnl_I_FilterTip"));
+            if (!Clicked(fr)) return;
+            if (Event.current.button == 1)
+            {
+                OpenMenu();
+                return;
+            }
+            var st = St;
+            var options = new List<FloatMenuOption>();
+            foreach (var f in HudInventoryMath.Filters)
+            {
+                string fi = f;
+                bool sub = HudInventoryMath.Family(f) != f;
+                options.Add(new FloatMenuOption((sub ? "    " : "") + FilterLabel(f), () =>
+                {
+                    st.filter = fi;
+                    MarkDirty();
+                    HudLayout.Save();
+                }, Filter == f ? Widgets.CheckboxOnTex : Widgets.CheckboxOffTex, Color.white));
+            }
+            Find.WindowStack.Add(new FloatMenu(options));
+            SoundDefOf.Click.PlayOneShotOnCamera();
         }
 
         /// <summary>The grouped style: a pinned group, then the game's categories in its order, each folded or not.</summary>
@@ -213,7 +404,23 @@ namespace ColonyCouncil
                     pinned ??= new Group { key = "pinned", label = HudKit.T("CC_Pnl_I_Pinned"), total = -1 };
                     g = pinned;
                 }
-                else if (!byGroup.TryGetValue(it.e.group, out g))
+                else if (!byGroup.TryGetValue(it.e.group, out g) && it.e.tail != HudInventoryMath.TailStock)
+                {
+                    // The weapons or apparel in storage, at the bottom: the game's own label and icon, their total what the filter lets show.
+                    bool apparel = it.e.tail == HudInventoryMath.TailApparel;
+                    var wc = apparel ? ThingCategoryDefOf.Apparel : ThingCategoryDefOf.Weapons;
+                    int total = 0;
+                    foreach (var e in entries)
+                        if (e.tail == it.e.tail)
+                            total += e.count;
+                    g = new Group
+                    {
+                        key = apparel ? ApparelKey : WeaponsKey, label = wc != null ? (string)wc.LabelCap : HudKit.T(apparel ? "CC_Pnl_I_Apparel" : "CC_Pnl_I_Weapons"),
+                        icon = wc?.icon, total = total
+                    };
+                    byGroup[it.e.group] = g;
+                }
+                else if (g == null)
                 {
                     var cat = it.e.group < Roots.Count ? Roots[it.e.group] : null;
                     g = new Group
@@ -255,8 +462,13 @@ namespace ColonyCouncil
             void One(ThingDef def)
             {
                 if (def == null || shown.Any(i => i.def == def && i.cat == null)) return;
-                // Only what the game counts (asking the counter for anything else logs an error).
-                if (!rc.AllCountedAmounts.TryGetValue(def, out int count)) return;
+                // Only what the game counts (asking the counter for anything else logs an error), or a pinned weapon or apparel in storage.
+                if (!rc.AllCountedAmounts.TryGetValue(def, out int count))
+                {
+                    if (StoredWeaponKind(def)) weaponCounts.TryGetValue(def, out count);
+                    else if (StoredApparelKind(def)) apparelCounts.TryGetValue(def, out count);
+                    else return;
+                }
                 bool pinned = st.pins.Contains(def.defName);
                 if (count <= 0 && !pinned && !zeros) return;
                 var e = new StockEntry { key = def.defName, label = def.label, count = count, pinned = pinned, hasChange = yesterday != null };
@@ -280,6 +492,12 @@ namespace ColonyCouncil
             foreach (var e in entries)
                 if (e.pinned && defs.TryGetValue(e.key, out var d))
                     One(d);
+            // Pinned weapons and apparel, which the essentials gather apart from the list.
+            foreach (var pin in st.pins)
+            {
+                var pd = DefDatabase<ThingDef>.GetNamedSilentFail(pin);
+                if (StoredWeaponKind(pd) || StoredApparelKind(pd)) One(pd);
+            }
             if (Refined) RefreshLook();
         }
 
@@ -310,7 +528,7 @@ namespace ColonyCouncil
         {
             // The same size in Rimfolk's look (its title row is the panel's own).
             float pad = Mathf.Round(4f * s);
-            float top = SearchH(s);
+            float top = TopH(s);
             float more = moreText != null ? Mathf.Round(16f * s) : 0f;
             float w = Width(s);
             if (shown.Count == 0) return new Vector2(Mathf.Max(w, Mathf.Round(150f * s)), pad * 2f + top + Mathf.Round(20f * s));
@@ -341,7 +559,8 @@ namespace ColonyCouncil
                 return;
             }
             float pad = Mathf.Round(4f * s);
-            float y = r.y + pad + SearchH(s);
+            float y = r.y + pad + TopH(s);
+            FilterRow(r, s, false);
             // The search box itself is the window's (it takes the keyboard); painted here as a quiet copy, so it's there
             // even while the window steps aside for the game's interface.
             if (Painting && St.Shows(PartSearch))
@@ -608,6 +827,17 @@ namespace ColonyCouncil
                     where[place] = n + 1;
                 }
                 sb.Append("\n\n").Append("CC_Pnl_I_Stacks".Translate(stacks.Count).Resolve());
+                if (it.cat == null && it.def != null && it.def.IsApparel)
+                {
+                    // What the apparel is worth wearing: pieces worn by the dead (a bad thought) and pieces badly worn (under half).
+                    int dead = 0, worn = 0;
+                    foreach (var t in stacks)
+                    {
+                        if (t is Apparel ap && ap.WornByCorpse) dead++;
+                        if (t.def.useHitPoints && t.MaxHitPoints > 0 && t.HitPoints < t.MaxHitPoints / 2) worn++;
+                    }
+                    if (dead > 0 || worn > 0) sb.Append("\n").Append("CC_Pnl_I_ApparelState".Translate(dead, worn).Resolve().Colorize(ColoredText.SubtleGrayColor));
+                }
                 foreach (var kv in where.OrderByDescending(k => k.Value).Take(6)) sb.Append("\n  ").Append(kv.Key).Append(": ").Append(kv.Value);
                 if (where.Count > 6) sb.Append("\n  ...");
             }

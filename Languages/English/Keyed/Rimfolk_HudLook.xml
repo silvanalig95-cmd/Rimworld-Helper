@@ -20,5 +20,6 @@
 
   <!-- The inventory: a weapon's rating -->
   <CC_Pnl_Look_RatingTip>As a weapon, the best of these in storage rates {RATING} (Rimfolk's weapon rating; its card says why).</CC_Pnl_Look_RatingTip>
+  <CC_Pnl_Look_ApparelRatingTip>The best of these in storage rates {RATING} as apparel (Rimfolk's apparel rating; its card says why).</CC_Pnl_Look_ApparelRatingTip>
 
 </LanguageData>

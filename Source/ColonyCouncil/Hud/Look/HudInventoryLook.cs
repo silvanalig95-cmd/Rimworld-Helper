@@ -9,8 +9,8 @@ namespace ColonyCouncil
 {
     /// <summary>
     /// The inventory in Rimfolk's own look, at the classic's sizes: the game's icon of each item on whole pixels, its name,
-    /// its count, the change since yesterday as a small arrow with the number, and for a weapon the colony keeps the weapon
-    /// rating's badge (the best one in storage, in its band's colour as the weapon card draws it); the essentials' meals with
+    /// its count, the change since yesterday as a small arrow with the number, and for a weapon the colony keeps (never wood
+    /// or another resource a mod lets be swung: <see cref="BadgeFor"/>) or a piece of apparel the rating's badge (the best one in storage, in its band's colour as the weapon card draws it); the essentials' meals with
     /// their days of food as a bar against the warning line. The grouped style's headers as quiet bands; the grid's tiles with
     /// the change in a corner and the rating along the foot. Every word, count and rating made when the panel gathers; the
     /// ratings read again every few seconds at most (Weapons/WeaponLive.cs keeps them).
@@ -50,32 +50,49 @@ namespace ColonyCouncil
             foreach (var g in groups) g.totalText = CountText(g.total >= 0 ? g.total : g.items.Count, false);
         }
 
-        /// <summary>A weapon's rating: the best one of the kind lying in storage, as the weapon rating reads it (kept a few seconds).</summary>
+        /// <summary>
+        /// A weapon's or apparel's rating: the best one of the kind lying in storage, as the weapon or apparel rating reads
+        /// it (kept a few seconds). Apparel by its stuff and quality, the pieces at half their hit points or more first.
+        /// </summary>
         private void Rating(Item it, float now)
         {
             it.rating = -1f;
             var def = it.def;
-            if (it.cat != null || def == null || !def.IsWeapon || !WeaponLive.On || map == null) return;
+            if (it.cat != null || map == null || def == null) return;
+            bool weapon = BadgeFor(def) && WeaponLive.On;
+            bool apparel = !weapon && StoredApparelKind(def) && ApparelLive.On && ApparelLive.Rateable(def);
+            if (!weapon && !apparel) return;
             if (!ratings.TryGetValue(def, out var kept) || now - kept.at > 5f || now < kept.at)
             {
-                float best = -1f;
+                float best = -1f, bestWorn = -1f;
                 try
                 {
-                    if (WeaponLive.Rateable(def))
+                    if (weapon && WeaponLive.Rateable(def))
                         foreach (var t in map.listerThings.ThingsOfDef(def))
                         {
                             if (t == null || !t.Spawned || !t.IsInAnyStorage()) continue;
                             var r = WeaponLive.Of(t);
                             if (r?.Rating != null && r.Rating.Overall > best) best = r.Rating.Overall;
                         }
+                    if (apparel)
+                        foreach (var t in map.listerThings.ThingsOfDef(def))
+                        {
+                            if (t == null || !t.Spawned || !t.IsInAnyStorage()) continue;
+                            t.TryGetQuality(out var q);
+                            float o = ApparelLive.Of(def, t.Stuff, q)?.Rating?.Overall ?? -1f;
+                            bool fine = !t.def.useHitPoints || t.MaxHitPoints <= 0 || t.HitPoints >= t.MaxHitPoints / 2;
+                            if (fine && o > best) best = o;
+                            if (!fine && o > bestWorn) bestWorn = o;
+                        }
+                    if (best < 0f) best = bestWorn;
                 }
                 catch (Exception e)
                 {
                     best = -1f;
-                    CouncilLog.ErrorOnce("inventory: a weapon's rating", e);
+                    CouncilLog.ErrorOnce("inventory: a weapon's or apparel's rating", e);
                 }
                 string text = best >= 0f ? WeaponForMath.RatingText(best) : null;
-                string tip = text != null ? "CC_Pnl_Look_RatingTip".Translate(text.Named("RATING")).Resolve() : null;
+                string tip = text != null ? (weapon ? "CC_Pnl_Look_RatingTip" : "CC_Pnl_Look_ApparelRatingTip").Translate(text.Named("RATING")).Resolve() : null;
                 if (ratings.Count > 300) ratings.Clear();
                 kept = (now, best, text, tip);
                 ratings[def] = kept;
@@ -90,7 +107,8 @@ namespace ColonyCouncil
         private void DrawLook(Rect r, float s)
         {
             float pad = Mathf.Round(4f * s);
-            float y = r.y + pad + SearchH(s);
+            float y = r.y + pad + TopH(s);
+            FilterRow(r, s, true);
             // The search box itself is the window's (it takes the keyboard); painted here as a quiet copy.
             if (Painting && St.Shows(PartSearch))
             {

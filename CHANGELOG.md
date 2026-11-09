@@ -5,6 +5,15 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## Weapons and apparel in the inventory panel
+
+*9 November 2026, version 0.199.0*
+
+- The inventory panel now lists the weapons and apparel in storage at the bottom, below the stock, which the game's own list leaves out: ranged weapons, then melee, then armour, utility and clothes.
+- Each shows the best stored one's rating in Rimfolk's look; hovering apparel also counts the pieces worn by the dead or badly worn.
+- A filter row at the top shows everything, only the stock, only weapons (or ranged or melee alone) or only apparel (or armour, utility or clothes alone).
+- Ratings in the panel show only on real weapons and apparel, no longer on wood or other stock a mod lets be swung; their cards still rate them.
+
 ## An item card for food, drink, drugs and medicine
 
 *9 November 2026, version 0.198.0*

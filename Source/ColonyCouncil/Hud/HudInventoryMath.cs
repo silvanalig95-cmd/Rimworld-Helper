@@ -13,6 +13,13 @@ namespace ColonyCouncil
         /// <summary>The change since about the same hour yesterday; only meaningful with <see cref="hasChange"/>.</summary>
         public int change;
         public bool hasChange, pinned;
+        /// <summary>
+        /// Kept at the bottom whatever the order, below everything but the pinned: 0 for the game's counted stock, then the
+        /// weapons in storage (<see cref="HudInventoryMath.TailWeapons"/>), then the apparel (<see cref="HudInventoryMath.TailApparel"/>).
+        /// </summary>
+        public int tail;
+        /// <summary>A weapon's or apparel's kind for the filters: ranged or melee; armour, utility or clothes.</summary>
+        public string kind;
         /// <summary>The game's resource category (its place among the resource list's roots) and the item's place in the game's list.</summary>
         public int group, order;
     }
@@ -34,7 +41,8 @@ namespace ColonyCouncil
         /// <summary>
         /// The items in the panel's order: pinned ones first, then by the game's categories and its own order within
         /// them (<see cref="HudSort.Category"/>), by name, the most first, or the biggest change first (gains before losses
-        /// of the same size; unknown changes last). Ties keep the game's order.
+        /// of the same size; unknown changes last), the weapons and then the apparel (<see cref="StockEntry.tail"/>) below
+        /// the rest, each in the same order. Ties keep the game's order.
         /// </summary>
         public static void Sort(List<StockEntry> items, HudSort sort)
         {
@@ -42,6 +50,7 @@ namespace ColonyCouncil
             items.Sort((a, b) =>
             {
                 if (a.pinned != b.pinned) return a.pinned ? -1 : 1;
+                if (a.tail != b.tail) return a.tail.CompareTo(b.tail);
                 int c = 0;
                 switch (sort)
                 {
@@ -89,6 +98,87 @@ namespace ColonyCouncil
 
         /// <summary>Whether a snapshot is due: none yet, or <see cref="SnapshotHours"/> since the last (or the clock went back).</summary>
         public static bool SnapshotDue(int lastHour, int nowHour) => lastHour < 0 || nowHour - lastHour >= SnapshotHours || nowHour < lastHour;
+
+        /// <summary>
+        /// A key in a snapshot that says it counted the weapons in storage too (they came later): without it, a weapon's
+        /// change since then is unknown rather than all of it new. Never a def's name.
+        /// </summary>
+        public const string WeaponsMark = "~weapons";
+
+        /// <summary>The same for the apparel in storage.</summary>
+        public const string ApparelMark = "~apparel";
+
+        /// <summary>The snapshot's mark for a tail's things.</summary>
+        public static string Mark(int tail) => tail == TailApparel ? ApparelMark : WeaponsMark;
+
+        // ---------------- The weapons and apparel in storage, and the filters ----------------
+
+        /// <summary>The list's parts from the top: the game's counted stock, the weapons in storage, the apparel in storage.</summary>
+        public const int TailStock = 0, TailWeapons = 1, TailApparel = 2;
+
+        public const string FilterAll = "", FilterStock = "stock", FilterWeapons = "weapons", FilterRanged = "ranged", FilterMelee = "melee",
+            FilterApparel = "apparel", FilterArmour = "armour", FilterUtility = "utility", FilterClothes = "clothes";
+
+        /// <summary>The filters in their menu's order, each family followed by its kinds (the player: "perhaps i can then have filters for those as well").</summary>
+        public static readonly string[] Filters =
+            { FilterAll, FilterStock, FilterWeapons, FilterRanged, FilterMelee, FilterApparel, FilterArmour, FilterUtility, FilterClothes };
+
+        /// <summary>A kind's family (ranged and melee are weapons; armour, utility and clothes are apparel), else the filter itself.</summary>
+        public static string Family(string filter)
+        {
+            switch (filter)
+            {
+                case FilterRanged:
+                case FilterMelee:
+                    return FilterWeapons;
+                case FilterArmour:
+                case FilterUtility:
+                case FilterClothes:
+                    return FilterApparel;
+                default:
+                    return Array.IndexOf(Filters, filter) >= 0 ? filter : FilterAll;
+            }
+        }
+
+        /// <summary>
+        /// Whether an item shows under a filter: everything shows the stock and, where their part is on, the weapons and
+        /// apparel; a family shows only its own; a kind only its own kind. A filter chosen shows its things even with their
+        /// part off (the part is about what "everything" holds).
+        /// </summary>
+        public static bool FilterShows(string filter, int tail, string kind, bool partOn)
+        {
+            switch (filter)
+            {
+                case FilterStock: return tail == TailStock;
+                case FilterWeapons: return tail == TailWeapons;
+                case FilterApparel: return tail == TailApparel;
+                case FilterRanged:
+                case FilterMelee:
+                    return tail == TailWeapons && kind == filter;
+                case FilterArmour:
+                case FilterUtility:
+                case FilterClothes:
+                    return tail == TailApparel && kind == filter;
+                default:
+                    return tail == TailStock || partOn;
+            }
+        }
+
+        /// <summary>
+        /// An apparel kind's filter: by the apparel rating's role where it has one (body armour, a helmet or a shield is
+        /// armour, utility its own), else by the game's categories (armour, armoured headgear, utility); clothes otherwise.
+        /// </summary>
+        public static string ApparelKind(string role, bool armourCategory, bool utilityCategory)
+        {
+            if (role == "body armour" || role == "helmet" || role == "off-hand shield") return FilterArmour;
+            if (role == "utility") return FilterUtility;
+            if (!string.IsNullOrEmpty(role)) return FilterClothes;
+            return armourCategory ? FilterArmour : utilityCategory ? FilterUtility : FilterClothes;
+        }
+
+        /// <summary>The order inside a tail: ranged before melee, armour before utility before clothes.</summary>
+        public static int KindRank(string kind) =>
+            kind == FilterRanged || kind == FilterArmour ? 0 : kind == FilterUtility ? 1 : 2;
 
         /// <summary>The change in one item since a snapshot: what there is now less what there was (nothing there counts as 0).</summary>
         public static int Change(int now, IDictionary<string, int> then, string key)

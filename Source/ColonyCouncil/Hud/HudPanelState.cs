@@ -7,7 +7,7 @@ namespace ColonyCouncil
     /// One on-screen panel's place and options, kept in the mod settings (CouncilSettings.hudPanels) so they hold across
     /// games: whether it shows, where (as fractions of the screen, from the corner nearest the edges; see
     /// <see cref="HudMath.ToFraction"/>), compact or full, its scale and background, how many rows, whom it lists, its
-    /// order, the trend graph's days, the rows or columns switched off, its style, and the inventory's pins and folds
+    /// order, the trend graph's days, the rows or columns switched off, its style, and the inventory's filter, pins and folds
     /// and the alerts hidden in the alerts panel. Written when the panel is moved or changed.
     /// </summary>
     public class HudPanelState : IExposable
@@ -35,6 +35,8 @@ namespace ColonyCouncil
         public int columns = 8;
         /// <summary>The inventory: the items pinned to the top, by def name.</summary>
         public List<string> pins = new List<string>();
+        /// <summary>The inventory: what it lists (HudInventoryMath.Filters: "" for everything, the stock, weapons or apparel, or one kind of them).</summary>
+        public string filter = "";
         /// <summary>The inventory: the categories folded away in the grouped style, by def name.</summary>
         public List<string> folds = new List<string>();
         /// <summary>The alerts: alerts hidden in the panel, by the alert's class (its full type name).</summary>
@@ -80,6 +82,7 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref days, "days", 3);
             Scribe_Collections.Look(ref hidden, "hidden", LookMode.Value);
             Scribe_Values.Look(ref style, "style", "");
+            Scribe_Values.Look(ref filter, "filter", "");
             Scribe_Values.Look(ref columns, "columns", 8);
             Scribe_Collections.Look(ref pins, "pins", LookMode.Value);
             Scribe_Collections.Look(ref folds, "folds", LookMode.Value);
@@ -89,6 +92,7 @@ namespace ColonyCouncil
             {
                 hidden ??= new List<string>();
                 style ??= "";
+                filter ??= "";
                 columns = columns < 2 ? 2 : columns > 30 ? 30 : columns;
                 pins ??= new List<string>();
                 folds ??= new List<string>();

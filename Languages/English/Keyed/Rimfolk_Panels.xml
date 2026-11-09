@@ -302,6 +302,9 @@
   <CC_Pnl_Part_labels>Names in the classic look</CC_Pnl_Part_labels>
   <CC_Pnl_Part_zero>Items at zero (with what ran out since yesterday)</CC_Pnl_Part_zero>
   <CC_Pnl_Part_search>A search box</CC_Pnl_Part_search>
+  <CC_Pnl_Part_weapons>Weapons in storage, at the bottom</CC_Pnl_Part_weapons>
+  <CC_Pnl_Part_apparel>Apparel in storage, at the bottom</CC_Pnl_Part_apparel>
+  <CC_Pnl_Part_filter>A filter: everything, the stock, weapons or apparel</CC_Pnl_Part_filter>
   <CC_Pnl_Part_doing>What they're doing</CC_Pnl_Part_doing>
   <CC_Pnl_Part_idle>Idle, and for how long</CC_Pnl_Part_idle>
   <CC_Pnl_Part_needfood>Food bar</CC_Pnl_Part_needfood>
@@ -423,6 +426,19 @@
   <CC_Pnl_I_SearchHint>Search</CC_Pnl_I_SearchHint>
   <CC_Pnl_I_Pinned>Pinned</CC_Pnl_I_Pinned>
   <CC_Pnl_I_Other>Other</CC_Pnl_I_Other>
+  <CC_Pnl_I_Weapons>Weapons</CC_Pnl_I_Weapons>
+  <CC_Pnl_I_Apparel>Apparel</CC_Pnl_I_Apparel>
+  <CC_Pnl_I_ApparelState>{0} worn by the dead, {1} badly worn (under half)</CC_Pnl_I_ApparelState>
+  <CC_Pnl_I_FilterTip>What the list shows. Click to choose: everything, the stock, weapons (ranged or melee) or apparel (armour, utility or clothes). Weapons and apparel are the ones in storage.</CC_Pnl_I_FilterTip>
+  <CC_Pnl_I_Filter_all>Everything</CC_Pnl_I_Filter_all>
+  <CC_Pnl_I_Filter_stock>Stock</CC_Pnl_I_Filter_stock>
+  <CC_Pnl_I_Filter_weapons>Weapons</CC_Pnl_I_Filter_weapons>
+  <CC_Pnl_I_Filter_ranged>Ranged weapons</CC_Pnl_I_Filter_ranged>
+  <CC_Pnl_I_Filter_melee>Melee weapons</CC_Pnl_I_Filter_melee>
+  <CC_Pnl_I_Filter_apparel>Apparel</CC_Pnl_I_Filter_apparel>
+  <CC_Pnl_I_Filter_armour>Armour</CC_Pnl_I_Filter_armour>
+  <CC_Pnl_I_Filter_utility>Utility</CC_Pnl_I_Filter_utility>
+  <CC_Pnl_I_Filter_clothes>Clothes</CC_Pnl_I_Filter_clothes>
   <CC_Pnl_I_FoodDays>{0} days of food</CC_Pnl_I_FoodDays>
   <CC_Pnl_I_FoldTip>Click to fold this away; its total stays.</CC_Pnl_I_FoldTip>
   <CC_Pnl_I_UnfoldTip>Click to see what's in it.</CC_Pnl_I_UnfoldTip>

@@ -12,6 +12,15 @@ tree at once, alongside whatever runs. Each piece is merged as its own release, 
 
 ## State (5 November 2026)
 
+- 0.199.0, the inventory panel lists the weapons and apparel in storage, with a filter (9 November 2026). The player,
+  with a picture of the panel: "could my weapons also be listed in the inventory? at the bottom perhaps", then apparel
+  and filters, and no rating on wood ("only show ratings for actual weapons & apparell"). DESIGN.md "The weapons and
+  apparel in storage, and the filter" (On-screen panels) has all of it. `Hud/HudInventory.cs` (`StoredKinds`, `Kept`,
+  `KindFilter`, `BadgeFor`, the filter row), `Hud/HudInventoryMath.cs` (pure: `StockEntry.tail`/`kind`, `Filters`,
+  `FilterShows`, `ApparelKind`, `KindRank`, the snapshot marks), `Hud/Look/HudInventoryLook.cs` (apparel's badge),
+  `Hud/HudComponent.cs` (snapshots count them, with marks), `HudPanelState.filter` (saved with the panel). Parts
+  "weapons", "apparel", "filter", all on. Not run in the game: the filter row's look, the first gathering's time with
+  many apparel kinds.
 - 0.198.0, Rimfolk's item card, step 1: food, drink, drugs and medicine (9 November 2026; `docs/design/rimfolk-look.md` stage 3,
   point 5). The player's words: "also
   like item card for everything, although i fear that would take a lot of ressources?"; told it is built only when opened

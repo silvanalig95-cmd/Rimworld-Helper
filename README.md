@@ -4249,7 +4249,12 @@ panel, it gets the click and the tooltip:
   and calm). Pin items to the top, search, show or hide what's at zero, order by category, name, count or change, and
   see the change since about this time yesterday as a small +/-. Hover an item for its description and where its
   stacks are; click it to go to them one after another. While it shows, the game's own resource list steps aside (a
-  setting).
+  setting). Below the stock, the **weapons and apparel in storage**, which the game's list leaves out: weapons first
+  (ranged, then melee), then apparel (armour, utility, then clothes), each with the best stored one's rating in Rimfolk's
+  look, apparel's tooltip counting the pieces worn by the dead or badly worn. A **filter** row at the top shows
+  everything, only the stock, only weapons (or ranged or melee alone) or only apparel (or armour, utility or clothes
+  alone). A rating's badge shows only on real weapons and apparel, never on wood or another resource a mod lets be
+  swung. Each of these is a part of the panel you can switch off.
 
 **The hover card**: rest the mouse on a colonist on the map and a small card shows their mood bar, the two or three
 things that matter most right now (what would help on a line of its own when it doesn't fit) and what they're doing.

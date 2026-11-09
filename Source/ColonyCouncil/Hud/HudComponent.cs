@@ -155,13 +155,14 @@ namespace ColonyCouncil
 
         // ---------------- The stock, for the inventory's change since yesterday ----------------
 
-        /// <summary>A snapshot of every home map's counted stock (the game's resource counter), the oldest dropped past the caps.</summary>
+        /// <summary>A snapshot of every home map's counted stock (the game's resource counter) and its weapons and apparel in storage, the oldest dropped past the caps.</summary>
         private void TakeStock(int hour)
         {
             try
             {
                 lastStockHour = hour;
                 var keys = new List<KeyValuePair<string, int>>();
+                var kept = new Dictionary<ThingDef, int>();
                 foreach (var map in Find.Maps)
                 {
                     if (map == null || !map.IsPlayerHome || map.resourceCounter == null) continue;
@@ -169,6 +170,13 @@ namespace ColonyCouncil
                     foreach (var kv in map.resourceCounter.AllCountedAmounts)
                         if (kv.Key != null && kv.Value > 0)
                             keys.Add(new KeyValuePair<string, int>(kv.Key.defName, kv.Value));
+                    // The weapons and apparel in storage, which the game doesn't count, and the marks that say this snapshot has them.
+                    foreach (int tail in new[] { HudInventoryMath.TailWeapons, HudInventoryMath.TailApparel })
+                    {
+                        HudInventory.StoredKinds(map, tail, kept);
+                        foreach (var kv in kept) keys.Add(new KeyValuePair<string, int>(kv.Key.defName, kv.Value));
+                        keys.Add(new KeyValuePair<string, int>(HudInventoryMath.Mark(tail), 1));
+                    }
                     stock.Add(HudInventoryMath.Pack(map.uniqueID, hour, keys));
                 }
                 Prune();

@@ -119,6 +119,65 @@ public static class HudLayerTests
         HudInventoryMath.Sort(s4, HudSort.Change);
         Check(Keys(s4) == "Herbal,Silver,Steel,MealSimple,WoodLog", "by change: the biggest first, a gain before a loss of the same size, unknown last");
 
+        // ---------- The inventory: the weapons and apparel in storage, at the bottom (the player: "at the bottom perhaps") ----------
+        const int W = HudInventoryMath.TailWeapons, A = HudInventoryMath.TailApparel;
+        List<StockEntry> Armed()
+        {
+            var l = Stock();
+            l.Add(new StockEntry { key = "Apparel_Parka", label = "parka", count = 4, group = 8, order = 22, tail = A, kind = HudInventoryMath.FilterClothes });
+            l.Add(new StockEntry { key = "Gun_Revolver", label = "revolver", count = 3, group = 7, order = 20, tail = W, kind = HudInventoryMath.FilterRanged, hasChange = true, change = 1 });
+            l.Add(new StockEntry { key = "MeleeWeapon_Club", label = "club", count = 2000, group = 7, order = 21, tail = W, kind = HudInventoryMath.FilterMelee, hasChange = true, change = 900 });
+            l.Add(new StockEntry { key = "Apparel_FlakVest", label = "flak vest", count = 1, group = 8, order = 23, tail = A, kind = HudInventoryMath.FilterArmour });
+            l.Add(new StockEntry { key = "Gun_Autopistol", label = "autopistol", count = 1, group = 7, order = 19, tail = W, kind = HudInventoryMath.FilterRanged, pinned = true });
+            return l;
+        }
+        foreach (var sort in new[] { HudSort.Category, HudSort.Name, HudSort.Count, HudSort.Change })
+        {
+            var a1 = Armed();
+            HudInventoryMath.Sort(a1, sort);
+            Check(a1.Count == 10 && a1.Take(2).All(e => e.pinned) && a1.Take(2).Any(e => e.key == "Gun_Autopistol") && a1.Skip(2).Take(4).All(e => e.tail == 0)
+                  && a1.Skip(6).Take(2).All(e => e.tail == W) && a1.Skip(8).All(e => e.tail == A),
+                "by " + sort + ": the pinned at the top, then the stock, the weapons and the apparel, each below the last");
+        }
+        var a2 = Armed();
+        HudInventoryMath.Sort(a2, HudSort.Name);
+        Check(Keys(a2).EndsWith("WoodLog,MeleeWeapon_Club,Gun_Revolver,Apparel_FlakVest,Apparel_Parka"), "the weapons and apparel keep the panel's order among themselves (by name)");
+        var a3 = Armed();
+        HudInventoryMath.Sort(a3, HudSort.Category);
+        Check(Keys(a3).EndsWith("Silver,Gun_Revolver,MeleeWeapon_Club,Parka".Replace("Parka", "Apparel_Parka,Apparel_FlakVest")),
+            "by category they keep the order given when gathered");
+        Check(HudInventoryMath.KindRank(HudInventoryMath.FilterRanged) < HudInventoryMath.KindRank(HudInventoryMath.FilterMelee)
+              && HudInventoryMath.KindRank(HudInventoryMath.FilterArmour) < HudInventoryMath.KindRank(HudInventoryMath.FilterUtility)
+              && HudInventoryMath.KindRank(HudInventoryMath.FilterUtility) < HudInventoryMath.KindRank(HudInventoryMath.FilterClothes),
+            "gathered ranged before melee, armour before utility before clothes");
+        foreach (var mark in new[] { HudInventoryMath.WeaponsMark, HudInventoryMath.ApparelMark })
+            Check(mark.IndexOfAny(new[] { ',', ':', '|' }) < 0 && mark.StartsWith("~"), "the snapshot's mark " + mark + " packs as a key and is never a def's name");
+        Check(HudInventoryMath.Mark(W) == HudInventoryMath.WeaponsMark && HudInventoryMath.Mark(A) == HudInventoryMath.ApparelMark, "each tail has its own mark");
+        var marked = HudInventoryMath.Pack(1, 10, new[] { new KeyValuePair<string, int>("Gun_Revolver", 3), new KeyValuePair<string, int>(HudInventoryMath.WeaponsMark, 1) });
+        var markedBack = new Dictionary<string, int>();
+        Check(HudInventoryMath.Unpack(marked, out _, out _, markedBack) && markedBack.ContainsKey(HudInventoryMath.WeaponsMark) && markedBack["Gun_Revolver"] == 3,
+            "a snapshot with the weapons keeps its mark through the save");
+
+        // ---------- The inventory: the filters (the player: "perhaps i can then have filters for those as well") ----------
+        string F(string f, int tail, string kind, bool part) => HudInventoryMath.FilterShows(f, tail, kind, part) ? "y" : "n";
+        Check(F("", 0, null, true) + F("", W, "ranged", true) + F("", W, "ranged", false) + F("", A, "clothes", true) == "yyny",
+            "everything: the stock always, the weapons and apparel where their part is on");
+        Check(F("stock", 0, null, true) + F("stock", W, "melee", true) + F("stock", A, "armour", true) == "ynn", "the stock alone");
+        Check(F("weapons", W, "ranged", false) + F("weapons", W, "melee", true) + F("weapons", 0, null, true) + F("weapons", A, "armour", true) == "yynn",
+            "weapons: every weapon, even with its part off, nothing else");
+        Check(F("ranged", W, "ranged", true) + F("ranged", W, "melee", true) + F("melee", W, "melee", true) == "yny", "ranged or melee alone");
+        Check(F("apparel", A, "utility", false) + F("armour", A, "armour", true) + F("armour", A, "clothes", true) + F("utility", A, "utility", true)
+              + F("clothes", A, "clothes", true) + F("clothes", W, "clothes", true) == "yynyyn", "apparel, and armour, utility or clothes alone");
+        Check(HudInventoryMath.Family("ranged") == "weapons" && HudInventoryMath.Family("clothes") == "apparel" && HudInventoryMath.Family("weapons") == "weapons"
+              && HudInventoryMath.Family("nonsense") == "" && HudInventoryMath.Filters[0] == "", "each kind belongs to its family; an unknown filter is everything");
+        Check(HudInventoryMath.Filters.Length == 9 && HudInventoryMath.Filters.Distinct().Count() == 9, "nine filters, each once");
+        Check(HudInventoryMath.ApparelKind("body armour", false, false) == "armour" && HudInventoryMath.ApparelKind("helmet", false, false) == "armour"
+              && HudInventoryMath.ApparelKind("off-hand shield", false, false) == "armour" && HudInventoryMath.ApparelKind("utility", true, false) == "utility"
+              && HudInventoryMath.ApparelKind("everyday clothing", true, true) == "clothes" && HudInventoryMath.ApparelKind("cold-weather gear", false, false) == "clothes",
+            "an apparel's kind by the rating's role where it has one");
+        Check(HudInventoryMath.ApparelKind(null, true, false) == "armour" && HudInventoryMath.ApparelKind(null, false, true) == "utility"
+              && HudInventoryMath.ApparelKind("", false, false) == "clothes", "else by the game's categories, clothes otherwise");
+
         // ---------- The inventory: yesterday and the change ----------
         var hours = new List<int> { 100, 106, 112, 118, 124 };
         Check(HudInventoryMath.Yesterday(hours, 130) == 1, "yesterday is the newest snapshot at least a day old (106 for hour 130)");

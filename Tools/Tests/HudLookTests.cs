@@ -234,8 +234,8 @@ public static class HudLookTests
             "the hover card: the look's card built every half second, its drawing made once a card");
         C(Code("Hud/HudManager.cs").Contains("HudLook.Watch(windows.Values);"), "a change of look makes every panel gather and measure itself again");
         var saved = Regex.Matches(Code("Hud/HudPanelState.cs"), @"Scribe_(?:Values|Collections)\.Look\(ref \w+, ""(\w+)""").Select(m => m.Groups[1].Value).ToList();
-        C(saved.SequenceEqual(new[] { "id", "on", "x", "y", "right", "bottom", "compact", "scale", "opacity", "maxRows", "who", "sort", "days", "hidden", "style", "columns", "pins",
-                "folds", "alertsHidden", "alertsShown" }), $"a panel's saved state is the same in either look: saved layouts stay as they are ({string.Join(", ", saved)})");
+        C(saved.SequenceEqual(new[] { "id", "on", "x", "y", "right", "bottom", "compact", "scale", "opacity", "maxRows", "who", "sort", "days", "hidden", "style", "filter", "columns", "pins",
+                "folds", "alertsHidden", "alertsShown" }), $"a panel's saved state is the same in either look (the inventory's filter added after, with a default that changes nothing): saved layouts stay as they are ({string.Join(", ", saved)})");
 
         // ---------------- Nothing made while drawing ----------------
 
@@ -287,6 +287,22 @@ public static class HudLookTests
         C(look.Contains("HeartMeterMath.StrainTicks") && look.Contains("HeartView.BandColor(band)") && look.Contains("HeartView.GoodColor"), "in the heart's meters' colours and at their marks");
         C(Code("Hud/Look/HudInventoryLook.cs").Contains("HudLook.Badge(badge, it.ratingColor, it.ratingText);") && Code("Hud/Look/HudInventoryLook.cs").Contains("WeaponUi.RatingColour(kept.rating)"),
             "the inventory's weapons carry the rating's badge in its band's colour");
+        string inv = Code("Hud/HudInventory.cs");
+        string invLook = Code("Hud/Look/HudInventoryLook.cs");
+        C(invLook.Contains("bool weapon = BadgeFor(def) && WeaponLive.On;") && invLook.Contains("bool apparel = !weapon && StoredApparelKind(def)")
+          && inv.Contains("(!def.CountAsResource || (ThingCategoryDefOf.Weapons"),
+            "a rating's badge only on real weapons and apparel, never on wood, a manufactured good or another counted resource a mod lets be swung");
+        C(inv.Contains("def.IsWeapon && def.equipmentType == EquipmentType.Primary && !def.CountAsResource") && inv.Contains("def.IsApparel && !def.CountAsResource")
+          && inv.Contains("ThingRequestGroup.Apparel : ThingRequestGroup.Weapon") && inv.Contains("t.IsInAnyStorage()"),
+            "the weapons and apparel in storage listed from the map's own lists (never a counted resource twice)");
+        C(inv.Contains("Kept(st, HudInventoryMath.TailWeapons,") && inv.Contains("Kept(st, HudInventoryMath.TailApparel,") && inv.Contains("PartWeapons, PartApparel")
+          && inv.Contains("if (!st.Shows(PartFilter) || Style == StyleEssentials) return HudInventoryMath.FilterAll;"),
+            "weapons and apparel are parts that can be hidden; the filter only while its row shows");
+        C(inv.Contains("bool known = yesterday != null && yesterday.ContainsKey(HudInventoryMath.Mark(tail));")
+          && Code("Hud/HudComponent.cs").Contains("HudInventory.StoredKinds(map, tail, kept);") && Code("Hud/HudComponent.cs").Contains("HudInventoryMath.Mark(tail), 1"),
+            "the change since yesterday only from a snapshot that counted them");
+        C(Code("Hud/HudPanelState.cs").Contains("Scribe_Values.Look(ref filter, \"filter\", \"\");") && inv.Contains("FilterRow(") && invLook.Contains("FilterRow(r, s, true);"),
+            "the filter kept with the panel and its row drawn in both looks");
         C(Code("Hud/Look/HudWorkLook.cs").Contains("CC_Pnl_Look_DayOff") && Code("Hud/Look/HudWorkLook.cs").Contains("NeedsLook("), "work and idle: time off explains the idling; food, rest and recreation as bars");
 
         // ---------------- Icons ----------------
