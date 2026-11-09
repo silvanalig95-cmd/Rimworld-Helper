@@ -674,6 +674,10 @@ namespace ColonyCouncil
             Toggle("weaponRatings", "CC_Settings_WeaponRatings", "CC_SetNote_WeaponRatings", "deepHooks");
             Toggle("weaponGearTab", "CC_Settings_WeaponGearTab", "CC_SetNote_WeaponGearTab", "weaponRatings,deepHooks");
             Toggle("weaponCard", "CC_Settings_WeaponCard", "CC_SetNote_WeaponCard", "weaponRatings,deepHooks");
+            Toggle("weaponCardFirst", "CC_Settings_WeaponCardFirst", "CC_SetNote_WeaponCardFirst", "weaponRatings,weaponCard,deepHooks");
+            // The best weapon for each colonist, and colonists asking for one (Weapons/WeaponPick.cs, WeaponAsks.cs; docs/design/weapons.md, step 3).
+            Toggle("weaponSuggestions", "CC_Settings_WeaponSuggestions", "CC_SetNote_WeaponSuggestions", "weaponRatings,deepHooks");
+            Toggle("weaponAsks", "CC_Settings_WeaponAsks", "CC_SetNote_WeaponAsks", "weaponRatings,deepHooks");
             // The colonist bar's badges (ColonistBar/BarBadges.cs): what they show, and how.
             Section("CC_SetSec_ColonistBar");
             NoteUnder("CC_SetSec_ColonistBar_Note");

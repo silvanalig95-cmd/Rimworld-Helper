@@ -173,6 +173,8 @@ namespace ColonyCouncil
             {
                 if (thing != null) WeaponCardWindow.Open(thing, Holder(thing));
                 else WeaponCardWindow.Open(def, CardStuff?.Invoke(card), null);
+                // With Rimfolk's card opening first, the two cards are two ways of looking: going over closes the game's.
+                if (WeaponCardFirst.On) card.Close(false);
             }
             WeaponUi.Badge(new Rect(b.x + 6f, b.center.y - 9f, 32f, 18f), r.Rating.Overall, null);
             UiKit.LabelFit(new Rect(b.x + 44f, b.y, b.width - 48f, b.height), label, Color.white);

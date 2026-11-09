@@ -58,6 +58,8 @@ public static class ImmersionTests
         "Rimfolk_Pool_NeighbourSays",
         // The post: carriers taking and bringing the mail, the post rider, spoken messages, the colony's own rider (Post/PostWords.cs).
         "Rimfolk_Pool_PostSays",
+        // A colonist asking for a clearly better weapon lying in storage (Weapons/WeaponAsks.cs).
+        "Rimfolk_Pool_WeaponAsk",
         // A colonist and someone from outside the colony doing something together (Outsiders/Outsiders.cs).
         "Rimfolk_Pool_OutsiderSays",
         // Hurts from everyday life (Harm/): the evening drill's call, start, real blow, apology and end; a slip at work, a

@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    A colonist asking for a clearly better weapon lying in storage (Source/ColonyCouncil/Weapons/WeaponAsks.cs), said over
+    their head through Speech, one sentence each. Every line has the reason it is said for, so its words are true:
+    mechanoids, armoured, crowds, siege, choke (the fights the colony meets), skill, trait, hunting, passion, noble, worker
+    (a doctor or crafter), special (an effect the weapon in hand lacks), sidearm, offhand, or better (simply better for
+    them). The weapon's kind: ranged or melee. {WEAPON} is the weapon's label, {PLACE} where it lies as the map has it ("in
+    the stockpile", "on the shelf", "on the outfit stand"). The colony's age decides the words where they differ (a tribe's
+    walking metal ones, the middle ages' iron walkers and plate, the industrial and spacer ages' mechanoids and vests), the
+    speaker's tone the voice.
+  -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_WeaponAsk</defName>
+    <lines>
+      <plain>
+        <li>[mechanoids,industrial|spacer] That {WEAPON} {PLACE} would do far more against the mechanoids we keep meeting.</li>
+        <li>[mechanoids,ranged,industrial|spacer] With the {WEAPON} {PLACE} I could stop a mechanoid before it reaches us.</li>
+        <li>[mechanoids,melee,industrial|spacer] The {WEAPON} {PLACE} would bite into mechanoid plating where mine skids off.</li>
+        <li>[mechanoids,tribal] The {WEAPON} {PLACE} could crack the shells of the walking metal ones.</li>
+        <li>[mechanoids,tribal] When the metal ones come again, I want the {WEAPON} {PLACE} in my hands.</li>
+        <li>[mechanoids,medieval] Against those iron walkers I would sooner have the {WEAPON} {PLACE}.</li>
+        <li>[mechanoids,medieval] The {WEAPON} {PLACE} would serve me well against the iron walkers.</li>
+        <li>[armoured,industrial|spacer] The {WEAPON} {PLACE} would go through the armour they keep coming in.</li>
+        <li>[armoured,ranged,industrial|spacer] My shots bounce off their vests, and with the {WEAPON} {PLACE} they wouldn't.</li>
+        <li>[armoured,melee] Against raiders in armour I'd want the {WEAPON} {PLACE}, not this.</li>
+        <li>[armoured,tribal] Their hard coats turn my blows, but the {WEAPON} {PLACE} would not be turned.</li>
+        <li>[armoured,medieval] The {WEAPON} {PLACE} would find its way through their plate.</li>
+        <li>[crowds] When they come at us in a crowd, the {WEAPON} {PLACE} is what I'd want.</li>
+        <li>[crowds,ranged] The {WEAPON} {PLACE} would thin out a whole rush before it reached us.</li>
+        <li>[crowds,melee] Give me the {WEAPON} {PLACE} and I'll hold off more than one at a time.</li>
+        <li>[crowds,tribal] When a whole tribe runs at us, I want the {WEAPON} {PLACE} in my hands.</li>
+        <li>[siege] The {WEAPON} {PLACE} would reach the ones who dig in out there and wait.</li>
+        <li>[siege,medieval] Behind their earthworks they'd still be in reach of the {WEAPON} {PLACE}.</li>
+        <li>[choke] I could hold the gate with the {WEAPON} {PLACE}.</li>
+        <li>[choke] At the gate the {WEAPON} {PLACE} would serve me better than this.</li>
+        <li>[skill,ranged] My aim is wasted on this, and the {WEAPON} {PLACE} would make it count.</li>
+        <li>[skill,melee] I've the hands for the {WEAPON} {PLACE}, and it's lying there unused.</li>
+        <li>[skill] I've trained long enough to get the most from the {WEAPON} {PLACE}.</li>
+        <li>[trait] The {WEAPON} {PLACE} suits the way I fight.</li>
+        <li>[trait] I know my own ways, and the {WEAPON} {PLACE} fits them.</li>
+        <li>[hunting] The {WEAPON} {PLACE} would bring the game down cleaner than this.</li>
+        <li>[hunting] I'd bring home more meat with the {WEAPON} {PLACE}.</li>
+        <li>[passion,ranged] I'd love to put the {WEAPON} {PLACE} to the test.</li>
+        <li>[passion,melee] I've wanted to get my hands on the {WEAPON} {PLACE} for a while.</li>
+        <li>[noble] Our faith honours the {WEAPON} {PLACE}, and I'd carry it gladly.</li>
+        <li>[worker] The {WEAPON} {PLACE} is light enough not to get in the way of my work.</li>
+        <li>[special] The {WEAPON} {PLACE} has a trick or two that mine hasn't.</li>
+        <li>[sidearm] I'd carry the {WEAPON} {PLACE} at my belt, in case it comes to that.</li>
+        <li>[sidearm] The {WEAPON} {PLACE} at my side would be no burden at all.</li>
+        <li>[offhand] The {WEAPON} {PLACE} would sit well in my other hand.</li>
+        <li>[better] Nobody's using the {WEAPON} {PLACE}, and I'd make good use of it.</li>
+        <li>[better] The {WEAPON} {PLACE} would serve me far better than what I carry.</li>
+        <li>[better,lowtech] That {WEAPON} {PLACE} is gathering dust, and I could use it.</li>
+        <li>[better,spacer] The {WEAPON} {PLACE} is wasted sitting there while I carry this.</li>
+      </plain>
+      <warm>
+        <li>[mechanoids,industrial|spacer] I'd feel safer facing the mechanoids with the {WEAPON} {PLACE}.</li>
+        <li>[crowds] With the {WEAPON} {PLACE} I could keep the others safe when the crowds come.</li>
+        <li>[armoured] I'd look after us all better with the {WEAPON} {PLACE} against their armour.</li>
+        <li>[sidearm] Carrying the {WEAPON} {PLACE} at my side would put my mind at ease.</li>
+        <li>[better] If no one minds, I'd like to carry the {WEAPON} {PLACE} for us.</li>
+        <li>[hunting] With the {WEAPON} {PLACE} I could keep the pot fuller for everyone.</li>
+      </warm>
+      <blunt>
+        <li>[mechanoids,industrial|spacer] This is useless against mechanoids, so give me the {WEAPON} {PLACE}.</li>
+        <li>[armoured] Their armour laughs at this, and the {WEAPON} {PLACE} is just sitting there.</li>
+        <li>[crowds] One at a time won't do when they rush us, so I want the {WEAPON} {PLACE}.</li>
+        <li>[skill] I'm wasted on this, and the {WEAPON} {PLACE} is the better tool.</li>
+        <li>[better] Why is the {WEAPON} {PLACE} gathering dust while I carry this?</li>
+        <li>[siege] Next time they dig in, I want the {WEAPON} {PLACE} in my hands.</li>
+      </blunt>
+      <cheerful>
+        <li>[mechanoids,industrial|spacer] Let the mechanoids come, once I've got the {WEAPON} {PLACE}.</li>
+        <li>[crowds] Bring on the whole lot of them, once I have the {WEAPON} {PLACE}.</li>
+        <li>[passion] Oh, I'd love to try out the {WEAPON} {PLACE}.</li>
+        <li>[better] I've had my eye on the {WEAPON} {PLACE}, and I'd put it to good use.</li>
+        <li>[special] The {WEAPON} {PLACE} can do things mine can't, and I want to try it.</li>
+        <li>[hunting] The {WEAPON} {PLACE} and a good morning's hunt, that's what I want.</li>
+      </cheerful>
+      <gloomy>
+        <li>[mechanoids,industrial|spacer] The mechanoids will be back, and the {WEAPON} {PLACE} would stop them.</li>
+        <li>[armoured] Against their armour I'm as good as unarmed without the {WEAPON} {PLACE}.</li>
+        <li>[crowds] When the crowd comes again this won't be enough, but the {WEAPON} {PLACE} might.</li>
+        <li>[better] I'd stand a better chance with the {WEAPON} {PLACE}, for what it's worth.</li>
+        <li>[siege] They'll dig in again, and I'll want the {WEAPON} {PLACE} when they do.</li>
+      </gloomy>
+      <cold>
+        <li>[mechanoids,industrial|spacer] Against mechanoids the {WEAPON} {PLACE} is the sensible choice.</li>
+        <li>[armoured] The {WEAPON} {PLACE} gets through what they wear, so it should be mine.</li>
+        <li>[skill] The {WEAPON} {PLACE} is wasted on anyone with less training than me.</li>
+        <li>[better] The {WEAPON} {PLACE} is simply better, and I should be carrying it.</li>
+        <li>[choke] For holding the gate, the {WEAPON} {PLACE} is the obvious choice.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+</Defs>

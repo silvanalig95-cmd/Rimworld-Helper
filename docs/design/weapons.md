@@ -117,12 +117,49 @@ for many of today's games. for example "great for snipers", "risk of fire" etc.,
 
 ## Step 3: recommendations (the player said yes)
 
+**Built (9 November 2026, not released).** DESIGN.md "Step 3: the best weapon for each colonist, and colonists who ask"
+has all of it. The choice is pure (`Source/ColonyCouncil/Weapons/WeaponPickMath.cs`, tested in
+`Tools/Tests/WeaponPickTests.cs`); the game side is `WeaponPick.cs` (what the colony has, each colonist's own rating, the
+orders), `WeaponPickUi.cs` (the gear tab, Nice Inventory Tab, the Defenses page), `WeaponAsks.cs` (point 9),
+`WeaponSwapJob.cs` (a trade between two colonists), `WeaponPickBook.cs` (the raids met, "not now", the asks; the clock).
+Choices made on the way:
+
+- **The threshold** is 0.6 of a point (about a fifth more damage for a gun, a ninth for a blade); a colonist asks only
+  for twice that. Another kind than the one in hand asks 0.5 more, a bonded persona weapon left unused 1.0 more, and its
+  cost is said.
+- **The nuance** is in the score: the colonist's own rating already counts the weapon's abilities, passives and
+  specials (step 1), and their skill, traits and body (step 2); on top come their passion, the colony's fights (its
+  situational sub-ratings, weighed by the raids met lately: mechanoids, armour, crowds, sieges, a gate held), their work
+  (a hunter's, a doctor's or crafter's) and their faith. The reasons are drawn from the same parts, two at most, the
+  strongest first, with what it costs.
+- **The colony's record of raids** is Rimfolk's own (no system kept one with what came: faction memory notes only who,
+  and leaves mechanoids out), the last 12, with the game's raid letters for what it lacks.
+- **One assignment**: greedy by gain, then exchanges while the colony's total rises (pairs swapping, a better leftover, a
+  weapon moved on so a second colonist can have one), then trades better for both, then sidearms and off hands. Near the
+  brute-force best on random colonies (tested).
+- **Defense posts**: the defense lines assign no posts to colonists, so a line drawn counts as a gate the colony holds
+  rather than a post per colonist.
+- **Simple Sidearms' button** uses its own job (`EquipSecondary`) and its own check (`CanPickupSidearmInstance`), both by
+  name; a weapon on an outfit stand is offered only in hand (its job takes from the ground). Dual Wield's off hand by its
+  own job (`DW_EquipOffhand`). A trade is a job of Rimfolk's own, walked out on the map.
+
 8. **The best weapon for each colonist** on the gear tab (Nice Inventory Tab's too): from what the colony has, by the
    colonist's skills and passions and traits (Shooting or Melee, Brawler, Trigger-happy, Careful shooter, Tough, Nimble,
    Wimp), their role, what they already carry (Simple Sidearms' memory, Dual Wield's offhand) and the situations the
    colony meets most (mechanoids, tribal crowds, armoured raiders), with the reason in a line; one click equips it.
 9. **Colonists sometimes ask** for a better weapon they've seen in the stockpile, one sentence in their own voice, rarely,
    never when the difference is small.
+
+## Rimfolk's weapon card first (the player, 9 November 2026)
+
+"can the rimworld weapon card be the default screen when opening stats/info of a weapon? since it's much better than
+vanilla, which could be opened via some button or so"
+
+**Built (not released).** "Open Rimfolk's weapon card first" (on): a new game info card about a weapon the card can show
+opens as Rimfolk's weapon card instead, wherever it is opened; navigation inside the game's own card stays in it; the
+weapon card's "All the game's stats" opens the game's card, whose "Rimfolk's weapon card" button goes back. A kind (the
+research or architect tab, a list) is rated as made, normal quality in its usual stuff, and says so.
+`Source/ColonyCouncil/Weapons/WeaponCardFirst.cs`; DESIGN.md has the rules.
 
 ## After: the same for armour and apparel
 

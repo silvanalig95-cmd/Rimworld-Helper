@@ -4202,7 +4202,8 @@ economic mechanic, and keeps one small record of its own:
 details tab for weapons ... my weapon mods themselves, like the inventory mod I'm using, the sidearms mod, the offhand
 mod, so that they are all integrated." The plan is `docs/design/weapons.md`. Step 1 (0.182.0) built the rating
 (`Weapons/WeaponRateMath.cs`), the tags (`WeaponTagMath.cs`) and the review of every weapon in the player's mods
-(`docs/weapons/`). Step 2 (points 5 to 7) brings it into the game; step 3 (recommendations) is still to come.
+(`docs/weapons/`). Step 2 (points 5 to 7) brings it into the game; step 3 (points 8 and 9, below) suggests the best weapon
+for each colonist and lets them ask for one, and Rimfolk's card opens first.
 
 - **One reading for the review and the game.** What a weapon's defs say is plain data (`Weapons/WeaponReadMath.cs`,
   pure): `WeaponDefFacts` (its verbs and projectiles, tools and the maneuvers they strike with, abilities, comps and mod
@@ -4293,6 +4294,123 @@ mod, so that they are all integrated." The plan is `docs/design/weapons.md`. Ste
   damage, EMP rounds) and persona traits; biocoding; the curves read backwards; a colonist's rating and its steps
   against the review's careful shooter and brawler; the held weapon taken out; Simple Sidearms' pair; Dual Wield's
   factors and the pair; RunAndGun; the chart; the colours; and the seams.
+
+### Step 3: the best weapon for each colonist, and colonists who ask (points 8 and 9)
+
+The player: "maybe recommended weapons on the pawn inventory page ... or that the pawns sometimes propose", and "it just
+should be nuanced ... not just the blank values in mind, but also like special abilities, passive effects, situational
+use". Not released yet.
+
+- **The choice, pure** (`Weapons/WeaponPickMath.cs`, tested in `Tools/Tests/WeaponPickTests.cs`). Each colonist with each
+  weapon the colony has is scored: their own rating (`WeaponForMath`: skill, traits, body; the weapon's abilities,
+  passives and specials are in it), plus 0.15 or 0.3 for a minor or burning passion for its kind, plus the situations they
+  meet (a weapon's situational sub-ratings over its own overall, weighed by their mix of fights), less 0.8 for a hunter
+  with a weapon they can't hunt with (the game's rule: a gun or bow that harms and doesn't explode), plus 0.4 for one their
+  faith holds noble. The mix: the colony's situations together at most half (`ColonyShare`), a hunter's hunts and a
+  doctor's or crafter's light weapon (its "sidearm" rating) a quarter each, 0.6 in all at most; the situations move a score
+  by 2 at most. Never scored: a weapon the game refuses them (`EquipmentUtility.CanEquip`: coded or bonded to another, a
+  second persona weapon, a role's rule), one too heavy for them (Vanilla Expanded's heavy weapons without Tough, an
+  exoframe or the gene), one their faith despises, a gun for a brawler or someone incapable of shooting; nothing for
+  someone incapable of violence. A brawler holding a gun, or anyone holding a weapon they mustn't, counts as empty-handed.
+- **The colony's fights** (`ColonySituations`): the raids met lately, a raid weighed in full for 30 days, half to 60, a
+  quarter to 120: the share that were mechanoids (times 0.5), armoured (flak or better on the torso, sharp armour 0.4 or
+  more; times 0.4), crowds (ten or more, or a tribe's; times 0.3) and sieges (times 0.25); a defense line drawn on a home
+  map is a gate held (0.15). Rimfolk keeps its own record (`WeaponPickBook.raids`, the last 12, from a hook on
+  `IncidentWorker_Raid.PostProcessSpawnedPawns`); the game's own raid letters (`Find.Archive`, ThreatBig with a people)
+  fill in what it doesn't have (raids before this, mechanoid clusters, other mods' raids), read by their people (mechanoids,
+  a tribe's crowd, the armour of their age: 0.2 medieval, 0.4 industrial, 0.7 spacer).
+- **The threshold**: 0.6 of a point (`Threshold`). Near the middle a point is about a third more damage for a gun and a
+  fifth more for a blade, so 0.6 is about a fifth more for a gun and a ninth more for a blade, three times the rating's
+  rounding and the mix's wobble: a revolver to a bolt-action (0.4) or a longsword to a uranium one (0.3) isn't suggested;
+  a bolt-action to an assault rifle (0.9), an assault rifle to a charge rifle (0.9), a knife to a longsword (1.2) are.
+  Another kind than the one in hand asks 0.5 more (without Simple Sidearms; with it the other kind is a sidearm); leaving
+  their own bonded persona weapon unused asks 1.0 more, and the line says what it costs (and that a jealous persona would
+  sour their mood). A colonist asks only for twice the threshold (1.2).
+- **One assignment for the colony** (`Assign`): weapons from storage first (and, without Simple Sidearms, a better one a
+  colonist carries in their own inventory, which with it is a sidearm it switches to itself), greedily the biggest
+  worthwhile gain, one weapon per colonist; then, while the colony's total rises, two colonists exchange what they were given, one takes a
+  better weapon left over, or one left without takes another's while that one takes a leftover (three rounds at most).
+  Alike weapons (one kind, stuff, quality, coding) are weighed once. Tested against the best total by brute force on 300
+  random colonies: the best in nearly all, never under three quarters of it, never one weapon to two. Then trades between
+  two colonists not given one (each gains 0.3, the other kind 0.5 more, the two 0.8; never a bonded weapon), the biggest
+  first. Then Simple Sidearms (loaded): a weapon of the other kind than the one they will hold, within its default weights
+  (2.7 kg a gun, 1.9 kg a blade, never a one-use launcher, never a gun for a brawler), when it beats what they carry of that
+  kind (or an empty slot, 3.0) by the threshold. Then Dual Wield (loaded): for someone keeping a one-handed weapon with
+  nothing in the off hand, one of the same kind that may go there, when both hands together (`WeaponForMath.PairTogether`,
+  its penalties in) beat it alone by the threshold. With Simple Sidearms the weapon in hand is set against the best of its
+  kind they carry.
+- **Why, in a line** (`Reasons`): two reasons, the strongest first, then what it costs. Their skill (12 or more, on a
+  weapon that rewards skill, `SkillGain` 1.35 or more and more than what they hold: "her Shooting 14 makes its accuracy
+  count"; 5 or less, on a forgiving one where theirs asks a good shot: "it forgives his Melee 4"), the trait that adds most
+  (the steps of their own rating), the fights the colony meets where it is a point better than what they hold (its EMP for
+  mechanoids, its piercing for armour), a hunter's clean kills, a doctor's or crafter's light weapon, a passion for a kind
+  new to their hands, their faith's favour, an effect the weapon in hand lacks (an ability, EMP, a stun, fire, piercing,
+  stopping power), simply better when nothing else says why. "Charge rifle: +1.4 for Ana: her Shooting 14 makes its
+  accuracy count, and it pierces the armour your last raids wore." The words are keyed (`CC_WeaponPick_Why_*`); a gain is
+  the score's difference for them, a badge their own rating.
+- **In the game** (`Weapons/WeaponPick.cs`): a home map's grown colonists (not slaves or quest guests); the weapons they
+  hold and carry and Dual Wield's off hand; what lies in storage they may take (a stockpile or shelf, not forbidden, not
+  burning; an outfit stand's weapon, to be taken in hand only), the 16 best kinds of gun and of blade by their own rating,
+  as many of each as there are colonists. Each colonist's own rating of each kind (`WeaponForMath.RateFor`, one rating,
+  kept an hour), Dual Wield's pair for a one-handed main weapon (kept an hour). A weapon a colonist can't walk to is taken
+  out for them and the choice made again. The choice is kept per map and made again once an hour, half a second after an
+  order or "not now", or two seconds after what they hold or carry or how many weapons there are changes (looked at once a
+  second). The reasons are made once with the colonist's rating steps (`WeaponLive.ForColonist`). The drawing reads the
+  kept choice and checks each suggestion still stands (the weapon still lies there, isn't theirs, the trade's two still
+  hold what they held).
+- **The orders**, real jobs walked out on the map: the game's `Equip` (a persona weapon that would bond shows the game's
+  own warning first), Simple Sidearms' `EquipSecondary` (its own `CanPickupSidearmInstance` asked first, its reason on the
+  greyed button), Dual Wield's `DW_EquipOffhand`, a weapon from their own inventory put down and picked up (or, should Simple
+  Sidearms be loaded, its own switch `equipSpecificWeaponFromInventory`), and a trade (`Rimfolk_SwapWeapons`,
+  `Weapons/WeaponSwapJob.cs`): the one ordered walks to the other, and when they meet each hands the other what they hold
+  (called off if either stops holding it, the other is down, drafted, asleep or not themselves, or may no longer carry it);
+  Simple Sidearms' memory told by name as its own equip job tells it. A button is greyed with why when it can't be done
+  now (no path, burning, reserved, down, Simple Sidearms' refusal). "On the way" while the job runs.
+- **Where it shows** (`Weapons/WeaponPickUi.cs`, "Weapon suggestions"): the game's gear tab, under the comfortable
+  temperatures (a postfix on `ITab_Pawn_Gear.TryDrawComfyTemperatureRange`, so the tab's scroll height follows): "Suggested
+  weapons", a line each (three at most): the weapon's picture, "Better for Ana: charge rifle (+1.4)", the reasons under it,
+  Equip (or As sidearm, Off hand, Trade), with Simple Sidearms "As sidearm" for a weapon in hand light enough, and "not
+  now"; the tooltip has the whole line, what it costs and where it lies, a click opens the weapon's card. Nice Inventory
+  Tab: a mark at its equipment box's title (`NiceInventoryTab.GroupBox.Draw`, the box read from
+  `ITab_Pawn_Gear_Patch.equipment_legacy_groupbox` and `equipment_alt_groupbox`, its colonist from `lastPawn`, all by name;
+  stands down without the mod): "▲ +1.4 charge rifle", its tooltip the lines, a click the choices. The weapon card: "Who
+  should carry this", the three colonists it suits best by the same scores, with what it adds over what they have of its
+  kind, a click choosing them below. The Defenses page (`UI/DefensePanel.cs`, after the advice): "Weapons for each
+  colonist", a card per colonist with what they hold and its rating for them, each suggestion with its badge, gain and
+  reasons and its button, "Not now" or "Show again"; under the heading what the choice weighs ("Each colonist's own rating,
+  with the fights you meet: mechanoids, armoured raiders.") and how many weapons lie in storage; at the heading "Equip all
+  suggested (n)", which only gives the orders, each colonist's after what they were told already (never one that would
+  bond a persona weapon).
+- **Colonists who ask** (`Weapons/WeaponAsks.cs`, "Colonists ask for better weapons"): at their slice's hourly look, a
+  colonist whose best suggestion is a weapon lying in storage (in hand, as a sidearm or in the off hand, never a trade)
+  with a gain of 1.2 or more; in their free time (a recreation hour, a joy job, idle) in the home area, awake, able to talk,
+  not drafted, downed or in a mental state, no threat on the map or enemy near; at most once in five days each, once a day
+  in the colony, the same weapon not again for fifteen days, not while set aside; then a 12% chance (about a third of
+  their free days once the waits are over). The weapon's place is read at that moment ("in the stockpile", "on the shelf",
+  "on the outfit stand": the slot group's building, its label). The line (`Rimfolk_Pool_WeaponAsk`, one sentence each)
+  is tagged for the reason (mechanoids, armoured, crowds, siege, choke, skill, trait, hunting, passion, noble, worker,
+  special, sidearm, offhand, better) and kind; only a line for the reason is said (else one for "better"); the colony's age
+  picks the words where they differ (a tribe's walking metal ones and hard coats, the middle ages' iron walkers and plate),
+  the speaker's tone the voice. A quiet row in This week (How people are, counted nowhere) while it still lies there for
+  three days: "Ana would rather carry the charge rifle in the stockpile (+1.4)", its reasons under it, a click opening
+  her gear tab, "Look" the Defenses page at the view.
+- **Not now**: per colonist, ten days (`WeaponPickBook.notNow`): their suggestions don't show or take a weapon in the
+  colony's choice, and they don't ask. On the Defenses page "Show again" brings them back.
+- **Kept with the game** (`WeaponPickBook`, a GameComponent; an older save gets an empty one): the raids (12), "not now"
+  (ended ones pruned daily) and each colonist's last ask (one each; of those gone, fifteen days). Modelled in
+  `Tools/save_estimate.py`. Its clock: every 250 ticks at `Sched.RareWeaponPicks` (47), a tenth of the colonists each turn
+  (each once an hour): their ratings of the kinds the choice weighs worked out ahead (so the hourly choice reads kept
+  ones), then their look for a weapon to ask for; timed as `Pass.RareWeaponPicks`; nothing with both settings off.
+- **Rimfolk's card first** (the player: "can the rimworld weapon card be the default screen when opening stats/info of a
+  weapon?"; `Weapons/WeaponCardFirst.cs`, "Open Rimfolk's weapon card first", on; only while "Weapon ratings" and
+  "Rimfolk's weapon card" are on): a prefix on `WindowStack.Add` that lets every window but a `Dialog_InfoCard` pass
+  untouched; a new info card about a weapon the card can show (a weapon itself, or a weapon's kind with its stuff, read
+  from the card's `thing`, `def` and `stuff`) opens as Rimfolk's weapon card instead, while playing. What stays the
+  game's: a card opened while the game's card is being drawn (a prefix and finalizer on `Dialog_InfoCard.DoWindowContents`
+  mark it: its links and its back button move within it), the game's card asked for from Rimfolk's card (its button "All
+  the game's stats", let through once), anything else. The game's card's button "Rimfolk's weapon card" closes it when
+  opening Rimfolk's with the setting on. A kind's card says how it is rated: "Its kind as made, for a colonist of Shooting
+  8 · normal quality, steel".
 
 ## Algorithms, not AI
 
@@ -9299,6 +9417,7 @@ chains, nemeses, camps, play-outs, the fights pass and the worn-out episode read
 |---|---|---|
 | 37 | World situations keep their people from the world's clean-up (only while one runs) | per person a situation holds |
 | 41 | Room planner queue (only while blueprints are queued) | the next blueprints |
+| 47 | The best weapon for each colonist (Weapons/WeaponPickBook.cs; nothing with "Weapon suggestions" and "Colonists ask for better weapons" both off): one tenth of the colonists (by ID), each once an hour, their own rating of each weapon the colony has worked out ahead (so the colony's choice, made at most once an hour, reads ratings already kept); then their look for a clearly better weapon lying in storage to ask for, in their free time at home | per colonist in the slice: one rating per kind of weapon in the colony's choice (sixteen kinds of gun and sixteen of blade from storage at most, and what the colonists hold and carry); the colony's choice itself once an hour per home map, from kept ratings |
 | 53 | Medical triage with Move the Patient (Integrations/MedicalTriage.cs; only with the mod): once an hour, at tick 53 of the hour, every home map's medical beds; every 250 ticks only a map where a patient lately went to a lesser bed, and a move under way followed (the lighter case carried out, then the worse one brought in) | per home map: its medical beds and the patients in them or downed on the floor, the mod's severity each; a carrier sought only for a move |
 | 67 | Hurts from everyday life (Harm/HarmBook; nothing while the setting is at nothing): one tenth of the colonists (by ID), each once an hour; the first slice also calls the evening drill (with a drills or militia decree, five to eight, once a day) and prunes the cap's record in the first hour of the day | per colonist in the slice: the job's work under a work decree (a long day's one roll), a strain or a sprain worked through (heavy hours, one roll each); per colony, its drilling decree and home map's hour |
 | 71 | The heart: one tenth of the colonists (by ID), so each colonist once an hour | per colonist in the slice: moods, feelings, needs, strain; each map's context (food, medicine, filth, defences, dread) at most once an hour, its threat flag every 250 ticks; the dead pruned on slice 0 |

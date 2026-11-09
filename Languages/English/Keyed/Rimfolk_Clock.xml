@@ -70,6 +70,7 @@
   <CC_Clock_Pass_RareBuildPriority>Build priorities</CC_Clock_Pass_RareBuildPriority>
   <CC_Clock_Pass_RareWorldKeep>World situations keep their people</CC_Clock_Pass_RareWorldKeep>
   <CC_Clock_Pass_RarePlanQueue>Room planner queue</CC_Clock_Pass_RarePlanQueue>
+  <CC_Clock_Pass_RareWeaponPicks>The best weapon for each colonist: a tenth of them rated against the colony's weapons, and their look for one to ask for</CC_Clock_Pass_RareWeaponPicks>
   <CC_Clock_Pass_RareHarm>Hurts from everyday life: a tenth of the colonists</CC_Clock_Pass_RareHarm>
   <CC_Clock_Pass_RareHeart>The heart: a tenth of the colonists</CC_Clock_Pass_RareHeart>
   <CC_Clock_Pass_RareCamp>A camp's phase, hunts and trees</CC_Clock_Pass_RareCamp>

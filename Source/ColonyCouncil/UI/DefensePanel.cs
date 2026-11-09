@@ -403,6 +403,23 @@ namespace ColonyCouncil
                 y += AheadPanel.Aside(x, y, w, DefenseAdvice.Source, adviceFolds) + 8f;
             }
             y += SectionGap - 8f;
+            // Weapons for each colonist (Weapons/WeaponPickUi.cs): the colony's view of the best weapon for each, opened here
+            // by a colonist's ask in the inbox.
+            try
+            {
+                if (WeaponPickPanel.TakeFocus())
+                {
+                    if (!folds.IsOpen(WeaponPickPanel.FoldKey)) folds.Toggle(WeaponPickPanel.FoldKey);
+                    scroll.y = y;
+                }
+                float before = y;
+                y = WeaponPickPanel.Draw(s.map, x, y, w, folds);
+                if (y > before) y += SectionGap - 8f;
+            }
+            catch (System.Exception e)
+            {
+                CouncilLog.ErrorOnce("weapons for each colonist on the page", e);
+            }
             y += UiKit.SectionHeading(x, y, w, "CC_Def_Plans".Translate(), m.plans.Count, folds, "plans", out bool plansOpen, "CC_Def_PlansSub".Translate().Resolve());
             if (plansOpen)
                 foreach (var (t, line, reason) in m.plans)

@@ -12,6 +12,63 @@ tree at once, alongside whatever runs. Each piece is merged as its own release, 
 
 ## State (5 November 2026)
 
+- Weapons you can judge at a glance, step 3: the best weapon for each colonist, colonists who ask, and Rimfolk's card
+  first (9 November 2026, `docs/design/weapons.md` points 8 and 9 and the player's "can the rimworld weapon card be the
+  default screen"). **Not released: no version, no What's new round, About.xml and CHANGELOG untouched.** DESIGN.md
+  "Step 3: the best weapon for each colonist, and colonists who ask" has all of it; README "Judging a weapon" and the mod
+  list; the Almanac's "judging a weapon" (prose only, keywords unchanged).
+  - The choice, pure (`Weapons/WeaponPickMath.cs`): a score per colonist and weapon (their own rating, passion 0.15/0.3,
+    the situations they meet weighed by the colony's raids and their work, a hunter's 0.8 loss, faith's 0.4); never what
+    the game refuses, too heavy, despised, a gun for a brawler or a non-shooter. Threshold 0.6 (asks 1.2); another kind
+    +0.5, a bonded persona weapon left unused +1.0 with its cost said. One assignment: greedy by gain, then exchanges
+    (pairs, a better leftover, a weapon moved on so a second colonist can have one), then trades better for both (0.3
+    each, 0.8 together), then Simple Sidearms' sidearms (its default weights) and Dual Wield's off hands. Reasons: two, the
+    strongest first, then costs; keyed words (`CC_WeaponPick_Why_*`).
+  - The colony's fights: Rimfolk's own record of raids (`WeaponPickBook.raids`, a hook on
+    `IncidentWorker_Raid.PostProcessSpawnedPawns`: how many, mechanoids, armoured, siege, tribe; the last 12) and the game's
+    ThreatBig letters for what it lacks; a defense line drawn is a gate held. Defense lines assign no posts, so none are read.
+  - In the game (`Weapons/WeaponPick.cs`): home map colonists (grown, not slaves or quest guests), what they hold and carry,
+    storage (stockpile, shelf, outfit stand; not forbidden), the 16 best kinds of gun and blade; ratings kept an hour and
+    worked out ahead a tenth of the colony every 250 ticks (`Sched.RareWeaponPicks` 47, `Pass.RareWeaponPicks`); the choice
+    kept per map, made again hourly, after an order, or when what they hold or the weapon count changes. Orders are real
+    jobs: `Equip`, Simple Sidearms' `EquipSecondary` (its `CanPickupSidearmInstance` asked), Dual Wield's `DW_EquipOffhand`,
+    and `Rimfolk_SwapWeapons` (`WeaponSwapJob.cs`: one walks to the other, they hand each other their weapons; Simple
+    Sidearms' memory told by name). A persona weapon that would bond shows the game's warning first.
+  - Where it shows (`WeaponPickUi.cs`): the game's gear tab ("Suggested weapons" under the temperatures, a postfix on
+    `ITab_Pawn_Gear.TryDrawComfyTemperatureRange`), Nice Inventory Tab's equipment box (a mark on its title,
+    `NiceInventoryTab.GroupBox.Draw`, by name, stands down without it), the weapon card ("Who should carry this"), the
+    Defenses page ("Weapons for each colonist", after the advice, with "Equip all suggested" that only gives orders).
+  - Colonists who ask (`WeaponAsks.cs`, pool `Rimfolk_Pool_WeaponAsk`, 67 lines, every reason in every age and tone): in
+    free time at home and safe, once in five days each, once a day in the colony, the same weapon not for fifteen days,
+    12% a look; the weapon's place read at that moment. A quiet row in This week (How people are, `weapon-asks`, counted
+    nowhere) for three days while it stands; a click opens their gear tab, "Look" the Defenses page at the view.
+  - Rimfolk's card first (`WeaponCardFirst.cs`): a prefix on `WindowStack.Add` (only a `Dialog_InfoCard` about a weapon
+    the card can show is swapped), a prefix and finalizer on `Dialog_InfoCard.DoWindowContents` marking navigation inside
+    the game's card (links, back button) as its own; the card's "All the game's stats" opens the game's card, let through
+    once; the game's card's "Rimfolk's weapon card" closes it with the setting on. A kind's card says "Its kind as made, for
+    a colonist of Shooting 8 · normal quality, steel".
+  - Settings (How you're told, Weapons; each on): `weaponCardFirst` "Open Rimfolk's weapon card first" (needs ratings and
+    the card), `weaponSuggestions` "Weapon suggestions", `weaponAsks` "Colonists ask for better weapons". Saved with the
+    game: `WeaponPickBook` (a GameComponent: raids 12, "not now" ten days per colonist, each colonist's last ask), modelled
+    in `Tools/save_estimate.py`. DefValidator learned the `{WEAPON}` placeholder.
+  - Tests: `Tools/Tests/WeaponPickTests.cs` (246 checks: the threshold, the assignment against brute force on 300 random
+    colonies, every stop, trades, sidearms, off hands, carried weapons, the colony's fights, hunter, passion, faith, the
+    reasons, the asks' waits, who should carry, the pool in every age, the seams); the pool is in ImmersionTests.
+  - Not run here (none of it could be): which callers really add a `Dialog_InfoCard` through `WindowStack.Add` (the game's
+    `Widgets.InfoCardButton`, the inspect pane, hyperlinks do; another mod that draws its own card or opens it otherwise
+    isn't swapped), and that the back button and links inside the game's card stay in it; the gear tab's lines and their
+    buttons' places on the game's tab and the mark on Nice Inventory Tab's box (its title bar's width); the swap job on the
+    map (the two meeting, Simple Sidearms' memory after it); Simple Sidearms' and Dual Wield's jobs from our orders; an
+    outfit stand's weapon equipped from the order; the raid hook's armour reading on real raiders; how the asks feel over
+    a few days (their rate); the first choice's time on a big colony with a full armoury.
+  - Try in the game: 1. Click the "i" on a rifle in the gear tab: Rimfolk's card opens; "All the game's stats" opens the
+    game's, its link to steel stays in it, its "Rimfolk's weapon card" comes back. 2. A research project's unlocked gun: its
+    card says "Its kind as made ... normal quality, steel". 3. Put a charge rifle in a stockpile with a good shot holding an
+    assault rifle: the gear tab says "Better for ...: charge rifle (+0.9 or so)" with why; Equip walks them there. 4. The
+    Defenses page: "Weapons for each colonist", "Equip all suggested". 5. With Simple Sidearms, "As sidearm" on a knife. 6.
+    Let a few days pass with a clearly better weapon stored: a colonist asks in their free time; This week has its row.
+    7. Settings, How you're told, Weapons: each of the three off in turn.
+
 - 0.183.0, weapons you can judge at a glance, step 2: the rating in the game, Rimfolk's weapon card and the weapon mods (9
   November 2026, `docs/design/weapons.md` points 5 to 7; step 3, recommendations, not started; the tier-list page the
   player has is https://claude.ai/artifact/PDAYaXQYt8k1LL5kJJ26KZ, built from `docs/weapons/weapons.json`). DESIGN.md "Weapons you can judge at a glance" has all of it;
