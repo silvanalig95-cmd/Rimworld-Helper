@@ -5,6 +5,13 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## Clothes suggestions on the colonist card
+
+*9 November 2026, version 0.197.1*
+
+- A colonist's card now lists up to three suggested clothes or armour under what they wear, with the reason and the same button as the gear tab: wear it, take a colleague's spare, trade, or allow it in their outfit.
+- A suggestion already on its way, or one that can't be done right now, says so on the card.
+
 ## The colonist card
 
 *9 November 2026, version 0.197.0*

@@ -12,6 +12,10 @@ tree at once, alongside whatever runs. Each piece is merged as its own release, 
 
 ## State (5 November 2026)
 
+- 0.197.1, the colonist card shows clothes suggestions (9 November 2026). The card (0.197.0) and the apparel suggestions
+  (0.196.0) were built side by side; `Apparel/ApparelCardHook.cs` registers `ColonistCardHooks.KitLines` so a colonist's
+  card lists up to three standing clothes suggestions under their apparel with the gear tab's own words and act
+  (`ApparelPickGearTab.ActLabel`/`ActTip`, `ApparelPick.Do`).
 - 0.197.0, the colonist card, stage 3 point 4 (9 November 2026, `docs/design/rimfolk-look.md`; the player: "colonist card
   would be cool!"). DESIGN.md "Rimfolk's own
   look, stage 3, point 4: the colonist card" has all of it; README "A colonist's card"; the Almanac's "Start here" (prose).
