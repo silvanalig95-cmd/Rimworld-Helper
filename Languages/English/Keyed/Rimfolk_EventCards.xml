@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <!-- Rimfolk's event cards (docs/design/rimfolk-look.md, stage 3, point 1: Source/ColonyCouncil/UI/EventCards/). Rimfolk's
+       letters arrive on the right as the game's always do; opening one shows a card in Rimfolk's own look. -->
+
+  <!-- Settings -->
+  <CC_Settings_EventCards>Rimfolk's event cards</CC_Settings_EventCards>
+  <CC_Settings_EventCards_Tip>Rimfolk's letters (its questions for the council, the council's meetings, its events and the world's, other peoples' offers and asks, the camps', the colony's news and every other letter it sends) open as a card in Rimfolk's own look: a picture of who or what it is about, its title and kind, the text, each answer as a card of its own with what it does and what it costs or risks, who is involved with their mood and heart, and what the council leans to where it voted. They still arrive on the right as the game's letters do, with the same sound and colour, and are put off, answered or dismissed the same way; only the window that opens is Rimfolk's. The game's own letters and other mods' stay as they are. Needs Rimfolk's own look; off, the game's letter window.</CC_Settings_EventCards_Tip>
+  <CC_SetNote_EventCards>Rimfolk's letters open as cards: a picture, the text, each answer as its own card, who is involved.</CC_SetNote_EventCards>
+
+  <!-- The title bar: when the letter came -->
+  <CC_EventCard_Bar>Letter, {CAME}</CC_EventCard_Bar>
+  <CC_EventCard_JustNow>just now</CC_EventCard_JustNow>
+  <CC_EventCard_Ago>{0} ago</CC_EventCard_Ago>
+
+  <!-- A letter's kind, beside its colour (EventCardMath.Kinds) -->
+  <CC_EventCard_Kind_Question>A question for the council</CC_EventCard_Kind_Question>
+  <CC_EventCard_Kind_Meeting>The council meets</CC_EventCard_Kind_Meeting>
+  <CC_EventCard_Kind_CalendarDay>A day on the calendar</CC_EventCard_Kind_CalendarDay>
+  <CC_EventCard_Kind_Election>An election</CC_EventCard_Kind_Election>
+  <CC_EventCard_Kind_Event>Something is happening</CC_EventCard_Kind_Event>
+  <CC_EventCard_Kind_EventThreat>Something dangerous is happening</CC_EventCard_Kind_EventThreat>
+  <CC_EventCard_Kind_WorldNews>News from the world</CC_EventCard_Kind_WorldNews>
+  <CC_EventCard_Kind_WorldNewsBad>Bad news from the world</CC_EventCard_Kind_WorldNewsBad>
+  <CC_EventCard_Kind_World>The world asks</CC_EventCard_Kind_World>
+  <CC_EventCard_Kind_WorldThreat>Trouble in the world</CC_EventCard_Kind_WorldThreat>
+  <CC_EventCard_Kind_Camp>A camp on the land</CC_EventCard_Kind_Camp>
+  <CC_EventCard_Kind_CampDanger>Danger at a camp</CC_EventCard_Kind_CampDanger>
+  <CC_EventCard_Kind_Peoples>From another people</CC_EventCard_Kind_Peoples>
+  <CC_EventCard_Kind_Region>From the region</CC_EventCard_Kind_Region>
+  <CC_EventCard_Kind_Journey>A journey</CC_EventCard_Kind_Journey>
+  <CC_EventCard_Kind_Colonies>The colony's own towns</CC_EventCard_Kind_Colonies>
+  <CC_EventCard_Kind_News>The colony's news</CC_EventCard_Kind_News>
+  <CC_EventCard_Kind_Rimfolk>From Rimfolk</CC_EventCard_Kind_Rimfolk>
+  <CC_EventCard_Kind_ThreatBig>A great threat</CC_EventCard_Kind_ThreatBig>
+  <CC_EventCard_Kind_Threat>A threat</CC_EventCard_Kind_Threat>
+  <CC_EventCard_Kind_Bad>Bad news</CC_EventCard_Kind_Bad>
+  <CC_EventCard_Kind_Good>Good news</CC_EventCard_Kind_Good>
+  <CC_EventCard_Kind_Neutral>News</CC_EventCard_Kind_Neutral>
+  <CC_EventCard_Kind_Death>A death</CC_EventCard_Kind_Death>
+  <CC_EventCard_Kind_Answer>A question</CC_EventCard_Kind_Answer>
+  <CC_EventCard_Kind_Told>A letter</CC_EventCard_Kind_Told>
+
+  <!-- The header -->
+  <CC_EventCard_Goodwill>{PEOPLE}: goodwill {GOODWILL}</CC_EventCard_Goodwill>
+  <CC_EventCard_Look>Show on the map</CC_EventCard_Look>
+  <CC_EventCard_LookTip>Go to what this letter is about. The letter stays where it is, to answer later.</CC_EventCard_LookTip>
+
+  <!-- The answers -->
+  <CC_EventCard_Answers>What will you do?</CC_EventCard_Answers>
+  <CC_EventCard_CantNow>Not now: {WHY}</CC_EventCard_CantNow>
+  <CC_EventCard_MoreLines>and {COUNT} more (hover for all of it)</CC_EventCard_MoreLines>
+  <CC_EventCard_LeansHere>The council leans here</CC_EventCard_LeansHere>
+  <CC_EventCard_CustomTag>The colony's custom</CC_EventCard_CustomTag>
+  <CC_EventCard_Custom_Tradition>Keeping {CUSTOM} is a tradition of the colony's; letting it pass would break it.</CC_EventCard_Custom_Tradition>
+  <CC_EventCard_Custom_Kept>The colony has kept {CUSTOM} before ({YEARS} years running); letting it pass takes it off the calendar.</CC_EventCard_Custom_Kept>
+  <CC_EventCard_Backers>{COUNT} for it: {WHO}</CC_EventCard_Backers>
+
+  <!-- Who is involved -->
+  <CC_EventCard_Involved>Who is involved</CC_EventCard_Involved>
+  <CC_EventCard_MorePeople>and {COUNT} more</CC_EventCard_MorePeople>
+  <CC_EventCard_Dead>Dead</CC_EventCard_Dead>
+  <CC_EventCard_Prisoner>Prisoner</CC_EventCard_Prisoner>
+  <CC_EventCard_Slave>Slave</CC_EventCard_Slave>
+  <CC_EventCard_NoPeople>Of no people</CC_EventCard_NoPeople>
+  <CC_EventCard_Mood>Mood {MOOD}</CC_EventCard_Mood>
+  <CC_EventCard_MoodBreak>a minor break below {MINOR}</CC_EventCard_MoodBreak>
+  <CC_EventCard_Heart>Heart: {BAND}</CC_EventCard_Heart>
+  <CC_EventCard_PersonJump>Click to go to {PAWN_nameDef} on the map. The letter stays where it is, to answer later.</CC_EventCard_PersonJump>
+  <CC_EventCard_PersonAway>{PAWN_nameDef} is not on a map the camera can go to.</CC_EventCard_PersonAway>
+
+  <!-- What the council leans to -->
+  <CC_EventCard_Leans>What the council leans to</CC_EventCard_Leans>
+  <CC_EventCard_Lean_HandOverFor>The meeting voted {FOR} to {AGAINST} to go ahead.</CC_EventCard_Lean_HandOverFor>
+  <CC_EventCard_Lean_HandOverAgainst>The meeting voted {AGAINST} to {FOR} against it.</CC_EventCard_Lean_HandOverAgainst>
+
+  <!-- The letter's links -->
+  <CC_EventCard_SeeAlso>See also</CC_EventCard_SeeAlso>
+
+</LanguageData>

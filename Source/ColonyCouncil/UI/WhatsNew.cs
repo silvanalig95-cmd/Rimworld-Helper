@@ -213,7 +213,7 @@ namespace ColonyCouncil
     }
 
     /// <summary>The update letter, with a button that opens the Almanac's "What's new" page.</summary>
-    public class ChoiceLetter_WhatsNew : ChoiceLetter
+    public class ChoiceLetter_WhatsNew : RimfolkLetter
     {
         public override IEnumerable<DiaOption> Choices
         {

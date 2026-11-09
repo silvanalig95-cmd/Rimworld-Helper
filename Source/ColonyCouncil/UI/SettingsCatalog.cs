@@ -638,6 +638,8 @@ namespace ColonyCouncil
             Choice("windowSize", "CC_SetLabel_WindowSize", "CC_SetTip_WindowSize", "CC_WindowSize_", "CC_SetNote_WindowSize_", new[] { "Standard", "Large" });
             // Rimfolk's own look and its windows that move and size (docs/design/rimfolk-look.md, UI/WindowFrame.cs).
             Toggle("ownLook", "CC_Settings_OwnLook", "CC_SetNote_OwnLook");
+            // Rimfolk's letters as its own cards (UI/EventCards/, stage 3 of the look): only with its own look.
+            Toggle("eventCards", "CC_Settings_EventCards", "CC_SetNote_EventCards", "ownLook");
             Toggle("windowsMove", "CC_Settings_WindowsMove", "CC_SetNote_WindowsMove");
             var places = Action("windowsPlaceReset", "CC_Settings_WindowsPlaceReset", null, "CC_SetNote_WindowsPlaceReset", "windowsMove");
             places.covers = new[] { "windowPlaces" };

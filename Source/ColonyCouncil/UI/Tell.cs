@@ -183,7 +183,11 @@ namespace ColonyCouncil
             }
             if (verdict == TellVerdict.Merged) return;
             if (verdict == TellVerdict.Held && Hold(line)) return;
-            Find.LetterStack.ReceiveLetter(label ?? "", body, def, look, faction);
+            // The game's own letter of the kind asked for, kept as Rimfolk's so it opens as an event card (UI/EventCards/).
+            var letter = LetterMaker.MakeLetter(label ?? "", body, def, look, faction);
+            if (letter == null) return;
+            EventCards.Mark(letter);
+            Find.LetterStack.ReceiveLetter(letter);
         }
 
         // ---------------- The colony's story ----------------

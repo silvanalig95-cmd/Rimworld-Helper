@@ -12,6 +12,39 @@ tree at once, alongside whatever runs. Each piece is merged as its own release, 
 
 ## State (5 November 2026)
 
+- Rimfolk's event cards, stage 3 point 1 of Rimfolk's own look (9 November 2026, `docs/design/rimfolk-look.md`; the
+  player: "like the events, assuming they still pop up the same way like normal game events do? i mean on the right
+  side."). **Not released: no version, no What's new round, About.xml and CHANGELOG untouched.** DESIGN.md "Rimfolk's own
+  look, stage 3, point 1: event cards" has all of it; README "Event cards".
+  - Letters arrive as the game's always do; opening one of Rimfolk's shows a card (`UI/EventCards/`): every Rimfolk choice
+    letter class (28) now derives from `RimfolkLetter : ChoiceLetter` (only `OpenLetter` overridden, and `Describe` for
+    what the card shows); Rimfolk's plain letters (the game's `StandardLetter` from `Tell.Letter` and its world-news
+    defs) through one prefix on `ChoiceLetter.OpenLetter`, exactly that class and only Rimfolk's (its def's pack, or its
+    ID kept in `EventCardsBook`, a new game component: `plainLetters`, newest 400, pruned at save; in save_estimate.py).
+    The game's own and other mods' letters untouched; the colony news with lines keeps `Dialog_News`.
+  - The card (`EventCardWindow`, a `FramedWindow`, key "EventCard", least 520 by 440): header (portraits from the cache
+    up to three, else `ItemPortrait`, else the people's emblem, else the kind's mark), the title, the kind beside the
+    letter's colour (`EventCardMath.Kinds`, 26 words), the people with stance and goodwill, the jump (the letter's own or
+    "Show on the map"); the text; each answer a card (its words, the line under it by "What each answer does", costs and
+    risks from the answer's `OptionImpact`, why not, "The colony's custom" on a custom's answer, backers); who is involved
+    (mood by break thresholds, the heart's band in the colonist bar's colours, a click goes to them); what the council
+    leans to only where it voted (the meeting's votes, a hand-over's vote); links, quest, postpone and close at the foot.
+    Wider: a side column from a body of 760, answers in two or three columns.
+  - The game's behaviour: the letter's `Choices` made once, owned by a hidden `Dialog_NodeTree` (`EventCardTree`) so the
+    game's own `DiaOption.Activate` runs (found by `AccessTools`, checked by ApiDiff); a page an option leads to shows on
+    the card; it pauses and holds the map as the game's letter does; its close is "put off", none on a letter's last tick
+    (`FramedWindow.FrameClosable`, new). `DiaOption_Impact` keeps `bare` and `impact`; `Answers.TextOf` is internal.
+  - Setting "Rimfolk's event cards" (`eventCards`, on), under "Rimfolk's own look". Keys `Rimfolk_EventCards.xml`. Tests
+    `Tools/Tests/EventCardTests.cs` (360 checks); `OneRecordTests` reads the new base.
+  - Not run here: every letter through the hidden tree (the election's menu pages above all), the card's look in the
+    game at its least with a long letter, portraits of people off the map, a letter the game opens on its last tick, plain
+    letters from older saves (not kept: they open in the game's window until they leave the stack).
+  - Try in the game: 1. Wait for a dilemma: it arrives on the right as before; click it: the card, portraits at the top,
+    each answer a card with its line and costs. 2. Hover an answer: all it does. 3. Click someone under "Who is involved":
+    the camera goes to them, the letter stays. 4. A council meeting with votes: "What the council leans to", the lit
+    answer, backers' faces. 5. A plain Rimfolk letter (a world news letter): the card with "Show on the map" or the jump.
+    6. Settings, How you're told: "Rimfolk's event cards" off, the game's window again.
+
 - 0.187.0, armour and apparel you can judge at a glance, step 1: the rating, its tags and a review of every piece (9
   November 2026, `docs/design/apparel.md` points 1 to 4). No game-side code: only pure math that builds into the mod, the
   tools and the docs. The player's tier-list page is https://claude.ai/artifact/KSfcbX8Pfojbb7cgzZ63T7 (built from

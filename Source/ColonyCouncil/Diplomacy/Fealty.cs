@@ -754,7 +754,7 @@ namespace ColonyCouncil
     }
 
     /// <summary>Their offer of protection for the colony's oath, as a letter: accept (their lord comes to the gate), or let it be.</summary>
-    public class ChoiceLetter_FealtyOffer : ChoiceLetter
+    public class ChoiceLetter_FealtyOffer : RimfolkLetter
     {
         public Faction people;
         public int home = HomesMath.None;
@@ -800,6 +800,9 @@ namespace ColonyCouncil
                 yield return Option_Postpone;
             }
         }
+
+        /// <summary>The event card: the people it comes from.</summary>
+        public override void Describe(EventCardFacts facts) => facts.faction ??= people;
 
         public override void ExposeData()
         {

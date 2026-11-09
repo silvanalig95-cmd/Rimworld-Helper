@@ -15,7 +15,7 @@ namespace ColonyCouncil
     /// colony was (Colonies/TownsAfter.cs, TownTakeBack.cs): their yes to the colony's letter, take it back now or later;
     /// one of its former people asking to come home, welcome them or not now.
     /// </summary>
-    public class ChoiceLetter_Founding : ChoiceLetter
+    public class ChoiceLetter_Founding : RimfolkLetter
     {
         public const int Settle = 0, Newcomers = 1, Move = 2, HandOverVote = 3, HandOverCaravan = 4, TakeBack = 5, Homecoming = 6;
 
@@ -212,6 +212,22 @@ namespace ColonyCouncil
                         break;
                 }
             }
+        }
+
+        /// <summary>The event card: who it is about, and for a hand-over the meeting's vote, which way it went.</summary>
+        public override void Describe(EventCardFacts facts)
+        {
+            facts.Person(pawn);
+            facts.Person(kin);
+            if (ask != HandOverVote || ArchivedOnly || !Live) return;
+            var plan = HandOverPlan;
+            if (plan == null) return;
+            foreach (var p in plan.going) facts.Person(p);
+            int lean = EventCardMath.LeanForAgainst(plan.voted, plan.voteFor, plan.voteAgainst);
+            if (lean < 0) return;
+            facts.lean = lean;
+            facts.leanText = (lean == 0 ? "CC_EventCard_Lean_HandOverFor" : "CC_EventCard_Lean_HandOverAgainst")
+                .Translate(plan.voteFor.Named("FOR"), plan.voteAgainst.Named("AGAINST")).Resolve();
         }
 
         public override void ExposeData()

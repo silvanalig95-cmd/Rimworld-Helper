@@ -1312,7 +1312,7 @@ namespace ColonyCouncil
     }
 
     /// <summary>A day on the colony calendar has come: keep it, keep it with the faith's own rite, or let it pass this year.</summary>
-    public class ChoiceLetter_CalendarDay : ChoiceLetter
+    public class ChoiceLetter_CalendarDay : RimfolkLetter
     {
         public const int KeepChoice = 0;
         public const int RitualChoice = 1;

@@ -257,7 +257,7 @@ namespace ColonyCouncil
     }
 
     /// <summary>A world event that asks the colony something.</summary>
-    public class ChoiceLetter_Happening : ChoiceLetter
+    public class ChoiceLetter_Happening : RimfolkLetter
     {
         public HappeningContext ctx;
         public bool resolved;
@@ -301,6 +301,9 @@ namespace ColonyCouncil
             base.Removed();
             if (!resolved && ctx?.incident != null) CouncilGameComponent.Instance?.happenings.Resolve(this, ctx.Ext?.defaultOption ?? 0, true);
         }
+
+        /// <summary>The event card: who and what the event is about (those who came, the place, the people behind it).</summary>
+        public override void Describe(EventCardFacts facts) => facts.Context(ctx);
 
         public override void ExposeData()
         {

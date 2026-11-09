@@ -74,6 +74,21 @@ shut them; a jump to someone or a plan put down on the map closes them. A name's
 "Rimfolk's own look" and "Rimfolk's windows move and resize" in the settings (both on) bring back the game's look and
 the four windows as tabs at the screen's foot; "Put Rimfolk's windows back" opens every window where it first did.
 
+**Event cards.** Rimfolk's letters still arrive on the right as the game's do, with the same sound, colour and way of
+putting them off or dismissing them; opening one (a dilemma, the council's meeting, a calendar day, an election, an
+event or the world's question, another people's offer, a camp's or the region's ask, a journey, a town of the colony's,
+and the plain letters Rimfolk sends) shows a card in Rimfolk's own look rather than the game's letter window. At its
+top a picture of who or what it is about (their portraits, the thing itself, or the people's emblem), its title, its
+kind beside the letter's own colour, the people it is from with their stance, and a button to jump to the place. Then
+the text, and each answer as a card of its own: its words, the line under it (as **What each answer does** has it),
+what it costs or risks, greyed with the reason where it can't be chosen now, all of it on hover; the colony's custom
+marked on the answer that keeps it. Who is involved, with their mood (coloured by how near a break) and the heart's
+band in the colonist bar's colours; a click takes you to them, the letter staying to answer later. Where the council
+voted (a meeting's ideas, a hand-over), what it leans to, and its backers on each answer. The letter's quest, postpone
+and close at the card's foot. It pauses the game and waits for an answer as the game's letter does, moves and sizes
+like Rimfolk's other windows and opens where you left it. The game's own letters and other mods' stay as they are;
+"Rimfolk's event cards" in the settings (on, with Rimfolk's own look) brings back the game's window for Rimfolk's too.
+
 The **council** window, in four views along its top, each with its modes as small buttons under its title and a "?"
 beside the title that opens its page of the Almanac:
 
@@ -4804,8 +4819,8 @@ The pages:
   gate); the slow speed buttons (and putting them back), where the council button sits in the bottom bar, the region,
   defense and planning buttons, the count on the council button, a "more" button for the bottom bar's buttons you
   put away, which page the council window opens on (**This week** by default, or the last page), the Almanac's text
-  size, the window size, **Rimfolk's own look** and **Rimfolk's windows move and resize** (both on) with "Put
-  Rimfolk's windows back", the region map's reach; names and cards (previews and their pause); the **on-screen panels**
+  size, the window size, **Rimfolk's own look**, **Rimfolk's event cards** and **Rimfolk's windows move and resize**
+  (all on) with "Put Rimfolk's windows back", the region map's reach; names and cards (previews and their pause); the **on-screen panels**
   (each panel's options, lock, hiding, the game's own alert list, look, text size, the food and mood lines, putting
   them back) and the **hover card** (the game's tooltip under it too); the **badges on the colonist bar** (each kind,
   the break ring or dot and its early warning, the wish badge's threshold, size, corner and how many show).

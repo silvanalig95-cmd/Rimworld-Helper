@@ -1063,7 +1063,7 @@ namespace ColonyCouncil
 
     // ===================== The letter =====================
 
-    public class ChoiceLetter_Dilemma : ChoiceLetter
+    public class ChoiceLetter_Dilemma : RimfolkLetter
     {
         public DilemmaContext ctx;
         public bool resolved;
@@ -1102,6 +1102,13 @@ namespace ColonyCouncil
         {
             base.Removed();
             if (!resolved && ctx?.def != null) DilemmaTracker.ForQuestion(ctx)?.Resolve(this, ctx.def.defaultOption, true);
+        }
+
+        /// <summary>The event card: who the question is about, and the answer that keeps the colony's custom while it can still be given.</summary>
+        public override void Describe(EventCardFacts facts)
+        {
+            facts.Context(ctx);
+            if (!ArchivedOnly && !resolved) facts.Custom(ctx);
         }
 
         public override void ExposeData()

@@ -433,6 +433,9 @@ namespace ColonyCouncil
         {
         }
 
+        /// <summary>Whether the title bar has its close button (an event card wanting an answer now has none).</summary>
+        protected virtual bool FrameClosable => true;
+
         private Action<Rect> toolsDrawer;
 
         /// <summary>The window's contents in the body under the title bar (or in the whole window, the frame off).</summary>
@@ -547,7 +550,7 @@ namespace ColonyCouncil
             try
             {
                 toolsDrawer ??= DrawFrameTools;
-                var body = frame.Draw(this, inRect, FrameTitle, FrameIcon, FrameToolsWidth, FrameToolsWidth > 0f ? toolsDrawer : null);
+                var body = frame.Draw(this, inRect, FrameTitle, FrameIcon, FrameToolsWidth, FrameToolsWidth > 0f ? toolsDrawer : null, FrameClosable);
                 // The contents in a group of their own, at zero as the game gives a window's contents.
                 Widgets.BeginGroup(body);
                 try

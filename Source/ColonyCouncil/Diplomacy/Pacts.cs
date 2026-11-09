@@ -639,7 +639,7 @@ namespace ColonyCouncil
     }
 
     /// <summary>Their offer of a pact (or to renew one at its end), as a letter: accept, or let it be.</summary>
-    public class ChoiceLetter_PactOffer : ChoiceLetter
+    public class ChoiceLetter_PactOffer : RimfolkLetter
     {
         public Faction people;
         public int home = HomesMath.None;
@@ -716,6 +716,9 @@ namespace ColonyCouncil
             }
         }
 
+        /// <summary>The event card: the people it comes from.</summary>
+        public override void Describe(EventCardFacts facts) => facts.faction ??= people;
+
         public override void ExposeData()
         {
             base.ExposeData();
@@ -727,7 +730,7 @@ namespace ColonyCouncil
     }
 
     /// <summary>Their offer of a truce after a raid of theirs was beaten, as a letter: accept (their envoy comes to the gate), or refuse.</summary>
-    public class ChoiceLetter_TruceOffer : ChoiceLetter
+    public class ChoiceLetter_TruceOffer : RimfolkLetter
     {
         public Faction people;
         public int home = HomesMath.None;
@@ -775,6 +778,9 @@ namespace ColonyCouncil
                 yield return Option_Postpone;
             }
         }
+
+        /// <summary>The event card: the people it comes from.</summary>
+        public override void Describe(EventCardFacts facts) => facts.faction ??= people;
 
         public override void ExposeData()
         {

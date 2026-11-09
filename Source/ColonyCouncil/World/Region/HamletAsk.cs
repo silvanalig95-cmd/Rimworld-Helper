@@ -100,7 +100,7 @@ namespace ColonyCouncil
     /// The hamlet's questions as a letter (see <see cref="HamletAsk"/>). Once what it asked about has moved on (answered
     /// another way, the hamlet gone, its people no longer as they were), only closing is left.
     /// </summary>
-    public class ChoiceLetter_Hamlet : ChoiceLetter
+    public class ChoiceLetter_Hamlet : RimfolkLetter
     {
         public int home = HomesMath.None;
         public string ask;
