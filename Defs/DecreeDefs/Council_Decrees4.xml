@@ -240,6 +240,10 @@
       <li><trait>Industriousness</trait><degree>2</degree><reaction>Dislike</reaction></li>
       <li><sameFaith>true</sameFaith><reaction>Like</reaction></li>
     </reactions>
+    <!-- The heart's advice (Heart/HeartAdvice.cs): what it eases for a strained colonist, and what it costs. -->
+    <heartEases><li>Despair</li><li>Grief</li></heartEases>
+    <heartHelp>the faithful keep steadier</heartHelp>
+    <heartCost>everyone works 8% slower for three days</heartCost>
     <effects>
       <li>Those of the colony's ideoligion grow 3% more certain of it each day (half again with a chaplain), and keep a little steadier.</li>
       <li>Everyone works 8% slower.</li>
@@ -377,6 +381,10 @@
       <li><trait>TooSmart</trait><reaction>Dislike</reaction></li>
       <li><trait>Psychopath</trait><reaction>Neutral</reaction></li>
     </reactions>
+    <!-- The heart's advice (Heart/HeartAdvice.cs): what it eases for a strained colonist, and what it costs. -->
+    <heartEases><li>Joyless</li></heartEases>
+    <heartHelp>a little recreation every hour at work</heartHelp>
+    <heartCost>research 10% slower and learning 5% slower for five days</heartCost>
     <effects>
       <li>Everyone works 3% faster, and those who don't mind the singing get a little recreation every hour they work.</li>
       <li>Research 10% slower and learning 5% slower: nobody can think over the noise.</li>

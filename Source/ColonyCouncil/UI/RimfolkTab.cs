@@ -44,25 +44,58 @@ namespace ColonyCouncil
 
     /// <summary>
     /// The sections of one page that are folded away, by a fixed key per section. A page can start some of them folded
-    /// (the Story tab's longer lists). Kept for the session, not saved: a new session starts as the page does.
+    /// (the Story tab's longer lists). Kept for the session, not saved: a new session starts as the page does; or, made with
+    /// <see cref="Remembered"/>, kept with the settings between sessions (the Mood tab's sections, PageMemory).
     /// </summary>
     public class Folds
     {
         private readonly HashSet<string> shutAtFirst;
         /// <summary>The sections the player has opened or shut the other way from how the page starts them.</summary>
         private readonly HashSet<string> flipped = new HashSet<string>();
+        /// <summary>Where they are remembered between sessions (PageMemory, with the settings), or null for the session only.</summary>
+        private readonly string remember;
+        private bool loaded;
 
         public Folds(params string[] shutAtFirst)
         {
             this.shutAtFirst = new HashSet<string>(shutAtFirst ?? new string[0]);
         }
 
-        public bool IsOpen(string key) => key == null || shutAtFirst.Contains(key) == flipped.Contains(key);
+        /// <summary>Folds remembered between sessions under <paramref name="key"/> (the Mood tab's sections).</summary>
+        public static Folds Remembered(string key, params string[] shutAtFirst) => new Folds(key, shutAtFirst);
+
+        private Folds(string remember, string[] shutAtFirst) : this(shutAtFirst)
+        {
+            this.remember = remember;
+        }
+
+        public bool IsOpen(string key)
+        {
+            Load();
+            return key == null || shutAtFirst.Contains(key) == flipped.Contains(key);
+        }
 
         public void Toggle(string key)
         {
             if (key == null) return;
+            Load();
             if (!flipped.Remove(key)) flipped.Add(key);
+            if (remember == null) return;
+            var keys = new List<string>(flipped);
+            keys.Sort(System.StringComparer.Ordinal);
+            PageMemory.Set(remember, string.Join(",", keys));
+            if (PageMemory.Flush()) CouncilSettings.SaveNow();
+        }
+
+        /// <summary>The remembered folds, read once (the settings are loaded by then).</summary>
+        private void Load()
+        {
+            if (loaded || remember == null) return;
+            loaded = true;
+            string saved = PageMemory.Get(remember);
+            if (saved.NullOrEmpty()) return;
+            foreach (var k in saved.Split(','))
+                if (!k.NullOrEmpty()) flipped.Add(k);
         }
     }
 }

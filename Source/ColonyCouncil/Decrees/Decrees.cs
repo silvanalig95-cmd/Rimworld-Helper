@@ -200,6 +200,14 @@ namespace ColonyCouncil
         public float workFactor;
         public bool needsHeart;
         /// <summary>
+        /// The heart's advice (Heart/HeartAdvice.cs): what it eases for a strained colonist, by the strain sources it answers
+        /// (days of rest, with its strainRelief, eases all of strain), what it does for them in a few words, and what it costs
+        /// the colony ("everyone works 10% slower for three days").
+        /// </summary>
+        public List<StrainSource> heartEases;
+        [MustTranslate] public string heartHelp;
+        [MustTranslate] public string heartCost;
+        /// <summary>
         /// The share of fuel that fires, torches and fueled heaters save while it holds (banked fires): handed back to them
         /// each hour, never to generators, stoves that only burn while cooking, or anything switched off.
         /// </summary>
@@ -802,6 +810,29 @@ namespace ColonyCouncil
             {
                 CouncilLog.ErrorOnce("decree fuel saving", e);
             }
+        }
+
+        /// <summary>
+        /// Someone asks the council for a decree now, through the petitions' own path (the heart's advice puts a decree that
+        /// would ease a strained colonist to the council this way): with a line of theirs for it, a message and their word said
+        /// over their head. It lapses after a few days as any petition does. Returns the petition (the one there was, if any).
+        /// </summary>
+        public DecreeRequest Petition(DecreeDef def, Pawn asker)
+        {
+            if (def == null || asker == null || IsActive(def)) return null;
+            var had = RequestFor(def);
+            if (had != null) return had;
+            int now = Find.TickManager.TicksGame;
+            string line = def.support.Pick(ToneUtility.ToneFor(asker), Flavor.TagsFor(asker), asker);
+            line = line.NullOrEmpty() ? null : line.Formatted(asker.Named("PAWN")).Resolve();
+            var req = new DecreeRequest { def = def, pawn = asker, tick = now, line = line };
+            requests.Add(req);
+            lastRequestTick = now;
+            string said = line != null ? " \"" + TextUtil.ShortSpeech(line, 120) + "\"" : "";
+            Tell.Message(NewsKind.Colony, Importance.Notable, asker.MapHeld, "CC_Decree_Requested".Translate(asker.Named("PAWN"), def.label.Named("DECREE")).Resolve() + said,
+                new LookTargets(asker), MessageTypeDefOf.NeutralEvent);
+            CouncilGameComponent.Speak(asker, line, new Color(0.9f, 0.85f, 0.6f));
+            return req;
         }
 
         /// <summary>Once a day: old petitions lapse (a little sourly), and someone may make a new one.</summary>

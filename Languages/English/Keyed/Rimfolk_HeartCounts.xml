@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <!--
+    The heart, made to count (Source/ColonyCouncil/Heart/HeartCountMath.cs, HeartEffects.cs, HeartTimeOff.cs,
+    HeartAdvice.cs, Moods/MoodGlance.cs; docs/design/heart-felt.md, release 2).
+  -->
+
+  <!-- New sources and reliefs. -->
+  <CC_Heart_Source_Spread>someone close worn down</CC_Heart_Source_Spread>
+  <CC_Heart_Relief_Lifted>someone close in high spirits</CC_Heart_Relief_Lifted>
+  <CC_Count_Help_Spread>easing whoever close to them is worn down</CC_Count_Help_Spread>
+  <CC_Count_SpreadFrom>{OTHER} being worn down wears on {PAWN_objective} a little.</CC_Count_SpreadFrom>
+  <CC_Count_LiftedBy>{OTHER} in high spirits lifts {PAWN_objective} a little.</CC_Count_LiftedBy>
+
+  <!-- What the bands do to them now (the heart's page, the card, the Mood tab's summary, the stats' explanations). -->
+  <CC_Count_Doing>{BAND}: {WHAT}.</CC_Count_Doing>
+  <CC_Count_CardDoing>What it does to them now: {WHAT}.</CC_Count_CardDoing>
+  <CC_Count_DoingMood>{0} mood</CC_Count_DoingMood>
+  <CC_Count_DoingWork>work {0}</CC_Count_DoingWork>
+  <CC_Count_DoingLearning_Less>learns {0} slower</CC_Count_DoingLearning_Less>
+  <CC_Count_DoingLearning_More>learns {0} faster</CC_Count_DoingLearning_More>
+  <CC_Count_DoingRest_More>needs {0} more sleep</CC_Count_DoingRest_More>
+  <CC_Count_DoingRest_Less>needs {0} less sleep</CC_Count_DoingRest_Less>
+  <CC_Count_DoingHealing_Less>heals {0} slower</CC_Count_DoingHealing_Less>
+  <CC_Count_DoingHealing_More>heals {0} faster</CC_Count_DoingHealing_More>
+  <CC_Count_DoingImmunity_Less>fights off illness {0} slower</CC_Count_DoingImmunity_Less>
+  <CC_Count_DoingImmunity_More>fights off illness {0} faster</CC_Count_DoingImmunity_More>
+  <CC_Count_DoingNightmares>nightmares {0} times as likely</CC_Count_DoingNightmares>
+  <CC_Count_DoingDreams>brighter dreams</CC_Count_DoingDreams>
+  <CC_Count_StatGood>Good side, {0}: x{1}</CC_Count_StatGood>
+  <CC_Count_StatBound>The heart, both sides kept within bounds: x{0}</CC_Count_StatBound>
+
+  <!-- Time off: a day off and a bad afternoon. -->
+  <CC_Count_DayOff_Button>Give a day off</CC_Count_DayOff_Button>
+  <CC_Count_DayOff_ButtonIn>A day off (in {DAYS})</CC_Count_DayOff_ButtonIn>
+  <CC_Count_DayOff_End>End the day off</CC_Count_DayOff_End>
+  <CC_Count_DayOff_Desc>Give {PAWN_nameDef} a day off: for a day {PAWN_possessive} work hours are free time and the first hours after {PAWN_pronoun} wakes a lie-in, so {PAWN_pronoun} rests, takes {PAWN_possessive} recreation, walks and sees friends, and does no ordinary work (a fire or someone needing a doctor still comes first). Strain eases faster while it runs and more when it runs its course. It ends early if danger comes. Once in five days for each colonist.</CC_Count_DayOff_Desc>
+  <CC_Count_DayOff_EndDesc>Bring {PAWN_nameDef} back to work now: {PAWN_possessive} timetable goes back as it was, and the day off counts for half.</CC_Count_DayOff_EndDesc>
+  <CC_Count_DayOff_CardTip>A day of rest away from work, for someone strained: it eases strain well beyond an ordinary day, and the colony goes a day without their work.</CC_Count_DayOff_CardTip>
+  <CC_Count_DayOff_Given>{PAWN_nameDef} has the day off: a lie-in, recreation, a walk and friends, and back to work this time tomorrow.</CC_Count_DayOff_Given>
+  <CC_Count_DayOff_Over>{PAWN_nameDef} is back from {PAWN_possessive} day off, rested.</CC_Count_DayOff_Over>
+  <CC_Count_DayOff_Cut>{PAWN_nameDef}'s day off was cut short: {WHY}.</CC_Count_DayOff_Cut>
+  <CC_Count_BadDay_Start>{PAWN_nameDef} has had enough for today ({WHY}) and leaves {PAWN_possessive} work for the afternoon.</CC_Count_BadDay_Start>
+  <CC_Count_BadDay_StartNoWhy>{PAWN_nameDef} has had enough for today and leaves {PAWN_possessive} work for the afternoon.</CC_Count_BadDay_StartNoWhy>
+  <CC_Count_BadDay_Over>{PAWN_nameDef} is back at work after a hard afternoon, a little lighter for it.</CC_Count_BadDay_Over>
+  <CC_Count_BadDay_Cut>{PAWN_nameDef}'s afternoon to {PAWN_objective}self was cut short: {WHY}.</CC_Count_BadDay_Cut>
+  <CC_Count_Cut_Player>called back to work</CC_Count_Cut_Player>
+  <CC_Count_Cut_Away>{PAWN_pronoun} left home</CC_Count_Cut_Away>
+  <CC_Count_Cut_Danger>danger at home</CC_Count_Cut_Danger>
+  <CC_Count_Cut_Downed>{PAWN_pronoun} was hurt</CC_Count_Cut_Downed>
+  <CC_Count_Cut_Break>{PAWN_pronoun} broke down</CC_Count_Cut_Break>
+  <CC_Count_Off_DayOff>{PAWN_nameDef} has the day off ({LEFT} left): no ordinary work, strain easing faster.</CC_Count_Off_DayOff>
+  <CC_Count_Off_BadDay>{PAWN_nameDef} is having a bad afternoon ({LEFT} left), off work for now.</CC_Count_Off_BadDay>
+  <CC_Count_OffShort_DayOff>day off</CC_Count_OffShort_DayOff>
+  <CC_Count_OffShort_BadDay>a bad afternoon</CC_Count_OffShort_BadDay>
+  <CC_Count_WhyNot_Off>Days off are switched off in the heart's settings.</CC_Count_WhyNot_Off>
+  <CC_Count_WhyNot_NoHeart>{PAWN_nameDef} has no heart to look after (not one of the colony's own, or too young).</CC_Count_WhyNot_NoHeart>
+  <CC_Count_WhyNot_Already>{PAWN_nameDef} has time off already.</CC_Count_WhyNot_Already>
+  <CC_Count_WhyNot_NotStrained>{PAWN_nameDef} isn't strained: a day off is for someone the days have worn on.</CC_Count_WhyNot_NotStrained>
+  <CC_Count_WhyNot_Cooldown>{PAWN_nameDef} had a day off lately: another in {DAYS}.</CC_Count_WhyNot_Cooldown>
+  <CC_Count_WhyNot_Away>{PAWN_nameDef} isn't at home.</CC_Count_WhyNot_Away>
+  <CC_Count_WhyNot_NotFree>Only the colony's free people take time off.</CC_Count_WhyNot_NotFree>
+  <CC_Count_WhyNot_Child>{PAWN_nameDef} is a child: no work to take a day off from.</CC_Count_WhyNot_Child>
+  <CC_Count_WhyNot_Busy>{PAWN_nameDef} is drafted, down or not {PAWN_objective}self right now.</CC_Count_WhyNot_Busy>
+  <CC_Count_WhyNot_Danger>Not while there is danger at home.</CC_Count_WhyNot_Danger>
+  <CC_Count_WhyNot_Care>{PAWN_nameDef} needs a doctor's care first.</CC_Count_WhyNot_Care>
+  <CC_Count_WhyNot_Nursing>{PAWN_nameDef} has a baby to feed.</CC_Count_WhyNot_Nursing>
+  <CC_Count_WhyNot_TooFew>There's nobody else here to carry on the work.</CC_Count_WhyNot_TooFew>
+
+  <!-- What would help (advice). -->
+  <CC_Advice_Head>What would help {PAWN_objective}:</CC_Advice_Head>
+  <CC_Advice_InMessage>What would help: {HELP}.</CC_Advice_InMessage>
+  <CC_Advice_Name_DayOff>a day off</CC_Advice_Name_DayOff>
+  <CC_Advice_Name_Decree>{DECREE}</CC_Advice_Name_Decree>
+  <CC_Advice_Name_Gathering>a gathering</CC_Advice_Name_Gathering>
+  <CC_Advice_Name_Friend>time with a friend</CC_Advice_Name_Friend>
+  <CC_Advice_Name_Meal>a proper meal</CC_Advice_Name_Meal>
+  <CC_Advice_Name_Bed>a better bed</CC_Advice_Name_Bed>
+  <CC_Advice_Name_Recreation>recreation</CC_Advice_Name_Recreation>
+  <CC_Advice_Name_Pain>their pain treated</CC_Advice_Name_Pain>
+  <CC_Advice_Name_Peace>a rest from fighting</CC_Advice_Name_Peace>
+  <CC_Advice_Name_Grieve>time to grieve</CC_Advice_Name_Grieve>
+  <CC_Advice_Name_Light>more light</CC_Advice_Name_Light>
+  <CC_Advice_DayOff>A day off: a day of rest away from work eases {PAWN_objective} well beyond an ordinary day (the colony goes a day without {PAWN_possessive} work).</CC_Advice_DayOff>
+  <CC_Advice_DayOffNow>A day off is under way: strain eases faster until it's over.</CC_Advice_DayOffNow>
+  <CC_Advice_Gathering>A gathering: a party lifts everyone and eases what wears on {PAWN_objective}.</CC_Advice_Gathering>
+  <CC_Advice_Act_Party>Call a party</CC_Advice_Act_Party>
+  <CC_Advice_Act_PartyTip>The colony gathers for a party at its gathering spot, now.</CC_Advice_Act_PartyTip>
+  <CC_Advice_PartyAway>A party can only be called at home.</CC_Advice_PartyAway>
+  <CC_Advice_PartyNoSpot>There's nowhere to gather: mark a gathering spot (a table, a fire, a spot) first.</CC_Advice_PartyNoSpot>
+  <CC_Advice_PartyNotNow>Nobody can host a party just now (a gathering already, everyone busy or away).</CC_Advice_PartyNotNow>
+  <CC_Advice_Friend>Time with a friend: a real talk with {FRIEND_nameDef}.</CC_Advice_Friend>
+  <CC_Advice_FriendNone>A friend: nobody here is close to {PAWN_objective} yet; shared meals, gatherings and working side by side bring people together.</CC_Advice_FriendNone>
+  <CC_Advice_Act_Friend>Send {FRIEND_nameDef} over</CC_Advice_Act_Friend>
+  <CC_Advice_Act_FriendTip>{FRIEND_nameDef} goes over to {PAWN_nameDef} in their free time for a real talk.</CC_Advice_Act_FriendTip>
+  <CC_Advice_FriendBusy>{FRIEND_nameDef} isn't free just now.</CC_Advice_FriendBusy>
+  <CC_Advice_FriendSent>{FRIEND_nameDef} will look in on {PAWN_nameDef} for a talk.</CC_Advice_FriendSent>
+  <CC_Advice_Recreation>Recreation {PAWN_pronoun} likes: a free hour in {PAWN_possessive} schedule, and something new to do with it.</CC_Advice_Recreation>
+  <CC_Advice_RecreationBored>Recreation {PAWN_pronoun} likes: a free hour in {PAWN_possessive} schedule, and something other than {BORED}, which {PAWN_pronoun} is tired of.</CC_Advice_RecreationBored>
+  <CC_Advice_Meal>A proper meal: hunger has worn on {PAWN_objective}; keep cooked meals in store and a table to eat at.</CC_Advice_Meal>
+  <CC_Advice_Bed>A better bed: a bed and a room of {PAWN_possessive} own, warm and quiet, for better nights.</CC_Advice_Bed>
+  <CC_Advice_Pain>{PAWN_possessive} pain treated: a doctor's tending, medicine, and rest in bed.</CC_Advice_Pain>
+  <CC_Advice_Peace>Keep {PAWN_objective} out of the next fight: leave {PAWN_objective} undrafted and back from the walls a while.</CC_Advice_Peace>
+  <CC_Advice_Grieve>Time to grieve: a funeral, the grave visited, and company.</CC_Advice_Grieve>
+  <CC_Advice_Light>More light where {PAWN_pronoun} sleeps and works.</CC_Advice_Light>
+  <CC_Advice_Decree>{DECREE} (the council): {HELP}; it costs {COST}.</CC_Advice_Decree>
+  <CC_Advice_DecreeInForce>{DECREE} is in force: {HELP}.</CC_Advice_DecreeInForce>
+  <CC_Advice_DecreeEases>it eases strain</CC_Advice_DecreeEases>
+  <CC_Advice_DecreeCostPlain>{0} of it</CC_Advice_DecreeCostPlain>
+  <CC_Advice_Act_Propose>Propose</CC_Advice_Act_Propose>
+  <CC_Advice_Act_SeeDecree>See the petition</CC_Advice_Act_SeeDecree>
+  <CC_Advice_Act_ProposeTip>Put {DECREE} to the council as a petition and open the Decrees page, where it is declared. A petition left unanswered lapses after a few days, a little sourly.</CC_Advice_Act_ProposeTip>
+  <CC_Advice_ColonyHead>What would help the colony's strained</CC_Advice_ColonyHead>
+  <CC_Advice_ColonyFor>{PAWN_nameDef}: {WHAT}</CC_Advice_ColonyFor>
+  <CC_Advice_ColonyMany>{WHAT} For {WHO}.</CC_Advice_ColonyMany>
+
+  <!-- The Mood tab at a glance (Moods/MoodGlance.cs). -->
+  <CC_Glance_Heart>Heart: {WHAT}</CC_Glance_Heart>
+  <CC_Glance_Up>up {0} today</CC_Glance_Up>
+  <CC_Glance_Down>down {0} today</CC_Glance_Down>
+  <CC_Glance_Weight>Under it, a weight of {WEIGHT} that rest won't ease, lifting over the days.</CC_Glance_Weight>
+  <CC_Glance_WeightWhy>Under it, a weight of {WEIGHT} from {WHY}, lifting over the days.</CC_Glance_WeightWhy>
+  <CC_Glance_Weighs>Weighing on {PAWN_objective} most: {WHAT}.</CC_Glance_Weighs>
+  <CC_Glance_Lifts>Lifting {PAWN_objective} most: {WHAT}.</CC_Glance_Lifts>
+  <CC_Glance_AllMoods>Every mood</CC_Glance_AllMoods>
+  <CC_Glance_Ordinary>Grown ordinary, and where the moods come from</CC_Glance_Ordinary>
+  <CC_Glance_Lately>Lately</CC_Glance_Lately>
+  <CC_Glance_StrainToday>Strain {NOW} now, {THEN} when the day began.</CC_Glance_StrainToday>
+  <CC_Glance_LastDayOff>A day off, {WHEN}.</CC_Glance_LastDayOff>
+  <CC_Glance_LastBadDay>A bad afternoon, {WHEN}.</CC_Glance_LastBadDay>
+  <CC_Glance_LastEpisode>A day to {PAWN_objective}self at the end of {PAWN_possessive} rope, {WHEN}.</CC_Glance_LastEpisode>
+  <CC_Glance_LastRelease>The good side overflowed ({WHAT}), {WHEN}.</CC_Glance_LastRelease>
+  <CC_Glance_LastBreak>A break ({WHAT}), {WHEN}.</CC_Glance_LastBreak>
+
+  <!-- RimHUD. -->
+  <CC_Hud_Advice>What would help</CC_Hud_Advice>
+  <CC_Hud_OpensMood>Click: open the Mood tab.</CC_Hud_OpensMood>
+
+  <!-- Settings (the heart's page, How hard). -->
+  <CC_Settings_HeartBands>How strongly the bands are felt</CC_Settings_HeartBands>
+  <CC_Settings_HeartBands_Tip>How much the heart's bands move a colonist's mood. Felt (the default): strained -4, worn down -8, near breaking -14; steady +3, in good heart +6, in high spirits +10. Mild, as before the heart was made to count: -3, -5, -8 and +2, +3, +5. Strong: -5, -10, -18 and +4, +8, +13. These go through the game's own mood, so the worn down break more often, as they should; the good side grows ordinary like any good mood.</CC_Settings_HeartBands_Tip>
+  <CC_HeartBands_Mild>Mild</CC_HeartBands_Mild>
+  <CC_HeartBands_Mild_Tip>Strained -3, worn down -5, near breaking -8; the good side +2, +3, +5.</CC_HeartBands_Mild_Tip>
+  <CC_HeartBands_Felt>Felt</CC_HeartBands_Felt>
+  <CC_HeartBands_Felt_Tip>Strained -4, worn down -8, near breaking -14; the good side +3, +6, +10.</CC_HeartBands_Felt_Tip>
+  <CC_HeartBands_Strong>Strong</CC_HeartBands_Strong>
+  <CC_HeartBands_Strong_Tip>Strained -5, worn down -10, near breaking -18; the good side +4, +8, +13.</CC_HeartBands_Strong_Tip>
+  <CC_SetNote_HeartBands_Mild>The bands barely show in mood, as before.</CC_SetNote_HeartBands_Mild>
+  <CC_SetNote_HeartBands_Felt>Worn down is a real weight on mood, and in good heart a real lift.</CC_SetNote_HeartBands_Felt>
+  <CC_SetNote_HeartBands_Strong>The heart decides much of a mood: the worn down break noticeably more often.</CC_SetNote_HeartBands_Strong>
+  <CC_Settings_HeartEffects>Effects beyond mood</CC_Settings_HeartEffects>
+  <CC_Settings_HeartEffects_Tip>Strain and the good side touch more than mood, mildly: work 3% slower when strained, 7% when worn down and 12% near breaking; the worn down learn up to a tenth slower, need a little more sleep, heal up to a tenth slower and fight off illness up to 5% slower; in good heart and in high spirits a little faster learning, healing and immunity. Each shows in the stat's own explanation and on the heart's page. Off: only the old work slowdown from worn down (5% and 10%).</CC_Settings_HeartEffects_Tip>
+  <CC_SetNote_HeartEffects>Work, learning, sleep and recovery feel the heart, a little.</CC_SetNote_HeartEffects>
+  <CC_Settings_HeartBadDays>A bad day from worn</CC_Settings_HeartBadDays>
+  <CC_Settings_HeartBadDays_Tip>Now and then someone worn down has a bad afternoon: off work for a few hours, a while in their room, a walk, a drink if they drink and their policy and faith allow it, a visit to a grave. Only when it's safe (no danger, enough hands, nobody left uncared for), at most once a week for each colonist and once in two days in the colony; it ends early if danger comes, and eases a good share of their strain. A message says why.</CC_Settings_HeartBadDays_Tip>
+  <CC_SetNote_HeartBadDays>The worn down sometimes leave their work for an afternoon.</CC_SetNote_HeartBadDays>
+  <CC_Settings_HeartSpread>Hearts spread a little</CC_Settings_HeartSpread>
+  <CC_Settings_HeartSpread_Tip>Someone worn down wears a little on those close to them (a partner, kin, a friend), and someone in high spirits lifts them a little. Small, within its own cap, and never past strained on its own: one worn colonist can't wear the colony down.</CC_Settings_HeartSpread_Tip>
+  <CC_SetNote_HeartSpread>A worn partner wears on you a little; a friend in high spirits lifts you.</CC_SetNote_HeartSpread>
+  <CC_Settings_HeartAdvice>What would help</CC_Settings_HeartAdvice>
+  <CC_Settings_HeartAdvice_Tip>For each strained colonist, the few things that would ease them most, from what is wearing on them now and what the colony has: a day off, a decree of the council's that eases strain (with what it costs), a gathering, time with a friend, a proper meal, a better bed, recreation, their pain treated, a rest from fighting. On the Mood tab, their card, the council's Moods page and the message when someone is worn down, each with a button where Rimfolk can do it.</CC_Settings_HeartAdvice_Tip>
+  <CC_SetNote_HeartAdvice>Advice you can act on, with a button where Rimfolk can do it.</CC_SetNote_HeartAdvice>
+  <CC_Settings_HeartDayOff>A day off for one colonist</CC_Settings_HeartDayOff>
+  <CC_Settings_HeartDayOff_Tip>Give a strained colonist a day off from their Mood tab, their card, the advice or a button on them: for a day they rest, sleep in, take their recreation, walk and see friends, and do no ordinary work. It eases strain well beyond an ordinary day; the colony goes a day without their work. Once in five days for each colonist, and it ends early if danger comes.</CC_Settings_HeartDayOff_Tip>
+  <CC_SetNote_HeartDayOff>A button for a strained colonist's day off.</CC_SetNote_HeartDayOff>
+
+</LanguageData>

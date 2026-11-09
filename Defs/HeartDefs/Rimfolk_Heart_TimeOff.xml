@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    The heart's time off (Source/ColonyCouncil/Heart/HeartTimeOff.cs; docs/design/heart-felt.md, release 2, points 11 and
+    14): a day off the player gives a strained colonist, and a bad afternoon from worn down. Their work hours are made
+    recreation in their timetable for the time (put back after); this node, before the colonist's main work, keeps them
+    from ordinary work while it runs and their timetable says recreation. A fire or someone needing a doctor now still
+    comes first; then food and sleep as they need; then, now and then, an act of their time off (a while in their room, a
+    walk, a drink if they drink, the grave; on a day off a walk, their partner's company, the fire, a friend); then their
+    recreation; then a wander about the colony. It stands down when they are drafted, downed, need a doctor or danger
+    comes (the game's own then), and the time off ends early when danger comes.
+  -->
+
+  <ThinkTreeDef>
+    <defName>Rimfolk_Heart_TimeOffTree</defName>
+    <insertTag>Humanlike_PreMain</insertTag>
+    <insertPriority>100</insertPriority>
+    <thinkRoot Class="ColonyCouncil.ThinkNode_ConditionalHeartTimeOff">
+      <subNodes>
+        <li Class="JobGiver_Work">
+          <emergency>true</emergency>
+        </li>
+        <li Class="ThinkNode_PrioritySorter">
+          <subNodes>
+            <li Class="JobGiver_GetFood" />
+            <li Class="JobGiver_GetRest" />
+          </subNodes>
+        </li>
+        <li Class="ColonyCouncil.JobGiver_HeartTimeOff" />
+        <li Class="ThinkNode_Priority_GetJoy">
+          <subNodes>
+            <li Class="JobGiver_GetJoy" />
+          </subNodes>
+        </li>
+        <li Class="JobGiver_WanderColony">
+          <maxDanger>None</maxDanger>
+        </li>
+        <li Class="JobGiver_Idle">
+          <ticks>180</ticks>
+        </li>
+      </subNodes>
+    </thinkRoot>
+  </ThinkTreeDef>
+
+</Defs>

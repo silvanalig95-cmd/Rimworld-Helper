@@ -68,6 +68,12 @@ namespace Balance
         public Dictionary<string, double> goodSpentBy { get; set; } = new Dictionary<string, double>();
         /// <summary>Share of the time a colonist's whole mood is under the game's usual minor-break line.</summary>
         public double underMinor { get; set; }
+        /// <summary>The same under its major and extreme lines (20% and 5%), and the mood-caused breaks to expect a colonist-year by the game's mean times (4, 0.8 and 0.5 days).</summary>
+        public double underMajor { get; set; }
+        public double underExtreme { get; set; }
+        public double breaksPerYear { get; set; }
+        /// <summary>The heart, made to count: bad afternoons a colonist-year.</summary>
+        public double badDaysPerYear { get; set; }
         /// <summary>What good things growing ordinary takes off the game's own good moods (the colony's mood, not Rimfolk's).</summary>
         public double gameOrdinary { get; set; }
         public double[] netSeries { get; set; }
@@ -131,6 +137,9 @@ namespace Balance
             s.illNotQuietShare = M(x => x.illNotQuiet ? 1 : 0);
             s.ailmentDays = colonies.Sum(c => c.ailmentDays) / (runs * (double)n);
             s.underMinor = M(x => x.mood < Rates.MinorBreak ? 1 : 0);
+            s.underMajor = M(x => x.mood < Rates.MajorBreak ? 1 : 0);
+            s.underExtreme = M(x => x.mood < Rates.ExtremeBreak ? 1 : 0);
+            s.breaksPerYear = M(x => Rates.BreakChancePerHour(x.mood)) * 24.0 * Colony.YearDays;
             s.gameOrdinary = M(x => x.gameOrdinary);
             double heartHours = colonies.Sum(c => c.heartHours);
             if (heartHours > 0)
@@ -146,6 +155,7 @@ namespace Balance
             }
             double colonistYears = runs * (double)n;
             s.episodesPerYear = colonies.Sum(c => c.episodes) / colonistYears;
+            s.badDaysPerYear = colonies.Sum(c => c.people.Sum(p => p.heart.badDays)) / colonistYears * Colony.YearDays / (double)(Colony.YearDays + Colony.WarmupDays);
             s.inspirationsPerYear = colonies.Sum(c => c.releases[0]) / colonistYears;
             s.kindWordsPerYear = colonies.Sum(c => c.releases[1]) / colonistYears;
             foreach (var p in colonies.SelectMany(c => c.people))

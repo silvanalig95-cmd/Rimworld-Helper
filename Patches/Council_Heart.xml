@@ -2,8 +2,8 @@
 <Patch>
 
   <!--
-    Feelings and strain (Source/ColonyCouncil/Heart/): worn colonists work 5% slower and breaking ones 10%, and the days
-    of rest decree slows those it covers. A stat part on the game's global work speed, which shows its own line in the
+    Feelings and strain (Source/ColonyCouncil/Heart/): strained colonists work 3% slower, worn 7% and breaking 12% (5% and
+    10% from worn with the effects beyond mood off), and the days of rest decree slows those it covers. A stat part on the game's global work speed, which shows its own line in the
     stat's breakdown and contributes nothing while the feature is off. Conditional, so it never fails: if the stat already
     has parts, it joins them; if it has none, it gets its own list; if the stat isn't there at all, nothing happens.
   -->
@@ -22,6 +22,94 @@
         <value>
           <parts>
             <li Class="ColonyCouncil.StatPart_HeartStrain" />
+          </parts>
+        </value>
+      </match>
+    </nomatch>
+  </Operation>
+
+  <!-- The heart, made to count: the worn learn a little slower, those in good heart a little faster (StatPart_HeartFelt, HeartCountMath.Factor). -->
+  <Operation Class="PatchOperationConditional">
+    <xpath>Defs/StatDef[defName="GlobalLearningFactor"]/parts</xpath>
+    <match Class="PatchOperationAdd">
+      <xpath>Defs/StatDef[defName="GlobalLearningFactor"]/parts</xpath>
+      <value>
+        <li Class="ColonyCouncil.StatPart_HeartFelt"><effect>Learning</effect></li>
+      </value>
+    </match>
+    <nomatch Class="PatchOperationConditional">
+      <xpath>Defs/StatDef[defName="GlobalLearningFactor"]</xpath>
+      <match Class="PatchOperationAdd">
+        <xpath>Defs/StatDef[defName="GlobalLearningFactor"]</xpath>
+        <value>
+          <parts>
+            <li Class="ColonyCouncil.StatPart_HeartFelt"><effect>Learning</effect></li>
+          </parts>
+        </value>
+      </match>
+    </nomatch>
+  </Operation>
+
+  <!-- The heart, made to count: the worn need a little more sleep (StatPart_HeartFelt, HeartCountMath.Factor). -->
+  <Operation Class="PatchOperationConditional">
+    <xpath>Defs/StatDef[defName="RestFallRateFactor"]/parts</xpath>
+    <match Class="PatchOperationAdd">
+      <xpath>Defs/StatDef[defName="RestFallRateFactor"]/parts</xpath>
+      <value>
+        <li Class="ColonyCouncil.StatPart_HeartFelt"><effect>Rest</effect></li>
+      </value>
+    </match>
+    <nomatch Class="PatchOperationConditional">
+      <xpath>Defs/StatDef[defName="RestFallRateFactor"]</xpath>
+      <match Class="PatchOperationAdd">
+        <xpath>Defs/StatDef[defName="RestFallRateFactor"]</xpath>
+        <value>
+          <parts>
+            <li Class="ColonyCouncil.StatPart_HeartFelt"><effect>Rest</effect></li>
+          </parts>
+        </value>
+      </match>
+    </nomatch>
+  </Operation>
+
+  <!-- The heart, made to count: the worn heal a little slower (10% at most), those in good heart a little faster (StatPart_HeartFelt, HeartCountMath.Factor). -->
+  <Operation Class="PatchOperationConditional">
+    <xpath>Defs/StatDef[defName="InjuryHealingFactor"]/parts</xpath>
+    <match Class="PatchOperationAdd">
+      <xpath>Defs/StatDef[defName="InjuryHealingFactor"]/parts</xpath>
+      <value>
+        <li Class="ColonyCouncil.StatPart_HeartFelt"><effect>Healing</effect></li>
+      </value>
+    </match>
+    <nomatch Class="PatchOperationConditional">
+      <xpath>Defs/StatDef[defName="InjuryHealingFactor"]</xpath>
+      <match Class="PatchOperationAdd">
+        <xpath>Defs/StatDef[defName="InjuryHealingFactor"]</xpath>
+        <value>
+          <parts>
+            <li Class="ColonyCouncil.StatPart_HeartFelt"><effect>Healing</effect></li>
+          </parts>
+        </value>
+      </match>
+    </nomatch>
+  </Operation>
+
+  <!-- The heart, made to count: the worn fight off illness a little slower (5% at most), those in good heart a little faster (StatPart_HeartFelt, HeartCountMath.Factor). -->
+  <Operation Class="PatchOperationConditional">
+    <xpath>Defs/StatDef[defName="ImmunityGainSpeed"]/parts</xpath>
+    <match Class="PatchOperationAdd">
+      <xpath>Defs/StatDef[defName="ImmunityGainSpeed"]/parts</xpath>
+      <value>
+        <li Class="ColonyCouncil.StatPart_HeartFelt"><effect>Immunity</effect></li>
+      </value>
+    </match>
+    <nomatch Class="PatchOperationConditional">
+      <xpath>Defs/StatDef[defName="ImmunityGainSpeed"]</xpath>
+      <match Class="PatchOperationAdd">
+        <xpath>Defs/StatDef[defName="ImmunityGainSpeed"]</xpath>
+        <value>
+          <parts>
+            <li Class="ColonyCouncil.StatPart_HeartFelt"><effect>Immunity</effect></li>
           </parts>
         </value>
       </match>

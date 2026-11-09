@@ -42,7 +42,12 @@ namespace ColonyCouncil
         /// Heavy things (Heart/HeartFelt.cs, HeartFeltMath): strain sinking toward the lasting weight of a loss, a downing, a
         /// fight going badly or a sickness in the house; bounded by the weight, not by a daily cap.
         /// </summary>
-        Heavy
+        Heavy,
+        /// <summary>
+        /// Someone close worn down (Heart/HeartLogic.cs, HeartCountMath.Spread): a partner, kin or a friend by opinion worn
+        /// down or near breaking wears on them a little, within its own small cap and never past HeartCountMath.SpreadCeiling.
+        /// </summary>
+        Spread
     }
 
     /// <summary>What drains strain. Saved by position in lists, so new kinds go at the end.</summary>
@@ -59,7 +64,9 @@ namespace ColonyCouncil
         /// <summary>Something done with their nature that eases them (Diplomacy/Nature.cs: the open sent abroad for a season).</summary>
         Nature,
         /// <summary>Small joys (Moods/SmallMoments.cs): Rimfolk's beyond their moment, and every small good mood once they add up.</summary>
-        Joys
+        Joys,
+        /// <summary>Someone close in high spirits lifting them (HeartCountMath.Lift): what it eased off strain.</summary>
+        Lifted
     }
 
     /// <summary>
@@ -91,7 +98,9 @@ namespace ColonyCouncil
         /// <summary>A deed of theirs the colony speaks well of (Social/Gossip/Deeds.cs).</summary>
         Deeds,
         /// <summary>The game's comforts, a fine room and a fine meal among them (every small good mood that adds up): only a little.</summary>
-        Comforts
+        Comforts,
+        /// <summary>Someone close in high spirits lifting them (HeartCountMath.Lift): a little, as any good thing does.</summary>
+        Lifted
     }
 
     /// <summary>The traits that change how strain builds and drains, as flags so the math needs no game types.</summary>
@@ -163,28 +172,15 @@ namespace ColonyCouncil
             }
         }
 
-        /// <summary>The situational mood thought's size at each band.</summary>
-        public static float MoodOffset(StrainBand band)
-        {
-            switch (band)
-            {
-                case StrainBand.Strained: return -3f;
-                case StrainBand.Worn: return -5f;
-                case StrainBand.Breaking: return -8f;
-                default: return 0f;
-            }
-        }
+        /// <summary>
+        /// The situational mood thought's size at each band, as Council_Thoughts_Heart.xml has it: -4, -8 and -14 since the
+        /// heart was made to count (docs/design/heart-felt.md, release 2; -3, -5 and -8 before, the "mild" choice now). The
+        /// setting "How strongly the bands are felt" picks among them (HeartCountMath.StrainMood).
+        /// </summary>
+        public static float MoodOffset(StrainBand band) => HeartCountMath.StrainMood(band, BandStrength.Felt);
 
-        /// <summary>Global work speed at each band.</summary>
-        public static float WorkFactor(StrainBand band)
-        {
-            switch (band)
-            {
-                case StrainBand.Worn: return 0.95f;
-                case StrainBand.Breaking: return 0.9f;
-                default: return 1f;
-            }
-        }
+        /// <summary>Global work speed at each band, with its effects beyond mood (HeartCountMath.Work): from strained on.</summary>
+        public static float WorkFactor(StrainBand band) => HeartCountMath.Work(band, true);
 
         /// <summary>How much more often dreams turn to nightmares at each band.</summary>
         public static float NightmareFactor(StrainBand band)
@@ -225,6 +221,8 @@ namespace ColonyCouncil
                 case StrainSource.Letdowns: return 1.5f;
                 // Heavy things sink in toward their weight (HeartFeltMath.SinkIn), never through this cap; from outside the hour, a little.
                 case StrainSource.Heavy: return 3f;
+                // Someone close worn down: a little a day, and never past HeartCountMath.SpreadCeiling.
+                case StrainSource.Spread: return HeartCountMath.SpreadDailyCap;
                 default: return 3f;
             }
         }
@@ -249,6 +247,8 @@ namespace ColonyCouncil
             {
                 case StrainSource.Loss:
                 case StrainSource.Grief:
+                // Nor from someone close worn down.
+                case StrainSource.Spread:
                     if ((t & StrainTraits.Psychopath) != 0) return 0f;
                     break;
                 case StrainSource.Combat:
@@ -358,19 +358,11 @@ namespace ColonyCouncil
 
         /// <summary>
         /// The situational mood thought's size at each band of the good side (Rimfolk_Thoughts_GoodHeart.xml has the same,
-        /// one stage a band from steady): +2, +3 and +5, the bands as the player approved them; nothing yet gives nothing.
-        /// A mirror of strain's -3, -5 and -8, each smaller than strain's across from it.
+        /// one stage a band from steady): +3, +6 and +10 since the heart was made to count (+2, +3 and +5 before, the bands as
+        /// the player first approved them, now the "mild" choice); nothing yet gives nothing. A mirror of strain's -4, -8 and
+        /// -14, each smaller than strain's across from it. It grows ordinary like any good mood (Moods/GoodLife.cs).
         /// </summary>
-        public static float GoodMood(GoodBand band)
-        {
-            switch (band)
-            {
-                case GoodBand.Steady: return 2f;
-                case GoodBand.GoodHeart: return 3f;
-                case GoodBand.HighSpirits: return 5f;
-                default: return 0f;
-            }
-        }
+        public static float GoodMood(GoodBand band) => HeartCountMath.GoodMood(band, BandStrength.Felt);
 
         /// <summary>The most the good side can fill in one day, from everything together.</summary>
         public const float GoodDailyCap = 4f;
@@ -388,6 +380,8 @@ namespace ColonyCouncil
                 case GoodSource.Deeds: return 2f;
                 // A fine room and a fine meal: only a little, so a rich colony doesn't simply buy it.
                 case GoodSource.Comforts: return 0.4f;
+                // Someone close in high spirits: a little.
+                case GoodSource.Lifted: return 0.6f;
                 default: return 1f;
             }
         }
@@ -404,6 +398,7 @@ namespace ColonyCouncil
                 case GoodSource.Friends: return 0.6f;
                 case GoodSource.Joys: return 0.6f;
                 case GoodSource.Comforts: return 0.15f;
+                case GoodSource.Lifted: return 0.5f;
                 default: return 1f;
             }
         }

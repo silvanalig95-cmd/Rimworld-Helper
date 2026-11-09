@@ -19,6 +19,7 @@
   <CC_Good_Source_Purpose>a purpose</CC_Good_Source_Purpose>
   <CC_Good_Source_Deeds>a deed the colony speaks well of</CC_Good_Source_Deeds>
   <CC_Good_Source_Comforts>the comforts of home</CC_Good_Source_Comforts>
+  <CC_Good_Source_Lifted>someone close in high spirits</CC_Good_Source_Lifted>
 
   <!-- The heart's page (the Mood tab's Heart section), the inspector line, the strain meter's tooltip. -->
   <CC_Good_MeterLabel>Good heart</CC_Good_MeterLabel>
@@ -50,7 +51,7 @@
 
   <!-- Settings, on the Heart & health page beside the heart's own. -->
   <CC_Settings_HeartGoodSide>The heart's good side: in good heart, in high spirits</CC_Settings_HeartGoodSide>
-  <CC_Settings_HeartGoodSide_Tip>The other side of strain, growing beside it: someone can be worn down by a hard spell and still in good heart. Good days that keep coming fill it slowly, slower the more strain there is: friends close by, a purpose, deeds the colony speaks well of, gatherings, good talks and small joys, the comforts of home only a little. A hard knock spends part of it as a cushion and builds less strain, and it fades slowly. Steady, in good heart and in high spirits a colonist has a small good mood (+2, +3 and +5); in good heart and in high spirits also brighter dreams and a quicker recovery from strain, and in high spirits, now and then, an inspiration or a kind word for someone close. Turned off, nothing fills it and the bands give nothing; strain works as it always has.</CC_Settings_HeartGoodSide_Tip>
+  <CC_Settings_HeartGoodSide_Tip>The other side of strain, growing beside it: someone can be worn down by a hard spell and still in good heart. Good days that keep coming fill it slowly, slower the more strain there is: friends close by, a purpose, deeds the colony speaks well of, gatherings, good talks and small joys, the comforts of home only a little. A hard knock spends part of it as a cushion and builds less strain, and it fades slowly. Steady, in good heart and in high spirits a colonist has a good mood (+3, +6 and +10 by default, set by how strongly the bands are felt); in good heart and in high spirits also brighter dreams and a quicker recovery from strain, and in high spirits, now and then, an inspiration or a kind word for someone close. Turned off, nothing fills it and the bands give nothing; strain works as it always has.</CC_Settings_HeartGoodSide_Tip>
   <CC_SetNote_HeartGoodSide>Good days that keep coming fill the heart's other side: a small good mood, brighter dreams, now and then an inspiration.</CC_SetNote_HeartGoodSide>
 
 </LanguageData>

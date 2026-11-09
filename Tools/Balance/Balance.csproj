@@ -36,6 +36,7 @@
     <Compile Include="../../Source/ColonyCouncil/Diplomacy/NatureMath.cs" Link="Linked/NatureMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Heart/HeartMath.cs" Link="Linked/HeartMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Heart/HeartFeltMath.cs" Link="Linked/HeartFeltMath.cs" />
+    <Compile Include="../../Source/ColonyCouncil/Heart/HeartCountMath.cs" Link="Linked/HeartCountMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Persona/PersonaMath.cs" Link="Linked/PersonaMath.cs" />
     <!-- Hurts from everyday life (HarmSim.cs, with &#45;&#45;harm): the shared cap and every source's rate. -->
     <Compile Include="../../Source/ColonyCouncil/Harm/HarmMath.cs" Link="Linked/HarmMath.cs" />

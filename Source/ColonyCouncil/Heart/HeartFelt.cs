@@ -310,6 +310,9 @@ namespace ColonyCouncil
                     string why = StrainWhy(h);
                     string key = tell == HeartTell.Worn ? "CC_Felt_Tell_Worn" : "CC_Felt_Tell_Breaking";
                     text = why.NullOrEmpty() ? (key + "_NoWhy").Translate(p.Named("PAWN")).Resolve() : key.Translate(p.Named("PAWN"), why.Named("WHY")).Resolve();
+                    // What would help, in a few words (Heart/HeartAdvice.cs): the buttons are on the heart's page and the card.
+                    string help = HeartAdvice.Short(p, h, 3);
+                    if (!help.NullOrEmpty()) text += " " + "CC_Advice_InMessage".Translate(help.Named("HELP")).Resolve();
                     type = MessageTypeDefOf.NegativeEvent;
                     break;
                 }

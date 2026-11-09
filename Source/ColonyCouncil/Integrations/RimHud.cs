@@ -62,14 +62,49 @@ namespace ColonyCouncil
         }
     }
 
-    /// <summary>Strain and its band; the tooltip says what built it and what would help (Heart/).</summary>
+    /// <summary>
+    /// The heart at a glance, as the Mood tab's summary has it (Moods/MoodGlance.cs): strain's band and value and the good
+    /// side's, each in the colonist bar's heart line colours, the top cause while strained, and a day off or bad afternoon
+    /// under way ("Worn down 61 · in good heart 48 · the plague · day off"). The tooltip is strain in full with what would
+    /// help first; a click opens their Mood tab (Heart/).
+    /// </summary>
     public static class RimHud_Strain
     {
         public static (string label, string value, Func<string> tooltip, Action onHover, Action onClick) GetParameters(Pawn pawn)
         {
             var h = RimHudUtil.HeartOf(pawn);
             if (h == null) return (null, null, null, null, null);
-            return ("CC_Hud_Strain".Translate(), h.hudStrain, () => HeartView.StrainTip(pawn, h), null, null);
+            return ("CC_Hud_Strain".Translate(), h.hudStrain, () => RimHudUtil.HeartTip(pawn, h), null, () => MoodView.ShowMoodTab(pawn, false));
+        }
+    }
+
+    /// <summary>
+    /// What would help them most, in a few words ("a day off, days of rest"); the tooltip has each in its sentence, and a
+    /// click opens their Mood tab, where the buttons are (Heart/HeartAdvice.cs). Blank below strained.
+    /// </summary>
+    public static class RimHud_HeartAdvice
+    {
+        public static (string label, string value, Func<string> tooltip, Action onHover, Action onClick) GetParameters(Pawn pawn)
+        {
+            var h = RimHudUtil.HeartOf(pawn);
+            if (h == null || !HeartAdvice.On) return (null, null, null, null, null);
+            string value = HeartAdvice.Short(pawn, h, 2);
+            if (value == null) return ("CC_Hud_Advice".Translate(), "CC_Hud_None".Translate(), null, null, null);
+            return ("CC_Hud_Advice".Translate(), value.CapitalizeFirst().Colorize(UiKit.Gold), () => HeartAdvice.Tip(pawn, h, 4), null, () => MoodView.ShowMoodTab(pawn, false));
+        }
+    }
+
+    /// <summary>The heart's good side as a bar, like strain's: it fills as it grows, marked where it's steady, in good heart and in high spirits.</summary>
+    public static class RimHud_GoodBar
+    {
+        private static readonly float[] Bands = { HeartMath.SteadyAt / 100f, HeartMath.GoodHeartAt / 100f, HeartMath.HighSpiritsAt / 100f };
+
+        public static (string label, string value, float fill, float[] thresholds, Func<string> tooltip, Action onHover, Action onClick) GetParameters(Pawn pawn)
+        {
+            var h = RimHudUtil.HeartOf(pawn);
+            if (h == null || !GoodHeart.On) return (null, null, -1f, null, null, null, null);
+            return ("CC_Good_MeterLabel".Translate(), h.good.ToString("0"), Mathf.Clamp01(h.good / HeartMath.Max), Bands, () => GoodHeart.Tip(pawn, h), null,
+                () => MoodView.ShowMoodTab(pawn, false));
         }
     }
 
@@ -85,8 +120,11 @@ namespace ColonyCouncil
         {
             var h = RimHudUtil.HeartOf(pawn);
             if (h == null) return (null, null, -1f, null, null, null, null);
-            return ("CC_Hud_Strain".Translate(), h.strain.ToString("0"), Mathf.Clamp01(h.strain / HeartMath.Max), Bands,
-                () => HeartView.StrainTip(pawn, h), null, null);
+            // With time off under way, the value says so ("61, day off").
+            var off = HeartTimeOff.KindOf(h);
+            string value = off == TimeOffKind.None ? h.strain.ToString("0") : h.strain.ToString("0") + ", " + ("CC_Count_OffShort_" + off).Translate().Resolve();
+            return ("CC_Hud_Strain".Translate(), value, Mathf.Clamp01(h.strain / HeartMath.Max), Bands, () => RimHudUtil.HeartTip(pawn, h), null,
+                () => MoodView.ShowMoodTab(pawn, false));
         }
     }
 
@@ -161,6 +199,23 @@ namespace ColonyCouncil
 
     internal static class RimHudUtil
     {
+        /// <summary>
+        /// The heart's tooltip for RimHUD: the Mood tab's summary of it (the heart, the weight, time off, what the bands do),
+        /// what would help first, then strain in full.
+        /// </summary>
+        public static string HeartTip(Pawn pawn, PawnHeart h)
+        {
+            var sb = new System.Text.StringBuilder();
+            sb.Append(MoodGlance.HeartLine(pawn, h));
+            string off = HeartTimeOff.Line(pawn, h, Find.TickManager.TicksGame);
+            if (off != null) sb.Append("\n").Append(off);
+            string advice = HeartAdvice.Tip(pawn, h, 3);
+            if (advice != null) sb.Append("\n\n").Append(advice.Colorize(UiKit.Gold));
+            sb.Append("\n\n").Append(HeartView.StrainTip(pawn, h));
+            sb.Append("\n\n").Append("CC_Hud_OpensMood".Translate().ToString().Colorize(ColoredText.SubtleGrayColor));
+            return sb.ToString();
+        }
+
         /// <summary>The colonist's heart, once it has been worked out, while the feature is on; else null.</summary>
         public static PawnHeart HeartOf(Pawn pawn)
         {

@@ -35,7 +35,8 @@ namespace ColonyCouncil
 
         public static string BandLabel(StrainBand b) => ("CC_Heart_Band_" + b).Translate();
 
-        public static string BandDesc(StrainBand b) => ("CC_Heart_Band_" + b + "_Desc").Translate() + FrayedTempers.BandNote(b);
+        /// <summary>A band in words, with what it does by the settings as they are ({EFFECTS}: HeartEffects.DoingStrain).</summary>
+        public static string BandDesc(StrainBand b) => ("CC_Heart_Band_" + b + "_Desc").Translate((HeartEffects.DoingStrain(b) ?? "").Named("EFFECTS")).Resolve() + FrayedTempers.BandNote(b);
 
         public static string SourceLabel(StrainSource s) => ("CC_Heart_Source_" + s).Translate();
 
@@ -114,6 +115,14 @@ namespace ColonyCouncil
             string strainValue = "CC_Heart_StrainValue".Translate(BandLabel(h.Band), h.strain.ToString("0")).Resolve().Colorize(BandColor(h.Band));
             string goodValue = good != GoodBand.None ? "CC_Heart_StrainValue".Translate(GoodHeart.BandLabel(good), h.good.ToString("0")).Resolve().Colorize(GoodColor) : null;
             h.hudStrain = goodValue == null ? strainValue : h.Band == StrainBand.Steady ? goodValue : strainValue + " · " + goodValue;
+            // The heart, made to count: the top cause while strained, and time off under way, as the Mood tab's summary has them.
+            if (h.Band >= StrainBand.Strained)
+            {
+                string cause = TopCause(h);
+                if (!cause.NullOrEmpty()) h.hudStrain += " · " + cause.Colorize(UiKit.Faint);
+            }
+            var off = HeartTimeOff.KindOf(h);
+            if (off != TimeOffKind.None) h.hudStrain += " · " + ("CC_Count_OffShort_" + off).Translate().Resolve().Colorize(UiKit.Info);
             h.hudFeelings = ColoredFeelings(h);
             var lack = Heart.LowestNeed(h, out float v);
             h.hudNeeds = h.needs == null ? null
@@ -154,6 +163,24 @@ namespace ColonyCouncil
         {
             var top = TopSources(h, n);
             return top.Count == 0 ? null : TextUtil.JoinAnd(top.Select(s => SourceLabel(s.source)).ToList());
+        }
+
+        /// <summary>
+        /// What weighs on them most, in a few words: the heaviest thing under strain ("losing Ana"), else what built it most
+        /// lately ("fighting"); null with neither.
+        /// </summary>
+        public static string TopCause(PawnHeart h)
+        {
+            if (h == null) return null;
+            string why = HeartFelt.Why(h);
+            if (!why.NullOrEmpty())
+            {
+                // The first of them: what lasts now, else the newest heavy thing.
+                if (h.held >= 5f && !h.heldWhy.NullOrEmpty()) return h.heldWhy.Split('|')[0];
+                if (h.weight >= 5f && !h.weightWhy.NullOrEmpty()) return h.weightWhy.Split('|')[0];
+            }
+            var top = TopSources(h, 1);
+            return top.Count == 0 ? null : SourceLabel(top[0].source);
         }
 
         /// <summary>The same with amounts: "losses (+18), fighting (+9)".</summary>
@@ -207,6 +234,7 @@ namespace ColonyCouncil
                 case StrainSource.Nature: return "CC_Heart_Help_Nature";
                 case StrainSource.Letdowns: return "CC_Heart_Help_Letdowns";
                 case StrainSource.Heavy: return "CC_Felt_Help_Heavy";
+                case StrainSource.Spread: return "CC_Count_Help_Spread";
                 default: return "CC_Heart_Help_Sleep";
             }
         }
@@ -430,7 +458,14 @@ namespace ColonyCouncil
             sb.Append("\n\n").Append(built == null ? "CC_Heart_NothingBuilt".Translate().ToString() : "CC_Heart_BuiltBy".Translate(built).Resolve());
             string eased = ReliefDetailed(h, 3);
             if (eased != null) sb.Append("\n").Append("CC_Heart_EasedBy".Translate(eased).Resolve());
-            if (h.strain >= 30f)
+            // What the band does to them now, and time off under way (the heart, made to count).
+            string doing = HeartEffects.Doing(h, false);
+            if (doing != null) sb.Append("\n").Append("CC_Count_Doing".Translate(BandLabel(h.Band).CapitalizeFirst().Named("BAND"), doing.Named("WHAT")).Resolve());
+            string off = HeartTimeOff.Line(p, h, Find.TickManager.TicksGame);
+            if (off != null) sb.Append("\n").Append(off);
+            string advice = h.strain >= 30f && HeartAdvice.On ? HeartAdvice.Tip(p, h) : null;
+            if (advice != null) sb.Append("\n\n").Append(advice);
+            else if (h.strain >= 30f)
             {
                 string help = HelpText(p, h, 3);
                 if (!help.NullOrEmpty()) sb.Append("\n\n").Append("CC_Heart_WouldHelp".Translate(help).Resolve());
@@ -527,12 +562,14 @@ namespace ColonyCouncil
         {
             public float builtAt = -1f;
             public int version;
-            public string strainLabel, strainValue, strainTip, bandDesc, built, weight, help, needsSummary, needsTip;
+            public string strainLabel, strainValue, strainTip, bandDesc, built, eased, weight, help, needsSummary, needsTip;
             public Color bandColor;
             public float fill;
             /// <summary>The heart's good side, its meter and its line (null while it is off).</summary>
             public string goodLabel, goodValue, goodTip, goodLine;
             public float goodFill;
+            /// <summary>The heart, made to count: what each side does to them now, time off under way, who close wore on or lifted them.</summary>
+            public string doingStrain, doingGood, timeOff, spread;
             public List<(string label, string value, string causes, string tip, Color color, float share)> feelings = new List<(string, string, string, string, Color, float)>();
             public (string label, string value, string why, string tip, float fill)[] needs;
         }
@@ -570,8 +607,16 @@ namespace ColonyCouncil
             m.bandDesc = BandDesc(h.Band);
             string built = SourcesDetailed(h, 3);
             m.built = built == null ? "CC_Heart_NothingBuilt".Translate().ToString() : "CC_Heart_BuiltBy".Translate(built).Resolve();
+            string eased = ReliefDetailed(h, 3);
+            m.eased = eased == null ? null : "CC_Heart_EasedBy".Translate(eased).Resolve();
             m.weight = HeartFelt.WeightLine(p, h);
-            m.help = h.strain >= 30f ? "CC_Heart_WouldHelp".Translate(HelpText(p, h, 3)).Resolve() : NatureHelp(h);
+            // With the advice on, what would help is its own list with buttons (Heart/HeartAdvice.cs); else the old sentence.
+            m.help = HeartAdvice.On ? null : h.strain >= 30f ? "CC_Heart_WouldHelp".Translate(HelpText(p, h, 3)).Resolve() : NatureHelp(h);
+            if (HeartAdvice.On && h.strain < 30f) m.help = NatureHelp(h);
+            string doing = HeartEffects.Doing(h, false);
+            m.doingStrain = doing == null ? null : "CC_Count_Doing".Translate(BandLabel(h.Band).CapitalizeFirst().Named("BAND"), doing.Named("WHAT")).Resolve();
+            m.timeOff = HeartTimeOff.Line(p, h, Find.TickManager.TicksGame);
+            m.spread = SpreadLine(p, h);
             if (GoodHeart.On)
             {
                 var good = GoodHeart.Band(h);
@@ -585,6 +630,8 @@ namespace ColonyCouncil
                 m.goodLine = (good != GoodBand.None ? GoodHeart.BandDesc(good)
                     : filled != null ? "CC_Good_BuiltBy".Translate(filled.Named("WHAT")).Resolve() : "CC_Good_NothingBuilt".Translate().ToString())
                     + (slower != null ? " " + slower : "");
+                string goodDoing = HeartEffects.Doing(h, true);
+                m.doingGood = goodDoing == null ? null : "CC_Count_Doing".Translate(GoodHeart.BandLabel(good).CapitalizeFirst().Named("BAND"), goodDoing.Named("WHAT")).Resolve();
             }
             foreach (var f in h.feelings)
             {
@@ -606,15 +653,40 @@ namespace ColonyCouncil
             return m;
         }
 
-        // ---------------- The Mood tab's Heart section ----------------
+        /// <summary>
+        /// Who close wore on them or lifted them this hour ("Bautista being worn down wears on her a little."), or null. Hearts
+        /// spread a little (HeartCountMath.Spread).
+        /// </summary>
+        public static string SpreadLine(Pawn p, PawnHeart h)
+        {
+            if (h == null) return null;
+            var parts = new List<string>(2);
+            if (!h.spreadFrom.NullOrEmpty()) parts.Add("CC_Count_SpreadFrom".Translate(h.spreadFrom.Named("OTHER"), p.Named("PAWN")).Resolve());
+            if (!h.liftedBy.NullOrEmpty()) parts.Add("CC_Count_LiftedBy".Translate(h.liftedBy.Named("OTHER"), p.Named("PAWN")).Resolve());
+            return parts.Count == 0 ? null : string.Join(" ", parts);
+        }
+
+        // ---------------- The Mood tab's Heart sections ----------------
 
         public static Color NeedColor(float fill) => fill >= 0.6f ? UiKit.Good : fill >= 0.45f ? UiKit.Info : fill >= 0.3f ? UiKit.Warn : UiKit.Bad;
 
         /// <summary>
-        /// Draws the Heart section at y; returns the new y. Nothing when the feature is off or they have no heart. With
-        /// folds, a click on the heading folds the section away.
+        /// The heart's three sections, one after another (the heart, its feelings, its needs): see <see cref="DrawHeart"/>,
+        /// <see cref="DrawFeelings"/> and <see cref="DrawNeeds"/>. Returns the new y.
         /// </summary>
         public static float DrawSection(Pawn p, float y, float w, Folds folds = null)
+        {
+            y = DrawHeart(p, y, w, folds);
+            y = DrawFeelings(p, y, w, folds);
+            return DrawNeeds(p, y, w, folds);
+        }
+
+        /// <summary>
+        /// The heart: strain's meter, its band, what built it and what eased it, the weight under it, who close wore on or
+        /// lifted them, time off under way, what each side does to them now, what would help (with its buttons), and the good
+        /// side's meter. Nothing when the feature is off or they have no heart. With folds, a click on the heading folds it.
+        /// </summary>
+        public static float DrawHeart(Pawn p, float y, float w, Folds folds = null)
         {
             var h = Heart.ForView(p);
             if (h == null) return y;
@@ -625,9 +697,22 @@ namespace ColonyCouncil
             UiKit.Meter(new Rect(0f, y, w, UiKit.MeterHeight), m.fill, m.bandColor, m.strainLabel, m.strainValue, null, m.strainTip);
             y += UiKit.MeterHeight + 2f;
             y += UiKit.Paragraph(0f, y, w, m.bandDesc, MoodView.Faint, GameFont.Tiny) + 2f;
+            if (m.doingStrain != null) y += UiKit.Paragraph(0f, y, w, m.doingStrain, m.bandColor, GameFont.Tiny) + 2f;
             y += UiKit.Paragraph(0f, y, w, m.built, Color.white, GameFont.Tiny) + 2f;
+            if (m.eased != null) y += UiKit.Paragraph(0f, y, w, m.eased, MoodView.Faint, GameFont.Tiny) + 2f;
             if (m.weight != null) y += UiKit.Paragraph(0f, y, w, m.weight, MoodView.Faint, GameFont.Tiny) + 2f;
+            if (m.spread != null) y += UiKit.Paragraph(0f, y, w, m.spread, MoodView.Faint, GameFont.Tiny) + 2f;
+            if (m.timeOff != null) y += UiKit.Paragraph(0f, y, w, m.timeOff, UiKit.Info, GameFont.Tiny) + 2f;
             if (m.help != null) y += UiKit.Paragraph(0f, y, w, m.help, MoodView.AdviceColor, GameFont.Tiny) + 2f;
+            // What would help, with its buttons (Heart/HeartAdvice.cs).
+            var advice = HeartAdvice.For(p, h);
+            if (advice.Count > 0)
+            {
+                y += 2f;
+                UiKit.LabelFit(new Rect(0f, y, w, 18f), "CC_Advice_Head".Translate(p.Named("PAWN")).Resolve(), MoodView.AdviceColor, GameFont.Tiny);
+                y += 18f;
+                y += HeartAdvice.Draw(p, advice, 0f, y, w);
+            }
             // The other side of the one heart.
             if (m.goodLabel != null)
             {
@@ -635,11 +720,20 @@ namespace ColonyCouncil
                 UiKit.Meter(new Rect(0f, y, w, UiKit.MeterHeight), m.goodFill, GoodColor, m.goodLabel, m.goodValue, null, m.goodTip);
                 y += UiKit.MeterHeight + 2f;
                 if (!m.goodLine.NullOrEmpty()) y += UiKit.Paragraph(0f, y, w, m.goodLine, MoodView.Faint, GameFont.Tiny) + 2f;
+                if (m.doingGood != null) y += UiKit.Paragraph(0f, y, w, m.doingGood, GoodColor, GameFont.Tiny) + 2f;
             }
-            y += 6f;
+            return y + 6f;
+        }
 
-            UiKit.LabelFit(new Rect(0f, y, w, 22f), "CC_Heart_FeelingsHeader".Translate(), UiKit.HeaderColor);
-            y += 22f;
+        /// <summary>The feelings that stand out, each a meter with what fed it (its heading folds it).</summary>
+        public static float DrawFeelings(Pawn p, float y, float w, Folds folds = null)
+        {
+            var h = Heart.ForView(p);
+            if (h == null || !h.evaluated) return y;
+            var m = ModelFor(p, h);
+            y += UiKit.FoldTitle(0f, y, w, "CC_Heart_FeelingsHeader".Translate(), folds, "feelings", out bool open, null, UiKit.HeaderColor,
+                m.feelings.Count > 0 ? m.feelings.Count.ToString() : null);
+            if (!open) return y + 4f;
             if (m.feelings.Count == 0) y += UiKit.Paragraph(0f, y, w, "CC_Heart_NoFeelings".Translate(), MoodView.Faint, GameFont.Tiny) + 4f;
             foreach (var f in m.feelings)
             {
@@ -653,38 +747,37 @@ namespace ColonyCouncil
                 TooltipHandler.TipRegion(all, f.tip);
                 y += UiKit.MeterHeight + ch + 4f;
             }
-            y += 4f;
+            return y + 4f;
+        }
 
-            if (m.needs != null)
+        /// <summary>The heart's four needs, each a meter with its reason, and what's missing (its heading folds it).</summary>
+        public static float DrawNeeds(Pawn p, float y, float w, Folds folds = null)
+        {
+            var h = Heart.ForView(p);
+            if (h == null || !h.evaluated) return y;
+            var m = ModelFor(p, h);
+            if (m.needs == null) return y;
+            y += UiKit.FoldTitle(0f, y, w, "CC_Heart_NeedsHeader".Translate(), folds, "needs", out bool open, null, UiKit.HeaderColor);
+            if (!open) return y + 4f;
+            // The summary and each meter (with its reason) explain their need; the summary's tooltip all four.
+            float colW = (w - 12f) / 2f;
+            for (int i = 0; i < 4; i++)
             {
-                // The heading and the summary explain all four; each meter (with its reason) explains its own need.
-                var head = new Rect(0f, y, w, 22f);
-                UiKit.LabelFit(head, "CC_Heart_NeedsHeader".Translate(), UiKit.HeaderColor);
-                if (!m.needsTip.NullOrEmpty())
-                {
-                    UiKit.RowHover(head);
-                    TooltipHandler.TipRegion(head, m.needsTip);
-                }
-                y += 22f;
-                float colW = (w - 12f) / 2f;
-                for (int i = 0; i < 4; i++)
-                {
-                    var n = m.needs[i];
-                    float x = (i % 2) * (colW + 12f);
-                    float ry = y + (i / 2) * (UiKit.MeterHeight + 16f);
-                    UiKit.Meter(new Rect(x, ry, colW, UiKit.MeterHeight), n.fill, NeedColor(n.fill), n.label, n.value);
-                    if (!n.why.NullOrEmpty()) UiKit.LabelFit(new Rect(x, ry + UiKit.MeterHeight - 2f, colW, 16f), n.why, MoodView.Faint, GameFont.Tiny);
-                    var cell = new Rect(x, ry, colW, UiKit.MeterHeight + 14f);
-                    UiKit.RowHover(cell);
-                    if (!n.tip.NullOrEmpty()) TooltipHandler.TipRegion(cell, n.tip);
-                }
-                y += 2 * (UiKit.MeterHeight + 16f);
-                if (!m.needsSummary.NullOrEmpty())
-                {
-                    float sh = UiKit.Paragraph(0f, y, w, m.needsSummary, Color.white, GameFont.Tiny);
-                    if (!m.needsTip.NullOrEmpty()) TooltipHandler.TipRegion(new Rect(0f, y, w, sh), m.needsTip);
-                    y += sh + 2f;
-                }
+                var n = m.needs[i];
+                float x = (i % 2) * (colW + 12f);
+                float ry = y + (i / 2) * (UiKit.MeterHeight + 16f);
+                UiKit.Meter(new Rect(x, ry, colW, UiKit.MeterHeight), n.fill, NeedColor(n.fill), n.label, n.value);
+                if (!n.why.NullOrEmpty()) UiKit.LabelFit(new Rect(x, ry + UiKit.MeterHeight - 2f, colW, 16f), n.why, MoodView.Faint, GameFont.Tiny);
+                var cell = new Rect(x, ry, colW, UiKit.MeterHeight + 14f);
+                UiKit.RowHover(cell);
+                if (!n.tip.NullOrEmpty()) TooltipHandler.TipRegion(cell, n.tip);
+            }
+            y += 2 * (UiKit.MeterHeight + 16f);
+            if (!m.needsSummary.NullOrEmpty())
+            {
+                float sh = UiKit.Paragraph(0f, y, w, m.needsSummary, Color.white, GameFont.Tiny);
+                if (!m.needsTip.NullOrEmpty()) TooltipHandler.TipRegion(new Rect(0f, y, w, sh), m.needsTip);
+                y += sh + 2f;
             }
             return y + 8f;
         }
@@ -696,6 +789,8 @@ namespace ColonyCouncil
             public string summary;
             public List<(Pawn pawn, float fill, Color color, string band, string feelings, string tip, string name)> rows =
                 new List<(Pawn, float, Color, string, string, string, string)>();
+            /// <summary>What would help the colony's strained, each decree and a party once (Heart/HeartAdvice.cs).</summary>
+            public List<HeartAdvice.ColonyRow> advice;
         }
 
         /// <summary>Built with the Moods page's report (about once a second).</summary>
@@ -725,16 +820,19 @@ namespace ColonyCouncil
             foreach (var (p, h) in list.Where(x => x.h.strain >= 30f).OrderByDescending(x => x.h.strain).Take(8))
             {
                 string feelings = DominantText(h);
-                // Both sides at once: someone worn may still be in good heart.
+                // Both sides at once: someone worn may still be in good heart; and time off under way.
                 var good = GoodHeart.Band(h);
                 string band = "CC_Heart_StrainValue".Translate(BandLabel(h.Band), h.strain.ToString("0")).Resolve();
                 if (good != GoodBand.None) band += " · " + GoodHeart.BandLabel(good);
+                var off = HeartTimeOff.KindOf(h);
+                if (off != TimeOffKind.None) band += " · " + ("CC_Count_OffShort_" + off).Translate().Resolve();
                 m.rows.Add((p, h.strain / HeartMath.Max, BandColor(h.Band), band, feelings ?? "", StrainTip(p, h), ThingRefs.Link(p.LabelShort, ThingRefs.Of(p))));
             }
+            m.advice = HeartAdvice.Colony(list.Select(x => x.p));
             return m;
         }
 
-        /// <summary>Draws the strain list on the Moods page; returns the new y.</summary>
+        /// <summary>Draws the strain list on the Moods page, then what would help the colony; returns the new y.</summary>
         public static float DrawColony(ColonyModel m, float y, float w)
         {
             if (m == null) return y;
@@ -769,6 +867,33 @@ namespace ColonyCouncil
                 TooltipHandler.TipRegion(rest, r.tip);
                 if (Widgets.ButtonInvisible(rest)) MoodView.ShowMoodTab(r.pawn);
                 y += UiKit.RowPortrait;
+            }
+            // What would help, for the whole colony: each with its button where Rimfolk can act.
+            if (m.advice != null && m.advice.Count > 0)
+            {
+                y += 6f;
+                UiKit.LabelFit(new Rect(0f, y, w, 20f), "CC_Advice_ColonyHead".Translate(), MoodView.AdviceColor);
+                y += 22f;
+                foreach (var a in m.advice)
+                {
+                    var i = a.item;
+                    float bw = i.act != null ? UiKit.RowActWidth(i.act) : 0f;
+                    float tw = Mathf.Max(40f, w - (bw > 0f ? bw + 6f : 0f));
+                    float th = UiKit.Paragraph(0f, y, tw, "· " + a.text, MoodView.AdviceColor, GameFont.Tiny);
+                    if (i.act != null && UiKit.RowAct(new Rect(w - bw, y, bw, 20f), i.act, i.whyNot, i.tip))
+                    {
+                        try
+                        {
+                            i.run?.Invoke();
+                        }
+                        catch (System.Exception e)
+                        {
+                            CouncilLog.ErrorOnce("the heart's advice: a button on the Moods page", e);
+                        }
+                        HeartAdvice.Stale(Heart.Of(a.pawn));
+                    }
+                    y += Mathf.Max(th, i.act != null ? 20f : 0f) + 3f;
+                }
             }
             return y + 8f;
         }

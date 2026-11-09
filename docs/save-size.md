@@ -7,8 +7,8 @@ colony of 20, with the game keeping 30 more people it knows and 5 more each year
 generous guesses; sizes are rough XML sizes. Caps named as constants are read from the source. "Counted under" rows are
 kept inside another record (a journal's lines, a heart's lists) and are already in that record's size.
 
-Saved collections found: 597; modelled: 597; growing without end: 0.
-Rimfolk's part of the save, roughly: **2,606 KB** after a year, **3,081 KB** after two, **3,307 KB** after five.
+Saved collections found: 598; modelled: 598; growing without end: 0.
+Rimfolk's part of the save, roughly: **2,607 KB** after a year, **3,082 KB** after two, **3,308 KB** after five.
 
 | Collection | Rule | Kind | 1 year | 2 years | 5 years | KB at 5 years |
 |---|---|---|---|---|---|---|
@@ -252,6 +252,7 @@ Rimfolk's part of the save, roughly: **2,606 KB** after a year, **3,081 KB** aft
 | `Dilemmas/Dilemmas.cs:traditions` | per tradition | defs | 24 | 24 | 24 | 0.9 |
 | `Animals/AnimalPowers.cs:bindings` | bindings waiting for a quiet hour, AnimalPowersMath.MaxBindings at most, each dropped after 10 days | cap | 6 | 6 | 6 | 0.9 |
 | `Camps/CampMemory.cs:people` | the people kept of each remembered camp, four at most (CampStoryMath.KeepPeople) per camp | fixed | 24 | 24 | 24 | 0.9 |
+| `Heart/HeartData.cs:offHours` | per heart: the hours a day off changed, only while it runs | fixed | 24 | 24 | 24 | 0.9 |
 | `Ailments/AilmentTracker.cs:doctors` | only hediffs colonists still have | colonists | 10 | 10 | 10 | 0.9 |
 | `Ailments/AilmentTracker.cs:sweets` | faded below 0.05 dropped | colonists | 10 | 10 | 10 | 0.9 |
 | `Building/Suggest/SameRules.cs:markedCellDefs` | with the above: which order | fixed | 30 | 30 | 30 | 0.9 |
@@ -311,6 +312,7 @@ Rimfolk's part of the save, roughly: **2,606 KB** after a year, **3,081 KB** aft
 | `Animals/ResidentBeast.cs:knownIds` | wild beasts whose story has closed (ids), the newest 20 (ResidentBeast.KnownMax) | fixed | 20 | 20 | 20 | 0.5 |
 | `Building/BuildAhead.cs:removeCells` | per room step: what it marked to take down, inside the footprint | fixed | 20 | 20 | 20 | 0.5 |
 | `Defense/DefenseLinesWatch.cs:downedSeen` | colonists downed in the raid under way, cleared when it ends | while | 20 | 20 | 20 | 0.5 |
+| `Heart/HeartData.cs:goodSpent` | per heart: one per strain source | fixed | 20 | 20 | 20 | 0.5 |
 | `PlayOut/Stage.cs:held` | when each gathering began, the last ten days (StageMath.KeepDays): two a day at the very most | fixed | 20 | 20 | 20 | 0.5 |
 | `Social/Autonomy.cs:lastActed` | with the above | window | 20 | 20 | 20 | 0.5 |
 | `Annals.cs:decrees` | the year in progress | yearly | 12 | 12 | 12 | 0.5 |
@@ -323,7 +325,6 @@ Rimfolk's part of the save, roughly: **2,606 KB** after a year, **3,081 KB** aft
 | `Offices/Offices.cs:elected` | one per office | defs | 12 | 12 | 12 | 0.5 |
 | `PlayOut/PlayOuts.cs:lines` | per play-out | fixed | 4 | 4 | 4 | 0.5 |
 | `PlayOut/PlayOuts.cs:moods` | per play-out | fixed | 4 | 4 | 4 | 0.5 |
-| `Heart/HeartData.cs:goodSpent` | per heart: one per strain source | fixed | 19 | 19 | 19 | 0.5 |
 | `Ailments/AilmentTracker.cs:carrying` | illnesses had now that an ailment may follow; let go when over, known pawns only | known | 6 | 6 | 8 | 0.4 |
 | `Building/LineRoutes.cs:list` | lines being laid again under the walls, one per net, kept only until their new lines stand | fixed | 3 | 3 | 3 | 0.4 |
 | `Calendar/CalendarWatch.cs:pendingCrops` | new crops until their first harvest (crop defs) | fixed | 5 | 5 | 5 | 0.4 |
@@ -387,6 +388,8 @@ Rimfolk's part of the save, roughly: **2,606 KB** after a year, **3,081 KB** aft
 | `World/Region/Hamlet.cs:settlers` | per home: the settlers of its hamlet on their way, HamletMath.MaxSettlers at most, let go once it stands | cap | 3 | 6 | 8 | 0.2 |
 | `Camps/CampLook.cs:herd` | the camp's animals (CampLookMath.MaxAnimals), while it stays | while | 5 | 5 | 5 | 0.2 |
 | `Decrees/Decrees.cs:threatTicks` | DecreeTracker.MaxThreats: the big threats of the last half month, for how needed a decree is | fixed | 8 | 8 | 8 | 0.2 |
+| `Heart/HeartData.cs:goodRecent` | per heart: one per source of the good side | fixed | 8 | 8 | 8 | 0.2 |
+| `Heart/HeartData.cs:goodToday` | per heart: one per source of the good side | fixed | 8 | 8 | 8 | 0.2 |
 | `Heart/HeartData.cs:recentRelief` | per heart | fixed | 8 | 8 | 8 | 0.2 |
 | `Heart/HeartData.cs:today` | per heart | fixed | 8 | 8 | 8 | 0.2 |
 | `Journeys/Journeys.cs:plans` | one plan per home at most, until it sets off (one home in the model) | fixed | 1 | 1 | 1 | 0.2 |
@@ -398,8 +401,6 @@ Rimfolk's part of the save, roughly: **2,606 KB** after a year, **3,081 KB** aft
 | `Decrees/Decrees.cs:useDefs` | uses within the fatigue window | window | 4 | 4 | 4 | 0.2 |
 | `Health/HealthTracker.cs:lastSetback` | 20 days | window | 2 | 2 | 2 | 0.2 |
 | `Health/HealthTracker.cs:setbacks` | convalescences colonists still have | colonists | 2 | 2 | 2 | 0.2 |
-| `Heart/HeartData.cs:goodRecent` | per heart: one per source of the good side | fixed | 7 | 7 | 7 | 0.2 |
-| `Heart/HeartData.cs:goodToday` | per heart: one per source of the good side | fixed | 7 | 7 | 7 | 0.2 |
 | `Annals.cs:died` | the year in progress | yearly | 4 | 4 | 4 | 0.2 |
 | `Beasts/BeastBook.cs:homes` | one per colony (one home in the model): its last alphas, the threat looked at, its great herd's season | fixed | 1 | 1 | 1 | 0.2 |
 | `Calendar/CalendarDay.cs:knew` | per day on the calendar | fixed | 4 | 4 | 4 | 0.2 |

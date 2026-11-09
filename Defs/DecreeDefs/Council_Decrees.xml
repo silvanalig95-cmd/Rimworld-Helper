@@ -224,6 +224,10 @@
       <li><trait>Industriousness</trait><degree>-2</degree><reaction>Love</reaction></li>
       <li><trait>Ascetic</trait><reaction>Neutral</reaction></li>
     </reactions>
+    <!-- The heart's advice (Heart/HeartAdvice.cs): what it eases for a strained colonist, and what it costs. -->
+    <heartEases><li>Joyless</li><li>LowMood</li><li>Letdowns</li></heartEases>
+    <heartHelp>spirits lift, and strain eases faster in a good mood</heartHelp>
+    <heartCost>everyone works 20% slower for three days, and standards rise</heartCost>
     <effects>
       <li>Everyone's mood lifts; the lazy are overjoyed.</li>
       <li>Everyone works 20% slower.</li>

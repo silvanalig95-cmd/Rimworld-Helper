@@ -181,6 +181,11 @@ namespace Balance
         /// <summary>The heart's good side's own draws (HeartSim.cs), so the rest of the heart draws the same with it on or off.</summary>
         private readonly Random goodRng;
         private int lastColonyEpisode = -999999;
+        /// <summary>The colony's last bad afternoon (shared by its colonists' hearts).</summary>
+        private readonly int[] colonyBadDay = { -999999 };
+
+        /// <summary>How strongly the heart's bands are felt (the setting; the thought's stages are the default, "felt").</summary>
+        private BandStrength Strength => (set.S("heartBands") ?? "").Contains("Mild") ? BandStrength.Mild : (set.S("heartBands") ?? "").Contains("Strong") ? BandStrength.Strong : BandStrength.Felt;
         private bool partyToday;
         public int episodes;
         /// <summary>Hours in each band of strain, all colonists, in the measured year; strain built and eased by what, per colonist.</summary>
@@ -222,6 +227,10 @@ namespace Balance
                 // The heart's good side (Heart/GoodHeart.cs), with its setting.
                 c.heart.goodOn = set.B("heart") && set.B("heartGoodSide");
                 c.heart.goodRng = goodRng;
+                // The heart, made to count: bad afternoons and spreading by their settings, the colony's last bad afternoon shared.
+                c.heart.badDaysOn = set.B("heartBadDays");
+                c.heart.spreadOn = set.B("heartSpread");
+                c.heart.colonyBadDay = colonyBadDay;
                 people.Add(c);
             }
             foreach (var c in people)
@@ -656,11 +665,11 @@ namespace Balance
                 if (c.inReach && set.B("aspirations")) Add((defs.T("Council_Asp_InReach")?.First ?? 0f) * LiveScale(c));
                 part = "strain";
                 c.strain = (int)HeartMath.BandFor(c.heart.strain);
-                if (set.B("heart") && c.strain > 0) Add(defs.T("Council_Heart_Strain")?.Stage(c.strain - 1) ?? 0f);
+                if (set.B("heart") && c.strain > 0) Add(Strength == BandStrength.Felt ? defs.T("Council_Heart_Strain")?.Stage(c.strain - 1) ?? 0f : HeartCountMath.StrainMood((StrainBand)c.strain, Strength));
                 // The heart's good side: steady, in good heart, in high spirits, a stage each (a situational mood like strain's).
                 part = "the good side";
                 int goodBand = c.heart.goodOn ? (int)HeartMath.GoodBandFor(c.heart.good) : 0;
-                if (goodBand > 0) Add(defs.T("Council_Heart_GoodSide")?.Stage(goodBand - 1) ?? 0f);
+                if (goodBand > 0) Add(Strength == BandStrength.Felt ? defs.T("Council_Heart_GoodSide")?.Stage(goodBand - 1) ?? 0f : HeartCountMath.GoodMood((GoodBand)goodBand, Strength));
                 part = "health";
                 if (c.convalescentFrom >= 0 && hour >= c.convalescentFrom && hour < c.convalescentUntil)
                     Add(defs.T("Council_Health_WeakFrustrated")?.First ?? 0f);
@@ -777,6 +786,14 @@ namespace Balance
             }
             if (set.B("heart"))
             {
+                // Hearts spread a little: their friends worn down wear on them, those in high spirits lift them.
+                float wear = 0f, lift = 0f;
+                foreach (var f in c.friends)
+                {
+                    wear += HeartCountMath.SpreadFrom(HeartMath.BandFor(f.heart.strain), 0.6f);
+                    if (f.heart.goodOn) lift += HeartCountMath.LiftFrom(HeartMath.GoodBandFor(f.heart.good), 0.6f);
+                }
+                c.heart.SpreadHour(wear, lift);
                 if (c.heart.Hour(heartLife, heartRng, Day, HourOfDay, partyToday, hour, ref lastColonyEpisode, set.B("heartEpisodes")) && Measuring) episodes++;
                 // The good side's release: in high spirits and safe (no fight this hour), now and then.
                 bool safe = heartRaidHour < 0 || HourOfDay < heartRaidHour || HourOfDay > heartRaidHour + 3;

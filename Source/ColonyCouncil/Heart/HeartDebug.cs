@@ -107,6 +107,35 @@ namespace ColonyCouncil
                 Messages.Message("No sign for " + p.LabelShort + ".", p, MessageTypeDefOf.RejectInput, false);
         }
 
+        [DebugAction("Rimfolk", "Heart: a bad afternoon now (if safe)", actionType = DebugActionType.ToolMapForPawns, allowedGameStates = AllowedGameStates.PlayingOnMap)]
+        private static void BadDayNow(Pawn p)
+        {
+            var h = Heart.On && Heart.Eligible(p) ? HeartTracker.Instance?.For(p, true) : null;
+            if (h == null) return;
+            int now = Find.TickManager.TicksGame;
+            if (!HeartTimeOff.TryBadDay(p, h, HeartMapContext.For(p.MapHeld, now), now, true))
+                Messages.Message("No bad afternoon for " + p.LabelShort + " now (" + (HeartTimeOff.Unsafe(p, HeartMapContext.For(p.MapHeld, now), 2) ?? "time off already, asleep or busy") + ").",
+                    p, MessageTypeDefOf.RejectInput, false);
+        }
+
+        [DebugAction("Rimfolk", "Heart: a day off now (the wait aside)", actionType = DebugActionType.ToolMapForPawns, allowedGameStates = AllowedGameStates.PlayingOnMap)]
+        private static void DayOffNow(Pawn p)
+        {
+            var h = Heart.On && Heart.Eligible(p) ? HeartTracker.Instance?.For(p, true) : null;
+            if (h == null) return;
+            h.lastDayOffTick = -999999;
+            if (h.strain < HeartCountMath.DayOffFrom) HeartLogic.Change(p, HeartCountMath.DayOffFrom - h.strain + 1f, StrainRelief.Council, StrainSource.Council);
+            if (!HeartTimeOff.GiveDayOff(p))
+                Messages.Message("No day off for " + p.LabelShort + ": " + HeartTimeOff.WhyNotDayOff(p, h, Find.TickManager.TicksGame), p, MessageTypeDefOf.RejectInput, false);
+        }
+
+        [DebugAction("Rimfolk", "Heart: end their time off now", actionType = DebugActionType.ToolMapForPawns, allowedGameStates = AllowedGameStates.PlayingOnMap)]
+        private static void EndOffNow(Pawn p)
+        {
+            var h = Heart.Of(p);
+            if (h != null && h.AnyOff) HeartTimeOff.End(p, h, Find.TickManager.TicksGame, true, null);
+        }
+
         private static void Change(Pawn p, float amount)
         {
             if (!Heart.On || !Heart.Eligible(p)) return;

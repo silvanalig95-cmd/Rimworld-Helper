@@ -33,7 +33,9 @@ namespace ColonyCouncil
         /// <summary>Love: sitting a while beside their partner.</summary>
         SitWith,
         /// <summary>Homesick: of an evening, at the colony's fire, talking of home.</summary>
-        HomeFire
+        HomeFire,
+        /// <summary>A bad afternoon (Heart/HeartTimeOff.cs): a while in their room, beside their bed, letting it come.</summary>
+        Cry
     }
 
     /// <summary>On a heart act's JobDef: which act it is, whether they talk with whoever is near, whether they sit.</summary>
@@ -291,18 +293,31 @@ namespace ColonyCouncil
         private static JobDef Def(HeartActKind kind) => DefDatabase<JobDef>.GetNamedSilentFail("Rimfolk_HeartAct_" + kind);
 
         /// <summary>
+        /// An act's job, made and noted but not started (the time off's job giver hands it to the game's think tree):
+        /// <paramref name="tag"/> is what its line is said for (its band or feeling), <paramref name="lost"/> the one lost;
+        /// <paramref name="timeOff"/> keeps it going while their time off runs, whatever the acts' own settings.
+        /// </summary>
+        public static Job MakeJob(HeartActKind kind, LocalTargetInfo a, LocalTargetInfo b, IntRange ticks, string tag, LocalTargetInfo c = default, string lost = null,
+            bool timeOff = false)
+        {
+            var def = Def(kind);
+            if (def == null) return null;
+            var job = JobMaker.MakeJob(def, a, b, c);
+            job.count = ticks.RandomInRange;
+            Notes.Remove(job);
+            Notes.Add(job, new ActNote { tag = tag, lost = lost, timeOff = timeOff });
+            return job;
+        }
+
+        /// <summary>
         /// Starts an act's job: <paramref name="queued"/> after what they're doing now (the meal), else now.
         /// <paramref name="tag"/> is what its line is said for (its band or feeling), <paramref name="lost"/> the one lost.
         /// </summary>
         private static bool Start(Pawn p, HeartActKind kind, LocalTargetInfo a, LocalTargetInfo b, IntRange ticks, string tag, bool queued = false,
             LocalTargetInfo c = default, string lost = null)
         {
-            var def = Def(kind);
-            if (def == null) return false;
-            var job = JobMaker.MakeJob(def, a, b, c);
-            job.count = ticks.RandomInRange;
-            Notes.Remove(job);
-            Notes.Add(job, new ActNote { tag = tag, lost = lost });
+            var job = MakeJob(kind, a, b, ticks, tag, c, lost);
+            if (job == null) return false;
             if (queued)
             {
                 p.jobs.jobQueue.EnqueueFirst(job);
@@ -316,6 +331,8 @@ namespace ColonyCouncil
         public sealed class ActNote
         {
             public string tag, lost;
+            /// <summary>Part of their time off (a day off, a bad afternoon): it runs while that does.</summary>
+            public bool timeOff;
         }
 
         private static readonly System.Runtime.CompilerServices.ConditionalWeakTable<Job, ActNote> Notes = new System.Runtime.CompilerServices.ConditionalWeakTable<Job, ActNote>();
@@ -581,6 +598,171 @@ namespace ColonyCouncil
                 SayTo(p, friend, tag, null, "act:sharejoy");
                 p.interactions?.TryInteractWith(friend, InteractionDefOf.Chitchat);
             }, 6f, 0f);
+            return true;
+        }
+
+        // ---------------- Time off (Heart/HeartTimeOff.cs): the jobs its giver hands the think tree ----------------
+
+        /// <summary>A bad afternoon: a while beside their own bed in their room, else on a quiet seat, letting it come.</summary>
+        public static Job CryJob(Pawn p, string tag)
+        {
+            var map = p.Map;
+            var bed = p.ownership?.OwnedBed;
+            if (bed != null && bed.Spawned && bed.Map == map && !bed.IsForbidden(p) && p.CanReach(bed, PathEndMode.Touch, Danger.None))
+            {
+                var room = bed.GetRoom();
+                if (room != null && !room.PsychologicallyOutdoors)
+                {
+                    var cell = SmallHabits.SpotNear(bed.Position, map, p, c => c.GetRoom(map) == room);
+                    if (cell.IsValid) return MakeJob(HeartActKind.Cry, cell, bed, new IntRange(1200, 1800), tag, default, null, true);
+                }
+            }
+            var seat = QuirkHabits.SeatFor(p);
+            return seat != null ? MakeJob(HeartActKind.Cry, seat.Position, seat, new IntRange(1200, 1800), tag, default, null, true) : null;
+        }
+
+        /// <summary>Out under the sky a while, looking out over the land (in weather fit for it).</summary>
+        public static Job LookOutJob(Pawn p, string tag)
+        {
+            if (!JoyUtility.EnjoyableOutsideNow(p)) return null;
+            var c = SmallHabits.LookOutSpot(p, out var face);
+            return c.IsValid ? MakeJob(HeartActKind.StareOut, c, face, new IntRange(900, 1400), tag, default, null, true) : null;
+        }
+
+        /// <summary>A walk: the game's own, else a while looking out.</summary>
+        public static Job WalkJob(Pawn p, string tag)
+        {
+            if (!JoyUtility.EnjoyableOutsideNow(p)) return null;
+            Job job = null;
+            try
+            {
+                job = DefDatabase<JoyGiverDef>.GetNamedSilentFail("GoForWalk")?.Worker?.TryGiveJob(p);
+            }
+            catch (Exception e)
+            {
+                CouncilLog.ErrorOnce("the heart's time off: a walk", e);
+            }
+            return job ?? LookOutJob(p, tag);
+        }
+
+        /// <summary>
+        /// A drink, if they drink: beer, wine, mead or any mod's alcohol from the stores or lying about at home, that their
+        /// drug policy allows for fun, their faith and nature allow, and that they can reach. Never for someone addicted or
+        /// just clean of a drug.
+        /// </summary>
+        public static Job DrinkJob(Pawn p)
+        {
+            var map = p.Map;
+            if (map == null || AddictionUtility.AddictedToAnything(p) || LifeNewTracker.JustClean(p)) return null;
+            Thing best = null;
+            float bestD = float.MaxValue;
+            foreach (var t in map.listerThings.ThingsInGroup(ThingRequestGroup.Drug))
+            {
+                if (t == null || !t.Spawned || !IsAlcohol(t.def)) continue;
+                if (!t.IsInAnyStorage() && !map.areaManager.Home[t.Position]) continue;
+                float d = t.Position.DistanceToSquared(p.Position);
+                if (d >= bestD || t.IsForbidden(p) || !FirstPot.WillDrink(p, t.def) || Beliefs.MindsEating(p, t)) continue;
+                if (!p.CanReserve(t, 10, 1) || !p.CanReach(t, PathEndMode.ClosestTouch, Danger.None)) continue;
+                best = t;
+                bestD = d;
+            }
+            if (best == null) return null;
+            var job = JobMaker.MakeJob(JobDefOf.Ingest, best);
+            job.count = 1;
+            return job;
+        }
+
+        /// <summary>A social drug that is alcohol (any mod's, by its chemical).</summary>
+        public static bool IsAlcohol(ThingDef d)
+        {
+            if (d == null || !d.IsDrug || d.ingestible?.drugCategory != DrugCategory.Social) return false;
+            var drug = d.GetCompProperties<CompProperties_Drug>();
+            return drug?.chemical != null && drug.chemical == ChemicalDefOf.Alcohol;
+        }
+
+        /// <summary>The small habit's own visit to a grave (its setting, its cooldown and what fits), as a job; null when none.</summary>
+        public static Job GraveJob(Pawn p)
+        {
+            if (!SmallHabits.On) return null;
+            try
+            {
+                return DefDatabase<JoyGiverDef>.GetNamedSilentFail("Council_HabitGiver_Grave")?.Worker?.TryGiveJob(p);
+            }
+            catch (Exception e)
+            {
+                CouncilLog.ErrorOnce("the heart's time off: the grave", e);
+                return null;
+            }
+        }
+
+        /// <summary>A while beside the bed where someone they grieve slept, if it's still here.</summary>
+        public static Job LostBedJob(Pawn p, string tag)
+        {
+            var dead = SmallHabitsGrief(p, out var bed);
+            if (dead == null || bed == null) return null;
+            var room = bed.GetRoom();
+            var cell = SmallHabits.SpotNear(bed.Position, p.Map, p, c => c.GetRoom(p.Map) == room);
+            return cell.IsValid ? MakeJob(HeartActKind.LostBed, cell, bed, new IntRange(900, 1400), tag, default, dead.LabelShort, true) : null;
+        }
+
+        /// <summary>A while beside their partner, at leisure or resting in bed.</summary>
+        public static Job SitWithJob(Pawn p, string tag)
+        {
+            var o = LovePartnerRelationUtility.ExistingMostLikedLovePartner(p, false);
+            if (o == null || !o.Spawned || o.Map != p.Map || o.Dead || (o.Downed && !o.InBed()) || o.InMentalState) return null;
+            if (!(MoreHabits.AtLeisure(o) || (o.InBed() && o.Awake())) || !p.CanReach(o, PathEndMode.Touch, Danger.None)) return null;
+            var cell = SmallHabits.SpotNear(o.Position, p.Map, p);
+            return cell.IsValid ? MakeJob(HeartActKind.SitWith, cell, o, new IntRange(1200, 1800), tag, default, null, true) : null;
+        }
+
+        /// <summary>Of an evening by the colony's lit fire, else a while on a seat or at the fire.</summary>
+        public static Job FireJob(Pawn p, string tag)
+        {
+            var map = p.Map;
+            int hour = GenLocalDate.HourOfDay(map);
+            var fire = PlaySpots.ColonyFire(map, p);
+            if (fire != null && !fire.IsForbidden(p) && fire.Position.InHorDistOf(p.Position, 80f) && p.CanReach(fire, PathEndMode.Touch, Danger.None))
+            {
+                var cell = SmallHabits.SpotNear(fire.Position, map, p);
+                if (cell.IsValid) return MakeJob(hour >= 17 ? HeartActKind.HomeFire : HeartActKind.Sit, cell, fire, new IntRange(1000, 1600), tag, default, null, true);
+            }
+            var seat = QuirkHabits.SeatFor(p);
+            return seat != null ? MakeJob(HeartActKind.Sit, seat.Position, seat, new IntRange(900, 1500), tag, default, null, true) : null;
+        }
+
+        /// <summary>
+        /// Time with a friend (a partner, kin or a friend by opinion, the closest first): one walks over to the other in their
+        /// free time (Together.When) for a real talk, the game's own deep talk. True when it was set going.
+        /// </summary>
+        public static bool FriendVisit(Pawn p, Pawn with = null)
+        {
+            if (p?.Map == null || p.relations == null) return false;
+            Pawn friend = with;
+            if (friend == null)
+            {
+                float best = 0f;
+                foreach (var o in p.Map.mapPawns.FreeColonistsSpawned)
+                {
+                    if (o == p || !Together.Able(o) || o.DevelopmentalStage.Baby()) continue;
+                    float c = HeartAdvice.ClosenessOf(p, o) + Rand.Range(0f, 0.2f);
+                    if (c > best && p.CanReach(o, PathEndMode.Touch, Danger.None))
+                    {
+                        best = c;
+                        friend = o;
+                    }
+                }
+            }
+            if (friend == null) return false;
+            var pair = friend;
+            string key = "heart-friend|" + p.thingIDNumber + "|" + pair.thingIDNumber;
+            if (Together.Waiting(key)) return true;
+            // Now if the two are together, else when they meet (one walks over in their free time) within half a day.
+            Together.When(key, p, pair, () =>
+            {
+                if (!Together.Can(p, pair)) return;
+                Say(p, pair, "act:friend", null);
+                p.interactions?.TryInteractWith(pair, InteractionDefOf.DeepTalk);
+            }, 12f, 0f);
             return true;
         }
 

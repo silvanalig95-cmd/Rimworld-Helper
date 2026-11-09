@@ -111,10 +111,12 @@ Check(HeartMath.BandFor(55f) == StrainBand.Worn && HeartMath.BandFor(74.9f) == S
 Check(HeartMath.BandFor(75f) == StrainBand.Breaking && HeartMath.BandFor(100f) == StrainBand.Breaking, "breaking band");
 foreach (StrainBand b in Enum.GetValues(typeof(StrainBand)))
     Check(HeartMath.BandFor(HeartMath.BandStart(b)) == b, $"band start {b}");
-Check(HeartMath.MoodOffset(StrainBand.Steady) == 0f && HeartMath.MoodOffset(StrainBand.Strained) == -3f
-      && HeartMath.MoodOffset(StrainBand.Worn) == -5f && HeartMath.MoodOffset(StrainBand.Breaking) == -8f, "strain mood by band");
-Check(HeartMath.WorkFactor(StrainBand.Strained) == 1f && Math.Abs(HeartMath.WorkFactor(StrainBand.Worn) - 0.95f) < 1e-5f
-      && Math.Abs(HeartMath.WorkFactor(StrainBand.Breaking) - 0.9f) < 1e-5f, "work speed by band");
+Check(HeartMath.MoodOffset(StrainBand.Steady) == 0f && HeartMath.MoodOffset(StrainBand.Strained) == -4f
+      && HeartMath.MoodOffset(StrainBand.Worn) == -8f && HeartMath.MoodOffset(StrainBand.Breaking) == -14f, "strain mood by band (the heart made to count)");
+Check(Math.Abs(HeartMath.WorkFactor(StrainBand.Strained) - 0.97f) < 1e-5f && Math.Abs(HeartMath.WorkFactor(StrainBand.Worn) - 0.93f) < 1e-5f
+      && Math.Abs(HeartMath.WorkFactor(StrainBand.Breaking) - 0.88f) < 1e-5f, "work speed by band, from strained");
+Check(HeartCountMath.Work(StrainBand.Strained, false) == 1f && Math.Abs(HeartCountMath.Work(StrainBand.Worn, false) - 0.95f) < 1e-5f
+      && Math.Abs(HeartCountMath.Work(StrainBand.Breaking, false) - 0.9f) < 1e-5f, "work speed by band without the effects beyond mood, as before");
 Check(HeartMath.Clamp(-5f) == 0f && HeartMath.Clamp(130f) == 100f, "strain stays within 0 to 100");
 
 // Caps: one source can't pass its daily cap, and everything together can't pass 25 a day.

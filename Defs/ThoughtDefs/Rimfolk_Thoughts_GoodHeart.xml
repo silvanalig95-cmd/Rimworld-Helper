@@ -5,8 +5,9 @@
     The heart's good side (Source/ColonyCouncil/Heart/GoodHeart.cs), the player's request of 6 November 2026: the other
     side of strain. Its mood is situational like strain's: it reads the colonist's band of the good side each time the
     game asks and stores nothing in their memories. One stage a band, as the player approved them (6 November 2026):
-    steady +2, in good heart +3, in high spirits +5 (HeartMath.GoodMood has the same); below steady, nothing yet, no
-    mood. Words for every age.
+    steady +2, in good heart +3, in high spirits +5 at first; +3, +6 and +10 since the heart was made to count (HeartMath.GoodMood
+    has the same; the setting "How strongly the bands are felt" makes them +2, +3, +5 mild or +4, +8, +13 strong, in code). It
+    grows ordinary like any good mood. Below steady, nothing yet, no mood. Words for every age.
   -->
 
   <ThoughtDef>
@@ -18,17 +19,17 @@
       <li>
         <label>steady</label>
         <description>The days have been kind to me more often than not lately. I feel sure on my feet.</description>
-        <baseMoodEffect>2</baseMoodEffect>
+        <baseMoodEffect>3</baseMoodEffect>
       </li>
       <li>
         <label>in good heart</label>
         <description>The good days have been adding up: people I care about close by, and work that means something. It stays with me.</description>
-        <baseMoodEffect>3</baseMoodEffect>
+        <baseMoodEffect>6</baseMoodEffect>
       </li>
       <li>
         <label>in high spirits</label>
         <description>Everything has been going right for a good while now. I feel I could take on whatever comes.</description>
-        <baseMoodEffect>5</baseMoodEffect>
+        <baseMoodEffect>10</baseMoodEffect>
       </li>
     </stages>
   </ThoughtDef>

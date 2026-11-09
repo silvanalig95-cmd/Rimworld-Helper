@@ -310,6 +310,14 @@ namespace ColonyCouncil
             Toggle("heartSays", "CC_Settings_HeartSays", "CC_SetNote_HeartSays", "heart");
             Toggle("heartSigns", "CC_Settings_HeartSigns", "CC_SetNote_HeartSigns", "heart");
             Toggle("heartMessages", "CC_Settings_HeartMessages", "CC_SetNote_HeartMessages", "heart");
+            // The heart, made to count (Heart/HeartCountMath.cs): how strongly the bands are felt, effects beyond mood, a bad
+            // afternoon, hearts spreading, advice, and a day off the player gives.
+            Choice("heartBands", "CC_Settings_HeartBands", "CC_Settings_HeartBands_Tip", "CC_HeartBands_", "CC_SetNote_HeartBands_", new[] { "Mild", "Felt", "Strong" }, "heart");
+            Toggle("heartEffects", "CC_Settings_HeartEffects", "CC_SetNote_HeartEffects", "heart");
+            Toggle("heartBadDays", "CC_Settings_HeartBadDays", "CC_SetNote_HeartBadDays", "heart");
+            Toggle("heartSpread", "CC_Settings_HeartSpread", "CC_SetNote_HeartSpread", "heart");
+            Toggle("heartAdvice", "CC_Settings_HeartAdvice", "CC_SetNote_HeartAdvice", "heart");
+            Toggle("heartDayOff", "CC_Settings_HeartDayOff", "CC_SetNote_HeartDayOff", "heart");
             Section("CC_Settings_AilmentsHeader");
             Slider("ailmentFrequency", "CC_Settings_AilmentFrequency", "CC_SetNote_AilmentFrequency", 0.25f, 2f, 0.05f, "%", "ailments");
             Toggle("seriousIllnesses", "CC_Settings_SeriousIllnesses", "CC_SetNote_SeriousIllnesses", "ailments");
@@ -851,8 +859,9 @@ namespace ColonyCouncil
             // deadly illnesses and no fights from its events, its everyday hurts at half. Every system stays on, just slower:
             // half the travellers, raiders' camps and schemes against the colony, one gathering of its own a week, half the
             // outsiders' chatter, more time for wishes and ambitions, and no strain from diplomacy against someone's nature.
-            // Its upsides (personal touches, the heart's good side) come as by default. Targets: about +4 to +7 well run, +2 to
-            // +5 average, around 0 neglected; under one question every two days.
+            // Its upsides (personal touches, the heart's good side) come as by default; the heart's bands are felt mildly, as
+            // before it was made to count, and nobody takes a bad afternoon. Targets: about +4 to +7 well run, +2 to +5 average,
+            // around 0 neglected; under one question every two days.
             var light = NewPreset("lightTouch", "CC_SetPreset_LightTouch");
             light.values.AddRange(new[]
             {
@@ -865,6 +874,7 @@ namespace ColonyCouncil
                 // How hard.
                 V("stakes", "Gentle"), V("wishDurationFactor", "1.25"), V("ambitionDeadlineFactor", "1.25"), V("allowQuitting", "false"),
                 V("lifePressure", "Gentle"), V("frictions", "false"), V("strainSpeed", "0.75"), V("heartEpisodes", "false"), V("heartGoodSide", "true"),
+                V("heartBands", "Mild"), V("heartBadDays", "false"),
                 V("ailmentFrequency", "0.5"), V("seriousIllnesses", "false"), V("crowdedSickness", "false"), V("frailty", "false"), V("dirtyWounds", "false"),
                 V("endOfLife", "false"), V("everydayHurts", "0.5"), V("scenarioThreat", "0.75"), V("worldEventBattles", "false"),
                 // What's on: fewer questions, no strain from diplomacy against someone's nature, guests join the game's way.

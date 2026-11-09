@@ -12,6 +12,8 @@
 // gives one of the game's inspirations or a kind word to someone close (the colony-year gives the moment). The heart, felt
 // (HeartFeltMath): rest eases less the higher strain is, and a death or a downing leaves a lasting weight rest can't take
 // strain below, lifting over days (a death of someone close a third of the time, as the loss's own strain is drawn).
+// The heart, made to count (HeartCountMath): from worn down, now and then a bad afternoon (off work a few hours at leisure,
+// easing a good share of strain), and hearts spread a little (the colony gives each colonist's friends' bands an hour).
 
 using ColonyCouncil;
 
@@ -84,6 +86,10 @@ namespace Balance
         /// <summary>What built and eased strain, by what it was, for the report.</summary>
         public readonly Dictionary<string, double> built = new Dictionary<string, double>(), eased = new Dictionary<string, double>();
         public int episodes;
+        /// <summary>The heart, made to count: bad afternoons and spreading on (the settings); bad afternoons had, the last, the one under way; the colony's last.</summary>
+        public bool badDaysOn = true, spreadOn = true;
+        public int badDays, lastBadDay = -999999, badUntil = -1;
+        public int[] colonyBadDay;
         private readonly List<(int hour, StrainSource source, float amount)> day = new List<(int, StrainSource, float)>();
 
         /// <summary>A new day: the caps start over and the day's own events are rolled (a raid and a death are the colony's, given by it).</summary>
@@ -228,6 +234,19 @@ namespace Balance
 
         private void GoodThing(GoodSource s, float amount, string what) => GoodThing(s, amount, what, "life", out _);
 
+        /// <summary>
+        /// Hearts spread a little, this hour: what their friends worn down wear on them (never past HeartCountMath.SpreadCeiling)
+        /// and what those in high spirits lift (a good thing, as a talk is).
+        /// </summary>
+        public void SpreadHour(float wear, float lift)
+        {
+            if (!spreadOn) return;
+            float room = HeartCountMath.Spread(wear, strain, 1f);
+            if (room > 0f) Build(StrainSource.Spread, room, "someone close worn down");
+            float up = HeartCountMath.Lift(lift, 1f);
+            if (up > 0f) GoodThing(GoodSource.Lifted, up, "someone close in high spirits", "someone close in high spirits", out _);
+        }
+
         private void LiftWeight(float eased) => weight = Math.Max(0f, weight - eased * HeartFeltMath.GoodEasesWeight);
 
         /// <summary>
@@ -267,8 +286,18 @@ namespace Balance
             }
             float relief;
             float mood = spellUntil >= dayIndex ? 0.7f : life.mood;
+            // A bad afternoon under way: at leisure, not at work; over, it eases a good share.
+            bool bad = badUntil > abs;
+            if (badUntil >= 0 && abs >= badUntil)
+            {
+                float e = Math.Min(strain, HeartCountMath.BadDayRelief(strain, true));
+                strain = HeartMath.Clamp(strain - e);
+                LiftWeight(e);
+                if (e > 0f) this.eased["a bad afternoon"] = this.eased.GetValueOrDefault("a bad afternoon") + e;
+                badUntil = -1;
+            }
             if (hourOfDay < 6 || hourOfDay >= 22) relief = (rng.NextDouble() < life.comfy ? 0.6f : 0.25f) * mood;
-            else if (hourOfDay >= 19) relief = 0.5f * mood;
+            else if (hourOfDay >= 19 || bad) relief = 0.5f * mood;
             else relief = 0.15f * mood;
             // A quicker recovery for someone in good heart lately; less the higher strain is, never below the weight.
             if (goodOn) relief *= HeartMath.RecoveryFactor(HeartMath.GoodBandFor(lately));
@@ -288,6 +317,16 @@ namespace Balance
                 lately = HeartMath.Lately(lately, good, 1f);
             }
             for (int s = 0; s < recent.Length; s++) recent[s] *= HeartMath.RecentDecayPerHour;
+            // From worn down, in the afternoon, now and then a bad afternoon (its waits: a week for each colonist, two days in the colony).
+            if (badDaysOn && badUntil < 0 && strain >= HeartCountMath.BadDayFrom && hourOfDay >= HeartCountMath.BadDayStartHour && hourOfDay <= HeartCountMath.BadDayLastHour
+                && abs - lastBadDay >= HeartCountMath.BadDayPawnDays * 24 && (colonyBadDay == null || abs - colonyBadDay[0] >= HeartCountMath.BadDayColonyDays * 24)
+                && rng.NextDouble() < HeartCountMath.BadDayChancePerHour(strain))
+            {
+                badUntil = abs + 4;
+                lastBadDay = abs;
+                if (colonyBadDay != null) colonyBadDay[0] = abs;
+                badDays++;
+            }
             int now = hourAbs * 2500;
             bool roll = rng.NextDouble() < HeartMath.EpisodeChancePerHour(strain);
             if (episodesOn && roll && now - lastEpisode >= 10 * 60000 && now - lastColonyEpisode >= 2 * 60000)

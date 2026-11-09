@@ -94,6 +94,16 @@ namespace Balance
         /// <summary>The game's minor-break line for most colonists (the MentalBreakThreshold stat's base).</summary>
         public const float MinorBreak = 0.35f;
 
+        /// <summary>The game's major and extreme break lines (MentalBreaker: 4/7 and 1/7 of the threshold stat's usual 35%).</summary>
+        public const float MajorBreak = 0.2f, ExtremeBreak = 0.05f;
+
+        /// <summary>
+        /// The chance of a mood-caused break in an hour at this mood, by the game's mean times under each line (MentalBreaker:
+        /// 0.5 days under the extreme line, 0.8 under the major, 4 under the minor).
+        /// </summary>
+        public static double BreakChancePerHour(float mood) =>
+            mood < ExtremeBreak ? 1.0 / (0.5 * 24.0) : mood < MajorBreak ? 1.0 / (0.8 * 24.0) : mood < MinorBreak ? 1.0 / (4.0 * 24.0) : 0.0;
+
         /// <summary>Share of a world event's beats that come (each has its own conditions).</summary>
         public const float SituationBeatShare = 0.7f;
 
@@ -451,7 +461,7 @@ namespace Balance
             // Small irritations
             public float nuisanceFits, frictionFactor;
 
-            // Steady moods: the colony's ways (share at -4, -2, +2, +4), others. Strain's share at -3, -5, -8 (strained, worn, near
+            // Steady moods: the colony's ways (share at -4, -2, +2, +4), others. Strain's share at its bands (strained, worn, near
             // breaking) from life alone: the heart's life (HeartSim.cs) is set to give it, and the colony-year plays the heart.
             public float[] ways, strain;
             public float aspirationsPerYear, convalescencePerYear;

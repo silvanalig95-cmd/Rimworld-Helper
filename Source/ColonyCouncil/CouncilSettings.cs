@@ -356,6 +356,18 @@ namespace ColonyCouncil
         public bool heartMessages = true;
         /// <summary>How quickly strain builds: 0.5 to 1.5.</summary>
         public float strainSpeed = 1f;
+        /// <summary>How strongly the heart's bands are felt in mood (Heart/HeartCountMath.cs): mild, felt (the default) or strong.</summary>
+        public BandStrength heartBands = BandStrength.Felt;
+        /// <summary>The heart's effects beyond mood (Heart/HeartEffects.cs): work from strained, learning, sleep, healing and immunity.</summary>
+        public bool heartEffects = true;
+        /// <summary>A bad afternoon now and then for someone worn down (Heart/HeartTimeOff.cs).</summary>
+        public bool heartBadDays = true;
+        /// <summary>Hearts spread a little: someone worn wears on those close to them, someone in high spirits lifts them (Heart/HeartLogic.cs).</summary>
+        public bool heartSpread = true;
+        /// <summary>What would help a strained colonist, with buttons where Rimfolk can act (Heart/HeartAdvice.cs).</summary>
+        public bool heartAdvice = true;
+        /// <summary>A day off for one strained colonist, given by the player (Heart/HeartTimeOff.cs).</summary>
+        public bool heartDayOff = true;
         /// <summary>Everyday ailments (Ailments/): colds, strained backs, sunburn, and the like.</summary>
         public bool ailments = true;
         /// <summary>The rare serious illnesses, which can kill (tetanus, pneumonia, tuberculosis...).</summary>
@@ -920,6 +932,12 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref heartSigns, "heartSigns", true);
             Scribe_Values.Look(ref heartMessages, "heartMessages", true);
             Scribe_Values.Look(ref strainSpeed, "strainSpeed", 1f);
+            Scribe_Values.Look(ref heartBands, "heartBands", BandStrength.Felt);
+            Scribe_Values.Look(ref heartEffects, "heartEffects", true);
+            Scribe_Values.Look(ref heartBadDays, "heartBadDays", true);
+            Scribe_Values.Look(ref heartSpread, "heartSpread", true);
+            Scribe_Values.Look(ref heartAdvice, "heartAdvice", true);
+            Scribe_Values.Look(ref heartDayOff, "heartDayOff", true);
             Scribe_Values.Look(ref ailments, "ailments", true);
             Scribe_Values.Look(ref seriousIllnesses, "seriousIllnesses", true);
             Scribe_Values.Look(ref illnessBudget, "illnessBudget", true);
