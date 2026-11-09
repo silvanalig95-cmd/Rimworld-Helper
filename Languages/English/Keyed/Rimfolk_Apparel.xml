@@ -246,4 +246,152 @@
   <CC_Apparel_WrongAge>{PAWN} can't wear it: it is made for another age.</CC_Apparel_WrongAge>
   <CC_Apparel_NoParts>{PAWN} has nothing left to wear it on.</CC_Apparel_NoParts>
 
+  <!-- Step 3: better armour and clothes for each colonist (Source/ColonyCouncil/Apparel/ApparelPick.cs, ApparelPickUi.cs,
+       ApparelAsks.cs; docs/design/apparel.md, point 6). Words the weapon suggestions share (on the way, not now, show again,
+       a trade's "the colony gains", the and of a list, "Though ...") are their keys in Rimfolk_Weapons.xml. -->
+
+  <!-- The settings (How you're told, Apparel). -->
+  <CC_Settings_ApparelSuggestions>Apparel suggestions</CC_Settings_ApparelSuggestions>
+  <CC_Settings_ApparelSuggestions_Tip>Better armour and clothes for each colonist from what the colony has: warmth first for anyone underdressed for the cold ahead, body armour and a helmet for those who fight when raids come often, worn-out clothes and clothes from the dead replaced, then clear upgrades, weighed by their own rating, the season ahead, the raids you meet, their work, and their title's, role's and faith's apparel. On the gear tab (the game's and Nice Inventory Tab's), on Rimfolk's apparel card ("Who should wear this") and on the Defenses page, with one click to wear it by the game's own Wear. Never what their outfit doesn't allow: that is said, with a button to allow it. Never taking off what their title, role or faith asks them to wear.</CC_Settings_ApparelSuggestions_Tip>
+  <CC_SetNote_ApparelSuggestions>Each colonist's gear tab suggests warmer or better clothes and armour the colony has, with one click to wear them.</CC_SetNote_ApparelSuggestions>
+  <CC_Settings_ApparelAsks>Colonists ask for better clothes</CC_Settings_ApparelAsks>
+  <CC_Settings_ApparelAsks_Tip>Now and then, in their free time at home and safe, a colonist asks for a piece the colony has that would do them clear good: warmth they lack for the cold ahead (more often while it's freezing), armour when raids come often, something in place of worn-out clothes, or a clearly better piece. One sentence in their own voice, at most once in six days each and once a day in the colony; a quiet row in This week while it still lies there.</CC_Settings_ApparelAsks_Tip>
+  <CC_SetNote_ApparelAsks>Colonists sometimes ask for warmer or better clothes they've seen in storage.</CC_SetNote_ApparelAsks>
+
+  <!-- What stops a colonist. -->
+  <CC_ApparelPick_CantWear>{PAWN} can't wear it.</CC_ApparelPick_CantWear>
+  <CC_ApparelPick_Locked>It would take off something {PAWN} has locked on.</CC_ApparelPick_Locked>
+  <CC_ApparelPick_TitleQuality>{PAWN_possessive} title asks for clothes of {QUALITY} quality or better.</CC_ApparelPick_TitleQuality>
+
+  <!-- Work, as the lines name it. -->
+  <CC_ApparelPick_Work_doctor>doctor</CC_ApparelPick_Work_doctor>
+  <CC_ApparelPick_Work_crafter>crafter</CC_ApparelPick_Work_crafter>
+  <CC_ApparelPick_Work_researcher>researcher</CC_ApparelPick_Work_researcher>
+  <CC_ApparelPick_Work_grower>grower</CC_ApparelPick_Work_grower>
+  <CC_ApparelPick_Work_miner>miner</CC_ApparelPick_Work_miner>
+  <CC_ApparelPick_Work_cook>cook</CC_ApparelPick_Work_cook>
+  <CC_ApparelPick_Work_builder>builder</CC_ApparelPick_Work_builder>
+  <CC_ApparelPick_Work_social>warden and talker</CC_ApparelPick_Work_social>
+
+  <!-- A suggestion's head. -->
+  <CC_ApparelPick_Head>Better for {PAWN}: {APPAREL} ({GAIN})</CC_ApparelPick_Head>
+  <CC_ApparelPick_Head_Warmth>Warmth for {PAWN}: {APPAREL} (+{DEGREES} °C)</CC_ApparelPick_Head_Warmth>
+  <CC_ApparelPick_Head_Cooling>Cooler for {PAWN}: {APPAREL} (+{DEGREES} °C)</CC_ApparelPick_Head_Cooling>
+  <CC_ApparelPick_Head_Armour>No body armour: {APPAREL} for {PAWN}</CC_ApparelPick_Head_Armour>
+  <CC_ApparelPick_Head_Helmet>No helmet: {APPAREL} for {PAWN}</CC_ApparelPick_Head_Helmet>
+  <CC_ApparelPick_Head_Worn>In place of {PAWN_possessive} {WORN}: {APPAREL}</CC_ApparelPick_Head_Worn>
+  <CC_ApparelPick_Head_Spare>From {OTHER} for {PAWN}: {APPAREL} ({GAIN})</CC_ApparelPick_Head_Spare>
+  <CC_ApparelPick_Head_Trade>A trade with {OTHER}: {APPAREL} for {PAWN} ({GAIN})</CC_ApparelPick_Head_Trade>
+  <CC_ApparelPick_Head_Outfit>{PAWN_possessive} outfit {OUTFIT} doesn't allow it: {APPAREL}</CC_ApparelPick_Head_Outfit>
+  <CC_ApparelPick_Row_Warmth>Warmth: {APPAREL} (+{DEGREES} °C)</CC_ApparelPick_Row_Warmth>
+  <CC_ApparelPick_Row_Cooling>Cooler: {APPAREL} (+{DEGREES} °C)</CC_ApparelPick_Row_Cooling>
+  <CC_ApparelPick_Row_Armour>No body armour: {APPAREL}</CC_ApparelPick_Row_Armour>
+  <CC_ApparelPick_Row_Helmet>No helmet: {APPAREL}</CC_ApparelPick_Row_Helmet>
+  <CC_ApparelPick_Row_Worn>In place of {WORN}: {APPAREL}</CC_ApparelPick_Row_Worn>
+  <CC_ApparelPick_Row_Outfit>Outfit {OUTFIT} doesn't allow it: {APPAREL}</CC_ApparelPick_Row_Outfit>
+  <CC_ApparelPick_TagNeeded>Needed</CC_ApparelPick_TagNeeded>
+  <CC_ApparelPick_TagOutfit>Outfit</CC_ApparelPick_TagOutfit>
+
+  <!-- Why, and what it costs. -->
+  <CC_ApparelPick_Why_Warmth>{PAWN_pronoun} is {SHORT} °C short for the cold ahead, and it adds {DEGREES}</CC_ApparelPick_Why_Warmth>
+  <CC_ApparelPick_Why_Cooling>{PAWN_pronoun} is {SHORT} °C short for the heat ahead, and it adds {DEGREES}</CC_ApparelPick_Why_Cooling>
+  <CC_ApparelPick_Why_Armour>{PAWN_pronoun} fights and wears no body armour, and raids come often</CC_ApparelPick_Why_Armour>
+  <CC_ApparelPick_Why_Helmet>{PAWN_pronoun} fights and wears no helmet, and raids come often</CC_ApparelPick_Why_Helmet>
+  <CC_ApparelPick_Why_Worn_0>{PAWN_possessive} {WORN} is worn below half</CC_ApparelPick_Why_Worn_0>
+  <CC_ApparelPick_Why_Worn_1>{PAWN_possessive} {WORN} is in tatters</CC_ApparelPick_Why_Worn_1>
+  <CC_ApparelPick_Why_Dead>{PAWN_possessive} {WORN} was taken from the dead</CC_ApparelPick_Why_Dead>
+  <CC_ApparelPick_Why_Mechs>it stands up to the mechanoids you keep meeting</CC_ApparelPick_Why_Mechs>
+  <CC_ApparelPick_Why_Melee>it stands up to the crowds that come at you</CC_ApparelPick_Why_Melee>
+  <CC_ApparelPick_Why_Work>it speeds {PAWN_possessive} work as a {WORK} ({SHARE})</CC_ApparelPick_Why_Work>
+  <CC_ApparelPick_Why_Faith>{PAWN_possessive} faith asks for it</CC_ApparelPick_Why_Faith>
+  <CC_ApparelPick_Why_Title>{PAWN_possessive} title asks for it</CC_ApparelPick_Why_Title>
+  <CC_ApparelPick_Why_Role>{PAWN_possessive} role asks for it</CC_ApparelPick_Why_Role>
+  <CC_ApparelPick_Why_Better>it rates {RATING} for {PAWN_objective} against {BEFORE}</CC_ApparelPick_Why_Better>
+  <CC_ApparelPick_Why_AddOn>nothing is worn there now, and it rates {RATING} for {PAWN_objective}</CC_ApparelPick_Why_AddOn>
+  <CC_ApparelPick_Why_Pack>it is in {PAWN_possessive} pack already</CC_ApparelPick_Why_Pack>
+  <CC_ApparelPick_Why_Spare>{OTHER} carries it unworn</CC_ApparelPick_Why_Spare>
+  <CC_ApparelPick_Why_Trade>it suits both of them better than what each wears</CC_ApparelPick_Why_Trade>
+  <CC_ApparelPick_Cost_Lucky>{OTHER} would be upset to take off {OTHER_possessive} lucky {APPAREL} (mood {WITHOUT} without it, {WITH} with it)</CC_ApparelPick_Cost_Lucky>
+  <CC_ApparelPick_Cost_Heirloom>{OTHER} would miss wearing {LOST}'s {APPAREL} (mood {WITH} while {OTHER_pronoun} wears it)</CC_ApparelPick_Cost_Heirloom>
+  <CC_ApparelPick_Cost_Slower>it slows {PAWN_possessive} work as a {WORK} ({SHARE})</CC_ApparelPick_Cost_Slower>
+  <CC_ApparelPick_Cost_Gender>it is made for the other gender (mood {MOOD})</CC_ApparelPick_Cost_Gender>
+  <CC_ApparelPick_Full>{APPAREL}: {GAIN} for {PAWN}: {WHY}.</CC_ApparelPick_Full>
+  <CC_ApparelPick_FullTrade>{APPAREL} to {PAWN} ({GAIN}), {OTHER} takes {PAWN_possessive} {MINE} ({OTHERGAIN}): {WHY}.</CC_ApparelPick_FullTrade>
+  <CC_ApparelPick_InPlaceOf>In place of {PAWN_possessive} {WORN}, which {PAWN_pronoun} drops there.</CC_ApparelPick_InPlaceOf>
+  <CC_ApparelPick_OutfitBars>{PAWN_possessive} outfit, {OUTFIT}, doesn't allow it.</CC_ApparelPick_OutfitBars>
+  <CC_ApparelPick_Lies>{APPAREL} lies {PLACE}.</CC_ApparelPick_Lies>
+  <CC_ApparelPick_ClickCard>Click for Rimfolk's apparel card.</CC_ApparelPick_ClickCard>
+
+  <!-- The buttons. -->
+  <CC_ApparelPick_Act_Wear>Wear</CC_ApparelPick_Act_Wear>
+  <CC_ApparelPick_Act_Wear_Tip>{PAWN} walks over and puts it on, by the game's own Wear; what it takes the place of is dropped there.</CC_ApparelPick_Act_Wear_Tip>
+  <CC_ApparelPick_Act_Pack_Tip>{PAWN} takes it from {PAWN_possessive} pack and puts it on; what it takes the place of is dropped there.</CC_ApparelPick_Act_Pack_Tip>
+  <CC_ApparelPick_Act_SpareFrom>Take from {OTHER}</CC_ApparelPick_Act_SpareFrom>
+  <CC_ApparelPick_Act_Spare_Tip>{PAWN} walks over to {OTHER}, who hands it over, and puts it on there.</CC_ApparelPick_Act_Spare_Tip>
+  <CC_ApparelPick_Act_Trade_Tip>{PAWN} walks over to {OTHER}, and each puts on what the other wore.</CC_ApparelPick_Act_Trade_Tip>
+  <CC_ApparelPick_Act_Allow>Allow</CC_ApparelPick_Act_Allow>
+  <CC_ApparelPick_Act_Allow_Tip>Allow {KIND} in the outfit {OUTFIT}, which {COUNT} colonists here wear: {PAWN} and the others may then put it on. Then it is suggested as any other piece.</CC_ApparelPick_Act_Allow_Tip>
+  <CC_ApparelPick_Act_OpenOutfit>Outfit</CC_ApparelPick_Act_OpenOutfit>
+  <CC_ApparelPick_Act_OpenOutfit_Tip>Its quality or wear is outside what {OUTFIT} allows. Open the outfit to change it.</CC_ApparelPick_Act_OpenOutfit_Tip>
+  <CC_ApparelPick_Allowed>{KIND} is now allowed in the outfit {OUTFIT}.</CC_ApparelPick_Allowed>
+  <CC_ApparelPick_Gone>It is no longer there.</CC_ApparelPick_Gone>
+  <CC_ApparelPick_NotNow_Tip>Set {PAWN_possessive} clothes suggestions aside for {DAYS} days: they don't show, {PAWN_pronoun} takes nothing in the colony's choice and doesn't ask.</CC_ApparelPick_NotNow_Tip>
+  <CC_ApparelPick_AskAgain_Tip>Bring {PAWN_possessive} clothes suggestions back now.</CC_ApparelPick_AskAgain_Tip>
+
+  <!-- The gear tab. -->
+  <CC_ApparelPick_GearHeader>Suggested clothes</CC_ApparelPick_GearHeader>
+  <CC_ApparelPick_QuietNone>No better clothes in storage for {PAWN}</CC_ApparelPick_QuietNone>
+  <CC_ApparelPick_Quiet_Warmth>No warmer clothes in storage for {PAWN}</CC_ApparelPick_Quiet_Warmth>
+  <CC_ApparelPick_Quiet_Cooling>No cooler clothes in storage for {PAWN}</CC_ApparelPick_Quiet_Cooling>
+  <CC_ApparelPick_Quiet_Armour>No body armour in storage for {PAWN}</CC_ApparelPick_Quiet_Armour>
+  <CC_ApparelPick_Quiet_Helmet>No helmet in storage for {PAWN}</CC_ApparelPick_Quiet_Helmet>
+  <CC_ApparelPick_Quiet_Worn>Nothing in storage to replace {PAWN_possessive} {WORN}</CC_ApparelPick_Quiet_Worn>
+  <CC_ApparelPick_QuietSetAside>Clothes suggestions set aside for {PAWN} for now</CC_ApparelPick_QuietSetAside>
+  <CC_ApparelPick_QuietSetAside_Tip>You set {PAWN_possessive} clothes suggestions aside. Click to show them again now.</CC_ApparelPick_QuietSetAside_Tip>
+  <CC_ApparelPick_QuietNone_Tip>Rimfolk compared what {PAWN} wears with the {COUNT} pieces lying in storage and what the others carry unworn: none is better for {PAWN_objective} by {GAIN} or more and allowed by {PAWN_possessive} outfit, or one that is suits someone else more.</CC_ApparelPick_QuietNone_Tip>
+  <CC_ApparelPick_QuietCold>{PAWN} is {SHORT} °C short for the cold ahead: the nights get down to {COLDEST} °C over this twelfth and the next two.</CC_ApparelPick_QuietCold>
+  <CC_ApparelPick_QuietHot>{PAWN} is {SHORT} °C short for the heat ahead: the days get up to {HOTTEST} °C over this twelfth and the next two.</CC_ApparelPick_QuietHot>
+  <CC_ApparelPick_QuietForbidden>{COUNT} pieces in storage are forbidden and weren't looked at.</CC_ApparelPick_QuietForbidden>
+  <CC_ApparelPick_QuietRaids>Raids come often, so those who fight should wear body armour and a helmet.</CC_ApparelPick_QuietRaids>
+  <CC_ApparelPick_QuietClick>Click for every colonist's clothes on the Defenses page.</CC_ApparelPick_QuietClick>
+
+  <!-- The Defenses page. -->
+  <CC_ApparelPick_Section>Clothes and armour for each colonist</CC_ApparelPick_Section>
+  <CC_ApparelPick_AllAct>Wear all suggested ({COUNT})</CC_ApparelPick_AllAct>
+  <CC_ApparelPick_AllAct_Tip>Give every suggestion below its order: each colonist walks over and puts it on, one after another, and drops what it takes the place of. Only the orders: nothing is done by itself later. What an outfit doesn't allow isn't ordered; allow it from its own row.</CC_ApparelPick_AllAct_Tip>
+  <CC_ApparelPick_AllNone>Nothing can be worn now.</CC_ApparelPick_AllNone>
+  <CC_ApparelPick_Weighs>Each colonist's own rating, with {WHAT}.</CC_ApparelPick_Weighs>
+  <CC_ApparelPick_Weighs_Cold>the cold ahead (down to {COLDEST} °C)</CC_ApparelPick_Weighs_Cold>
+  <CC_ApparelPick_Weighs_Heat>the heat ahead (up to {HOTTEST} °C)</CC_ApparelPick_Weighs_Heat>
+  <CC_ApparelPick_Weighs_Raids>the raids that come often</CC_ApparelPick_Weighs_Raids>
+  <CC_ApparelPick_WeighsNone>Each colonist's own rating: no cold or heat ahead to dress for, and no raids lately.</CC_ApparelPick_WeighsNone>
+  <CC_ApparelPick_Stored>{COUNT} pieces lie in storage.</CC_ApparelPick_Stored>
+  <CC_ApparelPick_NoColonists>No one here wears clothes.</CC_ApparelPick_NoColonists>
+  <CC_ApparelPick_KeepsThem>Nothing the colony has suits {PAWN_objective} clearly better.</CC_ApparelPick_KeepsThem>
+  <CC_ApparelPick_Chip_Cold>{SHORT} °C short for the cold</CC_ApparelPick_Chip_Cold>
+  <CC_ApparelPick_Chip_Hot>{SHORT} °C short for the heat</CC_ApparelPick_Chip_Hot>
+  <CC_ApparelPick_Chip_Dressed>Dressed for the weather</CC_ApparelPick_Chip_Dressed>
+  <CC_ApparelPick_Chip_Dressed_Tip>{PAWN} is dressed for the season ahead.</CC_ApparelPick_Chip_Dressed_Tip>
+  <CC_ApparelPick_Chip_NoArmour>No body armour</CC_ApparelPick_Chip_NoArmour>
+  <CC_ApparelPick_Chip_NoHelmet>No helmet</CC_ApparelPick_Chip_NoHelmet>
+  <CC_ApparelPick_Chip_Worn>Worn out: {COUNT}</CC_ApparelPick_Chip_Worn>
+
+  <!-- The apparel card. -->
+  <CC_ApparelPick_Card_Who>Who should wear this</CC_ApparelPick_Card_Who>
+  <CC_ApparelPick_Card_Wears>wears it now</CC_ApparelPick_Card_Wears>
+  <CC_ApparelPick_Card_Need_Warmth>warmth {PAWN_pronoun} lacks ({GAIN})</CC_ApparelPick_Card_Need_Warmth>
+  <CC_ApparelPick_Card_Need_Cooling>cooling {PAWN_pronoun} lacks ({GAIN})</CC_ApparelPick_Card_Need_Cooling>
+  <CC_ApparelPick_Card_Need_Armour>wears no body armour ({GAIN})</CC_ApparelPick_Card_Need_Armour>
+  <CC_ApparelPick_Card_Need_Helmet>wears no helmet ({GAIN})</CC_ApparelPick_Card_Need_Helmet>
+  <CC_ApparelPick_Card_Need_Worn>in place of a worn-out piece ({GAIN})</CC_ApparelPick_Card_Need_Worn>
+  <CC_ApparelPick_Card_Better>{GAIN} over what it would take the place of</CC_ApparelPick_Card_Better>
+  <CC_ApparelPick_Card_Little>{GAIN}, too little to change for</CC_ApparelPick_Card_Little>
+  <CC_ApparelPick_Card_NoBetter>no better than what {PAWN_pronoun} wears</CC_ApparelPick_Card_NoBetter>
+  <CC_ApparelPick_Card_WhoTip>{PAWN}'s own rating, with the season ahead, the raids you meet, {PAWN_possessive} work and the apparel {PAWN_possessive} title, role and faith ask for. Click to see it for {PAWN_objective} below.</CC_ApparelPick_Card_WhoTip>
+
+  <!-- Colonists who ask. -->
+  <CC_ApparelAsk_InPack>in my pack</CC_ApparelAsk_InPack>
+  <CC_ApparelAsk_Inbox>{PAWN} would rather wear the {APPAREL} {PLACE} ({GAIN})</CC_ApparelAsk_Inbox>
+  <CC_ApparelAsk_InboxWarmth>{PAWN} asked for the {APPAREL} {PLACE}, for the cold</CC_ApparelAsk_InboxWarmth>
+
 </LanguageData>

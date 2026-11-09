@@ -2279,6 +2279,34 @@ mods, with the same numbers, is `docs/apparel/README.md`.
 - **The gear tab** (*Ratings on the gear tab*, on): a small badge with the rating beside each piece, the game's tab and
   Nice Inventory Tab's (its rows, its apparel slots and what a colonist carries), its tooltip the tags and the colonist's
   own rating; a click on it opens Rimfolk's card.
+- **Better clothes for each colonist** (*Apparel suggestions*, on): Rimfolk sets what each colonist wears against what the
+  colony has (pieces in storage and on outfit stands, not forbidden; what colonists carry unworn) in one choice for the
+  whole colony, so no piece goes to two and a colonist's pieces fit together. Gaps first: warmth for anyone underdressed
+  for the season ahead (the coldest night of this twelfth and the next two under 5 °C, as the game's own "Need warm
+  clothes" counts it), the most lacking first, a coat and then a hat; the heat the same past 30 °C; when raids come often,
+  body armour and a helmet for those who fight more than rarely, the one who fights most first; clothes worn below half
+  or taken from the dead replaced by anything no worse. Then upgrades of 0.8 or more on the rating's scale, with the
+  raids you meet (armour against mechanoids or crowds, by how much each fights), their work (clothes that speed a
+  doctor's, cook's or crafter's work) and what their title, role or faith asks for that they lack. A piece in place of
+  several is judged in each one's role (marine armour in place of a vest and a parka gains as armour and loses as a
+  coat), and nothing is suggested that leaves them colder than they can bear. **Their outfit is respected**: what it
+  doesn't allow is never suggested to wear; where it would fill a need, its row says "Outfit Worker doesn't allow it" with
+  **Allow** (the kind allowed in that outfit) or, when its quality or wear limits stop it, **Outfit** (opens it). Nobody is
+  moved off what their title, role or faith asks them to wear (except for another piece that meets it too), nothing
+  locked comes off, a title's least quality is kept; a lucky piece or an heirloom that would come off is a warning, never
+  a block. Armour can be traded between two colonists when it is clearly better for both or for the colony. On the gear
+  tab (the game's, under the suggested weapons; Nice Inventory Tab's apparel box, or in its grid layout its equipment box
+  under the suggested weapons) each is a row: the picture, what it fills ("Warmth: parka (+40 °C)", "No helmet: flak
+  helmet"), its rating for them and the gain, why, and **Wear** (the game's own Wear: they walk over, put it on and drop
+  what it takes the place of), **Take from** whom, **Trade with** whom, **Not now**; with nothing to suggest, a quiet line
+  that says what they lack ("No warmer clothes in storage for Bautista"). On the apparel card, **Who should wear this**;
+  on the Defenses page, **Clothes and armour for each colonist**: each colonist's gaps and suggestions, and **Wear all
+  suggested**, which only gives the orders.
+- **Colonists ask for better clothes** (on): now and then, in their free time at home and safe, a colonist asks for a piece
+  that fills a need of theirs or is clearly better, in one sentence in their own voice ("It's freezing; that parka in the
+  stockpile would do me good."), at most once in six days each and once a day in the colony, warmth more often while it's
+  freezing; the ask stays a few days in This week, its button the order. The game's own apparel optimizer already puts on
+  what an outfit allows, so Rimfolk adds no "put it on themselves" of its own.
 
 ### A fresh start in the same world
 **Found a new colony** on a colony's card (the region map's Ours lens) picks a place on the game's world map, with
@@ -2543,7 +2571,8 @@ while that feature is off; nothing vanilla is changed or removed. A few things i
   the off hand with Dual Wield's penalties (and an empty off hand filled where it allows, taken by its own job), the rating's badge on
   Nice Inventory Tab's rows and cells (and the suggestions' rows in its equipment box), shooting on the move, a weapon's
   execution moves and duels. Nice Inventory Tab's apparel rows, apparel slots and carried pieces get the apparel rating's
-  badge too (Judging armour and clothes). Without them nothing changes.
+  badge too, and the suggested clothes a row of their own in its apparel box (in its grid layout, in its equipment box
+  under the suggested weapons) (Judging armour and clothes). Without them nothing changes.
 - **Harvest and Haul, Pick Up And Haul:** Harvest and Haul is built into Rimfolk now (Carrying and hauling); while the
   standalone mod is loaded, Rimfolk's copy stands down, and it can be removed now (remove it to have benches, barrels
   and other work fill pockets too). What Rimfolk's carrying and hauling takes to storage goes through Pick Up And Haul's

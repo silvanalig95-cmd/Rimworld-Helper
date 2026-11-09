@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    A colonist asking for better clothes (Source/ColonyCouncil/Apparel/ApparelAsks.cs), said over their head through
+    Speech, one sentence each. Every line has the reason it is said for, so its words are true: warmth (they lack warmth
+    for the cold ahead; with "cold" only while it is colder outside than they can bear, so "freezing" is true), cooling
+    (the heat ahead; with "hot" only on a hot day), armour and helmet (they fight, wear none, and raids come often), worn
+    (in place of clothes worn below half), dead (in place of clothes taken from the dead), faith, title, role (the apparel
+    those ask of them), work (it speeds their work), mechanoids and crowds (the raids it stands up to), or better (simply
+    better for them). {APPAREL} is the piece's label, {PLACE} where it lies as the map has it ("in the stockpile", "on the
+    shelf", "on the outfit stand", "in my pack"). The colony's age decides the words where they differ (a tribe's walking
+    metal ones and arrows, the middle ages' iron walkers and the line, the industrial and spacer ages' guns and mechanoids),
+    the speaker's tone the voice.
+  -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_ApparelAsk</defName>
+    <lines>
+      <plain>
+        <li>[warmth] The {APPAREL} {PLACE} would keep me warm through what's coming.</li>
+        <li>[warmth,cold] It's freezing; that {APPAREL} {PLACE} would do me good.</li>
+        <li>[warmth,cold] I can't stop shivering, and the {APPAREL} {PLACE} would put an end to it.</li>
+        <li>[warmth,winter] Winter's here, and I'd be glad of the {APPAREL} {PLACE}.</li>
+        <li>[warmth,lowtech] The nights are turning bitter, and the {APPAREL} {PLACE} would see me through.</li>
+        <li>[cooling] This heat is too much for what I wear, and the {APPAREL} {PLACE} would help.</li>
+        <li>[cooling,hot] I'm cooking out here, and the {APPAREL} {PLACE} would let me breathe.</li>
+        <li>[armour] With raids coming like this, I'd feel better in the {APPAREL} {PLACE}.</li>
+        <li>[armour,industrial|spacer] I keep facing their guns with no armour, and the {APPAREL} {PLACE} would change that.</li>
+        <li>[armour,tribal] Their arrows find me every time, and the {APPAREL} {PLACE} would turn them.</li>
+        <li>[armour,medieval] I'd hold my place in the line far better in the {APPAREL} {PLACE}.</li>
+        <li>[helmet] My head is bare when the raiders come, and the {APPAREL} {PLACE} would fix that.</li>
+        <li>[helmet] One good knock and I'm done for, unless I wear the {APPAREL} {PLACE}.</li>
+        <li>[worn] My clothes are falling apart, and the {APPAREL} {PLACE} would replace them.</li>
+        <li>[worn] I'm ashamed of these rags while the {APPAREL} {PLACE} lies there unworn.</li>
+        <li>[dead] I'd rather not wear clothes off the dead; the {APPAREL} {PLACE} would do.</li>
+        <li>[faith] My faith asks me to wear the {APPAREL} {PLACE}, and I'd like to.</li>
+        <li>[title] My title calls for the {APPAREL} {PLACE}, and I'd like to wear it.</li>
+        <li>[role] My role asks for the {APPAREL} {PLACE}, and I don't have it yet.</li>
+        <li>[work] The {APPAREL} {PLACE} would make my work go faster.</li>
+        <li>[mechanoids,industrial|spacer] The {APPAREL} {PLACE} would hold up against the mechanoids.</li>
+        <li>[mechanoids,tribal] The {APPAREL} {PLACE} could stand against the walking metal ones.</li>
+        <li>[mechanoids,medieval] Against the iron walkers I'd want the {APPAREL} {PLACE} on me.</li>
+        <li>[crowds] When they rush us all at once, I'd want the {APPAREL} {PLACE} on.</li>
+        <li>[better] The {APPAREL} {PLACE} would suit me better than what I'm wearing.</li>
+        <li>[better] Could I wear the {APPAREL} {PLACE}, if nobody minds?</li>
+      </plain>
+      <warm>
+        <li>[warmth] The {APPAREL} {PLACE} would keep me warm enough to look after the rest of you.</li>
+        <li>[armour] If I wore the {APPAREL} {PLACE}, I could keep the rest of you safer.</li>
+        <li>[helmet] With the {APPAREL} {PLACE} on, I could stand by you all in a raid.</li>
+        <li>[worn] These clothes served me well, but the {APPAREL} {PLACE} would serve better.</li>
+        <li>[better] I'd be glad of the {APPAREL} {PLACE}, if nobody else needs it.</li>
+      </warm>
+      <blunt>
+        <li>[warmth] What I wear won't last the cold ahead, so I want the {APPAREL} {PLACE}.</li>
+        <li>[warmth,cold] I'm freezing in this, so give me the {APPAREL} {PLACE}.</li>
+        <li>[armour] I fight in every raid with no armour, so I want the {APPAREL} {PLACE}.</li>
+        <li>[helmet] I'm not going into another raid bareheaded, so I'm taking the {APPAREL} {PLACE}.</li>
+        <li>[worn] These clothes are rags, and I need the {APPAREL} {PLACE}.</li>
+        <li>[better] The {APPAREL} {PLACE} beats what I've got, so let me have it.</li>
+      </blunt>
+      <cheerful>
+        <li>[warmth] Oh, the {APPAREL} {PLACE} would be lovely and warm!</li>
+        <li>[cooling] The {APPAREL} {PLACE} would be so much cooler than this!</li>
+        <li>[worn] Time for something new, and the {APPAREL} {PLACE} looks just right!</li>
+        <li>[better] I've had my eye on the {APPAREL} {PLACE}, and it would suit me nicely!</li>
+      </cheerful>
+      <gloomy>
+        <li>[warmth] I'll freeze before the season's out unless I get the {APPAREL} {PLACE}.</li>
+        <li>[armour] The next raid will finish me unless I wear the {APPAREL} {PLACE}.</li>
+        <li>[worn] Even my clothes are coming apart; the {APPAREL} {PLACE} would help a little.</li>
+        <li>[better] Nobody's wearing the {APPAREL} {PLACE}, so I might as well.</li>
+      </gloomy>
+      <cold>
+        <li>[warmth] The {APPAREL} {PLACE} covers what I lack against the cold.</li>
+        <li>[armour] The {APPAREL} {PLACE} would close the gap in my protection.</li>
+        <li>[helmet] The {APPAREL} {PLACE} would cover my head.</li>
+        <li>[better] The {APPAREL} {PLACE} is the better choice for me.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+</Defs>

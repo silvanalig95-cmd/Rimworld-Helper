@@ -699,6 +699,9 @@ namespace ColonyCouncil
             Toggle("apparelRatings", "CC_Settings_ApparelRatings", "CC_SetNote_ApparelRatings", "deepHooks");
             Toggle("apparelGearTab", "CC_Settings_ApparelGearTab", "CC_SetNote_ApparelGearTab", "apparelRatings,deepHooks");
             Toggle("apparelCardFirst", "CC_Settings_ApparelCardFirst", "CC_SetNote_ApparelCardFirst", "apparelRatings,deepHooks");
+            // Better armour and clothes for each colonist, and colonists asking for them (Apparel/ApparelPick.cs, ApparelAsks.cs; docs/design/apparel.md, step 3).
+            Toggle("apparelSuggestions", "CC_Settings_ApparelSuggestions", "CC_SetNote_ApparelSuggestions", "apparelRatings,deepHooks");
+            Toggle("apparelAsks", "CC_Settings_ApparelAsks", "CC_SetNote_ApparelAsks", "apparelRatings,deepHooks");
             // The colonist bar's badges (ColonistBar/BarBadges.cs): what they show, and how.
             Section("CC_SetSec_ColonistBar");
             NoteUnder("CC_SetSec_ColonistBar_Note");

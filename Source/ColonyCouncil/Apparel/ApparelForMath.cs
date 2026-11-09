@@ -136,14 +136,16 @@ namespace ColonyCouncil
         /// <summary>
         /// A piece's rating for a colonist and why it differs from the usual one, step by step so the steps add up: how they
         /// fight, their body, where they live (only with a climate), and the moods it would add for them (their other clothes
-        /// already tattered, so this one's wear adds nothing; made for the other gender).
+        /// already tattered, so this one's wear adds nothing; made for the other gender). <paramref name="asRole"/> judges it
+        /// as another role than its own (the suggestions judge a piece in place of a parka as a coat): the same steps on that
+        /// role's weights and scale.
         /// </summary>
-        public static ApparelForColonist For(ApparelReport rep, ApparelWearer w)
+        public static ApparelForColonist For(ApparelReport rep, ApparelWearer w, string asRole = null)
         {
             var a = rep.Facts;
             var r = rep.Rating;
             var c = new ApparelForColonist { Reference = r.Overall, Kind = w.Kind ?? "both", HasClimate = w.HasClimate };
-            string role = r.Role;
+            string role = asRole ?? r.Role;
             var (mid, width) = ApparelRateMath.RoleScale(role);
             float Scale(float worth) => ApparelRateMath.Scale(worth, mid, width);
 

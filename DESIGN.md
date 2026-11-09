@@ -4873,7 +4873,7 @@ and suggest/equip them accordingly. also offhand if they have capacity & compati
 Step 1 (0.187.0) built the rating (`Apparel/ApparelRateMath.cs`), the tags (`ApparelTagMath.cs`) and the review of every
 piece in the player's mods (`docs/apparel/`). Step 2 (point 5) brings it into the game, after the player's screenshot of
 the game's plain card for a "Bluefur parka (awful)": "i don't see the gear cards in game by default, is this implemented
-at all?" Step 3 (point 6, recommendations) is not started.
+at all?" Step 3 (point 6, recommendations) is built, below ("Step 3: better armour and clothes for each colonist").
 
 - **One reading for the review and the game.** What a piece's defs say is plain data (`Apparel/ApparelReadMath.cs`, pure):
   `ApparelDefFacts` (its stat bases and equipped offsets, stuff categories, layers, groups and tags, its apparel
@@ -4967,6 +4967,119 @@ at all?" Step 3 (point 6, recommendations) is not started.
   quality, the 200% cap, wear and its moods, a dead wearer, biocoding; a colonist's rating by how they fight, their body,
   their weather, the moods it adds, and its steps adding up; regions; and the seams (settings, keys made from words, hooks,
   frame, Almanac).
+
+### Step 3: better armour and clothes for each colonist, and colonists who ask (point 6)
+
+The plan the player approved (9 November 2026): "Better armour and clothes for each colonist from what the colony has, by
+their role, the season and the raids met, their faith's and title's apparel rules, their body; one click to wear it;
+colonists sometimes ask, rarely." From their game: "Need warm clothes" and "Tattered apparel" showing at -25 °C in winter,
+Bautista in a ratty shirt. Built as the weapons' step 3 was (above), on the colonist's own rating of step 2. Not released.
+
+- **The choice, pure** (`Apparel/ApparelPickMath.cs`, tested in `Tools/Tests/ApparelPickTests.cs`). A colonist with a piece
+  is scored by their own rating (`ApparelForMath.For`: how they fight, their body, their weather, the moods it adds) plus
+  what the colony's life asks of it: a rule of theirs not met now that it meets (their title's or role's apparel they
+  lack, 1.5; their faith's desired apparel, 0.6), their work (clothes that speed it by 3% or more, 0.4; slow it, -0.3, by
+  `WorkLean`: their general work speed and their work's own stats, a doctor's tending and surgery, a cook's cooking and
+  food poisoning, a grower's, miner's, builder's, researcher's, crafter's, a warden's and talker's social stats), and for
+  armour (body armour, helmets, off-hand shields) the raids met: its mechanoids' and melee situations over its overall by
+  the shares of mechanoid raids and of crowds of people or tribes (half and two fifths), at most a point either way, by
+  how much they fight. A piece's gain is over what it would take the place of (the game's `CanWearTogether`), judged in
+  each replaced piece's own role (`ApparelForMath.For` gained a role to judge it as: marine armour in place of a flak vest
+  and a parka gains as armour and loses as a coat; the same steps on that role's weights and scale), or over nothing (1.0).
+  Never a choice: what they can't wear, what would take off a piece they locked or one they wear for a rule it doesn't
+  meet too, what leaves them colder or hotter than they can bear over the season ahead (`KeepsComfort`), what their outfit
+  doesn't allow (said apart, below).
+- **The season ahead** (`ApparelPick.Ahead`, `ApparelPickMath.Margin`): outside now and the coldest night and hottest day of
+  this twelfth and the next two (`AverageTemperatureAtTileForTwelfth` less and more the sun's 7 °C), as the game's own
+  `Alert_NeedWarmClothes` looks three twelfths ahead. Against their least and most comfortable temperatures in what they
+  wear now, counted only where the cold goes under 5 °C (the game's alert's own line) or the heat over 30 °C: degrees short,
+  and degrees to spare. The rating's own "their weather" (the card's) is unchanged.
+- **Gaps first** (`Gaps`, `Fills`), each filled with anything rated 2.0 or more for them: warmth for anyone 1 °C or more short
+  (a piece adding 3 °C or all that is lacking, net of what it replaces), the most lacking first, the warmest first, a coat
+  then a hat (two pieces a round); cooling the same; in a raid-heavy colony (`RaidHeavyAt`: the raids weighed by recency
+  as the weapons weigh them, two this month or four in sixty days), body armour and a helmet for those who fight more than
+  rarely (`Fights` above 0.5) and wear none, the most fighting first; each worn piece below half its hit points or taken
+  from the dead, replaced by any piece not itself as worn and no worse once its wear's mood is counted.
+- **Then upgrades**: 0.8 of a point or more in place of what it replaces (`Threshold`; a little more than the weapons' 0.6,
+  as changing clothes leaves the old piece behind and the season moves a rating by a few tenths: a flak helmet over a
+  simple one is suggested, marine armour over recon, or a good parka over a normal one, are not); a piece for an empty slot
+  that is no gap only when it rates 6.0 or more for them on its own (`AddOnAt`) or meets a rule of theirs not met now (the
+  game's own apparel optimizer fills empty slots with what an outfit allows). Greedily by gain, armour's weighed by how much
+  each fights (at least a fifth). Alike pieces (one report: kind, stuff, quality, wear; one place) weighed once.
+- **One assignment for the colony** (`Assign`): no piece to two colonists; a colonist's pieces fit together (`Fits`, the game's
+  rule: no shared layer over a shared body part group) and never take the place of the same worn piece. Then trades of
+  armour between two (body armour for body armour, a helmet for a helmet), as the weapons trade: better for both (0.3
+  each, 0.8 together), or one gains a point and the colony 0.8 weighed by how much each fights (a doctor in recon armour
+  who rarely fights, a front-line fighter in a flak vest); each takes only the other's in place of their own, both
+  allowed by their outfits, neither locked or kept for a rule. Tested on 300 random colonies: no piece to two, nothing they
+  can't wear or their outfit doesn't allow, nothing locked or kept for a rule taken off, every colonist's pieces fitting.
+- **The outfit** (`WearOption.Outfit`, `ApparelPick.OptionFor`: the game's `ApparelPolicy.filter.Allows(thing)`): never
+  suggested to wear past it. One piece a colonist, said as such ("Outfit Worker doesn't allow it: parka"), where it would
+  fill a need nothing allowed fills as well (warmth still lacking, or more of it than the allowed pieces it would take the
+  place of) or is a big upgrade (twice the threshold) with nothing allowed in its place. **Allow** sets the kind allowed
+  in that outfit (`filter.SetAllow(def, true)`; the tip says how many colonists here wear it); when the outfit's quality or
+  hit point limits or its dead man's filter stop it, **Outfit** opens the game's outfit window on it instead.
+- **Title, role and faith** (`ApparelPick.RulesOf`): their title's and role's requirements by the game's own
+  (`Pawn_ApparelTracker.AllRequirements`, `ApparelUtility.IsRequirementActive`, `ApparelRequirement.ApparelMeetsRequirement`
+  with no unmatched allowance, `IsMet`), their faith's desired apparel (`Precept_Apparel.apparelDef` for their gender), their
+  title's least apparel quality (`requiredMinimumApparelQuality`, a piece below it can't be suggested). A worn piece that
+  meets one is kept for it (`WearPiece.Rule`): replaced only by another that meets it too. A piece that meets one not met
+  now counts (above) and may fill an empty slot on that alone.
+- **Keepsakes**: Rimfolk's lucky-item quirk on a piece of apparel (its mood comes with any piece of its kind) and an
+  heirloom worn, read as the weapons read them; a suggestion that would take one off says so as a cost (the moods with and
+  without), never a block; a colonist never asks for one that would.
+- **In the game** (`Apparel/ApparelPick.cs`): a home map's colonists (slaves and children too; not babies or quest guests),
+  what they wear and carry, what lies in storage (a stockpile or shelf, not forbidden or burning; an outfit stand's): the
+  8 best kinds of each role by their rating, and the 8 warmest and coolest when someone lacks warmth or cooling, as many of
+  each as there are colonists. Each colonist with each piece (another's worn armour too, for trades), their own rating
+  kept an hour (`ApparelLive.ForColonist`) and worked out ahead a tenth of the colony every 250 ticks
+  (`ApparelPickBook`, `Sched.RareApparelPicks` 43, `Pass.RareApparelPicks`); the rating as another role kept an hour. The
+  choice kept per map, made again hourly, half a second after an order or "not now", or two seconds after what they wear or
+  carry, their outfit or how many pieces there are changes (looked at once a second). A piece a colonist can't reach is
+  taken out for them and the choice made again. How much each fights: the weapons' `FightWeight` from skills, time drafted
+  and fights. Their work: the work they do first at a skill of 6 or more. The raids: the weapons' record
+  (`WeaponPickBook.Seen`, new: its own raids and the game's raid letters, as the weapons read them).
+- **The orders**, real jobs walked out on the map: the game's own `Wear` (from an outfit stand with the stand as its
+  source), so they walk over, put it on and drop what it takes the place of, as the game's Wear does; a piece in their
+  own pack set down at their feet and worn there; another's spare (`Rimfolk_TakeSpareApparel`,
+  `Apparel/ApparelSwapJob.cs`: walk over, it is handed over into their pack, then put on in the piece's own equip time);
+  a trade (`Rimfolk_SwapApparel`: walk over, each puts on what the other wore, whatever else either can't wear with it
+  dropped). An order is the player's, so the game's optimizer keeps it on as it keeps a piece the player ordered worn.
+  A button is greyed with why (no path, burning, reserved, down, the other busy). "On the way" while the job runs.
+- **Where it shows** (`Apparel/ApparelPickUi.cs`, `ApparelNiceTab.cs`): the game's gear tab, "Suggested clothes" under the
+  suggested weapons (its own postfix on `TryDrawComfyTemperatureRange`, at low priority); Nice Inventory Tab, by name from
+  its decompile: a row of Rimfolk's own in its apparel box (`apparel_legacy_groupbox`, under the last piece worn, above
+  its empty slots); its grid layout's apparel box is a grid whose code casts every cell to `ApparelGridSlot`, so there
+  the row goes into the equipment box (`equipment_alt_groupbox`), under the suggested weapons' row (`WeaponNiceTab.IsSpacer`).
+  The row is the weapons' (frame, tag "Suggested", "Needed", "Asked for" or "Outfit", picture, a short head without the
+  colonist's name: "Warmth: parka (+40 °C)", "No helmet: flak helmet", "In place of tattered T-shirt: button-down shirt",
+  badge, gain, why, a warning line for costs, **Wear**, **Take from**, **Trade with**, **Allow** or **Outfit**, **Not
+  now**). The quiet line, honest about what they lack: "No warmer clothes in storage for Bautista" (warmth, cooling, body
+  armour, helmet, a worn piece), else "No better clothes in storage for ...", under the rows too when a gap is left; its
+  tooltip what was compared, how short they are and how cold it gets, forbidden pieces not looked at; a click the
+  Defenses page. Rimfolk's apparel card: **Who should wear this** (a piece in hand; its outfit aside, the need it fills
+  first). The Defenses page: **Clothes and armour for each colonist**, after the weapons: each colonist's gaps as chips
+  (degrees short for the cold or heat, no body armour, no helmet, worn out, or dressed for the weather), their
+  suggestions with the gain, why and a button, "Not now" or "Show again"; what the choice weighs under the heading;
+  **Wear all suggested (n)** gives the orders only (never an outfit's: allow it from its row).
+- **Colonists who ask** (`Apparel/ApparelAsks.cs`, "Colonists ask for better clothes", pool `Rimfolk_Pool_ApparelAsk`, 49
+  lines in every tone and age, one sentence each): at their slice's hourly look, in their free time at home and safe
+  (`WeaponAsks.FreeAndSafe`), a suggestion of theirs that fills a gap or gains 1.6 (`AskThreshold`), from storage, their
+  pack or what their outfit doesn't allow (never a trade or another's spare, never one that takes off their own keepsake);
+  at most once in six days each, once a day in the colony, the same piece not for fifteen days, not while set aside; a 10%
+  chance each look, 20% for warmth while it is colder outside than they can bear. The line by its reason (warmth, cooling,
+  armour, helmet, worn, dead, faith, title, role, work, mechanoids, crowds, better), "freezing" only on a cold day:
+  "It's freezing; that parka in the stockpile would do me good." A quiet row in This week (How people are,
+  `apparel-asks`, counted nowhere) for three days while it stands, its button the order itself.
+- **Not now**: per colonist, ten days (`ApparelPickBook.notNow`), the weapons' own way.
+- **Kept with the game** (`ApparelPickBook`, a GameComponent; an older save gets an empty one): "not now" and each
+  colonist's last ask; modelled in `Tools/save_estimate.py`. The raids are the weapons' record.
+- **Settings** (How you're told, Apparel; each on, both under "Apparel ratings" and the deeper hooks): `apparelSuggestions`
+  "Apparel suggestions", `apparelAsks` "Colonists ask for better clothes". No "colonists put on missing warm clothes
+  themselves": the game's own apparel optimizer already puts on what an outfit allows into an empty slot, warmth first
+  when it is cold, so a Rimfolk job of its own would only race it.
+- **Text:** `Languages/English/Keyed/Rimfolk_Apparel.xml` (the words the weapon suggestions share are their keys); the
+  Almanac's "judging armour and clothes" (Defending, "Better clothes for each colonist", keywords unchanged).
 
 ## Algorithms, not AI
 
@@ -10130,6 +10243,7 @@ chains, nemeses, camps, play-outs, the fights pass and the worn-out episode read
 |---|---|---|
 | 37 | World situations keep their people from the world's clean-up (only while one runs) | per person a situation holds |
 | 41 | Room planner queue (only while blueprints are queued) | the next blueprints |
+| 43 | Better armour and clothes for each colonist (Apparel/ApparelPickBook.cs; nothing with "Apparel suggestions" and "Colonists ask for better clothes" both off): one tenth of the colonists (by ID), each once an hour, their own rating of each kind of piece the colony's choice weighs worked out ahead (so the choice, made at most once an hour, reads ratings already kept); then their look for a piece to ask for, in their free time at home | per colonist in the slice: one rating per kind in the choice (the eight best of each role from storage, the warmest and coolest when needed, and what the colonists wear and carry); the colony's choice itself once an hour per home map, from kept ratings |
 | 47 | The best weapon for each colonist (Weapons/WeaponPickBook.cs; nothing with "Weapon suggestions" and "Colonists ask for better weapons" both off): one tenth of the colonists (by ID), each once an hour, their own rating of each weapon the colony has worked out ahead (so the colony's choice, made at most once an hour, reads ratings already kept); then their look for a clearly better weapon lying in storage to ask for, in their free time at home | per colonist in the slice: one rating per kind of weapon in the colony's choice (sixteen kinds of gun and sixteen of blade from storage at most, and what the colonists hold and carry); the colony's choice itself once an hour per home map, from kept ratings |
 | 53 | Medical triage with Move the Patient (Integrations/MedicalTriage.cs; only with the mod): once an hour, at tick 53 of the hour, every home map's medical beds; every 250 ticks only a map where a patient lately went to a lesser bed, and a move under way followed (the lighter case carried out, then the worse one brought in) | per home map: its medical beds and the patients in them or downed on the floor, the mod's severity each; a carrier sought only for a move |
 | 67 | Hurts from everyday life (Harm/HarmBook; nothing while the setting is at nothing): one tenth of the colonists (by ID), each once an hour; the first slice also calls the evening drill (with a drills or militia decree, five to eight, once a day) and prunes the cap's record in the first hour of the day | per colonist in the slice: the job's work under a work decree (a long day's one roll), a strain or a sprain worked through (heavy hours, one roll each); per colony, its drilling decree and home map's hour |

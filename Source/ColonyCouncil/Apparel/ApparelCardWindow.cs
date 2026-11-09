@@ -96,8 +96,61 @@ namespace ColonyCouncil
             }
             y += UiKit.SectionTitle(0f, y, w, "CC_Weapon_Sec_Numbers".Translate());
             y = Rows(w, y, Numbers(r)) + 8f;
+            y = WhoWears(w, y, r);
             y = ForColonist(w, y, r);
             return y;
+        }
+
+        // ---------------------------------------------------------------- who should wear this
+
+        private List<(Pawn p, float rating, float gain, WearGap? gap, bool wears)> wearers;
+        private float whoAt = -10f;
+        private ApparelReport whoFor;
+
+        /// <summary>
+        /// The colonists this piece suits best (Apparel/ApparelPick.cs), by the same scores as the colony's choice: their own
+        /// rating with the season ahead, the raids met, their work and the rules of their title, role and faith; those it fills
+        /// a need for first (warmth they lack, no armour, a worn-out piece), each with what it adds over what it would take the
+        /// place of. Only for a piece in hand. A click chooses them below. Worked out once every two seconds.
+        /// </summary>
+        private float WhoWears(float w, float y, ApparelReport r)
+        {
+            if (!ApparelPick.On || thing == null) return y;
+            if (whoFor != r || Time.realtimeSinceStartup - whoAt > 2f)
+            {
+                whoFor = r;
+                whoAt = Time.realtimeSinceStartup;
+                try
+                {
+                    wearers = ApparelPick.WhoShouldWear(thing);
+                }
+                catch (Exception e)
+                {
+                    CouncilLog.ErrorOnce("who should wear a piece, on its card", e);
+                    wearers = null;
+                }
+            }
+            if (wearers == null || wearers.Count == 0) return y;
+            y += UiKit.SectionTitle(0f, y, w, "CC_ApparelPick_Card_Who".Translate());
+            foreach (var (p, rating, gain, gap, wears) in wearers)
+            {
+                if (p == null || p.Destroyed) continue;
+                var row = new Rect(0f, y, w, 24f);
+                if (Mouse.IsOver(row)) Widgets.DrawHighlight(row);
+                UiKit.Portrait(new Rect(0f, y + 1f, 22f, 22f), p, UiKit.Faint);
+                UiKit.LabelFit(new Rect(28f, y, 130f, 24f), p.LabelShortCap, UiKit.Ink);
+                WeaponUi.Badge(new Rect(162f, y + 3f, 34f, 18f), rating);
+                string note = wears ? "CC_ApparelPick_Card_Wears".Translate(p.Named("PAWN")).Resolve()
+                    : gap.HasValue ? ("CC_ApparelPick_Card_Need_" + gap.Value).Translate(p.Named("PAWN"), ApparelPickMath.GainText(gain).Named("GAIN")).Resolve()
+                    : gain >= ApparelPickMath.Threshold ? "CC_ApparelPick_Card_Better".Translate(ApparelPickMath.GainText(gain).Named("GAIN"), p.Named("PAWN")).Resolve()
+                    : gain > 0.05f ? "CC_ApparelPick_Card_Little".Translate(ApparelPickMath.GainText(gain).Named("GAIN")).Resolve()
+                    : "CC_ApparelPick_Card_NoBetter".Translate(p.Named("PAWN")).Resolve();
+                UiKit.LabelFit(new Rect(202f, y, w - 202f, 24f), note, gap.HasValue && !wears ? UiKit.Warn : gain >= ApparelPickMath.Threshold && !wears ? UiKit.Good : UiKit.Faint, GameFont.Tiny);
+                TooltipHandler.TipRegion(row, "CC_ApparelPick_Card_WhoTip".Translate(p.Named("PAWN")).Resolve());
+                if (Widgets.ButtonInvisible(row)) Choose(p);
+                y += 26f;
+            }
+            return y + 6f;
         }
 
         // ---------------------------------------------------------------- the head

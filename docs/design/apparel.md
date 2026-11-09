@@ -62,8 +62,26 @@ has all of it; the Almanac's "judging armour and clothes". The suggestions' rows
 
 ## Step 3: recommendations
 
-Not started. The colonist's rating it needs is built (`ApparelForMath.For`, `ApparelLive.ForColonist`: how they fight,
-their body, their weather, the moods, and what a piece would take the place of).
+**Built (9 November 2026, not released),** on the colonist's own rating (`ApparelForMath.For`, `ApparelLive.ForColonist`),
+the way the weapons' step 3 was. The pure rules are `Apparel/ApparelPickMath.cs` (tested in `Tools/Tests/ApparelPickTests.cs`),
+the game's side `ApparelPick.cs` (the colony, the season ahead, title, role and faith, the outfit, the orders),
+`ApparelPickUi.cs` (the gear tab's rows and quiet line, the Defenses page), `ApparelNiceTab.cs` (Nice Inventory Tab),
+`ApparelSwapJob.cs` (a spare handed over, armour traded), `ApparelAsks.cs` and `ApparelPickBook.cs` (asks, "not now", the
+clock). DESIGN.md "Step 3: better armour and clothes for each colonist, and colonists who ask" has all of it.
 
 6. Better armour and clothes for each colonist from what the colony has, by their role, the season and the raids met,
    their faith's and title's apparel rules, their body; one click to wear it; colonists sometimes ask, rarely.
+   - Gaps first, each filled with anything rated 2.0 or more: warmth for anyone short for the season ahead (this twelfth
+     and the next two, under 5 °C as the game's "Need warm clothes" counts it), the most lacking first, a coat then a hat;
+     the heat past 30 °C; body armour and a helmet for those who fight when raids come often (two this month); worn-out
+     pieces and those from the dead. Then upgrades of 0.8 or more (a piece for an empty slot only at 6.0 for them, or for
+     a rule they lack), armour's gains by how much each fights, a piece in place of several judged in each one's role,
+     nothing that leaves them short of warmth. One assignment for the colony; trades of armour as the weapons trade.
+   - Their outfit: never suggested past it; said with **Allow** (its kind in that outfit) or **Outfit** (its limits). Never
+     moved off what their title, role or faith asks them to wear; a title's least quality kept; a lucky piece or an
+     heirloom a warning, never a block.
+   - Shown on the gear tab (the game's, Nice Inventory Tab's apparel box, or its equipment box in the grid layout), the
+     apparel card ("Who should wear this") and the Defenses page ("Clothes and armour for each colonist", "Wear all
+     suggested"); **Wear** is the game's own Wear job. Colonists ask, rarely ("It's freezing; that parka in the stockpile
+     would do me good."). Settings "Apparel suggestions" and "Colonists ask for better clothes"; no "put on missing warm
+     clothes themselves", as the game's own apparel optimizer already does that for what an outfit allows.
