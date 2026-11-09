@@ -5,6 +5,17 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## An item card for food, drink, drugs and medicine
+
+*9 November 2026, version 0.198.0*
+
+- The info button on food, a drink, a drug or medicine now opens Rimfolk's item card: the item's picture large, what it is worth, and one line in plain words on what it is good for in your colony.
+- Coloured tags sum it up with the reason for each, such as Spoils fast, Mood lift, Addictive, Forbidden to some or Needed now.
+- Food shows how many colonist days it feeds, how long it keeps where it lies, the chance of food poisoning, and who at home eats it or won't and why.
+- Drinks and drugs show their effects and how long they last, addiction and overdose, and each colonist's drug policy and beliefs; medicine shows each doctor's tending with it and without.
+- Every card shows how much the colony holds, whether that is short or spare, where it is made, with a click going to the bench, and who trades in it.
+- "All the game's stats" opens the game's own card, which has a button back; the setting "Open Rimfolk's item card first" (Items) turns it off.
+
 ## Clothes suggestions on the colonist card
 
 *9 November 2026, version 0.197.1*

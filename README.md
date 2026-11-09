@@ -2349,6 +2349,33 @@ mods, with the same numbers, is `docs/apparel/README.md`.
   freezing; the ask stays a few days in This week, its button the order. The game's own apparel optimizer already puts on
   what an outfit allows, so Rimfolk adds no "put it on themselves" of its own.
 
+### Rimfolk's item card
+Food, drink, drugs and medicine, from the game, its DLCs and your mods, have **Rimfolk's item card** (more kinds of
+things come later: materials, art and the rest). It opens first wherever you open a thing's info (settings: **How
+you're told, Items**, *Open Rimfolk's item card first*, on); its button **All the game's stats** opens the game's own
+card, which keeps a button back, and links followed inside the game's card stay in it.
+- **At the top**: the thing's own picture, large, as it really is; its label with the stack and quality; what kind it is
+  and its worth; and a line in plain words on what it is good for in this colony ("Fine meal: lifts the mood (+5), keeps
+  4 days, enough for 2 colonists' supper." "Herbal medicine: fine for a cut or a cold, risky for surgery.").
+- **Tags** in the weapon and apparel cards' six colours, each with why on its tooltip: strengths (nutritious, keeps long,
+  mood lift, potent, recreation), weaknesses (spoils fast, raw, bad taste, risky for surgery), risks (food poisoning,
+  addictive, overdose risk, forbidden to some of your people, of a person, insect meat), specials (a feast's dish, a
+  toast's drink, a gift for a people), roles (provisions for journeys, a trade good, for serious care or minor wounds,
+  needed now, spare to sell) and needs (cooking, a drug policy, a freezer).
+- **Food**: nutrition and how many colonist-days it is; how long it keeps, this stack where it lies and in the cold; the
+  game's mood for eating it; the chance of food poisoning (the stack's own, its kind's, or your best cook's); whether the
+  journey planner packs it; and each colonist at home who eats it, with the mood it gives them, or won't, and why (their
+  faith or diet, their food policy, their nature, human meat).
+- **Drinks and drugs**: what a dose does and how long it lasts, recreation, addiction and tolerance, overdose, whether it
+  is poured at Rimfolk's toasts; each colonist's drug policy for it, their beliefs and any addiction; each faith's view.
+- **Medicine**: its potency and the care it needs, what Rimfolk's medicine by what is treated gives it to, and each
+  doctor's tending with it and without.
+- **The colony's stock**: how many you hold, your days of food or your medicine, short or spare; where it is made (a click
+  on a bill goes to its bench and bills) or grown. **Trade**: its worth, the traders who deal in it, and, with Vanilla
+  Trading Expanded, its market, with your own last prices.
+- It is worked out only while it is open (the live parts once a second, the colony's every ten seconds), so it costs the
+  game nothing in play.
+
 ### A fresh start in the same world
 **Found a new colony** on a colony's card (the region map's Ours lens) picks a place on the game's world map, with
 what Rimfolk knows of the tile under the cursor: whose land it is, the towns near it and how their peoples stand with
@@ -2643,7 +2670,8 @@ while that feature is off; nothing vanilla is changed or removed. A few things i
 - **Vanilla Trading Expanded:** it draws nothing on the trade screen itself, so its world market's prices count in
   Rimfolk's best-deal sort and its marks (a good in demand fetches a good price, one in surplus is a bargain), the goods
   its contracts ask for are kept (and worth buying where a trader's price leaves the reward well ahead), and the silver
-  in its banks shows at the foot of the screen. Read by name only; nothing of it is changed.
+  in its banks shows at the foot of the screen. Rimfolk's item card shows a good's market from it too. Read by name
+  only; nothing of it is changed.
 - **Trade Helper:** its side panel (a wish list, the lists of what is bought and sold) is left as it is; Rimfolk draws
   nothing there, and while it is loaded leaves the silver after the trade to its lists.
 - **Removing a mod mid-game:** room plans that used a material from that mod fall back to a default material,

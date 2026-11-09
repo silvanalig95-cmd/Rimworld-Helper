@@ -9,9 +9,9 @@ using Verse;
 namespace ColonyCouncil
 {
     /// <summary>
-    /// Rimfolk's card for one item (the apparel card now; the weapon card's parts are the same, so it can move onto this
-    /// base, and an item card for everything after it): a framed window, one of a kind at a time, about a thing in hand or a
-    /// kind in a stuff, for a chosen colonist (the one who holds it, else the last chosen, else one picked from the map). It
+    /// Rimfolk's card for one item (the apparel card, and the item card for food, drink, drugs and medicine; the weapon
+    /// card's parts are the same, so it can move onto this base): a framed window, one of a kind at a time, about a thing in
+    /// hand or a kind in a stuff, for a chosen colonist (the one who holds it, else the last chosen, else one picked from the map). It
     /// keeps the scroll, the colonist and the title, and draws the parts every item card shares in the kit, in Rimfolk's
     /// look or the game's: the head (the item's picture large in its quality's frame, the rating's badge, its band, how it
     /// is rated, the button to all the game's stats, the line in plain words), bars by situation, effects counted or named,
@@ -128,7 +128,12 @@ namespace ColonyCouncil
         /// <summary>What the head says beside the picture.</summary>
         protected sealed class HeadFacts
         {
+            /// <summary>
+            /// The rating's badge; with <see cref="NoBadge"/> there is none (the item card for food or medicine), and the band
+            /// starts beside the picture in the heading's ink.
+            /// </summary>
             public float Rating;
+            public bool NoBadge;
             public Func<string> RatingTip;
             /// <summary>Its band and role, in the rating's colour.</summary>
             public string Band = "";
@@ -152,12 +157,16 @@ namespace ColonyCouncil
             var pic = new Rect(0f, y, side, side);
             UiKit.ItemPortrait(pic, thing, def, stuff, true);
             float x0 = pic.xMax + 12f;
-            var badge = new Rect(x0, y, 66f, 46f);
-            WeaponUi.Badge(badge, h.Rating, h.RatingTip, 81726, GameFont.Medium);
-            float x = badge.xMax + 10f;
+            float x = x0;
+            if (!h.NoBadge)
+            {
+                var badge = new Rect(x0, y, 66f, 46f);
+                WeaponUi.Badge(badge, h.Rating, h.RatingTip, 81726, GameFont.Medium);
+                x = badge.xMax + 10f;
+            }
             float gw = Mathf.Clamp(UiKit.KeptWidth(h.GameLabel, GameFont.Small) + 24f, 110f, 200f);
             if (h.OpenGameCard != null && UiKit.ActButton(new Rect(w - gw, y, gw, 24f), h.GameLabel, null, h.GameTip)) h.OpenGameCard();
-            UiKit.LabelFit(new Rect(x, y, w - x - gw - 6f, 24f), h.Band, WeaponUi.RatingColour(h.Rating));
+            UiKit.LabelFit(new Rect(x, y, w - x - gw - 6f, 24f), h.Band, h.NoBadge ? UiKit.Heading : WeaponUi.RatingColour(h.Rating));
             var sub = new Rect(x, y + 24f, w - x, 20f);
             UiKit.LabelFit(sub, h.RatedFor, UiKit.Faint, GameFont.Tiny);
             if (h.RoughTip != null) TooltipHandler.TipRegion(sub, h.RoughTip);

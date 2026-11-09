@@ -708,6 +708,9 @@ namespace ColonyCouncil
             // Better armour and clothes for each colonist, and colonists asking for them (Apparel/ApparelPick.cs, ApparelAsks.cs; docs/design/apparel.md, step 3).
             Toggle("apparelSuggestions", "CC_Settings_ApparelSuggestions", "CC_SetNote_ApparelSuggestions", "apparelRatings,deepHooks");
             Toggle("apparelAsks", "CC_Settings_ApparelAsks", "CC_SetNote_ApparelAsks", "apparelRatings,deepHooks");
+            // Rimfolk's item card (Items/, docs/design/rimfolk-look.md, stage 3, point 5): food, drink, drugs and medicine so far.
+            Section("CC_SetSec_Items");
+            Toggle("itemCardFirst", "CC_Settings_ItemCardFirst", "CC_SetNote_ItemCardFirst", "deepHooks");
             // The colonist bar's badges (ColonistBar/BarBadges.cs): what they show, and how.
             Section("CC_SetSec_ColonistBar");
             NoteUnder("CC_SetSec_ColonistBar_Note");

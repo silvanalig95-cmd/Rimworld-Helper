@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <!-- Rimfolk's item card, step 1: food, drink, drugs and medicine (Source/ColonyCouncil/Items/, docs/design/rimfolk-look.md,
+       stage 3, point 5). The tags' labels and reasons and the line in plain words are made from the thing's numbers in
+       English (Items/ItemCardMath.cs), as the weapon and apparel tags are; everything else is here. -->
+
+  <!-- The settings (How you're told, Items). -->
+  <CC_SetSec_Items>Items</CC_SetSec_Items>
+  <CC_Settings_ItemCardFirst>Open Rimfolk's item card first</CC_Settings_ItemCardFirst>
+  <CC_Settings_ItemCardFirst_Tip>Opening the info for food, a drink, a drug or medicine (the "i" button anywhere, a trade screen, a bill, a list, the inspect pane) opens Rimfolk's item card instead of the game's: what it is good for in this colony, its tags, how it keeps, who at home eats or takes it and why, the colony's stock and where it is made, and how traders value it. Its button "All the game's stats" opens the game's card, and the game's card keeps its button back. Links followed inside the game's card stay in it. Off, the game's card opens as before, with a button to Rimfolk's card at its foot. Materials, art and the rest come later.</CC_Settings_ItemCardFirst_Tip>
+  <CC_SetNote_ItemCardFirst>Food, drink, drugs and medicine open as Rimfolk's item card; the game's card is one button away.</CC_SetNote_ItemCardFirst>
+
+  <!-- The card and its buttons. -->
+  <CC_ItemCard_Title>Rimfolk's item card</CC_ItemCard_Title>
+  <CC_ItemCard_NotCovered>Rimfolk's item card shows food, drink, drugs and medicine for now; this opens in the game's own card.</CC_ItemCard_NotCovered>
+  <CC_ItemCard_GameCard>All the game's stats</CC_ItemCard_GameCard>
+  <CC_ItemCard_GameCard_Tip>Open the game's own info card for this, with every stat it lists. Its button "Rimfolk's item card" brings you back here.</CC_ItemCard_GameCard_Tip>
+  <CC_ItemCard_OpenCard>Rimfolk's item card</CC_ItemCard_OpenCard>
+  <CC_ItemCard_OpenCard_Tip>Open Rimfolk's card for this: what it is good for in this colony, its tags, how it keeps, who at home eats or takes it and why, the colony's stock and where it is made, and how traders value it.</CC_ItemCard_OpenCard_Tip>
+
+  <!-- What kind it is, and its worth (the head's quiet line). -->
+  <CC_ItemCard_Kind_Medicine>Medicine, potency {POTENCY}</CC_ItemCard_Kind_Medicine>
+  <CC_ItemCard_Kind_DrinkPlain>Drink</CC_ItemCard_Kind_DrinkPlain>
+  <CC_ItemCard_Kind_DrinkAlcohol>Drink with alcohol</CC_ItemCard_Kind_DrinkAlcohol>
+  <CC_ItemCard_Kind_DrinkSoft>Drink a teetotaler may have</CC_ItemCard_Kind_DrinkSoft>
+  <CC_ItemCard_Kind_DrinkDrug>Drink, a drug</CC_ItemCard_Kind_DrinkDrug>
+  <CC_ItemCard_Kind_DrugMedical>Medical drug</CC_ItemCard_Kind_DrugMedical>
+  <CC_ItemCard_Kind_DrugHard>Hard drug</CC_ItemCard_Kind_DrugHard>
+  <CC_ItemCard_Kind_DrugSocial>Social drug</CC_ItemCard_Kind_DrugSocial>
+  <CC_ItemCard_Kind_Feed>Animal feed</CC_ItemCard_Kind_Feed>
+  <CC_ItemCard_Kind_Meal>Meal, {PREF}</CC_ItemCard_Kind_Meal>
+  <CC_ItemCard_Pref_Lavish>lavish</CC_ItemCard_Pref_Lavish>
+  <CC_ItemCard_Pref_Fine>fine</CC_ItemCard_Pref_Fine>
+  <CC_ItemCard_Pref_Simple>simple</CC_ItemCard_Pref_Simple>
+  <CC_ItemCard_Pref_Awful>poor</CC_ItemCard_Pref_Awful>
+  <CC_ItemCard_Kind_Raw>Raw food</CC_ItemCard_Kind_Raw>
+  <CC_ItemCard_Kind_Food>Food</CC_ItemCard_Kind_Food>
+  <CC_ItemCard_Worth>{EACH} each</CC_ItemCard_Worth>
+  <CC_ItemCard_WorthStack>{EACH} each, {ALL} the stack</CC_ItemCard_WorthStack>
+
+  <!-- The sections. -->
+  <CC_ItemCard_Sec_Tags>Tags</CC_ItemCard_Sec_Tags>
+  <CC_ItemCard_Sec_Food>As food</CC_ItemCard_Sec_Food>
+  <CC_ItemCard_Sec_Drink>As a drink</CC_ItemCard_Sec_Drink>
+  <CC_ItemCard_Sec_Eaters>Who at home eats it</CC_ItemCard_Sec_Eaters>
+  <CC_ItemCard_Sec_Effects>What it does</CC_ItemCard_Sec_Effects>
+  <CC_ItemCard_Sec_Takers>Who may take it</CC_ItemCard_Sec_Takers>
+  <CC_ItemCard_Sec_Medicine>As medicine</CC_ItemCard_Sec_Medicine>
+  <CC_ItemCard_Sec_Doctors>The doctors</CC_ItemCard_Sec_Doctors>
+  <CC_ItemCard_Sec_Stock>The colony's stock</CC_ItemCard_Sec_Stock>
+  <CC_ItemCard_Sec_Trade>Trade</CC_ItemCard_Sec_Trade>
+
+  <!-- Food. -->
+  <CC_ItemCard_Row_Nutrition>Nutrition</CC_ItemCard_Row_Nutrition>
+  <CC_ItemCard_NutritionEach>{NUT} a piece</CC_ItemCard_NutritionEach>
+  <CC_ItemCard_NutritionStack>the stack {NUT}, {DAYS} colonist-days</CC_ItemCard_NutritionStack>
+  <CC_ItemCard_ToAMeal>{N} make a meal's worth</CC_ItemCard_ToAMeal>
+  <CC_ItemCard_AnimalsOnly>animals only</CC_ItemCard_AnimalsOnly>
+  <CC_ItemCard_Row_Keeps>Keeps</CC_ItemCard_Row_Keeps>
+  <CC_ItemCard_NeverRots>Never rots.</CC_ItemCard_NeverRots>
+  <CC_ItemCard_RotsAfter>Starts to rot after {DAYS} above 10 °C, slower in the cold, never at or below 0 °C.</CC_ItemCard_RotsAfter>
+  <CC_ItemCard_RottingNow>This stack is rotting.</CC_ItemCard_RottingNow>
+  <CC_ItemCard_FrozenHere>This stack is kept cold: it doesn't rot where it lies.</CC_ItemCard_FrozenHere>
+  <CC_ItemCard_LeftHere>This stack: {DAYS} left where it lies ({TEMP}).</CC_ItemCard_LeftHere>
+  <CC_ItemCard_Row_Mood>Mood</CC_ItemCard_Row_Mood>
+  <CC_ItemCard_MoodThought>{THOUGHT}: {MOOD} for {DAYS} (the game's thought)</CC_ItemCard_MoodThought>
+  <CC_ItemCard_MoodNone>No mood of its own.</CC_ItemCard_MoodNone>
+  <CC_ItemCard_Row_Poison>Food poisoning</CC_ItemCard_Row_Poison>
+  <CC_ItemCard_PoisonRotting>Certain: it is rotting.</CC_ItemCard_PoisonRotting>
+  <CC_ItemCard_PoisonStack>{CHANCE} for this stack, from its cook and kitchen.</CC_ItemCard_PoisonStack>
+  <CC_ItemCard_PoisonStackNone>None: nothing in this stack is poisoned.</CC_ItemCard_PoisonStackNone>
+  <CC_ItemCard_PoisonKind>{CHANCE}: its kind is risky for people.</CC_ItemCard_PoisonKind>
+  <CC_ItemCard_PoisonCook>By the cook: about {CHANCE} cooked by {COOK}, the colony's surest cook; a dirty kitchen adds to it.</CC_ItemCard_PoisonCook>
+  <CC_ItemCard_PoisonByCook>By the cook's skill and the kitchen; nobody at home cooks.</CC_ItemCard_PoisonByCook>
+  <CC_ItemCard_PoisonNone>None.</CC_ItemCard_PoisonNone>
+  <CC_ItemCard_Row_Road>The road</CC_ItemCard_Row_Road>
+  <CC_ItemCard_RoadNot>The journey planner doesn't pack it.</CC_ItemCard_RoadNot>
+  <CC_ItemCard_RoadFirst>The journey planner packs it first: it never rots.</CC_ItemCard_RoadFirst>
+  <CC_ItemCard_RoadEarly>The journey planner packs it early: a meal that keeps {DAYS}.</CC_ItemCard_RoadEarly>
+  <CC_ItemCard_RoadKeeps>The journey planner packs it after the meals made for the road; it never rots.</CC_ItemCard_RoadKeeps>
+  <CC_ItemCard_RoadShort>The journey planner packs it for journeys it keeps through ({DAYS}), after what keeps longer.</CC_ItemCard_RoadShort>
+  <CC_ItemCard_Row_Feast>Feasts</CC_ItemCard_Row_Feast>
+  <CC_ItemCard_FeastDish>A feast's dish: a fine or lavish meal, what the Empire's guests expect.</CC_ItemCard_FeastDish>
+
+  <!-- Who at home eats it. -->
+  <CC_ItemCard_Eats>eats it</CC_ItemCard_Eats>
+  <CC_ItemCard_EatsMood>eats it, {MOOD} mood</CC_ItemCard_EatsMood>
+  <CC_ItemCard_Wont>won't: {WHY}</CC_ItemCard_Wont>
+  <CC_ItemCard_AllEat>Everyone at home eats it.</CC_ItemCard_AllEat>
+  <CC_ItemCard_NoneEat>Nobody at home eats it.</CC_ItemCard_NoneEat>
+  <CC_ItemCard_SomeEat>{EAT} of {ALL} at home eat it.</CC_ItemCard_SomeEat>
+  <CC_ItemCard_AndMore>{N} more</CC_ItemCard_AndMore>
+  <CC_ItemCard_Why_wont>they won't eat this kind (their body, their genes or their title)</CC_ItemCard_Why_wont>
+  <CC_ItemCard_Why_policy>their food policy leaves it out</CC_ItemCard_Why_policy>
+  <CC_ItemCard_Why_inedible>they can't eat it</CC_ItemCard_Why_inedible>
+  <CC_ItemCard_Why_memory>it gives them "{THOUGHT}"</CC_ItemCard_Why_memory>
+  <CC_ItemCard_Why_fungusOrInsect>their beliefs keep them to fungus and insects</CC_ItemCard_Why_fungusOrInsect>
+  <CC_ItemCard_Why_paste>their beliefs forbid nutrient paste</CC_ItemCard_Why_paste>
+  <CC_ItemCard_Why_plain>their beliefs want fine meals</CC_ItemCard_Why_plain>
+  <CC_ItemCard_Why_alcohol>their beliefs forbid alcohol</CC_ItemCard_Why_alcohol>
+  <CC_ItemCard_Why_animalProduct>their beliefs forbid anything from animals</CC_ItemCard_Why_animalProduct>
+  <CC_ItemCard_Why_meat>their beliefs forbid meat</CC_ItemCard_Why_meat>
+  <CC_ItemCard_Why_plant>their beliefs want only meat</CC_ItemCard_Why_plant>
+  <CC_ItemCard_Why_fungus>their beliefs forbid fungus</CC_ItemCard_Why_fungus>
+  <CC_ItemCard_Why_notFungus>their beliefs want only fungus among plants</CC_ItemCard_Why_notFungus>
+  <CC_ItemCard_Why_insect>their beliefs forbid insect meat</CC_ItemCard_Why_insect>
+  <CC_ItemCard_Why_drug>their beliefs rule out this drug</CC_ItemCard_Why_drug>
+  <CC_ItemCard_WhyShort_wont>won't eat it</CC_ItemCard_WhyShort_wont>
+  <CC_ItemCard_WhyShort_policy>food policy</CC_ItemCard_WhyShort_policy>
+  <CC_ItemCard_WhyShort_inedible>can't eat it</CC_ItemCard_WhyShort_inedible>
+  <CC_ItemCard_WhyShort_memory>a bad thought</CC_ItemCard_WhyShort_memory>
+  <CC_ItemCard_WhyShort_fungusOrInsect>fungus and insects only</CC_ItemCard_WhyShort_fungusOrInsect>
+  <CC_ItemCard_WhyShort_paste>no paste</CC_ItemCard_WhyShort_paste>
+  <CC_ItemCard_WhyShort_plain>fine meals only</CC_ItemCard_WhyShort_plain>
+  <CC_ItemCard_WhyShort_alcohol>no alcohol</CC_ItemCard_WhyShort_alcohol>
+  <CC_ItemCard_WhyShort_animalProduct>nothing from animals</CC_ItemCard_WhyShort_animalProduct>
+  <CC_ItemCard_WhyShort_meat>no meat</CC_ItemCard_WhyShort_meat>
+  <CC_ItemCard_WhyShort_plant>meat only</CC_ItemCard_WhyShort_plant>
+  <CC_ItemCard_WhyShort_fungus>no fungus</CC_ItemCard_WhyShort_fungus>
+  <CC_ItemCard_WhyShort_notFungus>fungus only</CC_ItemCard_WhyShort_notFungus>
+  <CC_ItemCard_WhyShort_insect>no insect meat</CC_ItemCard_WhyShort_insect>
+  <CC_ItemCard_WhyShort_drug>no drugs</CC_ItemCard_WhyShort_drug>
+
+  <!-- Drinks and drugs. -->
+  <CC_ItemCard_NoEffects>No effect of its own that the game describes.</CC_ItemCard_NoEffects>
+  <CC_ItemCard_EffectMood>mood {MOOD}</CC_ItemCard_EffectMood>
+  <CC_ItemCard_EffectLasts>lasts {DAYS}</CC_ItemCard_EffectLasts>
+  <CC_ItemCard_EffectChance>{CHANCE} of doses</CC_ItemCard_EffectChance>
+  <CC_ItemCard_EffectNeed>{OFFSET} at once</CC_ItemCard_EffectNeed>
+  <CC_ItemCard_Row_Joy>Recreation</CC_ItemCard_Row_Joy>
+  <CC_ItemCard_Joy>{JOY} a dose</CC_ItemCard_Joy>
+  <CC_ItemCard_Row_Addiction>Addiction</CC_ItemCard_Row_Addiction>
+  <CC_ItemCard_NotAddictive>Not habit-forming.</CC_ItemCard_NotAddictive>
+  <CC_ItemCard_AddictiveAfter>{CHANCE} a dose once tolerance is {TOLERANCE} or more.</CC_ItemCard_AddictiveAfter>
+  <CC_ItemCard_AddictiveEach>{CHANCE} a dose.</CC_ItemCard_AddictiveEach>
+  <CC_ItemCard_Row_Tolerance>Tolerance</CC_ItemCard_Row_Tolerance>
+  <CC_ItemCard_Tolerance>{DOSE} a dose, falling {FALL} a day.</CC_ItemCard_Tolerance>
+  <CC_ItemCard_ToleranceStays>{DOSE} a dose.</CC_ItemCard_ToleranceStays>
+  <CC_ItemCard_Row_Overdose>Overdose</CC_ItemCard_Row_Overdose>
+  <CC_ItemCard_NoOverdose>None.</CC_ItemCard_NoOverdose>
+  <CC_ItemCard_Overdose>Each dose adds {DOSE} toward an overdose, which kills at 100%.</CC_ItemCard_Overdose>
+  <CC_ItemCard_OverdoseLarge>{CHANCE} of doses are a large one.</CC_ItemCard_OverdoseLarge>
+  <CC_ItemCard_Row_Toast>The toast</CC_ItemCard_Row_Toast>
+  <CC_ItemCard_ToastAlcohol>Poured at Rimfolk's toasts for those who may drink.</CC_ItemCard_ToastAlcohol>
+  <CC_ItemCard_ToastSoft>Poured at Rimfolk's toasts for those who don't drink alcohol.</CC_ItemCard_ToastSoft>
+  <CC_ItemCard_ToastNot>Not poured at Rimfolk's toasts.</CC_ItemCard_ToastNot>
+  <CC_ItemCard_Row_Gift>A gift</CC_ItemCard_Row_Gift>
+  <CC_ItemCard_GiftDrink>A fine drink: a gift between peoples, more often in the middle ages.</CC_ItemCard_GiftDrink>
+
+  <!-- Who may take it. -->
+  <CC_ItemCard_PolicyNone>{POLICY}: not in the policy</CC_ItemCard_PolicyNone>
+  <CC_ItemCard_PolicySchedule>{POLICY}: taken every {DAYS} days</CC_ItemCard_PolicySchedule>
+  <CC_ItemCard_PolicyJoy>{POLICY}: allowed for recreation</CC_ItemCard_PolicyJoy>
+  <CC_ItemCard_PolicyAddiction>{POLICY}: only for an addiction</CC_ItemCard_PolicyAddiction>
+  <CC_ItemCard_PolicyNo>{POLICY}: not allowed</CC_ItemCard_PolicyNo>
+  <CC_ItemCard_FaithForbids>their beliefs forbid it</CC_ItemCard_FaithForbids>
+  <CC_ItemCard_Addicted>addicted</CC_ItemCard_Addicted>
+  <CC_ItemCard_FaithLine>{FAITH} ({N} at home): {VIEWS}</CC_ItemCard_FaithLine>
+  <CC_ItemCard_FaithSilent>nothing said on drugs</CC_ItemCard_FaithSilent>
+
+  <!-- Medicine. -->
+  <CC_ItemCard_Row_Potency>Potency</CC_ItemCard_Row_Potency>
+  <CC_ItemCard_Potency>{POTENCY}; its tending reaches {MAX} at best.</CC_ItemCard_Potency>
+  <CC_ItemCard_Row_Care>Medical care</CC_ItemCard_Row_Care>
+  <CC_ItemCard_Care>Allowed from "{CARE}" up.</CC_ItemCard_Care>
+  <CC_ItemCard_UseGame>The game gives it to whatever the patient's medical care allows.</CC_ItemCard_UseGame>
+  <CC_ItemCard_UseMinor>With medicine by what is treated, Rimfolk gives it to cuts, bites, small burns and everyday ailments; the serious get better medicine where their care allows.</CC_ItemCard_UseMinor>
+  <CC_ItemCard_UseSerious>With medicine by what is treated, Rimfolk keeps it for the serious: heavy bleeding, deep wounds, a vital part, illness and infection; scratches get herbal medicine or none.</CC_ItemCard_UseSerious>
+  <CC_ItemCard_UseBest>With medicine by what is treated, Rimfolk keeps it for the serious where the patient's care is set to the best: surgery and the gravest wounds.</CC_ItemCard_UseBest>
+  <CC_ItemCard_UseSurgeryRisk>Surgery with it fails more often than with industrial medicine.</CC_ItemCard_UseSurgeryRisk>
+  <CC_ItemCard_DoctorLine>Medicine {LEVEL}: tends at {WITH} with it, {WITHOUT} without</CC_ItemCard_DoctorLine>
+  <CC_ItemCard_DoctorCapped>{BETTER} with industrial medicine</CC_ItemCard_DoctorCapped>
+  <CC_ItemCard_NoDoctors>Nobody at home has doctoring on.</CC_ItemCard_NoDoctors>
+
+  <!-- The colony's stock and where it is made. -->
+  <CC_ItemCard_NoColony>Open it on a home map to see the colony's stock.</CC_ItemCard_NoColony>
+  <CC_ItemCard_Row_Held>Held</CC_ItemCard_Row_Held>
+  <CC_ItemCard_Held>{N} here, in store and in packs</CC_ItemCard_Held>
+  <CC_ItemCard_Row_Food>Food</CC_ItemCard_Row_Food>
+  <CC_ItemCard_FoodDays>{DAYS} of food in all, {MINE} of it this kind.</CC_ItemCard_FoodDays>
+  <CC_ItemCard_FoodNoEaters>Nobody at home eats from the stores.</CC_ItemCard_FoodNoEaters>
+  <CC_ItemCard_FoodShort>Short: under the {LEAST} days the trade advice keeps at least.</CC_ItemCard_FoodShort>
+  <CC_ItemCard_FoodSpare>More than twice what the colony keeps.</CC_ItemCard_FoodSpare>
+  <CC_ItemCard_FoodEnough>Enough.</CC_ItemCard_FoodEnough>
+  <CC_ItemCard_Row_Medicine>Medicine</CC_ItemCard_Row_Medicine>
+  <CC_ItemCard_MedHeld>{N} of every kind for {PEOPLE} people.</CC_ItemCard_MedHeld>
+  <CC_ItemCard_MedShort>Short: under the {NEED} they need.</CC_ItemCard_MedShort>
+  <CC_ItemCard_MedSpare>More than the {KEEP} the colony keeps.</CC_ItemCard_MedSpare>
+  <CC_ItemCard_MedEnough>Enough: they need {NEED}.</CC_ItemCard_MedEnough>
+  <CC_ItemCard_Row_Addicted>Addicted</CC_ItemCard_Row_Addicted>
+  <CC_ItemCard_AddictedCount>{N} at home are addicted to it.</CC_ItemCard_AddictedCount>
+  <CC_ItemCard_MakeResearch>{RECIPE}: needs {RESEARCH}</CC_ItemCard_MakeResearch>
+  <CC_ItemCard_MakeBill>{RECIPE}: a bill at the {BENCH} ({REPEAT})</CC_ItemCard_MakeBill>
+  <CC_ItemCard_MakeBillPaused>{RECIPE}: a bill at the {BENCH}, paused</CC_ItemCard_MakeBillPaused>
+  <CC_ItemCard_MakeNoBill>{RECIPE}: can be made at the {BENCH}, no bill yet</CC_ItemCard_MakeNoBill>
+  <CC_ItemCard_MakeNoBench>{RECIPE}: made at {BENCH}, none built</CC_ItemCard_MakeNoBench>
+  <CC_ItemCard_MakeNone>Nothing the colony knows makes or grows it: it comes from traders, the land or quests.</CC_ItemCard_MakeNone>
+  <CC_ItemCard_GrowsIn>{CROP}: grown in {N} of the colony's fields</CC_ItemCard_GrowsIn>
+  <CC_ItemCard_GrowsFrom>{CROP}: can be sown, no field yet</CC_ItemCard_GrowsFrom>
+  <CC_ItemCard_GrowsLater>{CROP}: needs research before it can be sown</CC_ItemCard_GrowsLater>
+  <CC_ItemCard_GoBench_Tip>Go to the bench and its bills.</CC_ItemCard_GoBench_Tip>
+  <CC_ItemCard_GoField_Tip>Go to the field.</CC_ItemCard_GoField_Tip>
+
+  <!-- Trade. -->
+  <CC_ItemCard_Row_Value>Worth</CC_ItemCard_Row_Value>
+  <CC_ItemCard_ValueStack>{EACH} each, {ALL} the stack</CC_ItemCard_ValueStack>
+  <CC_ItemCard_Row_PerKg>Weight</CC_ItemCard_Row_PerKg>
+  <CC_ItemCard_PerKg>{MASS} a piece, {PERKG} a kilogram</CC_ItemCard_PerKg>
+  <CC_ItemCard_Row_Traders>Who deals in it</CC_ItemCard_Row_Traders>
+  <CC_ItemCard_NotTraded>Never traded.</CC_ItemCard_NotTraded>
+  <CC_ItemCard_NoTraders>No kind of trader stocks or buys it.</CC_ItemCard_NoTraders>
+  <CC_ItemCard_Row_Cheapest>Asks the least</CC_ItemCard_Row_Cheapest>
+  <CC_ItemCard_Cheapest>{TRADER}: {ASKS} of its worth</CC_ItemCard_Cheapest>
+  <CC_ItemCard_Row_BestPay>Pays the most</CC_ItemCard_Row_BestPay>
+  <CC_ItemCard_BestPay>{TRADER}: {PAYS} of its worth</CC_ItemCard_BestPay>
+
+</LanguageData>

@@ -31,6 +31,20 @@ When you load a save after an update, a letter lists the newest round once. The 
     <rounds>
 
       <li>
+        <version>0.198.0</version>
+        <date>9 November 2026</date>
+        <title>An item card for food, drink, drugs and medicine</title>
+        <points>
+          <li>The info button on food, a drink, a drug or medicine now opens Rimfolk's item card: the item's picture large, what it is worth, and one line in plain words on what it is good for in your colony.</li>
+          <li>Coloured tags sum it up with the reason for each, such as Spoils fast, Mood lift, Addictive, Forbidden to some or Needed now.</li>
+          <li>Food shows how many colonist days it feeds, how long it keeps where it lies, the chance of food poisoning, and who at home eats it or won't and why.</li>
+          <li>Drinks and drugs show their effects and how long they last, addiction and overdose, and each colonist's drug policy and beliefs; medicine shows each doctor's tending with it and without.</li>
+          <li>Every card shows how much the colony holds, whether that is short or spare, where it is made, with a click going to the bench, and who trades in it.</li>
+          <li>"All the game's stats" opens the game's own card, which has a button back; the setting "Open Rimfolk's item card first" (Items) turns it off.</li>
+        </points>
+      </li>
+
+      <li>
         <version>0.197.1</version>
         <date>9 November 2026</date>
         <title>Clothes suggestions on the colonist card</title>

@@ -132,7 +132,7 @@ for everything, although i fear that would take a lot of ressources?"
 5. **An item card for everything**, on the weapon card's pattern (and the apparel card's): the item's picture, what it is
    good for in Rimfolk (feasts, gifts, treatment, trade, its roles), its tags, the game's own numbers a button away.
    Built when opened and cached, nothing drawn or computed while it is closed, so it costs the game nothing in play; done
-   by kind of item, food, drink, drugs and medicine first, then materials, art and the rest.
+   by kind of item, food, drink, drugs and medicine first, then materials, art and the rest (step 1 built, below).
 
 Not taken now: pawn tooltips as cards (the player doesn't use them), the settings window and the docked planners.
 
@@ -186,7 +186,6 @@ at a glance" has all of it). Released 0.191.0.
 ## Stage 3, point 3: built (9 November 2026)
 
 The on-screen panels in the look (DESIGN.md, "Rimfolk's own look, stage 3, point 3: the on-screen panels" has all of it). Released 0.194.0.
-Not released yet: no version, no What's new round.
 
 - **The backup**: "Classic on-screen panels" (`hudClassic`, off, under On-screen panels): on, every panel and the hover
   card draw through the code they drew with before, unchanged; with "Rimfolk's own look" off they always do. Each panel
@@ -213,8 +212,7 @@ Not released yet: no version, no What's new round.
 
 ## Stage 3, point 4: built (9 November 2026)
 
-The colonist card (DESIGN.md, "Rimfolk's own look, stage 3, point 4: the colonist card" has all of it). Not released yet:
-no version, no What's new round.
+The colonist card (DESIGN.md, "Rimfolk's own look, stage 3, point 4: the colonist card" has all of it). Released 0.197.0.
 
 - **One window per colonist** (`UI/ColonistCard/`, key "ColonistCard", least 460 by 440): several open at once, each
   moving and sizing on its own; they share one remembered place (where the last was left), and a card opened while
@@ -241,3 +239,29 @@ no version, no What's new round.
 - **Not run here**: the card's look in the game, the portrait from the cache, the inspect pane button's place beside the
   game's own, the Ctrl-click with every other click of the bar unchanged, several cards and their places, Vanilla Skills
   Expanded's passion marks, the rows and suggestions on real colonists, the event card's button.
+
+## Stage 3, point 5, step 1: built (9 November 2026)
+
+The item card for food, drink, drugs and medicine (DESIGN.md, "Rimfolk's own look, stage 3, point 5, step 1: the item card
+for food, drink, drugs and medicine" has all of it). Released 0.198.0. Materials, art and the rest are the next
+steps.
+
+- **The card** (`Items/ThingCardWindow.cs` on `UI/ItemCardWindow.cs`, whose head draws without a rating's badge now): the
+  thing's own picture large, its label with the stack and quality, its kind and worth, "All the game's stats", a line in
+  plain words on what it is good for in this colony ("Fine meal: lifts the mood (+5), keeps 4 days, enough for 2
+  colonists' supper."), its tags in the shared six categories, each from its own numbers or Rimfolk's rules with why.
+- **By kind**: food (nutrition and colonist-days, how long it keeps here and in the cold, the game's mood, food poisoning,
+  the road, a feast's dish, who at home eats it or won't and why); drinks and drugs (effects and how long they last,
+  addiction, tolerance, overdose, the toast, each colonist's policy, beliefs and addiction, each faith's precepts);
+  medicine (potency, the care that allows it, what Rimfolk's medicine by what is treated gives it to, each doctor's
+  tending with it and without).
+- **The colony's stock** (held, days of food or medicine, short or spare by the trade advice's rules) and where it is made
+  (a bill on a bench, a click going to it; a bench without one; the research it waits on; a field that grows it); **trade**
+  (worth, the traders who deal in it, Vanilla Trading Expanded's market, the colony's own last prices).
+- **Opens first** for these kinds through the weapons' one window hook ("Open Rimfolk's item card first", How you're
+  told, Items), with the same pass-through, and a button back on the game's card.
+- **Speed**: a kind's numbers read once and kept; the model built when the card opens, its live parts read at most once a
+  second and the colony's every ten seconds; nothing read while it is closed or while drawing.
+- **Not run here**: the card in the game at its least width; the drug effects' words and durations for every high; a
+  kind's thoughts with no thing in hand; a fridge mod's stack; the traders' price types; the jumps to a bench's bills and to
+  a field; the first card's reading time with the player's mods.
