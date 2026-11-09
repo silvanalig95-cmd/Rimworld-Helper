@@ -74,6 +74,80 @@ namespace ColonyCouncil
             }, false);
         }
 
+        /// <summary>
+        /// The weapons in a colonist's pack Simple Sidearms doesn't remember, as its own unloading reads its memory
+        /// (Pawn_InventoryTracker.FirstUnloadableThing): each remembered kind and stuff counts once, the one in hand first; a
+        /// weapon left over is one it has unloaded to storage. Empty without Simple Sidearms.
+        /// </summary>
+        public static List<Thing> Unremembered(Pawn p)
+        {
+            var list = new List<Thing>();
+            if (!SidearmsLoaded || p?.inventory?.innerContainer == null) return list;
+            return Safe("Simple Sidearms' memory", () =>
+            {
+                var comp = p.AllComps?.FirstOrDefault(c => c != null && SidearmMemory.IsInstanceOfType(c));
+                if (comp == null) return list;
+                var left = new List<(ThingDef thing, ThingDef stuff)>();
+                if (Member(comp, "rememberedWeapons") is IEnumerable remembered)
+                    foreach (var pair in remembered)
+                        left.Add((Member(pair, "thing") as ThingDef, Member(pair, "stuff") as ThingDef));
+                bool Take(Thing t)
+                {
+                    int i = left.FindIndex(x => x.thing == t.def && x.stuff == t.Stuff);
+                    if (i < 0) return false;
+                    left.RemoveAt(i);
+                    return true;
+                }
+                if (p.equipment?.Primary != null) Take(p.equipment.Primary);
+                foreach (var t in p.inventory.innerContainer)
+                    if (t != null && t.def.IsWeapon && WeaponLive.Rateable(t.def) && !Take(t))
+                        list.Add(t);
+                return list;
+            }, new List<Thing>());
+        }
+
+        private static readonly MethodInfo MemoryOf = SidearmMemory != null ? AccessTools.Method(SidearmMemory, "GetMemoryCompForPawn") : null;
+        private static readonly MethodInfo InformAdded = SidearmMemory != null ? AccessTools.Method(SidearmMemory, "InformOfAddedSidearm") : null;
+
+        /// <summary>Whether a weapon in a colonist's pack can be made a sidearm Simple Sidearms remembers (its own memory, by name).</summary>
+        public static bool CanRemember => MemoryOf != null && InformAdded != null;
+
+        /// <summary>Simple Sidearms told, as its own sidearm job tells it, that a weapon in their pack is one of their sidearms; false if it can't be.</summary>
+        public static bool Remember(Pawn p, Thing t)
+        {
+            if (!CanRemember || p == null || t == null) return false;
+            return Safe("Simple Sidearms' memory, a sidearm remembered", () =>
+            {
+                var args = MemoryOf.GetParameters().Length == 2 ? new object[] { p, true } : new object[] { p };
+                var memory = MemoryOf.Invoke(null, args);
+                if (memory == null) return false;
+                InformAdded.Invoke(memory, new object[] { t });
+                return true;
+            }, false);
+        }
+
+        /// <summary>A hand or an arm missing: Dual Wield (Ext_Pawn.HasMissingArmOrHand) then allows nothing in the off hand.</summary>
+        public static bool MissingHand(Pawn p)
+        {
+            var hediffs = p?.health?.hediffSet;
+            if (hediffs == null) return false;
+            foreach (var h in hediffs.GetMissingPartsCommonAncestors())
+                if (h?.Part?.def == BodyPartDefOf.Hand || h?.Part?.def == BodyPartDefOf.Arm)
+                    return true;
+            return false;
+        }
+
+        /// <summary>Their Ideology role bars a kind of weapon (the game's role effects: no ranged weapons, no melee weapons).</summary>
+        public static bool RoleBars(Pawn p, bool ranged)
+        {
+            var effects = p?.Ideo?.GetRole(p)?.def?.roleEffects;
+            if (effects == null) return false;
+            foreach (var e in effects)
+                if (ranged ? e is RoleEffect_NoRangedWeapons : e is RoleEffect_NoMeleeWeapons)
+                    return true;
+            return false;
+        }
+
         // ---------------------------------------------------------------- Dual Wield
 
         private static readonly Type DualWieldMod = GenTypes.GetTypeInAnyAssembly("DualWield.DualWield");

@@ -4484,7 +4484,8 @@ use". Not released yet.
   kind (or an empty slot, 3.0) by the threshold. Then Dual Wield (loaded): for someone keeping a one-handed weapon with
   nothing in the off hand, one of the same kind that may go there, when both hands together (`WeaponForMath.PairTogether`,
   its penalties in) beat it alone by the threshold. With Simple Sidearms the weapon in hand is set against the best of its
-  kind they carry.
+  kind they carry. (Since "A full kit for every colonist", below: an empty sidearm slot, an empty off hand and empty hands
+  are the kit's, filled first; the sidearm pass only betters a sidearm they carry.)
 - **Why, in a line** (`Reasons`): two reasons, the strongest first, then what it costs. Their skill (12 or more, on a
   weapon that rewards skill, `SkillGain` 1.35 or more and more than what they hold: "her Shooting 14 makes its accuracy
   count"; 5 or less, on a forgiving one where theirs asks a good shot: "it forgives his Melee 4"), the trait that adds most
@@ -4644,6 +4645,93 @@ warning if a pawn has a lucky weapon and would lose it, but that should not bloc
 - **Tests**: `Tools/Tests/WeaponShowTests.cs` (the qualities' colours, the card's tile, Nice Inventory Tab's widths at every
   tab width it allows, the room the box makes, where the row goes, the seams); `WeaponPickTests.cs` (how much each fights,
   trades for the colony, a lucky weapon and an heirloom, the trades' pool in every age).
+
+### A full kit for every colonist (the player's request, 9 November 2026)
+
+The player, with a picture of Avila's gear in Nice Inventory Tab (an autopistol and a belt, no melee weapon, and the quiet
+line "No better weapon in storage"): "the mod should also recognize if a pawn has no melee/ranged sidearm equipped and then
+offer one from the inventory. the pawns should always have a ranged and melee weapon, assuming they have no restrictions,
+and suggest/equip them accordingly. also offhand if they have capacity & compatibility". Not released.
+
+- **The kit** (`Weapons/WeaponKitMath.cs`, pure, tested in `Tools/Tests/WeaponKitTests.cs`): with Simple Sidearms every
+  colonist who can fight carries one ranged and one melee weapon, one in hand and the other as a sidearm; with Dual Wield, a
+  weapon in the off hand where their hands, the weapons and the mod's rules allow it and it adds something. Without Simple
+  Sidearms the kit is the one weapon in hand (a vanilla colonist holds one), without Dual Wield there is no off hand. Each
+  slot is filled (the weapon in hand of its kind, or a sidearm Simple Sidearms remembers; a one-use launcher never counts),
+  missing, or not for them and why (`KitView`, `KitBar`).
+- **Restrictions decide the kit, and it never fights them:** incapable of violence, no kit; incapable of shooting or a
+  brawler, melee only; a kind their Ideology role bars (the game's `RoleEffect_NoRangedWeapons` and `NoMeleeWeapons`,
+  `PickColonist.RoleNoRanged` and `RoleNoMelee`, now also in `WeaponPickMath.Score`), none of it; a weapon the game refuses
+  them (`EquipmentUtility.CanEquip`: coded, bonded, a race's rule as Humanoid Alien Races adds it, a role's), one their
+  faith despises, a heavy weapon they can't carry, never (each `PickOption.Cant`); a sidearm only within Simple Sidearms'
+  weights (its default preset: 2.7 kg a gun, 1.9 kg a blade), never a one-use launcher or one on an outfit stand (its job
+  takes it from the ground), and never one its own `CanPickupSidearmInstance` refuses them now (asked of each stored weapon
+  light enough, `PickOption.SidearmCant`: its weight modes, slots and their free room as set); an off-hand weapon only where
+  Dual Wield's `CanBeOffHand` allows it, not `IsTwoHand`, of the main hand's kind (both hands fire or swing together), never
+  beside a two-handed main weapon and never with a hand or arm missing (its own `HasMissingArmOrHand` rule, read from the
+  game's missing parts).
+- **A missing kind is a gap, filled even under the usual threshold** (0.6), but never with something nearly useless: the
+  least is 2.0 for them (`Floor`, twice bare hands, `WeaponPickMath.Unarmed`; their own score with skill, traits, passion
+  and the fights you meet; "poor" on the rating's scale runs up to 3.5), a shooter's blade must beat their gun's own blows
+  (its "in melee" rating, a rifle's butt about 3.0) by 0.3 (`OverBash`), and an off-hand weapon must add 0.3 to both hands
+  together over the main hand alone (`OffHandAdds`, Dual Wield's penalties in). The weapon chosen is the best for the part
+  it plays (`RoleScore`, never the minimum): in hand, their own score; a sidearm half its "sidearm" situation over its
+  overall (light and handy), a quick blade a fifth of a point more (a shooter's melee sidearm), a gun a tenth of its
+  "kiting" situation over its overall (a melee fighter's gun to finish or kite with). With nothing in hand and both kinds
+  missing, the kind they would rather hold (a gun when they shoot at least as well as they fight hand to hand) goes in
+  hand, the other as a sidearm.
+- **Where it comes from:** storage (as before; forbidden weapons are read too, never suggested or taken, only asked for and
+  named where nothing fills a slot, `ForbiddenFills`); their own pack (a weapon Simple Sidearms doesn't remember, which its
+  own unloading would carry to storage, `WeaponMods.Unremembered`, read as its `FirstUnloadableThing` reads its memory:
+  kept as a sidearm, no walk, `PickKind.Keep`, a third of a point in its favour when choosing); another colonist's spare
+  (`Spares`: a weapon they carry beyond their own kit, each kind they don't hold keeping its best; never a lucky weapon, an
+  heirloom, a bonded weapon or a one-use launcher, none from someone set aside; `PickKind.Spare`, a third of a point against
+  it when choosing, so storage comes first).
+- **The colony's choice fills the kit first** (`WeaponPickMath.Assign`): those with nothing in hand are served first in the
+  greedy, take any weapon sensible for them, and no exchange leaves them unarmed (a move that arms one always wins, taking if
+  need be a weapon given as another's upgrade; tested against brute force with the kit first, then the most gain); the
+  weapons the other empty slots would take are kept from everyone's upgrades (`Reserve`), those whose off hand is to be
+  filled keep their main hand this round, those whose sidearm's kind follows their main hand trade only for the same kind.
+  Then the empty slots are filled for real, each one's worth by how much they fight (`FightWeight`), so the front line is
+  served first when weapons are short; then upgrades and trades as before, then a sidearm they carry bettered. A trade may
+  arm someone holding a weapon they mustn't use.
+- **Shown:** the gear tab's row (`WeaponPickGearTab.Row`) gets the missing case: tagged **Missing**, its headline what is
+  missing and how it is filled ("No melee weapon: steel hatchet as a sidearm"; the rating is the badge beside it, the
+  Defenses page's head says "(3.8)"), the same picture, rating and reasons ("she has nothing for close work, and it's
+  light enough to carry beside her autopistol"), the right button (Equip, As sidearm, Off hand, **Keep as sidearm**, **Take
+  from** whom). The quiet line is honest about the kit: an empty slot nothing fills is said, "No melee weapon in storage for
+  Avila" (both kinds: "No weapon in storage"), under the rows too (Nice Inventory Tab's row height follows,
+  `WeaponNiceMath.Height`'s `gapLine`), its tooltip what was looked at and why each was left out (`Looked`, `KitLeftOut`:
+  forbidden, the game's refusal, past the sidearm's weight, Simple Sidearms' refusal, one-use, on an outfit stand, too weak
+  for them, no better than the gun's butt, adds too little in the off hand, not allowed there, two-handed, going to someone
+  else); "No better weapon in storage" when the kit is full. The Defenses page: each colonist's kit at a glance under their
+  name (`WeaponKitWords.Chips`: ranged, melee and with Dual Wield the off hand, each its picture and rating for them,
+  missing, or a dash with why on the tooltip), how many kits are full, and **Fill every kit (n)**, which only gives the
+  orders (`WeaponPick.DoKit`). The weapon card's "Who should carry this": who lacks its kind first ("she has no melee
+  weapon (+3.0)").
+- **Colonists fill a gap themselves** (`Weapons/WeaponKitSelf.cs`, "Colonists fill an empty weapon slot themselves",
+  `weaponKitSelf`, on): at their hourly look on the suggestions' own slice (`Sched.RareWeaponPicks`, no new slot), in their
+  free time at home and safe (`WeaponAsks.FreeAndSafe`: not drafted, downed, asleep or in a mental state, no threat on the
+  map or near), at most once a day each (`WeaponPickBook.fetched`, saved, pruned daily), a colonist with an empty slot the
+  choice fills from storage starts a real job of their own accord (`StartJob`, not an order): the game's `Equip` into an
+  empty hand only, Simple Sidearms' `EquipSecondary`, Dual Wield's `DW_EquipOffhand`; a weapon already in their pack is
+  remembered at once. Never in place of a weapon they hold, never forbidden, never what something stops now
+  (`WeaponPick.WhyNot`: a path, burning, reserved, Simple Sidearms' refusal), never a persona weapon that would bond, never
+  one their faith despises (out of the choice). The game's apparel policy covers apparel only, so it has no say over
+  weapons. A line as they pick it up (the job's finish action, on success; `Rimfolk_Pool_WeaponKitTake`, tagged hand,
+  sidearm, offhand or keep and the kind, every age and tone). Off, an empty slot is only suggested.
+- **Colonists who ask** gain a reason, "kit" (`Rimfolk_Pool_WeaponAsk`, every age, ranged, melee and the off hand: "I've
+  nothing for close work, can I take the knife in the stockpile?"), under the same waits and chance, whatever the gain;
+  only when they don't fill it themselves (the setting off, or something they can't take on their own: a forbidden weapon,
+  one on an outfit stand for a sidearm, one in place of what they hold, a persona weapon). A forbidden weapon asked for has
+  a quiet row in This week whose act allows it.
+- **Simple Sidearms by name** (`WeaponMods`): its memory read (`rememberedWeapons`, each pair once, the one in hand first),
+  told of a sidearm kept (`GetMemoryCompForPawn`, `InformOfAddedSidearm`), its refusal asked (`CanPickupSidearmInstance`).
+  A spare handed over (`Rimfolk_TakeSpareWeapon`, `JobDriver_TakeSpareWeapon` in `Weapons/WeaponSwapJob.cs`): the one
+  taking it walks to the one who carries it, who hands it over from their pack, into an empty hand or else the pack; both
+  memories told by name.
+- **Saved:** `WeaponPickBook.fetched` (colonist: tick, a day), modelled in `Tools/save_estimate.py`. No new Harmony patch,
+  no new Sched slot.
 
 ## Algorithms, not AI
 

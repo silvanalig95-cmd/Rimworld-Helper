@@ -2186,13 +2186,32 @@ about an assault rifle or a steel longsword. The review of every weapon in the p
   **Not now**; with nothing better, one quiet line, "No better weapon in storage", what was compared on its tooltip
   (*Say when there's no better weapon*, on); on the weapon card
   (who should carry it); on the Defenses page, **Weapons for each colonist**, every colonist with what they hold, its
-  rating and the suggestion, and **Equip all suggested**, which only gives the orders. With Simple Sidearms a light
-  sidearm of the other kind is suggested as one, with Dual Wield a weapon for the off hand where both hands add enough.
+  rating and the suggestion, and **Equip all suggested**, which only gives the orders. With Simple Sidearms a better
+  light sidearm is suggested as one.
   Each gain is weighed by how much the colonist fights (their skill against the colony's best, their time drafted, kills
   and shots fired by the game's records), so the best weapons go to the best fighters: a trade is suggested when it is
   better for both, or when the colony gains clearly though one gives up some ("Charge rifle to Ana (+1.9), Bautista takes
   her revolver (-0.6): the colony gains, and Bautista rarely fights."). A lucky weapon or an heirloom given up counts a
   little and is always said, never a bar.
+- **A full kit for every colonist:** with Simple Sidearms every colonist who can fight should carry one ranged and one
+  melee weapon (one in hand, the other as a sidearm), and with Dual Wield a weapon in the off hand where their hands and
+  the weapons allow it and both hands together add something. What they can't or mustn't carry decides it: nothing for
+  someone incapable of violence, melee only for a brawler or someone who can't shoot, nothing their role forbids, their
+  faith despises, their race may not use or they're too weak to carry, a sidearm only within Simple Sidearms' weights and
+  when it would take it, the off hand only as Dual Wield allows (never beside a two-handed weapon, never with a hand
+  missing). An empty slot is filled before anyone's upgrade, even when it adds less than an upgrade needs, but never with
+  something nearly useless (under 2.0 for them, twice their bare hands; a shooter's blade must beat clubbing with their
+  gun, an off-hand weapon add 0.3), chosen for its part (a shooter's blade light and quick, a melee fighter's gun light,
+  to finish or keep them off), from storage, their own pack (a weapon Simple Sidearms doesn't remember is kept as a
+  sidearm) or another colonist's spare, handed over; the front line first when weapons are short. On the gear tab an
+  empty slot is a row marked **Missing** ("No melee weapon: steel hatchet as a sidearm") with the right button; when
+  nothing fills it the quiet line says so ("No melee weapon in storage for Avila"), what was looked at and why each was
+  left out on its tooltip. The Defenses page shows each colonist's kit at a glance (ranged, melee, off hand: filled with
+  its rating, missing, or not for them) and **Fill every kit**, which only gives the orders; a weapon's card names who
+  lacks its kind first. **Colonists fill an empty weapon slot themselves** (on): in their free time at home and safe, at
+  most once a day, a colonist takes a fitting weapon from storage by the game's or the mods' own job, into an empty hand,
+  as a sidearm or into the off hand, with a line as they take it; never in place of what they hold, never a forbidden
+  weapon (they may ask for it, and its row in This week allows it). Off, an empty slot is only suggested and asked for.
 - **Colonists who ask** (*Colonists ask for better weapons*, on): now and then, in their free time at home and never in
   danger, a colonist says in one line that a clearly better weapon lying in storage would suit them, naming it, where it
   lies and why ("That charge rifle in the stockpile would do far more against the mechanoids we keep meeting."); at most
@@ -2461,10 +2480,12 @@ while that feature is off; nothing vanilla is changed or removed. A few things i
 - **Alien races (Humanoid Alien Races):** every humanlike race gets the Story and Culture tabs, and ages are read against the
   race's lifespan, so a 300-year-old elf isn't treated as elderly.
 - **Simple Sidearms:** an heirloom weapon carried as a sidearm still counts as carried. The weapon card rates each
-  sidearm for its colonist and names their sensible pair, and the weapon suggestions offer a light sidearm, taken by
-  its own job within its own limits (Judging a weapon).
+  sidearm for its colonist and names their sensible pair, and every colonist's kit is one ranged and one melee weapon: a
+  missing one is suggested as a sidearm (or taken by the colonist themselves), by its own job within its own limits and
+  only when it would take it; a weapon in a pack it doesn't remember is kept as a sidearm, told to its memory by name
+  (Judging a weapon).
 - **Dual Wield, Nice Inventory Tab, RunAndGun, Melee Animation:** read by name for the weapon card (Judging a weapon):
-  the off hand with Dual Wield's penalties (and a weapon suggested for it, taken by its own job), the rating's badge on
+  the off hand with Dual Wield's penalties (and an empty off hand filled where it allows, taken by its own job), the rating's badge on
   Nice Inventory Tab's rows and cells (and the suggestions' rows in its equipment box), shooting on the move, a weapon's
   execution moves and duels. Without them nothing changes.
 - **Harvest and Haul, Pick Up And Haul:** Harvest and Haul is built into Rimfolk now (Carrying and hauling); while the

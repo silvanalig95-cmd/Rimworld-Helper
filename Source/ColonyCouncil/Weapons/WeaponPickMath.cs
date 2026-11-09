@@ -37,6 +37,15 @@ namespace ColonyCouncil
         public float Fights = 1f;
         /// <summary>Weapons on them that mean something to them (Rimfolk's lucky weapon, an heirloom): giving one up costs mood.</summary>
         public List<PickKeepsake> Keepsakes = new List<PickKeepsake>();
+        /// <summary>Their Ideology role bars a kind (the game's role effects: no ranged weapons, no melee weapons).</summary>
+        public bool RoleNoRanged, RoleNoMelee;
+        /// <summary>A hand or an arm missing: Dual Wield then allows nothing in the off hand.</summary>
+        public bool OneHand;
+        /// <summary>
+        /// With Simple Sidearms, the weapons they carry that it doesn't remember as sidearms (it has those unloaded to storage
+        /// like any other thing in a pack), so they aren't part of their kit until it does.
+        /// </summary>
+        public List<string> Unremembered = new List<string>();
 
         public bool HoldsBonded => Holds != null && Holds == Bonded;
     }
@@ -85,6 +94,8 @@ namespace ColonyCouncil
         public bool Stored;
         /// <summary>Only to be taken in hand (a weapon on an outfit stand: the sidearm's and the off hand's jobs take it from the ground).</summary>
         public bool HandOnly;
+        /// <summary>Lying in storage but forbidden: never suggested or taken by a colonist themselves; only asked for to fill an empty slot.</summary>
+        public bool Forbidden;
 
         public bool Ranged => Rating != null && Rating.Kind == "ranged";
         public float Overall => Rating?.Overall ?? 1f;
@@ -107,6 +118,8 @@ namespace ColonyCouncil
         public bool Noble;
         /// <summary>Dual Wield: both hands together, what they hold in the main hand and this in the off hand, when it can go there.</summary>
         public float? Pair;
+        /// <summary>Simple Sidearms' own refusal of it as a sidearm for them now (its CanPickupSidearmInstance: its weights, slots, free room), or null.</summary>
+        public string SidearmCant;
     }
 
     /// <summary>Which weapon mods are there, and Simple Sidearms' weights.</summary>
@@ -139,7 +152,11 @@ namespace ColonyCouncil
         Primary,
         Swap,
         Sidearm,
-        OffHand
+        OffHand,
+        /// <summary>Simple Sidearms: a weapon already in their pack, remembered as a sidearm (no walk: it is on them).</summary>
+        Keep,
+        /// <summary>A weapon another colonist carries beyond their own kit, handed over (Other: the one who carries it).</summary>
+        Spare
     }
 
     /// <summary>Why a weapon suits a colonist better, or what taking it costs, as the line's parts.</summary>
@@ -187,7 +204,13 @@ namespace ColonyCouncil
         /// <summary>A cost: someone's lucky weapon would leave them (Text: whose key, Extra: its label, Value and Level: their mood with it and without).</summary>
         Lucky,
         /// <summary>A cost: someone's heirloom would leave them (Text: whose key, Extra: its label, Value: their mood with it).</summary>
-        Heirloom
+        Heirloom,
+        /// <summary>It fills an empty slot of their kit (Text: "hand", "ranged", "melee" or "offhand").</summary>
+        Kit,
+        /// <summary>It is in their pack already, but Simple Sidearms doesn't count it yet.</summary>
+        Pack,
+        /// <summary>Another colonist carries it beyond their own kit (Text: their key).</summary>
+        Spare
     }
 
     /// <summary>One part of a suggestion's line: why, or what it costs.</summary>
@@ -218,6 +241,8 @@ namespace ColonyCouncil
         public float Worth;
         /// <summary>Its rating for them and what they have now, as the badges show them.</summary>
         public float Rating, Before;
+        /// <summary>The empty slot of their kit it fills (WeaponKitMath), or null for an upgrade or a trade.</summary>
+        public KitSlot? Gap;
         public List<PickReason> Why = new List<PickReason>();
 
         public IEnumerable<PickReason> Reasons => Why.Where(r => !r.Cost);
@@ -243,11 +268,13 @@ namespace ColonyCouncil
     /// the fights the colony meets (mechanoids, crowds, armoured raiders, sieges, a gate it holds) and their work (a hunter's
     /// hunts, a doctor's or crafter's light weapon), their faith (a noble weapon in favour; a despised one never), and what
     /// it costs (a bonded persona weapon left unused, a hunter who couldn't hunt, a keepsake given up). One assignment for
-    /// the whole colony, so two colonists are never told to take the same weapon: weapons from storage first, greedily by
-    /// the biggest gain weighed by how much each fights, then exchanged in pairs until no exchange raises the colony's
-    /// total; then trades between colonists, better for both or worth more to the colony (the best weapons to the best
-    /// fighters); then Simple Sidearms' sidearms and Dual Wield's off hands from what is left. Only gains worth the walk are
-    /// suggested (<see cref="Threshold"/>), and each comes with its reasons, strongest first.
+    /// the whole colony, so two colonists are never told to take the same weapon: every colonist's kit first (WeaponKitMath:
+    /// something in an empty hand, a ranged and a melee weapon with Simple Sidearms, the off hand with Dual Wield, anything
+    /// sensible being better than nothing); weapons from storage, greedily by the biggest gain weighed by how much each
+    /// fights, then exchanged in pairs until no exchange raises the colony's total; then trades between colonists, better
+    /// for both or worth more to the colony (the best weapons to the best fighters); then a sidearm they carry bettered from
+    /// what is left. Only upgrades worth the walk are suggested (<see cref="Threshold"/>), and each comes with its reasons,
+    /// strongest first.
     /// </summary>
     public static class WeaponPickMath
     {
@@ -310,14 +337,17 @@ namespace ColonyCouncil
         /// <summary>A keepsake's cost in the choice: its mood between having it and not, by <see cref="MoodPoint"/>, at most <see cref="KeepsakeMax"/>.</summary>
         public static float KeepsakeWeight(PickKeepsake k) => k == null ? 0f : Math.Max(0f, Math.Min(KeepsakeMax, (k.MoodWith - k.MoodWithout) * MoodPoint));
 
+        /// <summary>What arming someone with nothing in hand weighs against any gain in the colony's exchanges: always more (the kit first).</summary>
+        private const float KitFirst = 100f;
+
         /// <summary>More gain asked of a weapon that would leave a colonist's bonded persona weapon unused.</summary>
         public const float BondedExtra = 1f;
 
         /// <summary>More gain asked of a weapon of the other kind than the one they hold (a shooter turned to the blade), without Simple Sidearms.</summary>
         public const float KindChange = 0.5f;
 
-        /// <summary>What empty hands are worth on the rating's scale; and a sidearm slot with nothing in it.</summary>
-        public const float Unarmed = 1f, SidearmFloor = 3f;
+        /// <summary>What empty hands are worth on the rating's scale.</summary>
+        public const float Unarmed = 1f;
 
         public const float PassionMinor = 0.15f, PassionMajor = 0.3f;
 
@@ -441,7 +471,8 @@ namespace ColonyCouncil
             if (c == null || w?.Rating == null || !c.CanFight) return null;
             var o = input.Option(c, w);
             if (o == null || o.Cant != null) return null;
-            if (w.Ranged && (c.Brawler || !c.CanShoot)) return null;
+            if (w.Ranged && (c.Brawler || !c.CanShoot || c.RoleNoRanged)) return null;
+            if (!w.Ranged && c.RoleNoMelee) return null;
             float s = o.Rating;
             int passion = w.Ranged ? c.ShootingPassion : c.MeleePassion;
             if (passion >= 2) s += PassionMajor;
@@ -460,8 +491,8 @@ namespace ColonyCouncil
         }
 
         /// <summary>
-        /// The best of a kind a colonist has now: what they hold of that kind and, with Simple Sidearms, what they carry of it.
-        /// Null when they have nothing of that kind.
+        /// The best of a kind a colonist has now: what they hold of that kind and, with Simple Sidearms, what they carry of it
+        /// as its sidearms (one it doesn't remember is unloaded, so not counted). Null when they have nothing of that kind.
         /// </summary>
         public static float? BestOfKind(PickInput input, PickColonist c, bool ranged)
         {
@@ -471,6 +502,7 @@ namespace ColonyCouncil
             if (input.Rules.Sidearms)
                 foreach (var k in c.Carries)
                 {
+                    if (c.Unremembered.Contains(k)) continue;
                     var w = input.Weapon(k);
                     if (w == null || w.Ranged != ranged) continue;
                     var s = Score(input, c, w);
@@ -500,6 +532,7 @@ namespace ColonyCouncil
                 if (input.Rules.Sidearms)
                     foreach (var k in c.Carries)
                     {
+                        if (c.Unremembered.Contains(k)) continue;
                         var cw = input.Weapon(k);
                         var cs = cw != null ? Score(input, c, cw) : null;
                         if (cs.HasValue && cs.Value > before) before = cs.Value;
@@ -571,23 +604,34 @@ namespace ColonyCouncil
         /// One assignment for the whole colony (see the class): every suggestion, at most one weapon in hand (from storage, or
         /// a trade), one sidearm and one off-hand weapon per colonist, no weapon given to two. Colonists who can't fight or
         /// whose suggestions were set aside take none.
+        /// <para>
+        /// The kit comes first (WeaponKitMath, the player's words of 9 November 2026: "the pawns should always have a ranged
+        /// and melee weapon ... also offhand if they have capacity & compatibility"): a colonist with nothing in hand is armed
+        /// before anyone's upgrade (the greedy serves them first, and no exchange leaves them empty-handed); the weapons the
+        /// other empty slots would take (a sidearm of the kind they lack, the off hand) are kept from everyone's upgrades,
+        /// those whose off hand is to be filled keep their main hand as it is for now, and those whose sidearm's kind follows
+        /// their main hand trade only for the same kind. Once each hand is known, the empty slots are filled for real; then
+        /// sidearms they already carry are bettered.
+        /// </para>
         /// </summary>
         public static List<PickSuggestion> Assign(PickInput input)
         {
             var result = new List<PickSuggestion>();
             if (input == null) return result;
             var fighters = input.Colonists.Where(c => c.CanFight && !c.NotNow).OrderBy(c => c.Key, StringComparer.Ordinal).ToList();
-            var free = input.Weapons.Where(w => w.Stored && w.Rating != null).OrderBy(w => w.Key, StringComparer.Ordinal).ToList();
+            var free = input.Weapons.Where(w => w.Stored && !w.Forbidden && w.Rating != null).OrderBy(w => w.Key, StringComparer.Ordinal).ToList();
+            var handGap = new HashSet<string>(fighters.Where(c => WeaponKitMath.HandEmpty(input, c)).Select(c => c.Key));
+            var reserved = WeaponKitMath.Reserve(input, fighters.Where(c => !handGap.Contains(c.Key)).ToList(), free, out var kindBound, out var handBound);
             var taken = new HashSet<string>();
-            var primary = Primaries(input, fighters, free, taken);
+            var primary = Primaries(input, fighters, free, taken, handGap, reserved, handBound);
             // Trades between colonists, which may be worth more to the colony than what storage gave the two; then storage
             // is shared again among the rest.
-            var trades = Swaps(input, fighters, primary, out bool displaced);
+            var trades = Swaps(input, fighters, primary, kindBound, handBound, out bool displaced);
             var trading = new HashSet<string>(trades.Select(s => s.Colonist));
             if (displaced)
             {
                 taken.Clear();
-                primary = Primaries(input, fighters.Where(c => !trading.Contains(c.Key)).ToList(), free, taken);
+                primary = Primaries(input, fighters.Where(c => !trading.Contains(c.Key)).ToList(), free, taken, handGap, reserved, handBound);
             }
             result.AddRange(primary.Values);
             var busy = new HashSet<string>(primary.Keys);
@@ -596,17 +640,19 @@ namespace ColonyCouncil
             // What each colonist will hold, for the sidearm's kind and the off hand's pair.
             var holds = fighters.ToDictionary(c => c.Key, c => primary.TryGetValue(c.Key, out var p) ? input.Weapon(p.Weapon) : input.Weapon(c.Holds));
             foreach (var s in result.Where(s => s.Kind == PickKind.Swap)) holds[s.Colonist] = input.Weapon(s.Weapon);
+            // The kit's other empty slots, now that each one's hand is known; then the sidearms they carry, bettered.
+            result.AddRange(WeaponKitMath.FillKinds(input, fighters, free, taken, holds));
+            result.AddRange(WeaponKitMath.FillOffHands(input, fighters.Where(c => !busy.Contains(c.Key)).ToList(), free, taken));
             if (input.Rules.Sidearms) result.AddRange(Sidearms(input, fighters, free, taken, holds));
-            if (input.Rules.DualWield) result.AddRange(OffHands(input, fighters.Where(c => !busy.Contains(c.Key)).ToList(), free, taken));
             foreach (var s in result) s.Why = Reasons(input, s);
             return result;
         }
 
         /// <summary>A weapon's group: alike weapons (one kind, stuff, quality, coding) are one choice; one without a group is its own.</summary>
-        private static string GroupOf(PickWeapon w) => string.IsNullOrEmpty(w.Group) ? "#" + w.Key : w.Group;
+        internal static string GroupOf(PickWeapon w) => string.IsNullOrEmpty(w.Group) ? "#" + w.Key : w.Group;
 
         /// <summary>The first weapon not yet taken of each group: alike weapons are weighed once.</summary>
-        private static IEnumerable<PickWeapon> Heads(List<PickWeapon> free, HashSet<string> taken)
+        internal static IEnumerable<PickWeapon> Heads(List<PickWeapon> free, HashSet<string> taken)
         {
             var seen = new HashSet<string>();
             foreach (var w in free)
@@ -615,7 +661,7 @@ namespace ColonyCouncil
         }
 
         /// <summary>The weapon itself if not taken, else another of its group not yet taken, or null.</summary>
-        private static PickWeapon Untaken(PickWeapon w, List<PickWeapon> free, HashSet<string> taken)
+        internal static PickWeapon Untaken(PickWeapon w, List<PickWeapon> free, HashSet<string> taken)
         {
             if (!taken.Contains(w.Key)) return w;
             string g = GroupOf(w);
@@ -629,9 +675,17 @@ namespace ColonyCouncil
         /// rises and both still gain enough; then again for anyone a freed weapon now suits. Each gain is weighed by how much
         /// the colonist fights (<see cref="PickColonist.Fights"/>), so of two who'd gain alike the best weapon goes to the one
         /// on the front line; each must still gain enough for themselves.
+        /// <para>
+        /// The kit first: those with nothing in hand (<paramref name="handGap"/>) are served first, take any weapon sensible
+        /// for them (<see cref="WeaponKitMath.Floor"/>) rather than one past the threshold, and every exchange leaves them
+        /// armed; a weapon kept for another's empty slot (<paramref name="reserved"/>) goes to no one else's hand; those whose
+        /// off hand is to be filled (<paramref name="keepMain"/>) keep their main hand this time.
+        /// </para>
         /// </summary>
-        private static Dictionary<string, PickSuggestion> Primaries(PickInput input, List<PickColonist> fighters, List<PickWeapon> free, HashSet<string> taken)
+        private static Dictionary<string, PickSuggestion> Primaries(PickInput input, List<PickColonist> fighters, List<PickWeapon> free, HashSet<string> taken,
+            HashSet<string> handGap, HashSet<string> reserved, HashSet<string> keepMain)
         {
+            fighters = fighters.Where(c => !keepMain.Contains(c.Key)).ToList();
             var given = new Dictionary<string, PickWeapon>();
             var gainOf = new Dictionary<(string, string), (float gain, float need, float score, float before)?>();
             (float gain, float need, float score, float before)? G(PickColonist c, PickWeapon w)
@@ -640,7 +694,14 @@ namespace ColonyCouncil
                 if (!gainOf.TryGetValue(key, out var g)) gainOf[key] = g = PrimaryGain(input, c, w);
                 return g;
             }
-            bool Ok(PickColonist c, PickWeapon w) => G(c, w) is var g && g.HasValue && g.Value.gain >= g.Value.need - 1e-4f;
+            bool Ok(PickColonist c, PickWeapon w)
+            {
+                bool gap = handGap.Contains(c.Key);
+                if (!gap && reserved.Contains(w.Key)) return false;
+                var g = G(c, w);
+                if (!g.HasValue) return false;
+                return gap ? g.Value.score >= WeaponKitMath.Floor - 1e-4f : g.Value.gain >= g.Value.need - 1e-4f;
+            }
             // The gain as the choice weighs it against another: less a keepsake set down (never against the threshold).
             var netOf = new Dictionary<(string, string), float>();
             float Net(PickColonist c, PickWeapon w)
@@ -662,27 +723,28 @@ namespace ColonyCouncil
             for (int round = 0; round < 3; round++)
             {
                 bool changed = false;
-                // Greedy: the biggest worthwhile gain left.
-                while (true)
-                {
-                    PickColonist bc = null;
-                    PickWeapon bw = null;
-                    float best = float.MinValue;
-                    foreach (var c in fighters)
+                // Greedy: the biggest worthwhile gain left, those with nothing in hand first.
+                foreach (bool gapsOnly in new[] { true, false })
+                    while (true)
                     {
-                        if (given.ContainsKey(c.Key)) continue;
-                        foreach (var w in Choices(c))
+                        PickColonist bc = null;
+                        PickWeapon bw = null;
+                        float best = float.MinValue;
+                        foreach (var c in fighters)
                         {
-                            if (taken.Contains(w.Key) || !Ok(c, w)) continue;
-                            float gain = c.Fights * Net(c, w);
-                            if (gain > best + 1e-4f) (best, bc, bw) = (gain, c, w);
+                            if (given.ContainsKey(c.Key) || (gapsOnly && !handGap.Contains(c.Key))) continue;
+                            foreach (var w in Choices(c))
+                            {
+                                if (taken.Contains(w.Key) || !Ok(c, w)) continue;
+                                float gain = c.Fights * Net(c, w);
+                                if (gain > best + 1e-4f) (best, bc, bw) = (gain, c, w);
+                            }
                         }
+                        if (bc == null) break;
+                        given[bc.Key] = bw;
+                        taken.Add(bw.Key);
+                        changed = true;
                     }
-                    if (bc == null) break;
-                    given[bc.Key] = bw;
-                    taken.Add(bw.Key);
-                    changed = true;
-                }
                 // Exchanges: two colonists swap what they were given, or one takes a better weapon left over.
                 for (int pass = 0; pass < 40; pass++)
                 {
@@ -718,7 +780,8 @@ namespace ColonyCouncil
                         }
                     }
                     // A colonist left without one takes what another was given, who takes a weapon left over instead,
-                    // when the two gain more together (the best such move first).
+                    // when the two gain more together (the best such move first); one with nothing in hand always, the kit
+                    // first (the other stays armed with the leftover).
                     if (!improved)
                     {
                         PickColonist bu = null, ba = null;
@@ -735,7 +798,7 @@ namespace ColonyCouncil
                                 foreach (var w in Heads(free, taken))
                                 {
                                     if (taken.Contains(w.Key) || !Ok(a, w)) continue;
-                                    float move = u.Fights * Net(u, wa) + a.Fights * (Net(a, w) - Net(a, wa));
+                                    float move = u.Fights * Net(u, wa) + a.Fights * (Net(a, w) - Net(a, wa)) + (handGap.Contains(u.Key) ? KitFirst : 0f);
                                     if (move > bestMove + 1e-4f) (bestMove, bu, ba, bw) = (move, u, a, w);
                                 }
                             }
@@ -745,6 +808,46 @@ namespace ColonyCouncil
                             given[bu.Key] = given[ba.Key];
                             given[ba.Key] = bw;
                             taken.Add(bw.Key);
+                            improved = true;
+                        }
+                    }
+                    // The kit first, when no weapon is left over: one with nothing in hand takes a weapon given as another's
+                    // upgrade (who keeps what they hold), or one given to another with nothing, who takes such an upgrade's
+                    // weapon instead; the most worth first.
+                    if (!improved)
+                    {
+                        PickColonist bu = null, ba = null, bb = null;
+                        float bestMove = float.MinValue;
+                        foreach (var u in fighters)
+                        {
+                            if (given.ContainsKey(u.Key) || !handGap.Contains(u.Key)) continue;
+                            foreach (var kb in keys)
+                            {
+                                var b = input.Colonist(kb);
+                                var wb = given[kb];
+                                if (handGap.Contains(kb) || wb.CarriedBy != null) continue;
+                                float lose = b.Fights * Net(b, wb);
+                                if (Ok(u, wb) && u.Fights * Net(u, wb) - lose > bestMove + 1e-4f) (bestMove, bu, ba, bb) = (u.Fights * Net(u, wb) - lose, u, null, b);
+                                foreach (var ka in keys)
+                                {
+                                    var a = input.Colonist(ka);
+                                    var wa = given[ka];
+                                    if (ka == kb || !handGap.Contains(ka) || wa.CarriedBy != null || !Ok(u, wa) || !Ok(a, wb)) continue;
+                                    float move = u.Fights * Net(u, wa) + a.Fights * (Net(a, wb) - Net(a, wa)) - lose;
+                                    if (move > bestMove + 1e-4f) (bestMove, bu, ba, bb) = (move, u, a, b);
+                                }
+                            }
+                        }
+                        if (bu != null)
+                        {
+                            var wb = given[bb.Key];
+                            given.Remove(bb.Key);
+                            if (ba == null) given[bu.Key] = wb;
+                            else
+                            {
+                                given[bu.Key] = given[ba.Key];
+                                given[ba.Key] = wb;
+                            }
                             improved = true;
                         }
                     }
@@ -758,10 +861,12 @@ namespace ColonyCouncil
             {
                 var c = input.Colonist(kv.Key);
                 var g = G(c, kv.Value).Value;
+                bool gap = handGap.Contains(c.Key);
                 result[kv.Key] = new PickSuggestion
                 {
                     Kind = PickKind.Primary, Colonist = c.Key, Weapon = kv.Value.Key, Instead = c.Holds, Gain = g.gain,
-                    Rating = input.Option(c, kv.Value)?.Rating ?? g.score, Before = BeforeRating(input, c, kv.Value.Ranged)
+                    Rating = input.Option(c, kv.Value)?.Rating ?? g.score, Before = gap ? 0f : BeforeRating(input, c, kv.Value.Ranged),
+                    Gap = gap ? input.Rules.Sidearms ? WeaponKitMath.SlotOf(kv.Value.Ranged) : KitSlot.Hand : (KitSlot?)null
                 };
             }
             return result;
@@ -777,7 +882,7 @@ namespace ColonyCouncil
                 foreach (var k in c.Carries)
                 {
                     var w = input.Weapon(k);
-                    if (w == null || w.Ranged != ranged) continue;
+                    if (w == null || w.Ranged != ranged || c.Unremembered.Contains(k)) continue;
                     best = Math.Max(best, input.Option(c, w)?.Rating ?? w.Overall);
                 }
             return best;
@@ -815,16 +920,20 @@ namespace ColonyCouncil
         /// <summary>
         /// Trades between colonists (<see cref="Trade"/>), the most worth to the colony first, one each. A trade replaces what
         /// storage gave the two only when it is worth more to the colony than those (each weighed by how much they fight);
-        /// <paramref name="displaced"/> then says storage is to be shared again among the rest.
+        /// <paramref name="displaced"/> then says storage is to be shared again among the rest. The kit first: one whose off hand
+        /// is to be filled keeps their main hand (<paramref name="keepMain"/>); one whose sidearm's kind follows their main hand
+        /// (<paramref name="kindBound"/>) trades only for a weapon of the same kind.
         /// </summary>
-        private static List<PickSuggestion> Swaps(PickInput input, List<PickColonist> fighters, Dictionary<string, PickSuggestion> primary, out bool displaced)
+        private static List<PickSuggestion> Swaps(PickInput input, List<PickColonist> fighters, Dictionary<string, PickSuggestion> primary, HashSet<string> kindBound,
+            HashSet<string> keepMain, out bool displaced)
         {
             displaced = false;
             var pairs = new List<(PickColonist a, PickColonist b, float ga, float gb, float worth)>();
-            var holders = fighters.Where(c => c.Holds != null && !c.HoldsBonded && input.Weapon(c.Holds)?.Rating != null).ToList();
+            var holders = fighters.Where(c => c.Holds != null && !c.HoldsBonded && !keepMain.Contains(c.Key) && input.Weapon(c.Holds)?.Rating != null).ToList();
             for (int i = 0; i < holders.Count; i++)
             for (int j = i + 1; j < holders.Count; j++)
             {
+                if ((kindBound.Contains(holders[i].Key) || kindBound.Contains(holders[j].Key)) && input.Weapon(holders[i].Holds).Ranged != input.Weapon(holders[j].Holds).Ranged) continue;
                 var t = Trade(input, holders[i], holders[j]);
                 if (t.HasValue) pairs.Add((holders[i], holders[j], t.Value.ga, t.Value.gb, t.Value.worth));
             }
@@ -855,9 +964,10 @@ namespace ColonyCouncil
         }
 
         /// <summary>
-        /// Simple Sidearms: a weapon of the other kind than the one they will hold, light enough for its default weights (2.7
-        /// kg a gun, 1.9 kg a blade; never a one-use launcher), carried beside it, when it beats what they carry of that kind
-        /// (or an empty slot, <see cref="SidearmFloor"/>) by <see cref="Threshold"/>. Never a gun for a brawler. The biggest gain first.
+        /// Simple Sidearms: a better sidearm of the other kind than the one they will hold, light enough for its default
+        /// weights (2.7 kg a gun, 1.9 kg a blade; never a one-use launcher; never one it refuses them), when it beats the one
+        /// they carry of that kind by <see cref="Threshold"/>. An empty slot is the kit's (WeaponKitMath.FillKinds), filled
+        /// before this. Never a gun for a brawler. The biggest gain first.
         /// </summary>
         private static List<PickSuggestion> Sidearms(PickInput input, List<PickColonist> fighters, List<PickWeapon> free, HashSet<string> taken,
             Dictionary<string, PickWeapon> holds)
@@ -866,21 +976,22 @@ namespace ColonyCouncil
             foreach (var c in fighters)
             {
                 var main = holds.TryGetValue(c.Key, out var m) ? m : null;
-                if (main == null) continue;
+                if (main == null || !Score(input, c, main).HasValue) continue;
                 bool ranged = !main.Ranged;
-                if (ranged && (c.Brawler || !c.CanShoot)) continue;
-                float before = SidearmFloor;
+                if (!WeaponKitMath.Allowed(c, ranged)) continue;
+                float? carried = null;
                 foreach (var k in c.Carries)
                 {
                     var cw = input.Weapon(k);
-                    if (cw == null || cw.Ranged != ranged) continue;
+                    if (cw == null || cw.Ranged != ranged || c.Unremembered.Contains(k)) continue;
                     var cs = Score(input, c, cw);
-                    if (cs.HasValue) before = Math.Max(before, cs.Value);
+                    if (cs.HasValue) carried = Math.Max(carried ?? cs.Value, cs.Value);
                 }
+                if (!carried.HasValue) continue;
+                float before = carried.Value;
                 foreach (var w in Heads(free, taken))
                 {
-                    if (taken.Contains(w.Key) || w.HandOnly || w.Ranged != ranged || (ranged && w.OneUse)) continue;
-                    if (w.Mass > (ranged ? input.Rules.SidearmRangedMass : input.Rules.SidearmMeleeMass) + 0.001f) continue;
+                    if (taken.Contains(w.Key) || !WeaponKitMath.FitsSidearm(input, w) || w.Ranged != ranged || input.Option(c, w)?.SidearmCant != null) continue;
                     var s = Score(input, c, w);
                     if (!s.HasValue || s.Value - before < Threshold) continue;
                     options.Add((c, w, s.Value - before, before));
@@ -898,50 +1009,13 @@ namespace ColonyCouncil
                 foreach (var k in c.Carries)
                 {
                     var cw = input.Weapon(k);
-                    if (cw != null && cw.Ranged == w.Ranged) was = Math.Max(was, input.Option(c, cw)?.Rating ?? cw.Overall);
+                    if (cw != null && cw.Ranged == w.Ranged && !c.Unremembered.Contains(k)) was = Math.Max(was, input.Option(c, cw)?.Rating ?? cw.Overall);
                 }
                 result.Add(new PickSuggestion
                 {
                     Kind = PickKind.Sidearm, Colonist = c.Key, Weapon = w.Key, Instead = holds[c.Key]?.Key, Gain = gain,
                     Rating = input.Option(c, w)?.Rating ?? w.Overall, Before = was
                 });
-            }
-            return result;
-        }
-
-        /// <summary>
-        /// Dual Wield: a weapon for the off hand of a colonist who keeps what they hold (not two-handed) and has nothing there,
-        /// of the same kind (guns with guns, blades with blades: both hands fire or swing together), when both hands
-        /// together (with Dual Wield's penalties) beat what they hold alone by <see cref="Threshold"/>. The biggest gain first.
-        /// </summary>
-        private static List<PickSuggestion> OffHands(PickInput input, List<PickColonist> keeping, List<PickWeapon> free, HashSet<string> taken)
-        {
-            var options = new List<(PickColonist c, PickWeapon w, float gain, float pair, float alone)>();
-            foreach (var c in keeping)
-            {
-                var main = input.Weapon(c.Holds);
-                if (main == null || main.TwoHanded || c.OffHand != null) continue;
-                var mo = input.Option(c, main);
-                if (mo == null) continue;
-                foreach (var w in Heads(free, taken))
-                {
-                    if (taken.Contains(w.Key) || w.HandOnly || !w.CanOffHand || w.TwoHanded || w.Ranged != main.Ranged) continue;
-                    var o = input.Option(c, w);
-                    if (o == null || o.Cant != null || !o.Pair.HasValue || Score(input, c, w) == null) continue;
-                    float gain = o.Pair.Value - mo.Rating;
-                    if (gain < Threshold) continue;
-                    options.Add((c, w, gain, o.Pair.Value, mo.Rating));
-                }
-            }
-            var done = new HashSet<string>();
-            var result = new List<PickSuggestion>();
-            foreach (var (c, first, gain, pair, alone) in options.OrderByDescending(o => o.gain).ThenBy(o => o.c.Key, StringComparer.Ordinal).ThenBy(o => o.w.Key, StringComparer.Ordinal))
-            {
-                var w = done.Contains(c.Key) ? null : Untaken(first, free, taken);
-                if (w == null) continue;
-                done.Add(c.Key);
-                taken.Add(w.Key);
-                result.Add(new PickSuggestion { Kind = PickKind.OffHand, Colonist = c.Key, Weapon = w.Key, Instead = c.Holds, Gain = gain, Rating = pair, Before = alone });
             }
             return result;
         }
@@ -957,13 +1031,16 @@ namespace ColonyCouncil
         /// nothing else says why. A trade where one gives up some says the colony gains and, when it is so, that the one who
         /// gives up some rarely fights (the one who gives up some has no reasons of their own). Costs: a keepsake given up
         /// (someone's lucky weapon or heirloom, theirs or in a trade the other's), a bonded persona weapon left unused (its
-        /// jealousy), a hunter who couldn't hunt.
+        /// jealousy), a hunter who couldn't hunt. An empty slot of the kit says so first ("she has nothing for close work"),
+        /// then why this one: carried beside what they hold, in the off hand, already in their pack, another's spare.
         /// </summary>
         public static List<PickReason> Reasons(PickInput input, PickSuggestion s, List<(string why, float delta)> steps = null)
         {
             var c = input.Colonist(s.Colonist);
             var w = input.Weapon(s.Weapon);
-            var held = s.Kind == PickKind.Sidearm ? null : input.Weapon(s.Instead ?? c?.Holds);
+            // Beside what they hold, or into an empty hand: nothing in hand to compare it with.
+            bool beside = s.Kind == PickKind.Sidearm || s.Kind == PickKind.Keep || s.Kind == PickKind.Spare || (s.Kind == PickKind.Primary && s.Gap.HasValue);
+            var held = beside ? null : input.Weapon(s.Instead ?? c?.Holds);
             var list = new List<(PickReason r, float weight)>();
             if (c == null || w?.Rating == null) return new List<PickReason>();
             void Add(PickWhy kind, float weight, string text = "", float value = 0f, int level = 0) =>
@@ -1017,8 +1094,17 @@ namespace ColonyCouncil
                 case PickKind.Swap:
                     Add(PickWhy.Swap, 0.05f, input.Colonist(s.Other)?.Name ?? "", s.OtherGain);
                     break;
+                case PickKind.Keep:
+                    Add(PickWhy.Pack, 0.6f);
+                    break;
+                case PickKind.Spare:
+                    Add(PickWhy.Spare, 0.6f, s.Other ?? "");
+                    break;
             }
-            if (s.Kind == PickKind.Primary && c.Holds == null && !c.Carries.Any()) Add(PickWhy.Unarmed, 0.55f);
+            // The kit's empty slot, the strongest reason of all: nothing in hand, nothing of the kind, a free other hand.
+            if (s.Gap.HasValue)
+                Add(PickWhy.Kit, 1f, s.Gap == KitSlot.Hand || (s.Kind == PickKind.Primary && WeaponKitMath.HandEmpty(input, c)) ? "hand" : s.Gap.Value.ToString().ToLowerInvariant());
+            else if (s.Kind == PickKind.Primary && c.Holds == null && !c.Carries.Any()) Add(PickWhy.Unarmed, 0.55f);
             var reasons = list.OrderByDescending(x => x.weight).ThenBy(x => x.r.Kind).Select(x => x.r).ToList();
             // A trade always names the other; otherwise two reasons, the strongest. Simply better when nothing else says why.
             // The one who gives up some in a trade has no reasons of their own: the colony's are theirs.
@@ -1047,13 +1133,14 @@ namespace ColonyCouncil
                 if (LostKeepsake(input, c, input.Weapon(s.Instead), w) is PickKeepsake given) shown.Add(KeepsakeReason(c, given));
                 if (other != null && LostKeepsake(input, other, w, input.Weapon(s.Instead)) is PickKeepsake theirs) shown.Add(KeepsakeReason(other, theirs));
             }
-            // What it costs, always said.
-            if (s.Kind != PickKind.Sidearm && s.Kind != PickKind.OffHand && c.HoldsBonded)
+            // What it costs, always said (only what goes in hand in place of what they hold).
+            bool inHand = s.Kind == PickKind.Primary || s.Kind == PickKind.Swap;
+            if (inHand && c.HoldsBonded)
             {
                 shown.Add(new PickReason { Kind = PickWhy.Bonded, Text = input.Weapon(c.Bonded)?.Label ?? "", Cost = true });
                 if (c.BondJealous) shown.Add(new PickReason { Kind = PickWhy.Jealous, Text = input.Weapon(c.Bonded)?.Label ?? "", Cost = true });
             }
-            if (s.Kind != PickKind.Sidearm && s.Kind != PickKind.OffHand && c.Hunter && !(w.Ranged && w.HuntingOk))
+            if (inHand && c.Hunter && !(w.Ranged && w.HuntingOk))
                 shown.Add(new PickReason { Kind = PickWhy.NoHunting, Cost = true });
             return shown;
         }
@@ -1079,6 +1166,7 @@ namespace ColonyCouncil
         public static string AskTag(PickSuggestion s)
         {
             var r = s?.Reasons.FirstOrDefault();
+            if (s?.Gap != null) return "kit";
             if (s?.Kind == PickKind.Sidearm) return "sidearm";
             if (s?.Kind == PickKind.OffHand) return "offhand";
             if (r == null) return "better";
@@ -1119,21 +1207,26 @@ namespace ColonyCouncil
 
         /// <summary>
         /// Who a weapon suits best: each colonist who could carry it, with its score for them and its gain over what they
-        /// have now in that kind, the biggest gains first (then the highest scores), at most <paramref name="max"/>.
+        /// have now in that kind, and whether their kit lacks its kind (nothing of it, or nothing in hand: WeaponKitMath.Lacks,
+        /// its gain then over what they have without it); those who lack it and would carry it sensibly first, then the
+        /// biggest gains (then the highest scores), at most <paramref name="max"/>.
         /// </summary>
-        public static List<(PickColonist c, float score, float gain)> WhoShouldCarry(PickInput input, PickWeapon w, int max = 3)
+        public static List<(PickColonist c, float score, float gain, bool lacks)> WhoShouldCarry(PickInput input, PickWeapon w, int max = 3)
         {
-            var list = new List<(PickColonist c, float score, float gain)>();
+            var list = new List<(PickColonist c, float score, float gain, bool lacks)>();
             if (input == null || w?.Rating == null) return list;
             foreach (var c in input.Colonists)
             {
                 if (!c.CanFight) continue;
                 var s = Score(input, c, w);
                 if (!s.HasValue) continue;
-                float before = c.Holds == w.Key ? s.Value : BestOfKind(input, c, w.Ranged) ?? (c.Holds == null ? Unarmed : Current(input, c));
-                list.Add((c, s.Value, s.Value - before));
+                bool lacks = c.Holds != w.Key && WeaponKitMath.Lacks(input, c, w.Ranged);
+                float before = c.Holds == w.Key ? s.Value
+                    : lacks ? WeaponKitMath.Baseline(WeaponKitMath.Main(input, c), w.Ranged)
+                    : BestOfKind(input, c, w.Ranged) ?? (c.Holds == null ? Unarmed : Current(input, c));
+                list.Add((c, s.Value, s.Value - before, lacks && s.Value >= WeaponKitMath.Floor - 1e-4f));
             }
-            return list.OrderByDescending(x => x.gain).ThenByDescending(x => x.score).ThenBy(x => x.c.Key, StringComparer.Ordinal).Take(max).ToList();
+            return list.OrderByDescending(x => x.lacks).ThenByDescending(x => x.gain).ThenByDescending(x => x.score).ThenBy(x => x.c.Key, StringComparer.Ordinal).Take(max).ToList();
         }
     }
 
@@ -1152,8 +1245,13 @@ namespace ColonyCouncil
         /// <summary>The chance at each hourly look in their free time; about a third of the days they have free time, once the waits are over.</summary>
         public const float Chance = 0.12f;
 
-        /// <summary>Whether a suggestion is one a colonist asks for: a weapon from storage in hand, as a sidearm or in the off hand, clearly better.</summary>
-        public static bool Askable(PickSuggestion s) => s != null && s.Kind != PickKind.Swap && s.Gain >= WeaponPickMath.AskThreshold;
+        /// <summary>
+        /// Whether a suggestion is one a colonist asks for: a weapon from storage in hand, as a sidearm or in the off hand,
+        /// clearly better, or filling an empty slot of their kit (anything sensible is better than nothing). Never one already
+        /// in their pack or another's spare.
+        /// </summary>
+        public static bool Askable(PickSuggestion s) =>
+            s != null && (s.Kind == PickKind.Primary || s.Kind == PickKind.Sidearm || s.Kind == PickKind.OffHand) && (s.Gap.HasValue || s.Gain >= WeaponPickMath.AskThreshold);
 
         /// <summary>Whether a trade is one its two propose themselves: one of them gains clearly (<see cref="WeaponPickMath.AskThreshold"/>).</summary>
         public static bool TradeAskable(PickSuggestion s) => s != null && s.Kind == PickKind.Swap && Math.Max(s.Gain, s.OtherGain) >= WeaponPickMath.AskThreshold;

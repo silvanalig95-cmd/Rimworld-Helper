@@ -5,8 +5,9 @@
     A colonist asking for a clearly better weapon lying in storage (Source/ColonyCouncil/Weapons/WeaponAsks.cs), said over
     their head through Speech, one sentence each. Every line has the reason it is said for, so its words are true:
     mechanoids, armoured, crowds, siege, choke (the fights the colony meets), skill, trait, hunting, passion, noble, worker
-    (a doctor or crafter), special (an effect the weapon in hand lacks), sidearm, offhand, or better (simply better for
-    them). The weapon's kind: ranged or melee. {WEAPON} is the weapon's label, {PLACE} where it lies as the map has it ("in
+    (a doctor or crafter), special (an effect the weapon in hand lacks), sidearm, offhand, better (simply better for
+    them), or kit (an empty slot of their kit: no ranged weapon, no melee weapon, or with "offhand" a free off hand; asked
+    for when they don't fill it themselves, often because it is forbidden). The weapon's kind: ranged or melee. {WEAPON} is the weapon's label, {PLACE} where it lies as the map has it ("in
     the stockpile", "on the shelf", "on the outfit stand"). The colony's age decides the words where they differ (a tribe's
     walking metal ones, the middle ages' iron walkers and plate, the industrial and spacer ages' mechanoids and vests), the
     speaker's tone the voice.
@@ -54,6 +55,13 @@
         <li>[better] The {WEAPON} {PLACE} would serve me far better than what I carry.</li>
         <li>[better,lowtech] That {WEAPON} {PLACE} is gathering dust, and I could use it.</li>
         <li>[better,spacer] The {WEAPON} {PLACE} is wasted sitting there while I carry this.</li>
+        <li>[kit,melee] I've nothing for close work, can I take the {WEAPON} {PLACE}?</li>
+        <li>[kit,melee] If they get close I've only my fists, so could I have the {WEAPON} {PLACE}?</li>
+        <li>[kit,ranged] I've nothing to reach them from afar, can I take the {WEAPON} {PLACE}?</li>
+        <li>[kit,ranged] I've nothing that shoots, could I carry the {WEAPON} {PLACE}?</li>
+        <li>[kit,ranged,lowtech] I can't strike before they reach me, so may I take the {WEAPON} {PLACE}?</li>
+        <li>[kit,offhand] My other hand is empty, could I take the {WEAPON} {PLACE} for it?</li>
+        <li>[kit] I've nothing of that kind at all, so may I take the {WEAPON} {PLACE}?</li>
       </plain>
       <warm>
         <li>[mechanoids,industrial|spacer] I'd feel safer facing the mechanoids with the {WEAPON} {PLACE}.</li>
@@ -62,6 +70,8 @@
         <li>[sidearm] Carrying the {WEAPON} {PLACE} at my side would put my mind at ease.</li>
         <li>[better] If no one minds, I'd like to carry the {WEAPON} {PLACE} for us.</li>
         <li>[hunting] With the {WEAPON} {PLACE} I could keep the pot fuller for everyone.</li>
+        <li>[kit,melee] I'd feel safer with the {WEAPON} {PLACE} at my belt, if nobody minds?</li>
+        <li>[kit,ranged] Could I take the {WEAPON} {PLACE}, so I can cover the others from afar?</li>
       </warm>
       <blunt>
         <li>[mechanoids,industrial|spacer] This is useless against mechanoids, so give me the {WEAPON} {PLACE}.</li>
@@ -70,6 +80,8 @@
         <li>[skill] I'm wasted on this, and the {WEAPON} {PLACE} is the better tool.</li>
         <li>[better] Why is the {WEAPON} {PLACE} gathering dust while I carry this?</li>
         <li>[siege] Next time they dig in, I want the {WEAPON} {PLACE} in my hands.</li>
+        <li>[kit,melee] I've nothing for close work, so let me have the {WEAPON} {PLACE}.</li>
+        <li>[kit,ranged] I've nothing to shoot with, so let me have the {WEAPON} {PLACE}.</li>
       </blunt>
       <cheerful>
         <li>[mechanoids,industrial|spacer] Let the mechanoids come, once I've got the {WEAPON} {PLACE}.</li>
@@ -78,6 +90,7 @@
         <li>[better] I've had my eye on the {WEAPON} {PLACE}, and I'd put it to good use.</li>
         <li>[special] The {WEAPON} {PLACE} can do things mine can't, and I want to try it.</li>
         <li>[hunting] The {WEAPON} {PLACE} and a good morning's hunt, that's what I want.</li>
+        <li>[kit] Could I have the {WEAPON} {PLACE}, since I've nothing of the sort yet?</li>
       </cheerful>
       <gloomy>
         <li>[mechanoids,industrial|spacer] The mechanoids will be back, and the {WEAPON} {PLACE} would stop them.</li>
@@ -85,6 +98,7 @@
         <li>[crowds] When the crowd comes again this won't be enough, but the {WEAPON} {PLACE} might.</li>
         <li>[better] I'd stand a better chance with the {WEAPON} {PLACE}, for what it's worth.</li>
         <li>[siege] They'll dig in again, and I'll want the {WEAPON} {PLACE} when they do.</li>
+        <li>[kit] If it comes to a fight I've nothing for it, unless I may take the {WEAPON} {PLACE}.</li>
       </gloomy>
       <cold>
         <li>[mechanoids,industrial|spacer] Against mechanoids the {WEAPON} {PLACE} is the sensible choice.</li>
@@ -92,6 +106,7 @@
         <li>[skill] The {WEAPON} {PLACE} is wasted on anyone with less training than me.</li>
         <li>[better] The {WEAPON} {PLACE} is simply better, and I should be carrying it.</li>
         <li>[choke] For holding the gate, the {WEAPON} {PLACE} is the obvious choice.</li>
+        <li>[kit] I lack a weapon of that kind, and the {WEAPON} {PLACE} would do, if I may.</li>
       </cold>
     </lines>
   </ColonyCouncil.FlavorPoolDef>

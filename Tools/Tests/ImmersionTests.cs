@@ -62,6 +62,8 @@ public static class ImmersionTests
         "Rimfolk_Pool_WeaponAsk",
         // A colonist proposing a trade of weapons to another (Weapons/WeaponAsks.cs).
         "Rimfolk_Pool_WeaponTrade",
+        // A colonist taking a weapon to fill an empty slot of their kit themselves (Weapons/WeaponKitSelf.cs).
+        "Rimfolk_Pool_WeaponKitTake",
         // A colonist and someone from outside the colony doing something together (Outsiders/Outsiders.cs).
         "Rimfolk_Pool_OutsiderSays",
         // Hurts from everyday life (Harm/): the evening drill's call, start, real blow, apology and end; a slip at work, a

@@ -394,7 +394,7 @@ namespace ColonyCouncil
 
         // ---------------- Who should carry this ----------------
 
-        private List<(Pawn p, float rating, float gain)> carriers;
+        private List<(Pawn p, float rating, float gain, bool lacks)> carriers;
         private float whoAt = -10f;
         private WeaponReport whoFor;
 
@@ -422,7 +422,7 @@ namespace ColonyCouncil
             }
             if (carriers == null || carriers.Count == 0) return y;
             y += UiKit.SectionTitle(0f, y, w, "CC_WeaponPick_Card_Who".Translate());
-            foreach (var (p, rating, gain) in carriers)
+            foreach (var (p, rating, gain, lacks) in carriers)
             {
                 if (p == null || p.Destroyed) continue;
                 var row = new Rect(0f, y, w, 24f);
@@ -434,11 +434,13 @@ namespace ColonyCouncil
                 // What they hold now, as it looks.
                 var held = p.equipment?.Primary;
                 if (held != null && !holds) UiKit.ItemPortrait(new Rect(202f, y + 2f, 20f, 20f), held);
+                // One whose kit lacks its kind first: "has no melee weapon (+3.0)".
                 string note = holds ? "CC_WeaponPick_Card_Holds".Translate(p.Named("PAWN")).Resolve()
+                    : lacks ? ("CC_WeaponKit_Card_Lacks_" + (r.Rating.Kind == "ranged" ? "Ranged" : "Melee")).Translate(p.Named("PAWN"), WeaponPickMath.GainText(gain).Named("GAIN")).Resolve()
                     : gain >= WeaponPickMath.Threshold ? "CC_WeaponPick_Card_Better".Translate(WeaponPickMath.GainText(gain).Named("GAIN"), p.Named("PAWN")).Resolve()
                     : gain > 0.05f ? "CC_WeaponPick_Card_Little".Translate(WeaponPickMath.GainText(gain).Named("GAIN")).Resolve()
                     : "CC_WeaponPick_Card_NoBetter".Translate(p.Named("PAWN")).Resolve();
-                UiKit.LabelFit(new Rect(228f, y, w - 228f, 24f), note, gain >= WeaponPickMath.Threshold && !holds ? UiKit.Good : UiKit.Faint, GameFont.Tiny);
+                UiKit.LabelFit(new Rect(228f, y, w - 228f, 24f), note, lacks && !holds ? UiKit.Warn : gain >= WeaponPickMath.Threshold && !holds ? UiKit.Good : UiKit.Faint, GameFont.Tiny);
                 TooltipHandler.TipRegion(new Rect(0f, y, 200f, 24f), "CC_WeaponPick_Card_WhoTip".Translate(p.Named("PAWN")).Resolve());
                 TooltipHandler.TipRegion(new Rect(228f, y, w - 228f, 24f), "CC_WeaponPick_Card_WhoTip".Translate(p.Named("PAWN")).Resolve());
                 if (Widgets.ButtonInvisible(row)) Choose(p);

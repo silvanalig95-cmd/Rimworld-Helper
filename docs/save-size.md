@@ -7,8 +7,8 @@ colony of 20, with the game keeping 30 more people it knows and 5 more each year
 generous guesses; sizes are rough XML sizes. Caps named as constants are read from the source. "Counted under" rows are
 kept inside another record (a journal's lines, a heart's lists) and are already in that record's size.
 
-Saved collections found: 601; modelled: 601; growing without end: 0.
-Rimfolk's part of the save, roughly: **2,615 KB** after a year, **3,090 KB** after two, **3,315 KB** after five.
+Saved collections found: 602; modelled: 602; growing without end: 0.
+Rimfolk's part of the save, roughly: **2,615 KB** after a year, **3,090 KB** after two, **3,316 KB** after five.
 
 | Collection | Rule | Kind | 1 year | 2 years | 5 years | KB at 5 years |
 |---|---|---|---|---|---|---|
@@ -304,6 +304,7 @@ Rimfolk's part of the save, roughly: **2,615 KB** after a year, **3,090 KB** aft
 | `Visitors/Callers.cs:commissions` | a piece the collector is owed, until collected or for 60 days at most; at most Callers.MaxCommissions | cap | 1 | 2 | 3 | 0.6 |
 | `Building/ShelfReserves.cs:entries` | per shelf: the kinds it keeps slots for, with how they're kept | while | 6 | 6 | 6 | 0.5 |
 | `Faith/FaithCouncilTracker.cs:faithEvenings` | each faith's last evening of faith: one per faith, gone after 60 days or with the faith | fixed | 6 | 6 | 6 | 0.5 |
+| `Weapons/WeaponPickBook.cs:fetched` | colonists who filled an empty weapon slot themselves within the day, pruned daily | colonists | 6 | 6 | 6 | 0.5 |
 | `Weapons/WeaponPickBook.cs:notNow` | colonists whose suggestions are set aside, ten days each, the ended pruned daily | colonists | 6 | 6 | 6 | 0.5 |
 | `World/Ledger/LedgerColonies.cs:colonyRecords` | one per colony ever founded once there are two, FoundingMath.MaxRecords at most (the oldest ended ones fold into the history); none in a save of one colony | cap | 1 | 1 | 3 | 0.5 |
 | `Colonies/HomesFounding.cs:foundings` | a fresh start under way, one at a time, let go once its colony stands and what comes after is done (the newcomers chosen or their call let go after 10 days, the first night, the old colony abandoned) | while | 1 | 1 | 1 | 0.5 |
