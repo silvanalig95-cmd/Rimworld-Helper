@@ -106,3 +106,32 @@ back, the floating windows beside the game's tabs and the inspect pane (which is
 in the text fields with the game's key handling, the game's close button drawn at a framed dialog's foot (its room is
 the dialog's own), a dialog's least size where its contents don't scroll (the letter window), a preview's look following
 its link.
+
+## Stage 3: approved (9 November 2026)
+
+The player, on "which other UI aspects could we potentially enhance accordingly?" and the list proposed: "like the
+events, assuming they still pop up the same way like normal game events do? i mean on the right side. story tab sounds
+great. on-screens overall look great now, but if you can improve them further, go ahead! perhaps keep the current setup
+as a backuip somewhere. tooltips on pawns i don't really use i noticed. colonist card would be cool! also like item card
+for everything, although i fear that would take a lot of ressources?"
+
+1. **Event cards.** Rimfolk's letters still arrive on the right side as the game's do (the letter stack, its sounds and
+   colours unchanged). Opening one (dilemmas, Rimfolk's choice letters, its event letters) shows a Rimfolk card in the
+   frame and the kit: a picture of who or what it is about (portraits, the visitor, the thing), the text, each choice as
+   a card with its impact hints, who is involved with their mood and heart, what the council leans to. With "Rimfolk's
+   own look" off, the game's letter window as now.
+2. **The Story tab at a glance**, as the Mood tab: life goal with its progress, wish, quirks, standing in the colony,
+   closest friends and rivals at the top; the whole story below in sections that fold.
+3. **The on-screen panels further refined** in the look (cards, bars, icons, the heart and weapon marks), with the current
+   panels kept as they are behind a setting ("Classic on-screen panels") as the player's backup.
+4. **A colonist card**: one framed window a colonist, portrait, heart's meters, mood, skills and passions, kit (weapons
+   and armour with their ratings), wishes, life goal, standing, side by side; from the colonist bar and Rimfolk's windows.
+5. **An item card for everything**, on the weapon card's pattern (and the apparel card's): the item's picture, what it is
+   good for in Rimfolk (feasts, gifts, treatment, trade, its roles), its tags, the game's own numbers a button away.
+   Built when opened and cached, nothing drawn or computed while it is closed, so it costs the game nothing in play; done
+   by kind of item, food, drink, drugs and medicine first, then materials, art and the rest.
+
+Not taken now: pawn tooltips as cards (the player doesn't use them), the settings window and the docked planners.
+
+Order: 1, 2 and 3 side by side (unrelated areas) as places free up; 4 after the Mood tab's meters; 5 after the apparel
+card.
