@@ -84,7 +84,10 @@ namespace ColonyCouncil
         /// <summary>The badges on one portrait. Called by the game's bar for each colonist it draws (repaint only).</summary>
         public static void Draw(Rect rect, Pawn p, Map map, bool reordering)
         {
-            if (reordering || !Wanted(p) || Event.current == null || Event.current.type != EventType.Repaint) return;
+            if (reordering || Event.current == null || Event.current.type != EventType.Repaint) return;
+            // The heart's thin line under the portrait, with its own setting (the badges' own may be off).
+            if (p != null && !p.Dead && S != null && S.barHeartLine && RimfolkPatches.On) HeartLine(rect, p, map);
+            if (!Wanted(p)) return;
             try
             {
                 var s = S;
@@ -215,6 +218,88 @@ namespace ColonyCouncil
                 case BarBadgeKind.Promise: return b.level >= 1 ? UiKit.Bad : UiKit.Warn;
                 default: return Color.white;
             }
+        }
+
+        // ---------------- The heart's line (once a second per colonist, drawn from the cache) ----------------
+
+        /// <summary>One colonist's heart for the line, as last looked at.</summary>
+        private sealed class LineEntry
+        {
+            public float at = -999f;
+            public float strain, good;
+            public StrainBand band;
+        }
+
+        private static readonly Dictionary<int, LineEntry> lineCache = new Dictionary<int, LineEntry>();
+        private static Game lineGame;
+
+        private static readonly Color LineBacking = new Color(0.05f, 0.05f, 0.06f, 0.7f);
+
+        /// <summary>
+        /// A thin line under the name for the heart: strain in its band's colour (a softer one while it's below strained) and
+        /// the good side in its own under it, both at once when both show; nothing for a heart with neither.
+        /// </summary>
+        private static void HeartLine(Rect rect, Pawn p, Map map)
+        {
+            try
+            {
+                if (!Heart.On) return;
+                var e = LineOf(p);
+                if (e == null) return;
+                float scale = rect.width / BarBadgeMath.BaseBarSize;
+                int n = BarBadgeMath.HeartLine(e.strain, e.good, rect.x, rect.y, rect.width, rect.height, scale, out float top, out float thick, out float strainW, out float goodW);
+                if (n == 0) return;
+                float alpha = Alpha(rect, map);
+                GUI.color = WithAlpha(LineBacking, alpha);
+                GUI.DrawTexture(new Rect(rect.x, top - 1f, rect.width, n * (thick + 1f) + 1f), BaseContent.WhiteTex);
+                float y = top;
+                if (strainW > 0f)
+                {
+                    var c = e.band >= StrainBand.Strained ? HeartView.BandColor(e.band) : new Color(HeartView.StrainedColor.r, HeartView.StrainedColor.g, HeartView.StrainedColor.b, 0.55f);
+                    GUI.color = WithAlpha(c, alpha);
+                    GUI.DrawTexture(new Rect(rect.x, y, strainW, thick), BaseContent.WhiteTex);
+                    y += thick + 1f;
+                }
+                if (goodW > 0f)
+                {
+                    GUI.color = WithAlpha(HeartView.GoodColor, alpha);
+                    GUI.DrawTexture(new Rect(rect.x, y, goodW, thick), BaseContent.WhiteTex);
+                }
+            }
+            catch (Exception ex)
+            {
+                CouncilLog.ErrorOnce("colonist bar heart line", ex);
+            }
+            finally
+            {
+                GUI.color = Color.white;
+            }
+        }
+
+        private static LineEntry LineOf(Pawn p)
+        {
+            var game = Current.Game;
+            if (game != lineGame)
+            {
+                lineCache.Clear();
+                lineGame = game;
+            }
+            if (!lineCache.TryGetValue(p.thingIDNumber, out var e))
+            {
+                if (lineCache.Count > 300) lineCache.Clear();
+                e = new LineEntry();
+                lineCache[p.thingIDNumber] = e;
+            }
+            float now = Time.realtimeSinceStartup;
+            if (now - e.at >= RefreshSeconds || now < e.at)
+            {
+                e.at = now;
+                var h = Heart.Eligible(p) ? Heart.ForView(p) : null;
+                e.strain = h?.strain ?? 0f;
+                e.good = h != null && GoodHeart.On ? h.good : 0f;
+                e.band = HeartMath.BandFor(e.strain);
+            }
+            return e;
         }
 
         // ---------------- Working it out (once a second per colonist) ----------------

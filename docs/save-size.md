@@ -323,12 +323,12 @@ Rimfolk's part of the save, roughly: **2,606 KB** after a year, **3,081 KB** aft
 | `Offices/Offices.cs:elected` | one per office | defs | 12 | 12 | 12 | 0.5 |
 | `PlayOut/PlayOuts.cs:lines` | per play-out | fixed | 4 | 4 | 4 | 0.5 |
 | `PlayOut/PlayOuts.cs:moods` | per play-out | fixed | 4 | 4 | 4 | 0.5 |
+| `Heart/HeartData.cs:goodSpent` | per heart: one per strain source | fixed | 19 | 19 | 19 | 0.5 |
 | `Ailments/AilmentTracker.cs:carrying` | illnesses had now that an ailment may follow; let go when over, known pawns only | known | 6 | 6 | 8 | 0.4 |
 | `Building/LineRoutes.cs:list` | lines being laid again under the walls, one per net, kept only until their new lines stand | fixed | 3 | 3 | 3 | 0.4 |
 | `Calendar/CalendarWatch.cs:pendingCrops` | new crops until their first harvest (crop defs) | fixed | 5 | 5 | 5 | 0.4 |
 | `Decrees/Decrees.cs:active` | decrees in force (3 at most) | fixed | 3 | 3 | 3 | 0.4 |
 | `Decrees/Decrees.cs:requests` | one per decree at most | fixed | 3 | 3 | 3 | 0.4 |
-| `Heart/HeartData.cs:goodSpent` | per heart: one per strain source | fixed | 18 | 18 | 18 | 0.4 |
 | `Scenarios/ScenarioParts.cs:days` | a scenario part's days, fixed by the scenario | fixed | 3 | 3 | 3 | 0.4 |
 | `Ailments/AilmentTracker.cs:budget` | the shared illness budget: one ledger a home (its debts, the game's last disease and skip, the counts of those held back, came all the same and put off, the last record line); gone with the home or once all of it is older than a debt is kept; an older save has none and owes nothing | fixed | 1 | 1 | 1 | 0.4 |
 | `CouncilGameComponent.cs:herds` | one per colony: its herd's leader and line (the line's ids have rows of their own) | fixed | 1 | 1 | 1 | 0.4 |

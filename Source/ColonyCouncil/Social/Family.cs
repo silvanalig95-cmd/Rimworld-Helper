@@ -368,6 +368,15 @@ namespace ColonyCouncil
             {
                 CouncilLog.ErrorOnce("guardians and inheritance death hook", e);
             }
+            // Where they slept, for those who grieve them (Heart/HeartActs.cs).
+            try
+            {
+                HeartActs.Notify_Died(__instance, __state);
+            }
+            catch (Exception e)
+            {
+                CouncilLog.ErrorOnce("the heart's death hook", e);
+            }
         }
     }
 }

@@ -1266,7 +1266,7 @@ Someone from the past, a visiting scholar or a great beast arriving "around a se
     <order>18</order>
     <summary>Strain wears colonists down over days; feelings color their wishes, dreams and moments; four needs show what their life is missing.</summary>
     <tip>A high mood doesn't mean someone is fine. Check their strain after a hard week.</tip>
-    <description>Mood says how a colonist feels today. Strain, from 0 to 100, says how worn down they are: it builds slowly from fighting, pain, losses, bad nights and small letdowns that keep coming, and comfort can't buy it off quickly. Alongside it, each colonist has one or two feelings at a time (grief, fear, pride, joy and others) and four long-term needs of the heart.
+    <description>Mood says how a colonist feels today. Strain, from 0 to 100, says how worn down they are: it builds slowly from fighting, pain, losses, bad nights and small letdowns that keep coming, and comfort can't buy it off quickly. A heavy thing (the death of someone close, being downed, a sickness in the house, a fight going badly) also leaves a lasting weight that rest can't ease strain below, lifting over days. Alongside it, each colonist has one or two feelings at a time (grief, fear, pride, joy and others) and four long-term needs of the heart, and it all shows on the map: in what they do in their free time, what they say, a sign over the head for a strong feeling and a thin line under their name on the colonist bar.
 
 None of this changes how the game decides on mental breaks. Vanilla mood stays the number that counts. Strain reaches the game only through one mood of its own, a small slowdown at work, darker dreams and, at the very end of the rope, a day off; feelings and needs never add mood at all.</description>
     <sections>
@@ -1292,7 +1292,27 @@ None of this changes how the game decides on mental breaks. Vanilla mood stays t
         <heading>What drains it</heading>
         <text>Strain drains by itself in quiet hours (0.15 an hour), faster asleep in a bed at a comfortable temperature (0.6 an hour, 0.25 elsewhere) and during recreation (0.5 an hour). A good mood speeds this up by a quarter, a very good one by half. Joy, pride, hope and calm speed it further; despair and dread slow it. When all four needs of the heart are at 60 or more, it drains 20% faster.
 
-Some things take a chunk off at once: a party (6), a concert or a wedding (5), a festival, feast or celebration (3 to 8, 12 a day at most), a deep talk or a good moment with a friend (1.5 to 3, 6 a day at most), and a good cry (catharsis, 30). Small joys ease it too: what Rimfolk's small good moments weigh beyond their moment, and every small good mood past 12 points in all (3 a day at most). A colonist with a warm bed, free time and a decent mood sheds about 10 a day, so one hard day takes two or three to undo.</text>
+Some things take a chunk off at once: a party (6), a concert or a wedding (5), a festival, feast or celebration (3 to 8, 12 a day at most), a deep talk or a good moment with a friend (1.5 to 3, 6 a day at most), and a good cry (catharsis, 30). Small joys ease it too: what Rimfolk's small good moments weigh beyond their moment, and every small good mood past 12 points in all (3 a day at most). With the heart's good side on, about two thirds of a good thing eases strain and the rest fills the good side, both at once.
+
+Rest eases less the higher strain is: in full up to 30, about seven eighths at 55, 70% from 90 on. A colonist with a warm bed, free time and a decent mood sheds about 10 a day at the low end, so the everyday trickle settles to nothing, but someone worn down eases slowly unless something good happens.</text>
+      </li>
+      <li>
+        <heading>Heavy things</heading>
+        <text>A heavy thing leaves a lasting weight. Strain sinks toward it within a day (2.5 an hour at most), and rest can't ease strain below it. It lifts slowly for some days (0.8 a day, for 3.5 days and a day more for every 12 of weight: about 7 for a friend's death), then faster (7 a day), and sooner with every gathering, good talk, kind word or good cry (15% of what they ease). A second heavy thing on top of a first weighs the heavier in full and 35% of the other, so several together make a real disaster; the weights alone never hold strain above 76, short of the day off. What lasts while it lasts (their own sickness, someone close badly ill, a fight going badly) is lifted to its weight each hour and lifts after it ends, slowly for a day and a half.</text>
+        <table>
+          <li>Heavy thing | Weight</li>
+          <li>A partner's or family member's death, a stillbirth | 58 (55 for a stillbirth), so strained for nine or ten days and worn for the first few</li>
+          <li>Seeing family die, a psychic bond torn | 50</li>
+          <li>A friend's death | 45, so strained for about a week</li>
+          <li>A bonded animal's death | 28</li>
+          <li>Seeing one of the colony die, or knowing of a colonist's death | 16 and 12: barely touched</li>
+          <li>Someone close taken or gone | 10 to 30</li>
+          <li>Being downed | 22</li>
+          <li>Their own sickness that can kill (the plague, the flu, an infection) | 12 to 52, by how far along it is</li>
+          <li>Someone close badly ill (a third of the way or more) | 25 to 50, by how far along</li>
+          <li>A fight at home with some of the colony down | 12, and 8 for each one down (36 at most)</li>
+        </table>
+        <after>Iron will and a steady nature take less of each, as they do strain; a psychopath takes nothing from a death. The strength setting scales the weights as it scales strain. The strain mood's tooltip and the Heart section say what weighs on them and how heavy it is.</after>
       </li>
       <li>
         <heading>The bands</heading>
@@ -1302,8 +1322,8 @@ Some things take a chunk off at once: a party (6), a concert or a wedding (5), a
           <li>30 to 54 | Strained | -3 mood, darker dreams</li>
           <li>55 to 74 | Worn down | -5 mood, 5% slower work, more nightmares; with Hurts from everyday life on, a sharp word in Rimfolk's own moments comes to blows a quarter more often</li>
           <li>75 to 100 | Near breaking | -8 mood, 10% slower work, many nightmares; from 85, a day off may come; a sharp word comes to blows half again as often</li>
-          <li>None, good side 20 to 64 | Steady from 20, in good heart from 45 | Steady +2 mood; in good heart +3, brighter dreams and a quicker recovery from strain (the heart's good side, a page of its own)</li>
-          <li>None, good side 65 to 100 | In high spirits | +5 mood in place of +3, brighter dreams still, a quicker recovery, and now and then an inspiration or a kind word for someone close</li>
+          <li>Beside any of these, good side 20 to 64 | Steady from 20, in good heart from 45 | Steady +2 mood; in good heart +3, brighter dreams and a quicker recovery from strain (the heart's good side, a page of its own)</li>
+          <li>Beside any of these, good side 65 to 100 | In high spirits | +5 mood in place of +3, brighter dreams still, a quicker recovery, and now and then an inspiration or a kind word for someone close</li>
         </table>
       </li>
       <li>
@@ -1376,7 +1396,13 @@ To head it off, use days of rest: a decree that slows everyone's work by 10% for
 
 Settings: feelings and strain on or off on the What's on page, the day off and how quickly strain builds on the How hard page, the inspector line on How you're told.
 
-Strain has another side: when it is at nothing and good things keep coming, the heart fills on the other side: steady, in good heart and in high spirits. It has a page of its own, "the heart's good side", and a second meter in the Heart section.</text>
+Strain has another side, growing beside it: when good things keep coming, the heart fills on the other side (steady, in good heart and in high spirits), slower under strain but never shut, so someone worn down by a plague can still be in good heart for their friends. It has a page of its own, "the heart's good side", and a second meter in the Heart section; the inspector line, RimHUD, the card and the Moods page show both sides at once ("Heart: worn down, in good heart · grieving").</text>
+      </li>
+      <li>
+        <heading>On the map</heading>
+        <text>How a colonist is shows in what they do, now and then, in their free time or at a break in ordinary work, each with a line said over their head. Strained, they sit a while staring at nothing, or stand just outside the colony looking out. Worn down, they leave ordinary work for a few minutes to stand outside, pace their room when awake at night, or say a short word at someone. In good heart they hum at work or stay at the table to talk after a meal; in high spirits they sing at work and dance at a gathering. A strong feeling acts too: grief visits the grave or sits where the one lost slept, fear keeps them indoors near someone after dark, anger says a sharp word or slams a door, love sits beside a partner, homesickness talks of home at the evening's fire, joy goes to share it with a friend. Never in danger, drafted, downed, hungry or exhausted, never taking anyone from a fire, a patient, a prisoner, a child or a hunt; one act a colonist in 16 hours at most and one in the colony in 3.
+
+They also say how they feel when strain or the good side turns and now and then while it holds ("I keep setting a place for Ana."); a strong feeling shows as a small sign over the head (a tear for grief, a bolt for anger, a heart for love), as the game shows a thought; a thin line under each name on the colonist bar shows strain in its band's colour and the good side in green, both at once when both; and a message says when someone becomes worn down or near breaking (with why), comes back from it, or is in good heart. Each has its own setting on the How hard page (the bar's line with the colonist bar's).</text>
       </li>
     </sections>
     <keywords><li>strain</li><li>stress</li><li>feelings</li><li>emotions</li><li>grief</li><li>fear</li><li>burnout</li><li>worn</li><li>breaking</li><li>rest</li><li>belonging</li><li>purpose</li><li>needs</li><li>heart</li></keywords>

@@ -9,19 +9,20 @@ namespace ColonyCouncil
     /// <summary>
     /// The heart's good side (the player's request of 6 November 2026: "there should perhaps also be a counterweight/side
     /// to strain, right? If they have positive impacts over an extended period"). One heart with two sides, not a new
-    /// system: strain on one side, the good side on the other (0 to 100 each), never both at once. Hardship spends the
-    /// good side before strain builds (HeartMath.Spend, half a point a point: someone in good heart takes a knock in their
-    /// stride); good things ease strain before they fill it (what a gathering, a talk or a small joy eases beyond the
-    /// strain they have). It fills slowly, only while strain is at nothing, within daily caps, mostly from what can't be
-    /// bought: friends close by and purpose (the heart's needs well met, by the hour), deeds the colony speaks well of and
+    /// system: strain on one side, the good side on the other (0 to 100 each), both at once (the player's change of 9
+    /// November 2026: "pawns should still be happy about certain things even if others go wrong"). Hardship spends part of
+    /// the good side as a cushion and builds strain with the rest (HeartMath.Spend: someone in good heart takes a knock
+    /// better); good things ease strain and fill the good side together, a share each (HeartFeltMath.Settle). It fills
+    /// slowly, at any strain but slower the more there is (HeartFeltMath.Growth), within daily caps, mostly from what can't
+    /// be bought: friends close by and purpose (the heart's needs well met, by the hour), deeds the colony speaks well of and
     /// a life goal moving (once a day), gatherings, good talks and a run of small joys; the game's comforts (a fine room, a
     /// fine meal) only a little. It fades slowly.
     /// <para>
     /// Its bands are steady (from 20), in good heart and in high spirits, as the player approved them: each a small good
-    /// mood (+2, +3, +5: one situational thought reading the band, like strain's); in good heart and in high spirits also
-    /// brighter dreams and a quicker recovery from strain for someone in good heart lately, and in high spirits, now and
-    /// then, a release (GoodRelease). Below steady there is nothing to speak of yet. No work speed. With its setting off
-    /// nothing fills, the bands give nothing and hardship builds strain as before. Old saves start at nothing.
+    /// mood (+2, +3, +5: one situational thought reading the band, like strain's, and beside it); in good heart and in high
+    /// spirits also brighter dreams and a quicker recovery from strain for someone in good heart lately, and in high
+    /// spirits, now and then, a release (GoodRelease). Below steady there is nothing to speak of yet. No work speed. With its
+    /// setting off nothing fills, the bands give nothing and hardship builds strain as before. Old saves start at nothing.
     /// </para>
     /// </summary>
     public static class GoodHeart
@@ -38,7 +39,7 @@ namespace ColonyCouncil
         // ---------------- Spending and filling ----------------
 
         /// <summary>
-        /// Hardship from <paramref name="source"/> (after its caps): the good side covers it first, on the record by its
+        /// Hardship from <paramref name="source"/> (after its caps): the good side cushions part of it, on the record by its
         /// source; what is left is returned, to build strain.
         /// </summary>
         public static float Spend(PawnHeart h, StrainSource source, float hardship)
@@ -51,12 +52,13 @@ namespace ColonyCouncil
         }
 
         /// <summary>
-        /// Fills the good side from <paramref name="source"/>, only while strain is at nothing, within the source's cap and
-        /// the day's cap (on a day the hour hasn't reached yet, yesterday's counts don't hold it back). Returns what was added.
+        /// Fills the good side from <paramref name="source"/>, at any strain, within the source's cap and the day's cap (on a
+        /// day the hour hasn't reached yet, yesterday's counts don't hold it back). What is filled has already been slowed by
+        /// strain (HeartFeltMath.Settle for good things, <see cref="Growing"/> for the rest). Returns what was added.
         /// </summary>
         public static float Fill(PawnHeart h, GoodSource source, float amount, int now)
         {
-            if (!On || h == null || amount <= 0f || h.strain > 0f) return 0f;
+            if (!On || h == null || amount <= 0f) return 0f;
             h.EnsureLists();
             int i = (int)source;
             bool today = h.day == now / GenDate.TicksPerDay;
@@ -72,8 +74,9 @@ namespace ColonyCouncil
             return added;
         }
 
-        /// <summary>What a gathering, a talk or a joy eased beyond the strain they had: the good side takes its share of it.</summary>
-        public static float Overflow(PawnHeart h, GoodSource source, float beyond, int now) => Fill(h, source, beyond * HeartMath.GoodShare(source), now);
+        /// <summary>Fills it from friends, purpose, a deed or a life goal: slower the more strain there is (HeartFeltMath.Growth), never shut.</summary>
+        public static float Growing(PawnHeart h, GoodSource source, float amount, int now) =>
+            h == null ? 0f : Fill(h, source, amount * HeartFeltMath.Growth(h.strain), now);
 
         /// <summary>Off: the good side is gone at once (nothing builds, the bands give nothing).</summary>
         private static void Clear(PawnHeart h)
@@ -97,8 +100,8 @@ namespace ColonyCouncil
             }
             if (h.needs != null && h.needs.Length == PawnHeart.NeedCount)
             {
-                Fill(h, GoodSource.Belonging, HeartMath.NeedFillPerHour(h.needs[(int)HeartNeed.Belonging].value) * hours, now);
-                Fill(h, GoodSource.Purpose, HeartMath.NeedFillPerHour(h.needs[(int)HeartNeed.Purpose].value) * hours, now);
+                Growing(h, GoodSource.Belonging, HeartMath.NeedFillPerHour(h.needs[(int)HeartNeed.Belonging].value) * hours, now);
+                Growing(h, GoodSource.Purpose, HeartMath.NeedFillPerHour(h.needs[(int)HeartNeed.Purpose].value) * hours, now);
             }
             h.good = HeartMath.Faded(h.good, hours);
             if (h.good < 0.05f) h.good = 0f;
@@ -143,7 +146,7 @@ namespace ColonyCouncil
                         known = true;
                         break;
                     }
-                if (known) Fill(h, GoodSource.Deeds, HeartMath.DeedFillFor(d.size), now);
+                if (known) Growing(h, GoodSource.Deeds, HeartMath.DeedFillFor(d.size), now);
             }
         }
 
@@ -166,7 +169,7 @@ namespace ColonyCouncil
             {
                 return;
             }
-            if (goal.startedTick == h.goalTick && progress > h.goalProgress + 0.005f) Fill(h, GoodSource.Purpose, HeartMath.GoalMovedFill, now);
+            if (goal.startedTick == h.goalTick && progress > h.goalProgress + 0.005f) Growing(h, GoodSource.Purpose, HeartMath.GoalMovedFill, now);
             h.goalTick = goal.startedTick;
             h.goalProgress = progress;
         }
@@ -238,11 +241,22 @@ namespace ColonyCouncil
             sb.Append("\n\n").Append(built == null ? "CC_Good_NothingBuilt".Translate().ToString() : "CC_Good_BuiltBy".Translate(built.Named("WHAT")).Resolve());
             string spent = SpentDetailed(h, 3);
             if (spent != null) sb.Append("\n").Append("CC_Good_SpentBy".Translate(spent.Named("WHAT")).Resolve());
-            if (h.strain > 0f) sb.Append("\n").Append("CC_Good_WaitsForStrain".Translate(p.Named("PAWN")).Resolve());
+            string slower = SlowerLine(p, h);
+            if (slower != null) sb.Append("\n").Append(slower);
             if (!h.releaseWhy.NullOrEmpty() && Find.TickManager.TicksGame - h.lastReleaseTick < GenDate.TicksPerDay * 15)
                 sb.Append("\n\n").Append("CC_Good_LastRelease".Translate(h.releaseWhy.Named("WHAT"), Ago(h.lastReleaseTick).Named("WHEN")).Resolve());
             sb.Append("\n\n").Append("CC_GoodSide_Explain".Translate().ToString().Colorize(ColoredText.SubtleGrayColor));
             return sb.ToString();
+        }
+
+        /// <summary>
+        /// While strain is on them, how much slower the good side grows ("It grows at 60% of its pace while strain is on
+        /// her."); null below where it slows.
+        /// </summary>
+        public static string SlowerLine(Pawn p, PawnHeart h)
+        {
+            if (h == null || h.strain <= HeartFeltMath.GrowthFullBelow) return null;
+            return "CC_Felt_GoodSlower".Translate(HeartFeltMath.Growth(h.strain).ToStringPercent().Named("PACE"), p.Named("PAWN")).Resolve();
         }
 
         /// <summary>"just now", "2 days ago".</summary>

@@ -5,6 +5,17 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## The heart is felt: strain that stays, joy beside it, and both shown on the map
+
+*9 November 2026, version 0.181.0*
+
+- Heavy things weigh for days: losing a partner, kin or a friend, being downed, a deadly sickness of their own or of someone close, a fight at home with colonists down; rest no longer washes it away overnight, and strain eases less while it runs high.
+- The good side grows beside strain, more slowly the harder things are, so someone worn down by the plague can still be in good heart thanks to their friends; both moods count at once.
+- Colonists show how they are: sitting a while or looking out when strained, pacing at night or a sharp word when worn, humming at work or lingering at the table in good heart, singing and dancing in high spirits, each with a word of their own.
+- Strong feelings act: grief at the grave or by the empty bed, fear seeking company indoors after dark, anger slamming a door, love sitting with a partner, homesickness talking of home by the fire, joy shared with a friend.
+- A sign over the head shows a strong feeling, a thin line under each name on the colonist bar shows strain and the good side, and a message says when someone is worn down or in good heart, and why.
+- A calm colony comes to be steady in about a week and in good heart in two or three; each new sign, act and message has its own setting.
+
 ## Rimfolk's illnesses share the game's rate more gently
 
 *9 November 2026, version 0.180.0*

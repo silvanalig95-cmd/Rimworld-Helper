@@ -12,15 +12,15 @@
     <label>the heart's good side</label>
     <category>Council</category>
     <order>18</order>
-    <summary>When strain is at nothing and good things keep coming, the heart fills on the other side: in good heart, in high spirits.</summary>
+    <summary>When good things keep coming, the heart fills on the other side, even under strain: in good heart, in high spirits.</summary>
     <tip>Friends close by and work that means something fill it; a fine room only a little.</tip>
-    <description>Strain has another side. When a colonist has no strain at all and good things keep coming over days, the heart fills on the other side: first steady, then in good heart, then in high spirits, each with a good mood of its own. It is one heart, never both at once: hardship spends the good side before any strain builds, and good things ease strain before they fill the good side.
+    <description>Strain has another side. When good things keep coming over days, the heart fills on the other side: first steady, then in good heart, then in high spirits, each with a good mood of its own. It is one heart with both sides at once: someone can be worn down by the plague and still in good heart for their friends. It grows slower the more strain there is, but never stops; a hard knock spends part of it as a cushion and builds strain with the rest, and good things ease strain and fill the good side together.
 
 It fills slowly and mostly from what can't be bought: friends close by, a purpose, deeds the colony speaks well of, gatherings, good talks and a run of small joys. The comforts of home count only a little, so a rich colony doesn't simply buy it. A save from before it starts at nothing.</description>
     <sections>
       <li>
         <heading>What fills it</heading>
-        <text>Only while strain is at nothing, at most 4 a day in all, each kind of good within a cap of its own.</text>
+        <text>At any strain, slower the more there is (in full up to 10, about four fifths at 30, half at 60, two fifths near breaking and 30% from 85), at most 4 a day in all, each kind of good within a cap of its own. Under strain, about a third of what a gathering, a talk or a joy brings goes to the good side at the share below and the rest eases strain; with no strain to ease, all of it.</text>
         <table>
           <li>What | How much</li>
           <li>Friends close by (belonging well met, 60 or more) | 0.035 to 0.07 an hour (1.2 a day at most)</li>
@@ -34,7 +34,7 @@ It fills slowly and mostly from what can't be bought: friends close by, a purpos
       </li>
       <li>
         <heading>What spends it</heading>
-        <text>Hardship spends it before any strain builds: a fight, a loss, pain, bad nights, hunger, small letdowns that keep coming, each half a point for each point of strain it would have built, so someone in good heart takes a hard knock in their stride. Only once it is gone does strain build. It also fades slowly, about 3% a day, so it needs good days to keep it.</text>
+        <text>Hardship spends part of it as a cushion: a fight, a loss, pain, bad nights, hunger, small letdowns that keep coming. For each point of strain they would build, 35% comes off the good side instead (a point for a point, as far as it goes) and the rest builds strain, so someone in good heart takes a hard knock better and keeps part of their good side through it. It also fades slowly, about 3% a day, so it needs good days to keep it.</text>
       </li>
       <li>
         <heading>The bands</heading>
@@ -52,7 +52,7 @@ It fills slowly and mostly from what can't be bought: friends close by, a purpos
       </li>
       <li>
         <heading>Where to see it</heading>
-        <text>The Mood tab's Heart section has a second meter, Good heart, with what filled it and what spent it lately and the last time it overflowed. The inspector line reads like "Heart: in good heart · proud" from steady on. The colonist's card says what filled it, and the council's Moods page counts who is steady, in good heart and in high spirits.
+        <text>The Mood tab's Heart section has a second meter, Good heart, with what filled it and what spent it lately, how much slower it grows under strain, and the last time it overflowed. The inspector line reads like "Heart: in good heart · proud" from steady on, and with both sides at once like "Heart: worn down, in good heart · grieving". The colonist's card says both, the council's Moods page counts who is steady, in good heart and in high spirits and shows it beside anyone strained, and the colonist bar's line shows it in green under the name. A message says when someone is in good heart or in high spirits, and what filled it.
 
 Its setting is on the How hard page, beside how fast strain builds and the day off; the heart's own is on What's on. Turned off, nothing fills it and the bands give nothing; strain works as it always has.</text>
       </li>

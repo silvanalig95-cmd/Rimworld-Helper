@@ -468,6 +468,8 @@ wishPh.UnionWith(new[] { "FAMILY", "LASTA", "LASTB" });
 wishPh.Add("RELATIVE");
 // Quiet troubles (Setbacks/Troubles.cs): the body part and the old injury or complaint that aches, and a rival's honor.
 wishPh.UnionWith(new[] { "PART", "WHAT", "HONOR" });
+// The heart, felt (Heart/HeartFelt.cs): the one close to them who is badly ill.
+wishPh.Add("SICK");
 // Letters to the neighbours (World/NeighbourLetters.cs): the colonist who wrote, the neighbour's town, the help asked for.
 wishPh.UnionWith(new[] { "WRITER", "TOWN", "HELP" });
 // Conversations with outsiders (Defs/OutsiderTalkDefs/, filled from what is true now by the facts service, Text/Facts/).

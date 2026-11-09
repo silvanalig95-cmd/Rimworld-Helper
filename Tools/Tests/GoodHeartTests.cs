@@ -4,12 +4,12 @@ using ColonyCouncil;
 
 /// <summary>
 /// The heart's good side (Heart/HeartMath.cs "The good side", Heart/GoodHeart.cs, GoodRelease.cs; the player's request
-/// of 6 November 2026): one heart with two sides, never both at once; hardship spends the good side before strain
-/// builds; it fills slowly within daily caps, mostly from what can't be bought, the comforts only a little; it fades
-/// slowly; its bands as the player approved them (steady from 20, in good heart, in high spirits) each give a small good
-/// mood (+2, +3, +5), the upper two brighter dreams and a quicker recovery, and in high spirits now and then a release
-/// through the game's own inspirations or a kind word face to face; below steady, nothing yet. No work speed; a setting,
-/// on by default; old saves start at nothing.
+/// of 6 November 2026): one heart with two sides, both at once since the player's change of 9 November 2026 (the rules of
+/// that change are in HeartFeltTests); hardship spends part of the good side as a cushion; it fills slowly within daily
+/// caps, mostly from what can't be bought, the comforts only a little; it fades slowly; its bands as the player approved
+/// them (steady from 20, in good heart, in high spirits) each give a small good mood (+2, +3, +5), the upper two brighter
+/// dreams and a quicker recovery, and in high spirits now and then a release through the game's own inspirations or a kind
+/// word face to face; below steady, nothing yet. No work speed; a setting, on by default; old saves start at nothing.
 /// </summary>
 public static class GoodHeartTests
 {
@@ -92,22 +92,24 @@ public static class GoodHeartTests
         // ---------- What spends it ----------
         good = 30f;
         float rest = HeartMath.Spend(10f, ref good, out float spent);
-        C(rest == 0f && Near(spent, 10f * HeartMath.SpendShare) && Near(good, 30f - spent), "a hard knock spends it before any strain builds");
-        good = 3f;
+        C(Near(rest, 10f * (1f - HeartMath.CushionShare)) && Near(spent, 10f * HeartMath.CushionShare * HeartMath.SpendShare) && Near(good, 30f - spent),
+            "a hard knock spends part of it as a cushion, and builds strain with the rest");
+        good = 1f;
         rest = HeartMath.Spend(10f, ref good, out spent);
-        C(good == 0f && Near(spent, 3f) && Near(rest, 10f - 3f / HeartMath.SpendShare), "what it can't cover builds strain");
+        C(good == 0f && Near(spent, 1f) && Near(rest, 10f - 1f / HeartMath.SpendShare), "the cushion goes as far as the good side does");
         good = 0f;
         C(HeartMath.Spend(10f, ref good, out spent) == 10f && spent == 0f, "with nothing on the good side, strain builds as before");
         good = 20f;
         C(HeartMath.Spend(float.NaN, ref good, out spent) == 0f && HeartMath.Spend(-2f, ref good, out spent) == 0f && good == 20f, "nothing spends nothing");
-        C(HeartMath.SpendShare > 0f && HeartMath.SpendShare <= 1f, "taken in their stride: never more than a point a point");
-        // Never both at once: whatever is left of the good side, strain gets nothing.
+        C(HeartMath.SpendShare > 0f && HeartMath.SpendShare <= 1f && HeartMath.CushionShare > 0f && HeartMath.CushionShare < 1f,
+            "never more than a point a point, and never all of the hardship");
+        // Both at once: whatever is left of the good side, strain still builds from a hard knock.
         for (float g = 0f; g <= 50f; g += 5f)
             for (float hard = 0.5f; hard <= 40f; hard += 3.5f)
             {
                 float gg = g;
                 float r = HeartMath.Spend(hard, ref gg, out _);
-                C(gg <= 0f || r == 0f, $"one side at a time ({g}, {hard})");
+                C(r > 0f && r <= hard && gg >= 0f, $"both sides at once ({g}, {hard})");
             }
 
         // ---------- It fades slowly ----------
@@ -150,11 +152,13 @@ public static class GoodHeartTests
         C(Regex.IsMatch(logic, @"public static float Build\(Pawn p, StrainSource source, float raw, string why = null\)[\s\S]{0,1200}added = GoodHeart\.Spend\(h, source, added\);"),
             "so does hardship from outside the hour");
         C(logic.Contains("if (amount > 0f) amount = GoodHeart.Spend(h, buildSource, amount);"), "and strain added by an answer");
-        C(Regex.IsMatch(logic, @"float eased = Mathf\.Min\(left, amount\);[\s\S]{0,700}h\.strain = 0f;\s*GoodHeart\.Overflow\(h, \(GoodSource\)i, amount - eased, now\)"),
-            "good things ease strain first, and what is beyond fills the good side");
-        C(logic.Contains("if (joys > eased) used += GoodHeart.Overflow(h, GoodSource.Joys, joys - eased, now) / HeartMath.GoodShare(GoodSource.Joys);")
+        C(Regex.IsMatch(logic, @"float left = HeartFeltMath\.Settle\(h\.strain \+ built, floor, rest, catharsis, goodThings, settled, goodSide\);[\s\S]{0,1200}GoodHeart\.Fill\(h, \(GoodSource\)i, settled\.toGood\[i\], now\)"),
+            "good things ease strain and fill the good side together");
+        C(logic.Contains("float left = HeartFeltMath.Settle(h.strain, 0f, 0f, 0f, joysTmp, settledJoys, good);")
           && logic.Contains("JoysWithinCap(h, Mathf.Min(joys, used), why);"), "a small joy from outside the hour the same way, its cap counting what it eased or filled");
-        C(Regex.IsMatch(goodCode, @"public static float Fill\([^)]*\)\s*\{\s*if \(!On \|\| h == null \|\| amount <= 0f \|\| h\.strain > 0f\) return 0f;"), "it fills only while strain is at nothing");
+        C(Regex.IsMatch(goodCode, @"public static float Fill\([^)]*\)\s*\{\s*if \(!On \|\| h == null \|\| amount <= 0f\) return 0f;"), "it fills at any strain");
+        C(goodCode.Contains("Fill(h, source, amount * HeartFeltMath.Growth(h.strain), now)") && goodCode.Contains("Growing(h, GoodSource.Belonging,")
+          && goodCode.Contains("Growing(h, GoodSource.Deeds,"), "friends, purpose and deeds fill it slower under strain");
         C(goodCode.Contains("public static bool On => Heart.On && (S?.heartGoodSide ?? true);"), "with the heart and its own setting");
         C(Regex.IsMatch(goodCode, @"if \(!On\)\s*\{\s*if \(h\.good > 0f \|\| h\.goodLately > 0f\) Clear\(h\);"), "off: nothing builds, and what there was is gone");
         C(Regex.IsMatch(goodCode, @"int since = h\.deedTick;\s*h\.deedTick = now;[\s\S]{0,200}since < 0\) return;"), "the first look at their deeds only takes note (an old save's deeds bring nothing)");
@@ -205,7 +209,7 @@ public static class GoodHeartTests
         C(keyed["CC_Settings_HeartGoodSide_Tip"].Contains("(+2, +3 and +5)"), "the setting's tooltip says the three moods");
         // Steady shows like the other two: the inspector line and RimHUD, the meter's line, the card, the Moods page's count.
         string view = Code("Heart/HeartView.cs");
-        C(view.Contains("bool goodSide = good != GoodBand.None;") && view.Contains("h.hudStrain = good != GoodBand.None") && view.Contains("m.goodLine = good != GoodBand.None ?"),
+        C(view.Contains("bool goodSide = good != GoodBand.None;") && view.Contains("string goodValue = good != GoodBand.None ?") && view.Contains("m.goodLine = (good != GoodBand.None ?"),
             "the inspector line, RimHUD and the meter's line read the good side from steady");
         C(goodCode.Contains("if (band == GoodBand.None) return null;") && goodCode.Contains("HeartMath.GoodBandFor(h.good) : GoodBand.None;"), "the card's line from steady; off, nothing yet");
         C(view.Contains("int steady = list.Count(x => GoodHeart.Band(x.h) == GoodBand.Steady);") && keyed["CC_GoodSide_ColonySummary"].Contains("{STEADY} steady"),

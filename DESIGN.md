@@ -543,16 +543,18 @@ systems (wishes, life goals, dreams, decrees, dilemmas, moments, the UI). With t
 stat part contribute nothing and the hooks return 1.
 
 - **Strain** (0 to 100) is a slow reservoir. Each colonist is looked at once an hour, a tenth of the colony at a time.
-  Sources build it (18, small letdowns among them: see "One heart" below) with their own daily caps and a cap of about 25 a day for everything; new memories count once, when
-  they're new (a renewed memory, like a second cold night, counts again). Drains are slow and steady (sleep, quiet hours,
-  recreation) with chunks for gatherings, good talks and catharsis. Small decaying totals per source and per kind of
+  Sources build it (19: small letdowns among them, see "One heart" below, and heavy things sinking in toward their
+  weight, see "The heart, felt") with their own daily caps and a cap of about 25 a day for everything; new memories count
+  once, when they're new (a renewed memory, like a second cold night, counts again). Drains are slow and steady (sleep,
+  quiet hours, recreation), less the higher strain is (in full up to 30, 70% from 90) and never below the lasting weight
+  of a heavy thing, with chunks for gatherings, good talks and catharsis. Small decaying totals per source and per kind of
   relief say what built it and what eased it lately. The pure math (bands, caps, trait factors, episode odds) is in
   `HeartMath`, covered by the tests.
 - **Bands** give the only direct effects: a mood of -3/-5/-8, work speed -5%/-10%, darker dreams.
-- **The good side** is strain's other side, never both at once (see "The heart's good side" below): it fills slowly
-  while strain is at nothing, hardship spends it first, and its bands (steady, in good heart, in high spirits) give a
-  second situational thought of the same kind (+2/+3/+5), the upper two brighter dreams and a quicker recovery, never
-  work speed.
+- **The good side** is strain's other side, both at once since the player's change of 9 November 2026 (see "The
+  heart's good side" and "The heart, felt" below): it fills slowly at any strain, slower the more there is, hardship
+  spends part of it as a cushion, and its bands (steady, in good heart, in high spirits) give a second situational thought
+  of the same kind (+2/+3/+5) beside strain's, the upper two brighter dreams and a quicker recovery, never work speed.
 - **Episodes** are the pressure valve, not a punishment: a custom mental state on vanilla's hide-in-room class, started
   silently by the heart (its own letter) and never by the game's break picker, since no MentalBreakDef names it. A think
   tree inserted after the mental states gives it its behavior. Strict conditions (no danger, enough hands, cooldowns,
@@ -667,16 +669,22 @@ The player's request of 6 November 2026, approved as proposed ("there should per
 strain, right? If they have positive impacts over an extended period"): one heart with two sides, not a new system.
 `Heart/GoodHeart.cs` (the rules in `HeartMath`, "The good side"), `GoodRelease.cs`, `HeartCard.cs`.
 
-- **One axis in effect.** The good side (0 to 100, `PawnHeart.good`) and strain are never both above nothing.
-  Hardship spends the good side before strain builds (`HeartMath.Spend`): each point of strain a source would build,
-  after its own caps, spends half a point of the good side (`SpendShare`, someone in good heart takes a knock in their
-  stride), and strain builds only from what is left once it's gone; the hour's sources, a moment's letdown from outside
-  the hour (`HeartLogic.Build`) and an answer's strain (`HeartLogic.Change`) alike, on its record by strain's own
-  source (`goodSpent`). Good things ease strain before they fill it: the hour applies rest first (sleep, quiet,
-  recreation, the decree), then each good thing in turn (gatherings, good talks, small joys, the pile of small good
-  moods), each easing what strain is left, and what is beyond fills the good side at its share (`GoodShare`: 45%, 60%,
-  60% and 15%). Rest never fills it.
-- **What fills it, slowly, mostly what can't be bought.** Only while strain is at nothing (`GoodHeart.Fill`), within a
+- **Both sides at once** (the player's change of 9 November 2026, replacing the one axis it shipped with: "the good
+  side should also be able to develop at the same time, not only when strain is at 0"). The good side (0 to 100,
+  `PawnHeart.good`) and strain may both stand above nothing, and both band moods apply at once. Hardship spends part of
+  the good side as a cushion (`HeartMath.Spend`): of each point of strain a source would build, after its own caps,
+  `CushionShare` (35%) comes off the good side instead, a point for a point (`SpendShare`) as far as it goes, and the
+  rest builds strain; the hour's sources, the weight sinking in, a moment's letdown from outside the hour
+  (`HeartLogic.Build`) and an answer's strain (`HeartLogic.Change`) alike, on its record by strain's own source
+  (`goodSpent`). (It shipped spending the good side first, half a point a point, strain building only once it was gone.)
+  Good things ease strain and fill the good side together (`HeartFeltMath.Settle`): the hour applies rest first (sleep,
+  quiet, recreation, the decree), then each good thing in turn (gatherings, good talks, small joys, the pile of small good
+  moods); while there is strain, `GoodSplit` (35%) of each goes to the good side at its share (`GoodShare`: 45%, 60%, 60%
+  and 15%) and the rest eases strain, and what can't ease anything (strain gone) goes to the good side too. Rest never
+  fills it.
+- **What fills it, slowly, mostly what can't be bought.** At any strain, slower the more there is
+  (`HeartFeltMath.Growth`: in full up to 10, 30% from 85; good things through `Settle`, the rest through
+  `GoodHeart.Growing`; it shipped filling only while strain was at nothing), within a
   cap a day for each source and 4 a day in all (`GoodCap`, `GoodDailyCap`; `goodToday`, saved): friends close by and a
   purpose (the heart's needs of belonging and purpose well met, 60 or more: 0.035 to 0.07 an hour each, 1.2 a day),
   a life goal moving on since yesterday (0.6 at the day's turn: `goalTick`, `goalProgress`), a deed of theirs the colony
@@ -711,11 +719,12 @@ strain, right? If they have positive impacts over an extended period"): one hear
   going when chosen; if the two never meet within ten hours, it doesn't come. A small gift and a hand with the work
   weren't built: the game has no honest way to show either on the map.
 - **Words** in every age: the heart's page (the Mood tab's Heart section) has a second meter, "Good heart", with what
-  filled it ("friends close by (+6), a purpose (+4)") and what spent it ("fighting (-6)"), a line while strain holds,
-  and the last release; the inspector line and RimHUD read the good band from steady ("Heart: in good heart ·
-  proud"); the strain meter's tooltip names the other side; the colonist's card (the Now slot) says the band and what
-  filled it; the council's Moods page counts who is steady, in good heart and in high spirits; the band mood's tooltip
-  says what filled it. Keys in `Rimfolk_GoodHeart.xml`, the bands' own in `Rimfolk_GoodHeart_Bands.xml` (the first
+  filled it ("friends close by (+6), a purpose (+4)") and what spent it ("fighting (-6)"), how much slower it grows while
+  strain is on them, and the last release; the inspector line and RimHUD read both sides at once ("Heart: worn down, in
+  good heart · grieving"; the good band alone from steady while strain is steady); the strain meter's tooltip names the
+  other side; the colonist's card (the Now slot) says both, strain's band and why and the good side's band and what filled
+  it; the council's Moods page counts who is steady, in good heart and in high spirits and shows the good band beside
+  anyone strained; the band mood's tooltip says what filled it. Keys in `Rimfolk_GoodHeart.xml`, the bands' own in `Rimfolk_GoodHeart_Bands.xml` (the first
   file's band words, explanation and count left unused); the Almanac page "the heart's good side"
   (`Almanac_GoodHeart.xml`), the heart's page with its bands in the table.
 - **The setting** "The heart's good side" (`heartGoodSide`, on), on the How hard page beside how fast strain builds and the day off (the heart's own switch is on What's on).
@@ -725,6 +734,95 @@ strain, right? If they have positive impacts over an extended period"): one hear
   `lastReleaseTick`, `releaseWhy`) and three short lists (`goodToday` and `goodRecent` by source, `goodSpent` by strain's
   sources; `Tools/save_estimate.py` models them). An older save loads with no good side and starts at nothing; the first
   look at deeds and the life goal only takes note.
+
+### The heart, felt: it rises and stays, both sides at once, and it shows on the map (9 November 2026)
+
+Release 1 of `docs/design/heart-felt.md`, after the player's word of 9 November 2026 ("i feel like this impact of strain
+and all the emotions is currently neglible, or hardly noticeable. i really like the idea of it but it's not really
+noticeable") and their change on the proposal ("the good side should also be able to develop at the same time, not only
+when strain is at 0. perhaps it's more difficult, but pawns should still be happy about certain things even if others go
+wrong"). In their save (day 35, four colonists after the plague, one dying of it in pain) all four sat at strain 5 to 20
+and a good side of 0: below 30 nothing shows, rest drained about 10 a day against a cap of 25 built, so strain never
+stayed, and the everyday trickle kept the good side from ever filling. The rules are pure (`Heart/HeartFeltMath.cs`,
+linked in the tests and the balance simulator); the game side is `Heart/HeartFelt.cs` (the weight, messages, lines,
+signs), `HeartActs.cs` and `HeartActJob.cs` (the acts), all from the heart's own hour (no Sched slot, no patch). The
+safety rule holds: the game's mood need, mental breaker and break picker are untouched.
+
+- **The lasting weight.** A heavy thing leaves a weight that rest can't ease strain below (`HeartFeltMath.Floor`); strain
+  sinks toward it within a day (2.5 an hour at most, `SinkIn`, as hardship through the good side's cushion, on strain's
+  record as "heavy things", `StrainSource.Heavy`, the 19th source at the end of the list; no daily cap, the weight bounds
+  it). Deaths and losses by the game's memory, the heaviest of each person once in three days (`LossWeight`: a partner's
+  or family's 58, seeing family die or a psychic bond torn 50, a friend's 45, a bonded animal 28, seeing an ally die 16,
+  any colonist's 12, someone taken 10 to 30), and being downed 22 (`Weigh`, `HeartFelt.WeighLosses`, `Downed`). It lifts
+  slowly (0.8 a day) for 3.5 days and a day more for every 12 of weight, then 7 a day (`HoldDaysFor`, `Eased`), and good
+  things and a cry lift it by 15% of what they ease (`GoodEasesWeight`; an answer that comforts and the day off too,
+  `HeartFelt.Lift`). What lasts while it lasts is held apart (`held`, `HeartFelt.Hold`): their own sickness that can kill
+  (the game's `makesSickThought` with a `lethalSeverity`: 12 plus 40 times how far along), someone close badly ill on the
+  same map (a partner, kin by blood or opinion 20 or more; from a third of the way, 14 plus 36 times it), a fight at home
+  with some of the colony down (12, and 8 each, 36 at most); lifted to its weight each hour while it lasts, slowly a day
+  and a half after. Two weights together are the heavier and 35% of the other (`Combine`), and the weights alone never
+  hold strain above 76 (`FloorMax`), short of the day off. Traits take their share (a psychopath nothing from a death),
+  and the strength setting scales them. Words: "losing Ana", "the plague", "Ana being so ill", "being hurt", "the fight
+  going badly" (`weightWhy`, `heldWhy`), on the strain tooltip and the heart's page ("A weight of 45 from losing Ana:
+  rest won't ease strain below it."), in the messages and the card.
+- **Rest under real strain** (`RestFactor`): in full up to 30, 70% from 90. Kept mild: the weight is what holds strain up
+  after a heavy thing, and a much slower rest feeds on itself in a colony neglected day after day.
+- **The two sides at once**: above, in "The heart's good side".
+- **Small acts by band** (`HeartActs`, setting "Small acts by how they are", `heartActs`): strained, a while in a chair
+  or by the fire staring at nothing, or just outside the colony looking out; worn, a few minutes outside from ordinary
+  work (building, growing, mining, cutting, making, cooking, hauling, cleaning, research; never a fire, a patient, a
+  prisoner, a child, a hunt or an animal at hand, nor while carrying something), pacing their room when awake at night, a
+  short word at someone near; in good heart, humming at work (two notes, `VisualTouches.Notes`) and staying at the table
+  to talk after a meal (queued after the meal); in high spirits, singing at work (four notes) and a dance where they stand
+  at a gathering. **Strong feelings act** (`heartFeelingActs`), a feeling at 60% of full or more: grief, the small habit's
+  own visit to the grave (its joy giver) or a while beside the bed where the one lost slept (their own room, from the death hook's look,
+  `Patch_FamilyDied`) or sitting; fear, out after dark, in near someone indoors; anger, a sharp word to whoever it is
+  about, or through a door that slams (the door's own sound, a puff of dust); love, a while beside a partner at leisure or
+  resting in bed (and a chat); homesickness, of an evening at the colony's lit fire talking of home, or the small habit's
+  look out; joy, walked over to a friend to share it (`Together.When`, a chat). Each a job of its own
+  (`Rimfolk_HeartAct_*`, `JobDriver_HeartAct`, `HeartActExtension`) with its line on arriving. Only safe and free (a home
+  map, not drafted, downed, in a mental state, hungry, exhausted or in need of a doctor, at nobody's play-out, no danger;
+  in free time, at a break in ordinary work, after a meal or at the gathering), by a chance an hour by band and feeling
+  (`ActChance`: strained 7%, worn 12%, near breaking 16%, in good heart 5%, in high spirits 9%, a strong feeling up to
+  12%), one act a colonist in 16 hours and one in the colony in 3 at most (session memory). Eating alone and sleeping in
+  weren't built: the game has no honest way to show either without patching where they eat and sleep.
+- **They say how they feel** (`heartSays`, `HeartFelt.Lines`, `Rimfolk_Pool_HeartBand`): when strain's band turns
+  either way or the good side's rises to in good heart or high spirits, a line waits up to 8 hours for them to be in view
+  and free; while a band holds, now and then another, once in a day and a half at most. Tagged by the side that speaks
+  ([band:...] or [good:...]), [both], [turn], [back], and the cause ([why:loss] with {LOST}, [why:sickself] with
+  {ILLNESS}, [why:sickclose] with {SICK}, downed, raid, fight, sleep, letdowns, pain; friends, purpose, gathering for the
+  good side), in the speaker's tone; every line has a band, [both] or [back], so nobody is given a heart they don't have.
+  Through the touches' one rate for what is said over a head (`VisualTouches.Free`, `Spoke`). The acts' lines are
+  `Rimfolk_Pool_HeartAct` ([act:...] with the band or feeling, [with], [about], [lost]).
+- **Seen at a glance**: a sign over the head for a strong feeling (`heartSigns`, `HeartFelt.Sign`): the game's own
+  thought bubble (a good one for a bright feeling, a bad one for a hard one) with a shape in the feeling's colour
+  (`FeelingIcons`: a tear, a bolt, a heart, a sun, a house, one figure, two, an exclamation, a star or a cloud;
+  `Textures/ColonyCouncil/Icons/Feelings`, drawn by `Tools/make_feeling_icons.py`), when it grows strong and now and then
+  while it holds, once in 8 hours at most, on the map being looked at. A thin heart line under each name on the colonist
+  bar (`barHeartLine`, `BarBadges.HeartLine`, `BarBadgeMath.HeartLine`): strain in its band's colour (softer below
+  strained), the good side in green under it, each from 8 and as long as it is full, from a cache built once a second.
+- **Messages** (`heartMessages`, `HeartFelt.Tell`, `HeartFeltMath.Tell`): when someone becomes worn down or near breaking,
+  saying why ("Bautista is worn down: the plague and losing Ana."), when they come back from it (5 below worn), and in
+  good heart or in high spirits, saying what filled it; the bands told are saved (`toldStrain`, `toldGood`) so a load
+  tells nothing, hovering at a line tells once, and the first look only takes note.
+- **Measured** (`Tools/Tests/HeartFeltTests.cs`: colonists looked at hourly through the same pure rules over weeks, 40
+  runs a case): a calm colony of eight steady on day 6 (median; 98% within eight days), in good heart on day 18, never
+  strained, no day off; one friend's death (day 21 of 42): those close strained 7.2 days (median), a partner 9.8, the
+  rest at 12 at most and none strained, the good side still filling 2.4 a day while strained against 3.8 while not; a
+  plague season like the save's (four friends, two ill for ten days, rising to 0.9): all of the colony worn three days or
+  more (median), none near breaking, no day off, most still in good heart at some point in it; real disasters (a plague
+  that kills two of six, a raid that kills two and downs one then a siege): someone near breaking in every run, about one
+  day off a disaster. In the balance simulator (`Tools/Balance/HeartSim.cs`, brought to the same rules; 40 runs of six):
+  a well-run colony strained 4% of the time, steady 44%, in good heart 35% and in high spirits 5% (48/28/3 before); an
+  average one strained, worn and near breaking 12%, 4% and 1.6% (6/1/0 before), 0.14 days off a colonist-year; a
+  neglectful one 32%, 25% and 18% (29/17/8), 1.6 (0.72). The balance report (`docs/balance-report.md`) is from before.
+- **Saves.** Values on the heart only (`weight`, `weightUntil`, `weightWhy`, `weightAbout`, `weightKind`, `held`,
+  `heldUntil`, `heldWhy`, `heldAbout`, `heldKind`, `toldStrain`, `toldGood`); no new collection. An older save loads with
+  no weight, and its bands are taken note of at the first look. What the hour notes on the side (whom a loss already
+  weighed for, a downing seen, the last band and strong feeling for lines and signs, the acts' cooldowns, the beds of the
+  dead) is session memory.
+- **Dev mode**: "Heart: a heavy loss weighs on them (45)", "a small act now (if one fits)", "say how they feel now", "a
+  sign over the head now".
 
 ## Layer 8: Social life
 

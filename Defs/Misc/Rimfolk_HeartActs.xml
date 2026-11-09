@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    The heart on the map (Source/ColonyCouncil/Heart/HeartActs.cs, HeartActJob.cs; docs/design/heart-felt.md, points 4
+    and 6): small acts by how a colonist is (strained, worn, in good heart, in high spirits) and the acts of strong
+    feelings, each a short job with a one-sentence line (Rimfolk_Pool_HeartAct). Only when it is safe and they are free:
+    never in danger, drafted, downed, in a mental state, hungry, exhausted or in need of a doctor; in their free time, at
+    a break in ordinary work (a few minutes outside, then back to it), after a meal, or at a gathering (the dance), never
+    interrupting urgent work. One act a colonist in sixteen hours at most and one in the colony in three. Humming and
+    singing at work, a sharp word and sharing a joy need no job of their own (notes over the head and the line; a walk
+    over to a friend, the game's own chat). Each ends at any danger, when its setting goes off, when whom it is with
+    walks off, and like any job at the player's word.
+  -->
+
+  <!-- Strained: a while in a chair or a bench (indoors or by the colony's fire first), or at the fire, staring at nothing. -->
+  <JobDef>
+    <defName>Rimfolk_HeartAct_Sit</defName>
+    <driverClass>ColonyCouncil.JobDriver_HeartAct</driverClass>
+    <reportString>sitting a while, staring at nothing.</reportString>
+    <joyKind>Meditative</joyKind>
+    <joyGainRate>0.6</joyGainRate>
+    <checkOverrideOnDamage>Always</checkOverrideOnDamage>
+    <modExtensions>
+      <li Class="ColonyCouncil.HeartActExtension">
+        <kind>Sit</kind>
+        <seated>true</seated>
+      </li>
+    </modExtensions>
+  </JobDef>
+
+  <!-- Strained: a while just outside the colony, looking out over the land. -->
+  <JobDef>
+    <defName>Rimfolk_HeartAct_StareOut</defName>
+    <driverClass>ColonyCouncil.JobDriver_HeartAct</driverClass>
+    <reportString>looking out at nothing in particular.</reportString>
+    <joyKind>Meditative</joyKind>
+    <joyGainRate>0.6</joyGainRate>
+    <checkOverrideOnDamage>Always</checkOverrideOnDamage>
+    <modExtensions>
+      <li Class="ColonyCouncil.HeartActExtension">
+        <kind>StareOut</kind>
+      </li>
+    </modExtensions>
+  </JobDef>
+
+  <!-- Worn: a few minutes out under the sky from ordinary work; the work is picked up again after. -->
+  <JobDef>
+    <defName>Rimfolk_HeartAct_StepOut</defName>
+    <driverClass>ColonyCouncil.JobDriver_HeartAct</driverClass>
+    <reportString>taking a minute outside.</reportString>
+    <checkOverrideOnDamage>Always</checkOverrideOnDamage>
+    <modExtensions>
+      <li Class="ColonyCouncil.HeartActExtension">
+        <kind>StepOut</kind>
+      </li>
+    </modExtensions>
+  </JobDef>
+
+  <!-- Worn, awake at night with nothing to do: up and down the room. -->
+  <JobDef>
+    <defName>Rimfolk_HeartAct_Pace</defName>
+    <driverClass>ColonyCouncil.JobDriver_HeartAct</driverClass>
+    <reportString>pacing up and down.</reportString>
+    <checkOverrideOnDamage>Always</checkOverrideOnDamage>
+    <modExtensions>
+      <li Class="ColonyCouncil.HeartActExtension">
+        <kind>Pace</kind>
+      </li>
+    </modExtensions>
+  </JobDef>
+
+  <!-- In good heart: staying at the table to talk once the meal is done (queued after it). -->
+  <JobDef>
+    <defName>Rimfolk_HeartAct_Linger</defName>
+    <driverClass>ColonyCouncil.JobDriver_HeartAct</driverClass>
+    <reportString>talking at the table with TargetB.</reportString>
+    <joyKind>Social</joyKind>
+    <checkOverrideOnDamage>Always</checkOverrideOnDamage>
+    <modExtensions>
+      <li Class="ColonyCouncil.HeartActExtension">
+        <kind>Linger</kind>
+        <social>true</social>
+      </li>
+    </modExtensions>
+  </JobDef>
+
+  <!-- In high spirits at a gathering: a dance where they stand, a note now and then, and back to the gathering. -->
+  <JobDef>
+    <defName>Rimfolk_HeartAct_Dance</defName>
+    <driverClass>ColonyCouncil.JobDriver_HeartAct</driverClass>
+    <reportString>dancing.</reportString>
+    <joyKind>Social</joyKind>
+    <checkOverrideOnDamage>Always</checkOverrideOnDamage>
+    <modExtensions>
+      <li Class="ColonyCouncil.HeartActExtension">
+        <kind>Dance</kind>
+        <social>true</social>
+      </li>
+    </modExtensions>
+  </JobDef>
+
+  <!-- Grief: a while beside the bed where the one they lost slept (when the grave can't be visited). -->
+  <JobDef>
+    <defName>Rimfolk_HeartAct_LostBed</defName>
+    <driverClass>ColonyCouncil.JobDriver_HeartAct</driverClass>
+    <reportString>sitting by the bed of someone they lost.</reportString>
+    <joyKind>Meditative</joyKind>
+    <joyGainRate>0.6</joyGainRate>
+    <checkOverrideOnDamage>Always</checkOverrideOnDamage>
+    <modExtensions>
+      <li Class="ColonyCouncil.HeartActExtension">
+        <kind>LostBed</kind>
+      </li>
+    </modExtensions>
+  </JobDef>
+
+  <!-- Fear, out after dark: in to be near someone of the colony. -->
+  <JobDef>
+    <defName>Rimfolk_HeartAct_Indoors</defName>
+    <driverClass>ColonyCouncil.JobDriver_HeartAct</driverClass>
+    <reportString>staying close to TargetB.</reportString>
+    <checkOverrideOnDamage>Always</checkOverrideOnDamage>
+    <modExtensions>
+      <li Class="ColonyCouncil.HeartActExtension">
+        <kind>Indoors</kind>
+        <social>true</social>
+      </li>
+    </modExtensions>
+  </JobDef>
+
+  <!-- Anger: through the nearest door, and it slams behind them. -->
+  <JobDef>
+    <defName>Rimfolk_HeartAct_Door</defName>
+    <driverClass>ColonyCouncil.JobDriver_HeartAct</driverClass>
+    <reportString>storming off.</reportString>
+    <checkOverrideOnDamage>Always</checkOverrideOnDamage>
+    <modExtensions>
+      <li Class="ColonyCouncil.HeartActExtension">
+        <kind>Door</kind>
+      </li>
+    </modExtensions>
+  </JobDef>
+
+  <!-- Love: a while beside their partner, at their leisure or resting in bed. -->
+  <JobDef>
+    <defName>Rimfolk_HeartAct_SitWith</defName>
+    <driverClass>ColonyCouncil.JobDriver_HeartAct</driverClass>
+    <reportString>keeping TargetB company.</reportString>
+    <joyKind>Social</joyKind>
+    <checkOverrideOnDamage>Always</checkOverrideOnDamage>
+    <modExtensions>
+      <li Class="ColonyCouncil.HeartActExtension">
+        <kind>SitWith</kind>
+        <social>true</social>
+      </li>
+    </modExtensions>
+  </JobDef>
+
+  <!-- Homesick, of an evening: at the colony's lit fire, talking of home with whoever is there. -->
+  <JobDef>
+    <defName>Rimfolk_HeartAct_HomeFire</defName>
+    <driverClass>ColonyCouncil.JobDriver_HeartAct</driverClass>
+    <reportString>talking of home.</reportString>
+    <joyKind>Social</joyKind>
+    <checkOverrideOnDamage>Always</checkOverrideOnDamage>
+    <modExtensions>
+      <li Class="ColonyCouncil.HeartActExtension">
+        <kind>HomeFire</kind>
+        <social>true</social>
+      </li>
+    </modExtensions>
+  </JobDef>
+
+</Defs>

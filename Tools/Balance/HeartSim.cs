@@ -5,10 +5,13 @@
 // so that life alone gives the time spent strained, worn and near breaking the colony-year report always assumed for each
 // style (Rates.cs: 2/0/0, 8/2/0 and 20/8/2 per cent). The colony-year (Sim.cs) adds what Rimfolk's small letdowns and joys,
 // and everyone's small moods, bring on top; the nature mode (NatureSim.cs) adds acts against their nature.
-// The heart's good side (HeartMath, "The good side"): hardship spends it before strain builds; what a gathering, a talk or a
-// joy eases beyond the strain they have fills it, with friends close by and a purpose (the heart's needs well met, drawn a
-// day at a time per play style), deeds the colony speaks well of and a life goal moving; it fades slowly; and in high spirits
-// it now and then gives one of the game's inspirations or a kind word to someone close (the colony-year gives the moment).
+// The heart's good side (HeartMath, "The good side"), both sides at once since 9 November 2026 (HeartFeltMath): hardship
+// spends part of it as a cushion; a gathering, a talk or a joy eases strain and fills it together, a share each; friends close
+// by and a purpose (the heart's needs well met, drawn a day at a time per play style), deeds the colony speaks well of and a
+// life goal moving fill it at any strain, slower the more there is; it fades slowly; and in high spirits it now and then
+// gives one of the game's inspirations or a kind word to someone close (the colony-year gives the moment). The heart, felt
+// (HeartFeltMath): rest eases less the higher strain is, and a death or a downing leaves a lasting weight rest can't take
+// strain below, lifting over days (a death of someone close a third of the time, as the loss's own strain is drawn).
 
 using ColonyCouncil;
 
@@ -75,6 +78,9 @@ namespace Balance
         public readonly float[] today = new float[HeartMath.SourceCount];
         public readonly float[] recent = new float[HeartMath.SourceCount];
         public int spellUntil = -1, lastEpisode = -999999;
+        /// <summary>The lasting weight of a death or a downing (HeartFeltMath), and the hour until which it lifts slowly.</summary>
+        public float weight;
+        public int weightUntil = -1;
         /// <summary>What built and eased strain, by what it was, for the report.</summary>
         public readonly Dictionary<string, double> built = new Dictionary<string, double>(), eased = new Dictionary<string, double>();
         public int episodes;
@@ -95,12 +101,18 @@ namespace Balance
                 for (int h = 0; h < 3; h++) day.Add((raidHour + h, StrainSource.Combat, 4f));
                 day.Add((raidHour + 1, StrainSource.Fear, 2f));
                 if (Chance(0.3f)) day.Add((raidHour + 2, StrainSource.Pain, Range(2f, 6f)));
-                if (Chance(0.08f)) day.Add((raidHour + 2, StrainSource.Downed, 8f));
+                if (Chance(0.08f))
+                {
+                    day.Add((raidHour + 2, StrainSource.Downed, 8f));
+                    Weigh(HeartFeltMath.DownedWeight, dayIndex, raidHour + 2);
+                }
             }
             if (death)
             {
-                day.Add((deathHour, StrainSource.Loss, 4f + (Chance(0.3f) ? Range(4f, 8f) : 0f)));
+                bool close = Chance(0.3f);
+                day.Add((deathHour, StrainSource.Loss, 4f + (close ? Range(4f, 8f) : 0f)));
                 for (int g = 1; g <= 3 && deathHour + g * 6 < 24; g++) day.Add((deathHour + g * 6, StrainSource.Grief, 1f));
+                Weigh(HeartFeltMath.LossWeight(close ? "PawnWithGoodOpinionDied" : "KnowColonistDied"), dayIndex, deathHour);
             }
             if (spellUntil < dayIndex && Chance(life.spell)) spellUntil = dayIndex + (int)Range(3f, 2f * life.spellDays - 3f);
             if (spellUntil >= dayIndex)
@@ -119,6 +131,13 @@ namespace Balance
             if (Chance(life.decree)) day.Add((12, StrainSource.Council, 1f));
         }
 
+        /// <summary>A heavy thing's lasting weight, with what weighs already, held a while by how heavy it is.</summary>
+        private void Weigh(float w, int dayIndex, int hour)
+        {
+            weight = HeartFeltMath.Combine(weight, w);
+            weightUntil = Math.Max(weightUntil, dayIndex * 24 + hour + (int)(HeartFeltMath.HoldDaysFor(weight) * 24f));
+        }
+
         /// <summary>Strain from one source within its daily cap and the day's cap (HeartMath.Add at 100% strength, no traits).</summary>
         public float Build(StrainSource s, float raw, string what)
         {
@@ -126,7 +145,7 @@ namespace Balance
             float t = today[i];
             float added = HeartMath.Add(raw, 1f, 1f, ref t, HeartMath.SourceCap(s), ref todayTotal, HeartMath.DailyCap);
             today[i] = t;
-            // Hardship spends the good side before strain builds.
+            // Hardship spends part of the good side as a cushion.
             if (goodOn && good > 0f && added > 0f)
             {
                 added = HeartMath.Spend(added, ref good, out float sp);
@@ -142,23 +161,18 @@ namespace Balance
         }
 
         /// <summary>
-        /// Relief from small joys within the day's cap for them (SmallMomentMath.WithinJoyCap). With the good side, what is
-        /// beyond the strain they have fills it (Rimfolk's joys, or the game's comforts with <paramref name="comforts"/>).
+        /// Relief from small joys within the day's cap for them (SmallMomentMath.WithinJoyCap). With the good side, they ease
+        /// strain and fill it together (Rimfolk's joys, or the game's comforts with <paramref name="comforts"/>).
         /// </summary>
         public float EaseJoys(float amount, string what, bool comforts = false)
         {
             float a = SmallMomentMath.WithinJoyCap(goodOn ? amount : Math.Min(amount, strain), todayJoys);
             if (a <= 0f) return 0f;
-            float e = Math.Min(a, strain);
-            strain = HeartMath.Clamp(strain - e);
-            if (what != null && e > 0f) eased[what] = eased.GetValueOrDefault(what) + e;
+            var s = comforts ? GoodSource.Comforts : GoodSource.Joys;
+            float e = GoodThing(s, a, comforts ? "the game's comforts" : "small joys", what, out float filled);
             // The day's cap for joys counts what eased strain and what filled the good side, not what neither could take.
-            float used = e;
-            if (goodOn && a > e)
-            {
-                var s = comforts ? GoodSource.Comforts : GoodSource.Joys;
-                used += Fill(s, a - e, comforts ? "the game's comforts" : "small joys") / HeartMath.GoodShare(s);
-            }
+            float toGood = settled.toGood[(int)s];
+            float used = e + (toGood > 0f ? (a - e) * Math.Min(1f, filled / toGood) : 0f);
             todayJoys += Math.Min(a, used);
             return e;
         }
@@ -173,33 +187,48 @@ namespace Balance
             if (float.IsNaN(lean)) lean = (float)(rng.NextDouble() * 30.0 - 15.0);
             belongingToday = Math.Clamp(life.belonging + lean + (float)(rng.NextDouble() * 30.0 - 15.0), 0f, 100f);
             purposeToday = Math.Clamp(life.purpose + lean * 0.5f + (float)(rng.NextDouble() * 30.0 - 15.0), 0f, 100f);
-            if (rng.NextDouble() < life.deed) Fill(GoodSource.Deeds, HeartMath.DeedFillFor(1f), "deeds");
-            if (rng.NextDouble() < life.goalMoved) Fill(GoodSource.Purpose, HeartMath.GoalMovedFill, "purpose");
+            if (rng.NextDouble() < life.deed) Growing(GoodSource.Deeds, HeartMath.DeedFillFor(1f), "deeds");
+            if (rng.NextDouble() < life.goalMoved) Growing(GoodSource.Purpose, HeartMath.GoalMovedFill, "purpose");
         }
 
         /// <summary>
-        /// What eases strain beyond the strain they have fills the good side (a gathering, a talk, a joy at its share; the
-        /// needs and deeds in full), within the caps; only while strain is at nothing.
+        /// Fills the good side within the caps, at any strain: <paramref name="amount"/> as it comes (a good thing's share
+        /// already taken by HeartFeltMath.Settle); the needs, deeds and a life goal through <see cref="Growing"/>.
         /// </summary>
         public float Fill(GoodSource s, float amount, string what)
         {
-            if (!goodOn || strain > 0f || amount <= 0f) return 0f;
+            if (!goodOn || amount <= 0f) return 0f;
             int i = (int)s;
             float t = goodToday[i];
-            float a = HeartMath.Fill(amount * HeartMath.GoodShare(s), ref good, ref t, HeartMath.GoodCap(s), ref goodTodayTotal, HeartMath.GoodDailyCap);
+            float a = HeartMath.Fill(amount, ref good, ref t, HeartMath.GoodCap(s), ref goodTodayTotal, HeartMath.GoodDailyCap);
             goodToday[i] = t;
             if (a > 0f) filled[what] = filled.GetValueOrDefault(what) + a;
             return a;
         }
 
-        /// <summary>A good thing that eases strain first and fills the good side with the rest.</summary>
-        private void GoodThing(GoodSource s, float amount, string what)
+        /// <summary>Friends, purpose, a deed or a life goal: slower the more strain there is (HeartFeltMath.Growth).</summary>
+        private float Growing(GoodSource s, float amount, string what) => Fill(s, amount * HeartFeltMath.Growth(strain), what);
+
+        private readonly HeartFeltMath.Settled settled = new HeartFeltMath.Settled();
+        private readonly float[] things = new float[HeartMath.GoodSourceCount];
+
+        /// <summary>A good thing: it eases strain and fills the good side together, a share each (HeartFeltMath.Settle).</summary>
+        private float GoodThing(GoodSource s, float amount, string what, string easedAs, out float filledNow)
         {
-            float e = Math.Min(amount, strain);
-            strain = HeartMath.Clamp(strain - e);
-            if (e > 0f) eased["life"] = eased.GetValueOrDefault("life") + e;
-            if (goodOn && amount > e) Fill(s, amount - e, what);
+            Array.Clear(things, 0, things.Length);
+            things[(int)s] = amount;
+            float left = HeartFeltMath.Settle(strain, 0f, 0f, 0f, things, settled, goodOn);
+            float e = settled.eased[(int)s];
+            strain = HeartMath.Clamp(left);
+            LiftWeight(e);
+            if (e > 0f) eased[easedAs ?? "life"] = eased.GetValueOrDefault(easedAs ?? "life") + e;
+            filledNow = goodOn ? Fill(s, settled.toGood[(int)s], what) : 0f;
+            return e;
         }
+
+        private void GoodThing(GoodSource s, float amount, string what) => GoodThing(s, amount, what, "life", out _);
+
+        private void LiftWeight(float eased) => weight = Math.Max(0f, weight - eased * HeartFeltMath.GoodEasesWeight);
 
         /// <summary>
         /// The release, in high spirits and safe: now and then one of the game's inspirations or a kind word to someone
@@ -227,23 +256,34 @@ namespace Balance
             foreach (var b in day)
                 if (b.hour == hourOfDay)
                     Build(b.source, b.amount, "life");
+            // A heavy thing sinks in toward its weight, cushioned by the good side as any hardship is.
+            int abs = dayIndex * 24 + hourOfDay;
+            float sink = HeartFeltMath.SinkIn(strain, weight, 1f);
+            if (sink > 0f)
+            {
+                if (goodOn && good > 0f) sink = HeartMath.Spend(sink, ref good, out _);
+                strain = HeartMath.Clamp(strain + sink);
+                built["life"] = built.GetValueOrDefault("life") + sink;
+            }
             float relief;
             float mood = spellUntil >= dayIndex ? 0.7f : life.mood;
             if (hourOfDay < 6 || hourOfDay >= 22) relief = (rng.NextDouble() < life.comfy ? 0.6f : 0.25f) * mood;
             else if (hourOfDay >= 19) relief = 0.5f * mood;
             else relief = 0.15f * mood;
-            // A quicker recovery for someone in good heart lately.
+            // A quicker recovery for someone in good heart lately; less the higher strain is, never below the weight.
             if (goodOn) relief *= HeartMath.RecoveryFactor(HeartMath.GoodBandFor(lately));
-            float eased = Math.Min(relief, strain);
-            strain = HeartMath.Clamp(strain - relief);
+            relief *= HeartFeltMath.RestFactor(strain);
+            float eased = Math.Max(0f, Math.Min(relief, strain - Math.Min(strain, weight)));
+            strain = HeartMath.Clamp(strain - eased);
             if (eased > 0f) this.eased["life"] = this.eased.GetValueOrDefault("life") + eased;
             // A gathering and a good talk: strain first, the good side with the rest.
             if (party && hourOfDay == 20) GoodThing(GoodSource.Gathering, 6f, "gatherings");
             if (hourOfDay == 13 && rng.NextDouble() < life.talk) GoodThing(GoodSource.Friends, 2f, "good talks");
+            weight = HeartFeltMath.Eased(weight, abs < weightUntil, 1f);
             if (goodOn)
             {
-                Fill(GoodSource.Belonging, HeartMath.NeedFillPerHour(belongingToday), "belonging");
-                Fill(GoodSource.Purpose, HeartMath.NeedFillPerHour(purposeToday), "purpose");
+                Growing(GoodSource.Belonging, HeartMath.NeedFillPerHour(belongingToday), "belonging");
+                Growing(GoodSource.Purpose, HeartMath.NeedFillPerHour(purposeToday), "purpose");
                 good = HeartMath.Faded(good, 1f);
                 lately = HeartMath.Lately(lately, good, 1f);
             }
@@ -253,6 +293,7 @@ namespace Balance
             if (episodesOn && roll && now - lastEpisode >= 10 * 60000 && now - lastColonyEpisode >= 2 * 60000)
             {
                 strain = HeartMath.Clamp(strain - HeartMath.EpisodeRelief);
+                LiftWeight(HeartMath.EpisodeRelief);
                 lastEpisode = now;
                 lastColonyEpisode = now;
                 episodes++;

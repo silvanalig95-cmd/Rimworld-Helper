@@ -27,6 +27,19 @@ below: "sounds great!! also the good side should also be able to develop at the 
 
 ## Release 1: let it rise and stay, the two sides at once, and show it on the map
 
+**Built** (9 November 2026, not released yet: DESIGN.md "The heart, felt" has all of it). Points 1 to 8 as below, with
+these choices: the weight is split in two, what happened (a loss, a downing: lifting slowly for 3.5 days and a day more
+for every 12 of weight, then 7 a day) and what lasts while it lasts (a sickness in the house, a fight going badly: lifted
+to its weight each hour, lifting a day and a half after it ends); rest eases in full up to 30 and 70% from 90 (milder than
+first thought: a much slower rest fed on itself in a neglected colony); good things send 35% of themselves to the good
+side while there is strain, and hardship 35% of itself to the good side's cushion. Not built: eating alone and sleeping
+in (point 4) and bringing a partner a meal (point 6), which the game can't show without patching where they eat and
+sleep; a strained colonist sits or looks out instead, and love sits beside the partner. Measured in
+`Tools/Tests/HeartFeltTests.cs`: a calm colony steady on day 6 and in good heart on day 18; a friend's death strains
+those close 7.2 days, a partner 9.8, the rest not at all; a plague season like the save's leaves the whole colony worn
+three days or more, nobody near breaking; real disasters bring someone near breaking every time and about one day off
+each; the good side still fills 2.4 a day while strained (3.8 otherwise).
+
 ### A. Balance
 
 1. **Heavy things leave a weight that eases over days.** Losing someone close, being downed, a sickness in the house

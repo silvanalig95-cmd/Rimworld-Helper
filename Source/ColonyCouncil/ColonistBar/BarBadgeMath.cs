@@ -284,6 +284,31 @@ namespace ColonyCouncil
             sy = top ? first + down * size : first - down * size;
         }
 
+        // ---------------- The heart's line (Heart/, the setting "Heart line under each portrait") ----------------
+
+        /// <summary>A side of the heart shows on the line from here (of 100): a trace of strain or of the good side is left off.</summary>
+        public const float HeartLineFrom = 8f;
+
+        /// <summary>
+        /// The game's name label under a portrait: its top this far above the portrait's foot (at full size, ColonistBarColonistDrawer)
+        /// and this tall (it keeps its size as the bar shrinks).
+        /// </summary>
+        public const float LabelLift = 4f, LabelHeight = 12f;
+
+        /// <summary>
+        /// The heart's thin line under a portrait at (x, y), w by h, at the bar's <paramref name="scale"/>: just under the
+        /// name, strain first and the good side under it when both show, each as long as it is full (out of 100) across the
+        /// portrait's width. Returns how many lines show (0 to 2); <paramref name="top"/> is where the first starts.
+        /// </summary>
+        public static int HeartLine(float strain, float good, float x, float y, float w, float h, float scale, out float top, out float thick, out float strainW, out float goodW)
+        {
+            thick = Math.Max(2f, (float)Math.Round(2f * Math.Min(1f, Math.Max(0f, scale))));
+            top = y + h - LabelLift * scale + LabelHeight + 1f;
+            strainW = strain >= HeartLineFrom && !float.IsNaN(strain) ? w * Clamp01(strain / 100f) : 0f;
+            goodW = good >= HeartLineFrom && !float.IsNaN(good) ? w * Clamp01(good / 100f) : 0f;
+            return (strainW > 0f ? 1 : 0) + (goodW > 0f ? 1 : 0);
+        }
+
         private static float Clamp01(float v) => v < 0f ? 0f : v > 1f ? 1f : v;
 
         private static int Clamp(int v, int min, int max) => v < min ? min : v > max ? max : v;

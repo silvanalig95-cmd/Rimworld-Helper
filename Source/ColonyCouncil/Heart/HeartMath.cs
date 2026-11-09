@@ -37,7 +37,12 @@ namespace ColonyCouncil
         /// Small letdowns (Moods/SmallMoments.cs): what Rimfolk's small letdowns weigh beyond their moment, and every small
         /// bad mood on their mind once they pile up, the game's and other mods' too (SmallMomentMath).
         /// </summary>
-        Letdowns
+        Letdowns,
+        /// <summary>
+        /// Heavy things (Heart/HeartFelt.cs, HeartFeltMath): strain sinking toward the lasting weight of a loss, a downing, a
+        /// fight going badly or a sickness in the house; bounded by the weight, not by a daily cap.
+        /// </summary>
+        Heavy
     }
 
     /// <summary>What drains strain. Saved by position in lists, so new kinds go at the end.</summary>
@@ -218,6 +223,8 @@ namespace ColonyCouncil
                 case StrainSource.Nature: return 12f;
                 // Small letdowns, Rimfolk's and everyone's small bad moods together.
                 case StrainSource.Letdowns: return 1.5f;
+                // Heavy things sink in toward their weight (HeartFeltMath.SinkIn), never through this cap; from outside the hour, a little.
+                case StrainSource.Heavy: return 3f;
                 default: return 3f;
             }
         }
@@ -314,9 +321,11 @@ namespace ColonyCouncil
 
         // ---------------- The good side ----------------
         //
-        // One heart with two sides: strain on one, the good side on the other (0 to 100 each), never both at once. Hardship
-        // spends the good side before strain builds; good things ease strain before they fill the good side. It fills
-        // slowly, only while strain is at nothing, mostly from what can't be bought (friends and belonging, purpose, deeds
+        // One heart with two sides: strain on one, the good side on the other (0 to 100 each), both at once (the player's
+        // change of 9 November 2026: "the good side should also be able to develop at the same time, not only when strain is
+        // at 0"). Hardship spends part of the good side as a cushion and builds strain with the rest; good things ease strain
+        // and fill the good side together, a share each (HeartFeltMath.Settle). It fills slowly, at any strain but slower
+        // the more there is (HeartFeltMath.Growth), mostly from what can't be bought (friends and belonging, purpose, deeds
         // the colony honours, gatherings, a run of small joys), the game's comforts only a little, and fades slowly.
 
         public static readonly int GoodSourceCount = Enum.GetValues(typeof(GoodSource)).Length;
@@ -434,31 +443,34 @@ namespace ColonyCouncil
         }
 
         /// <summary>
-        /// Someone in good heart takes a hard knock in their stride: each point of hardship spends this much of the good
-        /// side, and builds no strain while any is left.
+        /// Someone in good heart takes a hard knock better: while there is any good side, this share of each point of
+        /// hardship is cushioned by it, and the rest builds strain.
         /// </summary>
-        public const float SpendShare = 0.5f;
+        public const float CushionShare = 0.35f;
+
+        /// <summary>Each point of hardship the good side cushions spends this much of it.</summary>
+        public const float SpendShare = 1f;
 
         /// <summary>
-        /// Hardship spends the good side before strain builds: of <paramref name="hardship"/>, what the good side covers
-        /// (at <see cref="SpendShare"/> a point, as far as it goes) comes off <paramref name="good"/>; the rest is returned,
+        /// Hardship spends part of the good side as a cushion: of <paramref name="hardship"/>, its cushioned share (as far
+        /// as the good side goes, at <see cref="SpendShare"/> a point) comes off <paramref name="good"/>; the rest is returned,
         /// to build strain. <paramref name="spent"/> is what came off the good side.
         /// </summary>
         public static float Spend(float hardship, ref float good, out float spent)
         {
             spent = 0f;
             if (float.IsNaN(hardship) || hardship <= 0f) return 0f;
-            if (good <= 0f) return hardship;
-            float cost = hardship * SpendShare;
-            if (cost <= good)
+            if (good <= 0f || float.IsNaN(good)) return hardship;
+            float cushion = hardship * CushionShare;
+            float cost = cushion * SpendShare;
+            if (cost > good)
             {
-                spent = cost;
-                good -= cost;
-                return 0f;
+                cost = good;
+                cushion = cost / SpendShare;
             }
-            spent = good;
-            good = 0f;
-            return hardship - spent / SpendShare;
+            spent = cost;
+            good -= cost;
+            return hardship - cushion;
         }
 
         /// <summary>The good side fades slowly: about 3% a day (halving in about three weeks with nothing to fill it).</summary>

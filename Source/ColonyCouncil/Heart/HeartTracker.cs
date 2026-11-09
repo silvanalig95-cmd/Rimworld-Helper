@@ -227,6 +227,13 @@ namespace ColonyCouncil
         public bool home;
         /// <summary>What the colony knows is coming, each with how much dread it carries.</summary>
         public readonly List<(string cause, float amount)> dread = new List<(string, float)>();
+        /// <summary>
+        /// The colony's people badly ill here (a sickness that can kill, a third of the way or more), with how far along and
+        /// what it is: a sickness in the house weighs on those close to them (Heart/HeartFelt.cs). Worked out hourly.
+        /// </summary>
+        public readonly List<(Pawn pawn, float share, string illness)> sick = new List<(Pawn, float, string)>();
+        /// <summary>While there is danger, how many of the colony's people here are down (a fight going badly).</summary>
+        public int downed;
 
         private static readonly Dictionary<Map, HeartMapContext> cache = new Dictionary<Map, HeartMapContext>();
         private static readonly HeartMapContext none = new HeartMapContext();
@@ -248,6 +255,7 @@ namespace ColonyCouncil
                 c.threatTick = now;
                 // The map's shared facts (Lean/MapFacts): worked out once per 250 ticks for every pass that asks.
                 c.threat = MapFacts.Of(map).Threat;
+                c.downed = c.threat ? Downed(map) : 0;
             }
             if (now - c.tick >= GenDate.TicksPerHour || now < c.tick) c.Refresh(now);
             return c;
@@ -281,6 +289,12 @@ namespace ColonyCouncil
                 if (asColonist < GenDate.TicksPerDay * 3) newcomers++;
             }
             colonyDays = Find.TickManager.TicksGame / GenDate.TicksPerDay;
+            sick.Clear();
+            foreach (var p in map.mapPawns.FreeColonistsSpawned)
+            {
+                float share = HeartFelt.SickShare(p, out string illness);
+                if (share >= HeartFeltMath.SickCloseFrom) sick.Add((p, share, illness));
+            }
             try
             {
                 Dread(now);
@@ -324,6 +338,14 @@ namespace ColonyCouncil
                 dread.Add(("CC_Heart_Cause_WinterFood".Translate(), 3f));
             if (colonists >= 2 && medicine < colonists / 2) dread.Add(("CC_Heart_Cause_FewMedicine".Translate(), 2f));
             if (colonyDays > 10 && defense < 0.5f) dread.Add(("CC_Heart_Cause_WeakDefenses".Translate(), 2f));
+        }
+
+        private static int Downed(Map map)
+        {
+            int n = 0;
+            foreach (var p in map.mapPawns.FreeColonistsSpawned)
+                if (p.Downed) n++;
+            return n;
         }
 
         private static float SafeFloat(Func<float> f, float fallback)

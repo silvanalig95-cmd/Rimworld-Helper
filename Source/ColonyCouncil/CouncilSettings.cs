@@ -344,6 +344,16 @@ namespace ColonyCouncil
         public bool heartInspector = true;
         /// <summary>The heart's good side (Heart/GoodHeart.cs): in good heart, in high spirits. Off, nothing builds and the bands give nothing.</summary>
         public bool heartGoodSide = true;
+        /// <summary>The heart on the map (Heart/HeartActs.cs): small acts by how they are, strained, worn, in good heart, in high spirits.</summary>
+        public bool heartActs = true;
+        /// <summary>Strong feelings act (Heart/HeartActs.cs): grief at the grave, fear indoors after dark, anger at a door, love beside a partner...</summary>
+        public bool heartFeelingActs = true;
+        /// <summary>They say how they feel (Heart/HeartFelt.cs): a line when their band turns and now and then while it holds.</summary>
+        public bool heartSays = true;
+        /// <summary>A sign over the head for a strong feeling (Heart/HeartFelt.cs), as the game shows a thought.</summary>
+        public bool heartSigns = true;
+        /// <summary>A message when someone becomes worn down, near breaking or in good heart, and when they come back (Heart/HeartFelt.cs).</summary>
+        public bool heartMessages = true;
         /// <summary>How quickly strain builds: 0.5 to 1.5.</summary>
         public float strainSpeed = 1f;
         /// <summary>Everyday ailments (Ailments/): colds, strained backs, sunburn, and the like.</summary>
@@ -409,6 +419,8 @@ namespace ColonyCouncil
         /// <summary>The share of a wish's patience gone before its badge shows.</summary>
         public float barWishPatience = 0.5f;
         public bool barBadgeStrain = true;
+        /// <summary>A thin heart line under each portrait on the colonist bar (ColonistBar/BarBadges.cs): strain and the good side, both at once.</summary>
+        public bool barHeartLine = true;
         public bool barBadgeFaith = true;
         public bool barBadgePromise = true;
         public BarBadgeSize barBadgeSize = BarBadgeSize.Normal;
@@ -896,6 +908,11 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref heartEpisodes, "heartEpisodes", true);
             Scribe_Values.Look(ref heartInspector, "heartInspector", true);
             Scribe_Values.Look(ref heartGoodSide, "heartGoodSide", true);
+            Scribe_Values.Look(ref heartActs, "heartActs", true);
+            Scribe_Values.Look(ref heartFeelingActs, "heartFeelingActs", true);
+            Scribe_Values.Look(ref heartSays, "heartSays", true);
+            Scribe_Values.Look(ref heartSigns, "heartSigns", true);
+            Scribe_Values.Look(ref heartMessages, "heartMessages", true);
             Scribe_Values.Look(ref strainSpeed, "strainSpeed", 1f);
             Scribe_Values.Look(ref ailments, "ailments", true);
             Scribe_Values.Look(ref seriousIllnesses, "seriousIllnesses", true);
@@ -925,6 +942,7 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref barBadgeWish, "barBadgeWish", true);
             Scribe_Values.Look(ref barWishPatience, "barWishPatience", 0.5f);
             Scribe_Values.Look(ref barBadgeStrain, "barBadgeStrain", true);
+            Scribe_Values.Look(ref barHeartLine, "barHeartLine", true);
             Scribe_Values.Look(ref barBadgeFaith, "barBadgeFaith", true);
             Scribe_Values.Look(ref barBadgePromise, "barBadgePromise", true);
             Scribe_Values.Look(ref barBadgeSize, "barBadgeSize", BarBadgeSize.Normal);
