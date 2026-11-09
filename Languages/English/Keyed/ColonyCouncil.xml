@@ -1394,8 +1394,6 @@ Granting one of {PAWN_possessive} wishes, or keeping a promise, can win {PAWN_ob
   <!-- Story tab -->
   <CC_Tab_Story>Story</CC_Tab_Story>
   <CC_Story_Family>Family</CC_Story_Family>
-  <CC_Story_FamilyMore>+{0} more</CC_Story_FamilyMore>
-  <CC_Story_FamilyElsewhere>Family elsewhere: {0}</CC_Story_FamilyElsewhere>
   <CC_Family_Line>{OTHER_nameDef}, {PAWN_possessive} {RELATION}, {AGE}: {WHERE}.</CC_Family_Line>
   <CC_Family_LineDead>{OTHER_nameDef}, {PAWN_possessive} {RELATION}: {WHERE}.</CC_Family_LineDead>
   <CC_Family_More>And {0} more relatives further out: uncles, aunts, cousins and their kin.</CC_Family_More>
@@ -1475,7 +1473,6 @@ Granting one of {PAWN_possessive} wishes, or keeping a promise, can win {PAWN_ob
   <CC_Story_Goal>Wants to {0} ({1}).</CC_Story_Goal>
   <CC_Story_GoalWhy>Set their heart on it {0} ({1}).</CC_Story_GoalWhy>
   <CC_Story_Wants>Wants to {0}</CC_Story_Wants>
-  <CC_Story_LifeSoFar>Life so far</CC_Story_LifeSoFar>
   <CC_Story_Bonds>Bonds</CC_Story_Bonds>
   <CC_Story_Lost>Lost {0} ({1}).</CC_Story_Lost>
   <CC_Story_Heirloom>Keeps {0}'s {1}.</CC_Story_Heirloom>

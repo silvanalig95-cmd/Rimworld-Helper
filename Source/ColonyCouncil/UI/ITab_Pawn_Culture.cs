@@ -459,8 +459,8 @@ namespace ColonyCouncil
             else if (how != null) s.Add(how, Color.white);
         }
 
-        /// <summary>Who won them over while they were held here, if the game's tales still remember it (and the pawn, while the game has them).</summary>
-        private static string RecruitedBy(Pawn p, out Pawn byPawn)
+        /// <summary>Who won them over while they were held here, if the game's tales still remember it (and the pawn, while the game has them); the Story tab's line under their name asks it too.</summary>
+        internal static string RecruitedBy(Pawn p, out Pawn byPawn)
         {
             byPawn = null;
             try

@@ -8,20 +8,24 @@ using Verse;
 namespace ColonyCouncil
 {
     /// <summary>
-    /// "Story" in a colonist's inspect pane: who they are and what they've lived. Under their name, what matters at a
-    /// glance (StoryView's overview); under that the longer parts, the lists starting folded. Their social life (bonds,
-    /// groups, what people say, shared memories, secrets) is in Rimfolk's column of the game's Social tab
-    /// (UI/SocialColumn.cs), and their faith and views in the Culture tab (UI/ITab_Pawn_Culture.cs); with the column
-    /// switched off, the social parts stay here. Fits the room above the inspect pane (RimfolkTab); the name stays put,
-    /// the rest scrolls, and each section folds away.
+    /// "Story" in a colonist's inspect pane: who they are and what they've lived. Under their name, who they are in one
+    /// line (the name the colony knows them by, their office or the game's title for them, their age, where they come
+    /// from; each in full in its tooltip). Then their story at a glance (StoryGlance: their character in words, life goal,
+    /// the story they're living, their wish, quirks, standing, closest friends and rivals, the newest line of their
+    /// history), and under it the whole of it in sections that fold and are remembered between sessions, in order of use:
+    /// their story (the history), wishes, life goals, quirks, friends and rivals, family, dreams, then their character and
+    /// the rest (docs/design/rimfolk-look.md, stage 3, point 2). Their social life's groups, what people say and shared
+    /// memories are in Rimfolk's column of the game's Social tab (UI/SocialColumn.cs), and their faith and views in the
+    /// Culture tab (UI/ITab_Pawn_Culture.cs); with the column switched off, those social parts stay here. Fits the room
+    /// above the inspect pane (RimfolkTab); the name stays put, the rest scrolls.
     /// </summary>
     public class ITab_Pawn_Story : RimfolkTab
     {
         private Vector2 scroll;
         private float height = 400f;
         private Pawn shown;
-        /// <summary>Which of the tab's sections are folded away this session; the long lists start folded.</summary>
-        private static readonly Folds folds = new Folds(StoryView.FoldedInTab);
+        /// <summary>Which of the tab's sections are folded away, remembered between sessions; all but the story and the wishes start folded.</summary>
+        private static readonly Folds folds = Folds.Remembered("story.sections", StoryView.FoldedInTab);
 
         public ITab_Pawn_Story()
         {
@@ -40,6 +44,9 @@ namespace ColonyCouncil
             }
         }
 
+        private static string councilWord;
+        private static string CouncilWord => councilWord ??= "CC_Story_OpenCouncil".Translate();
+
         protected override void FillTab()
         {
             var p = SelPawn;
@@ -53,17 +60,20 @@ namespace ColonyCouncil
             var comp = CouncilGameComponent.Instance;
             const float face = 40f;
             UiKit.Portrait(new Rect(rect.x, rect.y, face, face), p, p.IsColonist ? UiKit.TrustColor(comp.standings.TrustOf(p)) : UiKit.Neutral);
-            // The name, and under it what they're known as; the button keeps clear of the tab's close button in the top right corner.
-            float tx = rect.x + face + 8f, tw = rect.width - face - 8f - 144f;
-            string titles = UiCache.Get(p, 41, () => comp.epithets.NameOf(p));
-            if (titles.NullOrEmpty())
+            // The name, and under it who they are in one line; the button keeps clear of the tab's close button in the top right corner.
+            float bw = p.IsColonist ? Mathf.Min(124f, UiKit.KeptWidth(CouncilWord, GameFont.Small) + 24f) : 0f;
+            float tx = rect.x + face + 8f, tw = Mathf.Max(0f, rect.width - face - 8f - (bw > 0f ? bw + 20f : 20f));
+            var who = UiCache.Get(p, 41, () => StoryView.Who(comp, p), 2f);
+            if (who == null || who.line.NullOrEmpty())
                 UiKit.LabelFit(new Rect(tx, rect.y + 4f, tw, 32f), p.LabelShortCap, Color.white, GameFont.Medium);
             else
             {
                 UiKit.LabelFit(new Rect(tx, rect.y - 3f, tw, 28f), p.LabelShortCap, Color.white, GameFont.Medium);
-                UiKit.LabelFit(new Rect(tx, rect.y + 23f, tw, 18f), titles.CapitalizeFirst(), UiKit.HeaderColor, GameFont.Tiny);
+                var line = new Rect(tx, rect.y + 23f, tw, 18f);
+                UiKit.LabelFit(line, who.line, UiKit.HeaderColor, GameFont.Tiny);
+                if (!who.tip.NullOrEmpty()) TooltipHandler.TipRegion(line, who.tip);
             }
-            if (p.IsColonist && Widgets.ButtonText(new Rect(rect.xMax - 138f, rect.y + 7f, 124f, 26f), "CC_Story_OpenCouncil".Translate()))
+            if (bw > 0f && Widgets.ButtonText(new Rect(rect.xMax - bw - 14f, rect.y + 7f, bw, 26f), CouncilWord))
                 MainTabWindow_Council.OpenPerson(p);
             StoryView.Draw(new Rect(rect.x, rect.y + face + 8f, rect.width, rect.height - face - 8f), p, ref scroll, ref height, folds, StoryParts.StoryTab);
         }
@@ -81,17 +91,18 @@ namespace ColonyCouncil
     }
 
     /// <summary>
-    /// The story of one colonist, drawn in the Story tab and the council window's People roster. First an overview of
-    /// what matters at a glance: their character in words; their standing (trust, office, name as a doctor); what they
-    /// want from life, with how far they've come; the story they're living and its stage; their quirks, keepsakes,
-    /// vendettas and nemeses as tags, with what each one does in its tooltip; and the family who are here, the rest
-    /// counted, everyone in the tooltip. Then the sections: their character on its bars, what shaped it and the traits
-    /// life changed, their family tree, the years in cryptosleep, their life so far (goals reached, stories lived
-    /// through), the social parts while the Social tab's column is off, dreams and the newest lines of their journal.
-    /// Each place passes its own folds, so a section folded in the tab stays open in the roster, and its own parts: the
-    /// roster shows everything, the Story tab leaves out what the Social tab's column and the Culture tab show. A colonist,
-    /// a relative, a nemesis or a people named in it is a link with its preview (PaneLinks, UiKit's chips and pills): in
-    /// the tab it opens the floating card, in a card or a window the drawer.
+    /// The story of one colonist, drawn in the Story tab and a colonist's card. First their story at a glance
+    /// (<see cref="StoryGlance"/>); then the sections, in order of use: their story (the newest lines of their history,
+    /// with the way to the whole of it, and the stories they lived through), their wishes (before the council now, and
+    /// what came of the earlier ones), their life goals (the one under way in full, those reached and the knacks they
+    /// won't lose), their quirks in full (with keepsakes, vendettas and nemeses), their friends and rivals (every one,
+    /// with Rimfolk's bonds and the bonds lost while the Social tab's column is off), their family tree, their dreams, then
+    /// their character page (the bars, what shaped them, the traits life changed, and the social parts while the column is
+    /// off), the years in cryptosleep, secrets (while the column is off) and the newest lines of their journal. Each place
+    /// passes its own folds, so a section folded in the tab stays open in a card, and its own parts: the Story tab leaves
+    /// out what the Social tab's column and the Culture tab show. A colonist, a relative, a nemesis or a people named in it
+    /// is a link with its preview (PaneLinks, UiKit's chips and pills): in the tab it opens the floating card, in a card or
+    /// a window the drawer; a friend's or a rival's portrait selects them in the tab.
     /// </summary>
     public static class StoryView
     {
@@ -101,13 +112,27 @@ namespace ColonyCouncil
         /// <summary>The character page's sections the Culture tab shows (its views and faith).</summary>
         public static readonly string[] CultureKeys = { "talk.views", "faith" };
 
-        /// <summary>The Story tab's sections that start folded: the long lists (the overview has the gist of them).</summary>
-        public static readonly string[] FoldedInTab = { "character20", "character25", "character26", "family", "years", "life", "dreams" };
+        /// <summary>
+        /// The Story tab's sections that start folded: all but their story and their wishes (the glance has the gist of
+        /// the rest). The player's own folds are remembered from then on.
+        /// </summary>
+        public static readonly string[] FoldedInTab =
+        {
+            "life", "quirks", "people", "family", "dreams", "character10", "character20", "character25", "character26", "character40", "character50", "character60",
+            "years", "secrets", "journal"
+        };
 
-        /// <summary>At most this many of the family who are here are shown in the overview; the rest are counted.</summary>
-        private const int FamilyShown = 4;
+        /// <summary>How many lines of their history, and of what came of their earlier wishes, the sections show.</summary>
+        private const int HistoryShown = 10, WishesShown = 8;
 
-        private const float RowH = 22f;
+        /// <summary>The history's kinds for what came of a wish: granted, lapsed or taken back, refused or set aside, and a petition's turns.</summary>
+        private static readonly string[] WishKinds =
+        {
+            HistoryKinds.OfChronicle((int)ChronicleKind.WishGranted), HistoryKinds.OfChronicle((int)ChronicleKind.WishExpired),
+            HistoryKinds.OfChronicle((int)ChronicleKind.WishDismissed), HistoryKinds.OfChronicle((int)ChronicleKind.Petition)
+        };
+
+        private const float RowH = 26f;
 
         /// <summary>
         /// One page's model, built a couple of times a second rather than every frame; one per kind of page, so the tab
@@ -118,7 +143,7 @@ namespace ColonyCouncil
             public Pawn pawn;
             public float at = -1f;
             public bool socialElsewhere;
-            public Overview overview;
+            public StoryGlance glance;
             public List<Section> sections;
         }
 
@@ -146,10 +171,107 @@ namespace ColonyCouncil
             foreach (var c in caches.Concat(cardCaches))
             {
                 c.pawn = null;
-                c.overview = null;
+                c.glance = null;
                 c.sections = null;
             }
         }
+
+        /// <summary>Every model is built again at its next draw (a wish promised from the glance).</summary>
+        public static void Stale()
+        {
+            foreach (var c in caches) c.at = -1f;
+            foreach (var c in cardCaches) c.at = -1f;
+        }
+
+        // ---------------- Who they are, in one line ----------------
+
+        /// <summary>Who they are in one line, for the Story tab's head, and the whole of it for its tooltip.</summary>
+        public sealed class WhoLine
+        {
+            public string line, tip;
+        }
+
+        /// <summary>
+        /// "The Healer  ·  Steward  ·  age 34  ·  a founder": the name the colony knows them by, the office they hold (or the
+        /// game's title for them), their age and where they come from (a founder, born here, won over by someone while held
+        /// here, or the people they lived among; a prisoner or a slave of the colony). The tooltip has each in full, with
+        /// their childhood and adulthood, years in cryptosleep and how long they've been with the colony.
+        /// </summary>
+        public static WhoLine Who(CouncilGameComponent comp, Pawn p)
+        {
+            var parts = new List<string>(4);
+            var tip = new List<string>(8);
+            try
+            {
+                string name = comp.epithets.NameOf(p);
+                if (!name.NullOrEmpty())
+                {
+                    parts.Add(name.CapitalizeFirst());
+                    tip.Add(KnownAs.Line(p) ?? "CC_Epithet_Known".Translate(p.LabelShort, name).Resolve());
+                }
+                var office = OfficeTracker.HeldBy(p);
+                string title = p.story?.TitleShortCap;
+                if (office != null)
+                {
+                    parts.Add(office.NameCap);
+                    tip.Add("CC_Office_Holds".Translate(p.LabelShort, office.Name).Resolve());
+                }
+                else if (!title.NullOrEmpty()) parts.Add(title);
+                if (p.story?.Childhood != null) tip.Add("CC_Culture_Childhood".Translate(p.story.Childhood.TitleCapFor(p.gender)).Resolve());
+                if (p.story?.Adulthood != null) tip.Add("CC_Culture_Adulthood".Translate(p.story.Adulthood.TitleCapFor(p.gender)).Resolve());
+                if (p.ageTracker != null)
+                {
+                    parts.Add("CC_People_Age".Translate(p.ageTracker.AgeBiologicalYears).Resolve());
+                    string slept = FamilyYears.SleptNote(p);
+                    if (slept != null) tip.Add(slept.CapitalizeFirst() + ".");
+                }
+                string origin = Origin(comp, p, out string originTip);
+                if (origin != null) parts.Add(origin);
+                if (originTip != null) tip.Add(originTip);
+                if (p.IsColonist && p.records != null)
+                {
+                    int here = p.records.GetAsInt(RecordDefOf.TimeAsColonistOrColonyAnimal);
+                    if (here >= GenDate.TicksPerHour) tip.Add("CC_Culture_Here".Translate(here.ToStringTicksToPeriod(false, false, false)).Resolve());
+                }
+            }
+            catch (Exception e)
+            {
+                CouncilLog.ErrorOnce("the Story tab: who they are", e);
+            }
+            return new WhoLine { line = string.Join("  ·  ", parts), tip = string.Join("\n", tip) };
+        }
+
+        /// <summary>Where they come from, in a few words, and in a sentence for the tooltip; null when nothing is known.</summary>
+        private static string Origin(CouncilGameComponent comp, Pawn p, out string tip)
+        {
+            tip = null;
+            if (p.IsPrisonerOfColony) return "CC_Card_Prisoner".Translate();
+            if (p.IsSlaveOfColony) return "CC_Card_Slave".Translate();
+            if (comp.epithets != null && comp.epithets.IsFounder(p))
+            {
+                tip = "CC_Culture_Founder".Translate(p.Named("PAWN")).Resolve();
+                return "CC_SGl_Founder".Translate();
+            }
+            long age = p.ageTracker?.AgeBiologicalTicks ?? long.MaxValue;
+            int here = p.records?.GetAsInt(RecordDefOf.TimeAsColonistOrColonyAnimal) ?? 0;
+            if (here > 0 && age < long.MaxValue && here >= age - GenDate.TicksPerDay * 2)
+            {
+                tip = "CC_Culture_BornHere".Translate(p.Named("PAWN")).Resolve();
+                return "CC_SGl_BornHere".Translate();
+            }
+            string by = CultureView.RecruitedBy(p, out _);
+            if (by != null)
+            {
+                tip = "CC_Culture_WonOver".Translate(p.Named("PAWN"), by.Named("BY")).Resolve();
+                return "CC_SGl_WonOver".Translate(by.Named("BY")).Resolve();
+            }
+            var home = p.kindDef?.defaultFactionDef;
+            if (home == null || home.isPlayer || home.pawnsPlural.NullOrEmpty()) return null;
+            tip = "CC_Culture_AmongPeople".Translate(home.pawnsPlural).Resolve();
+            return "CC_SGl_Among".Translate(home.pawnsPlural.Named("PEOPLE")).Resolve();
+        }
+
+        // ---------------- Drawing the page ----------------
 
         /// <param name="after">Draws more at the foot of the story, inside its scroll view: (y, width) to the height used (a colonist's card's own sections).</param>
         public static void Draw(Rect outRect, Pawn p, ref Vector2 scroll, ref float height, Folds folds = null, StoryParts parts = StoryParts.All,
@@ -163,83 +285,89 @@ namespace ColonyCouncil
             float time = Time.realtimeSinceStartup;
             if (cache.pawn != p || cache.sections == null || time - cache.at > 0.5f || time < cache.at || cache.socialElsewhere != socialElsewhere)
             {
-                cache.sections = Build(comp, p, parts, socialElsewhere, out cache.overview);
+                cache.sections = Build(comp, p, parts, socialElsewhere, out cache.glance);
                 cache.pawn = p;
                 cache.at = time;
                 cache.socialElsewhere = socialElsewhere;
             }
-            var overview = cache.overview;
+            var glance = cache.glance;
+            var sections = cache.sections;
+            bool select = parts == StoryParts.StoryTab;
             var view = new Rect(0f, 0f, outRect.width - 16f, height);
             Widgets.BeginScrollView(outRect, ref scroll, view);
-            float y = 0f;
-            if (!overview.Empty)
+            try
             {
-                float h = DrawOverview(new Rect(0f, y, view.width, 0f), overview, false);
-                UiKit.Card(new Rect(0f, y, view.width, h), UiKit.WithAlpha(UiKit.Gold, 0.6f), false, false);
-                DrawOverview(new Rect(0f, y, view.width, 0f), overview, true);
-                y += h + 10f;
+                float y = 0f;
+                if (!glance.Empty)
+                {
+                    y += glance.Draw(0f, y, view.width);
+                    UiKit.Divider(0f, y, view.width);
+                    y += 8f;
+                }
+                else if (sections.Count == 0)
+                {
+                    GUI.color = Faint;
+                    Widgets.Label(new Rect(0f, y, view.width, 60f), "CC_Story_Empty".Translate(p.LabelShort));
+                    GUI.color = Color.white;
+                    y += 60f;
+                }
+                foreach (var section in sections)
+                {
+                    y += UiKit.FoldTitle(0f, y, view.width, section.header, folds, section.key, out bool open, section.icon, HeaderColor, section.count) - 4f;
+                    if (!open)
+                    {
+                        y += 6f;
+                        continue;
+                    }
+                    if (section.character != null)
+                        y += CharacterView.DrawSection(new Rect(8f, y, view.width - 8f, 0f), p, section.character, section.skip);
+                    else if (section.tree != null)
+                        y += DrawFamily(new Rect(8f, y, view.width - 8f, 0f), section);
+                    else if (section.friends != null)
+                        y += DrawPeople(new Rect(8f, y, view.width - 8f, 0f), p, section, select);
+                    else
+                        y += DrawLines(new Rect(8f, y, view.width - 8f, 0f), section);
+                    if (section.act != null)
+                    {
+                        float aw = Mathf.Min(UiKit.ActButtonWidth(section.act), view.width);
+                        if (UiKit.ActButton(new Rect(view.width - aw, y + 2f, aw, 26f), section.act, null, section.actTip))
+                        {
+                            try
+                            {
+                                section.run?.Invoke();
+                            }
+                            catch (Exception e)
+                            {
+                                CouncilLog.ErrorOnce("a colonist's story: the act of " + section.key, e);
+                            }
+                        }
+                        y += 32f;
+                    }
+                    y += 8f;
+                }
+                if (after != null)
+                {
+                    try
+                    {
+                        y += after(y, view.width);
+                    }
+                    catch (Exception e)
+                    {
+                        CouncilLog.ErrorOnce("a colonist's story: what comes after it", e);
+                    }
+                }
+                height = Mathf.Max(y, 100f);
             }
-            else if (cache.sections.Count == 0)
+            finally
             {
-                GUI.color = Faint;
-                Widgets.Label(new Rect(0f, y, view.width, 60f), "CC_Story_Empty".Translate(p.LabelShort));
+                Widgets.EndScrollView();
+                Text.Font = GameFont.Small;
+                Text.Anchor = TextAnchor.UpperLeft;
                 GUI.color = Color.white;
-                y += 60f;
             }
-            foreach (var section in cache.sections)
-            {
-                y += UiKit.FoldTitle(0f, y, view.width, section.header, folds, section.key, out bool open, section.icon, HeaderColor) - 4f;
-                if (!open)
-                {
-                    y += 6f;
-                    continue;
-                }
-                if (section.character != null)
-                    y += CharacterView.DrawSection(new Rect(8f, y, view.width - 8f, 0f), p, section.character, section.skip);
-                else if (section.tree != null)
-                    y += DrawFamily(new Rect(8f, y, view.width - 8f, 0f), section);
-                else
-                    y += DrawLines(new Rect(8f, y, view.width - 8f, 0f), section);
-                if (section.journal != null && Widgets.ButtonText(new Rect(view.width - 160f, y, 160f, 26f), "CC_Story_ReadJournal".Translate()))
-                    Find.WindowStack.Add(new Dialog_Journal(section.journal));
-                if (section.journal != null) y += 30f;
-                y += 8f;
-            }
-            if (after != null)
-            {
-                try
-                {
-                    y += after(y, view.width);
-                }
-                catch (Exception e)
-                {
-                    CouncilLog.ErrorOnce("a colonist's story: what comes after it", e);
-                }
-            }
-            height = Mathf.Max(y, 100f);
-            Widgets.EndScrollView();
         }
 
         // ---------------- The model ----------------
-
-        /// <summary>What the overview shows (see the class summary); empty parts are left out.</summary>
-        private class Overview
-        {
-            public string words, wordsTip;
-            public readonly List<UiKit.PillSpec> standing = new List<UiKit.PillSpec>();
-            public string goal, goalTip;
-            public float goalProgress;
-            public string story, storyTip;
-            /// <summary>The stage their own story is at (0 first) of <see cref="stages"/>; -1 for someone else's story.</summary>
-            public int stage = -1, stages;
-            public readonly List<UiKit.PillSpec> tags = new List<UiKit.PillSpec>();
-            public readonly List<(Pawn pawn, string tip)> family = new List<(Pawn, string)>();
-            /// <summary>The family not shown (elsewhere, dead, further out, or past the few here), the words for it, and the whole tree for the tooltip.</summary>
-            public int familyRest;
-            public string familyMore, familyMoreMost, familyTip;
-
-            public bool Empty => words == null && standing.Count == 0 && goal == null && story == null && tags.Count == 0 && family.Count == 0 && familyRest == 0;
-        }
 
         private class Section
         {
@@ -247,105 +375,180 @@ namespace ColonyCouncil
             public string key;
             public string header;
             public Texture2D icon;
+            /// <summary>A note on the heading's right (how many), or null.</summary>
+            public string count;
             public List<(string, Color)> lines = new List<(string, Color)>();
             /// <summary>Lines drawn as quotes (journal entries, dreams): a small heading over each, a stripe beside it.</summary>
             public List<(string head, string text, Color color)> quotes;
-            public PawnJournal journal;
+            /// <summary>An act at the section's foot ("Its whole history", "Read the journal"), with its tooltip.</summary>
+            public string act, actTip;
+            public Action run;
             /// <summary>A part of their character page (Persona/CharacterView.cs), which draws itself, less its first <see cref="skip"/> lines.</summary>
             public CharacterSection character;
             public int skip;
             /// <summary>Their family tree, a row each (Social/Family.cs), and how many more are further out.</summary>
             public List<Family.TreeEntry> tree;
             public int treeMore;
+            /// <summary>Their friends and rivals, a row each (the glance's people), then the section's lines.</summary>
+            public List<StoryGlance.Person> friends, rivals;
+            public string friendsLabel, rivalsLabel;
         }
 
-        private static List<Section> Build(CouncilGameComponent comp, Pawn p, StoryParts parts, bool socialElsewhere, out Overview o)
+        private static List<Section> Build(CouncilGameComponent comp, Pawn p, StoryParts parts, bool socialElsewhere, out StoryGlance g)
         {
             var s = ColonyCouncilMod.Settings;
             bool tab = parts == StoryParts.StoryTab;
             var list = new List<Section>();
-            o = new Overview();
+            g = new StoryGlance { pawn = p, select = tab };
             var character = CharacterView.Sections(p);
+            var who = Refs.Of(p);
 
-            // ---- The overview ----
+            // ---- At a glance ----
             // Their character in words (the Character section has the bars).
             var words = character.FirstOrDefault(c => c.key == "character");
             if (words != null && words.lines.Count > 0)
             {
-                o.words = words.lines[0];
-                o.wordsTip = words.tips.Count > 0 ? words.tips[0] : null;
+                g.words = words.lines[0];
+                g.wordsTip = words.tips.Count > 0 ? words.tips[0] : null;
             }
-            // Standing: trust, office, their name as a doctor or how they're mending (Health/).
-            var st = comp.standings.For(p, false);
-            if (st != null)
-                o.standing.Add(new UiKit.PillSpec(("CC_Trust_" + PawnStanding.LevelFor(st.trust)).Translate().CapitalizeFirst(), UiKit.TrustColor(st.trust), Icons.Trust,
-                    "CC_Trust_Header".Translate() + "\n\n" + "CC_Trust_Tip".Translate(p.LabelShort, st.trust.ToString("0"), st.granted, st.ignored, st.refused, st.promisesKept, st.promisesBroken).Resolve()));
-            var office = OfficeTracker.HeldBy(p);
-            if (office != null)
-                o.standing.Add(new UiKit.PillSpec(office.NameCap, UiKit.Gold, Icons.Council,
-                    "CC_Office_Holds".Translate(p.LabelShort, office.Name).Resolve() + (office.description.NullOrEmpty() ? "" : "\n\n" + office.Description)));
-            string health = HealthTracker.StoryTag(p, out var healthColor);
-            if (health != null) o.standing.Add(new UiKit.PillSpec(health.CapitalizeFirst(), healthColor, Icons.CatHealth, string.Join("\n", HealthTracker.StoryLines(p))));
-            // What they want from life, and how far they've come.
-            var life = new Section { key = "life", header = "CC_Story_LifeSoFar".Translate(), icon = Icons.LifeGoal };
+            // Their life goal, the story they're living (Arcs/) and their wish before the council.
+            g.BuildGoal(comp, p);
+            g.story = ArcView.Now(p, out g.storyTip, out g.stage, out g.stages);
+            g.BuildWish(comp, p);
+            // Quirks, keepsakes, vendettas and nemeses: a tag each, what it means in its tooltip; in full in their section.
+            var quirks = new Section { key = "quirks", header = "CC_SGl_Sec_Quirks".Translate(), icon = Icons.Heart };
+            if (s.quirks)
+                foreach (var q in comp.quirks.Of(p))
+                {
+                    g.tags.Add(new UiKit.PillSpec(q.Label.CapitalizeFirst(), UiKit.HeaderColor, null, QuirkEffects.Tip(q)));
+                    string from = QuirkEffects.From(q);
+                    quirks.lines.Add(((from.NullOrEmpty() ? q.Label : "CC_QuirkFx_NameFrom".Translate(q.Label, from).Resolve()).CapitalizeFirst(), UiKit.Ink));
+                    quirks.lines.Add((QuirkEffects.Effects(q) + ". " + QuirkEffects.Lasts(q).CapitalizeFirst() + ".", Faint));
+                }
+            if (s.heirlooms)
+                foreach (var h in comp.legacy.heirlooms.Where(h => h.heir == p && h.thing != null && !h.thing.Destroyed))
+                {
+                    string line = "CC_Story_Heirloom".Translate(h.ofName, h.thing.def.label).Resolve();
+                    g.tags.Add(new UiKit.PillSpec("CC_Story_HeirloomTag".Translate(h.ofName, h.thing.def.label).Resolve(), UiKit.LossColor, Icons.Heart, line));
+                    quirks.lines.Add((line, Faint));
+                }
+            if (s.vendettas)
+                foreach (var v in comp.vendettas.vendettas.Where(v => v.avenger == p && v.faction != null))
+                {
+                    string line = v.LineKey.Translate(p.LabelShort, v.faction.Name, v.victim, v.kills, Vendetta.KillsToSettle).Resolve();
+                    g.tags.Add(new UiKit.PillSpec("CC_Story_VendettaTag".Translate(v.faction.Name).Resolve(), v.settled ? Faint : UiKit.Bad, Icons.Vendetta, line,
+                        ThingRefs.Of(v.faction)));
+                    quirks.lines.Add((PaneLinks.Mark(line, v.faction), v.settled ? Faint : UiKit.Bad));
+                }
+            if (s.nemeses && comp.nemeses != null)
+                foreach (var n in comp.nemeses.Of(p).OrderBy(n => n.ended))
+                {
+                    string line = "CC_Story_Nemesis".Translate(n.Line).Resolve();
+                    bool known = n.pawn != null && !n.pawn.Discarded;
+                    g.tags.Add(new UiKit.PillSpec("CC_Story_Nemesis".Translate(n.pawn?.LabelShort ?? n.name).Resolve(), n.ended ? Faint : UiKit.Bad, Icons.Nemesis, line,
+                        known ? ThingRefs.Of(n.pawn) : ThingRef.None));
+                    quirks.lines.Add((known ? PaneLinks.Mark(line, n.pawn) : line, n.ended ? Faint : UiKit.Bad));
+                }
+            // Their standing, closest friends and rivals, and the newest line of their history.
+            g.BuildPeople(comp, p);
+            g.BuildRecent(p);
+
+            // ---- The sections, in order of use ----
+            // Their story: the newest lines of their history, the way to the whole of it, and the stories they lived through (Arcs/).
+            var story = new Section { key = "story", header = "CC_SGl_Sec_Story".Translate(), icon = Icons.Chronicle };
+            var history = History.Of(who, null, int.MinValue, HistoryShown);
+            foreach (var e in history) story.lines.Add((CardWords.HistoryDate(e, true) + "  " + CardWords.HistoryLine(e, true), Faint));
+            if (history.Count > 0)
+            {
+                int total = Math.Max(history.Count, History.Count(null, who));
+                story.act = "CC_Card_WholeHistory".Translate(total.Named("COUNT")).Resolve();
+                story.actTip = "CC_SGl_WholeHistoryTip".Translate(p.Named("PAWN")).Resolve();
+                story.run = () => WorldHistoryPage.ShowFor(who, Ref.None);
+            }
+            story.lines.AddRange(ArcView.Past(p, 5));
+            if (story.lines.Count > 0) list.Add(story);
+
+            // Their wishes: before the council now, then what came of the earlier ones.
+            if (s.enableWishes)
+            {
+                var wishes = new Section { key = "wishes", header = "CC_SGl_Sec_Wishes".Translate(), icon = Icons.Wishes };
+                int now = Find.TickManager.TicksGame;
+                foreach (var w in comp.wishes.Where(w => w != null && w.state == WishState.Open && w.def != null && w.pawn != null && w.Involves(p)).OrderBy(w => w.createdTick))
+                    WishLines(wishes, w, p, now);
+                var past = History.Of(who, WishKinds, int.MinValue, WishesShown);
+                if (past.Count > 0)
+                {
+                    if (wishes.lines.Count > 0) wishes.lines.Add(("CC_SGl_Earlier".Translate().Resolve(), UiKit.Dim));
+                    foreach (var e in past) wishes.lines.Add((CardWords.HistoryDate(e, true) + "  " + CardWords.HistoryLine(e, true), Faint));
+                }
+                if (wishes.lines.Count > 0)
+                {
+                    wishes.act = "CC_SGl_WishesPage".Translate().Resolve();
+                    wishes.run = () => MainTabWindow_Council.OpenTab("Wishes");
+                    list.Add(wishes);
+                }
+            }
+
+            // Their life goals: the one under way in full, those reached (a title that stays) and the knacks they won't lose (Aspirations/GoalRewards.cs).
+            var life = new Section { key = "life", header = "CC_SGl_Sec_Goals".Translate(), icon = Icons.LifeGoal };
             if (s.aspirations)
             {
-                var a = comp.aspirations.Active(p);
-                if (a != null)
+                if (g.goal != null)
                 {
-                    string progress;
-                    try { progress = a.def.Worker.ProgressText(a); }
-                    catch { progress = a.Progress.ToStringPercent(); }
-                    o.goal = "CC_Story_Wants".Translate(a.Goal).Resolve();
-                    o.goalProgress = a.Progress;
-                    o.goalTip = "CC_Story_Goal".Translate(a.Goal, progress).Resolve();
-                    string why = a.SparkText;
-                    if (!why.NullOrEmpty()) o.goalTip += "\n\n" + "CC_Story_GoalWhy".Translate(why, "CC_DayN".Translate(a.startedTick / GenDate.TicksPerDay + 1)).Resolve();
+                    life.lines.Add((g.goal + ": " + g.goalWords + (g.goalHeld != null ? "  ·  " + g.goalHeld : ""), UiKit.Ink));
+                    if (g.goalWhy != null) life.lines.Add((g.goalWhy, Faint));
                 }
-                // Each goal reached is a title that stays, and the skill it was about one they won't lose (Aspirations/GoalRewards.cs).
                 foreach (var done in comp.aspirations.Fulfilled(p))
                     life.lines.Add(("CC_Story_Remembered".Translate(done.Deed, "CC_DayN".Translate(done.doneTick / GenDate.TicksPerDay + 1)).Resolve(), UiKit.Good));
                 var marked = GoalRewards.MarksOf(p).Select(x => x.label).ToList();
                 if (marked.Count > 0) life.lines.Add(("CC_Story_Marked".Translate(TextUtil.JoinAnd(marked)).Resolve(), UiKit.Good));
             }
-            // The story they're living (Arcs/), and the ones they've lived through.
-            o.story = ArcView.Now(p, out o.storyTip, out o.stage, out o.stages);
-            life.lines.AddRange(ArcView.Past(p));
-            // Quirks, keepsakes, vendettas and nemeses: a tag each, what it means in its tooltip.
-            if (s.quirks)
-                foreach (var q in comp.quirks.Of(p))
-                    o.tags.Add(new UiKit.PillSpec(q.Label.CapitalizeFirst(), UiKit.HeaderColor, null, QuirkEffects.Tip(q)));
-            if (s.heirlooms)
-                foreach (var h in comp.legacy.heirlooms.Where(h => h.heir == p && h.thing != null && !h.thing.Destroyed))
-                    o.tags.Add(new UiKit.PillSpec("CC_Story_HeirloomTag".Translate(h.ofName, h.thing.def.label).Resolve(), UiKit.LossColor, Icons.Heart,
-                        "CC_Story_Heirloom".Translate(h.ofName, h.thing.def.label).Resolve()));
-            if (s.vendettas)
-                foreach (var v in comp.vendettas.vendettas.Where(v => v.avenger == p && v.faction != null))
-                    o.tags.Add(new UiKit.PillSpec("CC_Story_VendettaTag".Translate(v.faction.Name).Resolve(), v.settled ? Faint : UiKit.Bad, Icons.Vendetta,
-                        v.LineKey.Translate(p.LabelShort, v.faction.Name, v.victim, v.kills, Vendetta.KillsToSettle).Resolve(), ThingRefs.Of(v.faction)));
-            if (s.nemeses && comp.nemeses != null)
-                foreach (var n in comp.nemeses.Of(p).OrderBy(n => n.ended))
-                    o.tags.Add(new UiKit.PillSpec("CC_Story_Nemesis".Translate(n.pawn?.LabelShort ?? n.name).Resolve(), n.ended ? Faint : UiKit.Bad, Icons.Nemesis,
-                        "CC_Story_Nemesis".Translate(n.Line).Resolve(), n.pawn != null && !n.pawn.Discarded ? ThingRefs.Of(n.pawn) : ThingRef.None));
-            // The family who are here, closest first; the rest counted, and everyone in the tooltip (Social/Family.cs).
-            var tree = Family.Tree(p, out int further);
-            foreach (var e in tree.Where(e => !e.pawn.Dead && e.pawn.Spawned && e.pawn.Map == p.MapHeld).Take(FamilyShown))
-                o.family.Add((e.pawn, e.line));
-            o.familyRest = tree.Count - o.family.Count + further;
-            o.familyMore = (o.family.Count > 0 ? "CC_Story_FamilyMore" : "CC_Story_FamilyElsewhere").Translate(o.familyRest).Resolve();
-            // The most it can say, if none of the portraits find room: what the row leaves space for.
-            o.familyMoreMost = "CC_Story_FamilyMore".Translate(o.familyRest + o.family.Count).Resolve();
-            var treeLines = tree.Select(e => e.line).ToList();
-            if (further > 0) treeLines.Add("CC_Family_More".Translate(further).Resolve());
-            // Named after a grandmother, or sharing a name with one (Social/FamilyLife.cs).
-            string named = FamilyLife.NamedAfterLine(p);
-            if (named != null) treeLines.Insert(0, named);
-            // One of the Boyds, and what the family's name stands for (Social/FamilyNames.cs).
-            string known = FamilyNames.StoryLine(p);
-            if (known != null) treeLines.Insert(0, known);
-            o.familyTip = string.Join("\n", treeLines);
+            if (life.lines.Count > 0) list.Add(life);
 
-            // ---- The sections ----
+            if (quirks.lines.Count > 0) list.Add(quirks);
+
+            // Their friends and rivals, every one; and Rimfolk's bonds and those lost (in the Social tab's column, when it shows).
+            var people = new Section
+            {
+                key = "people", header = "CC_SGl_Sec_People".Translate(), icon = Icons.Bonds, friends = g.friends, rivals = g.rivals,
+                friendsLabel = g.friendsLabel, rivalsLabel = g.rivalsLabel
+            };
+            if (s.socialWeb && !socialElsewhere)
+            {
+                string describe = comp.social.Describe(p);
+                if (!describe.NullOrEmpty())
+                    people.lines.Add((PaneLinks.Mark(describe, comp.social.ties.Where(t => t != null && t.Involves(p)).Select(t => t.Other(p)).Where(o => o != null && !o.Dead)), Color.white));
+                foreach (var l in comp.social.lost.Where(l => l.survivor == p).Take(5))
+                    people.lines.Add(("CC_Story_Lost".Translate(l.name, ("CC_Tie_" + l.kind).Translate()).Resolve(), Faint));
+            }
+            if (people.friends.Count + people.rivals.Count > 0)
+                people.count = "CC_SGl_PeopleCount".Translate(people.friends.Count.Named("FRIENDS"), people.rivals.Count.Named("RIVALS")).Resolve();
+            if (people.friends.Count + people.rivals.Count + people.lines.Count > 0) list.Add(people);
+
+            // Their family, a row each, and where everyone is (Social/Family.cs).
+            var tree = Family.Tree(p, out int further);
+            // The family alive, whose names in these lines lead to their cards.
+            var kin = tree.Where(e => e.pawn != null && !e.pawn.Dead && !e.pawn.Discarded).Select(e => e.pawn).ToList();
+            if (tree.Count > 0 || further > 0)
+            {
+                var family = new Section { key = "family", header = "CC_Story_Family".Translate(), icon = Icons.Bonds, tree = tree, treeMore = further };
+                // One of the Boyds and what the family's name stands for (Social/FamilyNames.cs); named after a grandmother (Social/FamilyLife.cs).
+                string known = FamilyNames.StoryLine(p);
+                if (known != null) family.lines.Add((PaneLinks.Mark(known, kin), Faint));
+                string named = FamilyLife.NamedAfterLine(p);
+                if (named != null) family.lines.Add((PaneLinks.Mark(named, kin), Faint));
+                list.Add(family);
+            }
+
+            // Dreams.
+            if (s.dreams)
+            {
+                var dreams = new Section { key = "dreams", header = "CC_Social_Dreams".Translate(), icon = Icons.Dream, quotes = new List<(string, string, Color)>() };
+                foreach (var d in comp.dreams.recent.Where(d => d.pawn == p).Reverse().Take(3))
+                    dreams.quotes.Add((d.cameTrue ? "CC_Social_DreamCameTrue".Translate().CapitalizeFirst().ToString() : null, "\"" + d.text + "\"", UiKit.DreamColor));
+                if (dreams.quotes.Count > 0) list.Add(dreams);
+            }
+
             // Their character and what shaped it, with what the other systems add (Persona/CharacterView.cs).
             foreach (var cs in character)
             {
@@ -354,19 +557,8 @@ namespace ColonyCouncil
                 // Their groups, what people say and their shared memories name the colony's people: links.
                 if (SocialColumn.CharacterKeys.Contains(cs.key)) PaneLinks.MarkColony(cs, p);
                 int skip = cs == words ? 1 : 0;
-                // Their character in words is the overview's: the section keeps the bars and their nature.
+                // Their character in words is the glance's: the section keeps the bars and their nature.
                 list.Add(new Section { key = "character" + cs.order, header = cs.title, icon = CharacterView.Icon(cs.order), character = cs, skip = skip });
-            }
-
-            // Their family, a row each, and where everyone is.
-            // The family alive, whose names in these lines lead to their cards.
-            var kin = tree.Where(e => e.pawn != null && !e.pawn.Dead && !e.pawn.Discarded).Select(e => e.pawn).ToList();
-            if (tree.Count > 0 || further > 0)
-            {
-                var family = new Section { key = "family", header = "CC_Story_Family".Translate(), icon = Icons.Bonds, tree = tree, treeMore = further };
-                if (known != null) family.lines.Add((PaneLinks.Mark(known, kin), Faint));
-                if (named != null) family.lines.Add((PaneLinks.Mark(named, kin), Faint));
-                list.Add(family);
             }
 
             // Years in cryptosleep, and relatives whose ages run the wrong way round (Social/FamilyYears.cs).
@@ -376,20 +568,6 @@ namespace ColonyCouncil
                 var years = new Section { key = "years", header = "CC_Story_Years".Translate(), icon = Icons.Birth };
                 foreach (var line in yearLines) years.lines.Add((PaneLinks.Mark(line, kin), Color.white));
                 list.Add(years);
-            }
-
-            if (life.lines.Count > 0) list.Add(life);
-
-            // Bonds (in the Social tab's column, when it shows).
-            if (s.socialWeb && !socialElsewhere)
-            {
-                var bonds = new Section { key = "bonds", header = "CC_Story_Bonds".Translate(), icon = Icons.Bonds };
-                string describe = comp.social.Describe(p);
-                if (!describe.NullOrEmpty())
-                    bonds.lines.Add((PaneLinks.Mark(describe, comp.social.ties.Where(t => t != null && t.Involves(p)).Select(t => t.Other(p)).Where(o => o != null && !o.Dead)), Color.white));
-                foreach (var l in comp.social.lost.Where(l => l.survivor == p).Take(5))
-                    bonds.lines.Add(("CC_Story_Lost".Translate(l.name, ("CC_Tie_" + l.kind).Translate()).Resolve(), Faint));
-                if (bonds.lines.Count > 0) list.Add(bonds);
             }
 
             // Secrets (in the Social tab's column, when it shows).
@@ -406,132 +584,88 @@ namespace ColonyCouncil
                 if (secrets.lines.Count > 0) list.Add(secrets);
             }
 
-            // Dreams.
-            if (s.dreams)
-            {
-                var dreams = new Section { key = "dreams", header = "CC_Social_Dreams".Translate(), icon = Icons.Dream, quotes = new List<(string, string, Color)>() };
-                foreach (var d in comp.dreams.recent.Where(d => d.pawn == p).Reverse().Take(3))
-                    dreams.quotes.Add((d.cameTrue ? "CC_Social_DreamCameTrue".Translate().CapitalizeFirst().ToString() : null, "\"" + d.text + "\"", UiKit.DreamColor));
-                if (dreams.quotes.Count > 0) list.Add(dreams);
-            }
-
-            // Journal: the newest two entries.
+            // Journal: the newest two entries, and the way to the whole of it.
             if (s.journals)
             {
                 var j = comp.journals.For(p);
                 if (j != null && j.entries.Count > 0)
                 {
-                    var journal = new Section { key = "journal", header = "CC_Story_Journal".Translate(), icon = Icons.Journal, journal = j, quotes = new List<(string, string, Color)>() };
+                    var journal = new Section { key = "journal", header = "CC_Story_Journal".Translate(), icon = Icons.Journal, quotes = new List<(string, string, Color)>() };
                     foreach (var e in j.entries.AsEnumerable().Reverse().Take(2))
                         journal.quotes.Add((e.date, e.text, UiKit.Quote));
+                    journal.act = "CC_Story_ReadJournal".Translate();
+                    journal.run = () => Find.WindowStack.Add(new Dialog_Journal(j));
                     list.Add(journal);
                 }
             }
             return list;
         }
 
-        // ---------------- Drawing ----------------
-
-        /// <summary>The overview's rows inside its card; with <paramref name="draw"/> off it only measures. Returns its height.</summary>
-        private static float DrawOverview(Rect r, Overview o, bool draw)
+        /// <summary>A wish before the council in their wishes' section: what it is, then what fulfils it, how long they've waited and whether it's promised.</summary>
+        private static void WishLines(Section sec, Wish w, Pawn p, int now)
         {
-            const float pad = 8f, gap = 5f;
-            float x = r.x + pad + 3f, w = r.width - pad * 2f - 3f, y = r.y + pad;
-            Text.Font = GameFont.Small;
-            if (o.words != null)
+            string label = w.pawn == p
+                ? "CC_SGl_Wishes".Translate(w.LabelInline.Named("WISH")).Resolve()
+                : "CC_SGl_WishedFor".Translate(w.pawn.LabelShort.Named("ASKER"), w.LabelInline.Named("WISH")).Resolve();
+            sec.lines.Add((w.pawn != p ? PaneLinks.Mark(label, w.pawn) : label, w.stage >= 2 ? UiKit.Sour : w.promised ? UiKit.Gold : UiKit.Ink));
+            var bits = new List<string>(4);
+            try
             {
-                float h = Text.CalcHeight(o.words, w);
-                if (draw)
+                string when = w.Worker.FulfilledWhen(w);
+                string progress = w.Worker.ProgressText(w);
+                if (!when.NullOrEmpty()) bits.Add("CC_FulfilledWhen".Translate() + ": " + when);
+                if (!progress.NullOrEmpty()) bits.Add("CC_Progress".Translate() + ": " + progress);
+            }
+            catch (Exception e)
+            {
+                CouncilLog.ErrorOnce("a colonist's story: a wish's words", e);
+            }
+            bits.Add("CC_SGl_Waiting".Translate(UiKit.Duration(now - w.createdTick).Named("TIME")).Resolve());
+            if (w.promised) bits.Add("CC_PromisedTag".Translate());
+            if (w.stage >= 2) bits.Add("CC_LastCallTag".Translate());
+            sec.lines.Add((string.Join("  ·  ", bits).CapitalizeFirst(), Faint));
+        }
+
+        // ---------------- Drawing the sections ----------------
+
+        /// <summary>
+        /// Their friends, then their rivals, a row each: their face, name, the colonist's opinion of them and theirs back, and
+        /// what they are to them (a relation, Rimfolk's bond); a click selects them in the Story tab, opens their card
+        /// elsewhere. Then the section's lines (Rimfolk's bonds, those lost).
+        /// </summary>
+        private static float DrawPeople(Rect r, Pawn p, Section s, bool select)
+        {
+            float y = r.y;
+            int i = 0;
+            void Group(string label, List<StoryGlance.Person> group)
+            {
+                if (group == null || group.Count == 0) return;
+                UiKit.LabelFit(new Rect(r.x, y, r.width, 18f), label, UiKit.Dim, GameFont.Tiny);
+                y += 18f;
+                float nameW = Mathf.Min(120f, r.width * 0.3f), opW = 34f, backW = Mathf.Min(90f, r.width * 0.2f);
+                foreach (var o in group)
                 {
-                    var lr = new Rect(x, y, w, h);
-                    GUI.color = UiKit.Quote;
-                    Widgets.Label(lr, o.words);
-                    GUI.color = Color.white;
-                    if (!o.wordsTip.NullOrEmpty()) TooltipHandler.TipRegion(lr, o.wordsTip);
+                    var rr = new Rect(r.x, y, r.width, RowH - 2f);
+                    UiKit.Zebra(rr, i++);
+                    UiKit.RowHover(rr);
+                    UiKit.Portrait(new Rect(rr.x + 2f, rr.y + 1f, 22f, 22f), o.pawn, UiKit.WithAlpha(o.color, 0.8f));
+                    float x = rr.x + 30f;
+                    // The row's tooltip says all of it (StoryGlance.Clickable), so the words are cut without one of their own.
+                    StoryGlance.Plain(new Rect(x, rr.y, nameW, rr.height), o.name, UiKit.Ink);
+                    x += nameW + 4f;
+                    StoryGlance.Plain(new Rect(x, rr.y, opW, rr.height), o.opinion, o.color, GameFont.Tiny);
+                    x += opW + 4f;
+                    StoryGlance.Plain(new Rect(x, rr.y, Mathf.Max(0f, rr.xMax - x - backW - 4f), rr.height), o.what, Faint, GameFont.Tiny);
+                    StoryGlance.Plain(new Rect(rr.xMax - backW, rr.y, backW, rr.height), o.backWords, Faint, GameFont.Tiny, TextAnchor.MiddleRight);
+                    StoryGlance.Clickable(rr, p, o, select);
+                    y += RowH;
                 }
-                y += h + gap;
+                y += 4f;
             }
-            if (o.standing.Count > 0) y += UiKit.Pills(x, y, w, o.standing, draw) + gap;
-            if (o.goal != null)
-            {
-                if (draw) GoalRow(new Rect(x, y, w, RowH), o);
-                y += RowH + gap;
-            }
-            if (o.story != null)
-            {
-                if (draw) StoryRow(new Rect(x, y, w, RowH), o);
-                y += RowH + gap;
-            }
-            if (o.tags.Count > 0) y += UiKit.Pills(x, y, w, o.tags, draw) + gap;
-            if (o.family.Count > 0 || o.familyRest > 0)
-            {
-                if (draw) FamilyRow(new Rect(x, y, w, 24f), o);
-                y += 24f + gap;
-            }
-            return y - gap + pad - r.y;
-        }
-
-        /// <summary>"Wants to master cooking", with a bar for how far they've come.</summary>
-        private static void GoalRow(Rect r, Overview o)
-        {
-            if (Mouse.IsOver(r)) Widgets.DrawHighlight(r);
-            UiKit.Icon(new Rect(r.x, r.center.y - 8f, 16f, 16f), Icons.LifeGoal, UiKit.Gold);
-            const float barW = 64f, pctW = 36f;
-            float tx = r.x + 22f;
-            UiKit.LabelFit(new Rect(tx, r.y, Mathf.Max(0f, r.xMax - tx - barW - pctW - 8f), r.height), o.goal, Color.white);
-            UiKit.Bar(new Rect(r.xMax - barW - pctW, r.center.y - 3f, barW, 6f), o.goalProgress, UiKit.Gold);
-            UiKit.LabelFit(new Rect(r.xMax - pctW, r.y, pctW, r.height), o.goalProgress.ToStringPercent(), Faint, GameFont.Tiny, TextAnchor.MiddleRight);
-            if (!o.goalTip.NullOrEmpty()) TooltipHandler.TipRegion(r, o.goalTip);
-        }
-
-        /// <summary>"The long road: second thoughts", with a dot for each stage: those behind them, the one they're at, those to come.</summary>
-        private static void StoryRow(Rect r, Overview o)
-        {
-            if (Mouse.IsOver(r)) Widgets.DrawHighlight(r);
-            UiKit.Icon(new Rect(r.x, r.center.y - 8f, 16f, 16f), Icons.Journal, UiKit.Info);
-            const float dot = 7f, dotGap = 4f;
-            int n = o.stage >= 0 ? Mathf.Clamp(o.stages, 1, 10) : 0;
-            float dotsW = n > 0 ? n * dot + (n - 1) * dotGap : 0f;
-            float tx = r.x + 22f;
-            UiKit.LabelFit(new Rect(tx, r.y, Mathf.Max(0f, r.xMax - tx - dotsW - 8f), r.height), o.story, Color.white);
-            for (int i = 0; i < n; i++)
-            {
-                var d = new Rect(r.xMax - dotsW + i * (dot + dotGap), r.center.y - dot / 2f, dot, dot);
-                UiKit.DiscFill(d, i < o.stage ? UiKit.Done : i == o.stage ? UiKit.Gold : UiKit.WithAlpha(UiKit.Ink, 0.15f));
-            }
-            if (!o.storyTip.NullOrEmpty()) TooltipHandler.TipRegion(r, o.storyTip);
-        }
-
-        /// <summary>The family who are here as small portraits (click one for their page), then how many more, the whole tree in its tooltip.</summary>
-        private static void FamilyRow(Rect r, Overview o)
-        {
-            UiKit.Icon(new Rect(r.x, r.center.y - 8f, 16f, 16f), Icons.Bonds, HeaderColor);
-            float x = r.x + 22f;
-            int rest = o.familyRest;
-            // Room for "+3 more" at the end, so the portraits leave space for it.
-            Text.Font = GameFont.Small;
-            float moreW = rest > 0 || o.family.Count > 1 ? Text.CalcSize(o.familyMoreMost).x + 10f : 0f;
-            for (int i = 0; i < o.family.Count; i++)
-            {
-                var (pawn, tip) = o.family[i];
-                float room = r.xMax - x - moreW;
-                if (room < 60f)
-                {
-                    rest += o.family.Count - i;
-                    break;
-                }
-                // Their name a link: a preview after a pause, their card on a click.
-                string line = tip;
-                x += UiKit.PawnChip(x, r.y, pawn, 24f, true, Mathf.Min(120f, room), null, () => line + "\n\n" + "CC_UI_OpenPage".Translate(), true, true) + 8f;
-            }
-            if (rest <= 0) return;
-            // Some portraits found no room after all: the count says so (rarely, so worded here).
-            string more = rest == o.familyRest ? o.familyMore : "CC_Story_FamilyMore".Translate(rest).Resolve();
-            Text.Font = GameFont.Small;
-            var mr = new Rect(x, r.y, Mathf.Min(Text.CalcSize(more).x + 8f, Mathf.Max(0f, r.xMax - x)), r.height);
-            if (Mouse.IsOver(mr)) Widgets.DrawHighlight(mr);
-            UiKit.LabelFit(mr, more, Faint);
-            if (!o.familyTip.NullOrEmpty()) TooltipHandler.TipRegion(mr, o.familyTip);
+            Group(s.friendsLabel, s.friends);
+            Group(s.rivalsLabel, s.rivals);
+            if (s.lines.Count > 0) y += DrawLines(new Rect(r.x, y, r.width, 0f), s);
+            return y - r.y;
         }
 
         /// <summary>The family tree, a row each: their face (or where they are, for those not on a map), name, what they are, age and where.</summary>
@@ -546,7 +680,7 @@ namespace ColonyCouncil
                 var e = s.tree[i];
                 var rr = new Rect(r.x, y, r.width, row - 2f);
                 UiKit.Zebra(rr, i);
-                if (Mouse.IsOver(rr)) Widgets.DrawHighlight(rr);
+                UiKit.RowHover(rr);
                 var color = WhereColor(e.whereKind);
                 var face = new Rect(rr.x + 2f, rr.y + 1f, 22f, 22f);
                 if (!e.pawn.Dead && e.pawn.Spawned) UiKit.Portrait(face, e.pawn, color);

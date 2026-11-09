@@ -8765,8 +8765,9 @@ the grammar across every window (UI 5b) waits for it.
   the hostile peoples in what the colony faces. The Almanac button at the foot of the facts went: the "?" opens the same
   page.
 - **Names as links in the game's panes** (`UI/Cards/PaneLinks.cs`: a line's names marked once when its model is built,
-  `LinkTextMath.MarkNames`, never in a tooltip): the Story tab (`StoryView`: the family's portraits in the overview with
-  their names as links, `UiKit.PawnChip(..., link: true)`; a vendetta's people and a nemesis on their tags,
+  `LinkTextMath.MarkNames`, never in a tooltip): the Story tab (`StoryView`: the history's lines and the newest one at a
+  glance, their names as links, the friends' and rivals' portraits selecting them since "the Story tab at a glance"; a
+  vendetta's people and a nemesis on their tags,
   `UiKit.PillSpec.thing`; the family tree's names; the family's, the years' and the bonds' lines; the secrets' names),
   the Culture tab (a prisoner's people, who won them over), the Social column (each bond's colonist, the secrets'
   names, the colony's people named in their groups, what people say and their shared memories,
@@ -9183,6 +9184,86 @@ Escape, the corner, the keys and the settings work as before, floating or as tab
   the frame; a preview's look following its link through two levels; the market's columns with and without Vanilla
   Trading Expanded at the window's least.
 
+#### Rimfolk's own look, stage 3, point 2: the Story tab at a glance (docs/design/rimfolk-look.md)
+
+The player's words (9 November 2026): "story tab sounds great", to "The Story tab, done like the new Mood tab: at a
+glance, life goal with a progress bar, current wish, quirks, standing in the colony, closest friends and rivals; the full
+history below in folding sections." Built on the Mood tab's pattern (`MoodGlance`): a summary built with the tab's model
+and drawn first, then folding sections remembered between sessions. The pure rules are `UI/StoryGlanceMath.cs` (linked
+in the tests); the summary is `UI/StoryGlance.cs`; the tab and the page are `UI/ITab_Pawn_Story.cs` (`StoryView`). No
+saved data, no Harmony patch, no Sched slot.
+
+- **Who they are, in one line**, under their name in the tab's head, where the name the colony knows them by stood
+  (`StoryView.Who`, kept two seconds): the name they're known by, the office they hold or the game's title for them,
+  their age, and where they come from in the Culture tab's words ("a founder", "born here", "won over by Bo", "once among
+  outlanders"; "a prisoner of the colony", "a slave of the colony"; `CultureView.RecruitedBy`, now internal). "The Healer
+  · Steward · age 34 · a founder". Its tooltip has each in full: the "known as" line, the office, childhood and
+  adulthood, years in cryptosleep, how long with the colony. The "In the council" button is as wide as its word.
+- **At a glance** (`StoryGlance`), at the top of the scroll view, a row each, without scrolling at the inspect pane's
+  usual height:
+  - their character in words (it led the old overview; the Character section keeps the bars);
+  - **their life goal**: "Wants to master cooking", how long they've held it ("held 12 days"), a gold bar for how far
+    along, and its progress in the goal's own words with the share ("cooking 12 of 15 · 80%": what's next); the tooltip
+    has the goal and why or since when they set their heart on it. A free colonist without one: "No life goal yet.";
+  - the story they're living, with a dot for each stage (as before);
+  - **their wish before the council**: their own first (the one nearest its last call, then the oldest), else one asked
+    for them ("Bo wishes for ..."); how long they've waited, what fulfils it (or its progress), promised or last call,
+    "(+1 more)" when there are others; its tooltip the wish in full (the words, the scene and quote, why, what fulfils
+    it, progress, reward, the petition's names). Its acts are the wish cards' own: "Show me" (`MainTabWindow_Council.Jump`
+    to `Worker.LookAt`) and "Promise" (`CouncilGameComponent.Promise`, greyed "Already promised."), beside the words at
+    the tab's width, under them where the width is short (`StoryGlanceMath.WishLine`). Never a time left. A free
+    colonist without one: "No wish before the council.";
+  - **quirks** (and keepsakes, vendettas, nemeses) as the kit's tags, what each does in its tooltip (`QuirkEffects.Tip`);
+  - **standing in the colony**: trust in the council on a small meter from -100 to 100 with ticks where its words change
+    (-45, -15, 25, 60: `PawnStanding.LevelFor`), "Trust: trusting 38" in its colour, its tooltip the trust record and
+    what moved it lately; then as tags the office they hold, their name as a doctor or how they're mending, and how the
+    colony regards them ("Liked by 5", "Disliked by 1": colonists whose opinion of them is 20 or more, -20 or less, named
+    in the tooltip);
+  - **closest friends and rivals**: up to three each, a row each, small portraits (`UiKit.Portrait`, the game's
+    `PortraitsCache`), name and opinion ("+45" warm, "-30" sour), the rest counted ("+2", named in its tooltip). A friend:
+    the colonist's opinion at the game's friend line (20) or above, or an announced bond of friendship, fighting side by
+    side or teaching and not against them now; a rival: -20 or below, or a bond of rivalry and not for them now; never
+    both; closest first by opinion, then the bond's strength (`StoryGlanceMath`). Among the colony's people (free
+    colonists and slaves, not babies or lodgers). The tooltip: their opinion both ways, the relation (flavour only:
+    "Bo is her husband"), and Rimfolk's line about the two (`SocialColumn.PairNote`, worked out only on hover). A click
+    selects them in the Story tab, as the game's Social tab does (`CameraJumper.TryJumpAndSelect`; their card when not on
+    a map or in a caravan), and opens their card elsewhere. With nobody either way: "No close friends or rivals yet.";
+  - **the newest line of their history** (`History.Of`, a season's summary passed over), how long ago, its names as links.
+- **The sections below**, in order of use, each folding (`UiKit.FoldTitle`), remembered between sessions in the tab
+  (`Folds.Remembered("story.sections")`, kept with the settings through `PageMemory`), their story and their wishes open
+  at first, the rest folded:
+  - **Their story**: the newest ten lines of their history, each with its day (a link to the entry's card) and its names
+    as links (`CardWords.HistoryLine`), "Its whole history (N)" opening the region window's History on them
+    (`WorldHistoryPage.ShowFor`), and the stories they lived through (`ArcView.Past`, moved here from "Life so far");
+  - **Wishes**: each before the council now that they asked or that is for them (what fulfils it, progress, how long
+    waited, promised, last call), then what came of the earlier ones (the history's granted, lapsed or taken back,
+    refused or set aside, and petition lines, the newest eight), and "Every wish" to the Wishes page;
+  - **Life goals**: the one under way in full (progress, how long held, why), the goals reached and the knacks they
+    won't lose (as "Life so far" had them);
+  - **Quirks and keepsakes**: each quirk with how it came, what it does and how long it lasts; the keepsakes', vendettas'
+    and nemeses' lines;
+  - **Friends and rivals**: every one, a row each (face, name, opinion, what they are to them, their opinion back), each
+    clickable as above; then Rimfolk's bonds and those lost while the Social tab's column is off (the old "Bonds");
+  - **Family**, **Recent dreams**, the **character page's** sections, **Across the years**, **Secrets** (while the column
+    is off) and **From the journal**, as before ("Read the journal" now an act at the section's foot in the kit).
+- **Kept**: every piece the tab showed. The family's portraits that led the old overview gave way to the friends and
+  rivals (the colony is the family); the family tree's section has everyone with their faces, and its lines the family
+  name and who they're named after. The overview's standing pills (trust, office, health) are the standing row.
+- **Both looks**: drawn with the kit (`UiKit.Bar`, `Pills`, `RowAct`, `RowHover`, `Portrait`, `ActButton`): the game's
+  look in the inspect pane, Rimfolk's own on a colonist's card, which draws the same page (`StoryParts.Card`, its own
+  folds, all open). The family tree's rows light with `UiKit.RowHover`.
+- **Speed**: the glance is built with the page's model, at most twice a second for each place it shows (again after a
+  promise), and drawn only from it: nothing translated while drawn (the few fixed words translated once), the
+  opinions, the history and the wishes read only when it is built, Rimfolk's line about two people only on hover.
+- **Tests**: `Tools/Tests/StoryGlanceTests.cs` (friends and rivals at every opinion and bond, their order, the portraits
+  that fit, the trust meter, the rows from 200 to 900 wide, what the glance shows and from what, nothing worked out or
+  translated while drawn, the sections' order and folds, every piece the tab showed still there, the words).
+- **Not verified without the game**: the glance's height at the inspect pane's usual height in both looks (that it fits
+  without scrolling with a long wish and two rows of people), the who line's width beside the button, the wish's acts
+  (Show me leaving for the map, Promise greying at once), a friend's click selecting them with the tab staying open on
+  them, the portraits' rings, the tooltips' order, the trust meter's ticks at 8 high, the card's narrower width in
+  Rimfolk's look, a prisoner's and a slave's page.
+
 #### The journey planner: who to bring and what to pack
 
 The player's request (5 November 2026): a better overview of the colonists in "Plan a journey", so they can judge
@@ -9286,9 +9367,12 @@ A colonist's inspect pane has four Rimfolk places, each a page of folding sectio
 and drawn from that model (`UI/PawnPane.cs` lays out the Culture tab and the column; StoryView the Story tab;
 MoodCompact the Mood tab), and a line in the game's Needs tab:
 
-- **Story** (`ITab_Pawn_Story`): who they are and what they've lived (standing, character, what shaped them, traits,
-  life goal, personal story, quirks, heirlooms, vendettas, nemeses, dreams, journal). `StoryView` takes a `StoryParts`
-  filter: the roster passes `All`, the tab `StoryTab`, which leaves out the Culture tab's parts always and the
+- **Story** (`ITab_Pawn_Story`): who they are and what they've lived, at a glance first (who they are in one line under
+  the name; their character in words, life goal with its bar, personal story, wish with its acts, quirks, standing,
+  closest friends and rivals, the newest line of their history: `StoryGlance`, "Rimfolk's own look, stage 3, point 2"),
+  then sections that fold and are remembered (their story, wishes, life goals, quirks and keepsakes, friends and rivals,
+  family, dreams, character, what shaped them, traits, the years, secrets, journal). `StoryView` takes a `StoryParts`
+  filter: a colonist's card passes `Card`, the tab `StoryTab`, which leaves out the Culture tab's parts always and the
   column's parts only while the column can show (`SocialColumn.Available`), so nothing is lost with it off.
 - **Culture** (`ITab_Pawn_Culture`, added in code to every humanlike race right after `ITab_Pawn_Social` in
   `inspectorTabs`, so it's drawn just left of Social): ideoligion (the vanilla icon, certainty and role, then

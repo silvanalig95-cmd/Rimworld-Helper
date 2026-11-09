@@ -1049,14 +1049,19 @@ what people say).
 
 ### Story, Culture and Social: a colonist's pages
 Select a colonist and three places in their inspect panel tell Rimfolk's side of them:
-- **Story**: who they are and what they've lived. Under their name and earned names, a card with what matters at a
-  glance: their character in words; their trust, office and name as a doctor; their life goal with a bar for how far
-  they've come; the personal story they're living, a dot for each stage; their quirks, heirlooms, vendettas and
-  nemeses as tags (hover one for what it does and how long it lasts); and the family who are here as small portraits,
-  the rest counted (hover the count for everyone). Under the card: their character on its eight bars, what shaped
-  it, the traits life changed, their family tree a row each (face, what they are, age, where they are), the years
-  across cryptosleep, their life so far (goals reached, stories lived through), their last dreams and the two newest
-  lines of their journal. The long lists start folded; a click on a heading opens them for the session.
+- **Story**: who they are and what they've lived. Under their name, who they are in one line (the name the colony knows
+  them by, their office or title, their age, where they come from; hover it for each in full). Then their story at a
+  glance: their character in words; their life goal with a bar for how far they've come, what's next and how long
+  they've held it; the personal story they're living, a dot for each stage; their wish before the council (how long
+  they've waited, what fulfils it, with "Show me" and "Promise"); their quirks, heirlooms, vendettas and nemeses as tags
+  (hover one for what it does and how long it lasts); their standing (trust in the council on a small meter, office,
+  name as a doctor, how many think well or ill of them); their closest friends and rivals with small portraits and
+  their opinion (click one to select them); and the newest line of their history. Under it, sections that fold, in
+  order of use: their story (the newest lines of their history, the way to the whole of it, the stories lived through),
+  wishes (now and what came of earlier ones), life goals, quirks and keepsakes in full, every friend and rival, their
+  family tree a row each (face, what they are, age, where they are), their last dreams, their character on its eight
+  bars, what shaped it, the traits life changed, the years across cryptosleep and the two newest lines of their
+  journal. Their story and wishes start open, the rest folded; the tab remembers what you open and close.
 - **Culture** (just left of Social): what they believe and where they come from. Their ideoligion (with Ideology: its icon,
   how firmly they hold it, a role, what it asks of them, what moved it, who could sway them), the views they hold,
   how they sit with the colony's ways (a bar from ashamed to proud, and why), what they think of each decree in force
