@@ -89,6 +89,11 @@ each; the good side still fills 2.4 a day while strained (3.8 otherwise).
 
 ## Release 2: make it count (after the player has seen release 1 in play)
 
+The player, having played release 1 (9 November 2026): "i think you can go ahead with this, if the strain is not
+noticeable it doesn't make too much sense. also include recommendations and advice on potential actions i can take to
+reduce strain. for example certain decrees. or i could for example also just grant a single stained pawn a break day or
+stuff like this". So points 9 to 12 as written, and 13 and 14 below.
+
 9. **Stronger bands**: strain -4, -8 and -14 mood; the good side +3, +6 and +10 (still growing ordinary like any good
    mood). These go through the game's mood, so worn colonists break more often, as they should.
 10. **Mild effects beyond mood**: worn learn slower, sleep longer and recover a little slower; in good heart a little
@@ -96,6 +101,16 @@ each; the good side still fills 2.4 a day while strained (3.8 otherwise).
 11. **A bad day from worn** (not only at 85): the afternoon off, a walk, a cry in their room, a drink if they drink, a
     visit to a grave, under the day off's safety rules, easing a good share.
 12. **Hearts spread a little**: someone worn wears on those close to them, someone in high spirits lifts them.
+13. **What would help, as advice you can act on**: for each strained colonist, the few things that would ease them most,
+    from what is wearing on them now and what the colony has: a proper meal or a better bed, recreation they like, a
+    gathering or party, time with a friend, keeping them out of the next fight, treating their pain, a decree that eases
+    strain (the colony's own rest or leisure decrees, named with what each costs), a day off (14). Shown on the heart's
+    page, the colonist's card, the message when someone becomes worn, and the council's Moods page for the whole colony,
+    each with a button where Rimfolk can do it (propose the decree, give the day off, call the gathering).
+14. **A day off for one colonist**: the player grants a strained colonist a day of rest from their card, the heart's page
+    or a gizmo; they leave work for the day and rest, sleep in, take their recreation, walk and see friends, played out on
+    the map, and it eases strain well beyond an ordinary day; the colony feels the work missed; at most once in a while
+    for each colonist so it stays a choice.
 
 ## Rules that hold
 
@@ -107,4 +122,5 @@ each; the good side still fills 2.4 a day while strained (3.8 otherwise).
 
 ## Order of building
 
-Release 1 (A and B together, the two sides at once with them), then release 2 once the player has played it.
+Release 1 (A and B together, the two sides at once with them), then release 2 once the player has played it (approved
+9 November 2026, with points 13 and 14).
