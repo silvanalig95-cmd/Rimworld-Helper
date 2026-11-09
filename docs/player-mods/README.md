@@ -43,6 +43,15 @@ The buildings table was added on 8 November 2026 from the same collection, with 
 came out byte for byte the same, but for `mods.tsv`'s column inSave for Harvest and Haul (in the 7 November save, not in
 this one).
 
+`weapon_numbers.json.gz` (9 November 2026, for the weapon rating: `docs/weapons`) holds every weapon of the active mods
+with the numbers the game resolves for it: its verbs and each verb's projectile (damage and armour piercing by the game's
+own rules, stopping power, explosion, fuse, extra damages), its melee tools with each capacity's damage, its stat bases and
+the stats it changes on its wielder, its comps and mod extensions (every simple field), the abilities it grants (resolved
+AbilityDefs), the stuff it is rated in, the research its recipe needs, why it is left out if a colonist can't wield it,
+and the active mods' patches that touch it (a `PatchOperationFindMod` followed as the player's mod list decides; patches
+still not applied). Built by `python3 Tools/weapon_extract.py <collected folder> docs/player-mods/weapon_numbers.json.gz`,
+which reads the collection through `mod_pool.py`'s own loader (its `Pool`); `Tools/WeaponReview` rates it.
+
 `madeTech` is the age of the easiest way the player's active mods make or grow the thing: the tech level of the
 research its recipes (or recipe maker, or a sown crop) need, `Undefined` for one that needs none, blank when nothing
 makes it (a fermenting barrel's or a mod's processor's product, a ruined grill).

@@ -26,6 +26,16 @@ the gear tab), **RunAndGun - Continued** (`memegoddess.runandgun`), **Melee Anim
 
 ## Step 1: the rating and the review of every weapon
 
+**Built (9 November 2026, not released).** `Source/ColonyCouncil/Weapons/WeaponRateMath.cs` (the rating, pure math) and
+`WeaponTagMath.cs` (the colour-coded tags), tested in `Tools/Tests/WeaponRateTests.cs` against the base game's weapons;
+`Tools/weapon_extract.py` reads every active weapon's numbers (`docs/player-mods/weapon_numbers.json.gz`) and
+`Tools/WeaponReview` rates them all into `docs/weapons/README.md` (how it works, the anchors, the tag legend, every table)
+and `docs/weapons/weapons.json` (everything, for the tier-list page and step 2). The mods' own code was read for the
+effects that live there (Vanilla Expanded Framework, A RimWorld of Magic, VFE Medieval 2, VWE Bioferrite and the rest);
+what still can't be valued is named and marked rough. Folded in as asked on the way: abilities and passive effects count
+in the rating, situational scores and "best for / weak when" for step 2's recommendations, the player's tags request
+("some kind of tags/labels that help me grasp their strengths and weaknesses ... color coded").
+
 1. **One rating from 1.0 to 10.0**, with a decimal, for every weapon, from what it really does in a fight by the game's
    own rules: damage per second after the chance to hit (the weapon's accuracy at each distance and a shooter's or
    fighter's skill), armour (the game's armour roll against the weapon's penetration), warm-up, burst and cooldown, for

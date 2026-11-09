@@ -1,0 +1,21 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!--
+    The weapon review: rates every weapon of the player's active mods with the mod's own weapon rating (linked below, so
+    the numbers are exactly the in-game math's) from docs/player-mods/weapon_numbers.json.gz (Tools/weapon_extract.py),
+    and writes docs/weapons/README.md and docs/weapons/weapons.json. Run from the repository root:
+      dotnet run -c Release &#45;&#45;project Tools/WeaponReview
+  -->
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>disable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <RollForward>Major</RollForward>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="../../Source/ColonyCouncil/Weapons/WeaponRateMath.cs" Link="Linked/WeaponRateMath.cs" />
+    <Compile Include="../../Source/ColonyCouncil/Weapons/WeaponTagMath.cs" Link="Linked/WeaponTagMath.cs" />
+    <Compile Include="../../Source/ColonyCouncil/UI/SkinMath.cs" Link="Linked/SkinMath.cs" />
+    <Compile Include="../Tests/WeaponRateTests.cs" Link="Linked/WeaponRateTests.cs" />
+  </ItemGroup>
+</Project>

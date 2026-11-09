@@ -322,56 +322,73 @@ def building_roles(d, work):
     return roles
 
 
-def main(root, out, save=None):
-    folders, active = read_mods(root)
-    active_set = set(active)
-    in_save = save_mods(save)
-    versions = {d: versions_of(root, d) for d in folders}
-    old_only = {d for d, v in versions.items() if v and not any(x in SUPPORTED for x in v)}
-    named = {}   # (tag, Name) -> [(pid, element)], for inheritance
-    defs = []    # (pid, element)
-    owner = {}   # id(element) -> pid
-    for pid, path in def_files(root, folders, old_only, active):
-        r = parse(path)
-        if r is None:
-            continue
-        for e in list(r):
-            if not isinstance(e.tag, str):
-                continue
-            owner[id(e)] = pid
-            n = e.attrib.get("Name")
-            if n:
-                named.setdefault((e.tag, n), []).append((pid, e))
-                named.setdefault(("*", n), []).append((pid, e))
-            if e.attrib.get("Abstract", "").lower() == "true":
-                continue
-            if e.find("defName") is not None:
-                defs.append((pid, e))
+class Pool:
+    """Every def the game would read for the player's mod list, before patches: `defs` is [(packageId, element)] in load
+    order (abstract defs left out), `resolved(e)` the def with its ParentName inheritance applied, `on(pid)` whether a mod
+    is the game's own or active in the player's list. Other tools read the collection through this
+    (Tools/weapon_extract.py)."""
 
-    def parent_of(e, p):
+    def __init__(self, root):
+        self.folders, self.active = read_mods(root)
+        self.active_set = set(self.active)
+        self.versions = {d: versions_of(root, d) for d in self.folders}
+        self.old_only = {d for d, v in self.versions.items() if v and not any(x in SUPPORTED for x in v)}
+        self.named = {}   # (tag, Name) -> [(pid, element)], for inheritance
+        self.defs = []    # (pid, element)
+        self.owner = {}   # id(element) -> pid
+        self._cache = {}
+        for pid, path in def_files(root, self.folders, self.old_only, self.active):
+            r = parse(path)
+            if r is None:
+                continue
+            for e in list(r):
+                if not isinstance(e.tag, str):
+                    continue
+                self.owner[id(e)] = pid
+                n = e.attrib.get("Name")
+                if n:
+                    self.named.setdefault((e.tag, n), []).append((pid, e))
+                    self.named.setdefault(("*", n), []).append((pid, e))
+                if e.attrib.get("Abstract", "").lower() == "true":
+                    continue
+                if e.find("defName") is not None:
+                    self.defs.append((pid, e))
+
+    def on(self, pid):
+        return pid in self.active_set or pid.startswith("ludeon.")
+
+    def parent_of(self, e, p):
         """The parent the game takes: its own mod's of that name, else the last of a mod in the list, else the last."""
         for key in ((e.tag, p), ("*", p)):
-            cands = named.get(key)
+            cands = self.named.get(key)
             if cands:
-                mine = [x for q, x in cands if q == owner.get(id(e))]
-                on = [x for q, x in cands if q in active_set or q.startswith("ludeon.")]
+                mine = [x for q, x in cands if q == self.owner.get(id(e))]
+                on = [x for q, x in cands if q in self.active_set or q.startswith("ludeon.")]
                 return (mine or on or [x for _, x in cands])[-1]
         return None
 
-    cache = {}
-
-    def resolved(e, depth=0):
+    def resolved(self, e, depth=0):
         key = id(e)
-        if key in cache:
-            return cache[key]
+        if key in self._cache:
+            return self._cache[key]
         p = e.attrib.get("ParentName")
         if p and depth < 30:
-            parent = parent_of(e, p)
-            r = merge(resolved(parent, depth + 1), e) if parent is not None else e
+            parent = self.parent_of(e, p)
+            r = merge(self.resolved(parent, depth + 1), e) if parent is not None else e
         else:
             r = e
-        cache[key] = r
+        self._cache[key] = r
         return r
+
+
+def main(root, out, save=None):
+    pool = Pool(root)
+    folders, active, active_set = pool.folders, pool.active, pool.active_set
+    in_save = save_mods(save)
+    versions = pool.versions
+    old_only = pool.old_only
+    defs = pool.defs
+    resolved = pool.resolved
 
     os.makedirs(out, exist_ok=True)
     tables = {k: [] for k in ["apparel", "weapons", "items", "races", "xenotypes", "genes", "traits", "abilities",

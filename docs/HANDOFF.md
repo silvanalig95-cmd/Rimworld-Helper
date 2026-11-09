@@ -12,6 +12,50 @@ tree at once, alongside whatever runs. Each piece is merged as its own release, 
 
 ## State (5 November 2026)
 
+- Weapons you can judge at a glance, step 1: the rating, its tags and a review of every weapon (9 November 2026, the
+  player's request in `docs/design/weapons.md`). **Not released: no version, no What's new round, About.xml and CHANGELOG
+  untouched.** No game-side code yet: only pure math that builds into the mod, the tools and the docs.
+  - The rating (`Source/ColonyCouncil/Weapons/WeaponRateMath.cs`, pure): a weapon in a fight by the game's own rules (1.6,
+    decompiled: ShotReport's hit chance, ArmorUtility's roll, VerbProperties' cycle, explosions' scatter, blast and fuse,
+    VerbUtility's melee choice with the fists in the running, stuns that don't stack and EMP adaptation), against a
+    reference colonist (Shooting and Melee 8) and five reference enemies from the game's defs (plain clothes; flak vest,
+    pants and helmet; marine armour; a lancer and a centipede), hits shared over armour pieces by the human body's
+    coverage. Ranged: normalised damage per second at 5, 12, 25 and 40 cells, weighed by role (close, all-round, long,
+    area, one-use, anti-mechanoid, utility), a crowd, reach (a quarter off at 12 cells' range, damage past 31 cells
+    doubled), punch (heavier hits up to a third more), stopping power, friendly fire; melee by the enemy mix (light under
+    1.5 kg, heavy from it). Passives count (accuracy and melee hit as skill, aim and cooldowns in the cycle, move speed,
+    dodge, deflection, damage taken, pain); abilities count when readable (spread over a minute, at most half again the
+    weapon's own worth). The scale is a Laplace curve in the log of the value, a middle and width per kind, so mods'
+    super-weapons land at 9-something. Outputs: the overall, sub-ratings, situations (mechanoids, crowds, hunting, indoors,
+    holding a choke, kiting, a siege, capture alive, a sidearm, in melee), damage per second by distance and enemy, specials
+    with counted or not and a sign, tags, best for and weak when, the skill it rewards (`SkillGain`).
+  - The tags (`WeaponTagMath.cs`, pure; the player's follow-up "tags/labels ... color coded"): 59 tags in six categories
+    (strength, weakness, risk, special, role, needs), each a colour from `SkinMath`'s own tokens (Done, Danger, Foe, World,
+    Ally, Cool: 4.5:1 on every ground, tested) and a symbol; every tag by a rule on the weapon's numbers with a line saying
+    why, at most seven by importance, keeping the role, the first strength and weakness. Sidearm, Offhand and Two-handed
+    follow Simple Sidearms' default preset (melee 1.9 kg, ranged 2.7 kg) and Dual Wield's defaults, read from their code.
+    The shapes are not weapon-only, for armour and apparel later.
+  - Anchors (normal quality, steel): short bow 2.9, revolver 4.5, bolt-action 4.9, assault rifle 5.8, LMG 6.0, sniper 6.4,
+    charge lance 6.4, charge rifle 6.7, minigun 6.9, frag grenades 5.7, triple rocket 6.9; knife 4.0, gladius 4.3,
+    longsword 5.2, uranium longsword 5.5, plasteel longsword 6.7, uranium mace 6.9, zeushammer 7.4, monosword 7.6.
+  - The review: `Tools/weapon_extract.py` (reads the collection through `mod_pool.py`'s new `Pool` class, which
+    `mod_pool.py`'s own tables now use too, output unchanged) writes `docs/player-mods/weapon_numbers.json.gz`;
+    `Tools/WeaponReview` (net8, links the two math files, `SkinMath.cs` and the test anchors) writes
+    `docs/weapons/README.md` and `docs/weapons/weapons.json` (one weapon a line). 768 defs: 507 rated, 1 not rated
+    (Winter's Reign, its attack wholly its own code), 260 left out (turret guns, mechanoids' and animals' built-in weapons,
+    spell weapons). 72 marked rough: 47 unique weapons (rolled traits) and 25 effects named but not valued (Rimsenal's
+    crucible, VWE Non-Lethal's tear gas, darts and taser, the cryptoforge's slowing and others whose code wasn't uploaded).
+  - The mods' code (uploaded DLLs, decompiled with `ilspycmd` into the scratchpad, never run; VEF's 1.7 DLL trips the
+    project writer, read as IL) moved 40 weapons from rough to counted: VEF's streams and gauss slugs, laser capacitors,
+    firing modes; VFE Medieval's matchlocks; A RimWorld of Magic's bolts, wands, cleave and deflectors (and its Light and
+    Dark armour, which ordinary armour doesn't give); VWE Bioferrite's incinerator and abilities; dynamite's fuse; the
+    game's own beams, fire arrow and doomsday rocket. `MayRequire` list items of inactive mods are now skipped.
+  - Tests: `WeaponRateTests` (149 checks: the game's rules, the scale, the anchors' bands and order, specials, passives,
+    abilities, the mods' rules, the tag vocabulary, its colours and its rules).
+  - Next (step 2, `docs/design/weapons.md`): the weapon card and the weapon mods. The game side feeds `WeaponRateMath` the
+    weapon in hand (quality factors, stuff, unique traits, persona traits) and the colonist (skills, traits, natural
+    attacks); `weapons.json`'s situations, tags and per-skill and per-trait ratings are what recommendations will read.
+
 - 0.180.0, the shared illness budget made soft (9 November 2026, the player's answer to how 0.177.0 works, "Rimfolk's illnesses
   take a turn instead of adding one": "people should be able to suffer for different things, but it should just not be
   common"; the lead's brief: Rimfolk's kinds met regularly, now and then two things at once, even on one person, serious
