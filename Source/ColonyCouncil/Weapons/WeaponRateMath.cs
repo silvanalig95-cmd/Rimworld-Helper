@@ -290,6 +290,25 @@ namespace ColonyCouncil
         /// <summary>MeleeDodgeChance from the melee skill level plus offsets (nimble +15).</summary>
         public static float MeleeDodgeChance(float skill) => Curve(DodgeX, DodgeY, skill);
 
+        /// <summary>
+        /// The skill level (with its offsets) that gives a colonist's real shooting accuracy: the game's curve backwards, so a
+        /// colonist's own ShootingAccuracyPawn (sight, hands, traits and gear in it) is rated as the skill it stands for.
+        /// </summary>
+        public static float ShootingLevelFor(float accuracy) => InverseCurve(ShootX, ShootY, accuracy);
+
+        /// <summary>The skill level (with its offsets) that gives a colonist's real melee hit chance.</summary>
+        public static float MeleeLevelFor(float hitChance) => InverseCurve(MeleeX, MeleeY, hitChance);
+
+        /// <summary>A rising curve read backwards: the x that gives y, held at the curve's ends.</summary>
+        public static float InverseCurve(float[] xs, float[] ys, float y)
+        {
+            if (y <= ys[0]) return xs[0];
+            for (int i = 1; i < ys.Length; i++)
+                if (y <= ys[i])
+                    return ys[i] <= ys[i - 1] ? xs[i] : Lerp(xs[i - 1], xs[i], (y - ys[i - 1]) / (ys[i] - ys[i - 1]));
+            return xs[xs.Length - 1];
+        }
+
         /// <summary>A human's natural melee attacks (Races_Humanlike: two fists, teeth, head).</summary>
         public static List<WeaponMeleeAttack> HumanNaturalAttacks() => new List<WeaponMeleeAttack>
         {

@@ -51,6 +51,27 @@ in the rating, situational scores and "best for / weak when" for step 2's recomm
 
 ## Step 2: in the game
 
+**Built (9 November 2026, not released).** DESIGN.md "Weapons you can judge at a glance" has all of it. The review and
+the game read a weapon by one file (`Source/ColonyCouncil/Weapons/WeaponReadMath.cs`: the review's `Inputs.cs` is now
+only its JSON to facts, and regenerating the review gives `docs/weapons/` byte for byte); `Weapons/WeaponLive.cs` fills
+the same facts from the live def and the weapon in hand, so a weapon at normal quality in steel rates in the game as in
+`weapons.json` (tested for eight of the base game's weapons). Choices made on the way:
+
+- The rating is kept by def, stuff and quality, and by the weapon itself only for unique and persona traits; a
+  colonist's rating an hour. A def's card (the research tab, a trader's list) rates it in its default stuff at normal
+  quality.
+- The colonist's rating reads their real accuracy and melee hit chance back through the game's curves, the weapon in
+  their hands taken out, and explains itself in steps that add up: their skill, each trait, their body and gear. Tough
+  matters where a Vanilla Expanded heavy weapon needs it, so the card says what lets them carry one.
+- The info card shows the tags as coloured words (a symbol's glyph may be missing from the game's font); Rimfolk's card
+  draws each tag's mark as an icon.
+- Dual Wield's pair is both hands' fight values added when both are guns or both blades; a gun and a blade fight their
+  own fights and are shown apart.
+- Melee Animation's lasso is apparel, not a weapon's, so the card names only what is per weapon: animated or not, its
+  execution moves at the colonist's Melee, duels for a long weapon.
+- The tags' labels and reasons and the line in plain words stay English from the math (one place, shared with the
+  review); the card's own words are keyed.
+
 5. **The weapon card, redone**: the rating and sub-ratings at the top of the game's info card (so it shows wherever the
    card opens, the gear tab and the inventory mod's included), and Rimfolk's own weapon card in Rimfolk's look: a chart
    of damage by distance, against each armour, the specials in words, how it compares with what the selected colonist

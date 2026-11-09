@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <!-- Weapons you can judge at a glance, step 2 (Source/ColonyCouncil/Weapons/, docs/design/weapons.md): the rating on the
+       game's info card, Rimfolk's weapon card, the gear tab's badges, the button on a weapon. The tags' labels and reasons
+       and the line in plain words are made from the weapon's numbers in English (Weapons/WeaponTagMath.cs, WeaponWordsMath.cs). -->
+
+  <!-- The settings (How you're told, Weapons). -->
+  <CC_SetSec_Weapons>Weapons</CC_SetSec_Weapons>
+  <CC_Settings_WeaponRatings>Weapon ratings</CC_Settings_WeaponRatings>
+  <CC_Settings_WeaponRatings_Tip>A rating from 1 to 10 for every weapon, from what it really does in a fight by the game's own rules, with its sub-ratings, colour-coded tags and a line in plain words, at the top of the game's info card. Off, no weapon is rated anywhere.</CC_Settings_WeaponRatings_Tip>
+  <CC_SetNote_WeaponRatings>A weapon's info card opens with its rating, tags and a line about it.</CC_SetNote_WeaponRatings>
+  <CC_Settings_WeaponGearTab>Ratings on the gear tab</CC_Settings_WeaponGearTab>
+  <CC_Settings_WeaponGearTab_Tip>A small badge with the rating beside each weapon on the gear tab, the game's and Nice Inventory Tab's, its tooltip the tags and the colonist's own rating, and a small button to Rimfolk's weapon card.</CC_Settings_WeaponGearTab_Tip>
+  <CC_SetNote_WeaponGearTab>Each weapon a colonist holds or carries shows its rating beside it.</CC_SetNote_WeaponGearTab>
+  <CC_Settings_WeaponCard>Rimfolk's weapon card</CC_Settings_WeaponCard>
+  <CC_Settings_WeaponCard_Tip>Rimfolk's own card for a weapon: the tags as chips, a chart of damage by distance and armour, the situations, the effects, the key numbers, and the rating for one colonist with why it differs, against what they hold and carry (Simple Sidearms, Dual Wield, RunAndGun and Melee Animation where loaded). Opens from the info card, the gear tab and a button on a weapon on the map.</CC_Settings_WeaponCard_Tip>
+  <CC_SetNote_WeaponCard>A button on the info card, the gear tab and a selected weapon opens Rimfolk's card for it.</CC_SetNote_WeaponCard>
+
+  <!-- The game's info card. -->
+  <CC_Weapon_Info_Rating>Weapon rating</CC_Weapon_Info_Rating>
+  <CC_Weapon_Info_RatingExpl>How much this weapon gets done in the fights it is made for, from 1 to 10, worked out by the game's own rules: the chance to hit at each distance, armour against its piercing, warm-up, burst and cooldown, its blasts, fire, stuns and EMP, what it does to whoever holds it and the abilities it grants. Guns, bows and launchers share one scale and melee weapons another; 5.5 is the middle, about an assault rifle or a steel longsword. A point up near the middle is about a third more damage dealt for a gun and a fifth more for a melee weapon.</CC_Weapon_Info_RatingExpl>
+  <CC_Weapon_Info_RatedAs>Judged as {ROLE}, for a colonist of {SKILL} 8 with no traits, against the enemies a colony meets after its first year: raiders in plain clothes, in flak and in marine armour, and mechanoids.</CC_Weapon_Info_RatedAs>
+  <CC_Weapon_Info_Stuff>Made of {STUFF}.</CC_Weapon_Info_Stuff>
+  <CC_Weapon_Info_Rough>Read roughly: part of what it does can't be valued, so it is rated on the rest. Why:</CC_Weapon_Info_Rough>
+  <CC_Weapon_Rough>rough</CC_Weapon_Rough>
+  <CC_Weapon_Info_Plain>In plain words</CC_Weapon_Info_Plain>
+  <CC_Weapon_Info_PlainExpl>The weapon as a seasoned player would sum it up, made from its rating and its tags.</CC_Weapon_Info_PlainExpl>
+  <CC_Weapon_Info_TagRule>The rule for this tag: {RULE}.</CC_Weapon_Info_TagRule>
+  <CC_Weapon_Info_Effects>Effects</CC_Weapon_Info_Effects>
+  <CC_Weapon_Info_EffectsValue>{COUNTED} counted, {NAMED} named only</CC_Weapon_Info_EffectsValue>
+  <CC_Weapon_Info_Counted>Counted in the rating:</CC_Weapon_Info_Counted>
+  <CC_Weapon_Info_Named>Named, not counted (what a mod's own code does, moods and needs, what only some can carry):</CC_Weapon_Info_Named>
+  <CC_Weapon_Info_For>For {PAWN}</CC_Weapon_Info_For>
+  <CC_Weapon_Info_ForExpl>{PAWN} would rate it {RATING} against the usual {REFERENCE}, by {PAWN_possessive} own skill, traits, body and gear.</CC_Weapon_Info_ForExpl>
+  <CC_Weapon_CantUse>can't use it</CC_Weapon_CantUse>
+  <CC_Weapon_OpenCard>Rimfolk's weapon card</CC_Weapon_OpenCard>
+  <CC_Weapon_OpenCard_Tip>Open Rimfolk's card for this weapon: its tags, a chart of damage by distance, the situations it suits, its numbers, and how it compares with what a colonist holds.</CC_Weapon_OpenCard_Tip>
+
+  <!-- Sub-ratings and their meaning. -->
+  <CC_Weapon_Sub_Close>Close (5 cells)</CC_Weapon_Sub_Close>
+  <CC_Weapon_Sub_Medium>Medium (12 cells)</CC_Weapon_Sub_Medium>
+  <CC_Weapon_Sub_Long>Long (25 cells)</CC_Weapon_Sub_Long>
+  <CC_Weapon_Sub_Far>Far (40 cells)</CC_Weapon_Sub_Far>
+  <CC_Weapon_Sub_Unarmoured>No armour</CC_Weapon_Sub_Unarmoured>
+  <CC_Weapon_Sub_Armoured>Flak</CC_Weapon_Sub_Armoured>
+  <CC_Weapon_Sub_Heavy>Marine armour</CC_Weapon_Sub_Heavy>
+  <CC_Weapon_Sub_Mechanoids>Mechanoids</CC_Weapon_Sub_Mechanoids>
+  <CC_Weapon_Sub_Crowd>A crowd</CC_Weapon_Sub_Crowd>
+  <CC_Weapon_SubExpl_Close>Against the usual enemies at 5 cells. 1.0 where it can't fire.</CC_Weapon_SubExpl_Close>
+  <CC_Weapon_SubExpl_Medium>Against the usual enemies at 12 cells. 1.0 where it can't fire.</CC_Weapon_SubExpl_Medium>
+  <CC_Weapon_SubExpl_Long>Against the usual enemies at 25 cells. 1.0 where it can't reach.</CC_Weapon_SubExpl_Long>
+  <CC_Weapon_SubExpl_Far>Against the usual enemies at 40 cells, past a raider's rifle. 1.0 where it can't reach.</CC_Weapon_SubExpl_Far>
+  <CC_Weapon_SubExpl_Unarmoured>Against a raider in plain clothes, at the distances its role weighs.</CC_Weapon_SubExpl_Unarmoured>
+  <CC_Weapon_SubExpl_Armoured>Against a raider in a flak vest, flak pants and a steel helmet.</CC_Weapon_SubExpl_Armoured>
+  <CC_Weapon_SubExpl_Heavy>Against a raider in marine armour and helmet.</CC_Weapon_SubExpl_Heavy>
+  <CC_Weapon_SubExpl_Mechanoids>Against mechanoids: half a lancer or scyther, half a centipede.</CC_Weapon_SubExpl_Mechanoids>
+  <CC_Weapon_SubExpl_Crowd>Against a bunched group: blasts, beams and stray bullets catch more than one.</CC_Weapon_SubExpl_Crowd>
+
+  <!-- Tag categories and roles. -->
+  <CC_Weapon_Cat_Strength>Strength</CC_Weapon_Cat_Strength>
+  <CC_Weapon_Cat_Weakness>Weakness</CC_Weapon_Cat_Weakness>
+  <CC_Weapon_Cat_Risk>Risk</CC_Weapon_Cat_Risk>
+  <CC_Weapon_Cat_Special>Special</CC_Weapon_Cat_Special>
+  <CC_Weapon_Cat_Role>Role</CC_Weapon_Cat_Role>
+  <CC_Weapon_Cat_Needs>Needs</CC_Weapon_Cat_Needs>
+  <CC_Weapon_Role_close>a close-quarters gun</CC_Weapon_Role_close>
+  <CC_Weapon_Role_allround>an all-round gun</CC_Weapon_Role_allround>
+  <CC_Weapon_Role_long>a long gun</CC_Weapon_Role_long>
+  <CC_Weapon_Role_area>a weapon for groups</CC_Weapon_Role_area>
+  <CC_Weapon_Role_oneuse>a one-use launcher</CC_Weapon_Role_oneuse>
+  <CC_Weapon_Role_antimechanoid>a weapon against mechanoids</CC_Weapon_Role_antimechanoid>
+  <CC_Weapon_Role_utility>a tool rather than a weapon</CC_Weapon_Role_utility>
+  <CC_Weapon_Role_lightmelee>a light melee weapon</CC_Weapon_Role_lightmelee>
+  <CC_Weapon_Role_heavymelee>a heavy melee weapon</CC_Weapon_Role_heavymelee>
+
+  <!-- The badge and the button on a weapon. -->
+  <CC_Weapon_BadgeTip>Rated {RATING}: {BAND}, {ROLE}.</CC_Weapon_BadgeTip>
+  <CC_Weapon_ForShort>For {PAWN}: {RATING}</CC_Weapon_ForShort>
+  <CC_Weapon_ClickForCard>Click for Rimfolk's weapon card.</CC_Weapon_ClickForCard>
+  <CC_Weapon_Gizmo>Weapon card ({RATING})</CC_Weapon_Gizmo>
+  <CC_Weapon_Gizmo_Desc>Open Rimfolk's card for this weapon.</CC_Weapon_Gizmo_Desc>
+  <CC_Weapon_Step_Body>Body and gear</CC_Weapon_Step_Body>
+
+  <!-- Who can't use a weapon. -->
+  <CC_Weapon_CantFight>{PAWN} is incapable of violence and won't fight with it.</CC_Weapon_CantFight>
+  <CC_Weapon_CodedToOther>Biocoded to {OTHER}: {PAWN} can't use it.</CC_Weapon_CodedToOther>
+  <CC_Weapon_TooHeavyFor>A heavy weapon {PAWN} can't carry: it needs the right armour, trait or gene.</CC_Weapon_TooHeavyFor>
+
+  <!-- Rimfolk's weapon card. -->
+  <CC_Weapon_CardTitle>Weapon card</CC_Weapon_CardTitle>
+  <CC_Weapon_NotRated>This weapon isn't rated: its attack is a mod's own code, or a colonist can't wield it.</CC_Weapon_NotRated>
+  <CC_Weapon_Card_RatedFor>For a colonist of {SKILL} 8 · {QUALITY} {STUFF}</CC_Weapon_Card_RatedFor>
+  <CC_Weapon_Sec_Tags>Tags</CC_Weapon_Sec_Tags>
+  <CC_Weapon_Sec_Sub>Sub-ratings</CC_Weapon_Sec_Sub>
+  <CC_Weapon_Sec_ChartRanged>Damage per second by distance</CC_Weapon_Sec_ChartRanged>
+  <CC_Weapon_Sec_ChartMelee>Damage per second by armour</CC_Weapon_Sec_ChartMelee>
+  <CC_Weapon_Sec_Situations>Situations</CC_Weapon_Sec_Situations>
+  <CC_Weapon_Sec_Effects>Effects</CC_Weapon_Sec_Effects>
+  <CC_Weapon_Sec_Numbers>Key numbers</CC_Weapon_Sec_Numbers>
+  <CC_Weapon_Enemy_Unarmoured>No armour</CC_Weapon_Enemy_Unarmoured>
+  <CC_Weapon_Enemy_Armoured>Flak</CC_Weapon_Enemy_Armoured>
+  <CC_Weapon_Enemy_Heavy>Marine armour</CC_Weapon_Enemy_Heavy>
+  <CC_Weapon_Enemy_Mechanoids>Mechanoids</CC_Weapon_Enemy_Mechanoids>
+  <CC_Weapon_PerSecond>{DPS}/s</CC_Weapon_PerSecond>
+  <CC_Weapon_ChartTip>At {CELLS} cells:</CC_Weapon_ChartTip>
+  <CC_Weapon_ChartMeleeTip>Against {ENEMY}: {DPS} damage a second, after hits that miss or are dodged and the armour roll.</CC_Weapon_ChartMeleeTip>
+  <CC_Weapon_ChartNoteRanged>The damage that lands a second over its whole cycle of aim, burst and cooldown, for a colonist of {SKILL} 8 in the open; the marks under the line are the distances the rating weighs.</CC_Weapon_ChartNoteRanged>
+  <CC_Weapon_ChartNote>The damage that lands a second, for a colonist of {SKILL} 8, the game choosing among its blows.</CC_Weapon_ChartNote>
+  <CC_Weapon_BestFor>best for</CC_Weapon_BestFor>
+  <CC_Weapon_WeakWhen>weak when</CC_Weapon_WeakWhen>
+  <CC_Weapon_Counted>counted</CC_Weapon_Counted>
+  <CC_Weapon_NamedOnly>named only</CC_Weapon_NamedOnly>
+
+  <!-- Situations. -->
+  <CC_Weapon_Sit_mechanoids>Mechanoids</CC_Weapon_Sit_mechanoids>
+  <CC_Weapon_Sit_heavilyarmoured>Heavily armoured</CC_Weapon_Sit_heavilyarmoured>
+  <CC_Weapon_Sit_crowds>Crowds</CC_Weapon_Sit_crowds>
+  <CC_Weapon_Sit_hunting>Hunting</CC_Weapon_Sit_hunting>
+  <CC_Weapon_Sit_indoors>Indoors</CC_Weapon_Sit_indoors>
+  <CC_Weapon_Sit_holdingachoke>Holding a choke</CC_Weapon_Sit_holdingachoke>
+  <CC_Weapon_Sit_kiting>Kiting</CC_Weapon_Sit_kiting>
+  <CC_Weapon_Sit_siegeorlongduel>A siege or long duel</CC_Weapon_Sit_siegeorlongduel>
+  <CC_Weapon_Sit_capturealive>Capturing alive</CC_Weapon_Sit_capturealive>
+  <CC_Weapon_Sit_sidearm>As a sidearm</CC_Weapon_Sit_sidearm>
+  <CC_Weapon_Sit_inmelee>In melee</CC_Weapon_Sit_inmelee>
+  <CC_Weapon_Sit_duel>A duel</CC_Weapon_Sit_duel>
+  <CC_Weapon_SitExpl_mechanoids>Against mechanoids alone, at the distances its role weighs.</CC_Weapon_SitExpl_mechanoids>
+  <CC_Weapon_SitExpl_heavilyarmoured>Against raiders in marine armour.</CC_Weapon_SitExpl_heavilyarmoured>
+  <CC_Weapon_SitExpl_crowds>Against a bunched group: blasts, beams, bursts and stray shots that catch more than one.</CC_Weapon_SitExpl_crowds>
+  <CC_Weapon_SitExpl_hunting>Hunting at 12 to 25 cells; a weapon that explodes or burns spoils the meat and pelt.</CC_Weapon_SitExpl_hunting>
+  <CC_Weapon_SitExpl_indoors>Close fighting inside walls, where a blast or fire also catches your own.</CC_Weapon_SitExpl_indoors>
+  <CC_Weapon_SitExpl_holdingachoke>Holding a door or a corridor at close and medium range; stopping power and a spread help.</CC_Weapon_SitExpl_holdingachoke>
+  <CC_Weapon_SitExpl_kiting>Shooting while backing off from a charge: reach past a raider's rifle, and not slowing its carrier.</CC_Weapon_SitExpl_kiting>
+  <CC_Weapon_SitExpl_siegeorlongduel>Trading shots at long range, past a raider's rifle where it can.</CC_Weapon_SitExpl_siegeorlongduel>
+  <CC_Weapon_SitExpl_capturealive>Bringing someone down alive: non-lethal weapons and blunt blows.</CC_Weapon_SitExpl_capturealive>
+  <CC_Weapon_SitExpl_sidearm>Carried beside a main weapon: light enough, and not spent after one use.</CC_Weapon_SitExpl_sidearm>
+  <CC_Weapon_SitExpl_inmelee>A gun's own blows, when an enemy gets close: its stock and barrel.</CC_Weapon_SitExpl_inmelee>
+  <CC_Weapon_SitExpl_duel>One on one against an armoured fighter.</CC_Weapon_SitExpl_duel>
+
+  <!-- Key numbers. -->
+  <CC_Weapon_Armour_Sharp>sharp</CC_Weapon_Armour_Sharp>
+  <CC_Weapon_Armour_Blunt>blunt</CC_Weapon_Armour_Blunt>
+  <CC_Weapon_Armour_Heat>heat</CC_Weapon_Armour_Heat>
+  <CC_Weapon_Armour_None>ignores armour</CC_Weapon_Armour_None>
+  <CC_Weapon_Num_Damage>Damage a shot</CC_Weapon_Num_Damage>
+  <CC_Weapon_Num_Pen>Armour piercing</CC_Weapon_Num_Pen>
+  <CC_Weapon_Num_Stop>Stopping power</CC_Weapon_Num_Stop>
+  <CC_Weapon_Num_Range>Range (cells)</CC_Weapon_Num_Range>
+  <CC_Weapon_Num_Aim>Aim</CC_Weapon_Num_Aim>
+  <CC_Weapon_Num_Cooldown>Cooldown</CC_Weapon_Num_Cooldown>
+  <CC_Weapon_Num_Burst>Shots a burst</CC_Weapon_Num_Burst>
+  <CC_Weapon_Num_Cycle>Aim, burst and cooldown</CC_Weapon_Num_Cycle>
+  <CC_Weapon_Num_Accuracy>Accuracy at 3 / 12 / 25 / 40 cells</CC_Weapon_Num_Accuracy>
+  <CC_Weapon_Num_Blast>Blast radius</CC_Weapon_Num_Blast>
+  <CC_Weapon_Num_Scatter>Lands within (cells)</CC_Weapon_Num_Scatter>
+  <CC_Weapon_Num_Fists>Fists and body: {PART}</CC_Weapon_Num_Fists>
+  <CC_Weapon_Num_Blow>{DAMAGE} {KIND} every {COOLDOWN} s, pierces {PEN}, {SHARE} of blows</CC_Weapon_Num_Blow>
+  <CC_Weapon_Num_Mass>Mass</CC_Weapon_Num_Mass>
+  <CC_Weapon_Seconds>{S} s</CC_Weapon_Seconds>
+
+  <!-- For a colonist. -->
+  <CC_Weapon_Sec_For>For {PAWN}</CC_Weapon_Sec_For>
+  <CC_Weapon_Sec_ForNone>For a colonist</CC_Weapon_Sec_ForNone>
+  <CC_Weapon_ChooseColonist>Choose colonist</CC_Weapon_ChooseColonist>
+  <CC_Weapon_ChooseColonist_Tip>Rate this weapon for another colonist of this map: their own skill, traits, body and gear, against what they hold.</CC_Weapon_ChooseColonist_Tip>
+  <CC_Weapon_NoColonists>No colonists on this map</CC_Weapon_NoColonists>
+  <CC_Weapon_NoneChosen>Choose a colonist to see the weapon rated for them and set against what they hold and carry.</CC_Weapon_NoneChosen>
+  <CC_Weapon_ForLine>{PAWN}: {RATING} (usually {REFERENCE})</CC_Weapon_ForLine>
+  <CC_Weapon_SameAsReference>The same as for a colonist of skill 8 with no traits.</CC_Weapon_SameAsReference>
+  <CC_Weapon_ForTip>Rated by {PAWN_possessive} own shooting accuracy or melee hit chance, aim, cooldowns and blows as the game has them now (skill, traits, sight and hands, bionics and gear in them), the weapon in {PAWN_possessive} hands taken out. Each step says how much it moves the rating.</CC_Weapon_ForTip>
+  <CC_Weapon_HeavyOk>A heavy weapon {PAWN} can carry: {WHY}.</CC_Weapon_HeavyOk>
+  <CC_Weapon_BrawlerGun>{PAWN} is a brawler: carrying a gun sours {PAWN_possessive} mood.</CC_Weapon_BrawlerGun>
+  <CC_Weapon_RunAndGun>RunAndGun: can be fired on the move, {ACC}% less accurate (it rates {RATING} on the move), walking {SLOWER}% slower while shooting.</CC_Weapon_RunAndGun>
+  <CC_Weapon_RunAndGunNo>RunAndGun: not allowed on the move.</CC_Weapon_RunAndGunNo>
+  <CC_Weapon_MeleeAnimation>Melee Animation: its blows are animated{MORE}.</CC_Weapon_MeleeAnimation>
+  <CC_Weapon_MeleeAnimationExec>{COUNT} execution moves open to it at Melee {LEVEL}</CC_Weapon_MeleeAnimationExec>
+  <CC_Weapon_MeleeAnimationDuels>long enough for friendly duels</CC_Weapon_MeleeAnimationDuels>
+  <CC_Weapon_MeleeAnimationNone>Melee Animation doesn't animate this weapon: no executions or duels with it.</CC_Weapon_MeleeAnimationNone>
+
+  <!-- What they hold and carry. -->
+  <CC_Weapon_Sec_Carries>What {PAWN} holds and carries</CC_Weapon_Sec_Carries>
+  <CC_Weapon_CarriesNothing>{PAWN} holds no weapon and carries none.</CC_Weapon_CarriesNothing>
+  <CC_Weapon_InHand>In hand</CC_Weapon_InHand>
+  <CC_Weapon_OffHand>Off hand</CC_Weapon_OffHand>
+  <CC_Weapon_Sidearm>Carried</CC_Weapon_Sidearm>
+  <CC_Weapon_ThisOne>this one {DELTA}</CC_Weapon_ThisOne>
+  <CC_Weapon_OtherKind>the other kind</CC_Weapon_OtherKind>
+  <CC_Weapon_AsOffHand>as an off-hand weapon</CC_Weapon_AsOffHand>
+  <CC_Weapon_Remembered>a remembered sidearm</CC_Weapon_Remembered>
+  <CC_Weapon_OverSidearmWeight>over the sidearm weight</CC_Weapon_OverSidearmWeight>
+  <CC_Weapon_DualPair>Dual Wield: both hands together rate {RATING} (main hand {MAIN}, off hand {OFF}); at skill {LEVEL} the off hand's cooldown is {COOLDOWN}% longer and its aim {ACC}% worse.</CC_Weapon_DualPair>
+  <CC_Weapon_Pair>{PAWN_possessive} sensible pair: {GUN} and {BLADE}.</CC_Weapon_Pair>
+  <CC_Weapon_NoGun>no gun</CC_Weapon_NoGun>
+  <CC_Weapon_Fists>bare fists</CC_Weapon_Fists>
+  <CC_Weapon_PairRule>The best gun and the best melee weapon they hold or carry, a sidearm only within Simple Sidearms' default weights: {RANGED} kg for a gun, {MELEE} kg for a blade.</CC_Weapon_PairRule>
+  <CC_Weapon_DualCanOff>Dual Wield: it can go in the off hand, where it rates {RATING} for {PAWN}.</CC_Weapon_DualCanOff>
+  <CC_Weapon_DualNotOff>Dual Wield: it can't go in the off hand.</CC_Weapon_DualNotOff>
+  <CC_Weapon_DualTwoHanded>Dual Wield: two-handed, so nothing goes in the off hand with it.</CC_Weapon_DualTwoHanded>
+
+</LanguageData>

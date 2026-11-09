@@ -2140,6 +2140,38 @@ The game's own screen keeps the parts it had (each its own switch under What's o
 - **Market**, a button on the silver row, opens a window of the trade's goods: against usual, 7 and 30 days, a line of
   60 days, last sold and last bought, each column sortable, the biggest movers first (without VTE, the record alone).
 
+### Judging a weapon
+Every weapon a colonist can wield, from the game, its DLCs and your mods, gets **a rating from 1.0 to 10.0** at the top
+of its info card, worked out from what it really does in a fight by the game's own rules (settings: **How you're told,
+Weapons**, *Weapon ratings*, on). Guns, bows and launchers share one scale and melee weapons another; 5.5 is the middle,
+about an assault rifle or a steel longsword. The review of every weapon in the player's mods, with the same numbers, is
+`docs/weapons/README.md`.
+- **On the info card**, in its own heading sorted first: the rating, the sub-ratings (close, medium, long and far for
+  a gun; no armour, flak, marine armour, mechanoids; a crowd), each tag in its colour with why, the weapon in plain words
+  ("A strong all-rounder; steady at every range it reaches; ..."), its effects counted or only named, and for a weapon a
+  colonist holds, their own rating. Each entry explains itself in the card's right pane. It shows wherever the card
+  opens: a weapon on the map, a trader's goods, the gear tab, Nice Inventory Tab, a weapon from the research tab.
+- **The weapon in hand:** its quality and stuff by the game's own stats; an Odyssey unique weapon with its rolled traits
+  (burst, stopping power, its damage, extra damage, its numbers); a persona weapon with its traits and bond; biocoding
+  named; other mods' patches already in the def.
+- **For a colonist:** their real shooting accuracy or melee hit chance, aim, cooldowns and blows, the weapon now in
+  their hands taken out, with each step named: "Shooting 12: +0.6, careful shooter: +0.4, body and gear: -0.1". What
+  stops them: incapable of violence, biocoded to someone else, a heavy weapon without Tough or an exoframe.
+- **Rimfolk's weapon card** (*Rimfolk's weapon card*, on): the badge, the tags as coloured chips with their marks, the
+  line, the sub-ratings, a chart of damage per second by distance against no armour, flak, marine armour and mechanoids
+  (bars by armour for a blade), the situations it is best for and weak in, every effect, the key numbers, and for a
+  colonist you choose: their rating and why, and what they hold and carry, each rated for them. It opens from a button
+  at the foot of the info card, a button on a weapon selected on the map, and the small button beside each weapon on
+  the gear tab.
+- **The gear tab** (*Ratings on the gear tab*, on): a small badge with the rating beside each weapon, the game's tab and
+  Nice Inventory Tab's, its tooltip the tags and the colonist's own rating.
+- **Simple Sidearms:** each sidearm rated for the colonist, the ones it remembers marked, and their sensible pair: the
+  best gun and the best melee weapon they hold or carry, a sidearm within its default weights (2.7 kg, 1.9 kg).
+  **Dual Wield:** the off-hand weapon rated with its penalties (cooldown 20% longer and aim 10% worse, more the lower
+  the skill), both hands together, and whether a weapon can go in the off hand. **RunAndGun:** whether it fires on
+  the move, 10% less accurate, and what it rates then. **Melee Animation:** whether it animates the weapon, its execution
+  moves at the colonist's Melee, and friendly duels. All read softly: without them nothing changes.
+
 ### A fresh start in the same world
 **Found a new colony** on a colony's card (the region map's Ours lens) picks a place on the game's world map, with
 what Rimfolk knows of the tile under the cursor: whose land it is, the towns near it and how their peoples stand with
@@ -2394,7 +2426,11 @@ while that feature is off; nothing vanilla is changed or removed. A few things i
   brewery wish.
 - **Alien races (Humanoid Alien Races):** every humanlike race gets the Story and Culture tabs, and ages are read against the
   race's lifespan, so a 300-year-old elf isn't treated as elderly.
-- **Simple Sidearms:** an heirloom weapon carried as a sidearm still counts as carried.
+- **Simple Sidearms:** an heirloom weapon carried as a sidearm still counts as carried. The weapon card rates each
+  sidearm for its colonist and names their sensible pair (Judging a weapon).
+- **Dual Wield, Nice Inventory Tab, RunAndGun, Melee Animation:** read by name for the weapon card (Judging a weapon):
+  the off hand with Dual Wield's penalties, the rating's badge on Nice Inventory Tab's rows and cells, shooting on the
+  move, a weapon's execution moves and duels. Without them nothing changes.
 - **Harvest and Haul, Pick Up And Haul:** Harvest and Haul is built into Rimfolk now (Carrying and hauling); while the
   standalone mod is loaded, Rimfolk's copy stands down, and it can be removed now (remove it to have benches, barrels
   and other work fill pockets too). What Rimfolk's carrying and hauling takes to storage goes through Pick Up And Haul's

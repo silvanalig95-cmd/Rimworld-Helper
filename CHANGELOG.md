@@ -5,6 +5,17 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## Weapon ratings in the game, and Rimfolk's weapon card
+
+*9 November 2026, version 0.183.0*
+
+- A weapon's info card now opens with its rating, how it does at each distance and against each armour, its colour-coded tags with the reason for each, a plain line on what it is for, and its effects.
+- Rimfolk's weapon card, from a button on the info card, a button on a weapon on the map or the small button on the gear tab, adds a chart of damage by distance, its situations and its numbers.
+- The card rates the weapon for a chosen colonist, by their own skill, traits and body, says why it differs, and compares it with what they hold now.
+- The weapon in hand counts: its quality, its material and the traits of a unique or persona weapon change its rating.
+- A rating badge sits beside each weapon on the gear tab, and on Nice Inventory Tab's rows when you use it.
+- Simple Sidearms' carried weapons and Dual Wield's offhand are rated as a pair; the card notes RunAndGun's shooting on the move and Melee Animation's executions for the weapon. Three settings under Weapons turn each part off.
+
 ## Every weapon in your mods rated
 
 *9 November 2026, version 0.182.0*

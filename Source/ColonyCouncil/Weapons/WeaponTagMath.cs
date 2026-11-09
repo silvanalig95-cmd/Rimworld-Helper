@@ -78,6 +78,8 @@ namespace ColonyCouncil
         /// <summary>Its rating at skill 4 and at skill 16 (shooting or melee), the reference's own traits otherwise.</summary>
         public float RatingAtSkill4, RatingAtSkill16;
         public List<(string label, int charges, bool counted)> Abilities = new List<(string, int, bool)>();
+        /// <summary>The weapon in hand: its unique traits, its persona and bond, whom it is biocoded to (empty for a def: the tags' usual reasons).</summary>
+        public string UniqueWhy = "", PersonaWhy = "", BiocodedWhy = "";
     }
 
     /// <summary>
@@ -326,12 +328,12 @@ namespace ColonyCouncil
             else if (f.BreaksAfter != "") Add("wears-out", "may fall apart after " + f.BreaksAfter + " shots");
             else if (f.Wears) Add("wears-out", "deteriorates as it is used");
             if (f.PsychicSensitivityOffset > 0f) Add("psychic", "+" + P(f.PsychicSensitivityOffset) + " psychic sensitivity");
-            if (f.Persona) Add("persona", "bonds to its first wielder; persona traits rolled when made");
-            if (f.Unique) Add("unique", "one to three traits rolled when made");
+            if (f.Persona) Add("persona", f.PersonaWhy != "" ? f.PersonaWhy : "bonds to its first wielder; persona traits rolled when made");
+            if (f.Unique) Add("unique", f.UniqueWhy != "" ? f.UniqueWhy : "one to three traits rolled when made");
             foreach (var (label, charges, counted) in f.Abilities)
                 Add("grants", label + (charges > 0 ? ", " + charges + (charges == 1 ? " charge" : " charges") : "") + (counted ? "" : " (its own effect)"), "Grants: " + Short(label));
             if (f.RestrictedTo != "") Add("restricted", "only " + f.RestrictedTo);
-            if (f.Biocodable) Add("biocoded", "can be biocoded to one colonist");
+            if (f.Biocodable) Add("biocoded", f.BiocodedWhy != "" ? f.BiocodedWhy : "can be biocoded to one colonist");
             if (f.HardToGet) Add("hard-to-get", "no recipe makes it and no faction carries it: only a trader, a quest or an event brings it");
             if (f.Research != "" && (f.ResearchTech == "Spacer" || f.ResearchTech == "Ultra" || f.ResearchTech == "Archotech"))
                 Add("research", "needs " + f.Research + " to make");

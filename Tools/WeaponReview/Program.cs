@@ -25,30 +25,19 @@ using (Stream s = input.EndsWith(".gz") ? new GZipStream(fs, CompressionMode.Dec
     data = JsonNode.Parse(s);
 Inputs.DamageDefs = data["damageDefs"] as JsonObject;
 
-var all = new List<Reviewed>();
+// Each weapon read, rated, tagged and put in words by the mod's own rules (WeaponRead, linked): the game does the same
+// from the live def, so a weapon at normal quality in steel rates the same there.
+var all = new List<WeaponReport>();
 foreach (var w in (JsonArray)data["weapons"])
 {
-    var r = Inputs.Read(w);
+    var r = WeaponRead.Full(Inputs.Facts(w));
+    r.Source = w;
     all.Add(r);
-    if (r.Kind == "left out") continue;
-    if (r.Unrated != null)
-    {
-        r.Kind = "unrated";
-        continue;
-    }
-    Rate(r);
 }
 
 var rated = all.Where(r => r.Kind != "left out" && r.Kind != "unrated").ToList();
 var unrated = all.Where(r => r.Kind == "unrated").ToList();
 var leftOut = all.Where(r => r.Kind == "left out").ToList();
-foreach (var r in rated)
-{
-    r.Table = TableOf(r);
-    r.Facts = Facts(r);
-    r.Tags = WeaponTagMath.For(r.Rating, r.Facts, r.Rating.Kind == "ranged" ? r.Ranged : null, r.Rating.Kind == "melee" ? r.Melee : null);
-    r.Plain = Words.Plain(r);
-}
 
 string[] tableOrder = { "close", "all-round", "long", "grenades", "launchers", "light melee", "heavy melee" };
 var tableNames = new Dictionary<string, string>
@@ -75,127 +64,9 @@ foreach (var t in tableOrder)
 }
 return 0;
 
-// ---------------------------------------------------------------- rating
+JsonNode W(WeaponReport r) => (JsonNode)r.Source;
 
-void Rate(Reviewed r)
-{
-    if (r.Kind == "ranged")
-    {
-        r.Rating = WeaponRateMath.RateRanged(r.Ranged, null, r.Passives, r.Abilities, null, r.Mass);
-        foreach (var alt in r.Alternates)
-        {
-            var other = WeaponRateMath.RateRanged(alt, null, r.Passives, r.Abilities, null, r.Mass);
-            if (other.FightValue > r.Rating.FightValue)
-            {
-                r.Rating = other;
-                r.Ranged = alt;
-            }
-        }
-        if (r.Melee != null && r.Melee.Attacks.Count > 0)
-        {
-            r.MeleeRating = WeaponRateMath.RateMelee(r.Melee, r.Mass, null, r.Passives);
-            r.Rating.Situations["in melee"] = r.MeleeRating.Overall;
-        }
-        foreach (int s in new[] { 4, 8, 12, 16 })
-        {
-            var f = WeaponRateMath.Reference;
-            f.ShootingSkill = s;
-            r.BySkill[s.ToString()] = WeaponRateMath.RateRanged(r.Ranged, f, r.Passives, r.Abilities, r.Rating.Role, r.Mass).Overall;
-        }
-        var th = WeaponRateMath.Reference;
-        th.ShootingSkill = 3f;
-        th.AimFactor = 0.5f;
-        r.ByTrait["trigger-happy"] = WeaponRateMath.RateRanged(r.Ranged, th, r.Passives, r.Abilities, r.Rating.Role, r.Mass).Overall;
-        var cs = WeaponRateMath.Reference;
-        cs.ShootingSkill = 13f;
-        cs.AimFactor = 1.25f;
-        r.ByTrait["careful shooter"] = WeaponRateMath.RateRanged(r.Ranged, cs, r.Passives, r.Abilities, r.Rating.Role, r.Mass).Overall;
-    }
-    else
-    {
-        if (r.Melee == null || r.Melee.Attacks.Count == 0)
-        {
-            r.Kind = "left out";
-            return;
-        }
-        r.Rating = WeaponRateMath.RateMelee(r.Melee, r.Mass, null, r.Passives, r.Abilities);
-        foreach (int s in new[] { 4, 8, 12, 16 })
-        {
-            var f = WeaponRateMath.Reference;
-            f.MeleeSkill = s;
-            r.BySkill[s.ToString()] = WeaponRateMath.RateMelee(r.Melee, r.Mass, f, r.Passives, r.Abilities, r.Rating.Role).Overall;
-        }
-        var br = WeaponRateMath.Reference;
-        br.MeleeSkill = 12f;
-        r.ByTrait["brawler"] = WeaponRateMath.RateMelee(r.Melee, r.Mass, br, r.Passives, r.Abilities, r.Rating.Role).Overall;
-    }
-    foreach (var n in r.Named)
-        if (!r.Rating.Specials.Any(s => s.Key == n.Key)) r.Rating.Specials.Add(n);
-    r.Unsure = r.Unsure.Distinct().ToList();
-}
-
-string TableOf(Reviewed r)
-{
-    var g = r.Rating;
-    if (g.Kind == "melee") return g.Role;
-    string label = r.Label.ToLowerInvariant();
-    bool thrown = Inputs.S(Inputs.Arr(r.W, "verbs").FirstOrDefault(), "verbClass").Contains("LaunchProjectile") ||
-                  Inputs.Arr(r.W, "weaponTags").Any(t => t.ToString().Contains("Grenade")) || label.Contains("grenade") || label.Contains("throwing") ||
-                  label.Contains("molotov") || label.Contains("javelin") || label.Contains("dynamite");
-    if (g.Role == "one-use") return "grenades";
-    if (g.Role == "area" || g.Role == "anti-mechanoid" || g.Role == "utility") return thrown && r.Mass <= 2f ? "grenades" : "launchers";
-    if (thrown && r.Mass <= 1.5f) return "grenades";
-    return g.Role;
-}
-
-/// What the tags read beyond the rating, from the extracted defs.
-WeaponTagFacts Facts(Reviewed r)
-{
-    var f = new WeaponTagFacts { DefName = r.DefName, Mass = r.Mass };
-    foreach (var p in r.Passives)
-    {
-        if (p.Stat == "MoveSpeed") f.MoveSpeedOffset += p.Offset;
-        if (p.Stat == "MeleeDodgeChance") f.DodgeOffset += p.Offset;
-        if (p.Stat == "DeflectChance") f.DeflectChance = p.Offset;
-        if (p.Stat == "PsychicSensitivityOffset") f.PsychicSensitivityOffset += p.Offset;
-    }
-    var keys = r.Rating.Specials.Select(s => s.Key).ToList();
-    f.Persona = keys.Contains("persona");
-    f.Unique = keys.Contains("unique");
-    f.Biocodable = keys.Contains("biocodable");
-    f.Wears = keys.Contains("wears");
-    f.Thrown = r.Table == "grenades";
-    var who = new List<string>();
-    foreach (var x in Inputs.Arr(r.W, "modExtensions"))
-    {
-        if (Inputs.S(x, "class") == "HeavyWeapon" && Inputs.B(x, "isHeavy"))
-        {
-            who.AddRange(Inputs.Arr(x, "supportedArmors").Select(a => "someone in " + Inputs.Words(a.ToString())));
-            who.AddRange(Inputs.Arr(x, "supportedTraits").Select(a => "someone with the " + Inputs.Words(a.ToString()) + " trait"));
-            who.AddRange(Inputs.Arr(x, "supportedGenes").Select(a => "someone with the " + Inputs.Words(a.ToString()) + " gene"));
-            f.HitPointsPerShot = Inputs.F(x, "hpPerShot");
-        }
-        if (Inputs.S(x, "class") == "MakeshiftProperties") f.BreaksAfter = Inputs.S(x, "shots").Replace("~", " to ");
-    }
-    if (keys.Contains("mage-only")) who.Add("a mage of A RimWorld of Magic");
-    if (keys.Contains("channel")) who.Add("someone who can channel it");
-    f.RestrictedTo = string.Join(" or ", who.Distinct());
-    foreach (var c in Inputs.Arr(r.W, "comps"))
-        if (Inputs.S(c, "class") == "CompProperties_LaserCapacitor" && Inputs.B(c, "Overheats")) f.OverheatChance = Inputs.F(c, "OverheatChance");
-    f.BypassesShields = r.Ranged != null && Inputs.Arr(r.W, "verbs").Any(v => (Inputs.S(v["projectile"], "damageDef") + Inputs.S(v, "beamDamageDef")).Contains("BypassShields"));
-    f.Demolishes = Inputs.Arr(r.W, "tools").Any(t => Inputs.Arr(t, "capacities").Any(c => Inputs.S(c, "capacity") == "Demolish"));
-    f.Destructive = Inputs.Arr(r.W, "weaponTags").Any(t => t.ToString().Contains("Destructive") && r.Rating.Kind == "melee");
-    var research = Inputs.Arr(r.W, "research").Select(x => x.ToString()).ToList();
-    f.Research = string.Join(" and ", research.Select(Inputs.Words));
-    f.ResearchTech = Inputs.S(r.W, "researchTech");
-    f.HardToGet = !Inputs.B(r.W, "made") && !Inputs.B(r.W, "carriedByKinds");
-    f.RatingAtSkill4 = r.BySkill.TryGetValue("4", out var a4) ? a4 : r.Rating.Overall;
-    f.RatingAtSkill16 = r.BySkill.TryGetValue("16", out var a16) ? a16 : r.Rating.Overall;
-    foreach (var a in r.Abilities) f.Abilities.Add((a.Label, a.Charges, a.Counted));
-    return f;
-}
-
-string TagsLine(Reviewed r) => string.Join(", ", r.Tags.Select(t => WeaponTagMath.Style(t.Category).Symbol + " " + t.Label));
+string TagsLine(WeaponReport r) => string.Join(", ", r.Tags.Select(t => WeaponTagMath.Style(t.Category).Symbol + " " + t.Label));
 
 // ---------------------------------------------------------------- the README
 
@@ -409,9 +280,9 @@ string Readme()
             string rating = $"**{r.Rating.Overall:0.0}**" + (r.Unsure.Count > 0 ? " *(rough)*" : "");
             string name = Words.Cell(r.Label) + (string.IsNullOrEmpty(r.StuffLabel) ? "" : " (" + Words.Cell(r.StuffLabel) + ")");
             if (melee)
-                L($"| {rating} | {name} | {Words.Cell(r.ModName)} | {Words.Tech(r.Tech)} | {Words.Armour(r.Rating)} | {Words.Cell(TagsLine(r))} | {Words.Cell(r.Plain)} | {Words.Cell(Words.SpecialsLine(r.Rating))} |");
+                L($"| {rating} | {name} | {Words.Cell(r.ModName)} | {Words.Tech(r.Tech)} | {Words.Armour(r.Rating)} | {Words.Cell(TagsLine(r))} | {Words.Cell(r.Plain)} | {Words.Cell(WeaponWords.SpecialsLine(r.Rating))} |");
             else
-                L($"| {rating} | {name} | {r.Rating.Role} | {Words.Cell(r.ModName)} | {Words.Tech(r.Tech)} | {Words.Subs(r.Rating)} | {Words.Armour(r.Rating)} | {Words.Cell(TagsLine(r))} | {Words.Cell(r.Plain)} | {Words.Cell(Words.SpecialsLine(r.Rating))} |");
+                L($"| {rating} | {name} | {r.Rating.Role} | {Words.Cell(r.ModName)} | {Words.Tech(r.Tech)} | {Words.Subs(r.Rating)} | {Words.Armour(r.Rating)} | {Words.Cell(TagsLine(r))} | {Words.Cell(r.Plain)} | {Words.Cell(WeaponWords.SpecialsLine(r.Rating))} |");
         }
         L();
     }
@@ -428,8 +299,8 @@ string Readme()
     L("Patches from the active mods that touch a weapon's combat numbers or what it carries. None of the active mods patches the");
     L("base game's or another mod's damage, accuracy or cooldowns (no Combat Extended); these are the ones there are:");
     L();
-    foreach (var g in all.Where(r => Inputs.Arr(r.W, "patches").Any())
-                 .SelectMany(r => Inputs.Arr(r.W, "patches").Select(p => (r, mod: Inputs.S(p, "modName"), what: Inputs.S(p, "what"))))
+    foreach (var g in all.Where(r => Inputs.Arr(W(r), "patches").Any())
+                 .SelectMany(r => Inputs.Arr(W(r), "patches").Select(p => (r, mod: Inputs.S(p, "modName"), what: Inputs.S(p, "what"))))
                  .GroupBy(x => (x.mod, part: x.what.Split('/')[0])).OrderBy(g => g.Key.mod))
     {
         string meaning = g.Key.part switch
@@ -453,7 +324,7 @@ string Readme()
     }
     L("## Left out: what a colonist can't wield");
     L();
-    foreach (var g in leftOut.GroupBy(r => Inputs.S(r.W, "leftOut") == "" ? "no attack a colonist can use" : Inputs.S(r.W, "leftOut")).OrderByDescending(g => g.Count()))
+    foreach (var g in leftOut.GroupBy(r => Inputs.S(W(r), "leftOut") == "" ? "no attack a colonist can use" : Inputs.S(W(r), "leftOut")).OrderByDescending(g => g.Count()))
     {
         L($"- **{g.Key}** ({g.Count()}): " + string.Join(", ", g.GroupBy(r => r.ModName).OrderBy(x => x.Key)
             .Select(m => m.Key + ": " + string.Join(", ", m.Select(r => r.Label).Distinct().OrderBy(x => x)))) + ".");
@@ -516,7 +387,7 @@ string Json()
             ["abilityValue"] = Math.Round(g.AbilityValue, 3), ["mass"] = r.Mass, ["marketValue"] = r.Market, ["stuff"] = r.StuffLabel,
             ["passives"] = new JsonArray(r.Passives.Select(p => (JsonNode)new JsonObject { ["stat"] = p.Stat, ["offset"] = p.Offset }).ToArray()),
             ["abilities"] = new JsonArray(r.Abilities.Select(a => (JsonNode)new JsonObject { ["label"] = a.Label, ["counted"] = a.Counted, ["charges"] = a.Charges, ["note"] = a.Note }).ToArray()),
-            ["patches"] = JsonNode.Parse(r.W["patches"]?.ToJsonString() ?? "[]"),
+            ["patches"] = JsonNode.Parse(W(r)["patches"]?.ToJsonString() ?? "[]"),
         };
         if (r.Ranged != null)
         {
@@ -565,7 +436,7 @@ string Json()
         ["counts"] = new JsonObject { ["defs"] = all.Count, ["rated"] = rated.Count, ["unrated"] = unrated.Count, ["leftOut"] = leftOut.Count, ["unsure"] = rated.Count(r => r.Unsure.Count > 0) },
         ["anchors"] = new JsonArray(WeaponAnchors.All().Select(a => (JsonNode)new JsonObject { ["name"] = a.name, ["role"] = a.r.Role, ["rating"] = a.r.Overall, ["sub"] = Obj(a.r.Sub) }).ToArray()),
     };
-    var lo = new JsonArray(leftOut.Select(r => (JsonNode)new JsonObject { ["defName"] = r.DefName, ["label"] = r.Label, ["mod"] = r.Mod, ["modName"] = r.ModName, ["reason"] = Inputs.S(r.W, "leftOut") == "" ? "no attack a colonist can use" : Inputs.S(r.W, "leftOut") }).ToArray());
+    var lo = new JsonArray(leftOut.Select(r => (JsonNode)new JsonObject { ["defName"] = r.DefName, ["label"] = r.Label, ["mod"] = r.Mod, ["modName"] = r.ModName, ["reason"] = Inputs.S(W(r), "leftOut") == "" ? "no attack a colonist can use" : Inputs.S(W(r), "leftOut") }).ToArray());
     var ur = new JsonArray(unrated.Select(r => (JsonNode)new JsonObject { ["defName"] = r.DefName, ["label"] = r.Label, ["mod"] = r.Mod, ["modName"] = r.ModName, ["reason"] = r.Unrated }).ToArray());
     // One weapon to a line: small, and a change to one weapon is one line of a diff.
     var pretty = new JsonSerializerOptions { WriteIndented = true, Encoder = System.Text.Encodings.Web.JavaScriptEncoder.UnsafeRelaxedJsonEscaping };

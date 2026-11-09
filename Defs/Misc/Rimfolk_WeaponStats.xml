@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- The weapon rating's own heading on the game's info card (Source/ColonyCouncil/Weapons/WeaponInfoCard.cs): sorted
+       first, above the game's basics (1), so a weapon's card opens with its rating, tags and line in plain words. -->
+  <StatCategoryDef>
+    <defName>Rimfolk_WeaponRating</defName>
+    <label>weapon rating (Rimfolk)</label>
+    <displayOrder>0</displayOrder>
+  </StatCategoryDef>
+
+</Defs>

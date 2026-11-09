@@ -4196,6 +4196,104 @@ economic mechanic, and keeps one small record of its own:
   (a thing and its stuff), 50 goods, the one traded longest ago going first; about 25 KB at the cap
   (`Tools/save_estimate.py`). Works without VTE.
 
+## Weapons you can judge at a glance (the player's request, 9 November 2026)
+
+"I struggle with ... judging how good a weapon actually is ... a real rating, maybe a number like 5.6 ... redo the whole
+details tab for weapons ... my weapon mods themselves, like the inventory mod I'm using, the sidearms mod, the offhand
+mod, so that they are all integrated." The plan is `docs/design/weapons.md`. Step 1 (0.182.0) built the rating
+(`Weapons/WeaponRateMath.cs`), the tags (`WeaponTagMath.cs`) and the review of every weapon in the player's mods
+(`docs/weapons/`). Step 2 (points 5 to 7) brings it into the game; step 3 (recommendations) is still to come.
+
+- **One reading for the review and the game.** What a weapon's defs say is plain data (`Weapons/WeaponReadMath.cs`,
+  pure): `WeaponDefFacts` (its verbs and projectiles, tools and the maneuvers they strike with, abilities, comps and mod
+  extensions as class names and simple fields, its own stat values, the stuff's factors, and for the weapon in hand its
+  unique and persona traits and whom it is coded to). `WeaponRead.Full` turns facts into the rating's inputs, rates them
+  (the best firing mode, the melee rating as "in melee", by skill and by trait), gives the table, the tag facts, the tags
+  and the line in plain words (`WeaponWordsMath.cs`, moved from the review). `Tools/WeaponReview/Inputs.cs` is now only
+  the JSON to facts; regenerating the review gives `docs/weapons/weapons.json` and `README.md` byte for byte, so the
+  game's rules are the review's for all 747 defs.
+- **The live def as facts** (`Weapons/WeaponLive.cs`): its stats by the game's own stat workers for the weapon in hand
+  (`StatRequest.For(thing)`) or a def, stuff and quality (`StatRequest.For(def, stuff, quality)`): accuracy at the four
+  distances, `RangedWeapon_Cooldown`, the warm-up and range multipliers, `MeleeWeapon_CooldownMultiplier` and
+  `MeleeWeapon_DamageMultiplier` (quality, stuff, Odyssey traits' stat changes and other mods' patches all in them); a
+  projectile's damage and piercing by its own `GetDamageAmount` and `GetArmorPenetration` with the weapon's
+  multipliers, stopping power as the game launches it. Types' names as defs write them (the game's without their
+  namespace, a mod's in full; `DamageWorker` and `Verb` themselves as unset). A comp's and an extension's simple public
+  fields by reflection (Vanilla Expanded Framework's heavy weapon read under the review's names). A unique weapon in hand
+  (`CompUniqueWeapon.TraitsListForReading`): each trait's burst count and speed factors, extra stopping power, damage it
+  turns the shot into and extra damage applied as `Verb.BurstShotCount`, `TicksBetweenBurstShots`,
+  `Projectile.Launch` and `Verb_LaunchProjectile` do, its stat changes named; its ability is the thing's own comp's
+  props, which the trait sets. A persona weapon (`CompBladelinkWeapon`, Royalty's and Vanilla Persona Weapons
+  Expanded's): its traits' equipped stat offsets count as passives, moods and needs are named. Biocoding: who it is
+  coded to, named, the rating unchanged. A def is rated in its stuff (steel where it takes metal, else wood, else
+  granite blocks, else the game's default), at normal quality from a def's card.
+- **Kept, nothing per frame.** By def, stuff and quality; by the weapon itself only where it has unique or persona traits
+  (an hour of the game's time, then read again); a colonist as a fighter and their rating of a weapon an hour. All
+  forgotten with a new game (`CouncilGameComponent`). The card works out what it says for a colonist once every two
+  seconds; tooltips are made only while hovered.
+- **For a colonist** (`WeaponForMath.cs`, pure): their real `ShootingAccuracyPawn` and `MeleeHitChance` read back
+  through the game's curves into the skill level they stand for (sight, hands, bionics, traits and gear in them), the
+  weapon now in their hands' offsets taken out (`StatWorker.StatOffsetFromGear`), their `AimingDelayFactor`,
+  `RangedCooldownFactor`, `MeleeCooldownFactor` and `MeleeDamageFactor`, their race's own natural attacks. Why it
+  differs, in steps that add up: their skill alone, then each trait whose stat offsets or factors work on this kind of
+  fight (careful shooter, trigger-happy, brawler and any mod's), then the rest ("body and gear"). What stops them:
+  incapable of violence, biocoded to someone else, a Vanilla Expanded heavy weapon without its trait (Tough), armour
+  (an exoframe) or gene; what lets them carry one is named. A brawler holding a gun is told.
+- **The info card** (`WeaponInfoCard.cs`): a pass-through postfix on `ThingDef.SpecialDisplayStats` adds entries in
+  its own `StatCategoryDef` (`Rimfolk_WeaponRating`, display order 0, above the game's basics): the rating (its band,
+  rough or not), each sub-rating, the line in plain words, each tag in its colour with why and its rule, the effects
+  (counted and named, listed in the report pane), and for a weapon a colonist holds or carries, their own rating with
+  its steps. A postfix on `Dialog_InfoCard.DoWindowContents` draws "Rimfolk's weapon card" with the badge at the foot,
+  left of the close button (the card's private `thing`, `def` and `stuff` read by field references).
+- **Rimfolk's weapon card** (`WeaponCardWindow.cs`, a `FramedWindow`, key "WeaponCard", least 440 by 460, a dialog that
+  may cover the bottom bar, one at a time): the badge, band and role; the line; the tags as chips (`WeaponUi.cs`: each in
+  its category's colour on the window's ground with its mark, Rimfolk's TrendUp, TrendDown and Warning icons and a star,
+  diamond and dot drawn once at first use, so colour is never the only cue; the why on the tooltip); the sub-ratings as
+  meters; the chart (damage per second by distance against no armour, flak, marine armour and mechanoids, the four
+  distances the rating weighs marked, the values under the mouse; a melee weapon's four bars); the situations, best for
+  and weak when marked; the effects with their sign and counted or named; the key numbers (a gun's damage, piercing,
+  stopping power, range, aim, cooldown, burst, cycle, accuracy, blast and scatter; a blade's blows with the share the
+  game gives each); then a colonist (the one who holds it, one selected with it, the last chosen, or picked from the
+  map's colonists): their rating, the steps, the notes, and what they hold and carry, each rated for them, a click
+  opening its card. In Rimfolk's look or the game's, with the kit.
+- **The gear tab** (`WeaponGearTab.cs`, "Ratings on the gear tab"): the game's `ITab_Pawn_Gear.DrawThingRow` gives up
+  56 pixels at a weapon row's end (a prefix narrows `width`) for the badge and the card's button; Nice Inventory Tab's
+  rows (`NiceInventoryTab.EquippedItem.Draw`, the weapon in hand and Dual Wield's off hand) and cells
+  (`NiceInventoryTab.InventoryItem.Draw`, the inventory and sidearms) get them on their corners, their `Item`, `pawn`
+  and `Geometry` read by name; the button's click is caught in a prefix, before the row's own click opens the game's
+  card. Each Nice Inventory Tab patch returns no target without the mod and stands down on purpose
+  (`StandsDownWhy`), so "check myself" doesn't list it as failed.
+- **A button on a weapon on the map** (`WeaponGizmo.cs`): a pass-through postfix on `ThingWithComps.GetGizmos` for a
+  spawned weapon the rating reads, its label "Weapon card (6.1)".
+- **The weapon mods, by name** (`WeaponMods.cs`; their DLLs read in the player's upload, never run): **Simple
+  Sidearms** (`SimpleSidearms.rimworld.CompSidearmMemory.rememberedWeapons`, each pair's `thing` and `stuff`): the
+  inventory's weapons are its sidearms, the remembered marked; the sensible pair is the best gun and the best melee
+  weapon held or carried, a sidearm only within its default preset's weights (2.7 and 1.9 kg; the player has no
+  settings file, so it runs on them), a one-use launcher never the gun. **Dual Wield** (`DualWield.Ext_Pawn_EquipmentTracker.TryGetOffHandEquipment`,
+  `Ext_ThingDef.CanBeOffHand` and `IsTwoHand`, `DualWield.DualWield.Settings`' six penalties): each hand rated with its
+  penalties as `VerbProperties.AdjustedCooldown` and `AdjustedAccuracy` apply them while both hands hold a weapon
+  (cooldown +20% off hand and +10% main hand, accuracy -10% each, plus 5% and 0.5% per skill level under 20), both
+  hands together (their fight values added, guns with guns, blades with blades). **RunAndGun** (`RunAndGun.RunAndGun.settings`:
+  `accuracyPenalty`, `movementPenaltyHeavy` and `Light`, `forbiddenWeapons` and `selectedWeapons` read as its own
+  code reads them, so with no settings file of the player's every gun is allowed and counts heavy): allowed on the
+  move or not, and the rating on the move. **Melee Animation** (`AM.Tweaks.TweakDataManager.TryGetTweak`,
+  `AM.AnimDef.GetExecutionAnimationsForPawnAndWeapon`, `AM.Core.Settings.EnableExecutions`, the tweak's
+  `MeleeWeaponType` long for duels): animated or not, the execution moves open to it at the colonist's Melee, friendly
+  duels. Its lasso is apparel, not a weapon's, and is left out.
+- **Settings** (How you're told, Weapons; each on): `weaponRatings` "Weapon ratings" (the master; needs the deeper game
+  hooks), `weaponGearTab` "Ratings on the gear tab", `weaponCard` "Rimfolk's weapon card". No saved game data, no Sched
+  slot.
+- **Text:** `Languages/English/Keyed/Rimfolk_Weapons.xml`. The tags' labels and reasons and the line in plain words are
+  English, made from the numbers by the pure math (one place, shared with the review); the rest is keyed. The Almanac's
+  "judging a weapon" (Defending).
+- **Tests:** `Tools/Tests/WeaponLiveTests.cs` (331 checks): eight of the base game's weapons (assault rifle, sniper rifle,
+  chain shotgun, charge rifle, frag grenades, knife, longsword, zeushammer) built as the live reader builds them rate as
+  `weapons.json` has them (rating, role, every sub-rating and situation, tags and their reasons, the line, the table,
+  rough or not, the specials, the rating by skill); quality and stuff; unique traits (burst, speed, stopping power,
+  damage, EMP rounds) and persona traits; biocoding; the curves read backwards; a colonist's rating and its steps
+  against the review's careful shooter and brawler; the held weapon taken out; Simple Sidearms' pair; Dual Wield's
+  factors and the pair; RunAndGun; the chart; the colours; and the seams.
+
 ## Algorithms, not AI
 
 **All logic is plain rules and weights.** It's deterministic, needs no API key, works
