@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    A colonist proposing a trade of weapons to another (Source/ColonyCouncil/Weapons/WeaponAsks.cs), said to them once the
+    two are together, one sentence each. Every line has the speaker's side, so its words are true: taker (they gain and ask
+    for the other's weapon, offering theirs), giver (they give up some, offering theirs to a better fighter), even (both
+    gain). The kind of the weapon the line speaks of (the one a taker wants, the one a giver or an even trader gives):
+    ranged or melee. lowskill: a giver whose own skill with it is 5 or less. rarely: a giver who rarely fights. {OTHER} is
+    the one spoken to, {MINE} the speaker's weapon and {THEIRS} the other's, by kind. The colony's age decides the words
+    where they differ, the speaker's tone the voice.
+  -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_WeaponTrade</defName>
+    <lines>
+      <plain>
+        <li>[taker,ranged] {OTHER}, that {THEIRS} would do more in my hands, will you take my {MINE}?</li>
+        <li>[taker,ranged] I'd make better use of your {THEIRS}, {OTHER}, and you can have my {MINE}.</li>
+        <li>[taker,ranged] Trade me that {THEIRS} for my {MINE}, {OTHER}, and I'll hit what I aim at.</li>
+        <li>[taker,melee] {OTHER}, I'd swing that {THEIRS} better than you, take my {MINE} for it?</li>
+        <li>[taker,melee] Give me your {THEIRS} and keep my {MINE}, {OTHER}, it suits my hands.</li>
+        <li>[taker] Your {THEIRS} would serve us all better in my hands, {OTHER}.</li>
+        <li>[taker] Let's trade, {OTHER}: my {MINE} for your {THEIRS}.</li>
+        <li>[taker,tribal] Your {THEIRS} wants a surer hand, {OTHER}, take my {MINE} and give it to me.</li>
+        <li>[taker,medieval] Would you yield me that {THEIRS}, {OTHER}, and take my {MINE} in its stead?</li>
+        <li>[giver,ranged,lowskill] You should have this {MINE}, {OTHER}, I can barely aim it.</li>
+        <li>[giver,ranged,lowskill] Take my {MINE}, {OTHER}, it's wasted on my aim.</li>
+        <li>[giver,ranged] This {MINE} would do more good in your hands than mine, {OTHER}.</li>
+        <li>[giver,melee,lowskill] Take this {MINE}, {OTHER}, I hardly know which end to hold.</li>
+        <li>[giver,melee] My {MINE} would serve you better than me, {OTHER}.</li>
+        <li>[giver,rarely] I hardly ever fight, {OTHER}, so you should have my {MINE}.</li>
+        <li>[giver,rarely] I'm more use at my work than in a fight, so take my {MINE}, {OTHER}.</li>
+        <li>[giver] Here, {OTHER}, my {MINE} for your {THEIRS}, you'll do more with it.</li>
+        <li>[giver,medieval] A stronger arm than mine should bear this {MINE}, {OTHER}.</li>
+        <li>[giver,tribal] This {MINE} wants a better hunter than me, {OTHER}, take it.</li>
+        <li>[even] {OTHER}, my {MINE} suits you and your {THEIRS} suits me, shall we trade?</li>
+        <li>[even] Swap with me, {OTHER}: your {THEIRS} for my {MINE}, and we're both better off.</li>
+        <li>[even,medieval] Let us trade arms, {OTHER}, my {MINE} for your {THEIRS}.</li>
+      </plain>
+      <warm>
+        <li>[giver] Take my {MINE}, {OTHER}, I'd rather it kept you safe out there.</li>
+        <li>[giver,lowskill] You'll look after us better with my {MINE} than I would, {OTHER}.</li>
+        <li>[taker] {OTHER}, would you mind trading your {THEIRS} for my {MINE}, I'd guard us better with it.</li>
+        <li>[even] I think we'd both fight better if we traded, {OTHER}, my {MINE} for your {THEIRS}.</li>
+      </warm>
+      <blunt>
+        <li>[taker] Your {THEIRS} is wasted on you, {OTHER}, take my {MINE}.</li>
+        <li>[taker,ranged] Give me that {THEIRS}, {OTHER}, I can actually shoot.</li>
+        <li>[giver,lowskill] I'm useless with this {MINE}, {OTHER}, you have it.</li>
+        <li>[even] Trade, {OTHER}: your {THEIRS}, my {MINE}, done.</li>
+      </blunt>
+      <cheerful>
+        <li>[taker] Hey {OTHER}, how about my {MINE} for that lovely {THEIRS}?</li>
+        <li>[giver] Here, {OTHER}, have my {MINE}, you'll make it sing.</li>
+        <li>[even] Let's swap, {OTHER}, my {MINE} for your {THEIRS}, it'll suit us both!</li>
+      </cheerful>
+      <gloomy>
+        <li>[giver] You might as well have my {MINE}, {OTHER}, it does nothing in my hands.</li>
+        <li>[taker] If I'm to stand out there, {OTHER}, let me have your {THEIRS} for my {MINE}.</li>
+        <li>[even] We'd both last longer if we traded, {OTHER}, my {MINE} for your {THEIRS}.</li>
+      </gloomy>
+      <cold>
+        <li>[taker,ranged] The {THEIRS} belongs with the better shot, {OTHER}, so take my {MINE}.</li>
+        <li>[giver] The {MINE} belongs with whoever fights best, {OTHER}, and that's you.</li>
+        <li>[even] Trading is the sensible choice, {OTHER}: my {MINE} for your {THEIRS}.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+</Defs>

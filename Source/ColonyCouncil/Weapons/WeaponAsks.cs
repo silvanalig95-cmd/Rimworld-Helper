@@ -16,36 +16,57 @@ namespace ColonyCouncil
     /// themselves; at most once in five days each and once a day in the colony, the same weapon not again for fifteen days,
     /// never while the player has set their suggestions aside. The weapon is checked to lie where the line says at that
     /// moment. A quiet entry stays in the inbox (How people are) while the suggestion stands, opening their gear tab.
+    /// <para>
+    /// A trade is proposed the same way (Rimfolk_Pool_WeaponTrade), to the other once the two are together
+    /// (<see cref="Together.When"/>): the one who gains asks for the other's weapon, the one who gives up some offers theirs,
+    /// two who both gain propose it; both weapons still in their hands as the words say. Nobody gives up their own keepsake
+    /// (a lucky weapon, an heirloom) of their own accord; the other may still propose the trade, its line warning of it.
+    /// </para>
     /// </summary>
     public static class WeaponAsks
     {
-        public const string Pool = "Rimfolk_Pool_WeaponAsk";
+        public const string Pool = "Rimfolk_Pool_WeaponAsk", TradePool = "Rimfolk_Pool_WeaponTrade";
+
+        /// <summary>How long a proposed trade waits for its two to be together before it is let go.</summary>
+        public const float TradeWaitHours = 4f;
 
         public static bool On => WeaponLive.On && (ColonyCouncilMod.Settings?.weaponAsks ?? true);
 
-        /// <summary>In their free time at home and safe: up, awake, able to talk, not drafted or in a mental state, no threat on the map or near them, in the home area, at recreation or idle.</summary>
-        public static bool FreeAndSafe(Pawn p)
+        /// <summary>Safe at home: up, awake, able to talk, not drafted or in a mental state, no threat on the map or near them, in the home area.</summary>
+        public static bool Safe(Pawn p)
         {
             if (p == null || !p.Spawned || p.Dead || p.Downed || p.Drafted || p.InMentalState || !p.Awake()) return false;
             var map = p.Map;
             if (!Homes.IsHome(map) || !map.areaManager.Home[p.Position]) return false;
             if (p.health?.capacities == null || !p.health.capacities.CapableOf(PawnCapacityDefOf.Talking)) return false;
-            if (p.mindState?.enemyTarget != null || GenHostility.AnyHostileActiveThreatToPlayer(map) || PawnUtility.EnemiesAreNearby(p, 9, true)) return false;
+            return p.mindState?.enemyTarget == null && !GenHostility.AnyHostileActiveThreatToPlayer(map) && !PawnUtility.EnemiesAreNearby(p, 9, true);
+        }
+
+        /// <summary>In their free time at home and safe: <see cref="Safe"/>, and at recreation or idle.</summary>
+        public static bool FreeAndSafe(Pawn p)
+        {
+            if (!Safe(p)) return false;
             bool joyHour = p.timetable?.CurrentAssignment == TimeAssignmentDefOf.Joy;
             bool joyJob = p.CurJob?.def?.joyKind != null;
             bool idle = p.mindState != null && p.mindState.IsIdle;
             return joyHour || joyJob || idle;
         }
 
-        /// <summary>The hourly look for one colonist (the pass's slice): a clearly better weapon lying in storage, the waits over, the chance; then their line.</summary>
+        /// <summary>The hourly look for one colonist (the pass's slice): a clearly better weapon lying in storage, the waits over, the chance; then their line. Else a trade to propose.</summary>
         public static void Look(Pawn p, WeaponPick.Picks picks, int now)
         {
             if (!On || picks == null || !FreeAndSafe(p)) return;
             var book = WeaponPickBook.Instance;
             if (book == null) return;
-            var s = picks.Of(p).Where(x => WeaponAskMath.Askable(x) && picks.input.Weapon(x.Weapon)?.Stored == true && WeaponPick.Stands(picks, x))
+            string me = WeaponPick.Key(p);
+            var s = picks.Of(p).Where(x => WeaponAskMath.Askable(x) && picks.input.Weapon(x.Weapon)?.Stored == true && WeaponPick.Stands(picks, x)
+                                           && WeaponAskMath.MaySpeakFor(x, WeaponPickMath.GivesUpKeepsake(x, me)))
                 .OrderByDescending(x => x.Gain).FirstOrDefault();
-            if (s == null) return;
+            if (s == null)
+            {
+                ProposeTrade(p, picks, now, book);
+                return;
+            }
             var t = picks.Thing(s.Weapon);
             var last = book.AskOf(p);
             if (!WeaponAskMath.MayAsk(now, last?.tick ?? -1, book.lastAsk, last?.weapon ?? -1, t.thingIDNumber, book.NotNowUntil(p))) return;
@@ -79,12 +100,78 @@ namespace ColonyCouncil
             return raw.Formatted(p.Named("PAWN"), t.LabelNoCount.Named("WEAPON"), place.Named("PLACE")).Resolve().CapitalizeFirst();
         }
 
+        // ---------------- Trades they propose ----------------
+
+        /// <summary>
+        /// A trade the colonist proposes: their best trade that stands in the colony's choice where one of the two gains clearly
+        /// (WeaponAskMath.TradeAskable), the asks' own waits (theirs, the colony's, the same weapon's, neither set aside) and
+        /// chance; then said to the other once the two are together, up to <see cref="TradeWaitHours"/> later.
+        /// </summary>
+        private static void ProposeTrade(Pawn p, WeaponPick.Picks picks, int now, WeaponPickBook book)
+        {
+            string me = WeaponPick.Key(p);
+            var s = picks.Of(p).Where(x => WeaponAskMath.TradeAskable(x) && WeaponPick.Stands(picks, x) && WeaponAskMath.MaySpeakFor(x, WeaponPickMath.GivesUpKeepsake(x, me)))
+                .OrderByDescending(x => x.Worth).FirstOrDefault();
+            if (s == null) return;
+            var other = picks.Pawn(s.Other);
+            Thing theirs = picks.Thing(s.Weapon), mine = picks.Thing(s.Instead);
+            if (other == null || theirs == null || mine == null || book.IsNotNow(other)) return;
+            var last = book.AskOf(p);
+            if (!WeaponAskMath.MayAsk(now, last?.tick ?? -1, book.lastAsk, last?.weapon ?? -1, theirs.thingIDNumber, book.NotNowUntil(p))) return;
+            if (!Rand.Chance(WeaponAskMath.Chance)) return;
+            var said = s;
+            Together.When("weapon-trade:" + p.thingIDNumber + ":" + other.thingIDNumber, p, other, () => SayTrade(p, other, said, mine, theirs), TradeWaitHours);
+        }
+
+        /// <summary>The trade said, once the two are together: both safe, both still holding what the words name; then kept for the inbox.</summary>
+        private static void SayTrade(Pawn p, Pawn other, PickSuggestion s, Thing mine, Thing theirs)
+        {
+            var book = WeaponPickBook.Instance;
+            if (book == null || !On || !Safe(p) || !Together.Can(p, other)) return;
+            if (p.equipment?.Primary != mine || other.equipment?.Primary != theirs || mine.Destroyed || theirs.Destroyed) return;
+            string line = TradeLine(p, other, s, mine, theirs);
+            if (line.NullOrEmpty()) return;
+            Speech.Say(p, line, other);
+            book.Asked(p, theirs, "", s.Gain, other);
+        }
+
+        /// <summary>
+        /// The words of a trade: tagged for the speaker's side ("taker" asks for the other's weapon, "giver" offers theirs,
+        /// "even" proposes it), the kind of the weapon the line speaks of (the one they want, or the one they give), "lowskill"
+        /// when a giver's own skill with it is 5 or less, "rarely" when a giver rarely fights; {OTHER} the other, {MINE} and
+        /// {THEIRS} the two weapons by kind.
+        /// </summary>
+        public static string TradeLine(Pawn p, Pawn other, PickSuggestion s, Thing mine, Thing theirs)
+        {
+            var pool = DefDatabase<FlavorPoolDef>.GetNamedSilentFail(TradePool);
+            if (pool?.lines == null) return null;
+            var tags = Flavor.TagsFor(p);
+            string role = WeaponAskMath.TradeRole(s);
+            tags.Add(role);
+            var spoken = role == "taker" ? theirs : mine;
+            bool ranged = spoken.def.IsRangedWeapon;
+            tags.Add(ranged ? "ranged" : "melee");
+            if (role == "giver")
+            {
+                int skill = (ranged ? p.skills?.GetSkill(SkillDefOf.Shooting)?.Level : p.skills?.GetSkill(SkillDefOf.Melee)?.Level) ?? 0;
+                if (skill <= 5) tags.Add("lowskill");
+                var c = WeaponPick.Current(p.Map)?.input.Colonist(WeaponPick.Key(p));
+                if (c != null && c.Fights <= WeaponPickMath.RarelyFightsAt + 1e-4f) tags.Add("rarely");
+            }
+            if (!Flavor.AnyFits(pool.lines.AllLines(), tags)) return null;
+            string raw = pool.lines.Pick(ToneUtility.ToneFor(p), tags, p);
+            if (raw.NullOrEmpty()) return null;
+            return raw.Formatted(p.Named("PAWN"), other.Named("OTHER"), mine.def.label.Named("MINE"), theirs.def.label.Named("THEIRS")).Resolve().CapitalizeFirst();
+        }
+
         // ---------------- The inbox ----------------
 
         /// <summary>
         /// How people are: a quiet row for each colonist who asked lately (three days) while their suggestion still stands and
         /// isn't set aside: "Ana would rather carry the charge rifle in the stockpile (+1.4)", its reasons under it, a click
-        /// opening their gear tab, its act the colony's view on the Defenses page. Counted nowhere: it waits on no one.
+        /// opening their gear tab, its act the colony's view on the Defenses page; a trade they proposed: "Ana proposed a trade
+        /// to Bautista: her revolver for his charge rifle (+1.6)", its act the trade's own order. Counted nowhere: it waits on
+        /// no one.
         /// </summary>
         public static void InboxRows(List<WeekRow> rows)
         {
@@ -98,23 +185,44 @@ namespace ColonyCouncil
                         ?? Homes.All.SelectMany(WeaponPick.Colonists).FirstOrDefault(x => x.thingIDNumber == a.pawn);
                 if (p == null || book.IsNotNow(p)) continue;
                 var picks = WeaponPick.For(p.Map);
-                var s = picks?.Of(p).FirstOrDefault(x => picks.Thing(x.Weapon)?.thingIDNumber == a.weapon && x.Kind != PickKind.Swap);
+                bool trade = a.other >= 0;
+                var s = picks?.Of(p).FirstOrDefault(x => picks.Thing(x.Weapon)?.thingIDNumber == a.weapon && (x.Kind == PickKind.Swap) == trade
+                                                         && (!trade || picks.Pawn(x.Other)?.thingIDNumber == a.other));
                 if (s == null || !WeaponPick.Stands(picks, s)) continue;
                 var who = p;
-                rows.Add(new WeekRow
+                var row = new WeekRow
                 {
                     pawn = p,
-                    text = "CC_WeaponAsk_Inbox".Translate(WeekModel.Name(p).Named("PAWN"), WeaponPick.Label(picks, s.Weapon).Named("WEAPON"), picks.Place(s.Weapon).Named("PLACE"),
-                        WeaponPickMath.GainText(s.Gain).Named("GAIN")).Resolve(),
                     sub = WeaponPick.Why(picks, s).CapitalizeFirst(),
                     tip = WeekModel.Tip(WeaponPick.Full(picks, s), "CC_WeaponAsk_InboxClick".Translate(p.Named("PAWN")).Resolve()),
                     click = WeekModel.Inspect(p, typeof(ITab_Pawn_Gear)),
-                    act = "CC_WeaponAsk_InboxAct".Translate(),
-                    actTip = "CC_WeaponAsk_InboxAct_Tip".Translate(),
-                    actRun = () => WeaponPickPanel.Show(who.Map),
                     waits = false,
                     order = -a.tick
-                });
+                };
+                if (trade)
+                {
+                    var other = picks.Pawn(s.Other);
+                    row.text = "CC_WeaponAsk_InboxTrade".Translate(WeekModel.Name(p).Named("PAWN"), other.Named("OTHER"), WeaponPick.Label(picks, s.Instead).Named("MINE"),
+                        WeaponPick.Label(picks, s.Weapon).Named("THEIRS"), WeaponPickMath.GainText(s.Gain).Named("GAIN")).Resolve();
+                    var picksNow = picks;
+                    var trading = s;
+                    row.act = "CC_WeaponPick_Act_Swap".Translate();
+                    row.actTip = "CC_WeaponPick_Act_Swap_Tip".Translate(p.Named("PAWN")).Resolve();
+                    row.actRun = () =>
+                    {
+                        WeaponPick.DoConfirmed(picksNow, trading);
+                        WeaponPickGearTab.Refresh();
+                    };
+                }
+                else
+                {
+                    row.text = "CC_WeaponAsk_Inbox".Translate(WeekModel.Name(p).Named("PAWN"), WeaponPick.Label(picks, s.Weapon).Named("WEAPON"), picks.Place(s.Weapon).Named("PLACE"),
+                        WeaponPickMath.GainText(s.Gain).Named("GAIN")).Resolve();
+                    row.act = "CC_WeaponAsk_InboxAct".Translate();
+                    row.actTip = "CC_WeaponAsk_InboxAct_Tip".Translate();
+                    row.actRun = () => WeaponPickPanel.Show(who.Map);
+                }
+                rows.Add(row);
             }
         }
     }

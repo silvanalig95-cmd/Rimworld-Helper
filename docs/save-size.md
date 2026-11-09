@@ -8,7 +8,7 @@ generous guesses; sizes are rough XML sizes. Caps named as constants are read fr
 kept inside another record (a journal's lines, a heart's lists) and are already in that record's size.
 
 Saved collections found: 601; modelled: 601; growing without end: 0.
-Rimfolk's part of the save, roughly: **2,614 KB** after a year, **3,089 KB** after two, **3,315 KB** after five.
+Rimfolk's part of the save, roughly: **2,615 KB** after a year, **3,090 KB** after two, **3,315 KB** after five.
 
 | Collection | Rule | Kind | 1 year | 2 years | 5 years | KB at 5 years |
 |---|---|---|---|---|---|---|
@@ -112,12 +112,12 @@ Rimfolk's part of the save, roughly: **2,614 KB** after a year, **3,089 KB** aft
 | `Building/BuildProjects.cs:projects` | rooms placed and followed in stages, BuildAheadTracker.MaxProjects at most; a finished one kept while its walls stand | fixed | 16 | 16 | 16 | 5.0 |
 | `Offices/Election.cs:pollDays` | the poll a day for six days a seat, while it lasts | while | 84 | 84 | 84 | 4.9 |
 | `Arcs/ArcTracker.cs:active` | stories under way | colonists | 10 | 10 | 10 | 4.9 |
+| `Weapons/WeaponPickBook.cs:asks` | each colonist's last ask for a better weapon or trade proposed (one each), those of the gone kept fifteen days | colonists | 20 | 20 | 20 | 4.9 |
 | `Building/BuildAhead.cs:pieceDefs` | with the above: what each blueprint was | fixed | 120 | 120 | 120 | 4.7 |
 | `Outsiders/OutsiderBook.cs:wars` | OutsiderBook.MaxWars wars between other peoples, the ended let go after 60 days | fixed | 30 | 30 | 30 | 4.7 |
 | `Peoples/ArisingBook.cs:arisen` | peoples that arose during play: one record each, one every 20 days at the most (the setting at 200%), ArisingMath.MaxRecords kept | cap | 3 | 6 | 15 | 4.7 |
 | `PlayOut/PlayOutTracker.cs:plays` | waiting ones capped, done ones dropped | cap | 8 | 8 | 8 | 4.7 |
 | `Social/Groups/GroupTracker.cs:past` | 12 past groups, members the game still knows | cap | 3 | 6 | 12 | 4.7 |
-| `Weapons/WeaponPickBook.cs:asks` | each colonist's last ask for a better weapon (one each), those of the gone kept fifteen days | colonists | 20 | 20 | 20 | 4.5 |
 | `CouncilGameComponent.cs:everWished` | one per wish def | defs | 129 | 129 | 129 | 4.4 |
 | `Building/CouncilPlanQueue.cs:queue` | blueprints waiting to be placed | while | 30 | 30 | 30 | 4.4 |
 | `Character/Character.cs:recent` | 30 recent shifts | cap | 30 | 30 | 30 | 4.4 |

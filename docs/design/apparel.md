@@ -27,6 +27,13 @@ situations), colour-coded tags, a rating from 1.0 to 10.0 with real range.
 5. The rating, tags and line at the top of the game's info card for apparel, Rimfolk's own apparel card (opened first,
    as the weapon card is), a badge on the gear tab and Nice Inventory Tab, the piece in hand with its quality, stuff,
    wear and any traits, and the rating for a chosen colonist (their body, temperature and work).
+   The apparel card shows the piece's own picture large in its head, as the weapon card does since the player's "always
+   have an image of the item included ... it can have a prominent spot because they look cool" (9 November 2026), with the
+   same piece: `UiKit.ItemPortrait` (`UI/UiKitItems.cs`; the thing as it looks, its stuff, style and graphic by the game's
+   `Widgets.ThingIcon`, a kind by `Widgets.DefIcon`, framed in its quality's colour from `UI/ItemPortraitMath.cs`, the tile
+   96 to 128 pixels by `ItemPortraitMath.CardTile`), and small ones wherever it lists other pieces. Its suggestions on the
+   gear tab can use the weapons' row (`WeaponPickGearTab.Row` with a `SuggestLook`) and its place in Nice Inventory Tab's
+   apparel box the same way as the equipment box's (`Weapons/WeaponNiceTab.cs`).
 
 ## Step 3: recommendations
 

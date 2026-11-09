@@ -5,6 +5,17 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## The weapon in the picture, and trades for the whole colony
+
+*9 November 2026, version 0.186.0*
+
+- Rimfolk's weapon card shows the weapon itself, large and framed in its quality's colour, in its own material and style, and small pictures wherever it lists other weapons.
+- A suggested weapon now sits as its own row in the equipment box, on Nice Inventory Tab and on the game's gear tab, with its picture, rating, gain, reason and buttons; when nothing better is stored, a quiet line says so.
+- Clicking a weapon's rating badge opens Rimfolk's card for it.
+- Two colonists can be asked to trade even when one gives up some, if the colony gains: the best weapons go to those who fight most, judged by their skill, how often they are drafted, their kills and their work, and the line names both sides.
+- Colonists sometimes propose such a trade themselves, the one who would gain asking or the one who rarely fights offering, when both are near and both weapons in hand.
+- Giving up a lucky weapon or a family heirloom is shown as a warning with its mood, never a reason to hold back the suggestion, and nobody offers up their own.
+
 ## The heart counts: stronger moods, a day off, and what would help
 
 *9 November 2026, version 0.185.0*

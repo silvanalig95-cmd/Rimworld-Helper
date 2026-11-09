@@ -24,12 +24,14 @@ namespace ColonyCouncil
         public const float BadgeW = 30f, BadgeH = 17f, ButtonSize = 18f;
 
         /// <summary>The badge in a rect, and the card's button right of it when there is room for both.</summary>
-        /// <param name="badgeClicks">The badge opens the card on a click (the game's tab; Nice Inventory Tab's own click opens the game's card).</param>
-        public static void Bits(Rect badge, Rect? button, Thing thing, Pawn pawn, bool badgeClicks)
+        /// <param name="badgeClicks">The badge opens the card on a click here (the game's tab); on Nice Inventory Tab's rows and cells its click is caught before the row's own (<see cref="Click"/>).</param>
+        /// <param name="clickTip">Its tooltip says a click opens the card (to compare with what the colonist holds).</param>
+        public static void Bits(Rect badge, Rect? button, Thing thing, Pawn pawn, bool badgeClicks, bool clickTip = false)
         {
             var r = WeaponLive.Of(thing);
             if (r == null) return;
-            WeaponUi.Badge(badge, r.Rating.Overall, () => WeaponUi.Tip(r, pawn, thing, badgeClicks), thing.thingIDNumber ^ 0x5eed);
+            WeaponUi.Badge(badge, r.Rating.Overall, () => WeaponUi.Tip(r, pawn, thing, badgeClicks || clickTip), thing.thingIDNumber ^ 0x5eed);
+            if ((badgeClicks || clickTip) && WeaponCardWindow.On && Mouse.IsOver(badge)) Widgets.DrawHighlight(badge);
             if (badgeClicks && WeaponCardWindow.On && Widgets.ButtonInvisible(badge, false)) WeaponCardWindow.Open(thing, pawn);
             if (button.HasValue && WeaponCardWindow.On)
             {
@@ -146,7 +148,10 @@ namespace ColonyCouncil
         public static void Prefix(object __instance)
         {
             if (broken || !WeaponGearTab.On || !WeaponGearTab.Read(__instance, out var thing, out var pawn, out var g)) return;
-            WeaponGearTab.Click(WeaponGearTab.RowRects(g).button, thing, pawn);
+            // The row has no room for a word more, so its badge is the button to compare: it and the small button open Rimfolk's card.
+            var (badge, button) = WeaponGearTab.RowRects(g);
+            WeaponGearTab.Click(button, thing, pawn);
+            WeaponGearTab.Click(badge, thing, pawn);
         }
 
         public static void Postfix(object __instance)
@@ -156,7 +161,7 @@ namespace ColonyCouncil
             {
                 if (!WeaponGearTab.Read(__instance, out var thing, out var pawn, out var g)) return;
                 var (badge, button) = WeaponGearTab.RowRects(g);
-                WeaponGearTab.Bits(badge, button, thing, pawn, false);
+                WeaponGearTab.Bits(badge, button, thing, pawn, false, true);
             }
             catch (Exception e)
             {
@@ -183,7 +188,9 @@ namespace ColonyCouncil
         public static void Prefix(object __instance)
         {
             if (broken || !WeaponGearTab.On || !WeaponGearTab.Read(__instance, out var thing, out var pawn, out var g)) return;
-            WeaponGearTab.Click(WeaponGearTab.CellRects(g).button, thing, pawn);
+            var (badge, button) = WeaponGearTab.CellRects(g);
+            if (g.width >= 80f) WeaponGearTab.Click(button, thing, pawn);
+            WeaponGearTab.Click(badge, thing, pawn);
         }
 
         public static void Postfix(object __instance)
@@ -193,7 +200,7 @@ namespace ColonyCouncil
             {
                 if (!WeaponGearTab.Read(__instance, out var thing, out var pawn, out var g)) return;
                 var (badge, button) = WeaponGearTab.CellRects(g);
-                WeaponGearTab.Bits(badge, g.width >= 80f ? button : (Rect?)null, thing, pawn, false);
+                WeaponGearTab.Bits(badge, g.width >= 80f ? button : (Rect?)null, thing, pawn, false, true);
             }
             catch (Exception e)
             {

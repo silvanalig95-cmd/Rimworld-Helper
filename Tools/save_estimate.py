@@ -775,7 +775,7 @@ MODEL = {
     "Weapons/WeaponPickBook.cs:raids": ("cap", (const("Weapons/WeaponPickBook.cs", "MaxRaids", 12), 0.25), 170,
                                         "raids the colony met: how many came, mechanoids, armoured, a siege, a tribe; WeaponPickBook.MaxRaids newest"),
     "Weapons/WeaponPickBook.cs:notNow": ("colonists", 0.3, D, "colonists whose suggestions are set aside, ten days each, the ended pruned daily"),
-    "Weapons/WeaponPickBook.cs:asks": ("colonists", 1, 230, "each colonist's last ask for a better weapon (one each), those of the gone kept fifteen days"),
+    "Weapons/WeaponPickBook.cs:asks": ("colonists", 1, 250, "each colonist's last ask for a better weapon or trade proposed (one each), those of the gone kept fifteen days"),
     # The colony's own trade record (Trade/TradeRecord.cs): a good (a thing and its stuff) a log, each with its newest few
     # lines; a busy colony meets a new kind of good most days it trades, so the cap fills within a year or two. A good's
     # size is its lines' too (five short lines of about 85 bytes each, their names one letter long).

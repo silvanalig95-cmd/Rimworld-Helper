@@ -31,6 +31,20 @@ When you load a save after an update, a letter lists the newest round once. The 
     <rounds>
 
       <li>
+        <version>0.186.0</version>
+        <date>9 November 2026</date>
+        <title>The weapon in the picture, and trades for the whole colony</title>
+        <points>
+          <li>Rimfolk's weapon card shows the weapon itself, large and framed in its quality's colour, in its own material and style, and small pictures wherever it lists other weapons.</li>
+          <li>A suggested weapon now sits as its own row in the equipment box, on Nice Inventory Tab and on the game's gear tab, with its picture, rating, gain, reason and buttons; when nothing better is stored, a quiet line says so.</li>
+          <li>Clicking a weapon's rating badge opens Rimfolk's card for it.</li>
+          <li>Two colonists can be asked to trade even when one gives up some, if the colony gains: the best weapons go to those who fight most, judged by their skill, how often they are drafted, their kills and their work, and the line names both sides.</li>
+          <li>Colonists sometimes propose such a trade themselves, the one who would gain asking or the one who rarely fights offering, when both are near and both weapons in hand.</li>
+          <li>Giving up a lucky weapon or a family heirloom is shown as a warning with its mood, never a reason to hold back the suggestion, and nobody offers up their own.</li>
+        </points>
+      </li>
+
+      <li>
         <version>0.185.0</version>
         <date>9 November 2026</date>
         <title>The heart counts: stronger moods, a day off, and what would help</title>

@@ -26,10 +26,10 @@ namespace ColonyCouncil
         }
     }
 
-    /// <summary>A colonist's last ask for a better weapon: when, which weapon (its id), its words for the inbox.</summary>
+    /// <summary>A colonist's last ask for a better weapon: when, which weapon (its id), its words for the inbox; a trade's other (their id, else -1).</summary>
     public class WeaponAskNote : IExposable
     {
-        public int pawn = -1, tick = -1, weapon = -1;
+        public int pawn = -1, tick = -1, weapon = -1, other = -1;
         public string label, place;
         public float gain;
 
@@ -38,6 +38,7 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref pawn, "pawn", -1);
             Scribe_Values.Look(ref tick, "tick", -1);
             Scribe_Values.Look(ref weapon, "weapon", -1);
+            Scribe_Values.Look(ref other, "other", -1);
             Scribe_Values.Look(ref label, "label");
             Scribe_Values.Look(ref place, "place");
             Scribe_Values.Look(ref gain, "gain");
@@ -131,12 +132,14 @@ namespace ColonyCouncil
 
         public WeaponAskNote AskOf(Pawn p) => p == null ? null : asks.FirstOrDefault(a => a.pawn == p.thingIDNumber);
 
-        public void Asked(Pawn p, Thing weapon, string place, float gain)
+        /// <summary>A colonist asked for a weapon (lying somewhere), or proposed a trade to <paramref name="other"/> for the weapon they hold.</summary>
+        public void Asked(Pawn p, Thing weapon, string place, float gain, Pawn other = null)
         {
             var a = AskOf(p);
             if (a == null) asks.Add(a = new WeaponAskNote { pawn = p.thingIDNumber });
             a.tick = Now;
             a.weapon = weapon.thingIDNumber;
+            a.other = other?.thingIDNumber ?? -1;
             a.label = weapon.LabelNoCount;
             a.place = place;
             a.gain = gain;
