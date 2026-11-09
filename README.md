@@ -2104,12 +2104,20 @@ window*, on). Its prices, counts and Accept are the game's own, so nothing is tr
 mods' prices still apply. **Game's screen** at the top switches to the game's own screen for the same trade and counts
 (Trade Helper's panel is there); a small button beside its sort menus comes back. Gifts and trades in favor stay on the
 game's screen.
-- **One table, your side on the left of the count and the trader's on the right**, as the game's arrows go: the good,
-  its kind, its market value a piece, how many you have, what they pay, the game's own count control (Shift for ten,
-  Ctrl for a hundred, the double arrows for all or none, or type a number), what they ask, how many they have, the
-  deal's grade, with Vanilla Trading Expanded its market and its trend, the mass and what the colony needs of it.
-- **Above or under, both ways:** under each price, its share of the market value and its side of the usual price for
-  your negotiator and difficulty (a trader usually pays 60% of a thing's worth and asks 140%), green when better for
+- **Two lists, Ours to sell and Theirs to buy:** side by side when the window is wide enough (1600 pixels and up),
+  else two tabs, Sell and Buy; the button above the lists chooses by width, always side by side or always tabs, and
+  your choice and tab are kept. Each list is grouped by kind, and each good has its picture and whole name (wrapped,
+  never cut), how many there are, the price with its mark against the usual, the deal's grade, what the colony needs of
+  it (Keep in the sell list, Need in the buy list), and how many to sell or buy.
+- **One way a list:** the arrows point where the goods go, so in the sell list > sells one more and < takes one back,
+  in the buy list < buys one more and > puts one back; Shift for ten, Ctrl for a hundred, the double arrows for all or
+  none, or type a number, within the game's own limits. A good being bought shows "Buying" in the sell list (and the
+  other way round); a click takes it out of the deal.
+- **Point at a good** for the rest: how many there are, its market value and mass, the game's own reckoning of the
+  price and its share of the value, why the deal is called what it is, and the advice; the market card beside it draws
+  Vanilla Trading Expanded's market and its trend.
+- **Above or under, both ways:** under each price, its mark against the usual price for your negotiator and difficulty
+  (a trader usually pays 60% of a thing's worth and asks 140%): an arrow up or down and how far, green when better for
   you, orange when worse. Against market value alone a sale is always under and a purchase always over; the usual is
   what tells a trader who pays more, or asks less, than traders do.
 - **Deal grades:** great, good, fair or poor for each side, in words and bars. A fifth better than usual is great, 7%
@@ -2117,14 +2125,14 @@ game's screen.
   a buy at a low or of a rising one), and so does the colony's own record (better than its best of the last 15 days,
   or a tenth worse). Something the colony has no use for is never a good buy, and selling what it is short of or keeps
   never a good sale. The tooltip says why, with the advice's own reasons.
-- **Best deals** on the right: the top sells and buys, a click finding each in the list. Under it, **this deal**: what
+- **Best deals** on the right: the top sells and buys, a click finding each in its list. Under it, **this deal**: what
   you sell and buy at market value and at what share of it, the net silver, how the deal stands against the usual
   prices ("about 12% better for you"), both ways by market value, the food days at home, and Vanilla Trading Expanded's
   warning when the trade may move a price. Each side's silver after the trade is at the foot.
-- **Sorting and overview:** click any column's header to sort, again for the other way; a search, a chip for each kind
+- **Sorting and overview:** click a column's header to sort its list within each kind, again for the other way; the
+  menu at the count's heading sorts by market value, the market, its trend and mass too. A search, a chip for each kind
   of good (food, medicine, raw materials, manufactured, weapons, apparel, art and books, drugs, animals, people, other)
-  and **Only in the deal**. Fill suggested, Clear suggested, Reset, Accept and Cancel at the foot. At 1280 pixels wide
-  the mass, kind, market and trend columns give way first.
+  and **Only in the deal** narrow both lists. Fill suggested, Clear suggested, Reset, Accept and Cancel at the foot.
 
 The game's own screen keeps the parts it had (each its own switch under What's on, Trade screen):
 - **Sorting by price:** the two "Sort by" menus gain *trader pays*, *trader asks* (the prices for this negotiator, not

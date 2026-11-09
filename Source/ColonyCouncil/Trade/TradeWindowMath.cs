@@ -15,7 +15,7 @@ namespace ColonyCouncil
         Great
     }
 
-    /// <summary>The filter chips and the kind column of Rimfolk's trade window.</summary>
+    /// <summary>The filter chips of Rimfolk's trade window and the kinds its lists are grouped under.</summary>
     public enum TradeCategory
     {
         Food,
@@ -31,11 +31,14 @@ namespace ColonyCouncil
         Other
     }
 
-    /// <summary>The columns of Rimfolk's trade window, in the order they stand from left to right.</summary>
+    /// <summary>
+    /// What the lists of Rimfolk's trade window sort by, and the columns they show: the name, how many there are (ours in
+    /// the sell list, theirs in the buy list), the price (what they pay, what they ask), the deal, the need and the count
+    /// control. Value, market, trend and mass are sorts only (the row's tooltip says them).
+    /// </summary>
     public enum TradeColumn
     {
         Name,
-        Category,
         Value,
         Ours,
         Pay,
@@ -84,13 +87,37 @@ namespace ColonyCouncil
         public bool Graded => grade != DealGrade.None;
     }
 
-    /// <summary>One row's keys for the window's sort; null where the row has none (those go last either way).</summary>
+    /// <summary>How the window's two lists stand: side by side when the window is wide enough, else as two tabs (the player's choice, remembered).</summary>
+    public enum TradeListsChoice
+    {
+        /// <summary>Side by side when each list has room for all its columns, else tabs.</summary>
+        Auto,
+        /// <summary>Side by side wherever each list has room for the name, the price and the count; tabs in a narrower window.</summary>
+        SideBySide,
+        /// <summary>Always two tabs, one list at a time.</summary>
+        Tabs
+    }
+
+    /// <summary>One row's keys for a list's sort (a list's own side: its deal is that side's); null where the row has none (those go last either way).</summary>
     public sealed class TradeRowKeys
     {
         public string name = "";
         public int category, ours, theirs;
         public float value, mass;
         public float? pay, ask, deal, market, trend, need;
+        /// <summary>The trader won't deal in it: it goes under a heading of its own at the list's end.</summary>
+        public bool off;
+    }
+
+    /// <summary>A line of one of the window's lists, in the order drawn: a kind's heading (<see cref="row"/> -1, with how many rows it heads) or a row.</summary>
+    public struct ListLine
+    {
+        /// <summary>The row's index in the keys given, or -1 for a heading.</summary>
+        public int row;
+        /// <summary>The kind (a TradeCategory as a number), or <see cref="TradeWindowMath.OffGroup"/> for what the trader won't deal in.</summary>
+        public int group;
+        /// <summary>A heading's rows.</summary>
+        public int count;
     }
 
     /// <summary>One good in the deal as the summary counts it: so many sold or bought at the trader's price, the usual price and its market value a piece.</summary>
@@ -174,9 +201,10 @@ namespace ColonyCouncil
     /// <summary>
     /// Rimfolk's own trade window as plain rules (Trade/Window_RimfolkTrade.cs reads the game's deal, the advice, Vanilla
     /// Trading Expanded's market and the colony's record into these): each row's grade a side at a time, the shares its
-    /// prices are of its market value and of the usual price, the order a column's click puts the rows in, what the
-    /// deal comes to, the best deals, the columns that fit the window, the filter chips' rows and where the list scrolls
-    /// to show a row. Nothing here changes a trade; every count and price is the game's.
+    /// prices are of its market value and of the usual price, the order a column's click puts the rows in, the kinds they
+    /// are grouped under, what the deal comes to, the best deals, the two lists side by side or as tabs and the columns
+    /// that fit each, the rows' heights, the filter chips' rows, where a list scrolls to show a row, and the counts each
+    /// list's control sets one way. Nothing here changes a trade; every count and price is the game's.
     /// <para>
     /// A grade is read from the price against the usual one for this negotiator and difficulty (the game's 60% and 140%
     /// of a thing's worth, moved by them; TradeAdviceMath's usual), since against its market value alone a sale is always
@@ -251,22 +279,8 @@ namespace ColonyCouncil
         /// <summary>The bars a grade fills of three: great three, good two, fair one, poor none (the word says it too).</summary>
         public static int Bars(DealGrade g) => g == DealGrade.Great ? 3 : g == DealGrade.Good ? 2 : g == DealGrade.Fair ? 1 : 0;
 
-        /// <summary>The row's better side, for the deal column and its sort: the one with the higher grade, then the higher score; a sale on a tie.</summary>
-        public static bool SaleIsBetter(DealRating sale, DealRating buy)
-        {
-            if (!buy.Graded) return true;
-            if (!sale.Graded) return false;
-            if (sale.grade != buy.grade) return sale.grade > buy.grade;
-            return sale.score >= buy.score;
-        }
-
-        /// <summary>The deal column's sort key: the grade first, then the score; null with neither side graded.</summary>
-        public static float? DealKey(DealRating sale, DealRating buy)
-        {
-            if (!sale.Graded && !buy.Graded) return null;
-            var r = SaleIsBetter(sale, buy) ? sale : buy;
-            return (int)r.grade * 100f + Math.Min(99f, Math.Max(0f, r.score * 10f));
-        }
+        /// <summary>A side's deal as a list sorts it: the grade first, then the score; null without a grade.</summary>
+        public static float? SideKey(DealRating r) => r.Graded ? (int)r.grade * 100f + Math.Min(99f, Math.Max(0f, r.score * 10f)) : (float?)null;
 
         // ---------------- The shares ----------------
 
@@ -289,8 +303,8 @@ namespace ColonyCouncil
 
         // ---------------- The sort ----------------
 
-        /// <summary>A column's first direction: names and kinds from A, numbers the highest first.</summary>
-        public static bool DefaultDescending(TradeColumn c) => c != TradeColumn.Name && c != TradeColumn.Category;
+        /// <summary>A column's first direction: names from A, numbers the highest first.</summary>
+        public static bool DefaultDescending(TradeColumn c) => c != TradeColumn.Name;
 
         /// <summary>Whether a column sorts on a click (the count control doesn't).</summary>
         public static bool Sortable(TradeColumn c) => c != TradeColumn.Count;
@@ -316,8 +330,8 @@ namespace ColonyCouncil
         private static int Names(TradeRowKeys a, TradeRowKeys b) => string.Compare(a?.name ?? "", b?.name ?? "", StringComparison.CurrentCultureIgnoreCase);
 
         /// <summary>
-        /// The rows in a column's order (their indices): names and kinds alphabetically (a kind's goods by name), numbers by
-        /// size; a row without that key last either way; ties by name, then as they came.
+        /// The rows in a column's order (their indices): names alphabetically, numbers by size; a row without that key last
+        /// either way; ties by name, then as they came.
         /// </summary>
         public static List<int> Order(IList<TradeRowKeys> rows, TradeColumn col, bool descending)
         {
@@ -334,10 +348,6 @@ namespace ColonyCouncil
                     case TradeColumn.Name:
                         c = sign * Names(a, b);
                         break;
-                    case TradeColumn.Category:
-                        c = sign * a.category.CompareTo(b.category);
-                        if (c == 0) c = Names(a, b);
-                        break;
                     default:
                         float? ka = KeyOf(a, col), kb = KeyOf(b, col);
                         if (ka.HasValue != kb.HasValue) return ka.HasValue ? -1 : 1;
@@ -348,6 +358,27 @@ namespace ColonyCouncil
                 return c != 0 ? c : i.CompareTo(j);
             });
             return idx;
+        }
+
+        /// <summary>The group of what the trader won't deal in, after every kind.</summary>
+        public const int OffGroup = -1;
+
+        /// <summary>
+        /// A list's lines: its rows under a heading for each kind, the kinds in their order (food first), each kind's rows
+        /// in the column's order (<see cref="Order"/>); what the trader won't deal in last, under a heading of its own.
+        /// </summary>
+        public static List<ListLine> Grouped(IList<TradeRowKeys> rows, TradeColumn col, bool descending)
+        {
+            var lines = new List<ListLine>();
+            if (rows == null || rows.Count == 0) return lines;
+            var order = Order(rows, col, descending);
+            foreach (var g in order.GroupBy(i => rows[i].off ? OffGroup : rows[i].category).OrderBy(g => g.Key == OffGroup ? int.MaxValue : g.Key))
+            {
+                var members = g.ToList();
+                lines.Add(new ListLine { row = -1, group = g.Key, count = members.Count });
+                foreach (int i in members) lines.Add(new ListLine { row = i, group = g.Key });
+            }
+            return lines;
         }
 
         // ---------------- What the deal comes to ----------------
@@ -466,11 +497,100 @@ namespace ColonyCouncil
             return places;
         }
 
-        /// <summary>Where the list scrolls to show a row in the middle of the view, kept within the list.</summary>
-        public static float ScrollTo(int index, float rowH, float viewH, float contentH)
+        /// <summary>Where a list scrolls to show a line (its top and height) in the middle of the view, kept within the list.</summary>
+        public static float ScrollToSpan(float top, float height, float viewH, float contentH)
         {
-            float y = index * rowH - (viewH - rowH) / 2f;
+            float y = top - (viewH - height) / 2f;
             return Math.Max(0f, Math.Min(y, Math.Max(0f, contentH - viewH)));
+        }
+
+        // ---------------- The two lists ----------------
+
+        /// <summary>Between the two lists side by side; between a list's columns; the scroll bar a list keeps at its right.</summary>
+        public const float ListGap = 12f, ColGap = 4f, Scrollbar = 16f;
+
+        /// <summary>A row's least height (a one-line name beside a price and its mark), the room kept round a longer name, and a kind's heading.</summary>
+        public const float RowMin = 40f, NamePad = 8f, GroupH = 26f;
+
+        /// <summary>The name column's own parts: the picture and the space after it, and the info card's button.</summary>
+        public const float PictureW = 40f, InfoW = 26f;
+
+        /// <summary>
+        /// A list's columns, left to right, and how soon each gives way in a narrow list (lower stays longer): the picture
+        /// and name (always, wider when there's room), how many there are, the price with its mark against the usual
+        /// (always), the deal, the need and the count control (always). The sell list shows ours and what they pay, the buy
+        /// list theirs and what they ask. Made once; not to be changed.
+        /// </summary>
+        public static IList<ColumnSpec> ListColumns(bool sale) => sale ? sellColumns : buyColumns;
+
+        private static readonly List<ColumnSpec> sellColumns = MakeColumns(true), buyColumns = MakeColumns(false);
+
+        private static List<ColumnSpec> MakeColumns(bool sale) => new List<ColumnSpec>
+        {
+            new ColumnSpec(TradeColumn.Name, 176f, 0, 520f),
+            new ColumnSpec(sale ? TradeColumn.Ours : TradeColumn.Theirs, 44f, 2),
+            new ColumnSpec(sale ? TradeColumn.Pay : TradeColumn.Ask, 80f, 0),
+            new ColumnSpec(TradeColumn.Deal, 60f, 1),
+            new ColumnSpec(TradeColumn.Need, 70f, 3),
+            new ColumnSpec(TradeColumn.Count, 136f, 0)
+        };
+
+        /// <summary>The width columns take at their least with the gaps between them: all of them, or only those that never give way.</summary>
+        public static float ColumnsWidth(IList<ColumnSpec> specs, float gap, bool essentialOnly)
+        {
+            if (specs == null) return 0f;
+            var kept = specs.Where(s => !essentialOnly || s.priority <= 0).ToList();
+            return kept.Sum(s => s.width) + gap * Math.Max(0, kept.Count - 1);
+        }
+
+        /// <summary>A list's own width beside the other's or alone.</summary>
+        public static float ListWidth(float table, bool sideBySide) => sideBySide ? Math.Max(0f, (table - ListGap) / 2f) : table;
+
+        /// <summary>A list's rows' width: its own less the scroll bar.</summary>
+        public static float RowsWidth(float list) => Math.Max(0f, list - Scrollbar);
+
+        private static readonly float allColumns = ColumnsWidth(sellColumns, ColGap, false), essentialColumns = ColumnsWidth(sellColumns, ColGap, true);
+
+        /// <summary>
+        /// The two lists side by side, or as tabs: by width, side by side when each has room for all its columns; chosen
+        /// side by side, wherever each has room for the name, the price and the count; chosen as tabs, always tabs.
+        /// </summary>
+        public static bool SideBySide(float table, TradeListsChoice choice)
+        {
+            if (choice == TradeListsChoice.Tabs) return false;
+            float rows = RowsWidth(ListWidth(table, true));
+            return rows + 0.01f >= (choice == TradeListsChoice.SideBySide ? essentialColumns : allColumns);
+        }
+
+        /// <summary>A row's height for its name's (wrapped to its column, never cut): at least the row's least, else the name and room round it.</summary>
+        public static float RowHeight(float nameHeight) => Math.Max(RowMin, nameHeight + NamePad);
+
+        // ---------------- One way: each list's count control ----------------
+
+        /// <summary>
+        /// How many of a good go a list's way: sold in the sell list, bought in the buy list; 0 when it goes the other way.
+        /// The game keeps one count a good, positive for a purchase and negative for a sale.
+        /// </summary>
+        public static int ThisWay(int count, bool sale) => sale ? Math.Max(0, -count) : Math.Max(0, count);
+
+        /// <summary>The good is in the deal the other way: being bought, in the sell list; being sold, in the buy list.</summary>
+        public static bool OtherWay(int count, bool sale) => sale ? count > 0 : count < 0;
+
+        /// <summary>The most that can go a list's way, from the game's limits: all the colony has to sell, all the trader has to sell it.</summary>
+        public static int MostThisWay(bool sale, int least, int most) => sale ? Math.Max(0, -least) : Math.Max(0, most);
+
+        /// <summary>The game's count for so many going a list's way, kept between none and the most (never over to the other way).</summary>
+        public static int CountFor(bool sale, int n, int least, int most)
+        {
+            n = Math.Max(0, Math.Min(n, MostThisWay(sale, least, most)));
+            return sale ? -n : n;
+        }
+
+        /// <summary>An arrow's count: <paramref name="step"/> more going the list's way (one, ten with Shift, a hundred with Ctrl), or fewer, kept between none and the most.</summary>
+        public static int Stepped(bool sale, int count, bool more, int step, int least, int most)
+        {
+            long n = ThisWay(count, sale) + (more ? (long)step : -(long)step);
+            return CountFor(sale, (int)Math.Max(int.MinValue, Math.Min(int.MaxValue, n)), least, most);
         }
 
         // ---------------- The kinds ----------------

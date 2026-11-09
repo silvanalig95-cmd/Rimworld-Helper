@@ -12,6 +12,42 @@ tree at once, alongside whatever runs. Each piece is merged as its own release, 
 
 ## State (5 November 2026)
 
+- The trade window's two lists, sell and buy (9 November 2026). Not released: no version, no What's new round, About.xml
+  and CHANGELOG untouched. The player's words, with a screenshot of the one table: "i quite like the new trading ui, but
+  i find it still a bit confusing. could buy and sell be split into different tabs or some other setup? where I have
+  separate lists can can organize it more easy ... also the name of the item doesn't even always fit." The plan told to
+  the player, built. DESIGN.md "Two lists, sell and buy" has all of it (the 0.165.0 bullets above it updated); README
+  "The trade screen"; the Almanac's *the trade screen* in prose (keywords and numbers kept).
+  - The lists (`Trade/Window_RimfolkTrade.cs`, rules in `Trade/TradeWindowMath.cs`, linked in Tests.csproj): *Ours to
+    sell* (what the colony has, with what they pay) and *Theirs to buy* (what the trader has, with what they ask), side
+    by side from 586 pixels of rows a list (`SideBySide`: 1920 and 1600 wide in both looks), else tabs Sell and Buy;
+    "Lists: by width / side by side / tabs" at the lists' right (side by side chosen down to 400 a list, 1280 wide; the
+    least window is tabs); choice and tab kept with the settings (`PageMemory` "trade.lists", "trade.tab").
+  - Six columns a list (`ListColumns`): picture (`UiKit.ItemPortrait`) and whole name wrapped (row height
+    `RowHeight`, measured once a width), how many, price with its mark against the usual (arrow, how far, green or
+    orange, "usual" within 2%), the deal's tag (bars and great/good/fair/poor), need ("Keep" in the sell list), count.
+    Narrow: need, then how many, then the deal give way. Kind headings (`Grouped`), "Not traded here" last. The row's
+    tooltip (`RowTip`) has the value and mass, the game's price reckoning and share, the grade's reasons, the advice;
+    the market card (`TradeMarket.Hover`) shows over the whole row with the drawn trend.
+  - One way a list (`OneWay`; `ThisWay`, `Stepped`, `CountFor`): the arrows point where the goods go (sell list ">"
+    sells, buy list "<" buys), Shift ten, Ctrl a hundred, double arrows all or none, a number typed in the list's own
+    box, within `GetMinimumToTransfer`/`GetMaximumToTransfer` by `CanAdjustTo` and `AdjustTo`. A good in the deal the
+    other way shows "Buying 5" / "Selling 5", a click takes it out. The game's `DoCountAdjustInterface` is no longer
+    drawn in Rimfolk's window (a mod patching it works on the game's screen only).
+  - Sorting per list (headers; a menu at the count's heading adds value, VTE's market and trend, mass), within the
+    kinds; search and chips filter both; "only in the deal" per list's way. Side panel, wallet, foot, Accept, caravan,
+    gifts, the game's screen as before. Keys in `Rimfolk_TradeWindow.xml` (Kind, Market and Trend columns' keys gone).
+    Tests `Tools/Tests/TradeWindowTests.cs`. Nothing saved in the game, no Harmony patch, no Sched slot, no setting.
+  - Not run here (none of it could be): the lists at the player's screen and scale; a long name's wrapping and row
+    height as the game measures Small; the arrows' glyphs in the kit's narrow buttons; the number box's focus in a
+    scroll view with two lists; an animal's or captive's small icons in the room kept; the market card over the row.
+  - Try in the game: 1. A trader at home, window as wide as it goes: the two lists side by side, kinds as headings,
+    names whole. 2. Narrow the window by its edge: they become tabs Sell and Buy; "Lists: side by side" keeps them
+    side by side down to about 1280. 3. In the sell list press ">" (Shift, Ctrl), ">>", type 12, "<<": the count and the
+    silver box follow; the buy list never shows a purchase from it. 4. Buy steel in the buy list, then look at steel in
+    the sell list: "Buying N", click it, sell instead. 5. Point at a row: the tooltip and, with VTE, the market card.
+    6. Click a best deal: its list's tab turns and the row lights. 7. Close, open the next trade: the same layout and tab.
+
 - 0.192.0, role clothes the colony can reach (9 November 2026). The player's words, with a picture of "Want Inquisitor apparel" (-4, "...as the Inquisitor:
   Toga"): "i keep getting toga as mandatory gear but it's not really a standard research or anything worth spending 1200
   research points into... across several playthroughs and ideologies already". The cause: VFE Classical's

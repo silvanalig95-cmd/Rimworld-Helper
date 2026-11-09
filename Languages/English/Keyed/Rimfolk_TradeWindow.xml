@@ -5,8 +5,8 @@
 
   <!-- The setting. -->
   <CC_Settings_TradeWindow>Rimfolk's own trade window</CC_Settings_TradeWindow>
-  <CC_Settings_TradeWindow_Tip>Every trade opens in Rimfolk's own window in place of the game's trade screen: a trader or visitor on the map, a guest, a ship called on the comms console, a caravan at a town or met on the road. One table with your side left of the count and the trader's right of it, as the game's arrows go: for each good its market value a piece, what the trader pays and asks with each price's share of the market value and its side of the usual price for your negotiator, a grade for each side (great, good, fair or poor, in words and bars), with Vanilla Trading Expanded its market and its trend, the mass and what the colony needs of it. Every column header sorts, again for the other way. A search, a chip for each kind of good and "only in the deal" above; on the right the best deals both ways and what the deal comes to; at the foot Fill suggested, Clear suggested, Reset, Accept, Cancel and each side's silver after the trade. The prices, counts and Accept are the game's own, so other mods' prices and checks still apply. "Game's screen" at the top switches to the game's own screen for the same trade and counts (Trade Helper's panel is drawn there), and a button beside its sort menus comes back. Gifts and trades in favor stay on the game's screen. Needs the deeper game hooks.</CC_Settings_TradeWindow_Tip>
-  <CC_SetNote_TradeWindow>Trades open in Rimfolk's own window: prices against value and the usual, grades, best deals, a summary.</CC_SetNote_TradeWindow>
+  <CC_Settings_TradeWindow_Tip>Every trade opens in Rimfolk's own window in place of the game's trade screen: a trader or visitor on the map, a guest, a ship called on the comms console, a caravan at a town or met on the road. Two lists, your goods to sell and the trader's to buy: side by side when the window is wide enough, else as two tabs, Sell and Buy (or always one way, chosen above the lists). Each list is grouped by kind, and each good shows its picture and whole name, how many there are, the price with a mark against the usual price for your negotiator, the deal's grade (great, good, fair or poor, in words and bars), what the colony needs of it, and how many to sell or buy. Point at a good for the rest: its market value, the price's share of it, why the deal is called what it is, Vanilla Trading Expanded's market and trend, and what the colony uses it for. Every column header sorts its list, again for the other way. A search, a chip for each kind of good and "only in the deal" above; on the right your silver, the best deals both ways and what the deal comes to; at the foot Fill suggested, Clear suggested, Reset, Accept, Cancel and each side's silver after the trade. The prices, the counts' limits and Accept are the game's own, so other mods' prices and checks still apply. "Game's screen" at the top switches to the game's own screen for the same trade and counts (Trade Helper's panel is drawn there), and a button beside its sort menus comes back. Gifts and trades in favor stay on the game's screen. Needs the deeper game hooks.</CC_Settings_TradeWindow_Tip>
+  <CC_SetNote_TradeWindow>Trades open in Rimfolk's own window: two lists, sell and buy, prices against the usual, grades, best deals, a summary.</CC_SetNote_TradeWindow>
 
   <!-- The top. -->
   <CC_TradeWin_Title>Trading with {TRADER}</CC_TradeWin_Title>
@@ -32,41 +32,59 @@
   <CC_TradeWin_Cat_Other>Other</CC_TradeWin_Cat_Other>
   <CC_TradeWin_ChipTip>Show only {LABEL}. Click it again, or All, for everything.</CC_TradeWin_ChipTip>
   <CC_TradeWin_InDeal>Only in the deal</CC_TradeWin_InDeal>
-  <CC_TradeWin_InDealTip>Show only the goods with a count set in this deal.</CC_TradeWin_InDealTip>
-  <CC_TradeWin_NoGoods>Neither side has anything to trade.</CC_TradeWin_NoGoods>
+  <CC_TradeWin_InDealTip>Show only what is in the deal: in the sell list what is being sold, in the buy list what is being bought.</CC_TradeWin_InDealTip>
+  <CC_TradeWin_NoneToSell>The colony has nothing here to sell.</CC_TradeWin_NoneToSell>
+  <CC_TradeWin_NoneToBuy>The trader has nothing to sell.</CC_TradeWin_NoneToBuy>
   <CC_TradeWin_NoneShown>Nothing matches the search and the filters.</CC_TradeWin_NoneShown>
 
-  <!-- The column headers, the line under some of them, and their tooltips. -->
+  <!-- The two lists, side by side or as tabs. -->
+  <CC_TradeWin_ListSell>Ours to sell</CC_TradeWin_ListSell>
+  <CC_TradeWin_ListSellTip>The colony's goods within reach of the trade, with what this trader pays for each. Set how many to sell with the arrows or by typing a number.</CC_TradeWin_ListSellTip>
+  <CC_TradeWin_ListBuy>Theirs to buy</CC_TradeWin_ListBuy>
+  <CC_TradeWin_ListBuyTip>The trader's goods, with what they ask for each. Set how many to buy with the arrows or by typing a number.</CC_TradeWin_ListBuyTip>
+  <CC_TradeWin_TabSell>Sell</CC_TradeWin_TabSell>
+  <CC_TradeWin_TabBuy>Buy</CC_TradeWin_TabBuy>
+  <CC_TradeWin_ListSub>{COUNT} goods</CC_TradeWin_ListSub>
+  <CC_TradeWin_ListSubDeal>{COUNT} goods, {DEAL} in the deal</CC_TradeWin_ListSubDeal>
+  <CC_TradeWin_Group_Off>Not traded here</CC_TradeWin_Group_Off>
+  <CC_TradeWin_Lists_Auto>Lists: by width</CC_TradeWin_Lists_Auto>
+  <CC_TradeWin_Lists_SideBySide>Lists: side by side</CC_TradeWin_Lists_SideBySide>
+  <CC_TradeWin_Lists_Tabs>Lists: tabs</CC_TradeWin_Lists_Tabs>
+  <CC_TradeWin_ListsTip>How the two lists stand: side by side when the window is wide enough for all their columns, else as two tabs; or always side by side, or always tabs. Kept for the next trade.</CC_TradeWin_ListsTip>
+  <CC_TradeWin_ListsNarrow>The window is too narrow for both lists side by side, so they are tabs for now. Widen the window, or make it large, to see both. Click to choose how the lists stand.</CC_TradeWin_ListsNarrow>
+  <CC_TradeWin_ListsOpt_Auto>Side by side when there's room, else tabs</CC_TradeWin_ListsOpt_Auto>
+  <CC_TradeWin_ListsOpt_SideBySide>Side by side</CC_TradeWin_ListsOpt_SideBySide>
+  <CC_TradeWin_ListsOpt_Tabs>Tabs</CC_TradeWin_ListsOpt_Tabs>
+  <CC_TradeWin_MenuNow>{LABEL} (now)</CC_TradeWin_MenuNow>
+  <CC_TradeWin_SortMenuTip>Sort this list by any of its columns, or by what they leave out: market value, Vanilla Trading Expanded's market and its trend, and mass. Each kind's goods are sorted under its heading.</CC_TradeWin_SortMenuTip>
+
+  <!-- The column headers, the line under some of them, and their tooltips; the sort menu's words. -->
   <CC_TradeWin_Col_Name>Name</CC_TradeWin_Col_Name>
-  <CC_TradeWin_Col_NameTip>The good. Point at its name for what it is; the small button opens its card.</CC_TradeWin_Col_NameTip>
-  <CC_TradeWin_Col_Category>Kind</CC_TradeWin_Col_Category>
-  <CC_TradeWin_Col_CategoryTip>What kind of good it is: food, medicine, raw materials, manufactured, weapons, apparel, art and books, drugs, animals, people or other. The chips above show one kind at a time.</CC_TradeWin_Col_CategoryTip>
-  <CC_TradeWin_Col_Value>Value</CC_TradeWin_Col_Value>
-  <CC_TradeWin_Col_ValueTip>Its market value a piece, with its quality and hit points: what the game counts it at. A trader pays less than this and asks more.</CC_TradeWin_Col_ValueTip>
+  <CC_TradeWin_Col_NameTip>The good, its picture and its whole name. Point at the picture for what it is, and anywhere else on the row for its whole trade: how many there are, its market value and mass, the price's share of the value and the game's own reckoning, why the deal is called what it is, the market and its trend, and what the colony uses it for. The small button opens its card.</CC_TradeWin_Col_NameTip>
+  <CC_TradeWin_Col_Value>Market value</CC_TradeWin_Col_Value>
   <CC_TradeWin_Col_Ours>Ours</CC_TradeWin_Col_Ours>
   <CC_TradeWin_Col_OursTip>How many the colony has to sell here, as the game counts them: what lies near the trade, or what the caravan carries.</CC_TradeWin_Col_OursTip>
   <CC_TradeWin_Col_Pay>They pay</CC_TradeWin_Col_Pay>
-  <CC_TradeWin_Col_PayTip>What this trader pays you a piece: the price the trade gives. Under it, that price as a share of its market value, and against the usual price a trader pays for your negotiator and difficulty (the game's 60% of its worth, moved by them). Above the usual is better for you, in green; well under it in orange.</CC_TradeWin_Col_PayTip>
-  <CC_TradeWin_Col_CountTip>How many to buy (the arrows to the left, toward your side) or sell (to the right), as on the game's screen: an arrow moves one, ten with Shift and a hundred with Ctrl, a double arrow all or none, and you can type a number.</CC_TradeWin_Col_CountTip>
+  <CC_TradeWin_Col_PayTip>What this trader pays you a piece: the price the trade gives. Under it, its mark against the usual price a trader pays for your negotiator and difficulty (the game's 60% of its worth, moved by them): an arrow up when above it and down when under, and how far, in green when better for you and orange when well worse, "usual" when about the same.</CC_TradeWin_Col_PayTip>
   <CC_TradeWin_Col_Ask>They ask</CC_TradeWin_Col_Ask>
-  <CC_TradeWin_Col_AskTip>What this trader asks a piece: the price the trade gives. Under it, that price as a share of its market value, and against the usual price a trader asks for your negotiator and difficulty (the game's 140% of its worth, moved by them). Under the usual is better for you, in green; well above it in orange.</CC_TradeWin_Col_AskTip>
+  <CC_TradeWin_Col_AskTip>What this trader asks a piece: the price the trade gives. Under it, its mark against the usual price a trader asks for your negotiator and difficulty (the game's 140% of its worth, moved by them): an arrow up when above it and down when under, and how far, in green when better for you and orange when well worse, "usual" when about the same.</CC_TradeWin_Col_AskTip>
   <CC_TradeWin_Col_Theirs>Theirs</CC_TradeWin_Col_Theirs>
   <CC_TradeWin_Col_TheirsTip>How many the trader has to sell.</CC_TradeWin_Col_TheirsTip>
   <CC_TradeWin_Col_Deal>Deal</CC_TradeWin_Col_Deal>
-  <CC_TradeWin_Col_DealTip>How good the price is, a side at a time: great, good, fair or poor, in words and in bars (three, two, one, none). Read from the price against the usual one: a fifth better is great, 7% better good, within 7% fair, worse poor. Vanilla Trading Expanded's market moves it a step (a good time to sell or buy, or to wait), and so does the colony's own record (better than its best of the last 15 days, or a tenth worse). A purchase the colony has no use for, or a sale of what it is short of or keeps, is never more than fair. The better side leads, the other under it; once a count is set, the side being traded leads.</CC_TradeWin_Col_DealTip>
-  <CC_TradeWin_Col_Market>Market</CC_TradeWin_Col_Market>
-  <CC_TradeWin_Col_MarketTip>Vanilla Trading Expanded's market value now: against the good's usual worth, and against its average of the last 30 days.</CC_TradeWin_Col_MarketTip>
-  <CC_TradeWin_Col_Trend>Trend</CC_TradeWin_Col_Trend>
-  <CC_TradeWin_Col_TrendTip>Its market value over the last 30 days on Vanilla Trading Expanded's market, green rising and red falling, and its change over them.</CC_TradeWin_Col_TrendTip>
+  <CC_TradeWin_Col_DealTip>How good the price is: great, good, fair or poor, in words and in bars (three, two, one, none). Read from the price against the usual one: a fifth better is great, 7% better good, within 7% fair, worse poor. Vanilla Trading Expanded's market moves it a step (a good time to sell or buy, or to wait), and so does the colony's own record (better than its best of the last 15 days, or a tenth worse). A purchase the colony has no use for, or a sale of what it is short of or keeps, is never more than fair. Point at the row for why.</CC_TradeWin_Col_DealTip>
+  <CC_TradeWin_Col_Market>Market now against usual</CC_TradeWin_Col_Market>
+  <CC_TradeWin_Col_Trend>Market change over 30 days</CC_TradeWin_Col_Trend>
   <CC_TradeWin_Col_Mass>Mass</CC_TradeWin_Col_Mass>
-  <CC_TradeWin_Col_MassTip>Its mass a piece, for a caravan's load.</CC_TradeWin_Col_MassTip>
   <CC_TradeWin_Col_Need>Need</CC_TradeWin_Col_Need>
-  <CC_TradeWin_Col_NeedTip>What the colony needs of it, from Rimfolk's advice: short (worth buying), spare (worth selling) or kept for its plans. Point at it for why.</CC_TradeWin_Col_NeedTip>
-  <CC_TradeWin_Leg_Piece>a piece</CC_TradeWin_Leg_Piece>
-  <CC_TradeWin_Leg_Price>of value · vs usual</CC_TradeWin_Leg_Price>
+  <CC_TradeWin_Col_NeedTip>What the colony needs of it, from Rimfolk's advice: short (worth buying), spare (worth selling) or kept for its plans. Point at the row for why.</CC_TradeWin_Col_NeedTip>
+  <CC_TradeWin_Col_Keep>Keep</CC_TradeWin_Col_Keep>
+  <CC_TradeWin_Col_KeepTip>Whether to keep some, from Rimfolk's advice: spare (worth selling), kept for the colony's plans (red when this trade sells into it) or short (worth keeping all). Point at the row for why.</CC_TradeWin_Col_KeepTip>
+  <CC_TradeWin_Col_ToSell>To sell</CC_TradeWin_Col_ToSell>
+  <CC_TradeWin_Col_ToSellTip>How many to sell. The arrows point where the goods go: &gt; sells one more, ten with Shift and a hundred with Ctrl, and &gt;&gt; all of it; &lt; takes one back and &lt;&lt; none. Or type a number. A good being bought in the other list says so here; click it to take it out of the purchase.</CC_TradeWin_Col_ToSellTip>
+  <CC_TradeWin_Col_ToBuy>To buy</CC_TradeWin_Col_ToBuy>
+  <CC_TradeWin_Col_ToBuyTip>How many to buy. The arrows point where the goods go: &lt; buys one more, ten with Shift and a hundred with Ctrl, and &lt;&lt; all of it; &gt; puts one back and &gt;&gt; none. Or type a number. A good being sold in the other list says so here; click it to take it out of the sale.</CC_TradeWin_Col_ToBuyTip>
+  <CC_TradeWin_Leg_Price>a piece · vs usual</CC_TradeWin_Leg_Price>
   <CC_TradeWin_Leg_Deal>by the usual price</CC_TradeWin_Leg_Deal>
-  <CC_TradeWin_Leg_Market>vs usual · 30 days</CC_TradeWin_Leg_Market>
-  <CC_TradeWin_Leg_Trend>30 days</CC_TradeWin_Leg_Trend>
   <CC_TradeWin_SortBy>Click to sort by this.</CC_TradeWin_SortBy>
   <CC_TradeWin_Sorted>Sorted by this. Click again for the other way round.</CC_TradeWin_Sorted>
 
@@ -79,9 +97,19 @@
   <CC_TradeWin_Grade_GoodBuy>good buy</CC_TradeWin_Grade_GoodBuy>
   <CC_TradeWin_Grade_FairBuy>fair buy</CC_TradeWin_Grade_FairBuy>
   <CC_TradeWin_Grade_PoorBuy>poor buy</CC_TradeWin_Grade_PoorBuy>
+  <CC_TradeWin_Tag_Great>great</CC_TradeWin_Tag_Great>
+  <CC_TradeWin_Tag_Good>good</CC_TradeWin_Tag_Good>
+  <CC_TradeWin_Tag_Fair>fair</CC_TradeWin_Tag_Fair>
+  <CC_TradeWin_Tag_Poor>poor</CC_TradeWin_Tag_Poor>
+  <CC_TradeWin_Usual>usual</CC_TradeWin_Usual>
   <CC_TradeWin_NoGradePeople>People are not graded as goods: the game's own price stands.</CC_TradeWin_NoGradePeople>
-  <CC_TradeWin_Mkt_Usual>{PCT} usual</CC_TradeWin_Mkt_Usual>
-  <CC_TradeWin_Mkt_Avg>{PCT} avg</CC_TradeWin_Mkt_Avg>
+  <CC_TradeWin_OtherBuying>Buying {COUNT}</CC_TradeWin_OtherBuying>
+  <CC_TradeWin_OtherBuyingTip>This good is being bought in the other list. A trade either buys a good or sells it, not both: click to take it out of the purchase, then sell it here.</CC_TradeWin_OtherBuyingTip>
+  <CC_TradeWin_OtherSelling>Selling {COUNT}</CC_TradeWin_OtherSelling>
+  <CC_TradeWin_OtherSellingTip>This good is being sold in the other list. A trade either buys a good or sells it, not both: click to take it out of the sale, then buy it here.</CC_TradeWin_OtherSellingTip>
+  <CC_TradeWin_TipSell>{GOOD}: you have {COUNT}.</CC_TradeWin_TipSell>
+  <CC_TradeWin_TipBuy>{GOOD}: they have {COUNT}.</CC_TradeWin_TipBuy>
+  <CC_TradeWin_TipMass>Its mass a piece: {MASS}.</CC_TradeWin_TipMass>
   <CC_TradeWin_Need_Buy>short {COUNT}</CC_TradeWin_Need_Buy>
   <CC_TradeWin_Need_Sell>spare {COUNT}</CC_TradeWin_Need_Sell>
   <CC_TradeWin_Need_Keep>{COUNT} kept</CC_TradeWin_Need_Keep>
