@@ -9,9 +9,8 @@
     <description>A post and a leather bag by the gate where the colony's letters wait for someone going their way: the post rider, traders, visitors leaving, a camp breaking up, the colony's own caravan or rider. Whoever comes in with mail for the colony sets it down here. Without one, letters wait by the gate all the same.</description>
     <thingClass>ColonyCouncil.Building_Mailbag</thingClass>
     <graphicData>
-      <texPath>Things/Building/Misc/CaravanPackingSpot</texPath>
+      <texPath>ColonyCouncil/Things/Mailbag</texPath>
       <graphicClass>Graphic_Single</graphicClass>
-      <color>(196,154,98)</color>
     </graphicData>
     <altitudeLayer>FloorEmplacement</altitudeLayer>
     <statBases>

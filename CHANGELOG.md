@@ -5,6 +5,13 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## The mailbag gets a picture of its own
+
+*9 November 2026, version 0.179.2*
+
+- The mailbag by the gate showed a red cross where its picture should be; it now shows a wooden post with a leather satchel on a peg, a brass post-horn plate and letters sticking out, one sealed in red wax.
+- It is drawn in the game's own style and colours, so it sits beside the caravan spot and the other markers without standing out.
+
 ## Planning opens on every room at a glance
 
 *9 November 2026, version 0.179.1*
