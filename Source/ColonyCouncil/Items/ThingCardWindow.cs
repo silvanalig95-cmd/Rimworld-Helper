@@ -20,10 +20,16 @@ namespace ColonyCouncil
     /// colony's own last prices). Step 2 adds materials (what it does to what is made of it against steel and wood or the
     /// colony's most held of its kind, what the colony can make of it now, its stock and what waits on it, where it comes
     /// from here, fuel) and art (its beauty and worth, the tale it shows, the room it stands in with it and without it, keep
-    /// or sell, the rules that care). Its model is built when it opens (Items/ItemCardLive.cs, ItemCardMaterials.cs,
-    /// ItemCardArt.cs) and refreshed rarely while it stays open; nothing is worked out with it closed. Opens first in place
-    /// of the game's card ("Open Rimfolk's item card first", Items/ItemCardFirst.cs), and from a button at the foot of the
-    /// game's card.
+    /// or sell, the rules that care). Step 3 adds every other item (UseParts): books (what reading gives and who at home gains
+    /// most), body parts (what it replaces, its efficiency, the surgery, who could take it, the faiths), techprints (the
+    /// project, applied of needed, what it opens), trainers (the skill or psycast, who gains most), genepacks, xenogerms and
+    /// embryos (the genes and what each does, the assembler, who a xenogerm suits), usable items (what a use does, to what,
+    /// its risks, who may use it), shells (the burst, the guns at home that fire it), furniture in a crate (what the piece
+    /// does, the room it would lift, who has no bed) and anything else (the game's own words and stats, the work left on an
+    /// unfinished thing). Its model is built when it opens (Items/ItemCardLive.cs, ItemCardMaterials.cs, ItemCardArt.cs,
+    /// ItemCardUses.cs, ItemCardBodies.cs, ItemCardThings.cs) and refreshed rarely while it stays open; nothing is worked out
+    /// with it closed. Opens first in place of the game's card ("Open Rimfolk's item card first", Items/ItemCardFirst.cs),
+    /// and from a button at the foot of the game's card.
     /// </summary>
     public class ThingCardWindow : ItemCardWindow
     {
@@ -154,13 +160,18 @@ namespace ColonyCouncil
             else if (f.Kind == ItemKind.Art) y = ArtParts(w, y, m);
             else
             {
-                // The colony's stock and where it is made.
-                y += UiKit.SectionTitle(0f, y, w, "CC_ItemCard_Sec_Stock".Translate());
-                if (!f.HasColony) y += UiKit.Paragraph(0f, y, w, "CC_ItemCard_NoColony".Translate(), UiKit.Faint) + 8f;
-                else
+                // Step 3's kinds: what it does and who at home it is for.
+                if (ItemCardMath.StepThree(f.Kind)) y = UseParts(w, y, m);
+                // The colony's stock and where it is made (furniture in a crate has its own count among its rows: it is built, not made).
+                if (f.Kind != ItemKind.Furniture)
                 {
-                    y = Rows(w, y, m.stock, 130f) + 4f;
-                    y = GoLines(w, y, m.making) + 8f;
+                    y += UiKit.SectionTitle(0f, y, w, "CC_ItemCard_Sec_Stock".Translate());
+                    if (!f.HasColony) y += UiKit.Paragraph(0f, y, w, "CC_ItemCard_NoColony".Translate(), UiKit.Faint) + 8f;
+                    else
+                    {
+                        y = Rows(w, y, m.stock, 130f) + 4f;
+                        y = GoLines(w, y, m.making) + 8f;
+                    }
                 }
             }
 
@@ -243,6 +254,42 @@ namespace ColonyCouncil
                 foreach (var line in m.rules) y += UiKit.Paragraph(0f, y, w, line, UiKit.Ink, GameFont.Small) + 2f;
                 y += 8f;
             }
+            return y;
+        }
+
+        /// <summary>
+        /// Step 3's kinds: what it does (rows under a title by kind, the game's own words, a gene holder's genes), who at home it
+        /// is for (the best first, or where a piece would do most), the faiths that care and the lines that lead somewhere.
+        /// </summary>
+        private float UseParts(float w, float y, ItemCardModel m)
+        {
+            var f = m.facts;
+            string kind = f.Kind.ToString();
+            y += UiKit.SectionTitle(0f, y, w, ("CC_ItemCard_Sec_Use_" + kind).Translate());
+            if (m.use.Count > 0) y = Rows(w, y, m.use, 130f) + 2f;
+            if (!m.useNote.NullOrEmpty()) y += UiKit.Paragraph(0f, y, w, m.useNote, UiKit.Faint, GameFont.Tiny) + 2f;
+            foreach (var e in m.genes)
+            {
+                UiKit.LabelFit(new Rect(0f, y, w, 20f), e.head, UiKit.Ink);
+                y += 20f;
+                if (!e.body.NullOrEmpty()) y += UiKit.Paragraph(12f, y, w - 12f, e.body, UiKit.Faint, GameFont.Tiny) + 3f;
+            }
+            y += 8f;
+            if (f.HasColony && (m.forWhom.Count > 0 || !m.forWhomNote.NullOrEmpty() || m.rooms.Count > 0 && f.Kind == ItemKind.Furniture))
+            {
+                y += UiKit.SectionTitle(0f, y, w, ("CC_ItemCard_Sec_Who_" + kind).Translate());
+                if (!m.forWhomNote.NullOrEmpty()) y += UiKit.Paragraph(0f, y, w, m.forWhomNote, UiKit.Faint, GameFont.Tiny) + 2f;
+                y = PawnLines(w, y, m.forWhom);
+                if (f.Kind == ItemKind.Furniture && m.rooms.Count > 0) y = GoLines(w, y, m.rooms);
+                y += 8f;
+            }
+            if (m.useRules.Count > 0)
+            {
+                y += UiKit.SectionTitle(0f, y, w, "CC_ItemCard_Sec_Rules".Translate());
+                foreach (var line in m.useRules) y += UiKit.Paragraph(0f, y, w, line, UiKit.Ink, GameFont.Small) + 2f;
+                y += 8f;
+            }
+            if (m.useGo.Count > 0) y = GoLines(w, y, m.useGo) + 8f;
             return y;
         }
 

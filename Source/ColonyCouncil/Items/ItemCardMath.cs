@@ -6,8 +6,10 @@ using System.Linq;
 namespace ColonyCouncil
 {
     /// <summary>
-    /// The kinds Rimfolk's item card shows so far: food, drink, drugs and medicine (step 1), materials and art (step 2).
-    /// Everything else opens the game's card; step 3 adds its kinds after these, read the same way (<see cref="ItemSort"/>).
+    /// The kinds Rimfolk's item card shows: food, drink, drugs and medicine (step 1), materials and art (step 2), then step 3's
+    /// books, body parts, techprints, trainers, genes, usable items, shells, furniture in a crate and any other item, read the
+    /// same way (<see cref="ItemSort"/>). None opens the game's card (weapons and apparel have their own, and the few things
+    /// ItemCardLive.KindOf leaves to the game).
     /// </summary>
     public enum ItemKind
     {
@@ -17,7 +19,16 @@ namespace ColonyCouncil
         Drug,
         Medicine,
         Material,
-        Art
+        Art,
+        Book,
+        BodyPart,
+        Techprint,
+        Trainer,
+        Genes,
+        Usable,
+        Shell,
+        Furniture,
+        Other
     }
 
     /// <summary>
@@ -121,6 +132,11 @@ namespace ColonyCouncil
         public MaterialFacts Material;
         /// <summary>A work of art's beauty, story and room; null for other kinds.</summary>
         public ArtFacts ArtPiece;
+
+        // ---------------- Step 3 (Items/ItemCardUseMath.cs) ----------------
+
+        /// <summary>A book's, body part's, techprint's, trainer's, gene holder's, usable item's, shell's, crated furniture's or any other item's facts and who at home it is for; null for other kinds.</summary>
+        public UseFacts Use;
     }
 
     /// <summary>
@@ -265,8 +281,8 @@ namespace ColonyCouncil
         private const TagCategory S = TagCategory.Strength, W = TagCategory.Weakness, R = TagCategory.Risk, X = TagCategory.Special,
             O = TagCategory.Role, Nd = TagCategory.Needs;
 
-        /// <summary>The item card's one vocabulary: every tag, its category, its importance and its rule in words (step 1's, then step 2's for materials and art).</summary>
-        public static readonly TagDef[] Vocabulary = StepOneTags().Concat(StepTwoTags()).ToArray();
+        /// <summary>The item card's one vocabulary: every tag, its category, its importance and its rule in words (step 1's, then step 2's for materials and art, then step 3's for the rest).</summary>
+        public static readonly TagDef[] Vocabulary = StepOneTags().Concat(StepTwoTags()).Concat(StepThreeTags()).ToArray();
 
         private static IEnumerable<TagDef> StepOneTags() => new[]
         {
@@ -275,7 +291,7 @@ namespace ColonyCouncil
             D("addictive", "Addictive", R, 95, "each dose may addict, by the game's own chance"),
             D("food-poisoning", "Food poisoning", R, 93, "a chance of food poisoning: the stack's own (its cook, its kitchen), its kind's, or certain once it rots"),
             D("forbidden", "Forbidden to some", R, 91, "some of the colony's grown people won't have it: their faith, their diet or their nature rules it out"),
-            D("needed", "Needed now", O, 90, "the colony is short of it: under ten days of food, less medicine than the trade advice's floor, or less of a material than its blueprints, bills or need"),
+            D("needed", "Needed now", O, 90, "the colony is short of it: under ten days of food, less medicine than the trade advice's floor, or less of a material than its blueprints, bills or need; someone at home is missing the part it replaces or has no bed; a project still needs the techprint"),
             D("mood-lift", "Mood lift", S, 88, "eating or taking it gives a good mood (the game's own thought)"),
             D("potent", "Potent", S, 87, "medicine at least as potent as industrial medicine"),
             D("for-serious", "For serious care", O, 86, "with medicine by what is treated, kept for heavy bleeding, deep wounds, a vital part, illness and infection"),
@@ -292,10 +308,10 @@ namespace ColonyCouncil
             D("toast-drink", "Toast's drink", X, 68, "a social drink with alcohol, or one a teetotaler may have: poured at Rimfolk's toasts"),
             D("gift", "Gift for a people", X, 64, "a fine drink worth 15 silver or more, a precious material or small art: a gift between peoples"),
             D("drug-policy", "Drug policy", Nd, 62, "colonists take it only as their drug policy allows"),
-            D("recreation", "Recreation", S, 60, "a dose gives recreation"),
+            D("recreation", "Recreation", S, 60, "a dose, a read or a piece of furniture gives recreation"),
             D("cooking", "Cooking", Nd, 58, "raw food a recipe of the colony's cooks into a meal"),
             D("freezer", "Freezer", Nd, 56, "it spoils fast and the colony keeps nothing cold"),
-            D("spare", "Spare to sell", O, 54, "the colony holds more than twice what it needs (the trade advice's reserve), or a work of art no room of the colony's would rise with"),
+            D("spare", "Spare to sell", O, 54, "the colony holds more than twice what it needs (the trade advice's reserve), a work of art no room of the colony's would rise with, or a techprint its project needs no more"),
             D("trade-good", "Trade good", O, 50, "it keeps, and is worth 50 silver a kilogram or more: much worth in a pack"),
         };
 
@@ -346,6 +362,11 @@ namespace ColonyCouncil
             if (f.Kind == ItemKind.Art)
             {
                 ArtTags(f, tags);
+                return tags;
+            }
+            if (StepThree(f.Kind))
+            {
+                UseTags(f, tags);
                 return tags;
             }
             bool food = ShowsFood(f);
@@ -475,6 +496,7 @@ namespace ColonyCouncil
             if (f == null || f.Kind == ItemKind.None) return "";
             if (f.Kind == ItemKind.Material) return MaterialPlain(f);
             if (f.Kind == ItemKind.Art) return ArtPlain(f);
+            if (StepThree(f.Kind)) return UsePlain(f);
             var parts = new List<string>();
             switch (f.Kind)
             {

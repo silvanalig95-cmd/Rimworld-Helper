@@ -10086,7 +10086,7 @@ drink, drugs and medicine first, then materials, art and the rest. Step 1 is bui
 
 The second step of the item card for everything (the player, 9 November 2026: "also like item card for everything, although i
 fear that would take a lot of ressources?"): materials and art. Released 0.200.0. The rest (books, body parts, techprints,
-trainers, genepacks, one-use artifacts, shells, minified furniture) is step 3 and stays the game's card until then.
+trainers, genepacks, one-use artifacts, shells, minified furniture) is step 3, below.
 
 - **Which things** (`ItemCardLive.KindOf(def, thing)` reads an `ItemSort`, the rule `ItemCardMath.KindOf(ItemSort)`, step 1's
   kinds first): **art** is anything with the game's art comp (`CompProperties_Art`), an item or a building, held, minified
@@ -10205,6 +10205,144 @@ trainers, genepacks, one-use artifacts, shells, minified furniture) is step 3 an
   freed by a piece is not counted); a noble's throne room and bedroom; the art comp's tale through its private field and the
   tale's words and date; `CompBreakdownable`'s mean days read by name; the burners' rate a day for every mod's fuel; the first
   material card's reading time with the player's mods (every building, floor and recipe looked through once).
+
+#### Rimfolk's own look, stage 3, point 5, step 3: the item card for everything else (docs/design/rimfolk-look.md)
+
+The third and last step of the item card for everything (the player, 9 November 2026: "also like item card for everything,
+although i fear that would take a lot of ressources?"): every item the first two steps left, so that every item opens
+Rimfolk's card; weapons and apparel keep their own. Not released yet.
+
+- **Which things** (`ItemCardLive.KindOf(def, thing)` reads an `ItemSort`, the rule `ItemCardMath.KindOf(ItemSort)`; step 1's
+  kinds first, then art, then furniture in a crate, then materials, then step 3's in this order, and any other item last), all
+  read from the defs' classes, comps and the game's filing so the player's mods' items come in on their own
+  (`ItemCardLive.StepThreeSort`): a **book** (the game's `Book` class or a reading comp, `CompProperties_Readable`: novels,
+  textbooks, schematics, tomes, Odyssey's map, the mods' books); a **techprint** (`CompProperties_Techprint` or the Techprints
+  category); a **trainer** (`CompProperties_UseEffect_LearnSkill`, `CompProperties_UseEffect_GainAbility` or the Neurotrainers
+  category: neurotrainers and psytrainers, before a usable item); **genes** (`GeneSetHolderBase`: a genepack, a xenogerm, an
+  embryo); a **usable item** (`CompProperties_Usable`: mech serums, pulsers, the psylink neuroformer and mechlink, the mods'
+  items; before a body part, so a part used from the hand reads as what a use does); a **body part** (a tech hediff or the
+  BodyParts category: natural organs, prosthetics, bionics, archotech, the mods' implants); a **shell** (`IsShell`); **furniture
+  in a crate** (a building whose holder is a `MinifiedThing`, read as the piece inside; art in a crate stays art); and **any
+  other item** (a wastepack, an unfinished thing, a mod's trinket). `ToUse` stays the rule that keeps these from being called a
+  material. What still goes to the game's card, and why (`ItemCardLive.KindOf`'s note): weapons and apparel (their own cards),
+  corpses (the game's card is the dead one's own, their health and story), pawns, plants and filth (not items), a building
+  standing on the map that isn't art (the game's card for a building, its power and links), blueprints and frames, and the
+  crate's own kind with nothing in it. The base game's psychic lances are belts in 1.6, so apparel with its card; a mod's lance
+  carried as an item reads as a usable item.
+- **The card** keeps step 1's head and the shared sections (`ThingCardWindow.UseParts`, then the colony's stock, where it is
+  made, and trade): a section of what it does with a title by kind (`CC_ItemCard_Sec_Use_` and the kind), the game's own words
+  under it, a gene holder's genes; who at home it is for (`CC_ItemCard_Sec_Who_` and the kind), the best in good ink, those who
+  can't in bad, each with why; the faiths that care; lines that lead somewhere (a gun). The kinds' words in the head: "Book, a
+  textbook", "Body part, spacer tech", "Natural body part", "Implant", "Techprint", "Neurotrainer, one use", "Genepack",
+  "Something to use", "Shell", "Furniture, in a crate", "Unfinished", else the game's own filing.
+- **A book** (`Items/ItemCardUses.cs`): once a kind its outcomes by its reading comp's doers (skills, research, the unknown's
+  research, recreation, a mental break, a quest, a mod's own named from its class); a book in hand, once a card, the skills its
+  skill doer holds and the experience an hour (the doer's value a tick by the game's 2,500 ticks), the level its quality teaches
+  up to (the game's own `GetMaxSkillLevel`, read by name), the projects its research doer holds and whether each is done, its
+  recreation factor and mental break chance an hour (`Book.JoyFactor`, `MentalBreakChancePerHour`), the game's own words for
+  each outcome (`GetBenefitsString`), how long an ordered read lasts (`JobDriver_Reading.ManualReadTicks`, two hours). A kind
+  says what a normal one gives (`BookUtility.GetSkillExpForQuality`, `GetResearchExpForQuality`). **Who gains most**: a skill
+  book's readers by each skill's experience an hour for them (`ItemCardMath.BookGain`: none past the book's level or for a
+  skill they can't learn; the rate by their reading speed, `BookUtility.GetReadingModifier`, and the game's learning factor,
+  `SkillRecord.LearnRateFactor`), their level and passion named; a research book's by how fast they read; a novel's by who
+  most wants recreation; who can't read (`BookUtility.CanReadEver`) said.
+- **A body part** (`Items/ItemCardBodies.cs`): once a kind the recipes that install it (every recipe looked through once: the
+  game's install workers, `Recipe_InstallArtificialBodyPart`, `Recipe_InstallImplant`, `Recipe_InstallNaturalBodyPart`, and the
+  mods' built on them, or a hediff that gives this part back), the part it is fitted at, natural or an implant, the hediff's
+  efficiency against a natural part (`addedPartProps`), what its first stage changes (capacities, stat offsets and factors) and
+  the abilities it gives, the doctor's Medicine the operation asks. At home: the operation's research; who could take it (the
+  recipe's own parts for each, `RecipeWorker.GetPartsToApplyOn`; a part gone, or one under it, first; then the most gained over
+  the part's efficiency now, `PawnCapacityUtility.CalculatePartEfficiency`), named when missing; the best doctor with doctoring
+  on who meets the skill, their chance as their surgery success by the operation's factor (`ItemCardMath.SurgeryChance`; the
+  bed, the room and the medicine are said to move it); each faith at home with what its precepts hold on an installed
+  prosthetic (the game's own thoughts and refusals on `HistoryEventDefOf.InstalledProsthetic`, the precept named and its mood;
+  a natural part is no prosthetic) and the blindness precepts for an eye, each colonist's line with their faith's mood.
+- **A techprint**: its project, how many are applied of how many (`TechprintsApplied`, `TechprintCount`), whether it can be
+  studied yet (the research it waits on, the techprints, a research bench fit for it), what it opens (`UnlockedDefs`, three
+  named), done or spare.
+- **A trainer**: a neurotrainer's skill and experience; who gains most by the levels it brings each (`ItemCardMath.LevelAfter`
+  on the game's own experience curve, `SkillRecord.XpRequiredToLevelUpFrom`, and their learning by passion,
+  `LearnRateFactor(true)`), "level 6 (burning): to about 12.9", those who can't learn the skill or are at the top. A
+  psytrainer's psycast and its level; who can learn it by their psylink (`GetPsylinkLevel`), who knows it already or has
+  none. For a thing in hand the game's own check on each (`CompUsable.CanBeUsedBy`, each use effect's) has the last word.
+- **Genes**: a gene holder in hand, once a card, its genes, each with its biostats and what it does in words (its own effect
+  lines, the stats and capacities it changes, aptitudes, abilities, immunities, work it rules out; else its description's
+  first sentence), the sums (complexity, metabolism and the hunger it brings by the game's `GeneTuning` curve, archite), a
+  xenogerm's xenotype name, an embryo's parents named as flavour only. At home the gene assembler and the most complexity it
+  takes (`Building_GeneAssembler.MaxComplexity`), a genepack fitting it or not; who a xenogerm would suit (`Xenogerm.
+  PawnIdeoDisallowsImplanting`, `GeneUtility.MetabolismAfterImplanting`, their xenotype now and whether their own xenogenes
+  would go), those who stay fed most easily after it first; the xenogermination coma's length from its hediff.
+- **A usable item**: once a kind its comps by class (`ItemCardMath.KnownEffects`, each with words under
+  `CC_ItemCard_Does_`; a mod's effect named from its class), its targets (`KnownTargets`, the psychically sensitive marked),
+  whether a use uses it up (`CompUseEffect_DestroySelf`), its risks in the effects' own numbers (brain damage chance, goodwill,
+  side effects of a resurrection, `RiskyEffects`: a boss group, a fuse, manhunters, the berserk, a fleshbeast). Who at home may
+  use it, by the game's own check on the thing in hand.
+- **A shell** (`Items/ItemCardThings.cs`): its projectile's damage and amount, radius, armour piercing, fire or firefoam
+  (`projectileWhenLoaded`), whether the shell itself explodes (its explosive comp); the guns that fire it (every buildable
+  turret whose own or its gun's fixed storage takes it, looked through once a kind); the colony's that do, a click going to one,
+  or the gun that would.
+- **Furniture in a crate**: once a kind what the piece is (a bed, a table, a seat, a work table and its recipes, its joy kind,
+  power used or made, a facility's offsets and what it links to); the piece's own comfort, rest, work speed and beauty (its
+  stuff and quality) once a card; what its room wants by what it is; at home how many stand and wait in crates, who sleeps
+  without a bed of their own, whether the colony has its kind of recreation, the room it would lift most by the art card's own
+  sums (`ItemCardLive.BestRooms`, a click going to each).
+- **Anything else**: its description's first sentences and the stats its def sets (worth, weight, hit points and the like are
+  elsewhere on the card), an unfinished thing's product, work left, bench and who began it; the colony's stock, where it is
+  made and trade, as every card.
+- **The tags**, step 3's in the one vocabulary (`ItemCardMath.Vocabulary`, step 1's and 2's first; at most eight, the first
+  strength and weakness kept), with the shared ones extended (needed now: someone missing the part, a colonist without a bed,
+  a project still needing the techprint; recreation: a read or a piece of furniture; spare: a techprint no longer needed;
+  beautiful, lifts the room and a room: furniture too):
+  - **Strength**: *Better than natural* (a part over 100%), *Heals* (cures the worst health condition), *Brings back the
+    dead*, *Teaches* (a book's skills or a neurotrainer's experience), *Gives research*, *Teaches a psycast*, *Opens new things*
+    (a techprint's project), *Gives an ability* (a part's ability or an implant's changes), *Blast* (a shell's burst), *Makes
+    power*, *Faster work* (a facility or a bench over its plain speed), *Comfortable* (75% or more), *Eats less* (metabolism
+    above nothing).
+  - **Weakness**: *Worse than natural*, *Already known* (the research is done, or every techprint applied), *No use here*
+    (nobody at home can gain from it now), *Hungry*, *One use*, *Needs power*.
+  - **Risk**: *Mental break risk* (a tome), *Risky to use* (the effects' risks), *Against a faith* (a faith's precepts frown on
+    the part or forbid the xenogerm).
+  - **Special**: *Natural part*, *Archite*, *Reveals a place* (a map), *Approved by a faith*.
+  - **Role**: *Useful here* (the one who gains most, named with why; never for a usable item, where everyone may), *For the
+    colony's guns*.
+  - **Needs**: *Surgery* (the doctor's Medicine, the research, the best doctor's chance), *Earlier research*, *A psylink*,
+    *Gene assembler*, *A gun to fire it*, *Work left*.
+- **The line** (`ItemCardMath.Plain`, `UsePlain`): what it is for and who at home most: "Textbook, good: teaches shooting and
+  melee up to level 10, about 300 experience an hour; Bo would gain most." "Bionic arm: better than a natural one (125%);
+  someone at home is missing one." "Charged shot techprint: 1 of 2 applied, 1 more needed, it opens 3 things." "Shooting
+  neurotrainer: 50,000 shooting experience at once, one use; Bo gains most." "Xenogerm (Ironhide): Ironhide, 5 genes (...),
+  complexity 11, metabolism +1, 1 archite capsule; suits Bo best." "Psychic animal pulser: turns the animals manhunter (every
+  animal on the map (those psychically sensitive)), one use, but manhunter animals attack anyone, the colony too."
+  "High-explosive shell: bomb, 50 in a radius of 2.9; the colony's 2 mortars fire it." "Bed: a bed, rest 100%, comfort 75%,
+  beauty 1; 2 at home sleep without a bed." "Unfinished charge rifle: an unfinished charge rifle, 12,000 work left."
+- **Open it first**: the same hook and setting (`itemCardFirst`); its note says every item opens as Rimfolk's card, its tip
+  names every kind and what stays the game's; the button back on the game's card for every kind covered.
+- **Speed.** A kind's own numbers read once and kept (`PartOf`): a book's outcomes, a part's install recipes and hediff (every
+  recipe looked through once a kind), a trainer's skill or psycast, a usable item's effects, a shell's burst and the guns that
+  fire it (every buildable building looked through once a kind), a crate's piece. The thing in hand's own once a card
+  (`ItemCardModel.useRead`): a book's skills and research, a gene holder's genes, an unfinished thing's work, the piece's
+  stats. The colony's (who at home, research, doctors, faiths, the gene assembler, guns, beds, rooms) every ten seconds; the
+  live parts once a second; the window draws only the model. No saved game data, no Sched slot.
+- **Text**: `Languages/English/Keyed/Rimfolk_ItemCard.xml` (step 3's block); the tags and the line in English from the pure
+  rules (`Items/ItemCardUseMath.cs`, linked in Tests.csproj). **Tests**: `Tools/Tests/ItemCardStepThreeTests.cs` (469 checks):
+  the kinds and their order; the game's experience curve and a neurotrainer's levels, a book's experience an hour, hunger by
+  metabolism, a surgery's chance, techprints left, who gains most; the tags and the line for a novel, a textbook (at home, the
+  burning passion first; everyone past it), a schematic (and done), a tome, a map, a bionic arm (and at home, missing it), a
+  natural kidney, a peg leg (a faith against it), an implant, a techprint (needed, all applied, done, waiting), a shooting
+  neurotrainer, a psytrainer (and nobody with the psylink), a genepack (no assembler, fits, too complex), a xenogerm, an embryo,
+  a psychic shock lance's effects, a psychic animal pulser, a healer mech serum, a high-explosive shell (with mortars, none,
+  away), a minified armchair, bed, generator, lamp, chess table, bench and tool cabinet, an unfinished thing, a wastepack, a
+  jewel; the vocabulary; the seams (the sorting, every key of every kind, effect, target and risk, recipes and buildings looked
+  through once a kind, the colony's reading on the ten seconds' refresh, the card drawn from its model alone, the setting).
+- **Not verified without the game**: the card for every kind of item in the player's mods, at its least width; the book doers'
+  values read as experience a tick and the private `values` and `GetMaxSkillLevel` read by name; the game's benefit words for a
+  null reader; `GetPartsToApplyOn` and the part efficiency for every install recipe (a mod's install worker), the missing part
+  found under the fitted one; the precepts' thoughts on an installed prosthetic, and the blindness view; the surgery chance
+  beside the game's own (the bed, the room, the medicine are not counted); `PawnIdeoDisallowsImplanting` and
+  `MetabolismAfterImplanting` on real colonists; `CompUsable.CanBeUsedBy` with reachability ignored for each colonist; the
+  turrets' fixed storage for each mod's shells and guns; `CompProperties_Power.PowerConsumption` as negative for generators;
+  the minified piece's holder read as a `MinifiedThing` whichever thing the game's card is opened with; the first card of each
+  kind's reading time with the player's mods.
 
 #### The journey planner: who to bring and what to pack
 

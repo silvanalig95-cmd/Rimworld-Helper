@@ -12,6 +12,49 @@ tree at once, alongside whatever runs. Each piece is merged as its own release, 
 
 ## State (5 November 2026)
 
+- Not released: no version, no What's new round, About.xml and CHANGELOG untouched. Rimfolk's item card, step 3: everything
+  else (9 November 2026; `docs/design/rimfolk-look.md` stage 3, point 5, "step 3: built"; DESIGN.md "Rimfolk's own look, stage
+  3, point 5, step 3" has all of it; README "Rimfolk's item card"). The player's words as for step 1. After it every item opens
+  Rimfolk's card; weapons and apparel keep their own, corpses and buildings standing on the map (not art) the game's
+  (`ItemCardLive.KindOf`'s note says why).
+  - Kinds (`ItemSort` flags `Book`, `Techprint`, `Trainer`, `Genes`, `Usable`, `BodyPart`, `Shell`, `Minified`, `Item`; `ItemKind`
+    Book to Other after art; `ItemCardMath.KindOf`: step 1's, art, furniture in a crate, materials, then book, techprint,
+    trainer, genes, usable, body part, shell, other), read by `ItemCardLive.StepThreeSort` from classes and comps (`Book`,
+    `CompProperties_Readable`, `CompProperties_Techprint`, the learn-skill and gain-ability use effects, `GeneSetHolderBase`,
+    `CompProperties_Usable`, `isTechHediff` and BodyParts, `IsShell`; a building whose holder is a `MinifiedThing`). `ToUse`
+    still keeps them from being materials.
+  - Pure rules in `Items/ItemCardUseMath.cs` (linked; `UseFacts` on `ItemFacts.Use`, `UseCandidate`): `XpToLevelUp`,
+    `LevelAfter`, `PassionFactor`, `BookGain`, `HungerFor`, `SurgeryChance`, `PrintsLeft`, `Ranked`/`Best`/`Able`, the known use
+    effects, targets and risky ones, 34 new tags (`StepThreeTags`), `UseTags`, `UsePlain`. Shared tags' rules extended (needed,
+    recreation, spare, beautiful, lifts the room, a room).
+  - The game's side: `Items/ItemCardUses.cs` (the sorting, `UsePart`, `ReadUse`/`LiveUse`/`ColonyUse`/`RowsUse`, books,
+    techprints, trainers, usable items, `SetWho`, `GameSaysNo`), `Items/ItemCardBodies.cs` (body parts: install recipes once a
+    kind, `GetPartsToApplyOn`, part efficiency, best doctor, faiths on `InstalledProsthetic`; genes: each gene's words, the
+    assembler, a xenogerm's fit), `Items/ItemCardThings.cs` (shells and the guns that fire them, once a kind; furniture in a
+    crate with `BestRooms`; anything else, unfinished things). Model: `use`, `useNote`, `genes`, `forWhom`, `forWhomNote`,
+    `useRules`, `useGo`, `useRead` (the thing's own once a card). Window: `ThingCardWindow.UseParts` (titles
+    `CC_ItemCard_Sec_Use_`/`CC_ItemCard_Sec_Who_` and the kind), then stock (not for furniture), making and trade.
+  - Setting `itemCardFirst` unchanged; its note "Every item opens as Rimfolk's item card ..." (under the settings' 120
+    characters), its tip names every kind and what stays the game's. Keys in `Rimfolk_ItemCard.xml` (step 3's block). No saved
+    data, no Sched slot. Tests `Tools/Tests/ItemCardStepThreeTests.cs` (469 checks); step 2's note check follows the new note.
+  - Not run here (none of it could be): every kind's card in the game and with the player's mods; book doers' values as a
+    tick's experience, the private `values` and `GetMaxSkillLevel` by name (ApiDiff found them in 1.6 and 1.7); the game's
+    benefit words for no reader; `GetPartsToApplyOn` and part efficiency with mods' install workers; faiths' prosthetic
+    thoughts; the surgery chance against the game's (no bed, room or medicine counted); a xenogerm's fit; `CanBeUsedBy` for
+    each colonist; mods' shells and turrets' fixed storage; a generator's `PowerConsumption` read as negative; the minified
+    piece's holder; the first card of each kind's reading time.
+  - Try in the game: 1. A textbook in a bookcase, press "i": Rimfolk's card, "Textbook, good: teaches ... up to level N, about
+    N experience an hour; X would gain most.", each colonist's skill, passion and gain, or past its level. 2. A novel: its
+    recreation factor, who most wants recreation first. 3. A bionic arm with a one-armed colonist: Needed now, "someone at home
+    is missing one", the best doctor's chance; with an Ideology faith that frowns on body modification, its precept and mood
+    on each believer's line. 4. A techprint: applied of needed, whether the project can be studied, what it opens. 5. A
+    shooting neurotrainer: each colonist's level after it by passion; a psytrainer with and without a psycaster. 6. A
+    xenogerm from the gene assembler: its genes and what each does, who it suits, whose faith forbids it; a genepack with and
+    without an assembler. 7. A psychic animal pulser or a mech serum: what a use does, to whom, one use, its risks. 8. Mortar
+    shells with mortars built: the burst, "the colony's 2 mortars fire it", a click to one. 9. Uninstall an armchair and a
+    bed: the crate's card, comfort and beauty, the room it would lift, who sleeps without a bed. 10. A wastepack and an
+    unfinished thing at a bench: the plain card, the work left. 11. Settings, How you're told, Items: the note says every
+    item; off, the game's card opens with the button at its foot.
 - 0.200.0, Rimfolk's item card, step 2: materials
   and art (9 November 2026; `docs/design/rimfolk-look.md` stage 3, point 5, "step 2: built"; DESIGN.md "Rimfolk's own look,
   stage 3, point 5, step 2" has all of it; README "Rimfolk's item card"). The player's words as for step 1. Step 3 (books,

@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LanguageData>
 
-  <!-- Rimfolk's item card, step 1: food, drink, drugs and medicine; step 2: materials and art (Source/ColonyCouncil/Items/,
-       docs/design/rimfolk-look.md, stage 3, point 5). The tags' labels and reasons and the line in plain words are made from
-       the thing's numbers in English (Items/ItemCardMath.cs, ItemCardMaterialMath.cs), as the weapon and apparel tags are;
-       everything else is here. -->
+  <!-- Rimfolk's item card, step 1: food, drink, drugs and medicine; step 2: materials and art; step 3: everything else
+       (Source/ColonyCouncil/Items/, docs/design/rimfolk-look.md, stage 3, point 5). The tags' labels and reasons and the line
+       in plain words are made from the thing's numbers in English (Items/ItemCardMath.cs, ItemCardMaterialMath.cs,
+       ItemCardUseMath.cs), as the weapon and apparel tags are; everything else is here. -->
 
   <!-- The settings (How you're told, Items). -->
   <CC_SetSec_Items>Items</CC_SetSec_Items>
   <CC_Settings_ItemCardFirst>Open Rimfolk's item card first</CC_Settings_ItemCardFirst>
-  <CC_Settings_ItemCardFirst_Tip>Opening the info for food, a drink, a drug, medicine, a material (metal, wood, stone blocks, cloth, leather, wool, chunks, components, chemfuel and the like) or a work of art, held or placed (the "i" button anywhere, a trade screen, a bill, a list, the inspect pane) opens Rimfolk's item card instead of the game's: what it is good for in this colony, its tags, how it keeps, who at home eats or takes it and why, what a material does to what is made of it and what waits on it, what a work of art does for its room, the colony's stock and where it comes from, and how traders value it. Its button "All the game's stats" opens the game's card, and the game's card keeps its button back. Links followed inside the game's card stay in it. Off, the game's card opens as before, with a button to Rimfolk's card at its foot. The rest (books, body parts, techprints and the like) comes later.</CC_Settings_ItemCardFirst_Tip>
-  <CC_SetNote_ItemCardFirst>Food, drink, drugs, medicine, materials and art open as Rimfolk's item card; the game's card is one button away.</CC_SetNote_ItemCardFirst>
+  <CC_Settings_ItemCardFirst_Tip>Opening the info for any item (the "i" button anywhere, a trade screen, a bill, a list, the inspect pane) opens Rimfolk's item card instead of the game's: food, a drink, a drug, medicine, a material (metal, wood, stone blocks, cloth, leather, wool, chunks, components, chemfuel and the like), a work of art held or placed, a book, a body part, a techprint, a neurotrainer or psytrainer, a genepack, xenogerm or embryo, something to use (a mech serum, a pulser, a mod's item), a shell, furniture in a crate, and anything else. It shows what the thing is good for in this colony, its tags, and by kind: who at home eats, takes, reads, learns from or could have it installed and why, what a material does to what is made of it, what a work of art or a piece of furniture does for its room, what a book teaches, a part's surgery and the faiths that care, a techprint's project, a xenogerm's genes, a use's risks, the guns that fire a shell; then the colony's stock, where it comes from, and how traders value it. Weapons and apparel keep their own cards; corpses keep the game's. Its button "All the game's stats" opens the game's card, and the game's card keeps its button back. Links followed inside the game's card stay in it. Off, the game's card opens as before, with a button to Rimfolk's card at its foot.</CC_Settings_ItemCardFirst_Tip>
+  <CC_SetNote_ItemCardFirst>Every item opens as Rimfolk's item card; weapons and apparel keep theirs, and the game's card is one button away.</CC_SetNote_ItemCardFirst>
 
   <!-- The card and its buttons. -->
   <CC_ItemCard_Title>Rimfolk's item card</CC_ItemCard_Title>
-  <CC_ItemCard_NotCovered>Rimfolk's item card shows food, drink, drugs, medicine, materials and art for now; this opens in the game's own card.</CC_ItemCard_NotCovered>
+  <CC_ItemCard_NotCovered>Rimfolk's item card shows items; this (a weapon, apparel, a corpse, a creature or a building standing on the map) opens in its own card.</CC_ItemCard_NotCovered>
   <CC_ItemCard_GameCard>All the game's stats</CC_ItemCard_GameCard>
   <CC_ItemCard_GameCard_Tip>Open the game's own info card for this, with every stat it lists. Its button "Rimfolk's item card" brings you back here.</CC_ItemCard_GameCard_Tip>
   <CC_ItemCard_OpenCard>Rimfolk's item card</CC_ItemCard_OpenCard>
@@ -327,5 +327,270 @@
   <CC_ItemCard_RuleFaith>{FAITH} holds on art: {VIEWS}.</CC_ItemCard_RuleFaith>
   <CC_ItemCard_FaithsCare>faiths at home with precepts on art: {FAITHS}</CC_ItemCard_FaithsCare>
   <CC_ItemCard_RuleMeditation>A meditation focus: {N} psycasters at home meditate on art.</CC_ItemCard_RuleMeditation>
+
+  <!-- Step 3: everything else (Items/ItemCardUses.cs, ItemCardBodies.cs, ItemCardThings.cs). -->
+  <CC_ItemCard_Kind_Book_textbook>Book, a textbook</CC_ItemCard_Kind_Book_textbook>
+  <CC_ItemCard_Kind_Book_schematic>Book, a schematic</CC_ItemCard_Kind_Book_schematic>
+  <CC_ItemCard_Kind_Book_tome>Book, a tome</CC_ItemCard_Kind_Book_tome>
+  <CC_ItemCard_Kind_Book_map>Book, a map</CC_ItemCard_Kind_Book_map>
+  <CC_ItemCard_Kind_Book_novel>Book, a novel</CC_ItemCard_Kind_Book_novel>
+  <CC_ItemCard_Kind_Book_book>Book</CC_ItemCard_Kind_Book_book>
+  <CC_ItemCard_Kind_Part>Body part, {TECH} tech</CC_ItemCard_Kind_Part>
+  <CC_ItemCard_Kind_PartPlain>Body part</CC_ItemCard_Kind_PartPlain>
+  <CC_ItemCard_Kind_PartNatural>Natural body part</CC_ItemCard_Kind_PartNatural>
+  <CC_ItemCard_Kind_PartImplant>Implant</CC_ItemCard_Kind_PartImplant>
+  <CC_ItemCard_Kind_PartImplantTech>Implant, {TECH} tech</CC_ItemCard_Kind_PartImplantTech>
+  <CC_ItemCard_Kind_Techprint>Techprint</CC_ItemCard_Kind_Techprint>
+  <CC_ItemCard_Kind_Neurotrainer>Neurotrainer, one use</CC_ItemCard_Kind_Neurotrainer>
+  <CC_ItemCard_Kind_Psytrainer>Psytrainer, one use</CC_ItemCard_Kind_Psytrainer>
+  <CC_ItemCard_Kind_Genepack>Genepack</CC_ItemCard_Kind_Genepack>
+  <CC_ItemCard_Kind_Xenogerm>Xenogerm</CC_ItemCard_Kind_Xenogerm>
+  <CC_ItemCard_Kind_Embryo>Embryo</CC_ItemCard_Kind_Embryo>
+  <CC_ItemCard_Kind_Usable>Something to use</CC_ItemCard_Kind_Usable>
+  <CC_ItemCard_Kind_Shell>Shell</CC_ItemCard_Kind_Shell>
+  <CC_ItemCard_Kind_Furniture>{WHAT}, in a crate</CC_ItemCard_Kind_Furniture>
+  <CC_ItemCard_Kind_Unfinished>Unfinished</CC_ItemCard_Kind_Unfinished>
+  <CC_ItemCard_Kind_Item>Item</CC_ItemCard_Kind_Item>
+  <CC_ItemCard_Sec_Use_Book>What reading it gives</CC_ItemCard_Sec_Use_Book>
+  <CC_ItemCard_Sec_Use_BodyPart>As a body part</CC_ItemCard_Sec_Use_BodyPart>
+  <CC_ItemCard_Sec_Use_Techprint>The research</CC_ItemCard_Sec_Use_Techprint>
+  <CC_ItemCard_Sec_Use_Trainer>What it teaches</CC_ItemCard_Sec_Use_Trainer>
+  <CC_ItemCard_Sec_Use_Genes>Its genes</CC_ItemCard_Sec_Use_Genes>
+  <CC_ItemCard_Sec_Use_Usable>What a use does</CC_ItemCard_Sec_Use_Usable>
+  <CC_ItemCard_Sec_Use_Shell>As a shell</CC_ItemCard_Sec_Use_Shell>
+  <CC_ItemCard_Sec_Use_Furniture>The piece in the crate</CC_ItemCard_Sec_Use_Furniture>
+  <CC_ItemCard_Sec_Use_Other>About it</CC_ItemCard_Sec_Use_Other>
+  <CC_ItemCard_Sec_Who_Book>Who at home gains most</CC_ItemCard_Sec_Who_Book>
+  <CC_ItemCard_Sec_Who_BodyPart>Who at home could take it</CC_ItemCard_Sec_Who_BodyPart>
+  <CC_ItemCard_Sec_Who_Techprint>At home</CC_ItemCard_Sec_Who_Techprint>
+  <CC_ItemCard_Sec_Who_Trainer>Who at home gains most</CC_ItemCard_Sec_Who_Trainer>
+  <CC_ItemCard_Sec_Who_Genes>Who it would suit</CC_ItemCard_Sec_Who_Genes>
+  <CC_ItemCard_Sec_Who_Usable>Who at home may use it</CC_ItemCard_Sec_Who_Usable>
+  <CC_ItemCard_Sec_Who_Shell>At home</CC_ItemCard_Sec_Who_Shell>
+  <CC_ItemCard_Sec_Who_Furniture>Where it would do most</CC_ItemCard_Sec_Who_Furniture>
+  <CC_ItemCard_Sec_Who_Other>At home</CC_ItemCard_Sec_Who_Other>
+  <CC_ItemCard_AndMoreThings>and {N} more</CC_ItemCard_AndMoreThings>
+
+  <!-- Books. -->
+  <CC_ItemCard_Row_Teaches>Teaches</CC_ItemCard_Row_Teaches>
+  <CC_ItemCard_BookSkillsKind>The skills it was written on, about {XP} experience an hour at normal quality, more the better it is.</CC_ItemCard_BookSkillsKind>
+  <CC_ItemCard_Row_Research>Research</CC_ItemCard_Row_Research>
+  <CC_ItemCard_BookResearchKind>Toward the project it was written on, about {RESEARCH} an hour at normal quality.</CC_ItemCard_BookResearchKind>
+  <CC_ItemCard_BookSkills>{SKILLS}: about {XP} experience an hour, up to level {MAX}.</CC_ItemCard_BookSkills>
+  <CC_ItemCard_BookSkillsNoMax>{SKILLS}: about {XP} experience an hour.</CC_ItemCard_BookSkillsNoMax>
+  <CC_ItemCard_BookResearch>Toward {PROJECTS}, about {RESEARCH} an hour.</CC_ItemCard_BookResearch>
+  <CC_ItemCard_BookResearchSomeDone>{N} of its projects are done already.</CC_ItemCard_BookResearchSomeDone>
+  <CC_ItemCard_BookResearchDone>Its research is done already: reading it gives nothing more.</CC_ItemCard_BookResearchDone>
+  <CC_ItemCard_BookJoy>Reading it is recreation, gained at x{FACTOR}.</CC_ItemCard_BookJoy>
+  <CC_ItemCard_Row_Break>Mental break</CC_ItemCard_Row_Break>
+  <CC_ItemCard_BookBreak>{CHANCE} chance each hour of reading.</CC_ItemCard_BookBreak>
+  <CC_ItemCard_Row_Quest>A place</CC_ItemCard_Row_Quest>
+  <CC_ItemCard_BookQuest>Reading it reveals a place on the world to travel to.</CC_ItemCard_BookQuest>
+  <CC_ItemCard_Row_Outcome>Also</CC_ItemCard_Row_Outcome>
+  <CC_ItemCard_Row_Read>A read</CC_ItemCard_Row_Read>
+  <CC_ItemCard_BookRead>Ordered to read, about {HOURS} a sitting; read for recreation, as long as their recreation lasts.</CC_ItemCard_BookRead>
+  <CC_ItemCard_WhoCantRead>can't read</CC_ItemCard_WhoCantRead>
+  <CC_ItemCard_WhoSkillDisabled>can't learn {SKILL}</CC_ItemCard_WhoSkillDisabled>
+  <CC_ItemCard_WhoSkillGain>{WHO}: about {XP} an hour now</CC_ItemCard_WhoSkillGain>
+  <CC_ItemCard_WhoSkillPast>{WHO}: past what it teaches (level {MAX})</CC_ItemCard_WhoSkillPast>
+  <CC_ItemCard_WhoJoy>recreation at {JOY}</CC_ItemCard_WhoJoy>
+  <CC_ItemCard_WhoNoJoy>needs no recreation</CC_ItemCard_WhoNoJoy>
+  <CC_ItemCard_WhoReads>reads at {SPEED}</CC_ItemCard_WhoReads>
+  <CC_ItemCard_WhoBookKind>A book in hand names its own skills and research; this is the kind.</CC_ItemCard_WhoBookKind>
+
+  <!-- Techprints. -->
+  <CC_ItemCard_Row_Project>Project</CC_ItemCard_Row_Project>
+  <CC_ItemCard_Row_Applied>Techprints</CC_ItemCard_Row_Applied>
+  <CC_ItemCard_PrintDone>The research is done: this one is spare.</CC_ItemCard_PrintDone>
+  <CC_ItemCard_PrintAllApplied>All {NEEDED} applied: this one is spare.</CC_ItemCard_PrintAllApplied>
+  <CC_ItemCard_PrintApplied>{APPLIED} of {NEEDED} applied, {LEFT} more needed; a colonist applies it at a research bench.</CC_ItemCard_PrintApplied>
+  <CC_ItemCard_Row_CanStudy>Can be studied</CC_ItemCard_Row_CanStudy>
+  <CC_ItemCard_PrintWaits>Not yet: {WAITS} first.</CC_ItemCard_PrintWaits>
+  <CC_ItemCard_PrintNeedsPrints>Not yet: its techprints first.</CC_ItemCard_PrintNeedsPrints>
+  <CC_ItemCard_PrintNeedsBench>Not yet: it needs a research bench the colony hasn't built.</CC_ItemCard_PrintNeedsBench>
+  <CC_ItemCard_PrintCanStudy>Yes, now.</CC_ItemCard_PrintCanStudy>
+  <CC_ItemCard_Row_Opens>Opens</CC_ItemCard_Row_Opens>
+
+  <!-- Trainers. -->
+  <CC_ItemCard_TrainerSkill>{XP} experience in {SKILL} at once.</CC_ItemCard_TrainerSkill>
+  <CC_ItemCard_Row_Passion>Passion</CC_ItemCard_Row_Passion>
+  <CC_ItemCard_TrainerPassion>A burning passion learns the most of it, none the least: the game's learning by passion.</CC_ItemCard_TrainerPassion>
+  <CC_ItemCard_Row_Psycast>Psycast</CC_ItemCard_Row_Psycast>
+  <CC_ItemCard_TrainerPsycast>{PSYCAST}, a level {LEVEL} psycast: the user needs a psylink of that level or more.</CC_ItemCard_TrainerPsycast>
+  <CC_ItemCard_Row_Uses>Uses</CC_ItemCard_Row_Uses>
+  <CC_ItemCard_OneUse>One use: it is gone once used.</CC_ItemCard_OneUse>
+  <CC_ItemCard_ManyUses>It is kept after a use.</CC_ItemCard_ManyUses>
+  <CC_ItemCard_WhoTrainer>level {LEVEL}{PASSION}: to about {AFTER}</CC_ItemCard_WhoTrainer>
+  <CC_ItemCard_WhoTrainerTop>level {LEVEL}: nothing more to gain</CC_ItemCard_WhoTrainerTop>
+  <CC_ItemCard_WhoHasPsycast>knows it already</CC_ItemCard_WhoHasPsycast>
+  <CC_ItemCard_WhoNoPsylink>no psylink</CC_ItemCard_WhoNoPsylink>
+  <CC_ItemCard_WhoPsylinkLow>psylink {LEVEL}, it needs {NEED}</CC_ItemCard_WhoPsylinkLow>
+  <CC_ItemCard_WhoPsylink>psylink {LEVEL}: can learn it</CC_ItemCard_WhoPsylink>
+  <CC_ItemCard_WhoCantUse>the game says they can't use it</CC_ItemCard_WhoCantUse>
+  <CC_ItemCard_WhoCanUse>can use it</CC_ItemCard_WhoCanUse>
+
+  <!-- Usable items: what a use does, to whom, its risks. -->
+  <CC_ItemCard_Row_Does>Does</CC_ItemCard_Row_Does>
+  <CC_ItemCard_DoesUnknown>What the game's own card says.</CC_ItemCard_DoesUnknown>
+  <CC_ItemCard_Row_Targets>To whom</CC_ItemCard_Row_Targets>
+  <CC_ItemCard_Row_Risks>Risks</CC_ItemCard_Row_Risks>
+  <CC_ItemCard_Targets_CompTargetable_SinglePawn>one person or animal the user chooses</CC_ItemCard_Targets_CompTargetable_SinglePawn>
+  <CC_ItemCard_Targets_CompTargetable_SingleAnimal>one animal the user chooses</CC_ItemCard_Targets_CompTargetable_SingleAnimal>
+  <CC_ItemCard_Targets_CompTargetable_SingleCorpse>a corpse the user chooses</CC_ItemCard_Targets_CompTargetable_SingleCorpse>
+  <CC_ItemCard_Targets_CompTargetable_AllPawnsOnTheMap>everyone on the map</CC_ItemCard_Targets_CompTargetable_AllPawnsOnTheMap>
+  <CC_ItemCard_Targets_CompTargetable_AllAnimalsOnTheMap>every animal on the map</CC_ItemCard_Targets_CompTargetable_AllAnimalsOnTheMap>
+  <CC_ItemCard_Targets_Other>what the user chooses</CC_ItemCard_Targets_Other>
+  <CC_ItemCard_Targets_User>the user</CC_ItemCard_Targets_User>
+  <CC_ItemCard_TargetsSensitive>(those psychically sensitive)</CC_ItemCard_TargetsSensitive>
+  <CC_ItemCard_Does_CompUseEffect_InstallImplant>installs {WHAT} in the user</CC_ItemCard_Does_CompUseEffect_InstallImplant>
+  <CC_ItemCard_Does_CompUseEffect_InstallImplantMechlink>installs {WHAT} in the user</CC_ItemCard_Does_CompUseEffect_InstallImplantMechlink>
+  <CC_ItemCard_Does_CompUseEffect_AddHediff>gives the user {WHAT}</CC_ItemCard_Does_CompUseEffect_AddHediff>
+  <CC_ItemCard_Does_CompUseEffect_AddHediffAndEnableDisappearsComp>gives the user {WHAT} for a while</CC_ItemCard_Does_CompUseEffect_AddHediffAndEnableDisappearsComp>
+  <CC_ItemCard_Does_CompUseEffect_FixWorstHealthCondition>cures the user's worst health condition</CC_ItemCard_Does_CompUseEffect_FixWorstHealthCondition>
+  <CC_ItemCard_Does_CompUseEffect_FinishRandomResearchProject>finishes a research project</CC_ItemCard_Does_CompUseEffect_FinishRandomResearchProject>
+  <CC_ItemCard_Does_CompUseEffect_GiveQuest>reveals a quest</CC_ItemCard_Does_CompUseEffect_GiveQuest>
+  <CC_ItemCard_Does_CompUseEffect_CallBossgroup>calls a mechanoid boss group to the colony</CC_ItemCard_Does_CompUseEffect_CallBossgroup>
+  <CC_ItemCard_Does_CompUseEffect_OffsetDeathrestCapacity>raises the user's deathrest capacity</CC_ItemCard_Does_CompUseEffect_OffsetDeathrestCapacity>
+  <CC_ItemCard_Does_CompUseEffect_StartWick>lights its fuse</CC_ItemCard_Does_CompUseEffect_StartWick>
+  <CC_ItemCard_Does_CompUseEffect_SpawnFleshbeastFromTargetPawns>turns its targets into fleshbeasts</CC_ItemCard_Does_CompUseEffect_SpawnFleshbeastFromTargetPawns>
+  <CC_ItemCard_Does_CompUseEffect_LearnSkill>teaches a skill</CC_ItemCard_Does_CompUseEffect_LearnSkill>
+  <CC_ItemCard_Does_CompUseEffect_GainAbility>teaches an ability</CC_ItemCard_Does_CompUseEffect_GainAbility>
+  <CC_ItemCard_Does_CompTargetEffect_Resurrect>brings the dead back to life</CC_ItemCard_Does_CompTargetEffect_Resurrect>
+  <CC_ItemCard_Does_CompTargetEffect_PsychicShock>puts the target in psychic shock</CC_ItemCard_Does_CompTargetEffect_PsychicShock>
+  <CC_ItemCard_Does_CompTargetEffect_Berserk>drives the target berserk</CC_ItemCard_Does_CompTargetEffect_Berserk>
+  <CC_ItemCard_Does_CompTargetEffect_Manhunter>turns the animals manhunter</CC_ItemCard_Does_CompTargetEffect_Manhunter>
+  <CC_ItemCard_Does_CompTargetEffect_MoodBoost>lifts the mood</CC_ItemCard_Does_CompTargetEffect_MoodBoost>
+  <CC_ItemCard_Does_CompTargetEffect_BrainDamageChance>may harm the target's brain</CC_ItemCard_Does_CompTargetEffect_BrainDamageChance>
+  <CC_ItemCard_Does_CompTargetEffect_GoodwillImpact>angers the target's people</CC_ItemCard_Does_CompTargetEffect_GoodwillImpact>
+  <CC_ItemCard_Does_CompTargetEffect_MutateIntoFleshbeast>turns the target into a fleshbeast</CC_ItemCard_Does_CompTargetEffect_MutateIntoFleshbeast>
+  <CC_ItemCard_Does_CompTargetEffect_InstallImplantInOtherPawn>installs an implant in the target</CC_ItemCard_Does_CompTargetEffect_InstallImplantInOtherPawn>
+  <CC_ItemCard_Does_Other>{WHAT}</CC_ItemCard_Does_Other>
+  <CC_ItemCard_RiskBrain>{CHANCE} chance of brain damage to the target</CC_ItemCard_RiskBrain>
+  <CC_ItemCard_RiskGoodwill>goodwill {N} with the target's people</CC_ItemCard_RiskGoodwill>
+  <CC_ItemCard_RiskResurrect>the one brought back may come back with side effects</CC_ItemCard_RiskResurrect>
+  <CC_ItemCard_Risk_CompUseEffect_CallBossgroup>a mechanoid boss group comes to fight</CC_ItemCard_Risk_CompUseEffect_CallBossgroup>
+  <CC_ItemCard_Risk_CompUseEffect_StartWick>it explodes</CC_ItemCard_Risk_CompUseEffect_StartWick>
+  <CC_ItemCard_Risk_CompUseEffect_SpawnFleshbeastFromTargetPawns>fleshbeasts rise and fight</CC_ItemCard_Risk_CompUseEffect_SpawnFleshbeastFromTargetPawns>
+  <CC_ItemCard_Risk_CompTargetEffect_Berserk>the berserk attack whoever is near</CC_ItemCard_Risk_CompTargetEffect_Berserk>
+  <CC_ItemCard_Risk_CompTargetEffect_Manhunter>manhunter animals attack anyone, the colony too</CC_ItemCard_Risk_CompTargetEffect_Manhunter>
+  <CC_ItemCard_Risk_CompTargetEffect_BrainDamageChance>brain damage to the target</CC_ItemCard_Risk_CompTargetEffect_BrainDamageChance>
+  <CC_ItemCard_Risk_CompTargetEffect_GoodwillImpact>a people's goodwill lost</CC_ItemCard_Risk_CompTargetEffect_GoodwillImpact>
+  <CC_ItemCard_Risk_CompTargetEffect_MutateIntoFleshbeast>a fleshbeast that fights</CC_ItemCard_Risk_CompTargetEffect_MutateIntoFleshbeast>
+
+  <!-- Body parts. -->
+  <CC_ItemCard_Row_Part>Goes in</CC_ItemCard_Row_Part>
+  <CC_ItemCard_PartNatural>The {PART}: a natural one, working as the patient's own.</CC_ItemCard_PartNatural>
+  <CC_ItemCard_PartImplant>The {PART}: an implant added beside what is there.</CC_ItemCard_PartImplant>
+  <CC_ItemCard_PartReplaces>Fitted at the {PART}, replacing what is there.</CC_ItemCard_PartReplaces>
+  <CC_ItemCard_Row_Efficiency>Efficiency</CC_ItemCard_Row_Efficiency>
+  <CC_ItemCard_EffBetter>{EFF} of a natural part: better than natural.</CC_ItemCard_EffBetter>
+  <CC_ItemCard_EffWorse>{EFF} of a natural part: better than none, worse than natural.</CC_ItemCard_EffWorse>
+  <CC_ItemCard_EffSame>{EFF}: as good as a natural part.</CC_ItemCard_EffSame>
+  <CC_ItemCard_Row_Adds>Changes</CC_ItemCard_Row_Adds>
+  <CC_ItemCard_Row_Abilities>Abilities</CC_ItemCard_Row_Abilities>
+  <CC_ItemCard_Row_Surgery>Surgery</CC_ItemCard_Row_Surgery>
+  <CC_ItemCard_SurgeryNone>No operation the colony's game knows installs it.</CC_ItemCard_SurgeryNone>
+  <CC_ItemCard_SurgeryLevel>A doctor of Medicine {LEVEL} or more installs it.</CC_ItemCard_SurgeryLevel>
+  <CC_ItemCard_SurgeryAny>Any doctor can install it.</CC_ItemCard_SurgeryAny>
+  <CC_ItemCard_SurgeryResearch>The operation waits on {RESEARCH}.</CC_ItemCard_SurgeryResearch>
+  <CC_ItemCard_Row_Doctor>Best doctor</CC_ItemCard_Row_Doctor>
+  <CC_ItemCard_SurgeryChance>{DOCTOR}: about {CHANCE}, by their surgery success and the operation's own factor; the bed, the room and the medicine move it.</CC_ItemCard_SurgeryChance>
+  <CC_ItemCard_SurgeryNoDoctor>Nobody at home has doctoring on and the skill for it.</CC_ItemCard_SurgeryNoDoctor>
+  <CC_ItemCard_RulePartUnwilling>{FAITH} ({PRECEPT}): its believers won't have one installed.</CC_ItemCard_RulePartUnwilling>
+  <CC_ItemCard_RulePartFrowns>{FAITH} ({PRECEPT}): a believer who has one installed feels {MOOD}.</CC_ItemCard_RulePartFrowns>
+  <CC_ItemCard_RulePartGlad>{FAITH} ({PRECEPT}): a believer who has one installed feels {MOOD}.</CC_ItemCard_RulePartGlad>
+  <CC_ItemCard_RulePartView>{FAITH} holds {PRECEPT}.</CC_ItemCard_RulePartView>
+  <CC_ItemCard_FaithsFrown>faiths at home that frown on it: {FAITHS}</CC_ItemCard_FaithsFrown>
+  <CC_ItemCard_FaithsGlad>faiths at home glad of it: {FAITHS}</CC_ItemCard_FaithsGlad>
+  <CC_ItemCard_WhoHasImplant>has one already, or no {PART} for it</CC_ItemCard_WhoHasImplant>
+  <CC_ItemCard_WhoNoPart>no {PART} it fits</CC_ItemCard_WhoNoPart>
+  <CC_ItemCard_WhoFaithWont>their faith won't have it</CC_ItemCard_WhoFaithWont>
+  <CC_ItemCard_WhoFaithMood>{MOOD} mood by their faith</CC_ItemCard_WhoFaithMood>
+  <CC_ItemCard_WhoMissing>missing their {PART}</CC_ItemCard_WhoMissing>
+  <CC_ItemCard_WhoCanImplant>can have it in their {PART}</CC_ItemCard_WhoCanImplant>
+  <CC_ItemCard_WhoPartGain>{PART} at {NOW} now, {THEN} with it</CC_ItemCard_WhoPartGain>
+  <CC_ItemCard_WhoPartNoBetter>{PART} at {NOW}: no better with it</CC_ItemCard_WhoPartNoBetter>
+  <CC_ItemCard_MissingOne>{WHO} is missing the part it replaces</CC_ItemCard_MissingOne>
+  <CC_ItemCard_MissingMany>{WHO} are missing the part it replaces</CC_ItemCard_MissingMany>
+
+  <!-- Genepacks, xenogerms and embryos. -->
+  <CC_ItemCard_Row_Genes>Genes</CC_ItemCard_Row_Genes>
+  <CC_ItemCard_GenesKind>Chosen when it is made: a thing in hand names them.</CC_ItemCard_GenesKind>
+  <CC_ItemCard_GenesEmbryoKind>Its parents' genes, known once it is made.</CC_ItemCard_GenesEmbryoKind>
+  <CC_ItemCard_GenesSum>{N} genes, complexity {CPX}, metabolism {MET} (hunger x{HUNGER}).</CC_ItemCard_GenesSum>
+  <CC_ItemCard_GenesArchite>{ARC} archite capsules to assemble.</CC_ItemCard_GenesArchite>
+  <CC_ItemCard_Row_Xenotype>Xenotype</CC_ItemCard_Row_Xenotype>
+  <CC_ItemCard_GeneStats>complexity {CPX}, metabolism {MET}</CC_ItemCard_GeneStats>
+  <CC_ItemCard_GeneArc>{ARC} archite</CC_ItemCard_GeneArc>
+  <CC_ItemCard_GeneGives>gives {ABILITY}</CC_ItemCard_GeneGives>
+  <CC_ItemCard_GeneImmune>immune to {WHAT}</CC_ItemCard_GeneImmune>
+  <CC_ItemCard_GeneNoWork>no {WORK} work</CC_ItemCard_GeneNoWork>
+  <CC_ItemCard_EmbryoParents>Its parents: {PARENTS}.</CC_ItemCard_EmbryoParents>
+  <CC_ItemCard_Row_Assembler>Gene assembler</CC_ItemCard_Row_Assembler>
+  <CC_ItemCard_AssemblerNone>The colony has none.</CC_ItemCard_AssemblerNone>
+  <CC_ItemCard_AssemblerTooComplex>Too complex alone: the colony's assembler takes {MAX}; gene processors raise it.</CC_ItemCard_AssemblerTooComplex>
+  <CC_ItemCard_AssemblerFits>Fits: {CPX} of the {MAX} the colony's assembler takes.</CC_ItemCard_AssemblerFits>
+  <CC_ItemCard_Row_Implanting>Implanting</CC_ItemCard_Row_Implanting>
+  <CC_ItemCard_ImplantComa>A doctor implants it; the bearer then lies in a xenogermination coma for about {DAYS}.</CC_ItemCard_ImplantComa>
+  <CC_ItemCard_ImplantPlain>A doctor implants it.</CC_ItemCard_ImplantPlain>
+  <CC_ItemCard_WhoNoGenes>no genes to change</CC_ItemCard_WhoNoGenes>
+  <CC_ItemCard_WhoFaithForbidsGenes>their faith forbids implanting it</CC_ItemCard_WhoFaithForbidsGenes>
+  <CC_ItemCard_WhoXenogerm>now {NOW}; metabolism {MET} with it</CC_ItemCard_WhoXenogerm>
+  <CC_ItemCard_WhoXenogermOwn>now {NOW}, whose xenogenes it would replace; metabolism {MET} with it</CC_ItemCard_WhoXenogermOwn>
+  <CC_ItemCard_FaithForbidsGenes>{WHO}: their faith forbids implanting it</CC_ItemCard_FaithForbidsGenes>
+  <CC_ItemCard_WhoXenogermNote>Implanting it replaces the bearer's xenogenes; those who stay fed most easily after it come first.</CC_ItemCard_WhoXenogermNote>
+
+  <!-- Shells. -->
+  <CC_ItemCard_Row_Damage>Damage</CC_ItemCard_Row_Damage>
+  <CC_ItemCard_DamageUnknown>As the game's own card says.</CC_ItemCard_DamageUnknown>
+  <CC_ItemCard_DamageAmount>{DAMAGE}, {N}</CC_ItemCard_DamageAmount>
+  <CC_ItemCard_Row_Radius>Radius</CC_ItemCard_Row_Radius>
+  <CC_ItemCard_Row_Penetration>Armour piercing</CC_ItemCard_Row_Penetration>
+  <CC_ItemCard_Row_Leaves>Leaves</CC_ItemCard_Row_Leaves>
+  <CC_ItemCard_ShellFire>Fire where it lands.</CC_ItemCard_ShellFire>
+  <CC_ItemCard_ShellFoam>Firefoam where it lands: it puts fires out.</CC_ItemCard_ShellFoam>
+  <CC_ItemCard_Row_Store>Stored</CC_ItemCard_Row_Store>
+  <CC_ItemCard_ShellExplodes>It explodes if fire or a blow reaches it: keep it away from both.</CC_ItemCard_ShellExplodes>
+  <CC_ItemCard_Row_FiredBy>Fired by</CC_ItemCard_Row_FiredBy>
+  <CC_ItemCard_ShellFiredBy>The colony's {GUNS}.</CC_ItemCard_ShellFiredBy>
+  <CC_ItemCard_ShellNoGun>Nothing at home: {GUN} would fire it.</CC_ItemCard_ShellNoGun>
+  <CC_ItemCard_ShellNoGunAtAll>Nothing the colony can build fires it.</CC_ItemCard_ShellNoGunAtAll>
+  <CC_ItemCard_GoGun>{GUN}: go to it</CC_ItemCard_GoGun>
+
+  <!-- Furniture in a crate. -->
+  <CC_ItemCard_Row_Bed>As a bed</CC_ItemCard_Row_Bed>
+  <CC_ItemCard_FurnitureBed>Rest {REST}, comfort {COMFORT}.</CC_ItemCard_FurnitureBed>
+  <CC_ItemCard_Row_Comfort>Comfort</CC_ItemCard_Row_Comfort>
+  <CC_ItemCard_Row_Table>Table</CC_ItemCard_Row_Table>
+  <CC_ItemCard_FurnitureTable>A table to eat at: without one, colonists eat without a table and mind it.</CC_ItemCard_FurnitureTable>
+  <CC_ItemCard_Row_WorkSpeed>Work speed</CC_ItemCard_Row_WorkSpeed>
+  <CC_ItemCard_FurnitureBench>Work at it goes at {SPEED}.</CC_ItemCard_FurnitureBench>
+  <CC_ItemCard_FurnitureJoy>{JOY} recreation.</CC_ItemCard_FurnitureJoy>
+  <CC_ItemCard_Row_Facility>Linked</CC_ItemCard_Row_Facility>
+  <CC_ItemCard_FacilityTo>to {LINKS}</CC_ItemCard_FacilityTo>
+  <CC_ItemCard_Row_Power>Power</CC_ItemCard_Row_Power>
+  <CC_ItemCard_PowerUses>Uses {W} W.</CC_ItemCard_PowerUses>
+  <CC_ItemCard_PowerMakes>Makes {W} W.</CC_ItemCard_PowerMakes>
+  <CC_ItemCard_Row_RoomNeeds>Its room</CC_ItemCard_Row_RoomNeeds>
+  <CC_ItemCard_RoomNeeds_Bed>A bedroom of one's own lifts its sleeper's mood by its impressiveness; a shared one, less.</CC_ItemCard_RoomNeeds_Bed>
+  <CC_ItemCard_RoomNeeds_Table>A dining room: everyone who eats there feels its impressiveness.</CC_ItemCard_RoomNeeds_Table>
+  <CC_ItemCard_RoomNeeds_Joy>A recreation room: recreation there is the better for its impressiveness.</CC_ItemCard_RoomNeeds_Joy>
+  <CC_ItemCard_RoomNeeds_Bench>A workshop, lit and clean: work in the dark is slower.</CC_ItemCard_RoomNeeds_Bench>
+  <CC_ItemCard_RoomNeeds_Seat>Beside a table, a bench or wherever colonists sit.</CC_ItemCard_RoomNeeds_Seat>
+  <CC_ItemCard_Row_Recipes>Recipes</CC_ItemCard_Row_Recipes>
+  <CC_ItemCard_FurnitureRecipes>{N} recipes are made at it.</CC_ItemCard_FurnitureRecipes>
+  <CC_ItemCard_Row_AtHome>At home</CC_ItemCard_Row_AtHome>
+  <CC_ItemCard_FurnitureAtHome>{PLACED} standing, {CRATED} in crates.</CC_ItemCard_FurnitureAtHome>
+  <CC_ItemCard_WhoBedless>Without a bed of their own: {WHO}.</CC_ItemCard_WhoBedless>
+  <CC_ItemCard_WhoAllBeds>Everyone at home has a bed of their own.</CC_ItemCard_WhoAllBeds>
+  <CC_ItemCard_WhoJoyNew>The colony has nothing for {JOY} recreation yet: each kind wears thin on its own, so a new one helps.</CC_ItemCard_WhoJoyNew>
+  <CC_ItemCard_WhoJoyHave>The colony has {JOY} recreation already.</CC_ItemCard_WhoJoyHave>
+
+  <!-- Anything else. -->
+  <CC_ItemCard_UnfinishedBy>Begun by {WHO}.</CC_ItemCard_UnfinishedBy>
+  <CC_ItemCard_Row_WillBe>Will be</CC_ItemCard_Row_WillBe>
+  <CC_ItemCard_Row_WorkLeft>Work left</CC_ItemCard_Row_WorkLeft>
+  <CC_ItemCard_WorkLeft>{WORK} work</CC_ItemCard_WorkLeft>
+  <CC_ItemCard_WorkAt>at the {BENCH}</CC_ItemCard_WorkAt>
 
 </LanguageData>

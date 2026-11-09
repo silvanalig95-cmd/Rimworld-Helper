@@ -8,12 +8,14 @@ namespace ColonyCouncil
 {
     /// <summary>
     /// "Open Rimfolk's item card first" (the player, 9 November 2026: "also like item card for everything"): a new game info
-    /// card about food, a drink, a drug, medicine (step 1), a material or a work of art held, minified or placed (step 2), the
-    /// thing itself or its kind, opens as Rimfolk's item card instead, wherever it is opened from. The weapons' one hook on the window stack (Patch_WeaponCardFirst) asks here; the item
-    /// card's kinds are never weapons or apparel, so the three cards never meet. What stays the game's: a card opened from
-    /// inside the game's info card (its links and its back button move within it, WeaponCardFirst.insideGameCard), the game's
-    /// card asked for from Rimfolk's card ("All the game's stats"), every other kind of thing, and everything with the setting
-    /// off. The game's card for these kinds keeps a button back to Rimfolk's.
+    /// card about any item (food, a drink, a drug, medicine: step 1; a material or a work of art held, minified or placed: step
+    /// 2; a book, a body part, a techprint, a trainer, genes, something to use, a shell, furniture in a crate, anything else:
+    /// step 3), the thing itself or its kind, opens as Rimfolk's item card instead, wherever it is opened from. The weapons'
+    /// one hook on the window stack (Patch_WeaponCardFirst) asks here; the item card's kinds are never weapons or apparel, so
+    /// the three cards never meet. What stays the game's: a card opened from inside the game's info card (its links and its
+    /// back button move within it, WeaponCardFirst.insideGameCard), the game's card asked for from Rimfolk's card ("All the
+    /// game's stats"), what isn't an item (ItemCardLive.KindOf names it: corpses, pawns, a building standing on the map that
+    /// isn't art), and everything with the setting off. The game's card for these kinds keeps a button back to Rimfolk's.
     /// </summary>
     public static class ItemCardFirst
     {
@@ -40,7 +42,7 @@ namespace ColonyCouncil
 
         /// <summary>
         /// A new game info card about to open: true when it opened as Rimfolk's item card instead (the game's isn't added).
-        /// Only a card about food, a drink, a drug, medicine, a material or a work of art, while playing, and not navigation
+        /// Only a card about an item the card covers (ItemCardLive.Covers) or a work of art, while playing, and not navigation
         /// inside the game's own card.
         /// </summary>
         public static bool Swapped(Dialog_InfoCard card)

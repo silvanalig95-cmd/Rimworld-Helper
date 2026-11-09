@@ -93,6 +93,20 @@ namespace ColonyCouncil
         /// <summary>The rules that care: a noble's room, a faith's precepts, meditation.</summary>
         public readonly List<string> rules = new List<string>();
 
+        // ---------------- Step 3: books, body parts, techprints, trainers, genes, usable items, shells, furniture, the rest ----------------
+
+        /// <summary>What it does, in rows, and a paragraph under them (the game's own words, a description).</summary>
+        public readonly List<(string label, string value)> use = new List<(string, string)>();
+        public string useNote;
+        /// <summary>A genepack's, xenogerm's or embryo's genes, each a line with what it does.</summary>
+        public readonly List<ItemEffectLine> genes = new List<ItemEffectLine>();
+        /// <summary>Who at home it is for, the best first, and a line over them.</summary>
+        public readonly List<ItemPawnLine> forWhom = new List<ItemPawnLine>();
+        public string forWhomNote;
+        /// <summary>The rules that care (a faith's precepts), and lines that lead somewhere (a gun, a room, a bench).</summary>
+        public readonly List<string> useRules = new List<string>();
+        public readonly List<ItemGoLine> useGo = new List<ItemGoLine>();
+
         /// <summary>The colony's best cook and the chance in a meal of theirs (a kind of meal), and how many at home are addicted to it.</summary>
         internal string cookPoison;
         internal int addicted;
@@ -102,11 +116,14 @@ namespace ColonyCouncil
         /// <summary>A work of art's tale and its beauty by quality, read once a card.</summary>
         internal bool storyRead;
         internal string byQuality;
+        /// <summary>Step 3: the thing's own reading (a book's skills and research, a gene holder's genes, an unfinished thing's work), read once a card.</summary>
+        internal bool useRead;
     }
 
     /// <summary>
     /// The item card's reading of the game (Rimfolk's look, stage 3, point 5: step 1 food, drink, drugs and medicine, step 2
-    /// materials and art, in Items/ItemCardMaterials.cs and Items/ItemCardArt.cs). A kind's own numbers are read once (its
+    /// materials and art, in Items/ItemCardMaterials.cs and Items/ItemCardArt.cs, step 3 everything else in
+    /// Items/ItemCardUses.cs, ItemCardBodies.cs and ItemCardThings.cs). A kind's own numbers are read once (its
     /// nutrition and rot, its taste, its drug's chemistry and effects, its potency, a material's stuff numbers and what is
     /// made of it, Rimfolk's roles for it, the recipes and crops that make it, the traders who deal in it) and kept for the
     /// session; the thing in hand and the colony are read when a card opens and while it stays open, never otherwise. Rules
@@ -118,10 +135,16 @@ namespace ColonyCouncil
         /// <summary>The live parts are read at most this often (real seconds), the colony's at most this often.</summary>
         public const float LiveEvery = 1f, ColonyEvery = 10f;
 
-        /// <summary>The card's kind of a def (None: the game's card opens). Weapons, apparel, corpses and pawns are never its; a building only as art.</summary>
+        /// <summary>The card's kind of a def (None: the game's card opens). Weapons, apparel, corpses and pawns are never its; a building only as art or in a crate.</summary>
         public static ItemKind KindOf(ThingDef d) => KindOf(d, null);
 
-        /// <summary>The card's kind of a def, or of a thing in hand (a full grave's art counts; a minified piece is read as the piece inside).</summary>
+        /// <summary>
+        /// The card's kind of a def, or of a thing in hand (a full grave's art counts; a minified piece is read as the piece
+        /// inside). What still goes to the game's card, and why: weapons and apparel (their own cards), corpses (the game's
+        /// card is the dead one's own, their health and story), pawns, plants, filth and the like (not items), a building
+        /// standing on the map that isn't art (the game's card for a building, with its power and links), a blueprint or a
+        /// frame, and the crate's own kind with nothing in it.
+        /// </summary>
         public static ItemKind KindOf(ThingDef d, Thing t)
         {
             if (d == null || d.IsCorpse || d.IsWeapon || d.IsApparel || d.race != null || d.IsBlueprint || d.IsFrame) return ItemKind.None;
@@ -141,7 +164,7 @@ namespace ColonyCouncil
 
         public static bool Covers(Thing t) => KindOf(t) != ItemKind.None;
 
-        /// <summary>What a def is, for its kind (ItemCardMath.KindOf): step 1's food, drink, drugs and medicine, step 2's art and materials.</summary>
+        /// <summary>What a def is, for its kind (ItemCardMath.KindOf): step 1's food, drink, drugs and medicine, step 2's art and materials, step 3's the rest.</summary>
         private static ItemSort SortOf(ThingDef d, Thing t)
         {
             var s = new ItemSort();
@@ -173,11 +196,14 @@ namespace ColonyCouncil
                 s.Resource = d.thingCategories != null && (d.IsWithinCategory(ThingCategoryDefOf.ResourcesRaw) || d.IsWithinCategory(ThingCategoryDefOf.Manufactured)
                                                           || d.IsWithinCategory(ThingCategoryDefOf.Chunks) || d.IsWithinCategory(ThingCategoryDefOf.StoneChunks));
                 s.ToUse = ToUse(d);
+                StepThreeSort(d, s);
             }
+            // A building in a crate (the piece inside a minified thing), read as furniture to place.
+            else if (d.category == ThingCategory.Building && t != null && t.ParentHolder is MinifiedThing) s.Minified = true;
             return s;
         }
 
-        /// <summary>Something to use, read, install or fire rather than build with: step 3's (a shell, a book, a techprint, a trainer, a genepack, a body part, an unfinished thing).</summary>
+        /// <summary>Something to use, read, install or fire rather than build with, never a material: step 3's own kinds (a shell, a book, a techprint, a trainer, a genepack, a body part, an unfinished thing).</summary>
         private static bool ToUse(ThingDef d)
         {
             if (d.IsShell || d.isTechHediff || d.isUnfinishedThing) return true;
@@ -220,6 +246,8 @@ namespace ColonyCouncil
             /// <summary>A material's own numbers and what is made of it, or a work of art's (step 2: Items/ItemCardMaterials.cs, Items/ItemCardArt.cs).</summary>
             public MatPart mat;
             public ArtPart art;
+            /// <summary>Step 3's own numbers (Items/ItemCardUses.cs).</summary>
+            public UsePart use;
         }
 
         private static readonly Dictionary<ThingDef, DefPart> parts = new Dictionary<ThingDef, DefPart>();
@@ -316,6 +344,7 @@ namespace ColonyCouncil
             Traders(p);
             if (p.kind == ItemKind.Material) ReadMaterial(p);
             else if (p.kind == ItemKind.Art) ReadArt(p);
+            else if (ItemCardMath.StepThree(p.kind)) ReadUse(p);
         }
 
         /// <summary>A drug's effects: each hediff its outcomes give (its stage at one dose, the game's words for it, how long it lasts, the mood of its thought), its tolerance and the needs it moves.</summary>
@@ -520,6 +549,7 @@ namespace ColonyCouncil
                 // A material's or a piece's own facts first: the kind's line in the head reads them.
                 if (m.kind == ItemKind.Material) LiveMaterial(m, p);
                 else if (m.kind == ItemKind.Art) LiveArt(m, p);
+                else if (ItemCardMath.StepThree(m.kind)) LiveUse(m, p);
                 Live(m, p);
                 if (colony)
                 {
@@ -527,10 +557,12 @@ namespace ColonyCouncil
                     Colony(m, p);
                     if (m.kind == ItemKind.Material) ColonyMaterial(m, p);
                     else if (m.kind == ItemKind.Art) ColonyArt(m, p);
+                    else if (ItemCardMath.StepThree(m.kind)) ColonyUse(m, p);
                 }
                 Rows(m, p);
                 if (m.kind == ItemKind.Material) RowsMaterial(m, p);
                 else if (m.kind == ItemKind.Art) RowsArt(m, p);
+                else if (ItemCardMath.StepThree(m.kind)) RowsUse(m, p);
                 m.tags = ItemCardMath.Tags(m.facts);
                 m.plain = ItemCardMath.Plain(m.facts);
             }
@@ -634,6 +666,9 @@ namespace ColonyCouncil
                     break;
                 case ItemKind.Art:
                     kind = ArtKindWords(m, p);
+                    break;
+                case ItemKind k when ItemCardMath.StepThree(k):
+                    kind = UseKindWords(m, p);
                     break;
                 default:
                     kind = !p.humanEdible ? W("CC_ItemCard_Kind_Feed")
@@ -806,9 +841,10 @@ namespace ColonyCouncil
                 {
                     f.ColdStore = true;
                 }
-                // Materials and art have their own stock and demand (ColonyMaterial, ColonyArt); a material's makers are among its sources.
-                if (f.Kind != ItemKind.Material && f.Kind != ItemKind.Art) Stock(m, p, people.Count);
-                if (f.Kind != ItemKind.Art) Making(m, p);
+                // Materials, art and furniture in a crate have their own stock (ColonyMaterial, ColonyArt, ColonyUse); a material's
+                // makers are among its sources; furniture is built, not made at a bench.
+                if (f.Kind != ItemKind.Material && f.Kind != ItemKind.Art && f.Kind != ItemKind.Furniture) Stock(m, p, people.Count);
+                if (f.Kind != ItemKind.Art && f.Kind != ItemKind.Furniture) Making(m, p);
             }
             Trade(m, p);
         }
