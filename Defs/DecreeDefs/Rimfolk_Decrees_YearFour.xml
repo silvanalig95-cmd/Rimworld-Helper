@@ -117,7 +117,7 @@
     <defName>Rimfolk_Decree_Foraging</defName>
     <kind>stores</kind>
     <label>foraging days</label>
-    <description>Six days of taking in what the land grows by itself: each morning up to twelve wild plants ripe for picking within reach of the colony (berries, wild healroot, agave, mushrooms) are marked for the growers' harvest. A tribe's berry days, a village's gleaning of the hedges, an industrial or spacer colony's survey of the land's harvest: the baskets come in the same. Growers spend their mornings in the brush rather than the fields. Those with a love of plants and ascetics like it; undergrounders mind it.</description>
+    <description>Six days of taking in what the land grows by itself: each morning up to twelve wild plants ripe for picking within reach of the colony that give food (berries, agave, mushrooms) are marked for the growers' harvest. A tribe's berry days, a village's gleaning of the hedges, an industrial or spacer colony's survey of the land's harvest: the baskets come in the same. Growers spend their mornings in the brush rather than the fields. Those with a love of plants and ascetics like it; undergrounders mind it.</description>
     <requestWhen><li>FoodLow</li><li>Autumn</li></requestWhen>
     <order>42</order>
     <durationDays>6</durationDays>
@@ -132,7 +132,7 @@
       <li><trait>Industriousness</trait><degree>2</degree><reaction>Dislike</reaction></li>
     </reactions>
     <effects>
-      <li>Each morning for six days, up to twelve wild plants ripe for picking within reach of the colony are marked for the growers' harvest, the nearest first (never a drug).</li>
+      <li>Each morning for six days, up to twelve wild plants ripe for picking within reach of the colony are marked for the growers' harvest, the nearest first: only plants that give food, never medicine, a drug or a tree with a beehive.</li>
       <li>The growers spend their mornings picking them rather than in the fields.</li>
       <li>Those with a love of plants and ascetics like it; undergrounders and the very industrious mind it.</li>
     </effects>

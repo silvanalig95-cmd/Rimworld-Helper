@@ -31,6 +31,16 @@ When you load a save after an update, a letter lists the newest round once. The 
     <rounds>
 
       <li>
+        <version>0.191.3</version>
+        <date>9 November 2026</date>
+        <title>Foraging is for food</title>
+        <points>
+          <li>Foraging days and the foraging decree now mark only wild plants that give food, such as berries, agave and mushrooms; wild healroot is left for you to pick when you choose.</li>
+          <li>The decree's description says so.</li>
+        </points>
+      </li>
+
+      <li>
         <version>0.191.2</version>
         <date>9 November 2026</date>
         <title>Foraging leaves the bees alone</title>

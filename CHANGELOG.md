@@ -5,6 +5,13 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## Foraging is for food
+
+*9 November 2026, version 0.191.3*
+
+- Foraging days and the foraging decree now mark only wild plants that give food, such as berries, agave and mushrooms; wild healroot is left for you to pick when you choose.
+- The decree's description says so.
+
 ## Foraging leaves the bees alone
 
 *9 November 2026, version 0.191.2*
