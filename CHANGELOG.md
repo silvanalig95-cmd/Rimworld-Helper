@@ -5,6 +5,13 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## Planning starts at a glance, as it should have
+
+*9 November 2026, version 0.186.1*
+
+- The planning window now really opens on Rooms, at a glance, every room plan in columns; it had opened on the list of room plans instead.
+- The Rooms tab also starts at a glance until you choose the list, whichever page the window opens on.
+
 ## The weapon in the picture, and trades for the whole colony
 
 *9 November 2026, version 0.186.0*

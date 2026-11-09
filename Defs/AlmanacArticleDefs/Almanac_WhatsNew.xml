@@ -31,6 +31,16 @@ When you load a save after an update, a letter lists the newest round once. The 
     <rounds>
 
       <li>
+        <version>0.186.1</version>
+        <date>9 November 2026</date>
+        <title>Planning starts at a glance, as it should have</title>
+        <points>
+          <li>The planning window now really opens on Rooms, at a glance, every room plan in columns; it had opened on the list of room plans instead.</li>
+          <li>The Rooms tab also starts at a glance until you choose the list, whichever page the window opens on.</li>
+        </points>
+      </li>
+
+      <li>
         <version>0.186.0</version>
         <date>9 November 2026</date>
         <title>The weapon in the picture, and trades for the whole colony</title>

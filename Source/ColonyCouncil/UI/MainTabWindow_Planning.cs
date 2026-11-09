@@ -52,8 +52,8 @@ namespace ColonyCouncil
         /// </summary>
         internal static void Opening()
         {
-            if (!asked && (ColonyCouncilMod.Settings?.planningOpensOn ?? PlanningOpensOn.AtAGlance) == PlanningOpensOn.AtAGlance && Order.Contains("Build"))
-                SetPage("Build");
+            if (!asked && (ColonyCouncilMod.Settings?.planningOpensOn ?? PlanningOpensOn.AtAGlance) == PlanningOpensOn.AtAGlance && Order.Contains(AtAGlance))
+                SetPage(AtAGlance);
             asked = false;
         }
 
@@ -63,11 +63,22 @@ namespace ColonyCouncil
             Opening();
         }
 
-        /// <summary>The mode last looked at in one of the window's views (its first before any).</summary>
+        /// <summary>
+        /// Rooms, At a glance: every room plan in columns (the page "Rooms"; the page "Build" is the Rooms view's list). The
+        /// window opens on it, and the Rooms view shows it until another of its modes is looked at.
+        /// </summary>
+        internal const string AtAGlance = "Rooms";
+
+        /// <summary>
+        /// The mode last looked at in one of the window's views; before any, the view's first, except the Rooms view, which
+        /// starts at a glance.
+        /// </summary>
         internal static string LastIn(string view)
         {
             if (view == null || !Views.Contains(view)) return null;
-            return lastInView.TryGetValue(view, out var p) ? p : PagesMath.ModesOf(RimfolkWindow.Planning, view)[0];
+            if (lastInView.TryGetValue(view, out var p)) return p;
+            var modes = PagesMath.ModesOf(RimfolkWindow.Planning, view);
+            return modes.Contains(AtAGlance) ? AtAGlance : modes[0];
         }
 
         private static void SetPage(string p)

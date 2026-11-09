@@ -12,6 +12,11 @@ tree at once, alongside whatever runs. Each piece is merged as its own release, 
 
 ## State (5 November 2026)
 
+- 0.186.1, Planning opens at a glance for real (9 November 2026, the player's screenshot: "at a glance should be default,
+  not list, it's a much better overview"). 0.179.1 opened the window on the page "Build", which is the Rooms view's List;
+  "At a glance" is the page "Rooms" (`RoomsPanel`). `MainTabWindow_Planning.Opening` now sets `AtAGlance` ("Rooms"), and
+  `LastIn` starts the Rooms view at a glance until another of its modes is looked at (also with the setting on "the
+  page last looked at").
 - 0.186.0, weapons you can judge at a glance, the player's follow-ups (9 November 2026): "always have an image of the item included ... it can have a prominent spot",
   "where do i see the weapon recommendation in this ui mod?", and trades that help the colony even when one gives up some,
   with a warning for a lucky weapon that never blocks. DESIGN.md "The weapon you can see, and trades for the colony" has
