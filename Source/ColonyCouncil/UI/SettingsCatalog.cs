@@ -643,6 +643,10 @@ namespace ColonyCouncil
             Toggle("ownLook", "CC_Settings_OwnLook", "CC_SetNote_OwnLook");
             // Rimfolk's letters as its own cards (UI/EventCards/, stage 3 of the look): only with its own look.
             Toggle("eventCards", "CC_Settings_EventCards", "CC_SetNote_EventCards", "ownLook");
+            // A colonist's card (UI/ColonistCard/, stage 3 of the look), and its ways in from the colonist bar and the inspect pane.
+            Toggle("colonistCard", "CC_Settings_ColonistCard", "CC_SetNote_ColonistCard");
+            Toggle("colonistCardBar", "CC_Settings_ColonistCardBar", "CC_SetNote_ColonistCardBar", "colonistCard,deepHooks");
+            Toggle("colonistCardPane", "CC_Settings_ColonistCardPane", "CC_SetNote_ColonistCardPane", "colonistCard,deepHooks");
             Toggle("windowsMove", "CC_Settings_WindowsMove", "CC_SetNote_WindowsMove");
             var places = Action("windowsPlaceReset", "CC_Settings_WindowsPlaceReset", null, "CC_SetNote_WindowsPlaceReset", "windowsMove");
             places.covers = new[] { "windowPlaces" };

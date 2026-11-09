@@ -13,6 +13,8 @@ namespace ColonyCouncil
     /// what filled it ("In good heart: friends close by and a purpose."); and the last release while it's recent. Under
     /// them, what would help with its buttons (Heart/HeartAdvice.cs), and the day off among the card's acts at its foot
     /// (Heart/HeartTimeOff.cs). The meters for any colonist with a heart; the lines only with something to speak of.
+    /// This is the small card's (a colonist's whole story in a drawer, a prisoner's card); a colonist's own card
+    /// (UI/ColonistCard/) draws the same meters and day off through the Mood tab's glance in its Now part.
     /// </summary>
     [StaticConstructorOnStartup]
     public static class HeartCard

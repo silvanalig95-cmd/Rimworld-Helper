@@ -163,6 +163,7 @@ namespace ColonyCouncil
         /// <summary>The window closed: its place kept (if it moved since it was last written).</summary>
         public void Closed(Window w)
         {
+            owned.Remove(this);
             if (mode != Mode.None) End(w);
             mode = Mode.None;
             if (!MovesOn) return;
@@ -374,9 +375,25 @@ namespace ColonyCouncil
             var s = ColonyCouncilMod.Settings;
             if (s != null) s.windowPlaces = new List<string>();
             foreach (var f in all) f.known = false;
+            foreach (var f in owned) f.known = false;
         }
 
         private static readonly List<WindowFrame> all = new List<WindowFrame>();
+
+        /// <summary>The frames of their own of the windows open now that may be open several at a time (<see cref="Own"/>).</summary>
+        private static readonly List<WindowFrame> owned = new List<WindowFrame>();
+
+        /// <summary>
+        /// A frame of its own for one of the windows of a key that may be open several at a time (a colonist's card each, one
+        /// per colonist): it moves, sizes and goes large on its own, and where it was left is remembered under the key, where
+        /// the next one opens. Known to <see cref="Forget"/> while its window is open.
+        /// </summary>
+        public static WindowFrame Own(string key, float minW, float minH, float bottom)
+        {
+            var made = new WindowFrame(key, minW, minH, bottom);
+            owned.Add(made);
+            return made;
+        }
 
         /// <summary>
         /// The frame of the windows of one key, made the first time and kept (a trade window is made anew each trade; its
@@ -419,6 +436,16 @@ namespace ColonyCouncil
         {
             FramedWindowsMath.TryKey(key, out var k);
             frame = WindowFrame.For(key, k.leastW, k.leastH, k.Bottom);
+        }
+
+        /// <summary>
+        /// A window of a key in <see cref="FramedWindowsMath.Keys"/> that may be open several at a time (<paramref name="ownFrame"/>):
+        /// each moves and sizes on its own, where the last was left remembered under the key (<see cref="WindowFrame.Own"/>).
+        /// </summary>
+        protected FramedWindow(string key, bool ownFrame)
+        {
+            FramedWindowsMath.TryKey(key, out var k);
+            frame = ownFrame ? WindowFrame.Own(key, k.leastW, k.leastH, k.Bottom) : WindowFrame.For(key, k.leastW, k.leastH, k.Bottom);
         }
 
         /// <summary>The title in the title bar.</summary>

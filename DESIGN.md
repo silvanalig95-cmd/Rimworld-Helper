@@ -9703,6 +9703,110 @@ glance during play (less text, more shape), and the panels as they were stay beh
   weapons only where a mod or the game counts them as resources); the compact bar in the look; the hover card in the
   corner with its link.
 
+#### Rimfolk's own look, stage 3, point 4: the colonist card (docs/design/rimfolk-look.md)
+
+The player's words (9 November 2026): "colonist card would be cool!", to "A colonist card: one window per colonist with
+portrait, heart bars, mood, skills and passions, kit (weapons and armour with ratings), wishes, life goal, standing side by
+side; from the colonist bar and Rimfolk's windows." The window is `UI/ColonistCard/ColonistCardWindow.cs`, its model
+`ColonistCardModel.cs`, its rules `ColonistCardMath.cs` (pure, linked in the tests), the ways in from the game's own
+interface `ColonistCardEntry.cs`. No saved data, no Sched slot; two Harmony patch classes, each applied on its own.
+
+- **What it replaced**: "the colonist's card" was the small card of the card system (`UI/Cards/`, `CardKind.Colonist`:
+  a head, the Story page with the card's own parts and the sections other parts register, `HeartCard`'s meters, lines and
+  advice among them), shown in a window's drawer or the floating `Window_Card`. **A colonist's card is now the colonist
+  card**: `Cards.Open` sends one of the colony's own, alive (a colonist or a slave, `ColonistCardWindow.Fits`), to it,
+  so every way it opened before opens it (every name link and portrait in Rimfolk's windows, the People table's rows, the
+  Moods page, This week, the Defenses page, the on-screen panels' names, the Story glance's friends and rivals, the Social
+  tab's column, previews, search). Prisoners, the dead and everyone else keep the small card. The small card still opens
+  for a colonist through "Whole story" (`MainTabWindow_Council.OpenPerson`: the drawer beside the People table, with
+  their whole story), and has an act "Their card" back. The setting "Rimfolk's colonist card" (`colonistCard`, on, How
+  you're told, beside the event cards) off: everything as before.
+- **The window** (key "ColonistCard", least 460 by 440, first 1100 by 740, beside play above the bottom bar): one per
+  colonist, several open at once (`onlyOneOfTypeAllowed` off). **Each card moves and sizes on its own; they share one
+  remembered place**: a new frame of its own for each card (`WindowFrame.Own`, known to "Put Rimfolk's windows back" while
+  open), where the last one was moved, sized or made large remembered under the key; a card opened while others are open
+  steps a title bar's height down and right of any already there, so every title bar shows (`ColonistCardMath.Cascaded`).
+  Not per colonist: a colony's thirty would each leave a line in the settings file, and colonists' ids change from game
+  to game. Opening a colonist whose card is open brings it to the front. **The arrows** in the title bar step to the
+  previous or next colonist in the colonist bar's order (round the ends), past any whose card is open in another window,
+  so it stays one card per colonist (`ColonistCardMath.Step`); their tooltips name who.
+- **The header**: their whole figure as dressed from the game's portrait cache (100 by 140, a tile in the look); under
+  it the heart's line as the colonist bar draws it (strain in its band's colour, the good side in green, each as long as
+  it is full, from the bar's threshold; its tooltip the heart's line in words); their full name; who they are in the
+  Story tab's one line (`StoryView.Who`: the name the colony knows them by, office or title, age, where they come from;
+  in full on hover); chips for a break, downed, drafted, their role in the ideoligion (Ideology, in its colour and icon),
+  the Empire's title (Royalty: the Empire keeps its own titles and honour), and where they are (a caravan, away, another
+  map).
+- **At a glance**, in columns that fit the width (`ColonistCardMath.Columns`: 240 wide at least, one to four; which part
+  goes in which column fixed for each count, so nothing jumps as a part grows: one stacks them, two put Now and Skills
+  left and Kit and Life right, three keep Skills under Now), the body scrolling as one:
+  - **Now**: the Mood tab's bar with the break lines and where it heads (`MoodView.DrawBar`), then the Mood tab's glance
+    as it is (`MoodGlance.Draw`: the heart's two meters with the day off's place, "Give a day off" or the day off or bad
+    afternoon under way with "End it early"; the mood's sentence; what weighs and lifts most, three each; what the bands
+    do; the top advice with its buttons).
+  - **Skills**: every skill in the game's order (`listOrder`), a bar out of 20 with the level, the passion's mark (the
+    game's, or Vanilla Skills Expanded's own from its passion defs, read softly by name: `Passions`), those they can't
+    do marked "can't" and greyed; "Best at ..." names up to three at 6 or more (a burning passion before an interest at the
+    same level), shown in gold. The tooltip: level and the game's word for it, the skill's description, the passion and
+    how fast they learn it, the experience to the next level, an aptitude.
+  - **Kit**: the weapon in hand, the off hand (Dual Wield) and the weapons carried (Simple Sidearms' sidearms named so),
+    each with its picture in its quality's frame (`UiKit.ItemPortrait`), the rating's badge (`WeaponLive`), what it is to
+    them and its rating for them (`WeaponLive.ForColonist`) or that they can't use it; the kit's gaps and better weapons
+    as the gear tab has them (`WeaponPick.Standing`, the gear tab's heads, acts and tooltips: Equip, As sidearm, a trade),
+    and an empty slot nothing in storage fills; then the apparel by slot (head, body, legs, hands, feet, belt; a piece
+    covering the body listed with it, a belt's layer first: `ColonistCardMath.SlotOf`), each with its picture, badge
+    (`ApparelLive`), its rating for them (`ApparelLive.ForColonist`) and what is left of a worn piece; and whether they
+    are dressed for the season ("no warm coat": the game's comfortable range as dressed against the season's coldest
+    and hottest where they are, `ApparelLive.Climate`, a degree's leeway). A click on any item opens Rimfolk's weapon or
+    apparel card for them, the game's card for an item neither rates. **A hook for the apparel suggestions**
+    (`ColonistCardHooks.KitLines`): lines under the apparel with an act each, built with the kit; not used yet (the
+    apparel suggestions are another piece of work).
+  - **Life**: the Story tab's glance as it is (`StoryView.Glance`, built alone without the page's sections: their
+    character in words, life goal with its bar, the story they're living, the wish with "Show me" and "Promise", quirks
+    as chips, standing with the trust meter, closest friends and rivals with portraits, a click opening their card,
+    the newest line of their history); then the lines other parts add to a colonist's card (a ward, a ransom, a match:
+    `CardSections` of `CardKind.Colonist`), less what the card shows its own way (the heart's lines, the name).
+- **The foot**: Mood, Story, Gear and Health (select them, the camera going to them, and open the game's tab: the Needs tab
+  where Rimfolk's Mood tab is off; greyed with why for someone away), "Go to them" (the camera only), "Select", "Whole
+  story" (the council window's People table with their whole story in the drawer), and "More" when other parts let the
+  colony do something from a colonist's card (a ward's guardian, an envoy recalled; each greyed with why not), the day
+  off left to the Now part's place. Two rows when narrow (`ColonistCardMath.FootRows`).
+- **The ways in from the game's interface**, each leaving the game's own clicks as they are:
+  - **The colonist bar: Ctrl and a click on a portrait** (Command on a Mac). `Patch_ColonistCardBarClick`, a prefix on
+    `ColonistBarColonistDrawer.HandleClicks` beside the badges' own: it takes only a left press with Ctrl on a colonist's
+    portrait (`Event.Use`, so the bar neither selects nor starts a drag from it) and never skips the game's method. A
+    plain click still selects, a double-click still goes to them, the right button's drag still reorders, Shift and a click
+    still adds to the selection. A right-click was not taken: the bar reorders by dragging with it. Setting "Ctrl-click
+    on the colonist bar opens the card" (`colonistCardBar`, on, needs the card and the deeper hooks).
+  - **The inspect pane: a small card button by the name** of a colonist selected alone. `Patch_ColonistCardPaneButton`,
+    a postfix on `MainTabWindow_Inspect.DoInspectPaneButtons(Rect, ref float lineEndWidth)`: the button left of the game's
+    own buttons there (the info card, the response to danger), counted in the line's end so the name makes room for it, as
+    the game's own do. Not a gizmo: the player asked for the day off to leave the colonist's command bar. Setting "A card
+    button on the inspect pane" (`colonistCardPane`, on, needs the card and the deeper hooks).
+  - **An event card's "who is involved"**: a small card button at the right of each colonist's row
+    (`ColonistCardEntry.RowButton`); the rest of the row still goes to them on the map.
+  - The drawer's small card for a colonist: "Their card".
+- **Speed**: the model is built when the card opens, its live parts twice a second (the mood and its glance, the heart's
+  line, the header's chips, the arrows' neighbours), its heavy parts every three seconds (who they are, skills, kit with
+  its ratings and suggestions, life, the other parts' lines and acts, the foot's tooltips) and at once after an act on the
+  card or a promise anywhere (`StoryView.Staled`); before the window draws, once a frame at most. Drawing reads the model:
+  nothing translated, rated, read from the map or the history while drawn (the words translated once). The ratings
+  themselves are the weapon and apparel readers' own caches (an hour each).
+- **New icon**: ColonistCard (a card with someone's head and shoulders and three lines; `Tools/make_icons.py`, only that
+  PNG written). **Keys** in `Languages/English/Keyed/Rimfolk_ColonistCard.xml`. **Tests**: `Tools/Tests/ColonistCardTests.cs`
+  (the columns from the least to 4K made large and which part goes where, the header and the foot at the least, building
+  twice a second and every three, the arrows' step, eight cards open apart and on every screen, the heart's line, the
+  skills' bars and best, the worn pieces' slots, dressed for the season, every colonist's card opening it, several at
+  once in frames of their own, the ways in that leave the game's clicks alone, nothing made while drawn, what it reuses,
+  the settings and every word).
+- **Not verified without the game**: the card's look in both looks at its least and made large; the portrait's size and
+  framing from the cache; the heart's line under it; the inspect pane button's place beside the game's own (that the
+  game's buttons count themselves in the line's end in 1.6 and 1.7 as their code reads, and other mods' buttons there);
+  the Ctrl-click on the bar with every other click unchanged (and on a Mac); several cards open, moved and made large, the
+  remembered place and the step down; the arrows across maps and caravans; Vanilla Skills Expanded's passion marks; the
+  tabs opening from the foot for someone on another map; the weapon and apparel rows, badges and suggestions on real
+  colonists (Simple Sidearms, Dual Wield); the season's verdict on a real map; the event card's button.
+
 #### The journey planner: who to bring and what to pack
 
 The player's request (5 November 2026): a better overview of the colonists in "Plan a journey", so they can judge

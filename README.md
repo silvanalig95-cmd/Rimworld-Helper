@@ -89,13 +89,18 @@ and close at the card's foot. It pauses the game and waits for an answer as the 
 like Rimfolk's other windows and opens where you left it. The game's own letters and other mods' stay as they are;
 "Rimfolk's event cards" in the settings (on, with Rimfolk's own look) brings back the game's window for Rimfolk's too.
 
+**A colonist's card.** One window per colonist with all of them at a glance (see **A colonist's card** under
+**Story, Culture and Social**): their portrait, how they are now, their skills, kit and life, side by side. It opens
+from any colonist's name or portrait in Rimfolk's windows, panels and tabs, from Ctrl and a click on their portrait in
+the colonist bar, and from the small card button by their name on the inspect pane.
+
 The **council** window, in four views along its top, each with its modes as small buttons under its title and a "?"
 beside the title that opens its page of the Almanac:
 
 | View | Modes | What's there |
 |---|---|---|
 | **This week** | | the one inbox: what you follow, what needs you, what is under way, what's coming, how people are and the plan |
-| **People** | Table · Moods · Bonds · Ideoligions · Renown | all colonists in one sortable table, with a colonist's card (their whole story, their dreams and journal) in the drawer beside it; every mood added up; friendships, rivalries, groups, vendettas, secrets; with Ideology, the colony's ideoligions; each of its people by their one name, at home and beyond its walls |
+| **People** | Table · Moods · Bonds · Ideoligions · Renown | all colonists in one sortable table, a row opening the colonist's card, and their whole story (their dreams and journal) in the drawer beside it from the card's "Whole story"; every mood added up; friendships, rivalries, groups, vendettas, secrets; with Ideology, the colony's ideoligions; each of its people by their one name, at home and beyond its walls |
 | **Council** | Offices and decrees · Ambition · Our ways · Wishes · Dilemmas | decrees, petitions and the council's offices with their elections (five, up to fourteen seats in a bigger colony); the current ambition and meetings; what the colony is known for and its traditions; open wishes, promises kept and trust; questions waiting and how the answers went |
 | **Colony** | Overview · Calendar · Chronicle | the colony at a glance (numbers, how they moved this week, graphs of mood, trust, wealth and people over the last weeks); the colony calendar; everything that happened since the first day, read from the one history, every answer with what came of it (filter by wishes, council, people, strangers, world events, losses, and every dream and journal) |
 
@@ -1091,6 +1096,34 @@ Select a colonist and three places in their inspect panel tell Rimfolk's side of
   draws beside the game's card; with another mod keeping the tab at a width of its own, or a screen too narrow, it
   stays out of the way, and the Story tab shows those parts again. **Rimfolk in the Social tab** (How you're told
   page) turns it off.
+
+### A colonist's card
+All of one colonist in a window of its own, beside play. At the top their whole figure as dressed, with the heart's line
+under it as the colonist bar draws it, their full name, who they are in one line (as the Story tab has it), and a tag for
+a break, being down or drafted, their role in the ideoligion, a title of the Empire, or being away. Under it, side by
+side as the window allows (one column when narrow, up to four when wide):
+- **Now**: their mood bar with the break lines and where it is heading, the heart's two meters with "Give a day off"
+  (or the day off or bad afternoon under way, with "End it early"), what weighs on them and lifts them most, what the
+  heart's bands are doing to them, and what would help.
+- **Skills**: every skill as a bar with its level and passion (Vanilla Skills Expanded's own marks where it is loaded),
+  what they are best at in gold, and those they can't do marked; hover one for how fast they learn it and how far to
+  the next level.
+- **Kit**: the weapon in hand, the off hand and the sidearms they carry, then their apparel from head to feet, each with
+  its picture, its rating badge and its rating for them; click one for its card. What is missing from their kit and a
+  better weapon in storage, with the gear tab's buttons (Equip, As sidearm, a trade), and whether they are dressed for
+  the season where they are.
+- **Life**: the Story tab's glance: life goal with its bar, their wish with "Show me" and "Promise", quirks, standing in
+  the colony and their closest friends and rivals (click one for their card).
+
+At its foot: their Mood, Story, Gear and Health tabs, "Go to them", "Select", "Whole story" (the People table with their
+whole story beside it) and "More" for anything else the colony can do about them. Several cards can be open at once,
+one per colonist; each moves and sizes on its own, and the arrows in the title bar step to the previous or next colonist
+in the colonist bar's order. It opens wherever a colonist's name or portrait opened their card before (the People table,
+the Moods page, This week, the Defenses page, the panels, the Story tab's friends and rivals, an event card's "who is
+involved"), from **Ctrl and a click on a portrait in the colonist bar** (a plain click still selects, a double-click
+still goes to them), and from the **small card button by a selected colonist's name** on the inspect pane. Prisoners and
+the dead keep the smaller card. **Rimfolk's colonist card**, **Ctrl-click on the colonist bar opens the card** and **A
+card button on the inspect pane** (How you're told, all on) switch each off.
 
 ### Life goals
 A few days after settling in, each colonist sets their heart on something to do before they die: master a craft, marry
@@ -4796,7 +4829,8 @@ to three in the settings) for someone about to leave, a wish that has waited pas
 breaking, wavering certainty (with Ideology) or a promise at risk. The wish and the promise are read from This week's
 Needs you, so a badge, This week and the council panel always speak of the same things. A calm colonist shows nothing; when more apply, the most
 pressing win. Hover a badge for what it means, how big it is and what helps; click it for the Mood tab, the council's
-Wishes page or the Culture tab. Dragging and selecting work as before anywhere but a badge. Each kind, the ring's
+Wishes page or the Culture tab. Dragging and selecting work as before anywhere but a badge. Ctrl and a click on a
+portrait opens that colonist's card (see **A colonist's card**). Each kind, the ring's
 early warning, the wish badge's threshold, the size, the corner and how many show are all in the settings
 (How you're told, "Colonist bar"); it is one of the deeper game hooks.
 
@@ -4915,7 +4949,8 @@ The pages:
   defense and planning buttons, the count on the council button, a "more" button for the bottom bar's buttons you
   put away, which page the council window opens on (**This week** by default, or the last page), the Almanac's text
   size, the window size, **Rimfolk's own look**, **Rimfolk's event cards** and **Rimfolk's windows move and resize**
-  (all on) with "Put Rimfolk's windows back", the region map's reach; names and cards (previews and their pause); the **on-screen panels**
+  (all on) with "Put Rimfolk's windows back", **Rimfolk's colonist card** with its ways in from the colonist bar and the
+  inspect pane (all on), the region map's reach; names and cards (previews and their pause); the **on-screen panels**
   (the classic panels or Rimfolk's look, each panel's options, lock, hiding, the game's own alert list, look, text size,
   the food and mood lines, putting them back) and the **hover card** (the game's tooltip under it too); the **badges on the colonist bar** (each kind,
   the break ring or dot and its early warning, the wish badge's threshold, size, corner and how many show).

@@ -933,6 +933,21 @@ def g_kit_gap():
     return minus(grow(blade, 9), blade)
 
 
+def g_colonist_card():
+    """A colonist's card: a card's frame with someone's head and shoulders on the left and three lines on the right."""
+    m = new()
+    rect(m, 10, 40, 246, 216, r=24)
+    rect(m, 32, 62, 224, 194, r=10, fill=OFF)
+    face = new()
+    bust(face, 90, 100, 24, 78, 44)
+    clip_below(face, 176)
+    m = union(m, face)
+    rect(m, 138, 92, 204, 110, r=8)
+    rect(m, 138, 124, 204, 142, r=8)
+    rect(m, 138, 156, 184, 174, r=8)
+    return m
+
+
 # Almanac categories
 
 def g_cat_basics():
@@ -1113,6 +1128,8 @@ GLYPHS = [
     # on-screen panels
     ("Panels", g_panels), ("Power", g_power), ("Temperature", g_temperature), ("Research", g_research),
     ("Trend", g_trend), ("Vitals", g_vitals), ("Stock", g_stock), ("DayOff", g_day_off), ("KitGap", g_kit_gap),
+    # a colonist's card (Source/ColonyCouncil/UI/ColonistCard/)
+    ("ColonistCard", g_colonist_card),
     # almanac categories
     ("CatBasics", g_cat_basics), ("CatFood", g_cat_food), ("CatDefense", g_cat_defense), ("CatHealth", g_cat_health),
     ("CatManagement", g_cat_management), ("CatLowTech", g_cat_lowtech), ("CatRoomDesign", g_cat_roomdesign),

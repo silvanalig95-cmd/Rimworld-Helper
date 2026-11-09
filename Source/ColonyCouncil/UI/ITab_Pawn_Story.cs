@@ -181,7 +181,11 @@ namespace ColonyCouncil
         {
             foreach (var c in caches) c.at = -1f;
             foreach (var c in cardCaches) c.at = -1f;
+            Staled++;
         }
+
+        /// <summary>How many times the models were let go: a colonist's card builds its glance again when this moves.</summary>
+        public static int Staled { get; private set; }
 
         // ---------------- Who they are, in one line ----------------
 
@@ -404,54 +408,9 @@ namespace ColonyCouncil
             var who = Refs.Of(p);
 
             // ---- At a glance ----
-            // Their character in words (the Character section has the bars).
-            var words = character.FirstOrDefault(c => c.key == "character");
-            if (words != null && words.lines.Count > 0)
-            {
-                g.words = words.lines[0];
-                g.wordsTip = words.tips.Count > 0 ? words.tips[0] : null;
-            }
-            // Their life goal, the story they're living (Arcs/) and their wish before the council.
-            g.BuildGoal(comp, p);
-            g.story = ArcView.Now(p, out g.storyTip, out g.stage, out g.stages);
-            g.BuildWish(comp, p);
-            // Quirks, keepsakes, vendettas and nemeses: a tag each, what it means in its tooltip; in full in their section.
             var quirks = new Section { key = "quirks", header = "CC_SGl_Sec_Quirks".Translate(), icon = Icons.Heart };
-            if (s.quirks)
-                foreach (var q in comp.quirks.Of(p))
-                {
-                    g.tags.Add(new UiKit.PillSpec(q.Label.CapitalizeFirst(), UiKit.HeaderColor, null, QuirkEffects.Tip(q)));
-                    string from = QuirkEffects.From(q);
-                    quirks.lines.Add(((from.NullOrEmpty() ? q.Label : "CC_QuirkFx_NameFrom".Translate(q.Label, from).Resolve()).CapitalizeFirst(), UiKit.Ink));
-                    quirks.lines.Add((QuirkEffects.Effects(q) + ". " + QuirkEffects.Lasts(q).CapitalizeFirst() + ".", Faint));
-                }
-            if (s.heirlooms)
-                foreach (var h in comp.legacy.heirlooms.Where(h => h.heir == p && h.thing != null && !h.thing.Destroyed))
-                {
-                    string line = "CC_Story_Heirloom".Translate(h.ofName, h.thing.def.label).Resolve();
-                    g.tags.Add(new UiKit.PillSpec("CC_Story_HeirloomTag".Translate(h.ofName, h.thing.def.label).Resolve(), UiKit.LossColor, Icons.Heart, line));
-                    quirks.lines.Add((line, Faint));
-                }
-            if (s.vendettas)
-                foreach (var v in comp.vendettas.vendettas.Where(v => v.avenger == p && v.faction != null))
-                {
-                    string line = v.LineKey.Translate(p.LabelShort, v.faction.Name, v.victim, v.kills, Vendetta.KillsToSettle).Resolve();
-                    g.tags.Add(new UiKit.PillSpec("CC_Story_VendettaTag".Translate(v.faction.Name).Resolve(), v.settled ? Faint : UiKit.Bad, Icons.Vendetta, line,
-                        ThingRefs.Of(v.faction)));
-                    quirks.lines.Add((PaneLinks.Mark(line, v.faction), v.settled ? Faint : UiKit.Bad));
-                }
-            if (s.nemeses && comp.nemeses != null)
-                foreach (var n in comp.nemeses.Of(p).OrderBy(n => n.ended))
-                {
-                    string line = "CC_Story_Nemesis".Translate(n.Line).Resolve();
-                    bool known = n.pawn != null && !n.pawn.Discarded;
-                    g.tags.Add(new UiKit.PillSpec("CC_Story_Nemesis".Translate(n.pawn?.LabelShort ?? n.name).Resolve(), n.ended ? Faint : UiKit.Bad, Icons.Nemesis, line,
-                        known ? ThingRefs.Of(n.pawn) : ThingRef.None));
-                    quirks.lines.Add((known ? PaneLinks.Mark(line, n.pawn) : line, n.ended ? Faint : UiKit.Bad));
-                }
-            // Their standing, closest friends and rivals, and the newest line of their history.
-            g.BuildPeople(comp, p);
-            g.BuildRecent(p);
+            var words = character.FirstOrDefault(c => c.key == "character");
+            Glance(comp, p, g, words, quirks);
 
             // ---- The sections, in order of use ----
             // Their story: the newest lines of their history, the way to the whole of it, and the stories they lived through (Arcs/).
@@ -599,6 +558,76 @@ namespace ColonyCouncil
                 }
             }
             return list;
+        }
+
+        /// <summary>
+        /// Their story at a glance alone, without the sections under it (a colonist's card, UI/ColonistCard/): built from the
+        /// same sources and drawn the same way. <paramref name="select"/>: a friend's portrait selects them rather than opening
+        /// their card.
+        /// </summary>
+        public static StoryGlance Glance(CouncilGameComponent comp, Pawn p, bool select)
+        {
+            var g = new StoryGlance { pawn = p, select = select };
+            if (comp == null || p == null) return g;
+            Glance(comp, p, g, Persona.Eligible(p) ? CharacterView.Character(p) : null, null);
+            return g;
+        }
+
+        /// <summary>
+        /// The glance's parts: their character in words (<paramref name="words"/>, the character page's first section), life
+        /// goal, the story they're living, wish, the quirks' tags (each written in full into <paramref name="quirks"/> too when
+        /// the page has its section), standing, friends and rivals, and the newest line of their history.
+        /// </summary>
+        private static void Glance(CouncilGameComponent comp, Pawn p, StoryGlance g, CharacterSection words, Section quirks)
+        {
+            var s = ColonyCouncilMod.Settings;
+            // Their character in words (the Character section has the bars).
+            if (words != null && words.lines.Count > 0)
+            {
+                g.words = words.lines[0];
+                g.wordsTip = words.tips.Count > 0 ? words.tips[0] : null;
+            }
+            // Their life goal, the story they're living (Arcs/) and their wish before the council.
+            g.BuildGoal(comp, p);
+            g.story = ArcView.Now(p, out g.storyTip, out g.stage, out g.stages);
+            g.BuildWish(comp, p);
+            // Quirks, keepsakes, vendettas and nemeses: a tag each, what it means in its tooltip; in full in their section.
+            if (s.quirks)
+                foreach (var q in comp.quirks.Of(p))
+                {
+                    g.tags.Add(new UiKit.PillSpec(q.Label.CapitalizeFirst(), UiKit.HeaderColor, null, QuirkEffects.Tip(q)));
+                    if (quirks == null) continue;
+                    string from = QuirkEffects.From(q);
+                    quirks.lines.Add(((from.NullOrEmpty() ? q.Label : "CC_QuirkFx_NameFrom".Translate(q.Label, from).Resolve()).CapitalizeFirst(), UiKit.Ink));
+                    quirks.lines.Add((QuirkEffects.Effects(q) + ". " + QuirkEffects.Lasts(q).CapitalizeFirst() + ".", Faint));
+                }
+            if (s.heirlooms)
+                foreach (var h in comp.legacy.heirlooms.Where(h => h.heir == p && h.thing != null && !h.thing.Destroyed))
+                {
+                    string line = "CC_Story_Heirloom".Translate(h.ofName, h.thing.def.label).Resolve();
+                    g.tags.Add(new UiKit.PillSpec("CC_Story_HeirloomTag".Translate(h.ofName, h.thing.def.label).Resolve(), UiKit.LossColor, Icons.Heart, line));
+                    quirks?.lines.Add((line, Faint));
+                }
+            if (s.vendettas)
+                foreach (var v in comp.vendettas.vendettas.Where(v => v.avenger == p && v.faction != null))
+                {
+                    string line = v.LineKey.Translate(p.LabelShort, v.faction.Name, v.victim, v.kills, Vendetta.KillsToSettle).Resolve();
+                    g.tags.Add(new UiKit.PillSpec("CC_Story_VendettaTag".Translate(v.faction.Name).Resolve(), v.settled ? Faint : UiKit.Bad, Icons.Vendetta, line,
+                        ThingRefs.Of(v.faction)));
+                    quirks?.lines.Add((PaneLinks.Mark(line, v.faction), v.settled ? Faint : UiKit.Bad));
+                }
+            if (s.nemeses && comp.nemeses != null)
+                foreach (var n in comp.nemeses.Of(p).OrderBy(n => n.ended))
+                {
+                    string line = "CC_Story_Nemesis".Translate(n.Line).Resolve();
+                    bool known = n.pawn != null && !n.pawn.Discarded;
+                    g.tags.Add(new UiKit.PillSpec("CC_Story_Nemesis".Translate(n.pawn?.LabelShort ?? n.name).Resolve(), n.ended ? Faint : UiKit.Bad, Icons.Nemesis, line,
+                        known ? ThingRefs.Of(n.pawn) : ThingRef.None));
+                    quirks?.lines.Add((known ? PaneLinks.Mark(line, n.pawn) : line, n.ended ? Faint : UiKit.Bad));
+                }
+            // Their standing, closest friends and rivals, and the newest line of their history.
+            g.BuildPeople(comp, p);
+            g.BuildRecent(p);
         }
 
         /// <summary>A wish before the council in their wishes' section: what it is, then what fulfils it, how long they've waited and whether it's promised.</summary>

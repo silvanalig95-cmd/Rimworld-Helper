@@ -25,7 +25,8 @@ namespace ColonyCouncil
 
         /// <summary>
         /// Opens a thing's card where the player is: the drawer in sight (the council, region or planning window's, or one
-        /// another window holds), else the floating card. Nothing for none.
+        /// another window holds), else the floating card. One of the colony's own opens their colonist card, a window of its
+        /// own (UI/ColonistCard/), wherever their name or portrait is. Nothing for none.
         /// </summary>
         public static void Open(ThingRef r)
         {
@@ -33,6 +34,11 @@ namespace ColonyCouncil
             Previews.Hide();
             try
             {
+                if (ColonistCardWindow.Takes(r, out var colonist))
+                {
+                    ColonistCardWindow.Open(colonist);
+                    return;
+                }
                 var host = Drawer.Active;
                 if (host != null)
                 {
@@ -298,6 +304,8 @@ namespace ColonyCouncil
             var goal = comp != null && ColonyCouncilMod.Settings.aspirations ? comp.aspirations.Active(p) : null;
             if (goal != null) m.Glance(goal.Goal);
             var pawn = p;
+            // Their colonist card (UI/ColonistCard/): the whole of them at a glance, in a window of its own.
+            if (ColonistCardWindow.On && ColonistCardWindow.Fits(p)) m.Act(T("CC_CCard_Open"), null, () => ColonistCardWindow.Open(pawn));
             m.Act(T("CC_Card_Act_Roster"), null, () => MainTabWindow_Council.OpenPerson(pawn));
             m.Act(T("CC_Card_Act_Jump"), p.Spawned ? null : T("CC_Card_Why_NotOnMap", p.LabelShort.Named("NAME")), () =>
             {
