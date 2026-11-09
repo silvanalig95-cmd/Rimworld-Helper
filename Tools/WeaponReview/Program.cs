@@ -188,6 +188,7 @@ WeaponTagFacts Facts(Reviewed r)
     var research = Inputs.Arr(r.W, "research").Select(x => x.ToString()).ToList();
     f.Research = string.Join(" and ", research.Select(Inputs.Words));
     f.ResearchTech = Inputs.S(r.W, "researchTech");
+    f.HardToGet = !Inputs.B(r.W, "made") && !Inputs.B(r.W, "carriedByKinds");
     f.RatingAtSkill4 = r.BySkill.TryGetValue("4", out var a4) ? a4 : r.Rating.Overall;
     f.RatingAtSkill16 = r.BySkill.TryGetValue("16", out var a16) ? a16 : r.Rating.Overall;
     foreach (var a in r.Abilities) f.Abilities.Add((a.Label, a.Charges, a.Counted));
@@ -208,7 +209,8 @@ string Readme()
     L("Every weapon in the player's active mods, put through a fight by the game's own rules and rated from 1.0 to 10.0, with");
     L("what it is good and weak at, its special effects and a line in plain words. Built by `Tools/WeaponReview` from the");
     L("numbers `Tools/weapon_extract.py` reads out of the player's own def files (the game, its five DLCs and every active mod,");
-    L("as RimWorld 1.7 loads them), with the same arithmetic the mod will use in the game (`Source/ColonyCouncil/Weapons/WeaponRateMath.cs`).");
+    L("as RimWorld 1.7 loads them for the player's mod list, `MayRequire` and `MayRequireAnyOf` honoured as the game honours them),");
+    L("with the same arithmetic the mod will use in the game (`Source/ColonyCouncil/Weapons/WeaponRateMath.cs`).");
     L("The design and the player's request are in `docs/design/weapons.md`; `weapons.json` beside this file holds everything");
     L("below for a tier-list page and for recommending weapons later.");
     L();

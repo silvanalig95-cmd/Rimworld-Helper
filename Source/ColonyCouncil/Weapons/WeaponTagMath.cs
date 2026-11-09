@@ -64,6 +64,8 @@ namespace ColonyCouncil
         public float DeflectChance;
         public float PsychicSensitivityOffset;
         public bool Persona, Unique, Biocodable, Thrown, BypassesShields, Demolishes, Destructive;
+        /// <summary>No recipe in the player's game makes it and no faction's people carry it: only a trader, a quest or an event brings it.</summary>
+        public bool HardToGet;
         /// <summary>Who alone may carry it (an exoframe or the Tough trait, a mage, someone who can channel): empty for anyone.</summary>
         public string RestrictedTo = "";
         public float OverheatChance;
@@ -182,6 +184,7 @@ namespace ColonyCouncil
             D("biocoded", "Biocodable", N, 40, "can be biocoded to one colonist"),
             D("restricted", "Restricted", N, 87, "only some can wield it (an exoframe or the Tough trait, a mage, a channeller)"),
             D("research", "Advanced research", N, 45, "made only after spacer or ultra research"),
+            D("hard-to-get", "Hard to find", N, 89, "no recipe in the player's game makes it and no faction's people carry it"),
         };
 
         public static TagDef Def(string id)
@@ -287,7 +290,7 @@ namespace ColonyCouncil
                     var n = WeaponRateMath.MeleeNumbers(a, m, WeaponRateMath.Reference);
                     best = Math.Max(best, n.damage);
                     minCd = Math.Min(minCd, n.cooldown);
-                    if (a.Armour == WeaponArmour.Sharp) sharp += a.Power; else if (a.Armour == WeaponArmour.Blunt) blunt += a.Power;
+                    if (a.IsCut) sharp += a.Power; else if (a.IsBlunt) blunt += a.Power;
                 }
                 if (keep >= 0.55f && r.Sub["heavy"] >= 5f) Add("shreds-armour", "keeps " + P(keep) + " of its damage against marine armour");
                 if (Has(WeaponEffect.Emp)) Add("mech-killer", "its EMP stuns a mechanoid for " + F0(EmpSeconds(ps)) + " seconds", null, 2);
@@ -329,6 +332,7 @@ namespace ColonyCouncil
                 Add("grants", label + (charges > 0 ? ", " + charges + (charges == 1 ? " charge" : " charges") : "") + (counted ? "" : " (its own effect)"), "Grants: " + Short(label));
             if (f.RestrictedTo != "") Add("restricted", "only " + f.RestrictedTo);
             if (f.Biocodable) Add("biocoded", "can be biocoded to one colonist");
+            if (f.HardToGet) Add("hard-to-get", "no recipe makes it and no faction carries it: only a trader, a quest or an event brings it");
             if (f.Research != "" && (f.ResearchTech == "Spacer" || f.ResearchTech == "Ultra" || f.ResearchTech == "Archotech"))
                 Add("research", "needs " + f.Research + " to make");
             return Pick(all, max);

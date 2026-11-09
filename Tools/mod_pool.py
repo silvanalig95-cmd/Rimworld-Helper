@@ -15,7 +15,9 @@ supportedVersions) are catalogued, active or not; the rest are listed in mods.ts
   (type, defName, mod, active), for checking any name Rimfolk refers to
 
 Patches are not applied (a patch that adds a tag to another mod's apparel isn't seen); defs are as their files write
-them. Build anything for the player from the active rows ("active" = yes): the catalogue holds every mod subscribed, many of
+them, less what `MayRequire` and `MayRequireAnyOf` leave out for the player's mod list, as the game does: a def that
+names a package the player hasn't loaded, and inside a def every element that does (a weapon tag, a comp, a tool); an
+abstract parent with such a `MayRequire` is not there to inherit from. Build anything for the player from the active rows ("active" = yes): the catalogue holds every mod subscribed, many of
 them not in the game. Run:
   python3 Tools/mod_pool.py <folder with Data, Mods, mods.txt, ModsConfig.xml> docs/player-mods [save.rws]
 """
@@ -83,6 +85,39 @@ def save_mods(path):
 
 
 SUPPORTED = ("1.6", "1.7")
+
+# The game and its five DLCs: always loaded, whatever ModsConfig lists.
+ALWAYS_LOADED = {"ludeon.rimworld", "ludeon.rimworld.royalty", "ludeon.rimworld.ideology", "ludeon.rimworld.biotech",
+                 "ludeon.rimworld.anomaly", "ludeon.rimworld.odyssey"}
+
+
+def package(pid):
+    """A package id as the game compares it for MayRequire (ModLister's ignorePostfix): lower case, no `_steam`."""
+    pid = (pid or "").strip().lower()
+    return pid[:-len("_steam")] if pid.endswith("_steam") else pid
+
+
+def requirement_met(e, loaded, any_of=True):
+    """Whether an element's MayRequire (every package, comma-separated) and MayRequireAnyOf (any one) hold for the loaded
+    packages (LoadedModManager, DirectXmlToObject). XmlInheritance checks only MayRequire on a parent: any_of False."""
+    req = e.attrib.get("MayRequire")
+    if req is not None and not all(package(x) in loaded for x in req.split(",")):
+        return False
+    anyof = e.attrib.get("MayRequireAnyOf") if any_of else None
+    if anyof is not None and anyof.strip() and not any(package(x) in loaded for x in anyof.split(",")):
+        return False
+    return True
+
+
+def prune(e, loaded):
+    """Drops, everywhere inside a def, the elements whose MayRequire or MayRequireAnyOf the loaded packages don't meet."""
+    for c in list(e):
+        if not isinstance(c.tag, str):
+            continue
+        if not requirement_met(c, loaded):
+            e.remove(c)
+        else:
+            prune(c, loaded)
 
 
 def _child(base, name):
@@ -331,6 +366,8 @@ class Pool:
     def __init__(self, root):
         self.folders, self.active = read_mods(root)
         self.active_set = set(self.active)
+        self.loaded = {package(p) for p in self.active} | ALWAYS_LOADED
+        self.dropped = []  # (pid, tag, defName) of defs the player's mod list leaves out by MayRequire
         self.versions = {d: versions_of(root, d) for d in self.folders}
         self.old_only = {d for d, v in self.versions.items() if v and not any(x in SUPPORTED for x in v)}
         self.named = {}   # (tag, Name) -> [(pid, element)], for inheritance
@@ -346,12 +383,15 @@ class Pool:
                     continue
                 self.owner[id(e)] = pid
                 n = e.attrib.get("Name")
-                if n:
+                if n and requirement_met(e, self.loaded, any_of=False):
                     self.named.setdefault((e.tag, n), []).append((pid, e))
                     self.named.setdefault(("*", n), []).append((pid, e))
                 if e.attrib.get("Abstract", "").lower() == "true":
                     continue
                 if e.find("defName") is not None:
+                    if not requirement_met(e, self.loaded):
+                        self.dropped.append((pid, e.tag.split(".")[-1], text(e, "defName")))
+                        continue
                     self.defs.append((pid, e))
 
     def on(self, pid):
@@ -377,6 +417,7 @@ class Pool:
             r = merge(self.resolved(parent, depth + 1), e) if parent is not None else e
         else:
             r = e
+        prune(r, self.loaded)
         self._cache[key] = r
         return r
 
@@ -561,7 +602,8 @@ def main(root, out, save=None):
         w.writerow(["type", "defName", "mod", "active"])
         for (t, dn), (pid, on) in sorted(every.items()):
             w.writerow([t, dn, pid, on])
-    print(f"every def: {len(every)} ({sum(1 for v in every.values() if v[1] == 'yes')} active)")
+    print(f"every def: {len(every)} ({sum(1 for v in every.values() if v[1] == 'yes')} active); "
+          f"{len(pool.dropped)} left out by MayRequire for the player's mod list")
     heads = {
         "apparel": ["defName", "mod", "active", "label", "techLevel", "tags", "layers", "bodyPartGroups", "stuff", "marketValue", "tradeTags",
                     "commonality"],

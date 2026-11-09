@@ -153,6 +153,10 @@ namespace ColonyCouncil
         /// <summary>The tool's armour piercing; below zero means the game's default, 1.5% of the damage.</summary>
         public float ArmourPen = -1f;
         public WeaponArmour Armour = WeaponArmour.Blunt;
+        /// <summary>The blow cuts or stabs (wounds bleed) whatever armour it meets: a sharp blow, or a cut that ignores armour.</summary>
+        public bool Cuts;
+        public bool IsCut => Cuts || Armour == WeaponArmour.Sharp;
+        public bool IsBlunt => !IsCut && Armour == WeaponArmour.Blunt;
         public float ChanceFactor = 1f;
         /// <summary>The damage's additional hediffs (each adds 0.1 to how readily the game picks it).</summary>
         public int AdditionalHediffs;
@@ -1117,7 +1121,7 @@ namespace ColonyCouncil
                 foreach (var a in m.Attacks)
                 {
                     payloads.AddRange(a.Payloads);
-                    if (a.Armour == WeaponArmour.Sharp) sharp += a.Power; else if (a.Armour == WeaponArmour.Blunt) blunt += a.Power;
+                    if (a.IsCut) sharp += a.Power; else if (a.IsBlunt) blunt += a.Power;
                     float pen = a.ArmourPen >= 0f ? a.ArmourPen : a.Power * 0.015f;
                     if (pen > best) best = pen;
                 }
@@ -1259,7 +1263,7 @@ namespace ColonyCouncil
                 foreach (var a in m.Attacks)
                 {
                     minCd = Math.Min(minCd, a.Cooldown * (m.Stuffed ? m.CooldownFactor : 1f));
-                    if (a.Armour == WeaponArmour.Sharp) sharp += a.Power; else blunt += a.Power;
+                    if (a.IsCut) sharp += a.Power; else if (a.IsBlunt) blunt += a.Power;
                 }
                 r.Situations["duel"] = Mean(r.Sub["armoured"], r.Sub["heavy"]);
                 r.Situations["crowds"] = Math.Max(1f, o - 1.5f);

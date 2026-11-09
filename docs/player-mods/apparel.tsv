@@ -6,14 +6,14 @@ TA_Bazubands	al9000.fireandsteel	no	bazubands	Medieval	MedievalMilitary,Medieval
 TA_Bonnet	al9000.fireandsteel	no	bonnet	Medieval	Medieval	Overhead	UpperHead	Fabric		Clothing,Clothing	
 TA_BuffCoat	al9000.fireandsteel	no	buffcoat	Medieval	MedievalMilitary,MedievalArmorBasic	Shell,TA_UnderArmor	Torso,Shoulders,Arms,Legs,Neck	Leathery		Clothing,Clothing,Armor	
 TA_BuffVest	al9000.fireandsteel	no	sleeveless buffcoat	Medieval	Medieval,MedievalMilitary,Royal,RoyalTier2	Middle	Torso,Shoulders,Neck	Leathery		Clothing,Armor	
-TA_Burgonet	al9000.fireandsteel	no	burgonet	Medieval	MedievalMilitary,MedievalArmorBasic,MedievalArmorDecent	Overhead,OnHead,StrappedHead	FullHead,Neck	Metallic		Armor	
-TA_BurgonetVisored_off	al9000.fireandsteel	no	visored burgonet	Medieval	MedievalMilitary,MedievalArmorBasic,MedievalArmorDecent	Overhead,OnHead,StrappedHead	FullHead,Neck	Metallic		Armor	
-TA_BurgonetVisored_on	al9000.fireandsteel	no	visored burgonet	Medieval	MedievalMilitary,MedievalArmorBasic,MedievalArmorDecent	Overhead,OnHead,StrappedHead	FullHead,Neck	Metallic		Armor	
+TA_Burgonet	al9000.fireandsteel	no	burgonet	Medieval	MedievalMilitary,MedievalArmorBasic,MedievalArmorDecent	Overhead	FullHead,Neck	Metallic		Armor	
+TA_BurgonetVisored_off	al9000.fireandsteel	no	visored burgonet	Medieval	MedievalMilitary,MedievalArmorBasic,MedievalArmorDecent	Overhead	FullHead,Neck	Metallic		Armor	
+TA_BurgonetVisored_on	al9000.fireandsteel	no	visored burgonet	Medieval	MedievalMilitary,MedievalArmorBasic,MedievalArmorDecent	Overhead	FullHead,Neck	Metallic		Armor	
 TA_CassockClosed	al9000.fireandsteel	no	cassock	Medieval	MedievalMilitary,Royal,RoyalTier2,RoyalTier5,RoyalTier6,RoyalTier7	Shell	Torso,Neck,Shoulders,Arms	Fabric		Clothing,Clothing	
 TA_CassockShoulder	al9000.fireandsteel	no	cassock	Medieval	MedievalMilitary,Royal,RoyalTier2,RoyalTier5,RoyalTier6,RoyalTier7	Shell	Torso,Neck,Shoulders,Arms	Fabric		Clothing,Clothing	
-TA_CavalryHelmet	al9000.fireandsteel	no	cavalry helmet	Medieval	MedievalMilitary,MedievalArmorDecent,Royal,RoyalTier2,RoyalTier5	Overhead,OnHead,StrappedHead	FullHead,Neck	Metallic		Armor	
-TA_CloseHelmet_off	al9000.fireandsteel	no	close helmet	Medieval	MedievalMilitary,MedievalArmorBasic,MedievalArmorDecent	Overhead,OnHead,StrappedHead	FullHead,Neck	Metallic		Armor	
-TA_CloseHelmet_on	al9000.fireandsteel	no	close helmet	Medieval	MedievalMilitary,MedievalArmorBasic,MedievalArmorDecent	Overhead,OnHead,StrappedHead	FullHead,Neck	Metallic		Armor	
+TA_CavalryHelmet	al9000.fireandsteel	no	cavalry helmet	Medieval	MedievalMilitary,MedievalArmorDecent,Royal,RoyalTier2,RoyalTier5	Overhead	FullHead,Neck	Metallic		Armor	
+TA_CloseHelmet_off	al9000.fireandsteel	no	close helmet	Medieval	MedievalMilitary,MedievalArmorBasic,MedievalArmorDecent	Overhead	FullHead,Neck	Metallic		Armor	
+TA_CloseHelmet_on	al9000.fireandsteel	no	close helmet	Medieval	MedievalMilitary,MedievalArmorBasic,MedievalArmorDecent	Overhead	FullHead,Neck	Metallic		Armor	
 TA_Cuirass	al9000.fireandsteel	no	cuirass	Medieval	MedievalMilitary,MedievalArmorDecent,Royal,RoyalTier2,RoyalTier5,RoyalTier6,RoyalTier7	Middle	Torso	Metallic		Armor	
 TA_Doublet	al9000.fireandsteel	no	doublet	Medieval	Medieval,MedievalMilitary,Royal,RoyalTier2,RoyalTier5,RoyalTier6,RoyalTier7	OnSkin	Torso,Neck,Shoulders,Arms,Legs,Feet	Fabric,Leathery		Clothing,BasicClothing	
 TA_DoubletVest	al9000.fireandsteel	no	sleeveless doublet	Medieval	Medieval,MedievalMilitary,Royal,RoyalTier2,RoyalTier5,RoyalTier6,RoyalTier7	OnSkin	Torso,Neck,Shoulders,Arms,Legs,Feet	Fabric,Leathery		Clothing,BasicClothing	
@@ -23,7 +23,7 @@ TA_Gauntlets	al9000.fireandsteel	no	gauntlets	Medieval	MedievalMilitary,Medieval
 TA_Gorget	al9000.fireandsteel	no	gorget	Medieval	MedievalMilitary,MedievalArmorDecent,Royal,RoyalTier2,RoyalTier5,RoyalTier6,RoyalTier7	Middle	Neck,Shoulders	Metallic		Clothing,Armor	
 TA_HatCavalier	al9000.fireandsteel	no	cavalier hat	Medieval	Medieval,Royal,RoyalTier2,RoyalTier5,RoyalTier6,RoyalTier7	Overhead	UpperHead	Fabric		Clothing,Clothing	
 TA_HussarSaberScabbard	al9000.fireandsteel	no	hussar saber scabbard	Medieval	MedievalArmorDecent,Royal,RoyalTier2,RoyalTier5,RoyalTier6,RoyalTier7	TA_Webbing	Legs	Leathery		Clothing	
-TA_HussarWings	al9000.fireandsteel	no	hussar wings	Neolithic	Blank	TA_Webbing,Belt,Backpack	Shoulders			Clothing	
+TA_HussarWings	al9000.fireandsteel	no	hussar wings	Neolithic	Blank	TA_Webbing,Belt	Shoulders			Clothing	
 TA_JanissaryHat	al9000.fireandsteel	no	janissary hat	Medieval	Medieval,Royal,RoyalTier2	Overhead	UpperHead	Fabric		Clothing,Clothing	
 TA_Krug	al9000.fireandsteel	no	krug	Medieval	MedievalArmorDecent,Royal,RoyalTier2,RoyalTier5,RoyalTier6,RoyalTier7	Middle	Torso,Neck,Shoulders	Metallic		Armor	
 TA_LandsknechtHat	al9000.fireandsteel	no	landskecht hat	Medieval	Medieval,Royal,RoyalTier2,RoyalTier5,RoyalTier6,RoyalTier7	Overhead	UpperHead	Fabric		Clothing,Clothing	
@@ -51,7 +51,7 @@ TA_Aketon	al9000.highmedieval	no	aketon	Medieval	Medieval,MedievalMilitary,Medie
 TA_CoatOfPlates	al9000.highmedieval	no	coat of plates	Medieval	MedievalMilitary,MedievalArmorBasic,MedievalArmorDecent,Royal,RoyalTier2,RoyalTier5,RoyalTier6,RoyalTier7	Middle	Torso,Shoulders	Metallic		Clothing,Armor	
 TA_Dress	al9000.highmedieval	no	dress	Medieval	Neolithic,Medieval,Royal,RoyalTier2	OnSkin	Torso,Neck,Shoulders,Arms,Legs	Fabric		Clothing,BasicClothing	
 TA_FurhatNordic	al9000.highmedieval	no	nordic fur hood	Medieval	Neolithic,Medieval	Overhead	UpperHead	Leathery		Clothing,BasicClothing	
-TA_Greathelm	al9000.highmedieval	no	greathelm	Medieval	MedievalArmorDecent,Royal,RoyalTier2	Overhead,StrappedHead	FullHead	Metallic		Clothing,Armor	
+TA_Greathelm	al9000.highmedieval	no	greathelm	Medieval	MedievalArmorDecent,Royal,RoyalTier2	Overhead	FullHead	Metallic		Clothing,Armor	
 TA_Headscarf	al9000.highmedieval	no	headscarf	Medieval	Medieval,Royal	Overhead	UpperHead	Fabric		Clothing,Clothing	
 TA_KettleHat	al9000.highmedieval	no	kettle hat	Medieval	MedievalMilitary,MedievalArmorBasic,MedievalArmorDecent	Overhead	UpperHead,Eyes	Metallic		Clothing,Armor	
 TA_MailleHoses	al9000.highmedieval	no	maille hoses	Medieval	MedievalMilitary,MedievalArmorBasic,MedievalArmorDecent,Royal,RoyalTier2,RoyalTier5,RoyalTier6,RoyalTier7	Middle,Shell,TA_BootGlove	Feet	Metallic		Clothing,Armor	
@@ -65,7 +65,7 @@ TA_ArmoredSleeves	al9000.sengoku	no	Kote (armored sleeves)	Medieval	MedievalArmo
 TA_AshigaruChestpiece	al9000.sengoku	no	hara-ate (chestpiece)	Medieval	MedievalMilitary,MedievalArmorDecent,Royal	Middle	Torso,Neck,Shoulders	Metallic		Armor	
 TA_CartridgeBox	al9000.sengoku	no	cartridge box	Medieval	Medieval,MedievalMilitary,MedievalArmorDecent,Royal,RoyalTier2	TA_Webbing	Torso	Leathery		Clothing	
 TA_Jingasa	al9000.sengoku	no	jingasa	Medieval	MedievalMilitary,MedievalArmorBasic,MedievalArmorDecent	Overhead	UpperHead,Eyes	Metallic		Clothing,Armor	
-TA_Kabuto	al9000.sengoku	no	kabuto	Medieval	MedievalArmorAdvanced,Royal,RoyalTier2,RoyalTier5,RoyalTier6,RoyalTier7	Overhead,StrappedHead	FullHead,Neck	Metallic		Armor	
+TA_Kabuto	al9000.sengoku	no	kabuto	Medieval	MedievalArmorAdvanced,Royal,RoyalTier2,RoyalTier5,RoyalTier6,RoyalTier7	Overhead	FullHead,Neck	Metallic		Armor	
 TA_KatanaBelt	al9000.sengoku	no	sword pair belt	Medieval	MedievalArmorDecent,Royal,RoyalTier2,RoyalTier5,RoyalTier6,RoyalTier7	TA_Webbing	Waist,Legs	Fabric		Clothing	
 TA_Kimono	al9000.sengoku	no	kimono	Medieval	Neolithic,Medieval,MedievalMilitary,MedievalArmorBasic,MedievalArmorDecent,MedievalArmorAdvanced,Royal,RoyalTier2,RoyalTier5,RoyalTier6,RoyalTier7	OnSkin	Torso,Neck,Shoulders,Arms,Legs	Fabric		Clothing,BasicClothing	
 TA_Obi	al9000.sengoku	no	obi	Medieval	MedievalArmorDecent,Royal,RoyalTier2,RoyalTier5,RoyalTier6,RoyalTier7	TA_Webbing	Waist	Fabric		Clothing	
@@ -76,17 +76,17 @@ TA_SamuraiGloves	al9000.sengoku	no	samurai gloves	Medieval	MedievalMilitary,Medi
 TA_SamuraiHarness	al9000.sengoku	no	Samurai Do (chestpiece+leg armor)	Medieval	MedievalArmorAdvanced,Royal,RoyalTier2,RoyalTier5,RoyalTier6,RoyalTier7	Middle	Torso,Legs	Metallic		Armor	
 TA_SamuraiPants	al9000.sengoku	no	samurai pants	Medieval	Neolithic,MedievalMilitary,MedievalArmorBasic,MedievalArmorDecent,MedievalArmorAdvanced,Royal,RoyalTier2,RoyalTier5,RoyalTier6,RoyalTier7	TA_UnderArmor	Waist,Legs	Fabric		Clothing,Clothing,Armor	
 TA_SamuraiShoulderPlates	al9000.sengoku	no	Sode (shoulder armor)	Medieval	MedievalArmorAdvanced,Royal,RoyalTier2,RoyalTier5,RoyalTier6,RoyalTier7	Middle	Shoulders,Arms,Neck	Metallic		Clothing,Clothing,Armor	
-TA_SashimonoBanner	al9000.sengoku	no	sashimono banner	Medieval	Blank	Belt,Backpack	Shoulders			Clothing	
+TA_SashimonoBanner	al9000.sengoku	no	sashimono banner	Medieval	Blank	Belt	Shoulders			Clothing	
 TA_Yukata	al9000.sengoku	no	yukata	Medieval	Neolithic,Medieval,MedievalMilitary,MedievalArmorBasic,MedievalArmorDecent,MedievalArmorAdvanced,Royal,RoyalTier2,RoyalTier5,RoyalTier6,RoyalTier7	OnSkin	Torso,Shoulders,Arms,Legs	Fabric		Clothing,BasicClothing	
 TA_YumiQuiver	al9000.sengoku	no	yumi arrow quiver	Neolithic	Neolithic,MedievalMilitary,MedievalArmorDecent,Royal,RoyalTier2	TA_Webbing	Torso	Leathery		Clothing	
-TA_Armet	al9000.shiningarmor	no	armet	Medieval	MedievalMilitary,MedievalArmorDecent,Royal,RoyalTier2,RoyalTier5,RoyalTier6,RoyalTier7	Overhead,OnHead,StrappedHead	FullHead,Neck	Metallic		Clothing,Armor	
-TA_ArmetUp	al9000.shiningarmor	no	armet	Medieval	MedievalMilitary,MedievalArmorDecent,Royal,RoyalTier2,RoyalTier5,RoyalTier6,RoyalTier7	Overhead,OnHead,StrappedHead	FullHead,Neck	Metallic		Clothing,Armor	
+TA_Armet	al9000.shiningarmor	no	armet	Medieval	MedievalMilitary,MedievalArmorDecent,Royal,RoyalTier2,RoyalTier5,RoyalTier6,RoyalTier7	Overhead	FullHead,Neck	Metallic		Clothing,Armor	
+TA_ArmetUp	al9000.shiningarmor	no	armet	Medieval	MedievalMilitary,MedievalArmorDecent,Royal,RoyalTier2,RoyalTier5,RoyalTier6,RoyalTier7	Overhead	FullHead,Neck	Metallic		Clothing,Armor	
 TA_ArmingDoublet	al9000.shiningarmor	no	arming doublet	Medieval	MedievalMilitary,MedievalArmorDecent,Royal,RoyalTier2,RoyalTier5,RoyalTier6,RoyalTier7	OnSkin	Torso,Neck,Shoulders,Arms,Legs	Fabric,Leathery		Clothing,Clothing,Armor	
-TA_Bascinet	al9000.shiningarmor	no	bascinet	Medieval	MedievalMilitary,MedievalArmorDecent,Royal,RoyalTier2,RoyalTier5	Overhead,OnHead,StrappedHead	FullHead,Neck	Metallic		Clothing,Armor	
-TA_BascinetOpen	al9000.shiningarmor	no	bascinet	Medieval	MedievalMilitary,MedievalArmorDecent,Royal,RoyalTier2,RoyalTier5	Overhead,OnHead,StrappedHead	FullHead,Neck	Metallic		Clothing,Armor	
+TA_Bascinet	al9000.shiningarmor	no	bascinet	Medieval	MedievalMilitary,MedievalArmorDecent,Royal,RoyalTier2,RoyalTier5	Overhead	FullHead,Neck	Metallic		Clothing,Armor	
+TA_BascinetOpen	al9000.shiningarmor	no	bascinet	Medieval	MedievalMilitary,MedievalArmorDecent,Royal,RoyalTier2,RoyalTier5	Overhead	FullHead,Neck	Metallic		Clothing,Armor	
 TA_BrigandineFullHarness	al9000.shiningarmor	no	brigandine plate harness	Medieval	MedievalArmorAdvanced,Royal,RoyalTier2,RoyalTier5,RoyalTier6,RoyalTier7	Middle,TA_UnderArmor,TA_BootGlove	Neck,Torso,Shoulders,Arms,Legs,Hands,Feet	Metallic		Armor	
 TA_BrigandineVest	al9000.shiningarmor	no	brigandine vest	Medieval	MedievalMilitary,MedievalArmorBasic,MedievalArmorDecent	Middle	Neck,Torso,Shoulders	Metallic		Clothing,Armor	
-TA_Chaperon	al9000.shiningarmor	no	chaperon	Medieval	Medieval,Royal,RoyalTier2,RoyalTier5,RoyalTier6,RoyalTier7	Overhead,OnHead	UpperHead	Fabric		Clothing,Clothing	
+TA_Chaperon	al9000.shiningarmor	no	chaperon	Medieval	Medieval,Royal,RoyalTier2,RoyalTier5,RoyalTier6,RoyalTier7	Overhead	UpperHead	Fabric		Clothing,Clothing	
 TA_FancyFurCoat	al9000.shiningarmor	no	fancy fur coat	Medieval	Medieval,Royal,RoyalTier2,RoyalTier5,RoyalTier6,RoyalTier7	Middle,Shell	Neck,Shoulders,Torso,Arms	Leathery		Clothing,Clothing	
 TA_Jupon	al9000.shiningarmor	no	jupon	Medieval	Royal,RoyalTier2,RoyalTier5,RoyalTier6,RoyalTier7	Shell	Torso,Shoulders,Arms	Fabric		Clothing,Clothing,Armor	
 TA_OpenFaceHelmet	al9000.shiningarmor	no	open face helmet	Medieval	MedievalMilitary,MedievalArmorBasic,MedievalArmorDecent	Overhead	UpperHead,Eyes	Metallic		Clothing,Armor	
@@ -95,25 +95,15 @@ TA_PlateCuirass	al9000.shiningarmor	no	plate cuirass	Medieval	MedievalMilitary,M
 TA_PlateFullHarness	al9000.shiningarmor	no	full plate harness	Medieval	MedievalArmorAdvanced,Royal,RoyalTier2,RoyalTier5,RoyalTier6,RoyalTier7	Middle,TA_UnderArmor,TA_BootGlove	Torso,Neck,Shoulders,Arms,Legs,Hands,Feet	Metallic		Armor	
 TA_PlateMittens	al9000.shiningarmor	no	plate mittens	Medieval	MedievalMilitary,MedievalArmorDecent,Royal,RoyalTier2,RoyalTier5,RoyalTier6,RoyalTier7	TA_BootGlove	Hands	Metallic		Clothing,Armor	
 TA_ReinforcedGambeson	al9000.shiningarmor	no	reinforced gambeson	Medieval	MedievalMilitary,MedievalArmorBasic	Shell,TA_UnderArmor	Torso,Shoulders,Arms,Legs,Neck	Fabric		Clothing,Armor	
-TA_VisorSallet	al9000.shiningarmor	no	visored sallet	Medieval	MedievalMilitary,MedievalArmorDecent,Royal,RoyalTier2,RoyalTier5,RoyalTier6,RoyalTier7	Overhead,StrappedHead	FullHead	Metallic		Armor	
-TA_VisorSalletUp	al9000.shiningarmor	no	visored sallet	Medieval	MedievalMilitary,MedievalArmorDecent,Royal,RoyalTier2,RoyalTier5,RoyalTier6,RoyalTier7	Overhead,StrappedHead	FullHead	Metallic		Armor	
-TA_ArrowBag	al9000.tastycore	no	arrow bag	Neolithic	Neolithic,MedievalMilitary,MedievalArmorDecent,Royal,RoyalTier2	TA_Webbing	Torso	Fabric		Clothing	
-TA_Bag	al9000.tastycore	no	bag	Medieval	Medieval,MedievalMilitary,Royal,RoyalTier2	TA_Webbing	Torso,Shoulders	Leathery,Fabric		Clothing	
+TA_VisorSallet	al9000.shiningarmor	no	visored sallet	Medieval	MedievalMilitary,MedievalArmorDecent,Royal,RoyalTier2,RoyalTier5,RoyalTier6,RoyalTier7	Overhead	FullHead	Metallic		Armor	
+TA_VisorSalletUp	al9000.shiningarmor	no	visored sallet	Medieval	MedievalMilitary,MedievalArmorDecent,Royal,RoyalTier2,RoyalTier5,RoyalTier6,RoyalTier7	Overhead	FullHead	Metallic		Armor	
 TA_CloakClosed	al9000.tastycore	no	cloak	Medieval	Neolithic,Medieval,MedievalMilitary,Royal,RoyalTier2,RoyalTier5,RoyalTier6,RoyalTier7	Shell	Torso,Neck,Shoulders,Arms,Legs	Fabric,Leathery		Clothing,Clothing	
 TA_CloakOpen	al9000.tastycore	no	cloak	Medieval	Neolithic,Medieval,MedievalMilitary,Royal,RoyalTier2,RoyalTier5,RoyalTier6,RoyalTier7	Shell	Torso,Neck,Shoulders,Arms,Legs	Fabric,Leathery		Clothing,Clothing	
 TA_CloakSemi	al9000.tastycore	no	cloak	Medieval	Neolithic,Medieval,MedievalMilitary,Royal,RoyalTier2,RoyalTier5,RoyalTier6,RoyalTier7	Shell	Torso,Neck,Shoulders,Arms,Legs	Fabric,Leathery		Clothing,Clothing	
-TA_CrossbowmanBelt	al9000.tastycore	no	crossbowman's belt	Medieval	Medieval,MedievalMilitary,MedievalArmorDecent,Royal,RoyalTier2	TA_Webbing	Torso,Waist	Leathery		Clothing	
-TA_GambesonCoat	al9000.tastycore	no	gambeson coat	Medieval	Neolithic,MedievalMilitary,MedievalArmorBasic	Shell,TA_UnderArmor	Torso,Shoulders,Arms,Legs,Neck	Fabric,Leathery		Clothing,Clothing,Armor	
 TA_KidCloak	al9000.tastycore	no	kid's cloak	Medieval	Neolithic,Medieval,MedievalMilitary,Royal,RoyalTier2,RoyalTier5,RoyalTier6,RoyalTier7,Neolithic,Medieval,Royal,RoyalTier2	Shell	Torso,Neck,Shoulders,Arms,Legs	Fabric,Leathery		Clothing,Clothing	
 TA_KidDress	al9000.tastycore	no	kid's dress	Medieval	Neolithic,Medieval,Royal,RoyalTier2,Worker	OnSkin	Torso,Shoulders,Arms,Legs	Fabric		Clothing,BasicClothing	
 TA_KidHood	al9000.tastycore	no	child's hood	Medieval	Neolithic,Medieval	Overhead	UpperHead	Fabric,Leathery		Clothing,BasicClothing	
-TA_LamellarVestLeather	al9000.tastycore	no	lamellar vest	Medieval	Neolithic,MedievalMilitary,MedievalArmorBasic	Middle	Torso,Neck,Shoulders	Leathery		Armor	
-TA_LamellarVestMetal	al9000.tastycore	no	lamellar vest	Medieval	MedievalMilitary,MedievalArmorDecent,Royal,RoyalTier2,RoyalTier5	Middle	Torso,Neck,Shoulders	Metallic		Armor	
-TA_MailleShirt	al9000.tastycore	no	maille shirt	Medieval	MedievalMilitary,MedievalArmorBasic,MedievalArmorDecent,Royal,RoyalTier2	TA_UnderArmor	Torso,Shoulders,Neck,Arms,Legs	Metallic		Armor	
-TA_MailleVest	al9000.tastycore	no	maille vest	Medieval	MedievalMilitary,MedievalArmorBasic,MedievalArmorDecent,Royal,RoyalTier2	Middle	Torso,Shoulders	Metallic		Clothing,Armor	
 TA_PeasantTunic	al9000.tastycore	no	tunic	Medieval	Neolithic,Medieval,Royal,RoyalTier2	OnSkin	Torso,Shoulders,Arms,Legs	Fabric		Clothing,BasicClothing	
-TA_Quiver	al9000.tastycore	no	quiver belt	Neolithic	Neolithic,MedievalMilitary,MedievalArmorDecent,Royal,RoyalTier2	TA_Webbing	Torso	Leathery		Clothing	
-TA_SwordScabbard	al9000.tastycore	no	sword scabbard	Medieval	Medieval,MedievalMilitary,MedievalArmorDecent,Royal,RoyalTier2,RoyalTier5,RoyalTier6,RoyalTier7	TA_Webbing	Legs	Leathery		Clothing	
 TA_BowAndArrowQuivers	al9000.tastysteppe	no	bow and arrow quiver	Neolithic	Neolithic,MedievalMilitary,MedievalArmorDecent,Royal,RoyalTier2,RoyalTier5,RoyalTier6,RoyalTier7	TA_Webbing	Torso	Leathery		Clothing	
 TA_CumanNasal	al9000.tastysteppe	no	cuman nasal helmet	Medieval	MedievalMilitary,MedievalArmorDecent,Royal,RoyalTier2,RoyalTier5	Overhead	FullHead,Neck	Metallic		Armor	
 TA_HelmetAventailBrigandine	al9000.tastysteppe	no	brigandine helmet	Medieval	MedievalMilitary	Overhead	FullHead,Neck	Metallic		Armor	
@@ -183,12 +173,6 @@ BA_Shield_Round	athelas.medievaltotalrim.core	no	round shield	Medieval		VFEC_Out
 BA_Shield_Round_Cross	athelas.medievaltotalrim.core	no	round shield (cross)	Medieval		VFEC_OuterShell	LeftHand	Woody,Metallic		WeaponMelee	
 TA_CoifMaille	athelas.medievaltotalrim.core	no	maille coif	Medieval	MedievalMilitary,MedievalArmorBasic,MedievalArmorDecent	Overhead	FullHead,Neck	Metallic		Clothing,Clothing,Armor	
 TA_CoifPadded	athelas.medievaltotalrim.core	no	padded coif	Medieval	MedievalMilitary,MedievalArmorBasic	Overhead	FullHead,Neck	Fabric,Leathery		Clothing,Clothing,Armor	
-Bamba_Melee_Industrial_Shield	bamba.allbambamelee.tiered	yes	industrial shield	Industrial	OutlanderShield	Shield	LeftShoulder			Armor	
-Bamba_Melee_Quasar_Shield	bamba.allbambamelee.tiered	yes	kwazaari shield	Ultra	QuasarShield	Shield	LeftShoulder			Armor	
-Bamba_Melee_Solar_Shield	bamba.allbambamelee.tiered	yes	solar shield	Ultra	SolarShield	Shield	LeftShoulder			Armor	
-Bamba_Melee_Spacer_Shield	bamba.allbambamelee.tiered	yes	spacer shield	Spacer	SpacerShield	Shield	LeftShoulder			Armor	
-Bamba_Melee_Tenebral_Shield	bamba.allbambamelee.tiered	yes	tenebral shield	Archotech	TenebralShield	Shield	LeftShoulder			Armor	
-Bamba_Melee_Ultra_Shield	bamba.allbambamelee.tiered	yes	ultra shield	Ultra	UltraShield	Shield	LeftShoulder			Armor	
 BotchJob_CrusaderArmor	botchjob.divineorder	no	crusader armor	Medieval	BotchJob_CrusaderArmor,RoyalTier5	Shell,Middle	Torso,Neck,Shoulders,Arms,Legs	Metallic			
 BotchJob_CrusaderHelmet	botchjob.divineorder	no	crusader helmet	Medieval	BotchJob_CrusaderHelmet,RoyalTier5	Overhead	FullHead	Metallic			
 BotchJob_DivineOrderBreastplate	botchjob.divineorder	no	divine order breastplate	Medieval	BotchJob_DivineOrderBreastplate,BotchJob_DivineOrderArmor	Middle	Torso,Neck,Shoulders	Metallic		BotchJob_DivineOrderArmor	
@@ -837,41 +821,41 @@ PW_GreatBallBelt	themoonitself.pokeworld	yes	Great Ball belt	Industrial	PW_BallB
 PW_MasterBallBelt	themoonitself.pokeworld	yes	Master Ball belt	Ultra	PW_BallBelt	Belt	Waist		1800		
 PW_PokeBallBelt	themoonitself.pokeworld	yes	Poké Ball belt	Industrial	PW_BallBelt	Belt	Waist				
 PW_UltraBallBelt	themoonitself.pokeworld	yes	Ultra Ball belt	Industrial	PW_BallBelt	Belt	Waist				
-AMT_Apparel_BarMaidDress	tinda.medieval.tailor.continued	no	bar maid dress	Medieval	IndustrialBasic,DankPyon_Peasant	Middle	Torso,Shoulders,Legs	Fabric		Clothing	1
-AMT_Apparel_Cloak	tinda.medieval.tailor.continued	no	cloak	Medieval	MedievalMilitary,DankPyon_Bandit,DankPyon_Mercenary,DankPyon_Archer,DankPyon_Footman,Worker,Soldier,Royal,MedievalBasic,MedievalAdvanced,MedievalMilitaryBasic	Shell	Neck	Fabric,Leathery		Clothing	0.5
-AMT_Apparel_CommonerTunic	tinda.medieval.tailor.continued	no	commoner tunic	Medieval	IndustrialBasic,DankPyon_Peasant	Middle	Torso,Shoulders,Arms	Fabric		Clothing	1
+AMT_Apparel_BarMaidDress	tinda.medieval.tailor.continued	no	bar maid dress	Medieval	IndustrialBasic	Middle	Torso,Shoulders,Legs	Fabric		Clothing	1
+AMT_Apparel_Cloak	tinda.medieval.tailor.continued	no	cloak	Medieval	MedievalMilitary,Worker,Soldier,Royal,MedievalBasic,MedievalAdvanced,MedievalMilitaryBasic	Shell	Neck	Fabric,Leathery		Clothing	0.5
+AMT_Apparel_CommonerTunic	tinda.medieval.tailor.continued	no	commoner tunic	Medieval	IndustrialBasic	Middle	Torso,Shoulders,Arms	Fabric		Clothing	1
 AMT_Apparel_FancyTunic	tinda.medieval.tailor.continued	no	fancy tunic	Medieval	IndustrialBasic,Royal,MedievalAdvanced	Middle	Torso,Shoulders,Arms	Fabric		Clothing	1
 AMT_Apparel_Gambeson	tinda.medieval.tailor.continued	no	gambeson	Medieval	MedievalBasic	Middle	Torso,Shoulders,Arms	Fabric		Clothing	
 AMT_Apparel_Jerkin	tinda.medieval.tailor.continued	no	jerkin	Medieval	MedievalBasic	Middle	Torso,Shoulders	Fabric,Leathery		Clothing	
 AMT_Apparel_LongDoublet	tinda.medieval.tailor.continued	no	long doublet	Medieval	MedievalBasic	Middle	Torso,Shoulders,Arms,Legs	Fabric		Clothing	
 AMT_Apparel_PaddedDoublet	tinda.medieval.tailor.continued	no	padded doublet	Medieval	MedievalBasic	Middle	Torso,Shoulders	Fabric		Clothing	
-AMT_Apparel_PathcyShirt	tinda.medieval.tailor.continued	no	patchy shirt	Medieval	MedievalBasic,DankPyon_Peasant	OnSkin	Torso,Shoulders	Fabric		Clothing	
-AMT_Apparel_Rags	tinda.medieval.tailor.continued	no	rags	Medieval	MedievalBasic,DankPyon_Peasant	OnSkin	Legs	Fabric		Clothing	
+AMT_Apparel_PathcyShirt	tinda.medieval.tailor.continued	no	patchy shirt	Medieval	MedievalBasic	OnSkin	Torso,Shoulders	Fabric		Clothing	
+AMT_Apparel_Rags	tinda.medieval.tailor.continued	no	rags	Medieval	MedievalBasic	OnSkin	Legs	Fabric		Clothing	
 AMT_Apparel_RoyalHose	tinda.medieval.tailor.continued	no	royal hose	Medieval	MedievalAdvanced,Royal,RoyalTier2	OnSkin	Legs	Fabric		Clothing	
 AMT_Apparel_RoyalTunic	tinda.medieval.tailor.continued	no	royal tunic	Medieval	IndustrialAdvanced,Royal,RoyalTier2,MedievalAdvanced	Middle	Torso,Shoulders,Arms	Fabric		Clothing	1
-AMT_Apparel_ShortCoat	tinda.medieval.tailor.continued	no	short coat	Medieval	MedievalBasic,DankPyon_Peasant	Shell	Torso,Shoulders	Fabric,Leathery		Clothing	
-AMT_Apparel_SimpleShirt	tinda.medieval.tailor.continued	no	simple shirt	Medieval	MedievalBasic,DankPyon_Peasant	OnSkin	Torso,Shoulders	Fabric		Clothing	
+AMT_Apparel_ShortCoat	tinda.medieval.tailor.continued	no	short coat	Medieval	MedievalBasic	Shell	Torso,Shoulders	Fabric,Leathery		Clothing	
+AMT_Apparel_SimpleShirt	tinda.medieval.tailor.continued	no	simple shirt	Medieval	MedievalBasic	OnSkin	Torso,Shoulders	Fabric		Clothing	
 AMT_Apparel_SleevelessDoublet	tinda.medieval.tailor.continued	no	sleeveless doublet	Medieval	MedievalBasic	Middle	Torso	Fabric		Clothing	
-AMT_Apparel_Trousers	tinda.medieval.tailor.continued	no	trousers	Medieval	MedievalBasic,DankPyon_Peasant	OnSkin	Legs	Fabric		Clothing	
-AMT_Apparel_WinterCloak	tinda.medieval.tailor.continued	no	winter cloak	Medieval	MedievalMilitary,DankPyon_MercenaryHeavy,Royal,RoyalTier2,MedievalAdvanced,MedievalMilitaryDecent	Shell	Neck	Leathery		Clothing	0.5
-AMT_Apparel_Wintercoat	tinda.medieval.tailor.continued	no	winter coat	Medieval	DankPyon_Bandit,DankPyon_Mercenary,DankPyon_Archer,DankPyon_Footman,DankPyon_Peasant,Worker,Soldier,Royal,MedievalBasic,MedievalAdvanced,MedievalMilitaryBasic	Shell	Torso,Shoulders,Arms	Fabric,Leathery		Clothing	
-AMT_Footwear_Nobleboots	tinda.medieval.tailor.continued	no	noble boots	Medieval	DankPyon_MercenaryHeavy,Royal,RoyalTier2,MedievalAdvanced,MedievalMilitaryDecent	Middle	Feet	Leathery		Clothing	0.1
-AMT_Footwear_Nobleshoes	tinda.medieval.tailor.continued	no	noble shoes	Medieval	DankPyon_Mercenary,Royal,MedievalBasic,MedievalAdvanced	Middle	Feet	Leathery		Clothing	0.1
-AMT_Footwear_Peasantshoes	tinda.medieval.tailor.continued	no	peasant shoes	Medieval	DankPyon_Bandit,DankPyon_Archer,DankPyon_Peasant,MedievalBasic,MedievalMilitaryBasic	Middle	Feet	Leathery		Clothing	0.1
-AMT_Footwear_Shackles	tinda.medieval.tailor.continued	no	shackles	Medieval	DankPyon_Bandit	Middle	Feet	Metallic		Clothing	0.1
-AMT_Footwear_Townboots	tinda.medieval.tailor.continued	no	town boots	Medieval	DankPyon_Bandit,DankPyon_Mercenary,DankPyon_Archer,DankPyon_Footman,DankPyon_Peasant,MedievalBasic,MedievalAdvanced,MedievalMilitaryBasic,MedievalMilitaryDecent	Middle	Feet	Leathery		Clothing	0.1
-AMT_Footwear_Travelboots	tinda.medieval.tailor.continued	no	travel boots	Medieval	DankPyon_Bandit,DankPyon_Mercenary,DankPyon_Archer,DankPyon_Footman,DankPyon_Peasant,MedievalBasic,MedievalAdvanced,MedievalMilitaryBasic,MedievalMilitaryDecent	Middle	Feet	Leathery		Clothing	0.1
+AMT_Apparel_Trousers	tinda.medieval.tailor.continued	no	trousers	Medieval	MedievalBasic	OnSkin	Legs	Fabric		Clothing	
+AMT_Apparel_WinterCloak	tinda.medieval.tailor.continued	no	winter cloak	Medieval	MedievalMilitary,Royal,RoyalTier2,MedievalAdvanced,MedievalMilitaryDecent	Shell	Neck	Leathery		Clothing	0.5
+AMT_Apparel_Wintercoat	tinda.medieval.tailor.continued	no	winter coat	Medieval	Worker,Soldier,Royal,MedievalBasic,MedievalAdvanced,MedievalMilitaryBasic	Shell	Torso,Shoulders,Arms	Fabric,Leathery		Clothing	
+AMT_Footwear_Nobleboots	tinda.medieval.tailor.continued	no	noble boots	Medieval	Royal,RoyalTier2,MedievalAdvanced,MedievalMilitaryDecent	Middle	Feet	Leathery		Clothing	0.1
+AMT_Footwear_Nobleshoes	tinda.medieval.tailor.continued	no	noble shoes	Medieval	Royal,MedievalBasic,MedievalAdvanced	Middle	Feet	Leathery		Clothing	0.1
+AMT_Footwear_Peasantshoes	tinda.medieval.tailor.continued	no	peasant shoes	Medieval	MedievalBasic,MedievalMilitaryBasic	Middle	Feet	Leathery		Clothing	0.1
+AMT_Footwear_Shackles	tinda.medieval.tailor.continued	no	shackles	Medieval		Middle	Feet	Metallic		Clothing	0.1
+AMT_Footwear_Townboots	tinda.medieval.tailor.continued	no	town boots	Medieval	MedievalBasic,MedievalAdvanced,MedievalMilitaryBasic,MedievalMilitaryDecent	Middle	Feet	Leathery		Clothing	0.1
+AMT_Footwear_Travelboots	tinda.medieval.tailor.continued	no	travel boots	Medieval	MedievalBasic,MedievalAdvanced,MedievalMilitaryBasic,MedievalMilitaryDecent	Middle	Feet	Leathery		Clothing	0.1
 AMT_Handwear_BlacksmithGloves	tinda.medieval.tailor.continued	no	blacksmith gloves	Medieval	MedievalBasic,MedievalAdvanced	Middle	Hands	Leathery		Clothing	0.1
-AMT_Handwear_HandShackles	tinda.medieval.tailor.continued	no	hand shackles	Medieval	DankPyon_Bandit	Middle	Hands	Metallic		Clothing	0.1
-AMT_Handwear_HuntingGloves	tinda.medieval.tailor.continued	no	hunting gloves	Medieval	DankPyon_BrigandtThug,DankPyon_BrigandRaider,DankPyon_Mercenary,DankPyon_MercenaryHeavy,DankPyon_Archer,DankPyon_Footman,DankPyon_Billman,MedievalBasic,MedievalAdvanced,MedievalMilitaryBasic,MedievalMilitaryDecent	Middle	Hands	Leathery		Clothing	0.1
-AMT_Handwear_NobleGloves	tinda.medieval.tailor.continued	no	noble gloves	Medieval	DankPyon_BrigandtThug,DankPyon_BrigandRaider,DankPyon_Mercenary,DankPyon_MercenaryHeavy,MedievalBasic,MedievalAdvanced,MedievalMilitaryBasic,MedievalMilitaryDecent	Middle	Hands	Leathery		Clothing	0.1
-AMT_Handwear_TownGloves	tinda.medieval.tailor.continued	no	town gloves	Medieval	DankPyon_BrigandtThug,DankPyon_BrigandRaider,DankPyon_Mercenary,DankPyon_MercenaryHeavy,DankPyon_Archer,DankPyon_Footman,DankPyon_Billman,MedievalBasic,MedievalAdvanced,MedievalMilitaryBasic,MedievalMilitaryDecent	Middle	Hands	Leathery		Clothing	0.1
-AMT_Handwear_VambraceLeather	tinda.medieval.tailor.continued	no	leather vambrace	Medieval	DankPyon_BrigandThug,DankPyon_BrigandRaider,DankPyon_Mercenary,DankPyon_MercenaryHeavy,DankPyon_Footman,DankPyon_Billman,MedievalMilitaryBasic,MedievalMilitaryDecent	Middle	Hands	Leathery		Clothing	0.1
-AMT_Handwear_VambraceSplinted	tinda.medieval.tailor.continued	no	splinted vambrace	Medieval	DankPyon_BrigandThug,DankPyon_BrigandRaider,DankPyon_Mercenary,DankPyon_MercenaryHeavy,DankPyon_Footman,DankPyon_Billman,MedievalMilitaryBasic,MedievalMilitaryDecent	Middle	Hands	Metallic		Clothing	0.1
+AMT_Handwear_HandShackles	tinda.medieval.tailor.continued	no	hand shackles	Medieval		Middle	Hands	Metallic		Clothing	0.1
+AMT_Handwear_HuntingGloves	tinda.medieval.tailor.continued	no	hunting gloves	Medieval	MedievalBasic,MedievalAdvanced,MedievalMilitaryBasic,MedievalMilitaryDecent	Middle	Hands	Leathery		Clothing	0.1
+AMT_Handwear_NobleGloves	tinda.medieval.tailor.continued	no	noble gloves	Medieval	MedievalBasic,MedievalAdvanced,MedievalMilitaryBasic,MedievalMilitaryDecent	Middle	Hands	Leathery		Clothing	0.1
+AMT_Handwear_TownGloves	tinda.medieval.tailor.continued	no	town gloves	Medieval	MedievalBasic,MedievalAdvanced,MedievalMilitaryBasic,MedievalMilitaryDecent	Middle	Hands	Leathery		Clothing	0.1
+AMT_Handwear_VambraceLeather	tinda.medieval.tailor.continued	no	leather vambrace	Medieval	MedievalMilitaryBasic,MedievalMilitaryDecent	Middle	Hands	Leathery		Clothing	0.1
+AMT_Handwear_VambraceSplinted	tinda.medieval.tailor.continued	no	splinted vambrace	Medieval	MedievalMilitaryBasic,MedievalMilitaryDecent	Middle	Hands	Metallic		Clothing	0.1
 AMT_Headgear_Cap	tinda.medieval.tailor.continued	no	cap	Medieval	MedievalBasic	Overhead	UpperHead	Fabric,Leathery		Clothing	0.25
 AMT_Headgear_Chaperon	tinda.medieval.tailor.continued	no	chaperon	Medieval	MedievalBasic	Overhead	UpperHead	Fabric		Clothing	0.25
-AMT_Headgear_Cowl	tinda.medieval.tailor.continued	no	cowl	Neolithic	Neolithic,MedievalMilitary,DankPyon_Bandit,DankPyon_Mercenary,DankPyon_Archer,DankPyon_Footman,DankPyon_Peasant,Worker,Soldier,Royal,MedievalBasic,MedievalAdvanced,MedievalMilitaryBasic	Overhead	UpperHead	Fabric,Leathery		Clothing	1
-AMT_Headgear_ForesterHat	tinda.medieval.tailor.continued	no	forester hat	Medieval	MedievalBasic,DankPyon_Peasant	Overhead	UpperHead	Fabric		Clothing	0.25
+AMT_Headgear_Cowl	tinda.medieval.tailor.continued	no	cowl	Neolithic	Neolithic,MedievalMilitary,Worker,Soldier,Royal,MedievalBasic,MedievalAdvanced,MedievalMilitaryBasic	Overhead	UpperHead	Fabric,Leathery		Clothing	1
+AMT_Headgear_ForesterHat	tinda.medieval.tailor.continued	no	forester hat	Medieval	MedievalBasic	Overhead	UpperHead	Fabric		Clothing	0.25
 AMT_Headgear_ForesterHatF	tinda.medieval.tailor.continued	no	forester hat feather	Medieval	MedievalBasic	Overhead	UpperHead	Fabric		Clothing	0.25
 AMT_Headgear_PiousCap	tinda.medieval.tailor.continued	no	pious cap	Medieval	MedievalBasic	Overhead	UpperHead	Fabric		Clothing	0.25
 Df_Headgear_MerchantHat	tinda.medieval.tailor.continued	no	merchant hat	Medieval	MedievalBasic,DankPyon_Peasant	Overhead	UpperHead	Fabric		Clothing	0.25

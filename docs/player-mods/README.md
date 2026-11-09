@@ -15,7 +15,11 @@ with 1.6 or 1.7". So:
 - Only mods that support 1.6 or 1.7 are catalogued; `mods.tsv` lists the others with `catalogued` no.
 
 The tables (one row per def, after resolving `ParentName` inheritance; patches are not applied, so a tag a mod adds to
-another mod's apparel by patch isn't seen). Only the folders RimWorld 1.7 loads are read: a mod's `LoadFolders.xml` for
+another mod's apparel by patch isn't seen). `MayRequire` and `MayRequireAnyOf` are honoured as the game honours them for
+the player's mod list (the game and its five DLCs always count as loaded; package ids compared without case or a
+`_steam` suffix): a def that names a package not loaded is left out (Melee Weapons For All's tenebral, kwazaari and solar
+weapons need BOR), so is every element inside a def that does (a weapon tag, a comp, a recipe's research), and an
+abstract parent with such a `MayRequire` is not there to inherit from (9 November 2026; until then all of them were read). Only the folders RimWorld 1.7 loads are read: a mod's `LoadFolders.xml` for
 1.7 (or the newest version before it), its `IfModActive`, `IfModActiveAll` and `IfModNotActive` read against the
 player's list, else its root, `Common` and its newest version folder; the mods in the player's load order, so a later def
 of the same name wins as in the game, and a def of a mod not in their list never stands for one that is (Combat

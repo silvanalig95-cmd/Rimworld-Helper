@@ -29,7 +29,7 @@ tree at once, alongside whatever runs. Each piece is merged as its own release, 
     super-weapons land at 9-something. Outputs: the overall, sub-ratings, situations (mechanoids, crowds, hunting, indoors,
     holding a choke, kiting, a siege, capture alive, a sidearm, in melee), damage per second by distance and enemy, specials
     with counted or not and a sign, tags, best for and weak when, the skill it rewards (`SkillGain`).
-  - The tags (`WeaponTagMath.cs`, pure; the player's follow-up "tags/labels ... color coded"): 59 tags in six categories
+  - The tags (`WeaponTagMath.cs`, pure; the player's follow-up "tags/labels ... color coded"): 60 tags in six categories
     (strength, weakness, risk, special, role, needs), each a colour from `SkinMath`'s own tokens (Done, Danger, Foe, World,
     Ally, Cool: 4.5:1 on every ground, tested) and a symbol; every tag by a rule on the weapon's numbers with a line saying
     why, at most seven by importance, keeping the role, the first strength and weakness. Sidearm, Offhand and Two-handed
@@ -41,10 +41,24 @@ tree at once, alongside whatever runs. Each piece is merged as its own release, 
   - The review: `Tools/weapon_extract.py` (reads the collection through `mod_pool.py`'s new `Pool` class, which
     `mod_pool.py`'s own tables now use too, output unchanged) writes `docs/player-mods/weapon_numbers.json.gz`;
     `Tools/WeaponReview` (net8, links the two math files, `SkinMath.cs` and the test anchors) writes
-    `docs/weapons/README.md` and `docs/weapons/weapons.json` (one weapon a line). 768 defs: 507 rated, 1 not rated
+    `docs/weapons/README.md` and `docs/weapons/weapons.json` (one weapon a line). 747 defs: 486 rated, 1 not rated
     (Winter's Reign, its attack wholly its own code), 260 left out (turret guns, mechanoids' and animals' built-in weapons,
     spell weapons). 72 marked rough: 47 unique weapons (rolled traits) and 25 effects named but not valued (Rimsenal's
     crucible, VWE Non-Lethal's tear gas, darts and taser, the cryptoforge's slowing and others whose code wasn't uploaded).
+    25 are tagged Hard to find: no recipe in the player's game and no faction carries them (Possessed Weapons' 16, the
+    three Melee Weapons For All polehammers its author left ungated, Ruunbled and a few more).
+  - The pool honours `MayRequire` (all of) and `MayRequireAnyOf` (any of) as the game does (LoadedModManager,
+    DirectXmlToObject, XmlInheritance; the game and its DLCs always loaded, ids without case or `_steam`): a def that needs
+    a package the player hasn't loaded is left out, so is every element inside a def that does, and an abstract parent
+    with such a `MayRequire` can't be inherited from. Rebuilt with the 9 November save: 335 defs left out (248 of active
+    mods: 158 clutter hand defs, 28 ThingDefs, 26 recipes and others), among them 21 weapons (Melee Weapons For All's
+    tenebral, kwazaari and solar weapons, which need BOR) and 6 apparel; 173 rows lost a gated child (a weapon tag, a comp,
+    a research, a pawn kind's tags). Poolcheck: Rimfolk's Kiln Guild arms (ages 2 and 3) name Bamba's
+    `CE_OneHandedWeapon` tag, which Bamba itself gates on Combat Extended, so no weapon carries it in the player's game
+    (Bamba's blades carry no weapon tag without CE). The lines are soft and draw nothing; the other tags in them carry the
+    kit. With the catalogue read right, 4 checks in the full suite now fail on it (PeoplesETests and PeopleAgesTests:
+    every tag must be in the player's active mods). Left as it is for a decision: drop the two lines, or give the guild
+    another way to Bamba's blades.
   - The mods' code (uploaded DLLs, decompiled with `ilspycmd` into the scratchpad, never run; VEF's 1.7 DLL trips the
     project writer, read as IL) moved 40 weapons from rough to counted: VEF's streams and gauss slugs, laser capacitors,
     firing modes; VFE Medieval's matchlocks; A RimWorld of Magic's bolts, wands, cleave and deflectors (and its Light and

@@ -467,7 +467,8 @@ public static class Inputs
                 var a = new WeaponMeleeAttack
                 {
                     Label = S(t, "label"), Power = F(t, "power"), Cooldown = F(t, "cooldownTime", 2f), ArmourPen = F(t, "armorPenetration", -1f),
-                    Armour = ArmourOf(dmg), ChanceFactor = F(t, "chanceFactor", 1f), AdditionalHediffs = Arr(d, "additionalHediffs").Count()
+                    Armour = ArmourOf(dmg), ChanceFactor = F(t, "chanceFactor", 1f), AdditionalHediffs = Arr(d, "additionalHediffs").Count(),
+                    Cuts = S(d, "armorCategory") != "Blunt" && S(d, "workerClass") is "DamageWorker_Cut" or "DamageWorker_Stab" or "DamageWorker_Scratch" or "DamageWorker_Bite"
                 };
                 if (!VanillaWorkers.Contains(S(d, "workerClass")))
                 {

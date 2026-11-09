@@ -92,6 +92,7 @@ public static class Words
         var counted = w.Abilities.FirstOrDefault(a => a.Counted);
         if (counted != null) parts.Add("its " + counted.Label + " adds a punch when it counts");
         if (T("restricted")) parts.Add("not for everyone to carry");
+        if (T("hard-to-get")) parts.Add("hard to find in your game");
         if (w.Unsure.Count > 0 && w.Unsure.Any(u => !u.StartsWith("a unique weapon"))) parts.Add("read roughly (its own rules)");
         else if (T("unique")) parts.Add("its rolled traits can lift or sink it");
         parts[0] = Article(parts[0]);

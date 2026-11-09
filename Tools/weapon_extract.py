@@ -58,18 +58,13 @@ def children_dict(e):
     return out
 
 
-ACTIVE = set()
+LOADED = set()
 
 
 def loaded(li):
-    """Whether a list item is loaded for the player's mod list: a MayRequire (all of) or MayRequireAnyOf the game skips."""
-    req = li.attrib.get("MayRequire")
-    if req and not all(x.strip().lower() in ACTIVE or x.strip().lower().startswith("ludeon.") for x in req.split(",") if x.strip()):
-        return False
-    anyof = li.attrib.get("MayRequireAnyOf")
-    if anyof and not any(x.strip().lower() in ACTIVE or x.strip().lower().startswith("ludeon.") for x in anyof.split(",") if x.strip()):
-        return False
-    return True
+    """Whether a list item loads for the player's mod list (mod_pool.requirement_met: MayRequire all of, MayRequireAnyOf
+    any of). The pool's resolved defs are already pruned this way; this keeps a raw read (an extension) the same."""
+    return mod_pool.requirement_met(li, LOADED)
 
 
 def items(e, path):
@@ -93,7 +88,7 @@ def cls_of(li):
 class Collection:
     def __init__(self, root):
         self.pool = mod_pool.Pool(root)
-        ACTIVE.update(self.pool.active_set)
+        LOADED.update(self.pool.loaded)
         self.root = root
         self.names = {}
         for folder, (pid, name) in self.pool.folders.items():
@@ -420,9 +415,20 @@ def main(root, out_path):
         if g:
             turret_guns.add(g)
     research_tech = {}
+    made = set()       # what the active mods' recipes make (a RecipeDef's products, a recipe maker's thing)
+    kind_tags = set()  # the weapon tags the active mods' pawn kinds carry
     for (tag, dn), (pid, e) in col.by.items():
+        if not col.pool.on(pid):
+            continue
         if tag == "ResearchProjectDef":
             research_tech[dn] = text(col.get(tag, dn), "techLevel") or "Undefined"
+        elif tag == "RecipeDef":
+            pr = col.get(tag, dn).find("products")
+            made.update(c.tag for c in (list(pr) if pr is not None else []) if isinstance(c.tag, str))
+        elif tag == "PawnKindDef":
+            kind_tags.update(lis(col.get(tag, dn), "weaponTags"))
+        elif tag == "ThingDef" and col.get(tag, dn).find("recipeMaker") is not None:
+            made.add(dn)
     weapons = []
     for (tag, dn), (pid, e) in sorted(col.by.items(), key=lambda kv: (kv[1][0], kv[0][1])):
         if tag != "ThingDef" or not col.pool.on(pid):
@@ -495,6 +501,7 @@ def main(root, out_path):
             "equipmentType": text(d, "equipmentType"), "thingClass": text(d, "thingClass"), "relicChance": num(text(d, "relicChance"), 0),
             "comps": comps, "compClasses": comp_names(d), "modExtensions": exts, "verbs": verbs, "tools": tools, "abilities": abilities,
             "craftable": d.find("recipeMaker") is not None, "leftOut": left_out,
+            "made": dn in made, "carriedByKinds": bool(set(tags) & kind_tags),
             "research": mod_pool.research_of(d.find("recipeMaker")) if d.find("recipeMaker") is not None else [],
             "researchTech": max((research_tech.get(x, "Undefined") for x in (mod_pool.research_of(d.find("recipeMaker"))
                                  if d.find("recipeMaker") is not None else [])), key=lambda t: mod_pool.TECHS.index(t)

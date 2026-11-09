@@ -4,7 +4,7 @@ Stagz_Merfolk_Coastal	arquebus.stagzmerfolk	yes	coastal merren	true	19	A hermit 
 BotchJob_ProfanedCursebearerXenotype	botchjob.profaned	no	profaned cursebearer	false	10	Cursed with undeath, the profaned exist in a state between life and death. Their partially decayed bodies render them slow moving with poor manipulation. They a
 BotchJob_ProfanedXenotype	botchjob.profaned	no	profaned	false	10	Cursed with undeath, the profaned exist in a state between life and death. Their partially decayed bodies render them slow moving with poor manipulation. They a
 DV_Avaloi	det.avaloi	yes	avaloi	true	25	The Avaloi are extremely psychically sensitive humans adapted to their low-grav glitterworld, whose technology has practically eliminated both pollution and nat
-DV_Bogleg	det.boglegs	yes	bogleg	true	26	Graced with a brutish physique and silver-tongued eloquence, the Boglegs are perfectly engineered to survive in hostile, plague-ridden swamps as well as in argu
+DV_Bogleg	det.boglegs	yes	bogleg	true	25	Graced with a brutish physique and silver-tongued eloquence, the Boglegs are perfectly engineered to survive in hostile, plague-ridden swamps as well as in argu
 Stoneborn	det.stoneborn	yes	stoneborn	true	21	After the hardy, grayskinned dirtmoles, came the stoneborn. Ever-bearded and short, they mine and forge minerals with a passion few can top, and are able to rai
 DV_Venator	det.venators	yes	venator	true	29	Venators are naturally capable hunters and sharpshooters, adapted to taking down giant prey and curious outsiders on their tropical homeworld. This is by virtue
 DevDesigner_XenotypeDarkElves	devdesigner.elves.continued	yes	dark elf	true	11	Dark elf xenotype.
@@ -114,7 +114,7 @@ AG_RandomCustom	sarg.alphagenes	yes	random custom		1	This will transform the xen
 AG_Taukai	sarg.alphagenes	yes	taukai	false	18	"Named after the ancient Lithuanian word for ""grease"", the taukai are a very strange human xenotype, created to withstand extremely radioactive environments. The"
 AG_Wretch	sarg.alphagenes	yes	wretch	false	8	A testament to the horrible dangers of genetic engineering, wretches are malformed and miserable creatures produced by genetic testing gone awry. The genome of 
 VRE_Ocularkin	sarg.alphagenes	yes	ocularkin	true	22	Based on genetic data retrofitted from Gauranlen Inc.’s investment into dendrology following the Fall of Sorne, phytokins are plant-based humanoids with an emph
-Korg	sovereign.kork	yes	Korg	true	24	Hostile and enduring, Korgs were engineered as a self-sustaining, mass replicating weapon. Sometimes used by corporate interests as means of pacifying blacklist
+Korg	sovereign.kork	yes	Korg	true	23	Hostile and enduring, Korgs were engineered as a self-sustaining, mass replicating weapon. Sometimes used by corporate interests as means of pacifying blacklist
 VREA_AndroidAwakened	vanillaracesexpanded.android	yes	awakened android		10	Awakened androids are a rare and extraordinary species of sentient machines, having transcended their original programming through extreme emotional experiences
 VREA_AndroidBasic	vanillaracesexpanded.android	yes	basic android		21	Androids are synthetic, man-made constructs designed to emulate human behavior and appearance while offering a multitude of advantages over their organic counte
 VRE_Archon	vanillaracesexpanded.archon	yes	archon	true	17	A complete mystery whose earliest recorded appearance has been tied to the development of archotechnology and the first occurrences of Transcendence, the archon
