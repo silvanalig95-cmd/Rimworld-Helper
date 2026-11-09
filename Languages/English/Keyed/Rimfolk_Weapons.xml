@@ -90,7 +90,12 @@
   <!-- Rimfolk's weapon card. -->
   <CC_Weapon_CardTitle>Weapon card</CC_Weapon_CardTitle>
   <CC_Weapon_NotRated>This weapon isn't rated: its attack is a mod's own code, or a colonist can't wield it.</CC_Weapon_NotRated>
-  <CC_Weapon_Card_RatedFor>For a colonist of {SKILL} 8 · {QUALITY} {STUFF}</CC_Weapon_Card_RatedFor>
+  <CC_Weapon_Card_RatedFor>For a colonist of {SKILL} 8 · {MADE}</CC_Weapon_Card_RatedFor>
+  <CC_Weapon_Card_RatedForKind>Its kind as made, for a colonist of {SKILL} 8 · {MADE}</CC_Weapon_Card_RatedForKind>
+  <CC_Weapon_Card_Made>{QUALITY} quality, {STUFF}</CC_Weapon_Card_Made>
+  <CC_Weapon_Card_MadeNoStuff>{QUALITY} quality</CC_Weapon_Card_MadeNoStuff>
+  <CC_Weapon_GameCard>All the game's stats</CC_Weapon_GameCard>
+  <CC_Weapon_GameCard_Tip>Open the game's own info card for this weapon, with every stat it lists. Its button "Rimfolk's weapon card" brings you back here.</CC_Weapon_GameCard_Tip>
   <CC_Weapon_Sec_Tags>Tags</CC_Weapon_Sec_Tags>
   <CC_Weapon_Sec_Sub>Sub-ratings</CC_Weapon_Sec_Sub>
   <CC_Weapon_Sec_ChartRanged>Damage per second by distance</CC_Weapon_Sec_ChartRanged>
@@ -197,5 +202,129 @@
   <CC_Weapon_DualCanOff>Dual Wield: it can go in the off hand, where it rates {RATING} for {PAWN}.</CC_Weapon_DualCanOff>
   <CC_Weapon_DualNotOff>Dual Wield: it can't go in the off hand.</CC_Weapon_DualNotOff>
   <CC_Weapon_DualTwoHanded>Dual Wield: two-handed, so nothing goes in the off hand with it.</CC_Weapon_DualTwoHanded>
+
+  <!-- Weapons you can judge at a glance, step 3 (Source/ColonyCouncil/Weapons/WeaponPick*.cs, WeaponAsks.cs,
+       WeaponCardFirst.cs; docs/design/weapons.md): Rimfolk's card first, the best weapon for each colonist on the gear tab,
+       its card and the Defenses page, and colonists asking for one. -->
+
+  <!-- The settings (How you're told, Weapons). -->
+  <CC_Settings_WeaponCardFirst>Open Rimfolk's weapon card first</CC_Settings_WeaponCardFirst>
+  <CC_Settings_WeaponCardFirst_Tip>Opening the info for a weapon (the "i" button on the gear tab, Nice Inventory Tab, a trade screen, a list, the research or architect tab, the inspect pane) opens Rimfolk's weapon card instead of the game's. Its button "All the game's stats" opens the game's card, and the game's card keeps its button back. Links followed inside the game's card stay in it. Off, the game's card opens as before.</CC_Settings_WeaponCardFirst_Tip>
+  <CC_SetNote_WeaponCardFirst>A weapon's info opens as Rimfolk's weapon card; the game's card is one button away.</CC_SetNote_WeaponCardFirst>
+  <CC_Settings_WeaponSuggestions>Weapon suggestions</CC_Settings_WeaponSuggestions>
+  <CC_Settings_WeaponSuggestions_Tip>The best weapon for each colonist from what the colony has, by their skill, traits, passions and work, their faith, the weapon mods and the fights you meet, with why in a line: on the gear tab (the game's and Nice Inventory Tab's) with a button to equip it, on a weapon's card (who should carry it), and for the whole colony on the Defenses page, where "Equip all suggested" gives the orders. Two colonists are never told to take the same weapon.</CC_Settings_WeaponSuggestions_Tip>
+  <CC_SetNote_WeaponSuggestions>The gear tab, a weapon's card and the Defenses page suggest a better weapon from the colony's stores.</CC_SetNote_WeaponSuggestions>
+  <CC_Settings_WeaponAsks>Colonists ask for better weapons</CC_Settings_WeaponAsks>
+  <CC_Settings_WeaponAsks_Tip>Now and then a colonist says in one line that a clearly better weapon lying in storage would suit them, naming it and why, in their free time at home: at most once in five days each and once a day in the colony, and not while you have set their suggestions aside. A quiet entry stays in This week while it still lies there.</CC_Settings_WeaponAsks_Tip>
+  <CC_SetNote_WeaponAsks>Colonists sometimes ask for a clearly better weapon they've seen in storage.</CC_SetNote_WeaponAsks>
+
+  <!-- Who should carry a weapon, on its card. -->
+  <CC_WeaponPick_Card_Who>Who should carry this</CC_WeaponPick_Card_Who>
+  <CC_WeaponPick_Card_Holds>carries it now</CC_WeaponPick_Card_Holds>
+  <CC_WeaponPick_Card_Better>{GAIN} over what {PAWN_pronoun} has of its kind</CC_WeaponPick_Card_Better>
+  <CC_WeaponPick_Card_Little>{GAIN}, too little to change for</CC_WeaponPick_Card_Little>
+  <CC_WeaponPick_Card_NoBetter>no better than what {PAWN_pronoun} has of its kind</CC_WeaponPick_Card_NoBetter>
+  <CC_WeaponPick_Card_WhoTip>{PAWN}'s own rating, with the fights you meet, {PAWN_possessive} passion, work and faith in it. Click to see it for {PAWN_objective} below.</CC_WeaponPick_Card_WhoTip>
+
+  <!-- Why a colonist can't or mustn't carry a weapon. -->
+  <CC_WeaponPick_CantShoot>{PAWN} is incapable of shooting.</CC_WeaponPick_CantShoot>
+  <CC_WeaponPick_Despised>{PAWN}'s faith, {IDEO}, despises it: carrying it would cost {PAWN_objective} mood.</CC_WeaponPick_Despised>
+
+  <!-- Where a weapon lies. -->
+  <CC_WeaponPick_On>on the {LABEL}</CC_WeaponPick_On>
+  <CC_WeaponPick_In>in the {LABEL}</CC_WeaponPick_In>
+  <CC_WeaponPick_InStockpile>in the stockpile</CC_WeaponPick_InStockpile>
+  <CC_WeaponPick_Lies>{WEAPON} lies {PLACE}.</CC_WeaponPick_Lies>
+
+  <!-- A suggestion's head. -->
+  <CC_WeaponPick_Head_Primary>Better for {PAWN}: {WEAPON} ({GAIN})</CC_WeaponPick_Head_Primary>
+  <CC_WeaponPick_Head_Sidearm>A sidearm for {PAWN}: {WEAPON} ({GAIN})</CC_WeaponPick_Head_Sidearm>
+  <CC_WeaponPick_Head_OffHand>For {PAWN_possessive} off hand: {WEAPON} ({GAIN})</CC_WeaponPick_Head_OffHand>
+  <CC_WeaponPick_Head_Swap>A trade with {OTHER}: {WEAPON} for {PAWN} ({GAIN})</CC_WeaponPick_Head_Swap>
+
+  <!-- Why, in parts joined into one line. -->
+  <CC_WeaponPick_Why_SkillHigh_Ranged>{PAWN_possessive} Shooting {LEVEL} makes its accuracy count</CC_WeaponPick_Why_SkillHigh_Ranged>
+  <CC_WeaponPick_Why_SkillHigh_Melee>{PAWN_possessive} Melee {LEVEL} makes every blow tell</CC_WeaponPick_Why_SkillHigh_Melee>
+  <CC_WeaponPick_Why_SkillLow_Ranged>it forgives {PAWN_possessive} Shooting {LEVEL}</CC_WeaponPick_Why_SkillLow_Ranged>
+  <CC_WeaponPick_Why_SkillLow_Melee>it forgives {PAWN_possessive} Melee {LEVEL}</CC_WeaponPick_Why_SkillLow_Melee>
+  <CC_WeaponPick_Why_Trait>{TRAIT} suits it ({DELTA})</CC_WeaponPick_Why_Trait>
+  <CC_WeaponPick_Why_Mechs>it stands up to the mechanoids you keep meeting</CC_WeaponPick_Why_Mechs>
+  <CC_WeaponPick_Why_MechsEmp>its EMP stops the mechanoids you keep meeting</CC_WeaponPick_Why_MechsEmp>
+  <CC_WeaponPick_Why_Armour>it hits hard enough for the armour your last raids wore</CC_WeaponPick_Why_Armour>
+  <CC_WeaponPick_Why_ArmourPierce>it pierces the armour your last raids wore</CC_WeaponPick_Why_ArmourPierce>
+  <CC_WeaponPick_Why_Crowds>it breaks up the crowds that come at you</CC_WeaponPick_Why_Crowds>
+  <CC_WeaponPick_Why_Siege>it reaches the raiders who dig in and wait</CC_WeaponPick_Why_Siege>
+  <CC_WeaponPick_Why_Choke>it holds a gate like yours</CC_WeaponPick_Why_Choke>
+  <CC_WeaponPick_Why_Hunting>{PAWN_pronoun} hunts, and it brings game down cleanly</CC_WeaponPick_Why_Hunting>
+  <CC_WeaponPick_Why_Passion>{PAWN_pronoun} loves {SKILL}</CC_WeaponPick_Why_Passion>
+  <CC_WeaponPick_Why_Noble>{PAWN_possessive} faith holds it noble</CC_WeaponPick_Why_Noble>
+  <CC_WeaponPick_Why_Worker_Doctor>light enough for a doctor's rounds</CC_WeaponPick_Why_Worker_Doctor>
+  <CC_WeaponPick_Why_Worker_Crafter>light enough not to slow {PAWN_possessive} work at the bench</CC_WeaponPick_Why_Worker_Crafter>
+  <CC_WeaponPick_Why_Special>it adds {SPECIAL}</CC_WeaponPick_Why_Special>
+  <CC_WeaponPick_Why_Better>it rates {RATING} for {PAWN_objective} against {BEFORE}</CC_WeaponPick_Why_Better>
+  <CC_WeaponPick_Why_Unarmed>{PAWN_pronoun} has nothing in hand now</CC_WeaponPick_Why_Unarmed>
+  <CC_WeaponPick_Why_Sidearm>light enough to carry beside {PAWN_possessive} {HELD}</CC_WeaponPick_Why_Sidearm>
+  <CC_WeaponPick_Why_OffHand>both hands together rate {RATING}</CC_WeaponPick_Why_OffHand>
+  <CC_WeaponPick_Why_Swap>{OTHER} gains {GAIN} from the trade too</CC_WeaponPick_Why_Swap>
+  <CC_WeaponPick_Cost_Bonded>{PAWN_possessive} bonded {BONDED} would go unused</CC_WeaponPick_Cost_Bonded>
+  <CC_WeaponPick_Cost_Jealous>its jealous persona would sour {PAWN_possessive} mood</CC_WeaponPick_Cost_Jealous>
+  <CC_WeaponPick_Cost_NoHunting>{PAWN_pronoun} couldn't hunt with it</CC_WeaponPick_Cost_NoHunting>
+  <CC_WeaponPick_Nothing>nothing</CC_WeaponPick_Nothing>
+  <CC_WeaponPick_And>{A}, and {B}</CC_WeaponPick_And>
+  <CC_WeaponPick_Costs>Though {COST}.</CC_WeaponPick_Costs>
+  <CC_WeaponPick_Full>{WEAPON}: {GAIN} for {PAWN}: {WHY}.</CC_WeaponPick_Full>
+
+  <!-- The buttons. -->
+  <CC_WeaponPick_Act_Primary>Equip</CC_WeaponPick_Act_Primary>
+  <CC_WeaponPick_Act_Primary_Tip>{PAWN} walks over and takes it in hand. What {PAWN_pronoun} holds now is set down there, or kept as a sidearm with Simple Sidearms.</CC_WeaponPick_Act_Primary_Tip>
+  <CC_WeaponPick_Act_Sidearm>As sidearm</CC_WeaponPick_Act_Sidearm>
+  <CC_WeaponPick_Act_Sidearm_Tip>{PAWN} walks over and takes it as a sidearm, by Simple Sidearms' own job.</CC_WeaponPick_Act_Sidearm_Tip>
+  <CC_WeaponPick_Act_OffHand>Off hand</CC_WeaponPick_Act_OffHand>
+  <CC_WeaponPick_Act_OffHand_Tip>{PAWN} walks over and takes it in the off hand, by Dual Wield's own job.</CC_WeaponPick_Act_OffHand_Tip>
+  <CC_WeaponPick_Act_Swap>Trade</CC_WeaponPick_Act_Swap>
+  <CC_WeaponPick_Act_Swap_Tip>{PAWN} walks over to the other, and each hands the other what they hold.</CC_WeaponPick_Act_Swap_Tip>
+  <CC_WeaponPick_Act_AsSidearm>As sidearm</CC_WeaponPick_Act_AsSidearm>
+  <CC_WeaponPick_Act_AsSidearm_Tip>{PAWN} walks over and takes it as a sidearm instead, by Simple Sidearms' own job, keeping what {PAWN_pronoun} holds.</CC_WeaponPick_Act_AsSidearm_Tip>
+  <CC_WeaponPick_Act_AsSidearmLong>Take the {WEAPON} as a sidearm</CC_WeaponPick_Act_AsSidearmLong>
+  <CC_WeaponPick_OnTheWay>on the way</CC_WeaponPick_OnTheWay>
+  <CC_WeaponPick_Gone>It no longer lies there.</CC_WeaponPick_Gone>
+  <CC_WeaponPick_Busy>{PAWN} can't just now.</CC_WeaponPick_Busy>
+  <CC_WeaponPick_Reserved>Someone else is about to take it.</CC_WeaponPick_Reserved>
+  <CC_WeaponPick_NoSidearms>Simple Sidearms isn't loaded.</CC_WeaponPick_NoSidearms>
+  <CC_WeaponPick_FromGround>Simple Sidearms takes a sidearm from the ground or a shelf, not from an outfit stand.</CC_WeaponPick_FromGround>
+  <CC_WeaponPick_NotNow>Not now for {PAWN}</CC_WeaponPick_NotNow>
+  <CC_WeaponPick_NotNowShort>Not now</CC_WeaponPick_NotNowShort>
+  <CC_WeaponPick_NotNow_Tip>Set {PAWN}'s suggestions aside for {DAYS} days: they don't show, {PAWN_pronoun} takes no weapon in the colony's choice and doesn't ask.</CC_WeaponPick_NotNow_Tip>
+  <CC_WeaponPick_AskAgain>Show again</CC_WeaponPick_AskAgain>
+  <CC_WeaponPick_AskAgain_Tip>Bring {PAWN}'s suggestions back now.</CC_WeaponPick_AskAgain_Tip>
+  <CC_WeaponPick_ClickCard>Click for Rimfolk's weapon card.</CC_WeaponPick_ClickCard>
+  <CC_WeaponPick_CardOf>Rimfolk's card: {WEAPON}</CC_WeaponPick_CardOf>
+  <CC_WeaponPick_NiceClick>Click for the choices: equip it, as a sidearm, not now, its card.</CC_WeaponPick_NiceClick>
+  <CC_WeaponPick_GearHeader>Suggested weapons</CC_WeaponPick_GearHeader>
+
+  <!-- The colony's view on the Defenses page. -->
+  <CC_WeaponPick_Section>Weapons for each colonist</CC_WeaponPick_Section>
+  <CC_WeaponPick_AllAct>Equip all suggested ({COUNT})</CC_WeaponPick_AllAct>
+  <CC_WeaponPick_AllAct_Tip>Give every suggestion below its order: each colonist walks to the weapon and takes it, one after another. Only the orders: nothing is done by itself later. A persona weapon that would bond asks first, from its own button.</CC_WeaponPick_AllAct_Tip>
+  <CC_WeaponPick_AllNone>Nothing can be equipped now.</CC_WeaponPick_AllNone>
+  <CC_WeaponPick_Weighs>Each colonist's own rating, with the fights you meet: {FIGHTS}.</CC_WeaponPick_Weighs>
+  <CC_WeaponPick_WeighsNone>No raids met lately: each colonist's own rating alone.</CC_WeaponPick_WeighsNone>
+  <CC_WeaponPick_Stored>{COUNT} weapons lie in storage.</CC_WeaponPick_Stored>
+  <CC_WeaponPick_Sit_Mechs>mechanoids</CC_WeaponPick_Sit_Mechs>
+  <CC_WeaponPick_Sit_Armour>armoured raiders</CC_WeaponPick_Sit_Armour>
+  <CC_WeaponPick_Sit_Crowds>crowds</CC_WeaponPick_Sit_Crowds>
+  <CC_WeaponPick_Sit_Siege>sieges</CC_WeaponPick_Sit_Siege>
+  <CC_WeaponPick_Sit_Choke>a gate held</CC_WeaponPick_Sit_Choke>
+  <CC_WeaponPick_Sit_Better>ordinary fights</CC_WeaponPick_Sit_Better>
+  <CC_WeaponPick_NoColonists>No one here can carry a weapon.</CC_WeaponPick_NoColonists>
+  <CC_WeaponPick_HoldsNothing>nothing in hand</CC_WeaponPick_HoldsNothing>
+  <CC_WeaponPick_SetAside>Set aside for now.</CC_WeaponPick_SetAside>
+  <CC_WeaponPick_KeepsIt>Nothing the colony has suits {PAWN_objective} clearly better.</CC_WeaponPick_KeepsIt>
+
+  <!-- A colonist who asked, in This week (How people are). -->
+  <CC_WeaponAsk_Inbox>{PAWN} would rather carry the {WEAPON} {PLACE} ({GAIN})</CC_WeaponAsk_Inbox>
+  <CC_WeaponAsk_InboxClick>Click to open {PAWN_possessive} gear.</CC_WeaponAsk_InboxClick>
+  <CC_WeaponAsk_InboxAct>Look</CC_WeaponAsk_InboxAct>
+  <CC_WeaponAsk_InboxAct_Tip>Weapons for each colonist, on the Defenses page.</CC_WeaponAsk_InboxAct_Tip>
 
 </LanguageData>

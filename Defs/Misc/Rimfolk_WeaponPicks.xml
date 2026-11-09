@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- Two colonists trading weapons, a suggestion better for both (Source/ColonyCouncil/Weapons/WeaponSwapJob.cs,
+       WeaponPick.cs): the one ordered walks over to the other and each hands the other what they hold. -->
+  <JobDef>
+    <defName>Rimfolk_SwapWeapons</defName>
+    <driverClass>ColonyCouncil.JobDriver_SwapWeapons</driverClass>
+    <reportString>trading weapons with TargetA.</reportString>
+    <casualInterruptible>false</casualInterruptible>
+    <checkOverrideOnDamage>Always</checkOverrideOnDamage>
+  </JobDef>
+
+</Defs>

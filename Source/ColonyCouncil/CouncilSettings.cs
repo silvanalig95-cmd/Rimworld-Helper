@@ -429,6 +429,12 @@ namespace ColonyCouncil
         public bool weaponGearTab = true;
         /// <summary>Rimfolk's own weapon card (Weapons/WeaponCardWindow.cs): the chart, the colonist's own rating, the pairs they carry.</summary>
         public bool weaponCard = true;
+        /// <summary>Opening the info for a weapon (the "i" button anywhere, the inspect pane) opens Rimfolk's weapon card instead of the game's (Weapons/WeaponCardFirst.cs).</summary>
+        public bool weaponCardFirst = true;
+        /// <summary>The best weapon for each colonist (Weapons/WeaponPick.cs): a line on the gear tab, who should carry a weapon on its card, the colony's view on the Defenses page.</summary>
+        public bool weaponSuggestions = true;
+        /// <summary>Colonists now and then ask for a clearly better weapon lying in storage, in their own words (Weapons/WeaponAsks.cs).</summary>
+        public bool weaponAsks = true;
         public BarBadgeSize barBadgeSize = BarBadgeSize.Normal;
         public BarBadgeCorner barBadgeCorner = BarBadgeCorner.TopRight;
         public int barBadgeMax = 2;
@@ -954,6 +960,9 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref weaponRatings, "weaponRatings", true);
             Scribe_Values.Look(ref weaponGearTab, "weaponGearTab", true);
             Scribe_Values.Look(ref weaponCard, "weaponCard", true);
+            Scribe_Values.Look(ref weaponCardFirst, "weaponCardFirst", true);
+            Scribe_Values.Look(ref weaponSuggestions, "weaponSuggestions", true);
+            Scribe_Values.Look(ref weaponAsks, "weaponAsks", true);
             Scribe_Values.Look(ref barBadgeSize, "barBadgeSize", BarBadgeSize.Normal);
             Scribe_Values.Look(ref barBadgeCorner, "barBadgeCorner", BarBadgeCorner.TopRight);
             Scribe_Values.Look(ref barBadgeMax, "barBadgeMax", 2);

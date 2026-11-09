@@ -9,7 +9,7 @@
     <label>judging a weapon</label>
     <category>Defending</category>
     <order>95</order>
-    <summary>One number from 1 to 10 for every weapon, what it is good and weak at, and how it suits each colonist</summary>
+    <summary>One number from 1 to 10 for every weapon, what it is good and weak at, how it suits each colonist, and the best weapon for each</summary>
     <tip>A sniper rifle isn't marked down for being poor at five cells, nor a shotgun at forty: each weapon is judged at the distances its role is for.</tip>
     <description>Every weapon a colonist can wield, from the game, its DLCs and your mods, has a rating from 1.0 to 10.0 at the top of its info card, worked out from what it really does in a fight by the game's own rules. Beside it: sub-ratings, colour-coded tags with the reason for each, a line in plain words, and its effects, counted or only named. Rimfolk's weapon card draws its damage by distance and sets it against what a colonist holds.</description>
     <sections>
@@ -41,7 +41,26 @@
           <li>The badge, the tags as chips, the line in plain words and the sub-ratings; a chart of damage per second by distance against no armour, flak, marine armour and mechanoids (bars by armour for a melee weapon); the situations it is best for and weak in; every effect; the key numbers.</li>
           <li>For a colonist: their own rating from their real shooting accuracy or melee hit chance, aim, cooldowns and blows, each step that moves it named (their skill, a careful shooter, a brawler, their sight and gear). What stops them using it: incapable of violence, biocoded to someone else, a heavy weapon they can't carry.</li>
           <li>It opens from a button at the foot of the game's info card, a button on a weapon selected on the map, and a small button beside each weapon on the gear tab.</li>
+          <li>With "Open Rimfolk's weapon card first" (on at first), opening the info for a weapon anywhere (the "i" button on the gear tab, Nice Inventory Tab, a trade screen, a list, the research or architect tab, the inspect pane) opens this card instead of the game's. Its button "All the game's stats" opens the game's own card for the same weapon, and the game's card keeps its button back. Links followed inside the game's card stay in it.</li>
+          <li>A weapon's kind (from the research or architect tab, or a list) is rated as made: normal quality, in its usual stuff (steel where it takes metal), and its card says so.</li>
+          <li>Who should carry this: the colonists it suits best, by the same scores as the suggestions below, each with what it adds over what they have of its kind. A click shows it for them.</li>
         </points>
+      </li>
+      <li>
+        <heading>The best weapon for each colonist</heading>
+        <text>From what the colony has: what lies in storage they can reach and isn't forbidden (in a stockpile, on a shelf, on an outfit stand), what they carry themselves, and what another colonist holds when a trade is better for both. Shown on the gear tab (the game's and Nice Inventory Tab's), on the weapon card, and for the whole colony on the Defenses page ("Weapon suggestions", on).</text>
+        <points>
+          <li>Each colonist's own rating of each weapon comes first: their skill, traits and body. Then their passion for Shooting or Melee, the fights the colony meets (mechanoids, armoured raiders, crowds, sieges, read from the raids it met lately, and a gate it holds when it has drawn a defense line) and their work: a hunter wants a gun or bow that doesn't explode, a doctor or crafter a light weapon. A weapon their faith holds noble counts in its favour.</li>
+          <li>Never suggested: a weapon their faith despises, one coded or bonded to someone else, a heavy weapon they can't carry, anything for someone incapable of violence, a gun for a brawler or someone who can't shoot. Leaving their own bonded persona weapon unused takes a much bigger gain, and the line says what it costs.</li>
+          <li>Only a gain worth the walk is suggested: 0.6 of a point, about a fifth more damage for a gun. An assault rifle to a charge rifle is suggested, a longsword to a uranium one isn't.</li>
+          <li>One choice for the whole colony, so two colonists are never told to take the same weapon: the biggest gains first, then swaps between them while the colony's total rises. Then trades between two colonists that are better for both, then a sidearm with Simple Sidearms (within its weights) and a weapon for the off hand with Dual Wield where both hands together add enough.</li>
+          <li>Each comes with why in a line, as "Charge rifle: +1.4 for Ana: her Shooting 14 makes its accuracy count, and it pierces the armour your last raids wore."</li>
+          <li>The buttons give real orders, walked out on the map: the game's Equip, Simple Sidearms' own job for a sidearm, Dual Wield's own for the off hand, and a trade where one walks over to the other. "Equip all suggested" on the Defenses page only gives the orders. "Not now" sets a colonist's suggestions aside for ten days.</li>
+        </points>
+      </li>
+      <li>
+        <heading>Colonists who ask</heading>
+        <text>When a clearly better weapon lies unused in storage (twice the gain a suggestion needs), a colonist now and then says so in one line of their own, naming it, where it lies and why: "That charge rifle in the stockpile would do far more against the mechanoids we keep meeting." Only in their free time at home, never in danger, drafted, downed or not themselves; at most once in five days each and once a day in the colony, never while their suggestions are set aside. A quiet entry stays in This week while it still lies there; a click opens their gear ("Colonists ask for better weapons", on).</text>
       </li>
       <li>
         <heading>With the weapon mods</heading>

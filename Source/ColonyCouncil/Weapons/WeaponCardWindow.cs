@@ -156,6 +156,7 @@ namespace ColonyCouncil
             }
             y += UiKit.SectionTitle(0f, y, w, "CC_Weapon_Sec_Numbers".Translate());
             y = Numbers(w, y, r) + 8f;
+            y = WhoCarries(w, y, r);
             y = ForColonist(w, y, r);
             return y;
         }
@@ -166,11 +167,19 @@ namespace ColonyCouncil
             var badge = new Rect(0f, y, 66f, 46f);
             WeaponUi.Badge(badge, g.Overall, () => "CC_Weapon_Info_RatingExpl".Translate(), 81726, GameFont.Medium);
             float x = badge.xMax + 10f;
+            // The game's own info card for the same weapon or kind, let through when Rimfolk's card opens first.
+            string gameLabel = "CC_Weapon_GameCard".Translate();
+            float gw = Mathf.Clamp(UiKit.KeptWidth(gameLabel, GameFont.Small) + 24f, 110f, 200f);
+            if (UiKit.ActButton(new Rect(w - gw, y, gw, 24f), gameLabel, null, "CC_Weapon_GameCard_Tip".Translate()))
+                WeaponCardFirst.OpenGameCard(thing, def, stuff);
             string band = WeaponWords.Quality(g.Overall).CapitalizeFirst();
-            UiKit.LabelFit(new Rect(x, y, w - x, 24f), band + " · " + WeaponInfoCard.RoleWords(g.Role), WeaponUi.RatingColour(g.Overall));
+            UiKit.LabelFit(new Rect(x, y, w - x - gw - 6f, 24f), band + " · " + WeaponInfoCard.RoleWords(g.Role), WeaponUi.RatingColour(g.Overall));
             string quality = thing != null && thing.TryGetQuality(out var q) ? q.GetLabel() : QualityCategory.Normal.GetLabel();
-            string sub = "CC_Weapon_Card_RatedFor".Translate((g.Kind == "ranged" ? SkillDefOf.Shooting.label : SkillDefOf.Melee.label).Named("SKILL"),
-                quality.Named("QUALITY"), (r.StuffLabel ?? "").Named("STUFF")).Resolve();
+            string made = r.StuffLabel.NullOrEmpty() ? "CC_Weapon_Card_MadeNoStuff".Translate(quality.Named("QUALITY")).Resolve()
+                : "CC_Weapon_Card_Made".Translate(quality.Named("QUALITY"), r.StuffLabel.Named("STUFF")).Resolve();
+            // A weapon in hand is rated as it is; a kind (from the research or architect tab, a list) in its default stuff at normal quality, and says so.
+            string sub = (thing != null ? "CC_Weapon_Card_RatedFor" : "CC_Weapon_Card_RatedForKind").Translate(
+                (g.Kind == "ranged" ? SkillDefOf.Shooting.label : SkillDefOf.Melee.label).Named("SKILL"), made.Named("MADE")).Resolve();
             if (r.Rough) sub += " · " + "CC_Weapon_Rough".Translate();
             UiKit.LabelFit(new Rect(x, y + 24f, w - x, 20f), sub, UiKit.Faint, GameFont.Tiny);
             if (r.Rough) TooltipHandler.TipRegion(new Rect(x, y + 24f, w - x, 20f), "CC_Weapon_Info_Rough".Translate() + "\n" + string.Join("\n", r.Unsure.Select(u => "- " + u)));
@@ -370,6 +379,57 @@ namespace ColonyCouncil
                 y += Mathf.Max(20f, h) + 1f;
             }
             return y;
+        }
+
+        // ---------------- Who should carry this ----------------
+
+        private List<(Pawn p, float rating, float gain)> carriers;
+        private float whoAt = -10f;
+        private WeaponReport whoFor;
+
+        /// <summary>
+        /// The colonists this weapon suits best (Weapons/WeaponPick.cs): by the same scores as the colony's choice, their own
+        /// rating with the fights you meet, their passions, work and faith in it; each with what it adds over what they have
+        /// now of its kind. A click chooses them below. Worked out once every two seconds.
+        /// </summary>
+        private float WhoCarries(float w, float y, WeaponReport r)
+        {
+            if (!WeaponPick.On) return y;
+            if (whoFor != r || Time.realtimeSinceStartup - whoAt > 2f)
+            {
+                whoFor = r;
+                whoAt = Time.realtimeSinceStartup;
+                try
+                {
+                    carriers = WeaponPick.WhoShouldCarry(thing, def, stuff);
+                }
+                catch (Exception e)
+                {
+                    CouncilLog.ErrorOnce("who should carry a weapon, on its card", e);
+                    carriers = null;
+                }
+            }
+            if (carriers == null || carriers.Count == 0) return y;
+            y += UiKit.SectionTitle(0f, y, w, "CC_WeaponPick_Card_Who".Translate());
+            foreach (var (p, rating, gain) in carriers)
+            {
+                if (p == null || p.Destroyed) continue;
+                var row = new Rect(0f, y, w, 24f);
+                if (Mouse.IsOver(row)) Widgets.DrawHighlight(row);
+                UiKit.Portrait(new Rect(0f, y + 1f, 22f, 22f), p, UiKit.Faint);
+                UiKit.LabelFit(new Rect(28f, y, 130f, 24f), p.LabelShortCap, UiKit.Ink);
+                WeaponUi.Badge(new Rect(162f, y + 3f, 34f, 18f), rating);
+                bool holds = thing != null && p.equipment?.Primary == thing;
+                string note = holds ? "CC_WeaponPick_Card_Holds".Translate(p.Named("PAWN")).Resolve()
+                    : gain >= WeaponPickMath.Threshold ? "CC_WeaponPick_Card_Better".Translate(WeaponPickMath.GainText(gain).Named("GAIN"), p.Named("PAWN")).Resolve()
+                    : gain > 0.05f ? "CC_WeaponPick_Card_Little".Translate(WeaponPickMath.GainText(gain).Named("GAIN")).Resolve()
+                    : "CC_WeaponPick_Card_NoBetter".Translate(p.Named("PAWN")).Resolve();
+                UiKit.LabelFit(new Rect(202f, y, w - 202f, 24f), note, gain >= WeaponPickMath.Threshold && !holds ? UiKit.Good : UiKit.Faint, GameFont.Tiny);
+                TooltipHandler.TipRegion(row, "CC_WeaponPick_Card_WhoTip".Translate(p.Named("PAWN")).Resolve());
+                if (Widgets.ButtonInvisible(row)) Choose(p);
+                y += 26f;
+            }
+            return y + 6f;
         }
 
         // ---------------- For a colonist ----------------

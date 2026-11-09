@@ -5,6 +5,17 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## The best weapon for each colonist, and the weapon card first
+
+*9 November 2026, version 0.184.0*
+
+- The gear tab suggests a better weapon for each colonist from what the colony has, with a line on why, weighing their skill, passions and traits, their work, the weapon's abilities and effects, and what your last raids brought.
+- One click sends them to pick it up, or to take it as a sidearm with Simple Sidearms or in the off hand with Dual Wield; two colonists can trade weapons when both gain, and "not now" puts a suggestion aside for ten days.
+- The Defenses window lists every colonist's weapon beside the suggested one, and can give all the orders at once; the weapon card says who should carry each weapon.
+- Suggestions respect your colonists: never a weapon their faith despises, never another's bonded or biocoded weapon, no guns for brawlers, heavy weapons only for those who can carry them.
+- Now and then a colonist mentions a clearly better weapon lying in storage, by name and where it lies, rarely and never in danger.
+- Opening the info of a weapon now opens Rimfolk's weapon card first; its button "All the game's stats" opens the game's own card, and a setting turns this off.
+
 ## Weapon ratings in the game, and Rimfolk's weapon card
 
 *9 November 2026, version 0.183.0*

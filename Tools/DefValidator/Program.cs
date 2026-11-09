@@ -537,6 +537,8 @@ pawnPrefixes.Add("FRIEND");
 // Gossip and reputation (Social/Gossip/): the one a story is about, a deed's detail, and the date in a deed's name.
 pawnPrefixes.Add("SUBJECT");
 wishPh.UnionWith(new[] { "DETAIL", "DATE" });
+// A colonist asking for a better weapon (Weapons/WeaponAsks.cs, Rimfolk_Pool_WeaponAsk): the weapon and where it lies ({PLACE}).
+wishPh.Add("WEAPON");
 var pawnSuffixes = new HashSet<string> { "nameDef", "nameFull", "labelShort", "pronoun", "possessive", "objective", "label", "definite", "indefinite", "gender", "kind" };
 foreach (var (file, doc) in docs)
 {

@@ -7,8 +7,8 @@ colony of 20, with the game keeping 30 more people it knows and 5 more each year
 generous guesses; sizes are rough XML sizes. Caps named as constants are read from the source. "Counted under" rows are
 kept inside another record (a journal's lines, a heart's lists) and are already in that record's size.
 
-Saved collections found: 597; modelled: 597; growing without end: 0.
-Rimfolk's part of the save, roughly: **2,606 KB** after a year, **3,081 KB** after two, **3,307 KB** after five.
+Saved collections found: 600; modelled: 600; growing without end: 0.
+Rimfolk's part of the save, roughly: **2,613 KB** after a year, **3,088 KB** after two, **3,314 KB** after five.
 
 | Collection | Rule | Kind | 1 year | 2 years | 5 years | KB at 5 years |
 |---|---|---|---|---|---|---|
@@ -117,6 +117,7 @@ Rimfolk's part of the save, roughly: **2,606 KB** after a year, **3,081 KB** aft
 | `Peoples/ArisingBook.cs:arisen` | peoples that arose during play: one record each, one every 20 days at the most (the setting at 200%), ArisingMath.MaxRecords kept | cap | 3 | 6 | 15 | 4.7 |
 | `PlayOut/PlayOutTracker.cs:plays` | waiting ones capped, done ones dropped | cap | 8 | 8 | 8 | 4.7 |
 | `Social/Groups/GroupTracker.cs:past` | 12 past groups, members the game still knows | cap | 3 | 6 | 12 | 4.7 |
+| `Weapons/WeaponPickBook.cs:asks` | each colonist's last ask for a better weapon (one each), those of the gone kept fifteen days | colonists | 20 | 20 | 20 | 4.5 |
 | `CouncilGameComponent.cs:everWished` | one per wish def | defs | 129 | 129 | 129 | 4.4 |
 | `Building/CouncilPlanQueue.cs:queue` | blueprints waiting to be placed | while | 30 | 30 | 30 | 4.4 |
 | `Character/Character.cs:recent` | 30 recent shifts | cap | 30 | 30 | 30 | 4.4 |
@@ -174,6 +175,7 @@ Rimfolk's part of the save, roughly: **2,606 KB** after a year, **3,081 KB** aft
 | `Dilemmas/Dilemmas.cs:traditionBreaks` | per tradition | defs | 24 | 24 | 24 | 2.1 |
 | `Weather/WeatherBook.cs:days` | WeatherMath.MaxDays: the last month, a short line a day, per home map | fixed | 30 | 30 | 30 | 2.1 |
 | `Dealings/DealingBook.cs:asks` | the world's letters waiting for an answer (DealingMath.MaxWaiting at once) and answered ones kept a month | cap | 8 | 8 | 8 | 2.0 |
+| `Weapons/WeaponPickBook.cs:raids` | raids the colony met: how many came, mechanoids, armoured, a siege, a tribe; WeaponPickBook.MaxRaids newest | cap | 12 | 12 | 12 | 2.0 |
 | `Aspirations/Aspirations.cs:inspiredBy` | known pawns only | known | 16 | 18 | 22 | 2.0 |
 | `Building/PersonalTouches.cs:pending` | until built or dropped | cap | 10 | 10 | 10 | 2.0 |
 | `Building/Suggest/Suggestions.cs:declinedUntil` | with the above: until when | fixed | 80 | 80 | 80 | 2.0 |
@@ -301,6 +303,7 @@ Rimfolk's part of the save, roughly: **2,606 KB** after a year, **3,081 KB** aft
 | `Visitors/Callers.cs:commissions` | a piece the collector is owed, until collected or for 60 days at most; at most Callers.MaxCommissions | cap | 1 | 2 | 3 | 0.6 |
 | `Building/ShelfReserves.cs:entries` | per shelf: the kinds it keeps slots for, with how they're kept | while | 6 | 6 | 6 | 0.5 |
 | `Faith/FaithCouncilTracker.cs:faithEvenings` | each faith's last evening of faith: one per faith, gone after 60 days or with the faith | fixed | 6 | 6 | 6 | 0.5 |
+| `Weapons/WeaponPickBook.cs:notNow` | colonists whose suggestions are set aside, ten days each, the ended pruned daily | colonists | 6 | 6 | 6 | 0.5 |
 | `World/Ledger/LedgerColonies.cs:colonyRecords` | one per colony ever founded once there are two, FoundingMath.MaxRecords at most (the oldest ended ones fold into the history); none in a save of one colony | cap | 1 | 1 | 3 | 0.5 |
 | `Colonies/HomesFounding.cs:foundings` | a fresh start under way, one at a time, let go once its colony stands and what comes after is done (the newcomers chosen or their call let go after 10 days, the first night, the old colony abandoned) | while | 1 | 1 | 1 | 0.5 |
 | `Visitors/VisitorsMore2.cs:deals` | a book swapper's bargain, while their visit lasts, two days at most (Visitors/VisitorsMore2.cs) | while | 2 | 2 | 2 | 0.5 |

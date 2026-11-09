@@ -95,6 +95,8 @@ namespace ColonyCouncil
             Inbox.Register("strain", InboxSection.People, 10f, Strain);
             Inbox.Register("health", InboxSection.People, 20f, Health);
             Inbox.Register("trust", InboxSection.People, 30f, Trust);
+            // A colonist who asked lately for a better weapon lying in storage, while it still lies there (Weapons/WeaponAsks.cs).
+            Inbox.Register("weapon-asks", InboxSection.People, 40f, WeaponAsks.InboxRows);
             Inbox.Register("balance", InboxSection.People, 90f, Balance, null, true);
             // The plan: the advisor's most pressing steps, and the proposals waiting under them.
             Inbox.Register("plan", InboxSection.Plan, 10f, Plan);
