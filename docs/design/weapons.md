@@ -67,6 +67,23 @@ blank values in mind, but also like special abilities, passive effects, situatio
 - **Plain lines as a seasoned player would say them** ("a fine sidearm; the EMP makes it the answer to mechanoids; too
   slow to stop a charge"), not a list of stats.
 
+## Tags you can read at a glance
+
+The player (9 November 2026): "what would be cool if all the weapons and great could have some kind of tags/labels that
+help me grasp their strengths and weaknesses, special abilities etc. the lables could be like color coded, kind of like
+for many of today's games. for example "great for snipers", "risk of fire" etc., you surely have ideas".
+
+- **A fixed set of tags**, each a word or three with a line saying why, made from the weapon's own numbers by documented
+  rules (never picked by hand), about three to seven a weapon, the most telling first.
+- **Six kinds, each with its colour and its own mark** so colour is never the only cue: strengths (green: long reach,
+  sniper's pick, shreds armour, mech killer, crowd breaker...), weaknesses (red: poor up close, slow to aim, bounces off
+  armour, heavy to carry...), risks (orange: fire risk, hits friends, ruins the hunt, one use...), specials (purple: EMP,
+  sets on fire, stuns, bleeds, grants an ability, persona bond, non-lethal...), roles (blue: sniper, assault, close
+  quarters, sidearm, offhand, hunting, capture alive, duelist...) and needs (grey: needs a good shot, needs a strong arm,
+  biocoded...).
+- The same tags and colours in the review, the tier-list page, the weapon card in the game and, later, for armour and
+  apparel.
+
 ## Step 3: recommendations (the player said yes)
 
 8. **The best weapon for each colonist** on the gear tab (Nice Inventory Tab's too): from what the colony has, by the
