@@ -45,6 +45,12 @@ tree at once, alongside whatever runs. Each piece is merged as its own release, 
   gates), then propose a handful of winter camps (people who travel or work in deep cold: ice fishers, fur trappers, a
   caravan sheltering from a blizzard, hunters following a herd, a winter pilgrimage, salt or ice cutters), each with
   shelter and fire as the cold demands, by every age and the player's mods.
+- **To do when the player asks (10 November 2026): the temperature readout in colour.** The player, with a picture of
+  the game's readout at the bottom right ("No wind / Indoors 21C / Clear"): "can the temperature meter be clearly color
+  coded from blue to red, so i can at immediate glance see how warm or cold it is". When asked: colour the game's own
+  temperature line (the readout of `GlobalControls`, softly, behind the deeper hooks) on a blue-to-red scale by the
+  colonists' comfort (deep blue in killing cold, white at comfortable, red in killing heat), in both looks, with a
+  setting; check Rimfolk's own on-screen panels that show a temperature to match.
 - 0.206.1, carriers straight to the mailbag,
   back in the saddle, a new face each time (10 November 2026). The player: "the couriers that bring letters and material
   take an awkward routine around my base before delivering the message a bit away from the base. if anything they should
