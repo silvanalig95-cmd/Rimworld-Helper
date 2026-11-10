@@ -2752,6 +2752,22 @@ Each of these switches itself on only when its mod is there, and only asks for w
   someone at the guest beds, and so can the one who asks to learn a trade, or the tinker or teller who becomes a
   regular. The story finds them where they are, and an answer that has them join hands them over through Hospitality's
   own joining (setting "Guests in the colony's stories").
+  Guests who help out with the colony's work (Hospitality's own "guests help out", a guest in a good mood at work they're
+  skilled at) only take up, every day, work they love or that fits who they are: a passion for it, a hard worker's
+  hauling and cleaning, what their people live by (the hospitaller order tends the sick, the herding folk see to the
+  animals) or what their faith speaks for, and say why the first time; about three hours a day, and they put it down
+  when unhappy (setting "Guests help with what they love"). In real trouble they pitch in whatever their mood, with that
+  trouble's work alone until it's over: a fire near them, someone of the colony down outside a bed, the wounded after a
+  raid (Medicine 4 or more, tending only), the frost harvest, the food about to run out (Cooking 4 or more), each said
+  and named in a message (setting "Guests pitch in when the colony is in trouble"; with Hospitality's own helping off,
+  only fires and rescues). A guest the colony carried in, set free, tended, feasted or hosted very well offers a day of
+  their best-loved work, kept in the evening's news and their history. The titled, the proud and their people's heads
+  and heirs do nothing menial and pitch in only to save a life, each faith and people keeps its customs (the Mossborn
+  never fell a tree, the Ashen Banner works for hire), and no guest goes into a bedroom or a cell, does surgery or
+  prisoners' work or handles the dead. A day far too long is held against the colony a little, working beside a colonist
+  builds friendship both ways, a guest who helped speaks well of the colony at home, and one hurt at the colony's work
+  costs regard with their people. The guest tab shows what each would help with and why, today's hours, and a switch,
+  "Let them help".
 - **Medieval Overhaul:** its pies, stews, slop, cheese, wine, ale, smoked meat and library leave memories that become
   days in the journals, and visitors notice the colony's cheese, wine, hearth, oven, hives and books once it has them.
 - **Vanilla Cooking and Brewing Expanded:** grills and gourmet dishes count as fine or lavish meals for birthday
@@ -5132,7 +5148,7 @@ The pages:
   the break ring or dot and its early warning, the wish badge's threshold, size, corner and how many show).
 - **Your other mods**: only the mods you have loaded show, and the page's foot names the others Rimfolk works with:
   Hospitality (guests joining only when they would, guests in the colony's stories, recruiting spelled out on the
-  guest tab), RimMarket (Rimfolk's sales table, stall goods for trade ships, campers buying at the stalls, and with
+  guest tab, guests helping with what they love, guests pitching in when the colony is in trouble), RimMarket (Rimfolk's sales table, stall goods for trade ships, campers buying at the stalls, and with
   Hospitality guests always shopping), Alpha Skills (a drink or a smoke before work), **A covered face hides looks
   (Alpha Genes)**, RimWorld of Magic (golems keep their energy, the mod's rules about needs hold, and under Harmony 3 the patches its
   own setup leaves out after its refused healing-rain patch are applied one at a time, with the healing rain run by

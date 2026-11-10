@@ -61,6 +61,20 @@ And what someone of their passions and nature wants of a home has to be there, u
 The setting "Guests join only when they would" (needs the deeper game hooks) turns all of this off.</text>
       </li>
       <li>
+        <heading>Guests who help out</heading>
+        <text>Hospitality lets a guest in a good mood help with the colony's work they're skilled at. With Rimfolk, in everyday times a guest only takes up work they love or that fits who they are: a passion for it, a hard worker's hauling and cleaning, what their people live by (the hospitaller order tends the sick, the herding folk see to animals, the road league carries) or what their faith speaks for. The first time they take up a kind of work they say why. About three hours of it a day, and an unhappy guest puts it down. Hospitality's own switch and minimum skill still hold. Setting "Guests help with what they love".
+
+In real trouble they pitch in whatever their mood, with that trouble's work alone until it's over: a fire near them, someone of the colony down outside a bed (they carry them in), the colony's wounded after a raid (with Medicine 4 or more, tending only, never surgery), crops the frost harvest marked before a killing frost, and cooking when the food is about to run out (with Cooking 4 or more). Each says why, and a message names who is helping. With Hospitality's own helping switched off, guests still fight fires and carry the downed in, nothing more. Setting "Guests pitch in when the colony is in trouble".
+
+A guest the colony carried in, once set free, tended, feasted or hosted very well offers a day of their best-loved work before leaving, beyond the day's hours; the evening's news and their history keep it.
+
+Some won't: the titled, the proud and their people's heads and heirs do nothing menial (hauling, cleaning, plant cutting) and only pitch in to save a life. Each faith keeps its customs (no mining, no hunting, no felling where it forbids them), the Mossborn never fell a tree, and the Ashen Banner does no everyday work, being for hire, though it pitches in. No guest goes into a bedroom or a cell for work, does surgery or prisoners' work, or handles the dead.
+
+It counts both ways. A guest and a colonist working side by side think a little better of each other. A guest who worked far too long in a day minds it, which lowers their stay's score. One who helped speaks well of the colony to their people's notables at home, and one hurt at the colony's work costs a little regard with them.
+
+The guest tab shows, above the recruiting checklist, what each guest would help with and why ("Cooking: burning passion", "No hauling: titled"), today's hours against the three, the trouble they're pitching in to or the day of thanks, and a switch, "Let them help", on by default.</text>
+      </li>
+      <li>
         <heading>Their people, and the colony's say</heading>
         <text>What taking someone costs their people (Hospitality's recruiting price) goes by who they are: about a third less for someone with no family among them, a third more with family there, twice for the leader's family, and more for one who holds a role of their faith. The price's breakdown on the guest tab shows why.
 

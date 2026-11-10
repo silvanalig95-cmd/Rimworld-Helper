@@ -16,7 +16,8 @@ namespace ColonyCouncil
     /// own will unless they're related to someone of the colony, and goes off when they're recruited), a title (no
     /// recruiting by force), friends here as Hospitality counts them (royal friends' ranks for the titled) with what their
     /// ties at home ask for more, and with Rimfolk's "Guests who would stay" a reason to stay, room and what they want of a
-    /// home. The tab grows to fit. Hospitality's facts are read by name.
+    /// home. The tab grows to fit, for this and for the guest's helping out above it (GuestHelpTab.cs, drawn from the same
+    /// patch). Hospitality's facts are read by name.
     /// </summary>
     public static class GuestCheck
     {
@@ -404,9 +405,15 @@ namespace ColonyCouncil
             }
             Text.Font = font;
             Text.Anchor = anchor;
+            listing.maxOneColumn = oneColumn;
+        }
+
+        /// <summary>After the tab's own lines and Rimfolk's sections under them: the height they took, for the next frame's size.</summary>
+        internal static void Grown(Listing_Standard listing, Pawn g)
+        {
+            if (listing == null || g == null) return;
             sizedFor = g;
             wanted = listing.CurHeight + 44f;
-            listing.maxOneColumn = oneColumn;
         }
 
         /// <summary>Before the tab draws: tall enough for the checklist drawn last time for this guest, never off screen.</summary>
@@ -416,13 +423,16 @@ namespace ColonyCouncil
             if (PaneTopGetter != null && PaneTopGetter.Invoke(tab, null) is float top) paneTop = top;
             ref Vector2 size = ref TabSize(tab);
             if (baseHeight < 0f) baseHeight = size.y;
-            size.y = On && g != null && g == sizedFor ? Mathf.Min(MaxTabHeight, Mathf.Max(baseHeight, wanted)) : baseHeight;
+            size.y = (On || GuestHelpTab.On) && g != null && g == sizedFor ? Mathf.Min(MaxTabHeight, Mathf.Max(baseHeight, wanted)) : baseHeight;
         }
 
         private static readonly AccessTools.FieldRef<ITab, Vector2> TabSize = AccessTools.FieldRefAccess<ITab, Vector2>("size");
     }
 
-    /// <summary>The checklist under Hospitality's guest tab (GuestCheck.Draw), in its own listing.</summary>
+    /// <summary>
+    /// Under Hospitality's guest tab, in its own listing: the guest's helping out (GuestHelpTab.Draw), then the recruiting
+    /// checklist (GuestCheck.Draw), each with its setting; the tab grows to what they took.
+    /// </summary>
     [HarmonyPatch]
     public static class Patch_GuestCheckTab
     {
@@ -438,12 +448,16 @@ namespace ColonyCouncil
 
         public static void Postfix(object __instance)
         {
-            if (broken || !GuestCheck.On) return;
+            bool help = GuestHelpTab.On, check = GuestCheck.On;
+            if (broken || !help && !check) return;
             try
             {
                 listingField ??= AccessTools.Field(__instance.GetType(), "listingStandard");
                 var listing = listingField?.GetValue(listingField.IsStatic ? null : __instance) as Listing_Standard;
-                GuestCheck.Draw(listing, SelPawnGetter?.Invoke(__instance, null) as Pawn);
+                var pawn = SelPawnGetter?.Invoke(__instance, null) as Pawn;
+                if (help) GuestHelpTab.Draw(listing, pawn);
+                if (check) GuestCheck.Draw(listing, pawn);
+                GuestCheck.Grown(listing, pawn);
             }
             catch (Exception e)
             {

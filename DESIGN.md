@@ -2737,6 +2737,103 @@ night, a lord's retinue staying by the gate).
   `Rimfolk_VisitorLines`, by moment and what they are); messages through `Notify` only for a group coming along the
   road and for one the weather drove off.
 
+### Guests who help out (the player's request, 10 November 2026; released 0.205.0)
+
+The player noticed two Hospitality guests cooking, butchering and hauling: "is this a guest hospitality feature by
+default, or what's causing this? ... I really kind of like the idea that the guest does certain kind of work, for example,
+if they really like doing this work anyways ... or if they for example see that I'm in need and need help in like a crisis
+moment, that they help out." It is Hospitality's own "guests help out": its guest duty (`Duties_Visit.xml`) runs the game's
+`JobGiver_Work` behind `ThinkNode_ConditionalWantsToHelp` (a mood over 75%, unless its "Disable guests helping"), and its
+prefix on `JobGiver_Work.PawnCanUseWorkGiver` decides each work giver for its guests: skill at least its
+`minGuestWorkSkill` (7), no talks, warden's work or feeding, no art and crafting or surgery by its settings, and a roll of
+goodwill, passion (40 burning, 20 minor), the visit's score times 100 and 75 for an emergency giver against 100 plus a
+seeded 0 to 100 (its `&&`/`||` keeps every tending out, whatever its medical setting). Rimfolk's own visitors' work at
+their spot (`Visitors/VisitorWork.cs`) is another thing and stays as it was. The player approved all seven ideas; the
+pure rules are `Integrations/GuestHelpMath.cs` (`GuestHelpTests`), the game side `GuestHelp.cs`, the tab `GuestHelpTab.cs`.
+Two settings on Your other mods, under Hospitality, both on and behind the deeper hooks: "Guests help with what they love"
+(`guestHelp`: points 1 and 3 to 7) and "Guests pitch in when the colony is in trouble" (`guestsPitchIn`: point 2).
+
+1. **Work they love.** In everyday times a guest only takes up work that fits them (`GuestHelpMath.Fit`, strongest
+   first): a burning passion for one of its skills, the work their people live by (one of Rimfolk's peoples,
+   `CallingWork`: the order tends the sick, herders and tamers handle animals, the league and the enclave carry, pilgrims
+   cook and sweep, scholars, seers and the Helix Works study, the river folk fish and cook, the wardens hunt, the Quiet
+   Bell sweeps, the Wheel welds and makes, the Mossborn grow, the Kiln Guild builds, makes and carves, linesmen and the
+   Vault mend and build, the union mines, citizens and the Fleet's deckhands carry and clean, the Lattice crafts, the
+   Choir makes art), their faith (`FaithWork`: learning prized, mining's yield, trees desired, art desired, dumb labour
+   exalted, crafting by hand, a strong bond with animals; each an active PreceptDef of the player's), a minor passion,
+   or a hard worker's hauling and cleaning (Industriousness above zero). No fit, no everyday work, even where
+   Hospitality would allow it. The first time they take up a kind of work they say why in one sentence
+   (`Rimfolk_Pool_GuestHelpFit`, by the reason, the work and their people's ways). A postfix on `PawnCanUseWorkGiver`
+   (`Patch_GuestHelpWorkGiver`, after Hospitality's own prefix) narrows its answer; their own care (Patient work) is
+   never touched. Hospitality's switch and minimum skill hold.
+2. **Pitching in during a crisis** (`ForGuest`, `CrisisOf`; each start and end a pure rule, worked out per map every
+   250 ticks): a fire in the home area within 20 cells of them (`FightFires` and mods' own fires); someone of the colony
+   downed outside a bed (Rimfolk's `JobGiver_GuestRescue` makes the game's rescue job, since its work giver only rescues
+   one's own people, and never while an enemy is within 40 cells, the game's own rule); the colony's people waiting to be
+   tended within a day after a raid, no enemy about (`DoctorTendToHumanlikes`, `DoctorTendEmergency`, Medicine 4 or more,
+   tending only, never surgery, an animal or themselves); crops the frost harvest marked still standing
+   (`GrowerHarvest`, `PlantsCut`); the food under three days (`MapFacts.FoodDays`) until four again (cooking and
+   butchering, never brewing; Cooking 4 or more). In trouble they pitch in to, whatever their mood and Hospitality's
+   roll, they do only that trouble's work (`Allow`) until it ends; a trouble's job still running when it ends is put
+   down (a fire's and a rescue's end by themselves). Hospitality's mood line is opened by name
+   (`Patch_GuestHelpWantsToHelp` on `ThinkNode_ConditionalWantsToHelp.Satisfied`), and since its guest duty puts their
+   needs first (its `JobGiver_Relax` asks for them whenever joy is under 90%), Rimfolk's own step sits on the game's
+   `Humanlike_PreMain` hook that Hospitality's duty offers before their needs (`Defs/Misc/Rimfolk_GuestHelp.xml`:
+   `ThinkNode_GuestPitchIn`, the rescue, then `JobGiver_Work`), unless starving or exhausted. The trouble's work types
+   (Doctor, Growing, Plant cutting, Cooking) are turned on in their guest's work settings while it lasts and off again
+   (`WorkTypesFor`, saved so a load still turns them off). Each says why (`Rimfolk_Pool_GuestHelpCrisis`) and a message
+   names who helps and with what (one a trouble a map). **With Hospitality's own helping switched off, guests still fight
+   fires and carry the downed in, nothing more** (`WithHospitalityOff`): saving a life isn't chores, and the player
+   switched the chores off.
+3. **Thanks paid in work.** A guest the colony carried in (Hospitality's rescued guest), once set free (a notable met
+   as freed), tended (KinMemory's note of a colony doctor), feasted (their people's notable feasted within three days)
+   or hosted very well (Hospitality's score 0.9 or more) offers, once a visit, on a morning (6 to 11) with no trouble
+   on, a day of their best-loved work (`BestLoved`: the highest passion, then the best skill; never tending, never what
+   Hospitality's settings or minimum skill keep from them). That work goes on in their area for a day, beyond the cap and
+   Hospitality's roll. A line over them (`Rimfolk_Pool_GuestHelpThanks`), the evening's news and their history
+   (`guestHelp:thanks`, the guest and their people) keep it.
+4. **Some guests won't** (`Refuse`, `RefuseGiver`). The titled (the Empire's own titles), and notables who are their
+   town's head or heir or proud (the persona's Pride at 30) never do menial work (hauling, cleaning, plant cutting), and
+   in trouble only pitch in to save a life (a fire, a rescue, the wounded). Each faith keeps its customs (no mining, no
+   study, no dumb labour, no hunting or slaughter where killing animals is wrong, no butchering where meat is, no tree
+   ever where felling is), and each people its own (the Mossborn never fell a tree, the Ashen Banner does no everyday
+   work, being for hire, though it pitches in). No guest ever goes into a bedroom, barracks or cell for work, does
+   surgery, prisoners' or entities' work, the colony's children's or its management, or touches the dead (corpses,
+   graves, stripping, cremation), a rescue aside (`Vetoed` on the job `JobGiver_Work` chose, `Patch_GuestHelpJob`).
+5. **Limits.** About three hours of everyday work a day (`CapTicks`; the trouble's and the thanks day's apart): they
+   put it down with a word (`s:enough`). Under Hospitality's own line (75%) they put everyday work down (`s:unhappy`).
+   Past six hours of work in a day (the cap and a trouble on top) they're overworked: only a life-saving trouble until
+   tomorrow, a small bad mood for two days (`Rimfolk_GuestOverworked`, -4: Hospitality's score of the visit reads their
+   mood, so it costs the colony a little at their leaving), regard lost with them if they're a notable, a line
+   (`s:overworked`) and the evening's news.
+6. **It counts both ways.** A guest and a colonist at the same work within six cells think a little better of each other,
+   both ways, once a day each pair (`Rimfolk_GuestWorkedBeside`, +3 opinion, six days: the game's own opinion, which
+   Hospitality counts toward its friends). A guest who helped and leaves as a friend (not dead, taken in or a prisoner,
+   their people not at war) speaks well of the colony at home (`SpeakWell`: 1 for an hour of everyday help, 2 for four, 2
+   for a trouble, 1 for a thanks day, 4 at most) with each of their people's notables (six at most, and themselves if
+   one), through the notables' own regard and memory. A guest hurt at the colony's work (a new wound while at it, or one
+   that ended the job: the game's own fire, a raider's shot at a rescue, an animal's bite; Rimfolk adds no harm of its
+   own, so it comes at the game's rate) costs 2 regard with each of them, once a day, told as harm is (a message,
+   Important).
+7. **You can see it.** On Hospitality's guest tab, above Rimfolk's recruiting checklist (`GuestCheck.cs` draws both
+   from its one patch, and the tab grows for either): "Let them help" (on by default; off, no work at all, even in
+   trouble; their own care stays theirs), the trouble they're pitching in to, the day of thanks, today's
+   hours ("Today: 1 h of 3", or overworked), what they'd help with and why ("Cooking: burning passion", "Handling: what
+   the herding folk live by", a note where Hospitality's minimum skill stops it), what they won't ("No hauling:
+   titled (Baron)", "Never fells a tree"), and the never line.
+
+- **Every age.** It works the same in every age; what they say takes their people's ways (`their:tribal`, `medieval`,
+  `industrial`, `spacer`, the Empire's own), never the colony's age.
+- **Saved** (`GuestHelpBook`, a game component): one record per guest staying (`GuestHelpMath.MaxGuests` 30 at most):
+  the switch, the day's and the visit's hours, the overworked day, the kinds of work said (`MaxTold` 12), the work types
+  turned on (`MaxEnabled` 5), the thanks day, the troubles said. Let go at the pass after they leave (their farewell),
+  and never saved once gone. Modelled in `Tools/save_estimate.py`.
+- **The clock:** `Sched.RareGuestHelp` (tick 119 of the 250-tick cycle, only while guests are on a home map or a record
+  waits to be let go).
+- **Soft.** Hospitality is read by type name (its think node, its settings, its guest comp's "rescued"); the three patch
+  classes stand down without it ("Hospitality isn't loaded"), and the think tree's step says no at once for anyone who
+  isn't its guest.
+
 ### Neighbours' requests and callers at the gate (the player's request, 6 November 2026)
 
 "Do another big content update to existing mechanics": this part the neighbours and the people who come to the colony,
@@ -11295,6 +11392,7 @@ chains, nemeses, camps, play-outs, the fights pass and the worn-out episode read
 | 83 | Colonists starting a talk with an outsider near them (Outsiders/OutsiderTalk.cs; on each home map with outsiders on it, whichever map is in view, with the setting on); every fourth look, the right-click's things done by themselves (Outsiders/OutsiderAuto.cs, with its setting on) | per home map, per free outsider: a free colonist near, the pair's and the visit's waits, then a small chance by both natures; one talk at most a home. By themselves: the day's pace first, then per home with no danger, per free outsider (three weighed at most) the pace with them, the six nearest free colonists times the things allowed (cheap facts), the best six checked by the menu's own reasons and the stores; one at most a look |
 | 241 | A meal or a drink shared with an outsider, a bout or a brawl with one (Outsiders/; only while there is one) | per meal: both still eating; per bout: still at it, its end by its terms; per brawl: still fighting |
 | 233 | Defense lines watch a raid (only while hostile people or mechanoids are on a home map that has lines) | per raider: in front of or behind each line, how it got behind; colonists newly downed near a line; the raid's lessons once it's over |
+| 119 | Hospitality's guests helping out (Integrations/GuestHelp.cs; only while its guests are on a home map or a record waits to be let go): each guest's hours today against the cap, unhappy or overworked, the trouble's work types on and off, a trouble's job put down when it ends, side by side with a colonist, hurt at the work, a thanks day offered; a guest gone, their farewell | per guest: their job, their troubles (each home map's fires, downed, wounded, frost harvest and food looked at once a pass), colonists within six cells |
 | 7 | Carrying and hauling (Hauling/HaulBook.cs; only while a pawn carries something for Rimfolk): never more owed than it has, the run's build area looked at (what it still needs of each material, for the other builders' cover) and a run over sent to storage, a load the job choice can't send queued for storage | per pawn carrying something: a radial look round its run's frame per material carried (15 cells at most) |
 
 **Other rhythms**

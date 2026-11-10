@@ -185,6 +185,12 @@ namespace ColonyCouncil
         /// pawn carries something for Rimfolk.
         /// </summary>
         public const int RareHauling = 7;
+        /// <summary>
+        /// Hospitality's guests helping out (Integrations/GuestHelp.cs; only while its guests are on a home map or a record
+        /// waits to be let go): each guest's hours, the cap, the trouble's work types, side by side, hurt at the work, a
+        /// thanks day, a farewell.
+        /// </summary>
+        public const int RareGuestHelp = 119;
 
         // ---------------- Other rhythms ----------------
 

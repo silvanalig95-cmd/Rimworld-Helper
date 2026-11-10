@@ -255,7 +255,9 @@ public static class RimfolkLookStageTwoTests
             "Hud/HudSettingsRows.cs", "UI/BarMore.cs", "Integrations/GuestCheck.cs", "SlowTime.cs", "Patches/Patch_HeartInspectTip.cs", "UI/Region/PeoplesList.cs",
             "Building/Window_RoomPlanner.cs", "Defense/Window_DefensePlanner.cs",
             // Its game look drawn on purpose beside Rimfolk's (stage 1: the sellable items button).
-            "Trade/Window_RimfolkTrade.cs"
+            "Trade/Window_RimfolkTrade.cs",
+            // Drawn inside Hospitality's own guest tab, beside the recruiting checklist: the game's look, as the tab's.
+            "Integrations/GuestHelpTab.cs"
         };
         var left = new List<string>();
         foreach (var f in Directory.GetFiles(src, "*.cs", SearchOption.AllDirectories))

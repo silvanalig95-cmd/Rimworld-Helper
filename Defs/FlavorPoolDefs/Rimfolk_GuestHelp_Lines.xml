@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    What Hospitality's guests say about helping out (Source/ColonyCouncil/Integrations/GuestHelp.cs), over their own head
+    through Speech.Say, one sentence each. Every line carries its moment's tag, and only lines of that tag are drawn:
+      Rimfolk_Pool_GuestHelpFit: the first time they take up a kind of work, why. [why:burning] a burning passion,
+      [why:passion] a passion, [why:calling] their people's calling (with their:herders, their:healers... for one of
+      Rimfolk's peoples), [why:faith] their faith, [why:hard] a hard worker; [w:Cooking] and the like for the work.
+      Rimfolk_Pool_GuestHelpCrisis: pitching in to the colony's trouble: [c:fire], [c:rescue], [c:tend], [c:frost], [c:food].
+      Rimfolk_Pool_GuestHelpThanks: a day's work offered in thanks: [t:rescued], [t:freed], [t:tended], [t:feast], [t:stay].
+      Rimfolk_Pool_GuestHelpStop: putting work down: [s:enough] the day's share done, [s:unhappy], [s:overworked].
+    By their people's ways: [their:tribal], [their:medieval], [their:industrial], [their:spacer], [their:empire] (the
+    speaker's own people, never the colony's age). {WORK} is the work ("cooking"), {PEOPLE} their people.
+  -->
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_GuestHelpFit</defName>
+    <lines>
+      <plain>
+        <li>[why:burning] I can't sit idle while there's {WORK} to be done.</li>
+        <li>[why:burning] Let me do some {WORK}; it's the best part of any day for me.</li>
+        <li>[why:burning] I love {WORK} too much to only watch it, so I'll lend a hand.</li>
+        <li>[why:burning,w:Cooking] I like a kitchen, so I'll cook while I'm here.</li>
+        <li>[why:burning|why:passion,w:Cooking] That stove looks like it wants using.</li>
+        <li>[why:burning,w:Growing] My hands itch for soil; your fields could use them.</li>
+        <li>[why:burning|why:passion,w:Construction] I'll help with the building; I can't watch a wall go up crooked.</li>
+        <li>[why:burning|why:passion,w:Mining] There's good rock here, and I'd like a go at it.</li>
+        <li>[why:burning|why:passion,w:Handling] Your animals and I will get on fine; I'll look after them a while.</li>
+        <li>[why:burning|why:passion,w:Research] I'd like a look at your notes, if I may help with them.</li>
+        <li>[why:burning|why:passion,w:Art] I'll carve something for you while I'm here.</li>
+        <li>[why:burning|why:passion,w:Crafting] Give me a bench and I'll make myself useful.</li>
+        <li>[why:burning|why:passion,w:Smithing] I miss the forge, so let me work yours a while.</li>
+        <li>[why:burning|why:passion,w:Tailoring] I'll mend and sew while I'm here; I enjoy it.</li>
+        <li>[why:burning|why:passion,w:Hunting] I'll go out after game and bring something back for the pot.</li>
+        <li>[why:burning|why:passion,w:Doctor] If someone needs looking after, I'm glad to.</li>
+        <li>[why:burning|why:passion,w:PlantCutting] I'll clear some brush for you; I like the work.</li>
+        <li>[why:burning|why:passion,w:Fishing] I'll try your waters; I'm never happier than with a line out.</li>
+        <li>[why:burning|why:passion,w:Hauling] I like a bit of carrying, so point me at what needs moving.</li>
+        <li>[why:burning|why:passion,w:Cleaning] A clean floor pleases me, so I'll sweep while I'm here.</li>
+        <li>[why:burning|why:passion,their:tribal] My tribe says resting hands grow weak, so I'll help with the {WORK}.</li>
+        <li>[why:burning|why:passion,their:medieval] I'll lend thee a hand with the {WORK}, for I love the work.</li>
+        <li>[why:burning|why:passion,their:industrial] I'll give you a hand with the {WORK}; it's my kind of job.</li>
+        <li>[why:burning|why:passion,their:spacer] I'll pitch in on your {WORK}; it makes a good change from ship life.</li>
+        <li>[why:burning|why:passion,their:empire] An honest hour of {WORK} does nobody harm, so I'll take one.</li>
+        <li>[why:passion] I enjoy {WORK}, so I'll do a little while I'm here.</li>
+        <li>[why:passion] I don't mind some {WORK}; it passes the time well.</li>
+        <li>[why:passion] A bit of {WORK} would suit me fine while I'm staying.</li>
+        <li>[why:calling] My people live by {WORK}, and so do I, guest or not.</li>
+        <li>[why:calling] Where I come from, everyone helps with the {WORK}.</li>
+        <li>[why:calling,their:healers] The order taught me to tend whoever needs it, here as anywhere.</li>
+        <li>[why:calling,their:herders] I was raised among herds, so leave your animals to me a while.</li>
+        <li>[why:calling,their:traders] A wayfarer never lets a load sit idle in a yard.</li>
+        <li>[why:calling,their:brokers] Goods want moving, and an enclave hand moves them.</li>
+        <li>[why:calling,their:pilgrims] At our hostels everyone cooks and sweeps, so I'll do the same here.</li>
+        <li>[why:calling,their:scholars] A fellow of the society never passes a desk without helping.</li>
+        <li>[why:calling,their:hunters] A warden keeps the larder full wherever the lantern rests.</li>
+        <li>[why:calling,their:fishers] On the river we all fish and cook, so let me.</li>
+        <li>[why:calling,their:artisans] A journeyman works wherever the wander-year takes them.</li>
+        <li>[why:calling,their:drillers] Union hands don't sit idle near good rock.</li>
+        <li>[why:calling,their:crew] On the Fleet everyone swabs and hauls, so I'll stand my watch here.</li>
+        <li>[why:calling,their:citizens] Every citizen does their share, and I'll do mine here.</li>
+        <li>[why:calling,their:grovekeepers] I'll tend your growing things, but I'll never take an axe to a tree.</li>
+        <li>[why:calling,their:sextons] The Bell keeps every floor it rests on swept.</li>
+        <li>[why:calling,their:tamers] I'll see to your beasts; it's what the Circuit does.</li>
+        <li>[why:calling,their:salvagers] The Wheel never lets good scrap go to waste.</li>
+        <li>[why:calling,their:linesmen] A lineman mends what's broken, so point me at it.</li>
+        <li>[why:calling,their:vaultfolk] We kept the Vault running for generations; this place is easy by comparison.</li>
+        <li>[why:calling,their:seers|their:editors] I'll help with your study; it's what my people do.</li>
+        <li>[why:calling,their:mechanitors] The Lattice finishes whatever work it finds, and I found yours.</li>
+        <li>[why:calling,their:listeners] The Spire hums louder when we make things, so let me make something.</li>
+        <li>[why:faith] My faith asks it of me, so I'll help with your {WORK}.</li>
+        <li>[why:faith] Our ways hold {WORK} in high regard.</li>
+        <li>[why:faith,their:tribal] The spirits smile on {WORK}, so I'll do my part.</li>
+        <li>[why:faith,their:medieval] It is a holy thing, {WORK}, and I'll not shirk it.</li>
+        <li>[why:faith,their:spacer|their:industrial] I believe in honest {WORK}, so let me help with yours.</li>
+        <li>[why:hard] I can't sit around while there's carrying and sweeping to do.</li>
+        <li>[why:hard] Idle hands make me restless; give me the {WORK}.</li>
+        <li>[why:hard] I'd rather do some {WORK} than sit about.</li>
+        <li>[why:hard,their:medieval] An idle guest is a poor guest, so I'll take up the {WORK}.</li>
+      </plain>
+      <warm>
+        <li>[why:burning|why:passion] It would make me happy to help with your {WORK}.</li>
+        <li>[why:calling] Let me help, it's what my people would do for friends.</li>
+      </warm>
+      <blunt>
+        <li>[why:burning|why:passion|why:hard] I'm doing some {WORK}, no need to thank me.</li>
+      </blunt>
+      <cheerful>
+        <li>[why:burning|why:passion] Ooh, {WORK}, count me in.</li>
+      </cheerful>
+      <gloomy>
+        <li>[why:burning|why:passion|why:hard] Might as well make myself useful with the {WORK}.</li>
+      </gloomy>
+      <cold>
+        <li>[why:burning|why:passion|why:hard] I'll do the {WORK}; it's better than sitting.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_GuestHelpCrisis</defName>
+    <lines>
+      <plain>
+        <li>[c:fire] Fire, I'll help you put it out.</li>
+        <li>[c:fire] Get what you can clear, I'll beat the flames down.</li>
+        <li>[c:fire] I'm not watching your home burn, so let me help.</li>
+        <li>[c:fire,their:tribal] Fire eats everything if it's let alone, and I won't let it.</li>
+        <li>[c:fire,their:medieval] Fetch water, I'll stand with thee against the fire.</li>
+        <li>[c:fire,their:industrial|their:spacer] Fire on your side of the wall, I'm on it.</li>
+        <li>[c:rescue] Someone's down, I'll carry them in.</li>
+        <li>[c:rescue] I'm no colonist, but nobody lies there while I can carry them.</li>
+        <li>[c:rescue] Hold on, I've got you, we're going to a bed.</li>
+        <li>[c:rescue,their:medieval] Lift with me, we'll bear them to a bed.</li>
+        <li>[c:rescue,their:tribal] One of yours has fallen, so I'll bring them to the sleeping place.</li>
+        <li>[c:tend] I know some doctoring, so let me see to your wounded.</li>
+        <li>[c:tend] Your hurt need hands, and mine know how.</li>
+        <li>[c:tend,their:tribal] I know the healing ways, let me see to them.</li>
+        <li>[c:tend,their:healers] The order's oath doesn't stop at our own door.</li>
+        <li>[c:tend,their:medieval] Bring me cloth and water, I'll bind their wounds.</li>
+        <li>[c:tend,their:spacer|their:industrial] I've had some medical training; give me a patient.</li>
+        <li>[c:frost] Frost tonight, so let's get your crops in before it bites.</li>
+        <li>[c:frost] I'll help bring the harvest in before the cold takes it.</li>
+        <li>[c:frost,their:medieval] The frost comes tonight; all hands to the fields.</li>
+        <li>[c:frost,their:tribal] The cold comes tonight, so we take the harvest in first.</li>
+        <li>[c:food] Your stores are thin, but I can cook what there is.</li>
+        <li>[c:food] Nobody goes hungry while I'm by a stove.</li>
+        <li>[c:food,their:medieval] The larder's near bare, and I know how to make it stretch.</li>
+        <li>[c:food,their:tribal] Hungry days, so I'll cook and we'll share it.</li>
+        <li>[c:food,their:spacer|their:industrial] Rations are low; I'll get some meals going.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_GuestHelpThanks</defName>
+    <lines>
+      <plain>
+        <li>[t:rescued] You carried me in when I was down, so take a day's {WORK} from me.</li>
+        <li>[t:rescued] I'd not be standing if not for you; a day's work is the least of it.</li>
+        <li>[t:freed] You let me go when you didn't have to, and I'll repay it with a day's {WORK}.</li>
+        <li>[t:freed] I haven't forgotten you set me free; here's a day of {WORK}.</li>
+        <li>[t:tended] Your doctor patched me up, and a day of {WORK} is my thanks.</li>
+        <li>[t:tended] You mended me, so I'll give you a day's {WORK} before I go.</li>
+        <li>[t:feast] After a feast like that, the least I can do is a day's {WORK}.</li>
+        <li>[t:stay] I've rarely been treated so well; a day's {WORK} is yours.</li>
+        <li>[t:stay] You've been good hosts, and I'd like to give you a day's {WORK} for it.</li>
+        <li>[t:rescued|t:freed|t:tended|t:feast|t:stay,their:medieval] I owe thee a debt, and I'll pay it in a day's {WORK}.</li>
+        <li>[t:rescued|t:freed|t:tended|t:feast|t:stay,their:tribal] A gift asks a gift, so I give you a day of {WORK}.</li>
+        <li>[t:rescued|t:freed|t:tended|t:feast|t:stay,their:empire] Honour asks that I repay you, so I give a day to your {WORK}.</li>
+        <li>[t:rescued|t:freed|t:tended|t:feast|t:stay,their:spacer] Consider a day's {WORK} my thanks for the hospitality.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_GuestHelpStop</defName>
+    <lines>
+      <plain>
+        <li>[s:enough] That's my share for today, I'm a guest after all.</li>
+        <li>[s:enough] I've done a fair bit today, so I'll rest now.</li>
+        <li>[s:enough] Enough work for a guest, I think.</li>
+        <li>[s:enough,their:medieval] I have given my day's due, and now I rest.</li>
+        <li>[s:enough,their:tribal] My hands have done enough for one sun.</li>
+        <li>[s:unhappy] I'm not in the mood for chores right now.</li>
+        <li>[s:unhappy] I'll leave this be, my heart isn't in it.</li>
+        <li>[s:unhappy] Sorry, I can't face work just now.</li>
+        <li>[s:overworked] I came as a guest, not a hired hand.</li>
+        <li>[s:overworked] That's far more work than any guest should do.</li>
+        <li>[s:overworked] I'm worn out, and I'll remember who worked me this hard.</li>
+        <li>[s:overworked,their:medieval] I am a guest here, not thy servant.</li>
+        <li>[s:overworked,their:empire] This is no way to treat a guest of the Empire.</li>
+        <li>[s:overworked,their:tribal] You work a guest like a pack beast.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+</Defs>

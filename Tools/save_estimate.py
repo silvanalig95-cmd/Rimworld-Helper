@@ -129,6 +129,9 @@ C = {
     "OutsiderHeard": const("Outsiders/OutsiderTalkMath.cs", "HeardMax", 40),
     "OutsiderMarks": const("Outsiders/OutsiderTalkMath.cs", "MaxMarks", 10),
     "OutsiderSaid": const("Outsiders/OutsiderTalkMath.cs", "MaxSaid", 16),
+    "GuestHelpGuests": const("Integrations/GuestHelpMath.cs", "MaxGuests", 30),
+    "GuestHelpTold": const("Integrations/GuestHelpMath.cs", "MaxTold", 12),
+    "GuestHelpEnabled": const("Integrations/GuestHelpMath.cs", "MaxEnabled", 5),
     # The world ledger's bound (World/Ledger/TieMath.cs, TieRules.MaxTies): every kind but regard at MaxPerKind, regard at
     # MaxRegard (14 kinds since stage 2's base, Secret reserved, Scheme for schemes against the colony: 1,080 in all).
     "LedgerTies": (const("World/Ledger/TieMath.cs", "Kinds", 14) - 1) * const("World/Ledger/TieMath.cs", "MaxPerKind", 60)
@@ -533,6 +536,15 @@ MODEL = {
     "Outsiders/OutsiderBook.cs:asks": ("fixed", 8, 40, "per visit: the last 8 asks made of them (counted under visits)"),
     "Outsiders/OutsiderBook.cs:heard": ("fixed", C["OutsiderHeard"], 220, "OutsiderTalkMath.HeardMax news heard, all towns, 60 days at most"),
     "Outsiders/OutsiderBook.cs:wars": ("fixed", C["OutsiderWars"], 160, "OutsiderBook.MaxWars wars between other peoples, the ended let go after 60 days"),
+    # Hospitality's guests helping out (Integrations/GuestHelp.cs, a game component of its own): one record per guest
+    # staying (a few parties; GuestHelpMath.MaxGuests at most), let go at the pass after they leave and never saved once
+    # gone; inside each, the kinds of work they said why they took up and the work types turned on for a trouble or a thanks day.
+    "Integrations/GuestHelp.cs:guests": ("while", min(10, C["GuestHelpGuests"]), 320,
+                                         "one record per Hospitality guest staying (GuestHelpMath.MaxGuests at most), let go when they leave"),
+    "Integrations/GuestHelp.cs:told": ("fixed", C["GuestHelpTold"], 30,
+                                       "per guest: the kinds of work they said why they took up, GuestHelpMath.MaxTold at most (counted under guests)"),
+    "Integrations/GuestHelp.cs:enabled": ("fixed", C["GuestHelpEnabled"], 30,
+                                          "per guest: work types turned on for a trouble or a thanks day while it lasts, GuestHelpMath.MaxEnabled at most (counted under guests)"),
     # Reputation and gossip
     "Social/Gossip/ReputationTracker.cs:deeds": ("cap", (min(220, 10 * COLONISTS), COLONISTS * 0.3), 300, "10 per colonist, 220 in all, faded ones dropped"),
     "Social/Gossip/Deed.cs:heard": ("cap", (min(220, 10 * COLONISTS) * 10, COLONISTS * 3), 110, "who knows each deed (30 at most a deed), with its deed"),

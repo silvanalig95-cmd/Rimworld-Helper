@@ -5,6 +5,17 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## Guests who help out
+
+*10 November 2026, version 0.205.0*
+
+- With Hospitality, a happy guest now only helps with work they love or that fits who they are, a burning passion, their people's calling or their faith, and says why the first time.
+- In trouble, guests pitch in whatever their mood: a fire near them, carrying the downed to bed, tending the wounded after a raid, a harvest before the frost, or cooking when food is about to run out.
+- A guest you rescued, freed, tended, feasted or hosted very well offers a day of their best-loved work before they leave.
+- Titled and proud guests never do menial work, faiths keep their own customs, and no guest works in private rooms, does surgery or prisoner work, or handles the dead.
+- Everyday help stops after about three hours a day; an overworked guest holds it against you a little, while helping side by side builds friendships and a guest who helped speaks well of you at home.
+- The guest tab shows what a guest would help with and why, what they won't do, the hours today, and a "Let them help" switch.
+
 ## Diplomacy kept fair
 
 *10 November 2026, version 0.204.0*

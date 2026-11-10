@@ -571,6 +571,10 @@ namespace ColonyCouncil
         public bool guestStories = true;
         /// <summary>Hospitality's guest tab says whether a guest can be recruited, how, and what it takes (Integrations/GuestCheck.cs).</summary>
         public bool guestCheck = true;
+        /// <summary>With Hospitality: guests help every day only with work they love or that fits who they are, a few hours a day, and it counts both ways (Integrations/GuestHelp.cs).</summary>
+        public bool guestHelp = true;
+        /// <summary>With Hospitality: guests pitch in when the colony is in real trouble, whatever their mood (Integrations/GuestHelp.cs).</summary>
+        public bool guestsPitchIn = true;
         /// <summary>With Hospitality: a guest group is no bigger than the free guest beds (Integrations/GuestGroupBeds.cs).</summary>
         public bool guestGroupsFitBeds = true;
         /// <summary>How many guests beyond the free guest beds a group may now and then bring (Integrations/GuestGroupBeds.cs).</summary>
@@ -1093,6 +1097,8 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref guestWill, "guestWill", true);
             Scribe_Values.Look(ref guestStories, "guestStories", true);
             Scribe_Values.Look(ref guestCheck, "guestCheck", true);
+            Scribe_Values.Look(ref guestHelp, "guestHelp", true);
+            Scribe_Values.Look(ref guestsPitchIn, "guestsPitchIn", true);
             Scribe_Values.Look(ref guestGroupsFitBeds, "guestGroupsFitBeds", true);
             Scribe_Values.Look(ref guestBedsExtra, "guestBedsExtra", 2);
             Scribe_Values.Look(ref medicalTriage, "medicalTriage", true);

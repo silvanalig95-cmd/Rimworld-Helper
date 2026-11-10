@@ -31,6 +31,20 @@ When you load a save after an update, a letter lists the newest round once. The 
     <rounds>
 
       <li>
+        <version>0.205.0</version>
+        <date>10 November 2026</date>
+        <title>Guests who help out</title>
+        <points>
+          <li>With Hospitality, a happy guest now only helps with work they love or that fits who they are, a burning passion, their people's calling or their faith, and says why the first time.</li>
+          <li>In trouble, guests pitch in whatever their mood: a fire near them, carrying the downed to bed, tending the wounded after a raid, a harvest before the frost, or cooking when food is about to run out.</li>
+          <li>A guest you rescued, freed, tended, feasted or hosted very well offers a day of their best-loved work before they leave.</li>
+          <li>Titled and proud guests never do menial work, faiths keep their own customs, and no guest works in private rooms, does surgery or prisoner work, or handles the dead.</li>
+          <li>Everyday help stops after about three hours a day; an overworked guest holds it against you a little, while helping side by side builds friendships and a guest who helped speaks well of you at home.</li>
+          <li>The guest tab shows what a guest would help with and why, what they won't do, the hours today, and a "Let them help" switch.</li>
+        </points>
+      </li>
+
+      <li>
         <version>0.204.0</version>
         <date>10 November 2026</date>
         <title>Diplomacy kept fair</title>

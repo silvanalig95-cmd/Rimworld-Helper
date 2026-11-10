@@ -15,6 +15,56 @@ tree at once, alongside whatever runs. Each piece is merged as its own release, 
 - **Held by the player (10 November 2026): no new letters content jobs until they ask** ("for the letters please hold
   after this job then ... I'd like to keep such jobs for the end of the week to use up my remaining tokens"). The letters
   round 2 part 1 agent was already running; its part 2 (more content in the same shapes) waits for their word.
+- 0.205.0, **guests who help out** (10 November 2026). The player: "So I have two guests at the moment, and I just noticed that one of them started cooking a meal
+  or even butchering ... is this a guest hospitality feature by default, or what's causing this? Because I really kind of
+  like the idea that the guest does certain kind of work, for example, if they really like doing this work anyways ... Or
+  if they for example see that I'm in need and need help in like a crisis moment, that they help out." It is
+  Hospitality's own "guests help out" (`ThinkNode_ConditionalWantsToHelp`, a mood over 75%; its prefix on
+  `JobGiver_Work.PawnCanUseWorkGiver`: skill 7, its exclusions, a roll of goodwill, passion, visit score and emergency).
+  The player approved all seven ideas ("that sounds great!!"). DESIGN.md "Guests who help out" has all of it; README's
+  Hospitality bullet; the Almanac's Hospitality page, "Guests who help out".
+  - Pure: `Integrations/GuestHelpMath.cs` (linked; `Fit`, `Refuse`, `RefuseGiver`, `NoTrees`, `CallingWork` for all 23
+    callings, `FaithWork`/`FaithForbids`/`FaithForbidsGiver`/`FaithNoTrees` (each an active PreceptDef of the player's),
+    `ForGuest`, `CrisisOf`, each trouble's start and end, `Allow` (the verdict on a work giver), `Gate`, `PitchingIn`,
+    the cap (3 h) and overworking (6 h), `Thanks`, `BestLoved`, `SpeakWell`, `PrivateRoom`). Tests
+    `Tools/Tests/GuestHelpTests.cs` (377 checks: every fit and refusal, each trouble's start and end, the verdict
+    exhaustively never wider than Hospitality's outside trouble and a thanks day, the cap, thanks, regard, every name in
+    `docs/player-mods`, the seams).
+  - Game side: `Integrations/GuestHelp.cs` (`GuestHelpBook`, a game component: one record a guest staying, 30 at most,
+    let go at the pass after they leave, modelled in `save_estimate.py`; three patch classes standing down without
+    Hospitality: `Patch_GuestHelpWorkGiver` (postfix on `PawnCanUseWorkGiver`, by name), `Patch_GuestHelpJob` (postfix on
+    `TryIssueJobPackage`: no bedrooms, cells, the dead, prisoners, a tree for those who never fell one; the first line why),
+    `Patch_GuestHelpWantsToHelp` (Hospitality's mood line by name); `ThinkNode_GuestPitchIn` and `JobGiver_GuestRescue`
+    on the game's `Humanlike_PreMain` hook (`Defs/Misc/Rimfolk_GuestHelp.xml`), since Hospitality's duty puts needs
+    first and the game's rescue giver only rescues one's own; the troubles' work types turned on in a guest's work
+    settings while they last). `Integrations/GuestHelpTab.cs` on the guest tab above the recruiting checklist
+    (`GuestCheck.cs` draws both from its patch; the tab grows for either). Thoughts `Rimfolk_GuestWorkedBeside` (+3
+    opinion, both ways) and `Rimfolk_GuestOverworked` (-4 mood, 2 days). Pools `Rimfolk_Pool_GuestHelpFit`, `_Crisis`,
+    `_Thanks`, `_Stop` (in ImmersionTests). Keys in `Rimfolk_GuestHelp.xml`. Settings "Guests help with what they love"
+    (`guestHelp`) and "Guests pitch in when the colony is in trouble" (`guestsPitchIn`), both on, Your other mods,
+    Hospitality, behind the deeper hooks. Sched slot `RareGuestHelp` 119 (waiting).
+  - With Hospitality's own "Disable guests helping" on: only fires and rescues (a documented choice); its minimum skill
+    holds for everyday work and the thanks day, not for a trouble (Medicine 4 to tend, Cooking 4 to cook).
+  - Not run here (none of it could be): any of it in the game. In particular the game's own work givers for a guest of
+    another faction (fighting a fire, tending a colonist with the colony's medicine, harvesting and the yield's forbidden
+    state, cooking at the colony's stoves); the game's rescue job carried out by a guest to a colony bed; turning work
+    types on and off in a Hospitality guest's work settings; the `Humanlike_PreMain` step's place in Hospitality's guest
+    tree and how quickly a relaxing guest comes; the guest tab's new section, its checkbox and the tab's height; the
+    reflection reads of Hospitality's settings and `CompGuest.rescued`; the notables' regard moving for a guest who leaves.
+  - Try in the game: 1. Guests staying: each one's guest tab shows "helping out" with what they'd help with and why, and
+    what they won't. 2. A guest with a burning passion for cooking cooks, saying why the first time; one with no fitting
+    work stands by even when Hospitality would let them work. 3. Their hours on the tab ("Today: 1 h of 3"); at three they
+    put it down with a word. 4. A fire in the home area near a guest: they fight it, whatever their mood, with a bubble and
+    a message naming them; everyday work stops for them till it's out. 5. A colonist downed after a raid: a guest carries
+    them to a bed once no enemy is near. 6. After a raid, a guest with Medicine 4 or more tends the colony's wounded
+    (never surgery). 7. A frost harvest marked: guests who can work plants help bring it in. 8. Food under three days: a
+    guest with Cooking 4 or more cooks. 9. Hospitality's "Disable guests helping" on: only fires and rescues. 10. A
+    rescued or tended guest, or a stay going very well: the next morning they offer a day of their best-loved work (the
+    evening's news, the tab's line). 11. A titled guest: no hauling or cleaning, but they fight a fire. 12. A guest of the
+    Mossborn never fells a tree; of the Ashen Banner, no everyday work. 13. A guest working beside a colonist: "worked
+    beside me" in both their Social tabs. 14. "Let them help" off: they do nothing. 15. A guest hurt fighting a fire: a
+    message, and their people's notables think less of the colony. 16. A guest who helped leaves: the evening's news says
+    they spoke well of the colony.
 - 0.204.0, **diplomacy kept fair** (10 November 2026). The player: "if i got it right I can now share a warning with them about any kind of raider, and then just
   use "a debt of honor" to have them deliver a variety of valuable things to me, right? this debt should ... be balanced,
   appropriate to the debt i actually owe and not be repeatable all the time", "offering a marriage match ... only ... when
