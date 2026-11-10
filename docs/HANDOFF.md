@@ -39,6 +39,12 @@ tree at once, alongside whatever runs. Each piece is merged as its own release, 
   for there and back by the journey planner's rules and road days, a little medicine, the mount's feed, extras the
   player picks), greyed with why when the stores can't cover it, and the rider gathering it before setting out, as the
   envoy abroad and the journey planner do (Journeys/, Diplomacy/EnvoysAbroad.cs).
+- **To do when the player asks (10 November 2026): camps that come in the coldest winter.** The player: "i haven't had
+  any camps probably becauser it was just freezing cold all the time, i'd like a handful of camp events that can also
+  come in the coldest winter". When asked: check why camps never came in their cold (Camps/: the season and temperature
+  gates), then propose a handful of winter camps (people who travel or work in deep cold: ice fishers, fur trappers, a
+  caravan sheltering from a blizzard, hunters following a herd, a winter pilgrimage, salt or ice cutters), each with
+  shelter and fire as the cold demands, by every age and the player's mods.
 - 0.206.1, carriers straight to the mailbag,
   back in the saddle, a new face each time (10 November 2026). The player: "the couriers that bring letters and material
   take an awkward routine around my base before delivering the message a bit away from the base. if anything they should
