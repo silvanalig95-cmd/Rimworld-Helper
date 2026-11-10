@@ -149,6 +149,9 @@ namespace ColonyCouncil
         public string teller;
         public string told;
         public int tick;
+        /// <summary>The notable of theirs the news names (ill, a new head, a death among them told with the new head), or -1; and their name, for one gone since.</summary>
+        public int notable = -1;
+        public string about;
 
         public void ExposeData()
         {
@@ -159,6 +162,8 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref teller, "teller");
             Scribe_Values.Look(ref told, "told");
             Scribe_Values.Look(ref tick, "tick");
+            Scribe_Values.Look(ref notable, "notable", -1);
+            Scribe_Values.Look(ref about, "about");
         }
     }
 

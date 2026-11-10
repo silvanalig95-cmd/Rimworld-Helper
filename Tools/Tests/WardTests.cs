@@ -41,7 +41,8 @@ public static class WardTests
         C(!WardMath.MayOffer(false, 50, true, false, 10 * D, -1, 69 * D) && WardMath.MayOffer(false, 50, true, false, 10 * D, -1, 70 * D), "once a year per people");
         C(!WardMath.MayOffer(false, 50, true, false, -1, 10 * D, 24 * D) && WardMath.MayOffer(false, 50, true, false, -1, 10 * D, 25 * D), "a season apart at a home");
         C(WardMath.OffersToday(0.024f) && !WardMath.OffersToday(0.026f), "a people that may offers one day in forty");
-        C(WardMath.SendChance(-1) == 0f && Math.Abs(WardMath.SendChance(0) - 0.3f) < 0.0001f && WardMath.SendChance(100) == 0.95f, "asked by letter: none below 0, three in ten at 0, never certain");
+        C(WardMath.SendChance(-1) == 0f && WardMath.SendChance(29) == 0f && Math.Abs(WardMath.SendChance(30) - 0.6f) < 0.0001f && WardMath.SendChance(100) == 0.95f,
+            "asked by letter: only from their head's regard of 30, six in ten there, never certain");
         C(!WardMath.SendsWhenAsked(true, 100, 0f) && WardMath.SendsWhenAsked(false, 30, 0.59f) && !WardMath.SendsWhenAsked(false, 30, 0.61f), "never by a people at war; by regard");
         C(WardMath.WardAge(true) == (9f, 12f) && WardMath.WardAge(false) == (14f, 19f), "a child of 9 to 12 where the game has children, else 14 to 19");
 

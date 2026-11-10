@@ -199,7 +199,11 @@ namespace ColonyCouncil
             if (h != null && h.wards.Any(w => w != null && w.kind == WardKind.Theirs)) return WardWords.P("CC_Ward_Why_OneHere");
             if (h != null && h.wards.Count >= WardMath.MaxPerHome) return WardWords.P("CC_Ward_Why_Full");
             if (KnownFor(home) == null) return WardWords.P("CC_Ward_Why_NoGuardian", WardMath.GuardianSkill.Named("SKILL"));
-            if (Sender(f, home, out _) == null) return WardWords.P("CC_Ward_Why_NoKin", WardWords.People(f).Named("PEOPLE"));
+            var sender = Sender(f, home, out _);
+            if (sender == null) return WardWords.P("CC_Ward_Why_NoKin", WardWords.People(f).Named("PEOPLE"));
+            // Their head thinks well enough of the colony to trust it with a youth (WardMath.MayAsk).
+            var head = FavourCalls.HeadOf(f, home) ?? sender;
+            if (!WardMath.MayAsk(NotableBook.Opinion(head))) return WardWords.P("CC_Ward_Why_Regard", head.Name.Named("HEAD"), WardWords.People(f).Named("PEOPLE"));
             return null;
         }
 

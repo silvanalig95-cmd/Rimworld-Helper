@@ -9,16 +9,14 @@ namespace ColonyCouncil
 {
     /// <summary>
     /// A town's "Heard lately": the news its people told the colony's people in their talks (OutsiderTalk.Heard), newest
-    /// first, each with who told whom and when. Drawn under the town's people on the region window's Neighbours page and,
-    /// registered here, in the town's card (its Words slot, with the colonist told as a link).
+    /// first, each with who told whom and when. Registered here in the town's card (its Words slot); the lines, with the
+    /// colonist told and the town as links, are made here for their people's page on the region window's Peoples too (the
+    /// Overview's newest few, each town's newest on the Towns tab, the news naming a notable on the People tab:
+    /// UI/Region/PeoplePage.cs). The history keeps each as "world:heard".
     /// </summary>
     [StaticConstructorOnStartup]
     public static class OutsiderHeard
     {
-        /// <summary>What was heard of outsiders: cool, neither warm nor sour (UI/UiKit.cs's tokens).</summary>
-        private static Color Accent => UiKit.Cool;
-        private const float HeadH = 22f, LineH = 20f;
-
         static OutsiderHeard()
         {
             CardSections.TownLines(CardSlot.Words, 10f, CardLines, "CC_Out_Heard_Header", "heard");
@@ -31,18 +29,7 @@ namespace ColonyCouncil
             try
             {
                 var list = OutsiderTalk.HeardAt(s.ID, OutsiderTalkMath.HeardShown);
-                if (list.Count == 0) return null;
-                var names = new List<KeyValuePair<string, string>>();
-                foreach (var p in PawnsFinder.AllMaps_FreeColonists)
-                    if (p != null && !p.LabelShort.NullOrEmpty())
-                        names.Add(new KeyValuePair<string, string>(p.LabelShort, ThingRefs.Of(p).ToString()));
-                var lines = new List<string>();
-                foreach (var h in list)
-                {
-                    string line = "CC_Out_Heard_Line".Translate(h.text.Named("TEXT"), (h.teller ?? "?").Named("TELLER"), (h.told ?? "?").Named("PAWN"), Ago(h.tick).Named("AGO")).Resolve();
-                    lines.Add(LinkTextMath.MarkNames(line, names));
-                }
-                return lines;
+                return list.Count == 0 ? null : Lines(list, false);
             }
             catch (Exception e)
             {
@@ -51,42 +38,41 @@ namespace ColonyCouncil
             }
         }
 
-        /// <summary>The height the town's news takes (0 with none).</summary>
-        public static float Height(int town)
+        /// <summary>
+        /// News heard as lines to draw with links: the colonist told a link to their card, and with <paramref name="withTown"/>
+        /// the town it came from a link to its card (a people with no town names the people).
+        /// </summary>
+        public static List<string> Lines(List<HeardNews> list, bool withTown)
         {
-            if (!Outsiders.On) return 0f;
-            int n = OutsiderTalk.HeardAt(town, OutsiderTalkMath.HeardShown).Count;
-            return n == 0 ? 0f : HeadH + n * LineH + 4f;
-        }
-
-        /// <summary>The town's news in <paramref name="r"/>, from its top; returns the height used.</summary>
-        public static float Draw(Rect r, int town)
-        {
-            if (!Outsiders.On) return 0f;
-            var list = OutsiderTalk.HeardAt(town, OutsiderTalkMath.HeardShown);
-            if (list.Count == 0) return 0f;
-            float y = r.y;
-            UiKit.LabelFit(new Rect(r.x, y, r.width, HeadH), "CC_Out_Heard_Header".Translate().Resolve(), Accent);
-            y += HeadH;
+            var lines = new List<string>();
+            if (list == null || list.Count == 0) return lines;
+            var names = new List<KeyValuePair<string, string>>();
+            foreach (var p in PawnsFinder.AllMaps_FreeColonists)
+                if (p != null && !p.LabelShort.NullOrEmpty())
+                    names.Add(new KeyValuePair<string, string>(p.LabelShort, ThingRefs.Of(p).ToString()));
             foreach (var h in list)
             {
-                string line = "CC_Out_Heard_Line".Translate(h.text.Named("TEXT"), (h.teller ?? "?").Named("TELLER"), (h.told ?? "?").Named("PAWN"), Ago(h.tick).Named("AGO")).Resolve();
-                var row = new Rect(r.x + 6f, y, r.width - 6f, LineH);
-                UiKit.LabelFit(row, line, UiKit.Faint, GameFont.Tiny);
-                TooltipHandler.TipRegion(row, line);
-                y += LineH;
+                if (h == null) continue;
+                string line;
+                if (withTown)
+                {
+                    string from = h.town >= 0 && ThingRefs.Exists(ThingRefs.Of(Ref.Town(h.town))) ? ThingRefs.Link(h.townName ?? "?", ThingRefs.Of(Ref.Town(h.town))) : h.townName ?? h.faction?.Name ?? "?";
+                    line = "CC_Out_Heard_LineFrom".Translate(h.text.Named("TEXT"), (h.teller ?? "?").Named("TELLER"), (h.told ?? "?").Named("PAWN"), Ago(h.tick).Named("AGO"),
+                        from.Named("FROM")).Resolve();
+                }
+                else line = "CC_Out_Heard_Line".Translate(h.text.Named("TEXT"), (h.teller ?? "?").Named("TELLER"), (h.told ?? "?").Named("PAWN"), Ago(h.tick).Named("AGO")).Resolve();
+                lines.Add(LinkTextMath.MarkNames(line, names));
             }
-            return y + 4f - r.y;
+            return lines;
         }
 
         /// <summary>"today", "yesterday", "5 days ago" (never a countdown).</summary>
-        private static string Ago(int tick)
+        public static string Ago(int tick)
         {
             int days = Mathf.Max(0, (Find.TickManager.TicksGame - tick) / GenDate.TicksPerDay);
             if (days == 0) return "CC_Out_Heard_Today".Translate().Resolve();
             if (days == 1) return "CC_Out_Heard_Yesterday".Translate().Resolve();
             return "CC_Out_Heard_DaysAgo".Translate(days).Resolve();
         }
-
     }
 }

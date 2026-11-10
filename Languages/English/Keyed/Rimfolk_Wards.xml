@@ -43,6 +43,7 @@
   <CC_Ward_Why_Full>This home already has four wards and hostages either way.</CC_Ward_Why_Full>
   <CC_Ward_Why_NoGuardian>Nobody at this home has {SKILL} or more in a skill to be a ward's guardian.</CC_Ward_Why_NoGuardian>
   <CC_Ward_Why_NoKin>The colony doesn't know the head, heir or envoy of {PEOPLE}, who would send a ward from their town.</CC_Ward_Why_NoKin>
+  <CC_Ward_Why_Regard>{HEAD} doesn't think well enough of the colony to trust it with a youth of {PEOPLE}.</CC_Ward_Why_Regard>
   <CC_Ward_Why_NoYouth>Nobody at this home is between 14 and 19 and free to go.</CC_Ward_Why_NoYouth>
   <CC_Ward_Why_NoYouthChild>Nobody at this home is between 10 and 19 and free to go.</CC_Ward_Why_NoYouthChild>
   <CC_Ward_Why_YouthAway>They aren't at this home just now.</CC_Ward_Why_YouthAway>

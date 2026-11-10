@@ -408,6 +408,18 @@ namespace ColonyCouncil
             return Math.Max(1, (int)Math.Round(worth / unitValue));
         }
 
+        /// <summary>
+        /// Something brought next time is free once a season from each people; any other is paid for at its market price when
+        /// it comes (the player, 10 November 2026: "not be repeatable all the time"; until then every one was free).
+        /// </summary>
+        public const float BringFreeGapDays = 15f;
+
+        /// <summary>No free one from them before (<paramref name="lastFree"/> -1), or the last a season ago or more.</summary>
+        public static bool BringFree(int lastFree, int now) => lastFree < 0 || now - lastFree >= BringFreeGapDays * TicksPerDay;
+
+        /// <summary>The silver paid when it comes: its market price, at least one.</summary>
+        public static int BringPrice(float unitValue, int count) => Math.Max(1, (int)Math.Round(Math.Max(0f, unitValue) * Math.Max(1, count)));
+
         /// <summary>Their people come next time no sooner than this many days after asking (not the same visit).</summary>
         public const float BringSoonestDays = 1f;
         /// <summary>A favour nobody came for in this many days is let go.</summary>

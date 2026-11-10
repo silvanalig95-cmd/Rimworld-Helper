@@ -84,6 +84,13 @@ namespace ColonyCouncil
         /// colony (NeighbourLetters.Owed), not before.
         /// </summary>
         public bool owed;
+        /// <summary>
+        /// What the warning heeded warmly was worth to them (World/WarnMath.cs: 14 a war near them, 12 a camp or a site near, 10
+        /// raiders whose town is close): the debt's size. 0 in an older save's letter (LetterMath.HeededWarmly then).
+        /// </summary>
+        public int owedSize;
+        /// <summary>The warning came after the threat had passed them by (read with thanks and remembered, no debt): its answer says so.</summary>
+        public bool late;
 
         // ---- The post (Post/): who took it and how, from the outbox ----
 
@@ -144,6 +151,8 @@ namespace ColonyCouncil
             Scribe_References.Look(ref bearer, "bearer");
             Scribe_Values.Look(ref bearerName, "bearerName");
             Scribe_Values.Look(ref owed, "owed");
+            Scribe_Values.Look(ref owedSize, "owedSize");
+            Scribe_Values.Look(ref late, "late");
             Scribe_Values.Look(ref carrier, "carrier");
             Scribe_Values.Look(ref carrierName, "carrierName");
             Scribe_Values.Look(ref carrierMeans, "carrierMeans");
@@ -319,7 +328,8 @@ namespace ColonyCouncil
                     if (Topics(n, p).Count == 0) return "CC_Letter_Why_NoLoss".Translate();
                     break;
                 case LetterPurpose.Warning:
-                    if (Topics(n, p).Count == 0) return "CC_Letter_Why_NoThreat".Translate();
+                    // Nothing to warn them of: raiders the colony knows of say why they are no threat to them (World/Warnings.cs).
+                    if (Topics(n, p).Count == 0) return Warnings.WhyNone(n) ?? "CC_Letter_Why_NoThreat".Translate();
                     break;
                 case LetterPurpose.Invitation:
                     if (!NotableMath.CanInvite(hostile)) return "CC_Letter_Why_AtWar".Translate();
@@ -327,6 +337,9 @@ namespace ColonyCouncil
                 case LetterPurpose.Help:
                     if (hostile) return "CC_Letter_Why_AtWar".Translate();
                     if (!NotableMath.CanAskHelp(NotableBook.Opinion(n), false)) return "CC_Letter_Why_NotEnough".Translate(n.Name.Named("NAME")).Resolve();
+                    // Once in 20 days a people, whoever of them is asked (NotableMath.HelpAllowed).
+                    if (!NotableMath.HelpAllowed(LastOfPeople(n.faction, LetterPurpose.Help), Now))
+                        return "CC_Letter_Why_HelpPeople".Translate((n.faction?.Name ?? "?").Named("PEOPLE")).Resolve();
                     break;
                 default:
                     // Stage 2's purposes (Diplomacy/DiplomacyLetters.cs): a debt of honour called in, the colony's word given.
@@ -336,13 +349,25 @@ namespace ColonyCouncil
             return null;
         }
 
+        /// <summary>When the colony last wrote to anyone of this people for the same thing (-1: never).</summary>
+        public static int LastOfPeople(Faction f, LetterPurpose p)
+        {
+            int last = -1;
+            foreach (var x in Book?.notables ?? new List<Notable>())
+                if (x != null && x.faction == f)
+                    last = Math.Max(last, x.Last(p));
+            return last;
+        }
+
+        /// <summary>The key of the last gift a notable sent with an answer (Notable.LastOf): once a season at most (NotableMath.GiftAllowed).</summary>
+        public const string GiftKey = "gift";
+
         /// <summary>What a condolence or a warning can be about: the losses and threats the colony knows of, not yet written of.</summary>
         public static List<LetterTopic> Topics(Notable n, LetterPurpose p)
         {
             var list = new List<LetterTopic>();
             if (n?.faction == null) return list;
             var f = n.faction;
-            var town = NotableBook.TownOf(n.town);
             void Add(string key, string text)
             {
                 if (!n.done.Contains(key) && list.All(t => t.key != key)) list.Add(new LetterTopic { key = key, text = text });
@@ -360,22 +385,9 @@ namespace ColonyCouncil
                 }
                 else if (p == LetterPurpose.Warning)
                 {
-                    // A hard time in the region, or one that falls on them.
-                    foreach (var s in running.Where(s => s.def != null && s.def.bad && (s.ctx?.faction == null || s.ctx.faction == f)))
-                        Add("sit:" + s.id, Called(s));
-                    // Raiders who came at the colony lately and are at war with them too.
-                    var mem = FactionMemory.Instance;
-                    if (mem != null)
-                        foreach (var g in mem.deeds.Where(d => d.kind == "raided" && d.faction != null && d.faction != f && !d.faction.defeated && Now - d.tick < GenDate.TicksPerDay * 30)
-                                     .Select(d => d.faction).Distinct())
-                            if (g.HostileTo(f))
-                                Add("raid:" + g.loadID, "CC_Letter_Topic_Raids".Translate(g.Name.Named("FACTION")).Resolve());
-                    // A hostile people's camp near their town.
-                    if (town != null)
-                        foreach (var site in Find.WorldObjects.Sites)
-                            if (site?.Faction != null && site.Faction.HostileTo(f) && site.Tile.Layer == town.Tile.Layer
-                                && Find.WorldGrid.ApproxDistanceInTiles(site.Tile, town.Tile) <= 12f)
-                                Add("site:" + site.ID, "CC_Letter_Topic_Site".Translate(site.LabelCap.Named("SITE"), Direction(town.Tile, site.Tile).Named("DIR"), town.Name.Named("TOWN")).Resolve());
+                    // Only a real threat to one of their towns, recent or still coming, the colony saw or heard of, not yet warned
+                    // of by any letter to their people (World/Warnings.cs; the player, 10 November 2026).
+                    foreach (var t in Warnings.Topics(n)) Add(t.key, t.text);
                 }
                 // A debt of honour to call in, or the colony's word owed on a call of theirs; a pact's kind, a truce's term (Diplomacy/DiplomacyLetters.cs).
                 else if (DiplomacyLetters.Owns(p)) list.AddRange(DiplomacyLetters.Topics(n, p));
@@ -1033,7 +1045,14 @@ namespace ColonyCouncil
             // What the answer brings beside its words (phase 6 of the review, World/LetterMath.cs): a token, how their town
             // fares, their people's memory of it, a debt of honour; a debt only where debts of honour are kept.
             var brings = LetterMath.Brings(l.purpose, tone);
-            if (brings == AnswerBrings.FavourOwed && !CanOwe(n.faction)) brings = AnswerBrings.Remembered;
+            // A warning read (World/Warnings.cs): still standing, what it is worth to them, and whether it may make a debt (one
+            // from warnings a season); past, thanks and a memory only.
+            var heed = l.purpose == LetterPurpose.Warning ? Warnings.Heed(n.faction, l.topicKey) : null;
+            if (heed != null && !heed.current) l.late = true;
+            if (brings == AnswerBrings.FavourOwed && (heed == null || !heed.debt || !CanOwe(n.faction))) brings = AnswerBrings.Remembered;
+            // A gift with an answer (a warm greeting's token, a gift by their regard) once a season from each of them.
+            bool giftAllowed = NotableMath.GiftAllowed(n.LastOf(GiftKey), now);
+            if (brings == AnswerBrings.Token && !giftAllowed) brings = AnswerBrings.TownNews;
             // A call never went by road: how far they are, at their people's means, still sets when a guest or raiders could come.
             if (l.backDays <= 0f) l.backDays = LetterMath.LegDays(Tiles(n, l.map), LetterMath.MeansOf(Ages.Of(n.faction)));
             l.tone = tone;
@@ -1049,7 +1068,9 @@ namespace ColonyCouncil
                 if (KinMemory.Ours(speaker)) n.RegardOf(speaker, true).personal += NotableMath.WriterShift(shift);
             }
             n.SetLast(l.purpose, now);
-            if (!l.topicKey.NullOrEmpty() && !n.done.Contains(l.topicKey)) n.done.Add(l.topicKey);
+            // A warning is their whole people's (once per threat); a loss mourned is the notable's own.
+            if (l.purpose == LetterPurpose.Warning) Warnings.Record(n.faction, l.topicKey, heed, brings == AnswerBrings.FavourOwed);
+            else if (!l.topicKey.NullOrEmpty() && !n.done.Contains(l.topicKey)) n.done.Add(l.topicKey);
             while (n.done.Count > 12) n.done.RemoveAt(0);
             n.Remember(NoteText(l, tone, speaker), shift);
             // Their people's goodwill, a little (never into a war).
@@ -1058,11 +1079,21 @@ namespace ColonyCouncil
             // What their people remember of it: a warning heeded, mourning shared, help the colony now owes them for.
             if (tone != AnswerTone.Silence && tone != AnswerTone.Refusal)
             {
-                // Heeded warmly: a debt of honour, made with its own weight when the answer reaches the colony (Owed).
+                // Heeded warmly: a debt of honour of the threat's size, made when the answer reaches the colony (Owed). Else
+                // remembered: warmly with what it was worth, kept under a debt's size (raiders further off, a hardship, a debt
+                // from warnings this season already), else the memory's own weight; a threat already past, its own weight.
                 if (l.purpose == LetterPurpose.Warning)
                 {
-                    if (brings == AnswerBrings.FavourOwed) l.owed = true;
-                    else KinMemory.Note(n.faction, "warned", speaker, l.topic);
+                    if (brings == AnswerBrings.FavourOwed)
+                    {
+                        l.owed = true;
+                        l.owedSize = heed.size;
+                    }
+                    else
+                    {
+                        int weight = tone == AnswerTone.Warm && heed != null && heed.current ? Mathf.Min(heed.size, FavourMath.MinSize - 1) : 0;
+                        KinMemory.Note(n.faction, "warned", speaker, l.topic, weight);
+                    }
                 }
                 else if (l.purpose == LetterPurpose.Condolences && tone <= AnswerTone.Cordial)
                     KinMemory.Note(n.faction, "mourned", speaker, l.topicKey != null && l.topicKey.StartsWith("loss:") ? l.topicKey.Substring(5) : null, 4);
@@ -1076,8 +1107,10 @@ namespace ColonyCouncil
             if (dip != null) things.AddRange(dip.things);
             if (l.purpose == LetterPurpose.Help && granted) things.AddRange(HelpThings(l.help, n.faction, l.map));
             else if (brings == AnswerBrings.Token) gifts.AddRange(Loot.Make(LetterMath.TokenValue(Rand.Value) * LivingEvents.WealthFactor(l.map), false));
-            else if (NotableMath.Gift(tone, l.purpose, NotableBook.Opinion(n), Rand.Value))
+            // A gift by their regard: once a season from each of them, and never beside a debt a warning made.
+            else if (giftAllowed && !l.owed && NotableMath.Gift(tone, l.purpose, NotableBook.Opinion(n), Rand.Value))
                 gifts.AddRange(Loot.Make(Rand.Range(80f, 160f) * LivingEvents.WealthFactor(l.map), false));
+            if (gifts.Count > 0) n.SetLastOf(GiftKey, now);
             things.AddRange(gifts);
             string visit = null;
             bool noTraveller = false;
@@ -1319,7 +1352,7 @@ namespace ColonyCouncil
         }
 
         /// <summary>A debt of honour can be kept with them: favours owed on, and a people the colony deals with.</summary>
-        private static bool CanOwe(Faction f) => f != null && FavoursOwed.On && Diplomacy.Deals(f) && FavourMath.Earns("warned", true, LetterMath.HeededWarmly);
+        private static bool CanOwe(Faction f) => f != null && FavoursOwed.On && Diplomacy.Deals(f);
 
         /// <summary>
         /// A warning heeded warmly, its answer in: their people remember it with the weight of a debt of honour, owed to the
@@ -1333,7 +1366,9 @@ namespace ColonyCouncil
             l.owed = false;
             try
             {
-                FavoursOwed.Quietly(() => KinMemory.Note(n.faction, "warned", KinMemory.Ours(l.writer) ? l.writer : null, l.topic, LetterMath.HeededWarmly));
+                // Its size by what the threat was worth to them (an older save's letter: LetterMath.HeededWarmly).
+                int size = l.owedSize > 0 ? l.owedSize : LetterMath.HeededWarmly;
+                FavoursOwed.Quietly(() => KinMemory.Note(n.faction, "warned", KinMemory.Ours(l.writer) ? l.writer : null, l.topic, size));
             }
             catch (Exception e)
             {
@@ -1361,12 +1396,15 @@ namespace ColonyCouncil
                     break;
                 }
                 case AnswerBrings.Remembered:
-                    line = (l.purpose == LetterPurpose.Condolences ? "CC_LetterBring_Mourned" : "CC_LetterBring_Heeded").Translate(people.Named("PEOPLE")).Resolve();
+                    line = (l.purpose == LetterPurpose.Condolences ? "CC_LetterBring_Mourned" : l.late ? "CC_LetterBring_HeededLate" : "CC_LetterBring_Heeded").Translate(people.Named("PEOPLE"))
+                        .Resolve();
                     break;
                 case AnswerBrings.FavourOwed:
                 {
+                    // The debt's weight in words ("a small debt", "a debt", "a great debt") by what the threat was worth to them.
                     var form = DipWords.Form(l.map ?? Home, n.faction);
-                    line = "CC_LetterBring_Owed".Translate(people.Named("PEOPLE"), form.word.Named("WORD"), l.WriterName.Named("PAWN")).Resolve();
+                    string weight = DipWords.P("CC_Dip_Weight_" + FavourMath.WeightOf(l.owedSize > 0 ? l.owedSize : LetterMath.HeededWarmly));
+                    line = "CC_LetterBring_Owed".Translate(people.Named("PEOPLE"), form.word.Named("WORD"), l.WriterName.Named("PAWN"), weight.Named("WEIGHT")).Resolve();
                     break;
                 }
             }

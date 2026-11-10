@@ -139,9 +139,11 @@ namespace ColonyCouncil
 
         /// <summary>
         /// What the answer to a letter of kind words brings beside them (the purposes whose answer is otherwise words only:
-        /// greetings, condolences, a warning). Greetings: a token gift with a warm answer, how their town fares with a
-        /// cordial or cool one. Condolences: remembered by their people with a warm or cordial one. A warning: a debt of
-        /// honour with a warm answer, heeded and remembered with a cordial or cool one. A curt answer, a refusal or silence
+        /// greetings, condolences, a warning). Greetings: a token gift with a warm answer (once a season from each of them,
+        /// else how their town fares), how their town fares with a cordial or cool one. Condolences: remembered by their
+        /// people with a warm or cordial one. A warning: a debt of honour with a warm answer where the threat is worth one
+        /// (World/WarnMath.cs) and none from warnings came this season, else heeded and remembered, and so with a cordial or
+        /// cool one. A curt answer, a refusal or silence
         /// brings nothing but why. Other purposes bring what they always did (news, a visit, the help asked, their own).
         /// </summary>
         public static AnswerBrings Brings(LetterPurpose p, AnswerTone t)
@@ -163,7 +165,10 @@ namespace ColonyCouncil
         /// <summary>A warm greeting's token, in silver's worth before the colony's wealth: modest, never a fortune.</summary>
         public static float TokenValue(float roll) => 50f + NotableMath.Clamp01(roll) * 50f;
 
-        /// <summary>The weight of a warning heeded warmly in their people's memory: enough to be a debt of honour (FavourMath.MinSize).</summary>
+        /// <summary>
+        /// The weight of a warning heeded warmly in an older save's letter, read with no size of its own: a debt of honour of 10
+        /// (FavourMath.MinSize). Since 10 November 2026 a warning weighs what its threat was worth to them (World/WarnMath.cs).
+        /// </summary>
         public const int HeededWarmly = 10;
 
         // ---------------- Regard, in words ----------------

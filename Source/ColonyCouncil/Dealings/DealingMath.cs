@@ -598,6 +598,13 @@ namespace ColonyCouncil
 
         public static bool FavourDue(float friendDays, float sinceLastFavour) => friendDays >= FavourAfterDays && (sinceLastFavour < 0f || sinceLastFavour >= FavourGapDays);
 
+        /// <summary>
+        /// The size of a pen friend's favour: a favour in person from the friend to the colonist who writes to them (since 10
+        /// November 2026; their whole people's debt until then), so it counts half (FavourMath.Effective): goods worth 150 at a
+        /// steady industrial town, a small word.
+        /// </summary>
+        public const int FavourSize = 10;
+
         // ================= The world writes first (point 13) =================
 
         /// <summary>

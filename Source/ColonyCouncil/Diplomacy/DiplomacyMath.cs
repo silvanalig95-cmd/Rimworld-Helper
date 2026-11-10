@@ -38,10 +38,13 @@ namespace ColonyCouncil
         /// <summary>Wards and hostages (release 2b.3): a ward come or gone home, the colony's youth set out or back; a hostage given, returned, forfeit or held.</summary>
         public const string Ward = "dip:ward", Hostage = "dip:hostage";
 
+        /// <summary>A match the colony proposed, turned down by their people: none sought with them again for a season (Matches.SeekWhyNot).</summary>
+        public const string MatchRefused = "dip:matchNo";
+
         public static readonly string[] Kinds =
         {
             Word, Peace, Freed, Side, TruceOffer, PactOffer, Parley, Band, Arms, Ransomed, Exchanged, Envoy, Feast, Contest, Wedding, Task, Tribute, Levy, FoundOut, Renown,
-            Ward, Hostage
+            Ward, Hostage, MatchRefused
         };
 
         // ---------------- The deeds ----------------

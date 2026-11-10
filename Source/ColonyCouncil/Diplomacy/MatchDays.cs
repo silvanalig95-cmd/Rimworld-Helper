@@ -465,7 +465,8 @@ namespace ColonyCouncil
                 string rite = MatchWords.Rite(f, map);
                 Diplomacy.Write(DiplomacyMath.Wedding, actors, place, MatchWords.P(atColony ? "CC_Match_Hist_Wed" : "CC_Match_Hist_WedAway", p.ours.Named("OURS"), p.theirs.Named("THEIRS"),
                     MatchWords.People(f).Named("PEOPLE"), (p.townName ?? "?").Named("TOWN")), true);
-                bool pact = !Ages.IsEmpire(f) && Pacts.On && Pacts.Of(f, map, PactKind.Defence) == null && Pacts.Make(f, map, PactKind.Defence, false, null, 0) != null;
+                // A defence pact only while a pact's own rules hold (MatchMath.AlliancePact: goodwill 20, not the Empire).
+                bool pact = PactHolds(f, map) && Pacts.Of(f, map, PactKind.Defence) == null && Pacts.Make(f, map, PactKind.Defence, false, null, 0) != null;
                 if (!atColony) NotableBook.Notify_Met(p.ours, "spouse", null);
                 var form = MatchWords.Form(map, f);
                 // Their kin among the guests only when the wedding's guests are at the colony (one who walked in alone, or a

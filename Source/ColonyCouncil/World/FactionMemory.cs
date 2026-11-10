@@ -213,8 +213,10 @@ namespace ColonyCouncil
             // a few days, someone of theirs lost on the colony's land found and brought in.
             ["lentHands"] = K(DeedSide.Favor, 10),
             ["foundLost"] = K(DeedSide.Favor, 12),
-            // Letters to their notables (World/NeighbourLetters.cs): a warning of a real threat, heeded.
-            ["warned"] = K(DeedSide.Favor, 6, 10f, 12),
+            // Letters to their notables (World/NeighbourLetters.cs): a warning of a real threat, heeded. Each stands alone (no
+            // merging since 10 November 2026: two kind answers no longer add up to a debt); heeded warmly it weighs what the
+            // threat was worth to them (World/WarnMath.cs), up to 18 when it struck them.
+            ["warned"] = K(DeedSide.Favor, 6),
             // One of theirs at the colony (Outsiders/): a gift into their hands, a duel of honour won fairly.
             ["gaveGift"] = K(DeedSide.Favor, 5, 10f, 20),
             ["duel"] = K(DeedSide.Favor, 6, 10f, 18),

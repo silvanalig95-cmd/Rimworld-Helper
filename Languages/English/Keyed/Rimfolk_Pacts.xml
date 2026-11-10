@@ -36,6 +36,7 @@
   <CC_Truce_Why_NoReason>{PEOPLE} have no reason to listen yet: beat a raid of theirs, hold one of their notables or kin, or have a friend of both speak for peace</CC_Truce_Why_NoReason>
   <CC_Truce_Why_NoSilver>the colony has less than {SILVER} silver</CC_Truce_Why_NoSilver>
   <CC_Truce_Why_NoCaptives>the colony holds none of {PEOPLE}</CC_Truce_Why_NoCaptives>
+  <CC_Truce_Why_TheyPayBeaten>{PEOPLE} pay for peace only with a raid of theirs beaten lately</CC_Truce_Why_TheyPayBeaten>
   <CC_Truce_Why_Gone>it is over already</CC_Truce_Why_Gone>
   <CC_Pact_Why_Empire>{PEOPLE} keep their own oaths and make no pacts with the colony</CC_Pact_Why_Empire>
   <CC_Pact_Why_Goodwill>{PEOPLE} don't think well enough of the colony yet (goodwill {NEED} or more)</CC_Pact_Why_Goodwill>

@@ -98,8 +98,8 @@ public static class DiplomacyTests
 
         // ---------------- What the colony asks ----------------
 
-        C(Math.Abs(FavourMath.GoodsWorth(50f) - 400f) < 0.01f && Math.Abs(FavourMath.GoodsWorth(0f) - 300f) < 0.01f && Math.Abs(FavourMath.GoodsWorth(100f) - 500f) < 0.01f,
-            "about 400 silver's worth by their town's fortune");
+        C(Math.Abs(FavourMath.GoodsWorth(10, 50f, 1f) - 300f) < 0.01f && Math.Abs(FavourMath.GoodsWorth(10, 0f, 1f) - 225f) < 0.01f
+          && Math.Abs(FavourMath.GoodsWorth(10, 100f, 1f) - 375f) < 0.01f, "30 silver's worth a point of the debt by their town's fortune (WarnTests has the rest)");
         C(FavourMath.GoodsCount(400f, 1f) == 400 && FavourMath.GoodsCount(400f, 18f) == 22 && FavourMath.GoodsCount(5f, 50f) == 1 && FavourMath.GoodsCount(400f, 0f) == 0,
             "how many make up the load");
         C(!FavourMath.GoodsKinds(WorldAge.Tribal).Contains("steel") && !FavourMath.GoodsKinds(WorldAge.Tribal).Contains("silver")
@@ -107,7 +107,7 @@ public static class DiplomacyTests
             "the goods by their ways");
         foreach (var age in new[] { WorldAge.Tribal, WorldAge.Medieval, WorldAge.Industrial, WorldAge.Spacer })
             C(FavourMath.GoodsKinds(age).Contains("food") && FavourMath.GoodsKinds(age).Contains("medicine"), $"{age}: food and medicine always");
-        C(FavourMath.WordGoodwill == 10 && FavourMath.PeaceRegard == 20, "a word is 10 goodwill, help toward peace 20 better");
+        C(FavourMath.WordGoodwill(20) == 10 && FavourMath.WordGoodwill(10) == 5 && FavourMath.PeaceRegard == 20, "a word is half the debt's size in goodwill, help toward peace 20 better");
         foreach (FavourAsk a in Enum.GetValues(typeof(FavourAsk)))
         {
             string ac = FavourMath.AskCode(a, "f12");

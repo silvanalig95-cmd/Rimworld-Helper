@@ -23,7 +23,7 @@ namespace ColonyCouncil
         private static List<Pawn> Fits(Pawn c, Pawn x)
         {
             var f = Outsiders.PeopleOf(x);
-            var list = Matches.Colonists(c.MapHeld).Where(o => Matches.WhyNotPair(o, x, f) == null).ToList();
+            var list = Matches.Colonists(c.MapHeld).Where(o => Matches.WhyNotPair(o, x, f) == null && Matches.TermsWhyNot(f, c.MapHeld, o, x, null) == null).ToList();
             list.Sort((a, b) => (b == c ? 1 : 0).CompareTo(a == c ? 1 : 0));
             return list;
         }
@@ -31,10 +31,10 @@ namespace ColonyCouncil
         public static string WhyNot(Pawn c, Pawn x)
         {
             var f = Outsiders.PeopleOf(x);
-            string why = Matches.PeopleWhyNot(f, c.MapHeld);
+            string why = Matches.SeekWhyNot(f, c.MapHeld);
             if (why != null) return why;
             if (Fits(c, x).Count > 0) return null;
-            return Matches.WhyNotPair(c, x, f) ?? MatchWords.P("CC_Match_Why_NoneFitsThem", x.Named("OTHER"));
+            return Matches.WhyNotPair(c, x, f) ?? Matches.TermsWhyNot(f, c.MapHeld, c, x, null) ?? MatchWords.P("CC_Match_Why_NoneFitsThem", x.Named("OTHER"));
         }
 
         /// <summary>Whom to match with them and where they would live, each with how the colonist feels; a pick sends the colonist over (the code "OURS|Home").</summary>

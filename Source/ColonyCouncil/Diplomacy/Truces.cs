@@ -183,6 +183,9 @@ namespace ColonyCouncil
             return false;
         }
 
+        /// <summary>A raid of theirs beaten at the home within PactMath.BeatenDays.</summary>
+        public static bool BeatenLately(Faction f, Map home) => DaysSinceBeaten(f, home) is float d && d >= 0f && d <= PactMath.BeatenDays;
+
         /// <summary>Days since a raid of theirs was beaten (-1: none, or theirs still on the map).</summary>
         public static float DaysSinceBeaten(Faction f, Map home)
         {
@@ -351,7 +354,7 @@ namespace ColonyCouncil
         {
             var def = PactsDefOf.Rimfolk_TruceOffer;
             if (def == null || f == null || home == null) return;
-            int silver = price == TrucePrice.Theirs ? PactMath.PriceSilver(StorytellerUtility.DefaultThreatPointsNow(home)) / 2 : 0;
+            int silver = price == TrucePrice.Theirs ? PactMath.TheirPriceSilver(StorytellerUtility.DefaultThreatPointsNow(home)) : 0;
             var head = FavourCalls.HeadOf(f, home);
             var form = PactWords.TruceForm(home, f);
             string who = head != null ? NotableBook.Called(head) : PactWords.People(f);

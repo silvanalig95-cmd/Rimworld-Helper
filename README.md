@@ -3614,6 +3614,23 @@ their traders, your letters introduced to peoples beyond your reach, a favor aft
 writes first with news, a small request or an invitation that waits for your answer (*The world writes first*, on), and
 a town out of reach may be reached by introduction through a people who knows them (slower).
 
+**Diplomacy kept fair.** What the peoples give the colony is weighed against what it did for them, and none of it can
+be had over and over. A warning goes only to a people a threat is real to: raiders at war with them who struck a home in
+the last few days, are on their way or keep a camp, and whose towns, camp, land or the home they struck lie near one of
+theirs; a hostile site near their town; a warlord, the clans gathering, a bandit road or the warlord's son's band near
+them; a sickness or a blight spreading toward them (never to the people it already fell on). The colony has to know of it:
+seen near its own land, or heard of in talk with outsiders. The letter's window says why raiders it knows of aren't
+listed: too far, too old, or not their enemy. Each threat is warned of once to their whole people, and a warning read
+after the danger passed brings thanks and a memory only. Heeded warmly, a warning is a debt as great as the threat was to
+them (a war or a warlord's band near them most, a camp or a site near their town, close raiders least, raiders further
+off a memory only), a little greater when the threat then strikes them, one such debt a season from each people. A
+truce they pay for is asked only after beating a raid of theirs, at half the price. A ward is asked for only of a head who
+thinks well of the colony. Gifts with answers come once a season from each notable, help is asked of a people once in a
+while, a pen friend's favor is the friend's own to the one who writes, and something brought next time is a favor once a
+season from each people, else paid for at its price when it comes. News heard in talk is kept: in the history, in the
+people's and the town's History, on their page on Peoples (the newest in the Overview, each town's newest on the Towns
+tab, a notable's own on their row).
+
 **Letters that read like letters.** Letters between your colony and the world are written out in full (*Letters written
 out in full*, on): a heading with the place and the date as the writer would put it (a tribe by the season, "when the
 geese came back", the medieval age and the Empire in the court's words, the industrial plainly, the spacer age by the
@@ -3747,9 +3764,12 @@ comes for a load for the first market.
 **Debts of honor.** A good turn big enough in a people's memory leaves them owing the colony (one of theirs freed or
 tended, refugees taken in, a lost child found, a town rebuilt), and help the colony takes from them (fighters, relief,
 medicine, lessons) leaves it owing them; the letter that tells of it says so, in both sides' words by their age. A
-notable helped in person owes the colonist who did it. The colony calls a debt in by letter, by call or face to face
-("Ask a favor of their people"): a load of goods brought by their porters, a word with a third people, a colonist they
-hold sent home, or their help toward peace; their head's regard decides whether they honor it. They call in what the
+notable helped in person owes the colonist who did it. Each debt is as great as the good turn behind it, in words a
+small debt, a debt or a great debt. The colony calls a debt in by letter, by call or face to face ("Ask a favor of their
+people"), one of a people's debts a season: a load of goods worth what the debt is and what they have (30 silver's worth
+a point of it from a steady town of the machine age, less from a tribe or a poor town, more from spacers or a rich one;
+a notable's favor in person half), a word with a third people (half the debt in goodwill), and for a greater debt a
+colonist they hold sent home or their help toward peace; their head's regard decides whether they honor it. They call in what the
 colony owes them when the world shows a need: medicine in a sickness, food in a famine, hands at their harvest, a roof
 for their homeless, the colony's word in a feud; refused or left unanswered, they remember it. A town's card on the
 region map shows its debts, and the map's Stance and ties lens draws each as a dotted line from home; the region
@@ -3806,7 +3826,9 @@ conversation pieces, 24 letter lines and 47 spoken lines speak of it. Setting: *
 **Marriage alliances.** A match between one of the colony's and one of a people at peace: "Speak for a match" with
 someone of theirs at the colony (two who courted their way to lovers speak for themselves), a letter proposing one (the
 people's card and a notable's say who of the colony's would fit, a notable or one of a town its head speaks for), or
-their own offer once a year from a people whose head thinks 40 or more of the colony. Who may marry is the game's own
+their own offer once a year from a people whose head thinks 40 or more of the colony. The colony seeks one only on great
+terms (their head's regard 30 and their goodwill 40, or 10 and 20 for two who courted), one of a town made for it only
+when their head holds the colony dear, and not again for a season after they turned one down. Who may marry is the game's own
 rule (grown, drawn to each other, not kin, free to take a spouse by their faith), and the Empire's titled nobles marry
 only the titled. The colonist is asked first: one who loves someone else here, would leave children behind or can't
 stand the one chosen is against it, and the council hears the objection before anything is settled. Where the couple
@@ -3814,8 +3836,9 @@ lives is chosen each time. Theirs comes on the day with notables of their town a
 at the gate and is married by the game's own ceremony while the guests watch, then the feast; or theirs and one of their
 family come to the gate for the colony's own, who leaves with them for good, and the wedding at their town is told in
 their letter. Gifts go both ways at the gate. The marriage binds the colony and their people (never two families or
-houses): while it holds their notables think 15 better of the colony, their town sends a gift each season, they write
-when a raiders' camp is set against the colony, and it stands as a defense pact (never with the Empire). It ends with the
+houses): while it holds their notables think 15 better of the colony, their town sends a gift each season while they
+stay on good terms, they write when a raiders' camp is set against the colony, and it stands as a defense pact while a
+pact's own terms hold (never with the Empire). It ends with the
 marriage: a spouse's death ends it, with no grudge unless the colony was to blame. A spouse wronged by the colony
 (killed, imprisoned, enslaved, sold, banished) breaks it, with their people's grudge, handed down no line. Each shows on
 the Tie, Person and People cards, Here and away (the peoples the colony is bound to by marriage) and the inbox;

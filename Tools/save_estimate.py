@@ -480,9 +480,9 @@ MODEL = {
                                    "(a save that handed colonies over has four more for each town the colony was, HandOverMath.MaxTowns at most)"),
     "World/Notables.cs:notes": ("fixed", C["NotableMemory"], 160, "per notable: NotableMath.MaxMemory lines, the oldest go (counted under notables)"),
     "World/Notables.cs:regards": ("fixed", C["NotableRegards"], 100, "per notable: NotableMath.MaxRegards colonists, the faded dropped daily (counted under notables)"),
-    "World/Notables.cs:lastKeys": ("fixed", 6, V, "per notable: one per purpose of a letter (counted under notables)"),
-    "World/Notables.cs:lastTicks": ("fixed", 6, V, "per notable: one per purpose of a letter (counted under notables)"),
-    "World/Notables.cs:done": ("fixed", 12, 40, "per notable: threats warned of and losses mourned, the newest 12 (counted under notables)"),
+    "World/Notables.cs:lastKeys": ("fixed", 7, V, "per notable: one per purpose of a letter, and the last gift with an answer (counted under notables)"),
+    "World/Notables.cs:lastTicks": ("fixed", 7, V, "per notable: one per purpose of a letter, and the last gift with an answer (counted under notables)"),
+    "World/Notables.cs:done": ("fixed", 12, 40, "per notable: losses mourned, the newest 12 (counted under notables; warnings are their people's since 10 November 2026)"),
     "World/Notables.cs:letters": ("cap", (C["PostOpen"] + 3, 0.5), 560, "letters and calls under way, PostMath.MaxOpen at once with the post (NotableMath.MaxOpen without); ended ones kept two days"),
     # The post (Post/PostBook.cs): mail for the colony waiting for a carrier, each home's regular post, the colony's riders out.
     "Post/PostBook.cs:incoming": ("cap", (C["PostIncoming"], 1), 700, "answers and the world's letters waiting for a carrier: PostMath.MaxIncoming at most (the oldest goes by messenger), each gone once it opens"),
@@ -513,6 +513,9 @@ MODEL = {
                                    "the long pieces written into letters, by their first words: LetterKindMath.MaxUsed at most, the oldest let go"),
     "Letters/LetterBook.cs:pages": ("fixed", 3, 1300, "per exchange: the colony's letter and theirs, or theirs first, the reply and their thanks; each capped (counted under exchanges)"),
     "World/Notables.cs:losses": ("fixed", 12, 120, "deaths among the neighbours the colony knows of, 30 days, 12 at most"),
+    "World/Notables.cs:warned": ("fixed", const("World/WarnMath.cs", "MaxKept", 60), 160,
+                                 "threats each people was warned of (World/Warnings.cs): WarnMath.MaxKept, 30 days or while the threat stands"),
+    "World/Notables.cs:known": ("fixed", const("World/WarnMath.cs", "MaxKnown", 40), 70, "threats heard of in talk with outsiders: WarnMath.MaxKnown, 30 days"),
     "World/Notables.cs:seen": ("fixed", 6, 120, "visitors and traders seen at the colony until they're home, 6 at most, three days"),
     # Talking with outsiders (Outsiders/OutsiderBook.cs): one line a colonist and outsider who did something together,
     # the favours asked for a people's next visit, the good words promised. Meals and bouts under way aren't saved.

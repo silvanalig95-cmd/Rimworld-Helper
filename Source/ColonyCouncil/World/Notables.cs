@@ -240,19 +240,24 @@ namespace ColonyCouncil
 
         public string Name => pawn != null && !pawn.Discarded ? pawn.LabelShort : name ?? "?";
 
-        public int Last(LetterPurpose p)
+        public int Last(LetterPurpose p) => LastOf(p.ToString());
+
+        public void SetLast(LetterPurpose p, int tick) => SetLastOf(p.ToString(), tick);
+
+        /// <summary>When something of theirs last happened, by a key of its own beside the purposes (NeighbourLetters.GiftKey: a gift with an answer); -1 for never.</summary>
+        public int LastOf(string key)
         {
-            int i = lastKeys.IndexOf(p.ToString());
+            int i = lastKeys.IndexOf(key);
             return i >= 0 && i < lastTicks.Count ? lastTicks[i] : -1;
         }
 
-        public void SetLast(LetterPurpose p, int tick)
+        public void SetLastOf(string key, int tick)
         {
-            int i = lastKeys.IndexOf(p.ToString());
+            int i = lastKeys.IndexOf(key);
             if (i >= 0 && i < lastTicks.Count) lastTicks[i] = tick;
             else
             {
-                lastKeys.Add(p.ToString());
+                lastKeys.Add(key);
                 lastTicks.Add(tick);
             }
         }
@@ -348,6 +353,10 @@ namespace ColonyCouncil
         public List<NeighbourLetter> letters = new List<NeighbourLetter>();
         public List<NotableLoss> losses = new List<NotableLoss>();
         public List<SeenVisitor> seen = new List<SeenVisitor>();
+        /// <summary>Threats each people was warned of, people-wide (World/Warnings.cs): WarnMath.MaxKept, 30 days or while the threat stands.</summary>
+        public List<WarnedThreat> warned = new List<WarnedThreat>();
+        /// <summary>Threats the colony heard of in talk with outsiders (World/Warnings.cs): WarnMath.MaxKnown, 30 days.</summary>
+        public List<KnownThreat> known = new List<KnownThreat>();
         public int nextId = 1;
         public int nextLetterId = 1;
         /// <summary>The last day old age was rolled for.</summary>
@@ -886,6 +895,8 @@ namespace ColonyCouncil
                     WorldSituationWorker.DieOffscreen(p);
             }
             losses.RemoveAll(l => l == null || l.faction == null || now - l.tick > GenDate.TicksPerDay * 30);
+            // Threats warned of and heard of (World/Warnings.cs): an older save's moved to the people, the old let go, one that struck counted.
+            Warnings.Daily(now);
             seen.RemoveAll(s => s.pawn == null || s.pawn.Discarded || s.pawn.Dead || now - s.tick > GenDate.TicksPerDay * 3);
             EndStrayRegard();
             Changed();
@@ -1222,6 +1233,8 @@ namespace ColonyCouncil
             Scribe_Collections.Look(ref letters, "letters", LookMode.Deep);
             Scribe_Collections.Look(ref losses, "losses", LookMode.Deep);
             Scribe_Collections.Look(ref seen, "seen", LookMode.Deep);
+            Scribe_Collections.Look(ref warned, "warned", LookMode.Deep);
+            Scribe_Collections.Look(ref known, "known", LookMode.Deep);
             Scribe_Values.Look(ref nextId, "nextId", 1);
             Scribe_Values.Look(ref nextLetterId, "nextLetterId", 1);
             Scribe_Values.Look(ref agedDay, "agedDay", -1);
@@ -1235,6 +1248,11 @@ namespace ColonyCouncil
                 losses.RemoveAll(l => l == null || l.faction == null);
                 seen ??= new List<SeenVisitor>();
                 seen.RemoveAll(s => s == null || s.pawn == null);
+                // An older save has none: each notable's warnings move into their people's record at the day's look (Warnings.Daily).
+                warned ??= new List<WarnedThreat>();
+                warned.RemoveAll(w => w == null || w.people == null || w.key == null);
+                known ??= new List<KnownThreat>();
+                known.RemoveAll(k => k == null || k.key == null);
                 NoteTowns();
                 Changed();
             }

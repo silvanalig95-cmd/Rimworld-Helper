@@ -5,6 +5,17 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## Diplomacy kept fair
+
+*10 November 2026, version 0.204.0*
+
+- A warning of raiders can only be sent to a people they really threaten, near their towns, about a raid of the last few days or a threat still coming; the letter says why a raid is not listed, and a warning about a hardship never goes to a people already suffering it.
+- A debt of honour is now sized by what the warning was worth, grows if the threat really strikes them, and what it brings when called in is scaled to the debt and their means, from a small debt to a great one.
+- Each threat can be warned of once per people, a people owes at most one debt from warnings a season, and the colony can call in at most one of their debts a season.
+- A marriage match needs good regard and goodwill, a spouse fresh from their town only at excellent terms, a season's wait after a refusal, and its alliance and gifts last only while relations hold.
+- Asking for a ward, a truce where they pay, gifts with letters, help letters, a pen friend's favour and goods brought next time by a visitor are all harder or rarer, the last one paid at market price after the first in a season.
+- What your colonists hear from guests now goes into the history, shows as "Heard lately" on the Diplomacy screen's People page and on notables it names, and a threat heard of can be warned of.
+
 ## Letters of many shapes
 
 *10 November 2026, version 0.203.0*

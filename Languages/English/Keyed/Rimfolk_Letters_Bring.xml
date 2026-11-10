@@ -20,7 +20,8 @@
   <CC_LetterBring_TownQuiet>{NAME} has nothing new to tell: the roads near them are quiet.</CC_LetterBring_TownQuiet>
   <CC_LetterBring_Mourned>{PEOPLE} will remember that the colony mourned with them.</CC_LetterBring_Mourned>
   <CC_LetterBring_Heeded>{PEOPLE} take the warning to heart, and will remember who sent it.</CC_LetterBring_Heeded>
-  <CC_LetterBring_Owed>{PEOPLE} count the warning as {WORD} they owe the colony, and {PAWN} for writing it. The colony can call it in by letter.</CC_LetterBring_Owed>
+  <CC_LetterBring_HeededLate>{PEOPLE} thank the colony for the warning. The danger has passed them by, and they will remember who sent it.</CC_LetterBring_HeededLate>
+  <CC_LetterBring_Owed>{PEOPLE} count the warning as {WEIGHT}, {WORD} they owe the colony, and {PAWN} for writing it. The colony can call it in by letter.</CC_LetterBring_Owed>
   <CC_LetterBring_Goodwill>Their people's goodwill toward the colony rises for it.</CC_LetterBring_Goodwill>
   <CC_LetterBring_GoodwillMarked>Their people's goodwill toward the colony rises markedly for it.</CC_LetterBring_GoodwillMarked>
 

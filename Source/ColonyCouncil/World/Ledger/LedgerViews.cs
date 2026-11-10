@@ -77,15 +77,6 @@ namespace ColonyCouncil
         public bool helped;
     }
 
-    /// <summary>News of a town told at the colony ("Heard lately").</summary>
-    public sealed class HeardView
-    {
-        public string text;
-        public string teller;
-        public string told;
-        public int tick;
-    }
-
     /// <summary>A town: its name and people, who the colony knows there, its mood toward each colony, what touches it, and whether it stands.</summary>
     public sealed class TownView
     {
@@ -106,8 +97,6 @@ namespace ColonyCouncil
         public List<ColonyStance> mood = new List<ColonyStance>();
         /// <summary>World situations about its people, against them or at the town, running or ended in the last fifteen days.</summary>
         public List<EventView> events = new List<EventView>();
-        /// <summary>Heard lately, newest first.</summary>
-        public List<HeardView> heard = new List<HeardView>();
         /// <summary>What happened there, from the world's history: the newest <see cref="WorldLedger.RecentEvents"/> first.</summary>
         public List<HistoryEntry> recent = new List<HistoryEntry>();
 
@@ -329,10 +318,8 @@ namespace ColonyCouncil
             v.overall = v.head != null ? stance.ByHead(v.head.opinion) : stance;
             v.mood = PerColony(v.overall);
             v.events = Events(v.people, v.name, v.town);
+            // Heard lately is read where it is shown (Outsiders/OutsiderHeard.cs: the town's card, its people's page).
             v.recent = History.At(v.town, max: RecentEvents);
-            if (outs != null)
-                foreach (var h in outs.heard.Where(h => h != null && h.town == id).OrderByDescending(h => h.tick))
-                    v.heard.Add(new HeardView { text = h.text, teller = h.teller, told = h.told, tick = h.tick });
             return v;
         }
 

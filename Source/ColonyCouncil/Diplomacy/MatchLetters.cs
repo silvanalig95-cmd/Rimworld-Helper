@@ -22,10 +22,15 @@ namespace ColonyCouncil
         public static string WhyNot(Notable n, Map home)
         {
             var f = n?.faction;
-            string why = Matches.PeopleWhyNot(f, home);
+            string why = Matches.SeekWhyNot(f, home);
             if (why != null) return why;
-            return Topics(n, home).Count == 0 ? MatchWords.P("CC_Match_Why_NoneFits", MatchWords.People(f).Named("PEOPLE")) : null;
+            if (Topics(n, home).Count > 0) return null;
+            // Someone would fit, only not on their terms now: say why (their regard, their goodwill, one made for it).
+            return termsWhy ?? MatchWords.P("CC_Match_Why_NoneFits", MatchWords.People(f).Named("PEOPLE"));
         }
+
+        /// <summary>The first pair left out of the topics for their people's terms (Matches.TermsWhyNot), for the letter's reason.</summary>
+        private static string termsWhy;
 
         /// <summary>
         /// What a letter to them can be about: each of the colony's at the home with the notable written to (when they fit),
@@ -35,7 +40,8 @@ namespace ColonyCouncil
         {
             var list = new List<LetterTopic>();
             var f = n?.faction;
-            if (f == null || home == null || Matches.PeopleWhyNot(f, home) != null) return list;
+            termsWhy = null;
+            if (f == null || home == null || Matches.SeekWhyNot(f, home) != null) return list;
             try
             {
                 foreach (var c in Matches.Colonists(home))
@@ -46,6 +52,12 @@ namespace ColonyCouncil
                         // The notable written to, another of their town, or one of the town the head speaks for.
                         bool fits = cand.notable == n || cand.head == n || cand.notable != null && cand.notable.town == n.town;
                         if (!fits) continue;
+                        string terms = Matches.TermsWhyNot(f, home, c, cand.pawn, cand.head);
+                        if (terms != null)
+                        {
+                            termsWhy ??= terms;
+                            continue;
+                        }
                         string key = cand.pawn != null ? MatchMath.Topic(c.thingIDNumber, cand.pawn.thingIDNumber) : MatchMath.HouseTopic(c.thingIDNumber, cand.head.id, (int)cand.gender);
                         var consent = Matches.ConsentOf(c, cand.pawn, MatchHome.Colony, out var why, out var other);
                         list.Add(new LetterTopic

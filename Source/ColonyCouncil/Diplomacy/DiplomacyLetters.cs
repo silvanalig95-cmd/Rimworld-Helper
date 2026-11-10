@@ -64,7 +64,15 @@ namespace ColonyCouncil
             }
             if (!Diplomacy.FavoursOn) return DipWords.P("CC_Dip_Why_Off");
             if (NotableBook.Hostile(n)) return DipWords.P("CC_Dip_Why_War", DipWords.People(n.faction).Named("PEOPLE"));
-            return Topics(n).Count == 0 ? DipWords.P("CC_Dip_Why_NothingOwed", DipWords.People(n.faction).Named("PEOPLE")) : null;
+            if (Topics(n).Count > 0) return null;
+            // A debt they owe that can't be called in now says why (one of theirs called in this season), before "nothing owed".
+            foreach (var t in FavoursOwed.OwedBy(n.faction))
+            {
+                if (FavoursOwed.IsPersonal(t) && t.from != n.Person) continue;
+                string why = FavourCalls.WhyNot(t);
+                if (why != null) return why;
+            }
+            return DipWords.P("CC_Dip_Why_NothingOwed", DipWords.People(n.faction).Named("PEOPLE"));
         }
 
         /// <summary>
@@ -165,17 +173,20 @@ namespace ColonyCouncil
             if (!ParseTopic(topicKey, TrucePrefix, out string what, out var f)) return list;
             map ??= Home;
             int silver = PactMath.PriceSilver(StorytellerUtility.DefaultThreatPointsNow(map ?? Find.AnyPlayerHomeMap));
+            int theirs = PactMath.TheirPriceSilver(StorytellerUtility.DefaultThreatPointsNow(map ?? Find.AnyPlayerHomeMap));
+            bool beaten = Truces.BeatenLately(f, map);
             int captives = Truces.Captives(f, map).Count;
             foreach (TrucePrice price in Enum.GetValues(typeof(TrucePrice)))
             {
                 // A hostage either way (release 2b.3): theirs, or one of the colony's by name (Hostages.cs).
                 if (price == TrucePrice.TheirHostage) list.AddRange(Hostages.TruceOptions(f, map, PricePrefix));
                 if (price == TrucePrice.TheirHostage || price == TrucePrice.OurHostage) continue;
-                int amount = price == TrucePrice.Ours || price == TrucePrice.Theirs ? silver : price == TrucePrice.Captives ? captives : 0;
+                int amount = price == TrucePrice.Ours ? silver : price == TrucePrice.Theirs ? theirs : price == TrucePrice.Captives ? captives : 0;
                 string why = null;
                 if (price == TrucePrice.Ours && PlayCarry.Have(map, "silver", ThingDefOf.Silver) < silver)
                     why = PactWords.P("CC_Truce_Why_NoSilver", silver.Named("SILVER"));
                 if (price == TrucePrice.Captives && captives == 0) why = PactWords.P("CC_Truce_Why_NoCaptives", PactWords.People(f).Named("PEOPLE"));
+                if (price == TrucePrice.Theirs && !PactMath.TheyMayPay(beaten)) why = PactWords.P("CC_Truce_Why_TheyPayBeaten", PactWords.People(f).Named("PEOPLE"));
                 list.Add(new FavourCalls.Option { code = PricePrefix + price + ":" + amount, label = PactWords.Price(price, amount).CapitalizeFirst(), why = why });
             }
             return list;

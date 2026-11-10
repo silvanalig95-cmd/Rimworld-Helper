@@ -129,9 +129,15 @@ namespace ColonyCouncil
                 case OutsiderAct.Bring:
                 {
                     int ofColony = OfColony(x);
-                    var opts = BringChoices(x).Select(d => new FloatMenuOption(
-                        "CC_Out_BringItem".Translate(d.LabelCap.Named("THING"), OutsiderMath.BringCount(d.BaseMarketValue, ofColony).Named("COUNT")).Resolve(),
-                        () => StartTalk(c, x, OutsiderAct.Bring, 0, d), d)).ToList();
+                    var f = PeopleOf(x);
+                    // Each with what it costs when it comes: free once a season from their people, else its market price.
+                    var opts = BringChoices(x).Select(d =>
+                    {
+                        int count = OutsiderMath.BringCount(d.BaseMarketValue, ofColony);
+                        int price = Favours.PriceFor(f, d, count);
+                        string label = (price > 0 ? "CC_Out_BringItemPaid" : "CC_Out_BringItem").Translate(d.LabelCap.Named("THING"), count.Named("COUNT"), price.Named("SILVER")).Resolve();
+                        return new FloatMenuOption(label, () => StartTalk(c, x, OutsiderAct.Bring, 0, d), d);
+                    }).ToList();
                     if (opts.Count > 0) Find.WindowStack.Add(new FloatMenu(opts, "CC_Out_BringTitle".Translate(x.Named("OTHER")).Resolve()));
                     return;
                 }

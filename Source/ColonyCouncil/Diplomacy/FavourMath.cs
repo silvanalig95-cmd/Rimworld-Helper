@@ -5,15 +5,15 @@ namespace ColonyCouncil
     /// <summary>What the colony can ask of a people that owes it a debt of honour, when it calls the debt in.</summary>
     public enum FavourAsk
     {
-        /// <summary>A load of goods (food, medicine, wood, steel or silver), about 400 silver's worth by their town's fortune, brought by their porters.</summary>
+        /// <summary>A load of goods (food, medicine, wood, steel or silver), worth 30 silver for each point of the debt by their town's fortune and their means, brought by their porters.</summary>
         Goods,
-        /// <summary>A word for the colony with a third people they are on good terms with: 10 goodwill, said in that people's letter.</summary>
+        /// <summary>A word for the colony with a third people they are on good terms with: half the debt's size in goodwill, said in that people's letter.</summary>
         Word,
-        /// <summary>A colonist of the colony they hold, walked to the colony's land.</summary>
+        /// <summary>A colonist of the colony they hold, walked to the colony's land: a debt of 15 or more.</summary>
         Captive,
-        /// <summary>Their help toward peace with a people at war with the colony: a promise the truce's answer reads (PactMath.TruceScore).</summary>
+        /// <summary>Their help toward peace with a people at war with the colony: a promise the truce's answer reads (PactMath.TruceScore); a debt of 12 or more.</summary>
         Peace,
-        /// <summary>Their fighters, only while a threat is on a home: their war band walks in some hours later (Diplomacy/Pacts.cs, release 2a.2).</summary>
+        /// <summary>Their fighters, only while a threat is on a home: their war band walks in some hours later (Diplomacy/Pacts.cs, release 2a.2); a debt of 12 or more.</summary>
         Fighters
     }
 
@@ -32,6 +32,14 @@ namespace ColonyCouncil
         Dispute,
         /// <summary>Fighters while their town within reach is attacked: two colonists or more set out for it (Diplomacy/CallsToArms.cs, release 2a.2).</summary>
         Fighters
+    }
+
+    /// <summary>A debt's weight in words: "a small debt", "a debt", "a great debt".</summary>
+    public enum DebtWeight
+    {
+        Small,
+        Debt,
+        Great
     }
 
     /// <summary>
@@ -159,11 +167,62 @@ namespace ColonyCouncil
 
         // ---------------- What the colony asks ----------------
 
-        /// <summary>A load of goods is about this much silver's worth at a steady town.</summary>
-        public const float GoodsValue = 400f;
+        /// <summary>
+        /// A load of goods is worth this much silver for each point of the debt's size, at a steady town of an industrial
+        /// people (the player, 10 November 2026: "balanced, appropriate to the debt i actually owe"): a warning's 10, 300; a
+        /// family of refugees taken in (20), 600. Until then any debt brought 400 whatever it was for.
+        /// </summary>
+        public const float GoodsPerSize = 30f;
 
-        /// <summary>The load by their town's fortune (0 to 100): three quarters of it from a struggling town, a quarter more from a flourishing one.</summary>
-        public static float GoodsWorth(float prosperity) => GoodsValue * (0.75f + Math.Max(0f, Math.Min(100f, prosperity)) / 200f);
+        /// <summary>Their town's fortune (0 to 100) as a factor: three quarters from a struggling town, one at a steady one, a quarter more from a flourishing one.</summary>
+        public static float FortuneFactor(float prosperity) => 0.75f + Math.Max(0f, Math.Min(100f, prosperity)) / 200f;
+
+        /// <summary>Their means, by their age: what their deliveries carry (DealingMath.TheirLoadValue) against an industrial people's: tribal 0.55, medieval 0.75, industrial 1, spacer 1.25.</summary>
+        public static float Means(WorldAge theirs) => DealingMath.TheirLoadValue(theirs) / DealingMath.TheirLoadValue(WorldAge.Industrial);
+
+        /// <summary>The load's worth: the debt's size, by their town's fortune and their means.</summary>
+        public static float GoodsWorth(int size, float prosperity, float means) => Math.Max(0, size) * GoodsPerSize * FortuneFactor(prosperity) * Math.Max(0f, means);
+
+        /// <summary>A notable's personal favour gives half of what their people's debt of the same size would.</summary>
+        public static int Effective(int size, bool personal) => personal ? Math.Max(1, size / 2) : Math.Max(0, size);
+
+        /// <summary>A word put in with a third people brings half the debt's size in goodwill (a warning's 10: 5; refugees' 20: 10).</summary>
+        public static int WordGoodwill(int size) => Math.Max(1, size / 2);
+
+        /// <summary>Their help toward peace and their fighters need a debt of 12 or more; a colonist they hold set free, 15 or more.</summary>
+        public const int PeaceSize = 12, FightersSize = 12, CaptiveSize = 15;
+
+        /// <summary>The smallest debt that can ask this of them (goods and a word: any).</summary>
+        public static int NeedsSize(FavourAsk a)
+        {
+            switch (a)
+            {
+                case FavourAsk.Peace: return PeaceSize;
+                case FavourAsk.Fighters: return FightersSize;
+                case FavourAsk.Captive: return CaptiveSize;
+                default: return 0;
+            }
+        }
+
+        public static bool Allows(FavourAsk a, int size) => size >= NeedsSize(a);
+
+        /// <summary>A debt's weight in words: small below 12, a debt from 12, a great debt from 18.</summary>
+        public const int DebtFrom = 12, GreatFrom = 18;
+
+        public static DebtWeight WeightOf(int size) => size >= GreatFrom ? DebtWeight.Great : size >= DebtFrom ? DebtWeight.Debt : DebtWeight.Small;
+
+        /// <summary>
+        /// A debt's size: its terms' number, as the good turn that made it weighed (renewed, the greater); an older one with
+        /// none, the weight of the deed it came from (refugees 20, a hardship eased 15 and so on: FactionMemory.Kinds), else
+        /// <see cref="MinSize"/>.
+        /// </summary>
+        public static int SizeOf(float number, int kindWeight) => number >= 1f ? (int)Math.Round(number) : kindWeight > 0 ? kindWeight : MinSize;
+
+        /// <summary>One debt of theirs called in a season at most, by letter or face to face (as their own asks: <see cref="AskGapDays"/>).</summary>
+        public const float CallGapDays = AskGapDays;
+
+        /// <summary>No call on them before (<paramref name="lastCall"/> -1), or the last a season ago or more.</summary>
+        public static bool CallAllowed(int lastCall, int now) => lastCall < 0 || now - lastCall >= CallGapDays * DayTicks;
 
         /// <summary>How many of a thing make up the load (at least one).</summary>
         public static int GoodsCount(float worth, float unitValue) => unitValue <= 0f ? 0 : Math.Max(1, (int)Math.Round(worth / unitValue));
@@ -178,9 +237,6 @@ namespace ColonyCouncil
                 default: return new[] { "food", "medicine", "steel", "silver" };
             }
         }
-
-        /// <summary>Goodwill a word put in with a third people brings.</summary>
-        public const int WordGoodwill = 10;
 
         /// <summary>How much better a people at war with the colony thinks of a truce asked with their help (read by 2a.2's truce answer).</summary>
         public const int PeaceRegard = 20;

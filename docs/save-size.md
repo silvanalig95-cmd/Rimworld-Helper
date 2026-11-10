@@ -7,8 +7,8 @@ colony of 20, with the game keeping 30 more people it knows and 5 more each year
 generous guesses; sizes are rough XML sizes. Caps named as constants are read from the source. "Counted under" rows are
 kept inside another record (a journal's lines, a heart's lists) and are already in that record's size.
 
-Saved collections found: 609; modelled: 609; growing without end: 0.
-Rimfolk's part of the save, roughly: **2,740 KB** after a year, **3,318 KB** after two, **3,601 KB** after five.
+Saved collections found: 611; modelled: 611; growing without end: 0.
+Rimfolk's part of the save, roughly: **2,752 KB** after a year, **3,330 KB** after two, **3,613 KB** after five.
 
 | Collection | Rule | Kind | 1 year | 2 years | 5 years | KB at 5 years |
 |---|---|---|---|---|---|---|
@@ -79,6 +79,7 @@ Rimfolk's part of the save, roughly: **2,740 KB** after a year, **3,318 KB** aft
 | `Epithets/Epithets.cs:holdsSaved` | how each held name holds (NameMath.Pack: since, a challenger and their season, the last holder), one per name held | defs | 74 | 74 | 74 | 10.1 |
 | `UI/EventCards/EventCards.cs:plain` | Rimfolk's plain letters by their ID, so they open as event cards after a load: those still on the stack or in the History tab, the newest 400 (EventCardMath.MaxPlain) | cap | 400 | 400 | 400 | 9.8 |
 | `Colonies/LandingRecord.cs:kit` | the starting kit's stacks (a reference, the def and stuff, how many are the kit's, where it came from), a few dozen in a crashlanding; split loads merge back on the stockpile and used-up stacks are let go; only for the first 3 days | while | 60 | 60 | 60 | 9.4 |
+| `World/Notables.cs:warned` | threats each people was warned of (World/Warnings.cs): WarnMath.MaxKept, 30 days or while the threat stands | fixed | 60 | 60 | 60 | 9.4 |
 | `Building/Suggest/SameRules.cs:markedDefs` | with the above: which order | fixed | 300 | 300 | 300 | 8.8 |
 | `Outsiders/OutsiderBook.cs:heard` | OutsiderTalkMath.HeardMax news heard, all towns, 60 days at most | fixed | 40 | 40 | 40 | 8.6 |
 | `World/Notables.cs:letters` | letters and calls under way, PostMath.MaxOpen at once with the post (NotableMath.MaxOpen without); ended ones kept two days | cap | 15 | 15 | 15 | 8.2 |
@@ -155,6 +156,7 @@ Rimfolk's part of the save, roughly: **2,740 KB** after a year, **3,318 KB** aft
 | `Lean/Homes.cs:ties` | one per colonist who has been on a home: the last home they lived on; the dead, discarded and those no longer the colony's dropped hourly | colonists | 20 | 20 | 20 | 2.7 |
 | `Offices/Election.cs:races` | an election's seats, while it lasts | while | 14 | 14 | 14 | 2.7 |
 | `Quirks/Quirks.cs:practice` | one per colonist who works or keeps late or early hours; dead and departed dropped daily and at saving, faded-out ones removed | colonists | 20 | 20 | 20 | 2.7 |
+| `World/Notables.cs:known` | threats heard of in talk with outsiders: WarnMath.MaxKnown, 30 days | fixed | 40 | 40 | 40 | 2.7 |
 | `Ailments/AilmentTracker.cs:healing` | injuries an ailment may follow; let go when healed, known pawns only | known | 16 | 18 | 22 | 2.6 |
 | `Aspirations/Aspirations.cs:events` | sparks, 30 days | window | 30 | 30 | 30 | 2.6 |
 | `Health/HealthTracker.cs:lastDoctor` | tends 3 days | window | 30 | 30 | 30 | 2.6 |
@@ -612,9 +614,9 @@ Rimfolk's part of the save, roughly: **2,740 KB** after a year, **3,318 KB** aft
 | `World/Ledger/LedgerFormers.cs:formers` | per town the colony was: the colony's former people who stayed (counted under formerRecords) | while | 12 | 12 | 12 | (in its record) |
 | `World/Ledger/LedgerPersons.cs:kept` | per person: the reasons they're kept in the world, one per part of Rimfolk (counted under persons) | fixed | 2 | 2 | 2 | (in its record) |
 | `World/Ledger/LedgerRegion.cs:members` | per house: its members by first name, RegionMath.MembersPerHouse at most (counted under houses) | fixed | 4 | 4 | 4 | (in its record) |
-| `World/Notables.cs:done` | per notable: threats warned of and losses mourned, the newest 12 (counted under notables) | fixed | 12 | 12 | 12 | (in its record) |
-| `World/Notables.cs:lastKeys` | per notable: one per purpose of a letter (counted under notables) | fixed | 6 | 6 | 6 | (in its record) |
-| `World/Notables.cs:lastTicks` | per notable: one per purpose of a letter (counted under notables) | fixed | 6 | 6 | 6 | (in its record) |
+| `World/Notables.cs:done` | per notable: losses mourned, the newest 12 (counted under notables; warnings are their people's since 10 November 2026) | fixed | 12 | 12 | 12 | (in its record) |
+| `World/Notables.cs:lastKeys` | per notable: one per purpose of a letter, and the last gift with an answer (counted under notables) | fixed | 7 | 7 | 7 | (in its record) |
+| `World/Notables.cs:lastTicks` | per notable: one per purpose of a letter, and the last gift with an answer (counted under notables) | fixed | 7 | 7 | 7 | (in its record) |
 | `World/Notables.cs:notes` | per notable: NotableMath.MaxMemory lines, the oldest go (counted under notables) | fixed | 8 | 8 | 8 | (in its record) |
 | `World/Notables.cs:regards` | per notable: NotableMath.MaxRegards colonists, the faded dropped daily (counted under notables) | fixed | 8 | 8 | 8 | (in its record) |
 | `World/Region/FollowUps.cs:flags` | per follow-up: the flags what it follows ended with (counted under waiting) | fixed | 8 | 8 | 8 | (in its record) |

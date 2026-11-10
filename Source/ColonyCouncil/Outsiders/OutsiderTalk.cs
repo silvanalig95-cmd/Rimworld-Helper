@@ -24,8 +24,10 @@ namespace ColonyCouncil
     /// <item>Bubbles: every conversation is a short scene of two to six lines said in turn over their heads, at a pace
     /// to read them (<see cref="Play"/>). Only what matters comes as a message or letter.</item>
     /// <item>A history: conversation pieces (OutsiderTalkDef) chosen by what is true right now (<see cref="OutsiderFacts"/>),
-    /// what's current first; what was said is kept: news heard goes into the town's "Heard lately" (the World page and
-    /// the region map), the pair's marks are picked up by later talks with what became of them since.</item>
+    /// what's current first; what was said is kept: news heard goes into the town's "Heard lately" (its card, and the
+    /// people's page on the region window's Peoples: the Overview, the Towns tab, the record of the notable it names), the
+    /// history as "world:heard", and a threat it names becomes one the colony knows of (World/Warnings.cs); the pair's
+    /// marks are picked up by later talks with what became of them since.</item>
     /// </list>
     /// Lines under way aren't saved: after a load a talk under way is simply over.
     /// </summary>
@@ -422,13 +424,19 @@ namespace ColonyCouncil
                 if (ch.piece.mark != null) OutsiderTalkMath.AddMark(pair.marks, ch.piece.mark, Now, ch.markSubject, ch.markFact);
             }
             OutsiderTalkMath.Remember(lately, ch.piece.name, 30);
-            if (!ch.heard.NullOrEmpty()) Heard(x, c, ch.heard);
+            if (!ch.heard.NullOrEmpty()) Heard(x, c, ch.heard, ch.heardFacts);
         }
 
         // ================= Heard lately =================
 
-        /// <summary>News of their town told to a colonist: into the town's "Heard lately", the same news brought up to date.</summary>
-        public static void Heard(Pawn teller, Pawn told, string text)
+        /// <summary>
+        /// News of their town told to a colonist (the player, 10 November 2026: "is any information that is generated in these
+        /// talks also logged in the ledger/history/diplomatic screen?"): into the town's "Heard lately" (the same news brought
+        /// up to date), the record of the notable it names, the history as "world:heard" (their people, their town, the
+        /// teller and the colonist told; the same news within ten days once), and a threat it names (a site, a war, a
+        /// warlord: <paramref name="facts"/>) is one the colony knows of from now, to warn others of (World/Warnings.cs).
+        /// </summary>
+        public static void Heard(Pawn teller, Pawn told, string text, IList<string> facts = null)
         {
             var book = Book;
             if (book == null || teller == null || text.NullOrEmpty()) return;
@@ -437,15 +445,84 @@ namespace ColonyCouncil
             if (town == null && f == null) return;
             int now = Now;
             int id = town?.ID ?? -1;
-            var same = book.heard.FirstOrDefault(h => h.town == id && h.faction == f && h.text == text && now - h.tick < OutsiderTalkMath.HeardSameDays * GenDate.TicksPerDay);
+            var same = book.heard.FirstOrDefault(h => h.town == id && h.faction == f && h.text == text && OutsiderTalkMath.SameNews(h.tick, now));
             if (same != null) book.heard.Remove(same);
+            var named = NamedNotable(f, text, facts, out string about);
             book.heard.Add(new HeardNews
             {
-                town = id, townName = town?.Name ?? f?.Name, faction = f, text = text, teller = teller.LabelShort, told = told?.LabelShort, tick = now
+                town = id, townName = town?.Name ?? f?.Name, faction = f, text = text, teller = teller.LabelShort, told = told?.LabelShort, tick = now, notable = named?.id ?? -1,
+                about = about
             });
             while (book.heard.Count > OutsiderTalkMath.HeardMax) book.heard.RemoveAt(0);
             NotableBook.Changed();
+            try
+            {
+                if (facts != null)
+                    foreach (var fact in facts)
+                        Warnings.Heard(fact);
+                // The same news within ten days is one line in the history.
+                if (same == null) HeardInHistory(teller, told, town, f, text);
+            }
+            catch (Exception e)
+            {
+                CouncilLog.ErrorOnce("heard lately: the history and the threats", e);
+            }
         }
+
+        /// <summary>The news in the history (as far news is, World/Region/FarNews.cs): at the colony, their people and town and the colonist told named.</summary>
+        private static void HeardInHistory(Pawn teller, Pawn told, Settlement town, Faction f, string text)
+        {
+            var home = told != null ? Homes.Of(told) ?? Homes.Seat : Homes.Seat;
+            var actors = new List<HistoryActor>();
+            if (f != null) actors.Add(new HistoryActor(Refs.Of(f), HistoryRole.About));
+            if (town != null) actors.Add(new HistoryActor(Refs.Of(town), HistoryRole.About));
+            if (told != null) actors.Add(new HistoryActor(Refs.Of(told), HistoryRole.With));
+            string line = "CC_Out_Heard_Hist".Translate(teller.LabelShort.Named("TELLER"), (town?.Name ?? f?.Name ?? "?").Named("FROM"), (told?.LabelShort ?? "?").Named("PAWN"),
+                text.Named("NEWS")).Resolve();
+            History.Add(FarNews.Kind, actors, Refs.Colony(home), HistoryMath.Everyday, line);
+        }
+
+        /// <summary>
+        /// The notable of theirs the news names, by the fact behind its placeholder (one ill, their head, a notable); else, for
+        /// a death among them the colony knows of, the name only (<paramref name="about"/>).
+        /// </summary>
+        private static Notable NamedNotable(Faction f, string text, IList<string> facts, out string about)
+        {
+            about = null;
+            var nb = NotableBook.Instance;
+            if (nb == null || f == null) return null;
+            foreach (var fact in facts ?? new List<string>())
+            {
+                Notable n = null;
+                var parts = fact.Split(':');
+                if ((parts[0] == "ill" || parts[0] == "notable") && parts.Length == 2 && int.TryParse(parts[1], out int nid)) n = nb.Get(nid);
+                else if (parts[0] == "head" && parts.Length == 3 && int.TryParse(parts[2], out int pid))
+                    n = nb.notables.FirstOrDefault(x => x?.pawn != null && x.pawn.thingIDNumber == pid);
+                if (n == null || n.faction != f) continue;
+                about = n.Name;
+                return n;
+            }
+            foreach (var l in nb.losses)
+                if (l?.faction == f && !l.name.NullOrEmpty() && text.Contains(l.name))
+                {
+                    about = l.name;
+                    return null;
+                }
+            return null;
+        }
+
+        /// <summary>A people's news, newest first: every town of theirs and none (a people with no town).</summary>
+        public static List<HeardNews> HeardOf(Faction f, int max) =>
+            Book?.heard.Where(h => h != null && h.faction == f).OrderByDescending(h => h.tick).Take(max).ToList() ?? new List<HeardNews>();
+
+        /// <summary>News naming a notable of theirs (alive or gone), newest first.</summary>
+        public static List<HeardNews> HeardAbout(Faction f, int max) =>
+            Book?.heard.Where(h => h != null && h.faction == f && (h.notable >= 0 || !h.about.NullOrEmpty())).OrderByDescending(h => h.tick).Take(max).ToList()
+            ?? new List<HeardNews>();
+
+        /// <summary>The news naming this notable, newest first.</summary>
+        public static List<HeardNews> HeardOfNotable(Notable n, int max) =>
+            n == null ? new List<HeardNews>() : Book?.heard.Where(h => h != null && h.notable == n.id).OrderByDescending(h => h.tick).Take(max).ToList() ?? new List<HeardNews>();
 
         /// <summary>A town's news, newest first.</summary>
         public static List<HeardNews> HeardAt(int town, int max) =>
