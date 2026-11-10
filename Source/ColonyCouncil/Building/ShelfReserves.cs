@@ -78,7 +78,9 @@ namespace ColonyCouncil
     /// (ShelfReserveMath.MayTakeSlot); a kind kept to its slots takes no more; a kind held to a number per stack is
     /// topped up to that and no further (the hauler carries no more than the cell has room for); and a kind whose
     /// condition doesn't hold is kept off the shelf. What must go (to make room, past a cap, or kept off for now) counts
-    /// as not belonging there, so a hauler takes it to the next place that will have it (MoveOut). Looked at again at
+    /// as not belonging there, so a hauler takes it to the next place that will have it (MoveOut), or sets it down beside
+    /// the shelf when nothing will and a reserved kind waits for its room (ShelfMakeRoom.cs, which also lets a colonist
+    /// ordered to haul a reserved kind to a full shelf make room first). Looked at again at
     /// most every two seconds, and at once when what the shelf holds changes. Works the same with LWM's Deep Storage,
     /// whose shelves count their stacks through the game's own number per cell.
     /// </summary>
@@ -259,6 +261,10 @@ namespace ColonyCouncil
             /// <summary>Per slot: filled by a stack on the shelf now; empty but some on the map (waiting for room).</summary>
             public bool[] here, onMap;
             public HashSet<Thing> moveOut = new HashSet<Thing>();
+            /// <summary>The stacks on the shelf as looked at, the same stacks as the pure rules saw them, and each entry's cap (-1: none).</summary>
+            public List<Thing> things = new List<Thing>();
+            public List<ShelfReserveMath.Stack> stacks = new List<ShelfReserveMath.Stack>();
+            public int[] caps;
             /// <summary>The shelf isn't in a room, so "while a patient lies in this room" never holds.</summary>
             public bool noRoom;
 
@@ -267,6 +273,22 @@ namespace ColonyCouncil
                 for (int k = 0; k < kinds.Count; k++)
                     if (!here[k] && kinds[k].Matches(d)) return true;
                 return false;
+            }
+
+            /// <summary>Of a kind whose slot is empty while the colony has some on the map (counted in <see cref="waiting"/>).</summary>
+            public bool Waits(ThingDef d)
+            {
+                for (int k = 0; k < kinds.Count; k++)
+                    if (!here[k] && onMap[k] && kinds[k].Matches(d)) return true;
+                return false;
+            }
+
+            /// <summary>The first kind waiting for room, or null.</summary>
+            public Kind FirstWaiting()
+            {
+                for (int k = 0; k < kinds.Count; k++)
+                    if (!here[k] && onMap[k]) return kinds[k];
+                return null;
             }
 
             /// <summary>Of a kind kept off the shelf for now (its condition doesn't hold) and of no kind that counts.</summary>
@@ -382,6 +404,9 @@ namespace ColonyCouncil
                 st.waiting++;
             }
             foreach (int i in ShelfReserveMath.MoveOut(st.capacity, stacks, st.kinds.Count, st.waiting, caps)) st.moveOut.Add(things[i]);
+            st.things = things;
+            st.stacks = stacks;
+            st.caps = caps;
             return st;
         }
 
@@ -402,6 +427,42 @@ namespace ColonyCouncil
                 if (!t.Spawned || rect.Contains(t.Position) || t.Position.Fogged(map) || t.IsForbidden(Faction.OfPlayer)) continue;
                 if (!t.IsInAnyStorage() && (home == null || !home[t.Position])) continue;
                 if (shelf.settings.AllowedToAccept(t)) return true;
+            }
+            return false;
+        }
+
+        /// <summary>
+        /// Of the slots waiting, how many the usual hauling would fill: some of the kind lies where a haul brings it here
+        /// (loose in the home area, or in storage below this shelf's priority). A kind kept only in storage as good as this
+        /// shelf or better never comes, so no stack is set down beside the shelf for it (ShelfMakeRoom).
+        /// </summary>
+        internal int Coming(State st, Building_Storage shelf)
+        {
+            if (st == null || shelf?.Map != map) return 0;
+            var priority = shelf.GetStoreSettings().Priority;
+            var byEntry = new Dictionary<int, bool>();
+            int n = 0;
+            for (int k = 0; k < st.kinds.Count; k++)
+            {
+                if (st.here[k] || !st.onMap[k]) continue;
+                int e = st.slotEntry[k];
+                if (!byEntry.TryGetValue(e, out bool comes)) byEntry[e] = comes = st.kinds[k].Defs.Any(d => ComesDef(d, shelf, priority));
+                if (comes) n++;
+            }
+            return n;
+        }
+
+        private bool ComesDef(ThingDef d, Building_Storage shelf, StoragePriority priority)
+        {
+            var rect = shelf.OccupiedRect();
+            var home = map.areaManager.Home;
+            foreach (var t in map.listerThings.ThingsOfDef(d))
+            {
+                if (!t.Spawned || rect.Contains(t.Position) || t.Position.Fogged(map) || t.IsForbidden(Faction.OfPlayer)) continue;
+                bool stored = t.IsInAnyStorage();
+                if (!stored && (home == null || !home[t.Position])) continue;
+                if (stored && (int)StoreUtility.CurrentStoragePriorityOf(t) >= (int)priority) continue;
+                if (shelf.GetStoreSettings().AllowedToAccept(t)) return true;
             }
             return false;
         }

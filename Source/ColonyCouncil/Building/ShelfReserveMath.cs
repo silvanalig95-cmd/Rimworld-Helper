@@ -10,7 +10,10 @@ namespace ColonyCouncil
     /// slot only while a slot is left for every reserved one still empty; when one is empty and the shelf is too full
     /// for it, a stack filling no slot is moved out, of what the shelf holds most of, the smallest first. A kind can
     /// also be kept to its slots and no more (a cap), held to a number of items per stack, and kept only while its
-    /// condition holds: while it doesn't, the kind isn't kept on the shelf at all (barred).
+    /// condition holds: while it doesn't, the kind isn't kept on the shelf at all (barred). A stack that must go and that
+    /// no other storage takes is set down beside the shelf while the shelf is short of room (<see cref="ShortOfRoom"/>);
+    /// a colonist ordered to haul a reserved kind to a full shelf takes a stack off it first (<see cref="MayMakeRoom"/>,
+    /// <see cref="RoomFrom"/>).
     /// </summary>
     public static class ShelfReserveMath
     {
@@ -152,6 +155,47 @@ namespace ColonyCouncil
             }
             return result;
         }
+
+        /// <summary>
+        /// Whether room can be made on a shelf for a stack a colonist is ordered to haul there: the shelf is full, the
+        /// stack would fill one of its empty reserved slots, the shelf's storage settings allow it, and the shelf is better
+        /// storage than where it lies (the game's own rule for a haul).
+        /// </summary>
+        public static bool MayMakeRoom(int capacity, int held, bool fillsMissing, bool allowed, bool better) =>
+            capacity > 0 && held >= capacity && fillsMissing && allowed && better;
+
+        /// <summary>
+        /// The stack to take off a full shelf so another can come in: of those the reserves mark to move out
+        /// (<paramref name="marked"/>), the one of least worth; else of those of no reserved kind, the one of least worth.
+        /// Never a stack of a reserved kind the reserves don't mark, so no reserved slot is emptied for another. Only those
+        /// a colonist can take (<paramref name="movable"/>) count; -1 when none can go.
+        /// </summary>
+        public static int RoomFrom(IList<Stack> stacks, IList<bool> marked, IList<float> worth, IList<bool> movable)
+        {
+            if (stacks == null) return -1;
+            float Worth(int i) => worth != null && i < worth.Count ? worth[i] : 0f;
+            int Least(System.Func<int, bool> which)
+            {
+                int best = -1;
+                for (int i = 0; i < stacks.Count; i++)
+                {
+                    if (movable != null && (i >= movable.Count || !movable[i]) || !which(i)) continue;
+                    if (best < 0 || Worth(i) < Worth(best) || Worth(i) == Worth(best) && stacks[i].count < stacks[best].count) best = i;
+                }
+                return best;
+            }
+            int pick = Least(i => marked != null && i < marked.Count && marked[i]);
+            if (pick >= 0) return pick;
+            return Least(i => (stacks[i].covers == null || stacks[i].covers.Length == 0) && !stacks[i].barred);
+        }
+
+        /// <summary>
+        /// How many stacks must still be set down off a full shelf for its waiting slots when nothing else will store them:
+        /// the slots waiting that the usual hauling would fill (<paramref name="waiting"/>), less the free slots and the
+        /// stacks already on their way out (<paramref name="leaving"/>).
+        /// </summary>
+        public static int ShortOfRoom(int capacity, int held, int waiting, int leaving) =>
+            System.Math.Max(0, waiting - System.Math.Max(0, capacity - held) - System.Math.Max(0, leaving));
 
         /// <summary>
         /// How many more of a kind held to <paramref name="limit"/> per stack (0: a full stack) a cell can take: the room

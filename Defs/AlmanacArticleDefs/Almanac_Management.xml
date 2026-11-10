@@ -835,6 +835,7 @@ Give Warden work to your most social colonist and keep it at a high priority, an
           <li>"When" can keep a kind only while a patient lies in the shelf's room: someone ill or hurt in a bed there. The rest of the time it isn't kept on the shelf at all, and what's there is carried elsewhere. The hospital shelf can hold four meals for whoever is laid up, and none when the beds are empty.</li>
           <li>Haulers fill the other slots with anything the shelf allows, but a new stack goes on only while a slot stays free for each reserved one still empty.</li>
           <li>A reserved kind the colony has none of on this map keeps no slot empty. When some turns up and the shelf is full, a stack filling no reserved slot is carried to the next place that will have it, of what the shelf holds most of.</li>
+          <li>If nothing else will store that stack, a hauler sets it down beside the shelf, and it isn't put back while it would take the reserved slot. Right-clicking a stack of a reserved kind that has nowhere to go offers "Make room on the shelf and haul simple meal x4 there" (for four simple meals) in place of "Cannot haul": the colonist takes a stack off the shelf, never one filling another reserved slot, and brings yours into the freed spot.</li>
           <li>The list says where each kind stands: on the shelf, coming to the free slot, a stack moving out to make room, or none on the map. It works on LWM's Deep Storage units too.</li>
         </points>
       </li>

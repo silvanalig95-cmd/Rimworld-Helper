@@ -12,6 +12,42 @@ tree at once, alongside whatever runs. Each piece is merged as its own release, 
 
 ## State (5 November 2026)
 
+- **Making room on a reserved shelf** (10 November 2026). **Not released: no version, no What's new round, About.xml and
+  CHANGELOG untouched.** The player's bug report, with a screenshot of "Cannot haul simple meal x4: No empty, accessible
+  spot configured to store it": "so when i have a reserved slot in a shelf for meals, that slot is however currently
+  being occupied by something else, i can't send a "haul" command on a meal, since it thinks there are no free slots. it
+  should recognize that it can free up the reserved slots and then haul the food there". A full shelf's cells are full
+  for the game's store search, so a forced haul found no cell, and a stack marked to move out that no other storage took
+  never left. DESIGN.md "Reserved slots on shelves, and making room for them" (new: the feature had no section) has all
+  of it; README "Reserved slots on shelves" (new); the Almanac's Management page, "Reserved slots", one point more.
+  - Pure: `ShelfReserveMath.MayMakeRoom` (full, fills an empty reserved slot, allowed, better storage), `RoomFrom` (a
+    stack the reserves mark, least worth first, else the least worth of no reserved kind, never one of a reserved kind
+    unmarked), `ShortOfRoom` (slots waiting less free slots and stacks on their way out). Tests in `ShelfReserveTests`
+    (now `Run(root, ...)`, with the seams).
+  - Game side: `Building/ShelfMakeRoom.cs`. `Patch_ShelfMakeRoomAuto` (postfix on `HaulAIUtility.HaulToStorageJob`): a
+    stack the reserves mark that the game finds no storage for is set down beside the shelf (`CanHaulAside`) while a
+    kind the usual hauling would bring waits for its room (`ShelfReserves.Coming`: loose in the home area, or in storage
+    below the shelf's priority). `FloatMenuOptionProvider_RimfolkShelfRoom`: "Make room on the shelf and haul simple
+    meal x4 there" for a stack the game's haul finds no cell for; `Patch_ShelfMakeRoomMenu` (postfix on
+    `FloatMenuMakerMap.GetOptions`) takes the game's "Cannot haul" line out beside it. Taken: the stack off the shelf
+    (to its best other storage, else beside the shelf), then the game's `HaulToCell` into the freed cell, queued next
+    and reserved at once. Job `Rimfolk_MakeRoomOnShelf` (`Defs/Misc/Rimfolk_ShelfReserves.xml`, the game's
+    `JobDriver_HaulToCell`), its report "making room on the shelf for the simple meal." / "for meals". `State` keeps its
+    stacks and caps (`things`, `stacks`, `caps`), `Waits`, `FirstWaiting`. Keys in `Rimfolk_Stores.xml`; the window's
+    and the setting's explanations say it. Nothing saved, no Sched slot, no new setting.
+  - Not run here (none of it could be): the menu's line in place of the game's, matched by the game's own words; the
+    queued haul starting right after the first job, its reservations held between; the haul aside's cell beside a shelf;
+    the stack set down left alone while the slot waits; LWM's Deep Storage; Pick Up And Haul's hauling.
+  - Try in the game: 1. A shelf with a meal slot reserved, full of other things that no other storage takes, and meals
+    on the floor in the home area: a hauler sets one of the other stacks down beside the shelf ("making room on the
+    shelf for meals" in their status), then meals come into the freed slot; the stack set down stays off the shelf. 2.
+    The same with the meals outside the home area: right-click them with a colonist; the menu says "Make room on the
+    shelf and haul simple meal x4 there" and no "Cannot haul" line. Taken, the colonist carries a stack off the shelf
+    (to another stockpile if one takes it, else beside the shelf) and then the meals into that spot. 3. Another hauler
+    can't fill the freed spot in between. 4. A shelf full only of reserved kinds, each filling its own slot: no such
+    line. 5. A colonist with hauling off: only the game's "Cannot haul" line. 6. Reserved slots or the deeper hooks off
+    in the settings: nothing of this. 7. A shelf of lower priority than the stockpile the meals lie in: no line, and no
+    stack set down beside it for meals that would never come.
 - **Held by the player (10 November 2026): no new letters content jobs until they ask** ("for the letters please hold
   after this job then ... I'd like to keep such jobs for the end of the week to use up my remaining tokens"). The letters
   round 2 part 1 agent was already running; its part 2 (more content in the same shapes) waits for their word.

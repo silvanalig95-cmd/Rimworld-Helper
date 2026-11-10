@@ -4429,6 +4429,59 @@ work giver, full and worth a trip, the longest hold, before needs, never instead
   products taken off the game's list in `Notify_BillDone` (a mod reading the list after it sees fewer), and interplay
   with Common Sense and Gastronomy (a restaurant waits up to two hours for meals in a cook's pocket).
 
+### Reserved slots on shelves, and making room for them (the player's report, 10 November 2026; not released)
+
+The shelf reserves (`Building/ShelfReserves.cs`, the setting "Reserved slots on shelves", `shelfReserves`, behind the
+deeper hooks; Almanac Management, "Reserved slots"): a shelf keeps slots for kinds the player picks (an item, any of a
+group, the best of a group at hand), each for a stack of its own, while the colony has some on the map; the other slots
+take anything. The pure rules are `Building/ShelfReserveMath.cs` (Tools/Tests `ShelfReserveTests`): `Fill` and `Missing`
+(which slots are empty), `MayTakeSlot` (a new stack only while a slot stays free for every empty one waiting), `MoveOut`
+(what must go: a kind kept off for now, past its cap, then room for the slots waiting, of what the shelf holds most of,
+the smallest first), `SpaceFor` (per stack), `Best`. The game side: `ShelfReserves.State` from `Look` (two seconds at
+most, at once when what the shelf holds changes); `Patch_ShelfReserveCell` (`StoreUtility.NoStorageBlockersIn`,
+`MayStore`), `Patch_ShelfReserveAccepts` (`Building_Storage.Accepts`: a stack that must go no longer belongs, so haulers
+take it to the next place that will have it), `Patch_ShelfReserveHaulCount`, the gizmo and its window and picker.
+
+The player's report: "when i have a reserved slot in a shelf for meals, that slot is however currently being occupied by
+something else, i can't send a "haul" command on a meal, since it thinks there are no free slots. it should recognize
+that it can free up the reserved slots and then haul the food there". A full shelf's cells are full for the game's store
+search, so a forced haul of the waiting kind found no cell ("Cannot haul simple meal x4: No empty, accessible spot
+configured to store it"), and a stack marked to move out that no other storage took never left. Fixed both ways
+(`Building/ShelfMakeRoom.cs`), behind the same setting and the deeper hooks:
+
+- **On their own** (`Patch_ShelfMakeRoomAuto`, a postfix on `HaulAIUtility.HaulToStorageJob`): when the game's haul
+  finds no storage for a stack the reserves mark to move out, and a reserved kind waits for room on that shelf, a hauler
+  sets it down on a free cell beside the shelf (the game's own haul aside, `HaulAIUtility.CanHaulAside`). Only as many
+  as the shelf is short of: the slots waiting that the usual hauling would fill (some of the kind loose in the home
+  area, or in storage below the shelf's priority: `ShelfReserves.Coming`; a kind kept only in storage as good as the
+  shelf never comes, so nothing is set down for it), less the free slots and the stacks already on their way out
+  (reserved by someone), `ShelfReserveMath.ShortOfRoom`. The usual hauling then brings the waiting kind into the freed
+  slot. It never loops: the stack set down isn't put back while it would take the slot kept for the waiting kind
+  (`MayStore`, `MayTakeSlot`), and once that kind is in, the shelf is full again. A stack kept off for now or past a cap
+  with nowhere to go stays, as before, unless a kind waits for its room.
+- **Ordered** (`FloatMenuOptionProvider_RimfolkShelfRoom`, found by the game like every provider): right-clicking a
+  stack the game's own haul finds no cell for, with a colonist who hauls, offers "Make room on the shelf and haul simple
+  meal x4 there" when a reserved shelf (the best storage first, then the nearest) is full, has an empty slot of that
+  kind, allows it and is better storage than where it lies (`ShelfReserveMath.MayMakeRoom`, the game's rule for a haul).
+  `Patch_ShelfMakeRoomMenu` (a postfix on `FloatMenuMakerMap.GetOptions`) takes out the game's "Cannot haul X: No empty,
+  accessible spot" line for that stack, so the working line stands in its place; a colonist who doesn't haul sees only
+  the game's line. Which stack goes (`ShelfReserveMath.RoomFrom`): one the reserves mark to move out (counting the
+  ordered kind as waiting when it isn't yet, say it lies outside the home area), the least worth of them; else the stack
+  of least worth of no reserved kind; never a stack of a reserved kind the reserves don't mark, so no slot is emptied
+  for another; only stacks the colonist can reach and reserve. Taken, two jobs: the stack off the shelf to its best
+  other storage (the game's search from unstored, never the same shelf; a container by the game's haul to a container),
+  else set down beside the shelf; then the game's `HaulToCell` of the ordered stack into the freed cell, queued next and
+  reserved at once with the stack, so nobody fills the cell in between. The order is looked at again when it is taken.
+- **The job's words**: `Rimfolk_MakeRoomOnShelf` (`Defs/Misc/Rimfolk_ShelfReserves.xml`), the game's
+  `JobDriver_HaulToCell` with its report: "making room on the shelf for the simple meal." (the stack queued to come in)
+  or "for meals" (the first kind waiting). No message: the menu's line and the job's report say it.
+- Nothing saved, no Sched slot, no new setting. Keys in `Languages/English/Keyed/Rimfolk_Stores.xml`
+  (`CC_Shelf_MakeRoomHaul`, `CC_Shelf_MakingRoomFor`, `CC_Shelf_TheKind`); the window's and the setting's explanations
+  say it. Tests: `ShelfReserveTests` (`MayMakeRoom`, `RoomFrom`, `ShortOfRoom`, that it never loops, the seams).
+- **Not checked here**: none of it could be run in the game: the menu's line in place of the game's (its label matched
+  by the game's own words), the queued haul starting after the first job and its reservations held between, the haul
+  aside's cell beside a shelf, the stack set down being left alone while the slot waits, and LWM's Deep Storage cells.
+
 ## The trade screen (the player's requests, 7 and 8 November 2026)
 
 "I still don't really like the new trade interface, i'm thinking more of a totally redone one by you, not an adjusted

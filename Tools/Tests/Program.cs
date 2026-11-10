@@ -512,6 +512,7 @@ Console.WriteLine($"Checked {InboxTests.Run(root, Check)} things about one inbox
         Console.WriteLine($"Checked {OutsiderTalkTests.Run(root, Check)} things about conversations with outsiders (patience, asking again, talks of their own, pieces, callbacks, the library).");
         Console.WriteLine($"Checked {OutsiderAutoTests.Run(root, Check)} things about the right-click's things done by the colonists themselves (which on which setting, the moment, the pace, the budget, what each brings, who does it, the seams).");
         Console.WriteLine($"Checked {FactsTests.Run(root, Check)} things about the facts service and the one fill (scenes, providers, the same choices over generated talks, the same text as every fill it replaced).");
+        Console.WriteLine($"Checked {ShelfReserveTests.Run(root, Check)} things about reserved shelf slots (making room for them, by order and on their own, and the seams) and where drinks are had.");
         Console.WriteLine($"Checked {GuestHelpTests.Run(root, Check)} things about guests helping out (work they love, who won't, the colony's troubles and who pitches in, the verdict narrowing only in everyday times, thanks paid in work, the day's limits, the regard both ways, every name in the player's mods, the seams).");
     }
 }
@@ -545,7 +546,6 @@ Console.WriteLine($"Checked {HerdStoryTests.Run(Check)} things about the herd's 
 Console.WriteLine($"Checked {MovingOnTests.Run(Check)} things about the price of keeping someone who asked to move on.");
 Console.WriteLine($"Checked {GoalRewardTests.Run(Check)} things about what a reached life goal leaves behind.");
 Console.WriteLine($"Checked {BarMoreTests.Run(Check)} things about the bottom bar's buttons put away under More.");
-Console.WriteLine($"Checked {ShelfReserveTests.Run(Check)} things about reserved shelf slots and where drinks are had.");
 Console.WriteLine($"Checked {GuestCheckTests.Run(Check)} things about whether a guest can be recruited, and how.");
 Console.WriteLine($"Checked {NextStepsTests.Run(Check)} things about the colony's next steps.");
 Console.WriteLine($"Checked {SpotTests.Run(Check)} things about where a room plan should go.");
