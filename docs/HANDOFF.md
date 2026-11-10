@@ -12,6 +12,84 @@ tree at once, alongside whatever runs. Each piece is merged as its own release, 
 
 ## State (5 November 2026)
 
+- Letters of many shapes, round 2 part 1 (10 November 2026). **Not released: no version, no What's new round, About.xml and
+  CHANGELOG untouched.** The player, after 0.202.0: "love it! here i really like a lot of text variety, also someitmes the
+  letters can be longer, with some stories or stuff that is told by the different pawns or factions. some might include
+  poems, detailed stories of raider attacks, ideological ramblings and all kinds of different things. they don't all always
+  fully have to follow the same structure, some could be several pages long, some just boiled down to the necessities
+  etc. I just want a lot of variety, content and interesting writing that makes reading every letter a fun or interesting
+  experience." DESIGN.md "Letters of many shapes" has all of it; `docs/design/post-and-letters.md` step 3, points 20 to 25;
+  README "Letters of many shapes". A second content pass fills the same shapes when the player asks for it.
+  - Pure: `Letters/LetterKindMath.cs` (linked; `LetterKind`, `LetterLength`, `RaidRecord`, `LetterWho`, `LetterLines`;
+    `Fits`, `FitsOurs`, `Weight`, `Choose`, `PieceTags`, `AddRaid`, `Build` and each shape's maker, `Pages`, `DiaryDays`,
+    `Signed`, `SplitRiddle`, `Key`/`Remember`/`Remembered`), `LetterFormMath` extended (12 new `LetterPart`s, a note's
+    form, the piece and the lines under the signature, the owed riddle's P.S., `LetterText.pages`/`cut` and the game's
+    letter cut to its first page past `ShowMax`, `SignStyle.Short`, `MaxKeptLong`, `Any`), `LetterCultureMath.Precepts`
+    (each an active PreceptDef of the player's, tested against `defs.tsv.gz`). Tests `Tools/Tests/LetterShapeTests.cs`
+    (about 11,700 checks: each shape only for its writers and situations, the weights and the setting, never twice running,
+    the memory, paging and the card's first page, the colony's raid and a town's raid only from their record else an old
+    tale, a chronicle only from the facts, medieval and modern apart, every shape in medieval, tribal, plain and spacer and
+    each listed speech, the pools' hygiene and counts, whole letters printed with `RIMFOLK_LETTERS_PRINT=1`, the seams).
+  - Game side: `Letters/LetterFormShapes.cs` (a partial of `LetterForm`: `ShapeTheirs` from `Answer`, `First` and `Friend`,
+    `ShapeOurs` from `Ours`; `Gifts` from Artistic skill, culture, persona and Ideology's certainty, memes and precepts;
+    `RaidOf` from the world events at their town or their road, its record's ending and flags, the ledger's battles, the
+    deeds `townAttacked` and `townDefended`; `Land` from `BiomeAnimals.Of` and `AllWildPlants`; `Faith` with `KeyDeityName`;
+    `Household` from their relations; `Diary` days; the piece facts `PieceAsks` merged into the letter). `LetterForm.Pick`
+    avoids and remembers the long pieces (`LetterBook.Used`/`Use`). `LetterBook`: `LetterPage.kind` and `answer` (saved),
+    `used` (saved, `LetterKindMath.MaxUsed` 200; modelled in `save_estimate.py`), `MaxLong` 16 long letters kept whole,
+    `LastKind`, `Owed`, `ReadAct` "Read the whole letter" for a long one. `LetterReadWindow` pages a long letter on its
+    sheet ("Page 1 of 3", "Turn back", "Turn the page"). Setting `letterLength` "How long letters may get" (Short, Mixed,
+    Long and storied; Mixed). Keys in `Rimfolk_LetterForm.xml`. The DefValidator knows `{ANIMAL}`, `{ANANIMAL}`,
+    `{ANIMALS}`, `{PLANT}`, `{TREE}`, `{DEITY}`, `{ANSWER}`. No Sched slot.
+  - Pools (about 1,095 lines, each file's header documents its tags for the next pass): `Rimfolk_Letters_Note` (47),
+    `_Lead` (131), `_Story` (213, ten themes), `_Raid` (156), `_Poem` (61), `_Sermon` (62), `_Chronicle` (115), `_Set`
+    (108), `_Hands` (38), `_Enclosure` (35), `_Diary` (47), `_Part` (82).
+  - From the player's screenshots of received letters, the same day (DESIGN.md "Letters of many shapes", the last
+    points): a received letter written out is drawn on the reading window's paper on its event card (`LetterPaper`
+    shared; `LetterFormMath.OnPaper`; `EventCardModel.paper`, `EventCardWindow.Paper`; the classic window keeps plain
+    text); "Write back" (`Letters/LetterReply.cs`, `LetterKindMath.ReplyOf`) on the card, at the reading window's foot and
+    on the People page, greyed with why, and the world's letter's line names it; a favour's, a dealing's or help's goods
+    are no longer told again as "a gift" (`gifts` apart from `things` in `NeighbourLetters`); goods counted in plural
+    words (`CourierMath.Counted`, through `Couriers.Describe`, `Couriers.Amount`, `Schemes`); letters sign, greet and head
+    with an office only (`NotableBook.OfficeOf`, `NotableMath.Office`; "Acraeraes of Karond-Keth 2", never "a trader who
+    called of ..."); the writer's role as a tag (`nr:head`...), the raider's "from the boss" lines only the head's. Tested
+    in `LetterShapeTests.Card`.
+  - **Letters' content is paused** (the player, 10 November 2026: they will ask for more content at the end of the week).
+    The next content pass, when asked, would fill most: more poems (laments, drinking songs, hymns for each faith, the Empire's court
+    verse, more medieval ballads, the strange voices), more sermons for the meme mods' memes (the c: tags have one or two
+    each), more medieval and tribal story parts (st:storm, st:fair, st:lost have no medieval lines yet), raid parts for the
+    road (rd:road) and for the colony's attack (rd:you), more chronicle items for each subject in medieval and tribal
+    speech, everyday life (pa:life) for more lands and peoples (their:healers, their:pilgrims, their:salvagers...),
+    recipes, riddles and enclosures in the strange voices, the Empire's own pieces (its gazette's items, its court
+    letters' parts).
+  - Not run here (none of it could be): every shape in the game (a long letter's card, the cut and its note, "Read the
+    whole letter", the pages and their turning, the people page's rows of a long letter); `RaidOf` against real world
+    events and their places and endings in a save; the facts service's tags for their town as a chronicle reads them;
+    `BiomeAnimals.Of` and `AllWildPlants` labels in the player's biomes (a plant label that reads oddly in "a sprig of");
+    `Find.ActiveLanguageWorker.WithIndefiniteArticle` and `Pluralize` on modded animals; `KeyDeityName` for a faith with
+    no god; `Faiths.Certainty` and meme impacts of the player's faiths (who comes out zealous); world pawns' persona and
+    relations (who is talkative, who is at home); RimWorld's reading of "\n" in a def's list (the code reads either); the
+    saved memory and pages over a long game; the paper on the event card at the card's widths and in both looks, its first page's match (`OnPaper` by the kept letter's first 60 characters, the teller's prefix with several homes); "Write back" from each place, its greying, and the reply dialog it opens; the plural of modded goods by the game's language worker.
+  - Try in the game: 1. Write greetings to a pen friend a few times: now and then a long letter in parts, a story of their
+    town, a diary page, lines from their family under the signature, something folded in; never the same shape twice
+    running. 2. A long one: its card shows the first page and "(The letter goes on for N more pages...)"; "Read the whole
+    letter" opens it a page at a time; the Diplomacy screen's People lists it. 3. A notable with Artistic skill: a poem or a
+    song; in a condolence, only a lament. 4. A zealous notable of an Ideology faith (high certainty, devout memes): a
+    sermon by their memes and precepts; a cranky one's tract. 5. Help a town in a raid (a town the colony was, or a war
+    between neighbours at their town), then write to them: how the raiders came, who stood where, your people on the
+    wall; a town never raided only tells an old tale. 6. A curt answer, a council's or the Empire's: now and then a bare
+    note. 7. A bandit people at war who raided you, answering: an unschooled boast. 8. A town's head or trader with news
+    (a death, a war, a hard time): the town's newsletter, a crier's roll for a medieval town, the season told for a tribe.
+    9. A notable whose town asks you for something in hard times: a petition signed by real names. 10. A merry notable: a
+    riddle, and its answer in the P.S. of their next letter. 11. Your colony's own: a colonist with Artistic skill writes a
+    verse, a devout one preaches a little, a blunt one sends a note; others at home add a line; asking for help, a petition
+    signed by everyone. 12. Settings, the neighbours' section, "How long letters may get": Short (no long shapes), Long and
+    storied (long ones often). 13. Any letter of theirs written out: on its card, the letter on paper, what it brings
+    under it; a long one's note "(The letter goes on...)" under the paper. 14. "Write back" on that card: the answer their
+    letter waits for (a letter the world wrote first), else greetings; greyed with why while a letter to them is under way.
+    The same in the reading window and on the People page. 15. Call in a favour of medicine: the answer says it once, by the
+    favour's line, "36 medicinal cactipine quills", no "a gift". 16. A notable met as a guest or a trader writes: signed
+    "Name of Town" or "Name, trader of Town".
 - 0.202.0, letters that read like letters (9 November 2026). The player: "letters exchanged from and to pawns should also read like actual letters, make a
   varied selection of interesting letters that read well and can also crack a joke sometimes, or be serious", then "they
   don't necessarily have to be warm, just according to the situation and motivation", the writer's race and culture,

@@ -3633,6 +3633,29 @@ what is true at home); one who barely writes gets a helper, or sends it as it is
 letter"), from the answer's card ("Read Stace's letter") and on the Diplomacy screen's People, where each notable's
 letters are listed newest first and open both sides in a small window of paper.
 
+**Letters of many shapes.** Not every letter follows the same form. Who writes, why, and how things stand decide its
+shape: the busy, the curt, the hostile and officials send a bare note with the necessities only; pen friends, the warm,
+the lonely, the zealous and the talkative now and then write a long letter in several parts, each with its own news or
+story, sometimes several pages; an artistic writer sends a poem or a song (a ballad, a short verse, a lament in a
+condolence, a drinking song, a hymn, nonsense verse, a tribe's fire-song); a zealous one preaches, by their faith's real
+memes and precepts, a true believer's sermon or a crank's tract; a town that was really raided tells you how the raiders
+came, who stood where, what burned and who fell, exactly as the world's record has it (raiders still about, the town
+held, hurt or sacked, your own people on its walls), and with no raid on record only an old tale ("when I was small, the
+raiders came over the hill at harvest"); a raiding people boasts of the visit they paid you. There are tales of their
+town (a hunt, a feud, a wedding gone wrong, a ghost, a winter), a town's newsletter or a crier's roll or a tribe's season
+told, with only what is true there (a death, a new head, their war, a hard time, a caravan setting out for you),
+petitions signed with real names, lists and accounts, recipes and remedies (a remedy in place of the medicine they cannot
+send), riddles with the answer in their next letter, lines added by their family at home, a pressed sprig of a plant of
+their own land folded in, a diary page, or a letter broken off and taken up again the next morning. Each in the writer's
+own speech: a medieval ballad in thee and thou, an android's incident report of a raid, an unschooled bandit's boast. Your
+colony's own take some shapes too: a verse from a poet, a little preaching from a zealot, a note from a blunt writer,
+lines from the others at home, the cook's recipe, a petition for help signed by everyone, your own raid told to a friend
+as it happened. A long letter shows its first page in the game's letter; "Read the whole letter" on its card, or the
+Diplomacy screen's People, opens it a page at a time. *How long letters may get* sets how often the long ones come
+(Short, Mixed, Long and storied; Mixed by default). A letter you receive is drawn on paper on its event card, as the
+letter it is, with what it brings under it; "Write back" on its card, in the reading window and on the People page opens
+a letter back to them (the answer their letter waits for, or greetings).
+
 **Talking with outsiders, and doing it by themselves.** With a colonist selected, right-click someone from outside the
 colony for "Talk with...": news of their home, a meal or a drink, a gift, a good word at home, a lesson, something
 brought next time, an invitation to stay, getting to know them, courting, faith, a practice bout, hard words, a duel,

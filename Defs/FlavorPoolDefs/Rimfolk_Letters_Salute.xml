@@ -19,8 +19,10 @@
       greet nobody);
     - the colony's writer's voice (ours): v:blunt, v:plain, v:eloquent, v:kind, v:abrasive, v:cheerful, v:gloomy.
     {TO} is the one written to, {FROM} the writer, {TOWN} their town, {COLONY} the colony, {PEOPLE} their people,
-    {COUNCIL} their council ("the council of Ashford"), {TOTITLE} the title of the one written to. A line is chosen only
-    when every placeholder in it has a value. The unschooled lines' misspellings are deliberate (DESIGN.md, "Letters that
+    {COUNCIL} their council ("the council of Ashford"), {TOTITLE} the office of the one written to (NotableBook.OfficeOf:
+    none for one the colony knows only as a guest, a visitor, a captive set free). Who writes in their town: nr:head,
+    nr:heir, nr:envoy, nr:trader, nr:acquaintance (a line that names the writer as their people's boss is the head's).
+    A line is chosen only when every placeholder in it has a value. The unschooled lines' misspellings are deliberate (DESIGN.md, "Letters that
     read like letters": the exceptions), as are the strange voices' odd grammar.
   -->
   <ColonyCouncil.FlavorPoolDef>
@@ -255,7 +257,7 @@
         <li>[theirs,u:none,curt|refusal,c:raider] to the walls at {COLONY} and the cowards behind them</li>
 
         <li>[theirs,u:some,warmly] Dear {TO}, our good frend at {COLONY},</li>
-        <li>[theirs,u:some,cordial|cool,c:raider] To {TO} at {COLONY}, from the boss,</li>
+        <li>[theirs,u:some,cordial|cool,c:raider,nr:head] To {TO} at {COLONY}, from the boss,</li>
         <li>[ours,u:some,warm|cordial] Dear {TO} at {TOWN},</li>
         <li>[ours,u:some,cordial|cool] To {TO} of {TOWN}, gretings from all of us,</li>
         <li>[ours,u:some,curt|refusal] {TO}.</li>

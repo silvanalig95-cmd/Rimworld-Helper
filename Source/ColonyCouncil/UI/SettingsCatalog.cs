@@ -471,6 +471,9 @@ namespace ColonyCouncil
             Toggle("worldWrites", "CC_Settings_WorldWrites", "CC_SetNote_WorldWrites", "neighbourLetters");
             // Letters written out in full (Letters/LetterForm.cs): letters that read like letters, both ways; off, the short form.
             Toggle("lettersInFull", "CC_Settings_LettersInFull", "CC_SetNote_LettersInFull", "neighbourLetters");
+            // How long letters may get (Letters/LetterKindMath.cs): the long shapes none, now and then, or often.
+            Choice("letterLength", "CC_Settings_LetterLength", "CC_Settings_LetterLength_Tip", "CC_LetterLength_", "CC_SetNote_LetterLength_", new[] { "Short", "Mixed", "Long" },
+                "lettersInFull");
             Toggle("outsiderTalk", "CC_Settings_OutsiderTalk", "CC_SetNote_OutsiderTalk");
             Toggle("outsiderSpar", "CC_Settings_OutsiderSpar", "CC_SetNote_OutsiderSpar", "outsiderTalk");
             Toggle("outsiderProvoke", "CC_Settings_OutsiderProvoke", "CC_SetNote_OutsiderProvoke", "outsiderTalk,deepHooks");

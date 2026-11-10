@@ -1065,13 +1065,17 @@ namespace ColonyCouncil
                     KinMemory.Note(n.faction, "mourned", speaker, l.topicKey != null && l.topicKey.StartsWith("loss:") ? l.topicKey.Substring(5) : null, 4);
             }
             if (l.purpose == LetterPurpose.Help && granted) FactionMemory.Note(n.faction, "letterAid", HelpLabel(l.help));
-            // What comes back with it: carried to the gate by their messenger.
+            // What comes back with it: carried to the gate by their messenger. A gift is only what is sent as one (a token, a
+            // gift by their regard): what a favour called in, a dealing or help asked for brings is told by its own line, never
+            // again as a gift (the player's card, 10 November 2026: a debt's medicine told twice and called a gift).
             var things = new List<Thing>();
+            var gifts = new List<Thing>();
             if (dip != null) things.AddRange(dip.things);
             if (l.purpose == LetterPurpose.Help && granted) things.AddRange(HelpThings(l.help, n.faction, l.map));
-            else if (brings == AnswerBrings.Token) things.AddRange(Loot.Make(LetterMath.TokenValue(Rand.Value) * LivingEvents.WealthFactor(l.map), false));
+            else if (brings == AnswerBrings.Token) gifts.AddRange(Loot.Make(LetterMath.TokenValue(Rand.Value) * LivingEvents.WealthFactor(l.map), false));
             else if (NotableMath.Gift(tone, l.purpose, NotableBook.Opinion(n), Rand.Value))
-                things.AddRange(Loot.Make(Rand.Range(80f, 160f) * LivingEvents.WealthFactor(l.map), false));
+                gifts.AddRange(Loot.Make(Rand.Range(80f, 160f) * LivingEvents.WealthFactor(l.map), false));
+            things.AddRange(gifts);
             string visit = null;
             bool noTraveller = false;
             if (l.purpose == LetterPurpose.Invitation && granted)
@@ -1128,7 +1132,7 @@ namespace ColonyCouncil
                 return tone;
             }
             string title = Title(l, n, how);
-            string text = Body(l, n, speaker, tone, things, visit, how, dip?.line, said);
+            string text = Body(l, n, speaker, tone, things, gifts, visit, how, dip?.line, said);
             if (threat != null) text += "\n\n" + threat;
             var def = tone <= AnswerTone.Cordial ? LetterDefOf.PositiveEvent : LetterDefOf.NeutralEvent;
             string chronicle = "CC_Letter_Chronicle".Translate(l.WriterName.Named("PAWN"), n.Name.Named("NAME"), ToneWord(tone).Named("TONE")).Resolve();
@@ -1239,7 +1243,8 @@ namespace ColonyCouncil
             return key.Translate(n.Name.Named("NAME")).Resolve();
         }
 
-        private static string Body(NeighbourLetter l, Notable n, Pawn speaker, AnswerTone tone, List<Thing> things, string visit, string how, string dip, Said said)
+        private static string Body(NeighbourLetter l, Notable n, Pawn speaker, AnswerTone tone, List<Thing> things, List<Thing> gifts, string visit, string how, string dip,
+            Said said)
         {
             string town = n.townName ?? n.faction?.Name ?? "";
             string title = NotableBook.TitleOf(n);
@@ -1269,8 +1274,8 @@ namespace ColonyCouncil
             if (l.purpose == LetterPurpose.Help)
                 parts.Add(things.Count > 0 ? (l.channel == LetterChannel.Console ? "CC_Letter_HelpSent_Call" : "CC_Letter_HelpSent").Translate(Couriers.Describe(things).Named("GOODS")).Resolve()
                     : "CC_Letter_HelpNot".Translate(n.Name.Named("NAME")).Resolve());
-            else if (things.Count > 0)
-                parts.Add((l.channel == LetterChannel.Console ? "CC_Letter_Gift_Call" : "CC_Letter_Gift").Translate(Couriers.Describe(things).Named("GOODS")).Resolve());
+            else if (gifts.Count > 0)
+                parts.Add((l.channel == LetterChannel.Console ? "CC_Letter_Gift_Call" : "CC_Letter_Gift").Translate(Couriers.Describe(gifts).Named("GOODS")).Resolve());
             if (l.purpose == LetterPurpose.Invitation)
                 parts.Add(visit ?? "CC_Letter_InviteNot".Translate(n.Name.Named("NAME")).Resolve());
             // What they did about a debt of honour called in, or the colony's word given (Diplomacy/DiplomacyLetters.cs).

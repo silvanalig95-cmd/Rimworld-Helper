@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Something folded in with the letter, described under the signature (Letters/LetterKindMath.cs, Enclosure: en:line):
+    a pressed flower, a child's drawing, a map, a seed, a feather, a stone. Theirs from their own life and land ({PLANT},
+    {TREE}, {ANIMAL} of the land round their town; theirs); the colony's own only by what the facts say is so at home
+    (colony:children for a child's drawing, the season for a flower, colony:harvest for its grain, colony:animals; ours).
+    A word of sympathy is tagged condolences, everything else !condolences. Ages: w:tribal, w:industrial, w:spacer,
+    !w:tribal for paper and print. Speech: olde, u:none (misspellings deliberate), sv:fey, sv:beast.
+  -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_LetterEnclosure</defName>
+    <lines>
+      <plain>
+        <!-- ================= Theirs ================= -->
+        <li>[en:line,theirs,!condolences] Enclosed: a sprig of {PLANT}, pressed flat in a book, which grows everywhere here and nowhere else I know of.</li>
+        <li>[en:line,theirs,!condolences] Enclosed: a leaf from the {TREE} by our gate, which turns this colour every year and which I wanted you to see.</li>
+        <li>[en:line,theirs,!condolences] Enclosed: a drawing of the {ANIMAL} that comes to our door every evening, by someone who has never been taught to draw. It is the one with the legs.</li>
+        <li>[en:line,theirs,!condolences] Enclosed: a drawing by one of the children here of what they think your people look like, from my description. The tall one is you. I did not say you were tall.</li>
+        <li>[en:line,theirs,!condolences,!w:tribal] Enclosed: a map of the road between us, with the bad stretch marked, and the inn that waters its beer marked twice.</li>
+        <li>[en:line,theirs,!condolences] Enclosed: a ribbon from the fair, which I won for something, and cannot remember what.</li>
+        <li>[en:line,theirs,!condolences] Enclosed: a feather. I do not know what bird. It seemed too good to waste.</li>
+        <li>[en:line,theirs,!condolences] Enclosed: a few seeds from our garden. Plant them in the spring and see what comes up. We are not entirely sure ourselves.</li>
+        <li>[en:line,theirs,!condolences] Enclosed: a smooth stone from the river. It is just a stone. I liked it.</li>
+        <li>[en:line,theirs,condolences] Enclosed: a pressed flower from our hills, for the grave, if you will have it.</li>
+        <li>[en:line,theirs,!condolences,w:tribal] With this, a cord of knotted grass: each knot is a good wish, and there are many knots.</li>
+        <li>[en:line,theirs,!condolences,w:tribal] With this, a tooth from the {ANIMAL} the hunters brought home. It is lucky. It was not lucky for the {ANIMAL}.</li>
+        <li>[en:line,theirs,!condolences,w:spacer] Enclosed: a data chip with a recording of our evening music. The quality is poor. The music is not.</li>
+        <li>[en:line,theirs,!condolences,w:industrial] Enclosed: a photograph, a little blurred, of the whole town on the steps of the hall. I am the blur on the left.</li>
+        <!-- ================= The colony's own, by what is so at home ================= -->
+        <li>[en:line,ours,!condolences,colony:children] Enclosed: a drawing by one of the children here, of what they think {TOWN} looks like. It has a great many towers.</li>
+        <li>[en:line,ours,!condolences,season:spring|season:summer] Enclosed: a flower from our fields, pressed flat. It will not smell of much by the time it reaches you, but it did once.</li>
+        <li>[en:line,ours,!condolences] Enclosed: a little map of the way to us, in case you are ever passing.</li>
+        <li>[en:line,ours,!condolences,season:autumn] Enclosed: a few seeds from our stores. Plant them in the spring.</li>
+        <li>[en:line,ours,!condolences,colony:harvest] Enclosed: a twist of this year's grain, so you can see what we grow.</li>
+        <li>[en:line,ours,!condolences,colony:animals] Enclosed: a tuft of fur from one of our animals, who sends regards.</li>
+        <li>[en:line,ours,condolences] Enclosed: a flower for the grave, if you will have it, from all of us.</li>
+        <!-- ================= Medieval English (olde) ================= -->
+        <li>[olde,en:line,theirs,!condolences] Herewith a sprig of {PLANT}, pressed in a book, that groweth all about us here.</li>
+        <li>[olde,en:line,theirs,!condolences] Herewith a ribbon from the fair, that I won for somewhat, and cannot remember what.</li>
+        <li>[olde,en:line,theirs,!condolences] Herewith a map of the road betwixt us, with the ill stretch marked, and the inn that watereth its ale marked twice.</li>
+        <li>[olde,en:line,theirs,!condolences] Herewith a leaf of the {TREE} by our gate, that turneth this hue each year.</li>
+        <li>[olde,en:line,theirs,condolences] Herewith a flower of our hills, for the grave, if thou wilt have it.</li>
+        <li>[olde,en:line,ours,!condolences] Herewith a little map of the way to us, should thou ever pass.</li>
+        <li>[olde,en:line,ours,condolences] Herewith a flower for the grave, from all of us.</li>
+        <!-- ================= An unschooled hand (u:none) ================= -->
+        <li>[u:none,en:line,!condolences] i put in a fether</li>
+        <li>[u:none,en:line,!condolences] theres a rock in here. its a gud rock</li>
+        <li>[u:none,en:line,condolences] i put a flower in for the grave</li>
+        <!-- ================= Strange voices ================= -->
+        <li>[sv:fey,en:line,!condolences] Enclosed: a ring of mushrooms, pressed. Do not step in it. Do not step out of it either, once you have.</li>
+        <li>[sv:fey,en:line] Enclosed: one dewdrop, kept. It may have dried by the time you read this. That is its own kind of message.</li>
+        <li>[sv:beast,en:line,!condolences] With this, a scrap of cloth that smells of our den, so you will know us when we meet.</li>
+        <li>[sv:beast,en:line,!condolences] With this, a tooth, from the last hunt. It is lucky. We are sure of it.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+</Defs>

@@ -107,6 +107,45 @@ letters"). Setting "Letters written out in full" (on).*
     true to what is so at home; kept, and read at the mailbag, from the answer's card and on the Diplomacy screen's People.
 19. **A call reads as a call, a spoken message as words passed on**, never as a letter.
 
+### Round 2, part 1: letters of many shapes
+
+The player (10 November 2026), after 0.202.0: "love it! here i really like a lot of text variety, also someitmes the
+letters can be longer, with some stories or stuff that is told by the different pawns or factions. some might include
+poems, detailed stories of raider attacks, ideological ramblings and all kinds of different things. they don't all always
+fully have to follow the same structure, some could be several pages long, some just boiled down to the necessities etc.
+I just want a lot of variety, content and interesting writing that makes reading every letter a fun or interesting
+experience."
+
+*Built (10 November 2026), not released yet, in `Source/ColonyCouncil/Letters/` (`LetterKindMath.cs` pure and tested,
+`LetterFormShapes.cs` the game's side; the pools `Rimfolk_Letters_Note`, `_Lead`, `_Story`, `_Raid`, `_Poem`, `_Sermon`,
+`_Chronicle`, `_Set`, `_Hands`, `_Enclosure`, `_Diary`, `_Part`, each documenting its tags; DESIGN.md "Letters of many
+shapes"). Setting "How long letters may get" (Mixed). A second content pass fills the same shapes next.*
+
+20. **Letters of many shapes**, chosen by the writer, their motive, the purpose, the tone and how things stand: the usual
+    letter of step 3 stays the most common; a bare note; a long letter in several parts; a story told (a hunt, a feud, a
+    wedding gone wrong, a ghost, a winter, a storm, a fair, a stranger, a harvest, someone lost); a raid's account; a poem
+    or a song; a sermon or a tract; a chronicle (a newsletter, a bulletin, a crier's roll, a tribe's season told, the
+    Empire's gazette); a petition with signatures; a list or an account; a recipe or a remedy; a riddle (answered in the
+    next letter); a letter by several hands; an enclosure; a diary page, or a letter broken off and taken up again.
+    Medieval, tribal, Empire, spacer, unschooled and strange-voice versions where a shape fits them.
+21. **The weights**: most letters a readable length, long ones as occasional treats, bare notes from the curt, the busy,
+    the hostile and officials; long, storied letters from pen friends, the warm, the lonely, the zealous and the talkative;
+    poems from artistic writers; sermons from the zealous; raid accounts from towns raided in fact. Never the same unusual
+    shape twice running from one writer; the long pieces remembered across the game (saved, capped).
+22. **Words match the map**: a town's news only from the facts service and the world's records (its fortune and what
+    moved it, a world event there, a death, its head, its war, a raid's record); a raid on their town only from a real
+    record of one, else as an old tale; the colony's own raid only as its facts have it; the land's real animals and
+    plants; their faith's real memes, precepts and god.
+23. **Composable and authored**: stories, raid accounts and chronicles from parts with slots; poems, songs, sermons and
+    set pieces whole; clear pools and tags for the next content pass.
+24. **Reading long letters**: the card shows the first page and "Read the whole letter"; the reading window pages it
+    ("Page 1 of 3"); the game's letter says where the rest is. The colony's own take some shapes by their writer.
+25. **The setting** "How long letters may get": Short, Mixed (default), Long and storied.
+26. **On its card** (the player, the same day, with screenshots): a received letter drawn on paper as the letter it is,
+    what it brings under it; "Write back" from the card, the reading window and the People page; a favour's goods not told
+    again as a gift; goods counted in plural words; a signature with an office only; a raider's "from the boss" only from
+    their head. *Built with points 20 to 25.*
+
 ## Order of building
 
 Step 1, then step 2, one after another (same area); step 3 after both.

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    A letter by several hands (Letters/LetterKindMath.cs, Hands): under the signature, one to three of the others at
+    home add a line each ("{HAND} adds: ...", CC_LetterForm_Adds). Who they are is real: their own household, by name
+    (their spouse, lover, parents, children: LetterFormShapes.Household), or the colony's other colonists. Everyday family
+    life stays flavour (the colony is the family): a line is a greeting, a joke, a small word, never a claim of
+    something that happened, but where the facts say so for the colony's own (ours: colony:harvest, colony:children,
+    colony:animals, the season at home). A line is ha:line, with its side (theirs, ours), register (warmly, warm|cordial),
+    purpose (condolences for a word of sympathy; every other line !condolences), age (w:tribal) and speech (olde, u:none).
+  -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_LetterHands</defName>
+    <lines>
+      <plain>
+        <!-- ================= Theirs ================= -->
+        <li>[ha:line,theirs,!condolences] Hello from the one who actually does the work around here.</li>
+        <li>[ha:line,theirs,!condolences] Do not believe a word of the above. Except the nice parts.</li>
+        <li>[ha:line,theirs,!condolences,warmly] Send more letters. They are the only thing that keeps this one quiet.</li>
+        <li>[ha:line,theirs,!condolences] I am only allowed one line. This is it.</li>
+        <li>[ha:line,theirs,!condolences] The goat says hello. The goat has not said this, but I am sure it would.</li>
+        <li>[ha:line,theirs,!condolences,warmly] Come and visit. The bed in the corner is free, and only a little lumpy.</li>
+        <li>[ha:line,theirs,!condolences] I have read your letters too. I hope that is all right. It is too late now if it is not.</li>
+        <li>[ha:line,theirs,!condolences] Tell your cook we want the secret of whatever it is you eat out there.</li>
+        <li>[ha:line,theirs,!condolences] The {ANIMALS} are back on the ridge, if anyone over there cares about that sort of thing. I do.</li>
+        <li>[ha:line,theirs,!condolences] I tried to draw you a horse for this letter. It came out as a dog. The dog is very good, though.</li>
+        <li>[ha:line,theirs,!condolences,warmly] Write back soon. Everyone here argues over who gets to read your letters first.</li>
+        <li>[ha:line,theirs,!condolences,w:tribal] Hello from the fire. It is a good fire tonight.</li>
+        <li>[ha:line,theirs,!condolences,w:tribal] The small ones drew you a picture in the dirt, but we could not send the dirt.</li>
+        <li>[ha:line,theirs,condolences] I am so sorry. That is all I wanted to add.</li>
+        <li>[ha:line,theirs,condolences] We are thinking of you, all of us, every day.</li>
+        <!-- ================= The colony's own ================= -->
+        <li>[ha:line,ours,!condolences] Hello from me too.</li>
+        <li>[ha:line,ours,!condolences] Write back soon. It cheers everyone up.</li>
+        <li>[ha:line,ours,!condolences] Everything above is true, except the bits about me.</li>
+        <li>[ha:line,ours,!condolences,warmly] If you are ever passing, there is always room at our table.</li>
+        <li>[ha:line,ours,!condolences] I have nothing to add, but I did not want to be left out.</li>
+        <li>[ha:line,ours,!condolences] Say hello to everyone at {TOWN} from me.</li>
+        <li>[ha:line,ours,!condolences,colony:harvest] The harvest is in, and I helped, and I would like that noted.</li>
+        <li>[ha:line,ours,!condolences,colony:children] The children want to know whether you have any animals they could name.</li>
+        <li>[ha:line,ours,!condolences,colony:animals] The animals here send their regards, or they would if they could hold a pen.</li>
+        <li>[ha:line,ours,!condolences,season:winter] Stay warm out there. We are trying to.</li>
+        <li>[ha:line,ours,!condolences,season:summer] Keep to the shade. We are, mostly.</li>
+        <li>[ha:line,ours,condolences] We are all thinking of you.</li>
+        <li>[ha:line,ours,condolences] I am sorry for your loss. If there is anything at all, ask.</li>
+        <!-- ================= Medieval English (olde) ================= -->
+        <li>[olde,ha:line,!condolences] I would add my greeting to the rest, and my good wishes to all thy folk.</li>
+        <li>[olde,ha:line,theirs,!condolences] Believe not a word above, save the kindly parts.</li>
+        <li>[olde,ha:line,theirs,!condolences,warmly] Come and visit us. There is a bed by the fire, and it is but a little lumpy.</li>
+        <li>[olde,ha:line,theirs,!condolences] The goat sendeth greeting. The goat hath not said so, but I am sure it would.</li>
+        <li>[olde,ha:line,ours,!condolences] Commend me to all at {TOWN}.</li>
+        <li>[olde,ha:line,condolences] We grieve with thee, all of us.</li>
+        <!-- ================= An unschooled hand (u:none) ================= -->
+        <li>[u:none,ha:line,!condolences] hello from me to</li>
+        <li>[u:none,ha:line,!condolences] rite back plese</li>
+        <li>[u:none,ha:line,theirs,!condolences] the goat sez hello</li>
+        <li>[u:none,ha:line,condolences] we are sory</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+</Defs>

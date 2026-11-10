@@ -225,7 +225,7 @@
   <CC_World_Text_Request>{NAME} of {TOWN} writes with a small request: {PEOPLE} are short of {GOODS}, and would be grateful for it if the colony can spare it. Their porters would fetch it from the gate.</CC_World_Text_Request>
   <CC_World_Text_Invitation>{NAME} of {TOWN} writes to invite the colony's people to their festival: a few of them, by caravan, to sit at their tables and play and stay for the day.</CC_World_Text_Invitation>
   <CC_World_Text_Friend>It is signed as a friend signs, at the bottom of a long letter.</CC_World_Text_Friend>
-  <CC_World_HowToAnswer>{NAME} waits for the colony's answer: write back from their card, the inbox, or Peoples, "Do something with...". It goes with the next carrier going their way.</CC_World_HowToAnswer>
+  <CC_World_HowToAnswer>{NAME} waits for the colony's answer: "Write back" on this card, or from the inbox, or Peoples, "Do something with...". It goes with the next carrier going their way.</CC_World_HowToAnswer>
   <CC_World_Note_Unanswered>wrote to the colony and heard nothing back</CC_World_Note_Unanswered>
   <CC_World_Ask_Thanks>Thank them, and write back with the colony's own news</CC_World_Ask_Thanks>
   <CC_World_Ask_Send>Yes: {GOODS}, for their porters to fetch from the gate</CC_World_Ask_Send>

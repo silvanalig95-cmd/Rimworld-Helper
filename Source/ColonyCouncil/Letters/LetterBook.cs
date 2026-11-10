@@ -18,6 +18,13 @@ namespace ColonyCouncil
         public byte shape;
         /// <summary>The game letter (its ID) it was told by, for the card's "Read ... letter"; -1 until it is told.</summary>
         public int shownAs = -1;
+        /// <summary>The shape the letter took (LetterKind): a writer doesn't take the same unusual one twice running.</summary>
+        public byte kind;
+        /// <summary>The answer to the riddle it asks, until the writer's next letter gives it; else null.</summary>
+        public string answer;
+
+        /// <summary>A long letter, read in pages (its words over what the game's own letter shows whole).</summary>
+        public bool Long => text != null && text.Length > LetterKindMath.ShowMax;
 
         public void ExposeData()
         {
@@ -28,6 +35,8 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref note, "note");
             Scribe_Values.Look(ref shape, "shape");
             Scribe_Values.Look(ref shownAs, "shownAs", -1);
+            Scribe_Values.Look(ref kind, "kind");
+            Scribe_Values.Look(ref answer, "answer");
         }
     }
 
@@ -79,9 +88,17 @@ namespace ColonyCouncil
     {
         public List<LetterExchange> exchanges = new List<LetterExchange>();
         public int nextId = 1;
+        /// <summary>
+        /// The long pieces written into letters (a poem, a sermon, a story's parts, a raid's account...), by their first
+        /// words (LetterKindMath.Key), the newest last: none comes round again while it is here; LetterKindMath.MaxUsed at most.
+        /// </summary>
+        public List<string> used = new List<string>();
 
         /// <summary>Exchanges kept at most, and with any one notable.</summary>
         public const int MaxExchanges = 60, MaxPerNotable = 8;
+
+        /// <summary>The newest this many long letters are kept whole (LetterFormMath.MaxKeptLong); older ones are cut to LetterFormMath.MaxKept.</summary>
+        public const int MaxLong = 16;
 
         /// <summary>A page not told yet is matched to a game letter only this long after it was written.</summary>
         private const int PendingDays = 120;
@@ -91,6 +108,7 @@ namespace ColonyCouncil
         [Unsaved] private int version;
         [Unsaved] private static string keptText;
         [Unsaved] private static int keptVersion = -1;
+        [Unsaved] private HashSet<string> usedSet;
 
         public LetterBook(Game game)
         {
@@ -142,6 +160,7 @@ namespace ColonyCouncil
             var b = Instance;
             if (b == null || l == null || n == null || t == null) return;
             var x = ReplyTo(l) ?? b.Of(l.id) ?? b.New(n, l.id, -1);
+            if (shape == LetterShape.Written) b.Given(n.id);
             x.pages.Add(Page(false, n.Name, t, shape));
             while (x.pages.Count > 3) x.pages.RemoveAt(0);
             b.Changed();
@@ -153,6 +172,7 @@ namespace ColonyCouncil
             var b = Instance;
             if (b == null || n == null || t == null) return;
             var x = b.New(n, -1, askId);
+            b.Given(n.id);
             x.pages.Add(Page(false, n.Name, t, LetterShape.Written));
             b.Changed();
         }
@@ -163,6 +183,7 @@ namespace ColonyCouncil
             var b = Instance;
             if (b == null || n == null || t == null) return;
             var x = b.New(n, -1, -1);
+            b.Given(n.id);
             x.pages.Add(Page(false, n.Name, t, LetterShape.Written));
             b.Changed();
         }
@@ -179,9 +200,19 @@ namespace ColonyCouncil
 
         private static LetterPage Page(bool ours, string who, LetterText t, LetterShape shape) => new LetterPage
         {
-            ours = ours, who = who, tick = Now, text = LetterFormMath.Cap(t.letter, LetterFormMath.MaxKept), note = LetterFormMath.Cap(t.note, LetterFormMath.MaxNote),
-            shape = (byte)shape
+            ours = ours, who = who, tick = Now, text = LetterFormMath.Cap(t.letter, t.letter.Length > LetterFormMath.MaxKept ? LetterFormMath.MaxKeptLong : LetterFormMath.MaxKept),
+            note = LetterFormMath.Cap(t.note, LetterFormMath.MaxNote), shape = (byte)shape, kind = (byte)t.kind, answer = t.riddleAnswer
         };
+
+        /// <summary>An answer owed to a riddle of theirs was given in their new letter (its P.S.): owed no more.</summary>
+        private void Given(int notable)
+        {
+            foreach (var x in exchanges)
+                if (x.notable == notable)
+                    foreach (var p in x.pages)
+                        if (!p.ours)
+                            p.answer = null;
+        }
 
         private LetterExchange Of(int letterId) => letterId < 0 ? null : exchanges.LastOrDefault(x => x.letterId == letterId);
 
@@ -210,6 +241,63 @@ namespace ColonyCouncil
                 foreach (var old in g.OrderBy(x => x.Last).Take(g.Count() - MaxPerNotable).ToList())
                     exchanges.Remove(old);
             while (exchanges.Count > MaxExchanges) exchanges.Remove(exchanges.OrderBy(x => x.Last).First());
+            // The newest long letters kept whole; older ones cut to a usual letter's length.
+            var longPages = exchanges.SelectMany(x => x.pages).Where(p => p != null && p.text != null && p.text.Length > LetterFormMath.MaxKept).OrderByDescending(p => p.tick).ToList();
+            for (int i = MaxLong; i < longPages.Count; i++) longPages[i].text = LetterFormMath.Cap(longPages[i].text, LetterFormMath.MaxKept);
+            while (used.Count > LetterKindMath.MaxUsed) used.RemoveAt(0);
+        }
+
+        // ================= The shapes =================
+
+        /// <summary>
+        /// The shape of the last letter a writer wrote: theirs (a notable's), or the colony's to them by this colonist
+        /// (<paramref name="who"/>); the usual when there is none.
+        /// </summary>
+        public static LetterKind LastKind(int notable, bool ours, string who)
+        {
+            var b = Instance;
+            if (b == null) return LetterKind.Usual;
+            LetterPage last = null;
+            foreach (var x in b.exchanges)
+            {
+                if (x.notable != notable) continue;
+                foreach (var p in x.pages)
+                    if (p != null && p.ours == ours && (!ours || p.who == who) && (last == null || p.tick >= last.tick))
+                        last = p;
+            }
+            return last == null ? LetterKind.Usual : (LetterKind)last.kind;
+        }
+
+        /// <summary>The answer to the riddle in a notable's letter that their next one owes, or null.</summary>
+        public static string Owed(int notable)
+        {
+            var b = Instance;
+            if (b == null) return null;
+            LetterPage owed = null;
+            foreach (var x in b.exchanges)
+                if (x.notable == notable)
+                    foreach (var p in x.pages)
+                        if (p != null && !p.ours && !p.answer.NullOrEmpty() && (owed == null || p.tick >= owed.tick))
+                            owed = p;
+            return owed?.answer;
+        }
+
+        /// <summary>A long piece already written into a letter (by its key) and still remembered.</summary>
+        public static bool Used(string key)
+        {
+            var b = Instance;
+            if (b == null || key.NullOrEmpty()) return false;
+            b.usedSet ??= new HashSet<string>(b.used);
+            return b.usedSet.Contains(key);
+        }
+
+        /// <summary>A long piece written into a letter: remembered (the newest last), the oldest let go past LetterKindMath.MaxUsed.</summary>
+        public static void Use(string key)
+        {
+            var b = Instance;
+            if (b == null || key.NullOrEmpty()) return;
+            LetterKindMath.Remember(b.used, key);
+            b.usedSet = null;
         }
 
         // ================= Told, and read =================
@@ -255,9 +343,13 @@ namespace ColonyCouncil
         {
             label = null;
             var x = letter != null ? ByLetter(letter.ID) : null;
-            var ours = x?.Ours;
-            if (ours == null) return null;
-            label = "CC_LetterRead_Act".Translate((ours.who ?? "?").Named("PAWN")).Resolve();
+            if (x == null) return null;
+            var ours = x.Ours;
+            // A long letter, of which the card shows the first page: the whole of it, beside the colony's letter when there is one.
+            var told = x.pages.FirstOrDefault(p => p.shownAs == letter.ID);
+            if (told != null && told.Long) label = "CC_LetterRead_Whole".Translate().Resolve();
+            else if (ours != null) label = "CC_LetterRead_Act".Translate((ours.who ?? "?").Named("PAWN")).Resolve();
+            else return null;
             return new DiaOption(label) { action = () => LetterReadWindow.Open(x), resolveTree = false };
         }
 
@@ -292,10 +384,14 @@ namespace ColonyCouncil
             if (Scribe.mode == LoadSaveMode.Saving) Trim();
             Scribe_Collections.Look(ref exchanges, "exchanges", LookMode.Deep);
             Scribe_Values.Look(ref nextId, "nextId", 1);
+            Scribe_Collections.Look(ref used, "used", LookMode.Value);
             if (Scribe.mode == LoadSaveMode.PostLoadInit)
             {
                 exchanges ??= new List<LetterExchange>();
                 exchanges.RemoveAll(x => x == null);
+                used ??= new List<string>();
+                used.RemoveAll(k => k.NullOrEmpty());
+                usedSet = null;
                 version++;
             }
         }

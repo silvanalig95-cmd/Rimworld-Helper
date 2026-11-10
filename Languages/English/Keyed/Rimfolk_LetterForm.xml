@@ -30,6 +30,21 @@
   <CC_LetterForm_MachinePoint>{N}. {LINE}</CC_LetterForm_MachinePoint>
   <CC_LetterForm_MachinePS>ADDENDUM: {LINE}</CC_LetterForm_MachinePS>
 
+  <!-- The shapes (Letters/LetterKindMath.cs): a bare note's signature, others' lines under it, a riddle's answer owed, a
+       long letter's note in the game's own letter, a diary's days, a petition's signatures. -->
+  <CC_LetterForm_SignShort>{FROM}</CC_LetterForm_SignShort>
+  <CC_LetterForm_Adds>{HAND} adds: {LINE}</CC_LetterForm_Adds>
+  <CC_LetterForm_Answer>The answer to my riddle: {ANSWER}</CC_LetterForm_Answer>
+  <CC_LetterForm_GoesOnOne>(The letter goes on for another page. Read the whole of it from this card, or with {NAME} on the Diplomacy screen's People.)</CC_LetterForm_GoesOnOne>
+  <CC_LetterForm_GoesOnMany>(The letter goes on for {N} more pages. Read the whole of it from this card, or with {NAME} on the Diplomacy screen's People.)</CC_LetterForm_GoesOnMany>
+  <CC_LetterForm_DiaryCourtly>The {ORD} day.</CC_LetterForm_DiaryCourtly>
+  <CC_LetterForm_DiaryPlain>{DAY} {QUADRUM}.</CC_LetterForm_DiaryPlain>
+  <CC_LetterForm_DiaryStandard>{YEAR}.{Q}.{DD}:</CC_LetterForm_DiaryStandard>
+  <CC_LetterForm_DiarySeason>The first morning.|The second morning.|The third morning.</CC_LetterForm_DiarySeason>
+  <CC_LetterForm_Signed>Signed: {NAMES}.</CC_LetterForm_Signed>
+  <CC_LetterForm_SignedMore>Signed: {NAMES}, and many more of {TOWN} besides.</CC_LetterForm_SignedMore>
+  <CC_LetterForm_And>and</CC_LetterForm_And>
+
   <!-- The narrator's first line under their answer -->
   <CC_LetterForm_Lead>In answer to {PAWN}'s letter of {PURPOSE}, from {NAME} of {TOWN}.</CC_LetterForm_Lead>
   <CC_LetterForm_Lead_War>In answer to {PAWN}'s letter of {PURPOSE}, carried to {NAME} of {TOWN} under a white flag by a messenger of a people at peace with the colony, who has brought this back.</CC_LetterForm_Lead_War>
@@ -50,6 +65,13 @@
   <CC_LetterRead_Call>The call with {PAWN}, {DATE}</CC_LetterRead_Call>
   <CC_LetterRead_NoAnswerYet>No answer yet.</CC_LetterRead_NoAnswerYet>
   <CC_LetterRead_Act>Read {PAWN}'s letter</CC_LetterRead_Act>
+  <CC_LetterRead_Whole>Read the whole letter</CC_LetterRead_Whole>
+  <CC_LetterRead_Page>Page {N} of {COUNT}</CC_LetterRead_Page>
+  <CC_LetterRead_PageBack>Turn back</CC_LetterRead_PageBack>
+  <CC_LetterRead_PageOn>Turn the page</CC_LetterRead_PageOn>
+  <CC_LetterRead_WriteBack>Write back</CC_LetterRead_WriteBack>
+  <CC_LetterRead_WriteBackTip>Write a letter back to {NAME}: the answer their letter waits for when it waits for one, else greetings.</CC_LetterRead_WriteBackTip>
+  <CC_LetterRead_Why_NoWriter>Nobody at home can write a letter now.</CC_LetterRead_Why_NoWriter>
   <CC_LetterRead_Msg>It can be read at the mailbag, and with {NAME} on the Diplomacy screen's People.</CC_LetterRead_Msg>
   <CC_LetterRead_MsgPeople>It can be read with {NAME} on the Diplomacy screen's People.</CC_LetterRead_MsgPeople>
   <CC_LetterRead_With>Letters with {NAME}</CC_LetterRead_With>
@@ -66,5 +88,16 @@
   <CC_Settings_LettersInFull>Letters written out in full</CC_Settings_LettersInFull>
   <CC_Settings_LettersInFull_Tip>Letters between the colony and the world read as letters: a heading with the place and the date as the writer would put it, a salutation, a few short paragraphs in the writer's own voice (their age, their people's ways and culture, how well they were schooled, how the two sides stand and what they want from the letter), a closing and a signature, now and then a P.S. What the answer brings, why it went badly and how far it moved them go under it as plain lines. A call reads as its transcript, a spoken message as words passed on. The colony's own letters are written out in their writer's voice and kept, to be read at the mailbag, from the answer's card and on the Diplomacy screen's People. Off, the short form as before.</CC_Settings_LettersInFull_Tip>
   <CC_SetNote_LettersInFull>Letters read like letters, and the colony's own are written out.</CC_SetNote_LettersInFull>
+  <CC_Settings_LetterLength>How long letters may get</CC_Settings_LetterLength>
+  <CC_Settings_LetterLength_Tip>Letters take many shapes by who writes and why: a bare note from the busy and the curt, a poem from an artistic writer, a sermon from a zealous one, a raid's account from a town that was raided, a story, a town's newsletter, a long letter in several parts, a diary page, a riddle, a recipe, a petition, lines added by others at home, something folded in. This sets how often the long ones come. A long letter shows its first page in the game's own letter; read the whole of it from its card or on the Diplomacy screen's People, a page at a time.</CC_Settings_LetterLength_Tip>
+  <CC_LetterLength_Short>Short</CC_LetterLength_Short>
+  <CC_LetterLength_Short_Tip>None of the long shapes (no long letter in parts, story, raid's account, sermon, chronicle or diary page), and bare notes a little more often.</CC_LetterLength_Short_Tip>
+  <CC_LetterLength_Mixed>Mixed</CC_LetterLength_Mixed>
+  <CC_LetterLength_Mixed_Tip>Most letters a readable length, long ones as occasional treats from those who like to write.</CC_LetterLength_Mixed_Tip>
+  <CC_LetterLength_Long>Long and storied</CC_LetterLength_Long>
+  <CC_LetterLength_Long_Tip>The long shapes two and a half times as often, and a long letter in four or five parts.</CC_LetterLength_Long_Tip>
+  <CC_SetNote_LetterLength_Short>Letters stay short.</CC_SetNote_LetterLength_Short>
+  <CC_SetNote_LetterLength_Mixed>Most letters are short, now and then a long one.</CC_SetNote_LetterLength_Mixed>
+  <CC_SetNote_LetterLength_Long>Long, storied letters come often.</CC_SetNote_LetterLength_Long>
 
 </LanguageData>

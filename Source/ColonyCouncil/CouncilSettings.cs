@@ -195,6 +195,12 @@ namespace ColonyCouncil
         /// own words, a closing and a signature, now and then a P.S.), the colony's own written out and kept to be read; off, the short form.
         /// </summary>
         public bool lettersInFull = true;
+        /// <summary>
+        /// How long letters may get (Letters/LetterKindMath.cs): Short (none of the long shapes: no long letter in parts, story,
+        /// raid's account, sermon, chronicle or diary page), Mixed (most a readable length, long ones as occasional treats), Long
+        /// and storied (the long shapes two and a half times as often).
+        /// </summary>
+        public LetterLength letterLength = LetterLength.Mixed;
         /// <summary>The region: each town within reach has a fortune that the world's events move, shown in its panel and its people's words (World/Region/).</summary>
         public bool regionFortunes = true;
         /// <summary>The region: a new town within reach has a founder, founding families and a reason, told in the news, its talk and a letter (World/Region/).</summary>
@@ -915,6 +921,7 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref penFriends, "penFriends", true);
             Scribe_Values.Look(ref worldWrites, "worldWrites", true);
             Scribe_Values.Look(ref lettersInFull, "lettersInFull", true);
+            Scribe_Values.Look(ref letterLength, "letterLength", LetterLength.Mixed);
             Scribe_Values.Look(ref regionFortunes, "regionFortunes", true);
             Scribe_Values.Look(ref regionFaces, "regionFaces", true);
             Scribe_Values.Look(ref regionStock, "regionStock", true);
