@@ -56,6 +56,13 @@ tree at once, alongside whatever runs. Each piece is merged as its own release, 
   the camp to leave". When asked: find what makes a camp leave when attacked (Camps/: its lord's harm or danger trigger)
   and leave it to real attacks on the camp (raiders, a people at war, the colony); a manhunting or revenging animal, a
   stray insect or a predator is fought off or fled from, the camp staying, with any hurt shown.
+- **To do when the player asks (10 November 2026): invited visitors are Hospitality's guests.** The player: "visitors
+  that you invite with diplomatic actions should also be treated as guests with hospitality". When asked: notables and
+  envoys who come because the colony invited them (a letter's invitation, a feast's guests, an envoy for a season, a
+  pen friend's visit, a festival's return), with Hospitality loaded, arrive and stay as its guests (its lord and guest
+  area, guest beds, its guest tab and recruiting rules, Rimfolk's guest help), softly by type name; Rimfolk's own visit
+  purpose (the feast, the talks, the envoy's season) kept on top, and its own visitor lord left for when Hospitality is
+  absent.
 - 0.206.1, carriers straight to the mailbag,
   back in the saddle, a new face each time (10 November 2026). The player: "the couriers that bring letters and material
   take an awkward routine around my base before delivering the message a bit away from the base. if anything they should
