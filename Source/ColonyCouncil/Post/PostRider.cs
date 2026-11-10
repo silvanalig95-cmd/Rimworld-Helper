@@ -14,10 +14,12 @@ namespace ColonyCouncil
     /// post for a tribal colony (travellers, camps and its own rider only); a post rider on the nearest road every 7 to 14
     /// days in the medieval age, a mail run every 3 to 7 in the industrial, a shuttle every 2 to 4 in the spacer (the post's
     /// age is what the colony and the best of its neighbours share: PostMath.PostAge; the pace is a setting). The rider is
-    /// one of the post's people's lighter caravan hands, with a mount of their people's caravans (or a horse) where the land
-    /// allows: with Giddy-Up 2 they ride it, mounted as they come the way Giddy-Up brings its own riders in; otherwise they lead it. A spacer post comes by drop
-    /// pod at the mailbag. They come by day when the map is safe, set down the mail for the colony at the mailbag, take what
-    /// goes out on the post, and ride on.
+    /// one of the post's people's people sent on the road, made new each time of a kind drawn from their range, with a mount
+    /// drawn from their people's caravans' beasts (or a horse) where the land allows (Couriers/CarrierKinds.cs): with Giddy-Up
+    /// 2 they ride it, mounted as they come the way Giddy-Up brings its own riders in; otherwise they lead it. A spacer post
+    /// comes by drop pod at the mailbag. They come by day when the map is safe, by the way in nearest the mailbag, ride
+    /// straight to it, set down the mail for the colony, take what goes out on the post, and ride on at once by the nearest
+    /// way (back in the saddle first if they got off).
     /// </summary>
     public static class PostRider
     {
@@ -125,7 +127,7 @@ namespace ColonyCouncil
             if (f == null || map == null) return false;
             var spot = Outbox.Spot(map);
             if (!spot.IsValid) return false;
-            var kind = Couriers.PersonKind(f);
+            var kind = CarrierKinds.Person(f);
             if (kind == null) return false;
             Pawn rider = null, mount = null;
             try
@@ -133,7 +135,7 @@ namespace ColonyCouncil
                 rider = Arrivals.Make(kind, f);
                 if (rider == null) return false;
                 rider.inventory?.DestroyAll();
-                var mountKind = age == WorldAge.Spacer ? null : MountKind(f, map);
+                var mountKind = age == WorldAge.Spacer ? null : CarrierKinds.Mount(f, map);
                 if (mountKind != null)
                 {
                     mount = PawnGenerator.GeneratePawn(new PawnGenerationRequest(mountKind, f, PawnGenerationContext.NonPlayer, forceGenerateNewPawn: true));
@@ -154,7 +156,9 @@ namespace ColonyCouncil
             else
             {
                 var tp = TraverseParms.For(TraverseMode.PassDoors, Danger.Deadly, false);
-                if (!RCellFinder.TryFindRandomPawnEntryCell(out var entry, map, CellFinder.EdgeRoadChance_Always, false, c => map.reachability.CanReach(c, spot, PathEndMode.OnCell, tp)))
+                // By the way in nearest the mailbag (a road a little preferred), not a road wherever it meets the edge.
+                if (!CarrierSpots.EntryCell(map, spot, out var entry)
+                    && !RCellFinder.TryFindRandomPawnEntryCell(out entry, map, CellFinder.EdgeRoadChance_Always, false, c => map.reachability.CanReach(c, spot, PathEndMode.OnCell, tp)))
                 {
                     foreach (var p in party) Arrivals.Discard(p);
                     return false;
@@ -180,30 +184,6 @@ namespace ColonyCouncil
             // apart: the post on its way up the road, told as it comes.
             Notify.Message(PostWords.PostComing(age, f), new LookTargets(rider), MessageTypeDefOf.NeutralEvent, Importance.Notable);
             return true;
-        }
-
-        /// <summary>
-        /// A mount for the rider: a beast of their people's caravans big enough to ride (body size 1.2 or more, Giddy-Up's
-        /// own default) that the land and season allow, else a horse where the season allows; null: on foot.
-        /// </summary>
-        public static PawnKindDef MountKind(Faction f, Map map)
-        {
-            try
-            {
-                var biome = map.Biome;
-                var opts = f?.def?.pawnGroupMakers?.Where(g => g?.carriers != null).SelectMany(g => g.carriers)
-                    .Where(o => o?.kind?.race?.race != null && o.kind.RaceProps.Animal && o.kind.RaceProps.baseBodySize >= OwnRiders.MinMountSize && !o.kind.RaceProps.predator
-                                && (biome == null || biome.IsPackAnimalAllowed(o.kind.race)) && map.mapTemperature.SeasonAndOutdoorTemperatureAcceptableFor(o.kind.race, 0f))
-                    .ToList();
-                if (opts != null && opts.Count > 0) return opts.RandomElementByWeight(o => Mathf.Max(0.01f, o.selectionWeight)).kind;
-                var horse = DefDatabase<PawnKindDef>.GetNamedSilentFail("Horse");
-                if (horse?.race != null && map.mapTemperature.SeasonAndOutdoorTemperatureAcceptableFor(horse.race, 0f)) return horse;
-            }
-            catch (Exception e)
-            {
-                CouncilLog.ErrorOnce("post: a mount", e);
-            }
-            return null;
         }
 
         /// <summary>With Giddy-Up 2, the rider sits on the mount as they come (Integrations/GiddyUpMounts.cs); without it, they lead the animal.</summary>
@@ -252,8 +232,9 @@ namespace ColonyCouncil
                     return;
                 }
             }
+            // Their business done, they ride on (no more lingering half an hour round the bag).
             if (r.doneAt < 0) r.doneAt = now;
-            if (now - r.doneAt > GenDate.TicksPerHour / 2)
+            if (now - r.doneAt >= CourierMath.LingerTicks)
             {
                 PostWords.Say(rider, "rideon", null);
                 lord.ReceiveMemo(LordJob_PostRider.MemoLeave);
@@ -283,9 +264,10 @@ namespace ColonyCouncil
     }
 
     /// <summary>
-    /// The post rider's group: they ride in to the mailbag, do their business there (Post/PostRider.cs gives the jobs: the
-    /// mail set down, the letters taken), and ride on. Hurt by the colony or their people turned hostile, they leave at once,
-    /// defending themselves; four hours at the gate at most.
+    /// The post rider's group: they ride straight in to their place beside the mailbag, do their business there
+    /// (Post/PostRider.cs gives the jobs: the mail set down, the letters taken, both from the saddle), and ride on by the
+    /// nearest way, back in the saddle first if they got off (Couriers/CarrierLords.cs). Hurt by the colony or their
+    /// people turned hostile, they leave at once, defending themselves; four hours at the gate at most.
     /// </summary>
     public class LordJob_PostRider : LordJob
     {
@@ -307,11 +289,11 @@ namespace ColonyCouncil
         public override StateGraph CreateGraph()
         {
             var graph = new StateGraph();
-            var travel = new LordToil_TravelOnErrand(spot);
+            var travel = new LordToil_CarrierTravel(spot);
             graph.StartingToil = travel;
             var work = new LordToil_PostWork(spot);
             graph.AddToil(work);
-            var leave = new LordToil_ExitMap(Pace.Errand, false, true);
+            var leave = new LordToil_CarrierLeave();
             graph.AddToil(leave);
             var flee = new LordToil_ExitMapAndDefendSelf();
             graph.AddToil(flee);
@@ -345,7 +327,7 @@ namespace ColonyCouncil
         }
     }
 
-    /// <summary>At the mailbag: they keep close to it (the mount too) while Post/PostRider.cs gives them their jobs.</summary>
+    /// <summary>At the mailbag: they wait in their place beside it (the mount too) while Post/PostRider.cs gives them their jobs.</summary>
     public class LordToil_PostWork : LordToil
     {
         private readonly IntVec3 spot;
@@ -361,7 +343,7 @@ namespace ColonyCouncil
 
         public override void UpdateAllDuties()
         {
-            foreach (var p in lord.ownedPawns) p.mindState.duty = new PawnDuty(DutyDefOf.WanderClose, spot, 4f);
+            foreach (var p in lord.ownedPawns) p.mindState.duty = new PawnDuty(CourierDefOf.Rimfolk_CarrierWait, spot, 4f);
         }
     }
 }

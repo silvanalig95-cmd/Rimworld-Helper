@@ -102,8 +102,12 @@ namespace ColonyCouncil
         /// <summary>How long one of them waits at the gate for an errand.</summary>
         public const int AwaitTicks = TicksPerHour * 10;
 
-        /// <summary>How long they stay on after their business, before they walk off.</summary>
-        public const int LingerTicks = TicksPerHour / 2;
+        /// <summary>
+        /// How long they stay on after their business, before they walk off: not at all (until 10 November 2026 half an hour,
+        /// wandering round the spot; the player: "if anything they should always walk to the mailbag directly, drop/pick up
+        /// the message or items"). A night's stay still keeps them to first light.
+        /// </summary>
+        public const int LingerTicks = 0;
 
         /// <summary>Records of trips that are over, kept a while for watching the couriers walk off.</summary>
         public const int MaxKeepTicks = TicksPerDay * 2;

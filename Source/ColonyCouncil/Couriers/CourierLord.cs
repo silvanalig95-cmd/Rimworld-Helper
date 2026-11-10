@@ -12,6 +12,9 @@ namespace ColonyCouncil
         public static JobDef Council_CourierDrop;
         public static JobDef Council_CourierLoad;
         public static JobDef Council_CourierFetch;
+        public static DutyDef Rimfolk_CarrierTravel;
+        public static DutyDef Rimfolk_CarrierWait;
+        public static DutyDef Rimfolk_CarrierLeave;
 
         static CourierDefOf()
         {
@@ -20,10 +23,11 @@ namespace ColonyCouncil
     }
 
     /// <summary>
-    /// A courier trip's people as a group: they walk in to the gate, do their business there (and at the stores) until
-    /// the trip says they're done, and walk off. Hurt by the colony, or their people turned hostile, they leave at once,
-    /// defending themselves. Doors: as any visitor at peace with the colony, they open the colony's doors (the game's
-    /// own rule for those who aren't its enemies); nothing here opens more than that.
+    /// A courier trip's people as a group: they walk straight in to the mailbag (or the gate), each to their own place
+    /// beside it (Couriers/CarrierLords.cs), do their business there (and at the stores) until the trip says they're done,
+    /// and walk off by the nearest way, a rider back in the saddle first. Hurt by the colony, or their people turned
+    /// hostile, they leave at once, defending themselves. Doors: as any visitor at peace with the colony, they open the
+    /// colony's doors (the game's own rule for those who aren't its enemies); nothing here opens more than that.
     /// </summary>
     public class LordJob_Courier : LordJob
     {
@@ -51,11 +55,11 @@ namespace ColonyCouncil
         public override StateGraph CreateGraph()
         {
             var graph = new StateGraph();
-            var travel = new LordToil_TravelOnErrand(spot);
+            var travel = new LordToil_CarrierTravel(spot);
             graph.StartingToil = travel;
             var work = new LordToil_CourierWork(spot, tripId);
             graph.AddToil(work);
-            var leave = new LordToil_ExitMap(Pace.Errand, false, true);
+            var leave = new LordToil_CarrierLeave();
             graph.AddToil(leave);
             var flee = new LordToil_ExitMapAndDefendSelf();
             graph.AddToil(flee);
@@ -108,8 +112,9 @@ namespace ColonyCouncil
     }
 
     /// <summary>
-    /// At the gate: the people on the courier's duty (<see cref="JobGiver_CourierWork"/>: set down what they brought,
-    /// fetch what they came for, else wait close by); a pack animal waits by the gate.
+    /// At the mailbag (or the gate): the people on the courier's duty (<see cref="JobGiver_CourierWork"/>: set down what
+    /// they brought, fetch what they came for, else wait in their place, <see cref="JobGiver_CarrierWait"/>); a pack animal
+    /// and a mount nobody sits on wait in theirs.
     /// </summary>
     public class LordToil_CourierWork : LordToil
     {
@@ -129,7 +134,7 @@ namespace ColonyCouncil
         public override void UpdateAllDuties()
         {
             foreach (var p in lord.ownedPawns)
-                p.mindState.duty = p.RaceProps.Humanlike ? new PawnDuty(CourierDefOf.Council_CourierWork, spot, 4f) : new PawnDuty(DutyDefOf.WanderClose, spot, 4f);
+                p.mindState.duty = p.RaceProps.Humanlike ? new PawnDuty(CourierDefOf.Council_CourierWork, spot, 4f) : new PawnDuty(CourierDefOf.Rimfolk_CarrierWait, spot, 4f);
         }
 
         public override void LordToilTick()

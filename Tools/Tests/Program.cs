@@ -515,6 +515,7 @@ Console.WriteLine($"Checked {InboxTests.Run(root, Check)} things about one inbox
         Console.WriteLine($"Checked {ShelfReserveTests.Run(root, Check)} things about reserved shelf slots (making room for them, by order and on their own, and the seams) and where drinks are had.");
         Console.WriteLine($"Checked {GuestHelpTests.Run(root, Check)} things about guests helping out (work they love, who won't, the colony's troubles and who pitches in, the verdict narrowing only in everyday times, thanks paid in work, the day's limits, the regard both ways, every name in the player's mods, the seams).");
         Console.WriteLine($"Checked {LetterCarryTests.Run(root, Check)} things about the letter carried and read (how it leaves and what its message says, the writer's walk to the mailbag and its fallback, the mailbag's sections, the pop-up's click, the player's save, the seams).");
+        Console.WriteLine($"Checked {CarrierTests.Run(root, Check)} things about carriers on the map (the mailbag first, each in their place, the nearest way in, who a people sends and on what beast for every one of Rimfolk's peoples, back in the saddle before leaving, the seams).");
         Console.WriteLine($"Checked {LetterRouteTests.Run(root, Check)} things about whom a letter goes to and the places heard of (every purpose's scope, who answers it for every kind of addressee, passing a town's matter on and the go-between's word, the window's words, an older save's letter, the marks' keep time and fading, Show on map, the seams).");
     }
 }

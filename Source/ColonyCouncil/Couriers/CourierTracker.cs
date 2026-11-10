@@ -331,22 +331,24 @@ namespace ColonyCouncil
 
         // ---------------- Setting out ----------------
 
-        /// <summary>The people (and the pack animal) are made, given what they bring, and walk in from the edge.</summary>
+        /// <summary>
+        /// The people (and the pack animal) are made, given what they bring, and walk in from the edge: straight to the
+        /// colony's mailbag, else its gate, else where traders leave goods (CarrierSpots), by the way in nearest to it. Each
+        /// of them is made new, of a kind drawn from their people's range, on a beast drawn from theirs (CarrierKinds).
+        /// </summary>
         private bool SetOut(CourierTrip t)
         {
             var map = t.map;
             // Someone sold or given back goes only to the people who paid: nobody else comes for them.
             var f = t.fetch != null ? (Couriers.Usable(t.preferred) ? t.preferred : null) : Couriers.Choose(t.preferred, map);
             if (f == null) return false;
-            var spot = PlaySpots.GateCell(map, null);
-            bool gate = spot.IsValid;
-            if (!spot.IsValid) spot = DropCellFinder.TradeDropSpot(map);
+            var spot = CarrierSpots.Spot(map, out var where);
             if (!spot.IsValid || !spot.InBounds(map)) return false;
             var tp = TraverseParms.For(TraverseMode.PassDoors, Danger.Deadly, false);
-            if (!RCellFinder.TryFindRandomPawnEntryCell(out var entry, map, CellFinder.EdgeRoadChance_Friendly, false,
-                    c => map.reachability.CanReach(c, spot, PathEndMode.OnCell, tp))) return false;
-            var personKind = Couriers.PersonKind(f);
-            if (personKind == null) return false;
+            if (!CarrierSpots.EntryCell(map, spot, out var entry)
+                && !RCellFinder.TryFindRandomPawnEntryCell(out entry, map, CellFinder.EdgeRoadChance_Friendly, false, c => map.reachability.CanReach(c, spot, PathEndMode.OnCell, tp)))
+                return false;
+            if (!CarrierKinds.AnyPerson(f)) return false;
             float bulk = Bulk(t);
             var animalKind = Couriers.AnimalKind(f, map);
             bool animal = t.kind != CourierKind.Await && CourierMath.PackAnimal(bulk, animalKind != null);
@@ -360,7 +362,9 @@ namespace ColonyCouncil
             {
                 for (int i = 0; i < n; i++)
                 {
-                    var p = Arrivals.Make(personKind, f);
+                    // A kind drawn for each of them, so two porters needn't be two of a kind.
+                    var kind = CarrierKinds.Person(f);
+                    var p = kind != null ? Arrivals.Make(kind, f) : null;
                     if (p == null) continue;
                     // Their own things stay at home: what they carry here is the trip's.
                     p.inventory?.DestroyAll();
@@ -371,15 +375,16 @@ namespace ColonyCouncil
                     beast = PawnGenerator.GeneratePawn(new PawnGenerationRequest(animalKind, f, PawnGenerationContext.NonPlayer, forceGenerateNewPawn: true));
                     beast?.inventory?.DestroyAll();
                 }
-                // With Giddy-Up, porters and couriers of a riding age come in on a mount each, as the post rider does.
-                var mountKind = GiddyUpMounts.On && CourierMath.Rides((int)f.def.techLevel) ? PostRider.MountKind(f, map) : null;
-                if (mountKind != null)
-                    foreach (var p in people)
-                    {
-                        var m = PawnGenerator.GeneratePawn(new PawnGenerationRequest(mountKind, f, PawnGenerationContext.NonPlayer, forceGenerateNewPawn: true));
-                        m?.inventory?.DestroyAll();
-                        if (m != null) mounts.Add(m);
-                    }
+                // With Giddy-Up, porters and couriers of a riding age come in on a mount each, as the post rider does: mounts[i]
+                // is people[i]'s (null for one who walks), so a rider who gets off finds theirs again.
+                bool ride = GiddyUpMounts.On && CourierMath.Rides((int)f.def.techLevel);
+                foreach (var p in people)
+                {
+                    var mountKind = ride ? CarrierKinds.Mount(f, map) : null;
+                    var m = mountKind != null ? PawnGenerator.GeneratePawn(new PawnGenerationRequest(mountKind, f, PawnGenerationContext.NonPlayer, forceGenerateNewPawn: true)) : null;
+                    m?.inventory?.DestroyAll();
+                    mounts.Add(m);
+                }
             }
             catch (Exception e)
             {
@@ -391,10 +396,15 @@ namespace ColonyCouncil
                 foreach (var m in mounts) Arrivals.Discard(m);
                 return false;
             }
+            while (mounts.Count > people.Count)
+            {
+                Arrivals.Discard(mounts[mounts.Count - 1]);
+                mounts.RemoveAt(mounts.Count - 1);
+            }
             var party = new List<Pawn>(people);
             if (beast != null) party.Add(beast);
             var bearers = new List<Pawn>(party);
-            party.AddRange(mounts);
+            party.AddRange(mounts.Where(m => m != null));
             foreach (var p in party) GenSpawn.Spawn(p, CellFinder.RandomClosewalkCellNear(entry, map, 3), map);
             // A neighbour's messenger set upon on the road comes in hurt (World/NeighbourLetters.cs), or, half the time, is
             // set upon at the colony's own edge as they come on (harm, part 7: Harm/Stories.cs).
@@ -403,7 +413,8 @@ namespace ColonyCouncil
             Carriers.CourierCame(f, people, map);
             t.faction = f;
             t.spot = spot;
-            t.atGate = gate;
+            t.atGate = where == CarrierSpot.Gate;
+            t.atBag = where == CarrierSpot.Mailbag;
             t.people = people;
             t.animal = beast;
             t.mounts = mounts;
@@ -430,7 +441,9 @@ namespace ColonyCouncil
             t.state = CourierState.Coming;
             t.setOut = Now;
             // In the saddle from the edge of the map, as Giddy-Up brings its own riders in.
-            for (int i = 0; i < mounts.Count && i < people.Count; i++) GiddyUpMounts.MountUp(people[i], mounts[i]);
+            for (int i = 0; i < mounts.Count && i < people.Count; i++)
+                if (mounts[i] != null)
+                    GiddyUpMounts.MountUp(people[i], mounts[i]);
             CourierWords.Arrive(t);
             return true;
         }
@@ -520,18 +533,24 @@ namespace ColonyCouncil
             if (by != null && n > 0) CourierWords.Say(by, t, "deliver");
         }
 
-        /// <summary>Everything in someone's pack set down near a cell (theirs, for a courier, is all the trip's); how many things.</summary>
+        /// <summary>
+        /// Everything in someone's pack set down near a cell (theirs, for a courier, is all the trip's); how many things. At
+        /// the colony's mailbag, on the cells beside it (a pile of stacks goes round it), never on the bag itself.
+        /// </summary>
         private static int DropAll(CourierTrip t, Pawn p, IntVec3 at)
         {
             var inv = p?.inventory?.innerContainer;
             var map = p?.MapHeld ?? t.map;
             if (inv == null || inv.Count == 0 || map == null) return 0;
             if (!at.IsValid || !at.InBounds(map)) at = p.Spawned ? p.Position : t.oldSpot;
+            bool bag = t.atBag && at == t.spot;
             int n = 0;
             foreach (var thing in inv.ToList())
             {
                 int count = thing.stackCount;
-                if (inv.TryDrop(thing, at, map, ThingPlaceMode.Near, count, out var lying))
+                Thing lying;
+                bool down = bag ? CarrierSpots.SetDownBeside(inv, thing, count, map, at, out lying) : inv.TryDrop(thing, at, map, ThingPlaceMode.Near, count, out lying);
+                if (down)
                 {
                     lying?.SetForbidden(false, false);
                     n += count;
@@ -852,7 +871,7 @@ namespace ColonyCouncil
             Arrivals.SendAway(t.people);
             var beasts = new List<Pawn>();
             if (t.animal != null) beasts.Add(t.animal);
-            beasts.AddRange(t.mounts.Where(m => m != null && m.CurJobDef?.defName != "Mounted"));
+            beasts.AddRange(t.mounts.Where(m => m != null && !GiddyUpMounts.CarryingRider(m)));
             foreach (var a in beasts)
             {
                 if (a == null || !a.Spawned || a.Dead || a.Downed || a.Faction == null || a.Faction == Faction.OfPlayer) continue;

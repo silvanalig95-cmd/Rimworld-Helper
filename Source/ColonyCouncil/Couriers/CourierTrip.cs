@@ -47,9 +47,11 @@ namespace ColonyCouncil
         public int setOut = -1;
         public int doneTick = -1;
         public int endTick = -1;
-        /// <summary>Where they hand over and wait: the colony's gate, else where traders leave their goods.</summary>
+        /// <summary>Where they hand over and wait: the colony's mailbag (since 10 November 2026), else its gate, else where traders leave their goods (CarrierSpots.Spot).</summary>
         public IntVec3 spot = IntVec3.Invalid;
         public bool atGate;
+        /// <summary>The spot is the colony's mailbag: goods are set down on the cells beside it, and the words say "by the mailbag".</summary>
+        public bool atBag;
         /// <summary>Where the old way would have set the things down (the caller's spot, else the trade spot).</summary>
         public IntVec3 oldSpot = IntVec3.Invalid;
 
@@ -138,7 +140,10 @@ namespace ColonyCouncil
 
         public List<Pawn> people = new List<Pawn>();
         public Pawn animal;
-        /// <summary>The beasts the people ride in on, with Giddy-Up (Integrations/GiddyUpMounts.cs): one each, not the pack animal.</summary>
+        /// <summary>
+        /// The beasts the people ride in on, with Giddy-Up (Integrations/GiddyUpMounts.cs): one each, not the pack animal;
+        /// <c>mounts[i]</c> is <c>people[i]</c>'s (null for one who walks), so a rider who got off finds theirs again.
+        /// </summary>
         public List<Pawn> mounts = new List<Pawn>();
         public Lord lord;
 
@@ -179,6 +184,20 @@ namespace ColonyCouncil
             }
         }
 
+        /// <summary>The beast this person of the trip rode in on, or null.</summary>
+        public Pawn MountOf(Pawn p)
+        {
+            int i = p == null ? -1 : people.IndexOf(p);
+            return i >= 0 && i < mounts.Count ? mounts[i] : null;
+        }
+
+        /// <summary>The person of the trip who rode in on this beast, or null.</summary>
+        public Pawn RiderOf(Pawn animal)
+        {
+            int i = animal == null ? -1 : mounts.IndexOf(animal);
+            return i >= 0 && i < people.Count ? people[i] : null;
+        }
+
         /// <summary>Those still on this map, alive and in the trip's group.</summary>
         public List<Pawn> Here => Party.Where(p => !p.Dead && p.Spawned && p.Map == map && lord != null && p.GetLord() == lord).ToList();
 
@@ -214,6 +233,7 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref endTick, "endTick", -1);
             Scribe_Values.Look(ref spot, "spot", IntVec3.Invalid);
             Scribe_Values.Look(ref atGate, "atGate");
+            Scribe_Values.Look(ref atBag, "atBag");
             Scribe_Values.Look(ref oldSpot, "oldSpot", IntVec3.Invalid);
             Scribe_Deep.Look(ref goods, "goods", this);
             Scribe_Values.Look(ref bringLabel, "bringLabel");
@@ -261,8 +281,8 @@ namespace ColonyCouncil
                 things.RemoveAll(t => t == null);
                 if (people == null) people = new List<Pawn>();
                 people.RemoveAll(p => p == null);
+                // Kept in step with the people (a gap stays a gap), so each rider's beast is still theirs.
                 if (mounts == null) mounts = new List<Pawn>();
-                mounts.RemoveAll(p => p == null);
                 if (toUnload == null) toUnload = new List<Pawn>();
                 toUnload.RemoveAll(p => p == null);
             }
