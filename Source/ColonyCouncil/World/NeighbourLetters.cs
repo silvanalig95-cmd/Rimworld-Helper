@@ -115,6 +115,16 @@ namespace ColonyCouncil
         /// </summary>
         public bool bringing;
 
+        // ---- Passed on (World/LetterRoutes.cs): a town's matter given to someone who isn't its head ----
+
+        /// <summary>
+        /// The head (or their people's leader) the one it was written to passes it on to, who answers it; -1 for a letter read
+        /// by the one it was written to. An older save's letter has none until it reaches them (NeighbourLetters.Arrive).
+        /// </summary>
+        public int passTo = -1;
+        /// <summary>Passed on: it is with <see cref="passTo"/> now, and their answer is the one that comes.</summary>
+        public bool passed;
+
         public bool Open => stage != LetterStage.Done && stage != LetterStage.Cancelled;
 
         public string WriterName => writer != null && !writer.Discarded ? writer.LabelShort : writerName ?? "?";
@@ -169,6 +179,8 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref packed, "packed");
             Scribe_Values.Look(ref postId, "postId", -1);
             Scribe_Values.Look(ref bringing, "bringing");
+            Scribe_Values.Look(ref passTo, "passTo", -1);
+            Scribe_Values.Look(ref passed, "passed");
         }
     }
 
@@ -225,7 +237,16 @@ namespace ColonyCouncil
 
         public static NeighbourLetter Get(int id) => Book?.letters.FirstOrDefault(l => l.id == id);
 
-        public static NeighbourLetter OpenTo(Notable n) => n == null ? null : Book?.letters.FirstOrDefault(l => l.Open && l.notable == n.id);
+        /// <summary>The letter open to them: written to them, or passed on (or to be passed on) to them by someone else (World/LetterRoutes.cs).</summary>
+        public static NeighbourLetter OpenTo(Notable n) => n == null ? null : Book?.letters.FirstOrDefault(l => l.Open && (l.notable == n.id || l.passTo == n.id));
+
+        /// <summary>The one a letter's matter is for: the head it is passed on to, else the one it was written to.</summary>
+        public static Notable ForWhom(NeighbourLetter l)
+        {
+            if (l == null) return null;
+            var to = l.passTo >= 0 ? Book?.Get(l.passTo) : null;
+            return to ?? Book?.Get(l.notable);
+        }
 
         public static int OpenCount => Book?.letters.Count(l => l.Open) ?? 0;
 
@@ -316,8 +337,14 @@ namespace ColonyCouncil
             return null;
         }
 
-        /// <summary>Why this can't be written to them now, or null (a wait, nothing to write about, too little regard).</summary>
-        public static string WhyNot(Notable n, LetterPurpose p)
+        /// <summary>
+        /// Why this can't be written to them now, or null (a wait, nothing to write about, too little regard), whoever answers
+        /// it: a town's matter to someone who isn't its head is passed on, and the head's checks hold (World/LetterRoutes.cs).
+        /// </summary>
+        public static string WhyNot(Notable n, LetterPurpose p) => LetterRoutes.WhyNot(n, p, false);
+
+        /// <summary>The letters' own checks on the one it is written to: alive, one at a time, not too many under way, not here at the colony, the wait for the same thing.</summary>
+        public static string GeneralWhyNot(Notable n, LetterPurpose p)
         {
             if (n == null || !n.Alive) return "CC_Letter_Why_Gone".Translate();
             if (OpenTo(n) != null) return "CC_Letter_Why_OneAtATime".Translate();
@@ -327,6 +354,13 @@ namespace ColonyCouncil
             if (n.pawn.Spawned) return "CC_Letter_Why_Here".Translate(n.Name.Named("NAME")).Resolve();
             int last = n.Last(p);
             if (last >= 0 && Now - last < NotableMath.WaitDays(p) * GenDate.TicksPerDay) return "CC_Letter_Why_Lately".Translate();
+            return null;
+        }
+
+        /// <summary>The purpose's own checks on the one who answers it: something to write about, enough regard, their people at peace.</summary>
+        public static string PurposeWhyNot(Notable n, LetterPurpose p)
+        {
+            if (n == null || !n.Alive) return "CC_Letter_Why_Gone".Translate();
             bool hostile = NotableBook.Hostile(n);
             switch (p)
             {
@@ -433,10 +467,14 @@ namespace ColonyCouncil
             }
         }
 
-        /// <summary>How the colony's words are likely to be taken, in words (never a number).</summary>
-        public static string Outlook(Notable n, Pawn writer, LetterPurpose p, LetterChannel c)
+        /// <summary>
+        /// How the colony's words are likely to be taken, in words (never a number), by the one who answers it
+        /// (<paramref name="n"/>); <paramref name="via"/>: passed on by them, with their word.
+        /// </summary>
+        public static string Outlook(Notable n, Pawn writer, LetterPurpose p, LetterChannel c, Notable via = null)
         {
             var x = Input(n, writer, p, c);
+            if (via != null && via != n) x.word = LetterAddressMath.Word(via.role, NotableBook.Opinion(via));
             float s = NotableMath.Score(x);
             string key = x.hostile ? "CC_Letter_Outlook_War" : s >= 40f ? "CC_Letter_Outlook_Warm" : s >= 12f ? "CC_Letter_Outlook_Good" : s >= -15f ? "CC_Letter_Outlook_Fair" : "CC_Letter_Outlook_Poor";
             string line = key.Translate(n.Name.Named("NAME"), (writer?.LabelShort ?? "?").Named("WRITER")).Resolve();
@@ -469,10 +507,15 @@ namespace ColonyCouncil
             var book = Book;
             var map = writer?.MapHeld ?? HappeningTracker.HomeMap();
             if (bearer != null) c = LetterChannel.Courier;
-            if (book == null || n == null || writer == null || map == null || WhyNot(n, p) != null || bearer == null && ChannelWhyNot(n, c, map) != null) return null;
+            // Whose matter it is decides who answers it: a town's matter to someone who isn't its head is passed on (World/LetterRoutes.cs).
+            var scope = LetterRoutes.ScopeOf(p, topic?.key, n);
+            if (book == null || n == null || writer == null || map == null || LetterRoutes.WhyNot(n, p, scope, false) != null
+                || bearer == null && ChannelWhyNot(n, c, map) != null) return null;
+            var who = LetterRoutes.Answerer(n, p, scope, map) ?? n;
             var l = new NeighbourLetter
             {
-                id = book.nextLetterId++, notable = n.id, purpose = p, channel = c, writer = writer, writerName = writer.LabelShort, toName = NotableBook.Called(n),
+                id = book.nextLetterId++, notable = n.id, purpose = p, channel = c, writer = writer, writerName = writer.LabelShort,
+                toName = who != n ? LetterRoutes.ToVia(who, n) : NotableBook.Called(n), passTo = who != n ? who.id : -1,
                 map = map, created = Now, stageTick = Now, stage = c == LetterChannel.Console ? LetterStage.ToCall : LetterStage.ToWrite,
                 topic = topic?.text, topicKey = topic?.key, help = help, hostile = NotableBook.Hostile(n), bearer = bearer, bearerName = bearer?.LabelShort
             };
@@ -558,12 +601,14 @@ namespace ColonyCouncil
 
         private static void Step(NotableBook book, NeighbourLetter l, int now)
         {
-            var n = book.Get(l.notable);
+            // Passed on, it is the head's now, whatever became of the one who passed it on (World/LetterRoutes.cs).
+            var n = book.Get(l.notable) ?? (l.passed ? book.Get(l.passTo) : null);
             if (n == null)
             {
                 Cancel(l, "CC_Letter_Cancel_Gone");
                 return;
             }
+            var reader = LetterRoutes.Reader(l, n);
             // The council's business in an older save (retired with the council's tasks): called off before it is read,
             // quietly; an answer already on its way back comes as it was written.
             if (NotableMath.Retired(l.purpose) && l.stage != LetterStage.Answering)
@@ -672,7 +717,7 @@ namespace ColonyCouncil
                     }
                     return;
                 case LetterStage.Travelling:
-                    if (now >= l.due) Read(l, n, l.writer, now);
+                    if (now >= l.due) Arrive(l, n, l.writer, now);
                     return;
                 case LetterStage.Answering:
                 {
@@ -716,20 +761,20 @@ namespace ColonyCouncil
                         l.stage = LetterStage.Ringing;
                         l.stageTick = now;
                         var console = Console(l.map);
-                        Notify.Message("CC_Call_Msg_Ringing".Translate(n.Name.Named("NAME")).Resolve(), new LookTargets(console), MessageTypeDefOf.NeutralEvent, Importance.Notable);
+                        Notify.Message("CC_Call_Msg_Ringing".Translate(reader.Name.Named("NAME")).Resolve(), new LookTargets(console), MessageTypeDefOf.NeutralEvent, Importance.Notable);
                         NotableBook.Changed();
                         TryAnswer(l, now);
                         return;
                     }
                     // The air is dead at the colony's end: they try again later, then leave word.
                     l.tries++;
-                    if (l.tries >= 2) LeftWord(l, n, now);
+                    if (l.tries >= 2) LeftWord(l, reader, now);
                     else l.due = now + GenDate.TicksPerHour * 12;
                     return;
                 case LetterStage.Ringing:
                     // Nobody took it in time (a raid on, everyone asleep or busy): they leave word instead.
                     if (now - l.stageTick > NotableMath.RingTicks && !(l.map?.mapPawns.FreeColonistsSpawned.Any(c => c.CurJobDef == NotableDefOf.Council_AnswerCall) ?? false))
-                        LeftWord(l, n, now);
+                        LeftWord(l, reader, now);
                     return;
             }
         }
@@ -765,12 +810,32 @@ namespace ColonyCouncil
             {
                 var town = NotableBook.TownOf(n.town);
                 if (l.backDays <= 0f && town != null) l.backDays = PostReach.RiderDays(l.map, town, PostBook.Instance?.RideFor(l.id)?.mount != null);
+                // A town's matter given to someone who isn't its head: they take it on, the answer comes in the post, and the rider rides home.
+                if (LetterRoutes.Passes(l, n, out var who))
+                {
+                    LetterRoutes.PassFromRider(l, n, who, Now);
+                    return;
+                }
                 Read(l, n, l.writer, Now);
             }
             catch (Exception e)
             {
                 CouncilLog.ErrorOnce("letter read by the rider", e);
             }
+        }
+
+        /// <summary>
+        /// It has reached the one it was written to: read by them, or passed on to the head it is for (World/LetterRoutes.cs),
+        /// who reads it once it reaches them.
+        /// </summary>
+        private static void Arrive(NeighbourLetter l, Notable n, Pawn speaker, int now)
+        {
+            if (LetterRoutes.Passes(l, n, out var who))
+            {
+                LetterRoutes.Pass(l, n, who, now);
+                return;
+            }
+            Read(l, LetterRoutes.Reader(l, n), speaker, now);
         }
 
         private static void Finish(NeighbourLetter l, Notable n)
@@ -1058,6 +1123,8 @@ namespace ColonyCouncil
         private static AnswerTone Read(NeighbourLetter l, Notable n, Pawn speaker, int now, string how = null)
         {
             var x = Input(n, speaker, l.purpose, l.channel);
+            // Passed on: the go-between's good word or their poor one (World/LetterRoutes.cs).
+            x.word = LetterRoutes.WordOf(l, n);
             var tone = NotableMath.Answer(x, Rand.Value, Rand.Value);
             // Stage 2's purposes (Diplomacy/DiplomacyLetters.cs): what they do about it, which colours the answer's tone.
             var dip = DiplomacyLetters.Read(l, n, speaker ?? l.writer, ref tone);
@@ -1327,7 +1394,16 @@ namespace ColonyCouncil
                 if (l.purpose == LetterPurpose.Help) full.tone = NotableMath.HelpQuoteTone(tone, things.Count > 0);
             }
             else if (!quote.NullOrEmpty()) parts.Add("\"" + quote + "\"");
-            if (news) parts.Add(News(n, tone, facts));
+            // Passed on by someone who isn't the head: the head says who brought it (World/LetterRoutes.cs; written out in full,
+            // Letters/LetterForm.cs puts it in their own words).
+            string passLine = full == null ? LetterRoutes.PassLine(l, n, false) : null;
+            if (!passLine.NullOrEmpty()) parts.Insert(1, "\"" + passLine + "\"");
+            if (news)
+            {
+                parts.Add(News(n, tone, facts));
+                // The places its news names are marked on the maps once the answer is in (World/HeardPlaces.cs).
+                HeardPlaces.FromLetter(l, n, facts, NewsShown(tone));
+            }
             if (l.purpose == LetterPurpose.Help)
                 parts.Add(things.Count > 0 ? (l.channel == LetterChannel.Console ? "CC_Letter_HelpSent_Call" : "CC_Letter_HelpSent").Translate(Couriers.Describe(things).Named("GOODS")).Resolve()
                     : "CC_Letter_HelpNot".Translate(n.Name.Named("NAME")).Resolve());
@@ -1383,6 +1459,8 @@ namespace ColonyCouncil
         {
             // A dealing's answer in: agreed, it starts now (Dealings/DealingLetters.cs).
             DealingLetters.AnswerIn(l);
+            // The places its news named are heard of from now (World/HeardPlaces.cs).
+            HeardPlaces.AnswerIn(l);
             if (l == null || !l.owed || n?.faction == null) return;
             l.owed = false;
             try
@@ -1412,7 +1490,11 @@ namespace ColonyCouncil
                     string item = facts?.news?.FirstOrDefault();
                     if (!fortune.NullOrEmpty() && !(n.townName ?? "").NullOrEmpty())
                         line = "CC_LetterBring_Town".Translate(n.Name.Named("NAME"), n.townName.Named("TOWN"), fortune.UncapitalizeFirst().Named("FORTUNE")).Resolve();
-                    else if (!item.NullOrEmpty()) line = "CC_LetterBring_TownNews".Translate(n.Name.Named("NAME"), item.Named("NEWS")).Resolve();
+                    else if (!item.NullOrEmpty())
+                    {
+                        line = "CC_LetterBring_TownNews".Translate(n.Name.Named("NAME"), item.Named("NEWS")).Resolve();
+                        HeardPlaces.FromLetter(l, n, facts, 1);
+                    }
                     else line = "CC_LetterBring_TownQuiet".Translate(n.Name.Named("NAME")).Resolve();
                     break;
                 }
@@ -1508,11 +1590,14 @@ namespace ColonyCouncil
         /// </summary>
         private static string News(Notable n, AnswerTone tone, FactSet facts)
         {
-            int max = tone <= AnswerTone.Cordial ? 3 : tone == AnswerTone.Cool ? 2 : 1;
+            int max = NewsShown(tone);
             var items = facts.news;
             if (items.Count == 0) return "CC_News_Nothing".Translate().Resolve();
             return "CC_News_Head".Translate(n.Name.Named("NAME")).Resolve() + "\n" + string.Join("\n", items.Take(max).Select(i => "  - " + i));
         }
+
+        /// <summary>How many of the news they tell, by how they took the letter.</summary>
+        private static int NewsShown(AnswerTone tone) => tone <= AnswerTone.Cordial ? 3 : tone == AnswerTone.Cool ? 2 : 1;
 
         // ---------------- An invitation ----------------
 
@@ -1628,6 +1713,17 @@ namespace ColonyCouncil
             bool troubled = WorldSituations.Instance?.HardTimes(n.faction) ?? false;
             var reach = NotableMath.Reach(hour, troubled, PawnUtility.IsFactionLeader(n.pawn), Rand.Value);
             l.reach = reach;
+            // A town's matter to someone who isn't its head: they pass it on, and the head calls back (World/LetterRoutes.cs).
+            if (LetterRoutes.Passes(l, n, out var head))
+            {
+                float hours = (reach == CallReach.AtOnce ? 0f : NotableMath.CallbackHours(reach, hour, Rand.Value))
+                              + LetterAddressMath.PassCallHours(n.town == head.town, Rand.Value);
+                if (reach != CallReach.AtOnce)
+                    // apart: the call's end at the console, told in a message.
+                    Notify.Message(("CC_Call_Msg_Aide_" + reach).Translate(p.Named("PAWN"), n.pawn.Named("NAME")).Resolve(), new LookTargets(p), MessageTypeDefOf.NeutralEvent, Importance.Notable);
+                LetterRoutes.Pass(l, n, head, now, hours, reach == CallReach.AtOnce);
+                return "aide";
+            }
             if (reach == CallReach.AtOnce)
             {
                 var tone = Read(l, n, p, now);
@@ -1663,7 +1759,7 @@ namespace ColonyCouncil
         public static string CallAnswered(Pawn p)
         {
             var l = Book?.letters.FirstOrDefault(x => x.stage == LetterStage.Ringing && x.map == p.Map);
-            var n = l != null ? Book?.Get(l.notable) : null;
+            var n = l != null ? LetterRoutes.Reader(l, Book?.Get(l.notable)) : null;
             if (l == null || n == null) return null;
             l.other = p;
             var tone = Read(l, n, p, Now, "callback");
@@ -1674,7 +1770,7 @@ namespace ColonyCouncil
         public static Notable Ringing(Map map)
         {
             var l = Book?.letters.FirstOrDefault(x => x.stage == LetterStage.Ringing && x.map == map);
-            return l != null ? Book?.Get(l.notable) : null;
+            return l != null ? LetterRoutes.Reader(l, Book?.Get(l.notable)) : null;
         }
 
         /// <summary>Nobody took the callback: they left word, and the answer comes as their message.</summary>

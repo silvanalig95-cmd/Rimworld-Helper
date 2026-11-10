@@ -248,7 +248,9 @@ namespace ColonyCouncil
                         if (!thing.IsNone && Widgets.ButtonInvisible(hit, false))
                         {
                             Cards.Click();
-                            Cards.Open(thing);
+                            // "Show on map" (World/HeardPlaces.cs): the place on the region map, else its card.
+                            if (p.link < l.onMap.Count && l.onMap[p.link]) Cards.ShowOnMap(thing);
+                            else Cards.Open(thing);
                         }
                     }
                     if (cut) break;

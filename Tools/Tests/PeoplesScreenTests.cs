@@ -356,7 +356,10 @@ public static class PeoplesScreenTests
             C(found, $"the card act {id} is registered somewhere");
         }
         string dialog = Code("World/NeighboursPanel.cs");
-        C(dialog.Contains("whyNot[p] = LetterOccasions.WhyNot(to, p)") && dialog.Contains("LetterOccasions.Reason(to, p)"), "the letter's window greys a kind letter for the same reason and says the occasion");
+        // The window asks whom each purpose goes to (World/LetterRoutes.cs), whose checks hold a kind letter with no reason first.
+        C(dialog.Contains("LetterRoutes.WhyNot(to, p, sc, true)") && dialog.Contains("LetterOccasions.Reason(who ?? to, p)")
+          && Code("World/LetterRoutes.cs").Contains("LetterOccasions.Held(who, p)") && Code("World/LetterOccasions.cs").Contains("LetterRoutes.WhyNot(n, p, true)"),
+            "the letter's window greys a kind letter for the same reason and says the occasion");
         C(!Code("World/NeighbourLetters.cs").Contains("LetterOccasions"), "the letters' own checks are unchanged (a feast's invitations still go by them)");
         string occ = Code("World/LetterOccasions.cs");
         C(occ.Contains("Feasts.At(home)") && occ.Contains("ColonyCalendar.For(home)") && occ.Contains("GuestBeds.IsGuestBed(b)") && occ.Contains("MapFacts.Of(home)")

@@ -12,6 +12,57 @@ tree at once, alongside whatever runs. Each piece is merged as its own release, 
 
 ## State (5 November 2026)
 
+- **Whom a letter goes to, and places heard of** (10 November 2026). **Not released: no version, no What's new round,
+  About.xml and CHANGELOG untouched.** The player: "i'm not yet sure how "writing the town" is differentiated from writing
+  a person directly ... it should make sense what kind of messages you can send whom, and which kind of messages are sent to
+  the colony as a whole ... this should be differentiated", and "if other colonies tell me about things that are nearby on
+  their map, will these also be revealed on my own map for reference?"; all five points approved ("yes, sounds great! start
+  now"). DESIGN.md "Whom a letter goes to, and places heard of" has all of it; README "Whom to write to, and places heard
+  of"; the Almanac's neighbours page ("Whom to write to", new section) and diplomacy page (Calling a debt in, one point
+  more), keywords unchanged.
+  - The split (`World/LetterAddressMath.cs`, new, linked): personal, to anyone: greetings, condolences, news, an invitation,
+    a match, a favor owed in person, answering their letter. The town's, to its head: a warning, help, their people's debt,
+    ransom, their envoy, wards, a dealing with their council, a town asked back. The whole people's, to their leader if known,
+    else the nearest town's head: a pact, a truce, fealty. A town's matter to anyone else is passed on by them (a day more
+    within their town, else the leg between the towns by their means; a call: the head calls back), with their word in the
+    score (`LetterInput.word`: 6/5/3/0/-3/-6/-9 by their regard, the heir's or an envoy's good word doubled); a council's
+    dealing is the head's only. No head known: greyed with how one comes to be known.
+  - Game side: `World/LetterRoutes.cs` (new: who answers, `WhyNot` by scope, `Passes`/`Pass`/`Reader`, the header, the route,
+    who speaks for a town); `NeighbourLetter.passTo`/`passed` (saved, modelled); `NeighbourLetters` (`GeneralWhyNot` and
+    `PurposeWhyNot` split out, `WhyNot` route-aware, `Send` names both, `Arrive` from the road, the rider and a call, `ForWhom`);
+    `LetterOccasions.Held`; the letter window rewritten (header and "Write to {HEAD}", "To the town"/"To {NAME}", the route
+    line, the head's outlook); `LetterForm` (the head's "Acraeraes brought me your letter.", the colony's letter addressed to
+    the head with "Given to Acraeraes to pass on to Golakath."); the town card and Peoples' Towns tab name who speaks.
+  - Places heard of (`World/HeardPlaces.cs`, `HeardPlaceMath.cs`, new): from talk (`OutsiderTalk.Heard`) and a letter's news
+    once its answer is in (`FactSet.newsFacts`, `NeighbourLetters.Owed`); `NotableBook.places` ("heardPlaces", 24 at most,
+    modelled); marks on the region map (`RegionMapView.DrawHeard`, tooltips) and over the game's world map
+    (`Patch_HeardPlacesWorld`, postfix on `WorldInterface.WorldInterfaceOnGUI`, behind the deeper hooks); fading over the last
+    fifth of 60 days; "Show on map" on heard lines (`HeardNews.place`, saved; `LinkTextMath.WrapOnMap`).
+  - An older save: open letters keep their addressee; one written to a non-head on a town's matter is passed on when it
+    reaches them, and the head answers it.
+  - Tests: `Tools/Tests/LetterRouteTests.cs` (about 2,000 checks: every purpose and addressee kind, the ways, passing on, the
+    word, the words, an older save, the places' rules, the map links, the seams); `PeoplesScreenTests` and `TownAfterTests`
+    seams follow the window.
+  - Not run here (none of it could be): the window's layout at its new height and the header's button; a letter passed on
+    in the game by the post, the colony's rider and a call; the head's line in each shape of a written-out answer; the marks
+    beside a site's own on the region map; the world map overlay (beside the game's icons, the far side, another layer, its
+    tooltips, other mods drawing there); "Show on map" from a heard line.
+  - Try in the game: 1. A town's card, "Write to the town": the window opens on its head, "Golakath, reeve of ...: speaks
+    for the town, and takes personal letters too.", "To the town" first. 2. Pick the town's trader from the name button:
+    "Acraeraes ...: personal letters. For the town's matters, write to Golakath, reeve." with "Write to Golakath"; "To
+    Acraeraes" first, then "To the town: ask Acraeraes to pass it on", each row "passed on to Golakath, reeve", and under
+    them the route and Acraeraes's word. 3. Send a warning that way: the mailbag lists it to "Golakath, ..., by way of
+    Acraeraes"; when it reaches Acraeraes a message says she passed it on, and her row says it is with Golakath now; the
+    answer comes from Golakath, beginning "Acraeraes brought me your letter.". 4. A pact or a truce written to a town's head
+    when their leader is known: passed on to the leader. 5. A dealing with their council opened for someone not the head:
+    greyed "Only the town's head can answer this". 6. A face met whose town has no head known: the town's matters greyed
+    "Nobody the colony knows speaks for ... yet". 7. Call someone who isn't the head about a town's matter: they pass it on
+    and the head calls back. 8. The colony's own rider with a letter passed on: home without it, saying the answer comes
+    with the post. 9. A visitor tells of a site near their town: a small letter beside it on the region map and the world
+    map, its tooltip "Heard of: ... told Guido of it, ..."; the town's Heard lately line ends "Show on map", which opens the
+    region map on it. 10. Ask a notable for news: the places their answer names are marked once the answer is in. 11. Sixty
+    days on the marks have faded and gone. 12. The deeper hooks off: no marks on the world map, the region map's stay.
+    13. An older save with a warning on its way to a trader: when it reaches her it is passed on to the head.
 - **Held by the player (10 November 2026): no new letters content jobs until they ask** ("for the letters please hold
   after this job then ... I'd like to keep such jobs for the end of the week to use up my remaining tokens"). The letters
   round 2 part 1 agent was already running; its part 2 (more content in the same shapes) waits for their word.

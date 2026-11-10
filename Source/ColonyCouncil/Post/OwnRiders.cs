@@ -329,6 +329,11 @@ namespace ColonyCouncil
                     ride.answerDef ?? LetterDefOf.NeutralEvent, new LookTargets(p));
                 if (!ride.chronicle.NullOrEmpty()) CouncilGameComponent.Instance?.AddChronicle(new ChronicleEntry(ChronicleKind.World, ride.chronicle, p));
             }
+            else if (l != null && l.Open && l.passed && l.stage == LetterStage.Travelling)
+                // apart: the rider home; the one they gave it to took it on to the head, whose answer comes in the post (World/LetterRoutes.cs).
+                Notify.LetterMessage("CC_Route_Msg_RiderHome".Translate(p.Named("PAWN"), (ride.townName ?? "?").Named("TOWN"),
+                    (NotableBook.Instance?.Get(l.notable)?.Name ?? "?").Named("NAME"), (NotableBook.Instance?.Get(l.passTo)?.Name ?? "?").Named("HEAD")).Resolve(), l.id,
+                    new LookTargets(p), MessageTypeDefOf.NeutralEvent, Importance.Notable);
             else if (l != null && l.Open)
                 // apart: the rider home without an answer, told as they come in.
                 Notify.Message(PostWords.P("CC_Mail_Msg_RiderNoAnswer", p.Named("PAWN"), (ride.townName ?? "?").Named("TOWN")), new LookTargets(p),

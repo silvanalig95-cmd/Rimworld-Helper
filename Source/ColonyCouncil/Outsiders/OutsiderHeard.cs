@@ -40,9 +40,10 @@ namespace ColonyCouncil
 
         /// <summary>
         /// News heard as lines to draw with links: the colonist told a link to their card, and with <paramref name="withTown"/>
-        /// the town it came from a link to its card (a people with no town names the people).
+        /// the town it came from a link to its card (a people with no town names the people); with <paramref name="onMap"/>, news
+        /// that named a place ends with "Show on map" (World/HeardPlaces.cs).
         /// </summary>
-        public static List<string> Lines(List<HeardNews> list, bool withTown)
+        public static List<string> Lines(List<HeardNews> list, bool withTown, bool onMap = true)
         {
             var lines = new List<string>();
             if (list == null || list.Count == 0) return lines;
@@ -61,7 +62,11 @@ namespace ColonyCouncil
                         from.Named("FROM")).Resolve();
                 }
                 else line = "CC_Out_Heard_Line".Translate(h.text.Named("TEXT"), (h.teller ?? "?").Named("TELLER"), (h.told ?? "?").Named("PAWN"), Ago(h.tick).Named("AGO")).Resolve();
-                lines.Add(LinkTextMath.MarkNames(line, names));
+                line = LinkTextMath.MarkNames(line, names);
+                // News that named a place: "Show on map" leads to it on the region map (World/HeardPlaces.cs).
+                string show = onMap ? HeardPlaces.ShowOnMap(h.place) : null;
+                if (!show.NullOrEmpty()) line += " " + show;
+                lines.Add(line);
             }
             return lines;
         }

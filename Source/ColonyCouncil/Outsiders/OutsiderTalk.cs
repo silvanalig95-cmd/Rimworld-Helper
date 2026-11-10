@@ -448,10 +448,13 @@ namespace ColonyCouncil
             var same = book.heard.FirstOrDefault(h => h.town == id && h.faction == f && h.text == text && OutsiderTalkMath.SameNews(h.tick, now));
             if (same != null) book.heard.Remove(same);
             var named = NamedNotable(f, text, facts, out string about);
+            // A place the news names (a site, a world event's place) is marked on the maps, with who told whom (World/HeardPlaces.cs).
+            string place = HeardPlaces.Heard(facts, text, "CC_Heard_Teller".Translate(teller.LabelShort.Named("NAME"), (town?.Name ?? f?.Name ?? "?").Named("TOWN")).Resolve(),
+                told?.LabelShort);
             book.heard.Add(new HeardNews
             {
                 town = id, townName = town?.Name ?? f?.Name, faction = f, text = text, teller = teller.LabelShort, told = told?.LabelShort, tick = now, notable = named?.id ?? -1,
-                about = about
+                about = about, place = place
             });
             while (book.heard.Count > OutsiderTalkMath.HeardMax) book.heard.RemoveAt(0);
             NotableBook.Changed();

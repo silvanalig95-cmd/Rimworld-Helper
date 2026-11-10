@@ -8496,6 +8496,112 @@ deed's weight (`FavourMath.SizeOf`); open "bring it next time" favours are free.
 `NeighbourLetter.owedSize`, `late`, `HeardNews.notable`, `about`, the outsiders' favour's price in its tie's terms
 (modelled in `Tools/save_estimate.py`). Nothing new ticks: the warnings ride on the neighbours' day.
 
+## Whom a letter goes to, and places heard of (the player's request, 10 November 2026; not released)
+
+The player: "i'm not yet sure how "writing the town" is differentiated from writing a person directly. i get the same
+option menu, albeit options are greyed out so i don't know for sure. basically it should make sense what kind of messages
+you can send whom, and which kind of messages are sent to the colony as a whole. for example warning them is for the whole
+colony, or asking for some food or medicine. i'm not sure which kind of messages make sense to be sent to a member of the
+colony, especially if it's not their leader who can speak for all of them. but this should be differentiated.", and "also
+i'm not sure: if other colonies tell me about things that are nearby on their map, will these also be revealed on my own
+map for reference?". Until now the town card's "Write to the town" opened the same letter window, with the same purposes,
+as writing to anyone; only a town asked back and a dealing were the head's. The five points below were approved ("yes,
+sounds great! start now"). The pure rules are `World/LetterAddressMath.cs` and `World/HeardPlaceMath.cs` (both new,
+linked in Tools/Tests); the game side `World/LetterRoutes.cs` and `World/HeardPlaces.cs` (new). Tested in
+`Tools/Tests/LetterRouteTests.cs` ("whom a letter goes to: ", about 2,000 checks: every purpose's scope, who answers it for
+every kind of addressee, the ways, passing on and the word, the words, an older save, the places' rules, the map links,
+the seams).
+
+1. **The town's matters go to whoever speaks for the town** (`LetterAddressMath.ScopeOf`, `WhoAnswers`). Each purpose is
+   one of three scopes:
+   - Personal (anyone): greetings, condolences, news, an invitation, a match (the head's gates of 0.204.0 stand), a favor
+     owed in person (a debt's topic whose tie is personal), and an answer to a letter they wrote first (a dealing's topic
+     "reply:ID"). The retired council's business counts as personal and is never offered.
+   - The town's (its head, `NotableRole.Head` of their town, `LetterRoutes.HeadOf`): a warning, asking for help, their
+     people's debt (and the colony's word on their call), captives and ransom, their envoy, wards, a dealing with their
+     council, asking for a town back.
+   - The whole people's (a pact, a truce, fealty): their leader when the colony knows them by name (`LetterRoutes.LeaderOf`:
+     the notable whose pawn is `Faction.leader`), else the head of their town nearest the colony (`FavourCalls.HeadOf`),
+     who sends it on (`SpeakerOf`).
+   A debt and a dealing are both: their topic decides (`Mixed`, `PersonalTopic`). Nobody known speaks for the town (a face
+   met whose town has no head the colony knows): the town's matters are greyed, "Nobody the colony knows speaks for ... yet:
+   its head comes to be known once the colony deals with the town (meeting their people, their news)", which is how towns
+   are staffed (a town the colony deals with is among its neighbours, `NotableBook.Towns`).
+2. **Personal letters go to anyone**, by their own checks as before (`NeighbourLetters.GeneralWhyNot` and `PurposeWhyNot`,
+   the old `WhyNot` split in two; `NeighbourLetters.WhyNot` and `LetterOccasions.WhyNot` now ask `LetterRoutes.WhyNot`, so
+   every caller, the town card's act, the People page's "Write", "Do something with..." and the cards' own acts, greys a
+   letter for the same reason).
+3. **A town's matter written to someone else is passed on** (`LetterWay.PassOn`; a council's dealing is not passable,
+   `LetterWay.HeadOnly`: "Only the town's head can answer this: write to ..."). The letter keeps whom it is written to
+   (`NeighbourLetter.notable`, the post routes it to their town as before) and whom it is for (`passTo`, saved; its
+   `toName` "Golakath, reeve of Karond-Keth 2, by way of Acraeraes"). When it reaches them (`NeighbourLetters.Arrive`, from
+   the road, the colony's rider and a call alike; `LetterRoutes.Passes` and `Pass`):
+   - it goes on: a day more within their town, else the leg between the two towns by their people's means
+     (`LetterMath.LegDays`, `LetterAddressMath.PassDays`, a day at least), `passed` set and the answer's way back worked
+     out from the head's town; a call is passed on and the head calls back some hours later (`PassCallHours`: 3 to 8 within
+     their town, 8 to 22 from another); with the colony's own rider, the rider rides home and the answer comes in the post
+     ("... took the letter on to Golakath, whose answer will come with the post");
+   - the one who passed it on notes it ("Passed Guido's letter on to Golakath."), a message says so, and its status reads
+     "Acraeraes passed Guido's letter on to Golakath: it is with Golakath now";
+   - the head reads it (`LetterRoutes.Reader`) with the go-between's word in the score (`NotableMath.LetterInput.word`,
+     `LetterAddressMath.Word`): by the go-between's regard of the colony, 6 (60 or more), 5 (30), 3 (10), 0 (civil), -3
+     (cool), -6 (wary), -9 (hostile); the heir's or an envoy's good word doubled, and 2 when only civil. Everything else is
+     the head's: their regard, the waits and gaps of 0.204.0 (one at a time to them too, `OpenTo` counts `passTo`; the wait
+     for the same thing on them, "The colony wrote to Golakath for this only lately"), the debts, the gift once a season;
+   - the letter's form shows it: the head's answer begins "Acraeraes brought me your letter." (words given by mouth, a call
+     passed on, a medieval hand's own: `LetterAddressMath.PassLineKey`, `LetterRoutes.PassLine`, put before the heart in
+     `LetterForm.Answer`, quoted after the intro in the short form), and the colony's own letter is addressed to the head
+     (`NeighbourLetters.ForWhom`), the narrator adding "Given to Acraeraes to pass on to Golakath." The exchange is kept
+     with the head (`LetterBook` by the letter's id), and the message's click hint names them.
+   - The one who passed it on gone afterwards doesn't call it off (`NotableBook.Drop`); the head gone (or the leader
+     changed) does, as for any letter to them; the head changed before it reached them, it goes to the one who heads the
+     town now.
+4. **The letter's window makes it clear** (`Dialog_NeighbourLetter`, `World/NeighboursPanel.cs`):
+   - under their name, who they are and whether they speak for the town (`LetterRoutes.Header`: "Acraeraes of Karond-Keth
+     2, a trader who called: personal letters. For the town's matters, write to Golakath, reeve."; the head "speaks for the
+     town, and takes personal letters too"; the leader "leads ..., and speaks for the town and the whole people"; and "For
+     matters of the whole people (a pact, a truce, fealty), write to ..." when someone else speaks for them), with a button
+     "Write to Golakath" that turns the letter to them (the purpose kept if it can go to them);
+   - the purposes in two sections, "To the town" (for someone who isn't the head "To the town: ask Acraeraes to pass it
+     on", each row noted "passed on to Golakath, reeve") and "To Acraeraes", the section of what they answer themselves
+     first; a debt is in both ("A debt of honor" for their people's, "A favor they owe in person"), an answer to their
+     letter is "Answering their letter"; each greyed purpose says why in words, the row's tooltip in full;
+   - under the purposes, for a letter passed on, the route: "Acraeraes will give it to Golakath, reeve, in Karond-Keth 2: a
+     day more." or "... will send it on from ... to ..., ..., at ...: the road between the two towns more.", and their word
+     ("Acraeraes thinks well of the colony, and their good word goes with it." / "is their envoy: their good word goes with
+     it, and counts for much." / "passes it on with no word for or against it." / "thinks poorly of the colony, and their
+     word tells against it."); the outlook is the head's, with the word;
+   - a town's card (its Who, `LetterRoutes.SpeaksFor`: "Golakath, reeve, speaks for Karond-Keth 2: write to them for the
+     town's matters.", or nobody known) and its row on Peoples' Towns tab ("speaks for it: Golakath, reeve") name who speaks
+     for it; the card's "Write to the town" tip says so.
+5. **Places heard of are marked** (`World/HeardPlaces.cs`, `HeardPlaceMath`). A place a piece of news names that is a real
+   world object or tile (the facts "site:ID", a site by its world object, and "ws:ID", a world event by its place, a town
+   or a tile) becomes a `HeardPlace` (saved in `NotableBook.places` as "heardPlaces", `HeardPlaceMath.Max` 24, the oldest
+   go; one mark a place, brought up to date by the newest telling; modelled in `save_estimate.py`): its card's key, the
+   news line, who told it, through whom and when.
+   - From talk (`OutsiderTalk.Heard`, the facts the piece named): at once, "Acraeraes of Karond-Keth 2 told Guido of it, 3
+     days ago (5 Aprimay 5501)", and the heard news keeps the place (`HeardNews.place`, saved).
+   - From a letter's news (`Facts.NewsNear` now records the fact behind each line, `FactSet.newsFacts`; the lines told
+     by the answer's tone, or the town's news one brings): waiting on the answer (`HeardPlace.waitLetter`) and marked when
+     it is in (`NeighbourLetters.Owed`, which every way an answer comes in passes through), "Told in a letter from Golakath
+     of Karond-Keth 2, answering Guido's letter passed on by Acraeraes, ...". An answer that never comes lets it go.
+   - Drawn on Rimfolk's region map (`RegionMapView.DrawHeard`: a small letter on a dark disc above and left of the tile,
+     so it never covers a town's or a site's own mark; hovered, its tooltip with the land; a town's or a site's own
+     tooltip lists it) and, as the least intrusive way onto the game's world map, an overlay drawn after the world's
+     interface (`Patch_HeardPlacesWorld`, a postfix on `WorldInterface.WorldInterfaceOnGUI`, behind the deeper hooks: the
+     layer in view, the planet's near side, `GenWorldUI.WorldToUIPosition`); nothing is added to the world itself.
+   - It fades over the last fifth of the news's own keep time (`HeardPlaceMath.KeepDays`, 60 days, as heard news,
+     `OutsiderTalkMath.HeardDays`), to a quarter at the faintest, and goes then or with the place (`HeardPlaces.Daily`).
+   - Heard news lines (a town's card, the people's page) end with "Show on map", a link that shows the place on the region
+     map (`LinkTextMath.WrapOnMap`, the mark "@" before the thing; `LinkText` then calls `Cards.ShowOnMap`).
+- **An older save.** Open letters keep their addressee. A letter already written to someone who doesn't speak for the town
+  about a town's matter is passed on when it reaches them (`LetterRoutes.Passes` works out whom from the rules then), the
+  head answering it; one already answered stays as it was. Places start empty and are marked as news is heard.
+- Not run here (none of it could be): the window's new layout at its height (860) and the header's button; a letter passed
+  on in the game, by the post, the colony's rider and a call; the head's line in a written-out answer of each shape; the
+  marks on the region map beside a site's own; the world map overlay (its position beside the game's icons, the far side,
+  another layer in view, a tooltip over the planet) and with mods that draw on the world map; "Show on map" from a heard line.
+
 ## Letters that read like letters (the player's request, 9 November 2026)
 
 The player: "letters exchanged from and to pawns should also read like actual letters, make a varied selection of

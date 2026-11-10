@@ -152,6 +152,8 @@ namespace ColonyCouncil
         /// <summary>The notable of theirs the news names (ill, a new head, a death among them told with the new head), or -1; and their name, for one gone since.</summary>
         public int notable = -1;
         public string about;
+        /// <summary>The place the news names, marked on the maps (World/HeardPlaces.cs: its card in text form), or null; the line's "Show on map".</summary>
+        public string place;
 
         public void ExposeData()
         {
@@ -164,6 +166,7 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref tick, "tick");
             Scribe_Values.Look(ref notable, "notable", -1);
             Scribe_Values.Look(ref about, "about");
+            Scribe_Values.Look(ref place, "place");
         }
     }
 

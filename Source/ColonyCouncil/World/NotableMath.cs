@@ -119,6 +119,11 @@ namespace ColonyCouncil
         public bool troubled;
         /// <summary>The colony wrote to them for the same thing only a little while ago.</summary>
         public bool lately;
+        /// <summary>
+        /// Passed on by someone who isn't the head (World/LetterAddressMath.cs, Word): their good word, or their poor one; 0 for
+        /// a letter written to the one who answers it.
+        /// </summary>
+        public float word;
     }
 
     /// <summary>
@@ -333,10 +338,10 @@ namespace ColonyCouncil
 
         // ---------------- The answer ----------------
 
-        /// <summary>How well the letter lands, before luck: who they think the colony and the writer are, the writer's way with words, their nature, what it's for and how it went.</summary>
+        /// <summary>How well the letter lands, before luck: who they think the colony and the writer are, the writer's way with words, their nature, what it's for, how it went and who passed it on.</summary>
         public static float Score(LetterInput x)
         {
-            float s = x.opinion * 0.55f + x.ofWriter * 0.35f + (Clamp(x.social, 0, 20) - 6) * 1.5f + Clamp(x.warmth, -2, 2) * 6f + PurposeBase(x.purpose, x.troubled);
+            float s = x.opinion * 0.55f + x.ofWriter * 0.35f + (Clamp(x.social, 0, 20) - 6) * 1.5f + Clamp(x.warmth, -2, 2) * 6f + PurposeBase(x.purpose, x.troubled) + x.word;
             if (x.channel == LetterChannel.Console) s -= 6f;
             else if (Personal(x.purpose) && x.traditional) s += 8f;
             if (x.lately) s -= 10f;

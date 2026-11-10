@@ -58,6 +58,24 @@ namespace ColonyCouncil
             return Open + thing + Mid + Plain(label) + Close;
         }
 
+        /// <summary>
+        /// A link that shows its place on the region map rather than opening its card ("Show on map" on news heard of a place:
+        /// World/HeardPlaces.cs): the thing's text form after this mark.
+        /// </summary>
+        public const char OnMapMark = '@';
+
+        /// <summary>The words shown as a link that shows the place on the map (<see cref="OnMapMark"/>).</summary>
+        public static string WrapOnMap(string label, string thing) => string.IsNullOrEmpty(thing) ? label : Wrap(label, OnMapMark + thing);
+
+        /// <summary>A link's thing in text form that shows it on the map, and the thing without the mark.</summary>
+        public static bool OnMap(string thing, out string bare)
+        {
+            bare = thing;
+            if (string.IsNullOrEmpty(thing) || thing[0] != OnMapMark) return false;
+            bare = thing.Substring(1);
+            return true;
+        }
+
         /// <summary>The text with every marker taken out, its links' words kept: what the game gets. The same string when there is none.</summary>
         public static string Plain(string s)
         {
@@ -222,6 +240,8 @@ namespace ColonyCouncil
             public readonly List<string> links = new List<string>();
             /// <summary>Each link's thing read back (none for a text form that names nothing).</summary>
             public readonly List<ThingRef> things = new List<ThingRef>();
+            /// <summary>Each link shows its place on the map rather than opening its card (<see cref="OnMapMark"/>).</summary>
+            public readonly List<bool> onMap = new List<bool>();
             public int lines;
         }
 
@@ -254,7 +274,9 @@ namespace ColonyCouncil
                 {
                     runLink[r] = layout.links.Count;
                     layout.links.Add(runs[r].thing);
-                    layout.things.Add(ThingRef.Parse(runs[r].thing));
+                    bool onMap = OnMap(runs[r].thing, out string bare);
+                    layout.things.Add(ThingRef.Parse(bare));
+                    layout.onMap.Add(onMap);
                 }
                 string text = runs[r].text ?? "";
                 int i = 0;

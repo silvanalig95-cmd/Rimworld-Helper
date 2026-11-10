@@ -280,6 +280,7 @@ namespace ColonyCouncil
                 DrawLines(w, h);
                 DrawEventTiles(w, h);
                 DrawMarks(marks, w, h);
+                DrawHeard(w, h);
                 Labels(marks, w, h);
                 // The lens's legend at the map's foot (the whole of it in the panel with nothing picked).
                 if (lens != null) UiKit.LegendStrip(new Rect(6f, 0f, local.width - 44f, local.height - 6f), lens.legend);
@@ -357,10 +358,19 @@ namespace ColonyCouncil
             }
             hoverMark = MarkAt(marks, mouse, w, h);
             ToMap(view, w, h, mouse.x, mouse.y, out double x, out double y);
-            hoverTile = hoverMark != null ? hoverMark.index : map.TileAt(x, y);
-            int key = hoverMark != null ? 0x40000000 ^ hoverMark.obj.ID : hoverTile;
+            // A place heard of, its small mark beside the tile (World/HeardPlaces.cs), when no mark is under the mouse.
+            int heardIndex = -1;
+            var heard = hoverMark == null ? HeardAt(mouse, w, h, out heardIndex) : null;
+            hoverTile = hoverMark != null ? hoverMark.index : heard != null ? heardIndex : map.TileAt(x, y);
+            int key = hoverMark != null ? 0x40000000 ^ hoverMark.obj.ID : heard != null ? 0x20000000 ^ heardIndex : hoverTile;
             if (key == tipFor) return;
             tipFor = key;
+            if (heard != null)
+            {
+                string land = map.TileText(heardIndex, true);
+                tip = heard.tip + (land.NullOrEmpty() ? "" : "\n\n" + land);
+                return;
+            }
             tip = hoverMark != null ? MarkTip(hoverMark) : map.TileText(hoverTile, true);
         }
 
@@ -376,6 +386,8 @@ namespace ColonyCouncil
                 // How the colony's letters reach the town now (Post/PostWords.cs): the diplomatic range until radio.
                 if (m.obj is Settlement town) lines.AddRange(PostRing.Tip(map.home, town));
             }
+            // Heard of in talk or a letter (World/HeardPlaces.cs): who told the colony, through whom, and when.
+            foreach (var heard in HeardPlaces.TipsAt(m.obj)) lines.Add("\n" + heard);
             string land = map.TileText(m.index, true);
             if (!land.NullOrEmpty()) lines.Add("\n" + land);
             lines.Add("\n" + "CC_Region_ClickTip".Translate());
@@ -506,6 +518,41 @@ namespace ColonyCouncil
                 UiKit.DiscFill(r.ExpandedBy(2f), MarkBack);
                 UiKit.Icon(r, Icons.WorldEvent, UiKit.WorldColor);
             }
+        }
+
+        // ---------------- Places heard of ----------------
+
+        /// <summary>A place heard of's mark: small, above and left of its tile's centre, so it never covers a town's or a site's own.</summary>
+        private static Rect HeardRect(double sx, double sy) => new Rect((float)sx - 17f, (float)sy - 17f, 11f, 11f);
+
+        /// <summary>Places heard of (World/HeardPlaces.cs): a small letter on a dark disc beside the tile, fading as its time runs out.</summary>
+        private void DrawHeard(double w, double h)
+        {
+            if (Event.current.type != EventType.Repaint) return;
+            foreach (var s in HeardPlaces.Current())
+            {
+                if (s.tile.Layer != map.layer || !map.TryIndex(s.tile, out int i)) continue;
+                ToScreen(view, w, h, map.cx[i], map.cy[i], out double sx, out double sy);
+                if (sx < -20 || sy < -20 || sx > w + 20 || sy > h + 20) continue;
+                var r = HeardRect(sx, sy);
+                UiKit.DiscFill(r.ExpandedBy(3f), UiKit.WithAlpha(MarkBack, 0.9f * s.alpha));
+                UiKit.Icon(r, Icons.Journal, UiKit.WithAlpha(HeardPlaces.Ink, s.alpha));
+            }
+        }
+
+        /// <summary>The place heard of whose mark is under the mouse, and its tile's index, or null.</summary>
+        private HeardPlaces.Shown HeardAt(Vector2 mouse, double w, double h, out int index)
+        {
+            index = -1;
+            foreach (var s in HeardPlaces.Current())
+            {
+                if (s.tile.Layer != map.layer || !map.TryIndex(s.tile, out int i)) continue;
+                ToScreen(view, w, h, map.cx[i], map.cy[i], out double sx, out double sy);
+                if (!HeardRect(sx, sy).ExpandedBy(3f).Contains(mouse)) continue;
+                index = i;
+                return s;
+            }
+            return null;
         }
 
         /// <summary>Names under the settlements (and under anything picked or hovered), never one over another.</summary>

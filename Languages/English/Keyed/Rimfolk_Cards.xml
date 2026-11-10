@@ -90,7 +90,8 @@
   <CC_Card_Act_Jump>Go to them</CC_Card_Act_Jump>
   <CC_Card_Act_Town>Their town</CC_Card_Act_Town>
   <CC_Card_Act_WriteThere>Write to the town</CC_Card_Act_WriteThere>
-  <CC_Card_Act_WriteThere_Tip>Write to {NAME}, or to someone else the colony knows there.</CC_Card_Act_WriteThere_Tip>
+  <CC_Card_Act_WriteThere_Tip>Write to {NAME}, who speaks for the town, or to someone else the colony knows there: the town's matters go to its head.</CC_Card_Act_WriteThere_Tip>
+  <CC_Card_Act_WriteThere_TipNoHead>Write to {NAME}, or to someone else the colony knows there. Nobody the colony knows speaks for the town yet, so only personal letters can go.</CC_Card_Act_WriteThere_TipNoHead>
   <CC_Card_Act_People>Their people</CC_Card_Act_People>
   <CC_Card_Act_InHistory>In the history</CC_Card_Act_InHistory>
   <CC_Card_Act_Letters>Letters and calls</CC_Card_Act_Letters>

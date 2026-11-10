@@ -302,7 +302,8 @@ public static class TownAfterTests
         C(Code("World/NotableMath.cs").Contains("        TakeBack,\n") && Code("World/NotableMath.cs").IndexOf("        TakeBack,\n") < Code("World/NotableMath.cs").IndexOf("        Dealing\n    }")
           && Code("Diplomacy/DiplomacyLetters.cs").Contains("TownLetters.Owns(p)"),
             "asking for it back: a letter purpose of the neighbour letters' own, after the others");
-        C(Code("World/NeighboursPanel.cs").Contains("TownLetters.Owns(p) && !TownLetters.Shows(to)"), "offered only in a letter to the head of a town the colony was");
+        // To the head, or asked of someone else of the town to pass it on to the head (World/LetterRoutes.cs).
+        C(Code("World/NeighboursPanel.cs").Contains("TownLetters.Owns(p) && !TownLetters.Shows(who ?? to)"), "offered only in a letter to the head of a town the colony was");
 
         // ---------------- Its life, and no schedule slot ----------------
 
