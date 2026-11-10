@@ -5,6 +5,7 @@ using RimWorld;
 using RimWorld.Planet;
 using UnityEngine;
 using Verse;
+using Verse.AI;
 
 namespace ColonyCouncil
 {
@@ -73,35 +74,141 @@ namespace ColonyCouncil
             return bag != null ? bag.Position : Gate(map);
         }
 
-        /// <summary>Letters waiting in a home's outbox, oldest first (packed by a caravan's member: not counted as waiting).</summary>
+        /// <summary>
+        /// Letters in a home's outbox, oldest first (packed by a caravan's member: not counted as waiting): the mailbag's list,
+        /// with those still in their writer's hand on the way to it (<see cref="NeighbourLetter.bringing"/>).
+        /// </summary>
         public static List<NeighbourLetter> Waiting(Map map, bool packedToo = false) =>
             Book?.letters.Where(l => l.stage == LetterStage.Outbox && l.map == map && (packedToo || l.packedBy == null)).OrderBy(l => l.stageTick).ToList()
             ?? new List<NeighbourLetter>();
 
-        public static bool Any(Map map) => Book?.letters.Any(l => l.stage == LetterStage.Outbox && l.map == map) ?? false;
+        /// <summary>A letter in a home's mailbag for a carrier to take (not one still on its way there).</summary>
+        public static bool Any(Map map) => Book?.letters.Any(l => l.stage == LetterStage.Outbox && !l.bringing && l.map == map) ?? false;
 
-        public static bool AnyAnywhere => Book?.letters.Any(l => l.stage == LetterStage.Outbox) ?? false;
+        public static bool AnyAnywhere => Book?.letters.Any(l => l.stage == LetterStage.Outbox && !l.bringing) ?? false;
+
+        /// <summary>
+        /// The colony's letters on a home waiting at the gate for a go-between under a white flag (their people at war) or a
+        /// messenger of theirs (the post off), oldest first: the mailbag's list shows them under their own heading.
+        /// </summary>
+        public static List<NeighbourLetter> AtGate(Map map) =>
+            Book?.letters.Where(l => l.map == map && Section(l) == PostMath.BagSection.AtGate).OrderBy(l => l.stageTick).ToList() ?? new List<NeighbourLetter>();
+
+        public static PostMath.BagSection Section(NeighbourLetter l) =>
+            PostMath.SectionOf(l.stage == LetterStage.Outbox, l.bringing, l.stage == LetterStage.AwaitMessenger, l.bearer != null && l.tripId < 0);
+
+        // ---------------- Brought to the mailbag ----------------
+
+        /// <summary>
+        /// Written for the post: the writer carries it to the mailbag (or, with none, the plain cell by the gate) and puts it
+        /// in (JobDriver_PostPutIn, then <see cref="BroughtIn"/>), their next job from the table. Until then the mailbag's list
+        /// shows it as being brought and no carrier takes it. A writer kept from it (drafted, downed, away, a raid on) brings it
+        /// once free (<see cref="Bringing"/>, on the letters' 250-tick pass); after PostMath.BringFallbackTicks, or with the
+        /// writer no longer the colony's, it goes in all the same, said as such. Never lost, never stuck.
+        /// </summary>
+        public static void Bring(NeighbourLetter l, Pawn writer)
+        {
+            if (l == null) return;
+            l.stage = LetterStage.Outbox;
+            l.stageTick = Now;
+            l.bringing = true;
+            l.packedBy = null;
+            l.packed = false;
+            l.metAtGate = false;
+            NotableBook.Changed();
+            if (!Walk(l, writer, true)) Bringing(l, Now);
+        }
+
+        /// <summary>The letters' 250-tick pass while one is being brought: on the way, waiting for its writer, walked over, or in after all.</summary>
+        public static void Bringing(NeighbourLetter l, int now)
+        {
+            if (l == null || !l.bringing || l.stage != LetterStage.Outbox) return;
+            var p = l.writer;
+            bool ours = KinMemory.Ours(p) && l.map != null && Find.Maps.Contains(l.map);
+            switch (PostMath.Bring(OnTheWay(p), ours, ours && Free(p, l.map), now - l.stageTick))
+            {
+                case PostMath.BringStep.In:
+                    In(l, null);
+                    return;
+                case PostMath.BringStep.Walk:
+                    Walk(l, p, false);
+                    return;
+            }
+        }
+
+        /// <summary>Someone carrying one of their letters to the mailbag (for the job: none left, it ends).</summary>
+        public static bool Carrying(Pawn p) => p != null && (Book?.letters.Any(l => l.bringing && l.stage == LetterStage.Outbox && l.writer == p) ?? false);
+
+        /// <summary>At the mailbag (from the job): every letter they were bringing goes in.</summary>
+        public static void BroughtIn(Pawn p)
+        {
+            var book = Book;
+            if (book == null || p == null) return;
+            foreach (var l in book.letters.Where(x => x.bringing && x.stage == LetterStage.Outbox && x.writer == p && x.map == p.Map).ToList()) In(l, p);
+        }
+
+        /// <summary>In the mailbag at last: the message, and the colony's own rider sets out with it.</summary>
+        private static void In(NeighbourLetter l, Pawn by)
+        {
+            Put(l, by);
+            if (l.ownRider) OwnRiders.SetOut(l);
+        }
+
+        /// <summary>The writer's walk to the mailbag: right after writing it (queued after the table), else now if they are free.</summary>
+        private static bool Walk(NeighbourLetter l, Pawn p, bool justWritten)
+        {
+            var map = l.map;
+            if (map == null || !Together.Able(p) || p.Map != map) return false;
+            var spot = Spot(map);
+            if (!spot.IsValid || !p.CanReach(spot, PathEndMode.ClosestTouch, Danger.Some)) return false;
+            var job = JobMaker.MakeJob(PostDefOf.Rimfolk_PostPutIn, spot);
+            job.locomotionUrgency = Pace.Errand;
+            if (justWritten && p.CurJobDef == NotableDefOf.Council_WriteLetter) p.jobs.jobQueue.EnqueueFirst(job, JobTag.Misc);
+            else p.jobs.StartJob(job, JobCondition.InterruptForced, null, false, true);
+            return true;
+        }
+
+        /// <summary>On the way to the mailbag with it, or about to be (the walk queued after what they're doing).</summary>
+        private static bool OnTheWay(Pawn p)
+        {
+            if (p?.jobs == null) return false;
+            if (p.CurJobDef == PostDefOf.Rimfolk_PostPutIn) return true;
+            foreach (var q in p.jobs.jobQueue)
+                if (q?.job?.def == PostDefOf.Rimfolk_PostPutIn)
+                    return true;
+            return false;
+        }
+
+        /// <summary>Free to walk it over: up, at home, not needed for something more pressing, no danger on the map.</summary>
+        private static bool Free(Pawn p, Map map) =>
+            p.Spawned && p.Map == map && Together.Able(p) && PlayOuts.CanJoin(p) && PlayOuts.Interruptible(p) && !PlayOuts.NeedsPress(p) && PlayOuts.WhyNotNow(map, false) == null;
 
         // ---------------- In ----------------
 
-        /// <summary>A letter goes in the outbox: written (or a message to be spoken), it waits for someone going its way.</summary>
+        /// <summary>
+        /// A letter goes in the outbox: written and brought (or a message to be spoken), it waits for someone going its way.
+        /// <paramref name="by"/>: who put it in; null when nobody walked it over (an older save's letter, a writer kept from it
+        /// too long), said as "is in the mailbag now".
+        /// </summary>
         public static void Put(NeighbourLetter l, Pawn by)
         {
             if (l == null) return;
             l.stage = LetterStage.Outbox;
             l.stageTick = Now;
+            l.bringing = false;
             l.packedBy = null;
             l.metAtGate = false;
             NotableBook.Changed();
             var map = l.map;
             var bag = Bag(map);
+            bool late = by == null && !l.spoken;
             // apart: the writer puts the letter in the mailbag (or keeps the words for a carrier); nobody else is there for it.
-            string key = l.spoken ? "CC_Mail_Msg_Spoken" : bag != null ? "CC_Mail_Msg_InBag" : "CC_Mail_Msg_AtGate";
-            // Written out in full, it can be read at the mailbag and on the people page (Letters/LetterBook.cs).
-            bool kept = LetterBook.ForLetter(l.id)?.Ours != null;
-            Notify.Message(key.Translate((by?.LabelShort ?? l.WriterName).Named("PAWN"), (l.toName ?? "?").Named("TO"), PostWords.Likely(l).Named("LIKELY")).Resolve()
-                + NeighbourLetters.CanRead(kept, NotableBook.Instance?.Get(l.notable), true),
-                bag != null ? new LookTargets(bag) : by != null && by.Spawned ? new LookTargets(by) : LookTargets.Invalid, MessageTypeDefOf.NeutralEvent, Importance.Notable);
+            string key = l.spoken ? "CC_Mail_Msg_Spoken" : bag != null ? late ? "CC_Mail_Msg_InBagLate" : "CC_Mail_Msg_InBag" : late ? "CC_Mail_Msg_AtGateLate" : "CC_Mail_Msg_AtGate";
+            var spot = Spot(map);
+            var look = bag != null ? new LookTargets(bag) : by != null && by.Spawned ? new LookTargets(by) : spot.IsValid ? new LookTargets(new TargetInfo(spot, map)) : LookTargets.Invalid;
+            // Written out in full, a click on the message opens it (Letters/LetterClick.cs).
+            Notify.LetterMessage(key.Translate((by?.LabelShort ?? l.WriterName).Named("PAWN"), (l.toName ?? "?").Named("TO"), PostWords.Likely(l).Named("LIKELY")).Resolve(), l.id,
+                look, MessageTypeDefOf.NeutralEvent, Importance.Notable);
         }
 
         // ---------------- Who takes it ----------------
@@ -120,7 +227,8 @@ namespace ColonyCouncil
         /// </summary>
         public static bool Goes(NeighbourLetter l, MailCarrier c)
         {
-            if (l == null || l.stage != LetterStage.Outbox || l.map != c.map) return false;
+            // In the mailbag, not still in its writer's hand, and not kept for the colony's own rider.
+            if (l == null || !PostMath.MayTake(l.stage == LetterStage.Outbox, l.bringing, l.ownRider) || l.map != c.map) return false;
             var town = TownOf(l, out var n);
             if (town == null || n?.faction == null || NotableBook.Hostile(n)) return false;
             var map = c.map;
@@ -200,11 +308,11 @@ namespace ColonyCouncil
                 by != null && by.Spawned ? new LookTargets(by) : LookTargets.Invalid, MessageTypeDefOf.NeutralEvent, Importance.Notable);
         }
 
-        /// <summary>Taken out of the outbox again (the player's word, or the letter called off).</summary>
+        /// <summary>Taken out of the outbox again (the player's word, or the letter called off); one still in its writer's hand is kept by them.</summary>
         public static void TakeBack(NeighbourLetter l)
         {
             if (l == null || l.stage != LetterStage.Outbox) return;
-            NeighbourLetters.Cancel(l, "CC_Mail_Cancel_TakenBack");
+            NeighbourLetters.Cancel(l, l.bringing ? "CC_Mail_Cancel_Kept" : "CC_Mail_Cancel_TakenBack");
         }
     }
 }

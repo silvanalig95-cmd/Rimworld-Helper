@@ -486,7 +486,11 @@ MODEL = {
     "World/Notables.cs:lastKeys": ("fixed", 7, V, "per notable: one per purpose of a letter, and the last gift with an answer (counted under notables)"),
     "World/Notables.cs:lastTicks": ("fixed", 7, V, "per notable: one per purpose of a letter, and the last gift with an answer (counted under notables)"),
     "World/Notables.cs:done": ("fixed", 12, 40, "per notable: losses mourned, the newest 12 (counted under notables; warnings are their people's since 10 November 2026)"),
-    "World/Notables.cs:letters": ("cap", (C["PostOpen"] + 3, 0.5), 560, "letters and calls under way, PostMath.MaxOpen at once with the post (NotableMath.MaxOpen without); ended ones kept two days"),
+    # Each letter carries its fields and flags; "bringing" (since 10 November 2026) is set while its writer carries it to
+    # the mailbag, an hour or so and four at most (PostMath.BringFallbackTicks), and cleared once it is in.
+    "World/Notables.cs:letters": ("cap", (C["PostOpen"] + 3, 0.5), 590,
+                                  "letters and calls under way, PostMath.MaxOpen at once with the post (NotableMath.MaxOpen without); ended ones kept two days; "
+                                  "the bringing flag while the writer carries one to the mailbag, cleared once in"),
     # The post (Post/PostBook.cs): mail for the colony waiting for a carrier, each home's regular post, the colony's riders out.
     "Post/PostBook.cs:incoming": ("cap", (C["PostIncoming"], 1), 700, "answers and the world's letters waiting for a carrier: PostMath.MaxIncoming at most (the oldest goes by messenger), each gone once it opens"),
     "Post/PostBook.cs:rounds": ("fixed", 1, 120, "one regular post a home (one home in the model): when it next comes, the rider's group while here"),

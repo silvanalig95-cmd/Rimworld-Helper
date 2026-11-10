@@ -298,5 +298,6 @@
     <Compile Include="../../Source/ColonyCouncil/Letters/LetterFormMath.cs" Link="LetterFormMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Letters/LetterCultureMath.cs" Link="LetterCultureMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Letters/LetterKindMath.cs" Link="LetterKindMath.cs" />
+    <Compile Include="../../Source/ColonyCouncil/Letters/LetterClickMath.cs" Link="LetterClickMath.cs" />
   </ItemGroup>
 </Project>

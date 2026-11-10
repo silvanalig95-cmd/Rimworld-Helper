@@ -426,6 +426,90 @@ namespace ColonyCouncil
         /// <summary>How long a carrier waits at the gate for a colonist to give them a spoken message (ticks): an hour and a half.</summary>
         public const int SpokenWaitTicks = 3750;
 
+        // ---------------- Written: carried to the mailbag, or waiting at the gate ----------------
+
+        /// <summary>How a letter just written leaves (the player, 10 November 2026: "do the pawns actually bring the letters to the bag also?").</summary>
+        public enum WrittenWay
+        {
+            /// <summary>By the post: the writer carries it to the mailbag (or the gate) and puts it in.</summary>
+            Post,
+            /// <summary>Their people at war with the colony: it waits at the gate for a go-between under a white flag.</summary>
+            GoBetween,
+            /// <summary>The post off in the settings: it waits at the gate for a messenger of theirs.</summary>
+            Messenger
+        }
+
+        /// <summary>A people at war can't be reached by the post whether it runs or not; with the post off any other letter waits for a messenger.</summary>
+        public static WrittenWay Written(bool postOn, bool hostile) => hostile ? WrittenWay.GoBetween : postOn ? WrittenWay.Post : WrittenWay.Messenger;
+
+        /// <summary>
+        /// The message as a letter not going by the post is written, saying why it isn't in the mailbag and who comes for it
+        /// (null for the post: the message comes as it goes in).
+        /// </summary>
+        public static string WrittenKey(WrittenWay w, bool postOn) =>
+            w == WrittenWay.GoBetween ? postOn ? "CC_Letter_Msg_WrittenWar" : "CC_Letter_Msg_WrittenWarNoPost" : w == WrittenWay.Messenger ? "CC_Letter_Msg_Written" : null;
+
+        /// <summary>
+        /// How long a letter written for the post may wait for its writer to bring it to the mailbag before it goes in all the
+        /// same (ticks): four hours. Drafted, downed, away or busy with something that can't wait, it is never lost nor stuck.
+        /// </summary>
+        public const int BringFallbackTicks = 10000;
+
+        /// <summary>The put-in at the mailbag, with its bar (ticks): a second and a half.</summary>
+        public const int PutInTicks = 90;
+
+        /// <summary>What becomes of a letter being brought to the mailbag, looked at on the letters' 250-tick pass.</summary>
+        public enum BringStep
+        {
+            /// <summary>On the way already, or the writer is busy for now.</summary>
+            Wait,
+            /// <summary>The writer is free: they walk it over.</summary>
+            Walk,
+            /// <summary>It goes in without them: the writer is no longer the colony's, or the wait is over.</summary>
+            In
+        }
+
+        /// <summary>The writer on the way with it waits; one no longer the colony's, or the fallback's hours gone, puts it in; a free writer walks it over.</summary>
+        public static BringStep Bring(bool onTheWay, bool writerOurs, bool writerFree, int waited)
+        {
+            if (onTheWay && writerOurs && waited < BringFallbackTicks * 2) return BringStep.Wait;
+            if (!writerOurs || waited >= BringFallbackTicks) return BringStep.In;
+            return writerFree ? BringStep.Walk : BringStep.Wait;
+        }
+
+        /// <summary>Where a letter of the colony's shows in the mailbag's list: in it, being brought, waiting at the gate, or not there.</summary>
+        public enum BagSection
+        {
+            None,
+            /// <summary>In the mailbag, waiting for a carrier going its way.</summary>
+            In,
+            /// <summary>Written, on its way to the mailbag in the writer's hand: no carrier can take it yet.</summary>
+            Bringing,
+            /// <summary>Waiting at the gate for a go-between or a messenger of theirs (not the post's).</summary>
+            AtGate
+        }
+
+        /// <summary>
+        /// The mailbag's list: the outbox's letters (being brought, or in); a letter waiting for a messenger at the gate, unless
+        /// someone of their people at the colony is to carry it home by hand.
+        /// </summary>
+        public static BagSection SectionOf(bool outbox, bool bringing, bool awaitMessenger, bool byBearer)
+        {
+            if (outbox) return bringing ? BagSection.Bringing : BagSection.In;
+            return awaitMessenger && !byBearer ? BagSection.AtGate : BagSection.None;
+        }
+
+        /// <summary>A carrier going its way may take it: in the mailbag (not still in its writer's hand), and not kept for the colony's own rider.</summary>
+        public static bool MayTake(bool outbox, bool bringing, bool ownRider) => outbox && !bringing && !ownRider;
+
+        /// <summary>The heading over the letters waiting at the gate: for a go-between, a messenger, or both.</summary>
+        public static string GateHeadKey(int war, int others) =>
+            war > 0 && others > 0 ? "CC_Mail_Gate_HeadBoth" : war > 0 ? "CC_Mail_Gate_HeadWar" : "CC_Mail_Gate_HeadMessenger";
+
+        /// <summary>A letter's line at the gate: the go-between or messenger there now, or coming for it.</summary>
+        public static string GateLineKey(bool hostile, bool there) =>
+            hostile ? there ? "CC_Mail_Gate_LineWarHere" : "CC_Mail_Gate_LineWar" : there ? "CC_Mail_Gate_LineHere" : "CC_Mail_Gate_Line";
+
         // ---------------- How to reach them, in words ----------------
 
         /// <summary>"about a day", "about two days": whole days, at least one, for the reach line (never a countdown).</summary>

@@ -12,6 +12,47 @@ tree at once, alongside whatever runs. Each piece is merged as its own release, 
 
 ## State (5 November 2026)
 
+- **The letter carried and read** (10 November 2026, the player's report with their save). **Not released: no version,
+  no What's new round, About.xml and CHANGELOG untouched.** The player: "i think i instructed a pawn to send a letter, the
+  text appeared above but I can't find it in the mailbag? do the pawns actually bring the letters to the bag also? i
+  should be able to read the letter directly by clicking the pop-up". Their letter (id 11, Guido's warning to Will, mayor
+  of Kur'Fokin Covenant) is to a people at war: by design a go-between under a white flag comes to the gate for it, but
+  the message didn't say so, the mailbag didn't list it and the click only jumped the camera. DESIGN.md "The letter
+  carried and read" (under the post) has all of it; README's post and letters paragraphs.
+  - The writer carries a letter for the post to the mailbag (or the gate cell) and puts it in (`Outbox.Bring`, job
+    `Rimfolk_PostPutIn`, `JobDriver_PostPutIn`, `Outbox.BroughtIn`); until then the bag lists "Guido is bringing it" and
+    no carrier takes it (`NeighbourLetter.bringing`, saved, modelled in `save_estimate.py`). Cut off, they bring it when
+    free (`Outbox.Bringing` on the letters' 250-tick pass); after four hours, or with the writer gone, it goes in all the
+    same ("is in the mailbag now"). Spoken messages as before.
+  - A letter not by the post says why (`CC_Letter_Msg_WrittenWar`, `_WrittenWarNoPost`, `CC_Letter_Msg_Written` for the
+    post off), said once the go-between is on the way; the mailbag's pane has "Waiting at the gate for a go-between:"
+    (`PostWords.GateLines`, `Outbox.AtGate`), and "Read a letter" lists those letters (it shows with the post off too).
+  - Click the pop-up to read: `Notify.LetterMessage` (letter id through `Tell.Message`'s `read` and `NewsItem.read`, not
+    saved); `News.Show` makes the message with "Click to read it." (`LetterClick.Make`) and keeps it with the letter while
+    on screen (`ClickMap`); `Patch_LetterMessageClick` (prefix on `Message.Draw`) opens `LetterReadWindow` on the left
+    button going down and uses the event. Without the patch: the camera jump, and the old "It can be read..." hint.
+  - Pure: `PostMath` (`Written`, `WrittenKey`, `Bring`, `BringFallbackTicks`, `PutInTicks`, `SectionOf`, `MayTake`,
+    `GateHeadKey`, `GateLineKey`), `Letters/LetterClickMath.cs` (new, linked). Tests `Tools/Tests/LetterCarryTests.cs`
+    (101 checks: every way and message, the walk and its fallback, never stuck over 2,000 random writers, the sections,
+    the click and its map, their save end to end, the seams); `PostTests`' seam follows `Outbox.Bring`.
+  - Not run here (none of it could be): the put-in job in the game (queued after the writing job, the walk, the bar, a
+    writer drafted or downed on the way and sent again); the click on a real message (the prefix seeing the mouse go
+    down before the message's own window, the event used so the camera doesn't jump, a right click still dismissing; with
+    the HUD panels' boxes behind the messages); the gate section and the read list in the mailbag's inspect pane and its
+    height with many letters.
+  - Try in the game: 1. Write to a notable of a people at peace with a mailbag placed: when the writing is done the writer
+    walks to the mailbag, stands a moment with a bar, and only then "Guido put the letter to Will in the mailbag at the
+    gate... Click to read it."; select the mailbag while they walk: "Guido is bringing it". 2. Click that message: the
+    letter opens on paper, the camera stays. 3. Right-click a message: it is dismissed as before. 4. Draft the writer on
+    the way: undrafted and free, they take it again; kept drafted four hours, "Guido's letter to Will is in the mailbag at
+    the gate now". 5. No mailbag: they walk to the gate cell. 6. Their save: Guido's warning to Will is listed in the
+    mailbag under "Waiting at the gate for a go-between:" and "Read a letter" offers it "(waiting at the gate)". 7. Write
+    to a people at war: "With their people at war with us it can't go with the post: a go-between under a white flag will
+    come to the gate for it. Click to read it."; when the go-between is at the gate the line says so. 8. The post off in
+    the settings: the message says so and a messenger of theirs comes; the bag lists it at the gate. 9. A traveller
+    leaving while a letter is still being brought doesn't take it. 10. A tribal colony's spoken message goes in at once
+    as before. 11. The deeper hooks off: the message ends "It can be read with Will on the Diplomacy screen's People" and a
+    click jumps the camera.
 - **Held by the player (10 November 2026): no new letters content jobs until they ask** ("for the letters please hold
   after this job then ... I'd like to keep such jobs for the end of the week to use up my remaining tokens"). The letters
   round 2 part 1 agent was already running; its part 2 (more content in the same shapes) waits for their word.

@@ -84,14 +84,49 @@ namespace ColonyCouncil
             return null;
         }
 
-        /// <summary>One line for each letter in a home's outbox: to whom, what for, written by, how it's likely to leave.</summary>
+        /// <summary>
+        /// One line for each letter in a home's outbox: to whom, what for, written by, how it's likely to leave; one still in its
+        /// writer's hand, that they are bringing it.
+        /// </summary>
         public static List<string> OutboxLines(Map map)
         {
             var lines = new List<string>();
             foreach (var l in Outbox.Waiting(map, true))
-                lines.Add(P(l.spoken ? "CC_Mail_Line_Spoken" : "CC_Mail_Line", (l.toName ?? "?").Named("TO"), ("CC_Letter_Purpose_" + l.purpose).Translate().Resolve().Named("PURPOSE"),
-                    l.WriterName.Named("PAWN"), Likely(l).Named("LIKELY")));
+                lines.Add(P(l.bringing ? "CC_Mail_Line_Bringing" : l.spoken ? "CC_Mail_Line_Spoken" : "CC_Mail_Line", (l.toName ?? "?").Named("TO"), Purpose(l).Named("PURPOSE"),
+                    l.WriterName.Named("PAWN"), (l.bringing ? "" : Likely(l)).Named("LIKELY")));
             return lines;
+        }
+
+        private static string Purpose(NeighbourLetter l) => ("CC_Letter_Purpose_" + l.purpose).Translate().Resolve();
+
+        /// <summary>
+        /// The letters waiting at the gate for a go-between under a white flag (their people at war) or a messenger of theirs
+        /// (the post off): a heading, then a line each (to whom, what for, written by, who comes for it, or that they're here).
+        /// Empty when there are none.
+        /// </summary>
+        public static List<string> GateLines(Map map, int most)
+        {
+            var lines = new List<string>();
+            var gate = Outbox.AtGate(map);
+            if (gate.Count == 0) return lines;
+            int war = 0;
+            foreach (var l in gate)
+                if (AtWar(l))
+                    war++;
+            lines.Add(P(PostMath.GateHeadKey(war, gate.Count - war)));
+            foreach (var l in gate.Take(most))
+                lines.Add(P(PostMath.GateLineKey(AtWar(l), MessengerHere(l)), (l.toName ?? "?").Named("TO"), Purpose(l).Named("PURPOSE"), l.WriterName.Named("PAWN")));
+            if (gate.Count > most) lines.Add(P("CC_Mail_Bag_More", (gate.Count - most).Named("COUNT")));
+            return lines;
+        }
+
+        private static bool AtWar(NeighbourLetter l) => l.hostile || NotableBook.Hostile(NotableBook.Instance?.Get(l.notable));
+
+        /// <summary>The go-between or messenger come for it is at the gate now, the letter not yet in their hands.</summary>
+        private static bool MessengerHere(NeighbourLetter l)
+        {
+            var t = l.tripId >= 0 ? CourierTracker.Instance?.Get(l.tripId) : null;
+            return t != null && t.arrived >= 0 && !t.received && !t.settled;
         }
 
         // ---------------- Where a letter is ----------------
@@ -102,6 +137,7 @@ namespace ColonyCouncil
             switch (l.stage)
             {
                 case LetterStage.Outbox:
+                    if (l.bringing) return P(Outbox.Bag(l.map) != null ? "CC_Mail_Status_Bringing" : "CC_Mail_Status_BringingGate", l.WriterName.Named("PAWN"));
                     return P(l.ownRider ? "CC_Mail_Status_RiderReady" : l.packed ? "CC_Mail_Status_Packed" : l.spoken ? "CC_Mail_Status_Spoken" : "CC_Mail_Status_Outbox",
                         l.WriterName.Named("PAWN"), (n?.Name ?? "?").Named("NAME"), (l.rider?.LabelShort ?? l.packedBy?.LabelShort ?? "?").Named("RIDER"));
                 case LetterStage.Riding:

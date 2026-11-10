@@ -13,6 +13,7 @@ namespace ColonyCouncil
         public static JobDef Rimfolk_PostDrop;
         public static JobDef Rimfolk_PostSpeak;
         public static JobDef Rimfolk_RiderSetOut;
+        public static JobDef Rimfolk_PostPutIn;
 
         static PostDefOf()
         {
@@ -77,6 +78,43 @@ namespace ColonyCouncil
             };
             wait.AddFinishAction(() => MailWatch.Waited(pawn));
             yield return wait;
+        }
+    }
+
+    /// <summary>
+    /// The writer of a letter just written for the post walks it to the mailbag (target A: its cell, or the plain cell by the
+    /// gate) and puts it in; only then is it in the post (Post/Outbox.cs, BroughtIn). Cut off on the way (drafted, downed,
+    /// the letter called off), it ends, and the letters' pass sends them again or puts it in later.
+    /// </summary>
+    public class JobDriver_PostPutIn : JobDriver
+    {
+        public override bool TryMakePreToilReservations(bool errorOnFailed) => true;
+
+        public override string GetReport() => "CC_Mail_Report_PutIn".Translate().Resolve();
+
+        protected override IEnumerable<Toil> MakeNewToils()
+        {
+            this.FailOn(() => !Outbox.Carrying(pawn));
+            yield return Toils_Goto.GotoCell(TargetIndex.A, PathEndMode.ClosestTouch);
+            var put = Toils_General.Wait(PostMath.PutInTicks, TargetIndex.None);
+            put.WithProgressBarToilDelay(TargetIndex.A);
+            put.handlingFacing = true;
+            put.tickIntervalAction = _ => pawn.rotationTracker.FaceCell(job.targetA.Cell);
+            yield return put;
+            var done = ToilMaker.MakeToil("PostPutIn");
+            done.initAction = () =>
+            {
+                try
+                {
+                    Outbox.BroughtIn(pawn);
+                }
+                catch (Exception e)
+                {
+                    CouncilLog.ErrorOnce("post: a letter put in", e);
+                }
+            };
+            done.defaultCompleteMode = ToilCompleteMode.Instant;
+            yield return done;
         }
     }
 

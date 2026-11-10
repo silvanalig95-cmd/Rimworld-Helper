@@ -244,7 +244,8 @@ public static class PostTests
         C(defs.Contains("ColonyCouncil.Building_Mailbag") && defs.Contains("<designationCategory>Misc</designationCategory>"), "the mailbag is a spot the colony places");
         // Letters: into the outbox when written, words-only answers into the post, goods by courier, a go-between for a people at war, old saves.
         string letters = Code("World/NeighbourLetters.cs");
-        C(letters.Contains("Outbox.Put(l, p)") && letters.Contains("if (PostBook.On && !l.hostile && !NotableBook.Hostile(n))"), "a written letter goes in the outbox, unless to a people at war");
+        C(letters.Contains("Outbox.Bring(l, p)") && letters.Contains("PostMath.Written(PostBook.On, l.hostile || NotableBook.Hostile(n))"),
+            "a written letter goes in the outbox (its writer carries it there), unless to a people at war");
         C(letters.Contains("MailIn.Add(l.map") && letters.Contains("things.Count == 0"), "an answer of words only waits in the post for a carrier");
         C(letters.Contains("Couriers.MailAnswer(l.map"), "an answer that sends goods still comes with its messenger");
         C(letters.Contains("An older save's letter whose messenger never came") && letters.Contains("Outbox.Put(l, null)"), "an older save's letter waiting for a messenger goes in the outbox");

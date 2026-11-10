@@ -42,11 +42,14 @@
   <!-- The mailbag -->
   <CC_Mail_Msg_InBag>{PAWN} put the letter to {TO} in the mailbag at the gate. It will leave {LIKELY}.</CC_Mail_Msg_InBag>
   <CC_Mail_Msg_AtGate>{PAWN}'s letter to {TO} waits by the gate (place a mailbag to keep the colony's letters in one spot). It will leave {LIKELY}.</CC_Mail_Msg_AtGate>
+  <CC_Mail_Msg_InBagLate>{PAWN}'s letter to {TO} is in the mailbag at the gate now. It will leave {LIKELY}.</CC_Mail_Msg_InBagLate>
+  <CC_Mail_Msg_AtGateLate>{PAWN}'s letter to {TO} waits by the gate now (place a mailbag to keep the colony's letters in one spot). It will leave {LIKELY}.</CC_Mail_Msg_AtGateLate>
   <CC_Mail_Msg_Spoken>{PAWN} has the words for {TO} ready, to give to whoever goes that way. They will go {LIKELY}.</CC_Mail_Msg_Spoken>
   <CC_Mail_Msg_Taken>{CARRIER} took {PAWN}'s letter to {TO} with them.</CC_Mail_Msg_Taken>
   <CC_Mail_Msg_TakenRelay>{CARRIER} took {PAWN}'s letter to {TO} with them, to be handed on at {RELAY}.</CC_Mail_Msg_TakenRelay>
   <CC_Mail_Msg_Packed>{PAWN} took {COUNT} letters from the mailbag for the caravan's road.</CC_Mail_Msg_Packed>
   <CC_Mail_Cancel_TakenBack>{PAWN}'s letter to {TO} was taken out of the mailbag again.</CC_Mail_Cancel_TakenBack>
+  <CC_Mail_Cancel_Kept>{PAWN} keeps the letter to {TO}: it won't be sent.</CC_Mail_Cancel_Kept>
   <CC_Mail_Likely_OwnRider>with {PAWN}, the colony's own rider</CC_Mail_Likely_OwnRider>
   <CC_Mail_Likely_Packed>with {PAWN}'s caravan as it sets out</CC_Mail_Likely_Packed>
   <CC_Mail_Likely_Anyone>with whoever goes that way next</CC_Mail_Likely_Anyone>
@@ -58,6 +61,14 @@
   <CC_Mail_Likely_Way>with whoever goes {DIR} next: traders, visitors or travellers</CC_Mail_Likely_Way>
   <CC_Mail_Line>  - To {TO}, {PURPOSE}, written by {PAWN}: {LIKELY}.</CC_Mail_Line>
   <CC_Mail_Line_Spoken>  - To {TO}, {PURPOSE}, {PAWN}'s words to be spoken: {LIKELY}.</CC_Mail_Line_Spoken>
+  <CC_Mail_Line_Bringing>  - To {TO}, {PURPOSE}, written by {PAWN}: {PAWN} is bringing it.</CC_Mail_Line_Bringing>
+  <CC_Mail_Gate_HeadWar>Waiting at the gate for a go-between:</CC_Mail_Gate_HeadWar>
+  <CC_Mail_Gate_HeadMessenger>Waiting at the gate for a messenger:</CC_Mail_Gate_HeadMessenger>
+  <CC_Mail_Gate_HeadBoth>Waiting at the gate for a go-between or a messenger:</CC_Mail_Gate_HeadBoth>
+  <CC_Mail_Gate_LineWar>  - To {TO}, {PURPOSE}, written by {PAWN}: their people are at war with us, so a go-between under a white flag will come for it.</CC_Mail_Gate_LineWar>
+  <CC_Mail_Gate_LineWarHere>  - To {TO}, {PURPOSE}, written by {PAWN}: the go-between under a white flag is at the gate for it.</CC_Mail_Gate_LineWarHere>
+  <CC_Mail_Gate_Line>  - To {TO}, {PURPOSE}, written by {PAWN}: a messenger of theirs will come for it.</CC_Mail_Gate_Line>
+  <CC_Mail_Gate_LineHere>  - To {TO}, {PURPOSE}, written by {PAWN}: their messenger is at the gate for it.</CC_Mail_Gate_LineHere>
   <CC_Mail_Bag_Off>The post is off in the settings: a messenger comes for each letter.</CC_Mail_Bag_Off>
   <CC_Mail_Bag_Other>Letters wait in the mailbag nearer the gate.</CC_Mail_Bag_Other>
   <CC_Mail_Bag_Empty>No letters waiting.</CC_Mail_Bag_Empty>
@@ -70,11 +81,14 @@
   <CC_Mail_Gizmo_BackDesc>Take a letter out of the mailbag: it is not sent.</CC_Mail_Gizmo_BackDesc>
   <CC_Mail_Gizmo_None>No letters waiting in the mailbag.</CC_Mail_Gizmo_None>
   <CC_Mail_Gizmo_Letter>{PAWN}'s letter to {TO}</CC_Mail_Gizmo_Letter>
+  <CC_Mail_Gizmo_LetterGate>{PAWN}'s letter to {TO} (waiting at the gate)</CC_Mail_Gizmo_LetterGate>
   <CC_Mail_PickRider>{PAWN} (Animals {ANIMALS})</CC_Mail_PickRider>
   <CC_Mail_PickRider_Title>Who rides to {TOWN} ({DAYS} there, mounted)?</CC_Mail_PickRider_Title>
   <CC_Mail_PickRider_TitleFoot>Who goes to {TOWN} ({DAYS} there, on foot)?</CC_Mail_PickRider_TitleFoot>
 
   <!-- Where a letter is -->
+  <CC_Mail_Status_Bringing>{PAWN} is bringing the letter to the mailbag.</CC_Mail_Status_Bringing>
+  <CC_Mail_Status_BringingGate>{PAWN} is bringing the letter to the gate.</CC_Mail_Status_BringingGate>
   <CC_Mail_Status_Outbox>{PAWN}'s letter is in the mailbag, waiting for someone going that way.</CC_Mail_Status_Outbox>
   <CC_Mail_Status_Spoken>{PAWN}'s words wait for someone going that way to carry them.</CC_Mail_Status_Spoken>
   <CC_Mail_Status_Packed>{PAWN}'s letter is packed with {RIDER}'s caravan.</CC_Mail_Status_Packed>
@@ -118,6 +132,7 @@
   <CC_Mail_RiderBrought>{PAWN} brought this answer home by hand.</CC_Mail_RiderBrought>
 
   <!-- Jobs -->
+  <CC_Mail_Report_PutIn>taking a letter to the mailbag.</CC_Mail_Report_PutIn>
   <CC_Mail_Report_Take>taking the letters going their way.</CC_Mail_Report_Take>
   <CC_Mail_Report_Drop>setting down mail for the colony.</CC_Mail_Report_Drop>
   <CC_Mail_Report_Speak>giving a message to {0}.</CC_Mail_Report_Speak>
@@ -128,7 +143,7 @@
   <CC_LetterDlg_BySpoken>A spoken message</CC_LetterDlg_BySpoken>
   <CC_LetterDlg_ByRider>By our own rider</CC_LetterDlg_ByRider>
   <CC_LetterDlg_WhoSpeaks>Whose words:</CC_LetterDlg_WhoSpeaks>
-  <CC_LetterDlg_PostNote>The writer sits down at a table for about an hour to write it, and it waits in the mailbag at the gate until someone going that way takes it. The answer comes back the same way.</CC_LetterDlg_PostNote>
+  <CC_LetterDlg_PostNote>The writer sits down at a table for about an hour to write it, then takes it to the mailbag at the gate, where it waits until someone going that way takes it. The answer comes back the same way.</CC_LetterDlg_PostNote>
   <CC_LetterDlg_SpokenNote>A tribe sends no letters: when someone going that way comes for it, a colonist gives them the words at the gate, and they carry them. The answer comes back the same way.</CC_LetterDlg_SpokenNote>
   <CC_LetterDlg_RiderNote>{PAWN} takes it from the mailbag once it is written and rides out to them, then brings the answer home. They are away for the whole road there and back.</CC_LetterDlg_RiderNote>
 

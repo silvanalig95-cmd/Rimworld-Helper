@@ -51,6 +51,8 @@ namespace ColonyCouncil
         public bool held;
         /// <summary>How much it matters (<see cref="TellWeight"/>), for the evening's letter to carry the weightiest first; older saves' lines are worth knowing.</summary>
         public int weight = TellWeight.Notable;
+        /// <summary>One of the colony's letters written out in full that the message opens when clicked (Letters/LetterClick.cs), or -1. Not saved: only a message on screen has it.</summary>
+        public int read = -1;
 
         public void ExposeData()
         {
@@ -95,9 +97,36 @@ namespace ColonyCouncil
         public static void Post(string text, LookTargets look, NewsKind kind, MessageTypeDef type = null, Importance? importance = null) =>
             Tell.Minor(kind, importance, null, text, look, type);
 
-        /// <summary>A message on screen. Rimfolk's messages as they happen were never kept in the History tab.</summary>
-        internal static void Show(NewsItem item, bool historical = false) =>
+        /// <summary>
+        /// A message on screen. Rimfolk's messages as they happen were never kept in the History tab. One about a letter of the
+        /// colony's written out in full ends with how to read it, and while it is on screen a click opens it (Letters/LetterClick.cs).
+        /// </summary>
+        internal static void Show(NewsItem item, bool historical = false)
+        {
+            if (item.read >= 0)
+            {
+                Message letter = null;
+                bool clickable = false;
+                try
+                {
+                    letter = LetterClick.Make(item.text, item.read, item.type, item.look, out clickable);
+                }
+                catch (Exception e)
+                {
+                    CouncilLog.ErrorOnce("news: a letter's message", e);
+                }
+                if (letter != null)
+                {
+                    // "Click to read it" is the message's on screen: the History tab's log keeps the line without it (its log opens no letter).
+                    Messages.Message(letter, historical && !clickable);
+                    if (!clickable || !Messages.IsLive(letter)) return;
+                    LetterClick.Shown(letter, item.read);
+                    if (historical) Archive(item);
+                    return;
+                }
+            }
             Messages.Message(item.text, item.look ?? LookTargets.Invalid, item.type ?? MessageTypeDefOf.NeutralEvent, historical);
+        }
 
         /// <summary>Straight into the History tab's message log, as the game keeps its own messages, without showing it.</summary>
         internal static void Archive(NewsItem item) =>

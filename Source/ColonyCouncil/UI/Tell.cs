@@ -61,15 +61,16 @@ namespace ColonyCouncil
         /// <summary>
         /// Something that happened, told as a message now. <paramref name="map"/> is where it happened (null: the map of
         /// <paramref name="look"/>); <paramref name="key"/> makes two messages with different words the same news (null:
-        /// the text does).
+        /// the text does). <paramref name="read"/>: one of the colony's letters written out in full that a click on the
+        /// message opens (Letters/LetterClick.cs), or -1.
         /// </summary>
         public static void Message(NewsKind kind, Importance importance, Map map, string text, LookTargets look = null, MessageTypeDef type = null,
-            string key = null, bool historical = false)
+            string key = null, bool historical = false, int read = -1)
         {
             if (text.NullOrEmpty() || !Notify.Shows(importance)) return;
             // Links are for Rimfolk's own windows: a marker never reaches the game's (UI/Cards/LinkTextMath.cs).
             text = LinkTextMath.Plain(text);
-            AtOnce(kind, importance, map, text, look, type, key, historical);
+            AtOnce(kind, importance, map, text, look, type, key, historical, read);
         }
 
         /// <summary>
@@ -120,7 +121,7 @@ namespace ColonyCouncil
             if (threat > 0) Book.Important(colony, threat, Now);
         }
 
-        private static void AtOnce(NewsKind kind, Importance importance, Map map, string text, LookTargets look, MessageTypeDef type, string key, bool historical)
+        private static void AtOnce(NewsKind kind, Importance importance, Map map, string text, LookTargets look, MessageTypeDef type, string key, bool historical, int read = -1)
         {
             NewsItem item = null;
             var verdict = TellVerdict.Show;
@@ -138,6 +139,7 @@ namespace ColonyCouncil
                 CouncilLog.ErrorOnce("tell: a message", e);
             }
             item ??= new NewsItem { text = text, kind = kind, look = look, type = type ?? MessageTypeDefOf.NeutralEvent };
+            item.read = read;
             if (verdict == TellVerdict.Merged) return;
             if (verdict == TellVerdict.Held && Hold(item)) return;
             News.Show(item, historical);

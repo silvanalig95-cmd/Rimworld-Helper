@@ -36,6 +36,14 @@
     <tradeability>None</tradeability>
   </ThingDef>
 
+  <!-- The writer carries a letter just written to the mailbag (or the gate) and puts it in: only then is it in the post. -->
+  <JobDef>
+    <defName>Rimfolk_PostPutIn</defName>
+    <driverClass>ColonyCouncil.JobDriver_PostPutIn</driverClass>
+    <reportString>taking a letter to the mailbag.</reportString>
+    <casualInterruptible>false</casualInterruptible>
+  </JobDef>
+
   <JobDef>
     <defName>Rimfolk_PostTake</defName>
     <driverClass>ColonyCouncil.JobDriver_PostTake</driverClass>
