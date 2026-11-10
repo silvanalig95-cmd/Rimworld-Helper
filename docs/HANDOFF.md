@@ -12,6 +12,9 @@ tree at once, alongside whatever runs. Each piece is merged as its own release, 
 
 ## State (5 November 2026)
 
+- **Paused by the player (10 November 2026): "anything i add just add to the to do list until i say we continue".**
+  Until they say to continue, every new wish or report goes onto this list as a "To do when the player asks" entry
+  (with their words), and nothing is built.
 - **To do when the player asks (10 November 2026): events and interactions of each of Rimfolk's peoples, by their lore.**
   The player: "I really LOVE the new factions you created, and I'd be down for more later. however, I'd first like more
   faction specific events, interactions etc. like this event i had with these gene guys who gave my pawn a new gene.
