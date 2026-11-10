@@ -78,7 +78,10 @@ namespace ColonyCouncil
             return null;
         }
 
-        /// <summary>The letter goes with the colony's own rider: when it is in the outbox they set out (at once, if it is already there).</summary>
+        /// <summary>
+        /// The letter goes with the colony's own rider: when it is in the outbox they set out (at once, if it is already there;
+        /// one still in its writer's hand on the way to the mailbag, as it goes in: Post/Outbox.cs).
+        /// </summary>
         public static void Send(NeighbourLetter l, Pawn rider)
         {
             if (l == null || rider == null) return;
@@ -86,7 +89,7 @@ namespace ColonyCouncil
             l.rider = rider;
             l.carrier = PostCarrier.OwnRider;
             NotableBook.Changed();
-            if (l.stage == LetterStage.Outbox) SetOut(l);
+            if (l.stage == LetterStage.Outbox && !l.bringing) SetOut(l);
         }
 
         /// <summary>The rider fetches the letter and walks to the edge, the mount following.</summary>

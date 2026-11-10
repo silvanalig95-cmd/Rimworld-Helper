@@ -46,6 +46,16 @@ namespace ColonyCouncil
             Tell.Message(KindOf(caller), importance, null, text, look, type);
         }
 
+        /// <summary>
+        /// A message about one of the colony's letters (<paramref name="letterId"/>): when the letter was written out in full, the
+        /// message ends with how to read it and a click on it opens it (Letters/LetterClick.cs); otherwise as <see cref="Message"/>.
+        /// </summary>
+        public static void LetterMessage(string text, int letterId, LookTargets look, MessageTypeDef type, Importance importance, [CallerFilePath] string caller = "")
+        {
+            if (text.NullOrEmpty() || !Shows(importance)) return;
+            Tell.Message(KindOf(caller), importance, null, text, look, type, read: LetterClick.Readable(letterId) ? letterId : -1);
+        }
+
         /// <summary>The kind of news a caller's messages count under, from its source folder.</summary>
         private static NewsKind KindOf(string caller) =>
             Enum.TryParse(TellMath.KindOfFolder(TellMath.FolderOf(caller)), out NewsKind k) ? k : NewsKind.Colony;

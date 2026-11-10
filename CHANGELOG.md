@@ -5,6 +5,14 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## The letter carried and read
+
+*10 November 2026, version 0.205.2*
+
+- A colonist who has written a letter for the post now walks it to the mailbag and puts it in, and only then can a carrier take it; the mailbag lists it as being brought meanwhile.
+- A letter that can't go with the post, such as one to a people at war, now says why, and the mailbag lists it under "Waiting at the gate for a go-between", readable there.
+- Clicking the message about a letter your colonist wrote now opens the letter itself.
+
 ## Guests tend what they're fit for
 
 *10 November 2026, version 0.205.1*

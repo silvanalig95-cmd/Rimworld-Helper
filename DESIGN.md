@@ -7947,9 +7947,11 @@ neighbours' section, on, needs the letters) and **The post's pace** (`postPace`:
 
 - **The outbox.** A letter written goes in the mailbag (`Rimfolk_Mailbag`, a spot of the Misc tab drawn with its own post and bag
   (0.179.2, drawn at 1.5 its cell since 0.202.1), `Building_Mailbag`; the one nearest the gate counts; none placed, the
-  gate cell, `PlaySpots.GateCell`) as a neighbour letter in the new stage `Outbox` (`Outbox.Put`, from `Written`). Its pane
-  lists each letter (to whom, what for, by whom, how it is likely to leave: `PostWords.Likely`) and the mail coming in;
-  its buttons send one with the colony's own rider or take one back. The old "three under way, one each" becomes one to
+  gate cell, `PlaySpots.GateCell`) as a neighbour letter in the new stage `Outbox` (`Outbox.Put`). Since 10 November 2026
+  the writer carries it there first (`Outbox.Bring` from `Written`, the job `Rimfolk_PostPutIn`; "The letter carried and
+  read" below). Its pane lists each letter (to whom, what for, by whom, how it is likely to leave: `PostWords.Likely`; or
+  that its writer is bringing it), the letters waiting at the gate for a go-between or a messenger, and the mail coming
+  in; its buttons send one with the colony's own rider, take one back or read one. The old "three under way, one each" becomes one to
   each notable and `PostMath.MaxOpen` (12) open at once with the post: the outbox itself keeps letters from all leaving at
   once (NotableMath.MaxOpen, 3, without it).
 - **Anyone going that way takes them** (`MailWatch`, every 250 ticks on the letters' own pass, `Sched.RareNeighbours`,
@@ -8054,6 +8056,55 @@ neighbours' section, on, needs the letters) and **The post's pace** (`postPace`:
   the letters' 250-tick pass, the rest on their hour.
 - **Dev actions** ("Rimfolk"): the post rider now; a visitor group leaves now with the mail; every town's reach and the
   outbox (log); the mail waiting brought by a messenger now; the mail on the road here now.
+
+### The letter carried and read (the player's report, 10 November 2026; released 0.205.2)
+
+The player: "i think i instructed a pawn to send a letter, the text appeared above but I can't find it in the mailbag? do
+the pawns actually bring the letters to the bag also? i should be able to read the letter directly by clicking the
+pop-up". Their letter was a warning to a people at war with the colony: by design it skips the mailbag (a go-between
+under a white flag comes to the gate for it), but its message said only "a messenger will come to the gate", the
+mailbag listed nothing, and a click on the message only jumped the camera. Letters that did go by the post went in the
+mailbag the moment they were written, with nobody walking there. The pure rules in `PostMath.cs` (`Written`,
+`WrittenKey`, `Bring`, `SectionOf`, `MayTake`, `GateHeadKey`, `GateLineKey`) and `Letters/LetterClickMath.cs`
+(`HintKey`, `Opens`, `ClickMap`), linked; `Tools/Tests/LetterCarryTests.cs` ("the letter carried and read: ", their
+save's case end to end).
+
+- **The writer carries it to the mailbag.** A letter written for the post (`PostMath.Written`: at peace, the post on)
+  goes in the outbox in its writer's hand (`NeighbourLetter.bringing`, saved, cleared once in): their next job from the
+  table (queued after the writing, `Outbox.Bring`) is `Rimfolk_PostPutIn` (`JobDriver_PostPutIn`): they walk to the
+  mailbag, or to the plain cell by the gate with none, put it in (a second and a half with a bar) and only then is it in
+  the post (`Outbox.BroughtIn`, `Put`, with its "put the letter in the mailbag" message; the colony's own rider sets out
+  from there). Until then the mailbag's list shows "Guido is bringing it" (`CC_Mail_Line_Bringing`), the letters page
+  "is bringing the letter to the mailbag", and no carrier takes it (`PostMath.MayTake`; the watch counts only letters
+  in, `Outbox.Any`). Cut off on the way (drafted, downed, gone from the map, a raid on), the letters' 250-tick pass
+  (`Outbox.Bringing`, `PostMath.Bring`) sends them again once they're free; after four hours
+  (`PostMath.BringFallbackTicks`; a walk under way finishes, at most eight), or at once when the writer is no longer the
+  colony's, it goes in all the same, said without saying who did ("Guido's letter to Will is in the mailbag at the gate
+  now", `CC_Mail_Msg_InBagLate`; an older save's letter moved to the outbox reads the same). Never lost, never stuck
+  (tested over 2,000 writers drafted and cut off at random). A tribal colony's spoken message is as before: nothing to
+  carry. The post turned off or their people turned hostile while it is carried: it waits at the gate as any other.
+- **A letter that can't go by the post says why, and can be found.** Written to a people at war, "With their people at
+  war with us it can't go with the post: a go-between under a white flag will come to the gate for it"
+  (`CC_Letter_Msg_WrittenWar`; with the post off, `CC_Letter_Msg_WrittenWarNoPost`); with the post off, that it doesn't
+  go in the mailbag and a messenger of theirs comes (`CC_Letter_Msg_Written`). Said once the go-between is on the way
+  (none can come: the letter is let go with why, as before). The mailbag's pane gets a section "Waiting at the gate for a
+  go-between:" (or "a messenger", or both; `PostMath.SectionOf`: waiting for a messenger, not to be handed to someone of
+  theirs here), a line each with who comes for it or that they're at the gate now; its "Read a letter" lists them too
+  ("(waiting at the gate)"), and shows with the post off. The letter itself still waits at the gate as before.
+- **Click the pop-up to read.** The messages about a letter of the colony's written out in full ("has written", "put the
+  letter in the mailbag", "is in the mailbag now", "handed to", "will come to the gate for it", the spoken message's
+  "has the words ready") go through `Notify.LetterMessage` with the letter's id (through the teller as any other:
+  `Tell.Message`'s `read`, `NewsItem.read`, not saved). As it is shown (`News.Show`), `LetterClick.Make` makes the game's
+  message with "Click to read it." at its end, and `LetterClick.Shown` keeps it with the letter while it is on screen (a
+  short-lived map by the message itself, 24 at most, let go once off the screen). `Patch_LetterMessageClick` (a prefix on
+  `Message.Draw`, applied per class by `RimfolkPatches.ApplyAll`): the game draws each message on the root of the
+  interface before any window and answers its click later in the message's own small window; the prefix sees the left
+  button going down on a kept message first, opens its exchange in `LetterReadWindow` and uses the event, so the camera
+  doesn't jump. A right click still dismisses; any other message is the game's. Without the patch (not applied, broken,
+  the deeper hooks off) the click jumps the camera as before and the message ends with where it can be read instead
+  (`CC_LetterRead_Msg`, `_MsgPeople`). The on-screen panels' boxes behind the messages (`Hud/HudMessages.cs`) are drawn
+  behind the game's own message, so a click there is the same click. Held for the evening's news, a message carries no
+  hint (only one on screen opens anything).
 
 ## The diplomacy screen: the peoples beside their page (the player's request, 8 November 2026)
 
@@ -8479,7 +8530,9 @@ and `LetterCultureMath.cs` (linked in Tests.csproj; `Tools/Tests/LetterFormTests
   most). The teller's letter is matched to the page it tells by its words (`Told`, from `Tell.Letter`). Read: the answer's
   event card offers "Read Stace's letter" (`ReadAct`, an act on the card's first page; the card stays open); the Diplomacy
   screen's People lists each notable's letters newest first under "Letters with ..." (`With`), a click opening both sides;
-  the mailbag's "Read a letter"; the "has written" messages say where it can be read. The reading window
+  the mailbag's "Read a letter" (those waiting at the gate too); the messages about it ("has written", "in the mailbag",
+  "handed to") open it when clicked, "Click to read it." (since 10 November 2026: "The letter carried and read" under the
+  post), else say where it can be read. The reading window
   (`LetterReadWindow`, frame key "LetterRead", 420 by 360 at least, several at once): each letter on a sheet of cream
   paper with dark ink in either look, who wrote it and when above, the narrator's lines in a quieter hand under theirs.
 - **No repeats**: a part's line never one this session drew lately (`Flavor.Memory`, the LineMemory window for the part)

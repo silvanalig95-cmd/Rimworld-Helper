@@ -74,6 +74,7 @@
   <CC_LetterRead_Why_NoWriter>Nobody at home can write a letter now.</CC_LetterRead_Why_NoWriter>
   <CC_LetterRead_Msg>It can be read at the mailbag, and with {NAME} on the Diplomacy screen's People.</CC_LetterRead_Msg>
   <CC_LetterRead_MsgPeople>It can be read with {NAME} on the Diplomacy screen's People.</CC_LetterRead_MsgPeople>
+  <CC_LetterRead_MsgClick>Click to read it.</CC_LetterRead_MsgClick>
   <CC_LetterRead_With>Letters with {NAME}</CC_LetterRead_With>
   <CC_LetterRead_Row_Both>{DATE}: {OURS}'s letter and {THEIRS}'s answer</CC_LetterRead_Row_Both>
   <CC_LetterRead_Row_TheirsReply>{DATE}: {THEIRS}'s letter and {OURS}'s reply</CC_LetterRead_Row_TheirsReply>
@@ -81,8 +82,8 @@
   <CC_LetterRead_Row_Theirs>{DATE}: {THEIRS}'s letter</CC_LetterRead_Row_Theirs>
   <CC_LetterRead_RowTip>Read these letters.</CC_LetterRead_RowTip>
   <CC_LetterRead_Gizmo>Read a letter</CC_LetterRead_Gizmo>
-  <CC_LetterRead_GizmoDesc>Read one of the letters in the mailbag before it goes.</CC_LetterRead_GizmoDesc>
-  <CC_LetterRead_GizmoNone>No letter in the mailbag is written out to read.</CC_LetterRead_GizmoNone>
+  <CC_LetterRead_GizmoDesc>Read one of the letters in the mailbag, or waiting at the gate for a go-between or a messenger, before it goes.</CC_LetterRead_GizmoDesc>
+  <CC_LetterRead_GizmoNone>No letter in the mailbag or at the gate is written out to read.</CC_LetterRead_GizmoNone>
 
   <!-- The setting -->
   <CC_Settings_LettersInFull>Letters written out in full</CC_Settings_LettersInFull>

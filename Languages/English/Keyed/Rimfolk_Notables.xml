@@ -159,7 +159,9 @@
   <!-- Messages as it goes -->
   <CC_Letter_Msg_WillWrite>{PAWN} will write to {TO} when {PAWN_pronoun} has a moment at a table.</CC_Letter_Msg_WillWrite>
   <CC_Letter_Msg_WillCall>{PAWN} will call {TO} on the comms console when {PAWN_pronoun} has a moment.</CC_Letter_Msg_WillCall>
-  <CC_Letter_Msg_Written>{PAWN} has written to {TO}. A messenger will come to the gate for the letter.</CC_Letter_Msg_Written>
+  <CC_Letter_Msg_Written>{PAWN} has written to {TO}. The post is off in the settings, so it doesn't go in the mailbag: a messenger of theirs will come to the gate for it.</CC_Letter_Msg_Written>
+  <CC_Letter_Msg_WrittenWar>{PAWN} has written to {TO}. With their people at war with us it can't go with the post: a go-between under a white flag will come to the gate for it.</CC_Letter_Msg_WrittenWar>
+  <CC_Letter_Msg_WrittenWarNoPost>{PAWN} has written to {TO}. With their people at war with us, a go-between under a white flag will come to the gate for it.</CC_Letter_Msg_WrittenWarNoPost>
   <CC_Letter_Msg_PickupMissed>Nobody brought {PAWN}'s letter to {TO} out to the messenger, who left without it. Another will come.</CC_Letter_Msg_PickupMissed>
   <CC_Letter_Msg_PickupNever>No messenger could come for {PAWN}'s letter to {TO} (no way in, or never safe on the road). Another will try.</CC_Letter_Msg_PickupNever>
   <CC_Letter_Msg_NoAnswer>No answer came to {PAWN}'s letter to {TO}.</CC_Letter_Msg_NoAnswer>

@@ -31,6 +31,17 @@ When you load a save after an update, a letter lists the newest round once. The 
     <rounds>
 
       <li>
+        <version>0.205.2</version>
+        <date>10 November 2026</date>
+        <title>The letter carried and read</title>
+        <points>
+          <li>A colonist who has written a letter for the post now walks it to the mailbag and puts it in, and only then can a carrier take it; the mailbag lists it as being brought meanwhile.</li>
+          <li>A letter that can't go with the post, such as one to a people at war, now says why, and the mailbag lists it under "Waiting at the gate for a go-between", readable there.</li>
+          <li>Clicking the message about a letter your colonist wrote now opens the letter itself.</li>
+        </points>
+      </li>
+
+      <li>
         <version>0.205.1</version>
         <date>10 November 2026</date>
         <title>Guests tend what they're fit for</title>

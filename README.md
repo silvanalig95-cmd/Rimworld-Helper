@@ -3566,7 +3566,12 @@ faring; condolences taken to heart are remembered by their people; a warning hee
 the colony can call in; help, a visit, news, a pact or a truce as before. Letters already on the road keep their day.
 
 **The post: letters travel with someone.** A letter written goes in the mailbag at the gate (a spot you place from the
-Misc tab; without one it waits by the gate), and its pane lists each letter, who wrote it and how it is likely to leave.
+Misc tab; without one it waits by the gate): its writer gets up from the table, walks it over and puts it in, and only
+then is it in the post (kept from it, drafted or hurt, they bring it when they can, and after a few hours it goes in all
+the same). The mailbag's pane lists each letter, who wrote it and how it is likely to leave ("Guido is bringing it"
+while it is on the way), and under "Waiting at the gate for a go-between" the letters that can't go with the post: to a
+people at war with you, a go-between under a white flag comes to the gate for it, and the message as it is written
+says so.
 Nobody appears out of nowhere for it: whoever is going that way takes it. A trade caravan leaving, visitors and guests
 going home, a camp breaking up, pilgrims and travellers passing, a people's messengers, your own caravan setting out:
 one of them walks to the mailbag for the letters on their way (their own people's towns, a town on the road to where
@@ -3662,9 +3667,10 @@ thou, a bandit's spelling ("we wil burn yor walls. after the rain stops."), and 
 the answer brings, why it went badly and how far it moved them come under it as plain lines, set apart. A call reads as
 its transcript, a spoken message as words passed on by its carrier. Your colony's own letters are written out as your
 colonist finishes them, in their voice (Social and Intellectual, kind or abrasive, cheerful or gloomy, the purpose and
-what is true at home); one who barely writes gets a helper, or sends it as it is. Read them at the mailbag ("Read a
-letter"), from the answer's card ("Read Stace's letter") and on the Diplomacy screen's People, where each notable's
-letters are listed newest first and open both sides in a small window of paper.
+what is true at home); one who barely writes gets a helper, or sends it as it is. Read them by clicking the message
+about them ("has written", "put the letter in the mailbag", "handed", ending "Click to read it."), at the mailbag ("Read
+a letter", those waiting at the gate too), from the answer's card ("Read Stace's letter") and on the Diplomacy screen's
+People, where each notable's letters are listed newest first and open both sides in a small window of paper.
 
 **Letters of many shapes.** Not every letter follows the same form. Who writes, why, and how things stand decide its
 shape: the busy, the curt, the hostile and officials send a bare note with the necessities only; pen friends, the warm,

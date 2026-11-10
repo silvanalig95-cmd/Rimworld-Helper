@@ -109,6 +109,11 @@ namespace ColonyCouncil
         public bool packed;
         /// <summary>Its answer waiting in the post for a carrier (Post/MailIn.cs), or -1.</summary>
         public int postId = -1;
+        /// <summary>
+        /// Written for the post and on its way to the mailbag in its writer's hand (Post/Outbox.cs, Bring): listed in the
+        /// mailbag as being brought, and no carrier takes it until it is in. Cleared once in.
+        /// </summary>
+        public bool bringing;
 
         public bool Open => stage != LetterStage.Done && stage != LetterStage.Cancelled;
 
@@ -163,6 +168,7 @@ namespace ColonyCouncil
             Scribe_References.Look(ref packedBy, "packedBy");
             Scribe_Values.Look(ref packed, "packed");
             Scribe_Values.Look(ref postId, "postId", -1);
+            Scribe_Values.Look(ref bringing, "bringing");
         }
     }
 
@@ -531,19 +537,24 @@ namespace ColonyCouncil
             book.letters.RemoveAll(l => !l.Open && now - l.stageTick > GenDate.TicksPerDay * 2);
         }
 
-        /// <summary>Every 250 ticks while a letter is being written or a call is under way or ringing: the jobs and the console.</summary>
+        /// <summary>
+        /// Every 250 ticks while a letter is being written, carried to the mailbag (Post/Outbox.cs), or a call is under way or
+        /// ringing: the jobs and the console.
+        /// </summary>
         public static void Rare(NotableBook book, int now)
         {
-            foreach (var l in book.letters)
+            foreach (var l in book.letters.ToList())
             {
                 if (l.stage == LetterStage.Ringing && !NotableMath.Retired(l.purpose)) TryAnswer(l, now);
                 else if ((l.stage == LetterStage.Writing || l.stage == LetterStage.Calling) && now - l.stageTick > Sched.HourTicks / 2 && !AtIt(l))
                     Back(l);
+                else if (l.stage == LetterStage.Outbox && l.bringing) Outbox.Bringing(l, now);
             }
         }
 
         /// <summary>Anything that wants the 250-tick look.</summary>
-        public static bool WantsRare(NotableBook book) => book.letters.Any(l => l.stage == LetterStage.Ringing || l.stage == LetterStage.Writing || l.stage == LetterStage.Calling);
+        public static bool WantsRare(NotableBook book) =>
+            book.letters.Any(l => l.stage == LetterStage.Ringing || l.stage == LetterStage.Writing || l.stage == LetterStage.Calling || l.stage == LetterStage.Outbox && l.bringing);
 
         private static void Step(NotableBook book, NeighbourLetter l, int now)
         {
@@ -624,6 +635,7 @@ namespace ColonyCouncil
                     if (NotableBook.Hostile(n) && !l.ownRider)
                     {
                         l.hostile = true;
+                        l.bringing = false;
                         l.packedBy = null;
                         l.packed = false;
                         l.stage = LetterStage.AwaitMessenger;
@@ -631,8 +643,9 @@ namespace ColonyCouncil
                         Pickup(l, n);
                         return;
                     }
-                    // The rider chosen is gone: it waits for a carrier again; still there with no ride under way: they set out.
-                    if (l.ownRider && PostBook.Instance?.RideFor(l.id) == null)
+                    // The rider chosen is gone: it waits for a carrier again; still there with no ride under way: they set out
+                    // (once it is in the mailbag: still in its writer's hand, Post/Outbox.cs sets them out as it goes in).
+                    if (l.ownRider && !l.bringing && PostBook.Instance?.RideFor(l.id) == null)
                     {
                         if (l.rider == null || !KinMemory.Ours(l.rider) || l.rider.MapHeld != l.map || !OwnRiders.SetOut(l))
                         {
@@ -643,6 +656,7 @@ namespace ColonyCouncil
                     // The post turned off: a messenger comes for it, as before.
                     if (!PostBook.On && !l.ownRider && !l.packed)
                     {
+                        l.bringing = false;
                         l.packedBy = null;
                         l.stage = LetterStage.AwaitMessenger;
                         l.stageTick = now;
@@ -844,7 +858,12 @@ namespace ColonyCouncil
         /// <summary>The letter someone is writing (or calling about) now.</summary>
         public static NeighbourLetter At(Pawn p, LetterStage stage) => Book?.letters.FirstOrDefault(l => l.stage == stage && l.writer == p);
 
-        /// <summary>The letter is written: a messenger is sent for.</summary>
+        /// <summary>
+        /// The letter is written: someone of theirs here carries it home; by the post, the writer carries it to the mailbag
+        /// (Post/Outbox.cs); else it waits at the gate for a go-between (their people at war) or a messenger of theirs (the
+        /// post off), and the message says why it isn't in the mailbag. Each message about it opens it when clicked
+        /// (Letters/LetterClick.cs).
+        /// </summary>
         public static void Written(NeighbourLetter l, Pawn p)
         {
             var n = Book?.Get(l?.notable ?? -1);
@@ -853,32 +872,34 @@ namespace ColonyCouncil
             l.stageTick = Now;
             Say(p, "written", n);
             // Written out in the writer's voice and kept, to be read from the mailbag, the answer's card and the people page (Letters/LetterForm.cs).
-            bool kept = LetterForm.Ours(l, p) != null;
+            LetterForm.Ours(l, p);
             // Someone of theirs at the colony carries it: the writer takes it over to them (Outsiders/).
             if (l.bearer != null && Outsiders.HandLetter(l, p))
             {
-                Notify.Message("CC_Letter_Msg_WrittenFor".Translate(p.Named("PAWN"), l.toName.Named("TO"), l.bearer.Named("BEARER")).Resolve() + CanRead(kept, n),
+                // apart: the writer is on their way over with it; the hand-over has its own message.
+                Notify.LetterMessage("CC_Letter_Msg_WrittenFor".Translate(p.Named("PAWN"), l.toName.Named("TO"), l.bearer.Named("BEARER")).Resolve(), l.id,
                     new LookTargets(p), MessageTypeDefOf.NeutralEvent, Importance.Notable);
                 NotableBook.Changed();
                 return;
             }
             l.bearer = null;
-            // With the post: it goes in the mailbag at the gate, and leaves with whoever goes its way (Post/Outbox.cs).
-            if (PostBook.On && !l.hostile && !NotableBook.Hostile(n))
+            var way = PostMath.Written(PostBook.On, l.hostile || NotableBook.Hostile(n));
+            // With the post: the writer carries it to the mailbag at the gate and puts it in, and it leaves with whoever goes its
+            // way (Post/Outbox.cs); its message comes as it goes in.
+            if (way == PostMath.WrittenWay.Post)
             {
-                Outbox.Put(l, p);
-                if (l.ownRider) OwnRiders.SetOut(l);
+                Outbox.Bring(l, p);
                 return;
             }
-            Notify.Message("CC_Letter_Msg_Written".Translate(p.Named("PAWN"), l.toName.Named("TO")).Resolve() + CanRead(kept, n), new LookTargets(p), MessageTypeDefOf.NeutralEvent,
-                Importance.Notable);
+            // Not by the post: a go-between under a white flag (their people at war) or a messenger of theirs (the post off)
+            // comes to the gate for it. Said only once one is on the way (none can come: the letter is let go, with why).
             Pickup(l, n);
             NotableBook.Changed();
+            if (!l.Open) return;
+            // apart: the letter waits at the gate; whoever comes for it is told of when they're here.
+            Notify.LetterMessage(PostMath.WrittenKey(way, PostBook.On).Translate(p.Named("PAWN"), l.toName.Named("TO")).Resolve(), l.id, new LookTargets(p),
+                MessageTypeDefOf.NeutralEvent, Importance.Notable);
         }
-
-        /// <summary>The message's last words when the letter was written out: where it can be read, the mailbag too while it waits there ("" when it wasn't).</summary>
-        public static string CanRead(bool kept, Notable n, bool inBag = false) =>
-            kept ? " " + (inBag ? "CC_LetterRead_Msg" : "CC_LetterRead_MsgPeople").Translate((n?.Name ?? "?").Named("NAME")).Resolve() : "";
 
         /// <summary>
         /// Handed to someone of their people at the colony (Outsiders/, the two face to face): it goes home with them,
@@ -900,7 +921,7 @@ namespace ColonyCouncil
             l.due = Now + Mathf.RoundToInt((there + 0.5f + NotableMath.ReplyDays(Rand.Value)) * GenDate.TicksPerDay);
             Say(by, "hand", n);
             // together: handed over face to face (the talk job brought the two together).
-            Notify.Message("CC_Letter_Msg_HandedBearer".Translate(by.Named("PAWN"), l.toName.Named("TO"), bearer.Named("BEARER")).Resolve(), new LookTargets(bearer),
+            Notify.LetterMessage("CC_Letter_Msg_HandedBearer".Translate(by.Named("PAWN"), l.toName.Named("TO"), bearer.Named("BEARER")).Resolve(), l.id, new LookTargets(bearer),
                 MessageTypeDefOf.NeutralEvent, Importance.Important);
             NotableBook.Changed();
         }
