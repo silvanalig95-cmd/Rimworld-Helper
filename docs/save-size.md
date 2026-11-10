@@ -7,8 +7,8 @@ colony of 20, with the game keeping 30 more people it knows and 5 more each year
 generous guesses; sizes are rough XML sizes. Caps named as constants are read from the source. "Counted under" rows are
 kept inside another record (a journal's lines, a heart's lists) and are already in that record's size.
 
-Saved collections found: 609; modelled: 609; growing without end: 0.
-Rimfolk's part of the save, roughly: **2,740 KB** after a year, **3,318 KB** after two, **3,601 KB** after five.
+Saved collections found: 612; modelled: 612; growing without end: 0.
+Rimfolk's part of the save, roughly: **2,743 KB** after a year, **3,321 KB** after two, **3,604 KB** after five.
 
 | Collection | Rule | Kind | 1 year | 2 years | 5 years | KB at 5 years |
 |---|---|---|---|---|---|---|
@@ -142,6 +142,7 @@ Rimfolk's part of the save, roughly: **2,740 KB** after a year, **3,318 KB** aft
 | `Decrees/Decrees.cs:readyAt` | one per decree def | defs | 36 | 36 | 36 | 3.2 |
 | `Faith/FaithCouncilTracker.cs:heard` | who heard which faith spoken for lately: one per colonist, 30 days, FaithCouncilTracker.MaxHeard | cap | 36 | 40 | 40 | 3.1 |
 | `Faith/FaithPeople.cs:people` | one per colonist whose faith moved or is watched; known pawns only, empty records dropped daily and at saving | colonists | 20 | 20 | 20 | 3.1 |
+| `Integrations/GuestHelp.cs:guests` | one record per Hospitality guest staying (GuestHelpMath.MaxGuests at most), let go when they leave | while | 10 | 10 | 10 | 3.1 |
 | `Journeys/Journeys.cs:roadFood` | travellers eating by the road's food policy, with their own to go back to at home (a pawn and two policy references) | fixed | 20 | 20 | 20 | 3.1 |
 | `Building/BuildProjects.cs:levels` | with the above: the priorities they had | fixed | 120 | 120 | 120 | 2.9 |
 | `Decrees/Decrees.cs:nightHours` | a curfew's night hours, per colonist while it lasts; after it only those away (the dead, the gone and the unknown let go) | colonists | 20 | 20 | 20 | 2.9 |
@@ -567,6 +568,8 @@ Rimfolk's part of the save, roughly: **2,740 KB** after a year, **3,318 KB** aft
 | `Hud/HudPanelState.cs:folds` | the inventory's folded categories (settings file) | settings | 4 | 4 | 4 | (settings file) |
 | `Hud/HudPanelState.cs:hidden` | per panel: the rows or columns switched off (settings file) | settings | 3 | 3 | 3 | (settings file) |
 | `Hud/HudPanelState.cs:pins` | the inventory's pinned items (settings file) | settings | 8 | 8 | 8 | (settings file) |
+| `Integrations/GuestHelp.cs:enabled` | per guest: work types turned on for a trouble or a thanks day while it lasts, GuestHelpMath.MaxEnabled at most (counted under guests) | fixed | 5 | 5 | 5 | (in its record) |
+| `Integrations/GuestHelp.cs:told` | per guest: the kinds of work they said why they took up, GuestHelpMath.MaxTold at most (counted under guests) | fixed | 12 | 12 | 12 | (in its record) |
 | `Journal.cs:entries` | per journal: 60 lines (counted under journals) | fixed | 60 | 60 | 60 | (in its record) |
 | `Letters/LetterBook.cs:pages` | per exchange: the colony's letter and theirs, or theirs first, the reply and their thanks; each capped (counted under exchanges) | fixed | 3 | 3 | 3 | (in its record) |
 | `Missions/Missions.cs:goals` | per mission (counted under missions) | fixed | 3 | 3 | 3 | (in its record) |

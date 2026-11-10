@@ -54,6 +54,9 @@ public static class ImmersionTests
         // A colonist setting off to carry a lighter case to another bed for someone worse off, or for an operation
         // (Integrations/MedicalTriage.cs, with Move the Patient).
         "Rimfolk_Pool_TriageRoom", "Rimfolk_Pool_TriageSurgery",
+        // Hospitality's guests helping out (Integrations/GuestHelp.cs): why they take up a kind of work, pitching in to the
+        // colony's trouble, a day's work in thanks, and putting work down.
+        "Rimfolk_Pool_GuestHelpFit", "Rimfolk_Pool_GuestHelpCrisis", "Rimfolk_Pool_GuestHelpThanks", "Rimfolk_Pool_GuestHelpStop",
         // Writing to a neighbour, handing the letter over, and calls on the comms console (World/NeighbourLetters.cs).
         "Rimfolk_Pool_NeighbourSays",
         // The post: carriers taking and bringing the mail, the post rider, spoken messages, the colony's own rider (Post/PostWords.cs).

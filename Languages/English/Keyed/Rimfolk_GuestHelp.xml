@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <!-- ===================== Hospitality's guests helping out (Source/ColonyCouncil/Integrations/GuestHelp.cs) ===================== -->
+
+  <!-- Settings: Your other mods, Hospitality -->
+  <CC_Settings_GuestHelp>Guests help with what they love</CC_Settings_GuestHelp>
+  <CC_Settings_GuestHelp_Tip>With Hospitality, whose guests in a good mood help with the colony's work they're skilled at: in everyday times a guest only takes up work they love or that fits who they are (a passion for it, a hard worker's hauling and cleaning, the work their people live by, or work their faith speaks for), and says why the first time. The titled, the proud and their people's heads and heirs do nothing menial, each faith and people keeps its customs, and no guest goes into a bedroom or a cell, does surgery or prisoners' work, or handles the dead. About three hours of everyday work a day, and a guest who is unhappy puts it down. A guest the colony carried in, set free, tended or hosted very well offers a day of their best-loved work before leaving. Working beside a colonist builds friendship both ways, a guest who helped speaks well of the colony at home, and one hurt at the colony's work costs regard with their people. The guest tab shows what each guest would help with and why, with a switch to let them help. Hospitality's own switch for guests helping and its minimum skill still hold. Needs the deeper game hooks.</CC_Settings_GuestHelp_Tip>
+  <CC_SetNote_GuestHelp>With Hospitality: guests help every day only with work they love or that fits who they are, a few hours a day.</CC_SetNote_GuestHelp>
+  <CC_Settings_GuestsPitchIn>Guests pitch in when the colony is in trouble</CC_Settings_GuestsPitchIn>
+  <CC_Settings_GuestsPitchIn_Tip>With Hospitality: whatever their mood, guests help when the colony is in real trouble, with that trouble's work alone and until it's over: they fight a fire near them, carry someone of the colony who is down to a bed, tend the colony's wounded after a raid (with Medicine 4 or more, tending only, never surgery), bring the harvest in before a killing frost (Rimfolk's frost harvest) and cook when the food is about to run out (with Cooking 4 or more). Each says why, and a message names who is helping. The titled, the proud and their people's heads and heirs only pitch in to save a life, and so does a guest who has already worked too long that day. With Hospitality's own "guests helping" switched off, guests still fight fires and carry the downed in, nothing more. Needs the deeper game hooks.</CC_Settings_GuestsPitchIn_Tip>
+  <CC_SetNote_GuestsPitchIn>With Hospitality: guests help with a fire, a rescue, the wounded, the frost harvest or hunger, whatever their mood.</CC_SetNote_GuestsPitchIn>
+
+  <!-- Rimfolk's clock -->
+  <CC_Clock_Pass_RareGuestHelp>Guests helping out</CC_Clock_Pass_RareGuestHelp>
+
+  <!-- The guest tab -->
+  <CC_GuestHelp_Title>{PAWN_nameDef} helping out</CC_GuestHelp_Title>
+  <CC_GuestHelp_Let>Let them help</CC_GuestHelp_Let>
+  <CC_GuestHelp_Let_Tip>Whether {PAWN_nameDef} may help with the colony's work while staying. Off: no work at all, not even in trouble (being treated stays {PAWN_possessive} own).</CC_GuestHelp_Let_Tip>
+  <CC_GuestHelp_Tab_Off>{PAWN_nameDef} is not helping: switched off here.</CC_GuestHelp_Tab_Off>
+  <CC_GuestHelp_Tab_HospitalityOff>Hospitality's guests helping is switched off: only fires and rescues.</CC_GuestHelp_Tab_HospitalityOff>
+  <CC_GuestHelp_Tab_Crisis>Pitching in now: {WHAT}.</CC_GuestHelp_Tab_Crisis>
+  <CC_GuestHelp_Tab_Thanks>Giving a day's {WORK} in thanks {WHY}, beyond the day's hours.</CC_GuestHelp_Tab_Thanks>
+  <CC_GuestHelp_Tab_Today>Today: {HOURS} h of {CAP}.</CC_GuestHelp_Tab_Today>
+  <CC_GuestHelp_Tab_TodayDone>Today: {HOURS} h of {CAP}, done for the day.</CC_GuestHelp_Tab_TodayDone>
+  <CC_GuestHelp_Tab_Overworked>Worked far too long today: {PAWN_nameDef} only helps to save a life until tomorrow, and minds it.</CC_GuestHelp_Tab_Overworked>
+  <CC_GuestHelp_Tab_Mood>Helps only in a good mood ({NOW} now, Hospitality asks over {NEED}).</CC_GuestHelp_Tab_Mood>
+  <CC_GuestHelp_Tab_Hire>No everyday work: {PEOPLE} work for hire, though they pitch in when there's trouble.</CC_GuestHelp_Tab_Hire>
+  <CC_GuestHelp_Tab_LowSkill>(below Hospitality's skill {NEED})</CC_GuestHelp_Tab_LowSkill>
+  <CC_GuestHelp_Tab_NoFits>Nothing {PAWN_nameDef} would help with every day.</CC_GuestHelp_Tab_NoFits>
+  <CC_GuestHelp_Tab_NoTrees_Calling>Never fells a tree: {PEOPLE} hold that the forest remembers every axe.</CC_GuestHelp_Tab_NoTrees_Calling>
+  <CC_GuestHelp_Tab_NoTrees_Faith>Never fells a tree: their faith forbids it.</CC_GuestHelp_Tab_NoTrees_Faith>
+  <CC_GuestHelp_Tab_Never>Never in a bedroom or a cell, at surgery, prisoners' work or the dead.</CC_GuestHelp_Tab_Never>
+
+  <!-- Why they'd help -->
+  <CC_GuestHelp_Fit_BurningPassion>{WORK}: burning passion</CC_GuestHelp_Fit_BurningPassion>
+  <CC_GuestHelp_Fit_Passion>{WORK}: passion</CC_GuestHelp_Fit_Passion>
+  <CC_GuestHelp_Fit_HardWorker>{WORK}: hard worker</CC_GuestHelp_Fit_HardWorker>
+  <CC_GuestHelp_Fit_Calling>{WORK}: what {PEOPLE} live by</CC_GuestHelp_Fit_Calling>
+  <CC_GuestHelp_Fit_Faith>{WORK}: their faith ({PRECEPT})</CC_GuestHelp_Fit_Faith>
+
+  <!-- Why they won't -->
+  <CC_GuestHelp_No_Titled>No {WORK}: titled ({TITLE})</CC_GuestHelp_No_Titled>
+  <CC_GuestHelp_No_Notable>No {WORK}: a head or heir of their people</CC_GuestHelp_No_Notable>
+  <CC_GuestHelp_No_Proud>No {WORK}: too proud</CC_GuestHelp_No_Proud>
+  <CC_GuestHelp_No_Faith>No {WORK}: their faith ({PRECEPT})</CC_GuestHelp_No_Faith>
+
+  <!-- The troubles, as they pitch in -->
+  <CC_GuestHelp_Crisis_Fire>fighting the fire</CC_GuestHelp_Crisis_Fire>
+  <CC_GuestHelp_Crisis_Rescue>carrying the downed to bed</CC_GuestHelp_Crisis_Rescue>
+  <CC_GuestHelp_Crisis_Tend>tending the wounded</CC_GuestHelp_Crisis_Tend>
+  <CC_GuestHelp_Crisis_Frost>bringing the harvest in before the frost</CC_GuestHelp_Crisis_Frost>
+  <CC_GuestHelp_Crisis_Food>cooking while the food runs short</CC_GuestHelp_Crisis_Food>
+  <CC_GuestHelp_TheirPeople>their people</CC_GuestHelp_TheirPeople>
+
+  <!-- A day's work in thanks: why, on the tab -->
+  <CC_GuestHelp_Why_Rescued>for being carried in</CC_GuestHelp_Why_Rescued>
+  <CC_GuestHelp_Why_Freed>for being set free once</CC_GuestHelp_Why_Freed>
+  <CC_GuestHelp_Why_Tended>for being tended</CC_GuestHelp_Why_Tended>
+  <CC_GuestHelp_Why_Feast>for the feast</CC_GuestHelp_Why_Feast>
+  <CC_GuestHelp_Why_Stay>for a very good stay</CC_GuestHelp_Why_Stay>
+
+  <!-- Messages and the evening's news -->
+  <CC_GuestHelp_Msg_Crisis>{PAWN_nameDef}, a guest from {PEOPLE}, is pitching in: {WHAT}.</CC_GuestHelp_Msg_Crisis>
+  <CC_GuestHelp_Msg_Hurt>{PAWN_nameDef} was hurt at the colony's {WORK}, and {PEOPLE} will hear of it.</CC_GuestHelp_Msg_Hurt>
+  <CC_GuestHelp_Msg_Overworked>{PAWN_nameDef} of {PEOPLE} worked far past a guest's share today, and went off sore about it.</CC_GuestHelp_Msg_Overworked>
+  <CC_GuestHelp_Msg_SpokeWell>{PAWN_nameDef} went home to {PEOPLE} speaking well of the colony, having helped out while staying.</CC_GuestHelp_Msg_SpokeWell>
+  <CC_GuestHelp_Msg_Thanks_Rescued>{PAWN_nameDef} of {PEOPLE} is giving the colony a day's {WORK} in thanks for being carried in when {PAWN_pronoun} was down.</CC_GuestHelp_Msg_Thanks_Rescued>
+  <CC_GuestHelp_Msg_Thanks_Freed>{PAWN_nameDef} of {PEOPLE} is giving the colony a day's {WORK} in thanks for being set free once.</CC_GuestHelp_Msg_Thanks_Freed>
+  <CC_GuestHelp_Msg_Thanks_Tended>{PAWN_nameDef} of {PEOPLE} is giving the colony a day's {WORK} in thanks for being tended here.</CC_GuestHelp_Msg_Thanks_Tended>
+  <CC_GuestHelp_Msg_Thanks_Feast>{PAWN_nameDef} of {PEOPLE} is giving the colony a day's {WORK} in thanks for the feast.</CC_GuestHelp_Msg_Thanks_Feast>
+  <CC_GuestHelp_Msg_Thanks_Stay>{PAWN_nameDef} of {PEOPLE} is giving the colony a day's {WORK} in thanks for a stay that went very well.</CC_GuestHelp_Msg_Thanks_Stay>
+
+  <!-- What their people's notables remember -->
+  <CC_GuestHelp_Note_SpokeWell>{GUEST} came home speaking well of the colony, where they had helped out.</CC_GuestHelp_Note_SpokeWell>
+  <CC_GuestHelp_Note_Hurt>One of theirs, {GUEST}, was hurt doing the colony's work.</CC_GuestHelp_Note_Hurt>
+  <CC_GuestHelp_Note_Overworked>Was worked like a hired hand as a guest at the colony.</CC_GuestHelp_Note_Overworked>
+
+</LanguageData>

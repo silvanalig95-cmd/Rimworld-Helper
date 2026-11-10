@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Hospitality's guests pitching in when the colony is in real trouble (Source/ColonyCouncil/Integrations/GuestHelp.cs;
+    the rules in GuestHelpMath.cs). On the game's Humanlike_PreMain hook, which Hospitality's guest duty offers inside its
+    "only what's allowed" step, before their needs and before its own mood line for helping: while a trouble they pitch
+    in to lasts (a fire near them, someone of the colony downed outside a bed, the wounded after a raid, the frost
+    harvest, the food running out), a guest carries the downed to a bed (the game's own rescue job) and does the
+    trouble's work (the game's work givers, narrowed to that trouble's), whatever their mood, unless starving or dropping.
+    For anyone else the step says no at once. Without Hospitality nobody is its guest, so it never does anything.
+  -->
+
+  <ThinkTreeDef>
+    <defName>Rimfolk_GuestPitchInTree</defName>
+    <insertTag>Humanlike_PreMain</insertTag>
+    <insertPriority>90</insertPriority>
+    <thinkRoot Class="ColonyCouncil.ThinkNode_GuestPitchIn">
+      <subNodes>
+        <li Class="ColonyCouncil.JobGiver_GuestRescue" />
+        <li Class="JobGiver_Work" />
+      </subNodes>
+    </thinkRoot>
+  </ThinkTreeDef>
+
+</Defs>

@@ -511,6 +511,7 @@ Console.WriteLine($"Checked {InboxTests.Run(root, Check)} things about one inbox
         Console.WriteLine($"Checked {OutsiderTalkTests.Run(root, Check)} things about conversations with outsiders (patience, asking again, talks of their own, pieces, callbacks, the library).");
         Console.WriteLine($"Checked {OutsiderAutoTests.Run(root, Check)} things about the right-click's things done by the colonists themselves (which on which setting, the moment, the pace, the budget, what each brings, who does it, the seams).");
         Console.WriteLine($"Checked {FactsTests.Run(root, Check)} things about the facts service and the one fill (scenes, providers, the same choices over generated talks, the same text as every fill it replaced).");
+        Console.WriteLine($"Checked {GuestHelpTests.Run(root, Check)} things about guests helping out (work they love, who won't, the colony's troubles and who pitches in, the verdict narrowing only in everyday times, thanks paid in work, the day's limits, the regard both ways, every name in the player's mods, the seams).");
     }
 }
 

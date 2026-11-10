@@ -421,7 +421,7 @@ public static class HistoryTests
         C(dh > 0 && dh < Sched.HourTicks, "the history's day runs in the first hour of the day");
         C(!Sched.HourlyOffsets.Contains(dh), "on no hourly pass's tick");
         var rare = Sched.RareOffsets.Concat(new[] { Sched.RareNews, Sched.RarePlayOut, Sched.RareWeekMemory, Sched.RareCouriers, Sched.RareVisitors, Sched.RareTimed,
-            Sched.RareRearrange, Sched.RareNeighbours, Sched.RareOutsiders, Sched.RareJourneys, Sched.RareOutsiderTalk, Sched.RareHauling }).ToList();
+            Sched.RareRearrange, Sched.RareNeighbours, Sched.RareOutsiders, Sched.RareJourneys, Sched.RareOutsiderTalk, Sched.RareHauling, Sched.RareGuestHelp }).ToList();
         C(!rare.Contains(dh % Sched.RareTicks), "on no 250-tick pass's tick");
         C(dh % Sched.PeopleLogPeriod != Sched.PeopleLog, "nor the people log's");
         C(new[] { Sched.DailyWealth, Sched.DailyMagicNeeds, Sched.DailyBestFriends }.All(o => o != dh), "nor another daily pass's");

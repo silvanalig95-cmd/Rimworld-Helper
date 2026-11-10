@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Hospitality's guests helping out (Source/ColonyCouncil/Integrations/GuestHelp.cs). Working side by side at the same
+    work, a guest and a colonist think a little better of each other, both ways, once a day each pair (no mood: the
+    game's own opinion, which also counts toward the friends Hospitality asks for). A guest whose day's work went far
+    past what a guest should give feels it: a small bad mood for two days, which lowers Hospitality's own score of the
+    visit (it reads their mood), so the colony pays for it a little at their leaving.
+  -->
+
+  <ThoughtDef>
+    <defName>Rimfolk_GuestWorkedBeside</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilSocial</thoughtClass>
+    <durationDays>6</durationDays>
+    <stackLimit>5</stackLimit>
+    <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
+    <stages><li><label>worked beside me</label><description>We got through the work together, side by side.</description><baseMoodEffect>0</baseMoodEffect><baseOpinionOffset>3</baseOpinionOffset></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>Rimfolk_GuestOverworked</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
+    <durationDays>2</durationDays>
+    <stackLimit>1</stackLimit>
+    <stages><li><label>worked like a hired hand</label><description>I came here as a guest, and they had me working most of the day.</description><baseMoodEffect>-4</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+</Defs>
