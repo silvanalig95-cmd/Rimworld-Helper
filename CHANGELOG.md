@@ -5,6 +5,13 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## A larger mailbag
+
+*10 November 2026, version 0.202.1*
+
+- The mailbag by the gate is drawn half again as large, so the post and its bag are easy to spot.
+- It still takes a single cell, and pawns walk past and over it as before.
+
 ## Letters that read like letters
 
 *9 November 2026, version 0.202.0*

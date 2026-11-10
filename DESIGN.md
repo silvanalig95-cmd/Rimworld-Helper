@@ -7835,8 +7835,8 @@ some sort of diplomatic range, right? until comms". Step 1 of `docs/design/post-
 `PostMath.cs`, `PostTests`, "the post: ", 245 checks). Under **The post: letters travel with someone** (`post`, the
 neighbours' section, on, needs the letters) and **The post's pace** (`postPace`: Seldom, As usual, Often).
 
-- **The outbox.** A letter written goes in the mailbag (`Rimfolk_Mailbag`, a spot of the Misc tab drawn with the game's
-  caravan packing spot's texture in leather brown, `Building_Mailbag`; the one nearest the gate counts; none placed, the
+- **The outbox.** A letter written goes in the mailbag (`Rimfolk_Mailbag`, a spot of the Misc tab drawn with its own post and bag
+  (0.179.2, drawn at 1.5 its cell since 0.202.1), `Building_Mailbag`; the one nearest the gate counts; none placed, the
   gate cell, `PlaySpots.GateCell`) as a neighbour letter in the new stage `Outbox` (`Outbox.Put`, from `Written`). Its pane
   lists each letter (to whom, what for, by whom, how it is likely to leave: `PostWords.Likely`) and the mail coming in;
   its buttons send one with the colony's own rider or take one back. The old "three under way, one each" becomes one to

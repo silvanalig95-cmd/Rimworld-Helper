@@ -12,6 +12,8 @@ tree at once, alongside whatever runs. Each piece is merged as its own release, 
 
 ## State (5 November 2026)
 
+- 0.202.1, a larger mailbag (10 November 2026). The player: "the post box symbol is nice, but it's a bit small, scale it
+  like 1.5 or so". `Rimfolk_Mailbag`'s graphicData has `drawSize` (1.5,1.5); still one standable cell.
 - 0.202.0, letters that read like letters (9 November 2026). The player: "letters exchanged from and to pawns should also read like actual letters, make a
   varied selection of interesting letters that read well and can also crack a joke sometimes, or be serious", then "they
   don't necessarily have to be warm, just according to the situation and motivation", the writer's race and culture,

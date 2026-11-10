@@ -31,6 +31,16 @@ When you load a save after an update, a letter lists the newest round once. The 
     <rounds>
 
       <li>
+        <version>0.202.1</version>
+        <date>10 November 2026</date>
+        <title>A larger mailbag</title>
+        <points>
+          <li>The mailbag by the gate is drawn half again as large, so the post and its bag are easy to spot.</li>
+          <li>It still takes a single cell, and pawns walk past and over it as before.</li>
+        </points>
+      </li>
+
+      <li>
         <version>0.202.0</version>
         <date>9 November 2026</date>
         <title>Letters that read like letters</title>

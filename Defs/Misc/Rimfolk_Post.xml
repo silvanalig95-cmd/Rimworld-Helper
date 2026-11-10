@@ -11,6 +11,8 @@
     <graphicData>
       <texPath>ColonyCouncil/Things/Mailbag</texPath>
       <graphicClass>Graphic_Single</graphicClass>
+      <!-- Half again its cell, so the post and bag read at a glance by the gate (the player: "scale it like 1.5 or so"). -->
+      <drawSize>(1.5,1.5)</drawSize>
     </graphicData>
     <altitudeLayer>FloorEmplacement</altitudeLayer>
     <statBases>
