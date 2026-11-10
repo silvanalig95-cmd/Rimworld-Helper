@@ -6,7 +6,7 @@
   <CC_Shelf_ButtonDesc>Keep a slot on this shelf for each kind you pick, so there's always one stack of each the colony has. The other slots take anything the shelf allows.</CC_Shelf_ButtonDesc>
   <CC_Shelf_Title>Reserved slots</CC_Shelf_Title>
   <CC_Shelf_SubMany>{0} shelves, set alike</CC_Shelf_SubMany>
-  <CC_Shelf_Explain>The slots below are kept for their kinds while the colony has some on this map, each filled by a stack of its own. Haulers fill the other slots with anything the shelf allows; when a reserved kind turns up and the shelf is full, a stack of what it holds most of is carried elsewhere to make room. The shelf's storage settings still decide what it may hold.</CC_Shelf_Explain>
+  <CC_Shelf_Explain>The slots below are kept for their kinds while the colony has some on this map, each filled by a stack of its own. Haulers fill the other slots with anything the shelf allows; when a reserved kind turns up and the shelf is full, a stack of what it holds most of is carried elsewhere to make room, or set down beside the shelf when nothing else takes it. A colonist told to haul a reserved kind to a full shelf makes room first. The shelf's storage settings still decide what it may hold.</CC_Shelf_Explain>
   <CC_Shelf_Off>Reserved slots are switched off in Rimfolk's settings (Building page), or the deeper game hooks are, so haulers don't keep to these for now.</CC_Shelf_Off>
   <CC_Shelf_None>No slot reserved yet.</CC_Shelf_None>
   <CC_Shelf_AnyOf>any {GROUP}</CC_Shelf_AnyOf>
@@ -41,6 +41,11 @@
   <CC_Shelf_HowOnly>no more</CC_Shelf_HowOnly>
   <CC_Shelf_HowEach>{0} per stack</CC_Shelf_HowEach>
   <CC_Shelf_HowPatient>while a patient lies here</CC_Shelf_HowPatient>
+
+  <!-- Making room on a full shelf (Source/ColonyCouncil/Building/ShelfMakeRoom.cs): the colonist's menu and the job's report. -->
+  <CC_Shelf_MakeRoomHaul>Make room on the {SHELF} and haul {THING} there</CC_Shelf_MakeRoomHaul>
+  <CC_Shelf_MakingRoomFor>making room on the {SHELF} for {KIND}.</CC_Shelf_MakingRoomFor>
+  <CC_Shelf_TheKind>the {KIND}</CC_Shelf_TheKind>
 
   <!-- Reserve a slot for... (Source/ColonyCouncil/Building/ShelfReservePick.cs). -->
   <CC_ShelfPick_Title>Reserve a slot for...</CC_ShelfPick_Title>

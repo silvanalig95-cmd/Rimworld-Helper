@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- Reserved slots on shelves (Source/ColonyCouncil/Building/ShelfReserves.cs, ShelfMakeRoom.cs): a stack taken off a
+       full shelf to make room for a reserved kind, to other storage or set down beside the shelf. The game's haul to a
+       cell; the report names the shelf and the kind it makes room for. -->
+
+  <JobDef>
+    <defName>Rimfolk_MakeRoomOnShelf</defName>
+    <driverClass>ColonyCouncil.JobDriver_MakeRoomOnShelf</driverClass>
+    <reportString>making room on TargetC.</reportString>
+    <suspendable>false</suspendable>
+  </JobDef>
+
+</Defs>

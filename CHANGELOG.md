@@ -5,6 +5,13 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## Making room on a reserved shelf
+
+*10 November 2026, version 0.205.3*
+
+- When a shelf's reserved slots are taken by something else, ordering a colonist to haul the reserved kind now offers "Make room on the shelf and haul it there": they move the stack out, to its best other storage or beside the shelf, and bring yours in.
+- Haulers now also make room on their own when a reserved kind is waiting and the stack in its way has nowhere better to go, setting it down beside the shelf.
+
 ## The letter carried and read
 
 *10 November 2026, version 0.205.2*

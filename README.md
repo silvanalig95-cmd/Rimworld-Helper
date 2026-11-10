@@ -1982,6 +1982,19 @@ Pawns don't walk to storage with one handful at a time (settings: **What's on, C
   the packed food a pawn wants or a caravan's packs. With **Pick Up And Haul**, what is wholly Rimfolk's goes through its
   own unloading; Haul to Stack is left alone; Combat Extended's bulk and weight limits count.
 
+### Reserved slots on shelves
+A **Reserved slots** button on the colony's shelves and other storage buildings keeps a slot for each kind you pick (an
+item, any of a group like meals, or the best of a group at hand), so the hospital shelf always has herbal, medicine and
+glitterworld medicine (settings: **What's on, Stores**, "Reserved slots on shelves"). A kind can keep several slots,
+no more than its slots, so many per stack, or only while a patient lies in the room. Haulers fill the other slots with
+anything the shelf allows, but keep a slot free for each reserved kind the colony has on the map. When one turns up and
+the shelf is full, a stack of what it holds most of is carried elsewhere to make room, and if nothing else will store
+it, it is set down beside the shelf, so the reserved kind can come in; it isn't put back while it would take that slot.
+Right-click a stack of a reserved kind that has nowhere to go with a colonist selected: in place of "Cannot haul" the
+menu offers **Make room on the shelf and haul simple meal x4 there** (for four simple meals), and the colonist carries
+a stack off the shelf (to other storage, else beside it; never one filling another reserved slot) and brings yours into
+the freed spot, kept for them meanwhile. Works with LWM's Deep Storage.
+
 ### Taking cover with a drag
 With drafted colonists selected, hold **Ctrl and right-drag**: the cell you press is where they gather and the drag
 points at the enemy. Each colonist goes to the cell nearby with the most cover from that side that they can still

@@ -31,6 +31,16 @@ When you load a save after an update, a letter lists the newest round once. The 
     <rounds>
 
       <li>
+        <version>0.205.3</version>
+        <date>10 November 2026</date>
+        <title>Making room on a reserved shelf</title>
+        <points>
+          <li>When a shelf's reserved slots are taken by something else, ordering a colonist to haul the reserved kind now offers "Make room on the shelf and haul it there": they move the stack out, to its best other storage or beside the shelf, and bring yours in.</li>
+          <li>Haulers now also make room on their own when a reserved kind is waiting and the stack in its way has nowhere better to go, setting it down beside the shelf.</li>
+        </points>
+      </li>
+
+      <li>
         <version>0.205.2</version>
         <date>10 November 2026</date>
         <title>The letter carried and read</title>
