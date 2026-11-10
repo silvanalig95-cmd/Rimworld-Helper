@@ -326,6 +326,17 @@ namespace ColonyCouncil
                 }
             if (NeighbourLetters.ChannelWhyNot(n, LetterChannel.Courier, map) != null && NeighbourLetters.ChannelWhyNot(n, LetterChannel.Console, map) == null)
                 channel = LetterChannel.Console;
+            // Their own letter waits for an answer (Dealings/WorldWrites.cs): the dialog opens on answering it.
+            var ask = WorldWrites.OpenAsk(n);
+            if (ask != null && LetterOccasions.WhyNot(n, LetterPurpose.Dealing) == null)
+            {
+                int i = NeighbourLetters.Topics(n, LetterPurpose.Dealing).FindIndex(t => t.key == DealingLetters.ReplyPrefix + ask.id);
+                if (i >= 0)
+                {
+                    purpose = LetterPurpose.Dealing;
+                    topicIndex = i;
+                }
+            }
         }
 
         /// <summary>A letter for a purpose and what it's about, chosen beforehand (the Diplomacy page's "call it in": Diplomacy/DiplomacyPanels.cs).</summary>

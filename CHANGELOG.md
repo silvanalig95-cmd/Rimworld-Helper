@@ -5,6 +5,14 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## Asks answered
+
+*10 November 2026, version 0.205.4*
+
+- A notable's letter waiting for your answer no longer counts under "Asks waiting" once a letter of yours to them is under way, and isn't taken as silence meanwhile.
+- Writing to someone who waits for your answer now opens the letter on answering them, so a reply to their request is the first choice.
+- A letter of yours sent in another way since their ask is no longer held against you as silence; the mailbag also reads "1 letter waiting" for a single letter.
+
 ## Making room on a reserved shelf
 
 *10 November 2026, version 0.205.3*

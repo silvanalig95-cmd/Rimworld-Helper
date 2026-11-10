@@ -39,8 +39,20 @@ namespace ColonyCouncil
         {
             var book = Book;
             if (book == null) return new List<WorldAsk>();
-            return book.asks.Where(a => a.opened >= 0 && !a.answered && Dealings.OpenLetter(DealingLetters.ReplyPrefix + a.id) == null).ToList();
+            return book.asks.Where(a => a.opened >= 0 && !a.answered && Dealings.OpenLetter(DealingLetters.ReplyPrefix + a.id) == null && !Writing(a)).ToList();
         }
+
+        /// <summary>
+        /// A letter of the colony's to them is under way since their letter came (written, in the bag or on the road): their
+        /// ask waits on it rather than on the colony, so it neither shows as waiting nor lapses as silence meanwhile (the player:
+        /// "the "asks waiting" information is really nice, but it should disappear once you have an answer ordered").
+        /// </summary>
+        public static bool Writing(WorldAsk a) =>
+            a != null && (NotableBook.Instance?.letters.Any(l => l != null && l.Open && l.notable == a.notable && l.created >= a.opened) ?? false);
+
+        /// <summary>Their letter opened at the colony and waiting for its answer, or null.</summary>
+        public static WorldAsk OpenAsk(Notable n) =>
+            n == null ? null : Book?.asks.FirstOrDefault(a => a != null && a.notable == n.id && a.opened >= 0 && !a.answered);
 
         // ================= They write =================
 
@@ -160,8 +172,14 @@ namespace ColonyCouncil
                     }
                     continue;
                 }
-                if (a.answered || now - a.opened < DealingMath.AnswerDays * DealingMath.DayTicks || Dealings.OpenLetter(DealingLetters.ReplyPrefix + a.id) != null) continue;
+                if (a.answered || now - a.opened < DealingMath.AnswerDays * DealingMath.DayTicks || Dealings.OpenLetter(DealingLetters.ReplyPrefix + a.id) != null || Writing(a)) continue;
                 a.answered = true;
+                // The colony wrote to them since in its own way (not the answer they asked for): no silence to take.
+                if (NotableBook.Instance?.letters.Any(l => l != null && l.notable == a.notable && l.created >= a.opened && l.stage != LetterStage.Cancelled) ?? false)
+                {
+                    Dealings.Changed();
+                    continue;
+                }
                 var n = NotableBook.Instance?.Get(a.notable);
                 if (n != null)
                 {

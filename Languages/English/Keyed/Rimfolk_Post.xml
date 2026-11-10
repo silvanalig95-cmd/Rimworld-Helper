@@ -73,6 +73,7 @@
   <CC_Mail_Bag_Other>Letters wait in the mailbag nearer the gate.</CC_Mail_Bag_Other>
   <CC_Mail_Bag_Empty>No letters waiting.</CC_Mail_Bag_Empty>
   <CC_Mail_Bag_Head>{COUNT} letters waiting:</CC_Mail_Bag_Head>
+  <CC_Mail_Bag_HeadOne>1 letter waiting:</CC_Mail_Bag_HeadOne>
   <CC_Mail_Bag_More>  ...and {COUNT} more.</CC_Mail_Bag_More>
   <CC_Mail_Bag_Coming>Mail for the colony on its way in: {COUNT}.</CC_Mail_Bag_Coming>
   <CC_Mail_Gizmo_Rider>Send with our rider</CC_Mail_Gizmo_Rider>

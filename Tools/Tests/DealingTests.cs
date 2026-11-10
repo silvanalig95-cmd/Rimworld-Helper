@@ -370,6 +370,14 @@ public static class DealingTests
         C(!Regex.IsMatch(dealings + Code("Dealings/WorldWrites.cs") + Code("Dealings/PenFriends.cs"), @"Messages\.Message\(|Find\.LetterStack\.ReceiveLetter\("),
             "the player is told through Notify and Tell");
         C(!Regex.IsMatch(dealings, @"in \d+ days"), "no countdowns in its words");
+        // The player: "the "asks waiting" information is really nice, but it should disappear once you have an answer ordered".
+        string ww = Code("Dealings/WorldWrites.cs");
+        C(ww.Contains("Dealings.OpenLetter(DealingLetters.ReplyPrefix + a.id) == null && !Writing(a)") && ww.Contains("l.Open && l.notable == a.notable && l.created >= a.opened"),
+            "their ask stops waiting while any letter of the colony's to them is under way");
+        C(ww.Contains("|| Writing(a)) continue;") && ww.Contains("l.created >= a.opened && l.stage != LetterStage.Cancelled"),
+            "nor lapses as silence meanwhile, and a letter written to them since is no silence");
+        C(Code("World/NeighboursPanel.cs").Contains("var ask = WorldWrites.OpenAsk(n);") && Code("World/NeighboursPanel.cs").Contains("purpose = LetterPurpose.Dealing;"),
+            "the letter dialog to someone waiting for an answer opens on answering them");
         // Rimfolk's own visitors and errands at the errand's pace (0.171.1): never the game's half-speed walk or its plain travel toil.
         var dealingCode = Directory.GetFiles(Path.Combine(root, "Source", "ColonyCouncil", "Dealings"), "*.cs").Select(File.ReadAllText).ToList();
         C(dealingCode.All(t => !t.Contains("LocomotionUrgency.Walk") && !t.Contains("new LordToil_Travel(") && !t.Contains("IncidentDefOf.VisitorGroup")),

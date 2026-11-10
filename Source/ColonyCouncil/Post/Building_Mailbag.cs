@@ -32,7 +32,7 @@ namespace ColonyCouncil
                     var bag = Outbox.Bag(Map);
                     if (bag != null && bag != this) parts.Add(PostWords.P("CC_Mail_Bag_Other"));
                     var lines = PostWords.OutboxLines(Map);
-                    parts.Add(lines.Count == 0 ? PostWords.P("CC_Mail_Bag_Empty") : PostWords.P("CC_Mail_Bag_Head", lines.Count.Named("COUNT")));
+                    parts.Add(lines.Count == 0 ? PostWords.P("CC_Mail_Bag_Empty") : PostWords.P(lines.Count == 1 ? "CC_Mail_Bag_HeadOne" : "CC_Mail_Bag_Head", lines.Count.Named("COUNT")));
                     parts.AddRange(lines.Take(PaneLines));
                     if (lines.Count > PaneLines) parts.Add(PostWords.P("CC_Mail_Bag_More", (lines.Count - PaneLines).Named("COUNT")));
                     int coming = PostBook.Instance?.incoming.Count(i => i.map == Map) ?? 0;

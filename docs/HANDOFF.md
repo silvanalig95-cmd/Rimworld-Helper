@@ -15,6 +15,13 @@ tree at once, alongside whatever runs. Each piece is merged as its own release, 
 - **Held by the player (10 November 2026): no new letters content jobs until they ask** ("for the letters please hold
   after this job then ... I'd like to keep such jobs for the end of the week to use up my remaining tokens"). The letters
   round 2 part 1 agent was already running; its part 2 (more content in the same shapes) waits for their word.
+- 0.205.4, asks answered (10 November 2026). The player, with a screenshot of "Asks waiting: 1" beside Guido's letter in
+  the mailbag: "the "asks waiting" information is really nice, but it should disappear once you have an answer ordered".
+  Their save: Acraeraes's world ask (a small request, `WorldAsk` 1) was answered with a Help letter (the colony asking),
+  not the reply (purpose Dealing, topic "reply:1"), because the letter dialog skipped dealings by default.
+  `WorldWrites.Writing(a)`: any open letter of the colony's to that notable since the ask opened hides it from
+  `AllWaiting` and holds off the silence; one written since (any stage but cancelled) means no silence penalty.
+  `Dialog_NeighbourLetter` opens on the reply when `WorldWrites.OpenAsk(n)`. The mailbag says "1 letter waiting".
 - 0.205.3, **making room on a reserved shelf** (10 November 2026). The player's bug report, with a screenshot of "Cannot haul simple meal x4: No empty, accessible
   spot configured to store it": "so when i have a reserved slot in a shelf for meals, that slot is however currently
   being occupied by something else, i can't send a "haul" command on a meal, since it thinks there are no free slots. it

@@ -8110,6 +8110,15 @@ neighbours' section, on, needs the letters) and **The post's pace** (`postPace`:
 - **Dev actions** ("Rimfolk"): the post rider now; a visitor group leaves now with the mail; every town's reach and the
   outbox (log); the mail waiting brought by a messenger now; the mail on the road here now.
 
+### Asks answered (0.205.4)
+
+The player: "the "asks waiting" information is really nice, but it should disappear once you have an answer ordered". A
+world ask (`Dealings/WorldWrites.cs`) waits for the reply (purpose Dealing, topic "reply:ID"); now any letter of the
+colony's to that notable under way since it opened (`WorldWrites.Writing`) also takes it out of the inbox's waiting
+asks and holds off the silence, and a letter written to them since in another way means no silence penalty when the
+answer days pass. The letter dialog opens on the reply when the notable waits for one (`WorldWrites.OpenAsk`), so the
+answer is the first choice.
+
 ### The letter carried and read (the player's report, 10 November 2026; released 0.205.2)
 
 The player: "i think i instructed a pawn to send a letter, the text appeared above but I can't find it in the mailbag? do
