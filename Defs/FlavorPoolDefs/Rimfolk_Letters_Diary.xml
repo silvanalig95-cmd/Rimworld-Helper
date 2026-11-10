@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    A diary page enclosed, or a letter broken off and taken up again (Letters/LetterKindMath.cs, Diary), from the lonely
+    and the talkative. A page: two or three days ending today, each "{DAY}" in the writer's way of dating (the court's
+    "The 4th day.", the plain "4 Aprimay.", the standard "5501.1.04:", a tribe's "The first morning."; added by the code)
+    and the day's entry (di:entry); the last entry may be one only fit to end on (di:latest: the writing of this letter;
+    {TO} is the one written to). A letter broken off: a line that breaks it off (di:break), a line that takes it up the
+    next day (di:resume), then a paragraph of everyday life (Rimfolk_Letters_Part.xml, pa:life). Everyday flavour of their
+    own life, by the season and land at their town; a line that says a letter of the colony's came is tagged !first (their
+    letter written first had none before it). Ages: w:tribal, w:spacer. Speech: olde, sv:ancient.
+  -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_LetterDiary</defName>
+    <lines>
+      <plain>
+        <!-- ================= A day's entry ================= -->
+        <li>[di:entry] Rain all day. Mended the roof, which leaked on me while I mended it, out of spite.</li>
+        <li>[di:entry] Nothing happened. I wrote that down so there would be a record of it.</li>
+        <li>[di:entry,!w:tribal] Market. Bought nothing, sold less, talked to everyone. A good day.</li>
+        <li>[di:entry] The {ANIMALS} were out on the ridge at dawn. I stood and watched them until the porridge burned.</li>
+        <li>[di:entry] Argued with the neighbour about the fence. Won. Lost the fence.</li>
+        <li>[di:entry] Couldn't sleep. Sat up with the lamp and thought about the road, and where it goes, and who is at the other end of it.</li>
+        <li>[di:entry,season:winter] Cold. Very cold. Wrote this with my gloves on, which is why it looks like this.</li>
+        <li>[di:entry,season:summer] Hot. Too hot to do anything but lie in the shade and plan what I will do when it is cooler.</li>
+        <li>[di:entry,season:spring] The first green on the trees. Everyone is in a better mood, even the goat.</li>
+        <li>[di:entry,season:autumn] Picked the last of the {PLANT}. Everything smells of it. I do not mind.</li>
+        <li>[di:entry] Fixed the gate. Third time this season. The gate and I have an understanding now: it breaks, and I fix it.</li>
+        <li>[di:entry,!first] Read your last letter again. Laughed at the same part.</li>
+        <li>[di:entry] Walked out to the edge of the fields and back. Thought about nothing. Highly recommended.</li>
+        <li>[di:entry] A stranger asked the way. Gave it. Wondered all afternoon where they were going.</li>
+        <li>[di:entry,grave] A bad day. I will not write about it. I am writing this instead, so the page is not empty.</li>
+        <li>[di:entry,w:tribal] The second day of the rains. The children made boats of bark and raced them down the gully.</li>
+        <li>[di:entry,w:tribal] Hunted. Caught nothing. Told a good story about it anyway.</li>
+        <li>[di:entry,w:spacer] The terminal crashed again. Wrote this by hand, which I had forgotten how to do. It is coming back.</li>
+        <li>[di:entry,di:latest] Wrote to {TO} at last. You are reading it.</li>
+        <li>[di:entry,di:latest] Sat down to write to {TO}, and copied out these pages instead, which is cheating, but kindly meant.</li>
+        <li>[di:entry,di:latest,!first] Your letter came. Read it twice, then once more aloud, to whoever would listen.</li>
+        <!-- ================= Broken off, and taken up again ================= -->
+        <li>[di:break] Someone is at the door. I will finish this later.</li>
+        <li>[di:break] The pot is boiling over. Back soon.</li>
+        <li>[di:break] The light is going and the lamp oil is low, so I will stop here and go on in the morning.</li>
+        <li>[di:break,w:tribal] The fire is low. I will finish this when the sun comes.</li>
+        <li>[di:break,w:spacer] Power cut. Finishing tomorrow.</li>
+        <li>[di:resume] Morning now. Where was I? It does not matter. Here is the rest.</li>
+        <li>[di:resume] It was nothing, as it turned out. The neighbour wanted to borrow a ladder. I lent the ladder and kept the letter.</li>
+        <li>[di:resume] It is the next day, and I have read over what I wrote, and I am sending it anyway.</li>
+        <li>[di:resume] Back. The pot is fine. The stove is not. That is another letter.</li>
+        <li>[di:resume,w:tribal] The sun is up. The fire is new. I go on.</li>
+        <!-- ================= Medieval English (olde) ================= -->
+        <li>[olde,di:entry] Rain all the day. Mended the roof, which wept upon me while I mended it, out of spite.</li>
+        <li>[olde,di:entry] Naught befell. I set it down that there be a record of it.</li>
+        <li>[olde,di:entry] Market day. Bought naught, sold less, spake with all. A good day.</li>
+        <li>[olde,di:entry] The {ANIMALS} were upon the ridge at dawn. I stood and watched till the pottage burned.</li>
+        <li>[olde,di:entry,season:winter] Cold, bitter cold. I write this gloved, which is why it is writ so.</li>
+        <li>[olde,di:entry,!first] Read thy last letter again, and laughed at the same place.</li>
+        <li>[olde,di:entry,grave] An ill day. I will not write of it.</li>
+        <li>[olde,di:entry,di:latest] Wrote to {TO} at last. Thou readest it now.</li>
+        <li>[olde,di:break] Someone knocketh at the door. I will finish this anon.</li>
+        <li>[olde,di:break] The light faileth and the candle is short, so I stop here and go on at morn.</li>
+        <li>[olde,di:resume] It is morn now. Where was I? No matter. Here is the rest.</li>
+        <li>[olde,di:resume] It was naught but a neighbour wanting a ladder. I lent the ladder and kept the letter.</li>
+        <!-- ================= The long-lived (sv:ancient) ================= -->
+        <li>[sv:ancient,di:entry] Rose. Considered the century. Retired.</li>
+        <li>[sv:ancient,di:entry] A visitor asked my age. I told them. They did not believe me. I did not insist.</li>
+        <li>[sv:ancient,di:entry] Reordered the archive by colour, then by smell, then back. A productive day.</li>
+        <li>[sv:ancient,di:entry,di:latest] Began a letter to {TO}. Finished it. Unusually prompt of me.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+</Defs>

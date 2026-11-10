@@ -1172,6 +1172,24 @@ namespace ColonyCouncil
             }
         }
 
+        /// <summary>
+        /// The office a notable holds, for a letter's signature, salutation or heading: their title by role, or for one the
+        /// colony met the trader's or envoy's word of their age when that is how they came; null for anyone else
+        /// (NotableMath.Office). TitleOf's descriptions ("a trader who called") never reach a letter's form.
+        /// </summary>
+        public static string OfficeOf(Notable n)
+        {
+            if (n == null) return null;
+            var office = NotableMath.Office(n.role, n.met);
+            if (office == null) return null;
+            if (office == n.role) return TitleOf(n);
+            int tech = (int)(Peoples.TechOf(n.faction, TechLevel.Industrial));
+            string era = tech <= NotableMath.Neolithic ? "Tribal" : tech == NotableMath.Medieval ? "Medieval" : tech == NotableMath.Industrial ? "Industrial" : "Spacer";
+            bool female = n.pawn?.gender == Gender.Female;
+            return office == NotableRole.Trader ? Peoples.Title(n.faction, "trader", female) ?? ("CC_Notable_Title_Trader_" + era).Translate().Resolve()
+                : Peoples.Title(n.faction, "envoy", female) ?? ("CC_Notable_Title_Envoy_" + era).Translate().Resolve();
+        }
+
         /// <summary>"Mayor Ana Bell of Kettleford" / "Ana Bell, who was set free by Bo".</summary>
         public static string Called(Notable n)
         {

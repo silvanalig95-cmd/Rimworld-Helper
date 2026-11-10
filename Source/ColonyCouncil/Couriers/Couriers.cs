@@ -841,7 +841,10 @@ namespace ColonyCouncil
         // ---------------- Words ----------------
 
         /// <summary>"250 corn", "40 raw food", "150 silver".</summary>
-        public static string Amount(int n, string what, ThingDef def) => "CC_Courier_Amount".Translate(n, PlayCarry.Label(what, def)).Resolve();
+        public static string Amount(int n, string what, ThingDef def) => "CC_Courier_Amount".Translate(n, Counted(n, PlayCarry.Label(what, def), def)).Resolve();
+
+        /// <summary>A label counted ("36 medicinal cactipine quills", "50 silver"): the game's own plural for more than one of a thing counted one by one (CourierMath.Counted).</summary>
+        public static string Counted(int n, string label, ThingDef def) => CourierMath.Counted(n, label, def?.IsStuff ?? false, Find.ActiveLanguageWorker.Pluralize);
 
         /// <summary>"150 silver", "a longsword and 40 steel", "45 silver, 30 steel and 2 more things".</summary>
         public static string Describe(List<Thing> things)
@@ -852,7 +855,7 @@ namespace ColonyCouncil
             {
                 var first = g.First();
                 int n = g.Sum(t => t.stackCount);
-                if (first.def.stackLimit > 1 || n > 1) parts.Add("CC_Courier_Amount".Translate(n, first.def.label).Resolve());
+                if (first.def.stackLimit > 1 || n > 1) parts.Add("CC_Courier_Amount".Translate(n, Counted(n, first.def.label, first.def)).Resolve());
                 else parts.Add(Find.ActiveLanguageWorker.WithIndefiniteArticle(first.LabelNoCount));
             }
             if (parts.Count > 3)

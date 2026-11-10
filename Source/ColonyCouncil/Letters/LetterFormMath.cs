@@ -35,7 +35,32 @@ namespace ColonyCouncil
         /// <summary>A line of a call's transcript.</summary>
         Call,
         /// <summary>The carrier's frame round words passed on by mouth.</summary>
-        Spoken
+        Spoken,
+        // ---------------- The shapes of 10 November 2026 (Letters/LetterKindMath.cs) ----------------
+        /// <summary>A bare note's few words round its heart (note:open, note:close).</summary>
+        Note,
+        /// <summary>The line that brings a piece in (lk:KIND), and the line after it (lk:after).</summary>
+        Lead,
+        /// <summary>A story's parts by theme (st:open, st:turn, st:end, st:moral, st:joke; st:hunt, st:feud...).</summary>
+        Story,
+        /// <summary>A raid's account in parts (rd:come, rd:stand, rd:burn, rd:fall, rd:end, rd:after), by its record or as an old tale.</summary>
+        Raid,
+        /// <summary>Poems and songs, whole (po:ballad, po:verse, po:lament, po:drinking, po:hymn, po:nonsense, po:work, po:war; po:short).</summary>
+        Poem,
+        /// <summary>Sermons and tracts, whole, by their memes and precepts (c:..., p:...), true believers' and cranks'.</summary>
+        Sermon,
+        /// <summary>A chronicle's masthead, items by subject (ch:item, chs:...), notices and foot.</summary>
+        Chronicle,
+        /// <summary>Set pieces: a petition (pe:), a list or an account (ac:), a recipe or remedy (rc:), a riddle (ri:).</summary>
+        Set,
+        /// <summary>The lines others at home add under the signature (ha:line).</summary>
+        Hands,
+        /// <summary>What is folded in with the letter (en:line).</summary>
+        Enclosure,
+        /// <summary>A diary's entries (di:entry), and a letter broken off (di:break) and taken up again (di:resume).</summary>
+        Diary,
+        /// <summary>A long letter's parts: their headings (pa:head) and bodies (pa:news, pa:life).</summary>
+        Part
     }
 
     /// <summary>How a writer of the colony puts things: their Social and Intellectual skill and their nature.</summary>
@@ -78,7 +103,9 @@ namespace ColonyCouncil
         /// <summary>Written down for them by someone else.</summary>
         Helped,
         /// <summary>A hive: the many of their town.</summary>
-        Many
+        Many,
+        /// <summary>A bare note: the name alone.</summary>
+        Short
     }
 
     /// <summary>How well a writer was schooled: their letters read like it.</summary>
@@ -166,6 +193,19 @@ namespace ColonyCouncil
         public string callMode = "call";
         /// <summary>The narrator's plain lines under it, set apart: what it brings, why it went badly, how their regard moved.</summary>
         public readonly List<string> outcomes = new List<string>();
+        // ---------------- The shape (Letters/LetterKindMath.cs) ----------------
+        /// <summary>The shape it takes (LetterKindMath.Choose): the usual letter, a bare note, a long letter, a story, a poem...</summary>
+        public LetterKind kind;
+        /// <summary>Who writes, as the shapes are chosen by (their gifts, real news and raids, who else at home), or null.</summary>
+        public LetterWho who;
+        /// <summary>How long letters may get (the setting).</summary>
+        public LetterLength length = LetterLength.Mixed;
+        /// <summary>The shape's paragraphs after the heart (LetterKindMath.Build): the story, the poem, the parts.</summary>
+        public readonly List<string> piece = new List<string>();
+        /// <summary>The lines under the signature: others' added lines, what is folded in.</summary>
+        public readonly List<string> after = new List<string>();
+        /// <summary>The answer to the riddle this letter asks, to be given in the writer's next (kept with the letter).</summary>
+        public string riddleAnswer;
     }
 
     /// <summary>The fixed words of the form (the keyed strings, read once): the heading, the dates, the signatures, the P.S., the mark between the letter and the narrator.</summary>
@@ -179,12 +219,27 @@ namespace ColonyCouncil
         public string signNoble = "{FROM}, {TITLE}, at {TOWN}", signOurs = "{FROM}, for all of us at {COLONY}", signOursTitled = "{FROM}, {TITLE}, for all of us at {COLONY}";
         public string signMark = "X, the mark of {FROM}", signHelped = "{FROM}, written down for them by {HELPER}", signMany = "The many of {TOWN}";
         public string machineHead = "RECORD {DATE}\nFROM: {FROM}, {PLACE}\nTO: {TO}\nSUBJECT: {PURPOSE}", machinePoint = "{N}. {LINE}", machinePs = "ADDENDUM: {LINE}";
+        // The shapes (Letters/LetterKindMath.cs).
+        public string signShort = "{FROM}", adds = "{HAND} adds: {LINE}", answer = "The answer to my riddle: {ANSWER}";
+        public string goesOnOne = "(The letter goes on for another page. Read the whole of it from this card, or with {NAME} on the Diplomacy screen's People.)";
+        public string goesOnMany = "(The letter goes on for {N} more pages. Read the whole of it from this card, or with {NAME} on the Diplomacy screen's People.)";
+        public string diaryCourtly = "The {ORD} day.", diaryPlain = "{DAY} {QUADRUM}.", diaryStandard = "{YEAR}.{Q}.{DD}:", diarySeason = "The first morning.|The second morning.|The third morning.";
+        public string signed = "Signed: {NAMES}.", signedMore = "Signed: {NAMES}, and many more of {TOWN} besides.", and = "and";
     }
 
     /// <summary>A letter made: the writer's own words, the narrator's lines, and both with the mark between.</summary>
     public sealed class LetterText
     {
+        /// <summary>The writer's whole letter, the narrator's lines, and what the game's own letter shows (the start of a long letter, with a note where the rest is).</summary>
         public string letter = "", note = "", full = "";
+        /// <summary>The letter in pages, as the reading window shows it (LetterKindMath.Pages).</summary>
+        public List<string> pages = new List<string>();
+        /// <summary>The game's letter shows only the first page.</summary>
+        public bool cut;
+        /// <summary>Its shape.</summary>
+        public LetterKind kind;
+        /// <summary>The answer to the riddle it asks, or null.</summary>
+        public string riddleAnswer;
     }
 
     /// <summary>
@@ -376,6 +431,7 @@ namespace ColonyCouncil
             if (s.ours)
                 foreach (var v in VoiceTags(s.voice))
                     t.Add(v);
+            t.Add(LetterKindMath.Tag(s.kind));
             string k = KindTag(kind);
             if (k != null) t.Add(k);
             return t;
@@ -553,12 +609,16 @@ namespace ColonyCouncil
         /// helper's hand; the colony's own (with a title, the Empire's, if the writer holds one); a council; the Empire; a
         /// person with or without a title.
         /// </summary>
-        public static SignStyle SignOf(bool ours, bool council, bool empire, bool titled, string speech = null, bool helped = false)
+        public static SignStyle SignOf(bool ours, bool council, bool empire, bool titled, string speech = null, bool helped = false, bool note = false)
         {
             if (speech == LetterCultureMath.Hive) return SignStyle.Many;
             if (helped) return SignStyle.Helped;
             if (speech == NoSchool) return SignStyle.Mark;
-            return ours ? titled ? SignStyle.OursTitled : SignStyle.Ours : council ? SignStyle.Council : empire && titled ? SignStyle.Noble : titled ? SignStyle.Person : SignStyle.PersonUntitled;
+            if (!ours && council) return SignStyle.Council;
+            if (!ours && empire && titled) return SignStyle.Noble;
+            // A bare note is signed with the name alone.
+            if (note) return SignStyle.Short;
+            return ours ? titled ? SignStyle.OursTitled : SignStyle.Ours : titled ? SignStyle.Person : SignStyle.PersonUntitled;
         }
 
         /// <summary>The signature, filled from the spec's values (FROM, TITLE, TOWN, COUNCIL, COLONY, HELPER).</summary>
@@ -575,6 +635,7 @@ namespace ColonyCouncil
                 case SignStyle.Mark: f = w.signMark; break;
                 case SignStyle.Helped: f = w.signHelped; break;
                 case SignStyle.Many: f = w.signMany; break;
+                case SignStyle.Short: f = w.signShort; break;
                 default: f = w.signOurs; break;
             }
             return Texts.Fill(f, values);
@@ -641,6 +702,18 @@ namespace ColonyCouncil
             return fits[fits.Count - 1].text;
         }
 
+        /// <summary>Whether any of these lines fits (its speech, its tags, a value for each placeholder): nothing drawn.</summary>
+        public static bool Any(IList<string> lines, HashSet<string> tags, IReadOnlyDictionary<string, string> values)
+        {
+            if (lines == null) return false;
+            foreach (var line in lines)
+            {
+                if (string.IsNullOrEmpty(line) || Fits(line, tags) < 0) continue;
+                if (Fillable(LineTags.Of(line).text, values)) return true;
+            }
+            return false;
+        }
+
         /// <summary>Every placeholder of the line has a value.</summary>
         public static bool Fillable(string text, IReadOnlyDictionary<string, string> values)
         {
@@ -680,13 +753,24 @@ namespace ColonyCouncil
             foreach (var o in s.outcomes)
                 if (!string.IsNullOrEmpty(o))
                     note.Add(o.Trim());
-            var t = new LetterText { letter = letter, note = string.Join("\n\n", note) };
-            t.full = t.note.Length == 0 ? letter : letter + "\n\n" + w.mark + "\n\n" + t.note;
+            var t = new LetterText { letter = letter, note = string.Join("\n\n", note), kind = s.kind, riddleAnswer = s.riddleAnswer };
+            t.pages = LetterKindMath.Pages(letter);
+            // A long letter: the game's own letter shows its first page, and says where the rest is.
+            t.cut = letter.Length > LetterKindMath.ShowMax && t.pages.Count > 1;
+            string shown = letter;
+            if (t.cut)
+            {
+                int more = t.pages.Count - 1;
+                string name = s.values.TryGetValue("FROM", out var from) ? from : "";
+                shown = t.pages[0] + "\n\n" + Fill(more == 1 ? w.goesOnOne : w.goesOnMany, ("N", more.ToString()), ("NAME", name));
+            }
+            t.full = t.note.Length == 0 ? shown : shown + "\n\n" + w.mark + "\n\n" + t.note;
             return t;
         }
 
         private static string Written(LetterSpec s, LetterWords w, Func<LetterPart, HashSet<string>, string> pick, Func<float> roll, bool salute)
         {
+            if (s.kind == LetterKind.Note) return Note(s, w, pick, roll, salute);
             var paras = new List<string>();
             if (Heading(s, roll()) && !string.IsNullOrEmpty(s.place))
                 paras.Add(string.IsNullOrEmpty(s.date) ? s.place : Fill(s.empire && !s.ours ? w.headingCourt : w.heading, ("PLACE", s.place), ("DATE", s.date)));
@@ -695,16 +779,64 @@ namespace ColonyCouncil
             Add(paras, pick(LetterPart.Open, tags));
             Add(paras, s.heart);
             foreach (var m in s.more) Add(paras, m);
-            var kind = Aside(s, roll());
+            // The shape's own paragraphs: the story, the poem, the parts of a long letter.
+            foreach (var p in s.piece) Add(paras, p);
+            var kind = AsideOf(s) ? Aside(s, roll()) : AsideKind.None;
             if (kind != AsideKind.None) Add(paras, pick(LetterPart.Aside, Tags(s, kind)));
             string close = pick(LetterPart.Close, tags) ?? w.closeFallback;
             paras.Add(string.IsNullOrEmpty(s.sign) ? close : close + "\n" + s.sign);
-            if (roll() < PSChance(s))
-            {
-                string ps = pick(LetterPart.PS, Tags(s, PSKind(s, roll())));
-                if (!string.IsNullOrEmpty(ps)) paras.Add(Fill(w.ps, ("LINE", ps)));
-            }
+            // Under the signature: others' lines, what is folded in.
+            foreach (var a in s.after) Add(paras, a);
+            string ps = PS(s, w, pick, roll);
+            if (!string.IsNullOrEmpty(ps)) paras.Add(Fill(w.ps, ("LINE", ps)));
             return string.Join("\n\n", paras);
+        }
+
+        /// <summary>
+        /// A bare note: a salutation of the name alone now and then, a word to start it now and then ("In haste."), the
+        /// heart, a word to end it now and then, the name. A council's and the Empire's keep their heading.
+        /// </summary>
+        private static string Note(LetterSpec s, LetterWords w, Func<LetterPart, HashSet<string>, string> pick, Func<float> roll, bool salute)
+        {
+            var paras = new List<string>();
+            if ((s.council || s.empire) && !string.IsNullOrEmpty(s.place) && Heading(s, roll()))
+                paras.Add(string.IsNullOrEmpty(s.date) ? s.place : Fill(s.empire && !s.ours ? w.headingCourt : w.heading, ("PLACE", s.place), ("DATE", s.date)));
+            var tags = Tags(s);
+            if (salute && roll() < 0.6f) paras.Add(Texts.Fill(w.saluteFallback, s.values));
+            if (roll() < 0.3f) Add(paras, pick(LetterPart.Note, With(tags, "note:open")));
+            Add(paras, s.heart);
+            foreach (var m in s.more) Add(paras, m);
+            string end = roll() < 0.55f ? pick(LetterPart.Note, With(tags, "note:close")) : null;
+            if (!string.IsNullOrEmpty(end)) paras.Add(end.Trim());
+            if (!string.IsNullOrEmpty(s.sign)) paras.Add(s.sign);
+            // An owed answer to a riddle goes even in a note.
+            string ps = s.who?.owedAnswer != null ? PS(s, w, pick, roll) : null;
+            if (!string.IsNullOrEmpty(ps)) paras.Add(Fill(w.ps, ("LINE", ps)));
+            return string.Join("\n\n", paras);
+        }
+
+        /// <summary>The tags with one more.</summary>
+        public static HashSet<string> With(HashSet<string> tags, string more) => new HashSet<string>(tags) { more };
+
+        /// <summary>Whether an aside goes in: in the usual letter and the short shapes, never in a long one, a poem, a sermon or a petition.</summary>
+        public static bool AsideOf(LetterSpec s) =>
+            s.kind == LetterKind.Usual || s.kind == LetterKind.Hands || s.kind == LetterKind.Enclosure || s.kind == LetterKind.Recipe || s.kind == LetterKind.Riddle
+            || s.kind == LetterKind.Account;
+
+        /// <summary>
+        /// The P.S., or null: the answer to the riddle of the writer's last letter when one is owed (always given), else
+        /// one by the usual chance and kind.
+        /// </summary>
+        private static string PS(LetterSpec s, LetterWords w, Func<LetterPart, HashSet<string>, string> pick, Func<float> roll)
+        {
+            string owed = s.who?.owedAnswer;
+            if (!string.IsNullOrEmpty(owed))
+            {
+                if (!s.values.ContainsKey("ANSWER")) s.values["ANSWER"] = owed;
+                return pick(LetterPart.Set, With(Tags(s), "ri:answer")) ?? Fill(w.answer, ("ANSWER", owed));
+            }
+            if (roll() >= PSChance(s)) return null;
+            return pick(LetterPart.PS, Tags(s, PSKind(s, roll())));
         }
 
         /// <summary>A machine's letter: a stamped record for a head, its points numbered, a closing line, the sign, an addendum for a P.S.</summary>
@@ -719,19 +851,20 @@ namespace ColonyCouncil
             {
                 if (!string.IsNullOrEmpty(p)) points.Add(Fill(w.machinePoint, ("N", (points.Count + 1).ToString()), ("LINE", p.Trim())));
             }
-            Point(pick(LetterPart.Open, tags));
+            bool note = s.kind == LetterKind.Note;
+            if (!note) Point(pick(LetterPart.Open, tags));
             Point(s.heart);
             foreach (var m in s.more) Point(m);
-            var kind = Aside(s, roll());
+            var kind = !note && AsideOf(s) ? Aside(s, roll()) : AsideKind.None;
             if (kind != AsideKind.None) Point(pick(LetterPart.Aside, Tags(s, kind)));
             if (points.Count > 0) paras.Add(string.Join("\n", points));
-            string close = pick(LetterPart.Close, tags);
+            // The shape's own paragraphs (an incident report, a log, an inventory), after the points.
+            foreach (var p in s.piece) Add(paras, p);
+            string close = note ? null : pick(LetterPart.Close, tags);
             paras.Add(string.IsNullOrEmpty(close) ? s.sign ?? "" : string.IsNullOrEmpty(s.sign) ? close : close + "\n" + s.sign);
-            if (roll() < PSChance(s))
-            {
-                string ps = pick(LetterPart.PS, Tags(s, PSKind(s, roll())));
-                if (!string.IsNullOrEmpty(ps)) paras.Add(Fill(w.machinePs, ("LINE", ps)));
-            }
+            foreach (var a in s.after) Add(paras, a);
+            string ps = note && s.who?.owedAnswer == null ? null : PS(s, w, pick, roll);
+            if (!string.IsNullOrEmpty(ps)) paras.Add(Fill(w.machinePs, ("LINE", ps)));
             return string.Join("\n\n", paras);
         }
 
@@ -811,10 +944,49 @@ namespace ColonyCouncil
             if (!string.IsNullOrEmpty(p)) paras.Add(p.Trim());
         }
 
+        // ================= On its event card =================
+
+        /// <summary>
+        /// A received letter's text on its event card taken apart, so the letter itself is drawn on paper (the player, 10
+        /// November 2026: "the sent letter had a really cool style that looked like a real letter while the received one is
+        /// here in the plain event design"): what the teller put before it (<paramref name="before"/>: "At Riverhold."),
+        /// the writer's own words as the card shows them (<paramref name="paper"/>, found by the kept letter's first words),
+        /// a long letter's note where the rest is (<paramref name="more"/>), and the narrator's lines under the mark
+        /// (<paramref name="under"/>). False when the kept letter's start isn't in the text (the letter is drawn plain).
+        /// </summary>
+        public static bool OnPaper(string shown, string kept, LetterWords w, out string before, out string paper, out string more, out string under)
+        {
+            before = paper = more = under = "";
+            if (string.IsNullOrEmpty(shown) || string.IsNullOrEmpty(kept)) return false;
+            w ??= new LetterWords();
+            string head = kept.Length > 60 ? kept.Substring(0, 60) : kept;
+            int at = shown.IndexOf(head, StringComparison.Ordinal);
+            if (at < 0) return false;
+            before = shown.Substring(0, at).Trim();
+            string rest = shown.Substring(at);
+            string mark = "\n\n" + w.mark + "\n\n";
+            int m = rest.IndexOf(mark, StringComparison.Ordinal);
+            string letter = m < 0 ? rest : rest.Substring(0, m);
+            under = m < 0 ? "" : rest.Substring(m + mark.Length).Trim();
+            // A long letter's note where the rest is: its last paragraph, as the form wrote it.
+            string goesOn = w.goesOnMany.IndexOf('{') > 0 ? w.goesOnMany.Substring(0, w.goesOnMany.IndexOf('{')) : w.goesOnMany;
+            int last = letter.LastIndexOf("\n\n", StringComparison.Ordinal);
+            if (last > 0 && goesOn.Length > 4 && letter.Substring(last + 2).StartsWith(goesOn, StringComparison.Ordinal))
+            {
+                more = letter.Substring(last + 2).Trim();
+                letter = letter.Substring(0, last);
+            }
+            paper = letter.Trim();
+            return paper.Length > 0;
+        }
+
         // ================= Kept =================
 
-        /// <summary>A letter kept for reading later is cut to this many characters (the longest made is well under it).</summary>
+        /// <summary>A letter kept for reading later is cut to this many characters (the longest usual letter is well under it).</summary>
         public const int MaxKept = 2400;
+
+        /// <summary>A long letter (over MaxKept) is kept to this many, the newest LetterBook.MaxLong of them; older ones are cut to MaxKept.</summary>
+        public const int MaxKeptLong = 8000;
 
         /// <summary>The narrator's lines kept with it, at most.</summary>
         public const int MaxNote = 900;

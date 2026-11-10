@@ -16,7 +16,7 @@ namespace ColonyCouncil
     /// Rimfolk_Pool_Letter*, never one this session drew lately (LineMemory, Flavor.Memory) nor one already in a kept letter
     /// (LetterBook), while another fits. The setting "Letters written out in full" (on) turns it off for the short form.
     /// </summary>
-    public static class LetterForm
+    public static partial class LetterForm
     {
         /// <summary>"Letters written out in full" (on): off, answers read as they did, and the colony's letters aren't written out.</summary>
         public static bool Full => (ColonyCouncilMod.Settings?.lettersInFull ?? true) && NeighbourLetters.On;
@@ -33,7 +33,12 @@ namespace ColonyCouncil
             signCouncil = K("CC_LetterForm_SignCouncil"), signNoble = K("CC_LetterForm_SignNoble"), signOurs = K("CC_LetterForm_SignOurs"),
             signOursTitled = K("CC_LetterForm_SignOursTitled"), signMark = K("CC_LetterForm_SignMark"), signHelped = K("CC_LetterForm_SignHelped"),
             signMany = K("CC_LetterForm_SignMany"), machineHead = K("CC_LetterForm_MachineHead"), machinePoint = K("CC_LetterForm_MachinePoint"),
-            machinePs = K("CC_LetterForm_MachinePS")
+            machinePs = K("CC_LetterForm_MachinePS"),
+            // The shapes (Letters/LetterKindMath.cs).
+            signShort = K("CC_LetterForm_SignShort"), adds = K("CC_LetterForm_Adds"), answer = K("CC_LetterForm_Answer"), goesOnOne = K("CC_LetterForm_GoesOnOne"),
+            goesOnMany = K("CC_LetterForm_GoesOnMany"), diaryCourtly = K("CC_LetterForm_DiaryCourtly"), diaryPlain = K("CC_LetterForm_DiaryPlain"),
+            diaryStandard = K("CC_LetterForm_DiaryStandard"), diarySeason = K("CC_LetterForm_DiarySeason"), signed = K("CC_LetterForm_Signed"),
+            signedMore = K("CC_LetterForm_SignedMore"), and = K("CC_LetterForm_And")
         };
 
         private static string K(string key) => key.Translate().Resolve();
@@ -89,6 +94,9 @@ namespace ColonyCouncil
             }
             Lead(s, l, n, a);
             s.outcomes.AddRange(a.outcomes);
+            // Its shape (Letters/LetterFormShapes.cs): the usual letter, a bare note, a story, a poem, a raid's account...
+            ShapeTheirs(s, n);
+            SignNote(s, false, s.values.ContainsKey("TITLE"));
             var t = Compose(s);
             LetterBook.Answered(l, n, t, s.shape);
             return t;
@@ -173,7 +181,9 @@ namespace ColonyCouncil
                 s.values["TOWN"] = n.townName ?? f?.Name ?? "";
                 s.values["COLONY"] = colony;
                 s.values["PEOPLE"] = f?.Name ?? "";
-                s.values["TOTITLE"] = NotableBook.TitleOf(n);
+                // Their office only, never how the colony knows them ("a trader who called"): a salutation's {TOTITLE}.
+                string office = NotableBook.OfficeOf(n);
+                if (!office.NullOrEmpty()) s.values["TOTITLE"] = office;
                 s.values["PURPOSE"] = ("CC_Letter_Purpose_" + l.purpose).Translate().Resolve();
                 s.values["TOPIC"] = l.topic ?? "";
                 s.values["HELP"] = HelpWord(l.help);
@@ -186,6 +196,9 @@ namespace ColonyCouncil
                 s.date = DateText(s.age, false, map?.Tile ?? PlanetTile.Invalid, s);
                 string speech = LetterFormMath.SpeechOf(s);
                 s.sign = LetterFormMath.Signature(LetterFormMath.SignOf(true, false, false, title != null, speech, helper != null), Words, s.values);
+                // Its shape, by the writer (Letters/LetterFormShapes.cs): a verse from a poet, a little preaching from a zealot...
+                ShapeOurs(s, l, n, writer, map);
+                SignNote(s, true, title != null);
                 var t = Compose(s);
                 LetterBook.Written(l, n, writer, t);
                 return t;
@@ -272,6 +285,8 @@ namespace ColonyCouncil
                 if (!goods.NullOrEmpty()) s.values["GOODS"] = goods;
                 s.heart = PickFilled(LetterPart.Heart, LetterFormMath.HeartTags(s), s);
                 s.outcomes.AddRange(outcomes);
+                ShapeTheirs(s, n);
+                SignNote(s, false, s.values.ContainsKey("TITLE"));
                 var t = Compose(s);
                 LetterBook.TheirFirst(n, askId, t);
                 return t;
@@ -298,6 +313,8 @@ namespace ColonyCouncil
                 if (!raiders.NullOrEmpty()) s.values["RAIDERS"] = raiders;
                 s.heart = PickFilled(LetterPart.Heart, LetterFormMath.HeartTags(s), s);
                 s.outcomes.AddRange(outcomes);
+                ShapeTheirs(s, n);
+                SignNote(s, false, s.values.ContainsKey("TITLE"));
                 var t = Compose(s);
                 LetterBook.Note(n, t);
                 return t;
@@ -347,6 +364,8 @@ namespace ColonyCouncil
             bool trader = n.role == NotableRole.Trader || calling == PeoplesMath.Traders || calling == PeoplesMath.Brokers;
             s.motive = LetterFormMath.Motive(false, war, s.penFriend, s.council, s.empire, purpose, NotableBook.Opinion(n), trader, pride, trust);
             Peoples.AddTags(f, s.tags);
+            // Who they are in their town (nr:head, nr:heir, nr:envoy, nr:trader, nr:acquaintance): a line that names the writer as the boss is the head's.
+            s.tags.Add("nr:" + n.role.ToString().ToLowerInvariant());
             if (facts != null)
             {
                 s.tags.UnionWith(facts.tags);
@@ -363,7 +382,8 @@ namespace ColonyCouncil
             s.values["COLONY"] = ColonyName(Home);
             s.values["PEOPLE"] = f?.Name ?? "";
             s.values["PURPOSE"] = purpose;
-            string title = NotableBook.TitleOf(n);
+            // Signed with their office only ("Dagna, mayor of Ashford"); one the colony met as a guest signs with their name and town.
+            string title = NotableBook.OfficeOf(n);
             if (!title.NullOrEmpty()) s.values["TITLE"] = title;
             if (s.council) s.values["COUNCIL"] = Dealings.Council(f, town);
             if (helped) s.values["HELPER"] = "CC_LetterForm_TheirHelper".Translate().Resolve();
@@ -545,15 +565,22 @@ namespace ColonyCouncil
             string key = "letter:" + part;
             var avoid = new HashSet<string>(Flavor.Memory.Recent(key) ?? Enumerable.Empty<string>());
             string kept = LetterBook.KeptText;
-            if (!kept.NullOrEmpty())
+            // A long piece (a poem, a sermon, a story's part...) is remembered across the game too (LetterBook.Used, saved).
+            bool remembered = LetterKindMath.Remembered(part);
+            if (!kept.NullOrEmpty() || remembered)
                 foreach (var l in lines)
                 {
                     if (LetterFormMath.Fits(l, tags) < 0) continue;
                     string text = LineTags.Of(l).text;
-                    if (text.Length >= LineMemory.MinWords && LetterFormMath.Fillable(text, values) && kept.Contains(Texts.Fill(text, values))) avoid.Add(text);
+                    if (remembered && LetterBook.Used(LetterKindMath.Key(text))) avoid.Add(text);
+                    else if (!kept.NullOrEmpty() && text.Length >= LineMemory.MinWords && LetterFormMath.Fillable(text, values) && kept.Contains(Texts.Fill(text, values))) avoid.Add(text);
                 }
             string line = LetterFormMath.Pick(lines, tags, values, avoid, () => Rand.Value);
-            if (line != null) Flavor.Memory.Remember(key, line, lines.Count);
+            if (line != null)
+            {
+                Flavor.Memory.Remember(key, line, lines.Count);
+                if (remembered) LetterBook.Use(LetterKindMath.Key(line));
+            }
             return line;
         }
     }

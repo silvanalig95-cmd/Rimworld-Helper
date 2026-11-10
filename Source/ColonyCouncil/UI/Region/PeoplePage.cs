@@ -435,6 +435,11 @@ namespace ColonyCouncil
                     if (Widgets.ButtonInvisible(r)) LetterReadWindow.Open(row.x);
                     y += LetterRowH + 2f;
                 }
+                // Write back to them from here (Letters/LetterReply.cs), greyed with why.
+                y += 2f;
+                if (UiKit.RowAct(new Rect(0f, y, Mathf.Min(w, 220f), 22f), LetterReply.Label, BackWhy(n), "CC_LetterRead_WriteBackTip".Translate(n.Name.Named("NAME")).Resolve()))
+                    LetterReply.Open(n);
+                y += 26f;
             }
             if (hereNow.Count > 0)
             {
@@ -469,6 +474,17 @@ namespace ColonyCouncil
         }
 
         private static readonly List<(Notable n, List<LetterRow> rows)> letters = new List<(Notable, List<LetterRow>)>();
+
+        /// <summary>Why no letter can go back to each of them now, looked at twice a second (LetterReply.WhyNot looks over messengers and topics).</summary>
+        private static readonly Dictionary<int, (float at, string why)> backWhy = new Dictionary<int, (float, string)>();
+
+        private static string BackWhy(Notable n)
+        {
+            if (backWhy.TryGetValue(n.id, out var b) && Time.realtimeSinceStartup - b.at < 0.5f) return b.why;
+            string why = LetterReply.WhyNot(n);
+            backWhy[n.id] = (Time.realtimeSinceStartup, why);
+            return why;
+        }
 
         /// <summary>The correspondence with each of their notables (LetterBook.With), newest first: who wrote and answered, when, and the first words of the newest.</summary>
         private static void Letters(PeopleEntry e)

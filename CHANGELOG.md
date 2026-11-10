@@ -5,6 +5,17 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## Letters of many shapes
+
+*10 November 2026, version 0.203.0*
+
+- Letters no longer all follow one pattern: some are bare notes, some run to several pages in parts, and some bring a story, a poem or song, a sermon, a town newsletter, a petition, a recipe, a riddle, a diary page or lines added by others in the house.
+- Who writes decides the shape: the talkative, lonely and zealous write long, artists send verse, officials and the curt keep it short, and a town that really was raided tells you how it went, with its own dead and what burned.
+- Medieval, tribal, Empire, unschooled and stranger voices all have their own versions, from a ballad in thee and thou to an android's incident report and a bandit's boast.
+- A received letter now shows on its card on paper, like the letters you send; long ones show their start with the rest a click away, and every letter from a notable has a Write back button.
+- Goods from a debt of honour, a dealing or help are no longer also called a gift, counted goods read in the plural, and letters sign with a real office only.
+- The setting "How long letters may get" chooses Short, Mixed or Long and storied.
+
 ## Porters in the saddle
 
 *10 November 2026, version 0.202.2*

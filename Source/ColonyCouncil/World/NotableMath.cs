@@ -129,6 +129,18 @@ namespace ColonyCouncil
     /// </summary>
     public static class NotableMath
     {
+        /// <summary>
+        /// The office a notable holds, as a letter signs, heads or greets with it ("Dagna, mayor of Ashford"): their role's
+        /// (head, heir, envoy, trader); for one the colony met, only "trader" or "envoy" when that is how they came, else
+        /// none (signed "Acraeraes of Karond-Keth 2"). Never a description ("a trader who called", "set free by the colony"):
+        /// those are how the colony knows them, not titles (the player's card, 10 November 2026).
+        /// </summary>
+        public static NotableRole? Office(NotableRole role, string met)
+        {
+            if (role != NotableRole.Acquaintance) return role;
+            return met == "trader" ? NotableRole.Trader : met == "envoy" ? NotableRole.Envoy : (NotableRole?)null;
+        }
+
         public const int TicksPerDay = 60000;
         public const int TicksPerHour = 2500;
 

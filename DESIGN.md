@@ -8267,6 +8267,141 @@ and `LetterCultureMath.cs` (linked in Tests.csproj; `Tools/Tests/LetterFormTests
 - **Not changed**: what each answer does (tones, regard, goodwill, gifts, help, debts, threats, the post's carrying); the
   colony's envoys' and wards' letters home and a town's letter (narrated, as before).
 
+### Letters of many shapes (the player's request, 10 November 2026)
+
+The player, after 0.202.0: "i really like a lot of text variety, also someitmes the letters can be longer, with some
+stories or stuff that is told by the different pawns or factions. some might include poems, detailed stories of raider
+attacks, ideological ramblings and all kinds of different things. they don't all always fully have to follow the same
+structure, some could be several pages long, some just boiled down to the necessities etc. I just want a lot of variety,
+content and interesting writing that makes reading every letter a fun or interesting experience." Released 0.203.0. Round 2, part 1: the
+shapes, how they are chosen, the rules that keep the words true, reading long letters, the setting and a first library; a
+second content pass fills the same shapes. In `Source/ColonyCouncil/Letters/`: the pure rules `LetterKindMath.cs` (linked
+in Tests.csproj; `Tools/Tests/LetterShapeTests.cs`, "letter shapes: "), the game's side `LetterFormShapes.cs` (a partial of
+`LetterForm`), the pools `Defs/FlavorPoolDefs/Rimfolk_Letters_Note`, `_Lead`, `_Story`, `_Raid`, `_Poem`, `_Sermon`,
+`_Chronicle`, `_Set`, `_Hands`, `_Enclosure`, `_Diary`, `_Part` (each documents its tags in its header, for the next pass).
+Everything of 0.202.0 is kept: the tone by situation and motive, the writer's people and kind, medieval English, the
+unschooled hand, the strange voices. The heart (what the letter is for, which says what the game does) is never replaced:
+a shape's pieces come after it.
+
+- **The shapes** (`LetterKind`): the usual letter of 0.202.0; a bare note (a name for a salutation now and then, a word to
+  start, the heart, a word to end, the name alone: `SignStyle.Short`); a long letter in parts (three or four, four or five
+  at Long and storied: the news first when the facts hold some, everyday life, a story, a short verse, a raid's account,
+  each now and then under a heading); a story told (a theme's opening, turn and ending, a moral or a joke now and then);
+  a raid's account (how they came, who stood where, what burned, who fell, how it ended, after); a poem or a song, whole;
+  a sermon or a tract, whole; a chronicle (a masthead in the writer's age, up to four items each about one real thing, a
+  notice or two, its foot); a petition with signatures; a list or an account; a recipe or a remedy; a riddle (its answer
+  kept with the letter and given in the writer's next P.S.); a letter by several hands (one to three of the others at home
+  add a line each, "Pell adds: ..."); an enclosure described under the signature; a diary page (two or three days dated
+  in the writer's way, `DiaryDays`) or a letter broken off and taken up again the next day. A call and words passed on
+  keep their own shape.
+- **Who gets which** (`Fits`): only a written letter, in a speech the shape has pieces in (`Speeches`, `PieceSpeech`: a
+  barely schooled hand draws the plain pieces); never from a council, in the business between two peoples, or in a
+  refusal; at war only the usual letter, a note, or a raiding people's boast of their raid on the colony. Long, storied
+  letters (a long letter, a story, a diary) from pen friends, the warm, the lonely, the zealous and the talkative, in a
+  letter about nothing in particular (`Chatty`: greetings, news, an invitation, a friend's word, their thanks, a letter
+  written first that asks for nothing), warm or courteous; a story also from a tribe, the merry, the beast-folk and the
+  ancient. Poems from artistic writers (Artistic 8, or 5 with a burning passion; an artist's culture; a people of makers,
+  singers or pilgrims; `LetterFormShapes.Gifts`) and from the fey and the plant folk; a lament the only poem in a
+  condolence. Sermons from the zealous (a faith held at certainty 0.75 whose memes weigh 6 or that is devout or
+  preaching; a preacher's precept at 0.5; a crank when short-tempered, suspicious or unschooled), in a chatty letter or a
+  condolence (only a consolation there). A raid's account from a town raided in fact, else as an old tale from those who
+  tell tales (the talkative, a tribe, fighters' and raiders' peoples, the ancient, the beast-folk); never in a curt letter
+  but a boast. A chronicle where there is news, from a town's head or a trader, or a people of scholars, citizens,
+  linesmen or crew. A petition or a list where something is asked (a letter written first with k:request, in hard times or
+  from the head); a list also from a trader, an android, the unschooled. A remedy in place of medicine they can't send; a
+  recipe, a riddle (humour 30), other hands (someone at home), an enclosure between friends. The colony's own (`FitsOurs`):
+  a verse from its poet, a little preaching from its zealot, a note, other colonists' lines, an enclosure, the cook's
+  recipe (`{COOK}` known), a petition for help signed by all (two or more), its own raid told to a friend as the facts
+  have it.
+- **How likely** (`Weight`, `Choose`): the usual letter 10; a note 1.5 (three times when curt or a refusal, three at war,
+  two and a half from an official, twice from the busy and the colony's blunt writers, half between warm friends); a long
+  letter 0.8 (a half more each for the talkative, the lonely and a pen friend); a story 1 (a half more from a tribe, a
+  third more from the talkative); a raid's account 3 from a record (4.5 within fifteen days), 2 for a boast, 0.6 as an old
+  tale; a poem 2, a sermon 2.5, a chronicle 1.2 (half again with news and from the busy), a petition 1.5, a list 1, a
+  recipe 0.6, a riddle 0.6 (0.9 for the merriest), other hands 0.8, an enclosure 0.8, a diary 0.6. A talkative pen friend
+  writes the usual letter about half the time and a long one about a quarter; a plain neighbour the usual letter nearly
+  always; the curt, the hostile and officials a bare note a quarter of the time or more (tested). Never the same unusual
+  shape twice running from one writer (`LetterBook.LastKind`: theirs by notable, the colony's by colonist).
+- **The setting** "How long letters may get" (`letterLength`, under "Letters written out in full", `LetterLength`): Short
+  (none of the long shapes, `LongKinds`: long letter, story, raid's account, sermon, chronicle, diary; notes half again as
+  often; a poem tagged !len:short left out), Mixed (the default), Long and storied (the long shapes two and a half times,
+  a long letter in four or five parts, notes a little less).
+- **Words match the map.** What is said of their town comes from the facts service (`PieceAsks`: their town, its land and
+  notables, wars, world events, the region, what their people remember, the ties), merged into the letter's tags and
+  values: a chronicle's item and a long letter's news say only what those hold (a death `{LOST}`, a new head `{HEAD}`,
+  their war `{WAR}`, a peace, a new town near, a raiders' camp near the colony, a hard time and its cause `{FORTUNEWHY}`,
+  a world event at their town `{TOWNSITUATION}`, someone ill, their caravan setting out for the colony, what they are short
+  of, the colony's good deed `{DEED}` they remember, its name `{KNOWNFOR}`); with no facts, only the weather and notices.
+  A raid on their town (`RaidOf`): a world event of raids at it now with their people as the ones raided (a raid on a
+  town the colony was, `Rimfolk_WS_TownRaid`; a war between neighbours come to the first one's town,
+  `Rimfolk_WS_NeighborsWar`; bandits on their people's road, `Council_WS_BanditRoad`; a warlord's event sits at his own
+  seat and the clans gather at theirs, so neither counts) or its record within 240 days (how it ended from the ending: held, hurt, sacked, unknown; their dead from its flags or a
+  former town's ending), a battle or a razing at it in the ledger's history, the colony's own attack on their town
+  (`townAttacked`: told to the colony, "rd:you"), the colony's fighters on their walls remembered (`townDefended`). The
+  record's tags (`AddRaid`: rd:now, fresh, recent or past, rd:end:..., walls or road, helped, you, rd:dead:...) choose every
+  part: an ending only as the record has it, who fell only as it holds them (no part at all when it doesn't), burning only
+  for a town hurt or sacked. With no record, only an old tale (rd:old: "when I was small", "my grandmother said"), never
+  last week's news. The colony's own raid only with `colony:raid`, its lines only by the facts' kind of raiders
+  (colony:raid:mechs...) and colony:raid:fallen. Stories, poems, sermons, recipes, diaries and everyday life are flavour of
+  the writer's own life, plausible for their town (no claim that something happened there lately); the colony's own
+  enclosures and lines say only what the facts hold at home (colony:children, colony:harvest, colony:animals, the season).
+  The land's slots are the real ones: `{ANIMAL}`, `{ANANIMAL}`, `{ANIMALS}` a wild animal of the biome at their town
+  (`BiomeAnimals.Of`, every mod's), `{PLANT}` one of its wild plants, `{TREE}` one of its trees; a sermon's `{IDEO}` and
+  `{DEITY}` (`KeyDeityName`) and its precepts as p: tags (`LetterCultureMath.Precepts`, each an active PreceptDef of the
+  player's; Ideology's memes as before); hands are their real household (spouse, lover, fiance, parents, children by name)
+  or the colony's other colonists; a petition's signatures the writer and their town's notables the colony knows (or every
+  adult colonist).
+- **Composable and authored.** Stories (ten themes, `Themes`), raid accounts and chronicles (`Subjects`) are built from
+  parts with slots, so they combine; poems (nine forms, `Forms`, each line one whole poem with \n line breaks), sermons,
+  recipes, riddles, petitions are authored whole. Every pool line is chosen as any part of a letter is (side, register,
+  address, motive, age, culture, speech, season, land). A lead-in now and then (lk:KIND with lk:lead) and a line after
+  (lk:after); a long letter's headings name what follows (ph:...) apart from the bodies (pa:...), so no body stands for a
+  heading.
+- **Not twice**: besides the session's line memory and the kept letters, the long pieces' pools (`Remembered`: poems,
+  sermons, stories, raids, chronicles, set pieces, parts, diaries) are remembered across the game by their first words
+  (`Key`) in `LetterBook.used`, `LetterKindMath.MaxUsed` (200) at most, the oldest let go; modelled in `save_estimate.py`.
+- **Reading a long letter.** `LetterText.pages` (`Pages`: about `PageChars`, 1,400, a page, broken between paragraphs, a
+  poem between its lines, a long paragraph after its sentences, nothing lost); a letter over `ShowMax` (1,800) shows its
+  first page in the game's letter, then "(The letter goes on for 2 more pages. Read the whole of it from this card, or with
+  Dagna on the Diplomacy screen's People.)", then the narrator's lines. Kept whole to `MaxKeptLong` (8,000), the newest
+  `LetterBook.MaxLong` (16) of them; older ones cut to `MaxKept`. The card's act is "Read the whole letter" for a long one
+  (`ReadAct`, also without a letter of the colony's), "Read Stace's letter" as before. The reading window pages a long
+  letter on its sheet, "Page 1 of 3" between "Turn back" and "Turn the page" in the ink's colour. The pages saved carry
+  their shape (`kind`) and a riddle's answer owed (`answer`, cleared when the writer's next written letter gives it).
+- **A received letter on its event card** (the player, with a screenshot: "the sent letter had a really cool style that
+  looked like a real letter while the received one is here in the plain event design"): a letter of theirs written out
+  (the page the letter told, `LetterBook.ByLetter`; not a call's transcript nor words passed on) is drawn on the reading
+  window's paper (`LetterPaper`, shared) inside the card, set a little in: the teller's words before it ("At Riverhold.")
+  and the narrator's lines under the mark in the card's own style, a long letter's note where the rest is in a quieter
+  hand (`LetterFormMath.OnPaper`, found by the kept letter's start; `EventCardModel.paper`, `EventCardWindow.Paper`). The
+  game's own letter window (the classic look, cards off) keeps the plain text.
+- **Write back** (the player: "i should also be able start a reply right from this window"; `Letters/LetterReply.cs`):
+  an act on a received letter's card, at the reading window's foot and under each notable's letters on the Diplomacy
+  screen's People; it opens the letter's window to them for what fits (`LetterKindMath.ReplyOf`): the answer their letter
+  written first waits for (`DealingActs.Reply`), else greetings, else whatever can be written now; greyed with why (nobody
+  at home who can write, no way for it to go, the purposes' own reasons, `NeighboursPanel.WhyNoLetter`). The world's
+  letter's narrator line names it ("Write back" on this card, or from the inbox, or Peoples).
+- **From the player's cards** (10 November 2026): a favour's, a dealing's or help's goods are told by their own line only;
+  only what is sent as a gift (a token, a gift by their regard) is "a gift" (`NeighbourLetters`: `gifts` apart from
+  `things`). Goods counted in words take the plural ("36 medicinal cactipine quills", `CourierMath.Counted`: the game's
+  language worker for things counted one by one; a stuff, a mass by its last word, "medicine", "silver", "meat", or a label
+  already plural keeps its form; `Couriers.Describe`, `Couriers.Amount`, `Schemes`). A letter signs, greets and heads with
+  an office only (`NotableBook.OfficeOf`, `NotableMath.Office`: the role's title; one the colony met only as a trader or an
+  envoy when that is how they came; else none, "Acraeraes of Karond-Keth 2"), never how the colony knows them ("a trader
+  who called"); a loss's line no longer says "our {LOSTTITLE}". Who writes in their town is a tag (`nr:head`, `nr:heir`,
+  `nr:envoy`, `nr:trader`, `nr:acquaintance`): the barely schooled raider's "To Stace at Riverhold, from the boss," and
+  "From the boss, wich is me," are the head's only, "The boss says to anser it" anyone else's.
+- **The library** (about 1,095 lines; the tests count it): 47 note lines; 131 lead-ins and after-lines; 213 story parts in
+  ten themes (73 openings, 64 turns, 61 endings, 15 codas; 46 medieval in seven themes, 25 unschooled, 12 beast-folk, 13
+  ancient, tribal ones by the fire); 156 raid parts (95 of real raids by their record, 34 old tales, 11 boasts, 16 of the
+  colony's own; 27 medieval, 18 unschooled, 16 of an android's incident report, 7 by smell); 61 poems, whole (7 ballads,
+  17 short verses, 6 laments, 4 drinking songs, 6 hymns, 6 nonsense verses, 4 work songs, a war song, 10 songs: a tribe's,
+  the fey's, the plant folk's, the ancient's; 12 medieval, 3 unschooled ditties, 2 a machine's); 62 sermons and tracts (every
+  meme family, 25 precepts, 8 cranks', 5 consolations; 7 medieval, 3 unschooled, 2 eldritch); 115 chronicle lines (12
+  mastheads, 74 items on 15 subjects, 21 notices, 8 feet; a crier's roll, an android's digest, a hive's count); 108 set
+  pieces (10 petitions, 46 lines of lists and accounts, 16 recipes and remedies, 25 riddles with their answers); 38 lines
+  added by other hands; 35 enclosures; 47 diary lines; 82 long letters' headings (26), news (22) and everyday life (34).
+
 ### Diplomacy
 
 Stage 2's base and its first item, favours owed and called in (docs/design/stage2-diplomacy.md, release 2a.1):

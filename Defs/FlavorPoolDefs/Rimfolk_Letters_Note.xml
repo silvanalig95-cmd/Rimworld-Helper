@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    The bare note (Letters/LetterKindMath.cs, LetterKind.Note; LetterFormMath.Note): the necessities only. A note is the
+    name alone for a salutation now and then, a word to start it now and then (note:open), the heart (what the letter is
+    for, from the answer's pool or Rimfolk_Pool_LetterHeart), a word to end it now and then (note:close), and the name.
+    Notes come most from the curt, the busy, the hostile and officials. A line names note:open or note:close, and is
+    chosen like any other part of a letter: its side (theirs, ours), register (warmly, warm|cordial, cool, curt, refusal),
+    address (a:war, a:council, a:empire, a:friend), motive (m:duty, m:trade, m:wary, m:proud), the writer's age (w:tribal,
+    w:industrial|w:spacer for the machine ages) and speech (olde for medieval English, u:none for an unschooled hand,
+    sv:machine, sv:hive, sv:beast, sv:green, sv:fey, sv:deep; the ancient never write a bare note). Keep every line short:
+    a note that runs on is not a note. The unschooled lines' misspellings are deliberate.
+  -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_LetterNote</defName>
+    <lines>
+      <plain>
+        <!-- ================= To start it (plain) ================= -->
+        <li>[note:open,cordial|cool|curt] In haste.</li>
+        <li>[note:open,cordial|cool|curt] Briefly, since the rider is waiting:</li>
+        <li>[note:open,cool|curt|refusal] To the point, then.</li>
+        <li>[note:open,warm|cordial] No time for a proper letter, so this will have to do.</li>
+        <li>[note:open,theirs,m:trade] Quickly, between customers:</li>
+        <li>[note:open,theirs,a:council|m:duty] For the record:</li>
+        <li>[note:open,theirs,a:empire] By command, and without ornament:</li>
+        <li>[note:open,a:war] No greeting. You know why.</li>
+        <li>[note:open,ours,v:blunt] Short one.</li>
+        <li>[note:open,theirs,w:tribal] The runner is already tying his sandals, so:</li>
+        <!-- ================= To end it (plain) ================= -->
+        <li>[note:close,warm|cordial] More when there is time.</li>
+        <li>[note:close,warm|cordial] A longer letter soon, I promise.</li>
+        <li>[note:close,warm] That is all I have time for, and I am sorry it is so little.</li>
+        <li>[note:close,cordial|cool] That is all.</li>
+        <li>[note:close,cool|curt] Nothing more to say.</li>
+        <li>[note:close,curt|refusal] Do not write again about this.</li>
+        <li>[note:close,refusal] That is our answer, and it will not change.</li>
+        <li>[note:close,theirs,m:trade] Prices on request.</li>
+        <li>[note:close,theirs,m:wary] We will see.</li>
+        <li>[note:close,theirs,m:proud] We trust that is clear.</li>
+        <li>[note:close,theirs,a:council|m:duty] So recorded.</li>
+        <li>[note:close,theirs,a:empire] So it is decreed.</li>
+        <li>[note:close,a:war] Until the war is over, this is the last of it.</li>
+        <li>[note:close,ours,v:blunt] That's it.</li>
+        <li>[note:close,ours,warm|cordial] Everyone here says hello.</li>
+        <li>[note:close,theirs,w:tribal] The fire is low. That is all.</li>
+        <li>[note:close,theirs,w:industrial|w:spacer] Sent in a hurry. Excuse the hand.</li>
+        <!-- ================= Medieval English (olde) ================= -->
+        <li>[olde,note:open,cordial|cool|curt] In haste, for the rider will not wait.</li>
+        <li>[olde,note:open,curt|refusal] I will be plain with thee.</li>
+        <li>[olde,note:open,theirs,a:council] Set down for the record:</li>
+        <li>[olde,note:close,warm|cordial] More anon, when there is leisure for it.</li>
+        <li>[olde,note:close,cordial|cool] No more at this time.</li>
+        <li>[olde,note:close,curt|refusal] Trouble us no further in this.</li>
+        <li>[olde,note:close,a:war] Look for no more from us while the war lasts.</li>
+        <li>[olde,note:close,ours] All here commend themselves to thee.</li>
+        <!-- ================= An unschooled hand (u:none) ================= -->
+        <li>[u:none,note:open,cordial|cool|curt] no time</li>
+        <li>[u:none,note:open,a:war] dont care for hello</li>
+        <li>[u:none,note:close,cordial|cool] thats all</li>
+        <li>[u:none,note:close,curt|refusal] dont rite agen</li>
+        <li>[u:none,note:close,a:war] we wil see you</li>
+        <!-- ================= Strange voices ================= -->
+        <li>[sv:machine,note:close] END.</li>
+        <li>[sv:machine,note:open] PRIORITY: LOW. LENGTH: MINIMAL.</li>
+        <li>[sv:hive,note:close] We are busy. All of us.</li>
+        <li>[sv:beast,note:close] The trail is warm. We go.</li>
+        <li>[sv:green,note:close] The light is short today.</li>
+        <li>[sv:fey,note:open] Said once, quickly, which is a rudeness we will make up later.</li>
+        <li>[sv:deep,note:close] Fewer words. They are listening.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+</Defs>

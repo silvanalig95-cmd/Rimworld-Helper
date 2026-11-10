@@ -21,7 +21,11 @@ public static class LetterFormTests
     private static readonly HashSet<string> Known = new HashSet<string>
     {
         "FROM", "TO", "TOWN", "COLONY", "PEOPLE", "COUNCIL", "TOTITLE", "TITLE", "PURPOSE", "TOPIC", "HELP", "RAIDERS", "GOODS", "CAPTIVE", "ENVOY", "PACT", "TERM",
-        "OURS", "THEIRS", "DEAL", "NEWCOMER", "COOK", "DOCTOR", "ARTIST", "DAY", "CAMP", "DISASTER", "CONDITION", "HOMELAND", "SENDER", "HELPER", "SEASON"
+        "OURS", "THEIRS", "DEAL", "NEWCOMER", "COOK", "DOCTOR", "ARTIST", "DAY", "CAMP", "DISASTER", "CONDITION", "HOMELAND", "SENDER", "HELPER", "SEASON",
+        // The shapes (Letters/LetterKindMath.cs): the land's animals and plants, their faith and its god, a riddle's answer,
+        // and the facts a chronicle, a long letter's news and a raid's account say (Rimfolk_Letters_Chronicle.xml).
+        "ANIMAL", "ANANIMAL", "ANIMALS", "PLANT", "TREE", "DEITY", "IDEO", "ANSWER", "FORTUNEWHY", "TOWNSITUATION", "SITUATION", "LOST", "LOSTTITLE", "HEAD", "HEADTITLE",
+        "OLDHEAD", "ILL", "ILLTITLE", "WAR", "PEACEWITH", "NEWTOWN", "NEWTOWNPEOPLE", "RAIDCAMP", "DEED", "KNOWNFOR", "DEAD"
     };
 
     /// <summary>The values every letter has (the coverage asks only for these).</summary>

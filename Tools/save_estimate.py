@@ -78,6 +78,7 @@ C = {
     "PenLetters": const("Dealings/DealingMath.cs", "MaxExchanges", 8),
     "WorldWaiting": const("Dealings/DealingMath.cs", "MaxWaiting", 2),
     "LetterExchanges": const("Letters/LetterBook.cs", "MaxExchanges", 60),
+    "LetterUsed": const("Letters/LetterKindMath.cs", "MaxUsed", 200),
     "CourierPeople": const("Couriers/CourierMath.cs", "MaxPeople", 3),
     "VisitorTrips": const("Visitors/VisitorMath.cs", "MaxTrips", 8),
     "VisitorPeople": const("Visitors/VisitorMath.cs", "MaxPeople", 6),
@@ -499,9 +500,17 @@ MODEL = {
     # Letters written out in full, kept to be read again (Letters/LetterBook.cs, a game component of its own): one exchange a
     # letter of the colony's or of theirs (about one every two or three days in a busy game), its pages (three at most) each
     # capped at LetterFormMath.MaxKept characters and MaxNote for the narrator's lines; the newest MaxPerNotable with any one
-    # notable and MaxExchanges in all. A page of a letter is about 1300 bytes in the save, an exchange two of them.
-    "Letters/LetterBook.cs:exchanges": ("cap", (C["LetterExchanges"], 0.4), 2700,
-                                        "letters exchanged with the world, kept to be read: LetterBook.MaxExchanges at most (the newest LetterBook.MaxPerNotable with any one notable), each two or three pages"),
+    # notable and MaxExchanges in all. A page of a letter is about 1300 bytes in the save, an exchange two of them. A long
+    # letter (10 November 2026: a story, a poem, a long letter in parts...) is kept to LetterFormMath.MaxKeptLong characters,
+    # the newest LetterBook.MaxLong of them (older ones cut to MaxKept): at most about 16 x 6,000 bytes more, spread here
+    # over the exchanges as 1,600 bytes each.
+    "Letters/LetterBook.cs:exchanges": ("cap", (C["LetterExchanges"], 0.4), 4300,
+                                        "letters exchanged with the world, kept to be read: LetterBook.MaxExchanges at most (the newest LetterBook.MaxPerNotable with any one notable), each two or three pages, the newest LetterBook.MaxLong long letters whole"),
+    # The long pieces written into letters (a poem, a sermon, a story's parts, a raid's account, a chronicle's items),
+    # remembered by their first words so none comes round again soon (Letters/LetterBook.cs, LetterKindMath.Remember):
+    # about two a long letter, LetterKindMath.MaxUsed at most, the oldest let go.
+    "Letters/LetterBook.cs:used": ("cap", (C["LetterUsed"], 0.5), 80,
+                                   "the long pieces written into letters, by their first words: LetterKindMath.MaxUsed at most, the oldest let go"),
     "Letters/LetterBook.cs:pages": ("fixed", 3, 1300, "per exchange: the colony's letter and theirs, or theirs first, the reply and their thanks; each capped (counted under exchanges)"),
     "World/Notables.cs:losses": ("fixed", 12, 120, "deaths among the neighbours the colony knows of, 30 days, 12 at most"),
     "World/Notables.cs:seen": ("fixed", 6, 120, "visitors and traders seen at the colony until they're home, 6 at most, three days"),

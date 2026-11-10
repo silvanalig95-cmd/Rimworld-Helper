@@ -239,7 +239,7 @@
         <li>[u:some,curt] Thats all.</li>
         <li>[u:some,refusal] Dont write agin.</li>
         <li>[u:some,a:war] Under the wite flag,</li>        <li>[u:some,warmly] Your frend,</li>
-        <li>[u:some,cordial|cool,c:raider] From the boss, wich is me,</li>
+        <li>[theirs,u:some,cordial|cool,c:raider,nr:head] From the boss, wich is me,</li>
         <li>[u:some,curt|refusal] Thats our anser.</li>
 
 

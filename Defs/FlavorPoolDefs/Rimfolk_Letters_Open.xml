@@ -330,7 +330,7 @@
         <li>[theirs,u:some,warmly] It was good to get your letter, evryone here was pleased.</li>
         <li>[theirs,u:some,cordial] Your letter came safe and we have talked it over.</li>
         <li>[theirs,u:some,cordial|cool] We had somone read your letter to us twice to be sure.</li>
-        <li>[theirs,u:some,cool,c:raider] Your letter came. The boss says to anser it so here it is.</li>
+        <li>[theirs,u:some,cool,c:raider,!nr:head] Your letter came. The boss says to anser it so here it is.</li>
         <li>[ours,u:some,warm|cordial] I hope this finds you well, I am not much of a writer.</li>
         <li>[ours,u:some,cordial|cool] I am writing for all of us here, so forgive the speling.</li>
         <li>[ours,u:some,curt|refusal] Here is our letter.</li>

@@ -53,6 +53,8 @@ namespace ColonyCouncil
         // The layout for a width, measured once for it (the text's and the cards' heights).
         private float laidW = -1f;
         private float textH, totalH, headH, titleH;
+        // A received letter on paper (EventCardModel.paper): the words before it, the sheet's words, the note where the rest is, the narrator's lines.
+        private float beforeH, paperH, moreH, underH;
         private readonly List<float> answerH = new List<float>();
         private readonly List<float> answerRowH = new List<float>();
         private float sideH, leanH, linksH;
@@ -260,6 +262,17 @@ namespace ColonyCouncil
             float side = EventCardMath.SideWidth(w), main = EventCardMath.MainWidth(w);
             Text.Font = GameFont.Small;
             textH = m.text.NullOrEmpty() ? 0f : Text.CalcHeight(m.text, main);
+            if (m.paper != null)
+            {
+                // The letter on paper, set a little in from the card's edge; what is said of it in the card's own words.
+                beforeH = m.paperBefore.NullOrEmpty() ? 0f : Text.CalcHeight(m.paperBefore, main) + 8f;
+                paperH = LetterPaper.TextHeight(m.paper, main - PaperInset);
+                Text.Font = GameFont.Tiny;
+                moreH = m.paperMore.NullOrEmpty() ? 0f : Text.CalcHeight(m.paperMore, main) + 4f;
+                Text.Font = GameFont.Small;
+                underH = m.paperUnder.NullOrEmpty() ? 0f : Text.CalcHeight(m.paperUnder, main) + 10f;
+                textH = beforeH + paperH + LetterPaper.Pad * 2f + 8f + moreH + underH;
+            }
             cols = EventCardMath.AnswerColumns(main, m.answers.Count);
             float aw = EventCardMath.AnswerWidth(main, cols);
             answerH.Clear();
@@ -312,13 +325,55 @@ namespace ColonyCouncil
 
         // ---------------------------------------------------------------- the body
 
+        /// <summary>A received letter's sheet is set this far in from the card's main column (the paper's shadow side).</summary>
+        private const float PaperInset = 12f;
+
+        /// <summary>
+        /// A received letter as the letter it is: the teller's words before it, the writer's own words on a sheet of paper as
+        /// in the reading window (Letters/LetterReadWindow.cs, LetterPaper), a long letter's note where the rest is in a
+        /// quieter hand, the narrator's lines under it in the card's own style. The new y.
+        /// </summary>
+        private float Paper(float y, float main)
+        {
+            Text.Font = GameFont.Small;
+            if (beforeH > 0f)
+            {
+                GUI.color = UiKit.Ink;
+                Widgets.Label(new Rect(0f, y, main, beforeH), m.paperBefore);
+                GUI.color = Color.white;
+                y += beforeH;
+            }
+            var sheet = new Rect(PaperInset * 0.5f, y, main - PaperInset, paperH + LetterPaper.Pad * 2f);
+            LetterPaper.Draw(sheet, m.paper, paperH);
+            y = sheet.yMax + 8f;
+            if (moreH > 0f)
+            {
+                Text.Font = GameFont.Tiny;
+                GUI.color = UiKit.Faint;
+                Widgets.Label(new Rect(0f, y, main, moreH), m.paperMore);
+                GUI.color = Color.white;
+                Text.Font = GameFont.Small;
+                y += moreH;
+            }
+            if (underH > 0f)
+            {
+                y += 6f;
+                GUI.color = UiKit.Ink;
+                Widgets.Label(new Rect(0f, y, main, underH - 10f), m.paperUnder);
+                GUI.color = Color.white;
+                y += underH - 6f;
+            }
+            return y + 14f;
+        }
+
         private void Body(float w)
         {
             float side = EventCardMath.SideWidth(w), main = EventCardMath.MainWidth(w);
             Header(w);
             float y = headH + 12f;
             float sideTop = y;
-            if (textH > 0f)
+            if (m.paper != null) y = Paper(y, main);
+            else if (textH > 0f)
             {
                 GUI.color = UiKit.Ink;
                 Text.Font = GameFont.Small;

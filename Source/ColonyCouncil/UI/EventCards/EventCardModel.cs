@@ -74,6 +74,12 @@ namespace ColonyCouncil
         public string kindWord;
         public Color kindColour;
         public string text;
+        /// <summary>
+        /// A received letter written out in full (Letters/LetterBook.cs, the page this letter told), drawn as the letter it
+        /// is: the teller's words before it, the writer's own words on paper, a long letter's note where the rest is, and
+        /// the narrator's lines under it in the card's own style. Null for any other letter (its text plain).
+        /// </summary>
+        public string paper, paperBefore, paperMore, paperUnder;
         // The header's picture: people, a thing, an emblem or the kind's mark.
         public readonly List<Pawn> pictured = new List<Pawn>();
         public Thing thing;
@@ -172,6 +178,7 @@ namespace ColonyCouncil
         public void Page(DiaNode node, bool first)
         {
             text = node?.text.Resolve() ?? "";
+            OnPaper(first);
             answers.Clear();
             leave.Clear();
             acts.Clear();
@@ -231,6 +238,10 @@ namespace ColonyCouncil
             {
                 var read = LetterBook.ReadAct(letter, out string readLabel);
                 if (read != null) acts.Insert(0, new EventCardOption { opt = read, role = CardOptionRole.Act, label = readLabel });
+                // A letter of theirs: write back from here (Letters/LetterReply.cs), greyed with why when no letter can go now.
+                var back = LetterReply.Act(letter, out string backLabel, out string backWhy);
+                if (back != null)
+                    acts.Insert(read != null ? 1 : 0, new EventCardOption { opt = back, role = CardOptionRole.Act, label = backLabel, disabled = backWhy != null, why = backWhy });
             }
             if (first)
             {
@@ -245,6 +256,33 @@ namespace ColonyCouncil
             {
                 var t = letter.lookTargets.PrimaryTarget;
                 if (t.IsValid && CameraJumper.CanJump(t)) look = t;
+            }
+        }
+
+        /// <summary>
+        /// A received letter's own words on paper (the player, 10 November 2026: "the sent letter had a really cool style
+        /// that looked like a real letter while the received one is here in the plain event design"): only its first page,
+        /// only a letter of theirs written out (not a call's transcript nor words passed on), found by the kept letter's
+        /// start in the card's text (LetterFormMath.OnPaper).
+        /// </summary>
+        private void OnPaper(bool first)
+        {
+            paper = paperBefore = paperMore = paperUnder = null;
+            if (!first || letter == null || text.NullOrEmpty()) return;
+            try
+            {
+                var told = LetterBook.ByLetter(letter.ID)?.pages.FirstOrDefault(p => p.shownAs == letter.ID);
+                if (told == null || told.ours || told.shape != (byte)LetterShape.Written) return;
+                if (!LetterFormMath.OnPaper(text, told.text, LetterForm.Words, out string before, out string words, out string more, out string under)) return;
+                paper = words;
+                paperBefore = before;
+                paperMore = more;
+                paperUnder = under;
+            }
+            catch (Exception e)
+            {
+                CouncilLog.ErrorOnce("event card: a letter on paper", e);
+                paper = null;
             }
         }
 

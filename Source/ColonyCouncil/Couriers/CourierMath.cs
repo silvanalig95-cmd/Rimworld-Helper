@@ -267,5 +267,48 @@ namespace ColonyCouncil
 
         /// <summary>A trip's business is over (or it has run out of time), and they can leave.</summary>
         public static bool WorkOver(int now, int arrived, int limit) => arrived >= 0 && now - arrived >= limit;
+
+        // ---------------- Goods counted in words ----------------
+
+        /// <summary>
+        /// Words that name a mass, not a thing counted one by one: "36 herbal medicine", "50 silver", "75 cow meat", "40 raw
+        /// food" keep their form. A label's last word is looked up.
+        /// </summary>
+        public static readonly HashSet<string> Uncounted = new HashSet<string>(StringComparer.OrdinalIgnoreCase)
+        {
+            "medicine", "silver", "gold", "steel", "plasteel", "wood", "cloth", "leather", "wool", "meat", "rice", "corn", "milk", "jelly", "kibble", "chemfuel",
+            "neutroamine", "uranium", "jade", "hay", "beer", "ambrosia", "psychite", "smokeleaf", "flake", "yayo", "fuel", "cotton", "devilstrand", "hyperweave",
+            "synthread", "fabric", "fur", "hide", "skin", "food", "pemmican", "chocolate", "tea", "coffee", "sugar", "salt", "flour", "dough", "bread", "silk",
+            "scrap", "salvage", "art", "slag", "ore", "luciferium", "honey", "wax", "resin", "ash", "fodder", "feed", "grain", "seed", "spice"
+        };
+
+        /// <summary>
+        /// A count of a thing in words, the label only ("36 medicinal cactipine quills" is the key's "{0} {1}" round it): one
+        /// as it is; more than one pluralized by <paramref name="pluralize"/> (the game's language worker; else the plain
+        /// English rule), except a stuff (<paramref name="stuff"/>: steel, wood, leather, cloth, stone blocks), a mass
+        /// (<see cref="Uncounted"/>) or a label already plural ("potatoes", "mech parts"), which keep their form (the
+        /// player's card, 10 November 2026: "36 medicinal cactipine quill").
+        /// </summary>
+        public static string Counted(int n, string label, bool stuff, Func<string, int, string> pluralize = null)
+        {
+            if (string.IsNullOrEmpty(label) || n == 1 || stuff) return label ?? "";
+            string last = label.TrimEnd(')', ' ');
+            int space = last.LastIndexOf(' ');
+            if (space >= 0) last = last.Substring(space + 1);
+            last = last.Trim('(', ')', ',', '.');
+            if (last.Length == 0 || Uncounted.Contains(last)) return label;
+            if (last.Length > 2 && last.EndsWith("s", StringComparison.OrdinalIgnoreCase) && !last.EndsWith("ss", StringComparison.OrdinalIgnoreCase)) return label;
+            return pluralize != null ? pluralize(label, n) : English(label);
+        }
+
+        /// <summary>The plain English plural of a label's last word: "berry" berries, "box" boxes, "quill" quills.</summary>
+        public static string English(string label)
+        {
+            if (string.IsNullOrEmpty(label)) return label ?? "";
+            string l = label.ToLowerInvariant();
+            if (l.Length > 1 && l.EndsWith("y") && "aeiou".IndexOf(l[l.Length - 2]) < 0) return label.Substring(0, label.Length - 1) + "ies";
+            if (l.EndsWith("s") || l.EndsWith("x") || l.EndsWith("z") || l.EndsWith("ch") || l.EndsWith("sh")) return label + "es";
+            return label + "s";
+        }
     }
 }

@@ -547,6 +547,9 @@ wishPh.Add("APPAREL");
 // title of the one written to, their council, the purpose, a dealing's name, a request's goods, a pact, a truce's term,
 // a captive, two of the colony's and theirs (an exchange, a match), the one who wrote it down for someone who can't.
 wishPh.UnionWith(new[] { "FROM", "TO", "TOTITLE", "COUNCIL", "PURPOSE", "DEAL", "GOODS", "PACT", "TERM", "CAPTIVE", "OURS", "HELPER" });
+// Letters of many shapes (Letters/LetterFormShapes.cs, Rimfolk_Letters_*.xml): one of the wild animals of the land round
+// the writer (with its article) and its plural, one of its wild plants, one of its trees, their faith's god, the answer to a riddle owed.
+wishPh.UnionWith(new[] { "ANIMAL", "ANANIMAL", "ANIMALS", "PLANT", "TREE", "DEITY", "ANSWER" });
 var pawnSuffixes = new HashSet<string> { "nameDef", "nameFull", "labelShort", "pronoun", "possessive", "objective", "label", "definite", "indefinite", "gender", "kind" };
 foreach (var (file, doc) in docs)
 {

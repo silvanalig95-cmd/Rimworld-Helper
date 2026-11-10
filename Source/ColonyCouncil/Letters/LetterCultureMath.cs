@@ -101,6 +101,48 @@ namespace ColonyCouncil
             ["AM_TeaPrimacy"] = new[] { "c:tea" }, ["AM_CoffeePrimacy"] = new[] { "c:coffee" }, ["Cannibal"] = new[] { "c:cannibal" }
         };
 
+        /// <summary>
+        /// Precepts as tags (p:), for a zealous writer's sermon (10 November 2026: "ideological ramblings", by their
+        /// ideoligion's real precepts): charity, no meat, no drink, pain, the trees, no mining, no learning, preaching, going
+        /// bare, the road, the sacred fish, the animals, the body remade or kept pure, one faith only, hardship, chastity,
+        /// scars, the blind, fungus, insects, cannibals, raiding, drugs, the dark. Every name an active PreceptDef of the
+        /// player's (docs/player-mods/defs.tsv.gz, checked by Tools/Tests).
+        /// </summary>
+        public static readonly Dictionary<string, string> Precepts = new Dictionary<string, string>
+        {
+            ["Charity_Essential"] = "p:charity", ["Charity_Important"] = "p:charity",
+            ["MeatEating_Abhorrent"] = "p:nomeat", ["MeatEating_Horrible"] = "p:nomeat", ["MeatEating_Disapproved"] = "p:nomeat",
+            ["DrugUse_Prohibited"] = "p:sober", ["DrugUse_Essential"] = "p:drugs",
+            ["Pain_Idealized"] = "p:pain",
+            ["TreeCutting_Prohibited"] = "p:trees", ["TreeCutting_Horrible"] = "p:trees", ["Trees_Desired"] = "p:trees",
+            ["Mining_Prohibited"] = "p:nomining", ["Mining_Horrible"] = "p:nomining",
+            ["Research_None"] = "p:unlearned", ["Research_ExtremelySlow"] = "p:unlearned", ["Research_VerySlow"] = "p:unlearned",
+            ["Proselytizing_Frequently"] = "p:preach",
+            ["Nudity_Male_Mandatory"] = "p:nude", ["Nudity_Female_Mandatory"] = "p:nude",
+            ["Nomadic_Preferred"] = "p:nomad",
+            ["Fishing_Sacred"] = "p:fishing",
+            ["AnimalVenerated"] = "p:animals", ["AnimalConnection_Strong"] = "p:animals",
+            ["BodyMod_Approved"] = "p:bodymod", ["BodyMod_Abhorrent"] = "p:purebody",
+            ["IdeoDiversity_Abhorrent"] = "p:onefaith", ["IdeoDiversity_Horrible"] = "p:onefaith", ["Apostasy_Abhorrent"] = "p:onefaith",
+            ["Temperature_Tough"] = "p:hardy", ["RoughLiving_Welcomed"] = "p:hardy", ["Comfort_Ignored"] = "p:hardy",
+            ["Lovin_Prohibited"] = "p:chaste", ["Lovin_SpouseOnly_Strict"] = "p:chaste",
+            ["Scarification_Extreme"] = "p:scars", ["Scarification_Heavy"] = "p:scars",
+            ["Blindness_Sublime"] = "p:blind", ["Blindness_Elevated"] = "p:blind",
+            ["FungusEating_Preferred"] = "p:fungus", ["InsectMeatEating_Loved"] = "p:insects",
+            ["Cannibalism_Preferred"] = "p:cannibal", ["Cannibalism_RequiredStrong"] = "p:cannibal", ["Cannibalism_RequiredRavenous"] = "p:cannibal",
+            ["Raiding_Required"] = "p:raiding", ["Raiding_Respected"] = "p:raiding",
+            ["Darklight_Preferred"] = "p:dark", ["DarknessCombat_Preferred"] = "p:dark"
+        };
+
+        /// <summary>A writer's precepts (by defName) as their tags (p:), added to <paramref name="tags"/>.</summary>
+        public static void ReadPrecepts(IEnumerable<string> precepts, ICollection<string> tags)
+        {
+            if (precepts == null || tags == null) return;
+            foreach (var p in precepts)
+                if (!string.IsNullOrEmpty(p) && Precepts.TryGetValue(p, out var t) && !tags.Contains(t))
+                    tags.Add(t);
+        }
+
         /// <summary>Peoples (faction defs, the player's active ones) of outlaws and bandits: their letters are seldom well schooled.</summary>
         public static readonly HashSet<string> Outlaws = new HashSet<string>
         {

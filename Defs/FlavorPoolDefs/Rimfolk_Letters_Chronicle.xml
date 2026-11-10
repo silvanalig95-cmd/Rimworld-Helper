@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    A chronicle (Letters/LetterKindMath.cs, Chronicle): a town's newsletter or broadsheet in the machine ages, a crier's
+    roll in the medieval age, a tribe's season told at the fire, the Empire's gazette, an android's digest, a hive's count.
+    Its masthead (ch:head), up to four items each about one real thing (ch:item and its subject, one item a subject:
+    chs:fortune, chs:situation, chs:loss, chs:head, chs:ill, chs:war, chs:peace, chs:newtown, chs:camp, chs:raid, chs:deed,
+    chs:colony, chs:caravan, chs:season, chs:short; LetterKindMath.Subjects), a notice or two of everyday life
+    (ch:notice), and its foot (ch:end).
+
+    Words match the map: an item says only what the facts service holds (Text/Facts/: their town's fortune town:struggling
+    town:poor town:thriving town:flourishing and what moved it {FORTUNEWHY}; a world event at their town town:situation
+    :bad :good {TOWNSITUATION}, or on their people situation {SITUATION}; a death town:loss {LOST} {LOSTTITLE}; their head
+    town:head town:newhead town:headdied {HEAD} {HEADTITLE} {OLDHEAD}; someone ill town:ill {ILL} {ILLTITLE}; their war
+    their:war war:winning war:losing {WAR}; a peace their:peace {PEACEWITH}; a new town region:newtown {NEWTOWN}
+    {NEWTOWNPEOPLE}; a raiders' camp near the colony region:camp:theirfoe {RAIDCAMP}; a raid as its record has it, rd:now
+    and its rd:end: (Rimfolk_Letters_Raid.xml); what they remember of the colony deed:good {DEED}, its name colony:known
+    {KNOWNFOR}; their caravan setting out for the colony town:caravan; what they are short of town:short:food :medicine
+    :fuel :hands); the weather and season items are flavour by the season and land at their town. Values in braces that
+    come with "the" ({TOWNSITUATION}, {SITUATION}, {FORTUNEWHY}) never start an item. A notice is everyday flavour, true of
+    any town and claiming no event. Ages: w:industrial and w:spacer for the sheets, empire, w:tribal, !w:tribal for print
+    and paper. Speech: olde, sv:machine, sv:hive.
+  -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_LetterChronicle</defName>
+    <lines>
+      <plain>
+        <!-- ================= Mastheads ================= -->
+        <li>[ch:head,theirs,w:industrial] The {TOWN} Courier\nPrinted when there is news, and sometimes when there is not.</li>
+        <li>[ch:head,theirs,w:industrial] The {TOWN} Weekly Sheet\nOne page. Read it twice.</li>
+        <li>[ch:head,theirs,w:industrial|w:spacer] News from {TOWN}\nAs set down by whoever had the pen this week.</li>
+        <li>[ch:head,theirs,w:spacer] {TOWN} Information Bulletin\nCycle summary. Distribution: all residents, and one friend.</li>
+        <li>[ch:head,theirs,w:spacer] {TOWN} Local Feed, printed copy\nFor those without a terminal, or without the patience for one.</li>
+        <li>[ch:head,theirs,empire] The Gazette of {TOWN}\nIssued by leave of the court. Matters of standing first.</li>
+        <li>[ch:head,theirs,w:tribal] The season at {TOWN}, as it was told.</li>
+        <li>[ch:head,theirs,w:tribal] What the people of {TOWN} saw this season, told at the fire.</li>
+        <!-- ================= Their fortune ================= -->
+        <li>[ch:item,chs:fortune,town:struggling|town:poor,!w:tribal] TIMES HARD. Since {FORTUNEWHY}, the town has been struggling, and the council asks everyone to mend before they buy.</li>
+        <li>[ch:item,chs:fortune,town:struggling|town:poor,!w:tribal] HARD TIMES CONTINUE. Stores are low and spirits lower. The sheet reminds readers that it has been worse, and that it was not much fun then either.</li>
+        <li>[ch:item,chs:fortune,town:thriving|town:flourishing,!w:tribal] TRADE IS UP. More wagons on the road than anyone can remember, and the inn has run out of beds and started renting out the stable.</li>
+        <li>[ch:item,chs:fortune,town:thriving|town:flourishing,!w:tribal] GOOD TIMES. Since {FORTUNEWHY}, the town has done well. Readers are asked not to boast about it on the road; it attracts the wrong sort.</li>
+        <li>[ch:item,chs:fortune,town:struggling|town:poor,w:tribal] This was a lean season. The meat-racks were thin and the old ones ate last.</li>
+        <li>[ch:item,chs:fortune,town:thriving|town:flourishing,w:tribal] This was a fat season. The children grew round and the dogs grew lazy.</li>
+        <!-- ================= A world event at their town, or on their people ================= -->
+        <li>[ch:item,chs:situation,town:situation:bad,!w:tribal] STILL WITH US: {TOWNSITUATION}. The sheet will say no more about it, as everybody is tired of hearing about it, the sheet included.</li>
+        <li>[ch:item,chs:situation,town:situation:good,!w:tribal] GOOD NEWS: {TOWNSITUATION}, and long may it last.</li>
+        <li>[ch:item,chs:situation,situation,!w:tribal] FROM FURTHER OFF: there is talk on every road of {SITUATION}, and travellers bring a new rumour of it every day, most of them wrong.</li>
+        <li>[ch:item,chs:situation,town:situation,w:tribal] This was the season of {TOWNSITUATION}. The old ones say it will be remembered.</li>
+        <!-- ================= A death, the head, someone ill ================= -->
+        <li>[ch:item,chs:loss,!w:tribal] IN MEMORY. {LOST}, {LOSTTITLE}, has died. The town turned out for the burial, and many stayed late, telling stories that {LOST} would have disputed.</li>
+        <li>[ch:item,chs:loss,w:tribal] {LOST} went into the dark this season. We sang the long song for them, all of it.</li>
+        <li>[ch:item,chs:head,town:newhead,!w:tribal] NEW AT THE HEAD OF THINGS: {HEAD}, our new {HEADTITLE}, who has promised nothing, which the sheet considers a good start.</li>
+        <li>[ch:item,chs:head,town:headdied] {OLDHEAD} is gone, and {HEAD} leads now. The town wishes {HEAD} well, and patience.</li>
+        <li>[ch:item,chs:head,town:head,!town:newhead,!w:tribal] {HEAD}, our {HEADTITLE}, reports that all is well, and asks that anyone who disagrees take it up in person, soon, and briefly.</li>
+        <li>[ch:item,chs:head,town:newhead,w:tribal] {HEAD} speaks for the people now. The old ones gave over the staff, and nobody argued, which is not like us.</li>
+        <li>[ch:item,chs:ill,!w:tribal] ILLNESS. {ILL}, {ILLTITLE}, is unwell, and visitors are asked to bring soup, not opinions.</li>
+        <li>[ch:item,chs:ill,w:tribal] {ILL} is sick. The healers sit with them, and the drums are quiet.</li>
+        <!-- ================= War and peace ================= -->
+        <li>[ch:item,chs:war,their:war,!w:tribal] THE WAR. There is still no peace with {WAR}. The road toward them is closed to anyone with sense.</li>
+        <li>[ch:item,chs:war,their:war,war:winning,!w:tribal] THE WAR goes well, they say, though nobody who says so has been near it.</li>
+        <li>[ch:item,chs:war,their:war,war:losing,!w:tribal] THE WAR goes badly. Readers are asked to keep their opinions to themselves and their doors bolted.</li>
+        <li>[ch:item,chs:war,their:war,w:tribal] The people are still at war with {WAR}. The young hunters paint their faces every evening, and the old ones shake their heads.</li>
+        <li>[ch:item,chs:peace,their:peace,!w:tribal] PEACE. The war with {PEACEWITH} is over. The sheet hopes this one lasts longer than the last.</li>
+        <li>[ch:item,chs:peace,their:peace,w:tribal] We have made peace with {PEACEWITH}. The spears are back on the wall, where they look better.</li>
+        <!-- ================= The region ================= -->
+        <li>[ch:item,chs:newtown,region:newtown,!w:tribal] NEIGHBOURS. A new town, {NEWTOWN}, has gone up within reach, settled by {NEWTOWNPEOPLE}. Nobody knows anything about them yet, which has not stopped anyone talking.</li>
+        <li>[ch:item,chs:newtown,region:newtown,w:tribal] New people have made a place, {NEWTOWN}, people of {NEWTOWNPEOPLE}. We will go and look at them when the season turns.</li>
+        <li>[ch:item,chs:camp,region:camp:theirfoe] TRAVEL. Word is that a {RAIDCAMP} stands near {COLONY}. Anyone going that way is advised to go in numbers.</li>
+        <li>[ch:item,chs:caravan,town:caravan] TRADE. A caravan is setting out for {COLONY}. Anyone with letters or small parcels for that way should bring them to the gate before it leaves.</li>
+        <!-- ================= A raid, as its record has it ================= -->
+        <li>[ch:item,chs:raid,rd:now,rd:end:held,!rd:road,theirs] THE RAID. Raiders came at the town and were beaten off. The sheet thanks everyone who was on the wall, and everyone who brought them soup.</li>
+        <li>[ch:item,chs:raid,rd:now,rd:end:hurt|rd:end:sacked,theirs] THE RAID. The town was hit hard. Those with room are asked to take in those without. Those with grain are asked the same.</li>
+        <li>[ch:item,chs:raid,rd:now,rd:end:ongoing,theirs] RAIDERS still about. The gate closes at dusk, and anyone outside after that will be left there to think about it.</li>
+        <li>[ch:item,chs:raid,rd:now,rd:road,theirs] THE ROAD. Wagons have been set upon. Travel in company, and not at dusk.</li>
+        <li>[ch:item,chs:raid,rd:now,rd:helped,theirs] THANKS to the people of {COLONY}, who stood on our walls when it mattered. The sheet will not forget, and neither will the town.</li>
+        <li>[ch:item,chs:raid,rd:now,rd:end:unknown,!rd:you,theirs] FIGHTING at the town. The sheet will print the whole of it when the whole of it is known.</li>
+        <!-- ================= What they remember of the colony ================= -->
+        <li>[ch:item,chs:deed,deed:good] ABOUT OUR NEIGHBOURS. The town still talks of how the people of {COLONY} {DEED}. The sheet sets it down here so it is not forgotten.</li>
+        <li>[ch:item,chs:colony,colony:known] HEARD ON THE ROAD: {COLONY} is known for {KNOWNFOR} these days. The sheet has no opinion, except that it is nice to be known for something.</li>
+        <!-- ================= Shortages ================= -->
+        <li>[ch:item,chs:short,town:short:food] SHORTAGES. Food is tight. Anyone with a garden is asked to grow more than they need, and anyone with more than they need is asked to say so.</li>
+        <li>[ch:item,chs:short,town:short:medicine] SHORTAGES. No medicine to be had. The herb-gatherers are out dawn to dusk and could use a hand, and a cup of something warm.</li>
+        <li>[ch:item,chs:short,town:short:fuel] SHORTAGES. Fuel is short. Burn sparingly, sleep close.</li>
+        <li>[ch:item,chs:short,town:short:hands] SHORTAGES. Not enough hands for the work. Anyone who can hold a tool is wanted in the fields.</li>
+        <!-- ================= The weather (flavour, by their season and land) ================= -->
+        <li>[ch:item,chs:season,season:spring,!w:tribal] THE WEATHER. Mud. More mud expected. The sheet regrets it.</li>
+        <li>[ch:item,chs:season,season:summer,!w:tribal] THE WEATHER. Hot. The well is low and tempers are short, and the sheet asks everyone to share the shade.</li>
+        <li>[ch:item,chs:season,season:autumn,!w:tribal] THE WEATHER. The leaves are down and the stores are up. Wrap up warm and look to your roof.</li>
+        <li>[ch:item,chs:season,season:winter,!w:tribal] THE WEATHER. Snow. Look in on your neighbours, especially the old ones, especially the ones who say they are fine.</li>
+        <li>[ch:item,chs:season,season:winter,home:frozen,!w:tribal] THE WEATHER. Cold, as ever. The sheet is printed indoors, by the fire, and apologises for the soot.</li>
+        <li>[ch:item,chs:season,home:desert,!w:tribal] THE WEATHER. Dry. Not a drop since anyone can remember. The sheet is written in the shade, and slowly.</li>
+        <li>[ch:item,chs:season,w:tribal] The {ANIMALS} came down from the hills early this season. The old ones say that means a long cold.</li>
+        <li>[ch:item,chs:season,season:summer,w:tribal] The sun sat on us all season like a fat dog. We slept in the day and hunted at night.</li>
+        <!-- ================= Notices ================= -->
+        <li>[ch:notice,!w:tribal] LOST: one brown goat, answers to nothing. If found, keep it; it is yours now.</li>
+        <li>[ch:notice,!w:tribal] FOUND: a boot, left, size large, in the well. The owner may collect it, and explain.</li>
+        <li>[ch:notice,!w:tribal] FOR SALE: a cart, one wheel missing. Or a wheel, one cart missing. Enquire at the smithy.</li>
+        <li>[ch:notice,!w:tribal] WANTED: someone who can play the fiddle. Someone who thinks they can need not apply.</li>
+        <li>[ch:notice,!w:tribal] NOTICE: the bridge is closed again. It is the same bridge. It is the same reason.</li>
+        <li>[ch:notice,!w:tribal] THANKS to whoever left the basket of eggs at the widow's door. She knows it was you.</li>
+        <li>[ch:notice,!w:tribal] REMINDER: the well is for water. It is not for cooling drinks, washing dogs, or settling arguments.</li>
+        <li>[ch:notice,!w:tribal] APOLOGY: the sheet regrets an error in its last issue. The pig did not win the vote. The pig was not standing.</li>
+        <li>[ch:notice,!w:tribal] LOST: a hat, green, of sentimental value. If you are wearing it, you know who you are.</li>
+        <li>[ch:notice,!w:tribal] FOR SWAP: one rooster, very loud, for one rooster, less loud.</li>
+        <li>[ch:notice,w:spacer] SYSTEM NOTICE: the water reclaimer will be down for maintenance. Residents are advised to drink responsibly and wash briefly.</li>
+        <li>[ch:notice,w:spacer] LOST: one cleaning drone, answers to its serial number, last seen heading for the fields with an air of purpose.</li>
+        <li>[ch:notice,w:industrial] NOTICE: the generator will be off on the third evening for repairs. Bring a candle and a good story.</li>
+        <li>[ch:notice,w:tribal] The dog with the white ear has had puppies. Anyone who wants one should ask the dog.</li>
+        <li>[ch:notice,w:tribal] Someone has been taking the good stones from the river. The river knows who.</li>
+        <li>[ch:notice,w:tribal] A child found a feather as long as an arm. Nobody knows what bird. The child sleeps with it.</li>
+        <!-- ================= The foot ================= -->
+        <li>[ch:end,theirs,!w:tribal] Printed at {TOWN}. Pass it on.</li>
+        <li>[ch:end,!w:tribal] The sheet will appear again when there is news, or paper, whichever comes first.</li>
+        <li>[ch:end,w:spacer] END OF BULLETIN.</li>
+        <li>[ch:end,w:tribal] That is the season. The fire is out.</li>
+        <li>[ch:end,empire] By order. Copies to be displayed in the square.</li>
+
+        <!-- ================= Medieval English (olde): a crier's roll ================= -->
+        <li>[olde,ch:head,theirs] Here beginneth the tidings of {TOWN}, as cried in the market by the town crier.</li>
+        <li>[olde,ch:head,theirs] The Roll of {TOWN}, wherein are set down the doings of the season.</li>
+        <li>[olde,ch:item,chs:fortune,town:struggling|town:poor,theirs] Item: the times are hard at {TOWN}, and the council biddeth all to mend ere they buy.</li>
+        <li>[olde,ch:item,chs:fortune,town:thriving|town:flourishing] Item: trade is brisk, and the inn hath no bed to spare.</li>
+        <li>[olde,ch:item,chs:situation,town:situation:bad] Item: {TOWNSITUATION} is with us yet, and none will speak more of it.</li>
+        <li>[olde,ch:item,chs:loss] Item: {LOST}, {LOSTTITLE}, is dead, and all the town went out to the burying.</li>
+        <li>[olde,ch:item,chs:head,town:newhead] Item: {HEAD} is made {HEADTITLE}, and hath promised naught, which is a good beginning.</li>
+        <li>[olde,ch:item,chs:ill] Item: {ILL}, {ILLTITLE}, lieth sick. Bring broth, not counsel.</li>
+        <li>[olde,ch:item,chs:war,their:war] Item: there is yet no peace with {WAR}, and the road toward them is shut to all of sense.</li>
+        <li>[olde,ch:item,chs:peace,their:peace] Item: peace is made with {PEACEWITH}, and may it outlast the last.</li>
+        <li>[olde,ch:item,chs:newtown,region:newtown] Item: a new town, {NEWTOWN}, is raised within reach, by {NEWTOWNPEOPLE}.</li>
+        <li>[olde,ch:item,chs:raid,rd:now,rd:end:held,!rd:road,theirs] Item: reavers came against the town and were beaten off, and all honour to them that kept the wall.</li>
+        <li>[olde,ch:item,chs:raid,rd:now,rd:end:hurt|rd:end:sacked,theirs] Item: the reavers did us great hurt. Them that have room are bidden take in them that have none.</li>
+        <li>[olde,ch:item,chs:raid,rd:now,rd:helped,theirs] Item: our thanks to the folk of {COLONY}, who stood upon our wall in the hour of need.</li>
+        <li>[olde,ch:item,chs:deed,deed:good] Item: the town speaketh yet of how the folk of {COLONY} {DEED}.</li>
+        <li>[olde,ch:item,chs:short,town:short:food] Item: food is scant. Them that have more than they need are bidden say so.</li>
+        <li>[olde,ch:item,chs:season,season:winter] Item: snow. Look to thy neighbours, and chiefly to the old.</li>
+        <li>[olde,ch:item,chs:season,season:summer] Item: great heat. The well is low and tempers are short.</li>
+        <li>[olde,ch:notice] Item: lost, a goat of the brown sort, that answereth to naught. Whosoever findeth it may keep it, and good luck to them.</li>
+        <li>[olde,ch:notice] Be it known: the bridge is shut again, for the selfsame cause as before.</li>
+        <li>[olde,ch:notice] Item: a fiddler is wanted for the feast. One that only thinketh he can play need not come.</li>
+        <li>[olde,ch:end] Thus endeth the roll. Heaven keep the town.</li>
+
+        <!-- ================= An android's digest (sv:machine) ================= -->
+        <li>[sv:machine,ch:head,theirs] SETTLEMENT STATUS DIGEST: {TOWN}.\nFORMAT: ITEMISED.</li>
+        <li>[sv:machine,ch:item,chs:fortune,town:struggling|town:poor] ECONOMIC STATUS: DEPRESSED. CAUSE: {FORTUNEWHY}.</li>
+        <li>[sv:machine,ch:item,chs:fortune,town:thriving|town:flourishing] ECONOMIC STATUS: FAVOURABLE. RESIDENTS: SMUG.</li>
+        <li>[sv:machine,ch:item,chs:loss] PERSONNEL LOSS: {LOST}, {LOSTTITLE}. RECORDED WITH REGRET.</li>
+        <li>[sv:machine,ch:item,chs:war,their:war] HOSTILITIES WITH {WAR}: ONGOING.</li>
+        <li>[sv:machine,ch:item,chs:raid,rd:now,theirs] SECURITY INCIDENT: LOGGED. DETAILS ON REQUEST.</li>
+        <li>[sv:machine,ch:item,chs:season] WEATHER: WITHIN TOLERANCES.</li>
+        <li>[sv:machine,ch:notice] MAINTENANCE: SCHEDULED. RESIDENTS: UNCOOPERATIVE.</li>
+        <li>[sv:machine,ch:end] END OF DIGEST.</li>
+        <!-- ================= A hive's count (sv:hive) ================= -->
+        <li>[sv:hive,ch:head,theirs] What the many of {TOWN} counted.</li>
+        <li>[sv:hive,ch:item,chs:fortune,town:struggling|town:poor] The stores are thin. We are thinner. We share.</li>
+        <li>[sv:hive,ch:item,chs:fortune,town:thriving|town:flourishing] The stores are full. We are many. We are glad.</li>
+        <li>[sv:hive,ch:item,chs:loss] {LOST} is gone. We are fewer by one. We feel it, all of us.</li>
+        <li>[sv:hive,ch:item,chs:season] The weather turned. We turned with it.</li>
+        <li>[sv:hive,ch:notice] The young have hatched. They are loud. We are proud.</li>
+        <li>[sv:hive,ch:end] That is the count. We have counted.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+</Defs>

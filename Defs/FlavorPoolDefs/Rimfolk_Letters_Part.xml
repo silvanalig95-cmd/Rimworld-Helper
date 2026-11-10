@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    A long letter in several parts (Letters/LetterKindMath.cs, Long), from pen friends, the warm, the lonely, the zealous
+    and the talkative: three parts (four or five with the setting at Long and storied), the news first when there is some,
+    then everyday life, a story (Rimfolk_Letters_Story.xml), a short verse from an artistic writer (Rimfolk_Letters_Poem,
+    any poem not tagged !len:short), a raid's account from a town raided (Rimfolk_Letters_Raid.xml). Here:
+    - a part's heading, now and then (pa:head): by its place (pa:first, pa:next, pa:last) and what follows (ph:news,
+      ph:life, ph:story, ph:poem, ph:raid); a heading naming neither fits any part;
+    - the news (pa:news): a paragraph about one real thing the facts hold at their town, with its fact tag and values as in
+      Rimfolk_Letters_Chronicle.xml ({TOWNSITUATION}, {SITUATION}, {LOST} {LOSTTITLE}, {HEAD} {HEADTITLE} {OLDHEAD}, {ILL},
+      {WAR}, {PEACEWITH}, {NEWTOWN} {NEWTOWNPEOPLE}, {FORTUNEWHY}, {DEED}, {RAIDCAMP}, town:caravan); never invented news;
+    - everyday life (pa:life): a paragraph of their own days, flavour plausible for their town, by the season and land at
+      their town (season:..., home:...), their age (w:tribal, w:industrial, w:spacer), their people's ways (their:herders,
+      their:fishers, their:scholars...), how their town fares (town:struggling, town:thriving...), hard times (grave).
+    Also the broken-off letter's last paragraph (Rimfolk_Letters_Diary.xml). Speech: olde; any other writer the plain lines.
+  -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_LetterPart</defName>
+    <lines>
+      <plain>
+        <!-- ================= Headings ================= -->
+        <li>[pa:head,pa:first,ph:news] The news first, since it will not keep.</li>
+        <li>[pa:head,ph:news] Now, the news, such as it is.</li>
+        <li>[pa:head,ph:life] As for us, things go on as they do.</li>
+        <li>[pa:head,pa:next|pa:last,ph:life] Now for the everyday, which is most of life.</li>
+        <li>[pa:head,ph:life] And how are we? Well, here is how we are.</li>
+        <li>[pa:head,pa:last,ph:life] Last, the small things, which are the big things, really.</li>
+        <li>[pa:head,ph:story] Now a story, because you will want one.</li>
+        <li>[pa:head,pa:next|pa:last,ph:story] And now the strange part.</li>
+        <li>[pa:head,ph:story] Something happened here that I must tell you about.</li>
+        <li>[pa:head,ph:poem] I wrote some lines. Here they are, before I lose my nerve.</li>
+        <li>[pa:head,pa:last,ph:poem] And a few lines of verse, to finish.</li>
+        <li>[pa:head,pa:next|pa:last,ph:raid] Now the hard part. I have put it off long enough.</li>
+        <li>[pa:head,ph:raid] The raid. I will tell it plainly.</li>
+        <li>[pa:head,pa:next] Second.</li>
+        <li>[pa:head,pa:next] And another thing.</li>
+        <li>[pa:head,pa:last] One more thing before I stop.</li>
+        <li>[pa:head,pa:last] Lastly.</li>
+        <li>[pa:head,w:tribal,ph:life] Now, how the season went.</li>
+        <li>[pa:head,w:tribal,ph:story] Now a story from the fire.</li>
+        <!-- ================= The news, as the facts hold it ================= -->
+        <li>[pa:news,town:situation:bad] The worst of the news is {TOWNSITUATION}, which has been hard on everyone. We are getting through it. That is about all I can say.</li>
+        <li>[pa:news,town:situation:good] The big news is {TOWNSITUATION}, and it has done us all good. Everyone is in a better mood, even the ones who swore they never would be.</li>
+        <li>[pa:news,situation] On every road there is talk of {SITUATION}. You will have heard more than we have, probably. Everyone here has an opinion, and none of them agree.</li>
+        <li>[pa:news,town:loss] We lost {LOST} not long ago. The town is quieter for it. I think of the things I never said, which I suppose is what everybody thinks.</li>
+        <li>[pa:news,town:newhead] We have a new {HEADTITLE}, {HEAD}, who has started well, by which I mean has not yet changed anything.</li>
+        <li>[pa:news,town:headdied] {OLDHEAD} is gone, and {HEAD} leads now. It is strange to see someone else in that place, but we are getting used to it.</li>
+        <li>[pa:news,town:ill] {ILL} has been ill, and the whole town has been bringing soup, more soup than any one person could eat. {ILL} is sharing it out, which is a good sign.</li>
+        <li>[pa:news,their:war] The war with {WAR} drags on. You do not hear much about it here, except when someone does not come home, and then you hear nothing else for days.</li>
+        <li>[pa:news,their:peace] We are at peace with {PEACEWITH} at last. People are wary of it, the way you are wary of a dog that has stopped barking.</li>
+        <li>[pa:news,region:newtown] There is a new town, {NEWTOWN}, settled by {NEWTOWNPEOPLE}. Nobody here has been yet, but everybody has a theory about them.</li>
+        <li>[pa:news,town:struggling|town:poor] Times have been hard here since {FORTUNEWHY}. We are managing, but only just, and some days not even that.</li>
+        <li>[pa:news,town:thriving|town:flourishing] Times have been good since {FORTUNEWHY}. There is more on the tables and more in the purses, and nobody is quite sure what to do with it.</li>
+        <li>[pa:news,deed:good] People here still talk about how the folk of {COLONY} {DEED}. You may not think much of it. We do.</li>
+        <li>[pa:news,town:caravan] Our people are getting a caravan ready for your way. If there is anything you want carried back, have it ready.</li>
+        <li>[pa:news,region:camp:theirfoe] There is word of a {RAIDCAMP} near you. Keep your gate shut at night, and do not trust anyone who comes asking the way.</li>
+        <!-- ================= Everyday life ================= -->
+        <li>[pa:life] Things here go on as they always do. The fields want weeding, the roof wants mending, and everyone wants a rest, and nobody gets one. I would not change it, most days.</li>
+        <li>[pa:life] We have been eating a great deal of {PLANT} lately, because it is there, and because nobody has thought of anything better. If you have a better idea, write it down and send it. Please.</li>
+        <li>[pa:life] The young ones have taken to racing each other to the river and back every evening. Nobody wins, because nobody can agree where the river starts. It keeps them out from underfoot.</li>
+        <li>[pa:life] I have taken to walking out in the evenings, along the old track and back. You see more of a place on foot: where the fence is down, where the {ANIMALS} have been, and where somebody has been courting, which I will not write about.</li>
+        <li>[pa:life] Somebody has been leaving flowers on the bench by the well every morning, and nobody knows who, and the whole town has made it their business to find out. It is the most excitement we have had in a long while.</li>
+        <li>[pa:life] The neighbour's rooster has learned to crow at midnight. The neighbour says it is a gift. Everyone else has other words for it.</li>
+        <li>[pa:life,season:winter] Winter has its teeth in us. We burn more than we should and sleep closer than we would like, and somebody always snores. Spring cannot come soon enough, and it will not come soon at all.</li>
+        <li>[pa:life,season:summer] It has been hot. The well is low and the dogs lie in the shade with their tongues out, and so, frankly, do I. The evenings are the only time anyone gets anything done.</li>
+        <li>[pa:life,season:spring] Spring has come in with mud up to the knees and lambs underfoot. Everyone is in a better temper and everyone is busier, and the two cancel out.</li>
+        <li>[pa:life,season:autumn] The leaves are coming down and the stores are going up. Everyone is counting jars and sacks and doing sums, and arguing about the sums, which is how we know it is autumn.</li>
+        <li>[pa:life,home:coast,!w:tribal] The sea has been rough. The boats stay in, and the ones who sail them stay in the inn, and the inn is doing very well out of the weather.</li>
+        <li>[pa:life,home:desert] It has not rained in weeks. We save every drop, and the old ones tell stories about rain the way other people tell stories about dragons.</li>
+        <li>[pa:life,home:mountains|home:hills] The pass was blocked by a rockfall again, and the long way round is very long. We have been keeping ourselves company, which is to say arguing.</li>
+        <li>[pa:life,home:forest] The forest has been loud this season: birds, wind, the {ANIMALS} going about their business. You stop hearing it after a while, and then it stops, and you hear the silence instead.</li>
+        <li>[pa:life,home:frozen] The cold here is not weather, it is a neighbour. It comes in when the door opens and sits by the fire with the rest of us. We have stopped minding.</li>
+        <li>[pa:life,home:swamp|home:jungle] Everything here is damp, including the letter you are holding, I expect. Things grow overnight, and some of them bite.</li>
+        <li>[pa:life,w:tribal] The hunters were out three days and came back with enough. The old ones have been telling the young ones the long stories, the ones that take all night. I sat up for one. I had forgotten how it ends. It ends well.</li>
+        <li>[pa:life,w:tribal] We moved the fires to the lee of the hill when the wind turned. Everybody complained, and then everybody was warmer, and then everybody said it had been their idea.</li>
+        <li>[pa:life,w:industrial|w:spacer] The machines have behaved this season, mostly, which means they have only broken down at the worst possible moment instead of every moment. Somebody here talks to them. It seems to help.</li>
+        <li>[pa:life,w:spacer] We had a shuttle overhead the other week, low enough to read the markings. Everyone ran out to look, even the ones who pretend they are not interested in that sort of thing.</li>
+        <li>[pa:life,their:herders|c:herd] The herds are fat and the grazing is good, and we move on to the high pastures soon. You will have to write to us at the summer camp, wherever that ends up.</li>
+        <li>[pa:life,their:fishers|c:sea] The catch has been good, the smoking sheds are full, and everything we own smells of fish. You get used to it. Visitors do not.</li>
+        <li>[pa:life,their:scholars] The archive has a leak, and so we have spent the season moving books from one end of the room to the other, ahead of the water, like a very slow retreat.</li>
+        <li>[pa:life,grave] Times are hard here, and I will not pretend otherwise. We get by. We share. Nobody goes to bed hungry who can be fed, and some nights that is everyone, and some nights it is not.</li>
+        <li>[pa:life,town:thriving|town:flourishing,!grave] Things are good here, better than they have been. There is money in people's pockets and new roofs going up, and the old ones are waiting for it all to go wrong, because that is what old ones are for.</li>
+        <li>[pa:life,town:struggling|town:poor] It has been a lean time. We mend instead of buying and make do instead of mending, and everybody is a little thinner and a little sharper, and we will be glad when it turns.</li>
+
+        <!-- ================= Medieval English (olde) ================= -->
+        <li>[olde,pa:head,ph:news] Item, the news, for it will not keep.</li>
+        <li>[olde,pa:head,ph:life] Item, of how we fare.</li>
+        <li>[olde,pa:head,ph:story] Now hearken to a tale.</li>
+        <li>[olde,pa:head,ph:poem] And here are some few lines of verse.</li>
+        <li>[olde,pa:head,ph:raid] Now the heavy matter, which I have put off long enough.</li>
+        <li>[olde,pa:head,pa:next] Item.</li>
+        <li>[olde,pa:head,pa:last] And lastly.</li>
+        <li>[olde,pa:news,town:situation:bad] The worst of our tidings is {TOWNSITUATION}, which hath been hard on all. We come through it, and that is all I can say.</li>
+        <li>[olde,pa:news,town:loss] We have lost {LOST}, and the town is the quieter for it.</li>
+        <li>[olde,pa:news,their:war] The war with {WAR} goeth on. We hear little of it, save when one cometh not home.</li>
+        <li>[olde,pa:news,their:peace] We are at peace with {PEACEWITH} at last, and folk mistrust it, as one mistrusteth a dog that hath left off barking.</li>
+        <li>[olde,pa:news,town:newhead] We have a new {HEADTITLE}, {HEAD}, who hath begun well, which is to say hath changed naught as yet.</li>
+        <li>[olde,pa:news,town:struggling|town:poor] The times have been hard since {FORTUNEWHY}. We make shift, but barely.</li>
+        <li>[olde,pa:news,deed:good] Folk here speak yet of how the people of {COLONY} {DEED}.</li>
+        <li>[olde,pa:life] Things go on here as they ever did. The fields want weeding, the roof wanteth mending, and all want rest, and none get it. I would not have it otherwise, most days.</li>
+        <li>[olde,pa:life,season:winter] Winter hath its teeth in us. We burn more than we ought and lie closer than we would, and someone ever snoreth.</li>
+        <li>[olde,pa:life,season:summer] It hath been hot. The well is low and the dogs lie in the shade, and so do I, if I am honest.</li>
+        <li>[olde,pa:life,season:spring] Spring is come with mud to the knee and lambs underfoot, and all are merrier and all are busier.</li>
+        <li>[olde,pa:life,season:autumn] The leaves fall and the stores rise, and all are counting jars and sacks, and quarrelling over the count.</li>
+        <li>[olde,pa:life] Someone hath been leaving flowers on the bench by the well each morn, and none knoweth who, and the whole town hath made it their business to find out.</li>
+        <li>[olde,pa:life] The young folk race each other to the river and back each evening. None winneth, for none can agree where the river beginneth.</li>
+        <li>[olde,pa:life,grave] Times are hard, and I will not feign otherwise. We share what we have. Some nights it is enough.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+</Defs>

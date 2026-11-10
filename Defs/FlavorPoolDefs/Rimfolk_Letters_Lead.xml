@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    The line that brings a piece in, and the line after it (Letters/LetterKindMath.cs, Build: Lead and After). A lead-in
+    names its shape: lk:story, lk:raid, lk:poem, lk:sermon, lk:chronicle, lk:petition, lk:account, lk:recipe, lk:riddle,
+    lk:diary; a line after the piece adds lk:after. The piece is drawn first, so a lead-in must fit any piece of its shape
+    (a poem's lead does not know whether a lament or a drinking song follows; one for a lament names condolences). A raid's
+    lead-in follows its record: rd:now (a real raid; rd:fresh within ten days, rd:recent within a season, rd:past before;
+    rd:end:ongoing while raiders are about; rd:road on their road; rd:helped when the colony's fighters stood with them;
+    rd:you when the colony itself came at them; rd:ours for the colony's own raid in its own letter), rd:old for an old
+    tale, rd:boast for a raider's boast of what they did to the colony. A sermon's names zeal:crank for a writer of the
+    fringe. Lines are chosen like any part of a letter (their side theirs or ours, register, address, motive, age w:...,
+    speech olde, u:none, sv:...). A line that says {TOWN} is home is tagged theirs; the colony's own are tagged ours.
+  -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_LetterLead</defName>
+    <lines>
+      <plain>
+        <!-- ================= A story told ================= -->
+        <li>[lk:story,theirs,warmly,lk:lead] Let me tell you a story they tell at {TOWN}, because I cannot keep it to myself any longer.</li>
+        <li>[lk:story,warm|cordial,lk:lead] Since there is not much news, have a story instead. It is better than the news.</li>
+        <li>[lk:story,warm|cordial,lk:lead] Something happened here that you will not believe, so I will tell it slowly.</li>
+        <li>[lk:story,theirs,warm|cordial,lk:lead] Here is a tale they tell at {TOWN}. It might even be true.</li>
+        <li>[lk:story,theirs,warmly,lk:lead] Our oldest neighbour told this one at supper, and I have stolen it for you.</li>
+        <li>[lk:story,cordial|cool,lk:lead] I am not one for stories, but this one wants telling.</li>
+        <li>[lk:story,theirs,w:tribal,lk:lead] This is a story we tell at the fire when the nights are long. I give it to you the way it was given to me.</li>
+        <li>[lk:story,theirs,w:tribal,lk:lead] Sit, and I will tell it as the old ones tell it, with the parts they leave out left out.</li>
+        <li>[lk:story,theirs,w:spacer,lk:lead] Nothing much happens out here that would interest the feeds, but here is something that interested us.</li>
+        <li>[olde,lk:story,theirs,lk:lead] Hearken, for here is a tale of {TOWN}, and I tell it as it was told to me.</li>
+        <li>[olde,lk:story,lk:lead] Now I shall tell thee of a thing that befell us, and thou mayst judge it as thou wilt.</li>
+        <li>[olde,lk:story,warmly,lk:lead] Sit thee down by thy fire, friend, for this is a tale for a long evening.</li>
+        <li>[u:none,lk:story,lk:lead] here is a storey</li>
+        <li>[u:none,lk:story,lk:lead] i wil tel you wot hapend</li>
+        <li>[sv:beast,lk:story,lk:lead] Here is a hunt-tale. Read it slowly, the way a trail is read.</li>
+        <li>[sv:ancient,lk:story,lk:lead] Permit me a tale from my earlier centuries. I have trimmed it to the essentials, which took some decades.</li>
+        <li>[lk:story,lk:after,theirs] Anyway. That is the news from {TOWN}, more or less.</li>
+        <li>[lk:story,lk:after] Make of that what you will. We still have not.</li>
+        <li>[lk:story,lk:after] Nobody here agrees on what it means, which is half the pleasure of it.</li>
+        <li>[lk:story,lk:after,warmly] I have told it badly, but you will forgive me, and tell it better yourself.</li>
+        <li>[lk:story,lk:after,w:tribal] That is how it was told to me. Now it is yours to tell.</li>
+        <li>[olde,lk:story,lk:after] Make of it what thou wilt; we are debating it at the well yet.</li>
+        <li>[u:none,lk:story,lk:after] thats the storey</li>
+        <!-- ================= A raid's account ================= -->
+        <li>[lk:raid,rd:now,theirs,lk:lead] You will have heard rumours on the road. Here is what really happened.</li>
+        <li>[lk:raid,rd:now,rd:fresh,theirs,lk:lead] Raiders came at us not ten days ago, and I want you to hear it from me before you hear it from the road.</li>
+        <li>[lk:raid,rd:now,rd:recent,theirs,lk:lead] It is a few weeks now since the raiders came. The town talks about it less than it did, but it still talks.</li>
+        <li>[lk:raid,rd:now,rd:past,theirs,lk:lead] It is long enough since the raid that we can speak of it without shouting, so I will.</li>
+        <li>[lk:raid,rd:now,rd:end:ongoing,theirs,lk:lead] I am writing this with raiders still about, so forgive the hand, which is not steady.</li>
+        <li>[lk:raid,rd:now,rd:road,theirs,lk:lead] There has been trouble on our roads, and you should know of it, since you use them too.</li>
+        <li>[lk:raid,rd:now,rd:you,theirs,lk:lead] You know what you did. I will tell you how it looked from our side of the wall.</li>
+        <li>[lk:raid,rd:now,rd:helped,theirs,lk:lead] Your people stood on our walls when it mattered. Here is the whole of it, for those of yours who were not there to see.</li>
+        <li>[lk:raid,rd:old,theirs,lk:lead] There has been no raid here in years, thank the weather, but the old ones still tell of the last, and so will I.</li>
+        <li>[lk:raid,rd:old,lk:lead] When I was small, the raiders came. I have never written it down before.</li>
+        <li>[lk:raid,rd:old,lk:lead] My grandmother told this one, and her mother before her, and now it is my turn.</li>
+        <li>[lk:raid,rd:old,cordial|cool,lk:lead] You live on a road, as we do, so you might as well hear what the road can bring.</li>
+        <li>[lk:raid,rd:old,w:tribal,lk:lead] It was long ago, before my mother had her name. I will tell it as it is told at the fire.</li>
+        <li>[lk:raid,rd:now,w:tribal,theirs,lk:lead] The raiders came. I will tell it the way it is told at the fire, though it is too new to be a fire-story yet.</li>
+        <li>[lk:raid,rd:boast,lk:lead] You will remember us. We remember you.</li>
+        <li>[lk:raid,rd:boast,lk:lead] In case anyone at your place has forgotten how it went, here it is again.</li>
+        <li>[lk:raid,ours,rd:ours,lk:lead] We had raiders here. Everyone is all right who can be, and I wanted you to hear it from us.</li>
+        <li>[lk:raid,ours,rd:ours,lk:lead] It has not been quiet here, and since you would hear of it anyway, here it is.</li>
+        <li>[olde,lk:raid,rd:now,theirs,lk:lead] Hear now how the reavers came upon {TOWN}, for it is fit that thou shouldst know it.</li>
+        <li>[olde,lk:raid,rd:old,theirs,lk:lead] In the days of my grandsire the reavers came, and the tale is told yet at {TOWN}.</li>
+        <li>[olde,lk:raid,rd:now,rd:helped,theirs,lk:lead] Thy people stood upon our walls in the hour of need, and I would have thee know the whole of it.</li>
+        <li>[olde,lk:raid,rd:now,rd:you,theirs,lk:lead] Thou knowest well what thy people did. Hear now how it seemed from within our walls.</li>
+        <li>[olde,lk:raid,ours,rd:ours,lk:lead] Reavers came upon us, and I would have thee hear it from mine own hand.</li>
+        <li>[sv:machine,lk:raid,rd:now,lk:lead] INCIDENT REPORT FOLLOWS. COMPILED FROM WITNESS ACCOUNTS AND OWN SENSORS.</li>
+        <li>[sv:machine,lk:raid,rd:old,lk:lead] HISTORICAL INCIDENT FOLLOWS, FROM ARCHIVE. ACCURACY: AS RECORDED, WHICH IS TO SAY UNKNOWN.</li>
+        <li>[sv:beast,lk:raid,lk:lead] The raiders came on the wind. We smelled them first. Here is how it went.</li>
+        <li>[u:none,lk:raid,rd:now,lk:lead] we had a fite</li>
+        <li>[u:none,lk:raid,rd:old,lk:lead] my granda tolde me this</li>
+        <li>[u:none,lk:raid,rd:boast,lk:lead] you rember us. we rember you</li>
+        <li>[lk:raid,lk:after,rd:now|rd:old] That is all of it. Bar your gate at night.</li>
+        <li>[lk:raid,lk:after,rd:now] I would not have written it if I did not think you should know.</li>
+        <li>[lk:raid,lk:after,rd:boast] Think on that, next time.</li>
+        <li>[olde,lk:raid,lk:after] May thy walls be better kept than ours were.</li>
+        <li>[sv:machine,lk:raid,lk:after] END OF INCIDENT REPORT. RECOMMENDATION: VIGILANCE.</li>
+        <!-- ================= A poem or a song ================= -->
+        <li>[lk:poem,warm|cordial,lk:lead] I have been trying my hand at verse again. Be kind, or at least be quiet about it.</li>
+        <li>[lk:poem,warmly,lk:lead] Someone here wrote this, and I copied it out for you because it made me think of you.</li>
+        <li>[lk:poem,theirs,warm|cordial,lk:lead] Forgive me what follows. It is a song we sing here, and I could not get it out of my head.</li>
+        <li>[lk:poem,warm|cordial,lk:lead] Here are a few lines. I am no poet, but the evenings are long.</li>
+        <li>[lk:poem,cordial|cool,lk:lead] I enclose some verse, since it says it better than I would.</li>
+        <li>[lk:poem,condolences,lk:lead] I could not find the right words of my own, so here are some that have been said before.</li>
+        <li>[lk:poem,theirs,w:tribal,lk:lead] This is a song we sing. Sing it if you like; it does not mind who sings it.</li>
+        <li>[lk:poem,ours,warm|cordial,lk:lead] I have been writing a little verse in the evenings. Here is some of it, for better or worse.</li>
+        <li>[olde,lk:poem,lk:lead] I have set down some few lines in verse, and pray thou wilt forgive the rhymes.</li>
+        <li>[olde,lk:poem,theirs,lk:lead] Here is a song of our country, which the young folk sing at harvest and the old folk sing all year.</li>
+        <li>[olde,lk:poem,condolences,lk:lead] I have no fit words of mine own, so here are older ones.</li>
+        <li>[u:none,lk:poem,lk:lead] i made a pome</li>
+        <li>[u:none,lk:poem,lk:lead] heres a song my mam sang</li>
+        <li>[sv:fey,lk:poem,lk:lead] A song, which is also the formula. Sing it back and the formula is closed.</li>
+        <li>[sv:green,lk:poem,lk:lead] A slow song, as we sing them. Read it in the morning, when it is warmest.</li>
+        <li>[sv:machine,lk:poem,lk:lead] ATTEMPT AT VERSE FOLLOWS. CONFIDENCE: LOW.</li>
+        <li>[sv:ancient,lk:poem,lk:lead] A verse in a form no longer in use. I have rendered it into your speech, imperfectly, as one must.</li>
+        <li>[lk:poem,lk:after,warm|cordial] There. It is out of my head now and into yours.</li>
+        <li>[lk:poem,lk:after] I will not ask what you thought of it.</li>
+        <li>[lk:poem,lk:after,warmly] If it made you smile, it did its work. If not, use it to light the fire.</li>
+        <li>[olde,lk:poem,lk:after] There, I have done, and thou mayst laugh.</li>
+        <li>[sv:machine,lk:poem,lk:after] END OF VERSE. IT IS SHORTER THAN IT FELT.</li>
+        <!-- ================= A sermon or a tract ================= -->
+        <li>[lk:sermon,lk:lead] Bear with me, for there are things that must be said, and I am the one to say them.</li>
+        <li>[lk:sermon,warm|cordial,lk:lead] You will forgive me if I speak of the faith. I cannot help it, and I would not if I could.</li>
+        <li>[lk:sermon,theirs,lk:lead] I copied out what was preached here at the last gathering, because you ought to hear it.</li>
+        <li>[lk:sermon,lk:lead] There is something I must tell you, and it is bigger than either of us.</li>
+        <li>[lk:sermon,zeal:crank,lk:lead] They tell me nobody wants to hear it. That is how I know it must be said.</li>
+        <li>[lk:sermon,zeal:crank,lk:lead] I have written to everyone about this. You are the first to be written to twice.</li>
+        <li>[lk:sermon,ours,lk:lead] Forgive me a little preaching. It is on my mind, and you are a patient reader.</li>
+        <li>[olde,lk:sermon,lk:lead] Suffer me to speak of holy things, for my heart is full of them.</li>
+        <li>[olde,lk:sermon,theirs,lk:lead] Hear now what was preached at {TOWN} at the last gathering, for it was well said.</li>
+        <li>[u:none,lk:sermon,lk:lead] i got to tel you sumthing importent</li>
+        <li>[sv:deep,lk:sermon,lk:lead] Listen. Not with the ears.</li>
+        <li>[lk:sermon,lk:after] There. I feel better, and I hope that you do.</li>
+        <li>[lk:sermon,lk:after,zeal:crank] Burn this if you like. It will still be true.</li>
+        <li>[olde,lk:sermon,lk:after] Ponder it, and may it do thee good.</li>
+        <!-- ================= A chronicle ================= -->
+        <li>[lk:chronicle,theirs,w:industrial|w:spacer,lk:lead] I enclose the latest sheet from town, which says everything I would and some things I would not.</li>
+        <li>[lk:chronicle,theirs,w:industrial|w:spacer,lk:lead] Our newsletter goes out to everyone now, so you may as well have a copy too.</li>
+        <li>[lk:chronicle,theirs,w:spacer,lk:lead] The bulletin came over the wire this morning. Here it is, as printed.</li>
+        <li>[lk:chronicle,theirs,empire,lk:lead] The gazette of the court, as issued this quarter, for your information.</li>
+        <li>[lk:chronicle,theirs,w:tribal,lk:lead] This is the season as it was told at the fire on the last night of it.</li>
+        <li>[olde,lk:chronicle,theirs,lk:lead] Here are the tidings of {TOWN}, as they were cried in the market.</li>
+        <li>[sv:machine,lk:chronicle,lk:lead] LOCAL STATUS DIGEST APPENDED.</li>
+        <li>[sv:hive,lk:chronicle,lk:lead] The many have counted the season. Here is the count.</li>
+        <!-- ================= A petition ================= -->
+        <li>[lk:petition,theirs,lk:lead] The town asked me to send this with my letter, and I could hardly refuse.</li>
+        <li>[lk:petition,theirs,!w:tribal,lk:lead] We put this together at a meeting, and everyone who could hold a pen signed it.</li>
+        <li>[lk:petition,theirs,w:tribal,lk:lead] We sat in a circle and said what we wanted, and here it is, with all our marks.</li>
+        <li>[lk:petition,ours,lk:lead] We talked it over at supper, and everyone signed.</li>
+        <li>[olde,lk:petition,theirs,lk:lead] The good folk of {TOWN} have set their names to this, and bid me send it.</li>
+        <li>[u:none,lk:petition,lk:lead] evryone sined this</li>
+        <!-- ================= A list or an account ================= -->
+        <li>[lk:account,lk:lead] So that there is no confusion, here it is set out plainly.</li>
+        <li>[lk:account,m:trade,lk:lead] A short account, since I know you like to see the numbers.</li>
+        <li>[lk:account,k:request,lk:lead] Here is the list of what we need, so you can see it is not much.</li>
+        <li>[olde,lk:account,lk:lead] Here followeth the reckoning, set down plainly.</li>
+        <li>[sv:machine,lk:account,lk:lead] INVENTORY APPENDED.</li>
+        <li>[u:none,lk:account,lk:lead] i rote a list</li>
+        <!-- ================= A recipe or a remedy ================= -->
+        <li>[lk:recipe,theirs,lk:lead] Here is something to do with whatever is left in your pantry.</li>
+        <li>[lk:recipe,theirs,warmly,lk:lead] My grandmother's recipe, which I am not supposed to give anyone, so please do not tell her.</li>
+        <li>[lk:recipe,theirs,help,medicine,lk:lead] We cannot send medicine, but here is what we do instead, and it is better than nothing.</li>
+        <li>[lk:recipe,ours,lk:lead] This is how {COOK} makes it here. I stood at the stove and wrote it down.</li>
+        <li>[olde,lk:recipe,theirs,lk:lead] Here is how we make it at {TOWN}, and thou wilt thank me for it.</li>
+        <li>[olde,lk:recipe,theirs,help,medicine,lk:lead] We have no physic to spare, but here is what the wise-wives do, and it hath served us.</li>
+        <!-- ================= A riddle ================= -->
+        <li>[lk:riddle,lk:lead] A riddle, to keep you busy until my next letter.</li>
+        <li>[lk:riddle,theirs,lk:lead] Here is one the children here have been asking everyone.</li>
+        <li>[lk:riddle,lk:lead] I will not tell you the answer until next time. I am cruel that way.</li>
+        <li>[lk:riddle,theirs,w:tribal,lk:lead] We tell this one at the fire to make the young ones quiet. It works for a while.</li>
+        <li>[olde,lk:riddle,lk:lead] Here is a riddle for thee, and the answer in my next.</li>
+        <li>[sv:fey,lk:riddle,lk:lead] A riddle, which you must answer or not, as you like. We will know either way.</li>
+        <li>[sv:ancient,lk:riddle,lk:lead] A riddle from a court that no longer stands. It was considered easy there.</li>
+        <!-- ================= A diary page ================= -->
+        <li>[lk:diary,lk:lead] I have been keeping a diary, and copied out a page of it for you, since it says more than I would.</li>
+        <li>[lk:diary,lk:lead] Here are a few days from my journal, as they were written.</li>
+        <li>[lk:diary,warmly,lk:lead] I write a little every night. Here is what this week looked like, more or less.</li>
+        <li>[olde,lk:diary,lk:lead] I have copied out some days from my book, that thou mayst see how we live.</li>
+        <li>[sv:ancient,lk:diary,lk:lead] Some entries from my journal, from the last few days. You will find them dull. So did I, and I have had practice.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+</Defs>

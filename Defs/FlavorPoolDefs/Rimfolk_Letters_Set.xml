@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Set pieces in a letter (Letters/LetterKindMath.cs): a petition, a list or an account, a recipe or a remedy, a riddle.
+    - A petition (pe:body): when something is asked, their letter written first that asks for {GOODS} (theirs,
+      k:request), or the colony asking for {HELP} (ours, help). Its signatures are added under it, real names
+      ({SIGNERS}: the writer and the townsfolk the colony knows of; the colonists, all of them).
+    - A list or an account: its heading (ac:head), three to five items one line each (ac:item; ac:asked for the first
+      when something is asked, with {GOODS}), its foot (ac:end). Everyday flavour of their own life, or a trader's wares
+      (m:trade); nothing about the colony.
+    - A recipe or a remedy (rc:recipe), whole, its paragraphs broken with \n\n: between friends, or a remedy in place of
+      the medicine they cannot send (help, medicine). The colony's own is its cook's ({COOK}, ours).
+    - A riddle (ri:riddle), whole, its answer after ~~ (kept, and given in the writer's next letter's P.S.); the line
+      that the answer comes next time (ri:later); the P.S. that gives it (ri:answer, {ANSWER}).
+    Chosen like any part of a letter (side, register, motive, age w:..., speech olde, u:none, sv:...). The unschooled
+    lines' misspellings are deliberate.
+  -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_LetterSet</defName>
+    <lines>
+      <plain>
+        <!-- ================= Petitions ================= -->
+        <li>[pe:body,theirs,k:request] To the people of {COLONY}, from the undersigned of {TOWN}:\n\nWe ask, as neighbours, whether you could spare {GOODS} this season. We are short, and the season is long, and we would not ask if there were anyone nearer to ask. Whatever you send will be remembered, and repaid when we can.</li>
+        <li>[pe:body,theirs,k:request,grave] We, the people of {TOWN}, being in hard times and having nobody else to turn to, put our names to this and ask {COLONY} for {GOODS}.\n\nWe are not used to asking. We have done it now. The rest is up to you.</li>
+        <li>[pe:body,theirs,k:request,m:proud] The people of {TOWN} do not beg, and this is not begging. It is a statement, signed by many, that {GOODS} would be very welcome here, and that {COLONY} would be thought well of for sending it.</li>
+        <li>[pe:body,theirs,k:request,w:tribal] All the people of {TOWN} sat together, and this is what we say: we need {GOODS}. If {COLONY} can give it, we will not forget. If not, we will not forget that either, but kindly.</li>
+        <li>[pe:body,ours,help] To the people of {TOWN}, from all of us at {COLONY}:\n\nWe are short of {HELP}, and we would be grateful for any you can spare. We do not ask lightly, and we will not forget it.</li>
+        <li>[pe:body,ours,help] We, the people of {COLONY}, every one of us, ask our neighbours at {TOWN} for {HELP}, if it can be spared.\n\nWe know times are hard everywhere. We would do the same for you, and we will, when we can.</li>
+        <li>[olde,pe:body,theirs,k:request] To the good folk of {COLONY}, from them whose names are set below, of {TOWN}:\n\nWe pray thee, as neighbours, to spare us {GOODS} this season, for we are in want, and know none nearer to ask. Whatsoever thou sendest shall be remembered, and repaid when we may.</li>
+        <li>[olde,pe:body,ours,help] To the good folk of {TOWN}, from all of us at {COLONY}:\n\nWe lack {HELP}, and would be grateful for whatsoever thou canst spare. We ask it not lightly, and shall not forget it.</li>
+        <li>[u:none,pe:body,theirs,k:request] to {COLONY}. we need {GOODS}. evryone here sez so. plese send sum if you can</li>
+        <li>[u:none,pe:body,ours,help] to {TOWN}. we need {HELP}. evryone here sined. plese</li>
+        <!-- ================= A list or an account ================= -->
+        <li>[ac:head] The account, as it stands:</li>
+        <li>[ac:head,m:trade] What we have, what we want, and what it costs:</li>
+        <li>[ac:head,k:request] What we need, in order:</li>
+        <li>[ac:item,!w:tribal] Owed to the smith: one goose, since last winter, and he has not forgotten.</li>
+        <li>[ac:item] Borrowed from the neighbours: a ladder, two buckets, and a great deal of patience.</li>
+        <li>[ac:item] Lent out and not returned: one good knife, one bad knife, one goat.</li>
+        <li>[ac:item,!w:tribal] Sold at market: three cheeses, a chair, and a promise to fix the chair.</li>
+        <li>[ac:item] In the cellar: turnips. More turnips than anyone needs. Please do not mention turnips when you write back.</li>
+        <li>[ac:item] Repairs needed: the roof, the fence, the well cover, and my temper.</li>
+        <li>[ac:item] Spent on boots this year: too much. Boots worn out this year: all of them.</li>
+        <li>[ac:item] Firewood stacked: enough, if the winter is kind. The winter is never kind.</li>
+        <li>[ac:item] {ANIMALS} seen near the fields: more than last year, fewer than next.</li>
+        <li>[ac:item,m:trade] Leather, cured, good quality: plenty, and priced to sell.</li>
+        <li>[ac:item,m:trade] Salt: some, and dear.</li>
+        <li>[ac:item,m:trade] Dried fruit: a cartload, if the price is right.</li>
+        <li>[ac:item,m:trade] Cloth, plain: as much as you like. Cloth, fancy: ask.</li>
+        <li>[ac:item,m:trade] Tools, mended: a few, as good as new, nearly.</li>
+        <li>[ac:item,ac:asked,k:request] {GOODS}: as much as can be spared, which we know may not be much.</li>
+        <li>[ac:item,w:tribal] Arrows: many. Arrows that fly straight: fewer.</li>
+        <li>[ac:item,w:tribal] Hides: three good ones, and one that the dog found first.</li>
+        <li>[ac:item,w:tribal] Owed to the healer: a basket of roots, since the fever.</li>
+        <li>[ac:end] That is the whole of it, give or take a turnip.</li>
+        <li>[ac:end,m:trade] Prices fair, terms fairer, for neighbours.</li>
+        <li>[ac:end,k:request] Anything at all would help. We will settle up when we can.</li>
+        <li>[olde,ac:head] The reckoning, as it standeth:</li>
+        <li>[olde,ac:item] Owed to the smith: one goose, since last winter, and he hath not forgot.</li>
+        <li>[olde,ac:item] Lent and not returned: one good knife, one ill knife, one goat.</li>
+        <li>[olde,ac:item] In the cellar: turnips, more than any soul needeth.</li>
+        <li>[olde,ac:item] Wanting mending: the roof, the hedge, the well, and mine own temper.</li>
+        <li>[olde,ac:item,m:trade] Wool, carded and spun: enough and to spare, at a fair price.</li>
+        <li>[olde,ac:item,ac:asked,k:request] {GOODS}: so much as may be spared.</li>
+        <li>[olde,ac:end] So endeth the reckoning.</li>
+        <li>[sv:machine,ac:head] INVENTORY:</li>
+        <li>[sv:machine,ac:item] FOOD: SUFFICIENT FOR 41 DAYS AT CURRENT CONSUMPTION. CURRENT CONSUMPTION: EXCESSIVE.</li>
+        <li>[sv:machine,ac:item] TOOLS: 17. TOOLS IN USE: 3. TOOLS MISPLACED: 14.</li>
+        <li>[sv:machine,ac:item] COMPLAINTS LOGGED THIS WEEK: 22. COMPLAINTS ABOUT COMPLAINTS: 9.</li>
+        <li>[sv:machine,ac:item] SPARE PARTS: FEW. REQUESTS FOR SPARE PARTS: MANY.</li>
+        <li>[sv:machine,ac:item,ac:asked,k:request] REQUIRED: {GOODS}. QUANTITY: ANY.</li>
+        <li>[sv:machine,ac:end] TOTAL: AS LISTED. DISCREPANCIES: TO BE INVESTIGATED.</li>
+        <li>[u:none,ac:head] list</li>
+        <li>[u:none,ac:item] 3 chikens</li>
+        <li>[u:none,ac:item] won goat (mine)</li>
+        <li>[u:none,ac:item] nives 2</li>
+        <li>[u:none,ac:item] the cart (broke)</li>
+        <li>[u:none,ac:item,ac:asked,k:request] {GOODS} plese</li>
+        <li>[u:none,ac:end] thats all of it</li>
+        <!-- ================= Recipes and remedies ================= -->
+        <li>[rc:recipe,theirs] Winter stew, the way we make it at {TOWN}.\n\nTake whatever meat you have, and twice as many onions as you think. Brown the meat in the pot, then the onions, then add water until it looks like too much. Throw in whatever roots are left in the cellar, a handful of salt, and anything green that is not poisonous. Let it sit at the back of the fire from noon until dark. Do not stir it more than twice; it knows what it is doing. Serve with bread and an argument about whether it needed more salt.</li>
+        <li>[rc:recipe] Honey cakes, for when somebody needs cheering up.\n\nTwo cups of flour, one of honey, an egg if you have one and a spoonful of fat if you do not. Mix it until your arm is tired, then a little longer. Drop spoonfuls on a hot stone or a greased pan. They are done when they smell done. Hide two for yourself before anyone else comes in.</li>
+        <li>[rc:recipe,w:tribal] Ash-baked roots, as the old ones make them.\n\nDig the fire pit deep. Wrap the roots in wet leaves. Bury them in the ashes when the flames are down to coals, and tell a long story. When the story is over, they are ready. If they are not ready, the story was too short.</li>
+        <li>[rc:recipe,!w:tribal] Pickled {PLANT}, which nobody believes in until they try it.\n\nPick it young, wash it twice, and pack it tight in a jar with salt and vinegar and a few peppercorns if you can get them. Seal it and forget it in a dark corner until the snow comes. Then open it and watch people's faces.</li>
+        <li>[rc:recipe,help,medicine] For a fever, when there is no medicine.\n\nBoil willow bark until the water goes brown, let it cool, and give a cup morning and night. Keep them warm and keep them drinking. Cool cloths on the forehead. Sit with them. Most fevers break on the third night, and the sitting is half the cure.</li>
+        <li>[rc:recipe,help,medicine] For a wound that will not close, when there is nothing better.\n\nWash it in boiled water with salt, more often than seems needed. Bind it in clean cloth, boiled too. Honey on it if you have honey. Keep the flies off and the patient still. Change the cloth twice a day, and do not let anyone put anything else on it, however sure they are.</li>
+        <li>[rc:recipe] Porridge, the right way, which is the only way.\n\nOats, water, salt. Not milk. Never sugar. Stir it with the handle of the spoon, not the bowl, for reasons nobody here will explain. Let it stand a minute before eating, so it can think about what it has done.</li>
+        <li>[rc:recipe,w:spacer] Ration bar pudding, from the old ship's galley.\n\nCrumble two standard ration bars into a pan with a little water. Heat gently. Add anything sweet you can find. Stir until it stops resembling a ration bar. It will not stop resembling a ration bar. Eat it anyway, with company, and tell stories about real food.</li>
+        <li>[rc:recipe,!w:tribal] Bread, for anyone who was never taught.\n\nFlour, water, salt, and yesterday's dough if you kept some, which you should. Mix it, knead it until it fights back, then leave it under a cloth by the fire until it doubles. Shape it, slash the top so it can breathe, and bake it hot. Do not open the oven to look. It is shy.</li>
+        <li>[rc:recipe,c:tea] Tea, as we brew it, which is properly.\n\nWater not quite boiling. Leaves, a pinch a cup and one for the pot. Steep it for as long as it takes to say something kind about someone you do not like. Pour. Sit. Do not talk until the first cup is gone.</li>
+        <li>[rc:recipe,ours] The stew {COOK} makes, as near as I can set it down.\n\nWhatever meat there is, browned hard. Onions, a great many. Water, whatever roots are in the store, salt, and a good deal of patience. {COOK} says the secret is to leave it alone. {COOK} also says there is no secret, and will not let anyone near the pot.</li>
+        <li>[rc:recipe,ours] The bread we bake here, which {COOK} says is nothing special and which everyone fights over.\n\nFlour, water, salt, and a spoon of the old dough. Knead it until your arms ache. Let it rise by the fire. Bake it hot and do not open the oven. That is all {COOK} will tell me, and I suspect it is not all.</li>
+        <li>[olde,rc:recipe,theirs] A pottage of winter, as we make it at {TOWN}.\n\nTake what flesh thou hast, and onions twice as many as thou thinkest meet. Brown them in the pot, then add water, and what roots remain in the cellar, and salt, and any green thing that is not poison. Let it stand at the back of the fire from noon till dark, and stir it not above twice. Serve it with bread and a quarrel over the salt.</li>
+        <li>[olde,rc:recipe,help,medicine] For a fever, where there is no physic.\n\nSeethe willow bark till the water be brown, let it cool, and give a cup at morn and eve. Keep the sick warm, and keep them drinking. Lay cool cloths upon the brow, and sit by them. Most fevers break the third night, and the sitting is half the cure.</li>
+        <li>[olde,rc:recipe] Honey cakes, for a heavy heart.\n\nTwo measures of flour and one of honey, an egg if thou hast it. Beat it till thine arm be weary, then a while more. Drop it by spoonfuls upon a hot stone. They are done when they smell done. Hide two for thyself ere any come in.</li>
+        <li>[olde,rc:recipe,!c:tea,!p:sober] Mulled ale, against the cold.\n\nWarm the ale slow and never let it boil. Put in honey, and a stick of cinnamon if thou canst get it, and a roasted apple if thou canst not. Drink it by the fire, and speak no ill of anyone until the cup be empty.</li>
+        <!-- ================= Riddles: the riddle ~~ its answer ================= -->
+        <li>[ri:riddle] What has a neck but no head, and wears a cork for a hat? ~~ A bottle.</li>
+        <li>[ri:riddle] The more you take, the more you leave behind. What am I? ~~ Footsteps.</li>
+        <li>[ri:riddle] I am always coming and never arrive. ~~ Tomorrow.</li>
+        <li>[ri:riddle] What runs all day and never tires, has a bed and never sleeps, and has a mouth and never eats? ~~ A river.</li>
+        <li>[ri:riddle,!w:tribal] I have keys but open no doors, and I can be played but never win. ~~ A piano.</li>
+        <li>[ri:riddle] What gets wetter the more it dries? ~~ A towel.</li>
+        <li>[ri:riddle] Feed me and I live; give me a drink and I die. ~~ Fire.</li>
+        <li>[ri:riddle] What can you keep after giving it to someone? ~~ Your word.</li>
+        <li>[ri:riddle] What is so fragile that saying its name breaks it? ~~ Silence.</li>
+        <li>[ri:riddle] What has many teeth but cannot bite? ~~ A comb.</li>
+        <li>[ri:riddle,!w:tribal] I have a face and two hands but no arms or legs. ~~ A clock.</li>
+        <li>[ri:riddle] What goes up and never comes down? ~~ Your age.</li>
+        <li>[ri:riddle,w:tribal] I walk on four in the morning, on two at noon, on three at night. ~~ A person: crawling as a child, walking grown, with a stick when old.</li>
+        <li>[ri:riddle,w:tribal] What has roots nobody sees, is taller than the trees, and never grows? ~~ A mountain.</li>
+        <li>[ri:riddle,w:tribal] I fly without wings and cry without eyes. ~~ A cloud.</li>
+        <li>[olde,ri:riddle] What hath a neck and yet no head, and weareth a cork for a hat? ~~ A bottle.</li>
+        <li>[olde,ri:riddle] The more thou takest, the more thou leavest behind. What am I? ~~ Footsteps.</li>
+        <li>[olde,ri:riddle] Feed me and I live; give me drink and I die. ~~ Fire.</li>
+        <li>[olde,ri:riddle] What runneth all day and never wearieth, and hath a bed and never sleepeth? ~~ A river.</li>
+        <li>[olde,ri:riddle] Name me and thou breakest me. ~~ Silence.</li>
+        <li>[sv:fey,ri:riddle] What is given to you, belongs to you, and is used by everyone else far more than you use it? ~~ Your name. Mind where you leave it.</li>
+        <li>[sv:fey,ri:riddle] We are always in front of you and never behind, and you will never once see us. ~~ The days to come.</li>
+        <li>[sv:fey,ri:riddle] What dances in the ring at midnight, and is not there, and leaves no print? ~~ Us, of course.</li>
+        <li>[sv:ancient,ri:riddle] I have outlived every king who tried to own me, and I still belong to whoever holds me. ~~ A coin. I have several, from the kings in question.</li>
+        <li>[sv:ancient,ri:riddle] The longer it stands, the less of it there is. ~~ A candle. I have burned a great many.</li>
+        <li>[ri:later] The answer next time. No peeking, not that there is anywhere to peek.</li>
+        <li>[ri:later] I will tell you in my next letter, if you have not guessed it by then.</li>
+        <li>[ri:later,warmly] Write back with your guess. Wrong answers are welcome, and frankly more fun.</li>
+        <li>[olde,ri:later] The answer in my next, if thou hast not found it ere then.</li>
+        <li>[sv:fey,ri:later] The answer comes with the next letter, or with the next full moon, whichever is later.</li>
+        <li>[sv:ancient,ri:later] I shall supply the answer in due course. Due course, for me, is your next letter.</li>
+        <li>[ri:answer] The answer to my riddle, if you have not got it: {ANSWER}</li>
+        <li>[ri:answer] Did you guess my riddle? It was this: {ANSWER}</li>
+        <li>[olde,ri:answer] The answer to my riddle, if thou hast not found it: {ANSWER}</li>
+        <li>[sv:fey,ri:answer] The riddle's answer, given as promised: {ANSWER}</li>
+        <li>[sv:ancient,ri:answer] The answer to the riddle, as undertaken: {ANSWER}</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+</Defs>
