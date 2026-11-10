@@ -248,12 +248,15 @@ namespace ColonyCouncil
         /// <summary>Who writes unless the player picks someone else: the speaker, else the colony's best talker.</summary>
         public static Pawn DefaultWriter(Map map)
         {
-            var all = Writers(map, true);
-            // The speaker of the colony writing.
+            // The colony's best with words writes (the player: "it should also auto select the highest level social pawn to
+            // write the letter"); between equals, the speaker of the colony.
             var speaker = ColonyState.For(map)?.offices?.Speaker;
-            if (speaker != null && all.Contains(speaker)) return speaker;
-            return all.OrderByDescending(p => p.skills?.GetSkill(SkillDefOf.Social)?.Level ?? 0).FirstOrDefault();
+            return ByWords(Writers(map, true), speaker).FirstOrDefault();
         }
+
+        /// <summary>Those who could write, the highest Social first; the speaker first among equals, then by name.</summary>
+        public static IEnumerable<Pawn> ByWords(IEnumerable<Pawn> writers, Pawn speaker = null) =>
+            writers.OrderByDescending(p => p.skills?.GetSkill(SkillDefOf.Social)?.Level ?? 0).ThenByDescending(p => p == speaker).ThenBy(p => p.LabelShort);
 
         /// <summary>A powered comms console that works now, or null (no power, a solar flare: the air is dead).</summary>
         public static Building_CommsConsole Console(Map map, Pawn near = null)

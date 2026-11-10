@@ -7,8 +7,8 @@ colony of 20, with the game keeping 30 more people it knows and 5 more each year
 generous guesses; sizes are rough XML sizes. Caps named as constants are read from the source. "Counted under" rows are
 kept inside another record (a journal's lines, a heart's lists) and are already in that record's size.
 
-Saved collections found: 607; modelled: 607; growing without end: 0.
-Rimfolk's part of the save, roughly: **2,700 KB** after a year, **3,238 KB** after two, **3,495 KB** after five.
+Saved collections found: 608; modelled: 608; growing without end: 0.
+Rimfolk's part of the save, roughly: **2,700 KB** after a year, **3,238 KB** after two, **3,496 KB** after five.
 
 | Collection | Rule | Kind | 1 year | 2 years | 5 years | KB at 5 years |
 |---|---|---|---|---|---|---|
@@ -441,6 +441,7 @@ Rimfolk's part of the save, roughly: **2,700 KB** after a year, **3,238 KB** aft
 | `Calendar/CalendarTracker.cs:colonies` | one calendar per colony (one home in the model; a second doubles the calendar's rows), a lost home's kept 30 days, then let go | fixed | 1 | 1 | 1 | 0.1 |
 | `Camps/Camp.cs:joined` | while the camp stays | while | 3 | 3 | 3 | 0.1 |
 | `Camps/CampRequests.cs:stallWares` | a few stacks their trader set out by the gate for a day's stall, while it lasts | while | 3 | 3 | 3 | 0.1 |
+| `Couriers/CourierTrip.cs:mounts` | the mounts a trip's people ride in on (Giddy-Up), while it lasts | while | 3 | 3 | 3 | 0.1 |
 | `Couriers/CourierTrip.cs:people` | a trip's people, while it lasts | while | 3 | 3 | 3 | 0.1 |
 | `Happenings/Happenings.cs:things` | per departed record | fixed | 3 | 3 | 3 | 0.1 |
 | `Happenings/Happenings.cs:touched` | per visit | fixed | 3 | 3 | 3 | 0.1 |

@@ -174,6 +174,13 @@ namespace ColonyCouncil
         /// With a pack animal, one person fewer is needed for the same load (the animal carries the most); never fewer
         /// than one, and a big load still brings two to lead and load.
         /// </summary>
+        /// <summary>
+        /// The people of this tech level ride in on mounts when Giddy-Up is in the game: porters and couriers of the medieval
+        /// and industrial ages (the player: "porters still frequently appear to come without mounts and being on them"); a
+        /// tribe's runners run, and spacers come without beasts.
+        /// </summary>
+        public static bool Rides(int techLevel) => techLevel >= 3 && techLevel <= 4;
+
         public static int PeopleWithAnimal(float bulk, bool animal)
         {
             int n = People(bulk);

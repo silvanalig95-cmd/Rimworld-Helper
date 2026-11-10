@@ -434,7 +434,7 @@ namespace ColonyCouncil
             if (writer == null || !writers.Contains(writer)) writer = NeighbourLetters.DefaultWriter(map);
             Widgets.Label(new Rect(inRect.x, y + 2f, 120f, 24f), (NeighbourLetters.Spoken ? "CC_LetterDlg_WhoSpeaks" : "CC_LetterDlg_Who").Translate());
             if (UiKit.Button(new Rect(inRect.x + 124f, y, Mathf.Min(inRect.width - 124f, 260f), 26f), writer != null ? WriterLabel(writer) : "-", ButtonKind.Normal, writers.Count > 0))
-                Find.WindowStack.Add(new FloatMenu(writers.Select(p => new FloatMenuOption(WriterLabel(p), () => writer = p)).ToList()));
+                Find.WindowStack.Add(new FloatMenu(NeighbourLetters.ByWords(writers).Select(p => new FloatMenuOption(WriterLabel(p), () => writer = p)).ToList()));
             y += 30f;
             // How.
             Widgets.Label(new Rect(inRect.x, y + 2f, 120f, 24f), "CC_LetterDlg_How".Translate());

@@ -15,7 +15,7 @@ namespace ColonyCouncil
     /// days in the medieval age, a mail run every 3 to 7 in the industrial, a shuttle every 2 to 4 in the spacer (the post's
     /// age is what the colony and the best of its neighbours share: PostMath.PostAge; the pace is a setting). The rider is
     /// one of the post's people's lighter caravan hands, with a mount of their people's caravans (or a horse) where the land
-    /// allows: with Giddy-Up 2 they ride it, by its own Mount job by name; otherwise they lead it. A spacer post comes by drop
+    /// allows: with Giddy-Up 2 they ride it, mounted as they come the way Giddy-Up brings its own riders in; otherwise they lead it. A spacer post comes by drop
     /// pod at the mailbag. They come by day when the map is safe, set down the mail for the colony at the mailbag, take what
     /// goes out on the post, and ride on.
     /// </summary>
@@ -206,36 +206,8 @@ namespace ColonyCouncil
             return null;
         }
 
-        /// <summary>With Giddy-Up 2, the rider mounts by its own job (by name, softly); without it, or if that doesn't take, they lead the animal.</summary>
-        public static void Ride(Pawn rider, Pawn mount)
-        {
-            try
-            {
-                var job = MountJob;
-                if (job == null || !rider.Spawned || !mount.Spawned) return;
-                rider.jobs.StartJob(JobMaker.MakeJob(job, mount), JobCondition.InterruptForced, null, false, true);
-            }
-            catch (Exception e)
-            {
-                CouncilLog.ErrorOnce("post: riding", e);
-            }
-        }
-
-        private static JobDef mountJob;
-        private static bool mountLooked;
-
-        /// <summary>Giddy-Up's own "Mount" job, if it is in the game and is Giddy-Up's (its driver in its namespace).</summary>
-        private static JobDef MountJob
-        {
-            get
-            {
-                if (mountLooked) return mountJob;
-                mountLooked = true;
-                var d = DefDatabase<JobDef>.GetNamedSilentFail("Mount");
-                if (d?.driverClass?.Namespace != null && d.driverClass.Namespace.StartsWith("GiddyUp", StringComparison.Ordinal)) mountJob = d;
-                return mountJob;
-            }
-        }
+        /// <summary>With Giddy-Up 2, the rider sits on the mount as they come (Integrations/GiddyUpMounts.cs); without it, they lead the animal.</summary>
+        public static void Ride(Pawn rider, Pawn mount) => GiddyUpMounts.MountUp(rider, mount);
 
         // ---------------- At the gate ----------------
 

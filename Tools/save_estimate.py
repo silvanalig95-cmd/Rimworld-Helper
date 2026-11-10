@@ -818,6 +818,7 @@ MODEL = {
     # Couriers: trips waiting or on the map (CourierMath.MaxTrips), each dropped two days after it ends at most
     "Couriers/CourierTracker.cs:trips": ("cap", (C["CourierTrips"], 0.5), 900, "trips waiting or under way: CourierMath.MaxTrips; ended ones dropped within two days"),
     "Couriers/CourierTrip.cs:people": ("while", C["CourierPeople"], P, "a trip's people, while it lasts"),
+    "Couriers/CourierTrip.cs:mounts": ("while", C["CourierPeople"], P, "the mounts a trip's people ride in on (Giddy-Up), while it lasts"),
     "Couriers/CourierTrip.cs:things": ("while", 8, P, "particular things a trip came for (a neighbour's cargo), while it lasts"),
     "Couriers/CourierTrip.cs:toUnload": ("while", C["CourierPeople"] + 1, P, "who still carries the colony's goods, while the trip lasts"),
     # Visitors: visits waiting or on the map (VisitorMath.MaxTrips), each dropped a day after it ends at most

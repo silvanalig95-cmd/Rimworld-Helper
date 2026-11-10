@@ -12,6 +12,19 @@ tree at once, alongside whatever runs. Each piece is merged as its own release, 
 
 ## State (5 November 2026)
 
+- **Held by the player (10 November 2026): no new letters content jobs until they ask** ("for the letters please hold
+  after this job then ... I'd like to keep such jobs for the end of the week to use up my remaining tokens"). The letters
+  round 2 part 1 agent was already running; its part 2 (more content in the same shapes) waits for their word.
+- 0.202.2, porters in the saddle; the best writer by default (10 November 2026). The player: "porters still frequently
+  appear to come without mounts and being on them", and "it should also auto select the highest level social pawn to
+  write the letter". The player's Giddy-Up is "Giddy-Up 2 - Continued" (MemeGoddess.GiddyUp); its source read at
+  github.com/MemeGoddess/GiddyUp2: `GiddyUp.MountUtility.GoMount(rider, animal, GiveJobMethod.Instant)` is how it brings
+  its own riders in. `Integrations/GiddyUpMounts.cs` calls it by reflection (obedience trained first), the old "Mount"
+  job only as a fallback; the post rider uses it, and couriers of medieval and industrial peoples get a mount each
+  (`CourierMath.Rides`, `CourierTrip.mounts`, saved; goods only on people and the pack animal; an unridden mount sent off
+  on its own when the trip ends). `NeighbourLetters.DefaultWriter` is the highest Social (speaker first among equals),
+  `ByWords` orders the writer menus. Not run in the game: the instant mount on arrival with the player's Giddy-Up
+  version; couriers' mounts through the hand-over at the gate and their leaving.
 - 0.202.1, a larger mailbag (10 November 2026). The player: "the post box symbol is nice, but it's a bit small, scale it
   like 1.5 or so". `Rimfolk_Mailbag`'s graphicData has `drawSize` (1.5,1.5); still one standable cell.
 - 0.202.0, letters that read like letters (9 November 2026). The player: "letters exchanged from and to pawns should also read like actual letters, make a

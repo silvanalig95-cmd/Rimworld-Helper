@@ -110,6 +110,29 @@ public static class CourierTests
         C(CourierMath.WorkOver(1000 + CourierMath.WorkTicks, 1000, CourierMath.WorkTicks) && !CourierMath.WorkOver(1000, 1000, CourierMath.WorkTicks)
             && !CourierMath.WorkOver(99999, -1, CourierMath.WorkTicks), "out of time at the gate, never before they got there");
         C(CourierMath.MaxTrips >= 6 && CourierMath.MaxTrips <= 20, "a handful of trips at once at most");
+        // ---------------- Riding in (Giddy-Up; the player: "porters still frequently appear to come without mounts") ----------------
+
+        C(CourierMath.Rides(Medieval) && CourierMath.Rides(Industrial) && !CourierMath.Rides(Neolithic) && !CourierMath.Rides(Spacer),
+            "porters and couriers of the medieval and industrial ages ride in; a tribe's runners run and spacers come without beasts");
+        string root = Directory.GetCurrentDirectory();
+        while (root != null && !File.Exists(Path.Combine(root, "About", "About.xml"))) root = Path.GetDirectoryName(root);
+        if (root != null)
+        {
+            string src = Path.Combine(root, "Source", "ColonyCouncil");
+            string gu = File.ReadAllText(Path.Combine(src, "Integrations", "GiddyUpMounts.cs"));
+            string tracker = File.ReadAllText(Path.Combine(src, "Couriers", "CourierTracker.cs"));
+            string rider = File.ReadAllText(Path.Combine(src, "Post", "PostRider.cs"));
+            C(gu.Contains("GenTypes.GetTypeInAnyAssembly(\"GiddyUp.MountUtility\")") && gu.Contains("Enum.Parse(kind, \"Instant\")") && gu.Contains("TrainableDefOf.Obedience"),
+                "mounted the way Giddy-Up brings its own riders in: GoMount, Instant, obedience trained first");
+            C(gu.Contains("rider.jobs.StartJob(JobMaker.MakeJob(mountJob, animal)"), "the old Mount job only where the instant way can't be found");
+            C(rider.Contains("public static void Ride(Pawn rider, Pawn mount) => GiddyUpMounts.MountUp(rider, mount);"), "the post rider mounts the same way");
+            C(tracker.Contains("GiddyUpMounts.On && CourierMath.Rides((int)f.def.techLevel) ? PostRider.MountKind(f, map) : null") && tracker.Contains("Pack(t, bearers);")
+              && tracker.Contains("GiddyUpMounts.MountUp(people[i], mounts[i]);") && tracker.Contains("t.mounts.Where(m => m != null && m.CurJobDef?.defName != \"Mounted\")"),
+                "porters get a mount each, carry nothing on it, sit on it as the group forms, and a mount nobody rides leaves on its own");
+            string letters = File.ReadAllText(Path.Combine(src, "World", "NeighbourLetters.cs"));
+            C(letters.Contains("return ByWords(Writers(map, true), speaker).FirstOrDefault();") && letters.Contains("writers.OrderByDescending(p => p.skills?.GetSkill(SkillDefOf.Social)?.Level ?? 0).ThenByDescending(p => p == speaker)"),
+                "the letter's writer is the colony's best with words by default, the speaker first among equals");
+        }
         return n;
     }
 }

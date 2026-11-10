@@ -7867,8 +7867,18 @@ neighbours' section, on, needs the letters) and **The post's pace** (`postPace`:
   0.6 often. It comes by day when the map is safe, from the nearest people of that age at peace: one of their lighter
   caravan hands (`Couriers.PersonKind`), from a road at the edge when there is one, with a mount from their caravans'
   beasts of body size 1.2 or more that the land and season allow, else a horse, else on foot; in the spacer age by drop
-  pod at the mailbag. With Giddy-Up 2 the rider is given its "Mount" job by name (only when that job's driver is in
-  Giddy-Up's namespace); otherwise, or if it doesn't take, they lead the beast. `LordJob_PostRider`: travel to the
+  pod at the mailbag. With Giddy-Up 2 the rider sits on the mount as they come on the map, the way Giddy-Up brings its own
+  riders in (`Integrations/GiddyUpMounts.cs`, since 0.202.2: the mount's obedience trained by the rider, then
+  `GiddyUp.MountUtility.GoMount(rider, animal, GiveJobMethod.Instant)` found by name; the "Mount" job by name only where
+  that can't be found, since the group's duties often cut that job off and riders walked beside their beasts);
+  otherwise they lead the beast. **Porters and couriers ride too** (0.202.2, the player: "porters still frequently appear
+  to come without mounts and being on them"): with Giddy-Up, a medieval or industrial people's couriers come on a mount
+  each (`CourierMath.Rides`, `PostRider.MountKind`), kept on the trip as `mounts` (saved), never loaded with goods (the
+  people and the pack animal carry), mounted as the group forms; a mount nobody sits on any more leaves with its own
+  exit lord when the trip ends, a ridden one goes with its rider. **The letter's writer** is the colony's best with
+  words by default (`NeighbourLetters.DefaultWriter`: the highest Social, the speaker first among equals; the
+  choice menus list writers the same way, `ByWords`; the player: "it should also auto select the highest level social
+  pawn to write the letter"). Feast invitations keep the steward first. `LordJob_PostRider`: travel to the
   mailbag, keep close to it while the mail is set down and the letters taken, half an hour, then ride on (four hours at
   the most); hurt or their people turned hostile, they leave defending themselves.
 - **The colony's own rider** (`OwnRiders`). "By our own rider" in the letter's dialog (with who rides), or the mailbag's

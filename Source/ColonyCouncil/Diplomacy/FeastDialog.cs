@@ -149,7 +149,7 @@ namespace ColonyCouncil
             string writerLabel = FeastWords.P("CC_Feast_Dlg_Writer", (writer?.LabelShort ?? "?").Named("PAWN"));
             if (UiKit.Button(new Rect(0f, y, Mathf.Min(w, 420f), 28f), writerLabel.Truncate(400f)))
             {
-                var opts = NeighbourLetters.Writers(home).Select(p =>
+                var opts = NeighbourLetters.ByWords(NeighbourLetters.Writers(home)).Select(p =>
                 {
                     var pawn = p;
                     return new FloatMenuOption(pawn.LabelShort + " (" + (pawn.skills?.GetSkill(SkillDefOf.Social)?.Level ?? 0) + ")", () => writer = pawn);

@@ -5,6 +5,14 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## Porters in the saddle
+
+*10 November 2026, version 0.202.2*
+
+- With Giddy-Up, the post rider now sits on the mount from the moment they come on the map, the way Giddy-Up brings its own riders in, instead of often walking beside it.
+- Porters and couriers of medieval and industrial peoples now ride in on a mount each; the goods stay with the people and the pack animal, and a mount left without its rider leaves on its own.
+- A new letter's writer is now the colonist best with words, the one with the highest Social skill, and the choice of writer lists them in that order.
+
 ## A larger mailbag
 
 *10 November 2026, version 0.202.1*

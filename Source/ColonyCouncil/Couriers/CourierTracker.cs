@@ -354,6 +354,7 @@ namespace ColonyCouncil
             // Taking a prisoner away: never fewer than two.
             if (t.fetchPrisoner) n = Math.Max(2, n);
             var people = new List<Pawn>();
+            var mounts = new List<Pawn>();
             Pawn beast = null;
             try
             {
@@ -370,6 +371,15 @@ namespace ColonyCouncil
                     beast = PawnGenerator.GeneratePawn(new PawnGenerationRequest(animalKind, f, PawnGenerationContext.NonPlayer, forceGenerateNewPawn: true));
                     beast?.inventory?.DestroyAll();
                 }
+                // With Giddy-Up, porters and couriers of a riding age come in on a mount each, as the post rider does.
+                var mountKind = GiddyUpMounts.On && CourierMath.Rides((int)f.def.techLevel) ? PostRider.MountKind(f, map) : null;
+                if (mountKind != null)
+                    foreach (var p in people)
+                    {
+                        var m = PawnGenerator.GeneratePawn(new PawnGenerationRequest(mountKind, f, PawnGenerationContext.NonPlayer, forceGenerateNewPawn: true));
+                        m?.inventory?.DestroyAll();
+                        if (m != null) mounts.Add(m);
+                    }
             }
             catch (Exception e)
             {
@@ -378,10 +388,13 @@ namespace ColonyCouncil
             if (people.Count == 0)
             {
                 if (beast != null) Arrivals.Discard(beast);
+                foreach (var m in mounts) Arrivals.Discard(m);
                 return false;
             }
             var party = new List<Pawn>(people);
             if (beast != null) party.Add(beast);
+            var bearers = new List<Pawn>(party);
+            party.AddRange(mounts);
             foreach (var p in party) GenSpawn.Spawn(p, CellFinder.RandomClosewalkCellNear(entry, map, 3), map);
             // A neighbour's messenger set upon on the road comes in hurt (World/NeighbourLetters.cs), or, half the time, is
             // set upon at the colony's own edge as they come on (harm, part 7: Harm/Stories.cs).
@@ -393,8 +406,10 @@ namespace ColonyCouncil
             t.atGate = gate;
             t.people = people;
             t.animal = beast;
+            t.mounts = mounts;
             if (!t.oldSpot.IsValid) t.oldSpot = DropCellFinder.TradeDropSpot(map);
-            Pack(t, party);
+            // The goods go with the people and the pack animal, never on a mount someone sits on.
+            Pack(t, bearers);
             try
             {
                 t.lord = LordMaker.MakeNewLord(f, new LordJob_Courier(t.id, spot), map, party);
@@ -414,6 +429,8 @@ namespace ColonyCouncil
             }
             t.state = CourierState.Coming;
             t.setOut = Now;
+            // In the saddle from the edge of the map, as Giddy-Up brings its own riders in.
+            for (int i = 0; i < mounts.Count && i < people.Count; i++) GiddyUpMounts.MountUp(people[i], mounts[i]);
             CourierWords.Arrive(t);
             return true;
         }
@@ -826,14 +843,22 @@ namespace ColonyCouncil
         private static bool AllGone(CourierTrip t) =>
             t.Party.All(p => p.Dead || p.Discarded || p.MapHeld != t.map || p.Faction == Faction.OfPlayer || p.IsPrisonerOfColony || p.IsSlaveOfColony);
 
-        /// <summary>Sends the group off the map without their lord: the people, and their pack animal with them.</summary>
+        /// <summary>
+        /// Sends the group off the map without their lord: the people, their pack animal with them, and any mount nobody
+        /// sits on any more (a ridden one goes with its rider, as Giddy-Up carries it).
+        /// </summary>
         private static void SendAway(CourierTrip t)
         {
             Arrivals.SendAway(t.people);
-            var a = t.animal;
-            if (a == null || !a.Spawned || a.Dead || a.Downed || a.Faction == null || a.Faction == Faction.OfPlayer) return;
-            a.GetLord()?.RemovePawn(a);
-            LordMaker.MakeNewLord(a.Faction, new LordJob_ExitMapBest(Pace.Errand, false, true), a.Map, new List<Pawn> { a });
+            var beasts = new List<Pawn>();
+            if (t.animal != null) beasts.Add(t.animal);
+            beasts.AddRange(t.mounts.Where(m => m != null && m.CurJobDef?.defName != "Mounted"));
+            foreach (var a in beasts)
+            {
+                if (a == null || !a.Spawned || a.Dead || a.Downed || a.Faction == null || a.Faction == Faction.OfPlayer) continue;
+                a.GetLord()?.RemovePawn(a);
+                LordMaker.MakeNewLord(a.Faction, new LordJob_ExitMapBest(Pace.Errand, false, true), a.Map, new List<Pawn> { a });
+            }
         }
 
         // ---------------- Saving ----------------

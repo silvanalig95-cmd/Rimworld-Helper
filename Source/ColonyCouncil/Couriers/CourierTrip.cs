@@ -138,6 +138,8 @@ namespace ColonyCouncil
 
         public List<Pawn> people = new List<Pawn>();
         public Pawn animal;
+        /// <summary>The beasts the people ride in on, with Giddy-Up (Integrations/GiddyUpMounts.cs): one each, not the pack animal.</summary>
+        public List<Pawn> mounts = new List<Pawn>();
         public Lord lord;
 
         public CourierEnd end;
@@ -246,6 +248,7 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref hurt, "hurt");
             Scribe_Collections.Look(ref people, "people", LookMode.Reference);
             Scribe_References.Look(ref animal, "animal");
+            Scribe_Collections.Look(ref mounts, "mounts", LookMode.Reference);
             Scribe_References.Look(ref lord, "lord");
             Scribe_Values.Look(ref end, "end");
             Scribe_Values.Look(ref harmed, "harmed");
@@ -258,6 +261,8 @@ namespace ColonyCouncil
                 things.RemoveAll(t => t == null);
                 if (people == null) people = new List<Pawn>();
                 people.RemoveAll(p => p == null);
+                if (mounts == null) mounts = new List<Pawn>();
+                mounts.RemoveAll(p => p == null);
                 if (toUnload == null) toUnload = new List<Pawn>();
                 toUnload.RemoveAll(p => p == null);
             }

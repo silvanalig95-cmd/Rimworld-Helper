@@ -31,6 +31,17 @@ When you load a save after an update, a letter lists the newest round once. The 
     <rounds>
 
       <li>
+        <version>0.202.2</version>
+        <date>10 November 2026</date>
+        <title>Porters in the saddle</title>
+        <points>
+          <li>With Giddy-Up, the post rider now sits on the mount from the moment they come on the map, the way Giddy-Up brings its own riders in, instead of often walking beside it.</li>
+          <li>Porters and couriers of medieval and industrial peoples now ride in on a mount each; the goods stay with the people and the pack animal, and a mount left without its rider leaves on its own.</li>
+          <li>A new letter's writer is now the colonist best with words, the one with the highest Social skill, and the choice of writer lists them in that order.</li>
+        </points>
+      </li>
+
+      <li>
         <version>0.202.1</version>
         <date>10 November 2026</date>
         <title>A larger mailbag</title>
