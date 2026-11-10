@@ -101,6 +101,7 @@
     <Compile Include="../../Source/ColonyCouncil/Dilemmas/OutcomeMath.cs" Link="OutcomeMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/PlayOut/PlayOutMath.cs" Link="PlayOutMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Couriers/CourierMath.cs" Link="CourierMath.cs" />
+    <Compile Include="../../Source/ColonyCouncil/Couriers/CarrierMath.cs" Link="CarrierMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/World/NotableMath.cs" Link="NotableMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Outsiders/OutsiderMath.cs" Link="OutsiderMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Outsiders/OutsiderTalkMath.cs" Link="OutsiderTalkMath.cs" />

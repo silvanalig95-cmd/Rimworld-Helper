@@ -2,17 +2,58 @@
 <Defs>
 
   <!--
-    Goods and people that come and go on the map (Source/ColonyCouncil/Couriers). At the gate, a courier sets down
-    what they brought, then fetches from the stores what they came for (JobGiver_CourierWork); otherwise they wait
-    close by. Nothing else: no meals, no beds, no wandering into the colony.
+    Goods and people that come and go on the map (Source/ColonyCouncil/Couriers). At the mailbag (or the gate), a
+    courier sets down what they brought, then fetches from the stores what they came for (JobGiver_CourierWork);
+    otherwise they wait in their place beside it (JobGiver_CarrierWait). Nothing else: no meals, no beds, no wandering
+    into the colony or round it.
   -->
   <DutyDef>
     <defName>Council_CourierWork</defName>
     <thinkNode Class="ThinkNode_Priority">
       <subNodes>
         <li Class="ColonyCouncil.JobGiver_CourierWork" />
-        <li Class="JobGiver_WanderNearDutyLocation">
-          <wanderRadius>3</wanderRadius>
+        <li Class="ColonyCouncil.JobGiver_CarrierWait" />
+      </subNodes>
+    </thinkNode>
+  </DutyDef>
+
+  <!--
+    Carriers (couriers and porters, a go-between, the post rider: Source/ColonyCouncil/Couriers/CarrierLords.cs). The walk
+    in: straight to their own place beside the mailbag (or the gate), and a wait there until the others are in. The game's
+    own travel duty sent each to a random cell near the spot and had them stand and wander in turn.
+  -->
+  <DutyDef>
+    <defName>Rimfolk_CarrierTravel</defName>
+    <thinkNode Class="ThinkNode_Priority">
+      <subNodes>
+        <li Class="ColonyCouncil.JobGiver_CarrierGoTo" />
+      </subNodes>
+    </thinkNode>
+  </DutyDef>
+
+  <!-- At the spot with nothing to do this moment: in their place beside it, waiting (a pack animal, a mount nobody sits on, the post rider). -->
+  <DutyDef>
+    <defName>Rimfolk_CarrierWait</defName>
+    <thinkNode Class="ThinkNode_Priority">
+      <subNodes>
+        <li Class="ColonyCouncil.JobGiver_CarrierWait" />
+      </subNodes>
+    </thinkNode>
+  </DutyDef>
+
+  <!--
+    The way out: a rider not in the saddle gets back on (walking over to their beast, which stands for them), then off the
+    map by the nearest way, as the game's own exit duty goes.
+  -->
+  <DutyDef>
+    <defName>Rimfolk_CarrierLeave</defName>
+    <thinkNode Class="ThinkNode_Priority">
+      <subNodes>
+        <li Class="ColonyCouncil.JobGiver_CarrierRemount" />
+        <li Class="ColonyCouncil.JobGiver_CarrierMountWait" />
+        <li Class="JobGiver_ExitMapBest">
+          <defaultLocomotion>Walk</defaultLocomotion>
+          <canFlyOutOfMap>false</canFlyOutOfMap>
         </li>
       </subNodes>
     </thinkNode>

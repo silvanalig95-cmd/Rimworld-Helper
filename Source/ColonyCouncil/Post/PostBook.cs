@@ -171,6 +171,7 @@ namespace ColonyCouncil
             cached = this;
             cachedGame = Current.Game;
             MailWatch.Reset();
+            CarrierKinds.Reset();
         }
 
         /// <summary>The post (the setting): letters wait in the outbox and go with whoever is going; off, a messenger comes for each, as before.</summary>

@@ -5,6 +5,14 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## Straight to the mailbag, back in the saddle
+
+*10 November 2026, version 0.206.1*
+
+- Couriers, porters, go-betweens and the post rider now come in from the map edge nearest the mailbag, walk straight to it, set down or take what they carry there, and leave at once, with no more circling the base or lingering at a spot away from it.
+- With Giddy-Up, they stay in the saddle at the mailbag, and one who got off for the stores gets back on before leaving; a beast whose rider can't come leaves by itself.
+- Each courier is drawn fresh from their people's caravan hands, visitors, villagers and settlers, and rides one of their people's beasts, so their looks vary as their other visitors do.
+
 ## Whom a letter goes to
 
 *10 November 2026, version 0.206.0*

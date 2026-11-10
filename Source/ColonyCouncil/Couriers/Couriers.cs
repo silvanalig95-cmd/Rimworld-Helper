@@ -49,7 +49,7 @@ namespace ColonyCouncil
         /// <summary>A people that can send someone: at peace with the colony, of people, still standing, with people to send.</summary>
         public static bool Usable(Faction f) =>
             f != null && !f.IsPlayer && !f.Hidden && !f.defeated && !f.temporary && f.def != null && f.def.humanlikeFaction
-            && !f.HostileTo(Faction.OfPlayer) && (Porters(f).Any() || Arrivals.PersonKind(f) != null);
+            && !f.HostileTo(Faction.OfPlayer) && CarrierKinds.AnyPerson(f);
 
         /// <summary>
         /// Who sends the courier: the event's own people when they can; else a people of a fitting tech level whose town
@@ -95,8 +95,9 @@ namespace ColonyCouncil
             f?.def?.pawnGroupMakers?.Where(g => g != null && g.kindDef == PawnGroupKindDefOf.Trader) ?? Enumerable.Empty<PawnGroupMaker>();
 
         /// <summary>
-        /// Who a people sends to carry: one of their caravan's lighter guards (a porter, not a heavy trooper), else the
-        /// ordinary person they send to visit (Arrivals.PersonKind). Never one of their traders (who would expect to trade).
+        /// One of a people's caravan's lighter guards (not a heavy trooper), else the ordinary person they send to visit
+        /// (Arrivals.PersonKind). Never one of their traders (who would expect to trade). For an armed visitor of an event
+        /// (Visitors/); couriers, porters and the post rider are drawn from the people's whole range (CarrierKinds.Person).
         /// </summary>
         public static PawnKindDef PersonKind(Faction f)
         {

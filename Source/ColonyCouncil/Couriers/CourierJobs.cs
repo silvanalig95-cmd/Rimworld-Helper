@@ -9,9 +9,10 @@ using Verse.AI;
 namespace ColonyCouncil
 {
     /// <summary>
-    /// A courier's next job at the gate: first set down what they carry for the colony (and unload the pack animal),
-    /// then, if they came for goods, fetch the next stack from the stores; otherwise nothing (the duty's wander keeps
-    /// them by the gate). Never anything but the trip's own goods.
+    /// A courier's next job at the mailbag (or the gate): first set down what they carry for the colony (and unload the
+    /// pack animal), from their place beside it, onto the cells beside the bag; then, if they came for goods, fetch the next
+    /// stack from the stores, on foot (a rider gets off at the bag first, and their beast waits there); otherwise nothing
+    /// (the duty's wait keeps them in their place). Never anything but the trip's own goods.
     /// </summary>
     public class JobGiver_CourierWork : ThinkNode_JobGiver
     {
@@ -41,24 +42,28 @@ namespace ColonyCouncil
                 // Not while they're down or out of their mind: they wait (and in the end it's done the old way).
                 if (t.Bearers.FirstOrDefault() != pawn || !CourierTracker.FetchOk(t) || x.Downed || x.InMentalState
                     || !pawn.CanReach(x, PathEndMode.Touch, Danger.Some)) return null;
+                OnFoot(pawn, t, false, true);
                 var fetch = JobMaker.MakeJob(CourierDefOf.Council_CourierFetch, x);
                 fetch.locomotionUrgency = Pace.Errand;
                 return fetch;
             }
-            // Unloading at the drop spot, or where they stand if they can't get there (built over, or never arrived).
+            // Unloading from their place at the drop spot (onto the cells beside a mailbag), or where they stand if they can't
+            // get there (built over, or never arrived).
+            bool reach = t.spot.IsValid && pawn.CanReach(t.spot, PathEndMode.ClosestTouch, Danger.Some);
             if (t.toUnload.Contains(pawn))
-                return Drop(new LocalTargetInfo(t.spot.IsValid && pawn.CanReach(t.spot, PathEndMode.OnCell, Danger.Some) ? t.spot : pawn.Position));
-            // The pack animal's load: the first of them still about unloads it, wherever it stands.
+                return reach ? Drop(new LocalTargetInfo(CarrierJobs.PlaceOf(pawn, t.spot)), t.spot) : Drop(new LocalTargetInfo(pawn.Position), IntVec3.Invalid);
+            // The pack animal's load: the first of them still about unloads it, wherever it stands (by the bag, beside it).
             var beast = t.animal;
             if (beast != null && t.toUnload.Contains(beast) && beast.Spawned && !beast.Dead && beast.Map == map && t.Bearers.FirstOrDefault() == pawn
                 && pawn.CanReach(beast, PathEndMode.Touch, Danger.Some))
-                return Drop(new LocalTargetInfo(beast));
+                return Drop(new LocalTargetInfo(beast), reach && t.atBag ? t.spot : IntVec3.Invalid);
             if (t.Takes && !t.StillCarrying)
             {
                 int left = t.LeftToTake - InHand(t, pawn);
                 if (left <= 0) return null;
                 var stack = Stack(t, pawn);
                 if (stack == null) return null;
+                OnFoot(pawn, t, true, false);
                 int n = t.things.Contains(stack) ? stack.stackCount : Mathf.Min(left, stack.stackCount);
                 var job = JobMaker.MakeJob(CourierDefOf.Council_CourierLoad, stack);
                 job.count = n;
@@ -68,11 +73,20 @@ namespace ColonyCouncil
             return null;
         }
 
-        private static Job Drop(LocalTargetInfo at)
+        /// <summary>Set down: walk to <paramref name="at"/> (their place, or the pack animal), and set the goods down at <paramref name="down"/> (the spot) when given, else there.</summary>
+        private static Job Drop(LocalTargetInfo at, IntVec3 down)
         {
-            var job = JobMaker.MakeJob(CourierDefOf.Council_CourierDrop, at);
+            var job = JobMaker.MakeJob(CourierDefOf.Council_CourierDrop, at, down.IsValid ? new LocalTargetInfo(down) : LocalTargetInfo.Invalid);
             job.locomotionUrgency = Pace.Errand;
             return job;
+        }
+
+        /// <summary>Into the stores or to fetch someone, a rider gets off where they stand (at the bag) and goes on foot; their beast waits there (CarrierMath.OnFoot).</summary>
+        private static void OnFoot(Pawn pawn, CourierTrip t, bool intoStores, bool fetching)
+        {
+            if (!CarrierMath.OnFoot(intoStores, fetching)) return;
+            var mount = t.MountOf(pawn);
+            if (mount != null) GiddyUpMounts.GetOff(pawn, mount);
         }
 
         /// <summary>What the others of the trip are on their way to take.</summary>
@@ -107,7 +121,10 @@ namespace ColonyCouncil
         }
     }
 
-    /// <summary>A courier walks to the gate (or to their pack animal) and sets down what is carried for the colony.</summary>
+    /// <summary>
+    /// A courier walks to their place by the mailbag or the gate (or to their pack animal: target A) and sets down what is
+    /// carried for the colony: on the cells beside the mailbag (target B, the spot) when there is one, else where they stand.
+    /// </summary>
     public class JobDriver_CourierDrop : JobDriver
     {
         private CourierTrip Trip => CourierTracker.Instance?.TripOf(pawn);
@@ -131,6 +148,7 @@ namespace ColonyCouncil
             wait.tickIntervalAction = _ =>
             {
                 if (job.targetA.HasThing) pawn.rotationTracker.FaceTarget(job.targetA);
+                else if (job.targetB.IsValid) pawn.rotationTracker.FaceCell(job.targetB.Cell);
             };
             yield return wait;
             var drop = ToilMaker.MakeToil("CourierSetDown");
@@ -142,7 +160,7 @@ namespace ColonyCouncil
                     var tracker = CourierTracker.Instance;
                     if (t == null || tracker == null) return;
                     var from = job.targetA.Thing as Pawn ?? pawn;
-                    var at = job.targetA.HasThing ? from.Position : job.targetA.Cell;
+                    var at = job.targetB.IsValid ? job.targetB.Cell : job.targetA.HasThing ? from.Position : job.targetA.Cell;
                     if (!at.IsValid) at = pawn.Position;
                     tracker.Unload(t, pawn, from, at);
                     // Their own pack and the animal's, when it waits beside them.

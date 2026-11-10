@@ -128,7 +128,7 @@ namespace ColonyCouncil
                 string kind = t.fetch != null ? (t.bringLabel.NullOrEmpty() ? "Fetch" : "FetchPay")
                     : t.kind == CourierKind.Await && !t.bringLabel.NullOrEmpty() ? "AwaitPay" : t.kind.ToString();
                 string text = ("CC_Courier_Arrive_" + kind + (many ? "_Many" : "_One"))
-                    .Translate(who, FactionName(t), t.takeLabel ?? t.bringLabel ?? "", t.bringLabel ?? "").Resolve();
+                    .Translate(who, FactionName(t), t.takeLabel ?? t.bringLabel ?? "", t.bringLabel ?? "", To(t)).Resolve();
                 Notify.Message(text, Look(t), MessageTypeDefOf.NeutralEvent, Importance.Notable);
             }
             catch (Exception e)
@@ -136,6 +136,9 @@ namespace ColonyCouncil
                 CouncilLog.ErrorOnce("courier arrive words", e);
             }
         }
+
+        /// <summary>Where they walk up to, as they're seen on the map: the mailbag, the gate, else the colony.</summary>
+        private static string To(CourierTrip t) => (t.atBag ? "CC_Courier_ToBag" : t.atGate ? "CC_Courier_ToGate" : "CC_Courier_ToColony").Translate().Resolve();
 
         /// <summary>Their business is done: what they set down, what they took.</summary>
         public static void Done(CourierTrip t)
@@ -145,7 +148,7 @@ namespace ColonyCouncil
             {
                 string who = People(t, true, out _);
                 string faction = FactionName(t);
-                string where = (t.atGate ? "CC_Courier_ByGate" : "CC_Courier_NearColony").Translate().Resolve();
+                string where = (t.atBag ? "CC_Courier_ByBag" : t.atGate ? "CC_Courier_ByGate" : "CC_Courier_NearColony").Translate().Resolve();
                 bool all = t.taken >= t.amount || CourierStock.Particular(t) || (t.def == null && t.what.NullOrEmpty());
                 string took = t.Takes && !all ? (t.takeNoun != null ? "CC_Courier_Amount".Translate(t.taken, t.takeNoun).Resolve() : Couriers.Amount(t.taken, t.what, t.def)) : t.takeLabel;
                 string text;

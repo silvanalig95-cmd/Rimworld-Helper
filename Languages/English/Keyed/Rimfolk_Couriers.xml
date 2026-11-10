@@ -5,7 +5,7 @@
 
   <!-- The setting -->
   <CC_Settings_GoodsComeAndGo>Goods and people come and go on the map</CC_Settings_GoodsComeAndGo>
-  <CC_Settings_GoodsComeAndGo_Tip>When an event gives the colony silver, goods, a gift or a payment owed, or takes goods it gave, sold or paid, people come to do it on the map. A few hours later, by day, a runner, a few porters or couriers from a people at peace with the colony walk in from the edge of the map: the event's own people when they can, else the neighbors whose town is nearest. They set down what they bring by the colony's gate, or walk to the stores and carry off what they came for, or wait at the gate while one of your colonists carries it out to them. A big load comes with a pack animal from their own caravans. They stay a little and walk off.\n\nThey only come when it's safe, and leave at the first sign of danger. If they can't come, can't reach the stores or can't finish, what's left of the deal is settled the old way: things owed to the colony are left where traders leave their goods, and goods owed by it leave the stores. Hurt or arrest one of them and the deal holds only as far as it got.\n\nThe people a world event's letter speaks of come too: the rider or the family waits at the gate while you answer (and a family you take in is the one that joins), guests given a night stay it and go at first light, and herds, mourners and passing bands cross the land. They come only from a people at peace with the colony and only when it's safe, and go if they're hurt, if raiders come or if the weather gets to them.\n\nOff: everything is handed over at once, and the letters tell the rest, as before.</CC_Settings_GoodsComeAndGo_Tip>
+  <CC_Settings_GoodsComeAndGo_Tip>When an event gives the colony silver, goods, a gift or a payment owed, or takes goods it gave, sold or paid, people come to do it on the map. A few hours later, by day, a runner, a few porters or couriers from a people at peace with the colony walk in from the edge of the map: the event's own people when they can, else the neighbors whose town is nearest. They walk straight to the colony's mailbag (without one, its gate) and set down what they bring beside it, or walk on to the stores and carry off what they came for, or wait there while one of your colonists carries it out to them. A big load comes with a pack animal from their own caravans. Their business done, they walk off by the nearest way, a rider back in the saddle first.\n\nThey only come when it's safe, and leave at the first sign of danger. If they can't come, can't reach the stores or can't finish, what's left of the deal is settled the old way: things owed to the colony are left where traders leave their goods, and goods owed by it leave the stores. Hurt or arrest one of them and the deal holds only as far as it got.\n\nThe people a world event's letter speaks of come too: the rider or the family waits at the gate while you answer (and a family you take in is the one that joins), guests given a night stay it and go at first light, and herds, mourners and passing bands cross the land. They come only from a people at peace with the colony and only when it's safe, and go if they're hurt, if raiders come or if the weather gets to them.\n\nOff: everything is handed over at once, and the letters tell the rest, as before.</CC_Settings_GoodsComeAndGo_Tip>
   <CC_SetNote_GoodsComeAndGo>Porters carry goods in and out; the rider or family a letter speaks of waits at the gate.</CC_SetNote_GoodsComeAndGo>
 
   <!-- Who they are -->
@@ -23,24 +23,28 @@
   <!-- What they carry: "250 corn", "a longsword, 40 steel and 3 more things" -->
   <CC_Courier_Amount>{0} {1}</CC_Courier_Amount>
   <CC_Courier_MoreThings>{0} more things</CC_Courier_MoreThings>
+  <CC_Courier_ByBag>by the mailbag</CC_Courier_ByBag>
   <CC_Courier_ByGate>by the gate</CC_Courier_ByGate>
   <CC_Courier_NearColony>near the colony</CC_Courier_NearColony>
+  <CC_Courier_ToBag>the mailbag</CC_Courier_ToBag>
+  <CC_Courier_ToGate>the gate</CC_Courier_ToGate>
+  <CC_Courier_ToColony>the colony</CC_Courier_ToColony>
 
-  <!-- They've come: {0} who, {1} their people, {2} what they came for (or bring), {3} what they bring -->
+  <!-- They've come: {0} who, {1} their people, {2} what they came for (or bring), {3} what they bring, {4} where they walk up to (the mailbag, the gate) -->
   <CC_Courier_Arrive_Deliver_One>{0} from {1} is on the way in with {3}.</CC_Courier_Arrive_Deliver_One>
   <CC_Courier_Arrive_Deliver_Many>{0} from {1} are on the way in with {3}.</CC_Courier_Arrive_Deliver_Many>
   <CC_Courier_Arrive_Collect_One>{0} from {1} has come for {2}.</CC_Courier_Arrive_Collect_One>
   <CC_Courier_Arrive_Collect_Many>{0} from {1} have come for {2}.</CC_Courier_Arrive_Collect_Many>
   <CC_Courier_Arrive_Exchange_One>{0} from {1} has come with {3}, to take {2} back with them.</CC_Courier_Arrive_Exchange_One>
   <CC_Courier_Arrive_Exchange_Many>{0} from {1} have come with {3}, to take {2} back with them.</CC_Courier_Arrive_Exchange_Many>
-  <CC_Courier_Arrive_Await_One>{0} from {1} is walking up to the gate to wait for {2}.</CC_Courier_Arrive_Await_One>
-  <CC_Courier_Arrive_Await_Many>{0} from {1} are walking up to the gate to wait for {2}.</CC_Courier_Arrive_Await_Many>
+  <CC_Courier_Arrive_Await_One>{0} from {1} is walking up to {4} to wait for {2}.</CC_Courier_Arrive_Await_One>
+  <CC_Courier_Arrive_Await_Many>{0} from {1} are walking up to {4} to wait for {2}.</CC_Courier_Arrive_Await_Many>
   <CC_Courier_Arrive_Fetch_One>{0} from {1} has come for {2}.</CC_Courier_Arrive_Fetch_One>
   <CC_Courier_Arrive_Fetch_Many>{0} from {1} have come for {2}.</CC_Courier_Arrive_Fetch_Many>
   <CC_Courier_Arrive_FetchPay_One>{0} from {1} has come with {3} for {2}.</CC_Courier_Arrive_FetchPay_One>
   <CC_Courier_Arrive_FetchPay_Many>{0} from {1} have come with {3} for {2}.</CC_Courier_Arrive_FetchPay_Many>
-  <CC_Courier_Arrive_AwaitPay_One>{0} from {1} is walking up to the gate with {3}, to wait for {2}.</CC_Courier_Arrive_AwaitPay_One>
-  <CC_Courier_Arrive_AwaitPay_Many>{0} from {1} are walking up to the gate with {3}, to wait for {2}.</CC_Courier_Arrive_AwaitPay_Many>
+  <CC_Courier_Arrive_AwaitPay_One>{0} from {1} is walking up to {4} with {3}, to wait for {2}.</CC_Courier_Arrive_AwaitPay_One>
+  <CC_Courier_Arrive_AwaitPay_Many>{0} from {1} are walking up to {4} with {3}, to wait for {2}.</CC_Courier_Arrive_AwaitPay_Many>
 
   <!-- Their business is done: {0} who, {1} their people, {2} what they took (or set down), {3} where, {4} what they set down -->
   <CC_Courier_Done_Deliver>{0} from {1} set down {2} {3}.</CC_Courier_Done_Deliver>
@@ -69,6 +73,6 @@
   <CC_Courier_Report_Fetch>coming for {0}.</CC_Courier_Report_Fetch>
 
   <!-- An errand waiting for its courier -->
-  <CC_Courier_Why_NotYet>the one who'll take it hasn't reached the gate yet</CC_Courier_Why_NotYet>
+  <CC_Courier_Why_NotYet>the one who'll take it hasn't arrived yet</CC_Courier_Why_NotYet>
 
 </LanguageData>

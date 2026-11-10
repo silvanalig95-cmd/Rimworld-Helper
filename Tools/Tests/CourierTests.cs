@@ -92,7 +92,7 @@ public static class CourierTests
         C(CourierMath.Verdict(100, 50, 1000, 10, true, true, false) == CourierWait.Drop, "the map gone: nothing to settle");
         C(CourierMath.Daytime(CourierMath.DayFrom) && !CourierMath.Daytime(CourierMath.DayTo) && !CourierMath.Daytime(CourierMath.DayFrom - 1), "the hours they arrive in");
         C(CourierMath.GiveUpTicks >= day && CourierMath.GiveUpTicks <= day * 5, "they are waited for a few days at most");
-        C(CourierMath.LingerTicks < CourierMath.WorkTicks && CourierMath.WorkTicks <= CourierMath.AwaitTicks, "linger briefly; an errand's courier waits longest");
+        C(CourierMath.LingerTicks == 0 && CourierMath.WorkTicks <= CourierMath.AwaitTicks, "no lingering once done; an errand's courier waits longest");
 
         // ---------------- When it ends ----------------
 
@@ -122,12 +122,12 @@ public static class CourierTests
             string gu = File.ReadAllText(Path.Combine(src, "Integrations", "GiddyUpMounts.cs"));
             string tracker = File.ReadAllText(Path.Combine(src, "Couriers", "CourierTracker.cs"));
             string rider = File.ReadAllText(Path.Combine(src, "Post", "PostRider.cs"));
-            C(gu.Contains("GenTypes.GetTypeInAnyAssembly(\"GiddyUp.MountUtility\")") && gu.Contains("Enum.Parse(kind, \"Instant\")") && gu.Contains("TrainableDefOf.Obedience"),
-                "mounted the way Giddy-Up brings its own riders in: GoMount, Instant, obedience trained first");
+            C(gu.Contains("GenTypes.GetTypeInAnyAssembly(\"GiddyUp.MountUtility\")") && gu.Contains("Enum.Parse(kind, \"Instant\")") && gu.Contains("TrainableDefOf.Obedience")
+              && gu.Contains("TrainableDefOf.Tameness"), "mounted the way Giddy-Up brings its own riders in: GoMount, Instant, tameness and obedience trained first");
             C(gu.Contains("rider.jobs.StartJob(JobMaker.MakeJob(mountJob, animal)"), "the old Mount job only where the instant way can't be found");
             C(rider.Contains("public static void Ride(Pawn rider, Pawn mount) => GiddyUpMounts.MountUp(rider, mount);"), "the post rider mounts the same way");
-            C(tracker.Contains("GiddyUpMounts.On && CourierMath.Rides((int)f.def.techLevel) ? PostRider.MountKind(f, map) : null") && tracker.Contains("Pack(t, bearers);")
-              && tracker.Contains("GiddyUpMounts.MountUp(people[i], mounts[i]);") && tracker.Contains("t.mounts.Where(m => m != null && m.CurJobDef?.defName != \"Mounted\")"),
+            C(tracker.Contains("bool ride = GiddyUpMounts.On && CourierMath.Rides((int)f.def.techLevel);") && tracker.Contains("Pack(t, bearers);")
+              && tracker.Contains("GiddyUpMounts.MountUp(people[i], mounts[i]);") && tracker.Contains("t.mounts.Where(m => m != null && !GiddyUpMounts.CarryingRider(m))"),
                 "porters get a mount each, carry nothing on it, sit on it as the group forms, and a mount nobody rides leaves on its own");
             string letters = File.ReadAllText(Path.Combine(src, "World", "NeighbourLetters.cs"));
             C(letters.Contains("return ByWords(Writers(map, true), speaker).FirstOrDefault();") && letters.Contains("writers.OrderByDescending(p => p.skills?.GetSkill(SkillDefOf.Social)?.Level ?? 0).ThenByDescending(p => p == speaker)"),

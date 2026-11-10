@@ -18,6 +18,62 @@ tree at once, alongside whatever runs. Each piece is merged as its own release, 
   Super cool idea and these should be applied to the other factions according to their lore, design and theme! don't
   start with that though, just add it as to-do". When asked: propose a list per people first (Peoples/, their tags and
   lore in docs/design/peoples*.md), then build; new peoples only after.
+- **Held by the player (10 November 2026): no new letters content jobs until they ask** ("for the letters please hold
+  after this job then ... I'd like to keep such jobs for the end of the week to use up my remaining tokens"). The letters
+  round 2 part 1 agent was already running; its part 2 (more content in the same shapes) waits for their word.
+- 0.206.1, carriers straight to the mailbag,
+  back in the saddle, a new face each time (10 November 2026). The player: "the couriers that bring letters and material
+  take an awkward routine around my base before delivering the message a bit away from the base. if anything they should
+  always walk to the mailbag directly, drop/pick up the message or items. for the message they unmount and then they walk
+  off map without remounting. i've been developing a lot of letters with the stormriders, but the courier and mount looks
+  always exactly the same ... the courier should have look variety that makes sense within the faction". DESIGN.md
+  "Straight to the mailbag, back in the saddle, a new face each time" (under the post) has all of it; README's goods and
+  post paragraphs; the Almanac's couriers page and the setting's tip (keywords unchanged).
+  - Causes: a random way in and the gate cell (up to a dozen steps past the home area) as the spot, the game's travel duty
+    (a random cell within six of the spot, stand and wander in turn), a wander round the gate and half an hour's linger
+    after; Giddy-Up "parking" a rider given a job it doesn't know within 25 cells of it (the colony's pen within 50); the
+    game's exit toil cutting the mount's "Mounted" job (the rider set down), and Giddy-Up's own remount asking for a
+    tameness no other people's beast had. The look: no reuse (`Arrivals.Make` makes new, no seed), but one kind (a
+    people's one light caravan guard, else its ordinary member) and a beast filtered by the land's pack-animal list (the
+    muffalo alone, else the horse).
+  - Pure: `Couriers/CarrierMath.cs` (new, linked): `SpotOf`, `RingOffset`, `EntryKey`/`BestEntry`, `KindPool`, `MountPool`,
+    `Fallback`, `Pick` (the last sent half as likely), `OnFoot`, `Remount`/`RemountStep`, `MountWaits`;
+    `CourierMath.LingerTicks` 0. Tests `Tools/Tests/CarrierTests.cs` (180 checks: the spot and places, the way in on a
+    whole map's edge, kinds and beasts with every exclusion, the remount in every state, every Rimfolk people's old pool
+    beside the new by the catalogue, the seams); `CourierTests`' seams follow.
+  - Game side: `Couriers/CarrierSpots.cs` (spot: the mailbag, else the gate, else the trade spot; places round it; the way
+    in, the edge reached in the fewest steps by the game's flood fill out from the spot; goods set down beside the bag), `CarrierKinds.cs` (who and on what, from the faction's Trader guards and Peaceful
+    options, the beasts of their caravans that Giddy-Up's list, the land and season allow), `CarrierLords.cs`
+    (`LordToil_CarrierTravel`, `LordToil_CarrierLeave`, `JobGiver_CarrierGoTo`, `_CarrierWait`, `_CarrierRemount`,
+    `_CarrierMountWait`, `CarrierMounts`); duties `Rimfolk_CarrierTravel`, `_CarrierWait`, `_CarrierLeave` and
+    `Council_CourierWork` waiting instead of wandering (`Defs/Misc/Rimfolk_Couriers.xml`); `LordJob_Courier` and
+    `LordJob_PostRider` use them (same toil order, older saves carry on); `CourierTracker.SetOut` (spot, way in, a kind and
+    a mount drawn per person, `mounts[i]` for `people[i]` with gaps kept), `DropAll` beside the bag, `CourierTrip.atBag`
+    (saved), `MountOf`/`RiderOf`; `JobGiver_CourierWork` sets down from the pawn's place onto the bag's cells and gets a
+    rider off before the stores or a fetch; `PostRider` (kind, beast, way in, no half hour after); `GiddyUpMounts`
+    (tameness trained, `AllowInSaddle` by `JobDriver_Mounted.SetAllowedJob` for the drop and take jobs, `Ridable` by its
+    `MountableCache`, `Riding`, `CarryingRider`, `Mounting`, `GetOff`, `MountNow`, `WalkAndMount`); `Couriers.Usable` by
+    the new pool (`Couriers.PersonKind` stays for armed visitors); words `CC_Courier_ByBag`, `_ToBag`, `_ToGate`,
+    `_ToColony`, the four `Arrive_Await*` with `{4}`, `Why_NotYet` "hasn't arrived yet".
+  - Not run here (none of it could be): the way in and the walk to the places; Giddy-Up taking the three jobs in the
+    saddle (its `SetAllowedJob` found by name) and no ride to the pen; getting off at the bag for the stores and back on
+    as they leave (instant beside the beast, else Giddy-Up's "Mount" job); the beast standing for its rider; goods round the
+    bag; the variety on the player's own peoples and mods (the "stormriders" are not in any save or def here, so their
+    faction's range wasn't looked at).
+  - Try in the game: 1. With a mailbag placed by the gate, answer an event that sends goods to the colony: the porters come
+    in by the edge nearest the bag, walk straight to it, stand beside it, set the goods down on the cells round it (not on
+    it, not by the trade spot), and turn back at once by the nearest way; the message says "by the mailbag". 2. The same
+    with Giddy-Up and a medieval or industrial people: each porter rides in, sets the goods down from the saddle, and
+    rides off; nobody rides into your pen first. 3. A trip that collects from your stores: the rider gets off at the bag,
+    the beast waits there, the porter walks into the stores, comes back, gets on and rides off. 4. Kill or down a porter's
+    beast while they're in the stores: they leave on foot; a beast whose rider was downed walks off by itself. 5. A Giddy-Up
+    "no mount" area round the bag: the rider gets off at its edge, walks in, and walks back to the beast to get on before
+    leaving. 6. The post rider: in by the way nearest the bag, the mail set down and the letters taken from the saddle,
+    "rides on" at once. 7. A letter to a people at war: the go-between walks up to the mailbag ("is walking up to the
+    mailbag to wait for ...") and the writer carries the letter there. 8. Several letters' answers from the same people,
+    or several of their trips: different kinds of people (their villagers, settlers, caravan guards) and different beasts
+    where their caravans have them, not the same face twice running. 9. No mailbag: all of it at the gate cell as before.
+    10. An older save with a courier trip under way: it carries on at the gate.
 - 0.206.0, **whom a letter goes to, and places heard of** (10 November 2026). The player: "i'm not yet sure how "writing the town" is differentiated from writing
   a person directly ... it should make sense what kind of messages you can send whom, and which kind of messages are sent to
   the colony as a whole ... this should be differentiated", and "if other colonies tell me about things that are nearby on
@@ -68,9 +124,6 @@ tree at once, alongside whatever runs. Each piece is merged as its own release, 
     region map on it. 10. Ask a notable for news: the places their answer names are marked once the answer is in. 11. Sixty
     days on the marks have faded and gone. 12. The deeper hooks off: no marks on the world map, the region map's stay.
     13. An older save with a warning on its way to a trader: when it reaches her it is passed on to the head.
-- **Held by the player (10 November 2026): no new letters content jobs until they ask** ("for the letters please hold
-  after this job then ... I'd like to keep such jobs for the end of the week to use up my remaining tokens"). The letters
-  round 2 part 1 agent was already running; its part 2 (more content in the same shapes) waits for their word.
 - 0.205.4, asks answered (10 November 2026). The player, with a screenshot of "Asks waiting: 1" beside Guido's letter in
   the mailbag: "the "asks waiting" information is really nice, but it should disappear once you have an answer ordered".
   Their save: Acraeraes's world ask (a small request, `WorldAsk` 1) was answered with a Help letter (the colony asking),

@@ -2659,17 +2659,20 @@ Rimfolk's events move across the colony's edge is carried by people on the map (
 - **A trip** (`CourierTrip`, kept by `CourierTracker`, a game component checked every 250 ticks at tick 59 of the
   cycle, only while there are trips) waits 3 to 9 hours (an errand's or an order's courier under an hour and a half),
   comes only by day (7:00 to 18:00) and only when the map is safe (no danger, no toxic fallout, -25 to 45 degrees),
-  and gives up after three days. Its people walk in from an edge cell that can reach the gate (`PlaySpots.GateCell`,
-  else `DropCellFinder.TradeDropSpot`) as a `LordJob_Courier`: travel, then work at the gate (`Council_CourierWork`
-  duty: `JobGiver_CourierWork` sets down what they carry with `JobDriver_CourierDrop`, fetches from the stores with
-  `JobDriver_CourierLoad`, takes someone along with `JobDriver_CourierFetch`, else they wander within three cells),
-  then exit. Harmed by the colony or their people turned hostile, they leave defending themselves. A pack animal waits
-  by the gate (`WanderClose`).
+  and gives up after three days. Its people walk in by the way in nearest the colony's mailbag, else its gate
+  (`PlaySpots.GateCell`), else `DropCellFinder.TradeDropSpot` (`CarrierSpots`, since 10 November 2026: "Straight to the
+  mailbag" below) as a `LordJob_Courier`: straight to their own places beside it (`LordToil_CarrierTravel`), then work
+  there (`Council_CourierWork` duty: `JobGiver_CourierWork` sets down what they carry with `JobDriver_CourierDrop` onto
+  the cells beside the bag, fetches from the stores with `JobDriver_CourierLoad`, takes someone along with
+  `JobDriver_CourierFetch`, else they wait in their place, `JobGiver_CarrierWait`), then off by the nearest way, a rider
+  back in the saddle first (`LordToil_CarrierLeave`). Harmed by the colony or their people turned hostile, they leave
+  defending themselves. A pack animal waits in its place beside the bag (`Rimfolk_CarrierWait`).
 - **Who and how many** (`CourierMath`, pure and tested): the event's own people if usable, else the nearest of a
-  fitting tech (a pre-industrial colony: tribes and medieval folk; otherwise a step either side), always on foot.
-  People come from their trader group's lighter guards (combat power 75 or less, never a trader), else the faction's
-  ordinary member (`Arrivals.PersonKind`); a pack animal from the trader group's carriers that the biome allows and
-  the season suits. One person per 35 "bulk" (kilograms plus 10 per stack), at most three; an animal when their
+  fitting tech (a pre-industrial colony: tribes and medieval folk; otherwise a step either side); with Giddy-Up a
+  medieval or industrial people's couriers ride (below). Each person is made new, of a kind drawn from their people's
+  range of those sent on the road (`CarrierKinds.Person`, `CarrierMath.KindPool`: their caravans' guards and their
+  visitors, light, never a trader, a child, a leader or a noble), else the faction's ordinary member
+  (`Arrivals.PersonKind`); a pack animal from the trader group's carriers that the biome allows and the season suits. One person per 35 "bulk" (kilograms plus 10 per stack), at most three; an animal when their
   caravans use them and the load is more than one person's, which spares one porter. Their own inventory is cleared
   when they're made, so everything they carry is the trip's; the load is shared by carrying capacity.
 - **Robustness.** Every end is a `CourierEnd`, settled once (`settled`): goods still owed to the colony are set down
@@ -8029,23 +8032,26 @@ neighbours' section, on, needs the letters) and **The post's pace** (`postPace`:
 - **A regular post** (`PostRider`, on the neighbours' hour). The post's age is what the colony and the best of the region's
   peoples at peace (a town within 40 tiles) share (`PostMath.PostAge`): none for a tribe; a post rider every 7 to 14 days in
   the medieval age, a mail run every 3 to 7 in the industrial, a shuttle every 2 to 4 in the spacer, times 1.5 seldom or
-  0.6 often. It comes by day when the map is safe, from the nearest people of that age at peace: one of their lighter
-  caravan hands (`Couriers.PersonKind`), from a road at the edge when there is one, with a mount from their caravans'
-  beasts of body size 1.2 or more that the land and season allow, else a horse, else on foot; in the spacer age by drop
-  pod at the mailbag. With Giddy-Up 2 the rider sits on the mount as they come on the map, the way Giddy-Up brings its own
+  0.6 often. It comes by day when the map is safe, from the nearest people of that age at peace: one of their people sent
+  on the road, made new each time of a kind drawn from their range (`CarrierKinds.Person`; until 10 November 2026 one of
+  their lighter caravan hands, `Couriers.PersonKind`), by the way in nearest the mailbag (a road a little preferred;
+  until then a road at the edge wherever it was), with a mount drawn from their caravans' beasts of body size 1.2 or more
+  that Giddy-Up lets be ridden and the land and season allow (`CarrierKinds.Mount`), else a horse, else on foot; in the
+  spacer age by drop pod at the mailbag. With Giddy-Up 2 the rider sits on the mount as they come on the map, the way Giddy-Up brings its own
   riders in (`Integrations/GiddyUpMounts.cs`, since 0.202.2: the mount's obedience trained by the rider, then
   `GiddyUp.MountUtility.GoMount(rider, animal, GiveJobMethod.Instant)` found by name; the "Mount" job by name only where
   that can't be found, since the group's duties often cut that job off and riders walked beside their beasts);
   otherwise they lead the beast. **Porters and couriers ride too** (0.202.2, the player: "porters still frequently appear
   to come without mounts and being on them"): with Giddy-Up, a medieval or industrial people's couriers come on a mount
-  each (`CourierMath.Rides`, `PostRider.MountKind`), kept on the trip as `mounts` (saved), never loaded with goods (the
+  each (`CourierMath.Rides`, `CarrierKinds.Mount`), kept on the trip as `mounts` (saved; `mounts[i]` is `people[i]`'s), never loaded with goods (the
   people and the pack animal carry), mounted as the group forms; a mount nobody sits on any more leaves with its own
   exit lord when the trip ends, a ridden one goes with its rider. **The letter's writer** is the colony's best with
   words by default (`NeighbourLetters.DefaultWriter`: the highest Social, the speaker first among equals; the
   choice menus list writers the same way, `ByWords`; the player: "it should also auto select the highest level social
-  pawn to write the letter"). Feast invitations keep the steward first. `LordJob_PostRider`: travel to the
-  mailbag, keep close to it while the mail is set down and the letters taken, half an hour, then ride on (four hours at
-  the most); hurt or their people turned hostile, they leave defending themselves.
+  pawn to write the letter"). Feast invitations keep the steward first. `LordJob_PostRider`: straight to their place
+  beside the mailbag, wait there while the mail is set down and the letters taken (from the saddle), then ride on at once
+  by the nearest way (four hours at the most; until 10 November 2026 half an hour more round the bag, wandering); hurt or
+  their people turned hostile, they leave defending themselves.
 - **The colony's own rider** (`OwnRiders`). "By our own rider" in the letter's dialog (with who rides), or the mailbag's
   button: the colonist takes the letter from the mailbag (`Rimfolk_RiderSetOut`), walks to the edge with the colony's
   fastest animal big enough to ride following them (`FollowClose`), and sets out as a caravan of their own (with the mount
@@ -8167,6 +8173,93 @@ save's case end to end).
   (`CC_LetterRead_Msg`, `_MsgPeople`). The on-screen panels' boxes behind the messages (`Hud/HudMessages.cs`) are drawn
   behind the game's own message, so a click there is the same click. Held for the evening's news, a message carries no
   hint (only one on screen opens anything).
+
+### Straight to the mailbag, back in the saddle, a new face each time (the player's report, 10 November 2026; released 0.206.1)
+
+The player: "the couriers that bring letters and material take an awkward routine around my base before delivering the
+message a bit away from the base. if anything they should always walk to the mailbag directly, drop/pick up the message
+or items. for the message they unmount and then they walk off map without remounting. i've been developing a lot of
+letters with the stormriders, but the courier and mount looks always exactly the same. i'm not sure if this faction has
+this uniform, but the courier should have look variety that makes sense within the faction, like for the other npcs they
+create". The pure rules in `Couriers/CarrierMath.cs` (linked; `Tools/Tests/CarrierTests.cs`, "carriers: ", every one of
+Rimfolk's peoples with the old rule beside the new); the game side in `Couriers/CarrierSpots.cs`, `CarrierKinds.cs` and
+`CarrierLords.cs`, `Integrations/GiddyUpMounts.cs`.
+
+What caused it:
+- **The awkward routine.** A courier trip came in at a random edge cell (the game's own pick) and walked to the colony's
+  gate cell (out from the colony's middle toward the nearest edge, up to a dozen steps past the home area), round the
+  colony when it came in on the far side; the game's travel duty sends each of a group to a random cell within six of the
+  spot and has them stand and wander in turn until the slowest is there; at the gate they wandered within three cells,
+  and lingered half an hour more after their business (the post rider the same round the mailbag). With Giddy-Up, a rider
+  given a job Giddy-Up doesn't know (setting mail or goods down, taking letters) within 25 cells of it "parks" first: in
+  the colony's pen when one is within 50 cells, else a free cell near, dismounting there and walking the rest.
+- **No remount.** The game's exit toil, as the group set off, cut every pawn's job short, the mount's "Mounted" job too,
+  which sets its rider down; and Giddy-Up's own "mount up as the caravan heads out" asks the beast to have learned
+  tameness, which a beast made for another people hasn't (only the colony's are made tame). So the rider walked off on
+  foot, and the beast went its own way.
+- **The same look.** Every carrier was already made new (`Arrivals.Make`, `forceGenerateNewPawn`; no world pawn came
+  again, and nothing seeds the draw). The sameness was the kind: one of their caravans' lighter guards, which for many
+  peoples is one kind (the League's guard, the Order's bowman, the Scholars' proctor) or none (the Enclave: always its
+  ordinary member), often with their people's coat; and the beast: their caravans' beasts filtered by the land's
+  pack-animal list, which in a temperate forest leaves the muffalo alone, else the horse every time.
+
+What it does now:
+- **Straight to the mailbag.** Couriers and porters, a go-between under a white flag (`LordJob_Courier`) and the post
+  rider (`LordJob_PostRider`) do their business at the colony's mailbag (the one nearest the gate, `Outbox.Bag`), else the
+  gate cell, else where traders leave goods (`CarrierMath.SpotOf`, `CarrierSpots.Spot`; the trip keeps `atBag`, saved).
+  They come in by the way nearest it on foot (`CarrierSpots.EntryCell`: the game's flood fill out from the spot over
+  walkable ground, so a wall or a river counts the way round; `CarrierMath.BestEntry`: the fewest steps, a road counted a
+  fifth nearer; else the game's own random way in), walk straight to their own place beside it (`LordToil_CarrierTravel`, duty
+  `Rimfolk_CarrierTravel`, `JobGiver_CarrierGoTo`: the `i`th place round the spot, `CarrierMath.RingOffset`, the cells
+  beside it first, never the spot itself) and wait there (`Rimfolk_CarrierWait`, `JobGiver_CarrierWait`: a short wait
+  facing it, looked at again; the courier's own duty ends in it). Goods are set down from their place onto the cells beside
+  the bag, the nearest free one first, a pile of stacks going round it, never on the bag (`CarrierSpots.SetDownBeside`;
+  an empty cell or one whose stack it tops up). Porters fetching from the stores walk there from the bag as before.
+- **No lingering.** Their business done they leave at once (`CourierMath.LingerTicks` 0; a night's stay still keeps them
+  to first light), by the nearest way off the map (the game's `JobGiver_ExitMapBest`). The waits that stay are the ones
+  the business needs: handing over, a go-between waiting for the letter, an errand's courier waiting for what is carried
+  out, porters waiting for the stores.
+- **From the saddle at the bag, on foot into the colony.** Setting goods or mail down and taking letters are jobs Giddy-Up
+  is told a rider may do mounted (`GiddyUpMounts.AllowInSaddle`: `JobDriver_Mounted.SetAllowedJob` by name for
+  `Council_CourierDrop`, `Rimfolk_PostDrop`, `Rimfolk_PostTake`), so a rider rides up to the bag, sets it down and rides
+  off, with no ride to the pen first (it also spares a trader's or visitor's rider Giddy-Up brought in, taking letters).
+  Going into the stores or fetching someone is done on foot (`CarrierMath.OnFoot`): the rider gets off at the bag
+  (`GiddyUpMounts.GetOff`: the beast's "Mounted" job ends, Giddy-Up's own end of it sets the rider down) and the beast
+  waits in its place there.
+- **Back in the saddle before leaving.** The group leaves by `LordToil_CarrierLeave` (the game's exit toil, but it never
+  cuts short a beast carrying its rider or a rider getting on), duty `Rimfolk_CarrierLeave`: a rider not on their beast
+  (`CarrierMounts.MountOf`: the trip's `mounts[i]` for `people[i]`, the post rider's beast) gets on at once beside it
+  (`GiddyUpMounts.MountNow`), or walks over to it and gets on (Giddy-Up's own "Mount" job, `WalkAndMount`; the beast
+  stands for them, `JobGiver_CarrierMountWait`), then rides off. On foot when the beast is gone (dead, downed, fled), out
+  of reach, more than 60 cells off, or after an hour (`CarrierMath.Remount`, `RemountStep`); a beast whose rider can't
+  come leaves by itself, never left on the map. Giddy-Up's own remount works again too: every arriving mount learns
+  tameness as well as obedience (`GiddyUpMounts.Train`).
+- **A new face each time, in the people's own range.** Who is sent (`CarrierKinds.Person`, `CarrierMath.KindPool`,
+  `Pick`): drawn for each person of the trip from their people's caravans' guards (Trader groups) and their visitors,
+  villagers and settlers (Peaceful groups), half and half, group by group as the game weighs them (commonality, then
+  selection weight); light (combat power 75 or less; a people of warriors only sends its lightest and those within 30),
+  grown, never a trader, a leader or a noble (the Empire keeps its titles); their ordinary member only when those give
+  nobody. Their apparel, looks and weapons then come as the faction's own visitors' do (Rimfolk's peoples keep their one
+  signature piece). On what (`CarrierKinds.Mount`, `CarrierMath.MountPool`): every beast of their caravans of body size
+  1.2 or more that Giddy-Up lets be ridden (its mount list, read by name), never a predator, in season, that the land
+  allows: a pack animal of this land, one that lives wild here (`BiomeAnimals`), or one wild nowhere (a farm beast);
+  else the horse where the season allows, else on foot. The kind and the beast a people sent last count half as much next
+  time where they have another (not saved). Rimfolk's peoples in a temperate forest, by the catalogue: the kinds a people
+  sends went from two at most (three for the Ashen Banner) to three or more for 22 of the 23 (two for the Enclave), the
+  beasts from one (the muffalo; none for the Pilgrims) to two or three for 18 of the 23; the Enclave, the League, the
+  Order and the Scholars sent one kind every time before. A people whose range truly has one kind still sends someone new each time.
+  Armed visitors of an event (Visitors/) keep `Couriers.PersonKind` as before.
+- **Words.** The courier's messages say "by the mailbag" (`CC_Courier_ByBag`) and that a go-between or an errand's courier
+  is "walking up to the mailbag" (`CC_Courier_ToBag`, `_ToGate`, `_ToColony`, as `{4}` of the four `CC_Courier_Arrive_Await*`
+  keys); the setting's tip and the Almanac's couriers page say the mailbag and the nearest way out (keywords unchanged).
+- **Older saves.** A trip already on the map keeps its spot (the gate) and sets goods down there as before; the groups'
+  graphs keep their toils in the same order (travel, work, leave, flee), so a group under way carries on in the new ones.
+  A trip's mounts are no longer packed together on loading (a gap stays a gap, so each rider's beast stays theirs).
+  Nothing new is saved but the trip's `atBag`; no new schedule slot, no new setting.
+- **Not run in the game** (none of it could be): the way in and the walk to the places beside the bag; Giddy-Up taking the
+  three jobs as done in the saddle, and its "parking" no longer happening; the rider getting off at the bag for the
+  stores and back on as they leave, by both ways; the tameness letting Giddy-Up's own remount take; goods round the bag;
+  the variety of kinds and beasts on the player's own peoples and mods.
 
 ## The diplomacy screen: the peoples beside their page (the player's request, 8 November 2026)
 

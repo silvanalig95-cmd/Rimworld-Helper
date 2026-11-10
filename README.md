@@ -708,7 +708,7 @@ the colony's own era and DLCs, and nobody is hurt.
 **Goods and people come and go on the map.** What Rimfolk's events move between the colony and the outside world is
 carried by people you can see. When a village buys 250 corn, two porters walk in from the edge a few hours later, by
 day, take it from the stockpile with their own hands and walk off; when the silver comes back at the end of the year,
-a runner brings it and sets it down at the gate. Payments, gifts, debts settled, rewards, a venture's or a fair's
+a runner brings it and sets it down beside the mailbag (without one, at the gate). Payments, gifts, debts settled, rewards, a venture's or a fair's
 takings, relief grain and lost cargo all come and go this way (106 answers' takings, tips and gifts marked as crossing
 the colony's edge, the 77 errands carried out to the gate or a visitor, every world event's silver and sale, the story
 chains' and missions' rewards, mission orders collected by their carts). A visitor's tip or a challenger's lost stake
@@ -722,6 +722,14 @@ a gift carries it in and sets it down. Letters about a venture, a market or a fa
 when it's safe and leave at the first sign of danger; whatever they can't do is settled the old way, and if the colony
 hurts one of them, the deal holds only as far as it got. A setting (Events & world, on by default) makes it all
 instant again.
+
+They come in by the way nearest the colony's mailbag (or its gate) and walk straight to it, each to their own place beside
+it; goods are set down on the cells round the bag, and once their business is done they leave at once by the nearest
+way, with no wandering round the colony before or after. Each of them is someone new, drawn from their people's own range
+of those sent on the road (caravan hands and guards, villagers, settlers, as that people's visitors look and dress), and
+with Giddy-Up a medieval or industrial people's couriers and the post rider ride in on one of their caravans' beasts the
+land and season allow (a horse otherwise). A rider hands mail and goods over at the bag from the saddle, gets off only to
+go into the stores or fetch someone, and gets back on before riding off; a beast whose rider can't come leaves by itself.
 
 **Visitors on the map.** The people a world event's letter speaks of are there too. The rider waiting at the gate for
 the colony's answer walks in with the letter and stands by the gate until you answer; what you send is carried out to
@@ -3589,8 +3597,9 @@ Nobody appears out of nowhere for it: whoever is going that way takes it. A trad
 going home, a camp breaking up, pilgrims and travellers passing, a people's messengers, your own caravan setting out:
 one of them walks to the mailbag for the letters on their way (their own people's towns, a town on the road to where
 they're going, or one in the direction they leave), and the letter is read once the road behind it is done. A regular
-post comes by the colony's age and its neighbours': none for a tribe, a post rider on the nearest road every week or two
-in the medieval age, mounted on their people's animals (with Giddy-Up they ride, otherwise they lead the beast), a mail run
+post comes by the colony's age and its neighbours': none for a tribe, a post rider every week or two in the medieval age,
+coming in by the way nearest the mailbag, mounted on one of their people's animals (with Giddy-Up they ride, otherwise they
+lead the beast), riding straight to the bag and on again once the mail is in and out, a mail run
 every few days in the industrial, a shuttle that drops a courier by pod in the spacer; its pace is a setting. For
 something urgent, send it with your own rider: a colonist takes it from the mailbag and rides out on a colony animal big
 enough to ride (or walks), a caravan of their own on the game's roads, and brings the answer home. Answers and the
