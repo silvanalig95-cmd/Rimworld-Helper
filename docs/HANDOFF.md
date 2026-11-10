@@ -29,6 +29,13 @@ tree at once, alongside whatever runs. Each piece is merged as its own release, 
   again, earlier topics and promises answered or recalled ("you asked about the harvest; it came in at last"), news
   followed up from one letter to the next, the colony's own letters keeping the thread too; cooling just as truly
   after a slight or a war. Propose the shape first.
+- **To do when the player asks (10 November 2026): supplies for the colony's own rider.** The player: "sending a
+  colonist off to send a letter makes them just go off map without any supplies or preparation. supply selection should
+  be part of the initial decision." Then: "to be done later". Today `Post/OwnRiders.cs` sets out with the fastest beast
+  and an empty pack. When asked: a packing part in the letter dialog and the mailbag's "Send with our rider" (road food
+  for there and back by the journey planner's rules and road days, a little medicine, the mount's feed, extras the
+  player picks), greyed with why when the stores can't cover it, and the rider gathering it before setting out, as the
+  envoy abroad and the journey planner do (Journeys/, Diplomacy/EnvoysAbroad.cs).
 - 0.206.1, carriers straight to the mailbag,
   back in the saddle, a new face each time (10 November 2026). The player: "the couriers that bring letters and material
   take an awkward routine around my base before delivering the message a bit away from the base. if anything they should
