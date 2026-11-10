@@ -215,6 +215,13 @@ Fewer messages than when you order it: only a new friend, sweethearts, lovers an
   <CC_Out_Heard_Today>today</CC_Out_Heard_Today>
   <CC_Out_Heard_Yesterday>yesterday</CC_Out_Heard_Yesterday>
   <CC_Out_Heard_DaysAgo>{0} days ago</CC_Out_Heard_DaysAgo>
+  <!-- Places heard of, marked on the region map and the world map (World/HeardPlaces.cs). -->
+  <CC_Heard_Teller>{NAME} of {TOWN}</CC_Heard_Teller>
+  <CC_Heard_Tip_Head>Heard of: {WHAT}</CC_Heard_Tip_Head>
+  <CC_Heard_Tip_Talk>{TELLER} told {PAWN} of it, {WHEN}.</CC_Heard_Tip_Talk>
+  <CC_Heard_Tip_Letter>Told in a letter from {TELLER}, answering {PAWN}, {WHEN}.</CC_Heard_Tip_Letter>
+  <CC_Heard_Tip_LetterVia>Told in a letter from {TELLER}, answering {PAWN}'s letter passed on by {VIA}, {WHEN}.</CC_Heard_Tip_LetterVia>
+  <CC_Heard_ShowOnMap>Show on map</CC_Heard_ShowOnMap>
 
   <!-- The gift picker -->
   <CC_Out_GiftTitle>A gift for {OTHER}</CC_Out_GiftTitle>

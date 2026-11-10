@@ -15,29 +15,30 @@ namespace ColonyCouncil
         /// </summary>
         private static void NewsNear(FactSet facts, Faction f, Settlement town)
         {
-            var items = facts.news;
             if (f == null) return;
             try
             {
+                // Each line with the fact that names its place, so a place heard of is marked on the maps (World/HeardPlaces.cs).
                 foreach (var s in WorldSituations.Instance?.Running ?? Enumerable.Empty<WorldSituation>())
                     if (s.ctx?.faction == null || s.ctx.faction == f || s.ctx.enemy == f)
-                        items.Add((s.ctx?.placeName).NullOrEmpty() ? "CC_News_Situation".Translate(s.Label.Named("WHAT")).Resolve()
-                            : "CC_News_SituationAt".Translate(s.Label.Named("WHAT"), s.ctx.placeName.Named("PLACE")).Resolve());
+                        facts.News((s.ctx?.placeName).NullOrEmpty() ? "CC_News_Situation".Translate(s.Label.Named("WHAT")).Resolve()
+                            : "CC_News_SituationAt".Translate(s.Label.Named("WHAT"), s.ctx.placeName.Named("PLACE")).Resolve(), s.place.IsNone ? null : "ws:" + s.id);
                 if (town != null)
                     foreach (var site in Find.WorldObjects.Sites.Where(x => x != null && x.Tile.Layer == town.Tile.Layer).OrderBy(x => Find.WorldGrid.ApproxDistanceInTiles(x.Tile, town.Tile)).Take(2))
                         if (Find.WorldGrid.ApproxDistanceInTiles(site.Tile, town.Tile) <= 15f)
-                            items.Add("CC_News_Site".Translate(site.LabelCap.Named("SITE"), NeighbourLetters.Direction(town.Tile, site.Tile).Named("DIR"), town.Name.Named("TOWN")).Resolve());
+                            facts.News("CC_News_Site".Translate(site.LabelCap.Named("SITE"), NeighbourLetters.Direction(town.Tile, site.Tile).Named("DIR"), town.Name.Named("TOWN")).Resolve(),
+                                "site:" + site.ID);
                 foreach (var q in Find.QuestManager.QuestsListForReading)
                 {
                     if (q == null || q.hidden || q.State != QuestState.NotYetAccepted || q.name.NullOrEmpty()) continue;
                     if (!q.InvolvedFactions.Contains(f)) continue;
-                    items.Add("CC_News_Quest".Translate(q.name.Named("QUEST")).Resolve());
+                    facts.News("CC_News_Quest".Translate(q.name.Named("QUEST")).Resolve());
                     break;
                 }
                 foreach (var g in Find.FactionManager.AllFactionsListForReading)
                 {
                     if (g == null || g == f || g.IsPlayer || g.Hidden || g.defeated || !g.def.humanlikeFaction || !f.HostileTo(g) || g.def.permanentEnemy) continue;
-                    items.Add("CC_News_War".Translate(g.Name.Named("FACTION")).Resolve());
+                    facts.News("CC_News_War".Translate(g.Name.Named("FACTION")).Resolve());
                     break;
                 }
             }

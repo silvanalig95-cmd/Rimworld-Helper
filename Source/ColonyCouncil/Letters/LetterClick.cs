@@ -34,7 +34,8 @@ namespace ColonyCouncil
             bool inBag = l != null && l.stage == LetterStage.Outbox && !l.bringing;
             string key = LetterClickMath.HintKey(Readable(letterId), clickable, inBag);
             if (key == null) return "";
-            var n = l != null ? NotableBook.Instance?.Get(l.notable) : null;
+            // Kept with the one it is for (a letter passed on is the head's: World/LetterRoutes.cs).
+            var n = NeighbourLetters.ForWhom(l);
             return " " + key.Translate((n?.Name ?? l?.toName ?? "?").Named("NAME")).Resolve();
         }
 

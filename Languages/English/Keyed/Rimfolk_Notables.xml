@@ -282,4 +282,53 @@
   <CC_Memory_Deed_letterAid_Name>sent {NAME} when the colony asked by letter</CC_Memory_Deed_letterAid_Name>
   <CC_Memory_Deed_letterAid_Many>sent help when the colony asked by letter, {COUNT} times</CC_Memory_Deed_letterAid_Many>
 
+  <!-- Whom a letter goes to (World/LetterRoutes.cs, World/LetterAddressMath.cs): a personal letter to anyone, a town's matter to its head, a people's to their leader. -->
+  <CC_Route_Header_Head>{WHO}: speaks for the town, and takes personal letters too.</CC_Route_Header_Head>
+  <CC_Route_Header_Leader>{WHO}: leads {PEOPLE}, and speaks for the town and the whole people. Personal letters too.</CC_Route_Header_Leader>
+  <CC_Route_Header_Other>{WHO}: personal letters. For the town's matters, write to {HEAD}.</CC_Route_Header_Other>
+  <CC_Route_Header_NoHead>{WHO}: personal letters. Nobody the colony knows speaks for {TOWN} yet: its head comes to be known once the colony deals with the town (meeting their people, their news).</CC_Route_Header_NoHead>
+  <CC_Route_Header_PeopleTo>For matters of the whole people (a pact, a truce, fealty), write to {SPEAKER}.</CC_Route_Header_PeopleTo>
+  <CC_Route_WriteTo>Write to {NAME}</CC_Route_WriteTo>
+  <CC_Route_WriteTo_Tip>Write to {NAME} instead: the letter turns to them.</CC_Route_WriteTo_Tip>
+  <CC_Route_Section_Town>To the town</CC_Route_Section_Town>
+  <CC_Route_Section_TownVia>To the town: ask {NAME} to pass it on</CC_Route_Section_TownVia>
+  <CC_Route_Section_Person>To {NAME}</CC_Route_Section_Person>
+  <CC_Route_Row_Pass>passed on to {HEAD}</CC_Route_Row_Pass>
+  <CC_Route_PurposeCap_FavourPersonal>A favor they owe in person</CC_Route_PurposeCap_FavourPersonal>
+  <CC_Route_PurposeCap_DealingReply>Answering their letter</CC_Route_PurposeCap_DealingReply>
+  <CC_Route_Why_HeadOnly>Only the town's head can answer this: write to {HEAD}.</CC_Route_Why_HeadOnly>
+  <CC_Route_Why_HeadBusy>A letter to {HEAD} is under way already: one at a time.</CC_Route_Why_HeadBusy>
+  <CC_Route_Why_HeadLately>The colony wrote to {HEAD} for this only lately.</CC_Route_Why_HeadLately>
+  <CC_Route_Why_NoHead>Nobody the colony knows speaks for {TOWN} yet: its head comes to be known once the colony deals with the town (meeting their people, their news).</CC_Route_Why_NoHead>
+  <CC_Route_Why_NoSpeaker>Nobody the colony knows speaks for {PEOPLE} as a whole yet: their leader or a town's head comes to be known once the colony deals with them (meeting their people, their news).</CC_Route_Why_NoSpeaker>
+  <CC_Route_Why_Nothing_Favour_Town>Their people owe the colony nothing to call in now.</CC_Route_Why_Nothing_Favour_Town>
+  <CC_Route_Why_Nothing_Favour_Personal>{NAME} owes the colony nothing in person.</CC_Route_Why_Nothing_Favour_Personal>
+  <CC_Route_Why_Nothing_Dealing_Town>Nothing to put to their council now.</CC_Route_Why_Nothing_Dealing_Town>
+  <CC_Route_Why_Nothing_Dealing_Personal>{NAME} has no letter waiting for an answer.</CC_Route_Why_Nothing_Dealing_Personal>
+  <CC_Route_Pass_Same>{NAME} will give it to {HEADNAME}, {HEADTITLE}, in {TOWN}: a day more.</CC_Route_Pass_Same>
+  <CC_Route_Pass_Far>{NAME} will send it on from {TOWN} to {HEADNAME}, {HEADTITLE}, at {HEADTOWN}: the road between the two towns more.</CC_Route_Pass_Far>
+  <CC_Route_Pass_Call>{NAME} will pass it on to {HEADNAME}, {HEADTITLE}, who calls back.</CC_Route_Pass_Call>
+  <CC_Route_Word_Warm>{NAME} thinks well of the colony, and their good word goes with it.</CC_Route_Word_Warm>
+  <CC_Route_Word_Weighty>{NAME} is their {TITLE}: their good word goes with it, and counts for much.</CC_Route_Word_Weighty>
+  <CC_Route_Word_Plain>{NAME} passes it on with no word for or against it.</CC_Route_Word_Plain>
+  <CC_Route_Word_Poor>{NAME} thinks poorly of the colony, and their word tells against it.</CC_Route_Word_Poor>
+  <CC_Route_ToVia>{HEAD}, by way of {NAME}</CC_Route_ToVia>
+  <CC_Route_Note_Passed>Passed {PAWN}'s letter on to {HEAD}.</CC_Route_Note_Passed>
+  <CC_Route_Msg_Passed>{NAME} has passed {PAWN}'s letter on to {HEAD}, whose answer will come from there.</CC_Route_Msg_Passed>
+  <CC_Route_Msg_PassedCall>{NAME} will pass {PAWN}'s words on to {HEAD}, who will call back.</CC_Route_Msg_PassedCall>
+  <CC_Route_Msg_RiderHome>{PAWN} is home from {TOWN}: {NAME} took the letter on to {HEAD}, whose answer will come with the post.</CC_Route_Msg_RiderHome>
+  <CC_Route_Status_Passed>{NAME} passed {PAWN}'s letter on to {HEAD}: it is with {HEAD} now.</CC_Route_Status_Passed>
+  <CC_Route_OursNote>Given to {NAME} to pass on to {HEAD}.</CC_Route_OursNote>
+  <CC_Route_Line_Written>{NAME} brought me your letter.</CC_Route_Line_Written>
+  <CC_Route_Line_Written_Olde>{NAME} hath brought me thy letter.</CC_Route_Line_Written_Olde>
+  <CC_Route_Line_Spoken>{NAME} brought me your words.</CC_Route_Line_Spoken>
+  <CC_Route_Line_Spoken_Olde>{NAME} hath brought me thy words.</CC_Route_Line_Spoken_Olde>
+  <CC_Route_Line_Call>{NAME} passed your words on to me.</CC_Route_Line_Call>
+  <CC_Route_Line_Call_Olde>{NAME} hath passed thy words on to me.</CC_Route_Line_Call_Olde>
+  <CC_Route_Speaks>{NAME}, {TITLE}, speaks for {TOWN}: write to them for the town's matters.</CC_Route_Speaks>
+  <CC_Route_Speaks_Leader>{NAME}, {TITLE}, speaks for {TOWN} and leads {PEOPLE}: write to them for the town's matters and the whole people's.</CC_Route_Speaks_Leader>
+  <CC_Route_Speaks_None>Nobody the colony knows speaks for {TOWN} yet.</CC_Route_Speaks_None>
+  <CC_Route_TownRow_Head>speaks for it: {HEAD}</CC_Route_TownRow_Head>
+  <CC_Route_TownRow_NoHead>nobody known speaks for it</CC_Route_TownRow_NoHead>
+
 </LanguageData>

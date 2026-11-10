@@ -133,12 +133,18 @@ namespace ColonyCouncil
         /// <summary>
         /// Why this letter can't be written to them now, or null: a kind letter with no reason first ("No reason now: ...",
         /// with the setting on; condolences and a warning always had theirs), then the letters' own checks
-        /// (NeighbourLetters.WhyNot).
+        /// (NeighbourLetters.WhyNot), whoever answers it (World/LetterRoutes.cs).
         /// </summary>
-        public static string WhyNot(Notable n, LetterPurpose p)
+        public static string WhyNot(Notable n, LetterPurpose p) => LetterRoutes.WhyNot(n, p, true);
+
+        /// <summary>
+        /// A kind letter with no reason to write it now, held ("No reason now: ..."), read of the one who answers it; null when
+        /// it has one, or isn't a kind letter (World/LetterRoutes.cs asks it before the letters' own checks).
+        /// </summary>
+        public static string Held(Notable n, LetterPurpose p)
         {
             if (n != null && n.Alive && LetterOccasionMath.ByOccasion(p) && NeighbourLetters.On && LetterOccasionMath.Holds(p, Of(n, p), On)) return Reason(n, p);
-            return NeighbourLetters.WhyNot(n, p);
+            return null;
         }
 
         /// <summary>The letters' cache let go (a game loaded).</summary>

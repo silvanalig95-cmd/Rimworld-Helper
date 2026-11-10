@@ -399,7 +399,12 @@ namespace ColonyCouncil
             UiKit.LabelFit(new Rect(right - dw, r.y + 3f, dw, 20f), days, UiKit.Faint, GameFont.Tiny, TextAnchor.MiddleRight);
             float x = pic.xMax + 10f;
             float nw = UiKit.NameLink(new Rect(x, r.y + 3f, Mathf.Max(0f, right - dw - x - 6f), 20f), t.s.Name, t.thing);
-            UiKit.LabelFit(new Rect(x + nw + 8f, r.y + 3f, Mathf.Max(0f, right - dw - x - nw - 14f), 20f), t.size, UiKit.Faint, GameFont.Tiny);
+            // Its size, and who speaks for it: its head, or that nobody the colony knows does yet (World/LetterRoutes.cs).
+            var head = LetterRoutes.HeadOf(t.s.ID);
+            string speaks = head != null ? "CC_Route_TownRow_Head".Translate(LetterRoutes.Short(head).Named("HEAD")).Resolve() : "CC_Route_TownRow_NoHead".Translate().Resolve();
+            var sizeRect = new Rect(x + nw + 8f, r.y + 3f, Mathf.Max(0f, right - dw - x - nw - 14f), 20f);
+            UiKit.LabelFit(sizeRect, (t.size.NullOrEmpty() ? "" : t.size + " · ") + speaks, UiKit.Faint, GameFont.Tiny);
+            TooltipHandler.TipRegion(sizeRect, new TipSignal(() => LetterRoutes.SpeaksFor(t.s), t.s.ID ^ 0x5EA4));
             var home = PeoplesModel.Home;
             var lines = home != null ? PostWords.ReachLines(home, t.s) : null;
             string reach = lines != null && lines.Count > 0 ? lines[0] : "";
@@ -456,7 +461,7 @@ namespace ColonyCouncil
                     string town = n.townName.NullOrEmpty() ? "" : n.town >= 0 && ThingRefs.Exists(ThingRefs.Of(Ref.Town(n.town))) ? ThingRefs.Link(n.townName, ThingRefs.Of(Ref.Town(n.town))) : n.townName;
                     // The newest news heard naming them goes on their record (the second line says so, the tip tells it).
                     var news = Outsiders.On ? OutsiderTalk.HeardOfNotable(n, OutsiderTalkMath.HeardNotableShown).FirstOrDefault() : null;
-                    string heard = news != null ? LinkTextMath.Plain(OutsiderHeard.Lines(new List<HeardNews> { news }, true).FirstOrDefault() ?? "") : null;
+                    string heard = news != null ? LinkTextMath.Plain(OutsiderHeard.Lines(new List<HeardNews> { news }, true, false).FirstOrDefault() ?? "") : null;
                     persons.Add(new PersonLine
                     {
                         n = n, who = who, color = NotableBook.RegardColor(op), name = ThingRefs.Link(n.Name, who) + ", " + NotableBook.TitleOf(n),

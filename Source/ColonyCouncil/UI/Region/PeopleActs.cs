@@ -244,6 +244,9 @@ namespace ColonyCouncil
             row.button = (NeighbourLetters.Spoken ? "CC_PplAct_Speak" : "CC_PplAct_Write").Translate().Resolve();
             if (to != null) row.label = "CC_PplAct_LetterTo".Translate(label.Named("LETTER"), NotableBook.Called(to).Named("NAME")).Resolve();
             if (why == null && to != null && p != LetterPurpose.News) row.reason = LetterOccasions.Reason(to, p);
+            // A town's matter to someone who isn't its head is passed on to the head (World/LetterRoutes.cs): it says to whom.
+            if (why == null && to != null && LetterRoutes.Way(to, p, LetterAddressMath.ScopeOf(p, false), out var head) == LetterWay.PassOn)
+                row.reason = "CC_Route_Row_Pass".Translate(LetterRoutes.Short(head).Named("HEAD")).Resolve().CapitalizeFirst() + (row.reason.NullOrEmpty() ? "" : ". " + row.reason);
             return row;
         }
 

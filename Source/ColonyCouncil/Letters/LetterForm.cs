@@ -85,6 +85,9 @@ namespace ColonyCouncil
             bool own = LetterFormMath.HeartSpeech(speech) != null || purpose == "council" || purpose == "thanks";
             s.heart = own ? PickFilled(LetterPart.Heart, LetterFormMath.HeartTags(s), s) : null;
             if (s.heart.NullOrEmpty()) s.heart = a.quote;
+            // Passed on by someone who isn't the head (World/LetterRoutes.cs): the head says who brought it, first.
+            string passed = LetterRoutes.PassLine(l, n, speech == LetterFormMath.Olde);
+            if (!passed.NullOrEmpty()) s.heart = s.heart.NullOrEmpty() ? passed : passed + " " + s.heart;
             if (s.shape == LetterShape.Call)
             {
                 s.us = a.speaker?.LabelShort ?? l.WriterName;
@@ -130,7 +133,8 @@ namespace ColonyCouncil
         /// </summary>
         public static LetterText Ours(NeighbourLetter l, Pawn writer)
         {
-            var n = NotableBook.Instance?.Get(l?.notable ?? -1);
+            // Addressed to the one it is for: a town's matter given to someone else to pass on is the head's (World/LetterRoutes.cs).
+            var n = NeighbourLetters.ForWhom(l);
             if (!Full || l == null || n == null || l.channel == LetterChannel.Console) return null;
             try
             {
@@ -199,6 +203,9 @@ namespace ColonyCouncil
                 // Its shape, by the writer (Letters/LetterFormShapes.cs): a verse from a poet, a little preaching from a zealot...
                 ShapeOurs(s, l, n, writer, map);
                 SignNote(s, true, title != null);
+                // Given to someone else to pass on: the narrator says so under it.
+                var via = l.passTo >= 0 && l.passTo != l.notable ? NotableBook.Instance?.Get(l.notable) : null;
+                if (via != null) s.outcomes.Add("CC_Route_OursNote".Translate(via.Name.Named("NAME"), n.Name.Named("HEAD")).Resolve());
                 var t = Compose(s);
                 LetterBook.Written(l, n, writer, t);
                 return t;

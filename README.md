@@ -3665,6 +3665,19 @@ season from each people, else paid for at its price when it comes. News heard in
 people's and the town's History, on their page on Peoples (the newest in the Overview, each town's newest on the Towns
 tab, a notable's own on their row).
 
+**Whom to write to, and places heard of.** Personal letters go to anyone: greetings, condolences, asking for news, an
+invitation, a favor someone owes in person, an answer to a letter they wrote, a match. The town's matters go to whoever
+speaks for it, its head: a warning, asking for food or medicine, their people's debt, captives and ransom, their envoy,
+wards, a dealing with their council, a town asked back. The whole people's (a pact, a truce, fealty) go to their leader
+when the colony knows them, else to the head of their town nearest the colony. The letter's window says who someone is
+and whether they speak for the town, with a button to write to the head instead, and sorts its purposes into "To the
+town" and "To" them, each greyed with why. A town's matter written to someone else is passed on by them: a day slower
+within their town, or the road on to the head's, with their good word (more from the heir or an envoy) or their poor one;
+the head answers, and says who brought it. A town's card and the Towns tab on Peoples name who speaks for each town. A
+place named in news heard in talk, or in a letter's news once the answer is in, gets a small mark on the region map and
+over the game's world map, saying who told the colony, through whom and when, and fades as the news is forgotten; heard
+news lines have "Show on map".
+
 **Letters that read like letters.** Letters between your colony and the world are written out in full (*Letters written
 out in full*, on): a heading with the place and the date as the writer would put it (a tribe by the season, "when the
 geese came back", the medieval age and the Empire in the court's words, the industrial plainly, the spacer age by the

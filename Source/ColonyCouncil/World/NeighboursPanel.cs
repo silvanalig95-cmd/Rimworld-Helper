@@ -128,6 +128,13 @@ namespace ColonyCouncil
         /// <summary>Where the letter is, in words (never a countdown).</summary>
         public static string StatusWords(NeighbourLetter l, Notable n)
         {
+            // Passed on to the head by the one it was written to (World/LetterRoutes.cs): with the head now.
+            if (l.passed && (l.stage == LetterStage.Travelling || l.stage == LetterStage.CallbackWait))
+            {
+                var book = NotableBook.Instance;
+                return "CC_Route_Status_Passed".Translate(l.WriterName.Named("PAWN"), (book?.Get(l.notable)?.Name ?? "?").Named("NAME"),
+                    (book?.Get(l.passTo)?.Name ?? "?").Named("HEAD")).Resolve();
+            }
             // The post's stages: in the mailbag, with the colony's rider, on the road with whoever took it (Post/PostWords.cs).
             string post = PostWords.Status(l, n);
             if (post != null) return post;
@@ -216,6 +223,16 @@ namespace ColonyCouncil
                     if (x.s == s)
                         t = x;
                 float y = rect.y;
+                // Who speaks for the town: its head, or that nobody the colony knows does yet (World/LetterRoutes.cs).
+                string speaks = t != null && t.rows.Count > 0 ? LetterRoutes.SpeaksFor(s) : null;
+                if (!speaks.NullOrEmpty())
+                {
+                    float sh = Text.CalcHeight(speaks, rect.width);
+                    GUI.color = UiKit.Info;
+                    Widgets.Label(new Rect(rect.x, y, rect.width, sh), speaks);
+                    GUI.color = Color.white;
+                    y += sh + 2f;
+                }
                 if (t == null || t.rows.Count == 0)
                 {
                     string none = t == null ? "CC_Neighbours_OutOfReach".Translate(s.Name).Resolve() : "CC_Neighbours_NobodyYet".Translate(s.Name).Resolve();
@@ -241,16 +258,20 @@ namespace ColonyCouncil
     }
 
     /// <summary>
-    /// Writing to a neighbour: whom (any notable of the same town), what for (each purpose, with why it can't be when it
-    /// can't, and for a kind letter the occasion that makes it fit now: World/LetterOccasions.cs), what about (the loss,
-    /// the threat, the help asked for), who writes (the speaker by default) and how (a
-    /// letter by hand, or a call on the comms console when both ends can), and in words how it is likely to be taken. In
-    /// Rimfolk's frame (key "Letter"), its title in the title bar, its buttons the kit's (Send the primary act).
+    /// Writing to a neighbour: whom (any notable of the same town), who they are and whether they speak for the town (with a
+    /// button to write to its head instead: World/LetterRoutes.cs), what for in two sections, "To the town" (its matters,
+    /// for its head: written to anyone else, asked of them to pass on) and "To {NAME}" (personal letters), each purpose with
+    /// why it can't be when it can't, and for a kind letter the occasion that makes it fit now (World/LetterOccasions.cs);
+    /// what about (the loss, the threat, the help asked for), who writes (the best with words by default) and how (a letter
+    /// by hand, or a call on the comms console when both ends can), and in words how it is likely to be taken. In Rimfolk's
+    /// frame (key "Letter"), its title in the title bar, its buttons the kit's (Send the primary act).
     /// </summary>
     public class Dialog_NeighbourLetter : FramedWindow
     {
         private Notable to;
         private LetterPurpose purpose = LetterPurpose.Greetings;
+        /// <summary>Whose matter the chosen purpose is (a debt or a dealing can be either: World/LetterAddressMath.cs).</summary>
+        private LetterScope scope = LetterScope.Personal;
         private LetterChannel channel = LetterChannel.Courier;
         private Pawn writer;
         /// <summary>Someone of their people at the colony who'll carry it home (Outsiders/), or null for a messenger or a call.</summary>
@@ -265,42 +286,96 @@ namespace ColonyCouncil
         private float lookedAt = -1f;
         private Notable lookedFor;
         private LetterPurpose lookedPurpose;
+        private LetterScope lookedScope;
+        private LetterChannel lookedChannel;
         private string byHand, byCall, byRider;
         /// <summary>The colony's own rider takes it (Post/OwnRiders.cs), and who.</summary>
         private bool riderChosen;
         private Pawn rider;
         private List<string> reach = new List<string>();
-        private readonly Dictionary<LetterPurpose, string> whyNot = new Dictionary<LetterPurpose, string>();
-        /// <summary>The reason a kind letter can be written now ("after the loss of their mayor"), shown beside it.</summary>
-        private readonly Dictionary<LetterPurpose, string> occasion = new Dictionary<LetterPurpose, string>();
         private List<LetterTopic> topics = new List<LetterTopic>();
+
+        /// <summary>One purpose as the window offers it: its section, the one who answers it, why not, and its note (the occasion, or who passes it on).</summary>
+        private sealed class Entry
+        {
+            public LetterPurpose p;
+            public LetterScope scope;
+            public LetterWay way;
+            public Notable who;
+            public string label, why, note;
+        }
+
+        private readonly List<Entry> entries = new List<Entry>();
+        /// <summary>Who they are and whether they speak for the town; whom the window offers to write to instead.</summary>
+        private string header;
+        private Notable other;
+        /// <summary>The one who answers the chosen purpose (the one written to, or the head it is passed on to), and the way it goes there.</summary>
+        private Notable answerer;
+        private string route;
 
         private void Look()
         {
-            if (lookedFor == to && lookedPurpose == purpose && Time.realtimeSinceStartup - lookedAt < 0.5f) return;
+            if (lookedFor == to && lookedPurpose == purpose && lookedScope == scope && lookedChannel == channel && Time.realtimeSinceStartup - lookedAt < 0.5f) return;
             lookedAt = Time.realtimeSinceStartup;
             lookedFor = to;
             lookedPurpose = purpose;
+            lookedScope = scope;
+            lookedChannel = channel;
             byHand = NeighbourLetters.ChannelWhyNot(to, LetterChannel.Courier, map);
             byCall = NeighbourLetters.ChannelWhyNot(to, LetterChannel.Console, map);
             byRider = byHand ?? OwnRiders.WhyNot(to, map);
             reach = PostWords.ReachLines(map, NotableBook.TownOf(to.town));
-            whyNot.Clear();
-            occasion.Clear();
-            // Letters by occasion (World/LetterOccasions.cs): a kind letter with no reason now is greyed with what would bring one.
+            header = LetterRoutes.Header(to, out other, map);
+            entries.Clear();
             foreach (LetterPurpose p in Enum.GetValues(typeof(LetterPurpose)))
             {
-                whyNot[p] = LetterOccasions.WhyNot(to, p);
-                if (whyNot[p] == null && LetterOccasionMath.ByOccasion(p) && p != LetterPurpose.News) occasion[p] = LetterOccasions.Reason(to, p);
+                // A purpose no longer written (the council's business, retired) is never offered; a dealing with their council
+                // only when the window was opened for one (Dealings/DealingActs.cs).
+                if (NotableMath.Retired(p) || DealingLetters.Owns(p) && purpose != p) continue;
+                foreach (var sc in ScopesOf(p))
+                {
+                    var way = LetterRoutes.Way(to, p, sc, out var who, map);
+                    // Asking for a town back only of (or through someone of) a town the colony was (Colonies/TownTakeBack.cs).
+                    if (TownLetters.Owns(p) && !TownLetters.Shows(who ?? to)) continue;
+                    var e = new Entry { p = p, scope = sc, way = way, who = who, label = Label(p, sc), why = LetterRoutes.WhyNot(to, p, sc, true) };
+                    if (e.why == null)
+                    {
+                        if (way == LetterWay.PassOn) e.note = "CC_Route_Row_Pass".Translate(LetterRoutes.Short(who).Named("HEAD")).Resolve();
+                        // Letters by occasion (World/LetterOccasions.cs): the reason a kind letter fits now.
+                        else if (LetterOccasionMath.ByOccasion(p) && p != LetterPurpose.News) e.note = LetterOccasions.Reason(who ?? to, p);
+                    }
+                    entries.Add(e);
+                }
             }
-            topics = NeighbourLetters.Topics(to, purpose);
-            unlisted = purpose == LetterPurpose.Warning ? Warnings.NotListedLines(to) : new List<string>();
+            var cur = Current;
+            answerer = cur?.who ?? to;
+            topics = LetterRoutes.Topics(to, purpose, scope);
+            unlisted = purpose == LetterPurpose.Warning ? Warnings.NotListedLines(answerer) : new List<string>();
+            route = cur != null && cur.way == LetterWay.PassOn && cur.why == null ? LetterRoutes.Route(to, cur.who, channel) : null;
+        }
+
+        /// <summary>The chosen purpose's entry, or null.</summary>
+        private Entry Current => entries.FirstOrDefault(e => e.p == purpose && e.scope == scope);
+
+        /// <summary>The scopes a purpose is offered in: a debt both ways (their people's, and one they owe in person), a dealing as it was opened, the rest their own.</summary>
+        private IEnumerable<LetterScope> ScopesOf(LetterPurpose p)
+        {
+            if (p == LetterPurpose.Favour) return new[] { LetterScope.Town, LetterScope.Personal };
+            if (p == LetterPurpose.Dealing) return new[] { scope };
+            return new[] { LetterAddressMath.ScopeOf(p, false) };
+        }
+
+        private static string Label(LetterPurpose p, LetterScope sc)
+        {
+            if (p == LetterPurpose.Favour && sc == LetterScope.Personal) return "CC_Route_PurposeCap_FavourPersonal".Translate().Resolve();
+            if (p == LetterPurpose.Dealing && sc == LetterScope.Personal) return "CC_Route_PurposeCap_DealingReply".Translate().Resolve();
+            return ("CC_Letter_PurposeCap_" + p).Translate().Resolve();
         }
 
         /// <summary>Raiders the colony knows of not listed as a warning to them, and why (World/Warnings.cs).</summary>
         private List<string> unlisted = new List<string>();
 
-        public override Vector2 InitialSize => new Vector2(600f, 790f);
+        public override Vector2 InitialSize => new Vector2(600f, 860f);
 
         private static string title;
 
@@ -318,22 +393,18 @@ namespace ColonyCouncil
             closeOnClickedOutside = true;
             absorbInputAroundWindow = true;
             // The first purpose that can be written (a dealing only when chosen for it), and a letter by hand when a messenger can come.
-            foreach (LetterPurpose p in Enum.GetValues(typeof(LetterPurpose)))
-                if (!DealingLetters.Owns(p) && LetterOccasions.WhyNot(n, p) == null)
-                {
-                    purpose = p;
-                    break;
-                }
+            FirstOpen(n);
             if (NeighbourLetters.ChannelWhyNot(n, LetterChannel.Courier, map) != null && NeighbourLetters.ChannelWhyNot(n, LetterChannel.Console, map) == null)
                 channel = LetterChannel.Console;
             // Their own letter waits for an answer (Dealings/WorldWrites.cs): the dialog opens on answering it.
             var ask = WorldWrites.OpenAsk(n);
-            if (ask != null && LetterOccasions.WhyNot(n, LetterPurpose.Dealing) == null)
+            if (ask != null && LetterRoutes.WhyNot(n, LetterPurpose.Dealing, LetterScope.Personal, true) == null)
             {
-                int i = NeighbourLetters.Topics(n, LetterPurpose.Dealing).FindIndex(t => t.key == DealingLetters.ReplyPrefix + ask.id);
+                int i = LetterRoutes.Topics(n, LetterPurpose.Dealing, LetterScope.Personal).FindIndex(t => t.key == DealingLetters.ReplyPrefix + ask.id);
                 if (i >= 0)
                 {
                     purpose = LetterPurpose.Dealing;
+                    scope = LetterScope.Personal;
                     topicIndex = i;
                 }
             }
@@ -342,9 +413,13 @@ namespace ColonyCouncil
         /// <summary>A letter for a purpose and what it's about, chosen beforehand (the Diplomacy page's "call it in": Diplomacy/DiplomacyPanels.cs).</summary>
         public Dialog_NeighbourLetter(Notable n, LetterPurpose p, string topicKey) : this(n)
         {
-            if (LetterOccasions.WhyNot(n, p) != null) return;
+            var sc = LetterRoutes.ScopeOf(p, topicKey, n);
+            // A debt chosen without its topic: whichever of its two is open.
+            if (topicKey == null && p == LetterPurpose.Favour && LetterRoutes.WhyNot(n, p, sc, true) != null) sc = LetterScope.Personal;
+            if (LetterRoutes.WhyNot(n, p, sc, true) != null) return;
             purpose = p;
-            int i = NeighbourLetters.Topics(n, p).FindIndex(t => t.key == topicKey);
+            scope = sc;
+            int i = LetterRoutes.Topics(n, p, sc).FindIndex(t => t.key == topicKey);
             topicIndex = Mathf.Max(0, i);
         }
 
@@ -354,6 +429,22 @@ namespace ColonyCouncil
             this.bearer = bearer;
             channel = LetterChannel.Courier;
             if (by != null && NeighbourLetters.Writers(map, true).Contains(by)) writer = by;
+        }
+
+        /// <summary>The first purpose (and its scope) that can be written to them, a dealing only when chosen for it.</summary>
+        private void FirstOpen(Notable n)
+        {
+            foreach (LetterPurpose p in Enum.GetValues(typeof(LetterPurpose)))
+            {
+                if (DealingLetters.Owns(p) || NotableMath.Retired(p)) continue;
+                foreach (var sc in p == LetterPurpose.Favour ? new[] { LetterScope.Town, LetterScope.Personal } : new[] { LetterAddressMath.ScopeOf(p, false) })
+                    if (LetterRoutes.WhyNot(n, p, sc, true) == null)
+                    {
+                        purpose = p;
+                        scope = sc;
+                        return;
+                    }
+            }
         }
 
         protected override void DoFramedContents(Rect inRect)
@@ -374,6 +465,8 @@ namespace ColonyCouncil
                 GUI.color = Color.white;
             }
         }
+
+        private const float RowH = 23f;
 
         private void Contents(Rect inRect)
         {
@@ -401,30 +494,60 @@ namespace ColonyCouncil
                 Find.WindowStack.Add(new FloatMenu(mates.Select(m => new FloatMenuOption(NotableBook.Called(m), () => Pick(m))).ToList()));
             int op = NotableBook.Opinion(to);
             UiKit.LabelFit(new Rect(whom.x, y + 26f, whom.width, 18f), NotableBook.RegardWords(op).CapitalizeFirst(), NotableBook.RegardColor(op), GameFont.Tiny);
-            y += 52f;
-            // What for.
-            Widgets.Label(new Rect(inRect.x, y, inRect.width, 22f), "CC_LetterDlg_WhatFor".Translate());
-            y += 24f;
-            foreach (LetterPurpose p in Enum.GetValues(typeof(LetterPurpose)))
+            y += 50f;
+            // Who they are to their town, and whom to write to for its matters (World/LetterRoutes.cs).
+            if (!header.NullOrEmpty())
             {
-                // A purpose no longer written (the council's business, retired) is never offered, nor asking for a town back of
-                // anyone but the head of a town the colony was (Colonies/TownTakeBack.cs).
-                // A dealing with their council only when the window was opened for one (Dealings/DealingActs.cs).
-                if (NotableMath.Retired(p) || TownLetters.Owns(p) && !TownLetters.Shows(to) || DealingLetters.Owns(p) && purpose != p) continue;
-                string why = whyNot.TryGetValue(p, out var w) ? w : null;
-                var row = new Rect(inRect.x + 10f, y, 220f, 24f);
-                if (Widgets.RadioButtonLabeled(row, ("CC_Letter_PurposeCap_" + p).Translate(), purpose == p, why != null) && why == null)
+                const float btnW = 150f;
+                float hw = other != null ? inRect.width - btnW - 8f : inRect.width;
+                Text.Font = GameFont.Tiny;
+                float hh = Mathf.Max(Text.CalcHeight(header, hw), other != null ? 26f : 0f);
+                GUI.color = UiKit.Info;
+                Widgets.Label(new Rect(inRect.x, y, hw, hh), header);
+                GUI.color = Color.white;
+                Text.Font = GameFont.Small;
+                if (other != null)
                 {
-                    purpose = p;
-                    topicIndex = 0;
+                    var o = other;
+                    if (UiKit.Button(new Rect(inRect.xMax - btnW, y, btnW, 26f), "CC_Route_WriteTo".Translate(o.Name.Named("NAME")).Resolve()))
+                        Pick(o);
+                    TooltipHandler.TipRegion(new Rect(inRect.xMax - btnW, y, btnW, 26f), "CC_Route_WriteTo_Tip".Translate(NotableBook.Called(o).Named("NAME")).Resolve());
                 }
-                if (why != null) UiKit.LabelFit(new Rect(row.xMax + 12f, y, inRect.width - row.width - 32f, 24f), why, UiKit.Faint, GameFont.Tiny);
-                else if (occasion.TryGetValue(p, out var reason) && !reason.NullOrEmpty())
-                    UiKit.LabelFit(new Rect(row.xMax + 12f, y, inRect.width - row.width - 32f, 24f), reason, UiKit.Done, GameFont.Tiny);
-                y += 26f;
+                y += hh + 6f;
+            }
+            // What for: the town's matters and the personal letters, each in its section; the section of what they can answer
+            // themselves first.
+            bool speaks = entries.Any(e => e.scope == LetterScope.Town && e.p == LetterPurpose.Warning && e.way == LetterWay.Direct);
+            var townRows = entries.Where(e => LetterAddressMath.TownSection(e.scope)).ToList();
+            var ownRows = entries.Where(e => !LetterAddressMath.TownSection(e.scope)).ToList();
+            string townTitle = speaks || townRows.All(e => e.way != LetterWay.PassOn)
+                ? "CC_Route_Section_Town".Translate().Resolve()
+                : "CC_Route_Section_TownVia".Translate(to.Name.Named("NAME")).Resolve();
+            string ownTitle = "CC_Route_Section_Person".Translate(to.Name.Named("NAME")).Resolve();
+            if (speaks)
+            {
+                y = Section(inRect, y, townTitle, townRows);
+                y = Section(inRect, y, ownTitle, ownRows);
+            }
+            else
+            {
+                y = Section(inRect, y, ownTitle, ownRows);
+                y = Section(inRect, y, townTitle, townRows);
             }
             Look();
-            string purposeWhy = whyNot.TryGetValue(purpose, out var pw) ? pw : null;
+            var cur = Current;
+            string purposeWhy = cur?.why ?? (cur == null ? "CC_Letter_Why_Gone".Translate().Resolve() : null);
+            // Passed on: who takes it to whom, how much slower, and their word.
+            if (!route.NullOrEmpty() && purposeWhy == null)
+            {
+                Text.Font = GameFont.Tiny;
+                float rh = Text.CalcHeight(route, inRect.width - 10f);
+                GUI.color = UiKit.Info;
+                Widgets.Label(new Rect(inRect.x + 10f, y, inRect.width - 10f, rh), route);
+                GUI.color = Color.white;
+                Text.Font = GameFont.Small;
+                y += rh + 4f;
+            }
             // What about.
             if ((purpose == LetterPurpose.Condolences || purpose == LetterPurpose.Warning) && topics.Count > 0)
             {
@@ -512,17 +635,17 @@ namespace ColonyCouncil
                 : "CC_LetterDlg_CallNote".Translate().Resolve());
             // How to reach them now (Post/PostWords.cs): by radio, the post, a relay, out of reach, and the colony's own rider.
             if (channelWhy == null && bearer == null && reach.Count > 0) how += "\n" + string.Join(" ", reach);
-            float hh = Text.CalcHeight(how, inRect.width - 124f);
+            float hh2 = Text.CalcHeight(how, inRect.width - 124f);
             GUI.color = channelWhy != null ? UiKit.Warn : UiKit.Faint;
             Text.Font = GameFont.Tiny;
-            Widgets.Label(new Rect(inRect.x + 124f, y, inRect.width - 124f, hh + 4f), how);
+            Widgets.Label(new Rect(inRect.x + 124f, y, inRect.width - 124f, hh2 + 4f), how);
             Text.Font = GameFont.Small;
             GUI.color = Color.white;
-            y += hh + 10f;
-            // How it may be taken.
-            if (writer != null && purposeWhy == null)
+            y += hh2 + 10f;
+            // How it may be taken, by the one who answers it (passed on: with the go-between's word).
+            if (writer != null && purposeWhy == null && answerer != null)
             {
-                string outlook = NeighbourLetters.Outlook(to, writer, purpose, channel);
+                string outlook = NeighbourLetters.Outlook(answerer, writer, purpose, channel, answerer != to ? to : null);
                 float oh = Text.CalcHeight(outlook, inRect.width);
                 GUI.color = UiKit.Quote;
                 Widgets.Label(new Rect(inRect.x, y, inRect.width, oh), outlook);
@@ -542,24 +665,51 @@ namespace ColonyCouncil
             if (UiKit.Button(new Rect(inRect.xMax - 160f, inRect.yMax - 34f, 160f, 32f), "CC_LetterDlg_Cancel".Translate())) Close();
         }
 
+        /// <summary>A section of purposes under its title: each a choice, greyed with why when it can't be, else with its note.</summary>
+        private float Section(Rect inRect, float y, string head, List<Entry> rows)
+        {
+            if (rows.Count == 0) return y;
+            UiKit.LabelFit(new Rect(inRect.x, y, inRect.width, 22f), head, UiKit.HeaderColor);
+            Widgets.DrawLineHorizontal(inRect.x, y + 22f, inRect.width, UiKit.DividerColor);
+            y += 25f;
+            foreach (var e in rows)
+            {
+                var row = new Rect(inRect.x + 10f, y, 220f, RowH);
+                if (Widgets.RadioButtonLabeled(row, e.label, purpose == e.p && scope == e.scope, e.why != null) && e.why == null)
+                {
+                    if (purpose != e.p || scope != e.scope) topicIndex = 0;
+                    purpose = e.p;
+                    scope = e.scope;
+                    dipAsk = null;
+                }
+                var side = new Rect(row.xMax + 12f, y, inRect.width - row.width - 32f, RowH);
+                if (e.why != null)
+                {
+                    UiKit.LabelFit(side, e.why, UiKit.Faint, GameFont.Tiny);
+                    TooltipHandler.TipRegion(side, e.why);
+                }
+                else if (!e.note.NullOrEmpty()) UiKit.LabelFit(side, e.note, e.way == LetterWay.PassOn ? UiKit.Info : UiKit.Done, GameFont.Tiny);
+                y += RowH + 1f;
+            }
+            return y + 4f;
+        }
+
+        /// <summary>Someone else of the town (or the head or leader the header names) to write to instead: the purpose kept if it can go to them.</summary>
         private void Pick(Notable n)
         {
+            if (n == null) return;
             to = n;
             topicIndex = 0;
-            if (LetterOccasions.WhyNot(n, purpose) != null)
-                foreach (LetterPurpose p in Enum.GetValues(typeof(LetterPurpose)))
-                    if (!DealingLetters.Owns(p) && LetterOccasions.WhyNot(n, p) == null)
-                    {
-                        purpose = p;
-                        break;
-                    }
+            dipAsk = null;
+            lookedAt = -1f;
+            if (LetterRoutes.WhyNot(n, purpose, scope, true) != null) FirstOpen(n);
         }
 
         /// <summary>"Ana (Social 8): Mayor Bell is warm toward her".</summary>
         private string WriterLabel(Pawn p)
         {
             int social = p.skills?.GetSkill(SkillDefOf.Social)?.Level ?? 0;
-            int of = NotableBook.OpinionOf(to, p);
+            int of = NotableBook.OpinionOf(answerer ?? to, p);
             return "CC_LetterDlg_Writer".Translate(p.LabelShort.Named("PAWN"), social.Named("SOCIAL"), ("CC_Notable_RegardOf_" + NotableMath.Level(of)).Translate().Named("REGARD")).Resolve();
         }
     }

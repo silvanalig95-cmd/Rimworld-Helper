@@ -5,6 +5,16 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## Whom a letter goes to
+
+*10 November 2026, version 0.206.0*
+
+- A town's matters, a warning, a request for help, their people's debt, ransoms, envoys, wards and dealings, now go to whoever speaks for the town, and pacts, truces and fealty to their people's leader or the nearest town's head.
+- Personal letters, greetings, condolences, asking what they know, an invitation, a match or a favour owed in person, still go to anyone you know.
+- A town's matter written to someone who isn't its head becomes "ask them to pass it on": it takes a little longer, their good word counts, and the head answers, saying who brought the letter.
+- The letter window says whom you are writing to and who speaks for their town, with a button to write to the head, and lists the letters in "To the town" and "To" the person.
+- Places you hear of in talk or letters are marked on Rimfolk's region map and the world map, with who told you and when, and news lines have "Show on map".
+
 ## Asks answered
 
 *10 November 2026, version 0.205.4*

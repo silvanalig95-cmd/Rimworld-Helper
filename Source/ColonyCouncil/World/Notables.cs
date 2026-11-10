@@ -357,6 +357,8 @@ namespace ColonyCouncil
         public List<WarnedThreat> warned = new List<WarnedThreat>();
         /// <summary>Threats the colony heard of in talk with outsiders (World/Warnings.cs): WarnMath.MaxKnown, 30 days.</summary>
         public List<KnownThreat> known = new List<KnownThreat>();
+        /// <summary>Places heard of in talk or a letter's news, marked on the maps (World/HeardPlaces.cs): HeardPlaceMath.Max at most.</summary>
+        public List<HeardPlace> places = new List<HeardPlace>();
         public int nextId = 1;
         public int nextLetterId = 1;
         /// <summary>The last day old age was rolled for.</summary>
@@ -650,7 +652,8 @@ namespace ColonyCouncil
                         return;
                     }
                     // Letters to the one who led are for them, not their follower.
-                    foreach (var l in letters.Where(l => l.Open && l.notable == n.id).ToList()) NeighbourLetters.Cancel(l, "CC_Letter_Cancel_Gone");
+                    foreach (var l in letters.Where(l => l.Open && (l.notable == n.id && !l.passed || l.passed && l.passTo == n.id)).ToList())
+                        NeighbourLetters.Cancel(l, "CC_Letter_Cancel_Gone");
                     Replace(n, next, false);
                     n.Remember(Old(n), 0f);
                 }
@@ -840,12 +843,13 @@ namespace ColonyCouncil
             // nothing else of Rimfolk keeps them (WorldLedger.Release).
             bool last = p != null && !notables.Any(x => x.pawn == p);
             bool free = last && WorldLedger.Release(p, KeepFor.Notable);
-            if (last && !p.Discarded && !letters.Any(l => l.Open && l.notable == n.id))
+            if (last && !p.Discarded && !letters.Any(l => l.Open && (l.notable == n.id || l.passTo == n.id)))
             {
                 if (n.made && !p.Dead && WorldSituationWorker.FreeInWorld(p) && !PawnUtility.IsFactionLeader(p) && free && !HasTies(p)) Arrivals.Discard(p);
                 else if (!p.Spawned && !PawnUtility.IsFactionLeader(p) && free) Arrivals.Release(p);
             }
-            foreach (var l in letters.Where(l => l.Open && l.notable == n.id)) NeighbourLetters.Cancel(l, "CC_Letter_Cancel_Gone");
+            // A letter passed on is the head's now: the one who passed it on going doesn't call it off (World/LetterRoutes.cs).
+            foreach (var l in letters.Where(l => l.Open && (l.notable == n.id && !l.passed || l.passed && l.passTo == n.id)).ToList()) NeighbourLetters.Cancel(l, "CC_Letter_Cancel_Gone");
             Changed();
         }
 
@@ -897,6 +901,8 @@ namespace ColonyCouncil
             losses.RemoveAll(l => l == null || l.faction == null || now - l.tick > GenDate.TicksPerDay * 30);
             // Threats warned of and heard of (World/Warnings.cs): an older save's moved to the people, the old let go, one that struck counted.
             Warnings.Daily(now);
+            // Places heard of past their keep time, gone from the world, or waiting on an answer that never came (World/HeardPlaces.cs).
+            HeardPlaces.Daily(now);
             seen.RemoveAll(s => s.pawn == null || s.pawn.Discarded || s.pawn.Dead || now - s.tick > GenDate.TicksPerDay * 3);
             EndStrayRegard();
             Changed();
@@ -1235,6 +1241,7 @@ namespace ColonyCouncil
             Scribe_Collections.Look(ref seen, "seen", LookMode.Deep);
             Scribe_Collections.Look(ref warned, "warned", LookMode.Deep);
             Scribe_Collections.Look(ref known, "known", LookMode.Deep);
+            Scribe_Collections.Look(ref places, "heardPlaces", LookMode.Deep);
             Scribe_Values.Look(ref nextId, "nextId", 1);
             Scribe_Values.Look(ref nextLetterId, "nextLetterId", 1);
             Scribe_Values.Look(ref agedDay, "agedDay", -1);
@@ -1253,6 +1260,9 @@ namespace ColonyCouncil
                 warned.RemoveAll(w => w == null || w.people == null || w.key == null);
                 known ??= new List<KnownThreat>();
                 known.RemoveAll(k => k == null || k.key == null);
+                // An older save has none: places are marked as they are heard of from now.
+                places ??= new List<HeardPlace>();
+                places.RemoveAll(h => h == null || h.place == null);
                 NoteTowns();
                 Changed();
             }

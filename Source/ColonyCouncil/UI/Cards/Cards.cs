@@ -504,8 +504,9 @@ namespace ColonyCouncil
                 if (head != null && NotableBook.On)
                 {
                     var to = head;
+                    // The town's matters go to whoever speaks for it, its head (World/LetterRoutes.cs).
                     m.Act(T("CC_Card_Act_WriteThere"), NeighboursPanel.WhyNoLetter(head), () => Find.WindowStack.Add(new Dialog_NeighbourLetter(to)),
-                        T("CC_Card_Act_WriteThere_Tip", head.Name.Named("NAME")));
+                        T(head.role == NotableRole.Head ? "CC_Card_Act_WriteThere_Tip" : "CC_Card_Act_WriteThere_TipNoHead", head.Name.Named("NAME")));
                 }
             }
         }

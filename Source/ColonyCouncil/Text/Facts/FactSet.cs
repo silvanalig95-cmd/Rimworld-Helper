@@ -37,6 +37,20 @@ namespace ColonyCouncil
         public readonly List<MarkFacts> marks = new List<MarkFacts>();
         /// <summary>Real things near the place as someone there would tell of them, finished lines (the provider "news").</summary>
         public readonly List<string> news = new List<string>();
+        /// <summary>
+        /// The fact behind each news line, in the same order ("site:40" a site, "ws:7" a world event), or null for one that
+        /// names no place on the map (a quest, a war): the places heard of a letter's news are marked from these
+        /// (World/HeardPlaces.cs).
+        /// </summary>
+        public readonly List<string> newsFacts = new List<string>();
+
+        /// <summary>A news line, with the fact that names its place (or none).</summary>
+        public void News(string line, string fact = null)
+        {
+            if (string.IsNullOrEmpty(line)) return;
+            news.Add(line);
+            newsFacts.Add(fact);
+        }
 
         /// <summary>A tag, with how current it is (the higher heat kept when it comes twice).</summary>
         public void Tag(string tag, float h = 0f)
