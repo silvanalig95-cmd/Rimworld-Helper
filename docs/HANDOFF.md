@@ -12,6 +12,58 @@ tree at once, alongside whatever runs. Each piece is merged as its own release, 
 
 ## State (5 November 2026)
 
+- **Diplomacy kept fair (10 November 2026). Not released: no version, no What's new round, About.xml and CHANGELOG
+  untouched.** The player: "if i got it right I can now share a warning with them about any kind of raider, and then just
+  use "a debt of honor" to have them deliver a variety of valuable things to me, right? this debt should ... be balanced,
+  appropriate to the debt i actually owe and not be repeatable all the time", "offering a marriage match ... only ... when
+  we have great diplomatic relations", "warning about raiders should only be an option if the target colony is actually a
+  potential target for these raiders and not too much time has expired", "is any information that is generated in these
+  talks also logged in the ledger/history/diplomatic screen?", and on the list: "please go ahead with all of your
+  diplomacy and other guest proposal". DESIGN.md "Diplomacy kept fair" has all ten points; README "Diplomacy kept fair";
+  the Almanac's diplomacy and neighbours pages (keywords kept).
+  - Pure: `World/WarnMath.cs` (new, linked: reach, recency, sizes 14/12/10/8 and +4 struck, a debt a season, the keys,
+    `FromFact`), `FavourMath` (goods size × 30 × fortune 0.75-1.25 × means 0.55/0.75/1/1.25, word size ÷ 2, peace and
+    fighters 12, a captive 15, personal half, weights small/debt/great at 12 and 18, `SizeOf` for older debts, a call a
+    season), `MatchMath` (seek at regard 30 and goodwill 40, courted 10 and 20, accept 20% + 1%/point above 30, +35%
+    lovers, +10% at goodwill 75, fresh at 50, a season after a no, gift at goodwill 20, `AlliancePact`), `WardMath.MayAsk`
+    30, `PactMath` (they pay -40, half the silver, only after a beaten raid), `NotableMath` (gift once a season per
+    notable, help once in 20 days per people), `OutsiderMath` (bring free once a season, else market price),
+    `OutsiderTalkMath` (`SameNews`, `KeepsFact`, shown counts), `DealingMath.FavourSize`. Tests
+    `Tools/Tests/DiplomacyBalanceTests.cs` (171 checks: every number and gate, the defs' world events by kind, two years
+    of warnings and calls, an older save's sizes, the seams).
+  - Game side: `World/Warnings.cs` (new: the threats to a people from the map, an hour's cache; the letter dialog's "Not
+    listed" lines and the greyed reason; `Heed`, `Record`, the daily look: an older save's notable keys moved to the
+    people, the struck +4, records let go; threats heard of), `NotableBook.warned` and `known` (saved, modelled),
+    `NeighbourLetters` (topics, read, owed by size, `owedSize`, `late`, gifts once a season, help per people),
+    `FactionMemory` "warned" without merging, `FavourCalls` (size, means, gates, `CalledLately`), `DiplomacyWords`
+    (the weight in the debt's line), `DiplomacyLetters` and `Truces` (their price), `Matches`/`MatchLetters`/`MatchActs`/
+    `MatchAlliance`/`MatchDays` (gates, refusal in the history `dip:matchNo`, pact and gift by goodwill), `Wards`,
+    `PenFriends` and `FavoursOwed.MakePersonal`, `Outsiders`/`OutsiderOutcomes`/`OutsiderMenu`/`OutsiderTies` (the bring
+    price, small), `OutsiderTalk` (heard into the history, its facts, the notable named), `OutsiderBook.HeardNews`
+    (`notable`, `about`), `OutsiderHeard` (dead `Draw`/`Height` gone, shared `Lines`), `LedgerViews` (unread
+    `heard` gone), `PeoplePage` (Overview's Heard lately and threats, Towns' newest line, a people with no town, People's
+    notable news and "Heard of them"), `NeighboursPanel` (the "Not listed" lines). The letters' work touched only in the
+    outcome lines (`CC_LetterBring_Owed` names the weight; `CC_LetterBring_HeededLate`).
+  - Not run here (none of it could be): the topics against a real save's raids, camps, sites, wars and Faction Territories
+    land (the flood fill's cost with that mod on); `CallsToArms.Attacked` catching a warned threat within 15 days; the
+    letter dialog's "Not listed" lines and their fit at its width; the People page's new lines (Overview, the Towns tab's
+    taller rows, the People tab's tips) at both screens; a match's gates in the letter's topics and the face-to-face menu;
+    the paid "bring it next time" waiting for silver and the courier fetching it; talk's facts reaching the history and
+    the known threats; an older save's first day (the notables' keys moved, letters under way re-checked).
+  - Try in the game: 1. Get raided, then write a warning to a notable of a people at war with the raiders whose town is
+    near: the raiders are listed with their town ("could strike Ashford"); to a far people they aren't, and the letter's
+    window says why ("Not listed: ... too far"). 2. Six days after the raid with nothing of theirs coming: no longer listed
+    ("too old"). 3. A warm answer: the answer names "a small debt" (10) or "a debt" (12, 14); a second warm warning within
+    15 days is thanks and a memory only. 4. Warn a second notable of the same people of the same threat: it's gone from the
+    list once the first is read. 5. A warlord near a third people: offered to them, never to the warlord's own. 6. Call in
+    a small debt: goods worth about 300 at a steady industrial town, less from a tribe; peace help, fighters and a captive
+    greyed "too small"; after it, any other debt of that people greyed for the season. 7. Seek a match with a people at
+    goodwill 30: greyed with why; at 40 and a head's regard 30, open; refused, greyed for a season. 8. Ask for a ward
+    of a head who thinks 20 of the colony: greyed. 9. Offer a truce where they pay without a beaten raid: that price
+    greyed; after one, half the colony's price. 10. Greetings twice in a season to the same notable: one token only.
+    11. Ask an outsider to bring something twice in a season: the second says its silver price, and is paid when it comes.
+    12. Ask an outsider about their home: the news in Heard lately, the people's Overview, the town's row on Towns, the
+    History tab; news of an ill notable on their row on People.
 - **Held by the player (10 November 2026): no new letters content jobs until they ask** ("for the letters please hold
   after this job then ... I'd like to keep such jobs for the end of the week to use up my remaining tokens"). The letters
   round 2 part 1 agent was already running; its part 2 (more content in the same shapes) waits for their word.

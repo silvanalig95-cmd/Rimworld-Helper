@@ -260,6 +260,66 @@ namespace ColonyCouncil
             return null;
         }
 
+        // ================= On what terms the colony may seek one =================
+
+        /// <summary>
+        /// Why the colony can't seek a match with this people now at all, or null (the player, 10 November 2026: only on great
+        /// terms): they turned one down this season, or their head and their people think too little of the colony even for
+        /// two who courted (MatchMath.SeekWhyNot). The pair's own terms are <see cref="TermsWhyNot"/>.
+        /// </summary>
+        public static string SeekWhyNot(Faction f, Map home)
+        {
+            string why = PeopleWhyNot(f, home);
+            if (why != null) return why;
+            if (!MatchMath.RefusalOver(LastRefusal(f), Now)) return MatchWords.P("CC_Match_Why_Refused", MatchWords.People(f).Named("PEOPLE"));
+            int regard = Regard(f, home, null), goodwill = Goodwill(f);
+            string bar = MatchMath.SeekWhyNot(regard, goodwill, true);
+            return bar == null ? null : BarWords(f, bar, true);
+        }
+
+        /// <summary>
+        /// Why these two can't be proposed on their people's terms now, or null: their head's regard 30 and goodwill 40, or 10
+        /// and 20 for two who courted (<see cref="Courted"/>); one of their town made for it only at their head's regard 50.
+        /// </summary>
+        public static string TermsWhyNot(Faction f, Map home, Pawn ours, Pawn theirs, Notable head)
+        {
+            if (f == null) return DipWords.P("CC_Dip_Why_Gone");
+            int regard = Regard(f, home, head), goodwill = Goodwill(f);
+            bool courted = Courted(ours, theirs);
+            string bar = MatchMath.SeekWhyNot(regard, goodwill, courted);
+            if (bar != null) return BarWords(f, bar, courted);
+            if (theirs == null && !MatchMath.MayMakeFresh(regard))
+                return MatchWords.P("CC_Match_Why_Fresh", MatchWords.People(f).Named("PEOPLE"), (head != null ? head.Name : MatchWords.People(f)).Named("HEAD"));
+            return null;
+        }
+
+        private static string BarWords(Faction f, string bar, bool courted) =>
+            MatchWords.P("CC_Match_Why_Bar_" + bar + (courted ? "Courted" : ""), MatchWords.People(f).Named("PEOPLE"));
+
+        /// <summary>Two who courted: lovers already, or sweet on each other from courting face to face (Outsiders/).</summary>
+        public static bool Courted(Pawn ours, Pawn theirs)
+        {
+            if (ours == null || theirs == null) return false;
+            try
+            {
+                if (LovePartnerRelationUtility.LovePartnerRelationExists(ours, theirs)) return true;
+                var pair = OutsiderBook.Instance?.Pair(ours, theirs, false);
+                return pair != null && pair.court >= 1;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        /// <summary>When this people last turned a match of the colony's down (the history's dip:matchNo), or -1.</summary>
+        public static int LastRefusal(Faction f)
+        {
+            if (f == null) return -1;
+            var e = History.Of(Refs.Of(f), new[] { DiplomacyMath.MatchRefused }, Now - (int)(MatchMath.RefusedGapDays * MatchMath.DayTicks), 1).FirstOrDefault();
+            return e?.tick ?? -1;
+        }
+
         // ================= The colonist asked first =================
 
         /// <summary>How the colonist feels about it, by their own feelings (MatchMath.ConsentOf), and who they love instead.</summary>
@@ -381,6 +441,12 @@ namespace ColonyCouncil
             var form = MatchWords.Form(home, f);
             string why = PeopleWhyNot(f, home) ?? (theirs != null ? WhyNotPair(ours, theirs, f) : WhyNotOfTown(ours, head));
             if (why != null) return MatchWords.T("CC_Match_Ans_Moot", MatchWords.People(f).Named("PEOPLE"), why.Named("WHY"));
+            // The colony's proposal on their terms (great terms, or two who courted; one of their town made for it at a regard of 50).
+            if (way != MatchWay.Offered)
+            {
+                why = TermsWhyNot(f, home, ours, theirs, head);
+                if (why != null) return MatchWords.T("CC_Match_Ans_Moot", MatchWords.People(f).Named("PEOPLE"), why.Named("WHY"));
+            }
             bool lovers = theirs != null && LovePartnerRelationUtility.LovePartnerRelationExists(ours, theirs);
             int regard = Regard(f, home, head ?? n);
             string them = theirs != null ? theirs.LabelShort : MatchWords.Candidate(null, null, head, gender);
@@ -393,6 +459,11 @@ namespace ColonyCouncil
                     who.personal += MatchMath.DeclinedRegard / 2f;
                     who.Remember(MatchWords.P("CC_Match_Note_TheyDeclined", ours.Named("PAWN")), MatchMath.DeclinedRegard / 2f);
                 }
+                // Turned down: none sought with them again this season (SeekWhyNot), and their people's history keeps it.
+                Diplomacy.Write(DiplomacyMath.MatchRefused, new List<HistoryActor>
+                {
+                    new HistoryActor(Refs.Of(f), HistoryRole.Did), new HistoryActor(Diplomacy.Colony(home), HistoryRole.For), new HistoryActor(WorldLedger.PersonOf(ours), HistoryRole.About)
+                }, Diplomacy.Colony(home), MatchWords.P("CC_Match_Hist_Refused", MatchWords.People(f).Named("PEOPLE"), ours.Named("OURS"), them.Named("THEIRS")));
                 return MatchWords.T(regard < MatchMath.MinRegard ? "CC_Match_Ans_NoNever" : "CC_Match_Ans_No", MatchWords.People(f).Named("PEOPLE"), ours.Named("OURS"),
                     them.Named("THEIRS"), form.word.Named("WORD"), form.rite.Named("RITE"));
             }

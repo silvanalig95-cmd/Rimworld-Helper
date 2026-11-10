@@ -105,7 +105,8 @@ namespace ColonyCouncil
             var home = FavoursOwed.HomeOf(t);
             var form = Form(home, f);
             string key = FavoursOwed.ColonyOwes(t) ? "CC_Dip_Debt_Ours" : FavoursOwed.IsPersonal(t) ? "CC_Dip_Debt_Personal" : "CC_Dip_Debt_Theirs";
-            return P(key, NameOf(t.from).Named("FROM"), NameOf(t.to).Named("TO"), Why(t).Named("WHY"), form.word.Named("WORD"), form.rite.Named("RITE"));
+            return P(key, NameOf(t.from).Named("FROM"), NameOf(t.to).Named("TO"), Why(t).Named("WHY"), form.word.Named("WORD"), form.rite.Named("RITE"),
+                FavourCalls.WeightWords(t).Named("WEIGHT")).CapitalizeFirst();
         }
 
         /// <summary>Where the debt stands in words: open, called in (and for what), never a countdown.</summary>

@@ -294,7 +294,11 @@ namespace ColonyCouncil
                 if (whyNot[p] == null && LetterOccasionMath.ByOccasion(p) && p != LetterPurpose.News) occasion[p] = LetterOccasions.Reason(to, p);
             }
             topics = NeighbourLetters.Topics(to, purpose);
+            unlisted = purpose == LetterPurpose.Warning ? Warnings.NotListedLines(to) : new List<string>();
         }
+
+        /// <summary>Raiders the colony knows of not listed as a warning to them, and why (World/Warnings.cs).</summary>
+        private List<string> unlisted = new List<string>();
 
         public override Vector2 InitialSize => new Vector2(600f, 790f);
 
@@ -419,6 +423,14 @@ namespace ColonyCouncil
                     Find.WindowStack.Add(new FloatMenu(topics.Select((t, i) => new FloatMenuOption(t.text, () => topicIndex = i)).ToList()));
                 y += 30f;
             }
+            // A warning: raiders the colony knows of that aren't listed, and why (too far, too old, not their enemy).
+            if (purpose == LetterPurpose.Warning)
+                foreach (var line in unlisted)
+                {
+                    UiKit.LabelFit(new Rect(inRect.x + 124f, y, inRect.width - 124f, 18f), line, UiKit.Faint, GameFont.Tiny);
+                    TooltipHandler.TipRegion(new Rect(inRect.x + 124f, y, inRect.width - 124f, 18f), line);
+                    y += 18f;
+                }
             // What about and what is asked, for stage 2's purposes (Diplomacy/DiplomacyLetters.cs).
             string dipWhy = null;
             if (DiplomacyLetters.Owns(purpose) && purposeWhy == null) y += DiplomacyLetters.DrawRows(inRect, y, topics, ref topicIndex, ref dipAsk, map, out dipWhy);

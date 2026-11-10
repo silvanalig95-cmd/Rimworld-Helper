@@ -750,6 +750,8 @@ namespace ColonyCouncil
                 if (now - f.asked < OutsiderMath.BringSoonestDays * GenDate.TicksPerDay) continue;
                 var bearer = Bearer(f);
                 if (bearer == null) continue;
+                // A paid one waits until the colony's stores hold its price (it lapses as any other when it never can).
+                if (f.price > 0 && VarietyUtil.InStores(bearer.Map, ThingDefOf.Silver) < f.price) continue;
                 var to = KinMemory.Ours(f.by) && f.by.Spawned && f.by.Map == bearer.Map && Together.Able(f.by) && bearer.CanReach(f.by, PathEndMode.Touch, Danger.Some) ? f.by : null;
                 LocalTargetInfo target = to != null ? (LocalTargetInfo)to : DropCellFinder.TradeDropSpot(bearer.Map);
                 var job = JobMaker.MakeJob(OutsiderDefOf.Council_OutsiderBring, target);
@@ -788,6 +790,9 @@ namespace ColonyCouncil
             Favours.Close(f, true);
             try
             {
+                // A paid one: its market price from the colony's stores, fetched by their people (or taken now).
+                int price = f.price;
+                if (price > 0 && !Couriers.TakeFromStores(bearer.Map, ThingDefOf.Silver, price, f.faction)) VarietyUtil.TakeFromStores(bearer.Map, ThingDefOf.Silver, price);
                 var things = Couriers.Make(def, Mathf.Max(1, count));
                 foreach (var t in things)
                     if (GenPlace.TryPlaceThing(t, bearer.Position, bearer.Map, ThingPlaceMode.Near, out var lying))
@@ -795,8 +800,9 @@ namespace ColonyCouncil
                 Say(bearer, "brought", to);
                 KinMemory.Note(f.faction, "broughtAsked", KinMemory.Ours(f.by) ? f.by : null, def.label);
                 // together: they walked over to the colonist and set it down there (or by the gate, with nobody to hand it to).
-                Notify.Message("CC_Out_Msg_Brought".Translate(bearer.Named("BEARER"), Couriers.Describe(things).Named("THING"), (f.byName ?? "?").Named("PAWN"),
-                    (f.outsiderName ?? "?").Named("OTHER")).Resolve(), new LookTargets(bearer), MessageTypeDefOf.PositiveEvent, Importance.Notable);
+                Notify.Message((price > 0 ? "CC_Out_Msg_BroughtPaid" : "CC_Out_Msg_Brought").Translate(bearer.Named("BEARER"), Couriers.Describe(things).Named("THING"),
+                    (f.byName ?? "?").Named("PAWN"), (f.outsiderName ?? "?").Named("OTHER"), price.Named("SILVER")).Resolve(), new LookTargets(bearer), MessageTypeDefOf.PositiveEvent,
+                    Importance.Notable);
             }
             catch (Exception e)
             {

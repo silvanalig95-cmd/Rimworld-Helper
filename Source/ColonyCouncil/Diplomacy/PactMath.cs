@@ -106,8 +106,11 @@ namespace ColonyCouncil
 
         // ---------------- Their answer ----------------
 
-        /// <summary>How much a beaten raid, one of theirs held, a year's term and each price move their answer.</summary>
-        public const int BeatenScore = 25, HoldsScore = 20, YearScore = -10, PaidScore = 15, CaptivesScore = 15, TheyPayScore = -20;
+        /// <summary>
+        /// How much a beaten raid, one of theirs held, a year's term and each price move their answer. Their own silver asked of
+        /// them weighs -40 (the player, 10 November 2026, "gameplay realism": a people pays for peace only when beaten; -20 until then).
+        /// </summary>
+        public const int BeatenScore = 25, HoldsScore = 20, YearScore = -10, PaidScore = 15, CaptivesScore = 15, TheyPayScore = -40;
 
         /// <summary>
         /// How they take a truce offered: their goodwill, plus a raid of theirs just beaten, one of theirs held, a friend's
@@ -139,6 +142,12 @@ namespace ColonyCouncil
 
         /// <summary>A truce's price in silver: about half a raid's threat points, in tens (as a raiders' camp asks), 100 at least.</summary>
         public static int PriceSilver(float threatPoints) => Math.Max(100, (int)Math.Round(threatPoints * 0.5f / 10f) * 10);
+
+        /// <summary>What they pay for a truce asked of them by the colony, or offered by them: half the colony's price, in tens, 50 at least.</summary>
+        public static int TheirPriceSilver(float threatPoints) => Math.Max(50, (int)Math.Round(PriceSilver(threatPoints) / 20f) * 10);
+
+        /// <summary>The colony may ask them to pay for a truce only with a raid of theirs beaten lately (<see cref="BeatenDays"/>).</summary>
+        public static bool TheyMayPay(bool beatenLately) => beatenLately;
 
         /// <summary>Goodwill when the truce is sworn: 5 for the oath, and the colony's silver counts like a gift (one for each 25, 15 at most).</summary>
         public static int SwornGoodwill(TrucePrice price, int silver) => 5 + (price == TrucePrice.Ours ? Math.Min(15, Math.Max(0, silver) / 25) : 0);

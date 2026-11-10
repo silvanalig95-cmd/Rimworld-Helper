@@ -182,14 +182,43 @@ namespace ColonyCouncil
         public const int MinRegard = 0;
 
         /// <summary>
-        /// The chance they agree to the colony's proposal: by their head's regard of the colony and their people's goodwill,
-        /// much more for two who are lovers already, a little less when one of theirs would leave them. None below regard 0;
-        /// a tenth at worst above it, never certain.
+        /// A match is sought only on great terms (the player, 10 November 2026: "offering a marriage match ... should also only
+        /// be possible when we have great diplomatic relations"): their head thinks 30 or more of the colony and their people's
+        /// goodwill is 40 or more; for two who courted (lovers, or sweet on each other face to face), 10 and 20.
+        /// </summary>
+        public const int SeekRegard = 30, SeekGoodwill = 40, CourtedRegard = 10, CourtedGoodwill = 20;
+
+        /// <summary>Why the colony can't seek a match with them now on their terms, or null: "regard" or "goodwill" too low (for two who courted, the lower bar).</summary>
+        public static string SeekWhyNot(int regard, int goodwill, bool courted)
+        {
+            if (regard < (courted ? CourtedRegard : SeekRegard)) return "Regard";
+            if (goodwill < (courted ? CourtedGoodwill : SeekGoodwill)) return "Goodwill";
+            return null;
+        }
+
+        /// <summary>The lowest bar a match could be sought on at all (two who courted): below it nothing is offered with them.</summary>
+        public static bool AnyCanSeek(int regard, int goodwill) => SeekWhyNot(regard, goodwill, true) == null;
+
+        /// <summary>One of their town made for the match (nobody the colony knows), only when their head thinks this well of the colony.</summary>
+        public const int FreshRegard = 50;
+
+        public static bool MayMakeFresh(int regard) => regard >= FreshRegard;
+
+        /// <summary>A season's wait with a people after they turned a match down.</summary>
+        public const float RefusedGapDays = 15f;
+
+        public static bool RefusalOver(int lastRefusal, int now) => lastRefusal < 0 || now - lastRefusal >= RefusedGapDays * DayTicks;
+
+        /// <summary>
+        /// The chance they agree to the colony's proposal: a fifth, a hundredth more for each point of their head's regard
+        /// above 30, 35 hundredths more for two who are lovers already, a tenth more at goodwill 75, a little less when one of
+        /// theirs would leave them. None below regard 0; a tenth at worst above it, never certain. (Until 10 November 2026:
+        /// 30 hundredths and 0.6 a point from regard 0.)
         /// </summary>
         public static float AcceptChance(int regard, int goodwill, bool lovers, bool theirsMoves)
         {
             if (regard < MinRegard) return 0f;
-            float c = 0.3f + Clamp(regard, 0, 100) * 0.006f + (lovers ? 0.35f : 0f) + (goodwill >= 75 ? 0.1f : 0f) - (theirsMoves ? 0.05f : 0f);
+            float c = 0.2f + Math.Max(0, Clamp(regard, 0, 100) - SeekRegard) * 0.01f + (lovers ? 0.35f : 0f) + (goodwill >= 75 ? 0.1f : 0f) - (theirsMoves ? 0.05f : 0f);
             return Clamp(c, 0.1f, 0.95f);
         }
 
@@ -276,6 +305,18 @@ namespace ColonyCouncil
 
         /// <summary>Their town's small gift: about a third of a match's, by the town's fortune.</summary>
         public static int TownGiftValue(float fortune) => GiftValue(fortune) / 3;
+
+        /// <summary>Their town sends it only while their people's goodwill is 20 or more (a gift is not sent to a colony fallen out with them).</summary>
+        public const int TownGiftGoodwill = 20;
+
+        public static bool TownGiftSent(int goodwill) => goodwill >= TownGiftGoodwill;
+
+        /// <summary>
+        /// The alliance's defence pact is made and runs on only while a pact's own rules hold (PactMath.Renews: at peace,
+        /// goodwill 20, their head not set against the colony), never with the Empire. Until 10 November 2026 it was made
+        /// at the wedding and renewed forever, whatever their goodwill.
+        /// </summary>
+        public static bool AlliancePact(bool empire, int goodwill, int headRegard, bool hostile) => !empire && PactMath.Renews(goodwill, headRegard, hostile);
 
         /// <summary>A raiders' camp set against the colony's home, hidden this many days or more: their letter warns of it, this chance a day.</summary>
         public const float WarnAfterDays = 2f, WarnDaily = 0.25f;

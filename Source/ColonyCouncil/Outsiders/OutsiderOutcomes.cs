@@ -179,8 +179,8 @@ namespace ColonyCouncil
 
         /// <summary>
         /// News of home, told in the scene's bubbles (a piece about what is going on around their town, chosen by what is
-        /// true now): what it tells goes into the town's "Heard lately" on the World page and the region map, with who told
-        /// whom, instead of a letter. A sour talk tells nothing.
+        /// true now): what it tells goes into the town's "Heard lately" (its card and their people's page on Peoples) and the
+        /// history, with who told whom, instead of a letter (OutsiderTalk.Heard). A sour talk tells nothing.
         /// </summary>
         private static void AskHome(Pawn c, Pawn x, OutsiderTalk.Plan plan)
         {
@@ -363,11 +363,14 @@ namespace ColonyCouncil
                 return;
             }
             int count = OutsiderMath.BringCount(thing.BaseMarketValue, ofColony);
+            // Free once a season from each people; else the colony pays its market price when it comes (OutsiderMath.BringFree).
+            int price = Favours.PriceFor(f, thing, count);
             var book = Book;
-            if (book != null) Favours.Ask(x, f, c, thing, count);
+            if (book != null) Favours.Ask(x, f, c, thing, count, price);
             Say(x, "bringyes", c);
             // together: promised face to face.
-            Good("CC_Out_Msg_BringYes", c, c.Named("PAWN"), x.Named("OTHER"), Couriers.Amount(count, null, thing).Named("THING"));
+            Good(price > 0 ? "CC_Out_Msg_BringYesPaid" : "CC_Out_Msg_BringYes", c, c.Named("PAWN"), x.Named("OTHER"), Couriers.Amount(count, null, thing).Named("THING"),
+                price.Named("SILVER"));
         }
 
         // ---------------- An invitation to stay ----------------

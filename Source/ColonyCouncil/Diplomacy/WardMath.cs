@@ -128,8 +128,14 @@ namespace ColonyCouncil
 
         public static bool OffersToday(float roll) => roll < 1f / DailyOdds;
 
-        /// <summary>The colony asks by letter: they send one by their head's regard (none below 0, never certain).</summary>
-        public static float SendChance(int regard) => regard < 0 ? 0f : Clamp(0.3f + regard / 100f, 0.1f, 0.95f);
+        /// <summary>
+        /// The colony may ask them for a ward only while their head thinks 30 or more of the colony (<see cref="MinRegard"/>, as
+        /// for their own offer; the player, 10 November 2026: "gameplay realism"). Until then any regard from 0 could ask.
+        /// </summary>
+        public static bool MayAsk(int headRegard) => headRegard >= MinRegard;
+
+        /// <summary>The colony asks by letter: they send one by their head's regard (none below 30, never certain): 0.6 at 30, 0.95 from 65.</summary>
+        public static float SendChance(int regard) => regard < MinRegard ? 0f : Clamp(0.3f + regard / 100f, 0.1f, 0.95f);
 
         public static bool SendsWhenAsked(bool hostile, int regard, float roll) => !hostile && roll < SendChance(regard);
 

@@ -23,6 +23,8 @@ namespace ColonyCouncil
         public string byName => WorldLedger.PersonRecord(tie.to)?.name;
         public int count => tie.terms.count;
         public int asked => tie.since;
+        /// <summary>The silver the colony pays when it comes (0: free, once a season from each people: OutsiderMath.BringFree).</summary>
+        public int price => (int)tie.terms.number;
 
         /// <summary>Someone of theirs on the way over with it now (not saved: after a load they come round again).</summary>
         public Pawn bearer
@@ -67,11 +69,36 @@ namespace ColonyCouncil
             return WorldLedger.OwnTies(Tie.Kind.Favour).Any(t => t.Live && t.origin == Origin && t.from == people);
         }
 
-        /// <summary>A favour asked: their people owe the colonist who asked, the outsider promised it.</summary>
-        public static void Ask(Pawn outsider, Faction f, Pawn by, ThingDef def, int count)
+        /// <summary>
+        /// When the last free one of this people was asked (one still to come counts as now; one brought, when it came); -1 for
+        /// none (an older save's open ones are free).
+        /// </summary>
+        public static int LastFree(Faction f)
+        {
+            if (f == null) return -1;
+            var people = Refs.Of(f);
+            int last = -1, now = Find.TickManager?.TicksGame ?? 0;
+            foreach (var t in WorldLedger.OwnTies(Tie.Kind.Favour))
+            {
+                if (t == null || t.origin != Origin || t.from != people || t.terms.number >= 1f) continue;
+                if (t.Live) last = Math.Max(last, now);
+                else if (t.state == Tie.State.Kept && t.closed >= 0) last = Math.Max(last, t.closed);
+            }
+            return last;
+        }
+
+        /// <summary>The silver this would cost brought next time by them now: free once a season, else its market price.</summary>
+        public static int PriceFor(Faction f, ThingDef def, int count) =>
+            OutsiderMath.BringFree(LastFree(f), Find.TickManager?.TicksGame ?? 0) ? 0 : OutsiderMath.BringPrice(def?.BaseMarketValue ?? 0f, count);
+
+        /// <summary>A favour asked: their people owe the colonist who asked, the outsider promised it, at a price (0: free).</summary>
+        public static void Ask(Pawn outsider, Faction f, Pawn by, ThingDef def, int count, int price = 0)
         {
             if (f == null || by == null || def == null) return;
-            var terms = new TieTerms { goods = def.defName, count = count, days = OutsiderMath.BringGiveUpDays, about = outsider != null ? WorldLedger.PersonOf(outsider) : Ref.None };
+            var terms = new TieTerms
+            {
+                goods = def.defName, count = count, days = OutsiderMath.BringGiveUpDays, about = outsider != null ? WorldLedger.PersonOf(outsider) : Ref.None, number = Math.Max(0, price)
+            };
             WorldLedger.AddTie(Tie.Kind.Favour, Refs.Of(f), WorldLedger.PersonOf(by), terms, origin: Origin);
         }
 

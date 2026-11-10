@@ -217,6 +217,24 @@ namespace ColonyCouncil
             return t != null;
         }
 
+        /// <summary>
+        /// A notable's favour in person to a colonist (a pen friend's yearly favour to the one who writes to them: Dealings/
+        /// PenFriends.cs): from the notable to the colonist, of this size, counted with the other personal favours (twelve at
+        /// most). Null when it can't be kept (favours off, the notable or the colonist gone, one called in between them already).
+        /// </summary>
+        internal static Tie MakePersonal(Notable n, Pawn colonist, string kind, int size)
+        {
+            if (n?.faction == null || !n.Alive || !KinMemory.Ours(colonist) || !On || !Diplomacy.Deals(n.faction)) return null;
+            var from = n.Person;
+            var to = WorldLedger.PersonOf(colonist);
+            if (from.IsNone || to.IsNone) return null;
+            var d = new FactionDeed { faction = n.faction, kind = kind, weight = Math.Max(FavourMath.MinSize, size), side = DeedSide.Favor };
+            MakeOrRenew(from, to, d, colonist, out var t);
+            var personal = Live().Where(IsPersonal).OrderBy(x => x.since).ToList();
+            for (int i = 0; i < personal.Count - FavourMath.MaxPersonal; i++) WorldLedger.Set(personal[i], Tie.State.Ended);
+            return t;
+        }
+
         /// <summary>A debt made by a dev action or a test of the game: from a people to the colony, or the other way.</summary>
         internal static Tie Make(Faction f, Map home, bool theyOwe, string kind)
         {

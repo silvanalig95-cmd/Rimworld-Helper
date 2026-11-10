@@ -246,7 +246,7 @@
   <CC_Pen_Text>The letters between the colony and {CALLED} of {TOWN} have become something more than courtesy: {NAME} writes as a friend now. While the letters keep passing, {NAME} will send word ahead of raiders whose towns lie near theirs, the traders of {PEOPLE} give the colony {TERMS} better terms, {NAME} vouches for the colony's letters to peoples beyond its reach, and after a season of friendship there will be a favor owed.</CC_Pen_Text>
   <CC_Pen_Lapsed>The letters between the colony and {NAME} have grown few, and the friendship has cooled into courtesy.</CC_Pen_Lapsed>
   <CC_Pen_FavourLabel>A friend's favor: {NAME}</CC_Pen_FavourLabel>
-  <CC_Pen_Favour>{NAME} writes that the colony may count on {PEOPLE} for a good turn when it needs one, for the sake of all those letters. It is a debt of honor of theirs now, to call in when the colony needs it.</CC_Pen_Favour>
+  <CC_Pen_Favour>{NAME} writes that {PAWN} may count on them for a good turn when one is needed, for the sake of all those letters. It is a favor {NAME} owes {PAWN} in person now, smaller than a debt of all {PEOPLE}, to call in by letter.</CC_Pen_Favour>
   <CC_Dip_For_penFriend>years of letters between friends</CC_Dip_For_penFriend>
   <CC_Dip_For_builtTogether>a work built together</CC_Dip_For_builtTogether>
 

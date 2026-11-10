@@ -12,12 +12,15 @@ namespace ColonyCouncil
     /// <summary>
     /// The colony calls in a debt of honour (docs/design/stage2-diplomacy.md, round a, item 1): from a letter or a call to
     /// their notable (DiplomacyLetters.cs; the Diplomacy page and the town panel open that letter), or face to face with
-    /// one of theirs at the colony (DiplomacyActs.cs). What they can do now, each greyed with why not: a load of goods by
-    /// their town's fortune, brought by their porters; a word for the colony with a third people (10 goodwill, said in that
-    /// people's letter); a colonist of the colony they hold, set down at the edge of the colony's land to walk home; their
-    /// help toward peace with a people at war with the colony (a promise the truce's answer reads: Truces.cs); their fighters
-    /// while a threat is on a home (their band walks in some hours later, as a defence pact's does: Pacts.cs, release 2a.2,
-    /// decision 3). They honour it while their head (or the notable who owes) thinks well
+    /// one of theirs at the colony (DiplomacyActs.cs). What they can do now, each greyed with why not, by the debt's size
+    /// (<see cref="SizeOf"/>, half for a notable's personal favour: the player, 10 November 2026, "appropriate to the debt
+    /// i actually owe"): a load of goods worth 30 silver a point by their town's fortune and their means, brought by their
+    /// porters; a word for the colony with a third people (half the size in goodwill, said in that people's letter); a
+    /// colonist of the colony they hold, set down at the edge of the colony's land to walk home (15 or more); their help
+    /// toward peace with a people at war with the colony (a promise the truce's answer reads: Truces.cs; 12 or more); their
+    /// fighters while a threat is on a home (their band walks in some hours later, as a defence pact's does: Pacts.cs,
+    /// release 2a.2, decision 3; 12 or more). One debt of a people called in a season, by letter or face to face
+    /// (<see cref="CalledLately"/>). They honour it while their head (or the notable who owes) thinks well
     /// of the colony (20 or more), seven times in ten at a lower regard, four in ten below 0; a refusal is their letter (or
     /// their word face to face) and the deed "brokeWord".
     /// </summary>
@@ -56,8 +59,44 @@ namespace ColonyCouncil
                 if (n == null || !n.Alive) return DipWords.P("CC_Dip_Why_Gone");
                 if (!KinMemory.Ours(WorldLedger.PawnOf(t.to))) return DipWords.P("CC_Dip_Why_OwedGone");
             }
+            if (CalledLately(f)) return DipWords.P("CC_Dip_Why_CalledLately", DipWords.People(f).Named("PEOPLE"));
             return null;
         }
+
+        /// <summary>
+        /// A debt of this people (or of one of their notables in person) was called in this season, by letter or face to face:
+        /// one asked and not yet answered, or one honoured or refused within <see cref="FavourMath.CallGapDays"/>.
+        /// </summary>
+        public static bool CalledLately(Faction f)
+        {
+            if (f == null) return false;
+            int now = Now;
+            foreach (var t in WorldLedger.OwnTies(Tie.Kind.Favour))
+            {
+                if (t == null || t.origin != FavourMath.Origin || FavoursOwed.ColonyOwes(t)) continue;
+                bool called = t.state == Tie.State.CalledIn || (t.state == Tie.State.Kept || t.state == Tie.State.Broken) && t.closed >= 0 && !FavourMath.CallAllowed(t.closed, now);
+                if (called && FavoursOwed.PeopleOf(t) == f) return true;
+            }
+            return false;
+        }
+
+        /// <summary>A debt's size (FavourMath.SizeOf): the weight of the good turn that made it, else that of its kind.</summary>
+        public static int SizeOf(Tie t)
+        {
+            if (t?.terms == null) return 0;
+            int kind = t.terms.key != null && FactionMemory.Kinds.TryGetValue(t.terms.key, out var k) && k != null ? k.weight : 0;
+            return FavourMath.SizeOf(t.terms.number, kind);
+        }
+
+        /// <summary>What it counts for in what can be asked: its size, half for a notable's personal favour.</summary>
+        public static int Worth(Tie t) => FavourMath.Effective(SizeOf(t), FavoursOwed.IsPersonal(t));
+
+        /// <summary>"a small debt", "a debt", "a great debt": its weight in words.</summary>
+        public static string WeightWords(Tie t) => DipWords.P("CC_Dip_Weight_" + FavourMath.WeightOf(SizeOf(t)));
+
+        /// <summary>Why this much can't be asked on so small a debt, or null.</summary>
+        private static string SizeWhy(FavourAsk a, Tie t) =>
+            FavourMath.Allows(a, Worth(t)) ? null : DipWords.P(FavoursOwed.IsPersonal(t) ? "CC_Dip_Why_TooSmallPersonal" : "CC_Dip_Why_TooSmall", WeightWords(t).Named("WEIGHT"));
 
         /// <summary>What they could do now for this debt, each with why not.</summary>
         public static List<Option> Options(Tie t, Map home)
@@ -83,7 +122,7 @@ namespace ColonyCouncil
             foreach (var o in friends)
                 list.Add(new Option
                 {
-                    ask = FavourAsk.Word, arg = Refs.Of(o).ToString(), label = DipWords.P("CC_Dip_Opt_Word", DipWords.People(o).Named("PEOPLE")),
+                    ask = FavourAsk.Word, arg = Refs.Of(o).ToString(), label = DipWords.P("CC_Dip_Opt_Word", DipWords.People(o).Named("PEOPLE"), WordWords(Worth(t)).Named("HOWMUCH")),
                     why = o.HasGoodwill && o.PlayerGoodwill >= 100 ? DipWords.P("CC_Dip_Why_FullGoodwill", DipWords.People(o).Named("PEOPLE")) : null
                 });
             // A colonist of the colony they hold.
@@ -94,7 +133,7 @@ namespace ColonyCouncil
                 list.Add(new Option
                 {
                     ask = FavourAsk.Captive, arg = Refs.Of(p).ToString(), label = DipWords.P("CC_Dip_Opt_Captive", p.Named("PAWN")),
-                    why = home == null ? DipWords.P("CC_Dip_Why_NoHome") : null
+                    why = SizeWhy(FavourAsk.Captive, t) ?? (home == null ? DipWords.P("CC_Dip_Why_NoHome") : null)
                 });
             // Their help toward peace with a people at war with the colony.
             var enemies = Enemies(f).ToList();
@@ -104,13 +143,13 @@ namespace ColonyCouncil
                 list.Add(new Option
                 {
                     ask = FavourAsk.Peace, arg = Refs.Of(e).ToString(), label = DipWords.P("CC_Dip_Opt_Peace", DipWords.People(e).Named("PEOPLE")),
-                    why = PeacePromised(f, e) != null ? DipWords.P("CC_Dip_Why_Promised", DipWords.People(f).Named("PEOPLE")) : null
+                    why = SizeWhy(FavourAsk.Peace, t) ?? (PeacePromised(f, e) != null ? DipWords.P("CC_Dip_Why_Promised", DipWords.People(f).Named("PEOPLE")) : null)
                 });
             // Their fighters, only while a threat is on a home (release 2a.2).
             list.Add(new Option
             {
                 ask = FavourAsk.Fighters, arg = home != null ? Homes.KeyOf(home).ToString() : "", label = DipWords.P("CC_Dip_Opt_Fighters", DipWords.People(f).Named("PEOPLE")),
-                why = FightersWhy(f, home)
+                why = SizeWhy(FavourAsk.Fighters, t) ?? FightersWhy(f, home)
             });
             return list;
         }
@@ -126,10 +165,17 @@ namespace ColonyCouncil
             return null;
         }
 
+        /// <summary>A word's weight in words: "a good word" for a small one, "a warm word" from 6 goodwill, "a strong word" from 9.</summary>
+        private static string WordWords(int worth)
+        {
+            int gw = FavourMath.WordGoodwill(worth);
+            return DipWords.P(gw >= 9 ? "CC_Dip_Word_Strong" : gw >= 6 ? "CC_Dip_Word_Warm" : "CC_Dip_Word_Good");
+        }
+
         /// <summary>
-        /// The goods a kind means for them, and how many make the load (by their nearest town's fortune): medicine and food
-        /// that keeps of their own age (Things/ThingRoles.cs: a mod's as well as the game's), wood, steel, silver. The same
-        /// kind of a tie picks the same goods each time it's asked (its words and its load).
+        /// The goods a kind means for them, and how many make the load (the debt's worth by their nearest town's fortune and
+        /// their means): medicine and food that keeps of their own age (Things/ThingRoles.cs: a mod's as well as the game's),
+        /// wood, steel, silver. The same kind of a tie picks the same goods each time it's asked (its words and its load).
         /// </summary>
         public static (ThingDef def, int count) Goods(string kind, Faction f, Tie t)
         {
@@ -148,7 +194,7 @@ namespace ColonyCouncil
                     break;
             }
             if (def == null) return (null, 0);
-            float worth = FavourMath.GoodsWorth(Prosperity(f, t));
+            float worth = FavourMath.GoodsWorth(Worth(t), Prosperity(f, t), FavourMath.Means(Ages.Of(f)));
             return (def, FavourMath.GoodsCount(worth, def.BaseMarketValue));
         }
 
@@ -329,7 +375,7 @@ namespace ColonyCouncil
                 {
                     var other = DipWords.FactionOf(arg);
                     if (other == null) return null;
-                    PutInWord(f, other, home);
+                    PutInWord(f, other, home, FavourMath.WordGoodwill(Worth(t)));
                     return DipWords.P("CC_Dip_Done_Word", DipWords.People(other).Named("PEOPLE"));
                 }
                 case FavourAsk.Captive:
@@ -360,12 +406,12 @@ namespace ColonyCouncil
         }
 
         /// <summary>
-        /// Their word with a third people: that people thinks better of the colony (10 goodwill), and says so in a letter of
-        /// its own; the history keeps it (dip:word).
+        /// Their word with a third people: that people thinks better of the colony (half the debt's size in goodwill), and says
+        /// so in a letter of its own; the history keeps it (dip:word).
         /// </summary>
-        public static void PutInWord(Faction f, Faction other, Map home)
+        public static void PutInWord(Faction f, Faction other, Map home, int goodwill)
         {
-            WorldSituationWorker.Goodwill(other, FavourMath.WordGoodwill, false);
+            WorldSituationWorker.Goodwill(other, Mathf.Max(1, goodwill), false);
             string text = DipWords.T("CC_Dip_WordLetter", DipWords.People(other).Named("PEOPLE"), DipWords.People(f).Named("FRIEND"));
             Tell.Letter(NewsKind.World, Importance.Notable, home, DipWords.P("CC_Dip_WordLetter_Label", DipWords.People(other).Named("PEOPLE")), text,
                 LetterDefOf.PositiveEvent, LookTargets.Invalid, other);

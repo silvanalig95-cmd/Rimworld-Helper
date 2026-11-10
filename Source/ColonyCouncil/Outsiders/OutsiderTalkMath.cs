@@ -69,6 +69,8 @@ namespace ColonyCouncil
         public MarkFacts mark;
         public readonly List<(bool us, string text)> lines = new List<(bool, string)>();
         public string heard;
+        /// <summary>The facts behind the heard line's placeholders ("ws:7", "site:345", "ill:12"): what it names, for the history and the threats known.</summary>
+        public readonly List<string> heardFacts = new List<string>();
         public string markSubject, markFact;
     }
 
@@ -579,7 +581,13 @@ namespace ColonyCouncil
                 }
                 ch.lines.Add((pick.us, Texts.FillLine(pick.text, f.values, m?.values)));
             }
-            if (p.heard != null) ch.heard = Texts.FillLine(p.heard, f.values, m?.values);
+            if (p.heard != null)
+            {
+                ch.heard = Texts.FillLine(p.heard, f.values, m?.values);
+                foreach (var hole in p.heardHoles ?? new string[0])
+                    if (f.refs.TryGetValue(hole, out var fact) && KeepsFact(fact) && !ch.heardFacts.Contains(fact))
+                        ch.heardFacts.Add(fact);
+            }
             if (p.about != null)
             {
                 ch.markSubject = Value(f, m, p.about);
@@ -658,6 +666,20 @@ namespace ColonyCouncil
         public const float HeardDays = 60f;
         /// <summary>The same news again within this many days is the same news (its teller and day brought up to date).</summary>
         public const float HeardSameDays = 10f;
+
+        /// <summary>The same news (its words) heard again within <see cref="HeardSameDays"/>: one line in the history, not two.</summary>
+        public static bool SameNews(int lastTick, int now) => lastTick >= 0 && now >= lastTick && now - lastTick < HeardSameDays * TicksPerDay;
+
+        /// <summary>A people's page shows its newest few in its Overview; each town its newest one on the Towns tab; each notable theirs on the People tab.</summary>
+        public const int HeardPeopleShown = 3, HeardTownShown = 1, HeardNotableShown = 1, HeardOfThemShown = 4;
+
+        /// <summary>
+        /// The facts behind a heard line worth keeping with it: a world event ("ws:"), a site ("site:") the colony now knows of
+        /// (World/Warnings.cs, point 10), a notable named ("ill:", "head:", "notable:") whose record shows it.
+        /// </summary>
+        public static bool KeepsFact(string fact) =>
+            fact != null && (fact.StartsWith("ws:", StringComparison.Ordinal) || fact.StartsWith("site:", StringComparison.Ordinal) || fact.StartsWith("ill:", StringComparison.Ordinal)
+                             || fact.StartsWith("head:", StringComparison.Ordinal) || fact.StartsWith("notable:", StringComparison.Ordinal));
 
         // ---------------- Arithmetic ----------------
 

@@ -73,7 +73,8 @@ Fewer messages than when you order it: only a new friend, sweethearts, lovers an
   <CC_Out_Act_Duel>Challenge them to a duel of honour...</CC_Out_Act_Duel>
   <CC_Out_TheirPeople>their people</CC_Out_TheirPeople>
   <CC_Out_BringTitle>What should {OTHER}'s people bring?</CC_Out_BringTitle>
-  <CC_Out_BringItem>{THING} (about {COUNT})</CC_Out_BringItem>
+  <CC_Out_BringItem>{THING} (about {COUNT}, as a favor)</CC_Out_BringItem>
+  <CC_Out_BringItemPaid>{THING} (about {COUNT}, {SILVER} silver when it comes)</CC_Out_BringItemPaid>
   <CC_Out_TermsTitle>The terms (one beaten may come back for a rematch)</CC_Out_TermsTitle>
   <CC_Out_Terms_FirstBlood>To first blood</CC_Out_Terms_FirstBlood>
   <CC_Out_Terms_Yield>Until one yields</CC_Out_Terms_Yield>
@@ -181,7 +182,9 @@ Fewer messages than when you order it: only a new friend, sweethearts, lovers an
   <CC_Out_Msg_WordYes>{OTHER} promised {PAWN} to put in a good word for the colony with {NAME} once home.</CC_Out_Msg_WordYes>
   <CC_Out_Msg_WordLanded>{OTHER} is home, and has spoken well of the colony to {NAME}, as {PAWN} asked.</CC_Out_Msg_WordLanded>
   <CC_Out_Msg_BringYes>{OTHER} will have their people bring {THING} on their next visit, as {PAWN} asked.</CC_Out_Msg_BringYes>
+  <CC_Out_Msg_BringYesPaid>{OTHER} will have their people bring {THING} on their next visit, as {PAWN} asked, for {SILVER} silver when it comes.</CC_Out_Msg_BringYesPaid>
   <CC_Out_Msg_Brought>{BEARER} brought {THING}, as {OTHER} promised {PAWN}.</CC_Out_Msg_Brought>
+  <CC_Out_Msg_BroughtPaid>{BEARER} brought {THING}, as {OTHER} promised {PAWN}, for {SILVER} silver from the colony's stores.</CC_Out_Msg_BroughtPaid>
   <CC_Out_Msg_BringLapsed>Nobody of {FACTION} came by with the {THING} {OTHER} promised, and the favour has lapsed.</CC_Out_Msg_BringLapsed>
   <CC_Out_Msg_InviteYes>{OTHER} accepted {PAWN}'s invitation to stay. {FACTION} lose one of their own, and think a little less of the colony for it.</CC_Out_Msg_InviteYes>
   <CC_Out_Msg_Friends>{PAWN} and {OTHER} are friends now, though they live apart.</CC_Out_Msg_Friends>
@@ -207,6 +210,8 @@ Fewer messages than when you order it: only a new friend, sweethearts, lovers an
   <!-- Heard lately: a town's news told at the colony (Outsiders/OutsiderHeard.cs) -->
   <CC_Out_Heard_Header>Heard lately</CC_Out_Heard_Header>
   <CC_Out_Heard_Line>{TEXT} ({TELLER} to {PAWN}, {AGO})</CC_Out_Heard_Line>
+  <CC_Out_Heard_LineFrom>{TEXT} ({TELLER} of {FROM} to {PAWN}, {AGO})</CC_Out_Heard_LineFrom>
+  <CC_Out_Heard_Hist>{TELLER} of {FROM} told {PAWN}: {NEWS}</CC_Out_Heard_Hist>
   <CC_Out_Heard_Today>today</CC_Out_Heard_Today>
   <CC_Out_Heard_Yesterday>yesterday</CC_Out_Heard_Yesterday>
   <CC_Out_Heard_DaysAgo>{0} days ago</CC_Out_Heard_DaysAgo>

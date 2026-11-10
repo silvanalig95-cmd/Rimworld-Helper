@@ -130,7 +130,9 @@ namespace ColonyCouncil
                         WorldLedger.Keep(x, KeepFor.Spouse);
             if (home == null || Diplomacy.Hostile(f)) return;
             float day = now / (float)MatchMath.DayTicks;
-            if (On && MatchMath.TownGiftDue(t.terms.number, t.since / (float)MatchMath.DayTicks, day)) TownGift(t, f, home, ours, theirs, day);
+            // Their town's gift each season, only while their people's goodwill is 20 or more (it waits for better terms).
+            if (On && MatchMath.TownGiftDue(t.terms.number, t.since / (float)MatchMath.DayTicks, day) && MatchMath.TownGiftSent(f.HasGoodwill ? f.PlayerGoodwill : 0))
+                TownGift(t, f, home, ours, theirs, day);
             if (On) Warn(f, home, now);
             KeepPact(f, home, day);
         }
@@ -185,12 +187,21 @@ namespace ColonyCouncil
         }
 
         /// <summary>
-        /// The alliance stands as a defence pact (one, not two; never with the Empire): the live one with them runs on while
-        /// the marriage holds; none, it is made again a year after the last one with them closed.
+        /// A defence pact may stand with them as the alliance's: pacts on, not the Empire, and a pact's own rules holding
+        /// (MatchMath.AlliancePact: at peace, goodwill 20, their head not set against the colony).
+        /// </summary>
+        public static bool PactHolds(Faction f, Map home) =>
+            Pacts.On && f != null && MatchMath.AlliancePact(Ages.IsEmpire(f), f.HasGoodwill ? f.PlayerGoodwill : 0, Pacts.HeadRegard(f, home), Diplomacy.Hostile(f));
+
+        /// <summary>
+        /// The alliance stands as a defence pact (one, not two; never with the Empire) while a pact's own rules hold: the live
+        /// one with them runs on while the marriage holds and they think well enough of the colony (else it comes to its
+        /// year's end as any pact, their renewal letter by their goodwill); none, it is made again a year after the last one
+        /// with them closed, on the same terms.
         /// </summary>
         private static void KeepPact(Faction f, Map home, float day)
         {
-            if (!Pacts.On || Ages.IsEmpire(f)) return;
+            if (!PactHolds(f, home)) return;
             var pact = Pacts.Of(f, home, PactKind.Defence);
             if (pact != null)
             {

@@ -196,6 +196,7 @@
     <Compile Include="../../Source/ColonyCouncil/Wishes/SeasonWishMath.cs" Link="SeasonWishMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Wishes/PetitionMath.cs" Link="PetitionMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/World/LetterMath.cs" Link="LetterMath.cs" />
+    <Compile Include="../../Source/ColonyCouncil/World/WarnMath.cs" Link="WarnMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/UI/CouncilLayoutMath.cs" Link="CouncilLayoutMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Social/TogetherMath.cs" Link="TogetherMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Social/FamilyYearsMath.cs" Link="FamilyYearsMath.cs" />

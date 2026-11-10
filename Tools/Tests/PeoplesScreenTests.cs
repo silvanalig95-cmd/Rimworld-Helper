@@ -343,7 +343,7 @@ public static class PeoplesScreenTests
             "Dealings is diplomacy's own body; all peoples has the owed strip and their memories");
         C(page.Contains("Cards.ShowOnMap(t.s)") && page.Contains("PostRing.Ring("), "a town's row shows it on the region map, its range ring from the post's hook");
         C(page.Contains("WorldHistoryPage.ShowFor(Refs.Of(e.f), Ref.None)") && page.Contains("History.Of(Refs.Of(e.f)"), "History: their timeline, and their whole history a click on");
-        C(page.Contains("Peoples.Of(f)") && page.Contains("FeastWords.Hope(Feasts.HopeOf(f))") && page.Contains("NeighbourLetters.Topics(head, LetterPurpose.Warning)"),
+        C(page.Contains("Peoples.Of(f)") && page.Contains("FeastWords.Hope(Feasts.HopeOf(f))") && page.Contains("Warnings.Threats(f)"),
             "what they want and fear from what Rimfolk knows: their template, their feast's hope, the threats known");
         C(acts.Contains("CardActs.registry.In(kind, CardSlot.Acts)") && acts.Contains("a.act(th)") && acts.Contains("a.whyNot?.Invoke(th)"),
             "every card act of the target through its own code path, greyed with its own reason");

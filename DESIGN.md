@@ -7791,7 +7791,9 @@ written. Now (`World/LetterMath.cs`, pure and tested in `LettersPetitionsTests`;
   said); a warning heeded kindly or coolly is remembered ("warned"), heeded warmly it is a debt of honour (the deed at
   weight 10, `LetterMath.HeededWarmly`, made when the answer reaches the colony: `NeighbourLetter.owed`, saved, then
   `Owed`, through `FavoursOwed.Quietly` so the answer's own words tell it once), where debts of honour are kept
-  (`CanOwe`; else remembered). News, help, a visit and stage 2's purposes (a favour, a pact, a truce, a ransom, an envoy,
+  (`CanOwe`; else remembered). Since 10 November 2026 a warning weighs what its threat was worth to them, one debt from
+  warnings a season, and a greeting's token comes once a season from each notable (below, "Diplomacy kept fair").
+  News, help, a visit and stage 2's purposes (a favour, a pact, a truce, a ransom, an envoy,
   a ward, a match, an oath, a feast) bring what they always did.
 - **Regard in words.** The answer's last line says how far it moved them, from their regard before and after
   (`LetterMath.Move`: into another band, "civil before, friendly now"; a good deal, a shade, nothing, a shade less;
@@ -8133,8 +8135,10 @@ options should have some motivation to do them". Step B of `docs/design/diplomac
   friend (a letter says what it brings), which holds while a letter passes within 90 days and their regard stays at 15.
   A pen friend: their messenger walks in with word of a raid by a people whose nearest town lies within 20 tiles of
   theirs, the raid held 3 to 5 hours (once in 10 days); 2% better terms with their people's traders; their people
-  introduce the colony's letters to peoples beyond its reach (below); and after a season, once in 60 days, a favor (a debt
-  of honor of theirs, `FavoursOwed.Make`, "years of letters between friends"). Twelve friends at most, the coolest lapse.
+  introduce the colony's letters to peoples beyond its reach (below); and after a season, once in 60 days, a favor (since
+  10 November 2026 the friend's own in person to the colonist who writes to them, `FavoursOwed.MakePersonal` of
+  `DealingMath.FavourSize` 10, counting half: "years of letters between friends"; their whole people's debt until then).
+  Twelve friends at most, the coolest lapse.
 - **The world writes first** (post point 13, `WorldWrites`): once a day, with a notable at peace who thinks 10 or more of
   the colony, a chance of 0.06, 0.02 more for each pen friend, 0.14 at most, never within 6 days of the last and never with
   two waiting (`DealingMath.WriteChance`; simulated, a letter every 10 to 25 days). Pen friends write three times as often
@@ -8159,6 +8163,117 @@ options should have some motivation to do them". Step B of `docs/design/diplomac
 - **Saved** (`DealingBook`, a game component of its own: an older save starts it empty): the dealings (closed ones kept
   60 days, a work built kept while it stands, 80 at most), the pen friends (with their letters' ticks, eight at most each),
   the world's letters waiting (two at once). Modelled in `Tools/save_estimate.py`.
+
+## Diplomacy kept fair: warnings, debts by their size, and the gates (the player's request, 10 November 2026)
+
+The player: "if i got it right I can now share a warning with them about any kind of raider, and then just use "a debt
+of honor" to have them deliver a variety of valuable things to me, right? this debt should definitely be possible, but it
+should be balanced, appropriate to the debt i actually owe and not be repeatable all the time if not for good reasons.
+also review the other diplomatic options for balance and "gameplay realism". offering a marriage match for example should
+also only be possible when we have great diplomatic relations etc.", "also warning about raiders should only be an option
+if the target colony is actually a potential target for these raiders and not too much time has expired", "is any
+information that is generated in these talks also logged in the ledger/history/diplomatic screen?", and on the list: "please
+go ahead with all of your diplomacy and other guest proposal". The pure rules in `World/WarnMath.cs` (new),
+`Diplomacy/FavourMath.cs`, `MatchMath.cs`, `WardMath.cs`, `PactMath.cs`, `World/NotableMath.cs`, `Outsiders/OutsiderMath.cs`
+and `OutsiderTalkMath.cs`, `Dealings/DealingMath.cs`; tested in `Tools/Tests/DiplomacyBalanceTests.cs` ("diplomacy balance: ",
+every number and gate below, two years of warnings and calls, an older save, the seams).
+
+1. **Warn only of a real threat to their town** (`World/Warnings.cs`, `WarnMath`). The threats to a people are worked out
+   at most once an hour for each people from the map (`Warnings.Threats`, weightiest first), measured to the nearest of
+   their towns:
+   - Raiders: a people that struck a home in the last 5 days (`FactionMemory` "raided"), has a raid on its way
+     (`happenings.raids`) or keeps a raiders' camp the colony found (`RaidersCamps.Known`), at war with them, not them,
+     still standing (`WarnMath.RaidersWhy`), and in reach (`RaidersSize`): a town of theirs within 20 tiles
+     (`DealingMath.WarnTiles`), a camp or a site of theirs within 12, their Faction Territories land within 30
+     (`RaidersCampMath.TerritoryTiles`; a flood fill only with such a mod and only when nothing else is near), or the home
+     they struck within 20. A people at war with everyone counts by the same rules.
+   - A hostile site within 12 tiles of their town, not their own people's.
+   - Wars and road troubles (`WarnMath.WarOrRoad`: a bad world event of kind war, roads or son: a warlord, the clans
+     gathering, a war between neighbours, a bandit road, the warlord's son's band) whose attacker (its people, else its
+     enemy) is at war with them and not them, within 20 tiles (its place, else its people's nearest town); never a war
+     they are a side of. This ends the old bug that offered a warlord only to the warlord's own people.
+   - Hardships that spread (`WarnMath.Spreading`: sickness, fire, locusts, blight) within 20 tiles, never to the people
+     it falls on or one suffering the same: a lesser warning, memory and goodwill, never a debt.
+   - The colony must know of it: raiders it saw (struck, coming, a camp found), a site within its region's reach of a home,
+     a camp found, or anything heard of in talk (point 10). World events are always told as they begin.
+   The letter's window lists, under its topic, the raiders the colony knows of that aren't listed and why
+   (`Warnings.NotListedLines`: too far, too old, not their enemy, gone), and a warning with nothing to warn of is greyed
+   with the first of them (`Warnings.WhyNone`). The topic texts name the town at risk ("the raiders of the Kotar, camped
+   near Ashford").
+2. **Recent or coming only.** A raid counts 5 days (`WarnMath.RaidDays`), a coming threat while it lasts. The topic is
+   gone when the threat ends; a letter read after that (`Warnings.Heed`: not standing) brings thanks and the plain
+   memory (`CC_LetterBring_HeededLate`, `NeighbourLetter.late`), never a debt.
+3. **The debt's size by what the warning was worth** (`WarnMath.Size`): a war or a warlord's band near them 14, a camp or
+   a hostile site within 12 tiles 12, raiders whose town is within 10 tiles 10, within 10 to 20 (or their land, or the home
+   they struck) 8, a memory only. Only a warm answer makes a debt (`NeighbourLetter.owedSize`, saved, read by `Owed`); a
+   warm answer that may not make one is remembered under a debt's size (at most 9), a cordial or cool one at the memory's
+   own 6. "Warned" memories no longer merge (`FactionMemory.Kinds`), so kind answers never add up into a debt. When the
+   threat strikes them (`CallsToArms.Attacked`, the same attacker) within 15 days of the warning, the debt grows by 4
+   (`Warnings.Daily`, `Struck`, a line of news: `CC_Warn_Struck_Debt`), else a little more is remembered. No gift by
+   regard beside a debt a warning made.
+4. **Calling in by the debt's size and their means** (`FavourCalls.SizeOf`, `Worth`; `FavourMath`): goods worth size × 30
+   × their town's fortune (0.75 to 1.25) × their means (`Means`: `DealingMath.TheirLoadValue` ÷ 400, tribal 0.55,
+   medieval 0.75, industrial 1, spacer 1.25), so a warning's 10 brings 300 at a steady industrial town and refugees' 20 at
+   a flourishing spacer one 937; a good word with a third people half the size in goodwill (its weight in the option's
+   words: a kind, a warm, a strong one); help toward peace and fighters from 12, a colonist they hold from 15; a notable's
+   personal favour counts half. Each greyed with why (`CC_Dip_Why_TooSmall`). The debt's line names its weight
+   (`FavourMath.WeightOf`: "a small debt" below 12, "a debt", "a great debt" from 18), so the People page's act rows,
+   the letter's topics and the panels say it.
+5. **One debt per real threat, with gaps per people.** Each threat is warned of once per people (`NotableBook.warned`,
+   saved: the people, the threat's key, when, its size, whether it made a debt, whether it struck, whose it was; 60 at
+   most, kept 30 days or while the threat stands; a letter under way to any of them holds it too), so the 12 keys a
+   notable keeps (`Notable.done`, now for losses only) can't bring an old threat back. One debt from warnings a season per
+   people (`WarnMath.DebtAllowed`). One debt called in a season per people, by letter or face to face
+   (`FavourCalls.CalledLately`: a debt of theirs or of one of their notables called in, or honoured or refused within
+   `FavourMath.CallGapDays`, the ledger's own closed ties), greyed "a debt of theirs was called in this season already".
+6. **The gates.**
+   - Match (`Matches.SeekWhyNot`, `TermsWhyNot`; `MatchMath`): sought only with their head's regard 30 and their goodwill
+     40, or 10 and 20 for two who courted (lovers, or sweet on each other face to face: the outsider pair's `court`);
+     accepted 20% and 1% a point of regard above 30, 35% more for lovers, 10% more at goodwill 75 (5% less when theirs
+     would move; 10% to 95%); one of their town made for it only at their head's regard 50; a season's wait with that
+     people after a no (`DiplomacyMath.MatchRefused`, "dip:matchNo" in the history, which keeps it). The alliance's
+     defence pact is made at the wedding and runs on only while a pact's rules hold (`Matches.PactHolds`,
+     `MatchMath.AlliancePact`: `PactMath.Renews`, never the Empire); the town's seasonal gift only at goodwill 20
+     (`TownGiftSent`; it waits). Their own offers keep their rules. A match stays between two persons, never houses.
+   - Ward asked for: their head's regard 30 (`WardMath.MayAsk`, `Wards.AskWhyNot`, `CC_Ward_Why_Regard`); their send
+     chance from there (0.6 at 30).
+   - A truce they pay for: -40 (`PactMath.TheyPayScore`, -20 until now), offered by the colony only after a raid of theirs
+     beaten lately (`TheyMayPay`, `Truces.BeatenLately`, greyed `CC_Truce_Why_TheyPayBeaten`), at half the colony's price
+     (`TheirPriceSilver`, as their own offer always was).
+   - Greetings: the token and the gift by regard once a season per notable, any purpose (`NotableMath.GiftAllowed`,
+     `Notable.LastOf(NeighbourLetters.GiftKey)`; a warm greeting without one tells how their town fares).
+   - Help: once in 20 days per people, whoever of them is written to (`NotableMath.HelpAllowed`,
+     `NeighbourLetters.LastOfPeople`, `CC_Letter_Why_HelpPeople`).
+   - A pen friend's yearly favour is the friend's own, in person, to the colonist who wrote to them last (else the one they
+     think best of): `FavoursOwed.MakePersonal`, size `DealingMath.FavourSize` 10, half the goods (150 at a steady
+     industrial town).
+   - Something brought next time: free once a season per people, else its market price in silver from the stores when it
+     comes (`OutsiderMath.BringFree`, `BringPrice`; the price in the tie's `number`, `Favours.PriceFor`; the menu and the
+     promise say which; a paid one waits until the stores hold its price, then their courier fetches it).
+7. **Heard news into the history.** `OutsiderTalk.Heard` writes the news as "world:heard" (as far news does,
+   `FarNews.Kind`): at the colony, their people and town and the colonist told as its actors, the teller named in the
+   line (`CC_Out_Heard_Hist`); the same news within 10 days once (`OutsiderTalkMath.SameNews`). It shows in the people's
+   and the town's History.
+8. **The People page** (`UI/Region/PeoplePage.cs`, lines made by `OutsiderHeard.Lines` with the town and the colonist
+   as links): "Heard lately" in the Overview (their newest 3, any town or none); each town's newest line under its row on
+   the Towns tab; a people with no town, its news under the empty list. The Overview's threats are `Warnings.Threats`
+   (warned of or not).
+9. **News naming a notable** (`HeardNews.notable`, `about`, saved; from the facts behind the line, `ill:`, `head:`,
+   `notable:`, else a death among them by name) is on that notable's row on the People tab ("news heard of them", the line
+   in its tip), and "Heard of them" lists the news naming theirs, the gone too.
+10. **News of a threat makes the colony aware of it.** The facts behind a heard line (`TalkChoice.heardFacts`,
+   `OutsiderTalkMath.KeepsFact`) that name a site or a world event (`WarnMath.FromFact`) go into `NotableBook.known`
+   (saved, 40 at most, 30 days); a site known so can then be warned of.
+
+Also: `OutsiderHeard.Draw` and `Height` (dead) and `TownView.heard` (built, never read) are gone; the comments about the
+"World page" are fixed. **An older save:** each notable's warning keys move to their people's record at the first day's
+look (`Warnings.Daily`), so a threat they were warned of stays warned of and no longer comes back to another of them;
+letters under way keep their topic keys and are re-checked when read (a threat now gone, or no threat to them under the
+new rules, is thanks and memory only); an older letter's warm warning with no size is a debt of 10
+(`LetterMath.HeededWarmly`); open debts keep the size their good turn gave them (`terms.number`), one with none takes its
+deed's weight (`FavourMath.SizeOf`); open "bring it next time" favours are free. Saved: `NotableBook.warned`, `known`,
+`NeighbourLetter.owedSize`, `late`, `HeardNews.notable`, `about`, the outsiders' favour's price in its tie's terms
+(modelled in `Tools/save_estimate.py`). Nothing new ticks: the warnings ride on the neighbours' day.
 
 ## Letters that read like letters (the player's request, 9 November 2026)
 
@@ -8427,7 +8542,8 @@ Stage 2's base and its first item, favours owed and called in (docs/design/stage
   `DiplomacyLetters`: what about, what is asked, their answer in `NeighbourLetters.Read`), from the region window's Peoples or
   the town's card (which open that letter), or face to face (`OutsiderAct.AskFavour` after Invite, `DiplomacyActs`).
   `FavourCalls.Options` lists what they can do, each greyed with why not: goods by their town's fortune and age, a word
-  with a third people, a colonist they hold walked home, help toward peace. `FavourCalls.Hear` rolls their head's
+  with a third people, a colonist they hold walked home, help toward peace (by the debt's size and their means since 10
+  November 2026, one call a season per people: "Diplomacy kept fair"). `FavourCalls.Hear` rolls their head's
   regard (`FavourMath.HonourChance`), does it (the goods with the answer's messenger or their porters, the third
   people's own letter, the colonist set down at the edge to walk to the gate, the promise) and keeps or breaks the tie;
   a refusal is the deed `brokeWord`.
@@ -8694,7 +8810,9 @@ spouse wronged is their people's, handed down no line.
   agreed with `Rimfolk_MatchPressed` (-6 for 20 days, a mood hint), trust -3 and `Nature.Felt(MatchAgainstHeart)`;
   withdrawn (the default), their regard -3. A colonist who comes round meanwhile is agreed without it.
 - **Their answer** (`Matches.Hear`): `MatchMath.Accepts` by their head's (or the house's) regard, never below 0, much
-  likelier for two lovers, less when theirs would move, more for an ally; no costs a little regard.
+  likelier for two lovers, less when theirs would move, more for an ally; no costs a little regard. Since 10 November 2026
+  sought only on great terms, a fifth at regard 30 and a hundredth a point above, and a season's wait after a no ("Diplomacy
+  kept fair").
 - **Agreed** (`Matches.Agree`): the game's fiancé relation (a Lover's made Fiance; the name change rolled by the game's
   own fiancé worker), the day their kin come (`MatchMath.LeadDays`: their road and a day), gifts both ways at the gate
   (`Couriers.Exchange`: theirs by their ways, `Matches.GiftDef`, a tribe's jade, gold for the middle ages and the Empire,

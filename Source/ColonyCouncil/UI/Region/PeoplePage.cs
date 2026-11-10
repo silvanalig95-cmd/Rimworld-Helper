@@ -175,6 +175,8 @@ namespace ColonyCouncil
             public List<string> wants = new List<string>();
             public List<string> reach = new List<string>();
             public string here;
+            /// <summary>Heard lately of them, newest first (Outsiders/OutsiderHeard.cs), with the town and the colonist told as links.</summary>
+            public List<string> heard = new List<string>();
         }
 
         private static readonly Kept known = new Kept { people = int.MinValue };
@@ -192,6 +194,13 @@ namespace ColonyCouncil
             foreach (var l in known.reach) y += LinkText.Draw(new Rect(4f, y, w - 8f, 999f), l, Color.white) + 2f;
             if (!known.here.NullOrEmpty()) y += LinkText.Draw(new Rect(4f, y, w - 8f, 999f), known.here, UiKit.StrangerColor) + 2f;
             y += 12f;
+            // Heard lately of them in talk with their people (their towns' and, for a people with no town, their own), newest first.
+            if (known.heard.Count > 0)
+            {
+                y += UiKit.SectionTitle(0f, y, w, HeardTitle, Icons.Journal, UiKit.Heading);
+                foreach (var l in known.heard) y += LinkText.Draw(new Rect(4f, y, w - 8f, 999f), l, UiKit.Faint, GameFont.Tiny) + 2f;
+                y += 12f;
+            }
             // Do something with them: every act that fits, each with what it brings, how it travels and what it costs.
             y += UiKit.SectionTitle(0f, y, w, ActsTitle, Icons.Promise ?? Icons.Trust, UiKit.Heading);
             return PeopleActs.Draw(e, y, w, scroll.y, scroll.y + viewH);
@@ -211,6 +220,7 @@ namespace ColonyCouncil
             var list = known.wants;
             list.Clear();
             known.reach.Clear();
+            known.heard.Clear();
             known.here = null;
             try
             {
@@ -234,10 +244,10 @@ namespace ColonyCouncil
                     foreach (var s in ws.Running)
                         if (s?.def != null && s.def.bad && s.ctx?.faction == f && !s.Label.NullOrEmpty())
                             list.Add("CC_PplP_HardTimes".Translate(s.Label.Named("EVENT")).Resolve());
-                var head = FavourCalls.HeadOf(f, PeoplesModel.Home);
-                if (head != null)
-                    foreach (var topic in NeighbourLetters.Topics(head, LetterPurpose.Warning).Take(3))
-                        list.Add("CC_PplP_Threat".Translate(topic.text.Named("THREAT")).Resolve());
+                // The threats to them the colony knows of (World/Warnings.cs), warned of already or not.
+                foreach (var threat in Warnings.Threats(f).Take(3))
+                    list.Add("CC_PplP_Threat".Translate(threat.text.Named("THREAT")).Resolve());
+                if (Outsiders.On) known.heard.AddRange(OutsiderHeard.Lines(OutsiderTalk.HeardOf(f, OutsiderTalkMath.HeardPeopleShown), true));
                 if (f.def.permanentEnemy) list.Add("CC_Peoples_EveryonesFoe".Translate().Resolve());
                 else if (Facts.Counts(f))
                 {
@@ -264,7 +274,36 @@ namespace ColonyCouncil
 
         private static PeopleEntry townsFor;
         private static readonly List<PeopleTown> townRows = new List<PeopleTown>();
-        private const float TownH = 48f;
+        private const float TownH = 48f, TownHeardH = 18f;
+        /// <summary>Each town's newest news heard, by its id (a link line), made at most once a second; and a people's own with no town.</summary>
+        private static readonly Dictionary<int, string> townHeard = new Dictionary<int, string>();
+        private static readonly List<string> peopleHeard = new List<string>();
+        private static float townHeardAt = -100f;
+        private static PeopleEntry townHeardFor;
+
+        private static void TownsHeard(PeopleEntry e)
+        {
+            float t = Time.realtimeSinceStartup;
+            if (townHeardFor == e && t - townHeardAt < 1f && t >= townHeardAt) return;
+            townHeardFor = e;
+            townHeardAt = t;
+            townHeard.Clear();
+            peopleHeard.Clear();
+            if (!Outsiders.On) return;
+            try
+            {
+                foreach (var row in townRows)
+                {
+                    var line = OutsiderHeard.Lines(OutsiderTalk.HeardAt(row.s.ID, OutsiderTalkMath.HeardTownShown), false).FirstOrDefault();
+                    if (!line.NullOrEmpty()) townHeard[row.s.ID] = line;
+                }
+                peopleHeard.AddRange(OutsiderHeard.Lines(OutsiderTalk.HeardOf(e.f, OutsiderTalkMath.HeardPeopleShown), false));
+            }
+            catch (Exception ex)
+            {
+                CouncilLog.ErrorOnce("region window: a people's towns' news", ex);
+            }
+        }
 
         private static float Towns(PeopleEntry e, float w, float viewH)
         {
@@ -274,8 +313,19 @@ namespace ColonyCouncil
                 townRows.Clear();
                 townRows.AddRange(e.towns.OrderBy(t => t.daysWord != null && t.days >= 0f ? t.days : 100000f + t.tiles));
             }
+            TownsHeard(e);
             float y = 0f;
-            if (townRows.Count == 0) return UiKit.EmptyState(0f, 0f, w, Icons.World, e.Named("CC_PplP_NoTowns"), 70f);
+            if (townRows.Count == 0)
+            {
+                // A people with no town: what was heard of them stands here.
+                y = UiKit.EmptyState(0f, 0f, w, Icons.World, e.Named("CC_PplP_NoTowns"), 70f);
+                if (peopleHeard.Count > 0)
+                {
+                    y += UiKit.SectionTitle(0f, y, w, HeardTitle, Icons.Journal, UiKit.Heading);
+                    foreach (var l in peopleHeard) y += LinkText.Draw(new Rect(4f, y, w - 8f, 999f), l, UiKit.Faint, GameFont.Tiny) + 2f;
+                }
+                return y + 6f;
+            }
             int looked = 0;
             for (int i = 0; i < townRows.Count; i++)
             {
@@ -286,8 +336,20 @@ namespace ColonyCouncil
                     PeoplesModel.Look(t);
                     looked++;
                 }
-                if (y + TownH >= scroll.y && y <= scroll.y + viewH) TownRow(new Rect(0f, y, w, TownH), t, e, i);
-                y += TownH + 2f;
+                bool news = townHeard.TryGetValue(t.s.ID, out var heard);
+                float h = TownH + (news ? TownHeardH : 0f);
+                if (y + h >= scroll.y && y <= scroll.y + viewH)
+                {
+                    TownRow(new Rect(0f, y, w, TownH), t, e, i);
+                    // Its newest news heard, under the row (with the colonist told as a link).
+                    if (news)
+                    {
+                        var hr = new Rect(42f, y + TownH - 4f, w - 50f, TownHeardH);
+                        LinkText.Line(hr, heard, UiKit.Faint, GameFont.Tiny);
+                        TooltipHandler.TipRegion(hr, LinkTextMath.Plain(heard));
+                    }
+                }
+                y += h + 2f;
             }
             return y + 6f;
         }
@@ -360,8 +422,13 @@ namespace ColonyCouncil
             public Notable n;
             public ThingRef who;
             public string name, second, why;
+            /// <summary>The newest news heard naming them (Outsiders/OutsiderTalk.cs), or null.</summary>
+            public string heard;
             public Color color;
         }
+
+        /// <summary>The news heard naming their notables, the living and the gone, newest first (link lines).</summary>
+        private static readonly List<string> heardOfThem = new List<string>();
 
         private static readonly List<PersonLine> persons = new List<PersonLine>();
         private static readonly List<Pawn> hereNow = new List<Pawn>();
@@ -379,6 +446,7 @@ namespace ColonyCouncil
             persons.Clear();
             hereNow.Clear();
             hereNames.Clear();
+            heardOfThem.Clear();
             try
             {
                 foreach (var n in e.notables)
@@ -386,12 +454,17 @@ namespace ColonyCouncil
                     int op = NotableBook.Opinion(n);
                     var who = ThingRefs.Of(n);
                     string town = n.townName.NullOrEmpty() ? "" : n.town >= 0 && ThingRefs.Exists(ThingRefs.Of(Ref.Town(n.town))) ? ThingRefs.Link(n.townName, ThingRefs.Of(Ref.Town(n.town))) : n.townName;
+                    // The newest news heard naming them goes on their record (the second line says so, the tip tells it).
+                    var news = Outsiders.On ? OutsiderTalk.HeardOfNotable(n, OutsiderTalkMath.HeardNotableShown).FirstOrDefault() : null;
+                    string heard = news != null ? LinkTextMath.Plain(OutsiderHeard.Lines(new List<HeardNews> { news }, true).FirstOrDefault() ?? "") : null;
                     persons.Add(new PersonLine
                     {
                         n = n, who = who, color = NotableBook.RegardColor(op), name = ThingRefs.Link(n.Name, who) + ", " + NotableBook.TitleOf(n),
-                        second = (town.NullOrEmpty() ? "" : town + " · ") + NotableBook.RegardWords(op), why = NeighboursPanel.WhyNoLetter(n)
+                        second = (town.NullOrEmpty() ? "" : town + " · ") + NotableBook.RegardWords(op) + (heard != null ? " · " + HeardOfLabel : ""), why = NeighboursPanel.WhyNoLetter(n),
+                        heard = heard
                     });
                 }
+                if (Outsiders.On) heardOfThem.AddRange(OutsiderHeard.Lines(OutsiderTalk.HeardAbout(e.f, OutsiderTalkMath.HeardOfThemShown), true));
                 foreach (var p in PeopleActs.Here(e))
                 {
                     hereNow.Add(p);
@@ -417,6 +490,13 @@ namespace ColonyCouncil
             {
                 PersonRow(new Rect(0f, y, w, PersonH), all[i], i);
                 y += PersonH + 2f;
+            }
+            // News heard naming their notables (ill, a new head, a death among them), the gone ones too.
+            if (heardOfThem.Count > 0)
+            {
+                y += 8f;
+                y += UiKit.SectionHeading(0f, y, w, HeardOfThemTitle, heardOfThem.Count, null, null, out _);
+                foreach (var l in heardOfThem) y += LinkText.Draw(new Rect(4f, y, w - 8f, 999f), l, UiKit.Faint, GameFont.Tiny) + 2f;
             }
             // The letters exchanged with each of them, newest first: each opens both letters to read (Letters/LetterReadWindow.cs).
             foreach (var (n, rows) in letters)
@@ -553,6 +633,7 @@ namespace ColonyCouncil
             float x = pic.xMax + 8f, tw = Mathf.Max(0f, b.x - x - 6f);
             LinkText.Line(new Rect(x, r.y + 4f, tw, 20f), row.name, Color.white);
             LinkText.Line(new Rect(x, r.y + 24f, tw, 18f), row.second, color, GameFont.Tiny);
+            if (row.heard != null) TooltipHandler.TipRegion(new Rect(x, r.y + 22f, tw, 22f), row.heard);
         }
 
         // ================= Dealings =================
@@ -681,7 +762,12 @@ namespace ColonyCouncil
         private static string WriteLabel => writeLabel ??= "CC_Neighbours_Write".Translate();
         private static string ShowTownTip => showTownTip ??= "CC_Lens_ShowTip".Translate();
 
-        private static string showTip, ageTip, wantsTitle, reachTitle, actsTitle, actOnTownTip, actOnPersonTip, facesLabel, facesTip, allTitle, allLine;
+        private static string showTip, ageTip, wantsTitle, reachTitle, actsTitle, actOnTownTip, actOnPersonTip, facesLabel, facesTip, allTitle, allLine, heardTitle, heardOfThemTitle,
+            heardOfLabel;
+
+        private static string HeardTitle => heardTitle ??= "CC_Out_Heard_Header".Translate();
+        private static string HeardOfThemTitle => heardOfThemTitle ??= "CC_PplP_HeardOfThem".Translate();
+        private static string HeardOfLabel => heardOfLabel ??= "CC_PplP_HeardOf".Translate();
 
         private static string ShowTip => showTip ??= "CC_PplP_ShowTip".Translate();
         private static string AgeTip => ageTip ??= "CC_PplP_AgeTip".Translate();

@@ -117,10 +117,26 @@
   <CC_Letter_Why_NoThreat>The colony knows of no threat to them it hasn't warned of.</CC_Letter_Why_NoThreat>
   <CC_Letter_Why_AtWar>Not while their people are at war with the colony.</CC_Letter_Why_AtWar>
   <CC_Letter_Why_NotEnough>{NAME} doesn't think well enough of the colony to be asked for help.</CC_Letter_Why_NotEnough>
+  <CC_Letter_Why_HelpPeople>The colony asked {PEOPLE} for help only lately.</CC_Letter_Why_HelpPeople>
 
   <!-- What a letter can be about -->
   <CC_Letter_Topic_Loss>the death of {NAME}, their {ROLE}</CC_Letter_Topic_Loss>
-  <CC_Letter_Topic_Raids>the raiders of the {FACTION}</CC_Letter_Topic_Raids>
+  <CC_Letter_Topic_Raids>the raiders of the {FACTION}, who could strike {TOWN}</CC_Letter_Topic_Raids>
+  <CC_Letter_Topic_RaidsStruck>the raiders of the {FACTION}, who struck the colony lately and could strike {TOWN}</CC_Letter_Topic_RaidsStruck>
+  <CC_Letter_Topic_RaidsComing>the raiders of the {FACTION}, gathering against the colony, who could turn on {TOWN}</CC_Letter_Topic_RaidsComing>
+  <CC_Letter_Topic_RaidsCamp>the raiders of the {FACTION}, camped near {TOWN}</CC_Letter_Topic_RaidsCamp>
+  <CC_Letter_Topic_War>{EVENT}, near {TOWN}</CC_Letter_Topic_War>
+  <CC_Letter_Topic_Spreading>{EVENT}, spreading toward {TOWN}</CC_Letter_Topic_Spreading>
+  <CC_Warn_Why_TooFar>No threat to them the colony knows of: the raiders of the {FACTION} are too far from any town of {PEOPLE}.</CC_Warn_Why_TooFar>
+  <CC_Warn_Why_TooOld>No threat to them the colony knows of: the raid of the {FACTION} is long past, and nothing of theirs is coming.</CC_Warn_Why_TooOld>
+  <CC_Warn_Why_NotTheirEnemy>No threat to them the colony knows of: the {FACTION} are not at war with {PEOPLE}.</CC_Warn_Why_NotTheirEnemy>
+  <CC_Warn_Why_Ended>No threat to them the colony knows of: the {FACTION} are no more.</CC_Warn_Why_Ended>
+  <CC_Warn_NotListed_TooFar>Not listed: the raiders of the {FACTION}, too far from the towns of {PEOPLE}.</CC_Warn_NotListed_TooFar>
+  <CC_Warn_NotListed_TooOld>Not listed: the raiders of the {FACTION}, their raid long past and nothing of theirs coming.</CC_Warn_NotListed_TooOld>
+  <CC_Warn_NotListed_NotTheirEnemy>Not listed: the raiders of the {FACTION}, who are not at war with {PEOPLE}.</CC_Warn_NotListed_NotTheirEnemy>
+  <CC_Warn_NotListed_Ended>Not listed: the raiders of the {FACTION}, who are no more.</CC_Warn_NotListed_Ended>
+  <CC_Warn_Struck>The {FACTION} struck at {PEOPLE}, as the colony's warning said. {PEOPLE} remember who warned them.</CC_Warn_Struck>
+  <CC_Warn_Struck_Debt>The {FACTION} struck at {PEOPLE}, as the colony's warning said. The debt {PEOPLE} owe for the warning weighs the more for it.</CC_Warn_Struck_Debt>
   <CC_Letter_Topic_Site>{SITE}, {DIR} of {TOWN}</CC_Letter_Topic_Site>
   <CC_Letter_Dir_N>north</CC_Letter_Dir_N>
   <CC_Letter_Dir_NE>northeast</CC_Letter_Dir_NE>

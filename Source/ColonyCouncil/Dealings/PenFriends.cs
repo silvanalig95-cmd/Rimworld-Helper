@@ -122,15 +122,30 @@ namespace ColonyCouncil
                 {
                     var home = HappeningTracker.HomeMap() ?? Homes.Seat;
                     x.favourAt = now;
-                    if (FavoursOwed.Make(n.faction, home, true, "penFriend") != null)
+                    // A favour in person from the friend to the one who writes to them (the player, 10 November 2026: a
+                    // friendship's, not their whole people's; half what their people's would bring: FavourMath.Effective).
+                    var writer = Writer(n);
+                    if (writer != null && FavoursOwed.MakePersonal(n, writer, "penFriend", DealingMath.FavourSize) != null)
                     {
-                        string text = W("CC_Pen_Favour", n.Name.Named("NAME"), (n.faction?.Name ?? "?").Named("PEOPLE"));
+                        string text = W("CC_Pen_Favour", n.Name.Named("NAME"), (n.faction?.Name ?? "?").Named("PEOPLE"), writer.Named("PAWN"));
                         text = LetterForm.Friend(n, "friendfavour", new List<string> { text })?.full ?? text;
                         Tell.Letter(NewsKind.World, Importance.Notable, home, W("CC_Pen_FavourLabel", n.Name.Named("NAME")), text, LetterDefOf.PositiveEvent, LookTargets.Invalid,
                             n.faction);
                     }
                 }
             }
+        }
+
+        /// <summary>
+        /// The colonist a pen friend owes their favour to: who wrote the last letter to them that is still kept, else the one
+        /// of the colony they think best of; null when nobody of the colony's is left.
+        /// </summary>
+        private static Pawn Writer(Notable n)
+        {
+            var book = NotableBook.Instance;
+            var last = book?.letters.Where(l => l != null && l.notable == n.id && KinMemory.Ours(l.writer)).OrderByDescending(l => l.created).FirstOrDefault();
+            if (last != null) return last.writer;
+            return n.regards.Where(r => r != null && KinMemory.Ours(r.pawn)).OrderByDescending(r => r.personal).FirstOrDefault()?.pawn;
         }
 
         /// <summary>A pen friend among a people introduces the colony's letters to the peoples they know (the chain of neighbours).</summary>

@@ -41,9 +41,9 @@
   <CC_Dip_Means_Spacer>comms</CC_Dip_Means_Spacer>
 
   <!-- A debt in a sentence (the page, the town panel, a letter's topic): the colony's word by its age, their rite by theirs -->
-  <CC_Dip_Debt_Theirs>{FROM} owe {TO} for {WHY}: {WORD} by the colony's reckoning, {RITE} by theirs.</CC_Dip_Debt_Theirs>
-  <CC_Dip_Debt_Ours>Owed by {FROM} to {TO} for {WHY}: {WORD} by the colony's reckoning, {RITE} by theirs.</CC_Dip_Debt_Ours>
-  <CC_Dip_Debt_Personal>{FROM} owes {TO} a favor in person for {WHY}: {WORD} by the colony's reckoning, {RITE} by theirs.</CC_Dip_Debt_Personal>
+  <CC_Dip_Debt_Theirs>{FROM} owe {TO} {WEIGHT} for {WHY}: {WORD} by the colony's reckoning, {RITE} by theirs.</CC_Dip_Debt_Theirs>
+  <CC_Dip_Debt_Ours>{WEIGHT}, owed by {FROM} to {TO} for {WHY}: {WORD} by the colony's reckoning, {RITE} by theirs.</CC_Dip_Debt_Ours>
+  <CC_Dip_Debt_Personal>{FROM} owes {TO} a favor in person, {WEIGHT}, for {WHY}: {WORD} by the colony's reckoning, {RITE} by theirs.</CC_Dip_Debt_Personal>
   <CC_Dip_Since>Made {AGO}.</CC_Dip_Since>
   <CC_Dip_State_Asked>Called in for {ASK}.</CC_Dip_State_Asked>
   <CC_Dip_State_TheyAsked>Called in: they ask for {NEED}.</CC_Dip_State_TheyAsked>
@@ -112,8 +112,14 @@
   <CC_Dip_Goods_steel>steel</CC_Dip_Goods_steel>
   <CC_Dip_Goods_silver>silver</CC_Dip_Goods_silver>
   <CC_Dip_Opt_Goods>A load of goods: {GOODS}, brought by their porters</CC_Dip_Opt_Goods>
-  <CC_Dip_Opt_Word>A word for the colony with {PEOPLE}</CC_Dip_Opt_Word>
+  <CC_Dip_Opt_Word>A word for the colony with {PEOPLE} ({HOWMUCH})</CC_Dip_Opt_Word>
   <CC_Dip_Opt_WordAny>A word for the colony with another people</CC_Dip_Opt_WordAny>
+  <CC_Dip_Word_Good>a kind one</CC_Dip_Word_Good>
+  <CC_Dip_Word_Warm>a warm one</CC_Dip_Word_Warm>
+  <CC_Dip_Word_Strong>a strong one</CC_Dip_Word_Strong>
+  <CC_Dip_Weight_Small>a small debt</CC_Dip_Weight_Small>
+  <CC_Dip_Weight_Debt>a debt</CC_Dip_Weight_Debt>
+  <CC_Dip_Weight_Great>a great debt</CC_Dip_Weight_Great>
   <CC_Dip_Opt_Captive>{PAWN} let go and sent home</CC_Dip_Opt_Captive>
   <CC_Dip_Opt_CaptiveAny>One of the colony's people they hold, sent home</CC_Dip_Opt_CaptiveAny>
   <CC_Dip_Opt_Peace>Their help toward peace with {PEOPLE}</CC_Dip_Opt_Peace>
@@ -122,6 +128,9 @@
   <CC_Dip_Why_Nothing>nothing is owed here</CC_Dip_Why_Nothing>
   <CC_Dip_Why_Off>favors owed are switched off in the settings</CC_Dip_Why_Off>
   <CC_Dip_Why_Called>called in already, and waiting for their answer</CC_Dip_Why_Called>
+  <CC_Dip_Why_CalledLately>a debt of {PEOPLE} was called in this season already, and they are asked once a season</CC_Dip_Why_CalledLately>
+  <CC_Dip_Why_TooSmall>it is {WEIGHT}, too small to ask that much of them</CC_Dip_Why_TooSmall>
+  <CC_Dip_Why_TooSmallPersonal>a favor in person counts for half, and this one, {WEIGHT}, is too small to ask that much</CC_Dip_Why_TooSmallPersonal>
   <CC_Dip_Why_Gone>the one who owes it is gone</CC_Dip_Why_Gone>
   <CC_Dip_Why_War>{PEOPLE} are at war with the colony</CC_Dip_Why_War>
   <CC_Dip_Why_OwedGone>the one it is owed to is no longer with the colony</CC_Dip_Why_OwedGone>

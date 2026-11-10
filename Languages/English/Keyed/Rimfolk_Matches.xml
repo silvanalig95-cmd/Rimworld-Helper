@@ -40,6 +40,12 @@
   <CC_Match_Why_Busy>Three matches are under way at this home already.</CC_Match_Why_Busy>
   <CC_Match_Why_NoneFits>Nobody of {PEOPLE} the colony knows would fit anyone at this home.</CC_Match_Why_NoneFits>
   <CC_Match_Why_NoneFitsThem>Nobody at this home would fit {OTHER}.</CC_Match_Why_NoneFitsThem>
+  <CC_Match_Why_Refused>{PEOPLE} turned a match of the colony's down this season, and won't hear of another so soon.</CC_Match_Why_Refused>
+  <CC_Match_Why_Bar_Regard>A match is sought only on great terms, and the head of {PEOPLE} doesn't think warmly enough of the colony.</CC_Match_Why_Bar_Regard>
+  <CC_Match_Why_Bar_Goodwill>A match is sought only on great terms, and {PEOPLE} aren't on good enough terms with the colony.</CC_Match_Why_Bar_Goodwill>
+  <CC_Match_Why_Bar_RegardCourted>The head of {PEOPLE} thinks too little of the colony for a match, even for two who courted.</CC_Match_Why_Bar_RegardCourted>
+  <CC_Match_Why_Bar_GoodwillCourted>{PEOPLE} are on too poor terms with the colony for a match, even for two who courted.</CC_Match_Why_Bar_GoodwillCourted>
+  <CC_Match_Why_Fresh>{HEAD} would choose someone of their town for the colony only when they hold it dear; propose someone of {PEOPLE} the colony knows.</CC_Match_Why_Fresh>
   <CC_Match_Why_Over>That match is no longer under way.</CC_Match_Why_Over>
   <CC_Match_Why_AlreadyHere>Their kin are here already.</CC_Match_Why_AlreadyHere>
 
@@ -109,12 +115,13 @@
   <CC_Match_Wed>{OURS} and {THEIRS} are married, here at the colony, with notables of {TOWN} among the guests to see {THEIRS} wed. It is {WORD} now, and {PEOPLE} are bound to the colony.</CC_Match_Wed>
   <CC_Match_WedQuiet>{OURS} and {THEIRS} are married, here at the colony. It is {WORD} now, and {PEOPLE} are bound to the colony.</CC_Match_WedQuiet>
   <CC_Match_WedAway>Word has come from {TOWN}: {OURS} and {THEIRS} were married there, by {RITE}. {OURS} lives among {PEOPLE} now, and they are bound to the colony through the marriage.</CC_Match_WedAway>
-  <CC_Match_Wed_What>While it holds, the notables of {PEOPLE} think {REGARD} better of the colony, their town sends a small gift each season, and they write when trouble is coming. It stands as a defense pact between the two: their fighters come when the colony calls, and they will call on the colony's in turn.</CC_Match_Wed_What>
-  <CC_Match_Wed_WhatPactHad>While it holds, the notables of {PEOPLE} think {REGARD} better of the colony, their town sends a small gift each season, and they write when trouble is coming. The colony's defense pact with them runs on for as long as the marriage holds.</CC_Match_Wed_WhatPactHad>
-  <CC_Match_Wed_WhatNoPact>While it holds, the notables of {PEOPLE} think {REGARD} better of the colony, their town sends a small gift each season, and they write when trouble is coming.</CC_Match_Wed_WhatNoPact>
-  <CC_Match_Wed_WhatEmpire>While it holds, the notables of {PEOPLE} think {REGARD} better of the colony, their town sends a small gift each season, and they write when trouble is coming. The Empire makes no pacts, and this marriage is no pact either.</CC_Match_Wed_WhatEmpire>
+  <CC_Match_Wed_What>While it holds, the notables of {PEOPLE} think {REGARD} better of the colony, their town sends a small gift each season while they stay on good terms, and they write when trouble is coming. It stands as a defense pact between the two while they think well enough of the colony: their fighters come when the colony calls, and they will call on the colony's in turn.</CC_Match_Wed_What>
+  <CC_Match_Wed_WhatPactHad>While it holds, the notables of {PEOPLE} think {REGARD} better of the colony, their town sends a small gift each season while they stay on good terms, and they write when trouble is coming. The colony's defense pact with them runs on while the marriage holds and they think well enough of the colony.</CC_Match_Wed_WhatPactHad>
+  <CC_Match_Wed_WhatNoPact>While it holds, the notables of {PEOPLE} think {REGARD} better of the colony, their town sends a small gift each season while they stay on good terms, and they write when trouble is coming.</CC_Match_Wed_WhatNoPact>
+  <CC_Match_Wed_WhatEmpire>While it holds, the notables of {PEOPLE} think {REGARD} better of the colony, their town sends a small gift each season while they stay on good terms, and they write when trouble is coming. The Empire makes no pacts, and this marriage is no pact either.</CC_Match_Wed_WhatEmpire>
   <CC_Match_Wed_NoRoom>The colony already has three marriages with {PEOPLE}: this one is the couple's own, and adds nothing more between the two peoples.</CC_Match_Wed_NoRoom>
   <CC_Match_Hist_Wed>{OURS} married {THEIRS} of {PEOPLE} at the colony.</CC_Match_Hist_Wed>
+  <CC_Match_Hist_Refused>{PEOPLE} turned down a match between {OURS} and {THEIRS}.</CC_Match_Hist_Refused>
   <CC_Match_Hist_WedAway>{OURS} married {THEIRS} at {TOWN} and went to live among {PEOPLE}.</CC_Match_Hist_WedAway>
   <CC_Match_PactAgain>The marriage with {PEOPLE} stands as a defense pact again, a year after the last one closed.</CC_Match_PactAgain>
 

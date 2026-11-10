@@ -425,6 +425,19 @@ namespace ColonyCouncil
             return v;
         }
 
+        /// <summary>
+        /// A notable sends a gift with an answer (a warm greeting's token, or a gift by their regard) once a season at most
+        /// (the player, 10 November 2026: "not be repeatable all the time"; until then every letter could bring one).
+        /// </summary>
+        public const float GiftGapDays = 15f;
+
+        public static bool GiftAllowed(int lastGift, int now) => lastGift < 0 || now - lastGift >= GiftGapDays * TicksPerDay;
+
+        /// <summary>Asking a people for help: once in 20 days, whoever of them is written to (until 10 November 2026, per notable).</summary>
+        public const float HelpPeopleDays = 20f;
+
+        public static bool HelpAllowed(int lastOfPeople, int now) => lastOfPeople < 0 || now - lastOfPeople >= HelpPeopleDays * TicksPerDay;
+
         /// <summary>A warm answer from someone who thinks well of the colony now and then comes with a small gift.</summary>
         public static bool Gift(AnswerTone t, LetterPurpose p, int opinion, float roll)
         {
