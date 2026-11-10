@@ -51,6 +51,11 @@ tree at once, alongside whatever runs. Each piece is merged as its own release, 
   temperature line (the readout of `GlobalControls`, softly, behind the deeper hooks) on a blue-to-red scale by the
   colonists' comfort (deep blue in killing cold, white at comfortable, red in killing heat), in both looks, with a
   setting; check Rimfolk's own on-screen panels that show a temperature to match.
+- **To do when the player asks (10 November 2026), a bug: camps pack up after an animal's revenge.** The player: "camps
+  packed up after an animal taking revenge after being attacked, animal and other more arbitrary attacks should not get
+  the camp to leave". When asked: find what makes a camp leave when attacked (Camps/: its lord's harm or danger trigger)
+  and leave it to real attacks on the camp (raiders, a people at war, the colony); a manhunting or revenging animal, a
+  stray insect or a predator is fought off or fled from, the camp staying, with any hurt shown.
 - 0.206.1, carriers straight to the mailbag,
   back in the saddle, a new face each time (10 November 2026). The player: "the couriers that bring letters and material
   take an awkward routine around my base before delivering the message a bit away from the base. if anything they should
