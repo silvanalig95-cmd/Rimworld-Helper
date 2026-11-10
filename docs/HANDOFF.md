@@ -12,6 +12,12 @@ tree at once, alongside whatever runs. Each piece is merged as its own release, 
 
 ## State (5 November 2026)
 
+- **To do when the player asks (10 November 2026): events and interactions of each of Rimfolk's peoples, by their lore.**
+  The player: "I really LOVE the new factions you created, and I'd be down for more later. however, I'd first like more
+  faction specific events, interactions etc. like this event i had with these gene guys who gave my pawn a new gene.
+  Super cool idea and these should be applied to the other factions according to their lore, design and theme! don't
+  start with that though, just add it as to-do". When asked: propose a list per people first (Peoples/, their tags and
+  lore in docs/design/peoples*.md), then build; new peoples only after.
 - **Held by the player (10 November 2026): no new letters content jobs until they ask** ("for the letters please hold
   after this job then ... I'd like to keep such jobs for the end of the week to use up my remaining tokens"). The letters
   round 2 part 1 agent was already running; its part 2 (more content in the same shapes) waits for their word.
