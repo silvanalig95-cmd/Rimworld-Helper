@@ -21,6 +21,14 @@ tree at once, alongside whatever runs. Each piece is merged as its own release, 
 - **Held by the player (10 November 2026): no new letters content jobs until they ask** ("for the letters please hold
   after this job then ... I'd like to keep such jobs for the end of the week to use up my remaining tokens"). The letters
   round 2 part 1 agent was already running; its part 2 (more content in the same shapes) waits for their word.
+- **To do when the player asks (10 November 2026): a correspondence that builds up.** The player: "for to do list to be
+  done later: continued letter exchange should build up, the contents and familiarity between the colony and others
+  should develop and be reflected in the messages". When asked (with the held letters content pass, end of the week):
+  each correspondence (`Letters/LetterBook.cs`, the exchanges kept per notable) grows familiar over its letters:
+  salutations and closings warming or settling by how many letters and how long, nicknames and shared jokes taken up
+  again, earlier topics and promises answered or recalled ("you asked about the harvest; it came in at last"), news
+  followed up from one letter to the next, the colony's own letters keeping the thread too; cooling just as truly
+  after a slight or a war. Propose the shape first.
 - 0.206.1, carriers straight to the mailbag,
   back in the saddle, a new face each time (10 November 2026). The player: "the couriers that bring letters and material
   take an awkward routine around my base before delivering the message a bit away from the base. if anything they should
