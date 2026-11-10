@@ -2834,6 +2834,17 @@ Two settings on Your other mods, under Hospitality, both on and behind the deepe
   classes stand down without it ("Hospitality isn't loaded"), and the think tree's step says no at once for anyone who
   isn't its guest.
 
+- **Tending by skill** (0.205.1; the player: "i'd rather not have visitor tend the wounds if they're not good doctors. or they
+  should only tend bruises and minor injuries otherwise", then "not if every wound is minor, but they should just treat the
+  minor ones and leave the others for better doctors"). A guest with a good doctor's Medicine (8, `GuestHelpMath.TendAnyMedicine`)
+  tends anything; from Medicine 4 to 7 only a patient's minor conditions (bruises, cuts, everyday ailments, as Rimfolk's
+  medicine rules judge them: `MedicineChoice.Judge`), the serious ones left for a better doctor even on the same patient.
+  `Patch_GuestHelpTendFit` (postfix on `WorkGiver_Tend.HasJobOnThing`) passes over a patient with nothing they may tend
+  (`MayTakePatient`); while such a guest tends (`Patch_GuestHelpTendDoctor`, on `TendUtility.DoTend`), the game's choice of
+  what one treatment covers (`Patch_GuestHelpTendMinorOnly`, on `GetOptimalHediffsToTendWithSingleTreatment`) is given only
+  the minor conditions tendable now in its own order; nothing minor left when they reach the patient, nothing is done and
+  no medicine used. The guest tab says so ("Tends only bruises, cuts and other minor ailments").
+
 ### Neighbours' requests and callers at the gate (the player's request, 6 November 2026)
 
 "Do another big content update to existing mechanics": this part the neighbours and the people who come to the colony,

@@ -156,6 +156,27 @@ namespace ColonyCouncil
     /// </summary>
     public static class GuestHelp
     {
+        /// <summary>The guest tending minor conditions only, while the game's DoTend runs for them (Patch_GuestHelpTendDoctor).</summary>
+        [ThreadStatic] internal static Pawn minorOnly;
+
+        internal static int MedicineOf(Pawn p) => p?.skills?.GetSkill(SkillDefOf.Medicine)?.Level ?? 0;
+
+        /// <summary>A Hospitality guest of another people tending the colony's (the tending rules by skill apply).</summary>
+        internal static bool MinorDoctor(Pawn p) => p != null && p.Faction != null && !p.Faction.IsPlayer && Strangers.IsHospitalityGuest(p);
+
+        /// <summary>Whether the patient has minor and serious conditions to tend now (Health/MedicineChoiceMath.Judge).</summary>
+        internal static void Tendable(Pawn patient, out bool minor, out bool serious)
+        {
+            minor = serious = false;
+            if (patient?.health?.hediffSet == null) return;
+            foreach (var h in patient.health.hediffSet.hediffs)
+            {
+                if (h == null || !h.TendableNow()) continue;
+                if (MedicineChoice.Judge(h, out _) == MedicineChoiceMath.Threat.Serious) serious = true;
+                else minor = true;
+            }
+        }
+
         private static CouncilSettings S => ColonyCouncilMod.Settings;
 
         /// <summary>Hospitality's think node is there (read at startup by name): the patches apply only with it.</summary>
@@ -1154,6 +1175,9 @@ namespace ColonyCouncil
                 Add(RefusalText(g, v, kv.Key, kv.Value), UiKit.Warn);
             }
             if (v.noTrees) Add(("CC_GuestHelp_Tab_NoTrees_" + (v.calling == PeoplesMath.Grovekeepers ? "Calling" : "Faith")).Translate(PeopleName(g).Named("PEOPLE")).Resolve(), UiKit.Warn);
+            int med = g.skills?.GetSkill(SkillDefOf.Medicine)?.Level ?? 0;
+            if (med >= GuestHelpMath.TendMedicine && med < GuestHelpMath.TendAnyMedicine && !g.WorkTypeIsDisabled(WorkTypeDefOf.Doctor))
+                Add("CC_GuestHelp_Tab_MinorOnly".Translate(med.Named("NOW"), GuestHelpMath.TendAnyMedicine.Named("NEED"), g.Named("PAWN")).Resolve(), UiKit.Faint);
             Add("CC_GuestHelp_Tab_Never".Translate().Resolve(), UiKit.Faint);
         }
 
@@ -1278,6 +1302,97 @@ namespace ColonyCouncil
             catch (Exception e)
             {
                 CouncilLog.ErrorOnce("a guest's work", e);
+            }
+        }
+    }
+
+    /// <summary>
+    /// A guest takes up only a patient with something their skill is fit for: anything with a good doctor's Medicine, else
+    /// a patient with a minor condition to tend now (GuestHelpMath.MayTakePatient). On the game's tending givers' base
+    /// check, so the urgent and the ordinary both pass over a patient with only serious wounds for them. Only with
+    /// Hospitality, and only for guests.
+    /// </summary>
+    [HarmonyPatch(typeof(WorkGiver_Tend), nameof(WorkGiver_Tend.HasJobOnThing))]
+    public static class Patch_GuestHelpTendFit
+    {
+        public static bool Prepare() => GuestHelp.HospitalityHere;
+
+        public static string StandsDownWhy() => GuestHelp.HospitalityHere ? "" : "Hospitality isn't loaded";
+
+        public static void Postfix(Pawn pawn, Thing t, ref bool __result)
+        {
+            if (!__result || !(t is Pawn patient) || !GuestHelp.MinorDoctor(pawn)) return;
+            try
+            {
+                GuestHelp.Tendable(patient, out bool minor, out bool serious);
+                if (!GuestHelpMath.MayTakePatient(GuestHelp.MedicineOf(pawn), minor, serious)) __result = false;
+            }
+            catch (Exception e)
+            {
+                CouncilLog.ErrorOnce("a guest's tending", e);
+            }
+        }
+    }
+
+    /// <summary>
+    /// A guest below a good doctor's Medicine tends a patient's minor conditions only, the serious ones left for a better
+    /// doctor: while they tend (the game's DoTend), the game's choice of what one treatment covers is given only the minor
+    /// conditions tendable now, in its own order (Patch_GuestHelpTendMinorOnly). Nothing minor left by the time they reach
+    /// the patient: nothing is done and no medicine used. Only with Hospitality, and only for guests.
+    /// </summary>
+    [HarmonyPatch(typeof(TendUtility), nameof(TendUtility.DoTend))]
+    public static class Patch_GuestHelpTendDoctor
+    {
+        public static bool Prepare() => GuestHelp.HospitalityHere;
+
+        public static string StandsDownWhy() => GuestHelp.HospitalityHere ? "" : "Hospitality isn't loaded";
+
+        public static bool Prefix(Pawn doctor, Pawn patient)
+        {
+            GuestHelp.minorOnly = null;
+            try
+            {
+                if (patient == null || !GuestHelp.MinorDoctor(doctor) || GuestHelp.MedicineOf(doctor) >= GuestHelpMath.TendAnyMedicine) return true;
+                GuestHelp.Tendable(patient, out bool minor, out _);
+                if (!minor) return false;
+                GuestHelp.minorOnly = doctor;
+            }
+            catch (Exception e)
+            {
+                GuestHelp.minorOnly = null;
+                CouncilLog.ErrorOnce("a guest's tending", e);
+            }
+            return true;
+        }
+
+        public static void Postfix() => GuestHelp.minorOnly = null;
+    }
+
+    /// <summary>The game's choice of what one treatment covers, while a guest tends minor conditions only (Patch_GuestHelpTendDoctor).</summary>
+    [HarmonyPatch(typeof(TendUtility), nameof(TendUtility.GetOptimalHediffsToTendWithSingleTreatment))]
+    public static class Patch_GuestHelpTendMinorOnly
+    {
+        private static readonly List<Hediff> minor = new List<Hediff>();
+
+        public static bool Prepare() => GuestHelp.HospitalityHere;
+
+        public static string StandsDownWhy() => GuestHelp.HospitalityHere ? "" : "Hospitality isn't loaded";
+
+        public static void Prefix(Pawn patient, ref List<Hediff> tendableHediffsInTendPriorityOrder)
+        {
+            if (GuestHelp.minorOnly == null || tendableHediffsInTendPriorityOrder != null || patient?.health?.hediffSet == null) return;
+            try
+            {
+                minor.Clear();
+                foreach (var h in patient.health.hediffSet.hediffs)
+                    if (h != null && h.TendableNow() && MedicineChoice.Judge(h, out _) != MedicineChoiceMath.Threat.Serious)
+                        minor.Add(h);
+                TendUtility.SortByTendPriority(minor);
+                tendableHediffsInTendPriorityOrder = minor;
+            }
+            catch (Exception e)
+            {
+                CouncilLog.ErrorOnce("a guest's tending", e);
             }
         }
     }

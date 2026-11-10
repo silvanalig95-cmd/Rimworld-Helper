@@ -15,6 +15,12 @@ tree at once, alongside whatever runs. Each piece is merged as its own release, 
 - **Held by the player (10 November 2026): no new letters content jobs until they ask** ("for the letters please hold
   after this job then ... I'd like to keep such jobs for the end of the week to use up my remaining tokens"). The letters
   round 2 part 1 agent was already running; its part 2 (more content in the same shapes) waits for their word.
+- 0.205.1, guests tend what they're fit for (10 November 2026). The player: "i'd rather not have visitor tend the wounds
+  if they're not good doctors. or they should only tend bruises and minor injuries otherwise", then "not if every wound is
+  minor, but they should just treat the minor ones and leave the others for better doctors". Medicine 8+ tends anything;
+  4-7 only minor conditions (`MedicineChoice.Judge`), per condition: `Patch_GuestHelpTendFit` (WorkGiver_Tend.HasJobOnThing),
+  `Patch_GuestHelpTendDoctor` (TendUtility.DoTend sets `GuestHelp.minorOnly`), `Patch_GuestHelpTendMinorOnly`
+  (GetOptimalHediffsToTendWithSingleTreatment given only the minor tendable conditions). Not run in the game.
 - 0.205.0, **guests who help out** (10 November 2026). The player: "So I have two guests at the moment, and I just noticed that one of them started cooking a meal
   or even butchering ... is this a guest hospitality feature by default, or what's causing this? Because I really kind of
   like the idea that the guest does certain kind of work, for example, if they really like doing this work anyways ... Or

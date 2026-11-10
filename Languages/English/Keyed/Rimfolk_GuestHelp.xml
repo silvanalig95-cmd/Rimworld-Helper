@@ -31,6 +31,7 @@
   <CC_GuestHelp_Tab_NoFits>Nothing {PAWN_nameDef} would help with every day.</CC_GuestHelp_Tab_NoFits>
   <CC_GuestHelp_Tab_NoTrees_Calling>Never fells a tree: {PEOPLE} hold that the forest remembers every axe.</CC_GuestHelp_Tab_NoTrees_Calling>
   <CC_GuestHelp_Tab_NoTrees_Faith>Never fells a tree: their faith forbids it.</CC_GuestHelp_Tab_NoTrees_Faith>
+  <CC_GuestHelp_Tab_MinorOnly>Tends only bruises, cuts and other minor ailments (Medicine {NOW}), and leaves anything serious, even on the same patient, to a good doctor (Medicine {NEED}).</CC_GuestHelp_Tab_MinorOnly>
   <CC_GuestHelp_Tab_Never>Never in a bedroom or a cell, at surgery, prisoners' work or the dead.</CC_GuestHelp_Tab_Never>
 
   <!-- Why they'd help -->

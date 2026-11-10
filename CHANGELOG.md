@@ -5,6 +5,13 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## Guests tend what they're fit for
+
+*10 November 2026, version 0.205.1*
+
+- A guest who is a good doctor, Medicine 8 or more, still tends any wound when they pitch in after a raid.
+- A guest with Medicine 4 to 7 now tends only bruises, cuts and other minor ailments, leaving serious wounds, even on the same colonist, for a better doctor; the guest tab says so.
+
 ## Guests who help out
 
 *10 November 2026, version 0.205.0*

@@ -109,6 +109,15 @@ public static class GuestHelpTests
             "Hospitality's helping off: fires and rescues only (documented choice)");
         C(GuestHelpMath.ForGuest(HelpCrisis.None, true, true, true, true, false, false, false) == HelpCrisis.None, "no trouble, nothing");
         C(GuestHelpMath.TendMedicine == 4, "tending from Medicine 4, below Hospitality's own minimum");
+        // The player: "i'd rather not have visitor tend the wounds if they're not good doctors. or they should only tend bruises
+        // and minor injuries otherwise, not bigger or serious ones".
+        C(GuestHelpMath.TendAnyMedicine == 8 && GuestHelpMath.MayTend(8, true) && GuestHelpMath.MayTend(12, true), "a good doctor (Medicine 8) tends anything");
+        C(GuestHelpMath.MayTend(4, false) && GuestHelpMath.MayTend(7, false) && !GuestHelpMath.MayTend(7, true) && !GuestHelpMath.MayTend(4, true),
+            "Medicine 4 to 7 tends only patients with nothing serious to tend");
+        C(!GuestHelpMath.MayTend(3, false) && !GuestHelpMath.MayTend(0, false), "below Medicine 4, no tending at all");
+        C(GuestHelpMath.MayTakePatient(5, true, true) && !GuestHelpMath.MayTakePatient(5, false, true) && GuestHelpMath.MayTakePatient(9, false, true)
+          && !GuestHelpMath.MayTakePatient(3, true, false),
+            "a middling doctor takes up a patient with anything minor, even beside serious wounds; never one with only serious ones");
 
         C(GuestHelpMath.CrisisOf(W.Firefighter, "FightFires", "WorkGiver_FightFires") == HelpCrisis.Fire, "fighting fires: the fire");
         C(GuestHelpMath.CrisisOf(W.Firefighter, "VEF_FightCustomFire", "X") == HelpCrisis.Fire, "a mod's own fires too");
@@ -267,7 +276,7 @@ public static class GuestHelpTests
         string Code(string rel) => File.ReadAllText(Path.Combine(src, rel));
         string help = Code("Integrations/GuestHelp.cs"), tab = Code("Integrations/GuestHelpTab.cs"), checkCode = Code("Integrations/GuestCheck.cs");
         string settings = Code("CouncilSettings.cs"), catalog = Code("UI/SettingsCatalog.cs");
-        foreach (var cls in new[] { "Patch_GuestHelpWorkGiver", "Patch_GuestHelpJob", "Patch_GuestHelpWantsToHelp" })
+        foreach (var cls in new[] { "Patch_GuestHelpWorkGiver", "Patch_GuestHelpJob", "Patch_GuestHelpWantsToHelp", "Patch_GuestHelpTendFit" })
         {
             var m = Regex.Match(help, @"\[HarmonyPatch[^\]]*\]\s*public static class " + cls + @"\b(.*?)\n    \}", RegexOptions.Singleline);
             C(m.Success, $"{cls} is a patch class of its own, applied by RimfolkPatches.ApplyAll");
@@ -278,6 +287,13 @@ public static class GuestHelpTests
         }
         C(help.Contains("[HarmonyPatch(typeof(JobGiver_Work), \"PawnCanUseWorkGiver\")]") && help.Contains("__result = GuestHelp.CanUse(pawn, giver, __result);"),
             "the work givers' verdict is the rule's, after Hospitality's own prefix");
+        C(help.Contains("[HarmonyPatch(typeof(WorkGiver_Tend), nameof(WorkGiver_Tend.HasJobOnThing))]") && help.Contains("if (!GuestHelpMath.MayTakePatient(GuestHelp.MedicineOf(pawn), minor, serious)) __result = false;"),
+            "a guest passes over a patient with nothing their skill is fit for, on the tending givers' base check");
+        C(help.Contains("[HarmonyPatch(typeof(TendUtility), nameof(TendUtility.DoTend))]") && help.Contains("[HarmonyPatch(typeof(TendUtility), nameof(TendUtility.GetOptimalHediffsToTendWithSingleTreatment))]")
+          && help.Contains("MedicineChoice.Judge(h, out _) != MedicineChoiceMath.Threat.Serious") && help.Contains("tendableHediffsInTendPriorityOrder = minor;")
+          && help.Contains("if (!minor) return false;") && help.Contains("public static void Postfix() => GuestHelp.minorOnly = null;"),
+            "a middling guest's treatment covers the minor conditions only, the serious left for a better doctor, nothing used when nothing minor is left");
+        C(help.Contains("\"CC_GuestHelp_Tab_MinorOnly\""), "the guest tab says a middling doctor tends only minor ailments");
         C(help.Contains("if (f == null || f.IsPlayer || !GuestHelp.Any) return;"), "the colony's own pawns never pass through it");
         C(help.Contains("GenTypes.GetTypeInAnyAssembly(\"Hospitality.ThinkNode_ConditionalWantsToHelp\")") && help.Contains("AccessTools.Method(t, \"Satisfied\""),
             "Hospitality's mood line patched by name, softly");

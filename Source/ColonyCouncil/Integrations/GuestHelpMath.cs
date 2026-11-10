@@ -296,6 +296,22 @@ namespace ColonyCouncil
         /// <summary>The Medicine it takes to tend the colony's wounded (Hospitality's own minimum aside), and the Cooking to cook for it.</summary>
         public const int TendMedicine = 4, CookSkill = 4;
 
+        /// <summary>
+        /// A good doctor's Medicine: from here a guest tends any wound or illness of the colony's; below it, from
+        /// <see cref="TendMedicine"/>, only the minor ones (bruises, cuts, everyday ailments: Health/MedicineChoiceMath.Judge),
+        /// leaving a patient's serious wounds to a better doctor. The player: "i'd rather not have visitor tend the wounds if
+        /// they're not good doctors. or they should only tend bruises and minor injuries otherwise", then "not if every wound
+        /// is minor, but they should just treat the minor ones and leave the others for better doctors".
+        /// </summary>
+        public const int TendAnyMedicine = 8;
+
+        /// <summary>Whether a guest of this Medicine may tend one condition (serious or not).</summary>
+        public static bool MayTend(int medicine, bool serious) => medicine >= TendAnyMedicine || (medicine >= TendMedicine && !serious);
+
+        /// <summary>Whether a guest of this Medicine takes up a patient: one with something of theirs to tend now.</summary>
+        public static bool MayTakePatient(int medicine, bool anyMinor, bool anySerious) =>
+            (anyMinor && MayTend(medicine, false)) || (anySerious && MayTend(medicine, true));
+
         /// <summary>How long after a raid its wounded are a crisis: a day.</summary>
         public const int TendWindowTicks = 60000;
 
