@@ -66,6 +66,11 @@ tree at once, alongside whatever runs. Each piece is merged as its own release, 
   asking the wrong notable: the card names Waesvaris as involved while Tocac wrote), make "Write back" open on any
   letter that answers the colony's last one, and say plainly on every greyed reply what it waits for and when it
   opens; the Almanac's letters page says when the colony can write to whom.
+- **To do when the player asks (11 November 2026): gods, a brainstorm under way.** The player: "the concept of gods
+  within RimWorld ... like a pantheon of gods ... Maybe some nature or animal god could also be actually on the map, or
+  like a god that is acting like a guest and then reveal himself and have some humanoid form ... that they actually are
+  and interact and are into the lore and get referred to, and pawns react to gods". The first brainstorm (22 ideas and
+  the questions for the player) is `docs/gods-brainstorm.md`; nothing is built until they choose and say to start.
 - **To do when the player asks (11 November 2026): calling in a favour, made clear.** The player, with a picture of the
   letter window's "Ask for" list on a debt owed by "Acraeraes of Karond-Keth 2, a trader who called" (five loads of
   goods, some forty "A word for the colony with ... (a kind one)", a captive, peace, fighters): "this favour menu is also
