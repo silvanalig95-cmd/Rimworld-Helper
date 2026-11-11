@@ -432,6 +432,8 @@ namespace ColonyCouncil
         public bool needsTabHints = true;
         /// <summary>With Ideology: the style-surroundings mood names the things that count against a colonist, a button selects them, and a styled thing names whose style it goes against (Moods/StyleSurroundings.cs).</summary>
         public bool styleNotes = true;
+        /// <summary>The game's own temperature readout at the bottom right in colour, from deep blue in killing cold to deep red in killing heat (Hud/Patch_TemperatureReadout.cs).</summary>
+        public bool tempReadoutColour = true;
         /// <summary>A line of Rimfolk's context in the game's raid, mood break and death letters.</summary>
         public bool letterNotes = true;
         /// <summary>Small badges on the colonist bar's portraits (ColonistBar/BarBadges.cs, a deeper game hook), and what they show.</summary>
@@ -1017,6 +1019,7 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref deepHooks, "deepHooks", true);
             Scribe_Values.Look(ref needsTabHints, "needsTabHints", true);
             Scribe_Values.Look(ref styleNotes, "styleNotes", true);
+            Scribe_Values.Look(ref tempReadoutColour, "tempReadoutColour", true);
             Scribe_Values.Look(ref letterNotes, "letterNotes", true);
             Scribe_Values.Look(ref barBadges, "barBadges", true);
             Scribe_Values.Look(ref barBreakMark, "barBreakMark", BarBreakMark.Ring);

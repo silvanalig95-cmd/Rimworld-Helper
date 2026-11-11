@@ -91,6 +91,10 @@
   <CC_Pnl_TempBand_Hot>hot</CC_Pnl_TempBand_Hot>
   <CC_Pnl_TempBand_VeryHot>very hot</CC_Pnl_TempBand_VeryHot>
   <CC_Pnl_TempBand_DeadlyHeat>deadly heat</CC_Pnl_TempBand_DeadlyHeat>
+  <!-- The game's own temperature readout at the bottom right in colour (Hud/Patch_TemperatureReadout.cs). -->
+  <CC_Settings_TempReadoutColour>The game's temperature in colour</CC_Settings_TempReadoutColour>
+  <CC_Settings_TempReadoutColour_Tip>The game's temperature line at the bottom right ("Indoors 21C") takes a colour by how the colonists would find it: white where people are comfortable (16 to 26 °C, the game's own range for people), pale then deeper blues as it gets colder, deep blue in killing cold (about -30 °C), pale yellow, yellow and orange as it gets hotter, deep red in killing heat (about 50 °C). A thin dark edge round the words keeps the colour readable over snow. The outdoor temperature on Rimfolk's vitals panel uses the same colours. Needs the deeper game hooks.</CC_Settings_TempReadoutColour_Tip>
+  <CC_SetNote_TempReadoutColour>The temperature at the bottom right goes from deep blue to white to deep red.</CC_SetNote_TempReadoutColour>
   <CC_Pnl_TempComfy>Comfortable for your colonists on the map, dressed as they are.</CC_Pnl_TempComfy>
   <CC_Pnl_TempColdAll>Too cold for your colonists on the map, dressed as they are.</CC_Pnl_TempColdAll>
   <CC_Pnl_TempColdSome>Too cold for {0} of the {1} colonists on the map, dressed as they are.</CC_Pnl_TempColdSome>

@@ -45,12 +45,6 @@ tree at once, alongside whatever runs. Each piece is merged as its own release, 
   gates), then propose a handful of winter camps (people who travel or work in deep cold: ice fishers, fur trappers, a
   caravan sheltering from a blizzard, hunters following a herd, a winter pilgrimage, salt or ice cutters), each with
   shelter and fire as the cold demands, by every age and the player's mods.
-- **To do when the player asks (10 November 2026): the temperature readout in colour.** The player, with a picture of
-  the game's readout at the bottom right ("No wind / Indoors 21C / Clear"): "can the temperature meter be clearly color
-  coded from blue to red, so i can at immediate glance see how warm or cold it is". When asked: colour the game's own
-  temperature line (the readout of `GlobalControls`, softly, behind the deeper hooks) on a blue-to-red scale by the
-  colonists' comfort (deep blue in killing cold, white at comfortable, red in killing heat), in both looks, with a
-  setting; check Rimfolk's own on-screen panels that show a temperature to match.
 - **To do when the player asks (10 November 2026), a bug: camps pack up after an animal's revenge.** The player: "camps
   packed up after an animal taking revenge after being attacked, animal and other more arbitrary attacks should not get
   the camp to leave". When asked: find what makes a camp leave when attacked (Camps/: its lord's harm or danger trigger)
@@ -63,6 +57,36 @@ tree at once, alongside whatever runs. Each piece is merged as its own release, 
   area, guest beds, its guest tab and recruiting rules, Rimfolk's guest help), softly by type name; Rimfolk's own visit
   purpose (the feast, the talks, the envoy's season) kept on top, and its own visitor lord left for when Hospitality is
   absent.
+- The temperature readout in colour (11 November 2026). The player, with a picture of the game's readout at the bottom
+  right ("No wind / Indoors 21C / Clear"): "can the temperature meter be clearly color coded from blue to red, so i can at
+  immediate glance see how warm or cold it is". Not released: no version, no What's new round, About.xml and CHANGELOG
+  untouched. DESIGN.md "The temperature in colour" (after the on-screen panels) has all of it; README the vitals'
+  paragraph and a new one for the readout; the Almanac's panels page, the vitals' Outside line (prose only, keywords
+  unchanged).
+  - Pure: `Hud/TemperatureScaleMath.cs` (new, linked): `Rgb(celsius, comfyMin, comfyMax)` from deep blue (`5e87ff`) at 46
+    under the comfort range through blue, light blue and pale blue to white inside it, then pale yellow, yellow, orange
+    and deep red (`ff5248`) at 24 over, mixed smoothly between the steps; with the human range (16 to 26 °C) the steps
+    fall on HudRank's lines (-30, -15, 40, 50 °C) and the game's safe line; `Mix`, `Hex`, `Wrap`, `EdgeAlpha`. Tests
+    `Tools/Tests/TemperatureScaleTests.cs` (the steps, blue below and warm above, lightest at comfortable, smooth,
+    4.5 to 1 on the classic panels, both own-look cards and black at every quarter degree, moved and odd ranges, the
+    seams); `HudTemperatureTests` follow the vitals onto it.
+  - Game side: `Hud/TemperatureScale.cs` (new: the Human def's comfort range asked once, `Rgb`, `Of`, `ColorOf`; the
+    vitals' own copy of the range removed); `Hud/Patch_TemperatureReadout.cs` (new): a transpiler on
+    `GlobalControls.GlobalControlsOnGUI` sends the `Widgets.Label(Rect, string)` right after `TemperatureString` through
+    `Label` (a black edge at 70% a pixel each side, then the words in the colour of the game's own
+    `cachedTemperatureStringForTemperature`, read again only when its words change); if not found, a postfix on
+    `TemperatureString` wraps the words in rich-text colour instead. The setting "The game's temperature in colour"
+    (`tempReadoutColour`, on, under What shows on the map, needs the deeper hooks). `HudVitals` takes
+    `TemperatureScale.Of(t)`; `HudKit`'s banded scale (green in the middle) is gone. ApiDiff: nothing it uses changed in
+    1.7 (`GlobalControlsOnGUI`, `TemperatureString`, the cached field, `Widgets.Label`).
+  - Not run here: the readout in the game, how the edge looks, that 1.7's `GlobalControlsOnGUI` still calls the label
+    right after the words (the body can't be compared; without it the words are coloured without the edge).
+  - Try in the game: 1. Hover a bedroom at 21 °C: "Indoors 21C" is white. 2. Hover outside on a cold morning (about
+    5 °C): pale blue; at -10 °C a clear blue; at -30 °C deep blue. 3. A hot day or a kitchen next to a stove (32 °C and
+    up): pale yellow, then yellow, orange at 40 °C, deep red at 50 °C. 4. On a snowy map at noon the coloured line still
+    reads (the dark edge). 5. The vitals panel's outside temperature shows the same colour as the readout when you hover
+    outdoors, in both looks (Rimfolk's own look and the classic panels). 6. Turn "The game's temperature in colour" off:
+    the game's white line as before; turn the deeper game hooks off: the same.
 - 0.206.1, carriers straight to the mailbag,
   back in the saddle, a new face each time (10 November 2026). The player: "the couriers that bring letters and material
   take an awkward routine around my base before delivering the message a bit away from the base. if anything they should
