@@ -18,12 +18,8 @@ names that don't all have to follow the same style. Ennu the Guest is cool thoug
 - the pull beneath the surface (Undertow).
 
 The player then added four: "There should also be a god of the sun & moon, a cat god, the rain god, a god of gold"
-(Helios and Selene, Mog, Murmur and Ducat, 10 to 13). The sun and moon went from one god to two,
-and from Noon and Lull to Helios and the Dreaming One, to no names at all ("any human style name doesn't really fit if they here since the dawn of
-time"), and then to the Greek words for sun and moon, at the player's word ("Can you just use the greek words for
-sun and moon?"). The sun and moon were first one god, then made primordial at the
-player's word ("it should be primeordial and not some worldly item"), then two ("Can the moon & sun themselves not be
-some sort of duality gods that are interwined?").
+(Helios and Selene, Mog, Murmur and Ducat, 10 to 13). The sun and moon went through several names and concepts with
+the player before they became Helios and Selene, the Gift and the Return ("A new concept please with these names").
 
 So these are fourteen beings: each one someone, with a will, a character and names. Some are vast and hard to see, some
 are plainly a creature, and only one wears human faces. Each is written as it is, without a shared checklist.
@@ -374,7 +370,7 @@ never stays.
 - **The Guest** goes between all of them and carries their news, and all of them are a little careful of it.
 - **The great fear:** Undertow, feared by all.
 - **The four added later:**
-  - Helios and the Dreaming One are one torn in two, chasing each other, meeting only in eclipse.
+  - Helios gives and Selene returns; she loves him, and nobody knows if he knows.
   - Cirrus drifts between them and the world.
   - Pip hates Helios's flares.
   - Mog sleeps in Helios's sunbeams, hunts by Selene's light, and stares at Ennu.
@@ -399,7 +395,7 @@ Walking it's said plainly. Colonists talk of it at supper, and neighbours write 
 | Meteorite, aurora, flashstorm, cargo pods falling | Cirrus |
 | Solar flare, heat wave, drought, a long clear growing season | Helios |
 | A full moon's night, dreams that come true, a kindness or a cruelty coming back at night | Selene |
-| Eclipse | Helios and the Dreaming One, meeting |
+| Eclipse | Selene stepping between Helios and the world |
 | A cat wanders in, a run of small luck for one colonist | Mog |
 | Rain after dry weeks, drought, a flood | Murmur |
 | A trader arriving at the right time, silver gone missing, a deal gone sour | Ducat |
