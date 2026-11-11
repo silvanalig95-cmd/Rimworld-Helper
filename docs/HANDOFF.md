@@ -39,6 +39,16 @@ tree at once, alongside whatever runs. Each piece is merged as its own release, 
   8. The Republic 71 to 74; the Fleet 75 to 78; the Helix Works 79 to 82.
   9. The Lattice 84, 85, 86; the Choir 87 to 90; the Vault 91 to 94.
   10. Between peoples 96 to 99; every people's art handed on, 100.
+- **To do when the player asks (11 November 2026), a bug: letters' answers come before a letter could arrive.** The
+  player: "letter replies & interactions don't always make sense timing-wise. for example when i send a letter to a
+  base, i think once the courier is off the map I already get a pop up saying "you will not receive a reply". It
+  should always take the necessary time for stuff to actually get delivered, depending on the distance". When asked:
+  find every answer, refusal or "no reply" to the colony's letters, asks and dealings (Post/ the outbox and the colony's
+  own rider, Couriers/, World/NeighbourLetters, Dealings/WorldWrites, Letters/LetterBook and LetterReply, the
+  diplomacy screen's sends) and make each wait for the letter to reach them by the road (the journey's days by
+  distance, as the couriers and journeys reckon it), their reading and writing time, and the answer's own road back;
+  a refusal or silence is only known when it could be (a returning rider, their courier, or no word by the time an
+  answer would have come). Check each against the map: the courier gone off the map is not the letter delivered.
 - **Held by the player (10 November 2026): no new letters content jobs until they ask** ("for the letters please hold
   after this job then ... I'd like to keep such jobs for the end of the week to use up my remaining tokens"). The letters
   round 2 part 1 agent was already running; its part 2 (more content in the same shapes) waits for their word.
