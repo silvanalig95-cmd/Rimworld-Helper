@@ -91,6 +91,33 @@ interacting, being".
   - **A fading god:** no worshippers left, bitter or gentle.
   - **A god imprisoned:** the Sleeper in the Sunken Vault, who wants out.
 
+## A RimWorld of Magic, heavily used (the player, the same day)
+
+The player: "the rim world of magic models, of course, lend itself as an essential component ... with all these spells
+and effects ... and sounds and sprites and stuff, so you should really heavily use this ... it also, of course, fits
+thematically as well." It is active in their game (`torann.arimworldofmagic`). Its 1.6 defs and DLL are in the
+scratchpad from their earlier upload (`moddefs/upload/x/Mods/1201382956/v1.6/Defs`, `modcode/Mods/1201382956/v1.6`).
+
+- **The presence:** its 131 motes, effecters, weathers and arcane conditions, by name, softly, with a vanilla fallback:
+  holy light, summoning and arcane circles, glowing runes, light barriers, twinkles, flowers, spirit wolves, ghosts and
+  bone dust, shadow cloud, lightning, frost, regeneration.
+- **Gifts (stage 2):** a god grants a RoM class fitting its domain:
+  - Priest, Paladin or Healer for the Healer;
+  - Druid for the Green;
+  - Ranger for the Hunter;
+  - Geomancer for the Deep Mother;
+  - Necromancer or Death Knight for the Ferryman and the Hunger;
+  - Storm Born for the Storm-father;
+  - Enchanter for the Smith;
+  - Technomancer for the Machine;
+  - Bard for the Night;
+  - Gladiator or Monk for War.
+
+  Or a single spell, or mana and a magic power upgrade as a blessing. Its golems and summons can be the shapes some
+  avatars take.
+- **Worship (stage 2):** RoM's priests and their spells take part in the rites and prayers. A god's favour can raise a
+  caster's mana regeneration or cut it off.
+
 ## Domains
 
 Harvest (and rain), Storm, Hunt (and beasts), Healing (and sickness), War, Craft (the forge), Way (roads, trade and
