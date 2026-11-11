@@ -402,6 +402,8 @@ namespace ColonyCouncil
         public bool done;
         public string text;
         public List<Pawn> touched = new List<Pawn>();
+        /// <summary>A cell the visit is about when no thing is (where the peoples' events plant a seed: Peoples/Events/).</summary>
+        public IntVec3 cell = IntVec3.Invalid;
         /// <summary>A champion's bout under way for a fighting challenge (Harm/ChampionBouts.cs); not saved, as bouts aren't.</summary>
         [Unsaved] public OutsiderBout bout;
 
@@ -423,6 +425,7 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref done, "done");
             Scribe_Values.Look(ref text, "text");
             Scribe_Collections.Look(ref touched, "touched", LookMode.Reference);
+            Scribe_Values.Look(ref cell, "cell", IntVec3.Invalid);
             if (Scribe.mode == LoadSaveMode.PostLoadInit)
             {
                 if (group == null) group = new List<Pawn>();
@@ -994,6 +997,8 @@ namespace ColonyCouncil
                         case UnionStrike.Kind: keep = UnionStrike.Hour(v, comp, now); break;
                         case Papers.Kind: keep = Papers.Hour(v, comp, now); break;
                         case Conscripts.Kind: keep = Conscripts.Hour(v, comp, now); break;
+                        // The peoples' own events (Peoples/Events/): a worker on a colonist, goods in trust, a supper, a seed, a taming.
+                        case var k when PeopleEvents.Owns(k): keep = PeopleEvents.Hour(v, comp, now); break;
                         default: keep = false; break;
                     }
                 }

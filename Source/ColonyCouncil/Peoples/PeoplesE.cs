@@ -934,6 +934,8 @@ namespace ColonyCouncil
         /// <summary>A season's reckoning told to each Mossborn people (and their goodwill moved by it).</summary>
         public static void Reckon(int felled, int planted)
         {
+            // The colony's promise for the Mossborn's seed, watched at the same reckoning (Peoples/Events/MossSeed.cs).
+            MossPromise.Reckoned(felled, planted);
             int shift = PeoplesEMath.Shift(felled, planted);
             if (shift == 0) return;
             var map = Find.AnyPlayerHomeMap;

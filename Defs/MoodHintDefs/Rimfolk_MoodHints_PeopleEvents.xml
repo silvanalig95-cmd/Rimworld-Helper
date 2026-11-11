@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- What to do about the moods of the peoples' own events (Defs/Misc/Rimfolk_PeopleEvents_Misc.xml). -->
+
+  <ColonyCouncil.MoodHintDef>
+    <defName>Rimfolk_Mood_PEv_MechlinkStrange</defName>
+    <thoughts>
+      <li>Rimfolk_Thought_MechlinkStrange</li>
+    </thoughts>
+    <fix>The Lattice put a mechlink into one of the colony's people, and a colony of tribal ways finds a machine that obeys a thought hard to look at. It fades in three days. Time with the one who took it, and seeing the mech carry a load for the colony, help it pass.</fix>
+    <act>Passes in a few days</act>
+    <actionable>false</actionable>
+    <article>Council_Alm_C_PeoplesG</article>
+  </ColonyCouncil.MoodHintDef>
+
+</Defs>

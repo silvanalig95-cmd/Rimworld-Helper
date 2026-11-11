@@ -211,6 +211,8 @@ namespace ColonyCouncil
         {
             if (s.NullOrEmpty()) return "";
             s = CampWords.Fill(s, kind, faction);
+            // A kind with ways of its own fills its own placeholders (Camps/CampWorker.cs).
+            if (kind?.Worker != null) s = kind.Worker.Fill(this, s);
             var speaker = x ?? (leader != null && !leader.Dead ? leader : Here.FirstOrDefault() ?? members.FirstOrDefault());
             var colonist = a ?? (map != null ? IncidentWorker_Happening.Colonists(map).FirstOrDefault() : null);
             var args = new List<NamedArgument>

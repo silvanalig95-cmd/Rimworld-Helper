@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+  <!--
+    The peoples' own events, round 1 (Source/ColonyCouncil/Peoples/Events/): the pilgrims' hostel on the road (item 17)
+    comes with a holy year or a great pilgrimage, a beat of each that calls the camp (WorldEffect_Camp: from the world
+    event's people when they are the pilgrim fellowship, else from any people of that calling at peace with the colony;
+    nothing when none is, or another camp already stands). Conditional, so it never fails: with the def gone, nothing.
+  -->
+
+  <Operation Class="PatchOperationConditional">
+    <xpath>Defs/ColonyCouncil.WorldSituationDef[defName="Council_WS_Pilgrimage"]/beats</xpath>
+    <match Class="PatchOperationAdd">
+      <xpath>Defs/ColonyCouncil.WorldSituationDef[defName="Council_WS_Pilgrimage"]/beats</xpath>
+      <value>
+        <li>
+          <key>hostel</key>
+          <day>1~4</day>
+          <chance>0.6</chance>
+          <effects>
+            <li Class="ColonyCouncil.WorldEffect_Camp"><kind>Rimfolk_Camp_PilgrimHostel</kind><flag>hostel</flag></li>
+          </effects>
+        </li>
+      </value>
+    </match>
+  </Operation>
+
+  <Operation Class="PatchOperationConditional">
+    <xpath>Defs/ColonyCouncil.WorldSituationDef[defName="Council_WS_HolyYear"]/beats</xpath>
+    <match Class="PatchOperationAdd">
+      <xpath>Defs/ColonyCouncil.WorldSituationDef[defName="Council_WS_HolyYear"]/beats</xpath>
+      <value>
+        <li>
+          <key>hostel</key>
+          <day>3~10</day>
+          <chance>0.5</chance>
+          <effects>
+            <li Class="ColonyCouncil.WorldEffect_Camp"><kind>Rimfolk_Camp_PilgrimHostel</kind><flag>hostel</flag></li>
+          </effects>
+        </li>
+      </value>
+    </match>
+  </Operation>
+
+</Patch>
