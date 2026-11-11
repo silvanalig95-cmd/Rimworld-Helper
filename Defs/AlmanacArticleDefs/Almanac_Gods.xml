@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- The Almanac page on the gods (Source/ColonyCouncil/Gods/; Defs/GodDefs/; docs/design/gods.md; DESIGN.md "The gods"). -->
+
+  <ColonyCouncil.AlmanacArticleDef>
+    <defName>Council_Alm_C_Gods</defName>
+    <label>the gods</label>
+    <category>Council</category>
+    <order>19</order>
+    <summary>One pantheon for the whole world: the gods of every faith and people, their ties to one another, their natures, and how the colony stands with each, in words.</summary>
+    <tip>Open the region window, Peoples, and pick Gods at the top: every god the colony knows, the rumours of the rest, and the colony's standing with each.</tip>
+    <description>Every people in the world has gods it swears by, prays to and fights for, and the gods are real figures with names, domains and natures of their own. With Ideology they are each faith's own deities; without it, Rimfolk gives each people two or three gods of its age and its land. Rimfolk's own peoples each have a patron of their own. Gods take the form of their people's age: spirits for a tribe, old gods and saints for the medieval, half-forgotten gods and gods of the machine for the industrial, and for spacers the archotechs, the god-like minds of RimWorld's own lore.</description>
+    <sections>
+      <li>
+        <heading>Where the gods come from</heading>
+        <points>
+          <li>With Ideology, each deity of a faith is a god, and what it is god of comes from its own words ("goddess of nature"), the meme it was made from, and its faith's memes and precepts, the game's and Alpha Memes' and Vanilla Ideology Expanded's alike. A faith's gods divide the world between them where they can.</li>
+          <li>An animist faith with no deities still has spirits, and an archist faith reveres an archotech. An ideological faith has no gods at all.</li>
+          <li>Without Ideology, each people has two or three gods by its age, its ways (raiders always keep a god of war) and the land round its towns (a forest people the wild, a river people the waters).</li>
+          <li>Rimfolk's peoples each have a patron by their own story: the Way of the road league, the Healer of the hospitallers, the Herdmother of the herders and the tamers, the Storm-father of the Stormglass Conclave, the Ferryman of the Quiet Bell, the Green of the Mossborn, and the rest.</li>
+          <li>The pantheon is made once per world, and for an older save on its first load. New peoples bring their gods with them, and a god whose last people is gone fades.</li>
+        </points>
+      </li>
+      <li>
+        <heading>The fourteen domains</heading>
+        <text>The harvest and the rain, storms, the hunt and the beasts, healing, war, the forge, the road and travellers, the dead, the night and dreams, the hearth, the wild, the waters, machines and the void. Each has its colours and symbol, and its sacred things: animal kinds, plants, a place and a deed.</text>
+      </li>
+      <li>
+        <heading>The colony's standing</heading>
+        <points>
+          <li>The colony stands with each god at each of its homes, in words: wrathful, displeased, unknown, noticed, pleased, favoured, beloved. Never a number. The god it stands best with, from noticed up, is the colony's patron.</li>
+          <li>Standing follows what the colony does. So far: a big harvest pleases the gods of the harvest, a threat beaten off the gods of war, a great beast brought down the gods of the hunt, words said at a funeral the gods of the dead. The dead left lying displease the gods of the dead, and slaughtering or hunting an animal sacred to a domain displeases its gods (a hunt is the hunt's own gods' way).</li>
+          <li>Standing drifts slowly back toward unknown when nothing more is done: about half in a season, faster for a capricious god, slower for a patient one.</li>
+          <li>A change of word for a god the colony knows is in the news, in the voice of how real the gods are.</li>
+        </points>
+      </li>
+      <li>
+        <heading>Ties and natures</heading>
+        <points>
+          <li>Gods have ties, as the old pantheons did: rivals (the storm and the harvest over the rain, the hunter and the herd over the beasts), lovers and lovers estranged, parent and child, siblings, twins, allies, and old wrongs (one cast the other down, one took the other's people). A faith's own gods are a family. Peoples at war set their gods against each other. Ties shift slowly over the years.</li>
+          <li>Favour spills: pleasing a god a little displeases its rivals and a little pleases its allies, lovers and kin.</li>
+          <li>Each god has a nature: proud, jealous, generous, capricious, wrathful, patient, playful, cold or grieving. It decides how fast favour moves, what offends the god most, and how loudly it answers.</li>
+        </points>
+      </li>
+      <li>
+        <heading>The ones who don't fit</heading>
+        <points>
+          <li>Archotechs are cold and exact. They care nothing for offerings and judge only deeds.</li>
+          <li>The Hunger, the void the Choir of the Spire keeps quiet for, answers anyone, always pays and always takes more.</li>
+          <li>Somewhere there is a trickster, and somewhere a dead god whose stones still stand, and a fading god whose people died out.</li>
+          <li>The Sleeper dreams in the Sunken Vault, and wants out.</li>
+          <li>When the colony keeps doing the work of a domain its own faith has no god of, a god may be born of its faith: small, weak, and growing with the colony's devotion.</li>
+        </points>
+      </li>
+      <li>
+        <heading>What the colony knows</heading>
+        <text>The colony knows the gods of its own faith from the start. It learns the gods of other peoples from the neighbours it knows by name, from their letters and from their people on its land. Until then a god is a rumour on the Gods page: what it is god of and who swears by it, but not its name. Colonists swear by their gods now and then: when hurt or grieving, when a storm comes in or the cold bites. The neighbours' letters name theirs.</text>
+      </li>
+      <li>
+        <heading>How real are the gods</heading>
+        <table>
+          <li>Setting | What it means</li>
+          <li>Believed | Nothing supernatural: prayers, rites and omens read into chance, and the colony is sure it was the Storm-father all the same</li>
+          <li>Felt (the default) | The gods act, but never so plainly that nobody could doubt it; the news says "some say"</li>
+          <li>Walking | The gods walk openly, named for what they are, and can be spoken with</li>
+        </table>
+        <after>Both settings are on the What's on page, under The gods. Switching the gods off leaves the pantheon in the save and moves nothing.</after>
+      </li>
+    </sections>
+    <keywords><li>gods</li><li>pantheon</li><li>god</li><li>patron god</li><li>how real are the gods</li><li>archotech god</li></keywords>
+    <seeAlso><li>Council_Alm_C_Peoples</li><li>Council_Alm_C_PeoplesG</li></seeAlso>
+  </ColonyCouncil.AlmanacArticleDef>
+
+</Defs>

@@ -158,7 +158,7 @@ public static class RegionViewsTests
         foreach (var view in new[] { "UI/Region/PeoplesView.cs", "UI/Region/HereAndAwayView.cs", "UI/WorldPages.cs" })
             C(Code(view).Contains("UiKit.ViewHeader(") && Code(view).Contains("ViewHeadModel") && Code(view).Contains("PagesMath.ArticleOf(RegionView."),
                 $"{view}: the view's header with its \"?\"");
-        C(Code("UI/Region/MapView.cs").Contains("UiKit.HelpButton(") && Code("UI/Region/PeoplesView.cs").Contains("m.labels.AddRange(RegionView.PeopleModes)"),
+        C(Code("UI/Region/MapView.cs").Contains("UiKit.HelpButton(") && Code("UI/Region/PeoplesView.cs").Contains("m.labels.AddRange(RegionView.PeopleModes"),
             "the map's \"?\" beside its lens bar; Peoples' modes in its header");
         return n;
     }

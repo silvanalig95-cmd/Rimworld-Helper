@@ -237,6 +237,13 @@ namespace ColonyCouncil
         /// </summary>
         public bool peopleAges = true;
         /// <summary>
+        /// The gods (Gods/; docs/design/gods.md): one pantheon per world, from the faiths' deities, Rimfolk's makers and the
+        /// peoples' patrons, the colony's favour with each in words, their ties, the Gods page. Off: no pantheon, nothing moves.
+        /// </summary>
+        public bool gods = true;
+        /// <summary>How real the gods are: Believed (nothing supernatural), Felt (the default: never so plain nobody could doubt it), Walking.</summary>
+        public GodRealness godRealness = GodRealness.Felt;
+        /// <summary>
         /// The wild's alphas and bosses (Beasts/), each 0 to 2, 1 by default: a wild pack led by a named alpha (one a home
         /// at a time, a month apart at 1), a beast nemesis that flees hurt and comes back and the one who swears to bring it
         /// down, a legend of the region (150 days between two at 1), and the great herds of spring and fall with their
@@ -938,6 +945,8 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref raidersCamps, "raidersCamps", 1f);
             Scribe_Values.Look(ref newPeoples, "newPeoples", 1f);
             Scribe_Values.Look(ref peopleAges, "peopleAges", true);
+            Scribe_Values.Look(ref gods, "gods", true);
+            Scribe_Values.Look(ref godRealness, "godRealness", GodRealness.Felt);
             Scribe_Values.Look(ref packAlphas, "packAlphas", 1f);
             Scribe_Values.Look(ref beastNemeses, "beastNemeses", 1f);
             Scribe_Values.Look(ref regionLegends, "regionLegends", 1f);

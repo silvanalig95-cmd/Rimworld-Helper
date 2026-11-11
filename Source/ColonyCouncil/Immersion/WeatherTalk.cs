@@ -205,7 +205,8 @@ namespace ColonyCouncil
             int said = 0;
             foreach (var p in who)
             {
-                string line = Flavor.FromPool(pool, p, null, null, tags);
+                // Now and then a word to their god about it instead (Gods/GodSpeech.cs).
+                string line = GodSpeech.InPlaceOf(pool, p) ?? Flavor.FromPool(pool, p, null, null, tags);
                 if (line.NullOrEmpty()) continue;
                 CouncilGameComponent.Speak(p, line.Formatted(p.Named("PAWN")).Resolve(), SpeechColor);
                 vt.Spoke(p, now + GenDate.TicksPerDay);
@@ -234,7 +235,7 @@ namespace ColonyCouncil
             if (!VisualTouches.InView(out var viewMap, out var view) || viewMap != p.Map) return false;
             int now = Find.TickManager.TicksGame;
             if (!vt.Free(p, p.Map, view, now)) return false;
-            string line = Flavor.FromPool(pool, p, null, null, tags);
+            string line = GodSpeech.InPlaceOf(pool, p) ?? Flavor.FromPool(pool, p, null, null, tags);
             if (line.NullOrEmpty()) return false;
             CouncilGameComponent.Speak(p, line.Formatted(p.Named("PAWN")).Resolve(), SpeechColor);
             vt.Spoke(p, now + GenDate.TicksPerDay);

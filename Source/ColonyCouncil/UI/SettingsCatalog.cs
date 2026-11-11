@@ -457,6 +457,10 @@ namespace ColonyCouncil
             Toggle("diplomacyWards", "CC_Settings_DiplomacyWards", "CC_SetNote_DiplomacyWards", "factionMemory");
             Toggle("diplomacyRenown", "CC_Settings_DiplomacyRenown", "CC_SetNote_DiplomacyRenown", "factionMemory");
             Toggle("diplomacyNature", "CC_Settings_DiplomacyNature", "CC_SetNote_DiplomacyNature", "heart");
+            // The gods (Gods/): the pantheon, and how real they are.
+            Section("CC_SetSec_Gods");
+            Toggle("gods", "CC_Settings_Gods", "CC_SetNote_Gods");
+            Choice("godRealness", "CC_Settings_GodRealness", "CC_Settings_GodRealness_Tip", "CC_GodRealness_", "CC_SetNote_GodRealness_", new[] { "Believed", "Felt", "Walking" }, "gods");
             Section("CC_SetSec_Neighbours");
             Toggle("notables", "CC_Settings_Notables", "CC_SetNote_Notables");
             Toggle("neighbourLetters", "CC_Settings_NeighbourLetters", "CC_SetNote_NeighbourLetters", "notables");
@@ -873,7 +877,7 @@ namespace ColonyCouncil
         public static readonly string[] SystemSections =
         {
             "CC_Settings_Layers", "CC_SetSec_Lives", "CC_Settings_Bonds", "CC_SetSec_Story", "CC_Settings_Strangers", "CC_Settings_WorldEventsHeader",
-            "CC_Settings_WorldSituationsHeader", "CC_SetSec_Region", "CC_SetSec_Peoples", "CC_SetSec_Neighbours"
+            "CC_Settings_WorldSituationsHeader", "CC_SetSec_Region", "CC_SetSec_Peoples", "CC_SetSec_Gods", "CC_SetSec_Neighbours"
         };
 
         /// <summary>The council and the colony's story: what "Council only" keeps on.</summary>

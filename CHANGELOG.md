@@ -5,6 +5,17 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## The gods are real
+
+*11 November 2026, version 0.215.0*
+
+- The gods: one pantheon for the whole world. Every faith's deities are real gods with a domain of their own, a people without Ideology has two or three gods of its age and land, and Rimfolk's peoples each have a patron.
+- Gods have ties and natures: rivals, lovers, kin, allies and old wrongs, proud ones, jealous ones and cold ones. Some don't fit at all: archotechs, the Hunger, a trickster, a dead god, a fading god and the Sleeper in the vault.
+- The colony stands with each god in words, from wrathful to beloved, by what it does: a big harvest, a raid beaten off, a great beast brought down, a funeral. Pleasing one god a little galls its rivals.
+- A Gods page in the region window, under Peoples: the colony's gods, the others it knows and the rumours of the rest, with the whole pantheon drawn as a web.
+- Colonists swear by their gods now and then, and the neighbours' letters name theirs.
+- Two new settings: Gods, and How real are the gods (Believed, Felt, Walking).
+
 ## A simple meal for every diet
 
 *11 November 2026, version 0.214.0*

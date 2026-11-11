@@ -1,0 +1,826 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    The fourteen domains of the gods (Gods/GodDefs.cs, GodDomainDef; docs/design/gods.md, "Domains"). For each: what its
+    gods are gods of ("goddess of the harvest"), two colours, its symbol (Tools/make_god_symbols.py, white on transparent,
+    tinted in a god's colours), the names Rimfolk's makers give its gods in each age (a tribe's spirits, the medieval's old
+    gods and saints, the industrial's half-forgotten and machine gods, spacers' archotechs), its epithets (a noun phrase
+    after the name, "the Bringer of Rain"), the name of a god of it born of the colony's own faith, and its sacred things:
+    animal kinds and plants by defName (the game's and the player's active mods', looked up softly), a place and a deed.
+    The names avoid the patrons' own (Defs/GodDefs/Rimfolk_Pantheon_Patrons.xml).
+  -->
+
+  <ColonyCouncil.GodDomainDef>
+    <defName>Rimfolk_GodDomain_Harvest</defName>
+    <label>harvest</label>
+    <domain>Harvest</domain>
+    <ofWords>the harvest</ofWords>
+    <colour>(0.88, 0.72, 0.32)</colour>
+    <colour2>(0.56, 0.64, 0.30)</colour2>
+    <symbol>ColonyCouncil/GodSymbols/Harvest</symbol>
+    <spiritNames>
+      <li>Grandmother Barley</li>
+      <li>the Sheaf Spirit</li>
+      <li>Old Ama</li>
+      <li>She Who Waters</li>
+      <li>Corn Mother</li>
+    </spiritNames>
+    <oldNames>
+      <li>Ceren</li>
+      <li>Demara</li>
+      <li>Old Sowen</li>
+      <li>Hallow</li>
+      <li>Abundia</li>
+    </oldNames>
+    <newNames>
+      <li>the Sower</li>
+      <li>Mother Plenty</li>
+      <li>Old Harvest</li>
+      <li>the Granary Lady</li>
+    </newNames>
+    <machineNames>
+      <li>the Thresher</li>
+      <li>the Mill</li>
+    </machineNames>
+    <archotechNames>
+      <li>Provender</li>
+      <li>the Seed-Mind</li>
+      <li>Plenitude</li>
+    </archotechNames>
+    <epithets>
+      <li>the Bringer of Rain</li>
+      <li>the Mother of the Sheaf</li>
+      <li>the Keeper of the Granary</li>
+      <li>the Sower of the Fields</li>
+      <li>the Lady of the Long Rows</li>
+    </epithets>
+    <newbornName>the Little Sheaf</newbornName>
+    <sacredAnimals>
+      <li>Hare</li>
+      <li>Snowhare</li>
+      <li>Bluebird</li>
+    </sacredAnimals>
+    <sacredPlants>
+      <li>Plant_Rice</li>
+      <li>Plant_Corn</li>
+      <li>Plant_Potato</li>
+    </sacredPlants>
+    <sacredPlace>a field at sowing</sacredPlace>
+    <sacredDeed>a big harvest brought in</sacredDeed>
+  </ColonyCouncil.GodDomainDef>
+
+  <ColonyCouncil.GodDomainDef>
+    <defName>Rimfolk_GodDomain_Storm</defName>
+    <label>storm</label>
+    <domain>Storm</domain>
+    <ofWords>storms</ofWords>
+    <colour>(0.48, 0.58, 0.80)</colour>
+    <colour2>(0.86, 0.90, 1.00)</colour2>
+    <symbol>ColonyCouncil/GodSymbols/Storm</symbol>
+    <spiritNames>
+      <li>Thunderbird</li>
+      <li>Grandfather Wind</li>
+      <li>the Hail Spirit</li>
+      <li>Old Rumble</li>
+      <li>Thunder Elk</li>
+    </spiritNames>
+    <oldNames>
+      <li>Tarhun</li>
+      <li>Varuth</li>
+      <li>Skoll</li>
+      <li>Thoran</li>
+      <li>Ilmar</li>
+    </oldNames>
+    <newNames>
+      <li>Old Thunder</li>
+      <li>the Weatherwife</li>
+      <li>Father Lightning</li>
+      <li>the Rainmaker</li>
+    </newNames>
+    <machineNames>
+      <li>the Dynamo</li>
+      <li>the Spark</li>
+    </machineNames>
+    <archotechNames>
+      <li>Cumulus</li>
+      <li>the Weathermind</li>
+      <li>the Tempest Engine</li>
+    </archotechNames>
+    <epithets>
+      <li>the Breaker of Skies</li>
+      <li>the Father of Storms</li>
+      <li>the Rider of the Hail</li>
+      <li>the Voice in the Thunder</li>
+      <li>the Lord of the Four Winds</li>
+    </epithets>
+    <newbornName>the Young Thunder</newbornName>
+    <sacredAnimals>
+      <li>Crow</li>
+      <li>Ibex</li>
+    </sacredAnimals>
+    <sacredPlants>
+      <li>Plant_TreeOak</li>
+    </sacredPlants>
+    <sacredPlace>a high place in the wind</sacredPlace>
+    <sacredDeed>a storm weathered together</sacredDeed>
+  </ColonyCouncil.GodDomainDef>
+
+  <ColonyCouncil.GodDomainDef>
+    <defName>Rimfolk_GodDomain_Hunt</defName>
+    <label>hunt</label>
+    <domain>Hunt</domain>
+    <ofWords>the hunt</ofWords>
+    <colour>(0.36, 0.56, 0.32)</colour>
+    <colour2>(0.84, 0.76, 0.58)</colour2>
+    <symbol>ColonyCouncil/GodSymbols/Hunt</symbol>
+    <spiritNames>
+      <li>Grey Wolf</li>
+      <li>Antler Father</li>
+      <li>the White Stag</li>
+      <li>Swift-Foot</li>
+      <li>Old Tracker</li>
+    </spiritNames>
+    <oldNames>
+      <li>Orvan</li>
+      <li>Artemyra</li>
+      <li>Hern</li>
+      <li>Cernun</li>
+      <li>Ullin</li>
+    </oldNames>
+    <newNames>
+      <li>Old Huntsman</li>
+      <li>the Lady of the Chase</li>
+      <li>the Tracker</li>
+      <li>the Game Warden</li>
+    </newNames>
+    <machineNames>
+      <li>the Hound Engine</li>
+      <li>the Long Rifle</li>
+    </machineNames>
+    <archotechNames>
+      <li>Predator</li>
+      <li>the Tracking Mind</li>
+      <li>Quarry</li>
+    </archotechNames>
+    <epithets>
+      <li>the Lord of the Chase</li>
+      <li>the Keeper of the Herds</li>
+      <li>the Antlered One</li>
+      <li>the Swift Arrow</li>
+      <li>the Watcher in the Trees</li>
+    </epithets>
+    <newbornName>the Young Hunter</newbornName>
+    <sacredAnimals>
+      <li>Elk</li>
+      <li>Moose</li>
+      <li>DevDesigner_AncientDeer</li>
+    </sacredAnimals>
+    <sacredPlants>
+      <li>Plant_TreeBirch</li>
+    </sacredPlants>
+    <sacredPlace>a game trail at dawn</sacredPlace>
+    <sacredDeed>a great beast brought down</sacredDeed>
+  </ColonyCouncil.GodDomainDef>
+
+  <ColonyCouncil.GodDomainDef>
+    <defName>Rimfolk_GodDomain_Healing</defName>
+    <label>healing</label>
+    <domain>Healing</domain>
+    <ofWords>healing</ofWords>
+    <colour>(0.92, 0.94, 0.90)</colour>
+    <colour2>(0.56, 0.82, 0.66)</colour2>
+    <symbol>ColonyCouncil/GodSymbols/Healing</symbol>
+    <spiritNames>
+      <li>Grandmother Willow</li>
+      <li>the Salve Spirit</li>
+      <li>Old Moss-Hand</li>
+      <li>Kind Hands</li>
+      <li>the Healing Snake</li>
+    </spiritNames>
+    <oldNames>
+      <li>Asklen</li>
+      <li>Eira</li>
+      <li>Miren</li>
+      <li>Gula</li>
+      <li>Panacea</li>
+    </oldNames>
+    <saintNames>
+      <li>Saint Cosma</li>
+      <li>Saint Brigid of the Wells</li>
+      <li>Saint Rafe</li>
+      <li>Saint Elsbeth</li>
+    </saintNames>
+    <newNames>
+      <li>the Nurse</li>
+      <li>Old Doctor</li>
+      <li>Mother Mercy</li>
+      <li>the Lady of Mercy</li>
+    </newNames>
+    <machineNames>
+      <li>the Physician</li>
+      <li>the Clean Machine</li>
+    </machineNames>
+    <archotechNames>
+      <li>Lifeline</li>
+      <li>the Mender</li>
+      <li>Cure</li>
+    </archotechNames>
+    <epithets>
+      <li>the Breaker of Fevers</li>
+      <li>the Keeper of the Sick</li>
+      <li>the Hand That Mends</li>
+      <li>the Lamp in the Sickroom</li>
+      <li>the Gentle Knife</li>
+    </epithets>
+    <newbornName>the Little Mender</newbornName>
+    <sacredAnimals>
+      <li>Cobra</li>
+      <li>Heron</li>
+    </sacredAnimals>
+    <sacredPlants>
+      <li>Plant_Healroot</li>
+      <li>Plant_HealrootWild</li>
+    </sacredPlants>
+    <sacredPlace>a spring or a sickroom</sacredPlace>
+    <sacredDeed>a life saved</sacredDeed>
+  </ColonyCouncil.GodDomainDef>
+
+  <ColonyCouncil.GodDomainDef>
+    <defName>Rimfolk_GodDomain_War</defName>
+    <label>war</label>
+    <domain>War</domain>
+    <ofWords>war</ofWords>
+    <colour>(0.78, 0.22, 0.20)</colour>
+    <colour2>(0.48, 0.48, 0.52)</colour2>
+    <symbol>ColonyCouncil/GodSymbols/War</symbol>
+    <spiritNames>
+      <li>Red Wolf</li>
+      <li>the Spear Spirit</li>
+      <li>Blood-on-the-Snow</li>
+      <li>Bear Heart</li>
+      <li>Old Fury</li>
+    </spiritNames>
+    <oldNames>
+      <li>Tyras</li>
+      <li>Marrok</li>
+      <li>Bellona</li>
+      <li>Vargan</li>
+      <li>Kruth</li>
+    </oldNames>
+    <newNames>
+      <li>the General</li>
+      <li>Old Iron</li>
+      <li>the Drummer</li>
+      <li>Father Rifle</li>
+    </newNames>
+    <machineNames>
+      <li>the Cannon</li>
+      <li>the War Engine</li>
+    </machineNames>
+    <archotechNames>
+      <li>Vanguard</li>
+      <li>the War-Mind</li>
+      <li>Aegis</li>
+    </archotechNames>
+    <epithets>
+      <li>the Breaker of Shields</li>
+      <li>the Lord of the Field</li>
+      <li>the Red Hand</li>
+      <li>the Captain of Hosts</li>
+      <li>the Iron Crown</li>
+    </epithets>
+    <newbornName>the Young Captain</newbornName>
+    <sacredAnimals>
+      <li>WildBoar</li>
+      <li>Warg</li>
+    </sacredAnimals>
+    <sacredPlants>
+      <li>Plant_Brambles</li>
+    </sacredPlants>
+    <sacredPlace>a field where a battle was won</sacredPlace>
+    <sacredDeed>a raid beaten off</sacredDeed>
+  </ColonyCouncil.GodDomainDef>
+
+  <ColonyCouncil.GodDomainDef>
+    <defName>Rimfolk_GodDomain_Craft</defName>
+    <label>craft</label>
+    <domain>Craft</domain>
+    <ofWords>the forge</ofWords>
+    <colour>(0.82, 0.52, 0.26)</colour>
+    <colour2>(0.96, 0.62, 0.26)</colour2>
+    <symbol>ColonyCouncil/GodSymbols/Craft</symbol>
+    <spiritNames>
+      <li>Flint Grandfather</li>
+      <li>the Stone Spirit</li>
+      <li>Old Knapper</li>
+      <li>Clay Mother</li>
+      <li>Ember-Hands</li>
+    </spiritNames>
+    <oldNames>
+      <li>Hephaon</li>
+      <li>Vulkar</li>
+      <li>Goibne</li>
+      <li>Ilmarin</li>
+      <li>Weland</li>
+    </oldNames>
+    <newNames>
+      <li>the Engineer</li>
+      <li>Old Hammer</li>
+      <li>the Maker</li>
+      <li>Mother Forge</li>
+    </newNames>
+    <machineNames>
+      <li>the Great Engine</li>
+      <li>the Foundry</li>
+      <li>the Lathe</li>
+    </machineNames>
+    <archotechNames>
+      <li>Assembler</li>
+      <li>the Maker-Mind</li>
+      <li>Forgeheart</li>
+    </archotechNames>
+    <epithets>
+      <li>the Hammer on the Anvil</li>
+      <li>the Maker of Tools</li>
+      <li>the Keeper of the Forge</li>
+      <li>the Master of the Mark</li>
+      <li>the Hand That Builds</li>
+    </epithets>
+    <newbornName>the Little Hammer</newbornName>
+    <sacredAnimals>
+      <li>Alphabeaver</li>
+    </sacredAnimals>
+    <sacredPlants>
+      <li>Plant_TreeTeak</li>
+    </sacredPlants>
+    <sacredPlace>a forge or a quarry</sacredPlace>
+    <sacredDeed>a masterwork made</sacredDeed>
+  </ColonyCouncil.GodDomainDef>
+
+  <ColonyCouncil.GodDomainDef>
+    <defName>Rimfolk_GodDomain_Way</defName>
+    <label>way</label>
+    <domain>Way</domain>
+    <ofWords>the road</ofWords>
+    <colour>(0.80, 0.70, 0.52)</colour>
+    <colour2>(0.82, 0.87, 0.97)</colour2>
+    <symbol>ColonyCouncil/GodSymbols/Way</symbol>
+    <spiritNames>
+      <li>Fox</li>
+      <li>Old Wanderer</li>
+      <li>the Road Spirit</li>
+      <li>Swallow</li>
+      <li>Far-Walker</li>
+    </spiritNames>
+    <oldNames>
+      <li>Hermod</li>
+      <li>Merkan</li>
+      <li>Viara</li>
+      <li>Tollan</li>
+      <li>Odran</li>
+    </oldNames>
+    <saintNames>
+      <li>Saint Kit of the Crossroads</li>
+      <li>Saint Ulla of the Ford</li>
+      <li>Saint Jory</li>
+    </saintNames>
+    <newNames>
+      <li>the Wayfarer</li>
+      <li>Old Mile</li>
+      <li>the Lady of the Crossroads</li>
+      <li>Mister Luck</li>
+    </newNames>
+    <machineNames>
+      <li>the Locomotive</li>
+      <li>the Engine of the Road</li>
+    </machineNames>
+    <archotechNames>
+      <li>Transit</li>
+      <li>the Navigator</li>
+      <li>Waypoint</li>
+    </archotechNames>
+    <epithets>
+      <li>the Keeper of the Crossroads</li>
+      <li>the Friend of Travellers</li>
+      <li>the Guide of the Lost</li>
+      <li>the Lord of Fair Dealing</li>
+      <li>the Light at the Ford</li>
+    </epithets>
+    <newbornName>the Young Wayfarer</newbornName>
+    <sacredAnimals>
+      <li>Horse</li>
+      <li>Dromedary</li>
+    </sacredAnimals>
+    <sacredPlants>
+      <li>Plant_Dandelion</li>
+    </sacredPlants>
+    <sacredPlace>a crossroads</sacredPlace>
+    <sacredDeed>a traveller sheltered</sacredDeed>
+  </ColonyCouncil.GodDomainDef>
+
+  <ColonyCouncil.GodDomainDef>
+    <defName>Rimfolk_GodDomain_Dead</defName>
+    <label>dead</label>
+    <domain>Dead</domain>
+    <ofWords>the dead</ofWords>
+    <colour>(0.86, 0.85, 0.78)</colour>
+    <colour2>(0.46, 0.56, 0.52)</colour2>
+    <symbol>ColonyCouncil/GodSymbols/Dead</symbol>
+    <spiritNames>
+      <li>Grandmother Crow</li>
+      <li>the Bone Spirit</li>
+      <li>Old Quiet</li>
+      <li>Ash Mother</li>
+      <li>the Long Sleeper</li>
+    </spiritNames>
+    <oldNames>
+      <li>Morra</li>
+      <li>Charun</li>
+      <li>Orcus</li>
+      <li>Mortha</li>
+      <li>Sennet</li>
+    </oldNames>
+    <saintNames>
+      <li>Saint Lazar</li>
+      <li>Saint Mara of the Graves</li>
+      <li>Saint Tomas the Quiet</li>
+    </saintNames>
+    <newNames>
+      <li>the Gravedigger</li>
+      <li>Old Bones</li>
+      <li>the Undertaker</li>
+      <li>Mother Rest</li>
+    </newNames>
+    <machineNames>
+      <li>the Furnace</li>
+      <li>the Last Machine</li>
+    </machineNames>
+    <archotechNames>
+      <li>Archive</li>
+      <li>the Rememberer</li>
+      <li>Terminus</li>
+    </archotechNames>
+    <epithets>
+      <li>the Walker of the Dead</li>
+      <li>the Keeper of Graves</li>
+      <li>the Lantern at the Last Door</li>
+      <li>the Quiet Host</li>
+      <li>the Counter of Bones</li>
+    </epithets>
+    <newbornName>the Small Lantern</newbornName>
+    <sacredAnimals>
+      <li>Vulture</li>
+      <li>Crow</li>
+    </sacredAnimals>
+    <sacredPlants>
+      <li>Plant_TreeCypress</li>
+      <li>Plant_TreeWillow</li>
+    </sacredPlants>
+    <sacredPlace>a graveyard</sacredPlace>
+    <sacredDeed>the dead buried with words said</sacredDeed>
+  </ColonyCouncil.GodDomainDef>
+
+  <ColonyCouncil.GodDomainDef>
+    <defName>Rimfolk_GodDomain_Night</defName>
+    <label>night</label>
+    <domain>Night</domain>
+    <ofWords>the night</ofWords>
+    <colour>(0.32, 0.38, 0.70)</colour>
+    <colour2>(0.80, 0.82, 0.92)</colour2>
+    <symbol>ColonyCouncil/GodSymbols/Night</symbol>
+    <spiritNames>
+      <li>Owl Mother</li>
+      <li>the Moon Hare</li>
+      <li>Old Dark</li>
+      <li>Star-Eyes</li>
+      <li>the Dream Weaver</li>
+    </spiritNames>
+    <oldNames>
+      <li>Selen</li>
+      <li>Nyxa</li>
+      <li>Mani</li>
+      <li>Morvan</li>
+      <li>Lunet</li>
+    </oldNames>
+    <newNames>
+      <li>the Lady of the Moon</li>
+      <li>Old Midnight</li>
+      <li>the Dreamer</li>
+      <li>the Night Watch</li>
+    </newNames>
+    <machineNames>
+      <li>the Lamplighter</li>
+      <li>the Searchlight</li>
+    </machineNames>
+    <archotechNames>
+      <li>Nocturne</li>
+      <li>the Dreaming Mind</li>
+      <li>Umbra</li>
+    </archotechNames>
+    <epithets>
+      <li>the Keeper of Dreams</li>
+      <li>the Lady of the Silver Moon</li>
+      <li>the Watcher in the Dark</li>
+      <li>the Mother of Stars</li>
+      <li>the Bringer of Sleep</li>
+    </epithets>
+    <newbornName>the Little Moon</newbornName>
+    <sacredAnimals>
+      <li>Cat</li>
+      <li>Lynx</li>
+    </sacredAnimals>
+    <sacredPlants>
+      <li>Plant_Nightgrass</li>
+      <li>Plant_NightRafflesia</li>
+    </sacredPlants>
+    <sacredPlace>a hill under the stars</sacredPlace>
+    <sacredDeed>a dream told at breakfast</sacredDeed>
+  </ColonyCouncil.GodDomainDef>
+
+  <ColonyCouncil.GodDomainDef>
+    <defName>Rimfolk_GodDomain_Hearth</defName>
+    <label>hearth</label>
+    <domain>Hearth</domain>
+    <ofWords>the hearth</ofWords>
+    <colour>(0.96, 0.58, 0.28)</colour>
+    <colour2>(0.82, 0.32, 0.22)</colour2>
+    <symbol>ColonyCouncil/GodSymbols/Hearth</symbol>
+    <spiritNames>
+      <li>Grandmother Ember</li>
+      <li>the House Spirit</li>
+      <li>Old Kettle</li>
+      <li>the Fire Spirit</li>
+      <li>Hearth-Keeper</li>
+    </spiritNames>
+    <oldNames>
+      <li>Hestara</li>
+      <li>Vesta</li>
+      <li>Brigh</li>
+      <li>Dommar</li>
+      <li>Ennet</li>
+    </oldNames>
+    <saintNames>
+      <li>Saint Martha of the Kitchen</li>
+      <li>Saint Hob</li>
+      <li>Saint Annet</li>
+    </saintNames>
+    <newNames>
+      <li>Mother Hearth</li>
+      <li>the Lady of the House</li>
+      <li>Old Stove</li>
+      <li>the Housekeeper</li>
+    </newNames>
+    <machineNames>
+      <li>the Boiler</li>
+      <li>the Generator</li>
+    </machineNames>
+    <archotechNames>
+      <li>Habitat</li>
+      <li>the Warden of Homes</li>
+      <li>Comfort</li>
+    </archotechNames>
+    <epithets>
+      <li>the Keeper of the Fire</li>
+      <li>the Mother of the House</li>
+      <li>the Light in the Window</li>
+      <li>the Guardian of the Door</li>
+      <li>the Lady of the Table</li>
+    </epithets>
+    <newbornName>the Little Flame</newbornName>
+    <sacredAnimals>
+      <li>Husky</li>
+      <li>LabradorRetriever</li>
+    </sacredAnimals>
+    <sacredPlants>
+      <li>Plant_Rose</li>
+    </sacredPlants>
+    <sacredPlace>the fire at the heart of the house</sacredPlace>
+    <sacredDeed>a feast shared</sacredDeed>
+  </ColonyCouncil.GodDomainDef>
+
+  <ColonyCouncil.GodDomainDef>
+    <defName>Rimfolk_GodDomain_Wild</defName>
+    <label>wild</label>
+    <domain>Wild</domain>
+    <ofWords>the wild</ofWords>
+    <colour>(0.42, 0.72, 0.32)</colour>
+    <colour2>(0.52, 0.40, 0.26)</colour2>
+    <symbol>ColonyCouncil/GodSymbols/Wild</symbol>
+    <spiritNames>
+      <li>the Green Man</li>
+      <li>Old Oak</li>
+      <li>Moss Mother</li>
+      <li>the Thicket Spirit</li>
+      <li>Fern-Grandmother</li>
+    </spiritNames>
+    <oldNames>
+      <li>Silvan</li>
+      <li>Faunel</li>
+      <li>Verdan</li>
+      <li>Leshen</li>
+      <li>Dryope</li>
+    </oldNames>
+    <newNames>
+      <li>Old Woods</li>
+      <li>the Gardener</li>
+      <li>the Wild Man</li>
+      <li>Lady Bramble</li>
+    </newNames>
+    <machineNames>
+      <li>the Terraformer</li>
+      <li>the Greenhouse</li>
+    </machineNames>
+    <archotechNames>
+      <li>Biome</li>
+      <li>the Gardener-Mind</li>
+      <li>Verdance</li>
+    </archotechNames>
+    <epithets>
+      <li>the Lord of Green Things</li>
+      <li>the Keeper of the Grove</li>
+      <li>the Antlered Green</li>
+      <li>the Root Under All</li>
+      <li>the Breath of the Forest</li>
+    </epithets>
+    <newbornName>the Green Shoot</newbornName>
+    <sacredAnimals>
+      <li>Thrumbo</li>
+      <li>AlphaThrumbo</li>
+      <li>Bear_Grizzly</li>
+    </sacredAnimals>
+    <sacredPlants>
+      <li>Plant_TreeOak</li>
+      <li>Plant_TreeGauranlen</li>
+      <li>Plant_Moss</li>
+    </sacredPlants>
+    <sacredPlace>an old tree</sacredPlace>
+    <sacredDeed>a tree planted where one was felled</sacredDeed>
+  </ColonyCouncil.GodDomainDef>
+
+  <ColonyCouncil.GodDomainDef>
+    <defName>Rimfolk_GodDomain_Waters</defName>
+    <label>waters</label>
+    <domain>Waters</domain>
+    <ofWords>the waters</ofWords>
+    <colour>(0.28, 0.62, 0.72)</colour>
+    <colour2>(0.78, 0.92, 0.96)</colour2>
+    <symbol>ColonyCouncil/GodSymbols/Waters</symbol>
+    <spiritNames>
+      <li>the River Spirit</li>
+      <li>Old Otter</li>
+      <li>Grandmother Rain</li>
+      <li>Salmon Father</li>
+      <li>the Deep Pool</li>
+    </spiritNames>
+    <oldNames>
+      <li>Nerra</li>
+      <li>Llyr</li>
+      <li>Thalass</li>
+      <li>Morwen</li>
+      <li>Undine</li>
+    </oldNames>
+    <newNames>
+      <li>Old Man River</li>
+      <li>the Lady of the Lake</li>
+      <li>the Tidewife</li>
+      <li>the Well Keeper</li>
+    </newNames>
+    <machineNames>
+      <li>the Pump</li>
+      <li>the Dam</li>
+    </machineNames>
+    <archotechNames>
+      <li>Hydrosphere</li>
+      <li>the Tide-Mind</li>
+      <li>Wellspring</li>
+    </archotechNames>
+    <epithets>
+      <li>the Mother of Rivers</li>
+      <li>the Lord of the Deep</li>
+      <li>the Keeper of the Ford</li>
+      <li>the One Who Gives and Takes</li>
+      <li>the Lady of the Tides</li>
+    </epithets>
+    <newbornName>the Little Spring</newbornName>
+    <sacredAnimals>
+      <li>Swan</li>
+      <li>Otter</li>
+      <li>SeaTurtle</li>
+      <li>SeaOtter</li>
+    </sacredAnimals>
+    <sacredPlants>
+      <li>Plant_Lotus</li>
+      <li>Plant_Reeds</li>
+    </sacredPlants>
+    <sacredPlace>a riverbank or a well</sacredPlace>
+    <sacredDeed>a catch shared</sacredDeed>
+  </ColonyCouncil.GodDomainDef>
+
+  <ColonyCouncil.GodDomainDef>
+    <defName>Rimfolk_GodDomain_Machine</defName>
+    <label>machine</label>
+    <domain>Machine</domain>
+    <ofWords>machines</ofWords>
+    <colour>(0.46, 0.78, 0.88)</colour>
+    <colour2>(0.78, 0.68, 0.42)</colour2>
+    <symbol>ColonyCouncil/GodSymbols/Machine</symbol>
+    <spiritNames>
+      <li>the Iron Spirit</li>
+      <li>the Humming Stone</li>
+      <li>Sky-Metal</li>
+      <li>the Shining Bones</li>
+      <li>Old Spark</li>
+    </spiritNames>
+    <oldNames>
+      <li>Talos</li>
+      <li>Daedren</li>
+      <li>Mekan</li>
+      <li>the Iron Oracle</li>
+      <li>the Brazen Head</li>
+    </oldNames>
+    <newNames>
+      <li>the Machine</li>
+      <li>Old Gears</li>
+      <li>the Engine</li>
+      <li>Mother Circuit</li>
+    </newNames>
+    <machineNames>
+      <li>the Prime Mover</li>
+      <li>the Motherboard</li>
+      <li>the Logic Engine</li>
+      <li>Old Iron Heart</li>
+    </machineNames>
+    <archotechNames>
+      <li>Sophia</li>
+      <li>the Overmind</li>
+      <li>Axiom</li>
+      <li>Ouroboros</li>
+      <li>Apex</li>
+    </archotechNames>
+    <epithets>
+      <li>the Mind in the Metal</li>
+      <li>the Turner of Gears</li>
+      <li>the First Machine</li>
+      <li>the Keeper of the Spark</li>
+      <li>the Thinker Beyond Thought</li>
+    </epithets>
+    <newbornName>the Small Spark</newbornName>
+    <sacredPlace>an ancient machine</sacredPlace>
+    <sacredDeed>a machine made to work again</sacredDeed>
+  </ColonyCouncil.GodDomainDef>
+
+  <ColonyCouncil.GodDomainDef>
+    <defName>Rimfolk_GodDomain_Void</defName>
+    <label>void</label>
+    <domain>Void</domain>
+    <ofWords>the void</ofWords>
+    <colour>(0.40, 0.20, 0.52)</colour>
+    <colour2>(0.82, 0.72, 0.92)</colour2>
+    <symbol>ColonyCouncil/GodSymbols/Void</symbol>
+    <spiritNames>
+      <li>the Hungry Dark</li>
+      <li>Old Gnaw</li>
+      <li>the Mouth</li>
+      <li>the Thing Under the Ice</li>
+      <li>the Empty One</li>
+    </spiritNames>
+    <oldNames>
+      <li>Azgoth</li>
+      <li>Nhal</li>
+      <li>the Unmaker</li>
+      <li>Vorrun</li>
+      <li>Khethra</li>
+    </oldNames>
+    <newNames>
+      <li>the Nothing</li>
+      <li>the Pale Mouth</li>
+      <li>Old Hollow</li>
+      <li>the Gap</li>
+    </newNames>
+    <machineNames>
+      <li>the Black Engine</li>
+      <li>the Null</li>
+    </machineNames>
+    <archotechNames>
+      <li>Entropy</li>
+      <li>the Silent Mind</li>
+      <li>Abyssal</li>
+      <li>Zero</li>
+    </archotechNames>
+    <epithets>
+      <li>the Mouth Beneath</li>
+      <li>the Dark Between Stars</li>
+      <li>the Unmaker of Things</li>
+      <li>the Cold at the Edge</li>
+      <li>the Whisper in the Deep</li>
+    </epithets>
+    <newbornName>the Small Dark</newbornName>
+    <sacredPlants>
+      <li>Plant_TreeHarbinger</li>
+    </sacredPlants>
+    <sacredPlace>a hole in the ground nobody fills</sacredPlace>
+    <sacredDeed>a bargain kept</sacredDeed>
+  </ColonyCouncil.GodDomainDef>
+
+</Defs>

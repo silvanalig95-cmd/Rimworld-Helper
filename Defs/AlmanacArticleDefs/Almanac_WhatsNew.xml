@@ -31,6 +31,20 @@ When you load a save after an update, a letter lists the newest round once. The 
     <rounds>
 
       <li>
+        <version>0.215.0</version>
+        <date>11 November 2026</date>
+        <title>The gods are real</title>
+        <points>
+          <li>The gods: one pantheon for the whole world. Every faith's deities are real gods with a domain of their own, a people without Ideology has two or three gods of its age and land, and Rimfolk's peoples each have a patron.</li>
+          <li>Gods have ties and natures: rivals, lovers, kin, allies and old wrongs, proud ones, jealous ones and cold ones. Some don't fit at all: archotechs, the Hunger, a trickster, a dead god, a fading god and the Sleeper in the vault.</li>
+          <li>The colony stands with each god in words, from wrathful to beloved, by what it does: a big harvest, a raid beaten off, a great beast brought down, a funeral. Pleasing one god a little galls its rivals.</li>
+          <li>A Gods page in the region window, under Peoples: the colony's gods, the others it knows and the rumours of the rest, with the whole pantheon drawn as a web.</li>
+          <li>Colonists swear by their gods now and then, and the neighbours' letters name theirs.</li>
+          <li>Two new settings: Gods, and How real are the gods (Believed, Felt, Walking).</li>
+        </points>
+      </li>
+
+      <li>
         <version>0.214.0</version>
         <date>11 November 2026</date>
         <title>A simple meal for every diet</title>

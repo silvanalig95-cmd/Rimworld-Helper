@@ -4232,6 +4232,24 @@ they lost, and their card and the region's page of peoples show their age and wh
 visitors come dressed and armed as the new age is (and nothing of a later age among a people that fell back), their
 camps are built its way and their traders carry its goods. Setting: *Peoples' ages change* (on).
 
+**The gods.** One pantheon for the whole world, and every people has gods it swears by. With Ideology they are each
+faith's own deities, what each is god of read from its own words and its faith's memes and precepts; without it, each
+people has two or three gods of its age, its ways and its land. Rimfolk's peoples each have a patron of their own: the
+Way of the road league, the Healer of the hospitallers, the Herdmother of the herders and the tamers, the Storm-father
+of the Stormglass Conclave, the Ferryman of the Quiet Bell, the Broker, an archotech, of the spacer enclave, and the
+rest. Gods take the form of their people's age (spirits, old gods and saints, half-forgotten gods and gods of the
+machine, archotechs), and they have ties as the old pantheons did: rivals over the rain, lovers and lovers estranged,
+parents and children, twins, allies and old wrongs, shifting over the years. Each has a nature (proud, jealous,
+generous, capricious, wrathful, patient, playful, cold or grieving), and some don't fit at all: archotechs that care
+nothing for offerings, the Hunger the Choir of the Spire keeps quiet for, a trickster, a dead god, a fading god, the
+Sleeper in the Sunken Vault, and in time perhaps a god born of the colony's own faith. The colony stands with each god at
+each home in words, from wrathful to beloved, by what it does: a big harvest, a threat beaten off, a great beast
+brought down, a funeral, and the dead left lying or a sacred animal slaughtered the other way; pleasing a god a little
+galls its rivals. Colonists swear by their gods now and then, and the neighbours' letters name theirs. The region
+window's Peoples has a Gods page: the colony's gods, the others it knows, the rumours of the rest, the whole pantheon as
+a web, and each god's symbol, people, domain, nature, ties and acts. Settings: *Gods* (on) and *How real are the gods*
+(Believed, Felt, Walking; Felt). The Almanac has a page, *the gods*.
+
 ## Scenarios with stakes
 Seventeen scenarios, marked "(Rimfolk)" on the scenario page with how hard they are. Each starts the game with
 something already in motion, and a few seconds in, a letter says how things stand.
