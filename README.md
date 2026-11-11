@@ -1560,42 +1560,34 @@ auras* and *Gods' music* (How you're told, On the map and in the game's tabs), b
 actions to make any person or animal a god's, reveal one and play each kind of moment.
 
 ### The gods on the map
-A few times in a long game, a god comes to the colony itself, after days of omens: the land's birds all leaving at
-once, a strange calm with the wind dead and nothing moving, two colonists waking from the same dream (in the dream
-book and their journals, and they say so when next together), a lamp or a torch that won't stay lit, the animals
-restless and all looking one way. Colonists remark on each, and the news says whose sign it was, by how real the gods
-are ("Some say it is a sign of Ceren").
-- **The stranger at the gate.** A lone traveller of the colony's age (a wanderer, a pilgrim, a drifter, a lost spacer)
-  asks for shelter: a bed and a place at the table (Hospitality's guest when it's loaded, else a warm corner indoors),
-  sleep by the gate, or away. It's a god in disguise, with the tells of one, and it says things a traveller couldn't
-  know. It notices everything: the bed it got, the food (and it thanks the cook by name), who talked with it, shared a
-  meal or a drink, gave it something or tended its wounds, how the animals were kept, whether anyone struck or robbed
-  it. When it leaves, or the moment it's struck, it shows who it was: in *Walking* it stops at the gate, grows into
-  itself and speaks, then walks off as a god; in *Felt* it's simply gone, and some say. Kept well, the colony is
-  blessed (a find where it stood, rain for the fields) and the kindest colonist gets a lasting gift of its domain: a
-  burning passion, a trait, A RimWorld of Magic's spell or class, or its favour and a spark of inspiration. Turned
-  away or struck, it's angry: its domain withheld for a while (the rain kept away, dry thunder, the game gone from the
-  land, the lights guttering), and whoever struck it may come down with a fever (under the everyday hurts' cap and
-  the shared illness budget).
-- **The sacred animal.** A god walks as a beast of its own (the elves' ancient deer, a great wolf, Odyssey's crow, a
-  thunderox): larger than its kind and lit from within. It can't be tamed and is never hostile unless harmed. It stays
-  a few days; a small one follows one colonist about, a large one walks the land. Right-click it with a colonist to take
-  it food or follow it where it leads: to a find, a cure for what ails them, or a seam of ore nobody had seen. Leaving it
-  be pleases its god; hunting or hurting it is sacrilege: the game's own revenge, the god's anger in the sky, and a slain
-  one's body gone to ash.
-- **Weather as a voice.** After the colony's deeds, a god it knows may answer in its domain, as the land allows: rain
-  after the harvest's god is pleased, thunder on cue for the storm's, an eclipse for a dark god's anger, an aurora on a
-  god's night. A colonist outside always names it. Gods with no body (the storm has none) act this way most of all. In
-  *Believed* nothing is sent: the colony reads the god into the weather that comes of itself.
-- **What remains.** Its name and act go into the god's page, the chronicle and the colony's history; those who saw it
-  share the memory and bring it up when they talk; the kindest and whoever struck it are talked about. The mark on the
-  land is remembered for years: someone walks out to it on a quiet day and remembers aloud, it comes up at supper, and
-  visitors ask about it.
+The gods are a presence, never explained. Now and then, after days of signs, something comes to the colony, and
+nobody can say for certain what it was or why. You see what the colonists see, and hear what they say about it.
+- **Signs.** The birds all leaving at once, a calm with the wind dead, two people waking from the same dream, a lamp
+  that won't stay lit, the animals all looking one way. Each god has signs of its own: leaves drifting toward one place
+  on no wind, an anima tree humming loud enough to hear indoors; a vast winged shadow crossing the land at noon (Dragon's
+  Descent's own flying dragon, when it's loaded), steam from the ground, the rock rumbling over the deep mines; a ring of
+  mushrooms overnight, white threads across a floor; lights flickering in a pattern, a comms console's static, a lamp
+  glowing with no power; a star moving the wrong way; frost by a wall in lines like writing, a sudden silence, a tall
+  white figure at the edge of the night; a dark a lamp won't reach, a sweet voice to the most desperate; a deep croaking
+  from the wet ground before rain; the sun standing still with the shadows not moving, a heat haze; the moon huge and
+  close all night; a glint of gold, a golden beetle crossing a table, a coin where nobody dropped one.
+- **The moon's face.** The moon waxes and wanes through each season. People mention it, and it shapes the night's signs.
+- **A stranger at the gate.** Sometimes a lone traveller asks for shelter. Give them a bed, let them sleep by the gate,
+  or turn them away. They notice things. When they go, something happens, and what it means is up to you.
+- **Beasts.** A great white thrumbo may pass through, other thrumbos following at a distance. Someone can sit near it
+  while it grazes. A gray cat with too-bright eyes may come and stay a season with one colonist, cats following her,
+  and she won't be kept. Harm either one and see what follows.
+- **Rarer still.** Roots drawing themselves up out of the ground into a shape taller than any tree. A toad the size of a
+  house surfacing in the marsh (Odyssey). A colony that keeps mining deep under the mountain, past every warning, may find
+  out what it has been disturbing (Dragon's Descent).
+- **The night.** What was done by day sometimes comes back by morning: something found, a good dream, a wound healed, or
+  a nightmare, a frost, an animal at the door. It's talked about at breakfast.
+- **The weather.** Sometimes the sky seems to answer, and someone outside always says so.
 
-Who comes as what is the god's own (`Defs/GodDefs/Rimfolk_GodsOnMap_Shapes.xml`): not every god has a body, a beast or a
-voice in the sky. *Believed* brings no strangers and no beasts. This week lists a stranger staying and a beast on the
-land, never what is coming. Dev mode has *Gods: ...* actions for the stranger, the sacred animal, a god's weather, each
-omen and a visit to a mark. The Almanac has a page, *the gods on the map*.
+What people saw goes into the god's history in their own words, the chronicle, their journals and their shared memories.
+The places stay talked about for years: someone walks out to one on a quiet day, it comes up at supper, and visitors ask
+about it. *Believed* brings none of this; the colony reads its gods into what happens anyway. Dev mode has *Gods: ...*
+actions to call each of these.
 
 ### Offices and elections
 Five council seats: **speaker** (chairs meetings, everyone's trust rises a little each day), **marshal** (drills

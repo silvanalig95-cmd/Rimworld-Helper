@@ -61,6 +61,8 @@ namespace ColonyCouncil
         /// <summary>The play log looked at up to here, and when the stranger last said something.</summary>
         public int logSeen = -1, lastSaid = -1;
         public bool thanked;
+        /// <summary>A tell of theirs is in the colony's book already (one a stay).</summary>
+        public bool tellKept;
 
         public God God => Gods.ById(god);
 
@@ -110,6 +112,7 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref logSeen, "logSeen", -1);
             Scribe_Values.Look(ref lastSaid, "lastSaid", -1);
             Scribe_Values.Look(ref thanked, "thanked");
+            Scribe_Values.Look(ref tellKept, "tellKept");
             if (Scribe.mode == LoadSaveMode.PostLoadInit)
             {
                 kind ??= new List<Pawn>();
@@ -215,7 +218,7 @@ namespace ColonyCouncil
             if (kind == null) return null;
             var x = Arrivals.Make(kind, f, new FloatRange(25f, 60f));
             if (x == null) return null;
-            if (!GodLookSeam.Make(x, god, true))
+            if (!Gods.On || !GodsMath.AvatarsCome(Gods.Realness) || !GodAvatar.Make(x, GodsWiring.LookOf(god), x.LabelShort, true, god.colour, god.colour2))
             {
                 Arrivals.Discard(x);
                 return null;
@@ -504,9 +507,32 @@ namespace ColonyCouncil
             if (Gods.Realness == GodRealness.Walking) tags.Add("walking");
             if (s.welcome == StrangerWelcome.Gate) tags.Add("gate");
             if (s.animalsNeglected) tags.Add("animals");
+            var book = GodsOnMapBook.Instance;
+            if (book != null) tags.Add(GodsOnMapMath.Remembers(book.strangerGod == god.id ? book.strangerVisits : 0, book.strangerLast));
+            // It knows the name of someone's dead: a tell a traveller couldn't have.
+            string lost = DeadKin(with);
+            if (lost != null && Rand.Chance(0.35f)) tags.Add("knowsdead");
             string line = Flavor.FromPool(HintPool, x, null, null, tags.ToArray());
             if (line.NullOrEmpty()) return;
-            if (Speech.Say(x, line.Formatted(with.Named("OTHER")).Resolve(), with)) s.lastSaid = now;
+            if (!Speech.Say(x, line.Formatted(with.Named("OTHER"), (lost ?? "").Named("LOST")).Resolve(), with)) return;
+            s.lastSaid = now;
+            if (s.tellKept) return;
+            s.tellKept = true;
+            bool dead = lost != null && tags.Contains("knowsdead");
+            GodsOnMapWords.Saw(god, s.map, x.Position, GodActKind.Omen, with, dead ? "CC_GodM_Saw_StrangerKnewDead" : "CC_GodM_Saw_StrangerTell", Traveller(Age).Named("TRAVELLER"),
+                (lost ?? "").Named("LOST"));
+        }
+
+        /// <summary>The name of someone of <paramref name="p"/>'s own who has died (a parent first, then a partner, a child, a sibling), or null.</summary>
+        private static string DeadKin(Pawn p)
+        {
+            var rel = p?.relations?.DirectRelations;
+            if (rel == null) return null;
+            foreach (var def in new[] { PawnRelationDefOf.Parent, PawnRelationDefOf.Spouse, PawnRelationDefOf.Child, PawnRelationDefOf.Sibling })
+                foreach (var r in rel)
+                    if (r?.def == def && r.otherPawn != null && r.otherPawn.Dead && r.otherPawn.Name != null)
+                        return r.otherPawn.Name.ToStringShort;
+            return null;
         }
 
         /// <summary>The tags a god gives a stranger's lines: its domains ("storm", "harvest") and the colony's age.</summary>
@@ -633,10 +659,11 @@ namespace ColonyCouncil
                 CouncilLog.ErrorOnce("gods: the stranger stopping", e);
             }
             GodAvatar.Reveal(x, false);
+            Named(x, god);
             var kindest = Kindest(s);
             var cell = x.Position;
-            var outcome = GodGifts.Outcome(god, s.map, cell, t, kindest, s.harmer, s.welcome);
-            Moment(god, s.map, cell, x, GodsOnMapMath.EndKind(t), Title(god, t, true), Text(s, god, t, kindest, outcome, true));
+            GodGifts.Outcome(god, s.map, cell, t, kindest, s.harmer, s.welcome);
+            Moment(god, s.map, cell, x, GodsOnMapMath.EndKind(t), Title(god, true), Text(s, god, t, kindest, true));
             Remember(s, god, cell, t, kindest);
             s.phase = StrangerPhase.Farewell;
             s.phaseDue = now + GodsOnMapMath.FarewellTicks;
@@ -658,8 +685,8 @@ namespace ColonyCouncil
             var kindest = Kindest(s);
             var cell = s.place.IsValid ? s.place : s.gate.IsValid ? s.gate : map.Center;
             bool plain = GodsOnMapMath.Show(Gods.Realness) == GodShow.Plain;
-            var outcome = GodGifts.Outcome(god, map, cell, t, kindest, s.harmer, s.welcome);
-            Moment(god, map, cell, null, GodsOnMapMath.EndKind(t), Title(god, t, plain), Text(s, god, t, kindest, outcome, plain));
+            GodGifts.Outcome(god, map, cell, t, kindest, s.harmer, s.welcome);
+            Moment(god, map, cell, null, GodsOnMapMath.EndKind(t), Title(god, plain), Text(s, god, t, kindest, plain));
             Remember(s, god, cell, t, kindest);
             Vanish(s.x);
         }
@@ -693,12 +720,13 @@ namespace ColonyCouncil
                     CouncilLog.ErrorOnce("gods: the struck stranger", e);
                 }
                 GodAvatar.Reveal(x, false);
+                Named(x, god);
             }
             // Felt: one moment there, the next only scorched ground where they stood.
             else Vanish(x);
             var kindest = Kindest(s);
-            var outcome = GodGifts.Outcome(god, map, cell, Treatment.Harmed, kindest, s.harmer, s.welcome);
-            Moment(god, map, cell, plain ? x : null, PresenceKind.Wrath, Title(god, Treatment.Harmed, plain), Text(s, god, Treatment.Harmed, kindest, outcome, plain));
+            GodGifts.Outcome(god, map, cell, Treatment.Harmed, kindest, s.harmer, s.welcome);
+            Moment(god, map, cell, plain ? x : null, PresenceKind.Wrath, Title(god, plain), Text(s, god, Treatment.Harmed, kindest, plain));
             Remember(s, god, cell, Treatment.Harmed, kindest);
             if (!plain)
             {
@@ -777,6 +805,13 @@ namespace ColonyCouncil
             }
         }
 
+        /// <summary>Shown for what it is: the name over it is the god's now, no longer the one it gave at the door.</summary>
+        private static void Named(Pawn x, God god)
+        {
+            var c = GodAvatar.Of(x);
+            if (c != null && god != null && !Gods.Name(god).NullOrEmpty()) c.godName = Gods.Name(god);
+        }
+
         // ================= The words =================
 
         private static void Moment(God god, Map map, IntVec3 cell, Pawn avatar, PresenceKind kind, string title, string text)
@@ -787,10 +822,13 @@ namespace ColonyCouncil
             if (!GodPresenceSeam.Call(spec)) Tell.Letter(NewsKind.Land, Importance.Important, map, title, text, LetterDefOf.NeutralEvent, new LookTargets(cell, map));
         }
 
-        private static string Title(God god, Treatment t, bool plain) =>
-            plain ? ("CC_GodM_Stranger_Title_" + t).Translate(Gods.Args(god)).Resolve().CapitalizeFirst() : "CC_GodM_Stranger_TitleVeiled".Translate().Resolve().CapitalizeFirst();
+        // The card says only what was seen and heard (the player: the gods are an ominous presence, never explained): no why,
+        // no blessing or curse spelled out; what follows simply happens on the map. At Felt the god stays unnamed.
 
-        private static string Text(StrangerStay s, God god, Treatment t, Pawn kindest, string outcome, bool plain)
+        private static string Title(God god, bool plain) =>
+            plain ? GodsOnMapWords.Title(god, null, true, "CC_GodM_Stranger_Title", "CC_GodM_Stranger_TitleNamed") : "CC_GodM_Stranger_TitleVeiled".Translate().Resolve().CapitalizeFirst();
+
+        private static string Text(StrangerStay s, God god, Treatment t, Pawn kindest, bool plain)
         {
             var args = new List<NamedArgument>(GodsOnMapWords.Args(god, plain))
             {
@@ -801,8 +839,8 @@ namespace ColonyCouncil
             };
             string key = "CC_GodM_Stranger_" + (plain ? "Plain_" : "Veiled_") + t;
             string text = key.Translate(args.ToArray()).Resolve();
-            if (kindest != null && t >= Treatment.Kind) text += " " + "CC_GodM_Stranger_Kindest".Translate(args.ToArray()).Resolve();
-            if (!outcome.NullOrEmpty()) text += "\n\n" + outcome;
+            // Seen, not said: whom it looked at before it went.
+            if (kindest != null && t >= Treatment.Kind) text += " " + "CC_GodM_Stranger_LookedAt".Translate(args.ToArray()).Resolve();
             return text;
         }
 
@@ -812,20 +850,31 @@ namespace ColonyCouncil
             var map = s.map;
             string what = ("CC_GodM_Stranger_Act_" + t).Translate(Traveller(Age).Named("TRAVELLER")).Resolve();
             bool plain = GodsOnMapMath.Show(Gods.Realness) == GodShow.Plain;
-            Gods.Remember(new GodAct
-            {
-                god = god.id, home = Gods.HomeKey(map), tick = Now, kind = plain ? GodActKind.Reveal : GodActKind.Depart, cell = cell,
-                text = (plain ? what : "CC_GodM_SomeSay".Translate(what.Named("WHAT")).Resolve()).CapitalizeFirst()
-            });
+            // The colony's book and chronicle, in the words of one who saw it (or who sat with it, or was kindest to it).
+            var seer = GodsOnMapWords.Seer(map, cell, 40f) ?? kindest ?? s.talkers.FirstOrDefault(p => p != null && !p.Dead);
+            string key = t == Treatment.Harmed ? plain ? "CC_GodM_Saw_StrangerStruckShown" : "CC_GodM_Saw_StrangerStruckGone"
+                : plain ? "CC_GodM_Saw_StrangerShown" : "CC_GodM_Saw_StrangerGone";
+            string saw = GodsOnMapWords.Saw(god, map, cell, plain ? GodActKind.Reveal : GodActKind.Depart, seer, key, Traveller(Age).Named("TRAVELLER"),
+                (s.harmer?.LabelShort ?? "CC_GodM_Someone".Translate().Resolve()).Named("HARMER"));
             if (plain) Gods.Learn(god, "visitors");
             GodMarks.Note(god, map, cell, what, GodsOnMapMath.EndKind(t));
             GodMarks.Witnessed(map, cell, "CC_GodM_Memory_Stranger".Translate(Traveller(Age).Named("TRAVELLER")).Resolve(), s.talkers.Concat(s.kind));
-            string line = (plain ? "CC_GodM_Chronicle_Stranger" : "CC_GodM_Chronicle_StrangerVeiled").Translate(GodsOnMapWords.Args(god, plain).Concat(new[]
-            {
-                Traveller(Age).Named("TRAVELLER"), what.Named("WHAT")
-            }).ToArray()).Resolve();
-            CouncilGameComponent.Instance?.AddChronicle(new ChronicleEntry(ChronicleKind.World, line.CapitalizeFirst(), kindest));
+            if (saw != null) CouncilGameComponent.Instance?.AddChronicle(new ChronicleEntry(ChronicleKind.World, saw, seer));
             if (kindest != null && t >= Treatment.Kind) Deeds.Record("Rimfolk_Deed_GodSheltered", kindest, null, -1f, null, Traveller(Age));
+            // It never forgets the answer: the next time it comes, it remembers this one; a good welcome is blessed later.
+            var b = GodsOnMapBook.Instance;
+            if (b != null)
+            {
+                b.strangerVisits = b.strangerGod == god.id ? b.strangerVisits + 1 : 1;
+                b.strangerGod = god.id;
+                b.strangerLast = t;
+                if (t >= Treatment.Kind && b.lateGiftAt < 0)
+                {
+                    b.lateGiftAt = Now + Rand.RangeInclusive(GodsOnMapMath.LateGiftMinDays, GodsOnMapMath.LateGiftMaxDays) * GenDate.TicksPerDay;
+                    b.lateGiftGod = god.id;
+                    b.lateGiftHome = Homes.KeyOf(map);
+                }
+            }
             if (s.harmer != null && s.harmer.IsColonist && t == Treatment.Harmed) Deeds.Record("Rimfolk_Deed_GodStruck", s.harmer, null, -1f, null, Traveller(Age));
         }
 
@@ -882,6 +931,9 @@ namespace ColonyCouncil
             var god = int.TryParse(ctx.note, out int id) ? Gods.ById(id) : GodStranger.pendingGod;
             if (god == null) return;
             foreach (var t in GodStranger.Tags(god)) tags.Add(t);
+            // The Guest remembers this colony's last welcome: its words at the gate say so.
+            var b = GodsOnMapBook.Instance;
+            if (b != null) tags.Add(GodsOnMapMath.Remembers(b.strangerGod == god.id ? b.strangerVisits : 0, b.strangerLast));
         }
 
         public override string Resolved(HappeningContext ctx, int option, bool risk, bool byDefault, string outcome)

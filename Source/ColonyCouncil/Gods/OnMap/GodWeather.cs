@@ -104,9 +104,21 @@ namespace ColonyCouncil
                         Storm(map, angered);
                         return true;
                     case WeatherVoice.Eclipse:
-                        return Condition(map, GameConditionDefOf.Eclipse, "Eclipse", 0.5f, false);
+                        if (!Condition(map, GameConditionDefOf.Eclipse, "Eclipse", 0.5f, false)) return false;
+                        Watch(map);
+                        return true;
                     case WeatherVoice.Aurora:
                         return Condition(map, GameConditionDefOf.Aurora, "Aurora", 0.3f, true);
+                    case WeatherVoice.Cold:
+                        return Condition(map, GameConditionDefOf.ColdSnap, "ColdSnap", 1.5f, false, true);
+                    case WeatherVoice.Heat:
+                        return Condition(map, GameConditionDefOf.HeatWave, "HeatWave", 1.5f, false, true);
+                    case WeatherVoice.Clear:
+                        return Clear(map);
+                    case WeatherVoice.Sleepless:
+                        return Sleepless(map);
+                    case WeatherVoice.Snow:
+                        return Snow(map);
                 }
             }
             catch (Exception e)
@@ -151,6 +163,74 @@ namespace ColonyCouncil
             return true;
         }
 
+        /// <summary>Everyone of the colony out of doors stops a while to watch (an eclipse: something stepping between).</summary>
+        private static void Watch(Map map)
+        {
+            foreach (var p in map.mapPawns.FreeColonistsSpawned.Where(p => p.Awake() && !p.Downed && !p.Drafted && !p.Position.Roofed(map)
+                                                                         && (p.CurJob == null || p.CurJob.def.casualInterruptible)).Take(8).ToList())
+            {
+                try
+                {
+                    var wait = JobMaker.MakeJob(JobDefOf.Wait_MaintainPosture);
+                    wait.expiryInterval = Rand.Range(400, 800);
+                    p.jobs.StartJob(wait, Verse.AI.JobCondition.InterruptForced, null, true);
+                }
+                catch (Exception e)
+                {
+                    CouncilLog.ErrorOnce("gods: watching the eclipse", e);
+                }
+            }
+        }
+
+        /// <summary>Clear skies: the land's clear weather, if it isn't clear already, held a long while.</summary>
+        private static bool Clear(Map map)
+        {
+            if (WeatherDynamics.KindOf(map.weatherManager.curWeather) == WeatherKind.Clear) return false;
+            var clear = LandOf(map, k => k == WeatherKind.Clear).RandomElementWithFallback();
+            if (clear == null) return false;
+            Start(map, clear);
+            return true;
+        }
+
+        public const string NightmareThought = "Rimfolk_Thought_MoonNightmare";
+
+        /// <summary>
+        /// A night of bad sleep: everyone of the colony asleep now wakes from a nightmare that follows them into the day
+        /// (a bad memory, a day long), and says so. False when nobody is asleep.
+        /// </summary>
+        private static bool Sleepless(Map map)
+        {
+            var def = DefDatabase<ThoughtDef>.GetNamedSilentFail(NightmareThought);
+            if (def == null) return false;
+            var asleep = map.mapPawns.FreeColonistsSpawned.Where(p => !p.Awake() && !p.Downed && p.needs?.mood != null && People.HasInnerLife(p)).ToList();
+            if (asleep.Count == 0) return false;
+            foreach (var p in asleep)
+            {
+                p.needs.mood.thoughts.memories.TryGainMemory(def);
+                try
+                {
+                    // Woken by it: up out of bed for a while.
+                    RestUtility.WakeUp(p);
+                }
+                catch (Exception e)
+                {
+                    CouncilLog.ErrorOnce("gods: a nightmare", e);
+                }
+            }
+            return true;
+        }
+
+        /// <summary>The land's snow, if it has a snow it can have now and it isn't snowing already.</summary>
+        private static bool Snow(Map map)
+        {
+            var now = WeatherDynamics.KindOf(map.weatherManager.curWeather);
+            if (now == WeatherKind.Snow) return false;
+            var snow = LandOf(map, k => k == WeatherKind.Snow).RandomElementWithFallback();
+            if (snow == null) return false;
+            Start(map, snow);
+            return true;
+        }
+
         /// <summary>The land's thunderstorm (a dry one when <paramref name="dry"/>), if it has one now. False when not.</summary>
         public static bool Storm(Map map, bool dry)
         {
@@ -168,11 +248,18 @@ namespace ColonyCouncil
         /// The game's own condition (an eclipse, an aurora) for its own length (its event's days, else <paramref name="days"/>),
         /// when none is on, the map isn't always dark, and (an aurora) it is night and will stay night a while.
         /// </summary>
-        private static bool Condition(Map map, GameConditionDef def, string incident, float days, bool atNight)
+        private static bool Condition(Map map, GameConditionDef def, string incident, float days, bool atNight, bool anyHour = false)
         {
             if (def == null || map.gameConditionManager.ConditionIsActive(def) || map.gameConditionManager.IsAlwaysDarkOutside) return false;
-            if (atNight && (GenCelestial.CurCelestialSunGlow(map) > 0.5f || GenCelestial.CelestialSunGlow(map, Find.TickManager.TicksAbs + 5000) > 0.5f)) return false;
-            if (!atNight && GenCelestial.CurCelestialSunGlow(map) < 0.5f) return false;
+            if (!anyHour && atNight && (GenCelestial.CurCelestialSunGlow(map) > 0.5f || GenCelestial.CelestialSunGlow(map, Find.TickManager.TicksAbs + 5000) > 0.5f)) return false;
+            if (!anyHour && !atNight && GenCelestial.CurCelestialSunGlow(map) < 0.5f) return false;
+            // The game's own rules for the condition (a cold snap only where it can be cold, its own season).
+            var inc0 = DefDatabase<IncidentDef>.GetNamedSilentFail(incident);
+            if (anyHour && inc0 != null)
+            {
+                var parms = StorytellerUtility.DefaultParmsNow(inc0.category, map);
+                if (!inc0.Worker.CanFireNow(parms)) return false;
+            }
             var inc = DefDatabase<IncidentDef>.GetNamedSilentFail(incident);
             float d = inc != null && inc.durationDays.max > 0f ? inc.durationDays.RandomInRange : days;
             var cond = GameConditionMaker.MakeCondition(def, Mathf.RoundToInt(d * GenDate.TicksPerDay));
@@ -187,6 +274,9 @@ namespace ColonyCouncil
             if (GameConditionDefOf.Aurora != null && map.gameConditionManager.ConditionIsActive(GameConditionDefOf.Aurora)) return WeatherVoice.Aurora;
             if (k == WeatherKind.Storm || k == WeatherKind.DryStorm) return WeatherVoice.Thunder;
             if (k == WeatherKind.Rain || k == WeatherKind.Downpour) return WeatherVoice.Rain;
+            if (map.gameConditionManager.ConditionIsActive(GameConditionDefOf.ColdSnap)) return WeatherVoice.Cold;
+            if (map.gameConditionManager.ConditionIsActive(GameConditionDefOf.HeatWave)) return WeatherVoice.Heat;
+            if (k == WeatherKind.Snow) return WeatherVoice.Snow;
             return WeatherVoice.None;
         }
 
@@ -218,7 +308,7 @@ namespace ColonyCouncil
 
         // ================= Said and remembered =================
 
-        /// <summary>A colonist out of doors names it in a bubble, a line in the news in the voice of how real the gods are, and the god's act remembered.</summary>
+        /// <summary>A colonist out of doors names it in a bubble (what they make of it), and the god's act is remembered; nothing else is told.</summary>
         private static void Told(God god, Map map, WeatherVoice v, bool pleased, bool readInto)
         {
             string tag = v.ToString().ToLowerInvariant();
@@ -231,10 +321,9 @@ namespace ColonyCouncil
                 string said = line.NullOrEmpty() ? null : line.Formatted(GodsOnMapWords.Args(god, false).Concat(new[] { speaker.Named("PAWN") }).ToArray()).Resolve();
                 if (said != null) Speech.Say(speaker, said);
             }
-            string what = ("CC_GodM_Weather_" + v).Translate(GodsOnMapWords.Args(god, false)).Resolve();
-            string text = GodsOnMapWords.Voice(what) + ".";
-            Tell.Message(NewsKind.Land, Importance.Notable, map, text, speaker != null ? new LookTargets(speaker) : null, MessageTypeDefOf.NeutralEvent);
-            Gods.Remember(new GodAct { god = god.id, home = Gods.HomeKey(map), tick = Now, kind = GodActKind.Act, text = GodsOnMapWords.Veil(what, Gods.Realness != GodRealness.Walking) });
+            // No line in the news: the weather is seen, and someone says what they make of it. The colony's book keeps it in
+            // their words: what they saw, and that they took it for a sign (which may be wrong).
+            GodsOnMapWords.Saw(god, map, speaker?.Position ?? IntVec3.Invalid, GodActKind.Act, speaker, "CC_GodM_Saw_Weather_" + v);
         }
     }
 }

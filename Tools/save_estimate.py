@@ -382,6 +382,10 @@ MODEL = {
     "Gods/OnMap/GodsOnMapBook.cs:marks": ("cap", (const("Gods/OnMap/GodsOnMapMath.cs", "MaxMarks", 24), 0.05), 260, "the marks the gods left, GodsOnMapMath.MaxMarks, let go after five years"),
     "Gods/OnMap/GodsOnMapBook.cs:weatherHomes": ("fixed", 1, V, "one per home: when a god last answered in the weather there"),
     "Gods/OnMap/GodsOnMapBook.cs:weatherTicks": ("fixed", 1, V, "beside it, the tick"),
+    # The sacred beast's stay, while it lasts: its kin following at a distance (GodShapeDef.kinCount, three at most) and those
+    # who sat near it (GodsOnMapMath.SittersAVisit).
+    "Gods/OnMap/SacredAnimal.cs:kin": ("while", 3, P, "the beast's kin following at a distance, while it stays (a few times in a long game)"),
+    "Gods/OnMap/SacredAnimal.cs:sat": ("while", 3, P, "those who sat near the great beast this visit, while it stays"),
     "Camps/CampTracker.cs:past": ("fixed", 6, R, "camps the colony remembers, six at most (CampStoryMath.RememberMax), faded after some seasons"),
     "Camps/CampTracker.cs:homes": ("fixed", 1, 260, "one per colony (CampHome: its camp, holding, war party and clock; one home in the model, a second doubles the rows "
                                    "below), a lost home's kept 30 days, then let go"),

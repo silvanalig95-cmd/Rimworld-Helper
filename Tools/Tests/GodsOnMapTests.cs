@@ -10,9 +10,12 @@ using ColonyCouncil;
 /// <summary>
 /// The gods on the map (docs/design/gods.md, "On the map"; Source/ColonyCouncil/Gods/OnMap/): the pure rules (how often a
 /// god comes and as what, the omens before, the stranger's stay judged and what it brings, the kindest and their gift, the
-/// sacred animal's stay and what it leads to, the weather a god answers in, the marks remembered and visited); the shapes
-/// (who comes as what is data); the event, jobs, memory and deeds; the lines said aloud; the words; the seams (the core's
-/// API and the presence part's, the one voice, the shared budgets, the soft lookups, the player's mods).
+/// sacred animal's stay and what it leads to, the weather a god answers in, the marks remembered and visited, the rising,
+/// the sleeper under the mountain, someone sitting near the great beast, the moon's face and what it returns by night);
+/// the shapes (who comes as what is data, each god of the pantheon by its short name); the event, jobs, memories and
+/// deeds; the lines said aloud; the words (only what was seen and heard: the gods are an ominous presence, never
+/// explained); the seams (the core's API and the presence part's, the one voice, the shared budgets, the soft lookups,
+/// the player's mods).
 /// </summary>
 public static class GodsOnMapTests
 {
@@ -88,6 +91,17 @@ public static class GodsOnMapTests
         C(spread, "one a day, in the waking hours (a dream at dawn, when people wake)");
         C(GodsOnMapMath.OmenAt(1, 2, 4, OmenKind.Calm, 1) / 60000 == 3, "the last on the coming's eve");
         C(!GodsOnMapMath.DreamCan(1) && GodsOnMapMath.DreamCan(2), "the same dream needs two dreamers");
+        var hollin = new List<OmenKind> { OmenKind.Drift, OmenKind.AnimaHum, OmenKind.DryadsStill };
+        C(GodsOnMapMath.Omens(3, _ => true, 5, hollin).All(hollin.Contains), "a god's own signs, when its shape has them");
+        C(GodsOnMapMath.Omens(3, k => k != OmenKind.AnimaHum && k != OmenKind.DryadsStill, 5, hollin).All(k => k == OmenKind.Drift), "only its own that can show here");
+        bool hours = true;
+        for (int sd = 0; sd < 40; sd++)
+        {
+            int noon = GodsOnMapMath.OmenHour(OmenKind.Shadow, sd), night = GodsOnMapMath.OmenHour(OmenKind.Star, sd), moon = GodsOnMapMath.OmenHour(OmenKind.BigMoon, sd);
+            int still = GodsOnMapMath.OmenHour(OmenKind.StillSun, sd);
+            hours &= noon >= 11 && noon <= 13 && night >= 21 && moon >= 21 && still >= 14 && still <= 16;
+        }
+        C(hours, "a noon sign at noon, a night sign at night, the sun standing still in the afternoon");
 
         // ================= The stranger's stay judged =================
 
@@ -176,11 +190,66 @@ public static class GodsOnMapTests
         C(GodsOnMapMath.Voice(GodDomain.Storm, GodDomain.None, 5f, true, new List<WeatherVoice> { WeatherVoice.Eclipse }) == WeatherVoice.None, "its own voices only, even against its domain's");
         C(GodsOnMapMath.Fits(WeatherVoice.Thunder, false, true) && !GodsOnMapMath.Fits(WeatherVoice.Rain, false, false) && !GodsOnMapMath.Fits(WeatherVoice.Aurora, true, false),
             "what fits when");
+        C(GodsOnMapMath.Fits(WeatherVoice.Heat, false, false) && !GodsOnMapMath.Fits(WeatherVoice.Heat, true, false) && GodsOnMapMath.Fits(WeatherVoice.Clear, true, false)
+          && GodsOnMapMath.Fits(WeatherVoice.Sleepless, false, true) && !GodsOnMapMath.Fits(WeatherVoice.Sleepless, false, false) && GodsOnMapMath.Fits(WeatherVoice.Cold, false, false)
+          && GodsOnMapMath.Fits(WeatherVoice.Snow, true, true), "too much sun by day, clear days, a sleepless night, a cold snap, snow");
         C(GodsOnMapMath.VoiceChance(1f, 30f) <= 0.66f && GodsOnMapMath.VoiceChance(0f, 3f) > 0f && GodsOnMapMath.VoiceChance(0.9f, 10f) > GodsOnMapMath.VoiceChance(0.2f, 10f),
             "a loud god answers more often, never every time");
         C(GodsOnMapMath.VoiceChance(0.5f, 8f, true) > GodsOnMapMath.VoiceChance(0.5f, 8f) && GodsOnMapMath.WeatherGap(true) < GodsOnMapMath.WeatherGap(false),
             "a god with no body acts through the sky: more readily and more often");
         C(GodsOnMapMath.WeatherGapDays >= 10, "at the game's own pace: days between answers at a home");
+
+        // ================= The rising =================
+
+        C(!GodsOnMapMath.RisingDue(GodRealness.Believed, 999, 999, 9999, true, 0f) && !GodsOnMapMath.RisingDue(GodRealness.Walking, 999, 999, 10, true, 0f)
+          && GodsOnMapMath.RisingDue(GodRealness.Felt, 999, 999, 9999, true, 0f) && !GodsOnMapMath.RisingDue(GodRealness.Felt, 999, 999, 9999, true, 0.5f),
+            "a god rising: never in Believed, years apart, very rarely");
+        C(GodsOnMapMath.RisingChance < GodsOnMapMath.DailyChance && GodsOnMapMath.RisingGapDays >= 240, "rarer than any coming");
+
+        // ================= The sleeper under the mountain =================
+
+        C(GodsOnMapMath.Warned(0, 99999) == 1 && GodsOnMapMath.Warned(3, 2) == 4 && GodsOnMapMath.Warned(5, GodsOnMapMath.DeepForgottenDays) == 1,
+            "each rumble counts, and the deep left alone long enough forgets them");
+        C(!GodsOnMapMath.Wakes(GodRealness.Walking, GodsOnMapMath.WakesAt - 1, 99999) && GodsOnMapMath.Wakes(GodRealness.Walking, GodsOnMapMath.WakesAt, 99999)
+          && !GodsOnMapMath.Wakes(GodRealness.Walking, GodsOnMapMath.WakesAt, GodsOnMapMath.WakeGapDays - 1) && !GodsOnMapMath.Wakes(GodRealness.Believed, 99, 99999),
+            "it wakes only past every warning, years apart, and never while only believed in");
+        C(GodsOnMapMath.TrueForm(GodRealness.Walking, true) && !GodsOnMapMath.TrueForm(GodRealness.Felt, true) && !GodsOnMapMath.TrueForm(GodRealness.Walking, false),
+            "its true form only where the gods walk plainly, and only with the mod that has it");
+        C(!GodsOnMapMath.StoneFalls(GodsOnMapMath.StoneFallsFrom - 1, 1f, 0f) && GodsOnMapMath.StoneFalls(GodsOnMapMath.StoneFallsFrom, 1f, 0f)
+          && !GodsOnMapMath.StoneFalls(9, 0f, 0f) && !GodsOnMapMath.StoneFalls(9, 2f, 0.61f), "stone falls only after warnings, by the harm setting, never often");
+        C(GodsOnMapMath.DeepGapDays >= 2 && GodsOnMapMath.DeepChanceAnHour <= 0.2f && GodsOnMapMath.WakesAt >= 5, "the rock rumbles days apart");
+
+        // ================= Sitting near the great beast =================
+
+        C(GodsOnMapMath.Sat(true, true, true, true) == GodsOnMapMath.SitChange.Horn && GodsOnMapMath.Sat(false, true, true, true) == GodsOnMapMath.SitChange.Grief
+          && GodsOnMapMath.Sat(false, false, true, true) == GodsOnMapMath.SitChange.Fear && GodsOnMapMath.Sat(false, false, false, true) == GodsOnMapMath.SitChange.Passion
+          && GodsOnMapMath.Sat(false, false, false, false) == GodsOnMapMath.SitChange.Nothing, "a child touches the horn; else a grief eased, a fear gone, a passion found");
+        C(GodsOnMapMath.SittersAVisit <= 3 && GodsOnMapMath.EveryGodColder < 0 && GodsOnMapMath.PeoplesHear < 0, "a few a visit; harming it is the worst thing");
+
+        // ================= The Guest's memory =================
+
+        C(GodsOnMapMath.Remembers(0, Treatment.Kind) == "first" && GodsOnMapMath.Remembers(1, Treatment.Generous) == "rememberskind"
+          && GodsOnMapMath.Remembers(2, Treatment.Harmed) == "remembersharm" && GodsOnMapMath.Remembers(1, Treatment.TurnedAway) == "rememberscold"
+          && GodsOnMapMath.Remembers(1, Treatment.Fair) == "remembers", "the Guest remembers the last welcome");
+        C(GodsOnMapMath.LateGiftMinDays >= 30 && GodsOnMapMath.LateGiftMaxDays > GodsOnMapMath.LateGiftMinDays, "a good welcome's gift comes seasons later");
+
+        // ================= The moon's face and what it returns =================
+
+        var faces = Enumerable.Range(0, 15).Select(GodsOnMapMath.Face).ToList();
+        C(faces.Distinct().Count() == 4 && GodsOnMapMath.Face(7) == GodsOnMapMath.MoonFace.Full && GodsOnMapMath.Face(0) == GodsOnMapMath.MoonFace.Gone
+          && Enumerable.Range(0, 60).All(d => GodsOnMapMath.Face(d) == GodsOnMapMath.Face(d + 15)) && GodsOnMapMath.Face(-1) == GodsOnMapMath.Face(14),
+            "the moon's face through each season: gone, thin, half, full and back");
+        C(faces.Zip(faces.Skip(1), (a, b) => Math.Abs((int)a - (int)b) <= 1).All(x => x), "it waxes and wanes a step at a time");
+        C(GodsOnMapMath.MoonLight(GodsOnMapMath.MoonFace.Full) > GodsOnMapMath.MoonLight(GodsOnMapMath.MoonFace.Half)
+          && GodsOnMapMath.MoonLight(GodsOnMapMath.MoonFace.Thin) > 0f && GodsOnMapMath.MoonLight(GodsOnMapMath.MoonFace.Gone) == 0f, "the huge moon as big as its face");
+        C(!GodsOnMapMath.Returns(GodsOnMapMath.MoonFace.Gone, 0f) && GodsOnMapMath.Returns(GodsOnMapMath.MoonFace.Full, 0.5f) && !GodsOnMapMath.Returns(GodsOnMapMath.MoonFace.Thin, 0.5f)
+          && !GodsOnMapMath.Returns(GodsOnMapMath.MoonFace.Full, float.NaN), "full, it returns most; thin, a little; dark, nothing");
+        C(GodsOnMapMath.ReturnFor(1f, false, false, false, 0f) == GodsOnMapMath.NightReturn.None && GodsOnMapMath.ReturnFor(5f, true, false, false, 0.1f) == GodsOnMapMath.NightReturn.Healed
+          && GodsOnMapMath.ReturnFor(5f, false, false, false, 0.1f) == GodsOnMapMath.NightReturn.Found && GodsOnMapMath.ReturnFor(5f, false, false, false, 0.9f) == GodsOnMapMath.NightReturn.GoodDream,
+            "a kindness comes back as something found, a good dream, or a wound healed; a small deed not at all");
+        C(GodsOnMapMath.ReturnFor(-5f, false, true, false, 0.1f) == GodsOnMapMath.NightReturn.AnimalBack && GodsOnMapMath.ReturnFor(-5f, false, false, true, 0.1f) == GodsOnMapMath.NightReturn.Frost
+          && GodsOnMapMath.ReturnFor(-5f, false, false, false, 0.1f) == GodsOnMapMath.NightReturn.Nightmare, "a cruelty as an animal back, a frost, or a nightmare");
+        C(GodsOnMapMath.ReturnGapDays >= 2 && GodsOnMapMath.DarkNightEarlyHours > 0, "small and rare; on a dark night the void's signs come early");
 
         // ================= The marks =================
 
@@ -207,6 +276,39 @@ public static class GodsOnMapTests
         }
         C(shapes.Any(s => s.Element("bodiless")?.Value == "true") && shapes.Any(s => s.Element("beast")?.Value == "false" && s.Element("stranger")?.Value != "false"),
             "not every god has a body, and not every one with a body has a beast");
+        foreach (var s in shapes)
+        {
+            string dn = s.Element("defName")?.Value;
+            foreach (var o in s.Element("omens")?.Elements("li").Select(l => l.Value) ?? Enumerable.Empty<string>())
+                C(Enum.TryParse<OmenKind>(o, out _), $"{dn}: the sign {o}");
+            if (s.Element("look") != null) C(s.Element("beast")?.Value != "false", $"{dn}: a look for its beast only when it walks as one");
+        }
+        // The pantheon, each by its short name (docs/gods-pantheon-brainstorm.md).
+        XElement Shape(string name) => shapes.FirstOrDefault(s => s.Element("gods")?.Elements("li").Any(l => l.Value == name) == true);
+        var pantheon = new[] { "Hollin", "Smoulder", "Bellwether", "Morel", "Ennu", "Pip", "Cirrus", "Hush", "Undertow", "Helios", "Selene", "Mog", "Murmur", "Ducat" };
+        foreach (var name in pantheon)
+        {
+            var s = Shape(name);
+            C(s != null && s.Element("omens")?.Elements("li").Count() >= 3 && !string.IsNullOrEmpty(s.Element("lineTag")?.Value), $"{name}: a shape of its own, its own signs and its own words");
+        }
+        C(pantheon.Count(nm => Shape(nm)?.Element("stranger")?.Value != "false") == 1 && Shape("Ennu")?.Element("stranger")?.Value == "true", "only the Guest comes to the gate");
+        C(pantheon.Where(nm => Shape(nm)?.Element("beast")?.Value != "false").OrderBy(x => x).SequenceEqual(new[] { "Bellwether", "Mog" }), "only the Old Horn and the cat walk the land as beasts");
+        var bell = Shape("Bellwether");
+        C(bell?.Element("beasts")?.Elements("li").Single().Value == "Thrumbo" && bell.Element("kin")?.Value == "Thrumbo" && bell.Element("sitNear")?.Value == "true"
+          && bell.Element("harmIsWorst")?.Value == "true" && bell.Element("leads")?.Value == "false" && bell.Element("peace")?.Value == "true",
+            "Bellwether: a white thrumbo with others following, someone may sit near him, his harm the worst thing, let pass a strange peace");
+        var mog = Shape("Mog");
+        C(mog?.Element("beasts")?.Elements("li").Single().Value == "Cat" && mog.Element("kin")?.Value == "Cat" && mog.Element("stayDays") != null && mog.Element("feeds")?.Value == "true",
+            "Mog: a grey cat with cats following, staying a season, taking food she didn't ask for");
+        C(Shape("Smoulder")?.Element("trueForm")?.Value == "True_Dragon" && Shape("Murmur")?.Element("trueForm")?.Value == "ColossusToad" && Shape("Murmur")?.Element("rises")?.Value == "true"
+          && Shape("Hollin")?.Element("rises")?.Value == "true", "the sleeper's true form and Old Croak's, by name; Hollin and Murmur rise");
+        C(Shape("Selene")?.Element("returns")?.Value == "true" && Shape("Selene").Element("voices")?.Elements("li").Any(l => l.Value == "Eclipse") == true
+          && Shape("Helios")?.Element("voices")?.Elements("li").Any(l => l.Value == "Heat") == true, "the moon returns by night and steps between; the sun gives too much");
+        var looks = shapesDoc.Elements("ColonyCouncil.GodLookDef").ToList();
+        foreach (var name in shapes.Select(s => s.Element("look")?.Value ?? s.Element("trueLook")?.Value).Where(x => x != null))
+            C(looks.Any(l => l.Element("defName")?.Value == name && l.Element("minTech")?.Value == "Archotech"), $"{name}: its own look, never taken by a domain's god");
+        foreach (var l in looks)
+            C(!Regex.IsMatch(l.Element("label")?.Value ?? "", @"(" + string.Join("|", pantheon) + @")"), $"{l.Element("defName")?.Value}: named over it by what is seen, never the god's name");
         string shapeCode = Code(root, "GodShapes.cs"), strangerCode = Code(root, "GodStranger.cs"), animalCode = Code(root, "SacredAnimal.cs"), weatherCode = Code(root, "GodWeather.cs");
         C(strangerCode.Contains("GodShapes.Stranger(g)") && animalCode.Contains("GodShapes.Beast(god)") && animalCode.Contains("GodShapes.Beasts(god)")
           && weatherCode.Contains("GodShapes.Weather(god)") && weatherCode.Contains("GodShapes.Voices(god)") && weatherCode.Contains("GodShapes.Bodiless(god)"),
@@ -226,9 +328,14 @@ public static class GodsOnMapTests
         var texts = ev?.Descendants("texts").FirstOrDefault()?.Elements("li").Select(e => e.Value).ToList() ?? new List<string>();
         foreach (var age in new[] { "age0", "age1", "age2", "age3" }) C(texts.Any(t => t.StartsWith("[" + age + "]")), $"a stranger of the colony's age ({age})");
         C(texts.All(t => !Regex.IsMatch(t, @"\bgod\b", RegexOptions.IgnoreCase)), "the letter never says it is a god");
-        foreach (var name in new[] { "Rimfolk_VisitGodMark", "Rimfolk_FeedSacredAnimal" })
+        foreach (var name in new[] { "Rimfolk_VisitGodMark", "Rimfolk_FeedSacredAnimal", "Rimfolk_SitNearSacredAnimal" })
             C(defs.Elements("JobDef").Any(e => e.Element("defName")?.Value == name), $"the job {name}");
         C(defs.Elements("ColonyCouncil.SharedMemoryDef").Any(e => e.Element("defName")?.Value == "Rimfolk_Mem_GodSeen" && e.Element("fadeDays")?.Value == "600"), "a god seen is remembered together for years");
+        foreach (var name in new[] { "Rimfolk_Thought_SatNearSacred", "Rimfolk_Thought_StrangePeace", "Rimfolk_Thought_MoonNightmare" })
+            C(defs.Elements("ThoughtDef").Any(e => e.Element("defName")?.Value == name) && code0(root).Contains("\"" + name + "\""), $"the memory {name}, and the code gives it");
+        C(defs.Elements("HistoryEventDef").Any(e => e.Element("defName")?.Value == "Rimfolk_HarmedSacredBeast"), "the peoples hear of the worst thing done");
+        var stTexts = ev?.Descendants("texts").FirstOrDefault()?.Elements("li").Select(e => e.Value).ToList() ?? new List<string>();
+        foreach (var tag in new[] { "rememberskind", "rememberscold", "remembersharm" }) C(stTexts.Any(x => x.StartsWith("[ennu," + tag + "]")), $"the Guest at the gate again: {tag}");
         var deeds = defs.Elements("ColonyCouncil.DeedDef").ToList();
         C(deeds.Count == 5 && deeds.All(d => defs.Elements("RulePackDef").Any(r => r.Element("defName")?.Value == d.Element("logTopic")?.Value)), "the deeds talked of, each with its words");
 
@@ -239,14 +346,19 @@ public static class GodsOnMapTests
         var domains = new HashSet<string>(GodsMath.Domains.Select(d => d.ToString().ToLowerInvariant()));
         var known = new HashSet<string>(domains)
         {
-            "age0", "age1", "age2", "age3", "walking", "felt", "believed", "gate", "animals", "birds", "calm", "candle", "restless", "rain", "thunder", "eclipse", "aurora",
-            "pleased", "angered", "named", "appear", "act", "reveal", "depart", "blessing", "wrath", "omen", "small", "large", "chosen"
+            "age0", "age1", "age2", "age3", "walking", "felt", "believed", "gate", "animals", "pleased", "angered", "named", "appear", "act", "reveal", "depart", "blessing",
+            "wrath", "omen", "small", "large", "chosen", "knowsdead", "first", "remembers", "rememberskind", "rememberscold", "remembersharm", "rising", "fullmoon", "halfmoon",
+            "thinmoon", "darkmoon", "good", "bad", "spell", "class", "trait", "favour", "passion"
         };
+        foreach (var k in Enum.GetNames(typeof(OmenKind)).Concat(Enum.GetNames(typeof(WeatherVoice))).Concat(Enum.GetNames(typeof(GodsOnMapMath.NightReturn)))
+                     .Concat(Enum.GetNames(typeof(GodsOnMapMath.SitChange))))
+            known.Add(k.ToLowerInvariant());
+        foreach (var s in shapes) if (s.Element("lineTag") != null) known.Add(s.Element("lineTag").Value);
         foreach (var pool in linesDoc.Elements("ColonyCouncil.FlavorPoolDef"))
         {
             string name = pool.Element("defName")?.Value ?? "";
             var lines = pool.Descendants("li").Select(l => l.Value).ToList();
-            bool spoken = name != "Rimfolk_Pool_GodDream";
+            bool spoken = name != "Rimfolk_Pool_GodDream" && name != "Rimfolk_Pool_GodReturnDream";
             C(lines.Count >= 5 && code.Contains("\"" + name + "\""), $"{name}: its lines, and the code says them");
             C(lines.Count(l => !l.StartsWith("[")) >= 3, $"{name}: lines that fit every god");
             foreach (var line in lines)
@@ -272,20 +384,39 @@ public static class GodsOnMapTests
         foreach (Match m in Regex.Matches(code, @"""(CC_[A-Za-z_]+[A-Za-z])""\.Translate"))
             C(keyed.ContainsKey(m.Groups[1].Value), $"the key {m.Groups[1].Value} exists");
         foreach (var t in Enum.GetNames(typeof(Treatment)))
-            foreach (var k in new[] { "CC_GodM_Stranger_Title_", "CC_GodM_Stranger_Plain_", "CC_GodM_Stranger_Veiled_", "CC_GodM_Stranger_Act_", "CC_GodM_Why_" })
+            foreach (var k in new[] { "CC_GodM_Stranger_Plain_", "CC_GodM_Stranger_Veiled_", "CC_GodM_Stranger_Act_" })
                 C(keyed.ContainsKey(k + t), $"{k}{t}");
-        foreach (var k in keyed.Keys.Where(k => k.StartsWith("CC_GodM_Stranger_Veiled_") || k.EndsWith("Veiled") && k.StartsWith("CC_GodM_") && k.Contains("Text")))
-            C(keyed[k].Contains("ome say"), $"{k}: veiled, it says only what some say");
-        foreach (var k in new[] { "Believed", "Felt", "Walking" }) C(keyed.ContainsKey("CC_GodM_Sign_" + k), $"a sign put to its god, {k}");
-        foreach (var k in new[] { "Rain", "Thunder", "Eclipse", "Aurora" }) C(keyed.ContainsKey("CC_GodM_Weather_" + k) && keyed["CC_GodM_Weather_" + k].Contains("{GOD}"), $"the weather's {k} put to its god");
+        // The colony's book: every sign, every answer in the weather and every return in the words of who saw it.
+        foreach (var k in Enum.GetNames(typeof(OmenKind))) C(keyed.TryGetValue("CC_GodM_Saw_" + k, out var w) && w.StartsWith("{WHO} "), $"the book: {k}, in the words of who saw it");
+        foreach (var k in Enum.GetNames(typeof(WeatherVoice)).Where(x => x != "None"))
+            C(keyed.TryGetValue("CC_GodM_Saw_Weather_" + k, out var w) && w.StartsWith("{WHO} ") && !w.Contains("{GOD}"), $"the book: the weather's {k}, taken for a sign, no god named");
+        foreach (var k in Enum.GetNames(typeof(GodsOnMapMath.NightReturn)).Where(x => x != "None"))
+            C(keyed.ContainsKey("CC_GodM_Saw_Return_" + k) && keyed.ContainsKey("CC_GodM_Saw_Return_" + k + "Seen"), $"the book: what came back by night ({k}), seen or found");
+        foreach (var k in Enum.GetNames(typeof(GodsOnMapMath.SitChange))) C(keyed.ContainsKey("CC_GodM_Journal_Sat_" + k), $"the journal after sitting near it: {k}");
+        // Never what a god thinks, wants or feels, and no rule spelled out: what the player reads is what was seen and heard.
+        foreach (var kv in keyed.Where(kv => kv.Key.StartsWith("CC_GodM_") && !kv.Key.StartsWith("CC_GodM_Saw_Weather_")))
+            C(!Regex.IsMatch(kv.Value, @"\b(favou?r|favoured|pleased|displeased|angry|anger|wrath|bless(ed|ing)?|curse[ds]?|sacrilege|punish\w*|reward\w*)\b", RegexOptions.IgnoreCase),
+                $"{kv.Key}: says what was seen, never what a god feels or why");
+        C(keyed.Where(kv => kv.Key.StartsWith("CC_GodM_") && kv.Value.Contains("{GOD}")).All(kv => kv.Key == "CC_GodM_Journal_Mark" || kv.Key.EndsWith("Named")),
+            "a god named only in someone's own words of what they believe, or on a card where the colony knows it was the god");
+        C(code.Contains("public static string CardName(God g, Map home, bool sure)") && code.Contains("MERGE: a local stand-in for the core's Gods.CardName"),
+            "the name on a card through one helper, marked to swap for the core's at merge");
+        C(!File.Exists(Path.Combine(root, "Defs", "AlmanacArticleDefs", "Almanac_GodsOnMap.xml")), "no Almanac page: nothing is explained");
         foreach (var kv in keyed.Where(kv => kv.Key.StartsWith("CC_GodM_")))
             C(!kv.Value.Contains('—') && !kv.Value.Contains('!') && !Regex.IsMatch(kv.Value, @"\b(colour|colours|grey|armour)\b"), $"{kv.Key}: no dashes or exclamations, American spelling");
 
         // ================= The seams =================
 
         string bare = Regex.Replace(code, @"//[^\n]*", "");
-        C(code.Contains("GodPresenceSeam.Call(") && code.Contains("GodLookSeam.Make(") && code.Contains("PresenceKind.Omen") && code.Contains("GodAvatar.Reveal("),
+        C(code.Contains("GodPresenceSeam.Call(") && code.Contains("GodAvatar.Make(") && code.Contains("PresenceKind.Omen") && code.Contains("GodAvatar.Reveal("),
             "through the core's seams and the presence part's avatar");
+        C(Regex.Matches(bare, @"GodsOnMapWords\.Saw\(").Count >= 12 && code.Contains("Gods.Remember(new GodAct { god = god.id, home = Gods.HomeKey(map), tick = Find.TickManager.TicksGame, kind = kind, cell = cell, text = text })"),
+            "what people saw goes in the colony's book in their own words");
+        C(!Regex.IsMatch(bare, @"AddFavour\([^;]*""CC_"), "favour moves unseen: never with words the player reads");
+        C(strangerCode.Contains("GodAvatar.Make(x, GodsWiring.LookOf(god), x.LabelShort, true") && animalCode.Contains("Label(a, god)"),
+            "over an avatar only what the colony would see: the stranger's own name at the gate, the beast as it is seen until the colony knows it");
+        C(Code(root, "GodWaking.cs").Contains("Harm.Injure(") && Code(root, "GodWaking.cs").Contains("HarmKinds.Dangers") && Code(root, "GodWaking.cs").Contains("GodsOnMapMath.StoneFalls("),
+            "falling stone in the deep only through the shared harm budget, at the game's rate");
         C(Regex.IsMatch(Code(root, "GodOmens.cs"), @"public static int Before\(God god, Map map, int days\)"), "GodOmens.Before(god, map, days): the omens the other parts can ask for");
         C(Regex.IsMatch(weatherCode, @"public static bool Answer\(God god, Map map, float amount, bool anyway = false\)"), "GodWeather.Answer: a god's answer the worship's festivals can ask for");
         C(code.Contains("Gods.Remember(") && code.Contains("AddChronicle(") && code.Contains("SharedMemories.Add(") && code.Contains("Deeds.Record("), "the marks in the history, the chronicle, the shared memories and the deeds");
@@ -320,6 +451,8 @@ public static class GodsOnMapTests
         }
         return n;
     }
+
+    private static string code0(string root) => string.Join("\n", Directory.GetFiles(Path.Combine(root, "Source", "ColonyCouncil", "Gods", "OnMap"), "*.cs").Select(File.ReadAllText));
 
     private static Dictionary<string, HashSet<string>> catalogue;
 

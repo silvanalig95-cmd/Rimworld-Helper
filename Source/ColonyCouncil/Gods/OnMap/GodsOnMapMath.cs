@@ -7,6 +7,8 @@ namespace ColonyCouncil
     public enum ComingKind
     {
         None,
+        /// <summary>A god with no body rises from the land for an hour, very rarely (Hollin: roots drawn up into a shape taller than any tree).</summary>
+        Rising,
         /// <summary>A lone traveller asks for shelter: a god in disguise (brainstorm 7, theoxenia).</summary>
         Stranger,
         /// <summary>A god walks as a beast: a white stag, a great wolf, a raven that follows one colonist (brainstorm 8).</summary>
@@ -25,7 +27,65 @@ namespace ColonyCouncil
         /// <summary>A lamp or a torch in the colony won't stay lit.</summary>
         Candle,
         /// <summary>The animals are restless: they start up and run a few steps, then stand looking one way.</summary>
-        Restless
+        Restless,
+
+        // ---- Each god's own (GodShapeDef.omens; the brainstorm of the nine, "How it is seen") ----
+
+        /// <summary>Hollin: leaves and seeds drift across the land toward one place, on no wind.</summary>
+        Drift,
+        /// <summary>Hollin: an anima tree hums loud enough to hear indoors.</summary>
+        AnimaHum,
+        /// <summary>Hollin: her dryads stop what they are doing and stand still.</summary>
+        DryadsStill,
+        /// <summary>Smoulder: a vast winged shadow crosses the land at noon, and a wind flattens the grass.</summary>
+        Shadow,
+        /// <summary>Smoulder: steam rises from the ground and the geysers, his breath.</summary>
+        Steam,
+        /// <summary>Smoulder: the rock rumbles where the colony mines deep, and loose stone falls.</summary>
+        Rumble,
+        /// <summary>Morel: a ring of mushrooms overnight around something she wants noticed.</summary>
+        FairyRing,
+        /// <summary>Morel: a smell of rich earth after rain where no rain fell.</summary>
+        Earth,
+        /// <summary>Morel: white threads across the floor of a room shut too long.</summary>
+        Threads,
+        /// <summary>Pip: the lights flicker in a pattern, like someone tapping.</summary>
+        Flicker,
+        /// <summary>Pip: a comms console whispers static that sounds like breathing, then like a laugh.</summary>
+        Static,
+        /// <summary>Pip: a light with no power glows all the same, to show it can.</summary>
+        Unpowered,
+        /// <summary>Cirrus: at noon, a shadow too large to have a source.</summary>
+        VastShadow,
+        /// <summary>Cirrus: at night, a single star that moves the wrong way.</summary>
+        Star,
+        /// <summary>Hush: frost by a wall in lines that look like writing.</summary>
+        FrostWriting,
+        /// <summary>Hush: every sound stops for a breath.</summary>
+        Silence,
+        /// <summary>Hush: at the edge of the land at night, a tall white figure, standing still.</summary>
+        WhiteFigure,
+        /// <summary>Undertow: a patch of dark that a light doesn't reach.</summary>
+        Dark,
+        /// <summary>Undertow: the most desperate of the colony hears a sweet, reasonable voice.</summary>
+        Whisper,
+
+        // ---- The four the player added (brainstorm 10 to 13) ----
+
+        /// <summary>Murmur: a deep croaking from the wells and the marshes before rain, felt in the chest.</summary>
+        Croak,
+        /// <summary>Helios: the sun stands still a moment too long, and the shadows don't move.</summary>
+        StillSun,
+        /// <summary>Helios: a heat haze over the open ground, the air shimmering.</summary>
+        HeatHaze,
+        /// <summary>Selene: the moon comes up huge and close and stays over the colony all night.</summary>
+        BigMoon,
+        /// <summary>Ducat: a glint of gold in the corner of someone's eye.</summary>
+        Glint,
+        /// <summary>Ducat: a golden beetle walking across a table.</summary>
+        Beetle,
+        /// <summary>Ducat: a coin found where none was dropped.</summary>
+        Coin
     }
 
     /// <summary>How the colony answered the stranger at the gate.</summary>
@@ -89,7 +149,17 @@ namespace ColonyCouncil
         /// <summary>An eclipse for a dark god's anger.</summary>
         Eclipse,
         /// <summary>An aurora on a god's night.</summary>
-        Aurora
+        Aurora,
+        /// <summary>A cold snap for a god of winter's displeasure (the game's own).</summary>
+        Cold,
+        /// <summary>Snow for a god of winter pleased, where the land has snow now.</summary>
+        Snow,
+        /// <summary>A heat wave: the sun staring too hard (the game's own).</summary>
+        Heat,
+        /// <summary>Clear skies for a long while: the sun pleased.</summary>
+        Clear,
+        /// <summary>A night of bad sleep and nightmares: the moon displeased.</summary>
+        Sleepless
     }
 
     /// <summary>What a sacred animal leads someone to.</summary>
@@ -215,19 +285,38 @@ namespace ColonyCouncil
         /// <summary>At most this many omens before one coming.</summary>
         public const int MaxOmens = 4;
 
+        /// <summary>The signs any god may send when its shape names none of its own.</summary>
+        public static readonly OmenKind[] Common = { OmenKind.Birds, OmenKind.Calm, OmenKind.Dream, OmenKind.Candle, OmenKind.Restless };
+
+        /// <summary>An omen shown on the sky by day (noon), at night, or at a light (the evening), else in the waking hours.</summary>
+        public static int OmenHour(OmenKind k, int seed) => k switch
+        {
+            OmenKind.Dream => 6 + Mod(seed, 2),
+            OmenKind.Shadow or OmenKind.VastShadow => 11 + Mod(seed, 3),
+            OmenKind.StillSun => 15 + Mod(seed, 2),
+            OmenKind.HeatHaze => 12 + Mod(seed, 3),
+            OmenKind.Star or OmenKind.WhiteFigure or OmenKind.Dark or OmenKind.BigMoon => 21 + Mod(seed, 3),
+            OmenKind.Croak => 17 + Mod(seed, 4),
+            OmenKind.Candle or OmenKind.Flicker or OmenKind.Unpowered or OmenKind.Whisper => 19 + Mod(seed, 3),
+            OmenKind.FrostWriting or OmenKind.Earth => 7 + Mod(seed, 2),
+            _ => 9 + Mod(seed, 8)
+        };
+
         /// <summary>
         /// The omens over <paramref name="days"/> days before a coming: one a day (two on the last day when there are more
         /// days' worth of omens than days), at most <see cref="MaxOmens"/>, each of a kind that can show on this map
         /// (<paramref name="can"/>, by OmenKind), no kind twice while another is left; picked in turn by
         /// <paramref name="seed"/>. Empty when none can show.
         /// </summary>
-        public static List<OmenKind> Omens(int days, Func<OmenKind, bool> can, int seed)
+        public static List<OmenKind> Omens(int days, Func<OmenKind, bool> can, int seed, IList<OmenKind> own = null)
         {
             var list = new List<OmenKind>();
             if (days <= 0 || can == null) return list;
             var open = new List<OmenKind>();
-            foreach (OmenKind k in Enum.GetValues(typeof(OmenKind)))
-                if (can(k))
+            // A god's own signs (its shape's), else the five every god may send.
+            var kinds = own != null && own.Count > 0 ? (IEnumerable<OmenKind>)own : Common;
+            foreach (var k in kinds)
+                if (can(k) && !open.Contains(k))
                     open.Add(k);
             if (open.Count == 0) return list;
             int n = Math.Min(MaxOmens, Math.Max(1, days));
@@ -251,7 +340,7 @@ namespace ColonyCouncil
         {
             if (count <= 0 || days <= 0) return 0;
             int day = count >= days ? Math.Min(days - 1, index) : (int)Math.Round(index * (days - 1) / (double)Math.Max(1, count - 1));
-            int hour = kind == OmenKind.Dream ? 6 + Mod(Seed(seed, index, 7), 2) : kind == OmenKind.Candle ? 19 + Mod(Seed(seed, index, 3), 3) : 9 + Mod(Seed(seed, index, 11), 8);
+            int hour = OmenHour(kind, Seed(seed, index, 7));
             return day * ticksPerDay + hour * (ticksPerDay / 24);
         }
 
@@ -554,6 +643,11 @@ namespace ColonyCouncil
             WeatherVoice.Aurora => pleased && night,
             WeatherVoice.Eclipse => !pleased && !night,
             WeatherVoice.Thunder => true,
+            WeatherVoice.Cold => !pleased,
+            WeatherVoice.Snow => pleased,
+            WeatherVoice.Heat => !pleased && !night,
+            WeatherVoice.Clear => pleased && !night,
+            WeatherVoice.Sleepless => !pleased && night,
             _ => false
         };
 
@@ -622,6 +716,162 @@ namespace ColonyCouncil
             }
             return best;
         }
+
+        // ================= A god rising =================
+
+        /// <summary>Days between two risings, and the chance a day once past (very rarely: once in a long game or two).</summary>
+        public const int RisingGapDays = 300;
+        public const float RisingChance = 0.004f;
+
+        /// <summary>A god with no body that can rise (its shape's rises) rises today: never in Believed, after its long gap, on the day's roll.</summary>
+        public static bool RisingDue(GodRealness r, int day, int daysSinceAny, int daysSinceRising, bool can, float roll) =>
+            GodsMath.AvatarsCome(r) && can && day >= EarliestDay * 3 && daysSinceAny >= AnyGapDays && daysSinceRising >= RisingGapDays && !float.IsNaN(roll) && roll < RisingChance;
+
+        // ================= The Guest's memory =================
+
+        /// <summary>
+        /// The tag the Guest's lines carry for what it remembers of this colony's last welcome: none the first time, kept for
+        /// a good welcome, cold for a poor one or a door shut, harmed for a blow.
+        /// </summary>
+        public static string Remembers(int visits, Treatment last) =>
+            visits <= 0 ? "first" : last >= Treatment.Kind ? "rememberskind" : last == Treatment.Harmed ? "remembersharm" : last <= Treatment.Poor ? "rememberscold" : "remembers";
+
+        /// <summary>A good welcome is blessed in ways that arrive years later: the days until the Guest's late gift.</summary>
+        public const int LateGiftMinDays = 60, LateGiftMaxDays = 180;
+
+        // ================= Sitting near the Old Horn =================
+
+        /// <summary>How someone comes away changed after sitting near the god's beast while it grazes.</summary>
+        public enum SitChange
+        {
+            Nothing,
+            /// <summary>A grief eased: the heaviest memory of a death lifted.</summary>
+            Grief,
+            /// <summary>A fear gone: a nervous or a cowardly nature lifted.</summary>
+            Fear,
+            /// <summary>A passion found.</summary>
+            Passion,
+            /// <summary>A child let close to touch its horn (and the sky noticed).</summary>
+            Horn
+        }
+
+        /// <summary>A child touches the horn; a grieving one is eased first, then a fearful one, else a passion found.</summary>
+        public static SitChange Sat(bool child, bool grieving, bool fearful, bool passionOpen)
+        {
+            if (child) return SitChange.Horn;
+            if (grieving) return SitChange.Grief;
+            if (fearful) return SitChange.Fear;
+            return passionOpen ? SitChange.Passion : SitChange.Nothing;
+        }
+
+        /// <summary>At most this many come away changed in one visit, and each only once.</summary>
+        public const int SittersAVisit = 3;
+
+        /// <summary>The favour every god loses when the colony harms the beast whose harm is the worst thing (Bellwether, or his kin).</summary>
+        public const float EveryGodColder = -3f;
+
+        /// <summary>The goodwill every people with someone on the map loses when it hears of it.</summary>
+        public const int PeoplesHear = -10;
+
+        // ================= The sleeper under the mountain =================
+
+        /// <summary>The rock rumbles over the colony's deep mining (under thick rock) at most once in this many days, at this chance an hour.</summary>
+        public const int DeepGapDays = 3;
+        public const float DeepChanceAnHour = 0.1f;
+
+        /// <summary>The rumbles are forgotten when the colony leaves the deep alone this long.</summary>
+        public const int DeepForgottenDays = 20;
+
+        /// <summary>From this many rumbles loose stone may fall on the miner; at this many it wakes.</summary>
+        public const int StoneFallsFrom = 3, WakesAt = 6;
+
+        /// <summary>Once woken it sleeps again for years; its true form stays this many hours on the land.</summary>
+        public const int WakeGapDays = 240, WokenHours = 3;
+
+        /// <summary>The rumbles counted with this one: one more, or the first again when the last was long ago.</summary>
+        public static int Warned(int warnings, int daysSinceLast) => (daysSinceLast >= DeepForgottenDays ? 0 : Math.Max(0, warnings)) + 1;
+
+        /// <summary>It wakes: past every warning, and not within years of its last waking. Never while the gods are only believed in.</summary>
+        public static bool Wakes(GodRealness r, int warnings, int daysSinceWake) => r != GodRealness.Believed && warnings >= WakesAt && daysSinceWake >= WakeGapDays;
+
+        /// <summary>Its true form is seen only where the gods walk plainly, and only when the game has one for it; else the mountain quakes and its shadow passes.</summary>
+        public static bool TrueForm(GodRealness r, bool hasForm) => r == GodRealness.Walking && hasForm;
+
+        /// <summary>Loose stone falls on the miner with this rumble: from the third, at a chance by the harm setting (the shared cap is the caller's).</summary>
+        public static bool StoneFalls(int warnings, float harmScale, float roll) =>
+            warnings >= StoneFallsFrom && !float.IsNaN(roll) && !float.IsNaN(harmScale) && roll < Math.Min(0.6f, 0.3f * Math.Max(0f, harmScale));
+
+        // ================= The moon's return =================
+
+        /// <summary>What comes back in the night for a deed of the day: a kindness as something found, a good dream or a wound healed; a cruelty as a nightmare, a frost or an animal that returns.</summary>
+        public enum NightReturn
+        {
+            None,
+            Found,
+            GoodDream,
+            Healed,
+            Nightmare,
+            Frost,
+            AnimalBack
+        }
+
+        /// <summary>A deed counts as a kindness or a cruelty from this much of its name's kindness (times its size).</summary>
+        public const float ReturnDeedFrom = 3f;
+
+        /// <summary>At most one return a night, and this many days apart at least: small and rare.</summary>
+        public const int ReturnGapDays = 3;
+
+        /// <summary>Something comes back tonight: by the moon's face (all of it when full, a little when thin, nothing when dark).</summary>
+        public static bool Returns(MoonFace face, float roll) => !float.IsNaN(roll) && roll < face switch
+        {
+            MoonFace.Full => 0.7f,
+            MoonFace.Half => 0.4f,
+            MoonFace.Thin => 0.15f,
+            _ => 0f
+        };
+
+        /// <summary>
+        /// What comes back for a deed (its kindness weight: positive kind, negative cruel): a kindness healed when the one who
+        /// did it is hurt, else found or a good dream; a cruelty an animal back when the cruelty was to an animal, else a
+        /// frost when the night is cold enough, else a nightmare.
+        /// </summary>
+        public static NightReturn ReturnFor(float kindness, bool hurt, bool toAnimal, bool cold, float roll)
+        {
+            if (float.IsNaN(kindness) || Math.Abs(kindness) < ReturnDeedFrom || float.IsNaN(roll)) return NightReturn.None;
+            if (kindness > 0f) return hurt && roll < 0.5f ? NightReturn.Healed : roll < 0.75f ? NightReturn.Found : NightReturn.GoodDream;
+            if (toAnimal && roll < 0.6f) return NightReturn.AnimalBack;
+            return cold && roll < 0.4f ? NightReturn.Frost : NightReturn.Nightmare;
+        }
+
+        // ================= The moon's face =================
+
+        /// <summary>The moon's face through a season of fifteen days: gone, thin, half, full, half, thin, gone.</summary>
+        public enum MoonFace
+        {
+            Gone,
+            Thin,
+            Half,
+            Full
+        }
+
+        /// <summary>The moon's face on day <paramref name="day"/> of the world (Rimfolk's own calendar: one round a season of fifteen days).</summary>
+        public static MoonFace Face(int day)
+        {
+            int d = Mod(day, 15);
+            return d <= 1 || d == 14 ? MoonFace.Gone : d <= 4 || d >= 12 ? MoonFace.Thin : d <= 6 || d >= 10 ? MoonFace.Half : MoonFace.Full;
+        }
+
+        /// <summary>The moon's light over a night, by its face (the huge moon is drawn this much of its fullest).</summary>
+        public static float MoonLight(MoonFace f) => f switch
+        {
+            MoonFace.Full => 1f,
+            MoonFace.Half => 0.7f,
+            MoonFace.Thin => 0.4f,
+            _ => 0f
+        };
+
+        /// <summary>On a night with no moon, the void's signs come a little more easily: this many hours early.</summary>
+        public const int DarkNightEarlyHours = 12;
 
         // ================= Small helpers =================
 

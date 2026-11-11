@@ -55,6 +55,10 @@
           <li>[craft] {X_nameDef}, a {TALE} with burn scars on both hands, asks {A_nameDef} for a bed for the night and looks over the colony's tools with interest.</li>
           <li>[machine] {X_nameDef}, a {TALE} who talks a little too evenly, asks {A_nameDef} for shelter for the night and somehow knows the colony's power is low.</li>
           <li>[void] {X_nameDef}, a {TALE} whose shadow seems a little late to follow, asks {A_nameDef} for shelter for the night. It's hard to remember {X_possessive} face afterwards.</li>
+          <li>[ennu,rememberskind] {X_nameDef}, a {TALE}, is at the gate again, or someone very like the last one. {X_pronoun} smiles at {A_nameDef} as if they were old friends, and asks for a bed for the night.</li>
+          <li>[ennu,rememberscold] {X_nameDef}, a {TALE}, stands at the gate and asks {A_nameDef} for shelter. {X_pronoun} looks at the colony's door for a long moment before knocking, as if remembering how it was answered once.</li>
+          <li>[ennu,remembersharm] {X_nameDef}, a {TALE} with an old bruise on {X_possessive} cheek, asks {A_nameDef} for shelter for the night. Nobody here can say why the bruise looks so familiar.</li>
+          <li>[ennu,remembers] {X_nameDef}, a {TALE}, asks {A_nameDef} for a place for the night, and already seems to know where the well is.</li>
         </texts>
         <defaultOption>2</defaultOption>
         <options>
@@ -103,6 +107,73 @@
     <casualInterruptible>true</casualInterruptible>
     <checkOverrideOnDamage>Always</checkOverrideOnDamage>
   </JobDef>
+
+  <!-- Sitting near the great white beast as it grazes, an hour, or a child reaching up to touch its horn (JobDriver_SitNearSacredAnimal). -->
+  <JobDef>
+    <defName>Rimfolk_SitNearSacredAnimal</defName>
+    <driverClass>ColonyCouncil.JobDriver_SitNearSacredAnimal</driverClass>
+    <reportString>sitting near it.</reportString>
+    <casualInterruptible>true</casualInterruptible>
+    <checkOverrideOnDamage>Always</checkOverrideOnDamage>
+  </JobDef>
+
+  <!-- ===================== What it leaves in them ===================== -->
+
+  <!-- Sat near the great white beast a while (stage 0), or touched its horn (stage 1, a child). -->
+  <ThoughtDef>
+    <defName>Rimfolk_Thought_SatNearSacred</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
+    <durationDays>8</durationDays>
+    <stackLimit>1</stackLimit>
+    <stages>
+      <li>
+        <label>sat near the great beast</label>
+        <description>I sat near it while it grazed, and for a while nothing hurt.</description>
+        <baseMoodEffect>6</baseMoodEffect>
+      </li>
+      <li>
+        <label>touched its horn</label>
+        <description>It let me come right up close and touch its horn. It was warm.</description>
+        <baseMoodEffect>10</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <!-- The great white beast went its way and nobody raised a hand to it: a strange peace, for a season. -->
+  <ThoughtDef>
+    <defName>Rimfolk_Thought_StrangePeace</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
+    <durationDays>15</durationDays>
+    <stackLimit>1</stackLimit>
+    <stages>
+      <li>
+        <label>a strange peace</label>
+        <description>The great white beast went its way and nobody raised a hand to it. Something has been quieter since.</description>
+        <baseMoodEffect>4</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <!-- A nightmare that follows them into the day (GodWeather: a moon displeased). -->
+  <ThoughtDef>
+    <defName>Rimfolk_Thought_MoonNightmare</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
+    <durationDays>1</durationDays>
+    <stackLimit>1</stackLimit>
+    <stages>
+      <li>
+        <label>a nightmare under the moon</label>
+        <description>I woke in the night from a dream I can't shake. The moon was very bright.</description>
+        <baseMoodEffect>-4</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <!-- Every people with someone on the map hears that the colony harmed the great white beast or its herd (SacredAnimal.Worst). -->
+  <HistoryEventDef>
+    <defName>Rimfolk_HarmedSacredBeast</defName>
+    <label>harmed the great white beast</label>
+  </HistoryEventDef>
 
   <!-- ===================== Remembered together ===================== -->
 

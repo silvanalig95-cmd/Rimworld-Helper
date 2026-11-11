@@ -9,59 +9,64 @@ using Verse;
 namespace ColonyCouncil
 {
     /// <summary>
-    /// What a god on the map leaves behind (docs/design/gods.md, "On the map"): the colony's standing with it, a find where
-    /// it stood, the kindest colonist's lasting gift (a passion, a trait, A RimWorld of Magic's spell or class of its domain,
-    /// or its favour), its answer in the weather, and its curse: on one who struck its stranger, a fever through the
-    /// shared harm cap and illness budget (Harm.May, IllnessBudget) at the game's own rate (Harm.Scale); on the colony, its
-    /// domain withheld (the rain kept away, dry thunder, the game gone from the land, the fires guttering). Everything is
-    /// the game's own things, told and shown.
+    /// What a god on the map leaves behind (docs/design/gods.md, "On the map"): the colony's standing with it (hidden), a
+    /// find where it stood, the kindest colonist's lasting gift (a passion, a trait, A RimWorld of Magic's spell or class of
+    /// its domain, or its favour and a spark of inspiration), its answer in the weather, and its curse: on one who struck
+    /// its stranger, a fever through the shared harm cap and illness budget (Harm.May, IllnessBudget) at the game's own rate
+    /// (Harm.Scale); on the colony, its domain withheld (the rain kept away, dry thunder, the game gone from the land, the
+    /// lights guttering). The player: the gods are an ominous presence, never explained. So nothing here is told as a rule
+    /// or put to the god: it simply happens on the map, and the only words are what is seen (a fever, as harm always is) and
+    /// what people say.
     /// </summary>
     public static class GodGifts
     {
+        public const string TouchedPool = "Rimfolk_Pool_GodTouched";
+
         private static int Now => Find.TickManager.TicksGame;
 
-        /// <summary>The god in words at the realness step: named plainly in Walking, else by name only once the colony knows it.</summary>
-        private static NamedArgument[] A(God g) => GodsOnMapWords.Args(g, Gods.Realness == GodRealness.Walking);
-
         /// <summary>
-        /// The stranger's god judges the colony: favour moved by the treatment, and the blessing, the gift or the curse
-        /// that goes with it. Returns what it left, in words, for the card.
+        /// The stranger's god judges the colony: favour moved by the treatment (kept hidden), and the blessing, the gift or the
+        /// curse that goes with it, happening on the map without a word of why.
         /// </summary>
-        public static string Outcome(God god, Map map, IntVec3 at, Treatment t, Pawn kindest, Pawn harmer, StrangerWelcome welcome)
+        public static void Outcome(God god, Map map, IntVec3 at, Treatment t, Pawn kindest, Pawn harmer, StrangerWelcome welcome)
         {
-            if (god == null || map == null) return null;
-            var lines = new List<string>();
+            if (god == null || map == null) return;
             try
             {
-                string why = ("CC_GodM_Why_" + t).Translate(GodStranger.Traveller(GodStranger.Age).Named("TRAVELLER")).Resolve();
-                Gods.AddFavour(god, map, GodsOnMapMath.FavourFor(t), why, GodsOnMapMath.SourceOf(t), GodsOnMapMath.OffenceOf(t));
-                if (GodsOnMapMath.Blesses(t))
-                {
-                    string found = LeaveFind(god, map, at, t == Treatment.Generous ? 2 : 1);
-                    if (found != null) lines.Add(found);
-                }
-                if (GodsOnMapMath.Gives(t) && kindest != null)
-                {
-                    string gift = Give(kindest, god, map);
-                    if (gift != null) lines.Add(gift);
-                }
-                if (t >= Treatment.Kind && GodWeather.Answer(god, map, GodsOnMapMath.FavourFor(t), true)) lines.Add("CC_GodM_Out_Weather".Translate(A(god)).Resolve());
+                Gods.AddFavour(god, map, GodsOnMapMath.FavourFor(t), null, GodsOnMapMath.SourceOf(t), GodsOnMapMath.OffenceOf(t));
+                if (GodsOnMapMath.Blesses(t)) LeaveFind(god, map, at, t == Treatment.Generous ? 2 : 1);
+                if (GodsOnMapMath.Gives(t) && kindest != null) Give(kindest, god, map);
+                if (t >= Treatment.Kind) GodWeather.Answer(god, map, GodsOnMapMath.FavourFor(t), true);
                 if (GodsOnMapMath.Curses(t))
                 {
-                    if (t == Treatment.Harmed && harmer != null)
-                    {
-                        string fever = Fever(harmer, map, god);
-                        if (fever != null) lines.Add(fever);
-                    }
-                    string withheld = Withhold(god, map);
-                    if (withheld != null) lines.Add(withheld);
+                    if (t == Treatment.Harmed && harmer != null) Fever(harmer, map, god);
+                    Withhold(god, map);
                 }
             }
             catch (Exception e)
             {
                 CouncilLog.ErrorOnce("gods: what the stranger left", e);
             }
-            return lines.Count == 0 ? null : string.Join("\n", lines);
+        }
+
+        /// <summary>
+        /// A good welcome is blessed in ways that arrive later (the Guest's way): one night, seasons on, something is left at
+        /// the colony's gate, and the news says only that it was found. Nothing says who left it.
+        /// </summary>
+        internal static void LateGift(GodsOnMapBook b, int now)
+        {
+            if (b.lateGiftAt < 0 || now < b.lateGiftAt) return;
+            var god = Gods.ById(b.lateGiftGod);
+            var map = Homes.MapOf(b.lateGiftHome);
+            b.lateGiftAt = -1;
+            if (god == null || map == null || !Homes.IsHome(map)) return;
+            var near = map.mapPawns.FreeColonistsSpawned.FirstOrDefault(p => p.Spawned);
+            IntVec3 at = map.Center;
+            if (near != null && RCellFinder.TryFindRandomSpotJustOutsideColony(near, out var spot)) at = spot;
+            if (LeaveFind(god, map, at, 2) == null) return;
+            Tell.Message(NewsKind.Land, Importance.Notable, map, "CC_GodM_LateGift".Translate(Homes.Name(map).Named("HOME")).Resolve(), new LookTargets(at, map),
+                MessageTypeDefOf.PositiveEvent);
+            GodsOnMapWords.Saw(god, map, at, GodActKind.Blessing, GodsOnMapWords.Seer(map, at, 40f), "CC_GodM_Saw_LateGift");
         }
 
         // ================= A find =================
@@ -89,7 +94,7 @@ namespace ColonyCouncil
             }
             if (placed == 0) return null;
             FleckMaker.ThrowLightningGlow(at.ToVector3Shifted(), map, 2f);
-            return "CC_GodM_Out_Find".Translate(A(god).Concat(new[] { placed.Named("COUNT"), def.label.Named("THING") }).ToArray()).Resolve();
+            return placed + " " + def.label;
         }
 
         // ================= The kindest colonist's gift =================
@@ -121,20 +126,20 @@ namespace ColonyCouncil
                 {
                     case GodGift.Spell:
                         var scroll = ThingMaker.MakeThing(spell);
-                        if (p.Spawned && GenPlace.TryPlaceThing(scroll, p.Position, p.Map, ThingPlaceMode.Near)) what = "CC_GodM_Gift_Spell".Translate(spell.label.Named("THING")).Resolve();
+                        if (p.Spawned && GenPlace.TryPlaceThing(scroll, p.Position, p.Map, ThingPlaceMode.Near)) what = spell.label;
                         break;
                     case GodGift.Class:
                         p.story.traits.GainTrait(new Trait(cls, Degree(cls), false));
                         Renew(p);
-                        what = "CC_GodM_Gift_Class".Translate(cls.DataAtDegree(Degree(cls)).GetLabelFor(p).Named("CLASS")).Resolve();
+                        what = cls.DataAtDegree(Degree(cls)).GetLabelFor(p);
                         break;
                     case GodGift.Passion:
                         skill.passion = Passion.Major;
-                        what = "CC_GodM_Gift_Passion".Translate(skillDef.label.Named("SKILL")).Resolve();
+                        what = skillDef.label;
                         break;
                     case GodGift.Trait:
                         p.story.traits.GainTrait(new Trait(trait, degree, false));
-                        what = "CC_GodM_Gift_Trait".Translate(trait.DataAtDegree(degree).GetLabelFor(p).Named("TRAIT")).Resolve();
+                        what = trait.DataAtDegree(degree).GetLabelFor(p);
                         break;
                 }
             }
@@ -146,22 +151,24 @@ namespace ColonyCouncil
             if (what == null)
             {
                 // Its favour: the colony stands better with it for their sake, and a spark of inspiration.
-                Gods.AddFavour(god, map, GodsOnMapMath.FavourGift, "CC_GodM_Why_Favour".Translate(p.LabelShort.Named("PAWN")).Resolve());
+                Gods.AddFavour(god, map, GodsOnMapMath.FavourGift, null);
                 try
                 {
                     var insp = p.mindState?.inspirationHandler?.GetRandomAvailableInspirationDef();
-                    if (insp != null) p.mindState.inspirationHandler.TryStartInspiration(insp, "CC_GodM_InspiredBy".Translate(A(god)).Resolve());
+                    if (insp != null) p.mindState.inspirationHandler.TryStartInspiration(insp);
                 }
                 catch (Exception e)
                 {
                     CouncilLog.ErrorOnce("gods: a god's favour", e);
                 }
-                what = "CC_GodM_Gift_Favour".Translate(A(god)).Resolve();
+                what = "favour";
             }
+            // Nothing says what it was: they feel it, say so, and write it down in their own words.
             if (p.Spawned) FleckMaker.ThrowLightningGlow(p.DrawPos, p.Map, 1.6f);
-            string line = "CC_GodM_Out_Gift".Translate(A(god).Concat(new[] { p.Named("PAWN"), what.Named("WHAT") }).ToArray()).Resolve();
-            CouncilGameComponent.Instance?.journals?.WriteText(p, "CC_GodM_Journal_Gift".Translate(A(god).Concat(new[] { what.Named("WHAT") }).ToArray()).Resolve());
-            return line;
+            string felt = Flavor.FromPool(TouchedPool, p, null, null, gift.ToString().ToLowerInvariant());
+            if (!felt.NullOrEmpty()) Speech.Say(p, felt);
+            CouncilGameComponent.Instance?.journals?.WriteText(p, "CC_GodM_Journal_Gift".Translate().Resolve());
+            return what;
         }
 
         private static int Degree(TraitDef d) => d.degreeDatas.NullOrEmpty() ? 0 : d.degreeDatas[0].degree;
@@ -246,7 +253,8 @@ namespace ColonyCouncil
                 p.health.AddHediff(h);
                 if (!p.health.hediffSet.HasHediff(flu)) return null;
                 IllnessBudget.Owe(map, flu, p);
-                string text = "CC_GodM_Out_Fever".Translate(A(god).Concat(new[] { p.Named("PAWN") }).ToArray()).Resolve();
+                // Shown, as harm always is, and never put to the god.
+                string text = "CC_GodM_Out_Fever".Translate(p.Named("PAWN")).Resolve();
                 Tell.Message(NewsKind.People, Importance.Important, map, text, new LookTargets(p), MessageTypeDefOf.NegativeHealthEvent);
                 return text;
             }
@@ -258,36 +266,31 @@ namespace ColonyCouncil
         }
 
         /// <summary>
-        /// A god's domain withheld from the colony for a while: the rain kept away (the harvest, the waters, the wild), dry
-        /// thunder where the land has it (storms), the wild game leaving the land (the hunt), the colony's lights guttering
-        /// for a night (the hearth, the night). Nothing for the rest but the god's displeasure. Its words, or null.
+        /// A god's domain withheld from the colony for a while, by its domains: the rain kept away (the harvest, the waters,
+        /// the wild), dry thunder where the land has it (storms), the wild game leaving the land (the hunt), the colony's
+        /// lights guttering for a night (the hearth, the night: the Guest's fires that won't catch). Nothing for the rest but
+        /// the god's hidden displeasure. True when something was withheld.
         /// </summary>
-        public static string Withhold(God god, Map map)
+        public static bool Withhold(God god, Map map)
         {
-            if (god == null || map == null) return null;
+            if (god == null || map == null) return false;
             try
             {
-                switch (god.domain)
+                bool Has(GodDomain d) => god.domain == d || god.second == d;
+                if (Has(GodDomain.Harvest) || Has(GodDomain.Waters) || Has(GodDomain.Wild))
                 {
-                    case GodDomain.Harvest:
-                    case GodDomain.Waters:
-                    case GodDomain.Wild:
-                        map.weatherDecider.DisableRainFor(GenDate.TicksPerDay * 5);
-                        return "CC_GodM_Out_NoRain".Translate(A(god)).Resolve();
-                    case GodDomain.Storm:
-                        return GodWeather.Storm(map, true) ? "CC_GodM_Out_DryThunder".Translate(A(god)).Resolve() : null;
-                    case GodDomain.Hunt:
-                        return GodOmens.Leave(map, a => !a.RaceProps.predator, 10) > 0 ? "CC_GodM_Out_GameGone".Translate(A(god)).Resolve() : null;
-                    case GodDomain.Hearth:
-                    case GodDomain.Night:
-                        return GodOmens.Gutter(map, 4, GenDate.TicksPerHour * 8) > 0 ? "CC_GodM_Out_Fires".Translate(A(god)).Resolve() : null;
+                    map.weatherDecider.DisableRainFor(GenDate.TicksPerDay * 5);
+                    return true;
                 }
+                if (Has(GodDomain.Storm)) return GodWeather.Storm(map, true);
+                if (Has(GodDomain.Hunt)) return GodOmens.Leave(map, a => !a.RaceProps.predator, 10) > 0;
+                if (Has(GodDomain.Hearth) || Has(GodDomain.Night)) return GodOmens.Gutter(map, 4, GenDate.TicksPerHour * 8) > 0;
             }
             catch (Exception e)
             {
                 CouncilLog.ErrorOnce("gods: a god's domain withheld", e);
             }
-            return null;
+            return false;
         }
     }
 }

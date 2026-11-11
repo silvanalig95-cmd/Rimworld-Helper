@@ -12,15 +12,24 @@ using Verse.AI.Group;
 namespace ColonyCouncil
 {
     /// <summary>
-    /// The omens' build-up (brainstorm 23; docs/design/gods.md, "Weight"): days of signs before a god comes, each one on the
-    /// map and remarked on aloud: the land's birds leaving it all at once, a strange calm (the wind dies for a few hours),
-    /// two colonists waking from the same dream (Rimfolk's dreams: the dream book, the journal, the vivid dream's memory,
-    /// and the two of them saying so when next together), a lamp or a torch in the colony that won't stay lit, and the
-    /// animals restless (they start, run a few steps and stand looking one way). Each goes through the presence part's
-    /// omen (GodPresenceSeam, PresenceKind.Omen: a soft sound, a glimmer, someone looking up, a line in the news). In
-    /// Believed no glimmer: only the signs the colony reads into chance. <see cref="Before"/> is what the other parts call.
+    /// The omens' build-up (brainstorm 23; docs/design/gods.md, "Weight"): days of signs before a god comes or acts, each
+    /// one on the map and remarked on aloud, and each god's own (GodShapeDef.omens; the five any god may send otherwise):
+    /// <list type="bullet">
+    /// <item>any god's: the land's birds leaving it all at once, a strange calm (the wind dies), two colonists waking from
+    /// the same dream (Rimfolk's dreams: the dream book, the journal, the vivid dream's memory, and the two of them saying
+    /// so when next together), a light that won't stay lit, the animals restless;</item>
+    /// <item>Hollin's: leaves and seeds drifting toward one place, an anima tree humming, her dryads standing still;
+    /// Smoulder's: a vast winged shadow at noon with a wind under it, steam from the ground, the rock rumbling where the
+    /// colony mines deep; Morel's: a ring of mushrooms overnight, a smell of earth where no rain fell, white threads on a
+    /// floor; Pip's: lights flickering in a pattern, a comms console's static, a light glowing with no power; Cirrus's: a
+    /// shadow too large at noon, a star that moves the wrong way; Hush's: frost in lines like writing, a silence, a white
+    /// figure at the edge of the night; Undertow's: a dark a light doesn't reach, a sweet voice to the most desperate.</item>
+    /// </list>
+    /// The player: the gods are an ominous presence, never explained. So an omen is only seen and said: no line in the
+    /// news, no god named; the presence part's small sign where it shows (GodPresenceSeam, PresenceKind.Omen: a soft
+    /// sound, a glimmer, someone looking up), never in Believed. <see cref="Before"/> is what the other parts call.
     /// </summary>
-    public static class GodOmens
+    public static partial class GodOmens
     {
         public const string RemarkPool = "Rimfolk_Pool_GodOmenRemark";
         public const string DreamPool = "Rimfolk_Pool_GodDream";
@@ -32,15 +41,15 @@ namespace ColonyCouncil
 
         /// <summary>
         /// Omens of <paramref name="god"/> over the next <paramref name="days"/> days at <paramref name="map"/>, before a coming
-        /// (the stranger, the sacred animal, the worship's and the world's own): one a day, at most four, each of a kind that
-        /// can show there, the last on the coming's eve. Returns how many were planned.
+        /// (the stranger, the sacred animal, a rising, the worship's and the world's own): one a day, at most four, each of
+        /// its own kinds (its shape's) that can show there, the last on the coming's eve. Returns how many were planned.
         /// </summary>
         public static int Before(God god, Map map, int days)
         {
             var b = GodsOnMapBook.Instance;
             if (b == null || god == null || map == null || days <= 0 || !Gods.On) return 0;
             int seed = GodsMath.Seed(god.id, Now / GenDate.TicksPerDay, map.uniqueID);
-            var kinds = GodsOnMapMath.Omens(days, k => Can(map, k), seed);
+            var kinds = GodsOnMapMath.Omens(days, k => Can(map, k), seed, GodShapes.Omens(god));
             int start = Now - Now % GenDate.TicksPerDay;
             int n = 0;
             for (int i = 0; i < kinds.Count && b.omens.Count < GodsOnMapBook.MaxOmens; i++)
@@ -53,7 +62,7 @@ namespace ColonyCouncil
             return n;
         }
 
-        /// <summary>Whether an omen of this kind can show on the map at all (birds on the land, a light in the colony, two who sleep there).</summary>
+        /// <summary>Whether an omen of this kind can show on the map at all (birds on the land, a light in the colony, two who sleep there, an anima tree...).</summary>
         public static bool Can(Map map, OmenKind k)
         {
             switch (k)
@@ -62,7 +71,8 @@ namespace ColonyCouncil
                 case OmenKind.Candle: return Lights(map).Count > 0;
                 case OmenKind.Dream: return GodsOnMapMath.DreamCan(Homes.People(map).Count(p => People.HasInnerLife(p) && !p.DevelopmentalStage.Baby()));
                 case OmenKind.Restless: return map.mapPawns.AllPawnsSpawned.Count(p => p.RaceProps.Animal && !p.Downed) >= 2;
-                default: return true;
+                case OmenKind.Calm: return true;
+                default: return CanOwn(map, k);
             }
         }
 
@@ -78,7 +88,9 @@ namespace ColonyCouncil
                     b.omens.RemoveAt(i);
                     continue;
                 }
-                if (now < o.at) continue;
+                // On a night with no moon, the void's signs come a little more easily (a little early).
+                if (now < o.at && !(Undertow(o.kind) && GodOmens.MoonTonight == GodsOnMapMath.MoonFace.Gone && now >= o.at - GodsOnMapMath.DarkNightEarlyHours * GenDate.TicksPerHour))
+                    continue;
                 bool shown = false;
                 try
                 {
@@ -88,8 +100,21 @@ namespace ColonyCouncil
                 {
                     CouncilLog.ErrorOnce("gods: an omen", e);
                 }
-                // An omen that can't show now (nobody awake to see it, no birds today) tries for a few hours, then lets go.
+                // An omen that can't show now (nobody awake to see it, no birds today, not yet dark) tries for a few hours, then lets go.
                 if (shown || ++o.tries > 6) b.omens.RemoveAt(i);
+            }
+            Safe(() => Deep(b, now));
+        }
+
+        private static void Safe(Action a)
+        {
+            try
+            {
+                a();
+            }
+            catch (Exception e)
+            {
+                CouncilLog.ErrorOnce("gods: a sign", e);
             }
         }
 
@@ -130,7 +155,7 @@ namespace ColonyCouncil
                     speaker = Witness(map, at, 14f);
                     break;
                 }
-                default:
+                case OmenKind.Restless:
                 {
                     var animals = map.mapPawns.AllPawnsSpawned.Where(p => p.RaceProps.Animal && !p.Downed && !p.Dead && p.Awake() && !p.InMentalState && !GodAvatar.Is(p)).ToList();
                     if (animals.Count < 2) return false;
@@ -140,27 +165,31 @@ namespace ColonyCouncil
                     speaker = Witness(map, at, 25f);
                     break;
                 }
+                default:
+                    if (!ShowOwn(god, map, o.kind, out at, out speaker)) return false;
+                    break;
             }
             Seen(god, map, at, o.kind, speaker);
             return true;
         }
 
-        /// <summary>The presence's small sign where it shows (not in Believed), a line in the news, and a colonist who saw it says so.</summary>
-        private static void Seen(God god, Map map, IntVec3 at, OmenKind kind, Pawn speaker)
+        /// <summary>
+        /// The presence's small sign where it shows (not in Believed, and never a line in the news), and a colonist who saw
+        /// it says so in a bubble: what they make of it, never whose it was.
+        /// </summary>
+        internal static void Seen(God god, Map map, IntVec3 at, OmenKind kind, Pawn speaker)
         {
-            // The sign put to its god at the step of how real the gods are ("Some say it is a sign of Ceren").
-            string news = ("CC_GodM_Omen_" + kind).Translate(Homes.Name(map).Named("HOME")).Resolve() + " " + GodsOnMapWords.Sign(god);
-            if (Gods.Realness != GodRealness.Believed)
-            {
-                var spec = PresenceSpec.For(god, map, PresenceKind.Omen, at);
-                spec.text = news;
-                if (!GodPresenceSeam.Call(spec)) Tell.Message(NewsKind.Land, Importance.Notable, map, news, new LookTargets(at, map), MessageTypeDefOf.NeutralEvent);
-            }
-            else Tell.Message(NewsKind.Land, Importance.Flavor, map, news, new LookTargets(at, map), MessageTypeDefOf.NeutralEvent);
+            if (Gods.Realness != GodRealness.Believed && at.IsValid) GodPresenceSeam.Call(new PresenceSpec { god = god, map = map, cell = at, kind = PresenceKind.Omen, veiled = true });
+            // The colony's book keeps it in the words of who saw it (or of someone at home, for a sign nobody stood near).
+            GodsOnMapWords.Saw(god, map, at, GodActKind.Omen, speaker, "CC_GodM_Saw_" + kind);
             if (speaker == null) return;
-            string line = Flavor.FromPool(RemarkPool, speaker, null, null, kind.ToString().ToLowerInvariant(), god.domain.ToString().ToLowerInvariant());
+            // At night, the moon's face is in what they say of it.
+            string face = map.skyManager.CurSkyGlow < 0.3f ? GodReturn.FaceTag() : null;
+            string line = Flavor.FromPool(RemarkPool, speaker, null, null, kind.ToString().ToLowerInvariant(), god.domain.ToString().ToLowerInvariant(), GodShapes.LineTag(god), face);
             if (!line.NullOrEmpty()) Speech.Say(speaker, line);
         }
+
+        private static bool Undertow(OmenKind k) => k == OmenKind.Dark || k == OmenKind.Whisper;
 
         private static bool Awake(Pawn p) => p != null && p.Awake() && !p.Downed && !p.InMentalState && !p.Drafted && People.HasInnerLife(p);
 
@@ -231,17 +260,19 @@ namespace ColonyCouncil
             var a = woke[0];
             var b = woke[1];
             string tag = god.domain.ToString().ToLowerInvariant();
-            string raw = Flavor.FromPool(DreamPool, a, null, null, tag);
+            string own = GodShapes.LineTag(god);
+            // On a full moon the dreams are truest: its own lines then.
+            string raw = Flavor.FromPool(DreamPool, a, null, null, tag, own, GodReturn.FaceTag());
             if (raw.NullOrEmpty()) return false;
             foreach (var p in woke) Dreamt(comp, p, raw.Formatted(p.Named("PAWN")).Resolve());
-            string text = "CC_GodM_Omen_Dream".Translate(a.Named("PAWN"), b.Named("OTHER"), raw.Formatted(a.Named("PAWN")).Resolve().Named("DREAM")).Resolve() + " "
-                          + GodsOnMapWords.Sign(god);
+            string text = "CC_GodM_Omen_Dream".Translate(a.Named("PAWN"), b.Named("OTHER"), raw.Formatted(a.Named("PAWN")).Resolve().Named("DREAM")).Resolve();
             // apart: two dreams had the same night, each in their own bed; they speak of it below, together.
             Tell.Message(NewsKind.People, Importance.Notable, map, text, new LookTargets(new[] { a, b }.Select(x => new GlobalTargetInfo(x))), MessageTypeDefOf.NeutralEvent);
-            if (Gods.Realness != GodRealness.Believed) GodPresenceSeam.Call(PresenceSpec.For(god, map, PresenceKind.Omen, a.Position));
+            if (Gods.Realness != GodRealness.Believed) GodPresenceSeam.Call(new PresenceSpec { god = god, map = map, cell = a.Position, kind = PresenceKind.Omen, veiled = true });
+            GodsOnMapWords.Saw(god, map, a.Position, GodActKind.Omen, a, "CC_GodM_Saw_Dream", b.LabelShort.Named("OTHER"));
             Together.When("godDream|" + a.thingIDNumber + "|" + b.thingIDNumber, a, b, () =>
             {
-                string said = Flavor.FromPool(DreamTalkPool, a, null, null, tag);
+                string said = Flavor.FromPool(DreamTalkPool, a, null, null, tag, own);
                 if (!said.NullOrEmpty()) Speech.Say(a, said.Formatted(b.Named("OTHER")).Resolve(), b);
             }, 18f, 6f);
             return true;
@@ -250,7 +281,7 @@ namespace ColonyCouncil
         private static List<ThoughtDef> dreamThoughts;
 
         /// <summary>One dreamer's part: the dream book, the untold dream they will tell, the journal, the vivid dream's memory (one dream memory at a time).</summary>
-        private static void Dreamt(CouncilGameComponent comp, Pawn p, string text)
+        internal static void Dreamt(CouncilGameComponent comp, Pawn p, string text)
         {
             var dreams = comp.dreams;
             int now = Now;
@@ -270,12 +301,19 @@ namespace ColonyCouncil
 
         // ================= The light that won't stay lit =================
 
-        /// <summary>The lights guttering now: each goes out and comes back, by the tick it changes next and the tick it stops.</summary>
-        private static readonly Dictionary<CompGlower, (Map map, int next, int until, bool lit)> guttering = new Dictionary<CompGlower, (Map, int, int, bool)>();
+        /// <summary>
+        /// The lights a god plays with now: each goes out and comes back (guttering, or Pip's fast flicker in a pattern), or
+        /// glows with no power (Pip, to show it can); by the tick it changes next and the tick it stops.
+        /// </summary>
+        private static readonly Dictionary<CompGlower, (Map map, int next, int until, bool lit, bool fast, bool forced)> guttering =
+            new Dictionary<CompGlower, (Map, int, int, bool, bool, bool)>();
         private static Game gutterGame;
 
         /// <summary>A light that guttered out just now (the glower and the fire it draws are off). Read by the two hooks; nothing else.</summary>
-        internal static bool Out(CompGlower c) => guttering.Count > 0 && c != null && guttering.TryGetValue(c, out var g) && !g.lit;
+        internal static bool Out(CompGlower c) => guttering.Count > 0 && c != null && guttering.TryGetValue(c, out var g) && !g.lit && !g.forced;
+
+        /// <summary>A light that glows with no power because a god wants it to (Pip). Read by the glower's hook.</summary>
+        internal static bool Lit(CompGlower c) => guttering.Count > 0 && c != null && guttering.TryGetValue(c, out var g) && g.forced;
 
         internal static bool Out(ThingWithComps t)
         {
@@ -299,19 +337,26 @@ namespace ColonyCouncil
         }
 
         /// <summary>One light goes out with a puff of smoke, comes back a little later, and goes out again, for <paramref name="ticks"/>.</summary>
-        private static int Gutter(Map map, ThingWithComps light, int ticks)
+        private static int Gutter(Map map, ThingWithComps light, int ticks) => Play(map, light, ticks, false, false);
+
+        /// <summary>
+        /// A light played with for <paramref name="ticks"/>: guttering out and back, flickering fast in a pattern
+        /// (<paramref name="fast"/>), or glowing with no power (<paramref name="forced"/>, a light that is out). 1 when it is.
+        /// </summary>
+        private static int Play(Map map, ThingWithComps light, int ticks, bool fast, bool forced)
         {
             var c = light?.GetComp<CompGlower>();
-            if (c == null || !c.Glows) return 0;
+            if (c == null || c.Glows == forced) return 0;
             if (gutterGame != Current.Game)
             {
                 guttering.Clear();
                 gutterGame = Current.Game;
             }
             int now = Now;
-            guttering[c] = (map, now + Rand.Range(900, 1600), now + ticks, false);
-            Toggle(c, map, false);
-            GodsOnMapBook.Instance?.Due(now + 250);
+            int next = forced ? now + ticks : fast ? now + 60 : now + Rand.Range(900, 1600);
+            guttering[c] = (map, next, now + ticks, false, fast, forced);
+            Toggle(c, map, forced);
+            GodsOnMapBook.Instance?.Due(Math.Min(next, now + 250));
             return 1;
         }
 
@@ -322,7 +367,7 @@ namespace ColonyCouncil
                 if (c.parent == null || !c.parent.Spawned) return;
                 c.UpdateLit(map);
                 map.mapDrawer.MapMeshDirty(c.parent.Position, MapMeshFlagDefOf.Things);
-                if (!lit) FleckMaker.ThrowSmoke(c.parent.DrawPos, map, 0.8f);
+                if (!lit && c.parent.GetComp<CompRefuelable>() != null) FleckMaker.ThrowSmoke(c.parent.DrawPos, map, 0.8f);
             }
             catch (Exception e)
             {
@@ -330,7 +375,7 @@ namespace ColonyCouncil
             }
         }
 
-        /// <summary>The guttering lights' steps: out, back, out again, until their time is over.</summary>
+        /// <summary>The lights' steps: out, back, out again (fast for a flicker), until their time is over; a forced one goes dark again.</summary>
         internal static void Step(GodsOnMapBook b, int now)
         {
             if (guttering.Count == 0) return;
@@ -339,6 +384,7 @@ namespace ColonyCouncil
                 guttering.Clear();
                 return;
             }
+            int soonest = int.MaxValue;
             foreach (var c in guttering.Keys.ToList())
             {
                 var g = guttering[c];
@@ -348,12 +394,17 @@ namespace ColonyCouncil
                     if (c.parent != null && c.parent.Spawned) Toggle(c, g.map, true);
                     continue;
                 }
-                if (now < g.next) continue;
-                bool lit = !g.lit;
-                guttering[c] = (g.map, now + (lit ? Rand.Range(1200, 2400) : Rand.Range(700, 1400)), g.until, lit);
-                Toggle(c, g.map, lit);
+                if (now >= g.next && !g.forced)
+                {
+                    bool lit = !g.lit;
+                    int wait = g.fast ? (lit ? Rand.Range(40, 140) : Rand.Range(30, 90)) : lit ? Rand.Range(1200, 2400) : Rand.Range(700, 1400);
+                    guttering[c] = (g.map, now + wait, g.until, lit, g.fast, false);
+                    Toggle(c, g.map, lit);
+                    g = guttering[c];
+                }
+                soonest = Math.Min(soonest, g.forced ? g.until : Math.Min(g.next, g.until));
             }
-            if (guttering.Count > 0) b.Due(now + 250);
+            if (guttering.Count > 0) b.Due(Math.Max(now + 1, soonest));
         }
 
         // ================= The animals restless =================

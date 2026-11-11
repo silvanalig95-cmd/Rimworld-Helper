@@ -25,8 +25,12 @@ namespace ColonyCouncil
         public AnimalBoon boon;
         public int leadUntil = -1;
         public bool led, beckoned, fed, hurt, slain, ended;
+        /// <summary>Someone tried to tame it or keep it: it would not be kept, and went.</summary>
+        public bool spurned;
         public Pawn feeder, harmer;
         public int lastSeenSaid = -1;
+        /// <summary>Others of its kind following it at a distance (its shape's kin), and those who sat near it this visit.</summary>
+        public List<Pawn> kin = new List<Pawn>(), sat = new List<Pawn>();
 
         public God God => Gods.ById(god);
 
@@ -48,21 +52,35 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref hurt, "hurt");
             Scribe_Values.Look(ref slain, "slain");
             Scribe_Values.Look(ref ended, "ended");
+            Scribe_Values.Look(ref spurned, "spurned");
             Scribe_References.Look(ref feeder, "feeder");
             Scribe_References.Look(ref harmer, "harmer");
             Scribe_Values.Look(ref lastSeenSaid, "lastSeenSaid", -1);
+            Scribe_Collections.Look(ref kin, "kin", LookMode.Reference);
+            Scribe_Collections.Look(ref sat, "sat", LookMode.Reference);
+            if (Scribe.mode == LoadSaveMode.PostLoadInit)
+            {
+                kin ??= new List<Pawn>();
+                sat ??= new List<Pawn>();
+                kin.RemoveAll(x => x == null);
+                sat.RemoveAll(x => x == null);
+            }
         }
     }
 
     /// <summary>
-    /// The sacred animal (brainstorm 8; docs/design/gods.md, "On the map"): a god walks as a beast of its look's kinds (the
-    /// player's mods' first: the elves' ancient deer, the great wolf, the thunderox, Odyssey's crow), shown as a god's (larger,
-    /// in its colours, its aura and trail: Gods/Presence/). It comes in from the edge after days of omens, stays a few days
-    /// and goes (the game's own leaving), never tamed and never hostile unless harmed: the legend beast's shape (wild, up
-    /// and seen on the colony's land, LegendBeasts.Here). A small one (a raven, a cat, an otter) follows one colonist about;
-    /// a large one walks the land and leads whoever follows it to a find, a cure or a vein of ore. Leaving it be, feeding it
-    /// and following it bring favour; hunting or hurting it is sacrilege: the game's own revenge, the god's wrath through
-    /// favour and a Wrath moment, and a slain one's body gone to ash.
+    /// The sacred animal (brainstorm 8; docs/design/gods.md, "On the map"): a god whose shape walks as a beast comes as one
+    /// of its shape's beasts, else its look's kinds (the player's mods' first), shown as a god's (larger, in its colours,
+    /// its aura and trail: Gods/Presence/; in the look its shape names, as Bellwether's white). It comes in from the edge
+    /// after days of omens, stays a few days and goes (the game's own leaving), never tamed and never hostile unless
+    /// harmed: the legend beast's shape. A small one follows one colonist about; a large one may lead whoever follows it to
+    /// a find, a cure or a vein of ore, and take food from a hand (its shape says whether). Bellwether's way (his shape):
+    /// other thrumbos following at a distance like pilgrims; someone may sit near him while he grazes and come away changed
+    /// (a grief eased, a fear gone, a passion found; a child let touch his horn); let pass, a strange peace for a season;
+    /// harming him or his kin is the worst thing: every god colder, every people on the map hears of it. Leaving it be,
+    /// feeding it and following it move the god's favour, hidden; hunting or hurting it is sacrilege: the game's own
+    /// revenge, a Wrath moment, a fever at the game's rate, and a slain one's body gone to ash. The cards say what was seen,
+    /// never why (the player: the gods are an ominous presence, never explained).
     /// </summary>
     public static class SacredAnimal
     {
@@ -107,6 +125,9 @@ namespace ColonyCouncil
         /// <summary>The sacred animal on the map, if this is it.</summary>
         public static bool Is(Pawn p) => p != null && GodsOnMapBook.Instance?.beast?.a == p;
 
+        /// <summary>One of the beasts following the sacred animal at a distance (its kin).</summary>
+        public static bool IsKin(Pawn p) => p != null && GodsOnMapBook.Instance?.beast?.kin is List<Pawn> k && k.Count > 0 && k.Contains(p);
+
         // ================= Its coming =================
 
         /// <summary>It comes in from the edge now, shown as the god's, and the moment of its coming plays. True once it is on the land.</summary>
@@ -134,7 +155,7 @@ namespace ColonyCouncil
                 CouncilLog.ErrorOnce("gods: a sacred animal", e);
                 return null;
             }
-            if (!GodLookSeam.Make(a, god, false))
+            if (!Show(a, god))
             {
                 a.Destroy();
                 return null;
@@ -143,7 +164,7 @@ namespace ColonyCouncil
             var s = new SacredStay
             {
                 a = a, god = god.id, map = map, since = now,
-                leaveAt = now + Mathf.RoundToInt(Rand.Range(GodsOnMapMath.AnimalStayMin, GodsOnMapMath.AnimalStayMax) * GenDate.TicksPerDay)
+                leaveAt = now + Mathf.RoundToInt(GodShapes.StayDays(god, Rand.Range(GodsOnMapMath.AnimalStayMin, GodsOnMapMath.AnimalStayMax)) * GenDate.TicksPerDay)
             };
             b.beast = s;
             try
@@ -157,17 +178,74 @@ namespace ColonyCouncil
             {
                 CouncilLog.ErrorOnce("gods: a sacred animal's way", e);
             }
+            Kin(s, god, entry);
             var spec = PresenceSpec.For(god, map, PresenceKind.Appear, entry, a);
-            spec.title = ("CC_GodM_Animal_Title" + (spec.veiled ? "Veiled" : "")).Translate(GodsOnMapWords.Args(god, !spec.veiled).Concat(new[] { a.def.label.Named("BEAST") }).ToArray()).Resolve().CapitalizeFirst();
-            spec.text = ("CC_GodM_Animal_Text" + (spec.veiled ? "Veiled" : "")).Translate(GodsOnMapWords.Args(god, !spec.veiled).Concat(new[] { a.def.label.Named("BEAST") }).ToArray()).Resolve();
+            string called = Called(a, god);
+            bool kin = s.kin.Count > 0;
+            spec.title = GodsOnMapWords.Title(god, map, false, "CC_GodM_Animal_Title", "CC_GodM_Animal_TitleNamed", called.Named("BEAST"));
+            spec.text = ("CC_GodM_Animal_Text" + (kin ? "Kin" : "")).Translate(called.Named("BEAST"), (s.kin.FirstOrDefault()?.def.label ?? "").Named("KIN")).Resolve();
             if (!GodPresenceSeam.Call(spec)) Tell.Letter(NewsKind.Land, Importance.Important, map, spec.title, spec.text, LetterDefOf.NeutralEvent, new LookTargets(a));
             if (!spec.veiled) Gods.Learn(god, "visitors");
-            Gods.Remember(new GodAct
-            {
-                god = god.id, home = Gods.HomeKey(map), tick = now, kind = GodActKind.Appear, cell = entry,
-                text = GodsOnMapWords.Veil("CC_GodM_Animal_Act".Translate(a.def.label.Named("BEAST")).Resolve(), spec.veiled)
-            });
+            GodsOnMapWords.Saw(god, map, entry, GodActKind.Appear, GodsOnMapWords.Seer(map, entry, 45f), "CC_GodM_Saw_Animal" + (kin ? "Kin" : ""), called.Named("BEAST"),
+                (s.kin.FirstOrDefault()?.def.label ?? "").Named("KIN"));
             return a;
+        }
+
+        /// <summary>
+        /// The beast shown as the god's, with all its presence (larger, in its colours, its light): in the look its shape
+        /// names (Bellwether's white), else the god's own; over it, what the colony knows it as (<see cref="Label"/>).
+        /// </summary>
+        private static bool Show(Pawn a, God god)
+        {
+            if (!Gods.On || !GodsMath.AvatarsCome(Gods.Realness)) return false;
+            string name = Label(a, god);
+            var own = GodShapes.Look(god);
+            return own != null ? GodAvatar.Make(a, own, name, false) : GodAvatar.Make(a, GodsWiring.LookOf(god), name, false, god.colour, god.colour2);
+        }
+
+        /// <summary>What the colony sees it as, in the words of it: its shape's look ("great white thrumbo"), else a strange one of its kind.</summary>
+        public static string Called(Pawn a, God god) =>
+            GodShapes.Look(god)?.label ?? "CC_GodM_Animal_Seen".Translate((a?.def.label ?? "?").Named("KIND")).Resolve();
+
+        /// <summary>
+        /// The name over it: the colony's own name for the god once one of them has heard of it ("the Old Horn"), else what
+        /// it is seen as ("a great white thrumbo").
+        /// </summary>
+        public static string Label(Pawn a, God god) => god != null && god.known && !Gods.Name(god).NullOrEmpty() ? Gods.Name(god) : Called(a, god);
+
+        /// <summary>The name over it kept to what the colony knows now (it may have heard of the god while it stayed).</summary>
+        private static void Relabel(Pawn a, God god)
+        {
+            var c = GodAvatar.Of(a);
+            if (c != null && !c.disguised) c.godName = Label(a, god);
+        }
+
+        /// <summary>Others of its kind (its shape's kin) come in behind it and follow at a distance, wild, leaving when it leaves.</summary>
+        private static void Kin(SacredStay s, God god, IntVec3 entry)
+        {
+            var kind = GodShapes.Kin(god);
+            int n = GodShapes.KinCount(god).RandomInRange;
+            var map = s.map;
+            if (kind?.RaceProps == null || n <= 0 || map == null) return;
+            for (int i = 0; i < n; i++)
+            {
+                try
+                {
+                    var cell = CellFinder.RandomClosewalkCellNear(entry, map, 8);
+                    float grown = kind.RaceProps.lifeStageAges.NullOrEmpty() ? 2f : kind.RaceProps.lifeStageAges.Last().minAge;
+                    var k = PawnGenerator.GeneratePawn(new PawnGenerationRequest(kind, null, PawnGenerationContext.NonPlayer, forceGenerateNewPawn: true,
+                        fixedBiologicalAge: grown + Rand.Range(0.5f, 6f)));
+                    if (k == null) continue;
+                    GenSpawn.Spawn(k, cell, map, Rot4.Random);
+                    k.mindState.exitMapAfterTick = s.leaveAt + Rand.Range(1, 4) * GenDate.TicksPerHour;
+                    Fed(k);
+                    s.kin.Add(k);
+                }
+                catch (Exception e)
+                {
+                    CouncilLog.ErrorOnce("gods: the sacred animal's kin", e);
+                }
+            }
         }
 
         /// <summary>A god's beast is never hungry, so it never hunts anything of the colony's.</summary>
@@ -204,6 +282,16 @@ namespace ColonyCouncil
                 return;
             }
             Fed(a);
+            Relabel(a, s.God);
+            // Never tamed, owned or kept: marked to be tamed, it goes, and does not come back this time.
+            if (a.Map.designationManager.DesignationOn(a, DesignationDefOf.Tame) != null || a.Faction != null)
+            {
+                a.Map.designationManager.RemoveAllDesignationsOn(a);
+                s.spurned = true;
+                Vanish(a);
+                Departed(b, s, now);
+                return;
+            }
             if (now >= s.leaveAt + GenDate.TicksPerDay)
             {
                 // Lingered past its days (shut in, lost): it goes as it came.
@@ -211,10 +299,163 @@ namespace ColonyCouncil
                 Departed(b, s, now);
                 return;
             }
+            var god = s.God;
             if (GodsOnMapMath.Follows(a.BodySize)) Follow(s, a, now);
-            else if (!s.led && !s.beckoned && s.follower == null && now - s.since > GenDate.TicksPerDay / 2 && Rand.Chance(GodsOnMapMath.BeckonChanceADay / 24f)) Beckon(s, a);
+            else if (GodShapes.Leads(god) && !s.led && !s.beckoned && s.follower == null && now - s.since > GenDate.TicksPerDay / 2
+                     && Rand.Chance(GodsOnMapMath.BeckonChanceADay / 24f))
+                Beckon(s, a);
+            Pilgrims(s, a);
+            if (GodShapes.SitNear(god)) Child(s, a);
             Seen(s, a, now);
         }
+
+        /// <summary>
+        /// Its kin keep their distance behind it, like pilgrims; one gone off the land (or dead) is let go. The colony's own
+        /// animals of its kin's kind take to following it now and then too (Mog's cats), when they are free to.
+        /// </summary>
+        private static void Pilgrims(SacredStay s, Pawn a)
+        {
+            var kind = GodShapes.Kin(s.God);
+            if (kind != null && Rand.Chance(0.3f))
+            {
+                var own = a.Map.mapPawns.SpawnedColonyAnimals.Where(x => x.def == kind.race && !x.Downed && x.Awake() && !x.InMentalState && !(x.roping?.IsRoped ?? false)
+                                                                    && (x.CurJob == null || x.CurJob.def.casualInterruptible) && !x.Position.InHorDistOf(a.Position, 8f))
+                    .RandomElementWithFallback();
+                if (own != null)
+                {
+                    try
+                    {
+                        var j = JobMaker.MakeJob(JobDefOf.FollowClose, a);
+                        j.followRadius = 5f;
+                        j.expiryInterval = GenDate.TicksPerHour;
+                        j.checkOverrideOnExpire = true;
+                        own.jobs.StartJob(j, JobCondition.InterruptForced);
+                    }
+                    catch (Exception e)
+                    {
+                        CouncilLog.ErrorOnce("gods: a colony animal following", e);
+                    }
+                }
+            }
+            if (s.kin.Count == 0) return;
+            s.kin.RemoveAll(k => k == null || k.Dead || !k.Spawned || k.Map != a.Map);
+            foreach (var k in s.kin)
+            {
+                if (k.Downed || k.InMentalState || !k.Awake() || k.Position.InHorDistOf(a.Position, 14f)) continue;
+                if (k.CurJobDef == JobDefOf.FollowClose && k.CurJob?.targetA.Thing == a) continue;
+                try
+                {
+                    Fed(k);
+                    var j = JobMaker.MakeJob(JobDefOf.FollowClose, a);
+                    j.followRadius = 9f;
+                    j.expiryInterval = GenDate.TicksPerHour;
+                    j.checkOverrideOnExpire = true;
+                    j.locomotionUrgency = LocomotionUrgency.Walk;
+                    k.jobs.StartJob(j, JobCondition.InterruptForced);
+                }
+                catch (Exception e)
+                {
+                    CouncilLog.ErrorOnce("gods: the kin following", e);
+                }
+            }
+        }
+
+        /// <summary>Now and then a child of the colony with time on their hands goes out to it on their own, to touch its horn.</summary>
+        private static void Child(SacredStay s, Pawn a)
+        {
+            if (s.hurt || s.sat.Count >= GodsOnMapMath.SittersAVisit || a.InMentalState || a.Downed || !Rand.Chance(0.1f)) return;
+            var def = DefDatabase<JobDef>.GetNamedSilentFail(JobDriver_SitNearSacredAnimal.JobName);
+            var c = a.Map.mapPawns.FreeColonistsSpawned.Where(x => x.DevelopmentalStage.Child() && !s.sat.Contains(x) && Together.Able(x) && Together.FreeTime(x)
+                                                               && x.Position.InHorDistOf(a.Position, 40f) && x.CanReach(a, PathEndMode.Touch, Danger.None))
+                .RandomElementWithFallback();
+            if (def == null || c == null) return;
+            try
+            {
+                c.jobs.StartJob(JobMaker.MakeJob(def, a), JobCondition.InterruptForced, null, true);
+            }
+            catch (Exception e)
+            {
+                CouncilLog.ErrorOnce("gods: a child going out to the beast", e);
+            }
+        }
+
+        // ================= Sitting near it =================
+
+        public const string SatPool = "Rimfolk_Pool_SacredAnimalSat";
+        public const string SatThought = "Rimfolk_Thought_SatNearSacred";
+        public const string PeaceThought = "Rimfolk_Thought_StrangePeace";
+
+        /// <summary>
+        /// <paramref name="p"/> sat near it a while as it grazed (JobDriver_SitNearSacredAnimal) and comes away changed, once
+        /// each and a few a visit: a child touches its horn (and somewhere the sky notices), else a grief eased, a fear gone,
+        /// a passion found. Shown in what they say, their journal and their mood; nothing says why.
+        /// </summary>
+        internal static void SatBy(Pawn p)
+        {
+            var s = GodsOnMapBook.Instance?.beast;
+            var a = s?.a;
+            if (s == null || a == null || p == null || s.hurt || s.sat.Contains(p) || s.sat.Count >= GodsOnMapMath.SittersAVisit) return;
+            s.sat.Add(p);
+            var grief = Grief(p);
+            var fear = Fear(p);
+            var open = p.skills?.skills?.Where(k => k != null && k.passion == Passion.None && !k.TotallyDisabled).ToList() ?? new List<SkillRecord>();
+            var change = GodsOnMapMath.Sat(p.DevelopmentalStage.Child(), grief != null, fear != null, open.Count > 0);
+            string what = "";
+            try
+            {
+                switch (change)
+                {
+                    case GodsOnMapMath.SitChange.Horn:
+                        // The sky looks down on him with fondness (the god whose shape's lines are the sky's).
+                        var sky = Gods.All.FirstOrDefault(g => g != null && GodShapes.LineTag(g) == "cirrus");
+                        if (sky != null) Gods.AddFavour(sky, s.map, 1f, null);
+                        if (a.Spawned) FleckMaker.ThrowLightningGlow(a.DrawPos, a.Map, 1.2f);
+                        break;
+                    case GodsOnMapMath.SitChange.Grief:
+                        what = grief.LabelCap;
+                        p.needs.mood.thoughts.memories.RemoveMemory(grief);
+                        break;
+                    case GodsOnMapMath.SitChange.Fear:
+                        what = fear.LabelCap;
+                        p.story.traits.RemoveTrait(fear);
+                        break;
+                    case GodsOnMapMath.SitChange.Passion:
+                        var k = open.RandomElementByWeight(x => 1f + x.Level);
+                        k.passion = Passion.Minor;
+                        what = k.def.label;
+                        break;
+                }
+            }
+            catch (Exception e)
+            {
+                CouncilLog.ErrorOnce("gods: sitting near the beast", e);
+                change = GodsOnMapMath.SitChange.Nothing;
+            }
+            var mem = DefDatabase<ThoughtDef>.GetNamedSilentFail(SatThought);
+            if (mem != null && p.needs?.mood != null)
+            {
+                var th = (Thought_Memory)ThoughtMaker.MakeThought(mem);
+                th.SetForcedStage(change == GodsOnMapMath.SitChange.Horn ? 1 : 0);
+                p.needs.mood.thoughts.memories.TryGainMemory(th);
+            }
+            // apart: said aloud as they get up from beside it, to nobody in particular.
+            string line = Flavor.FromPool(SatPool, p, null, null, change.ToString().ToLowerInvariant(), GodShapes.LineTag(s.God));
+            if (!line.NullOrEmpty()) Speech.Say(p, line.Formatted(Called(a, s.God).Named("BEAST"), a.def.label.Named("KIND")).Resolve());
+            string called = Called(a, s.God);
+            CouncilGameComponent.Instance?.journals?.WriteText(p, ("CC_GodM_Journal_Sat_" + change).Translate(called.Named("BEAST"), what.Named("WHAT")).Resolve());
+            GodMarks.Witnessed(a.Map, a.Position, "CC_GodM_Memory_Animal".Translate(called.Named("BEAST")).Resolve(), new[] { p });
+            GodsOnMapWords.Saw(s.God, a.Map, a.Position, GodActKind.Act, p, change == GodsOnMapMath.SitChange.Horn ? "CC_GodM_Saw_Horn" : "CC_GodM_Saw_Sat", called.Named("BEAST"));
+        }
+
+        /// <summary>The heaviest memory of a death they carry, or null.</summary>
+        private static Thought_Memory Grief(Pawn p) =>
+            p?.needs?.mood?.thoughts?.memories?.Memories?.Where(m => m?.def != null && m.MoodOffset() < 0f
+                                                                    && (m.def.defName.Contains("Died") || m.def.defName.Contains("Death") || m.def.defName.Contains("Lost")))
+                .OrderBy(m => m.MoodOffset()).FirstOrDefault();
+
+        /// <summary>A fearful nature (nervous, volatile, a coward), or null.</summary>
+        private static Trait Fear(Pawn p) =>
+            p?.story?.traits?.allTraits?.FirstOrDefault(t => t?.def != null && (t.def.defName == "Nerves" && t.Degree < 0 || t.def.defName == "Wimp"));
 
         /// <summary>A small one follows its chosen colonist about while they are out and about.</summary>
         private static void Follow(SacredStay s, Pawn a, int now)
@@ -247,9 +488,9 @@ namespace ColonyCouncil
             if (p == null) return;
             var god = s.God;
             string line = Flavor.FromPool(SeenPool, p, null, null, GodsOnMapMath.Follows(a.BodySize) ? "small" : "large", s.chosen == p ? "chosen" : null,
-                god?.domain.ToString().ToLowerInvariant());
+                god?.domain.ToString().ToLowerInvariant(), GodShapes.LineTag(god));
             if (line.NullOrEmpty()) return;
-            string said = line.Formatted(a.LabelShort.Named("BEAST"), a.def.label.Named("KIND")).Resolve();
+            string said = line.Formatted(Called(a, god).Named("BEAST"), a.def.label.Named("KIND")).Resolve();
             if (Speech.Say(p, said)) s.lastSeenSaid = now;
         }
 
@@ -404,18 +645,17 @@ namespace ColonyCouncil
                 string found = GodGifts.LeaveFind(god, map, s.to);
                 if (found != null) what = "CC_GodM_Boon_Find".Translate(p.Named("PAWN"), found.Named("FOUND")).Resolve();
             }
+            string called = Called(a, god);
             var spec = PresenceSpec.For(god, map, PresenceKind.Blessing, s.to, a);
-            spec.title = ("CC_GodM_Boon_Title" + (spec.veiled ? "Veiled" : "")).Translate(GodsOnMapWords.Args(god, !spec.veiled).Concat(new[] { a.def.label.Named("BEAST"), p.Named("PAWN") }).ToArray())
-                .Resolve().CapitalizeFirst();
-            spec.text = ("CC_GodM_Boon_Text" + (spec.veiled ? "Veiled" : "")).Translate(GodsOnMapWords.Args(god, !spec.veiled).Concat(new[] { a.def.label.Named("BEAST"), p.Named("PAWN") }).ToArray())
-                .Resolve() + (what.NullOrEmpty() ? "" : "\n\n" + what);
+            spec.title = GodsOnMapWords.Title(god, map, false, "CC_GodM_Boon_Title", "CC_GodM_Boon_TitleNamed", called.Named("BEAST"), p.Named("PAWN"));
+            spec.text = "CC_GodM_Boon_Text".Translate(called.Named("BEAST"), p.Named("PAWN")).Resolve() + (what.NullOrEmpty() ? "" : "\n\n" + what);
             if (!GodPresenceSeam.Call(spec)) Tell.Letter(NewsKind.Land, Importance.Important, map, spec.title, spec.text, LetterDefOf.PositiveEvent, new LookTargets(s.to, map));
-            Gods.AddFavour(god, map, GodsOnMapMath.Followed, "CC_GodM_Why_Followed".Translate(p.LabelShort.Named("PAWN"), a.def.label.Named("BEAST")).Resolve());
-            string act = "CC_GodM_Animal_LedAct".Translate(a.def.label.Named("BEAST"), p.LabelShort.Named("PAWN")).Resolve();
-            GodMarks.Note(god, map, s.to, act, PresenceKind.Blessing);
-            GodMarks.Witnessed(map, s.to, "CC_GodM_Memory_Animal".Translate(a.def.label.Named("BEAST")).Resolve(), new[] { p });
-            Deeds.Record("Rimfolk_Deed_FollowedSacred", p, null, -1f, null, a.def.label);
-            CouncilGameComponent.Instance?.journals?.WriteText(p, "CC_GodM_Journal_Led".Translate(a.def.label.Named("BEAST")).Resolve() + (what.NullOrEmpty() ? "" : " " + what));
+            Gods.AddFavour(god, map, GodsOnMapMath.Followed, null);
+            GodsOnMapWords.Saw(god, map, s.to, GodActKind.Blessing, p, "CC_GodM_Saw_Led", called.Named("BEAST"));
+            GodMarks.Note(god, map, s.to, "CC_GodM_Animal_LedAct".Translate(called.Named("BEAST"), p.LabelShort.Named("PAWN")).Resolve(), PresenceKind.Blessing);
+            GodMarks.Witnessed(map, s.to, "CC_GodM_Memory_Animal".Translate(called.Named("BEAST")).Resolve(), new[] { p });
+            Deeds.Record("Rimfolk_Deed_FollowedSacred", p, null, -1f, null, called);
+            CouncilGameComponent.Instance?.journals?.WriteText(p, "CC_GodM_Journal_Led".Translate(called.Named("BEAST")).Resolve() + (what.NullOrEmpty() ? "" : " " + what));
             s.follower = null;
             try
             {
@@ -438,18 +678,25 @@ namespace ColonyCouncil
             s.feeder = by;
             var god = s.God;
             if (god == null || s.a == null) return;
-            Gods.AddFavour(god, s.map, GodsOnMapMath.Fed, "CC_GodM_Why_Fed".Translate(by.LabelShort.Named("PAWN"), s.a.def.label.Named("BEAST")).Resolve());
-            Deeds.Record("Rimfolk_Deed_FedSacred", by, null, -1f, null, s.a.def.label);
+            Gods.AddFavour(god, s.map, GodsOnMapMath.Fed, null);
+            string called = Called(s.a, god);
+            Deeds.Record("Rimfolk_Deed_FedSacred", by, null, -1f, null, called);
+            GodsOnMapWords.Saw(god, s.map, s.a.Position, GodActKind.Act, by, "CC_GodM_Saw_Fed", called.Named("BEAST"));
         }
 
         // ================= Hurt or slain =================
 
-        /// <summary>The colony's own hurt the god's beast (GodsOnMapPatches): the sacrilege, the god's anger at the next step.</summary>
+        /// <summary>The colony's own hurt the god's beast or one of its kin (GodsOnMapPatches): the sacrilege, the god's anger at the next step.</summary>
         internal static void Struck(Pawn victim, Pawn by)
         {
             var b = GodsOnMapBook.Instance;
             var s = b?.beast;
-            if (s == null || s.a != victim) return;
+            if (s == null || victim == null) return;
+            if (s.a != victim)
+            {
+                if (s.kin.Contains(victim)) KinStruck(s, victim, by);
+                return;
+            }
             bool slain = victim.Dead;
             if (s.hurt && (!slain || s.slain)) return;
             bool first = !s.hurt;
@@ -460,33 +707,90 @@ namespace ColonyCouncil
             var map = s.map;
             if (god == null || map == null) return;
             var cell = victim.Spawned ? victim.Position : victim.Corpse?.Position ?? IntVec3.Invalid;
+            string called = Called(victim, god);
+            string harmer = by?.LabelShort ?? "CC_GodM_Someone".Translate().Resolve();
             if (first)
             {
                 var spec = PresenceSpec.For(god, map, PresenceKind.Wrath, cell, victim.Spawned ? victim : null);
-                spec.title = ("CC_GodM_Sacrilege_Title" + (spec.veiled ? "Veiled" : "")).Translate(GodsOnMapWords.Args(god, !spec.veiled).Concat(new[] { victim.def.label.Named("BEAST") }).ToArray())
-                    .Resolve().CapitalizeFirst();
-                spec.text = ("CC_GodM_Sacrilege_Text" + (spec.veiled ? "Veiled" : "")).Translate(GodsOnMapWords.Args(god, !spec.veiled).Concat(new[]
-                {
-                    victim.def.label.Named("BEAST"), (by?.LabelShort ?? "CC_GodM_Someone".Translate().Resolve()).Named("HARMER")
-                }).ToArray()).Resolve();
+                spec.title = GodsOnMapWords.Title(god, map, false, "CC_GodM_Sacrilege_Title", "CC_GodM_Sacrilege_TitleNamed", called.Named("BEAST"));
+                spec.text = (slain ? "CC_GodM_Sacrilege_TextSlain" : "CC_GodM_Sacrilege_Text").Translate(called.Named("BEAST"), harmer.Named("HARMER")).Resolve();
                 if (!GodPresenceSeam.Call(spec)) Tell.Letter(NewsKind.Land, Importance.Important, map, spec.title, spec.text, LetterDefOf.NegativeEvent, new LookTargets(cell, map));
-                string act = "CC_GodM_Animal_HurtAct".Translate(victim.def.label.Named("BEAST"), (by?.LabelShort ?? "?").Named("PAWN")).Resolve();
-                GodMarks.Note(god, map, cell, act, PresenceKind.Wrath);
-                if (by != null && by.IsColonist) Deeds.Record("Rimfolk_Deed_HuntedSacred", by, null, -1f, null, victim.def.label);
+                GodsOnMapWords.Saw(god, map, cell, GodActKind.Wrath, GodsOnMapWords.Seer(map, cell, 40f) ?? (by != null && by.IsColonist ? by : null), "CC_GodM_Saw_Struck",
+                    called.Named("BEAST"), harmer.Named("HARMER"));
+                GodMarks.Note(god, map, cell, "CC_GodM_Animal_HurtAct".Translate(called.Named("BEAST"), (by?.LabelShort ?? "?").Named("PAWN")).Resolve(), PresenceKind.Wrath);
+                if (by != null && by.IsColonist) Deeds.Record("Rimfolk_Deed_HuntedSacred", by, null, -1f, null, called);
                 if (by != null && by.IsColonist && map != null) GodGifts.Fever(by, map, god);
+                if (GodShapes.HarmIsWorst(god)) Worst(god, map, cell);
             }
             float favour = slain ? (first ? GodsOnMapMath.Slain : GodsOnMapMath.Slain - GodsOnMapMath.Hurt) : GodsOnMapMath.Hurt;
-            Gods.AddFavour(god, map, favour, (slain ? "CC_GodM_Why_Slain" : "CC_GodM_Why_Hurt").Translate(victim.def.label.Named("BEAST")).Resolve(), FavourSource.Sacrilege);
+            Gods.AddFavour(god, map, favour, null, FavourSource.Sacrilege);
             if (slain)
             {
                 b.beast = null;
-                Gods.Remember(new GodAct
-                {
-                    god = god.id, home = Gods.HomeKey(map), tick = Now, kind = GodActKind.Wrath, cell = cell,
-                    text = GodsOnMapWords.Veil("CC_GodM_Animal_SlainAct".Translate(victim.def.label.Named("BEAST")).Resolve(), GodsOnMapMath.Show(Gods.Realness) != GodShow.Plain)
-                });
+                GodsOnMapWords.Saw(god, map, cell, GodActKind.Wrath, GodsOnMapWords.Seer(map, cell, 40f), "CC_GodM_Saw_Slain", called.Named("BEAST"));
+                // Its kin go their way at once.
+                foreach (var k in s.kin.Where(k => k != null && k.Spawned && !k.Dead)) k.mindState.exitMapAfterTick = Now + GenDate.TicksPerHour / 2;
                 b.Due(Now + 1);
                 pendingAsh = victim;
+            }
+        }
+
+        /// <summary>
+        /// One of its kin hurt by the colony's own: the god's beast turns and leaves as if it were struck itself (its kin's
+        /// own revenge is the game's), the sacrilege and, where its shape says so, the worst thing done.
+        /// </summary>
+        private static void KinStruck(SacredStay s, Pawn victim, Pawn by)
+        {
+            var god = s.God;
+            var map = s.map;
+            if (god == null || map == null || s.hurt) return;
+            s.hurt = true;
+            s.harmer ??= by;
+            var cell = victim.Spawned ? victim.Position : victim.Corpse?.Position ?? s.a?.Position ?? IntVec3.Invalid;
+            bool there = s.a != null && s.a.Spawned;
+            var spec = PresenceSpec.For(god, map, PresenceKind.Wrath, there ? s.a.Position : cell, there ? s.a : null);
+            var args = new[]
+            {
+                Called(s.a ?? victim, god).Named("BEAST"), victim.def.label.Named("KIN"), (by?.LabelShort ?? "CC_GodM_Someone".Translate().Resolve()).Named("HARMER")
+            };
+            spec.title = "CC_GodM_KinStruck_Title".Translate(args).Resolve().CapitalizeFirst();
+            spec.text = "CC_GodM_KinStruck_Text".Translate(args).Resolve();
+            if (!GodPresenceSeam.Call(spec)) Tell.Letter(NewsKind.Land, Importance.Important, map, spec.title, spec.text, LetterDefOf.NegativeEvent, new LookTargets(cell, map));
+            GodsOnMapWords.Saw(god, map, cell, GodActKind.Wrath, GodsOnMapWords.Seer(map, cell, 40f), "CC_GodM_Saw_KinStruck", args);
+            if (cell.IsValid)
+                GodMarks.Note(god, map, cell, "CC_GodM_Animal_KinHurtAct".Translate(victim.def.label.Named("KIN"), (by?.LabelShort ?? "?").Named("PAWN")).Resolve(), PresenceKind.Wrath);
+            if (by != null && by.IsColonist)
+            {
+                Deeds.Record("Rimfolk_Deed_HuntedSacred", by, null, -1f, null, victim.def.label);
+                GodGifts.Fever(by, map, god);
+            }
+            if (GodShapes.HarmIsWorst(god)) Worst(god, map, cell);
+            Gods.AddFavour(god, map, GodsOnMapMath.Hurt, null, FavourSource.Sacrilege);
+        }
+
+        public const string WorstEvent = "Rimfolk_HarmedSacredBeast";
+
+        /// <summary>
+        /// The worst thing a colony can do (a shape's harmIsWorst): every god it has turns colder, unseen, and every people
+        /// with someone on the map hears of it (their goodwill, with the game's own line for it).
+        /// </summary>
+        private static void Worst(God god, Map map, IntVec3 cell)
+        {
+            foreach (var g in Gods.All.Where(g => g != null && g != god).ToList())
+                Gods.AddFavour(g, map, GodsOnMapMath.EveryGodColder, null, FavourSource.Sacrilege);
+            var heard = DefDatabase<HistoryEventDef>.GetNamedSilentFail(WorstEvent);
+            var peoples = map.mapPawns.AllPawnsSpawned.Select(p => p.Faction).Where(f => f != null && !f.IsPlayer && !f.Hidden && f.def.humanlikeFaction && !f.defeated).Distinct()
+                .ToList();
+            foreach (var f in peoples)
+            {
+                try
+                {
+                    f.TryAffectGoodwillWith(Faction.OfPlayer, GodsOnMapMath.PeoplesHear, true, true, heard, cell.IsValid ? new GlobalTargetInfo(cell, map) : (GlobalTargetInfo?)null);
+                }
+                catch (Exception e)
+                {
+                    CouncilLog.ErrorOnce("gods: the peoples hearing of it", e);
+                }
             }
         }
 
@@ -518,7 +822,7 @@ namespace ColonyCouncil
 
         // ================= Its going =================
 
-        /// <summary>It has gone its way: the god's favour for a stay let be (fed and followed more), remembered, a line in the news.</summary>
+        /// <summary>It has gone its way: the god's favour for a stay let be (hidden), the peace its shape leaves, a line of what was seen, and the book.</summary>
         private static void Departed(GodsOnMapBook b, SacredStay s, int now)
         {
             b.beast = null;
@@ -526,22 +830,36 @@ namespace ColonyCouncil
             var map = s.map;
             var a = s.a;
             if (god == null || map == null || a == null) return;
-            if (!s.hurt)
+            if (s.spurned) Gods.AddFavour(god, map, GodsOnMapMath.Hurt / 2f, null, FavourSource.Sacrilege);
+            else if (!s.hurt)
             {
                 float favour = GodsOnMapMath.AnimalFavour(false, false, false, false);
-                Gods.AddFavour(god, map, favour, "CC_GodM_Why_LeftBe".Translate(a.def.label.Named("BEAST")).Resolve());
+                Gods.AddFavour(god, map, favour, null);
+                if (GodShapes.Peace(god)) Peace(map);
             }
-            bool veiled = GodsOnMapMath.Show(Gods.Realness) != GodShow.Plain;
-            string text = ("CC_GodM_Animal_Gone" + (s.hurt ? "Hurt" : "") + (veiled ? "Veiled" : "")).Translate(GodsOnMapWords.Args(god, !veiled).Concat(new[] { a.def.label.Named("BEAST") }).ToArray())
-                .Resolve().CapitalizeFirst();
+            // Its kin go their way with it.
+            foreach (var k in s.kin.Where(k => k != null && k.Spawned && !k.Dead))
+                k.mindState.exitMapAfterTick = k.mindState.exitMapAfterTick < 0 ? now + GenDate.TicksPerHour : Math.Min(k.mindState.exitMapAfterTick, now + GenDate.TicksPerHour);
+            string called = Called(a, god);
+            string named = GodsOnMapWords.CardName(god, map, false);
+            string text = named != null && !s.hurt && !s.spurned ? "CC_GodM_Animal_GoneNamed".Translate(named.Named("GOD"), called.Named("BEAST")).Resolve().CapitalizeFirst()
+                : (s.hurt ? "CC_GodM_Animal_GoneHurt" : s.spurned ? "CC_GodM_Animal_GoneSpurned" : "CC_GodM_Animal_Gone").Translate(called.Named("BEAST")).Resolve().CapitalizeFirst();
             Tell.Message(NewsKind.Land, Importance.Notable, map, text, null, MessageTypeDefOf.NeutralEvent);
-            Gods.Remember(new GodAct
-            {
-                god = god.id, home = Gods.HomeKey(map), tick = now, kind = GodActKind.Depart,
-                text = GodsOnMapWords.Veil("CC_GodM_Animal_GoneAct".Translate(a.def.label.Named("BEAST")).Resolve(), veiled)
-            });
-            CouncilGameComponent.Instance?.AddChronicle(new ChronicleEntry(ChronicleKind.World, text, s.follower ?? s.chosen ?? s.feeder));
+            var seer = a.Spawned ? GodsOnMapWords.Seer(map, a.Position, 45f) : null;
+            seer ??= s.follower ?? s.chosen ?? s.feeder ?? s.sat.FirstOrDefault(x => x != null && !x.Dead);
+            string saw = GodsOnMapWords.Saw(god, map, a.Spawned ? a.Position : IntVec3.Invalid, GodActKind.Depart, seer, "CC_GodM_Saw_AnimalGone" + (s.hurt ? "Hurt" : ""),
+                called.Named("BEAST"));
+            CouncilGameComponent.Instance?.AddChronicle(new ChronicleEntry(ChronicleKind.World, saw ?? text, seer));
             Vanish(a);
+        }
+
+        /// <summary>Let pass: a strange peace on everyone of the colony at home, for a season.</summary>
+        private static void Peace(Map map)
+        {
+            var def = DefDatabase<ThoughtDef>.GetNamedSilentFail(PeaceThought);
+            if (def == null) return;
+            foreach (var p in Homes.People(map).Where(p => p.Spawned && p.needs?.mood != null && People.HasInnerLife(p)))
+                p.needs.mood.thoughts.memories.TryGainMemory(def);
         }
 
         /// <summary>The beast is gone for good: off the map and out of the world.</summary>

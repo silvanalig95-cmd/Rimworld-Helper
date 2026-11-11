@@ -151,6 +151,74 @@ namespace ColonyCouncil
             Say(GodMarks.Send(who, mark) ? who.LabelShort + " walks out to the mark." : "couldn't send anyone.");
         }
 
+        [DebugAction("Rimfolk", "Gods: a god rises from the land now...", allowedGameStates = AllowedGameStates.PlayingOnMap)]
+        private static void DebugRise()
+        {
+            var map = Find.CurrentMap;
+            PickGod(GodShapes.Rises, g => Say(GodRising.Rise(map, g) ? Gods.Name(g) + " rises." : "it can't rise now (dark, nowhere to rise, or its true form's mod not loaded)."));
+        }
+
+        [DebugAction("Rimfolk", "Gods: the sleeper under the mountain wakes now", allowedGameStates = AllowedGameStates.PlayingOnMap)]
+        private static void DebugWake()
+        {
+            var b = Book;
+            var god = GodWaking.Sleeper;
+            var map = Find.CurrentMap;
+            if (b == null || god == null)
+            {
+                Say("no god sleeps under the mountain in this pantheon.");
+                return;
+            }
+            var miner = GodWaking.Miner(out var m) ?? map.mapPawns.FreeColonistsSpawned.FirstOrDefault();
+            Say(GodWaking.Wake(b, god, m ?? map, miner, Find.TickManager.TicksGame) ? Gods.Name(god) + " wakes." : "it can't wake now (already up).");
+        }
+
+        [DebugAction("Rimfolk", "Gods: the rock turns over a miner now", allowedGameStates = AllowedGameStates.PlayingOnMap)]
+        private static void DebugTurn()
+        {
+            var b = Book;
+            var god = GodWaking.Sleeper;
+            var miner = GodWaking.Miner(out var map);
+            if (b == null || god == null || miner == null)
+            {
+                Say("no sleeper in this pantheon, or nobody mining under thick rock.");
+                return;
+            }
+            GodWaking.Turned(b, god, map, miner, Find.TickManager.TicksGame);
+            Say("the rock rumbles over " + miner.LabelShort + " (" + b.deepWarnings + " times now).");
+        }
+
+        [DebugAction("Rimfolk", "Gods: someone sits near the sacred beast now", allowedGameStates = AllowedGameStates.PlayingOnMap)]
+        private static void DebugSit()
+        {
+            var s = Book?.beast;
+            var def = DefDatabase<JobDef>.GetNamedSilentFail(JobDriver_SitNearSacredAnimal.JobName);
+            var p = Find.CurrentMap.mapPawns.FreeColonistsSpawned.Where(Together.Able).RandomElementWithFallback();
+            if (s?.a == null || !s.a.Spawned || def == null || p == null)
+            {
+                Say("no sacred beast on the land, or nobody free.");
+                return;
+            }
+            p.jobs.TryTakeOrderedJob(JobMaker.MakeJob(def, s.a), Verse.AI.JobTag.Misc);
+            Say(p.LabelShort + " goes to sit near it.");
+        }
+
+        [DebugAction("Rimfolk", "Gods: the moon returns a deed tonight...", allowedGameStates = AllowedGameStates.PlayingOnMap)]
+        private static void DebugReturn()
+        {
+            var b = Book;
+            var map = Find.CurrentMap;
+            var moon = Gods.All.FirstOrDefault(g => g != null && GodShapes.Of(g).returns);
+            if (b == null || moon == null)
+            {
+                Say("no god returns the day by night in this pantheon.");
+                return;
+            }
+            Find.WindowStack.Add(new FloatMenu(((GodsOnMapMath.NightReturn[])Enum.GetValues(typeof(GodsOnMapMath.NightReturn))).Select(k => new FloatMenuOption(
+                k == GodsOnMapMath.NightReturn.None ? "the day's own deed" : k.ToString(),
+                () => Say(GodReturn.Return(b, moon, map, Find.TickManager.TicksGame, k) ? "returned (" + k + "), the moon " + GodOmens.MoonTonight + "." : "nothing to return, or it couldn't show."))).ToList()));
+        }
+
         [DebugAction("Rimfolk", "Gods: the gods on the map (log)", allowedGameStates = AllowedGameStates.Playing)]
         private static void DebugLog()
         {
@@ -171,6 +239,8 @@ namespace ColonyCouncil
                 sb.AppendLine("  beast: " + a.a?.LabelShort + " of " + Gods.Name(a.God) + ", leaves in " + ((a.leaveAt - now) / 2500f).ToString("0.0") + " h, fed " + a.fed + ", led " + a.led
                               + ", hurt " + a.hurt + ", chosen " + a.chosen?.LabelShort);
             sb.AppendLine("  last: stranger " + (now - b.lastStranger) / 60000 + " d ago, animal " + (now - b.lastAnimal) / 60000 + " d ago, any " + (now - b.lastAny) / 60000 + " d ago");
+            sb.AppendLine("  the moon tonight: " + GodOmens.MoonTonight + "; the deep rumbled " + b.deepWarnings + " times; woken " + b.woken?.LabelShort + "; risen " + b.risen?.LabelShort
+                          + "; last return " + (now - b.lastReturn) / 60000 + " d ago");
             foreach (var m in b.marks) sb.AppendLine("  mark: " + Gods.Name(Gods.ById(m.god)) + " at " + m.cell + " (" + m.kind + ", " + (now - m.tick) / 60000 + " d, " + m.visits + " visits): " + m.words);
             foreach (var g in Gods.All.Take(80))
             {

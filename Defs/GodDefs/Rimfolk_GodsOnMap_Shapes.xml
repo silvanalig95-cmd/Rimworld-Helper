@@ -2,19 +2,298 @@
 <Defs>
 
   <!--
-    The shapes a god takes on the map (ColonyCouncil.GodShapeDef; Source/ColonyCouncil/Gods/OnMap/GodShapes.cs). The
+    The shapes the gods take on the map (ColonyCouncil.GodShapeDef; Source/ColonyCouncil/Gods/OnMap/GodShapes.cs). The
     player: "not every god necessarily has to have a sacred beast, each god should be individual in what it looks like
-    and whether it has any form at all". Who comes, and as what, is read from here:
-      stranger: it can come as a lone traveller asking for shelter (in disguise);
-      beast, beasts: it walks as a beast, and which (ThingDef names, the player's mods' first; none named: its look's own);
-      weather, voices: it answers in the weather, and with which voices (Rain, Thunder, Eclipse, Aurora; none named: its
-        domain's);
-      bodiless: it has no body at all and shows only in the sky, answering there more readily and more often;
-      lineTag: a tag its own lines carry, so a god written by hand can have words of its own.
-    A shape is for the gods it names in gods (a god's name, its patron's defName, its look's defName, or a hand-made god
-    def's own defName), else for every god of its domains. These are the generic shapes by domain, until the hand-made
-    pantheon names its own; the default is the shape of a god with nothing else to go by.
+    and whether it has any form at all". Who comes, and as what, is read from here, never decided by the code:
+      stranger: it can come as a lone traveller asking for shelter, in disguise (only the Guest wears human shapes);
+      beast, beasts, look, kin, kinCount: it walks as a beast, which (ThingDef names), in which look, and with others of
+        its kind following at a distance;
+      leads, feeds, sitNear: what the colony can do with its beast (follow it where it leads, take it food, sit near it
+        while it grazes); harmIsWorst: harming it or its kin is the worst thing a colony can do;
+      weather, voices: it answers in the weather, and with which voices (Rain, Thunder, Eclipse, Aurora, Cold, Snow);
+      bodiless: no body on the map at all: it acts through plants, rot, machines, the sky, frost or the dark, and answers
+        in the sky more readily;
+      omens: its own signs (GodOmens), in place of the five any god may send;
+      rises: very rarely it rises from the land for an hour, with no body of its own (Hollin);
+      lineTag: the tag its own lines carry.
+    The nine are named by their short name in gods (docs/gods-pantheon-brainstorm.md, "The nine"). The shapes by domain
+    after them are the fallback only, for a god with no shape of its own.
   -->
+
+  <!-- ===================== The nine ===================== -->
+
+  <!-- Hollin, the Rootmother: the web of roots under the world. Seen in the plants, the anima trees and her dryads; once in a long while she rises. -->
+  <ColonyCouncil.GodShapeDef>
+    <defName>Rimfolk_GodShape_Hollin</defName>
+    <gods><li>Hollin</li><li>Rimfolk_God_Hollin</li></gods>
+    <stranger>false</stranger>
+    <beast>false</beast>
+    <bodiless>true</bodiless>
+    <rises>true</rises>
+    <voices><li>Rain</li></voices>
+    <omens><li>Drift</li><li>AnimaHum</li><li>DryadsStill</li></omens>
+    <lineTag>hollin</lineTag>
+  </ColonyCouncil.GodShapeDef>
+
+  <!--
+    Smoulder, the Coil Under the Mountain: a dragon asleep in the rock. He never comes on the map: his shadow at noon,
+    his breath in the steam, his turning in the deep mines. A colony that mines past every warning wakes him (GodWaking):
+    the deep working closes, and where the gods walk plainly his true form comes up out of the mountain for a few hours,
+    Dragon's Descent's true dragon (by name, when the mod is loaded), red and black.
+  -->
+  <ColonyCouncil.GodShapeDef>
+    <defName>Rimfolk_GodShape_Smoulder</defName>
+    <gods><li>Smoulder</li><li>Rimfolk_God_Smoulder</li></gods>
+    <stranger>false</stranger>
+    <beast>false</beast>
+    <bodiless>true</bodiless>
+    <weather>false</weather>
+    <omens><li>Shadow</li><li>Steam</li><li>Rumble</li></omens>
+    <lineTag>smoulder</lineTag>
+    <trueForm>True_Dragon</trueForm>
+    <trueLook>Rimfolk_GodLook_Smoulder</trueLook>
+  </ColonyCouncil.GodShapeDef>
+
+  <!-- Bellwether, the Old Horn: the first thrumbo, white and huge, other thrumbos following at a distance. To be let pass (a strange peace after); someone may sit near him; harming him or his kin is the worst thing. -->
+  <ColonyCouncil.GodShapeDef>
+    <defName>Rimfolk_GodShape_Bellwether</defName>
+    <gods><li>Bellwether</li><li>Rimfolk_God_Bellwether</li></gods>
+    <stranger>false</stranger>
+    <beasts><li>Thrumbo</li></beasts>
+    <look>Rimfolk_GodLook_Bellwether</look>
+    <kin>Thrumbo</kin>
+    <kinCount>1~3</kinCount>
+    <leads>false</leads>
+    <feeds>false</feeds>
+    <sitNear>true</sitNear>
+    <harmIsWorst>true</harmIsWorst>
+    <peace>true</peace>
+    <weather>false</weather>
+    <omens><li>Restless</li><li>Calm</li><li>Dream</li></omens>
+    <lineTag>bellwether</lineTag>
+  </ColonyCouncil.GodShapeDef>
+
+  <!-- Morel, the Soft Mother: alive in every thread of mould and mushroom. Fairy rings, the smell of earth, white threads. -->
+  <ColonyCouncil.GodShapeDef>
+    <defName>Rimfolk_GodShape_Morel</defName>
+    <gods><li>Morel</li><li>Rimfolk_God_Morel</li></gods>
+    <stranger>false</stranger>
+    <beast>false</beast>
+    <bodiless>true</bodiless>
+    <weather>false</weather>
+    <omens><li>FairyRing</li><li>Earth</li><li>Threads</li></omens>
+    <lineTag>morel</lineTag>
+  </ColonyCouncil.GodShapeDef>
+
+  <!-- Ennu, the Guest: the only one who wears human shapes, as the stranger at the gate. -->
+  <ColonyCouncil.GodShapeDef>
+    <defName>Rimfolk_GodShape_Ennu</defName>
+    <gods><li>Ennu</li><li>Rimfolk_God_Ennu</li></gods>
+    <stranger>true</stranger>
+    <beast>false</beast>
+    <weather>false</weather>
+    <omens><li>Dream</li><li>Candle</li><li>Restless</li></omens>
+    <lineTag>ennu</lineTag>
+  </ColonyCouncil.GodShapeDef>
+
+  <!-- Pip, the Hum: a young god in the wires. Lights that tap, static that breathes, a lamp that glows with no power. -->
+  <ColonyCouncil.GodShapeDef>
+    <defName>Rimfolk_GodShape_Pip</defName>
+    <gods><li>Pip</li><li>Rimfolk_God_Pip</li></gods>
+    <stranger>false</stranger>
+    <beast>false</beast>
+    <bodiless>true</bodiless>
+    <weather>false</weather>
+    <omens><li>Flicker</li><li>Static</li><li>Unpowered</li></omens>
+    <lineTag>pip</lineTag>
+  </ColonyCouncil.GodShapeDef>
+
+  <!-- Cirrus, Who Drifts Above: the upper sky. A shadow too large at noon, a star that moves the wrong way; the aurora is it turning, an eclipse it closing an eye. -->
+  <ColonyCouncil.GodShapeDef>
+    <defName>Rimfolk_GodShape_Cirrus</defName>
+    <gods><li>Cirrus</li><li>Rimfolk_God_Cirrus</li></gods>
+    <stranger>false</stranger>
+    <beast>false</beast>
+    <bodiless>true</bodiless>
+    <voices><li>Aurora</li><li>Eclipse</li><li>Thunder</li></voices>
+    <omens><li>VastShadow</li><li>Star</li><li>Birds</li></omens>
+    <lineTag>cirrus</lineTag>
+  </ColonyCouncil.GodShapeDef>
+
+  <!-- Hush, the Long White: frost and silence. Writing in the frost, a silence, the white figure at the edge of the night; snow when pleased, a cold snap when not. -->
+  <ColonyCouncil.GodShapeDef>
+    <defName>Rimfolk_GodShape_Hush</defName>
+    <gods><li>Hush</li><li>Rimfolk_God_Hush</li></gods>
+    <stranger>false</stranger>
+    <beast>false</beast>
+    <bodiless>true</bodiless>
+    <voices><li>Snow</li><li>Cold</li></voices>
+    <omens><li>FrostWriting</li><li>Silence</li><li>WhiteFigure</li></omens>
+    <lineTag>hush</lineTag>
+  </ColonyCouncil.GodShapeDef>
+
+  <!-- Undertow, the Hunger: the void beneath. It never comes itself: a dark a light doesn't reach, a sweet voice to the desperate, Anomaly's signs. -->
+  <ColonyCouncil.GodShapeDef>
+    <defName>Rimfolk_GodShape_Undertow</defName>
+    <gods><li>Undertow</li><li>Rimfolk_God_Undertow</li></gods>
+    <stranger>false</stranger>
+    <beast>false</beast>
+    <bodiless>true</bodiless>
+    <weather>false</weather>
+    <omens><li>Dark</li><li>Whisper</li><li>Candle</li></omens>
+    <lineTag>undertow</lineTag>
+  </ColonyCouncil.GodShapeDef>
+
+  <!-- ===================== The ones added after the nine ===================== -->
+
+  <!--
+    Helios and Selene, the Gift and the Return: the sun and the moon. Neither takes a form. Helios gives blindly: the sun
+    standing still with shadows that don't move, a heat haze, long clear days, and too much giving (a heat wave). Selene
+    has no light of her own: at night she returns what was done by day, as much as her face shows (GodReturn; the moon's
+    face through the season, GodsOnMapMath.Face): a huge moon all night, dreams, a night of nightmares, and the eclipse when
+    she steps between (everyone stops to watch). She notices those who keep the night (GodOmens.NightWatch).
+  -->
+  <ColonyCouncil.GodShapeDef>
+    <defName>Rimfolk_GodShape_Helios</defName>
+    <gods><li>Helios</li><li>Rimfolk_God_Helios</li></gods>
+    <stranger>false</stranger>
+    <beast>false</beast>
+    <bodiless>true</bodiless>
+    <voices><li>Clear</li><li>Heat</li></voices>
+    <omens><li>StillSun</li><li>HeatHaze</li><li>Calm</li></omens>
+    <lineTag>helios</lineTag>
+  </ColonyCouncil.GodShapeDef>
+
+  <ColonyCouncil.GodShapeDef>
+    <defName>Rimfolk_GodShape_Selene</defName>
+    <gods><li>Selene</li><li>Rimfolk_God_Selene</li></gods>
+    <stranger>false</stranger>
+    <beast>false</beast>
+    <bodiless>true</bodiless>
+    <voices><li>Eclipse</li><li>Sleepless</li><li>Aurora</li></voices>
+    <omens><li>BigMoon</li><li>Dream</li><li>Calm</li></omens>
+    <returns>true</returns>
+    <lineTag>selene</lineTag>
+  </ColonyCouncil.GodShapeDef>
+
+  <!--
+    Mog, the Cat: plainly on the map, a gray cat a little too large with too-bright eyes and all a god's presence. Other
+    cats follow her (her own and the colony's). She chooses one colonist and keeps to them for a season, takes food she
+    didn't ask for, can't be tamed or kept (marked to be tamed, she goes), and leaves if she or a cat is harmed.
+  -->
+  <ColonyCouncil.GodShapeDef>
+    <defName>Rimfolk_GodShape_Mog</defName>
+    <gods><li>Mog</li><li>Rimfolk_God_Mog</li></gods>
+    <stranger>false</stranger>
+    <beasts><li>Cat</li></beasts>
+    <look>Rimfolk_GodLook_Mog</look>
+    <kin>Cat</kin>
+    <kinCount>1~2</kinCount>
+    <leads>false</leads>
+    <feeds>true</feeds>
+    <stayDays>10~15</stayDays>
+    <weather>false</weather>
+    <omens><li>Restless</li><li>Calm</li><li>Dream</li></omens>
+    <lineTag>mog</lineTag>
+  </ColonyCouncil.GodShapeDef>
+
+  <!--
+    Murmur, Old Croak: a vast old toad in the wells and the marshes, mostly heard: a deep croaking before rain. Its voice
+    is the rain. Very rarely it surfaces in the wet ground, a toad the size of a house, and sinks again (Odyssey's colossus
+    toad, by name, when it is loaded; GodRising).
+  -->
+  <ColonyCouncil.GodShapeDef>
+    <defName>Rimfolk_GodShape_Murmur</defName>
+    <gods><li>Murmur</li><li>Rimfolk_God_Murmur</li></gods>
+    <stranger>false</stranger>
+    <beast>false</beast>
+    <voices><li>Rain</li><li>Thunder</li></voices>
+    <omens><li>Croak</li><li>Earth</li><li>Calm</li></omens>
+    <rises>true</rises>
+    <trueForm>ColossusToad</trueForm>
+    <trueLook>Rimfolk_GodLook_Murmur</trueLook>
+    <lineTag>murmur</lineTag>
+  </ColonyCouncil.GodShapeDef>
+
+  <!-- Ducat, the Restless Gold: lives in gold and never stays. A glint, a golden beetle on a table, a coin found where none was dropped. -->
+  <ColonyCouncil.GodShapeDef>
+    <defName>Rimfolk_GodShape_Ducat</defName>
+    <gods><li>Ducat</li><li>Rimfolk_God_Ducat</li></gods>
+    <stranger>false</stranger>
+    <beast>false</beast>
+    <bodiless>true</bodiless>
+    <weather>false</weather>
+    <omens><li>Glint</li><li>Beetle</li><li>Coin</li></omens>
+    <lineTag>ducat</lineTag>
+  </ColonyCouncil.GodShapeDef>
+
+  <!--
+    Bellwether's look: the game's thrumbo, larger and paler, a soft white light about him, grass growing back greener
+    where he walks. minTech and maxTech are the archotech age alone, so no domain's god ever takes it by its age
+    (GodLooks.For); his shape names it.
+  -->
+  <ColonyCouncil.GodLookDef>
+    <defName>Rimfolk_GodLook_Bellwether</defName>
+    <label>great white thrumbo</label>
+    <description>The first thrumbo: huge, white and very old, with old, calm eyes, grass springing back greener where he has grazed.</description>
+    <domain>Wild</domain>
+    <sampleName>great white thrumbo</sampleName>
+    <minTech>Archotech</minTech>
+    <maxTech>Archotech</maxTech>
+    <colorA>(0.96, 0.95, 0.9)</colorA>
+    <colorB>(0.78, 0.82, 0.86)</colorB>
+    <glowColor>(1, 0.98, 0.92)</glowColor>
+    <glowRadius>7</glowRadius>
+    <size>1.45</size>
+    <skin>(0.95, 0.94, 0.9)</skin>
+    <hair>(0.95, 0.95, 0.95)</hair>
+    <eyes>(0.85, 0.95, 1)</eyes>
+    <animalTint>(1, 1, 0.97)</animalTint>
+    <body><li>Apparel_Robe</li></body>
+    <head><li>Apparel_TribalHeaddress</li></head>
+    <trail>Grass</trail>
+    <motes>
+      <li>Mote_GreenTwinkle</li>
+    </motes>
+    <flash>
+      <li>TM_LightBurstED</li>
+    </flash>
+    <circle>
+      <li>Mote_ArcaneCircle</li>
+    </circle>
+    <sky>(0.94, 0.96, 0.92)</sky>
+    <still>0.9</still>
+    <mark>Flowers</mark>
+    <wrathMark>Ash</wrathMark>
+    <sting>
+      <li>LeavesRustle</li>
+      <li>Bestowing_Start</li>
+    </sting>
+    <wrathSting>
+      <li>HarbingerTreeScream</li>
+    </wrathSting>
+    <omen>
+      <li>LeavesRustle</li>
+    </omen>
+    <depart>
+      <li>LeavesRustle</li>
+    </depart>
+    <hum>
+      <li>RitualSustainer_Animalist</li>
+    </hum>
+    <tracks>
+      <li>Wabi_Sabi</li>
+      <li>Sky_Farmer</li>
+    </tracks>
+    <darkTracks>
+      <li>A_Twisted_Path</li>
+    </darkTracks>
+    <animals>
+      <li>Thrumbo</li>
+    </animals>
+  </ColonyCouncil.GodLookDef>
+
+  <!-- ===================== The fallback, by domain ===================== -->
 
   <ColonyCouncil.GodShapeDef>
     <defName>Rimfolk_GodShape_Default</defName>
@@ -52,6 +331,7 @@
     <domains><li>Machine</li></domains>
     <beast>false</beast>
     <weather>false</weather>
+    <omens><li>Flicker</li><li>Static</li><li>Unpowered</li></omens>
   </ColonyCouncil.GodShapeDef>
 
   <!-- The forge's come as a traveller with burned hands; their beasts are the look's iron beetle and bear. -->
@@ -88,5 +368,176 @@
     <domains><li>Healing</li><li>War</li></domains>
     <weather>false</weather>
   </ColonyCouncil.GodShapeDef>
+
+  <!--
+    Smoulder's true form, when the colony wakes him: red and black, embers about him, the ground scorched where he
+    stood. Archotech age alone, so no domain's god takes it by its age; his shape names it.
+  -->
+  <ColonyCouncil.GodLookDef>
+    <defName>Rimfolk_GodLook_Smoulder</defName>
+    <label>dragon from under the mountain</label>
+    <description>Vast and very old, red and black, with heat coming off him like a forge and smoke at his teeth.</description>
+    <domain>Craft</domain>
+    <sampleName>dragon from under the mountain</sampleName>
+    <minTech>Archotech</minTech>
+    <maxTech>Archotech</maxTech>
+    <colorA>(0.78, 0.16, 0.1)</colorA>
+    <colorB>(0.12, 0.08, 0.08)</colorB>
+    <glowColor>(1, 0.45, 0.18)</glowColor>
+    <glowRadius>9</glowRadius>
+    <size>1.1</size>
+    <skin>(0.5, 0.15, 0.1)</skin>
+    <hair>(0.1, 0.08, 0.08)</hair>
+    <eyes>(1, 0.6, 0.2)</eyes>
+    <animalTint>(1, 0.92, 0.88)</animalTint>
+    <body><li>Apparel_Robe</li></body>
+    <head><li>Apparel_Coronet</li></head>
+    <trail>Scorch</trail>
+    <motes>
+      <li>Mote_Flame</li>
+    </motes>
+    <flash>
+      <li>TM_FireShield_Effecter</li>
+    </flash>
+    <circle>
+      <li>Mote_ArcaneCircle</li>
+    </circle>
+    <sky>(1, 0.72, 0.55)</sky>
+    <still>0.95</still>
+    <mark>Scorch</mark>
+    <wrathMark>Scorch</wrathMark>
+    <sting>
+      <li>TM_FireBombSD</li>
+      <li>Explosion_Flame</li>
+    </sting>
+    <wrathSting>
+      <li>TM_FireBombSD</li>
+      <li>Explosion_Flame</li>
+    </wrathSting>
+    <omen>
+      <li>TM_FireBurn</li>
+    </omen>
+    <depart>
+      <li>Explosion_Flame</li>
+    </depart>
+    <hum>
+      <li>RitualSustainer_Rustic</li>
+    </hum>
+    <tracks>
+      <li>VFED_DivineInferno</li>
+    </tracks>
+    <darkTracks>
+      <li>VFED_DivineInferno</li>
+      <li>Blood_Rain_Falling</li>
+    </darkTracks>
+  </ColonyCouncil.GodLookDef>
+
+  <!-- Mog's look: a gray cat, a little too large, with too-bright eyes; a faint pale light about her. Archotech age alone, so only her shape takes it. -->
+  <ColonyCouncil.GodLookDef>
+    <defName>Rimfolk_GodLook_Mog</defName>
+    <label>gray cat</label>
+    <description>An ordinary-looking gray cat, perhaps a little too large, with eyes too bright for any cat's.</description>
+    <domain>Hearth</domain>
+    <sampleName>gray cat</sampleName>
+    <minTech>Archotech</minTech>
+    <maxTech>Archotech</maxTech>
+    <colorA>(0.62, 0.63, 0.66)</colorA>
+    <colorB>(0.85, 0.95, 0.7)</colorB>
+    <glowColor>(0.9, 0.95, 1)</glowColor>
+    <glowRadius>3</glowRadius>
+    <size>1.3</size>
+    <skin>(0.62, 0.63, 0.66)</skin>
+    <hair>(0.55, 0.56, 0.6)</hair>
+    <eyes>(0.75, 1, 0.55)</eyes>
+    <animalTint>(0.82, 0.83, 0.86)</animalTint>
+    <body><li>Apparel_Robe</li></body>
+    <head><li>Apparel_Coronet</li></head>
+    <trail>None</trail>
+    <motes>
+      <li>Mote_Twinkle</li>
+    </motes>
+    <circle>
+      <li>Mote_ArcaneCircle</li>
+    </circle>
+    <sky>(0.92, 0.94, 1)</sky>
+    <still>0.85</still>
+    <mark>None</mark>
+    <wrathMark>Ash</wrathMark>
+    <sting>
+      <li>Bestowing_Start</li>
+    </sting>
+    <wrathSting>
+      <li>PsychicSootheGlobal</li>
+    </wrathSting>
+    <omen>
+      <li>TinyBell</li>
+    </omen>
+    <depart>
+      <li>Bestowing_Finished</li>
+    </depart>
+    <hum>
+      <li>RitualSustainer_Rustic</li>
+    </hum>
+    <tracks>
+      <li>Wabi_Sabi</li>
+    </tracks>
+    <darkTracks>
+      <li>A_Twisted_Path</li>
+    </darkTracks>
+  </ColonyCouncil.GodLookDef>
+
+  <!-- Murmur's look when it surfaces: a toad the size of a house, mottled and old, with eyes like wet stones. Archotech age alone, so only its shape takes it. -->
+  <ColonyCouncil.GodLookDef>
+    <defName>Rimfolk_GodLook_Murmur</defName>
+    <label>toad the size of a house</label>
+    <description>A toad the size of a house, mottled and very old, with eyes like wet stones.</description>
+    <domain>Waters</domain>
+    <sampleName>toad the size of a house</sampleName>
+    <minTech>Archotech</minTech>
+    <maxTech>Archotech</maxTech>
+    <colorA>(0.42, 0.5, 0.36)</colorA>
+    <colorB>(0.62, 0.72, 0.78)</colorB>
+    <glowColor>(0.7, 0.85, 0.9)</glowColor>
+    <glowRadius>5</glowRadius>
+    <size>2.6</size>
+    <skin>(0.42, 0.5, 0.36)</skin>
+    <hair>(0.3, 0.36, 0.28)</hair>
+    <eyes>(0.6, 0.7, 0.75)</eyes>
+    <animalTint>(0.85, 0.9, 0.8)</animalTint>
+    <body><li>Apparel_Robe</li></body>
+    <head><li>Apparel_TribalHeaddress</li></head>
+    <trail>Water</trail>
+    <motes>
+      <li>Mote_Twinkle</li>
+    </motes>
+    <circle>
+      <li>Mote_ArcaneCircle</li>
+    </circle>
+    <sky>(0.8, 0.88, 0.9)</sky>
+    <still>0.9</still>
+    <mark>Spring</mark>
+    <wrathMark>Ash</wrathMark>
+    <sting>
+      <li>Thunder_OnMap</li>
+    </sting>
+    <wrathSting>
+      <li>Thunder_OnMap</li>
+    </wrathSting>
+    <omen>
+      <li>Thunder_OnMap</li>
+    </omen>
+    <depart>
+      <li>Bestowing_Finished</li>
+    </depart>
+    <hum>
+      <li>RitualSustainer_Rustic</li>
+    </hum>
+    <tracks>
+      <li>Sky_Farmer</li>
+    </tracks>
+    <darkTracks>
+      <li>A_Twisted_Path</li>
+    </darkTracks>
+  </ColonyCouncil.GodLookDef>
 
 </Defs>

@@ -57,6 +57,16 @@
         <li>[void] Something down in the deep is listening, but not to you.</li>
         <li>[age0] The old spirits still walk these hills, whatever the young ones say.</li>
         <li>[age3] Your scanners won't find me, so don't bother running them.</li>
+        <li>[knowsdead] {LOST} would have liked you, I think, {OTHER_nameDef}.</li>
+        <li>[knowsdead] I met {LOST} once, on a long road, a long time ago.</li>
+        <li>[knowsdead] You stand the way {LOST} used to, {OTHER_nameDef}.</li>
+        <li>[ennu] A house is known by its door, and I've knocked on a great many.</li>
+        <li>[ennu] I only want what any traveler wants, a roof and a little talk.</li>
+        <li>[ennu,first] I don't believe I've ever slept under this roof before.</li>
+        <li>[ennu,remembers] I've been here before, though you won't remember me.</li>
+        <li>[ennu,rememberskind] You kept a warm bed for me last time, I haven't forgotten.</li>
+        <li>[ennu,rememberscold] Last time I slept by your wall, and the wall was kinder.</li>
+        <li>[ennu,remembersharm] I still have the bruise from my last visit here.</li>
       </plain>
     </lines>
   </ColonyCouncil.FlavorPoolDef>
@@ -101,6 +111,63 @@
         <li>[dead] My grandmother used to say this meant someone was crossing over.</li>
         <li>[wild] The woods are listening, I swear it.</li>
         <li>[hearth] Somewhere close by, someone is baking bread, but nobody is.</li>
+        <li>[drift] Every leaf on the ground is blowing the same way, and there's no wind.</li>
+        <li>[drift] Look at the seeds, they're all drifting toward one spot.</li>
+        <li>[animahum] Can you hear the tree humming, even from in here?</li>
+        <li>[animahum] The old tree is singing to itself tonight.</li>
+        <li>[dryadsstill] The dryads have all stopped dead, and they're facing the same way.</li>
+        <li>[dryadsstill] Why have the dryads gone so still?</li>
+        <li>[shadow] Something with wings just crossed the sun, and it was enormous.</li>
+        <li>[shadow] Did you feel that wind, and see the shadow go over?</li>
+        <li>[steam] The ground is breathing steam, like something's asleep under it.</li>
+        <li>[steam] That steam is warm as breath, I don't like it.</li>
+        <li>[rumble] The rock just groaned over our heads.</li>
+        <li>[rumble] That wasn't the rock settling, something down there moved.</li>
+        <li>[fairyring] Mushrooms in a perfect ring, and they weren't there yesterday.</li>
+        <li>[fairyring] Don't step inside that ring, my mother always said.</li>
+        <li>[earth] It smells like rain on earth, but nothing's wet.</li>
+        <li>[earth] Can you smell that, like a forest floor after a storm?</li>
+        <li>[threads] There are white threads all over the floor in there.</li>
+        <li>[threads] Something has been growing across that floor overnight.</li>
+        <li>[flicker] The lights are blinking like someone's tapping out a message.</li>
+        <li>[flicker] Short, long, short, those lights are doing it on purpose.</li>
+        <li>[static] The console is hissing, and I swear it laughed just now.</li>
+        <li>[static] There's breathing in that static, listen.</li>
+        <li>[unpowered] That light's on, and there's no power to it at all.</li>
+        <li>[unpowered] Who switched that lamp on, it isn't even connected?</li>
+        <li>[vastshadow] That shadow is far too big for any cloud I can see.</li>
+        <li>[vastshadow] Something passed between us and the sun, and there's nothing up there.</li>
+        <li>[star] That star is moving, and the wrong way.</li>
+        <li>[star] Look, one star is crossing the sky against all the others.</li>
+        <li>[frostwriting] The frost by the wall has made letters, or near enough.</li>
+        <li>[frostwriting] That frost looks like writing, but in no hand I know.</li>
+        <li>[silence] Did everything just go quiet, or is it me?</li>
+        <li>[silence] Not a sound anywhere, not even the wind.</li>
+        <li>[whitefigure] There's someone tall and white out at the edge of the dark.</li>
+        <li>[whitefigure] I saw a figure out there, and now it's gone.</li>
+        <li>[dark] That corner is too dark, the lamp should reach it.</li>
+        <li>[dark] The light just stops, right there, like a wall.</li>
+        <li>[whisper] Did someone just say my name, so kindly?</li>
+        <li>[whisper] There was a voice, so reasonable, telling me it's all right to stop.</li>
+        <li>[croak] Do you feel that croaking in your chest, from the wet ground?</li>
+        <li>[croak] Something old is singing down in the water, rain's coming.</li>
+        <li>[stillsun] The sun hasn't moved, look at the shadows.</li>
+        <li>[stillsun] My shadow hasn't shifted in an hour, I swear it.</li>
+        <li>[heathaze] The air's shimmering over the fields like a forge.</li>
+        <li>[heathaze] Look at the heat coming off the ground, it's wavering.</li>
+        <li>[bigmoon] The moon's never been that big, it's right over us.</li>
+        <li>[bigmoon] You could read by that moon tonight.</li>
+        <li>[glint] Something gold, just there, and gone when I turned.</li>
+        <li>[glint] I keep seeing a glint of gold out of the corner of my eye.</li>
+        <li>[beetle] A little gold beetle just walked right across the table.</li>
+        <li>[beetle] Did you see that beetle, it looked like it was made of gold?</li>
+        <li>[coin] A gold coin, right at my feet, and nobody dropped it.</li>
+        <li>[coin] Whose coin is this, it wasn't here a moment ago.</li>
+        <li>[rising] It has a face, there in the wood, and it's looking at us.</li>
+        <li>[rising] The roots came up out of the ground and stood up.</li>
+        <li>[fullmoon] Under a full moon like this, I'd believe anything.</li>
+        <li>[darkmoon] No moon tonight, and that's when strange things walk.</li>
+        <li>[halfmoon] Half a moon, half a warning, my grandmother said.</li>
       </plain>
     </lines>
   </ColonyCouncil.FlavorPoolDef>
@@ -127,6 +194,11 @@
         <li>[waters] I dreamed the well overflowed, and the water was warm.</li>
         <li>[machine] I dreamed the walls were humming, and the hum was a voice.</li>
         <li>[void] I dreamed of a hole in the sky shaped like an eye.</li>
+        <li>[bellwether] I dreamed of a white beast with one horn, grazing by the well and looking at me.</li>
+        <li>[ennu] I dreamed someone knocked at the gate all night, patiently, and I didn't get up.</li>
+        <li>[mog] I dreamed a gray cat sat on my chest and stared until I woke.</li>
+        <li>[selene] I dreamed the moon came down to the yard and looked at everything we did today.</li>
+        <li>[fullmoon] I dreamed under a full moon, and everything in the dream was true.</li>
       </plain>
     </lines>
   </ColonyCouncil.FlavorPoolDef>
@@ -144,6 +216,9 @@
         <li>[storm] You heard the thunder man too, {OTHER_nameDef}, didn't you.</li>
         <li>[dead] The lantern, {OTHER_nameDef}, you saw the lantern too.</li>
         <li>[hearth] The old woman by the fire, {OTHER_nameDef}, you saw her too.</li>
+        <li>[bellwether] The white beast with one horn, {OTHER_nameDef}, you dreamed it too.</li>
+        <li>[mog] The gray cat, {OTHER_nameDef}, it sat on you too, didn't it?</li>
+        <li>[selene] The moon in the yard, {OTHER_nameDef}, you saw it as well.</li>
       </plain>
     </lines>
   </ColonyCouncil.FlavorPoolDef>
@@ -169,6 +244,17 @@
         <li>[believed] See, I told you {GOD} would hear us.</li>
         <li>[believed,rain] Say what you like, that rain came from {GOD}.</li>
         <li>[believed,eclipse] Laugh all you want, but that's {GOD}'s doing.</li>
+        <li>[cold] This cold came down like a slammed door.</li>
+        <li>[cold] That's no ordinary frost, it's meant.</li>
+        <li>[snow] Snow, soft and right on time, like a blessing.</li>
+        <li>[snow] Look at it fall, as if someone is shaking out a blanket.</li>
+        <li>[heat] It's like being stared at, this heat.</li>
+        <li>[heat] Too much sun, as if someone forgot to stop giving it.</li>
+        <li>[clear] Not a cloud anywhere, it'll be a long good day.</li>
+        <li>[clear] A sky like this is a gift, whoever it's from.</li>
+        <li>[sleepless] Nobody slept, and the moon watched us all night.</li>
+        <li>[sleepless] Bad dreams in every bed, and the moon so bright.</li>
+        <li>[eclipse] Something just stepped in front of the sun.</li>
       </plain>
     </lines>
   </ColonyCouncil.FlavorPoolDef>
@@ -244,6 +330,86 @@
         <li>[wild] The whole wood went quiet when it came out.</li>
         <li>[hunt] Even the hunters lowered their bows.</li>
         <li>[dead] A {KIND} like that only comes when someone is remembered.</li>
+        <li>[bellwether] The {BEAST} hasn't so much as looked at a fence.</li>
+        <li>[bellwether] Look at the others hanging back behind it, like pilgrims.</li>
+        <li>[bellwether] The grass is greener everywhere the {BEAST} grazed.</li>
+        <li>[mog] That {BEAST} has picked her person, and it isn't you.</li>
+        <li>[mog] The cats all follow her about like courtiers.</li>
+        <li>[mog] She sleeps in the warmest spot in the colony, every time.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- Someone who sat near the great beast, or a child who touched its horn. Tags: horn, grief, fear, passion, nothing; the god's line tag. {BEAST} is what it is seen as. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_SacredAnimalSat</defName>
+    <lines>
+      <plain>
+        <li>I sat with the {BEAST} a while, and it let me.</li>
+        <li>It's so quiet near the {BEAST}, you can hear yourself think.</li>
+        <li>I don't know what I expected, but I feel better.</li>
+        <li>[horn] I touched its horn, and it was warm.</li>
+        <li>[horn] It put its head right down so I could reach.</li>
+        <li>[grief] It's lighter, somehow, the thing I've been carrying.</li>
+        <li>[grief] I cried a bit out there, and then I didn't need to.</li>
+        <li>[fear] I'm not afraid of it anymore, whatever it was.</li>
+        <li>[fear] Funny, my hands have stopped shaking.</li>
+        <li>[passion] I can't stop thinking about something I want to try.</li>
+        <li>[passion] I know what I want to be good at now.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- Someone the stranger looked at before it went: they feel changed and can't say how. Tags: spell, class, passion, trait, favour. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_GodTouched</defName>
+    <lines>
+      <plain>
+        <li>Something's different in me since the stranger left.</li>
+        <li>I feel like I've been handed something, and I don't know what.</li>
+        <li>The way it looked at me, I can't stop thinking about it.</li>
+        <li>[spell] There's a scroll by my bed, and I didn't put it there.</li>
+        <li>[class] Something woke up in me, something I can't explain.</li>
+        <li>[passion] I've never wanted to work at anything so much.</li>
+        <li>[trait] I don't feel like myself, but I feel like more of myself.</li>
+        <li>[favour] I've got an idea, a real one, and it won't wait.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- The dream the moon returns for a deed of the day, in the first person (the journal and the dream book). Tags: good, bad, the moon's face (fullmoon...). -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_GodReturnDream</defName>
+    <lines>
+      <plain>
+        <li>I dreamed the moon was looking in at my window, and I couldn't look away.</li>
+        <li>I dreamed my whole day over again, slowly, with the moon watching.</li>
+        <li>I dreamed someone pale held up a mirror, and my day was in it.</li>
+        <li>[good] I dreamed the one I helped today was laughing, and so was I.</li>
+        <li>[good] I dreamed of warm hands and a quiet house, and woke rested.</li>
+        <li>[good,fullmoon] I dreamed in moonlight so bright I could see every good thing I'd ever done.</li>
+        <li>[bad] I dreamed what I did today was done to me, again and again.</li>
+        <li>[bad] I dreamed of a cold room and a face I'd hurt, watching me.</li>
+        <li>[bad,fullmoon] I dreamed the full moon turned to look at me, and it knew.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- At breakfast, to whoever they sit with, about what came back in the night. Tags: found, gooddream, healed, nightmare, frost, animalback; the moon's face. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_GodReturnTalk</defName>
+    <lines>
+      <plain>
+        <li>Something happened in the night, {OTHER_nameDef}, and I can't explain it.</li>
+        <li>Did you see the moon last night, {OTHER_nameDef}?</li>
+        <li>I've been thinking about yesterday all morning, {OTHER_nameDef}.</li>
+        <li>[found] There was something by my bed this morning, {OTHER_nameDef}, and nobody left it.</li>
+        <li>[gooddream] I had the best dream, {OTHER_nameDef}, and I don't want to lose it.</li>
+        <li>[healed] My wound's half gone overnight, {OTHER_nameDef}, look.</li>
+        <li>[nightmare] I didn't sleep, {OTHER_nameDef}, and I don't want to talk about why.</li>
+        <li>[frost] Frost all round my window, {OTHER_nameDef}, and nowhere else.</li>
+        <li>[animalback] An animal stood at my door half the night, {OTHER_nameDef}, just looking.</li>
+        <li>[fullmoon] The moon was full last night, {OTHER_nameDef}, and I think it saw everything.</li>
       </plain>
     </lines>
   </ColonyCouncil.FlavorPoolDef>

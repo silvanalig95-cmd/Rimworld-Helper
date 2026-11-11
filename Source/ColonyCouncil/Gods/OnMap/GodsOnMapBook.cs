@@ -92,7 +92,26 @@ namespace ColonyCouncil
         public List<int> weatherHomes = new List<int>(), weatherTicks = new List<int>();
         /// <summary>The newest act of the gods already looked at for an answer in the weather.</summary>
         public int actsSeen = -1;
-        public int lastAny = -999999, lastStranger = -999999, lastAnimal = -999999, lastVisit = -999999;
+        public int lastAny = -999999, lastStranger = -999999, lastAnimal = -999999, lastVisit = -999999, lastRising = -999999;
+        /// <summary>
+        /// What the stranger remembers of the colony (it never forgets the answer): which god came last, how often, and how it
+        /// was kept the last time; and the good welcome's late gift, when it is due, from whom and at which home.
+        /// </summary>
+        public int strangerGod = -1, strangerVisits;
+        public Treatment strangerLast = Treatment.Fair;
+        public int lateGiftAt = -1, lateGiftGod = -1, lateGiftHome = HomesMath.None;
+        /// <summary>
+        /// The sleeper under the mountain (GodWaking): how many times the rock has rumbled over the colony's deep mining
+        /// and when last, when it last woke, and its true form while it is up on the land (until it goes).
+        /// </summary>
+        public int deepWarnings, lastDeep = -999999, lastWake = -999999;
+        public Pawn woken;
+        public int wokenGod = -1, wokenUntil = -1;
+        /// <summary>A god's true form surfaced from the land (GodRising: Murmur in the marsh), and when it sinks again.</summary>
+        public Pawn risen;
+        public int risenUntil = -1;
+        /// <summary>When the moon last returned a deed by night (GodReturn).</summary>
+        public int lastReturn = -999999;
 
         /// <summary>At most this many omens wait at once.</summary>
         public const int MaxOmens = 12;
@@ -158,6 +177,7 @@ namespace ColonyCouncil
             var b = Instance;
             if (b == null || !Gods.On) return;
             Safe("a coming", () => GodComings.Daily(b, now));
+            Safe("a late gift", () => GodGifts.LateGift(b, now));
             Safe("the marks", () => GodMarks.Daily(b, now));
         }
 
@@ -170,6 +190,10 @@ namespace ColonyCouncil
             Safe("the coming", () => GodComings.Hourly(b, now));
             Safe("the stranger", () => GodStranger.Hourly(b, now));
             Safe("the sacred animal", () => SacredAnimal.Hourly(b, now));
+            Safe("the sleeper", () => GodWaking.Hourly(b, now));
+            Safe("the risen", () => GodRising.Hourly(b, now));
+            Safe("the night kept", () => GodOmens.NightWatch(b, now));
+            Safe("the moon's return", () => GodReturn.Hourly(b, now));
             Safe("the weather", () => GodWeather.Hourly(b, now));
             Safe("the marks spoken of", () => GodMarks.Hourly(b, now));
         }
@@ -220,6 +244,22 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref lastStranger, "lastStranger", -999999);
             Scribe_Values.Look(ref lastAnimal, "lastAnimal", -999999);
             Scribe_Values.Look(ref lastVisit, "lastVisit", -999999);
+            Scribe_Values.Look(ref lastRising, "lastRising", -999999);
+            Scribe_Values.Look(ref strangerGod, "strangerGod", -1);
+            Scribe_Values.Look(ref strangerVisits, "strangerVisits");
+            Scribe_Values.Look(ref strangerLast, "strangerLast", Treatment.Fair);
+            Scribe_Values.Look(ref lateGiftAt, "lateGiftAt", -1);
+            Scribe_Values.Look(ref lateGiftGod, "lateGiftGod", -1);
+            Scribe_Values.Look(ref lateGiftHome, "lateGiftHome", HomesMath.None);
+            Scribe_Values.Look(ref deepWarnings, "deepWarnings");
+            Scribe_Values.Look(ref lastDeep, "lastDeep", -999999);
+            Scribe_Values.Look(ref lastWake, "lastWake", -999999);
+            Scribe_References.Look(ref woken, "woken");
+            Scribe_Values.Look(ref wokenGod, "wokenGod", -1);
+            Scribe_Values.Look(ref wokenUntil, "wokenUntil", -1);
+            Scribe_References.Look(ref risen, "risen");
+            Scribe_Values.Look(ref risenUntil, "risenUntil", -1);
+            Scribe_Values.Look(ref lastReturn, "lastReturn", -999999);
             if (Scribe.mode == LoadSaveMode.PostLoadInit)
             {
                 omens ??= new List<GodOmenNote>();
@@ -265,6 +305,13 @@ namespace ColonyCouncil
             var home = Homes.Seat ?? Homes.All.FirstOrDefault();
             if (home == null || !home.IsPlayerHome) return;
             int day = GenDate.DaysPassedSinceSettle;
+            // Very rarely, a god with no body rises from the land for an hour (Hollin), after its own long gap.
+            var riser = Gods.All.Where(g => g != null && GodShapes.Rises(g)).RandomElementWithFallback();
+            if (riser != null && GodsOnMapMath.RisingDue(Gods.Realness, day, Days(now, b.lastAny), Days(now, b.lastRising), true, Rand.Value))
+            {
+                Plan(b, ComingKind.Rising, home, riser, Rand.RangeInclusive(GodsOnMapMath.OmenDaysMin, GodsOnMapMath.OmenDaysMax));
+                return;
+            }
             bool strangerCan = GodStranger.CanCome(home);
             bool animalCan = SacredAnimal.AnyFor(home);
             var kind = GodsOnMapMath.Due(Gods.Realness, day, Days(now, b.lastAny), Days(now, b.lastStranger), Days(now, b.lastAnimal), strangerCan, animalCan, Rand.Value,
@@ -282,7 +329,8 @@ namespace ColonyCouncil
         public static bool Plan(GodsOnMapBook b, ComingKind kind, Map home, God god, int days)
         {
             if (b == null || home == null || kind == ComingKind.None) return false;
-            god ??= kind == ComingKind.Stranger ? GodStranger.PickGod(home) : SacredAnimal.PickGod(home);
+            god ??= kind == ComingKind.Stranger ? GodStranger.PickGod(home) : kind == ComingKind.Animal ? SacredAnimal.PickGod(home)
+                : Gods.All.Where(g => g != null && GodShapes.Rises(g)).RandomElementWithFallback();
             if (god == null) return false;
             int now = Now;
             int at = days <= 0 ? now : now + days * GenDate.TicksPerDay + Rand.Range(-GenDate.TicksPerHour * 3, GenDate.TicksPerHour * 3);
@@ -304,12 +352,14 @@ namespace ColonyCouncil
             bool came;
             if (MapFacts.ThreatOn(c.map)) came = false;
             else if (c.kind == ComingKind.Stranger) came = GodStranger.Come(b, c, god);
+            else if (c.kind == ComingKind.Rising) came = GodRising.Rise(c.map, god);
             else came = SacredAnimal.Come(b, c, god);
             if (came)
             {
                 b.coming = null;
                 b.lastAny = now;
                 if (c.kind == ComingKind.Stranger) b.lastStranger = now;
+                else if (c.kind == ComingKind.Rising) b.lastRising = now;
                 else b.lastAnimal = now;
                 return;
             }

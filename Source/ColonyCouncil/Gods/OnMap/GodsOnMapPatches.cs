@@ -11,13 +11,13 @@ namespace ColonyCouncil
     // The gods on the map's hooks into the game (Gods/OnMap/). Each looks first whether anything of theirs is about (a god
     // walking, a light guttering), so a game without them pays one check.
 
-    /// <summary>The colony's own struck the stranger or the sacred animal: the god's anger (GodStranger.Struck, SacredAnimal.Struck).</summary>
+    /// <summary>The colony's own struck the stranger, the sacred animal or one of its kin: the god's anger (GodStranger.Struck, SacredAnimal.Struck).</summary>
     [HarmonyPatch(typeof(Pawn), nameof(Pawn.PostApplyDamage))]
     public static class Patch_GodStruck
     {
         public static void Postfix(Pawn __instance, DamageInfo dinfo)
         {
-            if (!GodAvatar.Any || !RimfolkPatches.On || !GodAvatar.Is(__instance)) return;
+            if (!GodAvatar.Any || !RimfolkPatches.On || !GodAvatar.Is(__instance) && !SacredAnimal.IsKin(__instance)) return;
             try
             {
                 var by = dinfo.Instigator;
@@ -52,13 +52,14 @@ namespace ColonyCouncil
         }
     }
 
-    /// <summary>A light that won't stay lit (the omen, a god's hearth withheld): out while it gutters.</summary>
+    /// <summary>A light that won't stay lit (the omen, a god's hearth withheld, Pip's flicker): out while it gutters; and a light Pip lights with no power, on.</summary>
     [HarmonyPatch(typeof(CompGlower), "ShouldBeLitNow", MethodType.Getter)]
     public static class Patch_GodGutterGlow
     {
         public static void Postfix(CompGlower __instance, ref bool __result)
         {
             if (__result && GodOmens.Out(__instance)) __result = false;
+            else if (!__result && GodOmens.Lit(__instance)) __result = true;
         }
     }
 
@@ -70,8 +71,9 @@ namespace ColonyCouncil
     }
 
     /// <summary>
-    /// Right-clicking the sacred animal with a colonist selected: follow it where it leads, or leave it some food (a large
-    /// one leads; a small one only takes food).
+    /// Right-clicking the sacred animal with a colonist selected: follow it where it leads, leave it some food, or sit near
+    /// it a while (each as its god's shape allows: a large one may lead, a small one only takes food, Bellwether only lets
+    /// someone sit near).
     /// </summary>
     public class FloatMenuOptionProvider_SacredAnimal : FloatMenuOptionProvider
     {
@@ -93,8 +95,20 @@ namespace ColonyCouncil
             var s = GodsOnMapBook.Instance?.beast;
             if (c == null || s?.a != clickedPawn || !c.IsColonistPlayerControlled || c.DevelopmentalStage.Baby()) yield break;
             var a = clickedPawn;
-            string kind = a.def.label;
-            if (!GodsOnMapMath.Follows(a.BodySize))
+            var god = s.God;
+            string kind = SacredAnimal.Called(a, god);
+            if (GodShapes.SitNear(god))
+            {
+                string sit = "CC_GodM_Menu_Sit".Translate(kind.Named("KIND")).Resolve();
+                string not = s.hurt ? "CC_GodM_Menu_Hurt".Translate().Resolve() : s.sat.Contains(c) ? "CC_GodM_Menu_Sat".Translate().Resolve()
+                    : s.sat.Count >= GodsOnMapMath.SittersAVisit ? "CC_GodM_Menu_SatEnough".Translate().Resolve() : null;
+                yield return not != null ? new FloatMenuOption(sit + " (" + not + ")", null) : new FloatMenuOption(sit, () =>
+                {
+                    var def = DefDatabase<JobDef>.GetNamedSilentFail(JobDriver_SitNearSacredAnimal.JobName);
+                    if (def != null) c.jobs.TryTakeOrderedJob(JobMaker.MakeJob(def, a), JobTag.Misc);
+                });
+            }
+            if (GodShapes.Leads(god) && !GodsOnMapMath.Follows(a.BodySize))
             {
                 string why = s.hurt ? "CC_GodM_Menu_Hurt".Translate().Resolve() : s.led ? "CC_GodM_Menu_Led".Translate(kind.Named("KIND")).Resolve()
                     : s.follower != null ? "CC_GodM_Menu_Following".Translate(s.follower.LabelShort.Named("PAWN")).Resolve() : null;
@@ -104,6 +118,7 @@ namespace ColonyCouncil
                     if (!SacredAnimal.Lead(s, c)) Messages.Message("CC_GodM_Menu_CantLead".Translate(kind.Named("KIND")).Resolve(), MessageTypeDefOf.RejectInput, false);
                 });
             }
+            if (!GodShapes.Feeds(god)) yield break;
             var food = JobDriver_FeedSacredAnimal.FoodFor(c, a);
             string feed = "CC_GodM_Menu_Feed".Translate(kind.Named("KIND")).Resolve();
             if (s.hurt) yield return new FloatMenuOption(feed + " (" + "CC_GodM_Menu_Hurt".Translate().Resolve() + ")", null);
@@ -151,7 +166,7 @@ namespace ColonyCouncil
 
         public override bool TryMakePreToilReservations(bool errorOnFailed) => pawn.Reserve(job.targetA, job, 1, job.count, null, errorOnFailed);
 
-        public override string GetReport() => "CC_GodM_Job_Feed".Translate((Beast?.def.label ?? "?").Named("KIND")).Resolve();
+        public override string GetReport() => "CC_GodM_Job_Feed".Translate((Beast == null ? "?" : SacredAnimal.Called(Beast, GodsOnMapBook.Instance?.beast?.God)).Named("KIND")).Resolve();
 
         protected override IEnumerable<Toil> MakeNewToils()
         {
@@ -190,6 +205,57 @@ namespace ColonyCouncil
             watch.defaultDuration = 240;
             watch.handlingFacing = true;
             yield return watch;
+        }
+    }
+
+    /// <summary>
+    /// Sitting near the god's beast while it grazes: walking out to it, sitting a while beside it as it stands still for
+    /// them (an hour; a child only long enough to reach up and touch its horn), and coming away changed (SacredAnimal.SatBy).
+    /// </summary>
+    public class JobDriver_SitNearSacredAnimal : JobDriver
+    {
+        public const string JobName = "Rimfolk_SitNearSacredAnimal";
+
+        private Pawn Beast => job.targetA.Thing as Pawn;
+
+        private bool Child => pawn.DevelopmentalStage.Child();
+
+        public override bool TryMakePreToilReservations(bool errorOnFailed) => true;
+
+        public override string GetReport() =>
+            (Child ? "CC_GodM_Job_Horn" : "CC_GodM_Job_Sit").Translate((Beast == null ? "?" : SacredAnimal.Called(Beast, GodsOnMapBook.Instance?.beast?.God)).Named("KIND")).Resolve();
+
+        protected override IEnumerable<Toil> MakeNewToils()
+        {
+            this.FailOn(() => Beast == null || !Beast.Spawned || Beast.Dead || Beast.Downed || !SacredAnimal.Is(Beast) || GodsOnMapBook.Instance?.beast?.hurt == true);
+            yield return Toils_Goto.GotoThing(TargetIndex.A, PathEndMode.Touch);
+            var sit = ToilMaker.MakeToil("SitNear");
+            sit.initAction = () =>
+            {
+                var beast = Beast;
+                if (beast == null) return;
+                try
+                {
+                    // together: it stands still for them while they sit beside it.
+                    var stay = JobMaker.MakeJob(JobDefOf.Wait, beast.Position);
+                    stay.expiryInterval = Child ? 400 : GenDate.TicksPerHour + 200;
+                    beast.jobs.StartJob(stay, JobCondition.InterruptForced);
+                    beast.rotationTracker.FaceTarget(pawn);
+                }
+                catch (Exception e)
+                {
+                    CouncilLog.ErrorOnce("gods: the beast standing for someone", e);
+                }
+            };
+            sit.tickIntervalAction = delta =>
+            {
+                if (Beast != null) pawn.rotationTracker.FaceTarget(Beast);
+            };
+            sit.defaultCompleteMode = ToilCompleteMode.Delay;
+            sit.defaultDuration = Child ? 300 : GenDate.TicksPerHour;
+            sit.handlingFacing = true;
+            yield return sit;
+            yield return Toils_General.Do(() => SacredAnimal.SatBy(pawn));
         }
     }
 }

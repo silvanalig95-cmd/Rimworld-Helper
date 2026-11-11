@@ -7,8 +7,8 @@ colony of 20, with the game keeping 30 more people it knows and 5 more each year
 generous guesses; sizes are rough XML sizes. Caps named as constants are read from the source. "Counted under" rows are
 kept inside another record (a journal's lines, a heart's lists) and are already in that record's size.
 
-Saved collections found: 644; modelled: 644; growing without end: 0.
-Rimfolk's part of the save, roughly: **2,870 KB** after a year, **3,527 KB** after two, **3,868 KB** after five.
+Saved collections found: 646; modelled: 646; growing without end: 0.
+Rimfolk's part of the save, roughly: **2,870 KB** after a year, **3,528 KB** after two, **3,869 KB** after five.
 
 | Collection | Rule | Kind | 1 year | 2 years | 5 years | KB at 5 years |
 |---|---|---|---|---|---|---|
@@ -467,6 +467,8 @@ Rimfolk's part of the save, roughly: **2,870 KB** after a year, **3,527 KB** aft
 | `Camps/CampRequests.cs:stallWares` | a few stacks their trader set out by the gate for a day's stall, while it lasts | while | 3 | 3 | 3 | 0.1 |
 | `Couriers/CourierTrip.cs:mounts` | the mounts a trip's people ride in on (Giddy-Up), while it lasts | while | 3 | 3 | 3 | 0.1 |
 | `Couriers/CourierTrip.cs:people` | a trip's people, while it lasts | while | 3 | 3 | 3 | 0.1 |
+| `Gods/OnMap/SacredAnimal.cs:kin` | the beast's kin following at a distance, while it stays (a few times in a long game) | while | 3 | 3 | 3 | 0.1 |
+| `Gods/OnMap/SacredAnimal.cs:sat` | those who sat near the great beast this visit, while it stays | while | 3 | 3 | 3 | 0.1 |
 | `Happenings/Happenings.cs:things` | per departed record | fixed | 3 | 3 | 3 | 0.1 |
 | `Happenings/Happenings.cs:touched` | per visit | fixed | 3 | 3 | 3 | 0.1 |
 | `PlayOut/OnMapTimed.cs:things` | per thing kept: its lanterns (OnMapMath.MaxLanterns at most), the fire, the door | fixed | 3 | 3 | 3 | 0.1 |
