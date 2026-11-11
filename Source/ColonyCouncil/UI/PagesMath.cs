@@ -160,6 +160,7 @@ namespace ColonyCouncil
             ["Map"] = "Council_Alm_C_Region",
             ["Peoples"] = "Council_Alm_C_Diplomacy",
             ["HereAndAway"] = "Council_Alm_C_Neighbours",
+            ["Gods"] = "Council_Alm_C_Gods",
             ["WorldHistory"] = "Council_Alm_C_WorldMemory",
             ["Plan"] = "Council_Alm_C_Ahead",
             ["Priorities"] = "Council_Alm_C_Priorities",

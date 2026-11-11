@@ -10,8 +10,8 @@
 
   <HediffDef>
     <defName>Rimfolk_GodAvatar</defName>
-    <label>a god within</label>
-    <description>A god walks in this body. It is larger than it should be, it shines in its god's colors, and the ground answers where it steps.</description>
+    <label>something within</label>
+    <description>Whatever walks in this body is larger than it should be, shines in colors of its own, and the ground answers where it steps.</description>
     <hediffClass>HediffWithComps</hediffClass>
     <defaultLabelColor>(0.95, 0.82, 0.5)</defaultLabelColor>
     <isBad>false</isBad>

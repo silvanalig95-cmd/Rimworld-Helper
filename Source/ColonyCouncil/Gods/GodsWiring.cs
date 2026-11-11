@@ -16,8 +16,15 @@ namespace ColonyCouncil
     {
         static GodsWiring()
         {
-            GodPresenceSeam.Manifest = s => GodPresence.Manifest(LookOf(s.god), GodLore.LabelFor(Gods.Name(s.god)), null, s.map, s.cell, s.kind, s.avatar, s.title,
-                s.text, s.veiled, s.god.colour, s.god.colour2);
+            GodPresenceSeam.Manifest = s =>
+            {
+                // The card names the god only when the colony knows it was its doing (Gods.CardName), or a god reveals itself
+                // in front of everyone; otherwise it is veiled: what was seen, no name.
+                string known = Gods.CardName(s.god, s.map);
+                bool veiled = s.veiled && known == null && s.kind != PresenceKind.Reveal;
+                return GodPresence.Manifest(LookOf(s.god), known ?? GodLore.LabelFor(Gods.Name(s.god)), null, s.map, s.cell, s.kind, s.avatar, s.title, s.text, veiled,
+                    s.god.colour, s.god.colour2);
+            };
             GodLookSeam.MakeAvatar = (p, god, disguised) => GodAvatar.Make(p, LookOf(god), Gods.Name(god), disguised, god.colour, god.colour2);
             HediffComp_GodAvatar.Label = GodLore.LabelFor;
         }

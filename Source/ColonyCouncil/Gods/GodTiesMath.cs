@@ -305,7 +305,7 @@ namespace ColonyCouncil
         // ================= Favour spills over =================
 
         /// <summary>How much of a gain a rival feels against it, and an ally with it (times the tie's strength).</summary>
-        public const float RivalShare = 0.25f, AllyShare = 0.15f, KinShare = 0.1f, LoverShare = 0.2f, EstrangedShare = 0.2f, WrongShare = 0.3f, ReturnShare = 0.8f;
+        public const float RivalShare = 0.25f, AllyShare = 0.15f, KinShare = 0.1f, LoverShare = 0.2f, EstrangedShare = 0.2f, WrongShare = 0.3f, ReturnShare = 0.5f;
 
         /// <summary>
         /// What a change of favour with one god does to another it is tied to (the player: "raising favour with a god a

@@ -79,6 +79,9 @@ namespace ColonyCouncil
             if (values == null || !Gods.On) return;
             try
             {
+                // A letter before this one that never got its words leaves nothing behind.
+                GodTales.lastLetterGod = null;
+                GodTales.lastLetterTeller = null;
                 var g = Gods.SwearBy(writer) ?? (f != null ? Gods.Of(f).FirstOrDefault(x => x.kind != GodKind.Dead) : null);
                 if (g == null) return;
                 Gods.Fill(values, g);

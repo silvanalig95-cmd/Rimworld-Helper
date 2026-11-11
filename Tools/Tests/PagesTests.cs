@@ -62,10 +62,10 @@ public static class PagesTests
         C(Same(PagesMath.PagesIn(RimfolkWindow.Council, "Council"), "Decrees", "Ambition", "Ways", "Wishes", "Dilemmas"),
             "Council: offices and decrees, ambition, ways, wishes, dilemmas");
         C(Same(PagesMath.PagesIn(RimfolkWindow.Council, "Colony"), "Overview", "Calendar", "Chronicle"), "Colony: overview, calendar, chronicle");
-        C(Same(PagesMath.PagesIn(RimfolkWindow.World), "Map", "Peoples", "HereAndAway", "WorldHistory"),
-            "the region window in four views (UI 2): the map first, then peoples, here and away, history");
-        C(Same(PagesMath.ViewsOf(RimfolkWindow.World), "Map", "Peoples", "HereAndAway", "WorldHistory") && PagesMath.HasViews(RimfolkWindow.World),
-            "the region window's four views, each one page with its own modes and lenses as parts of its address");
+        C(Same(PagesMath.PagesIn(RimfolkWindow.World), "Map", "Peoples", "HereAndAway", "Gods", "WorldHistory"),
+            "the region window in five views (UI 2): the map first, then peoples, here and away, the colony's book of the gods, history");
+        C(Same(PagesMath.ViewsOf(RimfolkWindow.World), "Map", "Peoples", "HereAndAway", "Gods", "WorldHistory") && PagesMath.HasViews(RimfolkWindow.World),
+            "the region window's five views, each one page with its own modes and lenses as parts of its address");
         C(Same(PagesMath.PagesIn(RimfolkWindow.Defense), "Defenses"), "the defense window has the Defenses page, and only there");
         C(Same(PagesMath.ViewsOf(RimfolkWindow.Planning), "Plan", "Base", "Making", "Rooms"), "the planning window: Plan, Base, Making, Rooms");
         C(Same(PagesMath.PagesIn(RimfolkWindow.Planning, "Plan"), "Plan", "Priorities"), "Plan: the plan, and the advisor's priorities joined to it");
@@ -153,7 +153,9 @@ public static class PagesTests
         foreach (var kv in PagesMath.Lenses)
             C(names.Contains(kv.Key) && kv.Value.Length <= PagesMath.MaxLenses && kv.Value.Distinct().Count() == kv.Value.Length, $"{kv.Key} has at most {PagesMath.MaxLenses} lenses, each once");
         C(PagesMath.LensesOf("Map").SequenceEqual(RegionViewsMath.Lenses.Select(l => l.ToString())), "the map's lenses by address are the lens bar's, in its order");
-        C(Same(PagesMath.ModesOf("Map"), "Map", "List") && Same(PagesMath.ModesOf("Peoples"), "Peoples", "Faces", "Gods"), "Map or List; Peoples, Faces or Gods");
+        C(Same(PagesMath.ModesOf("Map"), "Map", "List") && Same(PagesMath.ModesOf("Peoples"), "Peoples", "Faces"), "Map or List; Peoples or Faces (the gods have no page of their own under Peoples)");
+        C(PagesMath.TryAddress("Peoples/Gods", out var oldGods) && oldGods.page == "Peoples" && oldGods.mode == null && PagesMath.Resolve("Gods") == "Gods",
+            "the old address Peoples/Gods is the Peoples view; Gods is the colony's book of the gods");
         C(PagesMath.ModesOf("HereAndAway").Length == 0 && PagesMath.ModesOf("WorldHistory").Length == 0, "Here and away and History have no modes (History's scope is its filter)");
         foreach (var kv in PagesMath.MovedFilters) C(PagesMath.Moved.ContainsKey(kv.Key), $"the old name {kv.Key} that is a filter now also leads to its page");
 

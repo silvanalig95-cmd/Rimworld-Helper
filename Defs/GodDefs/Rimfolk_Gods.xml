@@ -83,6 +83,7 @@
           <li>Whoever finds the first tree hears Hollin's whole name, and never sleeps again.</li>
         </pieces>
         <retelling>Our old ones tell that Hollin's heart is the first anima tree, grown somewhere nobody has found, and that every other anima tree is only a place where she comes up close to listen. They say whoever finds the first tree hears her whole name spoken at once, and never sleeps again. I have never wanted to find it.</retelling>
+        <teaches><li>AnimaTreeSpawn</li><li>GauranlenPodSpawn</li></teaches>
       </li>
       <li>
         <key>Hollin_Valley</key>
@@ -93,6 +94,7 @@
           <li>In the end the wall stood in a forest, and nobody remembers the town's name.</li>
         </pieces>
         <retelling>My grandfather told of a town that cut its whole valley bare to build one great wall. Every spring after, the roots came up through their floors, a hand higher each year, until the people gave up and left. The wall still stands, he said, in the middle of a forest, and nobody remembers what the town was called.</retelling>
+        <teaches><li>CropBlight</li></teaches>
       </li>
       <li>
         <key>Hollin_Morel</key>
@@ -216,6 +218,7 @@
           <li>Smoulder kept his word exactly: the chief had never asked for real gold.</li>
         </pieces>
         <retelling>The old tribes had a bargain with Smoulder: they threw silver down into the deep places, and the mountain gave back gold. One year a chief kept back a single coin for himself, and the gold that came up was only lead with a skin of gilt on it. Smoulder had kept his word to the letter, our miners say. The chief had never once asked for real gold, and nobody has made that mistake since.</retelling>
+        <teaches><li>Council_Evt_RichSeam</li></teaches>
       </li>
       <li>
         <key>Smoulder_Name</key>
@@ -246,6 +249,7 @@
           <li>The wind laid the grass flat, and every miner in the hills had the same dream that night.</li>
         </pieces>
         <retelling>Twice in living memory a shadow has crossed the whole land at noon, my grandmother said, with a wind that laid the grass flat, and nobody saw anything in the sky to cast it. That night every miner in the hills had the same dream, of something stretching after a long sleep. She said it was only Smoulder turning over, and that we should all hope he never gets up.</retelling>
+        <teaches><li>Council_Evt_Rockslide</li><li>Earthquake</li><li>VEE_Earthquake</li></teaches>
       </li>
     </stories>
     <ties>
@@ -338,6 +342,7 @@
           <li>Some say his round never closes, because he keeps finding more world to walk.</li>
         </pieces>
         <retelling>Bellwether walks one slow round of the whole world, and it takes him a lifetime. You can follow his road by the grass, which comes back greener wherever he has grazed, and our herders have walked a stretch of it more than once. Some say the round never closes, because every time he comes near the start he finds a little more world to walk.</retelling>
+        <teaches><li>ThrumboPasses</li><li>HerdMigration</li></teaches>
       </li>
       <li>
         <key>Bellwether_Children</key>
@@ -464,6 +469,7 @@
           <li>That's why the cold room's power fails at the worst hour, the old ones say.</li>
         </pieces>
         <retelling>Hush keeps the dead whole and unrotting under the snow, and Morel has never forgiven it for that. The old ones say every freezer is a little winter, kept on purpose, and that Morel takes it as Hush's doing and the colony's both. That is why the power in a cold room always seems to fail at the worst hour. I do not say I believe it. I do say our cold room failed twice last summer.</retelling>
+        <teaches><li>CropBlight</li></teaches>
       </li>
       <li>
         <key>Morel_Mourner</key>
@@ -474,6 +480,7 @@
           <li>A widow spoke to her once, and Morel answered, softly, and much too close.</li>
         </pieces>
         <retelling>Sometimes, they say, Morel gathers a shape out of her threads and stands beside a graveyard like a mourner, pale and patient, with her head bowed. If you see her there you should not speak to her, because she is only waiting for what is hers. A widow in my grandmother's village spoke to her once. Morel answered, softly and kindly and much too close, and the widow would never tell anyone what she said.</retelling>
+        <teaches><li>Council_Evt_MushroomFlush</li></teaches>
       </li>
     </stories>
     <ties>
@@ -571,6 +578,7 @@
           <li>One child left a bowl out on a step, and that bowl is why Ennu is still with us.</li>
         </pieces>
         <retelling>There was a winter, the old ones say, when no door in the world would open to a stranger, for fear of what was going round. The Guest went from gate to gate and grew so thin that you could see the snow through it. Then one child left a bowl of porridge out on a step, against her father's word, and that one bowl is why the Guest is still with us. We still leave one out, the first night of every winter.</retelling>
+        <teaches><li>WandererJoin</li><li>Council_Evt_MidwinterGuest</li></teaches>
       </li>
       <li>
         <key>Ennu_Name</key>
@@ -589,6 +597,7 @@
           <li>Nobody in that town was ever sure again who was knocking at the door.</li>
         </pieces>
         <retelling>A rich town on the river once turned a beggar out into a storm, and as he went the beggar turned at the gate and thanked every one of them, by name, for their hospitality. Nobody in that town was ever quite sure again who was knocking at their door, and the town is a ruin now. Our pilgrims will not sleep there, even in summer.</retelling>
+        <teaches><li>Council_Evt_QuietStranger</li><li>StrangerInBlackJoin</li></teaches>
       </li>
       <li>
         <key>Ennu_News</key>
@@ -685,6 +694,7 @@
           <li>Pip has been growing ever since, louder with every wire we lay.</li>
         </pieces>
         <retelling>Here is how the linemen tell it. Pip was born in the first spark that ever jumped on this world, from the first generator anyone brought down from the sky. It cried for three days and three nights, and every light in the camp flickered with it until somebody thought to sing to the machine. It has been growing ever since, a little louder with every wire we lay.</retelling>
+        <teaches><li>ShortCircuit</li></teaches>
       </li>
       <li>
         <key>Pip_Archotechs</key>
@@ -714,6 +724,7 @@
           <li>When the mechanic said sorry to Pip, the cooler stopped, and never broke again.</li>
         </pieces>
         <retelling>A mechanic we knew once cut the power to a cooler that had been giving her trouble, and it went on running for most of an hour, just to show it could. She stood there and said sorry to it, out loud, feeling foolish, and the cooler stopped, and it never broke down again for as long as she lived. She told that story at every wedding.</retelling>
+        <teaches><li>Rimfolk_Evt_TwitchingScrap</li></teaches>
       </li>
     </stories>
     <peoples>
@@ -807,6 +818,7 @@
           <li>Look up on the coldest night, and now and then Cirrus turns toward you.</li>
         </pieces>
         <retelling>The aurora, they say, is Cirrus turning over in its sleep, high above the clouds. On the coldest night of the year, if you stand outside long enough and keep looking up, now and then it turns toward you, and the light comes down so close you could read by it. My aunt swore she did, once. It was a letter from her sweetheart, and she married him.</retelling>
+        <teaches><li>Aurora</li><li>VEE_Aurora</li></teaches>
       </li>
       <li>
         <key>Cirrus_Bellwether</key>
@@ -826,6 +838,7 @@
           <li>It was full of good metal, and she was too old to lift it by then, so she laughed.</li>
         </pieces>
         <retelling>There was a girl who watched the sky every night of her life, from a roof in a town nobody remembers, and wrote down every star she saw. When she was very old, Cirrus dropped a star outside her door, full of good metal. She was too old by then to lift a single piece of it, and the story says she sat down beside it and laughed until her grandchildren came out to see what was the matter.</retelling>
+        <teaches><li>MeteoriteImpact</li><li>Council_Evt_Starfall</li><li>Council_Evt_StarIron</li></teaches>
       </li>
     </stories>
     <ties>
@@ -931,6 +944,7 @@
           <li>Hush has walked every winter since, to see who is still afraid.</li>
         </pieces>
         <retelling>The first night Hush walked, the old songs say, every sound in the world stopped for the length of one breath: no wind, no dogs, no fire crackling. In that breath people heard their own hearts beating for the first time, and they were afraid of the sound. Hush has walked every winter since, quietly, to see who is still afraid of it.</retelling>
+        <teaches><li>ColdSnap</li><li>Council_Evt_KillingFrost</li></teaches>
       </li>
       <li>
         <key>Hush_Word</key>
@@ -1039,6 +1053,7 @@
           <li>A man asked never to be hungry again, and after that nothing he ate tasted of anything.</li>
         </pieces>
         <retelling>Undertow listens to anyone who asks it for anything, and it always says yes. That is the whole danger of it. It gives exactly what was asked, to the letter, and then slowly takes more than was agreed. There was a man in the hard years who asked it never to be hungry again. He never was, not for the rest of his life, and nothing he ate ever tasted of anything at all.</retelling>
+        <teaches><li>PsychicDrone</li></teaches>
       </li>
       <li>
         <key>Undertow_Fear</key>
@@ -1174,6 +1189,7 @@
           <li>You can't bargain with the sun, you can only use the day well.</li>
         </pieces>
         <retelling>Helios faces outward forever and never sees what becomes of what he gives. A farmer once stood in his field and offered him half the harvest for one dry week at reaping time. He got a dry week, and then a dry month, and then a drought, because Helios had not heard a word of it and was simply giving, as he always does. You cannot bargain with the sun, our old ones say. You can only use the day well.</retelling>
+        <teaches><li>HeatWave</li><li>Drought</li><li>VEE_Drought</li></teaches>
       </li>
       <li>
         <key>Helios_Flare</key>
@@ -1184,6 +1200,7 @@
           <li>Pip has never forgiven Helios for the first flare.</li>
         </pieces>
         <retelling>When Helios gives too much, the linemen say, it overflows into every machine on the world, and Pip screams in every wire at once. The first time it happened Pip was very young and thought it was dying. It has never forgiven the sun for that, though the sun has no idea, and on the morning after a flare our radios crackle for hours like something sulking.</retelling>
+        <teaches><li>SolarFlare</li><li>VGE_SpaceSolarFlare</li></teaches>
       </li>
       <li>
         <key>Helios_LooksBack</key>
@@ -1311,6 +1328,7 @@
           <li>A trapper left a wolf to die in a snare, and a year later it was at his door.</li>
         </pieces>
         <retelling>What you do by day, Selene gives back by night. A kindness comes home as something found, a good dream, a wound healed by morning. A cruelty comes home too: a nightmare, a hard frost, a door that won't stay shut. There was a trapper who left a wolf to die in a snare because freeing it was too much trouble. A year later, on a full moon, it was waiting at his door.</retelling>
+        <teaches><li>Council_Evt_NemesisReturns</li><li>Council_Evt_FormerPatient</li></teaches>
       </li>
       <li>
         <key>Selene_Face</key>
@@ -1332,6 +1350,7 @@
           <li>For a few minutes the world sees what Selene sees: his light, and the dark behind it.</li>
         </pieces>
         <retelling>Selene loves Helios, the old ones say, and whether he knows she exists nobody can tell: he faces the world, and she is always behind him or across from him, catching what he gives. Once in a long while she steps between him and the world, and for a few minutes everyone sees what she sees, his light and the dark behind it. Then she steps away again, and the birds start up, and nobody talks about it much.</retelling>
+        <teaches><li>Eclipse</li><li>AA_Eclipse</li><li>Council_Evt_Eclipse</li></teaches>
       </li>
     </stories>
     <ties>
@@ -1445,6 +1464,7 @@
           <li>And when Mog gets up and goes, the luck goes with her, so be kind while it lasts.</li>
         </pieces>
         <retelling>Mog chooses people, the old ones say. She will sit on one person's lap all season and nobody else's, and nobody has ever worked out why. The one she chooses has a lucky season: a fever passes them by, a fall breaks nothing, a horse that should have thrown them doesn't. Then one day she gets up and goes, and the luck goes with her, so be kind to her while it lasts.</retelling>
+        <teaches><li>Council_Evt_Stray</li></teaches>
       </li>
       <li>
         <key>Mog_Ennu</key>
@@ -1569,6 +1589,7 @@
           <li>When Murmur is silent the land goes dry, so sing back to the wells.</li>
         </pieces>
         <retelling>When Murmur sings down in the deep wells, the rain comes. You feel the croaking in your chest a whole day before you hear anything, the farmers say, like a cart going over a bridge somewhere far off. And when it falls silent the land goes dry, which is why every well in our valley has someone who sings to it on the first of the month, badly but faithfully.</retelling>
+        <teaches><li>Council_Evt_LongRains</li><li>VEE_FertileRains</li></teaches>
       </li>
       <li>
         <key>Murmur_Marsh</key>
@@ -1578,6 +1599,7 @@
           <li>Three dry years later Murmur woke up furious, and the flood took fields and town.</li>
         </pieces>
         <retelling>There was a town that drained its marsh for wheat, ditch by ditch, and was proud of it. Murmur went quiet that year, and there was no rain the next, or the one after. In the third year it woke up furious, and the flood took the wheat, the ditches and the town together. The marsh is back now, and the toads in it are very loud.</retelling>
+        <teaches><li>SeasonalFlooding</li><li>Council_Evt_HighWater</li></teaches>
       </li>
       <li>
         <key>Murmur_Hush</key>
@@ -1698,6 +1720,7 @@
           <li>He sold what was on that line the next day for ten times its worth.</li>
         </pieces>
         <retelling>A merchant of the road, working late over his books, watched a golden beetle walk across his ledger and stop on one line, and stay there until he had read it twice. He sold what was on that line the very next day for ten times what it was worth. He never saw the beetle again, but he kept the ledger open on his table for the rest of his life.</retelling>
+        <teaches><li>TraderCaravanArrival</li><li>OrbitalTraderArrival</li><li>Council_Evt_FarMarket</li></teaches>
       </li>
       <li>
         <key>Ducat_Miser</key>

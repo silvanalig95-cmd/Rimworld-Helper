@@ -102,7 +102,7 @@ namespace ColonyCouncil
         // ---------------- Making and unmaking ----------------
 
         /// <summary>
-        /// Makes <paramref name="p"/> a god's: <paramref name="name"/> is how it is known ("the Storm-father");
+        /// Makes <paramref name="p"/> a god's: <paramref name="name"/> is its key, which the colony's knowledge names (HediffComp_GodAvatar.Label);
         /// <paramref name="disguised"/>: it hides as what it seems until it is revealed. <paramref name="colorA"/> and
         /// <paramref name="colorB"/>: the god's own colours where it has them (the look's otherwise). A pawn already a
         /// god's takes the new look and name. True when it is one.

@@ -162,7 +162,7 @@ namespace ColonyCouncil
                 UiKit.RowHover(r);
             }
             UiKit.LabelFit(new Rect(r.x + 8f, r.y + 4f, r.width - 12f, 20f), label, on ? UiKit.Gold : UiKit.Ink);
-            if (!sub.NullOrEmpty()) UiKit.LabelFit(new Rect(r.x + 8f, r.y + 22f, r.width - 12f, 16f), "<i>" + sub + "</i>", UiKit.Faint, GameFont.Tiny);
+            if (!sub.NullOrEmpty()) UiKit.LabelFit(new Rect(r.x + 8f, r.y + 22f, r.width - 12f, 16f), sub, UiKit.Faint, GameFont.Tiny);
             if (Widgets.ButtonInvisible(r, false))
             {
                 SoundDefOf.Click.PlayOneShotOnCamera();

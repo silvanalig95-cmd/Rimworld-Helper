@@ -796,6 +796,25 @@ MODEL = {
     "Gods/GodBook.cs:deeds": ("cap", (const("Gods/GodBook.cs", "MaxDeeds", 240), 2), 110, "the deeds in a domain at a home a newborn god is born of: a year's, GodBook.MaxDeeds at most"),
     "Gods/God.cs:factions": ("fixed", 2, 40, "per god: the peoples that hold it (counted under gods)"),
     "Gods/God.cs:ideos": ("fixed", 1, 40, "per god: the faiths that hold it (counted under gods)"),
+    "Gods/God.cs:witnesses": ("fixed", 3, 20, "per act: the colonists who saw it, by name (counted under acts)"),
+    # The colony's own book of the gods (Gods/GodLore.cs): its entries, each a few lines of text in the keeper's voice
+    # with its witnesses' names, GodLoreMath.MaxEntries kept (the oldest let go), a few a week at most (the hands are weeks
+    # apart, talk at most once an evening); the names it has heard the gods by, GodLoreMath.MaxNames at most; how much of
+    # each story it has heard (one a story); each god's last hand and each home's, and its last talk; the hands seen lately,
+    # for neighbours' letters (eight at most); the stories retold in letters (one a story); and how many of the gods'
+    # doings each colonist has seen.
+    "Gods/GodLore.cs:entries": ("cap", (const("Gods/GodLoreMath.cs", "MaxEntries", 600), 0.5), 420, "the colony's book: an entry in the keeper's voice, with its date and witnesses, GodLoreMath.MaxEntries kept"),
+    "Gods/GodLore.cs:who": ("fixed", 3, 20, "per entry: the colonists who saw it or believe it, by name (counted under entries)"),
+    "Gods/GodLore.cs:names": ("cap", (const("Gods/GodLoreMath.cs", "MaxNames", 60), 0.05), 200, "the names the colony has heard the gods by, each a page of the book"),
+    "Gods/GodLore.cs:told": ("fixed", 60, 40, "how much of each old story the colony has heard, one a story"),
+    "Gods/GodLore.cs:lastHand": ("fixed", 14, 40, "each god's last hand remarked on"),
+    "Gods/GodLore.cs:lastHandAt": ("fixed", 4, 30, "each home's last god's hand remarked on"),
+    "Gods/GodLore.cs:lastTalk": ("fixed", 4, 30, "each home's last talk of the gods"),
+    "Gods/GodLore.cs:hands": ("fixed", 8, 140, "the gods' hands seen lately, for a neighbour's letter, eight at most"),
+    "Gods/GodLore.cs:retold": ("fixed", 60, 30, "the stories retold whole in a neighbour's letter, one a story"),
+    "Gods/GodLore.cs:seen": ("cap", (COLONISTS, 0.01), 40, "how many of the gods' doings each colonist has seen, by name"),
+    "Gods/GodLore.cs:seenActing": ("fixed", 14, 10, "the gods the colony has seen act plainly, one a god at most"),
+    "Gods/GodLore.cs:signs": ("fixed", 60, 40, "the signs the colony has learned as a god's own, a few a god"),
     # The peoples' ages as they change (Peoples/PeopleAges.cs): one record a people of Rimfolk's (a reference and ten
     # values: its age now and the one it began in, its progress, when it was first heard of, looked at and last changed,
     # its heading and why), made the first time the region's day looks at it; the fifteen at once, and one for each that

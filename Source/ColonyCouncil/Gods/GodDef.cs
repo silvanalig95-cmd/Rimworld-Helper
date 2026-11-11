@@ -100,7 +100,7 @@ namespace ColonyCouncil
             foreach (var e in base.ConfigErrors()) yield return e;
             if (key.NullOrEmpty() || !GodLoreMath.Keys.Contains(key)) yield return "a god's key is one of the nine short names (" + string.Join(", ", GodLoreMath.Keys) + ")";
             if (defName != "Rimfolk_God_" + key) yield return "a god's defName is Rimfolk_God_ and its key";
-            if (epithet.NullOrEmpty() || !epithet.StartsWith("the ")) yield return "a god's epithet is a noun phrase beginning \"the \"";
+            if (epithet.NullOrEmpty()) yield return "a god has an epithet (\"the Rootmother\", \"Old Croak\")";
             if (godOf.NullOrEmpty()) yield return "a god says what it is (godOf)";
             if (unheard.NullOrEmpty()) yield return "a god says what people see of it before they have heard of it (unheard)";
             if (tribalNames.NullOrEmpty() || medievalNames.NullOrEmpty() || industrialNames.NullOrEmpty() || spacerNames.NullOrEmpty())
@@ -135,6 +135,8 @@ namespace ColonyCouncil
         [MustTranslate] public List<string> pieces = new List<string>();
         [MustTranslate] public string retelling;
         public List<string> with = new List<string>();
+        /// <summary>The signs it explains as the god's own (events' def names): heard whole, the colony knows them (GodLore.LearnSign, Gods.CardName).</summary>
+        public List<string> teaches = new List<string>();
     }
 
     /// <summary>A tie authored between two of the nine: the other's key, what it is, how strong, and its words (one sentence, as people say it).</summary>

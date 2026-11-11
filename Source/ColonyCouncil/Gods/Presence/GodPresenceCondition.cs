@@ -8,7 +8,7 @@ namespace ColonyCouncil
     /// <summary>
     /// A god's presence on the sky (docs/design/gods.md, "Presence"; the game's eclipse is the pattern): for a few hours
     /// after a coming the sky takes the god's colour (dimmed for a wrath, never for a blessing) and the wind dies
-    /// (GodPresencePatches.cs stills it). Named as the card names the god: plainly ("the presence of the Storm-father"),
+    /// (GodPresencePatches.cs stills it). Named as the card names the god: plainly ("the presence of the Old Horn"),
     /// or, veiled, as what anyone can see ("a strange stillness").
     /// </summary>
     public class GameCondition_GodPresence : GameCondition

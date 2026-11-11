@@ -12082,7 +12082,73 @@ simple meal, and none of the player's active mods adds simple variants.
 - Rimfolk counts them as simple meals wherever it reads a meal's preferability (feasts, hosting, the road food, the
   rider's supplies, the stores panel); the storage review groups them with the meals. Tested in `DietMealsTests`.
 
-### The gods: the pantheon (the player's request, 11 November 2026; released 0.215.0)
+### The gods: fourteen, unseen, and the colony's own book (the player's requests, 11 November 2026; not released)
+
+The player approved nine hand-made gods ("alright, great! you can go ahead with full implementation"), then made them an
+unseen presence: "the gods should also feel like an ominous presence ... more kind of seen as a sort of storyteller
+style aspect of the game ... but not in a way that I see what's going on", and the book only from the pawns' side:
+"information about the gods should only ever be like from the point of view of a the pawn. what they know, experienced,
+heard, believe, feel like doing etc. ... the gods should be above me as the player as well as the pawns". Then: "I mean
+in events etc the god can be named, if we know it's them that caused something". Five more joined the nine: the sun and
+the moon (Helios and Selene, the Gift and the Return), a cat (Mog), the rain toad (Murmur) and the restless gold (Ducat).
+The characters are `docs/gods-pantheon-brainstorm.md`; the contract the parts build to is `docs/design/gods.md`, its
+last section. The generated pantheon of 0.215.0 (below, retired) is replaced; the machinery stays as hidden state.
+
+- **The gods as defs** (`Gods/GodDef.cs`, `Defs/GodDefs/Rimfolk_Gods.xml`): `Rimfolk_God_<Key>` for Hollin, Smoulder,
+  Bellwether, Morel, Ennu, Pip, Cirrus, Hush, Undertow, Helios, Selene, Mog, Murmur and Ducat. Each has its short name
+  (the label and the `key`), an epithet, names among the peoples by age (the first of each is what a speaker of that age
+  says), what it is, how it is seen, its character, what it wants, what pleases and angers it, sayings, believers' lines
+  (tagged `[gift]`, `[sign]`, `[wrath]`, `[walking]`, `[meeting]`), scoffers' answers, what a neighbour writes of its
+  hand, two to five stories (one-sentence pieces, a retelling for letters, the signs a story teaches), authored ties with
+  words (`GodTieSpec`; a kind of their own for the sun and moon, `GodTieKind.Return`: what is meant for Helios reaches
+  Selene, and Helios, `unmoved`, is never moved by favour), who reveres it (Rimfolk's 23 peoples and some of the player's
+  mods' factions by name, the rest by kind: `GodLoreMath.Reveres`, `Pantheon.KindsOf`), its colours, a domain and second
+  (the stage 2 fallback key only), nature, kind (Undertow the Hunger), its look and sacred animals, and what is seen of it
+  before anyone has heard of it (`unheard`).
+- **The pantheon from the defs** (`Gods/Pantheon.cs`, `GodBook.version`): one `God` a def (`God.def`, `FromDef` on every
+  load), the ties made from the defs on every load and never shifting. An older save's generated gods are dropped on load
+  with their standings, acts, ties and vows; one line in the world's voice the next hour (`CC_God_Retired`). Ideology's
+  deities are ignored for now. The colony holds the gods of its age's kind.
+- **Unseen** (the rule for every part): no page or list of the gods, no favour words, no news line saying what a god
+  thinks (favour, a god known, a tie, a fading god are hidden state); the god's card is cryptic, the world's voice, no
+  why; a felt god's card is unnamed. `Gods.CardName(god, home, sign)` names a god plainly only when the colony knows it
+  was its doing: the gods walk openly, the colony saw it act plainly (a manifestation, a disguised god revealing itself:
+  `GodLore.MarkActing`), or it learned the sign as the god's own (`GodLore.LearnSign`, also when a story that teaches it
+  is heard whole). The name over a god on the map is the colony's name for it, or what is seen of it
+  (`GodLore.LabelFor`; a disguised god shows only the name it gives).
+- **The hands in the game's events** (`Gods/GodHands.cs`, `GodHandsMath.cs`): a postfix on `IncidentWorker.TryExecute`
+  (off with the deeper hooks) notes an event of the table (by def name, else worker class; the game's, the DLCs',
+  Rimfolk's own and the player's mods'); the region's hour remarks on it, if the god's quiet spell (20 days) and the home's
+  (4 days) are over and the event's own chance holds. A believer (by credence: psychic sensitivity, certainty, age, being
+  too clever, what they have seen) says whose hand they take it for, over their head; they may be wrong
+  (`GodLoreMath.Attribute`: a god they know of, one they confuse it with, or "something"); while the gods are felt a
+  scoffer near them answers. Known for the god's own (`CardName`), it is named plainly and nobody doubts it. Selene's
+  hand is seen only at night. The act goes into the hidden history with its witnesses, the book has it as they saw and
+  said it, and a neighbour of a people that reveres the god may write of it a few days later (`{GODHAND}`).
+- **The colony's own book** (`Gods/GodLore.cs`, a GameComponent): entries with a date, witnesses (colonists by name) or a
+  teller (a visitor, a neighbour, a colonist), written once in the voice of its keeper (the chaplain, else Ideology's moral
+  guide, else the most devout, else the most lettered: devout, learned or plain; bare with nobody), the hand marked where
+  it changes. A god is in it only under the names the colony heard it by, each a page (`LoreName`), until someone works
+  out that two names are one (a colonist, `GodLoreMath.ConnectChance`, or a teller saying so). Beliefs side by side, the
+  scoffers too; mistakes written as believed, the truth never marked. The API for the other parts: `Saw(pawns, god,
+  words)`, `Heard(teller, god, words)`, `Believes(pawn, god, words)`, `Dreamt`, `Prayed`, `LearnSign`; every act
+  remembered through `Gods.Remember` gets witnesses when the caller gave none (the colonists awake in sight within 20
+  cells, or everyone for a sign with no place) and reaches the book if someone saw it.
+- **Stories through people** (`Gods/GodTales.cs`): at the evening fire someone who believes tells another near them the
+  next piece of an old story of their gods (in order, never all at once, `GodLoreMath.Next`), a saying, or a word on two
+  gods (the keeper, when devout, as a sermon); a visitor near a colonist tells their own gods' stories by their own names
+  for them; a neighbour's letter retells one whole (`{GODTALE}`), written into the book only once the words are in the
+  letter (`LetterForm.Compose` → `GodTales.Written`). A name heard in a story becomes a page.
+- **The book's page** (`Gods/GodLorePage.cs`): the region window's fifth view (address `Gods`, tab "Gods' book"): the
+  names down the side, the whole book, the things nobody could name; a page set large with its other names in italics,
+  when and from whom it was first heard, what people here believe, and every entry dated, in a readable column. No
+  favour, no colour that would give away which names are one.
+- **Retired:** the generated pantheon, the patrons (`GodPatronDef`), the domains' names, epithets and symbols (the
+  domain table stays as a fallback), the Gods page under Peoples, `GodSymbols` and its textures and script, the card's
+  emblem. Dev actions "Gods: ..." (show the gods, favour, realness, a hand here, every story, work out a name, open the
+  book, make the gods again). Tested in `GodsTests`; saved state modelled in `Tools/save_estimate.py`.
+
+### The gods: the pantheon (0.215.0; retired: the generated pantheon, its patrons and the Gods page, replaced by the section above)
 
 The player: "the concept of gods within RimWorld ... like a pantheon of gods ... that they actually are and interact and
 are into the lore and get referred to, and pawns react to gods", and "when I think of gods as kind of one reference, you
@@ -12167,7 +12233,7 @@ pure rules in `GodPresenceMath.cs` (linked, `GodPresenceTests`).
   take the look's, a robe and a crown are made (masterwork, the finest stuff allowed, recoloured, locked) and worn, the
   first of each list whose picture exists for the body (`ContentFinder`, so a robe for one body type is skipped for the
   others), what they cover kept in the pack and given back at the end (saved: `given`, `stored`); the hediff's stage
-  slows the walk to 0.8; the health page shows "a god within (its name)". In disguise (severity 0.5) nothing shows, the
+  slows the walk to 0.8; the health page shows "something within (the colony's name for it)". In disguise (severity 0.5) nothing shows, the
   hediff included. The registry (by pawn id) is what every hook looks at first.
 - **Drawn larger** (`Patch_GodDrawParms` on `PawnRenderer.GetDrawParms`): the root matrix scaled and lifted, never for
   portraits or the game's cached pictures; an animal's whole body tinted. The game draws pawns on worker threads, so
@@ -12179,7 +12245,9 @@ pure rules in `GodPresenceMath.cs` (linked, `GodPresenceTests`).
   and the light in a person's eyes; a pale god's colours pulled toward their own light by day
   (`GodPresenceMath.DayTint`). The light that follows it is the game's glower on an unsaved, unselectable thing
   (`GodLight`), moved to its cell every quarter second and re-registered. Motes rise every 35 to 55 ticks (the look's,
-  with one of Rimfolk's own in its colour). Its name over it (`MapComponentOnGUI`) at the zooms where names show.
+  with one of Rimfolk's own in its colour). Over it (`MapComponentOnGUI`, at the zooms where names show) the colony's
+  name for it, or what is seen of it when nobody here has heard of it (`HediffComp_GodAvatar.Label`, set to
+  `GodLore.LabelFor`); in disguise only the name it gives.
 - **The trail** (`GodTrails`, `GodPresenceMath.TrailAt`): what lasts (a flower or grass grown at once, a little snow,
   a scorch mark, ash, a puddle) on one step in three, forty a day at most, only on open natural ground, never a field,
   a floor or under a roof, the filth only outside the home area; flecks that fade otherwise.
@@ -12209,10 +12277,10 @@ pure rules in `GodPresenceMath.cs` (linked, `GodPresenceTests`).
   off, no fade, silence or track: the sting at once.
 - **The card** (`GodCard`, `GodLetter`, `GodCardWindow`, letter `Rimfolk_GodCard`, frame key `GodCard`): sent through
   `Tell.Letter` (important, never held), gold in the stack with a small bell, pausing only for those who pause for
-  every letter (a paused game silences the music); opened, dark paper in a double gold border, the god's symbol
-  glowing in its colour (the core's `Textures/ColonyCouncil/GodSymbols/<Domain>` when there, Rimfolk's star
-  otherwise), the god's name in its colour and its epithet, or "Some say" for a veiled one, the words in their own ink,
-  "Go there" and "Close". Its words by kind and veiled are `CC_GodP_Card_*` when the caller gives none.
+  every letter (a paused game silences the music); opened, dark paper in a double gold border, no symbol: the god named
+  set large in its colour only when the colony knows it was its doing (`Gods.CardName`), else veiled and unnamed
+  ("Nobody could say what it was"), the words in their own ink, cryptic and in the world's voice (what was seen and
+  heard, never why), "Go there" and "Close". Its words by kind and veiled are `CC_GodP_Card_*` when the caller gives none.
 - **Settings** (How you're told, On the map): *Gods' auras* (the halo, rings, motes, light and shine) and *Gods'
   music* (the fade, the silence, the track and the hum), both on. Dev actions *Gods: ...* make any person or animal a
   god's (shown or in disguise), bring an animal of a look's kinds, reveal, disguise and unmake, play each kind of

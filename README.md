@@ -1528,7 +1528,8 @@ Each part has its own rate on How much happens (*Pack alphas*, *Beast nemeses co
 ### A god on the map
 A god always looks like one, unless it hides on purpose. Each of the fourteen domains (Harvest, Storm, Hunt, Healing,
 War, Craft, Way, Dead, Night, Hearth, Wild, Waters, Machine, Void) has its look, with another form in another age where
-the age changes it (the Iron Spirit before machines, the Broker after; the War and the Craft among spacers):
+the age changes it (the Machine before machines and after; the War and the Craft among spacers), and each of the gods
+walks in the look of its own:
 - **Its body.** A person or an animal made a god's is drawn larger than its kind and walks slowly, never hurried. A
   person takes the god's skin, hair and light in the eyes, and a robe, cloak or mantle and a crown, hood or mask no
   mortal wears, recoloured in its colours: the game's own and the player's mods' (A RimWorld of Magic's archmage robes
@@ -1537,7 +1538,8 @@ the age changes it (the Iron Spirit before machines, the Broker after; the War a
 - **Its aura.** A soft halo and a slowly turning carved ring on the ground under it, a glow and a ring behind it that
   breathe, small lights rising off it in its colours (A RimWorld of Magic's holy lights, twinkles, flowers, bolts,
   ghosts and shadows, as its domain has them), a light that moves with it so the ground round it glows at night, a
-  shine over the dark, and its name over it in its colour. The ground answers where it walks: flowers, grass, a little
+  shine over the dark, and over it in its colour the name the colony knows it by, or what is seen of it ("a great
+  white thrumbo") when nobody here has heard of it. The ground answers where it walks: flowers, grass, a little
   snow, scorch marks, ash or puddles (never on a field, a floor or under a roof, filth only outside the home area), or
   sparks, light and shadow that fade.
 - **The world turns to it.** People and animals near it stop and look, one of them says so now and then; a god near
@@ -4266,24 +4268,21 @@ they lost, and their card and the region's page of peoples show their age and wh
 visitors come dressed and armed as the new age is (and nothing of a later age among a people that fell back), their
 camps are built its way and their traders carry its goods. Setting: *Peoples' ages change* (on).
 
-**The gods.** One pantheon for the whole world, and every people has gods it swears by. With Ideology they are each
-faith's own deities, what each is god of read from its own words and its faith's memes and precepts; without it, each
-people has two or three gods of its age, its ways and its land. Rimfolk's peoples each have a patron of their own: the
-Way of the road league, the Healer of the hospitallers, the Herdmother of the herders and the tamers, the Storm-father
-of the Stormglass Conclave, the Ferryman of the Quiet Bell, the Broker, an archotech, of the spacer enclave, and the
-rest. Gods take the form of their people's age (spirits, old gods and saints, half-forgotten gods and gods of the
-machine, archotechs), and they have ties as the old pantheons did: rivals over the rain, lovers and lovers estranged,
-parents and children, twins, allies and old wrongs, shifting over the years. Each has a nature (proud, jealous,
-generous, capricious, wrathful, patient, playful, cold or grieving), and some don't fit at all: archotechs that care
-nothing for offerings, the Hunger the Choir of the Spire keeps quiet for, a trickster, a dead god, a fading god, the
-Sleeper in the Sunken Vault, and in time perhaps a god born of the colony's own faith. The colony stands with each god at
-each home in words, from wrathful to beloved, by what it does: a big harvest, a threat beaten off, a great beast
-brought down, a funeral, and the dead left lying or a sacred animal slaughtered the other way; pleasing a god a little
-galls its rivals. Colonists swear by their gods now and then, and the neighbours' letters name theirs. The region
-window's Peoples has a Gods page: the colony's gods, the others it knows, the rumours of the rest, the whole pantheon as
-a web, and each god's symbol, people, domain, nature, ties and acts. Settings: *Gods* (on) and *How real are the gods*
-(Believed, Felt, Walking; Felt). The Almanac has a page, *the gods*.
-
+**The gods.** Fourteen gods, each a being with names and a character of its own: Hollin, whose body is the roots under
+the world; Smoulder, a dragon asleep under the mountains; Bellwether, the first thrumbo; Morel, the soft mother of rot
+and mushrooms; Ennu, the Guest who comes in many human shapes; Pip, the young god in the wires; Cirrus, who drifts
+above the clouds; Hush, who walks with winter; Undertow, the hunger under everything; Helios and Selene, the sun who
+gives without looking and the moon who returns at night what was done by day; Mog, a gray cat; Murmur, the toad who
+sings up the rain; and Ducat, the gold that will not stay still. They are an unseen presence, like a storyteller: no
+page tells you what a god thinks or wants. Their hands are in the world's own events (a thrumbo passing, a cold snap, an
+eclipse, a short circuit, mushrooms after rain), and you hear of them only as your colonists do: a believer says whose
+doing they think it was, sometimes wrongly, and while the gods are only felt someone near them says it was the weather.
+At the evening fire colonists tell each other the old stories a piece at a time, visitors tell their own people's by
+their own names for the gods, and neighbours' letters retell one whole or ask after something they heard happened at
+your place. The colony keeps its own book of the gods, a tab of the region window: what its people saw, were told and
+believe, dated and in the hand of whoever keeps it (the chaplain, the devout or the lettered), the names it has heard
+each god by, which may turn out to be one, and nothing more than they know. Every people reveres the gods its lore
+gives it. Settings: *Gods* (on) and *How real are the gods* (Believed, Felt, Walking; Felt).
 ## Scenarios with stakes
 Seventeen scenarios, marked "(Rimfolk)" on the scenario page with how hard they are. Each starts the game with
 something already in motion, and a few seconds in, a letter says how things stand.

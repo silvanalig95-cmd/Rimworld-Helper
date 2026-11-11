@@ -131,7 +131,7 @@ and sea), Machine, Void. Each has:
 - tracks;
 - sacred things: an animal kind, a plant, a place, a deed.
 
-## The patrons of Rimfolk's peoples
+## The patrons of Rimfolk's peoples (retired with the generated pantheon: who reveres whom is now the gods' defs, last section)
 
 | People | Patron |
 |---|---|
@@ -165,7 +165,7 @@ The core agent may tune the names to the peoples' lore files.
 
 ### Stage 1 (two agents side by side)
 
-**Core: the pantheon** (`Source/ColonyCouncil/Gods/`, `Defs/GodDefs/Rimfolk_Pantheon*.xml`; not `Gods/Presence/`).
+**Core: the pantheon** (`Source/ColonyCouncil/Gods/`, `Defs/GodDefs/Rimfolk_Pantheon*.xml`; not `Gods/Presence/`). Built as 0.215.0; its generated pantheon, patrons, Gods page and symbols are retired: the core is now the gods as defs, unseen, and the colony's own book (last section).
 - `GodDomain` (the enum above), `God` (a saved record):
   - id, name, epithet ("the Storm-father", "Who Walks the Dead"), domain and a second domain;
   - the age form, the people or faiths that hold it (faction and ideoligion refs), the Ideology deity it came from;
@@ -180,7 +180,7 @@ The core agent may tune the names to the peoples' lore files.
   - `Remember(GodAct)`, the history of acts;
   - `Name`, `Epithet`, `SwearBy(pawn)` (which god a pawn would swear by), and placeholders `{GOD}`, `{GODEPITHET}`,
     `{GODOF}` for text (taught to the DefValidator).
-- A **Gods page** in the Region window's Peoples tab (or a tab of its own): every known god with its symbol, its people
+- (Retired: the Gods page and the symbols below; the colony's own book replaces the page, and the gods have no symbols.) A **Gods page** in the Region window's Peoples tab (or a tab of its own): every known god with its symbol, its people
   and faiths, its domain, the colony's favour in words, and the acts remembered. Also an Almanac page.
 - The **symbols**: one per domain, drawn by `Tools/make_god_symbols.py` (white on transparent, tinted in code), as the
   mailbag and the thermometer were.
@@ -220,7 +220,7 @@ own `GodLookDef`, and the stage 2 merge wires it to Core's seams.
   - a short presence condition tints the sky and stills the wind;
   - everyone on the map stops and turns toward it (a short job), the devout kneel, animals lie down or flee;
   - the game drops to normal speed, the camera jumps there;
-  - its own card: dark paper and gold, the god's symbol, no "good news" or "bad news" tag; plain or "some say" by the
+  - its own card: dark paper and gold, no symbol (retired: the god in words), no "good news" or "bad news" tag; plain or "some say" by the
     step;
   - the mark it leaves: a ring of scorched or flowering ground, a spring, a tree, a standing stone. The mark is the
     game's own things, never a new building that needs art.
@@ -252,44 +252,93 @@ own `GodLookDef`, and the stage 2 merge wires it to Core's seams.
 
 Each stage 2 part calls only `Gods` and the two seams, so they run side by side.
 
-## The nine (the player's choice, 11 November 2026): the contract for the rework
+## The gods (the player's choice, 11 November 2026): the contract for the rework
 
 The player approved the fourth brainstorm with its new names ("alright, great! you can go ahead with full
-implementation"), and asked for the gods' menu: "for the god menu, which should be it's own menu under one of the
-existing buttons, don't use some symbol or so to represent the god, since that probably makes it less convincing. just
-make it text-based but use formatting to give it character. also do a nice menu overall about the lore of the gods,
-potential interactions, history etc." The gods are those of `docs/gods-pantheon-brainstorm.md`: Hollin, Smoulder,
-Bellwether, Morel, Ennu, Pip, Cirrus, Hush and Undertow. The generated pantheon (gods from Ideology's deities and
-Rimfolk's name makers) is retired.
+implementation"), then, the same day, made the gods an unseen presence and the book a thing of the colonists' own:
+- "the gods should also feel like an ominous presence. To me, as the player as well, and there should be more kind of
+  seen as a sort of storyteller style aspect of the game, giving impact, and generating stuff and appearing or not or
+  reacting, but not in a way that I see what's going on or can, read about it ... if I look at the gods in like a fancy
+  list in the menu, it kind of takes out some of the their ominous presence";
+- "information about the gods should only ever be like from the point of view of a the pawn. what they know,
+  experienced, heard, believe, feel like doing etc. in that case a book or overview can exist and develop, but I just
+  never want this 'meta' level player information ... the gods should be above me as the player as well as the pawns,
+  and what i learn and see about them is the same as my pawns do";
+- "I mean in events etc the god can be named, if we know it's them that caused something";
+- "if the gods are on the map then i definetely want to see them and they should have a godly presence, unless they are
+  actually hiding".
+
+Five more joined the nine: the sun and the moon (Helios and Selene, the Gift and the Return), a cat (Mog), the rain toad
+(Murmur) and the restless gold (Ducat). Their characters are `docs/gods-pantheon-brainstorm.md`. The generated pantheon
+(gods from Ideology's deities and Rimfolk's name makers, the patrons, the Gods page) is retired.
 
 What every part builds to:
+- **The rule: the gods are unseen, like a storyteller.** The player sees what happens on the map and what people say,
+  never what a god thinks, wants or feels about the colony. No page or list of the gods, no favour words in the news, an
+  inspect line, a tooltip or This week, no news line naming a god's mind, no Almanac page of their ways (the page "the
+  gods" is one paragraph on the settings). Favour, ties, natures, kinds and what the colony knows are hidden state that
+  drives what the gods do.
 - **A god is a def.** `ColonyCouncil.GodDef`, defNames `Rimfolk_God_Hollin`, `_Smoulder`, `_Bellwether`, `_Morel`,
-  `_Ennu`, `_Pip`, `_Cirrus`, `_Hush`, `_Undertow`. A `God` record keeps its runtime state (favour per home, acts,
-  known), and `God.name` is the short name ("Hollin"). `God.def` reaches the def, and `Gods.ByKey("Hollin")` finds a god
-  by its short name.
+  `_Ennu`, `_Pip`, `_Cirrus`, `_Hush`, `_Undertow`, `_Helios`, `_Selene`, `_Mog`, `_Murmur`, `_Ducat`. A `God` record
+  keeps its runtime state (favour per home, acts, known), and `God.name` is the short name ("Hollin"). `God.def` reaches
+  the def, and `Gods.ByKey("Hollin")` finds a god by its short name.
 - **The `Gods` API stays.** The same signatures, fed from the defs:
   - each def sets a domain and a second domain (the stage 2 fallbacks only), a nature and a kind;
-  - its ties are authored, each with words of its own;
-  - Undertow is the Hunger kind, and the rest are Ordinary.
+  - its ties are authored, each with words of its own (one sentence, as people say it);
+  - Undertow is the Hunger kind, and the rest are Ordinary;
+  - Helios and Selene are tied as the gift and the return (`GodTieKind.Return`): favour meant for Helios reaches
+    Selene, and Helios (`unmoved`) is never moved by favour.
 
   Domains as the fallback key: Hollin Wild and Harvest; Smoulder Craft and Hearth; Bellwether Hunt and Wild; Morel Dead
-  and Harvest; Ennu Way and Hearth; Pip Machine and Craft; Cirrus Storm and Night; Hush Night and Dead; Undertow Void.
+  and Harvest; Ennu Way and Hearth; Pip Machine and Craft; Cirrus Storm and Night; Hush Night and Dead; Undertow Void;
+  Helios Hearth and Harvest; Selene Night and Healing; Mog Hearth and Hunt; Murmur Waters and Harvest; Ducat Way and
+  Craft.
+- **Who reveres whom** is the defs': Rimfolk's 23 peoples and some of the player's mods' factions by name (a people a
+  def names reveres only the gods that name it), the rest by kind (Tribal, Medieval, Industrial, Spacer, Raiders, Empire,
+  Cannibal). The colony holds the gods of its own age's kind. `Gods.Of(faction)` and `ColonyGods(home)` read it.
 - **Per-god data in the stage 2 parts is keyed by the short name** (`Hollin` ...) in their own defs (`GodShapeDef`,
-  `GodWaysDef`, `GodWorshipDef`), with the domain tables as a fallback only. Each part writes its nine entries from
-  the brainstorm's characters:
+  `GodWaysDef`, `GodWorshipDef`), with the domain tables as a fallback only. Each part writes its entries from the
+  brainstorm's characters, and in people's words:
   - who can come as a stranger: only Ennu takes human shapes;
-  - who has a body: Bellwether and Smoulder (a shadow only);
-  - who acts only through plants, rot, machines, sky, frost or the dark;
+  - who has a body: Bellwether, Mog (a gray cat on the map, never owned or tamed), Murmur (rarely, a house-sized toad in a
+    marsh, Odyssey's `ColossusToad` larger, softly) and Smoulder (a shadow only);
+  - who acts only through plants, rot, machines, sky, frost, light, gold or the dark;
   - what each one likes, refuses, gives and does.
-- **No symbols for the gods**, anywhere: not on the book's pages and not on the god's card. A god is shown in words,
-  set in type that gives it character. The domain symbols and the GodSymbols textures are retired from the gods' faces.
-- **The book: "The Book of the Gods"**, its own tab in the Region window. It is text only, in both looks, with
-  formatting for character: titles, italic names among the peoples, quoted sayings, rules between sections, and a
-  restrained colour of each god's own in its words. Its parts:
-  - **The Nine:** one page per god, as the colony knows it. A god not yet met shows only the rumours heard.
-  - **The Old Stories:** the lore and the myths, learned from neighbours, visitors and letters.
-  - **The Ways to the Gods:** shrines, offerings, prayer, festivals, vows, bargains and the stranger at the gate,
-    written in the world's own voice, as advice.
-  - **The Chronicle:** the colony's own history with the gods, dated, in prose.
-- **The gods' hands in the game's events** (the brainstorm's section C), by the realness step: a believer's bubble, a
-  line in the news, and the act in the chronicle. The vanilla letter itself is never altered.
+- **Named only when the colony knows.** `Gods.CardName(god, home, sign)` returns the colony's name for a god when the
+  colony knows something was its doing, else null (unnamed, or "some say" where it is only suspected). It knows when:
+  - the gods walk openly (the realness setting Walking);
+  - it saw the god act plainly: a manifestation witnessed, a disguised god revealing itself (`GodLore.MarkActing`, done
+    by `Gods.Moment`);
+  - it learned that sign as the god's own: `GodLore.LearnSign(god, sign)`, called by a part when a teller explains it,
+    and done when a story that teaches it (`GodStory.teaches`) is heard whole.
+
+  Events, cards and letters use it. The name is the colony's (its page in the colony's book).
+- **The colony's own book** (`GodLore`; the region window's "Gods' book", address `Gods`). Every entry is something a
+  colonist saw, was told, believes or felt, dated, with its witnesses (colonists by name) or its teller (a visitor, a
+  neighbour, a colonist), in the voice of the book's keeper (the chaplain, else Ideology's moral guide, else the most
+  devout, else the most lettered; with none, short and plain). Beliefs sit side by side and contradict; mistakes are
+  written as believed and the truth is never marked. A god appears only under the names the colony heard it by, each a
+  page, until a colonist works out or a teller says that two names are one. What feeds it, and the API the parts call:
+  - `GodLore.Saw(pawns, god-or-null, words)`, `GodLore.Heard(teller, god-or-null, words)`,
+    `GodLore.Believes(pawn, god, words)`, `GodLore.Dreamt`, `GodLore.Prayed`;
+  - every act given to `Gods.Remember` with no witnesses gets them (`GodAct.witnesses`, `GodAct.teller`): the colonists
+    awake and in sight within 20 cells of its cell, or everyone awake on the map for a sign with no place. An act nobody
+    saw stays in the hidden history and never reaches the book;
+  - a god's moment through `GodPresenceSeam.Call` reaches it as those who saw it saw it.
+- **The stories reach the colony through people, in pieces** (`GodTales`): one-sentence pieces, in order, never all at
+  once, at the evening fire or at supper (a believer to someone near; the keeper's as a sermon), from a visitor near a
+  colonist (by their own people's names for their gods), in a neighbour's letter (a story retold whole, `{GODTALE}`; a
+  god's hand at the colony heard of, `{GODHAND}`), only once the words are really in the letter. `GodTales.Tell(teller,
+  listener, gods, how)` lets a part (a priest, a dream told) have someone tell the next piece.
+- **The gods' hands in the game's events** (the brainstorm's section C; `GodHands`, `GodHandsMath`): people's words only.
+  A believer's one-sentence bubble naming whose hand they take it for (maybe wrongly; a god they know of, one they
+  confuse it with, or "something"), a scoffer's answer while the gods are felt, nobody doubting it when the colony knows
+  (`CardName`); the act in the hidden history and the book; now and then a neighbour's letter later. The game's own
+  letter is never altered, and no news line is told. Rare: a god keeps quiet 20 days after, a home 4 days, and each event
+  has its own chance. Selene's hand is seen only at night.
+- **No symbols for the gods**, anywhere: not in the book and not on the god's card. A god is shown in words. On the map
+  a god that isn't hiding keeps its full presence, and the label over it follows the colony's knowledge: its name in the
+  book once someone has heard of it, else what is seen of it ("a great white thrumbo", `GodDef.unheard`). A disguised god
+  shows only the name it gives. The card is cryptic, in the world's voice, with no why, no favour and no rules; a felt
+  god's card is unnamed unless the colony knows (`CardName`).
+- **The realness setting** stays (Believed, Felt, Walking); the dev actions stay (dev mode only).

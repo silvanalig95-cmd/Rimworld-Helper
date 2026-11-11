@@ -54,7 +54,7 @@ namespace ColonyCouncil
 
         /// <summary>
         /// A god's moment of <paramref name="kind"/> at <paramref name="at"/> (or where <paramref name="avatar"/> stands):
-        /// <paramref name="godName"/> as it is known ("the Storm-father") and <paramref name="epithet"/> under it on its card
+        /// <paramref name="godName"/> as the colony knows it ("the Old Horn") and <paramref name="epithet"/> under it on its card
         /// (may be null), <paramref name="title"/> and <paramref name="text"/> for the card (an omen's text is its line in
         /// the news), <paramref name="veiled"/> for "some say". <paramref name="colorA"/> and <paramref name="colorB"/>: the
         /// god's own colours (the look's otherwise). True when it began.

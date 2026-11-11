@@ -134,6 +134,10 @@ namespace ColonyCouncil
         public List<string> retold = new List<string>();
         /// <summary>How many of the gods' doings each colonist has seen (by name), which makes them readier to believe.</summary>
         public Dictionary<string, int> seen = new Dictionary<string, int>();
+        /// <summary>The gods the colony has seen act plainly (a manifestation it witnessed, a disguised god revealing itself), by id.</summary>
+        public List<int> seenActing = new List<int>();
+        /// <summary>The signs the colony has learned as a god's own ("id|sign": a sign is an event's def name, or a part's own key), from a story told whole or a teller's word.</summary>
+        public List<string> signs = new List<string>();
 
         private List<string> tmpKeys;
         private List<int> tmpInts, tmpIntKeys;
@@ -498,6 +502,36 @@ namespace ColonyCouncil
                 v => Key(by != null ? "Connected" : "ConnectedTold", v).Translate((who ?? "").Named("WHO"), a.name.Named("A"), into.name.Named("B")).Resolve());
         }
 
+        // ================= What the colony knows was a god's doing =================
+
+        /// <summary>The colony has seen this god act plainly.</summary>
+        public bool KnowsActing(God g) => g != null && seenActing.Contains(g.id);
+
+        /// <summary>The colony saw this god act plainly (a manifestation it witnessed, a disguised god revealed): from now on its doings can be named.</summary>
+        public void MarkActing(God g)
+        {
+            if (g == null || seenActing.Contains(g.id)) return;
+            seenActing.Add(g.id);
+            Version++;
+        }
+
+        /// <summary>The colony has learned this sign as the god's own.</summary>
+        public bool Knows(God g, string sign) => g != null && !sign.NullOrEmpty() && signs.Contains(g.id + "|" + sign);
+
+        /// <summary>
+        /// The colony learns a sign as a god's own (a teller explained it: the croaking before rain is Murmur's), so that
+        /// Gods.CardName names the god for it from now on. A sign is an event's def name, or any key a part uses.
+        /// </summary>
+        public static void LearnSign(God g, string sign)
+        {
+            var b = Instance;
+            if (b == null || g == null || sign.NullOrEmpty()) return;
+            string k = g.id + "|" + sign;
+            if (b.signs.Contains(k)) return;
+            b.signs.Add(k);
+            Version++;
+        }
+
         // ================= The day =================
 
         /// <summary>The region's day: now and then, someone works out that two names in the book are one god; old hands let go.</summary>
@@ -534,6 +568,8 @@ namespace ColonyCouncil
             Scribe_Collections.Look(ref hands, "hands", LookMode.Deep);
             Scribe_Collections.Look(ref retold, "retold", LookMode.Value);
             Scribe_Collections.Look(ref seen, "seen", LookMode.Value, LookMode.Value, ref tmpKeys, ref tmpInts);
+            Scribe_Collections.Look(ref seenActing, "seenActing", LookMode.Value);
+            Scribe_Collections.Look(ref signs, "signs", LookMode.Value);
             if (Scribe.mode == LoadSaveMode.PostLoadInit)
             {
                 entries ??= new List<LoreEntry>();
@@ -548,6 +584,8 @@ namespace ColonyCouncil
                 hands.RemoveAll(h => h == null);
                 retold ??= new List<string>();
                 seen ??= new Dictionary<string, int>();
+                seenActing ??= new List<int>();
+                signs ??= new List<string>();
                 Version++;
             }
         }

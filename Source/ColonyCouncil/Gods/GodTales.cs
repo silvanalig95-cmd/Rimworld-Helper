@@ -126,6 +126,10 @@ namespace ColonyCouncil
             // together: the listener was found near the teller (Together.Can); with none (a part's own call), said to nobody in particular.
             Speech.Say(teller, text, listener);
             lore.told[key] = GodLoreMath.AfterTelling(lore.told.TryGetValue(key, out int n) ? n : 0, piece, story.pieces.Count);
+            // Heard whole, a story teaches the signs it explains as the god's own.
+            if (lore.told[key] >= story.pieces.Count)
+                foreach (var sign in story.teaches ?? new List<string>())
+                    GodLore.LearnSign(g, sign);
             GodLore.Heard(teller, g, text, how, key, piece, name);
             // The other gods named in it are names the colony has now heard.
             foreach (var other in story.with ?? new List<string>())
@@ -145,6 +149,7 @@ namespace ColonyCouncil
             if (g == null) return false;
             string line = g.def.sayings.RandomElement().Formatted(GodLore.NameOf(g, teller).Named(GodsMath.God)).Resolve().CapitalizeFirst();
             if (line.Length > 90) return false;
+            // together: the evening's talk found the listener near the teller (Together.Can), and Speech.Say checks it again.
             Speech.Say(teller, line, listener);
             GodLore.Believes(teller, g, line);
             return true;
@@ -164,6 +169,7 @@ namespace ColonyCouncil
             if (words.NullOrEmpty()) return false;
             words = Named(words, a.name, lore.PageOf(a).name, 90, out _);
             words = Named(words, b.name, lore.PageOf(b).name, 90, out _);
+            // together: the evening's talk found the listener near the teller (Together.Can), and Speech.Say checks it again.
             Speech.Say(teller, words, listener);
             GodLore.Heard(teller, a, words, "Supper", null, -1, lore.PageOf(a).name);
             return true;
@@ -268,6 +274,9 @@ namespace ColonyCouncil
                     var w = kv.Value;
                     GodLore.Heard(w.teller, w.god, kv.Key, "Letter", w.story, -1, w.name);
                     if (w.story != null && !lore.retold.Contains(w.story)) lore.retold.Add(w.story);
+                    if (w.story != null)
+                        foreach (var sign in w.god?.def?.Story(w.story)?.teaches ?? new List<string>())
+                            GodLore.LearnSign(w.god, sign);
                     if (w.hand != null) w.hand.written = true;
                 }
                 if (values.TryGetValue(GodsMath.God, out string named) && !named.NullOrEmpty() && text.Contains(named) && lastLetterGod != null && lastLetterTeller != null)

@@ -27,11 +27,12 @@ namespace ColonyCouncil
     }
 
     /// <summary>
-    /// The pure rules of the nine as people know them (docs/design/gods.md, "the contract"): the nine's keys, the kinds of
-    /// peoples that revere a god (by age, raiders, the Empire, cannibals), who reveres whom, which name a speaker uses for
-    /// a god (the short name or their age's), and how the stories reach the colony: only through people, a piece at a
-    /// time and in order, at the evening fire, from a visitor, in a neighbour's letter or a priest's word, never all at
-    /// once. No game types, so Tools/Tests checks them.
+    /// The pure rules of the gods as people know them (docs/design/gods.md, "the contract"): the fourteen's keys, the kinds
+    /// of peoples that revere a god (by age, raiders, the Empire, cannibals), who reveres whom, which name a speaker uses
+    /// for a god (the short name or their age's), how the stories reach the colony (only through people, a piece at a time
+    /// and in order, at the evening fire, from a visitor, in a neighbour's letter or a priest's word, never all at once),
+    /// who believes, whose hand a believer takes something for (maybe wrongly), when two names are worked out to be one,
+    /// and the voice the colony's book is kept in. No game types, so Tools/Tests checks them.
     /// </summary>
     public static class GodLoreMath
     {

@@ -77,7 +77,7 @@ namespace ColonyCouncil
             int lastGod = lore.lastHand.TryGetValue(hand.god, out int lg) ? lg : -1;
             int lastAny = lore.lastHandAt.TryGetValue(home, out int la) ? la : -1;
             if (!GodHandsMath.Remarked(lastGod, lastAny, now, hand.chance, Rand.Value, GenDate.TicksPerDay)) return;
-            Show(p.map, god, hand.kind, p.label, now, Gods.ByKey(hand.with));
+            Show(p.map, god, hand.kind, p.label, now, Gods.ByKey(hand.with), p.defName);
         }
 
         /// <summary>
@@ -86,7 +86,7 @@ namespace ColonyCouncil
         /// a second god met in it (the eclipse: Selene stepping between Helios and the world), so a believer who takes it
         /// for the first says a line of their meeting. False when nobody there would say it.
         /// </summary>
-        public static bool Show(Map map, God god, HandKind kind, string label, int now, God with = null)
+        public static bool Show(Map map, God god, HandKind kind, string label, int now, God with = null, string sign = null)
         {
             var lore = GodLore.Instance;
             if (lore == null || map == null || god == null) return false;
@@ -97,7 +97,10 @@ namespace ColonyCouncil
             // Whose hand they take it for: one they know of, rightly or not, or something they can't name.
             var knownOf = lore.KnownOf();
             foreach (var g in Gods.ColonyGods(map)) knownOf.Add(g.Key);
-            var taken = Gods.ByKey(GodLoreMath.Attribute(god.Key, knownOf, Rand.Value));
+            // Known for the god's own (the colony saw it act, learned this sign as its own, or the gods walk openly): named
+            // plainly, and nobody doubts it. Else whoever the believer takes it for.
+            bool known = Gods.CardName(god, map, sign) != null;
+            var taken = known ? god : Gods.ByKey(GodLoreMath.Attribute(god.Key, knownOf, Rand.Value));
             bool meeting = with != null && (taken == god || taken == with);
             string line = Line(taken?.def?.hands, kind, realness, "CC_GodHand_Unnamed_", UnnamedLines, taken, believer, meeting);
             if (line.NullOrEmpty()) return false;
@@ -105,7 +108,7 @@ namespace ColonyCouncil
             Speech.Say(believer, line);
             var said = new List<(Pawn, string, bool)> { (believer, line, false) };
             Pawn scoffer = null;
-            if (GodHandsMath.Scoffer(realness))
+            if (GodHandsMath.Scoffer(realness) && !known)
             {
                 scoffer = people.Where(x => x != believer && Together.Can(believer, x) && GodLore.Credence(x) < GodLoreMath.ScofferBelow).OrderBy(GodLore.Credence).FirstOrDefault();
                 string answer = scoffer == null ? null : Line(taken?.def?.scoffs, kind, realness, "CC_GodHand_UnnamedScoff_", UnnamedScoffs, taken, scoffer, false);

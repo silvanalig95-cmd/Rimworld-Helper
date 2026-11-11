@@ -4,7 +4,7 @@
   <!-- The gods (Source/ColonyCouncil/Gods/; docs/design/gods.md): the settings. -->
   <CC_SetSec_Gods>The gods</CC_SetSec_Gods>
   <CC_Settings_Gods>Gods</CC_Settings_Gods>
-  <CC_Settings_Gods_Tip>The gods of this world, unseen. They act through the world's own events and moments, and the colonists talk of them: who they think was behind the storm, the old stories they grew up on, what visitors and neighbours tell. Nothing tells you what a god thinks. What the colony has seen, been told and believes is written in its own book of the gods, in the region window, and it may be wrong.</CC_Settings_Gods_Tip>
+  <CC_Settings_Gods_Tip>The gods of this world, unseen. They act through the world's own events and moments, and the colonists talk of them: who they think was behind the storm, the old stories they grew up on, what visitors and neighbors tell. Nothing tells you what a god thinks. What the colony has seen, been told and believes is written in its own book of the gods, in the region window, and it may be wrong.</CC_Settings_Gods_Tip>
   <CC_SetNote_Gods>Unseen gods, the colonists' talk of them, and the colony's own book of the gods.</CC_SetNote_Gods>
   <CC_Settings_GodRealness>How real are the gods</CC_Settings_GodRealness>
   <CC_Settings_GodRealness_Tip>How plainly the gods act. Believed: nothing supernatural; the colonists see a god's hand in what happens anyway, and are sure of it. Felt (the default): the gods act, but never so plainly that nobody could doubt it, and someone always says it was only the weather. Walking: the gods show themselves openly, and nobody doubts it.</CC_Settings_GodRealness_Tip>
@@ -93,6 +93,7 @@
   <CC_God_Tie_Allies>allies</CC_God_Tie_Allies>
   <CC_God_Tie_CastDown>one cast the other down</CC_God_Tie_CastDown>
   <CC_God_Tie_StolePeople>one stole the other's people</CC_God_Tie_StolePeople>
+  <CC_God_Tie_Return>the gift and the return</CC_God_Tie_Return>
   <CC_God_TieOf_Rivals>rival of {OTHER}</CC_God_TieOf_Rivals>
   <CC_God_TieOf_Lovers>lover of {OTHER}</CC_God_TieOf_Lovers>
   <CC_God_TieOf_Estranged>once the lover of {OTHER}, now estranged</CC_God_TieOf_Estranged>
@@ -105,6 +106,7 @@
   <CC_God_TieOf_CastDown_Second>cast down by {OTHER}</CC_God_TieOf_CastDown_Second>
   <CC_God_TieOf_StolePeople_First>the one who took the people of {OTHER}</CC_God_TieOf_StolePeople_First>
   <CC_God_TieOf_StolePeople_Second>robbed of its people by {OTHER}</CC_God_TieOf_StolePeople_Second>
+  <CC_God_TieOf_Return>the gift of {OTHER}, and its return</CC_God_TieOf_Return>
   <CC_God_KnownFrom_faith>from its own people</CC_God_KnownFrom_faith>
   <CC_God_KnownFrom_neighbours>from its neighbors of {PEOPLE}</CC_God_KnownFrom_neighbours>
   <CC_God_KnownFrom_letter>from the letters of {PEOPLE}</CC_God_KnownFrom_letter>
@@ -136,7 +138,7 @@
   <CC_GodHand_Act>its hand in {EVENT}</CC_GodHand_Act>
 
   <!-- The region window's book of the gods (Gods/GodLorePage.cs). -->
-  <CC_Tab_Gods>Book of the gods</CC_Tab_Gods>
+  <CC_Tab_Gods>Gods' book</CC_Tab_Gods>
   <CC_GodLore_KeptBy>The colony's own book, as {KEEPER} keeps it: what its people saw, were told and believe.</CC_GodLore_KeptBy>
   <CC_GodLore_KeptByNobody>The colony's own book: what its people saw, were told and believe. Nobody keeps it just now.</CC_GodLore_KeptByNobody>
   <CC_GodLore_Stat>{COUNT} names</CC_GodLore_Stat>

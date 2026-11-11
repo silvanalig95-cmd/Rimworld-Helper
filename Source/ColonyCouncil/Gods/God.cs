@@ -19,7 +19,7 @@ namespace ColonyCouncil
         public GodDef def;
         /// <summary>The short name ("Hollin"), the key every part uses (Gods.ByKey).</summary>
         public string name;
-        /// <summary>A noun phrase after its name: "the Storm-father", "the Walker of the Dead".</summary>
+        /// <summary>A noun phrase after its name, from its def: "the Rootmother", "the Old Horn".</summary>
         public string epithet;
         public GodDomain domain, second;
         public GodForm form;
@@ -193,8 +193,9 @@ namespace ColonyCouncil
     }
 
     /// <summary>
-    /// One act of a god the colony remembers (Gods.Remember): which god (and another, for a tie), at which home, when, what
-    /// it was, its words, the favour it moved and where on the map (a mark, an appearance). Shown on the god's page.
+    /// One act of a god in the gods' hidden history (Gods.Remember): which god (and another, for a tie), at which home, when,
+    /// what it was, its words, the favour it moved, where on the map (a mark, an appearance), and the colonists who saw it
+    /// (or who told of it). Never shown as such: one someone saw reaches the colony's book as they saw it.
     /// </summary>
     public class GodAct : IExposable
     {

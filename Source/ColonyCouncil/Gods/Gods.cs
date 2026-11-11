@@ -272,6 +272,23 @@ namespace ColonyCouncil
         private static int momentGod = -1, momentAt = -1;
 
         /// <summary>
+        /// The colony's name for a god when the colony knows something was its doing, for an event, a card or a letter to name
+        /// it plainly; else null (the thing stays unnamed, or "some say" where it is only suspected). The colony knows when the
+        /// gods walk openly (Walking), when it has seen this god act plainly (a manifestation it witnessed, a disguised god
+        /// revealed), or when it has learned <paramref name="sign"/> as the god's own (GodLore.LearnSign: a teller explained
+        /// that the croaking before rain is Murmur). The name is the colony's: its name in the colony's book, else (walking
+        /// openly, and never heard of) the god's own. Never anything of the god's mind, favor or ways.
+        /// </summary>
+        public static string CardName(God god, Map home, string sign = null)
+        {
+            if (god == null || !On) return null;
+            var lore = GodLore.Instance;
+            bool walking = Realness == GodRealness.Walking;
+            if (!walking && (lore == null || !lore.KnowsActing(god) && !lore.Knows(god, sign))) return null;
+            return lore?.PageOf(god)?.name ?? (walking ? Name(god) : GodLore.LabelFor(god.Key));
+        }
+
+        /// <summary>
         /// A god's moment was played (GodPresenceSeam.Call): the colony's book has it as those who saw it saw it, with the god
         /// they took it for (plainly named while the gods walk; else whoever they believe it was, or nothing they can name), and
         /// in the card's words or, with none, what was seen (CC_GodLore_Moment_*).
@@ -286,7 +303,11 @@ namespace ColonyCouncil
                 if (lore == null || witnesses.Count == 0) return;
                 var taken = Realness == GodRealness.Walking ? spec.god : ByKey(GodLoreMath.Attribute(spec.god.Key, lore.KnownOf(), Rand.Value));
                 string words = !spec.text.NullOrEmpty() ? spec.text : ("CC_GodLore_Moment_" + spec.kind).Translate().Resolve();
+                // Seen plainly (not veiled), or a disguised god revealing itself: the colony knows it was this god, and names it.
+                bool plain = !spec.veiled || spec.kind == PresenceKind.Reveal;
+                if (plain) taken = spec.god;
                 GodLore.Saw(witnesses, taken, words);
+                if (plain) lore.MarkActing(spec.god);
                 momentGod = spec.god.id;
                 momentAt = Now;
             }

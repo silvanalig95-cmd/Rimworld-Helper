@@ -19,7 +19,7 @@
     <label>the harvest</label>
     <description>A god of the harvest and the rain: wheat-gold and green, crowned with a wreath, and flowers where it walks.</description>
     <domain>Harvest</domain>
-    <sampleName>the Sheaf-mother</sampleName>
+    <sampleName>a figure of ripe grain</sampleName>
     <colorA>(0.95, 0.78, 0.35)</colorA>
     <colorB>(0.55, 0.78, 0.35)</colorB>
     <glowColor>(1, 0.86, 0.52)</glowColor>
@@ -96,7 +96,7 @@
     <label>the storm</label>
     <description>A god of the storm: storm-gray and silver, a dead calm before it and thunder when it comes.</description>
     <domain>Storm</domain>
-    <sampleName>the Storm-father</sampleName>
+    <sampleName>a figure of storm</sampleName>
     <colorA>(0.55, 0.65, 0.88)</colorA>
     <colorB>(0.9, 0.95, 1)</colorB>
     <glowColor>(0.7, 0.8, 1)</glowColor>
@@ -175,7 +175,7 @@
     <label>the hunt</label>
     <description>A god of the hunt and the beasts: forest green and bone, wearing a deer's skull, with spirit wolves running at its coming.</description>
     <domain>Hunt</domain>
-    <sampleName>the Hunter</sampleName>
+    <sampleName>a hunter of antler and shadow</sampleName>
     <colorA>(0.32, 0.55, 0.32)</colorA>
     <colorB>(0.92, 0.88, 0.75)</colorB>
     <glowColor>(0.75, 1, 0.75)</glowColor>
@@ -259,7 +259,7 @@
     <label>healing</label>
     <description>A god of healing and of sickness: warm white and pale green, serene, with a soft light where it walks.</description>
     <domain>Healing</domain>
-    <sampleName>the Healer</sampleName>
+    <sampleName>a figure in white</sampleName>
     <colorA>(0.96, 0.93, 0.82)</colorA>
     <colorB>(0.6, 0.9, 0.7)</colorB>
     <glowColor>(0.9, 1, 0.85)</glowColor>
@@ -338,7 +338,7 @@
     <label>war</label>
     <description>A god of war: blood red and iron, helmed and cloaked, with scorched ground behind it and blood wolves at its coming.</description>
     <domain>War</domain>
-    <sampleName>the Red Captain</sampleName>
+    <sampleName>a figure in red iron</sampleName>
     <maxTech>Industrial</maxTech>
     <colorA>(0.75, 0.18, 0.15)</colorA>
     <colorB>(0.6, 0.6, 0.66)</colorB>
@@ -425,7 +425,7 @@
     <label>war, among the stars</label>
     <description>The war god of a spacer people: red light on dark plasteel, a mind that has fought every war it has seen.</description>
     <domain>War</domain>
-    <sampleName>the War-mind</sampleName>
+    <sampleName>a war-shape of steel</sampleName>
     <minTech>Spacer</minTech>
     <colorA>(0.85, 0.2, 0.18)</colorA>
     <colorB>(0.3, 0.32, 0.36)</colorB>
@@ -507,7 +507,7 @@
     <label>the forge</label>
     <description>A god of the forge and of every craft: ember orange and bronze, soot-dark skin and fire in its eyes, sparks where it walks.</description>
     <domain>Craft</domain>
-    <sampleName>the Smith</sampleName>
+    <sampleName>a figure of forge-light</sampleName>
     <maxTech>Industrial</maxTech>
     <colorA>(0.95, 0.55, 0.2)</colorA>
     <colorB>(0.78, 0.58, 0.32)</colorB>
@@ -581,13 +581,13 @@
     </animals>
   </ColonyCouncil.GodLookDef>
 
-  <!-- The Craft among spacers: the Fabricator, cyan light and pale steel; a techfriar's crown. -->
+  <!-- The Craft among spacers: cyan light and pale steel; a techfriar's crown. -->
   <ColonyCouncil.GodLookDef>
     <defName>Rimfolk_GodLook_Craft_Spacer</defName>
     <label>the fabricator</label>
-    <description>The forge god of a spacer people: the Fabricator, cyan light on pale steel, sparks and glowing runes where it works.</description>
+    <description>The forge look among spacers: cyan light on pale steel, sparks and glowing runes where it works.</description>
     <domain>Craft</domain>
-    <sampleName>the Fabricator</sampleName>
+    <sampleName>a figure of bright steel</sampleName>
     <minTech>Spacer</minTech>
     <colorA>(0.4, 0.85, 0.95)</colorA>
     <colorB>(0.85, 0.88, 0.92)</colorB>
@@ -662,7 +662,7 @@
     <label>the way</label>
     <description>A god of roads, trade and travelers: road dust and open sky, in a wanderer's cloak, a waystone where it stood.</description>
     <domain>Way</domain>
-    <sampleName>the Way</sampleName>
+    <sampleName>a traveler in light</sampleName>
     <colorA>(0.86, 0.76, 0.5)</colorA>
     <colorB>(0.55, 0.75, 0.95)</colorB>
     <glowColor>(1, 0.92, 0.7)</glowColor>
@@ -740,7 +740,7 @@
     <label>the dead</label>
     <description>A god of the dead and the way they go: bone white and ash gray, shrouded and cowled, with ghosts rising off it.</description>
     <domain>Dead</domain>
-    <sampleName>the Ferryman</sampleName>
+    <sampleName>a pale figure</sampleName>
     <colorA>(0.88, 0.86, 0.8)</colorA>
     <colorB>(0.45, 0.45, 0.52)</colorB>
     <glowColor>(0.75, 0.85, 1)</glowColor>
@@ -820,7 +820,7 @@
     <label>the night</label>
     <description>A god of the night, the moon and dreams: night blue and silver, moon-pale, with frost where it walks.</description>
     <domain>Night</domain>
-    <sampleName>the Moon</sampleName>
+    <sampleName>a figure of moonlight</sampleName>
     <colorA>(0.38, 0.42, 0.82)</colorA>
     <colorB>(0.85, 0.88, 1)</colorB>
     <glowColor>(0.6, 0.65, 1)</glowColor>
@@ -900,7 +900,7 @@
     <label>the hearth</label>
     <description>A god of fire and of home: ember amber and warm red, flame-haired, with small flames rising off it and a hearthstone where it stood.</description>
     <domain>Hearth</domain>
-    <sampleName>the Hearth-keeper</sampleName>
+    <sampleName>a figure of hearth-fire</sampleName>
     <colorA>(1, 0.6, 0.25)</colorA>
     <colorB>(0.85, 0.32, 0.15)</colorB>
     <glowColor>(1, 0.66, 0.36)</glowColor>
@@ -977,7 +977,7 @@
     <label>the wild</label>
     <description>A god of the green and growing things: bark-skinned and moss-haired, crowned like a shaman, grass springing where it walks and a tree where it stood.</description>
     <domain>Wild</domain>
-    <sampleName>the Green</sampleName>
+    <sampleName>a figure of leaf and bark</sampleName>
     <colorA>(0.32, 0.72, 0.36)</colorA>
     <colorB>(0.52, 0.4, 0.26)</colorB>
     <glowColor>(0.6, 1, 0.55)</glowColor>
@@ -1059,7 +1059,7 @@
     <label>the waters</label>
     <description>A god of rivers and the sea: sea blue and foam white, veiled, wet footprints of light where it walks and a spring where it stood.</description>
     <domain>Waters</domain>
-    <sampleName>the River</sampleName>
+    <sampleName>a figure of running water</sampleName>
     <colorA>(0.3, 0.6, 0.88)</colorA>
     <colorB>(0.75, 0.95, 0.95)</colorB>
     <glowColor>(0.5, 0.85, 1)</glowColor>
@@ -1136,7 +1136,7 @@
     <label>the machine</label>
     <description>A god of the machine, an archotech's mind walking in a body: steel and cyan light, chrome-pale, sparks where it walks.</description>
     <domain>Machine</domain>
-    <sampleName>the Broker</sampleName>
+    <sampleName>a figure of light and wire</sampleName>
     <minTech>Industrial</minTech>
     <colorA>(0.35, 0.85, 0.95)</colorA>
     <colorB>(0.38, 0.4, 0.45)</colorB>
@@ -1214,13 +1214,13 @@
     </animals>
   </ColonyCouncil.GodLookDef>
 
-  <!-- The Machine before the machine age: the Iron Spirit, rust and bronze; a visage mask; Alpha Memes' Kemetic chant. -->
+  <!-- The Machine before the machine age: rust and bronze; a visage mask; Alpha Memes' Kemetic chant. -->
   <ColonyCouncil.GodLookDef>
     <defName>Rimfolk_GodLook_Machine_Old</defName>
     <label>the iron spirit</label>
-    <description>The machine god of a people before machines: the Iron Spirit of the old ruins, rust and bronze, its face a mask.</description>
+    <description>The machine look before machines: rust and bronze of the old ruins, its face a mask.</description>
     <domain>Machine</domain>
-    <sampleName>the Iron Spirit</sampleName>
+    <sampleName>a figure of old iron</sampleName>
     <maxTech>Medieval</maxTech>
     <colorA>(0.78, 0.46, 0.26)</colorA>
     <colorB>(0.82, 0.66, 0.36)</colorB>
@@ -1294,7 +1294,7 @@
     <label>the void</label>
     <description>A god of the void, the hunger behind the dark: black and violet, pale-eyed, its face a ritual mask, shadow where it walks and the air dead still.</description>
     <domain>Void</domain>
-    <sampleName>the Hunger</sampleName>
+    <sampleName>a darkness that stands</sampleName>
     <colorA>(0.48, 0.22, 0.62)</colorA>
     <colorB>(0.82, 0.76, 0.96)</colorB>
     <glowColor>(0.55, 0.3, 0.8)</glowColor>

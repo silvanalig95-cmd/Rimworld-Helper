@@ -29,7 +29,7 @@ public static class LetterFormTests
         // A correspondence that builds up (Letters/LetterThreadMath.cs): an earlier letter's thread, the names, the colony's news told.
         "RE", "TOFULL", "TONICK", "LASTPEN", "BORN", "WEDDING",
         // The writer's god (Gods/GodWords.cs, Letter): its name, its epithet, what it is.
-        "GOD", "GODEPITHET", "GODOF"
+        "GOD", "GODEPITHET", "GODOF", "GODTALE", "GODHAND"
     };
 
     /// <summary>The values every letter has (the coverage asks only for these).</summary>

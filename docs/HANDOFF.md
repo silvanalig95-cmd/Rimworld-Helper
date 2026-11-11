@@ -12,6 +12,65 @@ tree at once, alongside whatever runs. Each piece is merged as its own release, 
 
 ## State (5 November 2026)
 
+- **Not released: no version, no What's new round, About.xml and CHANGELOG untouched. Gods: fourteen hand-made gods,
+  unseen, and the colony's own book of the gods** (11 November 2026). The player approved the nine ("alright, great! you
+  can go ahead with full implementation"), then, the same day: the gods as an unseen presence ("there should be more
+  kind of seen as a sort of storyteller style aspect of the game ... but not in a way that I see what's going on or can,
+  read about it"), the book only from the pawns' side ("information about the gods should only ever be like from the
+  point of view of a the pawn ... what i learn and see about them is the same as my pawns do"), gods named in events
+  only when the colony knows ("if we know it's them that caused something"), a god on the map fully present unless it
+  hides, and five more gods: Helios and Selene (the Gift and the Return, after Dial, Wake, Noon and Lull, Ardent and
+  Wane, and the Burning and Dreaming One were each set aside at the player's word), Mog, Murmur and Ducat. Built to
+  `docs/design/gods.md`, its last section (the contract, rewritten); DESIGN.md "The gods: fourteen, unseen, and the
+  colony's own book" (the 0.215.0 section marked retired); README "The gods" and "A god on the map"; the Almanac page
+  "the gods" cut to one paragraph on the settings (keywords kept).
+  - **What changed:** the generated pantheon, the patrons (`GodPatronDef`, `Rimfolk_Pantheon_Patrons.xml`), the Gods page
+    under Peoples (`GodsPage.cs`, the Peoples view's third mode), `GodSymbols` with its textures and
+    `Tools/make_god_symbols.py`, the card's emblem (`Emblem.png`), the domains' names, epithets and symbols are gone; the
+    domain table stays as the stage 2 fallback. New: `Gods/GodDef.cs` and `Defs/GodDefs/Rimfolk_Gods.xml` (fourteen
+    gods, their names by age, lore, sayings, believers' and scoffers' lines, letter lines, 51 stories in one-sentence
+    pieces with retellings and the signs they teach, authored ties with words, who reveres whom), `Pantheon.cs`
+    (rewritten: from the defs, an older save's gods dropped on load with one line in the world's voice),
+    `GodHands.cs`/`GodHandsMath.cs` (the postfix on `IncidentWorker.TryExecute`, the table, the quiet spells),
+    `GodLore.cs` (the colony's book, saved: entries, names, signs learned, gods seen acting, the keeper),
+    `GodLoreMath.cs` (who reveres whom, names, stories in pieces, credence, mistaken attribution, names worked out, the
+    keeper's voice), `GodTales.cs` (evening talk, visitors' tales, letters' `{GODTALE}`/`{GODHAND}`), `GodLorePage.cs`
+    (the region window's fifth view, "Gods' book", address `Gods`). `Gods`: `ByKey`, `NameBy`, `CardName`, `Moment`, and
+    `Remember` fills an act's witnesses (`GodAct.witnesses`, `teller`); no news of favour, of a god known or fading.
+    `GodTieKind.Return` and `GodDef.unmoved` (Helios). The presence part: the card in words (no symbol), cryptic and
+    unnamed unless the colony knows (`Gods.CardName`); the name over a god follows the colony's knowledge
+    (`HediffComp_GodAvatar.Label = GodLore.LabelFor`, else `GodDef.unheard`); the looks' sample names and the hediff's
+    words in the pawns' terms. Small hooks: `LetterForm.Compose` (`GodTales.Written`), `GodWords.Letter`,
+    `RegionView`/`PeoplesView`/`PagesMath`/`MainTabWindow_World` (the fifth view, Peoples back to two modes), the
+    DefValidator (`{GODTALE}`, `{GODHAND}`), `Tools/save_estimate.py`, two lines in `Rimfolk_Letters_PS.xml` each.
+  - **Kept for the paused stage 2 parts:** every `Gods` signature; `God`'s fields (`patron`, `form`, `deityKey`,
+    `factions`, `ideos`, `look`, `colour`...); `GodDomainDef.Of(...).Animals`; the seams and `PresenceSpec`. Their per-god
+    data keys by the short names. They will need: no `GodSymbols` (removed), no player-facing favour or god pages, acts
+    remembered with or without witnesses (`Gods.Remember` fills them), `Gods.CardName` before naming a god, and the
+    book's API (`GodLore.Saw`, `Heard`, `Believes`, `Dreamt`, `Prayed`, `LearnSign`; `GodTales.Tell`). Mog on the map
+    (a gray cat, never owned) and Murmur surfacing (Odyssey's `ColossusToad`, larger) are the on-the-map part's.
+  - Try in the game (dev mode, *Rimfolk*, *Gods: ...*): 1. *open the book of the gods*: empty at first ("Nothing has
+    been written about the gods yet"). 2. *hear every story (testing)* on a map: the book fills with dated entries, a
+    colonist telling each piece "at supper"; pages for the names (by the teller's age: Grandmother Root or Hollin...),
+    the whole book, the keeper's hand marked. 3. *an event's hand here...*, Bellwether: Sign: a believer's bubble ("That's
+    the Old Horn's road, and we're on it"), at Felt a scoffer near them answers; the book: "Tamsin and Ollo were there
+    when it happened (...). Tamsin said, ...". 4. *set how real the gods are...* to Walking, the same hand: no scoffer,
+    named plainly. 5. *work out a name in the book*: two names of one god joined ("also called ..."). 6. A thrumbo
+    passing, an eclipse, a cold snap, a short circuit (dev *Execute incident*): within the hour a colonist remarks on it,
+    sometimes naming the wrong god, never twice in four days; Selene's only at night. 7. An evening with colonists
+    together: now and then one tells another a piece of a story over their heads. 8. A visitor near a colonist: a piece
+    of their people's story by their names. 9. A neighbour's letter a few days after a hand: a postscript about it; now
+    and then a story retold whole; both in the book "in a letter". 10. *show the gods (log)*: the hidden state (favour,
+    who reveres whom, the book's name for each). 11. Presence's dev actions: a god's card has no symbol, its name set
+    large in its colour only when the colony knows, else "Nobody could say what it was"; the label over a god is the
+    colony's name for it or "a great white thrumbo". 12. An older save from 0.215.0/0.216.0: its gods dropped, the
+    line "The old ones' stories of the gods have changed..." the first hour.
+  - What to watch (only the game can show it): `<i>` and `<size>` in the book's type with the game's fonts in both
+    looks; the book's column and margins at small window sizes; the tab label "Gods' book" at five tabs; how often the
+    hands and the evening talk come (`GodHandsMath.QuietDays`, `GodLoreMath.EveningChance`); the keeper's choice with
+    and without Ideology and the chaplain office; whether colonists name their own age's gods sensibly; a letter's
+    `{GODHAND}`/`{GODTALE}` lines read well in a postscript; mod events in the hands table firing through
+    `TryExecute` (some mods fire their events otherwise).
 - **How the player wants new wishes handled (11 November 2026, standing): "any new idea/request i give you is first
   gathered on the to-do list, unless i say something like "do this now" or "start now". then we can collect tasks
   until we have a few so we can implement them more effectively."** Each new wish or report goes onto this list as a

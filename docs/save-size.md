@@ -7,8 +7,8 @@ colony of 20, with the game keeping 30 more people it knows and 5 more each year
 generous guesses; sizes are rough XML sizes. Caps named as constants are read from the source. "Counted under" rows are
 kept inside another record (a journal's lines, a heart's lists) and are already in that record's size.
 
-Saved collections found: 637; modelled: 637; growing without end: 0.
-Rimfolk's part of the save, roughly: **2,865 KB** after a year, **3,522 KB** after two, **3,861 KB** after five.
+Saved collections found: 650; modelled: 650; growing without end: 0.
+Rimfolk's part of the save, roughly: **2,887 KB** after a year, **3,556 KB** after two, **3,934 KB** after five.
 
 | Collection | Rule | Kind | 1 year | 2 years | 5 years | KB at 5 years |
 |---|---|---|---|---|---|---|
@@ -24,6 +24,7 @@ Rimfolk's part of the save, roughly: **2,865 KB** after a year, **3,522 KB** aft
 | `World/Ledger/WorldLedger.cs:ties` | ties between two parties: 3 of a kind per pair, 60 per kind (regard 300), TieRules.MaxTies in all; closed ones dropped after 60 days | cap | 60 | 120 | 300 | 76.2 |
 | `Persona/TraitChanges.cs:watches` | one per colonist with its deeds and ten snapshots; known pawns only | colonists | 20 | 20 | 20 | 66.4 |
 | `Letters/LetterBook.cs:correspondences` | each correspondence as it builds up: LetterBook.MaxCorrespondences at most, the longest quiet let go | cap | 9 | 18 | 45 | 65.9 |
+| `Gods/GodLore.cs:entries` | the colony's book: an entry in the keeper's voice, with its date and witnesses, GodLoreMath.MaxEntries kept | cap | 30 | 60 | 150 | 61.5 |
 | `Social/Gossip/ReputationTracker.cs:deeds` | 10 per colonist, 220 in all, faded ones dropped | cap | 200 | 200 | 200 | 58.6 |
 | `Camps/CampGround.cs:plans` | every old site's layout as it was left, its constructions and its beds' places (about forty a site, six sites) | fixed | 240 | 240 | 240 | 46.9 |
 | `Journal.cs:everydaySeen` | 24 days | window | 480 | 480 | 480 | 42.2 |
@@ -155,6 +156,7 @@ Rimfolk's part of the save, roughly: **2,865 KB** after a year, **3,522 KB** aft
 | `Journeys/Journeys.cs:roadFood` | travellers eating by the road's food policy, with their own to go back to at home (a pawn and two policy references) | fixed | 20 | 20 | 20 | 3.1 |
 | `Building/BuildProjects.cs:levels` | with the above: the priorities they had | fixed | 120 | 120 | 120 | 2.9 |
 | `Decrees/Decrees.cs:nightHours` | a curfew's night hours, per colonist while it lasts; after it only those away (the dead, the gone and the unknown let go) | colonists | 20 | 20 | 20 | 2.9 |
+| `Gods/GodLore.cs:names` | the names the colony has heard the gods by, each a page of the book | cap | 3 | 6 | 15 | 2.9 |
 | `Journeys/Journeys.cs:done` | the last hours' steps each traveller has done (six steps) | fixed | 120 | 120 | 120 | 2.9 |
 | `Post/PostBook.cs:rides` | the colony's own riders out with a letter, until they're home: one a letter, a few at most | cap | 5 | 5 | 5 | 2.9 |
 | `Social/SocialWeb.cs:lost` | 40 lost bonds | cap | 3 | 6 | 15 | 2.9 |
@@ -181,6 +183,8 @@ Rimfolk's part of the save, roughly: **2,865 KB** after a year, **3,522 KB** aft
 | `Calendar/ColonyCalendar.cs:restHours` | days taken off by hand: only the player's clicks | colonists | 20 | 20 | 20 | 2.3 |
 | `Defense/DefenseLinesWatch.cs:running` | one per line while a raid lasts | while | 4 | 4 | 4 | 2.3 |
 | `Gods/GodBook.cs:ties` | the ties between gods: GodTiesMath.MaxTies a god at most, two gods to a tie | cap | 3 | 6 | 15 | 2.3 |
+| `Gods/GodLore.cs:signs` | the signs the colony has learned as a god's own, a few a god | fixed | 60 | 60 | 60 | 2.3 |
+| `Gods/GodLore.cs:told` | how much of each old story the colony has heard, one a story | fixed | 60 | 60 | 60 | 2.3 |
 | `Happenings/Happenings.cs:departed` | the departed 2 years | window | 3 | 6 | 6 | 2.3 |
 | `Happenings/VisitorServices.cs:tasks` | a night to a day each, at most VisitorServices.MaxTasks at once | cap | 8 | 8 | 8 | 2.3 |
 | `Offices/Election.cs:campaigners` | one per candidate, while it lasts | while | 20 | 20 | 20 | 2.3 |
@@ -208,6 +212,7 @@ Rimfolk's part of the save, roughly: **2,865 KB** after a year, **3,522 KB** aft
 | `Camps/Camp.cs:felled` | where their work was these two days (trees felled, rock mined, plants gathered), during one stay | while | 60 | 60 | 60 | 1.8 |
 | `Camps/CampTracker.cs:past` | camps the colony remembers, six at most (CampStoryMath.RememberMax), faded after some seasons | fixed | 6 | 6 | 6 | 1.8 |
 | `CouncilGameComponent.cs:lastAtHome` | colonists still ours | colonists | 20 | 20 | 20 | 1.8 |
+| `Gods/GodLore.cs:retold` | the stories retold whole in a neighbour's letter, one a story | fixed | 60 | 60 | 60 | 1.8 |
 | `Happenings/Happenings.cs:visits` | visits a month | window | 6 | 6 | 6 | 1.8 |
 | `Harm/Harm.cs:waiting` | hurts still to come (harm, part 4): a sickness caught showing in a day or two, a coughing guest while they stay, a sore loser's walk, a rematch owed within the year, a games day's contests | while | 6 | 6 | 6 | 1.8 |
 | `Integrations/ModLinks.cs:lastMend` | today and yesterday only | colonists | 20 | 20 | 20 | 1.8 |
@@ -254,6 +259,7 @@ Rimfolk's part of the save, roughly: **2,865 KB** after a year, **3,522 KB** aft
 | `World/Region/RegionBook.cs:homes` | one per colony (one home in the model): when a founder last wrote to it, its raiders' camp (one at most) and the last word given to keep away, when a town in its reach was last given up, settled again or founded by Rimfolk; a lost home's kept 30 days, its camp gone with it | fixed | 1 | 1 | 1 | 1.2 |
 | `Character/ColonyTraits.cs:last` | one per colony trait def | defs | 13 | 13 | 13 | 1.1 |
 | `Character/ColonyTraits.cs:rates` | one per colony trait def | defs | 13 | 13 | 13 | 1.1 |
+| `Gods/GodLore.cs:hands` | the gods' hands seen lately, for a neighbour's letter, eight at most | fixed | 8 | 8 | 8 | 1.1 |
 | `Harm/Harm.cs:kindLast` | the shared budget's memory: each kind's last hurt, kept thirty days (a handful of the thirty-odd kinds at once; ninety-five at most, one each) | fixed | 12 | 12 | 12 | 1.1 |
 | `Offices/Offices.cs:holders` | one per office | defs | 12 | 12 | 12 | 1.1 |
 | `Setbacks/SetbackTracker.cs:bestAt` | one per skill | fixed | 12 | 12 | 12 | 1.1 |
@@ -319,6 +325,7 @@ Rimfolk's part of the save, roughly: **2,865 KB** after a year, **3,522 KB** aft
 | `Camps/Camp.cs:asksMade` | asks made of the camp (once each, or once a day), while it stays | while | 15 | 15 | 15 | 0.6 |
 | `Secrets/Vendettas.cs:known` | known pawns only | known | 11 | 12 | 15 | 0.6 |
 | `Visitors/Callers.cs:commissions` | a piece the collector is owed, until collected or for 60 days at most; at most Callers.MaxCommissions | cap | 1 | 2 | 3 | 0.6 |
+| `Gods/GodLore.cs:lastHand` | each god's last hand remarked on | fixed | 14 | 14 | 14 | 0.5 |
 | `Apparel/ApparelPickBook.cs:notNow` | colonists whose clothes suggestions are set aside, ten days each, the ended pruned daily | colonists | 6 | 6 | 6 | 0.5 |
 | `Building/ShelfReserves.cs:entries` | per shelf: the kinds it keeps slots for, with how they're kept | while | 6 | 6 | 6 | 0.5 |
 | `Faith/FaithCouncilTracker.cs:faithEvenings` | each faith's last evening of faith: one per faith, gone after 60 days or with the faith | fixed | 6 | 6 | 6 | 0.5 |
@@ -447,6 +454,7 @@ Rimfolk's part of the save, roughly: **2,865 KB** after a year, **3,522 KB** aft
 | `World/WorldSituation.cs:held` | per situation | fixed | 4 | 4 | 4 | 0.2 |
 | `World/WorldSituation.cs:sufferers` | per situation | fixed | 4 | 4 | 4 | 0.2 |
 | `Pressures/Pressures.cs:workCounts` | per colonist | fixed | 6 | 6 | 6 | 0.1 |
+| `Gods/GodLore.cs:seenActing` | the gods the colony has seen act plainly, one a god at most | fixed | 14 | 14 | 14 | 0.1 |
 | `Character/Character.cs:tiers` | five ways | fixed | 5 | 5 | 5 | 0.1 |
 | `Character/Character.cs:values` | five ways | fixed | 5 | 5 | 5 | 0.1 |
 | `Health/MedicineChoice.cs:handsOff` | with Smart Medicine: Rimfolk's choices taken back to the default by hand, only the player's clicks | fixed | 5 | 5 | 5 | 0.1 |
@@ -462,6 +470,9 @@ Rimfolk's part of the save, roughly: **2,865 KB** after a year, **3,522 KB** aft
 | `Camps/CampRequests.cs:stallWares` | a few stacks their trader set out by the gate for a day's stall, while it lasts | while | 3 | 3 | 3 | 0.1 |
 | `Couriers/CourierTrip.cs:mounts` | the mounts a trip's people ride in on (Giddy-Up), while it lasts | while | 3 | 3 | 3 | 0.1 |
 | `Couriers/CourierTrip.cs:people` | a trip's people, while it lasts | while | 3 | 3 | 3 | 0.1 |
+| `Gods/GodLore.cs:lastHandAt` | each home's last god's hand remarked on | fixed | 4 | 4 | 4 | 0.1 |
+| `Gods/GodLore.cs:lastTalk` | each home's last talk of the gods | fixed | 4 | 4 | 4 | 0.1 |
+| `Gods/GodLore.cs:seen` | how many of the gods' doings each colonist has seen, by name | cap | 1 | 1 | 3 | 0.1 |
 | `Happenings/Happenings.cs:things` | per departed record | fixed | 3 | 3 | 3 | 0.1 |
 | `Happenings/Happenings.cs:touched` | per visit | fixed | 3 | 3 | 3 | 0.1 |
 | `PlayOut/OnMapTimed.cs:things` | per thing kept: its lanterns (OnMapMath.MaxLanterns at most), the fire, the door | fixed | 3 | 3 | 3 | 0.1 |
@@ -575,6 +586,8 @@ Rimfolk's part of the save, roughly: **2,865 KB** after a year, **3,522 KB** aft
 | `Faith/FaithPeople.cs:notes` | per colonist: the newest faith moments, 120 days at most (counted under people) | fixed | 5 | 5 | 5 | (in its record) |
 | `Gods/God.cs:factions` | per god: the peoples that hold it (counted under gods) | fixed | 2 | 2 | 2 | (in its record) |
 | `Gods/God.cs:ideos` | per god: the faiths that hold it (counted under gods) | fixed | 1 | 1 | 1 | (in its record) |
+| `Gods/God.cs:witnesses` | per act: the colonists who saw it, by name (counted under acts) | fixed | 3 | 3 | 3 | (in its record) |
+| `Gods/GodLore.cs:who` | per entry: the colonists who saw it or believe it, by name (counted under entries) | fixed | 3 | 3 | 3 | (in its record) |
 | `Happenings/Workers_Chains2.cs:flags` | per story chain (counted under chains) | fixed | 4 | 4 | 4 | (in its record) |
 | `Hauling/HaulBook.cs:givers` | per load: the work givers of the work that made it, one or two (counted under loads) | fixed | 2 | 2 | 2 | (in its record) |
 | `Hauling/HaulBook.cs:into` | per load: a kind a bill sent to a picked stockpile and a cell of it, kept only while that kind is owed (counted under loads) | fixed | 1 | 1 | 1 | (in its record) |
