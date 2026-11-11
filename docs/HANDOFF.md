@@ -69,6 +69,18 @@ tree at once, alongside whatever runs. Each piece is merged as its own release, 
 - **Being built (11 November 2026): gods.** The player, after the brainstorm: "I just want you to get going ... I have
   confidence in your initial draft ... go for it. And you can really spend effort and tokens into the subject." The
   design the agents build to, with the lead's defaults and the stages, is `docs/design/gods.md`.
+  **Redone by the player (11 November 2026), after 0.215.0 and 0.216.0:** "the existing rimworld gods are just randomly
+  generated it feels and they have little to no character ... i'd rather we start creating our own pantheon, where
+  each god feels hand-crafted and unique ... either fully ignore the rimworld ideology gods or eventually try to
+  integrate our gods into the rimworld ideology system. let's redo the brainstorm"; then "not every god necessarily has
+  to have a sacred beast, each god should be individual in what it looks like and whether it has any form at all",
+  "gods should cover all kinds of designs, concepts, ideas, forms or no form", "gods should really feel like godly
+  characters pulling the strings of the universe, not just another menu with a list of values, names and symbols", and
+  "you don't only have to rely on the rimworld of magic effects". The new brainstorm is `docs/gods-pantheon-brainstorm.md`
+  (a hand-made pantheon of thirteen and ten more of every kind, each with its own shape or none, plans that unfold over
+  seasons, the gods behind the game's events, the Gods page as a book, Ideology in three steps). It waits for the
+  player's choices; then the generated pantheon of 0.215.0 is replaced by it, the rest of the machinery kept. RoM's
+  textures from the player are in the scratchpad (`rom_Motes`, `rom_Books`; sheets in `romsheet/`).
   Mods suggested to the player for the gods (11 November 2026, by the new rule in CLAUDE.md "Name mods that would
   help"; their 1.7 status to be checked on the Workshop): Forest Gods (3263099058: a white stag's ritual, bear and deer
   gods; 1.6), Dragon's Descent (2026992161; 1.6), Weapons of the Gods (Continued) (1.6). Not suggested: Call of Cthulhu
