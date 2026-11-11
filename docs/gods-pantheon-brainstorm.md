@@ -275,6 +275,43 @@ When Selene attends, the moon rises huge and close and stays over the colony all
 true. Selene's favour is deep sleep, healing in the night, and a moon bright enough to work by when it matters. Selene's
 displeasure is sleeplessness, and nightmares that follow people into the day.
 
+**From their names.** The player: "Great, now create something based on these names." The old words carry old
+stories, and Rimfolk's world keeps them in its own way.
+
+- **Helios sees everything under the sun.** He is the witness.
+  - **Oaths.** Whatever is done in daylight under the open sky, Helios saw. Oaths sworn outdoors at noon are the ones
+    that hold: a peace, a marriage match, a debt of honour, a promise to a neighbour. The peoples swear "by the open
+    sky" for that reason. A colony that breaks an oath sworn in the sun finds the next season harsher than it should
+    be, and its neighbours somehow know.
+  - **Secrets.** People hide things at night because Helios can't see in the dark, and the old stories say that is why
+    Selene's night exists at all.
+- **The sun's road.** Every day Helios drives the same road across the sky. The tribes say burning beasts pull him;
+  the medieval peoples say a chariot of gold; industrial folk say orbital mechanics, and then look up anyway. On the
+  longest day of the year his road is longest, and people who keep watch from dawn to dusk that day are said to be
+  given a little of his sight: they notice what others miss for a season.
+- **The Cattle of the Sun.** Somewhere a herd of tall, gentle cattle with gold-tipped horns grazes on the open land.
+  They are Helios's own, and he counts them every morning.
+  - They wander onto a map once in a long game, and graze through the colony's land for a few days.
+  - They are not to be touched. A colony that slaughters or steals one has the oldest story come true: its next
+    journey goes wrong (the caravan, the gravship voyage). Helios counts his herd, finds it short, and the road turns
+    against the travellers.
+  - A colony that guards them while they pass, and sees them safely off its land, has the long days of a good summer.
+- **Selene loves a sleeper.** In the oldest story she fell in love with a mortal shepherd, and could not bear that he
+  would age and die. So she asked that he sleep forever, unchanging, and she visits him every night. He sleeps still,
+  somewhere.
+  - **The ancient sleepers.** Because of him, the sleepers are hers. The ancient cryptosleep caskets in the world's old
+    places, with their sleepers who never woke, are said to be her keeping. Opening one is taking something from
+    Selene, and the one who does it dreams of her, sadly, for nights after.
+  - **The sleeping colony.** A colonist in a long coma, or deep in cryptosleep, is under her eye. Those who sleep well
+    and long are her favourites. A colony that keeps its people rested has her quiet blessing: wounds that heal by
+    morning, dreams that warn.
+- **The moon's face.** Selene's face changes through the season: thin, half, full, gone. On her full nights the dreams
+  are truest and the night watch sees farthest. On her dark nights she is away visiting her sleeper, and the night
+  belongs to stranger things.
+- **Sight and secret.** Helios sees everything in the day, and Selene keeps everything at night. That is the oldest
+  quarrel in the Torn Light: he would know everything, and she would keep some things hidden. Every eclipse, when they
+  meet, they argue it again, and nobody knows who wins.
+
 **Intertwined.** Neither can be pleased alone, because each is jealous of the other's share of the world.
 - **A colony of the day** (working through the night under lamps, never resting, never looking up at the moon) has
   Helios's warmth and Selene's coldness: restless nights, bad dreams, wounds slow to heal.
