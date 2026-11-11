@@ -102,7 +102,7 @@ scratchpad from their earlier upload (`moddefs/upload/x/Mods/1201382956/v1.6/Def
   holy light, summoning and arcane circles, glowing runes, light barriers, twinkles, flowers, spirit wolves, ghosts and
   bone dust, shadow cloud, lightning, frost, regeneration.
 - **Gifts (stage 2):** a god grants a RoM class fitting its domain:
-  - Priest, Paladin or Healer for the Healer;
+  - Priest or Paladin for the Healer;
   - Druid for the Green;
   - Ranger for the Hunter;
   - Geomancer for the Deep Mother;
