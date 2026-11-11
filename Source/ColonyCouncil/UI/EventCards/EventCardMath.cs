@@ -65,6 +65,8 @@ namespace ColonyCouncil
             ["Rimfolk_RansomOffer"] = "Peoples",
             ["Rimfolk_RansomByHand"] = "Peoples",
             ["Rimfolk_EnvoyOffer"] = "Peoples",
+            // A person's question the gods' doings put (a neighbour, an envoy, a dreamer, one hunted at the gate).
+            ["Rimfolk_GodWorldAsk"] = "Peoples",
             // The region and the colony's own.
             ["Rimfolk_HamletAsk"] = "Region",
             ["Rimfolk_RaidersCampTerms"] = "Region",

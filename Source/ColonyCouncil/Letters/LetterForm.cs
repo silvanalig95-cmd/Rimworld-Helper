@@ -99,6 +99,8 @@ namespace ColonyCouncil
             }
             Lead(s, l, n, a);
             s.outcomes.AddRange(a.outcomes);
+            // A letter of the colony's that slighted their god (Gods/World/GodLetters.cs): they say they took offence.
+            GodLetters.Answered(s, l, n);
             // Its shape (Letters/LetterFormShapes.cs): the usual letter, a bare note, a story, a poem, a raid's account...
             ShapeTheirs(s, n, a.speaker ?? l.writer);
             SignNote(s, false, s.values.ContainsKey("TITLE"));

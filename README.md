@@ -4313,6 +4313,22 @@ your place. The colony keeps its own book of the gods, a tab of the region windo
 believe, dated and in the hand of whoever keeps it (the chaplain, the devout or the lettered), the names it has heard
 each god by, which may turn out to be one, and nothing more than they know. Every people reveres the gods its lore
 gives it. Settings: *Gods* (on) and *How real are the gods* (Believed, Felt, Walking; Felt).
+
+**The gods in the world.** The gods act beyond the colony's walls and on its land like a storyteller you never see: the
+game's own weather, blight, flares and traders come, and nothing says whose hand it was or why. People say, though:
+a believer's word over their head, a scoffer's doubt, a story at supper, a neighbour's letter swearing by their god, a
+seer at the edge of the land who says true things darkly. A friend invites the colony to its god's feast, a people asks
+it into a holy war, a temple's envoy wants a relic back, and one hunted for their gods' quarrel asks to be hidden. Each
+god has its own ways: Hollin's wild food round the walls or her blight, Smoulder's vein of silver or his heat, Morel's
+fever broken in the night or a freezer failing at the worst hour, Pip's machine mended overnight or its short circuit,
+Cirrus's meteorite or its lightning on one roof, Hush's thaw or its cold snap, Helios's long clear days and his
+flares, Selene returning at night what the colony did by day, Murmur's rain or drought, Ducat's trader at the right
+time or silver gone from a hoard, Mog's cat wandering in, and Bellwether's kin, which nobody harms twice. Two gods
+quarrel where the colony can see it, in snow and warm wind or mushrooms and wild growth. Someone tells a dream at
+breakfast and asks to spend a night under the open sky, and comes back changed (A RimWorld of Magic's classes and
+spells, Vanilla Psycasts Expanded's paths, a green hand, gold, a passion), sometimes marked or older. The dying hear a
+sweet voice that always says yes and always takes more. All at the game's own rate and in the shared budget of hurts.
+
 ## Scenarios with stakes
 Seventeen scenarios, marked "(Rimfolk)" on the scenario page with how hard they are. Each starts the game with
 something already in motion, and a few seconds in, a letter says how things stand.

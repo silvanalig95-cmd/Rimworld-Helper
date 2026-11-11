@@ -830,6 +830,15 @@ MODEL = {
     "Gods/GodLore.cs:seen": ("cap", (COLONISTS, 0.01), 40, "how many of the gods' doings each colonist has seen, by name"),
     "Gods/GodLore.cs:seenActing": ("fixed", 14, 10, "the gods the colony has seen act plainly, one a god at most"),
     "Gods/GodLore.cs:signs": ("fixed", 60, 40, "the signs the colony has learned as a god's own, a few a god"),
+    # The gods in the wider world (Gods/World/GodWorldBook.cs): the gifts colonists hold (one of a kind a colonist, spaced
+    # with the peoples' gifts: a handful a year at most; GodWorldBook.MaxGifts kept, those no longer held let go first);
+    # what is under way (a dream told, a night under the sky, a grudge, the Hunger's due, a quarrel, a holy place a home: a few at
+    # once, GodWorldBook.MaxDoings at most, the done let go each day); the illnesses a god has eased (once each,
+    # GodWorldBook.MaxBlessed); when each kind of thing last came (a key a kind and a home, a few dozen).
+    "Gods/World/GodWorldBook.cs:gifts": ("cap", (const("Gods/World/GodWorldBook.cs", "MaxGifts", 60), 0.03), 220, "gods' gifts to colonists, GodWorldBook.MaxGifts kept"),
+    "Gods/World/GodWorldBook.cs:doings": ("cap", (const("Gods/World/GodWorldBook.cs", "MaxDoings", 40), 0.3), 260, "the gods' doings under way, the done let go each day"),
+    "Gods/World/GodWorldBook.cs:blessed": ("cap", (const("Gods/World/GodWorldBook.cs", "MaxBlessed", 40), 0.05), V, "illnesses a god has eased, once each"),
+    "Gods/World/GodWorldBook.cs:lasts": ("fixed", 30, 90, "when each kind of the gods' doings last came, a key a kind and a home"),
     # The peoples' ages as they change (Peoples/PeopleAges.cs): one record a people of Rimfolk's (a reference and ten
     # values: its age now and the one it began in, its progress, when it was first heard of, looked at and last changed,
     # its heading and why), made the first time the region's day looks at it; the fifteen at once, and one for each that

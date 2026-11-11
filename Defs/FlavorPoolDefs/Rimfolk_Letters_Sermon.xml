@@ -176,6 +176,33 @@
         <li>[olde,!condolences,sm:any,zeal:true] Be kind of set purpose. Any may be kind by chance, when it costeth naught and the sun shineth. The faith is to be kind when thou art weary, and cold, and in the right.</li>
         <li>[w:tribal,!condolences,sm:any] The river does not argue with the stone. It goes around. Be the river, the old ones say. Then they argue with each other for an hour about which of them is the stone.</li>
         <li>[u:none,!condolences,sm:any,zeal:crank] i fink evrything is a sign. the crow, the rain, the way my soup tasted. its all telling me sumthing. i just dont kno wot yet</li>
+        <!-- ================= Their god's sign, curse, war or myth (Gods/World/GodLetters.cs) ================= -->
+        <li>[!condolences,sm:any,god:miracle] You will have heard that things go well with us, and I will tell you why, though you may laugh.
+
+{SIGNGOD} has looked on us. I do not say it lightly. We asked, and we were answered, and I will not pretend it was the weather.
+
+I only ask that you not mock it. A thing given can be taken back.</li>
+        <li>[!condolences,sm:any,god:miracle] I have seen {SIGNGOD}'s hand in our fields this year, plain as my own.
+
+The doubters say it was rain and luck. Well, and who sends the rain, and who deals the luck? I do not argue with them. I only notice which of us sleeps easier.</li>
+        <li>[!condolences,sm:any,god:curse] Things have gone hard with us, and I will not hide from you why.
+
+Someone here offended {SIGNGOD}, {SIGNGODEPITHET}, and we are all paying for it. We have made our offerings and said our words. Now we wait, and we are careful, and we do not laugh at what we do not understand.</li>
+        <li>[!condolences,sm:any,god:curse] When a god turns its face away, the first thing to go is the small luck: the pot that boils over, the dog that runs off, the letter that never comes.
+
+That is where we are with {SIGNGOD}. Pray for us, if you pray. If you do not, at least do not make it worse.</li>
+        <li>[!condolences,sm:any,god:holywar] You will know we are at war with {ENEMYPEOPLE}. I want you to understand that it is not about land.
+
+It is {SIGNGOD}'s quarrel with {ENEMYGOD}, and it is older than any of us. We fight because our god asks it of us. I hope you will remember, when you choose your friends, which gods you would rather have watching.</li>
+        <li>[!condolences,sm:any,god:myth] Our children ask for the old story of {MYTHGOD} and {MYTHOTHER} every night, and I tell it every night.
+
+It is a story about a quarrel that never quite ends. I used to think it was only a story. I am less sure now. You may hear it differently where you are.</li>
+        <li>[olde,!condolences,sm:any,god:miracle] Thou hast heard that it goeth well with us, and I will tell thee wherefore.
+
+{SIGNGOD} hath looked upon us. We asked, and we were answered, and I will not call it the weather.</li>
+        <li>[olde,!condolences,sm:any,god:curse] It hath gone hard with us, and I will not hide the cause.
+
+One among us hath offended {SIGNGOD}, and all of us do pay. Pray for us, if thou prayest.</li>
       </plain>
     </lines>
   </ColonyCouncil.FlavorPoolDef>

@@ -5,6 +5,18 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## The gods in the world
+
+*11 November 2026, version 0.219.0*
+
+- The gods act unseen, like a storyteller: weather, blight, flares and traders come, and a god is named only when the colony knows the hand.
+- Each god has its own ways, from Hollin's wild growth and blight to Smoulder's silver and heat, Pip's mended machines and short circuits, and Murmur's rain and drought.
+- Someone may tell a dream at breakfast and ask to spend a night under the open sky, then come back changed, sometimes marked or older.
+- At night the moon returns what the colony did by day, kindness as kindness and cruelty as cruelty.
+- Gods quarrel where you can see it: snow and warm wind over the valleys, wild growth and rings of mushrooms.
+- Harm one of Bellwether's thrumbos and every people hears of it; harm a cat and the cats leave and the rats come back.
+- People talk of the gods in bubbles, at supper and in their letters, and a hermit seer says true things darkly.
+
 ## The gods on the map
 
 *11 November 2026, version 0.218.0*

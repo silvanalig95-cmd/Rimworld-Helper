@@ -12378,6 +12378,58 @@ core as it stood at its base, reaching each god by its short name.
   a quiet-day visit to a mark, supper talk, visitors asking.
 - **This week** (`GodsOnMapPanels`): Under way lists the stranger staying and the beast on the land as the colony sees
   them, never a god's name, never a coming. Dev actions *Gods: ...* for each part.
+### The gods in the world (the player's request, 11 November 2026; released 0.219.0)
+
+Stage 2's world part of `docs/design/gods.md` (brainstorm items 17, 18, 19, 21 and 22, and the drama between the gods),
+for the fourteen of `docs/gods-pantheon-brainstorm.md`, built on the core's `Gods` API and the presence seam only
+(`Source/ColonyCouncil/Gods/World/`; defs `Defs/GodDefs/Rimfolk_GodsWorld_*.xml`). The gods are unseen (the player's
+rule, `docs/design/gods.md`, "The gods are unseen"): no card says why or puts a god's standing, mood or price in words,
+and a card names the hand only where the colony knows it (`Gods.CardName`), else "some say" when someone saw it at Felt;
+otherwise a god is named only in people's mouths (bubbles, supper, letters, pilgrims, the seer). Favor, ties and
+the ways below are hidden state.
+
+- **The frame** (`GodWorld.cs`): kept in the region's day and hour (`RegionBook`, no pass of its own); `GodWorldBook`
+  saves the gifts, what is under way (`GodDoing`, bounded), the illnesses eased, when each kind last came, the Hunger's
+  account and the day's kindness and cruelty. A god's moment goes through `GodPresenceSeam.Call`; while the presence
+  part isn't there, a plain card of what was seen (`GodWorld.Moment`). What is seen and told is kept with
+  `Gods.Remember` in the world's voice ("as Mirel of Karond-Keth wrote", `CC_GW_Seen_*`, `CC_GW_Told_*`) for the
+  colony's book of the gods. Questions through `Tell.Ask` as one letter class (`GodAsks`, `ChoiceLetter_GodWorld`),
+  always asked by a person; questions that can wait wait for `Tell.CanAsk`. Rates by how real the gods are
+  (`GodWorldMath.Realness`); what only a real god does (gifts, the void, a rival's dream) never while Believed.
+- **A god's ways** (`GodWays.cs`, `GodWaysDef`, `Rimfolk_GodsWorld_Ways.xml`): keyed on the god's short name ("Hollin"),
+  the domain tables in `GodWorldMath` only as the fallback. What it gives and to whom, its price and offering, its dream
+  (unnamed), its anger at a home (one shape or several), a grudge's shape, its kindness, its temper, its kin, its holy
+  place, its feast, its sides in a quarrel, whether it gives blindly (Helios), returns the day (Selene), watches debts
+  (Ducat), and the gods that turn from a bargain with it (Undertow).
+- **Letters** (`GodLetters.cs`; hooks in `LetterFormShapes` and `LetterForm.Answer`): their letters tell of their god by
+  their town's facts (`LetterTells`), in sermons, stories (`st:god`) and chronicles (`chs:god`), each kept with its
+  writer's name. The colony's letter written by a rival's faithful or a scoffer may slight their god; their answer says
+  they took offense. A friend's invitation to its god's feast by the feast's own name.
+- **Diplomacy** (`GodPeoples.cs`): a people sharing a god warms a little each season, a feud that is the gods' cools
+  one (never below 0); a holy war; a temple's envoy for a relic. A debt of honour the colony owed, kept or broken
+  (`FavoursOwed.Close` calls `GodPeoples.DebtClosed`), moves the standing of the god who watches debts (Ducat).
+- **Camps** (`GodCamps.cs`, two `CampWorker`s): pilgrims at a holy place by their god's site (an old tree, a steam
+  geyser, a wreck, the graves, the water's edge); a hermit seer whose words are true and dark (`GodCamps.Signs`: a
+  quarrel, a grudge, the Hunger owed, the shape of a god's anger or kindness to come, never a god's name or mood).
+- **Kindness and anger** (`GodHealth.cs`): each god in its own shape, the game's own incident where there is one (blight,
+  cold snap, heat wave, flashstorm, short circuit, solar flare, drought and flood, meteorite, trader) with the game's own
+  letter, else a plain card (wild growth, a vein of silver, a machine mended, a cold snap broken, a cat wandering in,
+  rain, silver missing from a hoard, a freezer failing); a fever broken in the small hours; a grudge's lightning or
+  beasts; Bellwether's kin killed (every people colder) and Mog's (the cats leave, the rats come). Helios gives blindly
+  at his own rate. Selene returns the day at night (`FactionMemory.Note` and a prisoner executed fill
+  `GodHealth.Deed`), by her face (`MoonFace`): a wound healed or something found, or bad dreams. Hurts in the shared
+  harm budget (`godBeasts`, `godLightning`, `godPrice`, system `gods`).
+- **Gifts** (`GodWorldGifts.cs`): a dream told at breakfast (the god unnamed, `GodWays.Dream`; Selene's tell the gift), a
+  night under the open sky, and by morning the change with nothing said of why: a blessing on the body, a RimWorld of
+  Magic class or spell scroll (Druid, Necromancer, Technomancer, Storm Born, Heart of Frost, Chronomancer), a gifted
+  trait, a psylink and a Vanilla Psycasts Expanded path, gold for silver, a passion, a relic; the price paid the same
+  way (an offering left at the gate, a mark, years, a cut). A rival's second dream asks for the gift back.
+- **The void** (`GodVoid.cs`): Undertow hears the desperate (easier at the dark of the moon), pays at once and takes
+  more each time; Hollin, Bellwether and Ennu turn away, Pip goes quiet; the Choir of the Spire write.
+- **The drama** (`GodDrama.cs`): a quarrel seen on opposed sides (`GodWorldMath.Opposed`: storm and dry, cold and warm,
+  cold and rain, growth and rot, sun and spark, flow and hoard), each turn the game's weather or a sign on the ground;
+  one hunted at the gate; a sentence of an old story at supper (`Rimfolk_Pool_GodMyth`, by the god's key).
+- Dev actions "Gods in the world: ...". No Almanac page. Tested in `GodWorldTests`.
 
 ### Checking a new game version
 

@@ -276,6 +276,8 @@ namespace ColonyCouncil
             }
             if (t.state == Tie.State.Open && (state == Tie.State.Kept || state == Tie.State.Broken)) WorldLedger.Set(t, Tie.State.CalledIn);
             WorldLedger.Set(t, state);
+            // The god who watches debts takes note of the colony's own, unseen (Gods/World/GodPeoples.cs).
+            if (state == Tie.State.Kept || state == Tie.State.Broken) GodPeoples.DebtClosed(ColonyOwes(t), state == Tie.State.Kept, PeopleOf(t), HomeOf(t));
         }
 
         // ================= The line in the letter that tells it =================

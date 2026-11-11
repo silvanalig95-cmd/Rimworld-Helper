@@ -31,6 +31,21 @@ When you load a save after an update, a letter lists the newest round once. The 
     <rounds>
 
       <li>
+        <version>0.219.0</version>
+        <date>11 November 2026</date>
+        <title>The gods in the world</title>
+        <points>
+          <li>The gods act unseen, like a storyteller: weather, blight, flares and traders come, and a god is named only when the colony knows the hand.</li>
+          <li>Each god has its own ways, from Hollin's wild growth and blight to Smoulder's silver and heat, Pip's mended machines and short circuits, and Murmur's rain and drought.</li>
+          <li>Someone may tell a dream at breakfast and ask to spend a night under the open sky, then come back changed, sometimes marked or older.</li>
+          <li>At night the moon returns what the colony did by day, kindness as kindness and cruelty as cruelty.</li>
+          <li>Gods quarrel where you can see it: snow and warm wind over the valleys, wild growth and rings of mushrooms.</li>
+          <li>Harm one of Bellwether's thrumbos and every people hears of it; harm a cat and the cats leave and the rats come back.</li>
+          <li>People talk of the gods in bubbles, at supper and in their letters, and a hermit seer says true things darkly.</li>
+        </points>
+      </li>
+
+      <li>
         <version>0.218.0</version>
         <date>11 November 2026</date>
         <title>The gods on the map</title>
