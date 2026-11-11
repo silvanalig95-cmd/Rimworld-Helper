@@ -78,7 +78,8 @@ namespace ColonyCouncil
 
     /// <summary>
     /// The guests' records (a game component), and the pass that follows them every 250 ticks at Sched.RareGuestHelp, only
-    /// while Hospitality's guests are on a home map or a record waits to be let go.
+    /// while Hospitality's guests are on a home map or a record waits to be let go; the same pass gives a feast's guests and
+    /// an envoy in Hospitality's care their visit's look (Integrations/InvitedGuests.cs).
     /// </summary>
     public class GuestHelpBook : GameComponent
     {
@@ -118,15 +119,32 @@ namespace ColonyCouncil
         {
             int now = Find.TickManager.TicksGame;
             if (!Sched.Every(now, Sched.RareTicks, Sched.RareGuestHelp)) return;
-            if (guests.Count == 0 && !GuestHelp.Any) return;
+            bool help = guests.Count > 0 || GuestHelp.Any;
+            // Invited guests in Hospitality's care that a feast or an envoy's stay follows (Integrations/InvitedGuests.cs).
+            bool invited = InvitedGuests.Following;
+            if (!help && !invited) return;
             using var clock = PassClock.Time(Pass.RareGuestHelp);
-            try
+            if (help)
             {
-                GuestHelp.Rare(now);
+                try
+                {
+                    GuestHelp.Rare(now);
+                }
+                catch (Exception e)
+                {
+                    CouncilLog.ErrorOnce("guests helping out", e);
+                }
             }
-            catch (Exception e)
+            if (invited)
             {
-                CouncilLog.ErrorOnce("guests helping out", e);
+                try
+                {
+                    InvitedGuests.Rare();
+                }
+                catch (Exception e)
+                {
+                    CouncilLog.ErrorOnce("invited guests: the pass", e);
+                }
             }
         }
 

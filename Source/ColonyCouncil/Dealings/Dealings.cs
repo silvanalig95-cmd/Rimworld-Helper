@@ -949,7 +949,7 @@ namespace ColonyCouncil
             }
             // Their trader caravan by the game's own arrival; their folk walk in from the edge at an errand's pace and stay the day.
             bool traders = !invite && Arrival(IncidentDefOf.TraderCaravanArrival, home, f);
-            var folk = Guests(home, f, Rand.RangeInclusive(DealingMath.GuestsMin, DealingMath.GuestsMax), DealingMath.GuestHours);
+            var folk = Guests(home, f, Rand.RangeInclusive(DealingMath.GuestsMin, DealingMath.GuestsMax), DealingMath.GuestHours, invite ? ArrivalWhy.TownInvited : ArrivalWhy.TownFair);
             d.came = traders || folk != null;
             if (!d.came)
             {
@@ -964,9 +964,10 @@ namespace ColonyCouncil
 
         /// <summary>
         /// Folk of theirs come to the colony for the day: they walk in from the edge at an errand's pace and spend the hours
-        /// just outside the colony, the game's own visit (LordJob_VisitOnErrand); the first of them, or null when none could come.
+        /// just outside the colony, the game's own visit (LordJob_VisitOnErrand), or with Hospitality as its guests, invited as
+        /// they are (<paramref name="why"/>: Integrations/InvitedGuests.cs); the first of them, or null when none could come.
         /// </summary>
-        public static Pawn Guests(Map home, Faction f, int count, float hours)
+        public static Pawn Guests(Map home, Faction f, int count, float hours, ArrivalWhy why)
         {
             var kind = Arrivals.PersonKind(f);
             if (home == null || kind == null || Diplomacy.Hostile(f)) return null;
@@ -978,7 +979,7 @@ namespace ColonyCouncil
                     var p = Arrivals.Make(kind, f);
                     if (p != null) pawns.Add(p);
                 }
-                if (pawns.Count > 0 && Arrivals.Visit(pawns, home, f, null, hours) != null) return pawns[0];
+                if (pawns.Count > 0 && Arrivals.Invited(why, pawns, home, f, null, hours) != null) return pawns[0];
             }
             catch (Exception e)
             {

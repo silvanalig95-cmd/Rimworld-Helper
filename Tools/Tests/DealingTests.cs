@@ -365,7 +365,7 @@ public static class DealingTests
         C(patches.Contains("nameof(Storyteller.TryFire)") && Code("Dealings/PenFriends.cs").Contains("RelayMast.Working(map)"), "word of a raid; never where the mast already warns");
         string dealings = Code("Dealings/Dealings.cs");
         C(dealings.Contains("Couriers.CollectOrder(") && dealings.Contains("Couriers.Exchange(") && dealings.Contains("IncidentDefOf.TraderCaravanArrival")
-          && dealings.Contains("Arrivals.Visit(pawns, home, f, null, hours)") && dealings.Contains("OverlayRoad(") && dealings.Contains("tracker.Start(setup, true)"),
+          && dealings.Contains("Arrivals.Invited(why, pawns, home, f, null, hours)") && dealings.Contains("OverlayRoad(") && dealings.Contains("tracker.Start(setup, true)"),
             "it plays out on the map: their porters, their caravans and visitors, a road on the world, a camp of theirs");
         C(!Regex.IsMatch(dealings + Code("Dealings/WorldWrites.cs") + Code("Dealings/PenFriends.cs"), @"Messages\.Message\(|Find\.LetterStack\.ReceiveLetter\("),
             "the player is told through Notify and Tell");

@@ -270,12 +270,13 @@ namespace ColonyCouncil
             }
         }
 
-        /// <summary>The stay's group on the home, or null.</summary>
+        /// <summary>The stay's group on the home (their own, or Hospitality's: Integrations/InvitedGuests.cs), or null.</summary>
         public static Lord LordOf(Map map, EnvoyStay s)
         {
             if (map?.lordManager == null || s == null) return null;
             foreach (var l in map.lordManager.lords)
-                if (l?.LordJob is LordJob_EnvoyStay && (s.envoy != null && l.ownedPawns.Contains(s.envoy) || s.attendant != null && l.ownedPawns.Contains(s.attendant)))
+                if ((l?.LordJob is LordJob_EnvoyStay || InvitedGuests.Hosted(l))
+                    && (s.envoy != null && l.ownedPawns.Contains(s.envoy) || s.attendant != null && l.ownedPawns.Contains(s.attendant)))
                     return l;
             return null;
         }
@@ -302,7 +303,10 @@ namespace ColonyCouncil
                 foreach (var p in party) Hosting.Provision(p, EnvoyMath.StayDays);
                 var spot = Visitors.IndoorsCell(map, party);
                 if (!spot.IsValid) spot = DropCellFinder.TradeDropSpot(map);
-                LordMaker.MakeNewLord(f, new LordJob_EnvoyStay(Homes.KeyOf(map), spot), map, party);
+                // Invited: with Hospitality, its guests for the season (Integrations/InvitedGuests.cs); the stay's hour still
+                // feeds and beds them, seats the envoy at a meeting and sends their letters home.
+                if (InvitedGuests.HandOver(ArrivalWhy.Envoy, party, map, f, spot, EnvoyMath.StayDays * GenDate.HoursPerDay) == null)
+                    LordMaker.MakeNewLord(f, new LordJob_EnvoyStay(Homes.KeyOf(map), spot), map, party);
             }
             catch (Exception e)
             {
@@ -396,6 +400,31 @@ namespace ColonyCouncil
             Letters(h, s, map, now);
         }
 
+        /// <summary>
+        /// The envoy and attendant in Hospitality's care (Integrations/InvitedGuests.cs), every 250 ticks: indoors in danger
+        /// (their own group's rule), else wherever Hospitality's guest rules take them; and what the stay's own hour would
+        /// have counted when Hospitality fed or bedded the envoy first: a meal of the colony's (a fine one for the Empire),
+        /// a night in one of its beds.
+        /// </summary>
+        internal static void HostedLook(DiplomacyHome h)
+        {
+            var map = h?.Map;
+            var s = h?.envoy;
+            if (map == null || s == null || s.stage != EnvoyStage.Staying) return;
+            var lord = LordOf(map, s);
+            if (!InvitedGuests.Hosted(lord)) return;
+            InvitedGuests.Steer(lord, null, IntVec3.Invalid, 0f, RansomDefOf.Rimfolk_EnvoyIndoors);
+            var e = s.envoy;
+            if (e == null || !e.Spawned || e.Map != map) return;
+            if (Hosting.EatingOurs(e))
+            {
+                if (s.meals == 0) s.meals = 1;
+                var food = e.CurJob?.targetA.Thing;
+                if (s.fine == 0 && food?.def?.ingestible != null && food.def.ingestible.preferability >= FoodPreferability.MealFine) s.fine = 1;
+            }
+            if (!e.Awake() && e.CurrentBed() is Building_Bed bed && bed.Faction == Faction.OfPlayer) Night(s, map, bed == s.bed ? EnvoyNight.Own : EnvoyNight.Spare, bed);
+        }
+
         /// <summary>One of them up again after being downed or out of their mind, with no group: back to the stay's (or a new one at the common rooms).</summary>
         private static void Regroup(EnvoyStay s, Map map)
         {
@@ -406,14 +435,17 @@ namespace ColonyCouncil
                 var lord = LordOf(map, s);
                 if (lord != null)
                 {
+                    // Hospitality's guests are taken back its own way for a guest who joins late.
                     foreach (var p in lost)
-                        if (lord.CanAddPawn(p))
+                        if (!InvitedGuests.Rejoin(lord, p) && !InvitedGuests.Hosted(lord) && lord.CanAddPawn(p))
                             lord.AddPawn(p);
                     return;
                 }
                 var spot = Visitors.IndoorsCell(map, lost);
                 if (!spot.IsValid) spot = DropCellFinder.TradeDropSpot(map);
-                LordMaker.MakeNewLord(s.people, new LordJob_EnvoyStay(Homes.KeyOf(map), spot), map, lost);
+                float left = Mathf.Max(1f, (s.until - Now) / (float)GenDate.TicksPerHour);
+                if (InvitedGuests.HandOver(ArrivalWhy.Envoy, lost, map, s.people, spot, left) == null)
+                    LordMaker.MakeNewLord(s.people, new LordJob_EnvoyStay(Homes.KeyOf(map), spot), map, lost);
             }
             catch (Exception e)
             {
@@ -471,7 +503,7 @@ namespace ColonyCouncil
         public static bool Free(Pawn p)
         {
             if (p == null || p.Dead || !p.Spawned || p.Downed || p.InMentalState || p.Drafted || !p.Awake() || p.InBed()) return false;
-            if (!(p.GetLord()?.CurLordToil is LordToil_EnvoyStay)) return false;
+            if (!(p.GetLord()?.CurLordToil is LordToil_EnvoyStay) && !InvitedGuests.Staying(p)) return false;
             var d = p.CurJobDef;
             if (d == RansomDefOf.Rimfolk_EnvoyLetter || d == RansomDefOf.Rimfolk_EnvoySitIn || d == JobDefOf.Ingest) return false;
             return PlayOuts.Interruptible(p) && p.Map.dangerWatcher.DangerRating != StoryDanger.High;
@@ -735,8 +767,8 @@ namespace ColonyCouncil
             s.stage = EnvoyStage.Leaving;
             try
             {
-                var lord = LordOf(map, s);
-                lord?.ReceiveMemo(LordJob_EnvoyStay.MemoLeave);
+                // Hospitality's guests leave as its own stay ends (Integrations/InvitedGuests.cs).
+                InvitedGuests.GoHome(LordOf(map, s), LordJob_EnvoyStay.MemoLeave);
                 foreach (var p in Party(s).ToList())
                 {
                     // One the colony took prisoner keeps the bed the wardens gave them.
@@ -812,8 +844,7 @@ namespace ColonyCouncil
                 head.Remember(RansomWords.P("CC_Envoy_Note_Died", p.Named("ENVOY")), shift);
             }
             FactionMemory.Note(f, "slighted", p.LabelShort, sheltered ? 4 : 12);
-            var lord = LordOf(map, s);
-            lord?.ReceiveMemo(LordJob_EnvoyStay.MemoLeave);
+            InvitedGuests.GoHome(LordOf(map, s), LordJob_EnvoyStay.MemoLeave);
             if (s.attendant != null) Hosting.GiveBack(s.attendant, map);
             Hosting.GiveBack(p, map);
             Diplomacy.Write(DiplomacyMath.Envoy, new List<HistoryActor>
@@ -854,7 +885,7 @@ namespace ColonyCouncil
         {
             if (h?.envoy == null) return;
             var map = h.Map;
-            LordOf(map, h.envoy)?.ReceiveMemo(LordJob_EnvoyStay.MemoLeave);
+            InvitedGuests.GoHome(LordOf(map, h.envoy), LordJob_EnvoyStay.MemoLeave);
             Clear(h, h.envoy);
         }
 

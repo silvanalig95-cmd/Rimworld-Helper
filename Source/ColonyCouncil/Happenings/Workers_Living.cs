@@ -1710,7 +1710,7 @@ namespace ColonyCouncil
             var ctx = LivingEvents.Context(m, def, map);
             var x = m.pawn;
             if (!LivingEvents.FreeToTravel(x) || x.Faction != m.faction
-                || Arrivals.Visit(new List<Pawn> { x }, map, m.faction, GatheringSpot(map), Rand.Range(18f, 26f)) == null)
+                || Arrivals.Invited(ArrivalWhy.NotableGuest, new List<Pawn> { x }, map, m.faction, GatheringSpot(map), Rand.Range(18f, 26f)) == null)
             {
                 LivingEvents.Say(ctx, more?.cancelled);
                 return;

@@ -2788,7 +2788,12 @@ Each of these switches itself on only when its mod is there, and only asks for w
   prisoners' work or handles the dead. A day far too long is held against the colony a little, working beside a colonist
   builds friendship both ways, a guest who helped speaks well of the colony at home, and one hurt at the colony's work
   costs regard with their people. The guest tab shows what each would help with and why, today's hours, and a switch,
-  "Let them help".
+  "Let them help". Those the colony invited come as Hospitality's guests (setting "Invited visitors are guests"): a
+  notable who took up a letter's invitation, a town's folk asked to a feast or fair, a guest of note told yes, a feast's
+  or a wedding's guests, an envoy for a season. Their guest area, beds, the guest tab and its recruiting apply, and what
+  they came for comes first: a feast keeps its guests at the gate, the contests, the table and indoors for the night, an
+  envoy is fed, bedded, sits in at a meeting and writes home, and both leave when the feast or the season is over, as
+  Hospitality's guests do.
 - **Medieval Overhaul:** its pies, stews, slop, cheese, wine, ale, smoked meat and library leave memories that become
   days in the journals, and visitors notice the colony's cheese, wine, hearth, oven, hives and books once it has them.
 - **Vanilla Cooking and Brewing Expanded:** grills and gourmet dishes count as fine or lavish meals for birthday
@@ -5202,7 +5207,8 @@ The pages:
   the break ring or dot and its early warning, the wish badge's threshold, size, corner and how many show).
 - **Your other mods**: only the mods you have loaded show, and the page's foot names the others Rimfolk works with:
   Hospitality (guests joining only when they would, guests in the colony's stories, recruiting spelled out on the
-  guest tab, guests helping with what they love, guests pitching in when the colony is in trouble), RimMarket (Rimfolk's sales table, stall goods for trade ships, campers buying at the stalls, and with
+  guest tab, guests helping with what they love, guests pitching in when the colony is in trouble, invited visitors as its
+  guests), RimMarket (Rimfolk's sales table, stall goods for trade ships, campers buying at the stalls, and with
   Hospitality guests always shopping), Alpha Skills (a drink or a smoke before work), **A covered face hides looks
   (Alpha Genes)**, RimWorld of Magic (golems keep their energy, the mod's rules about needs hold, and under Harmony 3 the patches its
   own setup leaves out after its refused healing-rain patch are applied one at a time, with the healing rain run by

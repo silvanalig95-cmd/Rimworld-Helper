@@ -145,6 +145,9 @@ namespace ColonyCouncil
         /// <summary>Called off, and why in words (the weather, a raid, the colony's own word).</summary>
         public bool calledOff;
         public string offWhy;
+        /// <summary>Where the guests keep about now and how far (Feasts.Focus), for those in Hospitality's care.</summary>
+        public IntVec3 focus = IntVec3.Invalid;
+        public float focusRadius = 6f;
 
         public bool Live => stage != FeastStage.Done;
 
@@ -207,6 +210,8 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref prizeGiven, "prizeGiven");
             Scribe_Values.Look(ref calledOff, "calledOff");
             Scribe_Values.Look(ref offWhy, "offWhy");
+            Scribe_Values.Look(ref focus, "focus", IntVec3.Invalid);
+            Scribe_Values.Look(ref focusRadius, "focusRadius", 6f);
             if (Scribe.mode == LoadSaveMode.PostLoadInit)
             {
                 guests ??= new List<FeastGuest>();

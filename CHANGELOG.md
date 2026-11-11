@@ -5,6 +5,16 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## Invited, and made welcome
+
+*11 November 2026, version 0.209.0*
+
+- With Hospitality, visitors you invite now come as its guests: a notable who took up your letter's invitation, a town's folk asked to your feast or fair, a guest of note you said yes to, feast and wedding guests, and an envoy for a season.
+- They show on the guest tab, keep to the guest area, sleep in guest beds, and follow Hospitality's recruiting rules and Rimfolk's guest help.
+- What they came for still comes first: feast guests gather at the gate, join the contests, sit at your table and sleep indoors, and an envoy is fed, sits in at your council and writes home.
+- They leave when the feast or the season is over, the way Hospitality's guests leave when their stay ends.
+- The setting "Invited visitors are guests" is under Hospitality on the Your other mods page.
+
 ## A thermometer at a glance
 
 *11 November 2026, version 0.208.0*
