@@ -183,6 +183,8 @@ namespace ColonyCouncil
             Safe("ties shifting", () => Pantheon.ShiftTies(b, now));
             Safe("a newborn god", () => Pantheon.Newborn(b, now));
             Safe("pruning", () => b.Prune(now));
+            // The gods on the map (Gods/OnMap/): a coming planned, the marks kept and visited.
+            Safe("on the map", () => GodsOnMapBook.Daily(now));
         }
 
         /// <summary>The region's hour: who is on a home map, so the colony learns their gods.</summary>
@@ -191,6 +193,8 @@ namespace ColonyCouncil
             var b = Instance;
             if (b == null || !Gods.On || !b.built) return;
             Safe("visitors", () => Pantheon.LearnFromVisitors(b));
+            // The gods on the map (Gods/OnMap/): the omens, the coming, the stranger, the beast, the weather, the marks.
+            Safe("on the map", () => GodsOnMapBook.Hourly(now));
         }
 
         private static void Safe(string what, Action a)

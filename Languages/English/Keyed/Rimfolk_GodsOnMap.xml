@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <!-- The gods on the map (Source/ColonyCouncil/Gods/OnMap/). {GOD} is the god as the colony knows it: its name, or what it is ("a goddess of the harvest"). -->
+
+  <!-- The traveller by the colony's age. -->
+  <CC_GodM_Traveller_0>wanderer</CC_GodM_Traveller_0>
+  <CC_GodM_Traveller_1>pilgrim</CC_GodM_Traveller_1>
+  <CC_GodM_Traveller_2>drifter</CC_GodM_Traveller_2>
+  <CC_GodM_Traveller_3>lost spacer</CC_GodM_Traveller_3>
+
+  <CC_GodM_SomeSay>some say {WHAT}</CC_GodM_SomeSay>
+
+  <!-- A sign put to its god, by how real the gods are. -->
+  <CC_GodM_Sign_Believed>Folk say it is a sign from {GOD}.</CC_GodM_Sign_Believed>
+  <CC_GodM_Sign_Felt>Some say it is a sign of {GOD}.</CC_GodM_Sign_Felt>
+  <CC_GodM_Sign_Walking>It is a sign of {GOD}.</CC_GodM_Sign_Walking>
+
+  <!-- ===================== The stranger at the gate: the end ===================== -->
+
+  <CC_GodM_Stranger_Title_Harmed>The stranger was {GOD}</CC_GodM_Stranger_Title_Harmed>
+  <CC_GodM_Stranger_Title_TurnedAway>The one turned away was {GOD}</CC_GodM_Stranger_Title_TurnedAway>
+  <CC_GodM_Stranger_Title_Poor>The stranger was {GOD}</CC_GodM_Stranger_Title_Poor>
+  <CC_GodM_Stranger_Title_Fair>The stranger was {GOD}</CC_GodM_Stranger_Title_Fair>
+  <CC_GodM_Stranger_Title_Kind>The stranger was {GOD}</CC_GodM_Stranger_Title_Kind>
+  <CC_GodM_Stranger_Title_Generous>The stranger was {GOD}</CC_GodM_Stranger_Title_Generous>
+  <CC_GodM_Stranger_TitleVeiled>The stranger who came to the gate</CC_GodM_Stranger_TitleVeiled>
+
+  <CC_GodM_Stranger_Plain_Harmed>{STRANGER} straightened under the blow, and was suddenly taller than anyone there, and not a {TRAVELLER} at all. It was {GOD}, {GODOF}, come to see how this colony treats a stranger at its gate, and {HARMER} raised a hand against {GOD}. The sky went dark, and the god was gone.</CC_GodM_Stranger_Plain_Harmed>
+  <CC_GodM_Stranger_Plain_TurnedAway>The {TRAVELLER} the colony turned away stopped on the road, turned, and grew into what they had been all along: {GOD}, {GODOF}. "You had a bed to spare, and you know it," the god said, and walked on.</CC_GodM_Stranger_Plain_TurnedAway>
+  <CC_GodM_Stranger_Plain_Poor>At the gate {STRANGER} stopped, turned, and was {GOD}, {GODOF}, as plain as day. "A cold welcome is still a welcome," the god said, without warmth, "but only just."</CC_GodM_Stranger_Plain_Poor>
+  <CC_GodM_Stranger_Plain_Fair>At the gate {STRANGER} stopped, turned, and was {GOD}, {GODOF}, taller than the wall and bright as noon. "You did right by me, near enough," the god said, "and I'll remember it."</CC_GodM_Stranger_Plain_Fair>
+  <CC_GodM_Stranger_Plain_Kind>At the gate {STRANGER} stopped, turned, and grew into {GOD}, {GODOF}, while everyone watched. "I came as a stranger, and you treated me as one of your own," the god said. "That is the whole of the law, and you kept it."</CC_GodM_Stranger_Plain_Kind>
+  <CC_GodM_Stranger_Plain_Generous>At the gate {STRANGER} stopped, turned, and grew into {GOD}, {GODOF}, and the light came off the god like heat off a hearth. "A bed, a table, and kindness besides," the god said. "Few houses have given me all three. This one will be remembered."</CC_GodM_Stranger_Plain_Generous>
+
+  <CC_GodM_Stranger_Veiled_Harmed>One moment {STRANGER} was there, struck and bleeding; the next there was only scorched ground, and the sky had gone dark. Some say the {TRAVELLER} was {GOD}, and that {HARMER} will pay for that blow.</CC_GodM_Stranger_Veiled_Harmed>
+  <CC_GodM_Stranger_Veiled_TurnedAway>The {TRAVELLER} the colony turned away is gone, and the road where they walked is scorched. Some say it was {GOD}, come to see who opens a door and who doesn't.</CC_GodM_Stranger_Veiled_TurnedAway>
+  <CC_GodM_Stranger_Veiled_Poor>The {TRAVELLER} {STRANGER} is gone, and nobody saw them leave the land. Some say it was {GOD}, and that the god was not much pleased with what it found.</CC_GodM_Stranger_Veiled_Poor>
+  <CC_GodM_Stranger_Veiled_Fair>The {TRAVELLER} {STRANGER} is gone, and nobody saw them leave the land. Some say it was {GOD}, and that it found the colony fair enough.</CC_GodM_Stranger_Veiled_Fair>
+  <CC_GodM_Stranger_Veiled_Kind>The {TRAVELLER} {STRANGER} is gone, and where they slept there's a warmth in the ground. Some say it was {GOD}, and that the god was glad of its welcome here.</CC_GodM_Stranger_Veiled_Kind>
+  <CC_GodM_Stranger_Veiled_Generous>The {TRAVELLER} {STRANGER} is gone before anyone was up, and where they slept the ground has answered. Some say it was {GOD} itself, and that few houses have welcomed it so well.</CC_GodM_Stranger_Veiled_Generous>
+  <CC_GodM_Stranger_Kindest>{KINDEST} was kindest of all, and the god has not forgotten it.</CC_GodM_Stranger_Kindest>
+
+  <CC_GodM_Stranger_Act_Harmed>came to the gate as a {TRAVELLER}, and was struck</CC_GodM_Stranger_Act_Harmed>
+  <CC_GodM_Stranger_Act_TurnedAway>came to the gate as a {TRAVELLER}, and was turned away</CC_GodM_Stranger_Act_TurnedAway>
+  <CC_GodM_Stranger_Act_Poor>came to the gate as a {TRAVELLER}, and was poorly kept</CC_GodM_Stranger_Act_Poor>
+  <CC_GodM_Stranger_Act_Fair>came to the gate as a {TRAVELLER}, and was fairly kept</CC_GodM_Stranger_Act_Fair>
+  <CC_GodM_Stranger_Act_Kind>came to the gate as a {TRAVELLER}, and was kindly kept</CC_GodM_Stranger_Act_Kind>
+  <CC_GodM_Stranger_Act_Generous>came to the gate as a {TRAVELLER}, and was welcomed like family</CC_GodM_Stranger_Act_Generous>
+
+  <CC_GodM_Memory_Stranger>the {TRAVELLER} who came to the gate</CC_GodM_Memory_Stranger>
+  <CC_GodM_Chronicle_Stranger>{GOD} {WHAT}, and at the end showed itself for what it was.</CC_GodM_Chronicle_Stranger>
+  <CC_GodM_Chronicle_StrangerVeiled>A {TRAVELLER} came to the gate and went, and some say it was {GOD}.</CC_GodM_Chronicle_StrangerVeiled>
+
+  <!-- Why the god's favour moved. -->
+  <CC_GodM_Why_Harmed>its {TRAVELLER} was struck at the colony's gate</CC_GodM_Why_Harmed>
+  <CC_GodM_Why_TurnedAway>its {TRAVELLER} was turned away from the gate</CC_GodM_Why_TurnedAway>
+  <CC_GodM_Why_Poor>its {TRAVELLER} was poorly kept</CC_GodM_Why_Poor>
+  <CC_GodM_Why_Fair>its {TRAVELLER} was fairly kept</CC_GodM_Why_Fair>
+  <CC_GodM_Why_Kind>its {TRAVELLER} was kindly kept</CC_GodM_Why_Kind>
+  <CC_GodM_Why_Generous>its {TRAVELLER} was welcomed like family</CC_GodM_Why_Generous>
+  <CC_GodM_Why_Favour>for {PAWN}'s kindness</CC_GodM_Why_Favour>
+
+  <!-- What the god left. -->
+  <CC_GodM_Out_Find>Where the god stood lie {COUNT} {THING}.</CC_GodM_Out_Find>
+  <CC_GodM_Out_Weather>And the sky answered.</CC_GodM_Out_Weather>
+  <CC_GodM_Out_Gift>{PAWN_nameDef} was kindest, and has {WHAT} now.</CC_GodM_Out_Gift>
+  <CC_GodM_Gift_Spell>a scroll of {THING}, left at their feet</CC_GodM_Gift_Spell>
+  <CC_GodM_Gift_Class>the gifts of a {CLASS}</CC_GodM_Gift_Class>
+  <CC_GodM_Gift_Passion>a burning passion for {SKILL}</CC_GodM_Gift_Passion>
+  <CC_GodM_Gift_Trait>become {TRAIT}</CC_GodM_Gift_Trait>
+  <CC_GodM_Gift_Favour>the favour of {GOD}, and a spark of inspiration</CC_GodM_Gift_Favour>
+  <CC_GodM_InspiredBy>touched by {GOD}</CC_GodM_InspiredBy>
+  <CC_GodM_Journal_Gift>The stranger was more than a stranger, and I was given {WHAT}. I don't know why me.</CC_GodM_Journal_Gift>
+  <CC_GodM_Out_Fever>{PAWN_nameDef}, who raised a hand against {GOD}, has come down with a fever.</CC_GodM_Out_Fever>
+  <CC_GodM_Out_NoRain>The rain keeps away from the colony's fields.</CC_GodM_Out_NoRain>
+  <CC_GodM_Out_DryThunder>Dry thunder walks over the colony.</CC_GodM_Out_DryThunder>
+  <CC_GodM_Out_GameGone>The wild game has gone from the land.</CC_GodM_Out_GameGone>
+  <CC_GodM_Out_Fires>The colony's lights gutter and won't stay lit.</CC_GodM_Out_Fires>
+
+  <!-- ===================== Weather as a voice ===================== -->
+
+  <CC_GodM_Weather_Rain>{GOD} sent the rain</CC_GodM_Weather_Rain>
+  <CC_GodM_Weather_Thunder>{GOD} spoke in the thunder</CC_GodM_Weather_Thunder>
+  <CC_GodM_Weather_Eclipse>{GOD} darkened the sun in anger</CC_GodM_Weather_Eclipse>
+  <CC_GodM_Weather_Aurora>{GOD} lit the night sky for the colony</CC_GodM_Weather_Aurora>
+
+  <!-- ===================== The omens ===================== -->
+
+  <CC_GodM_Omen_Birds>Every bird on the land around {HOME} took off at once and flew away.</CC_GodM_Omen_Birds>
+  <CC_GodM_Omen_Calm>A strange calm has fallen over {HOME}: the wind has died, and nothing moves.</CC_GodM_Omen_Calm>
+  <CC_GodM_Omen_Candle>A light at {HOME} won't stay lit, though there's no draft.</CC_GodM_Omen_Candle>
+  <CC_GodM_Omen_Restless>The animals at {HOME} are restless: they start, run, and stand looking the same way.</CC_GodM_Omen_Restless>
+  <CC_GodM_Omen_Dream>{PAWN_nameDef} and {OTHER_nameDef} woke from the same dream: "{DREAM}"</CC_GodM_Omen_Dream>
+
+  <!-- ===================== The sacred animal ===================== -->
+
+  <CC_GodM_Animal_Title>{GOD} walks the land</CC_GodM_Animal_Title>
+  <CC_GodM_Animal_TitleVeiled>A {BEAST} like no other</CC_GodM_Animal_TitleVeiled>
+  <CC_GodM_Animal_Text>A {BEAST} has come in from the edge of the land, larger than any of its kind and lit from within: {GOD}, {GODOF}, walking as a beast. It will stay a few days. Leave it be, feed it or follow it where it leads; whoever hurts it hurts a god.</CC_GodM_Animal_Text>
+  <CC_GodM_Animal_TextVeiled>A {BEAST} has come in from the edge of the land, larger than any of its kind, with a light about it that the dusk doesn't dim. Some say it is {GOD} walking as a beast. It won't let anyone tame it, and nobody wants to be the one who hunts it.</CC_GodM_Animal_TextVeiled>
+  <CC_GodM_Animal_Act>walked the colony's land as a {BEAST}</CC_GodM_Animal_Act>
+
+  <CC_GodM_Boon_Title>{GOD} led {PAWN_nameDef}</CC_GodM_Boon_Title>
+  <CC_GodM_Boon_TitleVeiled>Where the {BEAST} led</CC_GodM_Boon_TitleVeiled>
+  <CC_GodM_Boon_Text>{PAWN_nameDef} followed {GOD} across the land, the {BEAST} looking back now and then to see that {PAWN_pronoun} still came. Where it stopped, it gave.</CC_GodM_Boon_Text>
+  <CC_GodM_Boon_TextVeiled>{PAWN_nameDef} followed the {BEAST} across the land, and it looked back now and then to see that {PAWN_pronoun} still came. Some say it was {GOD} leading, and where it stopped, it gave.</CC_GodM_Boon_TextVeiled>
+  <CC_GodM_Boon_CureWound>{PAWN_nameDef}'s worst wound has closed.</CC_GodM_Boon_CureWound>
+  <CC_GodM_Boon_CureIll>{PAWN_nameDef}'s {ILLNESS} has eased almost away.</CC_GodM_Boon_CureIll>
+  <CC_GodM_Boon_Vein>It stopped by a seam of {ORE} in the rock that nobody had seen before.</CC_GodM_Boon_Vein>
+  <CC_GodM_Boon_Find>{FOUND}</CC_GodM_Boon_Find>
+  <CC_GodM_Animal_LedAct>led {PAWN} across the land as a {BEAST}, and gave where it stopped</CC_GodM_Animal_LedAct>
+  <CC_GodM_Memory_Animal>the {BEAST} that was more than a beast</CC_GodM_Memory_Animal>
+  <CC_GodM_Journal_Led>I followed the {BEAST} today, and I don't know how to say what it was.</CC_GodM_Journal_Led>
+
+  <CC_GodM_Why_Followed>{PAWN} followed its {BEAST} where it led</CC_GodM_Why_Followed>
+  <CC_GodM_Why_Fed>{PAWN} took food out to its {BEAST}</CC_GodM_Why_Fed>
+  <CC_GodM_Why_LeftBe>its {BEAST} walked the land and was left in peace</CC_GodM_Why_LeftBe>
+  <CC_GodM_Why_Hurt>its {BEAST} was hurt by the colony</CC_GodM_Why_Hurt>
+  <CC_GodM_Why_Slain>its {BEAST} was slain by the colony</CC_GodM_Why_Slain>
+
+  <CC_GodM_Sacrilege_Title>{GOD} is wounded</CC_GodM_Sacrilege_Title>
+  <CC_GodM_Sacrilege_TitleVeiled>Blood on a sacred beast</CC_GodM_Sacrilege_TitleVeiled>
+  <CC_GodM_Sacrilege_Text>{HARMER} drew blood from the {BEAST}, and the {BEAST} was {GOD}. The sky has gone dark over the colony, and the god's anger is on it.</CC_GodM_Sacrilege_Text>
+  <CC_GodM_Sacrilege_TextVeiled>{HARMER} drew blood from the {BEAST}, and the sky went dark as it bled. Some say the {BEAST} was {GOD}, and that the colony will answer for it.</CC_GodM_Sacrilege_TextVeiled>
+  <CC_GodM_Someone>someone of the colony</CC_GodM_Someone>
+  <CC_GodM_Animal_HurtAct>was hurt by {PAWN} while it walked the land as a {BEAST}</CC_GodM_Animal_HurtAct>
+  <CC_GodM_Animal_SlainAct>was slain while it walked the land as a {BEAST}</CC_GodM_Animal_SlainAct>
+  <CC_GodM_Animal_Gone>{GOD} has left the land, and the {BEAST} with it.</CC_GodM_Animal_Gone>
+  <CC_GodM_Animal_GoneVeiled>The {BEAST} has gone from the land as quietly as it came. Some say it was {GOD}.</CC_GodM_Animal_GoneVeiled>
+  <CC_GodM_Animal_GoneHurt>{GOD} has left the land in anger, and the wounded {BEAST} with it.</CC_GodM_Animal_GoneHurt>
+  <CC_GodM_Animal_GoneHurtVeiled>The wounded {BEAST} is gone, and nobody saw where. Some say it was {GOD}, and that it won't forget.</CC_GodM_Animal_GoneHurtVeiled>
+  <CC_GodM_Animal_GoneAct>left the colony's land as a {BEAST}</CC_GodM_Animal_GoneAct>
+
+  <!-- The float menu on the sacred beast. -->
+  <CC_GodM_Menu_Follow>Follow the {KIND} where it leads</CC_GodM_Menu_Follow>
+  <CC_GodM_Menu_Feed>Take food out to the {KIND}</CC_GodM_Menu_Feed>
+  <CC_GodM_Menu_Hurt>it was hurt, and won't come near anyone</CC_GodM_Menu_Hurt>
+  <CC_GodM_Menu_Led>the {KIND} has led someone already</CC_GodM_Menu_Led>
+  <CC_GodM_Menu_Following>{PAWN} is following it now</CC_GodM_Menu_Following>
+  <CC_GodM_Menu_Fed>someone fed it already</CC_GodM_Menu_Fed>
+  <CC_GodM_Menu_NoFood>nothing in the stores a {KIND} would eat</CC_GodM_Menu_NoFood>
+  <CC_GodM_Menu_CantLead>The {KIND} won't lead anyone now.</CC_GodM_Menu_CantLead>
+  <CC_GodM_Job_Feed>taking food out to the {KIND}.</CC_GodM_Job_Feed>
+
+  <!-- ===================== The marks ===================== -->
+
+  <CC_GodM_MarkAct>left its mark on the land at {HOME}</CC_GodM_MarkAct>
+  <CC_GodM_Journal_Mark>I went out to the place where {GOD} {WHAT}, and stood there a while.</CC_GodM_Journal_Mark>
+  <CC_GodM_Job_Visit>remembering a god.</CC_GodM_Job_Visit>
+
+  <!-- ===================== This week ===================== -->
+
+  <CC_GodM_Week_StrangerAtGate>{STRANGER}, a {TRAVELLER}, is waiting at the gate</CC_GodM_Week_StrangerAtGate>
+  <CC_GodM_Week_StrangerGuest>{STRANGER}, a {TRAVELLER}, is the colony's guest</CC_GodM_Week_StrangerGuest>
+  <CC_GodM_Week_StrangerByGate>{STRANGER}, a {TRAVELLER}, is sleeping by the gate</CC_GodM_Week_StrangerByGate>
+  <CC_GodM_Week_StrangerSub>a stranger who asked for shelter</CC_GodM_Week_StrangerSub>
+  <CC_GodM_Week_Animal>{GOD} walks the land as a {KIND}</CC_GodM_Week_Animal>
+  <CC_GodM_Week_AnimalVeiled>a {KIND} like no other walks the land</CC_GodM_Week_AnimalVeiled>
+  <CC_GodM_Week_AnimalSub>leave it be, feed it, or follow it</CC_GodM_Week_AnimalSub>
+
+</LanguageData>

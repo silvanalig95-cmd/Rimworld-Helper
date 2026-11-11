@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    The shapes a god takes on the map (ColonyCouncil.GodShapeDef; Source/ColonyCouncil/Gods/OnMap/GodShapes.cs). The
+    player: "not every god necessarily has to have a sacred beast, each god should be individual in what it looks like
+    and whether it has any form at all". Who comes, and as what, is read from here:
+      stranger: it can come as a lone traveller asking for shelter (in disguise);
+      beast, beasts: it walks as a beast, and which (ThingDef names, the player's mods' first; none named: its look's own);
+      weather, voices: it answers in the weather, and with which voices (Rain, Thunder, Eclipse, Aurora; none named: its
+        domain's);
+      bodiless: it has no body at all and shows only in the sky, answering there more readily and more often;
+      lineTag: a tag its own lines carry, so a god written by hand can have words of its own.
+    A shape is for the gods it names in gods (a god's name, its patron's defName, its look's defName, or a hand-made god
+    def's own defName), else for every god of its domains. These are the generic shapes by domain, until the hand-made
+    pantheon names its own; the default is the shape of a god with nothing else to go by.
+  -->
+
+  <ColonyCouncil.GodShapeDef>
+    <defName>Rimfolk_GodShape_Default</defName>
+    <isDefault>true</isDefault>
+  </ColonyCouncil.GodShapeDef>
+
+  <!-- The storm has no body: it is the storm. It speaks in thunder, and keeps or sends the rain. -->
+  <ColonyCouncil.GodShapeDef>
+    <defName>Rimfolk_GodShape_Storm</defName>
+    <domains><li>Storm</li></domains>
+    <stranger>false</stranger>
+    <beast>false</beast>
+    <bodiless>true</bodiless>
+    <voices><li>Thunder</li><li>Rain</li></voices>
+  </ColonyCouncil.GodShapeDef>
+
+  <!-- The hearth comes walking, as the stranger at the gate, and never as anything else. -->
+  <ColonyCouncil.GodShapeDef>
+    <defName>Rimfolk_GodShape_Hearth</defName>
+    <domains><li>Hearth</li></domains>
+    <beast>false</beast>
+    <weather>false</weather>
+  </ColonyCouncil.GodShapeDef>
+
+  <!-- The road's god is the oldest stranger of them all, and walks the roads as a bird of the wayside too. -->
+  <ColonyCouncil.GodShapeDef>
+    <defName>Rimfolk_GodShape_Way</defName>
+    <domains><li>Way</li></domains>
+    <voices><li>Aurora</li></voices>
+  </ColonyCouncil.GodShapeDef>
+
+  <!-- The machine's gods come as a lost spacer and have no beasts (a made thing isn't one). -->
+  <ColonyCouncil.GodShapeDef>
+    <defName>Rimfolk_GodShape_Machine</defName>
+    <domains><li>Machine</li></domains>
+    <beast>false</beast>
+    <weather>false</weather>
+  </ColonyCouncil.GodShapeDef>
+
+  <!-- The forge's come as a traveller with burned hands; their beasts are the look's iron beetle and bear. -->
+  <ColonyCouncil.GodShapeDef>
+    <defName>Rimfolk_GodShape_Craft</defName>
+    <domains><li>Craft</li></domains>
+    <weather>false</weather>
+  </ColonyCouncil.GodShapeDef>
+
+  <!-- The harvest's and the waters' answer in the rain. -->
+  <ColonyCouncil.GodShapeDef>
+    <defName>Rimfolk_GodShape_Rain</defName>
+    <domains><li>Harvest</li><li>Waters</li></domains>
+    <voices><li>Rain</li></voices>
+  </ColonyCouncil.GodShapeDef>
+
+  <!-- The dark ones darken the sky in anger, and light it on their nights. -->
+  <ColonyCouncil.GodShapeDef>
+    <defName>Rimfolk_GodShape_Dark</defName>
+    <domains><li>Night</li><li>Dead</li><li>Void</li></domains>
+    <voices><li>Eclipse</li><li>Aurora</li></voices>
+  </ColonyCouncil.GodShapeDef>
+
+  <!-- The wild and the hunt walk as beasts most of all; the wild speaks in the rain too. -->
+  <ColonyCouncil.GodShapeDef>
+    <defName>Rimfolk_GodShape_Beasts</defName>
+    <domains><li>Wild</li><li>Hunt</li></domains>
+    <voices><li>Rain</li><li>Thunder</li></voices>
+  </ColonyCouncil.GodShapeDef>
+
+  <!-- Healing and war come as people and as beasts, and keep the sky out of it. -->
+  <ColonyCouncil.GodShapeDef>
+    <defName>Rimfolk_GodShape_Kin</defName>
+    <domains><li>Healing</li><li>War</li></domains>
+    <weather>false</weather>
+  </ColonyCouncil.GodShapeDef>
+
+</Defs>
