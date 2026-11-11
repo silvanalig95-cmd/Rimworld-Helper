@@ -5,6 +5,17 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## Gifts of the peoples
+
+*11 November 2026, version 0.213.0*
+
+- Some of the peoples now bring gifts of their own: the herding folk a young beast chosen for one of your people, the hospitallers a limb fitted at your bed, the Conclave a first psylink out in a thunderstorm, the Lattice a mechlink and a mech, the Mossborn a Gauranlen seed for a promise.
+- Each gift comes once to a colonist, and never two close together.
+- The road league may leave sealed crates in your stores until a second caravan fetches them: keep every one for good ink and better prices, or break a seal and be written in red.
+- Scholars camp beside an old place on your map for four days and tell you exactly what sleeps inside, or open it themselves if you let them.
+- In a holy year or a great pilgrimage, the pilgrims may raise a hostel by your road where the region's travellers stop a night with their news.
+- While a great beast roams your land, the Lantern Wardens may keep a lantern post at its edge, and the Wardens and the Circuit may come the same day to argue over hunting it or taming it.
+
 ## A thousand more letters
 
 *11 November 2026, version 0.212.0*

@@ -1,0 +1,332 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    The peoples' own camps of round 1 (Source/ColonyCouncil/Peoples/Events/PeopleCamps.cs, OldPlaces.cs; each a camp kind
+    with ways of its own, Camps/CampWorker.cs): the pilgrims' hostel on the road (item 17), the Lantern Wardens' post
+    (item 34), and the learned society's fellows measuring an old place (item 19). None comes on the camps' own draw
+    (weight 0): the hostel with a holy year or a great pilgrimage (Patches/Rimfolk_PeopleEvents.xml), the post with its
+    event (Rimfolk_Evt_LanternPost), the scholars when the colony lets them measure (Rimfolk_Evt_ScholarsReading).
+  -->
+
+  <!-- ===================== 17. A hostel on the road (the pilgrim fellowship) ===================== -->
+
+  <ColonyCouncil.CampKindDef>
+    <defName>Rimfolk_Camp_PilgrimHostel</defName>
+    <label>pilgrims' hostel</label>
+    <workerClass>ColonyCouncil.CampWorker_Hostel</workerClass>
+    <arrives>8~16</arrives>
+    <calling>pilgrims</calling>
+    <weight>0</weight>
+    <people>2~3</people>
+    <days>10~15</days>
+    <ages>24~70</ages>
+    <chopsPerDay>0.4</chopsPerDay>
+    <task>Council_CampPray</task>
+    <taskAt>spot</taskAt>
+    <hireChance>0.05</hireChance>
+    <joinChance>0.02</joinChance>
+    <helpChance>0.2</helpChance>
+    <help>
+      <li>medicine</li>
+      <li>tales</li>
+    </help>
+    <buys>
+      <li>Meal</li>
+      <li>RawFood</li>
+    </buys>
+    <pride>0.1</pride>
+    <breakTerms>0.02</breakTerms>
+    <tensionPerDay>0.4</tensionPerDay>
+    <canPay>false</canPay>
+    <extendChance>0.1</extendChance>
+    <situationKinds>
+      <li>faith</li>
+    </situationKinds>
+    <structures>
+      <li><role>fire</role><defs><li>Campfire</li></defs></li>
+      <!-- The shrine's flame, burning day and night. -->
+      <li><role>spot</role><defs><li MayRequire="Ludeon.RimWorld.Royalty">Brazier</li><li>TorchLamp</li></defs></li>
+      <li><role>table</role></li>
+    </structures>
+    <sleep>Hut</sleep>
+    <works><li>Gather</li><li>Chop</li></works>
+    <campGoods>
+      <li><defs><li>MealSimple</li></defs><count>4~8</count><at>table</at></li>
+    </campGoods>
+    <titles>
+      <li>A hostel on the road</li>
+      <li>[ws:faith] A hostel for {SITUATION}</li>
+      <li>The shrine's flame by the road</li>
+    </titles>
+    <texts>
+      <li>Two of {FACTION}'s fellowship have stopped on the colony's land with a cart of poles and bedrolls. With so many on the roads this year, {X_nameDef} told {A_nameDef}, travellers need somewhere to sleep, and they would raise a hostel {PLACE} for a fortnight: a long hut of bedrolls, the shrine's flame and a bread table for anyone at peace who passes.</li>
+      <li>[ws:faith] With {SITUATION} filling every road, {X_nameDef} of {FACTION} has come to raise a hostel {PLACE}. Anyone at peace may sleep there a night or two, {X_pronoun} told {A_nameDef}; they would only ask the colony for bread in the mornings, and invite its people to the blessing in the evenings.</li>
+      <li>[lowtech] Pilgrims of {FACTION} have begun cutting poles {PLACE} for a long hut. {X_nameDef}, who blessed every door on the road behind {X_objective}, open or shut, told {A_nameDef} it would be a hostel for the travellers of the pilgrimage, with the shrine's flame lit at its door.</li>
+      <li>[!lowtech] A wagon of {FACTION}'s fellowship has pulled off the road {PLACE}, loaded with folding cots and a brass lamp. {X_nameDef} told {A_nameDef} they would keep a hostel there for the pilgrims and travellers of the road, a fortnight or so, and asked only for bread.</li>
+      <li>[their:grateful] The pilgrim fellowship remembers the colony's welcome, and {X_nameDef} has chosen its land for their hostel this year, {PLACE}, so the region's travellers sleep under the colony's eye.</li>
+    </texts>
+    <settled>
+      <li>The hostel stands {PLACE}: a long hut with bedrolls in a row, the shrine's flame burning at its door, and a bread table under an awning where anyone at peace may sit.</li>
+      <li>{FACTION}'s hostel is up {PLACE}, and the shrine's flame has been lit; {X_nameDef} says it won't go out until they leave.</li>
+    </settled>
+    <joinTexts>
+      <li>{X_nameDef} of the hostel has watched the colony's people come to the evening blessing night after night, and asks whether the colony could use someone who keeps a door open for strangers.</li>
+    </joinTexts>
+    <farewell>
+      <li>[faces] The hostel's fellowship blessed every door of the colony as they left, open or shut, and left their long hut standing as a shelter for the road. {GUESTS} travellers slept there while they kept it.</li>
+      <li>[faces] {X_nameDef} put out the shrine's flame at dawn and walked on with the last of the pilgrims, leaving the hut for whoever needs it next. The region's faces passed through it, {GUESTS} of them.</li>
+      <li>The fellowship's hostel is empty, its flame out, its hut left standing by the road. {X_nameDef} blessed the gate on the way past.</li>
+    </farewell>
+    <lines>
+      <li>A shell for every shrine, and a bed for every walker.</li>
+      <li>Bless this door, open or shut.</li>
+      <li>Who's sleeping in the end bed tonight?</li>
+      <li>The flame stays lit until we go.</li>
+      <li>Bread first, then news.</li>
+      <li>[evening] The blessing's at dusk, and everyone's welcome.</li>
+    </lines>
+    <momentLines>
+      <li>[quarrel] Keep that quarrel off the road, both of you.</li>
+      <li>[gift] Leave the hut for the next walker.</li>
+    </momentLines>
+    <helpTexts>
+      <li>[medicine] {X_nameDef} brought the colony a bundle of healing herbs the travellers had left in thanks for their beds: {THING}.</li>
+      <li>[tales] {A_nameDef} sat at the hostel's bread table while the travellers traded news of every town on the road, and came back knowing who was feuding with whom.</li>
+    </helpTexts>
+    <asks>
+      <li>
+        <key>bread</key>
+        <label>Send bread to the hostel each morning</label>
+        <tip>One of the colony carries food out to the hostel's table every morning while it stands: meals when the colony has them, else raw food. The fellowship blesses the colony for it.</tip>
+        <theyAsk>true</theyAsk>
+        <askTexts>
+          <li>{X_nameDef} of the pilgrims' hostel has come to the gate with an empty basket. There are more travellers on the road than the fellowship can feed, {X_pronoun} says, and asks whether the colony would send bread to the hostel's table each morning while it stands.</li>
+          <li>The hostel's bread table was bare this morning, and {X_nameDef} has come to ask the colony, humbly, for bread each morning for the travellers while the hostel stands.</li>
+        </askTexts>
+        <refuseLabel>We can't spare it</refuseLabel>
+        <refused>
+          <li>{X_nameDef} thanks the colony anyway and goes back to bake what the fellowship can.</li>
+        </refused>
+        <refuseTension>4</refuseTension>
+        <tension>-6</tension>
+        <warm>2</warm>
+        <deed>campHelped</deed>
+        <outcomes>
+          <li>The colony will send bread to the hostel each morning, and the first basket is already on its way.</li>
+        </outcomes>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_HostelBread" />
+        </effects>
+      </li>
+      <li>
+        <key>blessing</key>
+        <label>Go to the evening blessing</label>
+        <tip>Whoever is free goes over to the hostel at dusk, where the fellowship blesses the travellers and the colony together. Recreation and a little peace; the crowded hut has its cough going round.</tip>
+        <needs>evening</needs>
+        <once>false</once>
+        <tension>-3</tension>
+        <outcomes>
+          <li>The colony is going over to the hostel for the evening blessing, where the shrine's flame is already lit.</li>
+          <li>Whoever isn't working is walking over to the hostel for the blessing, and the travellers have made room on the benches.</li>
+        </outcomes>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Gathering"><label>the evening blessing at the hostel</label><spots><li>Camp</li></spots><hours>17~21</hours><duration>1~2</duration></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Joy"><target>Colony</target><amount>0.06</amount></li>
+          <li Class="ColonyCouncil.DilemmaEffect_HostelCough" />
+        </effects>
+      </li>
+    </asks>
+  </ColonyCouncil.CampKindDef>
+
+  <!-- ===================== 34. The lantern post (the Lantern Wardens) ===================== -->
+
+  <ColonyCouncil.CampKindDef>
+    <defName>Rimfolk_Camp_LanternPost</defName>
+    <label>Wardens' lantern post</label>
+    <workerClass>ColonyCouncil.CampWorker_LanternPost</workerClass>
+    <calling>hunters</calling>
+    <weight>0</weight>
+    <people>3~3</people>
+    <days>10~10</days>
+    <ages>22~58</ages>
+    <armedHunters>true</armedHunters>
+    <chopsPerDay>0.3</chopsPerDay>
+    <hireChance>0.05</hireChance>
+    <joinChance>0.01</joinChance>
+    <helpChance>0.1</helpChance>
+    <help>
+      <li>tales</li>
+    </help>
+    <buys>
+      <li>RawFood</li>
+      <li>Meal</li>
+    </buys>
+    <pride>0.4</pride>
+    <breakTerms>0.02</breakTerms>
+    <tensionPerDay>0.4</tensionPerDay>
+    <extendChance>0</extendChance>
+    <structures>
+      <li><role>fire</role><defs><li>Campfire</li></defs></li>
+      <!-- The lantern on its pole, lit every night. -->
+      <li><role>light</role><defs><li>TorchLamp</li></defs></li>
+    </structures>
+    <sleep>Ring</sleep>
+    <works><li>Chop</li></works>
+    <animals>
+      <li><kinds><li MayRequire="vanillaexpanded.vanillaanimalsexpanded">AEXP_GermanShepherd</li><li>Husky</li><li>LabradorRetriever</li></kinds><count>2~2</count><follow>true</follow><named>true</named></li>
+    </animals>
+    <titles>
+      <li>The Wardens' lantern post</li>
+      <li>A lantern at the edge of the land</li>
+    </titles>
+    <texts>
+      <li>Lantern Wardens of {FACTION} are making camp {PLACE}, three of them and two hounds, because {BEAST} is on the colony's land. {X_nameDef} told {A_nameDef} they will light the lantern every night and follow its trail by day until it falls, or ten days.</li>
+      <li>[lowtech] Three Wardens of {FACTION} with boar-spears and two lean hounds are making camp {PLACE}. {X_nameDef} told {A_nameDef} that where a lantern burns, someone was taken, and {BEAST} is out there.</li>
+    </texts>
+    <settled>
+      <li>The Wardens' post is up {PLACE}: a fire, three bedrolls, the hounds tied by the woodpile and the lantern on its pole, ready for dark.</li>
+      <li>The lantern post stands {PLACE}, and {X_nameDef} has opened the Wardens' book at {BEAST}'s page.</li>
+    </settled>
+    <farewell>
+      <li>[together] The Wardens put out their lantern at dawn and wrote {BEAST}'s page with the colony's name in it, a red cord knotted beside it. Then they took the road home with their hounds.</li>
+      <li>[fell] {BEAST} has fallen, and the Wardens' lantern went out with it. {X_nameDef} wrote the page at the fire before they packed up, and the hounds were the first down the road.</li>
+      <li>[cold] The trail went cold, and the Wardens took down their post. {X_nameDef} left {BEAST}'s page open in the book and promised to light the lantern again if it comes back.</li>
+      <li>[hound] The Wardens packed up their post one hound short. {X_nameDef} said the other would follow the road home when it was ready, and didn't sound sure.</li>
+      <li>The Wardens' lantern post is empty, its lantern down off its pole and the fire raked out.</li>
+    </farewell>
+    <lines>
+      <li>Where a lantern burns, someone was taken.</li>
+      <li>Keep the hounds fed and the lantern trimmed.</li>
+      <li>It came down to the water at dawn, the tracks say so.</li>
+      <li>A beast that takes a person answers for it.</li>
+      <li>Eleven years Garrow waited by his lantern.</li>
+      <li>[night] Light it, and keep it lit.</li>
+    </lines>
+    <momentLines>
+      <li>[lantern] Light the lantern, it's getting dark.</li>
+      <li>[lantern] The lantern is lit, and the page stays open.</li>
+      <li>[warn] It's close to your walls, keep your people in.</li>
+      <li>[warn] The hounds have its scent, and it's coming your way.</li>
+      <li>[track] Fresh sign by the trees, it passed here at dawn.</li>
+      <li>[track] Quiet now, it's just over the rise.</li>
+      <li>[trail] Your shot and our spears, and we'll close the page today.</li>
+    </momentLines>
+    <helpTexts>
+      <li>[tales] {A_nameDef} sat up at the Wardens' lantern while {X_nameDef} told of Tobin Garrow and the eleven years at the crossroads, and of every red cord in the book.</li>
+    </helpTexts>
+    <asks>
+      <li>
+        <key>meat</key>
+        <label>Give them meat for the hounds</label>
+        <tip>One of the colony carries raw meat out to the Wardens' post for their hounds.</tip>
+        <theyAsk>true</theyAsk>
+        <askTexts>
+          <li>{X_nameDef} of the Wardens' post has come to the gate with the hounds at {X_possessive} heels. The trail is long and the hounds are thin, {X_pronoun} says, and asks for some of the colony's meat for them.</li>
+        </askTexts>
+        <refuseLabel>None to spare</refuseLabel>
+        <refused>
+          <li>{X_nameDef} nods and says the hounds will hunt for themselves, then.</li>
+        </refused>
+        <refuseTension>3</refuseTension>
+        <tension>-4</tension>
+        <deed>campHelped</deed>
+        <outcomes>
+          <li>Meat is going out to the Wardens' post, and the hounds are already at the edge of it, waiting.</li>
+        </outcomes>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>meat for the Wardens' hounds</label><what>meat</what><count>30</count><to>Camp</to><who>None</who><steward>false</steward></li>
+        </effects>
+      </li>
+      <li>
+        <key>trail</key>
+        <label>Send our best shot on the trail with them</label>
+        <tip>The colony's best shot goes after the beast with two of the Wardens: a place in the hunt, and a lesson in tracking. If it falls, one of them skins it where it lies, the hide for their book and the meat for the colony.</tip>
+        <needs>beastHere</needs>
+        <minDays>0.3</minDays>
+        <skill>Shooting</skill>
+        <tension>-5</tension>
+        <warm>3</warm>
+        <deed>campHelped</deed>
+        <outcomes>
+          <li>{A_nameDef} has gone out on the trail with two of the Wardens and a hound, after {BEAST}.</li>
+        </outcomes>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_LanternTrail" />
+          <li Class="ColonyCouncil.DilemmaEffect_Learn"><target>A</target><skill>Shooting</skill><xp>400</xp></li>
+        </effects>
+      </li>
+      <li>
+        <key>lantern</key>
+        <label>Sit up at the lantern with them</label>
+        <tip>Whoever is free goes over to the Wardens' fire at dusk to sit up by the lantern and hear the book read. Recreation; the Wardens warm to the colony.</tip>
+        <needs>evening</needs>
+        <tension>-3</tension>
+        <outcomes>
+          <li>The colony is going over to sit up at the Wardens' lantern tonight, and {X_nameDef} has the book open on {X_possessive} knees.</li>
+        </outcomes>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Gathering"><label>an evening at the Wardens' lantern</label><spots><li>Camp</li></spots><hours>18~22</hours><duration>1~2</duration></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Joy"><target>Colony</target><amount>0.06</amount></li>
+        </effects>
+      </li>
+    </asks>
+  </ColonyCouncil.CampKindDef>
+
+  <!-- ===================== 19. What lies in the old place (the learned society): their camp beside it ===================== -->
+
+  <ColonyCouncil.CampKindDef>
+    <defName>Rimfolk_Camp_ScholarsMeasure</defName>
+    <label>scholars at the old place</label>
+    <workerClass>ColonyCouncil.CampWorker_Measure</workerClass>
+    <calling>scholars</calling>
+    <weight>0</weight>
+    <people>2~2</people>
+    <days>4~4</days>
+    <ages>26~70</ages>
+    <hireChance>0</hireChance>
+    <joinChance>0.01</joinChance>
+    <helpChance>0.1</helpChance>
+    <help>
+      <li>tales</li>
+    </help>
+    <buys>
+      <li>Meal</li>
+    </buys>
+    <pride>0.2</pride>
+    <breakTerms>0.02</breakTerms>
+    <tensionPerDay>0.3</tensionPerDay>
+    <extendChance>0</extendChance>
+    <structures>
+      <li><role>fire</role><defs><li>Campfire</li></defs></li>
+    </structures>
+    <sleep>Tents</sleep>
+    <works><li>Gather</li></works>
+    <titles>
+      <li>Scholars at the old place</li>
+    </titles>
+    <texts>
+      <li>Two fellows of {FACTION} have pitched a small camp {PLACE}, beside {OLDPLACE}, to measure it. {X_nameDef} told {A_nameDef} they would say exactly what lies inside before they go.</li>
+    </texts>
+    <settled>
+      <li>The scholars' camp is up beside {OLDPLACE}: two tents, a fire and a table of instruments, and a chain already pegged out along the old walls.</li>
+    </settled>
+    <farewell>
+      <li>[opened] The scholars broke into {OLDPLACE} as they went, and whatever slept there is awake now. {X_nameDef} called it the price of knowing.</li>
+      <li>[measured] The scholars packed their instruments and left their notes on {OLDPLACE} with the colony: {READING}.</li>
+      <li>The scholars' camp by {OLDPLACE} is empty, its pegs pulled and its fire out.</li>
+    </farewell>
+    <lines>
+      <li>Nothing known should be lost.</li>
+      <li>Hold the chain straight, I'll read it.</li>
+      <li>Strictly speaking, that is two questions.</li>
+      <li>Write it down before you forget it.</li>
+    </lines>
+    <momentLines>
+      <li>[measure] Forty paces, and the wall still going.</li>
+      <li>[measure] The stone sounds hollow here, write that down.</li>
+      <li>[read] Here is what lies inside, as exactly as we can say it.</li>
+    </momentLines>
+  </ColonyCouncil.CampKindDef>
+
+</Defs>

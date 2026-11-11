@@ -89,6 +89,8 @@ namespace ColonyCouncil
         /// </summary>
         public static IntVec3 SiteFor(CampKindDef kind, Map map, IntVec3 usual, bool shade)
         {
+            // A kind with ways of its own pitches where it says (Camps/CampWorker.cs).
+            if (kind?.Worker != null && map != null) return kind.Worker.SiteFor(map, usual, shade);
             if (kind == null || map == null || kind.needs.NullOrEmpty() || kind.needs == "harvest" || kind.needs == "fleece" || kind.needs == "children") return usual;
             try
             {
@@ -602,6 +604,8 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref shelterDay, "shelterDay", -1);
             Scribe_Values.Look(ref shelterAskDay, "shelterAskDay", -1);
             ExposeLandMore();
+            // A kind with ways of its own keeps its own state (Camps/CampWorker.cs).
+            Scribe_Deep.Look(ref workState, "workState");
         }
 
         private int Adults => Here.Count(p => !p.DevelopmentalStage.Juvenile() && !p.Downed);
@@ -625,6 +629,14 @@ namespace ColonyCouncil
         {
             // The wounded of a war come with their wounds (CampKindsLand3.cs).
             ComeWounded();
+            try
+            {
+                kind?.Worker?.Started(this);
+            }
+            catch (Exception e)
+            {
+                CouncilLog.ErrorOnce("camp worker started " + kind?.defName, e);
+            }
             if (kind?.work != "hull" || map == null || hull != null) return;
             try
             {
@@ -655,6 +667,7 @@ namespace ColonyCouncil
         {
             try
             {
+                kind?.Worker?.Leaving(this);
                 if (hull != null && !hull.Destroyed && hull.Spawned && faction != null && hull.Faction == faction)
                 {
                     hull.SetFaction(null);
@@ -676,6 +689,18 @@ namespace ColonyCouncil
 
         private void LandHourly()
         {
+            // A kind with ways of its own has its own hour (Camps/CampWorker.cs).
+            if (kind?.Worker != null && map != null && phase == CampPhase.Living && !Hostile)
+            {
+                try
+                {
+                    kind.Worker.Hourly(this, GenLocalDate.HourOfDay(map));
+                }
+                catch (Exception e)
+                {
+                    CouncilLog.ErrorOnce("camp worker hourly " + kind.defName, e);
+                }
+            }
             if ((kind?.work == null && !Shelters) || map == null || phase != CampPhase.Living || Hostile) return;
             try
             {
@@ -774,6 +799,18 @@ namespace ColonyCouncil
         /// <summary>Their own work on the land by day, or null (CampWork.Day asks, between the market and the hunt).</summary>
         public Job LandJob(Pawn p)
         {
+            if (kind?.Worker != null && map != null && phase == CampPhase.Living && p != trader)
+            {
+                try
+                {
+                    var own = kind.Worker.DayJob(this, p);
+                    if (own != null) return own;
+                }
+                catch (Exception e)
+                {
+                    CouncilLog.ErrorOnce("camp worker day job " + kind.defName, e);
+                }
+            }
             if (kind?.work == null || map == null || phase != CampPhase.Living || p == trader) return null;
             int day = GenDate.DaysPassed;
             if (workDay != day)
@@ -821,6 +858,18 @@ namespace ColonyCouncil
         /// <summary>The night's own work: a bed in the colony out of the storm, else the watch at the monolith by turns.</summary>
         public Job LandNightJob(Pawn p, int hour)
         {
+            if (kind?.Worker != null && map != null && phase == CampPhase.Living && !Hostile)
+            {
+                try
+                {
+                    var own = kind.Worker.NightJob(this, p, hour);
+                    if (own != null) return own;
+                }
+                catch (Exception e)
+                {
+                    CouncilLog.ErrorOnce("camp worker night job " + kind.defName, e);
+                }
+            }
             if ((kind?.work != "watch" && !Shelters) || map == null || phase != CampPhase.Living || Hostile) return null;
             try
             {

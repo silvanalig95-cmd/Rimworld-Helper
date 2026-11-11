@@ -117,7 +117,7 @@ namespace ColonyCouncil
                 default:
                 {
                     // What the land kinds' asks need: their catch, their haul, a near ruin, the hiring, a child (CampKindsLand.cs).
-                    string why = LandAskBlocked(a);
+                    string why = LandAskBlocked(a) ?? kind?.Worker?.AskBlocked(this, a);
                     if (why != null) return why;
                     break;
                 }

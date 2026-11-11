@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- The peoples' own events, round 1 (Source/ColonyCouncil/Peoples/Events/): the jobs they are seen doing on the map,
+       the sealed crate the league leaves in trust, and how a tribal colony takes a mechlink. -->
+
+  <!-- ===================== The visitor who works on a colonist (PeopleWorkOn.cs) ===================== -->
+
+  <JobDef>
+    <defName>Rimfolk_PEv_Keep</defName>
+    <driverClass>ColonyCouncil.JobDriver_PeopleKeep</driverClass>
+    <reportString>keeping still for someone's work.</reportString>
+    <casualInterruptible>false</casualInterruptible>
+  </JobDef>
+
+  <JobDef>
+    <defName>Rimfolk_PEv_Limb</defName>
+    <driverClass>ColonyCouncil.JobDriver_PeopleWorkOn</driverClass>
+    <reportString>fitting a limb to TargetA.</reportString>
+    <casualInterruptible>false</casualInterruptible>
+    <modExtensions>
+      <li Class="ColonyCouncil.PeopleWorkJob"><place>bed</place><mark>cross</mark><done>ColonyCouncil.OrderLimbDone</done></li>
+    </modExtensions>
+  </JobDef>
+
+  <JobDef>
+    <defName>Rimfolk_PEv_Storm</defName>
+    <driverClass>ColonyCouncil.JobDriver_PeopleWorkOn</driverClass>
+    <reportString>standing out in the storm with TargetA.</reportString>
+    <casualInterruptible>false</casualInterruptible>
+    <modExtensions>
+      <li Class="ColonyCouncil.PeopleWorkJob"><place>sky</place><mark>storm</mark><done>ColonyCouncil.StormSenseDone</done></li>
+    </modExtensions>
+  </JobDef>
+
+  <JobDef>
+    <defName>Rimfolk_PEv_Mechlink</defName>
+    <driverClass>ColonyCouncil.JobDriver_PeopleWorkOn</driverClass>
+    <reportString>putting a mechlink into TargetA.</reportString>
+    <casualInterruptible>false</casualInterruptible>
+    <modExtensions>
+      <li Class="ColonyCouncil.PeopleWorkJob"><place>here</place><mark>sparks</mark><done>ColonyCouncil.MechlinkDone</done></li>
+    </modExtensions>
+  </JobDef>
+
+  <JobDef>
+    <defName>Rimfolk_PEv_Seed</defName>
+    <driverClass>ColonyCouncil.JobDriver_PeopleWorkOn</driverClass>
+    <reportString>planting a seed beside TargetA.</reportString>
+    <casualInterruptible>false</casualInterruptible>
+    <modExtensions>
+      <li Class="ColonyCouncil.PeopleWorkJob"><place>beside</place><mark>sow</mark><done>ColonyCouncil.MossSeedDone</done></li>
+    </modExtensions>
+  </JobDef>
+
+  <!-- The Warden and the tamer's bout at the gate (HuntOrTame.cs). -->
+  <JobDef>
+    <defName>Rimfolk_PEv_Bout</defName>
+    <driverClass>ColonyCouncil.JobDriver_PeopleBout</driverClass>
+    <reportString>sparring with TargetA.</reportString>
+    <casualInterruptible>false</casualInterruptible>
+  </JobDef>
+
+  <!-- ===================== Their camps' work (PeopleCamps.cs, OldPlaces.cs) ===================== -->
+
+  <JobDef ParentName="Council_CampJobBase">
+    <defName>Rimfolk_PEv_CampTrack</defName>
+    <reportString>following the beast's trail.</reportString>
+    <modExtensions>
+      <li Class="ColonyCouncil.CampJobExtension"><ticks>2400</ticks></li>
+    </modExtensions>
+  </JobDef>
+
+  <JobDef ParentName="Council_CampJobBase">
+    <defName>Rimfolk_PEv_CampLantern</defName>
+    <reportString>keeping the lantern lit.</reportString>
+    <modExtensions>
+      <li Class="ColonyCouncil.CampJobExtension"><ticks>3000</ticks></li>
+    </modExtensions>
+  </JobDef>
+
+  <JobDef ParentName="Council_CampJobBase">
+    <defName>Rimfolk_PEv_CampMeasure</defName>
+    <reportString>measuring the old place.</reportString>
+    <modExtensions>
+      <li Class="ColonyCouncil.CampJobExtension"><ticks>2400</ticks><progress>true</progress></li>
+    </modExtensions>
+  </JobDef>
+
+  <!-- ===================== Goods held in trust (PeopleTrust.cs) ===================== -->
+
+  <ThingDef>
+    <defName>Rimfolk_TrustCrate</defName>
+    <label>sealed crate</label>
+    <description>A crate of trade goods nailed shut and sealed in red wax with a waystone's mark. A caravan left it in the colony's care to be fetched again, and the seal says whose it is. Breaking it would tell them.</description>
+    <thingClass>ColonyCouncil.TrustCrate</thingClass>
+    <category>Item</category>
+    <selectable>true</selectable>
+    <altitudeLayer>Item</altitudeLayer>
+    <drawerType>MapMeshOnly</drawerType>
+    <alwaysHaulable>true</alwaysHaulable>
+    <rotatable>false</rotatable>
+    <pathCost>14</pathCost>
+    <drawGUIOverlay>true</drawGUIOverlay>
+    <resourceReadoutPriority>Middle</resourceReadoutPriority>
+    <comps>
+      <li Class="CompProperties_Forbiddable" />
+    </comps>
+    <graphicData>
+      <texPath>ColonyCouncil/Things/TrustCrate</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+      <drawSize>(1,1)</drawSize>
+    </graphicData>
+    <stackLimit>1</stackLimit>
+    <healthAffectsPrice>false</healthAffectsPrice>
+    <useHitPoints>true</useHitPoints>
+    <statBases>
+      <MaxHitPoints>80</MaxHitPoints>
+      <Mass>20</Mass>
+      <MarketValue>150</MarketValue>
+      <Flammability>1</Flammability>
+      <DeteriorationRate>0</DeteriorationRate>
+    </statBases>
+    <thingCategories>
+      <li>ItemsMisc</li>
+    </thingCategories>
+    <tradeability>Sellable</tradeability>
+  </ThingDef>
+
+  <!-- ===================== A mechlink in a tribal colony (LatticeMechlink.cs) ===================== -->
+
+  <ThoughtDef>
+    <defName>Rimfolk_Thought_MechlinkStrange</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
+    <durationDays>3</durationDays>
+    <stackLimit>1</stackLimit>
+    <stages><li><label>a machine in one of us</label><description>Strangers came and put a machine into the head of one of our own, and now a thing of metal walks behind them and does what they think. It isn't right, and I don't like to look at it.</description><baseMoodEffect>-3</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+</Defs>

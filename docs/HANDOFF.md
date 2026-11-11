@@ -17,7 +17,8 @@ tree at once, alongside whatever runs. Each piece is merged as its own release, 
   until we have a few so we can implement them more effectively."** Each new wish or report goes onto this list as a
   "To do when the player asks" entry (with their words) and the task list, and nothing is built, unless they say to
   start it now. When they ask, the gathered entries are planned together, grouped by area, and built side by side.
-  (On 11 November 2026 they asked for every entry then on the list and the peoples' round 1; rounds 2 to 10 wait.)
+  (On 11 November 2026 they asked for every entry then on the list and the peoples' round 1: all built and released
+  0.206.2 to 0.213.0. Rounds 2 to 10, the letters' timing and the favour menu wait for their word.)
 - **To do when the player asks (10 November 2026): events and interactions of each of Rimfolk's peoples, by their lore.**
   The player: "I really LOVE the new factions you created, and I'd be down for more later. however, I'd first like more
   faction specific events, interactions etc. like this event i had with these gene guys who gave my pawn a new gene.
@@ -28,10 +29,11 @@ tree at once, alongside whatever runs. Each piece is merged as its own release, 
   83, 51, 1, 19, 17, 34 and 95 first. **The player picked all 100 (11 November 2026): "the events sounds really
   cool!! add all to to-do"; then "but perhaps do several batches so i don't have a huge job after"; then "also hold
   with the peoples update also until i say so!"; then "no actually do one round but after it should just be on
-  to-do like any new request please".** Round 1 is being built; rounds 2 to 10 are held until they ask. Ten
+  to-do like any new request please".** Round 1 is released (0.213.0, "The peoples' own events,
+  round 1" below); rounds 2 to 10 are held until they ask. Ten
   rounds, one at a time when asked (each round its own agent and release; shared shapes come early: the
   visitor working on a colonist in round 1, goods held in trust 1 then 20, the caravan of one 14 then 3, 67, 77, 98):
-  1. 10, 5, 47, 83, 51, 1, 19, 17, 34, 95 (the recommended ten).
+  1. 10, 5, 47, 83, 51, 1, 19, 17, 34, 95 (the recommended ten). Done (11 November 2026), not released yet.
   2. 14, 22, 26, 59, 12, 25, 3, 20, 40, 63.
   3. The league 2, 4; the order 6, 7, 8; the herders 9, 11, 13; the pilgrims 15, 16.
   4. The society 18, 21; the enclave 23, 24; the river folk 27, 28, 29, 30; the Wardens 31, 32, 33.
@@ -71,6 +73,69 @@ tree at once, alongside whatever runs. Each piece is merged as its own release, 
   distance, as the couriers and journeys reckon it), their reading and writing time, and the answer's own road back;
   a refusal or silence is only known when it could be (a returning rider, their courier, or no word by the time an
   answer would have come). Check each against the map: the courier gone off the map is not the letter delivered.
+- 0.213.0, **The peoples' own events, round 1**
+  (11 November 2026). The player: "I really LOVE the new factions you created ... I'd first like more faction specific
+  events, interactions etc. like this event i had with these gene guys who gave my pawn a new gene", "also some
+  faction-specific camps can be included in the events", "the events sounds really cool!! add all to to-do", and "do one
+  round but after it should just be on to-do like any new request". Items 10, 5, 47, 83, 51, 1, 19, 17, 34 and 95 of
+  `docs/peoples-events-proposals.md`; DESIGN.md "Rimfolk's peoples" (the round's entry) has everything; README "The
+  peoples' own events, the first round"; docs/design/peoples.md "What was built (the peoples' own events, round 1)"; the
+  Almanac's five peoples' pages, a section each, *Of their own: gifts, trust and camps* (keywords unchanged).
+  - Code: `Source/ColonyCouncil/Peoples/Events/` (new): `PeopleEventsMath.cs` (pure, linked), `PeopleEventsBook.cs` (a game
+    component: gifts, trusts, the Mossborn's promise, places read), `PeopleEvents.cs` (the visits' dispatch, `LegendBeasts`),
+    `PeopleWorkOn.cs`, `PeopleTrust.cs`, `OldPlaces.cs`, `PeopleCamps.cs`, `HerdersBeast.cs`, `OrderLimb.cs`, `StormSense.cs`,
+    `LatticeMechlink.cs`, `MossSeed.cs`, `HuntOrTame.cs`, `PeopleEventsDebug.cs`; `Camps/CampWorker.cs` (new: a camp kind with
+    ways of its own). Small hooks: `HappeningTracker.VisitsHour` (one case) and `Visit.cell` (saved), `MossLedger.Reckon`
+    (one call), `CampKindDef.workerClass`/`Worker`/`FitsMap`, `CampKindsLand` (site, start, going, hour, day and night jobs,
+    `workState` saved), `Camp.Format`, `CampLook.FarewellText`, `CampAsks.AskBlocked`, `PlayCarry.Meat`, `FactsMath` (three
+    camp tags). Defs: `Rimfolk_Events_PeopleEvents.xml` (nine events), `Rimfolk_CampKinds_PeopleEvents.xml` (three camps),
+    `Rimfolk_PeopleEvents_Misc.xml` (jobs, `Rimfolk_TrustCrate`, the mechlink's mood), its mood hint,
+    `Patches/Rimfolk_PeopleEvents.xml` (the hostel's beats in the great pilgrimage and the holy year), Keyed
+    `Rimfolk_PeopleEvents.xml`, `Textures/ColonyCouncil/Things/TrustCrate.png`. Tools: the def validator knows {GUESTS},
+    {OLDPLACE} and {READING}; the play-out audit the round's effects; the save model its lists.
+  - Shared shapes for the later rounds: the visitor who works on a colonist (`PeopleWorkOn`: a JobDef with `PeopleWorkJob`,
+    its place here, bed, beside or sky, its mark, its `PeopleWorkDone`; for 22, 40, 79, 80, 87, 92), goods held in trust
+    (`PeopleTrust`, `TrustCrate`, `TrustRecord`; for 20), a reading of what the map holds (`OldPlaces`, `Reading`; for 63),
+    the legend beast trigger (`LegendBeasts`), and the camp worker (`CampWorker`, `CampWorkState`) for every people's camp.
+  - Tests: `Tools/Tests/PeopleEventsTests.cs` (about 170 checks: the rules, the defs, the words, the player's mods, the seams).
+  - Not run here (none of it could be): every play-out on the map (the worker reaching the colonist, the colonist lying in a
+    medical bed for the fitting with `LayDownAwake`, the storm's open-sky cell, the seed's targeting from the letter's answer,
+    the herders' beast roped to the pen, the porters setting the crates by the stores, the second caravan carrying them off),
+    `RecipeWorker.ApplyOnPawn` with a visitor as the surgeon and no bill, `ConnectToPawn` right after `DoPlant`, Giddy-Up's
+    mount list for the beast, the lantern post's trackers under the camp lord and the trail hunters taken out of it and put
+    back, the beast walking to the Wardens' fire, the hostel's travellers under their own visit lords at its fire and the
+    news they bring, Geological Landforms' landform by reflection, the good ink price patch with a league trader.
+  - Try in the game (dev mode; "Rimfolk", "Peoples' events: what the record keeps (log)" shows the state; fire each event
+    with the game's own incident tool, each needs what it says): 1. With the herding folk at peace, fire
+    `Rimfolk_Evt_HerdersBeast`: a rider at the gate with a young beast of the land; take it for silver: the colonist walks
+    out, the beast follows (or is roped to the pen), bonded and trained to obey; the rider eats one of the colony's meals in
+    the evening and leaves in the morning. Trade instead with a young beast of the colony's: it walks off with the rider.
+    2. A colonist missing a hand or a leg, a medical bed, the order at peace: `Rimfolk_Evt_OrderLimb`; the card shows the
+    chance; answer: the wood is carried out (a medieval order), the colonist lies down, the doctor stands at the bedside,
+    the surgeon works an hour and a half with the healing cross; the limb is in (or the game's failure letter); the second
+    answer sends medicine and owes nothing. 3. In a thunderstorm with the Conclave at peace: `Rimfolk_Evt_StormSense`
+    (Royalty; or without it A RimWorld of Magic): the colonist and the reader stand out under the sky (by a stormglass rod
+    if the colony has one) an hour; a flash; a first psylink (a Staticlord or Frostshaper path with Vanilla Psycasts
+    Expanded) or the Lightning tome set down. 4. With Biotech and the Lattice at peace: `Rimfolk_Evt_LatticeMechlink`: the
+    tender comes with a lifter or a constructoid; two hours of sparks; the colonist is a mechanitor with the mech as theirs;
+    in a tribal colony the others feel it strange. 5. The Mossborn at 30 goodwill or more, nothing felled lately:
+    `Rimfolk_Evt_MossSeed`; the first answer asks where to plant it (the seed's own rule as it is aimed; cancel and she
+    chooses); the carrier and the colonist plant it together; the tree is bound to them; "Peoples' events: the Mossborn
+    reckon the promise now" tells it kept or broken. Without Ideology a healroot grove. 6. With a stockpile and the league
+    at peace: `Rimfolk_Evt_LeagueTrust`; the porters set six to ten sealed crates by the stores; select one: "Held in
+    trust" and its "Break the seal" button; "Peoples' events: the league's crates fetched now", then within the hour the
+    porters come, the crates are carried out, and good ink (the fee) or red ink (open one first, or sell one to a trader).
+    7. A map with an ancient danger still sealed (or a landmark): `Rimfolk_Evt_ScholarsReading`; two scholars camp beside
+    it four days, walking its walls; the letter says exactly what is in it and research is added; with the second answer
+    they break in and it wakes. 8. A great pilgrimage or a holy year ("Start world event..."), or "Peoples' events: one of
+    their camps here now..." for the hostel: a long hut, a brazier or torch, a bread table; a letter asks for bread each
+    morning; travellers come and go with news (a place marked as heard); "Go to the evening blessing" on its page.
+    9. With a legend, a beast nemesis or an alpha on the land (the beasts' dev actions) and the Wardens at peace:
+    `Rimfolk_Evt_LanternPost`: the post at the edge nearest the beast, two hounds, the lantern at night, trackers watching
+    the beast by day, a warning when it nears the walls; ask "Send our best shot on the trail"; when it falls, one of them
+    skins it, and they go. 10. A legend or an alpha, the Wardens and the Circuit at peace: `Rimfolk_Evt_HuntOrTame`; each
+    answer once: the hunt, the taming (the beast marked to tame, the colony's handler on it, the tamer beside), the bout at
+    the gate (the winner hunts or tries to win it over and leads it home).
 - 0.212.0, **Letters, content pass 2**
   (11 November 2026). The second content pass the player asked for with the letter shapes ("i just want a lot of variety,
   content and interesting writing"; medieval writers in thee and thou, strange races "experimentive with grammar", "how a

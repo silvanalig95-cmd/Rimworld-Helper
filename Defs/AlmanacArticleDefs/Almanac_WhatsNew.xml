@@ -31,6 +31,20 @@ When you load a save after an update, a letter lists the newest round once. The 
     <rounds>
 
       <li>
+        <version>0.213.0</version>
+        <date>11 November 2026</date>
+        <title>Gifts of the peoples</title>
+        <points>
+          <li>Some of the peoples now bring gifts of their own: the herding folk a young beast chosen for one of your people, the hospitallers a limb fitted at your bed, the Conclave a first psylink out in a thunderstorm, the Lattice a mechlink and a mech, the Mossborn a Gauranlen seed for a promise.</li>
+          <li>Each gift comes once to a colonist, and never two close together.</li>
+          <li>The road league may leave sealed crates in your stores until a second caravan fetches them: keep every one for good ink and better prices, or break a seal and be written in red.</li>
+          <li>Scholars camp beside an old place on your map for four days and tell you exactly what sleeps inside, or open it themselves if you let them.</li>
+          <li>In a holy year or a great pilgrimage, the pilgrims may raise a hostel by your road where the region's travellers stop a night with their news.</li>
+          <li>While a great beast roams your land, the Lantern Wardens may keep a lantern post at its edge, and the Wardens and the Circuit may come the same day to argue over hunting it or taming it.</li>
+        </points>
+      </li>
+
+      <li>
         <version>0.212.0</version>
         <date>11 November 2026</date>
         <title>A thousand more letters</title>

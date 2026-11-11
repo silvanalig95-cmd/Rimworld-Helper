@@ -7810,6 +7810,84 @@ pure rules in `PeoplesMath.cs` (`Tools/Tests/PeoplesTests.cs`, "peoples: ").
   (`ArisingMath.Lean`, 20 arguments: a band led by a psycaster of four or more listens, by a surgeon edits, by a
   mechanitor links; survivors on a fated quarter, `SaltVault`, come up from a shelter). Their callers at an errand's
   pace (`PeoplesG.Errand`, `LordJob_ExitMapBest` at `Pace.Errand` home). Nothing new saved; no harm rolled.
+- **The peoples' own events, round 1** (11 November 2026; released 0.213.0; `docs/peoples-events-proposals.md`, items 10, 5, 47, 83, 51, 1,
+  19, 17, 34 and 95, approved in full; `Source/ColonyCouncil/Peoples/Events/`, the pure rules in `PeopleEventsMath.cs`,
+  `Tools/Tests/PeopleEventsTests.cs`, "the peoples' events: "). The player: "I'd first like more faction specific events,
+  interactions etc. like this event i had with these gene guys who gave my pawn a new gene", and "also some
+  faction-specific camps can be included in the events". Each only from a people of its calling at peace with the colony
+  (`PeoplesD.Friendly`), in the Visitors group at the touchpoints' rates (base chance 0.5 to 0.8, 20 to 60 days apart),
+  every age in its own form, played out on the map. Rounds 2 to 10 stay on the to-do list.
+  - **Shared shapes, for the later rounds.** *The visitor who works on a colonist* (`PeopleWorkOn.cs`): release G's gene
+    work made general: a JobDef with `PeopleWorkJob` (where the colonist is while it is done: `here` a forced wait, `bed`
+    laid in the bed, `beside` walked to the place, `sky` out under the open sky; its mark: the healing cross, sparks, the
+    hum, the storm, earth turned; its `PeopleWorkDone` handler), `JobDriver_PeopleWorkOn` (to them, wait until they are in
+    place, the work with a bar, the handler), `JobDriver_PeopleKeep` for the colonist kept at a place; the order kept as
+    one of the events' visits (`pev:work`, its place a thing or a cell: `Visit.cell`, saved), a worker pulled away sent
+    again four times, given up after its hours with any silver paid given back. *Goods held in trust* (`PeopleTrust.cs`):
+    `TrustCrate` (a sealed crate of goods, `Rimfolk_TrustCrate`, its contents its own; opened by its own button, sold or
+    destroyed, it notes how in its record as it happens; burned by harm told at once), `TrustRecord` in the book, the fetch
+    a visit (`pev:trust`), the verdict `PeopleEventsMath.Verdict`. *A reading of what the map holds* (`OldPlaces.cs`): the
+    old places (a fogged room holding an ancient danger's caskets, sealed crates, hives or sleeping enemies; the tile's
+    landmark, the game's and Vanilla Landmarks Expanded's; Geological Landforms' landform by name in code), `Reading` (the
+    contents counted exactly: mechanoids by kind, fleshbeasts, hives and insects, caskets and those in them, crates) and
+    its words (`ReadingParts`), `Open` (the fog lifted, the dormant woken with `CompCanBeDormant.WakeUp`, the caskets
+    opened). *The legend beast trigger* (`LegendBeasts`: release D's quarry rule, the nemesis optional, `Tameable`,
+    `EdgeToward`). *A camp kind with ways of its own* (`Camps/CampWorker.cs`): `CampKindDef.workerClass`, a `CampWorker`
+    (its land, its site, its start, hour, day and night jobs, its going, its farewell's marks, its placeholders, its own
+    asks' needs) hooked beside the land kinds' in `CampKindsLand.cs`, `Camp.Format`, `CampLook.FarewellText` and
+    `CampAsks.AskBlocked`, and `Camp.workState` (a `CampWorkState`, saved with the camp). The events' visits dispatch
+    through one line in `HappeningTracker.VisitsHour` (`PeopleEvents.Owns`).
+  - **Gifts** come once a colonist each and never within 20 days of another (`PeopleEventsBook`: `gifts` "kind:id", the
+    newest 120 kept, `lastGift`). *A beast for a colonist* (herders): `HerdersBeast.KindFor` (the land's animals,
+    `BiomeAnimals.Of`, fitting `BeastFits`, the base game's horse, yak, dromedary, muffalo and alpaca beside them; ridable
+    ones twice as likely with Giddy-Up), a young beast just grown; nine tenths of its worth, or one of the colony's young
+    beasts worth half (`OurYoung`, it joins their party); tameness and obedience trained, the game's bond and master, led
+    home (`RopeToPen` for a roamer, else following), the rider's supper (`pev:supper`, `Hosting.Meal`). *A limb fitted*
+    (order): `OrderLimb.Need` (the missing part's recipe by the order's age, `LimbRecipe`: peg leg or wooden hand before
+    the industrial age, simple prostheses after, never bionics), the colony's bed (`Bed`), the surgeon of Medicine 10 to
+    16; the wood carried out for a wooden limb; the doctor at the bedside; `RecipeWorker.ApplyOnPawn` with the surgeon
+    (the game's own success and failure), the chance on the card from `SurgeryOutcomeEffectDef.GetQuality`; a deed `aid`
+    (a debt of honour by `FavoursOwed`) or, with medicine sent back, `gift`. *Storm-sense* (Conclave): a thunderstorm now
+    (a weather with lightning), the most sensitive (`Hears`), an hour out under the sky by the colony's rod (`sky`), a
+    lightning flash, `ChangePsylinkLevel(1)` and `PsycastPaths.Follow` (Staticlord, Frostshaper), or without Royalty A
+    RimWorld of Magic's `BookOfStormBorn` handed over; silver, or a vial (needs the colony's rod; a `gift` deed). *A
+    mechlink* (Lattice, Biotech): the colony's best mind and hands, `MechlinkImplant` on the brain, the mech walked in with
+    them (`StarterMechs`) made the colony's with the colonist its overseer; silver or two subcores; a tribal colony's
+    `Rimfolk_Thought_MechlinkStrange` (-3, three days, its mood hint). *A Gauranlen seed* (Mossborn, the ledger warm:
+    `LedgerWarm`): the spot chosen by the game's targeting with the seed's own `CompPlantable.CanPlantAt`, or hers (away
+    from buildings within the tree's reach), planted together (`DoPlant`, `ConnectToPawn`); without Ideology a healroot
+    grove of nine; the promise reckoned with the ledger (`MossLedger.Reckon` calls `MossPromise.Reckoned`: kept +2, broken
+    -6 and `wordBroken`).
+  - **Crates held in trust** (league): six to ten crates of its age's goods (`CrateGoods`), set down by the stores by its
+    porters (by drop pod for a league of the spacer age), the fetch 20 to 30 days on; for the fee, a tenth of their
+    worth, or free. Good ink: the fee, +6 (+10 free), `keptWord`, a year of +3% prices with every league
+    (`Patch_TrustTermsPawn`, `Patch_TrustTermsTown`). Red ink: -15, `robbed`, no league caravans for a season
+    (`Patch_TrustRedInk`). One open with the league at a time; with the league gone or at war the trust lapses.
+  - **What lies in the old place** (society): an unread old place, two fellows at the gate; let measure, they become a camp
+    beside it (`Rimfolk_Camp_ScholarsMeasure`, `CampWorker_Measure`, four days, measuring by day at its walls), then the
+    reading told in a letter, research (`DilemmaEffect_Research`, a share 0.3, 1200 at most), the place noted read; let
+    open, `OldPlaces.Open` as they go.
+  - **The hostel** (pilgrims; `Rimfolk_Camp_PilgrimHostel`, `CampWorker_Hostel`): called by a beat of the great
+    pilgrimage and the holy year (`Patches/Rimfolk_PeopleEvents.xml`, `WorldEffect_Camp`); by the road where the tile has
+    one; travellers of any people at peace every 8 to 16 hours, four at most, a night or two (`Arrivals.Visit` to its
+    fire), their news from the facts service told and its place marked (`OutsiderTalk.Heard`); bread asked once and then
+    carried out each morning; the blessing (a gathering, the pilgrims' cough at 0.05 through the budget); feuding peoples'
+    travellers (goodwill -20 or less between them, never at war) quarrel once a stay, a brawl at the camp brawl's rate.
+  - **The lantern post** (Wardens; `Rimfolk_Evt_LanternPost` makes the camp, `Rimfolk_Camp_LanternPost`,
+    `CampWorker_LanternPost`): at the edge nearest the beast, ten days at most; trackers watch it by day, a keeper by the
+    lantern at night; a warning when it comes within 30 cells of the colony (every 12 hours at most); the meat ask (a new
+    errand word, `PlayCarry.Meat`); the trail ask (two hunters under `LordJob_AssaultThings`, the colonist's hunt, a day at
+    most, skinned by them if it falls); once a stay the beast at their fire at night (0.12 a night) or a hound lost on the
+    trail (0.06 a day); the beast fallen or the trail cold, the lantern out.
+  - **Kill it or win it over** (Wardens and Circuit): a legend or an alpha, tameable; the hunt (release D's
+    `WardensHunt.Hunt` with only the Wardens), the taming (the game's `Tame` designation and job from its own work giver,
+    the tamer beside a day, `pev:coach`), or the bout (`JobDriver_PeopleBout`, `WardenWins` by Melee); the tamer's own
+    tries for the Circuit (`pev:tame`, every two hours, six at most, `TameChance` the game's, the beast's revenge at its
+    `GetManhunterOnTameFailChance`). Passed over -5, sided with +4, a bout's loser -2; a news line on the roads.
+  - Nothing else is hurt by Rimfolk: the surgery, the fights at the fire, the hunt and the taming are the game's own.
+    Saved: `PeopleEventsBook` (gifts, trusts, the promise, places read; modelled in `Tools/save_estimate.py`) and a
+    camp's `workState`. Dev actions "Peoples' events: ...". The Almanac's peoples' pages, *Of their own: gifts, trust and
+    camps*.
 
 ### Peoples whose age changes
 

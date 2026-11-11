@@ -4195,6 +4195,26 @@ of wild magic and a new town come from them likeliest. New peoples may take thei
 psycaster, a surgeon or a mechanitor, survivors who sat out their town's fall in its shelter. The Almanac has a page,
 *the Works, the Lattice, the Choir and the Vault*.
 
+**The peoples' own events, the first round.** Each of Rimfolk's peoples comes to the colony with something of its own
+ways, only while it is at peace with the colony, and all of it plays out on the map. Five are gifts to one named
+colonist, like the Works' gene work: the **herding folk** lead in a young beast their elder chose for someone (by the
+land, a horse, a yak, a dromedary, a muffalo or a mods' beast, one to ride with Giddy-Up), bonded to them and led home
+together, the rider staying to supper; a **hospitaller** surgeon fits a peg leg, a wooden hand or a simple prosthesis by
+the order's age at the colony's bed, with the game's own surgery and its chance, the colony's doctor learning at the
+bedside, for no silver but a favour owed; a reader of the **Stormglass Conclave** takes the colony's most sensitive
+colonist out into a thunderstorm for an hour and brings them back with a first psylink (Royalty, a Staticlord or
+Frostshaper path with Vanilla Psycasts Expanded) or the Lightning tome (A RimWorld of Magic); a **Lattice** mech-tender
+puts in a mechlink and links a light working mech to them (Biotech, Alpha Mechs' too); and once their ledger is warm a
+**Mossborn** seed-carrier plants a Gauranlen seed with a colonist where the colony chooses, for the promise of a seedling
+for every tree felled (a healroot grove without Ideology). Each comes once to a colonist, never within twenty days of
+another. The **road league** leaves sealed crates in the colony's stores until a second caravan fetches them: good ink for
+every crate there, red ink for one opened, sold or gone. Two of the **learned society** camp four days beside an old place
+on the map (an ancient danger's sealed room, the land's landmark) and say exactly what lies inside, research left behind,
+or open it as they go. And three camps: the **pilgrims'** hostel by the road in a holy year or a great pilgrimage, where the
+region's travellers pass a night with their news; the **Lantern Wardens'** post at the land's edge while a great beast
+roams it; and the **Wardens and the Circuit** at the gate the same day over a legend, to hunt it, to tame it, or to settle
+it in a bout. The Almanac's peoples' pages have a section each, *Of their own: gifts, trust and camps*.
+
 **Peoples whose age changes.** Rimfolk's peoples don't stay in the age they began in. Each season every one of them
 moves toward the next age at a pace of its own ways: the learned society, the Stormglass Conclave and the road league
 soonest, the Signal Line soon after, the herders and the Mossborn latest and never past the industrial and the medieval

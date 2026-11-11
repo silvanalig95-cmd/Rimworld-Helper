@@ -200,6 +200,8 @@ namespace ColonyCouncil
             if (walkVisits > 0) marks.Add("round");
             if (repairs > 0) marks.Add("repaired");
             if (deadCarried > 0) marks.Add("carried");
+            // A kind with ways of its own marks its going ([fell], [measured]: Camps/CampWorker.cs).
+            kind?.Worker?.AddMarks(this, marks);
             var tags = new HashSet<string>();
             Flavor.AddEraTags(tags);
             CampWords.AddTags(tags, kind, faction, map);

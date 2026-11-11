@@ -60,6 +60,9 @@ namespace ColonyCouncil
         /// </summary>
         public const string Art = "art";
 
+        /// <summary>Raw meat in the stores, for beasts that eat it (the Lantern Wardens' hounds: Peoples/Events/PeopleCamps.cs), human and insect meat last.</summary>
+        public const string Meat = "meat";
+
         /// <summary>The kinds of an errand that carries one of each ("meals+coat"), in the order they go; null for one kind.</summary>
         public static string[] Parts(string what) => what != null && what.IndexOf('+') >= 0 ? what.Split('+') : null;
 
@@ -79,6 +82,7 @@ namespace ColonyCouncil
                 case Salvage:
                 case MechParts:
                 case Art:
+                case Meat:
                     return null;
             }
             return what.NullOrEmpty() ? fallback : DefDatabase<ThingDef>.GetNamedSilentFail(what);
@@ -148,6 +152,8 @@ namespace ColonyCouncil
                     return MechPartDefs.Select(n => DefDatabase<ThingDef>.GetNamedSilentFail(n)).Where(d => d != null).SelectMany(d => map.listerThings.ThingsOfDef(d)).Where(IsMechPart);
                 case Art:
                     return Missions.Matching(map, "art").OrderByDescending(t => t.MarketValue);
+                case Meat:
+                    return map.listerThings.ThingsInGroup(ThingRequestGroup.FoodSourceNotPlantOrTree).Where(t => t.def.IsMeat && IsRawFood(t)).OrderBy(Unwelcome);
             }
             def = def ?? DefOf(what, null);
             if (def == null) return Enumerable.Empty<Thing>();
@@ -234,6 +240,7 @@ namespace ColonyCouncil
                 case Salvage: return "CC_PeoplesF_Salvage".Translate();
                 case MechParts: return "CC_PeoplesG_MechParts".Translate();
                 case Art: return "CC_PeoplesG_Art".Translate();
+                case Meat: return "CC_PEv_Meat".Translate();
             }
             return (def ?? DefOf(what, null))?.label ?? what ?? "";
         }

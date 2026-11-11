@@ -281,7 +281,25 @@ namespace ColonyCouncil
         public bool Possible => (memes.NullOrEmpty() || ModsConfig.IdeologyActive) && (!pokemon || (PokeWorldLink.Active && PokeWorldLink.PokemonShare() > 0f));
 
         /// <summary>The land has what they come for (see <see cref="needs"/>).</summary>
-        public bool FitsMap(Map map) => needs.NullOrEmpty() || CampLand.Fits(this, map);
+        public bool FitsMap(Map map) => (needs.NullOrEmpty() || CampLand.Fits(this, map)) && (Worker?.FitsMap(map) ?? true);
+
+        /// <summary>A kind with ways of its own (Camps/CampWorker.cs): the peoples' own camps (Peoples/Events/). None: the usual camp.</summary>
+        public System.Type workerClass;
+
+        [Unsaved] private CampWorker workerInt;
+
+        public CampWorker Worker
+        {
+            get
+            {
+                if (workerInt == null && workerClass != null && typeof(CampWorker).IsAssignableFrom(workerClass))
+                {
+                    workerInt = (CampWorker)System.Activator.CreateInstance(workerClass);
+                    workerInt.def = this;
+                }
+                return workerInt;
+            }
+        }
 
         public override IEnumerable<string> ConfigErrors()
         {
@@ -302,6 +320,7 @@ namespace ColonyCouncil
                 foreach (var b in buys.Where(b => VisitorTradeMath.Parse(b) == TradeGoods.None))
                     yield return "buys names no kind of goods: " + b;
             if (seekOnly && seeks.NullOrEmpty()) yield return "seekOnly without seeks";
+            if (workerClass != null && !typeof(CampWorker).IsAssignableFrom(workerClass)) yield return "workerClass is no CampWorker";
             if (wears != null && wears.Any(w => w == null || w.defs.NullOrEmpty())) yield return "camp wears need defs";
             if (!Wears.NullOrEmpty() && !winter) yield return "only winter folk bring winter clothes of their own (wears without winter)";
             if (seeks != null)

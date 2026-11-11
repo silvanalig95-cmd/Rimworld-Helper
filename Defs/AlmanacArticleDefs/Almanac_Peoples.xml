@@ -70,6 +70,15 @@
           <li>Setting: "Peoples' ages change", on by default. Off, every people lives in the age it began in.</li>
         </points>
       </li>
+      <li>
+        <heading>Of their own: gifts, trust and camps</heading>
+        <points>
+          <li>The road league: a caravan held up by a lame pack beast (a truck on a broken axle in the industrial age, a lander short of lift in the spacer age, its crates then set down by pod) asks to leave six to ten sealed crates in the colony's stores until a second caravan fetches them, twenty to thirty days on. Kept for the league's fee, a tenth of what they hold, or for nothing as friends. At the fetch the book is read: every crate there is good ink, the fee paid and a few points better prices with every league for a year; a crate opened (it has its own button, asked twice), sold or gone is red ink, a grudge and no league caravans for a season. A crate burned in a raid is told as it happens and forgiven.</li>
+          <li>The hospitaller order: for a colonist missing a hand, a foot, an arm or a leg, a surgeon with Medicine 10 to 16 brings a limb of the order's age: a peg leg or a wooden hand cut from the colony's wood before the industrial age, the simple prostheses after, never bionics. The colonist lies down at the colony's bed (a medical bed first), the colony's doctor stands at the bedside and learns, and the surgeon fits it with the game's own surgery and its own chance, shown on the card; a failure is the game's own mishap. No silver: the colony owes the order a favour, or sends medicine back for its sickhouse and owes nothing. The colonist's name goes into the Book of the Spared.</li>
+          <li>The herding folk: a rider leads in a young beast the elder chose for one colonist, a horse, a yak, a dromedary, a muffalo or any of the mods' beasts that live on that land, one that can be ridden twice as likely with Giddy-Up. Taken for a fair price (nine tenths of its worth) or for one of the colony's own young beasts, it is taught tameness and obedience and bonded to the colonist, who walks out to it and leads it home, roped to the pen if it is a beast that roams; the rider stays to eat at the colony's table and goes home in the morning.</li>
+          <li>Each gift comes once to a colonist, and the peoples' gifts (a beast, a limb, storm-sense, a mechlink, a seed) never come within twenty days of each other.</li>
+        </points>
+      </li>
     </sections>
     <keywords><li>road league</li><li>hospitaller order</li><li>herding folk</li><li>waystation</li><li>sickhouse</li><li>winter grazing</li></keywords>
     <seeAlso><li>Council_Alm_C_Camps</li><li>Council_Alm_C_Callers</li><li>Council_Alm_C_Region</li></seeAlso>

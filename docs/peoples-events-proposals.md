@@ -1,4 +1,4 @@
-# Rimfolk's peoples: events, interactions and camps of their own (proposal, 11 November 2026; nothing built yet)
+# Rimfolk's peoples: events, interactions and camps of their own (proposal, 11 November 2026; round 1 built: 10, 5, 47, 83, 51, 1, 19, 17, 34, 95)
 
 All of this was read-only. The to-do entry in `docs/HANDOFF.md` asks for a list per people before anything is built, and for new peoples only after that.
 

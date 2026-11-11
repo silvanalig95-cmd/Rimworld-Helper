@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <!-- The peoples' own events, round 1 (Source/ColonyCouncil/Peoples/Events/). -->
+
+  <!-- The visitor who works on a colonist (PeopleWorkOn.cs) -->
+  <CC_PEv_WorkGivenUp>{WORKER} gave up the work on {PAWN} and went home; whatever silver was paid for it is coming back.</CC_PEv_WorkGivenUp>
+
+  <!-- 10. A beast for a colonist (the herding folk) -->
+  <CC_PEv_ChosenGone>The one the elder chose is no longer here.</CC_PEv_ChosenGone>
+  <CC_PEv_BeastGone>The young beast is gone.</CC_PEv_BeastGone>
+  <CC_PEv_NoYoungBeast>The colony has no young beast worth half of theirs to trade.</CC_PEv_NoYoungBeast>
+  <CC_PEv_Impact_Beast>The young {1} is {0}'s: taught tameness and to follow, bonded to them, theirs to ride or load.</CC_PEv_Impact_Beast>
+  <CC_PEv_Impact_BeastBrief>A beast of their own</CC_PEv_Impact_BeastBrief>
+  <CC_PEv_Impact_BeastHome>{0} walks out to the beast and leads it home, and {1} stays the night to eat at the colony's table.</CC_PEv_Impact_BeastHome>
+  <CC_PEv_Impact_BeastHomeBrief>Led home together, and a guest at supper</CC_PEv_Impact_BeastHomeBrief>
+  <CC_PEv_Impact_Trade>{0} goes back with {1} in trade.</CC_PEv_Impact_Trade>
+  <CC_PEv_Impact_TradeBrief>One of the colony's young beasts traded</CC_PEv_Impact_TradeBrief>
+  <CC_PEv_BeastHanded>{PAWN_nameDef} walked out to meet {BEAST}, and they are going home together. The elder chose well, {RIDER} says.</CC_PEv_BeastHanded>
+  <CC_PEv_BeastChronicle>{PAWN_nameDef} was given {BEAST}, a young beast the elder of {FACTION} chose for {PAWN_objective}.</CC_PEv_BeastChronicle>
+  <CC_PEv_BeastTraded>{BEAST} is going back to the herders' grass with {RIDER}.</CC_PEv_BeastTraded>
+
+  <!-- 5. A limb fitted (the hospitaller order) -->
+  <CC_PEv_PatientGone>The one they came for is no longer here.</CC_PEv_PatientGone>
+  <CC_PEv_LimbFitted>That part has been seen to already.</CC_PEv_LimbFitted>
+  <CC_PEv_NoBed>The colony has no free bed for the fitting.</CC_PEv_NoBed>
+  <CC_PEv_WoodLabel>the wood for {X}'s fitting</CC_PEv_WoodLabel>
+  <CC_PEv_Impact_Limb>{0} lies down at the colony's bed and is fitted with {1} for their {2}, by the order's surgeon with the game's own surgery.</CC_PEv_Impact_Limb>
+  <CC_PEv_Impact_LimbBrief>A limb fitted</CC_PEv_Impact_LimbBrief>
+  <CC_PEv_Impact_LimbRisk>{CHANCE}% that it takes. A failure is the game's own, injuries where the surgeon worked ({FAIL}% for {0}).</CC_PEv_Impact_LimbRisk>
+  <CC_PEv_Impact_LimbRiskBrief>Surgery has its risks</CC_PEv_Impact_LimbRiskBrief>
+  <CC_PEv_Impact_Assist>{0} stands at {1}'s bedside for the fitting, and learns from the surgeon.</CC_PEv_Impact_Assist>
+  <CC_PEv_Impact_AssistBrief>The colony's doctor at the bedside</CC_PEv_Impact_AssistBrief>
+  <CC_PEv_Impact_Owe>The colony owes {0} a favour for it, which they may call in one day.</CC_PEv_Impact_Owe>
+  <CC_PEv_Impact_OweBrief>A debt of honour</CC_PEv_Impact_OweBrief>
+  <CC_PEv_LimbDone>{SURGEON} has fitted {PAWN_nameDef} with {LIMB}, and wrote {PAWN_possessive} name into the Book of the Spared of {FACTION}.</CC_PEv_LimbDone>
+  <CC_PEv_LimbFailed>The fitting did not take. {SURGEON} did what could be done for {PAWN_nameDef} and wrote the failure honestly in the order's book.</CC_PEv_LimbFailed>
+
+  <!-- 47. Storm-sense (the Stormglass Conclave) -->
+  <CC_PEv_StormPsylink>a first psylink, the storm's hum in their head</CC_PEv_StormPsylink>
+  <CC_PEv_StormTome>the {TOME}, and the storm to read it by</CC_PEv_StormTome>
+  <CC_PEv_ListenerGone>The one who hears the storm is no longer here.</CC_PEv_ListenerGone>
+  <CC_PEv_StormHeard>They already hear the storm in their own way.</CC_PEv_StormHeard>
+  <CC_PEv_StormPassed>The storm has passed.</CC_PEv_StormPassed>
+  <CC_PEv_NoRod>The colony has no stormglass rod of its own to catch its storm at.</CC_PEv_NoRod>
+  <CC_PEv_VialName>a vial of the colony's storm</CC_PEv_VialName>
+  <CC_PEv_Impact_Storm>{0} comes back from the storm with {1}.</CC_PEv_Impact_Storm>
+  <CC_PEv_Impact_StormBrief>Storm-sense</CC_PEv_Impact_StormBrief>
+  <CC_PEv_Impact_StormRod>{0} and {1} stand out in the rain by the colony's rod for an hour.</CC_PEv_Impact_StormRod>
+  <CC_PEv_Impact_StormOpen>{0} and {1} stand out in the open in the rain for an hour.</CC_PEv_Impact_StormOpen>
+  <CC_PEv_Impact_StormRodBrief>An hour out in the storm</CC_PEv_Impact_StormRodBrief>
+  <CC_PEv_Impact_Vial>A vial of the colony's own storm goes into the archive of {0}.</CC_PEv_Impact_Vial>
+  <CC_PEv_Impact_VialBrief>The colony's storm in their archive</CC_PEv_Impact_VialBrief>
+  <CC_PEv_StormWoke>A flash broke over {PAWN_nameDef} and {READER} out in the storm, and {PAWN_nameDef} came in with {WHAT}.</CC_PEv_StormWoke>
+  <CC_PEv_StormChronicle>{PAWN_nameDef} stood an hour in a storm with a reader of the Conclave, and came in with {WHAT}.</CC_PEv_StormChronicle>
+
+  <!-- 83. A mechlink (the Lattice) -->
+  <CC_PEv_LinkerGone>The one they would link is no longer here.</CC_PEv_LinkerGone>
+  <CC_PEv_Linked>They have a mechlink already.</CC_PEv_Linked>
+  <CC_PEv_Impact_Mechlink>{0} has a mechlink from now, and the {1} is theirs to command.</CC_PEv_Impact_Mechlink>
+  <CC_PEv_Impact_MechlinkBrief>A mechlink, and a mech to start</CC_PEv_Impact_MechlinkBrief>
+  <CC_PEv_Impact_MechlinkWork>{0} keeps still where they stand for two hours while {1} works, sparks and all.</CC_PEv_Impact_MechlinkWork>
+  <CC_PEv_Impact_MechlinkWorkBrief>The mechlink put in where they stand</CC_PEv_Impact_MechlinkWorkBrief>
+  <CC_PEv_Impact_TheOthers>the rest of the colony</CC_PEv_Impact_TheOthers>
+  <CC_PEv_Cause_Mechlink>the Lattice's machine in {0}'s head</CC_PEv_Cause_Mechlink>
+  <CC_PEv_Mechlinked>{TENDER} has put a mechlink into {PAWN_nameDef}, and {MECH} answers to {PAWN_objective} now.</CC_PEv_Mechlinked>
+  <CC_PEv_MechlinkedAlone>{TENDER} has put a mechlink into {PAWN_nameDef}. The mech that came with them did not stay.</CC_PEv_MechlinkedAlone>
+  <CC_PEv_MechlinkChronicle>{PAWN_nameDef} was linked into the ways of {FACTION}: a mechlink, and a mech of {PAWN_possessive} own.</CC_PEv_MechlinkChronicle>
+
+  <!-- 51. A Gauranlen seed (the Mossborn) -->
+  <CC_PEv_NamedGone>The one the ledger named is no longer here.</CC_PEv_NamedGone>
+  <CC_PEv_SeedChoose>Choose where the seed goes into the ground.</CC_PEv_SeedChoose>
+  <CC_PEv_SeedNoSpot>{X} walked the land and found nowhere the seed would take, and went home with it.</CC_PEv_SeedNoSpot>
+  <CC_PEv_Impact_Tree>A Gauranlen tree grows where it is planted, bound to {0}, its dryads in time.</CC_PEv_Impact_Tree>
+  <CC_PEv_Impact_TreeBrief>A Gauranlen tree</CC_PEv_Impact_TreeBrief>
+  <CC_PEv_Impact_Grove>A grove of healroot is sown, and {0} learns it.</CC_PEv_Impact_Grove>
+  <CC_PEv_Impact_GroveBrief>A healroot grove</CC_PEv_Impact_GroveBrief>
+  <CC_PEv_Impact_Promise>The colony promises {0} a seedling for every tree it fells. Their ledger watches each season: kept, they warm to the colony; broken, it is a wrong.</CC_PEv_Impact_Promise>
+  <CC_PEv_Impact_PromiseBrief>A promise to the ledger</CC_PEv_Impact_PromiseBrief>
+  <CC_PEv_Impact_SeedOurs>The colony chooses the spot; {0} plants it there with {1} beside them.</CC_PEv_Impact_SeedOurs>
+  <CC_PEv_Impact_SeedHers>{0} chooses a quiet spot away from walls, and plants it with {1} beside them.</CC_PEv_Impact_SeedHers>
+  <CC_PEv_Impact_SeedBrief>Planted together</CC_PEv_Impact_SeedBrief>
+  <CC_PEv_SeedPlanted>{CARRIER} and {PAWN_nameDef} have planted the Gauranlen seed together, and the sapling is bound to {PAWN_objective}.</CC_PEv_SeedPlanted>
+  <CC_PEv_GroveSown>{CARRIER} has sown a grove of healroot with {PAWN_nameDef}, who knows how to keep it now.</CC_PEv_GroveSown>
+  <CC_PEv_SeedChronicle>{PAWN_nameDef} planted a Gauranlen seed from the ledger of {FACTION}, and the tree is bound to {PAWN_objective}.</CC_PEv_SeedChronicle>
+  <CC_PEv_GroveChronicle>{PAWN_nameDef} sowed a healroot grove with a seed-carrier of {FACTION}.</CC_PEv_GroveChronicle>
+  <CC_PEv_PromiseName>the promise of a seedling for every tree</CC_PEv_PromiseName>
+  <CC_PEv_PromiseKept>The Mossborn of {FACTION} read the colony's page at the season's reckoning: {FELLED} trees felled and {PLANTED} planted. The promise is kept.</CC_PEv_PromiseKept>
+  <CC_PEv_PromiseBroken>The Mossborn of {FACTION} read the colony's page at the season's reckoning: {FELLED} trees felled and only {PLANTED} planted. The promise is broken, and the ledger says so.</CC_PEv_PromiseBroken>
+
+  <!-- 1. Crates held in trust (the road league) -->
+  <CC_PEv_Means_beast>a pack beast gone lame</CC_PEv_Means_beast>
+  <CC_PEv_Means_truck>a truck sitting on a broken axle</CC_PEv_Means_truck>
+  <CC_PEv_Means_lander>a lander short of lift</CC_PEv_Means_lander>
+  <CC_PEv_TrustName>crates held in trust</CC_PEv_TrustName>
+  <CC_PEv_Impact_Trust>{1}'s porters carry {0} sealed crates in to the colony's stores, to be kept until a second caravan fetches them.</CC_PEv_Impact_Trust>
+  <CC_PEv_Impact_TrustBrief>Crates held in trust</CC_PEv_Impact_TrustBrief>
+  <CC_PEv_Impact_TrustFee>About {0} silver at the fetch, if every crate is there.</CC_PEv_Impact_TrustFee>
+  <CC_PEv_Impact_TrustFree>No fee: kept as friends (it would have been about {0} silver).</CC_PEv_Impact_TrustFree>
+  <CC_PEv_Impact_TrustFeeBrief>The league's fee</CC_PEv_Impact_TrustFeeBrief>
+  <CC_PEv_Impact_TrustRisk>A crate opened, sold or gone at the fetch is red ink in their book: a grudge with {0}, and no league caravans for a season. Every crate there is good ink: better prices with every league for a year.</CC_PEv_Impact_TrustRisk>
+  <CC_PEv_Impact_TrustRiskBrief>Every crate home</CC_PEv_Impact_TrustRiskBrief>
+  <CC_PEv_CrateHeld>Held in trust for {FACTION} until a caravan fetches it, written in the Waystone Book by {MASTER}.</CC_PEv_CrateHeld>
+  <CC_PEv_BreakSeal>Break the seal</CC_PEv_BreakSeal>
+  <CC_PEv_BreakSealDesc>Open the crate and take what is inside. It was left in trust by {FACTION}, and their book will say so.</CC_PEv_BreakSealDesc>
+  <CC_PEv_BreakSealConfirm>This crate was left in the colony's care by {FACTION}. Opening it is red ink in their book: a grudge, and no league caravans for a season. Break the seal anyway?</CC_PEv_BreakSealConfirm>
+  <CC_PEv_CrateOpened>The seal on a crate held in trust has been broken, and what it held lies on the floor.</CC_PEv_CrateOpened>
+  <CC_PEv_CrateBurned>A crate held in trust for {FACTION} has been destroyed. The league will hear how it happened.</CC_PEv_CrateBurned>
+  <CC_PEv_CratesLabel>the league's crates</CC_PEv_CratesLabel>
+  <CC_PEv_TrustLapsed>Nobody will come from {FACTION} for the crates they left now, and the colony's page in the Waystone Book is closed.</CC_PEv_TrustLapsed>
+  <CC_PEv_InkGoodTitle>Good ink</CC_PEv_InkGoodTitle>
+  <CC_PEv_InkRedTitle>Red ink</CC_PEv_InkRedTitle>
+  <CC_PEv_InkGood>{X} of {FACTION} counted all {TOTAL} crates out of the colony's stores and wrote the colony in good ink. The league's fee of {FEE} silver is coming in, and every league will deal a little better with the colony for a year.</CC_PEv_InkGood>
+  <CC_PEv_InkGoodFree>{X} of {FACTION} counted all {TOTAL} crates out of the colony's stores and wrote the colony in good ink, with the mark of a friend's keeping beside it. Every league will deal a little better with the colony for a year.</CC_PEv_InkGoodFree>
+  <CC_PEv_InkGoodForgiven>{X} of {FACTION} counted the crates out of the colony's stores. {BURNED} burned where they stood, which the book forgives, and the rest were all there: good ink, the fee of {FEE} silver, and better dealing with every league for a year.</CC_PEv_InkGoodForgiven>
+  <CC_PEv_InkRed>{X} of {FACTION} counted the colony's {TOTAL} crates and found {WHAT}. The colony is written in red ink: a grudge, and no league caravan will come this way for a season.</CC_PEv_InkRed>
+  <CC_PEv_InkOpened>{0} opened</CC_PEv_InkOpened>
+  <CC_PEv_InkSold>{0} sold</CC_PEv_InkSold>
+  <CC_PEv_InkGone>{0} gone</CC_PEv_InkGone>
+  <CC_PEv_InkBurned>{0} burned</CC_PEv_InkBurned>
+
+  <!-- 19. What lies in the old place (the learned society) -->
+  <CC_PEv_OldWalls>the old walls {WHERE}</CC_PEv_OldWalls>
+  <CC_PEv_PlaceGone>The old place has been opened or read already.</CC_PEv_PlaceGone>
+  <CC_PEv_NothingToOpen>There is nothing there to open.</CC_PEv_NothingToOpen>
+  <CC_PEv_NoRoomForCamp>There is no room on the land for another camp now.</CC_PEv_NoRoomForCamp>
+  <CC_PEv_Impact_Measure>Two scholars camp by {0} for four days, measuring, then say exactly what lies inside.</CC_PEv_Impact_Measure>
+  <CC_PEv_Impact_MeasureBrief>A camp beside the old place</CC_PEv_Impact_MeasureBrief>
+  <CC_PEv_Impact_Open>At the end they break into {0}, and whatever sleeps there wakes: the game's own danger, whatever it is.</CC_PEv_Impact_Open>
+  <CC_PEv_Impact_OpenBrief>The old place opened</CC_PEv_Impact_OpenBrief>
+  <CC_PEv_Read_mechs>{COUNT} sleeping mechanoids ({KINDS})</CC_PEv_Read_mechs>
+  <CC_PEv_Read_fleshbeasts>{COUNT} fleshbeasts lying dormant</CC_PEv_Read_fleshbeasts>
+  <CC_PEv_Read_hives>{COUNT} insect hives with {INSECTS} insects asleep around them</CC_PEv_Read_hives>
+  <CC_PEv_Read_caskets>{COUNT} ancient caskets, {SLEEPERS} of them with someone inside</CC_PEv_Read_caskets>
+  <CC_PEv_Read_crates>{COUNT} sealed crates of the old makers</CC_PEv_Read_crates>
+  <CC_PEv_Read_nothing>nothing that sleeps or waits, only dust and old stone</CC_PEv_Read_nothing>
+  <CC_PEv_Read_land>what {NAME} is made of, and how it came to be there</CC_PEv_Read_land>
+  <CC_PEv_ReadingTitle>What lies in the old place</CC_PEv_ReadingTitle>
+  <CC_PEv_Reading>The scholars of {FACTION} have finished measuring {OLDPLACE}. Inside, they say, there is {THING}.</CC_PEv_Reading>
+  <CC_PEv_ReadingLand>The scholars of {FACTION} have finished measuring {OLDPLACE}, and wrote down {THING}.</CC_PEv_ReadingLand>
+  <CC_PEv_ReadingResearch>They left their notes with the colony: progress on {0}.</CC_PEv_ReadingResearch>
+  <CC_PEv_ReadingOpened>They broke in as they left, as the colony let them. Nothing woke.</CC_PEv_ReadingOpened>
+  <CC_PEv_ReadingOpenedDanger>They broke in as they left, as the colony let them, and what slept there is awake now. {X_nameDef} is running for the camp.</CC_PEv_ReadingOpenedDanger>
+
+  <!-- 17. A hostel on the road (the pilgrim fellowship) -->
+  <CC_PEv_BreadLabel>the morning's bread for {NAME}</CC_PEv_BreadLabel>
+  <CC_PEv_HostelNoBread>There was no bread to send to the hostel this morning, and the travellers went without.</CC_PEv_HostelNoBread>
+  <CC_PEv_HostelTraveller>{X_nameDef} of {THING} has stopped at the pilgrims' hostel for a night or two on the road.</CC_PEv_HostelTraveller>
+  <CC_PEv_HostelTravellerNews>{X_nameDef} of {THING} stopped at the pilgrims' hostel with news from the road.</CC_PEv_HostelTravellerNews>
+  <CC_PEv_HostelWords>{X_nameDef} and {THING}, travellers of peoples who don't get along, traded hard words at the hostel's fire before the fellowship parted them.</CC_PEv_HostelWords>
+  <CC_PEv_HostelBrawl>{X_nameDef} and {THING}, travellers of peoples who don't get along, have come to blows at the hostel's fire.</CC_PEv_HostelBrawl>
+  <CC_PEv_HostelCough>{PAWN_nameDef} came back from the blessing with the cough that has been going round the hostel's crowded hut.</CC_PEv_HostelCough>
+  <CC_PEv_Impact_Bread>Food is carried out to the hostel's table every morning while it stands, meals if there are any, else raw food.</CC_PEv_Impact_Bread>
+  <CC_PEv_Impact_BreadBrief>Bread for the hostel each morning</CC_PEv_Impact_BreadBrief>
+  <CC_PEv_Impact_Cough>{0} may catch the cough going round the crowded hut.</CC_PEv_Impact_Cough>
+  <CC_PEv_Impact_CoughBrief>A cough in the hut</CC_PEv_Impact_CoughBrief>
+
+  <!-- 34. The lantern post (the Lantern Wardens) -->
+  <CC_PEv_Meat>raw meat</CC_PEv_Meat>
+  <CC_PEv_BeastNotHere>The beast isn't on the land now.</CC_PEv_BeastNotHere>
+  <CC_PEv_Impact_Trail>{0} goes out on the trail with two of the Wardens after {1}: the game's own hunt, side by side.</CC_PEv_Impact_Trail>
+  <CC_PEv_Impact_TrailBrief>A place in the hunt</CC_PEv_Impact_TrailBrief>
+  <CC_PEv_PostWarns>The Wardens' hounds have the scent: {BEAST} is close to the colony's walls.</CC_PEv_PostWarns>
+  <CC_PEv_PostFire>{BEAST} has come out of the dark to the Wardens' fire, and they are fighting it off by the lantern.</CC_PEv_PostFire>
+  <CC_PEv_PostHound>One of the Wardens' hounds, {THING}, ran off on the trail and hasn't come back.</CC_PEv_PostHound>
+  <CC_PEv_PostFell>{BEAST} has fallen, and the Wardens have put out their lantern to write its page.</CC_PEv_PostFell>
+  <CC_PEv_PostFellTogether>{BEAST} has fallen to the Wardens and the colony together. Its page will carry the colony's name, and one of them is skinning it where it lies.</CC_PEv_PostFellTogether>
+  <CC_PEv_PostCold>The Wardens have lost {BEAST}'s trail, and say it has gone off the land.</CC_PEv_PostCold>
+
+  <!-- 95. Kill it or win it over (the Wardens and the Circuit) -->
+  <CC_PEv_WardensGone>The Wardens have gone.</CC_PEv_WardensGone>
+  <CC_PEv_CantTame>{0} can't be tamed now.</CC_PEv_CantTame>
+  <CC_PEv_NoHandler>The colony has nobody who can handle beasts.</CC_PEv_NoHandler>
+  <CC_PEv_HandlerTooGreen>{PAWN} would need Animals {NEED} to try.</CC_PEv_HandlerTooGreen>
+  <CC_PEv_NoBout>One of them has gone, and there is nobody to bout.</CC_PEv_NoBout>
+  <CC_PEv_Impact_SideHunt>The Wardens go after {0}, {1} with them, on the game's own hunt; its hide for their book, its meat for the colony.</CC_PEv_Impact_SideHunt>
+  <CC_PEv_Impact_SideTame>{0} is marked for taming, and {1} tries to win it over the game's own way, with its food and its tries, the tamer beside them.</CC_PEv_Impact_SideTame>
+  <CC_PEv_Impact_SideTameBrief>The game's own taming</CC_PEv_Impact_SideTameBrief>
+  <CC_PEv_Impact_Revenge>A failed try may turn {0} on whoever tried: {1} each time, the game's own chance.</CC_PEv_Impact_Revenge>
+  <CC_PEv_Impact_RevengeBrief>A beast's revenge</CC_PEv_Impact_RevengeBrief>
+  <CC_PEv_Impact_Bout>{0} and {1} settle it in a bout at the gate. The winner has {2}: the Wardens hunt it, or the tamer tries to win it over for the Circuit.</CC_PEv_Impact_Bout>
+  <CC_PEv_Impact_BoutBrief>Settled between themselves</CC_PEv_Impact_BoutBrief>
+  <CC_PEv_BoutWarden>{WARDEN} put {TAMER} on the ground in the bout at the gate, and the Wardens are going after {BEAST}.</CC_PEv_BoutWarden>
+  <CC_PEv_BoutTamer>{TAMER} put {WARDEN} on the ground in the bout at the gate, and will try to win {BEAST} over for the Circuit.</CC_PEv_BoutTamer>
+  <CC_PEv_TamedOurs>{BEAST} is the colony's now, won over. {TAMER} of the Circuit is going home pleased.</CC_PEv_TamedOurs>
+  <CC_PEv_WonOver>{TAMER} has won {BEAST} over for the Circuit, and is leading it home.</CC_PEv_WonOver>
+  <CC_PEv_TameGaveUp>{TAMER} couldn't win {BEAST} over, and has gone home.</CC_PEv_TameGaveUp>
+  <CC_PEv_TameRevenge>{BEAST} has turned on {TAMER} after a failed try at taming it.</CC_PEv_TameRevenge>
+  <CC_PEv_HeardHunt>Word on the roads: the colony gave {BEAST} to the hunt of {WARDENS}, and {CIRCUIT} took it badly.</CC_PEv_HeardHunt>
+  <CC_PEv_HeardTame>Word on the roads: the colony sided with {CIRCUIT} over {BEAST}, and {WARDENS} took it badly.</CC_PEv_HeardTame>
+  <CC_PEv_HeardBout>Word on the roads: {WARDENS} and {CIRCUIT} settled {BEAST} in a bout at the colony's gate, and {WINNER} won it.</CC_PEv_HeardBout>
+
+</LanguageData>
