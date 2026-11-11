@@ -9,29 +9,31 @@ namespace ColonyCouncil
 {
     /// <summary>
     /// The gods in the wider world (docs/design/gods.md, stage 2's "The world"; brainstorm items 17, 18, 19, 21, 22 and the
-    /// drama between the gods): kept in the region's day and hour (World/Region/RegionBook.cs; no pass of its own), each
-    /// part in a file of its own under Gods/World/:
+    /// drama between the gods), for the nine of docs/gods-pantheon-brainstorm.md, each in its own way (GodWays). The gods are
+    /// unseen (the player's rule, docs/design/gods.md, "The gods are unseen"): nothing here shows what a god thinks, wants
+    /// or feels about the colony, names a rule or a price, or puts a god's standing in words. The player meets what happens
+    /// on the map and in the world, and what people say of it. Kept in the region's day and hour (World/Region/RegionBook.cs;
+    /// no pass of its own), each part in a file of its own under Gods/World/:
     /// <list type="bullet">
     /// <item>GodLetters: neighbours' letters that swear by their gods and tell of signs, curses, myths and holy wars; an
-    /// invitation to their god's festival; the colony's letter that slights their god.</item>
+    /// invitation to their god's feast; the colony's letter that slights their god.</item>
     /// <item>GodPeoples: peoples who share a god get on better, a feud that is really the gods'; a holy war that asks the
     /// colony in; a temple's envoy asking for a relic.</item>
-    /// <item>GodCamps: pilgrims at a place one people calls holy, a hermit seer at the map's edge, a war god's champion at
-    /// the head of a raid.</item>
-    /// <item>GodHealth: a fever broken and a plague eased; lightning on an offender's roof, blight, beasts sent after the one
-    /// who killed a sacred animal, the sun put out; under the shared harm budget.</item>
-    /// <item>GodGifts: a god's lasting gift to one colonist and its price (a blessing of its domain, a beast, A RimWorld of
-    /// Magic's classes, spells and gifted traits, Vanilla Psycasts Expanded's paths, the god's relic); the trickster's turn;
-    /// the rival who comes to undo it.</item>
-    /// <item>GodVoid: the Hunger, which answers anyone desperate enough, always pays and always takes more.</item>
-    /// <item>GodDrama: two rival gods' quarrel in the weather, a god's ask to slight a rival or hide one the rival hunts,
-    /// myths told at supper as the ties' history grows.</item>
-    /// <item>GodOutliers: an archotech's exact terms, the dead god's mark in an old place, the fading god, the Sleeper's
-    /// door, a newborn god's first signs.</item>
+    /// <item>GodCamps: pilgrims at a place one people calls holy, a hermit seer at the map's edge who says true things
+    /// darkly.</item>
+    /// <item>GodHealth: each god's kindness and anger at a home in its own shape (a fever broken, wild food springing up, a
+    /// vein pushed up, a machine mended, a meteorite; blight, a cold snap, a heat wave, a flashstorm, a freezer failing, a
+    /// short circuit), lightning or beasts for one who offended, Bellwether's kin harmed; under the shared harm budget.</item>
+    /// <item>GodGifts: a dream told at breakfast, a night under the open sky, and a lasting gift that arrives without a word
+    /// (A RimWorld of Magic's classes and spells, Vanilla Psycasts Expanded's paths, a green hand, gold for silver, a
+    /// passion found); its price paid the same way; a rival's dream asking for it back.</item>
+    /// <item>GodVoid: Undertow, the Hunger, which answers anyone desperate enough, always pays and always takes more.</item>
+    /// <item>GodDrama: two gods' quarrel seen in the weather or on the ground, one hunted for their gods' quarrel asking to be
+    /// hidden, a sentence of an old story told at supper.</item>
     /// </list>
     /// Everything calls only the core's <see cref="Gods"/> and the two seams; a god's moment goes through
-    /// <see cref="GodPresenceSeam"/> and, while the presence part isn't there, a plain card in the voice of how real the gods
-    /// are (<see cref="Moment"/>).
+    /// <see cref="GodPresenceSeam"/> and, while the presence part isn't there, a plain card that says what was seen
+    /// (<see cref="Moment"/>).
     /// </summary>
     public static class GodWorld
     {
@@ -67,7 +69,6 @@ namespace ColonyCouncil
             Safe("wrath", () => GodHealth.Daily(b, now));
             Safe("the void", () => GodVoid.Daily(b, now));
             Safe("the drama", () => GodDrama.Daily(b, now));
-            Safe("the ones who don't fit", () => GodOutliers.Daily(b, now));
             Safe("tidying", b.Prune);
         }
 
@@ -76,7 +77,7 @@ namespace ColonyCouncil
         {
             var b = Book;
             if (b == null) return;
-            Safe("champions", () => GodCamps.Hourly(b, now));
+            Safe("the envoys' hour", () => GodPeoples.Hour(b, now));
             Safe("blessings and lightning", () => GodHealth.Hourly(b, now));
             Safe("gifts received", () => GodGifts.Hourly(b, now));
             Safe("the void's ear", () => GodVoid.Hourly(b, now));
@@ -96,13 +97,6 @@ namespace ColonyCouncil
         }
 
         // ================= Words =================
-
-        /// <summary>Something said of a god in the voice of how real the gods are: "The colony believes ...", "Some say ...", or plainly.</summary>
-        public static string Voice(string text)
-        {
-            if (text.NullOrEmpty()) return text;
-            return ("CC_GW_Voice_" + GodWorldMath.Voice(Gods.Realness)).Translate(text.Named("TEXT")).Resolve().CapitalizeFirst();
-        }
 
         /// <summary>A key with a god's placeholders ({GOD}, {GODEPITHET}, {GODOF}) and more.</summary>
         public static string T(string key, God g, params NamedArgument[] more)
@@ -130,8 +124,9 @@ namespace ColonyCouncil
         }
 
         /// <summary>
-        /// A colonist's one sentence about a god's doing (Rimfolk_Pool_GodWorld, by the moment's tag and the god's domain
-        /// and kind), over their head through Speech.Say; to nobody in particular. False when nothing was said.
+        /// A colonist's one sentence about what just happened (Rimfolk_Pool_GodWorld, by the moment's tag, how real the gods
+        /// are, and the god's own key and domain), over their head through Speech.Say; to nobody in particular. This is where
+        /// a god is named, if anywhere: a believer's guess, a scoffer's doubt. False when nothing was said.
         /// </summary>
         public static bool Say(Pawn p, string moment, God g, params NamedArgument[] more)
         {
@@ -171,8 +166,8 @@ namespace ColonyCouncil
 
         /// <summary>
         /// A god's moment on the map: through the presence part (Gods/Presence/: the sound, the sky, its own card) when it is
-        /// there, else a plain card: a letter for what matters (<paramref name="letter"/>), else a message, worded by the
-        /// caller in the voice of how real the gods are. Remembered among the god's acts either way.
+        /// there, else a plain card: a letter for what matters (<paramref name="letter"/>), else a message. The caller's words
+        /// say only what was seen and heard, with no why and no god's name. Remembered among the god's acts either way.
         /// </summary>
         public static void Moment(God g, Map map, PresenceKind kind, IntVec3 cell, Pawn avatar, string title, string text, bool letter = true,
             LetterDef def = null, LookTargets look = null, Faction faction = null, Importance importance = Importance.Notable)
@@ -226,11 +221,15 @@ namespace ColonyCouncil
             return s.Replace("\n", " ");
         }
 
-        /// <summary>An act of the god remembered in words only (a gift, a term kept, a myth told), without a card.</summary>
-        public static void Remember(God g, Map map, GodActKind kind, string text, Pawn about = null)
+        /// <summary>
+        /// An act of the god remembered in words only, without a card (the colony's book of the gods is written from these,
+        /// with the colonists who could see it: Gods.Remember). Always in the world's voice: what was seen, heard or told and
+        /// by whom ("as Mirel of Karond-Keth wrote"), never what the god felt; a second god where two are in it.
+        /// </summary>
+        public static void Remember(God g, Map map, GodActKind kind, string text, God other = null, IntVec3? cell = null)
         {
             if (g == null || text.NullOrEmpty()) return;
-            Gods.Remember(new GodAct { god = g.id, home = Gods.HomeKey(map), tick = Now, kind = kind, text = text });
+            Gods.Remember(new GodAct { god = g.id, other = other?.id ?? -1, home = Gods.HomeKey(HomeOr(map)), tick = Now, kind = kind, text = text, cell = cell ?? IntVec3.Invalid });
         }
 
         /// <summary>A line for the colony's story (the one history).</summary>
@@ -238,29 +237,6 @@ namespace ColonyCouncil
         {
             if (text.NullOrEmpty()) return;
             CouncilGameComponent.Instance?.AddChronicle(new ChronicleEntry(ChronicleKind.World, text, about));
-        }
-
-        /// <summary>
-        /// The avatar a god comes as among a people (a pawn of theirs made for it), its look given by the presence part when
-        /// it is there and the gods can walk; null when no person of theirs can be made.
-        /// </summary>
-        public static Pawn MakeAvatar(God g, Faction f, bool disguised)
-        {
-            if (g == null) return null;
-            var people = f ?? g.factions.FirstOrDefault(x => x != null && !x.IsPlayer && Arrivals.PersonKind(x) != null);
-            var kind = Arrivals.PersonKind(people);
-            if (kind == null) return null;
-            Pawn p = null;
-            try
-            {
-                p = Arrivals.Make(kind, people, new FloatRange(30f, 60f), g.gender == Gender.None ? (Gender?)null : g.gender);
-                if (p != null) GodLookSeam.Make(p, g, disguised);
-            }
-            catch (Exception e)
-            {
-                CouncilLog.ErrorOnce("gods in the world: an avatar made", e);
-            }
-            return p;
         }
 
         /// <summary>The colony's wealth as a factor near 1 for prices and gifts (LivingEvents).</summary>
@@ -276,11 +252,10 @@ namespace ColonyCouncil
             }
         }
 
-        /// <summary>A god the colony knows by name, or (for the gods that come to it unasked) any.</summary>
+        /// <summary>The gods the colony knows of.</summary>
         public static IEnumerable<God> Known => Gods.All.Where(Gods.Known);
 
-        /// <summary>The colony's gods at a home and the ones it stands with from noticed up, known, alive.</summary>
-        public static List<God> Near(Map home) =>
-            Gods.ColonyGods(home).Concat(Known.Where(g => Gods.Favour(g, home) >= FavourWord.Noticed)).Where(g => g.kind != GodKind.Dead).Distinct().ToList();
+        /// <summary>The colony's gods at a home and the ones that have noticed it there.</summary>
+        public static List<God> Near(Map home) => Gods.ColonyGods(home).Concat(Known.Where(g => Gods.Favour(g, home) >= FavourWord.Noticed)).Distinct().ToList();
     }
 }

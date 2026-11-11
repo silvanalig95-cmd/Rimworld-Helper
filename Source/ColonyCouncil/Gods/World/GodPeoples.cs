@@ -12,7 +12,7 @@ namespace ColonyCouncil
     /// The gods in diplomacy (docs/design/gods.md, stage 2, brainstorm item 17):
     /// <list type="bullet">
     /// <item>Peoples who share a god get on better: once a season, a people whose god is one of the colony's own, or one the
-    /// colony stands pleased with, thinks a little better of it; a people whose god is the rival of a patron that favours the
+    /// colony stands pleased with, thinks a little better of it; a people whose god is the rival of a patron that favors the
     /// colony thinks a little worse (a feud that is really the gods'), never below its own floor.</item>
     /// <item>A holy war: a friend at war with a people whose god is their god's rival asks the colony to stand with them,
     /// to send help, or to stay out.</item>
@@ -46,7 +46,7 @@ namespace ColonyCouncil
             foreach (var f in Find.FactionManager.AllFactionsListForReading.ToList())
             {
                 if (!Arrivals.Usable(f) || !f.HasGoodwill) continue;
-                var theirs = Gods.Of(f).Where(g => Gods.Known(g) && g.kind != GodKind.Dead).ToList();
+                var theirs = Gods.Of(f).Where(Gods.Known).ToList();
                 if (theirs.Count == 0) continue;
                 // The god they share with the colony that it stands best with.
                 God shared = null;
@@ -80,6 +80,29 @@ namespace ColonyCouncil
             }
         }
 
+        // ================= A debt kept or broken =================
+
+        /// <summary>
+        /// A debt of honour closed (Diplomacy/FavoursOwed.cs, Close): one the colony owed, kept or broken, moves the standing
+        /// of the god who watches debts (its ways: Ducat), unseen; someone may say a word about it. Debts owed to the colony
+        /// are the other people's honour, not the colony's, and move nothing here.
+        /// </summary>
+        public static void DebtClosed(bool colonyOwed, bool kept, Faction people, Map home)
+        {
+            if (!GodWorld.On || !colonyOwed) return;
+            GodWorld.Safe("a debt closed", () =>
+            {
+                var map = GodWorld.HomeOr(home);
+                foreach (var g in GodWorld.Known.Where(GodWays.Debts).ToList())
+                {
+                    Gods.AddFavour(g, map, kept ? GodWorldMath.DebtKept : GodWorldMath.DebtBroken,
+                        GodWorld.T(kept ? "CC_GW_Debt_WhyKept" : "CC_GW_Debt_WhyBroken", g, (people?.Name ?? "?").Named("PEOPLE")), FavourSource.Deed,
+                        kept ? GodOffence.None : GodOffence.BrokenWord);
+                    GodWorld.Remark(map, IntVec3.Invalid, kept ? "debtpaid" : "debtbroken", g);
+                }
+            });
+        }
+
         // ================= A holy war =================
 
         /// <summary>A friend at war with a people whose god is their god's rival, and the two gods: the asker's and the enemy's.</summary>
@@ -91,9 +114,9 @@ namespace ColonyCouncil
             foreach (var e in Find.FactionManager.AllFactionsListForReading)
             {
                 if (e == null || e == f || e.IsPlayer || e.defeated || e.Hidden || !e.def.humanlikeFaction || !f.HostileTo(e)) continue;
-                foreach (var g in Gods.Of(f).Where(x => x.kind != GodKind.Dead))
+                foreach (var g in Gods.Of(f))
                 {
-                    var r = Gods.Of(e).FirstOrDefault(x => x.kind != GodKind.Dead && Gods.Rivals(g).Contains(x));
+                    var r = Gods.Of(e).FirstOrDefault(x => Gods.Rivals(g).Contains(x));
                     if (r == null) continue;
                     enemy = e;
                     ours = g;
@@ -118,8 +141,11 @@ namespace ColonyCouncil
                 string text = GodWorld.T("CC_GW_HolyWar_Text", ours, f.Name.Named("PEOPLE"), enemy.Name.Named("ENEMY"), theirs.name.Named("ENEMYGOD"),
                     (theirs.epithet ?? "").Named("ENEMYEPITHET"), silver.Named("COUNT"));
                 if (GodAsks.Ask(GodAsks.HolyWar, home, ours, GodWorld.T("CC_GW_HolyWar_Label", ours, f.Name.Named("PEOPLE")), text, null, theirs, f, null, silver,
-                        enemy.loadID.ToString(), -1, 3f) != null)
-                    b.Came("holywar");
+                        enemy.loadID.ToString(), -1, 3f) == null)
+                    return;
+                b.Came("holywar");
+                GodWorld.Remember(ours, home, GodActKind.Act,
+                    GodWorld.T("CC_GW_Told_HolyWarAsk", ours, f.Name.Named("PEOPLE"), enemy.Name.Named("ENEMY"), theirs.name.Named("ENEMYGOD")), theirs);
                 return;
             }
         }
@@ -198,7 +224,7 @@ namespace ColonyCouncil
                 var f = Find.FactionManager.AllFactionsListForReading.FirstOrDefault(x =>
                     Arrivals.Usable(x) && x.HasGoodwill && x.PlayerGoodwill >= 0 && (ideo != null && x.ideos?.PrimaryIdeo == ideo || god != null && god.factions.Contains(x)));
                 if (f == null) continue;
-                var g = god ?? Gods.Of(f).FirstOrDefault(x => x.kind != GodKind.Dead);
+                var g = god ?? Gods.Of(f).FirstOrDefault();
                 if (g == null) continue;
                 return new RelicAsk { relic = thing, god = g, people = f, map = map };
             }
@@ -224,8 +250,10 @@ namespace ColonyCouncil
             var d = b.Add(new GodDoing { kind = "relic", god = a.god.id, home = Homes.KeyOf(a.map), pawn = envoy, faction = a.people, thing = a.relic, until = GodWorld.Now + GenDate.TicksPerDay });
             string text = GodWorld.T("CC_GW_Envoy_Text", a.god, a.people.Name.Named("PEOPLE"), envoy.Named("ENVOY"), a.relic.LabelShort.Named("RELIC"));
             if (GodAsks.Ask(GodAsks.Envoy, a.map, a.god, GodWorld.T("CC_GW_Envoy_Label", a.god, a.people.Name.Named("PEOPLE")), text, new LookTargets(envoy), null, a.people,
-                    envoy, 0, a.relic.def.defName, d.id, 1f) != null)
-                b.Came("envoy");
+                    envoy, 0, a.relic.def.defName, d.id, 1f) == null)
+                return;
+            b.Came("envoy");
+            GodWorld.Remember(a.god, a.map, GodActKind.Act, GodWorld.T("CC_GW_Told_Envoy", a.god, envoy.Named("ENVOY"), a.people.Name.Named("PEOPLE"), a.relic.LabelShort.Named("RELIC")));
         }
 
         public static IEnumerable<GodAnswer> EnvoyAnswers(ChoiceLetter_GodWorld l)

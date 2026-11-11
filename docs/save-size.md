@@ -7,8 +7,8 @@ colony of 20, with the game keeping 30 more people it knows and 5 more each year
 generous guesses; sizes are rough XML sizes. Caps named as constants are read from the source. "Counted under" rows are
 kept inside another record (a journal's lines, a heart's lists) and are already in that record's size.
 
-Saved collections found: 641; modelled: 641; growing without end: 0.
-Rimfolk's part of the save, roughly: **2,873 KB** after a year, **3,535 KB** after two, **3,876 KB** after five.
+Saved collections found: 639; modelled: 639; growing without end: 0.
+Rimfolk's part of the save, roughly: **2,873 KB** after a year, **3,534 KB** after two, **3,876 KB** after five.
 
 | Collection | Rule | Kind | 1 year | 2 years | 5 years | KB at 5 years |
 |---|---|---|---|---|---|---|
@@ -338,7 +338,6 @@ Rimfolk's part of the save, roughly: **2,873 KB** after a year, **3,535 KB** aft
 | `Animals/ResidentBeast.cs:knownIds` | wild beasts whose story has closed (ids), the newest 20 (ResidentBeast.KnownMax) | fixed | 20 | 20 | 20 | 0.5 |
 | `Building/BuildAhead.cs:removeCells` | per room step: what it marked to take down, inside the footprint | fixed | 20 | 20 | 20 | 0.5 |
 | `Defense/DefenseLinesWatch.cs:downedSeen` | colonists downed in the raid under way, cleared when it ends | while | 20 | 20 | 20 | 0.5 |
-| `Gods/World/GodWorldBook.cs:raids` | raids looked at for a war god's champion | cap | 6 | 12 | 20 | 0.5 |
 | `Heart/HeartData.cs:goodSpent` | per heart: one per strain source | fixed | 20 | 20 | 20 | 0.5 |
 | `PlayOut/Stage.cs:held` | when each gathering began, the last ten days (StageMath.KeepDays): two a day at the very most | fixed | 20 | 20 | 20 | 0.5 |
 | `Social/Autonomy.cs:lastActed` | with the above | window | 20 | 20 | 20 | 0.5 |
@@ -380,7 +379,6 @@ Rimfolk's part of the save, roughly: **2,873 KB** after a year, **3,535 KB** aft
 | `Annals.cs:omens` | the year in progress | yearly | 6 | 6 | 6 | 0.4 |
 | `Building/Suggest/SameRules.cs:owners` | per store step: the stores whose priority or filter it changed | fixed | 12 | 12 | 12 | 0.4 |
 | `Colonies/HomesMerge.cs:merges` | a colony whose home was lost while its people come to live at another, then the merge's first season (at most 24, one per home lost; let go after the old council's 30 days if nobody of theirs settles) | while | 1 | 1 | 1 | 0.4 |
-| `Gods/World/GodWorldBook.cs:told` | a newborn's signs and the dead god's marks told once | cap | 1 | 2 | 6 | 0.4 |
 | `Health/HealthTracker.cs:bedHours` | known pawns only, while laid up | colonists | 4 | 4 | 4 | 0.4 |
 | `Health/HealthTracker.cs:lastTrustLine` | 20 days | window | 4 | 4 | 4 | 0.4 |
 | `UI/WeekMemory.cs:following` | FollowMath.Max: what the player follows, only their clicks, as text forms ("p123", "t55") | fixed | 12 | 12 | 12 | 0.4 |

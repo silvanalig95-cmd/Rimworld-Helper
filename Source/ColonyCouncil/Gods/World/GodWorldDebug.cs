@@ -10,9 +10,10 @@ namespace ColonyCouncil
 {
     /// <summary>
     /// Dev mode: the gods in the world ("Rimfolk", "Gods in the world: ..."). Each part made to come now (its chance and gap
-    /// pushed, GodWorld.Force), what is under way listed, and a few things set up for a test: a grudge on the selected
-    /// colonist, a fever's blessing, a gift turned, the Hunger's ear. What can't come still says why (no god of the kind,
-    /// no relic, no holy place, only believed).
+    /// pushed, GodWorld.Force), what is under way and each god's ways listed in the log (the hidden state, for testing
+    /// only), and a few things set up for a test: a grudge on the selected colonist, a god's anger or kindness in its own
+    /// shape, a fever's blessing, the Hunger's ear. What can't come still says why (no god of the kind, no relic, no holy
+    /// place, only believed).
     /// </summary>
     public static class GodWorldDebug
     {
@@ -56,17 +57,22 @@ namespace ColonyCouncil
             var b = Ready();
             if (b == null) return;
             var sb = new StringBuilder("[Rimfolk] Gods in the world: " + b.doings.Count + " under way, " + b.gifts.Count + " gifts, Hunger " + b.hungerBargains + " bargains / "
-                                       + b.hungerTaken + " taken, Sleeper's door " + b.sleeperStep + ".\n");
+                                       + b.hungerTaken + " taken, today's kindness " + b.kindness + " / cruelty " + b.cruelty + ".\n");
             foreach (var d in b.doings)
                 sb.Append("  ").Append(d.kind).Append(" #").Append(d.id).Append(" god ").Append(Gods.ById(d.god)?.name ?? "-").Append(" other ").Append(Gods.ById(d.other)?.name ?? "-")
                     .Append(" pawn ").Append(d.pawn?.LabelShort ?? "-").Append(" stage ").Append(d.stage).Append(" what ").Append(d.what ?? "-").Append(d.done ? " (done)" : "").AppendLine();
             foreach (var g in b.gifts)
                 sb.Append("  gift #").Append(g.id).Append(' ').Append(g.kind).Append(' ').Append(g.what).Append(" from ").Append(Gods.ById(g.god)?.name ?? "?").Append(" to ")
-                    .Append(g.pawn?.LabelShort ?? "?").Append(g.cursed ? " (cursed)" : "").Append(g.undone ? " (undone)" : "").AppendLine();
+                    .Append(g.pawn?.LabelShort ?? "?").Append(" price ").Append(g.price).Append(g.undone ? " (undone)" : "").AppendLine();
             foreach (var kv in b.lasts) sb.Append("  last ").Append(kv.Key).Append(": ").Append(((GodWorld.Now - kv.Value) / (float)GenDate.TicksPerDay).ToString("0.0")).AppendLine(" days ago");
+            var map = Find.CurrentMap;
             foreach (var g in Gods.All.Take(60))
-                sb.Append("  ways of ").Append(g.name).Append(": wrath ").Append(GodWays.Wrath(g)).Append(", site ").Append(GodWays.Site(g) ?? "-").Append(", weather ").Append(GodWays.Weather(g) ?? "-")
-                    .Append(", classes ").Append(string.Join("/", GodWays.Classes(g))).AppendLine();
+                sb.Append("  ways of ").Append(g.name).Append(GodWays.Own(g) != null ? " (its own)" : " (by domain)").Append(": standing here ")
+                    .Append(map != null ? Gods.Favour(g, map).ToString() : "-").Append(", wrath ").Append(GodWays.Wrath(g)).Append(", grudge ").Append(GodWays.Grudge(g))
+                    .Append(GodWays.Blind(g) ? " (blind)" : GodWays.Mirror(g) ? " (mirror)" : "").Append(", kindness ").Append(GodWays.Blessing(g)).Append(", side ").Append(GodWays.Side(g) ?? "-").Append(", site ").Append(GodWays.Site(g) ?? "-")
+                    .Append(", gives ").Append(string.Join("/", Enum.GetValues(typeof(GodGiftKind)).Cast<GodGiftKind>().Where(k => k != GodGiftKind.None && GodWays.Gives(g, k))))
+                    .Append(", classes ").Append(string.Join("/", GodWays.Classes(g))).Append(", paths ").Append(string.Join("/", GodWays.Paths(g)))
+                    .Append(GodVoid.Quiet(b, g) ? " (quiet)" : "").AppendLine();
             Log.Message(sb.ToString());
             Say("listed in the log.");
         }
@@ -89,18 +95,8 @@ namespace ColonyCouncil
         [DebugAction("Rimfolk", "Gods in the world: a hermit seer", allowedGameStates = AllowedGameStates.PlayingOnMap)]
         private static void DebugSeer() => Push("a seer", GodCamps.SeerComes);
 
-        [DebugAction("Rimfolk", "Gods in the world: the next raid led by a champion", allowedGameStates = AllowedGameStates.PlayingOnMap)]
-        private static void DebugChampion()
-        {
-            var b = Ready();
-            if (b == null) return;
-            // The raids on the map now are looked at again, every chance pushed.
-            foreach (var lord in Find.CurrentMap.lordManager.lords) b.raids.Remove(lord.loadID);
-            Push("a champion (needs a raid on the map by a people with a war god)", x => GodCamps.Hourly(x, GodWorld.Now));
-        }
-
-        [DebugAction("Rimfolk", "Gods in the world: a god offers a gift", allowedGameStates = AllowedGameStates.PlayingOnMap)]
-        private static void DebugGift() => Push("a gift (needs a god that favours the colony; dev 'Gods: add favour here...')", GodGifts.Offer);
+        [DebugAction("Rimfolk", "Gods in the world: a dream told (a gift)", allowedGameStates = AllowedGameStates.PlayingOnMap)]
+        private static void DebugGift() => Push("a dream and a gift (needs a god that favors the colony here; dev 'Gods: add favour here...'; Felt or Walking)", GodGifts.Offer);
 
         [DebugAction("Rimfolk", "Gods in the world: gifts received now", allowedGameStates = AllowedGameStates.PlayingOnMap)]
         private static void DebugReceive()
@@ -111,31 +107,7 @@ namespace ColonyCouncil
             Push("gifts received", x => GodGifts.Hourly(x, GodWorld.Now));
         }
 
-        [DebugAction("Rimfolk", "Gods in the world: turn a trickster's or any gift", allowedGameStates = AllowedGameStates.PlayingOnMap)]
-        private static void DebugTrick()
-        {
-            var b = Ready();
-            var gift = b?.gifts.LastOrDefault(x => x.Holds && x.kind == GodGiftKind.Hand);
-            if (gift == null)
-            {
-                Say("no blessing on a body held now.");
-                return;
-            }
-            var g = Gods.ById(gift.god);
-            var was = g?.kind ?? GodKind.Ordinary;
-            if (g != null) g.kind = GodKind.Trickster;
-            gift.turnedAt = GodWorld.Now - 30 * GenDate.TicksPerDay;
-            try
-            {
-                Push("the trickster's turn", x => GodGifts.Trickster(gift));
-            }
-            finally
-            {
-                if (g != null) g.kind = was;
-            }
-        }
-
-        [DebugAction("Rimfolk", "Gods in the world: a rival comes for the newest gift", allowedGameStates = AllowedGameStates.PlayingOnMap)]
+        [DebugAction("Rimfolk", "Gods in the world: a rival's dream for the newest gift", allowedGameStates = AllowedGameStates.PlayingOnMap)]
         private static void DebugRival()
         {
             var b = Ready();
@@ -147,11 +119,11 @@ namespace ColonyCouncil
             }
             gift.undoTried = false;
             gift.since = GodWorld.Now - (GodWorldMath.UndoAfterDays + 1) * GenDate.TicksPerDay;
-            Push("a rival's avatar (needs a known rival whose people are at peace)", x => GodGifts.Rival(x, gift));
+            Push("a rival's dream (needs a blessing on the body, a beast or a gifted trait, and a known rival of the giver)", x => GodGifts.Rival(x, gift));
         }
 
         [DebugAction("Rimfolk", "Gods in the world: a fever broken tonight", allowedGameStates = AllowedGameStates.PlayingOnMap)]
-        private static void DebugBless() => Push("a blessing (needs one of the colony ill, and a god of healing it knows)", b => GodHealth.Blessings(b, Find.CurrentMap));
+        private static void DebugBless() => Push("a fever broken (needs one of the colony ill, and a god whose kindness that is: Morel)", b => GodHealth.Blessings(b, Find.CurrentMap));
 
         [DebugAction("Rimfolk", "Gods in the world: a god's grudge on the selected colonist...", allowedGameStates = AllowedGameStates.PlayingOnMap)]
         private static void DebugGrudge()
@@ -162,8 +134,8 @@ namespace ColonyCouncil
                 Say("select one colonist first.");
                 return;
             }
-            var options = Gods.All.Where(g => GodWays.Wrath(g) == GodWrath.Lightning || GodWays.Wrath(g) == GodWrath.Beasts).OrderBy(g => g.name)
-                .Select(g => new FloatMenuOption(g.name + " (" + GodWays.Wrath(g) + ")", () =>
+            var options = Gods.All.Where(g => GodWays.Grudge(g) != GodWrath.None).OrderBy(g => g.name)
+                .Select(g => new FloatMenuOption(g.name + " (" + GodWays.Grudge(g) + ")", () =>
                 {
                     GodHealth.Grudge(g, p, p.Map, "dev");
                     var d = GodWorld.Book?.Of("grudge").LastOrDefault(x => x.pawn == p);
@@ -177,8 +149,40 @@ namespace ColonyCouncil
         [DebugAction("Rimfolk", "Gods in the world: the beasts come now (for a grudge held)", allowedGameStates = AllowedGameStates.PlayingOnMap)]
         private static void DebugBeasts() => Push("beasts (needs a grudge of beasts, the colonist out under the sky)", b => GodHealth.Daily(b, GodWorld.Now));
 
-        [DebugAction("Rimfolk", "Gods in the world: a god's anger at this home", allowedGameStates = AllowedGameStates.PlayingOnMap)]
-        private static void DebugAnger() => Push("anger (needs a god displeased here whose anger is blight, an eclipse or a storm)", b => GodHealth.Anger(b, Find.CurrentMap));
+        [DebugAction("Rimfolk", "Gods in the world: a god's anger at this home (by standing)", allowedGameStates = AllowedGameStates.PlayingOnMap)]
+        private static void DebugAnger() => Push("anger (needs a god displeased here)", b => GodHealth.Anger(b, Find.CurrentMap));
+
+        [DebugAction("Rimfolk", "Gods in the world: a god's anger in its own shape now...", allowedGameStates = AllowedGameStates.PlayingOnMap)]
+        private static void DebugWrathOf() => Pick(g => GodWays.Wraths(g).Count > 0, g => g.name + " (" + string.Join("/", GodWays.Wraths(g)) + ")",
+            g => Push(g.name + "'s anger (the game must allow it: crops for blight, a machine to break, a storm for lightning, silver for a hoard)",
+                b => GodWays.Wraths(g).InRandomOrder().Any(w => GodHealth.Wrath(g, Find.CurrentMap, w))));
+
+        [DebugAction("Rimfolk", "Gods in the world: a god's kindness in its own shape now...", allowedGameStates = AllowedGameStates.PlayingOnMap)]
+        private static void DebugKindOf() => Pick(g => GodWays.Blessing(g) != GodBlessing.None && GodWays.Blessing(g) != GodBlessing.Fever, g => g.name + " (" + GodWays.Blessing(g) + ")",
+            g => Push(g.name + "'s kindness (a broken machine or a battery to fill, a cold snap to end, open ground)", b => GodHealth.Bless(g, Find.CurrentMap, GodWays.Blessing(g))));
+
+        /// <summary>A float menu of the gods that pass, each running its action.</summary>
+        private static void Pick(Func<God, bool> which, Func<God, string> label, Action<God> act)
+        {
+            if (Ready() == null) return;
+            var options = Gods.All.Where(which).OrderBy(g => g.name).Select(g => new FloatMenuOption(label(g), () => act(g))).ToList();
+            if (options.Count == 0) Say("no god of that kind.");
+            else Find.WindowStack.Add(new FloatMenu(options));
+        }
+
+        [DebugAction("Rimfolk", "Gods in the world: the moon returns a kind day tonight", allowedGameStates = AllowedGameStates.PlayingOnMap)]
+        private static void DebugMirrorKind() => Push("a kindness returned (needs Selene known; a wounded colonist asleep, else something found)", b =>
+        {
+            b.kindness += 4;
+            GodHealth.Mirror(b, Find.CurrentMap);
+        });
+
+        [DebugAction("Rimfolk", "Gods in the world: the moon returns a cruel day tonight", allowedGameStates = AllowedGameStates.PlayingOnMap)]
+        private static void DebugMirrorCruel() => Push("a cruelty returned (needs Selene known)", b =>
+        {
+            b.cruelty += 4;
+            GodHealth.Mirror(b, Find.CurrentMap);
+        });
 
         [DebugAction("Rimfolk", "Gods in the world: the Hunger hears", allowedGameStates = AllowedGameStates.PlayingOnMap)]
         private static void DebugHunger() => Push("the Hunger (needs someone dying, breaking or the colony starving; Felt or Walking)", b => GodVoid.Hourly(b, GodWorld.Now));
@@ -192,11 +196,11 @@ namespace ColonyCouncil
             Push("the Hunger takes", x => GodVoid.Daily(x, GodWorld.Now));
         }
 
-        [DebugAction("Rimfolk", "Gods in the world: a quarrel in the weather", allowedGameStates = AllowedGameStates.PlayingOnMap)]
-        private static void DebugQuarrel() => Push("a quarrel (needs a known storm god with a known rival of the fields, the waters or the hearth)", GodDrama.Quarrel);
+        [DebugAction("Rimfolk", "Gods in the world: a quarrel in the weather or on the ground", allowedGameStates = AllowedGameStates.PlayingOnMap)]
+        private static void DebugQuarrel() => Push("a quarrel (needs two known gods tied to each other on opposed sides: Hush and Smoulder, Hollin and Morel)", GodDrama.Quarrel);
 
-        [DebugAction("Rimfolk", "Gods in the world: a god's ask", allowedGameStates = AllowedGameStates.PlayingOnMap)]
-        private static void DebugAsk() => Push("a god's ask (needs a god near the colony with a known rival)", GodDrama.Ask);
+        [DebugAction("Rimfolk", "Gods in the world: one hunted at the gate", allowedGameStates = AllowedGameStates.PlayingOnMap)]
+        private static void DebugAsk() => Push("one hunted (needs a god near the colony with a known rival, each held by a people)", GodDrama.Ask);
 
         [DebugAction("Rimfolk", "Gods in the world: a myth at supper now", allowedGameStates = AllowedGameStates.PlayingOnMap)]
         private static void DebugMyth()
@@ -205,36 +209,6 @@ namespace ColonyCouncil
             if (b == null) return;
             b.lasts.Remove("myth:" + Homes.KeyOf(Find.CurrentMap));
             Push("a myth (needs two of the colony eating together at supper time)", x => GodDrama.Hourly(x, GodWorld.Now));
-        }
-
-        [DebugAction("Rimfolk", "Gods in the world: an archotech's terms", allowedGameStates = AllowedGameStates.PlayingOnMap)]
-        private static void DebugTerms() => Push("an archotech's terms (needs a known archotech)", GodOutliers.Terms);
-
-        [DebugAction("Rimfolk", "Gods in the world: the dead god's mark", allowedGameStates = AllowedGameStates.PlayingOnMap)]
-        private static void DebugDeadMark()
-        {
-            var b = Ready();
-            b?.told.RemoveAll(t => t.StartsWith("deadmark:", StringComparison.Ordinal));
-            Push("the dead god's mark (needs an ancient wall or wreck with one of the colony near it)", GodOutliers.DeadMark);
-        }
-
-        [DebugAction("Rimfolk", "Gods in the world: the fading god", allowedGameStates = AllowedGameStates.PlayingOnMap)]
-        private static void DebugFading() => Push("the fading god", GodOutliers.Fading);
-
-        [DebugAction("Rimfolk", "Gods in the world: the Sleeper's dream", allowedGameStates = AllowedGameStates.PlayingOnMap)]
-        private static void DebugSleeper() => Push("the Sleeper (needs the Sleeper known: the Sunken Vault in the world)", GodOutliers.Sleeper);
-
-        [DebugAction("Rimfolk", "Gods in the world: a newborn's next sign", allowedGameStates = AllowedGameStates.PlayingOnMap)]
-        private static void DebugNewborn()
-        {
-            var g = Gods.All.FirstOrDefault(x => x.kind == GodKind.Newborn);
-            if (g == null)
-            {
-                Say("no newborn god (dev 'Gods: a newborn of the colony's faith...').");
-                return;
-            }
-            g.devotion = Math.Min(GodsMath.NewbornGrown - 1f, g.devotion + GodsMath.NewbornGrown / 4f);
-            Push("a newborn's sign", GodOutliers.Newborn);
         }
     }
 }

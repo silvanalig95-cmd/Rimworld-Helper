@@ -7,8 +7,8 @@ namespace ColonyCouncil
 {
     /// <summary>
     /// A god's lasting gift to one colonist (Gods/World/GodGifts.cs): which god, to whom, what it is (its kind and the def it
-    /// came as: a hediff, a trait, a spell scroll, a path, a beast or a relic), the price paid, and how it has gone since: a
-    /// trickster's turned to a curse and back, a rival's undone.
+    /// came as: a hediff, a trait, a spell scroll, a path, a beast, gold or a relic), the price paid, and whether a rival has
+    /// had it back.
     /// </summary>
     public class GodGift : IExposable
     {
@@ -18,13 +18,10 @@ namespace ColonyCouncil
         public GodGiftKind kind;
         /// <summary>The def it came as (Rimfolk_GodGift_Storm, Druid, SpellOf_Heal, VPE_Staticlord, Wolf_Timber, a relic's def).</summary>
         public string what;
-        /// <summary>It in words, as the letter named it ("storm-sense", "the Druid's craft").</summary>
+        /// <summary>It in words, as the morning's card named it ("a green hand", "the craft of a druid").</summary>
         public string label;
         public GodPrice price;
         public int since;
-        /// <summary>A trickster's gift: a curse now, how often it has turned, and when it last did.</summary>
-        public bool cursed;
-        public int turns, turnedAt = -1;
         /// <summary>A rival came for it: undone (taken back), or it was tried (once only).</summary>
         public bool undone, undoTried;
         /// <summary>The beast or the relic given, while it is.</summary>
@@ -42,9 +39,6 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref label, "label");
             Scribe_Values.Look(ref price, "price", GodPrice.Offering);
             Scribe_Values.Look(ref since, "since");
-            Scribe_Values.Look(ref cursed, "cursed");
-            Scribe_Values.Look(ref turns, "turns");
-            Scribe_Values.Look(ref turnedAt, "turnedAt", -1);
             Scribe_Values.Look(ref undone, "undone");
             Scribe_Values.Look(ref undoTried, "undoTried");
             Scribe_References.Look(ref thing, "thing");
@@ -52,11 +46,11 @@ namespace ColonyCouncil
     }
 
     /// <summary>
-    /// Something of the gods under way in the world, waiting for its time (Gods/World/): a gift being received under the
-    /// sky ("receive"), a grudge a god holds against a colonist ("grudge"), an archotech's term ("term"), the Hunger come
-    /// to take ("take"), a relic lent to a temple ("lent"), one the colony hides from a rival ("hidden"), two gods'
-    /// quarrel in the weather ("quarrel"), a rival's avatar come to undo a gift ("undo"), a war god's champion at the head of
-    /// a raid ("champion"), a place one people calls holy ("site"), the colony's letter that slighted a god ("slight").
+    /// Something of the gods under way in the world, waiting for its time (Gods/World/): a dream told and waiting for the
+    /// colony's word ("offer"), a night under the sky ("receive"), a grudge a god holds against a colonist ("grudge"), the
+    /// Hunger come to take ("take"), a temple's envoy ("relic"), one hunted at the gate ("hide") and hidden ("hidden"), two
+    /// gods' quarrel in the weather ("quarrel"), a rival's dream asking for a gift back ("undo"), a place one people calls
+    /// holy ("site"), the colony's letter that slighted a god ("slight").
     /// One record for all of them: each kind reads the fields it needs.
     /// </summary>
     public class GodDoing : IExposable
@@ -99,10 +93,9 @@ namespace ColonyCouncil
     }
 
     /// <summary>
-    /// What the gods in the wider world keep with the game (Gods/World/): the gifts colonists hold, what is under way, the
-    /// illnesses a god has already eased (once each), when each kind of thing last came, the Hunger's account with the
-    /// colony, the Sleeper's door, the newborns' signs told, the old places where the dead god's mark was found, and the
-    /// raids already looked at for a champion. A save from before has none of it.
+    /// What the gods in the wider world keep with the game (Gods/World/), all of it hidden: the gifts colonists hold, what is
+    /// under way, the illnesses a god has already eased (once each), when each kind of thing last came, and the Hunger's
+    /// account with the colony. A save from before has none of it.
     /// </summary>
     public class GodWorldBook : GameComponent
     {
@@ -110,19 +103,16 @@ namespace ColonyCouncil
         public List<GodDoing> doings = new List<GodDoing>();
         /// <summary>The illnesses a god has eased (the hediff's load id), so none is eased twice.</summary>
         public List<int> blessed = new List<int>();
-        /// <summary>When each kind of thing last came ("invite", "envoy", "gift", "quarrel"...), by its key.</summary>
+        /// <summary>When each kind of thing last came ("invite", "envoy", "gift", "quarrel", "bargain"...), by its key.</summary>
         public Dictionary<string, int> lasts = new Dictionary<string, int>();
-        /// <summary>"god:stage" for each newborn's sign told; "home" keys for the dead god's mark found; the raids looked at for a champion (lord load ids).</summary>
-        public List<string> told = new List<string>();
-        public List<int> raids = new List<int>();
         /// <summary>The Hunger's account: bargains struck and what it has taken since.</summary>
         public int hungerBargains, hungerTaken;
-        /// <summary>The Sleeper's door: how many of its asks the colony has answered.</summary>
-        public int sleeperStep;
+        /// <summary>The day's kindness and cruelty, for Selene to return at night (then reset).</summary>
+        public int kindness, cruelty;
         public int nextId = 1;
 
-        /// <summary>Gifts kept (the colony's own and the newest let go), things under way, illnesses eased, raids looked at, lines told.</summary>
-        public const int MaxGifts = 60, MaxDoings = 40, MaxBlessed = 40, MaxRaids = 20, MaxTold = 60;
+        /// <summary>Gifts kept (the colony's own and the newest let go), things under way, illnesses eased.</summary>
+        public const int MaxGifts = 60, MaxDoings = 40, MaxBlessed = 40;
 
         private static GodWorldBook cached;
         private static Game cachedGame;
@@ -199,24 +189,6 @@ namespace ColonyCouncil
             while (blessed.Count > MaxBlessed) blessed.RemoveAt(0);
         }
 
-        public bool Told(string key) => key != null && told.Contains(key);
-
-        public void Tell(string key)
-        {
-            if (key == null || told.Contains(key)) return;
-            told.Add(key);
-            while (told.Count > MaxTold) told.RemoveAt(0);
-        }
-
-        public bool Looked(int raid) => raids.Contains(raid);
-
-        public void Look(int raid)
-        {
-            if (raids.Contains(raid)) return;
-            raids.Add(raid);
-            while (raids.Count > MaxRaids) raids.RemoveAt(0);
-        }
-
         /// <summary>The day's tidying: what is done or gone let go (a holy place keeps until its home does).</summary>
         public void Prune()
         {
@@ -231,11 +203,10 @@ namespace ColonyCouncil
             Scribe_Collections.Look(ref doings, "doings", LookMode.Deep);
             Scribe_Collections.Look(ref blessed, "blessed", LookMode.Value);
             Scribe_Collections.Look(ref lasts, "lasts", LookMode.Value, LookMode.Value);
-            Scribe_Collections.Look(ref told, "told", LookMode.Value);
-            Scribe_Collections.Look(ref raids, "raids", LookMode.Value);
             Scribe_Values.Look(ref hungerBargains, "hungerBargains");
             Scribe_Values.Look(ref hungerTaken, "hungerTaken");
-            Scribe_Values.Look(ref sleeperStep, "sleeperStep");
+            Scribe_Values.Look(ref kindness, "kindness");
+            Scribe_Values.Look(ref cruelty, "cruelty");
             Scribe_Values.Look(ref nextId, "nextId", 1);
             if (Scribe.mode == LoadSaveMode.PostLoadInit)
             {
@@ -245,8 +216,6 @@ namespace ColonyCouncil
                 doings.RemoveAll(d => d == null);
                 blessed ??= new List<int>();
                 lasts ??= new Dictionary<string, int>();
-                told ??= new List<string>();
-                raids ??= new List<int>();
             }
         }
     }

@@ -8,18 +8,20 @@ using Verse;
 namespace ColonyCouncil
 {
     /// <summary>
-    /// The void as a dark god (docs/design/gods.md, stage 2, brainstorm item 22): the Hunger, the Choir of the Spire's (or
-    /// the world's darkest void god), answers anyone desperate enough, always pays, and always takes more.
+    /// The void as a dark god (docs/design/gods.md, stage 2, brainstorm item 22): Undertow, the Hunger, the Choir of the
+    /// Spire's Sweet Dark, answers anyone desperate enough, always pays, and always takes more. It is never named on a card:
+    /// the colony hears what the desperate one heard, sees what was paid and what was taken, and may guess.
     /// <list type="bullet">
     /// <item>It hears desperation (GodWorldMath.Desperation): one of the colony dying (bleeding out within hours, or an
-    /// illness about to win), at the edge of a breakdown, or the colony out of food. Its question comes when it comes, not
-    /// when questions may: a voice offers, and asks nothing yet.</item>
-    /// <item>Taken, it pays at once and plainly: the bleeding stops and the illness falls back, the mind goes still (a calm
-    /// out of the dark for two days), or meat out of the dark lies at the colony's door (Anomaly's twisted meat, else
-    /// pemmican).</item>
+    /// illness about to win), at the edge of a breakdown, or the colony out of food. The question comes when it comes, not
+    /// when questions may: the desperate one tells what a voice offered, and asks whether to say yes.</item>
+    /// <item>Taken, it pays at once: the bleeding stops and the illness falls back, the mind goes still (a calm out of the
+    /// dark for two days), or meat out of the dark lies at the colony's door (Anomaly's twisted meat, else pemmican).</item>
     /// <item>Then it comes to take, sooner each time (GodWorldMath.HungerTake): a mark of the void on the one who bargained
     /// (Anomaly's void-touched, else its mark), years of their life, their humanity (Anomaly's inhumanized, else their mind
     /// for a while), a beast of the colony's into the dark. Its next whisper comes sooner too.</item>
+    /// <item>The gods that fear it turn away from a colony that bargained (its ways: Hollin, Bellwether, Ennu), and Pip goes
+    /// quiet a while (no kindness of its own).</item>
     /// <item>The Choir of the Spire know the voice: they write when the colony has bargained, and think better of an
     /// honest refusal.</item>
     /// </list>
@@ -32,6 +34,14 @@ namespace ColonyCouncil
         /// <summary>The Choir of the Spire, the Hunger's people, where they are in the world.</summary>
         public static Faction Choir(God hunger) => hunger?.factions.FirstOrDefault(f => f != null && !f.IsPlayer && !f.defeated && f.def?.defName == "Rimfolk_Choir")
                                                    ?? hunger?.factions.FirstOrDefault(f => f != null && !f.IsPlayer && !f.defeated);
+
+        /// <summary>A god that goes quiet after a bargain with the Hunger (its ways' quiets), and the bargain recent: it keeps its kindness back.</summary>
+        public static bool Quiet(GodWorldBook b, God g)
+        {
+            var h = Hunger;
+            return b != null && g != null && h != null && !GodWorld.Force && b.Last("bargain") >= 0 && !GodWorldMath.Gap(GodWorld.Now, b.Last("bargain"), GodWorldMath.QuietDays)
+                   && GodWays.Quiets(h).Contains(g);
+        }
 
         // ================= Who is desperate =================
 
@@ -69,7 +79,9 @@ namespace ColonyCouncil
                 if (desperation <= 0) continue;
                 // Looked at once a day at a home, whatever it hears.
                 b.Came("hunger:" + Homes.KeyOf(map));
-                if (!GodWorld.Roll(GodWorldMath.HungerHears(desperation) * GodWorld.Factor(true))) continue;
+                // Its voice comes easier in the dark of the moon.
+                float dark = GodWorldMath.DarkOfTheMoon(GodWorldMath.MoonFace(GenLocalDate.DayOfQuadrum(map)));
+                if (!GodWorld.Roll(GodWorldMath.HungerHears(desperation) * dark * GodWorld.Factor(true))) continue;
                 Whisper(b, g, map, dying ?? breaking, dying != null ? "dying" : breaking != null ? "breaking" : "starving");
                 return;
             }
@@ -81,11 +93,11 @@ namespace ColonyCouncil
             if (hearer == null) return;
             if (!Gods.Known(g)) Gods.Learn(g, "void");
             b.Came("hunger");
-            string label = GodWorld.T("CC_GW_Hunger_Label", g, hearer.Named("PAWN"));
-            string text = GodWorld.Voice(GodWorld.T("CC_GW_Hunger_" + why, g, hearer.Named("PAWN")));
-            if (b.hungerTaken > 0) text += "\n\n" + GodWorld.T("CC_GW_Hunger_Again", g);
+            string label = "CC_GW_Hunger_Label".Translate(hearer.Named("PAWN")).Resolve();
+            string text = ("CC_GW_Hunger_" + why).Translate(hearer.Named("PAWN")).Resolve();
+            if (b.hungerTaken > 0) text += "\n\n" + "CC_GW_Hunger_Again".Translate(hearer.Named("PAWN")).Resolve();
             GodAsks.Ask(GodAsks.Hunger, map, g, label, text, new LookTargets(hearer), null, Choir(g), hearer, 0, why, -1, 0.25f);
-            GodWorld.Remember(g, map, GodActKind.Omen, GodWorld.T("CC_GW_Hunger_Act", g, hearer.Named("PAWN")));
+            GodWorld.Remember(g, map, GodActKind.Omen, ("CC_GW_Hunger_Act_" + why).Translate(hearer.Named("PAWN")).Resolve());
         }
 
         public static IEnumerable<GodAnswer> BargainAnswers(ChoiceLetter_GodWorld l)
@@ -96,8 +108,8 @@ namespace ColonyCouncil
             // What it offered must still be needed: the dying still dying, the breaking still at the edge, the stores still bare.
             bool still = l.what == "dying" ? Dying(p) : l.what == "breaking" ? Breaking(p) || p.InMentalState : Starving(map);
             if (!still) yield break;
-            yield return new GodAnswer("CC_GW_Hunger_Take".Translate().Resolve(), Take);
-            yield return new GodAnswer("CC_GW_Hunger_Refuse".Translate().Resolve(), Refuse);
+            yield return new GodAnswer("CC_GW_Hunger_Take".Translate(p.Named("PAWN")).Resolve(), Take);
+            yield return new GodAnswer("CC_GW_Hunger_Refuse".Translate(p.Named("PAWN")).Resolve(), Refuse);
         }
 
         // ================= It pays =================
@@ -121,22 +133,27 @@ namespace ColonyCouncil
             }
             if (paid == null) return;
             b.hungerBargains++;
+            b.Came("bargain");
             b.Add(new GodDoing
             {
                 kind = "take", god = g.id, pawn = p, home = Homes.KeyOf(map), stage = b.hungerTaken,
                 at = GodWorld.Now + GodWorldMath.HungerTakeAfterDays(b.hungerTaken) * GodWorldMath.DayTicks, until = GodWorld.Now + 30 * GodWorldMath.DayTicks
             });
             Gods.AddFavour(g, map, GodWorldMath.HungerStruck, GodWorld.T("CC_GW_Hunger_WhyStruck", g, p.Named("PAWN")), FavourSource.Offering);
+            // The gods that fear it turn away; the one that goes quiet keeps its kindness back a while (Quiet).
+            foreach (var x in GodWays.Shuns(g))
+                Gods.AddFavour(x, map, GodWorldMath.HungerShunned, GodWorld.T("CC_GW_Hunger_WhyShunned", x, p.Named("PAWN")), FavourSource.Spill);
             if (p.Spawned) FleckMaker.ThrowMetaIcon(p.Position, map, FleckDefOf.PsycastAreaEffect);
-            GodWorld.Moment(g, map, PresenceKind.Act, p.Spawned ? p.Position : IntVec3.Invalid, null, GodWorld.T("CC_GW_Hunger_PaidLabel", g),
-                GodWorld.Voice(GodWorld.T("CC_GW_Hunger_Paid", g, p.Named("PAWN"), paid.Named("PAID"))), true, LetterDefOf.NeutralEvent, p.Spawned ? new LookTargets(p) : null);
-            GodWorld.Chronicle(GodWorld.T("CC_GW_Hunger_Chronicle", g, p.Named("PAWN")), p);
+            GodWorld.Moment(g, map, PresenceKind.Act, p.Spawned ? p.Position : IntVec3.Invalid, null, "CC_GW_Hunger_PaidLabel".Translate(p.Named("PAWN")).Resolve(), paid, true,
+                LetterDefOf.NeutralEvent, p.Spawned ? new LookTargets(p) : null);
+            GodWorld.Chronicle("CC_GW_Hunger_Chronicle".Translate(p.Named("PAWN")).Resolve(), p);
             var choir = Choir(g);
             if (choir != null && Arrivals.Usable(choir))
             {
                 StoryChains.Goodwill(choir, GodWorldMath.ChoirGoodwill);
                 ColonyCouncil.Tell.Letter(NewsKind.World, Importance.Notable, map, "CC_GW_Choir_Label".Translate(choir.Name.Named("PEOPLE")).Resolve(),
-                    GodWorld.T("CC_GW_Choir_Text", g, choir.Name.Named("PEOPLE"), p.Named("PAWN")), LetterDefOf.NeutralEvent, null, choir);
+                    "CC_GW_Choir_Text".Translate(choir.Name.Named("PEOPLE"), p.Named("PAWN")).Resolve(), LetterDefOf.NeutralEvent, null, choir);
+                GodWorld.Remember(g, map, GodActKind.Act, "CC_GW_Told_Choir".Translate(choir.Name.Named("PEOPLE"), p.Named("PAWN")).Resolve());
             }
         }
 
@@ -158,7 +175,7 @@ namespace ColonyCouncil
             if (loss != null) loss.Severity = Mathf.Max(0.05f, loss.Severity - 0.3f);
             foreach (var h in p.health.hediffSet.hediffs.Where(h => h.def.lethalSeverity > 0f && h.Severity / h.def.lethalSeverity > 0.6f && h is HediffWithComps).ToList())
                 h.Severity = Mathf.Max(0.05f, h.Severity - 0.3f * h.def.lethalSeverity);
-            return GodWorld.T("CC_GW_Hunger_Mended", null, p.Named("PAWN"));
+            return "CC_GW_Hunger_Mended".Translate(p.Named("PAWN")).Resolve();
         }
 
         /// <summary>The breaking mind gone still: a calm out of the dark for two days (Rimfolk_VoidCalm).</summary>
@@ -167,7 +184,7 @@ namespace ColonyCouncil
             var calm = DefDatabase<HediffDef>.GetNamedSilentFail("Rimfolk_VoidCalm");
             if (calm == null) return null;
             if (!p.health.hediffSet.HasHediff(calm)) p.health.AddHediff(calm);
-            return GodWorld.T("CC_GW_Hunger_Stilled", null, p.Named("PAWN"));
+            return "CC_GW_Hunger_Stilled".Translate(p.Named("PAWN")).Resolve();
         }
 
         /// <summary>Meat out of the dark at the colony's door: a day's food for every colonist (Anomaly's twisted meat, else pemmican).</summary>
@@ -220,7 +237,7 @@ namespace ColonyCouncil
                     case "mark":
                         var mark = (ModsConfig.AnomalyActive ? HediffDefOf.VoidTouched : null) ?? DefDatabase<HediffDef>.GetNamedSilentFail("Rimfolk_GodMark");
                         if (mark != null && !p.health.hediffSet.HasHediff(mark)) p.health.AddHediff(mark);
-                        took = GodWorld.T("CC_GW_Hunger_TookMark", g, p.Named("PAWN"));
+                        took = "CC_GW_Hunger_TookMark".Translate(p.Named("PAWN")).Resolve();
                         break;
                     case "years":
                         p.ageTracker.AgeBiologicalTicks += (long)GodWorldMath.HungerYears * GenDate.TicksPerYear;
@@ -258,8 +275,8 @@ namespace ColonyCouncil
             if (took == null) return;
             b.hungerTaken++;
             if (p.Spawned) FleckMaker.ThrowMetaIcon(p.Position, map, FleckDefOf.PsycastAreaEffect);
-            GodWorld.Moment(g, map, PresenceKind.Wrath, p.Spawned ? p.Position : IntVec3.Invalid, null, GodWorld.T("CC_GW_Hunger_TookLabel", g, p.Named("PAWN")),
-                GodWorld.Voice(GodWorld.T("CC_GW_Hunger_Took", g, p.Named("PAWN"), took.Named("TOOK"))), true, LetterDefOf.NegativeEvent, p.Spawned ? new LookTargets(p) : null);
+            GodWorld.Moment(g, map, PresenceKind.Wrath, p.Spawned ? p.Position : IntVec3.Invalid, null, "CC_GW_Hunger_TookLabel".Translate(p.Named("PAWN")).Resolve(), took, true,
+                LetterDefOf.NegativeEvent, p.Spawned ? new LookTargets(p) : null);
             GodWorld.Remark(map, p.PositionHeld, "hunger", g, p);
         }
     }

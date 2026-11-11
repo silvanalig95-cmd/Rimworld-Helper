@@ -5,8 +5,9 @@
     The gods' camps on the colony's land (Source/ColonyCouncil/Gods/World/GodCamps.cs; docs/design/gods.md, stage 2,
     brainstorm item 18), each a camp kind with ways of its own (Camps/CampWorker.cs). Neither comes on the camps' own draw
     (weight 0): the gods in the world bring them (pilgrims when a people calls a place on the colony's land holy, a seer now
-    and then). {GOD}, {GODEPITHET} and {GODOF} are the pilgrims' god (the seer's: the colony's patron); {SITE} the holy
-    place in words ("the old oak", "the river's bank").
+    and then). {GOD}, {GODEPITHET} and {GODOF} are the pilgrims' god, in their own mouths only; {SITE} the holy place in
+    words ("the old oak", "the steam geyser"). The gods are unseen: these say what people say and do, never what a god
+    thinks of the colony, and the seer speaks darkly.
   -->
 
   <!-- ===================== Pilgrims at a holy place ===================== -->
@@ -87,7 +88,7 @@
       <li>
         <key>pray</key>
         <label>Join the pilgrims' prayers at dusk</label>
-        <tip>Whoever is free walks over to the pilgrims' fire at dusk and prays with them toward the holy place. A little peace for the colony, and their god will remember it.</tip>
+        <tip>Whoever is free walks over to the pilgrims' fire at dusk and prays with them toward the holy place. A little peace for the colony, and the pilgrims will be glad of the company.</tip>
         <needs>evening</needs>
         <tension>-4</tension>
         <warm>2</warm>
@@ -155,7 +156,7 @@
     </titles>
     <texts>
       <li>A hermit of {FACTION} has come to the very edge of the colony's land and is building a hut {PLACE}. {X_nameDef} told {A_nameDef}, without being asked, that the gods talk more where the land runs out, and that anyone who wants to know what they say may come and sit by the fire.</li>
-      <li>[lowtech] An old seer, once of {FACTION}, has settled {PLACE} with a bag of bones and a bundle of smoke-herbs. {X_nameDef} looked at {A_nameDef} for a long moment and said that {GOD} had a lot to say about this place.</li>
+      <li>[lowtech] An old seer, once of {FACTION}, has settled {PLACE} with a bag of bones and a bundle of smoke-herbs. {X_nameDef} looked at {A_nameDef} for a long moment and said that the gods had a lot to say about this place.</li>
       <li>[!lowtech] {X_nameDef}, who left {FACTION} to live on the edges of things, has pitched a hut {PLACE}. {X_pronoun} told {A_nameDef} that {X_pronoun} reads the gods the way others read the weather, and gets about as much thanks for it.</li>
     </texts>
     <settled>
@@ -186,8 +187,8 @@
     <asks>
       <li>
         <key>ask</key>
-        <label>Ask the seer what the gods want</label>
-        <tip>One of the colony walks out to the seer's fire and sits an hour while the seer reads the smoke. They come back knowing how the colony stands with each god it knows, and what the seer sees coming.</tip>
+        <label>Ask the seer to read the smoke</label>
+        <tip>One of the colony walks out to the seer's fire and sits an hour while the seer reads the smoke. They come back with whatever the seer saw, which is never said plainly.</tip>
         <skill>Social</skill>
         <once>false</once>
         <tension>-2</tension>

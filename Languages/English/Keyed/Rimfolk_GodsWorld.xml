@@ -2,22 +2,18 @@
 <LanguageData>
 
   <!--
-    The gods in the wider world (Source/ColonyCouncil/Gods/World/; docs/design/gods.md, stage 2's "The world"). A text in
-    the voice of how real the gods are opens with "The colony believes", "Some say", or nothing (CC_GW_Voice_*): its first
-    sentence says whose hand it was, the rest what happens on the map. A "why" is a clause after the god's change of word in
-    the news ("Some say the Healer is pleased with Riverhold: {WHY}."). Favour is never a number.
+    The gods in the wider world (Source/ColonyCouncil/Gods/World/; docs/design/gods.md, stage 2's "The world", and "The
+    gods are unseen"). Nothing here says what a god thinks, wants or feels about the colony, names a rule or a price, or
+    puts a god's standing in words. A card says what was seen and heard, with no why and no god's name; a god is named only
+    in people's mouths (a neighbour's letter, a pilgrim, a seer, a believer at supper). A "why" goes with a hidden change of
+    standing and is never shown. A "Seen" or "Told" line is kept for the colony's book of the gods: what was seen, or what
+    someone said or wrote and who, in the world's voice.
   -->
 
-  <!-- ================= The voice ================= -->
-  <CC_GW_Voice_Believed>the colony believes {TEXT}</CC_GW_Voice_Believed>
-  <CC_GW_Voice_Felt>some say {TEXT}</CC_GW_Voice_Felt>
-  <CC_GW_Voice_Walking>{TEXT}</CC_GW_Voice_Walking>
-  <CC_God_KnownFrom_void>from its own voice in the dark</CC_God_KnownFrom_void>
-  <CC_God_KnownFrom_sign>from a sign of it on the colony's own land</CC_God_KnownFrom_sign>
-  <CC_Inbox_Sub_Gods>a god's question</CC_Inbox_Sub_Gods>
-  <CC_GW_TheOthers>the gods it quarrels with</CC_GW_TheOthers>
+  <CC_God_KnownFrom_void>from a voice in the dark</CC_God_KnownFrom_void>
+  <CC_Inbox_Sub_Gods>someone's question</CC_Inbox_Sub_Gods>
 
-  <!-- ================= A god's feast, by its domain (a god's own ways may name its own) ================= -->
+  <!-- ================= A god's feast, by its domain, where its ways name none ================= -->
   <CC_GW_Feast_Harvest>the harvest feast of {GOD}</CC_GW_Feast_Harvest>
   <CC_GW_Feast_Storm>the night of {GOD}'s first thunder</CC_GW_Feast_Storm>
   <CC_GW_Feast_Hunt>the hunters' feast of {GOD}</CC_GW_Feast_Hunt>
@@ -45,28 +41,27 @@
   <CC_GW_Slight_Why>{WRITER} mocked it in a letter</CC_GW_Slight_Why>
   <CC_GW_Invite_Label>An invitation to {GOD}'s feast</CC_GW_Invite_Label>
   <CC_GW_Invite_Text>{PEOPLE} write from {TOWN} that they keep {FEAST} in a few days' time, and that the colony would be welcome at the table of {GOD}, {GODEPITHET}.\n\nThey ask nothing, but a gift for the feast is the custom among neighbors: {COUNT} silver, say, carried out to the gate, where their messenger will take it up the road.</CC_GW_Invite_Text>
-  <CC_GW_Invite_Ours>{GOD} is one of the colony's own gods, and some of the colony would gladly send something.</CC_GW_Invite_Ours>
-  <CC_GW_Invite_Rival>{GOD} is no friend of {PATRON}, the colony's patron, and a gift to its feast will be noticed by both.</CC_GW_Invite_Rival>
+  <CC_GW_Invite_Ours>Some of the colony keep {GOD} too, and would gladly send something.</CC_GW_Invite_Ours>
   <CC_GW_Invite_Gift>Send {COUNT} silver for the feast</CC_GW_Invite_Gift>
   <CC_GW_Invite_GiftLabel>the colony's gift for a neighbor's feast</CC_GW_Invite_GiftLabel>
   <CC_GW_Invite_Regrets>Send the colony's regrets</CC_GW_Invite_Regrets>
   <CC_GW_Invite_Why>the colony sent a gift to the feast of {PEOPLE}</CC_GW_Invite_Why>
 
   <!-- ================= Peoples: shared gods, a feud, a holy war, a temple's envoy ================= -->
-  <CC_GW_Shared>{PEOPLE} think the better of the colony for its standing with {GOD}, whom they also keep.</CC_GW_Shared>
-  <CC_GW_Feud>{PEOPLE} keep {GOD}, who has no love for {PATRON}, and they think the less of a colony {PATRON} favors.</CC_GW_Feud>
+  <CC_GW_Shared>{PEOPLE} keep {GOD} too, and their traders have started asking after the colony.</CC_GW_Shared>
+  <CC_GW_Feud>{PEOPLE} keep {GOD}, and their traders have started to speak coldly of a colony that keeps {PATRON}.</CC_GW_Feud>
   <CC_GW_HolyWar_Label>{PEOPLE} ask for the colony's help in a holy war</CC_GW_HolyWar_Label>
-  <CC_GW_HolyWar_Text>{PEOPLE} write that their war with {ENEMY} is no war over land. It is {GOD}'s quarrel with {ENEMYGOD}, {ENEMYEPITHET}, fought by the peoples who keep them, and they ask the colony to stand with them.\n\nStanding with them would warm {PEOPLE} and their god, and cool {ENEMY} and theirs. Sending help, {COUNT} silver carried out to their courier at the gate, is a smaller thing. The colony may also stay out of it.</CC_GW_HolyWar_Text>
+  <CC_GW_HolyWar_Text>{PEOPLE} write that their war with {ENEMY} is no war over land. It is {GOD}'s quarrel with {ENEMYGOD}, {ENEMYEPITHET}, they say, fought by the peoples who keep them, and they ask the colony to stand with them.\n\nIf it cannot do that, they would be grateful for what it can send: {COUNT} silver, carried out to their courier at the gate. They will understand if the colony stays out of it, they write, though not gladly.</CC_GW_HolyWar_Text>
   <CC_GW_HolyWar_Stand>Stand with {PEOPLE}</CC_GW_HolyWar_Stand>
   <CC_GW_HolyWar_Help>Send {COUNT} silver to their war</CC_GW_HolyWar_Help>
   <CC_GW_HolyWar_HelpLabel>the colony's help to a holy war</CC_GW_HolyWar_HelpLabel>
   <CC_GW_HolyWar_Out>Stay out of it</CC_GW_HolyWar_Out>
-  <CC_GW_HolyWar_Why>the colony stood with {PEOPLE} in its holy war</CC_GW_HolyWar_Why>
-  <CC_GW_HolyWar_WhyAgainst>the colony stood against it with {PEOPLE}</CC_GW_HolyWar_WhyAgainst>
-  <CC_GW_HolyWar_WhyHelp>the colony sent help to {PEOPLE} in its war</CC_GW_HolyWar_WhyHelp>
-  <CC_GW_HolyWar_Chronicle>The colony declared for {PEOPLE} in their holy war against {ENEMY}, which they call the quarrel of {GOD}.</CC_GW_HolyWar_Chronicle>
+  <CC_GW_HolyWar_Why>the colony stood with {PEOPLE} in their holy war</CC_GW_HolyWar_Why>
+  <CC_GW_HolyWar_WhyAgainst>the colony stood against its people with {PEOPLE}</CC_GW_HolyWar_WhyAgainst>
+  <CC_GW_HolyWar_WhyHelp>the colony sent help to {PEOPLE} in their war</CC_GW_HolyWar_WhyHelp>
+  <CC_GW_HolyWar_Chronicle>The colony declared for {PEOPLE} in their war against {ENEMY}, which they call the quarrel of {GOD}.</CC_GW_HolyWar_Chronicle>
   <CC_GW_Envoy_Label>An envoy of {PEOPLE} asks for a relic</CC_GW_Envoy_Label>
-  <CC_GW_Envoy_Text>{ENVOY_nameDef}, an envoy of the temple of {GOD} among {PEOPLE}, has come to the colony's gate. {ENVOY_pronoun} says the colony holds {RELIC}, which is holy to {GOD}, and asks, with great courtesy, that it come home to the temple.\n\nGiven, {ENVOY_nameDef} will walk to it and carry it away, and {PEOPLE} will not forget it. The colony may instead let {ENVOY_objective} pray over it an hour and keep it, or refuse.</CC_GW_Envoy_Text>
+  <CC_GW_Envoy_Text>{ENVOY_nameDef}, an envoy of the temple of {GOD} among {PEOPLE}, has come to the colony's gate. {ENVOY_pronoun} says the colony holds {RELIC}, which is holy to {GOD}, and asks, with great courtesy, that it come home to the temple.\n\nGiven, {ENVOY_nameDef} will walk to it and carry it away. The colony may instead let {ENVOY_objective} pray over it an hour and keep it, or refuse.</CC_GW_Envoy_Text>
   <CC_GW_Envoy_Give>Give them {RELIC}</CC_GW_Envoy_Give>
   <CC_GW_Envoy_Pray>Let the envoy pray over {RELIC}, and keep it</CC_GW_Envoy_Pray>
   <CC_GW_Envoy_Refuse>Refuse</CC_GW_Envoy_Refuse>
@@ -77,206 +72,231 @@
   <CC_GW_Envoy_PrayedNews>{ENVOY_nameDef} knelt an hour by {RELIC} and prayed to {GOD}, and went home content.</CC_GW_Envoy_PrayedNews>
   <CC_GW_Envoy_Chronicle>The colony gave {RELIC} back to the temple of {GOD} among {PEOPLE}.</CC_GW_Envoy_Chronicle>
 
-  <!-- ================= Camps: a holy place, pilgrims, a seer, a champion ================= -->
+  <!-- ================= Camps: a holy place, pilgrims, a seer ================= -->
   <CC_GW_Site_Tree>the old {TREE}</CC_GW_Site_Tree>
   <CC_GW_Site_Water>the water's edge</CC_GW_Site_Water>
   <CC_GW_Site_Wreck>the {WRECK}</CC_GW_Site_Wreck>
   <CC_GW_Site_Grave>the colony's graves</CC_GW_Site_Grave>
   <CC_GW_Site_Stone>the old stones</CC_GW_Site_Stone>
+  <CC_GW_Site_Geyser>the steam geyser</CC_GW_Site_Geyser>
   <CC_GW_Pilgrims_Gone>{SITE} is gone, and the pilgrims of {FACTION} are packing up in grief: {X_nameDef} says {GOD} will hear of it.</CC_GW_Pilgrims_Gone>
   <CC_GW_Pilgrims_WhyGone>the holy place its pilgrims came to, {SITE}, was destroyed on the colony's land</CC_GW_Pilgrims_WhyGone>
   <CC_GW_Pilgrims_Why>its pilgrims prayed at {SITE} on the colony's land in peace</CC_GW_Pilgrims_Why>
   <CC_GW_Pilgrims_WhyJoined>the colony prayed with its pilgrims at {SITE}</CC_GW_Pilgrims_WhyJoined>
-  <CC_GW_Pilgrims_Act>pilgrims prayed to {GOD} at {SITE} on the colony's land</CC_GW_Pilgrims_Act>
+  <CC_GW_Pilgrims_Act>Pilgrims prayed at {SITE} on the colony's land for some days, at dawn and at dusk, and went home.</CC_GW_Pilgrims_Act>
   <CC_GW_Pilgrims_NoSite>The holy place is gone.</CC_GW_Pilgrims_NoSite>
-  <CC_GW_Pilgrims_Impact>The pilgrims' god will remember the colony prayed with them.</CC_GW_Pilgrims_Impact>
-  <CC_GW_Pilgrims_ImpactBrief>their god remembers</CC_GW_Pilgrims_ImpactBrief>
+  <CC_GW_Pilgrims_Impact>The pilgrims will be glad of the company.</CC_GW_Pilgrims_Impact>
+  <CC_GW_Pilgrims_ImpactBrief>the pilgrims glad of it</CC_GW_Pilgrims_ImpactBrief>
   <CC_GW_Seer_Says>{X_nameDef}, the seer at the edge of the land, has spoken at {X_possessive} fire:</CC_GW_Seer_Says>
-  <CC_GW_Seer_Quarrel>"{A} and {B} are not done with each other, and the sky will show it."</CC_GW_Seer_Quarrel>
-  <CC_GW_Seer_Grudge>"{GOD} has not forgotten {PAWN}, and it is watching for its moment."</CC_GW_Seer_Grudge>
-  <CC_GW_Seer_Hunger>"The hollow one will come for what it is owed, and it always comes."</CC_GW_Seer_Hunger>
-  <CC_GW_Seer_Sleeper>"The one in the vault dreams of a door, and the door is a little weaker than it was."</CC_GW_Seer_Sleeper>
-  <CC_GW_Seer_Angry>"{GOD} is {WORD} with this place, and it does not keep its anger to itself."</CC_GW_Seer_Angry>
-  <CC_GW_Seer_Kind>"{GOD} watches this place kindly, and a god that watches kindly sometimes gives."</CC_GW_Seer_Kind>
-  <CC_GW_Seer_Patron>"{GOD} is {WORD} with you, and the rest are watching to see what you do."</CC_GW_Seer_Patron>
-  <CC_GW_Seer_Nothing>"The gods are quiet here, which is a mercy, or a warning."</CC_GW_Seer_Nothing>
-  <CC_GW_Seer_Line>{GOD} is {WORD} with the colony, and is {NATURE} by nature.</CC_GW_Seer_Line>
-  <CC_GW_Seer_NoneKnown>No god the colony knows has turned its eyes on it yet.</CC_GW_Seer_NoneKnown>
+  <CC_GW_Seer_Quarrel>"The sky here has two minds, and it will change them more than once before it settles."</CC_GW_Seer_Quarrel>
+  <CC_GW_Seer_Grudge_Lightning>"{PAWN} should sleep somewhere else when the thunder comes."</CC_GW_Seer_Grudge_Lightning>
+  <CC_GW_Seer_Grudge_Beasts>"{PAWN} should not walk alone past the trees for a while."</CC_GW_Seer_Grudge_Beasts>
+  <CC_GW_Seer_Hunger>"Something below was promised something, and it keeps count."</CC_GW_Seer_Hunger>
+  <CC_GW_Seer_Wrath_Blight>"Watch your fields, and leave the old trees alone."</CC_GW_Seer_Wrath_Blight>
+  <CC_GW_Seer_Wrath_Eclipse>"There will be a dark afternoon before long."</CC_GW_Seer_Wrath_Eclipse>
+  <CC_GW_Seer_Wrath_ColdSnap>"Bring in wood and keep the old ones warm, because the cold is coming early."</CC_GW_Seer_Wrath_ColdSnap>
+  <CC_GW_Seer_Wrath_HeatWave>"The ground will be warm under your feet, and not from any fire."</CC_GW_Seer_Wrath_HeatWave>
+  <CC_GW_Seer_Wrath_Flashstorm>"Dry thunder is coming, and it will bring no rain."</CC_GW_Seer_Wrath_Flashstorm>
+  <CC_GW_Seer_Wrath_ShortCircuit>"Mend what is broken in your workshop, before the wires do something about it."</CC_GW_Seer_Wrath_ShortCircuit>
+  <CC_GW_Seer_Wrath_Breakdown>"Your cold rooms will fail you at the worst hour."</CC_GW_Seer_Wrath_Breakdown>
+  <CC_GW_Seer_Wrath_Lightning>"The storm has your roofs counted."</CC_GW_Seer_Wrath_Lightning>
+  <CC_GW_Seer_Wrath_Beasts>"Something in the woods is waiting for one of you."</CC_GW_Seer_Wrath_Beasts>
+  <CC_GW_Seer_Wrath_Drought>"The wells will go quiet, and then they will not be quiet at all."</CC_GW_Seer_Wrath_Drought>
+  <CC_GW_Seer_Wrath_Missing>"Count your silver, and then count it again."</CC_GW_Seer_Wrath_Missing>
+  <CC_GW_Seer_Wrath_Flare>"Your machines will go quiet one bright day, and nobody will have touched them."</CC_GW_Seer_Wrath_Flare>
+  <CC_GW_Seer_Wrath_Nightmares>"What you did today will come home tonight, if the moon is up to see it."</CC_GW_Seer_Wrath_Nightmares>
+  <CC_GW_Seer_Bless_Fever>"The next fever here will break sooner than it should."</CC_GW_Seer_Bless_Fever>
+  <CC_GW_Seer_Bless_Growth>"There will be food near your walls that nobody planted."</CC_GW_Seer_Bless_Growth>
+  <CC_GW_Seer_Bless_Ore>"The ground near you is restless, so look at it in the mornings."</CC_GW_Seer_Bless_Ore>
+  <CC_GW_Seer_Bless_Mend>"Leave your broken things where they are for a night before you fix them."</CC_GW_Seer_Bless_Mend>
+  <CC_GW_Seer_Bless_Meteor>"Look up now and then, because the sky has something for you."</CC_GW_Seer_Bless_Meteor>
+  <CC_GW_Seer_Bless_Thaw>"The next cold will not stay as long as it means to."</CC_GW_Seer_Bless_Thaw>
+  <CC_GW_Seer_Bless_Clear>"You will have long days for your fields."</CC_GW_Seer_Bless_Clear>
+  <CC_GW_Seer_Bless_Rain>"Rain will come when the fields ask for it."</CC_GW_Seer_Bless_Rain>
+  <CC_GW_Seer_Bless_Stray>"Leave a bowl out, because someone small is coming to stay."</CC_GW_Seer_Bless_Stray>
+  <CC_GW_Seer_Bless_Trader>"Have something ready to sell."</CC_GW_Seer_Bless_Trader>
+  <CC_GW_Seer_Bless_Rest>"The moon saw what you did today, and she gives back what she sees."</CC_GW_Seer_Bless_Rest>
+  <CC_GW_Seer_Nothing>"I see nothing coming, which is not the same as nothing coming."</CC_GW_Seer_Nothing>
   <CC_GW_Seer_ReadingLabel>The seer's reading</CC_GW_Seer_ReadingLabel>
-  <CC_GW_Seer_ReadingText>{PAWN} sat an hour by the seer's fire while the bitter smoke rose, and came back with this:\n\n{READINGS}\n\nAnd as {PAWN} rose to go, the seer said: {WORD}</CC_GW_Seer_ReadingText>
-  <CC_GW_Seer_Impact>The seer reads the colony's standing with each god it knows, and what is coming.</CC_GW_Seer_Impact>
-  <CC_GW_Seer_ImpactBrief>the gods read</CC_GW_Seer_ImpactBrief>
-  <CC_GW_Champion_Label>{CHAMPION_nameDef}, champion of {GOD}</CC_GW_Champion_Label>
-  <CC_GW_Champion_Text>{GOD} has sent its champion against the colony: {CHAMPION_nameDef} leads this raid of {PEOPLE}, and fights as if a god were watching. If the colony beats {CHAMPION_objective}, it will be a sign.</CC_GW_Champion_Text>
-  <CC_GW_Champion_WhyGod>its champion {CHAMPION_nameDef} fell before the colony</CC_GW_Champion_WhyGod>
-  <CC_GW_Champion_WhyRival>the colony beat {CHAMPION_nameDef}, the champion of {OTHER}</CC_GW_Champion_WhyRival>
-  <CC_GW_Champion_FellLabel>{GOD}'s champion has fallen</CC_GW_Champion_FellLabel>
-  <CC_GW_Champion_Fell_Dead>{GOD} has seen its champion die: {CHAMPION_nameDef} fell on the colony's land, and the gods who quarrel with {GOD} are pleased.</CC_GW_Champion_Fell_Dead>
-  <CC_GW_Champion_Fell_Down>{GOD} has seen its champion beaten: {CHAMPION_nameDef} lies in the dirt of the colony's land, and the gods who quarrel with {GOD} are pleased.</CC_GW_Champion_Fell_Down>
-  <CC_GW_Champion_Fell_Taken>{GOD} has seen its champion taken: {CHAMPION_nameDef} is the colony's captive now, and the gods who quarrel with {GOD} are pleased.</CC_GW_Champion_Fell_Taken>
-  <CC_GW_Champion_Chronicle>The colony beat {CHAMPION_nameDef}, the champion {GOD} sent against it.</CC_GW_Champion_Chronicle>
+  <CC_GW_Seer_ReadingText>{PAWN} sat an hour by the seer's fire while the bitter smoke rose, and came back with this:\n\n{READINGS}</CC_GW_Seer_ReadingText>
+  <CC_GW_Seer_Impact>The seer reads the smoke, and says what it shows, though never plainly.</CC_GW_Seer_Impact>
+  <CC_GW_Seer_ImpactBrief>a reading</CC_GW_Seer_ImpactBrief>
 
-  <!-- ================= Health and wrath ================= -->
-  <CC_GW_Beasts_Label>{GOD}'s beasts come for {PAWN}</CC_GW_Beasts_Label>
-  <CC_GW_Beasts_Text>{GOD} sent them: {BEASTS} have come out of the trees and are making straight for {PAWN}, who killed what was sacred to {GOD}. Get {PAWN} inside, or stand with {PAWN_objective}.</CC_GW_Beasts_Text>
-  <CC_GW_Blight_Label>{GOD} turns from the fields</CC_GW_Blight_Label>
-  <CC_GW_Blight_Text>{GOD} is angry with {HOME}, and has turned its face from the fields: a blight is coming over the crops.</CC_GW_Blight_Text>
-  <CC_GW_Eclipse_Label>{GOD} puts out the sun</CC_GW_Eclipse_Label>
-  <CC_GW_Eclipse_Text>{GOD} has turned its back on {HOME} and taken the light with it: the sun has gone dark over the colony for the afternoon.</CC_GW_Eclipse_Text>
-  <CC_GW_Field_Label>{GOD}'s word in the storm</CC_GW_Field_Label>
-  <CC_GW_Field_Text>{GOD} spoke in the storm: lightning struck the open ground by the colony, close enough for everyone to hear what it meant.</CC_GW_Field_Text>
-  <CC_GW_Lightning_Label>Lightning finds {PAWN}'s roof</CC_GW_Lightning_Label>
-  <CC_GW_Lightning_Roof>{GOD} has not forgotten {PAWN}: the lightning struck straight down onto the roof over {PAWN}'s bed.</CC_GW_Lightning_Roof>
-  <CC_GW_Lightning_Near>{GOD} has not forgotten {PAWN}: the lightning struck the ground a few steps from {PAWN}, and nowhere else.</CC_GW_Lightning_Near>
+  <!-- ================= Anger and kindness, as seen ================= -->
+  <CC_GW_Beasts_Label>Beasts after {PAWN}</CC_GW_Beasts_Label>
+  <CC_GW_Beasts_Text>{BEASTS} have come out of the trees and are making straight for {PAWN}, as if they knew whom they were looking for. Get {PAWN_objective} inside, or stand with {PAWN_objective}.</CC_GW_Beasts_Text>
+  <CC_GW_Breakdown_Label>A machine has failed</CC_GW_Breakdown_Label>
+  <CC_GW_Breakdown_Text>The {THING} has broken down, right when it was needed most.</CC_GW_Breakdown_Text>
+  <CC_GW_Lightning_Label>Lightning by {PAWN}</CC_GW_Lightning_Label>
+  <CC_GW_Lightning_Roof>Lightning came straight down onto the roof over {PAWN}'s bed, and nowhere else.</CC_GW_Lightning_Roof>
+  <CC_GW_Lightning_Near>Lightning struck the ground a few steps from {PAWN}, and nowhere else.</CC_GW_Lightning_Near>
   <CC_GW_Bless_Label>{PAWN}'s fever broke</CC_GW_Bless_Label>
-  <CC_GW_Bless_Fever>{GOD} sat with {PAWN} in the night: the fever broke before dawn, and {PAWN}'s {ILLNESS} is on the turn.</CC_GW_Bless_Fever>
-  <CC_GW_Bless_Plague>{GOD} eased {PAWN}'s plague in the small hours: the sweats are gone, and {PAWN} is sleeping easier.</CC_GW_Bless_Plague>
+  <CC_GW_Bless_Fever>{PAWN}'s fever broke in the small hours, and the {ILLNESS} is on the turn. Whoever sat with {PAWN_objective} says the room smelled of rain.</CC_GW_Bless_Fever>
+  <CC_GW_Bless_Plague>{PAWN}'s sweats eased in the small hours, and {PAWN_pronoun} is sleeping easier.</CC_GW_Bless_Plague>
+  <CC_GW_Growth_Label>Wild growth</CC_GW_Growth_Label>
+  <CC_GW_Growth_Text>Healroot and berry bushes have come up near the colony overnight, where nobody sowed anything.</CC_GW_Growth_Text>
+  <CC_GW_Ore_Label>A vein in the ground</CC_GW_Ore_Label>
+  <CC_GW_Ore_Text>A vein of {ORE} has pushed up out of the ground near {HOME} overnight, where there was only grass.</CC_GW_Ore_Text>
+  <CC_GW_Mend_Label>Mended in the night</CC_GW_Mend_Label>
+  <CC_GW_Mend_Text>The broken {THING} is working again this morning, and nobody mended it.</CC_GW_Mend_Text>
+  <CC_GW_Battery_Label>A full battery</CC_GW_Battery_Label>
+  <CC_GW_Battery_Text>The {THING} is full this morning, and nothing charged it.</CC_GW_Battery_Text>
+  <CC_GW_Thaw_Label>The cold breaks</CC_GW_Thaw_Label>
+  <CC_GW_Thaw_Text>The cold snap over {HOME} is breaking early.</CC_GW_Thaw_Text>
+  <CC_GW_Clear_Label>Long clear days</CC_GW_Clear_Label>
+  <CC_GW_Clear_Text>The sky over {HOME} has cleared, and the days are long and bright, the kind fields love.</CC_GW_Clear_Text>
+  <CC_GW_Rain_Label>Rain</CC_GW_Rain_Label>
+  <CC_GW_Rain_Text>Rain is coming in over {HOME}, and the frogs started singing an hour before it.</CC_GW_Rain_Text>
+  <CC_GW_Stray_Label>A cat wanders in</CC_GW_Stray_Label>
+  <CC_GW_Stray_Text>A cat has walked in from the edge of the land as if it lived here, and it seems to have decided that it does.</CC_GW_Stray_Text>
+  <CC_GW_Rest_Label>{PAWN} slept deeply</CC_GW_Rest_Label>
+  <CC_GW_Rest_Text>{PAWN} slept deeply under a bright moon, and the wounds look days better this morning.</CC_GW_Rest_Text>
+  <CC_GW_Found_Label>Found at the door</CC_GW_Found_Label>
+  <CC_GW_Found_Text>Someone left {THING} by the door in the night, and nobody saw who.</CC_GW_Found_Text>
+  <CC_GW_Dry_Label>No rain</CC_GW_Dry_Label>
+  <CC_GW_Dry_Text>The sky over {HOME} has gone hard and clear, and the wells are quiet. No rain is coming.</CC_GW_Dry_Text>
+  <CC_GW_Missing_Label>Silver missing</CC_GW_Missing_Label>
+  <CC_GW_Missing_Text>{COUNT} silver is gone from the stores, and nobody took it.</CC_GW_Missing_Text>
+  <CC_GW_Nightmares_Label>Bad dreams</CC_GW_Nightmares_Label>
+  <CC_GW_Nightmares_Text>{PAWN} woke in the night from a bad dream, and some of the others had the same one. Nobody could get back to sleep.</CC_GW_Nightmares_Text>
+  <CC_GW_Rats_Label>The cats are gone</CC_GW_Rats_Label>
+  <CC_GW_Rats_Text>The colony's cats left in the night, all of them at once, and the rats are back.</CC_GW_Rats_Text>
+  <CC_GW_Rats_TextNoCats>The rats are back, more of them than anyone has seen in years.</CC_GW_Rats_TextNoCats>
+  <CC_GW_Shunned_Label>A {BEAST} killed</CC_GW_Shunned_Label>
+  <CC_GW_Shunned_Text>{KILLER} killed a {BEAST}, and word of it is already on the roads. Every people near has heard, and none of them liked it.</CC_GW_Shunned_Text>
+  <CC_GW_Shunned_Why>{KILLER} killed a {BEAST}</CC_GW_Shunned_Why>
+  <CC_GW_Shunned_Chronicle>{KILLER} killed a {BEAST}, and every road heard of it.</CC_GW_Shunned_Chronicle>
 
-  <!-- ================= Gifts and their prices ================= -->
-  <CC_GW_Gift_Beast>a {BEAST} of its own, tame and bonded</CC_GW_Gift_Beast>
+  <!-- ================= Seen: kept for the colony's book of the gods ================= -->
+  <CC_GW_Seen_blight>A blight came over the fields at {HOME}.</CC_GW_Seen_blight>
+  <CC_GW_Seen_eclipse>The sun went dark over {HOME} in the middle of the day.</CC_GW_Seen_eclipse>
+  <CC_GW_Seen_coldsnap>A cold snap came down on {HOME} out of nowhere.</CC_GW_Seen_coldsnap>
+  <CC_GW_Seen_heatwave>Heat rose out of the ground at {HOME}, and the floors were warm without a fire.</CC_GW_Seen_heatwave>
+  <CC_GW_Seen_flashstorm>A dry storm broke over {HOME}, all thunder and no rain.</CC_GW_Seen_flashstorm>
+  <CC_GW_Seen_shortcircuit>The wires at {HOME} sparked and burned, and nobody had touched them.</CC_GW_Seen_shortcircuit>
+  <CC_GW_Seen_meteor>A meteorite fell near {HOME}, just outside the walls.</CC_GW_Seen_meteor>
+  <CC_GW_Seen_field>Lightning struck the open ground beside {HOME} in the storm, close enough to hear.</CC_GW_Seen_field>
+  <CC_GW_Seen_quarrelstorm>Rain and thunder rolled in over {HOME} after a clear day.</CC_GW_Seen_quarrelstorm>
+  <CC_GW_Seen_quarreldry>The sky over {HOME} turned hard and clear after the rain.</CC_GW_Seen_quarreldry>
+  <CC_GW_Seen_quarrelcold>Snow came down on {HOME} out of a mild morning.</CC_GW_Seen_quarrelcold>
+  <CC_GW_Seen_quarrelwarm>A warm wind came off the mountain at {HOME}, and the snow went.</CC_GW_Seen_quarrelwarm>
+  <CC_GW_Seen_quarrelgrowth>Wild plants sprang up near {HOME} overnight.</CC_GW_Seen_quarrelgrowth>
+  <CC_GW_Seen_quarrelrot>A ring of mushrooms came up near {HOME} overnight.</CC_GW_Seen_quarrelrot>
+  <CC_GW_Seen_quarrelsun>The sun burned hard and white over {HOME}, and the machines suffered for it.</CC_GW_Seen_quarrelsun>
+  <CC_GW_Seen_quarrelspark>The batteries at {HOME} were full one morning, and nothing had charged them.</CC_GW_Seen_quarrelspark>
+  <CC_GW_Seen_quarrelrain>Rain came to {HOME} after the snow, and the frogs sang in it.</CC_GW_Seen_quarrelrain>
+  <CC_GW_Seen_quarrelflow>A gold coin lay on the ground near {HOME} where nobody had dropped one.</CC_GW_Seen_quarrelflow>
+  <CC_GW_Seen_quarrelhoard>A little silver sank out of the stores at {HOME}, and the floor was warm where it had been.</CC_GW_Seen_quarrelhoard>
+  <CC_GW_Seen_drought>The rains stopped over {HOME}, and the ground cracked.</CC_GW_Seen_drought>
+  <CC_GW_Seen_flood>The water rose at {HOME} after the dry season, faster than anyone had seen it rise.</CC_GW_Seen_flood>
+  <CC_GW_Seen_trader>A trader came to {HOME} just when the colony had something to sell.</CC_GW_Seen_trader>
+  <CC_GW_Seen_flare>The sun flared over {HOME}, and every machine went quiet at once.</CC_GW_Seen_flare>
+
+  <!-- ================= Told: what someone said or wrote, kept for the colony's book ================= -->
+  <CC_GW_Told_miracle>As {WRITER} of {PEOPLE} wrote, their town has prospered, and they thank {GOD} for it.</CC_GW_Told_miracle>
+  <CC_GW_Told_curse>As {WRITER} of {PEOPLE} wrote, hard times have come to their town, and they fear {GOD} has turned from them.</CC_GW_Told_curse>
+  <CC_GW_Told_holywar>As {WRITER} of {PEOPLE} wrote, their war with {ENEMY} is {GOD}'s quarrel with {ENEMYGOD}.</CC_GW_Told_holywar>
+  <CC_GW_Told_myth>{WRITER} of {PEOPLE} wrote down an old story of {GOD} and {OTHER}, the way their people tell it.</CC_GW_Told_myth>
+  <CC_GW_Told_HolyWarAsk>{PEOPLE} wrote asking the colony to stand with them against {ENEMY}, in what they call {GOD}'s quarrel with {ENEMYGOD}.</CC_GW_Told_HolyWarAsk>
+  <CC_GW_Told_Invite>{PEOPLE} wrote from {TOWN} inviting the colony to {FEAST}, which they keep for {GOD}.</CC_GW_Told_Invite>
+  <CC_GW_Told_Envoy>{ENVOY_nameDef}, an envoy of {PEOPLE}, said the colony's {RELIC} is holy to {GOD}.</CC_GW_Told_Envoy>
+  <CC_GW_Told_Pilgrims>Pilgrims of {PEOPLE} came to pray at {SITE}, which they say is holy to {GOD}.</CC_GW_Told_Pilgrims>
+  <CC_GW_Told_Seer>{SEER}, the seer at the edge of the land, said: {WORDS}</CC_GW_Told_Seer>
+  <CC_GW_Told_Reading>{SEER} read the smoke for {PAWN} and said: {WORDS}</CC_GW_Told_Reading>
+  <CC_GW_Told_Supper>{PAWN} told {LISTENER} at supper: "{WORDS}"</CC_GW_Told_Supper>
+  <CC_GW_Told_Choir>{PEOPLE} wrote that they heard {PAWN} say yes to the voice in the dark, which they call the Sweet Dark.</CC_GW_Told_Choir>
+  <CC_GW_Told_Hide>{PAWN_nameDef} of {PEOPLE} came to the gate asking to be hidden from {HUNTERS}, over a matter of their gods.</CC_GW_Told_Hide>
+
+  <!-- ================= A dream, a night under the sky, and what came of it ================= -->
+  <CC_GW_Dream_Plain>someone without a face stood at the foot of the bed and spoke kindly, in a voice nobody else heard</CC_GW_Dream_Plain>
+  <CC_GW_Dream_Label>{PAWN}'s dream</CC_GW_Dream_Label>
+  <CC_GW_Dream_Text>{PAWN} was quiet at breakfast, then told the table a dream: {DREAM}.\n\n{ASK}\n\n{PAWN_pronoun} wants to do it, if the colony will let {PAWN_objective}.</CC_GW_Dream_Text>
+  <CC_GW_Dream_AskOffering>In the dream, {PAWN} was asked to leave {COUNT} {WHAT} out past the gate, and then to wait out a night alone under the open sky.</CC_GW_Dream_AskOffering>
+  <CC_GW_Dream_AskSky>In the dream, {PAWN} was asked to wait out a night alone under the open sky, and nothing more.</CC_GW_Dream_AskSky>
+  <CC_GW_Dream_Go>Let {PAWN} go out tonight</CC_GW_Dream_Go>
+  <CC_GW_Dream_GoOffering>Leave it at the gate, and let {PAWN} go</CC_GW_Dream_GoOffering>
+  <CC_GW_Dream_Only>Tell {PAWN} it was only a dream</CC_GW_Dream_Only>
+  <CC_GW_Dream_NotNow>{PAWN} is in no state to spend a night outside.</CC_GW_Dream_NotNow>
+  <CC_GW_Dream_CarryLabel>what {PAWN}'s dream asked for</CC_GW_Dream_CarryLabel>
+  <CC_GW_Dream_WhyDeclined>{PAWN} was told it was only a dream</CC_GW_Dream_WhyDeclined>
+  <CC_GW_Dream_Act>{PAWN} told a dream at breakfast: {DREAM}.</CC_GW_Dream_Act>
+  <CC_GW_Dream_True>In the dream, {PAWN} already had {GIFT}.</CC_GW_Dream_True>
+  <CC_GW_Gift_Beast>a {BEAST}, tame and bonded</CC_GW_Gift_Beast>
   <CC_GW_Gift_Class>the craft of a {CLASS}</CC_GW_Gift_Class>
-  <CC_GW_Gift_Spell>a spell: {SPELL}</CC_GW_Gift_Spell>
-  <CC_GW_Gift_Mana>a gift for the arcane: {TRAIT}</CC_GW_Gift_Mana>
-  <CC_GW_Gift_Path>a psylink and a psycaster's path</CC_GW_Gift_Path>
+  <CC_GW_Gift_Spell>a spell scroll, {SPELL}</CC_GW_Gift_Spell>
+  <CC_GW_Gift_Mana>{TRAIT}</CC_GW_Gift_Mana>
+  <CC_GW_Gift_Path>a psylink, and a path to follow</CC_GW_Gift_Path>
   <CC_GW_Gift_LostRelic>the faith's lost relic, {RELIC}</CC_GW_Gift_LostRelic>
-  <CC_GW_Gift_Sculpture>a relic of {GOD}, a small figure in gold</CC_GW_Gift_Sculpture>
-  <CC_GW_Price_Offering>{COUNT} silver, carried out past the gate and left for the god</CC_GW_Price_Offering>
-  <CC_GW_Price_Mark>{GOD}'s mark on their skin, for good</CC_GW_Price_Mark>
-  <CC_GW_Price_Years>{YEARS} years of their life</CC_GW_Price_Years>
-  <CC_GW_Price_Blood>their blood, a cut on the arm given there and then</CC_GW_Price_Blood>
-  <CC_GW_Price_Rival>the anger of {RIVALS}</CC_GW_Price_Rival>
-  <CC_GW_Price_Label>the price of a god's gift</CC_GW_Price_Label>
-  <CC_GW_Price_WhyRival>{PAWN} took a gift of {OTHER}'s, and the price was this god's anger</CC_GW_Price_WhyRival>
-  <CC_GW_Offer_Label>{GOD} offers {PAWN} a gift</CC_GW_Offer_Label>
-  <CC_GW_Offer_Text_Believed>{PAWN} dreamed of {GOD}, {GODEPITHET}, three nights running, and the colony believes it means a gift: {GIFT}.\n\nIn the dream there was a price: {PRICE}. If the colony accepts, {PAWN} will go out under the open sky and wait for it.</CC_GW_Offer_Text_Believed>
-  <CC_GW_Offer_Text_Felt>Some say {GOD}, {GODEPITHET}, has taken an interest in {PAWN}: a voice in the wind offered {PAWN} {GIFT}.\n\nThe voice named its price: {PRICE}. If the colony accepts, {PAWN} will go out under the open sky and wait for it.</CC_GW_Offer_Text_Felt>
-  <CC_GW_Offer_Text_Walking>{GOD}, {GODEPITHET}, has spoken to {PAWN} plainly, in front of everyone: it offers {PAWN} {GIFT}.\n\nIt names its price: {PRICE}. If the colony accepts, {PAWN} will go out under the open sky and wait for it.</CC_GW_Offer_Text_Walking>
-  <CC_GW_Offer_Trickster>{GOD} is a trickster, and its gifts have a way of turning.</CC_GW_Offer_Trickster>
-  <CC_GW_Offer_Act>it offered {PAWN} {GIFT}</CC_GW_Offer_Act>
-  <CC_GW_Offer_Accept>Accept, and pay the price</CC_GW_Offer_Accept>
-  <CC_GW_Offer_Decline>Decline the gift</CC_GW_Offer_Decline>
-  <CC_GW_Offer_NotNow>{PAWN} is in no state to pay it now.</CC_GW_Offer_NotNow>
-  <CC_GW_Offer_WhyDeclined>{PAWN} turned down its gift</CC_GW_Offer_WhyDeclined>
-  <CC_GW_Gift_Label>{GOD}'s gift to {PAWN}</CC_GW_Gift_Label>
-  <CC_GW_Gift_Text>{GOD} gave {PAWN} {GIFT} under the open sky, and {PAWN} came back changed.</CC_GW_Gift_Text>
-  <CC_GW_Gift_Nothing>{GOD} did not come to {PAWN} under the sky after all, and the price was paid for nothing.</CC_GW_Gift_Nothing>
-  <CC_GW_Gift_Why>{PAWN} took its gift, {GIFT}</CC_GW_Gift_Why>
-  <CC_GW_Gift_Chronicle>{GOD} gave {PAWN} {GIFT}.</CC_GW_Gift_Chronicle>
-  <CC_GW_Trick_CurseLabel>{GOD}'s gift turns on {PAWN}</CC_GW_Trick_CurseLabel>
-  <CC_GW_Trick_Curse>{GOD} has had its joke: {PAWN}'s gift, {GIFT}, has turned sour, and everything {PAWN} touches goes a little wrong.</CC_GW_Trick_Curse>
-  <CC_GW_Trick_BackLabel>{GOD}'s gift comes back to {PAWN}</CC_GW_Trick_BackLabel>
-  <CC_GW_Trick_Back>{GOD} has tired of the joke: {PAWN}'s gift, {GIFT}, has come back to {PAWN} as it was.</CC_GW_Trick_Back>
-  <CC_GW_Undo_ComesLabel>{GOD} comes for {PAWN}'s gift</CC_GW_Undo_ComesLabel>
-  <CC_GW_Undo_Comes>{GOD} has come to the gate, and it wants {OTHER}'s gift to {PAWN} undone.</CC_GW_Undo_Comes>
-  <CC_GW_Undo_Label>{GOD} at the gate</CC_GW_Undo_Label>
-  <CC_GW_Undo_Text>{GOD} has come to the colony's gate, walking as one of its people, and it has come for {PAWN}: it will not stand for {OTHER}'s gift, {GIFT}, and means to take it back.\n\nLet it, and it will walk to {PAWN} and take it, and {OTHER} will be the less pleased. Send it away, and {GOD} will go angry.</CC_GW_Undo_Text>
-  <CC_GW_Undo_LetGo>Let it take back {GIFT}</CC_GW_Undo_LetGo>
-  <CC_GW_Undo_SendOff>Send it away</CC_GW_Undo_SendOff>
-  <CC_GW_Undo_WhySent>the colony sent it away from {PAWN}</CC_GW_Undo_WhySent>
-  <CC_GW_Undo_WhyStood>the colony stood by {PAWN} against {OTHER}</CC_GW_Undo_WhyStood>
-  <CC_GW_Undo_WhyLetGo>the colony let it undo a rival's gift to {PAWN}</CC_GW_Undo_WhyLetGo>
-  <CC_GW_Undo_WhyLost>the colony let {OTHER} take its gift back from {PAWN}</CC_GW_Undo_WhyLost>
-  <CC_GW_Undo_DoneLabel>{GOD} takes back {PAWN}'s gift</CC_GW_Undo_DoneLabel>
-  <CC_GW_Undo_Done>{GOD} laid a hand on {PAWN}, and {GIFT} was gone.</CC_GW_Undo_Done>
+  <CC_GW_Gift_Passion>a love of {SKILL}</CC_GW_Gift_Passion>
+  <CC_GW_Gift_Hoard>gold</CC_GW_Gift_Hoard>
+  <CC_GW_Gift_Label>{PAWN} at dawn</CC_GW_Gift_Label>
+  <CC_GW_Gift_Text>{PAWN} came in from the open sky at dawn, cold and quiet, and would not say much about the night.</CC_GW_Gift_Text>
+  <CC_GW_Morning_Hand>The others already have a name for what has come over {PAWN}: {GIFT}.</CC_GW_Morning_Hand>
+  <CC_GW_Morning_Beast>Behind {PAWN} came {GIFT}, and it will not leave {PAWN_possessive} side.</CC_GW_Morning_Beast>
+  <CC_GW_Morning_Class>{PAWN} knows things {PAWN_pronoun} did not know yesterday: {GIFT}.</CC_GW_Morning_Class>
+  <CC_GW_Morning_Spell>In {PAWN}'s hands was something {PAWN_pronoun} did not take out: {GIFT}.</CC_GW_Morning_Spell>
+  <CC_GW_Morning_Mana>Something in {PAWN} runs deeper than it did: {GIFT}.</CC_GW_Morning_Mana>
+  <CC_GW_Morning_Path>{PAWN} hears things {PAWN_pronoun} did not hear before: {GIFT}.</CC_GW_Morning_Path>
+  <CC_GW_Morning_Relic>On the grass beside {PAWN} lay {GIFT}.</CC_GW_Morning_Relic>
+  <CC_GW_Morning_Passion>{PAWN} has found {GIFT} that was never there before.</CC_GW_Morning_Passion>
+  <CC_GW_Morning_Hoard>On the grass beside {PAWN} lay {GIFT}, more of it than anyone had left at the gate.</CC_GW_Morning_Hoard>
+  <CC_GW_Paid_Mark>There is a pale mark on {PAWN}'s skin that was not there last night.</CC_GW_Paid_Mark>
+  <CC_GW_Paid_Years>{PAWN} looks older than {PAWN_pronoun} did yesterday, and moves like it.</CC_GW_Paid_Years>
+  <CC_GW_Paid_Blood>{PAWN} has a fresh cut on {PAWN_possessive} arm and will not say how {PAWN_pronoun} got it.</CC_GW_Paid_Blood>
+  <CC_GW_Gift_Nothing>{PAWN} waited all night under the open sky and came in at dawn, cold, saying nothing had happened.</CC_GW_Gift_Nothing>
+  <CC_GW_Gift_Why>{PAWN} took {GIFT}</CC_GW_Gift_Why>
+  <CC_GW_Gift_Chronicle>{PAWN} spent a night alone under the open sky after a dream, and came back with {GIFT}.</CC_GW_Gift_Chronicle>
+  <CC_GW_Price_WhyRival>{PAWN} took a gift of {OTHER}'s</CC_GW_Price_WhyRival>
+  <CC_GW_Undo_Label>{PAWN}'s second dream</CC_GW_Undo_Label>
+  <CC_GW_Undo_Text>{PAWN} woke shaking from a second dream, colder than the first: {DREAM}, and it wanted back what {PAWN} was given, {GIFT}, or {COUNT} {WHAT} left past the gate in its place.\n\n{PAWN} asks the colony what to do.</CC_GW_Undo_Text>
+  <CC_GW_Undo_Pay>Leave {COUNT} {WHAT} past the gate</CC_GW_Undo_Pay>
+  <CC_GW_Undo_LetGo>Let {GIFT} go</CC_GW_Undo_LetGo>
+  <CC_GW_Undo_WhyPaid>the colony paid for {PAWN}'s gift</CC_GW_Undo_WhyPaid>
+  <CC_GW_Undo_WhyStood>the colony paid to keep {PAWN}'s gift from {OTHER}</CC_GW_Undo_WhyStood>
+  <CC_GW_Undo_WhyLetGo>the colony let {PAWN}'s gift go</CC_GW_Undo_WhyLetGo>
+  <CC_GW_Undo_WhyLost>the colony let {OTHER} have {PAWN}'s gift back</CC_GW_Undo_WhyLost>
+  <CC_GW_Undo_DoneLabel>Gone in the night</CC_GW_Undo_DoneLabel>
+  <CC_GW_Undo_Done>{PAWN} woke this morning without {GIFT}, and does not want to talk about it.</CC_GW_Undo_Done>
 
-  <!-- ================= The Hunger ================= -->
-  <CC_GW_Hunger_Label>Something answers {PAWN}</CC_GW_Hunger_Label>
-  <CC_GW_Hunger_dying>{GOD} heard {PAWN} dying: a voice from under the world offers to close the wounds and hold back the end, now, if the colony says yes. It names no price. It never does.</CC_GW_Hunger_dying>
-  <CC_GW_Hunger_breaking>{GOD} heard {PAWN} at the edge: a voice from under the world offers {PAWN} stillness, a cold calm that will keep the mind from breaking. It names no price. It never does.</CC_GW_Hunger_breaking>
-  <CC_GW_Hunger_starving>{GOD} heard the colony's hunger: a voice from under the world, in {PAWN}'s ear at night, offers meat enough for everyone by morning. It names no price. It never does.</CC_GW_Hunger_starving>
-  <CC_GW_Hunger_Again>It has taken from the colony before, and it always takes more.</CC_GW_Hunger_Again>
-  <CC_GW_Hunger_Act>it answered {PAWN} out of the dark</CC_GW_Hunger_Act>
-  <CC_GW_Hunger_Take>Take what it offers</CC_GW_Hunger_Take>
-  <CC_GW_Hunger_Refuse>Refuse it</CC_GW_Hunger_Refuse>
-  <CC_GW_Hunger_WhyStruck>{PAWN} took what it offered</CC_GW_Hunger_WhyStruck>
+  <!-- ================= A voice in the dark ================= -->
+  <CC_GW_Hunger_Label>{PAWN} hears a voice</CC_GW_Hunger_Label>
+  <CC_GW_Hunger_dying>{PAWN} is dying, and between breaths {PAWN_pronoun} keeps whispering to someone who isn't there. A voice, {PAWN_pronoun} says, sweet and reasonable, offers to close the wounds and hold back the end tonight, if {PAWN_pronoun} says yes. It names no price. It never does.</CC_GW_Hunger_dying>
+  <CC_GW_Hunger_breaking>{PAWN} is at the edge, and swears a voice is talking to {PAWN_objective} from somewhere under the floor. It offers stillness, a cold calm that will keep {PAWN_possessive} mind from breaking, if {PAWN_pronoun} says yes. It names no price. It never does.</CC_GW_Hunger_breaking>
+  <CC_GW_Hunger_starving>{PAWN} says a voice woke {PAWN_objective} in the night, sweet and reasonable, offering meat enough for everyone by morning, if {PAWN_pronoun} says yes. It names no price. It never does.</CC_GW_Hunger_starving>
+  <CC_GW_Hunger_Again>{PAWN} says it spoke as if it knew the colony already.</CC_GW_Hunger_Again>
+  <CC_GW_Hunger_Act_dying>{PAWN}, dying, heard a sweet voice in the dark offer to hold back the end.</CC_GW_Hunger_Act_dying>
+  <CC_GW_Hunger_Act_breaking>{PAWN}, at the edge, heard a voice under the floor offer a cold calm.</CC_GW_Hunger_Act_breaking>
+  <CC_GW_Hunger_Act_starving>{PAWN} heard a voice in the night offer meat enough for everyone, while the stores were bare.</CC_GW_Hunger_Act_starving>
+  <CC_GW_Hunger_Take>Tell {PAWN} to say yes</CC_GW_Hunger_Take>
+  <CC_GW_Hunger_Refuse>Tell {PAWN} to refuse it</CC_GW_Hunger_Refuse>
+  <CC_GW_Hunger_WhyStruck>{PAWN} said yes to it</CC_GW_Hunger_WhyStruck>
   <CC_GW_Hunger_WhyRefused>{PAWN} refused it</CC_GW_Hunger_WhyRefused>
-  <CC_GW_Hunger_PaidLabel>{GOD} pays</CC_GW_Hunger_PaidLabel>
-  <CC_GW_Hunger_Paid>{GOD} paid at once, as it always does: {PAID} It will come for its due.</CC_GW_Hunger_Paid>
-  <CC_GW_Hunger_Mended>{PAWN}'s wounds closed and the fever fell back, as if a cold hand had pressed on them.</CC_GW_Hunger_Mended>
-  <CC_GW_Hunger_Stilled>{PAWN}'s mind went still, as cold and quiet as a frozen pond.</CC_GW_Hunger_Stilled>
-  <CC_GW_Hunger_Fed>{COUNT} {FOOD} lie at the colony's door in the morning, and nobody saw who brought them.</CC_GW_Hunger_Fed>
-  <CC_GW_Hunger_Chronicle>{PAWN} took what {GOD} offered out of the dark.</CC_GW_Hunger_Chronicle>
-  <CC_GW_Hunger_TookLabel>{GOD} takes its due</CC_GW_Hunger_TookLabel>
-  <CC_GW_Hunger_Took>{GOD} came for what it was owed: {TOOK}</CC_GW_Hunger_Took>
-  <CC_GW_Hunger_TookMark>{PAWN} woke with the void's mark on {PAWN_objective}, and will carry it.</CC_GW_Hunger_TookMark>
+  <CC_GW_Hunger_WhyShunned>{PAWN} said yes to the voice in the dark</CC_GW_Hunger_WhyShunned>
+  <CC_GW_Hunger_PaidLabel>{PAWN} in the night</CC_GW_Hunger_PaidLabel>
+  <CC_GW_Hunger_Mended>{PAWN}'s wounds closed in the night and the fever fell back, as if a cold hand had pressed on them.</CC_GW_Hunger_Mended>
+  <CC_GW_Hunger_Stilled>{PAWN}'s mind went still in the night, as cold and quiet as a frozen pond.</CC_GW_Hunger_Stilled>
+  <CC_GW_Hunger_Fed>{COUNT} {FOOD} lay at the colony's door in the morning, and nobody saw who brought them.</CC_GW_Hunger_Fed>
+  <CC_GW_Hunger_Chronicle>{PAWN} said yes to a voice in the dark.</CC_GW_Hunger_Chronicle>
+  <CC_GW_Hunger_TookLabel>Something taken from {PAWN}</CC_GW_Hunger_TookLabel>
+  <CC_GW_Hunger_TookMark>{PAWN} woke with a mark on {PAWN_objective} like a bruise that goes all the way down, and it will not fade.</CC_GW_Hunger_TookMark>
   <CC_GW_Hunger_TookYears>{PAWN} woke {YEARS} years older, gray where {PAWN_pronoun} was not.</CC_GW_Hunger_TookYears>
   <CC_GW_Hunger_TookHumanity>{PAWN} woke without something {PAWN_pronoun} cannot name, and looks at the others as if they were strangers.</CC_GW_Hunger_TookHumanity>
-  <CC_GW_Hunger_TookMind>{PAWN}'s mind has gone wandering where the voice lives.</CC_GW_Hunger_TookMind>
+  <CC_GW_Hunger_TookMind>{PAWN} woke and walked off without a word, and {PAWN_possessive} eyes are somewhere else entirely.</CC_GW_Hunger_TookMind>
   <CC_GW_Hunger_TookBeast>{BEAST} walked into the dark at the edge of the light, and did not come back.</CC_GW_Hunger_TookBeast>
   <CC_GW_Choir_Label>A letter from {PEOPLE}</CC_GW_Choir_Label>
-  <CC_GW_Choir_Text>{PEOPLE} write, in a hand that presses too hard on the page:\n\n"You heard it too. We know, because we hear everything it says. {PAWN} took what {GOD} offered. We will not judge you; we have all been tempted. But it always takes more, and you should keep your halls quiet."</CC_GW_Choir_Text>
+  <CC_GW_Choir_Text>{PEOPLE} write, in a hand that presses too hard on the page:\n\n"You heard it too. We know, because we hear everything the Sweet Dark says. {PAWN} said yes to it. We will not judge you; we have all been tempted. But it always takes more, and you should keep your halls quiet."</CC_GW_Choir_Text>
 
-  <!-- ================= The drama: a quarrel, a god's ask ================= -->
-  <CC_GW_Quarrel_Label>{GOD} and {OTHER} quarrel</CC_GW_Quarrel_Label>
-  <CC_GW_Quarrel_Text>{GOD} and {OTHER}, {OTHEREPITHET}, have fallen out again, as {TIE} do, and the sky over the colony is where they are fighting it: rain and thunder on {GOD}'s days, a hard dry sky on {OTHER}'s, turn and turn about.\n\nThe colony could make an offering to one of them, which would end it sooner in that god's favor and cost it the other's.</CC_GW_Quarrel_Text>
-  <CC_GW_Quarrel_Act>it quarreled with {OTHER} in the sky over the colony</CC_GW_Quarrel_Act>
-  <CC_GW_Quarrel_Storm>{GOD} has the sky today, and {OTHER} has lost this round: the rain is coming in.</CC_GW_Quarrel_Storm>
-  <CC_GW_Quarrel_Dry>{GOD} has pushed {OTHER}'s storm off the colony today: the sky is clear and hard.</CC_GW_Quarrel_Dry>
-  <CC_GW_Quarrel_Over>{GOD} and {OTHER} have finished their quarrel for now, and the weather is the weather again.</CC_GW_Quarrel_Over>
-  <CC_GW_Quarrel_Side>Make an offering to {GOD}</CC_GW_Quarrel_Side>
-  <CC_GW_Quarrel_Out>Stay out of it</CC_GW_Quarrel_Out>
-  <CC_GW_Quarrel_WhySide>the colony took its side against {OTHER}</CC_GW_Quarrel_WhySide>
-  <CC_GW_Quarrel_WhySpurned>the colony took {OTHER}'s side against it</CC_GW_Quarrel_WhySpurned>
-  <CC_GW_Slight_AskLabel>{GOD} asks the colony to slight {OTHER}</CC_GW_Slight_AskLabel>
-  <CC_GW_Slight_Ask>{GOD} wants something of the colony: that it speak against {OTHER}, out loud, to {PEOPLE} who keep {OTHER}. Do it, and {GOD} will be pleased, and {OTHER} and {PEOPLE} will not.</CC_GW_Slight_Ask>
-  <CC_GW_Ask_Do>Do as {GOD} asks</CC_GW_Ask_Do>
-  <CC_GW_Ask_Refuse>Refuse</CC_GW_Ask_Refuse>
-  <CC_GW_Ask_WhyRefused>the colony would not do as it asked</CC_GW_Ask_WhyRefused>
-  <CC_GW_Slight_WhyDone>the colony spoke against {OTHER} at its asking</CC_GW_Slight_WhyDone>
-  <CC_GW_Slight_WhyRival>the colony spoke against it, at {OTHER}'s asking</CC_GW_Slight_WhyRival>
-  <CC_GW_Slight_News>The colony's word against {OTHER} has gone out on the roads, as {GOD} asked, and {PEOPLE} have heard it.</CC_GW_Slight_News>
-  <CC_GW_Hide_Label>{GOD} asks the colony to hide {PAWN}</CC_GW_Hide_Label>
-  <CC_GW_Hide_Text>{GOD} sent {PAWN_nameDef} of {PEOPLE} to the colony's gate: {OTHER} wants {PAWN_objective} found, and {HUNTERS} are looking. {PAWN_pronoun} asks to be hidden for a few days, until the hunt moves on.\n\nHidden, {PAWN_nameDef} will stay near the colony three days, and {GOD} will be pleased, and {OTHER} will not. Turned away, {PAWN_pronoun} will take {PAWN_possessive} chances on the road.</CC_GW_Hide_Text>
+  <!-- ================= A debt: why a standing moved, never shown ================= -->
+  <CC_GW_Debt_WhyKept>the colony paid what it owed {PEOPLE}</CC_GW_Debt_WhyKept>
+  <CC_GW_Debt_WhyBroken>the colony broke its word to {PEOPLE}</CC_GW_Debt_WhyBroken>
+
+  <!-- ================= One hunted, at the gate ================= -->
+  <CC_GW_Hide_Label>{PAWN} asks to be hidden</CC_GW_Hide_Label>
+  <CC_GW_Hide_Text>{PAWN_nameDef} of {PEOPLE} has come to the gate out of breath and asks to be hidden for a few days: {HUNTERS} are looking for {PAWN_objective}, over a matter of their gods, {PAWN_pronoun} says.\n\nHidden, {PAWN_pronoun} will stay near the colony three days and then go. Turned away, {PAWN_pronoun} will take {PAWN_possessive} chances on the road.</CC_GW_Hide_Text>
   <CC_GW_Hide_Yes>Hide {PAWN}</CC_GW_Hide_Yes>
   <CC_GW_Hide_No>Turn {PAWN} away</CC_GW_Hide_No>
-  <CC_GW_Hide_WhyHidden>the colony hid {PAWN} at its asking</CC_GW_Hide_WhyHidden>
-  <CC_GW_Hide_WhyRival>the colony hid {PAWN} from it</CC_GW_Hide_WhyRival>
-  <CC_GW_Hide_WhyTurned>the colony turned away {PAWN}, whom it sent</CC_GW_Hide_WhyTurned>
-  <CC_GW_Hide_WhyRivalPleased>the colony turned {PAWN} away</CC_GW_Hide_WhyRivalPleased>
-  <CC_GW_Hide_Goes>{PAWN} is safe to go home now, and thanks the colony on {GOD}'s behalf.</CC_GW_Hide_Goes>
-
-  <!-- ================= The ones who don't fit ================= -->
-  <CC_GW_Term_Label>{GOD}'s terms</CC_GW_Term_Label>
-  <CC_GW_Term_Text>{GOD} has made the colony an offer, in terms and nothing else: {COUNT} {GOODS}, delivered past the colony's gate within {DAYS} days. In return, {RCOUNT} {REWARD}, from orbit, the day after.\n\nIt will keep its side exactly. It expects the same, and it does not forget a broken word. The colony would carry the goods out as soon as its stores hold them.</CC_GW_Term_Text>
-  <CC_GW_Term_Accept>Accept the terms</CC_GW_Term_Accept>
-  <CC_GW_Term_Decline>Decline</CC_GW_Term_Decline>
-  <CC_GW_Term_CarryLabel>the goods {GOD}'s terms ask for</CC_GW_Term_CarryLabel>
-  <CC_GW_Term_Delivered>The colony has carried out {COUNT} {GOODS} for {GOD}'s terms. Its side is due tomorrow.</CC_GW_Term_Delivered>
-  <CC_GW_Term_KeptLabel>{GOD} keeps its word</CC_GW_Term_KeptLabel>
-  <CC_GW_Term_Kept>{GOD} has kept its side exactly: {RCOUNT} {REWARD} fell from orbit into the middle of the colony.</CC_GW_Term_Kept>
-  <CC_GW_Term_WhyKept>the colony kept its terms exactly</CC_GW_Term_WhyKept>
-  <CC_GW_Term_BrokenLabel>{GOD}'s terms broken</CC_GW_Term_BrokenLabel>
-  <CC_GW_Term_Broken>{GOD} has noted the term the colony did not keep: {COUNT} {GOODS}, not delivered. It sent nothing, said nothing, and will remember.</CC_GW_Term_Broken>
-  <CC_GW_Term_WhyBroken>the colony broke its terms</CC_GW_Term_WhyBroken>
-  <CC_GW_DeadMark_Label>{GOD}'s mark</CC_GW_DeadMark_Label>
-  <CC_GW_DeadMark_Text>{PAWN} found a sign cut into {THING}, worn nearly smooth: the mark of {GOD}, {GODEPITHET}, a god nobody prays to any more. Someone prayed here, long before the colony came.\n\nThe few who still keep {GOD} will be glad to hear it was found.</CC_GW_DeadMark_Text>
-  <CC_GW_DeadMark_Why>{PAWN} found its mark in an old place</CC_GW_DeadMark_Why>
-  <CC_GW_Fading_Label>{GOD} asks to be remembered</CC_GW_Fading_Label>
-  <CC_GW_Fading_Gentle>{GOD}, {GODEPITHET}, has nobody left, and it came to the colony's fires last night like a draught of old air, asking only that someone say its name.\n\nRemember it, and it will be glad of it, in whatever small ways it still can.</CC_GW_Fading_Gentle>
-  <CC_GW_Fading_Bitter>{GOD}, {GODEPITHET}, has nobody left, and it is angry about it. It came to the colony's fires last night like a cold wind and demanded to be remembered.\n\nRemember it, and it will be quiet. Refuse, and it will take the light for an afternoon, out of spite.</CC_GW_Fading_Bitter>
-  <CC_GW_Fading_Remember>Remember {GOD}</CC_GW_Fading_Remember>
-  <CC_GW_Fading_LetGo>Let it go</CC_GW_Fading_LetGo>
-  <CC_GW_Fading_Refuse>Refuse it</CC_GW_Fading_Refuse>
-  <CC_GW_Fading_WhyRemembered>the colony said its name at the fire</CC_GW_Fading_WhyRemembered>
-  <CC_GW_Fading_WhyForgotten>the colony would not remember it</CC_GW_Fading_WhyForgotten>
-  <CC_GW_Fading_Inspired>{GOD} was remembered at the fire</CC_GW_Fading_Inspired>
-  <CC_GW_Sleeper_Label>{PAWN} dreams of a door</CC_GW_Sleeper_Label>
-  <CC_GW_Sleeper_Dream>{GOD} is dreaming in the vault, and {PAWN} has been dreaming with it: a door far below the ground, and a voice behind it, patient and enormous.</CC_GW_Sleeper_Dream>
-  <CC_GW_Sleeper_Ask_0>The voice asks for {COUNT} {GOODS}, carried out past the gate and left in the dark for it. It does not say what for.</CC_GW_Sleeper_Ask_0>
-  <CC_GW_Sleeper_Ask_1>The voice asks the colony to send word to {PEOPLE}, who keep the vault, that their watch is old and tired and the door is not worth keeping. They will not thank the colony for it.</CC_GW_Sleeper_Ask_1>
-  <CC_GW_Sleeper_Ask_2>The voice asks for one thing more: that the colony say, out loud and together, that it wishes the door open. It says this is the last thing it will ask.</CC_GW_Sleeper_Ask_2>
-  <CC_GW_Sleeper_Do>Do what it asks</CC_GW_Sleeper_Do>
-  <CC_GW_Sleeper_Refuse>Refuse it</CC_GW_Sleeper_Refuse>
-  <CC_GW_Sleeper_CarryLabel>what {GOD} asked for in the dream</CC_GW_Sleeper_CarryLabel>
-  <CC_GW_Sleeper_WhyStep>the colony did what it asked in a dream</CC_GW_Sleeper_WhyStep>
-  <CC_GW_Sleeper_WhyRefused>the colony would not do what it asked</CC_GW_Sleeper_WhyRefused>
-  <CC_GW_Sleeper_StepAct>the colony brought it a step nearer the door</CC_GW_Sleeper_StepAct>
-  <CC_GW_Sleeper_OpenLabel>The door below the vault</CC_GW_Sleeper_OpenLabel>
-  <CC_GW_Sleeper_Open>{GOD} has stirred: the door below the vault has opened a crack, and a calm the colony has never felt lies over the land like snow. {PEOPLE}, who kept that door shut for generations, are furious with the colony.</CC_GW_Sleeper_Open>
-  <CC_GW_Sleeper_Chronicle>The colony helped open the door below the vault a crack, and {GOD} stirred.</CC_GW_Sleeper_Chronicle>
-  <CC_GW_Newborn_Label>{GOD} grows</CC_GW_Newborn_Label>
-  <CC_GW_Newborn_Sign_1>{GOD}, the colony's own small god, gave its first sign: a warm wind went through the middle of the colony at dusk, and every fire burned a little brighter.</CC_GW_Newborn_Sign_1>
-  <CC_GW_Newborn_Sign_2>{GOD} is growing: two of the colony dreamed of it the same night, and could tell each other the dream before breakfast.</CC_GW_Newborn_Sign_2>
-  <CC_GW_Newborn_Sign_3>{GOD} answered a small prayer: a little silver lay in the middle of the colony in the morning, where nobody had dropped it.</CC_GW_Newborn_Sign_3>
+  <CC_GW_Hide_WhyHidden>the colony hid {PAWN}</CC_GW_Hide_WhyHidden>
+  <CC_GW_Hide_WhyTurned>the colony turned {PAWN} away</CC_GW_Hide_WhyTurned>
+  <CC_GW_Hide_Goes>{PAWN} is safe to go home now, and thanks the colony before setting out.</CC_GW_Hide_Goes>
 
 </LanguageData>

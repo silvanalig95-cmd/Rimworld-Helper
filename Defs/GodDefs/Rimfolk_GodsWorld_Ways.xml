@@ -2,169 +2,268 @@
 <Defs>
 
   <!--
-    A god's ways in the world (Source/ColonyCouncil/Gods/World/GodWays.cs, GodWaysDef): what it gives, how its anger shows,
-    the price it asks, the holy place its people seek, its feast, its side in a quarrel of the sky, and the tags its myths
-    and the words about it are told by. Keyed on the god (gods: its patron's defName, or its name in lower case; the
-    hand-made gods to come name their own defName here), else on a domain; whatever a def leaves out falls back to the
-    domain's generic ways (GodWorldMath). The defs below give Rimfolk's peoples' patrons ways of their own; every other god
-    takes its domain's.
+    The fourteen's ways in the world (Source/ColonyCouncil/Gods/World/GodWays.cs, GodWaysDef; the characters are those of
+    docs/gods-pantheon-brainstorm.md): what each gives and to whom, the price it asks and its offering, how it comes in a
+    dream (unnamed, as the dreamer tells it), the shape of its anger at a home, of a grudge against one colonist and of its
+    kindness, its temper, the beasts that are its kin, the holy place its people seek, its feast's name, its sides in the
+    quarrels the colony sees, whether it watches the colony's debts, and the gods that turn from a bargain with it. Keyed on the god by its short name (gods); a god
+    with no ways here takes its domain's (GodWorldMath). All of it is hidden: the player meets only what it does, and what
+    people say of it.
     Names in the lists are the classes' trait defNames of A RimWorld of Magic (torann.arimworldofmagic), its spell scrolls,
     Vanilla Psycasts Expanded's paths (vanillaexpanded.vpsycastse), and the game's animals; each is looked up softly, so a
     mod that isn't loaded simply isn't offered.
   -->
 
+  <!-- Hollin, the Rootmother: grave, slow, fair; her blight on the axe-happy, wild food round the walls of those who plant. -->
   <ColonyCouncil.GodWaysDef>
-    <defName>Rimfolk_GodWays_StormFather</defName>
-    <gods><li>Rimfolk_Patron_StormFather</li></gods>
-    <classes><li>StormBorn</li></classes>
-    <paths><li>VPE_Staticlord</li></paths>
-    <wrath>Lightning</wrath>
-    <prices><li>Blood</li><li>Mark</li><li>Offering</li></prices>
-    <site>wreck</site>
-    <feast>the Night of the First Thunder</feast>
-    <weather>storm</weather>
-    <mythTags><li>godkey:stormfather</li></mythTags>
-  </ColonyCouncil.GodWaysDef>
-
-  <ColonyCouncil.GodWaysDef>
-    <defName>Rimfolk_GodWays_Healer</defName>
-    <gods><li>Rimfolk_Patron_Healer</li></gods>
-    <classes><li>Priest</li><li>Paladin</li></classes>
-    <spells><li>SpellOf_Heal</li><li>SpellOf_SpellMending</li></spells>
-    <paths><li>VPE_Empath</li></paths>
-    <prices><li>Offering</li><li>Years</li></prices>
-    <site>water</site>
-    <feast>the Night of the Lamps</feast>
-    <mythTags><li>godkey:healer</li></mythTags>
-  </ColonyCouncil.GodWaysDef>
-
-  <ColonyCouncil.GodWaysDef>
-    <defName>Rimfolk_GodWays_Green</defName>
-    <gods><li>Rimfolk_Patron_Green</li><li>Rimfolk_Patron_Herdmother</li></gods>
+    <defName>Rimfolk_GodWays_Hollin</defName>
+    <gods><li>Hollin</li></gods>
+    <gifts><li>Class</li><li>Path</li><li>Hand</li></gifts>
+    <chooses>Plants</chooses>
     <classes><li>Druid</li></classes>
     <paths><li>VPE_Wildspeaker</li></paths>
-    <beasts><li>Wolf_Timber</li><li>Bear_Grizzly</li></beasts>
-    <wrath>Beasts</wrath>
-    <site>tree</site>
-    <weather>dry</weather>
-    <mythTags><li>godkey:green</li></mythTags>
-  </ColonyCouncil.GodWaysDef>
-
-  <ColonyCouncil.GodWaysDef>
-    <defName>Rimfolk_GodWays_Hunter</defName>
-    <gods><li>Rimfolk_Patron_Hunter</li></gods>
-    <classes><li>Ranger</li></classes>
-    <beasts><li>Wolf_Timber</li><li>Wolf_Arctic</li></beasts>
-    <wrath>Beasts</wrath>
-    <site>tree</site>
-    <feast>the Lantern Night</feast>
-    <mythTags><li>godkey:hunter</li></mythTags>
-  </ColonyCouncil.GodWaysDef>
-
-  <ColonyCouncil.GodWaysDef>
-    <defName>Rimfolk_GodWays_DeepMother</defName>
-    <gods><li>Rimfolk_Patron_DeepMother</li></gods>
-    <classes><li>Geomancer</li></classes>
-    <prices><li>Years</li><li>Blood</li></prices>
-    <site>stone</site>
-    <mythTags><li>godkey:deepmother</li></mythTags>
-  </ColonyCouncil.GodWaysDef>
-
-  <ColonyCouncil.GodWaysDef>
-    <defName>Rimfolk_GodWays_Ferryman</defName>
-    <gods><li>Rimfolk_Patron_Ferryman</li></gods>
-    <classes><li>Necromancer</li><li>DeathKnight</li></classes>
-    <paths><li>VPE_Necropath</li></paths>
-    <wrath>Eclipse</wrath>
-    <prices><li>Years</li><li>Mark</li></prices>
-    <site>grave</site>
-    <feast>the Night of the Bell</feast>
-    <mythTags><li>godkey:ferryman</li></mythTags>
-  </ColonyCouncil.GodWaysDef>
-
-  <ColonyCouncil.GodWaysDef>
-    <defName>Rimfolk_GodWays_Hunger</defName>
-    <gods><li>Rimfolk_Patron_Hunger</li></gods>
-    <classes><li>Necromancer</li><li>DeathKnight</li></classes>
-    <paths><li>VPEP_Puppeteer</li><li>VPE_Necropath</li></paths>
-    <wrath>Eclipse</wrath>
-    <prices><li>Years</li></prices>
-    <site>wreck</site>
-    <mythTags><li>godkey:hunger</li></mythTags>
-  </ColonyCouncil.GodWaysDef>
-
-  <ColonyCouncil.GodWaysDef>
-    <defName>Rimfolk_GodWays_Smith</defName>
-    <gods><li>Rimfolk_Patron_Smith</li><li>Rimfolk_Patron_Tinker</li></gods>
-    <classes><li>Enchanter</li></classes>
-    <paths><li>VPE_Technomancer</li></paths>
-    <prices><li>Offering</li><li>Mark</li></prices>
-    <site>stone</site>
-    <feast>the Quenching</feast>
-    <mythTags><li>godkey:smith</li></mythTags>
-  </ColonyCouncil.GodWaysDef>
-
-  <ColonyCouncil.GodWaysDef>
-    <defName>Rimfolk_GodWays_Machine</defName>
-    <gods><li>Rimfolk_Patron_VoiceInTheWire</li><li>Rimfolk_Patron_Broker</li><li>Rimfolk_Patron_LatticeMind</li><li>Rimfolk_Patron_SilentCaptain</li></gods>
-    <classes><li>Technomancer</li></classes>
-    <paths><li>VPE_Technomancer</li><li>VPE_Archotechist</li></paths>
-    <site>wreck</site>
-    <mythTags><li>godkey:machine</li></mythTags>
-  </ColonyCouncil.GodWaysDef>
-
-  <ColonyCouncil.GodWaysDef>
-    <defName>Rimfolk_GodWays_FarLight</defName>
-    <gods><li>Rimfolk_Patron_FarLight</li><li>Rimfolk_Patron_Lamp</li></gods>
-    <classes><li>TM_Bard</li></classes>
-    <paths><li>VPE_Nightstalker</li><li>VPE_Chronopath</li></paths>
-    <site>stone</site>
-    <mythTags><li>godkey:farlight</li></mythTags>
-  </ColonyCouncil.GodWaysDef>
-
-  <ColonyCouncil.GodWaysDef>
-    <defName>Rimfolk_GodWays_RedCaptain</defName>
-    <gods><li>Rimfolk_Patron_RedCaptain</li></gods>
-    <classes><li>Gladiator</li><li>TM_Monk</li></classes>
-    <paths><li>VPE_Warlord</li></paths>
-    <beasts><li>Warg</li></beasts>
-    <wrathBeasts><li>Warg</li></wrathBeasts>
-    <wrath>Beasts</wrath>
-    <prices><li>Blood</li><li>Blood</li><li>Mark</li></prices>
-    <feast>the Reading of the Roll</feast>
-    <mythTags><li>godkey:redcaptain</li></mythTags>
-  </ColonyCouncil.GodWaysDef>
-
-  <ColonyCouncil.GodWaysDef>
-    <defName>Rimfolk_GodWays_River</defName>
-    <gods><li>Rimfolk_Patron_River</li></gods>
-    <classes><li>HeartOfFrost</li></classes>
-    <paths><li>VPE_Frostshaper</li></paths>
+    <hand>Rimfolk_GodGift_Wild</hand>
+    <wrathBeasts><li>Wolf_Timber</li><li>Bear_Grizzly</li></wrathBeasts>
     <wrath>Blight</wrath>
-    <site>water</site>
-    <weather>dry</weather>
-    <feast>the Flood Night</feast>
-    <mythTags><li>godkey:river</li></mythTags>
+    <grudge>Beasts</grudge>
+    <wrathDays>45</wrathDays>
+    <blessing>Growth</blessing>
+    <prices><li>Mark</li><li>Offering</li></prices>
+    <offering>rawfood</offering>
+    <dream>a woman of bark and leaves stood at the foot of the bed with roots for feet, and the room smelled of wet earth</dream>
+    <site>tree</site>
+    <feast>the Greening</feast>
+    <side>growth</side>
   </ColonyCouncil.GodWaysDef>
 
+  <!-- Smoulder, the Coil Under the Mountain: greedy, vain, sleepy; silver thrown in, gold back; heat rising when he turns. -->
   <ColonyCouncil.GodWaysDef>
-    <defName>Rimfolk_GodWays_Way</defName>
-    <gods><li>Rimfolk_Patron_Way</li></gods>
-    <classes><li>TM_Wayfarer</li></classes>
-    <paths><li>VPE_Skipmaster</li></paths>
-    <beasts><li>Horse</li><li>Dromedary</li></beasts>
-    <site>stone</site>
-    <feast>the Night of Nine Flags</feast>
-    <mythTags><li>godkey:way</li></mythTags>
+    <defName>Rimfolk_GodWays_Smoulder</defName>
+    <gods><li>Smoulder</li></gods>
+    <gifts><li>Hoard</li><li>Hand</li></gifts>
+    <chooses>Mining</chooses>
+    <hand>Rimfolk_GodGift_Smoulder</hand>
+    <wrath>HeatWave</wrath>
+    <wrathDays>60</wrathDays>
+    <blessing>Ore</blessing>
+    <prices><li>Offering</li></prices>
+    <offering>silver</offering>
+    <dream>a warm, reasonable voice spoke from under the floor at great length about silver, and an eye as big as a door opened in the rock</dream>
+    <site>geyser</site>
+    <feast>the Night of Thrown Silver</feast>
+    <side>warm</side>
+    <sides><li>hoard</li></sides>
   </ColonyCouncil.GodWaysDef>
 
+  <!-- Bellwether, the Old Horn: serene, curious about children; a passion found by one who sat near him; his kin harmed, the worst thing. -->
   <ColonyCouncil.GodWaysDef>
-    <defName>Rimfolk_GodWays_Sleeper</defName>
-    <gods><li>Rimfolk_Patron_Sleeper</li></gods>
-    <classes><li>TM_Bard</li></classes>
-    <paths><li>VPE_Archotechist</li></paths>
+    <defName>Rimfolk_GodWays_Bellwether</defName>
+    <gods><li>Bellwether</li></gods>
+    <gifts><li>Passion</li></gifts>
+    <chooses>youngest</chooses>
+    <kin><li>Thrumbo</li><li>AlphaThrumbo</li></kin>
+    <kinWrath>Shunned</kinWrath>
+    <prices><li>Mark</li></prices>
+    <dream>a huge white beast with one spiralled horn grazed in the yard and looked at the dreamer with old, calm eyes, and let a hand rest on the horn</dream>
+    <feast>the Passing</feast>
+  </ColonyCouncil.GodWaysDef>
+
+  <!-- Morel, the Soft Mother: patient, motherly, unsettling; sicknesses that pass quickly, a freezer failing at the worst hour. -->
+  <ColonyCouncil.GodWaysDef>
+    <defName>Rimfolk_GodWays_Morel</defName>
+    <gods><li>Morel</li></gods>
+    <gifts><li>Class</li><li>Hand</li></gifts>
+    <chooses>Medicine</chooses>
+    <classes><li>Necromancer</li></classes>
+    <hand>Rimfolk_GodGift_Morel</hand>
+    <wrath>Breakdown</wrath>
+    <wrathDays>50</wrathDays>
+    <blessing>Fever</blessing>
+    <prices><li>Years</li></prices>
+    <offering>rawfood</offering>
+    <dream>a soft voice spoke very close, the air smelled of earth after rain, and fine white threads grew over the blanket while the dreamer watched</dream>
+    <site>grave</site>
+    <feast>the Night of Turned Earth</feast>
+    <side>rot</side>
+  </ColonyCouncil.GodWaysDef>
+
+  <!-- Ennu, the Guest: warm, observant, a long memory; the kindest carries something of it from then on. -->
+  <ColonyCouncil.GodWaysDef>
+    <defName>Rimfolk_GodWays_Ennu</defName>
+    <gods><li>Ennu</li></gods>
+    <gifts><li>Hand</li></gifts>
+    <chooses>kindest</chooses>
+    <hand>Rimfolk_GodGift_Ennu</hand>
+    <prices><li>Offering</li></prices>
+    <offering>meals</offering>
+    <dream>a stranger knocked in the rain and asked to come in, ate nothing, thanked the cook by name, and knew the name of the dreamer's mother</dream>
+    <feast>the Open Door</feast>
+  </ColonyCouncil.GodWaysDef>
+
+  <!-- Pip, the Hum: eager, lonely, mischievous; a machine mended overnight, a short circuit when it sulks. -->
+  <ColonyCouncil.GodWaysDef>
+    <defName>Rimfolk_GodWays_Pip</defName>
+    <gods><li>Pip</li></gods>
+    <gifts><li>Class</li><li>Spell</li><li>Path</li><li>Hand</li></gifts>
+    <chooses>Intellectual</chooses>
+    <classes><li>Technomancer</li></classes>
+    <spells><li>SpellOf_PowerNode</li><li>SpellOf_EMP</li></spells>
+    <paths><li>VPE_Technomancer</li></paths>
+    <hand>Rimfolk_GodGift_Machine</hand>
+    <wrath>ShortCircuit</wrath>
+    <wrathDays>40</wrathDays>
+    <blessing>Mend</blessing>
+    <prices><li>Offering</li></prices>
+    <offering>ComponentIndustrial</offering>
+    <dream>every light in the colony flickered in a pattern like someone tapping, and a small voice laughed in the static and asked to be noticed</dream>
     <site>wreck</site>
-    <mythTags><li>godkey:sleeper</li></mythTags>
+    <feast>the Lighting of the Lamps</feast>
+    <side>spark</side>
+  </ColonyCouncil.GodWaysDef>
+
+  <!-- Cirrus, Who Drifts Above: aloof, moody, old; a meteorite for those who look up, a flashstorm when bored, lightning for a grudge. -->
+  <ColonyCouncil.GodWaysDef>
+    <defName>Rimfolk_GodWays_Cirrus</defName>
+    <gods><li>Cirrus</li></gods>
+    <gifts><li>Class</li><li>Spell</li><li>Path</li><li>Hand</li></gifts>
+    <chooses>sensitive</chooses>
+    <classes><li>StormBorn</li></classes>
+    <spells><li>SpellOf_LightningTrap</li></spells>
+    <paths><li>VPE_Staticlord</li></paths>
+    <hand>Rimfolk_GodGift_Storm</hand>
+    <wrath>Flashstorm</wrath>
+    <grudge>Lightning</grudge>
+    <wrathDays>70</wrathDays>
+    <blessing>Meteor</blessing>
+    <prices><li>Mark</li></prices>
+    <dream>the dreamer lay on the roof and watched a shape in the high cloud, too regular to be cloud, that slowly turned and looked back</dream>
+    <feast>the Night of the Wrong Star</feast>
+    <side>storm</side>
+  </ColonyCouncil.GodWaysDef>
+
+  <!-- Hush, the Long White: impartial, quiet, unhurried; a cold snap for the unprepared, a thaw for those who endure. -->
+  <ColonyCouncil.GodWaysDef>
+    <defName>Rimfolk_GodWays_Hush</defName>
+    <gods><li>Hush</li></gods>
+    <gifts><li>Class</li><li>Spell</li><li>Path</li><li>Hand</li></gifts>
+    <chooses>oldest</chooses>
+    <classes><li>HeartOfFrost</li></classes>
+    <spells><li>SpellOf_SnapFreeze</li></spells>
+    <paths><li>VPE_Frostshaper</li></paths>
+    <hand>Rimfolk_GodGift_Hush</hand>
+    <wrath>ColdSnap</wrath>
+    <wrathDays>60</wrathDays>
+    <blessing>Thaw</blessing>
+    <prices><li>Years</li></prices>
+    <dream>a tall white figure stood at the edge of the snow and did not come closer, and every sound in the world stopped for one breath</dream>
+    <feast>the Longest Night</feast>
+    <side>cold</side>
+  </ColonyCouncil.GodWaysDef>
+
+  <!-- Helios, the Giver: vast, warm and blind to his own gifts; long clear days for everyone alike, and his too-much-giving (a heat wave, a drought, a solar flare Pip hates). No bargain, no anger, no gift of his own to one person. -->
+  <ColonyCouncil.GodWaysDef>
+    <defName>Rimfolk_GodWays_Helios</defName>
+    <gods><li>Helios</li></gods>
+    <gifts><li>None</li></gifts>
+    <blind>true</blind>
+    <wrath>HeatWave</wrath>
+    <wraths><li>HeatWave</li><li>Drought</li><li>Flare</li></wraths>
+    <wrathDays>120</wrathDays>
+    <blessing>Clear</blessing>
+    <feast>the Long Day</feast>
+    <side>sun</side>
+  </ColonyCouncil.GodWaysDef>
+
+  <!-- Selene, the Mirror: quiet, cool, attentive; returns at night what the colony did by day, as much as her face shows; dreams that come true for those who keep the night. -->
+  <ColonyCouncil.GodWaysDef>
+    <defName>Rimfolk_GodWays_Selene</defName>
+    <gods><li>Selene</li></gods>
+    <gifts><li>Class</li><li>Spell</li><li>Hand</li></gifts>
+    <chooses>nightowl</chooses>
+    <classes><li>Chronomancer</li></classes>
+    <spells><li>SpellOf_MageLight</li></spells>
+    <hand>Rimfolk_GodGift_Selene</hand>
+    <mirror>true</mirror>
+    <wrath>Nightmares</wrath>
+    <blessing>Rest</blessing>
+    <trueDreams>true</trueDreams>
+    <prices><li>Years</li></prices>
+    <dream>the moon rose huge and close over the colony and stayed there all night, and in its light every face looked the way it really was</dream>
+    <feast>the Night of the Full Moon</feast>
+  </ColonyCouncil.GodWaysDef>
+
+  <!-- Mog, the cat: aloof, capricious; a lucky season for the one she chooses, a cat wandering in; the rats when cats are harmed. -->
+  <ColonyCouncil.GodWaysDef>
+    <defName>Rimfolk_GodWays_Mog</defName>
+    <gods><li>Mog</li></gods>
+    <gifts><li>Hand</li></gifts>
+    <chooses>any</chooses>
+    <hand>Rimfolk_GodGift_Mog</hand>
+    <kin>
+      <li>Cat</li>
+      <li>AEXP_CatAbyssinian</li>
+      <li>AEXP_CatBengal</li>
+      <li>AEXP_CatBritishShorthair</li>
+      <li>AEXP_CatMaineCoon</li>
+      <li>AEXP_CatMunchkin</li>
+      <li>AEXP_CatNorwegianForest</li>
+      <li>AEXP_CatPersian</li>
+      <li>AEXP_CatSiamese</li>
+      <li>AEXP_CatSomali</li>
+    </kin>
+    <kinWrath>Rats</kinWrath>
+    <blessing>Stray</blessing>
+    <prices><li>Offering</li></prices>
+    <offering>meals</offering>
+    <dream>a grey cat with too-bright eyes sat on the dreamer's chest all night, purring, and would not be moved</dream>
+    <feast>the Night of the Saucer</feast>
+  </ColonyCouncil.GodWaysDef>
+
+  <!-- Murmur, Old Croak: slow, moody, generous when sung to; rain when the fields need it, a drought and then a flood. -->
+  <ColonyCouncil.GodWaysDef>
+    <defName>Rimfolk_GodWays_Murmur</defName>
+    <gods><li>Murmur</li></gods>
+    <gifts><li>Spell</li><li>Hand</li></gifts>
+    <chooses>Plants</chooses>
+    <spells><li>SpellOf_Rain</li></spells>
+    <hand>Rimfolk_GodGift_Murmur</hand>
+    <wrath>Drought</wrath>
+    <wrathDays>50</wrathDays>
+    <blessing>Rain</blessing>
+    <prices><li>Offering</li></prices>
+    <offering>rawfood</offering>
+    <dream>the dreamer stood at the bottom of a well, and something enormous croaked in the dark water, slow and deep, until the stones hummed with it</dream>
+    <site>water</site>
+    <feast>the Singing at the Wells</feast>
+    <side>rain</side>
+  </ColonyCouncil.GodWaysDef>
+
+  <!-- Ducat, the Restless Gold: charming, impatient, despises a miser; a trader at the right time, a debt kept; silver gone from a hoard. -->
+  <ColonyCouncil.GodWaysDef>
+    <defName>Rimfolk_GodWays_Ducat</defName>
+    <gods><li>Ducat</li></gods>
+    <gifts><li>Hand</li></gifts>
+    <chooses>Social</chooses>
+    <hand>Rimfolk_GodGift_Ducat</hand>
+    <wrath>Missing</wrath>
+    <wrathDays>45</wrathDays>
+    <blessing>Trader</blessing>
+    <prices><li>Offering</li></prices>
+    <offering>silver</offering>
+    <dream>a golden beetle walked across an open ledger, stopped at a figure, tapped it twice, and was gone before the candle moved</dream>
+    <feast>the Fair of the Glint</feast>
+    <side>flow</side>
+    <debts>true</debts>
+  </ColonyCouncil.GodWaysDef>
+
+  <!-- Undertow, the Hunger: gives only by its bargains (GodVoid); the gods that fear it turn away, and Pip goes quiet. -->
+  <ColonyCouncil.GodWaysDef>
+    <defName>Rimfolk_GodWays_Undertow</defName>
+    <gods><li>Undertow</li></gods>
+    <gifts><li>None</li></gifts>
+    <shuns><li>Hollin</li><li>Bellwether</li><li>Ennu</li></shuns>
+    <quiets><li>Pip</li></quiets>
+    <feast>the Long Vigil</feast>
   </ColonyCouncil.GodWaysDef>
 
 </Defs>

@@ -358,6 +358,8 @@ namespace ColonyCouncil
                 FavoursOwed.Noted(d);
                 // A wrong between the two is a breach of a truce or a pact (Diplomacy/PactsHooks.cs).
                 PactsHooks.Noted(d);
+                // The colony's good turn or wrong by day, for the moon to return at night (Gods/World/GodHealth.cs).
+                GodHealth.Deed(k.side == DeedSide.Favor, k.side == DeedSide.Wrong);
                 return d;
             }
             catch (Exception e)

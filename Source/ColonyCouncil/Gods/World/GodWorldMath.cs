@@ -21,7 +21,11 @@ namespace ColonyCouncil
         /// <summary>A psylink and a Vanilla Psycasts Expanded path fitting the domain.</summary>
         Path,
         /// <summary>The god's relic: the colony faith's lost relic (Ideology), or a masterwork in the god's name.</summary>
-        Relic
+        Relic,
+        /// <summary>A passion found in a skill they had none in (Bellwether's: someone who sat near him comes away changed).</summary>
+        Passion,
+        /// <summary>Gold for the silver given, more than was given (Smoulder's old way: silver thrown into the deep, gold back).</summary>
+        Hoard
     }
 
     /// <summary>What a gift costs (every gift has a price).</summary>
@@ -50,16 +54,68 @@ namespace ColonyCouncil
         /// <summary>Its beasts sent after the one who offended (wolves for the one who killed the sacred stag).</summary>
         Beasts,
         /// <summary>The sun put out an afternoon (the game's own eclipse).</summary>
-        Eclipse
+        Eclipse,
+        /// <summary>A cold snap (the game's own): Hush, after a death in a colony that did not prepare.</summary>
+        ColdSnap,
+        /// <summary>A heat wave (the game's own): Smoulder turning in his sleep.</summary>
+        HeatWave,
+        /// <summary>A flashstorm (the game's own): Cirrus bored.</summary>
+        Flashstorm,
+        /// <summary>A machine broken down (the game's own breakdown), a cooler first: Morel's hand on a freezer at the worst hour.</summary>
+        Breakdown,
+        /// <summary>A short circuit (the game's own): Pip sulking.</summary>
+        ShortCircuit,
+        /// <summary>Every people near hears of it and every god turns colder (Bellwether's kin harmed): never at a home's anger, only at the harm.</summary>
+        Shunned,
+        /// <summary>A dry season (the game's own drought where it has one), then a flood (Murmur woken furious).</summary>
+        Drought,
+        /// <summary>Silver gone missing from a hoard, nobody took it (Ducat, who despises a miser).</summary>
+        Missing,
+        /// <summary>A solar flare (the game's own): Helios's gift overflowing into the colony's machines.</summary>
+        Flare,
+        /// <summary>Bad dreams that follow a few of the colony into the day (Selene returning a cruelty done by day).</summary>
+        Nightmares,
+        /// <summary>The colony's cats leave in one night and the rats come back (Mog's kin harmed): only at the harm.</summary>
+        Rats
+    }
+
+    /// <summary>The shape a god's kindness takes on the map, now and then, while the colony stands well with it (Gods/World/GodHealth.cs).</summary>
+    public enum GodBlessing
+    {
+        None,
+        /// <summary>A fever broken, a plague eased, in the small hours (Morel: sicknesses that pass quickly).</summary>
+        Fever,
+        /// <summary>Wild food and healroot springing up near the walls where none was sown (Hollin).</summary>
+        Growth,
+        /// <summary>A vein pushed up to the surface out of a sleeping dream (Smoulder).</summary>
+        Ore,
+        /// <summary>A broken machine mending itself, a battery holding through the night (Pip).</summary>
+        Mend,
+        /// <summary>A meteorite falling outside the walls, full of good metal (Cirrus: the game's own).</summary>
+        Meteor,
+        /// <summary>A cold snap ending early (Hush, to a colony that prepared).</summary>
+        Thaw,
+        /// <summary>Long clear days in the growing season, the rain held off a while (Helios, given to everyone alike).</summary>
+        Clear,
+        /// <summary>Rain when the fields need it (Murmur's song).</summary>
+        Rain,
+        /// <summary>A cat wanders in and stays (Mog).</summary>
+        Stray,
+        /// <summary>A trader's caravan arriving at the right time (Ducat: the game's own).</summary>
+        Trader,
+        /// <summary>A deep sleep that mends: a wounded colonist's hurts a few days better by morning (Selene returning a kindness).</summary>
+        Rest,
+        /// <summary>Something found at the door in the morning (Selene returning a kindness).</summary>
+        Found
     }
 
     /// <summary>
     /// The pure rules of the gods in the wider world (docs/design/gods.md, stage 2's "The world": brainstorm items 17, 18, 19,
     /// 21 and 22, and the drama between the gods), with no game types so Tools/Tests checks them (GodWorldTests): how often
     /// each thing comes, by how real the gods are; what a god gives and what it asks in return, by its domain, nature and
-    /// kind; the shapes of its anger and its kindness and how likely each is by the colony's standing; the quarrels of rival
-    /// gods in the weather; the Hunger's bargains and what it takes next; an archotech's exact terms; the Sleeper's door;
-    /// the newborn's signs; the myths as the ties' history grows; and what a neighbour's letter tells of its god.
+    /// kind (a god's own ways first: Gods/World/GodWays.cs; these tables are the fallback by domain); the shapes of its anger
+    /// and its kindness and how likely each is by the colony's standing; the quarrels of rival gods in the sky and the
+    /// ground; the Hunger's bargains and what it takes next; and what a neighbour's letter tells of its god.
     /// </summary>
     public static class GodWorldMath
     {
@@ -70,7 +126,7 @@ namespace ColonyCouncil
         /// <summary>How much more or less often the gods act in the world: half as often when only believed, more when they walk.</summary>
         public static float Realness(GodRealness r) => r == GodRealness.Believed ? 0.5f : r == GodRealness.Walking ? 1.4f : 1f;
 
-        /// <summary>What only a real god can do (gifts of power, the void's bargains, the Sleeper's door, the rival's avatar): Felt and Walking, never Believed.</summary>
+        /// <summary>What only a real god can do (gifts of power, the void's bargains, a rival undoing a gift): Felt and Walking, never Believed.</summary>
         public static bool Supernatural(GodRealness r) => r != GodRealness.Believed;
 
         /// <summary>The chance on one day of something that comes every <paramref name="meanDays"/> on average, times <paramref name="factor"/>.</summary>
@@ -101,17 +157,17 @@ namespace ColonyCouncil
         /// <summary>A hermit seer camps at the map's edge.</summary>
         public const float SeerDays = 200f, SeerGap = 120f;
 
-        /// <summary>A raid by a people with a war god: one in this many is led by its champion, and never two within the gap.</summary>
-        public const float ChampionShare = 0.15f, ChampionGap = 20f;
-
-        /// <summary>A god that favours the colony offers one of its people a gift: every this many days while favoured, twice as often beloved.</summary>
+        /// <summary>A god that favors the colony gives one of its people a gift (a dream told first): every this many days while favored, twice as often beloved.</summary>
         public const float GiftDays = 110f, GiftGap = 45f;
 
-        /// <summary>Two rival gods' quarrel in the weather, the god's ask (slight a rival, hide the hunted), the rival who undoes a blessing.</summary>
+        /// <summary>Two gods' quarrel in the weather or on the ground, and one their peoples hunt asking to be hidden.</summary>
         public const float QuarrelDays = 240f, QuarrelGap = 120f, AskDays = 160f, AskGap = 80f;
 
-        /// <summary>The ones who don't fit: an archotech's bargain, the dead god's mark found, the fading god, the Sleeper's dream.</summary>
-        public const float BargainDays = 200f, BargainGap = 120f, DeadMarkDays = 120f, FadingDays = 240f, SleeperDays = 160f, SleeperGap = 60f;
+        /// <summary>A god's own kindness at a home while the colony stands well with it, and never two of one god within the gap.</summary>
+        public const float BlessingGap = 20f;
+
+        /// <summary>The mean days between a god's own blessings at a home by the colony's standing: none below pleased.</summary>
+        public static float BlessingDays(FavourWord w) => w == FavourWord.Beloved ? 25f : w == FavourWord.Favoured ? 40f : w == FavourWord.Pleased ? 70f : 0f;
 
         /// <summary>The scale on a chance for how real the gods are, and whether it can come at all.</summary>
         public static float Factor(GodRealness r, bool supernatural) => supernatural && !Supernatural(r) ? 0f : Realness(r);
@@ -119,7 +175,7 @@ namespace ColonyCouncil
         // ================= Letters and diplomacy =================
 
         /// <summary>
-        /// What a neighbour's letter tells of their god, by what is true at their town (their facts): a sign of its favour when
+        /// What a neighbour's letter tells of their god, by what is true at their town (their facts): a sign of its favor when
         /// the town is thriving or flourishing ("miracle"), of its anger when it is struggling, ill or mourning ("curse"), or
         /// nothing; a myth now and then when their god has ties ("myth"); a holy war when their war is their gods' quarrel
         /// ("holywar"). The roll keeps it to some letters, not all.
@@ -141,14 +197,14 @@ namespace ColonyCouncil
         public static bool Slights(bool rivalFaith, bool scoffer, bool condolences, float roll) =>
             !condolences && !float.IsNaN(roll) && (rivalFaith && roll < 0.35f || scoffer && roll < 0.2f);
 
-        /// <summary>A slighted people's goodwill lost, and how far their god is displeased (before its nature).</summary>
+        /// <summary>A slighted people's goodwill lost, and how far their god's favor falls (before its nature).</summary>
         public const int SlightGoodwill = -6;
         public const float SlightFavour = -6f;
 
         /// <summary>
         /// Goodwill a season with a people who shares one of the colony's gods, by the colony's standing with that god: none
         /// below noticed, a little when noticed, more pleased and up. Against a people whose god is the rival of the colony's
-        /// patron: a little less, only while that patron favours the colony (a feud that is really the gods').
+        /// patron: a little less, only while that patron favors the colony (a feud that is really the gods').
         /// </summary>
         public static int SharedGoodwill(FavourWord colonyWithGod) =>
             colonyWithGod >= FavourWord.Pleased ? 2 : colonyWithGod == FavourWord.Noticed ? 1 : 0;
@@ -179,7 +235,7 @@ namespace ColonyCouncil
         // ================= Peoples and camps =================
 
         /// <summary>The kinds of holy place there are.</summary>
-        public static readonly string[] SiteKinds = { "tree", "water", "wreck", "grave", "stone" };
+        public static readonly string[] SiteKinds = { "tree", "water", "wreck", "grave", "stone", "geyser" };
 
         /// <summary>What kind of holy place a domain's people would call one on the colony's land: "tree" (an old tree), "water" (a spring or a river's bank), "wreck" (a crash site, an ancient machine), "grave" (the colony's graves), "stone" (an old ruin), or null.</summary>
         public static string SiteKind(GodDomain d) => d switch
@@ -189,6 +245,7 @@ namespace ColonyCouncil
             GodDomain.Hunt => "tree",
             GodDomain.Waters => "water",
             GodDomain.Healing => "water",
+            GodDomain.Hearth => "geyser",
             GodDomain.Machine => "wreck",
             GodDomain.Storm => "wreck",
             GodDomain.Void => "wreck",
@@ -202,33 +259,20 @@ namespace ColonyCouncil
         /// <summary>The pilgrims' standing earned: their god pleased by a stay let be, more by one the colony joined.</summary>
         public const float PilgrimFavour = 3f, PilgrimJoinedFavour = 4f;
 
-        /// <summary>A champion's fall is a sign: their god's rivals (and the colony's own war gods) pleased, the champion's god displeased, or impressed if proud.</summary>
-        public const float ChampionFell = 6f, ChampionGodLoss = -5f, ChampionProud = 3f;
-
-        /// <summary>How the champion's god takes the fall: a proud or wrathful war god is impressed by a colony that beat its best, others are displeased.</summary>
-        public static float ChampionGodTakes(GodNature n) => n == GodNature.Proud || n == GodNature.Wrathful ? ChampionProud : ChampionGodLoss;
-
         // ================= Health and wrath =================
 
         /// <summary>
         /// A night's chance that a fever breaks or a plague eases for a colonist who is ill, by the colony's standing with
-        /// its healing god (or their own god of healing): none below noticed. Once an illness.
+        /// the god whose kindness that is (Morel's): none below noticed. Once an illness.
         /// </summary>
-        public static float BlessingChance(FavourWord w, GodKind kind)
+        public static float BlessingChance(FavourWord w) => w switch
         {
-            float c = w switch
-            {
-                FavourWord.Beloved => 0.15f,
-                FavourWord.Favoured => 0.1f,
-                FavourWord.Pleased => 0.06f,
-                FavourWord.Noticed => 0.03f,
-                _ => 0f
-            };
-            // The dead hardly answer; a newborn's is small.
-            if (kind == GodKind.Dead) return c * 0.2f;
-            if (kind == GodKind.Newborn) return c * 0.6f;
-            return c;
-        }
+            FavourWord.Beloved => 0.15f,
+            FavourWord.Favoured => 0.1f,
+            FavourWord.Pleased => 0.06f,
+            FavourWord.Noticed => 0.03f,
+            _ => 0f
+        };
 
         /// <summary>How far an illness eases at the blessing (its severity down by this), never below a sliver.</summary>
         public const float BlessingEase = 0.15f, BlessingFloor = 0.02f;
@@ -260,13 +304,14 @@ namespace ColonyCouncil
         }
 
         /// <summary>
-        /// The mean days between a god's acts of anger at a home while the colony stands displeased or worse with it: a
-        /// wrathful god soonest, a grieving or generous one slowest; wrathful standing twice as often as displeased. 0: never.
+        /// The mean days between a god's acts of anger at a home while the colony stands displeased or worse with it: its own
+        /// temper where its ways give one (<paramref name="own"/>), else by its nature (a wrathful god soonest, a grieving or
+        /// generous one slowest, a patient or cold one never); wrathful standing twice as often as displeased. 0: never.
         /// </summary>
-        public static float WrathDays(FavourWord w, GodNature n, GodKind k)
+        public static float WrathDays(FavourWord w, GodNature n, float own = 0f)
         {
-            if (w > FavourWord.Displeased || k == GodKind.Dead || k == GodKind.Archotech) return 0f;
-            float days = n switch
+            if (w > FavourWord.Displeased) return 0f;
+            float days = own > 0f ? own : n switch
             {
                 GodNature.Wrathful => 30f,
                 GodNature.Proud => 40f,
@@ -396,9 +441,15 @@ namespace ColonyCouncil
         /// casts; a path with Royalty and Vanilla Psycasts Expanded to one with no psylink yet; the relic when there is one.
         /// The rarest gifts weigh least.
         /// </summary>
-        public static GodGiftKind PickGift(bool hand, bool beast, bool cls, bool spell, bool mana, bool path, bool relic, float roll)
+        public static GodGiftKind PickGift(bool hand, bool beast, bool cls, bool spell, bool mana, bool path, bool relic, float roll) =>
+            PickGift(hand, beast, cls, spell, mana, path, relic, false, false, roll);
+
+        /// <summary>The same, with a passion found and gold for silver (the nine's own gifts) beside the rest.</summary>
+        public static GodGiftKind PickGift(bool hand, bool beast, bool cls, bool spell, bool mana, bool path, bool relic, bool passion, bool hoard, float roll)
         {
             var w = new List<(GodGiftKind k, float w)>();
+            if (passion) w.Add((GodGiftKind.Passion, 3f));
+            if (hoard) w.Add((GodGiftKind.Hoard, 3f));
             if (hand) w.Add((GodGiftKind.Hand, 3f));
             if (beast) w.Add((GodGiftKind.Beast, 2f));
             if (cls) w.Add((GodGiftKind.Class, 1.5f));
@@ -418,7 +469,6 @@ namespace ColonyCouncil
         public static GodPrice PriceOf(GodNature n, GodKind k, GodDomain d, float roll)
         {
             if (k == GodKind.Hunger) return GodPrice.Years;
-            if (k == GodKind.Archotech) return GodPrice.Offering;
             if (d == GodDomain.War && roll < 0.6f) return GodPrice.Blood;
             switch (n)
             {
@@ -463,30 +513,36 @@ namespace ColonyCouncil
         /// <summary>The colonist stands out under the sky this long to receive the gift (ticks), and the gift is given at most this long after they were sent.</summary>
         public const int GiftKeepTicks = 2 * HourTicks, GiftWaitTicks = 6 * HourTicks;
 
-        // ================= The trickster and the rival =================
+        // ================= The rival =================
 
-        /// <summary>
-        /// A trickster's gift turns (a blessing to a curse, or back): not before <see cref="TricksterFirstDays"/>, then each day
-        /// by this chance; it turns back a little more readily than it first turned. At most <see cref="TricksterTurns"/> turns.
-        /// </summary>
-        public static bool TricksterTurnsToday(int daysSince, bool cursed, int turns, float roll)
-        {
-            if (turns >= TricksterTurns || daysSince < TricksterFirstDays || float.IsNaN(roll)) return false;
-            return roll < (cursed ? 0.15f : 0.08f);
-        }
-
-        public const int TricksterFirstDays = 4, TricksterTurns = 3;
-
-        /// <summary>After a gift of a god with a rival the colony knows: the rival's avatar comes to undo it this many days after at the soonest, once, by this chance a day while it may.</summary>
+        /// <summary>After a gift of a god with a rival the colony knows: the rival comes to undo it, in its own way, this many days after at the soonest, once, by this chance a day while it may.</summary>
         public const int UndoAfterDays = 3, UndoUntilDays = 20;
         public const float UndoDayChance = 0.03f;
 
-        /// <summary>The rival's coming answered: the gift let go (the rival pleased, the giver displeased), the avatar sent off (the rival's anger), or the colony stood between them (the giver pleased).</summary>
-        public const float UndoLetGo = 6f, UndoGiverLoss = -5f, UndoSentOff = -8f, UndoStood = 6f;
+        /// <summary>The rival's coming answered: the gift let go (the rival's favor up, the giver's down), or the rival paid off with an offering (the giver's favor up, the rival's grudge eased).</summary>
+        public const float UndoLetGo = 6f, UndoGiverLoss = -5f, UndoPaid = 3f, UndoStood = 6f;
 
         // ================= The drama =================
 
-        /// <summary>Rival gods whose quarrel shows in the weather: one of the sky's against one of the dry land's or the water's.</summary>
+        /// <summary>
+        /// The sides a god can take in a quarrel the colony sees: in the sky (storm, dry, cold, warm, sun, rain) or on the
+        /// ground (growth, rot, spark, flow, hoard).
+        /// </summary>
+        public static readonly string[] Sides = { "storm", "dry", "cold", "warm", "sun", "rain", "growth", "rot", "spark", "flow", "hoard" };
+
+        /// <summary>The pairs that quarrel: the storm and the dry sky, the cold and the warm (Hush and Smoulder over the high valleys), the cold and the rain (Murmur asleep through Hush's months), growth and rot (Hollin and Morel), the sun and the spark (Helios's flares and Pip), the flow and the hoard (Ducat and Smoulder).</summary>
+        private static readonly string[][] Quarrels =
+        {
+            new[] { "storm", "dry" }, new[] { "cold", "warm" }, new[] { "cold", "rain" }, new[] { "growth", "rot" }, new[] { "sun", "spark" }, new[] { "flow", "hoard" }
+        };
+
+        /// <summary>Two sides that quarrel, either way round.</summary>
+        public static bool Opposed(string a, string b) => a != null && b != null && Quarrels.Any(q => q[0] == a && q[1] == b || q[0] == b && q[1] == a);
+
+        /// <summary>A side shown in the weather (the rest show as a sign on the ground).</summary>
+        public static bool InTheSky(string side) => side == "storm" || side == "dry" || side == "cold" || side == "warm" || side == "sun" || side == "rain";
+
+        /// <summary>Rival gods whose quarrel shows in the weather by their domains, where their ways name no side: one of the sky's against one of the dry land's or the water's.</summary>
         public static bool WeatherQuarrel(GodDomain a, GodDomain b) =>
             a == GodDomain.Storm && (b == GodDomain.Harvest || b == GodDomain.Waters || b == GodDomain.Hearth)
             || b == GodDomain.Storm && (a == GodDomain.Harvest || a == GodDomain.Waters || a == GodDomain.Hearth);
@@ -494,24 +550,15 @@ namespace ColonyCouncil
         /// <summary>A quarrel lasts this many days, a turn each this many days (the storm's, then the dry spell's).</summary>
         public const int QuarrelLastsDays = 12, QuarrelTurnDays = 2;
 
-        /// <summary>Whose turn it is on a day of the quarrel: 0 the storm's side, 1 the other.</summary>
+        /// <summary>Whose turn it is on a day of the quarrel: 0 the first side's, 1 the other's.</summary>
         public static int QuarrelTurn(int daysIn) => daysIn < 0 ? 0 : daysIn / QuarrelTurnDays % 2;
 
-        /// <summary>A side taken: the god chosen pleased, the other displeased (before their natures).</summary>
-        public const float SideTaken = 6f, SideSpurned = -5f;
-
-        /// <summary>The god's ask (to slight a rival or to hide one the rival hunts) answered.</summary>
+        /// <summary>One a god's people hunt, hidden or turned away: the god who sent them and the god whose people hunt them.</summary>
         public const float AskDone = 7f, AskRivalLoss = -7f, AskRefused = -5f;
         public const int AskRivalGoodwill = -5;
 
         /// <summary>One the rival hunts stays this many days when hidden.</summary>
         public const int HiddenDays = 3;
-
-        /// <summary>
-        /// How far a myth has come by the history of two gods' tie (the acts of it the colony remembers): the old tale at
-        /// first, then the quarrel or the turn, then what came after. Lines are tagged myth:0, myth:1, myth:2.
-        /// </summary>
-        public static int MythStage(int tieActs) => tieActs <= 0 ? 0 : tieActs == 1 ? 1 : 2;
 
         /// <summary>A myth told at supper: an evening's chance at a home, and the days between two.</summary>
         public const float MythEveningChance = 0.12f;
@@ -546,54 +593,101 @@ namespace ColonyCouncil
         /// <summary>The years the Hunger takes.</summary>
         public const int HungerYears = 6;
 
-        /// <summary>A refusal: the Hunger (jealous) displeased; a bargain struck: it is pleased, and the Choir of the Spire, who know it, warmer for the colony's honesty with them.</summary>
+        /// <summary>A refusal: the Hunger's favor down; a bargain struck: up, and the Choir of the Spire, who know it, warmer for the colony's honesty with them.</summary>
         public const float HungerStruck = 8f, HungerRefused = -4f;
         public const int ChoirGoodwill = 3;
 
-        // ================= The ones who don't fit =================
+        /// <summary>A bargain with the Hunger: the gods who fear it turn away (before their natures), and the one that goes quiet keeps its kindness back this many days.</summary>
+        public const float HungerShunned = -5f;
+        public const float QuietDays = 30f;
 
-        /// <summary>An archotech's exact term: how many of the goods (by their worth) and how many days to deliver them.</summary>
-        public static int TermCount(float unitValue, float wealthFactor)
+        // ================= Bellwether's kin, Smoulder's hoard, a passion found =================
+
+        /// <summary>Bellwether's kin harmed: every people near thinks the less of the colony, every god it knows turns colder (before their natures).</summary>
+        public const int ShunnedGoodwill = -4;
+        public const float ShunnedFavour = -3f;
+
+        // ================= Helios's days, Murmur's rain, Ducat's silver, a debt paid =================
+
+        /// <summary>Helios's long clear days and Murmur's rain hold this many days (the rain held off, or let fall).</summary>
+        public const float ClearDays = 3f, RainDays = 1f;
+
+        /// <summary>Helios's clear days come only in the growing season: an outdoor temperature in this range.</summary>
+        public static bool GrowingWeather(float outdoorTemp) => !float.IsNaN(outdoorTemp) && outdoorTemp >= 6f && outdoorTemp <= 42f;
+
+        /// <summary>Murmur's anger: a drought, and a flood instead when its drought came within this many days.</summary>
+        public const float FloodAfterDroughtDays = 40f;
+
+        /// <summary>
+        /// The silver Ducat takes from a hoard: none below the floor (no hoard), else a share, at most the most. A trader
+        /// once short-changed is the same coin by another road.
+        /// </summary>
+        public const int MissingFloor = 500, MissingMost = 200;
+        public const float MissingShare = 0.05f;
+
+        public static int MissingSilver(int held) => held < MissingFloor ? 0 : Math.Min(MissingMost, Math.Max(1, (int)(held * MissingShare)));
+
+        /// <summary>A debt the colony owed (Rimfolk's favours, Diplomacy/FavoursOwed.cs) kept or broken: the god who watches debts (Ducat), before its nature.</summary>
+        public const float DebtKept = 3f, DebtBroken = -5f;
+
+        // ================= Helios gives, Selene returns =================
+
+        /// <summary>Helios is blind to the colony: his long clear days come every this many days on average in the growing season, whatever the colony does.</summary>
+        public const float BlindBlessingDays = 60f;
+
+        /// <summary>
+        /// Selene's face on a day of the quadrum (0 to 14): full in the middle of it (1), dark at its turn (0), a cycle a
+        /// quadrum. How much of the day she returns.
+        /// </summary>
+        public static float MoonFace(int dayOfQuadrum)
         {
-            if (float.IsNaN(unitValue) || unitValue <= 0f) return 0;
-            float worth = 400f * Clamp(wealthFactor, 0.5f, 2.5f);
-            return Math.Max(1, (int)Math.Round(worth / unitValue));
+            int d = ((dayOfQuadrum % 15) + 15) % 15;
+            return 1f - Math.Abs(d - 7) / 7f;
         }
 
-        public const int TermDays = 6;
+        /// <summary>The dark of the moon makes the Hunger's voice easier to hear: up to half as likely again at a dark moon.</summary>
+        public static float DarkOfTheMoon(float face) => 1f + 0.5f * (1f - Clamp(face, 0f, 1f));
 
-        /// <summary>A term kept: the archotech pleased; broken: cold displeasure (a broken word counts half again for the cold).</summary>
-        public const float TermKept = 8f, TermBroken = -12f;
+        /// <summary>Selene returns the day at this hour of the night (local).</summary>
+        public static bool MirrorHour(int hour) => hour == 2;
 
-        /// <summary>What an archotech gives for a term kept is worth this many times the goods.</summary>
-        public const float TermReward = 1.6f;
-
-        /// <summary>The dead god's mark found near an old thing: once a home, and how much the dead god (who hardly hears) is pleased by it being seen.</summary>
-        public const float DeadMarkFavour = 6f;
-
-        /// <summary>A fading god's nature decides its way: gentle (it asks to be remembered and blesses), or bitter (it demands, and curses a refusal).</summary>
-        public static bool FadingGentle(GodNature n) => n == GodNature.Generous || n == GodNature.Patient || n == GodNature.Grieving || n == GodNature.Playful;
-
-        public const float FadingRemembered = 10f, FadingForgotten = -6f;
-
-        /// <summary>The Sleeper's door: three asks, each a step; the third opens it a crack.</summary>
-        public const int SleeperSteps = 3;
-
-        public const float SleeperStep = 8f, SleeperRefused = -3f;
-        public const int VaultGoodwill = -6, VaultOpened = -15;
-
-        /// <summary>A newborn god's signs as the colony's devotion grows it: one at each quarter of the way (GodsMath.NewbornGrown), each once.</summary>
-        public static int NewbornSign(float devotion, float grown, int told)
+        /// <summary>
+        /// The night's chance that Selene returns the day: by her face and by how much the day's kindness and cruelty differ
+        /// (one deed a quarter, four or more all of it); nothing at a dark moon or an even day.
+        /// </summary>
+        public static float MirrorChance(float face, int kindness, int cruelty)
         {
-            if (float.IsNaN(devotion) || grown <= 0f) return -1;
-            int stage = (int)(4f * devotion / grown);
-            if (stage > 3) stage = 3;
-            return stage > told ? stage : -1;
+            int net = Math.Abs(kindness - cruelty);
+            if (net == 0) return 0f;
+            return Clamp(face, 0f, 1f) * Math.Min(1f, net * 0.25f);
         }
+
+        /// <summary>Selene's rest: a wounded colonist's hurts this much better (severity healed, spread over their injuries).</summary>
+        public const float RestHeal = 4f;
+
+        /// <summary>Selene's nightmares: on at most this many of the colony.</summary>
+        public const int NightmareCount = 3;
+
+        /// <summary>Mog's kin harmed: the rats that come back.</summary>
+        public static int RatCount(float roll) => 4 + (int)(Clamp(roll, 0f, 0.999f) * 5f);
+
+        /// <summary>Mog's luck on the one she chooses lasts a season (ticks; the hediff's own, kept here for the tests).</summary>
+        public const int LuckTicks = 15 * DayTicks;
+
+        /// <summary>A coin found where none was dropped (Ducat's turn in a quarrel), and the silver that sinks out of a store (Smoulder's).</summary>
+        public static int CoinsFound(float roll) => 1 + (int)(Clamp(roll, 0f, 0.999f) * 3f);
+
+        public static int SilverSunk(int held) => held <= 0 ? 0 : Math.Min(30, Math.Max(1, held / 20));
+
+        /// <summary>Gold for the silver given: worth this many times the silver (the mountain gives back more than it was given).</summary>
+        public const float HoardReturn = 1.5f;
+
+        /// <summary>The gold's count for the silver given and gold's worth (at least one).</summary>
+        public static int HoardGold(int silver, float goldValue) => goldValue <= 0f || float.IsNaN(goldValue) ? 0 : Math.Max(1, (int)Math.Round(silver * HoardReturn / goldValue));
 
         // ================= Words =================
 
-        /// <summary>The words a piece of news opens with, by how real the gods are: "the colony believes", "some say", or none (the key's ending, CC_GW_Voice_*).</summary>
+        /// <summary>How real the gods are, as the tag on a colonist's words about them (real:believed, real:felt, real:walking).</summary>
         public static string Voice(GodRealness r) => GodsMath.Voice(r);
 
         public static float Clamp(float v, float lo, float hi) => float.IsNaN(v) ? lo : Math.Max(lo, Math.Min(hi, v));

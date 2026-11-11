@@ -7,7 +7,7 @@ using Verse;
 
 namespace ColonyCouncil
 {
-    /// <summary>One answer to a god's question: its words, what it does, and why it can't be chosen now (null: it can).</summary>
+    /// <summary>One answer to a question of the gods in the world: its words, what it does, and why it can't be chosen now (null: it can).</summary>
     public sealed class GodAnswer
     {
         public string label;
@@ -23,17 +23,17 @@ namespace ColonyCouncil
     }
 
     /// <summary>
-    /// The gods' questions to the colony in the wider world (Gods/World/), each through Tell.Ask as one kind of letter
-    /// (<see cref="ChoiceLetter_GodWorld"/>), never the dilemmas: a festival's invitation, a holy war, a temple's envoy, a
-    /// god's gift and its price, the rival come to undo it, two gods' quarrel, a god's ask, the Hunger's bargain, an
-    /// archotech's terms, a fading god, the Sleeper's door. Each kind's answers come from its own part; once what it asked
-    /// about has moved on, only closing is left. Asks that can wait come only when one of Rimfolk's questions may
-    /// (Tell.CanAsk); the Hunger's and the rival's come when they come.
+    /// The questions the gods' doings put to the colony in the wider world (Gods/World/), each through Tell.Ask as one kind
+    /// of letter (<see cref="ChoiceLetter_GodWorld"/>), never the dilemmas. A god never asks in its own name: a person
+    /// does, and the player answers what that person asked (a neighbour's invitation to their feast, a people's holy war, a
+    /// temple's envoy, a dream told at breakfast, a second dream asking for a gift back, one hunted asking to be hidden, a
+    /// voice heard by someone desperate). Each kind's answers come from its own part; once what it asked about has moved
+    /// on, only closing is left. Asks that can wait come only when one of Rimfolk's questions may (Tell.CanAsk); the
+    /// Hunger's and the second dream come when they come.
     /// </summary>
     public static class GodAsks
     {
-        public const string Invite = "invite", HolyWar = "holywar", Envoy = "envoy", Gift = "gift", Undo = "undo", Quarrel = "quarrel", Slight = "slight", Hide = "hide",
-            Hunger = "hunger", Term = "term", Fading = "fading", Sleeper = "sleeper";
+        public const string Invite = "invite", HolyWar = "holywar", Envoy = "envoy", Gift = "gift", Undo = "undo", Hide = "hide", Hunger = "hunger";
 
         /// <summary>Each kind's answers, or none when its question no longer stands.</summary>
         private static readonly Dictionary<string, Func<ChoiceLetter_GodWorld, IEnumerable<GodAnswer>>> Kinds = new Dictionary<string, Func<ChoiceLetter_GodWorld, IEnumerable<GodAnswer>>>
@@ -43,13 +43,8 @@ namespace ColonyCouncil
             [Envoy] = GodPeoples.EnvoyAnswers,
             [Gift] = GodGifts.OfferAnswers,
             [Undo] = GodGifts.UndoAnswers,
-            [Quarrel] = GodDrama.QuarrelAnswers,
-            [Slight] = GodDrama.SlightAnswers,
             [Hide] = GodDrama.HideAnswers,
-            [Hunger] = GodVoid.BargainAnswers,
-            [Term] = GodOutliers.TermAnswers,
-            [Fading] = GodOutliers.FadingAnswers,
-            [Sleeper] = GodOutliers.SleeperAnswers
+            [Hunger] = GodVoid.BargainAnswers
         };
 
         public static IEnumerable<GodAnswer> AnswersOf(ChoiceLetter_GodWorld l)
@@ -69,8 +64,8 @@ namespace ColonyCouncil
         public static bool Known(string ask) => ask != null && Kinds.ContainsKey(ask);
 
         /// <summary>
-        /// A god's question as a letter: its kind, its god (and a second: a rival, the other in a quarrel), the people and the
-        /// colonist it is about, a number and a def name, what is under way it answers (a doing's id), at a home; it waits
+        /// A question as a letter: its kind, the god behind it (hidden; and a second: a rival), the people and the colonist it
+        /// is about, a number and a def name, what is under way it answers (a doing's id), at a home; it waits
         /// <paramref name="days"/> (0: until put away). Null when it couldn't be made.
         /// </summary>
         public static ChoiceLetter_GodWorld Ask(string ask, Map home, God god, string label, string text, LookTargets look = null, God other = null, Faction faction = null,
@@ -105,9 +100,10 @@ namespace ColonyCouncil
     }
 
     /// <summary>
-    /// A god's question in the wider world (see <see cref="GodAsks"/>): which kind, its god and a second, the people and the
-    /// colonist it is about, a number and a def name, the doing it answers, at which home, asked when. Its answers are its
-    /// kind's; once what it asked about has moved on, only closing is left. Written in the answers' log.
+    /// A question of the gods in the world, asked by a person (see <see cref="GodAsks"/>): which kind, the god behind it and
+    /// a second, the people and the colonist it is about, a number and a def name, the doing it answers, at which home, asked
+    /// when. Its answers are its kind's; once what it asked about has moved on, only closing is left. Written in the answers'
+    /// log.
     /// </summary>
     public class ChoiceLetter_GodWorld : RimfolkLetter
     {

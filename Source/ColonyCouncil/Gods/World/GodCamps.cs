@@ -5,7 +5,6 @@ using RimWorld;
 using UnityEngine;
 using Verse;
 using Verse.AI;
-using Verse.AI.Group;
 
 namespace ColonyCouncil
 {
@@ -14,12 +13,12 @@ namespace ColonyCouncil
     /// ways of its own (Camps/CampWorker.cs; Defs/GodDefs/Rimfolk_GodsWorld_Camps.xml), none on the camps' own draw:
     /// <list type="bullet">
     /// <item>Pilgrims at a place on the colony's land that one people calls holy (<see cref="CampWorker_GodPilgrims"/>): an
-    /// old tree, a river's bank or a spring, a crash site or an ancient machine, the colony's graves, an old ruin, by their
-    /// god's domain. They camp near it, walk to it at dawn and dusk to pray, and go; the colony may join them.</item>
+    /// old tree (Hollin's), a steam geyser (Smoulder's breath), a crash site or an old machine (Pip's), the colony's graves
+    /// (Morel's), by their god's ways. They camp near it, walk to it at dawn and dusk to pray, and go; the colony may join
+    /// them.</item>
     /// <item>A hermit seer at the map's edge (<see cref="CampWorker_GodSeer"/>): one person, a long stay, a true word now and
-    /// then about the gods and the colony (what is really under way), and a visit for anyone who asks.</item>
-    /// <item>A war god's champion at the head of a raid (<see cref="Hourly"/>): the game's own raid, one of its fighters
-    /// named the champion; their fall (dead, down or taken) is a sign.</item>
+    /// then, said darkly (what is really under way, as a warning or a hint, never a god's mood), and a reading of the smoke
+    /// for anyone who asks.</item>
     /// </list>
     /// </summary>
     public static class GodCamps
@@ -86,6 +85,12 @@ namespace ColonyCouncil
                         thing = g;
                         return g?.Position ?? IntVec3.Invalid;
                     }
+                    case "geyser":
+                    {
+                        var g = map.listerThings.AllThings.FirstOrDefault(x => x.Spawned && x.def.defName == "SteamGeyser" && Clear(x.Position));
+                        thing = g;
+                        return g?.Position ?? IntVec3.Invalid;
+                    }
                     case "stone":
                     {
                         var r = map.listerThings.ThingsInGroup(ThingRequestGroup.BuildingArtificial)
@@ -121,6 +126,7 @@ namespace ColonyCouncil
                 case "water": return "CC_GW_Site_Water".Translate().Resolve();
                 case "wreck": return "CC_GW_Site_Wreck".Translate((t?.def?.label ?? "wreck").Named("WRECK")).Resolve();
                 case "grave": return "CC_GW_Site_Grave".Translate().Resolve();
+                case "geyser": return "CC_GW_Site_Geyser".Translate().Resolve();
                 default: return "CC_GW_Site_Stone".Translate().Resolve();
             }
         }
@@ -159,7 +165,7 @@ namespace ColonyCouncil
                     // A people whose god's domain has a holy place of its kind on this land.
                     foreach (var x in Find.FactionManager.AllFactionsListForReading.Where(Arrivals.Usable).InRandomOrder())
                     {
-                        foreach (var g in Gods.Of(x).Where(g => g.kind != GodKind.Dead))
+                        foreach (var g in Gods.Of(x))
                         {
                             string sk = GodWays.Site(g);
                             var cell = FindSite(map, sk, out var thing);
@@ -186,6 +192,8 @@ namespace ColonyCouncil
                 if (c == null) continue;
                 Gods.Learn(god, "visitors");
                 b.Came("pilgrims");
+                GodWorld.Remember(god, map, GodActKind.Act,
+                    GodWorld.T("CC_GW_Told_Pilgrims", god, f.Name.Named("PEOPLE"), SiteWords(site.what, site.thing).Named("SITE")), null, site.cell);
                 return;
             }
         }
@@ -198,119 +206,58 @@ namespace ColonyCouncil
             if (kind == null || !b.Gap("seer", GodWorldMath.SeerGap) || !GodWorld.Roll(GodWorldMath.DayChance(GodWorldMath.SeerDays, GodWorld.Factor()))) return;
             var map = Homes.All.Where(m => CampTracker.RoomFor(m) && !CampTracker.VisitorsAt(m).Any(c => c.kind == kind)).RandomElementWithFallback();
             if (map == null) return;
-            var f = Find.FactionManager.AllFactionsListForReading.Where(x => Arrivals.Usable(x) && Gods.Of(x).Any(g => g.kind != GodKind.Dead)).RandomElementWithFallback();
+            var f = Find.FactionManager.AllFactionsListForReading.Where(x => Arrivals.Usable(x) && Gods.Of(x).Any()).RandomElementWithFallback();
             if (f == null) return;
             if (CampTracker.Instance?.StartKind(map, kind, f) != null) b.Came("seer");
         }
 
         /// <summary>
-        /// What the seer says is true (never a guess): a quarrel under way in the sky, a god's grudge against one of the
-        /// colony, the Hunger come to take, the Sleeper's door, the god angriest or kindest with the colony now, or its patron.
+        /// What the seer sees, all of it true and none of it plain (never a god's name or mood): a quarrel under way, a grudge
+        /// against one of the colony (lightning or beasts), the Hunger owed, the shape of the anger of a god the colony stands
+        /// badly with, the shape of the kindness of one it stands well with; else that nothing comes.
         /// </summary>
-        public static string Foretell(Map map)
+        public static List<(string words, God god)> Signs(Map map)
         {
+            var signs = new List<(string words, God god)>();
             var b = GodWorld.Book;
-            if (b == null || map == null) return null;
-            var q = b.Of("quarrel").FirstOrDefault();
-            if (q != null && Gods.ById(q.god) is God qa && Gods.ById(q.other) is God qb)
-                return "CC_GW_Seer_Quarrel".Translate(qa.name.Named("A"), qb.name.Named("B")).Resolve();
-            var grudge = b.Of("grudge").FirstOrDefault(d => d.pawn != null && !d.pawn.Dead && d.Map == map);
-            if (grudge != null && Gods.ById(grudge.god) is God gg) return GodWorld.T("CC_GW_Seer_Grudge", gg, grudge.pawn.Named("PAWN"));
-            var take = b.Of("take").FirstOrDefault();
-            if (take != null && Gods.ById(take.god) is God hg) return GodWorld.T("CC_GW_Seer_Hunger", hg);
-            if (b.sleeperStep > 0 && Gods.All.FirstOrDefault(x => x.kind == GodKind.Imprisoned) is God sg) return GodWorld.T("CC_GW_Seer_Sleeper", sg);
-            var known = GodWorld.Known.Where(g => g.kind != GodKind.Dead).ToList();
-            var angry = known.Where(g => Gods.Favour(g, map) <= FavourWord.Displeased).OrderBy(g => Gods.FavourValue(g, map)).FirstOrDefault();
-            if (angry != null) return GodWorld.T("CC_GW_Seer_Angry", angry, GodWords.Word(Gods.Favour(angry, map)).Named("WORD"));
-            var kind = known.Where(g => Gods.Favour(g, map) >= FavourWord.Favoured).OrderByDescending(g => Gods.FavourValue(g, map)).FirstOrDefault();
-            if (kind != null) return GodWorld.T("CC_GW_Seer_Kind", kind);
-            var patron = Gods.Patron(map);
-            return patron != null ? GodWorld.T("CC_GW_Seer_Patron", patron, GodWords.Word(Gods.Favour(patron, map)).Named("WORD")) : "CC_GW_Seer_Nothing".Translate().Resolve();
-        }
-
-        /// <summary>The colony's standing with each god it knows here, in words, the angriest first: what the seer tells one who asks.</summary>
-        public static string Reading(Map map)
-        {
-            var lines = GodWorld.Known.Where(g => g.kind != GodKind.Dead && Gods.Favour(g, map) != FavourWord.Unknown).OrderBy(g => Gods.FavourValue(g, map)).Take(6)
-                .Select(g => "CC_GW_Seer_Line".Translate(Gods.FullName(g).Named("GOD"), GodWords.Word(Gods.Favour(g, map)).Named("WORD"), GodWords.NatureWord(g.nature).Named("NATURE")).Resolve())
-                .ToList();
-            return lines.Count == 0 ? "CC_GW_Seer_NoneKnown".Translate().Resolve() : string.Join("\n", lines);
-        }
-
-        // ================= A war god's champion =================
-
-        /// <summary>The region's hour: a raid on a home led by a war god's champion now and then; a champion's fall is a sign.</summary>
-        public static void Hourly(GodWorldBook b, int now)
-        {
-            foreach (var map in Homes.All.ToList())
+            if (b == null || map == null) return signs;
+            foreach (var d in b.Of("quarrel").Where(d => d.Map == map).Take(1)) signs.Add(("CC_GW_Seer_Quarrel".Translate().Resolve(), Gods.ById(d.god)));
+            foreach (var d in b.Of("grudge").Where(d => d.pawn != null && !d.pawn.Dead && d.Map == map).Take(2))
+                signs.Add((("CC_GW_Seer_Grudge_" + d.what).Translate(d.pawn.Named("PAWN")).Resolve(), Gods.ById(d.god)));
+            foreach (var d in b.Of("take").Where(d => d.Map == map).Take(1)) signs.Add(("CC_GW_Seer_Hunger".Translate().Resolve(), Gods.ById(d.god)));
+            foreach (var g in GodWorld.Known.Where(x => !GodWays.Blind(x)))
             {
-                if (map?.lordManager == null) continue;
-                foreach (var lord in map.lordManager.lords.ToList())
+                if (GodWays.Mirror(g))
                 {
-                    if (lord?.faction == null || lord.faction.IsPlayer || !lord.faction.HostileTo(Faction.OfPlayer) || b.Looked(lord.loadID)) continue;
-                    if (!(lord.LordJob is LordJob_AssaultColony) && !(lord.LordJob is LordJob_StageThenAttack)) continue;
-                    b.Look(lord.loadID);
-                    Champion(b, map, lord);
+                    // The moon's return: what the day has been, as the seer reads it.
+                    if (b.kindness > b.cruelty) signs.Add(("CC_GW_Seer_Bless_Rest".Translate().Resolve(), g));
+                    else if (b.cruelty > b.kindness) signs.Add(("CC_GW_Seer_Wrath_Nightmares".Translate().Resolve(), g));
+                    continue;
                 }
+                var w = Gods.Favour(g, map);
+                var wrath = GodWays.Wrath(g);
+                var kind = GodWays.Blessing(g);
+                if (w <= FavourWord.Displeased && wrath != GodWrath.None) signs.Add((("CC_GW_Seer_Wrath_" + wrath).Translate().Resolve(), g));
+                else if (w >= FavourWord.Pleased && kind != GodBlessing.None) signs.Add((("CC_GW_Seer_Bless_" + kind).Translate().Resolve(), g));
             }
-            foreach (var d in b.Of("champion").ToList()) Watch(d);
-            GodPeoples.Hour(b, now);
+            return signs.Where(x => x.god != null).GroupBy(x => x.words).Select(x => x.First()).ToList();
         }
 
-        private static void Champion(GodWorldBook b, Map map, Lord lord)
+        /// <summary>One true word of the seer's (and the god it was about, kept for the colony's book), or that nothing is coming.</summary>
+        public static (string words, God god) Foretell(Map map)
         {
-            var god = Gods.Of(lord.faction).FirstOrDefault(g => g.kind != GodKind.Dead && (g.domain == GodDomain.War || g.second == GodDomain.War));
-            if (god == null || !b.Gap("champion", GodWorldMath.ChampionGap) || !GodWorld.Roll(GodWorldMath.ChampionShare * GodWorld.Factor())) return;
-            var p = lord.ownedPawns.Where(x => x != null && x.Spawned && !x.Downed && x.RaceProps.Humanlike && !x.IsMutant).OrderByDescending(x => x.kindDef?.combatPower ?? 0f).FirstOrDefault();
-            var def = DefDatabase<HediffDef>.GetNamedSilentFail("Rimfolk_GodChampion");
-            if (p == null || def == null) return;
-            try
-            {
-                if (!p.health.hediffSet.HasHediff(def)) p.health.AddHediff(def);
-            }
-            catch (Exception e)
-            {
-                CouncilLog.ErrorOnce("gods in the world: a champion made", e);
-                return;
-            }
-            b.Came("champion");
-            Gods.Learn(god, "visitors");
-            b.Add(new GodDoing { kind = "champion", god = god.id, home = Homes.KeyOf(map), pawn = p, faction = lord.faction, until = GodWorld.Now + 3 * GenDate.TicksPerDay });
-            GodWorld.Moment(god, map, PresenceKind.Omen, p.Position, null, GodWorld.T("CC_GW_Champion_Label", god, p.Named("CHAMPION")),
-                GodWorld.Voice(GodWorld.T("CC_GW_Champion_Text", god, p.Named("CHAMPION"), lord.faction.Name.Named("PEOPLE"))), true, LetterDefOf.ThreatSmall, new LookTargets(p),
-                lord.faction, Importance.Important);
-            GodWorld.Say(p, "champion", god);
+            var signs = Signs(map);
+            return signs.Count > 0 ? signs.RandomElement() : ("CC_GW_Seer_Nothing".Translate().Resolve(), null);
         }
 
-        /// <summary>The champion fallen (dead, down, taken): a sign. Fled or gone: nothing more.</summary>
-        private static void Watch(GodDoing d)
+        /// <summary>The smoke read for one who asks: up to three true words, one to a line; each kept for the colony's book with the seer's name.</summary>
+        public static string Reading(Map map, Pawn seer, string asker)
         {
-            var p = d.pawn;
-            var map = d.Map;
-            var god = Gods.ById(d.god);
-            if (p == null || god == null || map == null)
-            {
-                d.done = true;
-                return;
-            }
-            bool fell = p.Dead || p.Downed && p.MapHeld == map || p.IsPrisonerOfColony;
-            if (!fell)
-            {
-                if (!p.Spawned || p.Map != map || GodWorld.Now > d.until) d.done = true;
-                return;
-            }
-            d.done = true;
-            var cell = p.PositionHeld;
-            Gods.AddFavour(god, map, GodWorldMath.ChampionGodTakes(god.nature), GodWorld.T("CC_GW_Champion_WhyGod", god, p.Named("CHAMPION")), FavourSource.Deed);
-            foreach (var r in Gods.Rivals(god).Where(Gods.Known))
-                Gods.AddFavour(r, map, GodWorldMath.ChampionFell, GodWorld.T("CC_GW_Champion_WhyRival", r, p.Named("CHAMPION"), god.name.Named("OTHER")), FavourSource.Deed);
-            foreach (var w in Gods.ColonyGods(map).Where(g => g != god && (g.domain == GodDomain.War || g.second == GodDomain.War) && !Gods.Rivals(god).Contains(g)))
-                Gods.AddFavour(w, map, GodWorldMath.ChampionFell, GodWorld.T("CC_GW_Champion_WhyRival", w, p.Named("CHAMPION"), god.name.Named("OTHER")), FavourSource.Deed);
-            string how = p.Dead ? "Dead" : p.IsPrisonerOfColony ? "Taken" : "Down";
-            GodWorld.Moment(god, map, PresenceKind.Omen, cell, null, GodWorld.T("CC_GW_Champion_FellLabel", god, p.Named("CHAMPION")),
-                GodWorld.Voice(GodWorld.T("CC_GW_Champion_Fell_" + how, god, p.Named("CHAMPION"))), true, LetterDefOf.PositiveEvent, new LookTargets(new TargetInfo(cell, map)));
-            GodWorld.Remark(map, cell, "champfell", god);
-            GodWorld.Chronicle(GodWorld.T("CC_GW_Champion_Chronicle", god, p.Named("CHAMPION")), p);
+            var signs = Signs(map).InRandomOrder().Take(3).ToList();
+            foreach (var x in signs)
+                GodWorld.Remember(x.god, map, GodActKind.Omen,
+                    "CC_GW_Told_Reading".Translate((seer?.LabelShort ?? "?").Named("SEER"), (asker ?? "?").Named("PAWN"), x.words.Named("WORDS")).Resolve());
+            return signs.Count == 0 ? "CC_GW_Seer_Nothing".Translate().Resolve() : string.Join("\n", signs.Select(x => x.words));
         }
     }
 
@@ -385,6 +332,7 @@ namespace ColonyCouncil
                 var lead = c.Here.FirstOrDefault();
                 if (lead != null) c.SayMoment(lead, "grief");
                 Gods.AddFavour(g, c.map, -GodWorldMath.PilgrimFavour * 2f, Fill(c, "CC_GW_Pilgrims_WhyGone".Translate().RawText), FavourSource.Sacrilege);
+                GodWorld.Remark(c.map, st.cell, "desecrated", g);
                 c.Note(Fill(c, c.Text("CC_GW_Pilgrims_Gone")), MessageTypeDefOf.NegativeEvent, Importance.Notable);
                 c.untilTick = Mathf.Min(c.untilTick, GodWorld.Now + 3 * GenDate.TicksPerHour);
                 return;
@@ -461,7 +409,7 @@ namespace ColonyCouncil
         }
     }
 
-    /// <summary>The colony joins the pilgrims' prayers at the holy place: their god pleased with the colony too (with the gathering at their camp).</summary>
+    /// <summary>The colony joins the pilgrims' prayers at the holy place (with the gathering at their camp); their god notices, which nothing says.</summary>
     public class DilemmaEffect_GodPilgrims : DilemmaEffect
     {
         public override bool ChanceEach => false;
@@ -496,9 +444,9 @@ namespace ColonyCouncil
     }
 
     /// <summary>
-    /// A hermit seer at the map's edge (GodCamps): one person and a hut, a long stay, a true word about the gods now and then
-    /// (GodCamps.Foretell: what is really under way), and the colony's standing with each god it knows for anyone who goes
-    /// to ask (DilemmaEffect_GodSeer, with the visit to their camp).
+    /// A hermit seer at the map's edge (GodCamps): one person and a hut, a long stay, a true word now and then, said darkly
+    /// (GodCamps.Foretell: what is really under way), and the smoke read for anyone who goes to ask (DilemmaEffect_GodSeer,
+    /// with the visit to their camp).
     /// </summary>
     public class CampWorker_GodSeer : CampWorker
     {
@@ -528,22 +476,17 @@ namespace ColonyCouncil
             if (hour != 19 || st.saidDay >= 0 && GenDate.DaysPassed - st.saidDay < 4 || st.words >= 3) return;
             st.saidDay = GenDate.DaysPassed;
             st.words++;
-            string word = GodCamps.Foretell(c.map);
+            var (word, god) = GodCamps.Foretell(c.map);
             if (word.NullOrEmpty()) return;
             var seer = c.Here.FirstOrDefault();
             if (seer != null) c.SayMoment(seer, "foretell");
             c.Note(c.Text("CC_GW_Seer_Says", seer) + " " + word, MessageTypeDefOf.NeutralEvent, Importance.Notable, seer);
+            if (god != null) GodWorld.Remember(god, c.map, GodActKind.Omen, "CC_GW_Told_Seer".Translate((seer?.LabelShort ?? "?").Named("SEER"), word.Named("WORDS")).Resolve());
         }
 
-        public override string Fill(Camp c, string text)
-        {
-            if (text.NullOrEmpty()) return text;
-            var patron = Gods.Patron(c.map);
-            return text.Replace("{GODEPITHET}", patron?.epithet ?? "").Replace("{GODOF}", patron != null ? Gods.GodOf(patron) : "").Replace("{GOD}", patron?.name ?? "the gods");
-        }
     }
 
-    /// <summary>The seer's reading for one who asks: the colony's standing with each god it knows, and what the seer sees coming, as a letter.</summary>
+    /// <summary>The seer's reading for one who asks: up to three true words, said darkly, as a letter.</summary>
     public class DilemmaEffect_GodSeer : DilemmaEffect
     {
         public override bool ChanceEach => false;
@@ -558,8 +501,8 @@ namespace ColonyCouncil
             var map = ctx?.map;
             if (map == null) return;
             var c = CampTracker.About(ctx, x => x.kind?.Worker is CampWorker_GodSeer);
-            string text = "CC_GW_Seer_ReadingText".Translate((ctx.a?.LabelShort ?? "?").Named("PAWN"), GodCamps.Reading(map).Named("READINGS"),
-                (GodCamps.Foretell(map) ?? "").Named("WORD")).Resolve();
+            string text = "CC_GW_Seer_ReadingText".Translate((ctx.a?.LabelShort ?? "?").Named("PAWN"), GodCamps.Reading(map, c?.Here.FirstOrDefault(), ctx.a?.LabelShort).Named("READINGS"))
+                .Resolve();
             ColonyCouncil.Tell.Letter(NewsKind.World, Importance.Notable, map, "CC_GW_Seer_ReadingLabel".Translate().Resolve(), text, LetterDefOf.NeutralEvent,
                 c?.Look ?? LookTargets.Invalid, c?.faction);
         }
