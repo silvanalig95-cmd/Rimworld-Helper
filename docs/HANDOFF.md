@@ -41,6 +41,22 @@ tree at once, alongside whatever runs. Each piece is merged as its own release, 
   8. The Republic 71 to 74; the Fleet 75 to 78; the Helix Works 79 to 82.
   9. The Lattice 84, 85, 86; the Choir 87 to 90; the Vault 91 to 94.
   10. Between peoples 96 to 99; every people's art handed on, 100.
+- **To do when the player asks (11 November 2026): calling in a favour, made clear.** The player, with a picture of the
+  letter window's "Ask for" list on a debt owed by "Acraeraes of Karond-Keth 2, a trader who called" (five loads of
+  goods, some forty "A word for the colony with ... (a kind one)", a captive, peace, fighters): "this favour menu is also
+  a bit overwhelming and i'm not really sure what many of these options really do. also 4 yoghurts is a funny option?
+  based on what are these favours created? this guy is a trader". How it works now (`Diplomacy/FavourCalls.Options`):
+  a load of each goods kind of their age (`FavourMath.GoodsKinds`: food, medicine, wood, steel, silver), the food a
+  random "provisions" thing of the player's mods (`ThingRoles.From(ThingRole.Provisions)`, so a yoghurt), counted as the
+  debt's worth by their town's fortune and means over the thing's value; a word with every third people they are on
+  good terms with; any captive; peace with each people at war; their fighters. Nothing reads who the debtor is. When
+  asked: a short list in a few kinds (goods, a word, a captive, peace, fighters), only what can be asked now first, the
+  rest folded under "Not now" with why; each with a line on what it does and how much ("they put in a word with the
+  Verea Herd: their goodwill toward the colony rises a little"); the words narrowed to the peoples it would help most
+  (known to the colony, not already at full goodwill, the nearest and the coolest first, a handful, the rest under
+  "Others"); goods by who owes and what they have: a trader from their trade goods, a healer medicine, a farmer or
+  herder food, a smith steel, a town's stores by its fortune, and food as a sensible staple load (meals, grain, pemmican
+  of their age), never a handful of a dear oddity. Propose the shape with the player first.
 - **To do when the player asks (11 November 2026), a bug: letters' answers come before a letter could arrive.** The
   player: "letter replies & interactions don't always make sense timing-wise. for example when i send a letter to a
   base, i think once the courier is off the map I already get a pop up saying "you will not receive a reply". It
