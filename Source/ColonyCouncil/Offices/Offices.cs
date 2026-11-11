@@ -54,8 +54,14 @@ namespace ColonyCouncil
         /// <summary>Its description in the colony's age's words.</summary>
         public string Description => OfficeNames.InAge(description);
 
-        /// <summary>The seat exists in this game: with Ideology and a faith for the chaplain.</summary>
-        public bool Available => !needsIdeology || DecreeWork.ColonyFaith != null;
+        /// <summary>
+        /// Only with the gods and their worship on, a god the colony holds, and no chaplain's seat (the priest; with
+        /// Ideology and a faith of the colony's own, the chaplain is its priest: Gods/Worship/Worship.cs).
+        /// </summary>
+        public bool needsGods;
+
+        /// <summary>The seat exists in this game: with Ideology and a faith for the chaplain, with the gods for the priest.</summary>
+        public bool Available => (!needsIdeology || DecreeWork.ColonyFaith != null) && (!needsGods || Worship.PriestSeatOpen);
 
         public bool OpenFor(int voters) => voters >= minColonists && Available;
 

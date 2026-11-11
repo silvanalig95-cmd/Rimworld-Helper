@@ -461,6 +461,7 @@ namespace ColonyCouncil
             Section("CC_SetSec_Gods");
             Toggle("gods", "CC_Settings_Gods", "CC_SetNote_Gods");
             Choice("godRealness", "CC_Settings_GodRealness", "CC_Settings_GodRealness_Tip", "CC_GodRealness_", "CC_SetNote_GodRealness_", new[] { "Believed", "Felt", "Walking" }, "gods");
+            Toggle("godWorship", "CC_Settings_GodWorship", "CC_SetNote_GodWorship", "gods");
             Section("CC_SetSec_Neighbours");
             Toggle("notables", "CC_Settings_Notables", "CC_SetNote_Notables");
             Toggle("neighbourLetters", "CC_Settings_NeighbourLetters", "CC_SetNote_NeighbourLetters", "notables");

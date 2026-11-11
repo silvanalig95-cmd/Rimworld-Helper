@@ -39,6 +39,8 @@ namespace ColonyCouncil
             // The world's events are the colony's as a whole: the seat's calendar remembers them.
             if (AtSeat) Safe("calendar world events", () => WatchSituations(map, known, today, year));
             Safe("calendar faith days", () => WatchFaithDays(today, year));
+            // The gods' festivals (Gods/Worship/Festivals.cs).
+            Safe("calendar gods' festivals", () => WatchGodFestivals(map, today, year));
             Safe("calendar rescues", () => WatchRescues(map, known, today, year));
         }
 

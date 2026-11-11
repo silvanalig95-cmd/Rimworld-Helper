@@ -174,6 +174,65 @@ tree at once, alongside whatever runs. Each piece is merged as its own release, 
   distance, as the couriers and journeys reckon it), their reading and writing time, and the answer's own road back;
   a refusal or silence is only known when it could be (a returning rider, their courier, or no word by the time an
   answer would have come). Check each against the map: the courier gone off the map is not the letter delivered.
+- 0.220.0, **Gods, stage 2: worship**
+  (shrines and offerings, prayer in hard moments, festivals, vows, the priest and the council's questions, the gods in
+  dreams, the heart of faith; brainstorm items 10, 11, 13, 14, 15, 16 and 20; 11 November 2026, re-keyed the same day
+  to the player's fourteen and made unseen). The player: "gods that are real, in the lore, referred to, and reacted
+  to", "pawns react to gods", the rule "the gods should also feel like an ominous presence ... not in a way that I see
+  what's going on or can, read about it", and "in events etc the god can be named, if we know it's them that caused
+  something". `docs/design/gods.md` stage 2's "Worship"; DESIGN.md "The gods: worship"; README "Worship". No Almanac
+  page (the one first written was removed; `Almanac_Gods.xml` stays as the core has it).
+  - Code: `Source/ColonyCouncil/Gods/Worship/` (new): `WorshipMath.cs` (pure, linked), `Worship.cs` (the facade:
+    `Called`, `Hand`, `Sign`, `Witness`, `Booked`), `WorshipBook.cs` (saved, seven capped lists), `GodWorshipDef.cs`,
+    `Shrines.cs`, `Offerings.cs`, `Prayers.cs`, `FaithHeart.cs`, `Vows.cs`, `Festivals.cs` (a part of `ColonyCalendar`),
+    `WorshipCouncil.cs`, `GodDreams.cs`, `WorshipJobs.cs`, `WorshipMore.cs` (DefOf, This week, A RimWorld of Magic's mana,
+    dev actions). Defs `Defs/GodDefs/Rimfolk_Worship_Gods.xml` (the fourteen's own worship by short name),
+    `_Jobs.xml`, `_Thoughts.xml`, `_Office.xml` (the priest, its words by age, RoM's priests first, its planks' lines),
+    `_Dilemmas.xml` (four questions), `_Goals.xml` (pilgrimage, temple, the vow's meals), `_Pools.xml` (with
+    `[godkey:...]` lines). Keyed `Rimfolk_Worship.xml`. Small hooks: `RegionBook.Hourly`/`Daily`, `Dreams.cs`
+    (`GodDreams.TryDream`), the calendar (`CalendarKind.GodFestival` in `CalendarDay`, `ColonyCalendar`,
+    `CalendarLived`, `CalendarKeeping`, `CalendarPanel`), `OfficeDef.needsGods` (`Offices.cs`), the setting
+    (`CouncilSettings.godWorship`, `SettingsCatalog`), the DefValidator's `GOD2`/`GOD3`, `Tools/playout_audit.py`
+    (`ShrineWords`, `GiveBeast`, `LesserOffering`), `Tools/save_estimate.py` (the book's seven lists),
+    `Tools/Balance` (`Rates.Worship`, its own draws), `Tools/Tests/ModDefNames.txt` (Alpha Memes' chants). Tests
+    `WorshipTests`.
+  - Unseen: no favour, standing or god's rule in the inspect line, the button, This week, the news, the cards or the
+    questions (a question is a person's, a dream is the dreamer's); what people do names the god they do it for
+    (`Worship.Called`, the colony's page for it); what a god may have done is told as what was seen, and the hand is
+    added only by `Gods.CardName` ("It was Hollin.") or, at Felt with someone there, `CC_GW_Hand_Felt`; worship never
+    calls `MarkActing`. The colony's book through `GodLore.Saw` (a sign, a place given, a festival kept, a vow kept or
+    broken, a beast let go), `GodLore.Prayed` (what followed a prayer, as the one who prayed tells it, four days apart a
+    person) and `GodLore.Dreamt`; the rest through `Gods.Remember`, hidden.
+  - Merged onto 0.219.0 (b9be300): no class collides with `Gods/World/` or `Gods/OnMap/`; the Hunger is the world
+    part's (`GodVoid`'s bargain), so worship never answers a prayer to it and its own "Hunger's due" was dropped.
+  - Balance (`Tools/Balance`, `Rates.Worship`): worship adds about +0.17 and takes about -0.1 a colonist (well run
+    +0.06 net, neglected +0.10); the targets as before (well run +7.2, average +2.2, neglected -9.5 with 6 colonists).
+  - Try in the game (dev mode, gods on, Felt): 1. Build an altar or place a sculpture, select it, "Dedicate to a god",
+    pick one: a colonist walks over and says the words; the inspect line reads "A shrine of Hollin, given by Mira" (a
+    chapel, church or terminal by the colony's age; "A temple of ..." in a fine room indoors). 2. "Gods: offerings at
+    every shrine now", then "Gods: worship's hour now" a few times through the night: someone carries the god's own kind
+    (silver for Smoulder, fish for Mog, parts for Pip, nothing for Helios) and sets it down forbidden; at Felt it is gone
+    by morning, at Walking it goes in light with "It was ...", at Believed an animal, a passer-by, rot or the stores take
+    it. 3. Select a colonist, "Gods: a prayer now..." (sickness with someone gravely ill, death, raid, drought): they
+    kneel at the god's place or where they stand; "worship's hour now" again for a card titled "After the prayer"; when
+    it settles, the colony's book (the region window's book) has "Mira prayed, and as Mira tells it: ...". 4. "Gods: a
+    crisis of faith" on a colonist: -4, a line in their journal and the news; a second may turn them to another god. 5.
+    "Gods: a vow now..." of each kind: This week lists it with no rule; a vow of no meat asks for vegetarian meals;
+    break it with a meal of meat (-4, perhaps "A shadow over ..."). 6. "Gods: the gods' festivals onto the calendar
+    now": the calendar shows the colony's gods' days (the Greening of Hollin, the Deep Silver of Smoulder; none for Mog);
+    on the day, the feast, the rite at the god's place with Alpha Memes' or Ideology's chant, sometimes visitors. 7.
+    "Gods: a god's dream now" on a colonist (the priest sees plainer): a warning, an offering asked for (This week: "Mira
+    dreamt that Smoulder wants silver at Smoulder's shrine"; never for Mog), a name, a vision; the dream goes in the
+    book. 8. With four voters and no Ideology chaplain, the priest's seat (shaman, priest, pastor or oracle by age; A
+    RimWorld of Magic's priests first). 9. The four questions come in their own time: the god of the year, a temple
+    vowed, a god in a dream asking for the finest beast (Murmur or Cirrus prayed to, a tame beast), two rival gods'
+    people; each answer plays out at the god's place. 10. A scoffer near a believer after an offering goes: a mocking
+    bubble and a reply; a couple of two gods bicker when rain follows three dry days. 11. "Gods: worship's day now",
+    and "Gods: show worship (log)" for the hidden state.
+  - Can't be checked without the game: the jobs' kneeling and the dedication menu; the chant playing through the rite;
+    carrying from storage and the night's vanishing; the raid prayer's frenzy; the rain's coming; the beast walking off
+    the map; A RimWorld of Magic's mana scaling (`Need_Mana.GainNeed`); the presence part's moment and its witnesses;
+    the book's entries as they read; the festival's visitors arriving.
 - 0.219.0, **Gods, stage 2: the world**
   (letters and diplomacy, peoples and camps, kindness and anger, dreams and gifts, the void, the drama between the gods;
   11 November 2026, re-keyed the same day to the player's fourteen and made unseen). The player: "gods that are real,

@@ -556,6 +556,8 @@ wishPh.UnionWith(new[] { "ANIMAL", "ANANIMAL", "ANIMALS", "PLANT", "TREE", "DEIT
 // The gods (Gods/Gods.cs, Fill and Args): a god's name, its epithet, and what it is ("goddess of the harvest"), in
 // letters (Gods/GodWords.cs, Letter) and the words colonists say to their god (Rimfolk_Pool_SayGod).
 wishPh.UnionWith(new[] { "GOD", "GODEPITHET", "GODOF" });
+// Worship of the gods (Gods/Worship/WorshipCouncil.cs, GodDilemmaContext): a council question's second and third god.
+wishPh.UnionWith(new[] { "GOD2", "GOD3" });
 // The gods as a neighbour writes of them (Gods/GodTales.cs, Letter): one of their stories retold, a god's hand they heard of at the colony.
 wishPh.UnionWith(new[] { "GODTALE", "GODHAND" });
 // The gods in the wider world (Gods/World/): the god of a sign or curse their letter tells of, a myth's two gods, the god and

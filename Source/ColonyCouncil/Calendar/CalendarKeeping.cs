@@ -510,6 +510,8 @@ namespace ColonyCouncil
             if (!quiet) (ColonyState.For(map)?.offices ?? comp?.offices)?.Notify_CustomKept(home);
             if (!quiet) Journals(d, map, home, years);
             if (!quiet) Interplay.Notify_DayKept(d, home);
+            // A god's festival: its rite at the god's place, an offering, its people's visit (Gods/Worship/Festivals.cs).
+            if (!quiet && d.kind == CalendarKind.GodFestival) Safe("calendar a god's festival", () => Festivals.Kept(d, map, home));
             // Kept together, and an empty place at the table (Social/Talk/SharedTimes.cs).
             if (!quiet) SharedTimes.DayKept(d, map, home);
             talkDayId = d.id;
@@ -890,6 +892,8 @@ namespace ColonyCouncil
         private void PassDay(CalendarDay d, Map map)
         {
             var comp = CouncilGameComponent.Instance;
+            // A god's festival let pass displeases the god (Gods/Worship/Festivals.cs).
+            if (d.kind == CalendarKind.GodFestival) Safe("calendar a god's festival let pass", () => Festivals.Passed(d, map));
             var result = CalendarMath.Pass(ref d.keptYears, ref d.tradition, ref d.breaks);
             if (result == CalendarMath.PassResult.Passed)
             {

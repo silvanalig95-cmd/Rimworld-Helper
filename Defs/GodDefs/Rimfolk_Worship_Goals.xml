@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Vows as life goals and as a wish (Source/ColonyCouncil/Gods/Worship/Vows.cs; docs/design/gods.md, "Worship": vows).
+    A pilgrimage and a temple are life goals, and setting one's heart on either is a vow to one's god (Gods.Vow): kept when
+    the goal is done (the pilgrim walked to the god's holy place and prayed there an hour; a place of the god's stands in
+    a fine room indoors), broken if it is let go. Only the devout and the priest set their hearts on them, never a
+    scoffer or one whose faith despises religion. A vow of no meat until someone sick is well asks the council for
+    vegetarian meals in the stores (the vegetarian simple meals among them): the wish only comes with the vow, from the
+    vow itself (weight 0: never from the wish roll).
+  -->
+
+  <ColonyCouncil.AspirationDef>
+    <defName>Rimfolk_Asp_Pilgrimage</defName>
+    <label>a pilgrimage</label>
+    <workerClass>ColonyCouncil.AspirationWorker_GodPilgrimage</workerClass>
+    <weight>0.5</weight>
+    <goal>walk a pilgrimage for my god</goal>
+    <deed>walked a pilgrimage for their god</deed>
+    <forbiddenBy><li>NoReligion</li><li>NoTravel</li></forbiddenBy>
+    <who><notTrait><li>Psychopath</li></notTrait></who>
+    <sparks><li>loss</li><li>downed</li></sparks>
+    <chosen>
+      <plain>
+        <li>I've vowed it: a pilgrimage on foot to my god's holy place, and an hour's prayer there.</li>
+        <li>I owe my god a walk, and I mean to pay it.</li>
+        <li>[spark:loss] I can't stay in this house with all of them looking at me. I'm going to walk, and pray where it's quiet.</li>
+        <li>[spark:downed] I was nearly gone. Someone kept me here, and I'll walk to thank them.</li>
+      </plain>
+      <warm><li>I want to go and say thank you somewhere that matters, on my own two feet.</li></warm>
+      <blunt><li>Vowed a pilgrimage. I'll go when the work lets me.</li></blunt>
+      <cheerful><li>A long walk and a god at the end of it. I can't think of a better day.</li></cheerful>
+      <gloomy><li>Maybe if I walk far enough I'll find out whether anyone is listening.</li></gloomy>
+      <cold><li>I made a vow. I will keep it.</li></cold>
+    </chosen>
+    <achieved>
+      <plain>
+        <li>I walked it. My feet ache, and I've never felt so light.</li>
+        <li>I prayed where my god is closest, and I came home a little different.</li>
+      </plain>
+      <warm><li>I said thank you where it could be heard. I think it was.</li></warm>
+      <blunt><li>Went. Prayed. Came back. Vow kept.</li></blunt>
+      <cheerful><li>I made it there and back, and the god was in a good mood, I'm sure of it.</li></cheerful>
+      <gloomy><li>Nobody answered out there either, but the walk did me good.</li></gloomy>
+      <cold><li>The vow is kept.</li></cold>
+    </achieved>
+  </ColonyCouncil.AspirationDef>
+
+  <ColonyCouncil.AspirationDef>
+    <defName>Rimfolk_Asp_Temple</defName>
+    <label>a temple</label>
+    <workerClass>ColonyCouncil.AspirationWorker_GodTemple</workerClass>
+    <weight>0.4</weight>
+    <goal>see a temple raised to my god</goal>
+    <deed>saw a temple raised to their god</deed>
+    <forbiddenBy><li>NoReligion</li></forbiddenBy>
+    <who><notTrait><li>Psychopath</li></notTrait></who>
+    <sparks><li>battle</li><li>birth</li></sparks>
+    <chosen>
+      <plain>
+        <li>I've vowed my god a temple: a room of its own, fine enough that nobody could mistake it.</li>
+        <li>Our gods live in corners. I've sworn to change that for mine.</li>
+        <li>[spark:battle] We lived through that. Somebody up there deserves a proper house for it, and I've sworn to see it built.</li>
+        <li>[lowtech] I've sworn my god a house with a roof and good things on the walls.</li>
+      </plain>
+      <warm><li>I want my god to have a room as good as ours. Better, even.</li></warm>
+      <blunt><li>I swore a temple. We're building one.</li></blunt>
+      <cheerful><li>A temple! With carvings! I've sworn it, so now we have to.</li></cheerful>
+      <gloomy><li>If the gods won't come to us in a hovel, maybe they'll come to a temple.</li></gloomy>
+      <cold><li>A god served in a corner is served badly. I have vowed a temple.</li></cold>
+    </chosen>
+    <achieved>
+      <plain>
+        <li>The temple stands. I go in every evening just to look at it.</li>
+        <li>My god has a house now, and I kept my word.</li>
+      </plain>
+      <warm><li>It's beautiful in there. Everyone helped, and I'll never forget it.</li></warm>
+      <blunt><li>Temple's built. Vow kept.</li></blunt>
+      <cheerful><li>Have you seen the temple? Go and see the temple.</li></cheerful>
+      <cold><li>The temple is finished to the standard I swore.</li></cold>
+    </achieved>
+  </ColonyCouncil.AspirationDef>
+
+  <!-- ===================== The vow's meals ===================== -->
+
+  <ColonyCouncil.WishDef>
+    <defName>Rimfolk_Wish_VowMeals</defName>
+    <label>meals for a vow</label>
+    <description>Someone who has vowed no meat until a sick friend recovers wants vegetarian meals kept in the stores, so the vow can be kept.</description>
+    <workerClass>ColonyCouncil.WishWorker_VowMeals</workerClass>
+    <category>Health</category>
+    <weight>0</weight>
+    <expiryDays>8</expiryDays>
+    <cooldownDays>20</cooldownDays>
+    <grantedThought>Rimfolk_Granted_VowMeals</grantedThought>
+    <allowPetition>false</allowPetition>
+    <envy>0</envy>
+    <talkInteraction>Council_Talk_Comfort</talkInteraction>
+    <fulfilledWhen>Keep at least {TARGET} vegetarian meals in storage or in the home area: the vegetarian simple, fine or lavish meal. Set a bill for them at the stove.</fulfilledWhen>
+    <wants>
+      <defNames><li>Rimfolk_MealSimple_Veg</li><li>MealFine_Veg</li><li>MealLavish_Veg</li></defNames>
+      <count>6</count>
+      <reason>{PAWN_nameDef} has vowed no meat until someone sick is well, and there's nothing in the stores to keep the vow with.</reason>
+    </wants>
+    <request>
+      <plain>
+        <li>I've made a vow: no meat until they're well. Could the kitchen keep a few meals without it?</li>
+        <li>I swore off meat for a sick friend. I'd rather not starve keeping my word.</li>
+        <li>[lowtech] I've sworn no flesh until the fever breaks. A pot of something green would help me keep it.</li>
+      </plain>
+      <warm><li>It's a small thing to give up for someone I love. I just need something else to eat.</li></warm>
+      <blunt><li>No meat for me till they're better. Need meals without it.</li></blunt>
+      <cheerful><li>Vegetables for a while! My god likes a sacrifice, and I like a stew.</li></cheerful>
+      <gloomy><li>If my vow is all I can do for them, at least let me keep it.</li></gloomy>
+      <cold><li>I have vowed no meat. Vegetarian meals in the stores would let me keep it without fuss.</li></cold>
+    </request>
+    <thanks>
+      <plain>
+        <li>There's food I can eat now, and a vow I can keep. Thank you.</li>
+      </plain>
+      <warm><li>Thank you. Now I can keep my promise without going hungry.</li></warm>
+      <blunt><li>Good. Vow's easier now.</li></blunt>
+    </thanks>
+    <expired>
+      <plain><li>I'll keep the vow on bread and water, then.</li></plain>
+      <gloomy><li>Nobody cares whether I keep my word. I'll keep it anyway.</li></gloomy>
+    </expired>
+  </ColonyCouncil.WishDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_Granted_VowMeals</defName>
+    <durationDays>3</durationDays>
+    <stages><li><label>meals for my vow</label><description>The kitchen has meals I can eat while I keep my vow. Someone took it seriously.</description><baseMoodEffect>2</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+</Defs>

@@ -5,6 +5,19 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## Shrines, prayers and vows
+
+*11 November 2026, version 0.220.0*
+
+- Altars, sculptures, nature shrines and old terminals can be given to a god: a colonist walks over and says the words, and it becomes that god's shrine, chapel, church or temple.
+- Now and then someone carries an offering to a god's place, each god's own kind of gift, and what becomes of it depends on how real the gods are.
+- In hard moments people pray, for the sick, the dead, before a raid or for rain, and sometimes something follows that nobody can quite explain.
+- An unanswered prayer can shake someone's faith, scoffers mock what believers saw, and couples who pray to different gods argue over who sent the rain.
+- Colonists make vows: no meat until the sick one is well, a pilgrimage, a temple, or a beast spared for a season.
+- Each god the colony holds has its own festival day on the calendar, kept with a feast, a rite and a chant.
+- A priest can be elected, and the council is asked about the gods: which to keep the year for, a temple, a dream asking for the finest beast, and rival gods' rites.
+- Gods speak in dreams, and what the colony's people saw, prayed and dreamt goes into its book of the gods.
+
 ## The gods in the world
 
 *11 November 2026, version 0.219.0*

@@ -72,6 +72,11 @@ PLAY = {
     "DilemmaEffect_Race": "race",
     # The game's own wedding ceremony, on the evening the council set (Social/WeddingPlans.cs), and what follows it.
     "DilemmaEffect_PlanWedding": "wedding",
+    # Worship of the gods (Gods/Worship/WorshipCouncil.cs): words said at a god's place, a beast walked out and let go,
+    # a lesser offering carried to the god's place.
+    "DilemmaEffect_ShrineWords": "words",
+    "DilemmaEffect_GiveBeast": "beast given",
+    "DilemmaEffect_LesserOffering": "offering carried",
     # The colony's own settings changed for a while and put back (Dilemmas/AnswerShifts.cs), and the game's own orders
     # (Dilemmas/DilemmaWorkers_Variety.cs): timetables shifted, work handed over, an operation on the medical tab, drug
     # bills suspended, a slave freed by the game's emancipation, self-tend or the best medicine for a patient.

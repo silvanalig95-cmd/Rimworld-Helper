@@ -4329,6 +4329,22 @@ breakfast and asks to spend a night under the open sky, and comes back changed (
 spells, Vanilla Psycasts Expanded's paths, a green hand, gold, a passion), sometimes marked or older. The dying hear a
 sweet voice that always says yes and always takes more. All at the game's own rate and in the shared budget of hurts.
 
+**Worship.** An altar, a sculpture, a nature shrine or an old terminal can be given to a god: someone walks over and
+says the words, and it becomes the god's shrine (a chapel, a church or a terminal in later ages; a temple in a fine
+room). Now and then someone carries an offering there from the stores, each god's own kind (silver for Smoulder, a
+bowl for the Guest, parts for Pip, a fish for Mog, nothing for Helios), and later it is gone, or an animal had it, or it
+just spoiled. In hard moments people pray: for the gravely ill, for the dead, before a raid, for rain in a drought.
+Sometimes a fever eases in the night after, or the rain comes; nobody can say for certain why, and believers and
+scoffers argue it out, while a couple who pray to different gods bicker over whose sent the rain. A prayer that goes
+unanswered can shake someone's faith, and twice shaken they may turn to another god. People make vows: no meat until
+the sick one is well, a pilgrimage on foot, a temple, a beast spared for a season. Each god the colony holds has its
+festival day on the calendar, kept with a feast, a rite and a chant, and sometimes visitors who hold the same god. An
+elected priest (a shaman, a priest, a pastor or an oracle by the age) dedicates the places, carries the offerings and
+leads the rites, and the council is asked which god to keep the year for, whether to vow a temple, what to do when
+someone dreams a god wants the colony's finest beast, and whose rite comes first when two rival gods' people quarrel.
+Gods speak in dreams. None of it ever says what a god thinks; what people saw goes into the colony's book. Setting:
+*Worship of the gods* (on).
+
 ## Scenarios with stakes
 Seventeen scenarios, marked "(Rimfolk)" on the scenario page with how hard they are. Each starts the game with
 something already in motion, and a few seconds in, a letter says how things stand.

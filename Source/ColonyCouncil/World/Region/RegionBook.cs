@@ -191,6 +191,8 @@ namespace ColonyCouncil
             if (WorldLedger.Formers.Count > 0) Safe("towns the colony was, the hour", () => TownsAfter.Hourly(now));
             // The gods (Gods/GodBook.cs): visitors on a home map teach the colony their gods.
             if (Gods.On) Safe("the gods, the hour", () => GodBook.Hourly(now));
+            // Their worship (Gods/Worship/): prayers, offerings, dedications, vows, rites, the rain a god keeps away.
+            if (Worship.On) Safe("worship, the hour", () => Worship.Hourly(now));
             // The gods in the wider world (Gods/World/GodWorld.cs): champions, blessings at night, lightning, gifts received, the void, myths at supper.
             if (Gods.On) Safe("the gods in the world, the hour", () => GodWorld.Hourly(now));
         }
@@ -222,6 +224,7 @@ namespace ColonyCouncil
             if (WorldLedger.Formers.Count > 0) Safe("towns the colony was, their life", () => TownsAfter.Daily(now));
             // The gods (Gods/GodBook.cs): the pantheon kept, the day's deeds, the ties shifting, a newborn.
             if (Gods.On) Safe("the gods", () => GodBook.Daily(now));
+            if (Worship.On) Safe("worship", () => Worship.Daily(now));
             // The gods in the wider world (Gods/World/GodWorld.cs): letters, peoples and camps, gifts, wrath, the void, the drama, the ones who don't fit.
             if (Gods.On) Safe("the gods in the world", () => GodWorld.Daily(now));
             ColonyBook.Daily(homes, null);

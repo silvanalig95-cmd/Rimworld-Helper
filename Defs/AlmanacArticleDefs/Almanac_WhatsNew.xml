@@ -31,6 +31,22 @@ When you load a save after an update, a letter lists the newest round once. The 
     <rounds>
 
       <li>
+        <version>0.220.0</version>
+        <date>11 November 2026</date>
+        <title>Shrines, prayers and vows</title>
+        <points>
+          <li>Altars, sculptures, nature shrines and old terminals can be given to a god: a colonist walks over and says the words, and it becomes that god's shrine, chapel, church or temple.</li>
+          <li>Now and then someone carries an offering to a god's place, each god's own kind of gift, and what becomes of it depends on how real the gods are.</li>
+          <li>In hard moments people pray, for the sick, the dead, before a raid or for rain, and sometimes something follows that nobody can quite explain.</li>
+          <li>An unanswered prayer can shake someone's faith, scoffers mock what believers saw, and couples who pray to different gods argue over who sent the rain.</li>
+          <li>Colonists make vows: no meat until the sick one is well, a pilgrimage, a temple, or a beast spared for a season.</li>
+          <li>Each god the colony holds has its own festival day on the calendar, kept with a feast, a rite and a chant.</li>
+          <li>A priest can be elected, and the council is asked about the gods: which to keep the year for, a temple, a dream asking for the finest beast, and rival gods' rites.</li>
+          <li>Gods speak in dreams, and what the colony's people saw, prayed and dreamt goes into its book of the gods.</li>
+        </points>
+      </li>
+
+      <li>
         <version>0.219.0</version>
         <date>11 November 2026</date>
         <title>The gods in the world</title>

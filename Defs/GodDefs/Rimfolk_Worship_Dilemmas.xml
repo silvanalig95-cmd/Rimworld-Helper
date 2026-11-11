@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    The council and the gods (Source/ColonyCouncil/Gods/Worship/WorshipCouncil.cs; docs/design/gods.md, "Worship": a
+    priest; brainstorm 16). {GOD}, {GODEPITHET}, {GODOF} are the question's first god, {GOD2} and {GOD3} the others, {PLACE}
+    the first god's place in the colony's age ("Ceren's chapel"), {PET_...} the beast a god asks for. A is the priest (or
+    the most devout of the god's people), B the other side. Each answer plays out on the map: words said at the god's
+    place (ShrineWords, the priest leading), an offering carried there, a beast walked out and let go; the gods' favour
+    moves through the core, unseen, and a god's rivals feel the honour paid to it.
+  -->
+
+  <!-- ===================== Which god the colony honours this year ===================== -->
+  <ColonyCouncil.DilemmaDef>
+    <defName>Rimfolk_Dlm_GodOfTheYear</defName>
+    <label>the god of the year</label>
+    <workerClass>ColonyCouncil.DilemmaWorker_GodOfTheYear</workerClass>
+    <weight>1.2</weight>
+    <cooldownDays>40</cooldownDays>
+    <minColonists>3</minColonists>
+    <texts>
+      <li>{A_nameDef} has come to the council with a question that can't wait for the year to turn: which god does the colony honour this year? {GOD}, {GOD2}, or another? Whichever god is named, {A_pronoun} says, has its festival kept first and the most offerings carried to it this year.</li>
+      <li>A new year, and {A_nameDef} asks the council to name the god the colony will keep it for. {GOD} has carried us this far, {A_pronoun} says, but {GOD2} has been owed a year for a long time.</li>
+      <li>[lowtech] {A_nameDef} has laid out the god-stones by the fire and asks the council to choose one to carry through the year: {GOD}, {GOD2}, or another.</li>
+      <li>[priest] A year belongs to one god, {A_nameDef} keeps reminding everyone, and it's the priest's work to ask which. {GOD}, {GOD2}, or another?</li>
+    </texts>
+    <defaultOption>0</defaultOption>
+    <options>
+      <li>
+        <label>Honour {GOD} this year</label>
+        <outcome>The council named {GOD} the colony's god for the year. {A_nameDef} said the words at {PLACE} that evening, and {GOD2}'s people went home quieter than they came.</outcome>
+        <ways><tradition>1</tradition></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_HonourGod"><god>1</god></li>
+          <li Class="ColonyCouncil.DilemmaEffect_ShrineWords"><god>1</god><label>{GOD}'s year begun</label><spots><li>Gather</li><li>Outdoors</li><li>Dining</li></spots><hours>17~21</hours><duration>0.75~1.25</duration><pool>Rimfolk_Pool_Worship_RiteWords</pool></li>
+        </effects>
+      </li>
+      <li>
+        <label>Honour {GOD2} this year</label>
+        <outcome>The council named {GOD2} the colony's god for the year. Words were said that evening, and {GOD}'s people swore they would remember this.</outcome>
+        <ways><openness>1</openness></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_HonourGod"><god>2</god></li>
+          <li Class="ColonyCouncil.DilemmaEffect_ShrineWords"><god>2</god><label>{GOD2}'s year begun</label><spots><li>Gather</li><li>Outdoors</li><li>Dining</li></spots><hours>17~21</hours><duration>0.75~1.25</duration><pool>Rimfolk_Pool_Worship_RiteWords</pool></li>
+        </effects>
+      </li>
+      <li>
+        <label>Honour {GOD3} this year</label>
+        <outcome>The council named {GOD3} the colony's god for the year, to everyone's surprise. Words were said that evening.</outcome>
+        <ways><openness>2</openness></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_HonourGod"><god>3</god></li>
+          <li Class="ColonyCouncil.DilemmaEffect_ShrineWords"><god>3</god><label>{GOD3}'s year begun</label><spots><li>Gather</li><li>Outdoors</li><li>Dining</li></spots><hours>17~21</hours><duration>0.75~1.25</duration><pool>Rimfolk_Pool_Worship_RiteWords</pool></li>
+        </effects>
+      </li>
+    </options>
+  </ColonyCouncil.DilemmaDef>
+
+  <!-- ===================== Whether to raise a temple ===================== -->
+  <ColonyCouncil.DilemmaDef>
+    <defName>Rimfolk_Dlm_Temple</defName>
+    <label>a temple</label>
+    <workerClass>ColonyCouncil.DilemmaWorker_Temple</workerClass>
+    <weight>0.8</weight>
+    <cooldownDays>45</cooldownDays>
+    <minColonists>5</minColonists>
+    <texts>
+      <li>{A_nameDef} wants a temple for {GOD}: a room of its own around {PLACE}, fine enough that nobody walking in could mistake what it is for. {A_pronoun} would vow it to {GOD} before the council, and asks the colony to build it.</li>
+      <li>{A_nameDef} says {GOD} has been worshipped in a corner long enough. A temple, {A_pronoun} says, a proper room with walls and a door, and {A_pronoun} will vow it.</li>
+      <li>[lowtech] {A_nameDef} wants a house for {GOD}, with a roof over {PLACE} and good things on the walls, and will swear before the council to see it raised.</li>
+    </texts>
+    <defaultOption>2</defaultOption>
+    <options>
+      <li>
+        <label>Raise a temple: {A_nameDef} vows it to {GOD}</label>
+        <outcome>{A_nameDef} vowed a temple to {GOD} before the council, and walked to {PLACE} that evening to say so there. The colony has a month to give {GOD} a fine room of its own.</outcome>
+        <ways><tradition>2</tradition></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_TempleVow"><days>30</days></li>
+          <li Class="ColonyCouncil.DilemmaEffect_ShrineWords"><god>1</god><label>a temple vowed to {GOD}</label><spots><li>Gather</li><li>Outdoors</li></spots><hours>17~21</hours><duration>0.75~1.25</duration><pool>Rimfolk_Pool_Worship_RiteWords</pool></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>2</amount></li>
+        </effects>
+      </li>
+      <li>
+        <label>{PLACE} will do as it is</label>
+        <outcome>The council said {PLACE} would do. {A_nameDef} went out to it alone and told {GOD} so.</outcome>
+        <ways><toil>1</toil></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_GodFavour"><god>1</god><amount>1</amount><why>the council kept {PLACE} as it was</why></li>
+          <li Class="ColonyCouncil.DilemmaEffect_ShrineWords"><god>1</god><label>a word to {GOD}</label><spots><li>Outdoors</li><li>Gather</li></spots><hours>17~21</hours><duration>0.5~0.75</duration><pool>Rimfolk_Pool_Worship_RiteWords</pool></li>
+        </effects>
+      </li>
+      <li>
+        <label>Not now</label>
+        <outcome>{A_nameDef} took it well enough. Some say {GOD} took it less well.</outcome>
+        <ways><toil>-1</toil></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_GodFavour"><god>1</god><amount>-2</amount><source>Neglect</source><offence>Neglect</offence><why>the council put off a temple for {GOD}</why></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>-1</amount></li>
+        </effects>
+      </li>
+    </options>
+  </ColonyCouncil.DilemmaDef>
+
+  <!-- ===================== A god asks for the best beast, or the rain stays away ===================== -->
+  <ColonyCouncil.DilemmaDef>
+    <defName>Rimfolk_Dlm_GodAsks</defName>
+    <label>a god asks</label>
+    <workerClass>ColonyCouncil.DilemmaWorker_GodAsks</workerClass>
+    <weight>0.7</weight>
+    <cooldownDays>60</cooldownDays>
+    <minColonists>3</minColonists>
+    <texts>
+      <li>{A_nameDef} woke shaking and came straight to the council. {GOD} spoke in {A_possessive} dream, {A_pronoun} says, and asked for {PET_labelShort}, the finest beast the colony has. Give it, {A_pronoun} says, and the rain keeps coming; refuse, and {A_pronoun} is sure the sky will stay dry.</li>
+      <li>{A_nameDef} says {GOD} wants {PET_labelShort}. {A_pronoun} dreamt it three nights running: the beast walking out past the last field, and the sky dry as bone behind it if it doesn't.</li>
+      <li>[bonded] {A_nameDef} says {GOD} wants {PET_labelShort}, of all the beasts, and knows exactly whose heart that breaks. {GOD} was very clear, {A_pronoun} says. Give it, or the rain stays away.</li>
+      <li>[lowtech] {A_nameDef} read the bones and read them again. {GOD} wants {PET_labelShort} given to the wild, or no rain will come to the fields.</li>
+      <li>[step:believed] {A_nameDef} is sure of it: {GOD} wants {PET_labelShort} let go into the wild, and a dry spell will follow if the colony holds on to it. Half the council thinks it was a bad dream. The other half has seen what a dry spell does.</li>
+    </texts>
+    <defaultOption>2</defaultOption>
+    <options>
+      <li>
+        <label>Give {PET_labelShort} to {GOD}</label>
+        <outcome>{A_nameDef} walked out to {PET_labelShort} and let it go. It went off toward the edge of the land at its own pace and didn't look back. Some say {GOD} was waiting for it there.</outcome>
+        <outcomes>
+          <li>[step:walking] {A_nameDef} let {PET_labelShort} go, and everyone saw where it went: straight to the edge of the land, as if called.</li>
+        </outcomes>
+        <ways><tradition>2</tradition><generosity>2</generosity></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_GiveBeast" />
+        </effects>
+      </li>
+      <li>
+        <label>Refuse: the colony keeps {PET_labelShort}</label>
+        <outcome>The council kept {PET_labelShort}. {A_nameDef} looked at the sky the whole evening.</outcome>
+        <ways><generosity>-1</generosity></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_GodFavour"><god>1</god><amount>-10</amount><source>Neglect</source><offence>Stinginess</offence><why>the colony refused {GOD} what was asked</why></li>
+          <li Class="ColonyCouncil.DilemmaEffect_DrySpell" />
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>-2</amount></li>
+        </effects>
+      </li>
+      <li>
+        <label>Offer {GOD} something lesser at {PLACE}</label>
+        <outcome>The council sent a lesser gift to {PLACE} instead. {A_nameDef} said it was a gamble, and that {GOD} has been known to take a bargain.</outcome>
+        <ways><toil>1</toil></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_LesserOffering" />
+          <li Class="ColonyCouncil.DilemmaEffect_GodFavour"><god>1</god><amount>4</amount><source>Offering</source><why>a lesser gift in place of what was asked</why></li>
+          <li Class="ColonyCouncil.DilemmaEffect_DrySpell"><lesser>true</lesser></li>
+        </effects>
+      </li>
+    </options>
+  </ColonyCouncil.DilemmaDef>
+
+  <!-- ===================== Caught between two rival gods ===================== -->
+  <ColonyCouncil.DilemmaDef>
+    <defName>Rimfolk_Dlm_RivalGods</defName>
+    <label>two rival gods</label>
+    <workerClass>ColonyCouncil.DilemmaWorker_RivalGods</workerClass>
+    <weight>0.8</weight>
+    <cooldownDays>40</cooldownDays>
+    <minColonists>4</minColonists>
+    <roleB />
+    <texts>
+      <li>{A_nameDef} prays to {GOD}, {B_nameDef} to {GOD2}, and the stories say the two gods have never been able to stand each other. Now {A_nameDef} and {B_nameDef} can't either. Each wants the colony's next rite for their own god, and says the other god will take it as an insult.</li>
+      <li>{GOD} and {GOD2} are old rivals, and the colony has people of both. {A_nameDef} says {GOD} won't share a shrine's smoke with {GOD2}. {B_nameDef} says {GOD2} was here first. The council is asked to settle it.</li>
+      <li>[lowtech] There's one fire and two gods who hate each other. {A_nameDef} will tend it for {GOD}, {B_nameDef} for {GOD2}, and neither will step back.</li>
+    </texts>
+    <defaultOption>2</defaultOption>
+    <options>
+      <li>
+        <label>{GOD} first</label>
+        <outcome>The council gave {GOD} the rite. {A_nameDef} said the words at {PLACE}. {B_nameDef} stayed away, and some say {GOD2} did too.</outcome>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_GodFavour"><god>1</god><amount>6</amount><why>the council put {GOD} before {GOD2}</why></li>
+          <li Class="ColonyCouncil.DilemmaEffect_ShrineWords"><god>1</god><priest>false</priest><label>{GOD}'s rite</label><spots><li>Gather</li><li>Outdoors</li></spots><hours>17~21</hours><duration>0.75~1.25</duration><pool>Rimfolk_Pool_Worship_RiteWords</pool></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>2</amount></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>B</target><amount>-2</amount></li>
+        </effects>
+      </li>
+      <li>
+        <label>{GOD2} first</label>
+        <outcome>The council gave {GOD2} the rite. {B_nameDef} said the words. {A_nameDef} stayed away, and some say {GOD} did too.</outcome>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_GodFavour"><god>2</god><amount>6</amount><why>the council put {GOD2} before {GOD}</why></li>
+          <li Class="ColonyCouncil.DilemmaEffect_ShrineWords"><god>2</god><priest>false</priest><organizer>B</organizer><label>{GOD2}'s rite</label><spots><li>Gather</li><li>Outdoors</li></spots><hours>17~21</hours><duration>0.75~1.25</duration><pool>Rimfolk_Pool_Worship_RiteWords</pool></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>B</target><amount>2</amount></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>-2</amount></li>
+        </effects>
+      </li>
+      <li>
+        <label>Both, side by side</label>
+        <outcome>The council asked for one rite for both gods. {A_nameDef} and {B_nameDef} stood at opposite ends of it and said their own words. Neither god, some say, liked sharing.</outcome>
+        <ways><openness>2</openness></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_GodFavour"><god>1</god><amount>2</amount><why>a rite shared with {GOD2}</why></li>
+          <li Class="ColonyCouncil.DilemmaEffect_GodFavour"><god>2</god><amount>2</amount><why>a rite shared with {GOD}</why></li>
+          <li Class="ColonyCouncil.DilemmaEffect_GodFavour"><god>1</god><amount>-2</amount><onlyJealous>true</onlyJealous><source>Neglect</source><offence>Rivals</offence><why>made to share a rite with {GOD2}</why></li>
+          <li Class="ColonyCouncil.DilemmaEffect_GodFavour"><god>2</god><amount>-2</amount><onlyJealous>true</onlyJealous><source>Neglect</source><offence>Rivals</offence><why>made to share a rite with {GOD}</why></li>
+          <li Class="ColonyCouncil.DilemmaEffect_ShrineWords"><god>1</god><priest>true</priest><label>a rite for {GOD} and {GOD2}</label><spots><li>Gather</li><li>Outdoors</li><li>Dining</li></spots><hours>17~21</hours><duration>1~1.5</duration><pool>Rimfolk_Pool_Worship_RiteWords</pool></li>
+        </effects>
+      </li>
+    </options>
+  </ColonyCouncil.DilemmaDef>
+
+</Defs>

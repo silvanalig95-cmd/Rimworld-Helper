@@ -56,7 +56,9 @@ namespace ColonyCouncil
         /// A fresh start (Colonies/Foundings.cs): the parting day on the old colony's calendar, the day its people set out
         /// to found a new one; or the old colony's founding day on the new one's calendar, once the old was abandoned.
         /// </summary>
-        Parting
+        Parting,
+        /// <summary>A god's festival (Gods/Worship/Festivals.cs): one of the colony's gods, on its domain's day, kept with a feast and its rite.</summary>
+        GodFestival
     }
 
     /// <summary>How the colony keeps a day.</summary>
