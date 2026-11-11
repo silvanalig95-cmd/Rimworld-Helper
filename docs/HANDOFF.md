@@ -56,6 +56,16 @@ tree at once, alongside whatever runs. Each piece is merged as its own release, 
   policies, shelves and stockpiles list them apart. Rimfolk's own counting of simple meals (feasts, hosting, the road
   food, the journey planner, the stores panel, the rider's supplies) takes them as simple meals; the Almanac's food
   page and README.
+- **To do when the player asks (11 November 2026), a bug: "Write back" greyed on the very answer.** The player, with a
+  picture of "A letter from Tocac" (Tocac, heir of Karond-Keth 2, Stormriders, allied: the answer to Guido's letter of
+  invitation, "Tocac will come to visit before long"; "Who is involved: Waesvaris") and "Write back" greyed with "One
+  letter at a time: the last one to them isn't answered yet.", and their save (scratchpad `save_toba4/League of
+  Toba.rws`, read with `python3 -I`): "i must say i'm a bit confused about when i can reply to a message and when
+  not? this one just came in but i can't reply to it. for to do". When asked: find why the answer itself doesn't count
+  as the answer (the invitation's answer kept open until the visit, a second letter to them under way, or the gate
+  asking the wrong notable: the card names Waesvaris as involved while Tocac wrote), make "Write back" open on any
+  letter that answers the colony's last one, and say plainly on every greyed reply what it waits for and when it
+  opens; the Almanac's letters page says when the colony can write to whom.
 - **To do when the player asks (11 November 2026): calling in a favour, made clear.** The player, with a picture of the
   letter window's "Ask for" list on a debt owed by "Acraeraes of Karond-Keth 2, a trader who called" (five loads of
   goods, some forty "A word for the colony with ... (a kind one)", a captive, peace, fighters): "this favour menu is also
@@ -86,6 +96,19 @@ tree at once, alongside whatever runs. Each piece is merged as its own release, 
   distance, as the couriers and journeys reckon it), their reading and writing time, and the answer's own road back;
   a refusal or silence is only known when it could be (a returning rider, their courier, or no word by the time an
   answer would have come). Check each against the map: the courier gone off the map is not the letter delivered.
+- 0.214.0, **Vegetarian and carnivore simple
+  meals** (11 November 2026). The player: "can i please have dedicated recipes for vegetarian & meat simple meals? so i
+  actually have a dedicated slot for it and can better manage different diets"; then "please do that now, thanks".
+  DESIGN.md "Vegetarian and carnivore simple meals"; README's food paragraph; the Almanac page "vegetarian and
+  carnivore simple meals" (`Council_Alm_1_34_DietMeals`, new). Defs `Rimfolk_DietSimpleMeals.xml`, `Integrations/
+  DietMeals.cs` (startup: the fine `_Veg`/`_Meat` bills' foods, every bench with the simple meal bills, the tinted
+  look; once per older save, `AllowWhereSimple`), `Things/DietMealsMath.cs` (linked), `DietMealsTests`, the saved
+  `dietMealsVersion`, the storage review's meals.
+  - Try in the game: 1. A stove, a fueled stove and a campfire: "cook vegetarian simple meal", "cook carnivore simple
+    meal" and the four-at-once bills; the bill's ingredients show plant food only, or meat only. 2. The meals on the
+    map and in the stores: a green-tinted and a red-tinted simple meal. 3. An older save: existing food policies and
+    shelves that took simple meals list both, ticked. 4. A vegetarian colonist eating the vegetarian one: no "ate
+    meat" memory. 5. Another mod's stove that cooks simple meals has the bills.
 - 0.213.1, **The temperature on a coloured
   field** (11 November 2026). The player, with a picture of 0.208.0's readout (the small blue thermometer beside
   "Indoors -4C"): "great start! I'd just like a larger surface that's colored so it's more clearly visible, perhaps

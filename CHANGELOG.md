@@ -5,6 +5,15 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## A simple meal for every diet
+
+*11 November 2026, version 0.214.0*
+
+- A vegetarian simple meal and a carnivore simple meal, made from plant food only or from meat only, each with its own bill and a four-at-once bill at every stove or fire that cooks simple meals.
+- Each is a kind of its own, so food policies, shelves and stockpiles can keep diets apart.
+- They are simple meals in every way and look like one, tinted green or red so you can tell them apart at a glance.
+- In an older save, every food policy, shelf and stockpile that took simple meals takes these too, so nothing is left without a place.
+
 ## The temperature on a coloured field
 
 *11 November 2026, version 0.213.1*

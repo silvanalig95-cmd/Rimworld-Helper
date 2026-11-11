@@ -305,6 +305,44 @@ Every other meal bill (simple, fine, lavish and survival meals, and other mods' 
   </ColonyCouncil.AlmanacArticleDef>
 
   <ColonyCouncil.AlmanacArticleDef>
+    <defName>Council_Alm_1_34_DietMeals</defName>
+    <label>vegetarian and carnivore simple meals</label>
+    <category>Food</category>
+    <order>46</order>
+    <summary>Simple meals from plant food only or from meat only, each on its own bill, so diets can be kept apart</summary>
+    <tip>Cook vegetarian simple meals for a vegetarian, give them a shelf of their own, and put only those on their food policy.</tip>
+    <description>The game has vegetarian and carnivore fine and lavish meals, but only one simple meal, which takes any raw food. Rimfolk adds a vegetarian simple meal and a carnivore simple meal: simple meals in every way, made from plant food only or from meat only. Each is a kind of its own, so food policies, shelves and stockpiles can tell them apart, and a colonist whose diet or faith forbids meat or plants can be fed simple meals without the cook mixing in what they mustn't eat.</description>
+    <sections>
+      <li>
+        <heading>Cooking them</heading>
+        <points>
+          <li>Every stove or fire that cooks simple meals has the bills: "cook vegetarian simple meal" and "cook carnivore simple meal", and four at once of each, as the simple meal has. Other mods' stoves that cook simple meals have them too.</li>
+          <li>They take the same foods as the game's vegetarian and carnivore fine meals: 0.5 nutrition of raw food, plant food only for the vegetarian meal, meat only for the carnivore meal. A cook needs no more skill than for a simple meal.</li>
+          <li>Set the bills to "do until you have" a few days' worth for those who need them, beside the usual simple meal bill for everyone else.</li>
+        </points>
+      </li>
+      <li>
+        <heading>Keeping diets apart</heading>
+        <points>
+          <li>Give a vegetarian a food policy with vegetarian simple meals (and the game's vegetarian fine and lavish meals) on it, and the plain simple meal off it; a carnivore the same with carnivore meals.</li>
+          <li>A shelf or stockpile set to one kind keeps it where the people who eat it look first.</li>
+        </points>
+        <after>In a save from before these meals, every food policy, shelf and stockpile that took simple meals takes these too, once, so nothing is left without a place or someone to eat it; take them off where they don't belong. They count as simple meals for mood, rot like one, and look like one in a green or red tint.</after>
+      </li>
+    </sections>
+    <keywords>
+      <li>vegetarian meal</li>
+      <li>carnivore meal</li>
+      <li>vegetarian simple meal</li>
+      <li>carnivore simple meal</li>
+    </keywords>
+    <seeAlso>
+      <li>Council_Alm_1_26_MealMoods</li>
+      <li>Council_Alm_1_33_FungusMeals</li>
+    </seeAlso>
+  </ColonyCouncil.AlmanacArticleDef>
+
+  <ColonyCouncil.AlmanacArticleDef>
     <defName>Council_Alm_1_25_FoodPoisoning</defName>
     <label>food poisoning</label>
     <category>Food</category>

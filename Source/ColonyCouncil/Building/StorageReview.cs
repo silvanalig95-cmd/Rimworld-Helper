@@ -243,7 +243,7 @@ namespace ColonyCouncil
             ("chunks", new[] { "ChunkGranite", "ChunkSandstone", "ChunkLimestone", "ChunkSlate", "ChunkMarble" }),
             ("steel", new[] { "Steel" }),
             ("cloth", new[] { "Cloth", "Leather_Plain" }),
-            ("meals", new[] { "MealSimple", "MealFine" }),
+            ("meals", new[] { "MealSimple", DietMealsMath.VegMeal, DietMealsMath.MeatMeal, "MealFine" }),
             ("medicine", new[] { "MedicineHerbal", "MedicineIndustrial" }),
             ("weapons", new[] { "Gun_Autopistol", "MeleeWeapon_Knife" }),
             ("apparel", new[] { "Apparel_BasicShirt", "Apparel_Pants" })

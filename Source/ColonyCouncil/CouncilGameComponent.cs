@@ -152,6 +152,9 @@ namespace ColonyCouncil
         /// </summary>
         public int fungusBillsVersion;
 
+        /// <summary>1: the vegetarian and carnivore simple meals were let in wherever simple meals are (DietMeals.AllowWhereSimple).</summary>
+        public int dietMealsVersion;
+
         private Dictionary<string, int> cooldowns = new Dictionary<string, int>();
         /// <summary>Recent wishes colony-wide (defName and tick), so the same wish doesn't come round again and again.</summary>
         private List<string> recentWishDefs = new List<string>();
@@ -246,6 +249,19 @@ namespace ColonyCouncil
                 catch (Exception e)
                 {
                     CouncilLog.ErrorOnce("fungus on queued meal bills", e);
+                }
+            }
+            // A save from before the vegetarian and carnivore simple meals: every policy, shelf and stockpile that takes simple meals takes them.
+            if (dietMealsVersion < 1)
+            {
+                dietMealsVersion = 1;
+                try
+                {
+                    DietMeals.AllowWhereSimple();
+                }
+                catch (Exception e)
+                {
+                    CouncilLog.ErrorOnce("vegetarian and carnivore simple meals in older policies and storage", e);
                 }
             }
             // An older save's ties (grudges, guest kin, the scenario's debt) go into the world ledger, now the homes are known.
@@ -354,6 +370,7 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref animalsTamed, "animalsTamed");
             Scribe_Values.Look(ref tamingsVersion, "tamingsVersion");
             Scribe_Values.Look(ref fungusBillsVersion, "fungusBillsVersion");
+            Scribe_Values.Look(ref dietMealsVersion, "dietMealsVersion");
             Scribe_Collections.Look(ref cooldowns, "cooldowns", LookMode.Value, LookMode.Value, ref tmpKeys, ref tmpValues);
             Scribe_Collections.Look(ref recentWishDefs, "recentWishDefs", LookMode.Value);
             Scribe_Collections.Look(ref recentWishTicks, "recentWishTicks", LookMode.Value);

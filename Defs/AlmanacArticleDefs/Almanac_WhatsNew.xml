@@ -31,6 +31,18 @@ When you load a save after an update, a letter lists the newest round once. The 
     <rounds>
 
       <li>
+        <version>0.214.0</version>
+        <date>11 November 2026</date>
+        <title>A simple meal for every diet</title>
+        <points>
+          <li>A vegetarian simple meal and a carnivore simple meal, made from plant food only or from meat only, each with its own bill and a four-at-once bill at every stove or fire that cooks simple meals.</li>
+          <li>Each is a kind of its own, so food policies, shelves and stockpiles can keep diets apart.</li>
+          <li>They are simple meals in every way and look like one, tinted green or red so you can tell them apart at a glance.</li>
+          <li>In an older save, every food policy, shelf and stockpile that took simple meals takes these too, so nothing is left without a place.</li>
+        </points>
+      </li>
+
+      <li>
         <version>0.213.1</version>
         <date>11 November 2026</date>
         <title>The temperature on a coloured field</title>

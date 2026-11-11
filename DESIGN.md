@@ -12059,6 +12059,29 @@ and it fits the line's height at every interface scale without crowding the weat
   its earlier banded scale with green in the middle is gone. Its tooltip still names the band (`HudRank.Band`) and
   the row still turns orange and red at hard frost, fierce heat and beyond. No other panel shows a temperature.
 
+### Vegetarian and carnivore simple meals (the player's request, 11 November 2026; released 0.214.0)
+
+The player: "can i please have dedicated recipes for vegetarian & meat simple meals? so i actually have a dedicated slot
+for it and can better manage different diets". The game has vegetarian and carnivore fine and lavish meals but one
+simple meal, and none of the player's active mods adds simple variants.
+
+- **The meals** (`Defs/Food/Rimfolk_DietSimpleMeals.xml`): `Rimfolk_MealSimple_Veg` "vegetarian simple meal" and
+  `Rimfolk_MealSimple_Meat` "carnivore simple meal", simple meals in every way (`MealCooked`, `MealSimple`
+  preferability, 0.9 nutrition, worth 15, work 300), eaten as `EatVegetarian` or `EatMeat`; no DLC, as the game's own
+  `_Veg` and `_Meat` meals are base game. Bills `Rimfolk_CookMealSimple_Veg`/`_Meat` (one meal from 0.5 nutrition) and
+  `Rimfolk_CookMealSimpleBulk_Veg`/`_Meat` (four from 2, work 1200).
+- **Finished at startup** (`Integrations/DietMeals.cs`, the table in `Things/DietMealsMath.cs`): each bill's ingredients,
+  fixed and default filters are those of the game's `CookMealFine_Veg`/`_Meat` (or the bulk ones), so other mods' foods
+  count as the game counts them; every work table with the game's `CookMealSimple` (or `CookMealSimpleBulk`) gets the
+  bill (the game's stoves and campfire, other mods' benches); the meal takes the simple meal's graphic and icon in a
+  green or red tint. The fungus meal's rule (other meal bills start with fungus unticked) applies to these as to every
+  meal bill.
+- **Older saves** (`DietMeals.AllowWhereSimple`, once, `CouncilGameComponent.dietMealsVersion`): a filter saved before
+  a def existed leaves it out, so every food policy and every shelf or stockpile (the maps' haul destinations) that
+  takes simple meals takes these too; the player then takes them off where they don't belong.
+- Rimfolk counts them as simple meals wherever it reads a meal's preferability (feasts, hosting, the road food, the
+  rider's supplies, the stores panel); the storage review groups them with the meals. Tested in `DietMealsTests`.
+
 ### Checking a new game version
 
 One DLL serves every supported version: it is built against the 1.6 references into `1.6/Assemblies`, and on 1.7
