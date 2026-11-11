@@ -575,9 +575,18 @@ namespace ColonyCouncil
                 Vanish(x);
                 return;
             }
+            // Walking off too long (shut in, the way blocked): gone in a breath.
+            if (s.phase == StrangerPhase.WalkingOff)
+            {
+                b.stranger = null;
+                Vanish(x);
+                return;
+            }
             if (s.phase == StrangerPhase.Farewell && x != null && x.Spawned && !x.Dead)
             {
                 s.phase = StrangerPhase.WalkingOff;
+                s.phaseDue = now + GenDate.TicksPerHour * 6;
+                b.Due(s.phaseDue);
                 try
                 {
                     x.GetLord()?.RemovePawn(x);
@@ -671,6 +680,7 @@ namespace ColonyCouncil
             var cell = x != null && x.Spawned ? x.Position : corpse != null && corpse.Spawned ? corpse.Position : s.gate.IsValid ? s.gate : map.Center;
             bool plain = GodsOnMapMath.Show(Gods.Realness) == GodShow.Plain && x != null && x.Spawned && !x.Dead;
             if (corpse != null && !corpse.Destroyed) corpse.Destroy();
+            // apart: a god shows itself to everyone on the map; nobody confides anything to anyone.
             if (plain)
             {
                 try

@@ -1559,6 +1559,44 @@ example `Sounds/Rimfolk/Gods/Storm/`) and restart the game; they play before the
 auras* and *Gods' music* (How you're told, On the map and in the game's tabs), both on. Dev mode has *Gods: ...*
 actions to make any person or animal a god's, reveal one and play each kind of moment.
 
+### The gods on the map
+A few times in a long game, a god comes to the colony itself, after days of omens: the land's birds all leaving at
+once, a strange calm with the wind dead and nothing moving, two colonists waking from the same dream (in the dream
+book and their journals, and they say so when next together), a lamp or a torch that won't stay lit, the animals
+restless and all looking one way. Colonists remark on each, and the news says whose sign it was, by how real the gods
+are ("Some say it is a sign of Ceren").
+- **The stranger at the gate.** A lone traveller of the colony's age (a wanderer, a pilgrim, a drifter, a lost spacer)
+  asks for shelter: a bed and a place at the table (Hospitality's guest when it's loaded, else a warm corner indoors),
+  sleep by the gate, or away. It's a god in disguise, with the tells of one, and it says things a traveller couldn't
+  know. It notices everything: the bed it got, the food (and it thanks the cook by name), who talked with it, shared a
+  meal or a drink, gave it something or tended its wounds, how the animals were kept, whether anyone struck or robbed
+  it. When it leaves, or the moment it's struck, it shows who it was: in *Walking* it stops at the gate, grows into
+  itself and speaks, then walks off as a god; in *Felt* it's simply gone, and some say. Kept well, the colony is
+  blessed (a find where it stood, rain for the fields) and the kindest colonist gets a lasting gift of its domain: a
+  burning passion, a trait, A RimWorld of Magic's spell or class, or its favour and a spark of inspiration. Turned
+  away or struck, it's angry: its domain withheld for a while (the rain kept away, dry thunder, the game gone from the
+  land, the lights guttering), and whoever struck it may come down with a fever (under the everyday hurts' cap and
+  the shared illness budget).
+- **The sacred animal.** A god walks as a beast of its own (the elves' ancient deer, a great wolf, Odyssey's crow, a
+  thunderox): larger than its kind and lit from within. It can't be tamed and is never hostile unless harmed. It stays
+  a few days; a small one follows one colonist about, a large one walks the land. Right-click it with a colonist to take
+  it food or follow it where it leads: to a find, a cure for what ails them, or a seam of ore nobody had seen. Leaving it
+  be pleases its god; hunting or hurting it is sacrilege: the game's own revenge, the god's anger in the sky, and a slain
+  one's body gone to ash.
+- **Weather as a voice.** After the colony's deeds, a god it knows may answer in its domain, as the land allows: rain
+  after the harvest's god is pleased, thunder on cue for the storm's, an eclipse for a dark god's anger, an aurora on a
+  god's night. A colonist outside always names it. Gods with no body (the storm has none) act this way most of all. In
+  *Believed* nothing is sent: the colony reads the god into the weather that comes of itself.
+- **What remains.** Its name and act go into the god's page, the chronicle and the colony's history; those who saw it
+  share the memory and bring it up when they talk; the kindest and whoever struck it are talked about. The mark on the
+  land is remembered for years: someone walks out to it on a quiet day and remembers aloud, it comes up at supper, and
+  visitors ask about it.
+
+Who comes as what is the god's own (`Defs/GodDefs/Rimfolk_GodsOnMap_Shapes.xml`): not every god has a body, a beast or a
+voice in the sky. *Believed* brings no strangers and no beasts. This week lists a stranger staying and a beast on the
+land, never what is coming. Dev mode has *Gods: ...* actions for the stranger, the sacred animal, a god's weather, each
+omen and a visit to a mark. The Almanac has a page, *the gods on the map*.
+
 ### Offices and elections
 Five council seats: **speaker** (chairs meetings, everyone's trust rises a little each day), **marshal** (drills
 count for more, better aim), **quartermaster** (dilemmas cost less, better trade), **physician** (faster healing)

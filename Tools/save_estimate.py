@@ -371,6 +371,17 @@ MODEL = {
     # in its pack; two pieces each at most, while it is a god (a few gods at most in a long game).
     "Gods/Presence/GodAvatar.cs:given": ("while", 2, P, "the god's robe and crown, while it walks as one"),
     "Gods/Presence/GodAvatar.cs:stored": ("while", 4, P, "what the robe and crown covered, kept in its pack, while it walks as one"),
+    # The gods on the map (Gods/OnMap/): the stranger's stay while it lasts (each colonist's kindness to them, side by side,
+    # and who talked with them: the colony's people at most); the omens waiting before a coming (GodsOnMapBook.MaxOmens);
+    # the marks remembered (GodsOnMapMath.MaxMarks, let go after five years); when a god last answered in the weather, one
+    # per home (two lists side by side, one home in the model).
+    "Gods/OnMap/GodStranger.cs:kind": ("while", COLONISTS, P, "each colonist's kindness to the stranger, while they stay (a day or two, a few times in a long game)"),
+    "Gods/OnMap/GodStranger.cs:points": ("while", COLONISTS, V, "beside it, the points, while the stranger stays"),
+    "Gods/OnMap/GodStranger.cs:talkers": ("while", COLONISTS, P, "who talked with the stranger, while they stay"),
+    "Gods/OnMap/GodsOnMapBook.cs:omens": ("fixed", const("Gods/OnMap/GodsOnMapBook.cs", "MaxOmens", 12), 160, "omens waiting before a god's coming, a few days' worth, GodsOnMapBook.MaxOmens at most"),
+    "Gods/OnMap/GodsOnMapBook.cs:marks": ("cap", (const("Gods/OnMap/GodsOnMapMath.cs", "MaxMarks", 24), 0.05), 260, "the marks the gods left, GodsOnMapMath.MaxMarks, let go after five years"),
+    "Gods/OnMap/GodsOnMapBook.cs:weatherHomes": ("fixed", 1, V, "one per home: when a god last answered in the weather there"),
+    "Gods/OnMap/GodsOnMapBook.cs:weatherTicks": ("fixed", 1, V, "beside it, the tick"),
     "Camps/CampTracker.cs:past": ("fixed", 6, R, "camps the colony remembers, six at most (CampStoryMath.RememberMax), faded after some seasons"),
     "Camps/CampTracker.cs:homes": ("fixed", 1, 260, "one per colony (CampHome: its camp, holding, war party and clock; one home in the model, a second doubles the rows "
                                    "below), a lost home's kept 30 days, then let go"),

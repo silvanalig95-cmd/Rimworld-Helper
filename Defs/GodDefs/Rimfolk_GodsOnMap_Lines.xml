@@ -83,6 +83,8 @@
       <plain>
         <li>That's not right, something's coming.</li>
         <li>I've got a strange feeling about today.</li>
+        <li>Did anyone else see that, or is it just me?</li>
+        <li>My grandmother would have called that a sign.</li>
         <li>[birds] The birds are all leaving, look at them go.</li>
         <li>[birds] Every bird on the land took off at once.</li>
         <li>[birds] Not a single bird left in the trees.</li>
@@ -153,6 +155,7 @@
       <plain>
         <li>That's an answer if ever I saw one.</li>
         <li>Somebody up there is listening to us.</li>
+        <li>Did you see the sky just now, that was for us.</li>
         <li>[rain] Rain, right on time, thanks to {GOD}.</li>
         <li>[rain] Feel that, {GOD} heard us.</li>
         <li>[rain] Rain for the fields, I told you we'd be heard.</li>
@@ -258,5 +261,88 @@
       </plain>
     </lines>
   </ColonyCouncil.FlavorPoolDef>
+
+  <!--
+    Two who saw a god come, remembering it when they talk (Rimfolk_Mem_GodSeen, the talk's own picker: at the table, at
+    work, by the fire). {LABEL} is what came: "the pilgrim who came to the gate", "the elk that was more than a beast".
+  -->
+  <ColonyCouncil.TalkLinesDef>
+    <defName>Rimfolk_TL_Mem_GodSeen_Open</defName>
+    <memory>Rimfolk_Mem_GodSeen</memory>
+    <turn>Open</turn>
+    <outcomes><li>Reminisce</li></outcomes>
+    <lines>
+      <plain>
+        <li>Do you still think about {LABEL}?</li>
+        <li>I dreamed about {LABEL} again last night.</li>
+        <li>I walked past where it happened, and I slowed down without meaning to.</li>
+        <li>[first] I never told anyone how scared I was, with {LABEL}.</li>
+        <li>Somebody asked me about {LABEL} today, and I didn't know what to say.</li>
+        <li>Was it really a god, do you think, {LABEL}?</li>
+      </plain>
+      <warm>
+        <li>I'm glad it was you beside me when we saw {LABEL}.</li>
+      </warm>
+      <blunt>
+        <li>I still don't know what to make of {LABEL}, and I've tried.</li>
+      </blunt>
+      <cheerful>
+        <li>Imagine telling our grandchildren about {LABEL}.</li>
+      </cheerful>
+      <gloomy>
+        <li>Ever since {LABEL}, I feel like something is watching us.</li>
+      </gloomy>
+      <cold>
+        <li>We should write down what we saw of {LABEL}, before we forget it.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.TalkLinesDef>
+
+  <ColonyCouncil.TalkLinesDef>
+    <defName>Rimfolk_TL_Mem_GodSeen_Reply</defName>
+    <memory>Rimfolk_Mem_GodSeen</memory>
+    <turn>Reply</turn>
+    <outcomes><li>Reminisce</li></outcomes>
+    <lines>
+      <plain>
+        <li>Every day, some days more than others.</li>
+        <li>I keep remembering how quiet everything went.</li>
+        <li>I've stopped trying to explain it to the others.</li>
+        <li>[first] I thought I was the only one who couldn't stop thinking about it.</li>
+        <li>The light, I remember the light most of all.</li>
+        <li>Some days I'm sure, some days I'm not sure at all.</li>
+      </plain>
+      <warm>
+        <li>I'm glad I wasn't alone for it.</li>
+      </warm>
+      <blunt>
+        <li>It happened, and that's all I know.</li>
+      </blunt>
+      <cheerful>
+        <li>Best thing that ever happened to this place, if you ask me.</li>
+      </cheerful>
+      <gloomy>
+        <li>I hope it never comes back, to be honest.</li>
+      </gloomy>
+      <cold>
+        <li>I've thought about it, and I still can't account for it.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.TalkLinesDef>
+
+  <ColonyCouncil.TalkLinesDef>
+    <defName>Rimfolk_TL_Mem_GodSeen_Close</defName>
+    <memory>Rimfolk_Mem_GodSeen</memory>
+    <turn>Close</turn>
+    <outcomes><li>Reminisce</li></outcomes>
+    <lines>
+      <plain>
+        <li>Whatever it was, we saw it together.</li>
+        <li>Let's not tell it too often, or it'll stop being true.</li>
+        <li>If it ever comes again, I'll know it this time.</li>
+        <li>I'll light a candle for it tonight, just in case.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.TalkLinesDef>
 
 </Defs>

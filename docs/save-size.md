@@ -7,8 +7,8 @@ colony of 20, with the game keeping 30 more people it knows and 5 more each year
 generous guesses; sizes are rough XML sizes. Caps named as constants are read from the source. "Counted under" rows are
 kept inside another record (a journal's lines, a heart's lists) and are already in that record's size.
 
-Saved collections found: 637; modelled: 637; growing without end: 0.
-Rimfolk's part of the save, roughly: **2,865 KB** after a year, **3,522 KB** after two, **3,861 KB** after five.
+Saved collections found: 644; modelled: 644; growing without end: 0.
+Rimfolk's part of the save, roughly: **2,870 KB** after a year, **3,527 KB** after two, **3,868 KB** after five.
 
 | Collection | Rule | Kind | 1 year | 2 years | 5 years | KB at 5 years |
 |---|---|---|---|---|---|---|
@@ -137,6 +137,7 @@ Rimfolk's part of the save, roughly: **2,865 KB** after a year, **3,522 KB** aft
 | `Strangers/Nemeses.cs:all` | 30 that have ended | cap | 3 | 6 | 15 | 4.4 |
 | `Persona/Marks.cs:fights` | the last 8 fights won per person, a year at most | colonists | 160 | 160 | 160 | 3.9 |
 | `Animals/AnimalBook.cs:gone` | animals that left alive with their handler, AnimalNatureMath.MaxGone at most, oldest first, forgotten after 120 days | cap | 3 | 6 | 15 | 3.8 |
+| `Gods/OnMap/GodsOnMapBook.cs:marks` | the marks the gods left, GodsOnMapMath.MaxMarks, let go after five years | cap | 3 | 6 | 15 | 3.8 |
 | `Dealings/DealingBook.cs:friends` | one per notable the colony exchanged letters with, a friend or not yet; the gone let go daily (DealingMath.MaxFriends friends) | cap | 6 | 12 | 24 | 3.8 |
 | `Building/BuildPriority.cs:levels` | blueprints and frames with a build priority set, per map, until built or cancelled | while | 40 | 40 | 40 | 3.5 |
 | `Building/RoomRearranger.cs:orders` | per map: a room's furniture moves still to be carried out, gone once done, called off or after 15 days (Building/RoomRearranger.cs) | fixed | 30 | 30 | 30 | 3.5 |
@@ -199,6 +200,7 @@ Rimfolk's part of the save, roughly: **2,865 KB** after a year, **3,522 KB** aft
 | `Happenings/Happenings.cs:raids` | until they come | cap | 3 | 5 | 5 | 2.0 |
 | `Building/Automations.cs:actions` | the last actions to undo, AutomationMath.ActionsKept | fixed | 12 | 12 | 12 | 1.9 |
 | `Diplomacy/DiplomacyBook.cs:offers` | per home: offers for captives either way and exchanges, RansomMath.MaxOffers at most, each dropped once done or its captive gone | cap | 6 | 6 | 6 | 1.9 |
+| `Gods/OnMap/GodsOnMapBook.cs:omens` | omens waiting before a god's coming, a few days' worth, GodsOnMapBook.MaxOmens at most | fixed | 12 | 12 | 12 | 1.9 |
 | `Setbacks/SetbackTracker.cs:friends` | pairs of friends today | pairs | 38 | 38 | 38 | 1.9 |
 | `Ailments/AilmentTracker.cs:freshDay` | known pawns only | colonists | 20 | 20 | 20 | 1.8 |
 | `Ailments/AilmentTracker.cs:seenDay` | known pawns only | colonists | 20 | 20 | 20 | 1.8 |
@@ -285,6 +287,8 @@ Rimfolk's part of the save, roughly: **2,865 KB** after a year, **3,522 KB** aft
 | `Ambitions/CouncilMeeting.cs:voters` | while a meeting is called | while | 20 | 20 | 20 | 0.8 |
 | `Annals.cs:present` | the year in progress | colonists | 20 | 20 | 20 | 0.8 |
 | `Camps/Camp.cs:kills` | while the camp stays (a stay is days, not years) | while | 20 | 20 | 20 | 0.8 |
+| `Gods/OnMap/GodStranger.cs:kind` | each colonist's kindness to the stranger, while they stay (a day or two, a few times in a long game) | while | 20 | 20 | 20 | 0.8 |
+| `Gods/OnMap/GodStranger.cs:talkers` | who talked with the stranger, while they stay | while | 20 | 20 | 20 | 0.8 |
 | `Health/HealthTracker.cs:known` | known pawns only | colonists | 20 | 20 | 20 | 0.8 |
 | `Journeys/Journeys.cs:travellers` | the one plan's travellers, until they set off | fixed | 20 | 20 | 20 | 0.8 |
 | `Offices/Election.cs:voted` | who has voted, while it lasts | while | 20 | 20 | 20 | 0.8 |
@@ -335,6 +339,7 @@ Rimfolk's part of the save, roughly: **2,865 KB** after a year, **3,522 KB** aft
 | `Animals/ResidentBeast.cs:knownIds` | wild beasts whose story has closed (ids), the newest 20 (ResidentBeast.KnownMax) | fixed | 20 | 20 | 20 | 0.5 |
 | `Building/BuildAhead.cs:removeCells` | per room step: what it marked to take down, inside the footprint | fixed | 20 | 20 | 20 | 0.5 |
 | `Defense/DefenseLinesWatch.cs:downedSeen` | colonists downed in the raid under way, cleared when it ends | while | 20 | 20 | 20 | 0.5 |
+| `Gods/OnMap/GodStranger.cs:points` | beside it, the points, while the stranger stays | while | 20 | 20 | 20 | 0.5 |
 | `Heart/HeartData.cs:goodSpent` | per heart: one per strain source | fixed | 20 | 20 | 20 | 0.5 |
 | `PlayOut/Stage.cs:held` | when each gathering began, the last ten days (StageMath.KeepDays): two a day at the very most | fixed | 20 | 20 | 20 | 0.5 |
 | `Social/Autonomy.cs:lastActed` | with the above | window | 20 | 20 | 20 | 0.5 |
@@ -509,6 +514,8 @@ Rimfolk's part of the save, roughly: **2,865 KB** after a year, **3,522 KB** aft
 | `PlayOut/OnMapTimed.cs:pawns` | per thing kept: those felling the trees (three at most), fellings only | fixed | 1 | 1 | 1 | 0.0 |
 | `PlayOut/PlayOuts.cs:led` | per play-out: animals led out to be let go (a pet, or a few of the herd), walks and visits only | fixed | 1 | 1 | 1 | 0.0 |
 | `Dilemmas/Answers.cs:started` | per answer watched | fixed | 1 | 1 | 1 | 0.0 |
+| `Gods/OnMap/GodsOnMapBook.cs:weatherHomes` | one per home: when a god last answered in the weather there | fixed | 1 | 1 | 1 | 0.0 |
+| `Gods/OnMap/GodsOnMapBook.cs:weatherTicks` | beside it, the tick | fixed | 1 | 1 | 1 | 0.0 |
 | `Harm/Harm.cs:calm` | of the hunts' game that can turn, the ones whose turn within the shared budget didn't come up, pruned with them | while | 1 | 1 | 1 | 0.0 |
 | `Lean/Homes.cs:known` | the homes at the last hourly look (their settlements' ids), one per home | fixed | 1 | 1 | 1 | 0.0 |
 | `Lives/Legacy.cs:cameOfAgeTick` | 6 days | window | 0 | 0 | 0 | 0.0 |

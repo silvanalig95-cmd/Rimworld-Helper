@@ -196,7 +196,13 @@ namespace ColonyCouncil
                 Departed(b, s, now);
                 return;
             }
-            if (a.Dead || s.hurt) return;
+            if (a.Dead) return;
+            // Hurt: once its revenge is done (or it took none), it leaves the land in a breath.
+            if (s.hurt)
+            {
+                Settled(b);
+                return;
+            }
             Fed(a);
             if (now >= s.leaveAt + GenDate.TicksPerDay)
             {
@@ -243,7 +249,8 @@ namespace ColonyCouncil
             string line = Flavor.FromPool(SeenPool, p, null, null, GodsOnMapMath.Follows(a.BodySize) ? "small" : "large", s.chosen == p ? "chosen" : null,
                 god?.domain.ToString().ToLowerInvariant());
             if (line.NullOrEmpty()) return;
-            if (Speech.Say(p, line.Formatted(a.LabelShort.Named("BEAST"), a.def.label.Named("KIND")).Resolve())) s.lastSeenSaid = now;
+            string said = line.Formatted(a.LabelShort.Named("BEAST"), a.def.label.Named("KIND")).Resolve();
+            if (Speech.Say(p, said)) s.lastSeenSaid = now;
         }
 
         /// <summary>A large one comes to a colonist out of doors and waits for them: they follow it, of their own accord, where it leads.</summary>

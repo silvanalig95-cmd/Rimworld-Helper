@@ -228,7 +228,8 @@ namespace ColonyCouncil
             {
                 string line = Flavor.FromPool(SayPool, speaker, null, null, tag, pleased ? "pleased" : "angered", "named", GodShapes.LineTag(god),
                     god.domain.ToString().ToLowerInvariant(), readInto ? "believed" : null);
-                if (!line.NullOrEmpty()) Speech.Say(speaker, line.Formatted(GodsOnMapWords.Args(god, false).Concat(new[] { speaker.Named("PAWN") }).ToArray()).Resolve());
+                string said = line.NullOrEmpty() ? null : line.Formatted(GodsOnMapWords.Args(god, false).Concat(new[] { speaker.Named("PAWN") }).ToArray()).Resolve();
+                if (said != null) Speech.Say(speaker, said);
             }
             string what = ("CC_GodM_Weather_" + v).Translate(GodsOnMapWords.Args(god, false)).Resolve();
             string text = GodsOnMapWords.Voice(what) + ".";

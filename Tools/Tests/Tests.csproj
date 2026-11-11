@@ -312,5 +312,6 @@
     <Compile Include="../../Source/ColonyCouncil/Letters/LetterThreadMath.cs" Link="LetterThreadMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Letters/LetterClickMath.cs" Link="LetterClickMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Gods/Presence/GodPresenceMath.cs" Link="GodPresenceMath.cs" />
+    <Compile Include="../../Source/ColonyCouncil/Gods/OnMap/GodsOnMapMath.cs" Link="GodsOnMapMath.cs" />
   </ItemGroup>
 </Project>

@@ -136,7 +136,8 @@ namespace ColonyCouncil
             mark.visits++;
             mark.lastVisit = Now;
             string line = Flavor.FromPool(VisitPool, p, null, null, mark.kind.ToString().ToLowerInvariant(), god.domain.ToString().ToLowerInvariant(), Voice(), GodShapes.LineTag(god));
-            if (!line.NullOrEmpty()) Speech.Say(p, line.Formatted(GodsOnMapWords.Args(god, false).Concat(new[] { (mark.words ?? "").Named("WHAT"), p.Named("PAWN") }).ToArray()).Resolve());
+            string said = line.NullOrEmpty() ? null : line.Formatted(GodsOnMapWords.Args(god, false).Concat(new[] { (mark.words ?? "").Named("WHAT"), p.Named("PAWN") }).ToArray()).Resolve();
+            if (said != null) Speech.Say(p, said);
             // A small good moment that gives a quiet hour, not a mood.
             var joy = p.needs?.joy;
             if (joy != null) joy.CurLevel = Mathf.Min(1f, joy.CurLevel + 0.12f);
@@ -184,7 +185,8 @@ namespace ColonyCouncil
                 if (god == null) continue;
                 string line = Flavor.FromPool(VisitorPool, x, null, null, mark.kind.ToString().ToLowerInvariant(), god.domain.ToString().ToLowerInvariant(), Voice());
                 if (line.NullOrEmpty()) continue;
-                if (Speech.Say(x, line.Formatted(GodsOnMapWords.Args(god, false).Concat(new[] { (mark.words ?? "").Named("WHAT") }).ToArray()).Resolve()))
+                string said = line.Formatted(GodsOnMapWords.Args(god, false).Concat(new[] { (mark.words ?? "").Named("WHAT") }).ToArray()).Resolve();
+                if (Speech.Say(x, said))
                 {
                     lastVisitorRemark = now;
                     return;

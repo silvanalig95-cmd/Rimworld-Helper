@@ -138,6 +138,7 @@ namespace ColonyCouncil
             nextDue = int.MaxValue;
             Safe("the stranger's step", () => GodStranger.Step(this, now));
             Safe("the sacred animal's step", () => SacredAnimal.Step(this, now));
+            Safe("a slain beast's body", SacredAnimal.Ash);
             Safe("a guttering light", () => GodOmens.Step(this, now));
         }
 

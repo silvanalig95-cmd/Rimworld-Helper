@@ -12222,6 +12222,81 @@ pure rules in `GodPresenceMath.cs` (linked, `GodPresenceTests`).
   look is `GodLooks.Named(god.look)` or `GodLooks.For(domain, age)`). The presence builds on its own types and needs
   nothing of the core's.
 
+### Gods on the map (the player's request, 11 November 2026; stage 2, not released yet)
+
+Stage 2's "on the map" part of the gods (`docs/design/gods.md`, "The parts and who builds what"; brainstorm items 7, 8,
+9, 23 and 26, sections F and G). The player: gods "real and present on the map, with weight", never a plain pawn unless
+hiding on purpose, and, the same day, "not every god necessarily has to have a sacred beast, each god should be
+individual in what it looks like and whether it has any form at all". Code in `Source/ColonyCouncil/Gods/OnMap/`, pure
+rules in `GodsOnMapMath.cs` (linked, `GodsOnMapTests`); defs `Defs/GodDefs/Rimfolk_GodsOnMap.xml` (the event, two jobs,
+the shared memory, five deeds), `_Shapes.xml` (who comes as what), `_Lines.xml` (the pools said aloud and the memory's
+talk); keys `Rimfolk_GodsOnMap.xml`. It calls only `Gods`, the two seams and the presence part's `GodAvatar`.
+
+- **The rhythm** (`GodsOnMapBook`, `GodComings`): kept in the gods' own day and hour (`GodBook.Daily`/`Hourly`, one line
+  each; no pass of its own). A coming is planned in the day, a few days ahead, never in Believed, never two at once,
+  from day 20, 40 days at least between any two, 120 between strangers and 90 between beasts, then one chance in
+  thirty a day (`GodsOnMapMath.Due`; about four strangers and four beasts in ten years). Its omens are planned with it;
+  the coming waits up to a day for a quiet map (and the stranger for `Tell.CanAsk`), then lets go. Short steps (a
+  farewell, a lead, a lamp guttering, a slain beast's body) run on a due tick of the component's own: one comparison a
+  tick, nothing with none under way.
+- **Who comes as what is data** (`GodShapeDef`, `GodShapes.Of`): a god's own shape (named by its name, its patron's or
+  look's defName, or a hand-made god def's; `GodShapes.Override` for the hand-made pantheon to come), else its domain's,
+  else the default: `stranger`, `beast` and `beasts`, `weather` and `voices`, `bodiless`, a `lineTag` for its own
+  lines. For now by domain: the storm is bodiless (thunder and rain only), the hearth only a stranger, the machine and
+  the forge no voice in the sky, and so on.
+- **The stranger at the gate** (`GodStranger`, `HappeningWorker_GodStranger`, `Rimfolk_Evt_GodStranger` with chance 0):
+  a god whose shape can (the road's and the hearth's likeliest, the colony's own and its patron more:
+  `GodsOnMapMath.StrangerWeight`) is made a person of a people at peace (its own peoples first), disguised
+  (`GodLookSeam`), and waits at the gate as Rimfolk's visitor while the colony answers (fired through the event's
+  scenario path, so the world events' switch doesn't hold it back): a bed (Hospitality's guest through
+  `InvitedGuests.HandOver` as a guest of note when it is loaded, else `VisitorServices.Lodge`, and the one who answered
+  goes to talk with them), the gate (the default), or away (`DilemmaEffect_SendAway`). Over the stay (22 to 32 hours)
+  each hour reads how it goes for them (Hospitality's visit score, else their mood), the game's own meal memories, where
+  they sleep (a bed, a good room, a corner, the open), the play log's talk with them and the outsiders' meals, drinks
+  and gifts, the colony's animals starving or freezing and slaughtered, a pack taken while they lay hurt; a wound tended
+  is a kindness (`TendUtility.DoTend`), a blow by the colony's own (`Pawn.PostApplyDamage`) is struck. Every few hours
+  they say something a traveller couldn't know to whoever is beside them (`Rimfolk_Pool_GodStrangerHint`, by domain and
+  age), and once thank the cook by name. `GodsOnMapMath.Judge` gives the treatment (struck or robbed, turned away, poor,
+  fair, kind, generous) and `Kindest` the kindest colonist. At the end, Walking: they stop, `GodAvatar.Reveal`, the
+  moment of its end kind (wrath, departure, blessing) with its card, then walk off as a god and are gone; Felt: they leave
+  as a visitor does and the moment comes veiled where they slept once they are gone; struck: at once, a wrath (Walking:
+  shown first, then gone in a breath; Felt: gone, scorched ground). `GodGifts.Outcome`: favour by the treatment
+  (sacrilege for a blow, stinginess for the turned away), a find of the domain and age where it stood, the kindest's
+  gift (`GodsOnMapMath.Gift`: A RimWorld of Magic's spell scroll or class of the domain, a passion, a trait, or its favour
+  and an inspiration), its answer in the weather; or its curse: the domain withheld (rain kept off five days, dry thunder,
+  the wild game leaving, the lights guttering a night) and a fever on whoever struck it, only under `Harm.May`, within
+  `IllnessBudget.Allows`/`Owe`, at `Harm.Scale`.
+- **The sacred animal** (`SacredAnimal`): a god whose shape walks as a beast, as its shape's beasts or its look's
+  (`GodLookDef.AnimalKinds`, the player's mods' first), animals only, at ease in the season; in from the edge with the
+  Appear moment, shown as the god's, wild, its days' leaving the game's own (`exitMapAfterTick`), kept fed so it never
+  hunts. A small one follows a chosen colonist; a large one may beckon a free colonist out of doors once a stay and lead
+  them. Right-click (`FloatMenuOptionProvider_SacredAnimal`): follow it where it leads, or take food out to it
+  (`JobDriver_FeedSacredAnimal`). It leads 18 to 45 cells to a find, a cure (the follower's worst illness or wound) or a
+  vein of ore unfogged (`GodsOnMapMath.Boon`), with a Blessing moment. Favour: left be, fed, followed; hurt or slain:
+  sacrilege, a Wrath moment, the game's own revenge left as it is, a fever on the one who struck, then it leaves in a
+  breath, or a slain one's body goes to ash.
+- **Weather as a voice** (`GodWeather`): each hour the gods' new acts of favour are read; a god the colony knows whose
+  shape speaks in the sky answers by chance (`GodsOnMapMath.VoiceChance`, more readily for a bodiless god) with its
+  shape's voices or its domain's (`GodsOnMapMath.Voice`): the land's own rain, three lightning flashes and the land's
+  storm, the game's eclipse by day, the game's aurora at night, each as the land and the game's condition rules allow,
+  twelve days apart at a home (six for a bodiless god). A colonist out of doors names it; the news says it in the voice of
+  how real the gods are. Believed: nothing sent; the game's own weather within a day of a change of favour is read as the
+  answer. `GodWeather.Answer(god, map, amount)` is for the worship's festival nights.
+- **The omens** (`GodOmens.Before(god, map, days)`, also for the other parts): one a day before a coming, at most four,
+  each of a kind that can show (`GodsOnMapMath.Omens`, `OmenAt`): birds (the land's wild birds leave together), a calm
+  (the presence's condition barely tinted, the wind at 5%), the same dream (two who woke from a night's sleep: the dream
+  book, the untold dream, the journal, the vivid dream's memory, and their talk when together), a candle (a lit light
+  gutters out and back for three hours: `CompGlower.ShouldBeLitNow` and `CompFireOverlay.PostDraw` while it is out),
+  restless animals. Each through the presence's omen moment (not in Believed), a news line naming whose sign it is, and
+  a colonist who saw it says so.
+- **What remains** (`GodMarks`): the god's acts (`Gods.Remember`), the chronicle, the mark on the land (twenty-four kept
+  five years), `Rimfolk_Mem_GodSeen` for those who saw it (with its talk's lines), deeds for the kindest, the follower,
+  the feeder and whoever struck a god. On a quiet day now and then someone walks to a mark, stands and remembers aloud
+  (`JobDriver_VisitGodMark`, a little recreation); at supper someone eating beside another brings it up; a visitor
+  passing it asks about it. `GodMarks.Spoken(home)` gives the newest for letters.
+- **This week** (`GodsOnMapPanels`): Under way lists the stranger staying and the beast on the land, never a coming.
+  Dev actions *Gods: ...* for each part.
+
 ### Checking a new game version
 
 One DLL serves every supported version: it is built against the 1.6 references into `1.6/Assemblies`, and on 1.7
