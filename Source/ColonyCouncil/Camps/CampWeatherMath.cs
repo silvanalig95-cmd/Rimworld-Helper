@@ -34,6 +34,24 @@ namespace ColonyCouncil
 
         public static bool TooExtremeToStay(float temp) => temp < ExtremeCold - StayPast || temp > ExtremeHeat + StayPast;
 
+        /// <summary>
+        /// The same for winter folk (CampKindDef.winter: people who travel or work in deep cold): no flat floor for the cold
+        /// keeps them away; whether they come, and stay, is the game's own limit for each of them as they're dressed
+        /// (<see cref="WouldStop"/>, <see cref="PackUp"/>). The heat is the same for everyone.
+        /// </summary>
+        public static bool TooExtremeToCome(float temp, bool winter) => winter ? temp > ExtremeHeat : TooExtremeToCome(temp);
+
+        public static bool TooExtremeToStay(float temp, bool winter) => winter ? temp > ExtremeHeat + StayPast : TooExtremeToStay(temp);
+
+        /// <summary>A kind that comes in any weather has no mark of cold to wait for (CampKindDef.coldBelow).</summary>
+        public const float NoColdMark = 99f;
+
+        /// <summary>
+        /// Cold enough for a kind that comes only in the cold (ice that holds, furs in their prime): the coming days'
+        /// warmest hour below its mark. No mark: any weather.
+        /// </summary>
+        public static bool ColdEnough(float warmest, float below) => below >= NoColdMark || warmest < below;
+
         /// <summary>The coldest the stay is likely to bring: its coldest hour on the land's own reckoning, a little colder, or now.</summary>
         public static float StayLow(float now, float coldestHour) => Math.Min(now, coldestHour - Margin);
 

@@ -384,6 +384,7 @@ for (int r = 0; r < 4; r++)
         Console.WriteLine($"Checked {CampTimerTests.Run(root, Check)} things about the camps' own clock and diary.");
         Console.WriteLine($"Checked {CampCrowdTests.Run(root, Check)} things about camps side by side, bands against a camp and old camps' sites (the levels, the map's room, keeping apart, who attacks whom, how it ends, moving in, contested spots).");
         Console.WriteLine($"Checked {CampHarmTests.Run(root, Check)} things about what makes a camp go when harmed (real attacks only; beasts, insects and stray shots fought off while the camp stays).");
+        Console.WriteLine($"Checked {CampWinterTests.Run(root, Check)} things about camps that come in the coldest winter (winter folk and the floor of the cold, the five kinds, their wardrobe by age and the mod pool, the ice fishers' holes, a night under the colony's roof).");
         Console.WriteLine($"Checked {StoryChainTests.Run(root, Check)} things about story chains told from data and event variants (routes, endings, flags, answers).");
         Console.WriteLine($"Checked {HealthTests.Run(root, Check)} claims about convalescence and healers.");
         Console.WriteLine($"Checked {SettingsTests.Run(root, Check)} things about the settings window (every field on one page, presets, keys, sizes).");

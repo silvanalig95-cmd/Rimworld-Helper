@@ -31,6 +31,19 @@ When you load a save after an update, a letter lists the newest round once. The 
     <rounds>
 
       <li>
+        <version>0.207.0</version>
+        <date>11 November 2026</date>
+        <title>Camps in the coldest winter</title>
+        <points>
+          <li>Five new camps can come in the cold, even the coldest winter: ice fishers, fur trappers, a snowbound caravan, herd followers and pilgrims of the long night.</li>
+          <li>They come in winter clothes of their own age from your mods, and stay as long as the cold doesn't hurt most of them.</li>
+          <li>With Odyssey, ice fishers cut a hole in the frozen water, keep it open while they fish, and the cold closes it again after.</li>
+          <li>A caravan out of the snow and winter pilgrims ask to sleep under your roof on a stormy night.</li>
+          <li>The herders' winter grazing and the league's winter quarters now come in deep cold too, while every other camp still stays away below -30 °C.</li>
+        </points>
+      </li>
+
+      <li>
         <version>0.206.2</version>
         <date>11 November 2026</date>
         <title>A beast is no reason to go</title>

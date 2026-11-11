@@ -5,6 +5,7 @@
 
   <!-- ===================== The arrival letter ===================== -->
   <CC_CampLand_Facts_fish>They will fish the water by their camp, away from the colony's own fishing spots, and dry the catch at their fire.</CC_CampLand_Facts_fish>
+  <CC_CampLand_Facts_icefish>They will cut holes in the ice of the frozen water by their camp and fish through them by day, away from the colony's own fishing spots; a hole they leave freezes over again.</CC_CampLand_Facts_icefish>
   <CC_CampLand_Facts_strip>They will take the ruins near their camp apart, piece by piece, and stack what comes out of them at their camp.</CC_CampLand_Facts_strip>
   <CC_CampLand_Facts_reap>They are looking for harvest work: taken on, they reap the colony's ripe crops by day.</CC_CampLand_Facts_reap>
   <CC_CampLand_Facts_hull>Their wrecked craft lies by their camp, and they will work at it by day; when they go, they leave it behind.</CC_CampLand_Facts_hull>

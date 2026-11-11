@@ -741,6 +741,8 @@ namespace ColonyCouncil
                 };
             work.tickAction = () =>
             {
+                // An ice fisher keeps their hole open (CampWinter.cs).
+                if (pawn.IsHashIntervalTick(60)) CampLand.WorkTick(pawn, job);
                 var face = job.targetB.IsValid ? job.targetB : job.targetA;
                 if (face.IsValid && face.Cell != pawn.Position) pawn.rotationTracker.FaceCell(face.Cell);
                 // Someone they came to see who has walked off: the visit is over.

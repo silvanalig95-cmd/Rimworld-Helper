@@ -5,6 +5,16 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## Camps in the coldest winter
+
+*11 November 2026, version 0.207.0*
+
+- Five new camps can come in the cold, even the coldest winter: ice fishers, fur trappers, a snowbound caravan, herd followers and pilgrims of the long night.
+- They come in winter clothes of their own age from your mods, and stay as long as the cold doesn't hurt most of them.
+- With Odyssey, ice fishers cut a hole in the frozen water, keep it open while they fish, and the cold closes it again after.
+- A caravan out of the snow and winter pilgrims ask to sleep under your roof on a stormy night.
+- The herders' winter grazing and the league's winter quarters now come in deep cold too, while every other camp still stays away below -30 °C.
+
 ## A beast is no reason to go
 
 *11 November 2026, version 0.206.2*

@@ -15,6 +15,9 @@
   <ColonyCouncil.CampKindDef>
     <defName>Rimfolk_Camp_LeagueWinter</defName>
     <label>league winter quarters</label>
+    <!-- Winter folk: no flat floor of the cold, and their winter clothes (Rimfolk_CampKinds_Winter.xml). -->
+    <winter>true</winter>
+    <wearSet>Rimfolk_CampWear_Winter</wearSet>
     <arrives>10~16</arrives>
     <minTech>Neolithic</minTech>
     <calling>traders</calling>

@@ -477,7 +477,7 @@ namespace ColonyCouncil
                 case "early": return "never in the first twenty days";
                 case "gap": return "the last camp left on day " + HomeOf(map).lastEndedTick / GenDate.TicksPerDay + ", and the next comes " + a + " days after";
                 case "threat": return "there's danger on the map";
-                case "weather": return "it's " + a + " °C outside, and no camp comes below " + CampWeatherMath.ExtremeCold.ToString("0") + " or above " + CampWeatherMath.ExtremeHeat.ToString("0") + " °C";
+                case "weather": return "it's " + a + " °C outside, and no camp comes above " + CampWeatherMath.ExtremeHeat.ToString("0") + " °C, nor below " + CampWeatherMath.ExtremeCold.ToString("0") + " °C but winter folk, none of whom can come now";
                 case "hazard": return "no camp comes while " + a + " lasts";
                 case "era": return "no kind of camp fits the colony's era";
                 case "nofriends": return "no friendly people could send one";
@@ -519,7 +519,10 @@ namespace ColonyCouncil
                 return ("gap", gap.ToString("0"), TextUtil.DaysString(Mathf.RoundToInt(GenDate.TicksPerDay * gap) - (Now - home.lastEndedTick)));
             if (MapFacts.ThreatOn(map)) return ("threat", null, null);
             float temp = map.mapTemperature.OutdoorTemp;
-            if (CampWeatherMath.TooExtremeToCome(temp)) return ("weather", temp.ToString("0"), null);
+            // Past the flat floor of the cold, only winter folk come (CampKindDef.winter), as the game's limits allow each of them.
+            if (CampWeatherMath.TooExtremeToCome(temp) && (CampWeatherMath.TooExtremeToCome(temp, true)
+                                                          || !DefDatabase<CampKindDef>.AllDefs.Any(k => k.winter && k.FitsEra() && k.Possible && !k.fights && k.FitsWeather(map))))
+                return ("weather", temp.ToString("0"), null);
             var hazard = CampWeather.Hazard(map);
             if (hazard != null) return ("hazard", hazard.Label, null);
             if (!DefDatabase<CampKindDef>.AllDefs.Any(k => k.FitsEra())) return ("era", null, null);
@@ -543,7 +546,7 @@ namespace ColonyCouncil
             // weighs more the more remote the home, and says it came for it; one that comes only for it needs it.
             var land = TravelLand.Read(map);
             // A kind of one season, or only from one of Rimfolk's peoples, comes then and while that people is at peace (Peoples/).
-            var kinds = DefDatabase<CampKindDef>.AllDefs.Where(k => k.FitsEra() && k.Possible && !k.fights && k.FitsMap(map) && k.FitsSeason(map) && Peoples.CanSend(k)
+            var kinds = DefDatabase<CampKindDef>.AllDefs.Where(k => k.FitsEra() && k.Possible && !k.fights && k.FitsMap(map) && k.FitsSeason(map) && k.FitsWeather(map) && Peoples.CanSend(k)
                                                                     && (!k.seekOnly || TravelMath.AnyHolds(k.seeks, land.holds))).ToList();
             if (kinds.Count == 0)
             {
@@ -738,7 +741,7 @@ namespace ColonyCouncil
             {
                 try
                 {
-                    dressed.AddRange(CampWeather.Dress(p, low, high, f));
+                    dressed.AddRange(CampWeather.Dress(p, low, high, f, kind));
                 }
                 catch (Exception e)
                 {

@@ -191,7 +191,7 @@ namespace ColonyCouncil
             if (tracker == null || tracker.past.Count == 0) return null;
             foreach (var p in tracker.past.OrderByDescending(p => p.helps + p.gifts + (p.invited ? 3 : 0)).ThenBy(_ => Rand.Value))
             {
-                if (!p.Alive || p.Living.Count == 0 || !p.kind.FitsEra() || !p.kind.Possible || !p.kind.FitsMap(map) || !p.kind.FitsSeason(map) || !p.kind.FitsFaction(p.faction)) continue;
+                if (!p.Alive || p.Living.Count == 0 || !p.kind.FitsEra() || !p.kind.Possible || !p.kind.FitsMap(map) || !p.kind.FitsSeason(map) || !p.kind.FitsWeather(map) || !p.kind.FitsFaction(p.faction)) continue;
                 if (Rand.Chance(CampStoryMath.ReturnChance(p.DaysSince, p.helps + p.gifts, p.tradeDays, p.invited, p.returns))) return p;
             }
             return null;

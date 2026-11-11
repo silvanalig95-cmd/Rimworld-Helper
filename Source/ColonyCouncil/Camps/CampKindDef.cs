@@ -151,6 +151,29 @@ namespace ColonyCouncil
         public string calling;
         /// <summary>Only in these seasons (the herders' winter grazing: fall and winter). Empty: any season.</summary>
         public List<Season> seasons;
+        /// <summary>
+        /// Winter folk: people who travel or work in deep cold (ice fishers, trappers, a caravan come in out of the snow).
+        /// The flat floor of the cold that keeps every other camp away (CampWeatherMath.ExtremeCold) isn't theirs: whether
+        /// they come, and stay, is the game's own limit for each of them as they're dressed, in their own winter clothes
+        /// (<see cref="wears"/>).
+        /// </summary>
+        public bool winter;
+        /// <summary>Only while the land stays this cold: the coming week's warmest hour below this (°C). Unset: any weather.</summary>
+        public float coldBelow = CampWeatherMath.NoColdMark;
+        /// <summary>Only while snow is falling (a caravan come in out of the snow).</summary>
+        public bool inSnow;
+        /// <summary>
+        /// What they wear against the cold, put on first whenever their stay is colder than they're comfortable in (Camps/
+        /// CampWeather.cs): each entry the first that exists, fits them (a kid's parka for a child) and their people's age,
+        /// of the first material listed that it takes. The player's mods' winter clothes first (MayRequire), the game's own
+        /// last. Anything still short is made up as for any camp.
+        /// </summary>
+        public List<CampWear> wears;
+        /// <summary>A wardrobe shared by several kinds (a CampWearDef: the winter folk's), when they have no <see cref="wears"/> of their own.</summary>
+        public CampWearDef wearSet;
+
+        /// <summary>What they wear against the cold: their own list, else the shared wardrobe, else nothing.</summary>
+        public List<CampWear> Wears => !wears.NullOrEmpty() ? wears : wearSet?.wears;
         /// <summary>How many animals the camp brings at most (a handful, CampLookMath.MaxAnimals; the herders' winter herd more, up to CampLookMath.MaxHerd).</summary>
         public int maxAnimals = CampLookMath.MaxAnimals;
         /// <summary>
@@ -241,6 +264,19 @@ namespace ColonyCouncil
         /// <summary>The season at the home suits it (<see cref="seasons"/>).</summary>
         public bool FitsSeason(Map map) => seasons.NullOrEmpty() || map != null && seasons.Contains(GenLocalDate.Season(map));
 
+        /// <summary>
+        /// The weather at the home suits it: not past the flat floor of the cold (unless they're winter folk) nor the heat,
+        /// cold enough for a kind that comes only in the cold (<see cref="coldBelow"/>), snow falling for one that comes out
+        /// of the snow (<see cref="inSnow"/>).
+        /// </summary>
+        public bool FitsWeather(Map map)
+        {
+            if (map == null) return false;
+            if (CampWeatherMath.TooExtremeToCome(map.mapTemperature.OutdoorTemp, winter)) return false;
+            if (inSnow && !CampLand.SnowNow(map)) return false;
+            return coldBelow >= CampWeatherMath.NoColdMark || CampWeatherMath.ColdEnough(CampWeather.Usual(map).high, coldBelow);
+        }
+
         /// <summary>Only when it could come at all: a kind for one kind of faith needs Ideology.</summary>
         public bool Possible => (memes.NullOrEmpty() || ModsConfig.IdeologyActive) && (!pokemon || (PokeWorldLink.Active && PokeWorldLink.PokemonShare() > 0f));
 
@@ -266,6 +302,8 @@ namespace ColonyCouncil
                 foreach (var b in buys.Where(b => VisitorTradeMath.Parse(b) == TradeGoods.None))
                     yield return "buys names no kind of goods: " + b;
             if (seekOnly && seeks.NullOrEmpty()) yield return "seekOnly without seeks";
+            if (wears != null && wears.Any(w => w == null || w.defs.NullOrEmpty())) yield return "camp wears need defs";
+            if (!Wears.NullOrEmpty() && !winter) yield return "only winter folk bring winter clothes of their own (wears without winter)";
             if (seeks != null)
                 foreach (var s in seeks.Where(s => !TravelMath.Known(s)))
                     yield return "seeks names no reason the land can give: " + s;
@@ -293,6 +331,47 @@ namespace ColonyCouncil
         public ThingDef DoorDef => doors?.Select(n => DefDatabase<ThingDef>.GetNamedSilentFail(n)).FirstOrDefault(d => d != null && d.IsDoor) ?? ThingDefOf.Door;
 
         /// <summary>The first listed material this building can be made of (null for things made of no material).</summary>
+        public ThingDef StuffFor(ThingDef def)
+        {
+            if (def == null || !def.MadeFromStuff) return null;
+            var allowed = GenStuff.AllowedStuffsFor(def).ToList();
+            foreach (var n in stuff ?? new List<string>())
+            {
+                var s = DefDatabase<ThingDef>.GetNamedSilentFail(n);
+                if (s != null && allowed.Contains(s)) return s;
+            }
+            return GenStuff.DefaultStuffFor(def);
+        }
+    }
+
+    /// <summary>A wardrobe against the cold several kinds of camp share (CampKindDef.wearSet): the winter folk's.</summary>
+    public class CampWearDef : Def
+    {
+        public List<CampWear> wears = new List<CampWear>();
+
+        public override IEnumerable<string> ConfigErrors()
+        {
+            foreach (var e in base.ConfigErrors()) yield return e;
+            if (wears.NullOrEmpty() || wears.Any(w => w == null || w.defs.NullOrEmpty())) yield return "a wardrobe needs wears, each with defs";
+        }
+    }
+
+    /// <summary>
+    /// One thing a kind of camp wears against the cold (CampKindDef.wears): the first of <see cref="defs"/> that exists
+    /// and fits the wearer, for people from <see cref="minTech"/> to <see cref="maxTech"/>, of the first of
+    /// <see cref="stuff"/> it can be made of.
+    /// </summary>
+    public class CampWear
+    {
+        public List<string> defs = new List<string>();
+        public List<string> stuff;
+        public TechLevel minTech = TechLevel.Undefined;
+        public TechLevel maxTech = TechLevel.Archotech;
+
+        public bool ForAge(TechLevel tech) => tech >= minTech && tech <= maxTech;
+
+        public IEnumerable<ThingDef> Defs => defs?.Select(n => DefDatabase<ThingDef>.GetNamedSilentFail(n)).Where(d => d != null && d.IsApparel) ?? Enumerable.Empty<ThingDef>();
+
         public ThingDef StuffFor(ThingDef def)
         {
             if (def == null || !def.MadeFromStuff) return null;

@@ -3203,6 +3203,70 @@ colonist's shot at a manhunter that struck a camper included.
 - **Not run here**: the beast's revenge and the camp's stand at its fire; a camper struck by the colony's shot at a
   manhunter staying put.
 
+### Camps in the coldest winter: winter folk (the player's request, 10 November 2026; released 0.207.0)
+
+The player's words: "i haven't had any camps probably becauser it was just freezing cold all the time, i'd like a
+handful of camp events that can also come in the coldest winter".
+
+**What kept them away.** Three gates, all on the cold side. The day's try was put off by the hour and then shut while it
+was below -30 °C outside (`CampWeatherMath.TooExtremeToCome`, the blocker "weather"), whatever the people could wear. On
+milder days a camp came only if every one of them, dressed in layers bought within a plain cloth parka's worth and a
+half, would be safe (the game's own range, ten degrees past comfortable) through the stay's coldest hour less three
+degrees, over four to ten days of a winter: a cloth parka and a tuque reach about -44 °C, so a run of hard nights shut it.
+And a camp that stood packed up below -35 °C (`TooExtremeToStay`). The two seasonal kinds that come in winter (the
+herders' grazing, the league's winter quarters) come only from Rimfolk's peoples of that calling.
+
+- **Winter folk** (`CampKindDef.winter`): the flat floor of the cold is not theirs (`CampWeatherMath.TooExtremeToCome(temp,
+  true)`, `TooExtremeToStay(temp, true)`: the heat is the same for everyone). Whether they come is the game's own limit
+  for each of them as they are dressed (`WouldStop` over the stay's coldest night, as for every camp), and they pack up
+  only when the cold starts to hurt most of them (`Exposed`, `PackUp`). Every other kind keeps its gates exactly as
+  they were: below -30 °C they stay away, and the same game limit holds for them. The blocker lets a day past the floor
+  stay open only while a winter kind fits the weather (`k.winter && k.FitsWeather(map)`). The two kinds that were winter
+  camps already, the herders' winter grazing and the league's winter quarters (Peoples/), are winter folk too, in the
+  same winter clothes.
+- **Cold enough** (`CampKindDef.coldBelow`, `CampWeatherMath.ColdEnough`): a winter kind comes only while the coming week's
+  warmest hour (`CampWeather.Usual`, the stay range over seven days, worked out once an hour) stays below its mark; the
+  caravan only while snow falls (`inSnow`, `CampLand.SnowNow`). `CampKindDef.FitsWeather` holds the floor, the snow and
+  the mark, and every way a camp comes asks it: a new camp (`Prepare`), a camp coming back (`CampReturns.Pick`) and a
+  rival party (`CampRaid`).
+- **Their winter clothes** (`CampKindDef.wearSet`, a `CampWearDef`, `Rimfolk_CampWear_Winter`; or `wears` of a kind's own;
+  `CampWeather.WearOwn`): put on first whenever the stay is colder than they are comfortable in, each entry for their
+  people's age, the first def they can wear (their size, age and shape), of the first material listed that it takes;
+  what can't be worn with it comes off. Their own gear, so neither the price cap nor the tribes' rule on furs holds them
+  back; anything still short is made up as for any camp. The letter says what they wear.
+  | Age | Coat | Also |
+  |---|---|---|
+  | tribal | Vanilla Apparel Expanded's pelt coat, else a parka, of heavy fur, bearskin, wolfskin, sealskin (Odyssey) or foxfur | VFE Tribals' heavy tribalwear; Ideology's tailcap or broadwrap |
+  | medieval | a parka of muffalo, sheep or alpaca wool | VFE Medieval 2's mantle; Vanilla Christmas Expanded's warm hat, else a tuque; Vanilla Apparel Expanded's boots |
+  | industrial | Vanilla Christmas Expanded's warm jacket, else a wool parka | the warm hat or tuque, boots, Vanilla Apparel Expanded's scarf and gloves |
+  | spacer | a parka of synthread or devilstrand | the same |
+  A child gets the game's kid parka (Biotech). All from the active rows of `docs/player-mods/apparel.tsv`, by `MayRequire`.
+- **The five kinds** (`Defs/CampDefs/Rimfolk_CampKinds_Winter.xml`), each with a fire, wood stacked by it and kept
+  burning (the camp's upkeep), a shelter for the cold (a hut, tents, or beds drawn in round the fire behind a windbreak,
+  as the layout does for frosty nights), its people's own words by their age, three asks, good turns and a story:
+  | Kind | Comes | Lives | Asks |
+  |---|---|---|---|
+  | ice fishers (a family) | frozen water with fish under it (Odyssey's thin ice, fishing open to the colony), the week below 2 °C | a hut on the shore; cut a hole in the ice and fish through it by day; mend lines by the fire; a dog | buy their catch at the gate, send a colonist out on the ice with them (Animals), an evening at their fire |
+  | fur trappers (tribal to industrial) | below 8 °C | a hut; hunt, stretch pelts at the butchering spot, furs laid out; a dog and a pack beast | a bundle of furs, a colonist on the trapline, a hot supper for a pelt (they ask) |
+  | a snowbound caravan | while snow falls, below 5 °C, for a day and a half to three | tents, the trader's stall, pack beasts at the picket with hay, bales carried to the stall; a dog | the colony's roof on a stormy night (they ask), their road stores, an evening at their fire |
+  | herd followers | a wild herd on the land, below 5 °C | beds round the fire behind a windbreak; hunt the herd, dress the kills, ready their gear; dogs | a colonist after the herd with them, their hides, cooking for meat (they ask) |
+  | pilgrims of the long night | winter, below 8 °C | beds round the fire behind a windbreak, a vigil by it; a pack beast | a coat for their eldest, keeping the long night with them, the colony's roof on a stormy night (they ask); a blessing; a carved sun left at the gate after a good stay |
+- **Ice fishing** (`Camps/CampWinter.cs`): need `ice` (`CampLand.IceTargets`: ice over a water body with fish, well clear of
+  the colony; the water body keeps its frozen cells, as the game's own `GetWaterBodyType` reads the water under the
+  ice), work `icefish` (`Camp.IceFishJob`: a cell of ice to kneel on and beside it the hole, an open hole that hasn't
+  frozen over first, within 30 cells, clear of the colony and its zones; open water when no ice is left). The job
+  (`Rimfolk_CampIceFish`, the Odyssey fishing effect) cuts the hole and keeps it open while they fish
+  (`CampLand.WorkTick`: the game's own `RemoveTempTerrain`, every second); the catch is the game's own from the water
+  under it (`Fished(..., ice)`), into their stash. The game's freezing closes the hole again (below -7 °C, ice all round).
+- **A night under the colony's roof** for any kind with a "shelter" request of its own (`Camp.Shelters`), not the
+  watchers alone: the stormy evening's letter, the beds lent, given back in the morning and on leaving.
+- **Words**: a camp's lines can ask for `[snow]` (snow falling), `[blizzard]` (hard snow) and `[ice]` (water frozen
+  somewhere on the land; `CampLand.IceOn`, read once an hour); the league's winter lines tagged `[snow]` can now be
+  picked. Facts tags `them:camp:IceFishers`, `Trappers`, `SnowboundCaravan`, `HerdFollowers`, `WinterPilgrims`.
+- **Saved**: nothing new (the hole is the map's own terrain; the shelter's day was saved already).
+- **Not run here**: any winter camp on a map; the clothes on each age's people and how far they carry them; the hole
+  cut and kept open, the catch through it, and the hole freezing over again; the caravan's night in the colony.
+
 ## Harm from everyday life
 
 The player's harm rule (3 November 2026) lets Rimfolk hurt its people when it is flavourful or makes the game more

@@ -61,6 +61,23 @@ namespace ColonyCouncil
                 CampWeatherMath.StayHigh(now, hi + CampWeatherMath.Lasting(now, reckoned, false)));
         }
 
+        private static Map usualMap;
+        private static int usualHour = -1;
+        private static (float low, float high) usual;
+
+        /// <summary>The coming week's weather (<see cref="StayRange"/> over seven days), worked out once an hour for a home.</summary>
+        public static (float low, float high) Usual(Map map)
+        {
+            int hour = Find.TickManager.TicksGame / GenDate.TicksPerHour;
+            if (map != usualMap || hour != usualHour)
+            {
+                usualMap = map;
+                usualHour = hour;
+                usual = StayRange(map, GenDate.TicksPerDay * 7);
+            }
+            return usual;
+        }
+
         private static List<ThingStuffPair> pairs;
         private static float maxPrice;
 
@@ -99,12 +116,14 @@ namespace ColonyCouncil
         /// Dresses one of them for weather from <paramref name="low"/> to <paramref name="high"/>, a layer at a time,
         /// as long as a layer brings them closer to comfortable through it. What they put on, in the order put on.
         /// </summary>
-        public static List<Apparel> Dress(Pawn p, float low, float high, Faction f)
+        public static List<Apparel> Dress(Pawn p, float low, float high, Faction f, CampKindDef kind = null)
         {
             var added = new List<Apparel>();
             if (p?.apparel == null || p.RaceProps?.Humanlike != true || f == null) return added;
             var tech = Peoples.TechOf(f) == TechLevel.Undefined ? TechLevel.Medieval : Peoples.TechOf(f);
             var body = p.RaceProps.body;
+            // Winter folk put on their own winter clothes first, when the stay is colder than they're comfortable in.
+            if (kind?.Wears != null && low < p.ComfortableTemperatureRange().min) added.AddRange(WearOwn(p, kind, tech));
             for (int step = 0; step < 4; step++)
             {
                 var comfy = p.ComfortableTemperatureRange();
@@ -153,6 +172,41 @@ namespace ColonyCouncil
             // A layer swapped for a better one later is gone: only what they still wear.
             added.RemoveAll(a => a.Destroyed || a.Wearer != p);
             return added;
+        }
+
+        /// <summary>
+        /// A winter kind's own clothes against the cold (CampKindDef.wears): each entry for their people's age, the first of its
+        /// defs they can wear (their size, age and shape), of its first material that fits; whatever it can't be worn with
+        /// comes off. Their own gear, so neither the price nor the tribes' rule on furs holds them back.
+        /// </summary>
+        private static List<Apparel> WearOwn(Pawn p, CampKindDef kind, TechLevel tech)
+        {
+            var put = new List<Apparel>();
+            var body = p.RaceProps.body;
+            foreach (var w in kind.Wears)
+            {
+                if (w == null || !w.ForAge(tech)) continue;
+                var def = w.Defs.FirstOrDefault(t => t.apparel.PawnCanWear(p, false) && t.apparel.CorrectAgeForWearing(p) && ApparelUtility.HasPartsToWear(p, t));
+                if (def == null || p.apparel.WornApparel.Any(a => a.def == def)) continue;
+                try
+                {
+                    foreach (var old in p.apparel.WornApparel.Where(a => !ApparelUtility.CanWearTogether(a.def, def, body)).ToList())
+                    {
+                        p.apparel.Remove(old);
+                        old.Destroy();
+                    }
+                    var ap = (Apparel)ThingMaker.MakeThing(def, w.StuffFor(def));
+                    PawnApparelGenerator.PostProcessApparel(ap, p);
+                    p.apparel.Wear(ap, false);
+                    put.Add(ap);
+                }
+                catch (Exception e)
+                {
+                    CouncilLog.ErrorOnce("camp winter clothes " + def.defName, e);
+                }
+            }
+            put.RemoveAll(a => a.Destroyed || a.Wearer != p);
+            return put;
         }
 
         /// <summary>What a group put on for the weather, in words ("parkas and tuques"), or null for nothing.</summary>

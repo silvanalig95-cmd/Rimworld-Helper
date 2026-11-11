@@ -62,6 +62,8 @@ namespace ColonyCouncil
                     case null:
                     case "": return true;
                     case "fish": return WishWorker_Fishing.CanFish(map) && FishTargets(map).Count > 0;
+                    // Frozen water with fish under it (CampWinter.cs): ice fishers.
+                    case IceNeed: return WishWorker_Fishing.CanFish(map) && IceTargets(map).Count > 0;
                     case "ruins": return RuinTargets(map).Count > 0;
                     case "harvest": return HarvestBehind(map);
                     case "edge": return true;
@@ -96,6 +98,9 @@ namespace ColonyCouncil
                 {
                     case "fish":
                         targets = FishTargets(map).Take(6).ToList();
+                        break;
+                    case IceNeed:
+                        targets = IceTargets(map).Take(6).ToList();
                         break;
                     case "ruins":
                         targets = RuinTargets(map).Take(4).ToList();
@@ -655,7 +660,7 @@ namespace ColonyCouncil
                     hull.SetFaction(null);
                     Note(Text("CC_CampLand_HullLeft"), MessageTypeDefOf.NeutralEvent, Importance.Notable, hull, true);
                 }
-                if (kind?.work == "watch")
+                if (kind?.work == "watch" || Shelters)
                 {
                     foreach (var p in members) Hosting.GiveBack(p, map);
                     shelterDay = -1;
@@ -671,13 +676,14 @@ namespace ColonyCouncil
 
         private void LandHourly()
         {
-            if (kind?.work == null || map == null || phase != CampPhase.Living || Hostile) return;
+            if ((kind?.work == null && !Shelters) || map == null || phase != CampPhase.Living || Hostile) return;
             try
             {
                 int hour = GenLocalDate.HourOfDay(map);
                 if (kind.work == "reap") ReapHourly(hour);
                 else if (kind.work == "shear") ShearHourly(hour);
-                else if (kind.work == "watch") WatchHourly(hour);
+                // The watchers, and a caravan come in out of the snow (CampWinter.cs): a night under the colony's roof.
+                else if (kind.work == "watch" || Shelters) WatchHourly(hour);
                 // A camp hired by contract (the Ashen Banner's squad: CampContract.cs).
                 else if (kind.work == "contract") ContractHourly(hour);
             }
@@ -780,6 +786,7 @@ namespace ColonyCouncil
                 switch (kind.work)
                 {
                     case "fish": return FishJob(p);
+                    case CampLand.IceWork: return IceFishJob(p);
                     case "strip": return StripJob(p);
                     case "reap": return ReapJob(p);
                     case "cut": return CutJob(p);
@@ -814,7 +821,7 @@ namespace ColonyCouncil
         /// <summary>The night's own work: a bed in the colony out of the storm, else the watch at the monolith by turns.</summary>
         public Job LandNightJob(Pawn p, int hour)
         {
-            if (kind?.work != "watch" || map == null || phase != CampPhase.Living || Hostile) return null;
+            if ((kind?.work != "watch" && !Shelters) || map == null || phase != CampPhase.Living || Hostile) return null;
             try
             {
                 if (shelterDay >= 0 && (hour >= 20 || hour < 7))
@@ -822,7 +829,7 @@ namespace ColonyCouncil
                     var bed = ShelterJob(p);
                     if (bed != null) return bed;
                 }
-                if ((hour >= 22 || hour < 5) && OnWatch(p))
+                if (kind.work == "watch" && (hour >= 22 || hour < 5) && OnWatch(p))
                 {
                     var m = CampLand.Monolith(map);
                     if (m == null) return null;
@@ -916,9 +923,11 @@ namespace ColonyCouncil
         /// A fishing trip done at the water's edge: the game's own catch (with Odyssey: as the colony's fishers catch, and the
         /// water's fish stock goes down by it), or a few of the fishing mod's fish; into their stash, theirs to cook and keep.
         /// </summary>
-        private void Fished(Pawn p, IntVec3 water)
+        private void Fished(Pawn p, IntVec3 water, bool ice = false)
         {
-            if (!p.Spawned || !water.IsValid || !p.Position.InHorDistOf(water, 2.5f) || !CampLand.Fishable(map, water)) return;
+            // Through the ice, the hole may have frozen over again as they finished: the water under it still holds its fish.
+            if (!p.Spawned || !water.IsValid || !p.Position.InHorDistOf(water, 2.5f)) return;
+            if (ice ? !(CampLand.Fishable(map, water) || CampLand.UnderIce(map, water)) : !CampLand.Fishable(map, water)) return;
             var catches = new List<Thing>();
             if (CampLand.Odyssey)
             {
@@ -937,7 +946,7 @@ namespace ColonyCouncil
                 catches.Add(t);
             }
             // The fishers' own trips, or another camp's catch of the day (CampDay.cs).
-            if (kind.work == "fish") workToday++;
+            if (kind.work == "fish" || kind.work == CampLand.IceWork) workToday++;
             else dayFish++;
             int got = 0;
             foreach (var t in catches)
@@ -1092,6 +1101,7 @@ namespace ColonyCouncil
             var def = job?.def;
             if (def == null) return;
             if (def == CampLandDefOf.Rimfolk_CampFish) Fished(p, job.targetB.Cell);
+            else if (def == CampWinterDefOf.Rimfolk_CampIceFish) Fished(p, job.targetB.Cell, true);
             else if (def == CampLandDefOf.Rimfolk_CampStrip) Stripped(p, job.targetA.Thing as Building);
             else if (def == CampLandDefOf.Rimfolk_CampReap) Reaped(p, job.targetA.Thing as Plant);
             else if (def == CampLandDefOf.Rimfolk_CampTakeUp) TookFromStash(p, job.targetA.Thing);
@@ -1609,13 +1619,13 @@ namespace ColonyCouncil
         public override void Describe(DilemmaContext ctx, ImpactSheet sheet)
         {
             var c = CampOnMap.For(ctx);
-            if (c?.kind?.work == "watch") sheet.Play("CC_Impact_Shelter".Translate(c.Label).Resolve(), "CC_Impact_ShelterBrief".Translate().Resolve());
+            if (c?.kind?.work == "watch" || (c?.Shelters ?? false)) sheet.Play("CC_Impact_Shelter".Translate(c.Label).Resolve(), "CC_Impact_ShelterBrief".Translate().Resolve());
         }
 
         public override void Apply(DilemmaContext ctx)
         {
             var c = CampOnMap.For(ctx);
-            if (c?.kind?.work != "watch" || (chance < 1f && !Rand.Chance(chance))) return;
+            if (c == null || (c.kind?.work != "watch" && !c.Shelters) || (chance < 1f && !Rand.Chance(chance))) return;
             c.shelterDay = GenDate.DaysPassed;
         }
     }
