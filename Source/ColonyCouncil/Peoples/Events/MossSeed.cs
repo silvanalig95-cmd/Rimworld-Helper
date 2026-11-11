@@ -101,6 +101,7 @@ namespace ColonyCouncil
                 {
                     if (!picked) Plant(ctx, HerSpot(ctx.map, ctx.b));
                 }, SeedDef?.uiIcon ?? Healroot?.uiIcon, false);
+                // direct: the answer to the player's own click, asking them where to plant it.
                 Messages.Message("CC_PEv_SeedChoose".Translate().Resolve(), MessageTypeDefOf.NeutralEvent, false);
             }
             catch (Exception e)

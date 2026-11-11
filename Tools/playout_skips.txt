@@ -571,3 +571,7 @@ Rimfolk_Evt_VaultChild [option 2] a refusal: the scout takes the child home (Sen
 Rimfolk_Mission_HelixGenepacks [option 1] a refusal: the lab waits for a caravan
 Rimfolk_Mission_LatticeHands [option 1] a refusal: the Lattice mends the line with its own hands
 Rimfolk_Mission_ChoirStay [option 0] the mission's own code: the listener comes later, hosted and watching someone at work each afternoon
+Rimfolk_Evt_StormSense [option 2] a refusal: the reader is sent back out into the storm (SendAway)
+Rimfolk_Evt_LatticeMechlink [option 2] a refusal: the mech-tender is sent back to the road (SendAway)
+Rimfolk_Evt_ScholarsReading [option 2] a refusal: the scholars are sent back to the road (SendAway)
+Rimfolk_Evt_LanternPost [letter] the camp itself is the play-out: the Wardens' post pitched at the edge of the land (HappeningWorker_LanternPost.Begin)

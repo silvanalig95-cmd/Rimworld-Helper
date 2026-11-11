@@ -246,7 +246,8 @@ namespace ColonyCouncil
         {
             var f = rec.faction;
             int total = rec.ids.Count, opened = 0, sold = 0, burned = 0, present = 0;
-            var here = rec.crates.Where(c => c != null && !c.Destroyed && c.MapHeld == map && (c.Spawned || c.ParentHolder is Pawn_CarryTracker || c.ParentHolder is Pawn_InventoryTracker)).ToList();
+            // Still on the colony's map, wherever it is kept (a shelf, a container, someone's hands); one taken off with a caravan is not.
+            var here = rec.crates.Where(c => c != null && !c.Destroyed && c.MapHeld == map).ToList();
             foreach (int id in rec.ids)
             {
                 string fate = rec.FateOf(id);
@@ -275,9 +276,11 @@ namespace ColonyCouncil
                 porters.Clear();
             }
             var x = porters.FirstOrDefault();
-            // The crates there go out to them; with nobody come, they are taken from the stores as an errand's goods are.
+            // The crates there go out to them (any the colony forbade let go for it); with nobody come, they are taken from the
+            // stores as an errand's goods are.
             if (present > 0)
             {
+                foreach (var c in here.Where(c => c.Spawned)) c.SetForbidden(false, false);
                 var ctx = new HappeningContext { map = map, faction = f, stranger = x, incident = incident, count = present };
                 // apart: a colonist carries the crates out to the league's porter at the gate, who takes them.
                 new DilemmaEffect_CarryOut { what = "Rimfolk_TrustCrate", count = present, steward = false, who = PlayWho.None, label = "CC_PEv_CratesLabel".Translate().Resolve() }.Apply(ctx);

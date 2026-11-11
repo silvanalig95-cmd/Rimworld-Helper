@@ -170,6 +170,20 @@ PLAY = {
     "DilemmaEffect_BannerHire": "a camp made",
     "DilemmaEffect_GuildCommission": "made for a visitor",
     "DilemmaEffect_NightLodging": "a night here",
+    # The peoples' own events, round 1 (Peoples/Events/): a beast led home and a trade at the gate, a colonist worked on by
+    # a visitor (a limb fitted at the bed, an hour in the storm, a mechlink put in), a seed planted together, crates
+    # carried in, a camp pitched by an old place, the hunt or the taming or a bout at the gate, the Wardens' trail.
+    "DilemmaEffect_HerdersBeast": "a beast led home",
+    "DilemmaEffect_HerdersTrade": "a beast traded at the gate",
+    "DilemmaEffect_OrderLimb": "a limb fitted",
+    "DilemmaEffect_StormSense": "an hour in the storm",
+    "DilemmaEffect_Mechlink": "a mechlink put in",
+    "DilemmaEffect_MossSeed": "a seed planted together",
+    "DilemmaEffect_TrustTake": "crates carried in",
+    "DilemmaEffect_ScholarsMeasure": "a camp by an old place",
+    "DilemmaEffect_HuntOrTame": "a hunt, a taming or a bout",
+    "DilemmaEffect_LanternTrail": "out on the trail",
+    "DilemmaEffect_HostelBread": "bread carried out",
 }
 
 # Words that say people do something together, or go somewhere on the map. Deliberately wide: the list is read by hand.

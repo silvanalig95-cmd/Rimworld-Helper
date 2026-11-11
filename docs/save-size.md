@@ -7,8 +7,8 @@ colony of 20, with the game keeping 30 more people it knows and 5 more each year
 generous guesses; sizes are rough XML sizes. Caps named as constants are read from the source. "Counted under" rows are
 kept inside another record (a journal's lines, a heart's lists) and are already in that record's size.
 
-Saved collections found: 615; modelled: 615; growing without end: 0.
-Rimfolk's part of the save, roughly: **2,762 KB** after a year, **3,340 KB** after two, **3,623 KB** after five.
+Saved collections found: 623; modelled: 623; growing without end: 0.
+Rimfolk's part of the save, roughly: **2,763 KB** after a year, **3,342 KB** after two, **3,627 KB** after five.
 
 | Collection | Rule | Kind | 1 year | 2 years | 5 years | KB at 5 years |
 |---|---|---|---|---|---|---|
@@ -137,6 +137,7 @@ Rimfolk's part of the save, roughly: **2,762 KB** after a year, **3,340 KB** aft
 | `Building/Suggest/Suggestions.cs:declinedKeys` | suggestions set aside with Not this, SuggestMath.DeclinedKept at most; those for some days let go when over | fixed | 80 | 80 | 80 | 3.5 |
 | `Diplomacy/DiplomacyBook.cs:wards` | per home: wards and hostages either way, WardMath.MaxPerHome at most, each dropped once they are home again | cap | 4 | 4 | 4 | 3.5 |
 | `Integrations/SocialInteractions.cs:bestFriends` | Caps.BestFriendPairs, known pawns | cap | 12 | 24 | 60 | 3.5 |
+| `Peoples/Events/PeopleEventsBook.cs:trusts` | goods held in trust: one open with the league at a time, the done ones kept to PeopleEventsMath.MaxTrusts | cap | 1 | 2 | 4 | 3.5 |
 | `PlayOut/OnMapTimed.cs:kept` | kept a night to a few days, at most OnMapTimed.MaxKept at once | cap | 12 | 12 | 12 | 3.5 |
 | `PlayOut/PlayOutTracker.cs:results` | how the last ones went: PlayOutTracker.MaxResults | cap | 30 | 30 | 30 | 3.5 |
 | `CouncilGameComponent.cs:movingOnHeld` | those kept from moving on, one per person and reason, until it resolves or after a season (Social/MovingOnHeld.cs) | fixed | 8 | 8 | 8 | 3.3 |
@@ -359,6 +360,7 @@ Rimfolk's part of the save, roughly: **2,762 KB** after a year, **3,340 KB** aft
 | `Building/BuildProjects.cs:patients` | the most laid up at once, one a day, BuildAheadTracker.PatientDays at most | fixed | 15 | 15 | 15 | 0.4 |
 | `Fields/FieldWeather.cs:byWeather` | per home map: the growing zones set to sow By the weather, while the zone stands | while | 15 | 15 | 15 | 0.4 |
 | `Fields/FieldWeather.cs:strays` | FieldWeatherMath.StrayDays: how much colder than the land's reckoning each of the last days got, per home map | fixed | 15 | 15 | 15 | 0.4 |
+| `Peoples/Events/PeopleEventsBook.cs:gifts` | a colonist's gift of a kind once, twenty days apart at the least, PeopleEventsMath.MaxGifts kept | cap | 3 | 6 | 15 | 0.4 |
 | `Standing.cs:recentGrants` | per colonist, 30 days | window | 15 | 15 | 15 | 0.4 |
 | `Annals.cs:goals` | the year in progress | yearly | 6 | 6 | 6 | 0.4 |
 | `Annals.cs:omens` | the year in progress | yearly | 6 | 6 | 6 | 0.4 |
@@ -409,6 +411,7 @@ Rimfolk's part of the save, roughly: **2,762 KB** after a year, **3,340 KB** aft
 | `Missions/StoriesComponent.cs:missions` | missions 2 days after they end | window | 0 | 0 | 0 | 0.2 |
 | `Social/Battle.cs:fallen` | while a fight lasts | while | 5 | 5 | 5 | 0.2 |
 | `Strangers/Pets.cs:fought` | animals in the last fight | fixed | 5 | 5 | 5 | 0.2 |
+| `Peoples/Events/PeopleEventsBook.cs:read` | the old places the scholars read, PeopleEventsMath.MaxRead kept | cap | 2 | 3 | 8 | 0.2 |
 | `Animals/AnimalPowers.cs:calmTicks` | a Psychic type's calming: the colonist and the Pokémon, each let go two days after | window | 2 | 2 | 2 | 0.2 |
 | `Annals.cs:secretsOut` | the year in progress | yearly | 3 | 3 | 3 | 0.2 |
 | `Decrees/Decrees.cs:useDefs` | uses within the fatigue window | window | 4 | 4 | 4 | 0.2 |
@@ -424,6 +427,7 @@ Rimfolk's part of the save, roughly: **2,762 KB** after a year, **3,340 KB** aft
 | `Health/HealthTracker.cs:convalescing` | known pawns only | colonists | 4 | 4 | 4 | 0.2 |
 | `Heart/HeartData.cs:feelingSinceKeys` | per heart: feelings felt now | fixed | 4 | 4 | 4 | 0.2 |
 | `Missions/Missions.cs:group` | per mission | fixed | 4 | 4 | 4 | 0.2 |
+| `Peoples/Events/PeopleCamps.cs:travellers` | the hostel's travellers resting there now, while the camp stands | fixed | 4 | 4 | 4 | 0.2 |
 | `PlayOut/PlayOutLord.cs:abstained` | while the gathering lasts | while | 4 | 4 | 4 | 0.2 |
 | `PlayOut/PlayOutTracker.cs:stage` | one count per home (one in the model); homes no longer ours dropped | fixed | 1 | 1 | 1 | 0.2 |
 | `Scenarios/ScenarioParts.cs:offices` | a scenario part's seats, fixed by the scenario | fixed | 4 | 4 | 4 | 0.2 |
@@ -473,6 +477,7 @@ Rimfolk's part of the save, roughly: **2,762 KB** after a year, **3,340 KB** aft
 | `Calendar/CalendarDay.cs:kin` | per day on the calendar | fixed | 2 | 2 | 2 | 0.1 |
 | `Camps/Camp.cs:arrested` | while the camp stays | while | 2 | 2 | 2 | 0.1 |
 | `Camps/CampKindsLand3.cs:caught` | the beasts beast-catchers roped this stay, two at most (CampLandMath.MaxCaught), while the camp stays | while | 2 | 2 | 2 | 0.1 |
+| `Peoples/Events/PeopleCamps.cs:trail` | the lantern post's hunters out on the trail, while the camp stands | fixed | 2 | 2 | 2 | 0.1 |
 | `Persona/TraitChanges.cs:once` | the changes that come once in a colony's life | fixed | 2 | 2 | 2 | 0.1 |
 | `PlayOut/OnMapTimed.cs:cells` | per thing kept: where each planter sets their sapling (OnMapMath.MaxSaplings at most), plantings only | fixed | 2 | 2 | 2 | 0.1 |
 | `PlayOut/PlayOuts.cs:plots` | per play-out: where a burial's graves lie (OnMapMath.MaxDead at most), burials only | fixed | 2 | 2 | 2 | 0.1 |
@@ -581,6 +586,9 @@ Rimfolk's part of the save, roughly: **2,762 KB** after a year, **3,340 KB** aft
 | `Outsiders/OutsiderBook.cs:marks` | per pair: OutsiderTalkMath.MaxMarks, one per key, the oldest go (counted under pairs) | fixed | 10 | 10 | 10 | (in its record) |
 | `Outsiders/OutsiderBook.cs:said` | per pair: OutsiderTalkMath.MaxSaid pieces said, newest last (counted under pairs) | fixed | 16 | 16 | 16 | (in its record) |
 | `Outsiders/OutsiderBook.cs:topics` | per pair: the subjects of the last 3 talks (counted under pairs) | fixed | 3 | 3 | 3 | (in its record) |
+| `Peoples/Events/PeopleEventsBook.cs:crates` | per trust: its six to ten crates while they stand (counted under trusts) | fixed | 10 | 10 | 10 | (in its record) |
+| `Peoples/Events/PeopleEventsBook.cs:fates` | per trust: how each crate went that isn't there (counted under trusts) | fixed | 10 | 10 | 10 | (in its record) |
+| `Peoples/Events/PeopleEventsBook.cs:ids` | per trust: its crates' ids (counted under trusts) | fixed | 10 | 10 | 10 | (in its record) |
 | `Persona/PawnPersona.cs:d` | per person: one per side, fading (counted under people) | fixed | 8 | 8 | 8 | (in its record) |
 | `Persona/PawnPersona.cs:l` | per person: one per side (counted under people) | fixed | 8 | 8 | 8 | (in its record) |
 | `Persona/PawnPersona.cs:marks` | per person: PawnPersona.MaxMarks, each let go after its keeping (counted under people) | fixed | 12 | 12 | 12 | (in its record) |

@@ -228,8 +228,9 @@ namespace ColonyCouncil
             if (!place.IsValid || place.HasThing && !place.Thing.Spawned || on == null || !on.Spawned) return IntVec3.Invalid;
             var map = on.Map;
             var around = place.HasThing ? GenAdj.CellsAdjacent8Way(place.Thing) : GenAdj.CellsAdjacent8Way(new TargetInfo(place.Cell, map));
-            return around.Where(c => c.InBounds(map) && c.Standable(map) && on.CanReach(c, PathEndMode.OnCell, Danger.Some))
-                .OrderBy(c => c.DistanceToSquared(on.Position)).FirstOrDefault(c => c.IsValid && c.GetFirstPawn(map) == null);
+            var open = around.Where(c => c.InBounds(map) && c.Standable(map) && (c.GetFirstPawn(map) == null || c == on.Position) && on.CanReach(c, PathEndMode.OnCell, Danger.Some))
+                .OrderBy(c => c.DistanceToSquared(on.Position)).ToList();
+            return open.Count > 0 ? open[0] : IntVec3.Invalid;
         }
 
         /// <summary>

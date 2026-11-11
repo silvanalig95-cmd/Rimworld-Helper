@@ -1402,6 +1402,46 @@ Not used: the game's xenogerm items in their stock (an empty xenogerm would be w
 the Works' trade in them), a growth vat or a mech gestator in their towns (not the base game's), real archotech
 structures for the Choir (the Spire is their story; Rimfolk's ages end at spacer).
 
+## What was built (the peoples' own events, round 1)
+
+The player (10 November 2026): "I'd first like more faction specific events, interactions etc. like this event i had
+with these gene guys who gave my pawn a new gene ... these should be applied to the other factions according to their
+lore, design and theme", then "also some faction-specific camps can be included in the events". The proposal
+(`docs/peoples-events-proposals.md`, 100 items) was approved in full and split into ten rounds; this is the first:
+items 10, 5, 47, 83, 51, 1, 19, 17, 34 and 95. DESIGN.md "Rimfolk's peoples" has the code; here, what each people does.
+
+| People | Item | What happens on the map | Its age | The player's mods |
+|---|---|---|---|---|
+| The herding folk | A beast for a colonist (10) | A rider leads in a young beast the elder chose for one colonist; bought or traded for a young beast of the colony's; bonded, trained to follow, led home together; the rider stays to supper | The same beast in every age | The land's beasts (Alpha Animals, Vanilla Animals Expanded, Megafauna where they live), a riding beast likelier with Giddy-Up 2 |
+| The hospitaller order | A limb fitted (5) | The colonist lies at the colony's bed, the surgeon (Medicine 10 to 16) fits the limb, the colony's doctor at the bedside; the game's own surgery and chance; a favour owed, or medicine sent back | A peg leg or wooden hand from the colony's wood before the industrial age; simple prostheses after; never bionics | The base game's limbs (the player's mods add none of the order's kind) |
+| The Stormglass Conclave | Storm-sense (47) | In a thunderstorm the most sensitive colonist stands an hour out under the sky with a reader, at the colony's rod if it has one; a flash, and a first psylink | The reader's in every age | Royalty's psylink, Vanilla Psycasts Expanded's Staticlord or Frostshaper path; without Royalty A RimWorld of Magic's Lightning tome |
+| The Lattice | A mechlink (83) | Two hours where the colonist stands, sparks and a bar; the mech that came with the tender is theirs | Spacer; a tribal colony finds it strange | Biotech; Alpha Mechs' culinarius and turbocleaner beside the lifter and constructoid |
+| The Mossborn | A Gauranlen seed (51) | Once the ledger is warm: planted where the colony chooses (the game's own rule for the seed) or where she does, the colonist beside her; the tree bound to them; the promise reckoned each season | The same seed in every age | Ideology (Vanilla Ideology Expanded's dryads with it); without Ideology a healroot grove |
+| The road league | Crates held in trust (1) | Six to ten sealed crates carried into the stores; the fetch twenty to thirty days on; good ink or red | A lame pack beast, a broken truck, a lander short of lift (its crates by pod) | None needed |
+| The learned society | What lies in the old place (19) | Two fellows camp four days beside an old place, measuring; then exactly what is inside, and research; or they open it | Instruments of their age in the words | The game's ancient dangers; Odyssey's and Vanilla Landmarks Expanded's landmarks; Geological Landforms' landforms |
+| The pilgrim fellowship | A hostel on the road (17, camp) | In a holy year or a great pilgrimage: a long hut, the shrine's flame, a bread table; the region's travellers a night or two with their news; bread each morning; the evening blessing and its cough; a quarrel at the fire | Poles and bedrolls, or folding cots and a lamp | A brazier with Royalty |
+| The Lantern Wardens | The lantern post (34, camp) | Three Wardens and two hounds at the land's edge while a great beast roams it; the trail by day, the lantern by night; a warning; meat for the hounds; the colony's best shot on the trail; the beast at the fire, a hound lost | Spears or rifles by their age's arms | A German shepherd with Vanilla Animals Expanded |
+| The Wardens and the Circuit | Kill it or win it over (95) | Both at the gate the same day over a legend or an alpha: the hunt, the colony's own taming with the tamer beside, or a bout at the gate | Each people's own | The legends of the region's beasts (Megafauna, Dinosauria, ReGrowth, Alpha Animals, PokéWorld's legendaries where PokéWorld opens them) |
+
+Gifts (the beast, the limb, storm-sense, the mechlink, the seed) come once to a colonist and never within twenty days of
+each other, so a long game sees a handful, each one a story. What the colony gives for them: silver at a fair price, a
+young beast, wood, medicine, subcores, a vial of its storm, a promise to the ledger, or a favour owed.
+
+What can hurt, at the game's own rate and shown: a fitting that fails (the game's surgery), a beast's revenge on a
+failed try at taming it (its own chance, shown on the card), the beast at the Wardens' fire (the game's fight), an old
+place opened (its sleepers awake), the cough round the hostel's hut and a brawl between travellers (Rimfolk's harm
+budget, the pilgrims' cough and a camp brawl's rate).
+
+| Without | What happens |
+|---|---|
+| Royalty and A RimWorld of Magic | No storm-sense. |
+| Biotech | No mechlink. |
+| Ideology | The Mossborn sow a healroot grove. |
+| Giddy-Up 2 | Any beast that fits the land, a riding one no likelier. |
+| The camps (setting) off | No hostel, no lantern post, no scholars at an old place. |
+| Answers play out on the map (setting) off | The work on a colonist done at once. |
+| The deeper game hooks (setting) off | Good ink's prices and red ink's stopped caravans don't apply; the rest does. |
+
 ## What could come next
 
 - Their own world events: a league's toll war, an order's plague year with the colony's help asked by name, a great

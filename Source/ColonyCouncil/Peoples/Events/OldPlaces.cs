@@ -86,7 +86,13 @@ namespace ColonyCouncil
             try
             {
                 var seen = new HashSet<Room>();
-                var things = map.listerThings.AllThings.Where(t => t != null && t.Spawned && t.Position.Fogged(map) && Ancient(t, map)).ToList();
+                // Only the kinds of thing an ancient danger holds are looked at: its caskets, its sealed crates, hives, and pawns asleep.
+                var candidates = new List<Thing>();
+                candidates.AddRange(map.listerThings.ThingsOfDef(ThingDefOf.AncientCryptosleepCasket));
+                if (ThingDefOf.AncientHermeticCrate != null) candidates.AddRange(map.listerThings.ThingsOfDef(ThingDefOf.AncientHermeticCrate));
+                candidates.AddRange(map.listerThings.ThingsOfDef(ThingDefOf.Hive));
+                candidates.AddRange(map.mapPawns.AllPawnsSpawned);
+                var things = candidates.Where(t => t != null && t.Spawned && t.Position.Fogged(map) && Ancient(t, map)).ToList();
                 foreach (var t in things)
                 {
                     var room = t.Position.GetRoom(map);

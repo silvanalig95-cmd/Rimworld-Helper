@@ -87,6 +87,7 @@ namespace ColonyCouncil
             if (!Strange) return;
             var strange = DefDatabase<ThoughtDef>.GetNamedSilentFail("Rimfolk_Thought_MechlinkStrange");
             if (strange == null) return;
+            // apart: the colony hears of it, and sees the mech walk behind them from then on; nobody need stand beside them to find it strange.
             using var _cause = Causes.Push("CC_PEv_Cause_Mechlink".Translate(on.LabelShort).Resolve());
             foreach (var p in IncidentWorker_Happening.Colonists(map).Where(p => p != on))
                 CouncilGameComponent.GiveThought(p, strange, on);

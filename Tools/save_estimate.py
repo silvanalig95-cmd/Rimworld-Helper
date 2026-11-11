@@ -749,6 +749,22 @@ MODEL = {
     # of a people no longer standing first.
     "Peoples/ArisingBook.cs:arisen": ("cap", (const("Peoples/ArisingMath.cs", "MaxRecords", 24), 0.05), 320,
                                       "peoples that arose during play: one record each, one every 20 days at the most (the setting at 200%), ArisingMath.MaxRecords kept"),
+    # The peoples' own events (Peoples/Events/PeopleEventsBook.cs): one gift of a kind a colonist, twenty days apart at the
+    # least (PeopleEventsMath.GiftGapDays), the newest PeopleEventsMath.MaxGifts kept; goods held in trust, one open with the
+    # league at a time and PeopleEventsMath.MaxTrusts kept, each its six to ten crates (references and ids) and how each went;
+    # the old places the scholars read, PeopleEventsMath.MaxRead kept. A camp's own state (Peoples/Events/PeopleCamps.cs) lives
+    # while the camp does: the hostel's few travellers, the post's two hunters on the trail.
+    "Peoples/Events/PeopleEventsBook.cs:gifts": ("cap", (const("Peoples/Events/PeopleEventsMath.cs", "MaxGifts", 120), 1 / 20), V,
+                                                 "a colonist's gift of a kind once, twenty days apart at the least, PeopleEventsMath.MaxGifts kept"),
+    "Peoples/Events/PeopleEventsBook.cs:trusts": ("cap", (const("Peoples/Events/PeopleEventsMath.cs", "MaxTrusts", 4), 1 / 60), 900,
+                                                  "goods held in trust: one open with the league at a time, the done ones kept to PeopleEventsMath.MaxTrusts"),
+    "Peoples/Events/PeopleEventsBook.cs:read": ("cap", (const("Peoples/Events/PeopleEventsMath.cs", "MaxRead", 30), 1 / 40), V,
+                                                "the old places the scholars read, PeopleEventsMath.MaxRead kept"),
+    "Peoples/Events/PeopleEventsBook.cs:crates": ("fixed", 10, 40, "per trust: its six to ten crates while they stand (counted under trusts)"),
+    "Peoples/Events/PeopleEventsBook.cs:ids": ("fixed", 10, V, "per trust: its crates' ids (counted under trusts)"),
+    "Peoples/Events/PeopleEventsBook.cs:fates": ("fixed", 10, V, "per trust: how each crate went that isn't there (counted under trusts)"),
+    "Peoples/Events/PeopleCamps.cs:trail": ("fixed", 2, 40, "the lantern post's hunters out on the trail, while the camp stands"),
+    "Peoples/Events/PeopleCamps.cs:travellers": ("fixed", 4, 40, "the hostel's travellers resting there now, while the camp stands"),
     # The peoples' ages as they change (Peoples/PeopleAges.cs): one record a people of Rimfolk's (a reference and ten
     # values: its age now and the one it began in, its progress, when it was first heard of, looked at and last changed,
     # its heading and why), made the first time the region's day looks at it; the fifteen at once, and one for each that
