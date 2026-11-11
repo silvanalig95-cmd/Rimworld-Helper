@@ -352,14 +352,16 @@ most devout or most literate colonist, in their voice):
 
 "There should also be a god of the sun & moon, a cat god, the rain god, a god of gold." Added to the build in progress
 as gods 10 to 13 of `docs/gods-pantheon-brainstorm.md`:
-- `Rimfolk_God_Ardent` and `Rimfolk_God_Wane`: the sun and the moon, two gods who were once one primordial light, torn
+- `Rimfolk_God_Burning` and `Rimfolk_God_Dreaming`: the sun and the moon, two gods who were once one primordial light, torn
   in two when the world began, chasing each other and meeting only in eclipse. The player first had one sun-and-moon god
   (Dial, then Wake), then asked: "Can the moon & sun themselves not be some sort of duality gods that are
   interwined?" Each one's favour stirs the other's jealousy, and a colony that keeps both day and night is blessed by
-  both.
+  both. They have no names (the player: "any human style name doesn't really fit if they here since the dawn of
+  time"): people call them the Burning One and the Dreaming One, together the Torn Light, and each people has its own
+  words. Their keys are "Burning" and "Dreaming".
 - `Rimfolk_God_Mog`: a grey cat on the map, plainly.
 - `Rimfolk_God_Murmur`: a vast toad of the wells and marshes whose song calls the rain.
 - `Rimfolk_God_Ducat`: gold that wants to move.
 
-Fallback domains: Ardent Hearth and Harvest, Wane Night and Healing; Mog Hearth and Hunt; Murmur Waters and Harvest; Ducat Way and Craft. Ardent takes the solar flare
-and heat wave from Cirrus and Pip; the eclipse is Ardent and Wane meeting.
+Fallback domains: the Burning One Hearth and Harvest, the Dreaming One Night and Healing; Mog Hearth and Hunt; Murmur Waters and Harvest; Ducat Way and Craft. The Burning One takes the solar flare
+and heat wave from Cirrus and Pip; the eclipse is the Burning One and the Dreaming One meeting.

@@ -18,8 +18,9 @@ names that don't all have to follow the same style. Ennu the Guest is cool thoug
 - the pull beneath the surface (Undertow).
 
 The player then added four: "There should also be a god of the sun & moon, a cat god, the rain god, a god of gold"
-(Ardent and Wane, Mog, Murmur and Ducat, 10 to 13; the pair first named Noon and Lull, renamed at the player's
-word). The sun and moon were first one god, then made primordial at the
+(the Burning One and the Dreaming One, Mog, Murmur and Ducat, 10 to 13). The sun and moon went from one god to two,
+and from Noon and Lull to the Burning One and the Dreaming One, to no names at all: "any human style name doesn't really fit if they here
+since the dawn of time". The sun and moon were first one god, then made primordial at the
 player's word ("it should be primeordial and not some worldly item"), then two ("Can the moon & sun themselves not be
 some sort of duality gods that are interwined?").
 
@@ -246,42 +247,46 @@ It gives exactly what was asked, and it always takes more than was agreed, slowl
 to have eaten a god once, long ago, whose bones are the old ruins of this world. A colony that bargains with it will
 find Hollin, Bellwether and the Guest turning away, and Pip, for once, very quiet.
 
-### 10. Ardent and Wane, the Two Who Were One
+### 10. The Burning One and the Dreaming One: the Torn Light
 *The sun and the moon. Brother and Sister to the tribes, though nobody agrees which is which; the Pair to the medieval
 peoples; to industrial folk, "the sun and the moon, obviously"; to spacers, "a binary psychic phenomenon tied to the
 day cycle", which they log and don't believe.*
 
 **What they are.** Two gods who were once one. Before the world there was a single light, folded in on itself and
-asleep. When it woke, it tore in two, and the space between the halves became the world. **Ardent** is the half that
-burns: the sun. **Wane** is the half that dreams: the moon. They have chased each other across the sky ever since,
-each always just out of the other's sight.
+asleep. When it woke, it tore in two, and the space between the halves became the world. The half that burns is the
+sun, and the half that dreams is the moon. They have chased each other across the sky ever since, each always just out
+of the other's sight.
+
+They have no names. They were here before anyone who could give one, and nobody has ever known what they call
+themselves. People speak of them by what they are, **the Burning One** and **the Dreaming One**, and of the two
+together as **the Torn Light**. Every people also has its own words for them.
 - Dawn and dusk are the only moments they glimpse each other, so twilight is holy to both.
 - An eclipse is when they finally meet. For those few minutes the world holds its breath, and nobody knows whether it
   is an embrace or a quarrel. The oldest stories say it is both.
 
-**Ardent.** Loud, warm, generous and impatient. Ardent loves work done in daylight, boldness, growth, things that ripen
-and burn. When Ardent attends, the sun stands still a moment too long and the shadows stop moving. Ardent's favour is long
-clear days and fields that race toward harvest. A heat wave is Ardent staring too hard. A long grey season is Ardent
+**The Burning One.** Loud, warm, generous and impatient. The Burning One loves work done in daylight, boldness, growth, things that ripen
+and burn. When the Burning One attends, the sun stands still a moment too long and the shadows stop moving. The Burning One's favour is long
+clear days and fields that race toward harvest. A heat wave is the Burning One staring too hard. A long grey season is the Burning One
 sulking.
 
-**Wane.** Quiet, cool, patient and secret. Wane loves rest, sleep, mercy, things done gently and things kept hidden.
-When Wane attends, the moon rises huge and close and stays over the colony all night, and the dreams that night come
-true. Wane's favour is deep sleep, healing in the night, and a moon bright enough to work by when it matters. Wane's
+**The Dreaming One.** Quiet, cool, patient and secret. The Dreaming One loves rest, sleep, mercy, things done gently and things kept hidden.
+When the Dreaming One attends, the moon rises huge and close and stays over the colony all night, and the dreams that night come
+true. The Dreaming One's favour is deep sleep, healing in the night, and a moon bright enough to work by when it matters. The Dreaming One's
 displeasure is sleeplessness, and nightmares that follow people into the day.
 
 **Intertwined.** Neither can be pleased alone, because each is jealous of the other's share of the world.
 - **A colony of the day** (working through the night under lamps, never resting, never looking up at the moon) has
-  Ardent's warmth and Wane's coldness: restless nights, bad dreams, wounds slow to heal.
-- **A colony of the night** (sleeping late, working by lamplight, hiding from the sun) has Wane's quiet and Ardent's
+  the Burning One's warmth and the Dreaming One's coldness: restless nights, bad dreams, wounds slow to heal.
+- **A colony of the night** (sleeping late, working by lamplight, hiding from the sun) has the Dreaming One's quiet and the Burning One's
   sulk: grey days, slow fields.
 - **The colony that keeps both:** works by day, rests by night, and stops to watch the sun go down and the moon come
   up. It is the one both remember kindly. Those who keep vigil at dawn and dusk are noticed by both at once.
 
 **With the others.**
 - Cirrus drifts between them and the world, and both resent it.
-- Hush's long winter nights are Wane's season and Ardent's exile.
-- Pip hates Ardent's flares.
-- Mog sleeps in Ardent's sunbeams and hunts by Wane's light, and belongs to neither.
+- Hush's long winter nights are the Dreaming One's season and the Burning One's exile.
+- Pip hates the Burning One's flares.
+- Mog sleeps in the Burning One's sunbeams and hunts by the Dreaming One's light, and belongs to neither.
 
 ### 11. Mog
 *the Cat, to everyone; the Grey Lady of the Hearth to the medieval peoples; to the tribes, Whiskers-in-the-Dark.*
@@ -357,10 +362,10 @@ never stays.
 - **The Guest** goes between all of them and carries their news, and all of them are a little careful of it.
 - **The great fear:** Undertow, feared by all.
 - **The four added later:**
-  - Ardent and Wane are one torn in two, chasing each other, meeting only in eclipse.
+  - the Burning One and the Dreaming One are one torn in two, chasing each other, meeting only in eclipse.
   - Cirrus drifts between them and the world.
-  - Pip hates Ardent's flares.
-  - Mog sleeps in Ardent's sunbeams, hunts by Wane's light, and stares at Ennu.
+  - Pip hates the Burning One's flares.
+  - Mog sleeps in the Burning One's sunbeams, hunts by the Dreaming One's light, and stares at Ennu.
   - Murmur sleeps angry through Hush's months.
   - Ducat and Smoulder: the flow of gold against the hoard.
 - **The Silent Ones,** the archotechs, are not among the nine and are not gods. Pip aches for them, and Hollin
@@ -380,9 +385,9 @@ Walking it's said plainly. Colonists talk of it at supper, and neighbours write 
 | Wanderer joins, refugee pod, a stranger asking shelter | the Guest |
 | Solar flare, short circuits, machines failing or running unpowered | Pip |
 | Meteorite, aurora, flashstorm, cargo pods falling | Cirrus |
-| Solar flare, heat wave, a long clear growing season, a long grey season | Ardent |
-| A huge moon, dreams that come true, nights of sleeplessness and nightmares | Wane |
-| Eclipse | Ardent and Wane, meeting |
+| Solar flare, heat wave, a long clear growing season, a long grey season | the Burning One |
+| A huge moon, dreams that come true, nights of sleeplessness and nightmares | the Dreaming One |
+| Eclipse | the Burning One and the Dreaming One, meeting |
 | A cat wanders in, a run of small luck for one colonist | Mog |
 | Rain after dry weeks, drought, a flood | Murmur |
 | A trader arriving at the right time, silver gone missing, a deal gone sour | Ducat |
