@@ -1,4 +1,4 @@
-# Rimfolk's own gods: the nine (fourth version, renamed, 11 November 2026)
+# Rimfolk's own gods: the nine, and four more (fourth version, 11 November 2026)
 
 The player, on the third version: "you went a little bit too much into the abstract, or with too many of them. let's
 try to first start off with a smaller pantheon, perhaps 9 different ones. while they should be abstract in some way,
@@ -17,7 +17,10 @@ names that don't all have to follow the same style. Ennu the Guest is cool thoug
 - a sound (Hush);
 - the pull beneath the surface (Undertow).
 
-So these are nine beings: each one someone, with a will, a character and names. Some are vast and hard to see, some
+The player then added four: "There should also be a god of the sun & moon, a cat god, the rain god, a god of gold"
+(Dial, Mog, Murmur and Ducat, 10 to 13).
+
+So these are thirteen beings: each one someone, with a will, a character and names. Some are vast and hard to see, some
 are plainly a creature, and only one wears human faces. Each is written as it is, without a shared checklist.
 - **Still holding from before:**
   - gods are behind the game's own events, and the colony reads them there (section C);
@@ -240,7 +243,92 @@ It gives exactly what was asked, and it always takes more than was agreed, slowl
 to have eaten a god once, long ago, whose bones are the old ruins of this world. A colony that bargains with it will
 find Hollin, Bellwether and the Guest turning away, and Pip, for once, very quiet.
 
-## B. How the nine stand with each other
+### 10. Dial, the Lamp of Day and Night
+*the Sun at noon and the Moon at night, to those who don't know they're one; Old Lamp to the tribes; the Dial to the
+medieval clockmakers; to spacers, "the stellar-lunar psychic period".*
+
+**What it is.** One being with two faces: the light of the sun by day and of the moon by night. It turns, and the day
+turns with it. People who think the sun and the moon are two gods are not wrong, only half right.
+
+**How it is seen.** As itself, in the sky, plainly.
+- When it attends, a single shaft of sunlight falls through cloud onto one person, or the moon is suddenly very large
+  and very close over the colony for a night.
+- An eclipse is Dial blinking.
+- A solar flare is Dial too close, and the machines suffer for it (Pip hates this).
+
+**Its character.** Orderly, patient and fair. It keeps time and expects time to be kept. It sees everything by day and
+only half of everything by night, and that half is what it is curious about.
+
+**What it wants.** For the days to be lived and the nights to be rested.
+- **What it likes:** a colony that works by day and sleeps by night, that keeps the hours, that greets the dawn.
+- **What it gives:** long clear days in growing season, a moon bright enough to work by when it matters.
+- **What it doesn't like:** a colony that works all night under lamps, never sleeps, and never looks up at dawn. It has
+  its heat waves, and its long cloud.
+
+### 11. Mog
+*the Cat, to everyone; the Grey Lady of the Hearth to the medieval peoples; to the tribes, Whiskers-in-the-Dark.*
+
+**What she is.** A cat. That is the whole of it, as far as anyone can tell: an ordinary-looking grey cat, perhaps a
+little too large, who wanders into a colony one day and stays as long as she likes. She is a god, and every cat knows
+it.
+
+**How she is seen.** Plainly, on the map. A grey cat with too-bright eyes, never anyone's pet, sleeping in the warmest
+spot in the colony. Other cats follow her. She has a way of being in two places in one day.
+
+**Her character.**
+- Aloof, curious and capricious, fond of warmth and sunbeams.
+- She chooses people. She will sit on one colonist's lap and no one else's for a season, and nobody knows why.
+- She cannot be owned, tamed or kept. She leaves if anyone tries.
+- She sees Ennu for what it is, and stares at it.
+
+**What she wants.** Warmth, a full bowl she didn't ask for, and to be left to choose.
+- **The one she chooses** has a lucky season. A sickness passes them by, a fall doesn't break a bone.
+- **A colony that is kind to its cats** keeps her a long time.
+- **A colony that drives her out,** or harms a cat, finds the rats come back, the luck turns, and the cats all leave in
+  one night.
+
+### 12. Murmur, Old Croak
+*the Rain-Singer to the farmers; Old Croak in the marsh villages; the Well-Toad to the tribes.*
+
+**What it is.** A vast, ancient toad that lives in the deep wells, marshes and underground water of the region. Its
+song calls the rain. When it sings, it rains; when it is silent, the land goes dry.
+
+**How it is seen.**
+- Mostly heard: a deep croaking rising from wells and marshes before rain, felt in the chest more than heard.
+- Once in a long while it surfaces in a marsh or a flooded field: a toad the size of a house, mottled and old, with
+  eyes like wet stones. It looks at the colony for a while and sinks again.
+
+**Its character.** Slow, moody and easily offended, and generous when sung to. It loves frogs and toads and hates
+anyone who drains a marsh. It and Hush have never got on: the frozen months are its long, angry sleep.
+
+**What it wants.** Wet ground kept wet, wells kept clean, and to be sung back to.
+- **A colony that sings at its wells and leaves its marshes alone** gets rain when the fields need it.
+- **A colony that drains the marshes or fouls its wells** gets a dry season, then a flood when Murmur finally wakes up
+  furious.
+
+### 13. Ducat, the Restless Gold
+*the Glint to the traders; Lady Fortune in the medieval towns; the Coin-Spirit to the tribes; to spacers,
+"monetary-flow psychic artefact".*
+
+**What it is.** A being that lives in gold itself, in every coin and nugget and gilded thing, never in one for long. It
+is the gold's urge to move, to change hands, to be spent.
+
+**How it is seen.**
+- As a glint in the corner of the eye.
+- As a golden beetle that walks across a ledger.
+- As a trader's caravan that arrives exactly when the colony has something to sell.
+- A coin found where none was dropped is Ducat passing by.
+
+**Its character.** Restless, charming and impatient. It loves trade, deals and generosity, and despises a miser. It
+never stays.
+
+**What it wants.** To keep moving: gold spent, traded, given, not hoarded.
+- **A colony that trades freely and pays its debts** finds traders coming often and prices kind.
+- **A colony that sits on a great hoard** finds its silver going missing, a trader cheating it, and its luck in deals
+  going sour.
+- **Smoulder:** Ducat's oldest enemy, because every coin the dragon sleeps on is Ducat in chains.
+
+## B. How they stand with each other
 
 - **Cycles and quarrels:**
   - Hollin and Morel feed each other and bicker as a cycle does;
@@ -250,6 +338,12 @@ find Hollin, Bellwether and the Guest turning away, and Pip, for once, very quie
   ever been seen to notice.
 - **The Guest** goes between all of them and carries their news, and all of them are a little careful of it.
 - **The great fear:** Undertow, feared by all.
+- **The four added later:**
+  - Dial and Cirrus share the sky: Cirrus drifts across Dial's face.
+  - Pip hates Dial's flares.
+  - Mog sits in Dial's sunbeams and stares at Ennu.
+  - Murmur sleeps angry through Hush's months.
+  - Ducat and Smoulder: the flow of gold against the hoard.
 - **The Silent Ones,** the archotechs, are not among the nine and are not gods. Pip aches for them, and Hollin
   distrusts them.
 
@@ -266,7 +360,11 @@ Walking it's said plainly. Colonists talk of it at supper, and neighbours write 
 | Blight on fields, food spoiling, fungus spreading | Morel |
 | Wanderer joins, refugee pod, a stranger asking shelter | the Guest |
 | Solar flare, short circuits, machines failing or running unpowered | Pip |
-| Meteorite, aurora, eclipse, flashstorm, cargo pods falling | Cirrus |
+| Meteorite, aurora, flashstorm, cargo pods falling | Cirrus |
+| Eclipse, solar flare, heat wave, a long clear growing season | Dial |
+| A cat wanders in, a run of small luck for one colonist | Mog |
+| Rain after dry weeks, drought, a flood | Murmur |
+| A trader arriving at the right time, silver gone missing, a deal gone sour | Ducat |
 | Cold snap, a hard winter, frost in summer | Hush |
 | Psychic drone, Anomaly's events | Undertow |
 
