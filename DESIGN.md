@@ -3158,6 +3158,51 @@ and these places become contested spots". Their map is 275 by 275.
   enemy; colonists fight only when sent); no inspect line on the map (the World page carries it); the Banner's squad
   (Peoples/) still waits for no camp at all.
 
+### A beast is no reason to go: real attacks only (the player's report, 10 November 2026; released 0.206.2)
+
+The player's words: "camps packed up after an animal taking revenge after being attacked, animal and other more
+arbitrary attacks should not get the camp to leave".
+
+**The cause.** A camp read danger as the game's own "any hostile threat to the colony on the map" (`MapFacts.ThreatOn`,
+`GenHostility.AnyHostileActiveThreatToPlayer`). A wild beast the camp's hunters shot at turns manhunter for revenge
+(`Pawn_MindState.Notify_DamageTaken`), and a manhunter is a threat to the colony, so the next hour `CampLife.Ends` took
+it for a raid: unless armed campers stood within 22 cells of it, `Leave("raid", true)`, and they fled at once ("With
+raiders about ... they wanted no part in the colony's fight"). A packing camp went the same way, and a manhunter pack,
+an insect or a predator about the colony did the same to every camp on the land. Beside it, the group's own trigger
+(`Trigger_PawnHarmed` with the colony as the instigator's faction) scattered a camp on any harm the colony did, a
+colonist's shot at a manhunter that struck a camper included.
+
+- **The rule** (`Camps/CampHarmMath.cs`, pure, `CampHarmTests`): who did it, from what the game knows (`CampHarmFacts`:
+  something did it, the colony's, the game's own crossfire rule, out of their mind, a beast, an insect, of no people, of
+  the hives, at war with the camp's people, at war with the colony). `By` names it: an accident (nobody did it), the
+  colony meaning it, a stray of the colony's (a shot meant for an enemy of both, as `Faction.IsMutuallyHostileCrossfire`
+  has it, or a colonist or camper out of their mind, as the game's own goodwill rule has it), raiders, the camp's own
+  foes, a beast (wild, of the hives, or out of its mind: hunting, manhunting, taking revenge; the colony's own beast gone
+  manhunter too), an insect (wild or of a hive), or other (a wild man, someone of a people at peace with both). Real
+  (`RealAttack`): the colony meaning it, raiders, foes. The group scatters at once (`Scatters`) only for the colony
+  meaning it; raiders and foes are read by the camp each hour as before (defend their fire, or go).
+- **The group** (`Trigger_CampHarmed`, `Camps/CampHarm.cs`): the game's own harm signals (`Trigger_PawnHarmed.SignalIsHarm`),
+  the instigator, the one hurt and what was aimed at, asked of `Scatters`. It stands where the old trigger stood in
+  `LordJob_Camp` and in the war party's group (`WarCamp.cs`), so saved groups keep their triggers' places. Back from a
+  fight once no real danger is left (`CampHarm.RealThreatOn`).
+- **The hour** (`CampLife.Ends`): danger is `CampHarm.RealThreatOn` (the game's threat test first, then each active
+  threat through the rule); a camp defends its fire only against real attackers near (`EnemyNear`); packing goes on with
+  a beast about; a band's check (`CampRaids.OnlyBandsOn`) counts no beast as another danger.
+- **Fought off, kept clear of, and the camp stays** (`Camp.Fend`, every 250 ticks while a threat is on the land, one of
+  them is attacked in melee, or they are already at it): the nearest beast, insect or wild man hostile to them within 22
+  cells of their fire or 9 of one of them (`CampHarm.Menace`, `FendOff`). Those who fight (`Fights`: grown, able to
+  fight, armed) stand by their fire on the guard toil (the game's defend duty, 16 cells, as against a band); one
+  message says so ("A {THING} has come at the camp ... who can fight stand by their fire to drive it off, and the rest
+  keep clear of it"). The rest run from it with the game's own flight when it comes within 9 cells (`Runs`,
+  `FleeUtility.FleeJob`, 14 cells). Once none is near and no real danger is on, back to their day (`StopFending`, the
+  guard's at-ease memo); the guard's own 14 hours let it go too. A hunter keeps after the beast they hunt, as the game
+  has it, and anyone it reaches fights back (the game's melee reaction). What it does to them shows as the game shows it.
+- **Worry**: the only rule that already weighed harm, settled neighbours losing one of theirs (`Camp.HoldingLosses`: 15
+  unease, maybe grief and moving on), stays as it was. No new rule was added.
+- **Saved**: `Camp.fending` (a value, `ExposeHarm`). No new collection, no new Sched slot.
+- **Not run here**: the beast's revenge and the camp's stand at its fire; a camper struck by the colony's shot at a
+  manhunter staying put.
+
 ## Harm from everyday life
 
 The player's harm rule (3 November 2026) lets Rimfolk hurt its people when it is flavourful or makes the game more

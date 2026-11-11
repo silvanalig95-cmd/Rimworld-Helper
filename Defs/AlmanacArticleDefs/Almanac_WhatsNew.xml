@@ -31,6 +31,18 @@ When you load a save after an update, a letter lists the newest round once. The 
     <rounds>
 
       <li>
+        <version>0.206.2</version>
+        <date>11 November 2026</date>
+        <title>A beast is no reason to go</title>
+        <points>
+          <li>Camps no longer pack up when a beast takes revenge for their hunt, or when a manhunter, a predator or insects are about.</li>
+          <li>Only raiders, a people at war with theirs, or the colony harming them on purpose send a camp away.</li>
+          <li>A beast that comes at a camp is fought off: the armed stand by their fire, children and the unarmed keep clear, and then they go back to their day.</li>
+          <li>A stray shot from your people at a manhunter that hits a camper no longer scatters the camp.</li>
+        </points>
+      </li>
+
+      <li>
         <version>0.206.1</version>
         <date>10 November 2026</date>
         <title>Straight to the mailbag, back in the saddle</title>

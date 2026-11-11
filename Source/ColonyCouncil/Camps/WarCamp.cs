@@ -372,7 +372,8 @@ namespace ColonyCouncil
             var scatter = new Transition(hunt, flee);
             scatter.AddSources(hold, leave);
             scatter.AddTrigger(new Trigger_BecamePlayerEnemy());
-            scatter.AddTrigger(new Trigger_PawnHarmed(1f, true, Faction.OfPlayer, null, null));
+            // Only the colony meaning it (CampHarmMath.Scatters): not a stray shot of the fight they came for.
+            scatter.AddTrigger(new Trigger_CampHarmed());
             scatter.AddPostAction(new TransitionAction_EndAllJobs());
             graph.AddTransition(scatter);
             return graph;

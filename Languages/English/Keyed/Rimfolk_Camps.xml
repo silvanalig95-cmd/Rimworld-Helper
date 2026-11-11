@@ -226,6 +226,8 @@
   <!-- Enemies on the land: a people allied to the colony fights beside it; enemies at their own camp, they defend it (Camps/CampLife.cs). -->
   <CC_Camp_FightAlly>Enemies on the land: the {NAME} from {FACTION}, the colony's allies, take up their weapons beside it.</CC_Camp_FightAlly>
   <CC_Camp_FightDefend>Enemies are at their camp {PLACE}: the {NAME} from {FACTION} take up their weapons to defend it.</CC_Camp_FightDefend>
+  <!-- A beast, an insect or a wild man at their fire: fought off, and the camp stays (Camps/CampHarm.cs). -->
+  <CC_Camp_FendOff>A {THING} has come at the camp {PLACE}: the {NAME} from {FACTION} who can fight stand by their fire to drive it off, and the rest keep clear of it.</CC_Camp_FendOff>
 
   <!-- How they will sleep, and the day's work round their camp, for the letter that brings them (Camps/CampSite.cs, CampDay.cs). -->
   <CC_Camp_Facts_Shelter_hut>They will put up a hut for all of them, walls all round, a door and a roof.</CC_Camp_Facts_Shelter_hut>

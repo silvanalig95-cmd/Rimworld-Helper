@@ -336,8 +336,9 @@ namespace ColonyCouncil
             var bands = Still(map).Where(r => r.hostile).ToList();
             if (bands.Count == 0) return false;
             var theirs = new HashSet<Pawn>(bands.SelectMany(r => r.pawns));
+            // A beast or an insect about is no danger to count here (CampHarmMath): the camps fight those off where they are.
             foreach (var t in map.attackTargetsCache.TargetsHostileToColony)
-                if (t.Thing is Pawn p && !p.Dead && !p.Downed && !theirs.Contains(p) && GenHostility.IsActiveThreatToPlayer(t)) return false;
+                if (t.Thing is Pawn p && !p.Dead && !p.Downed && !theirs.Contains(p) && GenHostility.IsActiveThreatToPlayer(t) && CampHarmMath.RealAttack(CampHarm.ByOf(p, null))) return false;
             return true;
         }
 

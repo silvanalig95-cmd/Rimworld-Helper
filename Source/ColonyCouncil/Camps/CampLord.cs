@@ -8,7 +8,8 @@ namespace ColonyCouncil
 {
     /// <summary>
     /// A camp's people as a group: they walk to their spot, live there (building, cooking, sleeping, working the land
-    /// around it) until told to go, and leave. Hurt by the colony while still at peace with it, they flee; at war with
+    /// around it) until told to go, and leave. Hurt by the colony on purpose while still at peace with it, they flee (a
+    /// beast, an insect or a stray shot is no reason to: CampHarmMath); at war with
     /// it (the game's own goodwill decides) before they've packed up, they hold their camp for a while and then fight
     /// their way out.
     /// </summary>
@@ -66,7 +67,7 @@ namespace ColonyCouncil
             toFight.AddPostAction(new TransitionAction_EndAllJobs());
             graph.AddTransition(toFight);
             var back = new Transition(hunt, camp);
-            back.AddTrigger(new Trigger_TickCondition(() => lord?.Map != null && !MapFacts.ThreatOn(lord.Map)));
+            back.AddTrigger(new Trigger_TickCondition(() => lord?.Map != null && !CampHarm.RealThreatOn(lord.Map, lord.faction)));
             back.AddTrigger(new Trigger_TicksPassed(GenDate.TicksPerHour * 12));
             graph.AddTransition(back);
             // A band come against their camp (CampRaid.cs): they stand guard by their fire, and are at ease again once it
@@ -97,13 +98,14 @@ namespace ColonyCouncil
             goes.AddTrigger(new Trigger_Memo(MemoLeave));
             graph.AddTransition(goes);
 
-            // A raid, or the colony hurt one of them while still at peace: they leave at once, defending themselves.
+            // A raid, or the colony hurt one of them while still at peace: they leave at once, defending themselves. Only the
+            // colony meaning it scatters them (CampHarmMath.Scatters): never a beast, an insect, a stray shot or a fit.
             var scatter = new Transition(travel, flee);
             scatter.AddSources(camp, leave);
             scatter.AddSource(hunt);
             scatter.AddSource(guard);
             scatter.AddTrigger(new Trigger_Memo(MemoFlee));
-            scatter.AddTrigger(new Trigger_PawnHarmed(1f, true, Faction.OfPlayer, null, null));
+            scatter.AddTrigger(new Trigger_CampHarmed());
             scatter.AddTrigger(new Trigger_ChanceOnPlayerHarmNPCBuilding(1f));
             // Their animals are taken out of the group first and walked off on their own, so they never fight anyone (CampLook.cs).
             scatter.AddPreAction(new TransitionAction_Custom(() => CampBeasts.LeadOff(lord)));

@@ -17,7 +17,7 @@ tree at once, alongside whatever runs. Each piece is merged as its own release, 
   until we have a few so we can implement them more effectively."** Each new wish or report goes onto this list as a
   "To do when the player asks" entry (with their words) and the task list, and nothing is built, unless they say to
   start it now. When they ask, the gathered entries are planned together, grouped by area, and built side by side.
-  (On 11 November 2026 they asked for every entry then on the list, and for the peoples' 100 in batches.)
+  (On 11 November 2026 they asked for every entry then on the list and the peoples' round 1; rounds 2 to 10 wait.)
 - **To do when the player asks (10 November 2026): events and interactions of each of Rimfolk's peoples, by their lore.**
   The player: "I really LOVE the new factions you created, and I'd be down for more later. however, I'd first like more
   faction specific events, interactions etc. like this event i had with these gene guys who gave my pawn a new gene.
@@ -26,8 +26,10 @@ tree at once, alongside whatever runs. Each piece is merged as its own release, 
   lore in docs/design/peoples*.md), then build; new peoples only after. Proposed (11 November 2026, with each people's own
   camps, as the player added): `docs/peoples-events-proposals.md`, 100 numbered items; the lead recommends 10, 5, 47,
   83, 51, 1, 19, 17, 34 and 95 first. **The player picked all 100 (11 November 2026): "the events sounds really
-  cool!! add all to to-do"; then "but perhaps do several batches so i don't have a huge job after".** Built in ten
-  rounds, one after another as slots free (each round its own agent and release; shared shapes come early: the
+  cool!! add all to to-do"; then "but perhaps do several batches so i don't have a huge job after"; then "also hold
+  with the peoples update also until i say so!"; then "no actually do one round but after it should just be on
+  to-do like any new request please".** Round 1 is being built; rounds 2 to 10 are held until they ask. Ten
+  rounds, one at a time when asked (each round its own agent and release; shared shapes come early: the
   visitor working on a colonist in round 1, goods held in trust 1 then 20, the caravan of one 14 then 3, 67, 77, 98):
   1. 10, 5, 47, 83, 51, 1, 19, 17, 34, 95 (the recommended ten).
   2. 14, 22, 26, 59, 12, 25, 3, 20, 40, 63.
@@ -79,11 +81,6 @@ tree at once, alongside whatever runs. Each piece is merged as its own release, 
   temperature line (the readout of `GlobalControls`, softly, behind the deeper hooks) on a blue-to-red scale by the
   colonists' comfort (deep blue in killing cold, white at comfortable, red in killing heat), in both looks, with a
   setting; check Rimfolk's own on-screen panels that show a temperature to match.
-- **To do when the player asks (10 November 2026), a bug: camps pack up after an animal's revenge.** The player: "camps
-  packed up after an animal taking revenge after being attacked, animal and other more arbitrary attacks should not get
-  the camp to leave". When asked: find what makes a camp leave when attacked (Camps/: its lord's harm or danger trigger)
-  and leave it to real attacks on the camp (raiders, a people at war, the colony); a manhunting or revenging animal, a
-  stray insect or a predator is fought off or fled from, the camp staying, with any hurt shown.
 - **To do when the player asks (10 November 2026): invited visitors are Hospitality's guests.** The player: "visitors
   that you invite with diplomatic actions should also be treated as guests with hospitality". When asked: notables and
   envoys who come because the colony invited them (a letter's invitation, a feast's guests, an envoy for a season, a
@@ -91,6 +88,35 @@ tree at once, alongside whatever runs. Each piece is merged as its own release, 
   area, guest beds, its guest tab and recruiting rules, Rimfolk's guest help), softly by type name; Rimfolk's own visit
   purpose (the feast, the talks, the envoy's season) kept on top, and its own visitor lord left for when Hospitality is
   absent.
+- 0.206.2, **A beast is no reason to go:
+  camps leave only for real attacks** (11 November 2026, a bug). The player: "camps packed up after an animal taking
+  revenge after being attacked, animal and other more arbitrary attacks should not get the camp to leave". DESIGN.md "A
+  beast is no reason to go: real attacks only" (under the camps); README's camps paragraph; the Almanac's camps page,
+  "Terms, trouble and parting" (keywords unchanged).
+  - Cause: the camp read danger as the game's "any hostile threat to the colony" (`MapFacts.ThreatOn`); a beast the camp's
+    hunters shot at turns manhunter for revenge, which is such a threat, so `CampLife.Ends` took it for a raid and the
+    camp fled at once (`Leave("raid", true)`, "With raiders about ... no part in the colony's fight") unless armed
+    campers stood near it; a packing camp too, and a manhunter pack or insects did it to every camp on the land. The
+    group's `Trigger_PawnHarmed` (the colony as instigator) also scattered a camp when a colonist's shot at a manhunter
+    struck a camper.
+  - Pure: `Camps/CampHarmMath.cs` (new, linked): `CampHarmFacts`, `By` (accident, colony, stray, raiders, foes, beast,
+    insect, other), `RealAttack`, `Scatters` (the colony meaning it only), `FendOff`, `Fights`, `Runs`, `FendRadius`,
+    `KeepClear`, `RunFrom`. Tests `Tools/Tests/CampHarmTests.cs` (33 checks: each kind of harm, every mix of facts, the
+    seams).
+  - Game side: `Camps/CampHarm.cs` (new): `CampHarm.Facts` (the game's crossfire and aggro rules), `ByOf`,
+    `RealThreatOn`, `Menace`; `Trigger_CampHarmed` in `LordJob_Camp`'s scatter and the war party's (same place as the
+    old trigger); `Camp.Fend`/`StopFending` and `fending` (saved, `ExposeHarm`): fighters on the guard toil by the fire,
+    the rest on the game's flight, one message `CC_Camp_FendOff`; `CampLife.Ends` (danger, `EnemyNear`), the packing
+    check, `CampRaids.OnlyBandsOn` and the lord's way back from a fight read real threats only. No new rule of worry
+    (settled neighbours' `HoldingLosses` stays as it was).
+  - Not run here: the revenge and the stand at the fire; the stray shot; the flight of the unarmed.
+  - Try in the game: 1. With a camp of hunters on the land, let their hunt turn a beast manhunter: the camp stays; if
+    the beast comes at the camp, a message says those who can fight stand by their fire, the armed hold there and shoot,
+    children and the unarmed run clear, and once it is dead or gone they go back to their day. 2. A manhunter pack event
+    while a camp stands: the camp stays put; it fights only what reaches its fire. 3. Shoot a manhunter beside a camper
+    and hit the camper: no scatter. 4. Shoot a camper on purpose: they scatter at once, as before. 5. A raid: the camp
+    defends its fire if the raiders come near and it is armed, else packs up and goes, as before. 6. A camp packing up
+    with a beast about: it goes on packing.
 - 0.206.1, carriers straight to the mailbag,
   back in the saddle, a new face each time (10 November 2026). The player: "the couriers that bring letters and material
   take an awkward routine around my base before delivering the message a bit away from the base. if anything they should

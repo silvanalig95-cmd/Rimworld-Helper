@@ -27,6 +27,8 @@ namespace ColonyCouncil
             var toil = lord.CurLordToil;
             // Their guard against a band let go by their group's own clock (half a day and more): at ease again.
             if (guarding && !(toil is LordToil_CampGuard) && CampRaids.Against(this) == null) guarding = false;
+            // Their stand against a beast let go the same way (CampHarm.cs).
+            if (fending && !(toil is LordToil_CampGuard)) fending = false;
             if (toil is LordToil_Camp && phase == CampPhase.Coming) Arrived();
             else if (toil is LordToil_DefendPoint && phase != CampPhase.Fighting) Fighting();
             else if (toil is LordToil_ExitMapAndDefendSelf && phase != CampPhase.Leaving && phase != CampPhase.Fighting) Scattered();
@@ -34,6 +36,8 @@ namespace ColonyCouncil
             {
                 WatchHunts();
                 WatchTrees();
+                // A beast or an insect come at them: fought off by their fire, kept clear of by the rest; the camp stays (CampHarm.cs).
+                if (fending || MapFacts.ThreatOn(map) || Here.Any(p => p.mindState?.meleeThreat != null)) Fend();
             }
         }
 
@@ -162,9 +166,9 @@ namespace ColonyCouncil
             if (phase == CampPhase.Building) CheckBuilt();
             else PlaceWaiting();
             WatchTrade();
-            // Packing up in their last hours (CampPack.cs): no new events, and once it's done they set off. A threat
-            // still sends them at once (Ends), but not a band come against a camp far off (CampRaid.cs).
-            if (packingFor != null && (!MapFacts.ThreatOn(map) || CampRaids.OnlyBandsOn(map)))
+            // Packing up in their last hours (CampPack.cs): no new events, and once it's done they set off. A real threat
+            // still sends them at once (Ends), but not a band come against a camp far off (CampRaid.cs), nor a beast (CampHarm.cs).
+            if (packingFor != null && (!CampHarm.RealThreatOn(map, faction) || CampRaids.OnlyBandsOn(map)))
             {
                 WatchPacking();
                 return;
@@ -822,7 +826,10 @@ namespace ColonyCouncil
             // A band come against them: once it moves on them, or they stand guard, the fight decides (CampRaid.cs).
             var band = CampRaids.Against(this);
             if (band != null && (band.Moving || guarding)) return true;
-            if (MapFacts.ThreatOn(map))
+            // Only a real attack is a reason to go (CampHarmMath): raiders, a people at war with theirs, the colony. A beast
+            // taking revenge for a hunt, a manhunter, a predator, an insect or a wild man is fought off by their fire (Fend).
+            bool danger = CampHarm.RealThreatOn(map, faction);
+            if (danger)
             {
                 // Neighbours settled for good keep to their huts and hope; what they lose is counted after (Holding.cs).
                 if (holding) return false;
@@ -849,7 +856,7 @@ namespace ColonyCouncil
                 Leave("raid", true);
                 return true;
             }
-            if (fighting && !MapFacts.ThreatOn(map)) fighting = false;
+            if (fighting && !danger) fighting = false;
             if (BadWeather() && (!holding || CampWeather.Hazard(map) != null))
             {
                 // Settled neighbours have shelter against the weather; only poisoned air or a sky on fire drives them off.
@@ -905,11 +912,15 @@ namespace ColonyCouncil
         /// <summary>A band come against another camp this near theirs: they go rather than be caught in it.</summary>
         public const float BandWary = 40f;
 
-        /// <summary>Any hostile to the colony (and so to them, at peace with it) up and about within <paramref name="radius"/> of their fire.</summary>
+        /// <summary>
+        /// Any real attacker hostile to the colony (and so to them, at peace with it) up and about within <paramref name="radius"/>
+        /// of their fire: raiders, not a beast (CampHarmMath).
+        /// </summary>
         private bool EnemyNear(float radius)
         {
             foreach (var p in map.mapPawns.AllPawnsSpawned)
-                if (!p.Downed && !p.Dead && p.HostileTo(Faction.OfPlayer) && p.Position.InHorDistOf(center, radius) && (faction == null || p.HostileTo(faction))) return true;
+                if (!p.Downed && !p.Dead && p.HostileTo(Faction.OfPlayer) && p.Position.InHorDistOf(center, radius) && (faction == null || p.HostileTo(faction))
+                    && CampHarmMath.RealAttack(CampHarm.ByOf(p, faction))) return true;
             return false;
         }
 

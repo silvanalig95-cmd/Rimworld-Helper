@@ -481,6 +481,8 @@ namespace ColonyCouncil
             ExposeDay();
             // The old site they hold, a band fated to come against them, a second party for the site (CampRaid.cs).
             ExposeCrowd();
+            // Their stand against a beast at their fire (CampHarm.cs).
+            ExposeHarm();
             if (Scribe.mode == LoadSaveMode.PostLoadInit)
             {
                 asksMade ??= new List<string>();

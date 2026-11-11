@@ -5,6 +5,15 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## A beast is no reason to go
+
+*11 November 2026, version 0.206.2*
+
+- Camps no longer pack up when a beast takes revenge for their hunt, or when a manhunter, a predator or insects are about.
+- Only raiders, a people at war with theirs, or the colony harming them on purpose send a camp away.
+- A beast that comes at a camp is fought off: the armed stand by their fire, children and the unarmed keep clear, and then they go back to their day.
+- A stray shot from your people at a manhunter that hits a camper no longer scatters the camp.
+
 ## Straight to the mailbag, back in the saddle
 
 *10 November 2026, version 0.206.1*
