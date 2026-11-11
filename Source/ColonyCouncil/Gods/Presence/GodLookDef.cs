@@ -196,21 +196,6 @@ namespace ColonyCouncil
             }
         }
 
-        /// <summary>The god's symbol for its card: the core's, where it has drawn one for the domain; else Rimfolk's star.</summary>
-        public Texture2D Symbol
-        {
-            get
-            {
-                if (symbol == null)
-                {
-                    symbol = ContentFinder<Texture2D>.Get("ColonyCouncil/GodSymbols/" + Domain, false) ?? GodAura.Emblem;
-                }
-                return symbol;
-            }
-        }
-
-        [Unsaved] private Texture2D symbol;
-
         public override IEnumerable<string> ConfigErrors()
         {
             foreach (var e in base.ConfigErrors()) yield return e;

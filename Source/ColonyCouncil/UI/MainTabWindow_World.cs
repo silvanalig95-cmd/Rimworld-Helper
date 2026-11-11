@@ -64,6 +64,7 @@ namespace ColonyCouncil
             Own(RegionView.Map, Icons.World, 0f, r => MapView.Draw(r, map)),
             Own(RegionView.Peoples, Icons.Trust ?? Icons.People, 20f, PeoplesView.Draw),
             Own(RegionView.HereAndAway, Icons.Away ?? Icons.Visitor, 30f, HereAndAwayView.Draw),
+            Own(RegionView.Gods, Icons.Journal ?? Icons.Chronicle, 40f, GodLorePage.Draw),
             Own(RegionView.History, Icons.History ?? Icons.Chronicle, 100f, WorldHistoryPage.Draw)
         };
 

@@ -71,12 +71,14 @@ namespace ColonyCouncil
             new Page("Overview", RimfolkWindow.Council, "Colony"),
             new Page("Calendar", RimfolkWindow.Council, "Colony"),
             new Page("Chronicle", RimfolkWindow.Council, "Colony"),
-            // The region window in four views (UI 2): the map with its lenses, the peoples, who is here and who is away,
-            // the history. Each view is one page; its own modes and lenses are parts of its address ("Map/Trade/List",
+            // The region window in five views (UI 2): the map with its lenses, the peoples, who is here and who is away,
+            // the colony's book of the gods, the history. Each view is one page; its own modes and lenses are parts of its address ("Map/Trade/List",
             // "Peoples/Faces": Modes and Lenses below).
             new Page("Map", RimfolkWindow.World, "Map"),
             new Page("Peoples", RimfolkWindow.World, "Peoples"),
             new Page("HereAndAway", RimfolkWindow.World, "HereAndAway"),
+            // The colony's own book of the gods: what its people saw, were told and believe (Gods/GodLorePage.cs).
+            new Page("Gods", RimfolkWindow.World, "Gods"),
             new Page("WorldHistory", RimfolkWindow.World, "WorldHistory"),
             // The defense window.
             new Page("Defenses", RimfolkWindow.Defense, "Defense"),
@@ -187,7 +189,7 @@ namespace ColonyCouncil
         {
             // The region window (UI 2).
             ["Map"] = new[] { "Map", "List" },
-            ["Peoples"] = new[] { "Peoples", "Faces", "Gods" }
+            ["Peoples"] = new[] { "Peoples", "Faces" }
         };
 
         /// <summary>A view's lenses (the region map's, UI/RegionViewsMath.cs), in the order of the lens bar: "Map/Trade/List".</summary>

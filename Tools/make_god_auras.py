@@ -10,7 +10,6 @@ white-on-transparent shapes, tinted in game in each god's colours, as the thermo
     Rays.png      256x256  a sunburst of soft rays: the flash of a god's coming, opening out from where it stands
     Mote.png       64x64   a soft dot with a bright core: what rises off a god
     Spark.png      64x64   a four-pointed twinkle: the motes of the bright gods, and the shimmer of one in disguise
-    Emblem.png    128x128  an eight-pointed star in a circle: the card's mark when the god's own symbol isn't there
 
 Every shape is drawn at 4x and scaled down for clean edges. Alphas are kept soft, so the shapes add up without hard
 edges when several are drawn over each other (a god's halo, its glow and its ring).
@@ -134,26 +133,9 @@ def spark():
     save(a, 64, 64, "Spark")
 
 
-def emblem():
-    S = 128 * K
-    m = Image.new("L", (S, S), 0)
-    d = ImageDraw.Draw(m)
-    c = S / 2
-    R = 0.9 * c
-    d.ellipse([c - R, c - R, c + R, c + R], outline=255, width=int(0.05 * c))
-    pts = []
-    for i in range(16):
-        ang = -math.pi / 2 + i * math.pi / 8
-        rr = 0.7 if i % 2 == 0 else 0.3
-        pts.append((c + math.cos(ang) * rr * c, c + math.sin(ang) * rr * c))
-    d.polygon(pts, fill=255)
-    a = np.asarray(m.filter(ImageFilter.GaussianBlur(K * 0.5)), dtype=np.float64) / 255.0
-    save(a, 128, 128, "Emblem")
-
-
 def main():
     os.makedirs(DIR, exist_ok=True)
-    for fn in (halo, glow, ring, ring_runes, rays, mote, spark, emblem):
+    for fn in (halo, glow, ring, ring_runes, rays, mote, spark):
         fn()
     print("8 shapes in %s" % DIR)
 

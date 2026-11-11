@@ -11,9 +11,10 @@ namespace ColonyCouncil
     /// <summary>
     /// A god's own card (docs/design/gods.md, "Presence"; brainstorm 25): not good news or bad news but a presence. It
     /// comes as a letter of its own kind (gold in the stack, no tag) through the teller, a few seconds after the sting,
-    /// once the camera is there and everyone has turned; opened, it is dark paper with a gold border, the god's symbol
-    /// glowing in its colour, the god named under it in its colour (or, veiled, only "Some say"), and the words set apart
-    /// from the narrator's. It doesn't pause the game, so the god's track plays on behind it.
+    /// once the camera is there and everyone has turned; opened, it is dark paper with a gold border, the god named in its
+    /// colour and set large, as the colony knows it (veiled, not named at all), and the words set apart from the narrator's:
+    /// what was seen and heard, never why. No symbol: a god is shown in words. It doesn't pause the game, so the god's
+    /// track plays on behind it.
     /// </summary>
     public static class GodCard
     {
@@ -109,7 +110,7 @@ namespace ColonyCouncil
         }
     }
 
-    /// <summary>A god's card: dark paper and gold, its symbol, its name or "Some say", the words, and the way to the place.</summary>
+    /// <summary>A god's card: dark paper and gold, its name in its colour (or none, veiled), the words, and the way to the place.</summary>
     public class GodCardWindow : FramedWindow
     {
         private readonly GodLetter letter;
@@ -132,7 +133,7 @@ namespace ColonyCouncil
 
         protected override string FrameTitle => letter?.Label.Resolve() ?? "";
 
-        protected override Texture2D FrameIcon => letter?.look?.Symbol ?? GodAura.Emblem;
+        protected override Texture2D FrameIcon => null;
 
         public override void PostClose()
         {
@@ -173,30 +174,21 @@ namespace ColonyCouncil
             var inner = r.ContractedBy(22f);
             float y = inner.y;
             var godColor = Color.Lerp(letter.colorA, Color.white, 0.25f);
-            // The symbol, glowing in the god's colour.
-            float sym = 86f;
-            var symRect = new Rect(inner.center.x - sym / 2f, y + 4f, sym, sym);
-            float pulse = GodPresenceMath.Pulse(Time.realtimeSinceStartup, GodPresenceMath.PulseSeconds);
-            GUI.color = new Color(letter.colorA.r, letter.colorA.g, letter.colorA.b, letter.veiled ? 0.28f : 0.45f + 0.15f * pulse);
-            GUI.DrawTexture(symRect.ExpandedBy(30f), GodAura.Halo);
-            GUI.color = letter.veiled ? GodCard.GoldFaint : GodCard.Gold;
-            GUI.DrawTexture(symRect, letter.look?.Symbol ?? GodAura.Emblem);
-            GUI.color = Color.white;
-            y = symRect.yMax + 12f;
-            // Who: the god by name in its colour, its epithet under it; veiled, only "Some say".
+            y += 18f;
+            // Who: the god as the colony knows it, set large in its colour; veiled, nobody can say.
             Text.Anchor = TextAnchor.UpperCenter;
             if (letter.veiled)
             {
                 Text.Font = GameFont.Small;
                 GUI.color = GodCard.GoldFaint;
-                Widgets.Label(new Rect(inner.x, y, inner.width, 24f), "CC_GodP_Card_SomeSay".Translate());
+                Widgets.Label(new Rect(inner.x, y, inner.width, 24f), "<i>" + "CC_GodP_Card_SomeSay".Translate() + "</i>");
                 y += 26f;
             }
             else
             {
                 Text.Font = GameFont.Medium;
                 GUI.color = godColor;
-                string name = (letter.godName ?? "").CapitalizeFirst();
+                string name = "<size=28>" + (letter.godName ?? "").CapitalizeFirst() + "</size>";
                 float nh = Text.CalcHeight(name, inner.width);
                 Widgets.Label(new Rect(inner.x, y, inner.width, nh), name);
                 y += nh + 2f;
@@ -208,13 +200,12 @@ namespace ColonyCouncil
                     y += 24f;
                 }
             }
-            // A gold rule with a small diamond.
+            // A gold rule, broken in the middle.
             y += 6f;
             GUI.color = GodCard.Gold;
             float mid = inner.center.x;
-            Widgets.DrawLineHorizontal(inner.x + 30f, y, mid - inner.x - 42f);
-            Widgets.DrawLineHorizontal(mid + 12f, y, inner.xMax - mid - 42f);
-            GUI.DrawTexture(new Rect(mid - 6f, y - 6f, 12f, 12f), GodAura.Emblem);
+            Widgets.DrawLineHorizontal(inner.x + 30f, y, mid - inner.x - 38f);
+            Widgets.DrawLineHorizontal(mid + 8f, y, inner.xMax - mid - 38f);
             y += 14f;
             // The words, set apart in their own ink.
             var foot = new Rect(inner.x, inner.yMax - 34f, inner.width, 32f);

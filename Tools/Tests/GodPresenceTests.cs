@@ -322,7 +322,7 @@ public static class GodPresenceTests
         // ================= The textures and their tool =================
 
         string tool = File.Exists(Path.Combine(root, "Tools", "make_god_auras.py")) ? File.ReadAllText(Path.Combine(root, "Tools", "make_god_auras.py")) : "";
-        foreach (var t in new[] { "Halo", "Glow", "Ring", "RingRunes", "Rays", "Mote", "Spark", "Emblem" })
+        foreach (var t in new[] { "Halo", "Glow", "Ring", "RingRunes", "Rays", "Mote", "Spark" })
         {
             string png = Path.Combine(root, "Textures", "ColonyCouncil", "Gods", "Aura", t + ".png");
             C(File.Exists(png) && new FileInfo(png).Length > 500 && tool.Contains(t + ".png"), $"{t}.png drawn by Tools/make_god_auras.py");

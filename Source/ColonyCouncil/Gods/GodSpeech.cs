@@ -33,7 +33,12 @@ namespace ColonyCouncil
             ["Council_Pool_SayFirstSnow"] = ("snow", GodDomain.Night)
         };
 
-        /// <summary>The tags a god gives its lines: its domain and kind ("god:harvest", "kind:archotech").</summary>
+        /// <summary>A god as a colonist speaks of it: {GOD} the colony's name for it (its page in the colony's book), else their own.</summary>
+        public static NamedArgument[] Args(God g, Pawn p) => g == null
+            ? new NamedArgument[0]
+            : new[] { GodLore.NameOf(g, p).Named(GodsMath.God), (g.epithet ?? "").Named(GodsMath.Epithet), Gods.GodOf(g).Named(GodsMath.Of) };
+
+        /// <summary>The tags a god gives its lines: its domains, its kind and its own ("god:harvest", "kind:hunger", "god:hollin").</summary>
         public static List<string> Tags(God g)
         {
             var tags = new List<string>();
@@ -41,6 +46,7 @@ namespace ColonyCouncil
             tags.Add("god:" + g.domain.ToString().ToLowerInvariant());
             if (g.second != GodDomain.None) tags.Add("god:" + g.second.ToString().ToLowerInvariant());
             tags.Add("kind:" + g.kind.ToString().ToLowerInvariant());
+            if (!g.Key.NullOrEmpty()) tags.Add("god:" + g.Key.ToLowerInvariant());
             return tags;
         }
 
@@ -56,7 +62,7 @@ namespace ColonyCouncil
             var about = tags.Contains("hurt") ? GodDomain.Healing : tags.Contains("grieving") ? GodDomain.Dead : GodDomain.None;
             var g = Gods.SwearBy(p, about);
             if (g == null) return null;
-            args = Gods.Args(g);
+            args = Args(g, p);
             return Tags(g);
         }
 
@@ -76,7 +82,7 @@ namespace ColonyCouncil
                 string line = Flavor.FromPool(Pool, p, null, null, extra.ToArray());
                 if (line.NullOrEmpty()) return null;
                 var args = new List<NamedArgument> { p.Named("PAWN") };
-                args.AddRange(Gods.Args(g));
+                args.AddRange(Args(g, p));
                 return line.Formatted(args.ToArray()).Resolve().CapitalizeFirst();
             }
             catch (Exception e)

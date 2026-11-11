@@ -8,14 +8,19 @@ using Verse;
 namespace ColonyCouncil
 {
     /// <summary>
-    /// The gods' public face (docs/design/gods.md, "Core: the pantheon"): every other part asks here. The pantheon
-    /// (<see cref="All"/>, <see cref="Of(Faction)"/>, <see cref="OfIdeo"/>, <see cref="ColonyGods"/>, <see cref="Patron"/>),
-    /// the colony's favour with each god at each home in words (<see cref="Favour"/>, <see cref="AddFavour"/>, <see cref="Deed"/>),
-    /// how real the gods are (<see cref="Realness"/>), the acts the colony remembers (<see cref="Remember"/>), the ties
-    /// (<see cref="TiesOf"/>, <see cref="Rivals"/>, <see cref="Allies"/>), a god's nature and kind, its words
-    /// (<see cref="Name"/>, <see cref="Epithet"/>, <see cref="GodOf"/>, <see cref="SwearBy"/>, the placeholders
-    /// {GOD}, {GODEPITHET} and {GODOF}), and what the colony knows. Off (the setting "Gods"), there is no pantheon: every list
-    /// is empty and nothing moves. Favour is never shown as a number.
+    /// The gods' public face (docs/design/gods.md, "the contract"): every other part asks here. The nine
+    /// (<see cref="All"/>, <see cref="ByKey"/>, <see cref="Of(Faction)"/>, <see cref="OfIdeo"/>, <see cref="ColonyGods"/>,
+    /// <see cref="Patron"/>), the colony's favour with each god at each home (<see cref="Favour"/>, <see cref="AddFavour"/>,
+    /// <see cref="Deed"/>), how real the gods are (<see cref="Realness"/>), the acts of the gods (<see cref="Remember"/>, each
+    /// with the colonists who saw it), the ties (<see cref="TiesOf"/>, <see cref="Rivals"/>, <see cref="Allies"/>), a god's
+    /// nature and kind, its words (<see cref="Name"/>, <see cref="NameBy"/>, <see cref="Epithet"/>, <see cref="GodOf"/>,
+    /// <see cref="SwearBy"/>, the placeholders {GOD}, {GODEPITHET} and {GODOF}), and what the colony knows.
+    /// <para>
+    /// All of it is hidden state that drives what the gods do. The gods are an unseen presence, like a storyteller (the
+    /// player, 11 November 2026): nothing here is shown or told as what a god thinks, wants or feels. The player learns of
+    /// the gods only what the colonists see, hear and believe (Gods/GodLore.cs). Off (the setting "Gods"), there are no
+    /// gods: every list is empty and nothing moves.
+    /// </para>
     /// </summary>
     public static class Gods
     {
@@ -52,15 +57,26 @@ namespace ColonyCouncil
 
         public static God ById(int id) => Book?.ById(id);
 
-        /// <summary>The gods a people holds: its patron first, then its faith's.</summary>
+        /// <summary>One of the nine by its short name ("Hollin", any case; its def's key or its name), or null.</summary>
+        public static God ByKey(string key)
+        {
+            var b = Book;
+            if (b == null || key.NullOrEmpty()) return null;
+            foreach (var g in b.gods)
+                if (g != null && (string.Equals(g.Key, key, StringComparison.OrdinalIgnoreCase) || string.Equals(g.name, key, StringComparison.OrdinalIgnoreCase)))
+                    return g;
+            return null;
+        }
+
+        /// <summary>The gods a people reveres (by its def's name or its kind: Gods/Pantheon.cs), in the nine's order.</summary>
         public static List<God> Of(Faction f)
         {
             var b = Book;
             if (b == null || f == null) return new List<God>();
-            return b.gods.Where(g => g.factions.Contains(f)).OrderBy(g => g.patron == null ? 1 : 0).ThenBy(g => g.id).ToList();
+            return b.gods.Where(g => g.factions.Contains(f)).OrderBy(g => g.id).ToList();
         }
 
-        /// <summary>The gods of a faith (Ideology's ideoligion).</summary>
+        /// <summary>The gods of a faith (Ideology's ideoligion): none while Ideology's deities are ignored (step 1 of the design's Ideology plan).</summary>
         public static List<God> OfIdeo(Ideo ideo)
         {
             var b = Book;
@@ -71,9 +87,8 @@ namespace ColonyCouncil
         private static readonly Dictionary<int, (int at, int version, List<God> gods)> colony = new Dictionary<int, (int, int, List<God>)>();
 
         /// <summary>
-        /// The gods of a home's colony: those of its colonists' faiths (with Ideology), and those the colony holds itself
-        /// (its makers' gods without Ideology, a newborn of its faith); the most widely held first. Worked out at most once
-        /// in a 250-tick stretch.
+        /// The gods of a home's colony: those its own people revere by its age (Gods/Pantheon.cs), and those of its
+        /// colonists' faiths where a faith holds one; the most widely held first. Worked out at most once in a 250-tick stretch.
         /// </summary>
         public static List<God> ColonyGods(Map home)
         {
@@ -146,9 +161,8 @@ namespace ColonyCouncil
 
         /// <summary>
         /// The colony's standing with a god moves: by its nature and kind and where it came from (GodsMath.Scale), remembered
-        /// in its acts with <paramref name="why"/> (already in words), told as news when it changes the word for a god the
-        /// colony knows; and a little onto the gods it is tied to (its rivals displeased, its allies pleased:
-        /// GodTiesMath.Spill). A newborn grows with it.
+        /// in its hidden history with <paramref name="why"/> (already in words); and a little onto the gods it is tied to (its
+        /// rivals displeased, its allies pleased: GodTiesMath.Spill). Never told: favour is hidden state.
         /// </summary>
         public static void AddFavour(God g, Map home, float amount, string why, FavourSource source = FavourSource.Deed, GodOffence offence = GodOffence.None)
         {
@@ -159,26 +173,25 @@ namespace ColonyCouncil
                 int key = HomeKey(home);
                 float a = GodsMath.Scale(amount, g.nature, g.kind, source, offence);
                 if (a == 0f) return;
-                b.Move(g, key, a, out var before, out var after);
-                if (!why.NullOrEmpty() && Math.Abs(a) >= 0.5f) b.Remember(new GodAct { god = g.id, home = key, tick = Now, kind = GodActKind.Favour, text = why, favour = a });
+                // One favor doesn't move (Helios, who gives without looking): what is meant for it goes along its ties alone.
+                bool unmoved = g.def?.unmoved == true;
+                if (!unmoved) b.Move(g, key, a, out _, out _);
+                if (!unmoved && !why.NullOrEmpty() && Math.Abs(a) >= 0.5f) b.Remember(new GodAct { god = g.id, home = key, tick = Now, kind = GodActKind.Favour, text = why, favour = a });
                 if (g.kind == GodKind.Newborn && a > 0f) Grow(b, g, a, home);
-                if (before != after) Tell(g, home, after, why);
                 if (source == FavourSource.Spill) return;
                 foreach (var t in b.TiesOf(g.id).ToList())
                 {
                     var other = b.ById(t.Other(g.id));
-                    if (other == null) continue;
+                    if (other == null || other.def?.unmoved == true) continue;
                     float s = GodTiesMath.Spill(a, t.kind, t.strength, t.a == g.id, other.nature);
                     if (Math.Abs(s) < 0.05f) continue;
-                    b.Move(other, key, s, out var ob, out var oa);
+                    b.Move(other, key, s, out _, out _);
                     if (Math.Abs(s) >= 1.5f)
                         b.Remember(new GodAct
                         {
                             god = other.id, other = g.id, home = key, tick = Now, kind = GodActKind.Favour, favour = s,
                             text = (s < 0f ? "CC_God_SpillAct_Against" : "CC_God_SpillAct_With").Translate(g.name.Named("OTHER"), GodWords.TieWord(t.kind).Named("TIE")).Resolve()
                         });
-                    if (ob != oa)
-                        Tell(other, home, oa, (s < 0f ? "CC_God_SpillAct_Against" : "CC_God_SpillAct_With").Translate(g.name.Named("OTHER"), GodWords.TieWord(t.kind).Named("TIE")).Resolve());
                 }
             }
             catch (Exception e)
@@ -204,36 +217,114 @@ namespace ColonyCouncil
             }
         }
 
-        /// <summary>A newborn grows with the colony's devotion, into an ordinary god once it has enough.</summary>
+        /// <summary>A newborn grows with the colony's devotion, into an ordinary god once it has enough (hidden; the nine have none).</summary>
         private static void Grow(GodBook b, God g, float gain, Map home)
         {
             g.devotion += GodsMath.Devotion(gain);
             if (g.devotion < GodsMath.NewbornGrown) return;
             g.kind = g.baseKind = GodKind.Ordinary;
             b.Remember(new GodAct { god = g.id, home = HomeKey(home), tick = Now, kind = GodActKind.Born, text = "CC_God_GrownAct".Translate(g.name.Named("GOD")).Resolve() });
-            ColonyCouncil.Tell.Minor(NewsKind.Colony, Importance.Notable, home, "CC_God_GrownNews".Translate(g.name.Named("GOD"), GodOf(g).Named("GODOF")).Resolve(), null);
             Changed();
-        }
-
-        /// <summary>A god the colony knows changed its word for a home: a line in the news, in the voice of how real the gods are.</summary>
-        private static void Tell(God g, Map home, FavourWord now, string why)
-        {
-            if (g == null || !g.known) return;
-            var map = home != null && Homes.IsHome(home) ? home : Homes.Seat;
-            string place = Homes.Name(map);
-            string stands = ("CC_God_Stands_" + now).Translate(g.name.Named("GOD"), place.Named("HOME")).Resolve();
-            string text = ("CC_God_Voice_" + GodsMath.Voice(Realness)).Translate(stands.Named("STANDS")).Resolve().CapitalizeFirst();
-            text = why.NullOrEmpty() ? text + "." : "CC_God_Why".Translate(text.Named("TEXT"), why.Named("WHY")).Resolve();
-            ColonyCouncil.Tell.Minor(NewsKind.Colony, now <= FavourWord.Displeased || now >= FavourWord.Favoured ? Importance.Notable : Importance.Flavor, map, text, null);
         }
 
         // ================= Acts =================
 
-        /// <summary>Remembers an act of a god (an appearance, a blessing, a mark): shown on its page.</summary>
+        /// <summary>A colonist this many cells from an act of the gods, in sight of it, saw it.</summary>
+        public const float WitnessRange = 20f;
+
+        /// <summary>The acts of the gods that happen on the land, where someone may see them (not favour, a tie, a vow or what the colony knows).</summary>
+        public static bool SeenOnLand(GodActKind k) => k == GodActKind.Appear || k == GodActKind.Act || k == GodActKind.Reveal || k == GodActKind.Depart
+                                                        || k == GodActKind.Blessing || k == GodActKind.Wrath || k == GodActKind.Omen || k == GodActKind.Mark;
+
+        /// <summary>
+        /// Remembers an act of a god (an appearance, a blessing, a mark) in the gods' hidden history. An act of the gods on the
+        /// land (<see cref="SeenOnLand"/>) with no witnesses given gets them now: the colonists awake and near enough to have seen
+        /// it (in sight within <see cref="WitnessRange"/> cells of its cell, or everyone awake on the map for one with no
+        /// cell: the sky, a silence, a shadow). An act someone saw reaches the colony's book as they saw it (the god they took
+        /// it for, which may not be the god it was); one nobody saw stays hidden.
+        /// </summary>
         public static void Remember(GodAct act)
         {
-            if (act == null) return;
-            Book?.Remember(act);
+            var b = Book;
+            if (act == null || b == null) return;
+            b.Remember(act);
+            if (act.booked || !SeenOnLand(act.kind)) return;
+            // A moment just written into the book (Moment) isn't written twice when its caller remembers it too.
+            if (act.god == momentGod && Now - momentAt < GenDate.TicksPerHour * 2) return;
+            try
+            {
+                var map = Homes.MapOf(act.home) ?? Homes.Seat;
+                var pawns = act.witnesses.NullOrEmpty() ? Witnesses(map, act.cell) : WitnessPawns(map, act.witnesses);
+                if (act.witnesses.NullOrEmpty()) act.witnesses = pawns.Select(p => p.LabelShort).ToList();
+                if (pawns.Count == 0 || act.text.NullOrEmpty()) return;
+                var g = ById(act.god);
+                var lore = GodLore.Instance;
+                string taken = g == null || lore == null ? null : GodLoreMath.Attribute(g.Key, lore.KnownOf(), Rand.Value);
+                GodLore.Saw(pawns, ByKey(taken), act.text);
+                act.booked = true;
+            }
+            catch (Exception e)
+            {
+                CouncilLog.ErrorOnce("gods: an act's witnesses", e);
+            }
+        }
+
+        private static int momentGod = -1, momentAt = -1;
+
+        /// <summary>
+        /// A god's moment was played (GodPresenceSeam.Call): the colony's book has it as those who saw it saw it, with the god
+        /// they took it for (plainly named while the gods walk; else whoever they believe it was, or nothing they can name), and
+        /// in the card's words or, with none, what was seen (CC_GodLore_Moment_*).
+        /// </summary>
+        public static void Moment(PresenceSpec spec)
+        {
+            if (spec?.god == null || spec.map == null) return;
+            try
+            {
+                var lore = GodLore.Instance;
+                var witnesses = Witnesses(spec.map, spec.kind == PresenceKind.Omen ? IntVec3.Invalid : spec.cell);
+                if (lore == null || witnesses.Count == 0) return;
+                var taken = Realness == GodRealness.Walking ? spec.god : ByKey(GodLoreMath.Attribute(spec.god.Key, lore.KnownOf(), Rand.Value));
+                string words = !spec.text.NullOrEmpty() ? spec.text : ("CC_GodLore_Moment_" + spec.kind).Translate().Resolve();
+                GodLore.Saw(witnesses, taken, words);
+                momentGod = spec.god.id;
+                momentAt = Now;
+            }
+            catch (Exception e)
+            {
+                CouncilLog.ErrorOnce("gods: a moment's witnesses", e);
+            }
+        }
+
+        /// <summary>
+        /// The colonists who saw something at <paramref name="cell"/> (awake, not downed, in sight within
+        /// <see cref="WitnessRange"/> cells), or with no cell everyone awake on the map.
+        /// </summary>
+        public static List<Pawn> Witnesses(Map map, IntVec3 cell)
+        {
+            var list = new List<Pawn>();
+            if (map?.mapPawns == null) return list;
+            foreach (var p in map.mapPawns.FreeColonistsSpawned.ToList())
+            {
+                if (p == null || p.Downed || p.Dead || !(p.Awake())) continue;
+                if (cell.IsValid)
+                {
+                    if (!cell.InBounds(map) || p.Position.DistanceTo(cell) > WitnessRange) continue;
+                    if (!GenSight.LineOfSight(p.Position, cell, map, true)) continue;
+                }
+                list.Add(p);
+            }
+            return list;
+        }
+
+        private static List<Pawn> WitnessPawns(Map map, List<string> names)
+        {
+            var list = new List<Pawn>();
+            if (names == null) return list;
+            foreach (var p in PawnsFinder.AllMaps_FreeColonists.ToList())
+                if (p != null && names.Contains(p.LabelShort) && !list.Contains(p))
+                    list.Add(p);
+            return list;
         }
 
         /// <summary>The acts remembered of a god, newest first.</summary>
@@ -271,19 +362,38 @@ namespace ColonyCouncil
 
         public static string Epithet(God g) => g?.epithet ?? "";
 
-        /// <summary>What it is: "goddess of the harvest", "spirit of the hunt", "archotech of machines" ({GODOF}).</summary>
+        /// <summary>What it is, as its def says ("the mother of every root under the world"); else its domain's words ({GODOF}).</summary>
         public static string GodOf(God g)
         {
             if (g == null) return "";
+            if (!(g.def?.godOf).NullOrEmpty()) return g.def.godOf;
             var def = g.DomainDef;
             string noun = ("CC_God_Noun_" + GodsMath.Noun(g.form, (int)g.gender)).Translate();
             return "CC_God_Of".Translate(noun.Named("NOUN"), (def?.ofWords ?? "").Named("WHAT")).Resolve();
         }
 
-        /// <summary>What it is with its article: "a goddess of the harvest", "an archotech of machines".</summary>
-        public static string AGodOf(God g) => g == null ? "" : Find.ActiveLanguageWorker.WithIndefiniteArticle(GodOf(g));
+        /// <summary>What it is with its article: one of the nine's already has its own ("the guest at every door"); else "a goddess of the harvest".</summary>
+        public static string AGodOf(God g) => g == null ? "" : !(g.def?.godOf).NullOrEmpty() ? g.def.godOf : Find.ActiveLanguageWorker.WithIndefiniteArticle(GodOf(g));
 
-        /// <summary>Its name and epithet: "Ceren, the Bringer of Rain".</summary>
+        /// <summary>
+        /// The name a speaker uses for a god: about half say its short name, the rest their own people's (their age's: the
+        /// tribes' Grandmother Root, the medieval Green Lady), the same speaker always the same (GodLoreMath.NameFor). A
+        /// colonist of the colony speaks of its age; anyone else of their people's.
+        /// </summary>
+        public static string NameBy(God g, Pawn speaker)
+        {
+            if (g == null) return "";
+            if (g.def == null || speaker == null) return g.name ?? "";
+            int age = speaker.Faction == null || speaker.Faction.IsPlayer ? (int)Ages.Ours : (int)Ages.Of(speaker.Faction);
+            return GodLoreMath.NameFor(g.name, g.def.NamesOf(age), speaker.thingIDNumber, g.id);
+        }
+
+        /// <summary>The placeholders of a god as a speaker names it: {GOD} their name for it, {GODEPITHET}, {GODOF}.</summary>
+        public static NamedArgument[] ArgsBy(God g, Pawn speaker) => g == null
+            ? new NamedArgument[0]
+            : new[] { NameBy(g, speaker).Named(GodsMath.God), (g.epithet ?? "").Named(GodsMath.Epithet), GodOf(g).Named(GodsMath.Of) };
+
+        /// <summary>Its name and epithet: "Hollin, the Rootmother".</summary>
         public static string FullName(God g) => g == null ? "" : g.epithet.NullOrEmpty() ? g.name : "CC_God_FullName".Translate(g.name.Named("GOD"), g.epithet.Named("EPITHET")).Resolve();
 
         /// <summary>
@@ -317,8 +427,7 @@ namespace ColonyCouncil
                     var fit = pool.FirstOrDefault(g => g.domain == about) ?? pool.FirstOrDefault(g => g.second == about);
                     if (fit != null) return fit;
                 }
-                var own = p.Faction != null ? pool.FirstOrDefault(g => g.patron != null && g.factions.Contains(p.Faction)) : null;
-                return own ?? pool[(p.thingIDNumber & 0x7FFFFFFF) % pool.Count];
+                return pool[(p.thingIDNumber & 0x7FFFFFFF) % pool.Count];
             }
             catch (Exception e)
             {
@@ -343,12 +452,13 @@ namespace ColonyCouncil
 
         // ================= What the colony knows =================
 
-        /// <summary>The colony knows this god (else it is a rumour on the page).</summary>
+        /// <summary>The colony knows of this god (hidden state: what the player knows of it is only what the colony's book holds).</summary>
         public static bool Known(God g) => g != null && g.known;
 
         /// <summary>
-        /// The colony comes to know a god: from its own faith ("faith"), its neighbours ("neighbours"), a letter ("letter"),
-        /// visitors on its land ("visitors"). Remembered, and with <paramref name="tell"/> a line in the news.
+        /// The colony comes to know of a god: from its own people ("faith"), its neighbours ("neighbours"), a letter
+        /// ("letter"), visitors on its land ("visitors"). Hidden state, remembered in the gods' history; never told
+        /// (<paramref name="tell"/> is kept for the parts that pass it).
         /// </summary>
         public static void Learn(God g, string how, bool tell = true)
         {
@@ -359,23 +469,16 @@ namespace ColonyCouncil
             g.knownAt = Now;
             string from = ("CC_God_KnownFrom_" + (how ?? "faith")).Translate(PeopleWords(g).Named("PEOPLE")).Resolve();
             b.Remember(new GodAct { god = g.id, tick = Now, kind = GodActKind.Known, text = "CC_God_KnownAct".Translate(from.Named("FROM")).Resolve() });
-            if (tell && how != "faith")
-                ColonyCouncil.Tell.Minor(NewsKind.World, Importance.Flavor, null, "CC_God_KnownNews".Translate(FullName(g).Named("GOD"), AGodOf(g).Named("GODOF"), from.Named("FROM")).Resolve(), null);
         }
 
-        /// <summary>The colony learns the gods of a people (their people known by name, they came to the gate): one line in the news for them all.</summary>
+        /// <summary>The colony learns of the gods a people reveres (their people known by name, they came to the gate). Hidden state.</summary>
         public static void Learn(Faction f, string how, bool tell = true)
         {
             if (f == null || f.IsPlayer || Book == null) return;
-            var fresh = Of(f).Where(g => !g.known).ToList();
-            if (fresh.Count == 0) return;
-            foreach (var g in fresh) Learn(g, how, false);
-            if (!tell) return;
-            string names = fresh.Select(FullName).ToList().ToCommaList(true);
-            ColonyCouncil.Tell.Minor(NewsKind.World, Importance.Flavor, null, ("CC_God_KnownPeopleNews_" + how).Translate(f.Name.Named("PEOPLE"), names.Named("GODS")).Resolve(), null);
+            foreach (var g in Of(f).Where(g => !g.known).ToList()) Learn(g, how, false);
         }
 
-        /// <summary>The peoples (and faiths) that hold a god, in words: "the Ashen Banner and the road league"; the colony's own "the colony".</summary>
+        /// <summary>The peoples that revere a god, in words: "the Ashen Banner and the road league"; the colony's own "the colony" (the hidden history's words).</summary>
         public static string PeopleWords(God g)
         {
             if (g == null) return "";

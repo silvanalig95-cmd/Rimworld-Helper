@@ -7,12 +7,14 @@ using Verse;
 namespace ColonyCouncil
 {
     /// <summary>
-    /// The pantheon, saved with the game (docs/design/gods.md, "Core: the pantheon"): the gods (built once per world by
-    /// <see cref="Pantheon"/>, and for an older save on its first load), the ties between them, the colony's standing with
-    /// each god at each home (it drifts back toward unknown from when it was last set, worked out when read), the acts the
-    /// colony remembers, its colonists' vows, and the deeds a newborn god is born of. Kept in the region's day (the
-    /// pantheon kept right as peoples and faiths come and go, the deeds of the day, the ties shifting, a newborn) and hour
-    /// (visitors on a home map: the colony learns their gods). Everything goes through <see cref="Gods"/>.
+    /// The gods' hidden state, saved with the game (docs/design/gods.md, "the contract"): the nine (made from their defs by
+    /// <see cref="Pantheon"/>; an older save's generated gods dropped on its first load), the ties between them (the defs'),
+    /// the colony's standing with each god at each home (it drifts back toward unknown from when it was last set, worked out
+    /// when read), the acts of the gods (each with the colonists who saw it), its colonists' vows, and the day's deeds.
+    /// None of it is shown: the gods are an unseen presence, and the player learns of them only what the colonists see,
+    /// hear and believe (Gods/GodLore.cs, the colony's own book). Kept in the region's day (the nine kept right as peoples
+    /// come and go, the day's deeds, the stories and names worked out) and hour (visitors: the colony learns their gods;
+    /// the gods' hands remarked on; talk of the gods). Everything goes through <see cref="Gods"/>.
     /// </summary>
     public class GodBook : GameComponent
     {
@@ -26,6 +28,10 @@ namespace ColonyCouncil
         /// <summary>The pantheon was built for this world (a save from before is built on its first load).</summary>
         public bool built;
         public int newborns, lastNewborn = -1;
+        /// <summary>The book's version (Pantheon.Nine for the nine; 0 an older save's generated pantheon, let go on load).</summary>
+        public int version;
+        /// <summary>An older save's generated gods were let go on this load: one line in the world's voice comes in the next hour.</summary>
+        [Unsaved] public bool retired;
 
         /// <summary>The colony remembers at most this many acts of the gods, and this many of one god.</summary>
         public const int MaxActs = 300, MaxActsPerGod = 30;
@@ -67,7 +73,8 @@ namespace ColonyCouncil
             try
             {
                 // A new world's pantheon, or an older save's on its first load.
-                if (!built) Pantheon.Build(this);
+                // The nine for a new world, and for an older save on its first load (its generated gods let go).
+                if (!built || version < Pantheon.Nine) Pantheon.Build(this);
                 else Pantheon.Keep(this, Now, false);
             }
             catch (Exception e)
@@ -173,23 +180,25 @@ namespace ColonyCouncil
 
         // ================= The day and the hour =================
 
-        /// <summary>The region's day (World/Region/RegionBook.cs): the pantheon kept, the day's deeds, the ties shifting, a newborn, pruning.</summary>
+        /// <summary>The region's day (World/Region/RegionBook.cs): the nine kept, the day's deeds, names worked out in the colony's book, pruning.</summary>
         public static void Daily(int now)
         {
             var b = Instance;
             if (b == null || !Gods.On) return;
             Safe("the pantheon kept", () => Pantheon.Keep(b, now));
             Safe("the day's deeds", () => GodDeeds.Daily(b, now));
-            Safe("ties shifting", () => Pantheon.ShiftTies(b, now));
-            Safe("a newborn god", () => Pantheon.Newborn(b, now));
+            Safe("the colony's book", () => GodLore.Daily(now));
             Safe("pruning", () => b.Prune(now));
         }
 
-        /// <summary>The region's hour: who is on a home map, so the colony learns their gods.</summary>
+        /// <summary>The region's hour: the gods' hands remarked on, talk of the gods at the evening fire and from visitors, and who is on a home map, so the colony learns their gods.</summary>
         public static void Hourly(int now)
         {
             var b = Instance;
             if (b == null || !Gods.On || !b.built) return;
+            Safe("the old gods let go", () => b.TellRetired());
+            Safe("the gods' hands", () => GodHands.Hourly(now));
+            Safe("talk of the gods", () => GodTales.Hourly(now));
             Safe("visitors", () => Pantheon.LearnFromVisitors(b));
         }
 
@@ -203,6 +212,17 @@ namespace ColonyCouncil
             {
                 CouncilLog.ErrorOnce("gods: " + what, e);
             }
+        }
+
+        /// <summary>
+        /// An older save's generated gods were let go: one line, in the world's voice (no god named, nothing of what any god
+        /// thinks), the first hour after the load.
+        /// </summary>
+        private void TellRetired()
+        {
+            if (!retired) return;
+            retired = false;
+            ColonyCouncil.Tell.Minor(NewsKind.World, Importance.Flavor, Homes.Seat, "CC_God_Retired".Translate(), null);
         }
 
         /// <summary>Standings come to rest at unknown and untouched for a year are let go; deeds over a year old; vows long done.</summary>
@@ -228,6 +248,7 @@ namespace ColonyCouncil
             Scribe_Collections.Look(ref deeds, "deeds", LookMode.Deep);
             Scribe_Values.Look(ref nextId, "nextId", 1);
             Scribe_Values.Look(ref built, "built");
+            Scribe_Values.Look(ref version, "version");
             Scribe_Values.Look(ref newborns, "newborns");
             Scribe_Values.Look(ref lastNewborn, "lastNewborn", -1);
             if (Scribe.mode == LoadSaveMode.PostLoadInit)

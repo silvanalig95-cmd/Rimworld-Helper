@@ -5,18 +5,21 @@ using Verse;
 namespace ColonyCouncil
 {
     /// <summary>
-    /// The gods' two halves joined (docs/design/gods.md, "the contract"): the core's seams (GodPresenceSeam,
-    /// GodLookSeam) call the presence part (GodPresence, GodAvatar) with the god's own look, name, epithet and colours.
-    /// The look is the god's own (God.look, "Rimfolk_GodLook_&lt;Domain&gt;"), else its domain's in its people's age.
+    /// The gods' two halves joined (docs/design/gods.md, "the contract"): the core's seams (GodPresenceSeam, GodLookSeam)
+    /// call the presence part (GodPresence, GodAvatar) with the god's own look and colours, and named only as the colony
+    /// knows it: its name in the colony's book once someone has heard of it, else what people see of it ("a great white
+    /// thrumbo"; GodLore.LabelFor). Its epithet isn't put on its card: the card says what was seen, not who the god is.
+    /// The look is the god's own (God.look, from its def), else its domain's in its people's age.
     /// </summary>
     [StaticConstructorOnStartup]
     public static class GodsWiring
     {
         static GodsWiring()
         {
-            GodPresenceSeam.Manifest = s => GodPresence.Manifest(LookOf(s.god), Gods.Name(s.god), Gods.Epithet(s.god), s.map, s.cell, s.kind, s.avatar, s.title,
+            GodPresenceSeam.Manifest = s => GodPresence.Manifest(LookOf(s.god), GodLore.LabelFor(Gods.Name(s.god)), null, s.map, s.cell, s.kind, s.avatar, s.title,
                 s.text, s.veiled, s.god.colour, s.god.colour2);
             GodLookSeam.MakeAvatar = (p, god, disguised) => GodAvatar.Make(p, LookOf(god), Gods.Name(god), disguised, god.colour, god.colour2);
+            HediffComp_GodAvatar.Label = GodLore.LabelFor;
         }
 
         /// <summary>The god's look: its own, else its domain's in the age of its people (0 tribal to 3 spacer).</summary>
