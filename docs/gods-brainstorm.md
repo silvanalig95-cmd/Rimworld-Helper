@@ -89,3 +89,38 @@ Nothing here is built. It's numbered so the player can pick, cut or redirect.
 - Can a god be spoken with in "Walking", for example bargained with at the gate like a visitor?
 - Should the colony choose a patron god, or should favour simply follow what it does?
 - Which of 1 to 22 excite you most? The stranger at the gate (7) and the sacred animal (8) would make a good first round: they show the gods on the map the most, and reuse the guest and legend-beast work.
+
+## F. Weight: a god's presence is never just another event (the player, the same day)
+
+The player: "they should then always carry some kind of weight and ominosity with them ... like a godly presence ...
+imposing sound effects or really kind of epic ones when a god appears or interacts or does something ... I don't
+necessarily want to have some, you know, cheap generated soundtrack. So I don't know if you can work with existing game
+assets, or if you have some actually solid references or own capabilities in that regard."
+
+23. **The build-up.** Days of omens before a god comes: birds leaving, a strange calm, the same dream in two colonists,
+    a candle that won't stay lit. Colonists notice them aloud.
+24. **The moment.**
+    - The music stops, a beat of silence, then a sting and a chosen track.
+    - The sky tints in the god's colour: a short presence condition, like the game's eclipse.
+    - The wind dies. Everyone on the map stops and turns toward it, the devout kneel, and animals flee or lie down.
+    - The game drops to normal speed, and the camera goes there.
+    - Rare: a few times in a long game, so it stays an occasion.
+25. **Its own card.** Not "good news" or "bad news" but a presence: dark paper with gold, the god's symbol, its words set
+    apart from the narrator's.
+26. **What remains.** A mark on the land: a ring of scorched grass, a spring, a tree that wasn't there. Its name goes in
+    the colony's history, and it's spoken of at suppers and in letters for years.
+27. **Sound and music.** From the game's own assets, which are professional:
+    - Anomaly's dark tracks (13 in the player's game, among them "Abandoned by the Light", "Death Pall Rising" and "Blood
+      Rain Falling"), Odyssey's tracks (8) and Ideology's solemn archonexus song;
+    - Royalty's bestowing sounds (a warm-up hum and a finish), the game's start sting, thunder, and the psychic pulses;
+    - Alpha Memes' ritual chants (Kemetic, Mesoamerican, Neolithic, the maddening chant), all in the player's mods.
+
+    Each god gets a mix: for example the storm god is silence, then thunder and a pulse, then a track, while the void is
+    an Anomaly track under an agony pulse. Code can start a chosen track and play sounds at a spot.
+28. **Beyond the game's assets, with the player's ear as the judge.**
+    - Freely licensed recordings (CC0 sound effects, CC-BY music), found and proposed by name and source, bundled with
+      credits after the player has listened to them.
+    - A folder the player fills themselves (`Sounds/Rimfolk/Gods/<god>/`), whose tracks the mod plays at that god's
+      moments.
+
+    No generated music.
