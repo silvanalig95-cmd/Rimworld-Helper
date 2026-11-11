@@ -217,7 +217,8 @@ namespace ColonyCouncil
             var mount = ride.mount;
             if (mount != null && (!mount.Spawned || mount.Map != map || mount.Dead || mount.Downed || mount.InMentalState || mount.GetLord() != null)) mount = ride.mount = null;
             var pack = RiderPacks.For(l.id);
-            var plan = RiderPacks.Shadow(map, p, mount, town, pack?.lines);
+            // The beast's feed only with the beast.
+            var plan = RiderPacks.Shadow(map, p, mount, town, pack?.lines.Where(x => mount != null || x.kind != "feed").ToList());
             plan.exit = JourneyPack.Exit(plan);
             if (!plan.exit.IsValid) return false;
             plan.gate = JourneyPack.Gate(plan, plan.exit);
