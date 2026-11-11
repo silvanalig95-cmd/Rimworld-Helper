@@ -167,13 +167,18 @@ namespace ColonyCouncil
         /// <summary>
         /// A god's moment on the map: through the presence part (Gods/Presence/: the sound, the sky, its own card) when it is
         /// there, else a plain card: a letter for what matters (<paramref name="letter"/>), else a message. The caller's words
-        /// say only what was seen and heard, with no why and no god's name. Remembered among the god's acts either way.
+        /// say only what was seen and heard, with no why; the god is named after them only where the colony knows the hand
+        /// (<see cref="CardName"/>), else "some say" when it was seen at Felt. Remembered among the god's acts either way.
         /// </summary>
         public static void Moment(God g, Map map, PresenceKind kind, IntVec3 cell, Pawn avatar, string title, string text, bool letter = true,
             LetterDef def = null, LookTargets look = null, Faction faction = null, Importance importance = Importance.Notable)
         {
             if (g == null || text.NullOrEmpty()) return;
             var home = HomeOr(map);
+            // The hand behind it, where the colony knows it: plainly, or "some say" (the god's mind stays unseen).
+            string name = CardName(g, home, Witnessed(map, cell));
+            if (name != null) text += " " + "CC_GW_Hand_Plain".Translate(name.Named("GOD")).Resolve();
+            else if (Gods.Known(g) && Gods.Realness == GodRealness.Felt && Witnessed(map, cell)) text += " " + "CC_GW_Hand_Felt".Translate(Gods.Name(g).Named("GOD")).Resolve();
             look ??= cell.IsValid && map != null ? new LookTargets(new TargetInfo(cell, map)) : avatar != null && avatar.Spawned ? new LookTargets(avatar) : LookTargets.Invalid;
             bool shown = false;
             try
@@ -200,6 +205,21 @@ namespace ColonyCouncil
                 god = g.id, home = Gods.HomeKey(home), tick = Now, kind = ActKind(kind), text = FirstSentence(text), cell = cell
             });
         }
+
+        /// <summary>
+        /// The god's name on a card, when the colony knows the act was its own: a god it knows, and the gods walk, or the act
+        /// was witnessed as the god's; null to leave it unnamed. A local stand-in: the lead swaps it for the core's
+        /// Gods.CardName(god, home) at the merge.
+        /// </summary>
+        public static string CardName(God g, Map home, bool witnessed)
+        {
+            if (g == null || !Gods.Known(g)) return null;
+            return Gods.Realness == GodRealness.Walking || witnessed && Gods.Realness != GodRealness.Believed && Gods.ColonyGods(home).Contains(g) ? Gods.Name(g) : null;
+        }
+
+        /// <summary>Someone of the colony was there to see it: awake and near the cell, or anywhere on the map for what the whole sky showed.</summary>
+        public static bool Witnessed(Map map, IntVec3 cell) =>
+            map != null && Grown(map).Any(p => p.Awake() && (!cell.IsValid || p.Position.InHorDistOf(cell, 20f)));
 
         private static GodActKind ActKind(PresenceKind k) => k switch
         {

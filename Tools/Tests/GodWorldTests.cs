@@ -321,6 +321,8 @@ public static class GodWorldTests
           && !Directory.GetFiles(Path.Combine(root, "Defs", "AlmanacArticleDefs"), "*.xml").Any(f => File.ReadAllText(f).Contains("Council_Alm_C_GodsWorld")),
             "no Almanac page for the gods in the world");
         C(!world.Contains("CC_GW_Voice_") && !Regex.IsMatch(world, @"GodWords\.(Word|NatureWord)\("), "no card in the voice of a god's standing, no standing or nature in words");
+        C(world.Contains("public static string CardName(God g, Map home, bool witnessed)") && world.Contains("Gods.CardName(god, home)") && keyed["CC_GW_Hand_Plain"].Contains("{GOD}")
+          && keyed["CC_GW_Hand_Felt"].StartsWith("Some say"), "a card names the hand only where the colony knows it, else some say, never the god's mind");
         C(Regex.Matches(world, @"GodWorld\.Remember\(|Gods\.Remember\(").Count >= 14 && world.Contains("\"CC_GW_Told_Supper\"") && world.Contains("\"CC_GW_Told_Seer\"")
           && world.Contains("\"CC_GW_Told_\" + tells") && world.Contains("(\"CC_GW_Seen_\" + tag)"), "what is seen and told is kept for the colony's book, in the world's voice");
         foreach (var k in new[] { "miracle", "curse", "holywar", "myth" }) C(keyed.ContainsKey("CC_GW_Told_" + k) && keyed["CC_GW_Told_" + k].Contains("{WRITER}"), $"a letter's {k} kept with its writer's name");

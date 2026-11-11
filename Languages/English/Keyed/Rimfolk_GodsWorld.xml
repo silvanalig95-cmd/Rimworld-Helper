@@ -4,14 +4,17 @@
   <!--
     The gods in the wider world (Source/ColonyCouncil/Gods/World/; docs/design/gods.md, stage 2's "The world", and "The
     gods are unseen"). Nothing here says what a god thinks, wants or feels about the colony, names a rule or a price, or
-    puts a god's standing in words. A card says what was seen and heard, with no why and no god's name; a god is named only
-    in people's mouths (a neighbour's letter, a pilgrim, a seer, a believer at supper). A "why" goes with a hidden change of
+    puts a god's standing in words. A card says what was seen and heard, with no why; it names the god after that only
+    where the colony knows the hand (CC_GW_Hand_*), and otherwise a god is named only in people's mouths (a neighbour's letter, a pilgrim, a seer, a believer at supper). A "why" goes with a hidden change of
     standing and is never shown. A "Seen" or "Told" line is kept for the colony's book of the gods: what was seen, or what
     someone said or wrote and who, in the world's voice.
   -->
 
   <CC_God_KnownFrom_void>from a voice in the dark</CC_God_KnownFrom_void>
   <CC_Inbox_Sub_Gods>someone's question</CC_Inbox_Sub_Gods>
+  <!-- The hand behind a card, where the colony knows it (GodWorld.Moment): its name only, never its mind. -->
+  <CC_GW_Hand_Plain>It was {GOD}.</CC_GW_Hand_Plain>
+  <CC_GW_Hand_Felt>Some say it was {GOD}.</CC_GW_Hand_Felt>
 
   <!-- ================= A god's feast, by its domain, where its ways name none ================= -->
   <CC_GW_Feast_Harvest>the harvest feast of {GOD}</CC_GW_Feast_Harvest>
