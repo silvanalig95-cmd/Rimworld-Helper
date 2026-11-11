@@ -25,7 +25,9 @@ public static class LetterFormTests
         // The shapes (Letters/LetterKindMath.cs): the land's animals and plants, their faith and its god, a riddle's answer,
         // and the facts a chronicle, a long letter's news and a raid's account say (Rimfolk_Letters_Chronicle.xml).
         "ANIMAL", "ANANIMAL", "ANIMALS", "PLANT", "TREE", "DEITY", "IDEO", "ANSWER", "FORTUNEWHY", "TOWNSITUATION", "SITUATION", "LOST", "LOSTTITLE", "HEAD", "HEADTITLE",
-        "OLDHEAD", "ILL", "ILLTITLE", "WAR", "PEACEWITH", "NEWTOWN", "NEWTOWNPEOPLE", "RAIDCAMP", "DEED", "KNOWNFOR", "DEAD"
+        "OLDHEAD", "ILL", "ILLTITLE", "WAR", "PEACEWITH", "NEWTOWN", "NEWTOWNPEOPLE", "RAIDCAMP", "DEED", "KNOWNFOR", "DEAD",
+        // A correspondence that builds up (Letters/LetterThreadMath.cs): an earlier letter's thread, the names, the colony's news told.
+        "RE", "TOFULL", "TONICK", "LASTPEN", "BORN", "WEDDING"
     };
 
     /// <summary>The values every letter has (the coverage asks only for these).</summary>

@@ -61,6 +61,8 @@ namespace ColonyCouncil
             public readonly List<string> outcomes = new List<string>();
             /// <summary>Tags for a heart of the Heart pool: a council's yes or no and its dealing's kind, a reply's kind.</summary>
             public readonly HashSet<string> heartTags = new HashSet<string>();
+            /// <summary>What came with it, for the correspondence's threads (Letters/LetterThreads.cs): "aid" (help sent), "aid:no" (help refused), "gift"; and in words.</summary>
+            public string sent, sentWhat;
         }
 
         /// <summary>
@@ -98,10 +100,12 @@ namespace ColonyCouncil
             Lead(s, l, n, a);
             s.outcomes.AddRange(a.outcomes);
             // Its shape (Letters/LetterFormShapes.cs): the usual letter, a bare note, a story, a poem, a raid's account...
-            ShapeTheirs(s, n);
+            ShapeTheirs(s, n, a.speaker ?? l.writer);
             SignNote(s, false, s.values.ContainsKey("TITLE"));
             var t = Compose(s);
             LetterBook.Answered(l, n, t, s.shape);
+            // The correspondence as it builds up (Letters/LetterThreads.cs): counted, its threads kept.
+            LetterThreads.Corresponded(s, t, n, false, null, a.sent, a.sentWhat);
             return t;
         }
 
@@ -208,6 +212,7 @@ namespace ColonyCouncil
                 if (via != null) s.outcomes.Add("CC_Route_OursNote".Translate(via.Name.Named("NAME"), n.Name.Named("HEAD")).Resolve());
                 var t = Compose(s);
                 LetterBook.Written(l, n, writer, t);
+                LetterThreads.Corresponded(s, t, n, true, writer?.LabelShort ?? l.WriterName);
                 return t;
             }
             catch (Exception e)
@@ -240,6 +245,7 @@ namespace ColonyCouncil
                         s.values["DEAL"] = Dealings.Label(k, sub).UncapitalizeFirst();
                     }
                 }
+                else if (l.purpose == LetterPurpose.Condolences && key.StartsWith("loss:", StringComparison.Ordinal)) s.values["LOSTNAME"] = key.Substring(5);
                 else if (key == WardMath.AskTopic) s.tags.Add("ward:ask");
                 else if (key == WardMath.SendTopic) s.tags.Add("ward:send");
                 else if (l.purpose == LetterPurpose.Ransom && RansomMath.ParseRansom(key, out int captive)) s.values["CAPTIVE"] = PawnName(captive, l.map);
@@ -292,10 +298,11 @@ namespace ColonyCouncil
                 if (!goods.NullOrEmpty()) s.values["GOODS"] = goods;
                 s.heart = PickFilled(LetterPart.Heart, LetterFormMath.HeartTags(s), s);
                 s.outcomes.AddRange(outcomes);
-                ShapeTheirs(s, n);
+                ShapeTheirs(s, n, ColonyWriterPawn());
                 SignNote(s, false, s.values.ContainsKey("TITLE"));
                 var t = Compose(s);
                 LetterBook.TheirFirst(n, askId, t);
+                LetterThreads.Corresponded(s, t, n, false);
                 return t;
             }
             catch (Exception e)
@@ -320,10 +327,11 @@ namespace ColonyCouncil
                 if (!raiders.NullOrEmpty()) s.values["RAIDERS"] = raiders;
                 s.heart = PickFilled(LetterPart.Heart, LetterFormMath.HeartTags(s), s);
                 s.outcomes.AddRange(outcomes);
-                ShapeTheirs(s, n);
+                ShapeTheirs(s, n, ColonyWriterPawn());
                 SignNote(s, false, s.values.ContainsKey("TITLE"));
                 var t = Compose(s);
                 LetterBook.Note(n, t);
+                LetterThreads.Corresponded(s, t, n, false);
                 return t;
             }
             catch (Exception e)
@@ -556,15 +564,17 @@ namespace ColonyCouncil
 
         /// <summary>The letter made from its spec, its lines drawn here.</summary>
         private static LetterText Compose(LetterSpec s) =>
-            LetterFormMath.Compose(s, Words, (part, tags) => Pick(part, tags, s.values) is string line ? Texts.Fill(line, s.values) : null, () => Rand.Value);
+            LetterFormMath.Compose(s, Words, (part, tags) => Pick(part, tags, s.values, s.drawn) is string line ? Texts.Fill(line, s.values) : null, () => Rand.Value);
 
-        private static string PickFilled(LetterPart part, HashSet<string> tags, LetterSpec s) => Pick(part, tags, s.values) is string line ? Texts.Fill(line, s.values) : null;
+        private static string PickFilled(LetterPart part, HashSet<string> tags, LetterSpec s) => Pick(part, tags, s.values, s.drawn) is string line ? Texts.Fill(line, s.values) : null;
 
         /// <summary>
         /// A line of a part's pool that fits (LetterFormMath.Pick), not one this session drew lately (LineMemory's window for
         /// the part) nor, while another fits, one already in a kept letter (so a load forgets none). Unfilled; null when none.
+        /// The drawn line's tags go into <paramref name="drawn"/> (what the letter said, for the correspondence's threads: a
+        /// joke begun, the colony's news).
         /// </summary>
-        private static string Pick(LetterPart part, HashSet<string> tags, IReadOnlyDictionary<string, string> values)
+        private static string Pick(LetterPart part, HashSet<string> tags, IReadOnlyDictionary<string, string> values, HashSet<string> drawn = null)
         {
             var pool = DefDatabase<FlavorPoolDef>.GetNamedSilentFail(LetterFormMath.PoolOf(part));
             var lines = pool?.lines?.plain;
@@ -587,8 +597,23 @@ namespace ColonyCouncil
             {
                 Flavor.Memory.Remember(key, line, lines.Count);
                 if (remembered) LetterBook.Use(LetterKindMath.Key(line));
+                if (drawn != null) Drawn(lines, line, tags, drawn);
             }
             return line;
+        }
+
+        /// <summary>The tags of the line drawn (its single tags, not a choice between several), into <paramref name="drawn"/>.</summary>
+        private static void Drawn(IList<string> lines, string line, HashSet<string> tags, HashSet<string> drawn)
+        {
+            foreach (var l in lines)
+            {
+                var p = LineTags.Of(l);
+                if (p?.tags == null || p.text != line || LetterFormMath.Fits(l, tags) < 0) continue;
+                foreach (var t in p.tags)
+                    if (t.IndexOf('|') < 0)
+                        drawn.Add(t);
+                return;
+            }
         }
     }
 }

@@ -31,6 +31,19 @@ When you load a save after an update, a letter lists the newest round once. The 
     <rounds>
 
       <li>
+        <version>0.211.0</version>
+        <date>11 November 2026</date>
+        <title>Old friends by letter</title>
+        <points>
+          <li>Letters with the same person grow familiar over time: first letters are formal, later ones use first names and short names, and old friends sign with the first name.</li>
+          <li>A wrong, a broken word or a war cools a correspondence: the letters turn formal and short again, with no jokes.</li>
+          <li>Letters take up earlier ones, asking after someone ill or a harvest and saying how it turned out.</li>
+          <li>Help, gifts, poems and recipes are remembered and thanked for, and a running joke about a goat or a pumpkin carries on.</li>
+          <li>The reading window says how many letters have passed and how things stand.</li>
+        </points>
+      </li>
+
+      <li>
         <version>0.210.0</version>
         <date>11 November 2026</date>
         <title>Packed for the road</title>

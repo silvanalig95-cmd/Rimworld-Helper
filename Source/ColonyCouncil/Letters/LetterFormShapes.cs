@@ -44,9 +44,11 @@ namespace ColonyCouncil
 
         /// <summary>
         /// The shape of their letter: who they are beyond the form, what is true at their town, a raid on it; the shape
-        /// chosen and its pieces made. A call and words passed on keep theirs.
+        /// chosen and its pieces made. A call and words passed on keep theirs. How well the two know each other by letter,
+        /// and the thread it takes up, are read once the town's facts are in (Letters/LetterThreads.cs; <paramref name="to"/>
+        /// the colonist written to).
         /// </summary>
-        private static void ShapeTheirs(LetterSpec s, Notable n)
+        private static void ShapeTheirs(LetterSpec s, Notable n, Pawn to = null)
         {
             if (s.shape != LetterShape.Written || n == null) return;
             try
@@ -77,6 +79,8 @@ namespace ColonyCouncil
                 string signed = LetterKindMath.Signed(who.signers, true, n.townName ?? f?.Name, Words);
                 if (!signed.NullOrEmpty()) s.values["SIGNERS"] = signed;
                 Diary(s, town?.Tile ?? PlanetTile.Invalid);
+                // The correspondence: its stage, names and the thread it takes up, before the shape (old friends write long, a cooled one short).
+                LetterThreads.Correspond(s, n, false, to, null);
                 Make(s);
             }
             catch (Exception e)
@@ -119,6 +123,8 @@ namespace ColonyCouncil
                 who.last = LetterBook.LastKind(n.id, true, writer.LabelShort);
                 Land(s, map?.Tile ?? PlanetTile.Invalid);
                 Faith(s, writer);
+                // The correspondence: its stage, names and the thread the colony's letter takes up (Letters/LetterThreads.cs).
+                LetterThreads.Correspond(s, n, true, n.pawn, writer.LabelShort);
                 Make(s);
             }
             catch (Exception e)

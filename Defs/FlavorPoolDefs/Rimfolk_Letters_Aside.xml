@@ -20,20 +20,20 @@
     <lines>
       <plain>
         <!-- ================= Theirs: dry remarks about their own life (any register but curt) ================= -->
-        <li>[theirs,joke,a:plain|a:friend,warmly|cordial|cool] Our goat has learned to open the gate. We have not yet learned to stop her. I will write again when one side wins.</li>
+        <li>[theirs,joke,a:plain|a:friend,warmly|cordial|cool,!jk:goat] Our goat has learned to open the gate. We have not yet learned to stop her. I will write again when one side wins.</li>
         <li>[theirs,joke,a:plain|a:friend,warmly|cordial|cool] The road between us is long, and I am told the potholes now have potholes.</li>
-        <li>[theirs,joke,a:plain|a:friend,warmly|cordial|cool] The bridge near us washed out again, and we are building it again, and it will wash out again. This is what passes for entertainment here.</li>
-        <li>[theirs,joke,a:plain|a:friend,warmly|cordial|cool] The well rope broke, and the bucket is still down there. We held a short service for it.</li>
+        <li>[theirs,joke,a:plain|a:friend,warmly|cordial|cool,!jk:bridge] The bridge near us washed out again, and we are building it again, and it will wash out again. This is what passes for entertainment here.</li>
+        <li>[theirs,joke,a:plain|a:friend,warmly|cordial|cool,!jk:well] The well rope broke, and the bucket is still down there. We held a short service for it.</li>
         <li>[theirs,joke,a:plain|a:friend,warmly|cordial|cool] I lost a boot in the mud on market day, and I am told it is still there, standing upright, like a monument to bad judgement.</li>
-        <li>[theirs,joke,a:plain|a:friend,warmly|cordial|cool] The chickens have moved into the shed and will not move out. We are negotiating, and losing.</li>
+        <li>[theirs,joke,a:plain|a:friend,warmly|cordial|cool,!jk:chickens] The chickens have moved into the shed and will not move out. We are negotiating, and losing.</li>
         <li>[theirs,joke,a:plain|a:friend,warmly|cordial|cool] Our cook has a new recipe. I am not allowed to say what is in it, and I would rather not know.</li>
         <li>[theirs,joke,a:plain|a:friend,warmly|cordial|cool] I counted the sheep three times this week and got three different answers, so either I cannot count or the sheep are up to something.</li>
         <li>[theirs,joke,a:plain|a:friend,warmly|cordial|cool] We repainted the gate and the rain came the very next morning, which I have decided to take personally.</li>
         <li>[theirs,joke,a:plain|a:friend,warmly|cordial|cool] Somebody keeps eating the last of the bread. I have my suspicions, and all of them have four legs.</li>
         <li>[theirs,joke,a:plain|a:friend,warmly|cordial|cool] My handwriting gets worse every year and my eyes get worse to match, so perhaps they cancel out.</li>
         <li>[theirs,joke,a:plain|a:friend,warmly|cordial|cool] If this letter arrives chewed at one corner, blame the courier's dog and not me.</li>
-        <li>[theirs,joke,a:plain|a:friend,warmly|cordial|cool] I bought a mule at the market. The mule did not agree to the sale and is still making its case.</li>
-        <li>[theirs,joke,a:plain|a:friend,warmly|cordial|cool] A crow has learned to say my name. It only says it when I am trying to sleep.</li>
+        <li>[theirs,joke,a:plain|a:friend,warmly|cordial|cool,!jk:mule] I bought a mule at the market. The mule did not agree to the sale and is still making its case.</li>
+        <li>[theirs,joke,a:plain|a:friend,warmly|cordial|cool,!jk:crow] A crow has learned to say my name. It only says it when I am trying to sleep.</li>
         <li>[theirs,joke,a:plain|a:friend,warmly|cordial|cool] We held a contest for the best soup in town. Everyone won, which is to say nobody spoke to the judges afterwards.</li>
         <li>[theirs,joke,a:plain|a:friend,warmly|cordial|cool] Our oldest neighbour says the weather was better in her day. Her day, as far as anyone can tell, also rained.</li>
         <li>[theirs,joke,a:plain|a:friend,warmly|cordial|cool] The last letter I sent anywhere went the long way round, by three towns and a river. I hope this one is braver.</li>
@@ -44,19 +44,19 @@
         <li>[theirs,joke,a:plain|a:friend,cordial|cool,m:duty] I have three more letters to answer today and a meeting about a fence, so forgive the haste.</li>
         <li>[theirs,joke,a:plain|a:friend,cordial|cool,m:proud] We have the best well in the region, the oldest wall and the loudest market. I mention it only in passing.</li>
         <!-- Chatty and personal: for a warm letter -->
-        <li>[theirs,joke,a:plain|a:friend,warmly] My neighbour has taken up singing. I mention it only so that someone outside {TOWN} knows what we are going through.</li>
+        <li>[theirs,joke,a:plain|a:friend,warmly,!jk:singer] My neighbour has taken up singing. I mention it only so that someone outside {TOWN} knows what we are going through.</li>
         <li>[theirs,joke,a:plain|a:friend,warmly] We had a wedding last week, and the cake survived the dog, which nobody expected.</li>
-        <li>[theirs,joke,a:plain|a:friend,warmly] I tried to grow a pumpkin this year. It is now the size of a fist and has a name, so we cannot eat it.</li>
-        <li>[theirs,joke,a:plain|a:friend,warmly] A cat is sitting on the corner of this page as I write, so forgive the crooked lines. She has decided the letter is hers.</li>
+        <li>[theirs,joke,a:plain|a:friend,warmly,!jk:pumpkin] I tried to grow a pumpkin this year. It is now the size of a fist and has a name, so we cannot eat it.</li>
+        <li>[theirs,joke,a:plain|a:friend,warmly,!jk:cat] A cat is sitting on the corner of this page as I write, so forgive the crooked lines. She has decided the letter is hers.</li>
         <li>[theirs,joke,a:plain|a:friend,warmly] Somebody here has started keeping bees. Somebody else has started keeping well away from the first somebody.</li>
         <li>[theirs,joke,a:plain|a:friend,warmly] The children found a frog they believe is enchanted. It is not enchanted. It is barely a frog.</li>
         <li>[theirs,joke,a:plain|a:friend,warmly] I meant to write sooner, but every time I sat down something needed mending, feeding or rescuing from a ditch.</li>
-        <li>[theirs,joke,a:plain|a:friend,warmly] The goat sends her regards, by which I mean she ate the first draft of this letter.</li>
+        <li>[theirs,joke,a:plain|a:friend,warmly,!jk:goat] The goat sends her regards, by which I mean she ate the first draft of this letter.</li>
         <li>[theirs,joke,a:plain|a:friend,warmly] I have taken up whittling. So far I have made a spoon, a smaller spoon, and a great many splinters.</li>
         <li>[theirs,joke,a:plain|a:friend,warmly] We had a dance at the turn of the season, and I am still finding out whose feet I stood on.</li>
         <li>[theirs,joke,a:plain|a:friend,warmly] I gave the one carrying this a pie for the road. If the pie has not arrived with the letter, assume the worst.</li>
         <li>[theirs,joke,a:friend,warmly] I read your last letter so often the folds have gone soft. Write another before this one falls apart.</li>
-        <li>[theirs,joke,a:friend,warmly] You are the only person I write to who writes back, so you must put up with all my news, including the goat.</li>
+        <li>[theirs,joke,a:friend,warmly,jk:goat] You are the only person I write to who writes back, so you must put up with all my news, including the goat.</li>
         <li>[theirs,everyday,a:plain|a:friend,warmly,m:friend] I told someone here about you the other day, and they asked if you were real. I said very.</li>
         <li>[theirs,everyday,a:plain|a:friend,warmly,m:friend] I have started keeping a list of things to tell you, so the letters do not forget anything. The list is long.</li>
         <li>[theirs,joke,a:plain|a:friend,warmly,m:friend] I have read your letters aloud so often that the dog now perks up at your name.</li>
@@ -303,13 +303,13 @@
         <li>[ours,joke,a:plain|a:friend,warmly|cordial,weather:clear] It is a fine clear day here, the kind that makes you want to stop writing letters and go outside, so I will keep this short.</li>
 
         <!-- ================= Medieval English (olde): theirs ================= -->
-        <li>[theirs,olde,joke,a:plain|a:friend,warmly|cordial|cool] Our goat hath learned to open the gate, and we have not yet learned to stay her. I shall write again when one side prevaileth.</li>
+        <li>[theirs,olde,joke,a:plain|a:friend,warmly|cordial|cool,!jk:goat] Our goat hath learned to open the gate, and we have not yet learned to stay her. I shall write again when one side prevaileth.</li>
         <li>[theirs,olde,joke,a:plain|a:friend,warmly|cordial|cool] The miller and the baker are at feud again, and the whole village taketh sides over breakfast.</li>
         <li>[theirs,olde,joke,a:plain|a:friend,warmly|cordial|cool] Our reeve measured the long field with a rope that proved to be two ropes. Upon parchment we are very rich in land.</li>
         <li>[theirs,olde,joke,a:plain|a:friend,warmly|cordial|cool] The smith's apprentice set his own apron afire twice this week. He is most eager.</li>
-        <li>[theirs,olde,joke,a:plain|a:friend,warmly|cordial|cool] The bridge washed out again, and we build it again, and it shall wash out again. Such is our sport.</li>
-        <li>[theirs,olde,joke,a:plain|a:friend,warmly|cordial|cool] I bought a mule at the fair. The mule agreeth not to the bargain, and pleadeth its case still.</li>
-        <li>[theirs,olde,joke,a:plain|a:friend,warmly|cordial|cool] The well rope brake, and the bucket lieth below yet. We said a few words over it.</li>
+        <li>[theirs,olde,joke,a:plain|a:friend,warmly|cordial|cool,!jk:bridge] The bridge washed out again, and we build it again, and it shall wash out again. Such is our sport.</li>
+        <li>[theirs,olde,joke,a:plain|a:friend,warmly|cordial|cool,!jk:mule] I bought a mule at the fair. The mule agreeth not to the bargain, and pleadeth its case still.</li>
+        <li>[theirs,olde,joke,a:plain|a:friend,warmly|cordial|cool,!jk:well] The well rope brake, and the bucket lieth below yet. We said a few words over it.</li>
         <li>[theirs,olde,joke,a:plain|a:friend,warmly|cordial|cool] The road betwixt us is long, and I am told its ruts have ruts.</li>
         <li>[theirs,olde,joke,a:plain|a:friend,warmly|cordial|cool] I counted the sheep thrice and had three answers. Either I cannot count or the sheep are plotting.</li>
         <li>[theirs,olde,joke,a:plain|a:friend,warmly|cordial|cool] Our steward swore the rain would hold off for the haying. The rain heard him.</li>
@@ -320,7 +320,7 @@
         <li>[theirs,olde,joke,a:plain|a:friend,warmly|cordial|cool,season:autumn] The apples came all at once, and now all we eat is apple, the bread too, I suspect.</li>
         <li>[theirs,olde,joke,a:plain|a:friend,warmly] My neighbour hath taken up the lute. I tell thee only that someone beyond {TOWN} may know our suffering.</li>
         <li>[theirs,olde,joke,a:plain|a:friend,warmly] There was a wedding here, and the cake survived the dog, which no one looked for.</li>
-        <li>[theirs,olde,joke,a:plain|a:friend,warmly] The goat sendeth her regards, by which I mean she ate my first draft of this letter.</li>
+        <li>[theirs,olde,joke,a:plain|a:friend,warmly,!jk:goat] The goat sendeth her regards, by which I mean she ate my first draft of this letter.</li>
         <li>[theirs,olde,joke,a:plain|a:friend,cordial|cool,m:trade] Our prices are fair, our scales are true, and our ale is dreadful. Two of three is good for a town.</li>
         <li>[theirs,olde,joke,a:plain|a:friend,cordial|cool,m:proud] We have the best well in the shire, the oldest wall and the loudest market. I speak of it only in passing.</li>
         <li>[theirs,olde,joke,a:plain|a:friend,warmly|cordial|cool,their:healers] A patient fled the sickhouse by the window with his leg in a splint. We admired his zeal and put him back.</li>
@@ -375,7 +375,7 @@
         <li>[ours,olde,serious,a:plain|a:friend|a:war,colony:raid] Raiders came to our gate not long since. We held, but it cost us sleep and more.</li>
 
         <!-- ================= A barely schooled hand (u:some) and an unschooled one (u:none) ================= -->
-        <li>[theirs,u:some,joke,warmly|cordial|cool] Our goat got out agin. Third time this week. She is smarter then all of us.</li>
+        <li>[theirs,u:some,joke,warmly|cordial|cool,!jk:goat] Our goat got out agin. Third time this week. She is smarter then all of us.</li>
         <li>[theirs,u:some,everyday,warmly|cordial|cool] The harvest was alright this year, not grate but alright.</li>
         <li>[theirs,u:some,everyday,cordial|cool] Not much news here, just work and more work.</li>
         <li>[theirs,u:some,serious] Things are hard here this year and I wont pretend they arent.</li>
@@ -385,7 +385,7 @@
         <li>[theirs,u:some,joke,cordial|cool,c:raider] We found a cart on the road last week. It was empty when we found it. Honist.</li>
         <li>[ours,u:some,everyday,warmly|cordial|cool] We are all well enough here, thank you for asking.</li>
         <li>[ours,u:some,joke,warmly|cordial|cool] Sorry for the speling, our best writer was bizy.</li>
-        <li>[theirs,u:none,joke,warmly|cordial|cool] the goat ate the frist leter i rote so this is the secund one</li>
+        <li>[theirs,u:none,joke,warmly|cordial|cool,!jk:goat] the goat ate the frist leter i rote so this is the secund one</li>
         <li>[theirs,u:none,joke,cordial|cool,c:raider] we got a new cart. dont ask were from</li>
         <li>[theirs,u:none,everyday,warmly|cordial|cool] its rained all week here and the roof leeks</li>
         <li>[theirs,u:none,everyday,cordial|cool] nothin much hapens here</li>

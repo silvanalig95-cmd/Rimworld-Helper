@@ -1392,6 +1392,9 @@ namespace ColonyCouncil
                 parts.Clear();
                 if (DealingLetters.Owns(l.purpose)) DealingLetters.HeartTags(l, full.heartTags);
                 if (l.purpose == LetterPurpose.Help) full.tone = NotableMath.HelpQuoteTone(tone, things.Count > 0);
+                // What came with it, for the correspondence's threads (Letters/LetterThreads.cs).
+                full.sent = l.purpose == LetterPurpose.Help ? things.Count > 0 ? "aid" : "aid:no" : gifts.Count > 0 ? "gift" : null;
+                full.sentWhat = l.purpose == LetterPurpose.Help && !l.help.NullOrEmpty() ? HelpLabel(l.help) : gifts.Count > 0 ? Couriers.Describe(gifts) : null;
             }
             else if (!quote.NullOrEmpty()) parts.Add("\"" + quote + "\"");
             // Passed on by someone who isn't the head: the head says who brought it (World/LetterRoutes.cs; written out in full,

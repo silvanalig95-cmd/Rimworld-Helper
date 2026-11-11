@@ -5,6 +5,16 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## Old friends by letter
+
+*11 November 2026, version 0.211.0*
+
+- Letters with the same person grow familiar over time: first letters are formal, later ones use first names and short names, and old friends sign with the first name.
+- A wrong, a broken word or a war cools a correspondence: the letters turn formal and short again, with no jokes.
+- Letters take up earlier ones, asking after someone ill or a harvest and saying how it turned out.
+- Help, gifts, poems and recipes are remembered and thanked for, and a running joke about a goat or a pumpkin carries on.
+- The reading window says how many letters have passed and how things stand.
+
 ## Packed for the road
 
 *11 November 2026, version 0.210.0*

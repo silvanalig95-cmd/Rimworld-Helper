@@ -146,6 +146,28 @@ shapes"). Setting "How long letters may get" (Mixed). A second content pass fill
     again as a gift; goods counted in plural words; a signature with an office only; a raider's "from the boss" only from
     their head. *Built with points 20 to 25.*
 
+### Round 2: a correspondence that builds up
+
+The player (10 November 2026): "continued letter exchange should build up, the contents and familiarity between the colony
+and others should develop and be reflected in the messages".
+
+*Built (11 November 2026), not released yet, in `Source/ColonyCouncil/Letters/` (`LetterThreadMath.cs` pure and tested,
+`LetterThreads.cs` the game's side, the saved `Correspondence` in `LetterBook.cs`; the pools `Rimfolk_Letters_Familiar` and
+`_Thread`; DESIGN.md "A correspondence that builds up").*
+
+27. **Stages of familiarity** by how many letters have passed both ways, how long it has run, and how things stand (their
+    regard and its warmest, their people's goodwill, good turns, a pen friend): a first letter, known, familiar, old
+    friends; cooled after a wrong, a broken word, a war or a fall in regard. A long silence is a step back.
+28. **The form follows**: salutations, openings and closings warm or settle into habit, first names and short names taken
+    up, old friends sign with the name alone and write longer; a cooled correspondence is formal again (the full name),
+    shorter, colder, with no jokes, and names the wrong now and then. A new hand writing for the colony is noticed.
+29. **Threads**: what a letter said (their news only when the words named it, the colony's as its lines said it, help, a
+    gift, a piece, others' lines, a running joke begun) is taken up by a later one: asked after, followed up by what is true
+    then (someone ill better, still ill or gone; a war won, lost or over), thanked for, spoken of, gone on with. News told
+    first raises a thread the next letter can ask after. The colony's own letters keep the thread too.
+30. **Small and bounded**: one record a correspondent (60 at most), eight threads each, stale ones let go; the reading
+    window says how it stands.
+
 ## Order of building
 
 Step 1, then step 2, one after another (same area); step 3 after both.

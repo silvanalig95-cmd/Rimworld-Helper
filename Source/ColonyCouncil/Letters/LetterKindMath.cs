@@ -254,6 +254,8 @@ namespace ColonyCouncil
             if (!SpeaksIn(k, speech)) return false;
             if (k == LetterKind.Note) return true;
             if (s.council) return false;
+            // A cooled correspondence (Letters/LetterThreadMath.cs): shorter and colder, the usual letter or a note (or a raider's boast).
+            if (s.fam == Familiarity.Cooled && !LetterThreadMath.CooledFits(k, !s.ours && who.boast)) return false;
             // At war, a letter is a letter or a note, or a raider's boast of what they did to the colony.
             if (s.war) return k == LetterKind.Raid && !s.ours && who.boast;
             if (LetterFormMath.BusinessPurpose(s.purpose)) return false;
@@ -363,7 +365,8 @@ namespace ColonyCouncil
                     if (s.tone == AnswerTone.Warm && (s.penFriend || s.motive == LetterMotive.Friend)) w *= 0.5f;
                     if (length == LetterLength.Short) w *= 1.5f;
                     else if (length == LetterLength.Long) w *= 0.7f;
-                    return Math.Min(w, 30f);
+                    // How well the two know each other: a note between old friends is rarer, a cooled one's far likelier.
+                    return Math.Min(w * LetterThreadMath.KindFactor(k, s.fam), 30f);
                 case LetterKind.Long:
                     w = 0.8f;
                     if (who.talkative) w *= 1.5f;
@@ -396,7 +399,8 @@ namespace ColonyCouncil
                 default: return 0f;
             }
             if (length == LetterLength.Long && IsLong(k)) w *= 2.5f;
-            return w;
+            // Nobody sends several pages to a stranger; old friends write long and add more (Letters/LetterThreadMath.cs).
+            return w * LetterThreadMath.KindFactor(k, s.fam);
         }
 
         /// <summary>The shape a letter takes: one of those that fit, by their weights (<paramref name="roll"/> 0 to 1).</summary>

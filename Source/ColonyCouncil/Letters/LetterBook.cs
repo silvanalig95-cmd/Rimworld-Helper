@@ -76,6 +76,67 @@ namespace ColonyCouncil
         }
     }
 
+    /// <summary>A thread of a correspondence, saved (Letters/LetterThreadMath.cs, ThreadRec): something a letter said that a later one takes up.</summary>
+    public class LetterThread : ThreadRec, IExposable
+    {
+        public void ExposeData()
+        {
+            Scribe_Values.Look(ref key, "key");
+            Scribe_Values.Look(ref value, "value");
+            Scribe_Values.Look(ref ours, "ours");
+            Scribe_Values.Look(ref at, "at");
+            Scribe_Values.Look(ref tick, "tick");
+            Scribe_Values.Look(ref touched, "touched", -1);
+            Scribe_Values.Look(ref asked, "asked");
+            Scribe_Values.Look(ref told, "told");
+        }
+
+        public static LetterThread Of(ThreadRec r, int at, int tick) => new LetterThread { key = r.key, value = r.value ?? "", ours = r.ours, at = at, tick = tick };
+    }
+
+    /// <summary>
+    /// A correspondence with one notable, as it builds up (the player, 10 November 2026: "continued letter exchange should
+    /// build up"): how many letters have passed each way, since when and when last, the warmest their regard reached, who
+    /// of the colony writes to them, and the threads a later letter can take up (Letters/LetterThreadMath.cs). Small and
+    /// bounded: LetterBook.MaxCorrespondences, LetterThreadMath.MaxThreads threads each.
+    /// </summary>
+    public class Correspondence : IExposable
+    {
+        public int notable = -1;
+        public int ours, theirs;
+        /// <summary>The first letter and the last either way, the colony's last and theirs (ticks; -1 none).</summary>
+        public int first = -1, last = -1, lastOurs = -1, lastTheirs = -1;
+        /// <summary>The warmest their regard of the colony was while they wrote.</summary>
+        public int peak;
+        /// <summary>Who of the colony wrote its last letters to them, how many in a row, and who wrote before them (two or more in a row).</summary>
+        public string pen, oldPen;
+        public int penRun;
+        public List<LetterThread> threads = new List<LetterThread>();
+
+        public int Letters => ours + theirs;
+
+        public void ExposeData()
+        {
+            Scribe_Values.Look(ref notable, "notable", -1);
+            Scribe_Values.Look(ref ours, "ours");
+            Scribe_Values.Look(ref theirs, "theirs");
+            Scribe_Values.Look(ref first, "first", -1);
+            Scribe_Values.Look(ref last, "last", -1);
+            Scribe_Values.Look(ref lastOurs, "lastOurs", -1);
+            Scribe_Values.Look(ref lastTheirs, "lastTheirs", -1);
+            Scribe_Values.Look(ref peak, "peak");
+            Scribe_Values.Look(ref pen, "pen");
+            Scribe_Values.Look(ref oldPen, "oldPen");
+            Scribe_Values.Look(ref penRun, "penRun");
+            Scribe_Collections.Look(ref threads, "threads", LookMode.Deep);
+            if (Scribe.mode == LoadSaveMode.PostLoadInit)
+            {
+                threads ??= new List<LetterThread>();
+                threads.RemoveAll(t => t == null || !LetterThreadMath.Known(t.key));
+            }
+        }
+    }
+
     /// <summary>
     /// The letters between the colony and the world, kept to be read again (the player, 9 November 2026): the colony's own
     /// letters as written (LetterForm.Ours), their answers, their letters written first and a friend's word, as exchanges with
@@ -93,9 +154,14 @@ namespace ColonyCouncil
         /// words (LetterKindMath.Key), the newest last: none comes round again while it is here; LetterKindMath.MaxUsed at most.
         /// </summary>
         public List<string> used = new List<string>();
+        /// <summary>Each correspondence as it builds up (Letters/LetterThreads.cs): MaxCorrespondences at most, the longest quiet let go.</summary>
+        public List<Correspondence> correspondences = new List<Correspondence>();
 
         /// <summary>Exchanges kept at most, and with any one notable.</summary>
         public const int MaxExchanges = 60, MaxPerNotable = 8;
+
+        /// <summary>Correspondences kept at most (the longest quiet let go).</summary>
+        public const int MaxCorrespondences = 60;
 
         /// <summary>The newest this many long letters are kept whole (LetterFormMath.MaxKeptLong); older ones are cut to LetterFormMath.MaxKept.</summary>
         public const int MaxLong = 16;
@@ -245,6 +311,56 @@ namespace ColonyCouncil
             var longPages = exchanges.SelectMany(x => x.pages).Where(p => p != null && p.text != null && p.text.Length > LetterFormMath.MaxKept).OrderByDescending(p => p.tick).ToList();
             for (int i = MaxLong; i < longPages.Count; i++) longPages[i].text = LetterFormMath.Cap(longPages[i].text, LetterFormMath.MaxKept);
             while (used.Count > LetterKindMath.MaxUsed) used.RemoveAt(0);
+            TrimThreads();
+        }
+
+        /// <summary>The correspondences in bounds: MaxCorrespondences, the longest quiet let go; each one's threads stale let go, LetterThreadMath.MaxThreads at most.</summary>
+        private void TrimThreads()
+        {
+            int now = Now;
+            correspondences.RemoveAll(c => c == null || c.notable < 0);
+            while (correspondences.Count > MaxCorrespondences) correspondences.Remove(correspondences.OrderBy(c => c.last).First());
+            foreach (var c in correspondences)
+            {
+                c.threads.RemoveAll(t => t == null || LetterThreadMath.Stale(t, now));
+                while (c.threads.Count > LetterThreadMath.MaxThreads) c.threads.RemoveAt(0);
+            }
+        }
+
+        // ================= The correspondence =================
+
+        /// <summary>
+        /// The correspondence with a notable, or null when none yet; made when asked to (an older save's: counted from the
+        /// letters kept with them, its first and last letter theirs).
+        /// </summary>
+        public static Correspondence CorrespondenceWith(Notable n, bool make)
+        {
+            var b = Instance;
+            if (b == null || n == null) return null;
+            var c = b.correspondences.FirstOrDefault(x => x.notable == n.id);
+            if (c != null || !make) return c;
+            c = new Correspondence { notable = n.id, peak = NotableBook.Opinion(n) };
+            foreach (var x in b.exchanges.Where(x => x.notable == n.id))
+                foreach (var p in x.pages.Where(p => p != null))
+                {
+                    if (p.ours)
+                    {
+                        c.ours++;
+                        c.lastOurs = Math.Max(c.lastOurs, p.tick);
+                        c.pen = p.who;
+                    }
+                    else
+                    {
+                        c.theirs++;
+                        c.lastTheirs = Math.Max(c.lastTheirs, p.tick);
+                    }
+                    c.first = c.first < 0 ? p.tick : Math.Min(c.first, p.tick);
+                    c.last = Math.Max(c.last, p.tick);
+                }
+            if (c.pen != null) c.penRun = 1;
+            b.correspondences.Add(c);
+            b.TrimThreads();
+            return c;
         }
 
         // ================= The shapes =================
@@ -385,12 +501,15 @@ namespace ColonyCouncil
             Scribe_Collections.Look(ref exchanges, "exchanges", LookMode.Deep);
             Scribe_Values.Look(ref nextId, "nextId", 1);
             Scribe_Collections.Look(ref used, "used", LookMode.Value);
+            Scribe_Collections.Look(ref correspondences, "correspondences", LookMode.Deep);
             if (Scribe.mode == LoadSaveMode.PostLoadInit)
             {
                 exchanges ??= new List<LetterExchange>();
                 exchanges.RemoveAll(x => x == null);
                 used ??= new List<string>();
                 used.RemoveAll(k => k.NullOrEmpty());
+                correspondences ??= new List<Correspondence>();
+                correspondences.RemoveAll(c => c == null || c.notable < 0);
                 usedSet = null;
                 version++;
             }
