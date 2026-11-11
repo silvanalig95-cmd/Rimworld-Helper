@@ -7,8 +7,8 @@ colony of 20, with the game keeping 30 more people it knows and 5 more each year
 generous guesses; sizes are rough XML sizes. Caps named as constants are read from the source. "Counted under" rows are
 kept inside another record (a journal's lines, a heart's lists) and are already in that record's size.
 
-Saved collections found: 615; modelled: 615; growing without end: 0.
-Rimfolk's part of the save, roughly: **2,762 KB** after a year, **3,340 KB** after two, **3,623 KB** after five.
+Saved collections found: 617; modelled: 617; growing without end: 0.
+Rimfolk's part of the save, roughly: **2,763 KB** after a year, **3,341 KB** after two, **3,624 KB** after five.
 
 | Collection | Rule | Kind | 1 year | 2 years | 5 years | KB at 5 years |
 |---|---|---|---|---|---|---|
@@ -282,6 +282,7 @@ Rimfolk's part of the save, roughly: **2,762 KB** after a year, **3,340 KB** aft
 | `Offices/Election.cs:voted` | who has voted, while it lasts | while | 20 | 20 | 20 | 0.8 |
 | `PlayOut/PlayOutLord.cs:fed` | while the gathering lasts | while | 20 | 20 | 20 | 0.8 |
 | `PlayOut/PlayOutLord.cs:served` | while the gathering lasts | while | 20 | 20 | 20 | 0.8 |
+| `Post/PostBook.cs:packs` | the supplies packed for each letter going with the colony's own rider, from the send until they're home or it goes back in the bag: one a ride | cap | 5 | 5 | 5 | 0.8 |
 | `Social/Autonomy.cs:pawns` | who acted when: the last 2 days | window | 20 | 20 | 20 | 0.8 |
 | `Social/Battle.cs:fighters` | while a fight lasts | while | 20 | 20 | 20 | 0.8 |
 | `UI/WeekMemory.cs:trustKeys` | a trail per colonist, forgotten after 10 days away | colonists | 20 | 20 | 20 | 0.8 |
@@ -313,6 +314,7 @@ Rimfolk's part of the save, roughly: **2,762 KB** after a year, **3,340 KB** aft
 | `Apparel/ApparelPickBook.cs:notNow` | colonists whose clothes suggestions are set aside, ten days each, the ended pruned daily | colonists | 6 | 6 | 6 | 0.5 |
 | `Building/ShelfReserves.cs:entries` | per shelf: the kinds it keeps slots for, with how they're kept | while | 6 | 6 | 6 | 0.5 |
 | `Faith/FaithCouncilTracker.cs:faithEvenings` | each faith's last evening of faith: one per faith, gone after 60 days or with the faith | fixed | 6 | 6 | 6 | 0.5 |
+| `Post/RiderPacks.cs:lines` | per pack of the rider's supplies: the lines taken (food, medicine, drugs, feed, a few added), counted under packs | fixed | 6 | 6 | 6 | 0.5 |
 | `Weapons/WeaponPickBook.cs:fetched` | colonists who filled an empty weapon slot themselves within the day, pruned daily | colonists | 6 | 6 | 6 | 0.5 |
 | `Weapons/WeaponPickBook.cs:notNow` | colonists whose suggestions are set aside, ten days each, the ended pruned daily | colonists | 6 | 6 | 6 | 0.5 |
 | `World/Ledger/LedgerColonies.cs:colonyRecords` | one per colony ever founded once there are two, FoundingMath.MaxRecords at most (the oldest ended ones fold into the history); none in a save of one colony | cap | 1 | 1 | 3 | 0.5 |

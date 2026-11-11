@@ -11,7 +11,7 @@ namespace ColonyCouncil
     /// The mailbag at the gate (Rimfolk_Mailbag, a spot the colony places): the letters written wait in it. Its pane lists
     /// each letter (to whom, what for, written by, how it's likely to leave, or that its writer is bringing it), the
     /// letters that can't go by the post and wait at the gate for a go-between or a messenger of theirs, and the mail for
-    /// the colony waiting to be brought; its buttons send a letter with the colony's own rider, take one back, or read one
+    /// the colony waiting to be brought; its buttons send a letter with the colony's own rider (with the supplies chosen for the road), take one back, or read one
     /// (those at the gate too).
     /// </summary>
     public class Building_Mailbag : Building
@@ -90,7 +90,7 @@ namespace ColonyCouncil
         private static string ReadLabel(NeighbourLetter l) =>
             Outbox.Section(l) == PostMath.BagSection.AtGate ? PostWords.P("CC_Mail_Gizmo_LetterGate", (l.toName ?? "?").Named("TO"), l.WriterName.Named("PAWN")) : LetterLabel(l);
 
-        /// <summary>Which letter, then who rides (each with why not).</summary>
+        /// <summary>Which letter, then who rides (each with why not), then their supplies for the road (Post/RiderPackWindow.cs).</summary>
         public static void RiderMenu(Map map, List<NeighbourLetter> letters)
         {
             var opts = new List<FloatMenuOption>();
@@ -111,7 +111,7 @@ namespace ColonyCouncil
             var mount = OwnRiders.MountFor(map, null);
             float days = PostReach.RiderDays(map, town, mount != null);
             var opts = OwnRiders.Candidates(map).Select(p => new FloatMenuOption(PostWords.P("CC_Mail_PickRider", p.Named("PAWN"),
-                (p.skills?.GetSkill(SkillDefOf.Animals)?.Level ?? 0).Named("ANIMALS")), () => OwnRiders.Send(l, p))).ToList();
+                (p.skills?.GetSkill(SkillDefOf.Animals)?.Level ?? 0).Named("ANIMALS")), () => Dialog_RiderPack.ForLetter(map, l, p))).ToList();
             if (opts.Count == 0) opts.Add(new FloatMenuOption(PostWords.P("CC_Mail_Why_NoRider"), null));
             Find.WindowStack.Add(new FloatMenu(opts, PostWords.P(mount != null ? "CC_Mail_PickRider_Title" : "CC_Mail_PickRider_TitleFoot", (town?.Name ?? "?").Named("TOWN"),
                 PostWords.DaysWords(days).Named("DAYS"))));

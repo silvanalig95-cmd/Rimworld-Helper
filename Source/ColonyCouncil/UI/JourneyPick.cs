@@ -16,7 +16,8 @@ namespace ColonyCouncil
     /// weighs. A click puts one on the list (Shift 10, Ctrl 100), "All" all there is; the line's kind follows the thing
     /// (food the travellers eat, medicine, a bedroll, a tent, feed, or other, which goes with the caravan's goods). The
     /// window stays open to pick several, and the planner beside it shows the list and its totals as they change. In
-    /// Rimfolk's frame (key "JourneyPick"), opening first beside the planner.
+    /// Rimfolk's frame (key "JourneyPick"), opening first beside the planner. The colony's own rider's supplies
+    /// (Post/RiderPackWindow.cs) use it too, without the stalls (the rider gathers from the stores only).
     /// </summary>
     public class Dialog_JourneyPick : FramedWindow
     {
@@ -66,11 +67,19 @@ namespace ColonyCouncil
 
         protected override bool OwnFirstPlace => place.width > 0f && place.height > 0f;
 
-        public Dialog_JourneyPick(JourneyPlan plan, Action changed, Rect place) : base("JourneyPick")
+        /// <summary>The window it belongs to is still open (the journey planner's, unless another's is given: the rider's supplies).</summary>
+        private readonly Func<bool> open;
+
+        /// <summary>What lies on the colony's stalls is offered too (the journey planner fetches it; the rider's supplies don't).</summary>
+        private readonly bool withStalls;
+
+        public Dialog_JourneyPick(JourneyPlan plan, Action changed, Rect place, Func<bool> open = null, bool withStalls = true) : base("JourneyPick")
         {
             this.plan = plan;
             this.changed = changed;
             this.place = place;
+            this.open = open;
+            this.withStalls = withStalls;
             doCloseX = true;
             doCloseButton = true;
             closeOnClickedOutside = true;
@@ -124,7 +133,7 @@ namespace ColonyCouncil
         {
             countedAt = Time.realtimeSinceStartup;
             entries.Clear();
-            var stalls = JourneyPack.StallHoldings(plan.map);
+            var stalls = withStalls ? JourneyPack.StallHoldings(plan.map) : new Dictionary<ThingDef, List<(Thing stall, int count)>>();
             foreach (var kv in JourneyPack.Holdings(plan.map, plan.travellers))
             {
                 var d = kv.Key;
@@ -157,7 +166,7 @@ namespace ColonyCouncil
 
         protected override void DoFramedContents(Rect inRect)
         {
-            if (plan?.map == null || !Find.Maps.Contains(plan.map) || Find.WindowStack.WindowOfType<Dialog_JourneyPlan>() == null)
+            if (plan?.map == null || !Find.Maps.Contains(plan.map) || !(open?.Invoke() ?? Find.WindowStack.WindowOfType<Dialog_JourneyPlan>() != null))
             {
                 Close();
                 return;

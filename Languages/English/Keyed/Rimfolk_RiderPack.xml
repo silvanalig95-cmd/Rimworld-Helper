@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <!-- The colony's own rider's supplies for the road (Post/RiderPacks.cs, RiderPackWindow.cs): chosen where the letter is sent with them. -->
+
+  <!-- The window -->
+  <CC_RiderPack_Title>Supplies for the road</CC_RiderPack_Title>
+  <CC_RiderPack_Sub>{PAWN} rides to {TOWN} on {MOUNT}.</CC_RiderPack_Sub>
+  <CC_RiderPack_SubFoot>{PAWN} goes to {TOWN} on foot.</CC_RiderPack_SubFoot>
+  <CC_RiderPack_SubDays>About {THERE} days there, a while at the town for the answer, and as long back: {ROAD} days in all.</CC_RiderPack_SubDays>
+  <CC_RiderPack_Group_Feed>Feed for {MOUNT}</CC_RiderPack_Group_Feed>
+  <CC_RiderPack_Suggested>suggested</CC_RiderPack_Suggested>
+  <CC_RiderPack_ToHand>{COUNT} to hand</CC_RiderPack_ToHand>
+  <CC_RiderPack_MoreThanToHand>more than there is</CC_RiderPack_MoreThanToHand>
+  <CC_RiderPack_WontEat>{PAWN} won't eat this on the road</CC_RiderPack_WontEat>
+  <CC_RiderPack_LineTip>What is to hand counts the stores and what the rider and the beast carry already. They gather it before they set out; what is left when they come home goes back into the stores.</CC_RiderPack_LineTip>
+  <CC_RiderPack_RemoveTip>Take it off: the suggestions make up its share from other things and leave this off.</CC_RiderPack_RemoveTip>
+  <CC_RiderPack_PutBackTip>Back on, as the suggestions work it out.</CC_RiderPack_PutBackTip>
+  <CC_RiderPack_Recommended>Pack the recommended</CC_RiderPack_Recommended>
+  <CC_RiderPack_Recommended_Tip>Back to the suggestions: food for there and back with some to spare, a little medicine and the beast's feed, by what the stores hold now. Your own numbers and lines are let go.</CC_RiderPack_Recommended_Tip>
+  <CC_RiderPack_Done>Done</CC_RiderPack_Done>
+  <CC_RiderPack_Nothing>Nothing packed.</CC_RiderPack_Nothing>
+  <CC_RiderPack_Packed>Packed: {WHAT}.</CC_RiderPack_Packed>
+  <CC_RiderPack_Gone>The letter or the rider is no longer free to go: nothing was sent.</CC_RiderPack_Gone>
+
+  <!-- In the letter's window, under "By our own rider" -->
+  <CC_RiderPack_Button>Supplies</CC_RiderPack_Button>
+  <CC_RiderPack_Button_Tip>Choose what they take for the road: food for there and back, a little medicine, feed for the beast, and anything else from the stores.</CC_RiderPack_Button_Tip>
+  <CC_RiderPack_Summary>Food for {FOOD} days; the road there and back is {ROAD} days.</CC_RiderPack_Summary>
+  <CC_RiderPack_SummaryNoFood>The road there and back is {ROAD} days.</CC_RiderPack_SummaryNoFood>
+  <CC_RiderPack_SummaryFeed>Feed for {FEED} of the {NEED} days {MOUNT} can't graze.</CC_RiderPack_SummaryFeed>
+
+  <!-- How it stands -->
+  <CC_RiderPack_Food_Enough>Food for about {FOOD} days: the road there and back is {ROAD} days, with some to spare.</CC_RiderPack_Food_Enough>
+  <CC_RiderPack_Food_NoMargin>Food for about {FOOD} days against the {ROAD} days there and back: enough, with nothing to spare.</CC_RiderPack_Food_NoMargin>
+  <CC_RiderPack_Food_Short>Food for only about {FOOD} of the {ROAD} days there and back: about {MEALS} meals short.</CC_RiderPack_Food_Short>
+  <CC_RiderPack_Food_None>No food packed for the {ROAD} days there and back.</CC_RiderPack_Food_None>
+  <CC_RiderPack_StoresShort>The stores hold no more that {PAWN} would eat on the road.</CC_RiderPack_StoresShort>
+  <CC_RiderPack_Feed_Graze>{MOUNT} grazes all the way: no feed needed.</CC_RiderPack_Feed_Graze>
+  <CC_RiderPack_Feed_Enough>Feed for about {FEED} days against the {NEED} days {MOUNT} can't graze, with some to spare.</CC_RiderPack_Feed_Enough>
+  <CC_RiderPack_Feed_NoMargin>Feed for about {FEED} days against the {NEED} days {MOUNT} can't graze: nothing to spare.</CC_RiderPack_Feed_NoMargin>
+  <CC_RiderPack_Feed_Short>Feed for only about {FEED} of the {NEED} days {MOUNT} can't graze.</CC_RiderPack_Feed_Short>
+  <CC_RiderPack_Feed_None>No feed packed for the {NEED} days {MOUNT} can't graze.</CC_RiderPack_Feed_None>
+  <CC_RiderPack_Medicine>Medicine: {COUNT}, for a wound or a sickness on the road.</CC_RiderPack_Medicine>
+  <CC_RiderPack_NoMedicine>No medicine packed.</CC_RiderPack_NoMedicine>
+  <CC_RiderPack_Load>Load: {LOAD} of the {ROOM} kg {PAWN} can carry.</CC_RiderPack_Load>
+  <CC_RiderPack_LoadBeast>Load: {LOAD} of the {ROOM} kg {PAWN} and {MOUNT} can carry.</CC_RiderPack_LoadBeast>
+  <CC_RiderPack_GoesShort>{PAWN} goes short, knowing it: the food runs out after about {FOOD} days, and then hunger on the road.</CC_RiderPack_GoesShort>
+  <CC_RiderPack_Knowingly>Let them go short, knowing it</CC_RiderPack_Knowingly>
+  <CC_RiderPack_Knowingly_Tip>They set out with what there is. When it runs out they go hungry on the road, as any caravan does: hunger, then malnutrition, slower and in a worse mood the longer it lasts.</CC_RiderPack_Knowingly_Tip>
+
+  <!-- Why the send is greyed -->
+  <CC_RiderPack_Why_Over>More than they can carry ({LOAD} of {ROOM} kg): a caravan that heavy can't move. Take something off.</CC_RiderPack_Why_Over>
+  <CC_RiderPack_Why_Stores>The stores can't feed {PAWN} for the road: food for about {FOOD} of the {ROAD} days there and back. Let them go short knowingly, or wait until there is more.</CC_RiderPack_Why_Stores>
+  <CC_RiderPack_Why_Short>The supplies feed {PAWN} for only about {FOOD} of the {ROAD} days there and back: pack more, or let them go short knowingly.</CC_RiderPack_Why_Short>
+  <CC_RiderPack_Why_Feed>{MOUNT} would go hungry: feed for about {FEED} of the {NEED} days it can't graze. Pack more, or let them go short knowingly.</CC_RiderPack_Why_Feed>
+
+</LanguageData>

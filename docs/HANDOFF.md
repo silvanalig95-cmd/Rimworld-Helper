@@ -62,13 +62,37 @@ tree at once, alongside whatever runs. Each piece is merged as its own release, 
   again, earlier topics and promises answered or recalled ("you asked about the harvest; it came in at last"), news
   followed up from one letter to the next, the colony's own letters keeping the thread too; cooling just as truly
   after a slight or a war. Propose the shape first.
-- **To do when the player asks (10 November 2026): supplies for the colony's own rider.** The player: "sending a
-  colonist off to send a letter makes them just go off map without any supplies or preparation. supply selection should
-  be part of the initial decision." Then: "to be done later". Today `Post/OwnRiders.cs` sets out with the fastest beast
-  and an empty pack. When asked: a packing part in the letter dialog and the mailbag's "Send with our rider" (road food
-  for there and back by the journey planner's rules and road days, a little medicine, the mount's feed, extras the
-  player picks), greyed with why when the stores can't cover it, and the rider gathering it before setting out, as the
-  envoy abroad and the journey planner do (Journeys/, Diplomacy/EnvoysAbroad.cs).
+- 0.210.0, **Supplies for the colony's own
+  rider** (11 November 2026, the player's request of 10 November). The player: "sending a colonist off to send a letter
+  makes them just go off map without any supplies or preparation. supply selection should be part of the initial
+  decision." DESIGN.md "Supplies for the colony's own rider" (after the post's sections); README's post paragraph; the
+  Almanac's "The post: who takes the letters" (the rider's row and a new paragraph; keywords unchanged).
+  - Pure: `Post/RiderPackMath.cs` (new, linked): the trip (`TownWaitDays`, `TownDays`, `TripDays`), `FoodWanted`,
+    `FeedNeedDays`, `FeedWanted`, `MedicineWanted`, `Cover`, `Judge` (`RiderPackFacts` to `RiderPackVerdict`), `MaySend`,
+    `WhyKey`, `FoodKey`, `FeedKey`, `OutKey`, `Days`, `Step`. Tests `Tools/Tests/RiderPackTests.cs` (the rules, 4,000 mixes
+    of facts, the default food from the stores, the words, the seams).
+  - Game side: `Post/RiderPacks.cs` (new): `RiderPack` (saved in `PostBook.packs`, modelled), `RiderPacks` (`ForNext` from
+    the letter's window, `Keep`, `Drop`, `Prune`, `DefaultFor`, `Eats`, `Packing` by the journey planner's rules,
+    `Shadow`, `Left`), `RiderPackModel`, `RiderPackPart` (the row in the letter's window); `Post/RiderPackWindow.cs` (new,
+    `Dialog_RiderPack`, frame key `RiderPack`). `OwnRiders`: `Send` takes the supplies, `SetOut` the planner's when none
+    were chosen, `Gather` (from `JobDriver_RiderSetOut`'s new toil after the letter is taken: the game's caravan forming
+    with the lines as goods, as `JourneyRun.Depart`), `Departed`, `OutMessage`, `Rare` and `Watching` (on the post's
+    250-tick pass, `MailWatch`), `Unpack` at home; `Arrived` waits by `RiderPackMath.TownWaitDays`. Small edits:
+    `World/NeighboursPanel.cs` (the row, its why, the supplies handed to the send), `Post/Building_Mailbag.cs` (the
+    supplies window before the send), `UI/JourneyPick.cs` (the window it serves, stalls optional), `UI/FramedWindowsMath.cs`
+    (the key), `Languages/English/Keyed/Rimfolk_RiderPack.xml` (new) and five new messages in `Rimfolk_Post.xml`.
+  - Not run here: the row and the window; the game's caravan forming for a lone rider and their beast (the rope, the
+    loading, Giddy-Up's mount as it heads out); the messages as they set out and come home; their eating at the far town.
+    Vehicles are not a rider's form yet (only on foot or on the colony's beast, as before).
+  - Try in the game: 1. Write a letter, choose "By our own rider": a row says the food against the road there and back;
+    Supplies opens the list (food, medicine, feed for the beast), change a number, add something from the stores. 2.
+    With few meals in the stores, the send is greyed with why; tick "Let them go short, knowing it" and send: the message
+    as they set out says they will go hungry on the road. 3. From the mailbag's "Send with our rider", pick the letter and
+    the rider: the supplies window opens with Send. 4. Watch the rider take the letter, then form a caravan: they gather
+    the supplies, lead or load the beast, and leave by the edge toward the town (with Giddy-Up, in the saddle); the
+    message says the days of food against the road. 5. Cancel the forming: the letter goes back in the mailbag and the
+    supplies back to the stores. 6. When they come home, a message names what is left of the supplies, and they unload
+    it.
 - 0.209.0, **Invited visitors are Hospitality's guests** (11 November 2026). The player: "visitors that you invite with diplomatic
   actions should also be treated as guests with hospitality". Not released: no version, no What's new round, About.xml
   and CHANGELOG untouched. DESIGN.md "Invited visitors are Hospitality's guests" (after "Guests who help out") has all of

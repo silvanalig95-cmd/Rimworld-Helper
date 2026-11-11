@@ -200,7 +200,12 @@ namespace ColonyCouncil
         }
     }
 
-    /// <summary>The colony's own rider takes the letter from the mailbag (target A), walks to the map's edge (target B) and sets out (Post/OwnRiders.cs).</summary>
+    /// <summary>
+    /// The colony's own rider takes the letter from the mailbag (target A), then gathers the supplies packed for the road in
+    /// the game's own caravan forming, which takes them out (Post/OwnRiders.cs, Gather); where it can't, they walk to the
+    /// map's edge (target B) and set out as before. The toils before the gathering keep their order, so a rider saved on
+    /// their way to the edge goes on from where they were.
+    /// </summary>
     public class JobDriver_RiderSetOut : JobDriver
     {
         public override bool TryMakePreToilReservations(bool errorOnFailed) => true;
@@ -217,6 +222,21 @@ namespace ColonyCouncil
             took.initAction = () => OwnRiders.TookLetter(pawn);
             took.defaultCompleteMode = ToilCompleteMode.Instant;
             yield return took;
+            // The supplies gathered as the colony's caravans gather theirs: the game's caravan forming takes over (this job ends).
+            var gather = ToilMaker.MakeToil("RiderGather");
+            gather.initAction = () =>
+            {
+                try
+                {
+                    OwnRiders.Gather(pawn);
+                }
+                catch (Exception e)
+                {
+                    CouncilLog.ErrorOnce("post: the rider's supplies gathered", e);
+                }
+            };
+            gather.defaultCompleteMode = ToilCompleteMode.Instant;
+            yield return gather;
             yield return Toils_Goto.GotoCell(TargetIndex.B, PathEndMode.OnCell);
             var go = ToilMaker.MakeToil("RiderSetOut");
             go.initAction = () => OwnRiders.AtEdge(pawn);

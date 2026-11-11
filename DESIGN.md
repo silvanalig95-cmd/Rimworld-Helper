@@ -8225,7 +8225,8 @@ neighbours' section, on, needs the letters) and **The post's pace** (`postPace`:
   answer, and what it sends, ride home in their pack after a few hours; it opens when they're back on the home's map, with
   "brought this answer home by hand". The range doesn't bind a rider; the road's length does. The roads' dangers are the
   game's own caravan events; nothing is rolled here. Turned back by the player, the letter is back in the bag; lost on the
-  road, the letter is lost with them (said).
+  road, the letter is lost with them (said). Since 11 November 2026 they take supplies chosen with the send and gather
+  them before they go ("Supplies for the colony's own rider" below).
 - **Mail comes in the same way** (`MailIn`, `PostBook.incoming`). An answer of words only (`things.Count == 0`, not to a
   people at war) goes in the post from the day it reaches the region; so do the world's letters carried to the colony:
   a town's letter (`Colonies/TownsAfter.cs`), the colony's envoy's (`Diplomacy/EnvoysAbroad.cs`) and ward's
@@ -8277,7 +8278,7 @@ neighbours' section, on, needs the letters) and **The post's pace** (`postPace`:
   were. New fields load empty (`postId` -1). The post turned off: the outbox's letters get a messenger each, and the mail
   waiting goes by messenger.
 - **Saved.** `PostBook` (a game component): `incoming` (16 at most), `rounds` (one a home), `rides` (one a letter with the
-  colony's rider), modelled in `save_estimate.py`; the letter's new fields. Nothing has a tick of its own: the watch rides on
+  colony's rider), `packs` (the supplies for each, since 11 November 2026), modelled in `save_estimate.py`; the letter's new fields. Nothing has a tick of its own: the watch rides on
   the letters' 250-tick pass, the rest on their hour.
 - **Dev actions** ("Rimfolk"): the post rider now; a visitor group leaves now with the mail; every town's reach and the
   outbox (log); the mail waiting brought by a messenger now; the mail on the road here now.
@@ -8426,6 +8427,77 @@ What it does now:
   three jobs as done in the saddle, and its "parking" no longer happening; the rider getting off at the bag for the
   stores and back on as they leave, by both ways; the tameness letting Giddy-Up's own remount take; goods round the bag;
   the variety of kinds and beasts on the player's own peoples and mods.
+
+### Supplies for the colony's own rider (the player's request, 10 November 2026; released 0.210.0)
+
+The player: "sending a colonist off to send a letter makes them just go off map without any supplies or preparation.
+supply selection should be part of the initial decision." Until now `OwnRiders.SetOut` sent them with the fastest beast and
+an empty pack, straight to the edge. The pure rules in `Post/RiderPackMath.cs` (linked; `Tools/Tests/RiderPackTests.cs`,
+"the rider's supplies: ", 129 checks: the rules, every mix of facts, the seams); the game side in `Post/RiderPacks.cs` and
+`Post/RiderPackWindow.cs`, `Post/OwnRiders.cs`.
+
+- **Chosen with the send.** In the letter's window, "By our own rider" now has a row under the rider: **Supplies** (the
+  supplies window) and a line on the food against the road ("Food for 9.4 days; the road there and back is 7.1 days"), in
+  green, amber or red, with the whole list on hover (`RiderPackPart`, drawn by `Dialog_NeighbourLetter`, its why folded
+  into the send's). The mailbag's "Send with our rider" asks which letter, then who, then opens the supplies window with
+  Send and Cancel (`Dialog_RiderPack.ForLetter`). Both work on one `RiderPackModel`: the road, the suggestions, what is to
+  hand and the verdict, looked at once a second, the road every half a minute or when the rider or the beast changes.
+- **What is suggested** (`RiderPacks.Packing`, by the journey planner's rules). The trip is the road there by the game's
+  own caravan reckoning for this rider and their beast with what they'd carry (`JourneyPack.Route`, as the planner reads
+  it; `PostReach.RiderDays` only where no path is found), the longest wait at the town for the answer
+  (`RiderPackMath.TownDays`: half a reply's days at most, the very rule `Arrived` rolls by, `TownWaitDays`), and as long
+  back (`TripDays`). Food: the rider's own nourishment a day by the game's hunger rate, for the trip with the planner's
+  margin (a quarter more and a spare day, `JourneyMath.FoodNutrition`), packed best first (`JourneyMath.PackFood`: what
+  keeps through the trip, travel food first), only food they'd eat on the road (`RiderPacks.Eats`: the caravan's own rules,
+  `RoadFood.RoadEdible`; the food policy they eat by on the road, `RoadFood.OnTheRoad`; no venerated animal; their beliefs,
+  `Beliefs.FitForStock`). A little medicine (`JourneyMath.Medicine` for one: one, and one more for every eight days; never
+  more than half the stores while anyone stays home), the plainer kinds first. Drugs for an addiction or a chemical
+  dependency (`JourneyPack.Drugs`). The beast's feed (kibble, else hay, what it can eat) for the days it can't graze, by the
+  share of the trip without grazing (`FeedNeedDays`; every day for a beast that doesn't graze). The player's own numbers,
+  lines and lines taken off stay as they set them, as in the planner.
+- **The supplies window** (`Dialog_RiderPack`, frame key `RiderPack`): the lines by kind (food, medicine, drugs, feed for
+  the beast by name, anything else), each with its number to step (Shift 10, Ctrl 100), All, take off or put back, whose
+  number it is, the days of food it gives, how many are to hand, and a warning when the rider won't eat it on the road;
+  **Add from the stores** (the journey planner's own picker, `Dialog_JourneyPick`, here without the colony's stalls since
+  the rider gathers from the stores only; it now takes the window it serves and whether to offer the stalls) and **Pack
+  the recommended**; below, the food against the trip, the stores' word when they hold no more, the beast's feed, the
+  medicine, and the load against what the rider (and a beast that carries) can carry, by the game's own mass rules.
+- **When it falls short** (`RiderPackMath.Judge`, `MaySend`, `WhyKey`). Short of the road (the food, or the beast's feed)
+  the send is greyed with why: the stores can't feed them for the road (`Why_Stores`), the supplies feed them for only so
+  many days (`Why_Short`), the beast would go hungry (`Why_Feed`); **Let them go short, knowing it** (in both places) lets
+  them go, said in amber ("goes short, knowing it: the food runs out after about 3 days, and then hunger on the road").
+  More than they can carry is greyed always (`Why_Over`): a caravan that heavy can't move. No medicine is a word, not a
+  reason to hold them.
+- **Gathering before setting out** (`OwnRiders.Gather`, from the job). The rider takes the letter from the mailbag as
+  before, then the game's own caravan forming takes over, the way the journey planner's caravans leave
+  (`JourneyRun.Depart`): the rider and their beast, the lines not yet in their packs as its goods (`JourneyPack.Missing`,
+  the nearest the gate first), gathered at the colony's caravan packing spot or the gate (`JourneyPack.Gate`), out by the
+  edge toward the town (`JourneyPack.Exit`, `StartTile`), where the game makes their caravan and sends it to the town.
+  The beast is led on its rope, a pack beast is loaded by the game's own rules, and with Giddy-Up the rider is in the
+  saddle as it heads out. What the stores no longer hold is said ("The
+  stores are short of 2 packaged survival meals for Guido's road to Emberford: they go without it"). Where the forming
+  can't be had (no way out), they walk to the edge and go as before. The job's first toils keep their order, so a rider
+  saved on the way to the edge goes on from there. Out on the world map (`Departed`, watched every 250 ticks on the post's
+  own pass, `OwnRiders.Rare`, `Watching`), the message says the game's own days of food in their caravan against the trip
+  by its own estimate ("with the letter and food for about 9 days; the road there and back is about 7"), or that they will
+  go hungry on the road. Called away or the forming called off before they left: the letter goes back in the bag, as
+  before, and what they gathered goes back into the stores by the game's own unloading.
+- **On the road, at the town and home.** They eat from their pack on the road and while they wait at the town, by the
+  game's own caravan rules (and the road's food policy); going short has the game's own consequences: its "ran out of
+  food" message, hunger, then malnutrition, at the game's rate. Home again (watched within a few seconds), what is left of
+  the supplies in their and the beast's packs is said ("Guido is home with what is left of the supplies (3 packaged
+  survival meals and 1 herbal medicine), and it goes back into the stores") and unloaded by the game's own rule for a
+  caravan come home. Lost on the road, the supplies go with them.
+- **Every age.** The rider's forms are as before: on foot (a runner) or on the colony's beast; the supplies and the words
+  follow ("rides to Emberford on Bess", "goes to Emberford on foot"). Vehicles are not a rider's form yet (no vehicle mod is
+  read for the post).
+- **Saved.** `PostBook.packs` (`RiderPack`: the letter's id, the lines taken, whether sent short knowingly, the trip's
+  days), one a letter going with the colony's rider, from the send until they're home or the letter goes back in the bag
+  (`RiderPacks.Prune`, hourly and on saving); modelled in `save_estimate.py` (`packs`, `lines`). A rider of an older save
+  already getting ready, or a letter sent before, takes the planner's suggestions (`RiderPacks.DefaultFor`).
+- **Not run in the game** (none of it could be): the row and the window in both places; the game's caravan forming for a
+  lone rider and their beast (the rope, the loading, the wait, Giddy-Up's mount as it heads out); the messages as they
+  set out and come home; the far town's wait on the pack.
 
 ## The diplomacy screen: the peoples beside their page (the player's request, 8 November 2026)
 

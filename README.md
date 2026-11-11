@@ -3614,8 +3614,11 @@ post comes by the colony's age and its neighbours': none for a tribe, a post rid
 coming in by the way nearest the mailbag, mounted on one of their people's animals (with Giddy-Up they ride, otherwise they
 lead the beast), riding straight to the bag and on again once the mail is in and out, a mail run
 every few days in the industrial, a shuttle that drops a courier by pod in the spacer; its pace is a setting. For
-something urgent, send it with your own rider: a colonist takes it from the mailbag and rides out on a colony animal big
-enough to ride (or walks), a caravan of their own on the game's roads, and brings the answer home. Answers and the
+something urgent, send it with your own rider: you choose their supplies as you send it (food for there and back, a
+little medicine, feed for the beast and anything else from the stores; short of the road only if you let them go short
+knowingly), and a colonist takes it from the mailbag, gathers the supplies as a caravan does, rides out on a colony animal
+big enough to ride (or walks), a caravan of their own on the game's roads, eats from the pack on the way, and brings the
+answer home with what is left. Answers and the
 world's letters (a town's letter, your envoy's or ward's from abroad) come the same way: whoever comes in sets the bag
 down at the mailbag and the letter opens then; only when nobody has come for longer than is reasonable (half a day for
 urgent news, three days for business, a week or more for kind words) does a messenger of theirs bring it. What an answer

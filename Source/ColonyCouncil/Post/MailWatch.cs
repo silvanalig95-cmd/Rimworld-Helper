@@ -46,12 +46,20 @@ namespace ColonyCouncil
             PostReach.Reset();
         }
 
-        /// <summary>Something to watch: a letter in an outbox, mail in, a letter packed by a caravan, or the post rider on a map.</summary>
-        public static bool Wants => PostBook.On && (Outbox.AnyAnywhere || (PostBook.Instance?.incoming.Count ?? 0) > 0 || PostRider.OnAnyMap);
+        /// <summary>Something to watch: a letter in an outbox, mail in, a letter packed by a caravan, the post rider on a map, or the colony's own rider getting ready or home.</summary>
+        public static bool Wants => PostBook.On && (Outbox.AnyAnywhere || (PostBook.Instance?.incoming.Count ?? 0) > 0 || PostRider.OnAnyMap || OwnRiders.Watching);
 
         public static void Rare(int now)
         {
             if (!PostBook.On) return;
+            try
+            {
+                OwnRiders.Rare(now);
+            }
+            catch (Exception e)
+            {
+                CouncilLog.ErrorOnce("post: the riders' watch", e);
+            }
             foreach (var map in Find.Maps)
             {
                 if (map == null || !map.IsPlayerHome) continue;

@@ -12,11 +12,14 @@ namespace ColonyCouncil
 {
     /// <summary>
     /// The colony's own rider (docs/design/post-and-letters.md, step 1, point 4): from the letter's dialog or the mailbag,
-    /// "send it with our own rider". A chosen colonist takes the letter from the mailbag, walks to the map's edge (a colony
-    /// animal big enough to ride following them, if there is one) and sets out as a caravan of their own on the game's
-    /// roads, straight to the town however far (the range doesn't bind a rider; the road's length does); there they hand
-    /// it over, wait for the answer (a few hours), and bring it home, where it opens. The away time is real, and the road's
-    /// dangers are the game's own caravan events (nothing rolled here). As the colony's envoy abroad (Diplomacy/EnvoysAbroad.cs).
+    /// "send it with our own rider", the supplies for the road chosen with it (Post/RiderPacks.cs). A chosen colonist takes
+    /// the letter from the mailbag, gathers what was packed (with the colony animal big enough to ride, if there is one) the
+    /// way the colony's caravans gather theirs, and sets out as a caravan of their own on the game's roads, straight to the
+    /// town however far (the range doesn't bind a rider; the road's length does); there they hand it over, wait for the
+    /// answer (a few hours), and bring it home, where it opens and what is left of the supplies goes back into the stores.
+    /// They eat from their pack on the road and at the town, by the game's own caravan rules; going short, the game's own
+    /// hunger. The away time is real, and the road's dangers are the game's own caravan events (nothing rolled here). As
+    /// the colony's envoy abroad (Diplomacy/EnvoysAbroad.cs).
     /// </summary>
     public static class OwnRiders
     {
@@ -79,20 +82,23 @@ namespace ColonyCouncil
         }
 
         /// <summary>
-        /// The letter goes with the colony's own rider: when it is in the outbox they set out (at once, if it is already there;
-        /// one still in its writer's hand on the way to the mailbag, as it goes in: Post/Outbox.cs).
+        /// The letter goes with the colony's own rider and the supplies chosen for them (the letter's window sets them for the
+        /// letter it sends: RiderPacks.ForNext): when it is in the outbox they set out (at once, if it is already there; one
+        /// still in its writer's hand on the way to the mailbag, as it goes in: Post/Outbox.cs).
         /// </summary>
-        public static void Send(NeighbourLetter l, Pawn rider)
+        public static void Send(NeighbourLetter l, Pawn rider, RiderPack pack = null)
         {
             if (l == null || rider == null) return;
+            pack ??= RiderPacks.TakeNext();
             l.ownRider = true;
             l.rider = rider;
             l.carrier = PostCarrier.OwnRider;
+            if (pack != null) RiderPacks.Keep(l.id, pack);
             NotableBook.Changed();
             if (l.stage == LetterStage.Outbox && !l.bringing) SetOut(l);
         }
 
-        /// <summary>The rider fetches the letter and walks to the edge, the mount following.</summary>
+        /// <summary>The rider fetches the letter, then gathers the supplies with the mount following (Gather), and sets out.</summary>
         public static bool SetOut(NeighbourLetter l)
         {
             var book = Book;
@@ -109,6 +115,8 @@ namespace ColonyCouncil
                 letterId = l.id, rider = p, mount = mount, home = map, town = town.ID, townName = town.Name, riderName = p.LabelShort, stage = RideStage.SettingOut, since = Now
             };
             book.rides.Add(ride);
+            // Sent without choosing (an older save, a letter already on its way to the bag): the journey planner's supplies.
+            if (RiderPacks.For(l.id) == null) RiderPacks.Keep(l.id, RiderPacks.DefaultFor(map, p, mount, town));
             l.packedBy = p;
             var job = JobMaker.MakeJob(PostDefOf.Rimfolk_RiderSetOut, spot, edge);
             job.locomotionUrgency = Pace.Errand;
@@ -138,6 +146,7 @@ namespace ColonyCouncil
         {
             if (l != null)
             {
+                RiderPacks.Drop(l.id);
                 l.ownRider = false;
                 l.rider = null;
                 l.packedBy = null;
@@ -177,13 +186,121 @@ namespace ColonyCouncil
                 ride.stage = RideStage.Out;
                 ride.since = Now;
                 NotableBook.Changed();
-                // apart: the rider's caravan is out on the world map; the message looks at it.
-                Notify.Message(PostWords.P("CC_Mail_Msg_RiderOut", p.Named("PAWN"), town.Name.Named("TOWN")), c != null ? new LookTargets(c) : LookTargets.Invalid,
-                    MessageTypeDefOf.NeutralEvent, Importance.Notable);
+                OutMessage(ride, p, c);
             }
             catch (Exception e)
             {
                 CouncilLog.ErrorOnce("post: the rider's caravan", e);
+            }
+        }
+
+        // ---------------- The supplies gathered ----------------
+
+        /// <summary>Getting ready in the game's own caravan forming (gathering the supplies, the beast, waiting to go).</summary>
+        public static bool Forming(Pawn p) => p?.GetLord()?.LordJob is LordJob_FormAndSendCaravan;
+
+        /// <summary>
+        /// With the letter in hand (from the job): the supplies packed for them are gathered the way the colony's caravans
+        /// gather theirs (Journeys/JourneyRun.cs, Depart): the game's own caravan forming, with the rider and their beast, the
+        /// packed lines not yet in their packs as its goods, gathered at the gate and out by the edge toward the town, where
+        /// the game makes their caravan and sends it on its way (Giddy-Up puts riders in the saddle as it heads out). False
+        /// when it can't (no way out): they set out as before.
+        /// </summary>
+        public static bool Gather(Pawn p)
+        {
+            var book = Book;
+            var ride = book?.RideOf(p);
+            var l = ride != null ? NeighbourLetters.Get(ride.letterId) : null;
+            var map = p?.Map;
+            var town = ride != null ? NotableBook.TownOf(ride.town) : null;
+            if (ride == null || l == null || l.stage != LetterStage.Riding || map == null || town == null || !p.Spawned || p.Downed) return false;
+            var mount = ride.mount;
+            if (mount != null && (!mount.Spawned || mount.Map != map || mount.Dead || mount.Downed || mount.InMentalState || mount.GetLord() != null)) mount = ride.mount = null;
+            var pack = RiderPacks.For(l.id);
+            // The beast's feed only with the beast.
+            var plan = RiderPacks.Shadow(map, p, mount, town, pack?.lines.Where(x => mount != null || x.kind != "feed").ToList());
+            plan.exit = JourneyPack.Exit(plan);
+            if (!plan.exit.IsValid) return false;
+            plan.gate = JourneyPack.Gate(plan, plan.exit);
+            if (!plan.gate.IsValid) plan.gate = p.Position;
+            var start = JourneyPack.StartTile(plan);
+            if (!start.Valid) return false;
+            var going = new List<Pawn> { p };
+            if (mount != null) going.Add(mount);
+            var shortOf = new List<string>();
+            var goods = pack != null ? JourneyPack.Missing(plan, going, shortOf) : new List<TransferableOneWay>();
+            CaravanFormingUtility.StartFormingCaravan(going, new List<Pawn>(), Faction.OfPlayer, goods, plan.gate, plan.exit, start, town.Tile);
+            if (!Forming(p)) return false;
+            NotableBook.Changed();
+            // apart: the rider gathering on the map; the message looks at them.
+            if (shortOf.Count > 0)
+                Notify.Message(PostWords.P("CC_Mail_Msg_RiderStoresShort", p.Named("PAWN"), town.Name.Named("TOWN"), TextUtil.JoinAnd(shortOf).Named("WHAT")), new LookTargets(p),
+                    MessageTypeDefOf.CautionInput, Importance.Notable);
+            return true;
+        }
+
+        /// <summary>Out on the world map (the game's caravan forming sent them): on the road to the town.</summary>
+        private static void Departed(OwnRide ride, Pawn p, Caravan c, int now)
+        {
+            ride.stage = RideStage.Out;
+            ride.since = now;
+            if (ride.mount != null && !c.PawnsListForReading.Contains(ride.mount)) ride.mount = null;
+            var town = NotableBook.TownOf(ride.town);
+            if (town != null && !c.pather.Moving) c.pather.StartPath(town.Tile, null, true);
+            NotableBook.Changed();
+            OutMessage(ride, p, c);
+        }
+
+        /// <summary>
+        /// As they set out: with the letter and food for so many days against the road there and back (the game's own days of
+        /// food in their caravan, the road by its own estimate), or short of it, or with none: then they go hungry on the way.
+        /// </summary>
+        private static void OutMessage(OwnRide ride, Pawn p, Caravan c)
+        {
+            float food = -1f, trip = RiderPacks.For(ride.letterId)?.tripDays ?? 0f;
+            try
+            {
+                if (c != null)
+                {
+                    food = c.DaysWorthOfFood.days;
+                    int ticks = c.pather.Moving ? CaravanArrivalTimeEstimator.EstimatedTicksToArrive(c, false) : -1;
+                    if (ticks > 0) trip = RiderPackMath.TripDays(ticks / (float)GenDate.TicksPerDay);
+                }
+            }
+            catch (Exception e)
+            {
+                CouncilLog.ErrorOnce("post: the rider's food on the road", e);
+            }
+            // Nobody in the caravan needs food (the game counts it as endless), or it can't be read: said plainly.
+            string key = food < 0f || food >= 500f ? "CC_Mail_Msg_RiderOut" : RiderPackMath.OutKey(food, trip);
+            bool hungry = key == "CC_Mail_Msg_RiderOutShort" || key == "CC_Mail_Msg_RiderOutNoFood";
+            // apart: the rider's caravan is out on the world map; the message looks at it.
+            Notify.Message(PostWords.P(key, p.Named("PAWN"), (ride.townName ?? "?").Named("TOWN"), RiderPackMath.Days(food).Named("FOOD"), RiderPackMath.Days(trip).Named("ROAD")),
+                c != null ? new LookTargets(c) : LookTargets.Invalid, hungry ? MessageTypeDefOf.CautionInput : MessageTypeDefOf.NeutralEvent, Importance.Notable);
+        }
+
+        // ---------------- Every few seconds ----------------
+
+        /// <summary>A rider getting ready, or one just home: watched on the post's own 250-tick pass (Post/MailWatch.cs).</summary>
+        public static bool Watching => Book?.rides.Any(Watched) ?? false;
+
+        private static bool Watched(OwnRide r) => r != null && (r.stage == RideStage.SettingOut || r.stage == RideStage.Back && (r.rider?.Spawned ?? false));
+
+        /// <summary>Their setting out and their homecoming told as they happen, not on the next hour.</summary>
+        public static void Rare(int now)
+        {
+            var book = Book;
+            if (book == null || book.rides.Count == 0) return;
+            foreach (var ride in book.rides.Where(Watched).ToList())
+            {
+                try
+                {
+                    Step(book, ride, now);
+                }
+                catch (Exception e)
+                {
+                    CouncilLog.ErrorOnce("post: a rider's watch", e);
+                }
             }
         }
 
@@ -192,7 +309,9 @@ namespace ColonyCouncil
         public static void Hourly(int now)
         {
             var book = Book;
-            if (book == null || book.rides.Count == 0) return;
+            if (book == null) return;
+            RiderPacks.Prune();
+            if (book.rides.Count == 0) return;
             foreach (var ride in book.rides.ToList())
             {
                 try
@@ -219,15 +338,26 @@ namespace ColonyCouncil
             switch (ride.stage)
             {
                 case RideStage.SettingOut:
-                    // Called to other work before they left: the letter waits in the outbox again.
-                    if (p.Spawned && p.CurJobDef != PostDefOf.Rimfolk_RiderSetOut)
+                {
+                    // Out on the world map: the game's caravan forming sent them.
+                    var c = p.GetCaravan();
+                    if (c != null)
+                    {
+                        Departed(ride, p, c, now);
+                        return;
+                    }
+                    // Called to other work before they left, or the gathering called off: the letter waits in the outbox again,
+                    // and what they gathered goes back into the stores (the game's own unloading).
+                    if (p.Spawned && p.CurJobDef != PostDefOf.Rimfolk_RiderSetOut && !Forming(p))
                     {
                         if (l != null && l.stage == LetterStage.Riding) l.stage = LetterStage.Outbox;
                         if (l != null) Fail(l);
+                        else RiderPacks.Drop(ride.letterId);
                         book.rides.Remove(ride);
                         NotableBook.Changed();
                     }
                     return;
+                }
                 case RideStage.Out:
                 {
                     var c = p.GetCaravan();
@@ -284,7 +414,7 @@ namespace ColonyCouncil
         {
             c.pather.StopDead();
             ride.stage = RideStage.AtTown;
-            ride.until = now + Mathf.RoundToInt(NotableMath.ReplyDays(Rand.Value) * 0.5f * GenDate.TicksPerDay);
+            ride.until = now + Mathf.RoundToInt(RiderPackMath.TownWaitDays(Rand.Value) * GenDate.TicksPerDay);
             NeighbourLetters.ReadByRider(l, ride.rider);
             NotableBook.Changed();
         }
@@ -318,10 +448,11 @@ namespace ColonyCouncil
                 MessageTypeDefOf.NeutralEvent, Importance.Notable);
         }
 
-        /// <summary>Home with the answer: it opens now, the rider in its look; what it sent is in their pack.</summary>
+        /// <summary>Home with the answer: it opens now, the rider in its look; what it sent is in their pack, and what is left of the supplies goes back into the stores.</summary>
         private static void Home(PostBook book, OwnRide ride, NeighbourLetter l, Pawn p)
         {
             book.rides.Remove(ride);
+            Unpack(ride, p);
             if (ride.answered && !ride.answerText.NullOrEmpty())
             {
                 PostWords.Say(p, "home", l);
@@ -342,10 +473,30 @@ namespace ColonyCouncil
             NotableBook.Changed();
         }
 
+        /// <summary>
+        /// What is left of the supplies, in the rider's and the beast's packs as they come home, goes back into the stores:
+        /// the game's own unloading of a caravan come home (set again here), said once.
+        /// </summary>
+        private static void Unpack(OwnRide ride, Pawn p)
+        {
+            var pack = RiderPacks.For(ride.letterId);
+            RiderPacks.Drop(ride.letterId);
+            if (pack == null || p == null || !p.Spawned) return;
+            var mount = ride.mount != null && ride.mount.Spawned && ride.mount.Map == p.Map ? ride.mount : null;
+            var left = RiderPacks.Left(pack, p, mount);
+            if (left.Count == 0) return;
+            if (p.inventory != null) p.inventory.UnloadEverything = true;
+            if (mount?.inventory != null) mount.inventory.UnloadEverything = true;
+            // apart: the rider home on the map; the message looks at them.
+            Notify.Message(PostWords.P("CC_Mail_Msg_PackLeft", p.Named("PAWN"), TextUtil.JoinAnd(left).Named("LEFT")), new LookTargets(p), MessageTypeDefOf.NeutralEvent,
+                Importance.Notable);
+        }
+
         /// <summary>The rider lost on the road (dead, carried off): the letter, and any answer they carried, with them.</summary>
         private static void End(PostBook book, OwnRide ride, NeighbourLetter l, string why)
         {
             book.rides.Remove(ride);
+            RiderPacks.Drop(ride.letterId);
             if (l != null && l.Open)
             {
                 if (l.stage == LetterStage.Riding) NeighbourLetters.Cancel(l, null);

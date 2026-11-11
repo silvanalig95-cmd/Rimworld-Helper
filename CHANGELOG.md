@@ -5,6 +5,15 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## Packed for the road
+
+*11 November 2026, version 0.210.0*
+
+- Sending a letter with your own rider now lets you choose their supplies: food for there and back, a little medicine, feed for their beast, and anything else from the stores.
+- If the stores can't cover the road, the send is greyed with the reason, unless you choose to let them go short.
+- The rider gathers the supplies and leads or loads their beast before they ride off, like any caravan, and eats from the pack on the way.
+- When they come home, whatever is left of the supplies goes back into the stores.
+
 ## Invited, and made welcome
 
 *11 November 2026, version 0.209.0*
