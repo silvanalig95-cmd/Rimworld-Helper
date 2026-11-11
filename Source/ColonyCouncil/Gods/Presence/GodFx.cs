@@ -44,10 +44,12 @@ namespace ColonyCouncil
                 Rand.Range(0.3f, 0.6f), 0f, Rand.Range(0.8f, 1.4f));
         }
 
-        /// <summary>Whether a mote by this name is drawn in its own colours (a coloured picture) rather than tinted (a white or grey one).</summary>
+        /// <summary>
+        /// Whether a mote takes the god's colour whole (a white or grey picture: Rimfolk's own, the game's flecks, A RimWorld
+        /// of Magic's grayscale ones) or keeps its own colours with only a touch of the god's (a coloured picture).
+        /// </summary>
         private static bool Tinted(Def def) =>
-            def != null && (def.defName.StartsWith("Rimfolk_") || def.defName.IndexOf("rayscale", StringComparison.OrdinalIgnoreCase) >= 0 || def.defName.StartsWith("Mote_Psi")
-                            || def.defName == "Mote_Twinkle" || def is FleckDef);
+            def != null && (def.defName.StartsWith("Rimfolk_") || def.defName.IndexOf("rayscale", StringComparison.OrdinalIgnoreCase) >= 0 || def is FleckDef);
 
         /// <summary>A mote of either kind (a fleck, or a mote thing such as A RimWorld of Magic's), moving at an angle (0 is up the screen).</summary>
         public static void Throw(Def def, Vector3 loc, Map map, float scale, Color color, float angle, float speed, float rotation, float solid)

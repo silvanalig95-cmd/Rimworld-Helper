@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using RimWorld;
 using RimWorld.Planet;
 using UnityEngine;
@@ -30,7 +31,7 @@ namespace ColonyCouncil
                 : veiled ? "CC_GodP_Card_VeiledTitle".Translate().Resolve()
                 : ("CC_GodP_Card_Title_" + kind).Translate(name.Named("NAME")).Resolve();
             label = label.CapitalizeFirst();
-            string body = !text.NullOrEmpty() ? text : ("CC_GodP_Card_Text_" + kind + (veiled ? "_Veiled" : "")).Translate(name.Named("NAME")).Resolve();
+            string body = !text.NullOrEmpty() ? text : ("CC_GodP_Card_Text_" + kind + (veiled ? "_Veiled" : "")).Translate(name.Named("NAME")).Resolve().CapitalizeFirst();
             var look2 = avatar != null && avatar.Spawned ? new LookTargets(avatar) : new LookTargets(at, map);
             pending = new GodLetter { look = look, godName = name, epithet = epithet, kind = kind, veiled = veiled, colorA = a, colorB = b };
             try
@@ -50,8 +51,8 @@ namespace ColonyCouncil
         public static readonly Color Ink = new Color(0.93f, 0.89f, 0.80f), InkFaint = new Color(0.93f, 0.89f, 0.80f, 0.62f);
     }
 
-    /// <summary>The letter in the stack for a god's moment: it keeps what the card shows, and opens the card.</summary>
-    public class GodLetter : StandardLetter
+    /// <summary>The letter in the stack for a god's moment: it keeps what the card shows, and opens the card (never the event card).</summary>
+    public class GodLetter : RimfolkLetter
     {
         public GodLookDef look;
         public string godName, epithet;
@@ -71,6 +72,15 @@ namespace ColonyCouncil
             veiled = p.veiled;
             colorA = p.colorA;
             colorB = p.colorB;
+        }
+
+        public override IEnumerable<DiaOption> Choices
+        {
+            get
+            {
+                yield return Option_Close;
+                if (lookTargets.IsValid()) yield return Option_JumpToLocation;
+            }
         }
 
         public override void OpenLetter()

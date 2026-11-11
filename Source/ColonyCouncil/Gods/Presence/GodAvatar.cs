@@ -65,6 +65,14 @@ namespace ColonyCouncil
             Fresh();
             var p = c?.Pawn;
             if (p == null) return;
+            // The gods whose bodies the game has let go of entirely are forgotten.
+            for (int i = all.Count - 1; i >= 0; i--)
+            {
+                var gone = all[i]?.Pawn;
+                if (gone != null && !gone.Discarded) continue;
+                if (gone != null) byId.Remove(gone.thingIDNumber);
+                all.RemoveAt(i);
+            }
             if (byId.TryGetValue(p.thingIDNumber, out var old) && old != c) all.Remove(old);
             byId[p.thingIDNumber] = c;
             if (!all.Contains(c)) all.Add(c);
@@ -194,6 +202,7 @@ namespace ColonyCouncil
         [Unsaved] private GodLight light;
         [Unsaved] private Sustainer humming;
         [Unsaved] private float revealedAt = -1f;
+        [Unsaved] private float shownSize = -1f;
         [Unsaved] internal IntVec3 lastCell = IntVec3.Invalid;
         [Unsaved] internal int steps;
 
@@ -201,17 +210,26 @@ namespace ColonyCouncil
 
         public Color ColorB => ownColors ? colorB : look?.colorB ?? Color.white;
 
-        public string Name => godName.NullOrEmpty() ? look?.label ?? "" : godName;
+        public string Name => godName.NullOrEmpty() ? look?.sampleName ?? look?.label ?? "" : godName;
 
-        /// <summary>Its size as drawn now: growing for a moment after a reveal, its full size after; its mortal size in disguise.</summary>
-        public float DrawSize
+        /// <summary>
+        /// Its size as drawn now: growing for a moment after a reveal, its full size after; its mortal size in disguise.
+        /// Only read here (the game draws pawns on several threads at once): <see cref="RefreshSize"/> works it out each
+        /// frame on the game's own thread.
+        /// </summary>
+        public float DrawSize => disguised || look == null ? 1f : shownSize > 0f ? shownSize : GodPresenceMath.SizeFactor(look.size);
+
+        /// <summary>Works out its size for this frame (GodAuraDrawer, each frame, for the gods on a map).</summary>
+        internal void RefreshSize()
         {
-            get
+            if (disguised || look == null)
             {
-                if (disguised || look == null) return 1f;
-                float since = revealedAt < 0f ? -1f : Time.realtimeSinceStartup - revealedAt;
-                return GodPresenceMath.SizeAt(look.size, since);
+                shownSize = 1f;
+                return;
             }
+            float since = revealedAt < 0f ? -1f : Time.realtimeSinceStartup - revealedAt;
+            shownSize = GodPresenceMath.SizeAt(look.size, since);
+            if (since >= GodPresenceMath.GrowSeconds) revealedAt = -1f;
         }
 
         public override string CompLabelInBracketsExtra => disguised ? null : Name;
@@ -293,6 +311,7 @@ namespace ColonyCouncil
             disguised = false;
             Stage();
             revealedAt = grow ? Time.realtimeSinceStartup : -1f;
+            shownSize = grow ? 1f : -1f;
             try
             {
                 if (p.RaceProps.Humanlike && p.story != null)

@@ -7,8 +7,8 @@ colony of 20, with the game keeping 30 more people it knows and 5 more each year
 generous guesses; sizes are rough XML sizes. Caps named as constants are read from the source. "Counted under" rows are
 kept inside another record (a journal's lines, a heart's lists) and are already in that record's size.
 
-Saved collections found: 627; modelled: 627; growing without end: 0.
-Rimfolk's part of the save, roughly: **2,777 KB** after a year, **3,370 KB** after two, **3,694 KB** after five.
+Saved collections found: 629; modelled: 629; growing without end: 0.
+Rimfolk's part of the save, roughly: **2,778 KB** after a year, **3,370 KB** after two, **3,695 KB** after five.
 
 | Collection | Rule | Kind | 1 year | 2 years | 5 years | KB at 5 years |
 |---|---|---|---|---|---|---|
@@ -426,6 +426,7 @@ Rimfolk's part of the save, roughly: **2,777 KB** after a year, **3,370 KB** aft
 | `Camps/CampLook.cs:walkSeen` | colonists the farewell round looked in on (the walk's count), while the camp stays | while | 4 | 4 | 4 | 0.2 |
 | `ColonyState.cs:colonies` | one council per colony (one home in the model; a second doubles the council's rows), a lost home's kept 30 days (ColonyStateMath.KeepLostDays), then let go | fixed | 1 | 1 | 1 | 0.2 |
 | `Couriers/CourierTrip.cs:toUnload` | who still carries the colony's goods, while the trip lasts | while | 4 | 4 | 4 | 0.2 |
+| `Gods/Presence/GodAvatar.cs:stored` | what the robe and crown covered, kept in its pack, while it walks as one | while | 4 | 4 | 4 | 0.2 |
 | `Happenings/VisitorServices.cs:pawns` | per task: who is still to have a dose (one per colonist at most), doses only | fixed | 4 | 4 | 4 | 0.2 |
 | `Health/HealthTracker.cs:convalescing` | known pawns only | colonists | 4 | 4 | 4 | 0.2 |
 | `Heart/HeartData.cs:feelingSinceKeys` | per heart: feelings felt now | fixed | 4 | 4 | 4 | 0.2 |
@@ -480,6 +481,7 @@ Rimfolk's part of the save, roughly: **2,777 KB** after a year, **3,370 KB** aft
 | `Calendar/CalendarDay.cs:kin` | per day on the calendar | fixed | 2 | 2 | 2 | 0.1 |
 | `Camps/Camp.cs:arrested` | while the camp stays | while | 2 | 2 | 2 | 0.1 |
 | `Camps/CampKindsLand3.cs:caught` | the beasts beast-catchers roped this stay, two at most (CampLandMath.MaxCaught), while the camp stays | while | 2 | 2 | 2 | 0.1 |
+| `Gods/Presence/GodAvatar.cs:given` | the god's robe and crown, while it walks as one | while | 2 | 2 | 2 | 0.1 |
 | `Peoples/Events/PeopleCamps.cs:trail` | the lantern post's hunters out on the trail, while the camp stands | fixed | 2 | 2 | 2 | 0.1 |
 | `Persona/TraitChanges.cs:once` | the changes that come once in a colony's life | fixed | 2 | 2 | 2 | 0.1 |
 | `PlayOut/OnMapTimed.cs:cells` | per thing kept: where each planter sets their sapling (OnMapMath.MaxSaplings at most), plantings only | fixed | 2 | 2 | 2 | 0.1 |

@@ -247,3 +247,22 @@ RT_TalentScout
 RT_TalentVeterinarian
 # Alpha Memes 1.6 (sarg.alphamemes): the crude wooden table of the tribal camp kit (Rimfolk_CampKits.xml)
 AM_Neolithic_WoodenTable_1x2c
+# The gods' looks (Defs/GodDefs/Rimfolk_GodLooks.xml), read from the player's mods' own defs (docs/player-mods/defs.tsv.gz):
+# Alpha Memes 1.6 (sarg.alphamemes): the ritual chants a god hums
+AM_RitualSustainer_Jain
+AM_RitualSustainer_Kemetic
+AM_RitualSustainer_MaddeningChant
+AM_RitualSustainer_Mesoamerican
+AM_RitualSustainer_Neolithic
+AM_RitualSustainer_Ocular
+AM_RitualSustainer_Sikh
+AM_RitualSustainer_SteampunkRevival
+AM_RitualSustainer_TeaCeremony
+# Alpha Genes 1.6 (sarg.alphagenes): the Forsaken's cloak and psycaster helmet
+AG_ForsakenCloak
+AG_ForsakenMarineHelmetPsy
+# Alpha Mechs 1.6 (sarg.alphamechs): the aura mech
+AM_Aura
+# Vanilla Factions Expanded - Classical 1.6 (oskarpotocki.vfe.classical): the toga and the centurion's helmet
+VFEC_Toga
+VFEC_Apparel_CenturionHelmet

@@ -12082,6 +12082,87 @@ simple meal, and none of the player's active mods adds simple variants.
 - Rimfolk counts them as simple meals wherever it reads a meal's preferability (feasts, hosting, the road food, the
   rider's supplies, the stores panel); the storage review groups them with the meals. Tested in `DietMealsTests`.
 
+### Gods: how a god looks and comes (the player's request, 11 November 2026; not released)
+
+The presence part of the gods (docs/design/gods.md, "Presence"; brainstorm sections F and G). The player: "they should
+then always carry some kind of weight and ominosity with them ... like a godly presence ... imposing sound effects or
+really kind of epic ones", and "if I look on the map ... and I see a regular pawn and a god next to it, the god should
+... clearly have something about it that shows its godly presence, unless it's actually trying to hide". No generated
+music: the game's, the DLCs' and the player's mods' own sounds and songs (A RimWorld of Magic's motes, effecters and
+sounds used heavily, the player's word), plus a folder the player fills. Code in `Source/ColonyCouncil/Gods/Presence/`,
+pure rules in `GodPresenceMath.cs` (linked, `GodPresenceTests`).
+
+- **The looks** (`GodLookDef`, `Defs/GodDefs/Rimfolk_GodLooks.xml`): `Rimfolk_GodLook_<Domain>` for the fourteen
+  domains, and age variants where the age changes the god (`_Machine_Old` to the medieval age, `_War_Spacer` and
+  `_Craft_Spacer` from the spacer age; `GodLooks.For(domain, age)` takes the narrowest that holds the age,
+  `GodPresenceMath.Choose`). Each: two colours, a light's colour and reach, a size, a person's skin, hair and eyes, an
+  animal's tint, robes and head pieces in order, a trail, motes, a flash (effecters), a circle, spirits that run out
+  (A RimWorld of Magic's spirit and blood wolves), the sky's colour and the wind's stillness, a mark and a wrath's
+  mark, the sounds of a sting, a wrath, an omen, a departure and a hum, tracks and darker tracks, and the animals it
+  walks as (the player's mods' first: the elves' ancient deer, Odyssey's greatwolf, Alpha Animals' thunderox, night
+  ram and phoenixes, Alpha Mechs' aura). Everything is named as text and looked up softly once; `GodPresenceTests`
+  checks every name against the player's enabled mods (docs/player-mods/defs.tsv.gz), and each look has a robe of the
+  game's own to fall back on.
+- **The avatar** (`GodAvatar`, hediff `Rimfolk_GodAvatar` and `HediffComp_GodAvatar`): `GodAvatar.Make(pawn, look,
+  name, disguised, colorA, colorB)`, `Reveal`, `Disguise`, `Unmake`, `Of`. Shown (severity 1): a person's skin and hair
+  take the look's, a robe and a crown are made (masterwork, the finest stuff allowed, recoloured, locked) and worn, the
+  first of each list whose picture exists for the body (`ContentFinder`, so a robe for one body type is skipped for the
+  others), what they cover kept in the pack and given back at the end (saved: `given`, `stored`); the hediff's stage
+  slows the walk to 0.8; the health page shows "a god within (its name)". In disguise (severity 0.5) nothing shows, the
+  hediff included. The registry (by pawn id) is what every hook looks at first.
+- **Drawn larger** (`Patch_GodDrawParms` on `PawnRenderer.GetDrawParms`): the root matrix scaled and lifted, never for
+  portraits or the game's cached pictures; an animal's whole body tinted. The game draws pawns on worker threads, so
+  the size is worked out each frame on the main thread (`GodAuraDrawer.MapComponentUpdate`, `RefreshSize`) and only
+  read by the hook; a shown god is never drawn from the game's small cached picture (`Patch_GodNotCached`).
+- **The aura** (`GodAura`, `GodAuraDrawer.MapComponentDraw`; textures by `Tools/make_god_auras.py`): a halo and a
+  turning carved ring on the ground (`MoteLow`), a tall glow and a breathing ring behind the body (`PawnRope`), all on
+  one 3.2-second pulse, stronger at night; at night a shine over the dark (`VisEffects`, which the night doesn't dim)
+  and the light in a person's eyes; a pale god's colours pulled toward their own light by day
+  (`GodPresenceMath.DayTint`). The light that follows it is the game's glower on an unsaved, unselectable thing
+  (`GodLight`), moved to its cell every quarter second and re-registered. Motes rise every 35 to 55 ticks (the look's,
+  with one of Rimfolk's own in its colour). Its name over it (`MapComponentOnGUI`) at the zooms where names show.
+- **The trail** (`GodTrails`, `GodPresenceMath.TrailAt`): what lasts (a flower or grass grown at once, a little snow,
+  a scorch mark, ash, a puddle) on one step in three, forty a day at most, only on open natural ground, never a field,
+  a floor or under a roof, the filth only outside the home area; flecks that fade otherwise.
+- **The world turning to it** (`GodReactions`, `JobDriver_BeholdGod`, jobs `Rimfolk_BeholdGod`, `_PrayToGod`,
+  `_LieBeforeGod`): as a shown god passes (a look every 250 ticks), up to two who see it within nine cells stop and
+  face it for a few seconds, once a day each; a line said aloud at most once in two hours, the same person once in two
+  days (pools `Rimfolk_Pool_GodAwe`, `_GodPrayer`; one sentence each, a line naming the god only for a named god). A
+  disguised god's tells: a shimmer at night, an animal following it now and then, a remark once a day by a colonist
+  with sight 120% (110% at night) or psychic sensitivity 150% within ten cells (`_GodTell`), and no footprints or
+  splashes (`Patch_GodNoFootprints`). Never sold, stripped, tamed, captured, arrested, recruited or eaten (patches on
+  `TradeUtility.PlayerSellableNow`, `Pawn.AnythingToStrip`, `TameUtility.CanTame`, `GenAI.CanBeCaptured`,
+  `GenAI.CanBeArrestedBy`, `Pawn_GuestTracker.Recruitable`, `Corpse.IngestibleNow`).
+- **The moment** (`GodPresence.Manifest(look, godName, epithet, map, at, kind, avatar, title, text, veiled, colorA,
+  colorB)`, run on real seconds by `GodPresenceComponent`): an omen plays a soft sound and a glimmer, those within
+  sixteen cells look up and one speaks (`_GodOmen`), and its text is a line in the news. Every other kind: normal speed
+  and the camera there; the music fades over 2.5 seconds and stays silent (`ForceFadeoutAndSilenceFor`); after a 1.6
+  second beat the sting (the kind's sounds, then the look's, then the game's start sting, the first two that exist,
+  layered; a sustained one held seven seconds), the sky's flash (`GodFlashEvent`), the look's effecters, a burst of
+  rays, its circle and spirits, a disguised god revealed and growing over 2.2 seconds, the presence on the sky
+  (`GameCondition_GodPresence`: the god's colour, darkened for a wrath, the wind stilled by the look's stillness
+  through `Patch_GodStillsWind`, an hour to five by the kind, named plainly or "a strange stillness"), everyone on the
+  map turning (animals within forty cells; the devout pray, calm animals lie down, shy wild ones within 22 cells run;
+  three speak, `_GodMoment`), and the mark (`GodPresenceMath.MarkFor`: a ring of flowers or scorch marks, frost, ash, a
+  spring of shallow water, a tree of the biome, a lump of slag or a chunk of the land's stone); 1.2 seconds later the
+  track (`MusicManagerPlay.ForcePlaySong`: the player's own from `Sounds/Rimfolk/Gods/<Domain>/` first, else the look's,
+  a wrath's darker ones first, varied by the god and the hour); four seconds after the sting the card. With the music
+  off, no fade, silence or track: the sting at once.
+- **The card** (`GodCard`, `GodLetter`, `GodCardWindow`, letter `Rimfolk_GodCard`, frame key `GodCard`): sent through
+  `Tell.Letter` (important, never held), gold in the stack with a small bell, pausing only for those who pause for
+  every letter (a paused game silences the music); opened, dark paper in a double gold border, the god's symbol
+  glowing in its colour (the core's `Textures/ColonyCouncil/Gods/Symbols/<Domain>` when there, Rimfolk's star
+  otherwise), the god's name in its colour and its epithet, or "Some say" for a veiled one, the words in their own ink,
+  "Go there" and "Close". Its words by kind and veiled are `CC_GodP_Card_*` when the caller gives none.
+- **Settings** (How you're told, On the map): *Gods' auras* (the halo, rings, motes, light and shine) and *Gods'
+  music* (the fade, the silence, the track and the hum), both on. Dev actions *Gods: ...* make any person or animal a
+  god's (shown or in disguise), bring an animal of a look's kinds, reveal, disguise and unmake, play each kind of
+  moment of each look at a cell (veiled or plain), and log what each look finds in the game.
+- **The seams** (stage 2's wiring, docs/design/gods.md): the core's `GodPresenceSeam.Manifest` and
+  `GodLookSeam.MakeAvatar` are set to `GodPresence.Manifest` and `GodAvatar.Make` (the kinds share their names; a god's
+  look is `GodLooks.Named(god.look)` or `GodLooks.For(domain, age)`). The presence builds on its own types and needs
+  nothing of the core's.
+
 ### Checking a new game version
 
 One DLL serves every supported version: it is built against the 1.6 references into `1.6/Assemblies`, and on 1.7

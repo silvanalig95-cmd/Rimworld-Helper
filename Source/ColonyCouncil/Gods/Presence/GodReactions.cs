@@ -76,14 +76,14 @@ namespace ColonyCouncil
 
         private static bool IsGodJob(Job j) => j != null && (j.def.defName == BeholdJob || j.def.defName == PrayJob || j.def.defName == LieJob);
 
-        /// <summary>The devout: strong in their faith (Ideology's certainty), or a priest or paladin of A RimWorld of Magic.</summary>
+        /// <summary>The devout: strong in their faith (Ideology's certainty), or a priest, paladin, druid or monk of A RimWorld of Magic.</summary>
         private static bool Devout(Pawn p)
         {
             if (ModsConfig.IdeologyActive && p.ideo != null && p.Ideo != null && p.ideo.Certainty >= 0.8f) return true;
             var traits = p.story?.traits;
             if (traits == null) return false;
             foreach (var t in traits.allTraits)
-                if (t?.def != null && (t.def.defName == "Priest" || t.def.defName == "Paladin" || t.def.defName == "TM_Priest"))
+                if (t?.def != null && (t.def.defName == "Priest" || t.def.defName == "Paladin" || t.def.defName == "Druid" || t.def.defName == "TM_Monk"))
                     return true;
             return false;
         }

@@ -31,7 +31,7 @@ namespace ColonyCouncil
             veiled || godName.NullOrEmpty() ? "CC_GodP_ConditionVeiled".Translate().Resolve() : "CC_GodP_Condition".Translate(godName.Named("NAME")).Resolve();
 
         public override string Description =>
-            veiled || godName.NullOrEmpty() ? "CC_GodP_ConditionVeiledDesc".Translate().Resolve() : "CC_GodP_ConditionDesc".Translate(godName.Named("NAME")).Resolve();
+            veiled || godName.NullOrEmpty() ? "CC_GodP_ConditionVeiledDesc".Translate().Resolve() : "CC_GodP_ConditionDesc".Translate(godName.Named("NAME")).Resolve().CapitalizeFirst();
 
         public override void Init()
         {

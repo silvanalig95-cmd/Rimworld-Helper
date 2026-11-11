@@ -61,8 +61,11 @@ namespace ColonyCouncil
         private static string GodLabel(HediffComp_GodAvatar c) => c.Pawn.LabelShort + ": " + c.Name + (c.disguised ? " (in disguise)" : "");
 
         [DebugAction("Rimfolk", "Gods: reveal a god in disguise...", allowedGameStates = AllowedGameStates.PlayingOnMap)]
-        private static void DebugReveal() =>
+        private static void DebugReveal()
+        {
+            // apart: a god in disguise shows itself to everyone on the map; nobody confides anything to anyone.
             Menu(Here.Where(c => c.disguised).Select(c => new FloatMenuOption(GodLabel(c), () => Say(GodAvatar.Reveal(c.Pawn) ? c.Name + " shows itself." : "it couldn't."))));
+        }
 
         [DebugAction("Rimfolk", "Gods: a god goes back into disguise...", allowedGameStates = AllowedGameStates.PlayingOnMap)]
         private static void DebugDisguise() =>

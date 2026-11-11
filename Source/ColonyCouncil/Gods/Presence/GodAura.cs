@@ -144,6 +144,15 @@ namespace ColonyCouncil
         {
         }
 
+        public override void MapComponentUpdate()
+        {
+            if (!GodAvatar.Any) return;
+            var gods = GodAvatar.All;
+            for (int i = 0; i < gods.Count; i++)
+                if (gods[i]?.Pawn?.MapHeld == map)
+                    gods[i].RefreshSize();
+        }
+
         public override void MapComponentDraw()
         {
             if (Find.CurrentMap == map) GodAura.Draw(map);
