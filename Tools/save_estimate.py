@@ -778,6 +778,20 @@ MODEL = {
     "Peoples/Events/PeopleEventsBook.cs:fates": ("fixed", 10, V, "per trust: how each crate went that isn't there (counted under trusts)"),
     "Peoples/Events/PeopleCamps.cs:trail": ("fixed", 2, 40, "the lantern post's hunters out on the trail, while the camp stands"),
     "Peoples/Events/PeopleCamps.cs:travellers": ("fixed", 4, 40, "the hostel's travellers resting there now, while the camp stands"),
+    # The gods (Gods/GodBook.cs): the pantheon, one record a god (its names, domains, form, kind and nature, colours, the
+    # peoples and faiths that hold it), built once per world (30 to 70 in a world of a dozen to twenty peoples) and a few
+    # more as peoples arise and newborns come (GodsMath.MaxNewborns); the ties between them, GodTiesMath.MaxTies a god at
+    # most; the colony's standing with each god at each home it has moved with, let go once it has come to rest at unknown
+    # and been left a year; the acts remembered, GodBook.MaxActs (and MaxActsPerGod a god); the vows, the open ones and the
+    # newest done to GodBook.MaxVows; the deeds a newborn is born of, a year's at most and GodBook.MaxDeeds.
+    "Gods/GodBook.cs:gods": ("cap", (90, 0.05), 900, "the pantheon: one record a god, built once per world, a few more as peoples arise and newborns come"),
+    "Gods/GodBook.cs:ties": ("cap", (180, 0.05), 160, "the ties between gods: GodTiesMath.MaxTies a god at most, two gods to a tie"),
+    "Gods/GodBook.cs:standings": ("cap", (200, 2), 150, "the colony's standing with a god at a home, once it has moved; let go once at rest at unknown and left a year"),
+    "Gods/GodBook.cs:acts": ("cap", (const("Gods/GodBook.cs", "MaxActs", 300), 3), 300, "the gods' acts the colony remembers, GodBook.MaxActs (MaxActsPerGod a god)"),
+    "Gods/GodBook.cs:vows": ("cap", (const("Gods/GodBook.cs", "MaxVows", 40), 0.1), 260, "colonists' vows to a god, the open ones and the newest done, GodBook.MaxVows"),
+    "Gods/GodBook.cs:deeds": ("cap", (const("Gods/GodBook.cs", "MaxDeeds", 240), 2), 110, "the deeds in a domain at a home a newborn god is born of: a year's, GodBook.MaxDeeds at most"),
+    "Gods/God.cs:factions": ("fixed", 2, 40, "per god: the peoples that hold it (counted under gods)"),
+    "Gods/God.cs:ideos": ("fixed", 1, 40, "per god: the faiths that hold it (counted under gods)"),
     # The peoples' ages as they change (Peoples/PeopleAges.cs): one record a people of Rimfolk's (a reference and ten
     # values: its age now and the one it began in, its progress, when it was first heard of, looked at and last changed,
     # its heading and why), made the first time the region's day looks at it; the fifteen at once, and one for each that

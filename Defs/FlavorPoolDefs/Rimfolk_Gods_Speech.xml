@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    A colonist swears by their god (Gods/GodSpeech.cs): now and then as a line about how they are (Immersion/StateSpeech.cs:
+    hurt, grieving, worn down, glad), and in place of a word about the weather when it turns (Immersion/WeatherTalk.cs:
+    storm, cold, heat, snow). One sentence each, said over the head. {GOD} is the god they would swear by (the healer's when
+    hurt, the dead's when grieving, the storm's in a storm, where they have one), {GODEPITHET} its epithet ("the Bringer of
+    Rain"), {GODOF} what it is ("goddess of the harvest"). The tags: the moment, the god's domain (god:harvest...) and kind
+    (kind:archotech, kind:trickster, kind:hunger...), and the speaker's own (hurt, grieving, lowmood, highmood, the age).
+  -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_SayGod</defName>
+    <lines>
+      <plain>
+        <li>{GOD} keep us.</li>
+        <li>By {GOD}, what a day this has been.</li>
+        <li>I said a word to {GOD} this morning, just in case.</li>
+        <li>If {GOD} is listening, a little help would be welcome.</li>
+        <li>{GOD} sees all of this, you know.</li>
+        <li>[storm] {GOD} must be angry with someone tonight.</li>
+        <li>[storm] Pray {GOD} keeps the lightning off the roof.</li>
+        <li>[storm,god:storm] Easy now, {GOD}, we heard you the first time.</li>
+        <li>[storm,god:storm] That's {GOD} out walking, so keep your heads down.</li>
+        <li>[cold] {GOD} send us a kinder wind than this.</li>
+        <li>[cold] I asked {GOD} for a mild winter, and here we are.</li>
+        <li>[heat] {GOD}, a little rain would not go amiss.</li>
+        <li>[heat,god:harvest] Spare the fields, {GOD}, and you can have the rest of us.</li>
+        <li>[snow] First snow, so {GOD} has turned the year again.</li>
+        <li>[snow,child] Did {GOD} send the snow just for us?</li>
+        <li>[hurt] {GOD} mend me, and quickly.</li>
+        <li>[hurt,god:healing] {GOD} will have me up again in no time.</li>
+        <li>[grieving] {GOD} keep them now, since we couldn't.</li>
+        <li>[grieving,god:dead] Walk them gently home, {GOD}.</li>
+        <li>[lowmood] {GOD}, give me the strength for one more day.</li>
+        <li>[lowmood] I don't know if {GOD} hears me, but I keep asking.</li>
+        <li>[highmood] Thank {GOD} for a day like this.</li>
+        <li>[highmood] Someone up there likes us, and I'd say it's {GOD}.</li>
+        <li>[fall,god:harvest] {GOD} was good to us this year.</li>
+        <li>[night,god:night] {GOD} is bright tonight.</li>
+        <li>[kind:archotech] {GOD} will have noted that, it notes everything.</li>
+        <li>[kind:archotech] Don't bother praying to {GOD}, it only counts what you do.</li>
+        <li>[kind:trickster] Don't thank {GOD} too loudly, it only encourages it.</li>
+        <li>[kind:hunger] Hush, don't say its name, it listens.</li>
+        <li>[kind:fading] Somebody has to remember {GOD}, so it may as well be me.</li>
+        <li>[kind:newborn] {GOD} is small yet, but it's ours.</li>
+        <li>[tribal] The spirits are watching, {GOD} most of all.</li>
+        <li>[spacer] Whatever {GOD} is, I hope it's on our side.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+</Defs>

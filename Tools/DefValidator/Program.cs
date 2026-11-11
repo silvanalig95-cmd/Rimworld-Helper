@@ -553,6 +553,9 @@ wishPh.UnionWith(new[] { "FROM", "TO", "TOTITLE", "COUNCIL", "PURPOSE", "DEAL", 
 // Letters of many shapes (Letters/LetterFormShapes.cs, Rimfolk_Letters_*.xml): one of the wild animals of the land round
 // the writer (with its article) and its plural, one of its wild plants, one of its trees, their faith's god, the answer to a riddle owed.
 wishPh.UnionWith(new[] { "ANIMAL", "ANANIMAL", "ANIMALS", "PLANT", "TREE", "DEITY", "ANSWER" });
+// The gods (Gods/Gods.cs, Fill and Args): a god's name, its epithet, and what it is ("goddess of the harvest"), in
+// letters (Gods/GodWords.cs, Letter) and the words colonists say to their god (Rimfolk_Pool_SayGod).
+wishPh.UnionWith(new[] { "GOD", "GODEPITHET", "GODOF" });
 // A correspondence that builds up (Letters/LetterThreads.cs, Rimfolk_Letters_Familiar, _Thread): an earlier letter's
 // thread in words, the one written to by full name and by a short one, the colonist who usually wrote.
 wishPh.UnionWith(new[] { "RE", "TOFULL", "TONICK", "LASTPEN" });

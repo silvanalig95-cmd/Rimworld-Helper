@@ -1075,6 +1075,8 @@ namespace ColonyCouncil
             if (note.prisonerOf != null) Grudges.Add(note.prisonerOf, note.name, Now);
             // A beast the Lantern Wardens were after (Peoples/PeoplesD.cs): they gather at the carcass to skin it.
             if (victim.RaceProps?.Animal == true) HappeningWorker_WardensHunt.Killed(victim);
+            // The gods (Gods/GodDeeds.cs): a great beast brought down by the colony, a sacred animal slaughtered or hunted.
+            if (victim.RaceProps?.Animal == true) GodDeeds.Killed(victim, dinfo, note.beast, note.map);
         }
 
         // ---------------- Memos for later events ----------------

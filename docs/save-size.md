@@ -7,8 +7,8 @@ colony of 20, with the game keeping 30 more people it knows and 5 more each year
 generous guesses; sizes are rough XML sizes. Caps named as constants are read from the source. "Counted under" rows are
 kept inside another record (a journal's lines, a heart's lists) and are already in that record's size.
 
-Saved collections found: 627; modelled: 627; growing without end: 0.
-Rimfolk's part of the save, roughly: **2,777 KB** after a year, **3,370 KB** after two, **3,694 KB** after five.
+Saved collections found: 635; modelled: 635; growing without end: 0.
+Rimfolk's part of the save, roughly: **2,865 KB** after a year, **3,522 KB** after two, **3,860 KB** after five.
 
 | Collection | Rule | Kind | 1 year | 2 years | 5 years | KB at 5 years |
 |---|---|---|---|---|---|---|
@@ -19,6 +19,7 @@ Rimfolk's part of the save, roughly: **2,777 KB** after a year, **3,370 KB** aft
 | `Persona/PersonaTracker.cs:memories` | PersonaTracker.MaxMemories, 8 per pair and 3 of a kind; past it by 60 the faintest go at once; faded ones and those of people the game no longer knows dropped at saving | cap | 300 | 600 | 600 | 187.5 |
 | `Persona/PersonaTracker.cs:peopleSaved` | the colony's own people the game still knows; empty records dropped at saving | known | 33 | 36 | 45 | 159.1 |
 | `World/Notables.cs:notables` | the towns' head, heir, envoy and trader (NotableMath.MaxNear + MaxDealt towns) and NotableMath.MaxAcquaintances faces met; with their notes and regards (a save that handed colonies over has four more for each town the colony was, HandOverMath.MaxTowns at most) | fixed | 42 | 42 | 42 | 106.6 |
+| `Gods/GodBook.cs:acts` | the gods' acts the colony remembers, GodBook.MaxActs (MaxActsPerGod a god) | cap | 180 | 300 | 300 | 87.9 |
 | `UI/WeekMemory.cs:dilemmas` | DilemmaLog.MaxRecords; each with what the answer was to do in numbers (about 500 characters, at most 1600), in words (about 400, at most 1200) and the flavour line under it (about 70, at most 200) | cap | 30 | 60 | 60 | 82.0 |
 | `World/Ledger/WorldLedger.cs:ties` | ties between two parties: 3 of a kind per pair, 60 per kind (regard 300), TieRules.MaxTies in all; closed ones dropped after 60 days | cap | 60 | 120 | 300 | 76.2 |
 | `Persona/TraitChanges.cs:watches` | one per colonist with its deeds and ten snapshots; known pawns only | colonists | 20 | 20 | 20 | 66.4 |
@@ -31,9 +32,11 @@ Rimfolk's part of the save, roughly: **2,777 KB** after a year, **3,370 KB** aft
 | `Persona/TraitChanges.cs:changes` | known pawns only, 8 per person, 200 at most; with their story | cap | 6 | 12 | 30 | 35.2 |
 | `Dealings/DealingBook.cs:deals` | dealings asked, under way and closed: closed ones kept 60 days (a work built together kept while it stands), DealingBook.MaxDeals at most | cap | 24 | 48 | 80 | 32.8 |
 | `Journeys/Journeys.cs:slots` | timetable hours changed for the last day (24 at most each, the night and the free hours about half), put back when they set off | fixed | 240 | 240 | 240 | 32.8 |
+| `Gods/GodBook.cs:standings` | the colony's standing with a god at a home, once it has moved; let go once at rest at unknown and left a year | cap | 120 | 200 | 200 | 29.3 |
 | `World/FactionMemory.cs:deeds` | 12 deeds per people (12 peoples), fading out | fixed | 144 | 144 | 144 | 28.1 |
 | `Heart/HeartTracker.cs:hearts` | one per colonist, the gone dropped hourly | colonists | 20 | 20 | 20 | 27.3 |
 | `Animals/AnimalBook.cs:ties` | pairs asleep side by side, friends and rivals, AnimalNatureMath.MaxTies at most, pairs first to go, ties let go when apart 40 days | cap | 60 | 80 | 80 | 25.8 |
+| `Gods/GodBook.cs:deeds` | the deeds in a domain at a home a newborn god is born of: a year's, GodBook.MaxDeeds at most | cap | 120 | 240 | 240 | 25.8 |
 | `Aspirations/Aspirations.cs:all` | goals of the dead and departed end; finished ones of the dead kept 3 years | known | 55 | 60 | 75 | 25.6 |
 | `World/Ledger/LedgerPersons.cs:persons` | every notable, anyone a tie names and anyone kept in the world; the rest go at the day's tidy (LedgerMath.KeepPerson) | fixed | 145 | 145 | 145 | 25.5 |
 | `Trade/TradeRecord.cs:goods` | goods the colony sold or bought, TradeMarketMath.MaxGoods at most, the one traded longest ago going first | cap | 48 | 50 | 50 | 24.7 |
@@ -59,6 +62,7 @@ Rimfolk's part of the save, roughly: **2,777 KB** after a year, **3,370 KB** aft
 | `Social/Bonds.cs:pairs` | one short line per pair of colonists who met, pairs not both among the colony's people for 60 days dropped daily | pairs | 209 | 209 | 209 | 14.3 |
 | `CouncilGameComponent.cs:history` | a sample a day, 120 days | window | 60 | 120 | 120 | 14.1 |
 | `Animals/AnimalBook.cs:marks` | a temperament for each named or bonded animal, AnimalNatureMath.MaxMarks at most, let go 120 days after last seen | cap | 30 | 60 | 150 | 13.2 |
+| `Gods/GodBook.cs:gods` | the pantheon: one record a god, built once per world, a few more as peoples arise and newborns come | cap | 3 | 6 | 15 | 13.2 |
 | `World/Ledger/LedgerRegion.cs:houses` | two founding families per new town in detail (RegionMath.HousesPerTown), going with the town's record (the colony's own houses of release 2d.1 went on 5 November 2026: an older save's are dropped as it loads) | cap | 12 | 24 | 60 | 12.9 |
 | `Building/ColonyUse.cs:keys` | with the above: what was counted, where and what | window | 280 | 280 | 280 | 12.3 |
 | `Annals.cs:written` | Caps.AnnalsYears written years | cap | 1 | 2 | 5 | 12.2 |
@@ -91,6 +95,7 @@ Rimfolk's part of the save, roughly: **2,777 KB** after a year, **3,370 KB** aft
 | `Social/Talk/TalkTracker.cs:notes` | the talk's news: TalkTracker.MaxNotes, a month at most | cap | 40 | 40 | 40 | 7.8 |
 | `UI/News.cs:items` | per news letter; the game's archive keeps 200 letters | cap | 40 | 40 | 40 | 7.8 |
 | `UI/News.cs:waiting` | the evening's news, 40 at most, sent each evening | cap | 40 | 40 | 40 | 7.8 |
+| `Gods/GodBook.cs:vows` | colonists' vows to a god, the open ones and the newest done, GodBook.MaxVows | cap | 6 | 12 | 30 | 7.6 |
 | `Journal.cs:griefSeen` | cleared at 500 | cap | 30 | 60 | 150 | 7.3 |
 | `World/WorldSituations.cs:history` | 40 past | cap | 6 | 12 | 30 | 7.3 |
 | `Building/Suggest/Suggestions.cs:declinedTitles` | with the above: the words they had | fixed | 80 | 80 | 80 | 7.0 |
@@ -175,6 +180,7 @@ Rimfolk's part of the save, roughly: **2,777 KB** after a year, **3,370 KB** aft
 | `Building/Automations.cs:log` | the automations' log, AutomationMath.LogLines lines | fixed | 20 | 20 | 20 | 2.3 |
 | `Calendar/ColonyCalendar.cs:restHours` | days taken off by hand: only the player's clicks | colonists | 20 | 20 | 20 | 2.3 |
 | `Defense/DefenseLinesWatch.cs:running` | one per line while a raid lasts | while | 4 | 4 | 4 | 2.3 |
+| `Gods/GodBook.cs:ties` | the ties between gods: GodTiesMath.MaxTies a god at most, two gods to a tie | cap | 3 | 6 | 15 | 2.3 |
 | `Happenings/Happenings.cs:departed` | the departed 2 years | window | 3 | 6 | 6 | 2.3 |
 | `Happenings/VisitorServices.cs:tasks` | a night to a day each, at most VisitorServices.MaxTasks at once | cap | 8 | 8 | 8 | 2.3 |
 | `Offices/Election.cs:campaigners` | one per candidate, while it lasts | while | 20 | 20 | 20 | 2.3 |
@@ -565,6 +571,8 @@ Rimfolk's part of the save, roughly: **2,777 KB** after a year, **3,370 KB** aft
 | `Diplomacy/FeastBook.cs:retinue` | per guest: one or two who walk in with them (counted under homes) | fixed | 2 | 2 | 2 | (in its record) |
 | `Faith/FaithPeople.cs:leanings` | per colonist: the ideoligions they're drawn to, the strongest 6 at most, faded ones forgotten daily (counted under people) | fixed | 6 | 6 | 6 | (in its record) |
 | `Faith/FaithPeople.cs:notes` | per colonist: the newest faith moments, 120 days at most (counted under people) | fixed | 5 | 5 | 5 | (in its record) |
+| `Gods/God.cs:factions` | per god: the peoples that hold it (counted under gods) | fixed | 2 | 2 | 2 | (in its record) |
+| `Gods/God.cs:ideos` | per god: the faiths that hold it (counted under gods) | fixed | 1 | 1 | 1 | (in its record) |
 | `Happenings/Workers_Chains2.cs:flags` | per story chain (counted under chains) | fixed | 4 | 4 | 4 | (in its record) |
 | `Hauling/HaulBook.cs:givers` | per load: the work givers of the work that made it, one or two (counted under loads) | fixed | 2 | 2 | 2 | (in its record) |
 | `Hauling/HaulBook.cs:into` | per load: a kind a bill sent to a picked stockpile and a cell of it, kept only while that kind is owed (counted under loads) | fixed | 1 | 1 | 1 | (in its record) |
