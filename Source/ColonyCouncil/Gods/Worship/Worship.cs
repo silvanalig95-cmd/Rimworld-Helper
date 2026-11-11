@@ -262,6 +262,7 @@ namespace ColonyCouncil
         /// <summary>Says a line from a pool over their head (one sentence, Speech.Say), to <paramref name="to"/> when given.</summary>
         public static bool Say(Pawn p, string pool, God g, Pawn to = null, params string[] extra)
         {
+            // together: Speech.Say shows a line said to someone only when the two are really together (Together.Can).
             string line = Line(pool, p, g, to, extra);
             return !line.NullOrEmpty() && Speech.Say(p, line, to);
         }

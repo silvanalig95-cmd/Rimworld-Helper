@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    The priest (Source/ColonyCouncil/Gods/Worship/Worship.cs, Priest; docs/design/gods.md, "Worship": a priest). The seat
+    opens with the gods and their worship on and a god the colony holds; with Ideology and a faith of the colony's own the
+    chaplain's seat stands instead, and the chaplain is the colony's priest (needsGods). By Social and faith; A RimWorld of
+    Magic's priests, paladins and brightmages first (Rimfolk_ModPeople_Priests). The priest dedicates the colony's places
+    to its gods, carries the offerings, leads the festivals' rites, and is heard more surely by the gods (their prayers and
+    rites weigh more, WorshipMath.PriestRiteFactor) and sees more plainly in dreams. In the colony's age: a tribe's
+    shaman, a medieval priest, an industrial pastor, a spacer's oracle.
+  -->
+
+  <ColonyCouncil.OfficeDef>
+    <defName>Rimfolk_Office_Priest</defName>
+    <label>priest</label>
+    <description>Keeps the colony's gods: dedicates its shrines, carries its offerings, leads the festivals' rites, and is the first to hear what the gods want.</description>
+    <order>10</order>
+    <minColonists>4</minColonists>
+    <needsGods>true</needsGods>
+    <skills><li>Social</li></skills>
+    <goodTraits><li>Kind</li></goodTraits>
+    <badTraits><li>Psychopath</li><li>Abrasive</li></badTraits>
+    <hediff>Rimfolk_Office_Priest</hediff>
+    <duties>
+      <li>Dedicates the places the colony gives to its gods, and carries the offerings left there.</li>
+      <li>Leads each god's festival rite at its shrine.</li>
+      <li>The priest's prayers and rites weigh more with the gods, and the gods speak more plainly in the priest's dreams.</li>
+      <li>Only with the gods on and a god the colony holds; with Ideology and a faith of the colony's own, the chaplain does this instead. Opens once the colony has four people who can vote.</li>
+    </duties>
+    <elected>
+      <li>{PAWN_nameDef} says no god of the colony's will want for an offering again.</li>
+      <li>{PAWN_nameDef} says the gods have been patient with this colony, and means to give them less to be patient about.</li>
+      <li>{PAWN_nameDef} asked for one thing first: that nobody eat the offerings.</li>
+    </elected>
+    <planks>
+      <li><key>faith</key><when>Always</when><text>{PAWN_nameDef} promises every god's festival kept, and an offering at each shrine in its season.</text></li>
+      <li><key>comfort</key><when>LowMood</when><text>{PAWN_nameDef} says the gods have not forgotten the colony in its hard days, and promises to pray with anyone who asks.</text></li>
+    </planks>
+  </ColonyCouncil.OfficeDef>
+
+  <HediffDef>
+    <defName>Rimfolk_Office_Priest</defName>
+    <label>priest</label>
+    <description>Holds the priest's seat: keeps the colony's gods.</description>
+    <hediffClass>HediffWithComps</hediffClass>
+    <defaultLabelColor>(0.85, 0.75, 0.5)</defaultLabelColor>
+    <isBad>false</isBad>
+    <everCurableByItem>false</everCurableByItem>
+    <stages>
+      <li><statOffsets><SocialImpact>0.06</SocialImpact><MentalBreakThreshold>-0.02</MentalBreakThreshold></statOffsets></li>
+    </stages>
+  </HediffDef>
+
+  <ColonyCouncil.OfficeWordsDef>
+    <defName>Rimfolk_OfficeWords_Priest</defName>
+    <office>Rimfolk_Office_Priest</office>
+    <tribal>shaman</tribal>
+    <medieval>priest</medieval>
+    <industrial>pastor</industrial>
+    <spacer>oracle</spacer>
+    <measure><li>Council_RitualsLed</li></measure>
+    <measured>led {COUNT} rites</measured>
+    <measuredOne>led a rite</measuredOne>
+    <promises>
+      <li><key>faith</key><promise>every god's festival kept</promise><test>Work</test></li>
+      <li><key>comfort</key><promise>to pray with anyone who asked</promise><test>Mood</test></li>
+    </promises>
+    <planks>
+      <li><key>doubt</key><text>{PAWN_nameDef} promises a word with anyone whose prayers have gone unanswered.</text><promise>a word for anyone whose prayers went unanswered</promise><test>Faith</test></li>
+      <li><key>grief</key><text>{PAWN_nameDef} promises that the colony's dead will be prayed for, every one.</text><promise>that the colony's dead would be prayed for</promise><test>Mood</test></li>
+    </planks>
+  </ColonyCouncil.OfficeWordsDef>
+
+  <!-- A RimWorld of Magic's priests first (by name: nothing without the mod). -->
+  <ColonyCouncil.ModPeopleDef>
+    <defName>Rimfolk_ModPeople_Priests</defName>
+    <label>priests (A RimWorld of Magic)</label>
+    <offices>
+      <li>
+        <office>Rimfolk_Office_Priest</office>
+        <good><li>trait:Priest</li><li>trait:Paladin</li><li>trait:TM_Brightmage</li></good>
+      </li>
+    </offices>
+  </ColonyCouncil.ModPeopleDef>
+
+</Defs>

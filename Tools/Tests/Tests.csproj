@@ -249,6 +249,7 @@
     <Compile Include="../../Source/ColonyCouncil/Things/DietMealsMath.cs" Link="DietMealsMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Gods/GodsMath.cs" Link="GodsMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Gods/GodTiesMath.cs" Link="GodTiesMath.cs" />
+    <Compile Include="../../Source/ColonyCouncil/Gods/Worship/WorshipMath.cs" Link="WorshipMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Hud/HudHealthMath.cs" Link="HudHealthMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Hud/HudWorkMath.cs" Link="HudWorkMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Hud/HudEnums.cs" Link="HudEnums.cs" />

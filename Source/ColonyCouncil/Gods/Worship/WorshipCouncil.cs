@@ -98,7 +98,7 @@ namespace ColonyCouncil
     }
 
     /// <summary>Which god the colony honours this year: once a year, with two gods or more to choose from.</summary>
-    public class DilemmaWorker_GodOfTheYear : DilemmaWorker
+    public class DilemmaWorker_GodOfTheYear : DilemmaWorker_Gods
     {
         public override bool CanHappenNow(Map map) => Worship.On && base.CanHappenNow(map) && Worship.Honoured(map) == null && Choices(map).Count >= 2;
 
@@ -117,7 +117,7 @@ namespace ColonyCouncil
     }
 
     /// <summary>Whether to raise a temple: a god of the colony's has a place but no temple, and the priest (or the devout) asks.</summary>
-    public class DilemmaWorker_Temple : DilemmaWorker
+    public class DilemmaWorker_Temple : DilemmaWorker_Gods
     {
         public override bool TryCast(Map map, out DilemmaContext ctx)
         {
@@ -140,7 +140,7 @@ namespace ColonyCouncil
     /// A god of the rain asks for the colony's finest beast (a dream of the priest's or the devout's), or the rain stays
     /// away: a god of the harvest, the storm or the waters that takes offerings, and a tame beast of the colony's worth asking for.
     /// </summary>
-    public class DilemmaWorker_GodAsks : DilemmaWorker
+    public class DilemmaWorker_GodAsks : DilemmaWorker_Gods
     {
         private static bool RainGod(God g) => g != null && WorshipMath.TakesOfferings(g.kind)
                                               && (g.domain == GodDomain.Harvest || g.domain == GodDomain.Storm || g.domain == GodDomain.Waters || g.second == GodDomain.Harvest || g.second == GodDomain.Storm);
@@ -166,13 +166,23 @@ namespace ColonyCouncil
 
         public override void AddTags(DilemmaContext ctx, HashSet<string> tags)
         {
+            base.AddTags(ctx, tags);
             if (ctx.pet != null && ctx.pet.relations != null && ctx.pet.relations.DirectRelations.Any(r => r.def == PawnRelationDefOf.Bond)) tags.Add("bonded");
+        }
+    }
+
+    /// <summary>The gods' questions' tags: the step of how real the gods are ([step:felt]) and whether A is the priest ([priest]).</summary>
+    public abstract class DilemmaWorker_Gods : DilemmaWorker
+    {
+        public override void AddTags(DilemmaContext ctx, HashSet<string> tags)
+        {
             tags.Add("step:" + Worship.Step.ToLowerInvariant());
+            if (ctx?.a != null && Worship.IsPriest(ctx.a)) tags.Add("priest");
         }
     }
 
     /// <summary>Two rival gods of the colony's, each with someone of the colony who prays to it: the colony is caught between them.</summary>
-    public class DilemmaWorker_RivalGods : DilemmaWorker
+    public class DilemmaWorker_RivalGods : DilemmaWorker_Gods
     {
         public override bool TryCast(Map map, out DilemmaContext ctx)
         {
@@ -361,7 +371,7 @@ namespace ColonyCouncil
                 go.locomotionUrgency = LocomotionUrgency.Walk;
                 beast.jobs.StartJob(go, JobCondition.InterruptForced, null, false, true);
                 string text = ("CC_Wsh_BeastGiven_" + Worship.Step).Translate(beast.LabelShort.Named("PET"), Gods.FullName(g).Named("GOD")).Resolve();
-                Gods.AddFavour(g, map, WorshipMath.BeastGiven, text, FavourSource.Offering);
+                Gods.AddFavour(g, map, WorshipMath.BeastGiven, "CC_Wsh_Why_BeastGiven".Translate(beast.LabelShort.Named("PET")).Resolve(), FavourSource.Offering);
                 if (Gods.Realness == GodRealness.Walking)
                     Worship.Sign(g, map, beast.Position, PresenceKind.Act, "CC_Wsh_BeastGiven_Title".Translate(Gods.Name(g).Named("GOD")).Resolve(), text, beast, false);
                 else Gods.Remember(new GodAct { god = g.id, home = Gods.HomeKey(map), kind = GodActKind.Favour, text = text });

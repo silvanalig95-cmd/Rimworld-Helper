@@ -1,0 +1,414 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Worship's words (Source/ColonyCouncil/Gods/Worship/; Worship.Line). {GOD} is the god, {GODEPITHET} its epithet ("the
+    Bringer of Rain"), {GODOF} what it is ("goddess of the harvest"); {PAWN} the speaker, {OTHER} whom they speak to. The
+    tags: the god's domains and kind (god:harvest, kind:archotech, kind:hunger), the god itself (godkey:..., for a hand-made
+    god's own lines), the step of how real the gods are (step:believed, step:felt, step:walking), priest, scoffer, the
+    moment (pray:sickness, pray:death, pray:raid, pray:drought; offer:meal and the like; vow:nomeat...), and the speaker's own
+    (the age, lowtech, hurt, grieving, the tone). Spoken lines are one sentence each, said over the head (Speech.Say).
+  -->
+
+  <!-- ===================== A place dedicated ===================== -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_Worship_Dedicate</defName>
+    <lines>
+      <plain>
+        <li>This place is yours now, {GOD}, and so are we who come to it.</li>
+        <li>{GOD}, {GODEPITHET}, take this place and keep it.</li>
+        <li>Let whoever stands here know it belongs to {GOD}.</li>
+        <li>[lowtech] I mark this stone for {GOD}, and the ground it stands on.</li>
+        <li>[tribal] Spirit of this place, make room: {GOD} lives here now.</li>
+        <li>[spacer] By the colony's word, this place is set apart for {GOD}.</li>
+        <li>[kind:archotech] We set this place apart for {GOD}, and ask nothing we have not earned.</li>
+        <li>[kind:hunger] It's yours, {GOD}, and I know you'll want more than this.</li>
+        <li>[priest] In the colony's name and mine, I give this place to {GOD}.</li>
+        <li>[god:dead] {GOD}, keep our dead near this place, and us when it's our turn.</li>
+        <li>[god:hearth] Let there always be a warm corner here for {GOD}.</li>
+        <li>[god:harvest] {GOD}, the first of every harvest comes here, I promise you.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_Worship_DedicateJournal</defName>
+    <lines>
+      <plain>
+        <li>I gave a place to {GOD} today. I said the words I knew, and some I made up, and I think they were heard.</li>
+        <li>We have a place for {GOD} now. I went back after supper just to stand there.</li>
+        <li>[priest] I dedicated a place to {GOD} on the colony's behalf. It's a heavy thing to speak for everyone.</li>
+        <li>[step:believed] I set a place aside for {GOD}. Whether anyone lives there or not, it's ours to look after now.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- ===================== An offering set down ===================== -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_Worship_Offer</defName>
+    <lines>
+      <plain>
+        <li>For you, {GOD}, with the colony's thanks.</li>
+        <li>It's not much, {GOD}, but it's the best we had to spare.</li>
+        <li>Take it, {GOD}, and remember who left it.</li>
+        <li>[demand] You asked for this, {GOD}, and here it is.</li>
+        <li>[offer:meal] Eat with us, {GOD}, as you always have.</li>
+        <li>[offer:plant] The first and best of the fields, {GOD}.</li>
+        <li>[offer:pelt] The finest hide of the season, {GOD}, from a clean kill.</li>
+        <li>[offer:meat] Fresh meat for {GOD}, and the beast's thanks with it.</li>
+        <li>[offer:weapon] A blade for {GOD}, never yet drawn in anger.</li>
+        <li>[offer:silver] Silver for the road, {GOD}, wherever you walk it.</li>
+        <li>[offer:medicine] For the sick you watch over, {GOD}.</li>
+        <li>[offer:drink] A cup for {GOD}, and one for whoever is listening with you.</li>
+        <li>[offer:art] Something made with care, {GOD}, for you to look at.</li>
+        <li>[offer:component] Parts that work, {GOD}, which is more than we can say for most things.</li>
+        <li>[kind:hunger] There, {GOD}, now leave us be a while.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- ===================== A prayer ===================== -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_Worship_Pray</defName>
+    <lines>
+      <plain>
+        <li>{GOD}, hear me, just this once.</li>
+        <li>I don't ask you for much, {GOD}, so hear me now.</li>
+        <li>[pray:sickness] {GOD}, put your hand on them and break the fever.</li>
+        <li>[pray:sickness] Spare them, {GOD}, and take what you like from me instead.</li>
+        <li>[pray:sickness,inbed] {GOD}, I'm not ready, so give me a little longer.</li>
+        <li>[pray:sickness,god:healing] {GOD}, you mended worse than this, so mend them.</li>
+        <li>[pray:death] {GOD}, they're yours now, so be gentle with them.</li>
+        <li>[pray:death] Walk them the rest of the way, {GOD}, since we can't.</li>
+        <li>[pray:death,god:dead] {GOD}, light their way home and tell them we said goodbye.</li>
+        <li>[pray:raid] {GOD}, stand with us at the wall today.</li>
+        <li>[pray:raid] Keep them off us, {GOD}, and I'll owe you.</li>
+        <li>[pray:raid,god:war] {GOD}, give our arms your strength and our aim your eye.</li>
+        <li>[pray:drought] {GOD}, the fields are dust, so send us rain.</li>
+        <li>[pray:drought,god:storm] Open the sky, {GOD}, we've waited long enough.</li>
+        <li>[pray:drought,god:harvest] {GOD}, your fields are thirsty, and so are we.</li>
+        <li>[atshrine] I came to your place, {GOD}, so you'd know I meant it.</li>
+        <li>[kind:archotech] {GOD}, our case is set out plainly: judge it.</li>
+        <li>[kind:hunger] I know what you'll want for it, {GOD}, and I'm asking anyway.</li>
+        <li>[step:believed] Whoever is listening, {GOD} or nobody, please.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_Worship_Thanks</defName>
+    <lines>
+      <plain>
+        <li>Thank you, {GOD}, I won't forget it.</li>
+        <li>[pray:sickness] They're on their feet again, and I know whom to thank: {GOD}.</li>
+        <li>[pray:raid] {GOD} stood at the wall with us today, I'm sure of it.</li>
+        <li>[pray:drought] Rain at last, and {GOD} sent it.</li>
+        <li>[scoffer] Fine, maybe {GOD} had something to do with it.</li>
+        <li>[step:believed] Call it luck if you like, I'm thanking {GOD}.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- ===================== A crisis of faith ===================== -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_Worship_Crisis</defName>
+    <lines>
+      <plain>
+        <li>I prayed to {GOD} every night, and for what?</li>
+        <li>{GOD} turned away from me, and I don't know what I did.</li>
+        <li>[pray:sickness] I begged {GOD} for them, and {GOD} let them go.</li>
+        <li>[pray:drought] Not a drop, {GOD}, not one drop.</li>
+        <li>[pray:raid] Where were you at the wall, {GOD}?</li>
+        <li>[step:believed] Nobody was listening, were they.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_Worship_CrisisJournal</defName>
+    <lines>
+      <plain>
+        <li>I prayed to {GOD} and nothing came. Either nobody is there, or {GOD} looked at me and turned away. I don't know which frightens me more.</li>
+        <li>I've said {GOD}'s name every night since I can remember. Tonight I couldn't.</li>
+        <li>[step:felt] Some say {GOD} turns a face away to test the faithful. If this is a test, I'm failing it.</li>
+        <li>[step:walking] {GOD} heard me. I know that much. {GOD} heard me and chose not to answer.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- ===================== Scoffers ===================== -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_Worship_Scoff</defName>
+    <lines>
+      <plain>
+        <li>A fox took it in the night, {OTHER_nameDef}, not {GOD}.</li>
+        <li>You'd thank {GOD} for the sunrise, {OTHER_nameDef}.</li>
+        <li>If {GOD} is so busy helping us, ask for a new roof.</li>
+        <li>Coincidence, {OTHER_nameDef}, it's all coincidence.</li>
+        <li>[step:walking] All right, I saw it, and I still won't kneel to {GOD}.</li>
+        <li>[god:harvest] It rained because it's the season, not because of {GOD}.</li>
+        <li>[god:healing] The medicine did that, {OTHER_nameDef}, not {GOD}.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_Worship_ScoffReply</defName>
+    <lines>
+      <plain>
+        <li>Laugh all you like, {GOD} heard me.</li>
+        <li>Don't you dare speak of {GOD} like that.</li>
+        <li>One day you'll need {GOD} too, {OTHER_nameDef}.</li>
+        <li>I'll pray for you, {OTHER_nameDef}, since you won't.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- ===================== Couples and the rain ===================== -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_Worship_Bicker</defName>
+    <lines>
+      <plain>
+        <li>That's {GOD}'s rain, {OTHER_nameDef}, and you know it.</li>
+        <li>Say thank you to {GOD}, {OTHER_nameDef}, it's only polite.</li>
+        <li>[mine] I asked {GOD} for it last night, so that's settled.</li>
+        <li>[theirs] Your god sent it, maybe, but {GOD} let it through.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_Worship_BickerReply</defName>
+    <lines>
+      <plain>
+        <li>Nonsense, {OTHER_nameDef}, that was {GOD} and everyone knows it.</li>
+        <li>We'll ask at supper whose god it was, and they'll all say {GOD}.</li>
+        <li>[theirs] {GOD} would have sent it sooner if you'd asked politely.</li>
+        <li>[mine] Fine, {OTHER_nameDef}, but {GOD} was here first.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- ===================== Vows ===================== -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_Worship_Vow</defName>
+    <lines>
+      <plain>
+        <li>{GOD}, hear my vow, and hold me to it.</li>
+        <li>[vow:nomeat] No meat until they're well, {GOD}, I swear it.</li>
+        <li>[vow:pilgrimage] I'll walk to you on my own feet, {GOD}, I swear it.</li>
+        <li>[vow:temple] You'll have a house worthy of you, {GOD}, I swear it.</li>
+        <li>[vow:beastspared] Not one of your beasts falls to us this season, {GOD}.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_Worship_VowKeptJournal</defName>
+    <lines>
+      <plain>
+        <li>I kept my vow to {GOD}, every day of it. I didn't know I had it in me.</li>
+        <li>[vow:nomeat] They're well, and I never once touched meat. I'm having the biggest stew in the colony tonight.</li>
+        <li>[vow:beastspared] The season's over and not one of {GOD}'s beasts fell to us. I watched every hunt.</li>
+        <li>[vow:temple] {GOD} has a house now. I swore it, and it stands.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_Worship_VowBrokenJournal</defName>
+    <lines>
+      <plain>
+        <li>I broke my vow to {GOD}. I told myself it didn't matter, and I knew it did.</li>
+        <li>[vow:nomeat] I ate meat. I was hungry and I didn't think, and now I can't stop thinking.</li>
+        <li>[vow:beastspared] One of {GOD}'s beasts is dead at our hands. I swore it wouldn't be.</li>
+        <li>[step:felt] Some say {GOD} turned away from me the moment I broke it. I felt the cold of it.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- ===================== A pilgrimage ===================== -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_Worship_PilgrimOut</defName>
+    <lines>
+      <plain>
+        <li>Don't wait supper for me, I'm walking to {GOD}.</li>
+        <li>I made {GOD} a promise, and today I keep it.</li>
+        <li>[lowtech] I'm going out to {GOD}'s place, and I'm going on foot.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_Worship_PilgrimThere</defName>
+    <lines>
+      <plain>
+        <li>Here I am, {GOD}, as I promised.</li>
+        <li>I walked the whole way, {GOD}, so listen a while.</li>
+        <li>[god:wild] Old tree, tell {GOD} I came.</li>
+        <li>[god:waters] {GOD}, I came to your water, and I'm not leaving dry.</li>
+        <li>[god:dead] {GOD}, I've come to sit with your dead an hour.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- ===================== A festival's rite, and words at a god's place ===================== -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_Worship_Rite</defName>
+    <lines>
+      <plain>
+        <li>{GOD}, {GODEPITHET}, this day is yours.</li>
+        <li>We keep your day, {GOD}, as we kept it last year.</li>
+        <li>[about:harvest] {GOD}, the first sheaf, and the last, and everything between.</li>
+        <li>[about:night] On the longest night we keep a light for {GOD}.</li>
+        <li>[about:dead] {GOD}, tonight we say their names, every one.</li>
+        <li>[about:hearth] The fire's lit and the bread's broken, {GOD}, come and sit.</li>
+        <li>[about:storm] Thunder for {GOD}, and our thanks for the rain.</li>
+        <li>[about:hunt] A clean kill and a full table, {GOD}, we ask no more.</li>
+        <li>[about:wild] {GOD}, we leave the first green growing for you.</li>
+        <li>[about:waters] To {GOD}, for every river crossed and every catch shared.</li>
+        <li>[about:war] We stand for {GOD} today, every one of us.</li>
+        <li>[about:healing] For everyone who got up again this year, thank you, {GOD}.</li>
+        <li>[about:craft] Every good thing we made this year, we made under {GOD}'s eye.</li>
+        <li>[about:way] {GOD}, for every road walked and every guest who came down it.</li>
+        <li>[about:machine] {GOD}, the machines turned all year, keep them turning.</li>
+        <li>[about:void] {GOD}, we keep your day so that you keep your distance.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_Worship_RiteWords</defName>
+    <lines>
+      <plain>
+        <li>{GOD}, {GODEPITHET}, hear what the colony has decided.</li>
+        <li>We stand here for {GOD}, all of us together.</li>
+        <li>Say it with me: {GOD} keep us.</li>
+        <li>Whatever comes this year, we'll meet it with {GOD}.</li>
+        <li>[lowtech] Touch the stone, and say the name: {GOD}.</li>
+        <li>[step:believed] It's for the colony as much as for {GOD}, and that's fine.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_Worship_GiveBeast</defName>
+    <lines>
+      <plain>
+        <li>Go on then, {GOD} is waiting for you.</li>
+        <li>Off you go, and tell {GOD} we kept our side.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- ===================== A god in a dream ===================== -->
+  <!--
+    First person, as the dreams' lines are (their journal and the dream's mood). [clear]: a priest or one with a psychic gift
+    sees the god plainly; [veiled]: anyone else, a figure they take to be it. {SUBJECT}: the one the warning is about (a
+    sick colonist, a beast marked for the hunt); {NAME}: what a demand asks for, or the name of the lost one.
+  -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_Worship_Dream</defName>
+    <lines>
+      <plain>
+        <li>[dream:warning,danger:beast,clear] {GOD} stood between me and {SUBJECT}, and said only: not that one.</li>
+        <li>[dream:warning,danger:beast,veiled] I dreamt of {SUBJECT} with a light on its brow, and something behind it that watched me. I think it was {GOD}.</li>
+        <li>[dream:warning,danger:sickness,clear] {GOD} sat at {SUBJECT}'s bedside in my dream and would not look at me. Watch them closely.</li>
+        <li>[dream:warning,danger:sickness,veiled] I dreamt someone was counting breaths beside {SUBJECT}'s bed. They stopped counting before I woke.</li>
+        <li>[dream:warning,danger:anger,clear] {GOD} was angry. Not shouting. Just looking at the colony from very far away.</li>
+        <li>[dream:warning,danger:anger,veiled] The sky in my dream was the wrong colour, and everyone said it was {GOD}'s doing.</li>
+        <li>[dream:demand,clear] {GOD} came to me and asked for {NAME}, at {GOD}'s own place, within three days.</li>
+        <li>[dream:demand,veiled] I dreamt of {NAME} laid at the shrine, and a hand reaching for it. I think {GOD} wants it.</li>
+        <li>[dream:name] Someone I didn't know told me a name: {GOD}. I wrote it down before I could forget it.</li>
+        <li>[dream:name,clear] A god I had never heard of called {GOD} came to me and said its own name three times.</li>
+        <li>[dream:vision] {GOD} showed me the colony from above, small and lit, and smiled at it.</li>
+        <li>[dream:vision,clear] {GOD} spoke to me plainly, of the other gods and who is whose friend, and I remember every word.</li>
+        <li>[dream:vision,god:harvest] I walked {GOD}'s fields in my dream, and they went on for ever.</li>
+        <li>[dream:vision,god:night] {GOD} put the moon in my hands and asked me to keep it till morning.</li>
+        <li>[dream:vision,god:storm] I stood on a hill and {GOD} spoke to me in thunder, and I understood all of it.</li>
+        <li>[dream:vision,kind:hunger] Something with no face asked what I'd give for anything I wanted. I almost answered.</li>
+        <li>[dream:lost] {NAME} came back to me last night, well and laughing. {GOD} was with them, and they were not afraid.</li>
+        <li>[dream:lost,step:believed] I dreamt of {NAME}, well and at peace. I'll believe it was {GOD}'s kindness.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- ===================== A god's festival on the calendar (Calendar/CalendarKeeping.cs) ===================== -->
+  <!-- {NAME}: the festival's name; {SUBJECT}: its god; {WHO}: the god's epithet; [about:harvest] and the like: the god's domain. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Cal_Letter_GodFestival</defName>
+    <lines>
+      <plain>
+        <li>Today is {NAME}. {A_nameDef} says {SUBJECT} keeps count of who keeps it, and who doesn't.</li>
+        <li>[years] {NAME} again. {A_nameDef} has been telling the young ones what {SUBJECT} did for the colony in its first years.</li>
+        <li>[tradition] {NAME}, as the colony always keeps it. {A_nameDef} found the shrine swept before anyone was up.</li>
+        <li>[about:harvest] {NAME} has come: bread from the new grain, and the first sheaf for {SUBJECT}.</li>
+        <li>[about:night] {NAME}: the longest night, and a lamp kept burning for {SUBJECT} until dawn.</li>
+        <li>[about:dead] {NAME}: a place laid at the table for each of the colony's dead, and {SUBJECT} asked to carry them our love.</li>
+        <li>[about:hearth] {NAME}: every door open, every fire fed, and a bowl set by for whoever {SUBJECT} sends.</li>
+        <li>[about:hunt] {NAME}: the season's best meat roasted whole, and the bones given back to {SUBJECT}.</li>
+        <li>[about:storm] {NAME}: the first storm of summer, and a cup poured out for {SUBJECT} in the rain.</li>
+        <li>[about:wild] {NAME}: green bread and flowers, and nothing cut today, for {SUBJECT}.</li>
+        <li>[about:waters] {NAME}: a catch shared and a coin thrown in the water for {SUBJECT}.</li>
+        <li>[about:war] {NAME}: the colony's weapons laid out and blessed in the name of {SUBJECT}.</li>
+        <li>[about:healing] {NAME}: everyone who got well this year sits at the head of the table, for {SUBJECT}.</li>
+        <li>[about:craft] {NAME}: the year's best work laid out for {SUBJECT} to see.</li>
+        <li>[about:way] {NAME}: a place at the table for a stranger, in case {SUBJECT} sends one.</li>
+        <li>[about:machine] {NAME}: every machine oiled and every light lit, for {SUBJECT}.</li>
+        <li>[about:void] {NAME}: the shutters closed and the lamps lit, so that {SUBJECT} passes us by.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Cal_Pass_GodFestival</defName>
+    <lines>
+      <plain>
+        <li>{NAME} went by unkept. {A_nameDef} said {SUBJECT}'s words alone, and some say {SUBJECT} noticed who didn't.</li>
+        <li>No {NAME} this year. {A_nameDef} left a little something at the shrine anyway, and didn't tell anyone.</li>
+      </plain>
+      <warm><li>{NAME} passed without a feast. {A_nameDef} says {SUBJECT} is forgiving, and next year will do.</li></warm>
+      <blunt><li>No {NAME} this year. {A_nameDef} says {SUBJECT} won't forget it.</li></blunt>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Journal_Cal_GodFestival</defName>
+    <lines>
+      <plain>
+        <li>We kept {NAME}. For an evening the whole colony was {SUBJECT}'s, and it felt right.</li>
+        <li>[first] Our first {NAME}. Nobody knew all the words, and {SUBJECT} didn't seem to mind.</li>
+        <li>[years] Another {NAME}. I remember the first one, and how few of us there were.</li>
+        <li>[tradition] {NAME}, as we always keep it. The children know the rite better than I do.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Cal_Talk_GodFestival</defName>
+    <lines>
+      <plain>
+        <li>{A_nameDef} told {B_nameDef} the story of how {SUBJECT} came to be called {WHO}.</li>
+        <li>{A_nameDef} and {B_nameDef} argued happily over how {NAME} ought to be kept.</li>
+        <li>{A_nameDef} asked {B_nameDef} what {SUBJECT} is called where {B_pronoun} grew up.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!--
+    How each god is worshipped, by its own character (Gods/Worship/GodWorshipDef.cs, GodWorshipDef): what it loves offered
+    and refuses, its festival's day, name and dishes, its chant, the vows its people make. None yet: the generated pantheon
+    runs on the domains' tables (WorshipMath). The hand-made pantheon (docs/gods-pantheon-brainstorm.md) fills one a god,
+    for example:
+      <ColonyCouncil.GodWorshipDef>
+        <defName>Rimfolk_Worship_Auren</defName>
+        <gods><li>Auren</li></gods>
+        <likes><li><kind>Meal</kind><weight>1.6</weight></li><li><kind>Textile</kind><weight>1.1</weight></li></likes>
+        <festivalSeason>3</festivalSeason><festivalDay>7</festivalDay>
+        <festivalName>the Longest Night of {GOD}</festivalName>
+        <festivalDishes>bread broken at every hearth and a bowl set by the gate</festivalDishes>
+        <vows><li>NoMeat</li></vows>
+      </ColonyCouncil.GodWorshipDef>
+  -->
+
+</Defs>

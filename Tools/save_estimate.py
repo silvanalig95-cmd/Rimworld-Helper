@@ -792,6 +792,18 @@ MODEL = {
     "Gods/GodBook.cs:deeds": ("cap", (const("Gods/GodBook.cs", "MaxDeeds", 240), 2), 110, "the deeds in a domain at a home a newborn god is born of: a year's, GodBook.MaxDeeds at most"),
     "Gods/God.cs:factions": ("fixed", 2, 40, "per god: the peoples that hold it (counted under gods)"),
     "Gods/God.cs:ideos": ("fixed", 1, 40, "per god: the faiths that hold it (counted under gods)"),
+    # Worship of the gods (Gods/Worship/WorshipBook.cs): the places dedicated to a god (a few at a home, gone when the place
+    # is), the offerings open and lately done (one at a place at a time, kept ten days after), the prayers said (a few a
+    # week, settled and let go after twenty days), the vows' kinds, the gods' demands in dreams, a person's crises (a month)
+    # and turnings and pilgrimages, and a home's marks (the god honoured this year, the rain kept away, each god's last
+    # answer); each with its WorshipBook.Max* cap.
+    "Gods/Worship/WorshipBook.cs:shrines": ("cap", (const("Gods/Worship/WorshipBook.cs", "MaxShrines", 60), 0.05), 200, "places dedicated to a god, WorshipBook.MaxShrines, gone when the place is"),
+    "Gods/Worship/WorshipBook.cs:offerings": ("cap", (const("Gods/Worship/WorshipBook.cs", "MaxOfferings", 40), 0.5), 300, "offerings open and lately done, ten days after, WorshipBook.MaxOfferings"),
+    "Gods/Worship/WorshipBook.cs:prayers": ("cap", (const("Gods/Worship/WorshipBook.cs", "MaxPrayers", 80), 1), 260, "prayers said, settled and let go after twenty days, WorshipBook.MaxPrayers"),
+    "Gods/Worship/WorshipBook.cs:vows": ("cap", (const("Gods/Worship/WorshipBook.cs", "MaxVows", 40), 0.1), 220, "the vows' kinds beside the core's, the open and the newest done, WorshipBook.MaxVows"),
+    "Gods/Worship/WorshipBook.cs:demands": ("cap", (const("Gods/Worship/WorshipBook.cs", "MaxDemands", 12), 0.05), 160, "the gods' demands in dreams, a few days each and ten after, WorshipBook.MaxDemands"),
+    "Gods/Worship/WorshipBook.cs:marks": ("cap", (const("Gods/Worship/WorshipBook.cs", "MaxMarks", 120), 0.2), 120, "a person's crises (a month), turnings and pilgrimages, WorshipBook.MaxMarks"),
+    "Gods/Worship/WorshipBook.cs:homeMarks": ("cap", (const("Gods/Worship/WorshipBook.cs", "MaxHomeMarks", 80), 0.3), 140, "a home's marks: the god of the year, the rain kept away, each god's last answer, WorshipBook.MaxHomeMarks"),
     # The peoples' ages as they change (Peoples/PeopleAges.cs): one record a people of Rimfolk's (a reference and ten
     # values: its age now and the one it began in, its progress, when it was first heard of, looked at and last changed,
     # its heading and why), made the first time the region's day looks at it; the fifteen at once, and one for each that

@@ -82,7 +82,7 @@ namespace ColonyCouncil
             if (g == null || p == null) return;
             string key = (kept ? "CC_Wsh_VowKept_" : "CC_Wsh_VowBroken_") + r.kind;
             string text = key.Translate(p.LabelShort.Named("PAWN"), Gods.FullName(g).Named("GOD"), (r.aboutName ?? "").Named("ABOUT"), (r.beast?.label ?? "").Named("BEAST"),
-                (how ?? "").Named("HOW")).Resolve();
+                "".Named("HOW")).Resolve() + (how.NullOrEmpty() ? "" : " " + how);
             if (!p.Dead)
                 CouncilGameComponent.GiveThought(p, kept ? WorshipDefOf.Rimfolk_Worship_VowKept : WorshipDefOf.Rimfolk_Worship_VowBroken);
             Tell.Minor(NewsKind.People, Importance.Notable, map, text, p);
@@ -90,7 +90,7 @@ namespace ColonyCouncil
                 null, "vow:" + r.kind.ToString().ToLowerInvariant()) ?? text);
             if (kept && (r.kind == VowKind.Temple || r.kind == VowKind.Pilgrimage))
             {
-                Worship.Favour(g, map, WorshipMath.GreatVowFavour, text, FavourSource.Rite);
+                Worship.Favour(g, map, WorshipMath.GreatVowFavour, ("CC_Wsh_Why_GreatVow_" + r.kind).Translate(p.LabelShort.Named("PAWN")).Resolve(), FavourSource.Rite);
                 CouncilGameComponent.Instance?.AddChronicle(new ChronicleEntry(ChronicleKind.Life, text, p));
             }
             if (!kept && WorshipMath.WrathAfterBroken(g.nature, Rand.Value))

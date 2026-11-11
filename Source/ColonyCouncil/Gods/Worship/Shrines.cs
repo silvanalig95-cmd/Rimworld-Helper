@@ -196,7 +196,7 @@ namespace ColonyCouncil
         {
             var g = GodAt(t);
             if (g == null) return;
-            Worship.Say(p, "Rimfolk_Pool_Worship_Dedicate", g, null, "age:" + Ages.Tag(Ages.Ours));
+            Worship.Say(p, "Rimfolk_Pool_Worship_Dedicate", g);
             Worship.PriestLight(p, t.Position);
         }
 

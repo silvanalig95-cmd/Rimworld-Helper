@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Worship's jobs (Source/ColonyCouncil/Gods/Worship/WorshipJobs.cs): a place dedicated to a god (the words said there),
+    a prayer at a shrine or where they stand, a festival's rite at the god's place (with the chant of the god's kind), an
+    offering carried from the stores and set down beside the place, and a pilgrimage on foot to the god's holy place on the
+    colony's land. The report strings here are the fallbacks; the jobs report in their own words with the god's name.
+  -->
+
+  <JobDef>
+    <defName>Rimfolk_Worship_Dedicate</defName>
+    <driverClass>ColonyCouncil.JobDriver_WorshipAt</driverClass>
+    <reportString>dedicating a place to a god.</reportString>
+    <checkOverrideOnDamage>Always</checkOverrideOnDamage>
+    <casualInterruptible>false</casualInterruptible>
+    <modExtensions><li Class="ColonyCouncil.WorshipJobExtension"><act>Dedicate</act></li></modExtensions>
+  </JobDef>
+
+  <JobDef>
+    <defName>Rimfolk_Worship_Pray</defName>
+    <driverClass>ColonyCouncil.JobDriver_WorshipAt</driverClass>
+    <reportString>praying.</reportString>
+    <checkOverrideOnDamage>Always</checkOverrideOnDamage>
+    <modExtensions><li Class="ColonyCouncil.WorshipJobExtension"><act>Pray</act></li></modExtensions>
+  </JobDef>
+
+  <JobDef>
+    <defName>Rimfolk_Worship_Rite</defName>
+    <driverClass>ColonyCouncil.JobDriver_WorshipAt</driverClass>
+    <reportString>keeping a god's rite.</reportString>
+    <checkOverrideOnDamage>Always</checkOverrideOnDamage>
+    <casualInterruptible>false</casualInterruptible>
+    <modExtensions><li Class="ColonyCouncil.WorshipJobExtension"><act>Rite</act></li></modExtensions>
+  </JobDef>
+
+  <JobDef>
+    <defName>Rimfolk_Worship_Offer</defName>
+    <driverClass>ColonyCouncil.JobDriver_CarryOffering</driverClass>
+    <reportString>carrying an offering.</reportString>
+    <checkOverrideOnDamage>Always</checkOverrideOnDamage>
+    <casualInterruptible>false</casualInterruptible>
+  </JobDef>
+
+  <JobDef>
+    <defName>Rimfolk_Worship_Pilgrimage</defName>
+    <driverClass>ColonyCouncil.JobDriver_Pilgrimage</driverClass>
+    <reportString>on a pilgrimage.</reportString>
+    <checkOverrideOnDamage>Always</checkOverrideOnDamage>
+    <casualInterruptible>false</casualInterruptible>
+  </JobDef>
+
+</Defs>
