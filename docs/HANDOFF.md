@@ -72,7 +72,8 @@ tree at once, alongside whatever runs. Each piece is merged as its own release, 
   and interact and are into the lore and get referred to, and pawns react to gods". The first brainstorm (22 ideas and
   the questions for the player) is `docs/gods-brainstorm.md`; then "they should then always carry some kind of weight
   and ominosity ... imposing sound effects or really kind of epic ones" (its section F, sound from the game's own assets,
-  no generated music). Nothing is built until they choose and say to start.
+  no generated music); then a god always looks like one on the map unless it hides on purpose (section G: size,
+  colouring, an aura, the ground and the world answering it). Nothing is built until they choose and say to start.
 - **To do when the player asks (11 November 2026): calling in a favour, made clear.** The player, with a picture of the
   letter window's "Ask for" list on a debt owed by "Acraeraes of Karond-Keth 2, a trader who called" (five loads of
   goods, some forty "A word for the colony with ... (a kind one)", a captive, peace, fighters): "this favour menu is also

@@ -124,3 +124,38 @@ assets, or if you have some actually solid references or own capabilities in tha
       moments.
 
     No generated music.
+
+## G. A god always looks like one (the player's rule for every form, the same day)
+
+The player: "if I look on the map ... and I see a regular pawn and a god next to it, the god should ... clearly have
+something about it that shows its godly presence, unless it's actually trying to hide as such ... So not that I just have
+a regular pawn on the map and when I click him I coincidentally see ... oh, he's a god. Not even a regular guest."
+
+29. **A god's body.** It's built on a game character or animal, but never plain:
+    - a little taller than anyone near it;
+    - skin, hair and eyes in the god's own colouring: marble white, storm grey, old gold, bark brown, void black with pale eyes;
+    - clothes no mortal wears: the game's own robes, crowns and masks, recoloured in the god's colours and never sold or dropped.
+30. **An aura, drawn by Rimfolk.** Abstract shapes, which can be drawn well in code, the way the mailbag and thermometer
+    were:
+    - a soft halo or ring of light behind and under it, slowly pulsing;
+    - motes rising off it, in the god's colour;
+    - a real light that moves with it, so it glows at night.
+31. **The ground answers where it walks:**
+    - flowers or grass where the Green steps;
+    - frost and snow behind the winter god;
+    - scorch behind the fire god;
+    - rain that follows the storm god, and a drift of ash or bone dust behind the Ferryman.
+32. **The world turns toward it:**
+    - animals stop and face it, birds circle, and colonists near it pause, stare and say something in a bubble;
+    - a low hum or the god's own sound while it's near;
+    - its name in its own colour over its head, and a stately walk, never hurried.
+33. **Animal avatars** get the same treatment: larger than their kind, pale or golden, with glowing eyes, the aura and a
+    trail. No one mistakes the white stag for a deer.
+34. **Hiding is a choice, and it shows when it ends.** A god in disguise (the stranger at the gate) looks like anyone, but
+    leaves small tells for the observant:
+    - no footprints in the snow, no shadow under the moon;
+    - animals following;
+    - a shimmer that a colonist with good sight or a psychic gift remarks on.
+
+    At the reveal it transforms in front of everyone: it grows, the colour and aura come, the sky changes, and the sound
+    rises.
