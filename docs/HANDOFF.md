@@ -96,16 +96,17 @@ tree at once, alongside whatever runs. Each piece is merged as its own release, 
   perhaps 9 different ones ... some actuall names, be it multiple ones ... not just some concepts, but an actual entity,
   be it some a bit more or lesse abstract or like a character". `docs/gods-pantheon-brainstorm.md` now holds nine
   beings with names and characters:
-  1. Yllemor, the Rootmother: all roots, heart in the first anima tree;
-  2. Kharvoth, the Coil Under the Mountain: a dragon;
-  3. Hrom, the Old Horn: the first thrumbo;
-  4. Mhul, the Soft Mother: a fungal being;
+  1. Hollin, the Rootmother: all roots, heart in the first anima tree;
+  2. Smoulder, the Coil Under the Mountain: a dragon;
+  3. Bellwether, the Old Horn: the first thrumbo;
+  4. Morel, the Soft Mother: a fungal being;
   5. the Guest (Ennu): one being in many human shapes;
-  6. Kett, the Hum: a young god in machines;
-  7. Vael, Who Drifts Above: a being of the high sky;
-  8. Isk, the Long White: the walker with winter;
-  9. Nhal, the Hunger: the void.
-  It waits for the player's word.
+  6. Pip, the Hum: a young god in machines;
+  7. Cirrus, Who Drifts Above: a being of the high sky;
+  8. Hush, the Long White: the walker with winter;
+  9. Dearest, the Hunger: the void.
+  Renamed the same day, away from the edgy fantasy names (the player: "Ennu the Guest is cool though"). It waits for
+  the player's word.
   **Stage 2 paused for the redesign** (the player asked; each agent committed work in progress and reported what is
   tied to the generated pantheon, mostly domain, nature, kind and tie lookups with per-god defs ready to take over):
   - on the map: `worktree-agent-a57a9550a4acd85e5` at f056f64 (`GodShapeDef`, `GodShapes.Override`);

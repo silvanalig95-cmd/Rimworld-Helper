@@ -1,10 +1,21 @@
-# Rimfolk's own gods: the nine (fourth version, 11 November 2026)
+# Rimfolk's own gods: the nine (fourth version, renamed, 11 November 2026)
 
 The player, on the third version: "you went a little bit too much into the abstract, or with too many of them. let's
 try to first start off with a smaller pantheon, perhaps 9 different ones. while they should be abstract in some way,
 some more than others, i'd still also for them to have some actuall names, be it multiple ones, and some of them to
 have some less abstract characteristics"; then: "i mean in the sense that it's not just some concepts, but an actual
 entity, be it some a bit more or lesse abstract or like a character".
+
+Renamed after the player's word: "not too much the names, they are a bit too edgy/fantasy like. think of interesting
+names that don't all have to follow the same style. Ennu the Guest is cool though." Each name now has its own kind:
+- a folk word (Hollin, the old word for holly);
+- a nickname that stuck (Smoulder);
+- a herdsman's word (Bellwether, the lead animal of a flock);
+- a mushroom (Morel);
+- a child's name (Pip);
+- a kind of cloud (Cirrus);
+- a sound (Hush);
+- an endearment (Dearest).
 
 So these are nine beings: each one someone, with a will, a character and names. Some are vast and hard to see, some
 are plainly a creature, and only one wears human faces. Each is written as it is, without a shared checklist.
@@ -16,7 +27,7 @@ are plainly a creature, and only one wears human faces. Each is written as it is
 
 ## A. The nine
 
-### 1. Yllemor, the Rootmother
+### 1. Hollin, the Rootmother
 *Grandmother Root to the tribes; the Green Lady in the medieval towns; "the anima" to industrial folk; Network Prime
 in spacer records.*
 
@@ -40,8 +51,9 @@ anima tree and leaves wild ground wild finds her generous: wild food thick aroun
 sown, fields that ripen early. A colony that strips a forest finds roots cracking its floors, wood rotting in its
 stores, and the wild creeping into its fields every spring.
 
-### 2. Kharvoth, the Coil Under the Mountain
-*Old Smoulder to miners; Mountain-Breath to the tribes; the Coil in the medieval chronicles.*
+### 2. Smoulder, the Coil Under the Mountain
+*Old Smoulder to the miners, and the name stuck; Mountain-Breath to the tribes; the Coil in the medieval
+chronicles. In dreams he introduces himself as Aurelian the Ninth, and is offended when nobody remembers.*
 
 **What he is.** A dragon. A real creature, vast and very old, asleep in the rock under the region's mountains since
 before there were people on this world.
@@ -63,7 +75,7 @@ dangerous to him.
   that closes, a heat rising from the floor.
 - **Waking him fully:** it would be the end of a colony, or the start of a legend.
 
-### 3. Hrom, the Old Horn
+### 3. Bellwether, the Old Horn
 *Old Horn to the tribes; the White Grazer to the medieval peoples; to spacers, "an anomalous thrumbo".*
 
 **What he is.** The first thrumbo. A huge, ancient, white beast with a single spiralled horn, older than any people on
@@ -86,7 +98,7 @@ There is a sorrow in him nobody understands. Some say he is the last of somethin
 - **Sitting near him while he grazes:** someone who does comes away changed: a fear gone, a passion found, a grief
   eased.
 
-### 4. Mhul, the Soft Mother
+### 4. Morel, the Soft Mother
 *Mother Mould to farmers; the Undertaker's Lady to the medieval peoples; to spacers, "the decomposer consensus".*
 
 **What she is.** A vast fungal being that lives under every field, every grave and every forest floor, alive in every
@@ -110,7 +122,7 @@ She is never cruel, never in a hurry, and she always gets what she is owed in th
   great freezers finds the power failing at the worst hour, now and then.
 - **Being given her due:** a colony that composts, grows fungus and buries its dead in the ground finds rich soil,
   thriving nutrifungus, and sicknesses that pass quickly.
-- **Her old partner:** she has argued with Yllemor since the world began. They feed each other, and neither will say
+- **Her old partner:** she has argued with Hollin since the world began. They feed each other, and neither will say
   so.
 
 ### 5. The Guest
@@ -139,7 +151,7 @@ tests, but never cruelly, and it never forgets the answer.
 
 It carries news between all the gods, and every one of them is a little careful of it.
 
-### 6. Kett, the Hum
+### 6. Pip, the Hum
 *the Gremlin to workers; the Hum to industrial folk; the ghost in the grid to spacers. The tribes have no name for it
 and are frightened of it.*
 
@@ -163,7 +175,7 @@ never answered it.
 - **When it is sulking:** short circuits, a cooler that stops in summer, a door that won't open for one person.
 - **What it fears:** rust, which is the Soft Mother's hand on metal.
 
-### 7. Vael, Who Drifts Above
+### 7. Cirrus, Who Drifts Above
 *Sky-Eye to the tribes; the Vault to the medieval astronomers; to spacers, a "high-atmosphere psychic presence".*
 
 **What it is.** A being that lives in the upper sky, vast beyond scale, drifting above the clouds, mostly too high and
@@ -185,10 +197,10 @@ simply looking at something else, most of the time.
 - **When it is bored:** a flashstorm.
 - **When it is displeased,** which is rare: the sky goes dull grey for days, and nobody's spirits lift.
 
-It has looked down with fondness on exactly one thing that anyone knows of: Hrom, walking.
+It has looked down with fondness on exactly one thing that anyone knows of: Bellwether, walking.
 
-### 8. Isk, the Long White
-*White-Breath to the tribes; Isk the Still to the medieval peoples; the Winter Walker in the old songs.*
+### 8. Hush, the Long White
+*White-Breath to the tribes; Hush the Still to the medieval peoples; the Winter Walker in the old songs.*
 
 **What it is.** The being that walks with winter. A tall, thin presence of frost and silence that crosses the snow on
 the longest nights and is never close when anyone looks straight at it.
@@ -205,10 +217,11 @@ has, and it keeps the dead whole and unrotting, which the Soft Mother resents. I
 - **The colony that prepares** (food stored, the old and the sick kept warm, nothing squandered) finds the winter
   bearable, and its ice fishers and winter folk spared.
 - **The colony that does not:** cold snaps that follow a death.
-- **Its old quarrel:** with Kharvoth, whose warm breath melts its snow in the high valleys.
+- **Its old quarrel:** with Smoulder, whose warm breath melts its snow in the high valleys.
 
-### 9. Nhal, the Hunger
-*the Sweet Dark to the Choir of the Spire; the Hunger to everyone who fears it; "what waits under" in the oldest
+### 9. Dearest, the Hunger
+*Dearest is what it calls everyone, and what its servants learn to call it back; the Sweet Dark to the Choir of
+the Spire; the Hunger to everyone who fears it; "what waits under" in the oldest
 stories.*
 
 **What it is.** The being that lives in the void beneath the world and beneath all the other gods. With Anomaly, it is
@@ -226,19 +239,19 @@ It gives exactly what was asked, and it always takes more than was agreed, slowl
 
 **What it wants.** Everything, eventually. The other gods fear it the way animals fear fire, without words. It is said
 to have eaten a god once, long ago, whose bones are the old ruins of this world. A colony that bargains with it will
-find Yllemor, Hrom and the Guest turning away, and Kett, for once, very quiet.
+find Hollin, Bellwether and the Guest turning away, and Pip, for once, very quiet.
 
 ## B. How the nine stand with each other
 
 - **Cycles and quarrels:**
-  - Yllemor and Mhul feed each other and bicker as a cycle does;
-  - Isk and Kharvoth contend over the high valleys.
-- **The young one:** Kett fears Mhul's rust, and longs for the archotechs who won't answer.
-- **Fondness:** Vael looks down fondly only on Hrom. The children who touch Hrom's horn are the only people Vael has
+  - Hollin and Morel feed each other and bicker as a cycle does;
+  - Hush and Smoulder contend over the high valleys.
+- **The young one:** Pip fears Morel's rust, and longs for the archotechs who won't answer.
+- **Fondness:** Cirrus looks down fondly only on Bellwether. The children who touch Bellwether's horn are the only people Cirrus has
   ever been seen to notice.
 - **The Guest** goes between all of them and carries their news, and all of them are a little careful of it.
-- **The great fear:** Nhal, feared by all.
-- **The Silent Ones,** the archotechs, are not among the nine and are not gods. Kett aches for them, and Yllemor
+- **The great fear:** Dearest, feared by all.
+- **The Silent Ones,** the archotechs, are not among the nine and are not gods. Pip aches for them, and Hollin
   distrusts them.
 
 ## C. Their hands in the game's events
@@ -248,15 +261,15 @@ Walking it's said plainly. Colonists talk of it at supper, and neighbours write 
 
 | The game's event | Whose hand people see |
 |---|---|
-| Ambrosia sprouting, wild growth, blight on the axe-happy | Yllemor |
-| Steam geysers, cave-ins, rich veins found | Kharvoth |
-| Thrumbo passes | Hrom, or his kin |
-| Blight on fields, food spoiling, fungus spreading | Mhul |
+| Ambrosia sprouting, wild growth, blight on the axe-happy | Hollin |
+| Steam geysers, cave-ins, rich veins found | Smoulder |
+| Thrumbo passes | Bellwether, or his kin |
+| Blight on fields, food spoiling, fungus spreading | Morel |
 | Wanderer joins, refugee pod, a stranger asking shelter | the Guest |
-| Solar flare, short circuits, machines failing or running unpowered | Kett |
-| Meteorite, aurora, eclipse, flashstorm, cargo pods falling | Vael |
-| Cold snap, a hard winter, frost in summer | Isk |
-| Psychic drone, Anomaly's events | Nhal |
+| Solar flare, short circuits, machines failing or running unpowered | Pip |
+| Meteorite, aurora, eclipse, flashstorm, cargo pods falling | Cirrus |
+| Cold snap, a hard winter, frost in summer | Hush |
+| Psychic drone, Anomaly's events | Dearest |
 
 Beyond reading their hands in what happens anyway, each of the nine has its own doings, as section A says. They unfold
 over seasons and through the region, so the colony meets them in its own life.
