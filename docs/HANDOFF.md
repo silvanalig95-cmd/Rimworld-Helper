@@ -126,6 +126,12 @@ tree at once, alongside whatever runs. Each piece is merged as its own release, 
   case a book or overview can exist and develop, but I just never want this 'meta' level player information". The book
   returns as the colony's own: attributed entries of what its people saw, heard, believe and felt, possibly wrong, kept
   by its keeper (docs/design/gods.md, "The colony's book").
+  **For worship's resume** (worktree-agent-a0cfe8f4a840fc8fc, still paused, told none of this yet):
+  - re-key `GodWorshipDef` to the nine by short name;
+  - remove the favour words from the shrine inspect line, the This week row, its Almanac page, and council questions
+    that state a god's terms;
+  - make dreams, prayers' answers and vows diegetic;
+  - feed the book through `Gods.Remember`, in the witness's voice.
   Mods suggested to the player for the gods (11 November 2026, by the new rule in CLAUDE.md "Name mods that would
   help"; their 1.7 status to be checked on the Workshop): Forest Gods (3263099058: a white stag's ritual, bear and deer
   gods; 1.6), Dragon's Descent (2026992161; 1.6), Weapons of the Gods (Continued) (1.6). Not suggested: Call of Cthulhu
