@@ -187,7 +187,7 @@ namespace ColonyCouncil
         {
             // The region window (UI 2).
             ["Map"] = new[] { "Map", "List" },
-            ["Peoples"] = new[] { "Peoples", "Faces" }
+            ["Peoples"] = new[] { "Peoples", "Faces", "Gods" }
         };
 
         /// <summary>A view's lenses (the region map's, UI/RegionViewsMath.cs), in the order of the lens bar: "Map/Trade/List".</summary>

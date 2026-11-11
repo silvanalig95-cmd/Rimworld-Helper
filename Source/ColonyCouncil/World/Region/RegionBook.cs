@@ -189,6 +189,8 @@ namespace ColonyCouncil
             if (HandOvers.Any) Safe("hand-overs, the hour", () => HandOvers.Hourly(now));
             // The towns the colony was: what became of them (taken by force, settled again), and their yes to the colony's letter (Colonies/TownsAfter.cs).
             if (WorldLedger.Formers.Count > 0) Safe("towns the colony was, the hour", () => TownsAfter.Hourly(now));
+            // The gods (Gods/GodBook.cs): visitors on a home map teach the colony their gods.
+            if (Gods.On) Safe("the gods, the hour", () => GodBook.Hourly(now));
         }
 
         /// <summary>The day: the reach worked out again (with remoteness), the towns in detail seeded and their fortunes moved.</summary>
@@ -216,6 +218,8 @@ namespace ColonyCouncil
             if (WorldLedger.Formers.Count > 0) Safe("towns the colony was", () => HandOvers.Daily(now));
             // Their life: the head's letters, homecomings, their days, the trader (Colonies/TownsAfter.cs).
             if (WorldLedger.Formers.Count > 0) Safe("towns the colony was, their life", () => TownsAfter.Daily(now));
+            // The gods (Gods/GodBook.cs): the pantheon kept, the day's deeds, the ties shifting, a newborn.
+            if (Gods.On) Safe("the gods", () => GodBook.Daily(now));
             ColonyBook.Daily(homes, null);
         }
 

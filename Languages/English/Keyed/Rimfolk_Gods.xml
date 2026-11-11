@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <!-- The gods (Source/ColonyCouncil/Gods/; docs/design/gods.md): the settings. -->
+  <CC_SetSec_Gods>The gods</CC_SetSec_Gods>
+  <CC_Settings_Gods>Gods</CC_Settings_Gods>
+  <CC_Settings_Gods_Tip>One pantheon for the whole world. With Ideology, every faith's deities are real gods, with a domain read from their own words and the faith's memes and precepts; without it, each people has two or three gods of its age and its land. Rimfolk's peoples each have a patron of their own. The colony stands with each god at each home in words (wrathful to beloved), by what it does: a big harvest pleases the gods of the harvest, a sacred animal slaughtered angers the gods it is sacred to. Gods have ties with one another (rivals, lovers, kin, old wrongs) and natures of their own, and colonists swear by theirs. The Gods page is in the region window, under Peoples.</CC_Settings_Gods_Tip>
+  <CC_SetNote_Gods>A pantheon for the world, the colony's favour with each god, and the Gods page under Peoples.</CC_SetNote_Gods>
+  <CC_Settings_GodRealness>How real are the gods</CC_Settings_GodRealness>
+  <CC_Settings_GodRealness_Tip>How plainly the gods act. Believed: nothing supernatural; prayers, rites and omens read into chance, and the colony is sure it was the Storm-father all the same. Felt (the default): the gods act, but never so plainly that nobody could doubt it, and the news says "some say". Walking: the gods manifest openly, are named plainly, and can be spoken with.</CC_Settings_GodRealness_Tip>
+  <CC_GodRealness_Believed>Believed</CC_GodRealness_Believed>
+  <CC_GodRealness_Believed_Tip>Nothing supernatural: the gods are what the colony believes of them.</CC_GodRealness_Believed_Tip>
+  <CC_GodRealness_Felt>Felt</CC_GodRealness_Felt>
+  <CC_GodRealness_Felt_Tip>The gods act, but never so plainly that nobody could doubt it.</CC_GodRealness_Felt_Tip>
+  <CC_GodRealness_Walking>Walking</CC_GodRealness_Walking>
+  <CC_GodRealness_Walking_Tip>The gods walk openly among people, named for what they are.</CC_GodRealness_Walking_Tip>
+  <CC_SetNote_GodRealness_Believed>The gods are believed in: nothing supernatural.</CC_SetNote_GodRealness_Believed>
+  <CC_SetNote_GodRealness_Felt>The gods are felt, never so plainly that nobody could doubt it.</CC_SetNote_GodRealness_Felt>
+  <CC_SetNote_GodRealness_Walking>The gods walk openly and are named plainly.</CC_SetNote_GodRealness_Walking>
+
+  <!-- The Gods page: the region window, Peoples, its third mode (Gods/GodsPage.cs). -->
+  <CC_Mode_Gods>Gods</CC_Mode_Gods>
+  <CC_Mode_Gods_Tip>The pantheon: every god the colony knows of, its people and faiths, its ties and the colony's favour with it.</CC_Mode_Gods_Tip>
+  <CC_Gods_Title>Gods</CC_Gods_Title>
+  <CC_Gods_Line>The world's gods, their ties to one another, and how the colony stands with each</CC_Gods_Line>
+  <CC_Gods_Stat>{KNOWN} of {ALL} known</CC_Gods_Stat>
+  <CC_Gods_Off>The gods are off (the setting "Gods").</CC_Gods_Off>
+  <CC_Gods_None>No gods in this world yet. The pantheon is made the next time the game is loaded.</CC_Gods_None>
+  <CC_Gods_Group_Ours>The colony's gods</CC_Gods_Group_Ours>
+  <CC_Gods_Group_Known>Gods the colony knows</CC_Gods_Group_Known>
+  <CC_Gods_Group_Rumours>Rumours</CC_Gods_Group_Rumours>
+  <CC_Gods_Whole>The whole pantheon</CC_Gods_Whole>
+  <CC_Gods_WholeTip>Every god the colony knows, and the ties between them.</CC_Gods_WholeTip>
+  <CC_Gods_WholeLine>Every god the colony knows, round the ring faith by faith, with the ties between them. A god's name shows under the mouse; a click opens its page.</CC_Gods_WholeLine>
+  <CC_Gods_WebTooSmall>Make the window larger to see the web of the gods.</CC_Gods_WebTooSmall>
+  <CC_Gods_RumourName>{GODOF}</CC_Gods_RumourName>
+  <CC_Gods_RumourLine>{PEOPLE} swear by {GODOF}. Nobody here knows its name yet.</CC_Gods_RumourLine>
+  <CC_Gods_Rumour>Known only by rumour</CC_Gods_Rumour>
+  <CC_Gods_HowLearn>The colony learns a god from its own faith, from the neighbours it knows by name, from letters and from visitors to its land.</CC_Gods_HowLearn>
+  <CC_Gods_WhatLine>{GODOF} · {FORM} · {NATURE}</CC_Gods_WhatLine>
+  <CC_Gods_Favour>The colony's standing</CC_Gods_Favour>
+  <CC_Gods_FavourLine>{HOME}: {WORD}</CC_Gods_FavourLine>
+  <CC_Gods_Patron>the colony's patron</CC_Gods_Patron>
+  <CC_Gods_FavourNote>Favour follows what the colony does, and drifts slowly back toward unknown when nothing more is done.</CC_Gods_FavourNote>
+  <CC_Gods_HeldBy>Who holds it</CC_Gods_HeldBy>
+  <CC_Gods_Faiths>Its faiths: {FAITHS}.</CC_Gods_Faiths>
+  <CC_Gods_DeityType>Its faith calls it: {TYPE}.</CC_Gods_DeityType>
+  <CC_Gods_KnownHow>The colony knows of it {FROM}.</CC_Gods_KnownHow>
+  <CC_Gods_Domain>Its domain</CC_Gods_Domain>
+  <CC_Gods_DomainLine>It is god of {DOMAINS}.</CC_Gods_DomainLine>
+  <CC_Gods_SacredAnimals>Sacred to it: {ANIMALS}.</CC_Gods_SacredAnimals>
+  <CC_Gods_SacredPlace>Its place: {PLACE}. Its deed: {DEED}.</CC_Gods_SacredPlace>
+  <CC_Gods_Nature>Its nature: {NATURE}</CC_Gods_Nature>
+  <CC_Gods_Ties>Its ties</CC_Gods_Ties>
+  <CC_Gods_TieUnknown>{TIE} with a god the colony doesn't know</CC_Gods_TieUnknown>
+  <CC_Gods_Unknown>unknown</CC_Gods_Unknown>
+  <CC_Gods_Lore>As its people tell it</CC_Gods_Lore>
+  <CC_Gods_Acts>What the colony remembers</CC_Gods_Acts>
+  <CC_Gods_NoActs>Nothing yet.</CC_Gods_NoActs>
+  <CC_Gods_Ago>{TIME} ago</CC_Gods_Ago>
+
+  <!-- Favour in words: the colony's standing with a god. Never a number. -->
+  <CC_God_Word_Wrathful>wrathful</CC_God_Word_Wrathful>
+  <CC_God_Word_Displeased>displeased</CC_God_Word_Displeased>
+  <CC_God_Word_Unknown>unknown</CC_God_Word_Unknown>
+  <CC_God_Word_Noticed>noticed</CC_God_Word_Noticed>
+  <CC_God_Word_Pleased>pleased</CC_God_Word_Pleased>
+  <CC_God_Word_Favoured>favoured</CC_God_Word_Favoured>
+  <CC_God_Word_Beloved>beloved</CC_God_Word_Beloved>
+  <CC_God_Stands_Wrathful>{GOD} is wrathful with {HOME}</CC_God_Stands_Wrathful>
+  <CC_God_Stands_Displeased>{GOD} is displeased with {HOME}</CC_God_Stands_Displeased>
+  <CC_God_Stands_Unknown>{GOD} has forgotten {HOME} again</CC_God_Stands_Unknown>
+  <CC_God_Stands_Noticed>{GOD} has noticed {HOME}</CC_God_Stands_Noticed>
+  <CC_God_Stands_Pleased>{GOD} is pleased with {HOME}</CC_God_Stands_Pleased>
+  <CC_God_Stands_Favoured>{GOD} favours {HOME}</CC_God_Stands_Favoured>
+  <CC_God_Stands_Beloved>{GOD} holds {HOME} dear above all others</CC_God_Stands_Beloved>
+  <CC_God_Voice_Believed>the colony believes {STANDS}</CC_God_Voice_Believed>
+  <CC_God_Voice_Felt>some say {STANDS}</CC_God_Voice_Felt>
+  <CC_God_Voice_Walking>{STANDS}</CC_God_Voice_Walking>
+  <CC_God_Why>{TEXT}: {WHY}.</CC_God_Why>
+  <CC_God_SpillAct_Against>galled by the honour done to {OTHER} ({TIE})</CC_God_SpillAct_Against>
+  <CC_God_SpillAct_With>glad of the honour done to {OTHER} ({TIE})</CC_God_SpillAct_With>
+  <CC_God_Dev>a test of favour (dev)</CC_God_Dev>
+
+  <!-- What a god is: "goddess of the harvest", "spirit of the hunt", "archotech of machines". -->
+  <CC_God_Noun_God>god</CC_God_Noun_God>
+  <CC_God_Noun_Goddess>goddess</CC_God_Noun_Goddess>
+  <CC_God_Noun_Spirit>spirit</CC_God_Noun_Spirit>
+  <CC_God_Noun_Saint>saint</CC_God_Noun_Saint>
+  <CC_God_Noun_Archotech>archotech</CC_God_Noun_Archotech>
+  <CC_God_Of>{NOUN} of {WHAT}</CC_God_Of>
+  <CC_God_FullName>{GOD}, {EPITHET}</CC_God_FullName>
+  <CC_God_TwoDomains>{A} and {B}</CC_God_TwoDomains>
+  <CC_God_TheColony>the colony</CC_God_TheColony>
+  <CC_God_Nobody>nobody now</CC_God_Nobody>
+  <CC_God_Form_Spirit>a spirit, as tribes know the gods</CC_God_Form_Spirit>
+  <CC_God_Form_OldGod>an old god</CC_God_Form_OldGod>
+  <CC_God_Form_Saint>a saint</CC_God_Form_Saint>
+  <CC_God_Form_HalfForgotten>half-forgotten</CC_God_Form_HalfForgotten>
+  <CC_God_Form_MachineGod>a god of the machine</CC_God_Form_MachineGod>
+  <CC_God_Form_Archotech>an archotech, one of the god-like minds</CC_God_Form_Archotech>
+
+  <!-- Natures: how fast its favour moves, what offends it, how loudly it answers. -->
+  <CC_God_Nature_Proud>proud</CC_God_Nature_Proud>
+  <CC_God_Nature_Jealous>jealous</CC_God_Nature_Jealous>
+  <CC_God_Nature_Generous>generous</CC_God_Nature_Generous>
+  <CC_God_Nature_Capricious>capricious</CC_God_Nature_Capricious>
+  <CC_God_Nature_Wrathful>wrathful</CC_God_Nature_Wrathful>
+  <CC_God_Nature_Patient>patient</CC_God_Nature_Patient>
+  <CC_God_Nature_Playful>playful</CC_God_Nature_Playful>
+  <CC_God_Nature_Cold>cold</CC_God_Nature_Cold>
+  <CC_God_Nature_Grieving>grieving</CC_God_Nature_Grieving>
+  <CC_God_NatureLine_Proud>Slow to be pleased and quick to take offence. Its rites let go and any scoffing gall it most, and it answers loudly.</CC_God_NatureLine_Proud>
+  <CC_God_NatureLine_Jealous>It wants to be the only one. Honour done to its rivals galls it more than most, and it forgets a kindness quickly and a slight slowly.</CC_God_NatureLine_Jealous>
+  <CC_God_NatureLine_Generous>Easily pleased and slow to anger. What offends it is the hungry and the stranger turned away.</CC_God_NatureLine_Generous>
+  <CC_God_NatureLine_Capricious>Its favour swings both ways, fast, and fades fast. It hates to be bored and to be forgotten.</CC_God_NatureLine_Capricious>
+  <CC_God_NatureLine_Wrathful>Its anger is easily woken and long remembered. Harm to its sacred things and scoffing offend it most, and it answers loudly.</CC_God_NatureLine_Wrathful>
+  <CC_God_NatureLine_Patient>Slow to warm and slow to cool, and it remembers both. Only a broken word truly offends it, and it answers quietly.</CC_God_NatureLine_Patient>
+  <CC_God_NatureLine_Playful>Quick to be pleased and quick to forget. A dull colony with no feasts, songs or games bores it, and a scoffer annoys it.</CC_God_NatureLine_Playful>
+  <CC_God_NatureLine_Cold>Exact and hard to move either way. It keeps account of terms, and a broken one is the only thing it takes badly. It hardly ever answers aloud.</CC_God_NatureLine_Cold>
+  <CC_God_NatureLine_Grieving>It mourns something, and favour comes slowly to it. The dead left lying and its days let go hurt it most, and it answers softly.</CC_God_NatureLine_Grieving>
+
+  <!-- Kinds: the ones who don't fit. -->
+  <CC_God_Kind_Ordinary>a god</CC_God_Kind_Ordinary>
+  <CC_God_Kind_Archotech>Archotech</CC_God_Kind_Archotech>
+  <CC_God_Kind_Hunger>The Hunger</CC_God_Kind_Hunger>
+  <CC_God_Kind_Trickster>Trickster</CC_God_Kind_Trickster>
+  <CC_God_Kind_Dead>A dead god</CC_God_Kind_Dead>
+  <CC_God_Kind_Newborn>Newborn</CC_God_Kind_Newborn>
+  <CC_God_Kind_Fading>Fading</CC_God_Kind_Fading>
+  <CC_God_Kind_Imprisoned>Imprisoned</CC_God_Kind_Imprisoned>
+  <CC_God_KindLine_Ordinary>A god like most: it hears what is done in its domain, and answers by its nature.</CC_God_KindLine_Ordinary>
+  <CC_God_KindLine_Archotech>Cold and exact. It bargains in terms and keeps every term, cares nothing for offerings, and judges only deeds that serve its aims.</CC_God_KindLine_Archotech>
+  <CC_God_KindLine_Hunger>The void. It answers anyone desperate enough, always pays what it promised, and always takes more than was agreed.</CC_God_KindLine_Hunger>
+  <CC_God_KindLine_Trickster>A trickster. It lies, swaps a blessing for a curse and back again, and loves nothing so much as a joke at a priest's expense.</CC_God_KindLine_Trickster>
+  <CC_God_KindLine_Dead>Silent. A few still keep it, and its marks are found in old places, but nobody living has heard it answer.</CC_God_KindLine_Dead>
+  <CC_God_KindLine_Newborn>Born of the colony's own faith, small and weak, and growing with the colony's devotion.</CC_God_KindLine_Newborn>
+  <CC_God_KindLine_Fading>No worshippers left. It grows fainter every year, bitter or gentle by turns, and would remember anyone who took it up again.</CC_God_KindLine_Fading>
+  <CC_God_KindLine_Imprisoned>Held somewhere it cannot leave, and it wants out.</CC_God_KindLine_Imprisoned>
+  <CC_God_KindAct_Fading>lost the last of its worshippers</CC_God_KindAct_Fading>
+  <CC_God_KindAct_Dead>fell silent; nobody has kept it for a long time</CC_God_KindAct_Dead>
+  <CC_God_KindAct_Returned>was taken up again</CC_God_KindAct_Returned>
+  <CC_God_KindNews_Fading>{GOD}, {GODOF}, has no worshippers left.</CC_God_KindNews_Fading>
+  <CC_God_KindNews_Dead>{GOD}, {GODOF}, has fallen silent: nobody keeps it any more.</CC_God_KindNews_Dead>
+  <CC_God_KindNews_Returned>{GOD}, {GODOF}, has worshippers again.</CC_God_KindNews_Returned>
+  <CC_God_BornAct>came into the world's pantheon with a new people or faith</CC_God_BornAct>
+  <CC_God_Epithet_Dead_0>the Last of the Old Ones</CC_God_Epithet_Dead_0>
+  <CC_God_Epithet_Dead_1>the One Whose Stones Still Stand</CC_God_Epithet_Dead_1>
+  <CC_God_Epithet_Dead_2>the Sleeper Under the Hills</CC_God_Epithet_Dead_2>
+  <CC_God_Epithet_Dead_3>the Voice That Stopped</CC_God_Epithet_Dead_3>
+  <CC_God_Epithet_Dead_4>the First to Fall Silent</CC_God_Epithet_Dead_4>
+  <CC_God_Epithet_Fading_0>the One Whose Last Village Emptied</CC_God_Epithet_Fading_0>
+  <CC_God_Epithet_Fading_1>the Lady of the Empty Altar</CC_God_Epithet_Fading_1>
+  <CC_God_Epithet_Fading_2>the Keeper of a Forgotten Feast</CC_God_Epithet_Fading_2>
+  <CC_God_Epithet_Fading_3>the Name on the Weathered Stone</CC_God_Epithet_Fading_3>
+  <CC_God_Epithet_Fading_4>the Last Candle</CC_God_Epithet_Fading_4>
+  <CC_God_OldLore_Dead>Nobody living keeps {GOD}. Its standing stones are found in old places all over the region, worn smooth, and a few hermits still leave something at them and wait.</CC_God_OldLore_Dead>
+  <CC_God_OldLore_Fading>{GOD} was the god of a people that died out before the colony came. Its shrines are empty and its feast days are kept by nobody, and some say it still listens for anyone who would take it up.</CC_God_OldLore_Fading>
+  <CC_God_NewbornLore>{GOD} was born of the colony's own faith, out of what the colony kept doing. Nobody outside the colony has heard of it yet.</CC_God_NewbornLore>
+
+  <!-- A newborn god of the colony's own faith (Gods/Pantheon.cs, Newborn). -->
+  <CC_God_NewbornEpithet>the One Born at {HOME}</CC_God_NewbornEpithet>
+  <CC_God_NewbornLabel>A god is born: {GOD}</CC_God_NewbornLabel>
+  <CC_God_NewbornText>The colony's faith has had no god of what it keeps doing, and so it has made one. They call it {GOD}, {GODOF}, born at {HOME} of what the colony kept doing: {DEED}, again and again.\n\nIt is small and weak, and it grows with the colony's devotion. The Gods page, under Peoples in the region window, has it.</CC_God_NewbornText>
+  <CC_God_NewbornAct>born of the colony's faith at {HOME}</CC_God_NewbornAct>
+  <CC_God_GrownAct>grew from a newborn into a god in full</CC_God_GrownAct>
+  <CC_God_GrownNews>{GOD}, the colony's own {GODOF}, has grown into a god in full.</CC_God_GrownNews>
+
+  <!-- Ties between gods (Gods/GodTiesMath.cs). -->
+  <CC_God_Tie_Rivals>rivals</CC_God_Tie_Rivals>
+  <CC_God_Tie_Lovers>lovers</CC_God_Tie_Lovers>
+  <CC_God_Tie_Estranged>lovers estranged</CC_God_Tie_Estranged>
+  <CC_God_Tie_Parent>parent and child</CC_God_Tie_Parent>
+  <CC_God_Tie_Siblings>siblings</CC_God_Tie_Siblings>
+  <CC_God_Tie_Twins>twins</CC_God_Tie_Twins>
+  <CC_God_Tie_Allies>allies</CC_God_Tie_Allies>
+  <CC_God_Tie_CastDown>one cast the other down</CC_God_Tie_CastDown>
+  <CC_God_Tie_StolePeople>one stole the other's people</CC_God_Tie_StolePeople>
+  <CC_God_TieOf_Rivals>rival of {OTHER}</CC_God_TieOf_Rivals>
+  <CC_God_TieOf_Lovers>lover of {OTHER}</CC_God_TieOf_Lovers>
+  <CC_God_TieOf_Estranged>once the lover of {OTHER}, now estranged</CC_God_TieOf_Estranged>
+  <CC_God_TieOf_Parent_First>parent of {OTHER}</CC_God_TieOf_Parent_First>
+  <CC_God_TieOf_Parent_Second>child of {OTHER}</CC_God_TieOf_Parent_Second>
+  <CC_God_TieOf_Siblings>sibling of {OTHER}</CC_God_TieOf_Siblings>
+  <CC_God_TieOf_Twins>twin of {OTHER}</CC_God_TieOf_Twins>
+  <CC_God_TieOf_Allies>ally of {OTHER}</CC_God_TieOf_Allies>
+  <CC_God_TieOf_CastDown_First>the one who cast {OTHER} down</CC_God_TieOf_CastDown_First>
+  <CC_God_TieOf_CastDown_Second>cast down by {OTHER}</CC_God_TieOf_CastDown_Second>
+  <CC_God_TieOf_StolePeople_First>the one who took the people of {OTHER}</CC_God_TieOf_StolePeople_First>
+  <CC_God_TieOf_StolePeople_Second>robbed of its people by {OTHER}</CC_God_TieOf_StolePeople_Second>
+  <CC_God_TieAct_Gone>{A} and {B} are {WAS} no longer; whatever was between them has cooled to nothing</CC_God_TieAct_Gone>
+  <CC_God_TieAct_Rivals>{A} and {B} have fallen out and are rivals now</CC_God_TieAct_Rivals>
+  <CC_God_TieAct_Lovers>{A} and {B} have come back to each other</CC_God_TieAct_Lovers>
+  <CC_God_TieAct_Estranged>{A} and {B} have parted</CC_God_TieAct_Estranged>
+  <CC_God_TieAct_Parent>{A} and {B} are parent and child, as they always were</CC_God_TieAct_Parent>
+  <CC_God_TieAct_Siblings>{A} and {B} are siblings, as they always were</CC_God_TieAct_Siblings>
+  <CC_God_TieAct_Twins>{A} and {B} are twins, as they always were</CC_God_TieAct_Twins>
+  <CC_God_TieAct_Allies>{A} and {B} have made their peace and stand together now</CC_God_TieAct_Allies>
+  <CC_God_TieAct_CastDown>the old wrong between {A} and {B} is remembered</CC_God_TieAct_CastDown>
+  <CC_God_TieAct_StolePeople>the old wrong between {A} and {B} is remembered</CC_God_TieAct_StolePeople>
+  <CC_God_TieAct_NewRivals>{A} and {B} have become rivals</CC_God_TieAct_NewRivals>
+  <CC_God_TieAct_NewLovers>{A} and {B} have become lovers</CC_God_TieAct_NewLovers>
+  <CC_God_TieAct_NewEstranged>{A} and {B} were lovers once, it is said, and are estranged</CC_God_TieAct_NewEstranged>
+  <CC_God_TieAct_NewParent>{A} is said to be the parent of {B}</CC_God_TieAct_NewParent>
+  <CC_God_TieAct_NewSiblings>{A} and {B} are said to be siblings</CC_God_TieAct_NewSiblings>
+  <CC_God_TieAct_NewTwins>{A} and {B} are said to be twins</CC_God_TieAct_NewTwins>
+  <CC_God_TieAct_NewAllies>{A} and {B} have come to stand together</CC_God_TieAct_NewAllies>
+  <CC_God_TieAct_NewCastDown>{A} is said to have cast {B} down</CC_God_TieAct_NewCastDown>
+  <CC_God_TieAct_NewStolePeople>{A} is said to have taken the people of {B}</CC_God_TieAct_NewStolePeople>
+
+  <!-- What the colony knows of a god, and how. -->
+  <CC_God_KnownFrom_faith>from its own faith</CC_God_KnownFrom_faith>
+  <CC_God_KnownFrom_neighbours>from its neighbours of {PEOPLE}</CC_God_KnownFrom_neighbours>
+  <CC_God_KnownFrom_letter>from the letters of {PEOPLE}</CC_God_KnownFrom_letter>
+  <CC_God_KnownFrom_visitors>from {PEOPLE} on its land</CC_God_KnownFrom_visitors>
+  <CC_God_KnownAct>the colony came to know of it {FROM}</CC_God_KnownAct>
+  <CC_God_KnownNews>The colony has heard of {GOD}, {GODOF}, {FROM}.</CC_God_KnownNews>
+
+  <!-- Vows (stage 2 makes them; Gods.Vow, Gods.EndVow). -->
+  <CC_God_VowAct>{PAWN} vowed {WHAT}</CC_God_VowAct>
+  <CC_God_VowKept>{PAWN} kept a vow: {WHAT}</CC_God_VowKept>
+  <CC_God_VowBroken>{PAWN} broke a vow: {WHAT}</CC_God_VowBroken>
+
+  <!-- The first favour sources (Gods/GodDeeds.cs), as the gods' acts and the news say them. -->
+  <CC_God_Deed_Harvest>a big harvest brought in at {HOME}</CC_God_Deed_Harvest>
+  <CC_God_Deed_Threat>a threat beaten off at {HOME}</CC_God_Deed_Threat>
+  <CC_God_Deed_DeadLying>{COUNT} of the dead left lying unburied at {HOME}</CC_God_Deed_DeadLying>
+  <CC_God_Deed_GreatBeast>the {BEAST} brought down by {WHO}</CC_God_Deed_GreatBeast>
+  <CC_God_Deed_SacredSlaughtered>a {KIND}, sacred to the gods of {WHAT}, slaughtered by {WHO}</CC_God_Deed_SacredSlaughtered>
+  <CC_God_Deed_SacredHunted>a {KIND}, sacred to the gods of {WHAT}, hunted down by {WHO}</CC_God_Deed_SacredHunted>
+  <CC_God_Deed_Funeral>{SPEAKER} spoke at the grave of {DEAD}</CC_God_Deed_Funeral>
+  <CC_God_Deed_FuneralNoGrave>{SPEAKER} spoke for {DEAD}, though there was no grave</CC_God_Deed_FuneralNoGrave>
+
+</LanguageData>

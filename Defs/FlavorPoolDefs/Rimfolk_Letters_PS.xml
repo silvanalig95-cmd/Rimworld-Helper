@@ -38,6 +38,8 @@
         <li>[theirs,everyday,a:plain|a:friend,warmly|cordial|cool] I enclose nothing, but I thought about enclosing something, which surely counts.</li>
         <li>[theirs,everyday,a:plain|a:friend,cordial|cool] The road north is passable again, should anyone of yours need it.</li>
         <li>[theirs,everyday,a:plain|a:friend,cordial|cool] Our market is on the first day of each season, should {COLONY} wish to send anyone.</li>
+        <li>[theirs,everyday,a:plain|a:friend,warmly|cordial] We lit a candle to {GOD} for all of you at {COLONY}. It cannot hurt.</li>
+        <li>[theirs,joke,a:plain|a:friend,warmly|cordial|cool] The old ones here blame {GODEPITHET} for the weather this season. The young ones blame the old ones.</li>
         <li>[theirs,everyday,a:plain|a:friend,curt] Do not send the courier back without a reason.</li>
         <li>[theirs,everyday,a:plain,cordial|cool,m:trade] We have salt, cloth and good iron this season, if {COLONY} is buying.</li>
         <li>[theirs,everyday,a:plain,cordial|cool,m:trade] Ask for our caravan master by name when you trade with us. You will get a better price. Slightly.</li>
@@ -66,6 +68,7 @@
         <li>[ours,joke,a:plain|a:friend,warmly] Somebody here asked me to say hello to you. I am not sure they know who you are, but there it is.</li>
         <li>[ours,joke,a:plain|a:friend,warmly|cordial|cool] I have just noticed a blot in the second paragraph. It is not a word. Ignore it.</li>
         <li>[ours,joke,a:plain|a:friend,warmly|cordial|cool] I meant to say something clever here and have forgotten what.</li>
+        <li>[ours,everyday,a:plain|a:friend,warmly|cordial] Somebody here says {GOD} has been good to us lately. Somebody else says it was the weather.</li>
         <li>[ours,joke,a:plain|a:friend,warmly|cordial|cool,v:blunt] That's the P.S.</li>
         <li>[ours,joke,a:plain|a:friend,warmly|cordial,v:eloquent] I find I have more to say than paper, which is a common failing of mine.</li>
         <li>[ours,joke,a:plain|a:friend,warmly|cordial|cool,colony:animals] One of our animals tried to eat this letter before it went. You may find teeth marks. We have discussed it with the animal.</li>

@@ -487,6 +487,8 @@ namespace ColonyCouncil
             var speaker = close ? e.speaker : speakers.OrderByDescending(Closeness).First();
             if (!close) close = Closeness(speaker) >= 20f;
             if (!close) speaker = speakers.OrderByDescending(p => p.skills?.GetSkill(SkillDefOf.Social)?.Level ?? 0).First();
+            // The gods of the dead (Gods/GodDeeds.cs): words said over the dead, more at a grave.
+            GodDeeds.Funeral(dead, speaker);
 
             var tags = new List<string>();
             if (!close) tags.Add("stranger");

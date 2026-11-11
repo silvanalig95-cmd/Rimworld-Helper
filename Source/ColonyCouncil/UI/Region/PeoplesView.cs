@@ -24,18 +24,22 @@ namespace ColonyCouncil
         private static float height = 600f;
         private static readonly Folds folds = new Folds("remember");
 
-        /// <summary>The view's header: its two modes (Peoples, Faces) and its "?" (UI/UiKitViews.cs), made once.</summary>
-        private static ViewHeadModel head => headModel ??= MakeHead();
+        /// <summary>The view's header: its modes (Peoples, Faces, and Gods while the gods are on) and its "?" (UI/UiKitViews.cs), made again when the gods are switched.</summary>
+        private static ViewHeadModel head => headModel != null && headGods == Gods.On ? headModel : headModel = MakeHead();
         private static ViewHeadModel headModel;
+        private static bool headGods;
 
         private static ViewHeadModel MakeHead()
         {
+            headGods = Gods.On;
+            int modes = headGods ? 3 : 2;
             var m = new ViewHeadModel { article = PagesMath.ArticleOf(RegionView.Peoples) };
-            m.labels.AddRange(RegionView.PeopleModes);
-            m.tips.AddRange(RegionView.PeopleModeTips);
+            m.labels.AddRange(RegionView.PeopleModes.Take(modes));
+            m.tips.AddRange(RegionView.PeopleModeTips.Take(modes));
             m.pick = i =>
             {
                 RegionView.faces = i == 1;
+                RegionView.gods = i == 2;
                 scroll = Vector2.zero;
             };
             return m;
@@ -56,6 +60,7 @@ namespace ColonyCouncil
                 PeopleActs.Dirty();
             }
             RegionView.faces = false;
+            RegionView.gods = false;
             RegionView.lit = f;
         }
 
@@ -64,19 +69,22 @@ namespace ColonyCouncil
         public static void Draw(Rect rect)
         {
             PeoplesModel.Refresh();
-            bool faces = RegionView.faces;
-            var chosen = faces ? null : PeoplesModel.Chosen();
+            // The gods (Gods/GodsPage.cs), the view's third mode while the gods are on.
+            bool gods = RegionView.gods && Gods.On;
+            bool faces = !gods && RegionView.faces;
+            var chosen = faces || gods ? null : PeoplesModel.Chosen();
             if (chosen != null) RegionView.lit = chosen.f;
-            string stat = faces ? FacesStat() : PeoplesModel.entries.Count > 0 ? "CC_Peoples_Stat".Translate(PeoplesModel.entries.Count).Resolve() : null;
-            head.lit = faces ? 1 : 0;
+            string stat = gods ? GodsPage.Stat() : faces ? FacesStat() : PeoplesModel.entries.Count > 0 ? "CC_Peoples_Stat".Translate(PeoplesModel.entries.Count).Resolve() : null;
+            head.lit = gods ? 2 : faces ? 1 : 0;
             // The colony in view's neighbours with more than one colony, everyone a click away on the header (3c).
             ColonyView.Following(faces);
-            float top = UiKit.ViewHeader(rect, faces ? Icons.Visitor : Icons.Trust ?? Icons.People, "CC_Tab_Peoples".Translate(),
-                (faces ? "CC_Faces_Line" : "CC_Peoples_Line").Translate(), stat, null, 0f, null, head);
+            float top = UiKit.ViewHeader(rect, gods ? GodSymbols.Pantheon ?? Icons.Ways : faces ? Icons.Visitor : Icons.Trust ?? Icons.People,
+                (gods ? "CC_Gods_Title" : "CC_Tab_Peoples").Translate(), (gods ? "CC_Gods_Line" : faces ? "CC_Faces_Line" : "CC_Peoples_Line").Translate(), stat, null, 0f, null, head);
             var body = new Rect(rect.x, rect.y + top + 4f, rect.width, rect.height - top - 4f);
             try
             {
-                if (faces) FacesMode(body);
+                if (gods) GodsPage.Draw(body);
+                else if (faces) FacesMode(body);
                 else
                 {
                     // The list on the left, the chosen people's page on the right (PeoplesViewMath's layout, once per width).
