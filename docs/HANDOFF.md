@@ -68,7 +68,12 @@ tree at once, alongside whatever runs. Each piece is merged as its own release, 
   opens; the Almanac's letters page says when the colony can write to whom.
 - **Being built (11 November 2026): gods.** The player, after the brainstorm: "I just want you to get going ... I have
   confidence in your initial draft ... go for it. And you can really spend effort and tokens into the subject." The
-  design the agents build to, with the lead's defaults and the stages, is `docs/design/gods.md`. The player: "the concept of gods
+  design the agents build to, with the lead's defaults and the stages, is `docs/design/gods.md`.
+  Mods suggested to the player for the gods (11 November 2026, by the new rule in CLAUDE.md "Name mods that would
+  help"; their 1.7 status to be checked on the Workshop): Forest Gods (3263099058: a white stag's ritual, bear and deer
+  gods; 1.6), Dragon's Descent (2026992161; 1.6), Weapons of the Gods (Continued) (1.6). Not suggested: Call of Cthulhu
+  Cults (Continued) (in their folder, inactive, 1.5 and 1.6 only), Alpha Mythology (1.5 at most). Once added, catalogue
+  them (`docs/player-mods`) and let the avatars and relics use their creatures and weapons softly. The player: "the concept of gods
   within RimWorld ... like a pantheon of gods ... Maybe some nature or animal god could also be actually on the map, or
   like a god that is acting like a guest and then reveal himself and have some humanoid form ... that they actually are
   and interact and are into the lore and get referred to, and pawns react to gods". The first brainstorm (22 ideas and

@@ -24,6 +24,10 @@ Work in progress and the next steps are in `docs/HANDOFF.md`: read it first.
 - New ideas and requests go on the to-do list first (the player's rule since 11 November 2026): every new wish or
   report is written into `docs/HANDOFF.md` as a "To do when the player asks" entry with their words, and nothing is
   built until they say "do this now", "start now" or the like; gathered entries are then planned and built together.
+- Name mods that would help (the player's rule since 11 November 2026): for every request, past or future, check
+  whether existing mods would give Rimfolk what it can't make itself, graphics above all (swords, animals, buildings,
+  creatures) and sound or music, and tell the player which to add to their list (with the Workshop link, and whether
+  they're on the current game version and still kept up). Use those already in `docs/player-mods` as the reference first.
 - New wishes and features are proposed as a list first; the player's own explicit requests can go straight ahead.
 - Answers play out on the map; no countdowns in text. Speech goes through `Speech.Say` / `Together`.
 - Events and answers show on the map as accurately as possible: what the words say happens is what the player sees.
