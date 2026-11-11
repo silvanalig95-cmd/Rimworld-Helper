@@ -7,8 +7,8 @@ colony of 20, with the game keeping 30 more people it knows and 5 more each year
 generous guesses; sizes are rough XML sizes. Caps named as constants are read from the source. "Counted under" rows are
 kept inside another record (a journal's lines, a heart's lists) and are already in that record's size.
 
-Saved collections found: 635; modelled: 635; growing without end: 0.
-Rimfolk's part of the save, roughly: **2,865 KB** after a year, **3,522 KB** after two, **3,860 KB** after five.
+Saved collections found: 641; modelled: 641; growing without end: 0.
+Rimfolk's part of the save, roughly: **2,873 KB** after a year, **3,535 KB** after two, **3,876 KB** after five.
 
 | Collection | Rule | Kind | 1 year | 2 years | 5 years | KB at 5 years |
 |---|---|---|---|---|---|---|
@@ -81,6 +81,7 @@ Rimfolk's part of the save, roughly: **2,865 KB** after a year, **3,522 KB** aft
 | `Standing.cs:asked` | per colonist, one per wish def asked for | colonists | 300 | 300 | 300 | 10.3 |
 | `Camps/CampTracker.cs:camps` | per colony: the camps visiting, one at the usual level, four at most on a huge map at "How many camps": Crowded (CampCrowdMath.MostAtOnce); each one's rows (members, plans...) are counted once above, a second to fourth adds as much again | while | 4 | 4 | 4 | 10.2 |
 | `CouncilGameComponent.cs:nextSteps` | the colony's next steps: the plan, at most 8 proposals, done ones for 5 days, let-go ones for 15 (Building/NextSteps.cs) | fixed | 40 | 40 | 40 | 10.2 |
+| `Gods/World/GodWorldBook.cs:doings` | the gods' doings under way, the done let go each day | cap | 18 | 36 | 40 | 10.2 |
 | `Epithets/Epithets.cs:holdsSaved` | how each held name holds (NameMath.Pack: since, a challenger and their season, the last holder), one per name held | defs | 74 | 74 | 74 | 10.1 |
 | `UI/EventCards/EventCards.cs:plain` | Rimfolk's plain letters by their ID, so they open as event cards after a load: those still on the stack or in the History tab, the newest 400 (EventCardMath.MaxPlain) | cap | 400 | 400 | 400 | 9.8 |
 | `Colonies/LandingRecord.cs:kit` | the starting kit's stacks (a reference, the def and stuff, how many are the kit's, where it came from), a few dozen in a crashlanding; split loads merge back on the stockpile and used-up stacks are let go; only for the first 3 days | while | 60 | 60 | 60 | 9.4 |
@@ -168,6 +169,7 @@ Rimfolk's part of the save, roughly: **2,865 KB** after a year, **3,522 KB** aft
 | `World/Notables.cs:known` | threats heard of in talk with outsiders: WarnMath.MaxKnown, 30 days | fixed | 40 | 40 | 40 | 2.7 |
 | `Ailments/AilmentTracker.cs:healing` | injuries an ailment may follow; let go when healed, known pawns only | known | 16 | 18 | 22 | 2.6 |
 | `Aspirations/Aspirations.cs:events` | sparks, 30 days | window | 30 | 30 | 30 | 2.6 |
+| `Gods/World/GodWorldBook.cs:lasts` | when each kind of the gods' doings last came, a key a kind and a home | fixed | 30 | 30 | 30 | 2.6 |
 | `Health/HealthTracker.cs:lastDoctor` | tends 3 days | window | 30 | 30 | 30 | 2.6 |
 | `Health/HealthTracker.cs:lastTend` | tends 3 days | window | 30 | 30 | 30 | 2.6 |
 | `Health/HealthTracker.cs:visits` | 30 days | window | 30 | 30 | 30 | 2.6 |
@@ -197,6 +199,7 @@ Rimfolk's part of the save, roughly: **2,865 KB** after a year, **3,522 KB** aft
 | `Building/Suggest/Suggestions.cs:declinedUntil` | with the above: until when | fixed | 80 | 80 | 80 | 2.0 |
 | `Dreams/Dreams.cs:omens` | until they come | cap | 10 | 10 | 10 | 2.0 |
 | `Happenings/Happenings.cs:raids` | until they come | cap | 3 | 5 | 5 | 2.0 |
+| `Gods/World/GodWorldBook.cs:gifts` | gods' gifts to colonists, GodWorldBook.MaxGifts kept | cap | 2 | 4 | 9 | 1.9 |
 | `Building/Automations.cs:actions` | the last actions to undo, AutomationMath.ActionsKept | fixed | 12 | 12 | 12 | 1.9 |
 | `Diplomacy/DiplomacyBook.cs:offers` | per home: offers for captives either way and exchanges, RansomMath.MaxOffers at most, each dropped once done or its captive gone | cap | 6 | 6 | 6 | 1.9 |
 | `Setbacks/SetbackTracker.cs:friends` | pairs of friends today | pairs | 38 | 38 | 38 | 1.9 |
@@ -335,6 +338,7 @@ Rimfolk's part of the save, roughly: **2,865 KB** after a year, **3,522 KB** aft
 | `Animals/ResidentBeast.cs:knownIds` | wild beasts whose story has closed (ids), the newest 20 (ResidentBeast.KnownMax) | fixed | 20 | 20 | 20 | 0.5 |
 | `Building/BuildAhead.cs:removeCells` | per room step: what it marked to take down, inside the footprint | fixed | 20 | 20 | 20 | 0.5 |
 | `Defense/DefenseLinesWatch.cs:downedSeen` | colonists downed in the raid under way, cleared when it ends | while | 20 | 20 | 20 | 0.5 |
+| `Gods/World/GodWorldBook.cs:raids` | raids looked at for a war god's champion | cap | 6 | 12 | 20 | 0.5 |
 | `Heart/HeartData.cs:goodSpent` | per heart: one per strain source | fixed | 20 | 20 | 20 | 0.5 |
 | `PlayOut/Stage.cs:held` | when each gathering began, the last ten days (StageMath.KeepDays): two a day at the very most | fixed | 20 | 20 | 20 | 0.5 |
 | `Social/Autonomy.cs:lastActed` | with the above | window | 20 | 20 | 20 | 0.5 |
@@ -369,12 +373,14 @@ Rimfolk's part of the save, roughly: **2,865 KB** after a year, **3,522 KB** aft
 | `Building/BuildProjects.cs:patients` | the most laid up at once, one a day, BuildAheadTracker.PatientDays at most | fixed | 15 | 15 | 15 | 0.4 |
 | `Fields/FieldWeather.cs:byWeather` | per home map: the growing zones set to sow By the weather, while the zone stands | while | 15 | 15 | 15 | 0.4 |
 | `Fields/FieldWeather.cs:strays` | FieldWeatherMath.StrayDays: how much colder than the land's reckoning each of the last days got, per home map | fixed | 15 | 15 | 15 | 0.4 |
+| `Gods/World/GodWorldBook.cs:blessed` | illnesses a god has eased, once each | cap | 3 | 6 | 15 | 0.4 |
 | `Peoples/Events/PeopleEventsBook.cs:gifts` | a colonist's gift of a kind once, twenty days apart at the least, PeopleEventsMath.MaxGifts kept | cap | 3 | 6 | 15 | 0.4 |
 | `Standing.cs:recentGrants` | per colonist, 30 days | window | 15 | 15 | 15 | 0.4 |
 | `Annals.cs:goals` | the year in progress | yearly | 6 | 6 | 6 | 0.4 |
 | `Annals.cs:omens` | the year in progress | yearly | 6 | 6 | 6 | 0.4 |
 | `Building/Suggest/SameRules.cs:owners` | per store step: the stores whose priority or filter it changed | fixed | 12 | 12 | 12 | 0.4 |
 | `Colonies/HomesMerge.cs:merges` | a colony whose home was lost while its people come to live at another, then the merge's first season (at most 24, one per home lost; let go after the old council's 30 days if nobody of theirs settles) | while | 1 | 1 | 1 | 0.4 |
+| `Gods/World/GodWorldBook.cs:told` | a newborn's signs and the dead god's marks told once | cap | 1 | 2 | 6 | 0.4 |
 | `Health/HealthTracker.cs:bedHours` | known pawns only, while laid up | colonists | 4 | 4 | 4 | 0.4 |
 | `Health/HealthTracker.cs:lastTrustLine` | 20 days | window | 4 | 4 | 4 | 0.4 |
 | `UI/WeekMemory.cs:following` | FollowMath.Max: what the player follows, only their clicks, as text forms ("p123", "t55") | fixed | 12 | 12 | 12 | 0.4 |

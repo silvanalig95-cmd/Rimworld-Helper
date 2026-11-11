@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    What the colony says when a god acts in the world (Source/ColonyCouncil/Gods/World/GodWorld.cs, Say and Remark): one
+    sentence over a head through Speech.Say, by the moment's tag. {GOD}, {GODEPITHET}, {GODOF} are the god; {PAWN} the one
+    speaking; {KILLER}, {OFFENDER}, {GIFTED} who it is about where the moment has one. Tags: the moment (festival,
+    sacrilege, beasts, blight, eclipse, lightning, blessing, champion, champfell, gift, trickcurse, trickback, hunger,
+    quarrelstorm, quarreldry, side, deadmark, fading, newborn), how real the gods are (real:believed, real:felt,
+    real:walking: at Felt now and then someone doubts it), the god's domain and kind (god:storm, kind:trickster), a god's own
+    (godkey:..., from its ways), and the speaker's own (the age, lowmood, highmood).
+  -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_GodWorld</defName>
+    <lines>
+      <plain>
+        <li>[festival] I hope they drink to us at {GOD}'s feast.</li>
+        <li>[festival] Our gift is on its way to {GOD}'s table.</li>
+        <li>[sacrilege] {KILLER} shouldn't have touched that one, it was {GOD}'s.</li>
+        <li>[sacrilege] That beast was sacred to {GOD}, and {GOD} will have noticed.</li>
+        <li>[sacrilege,real:felt] Some say {GOD} keeps count of every one of those.</li>
+        <li>[beasts] They came straight for me, as if someone sent them.</li>
+        <li>[beasts] {GOD} hasn't forgotten, has {GOD}?</li>
+        <li>[beasts,real:felt] Wolves, out of nowhere, and some say I know why.</li>
+        <li>[blight] The crop's rotting where it stands, and you know whose anger that is.</li>
+        <li>[blight] We slighted {GOD}, and now look at the fields.</li>
+        <li>[blight,real:believed] Blight's blight, but I'd still leave {GOD} a sheaf next year.</li>
+        <li>[blight,real:felt] Some say it's {GOD}, and some say it's the damp.</li>
+        <li>[eclipse] The sun's gone out at noon, and I don't like it one bit.</li>
+        <li>[eclipse] {GOD} has turned away from us, and taken the light.</li>
+        <li>[eclipse,real:felt] It's only the moon in the way, surely.</li>
+        <li>[lightning] That bolt had a name on it.</li>
+        <li>[lightning] {GOD} is shouting at someone tonight.</li>
+        <li>[lightning] Right on {OFFENDER}'s roof, and you tell me that's chance.</li>
+        <li>[lightning,real:felt] Some say the storm picks its roofs.</li>
+        <li>[blessing] The fever's broken, and I'm not asking who broke it.</li>
+        <li>[blessing] Thank {GOD} for that, I thought we'd lose them.</li>
+        <li>[blessing,real:felt] Some say {GOD} sat with them in the night.</li>
+        <li>[blessing,real:believed] Good care and a strong heart did that, mostly.</li>
+        <li>[champion] {GOD} is with me today.</li>
+        <li>[champion] Stand aside, I fight for {GOD}.</li>
+        <li>[champfell] Their champion's down, and {GOD} saw it.</li>
+        <li>[champfell] So much for {GOD}'s chosen.</li>
+        <li>[champfell,real:felt] Some say that's a sign, and I say so too.</li>
+        <li>[gift] {GIFTED} has been touched by {GOD}, you can see it.</li>
+        <li>[gift] I felt the air change when {GOD}'s gift came down.</li>
+        <li>[gift,real:felt] Some say it's {GOD}'s gift, and {GIFTED} isn't arguing.</li>
+        <li>[trickcurse] Everything I touch goes wrong now, and somebody's laughing.</li>
+        <li>[trickcurse] I should have known better than to take {GOD}'s gift.</li>
+        <li>[trickback] It's come back to me, whatever it was.</li>
+        <li>[trickback] {GOD} has had the joke, and I've got the gift again.</li>
+        <li>[hunger] It always takes more, they say.</li>
+        <li>[hunger] I can feel where it took from them, like a cold draught.</li>
+        <li>[hunger] Don't answer it next time, whatever it offers.</li>
+        <li>[quarrelstorm] {GOD} has the sky today.</li>
+        <li>[quarrelstorm] Here's {GOD}'s answer, in thunder.</li>
+        <li>[quarrelstorm,real:felt] Some say the gods are fighting, and some say it's spring.</li>
+        <li>[quarreldry] Not a cloud, so {GOD} has won the day.</li>
+        <li>[quarreldry] {GOD} is holding the rain back out of spite.</li>
+        <li>[side] We've picked a side, and I hope it was the right one.</li>
+        <li>[side] {GOD} will remember we stood with them.</li>
+        <li>[deadmark] There's an old god's sign cut into this, worn nearly smooth.</li>
+        <li>[deadmark] Somebody prayed to {GOD} here, long before us.</li>
+        <li>[fading] Say the old name once, it costs nothing.</li>
+        <li>[fading] {GOD} has nobody left, so let it have us for a night.</li>
+        <li>[newborn] Our little god is growing.</li>
+        <li>[newborn] I could swear {GOD} answered me.</li>
+        <li>[newborn,child] Is {GOD} our god, just ours?</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!--
+    Myths of the gods, told at supper (Source/ColonyCouncil/Gods/World/GodDrama.cs, Supper): one sentence of an old story of
+    two gods the colony knows, said to the one beside them at the meal. {MYTHGOD} and {MYTHOTHER} are the two, {GODEPITHET}
+    the first's epithet. Tags: the tie (myth:rivals, myth:lovers, myth:estranged, myth:parent, myth:siblings, myth:twins,
+    myth:allies, myth:castdown, myth:stolepeople), how far the story has come by the history of their tie the colony has seen
+    (myth:0 the old tale, myth:1 the quarrel or the turn, myth:2 what came after), the first god's domain (god:storm...)
+    and the other's (other:harvest...), and a god's own (godkey:..., from its ways: a hand-made god's own myths).
+  -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_GodMyth</defName>
+    <lines>
+      <plain>
+        <li>They say {MYTHGOD} and {MYTHOTHER} quarrelled first, and nobody knows why.</li>
+        <li>{MYTHGOD} and {MYTHOTHER} shared one cup at the world's first feast.</li>
+        <li>[myth:rivals] {MYTHGOD} and {MYTHOTHER} hated each other before the sky was made.</li>
+        <li>[myth:rivals,myth:0] {MYTHGOD} once stole the rain from {MYTHOTHER}'s fields.</li>
+        <li>[myth:rivals,myth:1] This weather is {MYTHGOD} and {MYTHOTHER} at it again.</li>
+        <li>[myth:rivals,myth:2] {MYTHGOD} won the last round, and {MYTHOTHER} is sulking.</li>
+        <li>[myth:rivals,god:storm,other:harvest] {MYTHGOD} keeps the rain to spite {MYTHOTHER}.</li>
+        <li>[myth:lovers] {MYTHGOD} met {MYTHOTHER} at a crossroads, and neither stepped aside.</li>
+        <li>[myth:lovers,myth:0] {MYTHGOD} courted {MYTHOTHER} for a hundred years.</li>
+        <li>[myth:lovers,myth:2] {MYTHGOD} and {MYTHOTHER} have made it up again, they say.</li>
+        <li>[myth:estranged] {MYTHGOD} and {MYTHOTHER} were lovers once, and now never speak.</li>
+        <li>[myth:estranged,myth:1] {MYTHGOD} walked out on {MYTHOTHER} in the middle of a storm.</li>
+        <li>[myth:parent] {MYTHOTHER} was born of {MYTHGOD} out of a single spark.</li>
+        <li>[myth:parent,myth:1] {MYTHOTHER} still lives in {MYTHGOD}'s shadow, and hates it.</li>
+        <li>[myth:siblings] {MYTHGOD} and {MYTHOTHER} are sister and brother, and bicker like it.</li>
+        <li>[myth:siblings,myth:0] {MYTHGOD} and {MYTHOTHER} cut the world in two with a knife.</li>
+        <li>[myth:twins] {MYTHGOD} and {MYTHOTHER} are twins, and nobody knows which one answers.</li>
+        <li>[myth:twins,myth:1] The twins fight over every soul, {MYTHGOD} pulling and {MYTHOTHER} pushing.</li>
+        <li>[myth:allies] {MYTHGOD} and {MYTHOTHER} shook hands at the world's edge.</li>
+        <li>[myth:allies,myth:2] {MYTHOTHER} still owes {MYTHGOD} for the last favour.</li>
+        <li>[myth:castdown] {MYTHGOD} threw {MYTHOTHER} out of the sky, and it was never forgiven.</li>
+        <li>[myth:castdown,myth:0] {MYTHOTHER} was great once, until {MYTHGOD} took the throne.</li>
+        <li>[myth:stolepeople] {MYTHGOD} stole {MYTHOTHER}'s people away with better promises.</li>
+        <li>[myth:stolepeople,myth:1] {MYTHOTHER}'s old faithful pray to {MYTHGOD} now.</li>
+        <li>[godkey:stormfather] The thunder is {MYTHGOD} checking the chain on the deep vault.</li>
+        <li>[godkey:ferryman] {MYTHGOD} once ferried a man who wasn't dead yet, and charges double since.</li>
+        <li>[godkey:green] {MYTHGOD} remembers every axe, and every tree that fell to one.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+</Defs>

@@ -12141,6 +12141,68 @@ presence part builds against the same contract).
 - **Settings**: "Gods" (on) and "How real are the gods" (Believed, Felt, Walking; Felt), What's on, The gods.
 - Dev actions "Gods: ...". The Almanac page "the gods" (`Council_Alm_C_Gods`). Tested in `GodsTests`.
 
+### The gods in the world (the player's request, 11 November 2026; not released yet)
+
+Stage 2's world part of `docs/design/gods.md` (brainstorm items 17, 18, 19, 21 and 22, and the drama between the gods),
+built on the core's `Gods` API and the two presence seams only (`Source/ColonyCouncil/Gods/World/`; defs
+`Defs/GodDefs/Rimfolk_GodsWorld_*.xml`). The player's rule since the redone brainstorm (`docs/gods-pantheon-brainstorm.md`,
+section E): the gods pull the strings, so every act names whose hand it was, in the voice of how real the gods are
+(`GodWorld.Voice`: "the colony believes", "some say", or plainly), and acts through the world (peoples, letters, the
+map). Favour is never a number.
+
+- **The frame** (`GodWorld.cs`): kept in the region's day and hour (`RegionBook`, no pass of its own); `GodWorldBook`
+  saves the gifts, what is under way (`GodDoing`: one record a kind, bounded), the illnesses eased, when each kind last
+  came, the Hunger's account and the Sleeper's door. A god's moment goes through `GodPresenceSeam.Call`; while the
+  presence part isn't there, a plain letter or message (`GodWorld.Moment`), and the act is remembered on the god's page.
+  Avatars through `GodLookSeam.Make`. Questions through `Tell.Ask` as one letter class (`GodAsks`,
+  `ChoiceLetter_GodWorld`, its answers each kind's own, in This week's Needs you); questions that can wait wait for
+  `Tell.CanAsk`. Rates by how real the gods are (`GodWorldMath.Realness`: half when Believed, 1.4 times when Walking);
+  what only a real god does (gifts of power, the void, the Sleeper, a rival's avatar) never while Believed.
+- **A god's ways** (`GodWays.cs`, `GodWaysDef`, `Rimfolk_GodsWorld_Ways.xml`): what it gives, the shape of its anger, its
+  price, its holy place, its feast, its side in a quarrel of the sky and its myths' tags, keyed on the god (its patron's
+  defName or its name; the hand-made gods to come name theirs), then its domain's def, then the domain's generic ways in
+  `GodWorldMath`. The peoples' patrons have ways of their own.
+- **Letters** (`GodLetters.cs`; hooks in `LetterFormShapes` and `LetterForm.Answer`): their letters tell of their god by
+  their town's facts (`GodWorldMath.LetterTells`: thriving a sign, struggling, ill or mourning a curse, a holy war, a myth
+  of its tie), in sermons, stories (theme `st:god`) and chronicles (subject `chs:god`), `{SIGNGOD}`, `{MYTHGOD}`,
+  `{MYTHOTHER}`, `{ENEMYGOD}`. The colony's letter written by a rival's faithful or a scoffer may slight their god
+  (`Slights`): the paragraph is in the letter, their answer's narrator says they took offence, goodwill and favour fall,
+  and the god holds a grudge against the writer. A festival's invitation (every 75 days or so, 40 apart): a gift of
+  silver carried out to the gate for their messenger, or regrets.
+- **Diplomacy** (`GodPeoples.cs`): once a season a people sharing a god the colony stands well with gains a little
+  goodwill, and one whose god is the rival of a patron that favours the colony loses a little (never below 0); a holy war
+  (a friend at war with a people of a rival god: stand with them, send silver, stay out); a temple's envoy at the gate
+  for a relic the colony holds (Ideology's relics, the gods' relics): given, they walk to it and take it; prayed over,
+  they kneel an hour; refused, they go.
+- **Camps** (`GodCamps.cs`, `Rimfolk_GodsWorld_Camps.xml`, two `CampWorker`s): pilgrims at a holy place on the colony's
+  land by their god's site kind (an old tree, the water's edge, a wreck, the graves, old stones), praying there at dawn and
+  dusk, leaving no trace, the place's loss a sacrilege; a hermit seer at the map's edge whose word is always true
+  (`GodCamps.Foretell`: a quarrel, a grudge, the Hunger's due, the Sleeper, the angriest or kindest god) and whose reading
+  for a visitor lists the colony's standing with every god it knows; a war god's champion at the head of one raid in
+  seven or so (`Rimfolk_GodChampion`), whose fall is a sign.
+- **Health and wrath** (`GodHealth.cs`): a fever broken or a plague eased in the small hours by the colony's standing
+  with its god of healing (`BlessingChance`, once an illness, never a cure); a grudge's lightning on the offender's roof in
+  a thunderstorm, clear of anyone, and its beasts (the game's wolves, manhunting) when they are out; a displeased god's
+  blight, eclipse or strike on an empty field (`WrathOf`, `WrathDays`; a patient or cold god never strikes). The hurts are
+  three kinds in the shared harm budget (`godBeasts`, `godLightning`, `godPrice`, system `gods`).
+- **Gifts** (`GodGifts.cs`, `Rimfolk_GodsWorld_Gifts.xml`): a favoured god offers a lasting gift, spaced with the peoples'
+  gifts (`PeopleEventsBook`): a blessing on the body (`Rimfolk_GodGift_<Domain>`), a beast, a RimWorld of Magic class
+  (Priest or Paladin, Druid, Ranger, Geomancer, Necromancer or Death Knight, Storm Born, Enchanter, Technomancer, Bard,
+  Gladiator or Monk, through `PeopleGifts.GiveClass` and its settings' switches), a spell scroll or a gifted trait for a
+  caster, a psylink and a Vanilla Psycasts Expanded path (`PsycastPaths.Follow`), a relic. Its price is named first
+  (`PriceOf`): an offering carried out, the god's mark, years, a cut, its rivals' anger; accepted, the colonist walks out
+  under the sky to receive it. A trickster's gift turns and turns back; a rival's avatar may come to undo it.
+- **The void** (`GodVoid.cs`): the Hunger hears the desperate (dying, breaking, starving), pays at once (wounds closed,
+  `Rimfolk_VoidCalm`, meat out of the dark) and takes more each time and sooner (a mark, years, a mind with Anomaly's
+  inhumanized, a beast); the Choir of the Spire write.
+- **The drama** (`GodDrama.cs`): a quarrel of the sky (a storm god against a rival of the fields, the waters or the
+  hearth; the game's own weather of the land in turns, an offering ending it sooner); a god's ask to slight its rival or
+  hide one its rival hunts; myths at supper (`Rimfolk_Pool_GodMyth`, by the tie and how far its history has come).
+- **The ones who don't fit** (`GodOutliers.cs`): an archotech's exact terms, the dead god's mark in an old place, the
+  fading god gentle or bitter, the Sleeper's three asks and its door, a newborn's signs.
+- Dev actions "Gods in the world: ...". The Almanac page "the gods in the world" (`Council_Alm_C_GodsWorld`). Tested in
+  `GodWorldTests`.
+
 ### Checking a new game version
 
 One DLL serves every supported version: it is built against the 1.6 references into `1.6/Assemblies`, and on 1.7

@@ -4250,6 +4250,23 @@ window's Peoples has a Gods page: the colony's gods, the others it knows, the ru
 a web, and each god's symbol, people, domain, nature, ties and acts. Settings: *Gods* (on) and *How real are the gods*
 (Believed, Felt, Walking; Felt). The Almanac has a page, *the gods*.
 
+**The gods in the world.** The gods are behind what happens beyond the colony's walls and to it, and every act says
+whose hand it was ("some say the Storm-father sent it"), then plays out on the map. Neighbours' letters tell of their
+god by what is true at their town (a sign, a curse, an old myth, their war as their god's quarrel); a friend invites the
+colony to its god's feast; a colony letter that slights their god offends them. Peoples who share a god get on better,
+a holy war asks the colony to take a side, and a temple's envoy comes to the gate for a relic. Pilgrims camp by a place
+one people calls holy on the colony's land, a hermit seer at the map's edge says true things about the gods, and a war
+god's champion may lead a raid. A fever breaks in the night; a god's anger shows as lightning on an offender's roof,
+wolves after the one who killed its sacred beast, blight or the sun put out, at the game's own rate and in the shared
+budget of hurts. A god that favours the colony offers one of its people a lasting gift with a price named first (a
+blessing of its domain, a beast, A RimWorld of Magic's classes, spells and gifted traits, Vanilla Psycasts Expanded's
+paths, its relic); a trickster's gift turns, and a rival may come to undo it. The Hunger answers the desperate, always
+pays and always takes more; rival gods quarrel in the weather and ask the colony to slight each other; myths are told
+at supper; archotechs bargain in exact terms, the dead god's mark turns up in old places, the fading god asks to be
+remembered, the Sleeper wants out, and a newborn god gives its first signs. A god's ways (its gifts, anger, price, holy
+place, feast and myths) are keyed on the god first and its domain after. The Almanac has a page, *the gods in the
+world*.
+
 ## Scenarios with stakes
 Seventeen scenarios, marked "(Rimfolk)" on the scenario page with how hard they are. Each starts the game with
 something already in motion, and a few seconds in, a letter says how things stand.

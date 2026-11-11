@@ -12,6 +12,52 @@ tree at once, alongside whatever runs. Each piece is merged as its own release, 
 
 ## State (5 November 2026)
 
+- **Gods, stage 2: the world (letters and diplomacy, peoples and camps, health and wrath, relics and gifts, the void,
+  the drama between the gods), built 11 November 2026. Not released: no version, no What's new round, About.xml and
+  CHANGELOG untouched.** The player: "gods that are real, in the lore, referred to, and reacted to", "drama between the
+  gods", "outliers that work differently", and (the redone brainstorm, section E) "gods should really feel like godly
+  characters pulling the strings of the universe, not just another menu". `docs/design/gods.md` stage 2's "The world";
+  DESIGN.md "The gods in the world"; README "The gods in the world"; the Almanac page "the gods in the world"
+  (`Council_Alm_C_GodsWorld`, new).
+  - Code: `Source/ColonyCouncil/Gods/World/` (new): `GodWorldMath.cs` (pure, linked), `GodWorld.cs` (the day and hour, the
+    voice, the moment through the presence seam with a plain card meanwhile), `GodWorldBook.cs` (saved), `GodAsks.cs`
+    (`ChoiceLetter_GodWorld`), `GodWays.cs` (`GodWaysDef`: a god's ways keyed on the god, then its domain), `GodLetters.cs`,
+    `GodPeoples.cs`, `GodCamps.cs`, `GodHealth.cs`, `GodGifts.cs`, `GodVoid.cs`, `GodDrama.cs`, `GodOutliers.cs`,
+    `GodWorldDebug.cs`. Defs `Defs/GodDefs/Rimfolk_GodsWorld_Letters.xml`, `_Gifts.xml` (14 blessings, the curse, the
+    mark, the champion, the void's calm), `_Camps.xml` (pilgrims, seer), `_Lines.xml` (`Rimfolk_Pool_GodWorld`,
+    `Rimfolk_Pool_GodMyth`), `_Ways.xml` (the patrons' ways). Keyed `Rimfolk_GodsWorld.xml`. Lines added to the letters'
+    sermon, story (theme `st:god`) and chronicle (subject `chs:god`) pools. Small hooks: `RegionBook.Daily`/`Hourly`,
+    `Happenings.Notify_Killed`, `LetterFormShapes` (both shapes), `LetterForm.Answer`, `LetterKindMath` (the theme and the
+    subject), `InboxProviders`, `PeopleGifts.GiveClass` (internal, returns whether), `PeoplesGearMath` (Necromancer and
+    Death Knight), `HarmKinds` and `Harm.SystemOn` (`gods`), `Tools/Balance/HarmSim.cs`, the DefValidator's placeholders,
+    `LetterFormTests`' and `HarmBudgetTests`' lists, `Tools/save_estimate.py`. Tests `GodWorldTests`.
+  - For the hand-made pantheon to come: everything a god does in the world reads its ways through `GodWays` (gifts,
+    classes, spells, paths, beasts, anger, price, holy place, feast, weather side, myth tags `godkey:...`), keyed on the god
+    first, its domain after; a hand-made god's def adds a `GodWaysDef` naming its key, and its own myth lines.
+  - Try in the game: 1. Dev "Gods: add favour here..." to favoured on a known god, then dev "Gods in the world: a god
+    offers a gift": the letter names the gift and its price; accept, the colonist walks out under the sky, the gift comes
+    (with A RimWorld of Magic a class or a spell, with Royalty and Vanilla Psycasts Expanded a path); dev "Gods in the
+    world: gifts received now" skips the wait. 2. Dev "...: turn a trickster's or any gift" and "...: a rival comes for the
+    newest gift" (the avatar walks in; let it, and it walks to the colonist). 3. Select a colonist, dev "...: a god's
+    grudge on the selected colonist..." with a wild or war god, then "...: the beasts come now" while they are outside; with
+    a storm god, wait for a thunderstorm. 4. A colonist with the flu at night, a healing god pleased: dev "...: a fever
+    broken tonight". 5. Dev "...: pilgrims at a holy place" (an old tree, a river or a wreck on the map), then the camp's
+    page: join the dusk prayers; cut the tree while they are there. 6. Dev "...: a hermit seer", then ask the seer. 7. A
+    raid by a people with a war god: dev "...: the next raid led by a champion", then beat the champion. 8. Dev "...: a
+    festival's invitation", "...: a holy war", "...: a temple's envoy for a relic" (with an Ideology relic on the map),
+    "...: shared gods' goodwill now". 9. A neighbour's letter at a thriving or struggling town: a sermon, story or
+    chronicle of their god. 10. Write a letter from a colonist of a rival faith: the slight in the letter, the offence in
+    their answer. 11. Dev "...: a quarrel in the weather" (a known storm god with a rival of the fields): the sky turns
+    every two days. 12. Dev "...: a god's ask", "...: a myth at supper now" (two colonists eating together). 13. A colonist
+    downed and bleeding: dev "...: the Hunger hears", take it, then "...: the Hunger takes now". 14. Dev "...: an
+    archotech's terms", "...: the dead god's mark" (an ancient wall with a colonist near), "...: the fading god", "...: the
+    Sleeper's dream", "...: a newborn's next sign". 15. Dev "...: show what is under way (log)" lists everything kept and
+    every god's ways.
+  - Can't be checked without the game: the pilgrims' and seer's camps pitching where the worker says; the champion's
+    lord types across raid strategies; the beasts' manhunting job; the lightning's roof cell; A RimWorld of Magic's class
+    waking on a grown colonist (the same reset the peoples' gifts use) and its spell scrolls' use; the Vanilla Psycasts
+    Expanded path on a fresh psylink; the weather transitions of a quarrel on every biome; the letter shapes' new lines
+    in real letters; the presence part's card replacing the plain one once it is wired.
 - **Gods, stage 1: the core (the pantheon), built 11 November 2026. Not released: no version, no What's new round,
   About.xml and CHANGELOG untouched.** The player: "the concept of gods within RimWorld ... like a pantheon of gods",
   "go for it ... you can really spend effort and tokens into the subject", and "when I think of gods as kind of one

@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    A god's ways in the world (Source/ColonyCouncil/Gods/World/GodWays.cs, GodWaysDef): what it gives, how its anger shows,
+    the price it asks, the holy place its people seek, its feast, its side in a quarrel of the sky, and the tags its myths
+    and the words about it are told by. Keyed on the god (gods: its patron's defName, or its name in lower case; the
+    hand-made gods to come name their own defName here), else on a domain; whatever a def leaves out falls back to the
+    domain's generic ways (GodWorldMath). The defs below give Rimfolk's peoples' patrons ways of their own; every other god
+    takes its domain's.
+    Names in the lists are the classes' trait defNames of A RimWorld of Magic (torann.arimworldofmagic), its spell scrolls,
+    Vanilla Psycasts Expanded's paths (vanillaexpanded.vpsycastse), and the game's animals; each is looked up softly, so a
+    mod that isn't loaded simply isn't offered.
+  -->
+
+  <ColonyCouncil.GodWaysDef>
+    <defName>Rimfolk_GodWays_StormFather</defName>
+    <gods><li>Rimfolk_Patron_StormFather</li></gods>
+    <classes><li>StormBorn</li></classes>
+    <paths><li>VPE_Staticlord</li></paths>
+    <wrath>Lightning</wrath>
+    <prices><li>Blood</li><li>Mark</li><li>Offering</li></prices>
+    <site>wreck</site>
+    <feast>the Night of the First Thunder</feast>
+    <weather>storm</weather>
+    <mythTags><li>godkey:stormfather</li></mythTags>
+  </ColonyCouncil.GodWaysDef>
+
+  <ColonyCouncil.GodWaysDef>
+    <defName>Rimfolk_GodWays_Healer</defName>
+    <gods><li>Rimfolk_Patron_Healer</li></gods>
+    <classes><li>Priest</li><li>Paladin</li></classes>
+    <spells><li>SpellOf_Heal</li><li>SpellOf_SpellMending</li></spells>
+    <paths><li>VPE_Empath</li></paths>
+    <prices><li>Offering</li><li>Years</li></prices>
+    <site>water</site>
+    <feast>the Night of the Lamps</feast>
+    <mythTags><li>godkey:healer</li></mythTags>
+  </ColonyCouncil.GodWaysDef>
+
+  <ColonyCouncil.GodWaysDef>
+    <defName>Rimfolk_GodWays_Green</defName>
+    <gods><li>Rimfolk_Patron_Green</li><li>Rimfolk_Patron_Herdmother</li></gods>
+    <classes><li>Druid</li></classes>
+    <paths><li>VPE_Wildspeaker</li></paths>
+    <beasts><li>Wolf_Timber</li><li>Bear_Grizzly</li></beasts>
+    <wrath>Beasts</wrath>
+    <site>tree</site>
+    <weather>dry</weather>
+    <mythTags><li>godkey:green</li></mythTags>
+  </ColonyCouncil.GodWaysDef>
+
+  <ColonyCouncil.GodWaysDef>
+    <defName>Rimfolk_GodWays_Hunter</defName>
+    <gods><li>Rimfolk_Patron_Hunter</li></gods>
+    <classes><li>Ranger</li></classes>
+    <beasts><li>Wolf_Timber</li><li>Wolf_Arctic</li></beasts>
+    <wrath>Beasts</wrath>
+    <site>tree</site>
+    <feast>the Lantern Night</feast>
+    <mythTags><li>godkey:hunter</li></mythTags>
+  </ColonyCouncil.GodWaysDef>
+
+  <ColonyCouncil.GodWaysDef>
+    <defName>Rimfolk_GodWays_DeepMother</defName>
+    <gods><li>Rimfolk_Patron_DeepMother</li></gods>
+    <classes><li>Geomancer</li></classes>
+    <prices><li>Years</li><li>Blood</li></prices>
+    <site>stone</site>
+    <mythTags><li>godkey:deepmother</li></mythTags>
+  </ColonyCouncil.GodWaysDef>
+
+  <ColonyCouncil.GodWaysDef>
+    <defName>Rimfolk_GodWays_Ferryman</defName>
+    <gods><li>Rimfolk_Patron_Ferryman</li></gods>
+    <classes><li>Necromancer</li><li>DeathKnight</li></classes>
+    <paths><li>VPE_Necropath</li></paths>
+    <wrath>Eclipse</wrath>
+    <prices><li>Years</li><li>Mark</li></prices>
+    <site>grave</site>
+    <feast>the Night of the Bell</feast>
+    <mythTags><li>godkey:ferryman</li></mythTags>
+  </ColonyCouncil.GodWaysDef>
+
+  <ColonyCouncil.GodWaysDef>
+    <defName>Rimfolk_GodWays_Hunger</defName>
+    <gods><li>Rimfolk_Patron_Hunger</li></gods>
+    <classes><li>Necromancer</li><li>DeathKnight</li></classes>
+    <paths><li>VPEP_Puppeteer</li><li>VPE_Necropath</li></paths>
+    <wrath>Eclipse</wrath>
+    <prices><li>Years</li></prices>
+    <site>wreck</site>
+    <mythTags><li>godkey:hunger</li></mythTags>
+  </ColonyCouncil.GodWaysDef>
+
+  <ColonyCouncil.GodWaysDef>
+    <defName>Rimfolk_GodWays_Smith</defName>
+    <gods><li>Rimfolk_Patron_Smith</li><li>Rimfolk_Patron_Tinker</li></gods>
+    <classes><li>Enchanter</li></classes>
+    <paths><li>VPE_Technomancer</li></paths>
+    <prices><li>Offering</li><li>Mark</li></prices>
+    <site>stone</site>
+    <feast>the Quenching</feast>
+    <mythTags><li>godkey:smith</li></mythTags>
+  </ColonyCouncil.GodWaysDef>
+
+  <ColonyCouncil.GodWaysDef>
+    <defName>Rimfolk_GodWays_Machine</defName>
+    <gods><li>Rimfolk_Patron_VoiceInTheWire</li><li>Rimfolk_Patron_Broker</li><li>Rimfolk_Patron_LatticeMind</li><li>Rimfolk_Patron_SilentCaptain</li></gods>
+    <classes><li>Technomancer</li></classes>
+    <paths><li>VPE_Technomancer</li><li>VPE_Archotechist</li></paths>
+    <site>wreck</site>
+    <mythTags><li>godkey:machine</li></mythTags>
+  </ColonyCouncil.GodWaysDef>
+
+  <ColonyCouncil.GodWaysDef>
+    <defName>Rimfolk_GodWays_FarLight</defName>
+    <gods><li>Rimfolk_Patron_FarLight</li><li>Rimfolk_Patron_Lamp</li></gods>
+    <classes><li>TM_Bard</li></classes>
+    <paths><li>VPE_Nightstalker</li><li>VPE_Chronopath</li></paths>
+    <site>stone</site>
+    <mythTags><li>godkey:farlight</li></mythTags>
+  </ColonyCouncil.GodWaysDef>
+
+  <ColonyCouncil.GodWaysDef>
+    <defName>Rimfolk_GodWays_RedCaptain</defName>
+    <gods><li>Rimfolk_Patron_RedCaptain</li></gods>
+    <classes><li>Gladiator</li><li>TM_Monk</li></classes>
+    <paths><li>VPE_Warlord</li></paths>
+    <beasts><li>Warg</li></beasts>
+    <wrathBeasts><li>Warg</li></wrathBeasts>
+    <wrath>Beasts</wrath>
+    <prices><li>Blood</li><li>Blood</li><li>Mark</li></prices>
+    <feast>the Reading of the Roll</feast>
+    <mythTags><li>godkey:redcaptain</li></mythTags>
+  </ColonyCouncil.GodWaysDef>
+
+  <ColonyCouncil.GodWaysDef>
+    <defName>Rimfolk_GodWays_River</defName>
+    <gods><li>Rimfolk_Patron_River</li></gods>
+    <classes><li>HeartOfFrost</li></classes>
+    <paths><li>VPE_Frostshaper</li></paths>
+    <wrath>Blight</wrath>
+    <site>water</site>
+    <weather>dry</weather>
+    <feast>the Flood Night</feast>
+    <mythTags><li>godkey:river</li></mythTags>
+  </ColonyCouncil.GodWaysDef>
+
+  <ColonyCouncil.GodWaysDef>
+    <defName>Rimfolk_GodWays_Way</defName>
+    <gods><li>Rimfolk_Patron_Way</li></gods>
+    <classes><li>TM_Wayfarer</li></classes>
+    <paths><li>VPE_Skipmaster</li></paths>
+    <beasts><li>Horse</li><li>Dromedary</li></beasts>
+    <site>stone</site>
+    <feast>the Night of Nine Flags</feast>
+    <mythTags><li>godkey:way</li></mythTags>
+  </ColonyCouncil.GodWaysDef>
+
+  <ColonyCouncil.GodWaysDef>
+    <defName>Rimfolk_GodWays_Sleeper</defName>
+    <gods><li>Rimfolk_Patron_Sleeper</li></gods>
+    <classes><li>TM_Bard</li></classes>
+    <paths><li>VPE_Archotechist</li></paths>
+    <site>wreck</site>
+    <mythTags><li>godkey:sleeper</li></mythTags>
+  </ColonyCouncil.GodWaysDef>
+
+</Defs>

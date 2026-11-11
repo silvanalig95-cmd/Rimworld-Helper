@@ -559,6 +559,8 @@ wishPh.UnionWith(new[] { "GOD", "GODEPITHET", "GODOF" });
 // The gods in the wider world (Gods/World/): the god of a sign or curse their letter tells of, a myth's two gods, the god and
 // people their holy war is against (GodLetters.Shape); a holy place on the colony's land (GodCamps); a myth told at supper.
 wishPh.UnionWith(new[] { "SIGNGOD", "SIGNGODEPITHET", "MYTHGOD", "MYTHOTHER", "ENEMYGOD", "ENEMYPEOPLE", "SITE" });
+// What the colony says when a god acts (Rimfolk_Pool_GodWorld): who it is about.
+wishPh.UnionWith(new[] { "KILLER", "OFFENDER", "GIFTED" });
 // A correspondence that builds up (Letters/LetterThreads.cs, Rimfolk_Letters_Familiar, _Thread): an earlier letter's
 // thread in words, the one written to by full name and by a short one, the colonist who usually wrote.
 wishPh.UnionWith(new[] { "RE", "TOFULL", "TONICK", "LASTPEN" });

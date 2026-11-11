@@ -278,6 +278,17 @@
         <li>[olde,ch:notice] Item: the friar's mule is strayed again. It is not lost; it knoweth exactly where it is. It is only not here.</li>
         <li>[ch:notice,w:tribal] The hunters ask that nobody sing near the river until the fish come back. The fish do not like the new song.</li>
         <li>[ch:notice,w:tribal] Whoever borrowed the big pot, the grandmother wants it back, and she does not want it back with anything still in it.</li>
+        <!-- ================= Their god's sign or curse, or their holy war (Gods/World/GodLetters.cs) ================= -->
+        <li>[ch:item,chs:god,god:miracle,!w:tribal] A SIGN, SOME SAY: the priests credit {SIGNGOD} with the town's good fortune, and the collection plate agrees.</li>
+        <li>[ch:item,chs:god,god:curse,!w:tribal] THE SHRINE ASKS: whoever has displeased {SIGNGOD} is asked to put it right, and quickly, before anything else goes wrong.</li>
+        <li>[ch:item,chs:god,god:holywar,!w:tribal] THE WAR: the priests say the fight with {ENEMYPEOPLE} is {SIGNGOD}'s quarrel with {ENEMYGOD}, and the recruiters have taken the hint.</li>
+        <li>[ch:item,chs:god,god:myth,!w:tribal] FROM THE OLD BOOKS: by request, the reading at the shrine is the tale of {MYTHGOD} and {MYTHOTHER}.</li>
+        <li>[ch:item,chs:god,god:miracle,w:tribal] The shaman says {SIGNGOD} has looked on us kindly, and the fires are high for it.</li>
+        <li>[ch:item,chs:god,god:curse,w:tribal] The old ones say {SIGNGOD} is angry, and the young are told to keep their voices down near the stones.</li>
+        <li>[ch:item,chs:god,god:holywar,w:tribal] Our fight with {ENEMYPEOPLE} is {SIGNGOD}'s fight with {ENEMYGOD}, the shaman says, and the spears are blessed for it.</li>
+        <li>[olde,ch:item,chs:god,god:miracle] Item: the priests do credit {SIGNGOD} with our good fortune, and the alms box agreeth.</li>
+        <li>[olde,ch:item,chs:god,god:curse] Item: whosoever hath angered {SIGNGOD}, let them make it right ere worse befall.</li>
+        <li>[olde,ch:item,chs:god,god:holywar] Item: the war with {ENEMYPEOPLE} is {SIGNGOD}'s own quarrel with {ENEMYGOD}, saith the priest.</li>
       </plain>
     </lines>
   </ColonyCouncil.FlavorPoolDef>

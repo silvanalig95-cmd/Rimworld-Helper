@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    The gods' camps on the colony's land (Source/ColonyCouncil/Gods/World/GodCamps.cs; docs/design/gods.md, stage 2,
+    brainstorm item 18), each a camp kind with ways of its own (Camps/CampWorker.cs). Neither comes on the camps' own draw
+    (weight 0): the gods in the world bring them (pilgrims when a people calls a place on the colony's land holy, a seer now
+    and then). {GOD}, {GODEPITHET} and {GODOF} are the pilgrims' god (the seer's: the colony's patron); {SITE} the holy
+    place in words ("the old oak", "the river's bank").
+  -->
+
+  <!-- ===================== Pilgrims at a holy place ===================== -->
+
+  <ColonyCouncil.CampKindDef>
+    <defName>Rimfolk_Camp_GodPilgrims</defName>
+    <label>pilgrims at a holy place</label>
+    <workerClass>ColonyCouncil.CampWorker_GodPilgrims</workerClass>
+    <arrives>7~15</arrives>
+    <weight>0</weight>
+    <people>2~5</people>
+    <days>3~6</days>
+    <ages>18~75</ages>
+    <chopsPerDay>0.2</chopsPerDay>
+    <hireChance>0</hireChance>
+    <joinChance>0.02</joinChance>
+    <helpChance>0.1</helpChance>
+    <help>
+      <li>tales</li>
+    </help>
+    <buys>
+      <li>Meal</li>
+      <li>RawFood</li>
+    </buys>
+    <pride>0.3</pride>
+    <breakTerms>0.02</breakTerms>
+    <tensionPerDay>0.3</tensionPerDay>
+    <canPay>false</canPay>
+    <extendChance>0.05</extendChance>
+    <structures>
+      <li><role>fire</role><defs><li>Campfire</li></defs></li>
+    </structures>
+    <sleep>Ring</sleep>
+    <leaves>NoTrace</leaves>
+    <leavesWhy>Pilgrims leave a holy place as they found it: nothing of theirs stands by it when they go.</leavesWhy>
+    <works><li>Gather</li></works>
+    <titles>
+      <li>Pilgrims at {SITE}</li>
+      <li>A holy place on the colony's land</li>
+      <li>[lowtech] Pilgrims of {GOD}</li>
+    </titles>
+    <texts>
+      <li>Pilgrims of {FACTION} have come to the colony's land and are making camp {PLACE}. {X_nameDef} told {A_nameDef} that their people have always called {SITE} holy to {GOD}, {GODEPITHET}, and that they will pray there at dawn and at dusk for a few days, and touch nothing.</li>
+      <li>[lowtech] A small band of {FACTION}'s faithful walked in carrying bundles of dried flowers and a clay lamp. {X_nameDef} told {A_nameDef} they had come a long way to pray at {SITE}, which {X_possessive} grandmother said is where {GOD} once stood, and asked only to be let alone with it.</li>
+      <li>[!lowtech] A handful of pilgrims of {FACTION} are setting up a fire {PLACE}, within sight of {SITE}. {X_nameDef} showed {A_nameDef} a worn drawing of it in a prayer book: their people call it one of {GOD}'s places, and they come to it when they can.</li>
+      <li>[sameFaith] Pilgrims of {FACTION}, who keep the same faith as some of the colony, have come to pray at {SITE}. {X_nameDef} told {A_nameDef} that the colony is welcome to join them at dusk.</li>
+    </texts>
+    <settled>
+      <li>The pilgrims' fire is lit {PLACE}, and their lamp is already burning by {SITE}.</li>
+      <li>The pilgrims have made a ring of bedrolls round their fire {PLACE}, facing {SITE}.</li>
+    </settled>
+    <joinTexts>
+      <li>{X_nameDef}, one of the pilgrims {PLACE}, has prayed at {SITE} every dawn and dusk and says {GOD} has told {X_objective} to stay. {X_pronoun} asks whether the colony would have {X_objective}.</li>
+    </joinTexts>
+    <farewell>
+      <li>The pilgrims prayed at {SITE} one last time at dawn and walked home, leaving their ashes raked and nothing else behind.</li>
+      <li>[joined] The pilgrims left at first light, and {X_nameDef} thanked the colony for praying with them at {SITE}. {GOD} will remember it, {X_pronoun} said.</li>
+      <li>[desecrated] The pilgrims left in silence. {SITE} was gone, and they would not stay where it had been.</li>
+    </farewell>
+    <lines>
+      <li>Walk softly near it.</li>
+      <li>My grandmother came here once.</li>
+      <li>{GOD} stood here, they say.</li>
+      <li>We'll be gone in a few days, and we'll touch nothing.</li>
+      <li>[evening] Dusk, and time to pray.</li>
+      <li>[morning] The first light belongs to {GOD}.</li>
+    </lines>
+    <momentLines>
+      <li>[pray] To {SITE}, all of us, it's time.</li>
+      <li>[pray] Bring the lamp, we pray at {SITE} now.</li>
+      <li>[grief] It's gone, the holy place is gone.</li>
+      <li>[grief] Who could have done this to {SITE}?</li>
+    </momentLines>
+    <helpTexts>
+      <li>[tales] {A_nameDef} sat at the pilgrims' fire while {X_nameDef} told the story of {GOD} and {SITE} the way {X_possessive} people tell it.</li>
+    </helpTexts>
+    <asks>
+      <li>
+        <key>pray</key>
+        <label>Join the pilgrims' prayers at dusk</label>
+        <tip>Whoever is free walks over to the pilgrims' fire at dusk and prays with them toward the holy place. A little peace for the colony, and their god will remember it.</tip>
+        <needs>evening</needs>
+        <tension>-4</tension>
+        <warm>2</warm>
+        <deed>campHosted</deed>
+        <outcomes>
+          <li>Whoever isn't working is walking over to the pilgrims' fire for the dusk prayers, and {X_nameDef} has made room for them facing {SITE}.</li>
+          <li>The colony's people are going out to pray with the pilgrims at dusk, and the lamp by {SITE} is already lit.</li>
+        </outcomes>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Gathering"><label>the dusk prayers with the pilgrims</label><spots><li>Camp</li></spots><hours>17~21</hours><duration>1~2</duration></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Joy"><target>Colony</target><amount>0.05</amount></li>
+          <li Class="ColonyCouncil.DilemmaEffect_GodPilgrims" />
+        </effects>
+      </li>
+      <li>
+        <key>bread</key>
+        <label>Send them a meal</label>
+        <tip>One of the colony carries a few meals out to the pilgrims' fire. Their people will remember the welcome.</tip>
+        <tension>-5</tension>
+        <deed>campHelped</deed>
+        <outcomes>
+          <li>A few meals are going out to the pilgrims' fire, and {X_nameDef} has come to meet whoever carries them.</li>
+        </outcomes>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>meals for the pilgrims</label><what>meals</what><count>4</count><to>Camp</to><steward>false</steward></li>
+        </effects>
+      </li>
+    </asks>
+  </ColonyCouncil.CampKindDef>
+
+  <!-- ===================== A hermit seer at the map's edge ===================== -->
+
+  <ColonyCouncil.CampKindDef>
+    <defName>Rimfolk_Camp_GodSeer</defName>
+    <label>hermit seer</label>
+    <workerClass>ColonyCouncil.CampWorker_GodSeer</workerClass>
+    <arrives>16~21</arrives>
+    <weight>0</weight>
+    <people>1~1</people>
+    <days>20~35</days>
+    <ages>45~85</ages>
+    <chopsPerDay>0.5</chopsPerDay>
+    <hireChance>0</hireChance>
+    <joinChance>0.02</joinChance>
+    <helpChance>0.08</helpChance>
+    <help>
+      <li>tales</li>
+    </help>
+    <buys>
+      <li>RawFood</li>
+    </buys>
+    <pride>0.5</pride>
+    <breakTerms>0.05</breakTerms>
+    <tensionPerDay>0.2</tensionPerDay>
+    <canPay>false</canPay>
+    <extendChance>0.3</extendChance>
+    <structures>
+      <li><role>fire</role><defs><li>Campfire</li></defs></li>
+    </structures>
+    <sleep>Hut</sleep>
+    <works><li>Chop</li><li>Gather</li></works>
+    <titles>
+      <li>A seer at the edge of the land</li>
+      <li>[lowtech] A hermit who sees</li>
+    </titles>
+    <texts>
+      <li>A hermit of {FACTION} has come to the very edge of the colony's land and is building a hut {PLACE}. {X_nameDef} told {A_nameDef}, without being asked, that the gods talk more where the land runs out, and that anyone who wants to know what they say may come and sit by the fire.</li>
+      <li>[lowtech] An old seer, once of {FACTION}, has settled {PLACE} with a bag of bones and a bundle of smoke-herbs. {X_nameDef} looked at {A_nameDef} for a long moment and said that {GOD} had a lot to say about this place.</li>
+      <li>[!lowtech] {X_nameDef}, who left {FACTION} to live on the edges of things, has pitched a hut {PLACE}. {X_pronoun} told {A_nameDef} that {X_pronoun} reads the gods the way others read the weather, and gets about as much thanks for it.</li>
+    </texts>
+    <settled>
+      <li>[shelter:hut] The seer's hut is up {PLACE}, with a fire before its door and a smell of strange smoke on the wind.</li>
+      <li>{X_nameDef}'s camp {PLACE} is a fire, a bed and a row of stones laid out in an order only {X_pronoun} understands.</li>
+    </settled>
+    <joinTexts>
+      <li>{X_nameDef}, the seer {PLACE}, came to the colony's door and said the gods had told {X_objective} to stay here a while longer, perhaps for good.</li>
+    </joinTexts>
+    <farewell>
+      <li>The seer's hut {PLACE} is empty. {X_nameDef} left the stones in their row, and nobody has dared move them.</li>
+      <li>{X_nameDef} walked off along the edge of the land at dawn, muttering to someone who wasn't there.</li>
+    </farewell>
+    <lines>
+      <li>The gods talk, you know, and most people don't listen.</li>
+      <li>Sit if you like, or don't.</li>
+      <li>The smoke goes where it wants.</li>
+      <li>[night] They're loud tonight, the gods.</li>
+      <li>[evening] Come and hear, if you dare to.</li>
+    </lines>
+    <momentLines>
+      <li>[foretell] Listen, all of you, the gods are speaking.</li>
+      <li>[foretell] I saw it in the smoke, and the smoke doesn't lie.</li>
+    </momentLines>
+    <helpTexts>
+      <li>[tales] {A_nameDef} sat by the seer's fire and came back pale, saying only that {X_nameDef} had known things {X_pronoun} couldn't have.</li>
+    </helpTexts>
+    <asks>
+      <li>
+        <key>ask</key>
+        <label>Ask the seer what the gods want</label>
+        <tip>One of the colony walks out to the seer's fire and sits an hour while the seer reads the smoke. They come back knowing how the colony stands with each god it knows, and what the seer sees coming.</tip>
+        <skill>Social</skill>
+        <once>false</once>
+        <tension>-2</tension>
+        <outcomes>
+          <li>{A_nameDef} has gone out to sit by the seer's fire, and {X_nameDef} is already feeding it the bitter herbs.</li>
+          <li>{A_nameDef} is walking out to the edge of the land to hear what the seer reads in the smoke.</li>
+        </outcomes>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Visit"><to>Camp</to><duration>1~1.5</duration></li>
+          <li Class="ColonyCouncil.DilemmaEffect_GodSeer" />
+        </effects>
+      </li>
+    </asks>
+  </ColonyCouncil.CampKindDef>
+
+</Defs>

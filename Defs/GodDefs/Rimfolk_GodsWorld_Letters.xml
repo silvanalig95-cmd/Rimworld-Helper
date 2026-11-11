@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    The gods' questions to the colony in the wider world (Source/ColonyCouncil/Gods/World/GodAsks.cs), through Tell.Ask: a
+    festival's invitation, a holy war, a temple's envoy, a god's gift and its price, the rival come to undo it, two gods'
+    quarrel, a god's ask, the Hunger's bargain, an archotech's terms, a fading god, the Sleeper's door.
+  -->
+  <LetterDef>
+    <defName>Rimfolk_GodWorldAsk</defName>
+    <letterClass>ColonyCouncil.ChoiceLetter_GodWorld</letterClass>
+    <color>(205, 170, 95)</color>
+    <flashColor>(235, 200, 120)</flashColor>
+    <flashInterval>90</flashInterval>
+    <arriveSound>LetterArrive</arriveSound>
+    <bounce>true</bounce>
+  </LetterDef>
+
+</Defs>
