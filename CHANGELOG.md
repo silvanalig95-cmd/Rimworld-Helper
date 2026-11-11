@@ -5,6 +5,17 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## A god walks among you
+
+*11 November 2026, version 0.216.0*
+
+- A god on the map now looks like one: larger than anyone near it, in its own colours, robe and crown, with a halo and a slowly turning ring under it, lights rising off it and a light that walks with it at night.
+- When a god comes, the game slows to normal speed and the camera goes there; the music fades into a beat of silence, then a sting and a track of the god's own, while the sky takes its colour and the wind dies.
+- Everyone on the map turns toward a god's coming: the devout pray, calm animals lie down, shy ones run, and a few people say what they see.
+- The ground answers where a god walks (flowers, grass, snow, scorch marks, ash or puddles), and its coming leaves a mark such as a ring of flowers, a spring, a tree or a standing stone.
+- A god in disguise looks like anyone, but it leaves no footprints in the snow, animals follow it, and a sharp-eyed colonist may notice a shimmer about it at night; revealed, it grows into itself in front of everyone.
+- A RimWorld of Magic's lights, circles, spirit wolves and sounds, Alpha Memes' chants and the DLC songs carry each god's presence, and your own tracks in Sounds/Rimfolk/Gods/ play first.
+
 ## The gods are real
 
 *11 November 2026, version 0.215.0*

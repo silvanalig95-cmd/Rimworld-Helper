@@ -447,7 +447,9 @@ public static class GodsTests
             "the presence part's two seams: Manifest and MakeAvatar, null until it sets them");
         C(new[] { "public God god;", "public Map map;", "public IntVec3 cell", "public PresenceKind kind;", "public Pawn avatar;", "public string title, text;", "public bool veiled;" }.All(seam.Contains),
             "the plain PresenceSpec: god, map, cell, kind, avatar, the card's title and text, plain or veiled");
-        C(new[] { "Appear", "Act", "Reveal", "Depart", "Blessing", "Wrath", "Omen" }.All(k => Regex.IsMatch(seam, @"\b" + k + @",?\s")), "its kinds: appear, act, reveal, depart, blessing, wrath, omen");
+        string kinds = Read(Path.Combine("Gods", "Presence", "GodPresenceMath.cs"));
+        C(new[] { "Appear", "Act", "Reveal", "Depart", "Blessing", "Wrath", "Omen" }.All(k => Regex.IsMatch(kinds, @"\b" + k + @",?\s")),
+            "its kinds (the one PresenceKind, in the presence part's pure rules): appear, act, reveal, depart, blessing, wrath, omen");
         C(seam.Contains("if (m == null || spec?.god == null || !Gods.On) return false;") && seam.Contains("if (m == null || p == null || god == null || !Gods.On || !GodsMath.AvatarsCome(Gods.Realness)) return false;"),
             "calls do nothing while the presence part isn't there, the gods are off, or (an avatar) they are only believed");
         C(seam.Contains("veiled = !GodsMath.PlainCard(Gods.Realness)"), "veiled by how real the gods are");
@@ -494,6 +496,17 @@ public static class GodsTests
         C(Read("Gods/GodsDebug.cs").Contains("Gods: show the pantheon (log)") && Read("Gods/GodsDebug.cs").Contains("Gods: add favour here...")
           && Read("Gods/GodsDebug.cs").Contains("Gods: set how real the gods are..."), "dev actions: show the pantheon, add favour, set realness");
         C(File.ReadAllText(Path.Combine(root, "Tools", "save_estimate.py")).Contains("Gods/GodBook.cs:gods"), "the saved book modelled in the save estimate");
+        // ---------- The two halves joined (GodsWiring) ----------
+        string wiring = Read(Path.Combine("Gods", "GodsWiring.cs"));
+        C(wiring.Contains("[StaticConstructorOnStartup]") && wiring.Contains("GodPresenceSeam.Manifest = s => GodPresence.Manifest(LookOf(s.god)")
+          && wiring.Contains("s.map, s.cell, s.kind, s.avatar, s.title,") && wiring.Contains("s.text, s.veiled, s.god.colour, s.god.colour2)"),
+            "the moment seam calls the presence with the god's own look, name, epithet, map, cell, kind, avatar, words, veil and colours");
+        C(wiring.Contains("GodLookSeam.MakeAvatar = (p, god, disguised) => GodAvatar.Make(p, LookOf(god), Gods.Name(god), disguised, god.colour, god.colour2);"),
+            "the avatar seam makes the god's own avatar in its colours");
+        C(wiring.Contains("GodLooks.Named(god.look) ?? GodLooks.For(god.domain.ToString(), AgeOf(god.age))"), "the god's own look, else its domain's in its people's age");
+        C(!Read("Gods/GodPresenceSeam.cs").Contains("enum PresenceKind"), "one PresenceKind, the presence part's (the same names as the seam's)");
+        C(Read(Path.Combine("Gods", "Presence", "GodLookDef.cs")).Contains("\"ColonyCouncil/GodSymbols/\" + Domain"), "the god's card shows the core's symbol");
+
         return n;
     }
 

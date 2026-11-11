@@ -111,6 +111,51 @@ tree at once, alongside whatever runs. Each piece is merged as its own release, 
   distance, as the couriers and journeys reckon it), their reading and writing time, and the answer's own road back;
   a refusal or silence is only known when it could be (a returning rider, their courier, or no word by the time an
   answer would have come). Check each against the map: the courier gone off the map is not the letter delivered.
+- 0.216.0, **Gods, the presence part: how a
+  god looks and comes** (11 November 2026). Wired to the core by the lead (`Gods/GodsWiring.cs`: the two seams call
+  `GodPresence.Manifest` and `GodAvatar.Make` with the god's own look, name, epithet and colours; one `PresenceKind`, the
+  presence part's; the card's symbol from the core's `GodSymbols`). Built to `docs/design/gods.md`, "Presence", beside the core part in its own
+  worktree; DESIGN.md "Gods: how a god looks and comes"; README "A god on the map". The player: "they should then always
+  carry some kind of weight and ominosity with them ... imposing sound effects or really kind of epic ones", "the god
+  should ... clearly have something about it that shows its godly presence, unless it's actually trying to hide", and
+  of A RimWorld of Magic: "you should really heavily use this". Code `Source/ColonyCouncil/Gods/Presence/` (pure rules
+  `GodPresenceMath.cs`, linked; `GodPresenceTests`), defs `Defs/GodDefs/Rimfolk_GodLooks.xml` (fourteen looks and three
+  age variants), `Rimfolk_GodPresence.xml` (the hediff, light, jobs, sky, card letter, motes), `Rimfolk_GodPresence_Lines.xml`
+  (five pools), textures `Textures/ColonyCouncil/Gods/Aura/` (`Tools/make_god_auras.py`), keys
+  `Rimfolk_GodPresence.xml`, settings *Gods' auras* and *Gods' music*, frame key `GodCard`, event card kind of
+  `Rimfolk_GodCard`, `ModDefNames.txt` lines, the save model of the avatar's two lists.
+  - **Wiring at the merge (a few lines):** `GodPresenceSeam.Manifest = s => GodPresence.Manifest(look, s.god name,
+    epithet, s.map, s.cell, (PresenceKind)Enum.Parse(typeof(PresenceKind), s.kind.ToString()), s.avatar, s.title, s.text,
+    s.veiled, the god's two colours)`, the look `GodLooks.Named(god's look defName) ?? GodLooks.For(domain name, age)`;
+    `GodLookSeam.MakeAvatar = (p, god, disguised) => GodAvatar.Make(p, look, god's name, disguised, colours)`. The card's
+    symbol is read from `Textures/ColonyCouncil/GodSymbols/<Domain>` (the core's), Rimfolk's star otherwise: point
+    `GodLookDef.Symbol` elsewhere if the core draws them under another path. Stage 2's sacred animal can take a look's
+    `AnimalKinds`.
+  - Try in the game (dev mode, *Rimfolk*, *Gods: ...*): 1. *make a person or animal a god's, shown*, Storm, click a
+    colonist: drawn larger and lifted, storm-gray skin and silver hair, a robe and crown recoloured (A RimWorld of
+    Magic's archmage robe and the helm of the valiant), a halo and a slowly turning carved ring under them, a glow and
+    a breathing ring behind, small bolts and twinkles rising, the name "the Storm-father" over them in blue; a slower
+    walk; the health page "a god within (the Storm-father)". 2. At night: the ground round it lit blue, a shine round it
+    that the dark doesn't dim, a light in its eyes. 3. Zoom far out: still drawn larger. 4. Walk a Wild or Harvest god
+    over open grass: tall grass or flowers behind it now and then, never on a field, a floor or indoors; colonists who
+    see it stop and face it, sometimes one says something. 5. *in disguise* on a visitor: looks like anyone; no
+    footprints in snow; at night a faint shimmer; an animal starts following it; a colonist with bionic eyes or high
+    psychic sensitivity remarks on it (once a day). 6. *reveal a god in disguise*: the game drops to normal speed, the
+    camera goes there, the music fades, a beat of silence, the sting, the sky flashes, the stranger grows into itself
+    and takes its colours, the sky takes its colour and the plants stop swaying, everyone turns (the devout pray with
+    small lights over them, calm animals lie down, shy ones run), the mark is left, the track plays, the gold card
+    arrives; open it: dark paper, gold border, the symbol glowing, the name, the words. 7. *a moment of a look here*,
+    each kind of a few looks, plain and veiled: an omen only a sound, a glimmer and a look up; a wrath darkens the sky
+    and scorches; a Waters blessing leaves a spring, a Wild coming a tree, a Craft one slag; a veiled card says "Some
+    say" and the sky's condition "a strange stillness". 8. *bring an animal of a look*: a Wild god as the elves'
+    ancient deer, pale green, larger, its aura sized to its body. 9. *what each look finds in this game (log)*: the
+    robes, motes, effecters, sounds, tracks and animals found. 10. The two settings off. 11. An .ogg in
+    `Sounds/Rimfolk/Gods/Storm/` in Rimfolk's folder, a restart, a Storm moment: it plays.
+  - What to watch (nothing of this can be seen outside the game): the aura's sizes and alphas by day and night and on
+    snow; the size lift (feet on the cell); the eye light's place on the face; which sounds are sustainers (held seven
+    seconds in a sting) and how loud the ritual chants are as a hum (`GodPresenceMath.HumVolume`); A RimWorld of Magic's
+    motes (only its grayscale ones take the god's colour, the coloured ones a touch of it); a robe's colour where it has
+    no colour mask; the card's look; the moving light's cost on a big map; a god's own apparel kept off the market.
 - 0.215.0, **Gods, stage 1: the core (the
   pantheon)** (11 November 2026). The player: "the concept of gods within RimWorld ... like a pantheon of gods",
   "go for it ... you can really spend effort and tokens into the subject", and "when I think of gods as kind of one

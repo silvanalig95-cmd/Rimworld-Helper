@@ -31,6 +31,20 @@ When you load a save after an update, a letter lists the newest round once. The 
     <rounds>
 
       <li>
+        <version>0.216.0</version>
+        <date>11 November 2026</date>
+        <title>A god walks among you</title>
+        <points>
+          <li>A god on the map now looks like one: larger than anyone near it, in its own colours, robe and crown, with a halo and a slowly turning ring under it, lights rising off it and a light that walks with it at night.</li>
+          <li>When a god comes, the game slows to normal speed and the camera goes there; the music fades into a beat of silence, then a sting and a track of the god's own, while the sky takes its colour and the wind dies.</li>
+          <li>Everyone on the map turns toward a god's coming: the devout pray, calm animals lie down, shy ones run, and a few people say what they see.</li>
+          <li>The ground answers where a god walks (flowers, grass, snow, scorch marks, ash or puddles), and its coming leaves a mark such as a ring of flowers, a spring, a tree or a standing stone.</li>
+          <li>A god in disguise looks like anyone, but it leaves no footprints in the snow, animals follow it, and a sharp-eyed colonist may notice a shimmer about it at night; revealed, it grows into itself in front of everyone.</li>
+          <li>A RimWorld of Magic's lights, circles, spirit wolves and sounds, Alpha Memes' chants and the DLC songs carry each god's presence, and your own tracks in Sounds/Rimfolk/Gods/ play first.</li>
+        </points>
+      </li>
+
+      <li>
         <version>0.215.0</version>
         <date>11 November 2026</date>
         <title>The gods are real</title>

@@ -74,6 +74,8 @@ namespace ColonyCouncil
             ["Council_NewsLetter"] = "News",
             ["Council_WelcomeLetter"] = "Rimfolk",
             ["Council_UpdateLetter"] = "Rimfolk",
+            // A god's card (Gods/Presence/GodCard.cs): it opens its own dark card, a letter that tells.
+            ["Rimfolk_GodCard"] = "Told",
             // The game's own kinds, as Rimfolk's plain letters use them.
             ["ThreatBig"] = "ThreatBig",
             ["ThreatSmall"] = "Threat",

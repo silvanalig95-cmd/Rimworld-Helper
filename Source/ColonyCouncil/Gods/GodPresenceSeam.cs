@@ -3,17 +3,6 @@ using Verse;
 
 namespace ColonyCouncil
 {
-    /// <summary>The kinds of a god's coming the presence part plays (docs/design/gods.md, "the moment").</summary>
-    public enum PresenceKind
-    {
-        Appear,
-        Act,
-        Reveal,
-        Depart,
-        Blessing,
-        Wrath,
-        Omen
-    }
 
     /// <summary>
     /// What a god's coming is, as the core asks the presence part for it (docs/design/gods.md, "Seams the later parts

@@ -527,6 +527,10 @@ namespace ColonyCouncil
         public SpeechMode speechShows = SpeechMode.Bubbles;
         /// <summary>The game's own flecks, sky colors and sounds for what Rimfolk says is happening (Touches/).</summary>
         public bool visualTouches = true;
+        /// <summary>A shown god's aura on the map: the halo, the rings, the motes and the light that follows it (Gods/Presence/GodAura.cs).</summary>
+        public bool godAura = true;
+        /// <summary>The music at a god's moment: the fade, the silence and the god's track, and a god's hum near the camera (Gods/Presence/GodPresence.cs).</summary>
+        public bool godMusic = true;
         /// <summary>The name of a mood floats up beside the game's mood bubble over a colonist (Immersion/MoodBubbleText.cs).</summary>
         public bool moodBubbleText = true;
         /// <summary>Recreation Rimfolk's knowledge makes likelier: graves visited, slow walks, the fire after a fight (Immersion/SmallHabits.cs).</summary>
@@ -1085,6 +1089,8 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref speechShows, "speechShows", SpeechMode.Bubbles);
             if (Scribe.mode == LoadSaveMode.LoadingVars && !speechText) speechShows = SpeechMode.Off;
             Scribe_Values.Look(ref visualTouches, "visualTouches", true);
+            Scribe_Values.Look(ref godAura, "godAura", true);
+            Scribe_Values.Look(ref godMusic, "godMusic", true);
             Scribe_Values.Look(ref moodBubbleText, "moodBubbleText", true);
             Scribe_Values.Look(ref smallHabits, "smallHabits", true);
             Scribe_Values.Look(ref daysBetweenMeetings, "daysBetweenMeetings", 15f);

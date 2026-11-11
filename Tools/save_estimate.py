@@ -367,6 +367,10 @@ MODEL = {
     "Camps/Camp.cs:trees": ("while", 10, P, "while the camp stays"),
     "Camps/CampKindsLand3.cs:caught": ("while", 2, P, "the beasts beast-catchers roped this stay, two at most (CampLandMath.MaxCaught), while the camp stays"),
     "Camps/CampStory.cs:beats": ("while", 3, V, "the beats of the stay played (ask, trouble, parting), while the camp stays"),
+    # A god walking on the map (Gods/Presence/GodAvatar.cs): the robe and crown it was given, and what they covered, put away
+    # in its pack; two pieces each at most, while it is a god (a few gods at most in a long game).
+    "Gods/Presence/GodAvatar.cs:given": ("while", 2, P, "the god's robe and crown, while it walks as one"),
+    "Gods/Presence/GodAvatar.cs:stored": ("while", 4, P, "what the robe and crown covered, kept in its pack, while it walks as one"),
     "Camps/CampTracker.cs:past": ("fixed", 6, R, "camps the colony remembers, six at most (CampStoryMath.RememberMax), faded after some seasons"),
     "Camps/CampTracker.cs:homes": ("fixed", 1, 260, "one per colony (CampHome: its camp, holding, war party and clock; one home in the model, a second doubles the rows "
                                    "below), a lost home's kept 30 days, then let go"),

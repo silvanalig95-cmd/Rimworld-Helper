@@ -1525,6 +1525,40 @@ Each part has its own rate on How much happens (*Pack alphas*, *Beast nemeses co
 *Great herds*, 0% to 200%). Together they add about 0.025 hurts a colonist-year at 100%, beside a raid's 1.4 to 2.0
 (`Tools/Balance --harm`). The Almanac page *alphas, legends and great herds* has the numbers.
 
+### A god on the map
+A god always looks like one, unless it hides on purpose. Each of the fourteen domains (Harvest, Storm, Hunt, Healing,
+War, Craft, Way, Dead, Night, Hearth, Wild, Waters, Machine, Void) has its look, with another form in another age where
+the age changes it (the Iron Spirit before machines, the Broker after; the War and the Craft among spacers):
+- **Its body.** A person or an animal made a god's is drawn larger than its kind and walks slowly, never hurried. A
+  person takes the god's skin, hair and light in the eyes, and a robe, cloak or mantle and a crown, hood or mask no
+  mortal wears, recoloured in its colours: the game's own and the player's mods' (A RimWorld of Magic's archmage robes
+  and soulreaper's shroud, Vanilla Factions Expanded's toga and wreath, the elves' shaman crowns, a deer's skull), the
+  first that fits the body. An animal is tinted whole. A god is never sold, stripped, recruited, tamed, eaten or arrested.
+- **Its aura.** A soft halo and a slowly turning carved ring on the ground under it, a glow and a ring behind it that
+  breathe, small lights rising off it in its colours (A RimWorld of Magic's holy lights, twinkles, flowers, bolts,
+  ghosts and shadows, as its domain has them), a light that moves with it so the ground round it glows at night, a
+  shine over the dark, and its name over it in its colour. The ground answers where it walks: flowers, grass, a little
+  snow, scorch marks, ash or puddles (never on a field, a floor or under a roof, filth only outside the home area), or
+  sparks, light and shadow that fade.
+- **The world turns to it.** People and animals near it stop and look, one of them says so now and then; a god near
+  the camera hums softly with its own sound (Alpha Memes' and Ideology's ritual chants, Anomaly's psychic ritual).
+- **In disguise** it shows only its tells: no footprints in the snow, animals following it, a shimmer about it at
+  night, and a colonist with a sharp eye or a psychic gift remarking on it. Revealed, it grows into itself in front of
+  everyone.
+- **Its coming.** The game drops to normal speed and the camera goes there; the music fades into a beat of silence;
+  then the sting (thunder for the Storm, a gong for the Dead, a wolf's howl for the Hunt, Royalty's bestowing, the
+  archotech's call for the Machine, the void monolith for the Void), the sky flashes in its colour and its circle shows
+  on the ground, everyone on the map turns toward it, the devout pray, calm animals lie down and shy ones run; the sky
+  takes its colour and the wind dies for a few hours; a mark is left where it stood (a ring of flowers or scorched
+  ground, a spring, a tree, frost, ash, slag or a standing stone); its track plays (Anomaly's, Odyssey's, Ideology's
+  archonexus song, or your own); and its card comes, dark paper and gold with its symbol, plain or "some say". An omen
+  is small: a sound, a glimmer, someone looking up.
+
+Your own music for a god: put .ogg, .wav or .mp3 files in `Sounds/Rimfolk/Gods/<Domain>/` inside Rimfolk's folder (for
+example `Sounds/Rimfolk/Gods/Storm/`) and restart the game; they play before the look's own tracks. Settings: *Gods'
+auras* and *Gods' music* (How you're told, On the map and in the game's tabs), both on. Dev mode has *Gods: ...*
+actions to make any person or animal a god's, reveal one and play each kind of moment.
+
 ### Offices and elections
 Five council seats: **speaker** (chairs meetings, everyone's trust rises a little each day), **marshal** (drills
 count for more, better aim), **quartermaster** (dilemmas cost less, better trade), **physician** (faster healing)
