@@ -316,3 +316,21 @@ it ... if I look at the gods in like a fancy list in the menu, it kind of takes 
 - **Favour, ties, natures and kinds** are hidden state that drives what the gods do. The realness setting and the dev
   actions stay.
 - The Book of the Gods described above is withdrawn.
+
+### The colony's book: only what the pawns know (the player, the same day)
+
+The player: "what I like though is how you described 'the book of the gods' ... information about the gods should only
+ever be like from the point of view of a the pawn. what they know, experienced, heard, believe, feel like doing etc. in
+that case a book or overview can exist and develop, but I just never want this 'meta' level player information ... the
+gods should be above me as the player as well as the pawns, and what i learn and see about them is the same as my pawns
+do, that makes them more authentic and mysterious".
+
+So the colony keeps a book of the gods, its own tab in the Region window, written by its keeper (the priest, else the
+most devout or most literate colonist, in their voice):
+- **Every line is an attributed entry,** dated: seen by named colonists, told by a named visitor, notable or
+  letter-writer, believed by a named colonist, or felt after a prayer.
+- **Beliefs sit side by side** and contradict. The colony can be wrong, and the truth is never marked.
+- **A god appears only once someone has heard of it,** under the name the teller used. Two names for one god stay
+  apart until someone connects them.
+- **Stories are written as heard,** in pieces, and differ between tellers.
+- **Never in it:** favour, rules, or anything the colony couldn't know.
