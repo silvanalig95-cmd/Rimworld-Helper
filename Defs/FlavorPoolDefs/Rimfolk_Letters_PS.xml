@@ -39,6 +39,11 @@
         <li>[theirs,everyday,a:plain|a:friend,cordial|cool] The road north is passable again, should anyone of yours need it.</li>
         <li>[theirs,everyday,a:plain|a:friend,cordial|cool] Our market is on the first day of each season, should {COLONY} wish to send anyone.</li>
         <li>[theirs,everyday,a:plain|a:friend,warmly|cordial] We lit a candle to {GOD} for all of you at {COLONY}. It cannot hurt.</li>
+        <!-- The gods, as their people tell them (Gods/GodTales.cs): a god's hand at the colony they heard of, an old story retold. -->
+        <li>[theirs,everyday,a:plain|a:friend,warmly|cordial|cool] {GODHAND}</li>
+        <li>[theirs,serious,a:plain|a:friend,warmly|cordial|cool] {GODHAND}</li>
+        <li>[theirs,everyday,a:plain|a:friend,warmly|cordial] Our old ones asked me to write this one down for you, so here it is.\n\n{GODTALE}</li>
+        <li>[theirs,serious,a:plain|a:friend,warmly|cordial|cool] You asked once what we believe here. This is the story I grew up on.\n\n{GODTALE}</li>
         <li>[theirs,joke,a:plain|a:friend,warmly|cordial|cool] The old ones here blame {GODEPITHET} for the weather this season. The young ones blame the old ones.</li>
         <li>[theirs,everyday,a:plain|a:friend,curt] Do not send the courier back without a reason.</li>
         <li>[theirs,everyday,a:plain,cordial|cool,m:trade] We have salt, cloth and good iron this season, if {COLONY} is buying.</li>

@@ -265,7 +265,7 @@ public static class GodPresenceTests
         {
             string dn = l.Element("defName")!.Value;
             C(GodPresenceMath.IsDomain(l.Element("domain")?.Value), $"{dn}: its domain is one of the fourteen");
-            C(!string.IsNullOrEmpty(l.Element("sampleName")?.Value) && (l.Element("sampleName")!.Value.StartsWith("the ")), $"{dn}: a name for a god nobody has named");
+            C(!string.IsNullOrEmpty(l.Element("sampleName")?.Value) && (l.Element("sampleName")!.Value.StartsWith("a ")), $"{dn}: what is seen of a god nobody has named");
             float size = float.Parse(l.Element("size")?.Value ?? "1.25", System.Globalization.CultureInfo.InvariantCulture);
             C(size > 1.05f && size <= GodPresenceMath.MaxSize, $"{dn}: drawn larger than its kind ({size})");
             foreach (var f in new[] { "colorA", "colorB", "glowColor", "skin", "hair", "eyes", "animalTint", "sky" })
@@ -322,7 +322,7 @@ public static class GodPresenceTests
         // ================= The textures and their tool =================
 
         string tool = File.Exists(Path.Combine(root, "Tools", "make_god_auras.py")) ? File.ReadAllText(Path.Combine(root, "Tools", "make_god_auras.py")) : "";
-        foreach (var t in new[] { "Halo", "Glow", "Ring", "RingRunes", "Rays", "Mote", "Spark", "Emblem" })
+        foreach (var t in new[] { "Halo", "Glow", "Ring", "RingRunes", "Rays", "Mote", "Spark" })
         {
             string png = Path.Combine(root, "Textures", "ColonyCouncil", "Gods", "Aura", t + ".png");
             C(File.Exists(png) && new FileInfo(png).Length > 500 && tool.Contains(t + ".png"), $"{t}.png drawn by Tools/make_god_auras.py");
@@ -366,7 +366,7 @@ public static class GodPresenceTests
             C(keyed.ContainsKey("CC_GodP_Card_Title_" + k) && keyed.ContainsKey("CC_GodP_Card_Text_" + k) && keyed.ContainsKey("CC_GodP_Card_Text_" + k + "_Veiled"),
                 $"{k}: the card's title and words, plain and veiled");
         foreach (var k in keyed.Keys.Where(k => k.StartsWith("CC_GodP_Card_Text_") && k.EndsWith("_Veiled")))
-            C(keyed[k].Contains("ome say") || keyed[k].Contains("perhaps"), $"{k}: veiled, it says only what some say");
+            C(!keyed[k].Contains("{NAME}") && !keyed[k].Contains("god"), $"{k}: veiled, it names nothing and explains nothing, only what was seen");
         string all = string.Join("\n", Directory.GetFiles(Path.Combine(root, "Source", "ColonyCouncil", "Gods", "Presence"), "*.cs").Select(File.ReadAllText));
         // The code without its comments (which may name the core's seams they will be wired to).
         string bare = Regex.Replace(all, @"//[^\n]*", "");

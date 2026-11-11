@@ -24,7 +24,6 @@ namespace ColonyCouncil
         public static readonly Texture2D RunesTex = ContentFinder<Texture2D>.Get(Dir + "RingRunes");
         public static readonly Texture2D RaysTex = ContentFinder<Texture2D>.Get(Dir + "Rays");
         public static readonly Texture2D MoteTex = ContentFinder<Texture2D>.Get(Dir + "Mote");
-        public static readonly Texture2D Emblem = ContentFinder<Texture2D>.Get(Dir + "Emblem");
 
         // Made once: white, coloured as each is drawn.
         private static readonly Material HaloMat = MaterialPool.MatFrom(Dir + "Halo", ShaderDatabase.Transparent);

@@ -23,7 +23,12 @@ namespace ColonyCouncil
         /// <summary>The first cast the second down.</summary>
         CastDown,
         /// <summary>The first stole the second's people.</summary>
-        StolePeople
+        StolePeople,
+        /// <summary>
+        /// A gift and its return (Helios and Selene): the first gives, the second returns. Kin for good; what is meant for the
+        /// giver reaches the one who returns it, and nothing comes back the other way.
+        /// </summary>
+        Return
     }
 
     /// <summary>What the ties' rules need of a god, with no game types.</summary>
@@ -281,6 +286,7 @@ namespace ColonyCouncil
         {
             GodTieKind.Parent => 6,
             GodTieKind.Twins => 6,
+            GodTieKind.Return => 7,
             GodTieKind.Lovers => 5,
             GodTieKind.StolePeople => 5,
             GodTieKind.CastDown => 5,
@@ -294,12 +300,12 @@ namespace ColonyCouncil
         public static bool Hostile(GodTieKind k) => k == GodTieKind.Rivals || k == GodTieKind.Estranged || k == GodTieKind.CastDown || k == GodTieKind.StolePeople;
 
         /// <summary>A tie of blood (it never breaks, only cools or warms).</summary>
-        public static bool Kin(GodTieKind k) => k == GodTieKind.Parent || k == GodTieKind.Siblings || k == GodTieKind.Twins;
+        public static bool Kin(GodTieKind k) => k == GodTieKind.Parent || k == GodTieKind.Siblings || k == GodTieKind.Twins || k == GodTieKind.Return;
 
         // ================= Favour spills over =================
 
         /// <summary>How much of a gain a rival feels against it, and an ally with it (times the tie's strength).</summary>
-        public const float RivalShare = 0.25f, AllyShare = 0.15f, KinShare = 0.1f, LoverShare = 0.2f, EstrangedShare = 0.2f, WrongShare = 0.3f;
+        public const float RivalShare = 0.25f, AllyShare = 0.15f, KinShare = 0.1f, LoverShare = 0.2f, EstrangedShare = 0.2f, WrongShare = 0.3f, ReturnShare = 0.5f;
 
         /// <summary>
         /// What a change of favour with one god does to another it is tied to (the player: "raising favour with a god a
@@ -320,6 +326,8 @@ namespace ColonyCouncil
                 case GodTieKind.StolePeople: share = fromFirst ? -WrongShare : -WrongShare * 0.4f; break;
                 case GodTieKind.Allies: share = AllyShare; break;
                 case GodTieKind.Lovers: share = LoverShare; break;
+                // A gift and its return: what is meant for the giver reaches the one who returns it, and nothing goes back.
+                case GodTieKind.Return: share = fromFirst ? ReturnShare : 0f; break;
                 default: share = KinShare; break;
             }
             float s = amount * share * Math.Min(1f, strength);

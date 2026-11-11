@@ -8,8 +8,9 @@ using Verse;
 namespace ColonyCouncil
 {
     /// <summary>
-    /// The gods in words (Languages/English/Keyed/Rimfolk_Gods.xml): favour, ties, natures, kinds and forms as the page and
-    /// the news say them, the colours of favour, and the gods named in a letter ({GOD}, {GODEPITHET}, {GODOF}).
+    /// The gods in words (Languages/English/Keyed/Rimfolk_Gods.xml): favour, ties, natures, kinds and forms in words for the
+    /// dev tools and the hidden history (never shown to the player: the gods are an unseen presence), and the gods named in
+    /// a letter ({GOD}, {GODEPITHET}, {GODOF}, as its writer names them; {GODTALE} and {GODHAND}, Gods/GodTales.cs).
     /// </summary>
     public static class GodWords
     {
@@ -67,39 +68,29 @@ namespace ColonyCouncil
 
         public static string FormWord(GodForm f) => ("CC_God_Form_" + f).Translate();
 
-        /// <summary>Its domains in words: "the harvest", "the harvest and storms".</summary>
-        public static string Domains(God g)
-        {
-            var a = GodDomainDef.Of(g?.domain ?? GodDomain.None);
-            if (a == null) return "";
-            var b = g.second != GodDomain.None ? GodDomainDef.Of(g.second) : null;
-            return b == null ? a.ofWords : "CC_God_TwoDomains".Translate(a.ofWords.Named("A"), b.ofWords.Named("B")).Resolve();
-        }
-
-        /// <summary>How its people tell of it: a patron's lore, or the old ones' line by their kind.</summary>
-        public static string Lore(God g)
-        {
-            if (g == null) return null;
-            var pd = g.PatronDef;
-            if (pd != null && !pd.lore.NullOrEmpty()) return pd.lore;
-            if (g.source == "old") return ("CC_God_OldLore_" + g.baseKind).Translate(g.name.Named("GOD")).Resolve();
-            if (g.source == "newborn") return "CC_God_NewbornLore".Translate(g.name.Named("GOD")).Resolve();
-            return null;
-        }
-
         /// <summary>
         /// A letter's god (Letters/LetterFormShapes.cs): the god its writer would swear by (else the first of their people's),
-        /// filled into {GOD}, {GODEPITHET} and {GODOF}; a letter of another people's that names one teaches the colony of it.
+        /// filled into {GOD} (by the writer's own name for it), {GODEPITHET} and {GODOF}; a letter of another people's that
+        /// names one teaches the colony of it, and may retell one of their stories or speak of a god's hand at the colony
+        /// (Gods/GodTales.cs).
         /// </summary>
         public static void Letter(Dictionary<string, string> values, Pawn writer, Faction f)
         {
             if (values == null || !Gods.On) return;
             try
             {
+                // A letter before this one that never got its words leaves nothing behind.
+                GodTales.lastLetterGod = null;
+                GodTales.lastLetterTeller = null;
                 var g = Gods.SwearBy(writer) ?? (f != null ? Gods.Of(f).FirstOrDefault(x => x.kind != GodKind.Dead) : null);
                 if (g == null) return;
                 Gods.Fill(values, g);
-                if (f != null && !f.IsPlayer) Gods.Learn(g, "letter");
+                if (writer != null) values[GodsMath.God] = Gods.NameBy(g, writer);
+                if (f == null || f.IsPlayer) return;
+                Gods.Learn(g, "letter");
+                GodTales.lastLetterGod = g;
+                GodTales.lastLetterTeller = writer != null ? GodLore.TellerOf(writer) : f.Name;
+                GodTales.Letter(values, writer, f);
             }
             catch (Exception e)
             {

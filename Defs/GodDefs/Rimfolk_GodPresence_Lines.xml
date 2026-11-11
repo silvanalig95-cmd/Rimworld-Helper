@@ -3,7 +3,7 @@
 
   <!--
     What people say about a god, aloud (Source/ColonyCouncil/Gods/Presence/GodReactions.cs, through Speech.Say): one
-    sentence each, and only what the map shows. {NAME} is the god as it is known ("the Storm-father"); a line naming it
+    sentence each, and only what the map shows. {NAME} is the god as the colony knows it ("the Old Horn", or what is seen of it: "a great white thrumbo"); a line naming it
     is tagged named, for a god that is named (a veiled one isn't). Tags: the god's domain in small letters (storm, wild,
     dead...), the moment's kind (appear, act, reveal, depart, blessing, wrath, omen), night; for the tells of a god in
     disguise, what can be noticed (night: a shimmer about it; snow: no footprints behind it; animals: animals following

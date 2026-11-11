@@ -41,10 +41,11 @@ namespace ColonyCouncil
     }
 
     /// <summary>
-    /// The region button's window: the Rimfolk map and everything beyond the colony, in four views (docs/design/interface.md,
+    /// The region button's window: the Rimfolk map and everything beyond the colony, in five views (docs/design/interface.md,
     /// UI 2): Map (the region map read through six lenses, with a List for each: Land, Stance and ties, Fortunes, Threats,
     /// Trade, Ours; UI/Region/MapView.cs), Peoples (the peoples, or their faces), Here and away (who is here from outside,
-    /// what is on its way, letters on the road, who of the colony's is away, missions, houses) and History (the world's
+    /// what is on its way, letters on the road, who of the colony's is away, missions, houses), the Gods' book (the colony's
+    /// own book of the gods: what its people saw, were told and believe; Gods/GodLorePage.cs) and History (the world's
     /// history with its scope, the world's events running as a strip, letters lately). It opens on the map unless something
     /// asked for another view. The ten pages it had before forward to their view, mode or lens (UI/PagesMath.cs); a page
     /// another mod adds with <see cref="Register"/> shows under History's More until it finds its place in a view. While
@@ -64,6 +65,7 @@ namespace ColonyCouncil
             Own(RegionView.Map, Icons.World, 0f, r => MapView.Draw(r, map)),
             Own(RegionView.Peoples, Icons.Trust ?? Icons.People, 20f, PeoplesView.Draw),
             Own(RegionView.HereAndAway, Icons.Away ?? Icons.Visitor, 30f, HereAndAwayView.Draw),
+            Own(RegionView.Gods, Icons.Journal ?? Icons.Chronicle, 40f, GodLorePage.Draw),
             Own(RegionView.History, Icons.History ?? Icons.Chronicle, 100f, WorldHistoryPage.Draw)
         };
 

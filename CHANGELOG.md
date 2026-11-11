@@ -5,6 +5,18 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## Fourteen gods, unseen
+
+*11 November 2026, version 0.217.0*
+
+- The gods are now fourteen beings with names and characters of their own, from Hollin the Rootmother and Bellwether the Old Horn to Helios and Selene, Mog the cat and Ducat the restless gold.
+- The gods stay unseen: you hear of them only as your colonists do, and they may be wrong.
+- When a thrumbo passes or the sun goes dark, someone says whose doing they think it was, and someone else says it was only the weather.
+- At the evening fire colonists tell the old stories a piece at a time, and visitors and neighbours' letters bring their own.
+- The colony keeps its own book of the gods, a new tab of the region window, written by whoever keeps it.
+- A god is named plainly only once the colony knows it was its doing.
+- The old Gods page, the patrons and the gods' symbols are gone, and an older save's gods give way to the new ones.
+
 ## A god walks among you
 
 *11 November 2026, version 0.216.0*

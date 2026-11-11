@@ -102,7 +102,7 @@ namespace ColonyCouncil
         // ---------------- Making and unmaking ----------------
 
         /// <summary>
-        /// Makes <paramref name="p"/> a god's: <paramref name="name"/> is how it is known ("the Storm-father");
+        /// Makes <paramref name="p"/> a god's: <paramref name="name"/> is its key, which the colony's knowledge names (HediffComp_GodAvatar.Label);
         /// <paramref name="disguised"/>: it hides as what it seems until it is revealed. <paramref name="colorA"/> and
         /// <paramref name="colorB"/>: the god's own colours where it has them (the look's otherwise). A pawn already a
         /// god's takes the new look and name. True when it is one.
@@ -210,7 +210,28 @@ namespace ColonyCouncil
 
         public Color ColorB => ownColors ? colorB : look?.colorB ?? Color.white;
 
-        public string Name => godName.NullOrEmpty() ? look?.sampleName ?? look?.label ?? "" : godName;
+        /// <summary>
+        /// What the colony calls it, as it sees it: the core's wiring sets this to the colony's knowledge (its name in the
+        /// colony's book once someone has heard of it, else what people see: "a great white thrumbo"). Null: the name as given.
+        /// </summary>
+        public static Func<string, string> Label;
+
+        /// <summary>Its name over it and in its label, as the colony knows it (<see cref="Label"/>); in disguise the name it gives at the door is the pawn's own.</summary>
+        public string Name
+        {
+            get
+            {
+                string n = godName.NullOrEmpty() ? look?.sampleName ?? look?.label ?? "" : godName;
+                try
+                {
+                    return Label?.Invoke(n) ?? n;
+                }
+                catch
+                {
+                    return n;
+                }
+            }
+        }
 
         /// <summary>
         /// Its size as drawn now: growing for a moment after a reveal, its full size after; its mortal size in disguise.

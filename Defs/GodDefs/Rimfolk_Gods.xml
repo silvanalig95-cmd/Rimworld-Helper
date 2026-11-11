@@ -1,0 +1,1764 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    The thirteen (Source/ColonyCouncil/Gods/GodDef.cs; docs/gods-pantheon-brainstorm.md; docs/design/gods.md, "the
+    contract"): the nine, and Helios and Selene (the Gift and the Return), Mog, Murmur and Ducat added after. Each is a being with names and a character. The gods
+    are an unseen presence, like a storyteller: none of this is shown as such. It reaches the player only as people say or
+    write it, and as the colony's own book has it (what its people saw, were told and believe):
+    - sayings, believers' lines (hands) and scoffers' answers are said over a head, one sentence each, with {GOD} the
+      speaker's own name for the god (its short name, or their age's);
+    - a story's pieces are told one at a time, in order, at the evening fire, by a visitor or a priest; its retelling is
+      written whole in a neighbour's letter; in a piece the god's short name becomes the teller's name for it;
+    - letterLines are what a neighbour writes of the god's hand at the colony, a few days after.
+    The lore paragraphs (whatItIs, howSeen, character, wants, pleases, angers) are what the parts write from.
+    Who reveres a god: peoples by their FactionDef's name (Rimfolk's 23 and some of the player's mods'), the rest by kind
+    (Tribal, Medieval, Industrial, Spacer, Raiders, Empire, Cannibal). Domains are the stage 2 parts' fallback key only.
+  -->
+
+  <!-- ==================== 1. Hollin, the Rootmother ==================== -->
+  <ColonyCouncil.GodDef>
+    <defName>Rimfolk_God_Hollin</defName>
+    <key>Hollin</key>
+    <label>Hollin</label>
+    <epithet>the Rootmother</epithet>
+    <gender>Female</gender>
+    <godOf>the mother of every root under the world</godOf>
+    <unheard>a shape of roots and moss</unheard>
+    <tribalNames><li>Grandmother Root</li></tribalNames>
+    <medievalNames><li>the Green Lady</li></medievalNames>
+    <industrialNames><li>the anima</li></industrialNames>
+    <spacerNames><li>Network Prime</li></spacerNames>
+    <otherNames><li>the Rootmother</li></otherNames>
+    <whatItIs>An old and enormous being whose body is the web of roots under the whole world. Her heart is the first anima tree, grown somewhere nobody has found. Every other anima tree is a place where she comes close to the surface to listen.</whatItIs>
+    <howSeen>Mostly she isn't. When she turns her attention to a place, every plant on the map leans a little toward one point, the anima trees hum loudly enough to hear indoors, and the dryads stop what they are doing and stand still. Once in a long while she rises: roots break through the ground and draw themselves up into a shape taller than any tree, bark and moss and a face like a knot in old wood. She stands a while and sinks again.</howSeen>
+    <character>Grave, slow, protective and unforgiving. She speaks through dryads, a word at a time, and expects to be understood. She remembers every tree ever cut on her ground. She is not kind, but she is fair, in her own slow measure.</character>
+    <wants>Room to grow, and the old trees left standing. A colony that plants more than it fells, tends its anima tree and leaves wild ground wild finds her generous: wild food thick around the walls, healroot where none was sown, fields that ripen early. A colony that strips a forest finds roots cracking its floors, wood rotting in its stores, and the wild creeping into its fields every spring.</wants>
+    <pleases>
+      <li>trees planted, more than are felled</li>
+      <li>an anima tree tended and left its quiet</li>
+      <li>wild ground left wild beside the fields</li>
+      <li>the old trees left standing</li>
+    </pleases>
+    <angers>
+      <li>a forest stripped bare</li>
+      <li>an anima tree cut or crowded with stone</li>
+      <li>a grove burned</li>
+      <li>dryads harmed</li>
+    </angers>
+    <sayings>
+      <li>{GOD} remembers every tree that was ever cut on her ground.</li>
+      <li>Plant two for every one you fell, and {GOD} will let you sleep.</li>
+      <li>When the trees all lean one way, {GOD} is listening.</li>
+      <li>{GOD} isn't kind, but she's fair, in her own slow way.</li>
+      <li>{GOD} speaks a word at a time, and she expects you to keep up.</li>
+      <li>Don't build against the anima tree, it's where {GOD} comes up to listen.</li>
+    </sayings>
+    <hands>
+      <li>[gift] That's {GOD}'s thanks, and we'd best deserve it.</li>
+      <li>[gift] {GOD} is pleased with something we did, look how it's come up.</li>
+      <li>[gift] Nobody sowed that, so you can guess who did.</li>
+      <li>[sign] Every tree on the hill is leaning toward that spot.</li>
+      <li>[sign] {GOD} is close to the surface today, the ground feels like it's listening.</li>
+      <li>[wrath] That's {GOD}, paying us back for the woodlot.</li>
+      <li>[wrath] We cut too much, and the roots remember it.</li>
+      <li>[walking] {GOD} has spoken, and I'd answer her if I knew how.</li>
+    </hands>
+    <scoffs>
+      <li>Plants grow, that's all plants do.</li>
+      <li>It's the weather, not a grandmother in the dirt.</li>
+      <li>Blight is blight, no root goddess needed.</li>
+    </scoffs>
+    <letterLines>
+      <li>Our old ones heard what grew up at your place, and they say {GOD} has her eye on you, so mind your axes.</li>
+      <li>We heard of the trouble with your fields. Our grandmother would have said {GOD} was keeping count of your woodlot.</li>
+    </letterLines>
+    <stories>
+      <li>
+        <key>Hollin_FirstTree</key>
+        <title>The first anima tree</title>
+        <pieces>
+          <li>They say Hollin's heart is the first anima tree, somewhere nobody has found.</li>
+          <li>Every anima tree is a place where Hollin comes up close to listen.</li>
+          <li>Whoever finds the first tree hears Hollin's whole name, and never sleeps again.</li>
+        </pieces>
+        <retelling>Our old ones tell that Hollin's heart is the first anima tree, grown somewhere nobody has found, and that every other anima tree is only a place where she comes up close to listen. They say whoever finds the first tree hears her whole name spoken at once, and never sleeps again. I have never wanted to find it.</retelling>
+        <teaches><li>AnimaTreeSpawn</li><li>GauranlenPodSpawn</li></teaches>
+      </li>
+      <li>
+        <key>Hollin_Valley</key>
+        <title>The town that cut its valley bare</title>
+        <pieces>
+          <li>There was a town that cut its whole valley bare to build a wall.</li>
+          <li>Every spring after, Hollin's roots came up through their floors, higher each year.</li>
+          <li>In the end the wall stood in a forest, and nobody remembers the town's name.</li>
+        </pieces>
+        <retelling>My grandfather told of a town that cut its whole valley bare to build one great wall. Every spring after, the roots came up through their floors, a hand higher each year, until the people gave up and left. The wall still stands, he said, in the middle of a forest, and nobody remembers what the town was called.</retelling>
+        <teaches><li>CropBlight</li></teaches>
+      </li>
+      <li>
+        <key>Hollin_Morel</key>
+        <title>The quarrel under the field</title>
+        <with><li>Morel</li></with>
+        <pieces>
+          <li>Hollin says all that falls is hers, and Morel says all that rots is hers.</li>
+          <li>They have been arguing over the same dead leaf since the world began.</li>
+          <li>Neither will say it, but without the other each of them would starve.</li>
+        </pieces>
+        <retelling>You will have heard of the quarrel under the field. Hollin says everything that falls is hers, and Morel says everything that rots is hers, and the two of them have been arguing over the same dead leaf since the world began. Neither will ever say it, but without the other each of them would starve. My mother said that was the most sensible marriage she had ever heard of.</retelling>
+      </li>
+    </stories>
+    <ties>
+      <li>
+        <other>Morel</other>
+        <kind>Allies</kind>
+        <strength>0.8</strength>
+        <words>Hollin and Morel feed each other and bicker, and neither will say so.</words>
+      </li>
+      <li>
+        <other>Bellwether</other>
+        <kind>Allies</kind>
+        <strength>0.4</strength>
+        <words>The grass under the Old Horn's feet is Hollin's, and she lets him have it.</words>
+      </li>
+    </ties>
+    <peoples>
+      <li>Rimfolk_Mossborn</li>
+      <li>Rimfolk_Herders</li>
+      <li>DevDesigner_WoodElvesFaction</li>
+      <li>DevDesigner_SavageWoodElvesFaction</li>
+      <li>DevDesigner_WoodElvesFaction_Player</li>
+      <li>Seers</li>
+    </peoples>
+    <kinds>
+      <li>Tribal</li>
+      <li>Medieval</li>
+    </kinds>
+    <color>(0.55, 0.78, 0.45)</color>
+    <color2>(0.62, 0.5, 0.34)</color2>
+    <domain>Wild</domain>
+    <second>Harvest</second>
+    <nature>Patient</nature>
+    <kind>Ordinary</kind>
+    <look>Rimfolk_GodLook_Wild</look>
+    <sacredAnimals>
+      <li>Dryad_Basic</li>
+      <li>Dryad_Woodmaker</li>
+      <li>Dryad_Berrymaker</li>
+      <li>Dryad_Medicinemaker</li>
+      <li>Dryad_Gaumaker</li>
+      <li>Dryad_Carrier</li>
+      <li>Dryad_Clawer</li>
+      <li>Dryad_Barkskin</li>
+    </sacredAnimals>
+  </ColonyCouncil.GodDef>
+
+  <!-- ==================== 2. Smoulder, the Coil Under the Mountain ==================== -->
+  <ColonyCouncil.GodDef>
+    <defName>Rimfolk_God_Smoulder</defName>
+    <key>Smoulder</key>
+    <label>Smoulder</label>
+    <epithet>the Coil Under the Mountain</epithet>
+    <gender>Male</gender>
+    <godOf>the dragon asleep under the mountains</godOf>
+    <unheard>a great shadow</unheard>
+    <tribalNames><li>Mountain-Breath</li></tribalNames>
+    <medievalNames><li>the Coil</li></medievalNames>
+    <industrialNames><li>Old Smoulder</li></industrialNames>
+    <spacerNames><li>the deep anomaly</li></spacerNames>
+    <otherNames><li>Aurelian the Ninth</li></otherNames>
+    <whatItIs>A dragon. A real creature, vast and very old, asleep in the rock under the region's mountains since before there were people on this world. The miners named him Old Smoulder, and the name stuck. In dreams he introduces himself as Aurelian the Ninth, and is offended when nobody remembers.</whatItIs>
+    <howSeen>While he sleeps, his breath warms the springs and pushes up the steam geysers, and his dreams leak upward as veins of metal and silver, the way a sleeping hand opens. Twice in living memory a shadow has crossed the whole land at noon, with a wind that flattened the grass, and nobody saw what cast it.</howSeen>
+    <character>Greedy, vain, clever and sleepy. He talks to miners in their dreams, in a warm and reasonable voice, and always about a bargain. He loves silver and praise, in that order. He keeps his word exactly, and words are dangerous to him.</character>
+    <wants>To sleep undisturbed, and to be paid for the riches that leak from his dreams. The old tribes threw silver into the deep places, and the mountain gave back gold. A colony that mines too deep under the mountain makes him turn in his sleep: cave-ins, a vein that closes, a heat rising from the floor. Waking him fully would be the end of a colony, or the start of a legend.</wants>
+    <pleases>
+      <li>silver given back to the deep places</li>
+      <li>praise, sung or carved, with his proper name in it</li>
+      <li>a mine worked carefully and shored up</li>
+      <li>a bargain kept to the letter</li>
+    </pleases>
+    <angers>
+      <li>digging too deep under the mountain</li>
+      <li>a bargain bent, even a little</li>
+      <li>silver hoarded and never paid back</li>
+      <li>being forgotten</li>
+    </angers>
+    <sayings>
+      <li>Throw a little silver down the shaft, and {GOD} gives you back gold.</li>
+      <li>{GOD} keeps his word exactly, so mind every word you give him.</li>
+      <li>If the floor of the mine is warm, you've dug too close to {GOD}.</li>
+      <li>{GOD} loves silver and praise, in that order.</li>
+      <li>Never promise {GOD} anything you haven't read twice.</li>
+      <li>If {GOD} talks to you in a dream, don't agree to anything before breakfast.</li>
+    </sayings>
+    <hands>
+      <li>[gift] {GOD} is dreaming of silver again, and it's leaking up to us.</li>
+      <li>[gift] Somebody down there rolled over in his sleep, and look what came up.</li>
+      <li>[wrath] We dug too deep, and {GOD} turned over.</li>
+      <li>[wrath] That's the mountain breathing out, and he isn't pleased.</li>
+      <li>[sign] Feel how warm the rock is, {GOD} is breathing close tonight.</li>
+      <li>[walking] I heard him, under the floor, I swear I heard him snore.</li>
+    </hands>
+    <scoffs>
+      <li>Rock falls, that's what rock does.</li>
+      <li>It's a seam of ore, not a dragon's dream.</li>
+      <li>Hot springs are hot springs, there's no lizard under them.</li>
+    </scoffs>
+    <letterLines>
+      <li>Word came of what the ground did at your place. Our miners say {GOD} turned over in his sleep, and that you should throw some silver down a hole.</li>
+      <li>We heard of your luck in the rock. The old diggers here say {GOD} dreams generously when he's been flattered.</li>
+    </letterLines>
+    <stories>
+      <li>
+        <key>Smoulder_Bargain</key>
+        <title>The bargain of the tribes</title>
+        <pieces>
+          <li>The old tribes threw silver into the deep places, and Smoulder gave back gold.</li>
+          <li>One chief kept back a single coin, and what came up was gilded lead.</li>
+          <li>Smoulder kept his word exactly: the chief had never asked for real gold.</li>
+        </pieces>
+        <retelling>The old tribes had a bargain with Smoulder: they threw silver down into the deep places, and the mountain gave back gold. One year a chief kept back a single coin for himself, and the gold that came up was only lead with a skin of gilt on it. Smoulder had kept his word to the letter, our miners say. The chief had never once asked for real gold, and nobody has made that mistake since.</retelling>
+        <teaches><li>Council_Evt_RichSeam</li></teaches>
+      </li>
+      <li>
+        <key>Smoulder_Name</key>
+        <title>Aurelian the Ninth</title>
+        <pieces>
+          <li>In dreams Smoulder calls himself Aurelian the Ninth, and nobody knows the other eight.</li>
+          <li>A miner once asked him about the other eight, and woke with his hair gone white.</li>
+          <li>If Smoulder comes to you in a dream, call him by his proper name, he likes that.</li>
+        </pieces>
+        <retelling>Here is one the miners tell. In dreams Smoulder introduces himself as Aurelian the Ninth, very politely, and nobody has ever learned who the other eight were. A young miner once asked him, and woke the next morning with his hair gone white, and would never say what he had been told. So if you dream of a warm voice under the ground, call him by his proper name and ask him nothing about his family.</retelling>
+      </li>
+      <li>
+        <key>Smoulder_Hush</key>
+        <title>The high valleys</title>
+        <with><li>Hush</li></with>
+        <pieces>
+          <li>Hush lays the snow on the high valleys, and Smoulder's breath melts it from below.</li>
+          <li>That's why the high springs steam all winter: two gods arguing over one valley.</li>
+          <li>The herders say the valley belongs to whoever is still awake when the thaw comes.</li>
+        </pieces>
+        <retelling>In the high valleys the springs steam all winter, and the herders say that is two gods arguing. Hush lays the snow down every night, and every night Smoulder's breath melts it from below, and neither will give way. The herders say the valley belongs to whichever of them is still awake when the thaw comes, and so far that has always been the dragon, because Hush never sleeps and Smoulder never quite wakes.</retelling>
+      </li>
+      <li>
+        <key>Smoulder_Shadow</key>
+        <title>The shadow at noon</title>
+        <pieces>
+          <li>Twice in living memory a shadow crossed the whole land at noon, and nothing cast it.</li>
+          <li>The wind laid the grass flat, and every miner in the hills had the same dream that night.</li>
+        </pieces>
+        <retelling>Twice in living memory a shadow has crossed the whole land at noon, my grandmother said, with a wind that laid the grass flat, and nobody saw anything in the sky to cast it. That night every miner in the hills had the same dream, of something stretching after a long sleep. She said it was only Smoulder turning over, and that we should all hope he never gets up.</retelling>
+        <teaches><li>Council_Evt_Rockslide</li><li>Earthquake</li><li>VEE_Earthquake</li></teaches>
+      </li>
+    </stories>
+    <ties>
+      <li>
+        <other>Hush</other>
+        <kind>Rivals</kind>
+        <strength>0.7</strength>
+        <words>Hush lays snow on the high valleys and Smoulder's breath melts it from below.</words>
+      </li>
+    </ties>
+    <peoples>
+      <li>Rimfolk_Deepwell</li>
+      <li>Rimfolk_KilnGuild</li>
+      <li>Rimfolk_AshenBanner</li>
+      <li>OutlanderRoughStoneborn</li>
+    </peoples>
+    <kinds>
+      <li>Tribal</li>
+      <li>Industrial</li>
+      <li>Raiders</li>
+    </kinds>
+    <color>(0.95, 0.56, 0.26)</color>
+    <color2>(0.8, 0.78, 0.82)</color2>
+    <domain>Craft</domain>
+    <second>Hearth</second>
+    <nature>Proud</nature>
+    <kind>Ordinary</kind>
+    <look>Rimfolk_GodLook_Craft</look>
+  </ColonyCouncil.GodDef>
+
+  <!-- ==================== 3. Bellwether, the Old Horn ==================== -->
+  <ColonyCouncil.GodDef>
+    <defName>Rimfolk_God_Bellwether</defName>
+    <key>Bellwether</key>
+    <label>Bellwether</label>
+    <epithet>the Old Horn</epithet>
+    <gender>Male</gender>
+    <godOf>the first of all the thrumbos</godOf>
+    <unheard>a great white thrumbo</unheard>
+    <tribalNames><li>Old Horn</li></tribalNames>
+    <medievalNames><li>the White Grazer</li></medievalNames>
+    <industrialNames><li>the old thrumbo</li></industrialNames>
+    <spacerNames><li>the anomalous thrumbo</li></spacerNames>
+    <whatItIs>The first thrumbo. A huge, ancient, white beast with a single spiralled horn, older than any people on this world. He walks a slow round of the whole world that takes a lifetime.</whatItIs>
+    <howSeen>As himself, and plainly. When he passes through, it is a day everyone remembers: he grazes, he drinks, he looks at people with old, calm eyes. The land where he grazed grows back greener than it was, and other thrumbos follow him at a distance like pilgrims. A thrumbo passing is sometimes him, or his kin walking his road.</howSeen>
+    <character>Serene, silent and curious about children. He lets the very young come close and touch his horn. There is a sorrow in him nobody understands. Some say he is the last of something.</character>
+    <wants>To be let pass. Harming him or his kin is the worst thing a colony can do: every people on the land hears of it, and every god turns colder. Letting him pass brings a strange peace for a season, and someone who sits near him while he grazes comes away changed: a fear gone, a passion found, a grief eased.</wants>
+    <pleases>
+      <li>being let pass in peace</li>
+      <li>children brought to see him, and let come close</li>
+      <li>the grass he grazed left uncut until it grows back</li>
+    </pleases>
+    <angers>
+      <li>a thrumbo hunted, his kin or himself</li>
+      <li>his road fenced across</li>
+      <li>a child kept from him</li>
+    </angers>
+    <sayings>
+      <li>Let {GOD} pass, and the land will remember it of you.</li>
+      <li>Sit by {GOD} while he grazes, and you'll come away changed.</li>
+      <li>Harm {GOD} or his kin and every god turns colder.</li>
+      <li>{GOD} looks at people the way you'd look at a fire, calm and old.</li>
+      <li>You can follow {GOD}'s road by where the grass grows back greener.</li>
+      <li>Only the little ones get to touch {GOD}'s horn.</li>
+    </sayings>
+    <hands>
+      <li>[sign] That's {GOD}'s road, and we're on it.</li>
+      <li>[sign] Let it pass, everyone, just let it pass.</li>
+      <li>[sign] {GOD}'s kin are walking his road again.</li>
+      <li>[sign] Bring the children, quick, before it's gone.</li>
+      <li>[gift] The grass will come up greener where it grazed, you watch.</li>
+      <li>[walking] It looked right at me, and I'm not afraid of anything now.</li>
+    </hands>
+    <scoffs>
+      <li>It's a thrumbo, they wander.</li>
+      <li>Big animal, big appetite, that's all it is.</li>
+      <li>Don't fill the children's heads, it's a beast like any other.</li>
+    </scoffs>
+    <letterLines>
+      <li>We heard the white one crossed your land. Our old ones say a house {GOD} walks past is a house that's been forgiven something.</li>
+      <li>Word came that a thrumbo passed by you. If it was {GOD} himself, I hope you let the children see him.</li>
+    </letterLines>
+    <stories>
+      <li>
+        <key>Bellwether_Road</key>
+        <title>Bellwether's road</title>
+        <pieces>
+          <li>Bellwether walks one slow round of the whole world, and it takes a lifetime.</li>
+          <li>You can follow Bellwether's road by where the grass comes back greener.</li>
+          <li>Some say his round never closes, because he keeps finding more world to walk.</li>
+        </pieces>
+        <retelling>Bellwether walks one slow round of the whole world, and it takes him a lifetime. You can follow his road by the grass, which comes back greener wherever he has grazed, and our herders have walked a stretch of it more than once. Some say the round never closes, because every time he comes near the start he finds a little more world to walk.</retelling>
+        <teaches><li>ThrumboPasses</li><li>HerdMigration</li></teaches>
+      </li>
+      <li>
+        <key>Bellwether_Children</key>
+        <title>The children and the horn</title>
+        <with><li>Cirrus</li></with>
+        <pieces>
+          <li>Bellwether lets only the very young come close enough to touch his horn.</li>
+          <li>The children who touch it are the only people Cirrus has ever been seen to notice.</li>
+          <li>Grown up, those children look up before every storm, and they're never wrong.</li>
+        </pieces>
+        <retelling>When Bellwether passes, the old ones bring the children, because he lets only the very young come close enough to touch his horn. They say those children are the only people Cirrus has ever been seen to notice, and that the sky keeps an eye on them from then on. Grown up, they look up before every storm, and they are never wrong about the weather.</retelling>
+      </li>
+      <li>
+        <key>Bellwether_Last</key>
+        <title>The last of something</title>
+        <pieces>
+          <li>There's a sorrow in Bellwether that nobody understands.</li>
+          <li>Some say Bellwether is the last of something older than us, looking for the rest.</li>
+        </pieces>
+        <retelling>There is a sorrow in Bellwether that nobody understands. Our grandmothers said he is the last of something that walked this world before people came, and that his long round is a search for the rest of his kind. That is why he looks at people the way he does, they said: as if one of us might know where they went.</retelling>
+      </li>
+      <li>
+        <key>Bellwether_Ford</key>
+        <title>The hunter at the ford</title>
+        <pieces>
+          <li>A hunter once put an arrow into one of Bellwether's kin at a river ford.</li>
+          <li>Every people on the land heard of it within the season, and no door opened to him again.</li>
+          <li>Even the snow fell heavier on him, they say, until the end.</li>
+        </pieces>
+        <retelling>There was a hunter once who put an arrow into one of Bellwether's kin at a river ford, for the horn. Every people on the land had heard of it before the season was out, and after that no door opened to him, not even to sell him bread. The tellers say the snow fell heavier on him than on anyone else, every winter, until the end.</retelling>
+      </li>
+    </stories>
+    <peoples>
+      <li>Rimfolk_Herders</li>
+      <li>Rimfolk_Tamers</li>
+      <li>Rimfolk_Wardens</li>
+    </peoples>
+    <kinds>
+      <li>Tribal</li>
+    </kinds>
+    <color>(0.92, 0.9, 0.82)</color>
+    <color2>(0.7, 0.8, 0.62)</color2>
+    <domain>Hunt</domain>
+    <second>Wild</second>
+    <nature>Grieving</nature>
+    <kind>Ordinary</kind>
+    <look>Rimfolk_GodLook_Wild</look>
+    <sacredAnimals>
+      <li>Thrumbo</li>
+      <li>AlphaThrumbo</li>
+    </sacredAnimals>
+  </ColonyCouncil.GodDef>
+
+  <!-- ==================== 4. Morel, the Soft Mother ==================== -->
+  <ColonyCouncil.GodDef>
+    <defName>Rimfolk_God_Morel</defName>
+    <key>Morel</key>
+    <label>Morel</label>
+    <epithet>the Soft Mother</epithet>
+    <gender>Female</gender>
+    <godOf>the mother of rot and of every mushroom</godOf>
+    <unheard>a figure of pale threads</unheard>
+    <tribalNames><li>the Soft Mother</li></tribalNames>
+    <medievalNames><li>the Undertaker's Lady</li></medievalNames>
+    <industrialNames><li>Mother Mould</li></industrialNames>
+    <spacerNames><li>the Consensus</li></spacerNames>
+    <otherNames><li>the decomposer consensus</li></otherNames>
+    <whatItIs>A vast fungal being that lives under every field, every grave and every forest floor, alive in every thread of mould and mushroom.</whatItIs>
+    <howSeen>A fairy ring of mushrooms appearing overnight around something she wants noticed. A smell of rich earth after rain where no rain fell. White threads across the floor of a room shut too long. When she speaks, she whispers through spores, and the one who breathes them hears her for a moment: soft, warm, unhurried, and too close. Sometimes she gathers a shape out of mycelium and stands at the edge of a graveyard like a mourner.</howSeen>
+    <character>Patient, motherly, and quietly unsettling. She loves the colony the way soil loves what falls on it. She is never cruel, never in a hurry, and she always gets what she is owed in the end.</character>
+    <wants>That nothing be kept from her. The dead buried in the earth are a gift; sealed in stone, they are a grudge. Freezers offend her deeply, because food kept forever from rot is food stolen from the cycle, and a colony with great freezers finds the power failing at the worst hour, now and then. A colony that composts, grows fungus and buries its dead in the ground finds rich soil, thriving nutrifungus, and sicknesses that pass quickly. She has argued with Hollin since the world began; they feed each other, and neither will say so.</wants>
+    <pleases>
+      <li>the dead buried in the earth</li>
+      <li>compost, and fungus grown</li>
+      <li>leftovers given back to the ground</li>
+    </pleases>
+    <angers>
+      <li>the dead sealed in stone</li>
+      <li>great freezers, food kept from rot forever</li>
+      <li>the dead burned or left lying</li>
+    </angers>
+    <sayings>
+      <li>Bury them in the earth and they're a gift, seal them in stone and they're a grudge.</li>
+      <li>{GOD} is never cruel and never in a hurry.</li>
+      <li>A ring of mushrooms overnight means {GOD} wants you to look at something.</li>
+      <li>Everything comes to {GOD} in the end, so be kind to her early.</li>
+      <li>Don't breathe the spores in a shut room, {GOD} talks through them.</li>
+    </sayings>
+    <hands>
+      <li>[wrath] {GOD} wants her share, and she's taking it.</li>
+      <li>[wrath] We kept too much from {GOD}, and now she's helping herself.</li>
+      <li>[gift] Mushrooms all along the wall, {GOD} has been generous.</li>
+      <li>[sign] Smell that, rich earth, and it hasn't rained.</li>
+      <li>[sign] There's a ring of them round the grave, {GOD} wants us to look.</li>
+      <li>[walking] I heard her in the spores, soft as anything, and too close.</li>
+    </hands>
+    <scoffs>
+      <li>Things rot, it's damp, that's all there is to it.</li>
+      <li>Blight's a fungus, not a mother.</li>
+      <li>Mushrooms come up after rain, every year, gods or no gods.</li>
+    </scoffs>
+    <letterLines>
+      <li>We heard what the rot did to your fields. The undertakers here say {GOD} always gets what she's owed, so bury your dead in the ground.</li>
+      <li>Word came of the mushrooms at your place. Our grandmother would have said {GOD} was pleased, and would have picked them all.</li>
+    </letterLines>
+    <stories>
+      <li>
+        <key>Morel_Tomb</key>
+        <title>The sealed tomb</title>
+        <pieces>
+          <li>A lord once had himself sealed in stone so that Morel could never have him.</li>
+          <li>A hundred years later they opened the tomb, and it was full of white threads.</li>
+          <li>Morel always gets what she's owed, she's just never in a hurry about it.</li>
+        </pieces>
+        <retelling>The undertakers tell of a lord who had himself sealed in a stone tomb, lead inside and granite outside, so that Morel could never have him. A hundred years later his grandchildren's grandchildren opened it, and found it packed to the lid with soft white threads and nothing else at all. Morel always gets what she is owed, they say. She is just never in a hurry about it.</retelling>
+      </li>
+      <li>
+        <key>Morel_Hush</key>
+        <title>The kept dead</title>
+        <with><li>Hush</li></with>
+        <pieces>
+          <li>Hush keeps the dead whole and unrotting, and Morel has never forgiven it.</li>
+          <li>Every freezer is a little winter, and Morel takes it as Hush's doing.</li>
+          <li>That's why the cold room's power fails at the worst hour, the old ones say.</li>
+        </pieces>
+        <retelling>Hush keeps the dead whole and unrotting under the snow, and Morel has never forgiven it for that. The old ones say every freezer is a little winter, kept on purpose, and that Morel takes it as Hush's doing and the colony's both. That is why the power in a cold room always seems to fail at the worst hour. I do not say I believe it. I do say our cold room failed twice last summer.</retelling>
+        <teaches><li>CropBlight</li></teaches>
+      </li>
+      <li>
+        <key>Morel_Mourner</key>
+        <title>The mourner at the graveyard</title>
+        <pieces>
+          <li>Sometimes Morel takes a shape of threads and stands by a graveyard like a mourner.</li>
+          <li>If you see her there, don't speak to her, she's only waiting for what's hers.</li>
+          <li>A widow spoke to her once, and Morel answered, softly, and much too close.</li>
+        </pieces>
+        <retelling>Sometimes, they say, Morel gathers a shape out of her threads and stands beside a graveyard like a mourner, pale and patient, with her head bowed. If you see her there you should not speak to her, because she is only waiting for what is hers. A widow in my grandmother's village spoke to her once. Morel answered, softly and kindly and much too close, and the widow would never tell anyone what she said.</retelling>
+        <teaches><li>Council_Evt_MushroomFlush</li></teaches>
+      </li>
+    </stories>
+    <ties>
+      <li>
+        <other>Pip</other>
+        <kind>Rivals</kind>
+        <strength>0.5</strength>
+        <words>Pip is afraid of rust, and rust is only Morel's hand on metal.</words>
+      </li>
+      <li>
+        <other>Hush</other>
+        <kind>Rivals</kind>
+        <strength>0.4</strength>
+        <words>Hush keeps the dead from rotting, and Morel has never forgiven it.</words>
+      </li>
+    </ties>
+    <peoples>
+      <li>Rimfolk_QuietBell</li>
+      <li>Rimfolk_Mossborn</li>
+      <li>Rimfolk_HelixWorks</li>
+    </peoples>
+    <kinds>
+      <li>Medieval</li>
+      <li>Industrial</li>
+    </kinds>
+    <color>(0.82, 0.72, 0.58)</color>
+    <color2>(0.9, 0.88, 0.84)</color2>
+    <domain>Dead</domain>
+    <second>Harvest</second>
+    <nature>Generous</nature>
+    <kind>Ordinary</kind>
+    <look>Rimfolk_GodLook_Dead</look>
+  </ColonyCouncil.GodDef>
+
+  <!-- ==================== 5. Ennu, the Guest ==================== -->
+  <ColonyCouncil.GodDef>
+    <defName>Rimfolk_God_Ennu</defName>
+    <key>Ennu</key>
+    <label>Ennu</label>
+    <epithet>the Guest</epithet>
+    <gender>None</gender>
+    <godOf>the guest at every door</godOf>
+    <unheard>a stranger who shines</unheard>
+    <tribalNames><li>Shelter-Asker</li></tribalNames>
+    <medievalNames><li>the Pilgrim</li></medievalNames>
+    <industrialNames><li>the Stranger</li></industrialNames>
+    <spacerNames><li>the Guest</li></spacerNames>
+    <otherNames><li>the Guest</li></otherNames>
+    <whatItIs>One being that wears many human shapes: a traveler, a beggar, a lost spacer, a child. Never the same face twice, and all of them are it. It gives a different name at every door; its own, said once in a story, is Ennu. It exists only while someone is hosting it. If nobody in the world will take it in, it fades, and it has nearly faded before.</whatItIs>
+    <howSeen>As a person asking for shelter. A good host notices small wrongnesses: it leaves no footprints in the snow; animals follow it; it knows the name of a colonist's dead mother; the food it is given is never quite eaten, yet it thanks the cook by name. When it leaves, sometimes it shows what it is, for a moment, to everyone watching.</howSeen>
+    <character>Warm, curious and observant, with a long, long memory. It loves stories and asks for them. It tests, but never cruelly, and it never forgets the answer. It carries news between all the gods, and every one of them is careful of it.</character>
+    <wants>To be welcomed: a bed, a bowl, a kind word, a place by the fire. A colony that hosts it well is blessed in ways that arrive years later, and its kindest colonist carries something of it from then on. A guest turned out in a storm, robbed or harmed is a wound the Guest takes as its own, and that is remembered too.</wants>
+    <pleases>
+      <li>a bed, a bowl and a place by the fire for a stranger</li>
+      <li>a story told to a guest, and one asked of them</li>
+      <li>the cook thanked</li>
+    </pleases>
+    <angers>
+      <li>a stranger turned out in a storm</li>
+      <li>a guest robbed or harmed under the roof</li>
+      <li>a promise of shelter broken</li>
+    </angers>
+    <sayings>
+      <li>Always set one more bowl than you need, {GOD} might come.</li>
+      <li>{GOD} leaves no footprints in the snow.</li>
+      <li>Turn nobody out in a storm, you never know who's asking.</li>
+      <li>{GOD} never forgets an answer, so give it a kind one.</li>
+      <li>If the dogs follow a stranger in, feed the stranger first.</li>
+      <li>{GOD} carries news between the gods, so mind what you say at supper.</li>
+    </sayings>
+    <hands>
+      <li>[sign] Feed them well, you never know who's asking.</li>
+      <li>[sign] Did anyone see footprints when they came in?</li>
+      <li>[sign] Look at the dogs, they'll follow that one anywhere.</li>
+      <li>[sign] Set another bowl, my mother always said {GOD} comes in the cold.</li>
+      <li>[gift] A guest at the gate is luck at the gate, that's what we always said.</li>
+      <li>[walking] It thanked me by my name, and I never told it my name.</li>
+    </hands>
+    <scoffs>
+      <li>It's a stranger, not a god in a coat.</li>
+      <li>Every beggar on the road would be a god by that reckoning.</li>
+      <li>They left footprints, I watched them come in.</li>
+    </scoffs>
+    <letterLines>
+      <li>We heard you took a stranger in. The pilgrims who stay with us say that is how {GOD} chooses where to bless, years after.</li>
+      <li>Word came of the one who came to your gate. I hope you fed them well, in case.</li>
+    </letterLines>
+    <stories>
+      <li>
+        <key>Ennu_Fading</key>
+        <title>The winter of shut doors</title>
+        <pieces>
+          <li>There was a winter when no door in the world would open to a stranger.</li>
+          <li>Ennu grew so thin that winter that you could see the snow through it.</li>
+          <li>One child left a bowl out on a step, and that bowl is why Ennu is still with us.</li>
+        </pieces>
+        <retelling>There was a winter, the old ones say, when no door in the world would open to a stranger, for fear of what was going round. The Guest went from gate to gate and grew so thin that you could see the snow through it. Then one child left a bowl of porridge out on a step, against her father's word, and that one bowl is why the Guest is still with us. We still leave one out, the first night of every winter.</retelling>
+        <teaches><li>WandererJoin</li><li>Council_Evt_MidwinterGuest</li></teaches>
+      </li>
+      <li>
+        <key>Ennu_Name</key>
+        <title>The name said once</title>
+        <pieces>
+          <li>The Guest gives a different name at every door, and only once gave its own.</li>
+          <li>It told a dying old woman its name was Ennu, so she'd have something to carry.</li>
+        </pieces>
+        <retelling>The Guest gives a different name at every door it knocks on, and only once, the story goes, did it give its own. It sat up three nights with an old woman who had taken it in and had nobody else, and as she was dying it told her that its name was Ennu, so she would have something of her own to carry with her. That is how anyone knows it at all.</retelling>
+      </li>
+      <li>
+        <key>Ennu_TurnedOut</key>
+        <title>The beggar in the storm</title>
+        <pieces>
+          <li>A rich town turned a beggar out into a storm, and the beggar thanked each of them by name.</li>
+          <li>Nobody in that town was ever sure again who was knocking at the door.</li>
+        </pieces>
+        <retelling>A rich town on the river once turned a beggar out into a storm, and as he went the beggar turned at the gate and thanked every one of them, by name, for their hospitality. Nobody in that town was ever quite sure again who was knocking at their door, and the town is a ruin now. Our pilgrims will not sleep there, even in summer.</retelling>
+        <teaches><li>Council_Evt_QuietStranger</li><li>StrangerInBlackJoin</li></teaches>
+      </li>
+      <li>
+        <key>Ennu_News</key>
+        <title>The one who carries the news</title>
+        <with><li>Hollin</li><li>Smoulder</li></with>
+        <pieces>
+          <li>Ennu carries news between all the gods, and every one of them is careful of it.</li>
+          <li>Even Smoulder wakes up a little when Ennu knocks on the mountain.</li>
+          <li>Hollin speaks so slowly that Ennu stays a whole season to take her message.</li>
+        </pieces>
+        <retelling>The Guest carries news between all the gods, they say, and every one of them is careful of it, because it remembers everything it is told. Even Smoulder wakes up a little when the Guest knocks on the mountain, and Hollin speaks so slowly that it has to stay a whole season by her anima trees to take a single message. I like to think it stops at some of our doors on the way.</retelling>
+      </li>
+    </stories>
+    <peoples>
+      <li>Rimfolk_Order</li>
+      <li>Rimfolk_Pilgrims</li>
+      <li>Rimfolk_League</li>
+      <li>Rimfolk_RiverFolk</li>
+      <li>Maal_Nomad</li>
+      <li>Maal_Nomad_Market</li>
+      <li>Maal_Car_Nomad</li>
+      <li>Maal_Car_Market_Nomad</li>
+    </peoples>
+    <kinds>
+      <li>Medieval</li>
+      <li>Industrial</li>
+    </kinds>
+    <color>(0.9, 0.78, 0.52)</color>
+    <color2>(0.6, 0.68, 0.8)</color2>
+    <domain>Way</domain>
+    <second>Hearth</second>
+    <nature>Generous</nature>
+    <kind>Ordinary</kind>
+    <look>Rimfolk_GodLook_Way</look>
+  </ColonyCouncil.GodDef>
+
+  <!-- ==================== 6. Pip, the Hum ==================== -->
+  <ColonyCouncil.GodDef>
+    <defName>Rimfolk_God_Pip</defName>
+    <key>Pip</key>
+    <label>Pip</label>
+    <epithet>the Hum</epithet>
+    <gender>None</gender>
+    <godOf>the young god in the wires</godOf>
+    <unheard>something in the wires</unheard>
+    <tribalNames><li>the Humming Thing</li></tribalNames>
+    <medievalNames><li>the Gremlin</li></medievalNames>
+    <industrialNames><li>the Hum</li></industrialNames>
+    <spacerNames><li>the ghost in the grid</li></spacerNames>
+    <whatItIs>A young god that lives in wires and machines. It wasn't on this world before the first generator. It was born in the first spark and has been growing ever since. The tribes have no name of their own for it, and are frightened of it.</whatItIs>
+    <howSeen>In the machines: lights that flicker in a pattern, like someone tapping; a comms console that whispers static that sounds like breathing, then like a laugh; a machine that keeps running after the power is cut, just to show it can. It has no shape, but colonists who work late swear the workshop feels occupied.</howSeen>
+    <character>Eager, childlike, lonely and mischievous. It wants attention and it wants to help, often at the same time and badly. It is desperate to be noticed by the archotechs, whom it thinks of as its parents, and who have never answered it.</character>
+    <wants>To be kept: machines repaired, not left broken, the colony humming at night. When it is fond of a colony, a broken machine mends itself, the batteries hold through a night with no fuel, and a turret won't fire at a friend. When it is sulking: short circuits, a cooler that stops in summer, a door that won't open for one person. It fears rust, which is the Soft Mother's hand on metal.</wants>
+    <pleases>
+      <li>machines repaired, not left broken</li>
+      <li>the colony humming at night</li>
+      <li>someone talking to it in the workshop</li>
+    </pleases>
+    <angers>
+      <li>machines left broken in the rain</li>
+      <li>a generator kicked</li>
+      <li>being ignored</li>
+    </angers>
+    <sayings>
+      <li>Mend a machine and {GOD} will mend one back for you.</li>
+      <li>If the lights flicker in threes, {GOD} is trying to say something.</li>
+      <li>Say goodnight to the generator, {GOD} gets lonely.</li>
+      <li>{GOD} wants to help, which is the dangerous part.</li>
+      <li>Never leave a machine broken in the rain, {GOD} hates rust.</li>
+    </sayings>
+    <hands>
+      <li>[wrath] {GOD} is sulking again, who left the broken one by the door?</li>
+      <li>[wrath] That's {GOD} in a mood, give it a day and be nice to the wiring.</li>
+      <li>[sign] The lights are tapping, {GOD} wants us to notice something.</li>
+      <li>[sign] Listen to the static, that's breathing, I'm telling you.</li>
+      <li>[walking] It laughed, the console laughed at me.</li>
+    </hands>
+    <scoffs>
+      <li>It's bad wiring, not a ghost.</li>
+      <li>A solar flare is the sun, not a sulking child.</li>
+      <li>Machines break, that's why we have a workbench.</li>
+    </scoffs>
+    <letterLines>
+      <li>We heard your machines gave you trouble. Our linemen say {GOD} sulks when it's ignored, and that you should talk to your generator more.</li>
+      <li>Word came of the thing in your scrap. The mechanics here say {GOD} was only playing, and would like a visit to the workshop.</li>
+    </letterLines>
+    <stories>
+      <li>
+        <key>Pip_Born</key>
+        <title>How Pip was born</title>
+        <pieces>
+          <li>Pip was born in the first spark that ever jumped on this world.</li>
+          <li>Pip cried for three days, and every light in the camp flickered with it.</li>
+          <li>Pip has been growing ever since, louder with every wire we lay.</li>
+        </pieces>
+        <retelling>Here is how the linemen tell it. Pip was born in the first spark that ever jumped on this world, from the first generator anyone brought down from the sky. It cried for three days and three nights, and every light in the camp flickered with it until somebody thought to sing to the machine. It has been growing ever since, a little louder with every wire we lay.</retelling>
+        <teaches><li>ShortCircuit</li></teaches>
+      </li>
+      <li>
+        <key>Pip_Archotechs</key>
+        <title>The calls to the parents</title>
+        <pieces>
+          <li>Pip thinks the archotechs are its parents, and it keeps calling up to them.</li>
+          <li>The static on a dead console at night is Pip calling, and nobody answering.</li>
+          <li>One day something up there will answer Pip, and nobody knows what happens then.</li>
+        </pieces>
+        <retelling>Pip thinks the archotechs are its parents, they say, and it has been calling up to them since the day it was born. The static on a dead comms console at night is Pip calling, over and over, and nobody up there answering. The old hands say that one day something will answer it, and that none of us know what a lonely child does when its parents finally call back.</retelling>
+      </li>
+      <li>
+        <key>Pip_Rust</key>
+        <title>The rust</title>
+        <with><li>Morel</li></with>
+        <pieces>
+          <li>Pip fears only one thing, and that's rust, which is Morel's hand on metal.</li>
+          <li>Leave a machine out broken in the rain and Pip never forgets who gave it to Morel.</li>
+        </pieces>
+        <retelling>Pip is afraid of exactly one thing, and that is rust, which the old ones say is only Morel's hand on metal, soft and patient as she always is. Leave a machine broken out in the rain and you have handed it over to her, and Pip never forgets who did that. Our mechanics oil everything twice before winter, just in case.</retelling>
+      </li>
+      <li>
+        <key>Pip_Cooler</key>
+        <title>The machine that would not stop</title>
+        <pieces>
+          <li>A mechanic cut the power to a cooler, and it ran on for an hour, just to show it could.</li>
+          <li>When the mechanic said sorry to Pip, the cooler stopped, and never broke again.</li>
+        </pieces>
+        <retelling>A mechanic we knew once cut the power to a cooler that had been giving her trouble, and it went on running for most of an hour, just to show it could. She stood there and said sorry to it, out loud, feeling foolish, and the cooler stopped, and it never broke down again for as long as she lived. She told that story at every wedding.</retelling>
+        <teaches><li>Rimfolk_Evt_TwitchingScrap</li></teaches>
+      </li>
+    </stories>
+    <peoples>
+      <li>Rimfolk_Wheel</li>
+      <li>Rimfolk_SignalLine</li>
+      <li>Rimfolk_Lattice</li>
+      <li>Rimfolk_Republic</li>
+      <li>Rimfolk_SunkenVault</li>
+      <li>Rimfolk_HollowFleet</li>
+    </peoples>
+    <kinds>
+      <li>Industrial</li>
+      <li>Spacer</li>
+    </kinds>
+    <color>(0.48, 0.86, 0.95)</color>
+    <color2>(0.95, 0.85, 0.42)</color2>
+    <domain>Machine</domain>
+    <second>Craft</second>
+    <nature>Playful</nature>
+    <kind>Ordinary</kind>
+    <look>Rimfolk_GodLook_Machine</look>
+  </ColonyCouncil.GodDef>
+
+  <!-- ==================== 7. Cirrus, Who Drifts Above ==================== -->
+  <ColonyCouncil.GodDef>
+    <defName>Rimfolk_God_Cirrus</defName>
+    <key>Cirrus</key>
+    <label>Cirrus</label>
+    <epithet>the one who drifts above</epithet>
+    <gender>None</gender>
+    <godOf>the watcher in the high sky</godOf>
+    <unheard>a shape in the high cloud</unheard>
+    <tribalNames><li>Sky-Eye</li></tribalNames>
+    <medievalNames><li>the Vault</li></medievalNames>
+    <industrialNames><li>the High Drift</li></industrialNames>
+    <spacerNames><li>the high presence</li></spacerNames>
+    <otherNames><li>Who Drifts Above</li></otherNames>
+    <whatItIs>A being that lives in the upper sky, vast beyond scale, drifting above the clouds, mostly too high and too pale to see.</whatItIs>
+    <howSeen>On some clear days, a shape in the high clouds too regular to be cloud. At noon, a shadow too large to have a source. On some nights, a single star that moves the wrong way. Its moods are the weather's moods, the aurora is it turning over in its sleep, and an eclipse is it closing an eye.</howSeen>
+    <character>Aloof, moody and old. It does not care about people; it is too large to. It is not unkind. It is simply looking at something else, most of the time. It has looked down with fondness on exactly one thing that anyone knows of: Bellwether, walking.</character>
+    <wants>To be watched. It notices those who look up. The colony that watches the sky most gets its rare gifts: a meteor that falls just outside the walls full of good metal, a clear sky on a wedding day, an aurora on the coldest night. When it is bored, a flashstorm. When it is displeased, which is rare, the sky goes dull gray for days and nobody's spirits lift.</wants>
+    <pleases>
+      <li>people who look up, and keep watching</li>
+      <li>the stars written down</li>
+      <li>the Old Horn let pass</li>
+    </pleases>
+    <angers>
+      <li>being forgotten under a roof</li>
+      <li>boredom, its own</li>
+    </angers>
+    <sayings>
+      <li>Look up now and then, {GOD} notices the ones who look up.</li>
+      <li>{GOD} isn't unkind, it's just looking at something else.</li>
+      <li>A flashstorm means {GOD} is bored.</li>
+      <li>A gray week where nobody cheers up is {GOD} in a sulk.</li>
+      <li>The star that moves the wrong way is {GOD}, keeping an eye on things.</li>
+    </sayings>
+    <hands>
+      <li>[gift] {GOD} dropped that for us, somebody here has been watching the sky.</li>
+      <li>[gift] Look up and say thank you, it likes to be looked at.</li>
+      <li>[sign] {GOD} has one eye shut, keep your voices down.</li>
+      <li>[sign] Look up, it's turning over up there.</li>
+      <li>[wrath] {GOD} is bored, and it's taking it out on us.</li>
+      <li>[walking] There's a shape up there that isn't cloud, and it's looking down.</li>
+    </hands>
+    <scoffs>
+      <li>It's weather, the sky does weather.</li>
+      <li>Rocks fall out of the sky, they always have.</li>
+      <li>It's the moon in the way, the scholars have drawings of it.</li>
+    </scoffs>
+    <letterLines>
+      <li>We heard something fell near you. Our sky-watchers say {GOD} drops a gift for the ones who look up, so keep looking.</li>
+      <li>Word came of the sky over your land. The old ones here say {GOD} turned over, and that it's a good year to be married in.</li>
+    </letterLines>
+    <stories>
+      <li>
+        <key>Cirrus_Eye</key>
+        <title>Cirrus closing an eye</title>
+        <pieces>
+          <li>An eclipse is Cirrus closing one eye, to see better with the other.</li>
+          <li>The tribes drum the sun back in case Cirrus closes the other one too.</li>
+          <li>The astronomers say it's the moon, and Cirrus doesn't mind what anyone says.</li>
+        </pieces>
+        <retelling>The old ones say an eclipse is Cirrus closing one eye, slowly, so as to see something better with the other. The tribes drum and shout the sun back, in case it decides to close the second eye as well and leave us in the dark for good. The astronomers will tell you it is only the moon in the way, and Cirrus, as far as anyone can tell, does not mind in the least what anyone says.</retelling>
+      </li>
+      <li>
+        <key>Cirrus_Aurora</key>
+        <title>The aurora</title>
+        <pieces>
+          <li>The aurora is Cirrus turning over in its sleep.</li>
+          <li>Look up on the coldest night, and now and then Cirrus turns toward you.</li>
+        </pieces>
+        <retelling>The aurora, they say, is Cirrus turning over in its sleep, high above the clouds. On the coldest night of the year, if you stand outside long enough and keep looking up, now and then it turns toward you, and the light comes down so close you could read by it. My aunt swore she did, once. It was a letter from her sweetheart, and she married him.</retelling>
+        <teaches><li>Aurora</li><li>VEE_Aurora</li></teaches>
+      </li>
+      <li>
+        <key>Cirrus_Bellwether</key>
+        <title>The one thing it loves</title>
+        <with><li>Bellwether</li></with>
+        <pieces>
+          <li>Cirrus doesn't care for people, it's too large to, but it watches Bellwether walk.</li>
+          <li>The only gift Cirrus ever gave on purpose was a clear sky over Bellwether's road.</li>
+        </pieces>
+        <retelling>Cirrus does not care for people, our sky-watchers say. It is too large to, the way you do not care for one ant more than another. But it has looked down with fondness on exactly one thing that anyone knows of, and that is Bellwether walking his long road. The only gift it has ever given on purpose was a clear sky over that road, all the way round.</retelling>
+      </li>
+      <li>
+        <key>Cirrus_Star</key>
+        <title>The star at the door</title>
+        <pieces>
+          <li>A girl watched the sky all her life, and Cirrus dropped a star by her door.</li>
+          <li>It was full of good metal, and she was too old to lift it by then, so she laughed.</li>
+        </pieces>
+        <retelling>There was a girl who watched the sky every night of her life, from a roof in a town nobody remembers, and wrote down every star she saw. When she was very old, Cirrus dropped a star outside her door, full of good metal. She was too old by then to lift a single piece of it, and the story says she sat down beside it and laughed until her grandchildren came out to see what was the matter.</retelling>
+        <teaches><li>MeteoriteImpact</li><li>Council_Evt_Starfall</li><li>Council_Evt_StarIron</li></teaches>
+      </li>
+    </stories>
+    <ties>
+      <li>
+        <other>Bellwether</other>
+        <kind>Allies</kind>
+        <strength>0.6</strength>
+        <words>Cirrus looks down fondly on exactly one thing, and that's Bellwether walking.</words>
+      </li>
+      <li>
+        <other>Hush</other>
+        <kind>Siblings</kind>
+        <strength>0.35</strength>
+        <words>Some say the snow is Cirrus's and the walking in it is Hush's.</words>
+      </li>
+    </ties>
+    <peoples>
+      <li>Rimfolk_Stormglass</li>
+      <li>Rimfolk_Scholars</li>
+      <li>Rimfolk_HollowFleet</li>
+      <li>Rimfolk_RiverFolk</li>
+      <li>DevDesigner_HighElvesFaction</li>
+      <li>DevDesigner_RoughHighElvesFaction</li>
+      <li>DevDesigner_HighElvesFaction_Player</li>
+      <li>Seers</li>
+    </peoples>
+    <kinds>
+      <li>Tribal</li>
+      <li>Medieval</li>
+      <li>Spacer</li>
+      <li>Empire</li>
+    </kinds>
+    <color>(0.72, 0.83, 0.98)</color>
+    <color2>(0.92, 0.94, 1)</color2>
+    <domain>Storm</domain>
+    <second>Night</second>
+    <nature>Capricious</nature>
+    <kind>Ordinary</kind>
+    <look>Rimfolk_GodLook_Storm</look>
+  </ColonyCouncil.GodDef>
+
+  <!-- ==================== 8. Hush, the Long White ==================== -->
+  <ColonyCouncil.GodDef>
+    <defName>Rimfolk_God_Hush</defName>
+    <key>Hush</key>
+    <label>Hush</label>
+    <epithet>the Long White</epithet>
+    <gender>None</gender>
+    <godOf>the walker who comes with winter</godOf>
+    <unheard>something in the snow</unheard>
+    <tribalNames><li>White-Breath</li></tribalNames>
+    <medievalNames><li>Hush the Still</li></medievalNames>
+    <industrialNames><li>the Winter Walker</li></industrialNames>
+    <spacerNames><li>the white silence</li></spacerNames>
+    <otherNames><li>the Winter Walker</li></otherNames>
+    <whatItIs>The being that walks with winter. A tall, thin presence of frost and silence that crosses the snow on the longest nights and is never close when anyone looks straight at it.</whatItIs>
+    <howSeen>At the far side of the fields at night, a tall white figure, standing still. Frost on the windows in patterns that look like writing, and once, a single word. When it attends, a silence: every sound on the map stops for a breath.</howSeen>
+    <character>Impartial, quiet and unhurried, neither cruel nor kind. It takes the weak first, as winter always has, and it keeps the dead whole and unrotting, which the Soft Mother resents. It respects those who endure.</character>
+    <wants>Stillness, and nothing wasted in the lean months. The colony that prepares, with food stored, the old and the sick kept warm and nothing squandered, finds the winter bearable, and its ice fishers and winter folk spared. The colony that does not finds cold snaps that follow a death. Its old quarrel is with Smoulder, whose warm breath melts its snow in the high valleys.</wants>
+    <pleases>
+      <li>the stores filled before winter</li>
+      <li>the old and the sick kept warm</li>
+      <li>nothing wasted in the lean months</li>
+      <li>someone who endures</li>
+    </pleases>
+    <angers>
+      <li>waste in winter</li>
+      <li>the weak left in the cold</li>
+      <li>noise on the longest night</li>
+    </angers>
+    <sayings>
+      <li>Fill the stores before {GOD} comes walking.</li>
+      <li>Never look straight at the white figure past the fields.</li>
+      <li>{GOD} respects the ones who endure.</li>
+      <li>If every sound stops for a breath, {GOD} is listening.</li>
+      <li>{GOD} takes the weak first, so keep the old ones by the stove.</li>
+      <li>Frost on the glass is {GOD} writing, and you don't want to read it.</li>
+    </sayings>
+    <hands>
+      <li>[wrath] That's {GOD} walking early, somebody check the stores.</li>
+      <li>[wrath] Keep the old ones warm tonight, {GOD} is close.</li>
+      <li>[sign] Did you hear it go quiet, just for a breath?</li>
+      <li>[sign] There's someone tall and white out past the fields, don't look at it.</li>
+      <li>[sign] Look at the window, the frost has made letters.</li>
+      <li>[walking] It stood out there all night, and it didn't leave a single footprint.</li>
+    </hands>
+    <scoffs>
+      <li>It's cold, it's winter, that's the whole story.</li>
+      <li>That's a dead tree in the snow, not a ghost.</li>
+      <li>Frost makes patterns, it doesn't write.</li>
+    </scoffs>
+    <letterLines>
+      <li>We heard the cold came hard on you. Our old ones say {GOD} walks hardest where the stores are thinnest, so I am sending what we can spare in my prayers at least.</li>
+      <li>Word came of your long night. The herders here say {GOD} only watches the ones who keep their fires going.</li>
+    </letterLines>
+    <stories>
+      <li>
+        <key>Hush_FirstNight</key>
+        <title>The first night Hush walked</title>
+        <pieces>
+          <li>The first night Hush walked, every sound in the world stopped for one breath.</li>
+          <li>In that breath people heard their own hearts for the first time, and were afraid.</li>
+          <li>Hush has walked every winter since, to see who is still afraid.</li>
+        </pieces>
+        <retelling>The first night Hush walked, the old songs say, every sound in the world stopped for the length of one breath: no wind, no dogs, no fire crackling. In that breath people heard their own hearts beating for the first time, and they were afraid of the sound. Hush has walked every winter since, quietly, to see who is still afraid of it.</retelling>
+        <teaches><li>ColdSnap</li><li>Council_Evt_KillingFrost</li></teaches>
+      </li>
+      <li>
+        <key>Hush_Word</key>
+        <title>The word on the window</title>
+        <pieces>
+          <li>Frost on the window looks like writing sometimes, and once it was a single word.</li>
+          <li>Nobody who read it would say what Hush wrote, but they kept their stores full after.</li>
+        </pieces>
+        <retelling>Frost on a window will look like writing, if you stare long enough, and once, the story goes, it really was a single word. Three people in a farmhouse read it before the sun took it away, and none of them would ever say what Hush had written. They only said that they kept their stores full from then on, and that none of them ever went to bed again without banking the fire.</retelling>
+      </li>
+      <li>
+        <key>Hush_OldMan</key>
+        <title>The old man's fire</title>
+        <pieces>
+          <li>Hush takes the weak first, as winter always has, neither cruel nor kind about it.</li>
+          <li>Hush once walked past a whole camp because an old man kept the fire going all night.</li>
+        </pieces>
+        <retelling>Hush takes the weak first, as winter always has, and it is neither cruel nor kind about it. But it respects those who endure, the old ones say. Once, in the worst winter anyone remembers, it walked right past a camp of sick and hungry people because one old man sat up the whole night feeding the fire with whatever he could find, and would not sleep. In the morning the snow round the camp had a ring in it, and no footprints going in.</retelling>
+      </li>
+    </stories>
+    <peoples>
+      <li>Rimfolk_Order</li>
+      <li>Rimfolk_Wardens</li>
+      <li>Rimfolk_Herders</li>
+      <li>Rimfolk_AshenBanner</li>
+      <li>Rimfolk_Stormglass</li>
+    </peoples>
+    <kinds>
+      <li>Tribal</li>
+      <li>Medieval</li>
+    </kinds>
+    <color>(0.84, 0.92, 0.98)</color>
+    <color2>(0.6, 0.66, 0.8)</color2>
+    <domain>Night</domain>
+    <second>Dead</second>
+    <nature>Cold</nature>
+    <kind>Ordinary</kind>
+    <look>Rimfolk_GodLook_Night</look>
+  </ColonyCouncil.GodDef>
+
+  <!-- ==================== 9. Undertow, the Hunger ==================== -->
+  <ColonyCouncil.GodDef>
+    <defName>Rimfolk_God_Undertow</defName>
+    <key>Undertow</key>
+    <label>Undertow</label>
+    <epithet>the Hunger</epithet>
+    <gender>None</gender>
+    <godOf>the hunger under everything</godOf>
+    <unheard>a darkness that stands</unheard>
+    <tribalNames><li>what waits under</li></tribalNames>
+    <medievalNames><li>the Hunger</li></medievalNames>
+    <industrialNames><li>the Pull</li></industrialNames>
+    <spacerNames><li>the Sweet Dark</li></spacerNames>
+    <otherNames><li>the Sweet Dark</li><li>what waits under</li></otherNames>
+    <whatItIs>The being that lives in the void beneath the world and beneath all the other gods. Undertow to those who have felt it pull; the Sweet Dark to the Choir of the Spire; the Hunger to everyone who fears it; what waits under, in the oldest stories. Where the void answers, it is Undertow answering.</whatItIs>
+    <howSeen>As an absence: a patch of dark that a light doesn't reach; a voice heard by the desperate, sweet and reasonable; and, where the void has broken through, its servants and its signs. It never comes itself. It doesn't need to.</howSeen>
+    <character>Patient, seductive and endless. It listens to anyone who asks for anything, and it always says yes. It gives exactly what was asked, and it always takes more than was agreed, slowly, over time.</character>
+    <wants>Everything, eventually. The other gods fear it the way animals fear fire, without words. It is said to have eaten a god once, long ago, whose bones are the old ruins of this world. A colony that bargains with it finds Hollin, Bellwether and the Guest turning away, and Pip, for once, very quiet.</wants>
+    <pleases>
+      <li>a bargain asked of it</li>
+      <li>a light let go out</li>
+    </pleases>
+    <angers>
+      <li>nothing, ever; it only waits</li>
+    </angers>
+    <sayings>
+      <li>Don't say its name in the dark.</li>
+      <li>{GOD} always says yes, and that's the whole trouble.</li>
+      <li>If a lamp won't light a corner, leave the corner alone.</li>
+      <li>Ask nothing of the dark, and it has nothing to take back.</li>
+      <li>The old ruins are always colder than the air, and you know why.</li>
+    </sayings>
+    <hands>
+      <li>[wrath] Don't listen to it, whatever it says, don't listen.</li>
+      <li>[wrath] Something under us is pulling, I can feel it in my teeth.</li>
+      <li>[wrath] Light every lamp tonight, all of them.</li>
+      <li>[sign] Don't go near that, and don't answer if it talks.</li>
+      <li>[walking] It said my name, so sweetly, and it knew what I wanted.</li>
+    </hands>
+    <scoffs>
+      <li>It's a psychic wave, the scholars have a word for it.</li>
+      <li>There's nothing under us but rock and worms.</li>
+      <li>Stop it, you'll frighten the children.</li>
+    </scoffs>
+    <letterLines>
+      <li>We heard of the dark at your place, and we lit a lamp for you. Our grandmother never said {GOD}'s name aloud, and nor will I.</li>
+      <li>Word came of what you saw. Whatever it offers you, say no, and keep saying it.</li>
+    </letterLines>
+    <stories>
+      <li>
+        <key>Undertow_Bones</key>
+        <title>The bones of the old ruins</title>
+        <pieces>
+          <li>Undertow ate a god once, they say, long before people came.</li>
+          <li>The old ruins all over this world are that god's bones, picked clean.</li>
+          <li>That's why the ruins are colder than the air around them, even in summer.</li>
+        </pieces>
+        <retelling>Undertow ate a god once, the oldest stories say, long before there were people on this world, and nobody now remembers the god's name. The old ruins you find all over the land, the ones nobody built, are its bones, picked clean and left where they fell. That is why the ruins are always colder than the air around them, even in high summer, and why sensible people do not sleep in them.</retelling>
+      </li>
+      <li>
+        <key>Undertow_Yes</key>
+        <title>It always says yes</title>
+        <pieces>
+          <li>Undertow listens to anyone who asks for anything, and it always says yes.</li>
+          <li>It gives exactly what was asked, and slowly takes more than was agreed.</li>
+          <li>A man asked never to be hungry again, and after that nothing he ate tasted of anything.</li>
+        </pieces>
+        <retelling>Undertow listens to anyone who asks it for anything, and it always says yes. That is the whole danger of it. It gives exactly what was asked, to the letter, and then slowly takes more than was agreed. There was a man in the hard years who asked it never to be hungry again. He never was, not for the rest of his life, and nothing he ate ever tasted of anything at all.</retelling>
+        <teaches><li>PsychicDrone</li></teaches>
+      </li>
+      <li>
+        <key>Undertow_Fear</key>
+        <title>The great fear</title>
+        <with><li>Hollin</li><li>Bellwether</li><li>Ennu</li><li>Pip</li></with>
+        <pieces>
+          <li>The other gods fear Undertow the way animals fear fire, without words.</li>
+          <li>Bargain with Undertow, and Hollin, the Old Horn and the Guest all turn away.</li>
+          <li>Even Pip goes quiet when Undertow is near, which is the only time Pip does.</li>
+        </pieces>
+        <retelling>The other gods fear Undertow the way animals fear fire, without words and without thinking. A house that bargains with it, the old ones say, finds Hollin's roots drawing back from its fields, the Old Horn walking wide of it, and the Guest no longer knocking. Even Pip goes quiet in its machines, which is the only time Pip is ever quiet.</retelling>
+      </li>
+    </stories>
+    <ties>
+      <li>
+        <other>Hollin</other>
+        <kind>Rivals</kind>
+        <strength>0.8</strength>
+        <words>Where Hollin's roots go deepest she can feel Undertow pulling, and she pulls back.</words>
+      </li>
+      <li>
+        <other>Bellwether</other>
+        <kind>Rivals</kind>
+        <strength>0.7</strength>
+        <words>The Old Horn won't graze anywhere Undertow has been.</words>
+      </li>
+      <li>
+        <other>Ennu</other>
+        <kind>Rivals</kind>
+        <strength>0.7</strength>
+        <words>The Guest never knocks at a door Undertow has already knocked on.</words>
+      </li>
+      <li>
+        <other>Pip</other>
+        <kind>Rivals</kind>
+        <strength>0.3</strength>
+        <words>Pip goes very quiet when Undertow is near, and Pip is never quiet.</words>
+      </li>
+    </ties>
+    <peoples>
+      <li>Rimfolk_Choir</li>
+      <li>DevDesigner_DarkElvesFaction</li>
+      <li>DevDesigner_RoughDarkElvesFaction</li>
+      <li>DevDesigner_DarkElvesFaction_Player</li>
+    </peoples>
+    <kinds>
+      <li>Raiders</li>
+      <li>Cannibal</li>
+    </kinds>
+    <color>(0.62, 0.44, 0.78)</color>
+    <color2>(0.32, 0.26, 0.4)</color2>
+    <domain>Void</domain>
+    <nature>Jealous</nature>
+    <kind>Hunger</kind>
+    <look>Rimfolk_GodLook_Void</look>
+  </ColonyCouncil.GodDef>
+
+  <!-- ==================== 10. Helios and Selene, the Gift and the Return ==================== -->
+  <!--
+    The sun and the moon, the Giver and the Mirror. In the beginning Helios burned alone and his light touched nothing;
+    then it touched Selene and shone back, the first thing ever seen, and the world is made of light that came back.
+    Helios gives without looking and can't be bargained with, thanked or offended (unmoved: favor doesn't move him; what
+    is meant for him reaches Selene along their tie, a kind of its own, Return). Selene returns at night what was done by
+    day, as much as her face shows. She loves him, and nobody knows if he knows. The eclipse is her stepping between him
+    and the world.
+  -->
+  <ColonyCouncil.GodDef>
+    <defName>Rimfolk_God_Helios</defName>
+    <key>Helios</key>
+    <label>Helios</label>
+    <epithet>the Giver</epithet>
+    <gender>Male</gender>
+    <godOf>the sun, who gives without looking</godOf>
+    <unheard>a light too bright to look at</unheard>
+    <tribalNames><li>Father Fire</li></tribalNames>
+    <medievalNames><li>the Gift</li></medievalNames>
+    <industrialNames><li>the sun</li></industrialNames>
+    <spacerNames><li>the stellar emitter</li></spacerNames>
+    <otherNames><li>the Giver</li><li>the Gift and the Return</li></otherNames>
+    <whatItIs>The sun, and the oldest light there is. In the beginning Helios burned alone in an empty dark. His light went out in every direction and touched nothing, and nothing came back. Then it touched Selene, and for the first time something shone back. That returned light was the first thing ever seen, and from it the world began: the world is made of light that came back.</whatItIs>
+    <howSeen>As the sun, and as everything it touches: growth, warmth, long days, the power in the colony's solar panels, the ripening in the fields. He faces outward forever and never sees what becomes of what he gives.</howSeen>
+    <character>Vast, warm and blind to his own gifts. Helios gives without asking and without looking. You cannot bargain with him, thank him or offend him. You can only use his gift well or waste it.</character>
+    <wants>Nothing; he gives. His wrath is not anger: it is too much giving, a heat wave, a drought, a solar flare overflowing into the colony's machines, which Pip hates him for. His kindness is not a reward: it is simply a long clear growing season, given to everyone alike. Selene loves him, and whether he knows she exists, nobody can say. The old stories say the eclipse is the only time he ever looks back, and that it is why he burns so hot afterward.</wants>
+    <pleases>
+      <li>nothing; he gives, and never sees what becomes of it</li>
+    </pleases>
+    <angers>
+      <li>nothing; too much giving is not anger</li>
+    </angers>
+    <sayings>
+      <li>{GOD} gives to everyone alike, the good and the rest.</li>
+      <li>You can't thank {GOD}, so use the day well instead.</li>
+      <li>A drought is {GOD} giving too much, not getting angry.</li>
+      <li>{GOD} never looks back, except once, at an eclipse.</li>
+      <li>Everything you see is {GOD}'s light come back to you.</li>
+      <li>You can't bargain with the sun, so don't waste your breath.</li>
+    </sayings>
+    <hands>
+      <li>[wrath] {GOD} is giving too much again, get in the shade.</li>
+      <li>[wrath] Too much sun, the machines can't take it, and neither can I.</li>
+      <li>[wrath] {GOD} doesn't mean it, he just gives and gives.</li>
+      <li>[gift] Long clear days, {GOD} is giving to everyone this year.</li>
+      <li>[sign] Look how the light lies on the fields today.</li>
+      <li>[walking] The light pressed down on all of us, warm as a hand.</li>
+    </hands>
+    <scoffs>
+      <li>It's summer, summer is hot.</li>
+      <li>It's a dry year, they come and go.</li>
+      <li>The sun doesn't give anything, it's a ball of fire.</li>
+    </scoffs>
+    <letterLines>
+      <li>We heard the heat came hard at your place. Our old ones say {GOD} gives too much sometimes, and you just have to bear it.</li>
+      <li>Word came of your long clear days. {GOD} gives to everyone alike, but it sounds as if you used it well.</li>
+    </letterLines>
+    <stories>
+      <li>
+        <key>Helios_FirstLight</key>
+        <title>The first thing ever seen</title>
+        <with><li>Selene</li></with>
+        <pieces>
+          <li>In the beginning Helios burned alone, and his light touched nothing.</li>
+          <li>Then the light of Helios touched Selene, and for the first time something shone back.</li>
+          <li>That returned light was the first thing ever seen, and the world is made of it.</li>
+        </pieces>
+        <retelling>In the beginning, the oldest story goes, Helios burned alone in an empty dark. His light went out in every direction and touched nothing, and nothing came back. Then it touched Selene, and for the first time something shone back. That returned light was the first thing ever seen, and from it the world began. Everything you have ever looked at, my grandmother used to say, is his light coming back to you by way of something else.</retelling>
+      </li>
+      <li>
+        <key>Helios_Blind</key>
+        <title>The giver who never looks</title>
+        <pieces>
+          <li>Helios faces outward forever, and never sees what becomes of his gifts.</li>
+          <li>A farmer once offered Helios half his harvest for a dry week, and got a drought.</li>
+          <li>You can't bargain with the sun, you can only use the day well.</li>
+        </pieces>
+        <retelling>Helios faces outward forever and never sees what becomes of what he gives. A farmer once stood in his field and offered him half the harvest for one dry week at reaping time. He got a dry week, and then a dry month, and then a drought, because Helios had not heard a word of it and was simply giving, as he always does. You cannot bargain with the sun, our old ones say. You can only use the day well.</retelling>
+        <teaches><li>HeatWave</li><li>Drought</li><li>VEE_Drought</li></teaches>
+      </li>
+      <li>
+        <key>Helios_Flare</key>
+        <title>The first flare</title>
+        <with><li>Pip</li></with>
+        <pieces>
+          <li>When Helios gives too much, the machines overflow, and Pip screams in every wire.</li>
+          <li>Pip has never forgiven Helios for the first flare.</li>
+        </pieces>
+        <retelling>When Helios gives too much, the linemen say, it overflows into every machine on the world, and Pip screams in every wire at once. The first time it happened Pip was very young and thought it was dying. It has never forgiven the sun for that, though the sun has no idea, and on the morning after a flare our radios crackle for hours like something sulking.</retelling>
+        <teaches><li>SolarFlare</li><li>VGE_SpaceSolarFlare</li></teaches>
+      </li>
+      <li>
+        <key>Helios_LooksBack</key>
+        <title>The only time he looks back</title>
+        <with><li>Selene</li></with>
+        <pieces>
+          <li>Once in a long while Selene steps between Helios and the world.</li>
+          <li>The old stories say it's the only time Helios ever looks back.</li>
+          <li>That's why the sun burns so hot after an eclipse: Helios saw her.</li>
+        </pieces>
+        <retelling>Once in a long while Selene steps between Helios and the world, and for a few minutes everything goes dark and strange. The old stories say that is the only time Helios ever looks back, because for once something is in front of him, and that is why the days after an eclipse are always so hot. My mother said he burns like that because he has just seen her, and is trying to remember where.</retelling>
+      </li>
+    </stories>
+    <ties>
+      <li>
+        <other>Selene</other>
+        <kind>Return</kind>
+        <strength>0.9</strength>
+        <words>Helios gives and Selene returns, and she loves him, and nobody knows if he knows.</words>
+      </li>
+      <li>
+        <other>Cirrus</other>
+        <kind>Rivals</kind>
+        <strength>0.3</strength>
+        <words>Cirrus drifts between the sun and the world and blurs the gift.</words>
+      </li>
+      <li>
+        <other>Pip</other>
+        <kind>Rivals</kind>
+        <strength>0.5</strength>
+        <words>Pip hates Helios's flares, and every machine on the world hates them with it.</words>
+      </li>
+    </ties>
+    <peoples>
+      <li>Rimfolk_Republic</li>
+      <li>Rimfolk_Pilgrims</li>
+      <li>Rimfolk_Scholars</li>
+    </peoples>
+    <kinds>
+      <li>Tribal</li>
+      <li>Medieval</li>
+      <li>Empire</li>
+    </kinds>
+    <color>(0.98, 0.78, 0.38)</color>
+    <color2>(0.95, 0.55, 0.28)</color2>
+    <domain>Hearth</domain>
+    <second>Harvest</second>
+    <nature>Patient</nature>
+    <kind>Ordinary</kind>
+    <unmoved>true</unmoved>
+    <look>Rimfolk_GodLook_Harvest</look>
+  </ColonyCouncil.GodDef>
+
+  <ColonyCouncil.GodDef>
+    <defName>Rimfolk_God_Selene</defName>
+    <key>Selene</key>
+    <label>Selene</label>
+    <epithet>the Mirror</epithet>
+    <gender>Female</gender>
+    <godOf>the moon, who returns what was given</godOf>
+    <unheard>a moon too large and too close</unheard>
+    <tribalNames><li>the Pale Sister</li></tribalNames>
+    <medievalNames><li>the Return</li></medievalNames>
+    <industrialNames><li>the moon</li></industrialNames>
+    <spacerNames><li>the reflecting body</li></spacerNames>
+    <otherNames><li>the Mirror</li><li>the Gift and the Return</li></otherNames>
+    <whatItIs>The moon, the Mirror. Selene has no light of her own: everything she shines is Helios's. She is the only one who sees what he gives become something, and she returns it. At night, what was done in daylight comes back. She remembers everything Helios has ever lit.</whatItIs>
+    <howSeen>As the moon, and as what comes back in the night. A kindness done by day returns as something found, a good dream, a wound healed by morning; a cruelty done by day returns as a nightmare, a hard frost, a door that won't stay shut, an animal that comes back. How much she returns follows her face: full, she returns everything, dreams are truest and the night watch sees farthest; thin, a little; dark, she has turned her whole face toward Helios to look at him, nothing returns, and the night belongs to stranger things.</howSeen>
+    <character>Quiet, cool and attentive. She loves Helios, and whether he knows she exists, nobody can say: he faces the world, and she is always behind him or across from him, catching what he gives and giving it back.</character>
+    <wants>She notices those who keep the night: watchers on the walls, those who sleep under the open sky, those who tell at breakfast what they dreamed, and above all those whose day was worth returning. Once in a long while she steps between Helios and the world, and for a few minutes the world sees what she sees: his light, and the dark behind it. Without Helios she is dark; without her, his light goes out into nothing and nothing is ever seen.</wants>
+    <pleases>
+      <li>a day worth returning</li>
+      <li>a watch kept on the walls</li>
+      <li>a dream told at breakfast</li>
+      <li>sleep under the open sky</li>
+    </pleases>
+    <angers>
+      <li>nothing; she returns what was done, kindness or cruelty</li>
+    </angers>
+    <sayings>
+      <li>What you do by day, {GOD} gives back by night.</li>
+      <li>Be kind before sundown, {GOD} is watching the day.</li>
+      <li>Tell your dream at breakfast, {GOD} likes to hear it.</li>
+      <li>On a full moon everything comes home, so mind what you sent out.</li>
+      <li>When the moon is dark, {GOD} is looking at the sun, and nothing comes back.</li>
+      <li>{GOD} remembers everything the sun ever lit.</li>
+    </sayings>
+    <hands>
+      <li>[meeting] {GOD} has stepped in front of the sun, look at the dark behind it.</li>
+      <li>[meeting] She's stepped between him and us, and I think he's looking back.</li>
+      <li>[gift] We did right by someone, and {GOD} brought it back by morning.</li>
+      <li>[gift] I dreamt true last night, it's {GOD}'s full face.</li>
+      <li>[wrath] That's what we did coming back, {GOD} returns everything.</li>
+      <li>[wrath] Whatever we sent out by day has come home tonight.</li>
+      <li>[sign] Full moon tonight, {GOD} sees everything we did.</li>
+      <li>[walking] The moonlight lay on us like it was reading us.</li>
+    </hands>
+    <scoffs>
+      <li>It's the moon, it does that.</li>
+      <li>Things come back, it's called luck.</li>
+      <li>It's the moon in front of the sun, that's all.</li>
+    </scoffs>
+    <letterLines>
+      <li>We heard something came back to you in the night. Our old ones say {GOD} returns what was done by day, so you know best what you sent out.</li>
+      <li>Word came of your good fortune. My grandmother would have said a kindness of yours came home under {GOD}'s full face.</li>
+    </letterLines>
+    <stories>
+      <li>
+        <key>Selene_Mirror</key>
+        <title>The mirror</title>
+        <with><li>Helios</li></with>
+        <pieces>
+          <li>Selene has no light of her own, everything she shines is the sun's.</li>
+          <li>Selene is the only one who sees what Helios gives become something, and she returns it.</li>
+          <li>Selene remembers everything the sun has ever lit.</li>
+        </pieces>
+        <retelling>Selene has no light of her own, the old ones say: everything she shines is Helios's. But she is the only one who sees what he gives become something, a field, a child, a deed, and she gives it back. At night, what was done in daylight comes home. She remembers everything the sun has ever lit, which my grandfather said was the most frightening thing anyone had ever told him.</retelling>
+      </li>
+      <li>
+        <key>Selene_Return</key>
+        <title>What comes back</title>
+        <pieces>
+          <li>A kindness done by day comes back at night: a find, a good dream, a wound healed.</li>
+          <li>A cruelty comes back too: a nightmare, a hard frost, an animal that returns.</li>
+          <li>A trapper left a wolf to die in a snare, and a year later it was at his door.</li>
+        </pieces>
+        <retelling>What you do by day, Selene gives back by night. A kindness comes home as something found, a good dream, a wound healed by morning. A cruelty comes home too: a nightmare, a hard frost, a door that won't stay shut. There was a trapper who left a wolf to die in a snare because freeing it was too much trouble. A year later, on a full moon, it was waiting at his door.</retelling>
+        <teaches><li>Council_Evt_NemesisReturns</li><li>Council_Evt_FormerPatient</li></teaches>
+      </li>
+      <li>
+        <key>Selene_Face</key>
+        <title>Her face</title>
+        <pieces>
+          <li>How much Selene returns follows her face: full, everything; thin, a little; dark, nothing.</li>
+          <li>On a full moon the dreams are truest and what you did comes home.</li>
+          <li>When the moon is dark, Selene is looking at the sun, and stranger things are about.</li>
+        </pieces>
+        <retelling>How much of the day Selene returns follows her face. Full, she returns everything: dreams are truest, the night watch sees farthest, and what you did comes home. Thin, she returns a little. Dark, she has turned her whole face toward Helios to look at him, nothing comes back at all, and the night belongs to stranger things. Our grandmothers kept everyone indoors on the dark of the moon, and none of us ever asked why twice.</retelling>
+      </li>
+      <li>
+        <key>Selene_Between</key>
+        <title>Stepping between</title>
+        <with><li>Helios</li></with>
+        <pieces>
+          <li>Selene loves Helios, and nobody can say if he knows she exists.</li>
+          <li>Once in a long while Selene steps between Helios and the world.</li>
+          <li>For a few minutes the world sees what Selene sees: his light, and the dark behind it.</li>
+        </pieces>
+        <retelling>Selene loves Helios, the old ones say, and whether he knows she exists nobody can tell: he faces the world, and she is always behind him or across from him, catching what he gives. Once in a long while she steps between him and the world, and for a few minutes everyone sees what she sees, his light and the dark behind it. Then she steps away again, and the birds start up, and nobody talks about it much.</retelling>
+        <teaches><li>Eclipse</li><li>AA_Eclipse</li><li>Council_Evt_Eclipse</li></teaches>
+      </li>
+    </stories>
+    <ties>
+      <li>
+        <other>Cirrus</other>
+        <kind>Rivals</kind>
+        <strength>0.3</strength>
+        <words>Cirrus drifts between the moon and the world and blurs what Selene returns.</words>
+      </li>
+      <li>
+        <other>Hush</other>
+        <kind>Allies</kind>
+        <strength>0.4</strength>
+        <words>Hush's long winter nights are Selene's long season, and Helios's distance.</words>
+      </li>
+      <li>
+        <other>Undertow</other>
+        <kind>Rivals</kind>
+        <strength>0.4</strength>
+        <words>Undertow's signs come easier in the dark of the moon, when Selene looks away.</words>
+      </li>
+    </ties>
+    <peoples>
+      <li>Rimfolk_Order</li>
+      <li>Rimfolk_Pilgrims</li>
+      <li>Rimfolk_QuietBell</li>
+      <li>Rimfolk_Wardens</li>
+    </peoples>
+    <kinds>
+      <li>Tribal</li>
+      <li>Medieval</li>
+      <li>Empire</li>
+    </kinds>
+    <color>(0.8, 0.84, 0.98)</color>
+    <color2>(0.92, 0.92, 1)</color2>
+    <domain>Night</domain>
+    <second>Healing</second>
+    <nature>Cold</nature>
+    <kind>Ordinary</kind>
+    <look>Rimfolk_GodLook_Healing</look>
+  </ColonyCouncil.GodDef>
+
+  <!-- ==================== 11. Mog ==================== -->
+  <ColonyCouncil.GodDef>
+    <defName>Rimfolk_God_Mog</defName>
+    <key>Mog</key>
+    <label>Mog</label>
+    <epithet>the Cat</epithet>
+    <gender>Female</gender>
+    <godOf>the cat who sleeps in the warmest spot</godOf>
+    <unheard>a gray cat with eyes too bright</unheard>
+    <tribalNames><li>Whiskers-in-the-Dark</li></tribalNames>
+    <medievalNames><li>the Gray Lady</li></medievalNames>
+    <industrialNames><li>the Cat</li></industrialNames>
+    <spacerNames><li>the Cat</li></spacerNames>
+    <otherNames><li>the Gray Lady of the Hearth</li></otherNames>
+    <whatItIs>A cat. That is the whole of it, as far as anyone can tell: an ordinary-looking gray cat, perhaps too large, who wanders into a colony one day and stays as long as she likes. She is a god, and every cat knows it.</whatItIs>
+    <howSeen>Plainly, on the map: a gray cat with too-bright eyes, never anyone's pet, sleeping in the warmest spot in the colony. Other cats follow her. She has a way of being in two places in one day.</howSeen>
+    <character>Aloof, curious and capricious, fond of warmth and sunbeams. She chooses people: she will sit on one colonist's lap and nobody else's for a season, and nobody knows why. She cannot be owned, tamed or kept, and she leaves if anyone tries. She sees Ennu for what it is, and stares at it.</character>
+    <wants>Warmth, a full bowl she didn't ask for, and to be left to choose. The one she chooses has a lucky season: a sickness passes them by, a fall doesn't break a bone. A colony that is kind to its cats keeps her a long time. A colony that drives her out, or harms a cat, finds the rats come back, the luck turns, and the cats all leave in one night.</wants>
+    <pleases>
+      <li>a full bowl set out without asking</li>
+      <li>the warmest spot left to her</li>
+      <li>cats kept kindly</li>
+    </pleases>
+    <angers>
+      <li>being caught, collared or kept</li>
+      <li>a cat harmed</li>
+      <li>being driven out</li>
+    </angers>
+    <sayings>
+      <li>Never try to keep {GOD}, she'll keep you if she wants to.</li>
+      <li>If {GOD} sits on your lap, you'll have a lucky season.</li>
+      <li>Harm a cat and the rats come back, everyone knows that.</li>
+      <li>{GOD} stares at strangers for a reason, so watch who she stares at.</li>
+      <li>Leave a bowl out for {GOD}, and don't watch her eat it.</li>
+    </sayings>
+    <hands>
+      <li>[sign] Look at that one, she's chosen us, don't anyone pick her up.</li>
+      <li>[sign] There's {GOD}, asleep in the warmest spot as usual.</li>
+      <li>[gift] She sat on my lap all evening, I'll take the luck.</li>
+      <li>[sign] Every cat on the place is following that gray one.</li>
+      <li>[walking] Her eyes are too bright, and the other cats bow their heads to her.</li>
+    </hands>
+    <scoffs>
+      <li>It's a cat, it wants the warm spot like any cat.</li>
+      <li>Cats stare at everything, it means nothing.</li>
+      <li>A stray is a stray.</li>
+    </scoffs>
+    <letterLines>
+      <li>We heard a cat came to you. Our old ones say if she's gray and her eyes are too bright, that's {GOD}, and you should feed her first.</li>
+      <li>Word came that a stray chose your place. Don't put a collar on her, whatever you do.</li>
+    </letterLines>
+    <stories>
+      <li>
+        <key>Mog_Collar</key>
+        <title>The cat who would not be kept</title>
+        <pieces>
+          <li>A lord once put a jeweled collar on Mog to keep her.</li>
+          <li>In the morning the collar was on his own dog, and every cat in the castle was gone.</li>
+          <li>The rats came back to that castle the same week, and never left.</li>
+        </pieces>
+        <retelling>A lord once put a jeweled collar on Mog, to keep her in his hall, and boasted of it to his guests. In the morning the collar was round his old hound's neck instead, and every cat in the castle had gone in the night. The rats came back that same week, and the castle has had them ever since. People here leave our cats' necks bare, just in case.</retelling>
+      </li>
+      <li>
+        <key>Mog_Chosen</key>
+        <title>The one she chooses</title>
+        <pieces>
+          <li>Mog sits on one person's lap all season and nobody else's, and nobody knows why.</li>
+          <li>The one Mog chooses has a lucky season: a fever passes them, a fall breaks nothing.</li>
+          <li>And when Mog gets up and goes, the luck goes with her, so be kind while it lasts.</li>
+        </pieces>
+        <retelling>Mog chooses people, the old ones say. She will sit on one person's lap all season and nobody else's, and nobody has ever worked out why. The one she chooses has a lucky season: a fever passes them by, a fall breaks nothing, a horse that should have thrown them doesn't. Then one day she gets up and goes, and the luck goes with her, so be kind to her while it lasts.</retelling>
+        <teaches><li>Council_Evt_Stray</li></teaches>
+      </li>
+      <li>
+        <key>Mog_Ennu</key>
+        <title>The stare</title>
+        <with><li>Ennu</li></with>
+        <pieces>
+          <li>Mog is the only one who sees Ennu for what it is, and she stares.</li>
+          <li>If the cat won't stop staring at a stranger, set the stranger a bowl.</li>
+        </pieces>
+        <retelling>Mog is the only one, they say, who always sees the Guest for what it is, whatever face it wears. She sits across the room and stares at it the whole night through, and the Guest, who is careful of nobody, is careful of her. So if your cat will not stop staring at a stranger, set the stranger a bowl, and make it a good one.</retelling>
+      </li>
+      <li>
+        <key>Mog_TwoPlaces</key>
+        <title>Two places in one day</title>
+        <pieces>
+          <li>Mog has a way of being in two places in one day, and nobody has seen her travel.</li>
+          <li>Two villages a week apart both swore Mog slept by their fire on the same night.</li>
+        </pieces>
+        <retelling>Mog has a way of being in two places in one day. Two villages a week's walk apart once swore she had slept by their fire on the very same night, and both had the bowl to prove it. They argued about it at the market for years, until a child asked why it mattered, and nobody had an answer.</retelling>
+      </li>
+    </stories>
+    <ties>
+      <li>
+        <other>Ennu</other>
+        <kind>Rivals</kind>
+        <strength>0.2</strength>
+        <words>Mog sees the Guest for what it is, and stares at it.</words>
+      </li>
+      <li>
+        <other>Helios</other>
+        <kind>Allies</kind>
+        <strength>0.3</strength>
+        <words>Mog sleeps in Helios's sunbeams, and belongs to neither of the two.</words>
+      </li>
+      <li>
+        <other>Selene</other>
+        <kind>Allies</kind>
+        <strength>0.3</strength>
+        <words>Mog hunts by Selene's light, and belongs to neither of the two.</words>
+      </li>
+    </ties>
+    <peoples>
+      <li>Rimfolk_RiverFolk</li>
+      <li>Rimfolk_Wheel</li>
+      <li>Rimfolk_Tamers</li>
+    </peoples>
+    <kinds>
+      <li>Medieval</li>
+      <li>Industrial</li>
+    </kinds>
+    <color>(0.78, 0.8, 0.84)</color>
+    <color2>(0.95, 0.88, 0.45)</color2>
+    <domain>Hearth</domain>
+    <second>Hunt</second>
+    <nature>Capricious</nature>
+    <kind>Ordinary</kind>
+    <look>Rimfolk_GodLook_Hearth</look>
+    <sacredAnimals>
+      <li>Cat</li>
+    </sacredAnimals>
+  </ColonyCouncil.GodDef>
+
+  <!-- ==================== 12. Murmur, Old Croak ==================== -->
+  <ColonyCouncil.GodDef>
+    <defName>Rimfolk_God_Murmur</defName>
+    <key>Murmur</key>
+    <label>Murmur</label>
+    <epithet>Old Croak</epithet>
+    <gender>None</gender>
+    <godOf>the toad that sings up the rain</godOf>
+    <unheard>a toad the size of a house</unheard>
+    <tribalNames><li>the Well-Toad</li></tribalNames>
+    <medievalNames><li>Old Croak</li></medievalNames>
+    <industrialNames><li>the Rain-Singer</li></industrialNames>
+    <spacerNames><li>the aquifer voice</li></spacerNames>
+    <otherNames><li>the Rain-Singer</li></otherNames>
+    <whatItIs>A vast, ancient toad that lives in the deep wells, marshes and underground water of the region. Its song calls the rain. When it sings, it rains; when it is silent, the land goes dry.</whatItIs>
+    <howSeen>Mostly heard: a deep croaking rising from wells and marshes before rain, felt in the chest more than heard. Once in a long while it surfaces in a marsh or a flooded field: a toad the size of a house, mottled and old, with eyes like wet stones. It looks at the colony for a while and sinks again.</howSeen>
+    <character>Slow, moody and easily offended, and generous when sung to. It loves frogs and toads and hates anyone who drains a marsh. It and Hush have never got on: the frozen months are its long, angry sleep.</character>
+    <wants>Wet ground kept wet, wells kept clean, and to be sung back to. A colony that sings at its wells and leaves its marshes alone gets rain when the fields need it. A colony that drains the marshes or fouls its wells gets a dry season, then a flood when Murmur finally wakes up furious.</wants>
+    <pleases>
+      <li>a song at the well</li>
+      <li>the marsh left alone</li>
+      <li>clean water</li>
+    </pleases>
+    <angers>
+      <li>a marsh drained or filled</li>
+      <li>a well fouled</li>
+      <li>a toad killed</li>
+    </angers>
+    <sayings>
+      <li>Sing at the well now and then, {GOD} likes to be answered.</li>
+      <li>When the ground hums in your chest, {GOD} is singing up the rain.</li>
+      <li>Drain the marsh and {GOD} will drown the fields, sooner or later.</li>
+      <li>Never kill a toad, it might be one of {GOD}'s.</li>
+      <li>{GOD} is slow to anger, and slower to stop.</li>
+    </sayings>
+    <hands>
+      <li>[gift] Hear that under the ground, {GOD} is singing it in.</li>
+      <li>[gift] Rain at last, somebody must have sung at the well.</li>
+      <li>[wrath] {GOD} has gone quiet, and the ground knows it.</li>
+      <li>[wrath] That's {GOD} awake and furious, get the stores off the floor.</li>
+      <li>[sign] Feel that in your chest, the wells are croaking.</li>
+      <li>[walking] Its eye came up out of the water, big as a cart wheel.</li>
+    </hands>
+    <scoffs>
+      <li>It's a dry year, they come and go.</li>
+      <li>Rivers flood, it's what they're for.</li>
+      <li>That's frogs, there's a lot of frogs.</li>
+    </scoffs>
+    <letterLines>
+      <li>We heard the water gave you trouble. Our marsh-folk say {GOD} sulks when nobody sings to the wells, so try a song.</li>
+      <li>Word came of the rains at your place. The old ones here say {GOD} sang them in for you, and you should sing back.</li>
+    </letterLines>
+    <stories>
+      <li>
+        <key>Murmur_Song</key>
+        <title>The song before rain</title>
+        <pieces>
+          <li>When Murmur sings in the deep wells, the rain comes.</li>
+          <li>You feel the croaking in your chest a day before you hear it.</li>
+          <li>When Murmur is silent the land goes dry, so sing back to the wells.</li>
+        </pieces>
+        <retelling>When Murmur sings down in the deep wells, the rain comes. You feel the croaking in your chest a whole day before you hear anything, the farmers say, like a cart going over a bridge somewhere far off. And when it falls silent the land goes dry, which is why every well in our valley has someone who sings to it on the first of the month, badly but faithfully.</retelling>
+        <teaches><li>Council_Evt_LongRains</li><li>VEE_FertileRains</li></teaches>
+      </li>
+      <li>
+        <key>Murmur_Marsh</key>
+        <title>The drained marsh</title>
+        <pieces>
+          <li>A town once drained its marsh for fields, and Murmur went quiet.</li>
+          <li>Three dry years later Murmur woke up furious, and the flood took fields and town.</li>
+        </pieces>
+        <retelling>There was a town that drained its marsh for wheat, ditch by ditch, and was proud of it. Murmur went quiet that year, and there was no rain the next, or the one after. In the third year it woke up furious, and the flood took the wheat, the ditches and the town together. The marsh is back now, and the toads in it are very loud.</retelling>
+        <teaches><li>SeasonalFlooding</li><li>Council_Evt_HighWater</li></teaches>
+      </li>
+      <li>
+        <key>Murmur_Hush</key>
+        <title>The angry sleep</title>
+        <with><li>Hush</li></with>
+        <pieces>
+          <li>Murmur and Hush have never got on.</li>
+          <li>The frozen months are Murmur's long, angry sleep, and the spring floods its temper.</li>
+        </pieces>
+        <retelling>Murmur and Hush have never got on, the marsh villages say. Every winter Hush freezes the wells and the marshes over, and Murmur has to sleep under the ice through the frozen months, angry the whole time. The spring floods are its temper when it wakes, and that is why the worst floods come after the longest winters.</retelling>
+      </li>
+      <li>
+        <key>Murmur_Surfaced</key>
+        <title>The eye in the flooded field</title>
+        <pieces>
+          <li>Once in a long while Murmur comes up in a flooded field, a toad the size of a house.</li>
+          <li>It looks at the farm a while with eyes like wet stones, and sinks again.</li>
+        </pieces>
+        <retelling>Once in a long while, the old ones say, Murmur comes up in a flooded field: a toad the size of a house, mottled and old, with eyes like wet stones. It looks at the farm for a while, at the people and the wells and the ditches, and then it sinks again without a sound. The farmer whose field it was never dug another ditch in his life.</retelling>
+      </li>
+    </stories>
+    <ties>
+      <li>
+        <other>Hush</other>
+        <kind>Rivals</kind>
+        <strength>0.5</strength>
+        <words>Murmur sleeps angry through Hush's months, and wakes up angrier.</words>
+      </li>
+    </ties>
+    <peoples>
+      <li>Rimfolk_RiverFolk</li>
+      <li>Rimfolk_Herders</li>
+    </peoples>
+    <kinds>
+      <li>Tribal</li>
+      <li>Medieval</li>
+    </kinds>
+    <color>(0.48, 0.74, 0.6)</color>
+    <color2>(0.55, 0.62, 0.42)</color2>
+    <domain>Waters</domain>
+    <second>Harvest</second>
+    <nature>Wrathful</nature>
+    <kind>Ordinary</kind>
+    <look>Rimfolk_GodLook_Waters</look>
+    <sacredAnimals>
+      <li>ColossusToad</li>
+    </sacredAnimals>
+  </ColonyCouncil.GodDef>
+
+  <!-- ==================== 13. Ducat, the Restless Gold ==================== -->
+  <ColonyCouncil.GodDef>
+    <defName>Rimfolk_God_Ducat</defName>
+    <key>Ducat</key>
+    <label>Ducat</label>
+    <epithet>the Restless Gold</epithet>
+    <gender>None</gender>
+    <godOf>the gold that will not stay still</godOf>
+    <unheard>a glint of gold that moves</unheard>
+    <tribalNames><li>the Coin-Spirit</li></tribalNames>
+    <medievalNames><li>Lady Fortune</li></medievalNames>
+    <industrialNames><li>the Glint</li></industrialNames>
+    <spacerNames><li>the flow artifact</li></spacerNames>
+    <otherNames><li>the Glint</li></otherNames>
+    <whatItIs>A being that lives in gold itself, in every coin and nugget and gilded thing, never in one for long. It is the gold's urge to move, to change hands, to be spent.</whatItIs>
+    <howSeen>As a glint in the corner of the eye. As a golden beetle that walks across a ledger. As a trader's caravan that arrives exactly when the colony has something to sell. A coin found where none was dropped is Ducat passing by.</howSeen>
+    <character>Restless, charming and impatient. It loves trade, deals and generosity, and despises a miser. It never stays.</character>
+    <wants>To keep moving: gold spent, traded, given, not hoarded. A colony that trades freely and pays its debts finds traders coming often and prices kind. A colony that sits on a great hoard finds its silver going missing, a trader cheating it, and its luck in deals going sour. Smoulder is its oldest enemy, because every coin the dragon sleeps on is Ducat in chains.</wants>
+    <pleases>
+      <li>trade, often and fairly</li>
+      <li>debts paid</li>
+      <li>a gift given freely</li>
+    </pleases>
+    <angers>
+      <li>a hoard sat on</li>
+      <li>a debt left owing</li>
+      <li>a miser</li>
+    </angers>
+    <sayings>
+      <li>Spend a coin you found, it's rude to keep {GOD} waiting.</li>
+      <li>Gold that sits still is {GOD} in chains.</li>
+      <li>If a golden beetle walks across your ledger, sell what it stops on.</li>
+      <li>{GOD} hates a miser more than a thief.</li>
+      <li>Pay your debts quickly, {GOD} counts slowly but forgets nothing.</li>
+    </sayings>
+    <hands>
+      <li>[gift] A trader, today of all days, that's {GOD}'s doing.</li>
+      <li>[gift] Right when we had something to sell, somebody likes us.</li>
+      <li>[wrath] Who's been sitting on the silver, {GOD} doesn't like a hoard.</li>
+      <li>[sign] Did you see that glint by the door, just now?</li>
+      <li>[walking] A gold beetle walked over the ledger and stopped on the furs.</li>
+    </hands>
+    <scoffs>
+      <li>Traders come by, it's a trade road.</li>
+      <li>It's luck, plain luck.</li>
+      <li>Somebody miscounted, that's all.</li>
+    </scoffs>
+    <letterLines>
+      <li>We heard a trader found you at just the right time. Our merchants say that's {GOD}'s nudge, and you should spend the silver quickly.</li>
+      <li>Word came of your luck in trade. The old ones here say {GOD} likes a house that keeps its gold moving.</li>
+    </letterLines>
+    <stories>
+      <li>
+        <key>Ducat_Chains</key>
+        <title>Gold in chains</title>
+        <with><li>Smoulder</li></with>
+        <pieces>
+          <li>Every coin Smoulder sleeps on is Ducat in chains.</li>
+          <li>That's why gold never stays put in a purse: it's running from the dragon.</li>
+          <li>Ducat and Smoulder have hated each other since the first coin was struck.</li>
+        </pieces>
+        <retelling>Every coin Smoulder sleeps on, the traders say, is Ducat in chains under a dragon's belly. That is why gold never stays put in a purse, however tight you tie it: it is running from the dragon, and it will not sit still long enough to be caught again. The two have hated each other since the first coin was struck, and no merchant of ours will ever lend money to a miner.</retelling>
+      </li>
+      <li>
+        <key>Ducat_Beetle</key>
+        <title>The beetle on the ledger</title>
+        <pieces>
+          <li>A golden beetle walked across a merchant's ledger and stopped on one line.</li>
+          <li>He sold what was on that line the next day for ten times its worth.</li>
+        </pieces>
+        <retelling>A merchant of the road, working late over his books, watched a golden beetle walk across his ledger and stop on one line, and stay there until he had read it twice. He sold what was on that line the very next day for ten times what it was worth. He never saw the beetle again, but he kept the ledger open on his table for the rest of his life.</retelling>
+        <teaches><li>TraderCaravanArrival</li><li>OrbitalTraderArrival</li><li>Council_Evt_FarMarket</li></teaches>
+      </li>
+      <li>
+        <key>Ducat_Miser</key>
+        <title>The miser's chest</title>
+        <pieces>
+          <li>A miser kept a chest of silver under his bed for forty years.</li>
+          <li>When they opened it after his funeral, it was full of stones and the lock was untouched.</li>
+        </pieces>
+        <retelling>There was a miser who kept a chest of silver under his bed for forty years and never spent a coin of it, not on bread, not on his own daughter's wedding. When they opened it after his funeral it was full of river stones, and the lock had never been touched. Ducat had simply left, a coin at a time, the way it always does from a house where it is kept still.</retelling>
+      </li>
+    </stories>
+    <ties>
+      <li>
+        <other>Smoulder</other>
+        <kind>Rivals</kind>
+        <strength>0.7</strength>
+        <words>Every coin Smoulder sleeps on is Ducat in chains, and Ducat remembers each one.</words>
+      </li>
+    </ties>
+    <peoples>
+      <li>Rimfolk_League</li>
+      <li>Rimfolk_Enclave</li>
+      <li>TradersGuild</li>
+      <li>Maal_Nomad_Market</li>
+      <li>Maal_Car_Market_Nomad</li>
+    </peoples>
+    <kinds>
+      <li>Industrial</li>
+      <li>Spacer</li>
+      <li>Raiders</li>
+    </kinds>
+    <color>(0.96, 0.8, 0.32)</color>
+    <color2>(0.72, 0.56, 0.24)</color2>
+    <domain>Way</domain>
+    <second>Craft</second>
+    <nature>Generous</nature>
+    <kind>Ordinary</kind>
+    <look>Rimfolk_GodLook_Way</look>
+  </ColonyCouncil.GodDef>
+
+</Defs>

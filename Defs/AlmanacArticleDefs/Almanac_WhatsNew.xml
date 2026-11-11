@@ -31,6 +31,21 @@ When you load a save after an update, a letter lists the newest round once. The 
     <rounds>
 
       <li>
+        <version>0.217.0</version>
+        <date>11 November 2026</date>
+        <title>Fourteen gods, unseen</title>
+        <points>
+          <li>The gods are now fourteen beings with names and characters of their own, from Hollin the Rootmother and Bellwether the Old Horn to Helios and Selene, Mog the cat and Ducat the restless gold.</li>
+          <li>The gods stay unseen: you hear of them only as your colonists do, and they may be wrong.</li>
+          <li>When a thrumbo passes or the sun goes dark, someone says whose doing they think it was, and someone else says it was only the weather.</li>
+          <li>At the evening fire colonists tell the old stories a piece at a time, and visitors and neighbours' letters bring their own.</li>
+          <li>The colony keeps its own book of the gods, a new tab of the region window, written by whoever keeps it.</li>
+          <li>A god is named plainly only once the colony knows it was its doing.</li>
+          <li>The old Gods page, the patrons and the gods' symbols are gone, and an older save's gods give way to the new ones.</li>
+        </points>
+      </li>
+
+      <li>
         <version>0.216.0</version>
         <date>11 November 2026</date>
         <title>A god walks among you</title>
