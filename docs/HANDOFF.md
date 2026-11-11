@@ -17,7 +17,7 @@ tree at once, alongside whatever runs. Each piece is merged as its own release, 
   until we have a few so we can implement them more effectively."** Each new wish or report goes onto this list as a
   "To do when the player asks" entry (with their words) and the task list, and nothing is built, unless they say to
   start it now. When they ask, the gathered entries are planned together, grouped by area, and built side by side.
-  (On 11 November 2026 they asked for every entry then on the list; the peoples' 100 are on it, not started.)
+  (On 11 November 2026 they asked for every entry then on the list, and for the peoples' 100 in batches.)
 - **To do when the player asks (10 November 2026): events and interactions of each of Rimfolk's peoples, by their lore.**
   The player: "I really LOVE the new factions you created, and I'd be down for more later. however, I'd first like more
   faction specific events, interactions etc. like this event i had with these gene guys who gave my pawn a new gene.
@@ -26,10 +26,19 @@ tree at once, alongside whatever runs. Each piece is merged as its own release, 
   lore in docs/design/peoples*.md), then build; new peoples only after. Proposed (11 November 2026, with each people's own
   camps, as the player added): `docs/peoples-events-proposals.md`, 100 numbered items; the lead recommends 10, 5, 47,
   83, 51, 1, 19, 17, 34 and 95 first. **The player picked all 100 (11 November 2026): "the events sounds really
-  cool!! add all to to-do".** On the list until they say to start; when they do, build them in rounds of about ten,
-  the recommended ten first, grouped so shared shapes come early (the visitor working on a colonist: 5, 47, 83, then
-  22, 40, 79, 80, 87, 92; goods held in trust: 1, then 20; the caravan of one or a season away: 14, then 3, 67, 77,
-  98), each people's camps with their events.
+  cool!! add all to to-do"; then "but perhaps do several batches so i don't have a huge job after".** Built in ten
+  rounds, one after another as slots free (each round its own agent and release; shared shapes come early: the
+  visitor working on a colonist in round 1, goods held in trust 1 then 20, the caravan of one 14 then 3, 67, 77, 98):
+  1. 10, 5, 47, 83, 51, 1, 19, 17, 34, 95 (the recommended ten).
+  2. 14, 22, 26, 59, 12, 25, 3, 20, 40, 63.
+  3. The league 2, 4; the order 6, 7, 8; the herders 9, 11, 13; the pilgrims 15, 16.
+  4. The society 18, 21; the enclave 23, 24; the river folk 27, 28, 29, 30; the Wardens 31, 32, 33.
+  5. The Bell 35 to 38; the Circuit 39, 41, 42; the Wheel 43 to 46.
+  6. The Conclave 48, 49, 50; the Mossborn 52, 53, 54; the Banner 55 to 58.
+  7. The Guild 60, 61, 62; the Signal Line 64, 65, 66; the Union 67 to 70.
+  8. The Republic 71 to 74; the Fleet 75 to 78; the Helix Works 79 to 82.
+  9. The Lattice 84, 85, 86; the Choir 87 to 90; the Vault 91 to 94.
+  10. Between peoples 96 to 99; every people's art handed on, 100.
 - **Held by the player (10 November 2026): no new letters content jobs until they ask** ("for the letters please hold
   after this job then ... I'd like to keep such jobs for the end of the week to use up my remaining tokens"). The letters
   round 2 part 1 agent was already running; its part 2 (more content in the same shapes) waits for their word.
