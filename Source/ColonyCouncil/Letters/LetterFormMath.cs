@@ -60,7 +60,12 @@ namespace ColonyCouncil
         /// <summary>A diary's entries (di:entry), and a letter broken off (di:break) and taken up again (di:resume).</summary>
         Diary,
         /// <summary>A long letter's parts: their headings (pa:head) and bodies (pa:news, pa:life).</summary>
-        Part
+        Part,
+        // ---------------- A correspondence that builds up (Letters/LetterThreadMath.cs) ----------------
+        /// <summary>The stage's own salutations, openings and closings (fa:salute, fa:open, fa:close; a new hand's word fa:pen, a long silence's fa:long).</summary>
+        Familiar,
+        /// <summary>An earlier letter's thread taken up (re:KEY:MOVE), news told first (re:tell:KEY), a cooled letter's cold word (re:slight:KIND).</summary>
+        Thread
     }
 
     /// <summary>How a writer of the colony puts things: their Social and Intellectual skill and their nature.</summary>
@@ -206,6 +211,15 @@ namespace ColonyCouncil
         public readonly List<string> after = new List<string>();
         /// <summary>The answer to the riddle this letter asks, to be given in the writer's next (kept with the letter).</summary>
         public string riddleAnswer;
+        // ---------------- The correspondence (Letters/LetterThreadMath.cs) ----------------
+        /// <summary>How well the two know each other by letter (None: not read, and no lines of its own).</summary>
+        public Familiarity fam;
+        /// <summary>An earlier letter's thread to take up in this one, news to tell first, or a cooled letter's cold word; or null.</summary>
+        public RecallChoice recall;
+        /// <summary>The tags of the lines drawn into it, as the game's picker found them: what the letter said (a joke begun, the colony's news).</summary>
+        public readonly HashSet<string> drawn = new HashSet<string>();
+        /// <summary>Set by the form when the thread was written into it.</summary>
+        public bool recalledNow;
     }
 
     /// <summary>The fixed words of the form (the keyed strings, read once): the heading, the dates, the signatures, the P.S., the mark between the letter and the narrator.</summary>
@@ -240,6 +254,8 @@ namespace ColonyCouncil
         public LetterKind kind;
         /// <summary>The answer to the riddle it asks, or null.</summary>
         public string riddleAnswer;
+        /// <summary>The thread it was given (<see cref="LetterSpec.recall"/>) was written into it.</summary>
+        public bool recalled;
     }
 
     /// <summary>
@@ -432,6 +448,9 @@ namespace ColonyCouncil
                 foreach (var v in VoiceTags(s.voice))
                     t.Add(v);
             t.Add(LetterKindMath.Tag(s.kind));
+            // How well the two know each other by letter (fam:new ... fam:cooled).
+            string fam = LetterThreadMath.Tag(s.fam);
+            if (fam != null) t.Add(fam);
             string k = KindTag(kind);
             if (k != null) t.Add(k);
             return t;
@@ -535,8 +554,12 @@ namespace ColonyCouncil
                 if (s.voice.main == VoiceMain.Blunt) chance -= 0.2f;
                 else if (s.voice.main == VoiceMain.Eloquent) chance += 0.1f;
             }
+            // A cooled correspondence says less, and jokes not at all; old friends run on a little.
+            if (s.fam == Familiarity.Cooled) chance *= 0.5f;
+            else if (s.fam == Familiarity.Close && !grave) chance += 0.1f;
             if (roll >= chance) return AsideKind.None;
             if (grave) return AsideKind.Serious;
+            if (s.fam == Familiarity.Cooled) return AsideKind.Everyday;
             float joke = (warm ? 0.45f : 0.2f) + s.humour / 250f;
             if (s.ours && s.voice.cheerful) joke += 0.15f;
             if (s.ours && s.voice.gloomy) joke -= 0.2f;
@@ -563,6 +586,10 @@ namespace ColonyCouncil
             if (s.motive == LetterMotive.Trade) c += 0.15f;
             if (s.ours && s.voice.main == VoiceMain.Eloquent) c += 0.05f;
             if (s.ours && s.voice.main == VoiceMain.Blunt) c -= 0.05f;
+            // Old friends add a P.S. more often; a cooled correspondence seldom.
+            if (s.fam == Familiarity.Close) c += 0.1f;
+            else if (s.fam == Familiarity.Familiar) c += 0.05f;
+            else if (s.fam == Familiarity.Cooled) c *= 0.3f;
             return c;
         }
 
@@ -570,7 +597,7 @@ namespace ColonyCouncil
         public static AsideKind PSKind(LetterSpec s, float roll)
         {
             if (Grave(s)) return AsideKind.Serious;
-            if (!s.empire && s.tone < AnswerTone.Curt && roll < (Warmth(s) ? 0.5f : 0.2f)) return AsideKind.Joke;
+            if (!s.empire && s.tone < AnswerTone.Curt && s.fam != Familiarity.Cooled && roll < (Warmth(s) ? 0.5f : 0.2f)) return AsideKind.Joke;
             return AsideKind.Everyday;
         }
 
@@ -739,6 +766,7 @@ namespace ColonyCouncil
         {
             w ??= new LetterWords();
             roll ??= () => 0.5f;
+            s.recalledNow = false;
             string letter;
             switch (s.shape)
             {
@@ -753,7 +781,7 @@ namespace ColonyCouncil
             foreach (var o in s.outcomes)
                 if (!string.IsNullOrEmpty(o))
                     note.Add(o.Trim());
-            var t = new LetterText { letter = letter, note = string.Join("\n\n", note), kind = s.kind, riddleAnswer = s.riddleAnswer };
+            var t = new LetterText { letter = letter, note = string.Join("\n\n", note), kind = s.kind, riddleAnswer = s.riddleAnswer, recalled = s.recalledNow };
             t.pages = LetterKindMath.Pages(letter);
             // A long letter: the game's own letter shows its first page, and says where the rest is.
             t.cut = letter.Length > LetterKindMath.ShowMax && t.pages.Count > 1;
@@ -775,21 +803,72 @@ namespace ColonyCouncil
             if (Heading(s, roll()) && !string.IsNullOrEmpty(s.place))
                 paras.Add(string.IsNullOrEmpty(s.date) ? s.place : Fill(s.empire && !s.ours ? w.headingCourt : w.heading, ("PLACE", s.place), ("DATE", s.date)));
             var tags = Tags(s);
-            if (salute) paras.Add(pick(LetterPart.Salute, tags) ?? Texts.Fill(w.saluteFallback, s.values));
-            Add(paras, pick(LetterPart.Open, tags));
+            // The stage's own words first now and then (how well the two know each other by letter), else the usual ones.
+            if (salute) paras.Add(Familiar(s, pick, roll, tags, LetterThreadMath.SaluteTag) ?? pick(LetterPart.Salute, tags) ?? Texts.Fill(w.saluteFallback, s.values));
+            Add(paras, Opening(s, pick, roll, tags) ?? pick(LetterPart.Open, tags));
             Add(paras, s.heart);
             foreach (var m in s.more) Add(paras, m);
+            // An earlier letter's thread taken up (a question answered, news followed, a gift remembered), now and then as a P.S.
+            string recallPs = s.recall?.ps == true && string.IsNullOrEmpty(s.who?.owedAnswer) ? Recall(s, pick, tags, true) : null;
+            if (recallPs == null) Add(paras, Recall(s, pick, tags, false));
             // The shape's own paragraphs: the story, the poem, the parts of a long letter.
             foreach (var p in s.piece) Add(paras, p);
             var kind = AsideOf(s) ? Aside(s, roll()) : AsideKind.None;
             if (kind != AsideKind.None) Add(paras, pick(LetterPart.Aside, Tags(s, kind)));
-            string close = pick(LetterPart.Close, tags) ?? w.closeFallback;
+            string close = Familiar(s, pick, roll, tags, LetterThreadMath.CloseTag) ?? pick(LetterPart.Close, tags) ?? w.closeFallback;
             paras.Add(string.IsNullOrEmpty(s.sign) ? close : close + "\n" + s.sign);
             // Under the signature: others' lines, what is folded in.
             foreach (var a in s.after) Add(paras, a);
-            string ps = PS(s, w, pick, roll);
-            if (!string.IsNullOrEmpty(ps)) paras.Add(Fill(w.ps, ("LINE", ps)));
+            string ps = recallPs ?? PS(s, w, pick, roll);
+            if (!string.IsNullOrEmpty(ps)) paras.Add(Fill(w.ps, ("LINE", ps.Trim())));
             return string.Join("\n\n", paras);
+        }
+
+        /// <summary>
+        /// A part in the stage's own words (Rimfolk_Pool_LetterFamiliar, <paramref name="part"/> fa:salute, fa:close), by
+        /// <see cref="LetterThreadMath.FamiliarChance"/>; null for the usual pool's line.
+        /// </summary>
+        private static string Familiar(LetterSpec s, Func<LetterPart, HashSet<string>, string> pick, Func<float> roll, HashSet<string> tags, string part)
+        {
+            if (s.fam == Familiarity.None || roll() >= LetterThreadMath.FamiliarChance(s.fam, part)) return null;
+            return pick(LetterPart.Familiar, Own(With(tags, part)));
+        }
+
+        /// <summary>
+        /// The opening in the stage's own words now and then: a new hand writing for the colony says so (fa:pen), a long
+        /// silence is spoken of (fa:long), else the stage's opening (fa:open); null for the usual pool's.
+        /// </summary>
+        private static string Opening(LetterSpec s, Func<LetterPart, HashSet<string>, string> pick, Func<float> roll, HashSet<string> tags)
+        {
+            if (s.fam == Familiarity.None) return null;
+            string line = null;
+            if (tags.Contains(LetterThreadMath.PenTag) && roll() < 0.8f) line = pick(LetterPart.Familiar, Own(With(tags, LetterThreadMath.PenPart)));
+            if (line == null && tags.Contains(LetterThreadMath.LongTag) && roll() < 0.8f) line = pick(LetterPart.Familiar, Own(With(tags, LetterThreadMath.LongPart)));
+            return line ?? Familiar(s, pick, roll, tags, LetterThreadMath.OpenTag);
+        }
+
+        /// <summary>The correspondence's lines in the writer's speech: a barely schooled hand draws the plain ones (as its pieces).</summary>
+        private static HashSet<string> Own(HashSet<string> tags)
+        {
+            tags.Remove(SomeSchool);
+            return tags;
+        }
+
+        /// <summary>
+        /// The thread this letter takes up (<see cref="LetterSpec.recall"/>), in the writer's words (Rimfolk_Pool_LetterThread,
+        /// re:KEY:MOVE with {RE}; re:last when the other side's last letter raised or took it up; at:ps for a P.S.), or null.
+        /// </summary>
+        private static string Recall(LetterSpec s, Func<LetterPart, HashSet<string>, string> pick, HashSet<string> tags, bool ps)
+        {
+            var r = s.recall;
+            if (r == null || string.IsNullOrEmpty(r.tag) || s.recalledNow) return null;
+            s.values["RE"] = r.value ?? "";
+            var t = Own(With(tags, r.tag));
+            if (r.last) t.Add("re:last");
+            if (ps) t.Add("at:ps");
+            string line = pick(LetterPart.Thread, t);
+            if (!string.IsNullOrEmpty(line)) s.recalledNow = true;
+            return line;
         }
 
         /// <summary>
@@ -806,6 +885,8 @@ namespace ColonyCouncil
             if (roll() < 0.3f) Add(paras, pick(LetterPart.Note, With(tags, "note:open")));
             Add(paras, s.heart);
             foreach (var m in s.more) Add(paras, m);
+            // A bare note takes up no thread, but a cooled one says its cold word.
+            if (s.recall?.move == "slight") Add(paras, Recall(s, pick, tags, false));
             string end = roll() < 0.55f ? pick(LetterPart.Note, With(tags, "note:close")) : null;
             if (!string.IsNullOrEmpty(end)) paras.Add(end.Trim());
             if (!string.IsNullOrEmpty(s.sign)) paras.Add(s.sign);
@@ -852,15 +933,16 @@ namespace ColonyCouncil
                 if (!string.IsNullOrEmpty(p)) points.Add(Fill(w.machinePoint, ("N", (points.Count + 1).ToString()), ("LINE", p.Trim())));
             }
             bool note = s.kind == LetterKind.Note;
-            if (!note) Point(pick(LetterPart.Open, tags));
+            if (!note) Point(Opening(s, pick, roll, tags) ?? pick(LetterPart.Open, tags));
             Point(s.heart);
             foreach (var m in s.more) Point(m);
+            if (!note || s.recall?.move == "slight") Point(Recall(s, pick, tags, false));
             var kind = !note && AsideOf(s) ? Aside(s, roll()) : AsideKind.None;
             if (kind != AsideKind.None) Point(pick(LetterPart.Aside, Tags(s, kind)));
             if (points.Count > 0) paras.Add(string.Join("\n", points));
             // The shape's own paragraphs (an incident report, a log, an inventory), after the points.
             foreach (var p in s.piece) Add(paras, p);
-            string close = note ? null : pick(LetterPart.Close, tags);
+            string close = note ? null : Familiar(s, pick, roll, tags, LetterThreadMath.CloseTag) ?? pick(LetterPart.Close, tags);
             paras.Add(string.IsNullOrEmpty(close) ? s.sign ?? "" : string.IsNullOrEmpty(s.sign) ? close : close + "\n" + s.sign);
             foreach (var a in s.after) Add(paras, a);
             string ps = note && s.who?.owedAnswer == null ? null : PS(s, w, pick, roll);

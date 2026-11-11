@@ -79,6 +79,8 @@ C = {
     "WorldWaiting": const("Dealings/DealingMath.cs", "MaxWaiting", 2),
     "LetterExchanges": const("Letters/LetterBook.cs", "MaxExchanges", 60),
     "LetterUsed": const("Letters/LetterKindMath.cs", "MaxUsed", 200),
+    "LetterCorrespondences": const("Letters/LetterBook.cs", "MaxCorrespondences", 60),
+    "LetterThreads": const("Letters/LetterThreadMath.cs", "MaxThreads", 8),
     "CourierPeople": const("Couriers/CourierMath.cs", "MaxPeople", 3),
     "VisitorTrips": const("Visitors/VisitorMath.cs", "MaxTrips", 8),
     "VisitorPeople": const("Visitors/VisitorMath.cs", "MaxPeople", 6),
@@ -517,6 +519,15 @@ MODEL = {
     # The long pieces written into letters (a poem, a sermon, a story's parts, a raid's account, a chronicle's items),
     # remembered by their first words so none comes round again soon (Letters/LetterBook.cs, LetterKindMath.Remember):
     # about two a long letter, LetterKindMath.MaxUsed at most, the oldest let go.
+    # A correspondence that builds up (Letters/LetterBook.cs, Letters/LetterThreadMath.cs, 11 November 2026): one record a
+    # notable written with (letters each way and when, the warmest regard, who of the colony writes to them), the longest
+    # quiet let go past LetterBook.MaxCorrespondences; its threads (what a letter said that a later one takes up: a key, a
+    # name, a few numbers), LetterThreadMath.MaxThreads at most, let go after 40 to 240 days. About one new correspondent a
+    # week in a busy game; a record with its threads is about 1,500 bytes.
+    "Letters/LetterBook.cs:correspondences": ("cap", (C["LetterCorrespondences"], 0.15), 1500,
+                                      "each correspondence as it builds up: LetterBook.MaxCorrespondences at most, the longest quiet let go"),
+    "Letters/LetterBook.cs:threads": ("fixed", C["LetterThreads"], 150,
+                                    "per correspondence: its threads, LetterThreadMath.MaxThreads at most, stale ones let go (counted under correspondences)"),
     "Letters/LetterBook.cs:used": ("cap", (C["LetterUsed"], 0.5), 80,
                                    "the long pieces written into letters, by their first words: LetterKindMath.MaxUsed at most, the oldest let go"),
     "Letters/LetterBook.cs:pages": ("fixed", 3, 1300, "per exchange: the colony's letter and theirs, or theirs first, the reply and their thanks; each capped (counted under exchanges)"),

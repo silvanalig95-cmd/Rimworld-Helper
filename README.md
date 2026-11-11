@@ -3730,6 +3730,18 @@ Diplomacy screen's People, opens it a page at a time. *How long letters may get*
 letter it is, with what it brings under it; "Write back" on its card, in the reading window and on the People page opens
 a letter back to them (the answer their letter waits for, or greetings).
 
+**A correspondence that builds up.** Each exchange of letters with someone grows familiar as it goes on: how many letters
+have passed both ways, for how long, and how things stand (their regard, their people's goodwill, good turns, a war). A
+first letter is formal and introduces itself; a few letters on they are known; after a while they write on easy terms
+("I knew the hand before I broke the seal", "As always,"), and old friends by letter take up a short name, keep a chair
+for your letters, sign with the name alone and write longer. A slight, a broken word, a war or a fall in their regard
+cools it just as truly: the full name again, shorter letters, no jokes, the wrong named coldly. Letters take up earlier
+ones: they tell of someone ill and you ask after them, and the next letter says they are better, still ill or gone, as it
+really is; the colony's harvest is asked after and answered; help, gifts, a poem or a recipe are remembered; a running
+joke (the goat that opens the gate) comes back and is asked after; a new hand writing for the colony is noticed. The
+colony's own letters keep the thread too. The reading window says how it stands ("14 letters so far: old friends by
+letter.").
+
 **Talking with outsiders, and doing it by themselves.** With a colonist selected, right-click someone from outside the
 colony for "Talk with...": news of their home, a meal or a drink, a gift, a good word at home, a lesson, something
 brought next time, an invitation to stay, getting to know them, courting, faith, a practice bout, hard words, a duel,

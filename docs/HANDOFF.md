@@ -21,17 +21,6 @@ tree at once, alongside whatever runs. Each piece is merged as its own release, 
   Super cool idea and these should be applied to the other factions according to their lore, design and theme! don't
   start with that though, just add it as to-do". When asked: propose a list per people first (Peoples/, their tags and
   lore in docs/design/peoples*.md), then build; new peoples only after.
-- **Held by the player (10 November 2026): no new letters content jobs until they ask** ("for the letters please hold
-  after this job then ... I'd like to keep such jobs for the end of the week to use up my remaining tokens"). The letters
-  round 2 part 1 agent was already running; its part 2 (more content in the same shapes) waits for their word.
-- **To do when the player asks (10 November 2026): a correspondence that builds up.** The player: "for to do list to be
-  done later: continued letter exchange should build up, the contents and familiarity between the colony and others
-  should develop and be reflected in the messages". When asked (with the held letters content pass, end of the week):
-  each correspondence (`Letters/LetterBook.cs`, the exchanges kept per notable) grows familiar over its letters:
-  salutations and closings warming or settling by how many letters and how long, nicknames and shared jokes taken up
-  again, earlier topics and promises answered or recalled ("you asked about the harvest; it came in at last"), news
-  followed up from one letter to the next, the colony's own letters keeping the thread too; cooling just as truly
-  after a slight or a war. Propose the shape first.
 - **To do when the player asks (10 November 2026): supplies for the colony's own rider.** The player: "sending a
   colonist off to send a letter makes them just go off map without any supplies or preparation. supply selection should
   be part of the initial decision." Then: "to be done later". Today `Post/OwnRiders.cs` sets out with the fastest beast
@@ -63,6 +52,56 @@ tree at once, alongside whatever runs. Each piece is merged as its own release, 
   area, guest beds, its guest tab and recruiting rules, Rimfolk's guest help), softly by type name; Rimfolk's own visit
   purpose (the feast, the talks, the envoy's season) kept on top, and its own visitor lord left for when Hospitality is
   absent.
+- Not released (no version, no What's new round, About.xml and CHANGELOG untouched), **a correspondence that builds up**
+  (11 November 2026). The player asked for the held letters work; their to-do (10 November 2026): "continued letter
+  exchange should build up, the contents and familiarity between the colony and others should develop and be reflected
+  in the messages". DESIGN.md "A correspondence that builds up" (after "Letters of many shapes") has all of it; README "A
+  correspondence that builds up"; `docs/design/post-and-letters.md`, round 2, points 27 to 30; the Almanac's neighbours page,
+  "Letters that grow familiar" (new section, keywords unchanged).
+  - Pure: `Letters/LetterThreadMath.cs` (new, linked): `Familiarity` (New, Known, Familiar, Close, Cooled; None for a call,
+    words passed on, a council's letter), `LetterStanding`, `StageOf`, `Cooled`, `SlightOf` (FactionMemory's wrongs as word,
+    harm, insult, theirs), `FamiliarChance`, `KindFactor`, `CooledFits`, `SignsShort`, `FullName`, `Nickname`, `ThreadRec`,
+    `Move`, `Outcome`, `Choose` (`RecallScene`, `RecallChoice`), `Mark`, `Raised`, `Slot`, `Stale`, the tells and the nine
+    running jokes. `LetterFormMath`: `LetterPart.Familiar` and `Thread`, `LetterSpec.fam`, `recall`, `drawn`, the stage's tag
+    in `Tags`, `Compose` drawing the stage's own salutation, opening (a new hand's word, a long silence's) and closing now
+    and then and the thread after the heart (or as a P.S.), fewer asides and no jokes when cooled; `LetterKindMath.Fits` and
+    `Weight` by the stage. Tests `Tools/Tests/LetterThreadTests.cs` (about 8,100 checks: the stages over a grid, cooling,
+    names, the shapes and form by the stage, every move of every thread, the follow-ups by the facts, the choice and its
+    rates, what a letter raises, the pools' coverage and hygiene, whole correspondences from the real pools printed with
+    `RIMFOLK_LETTERS_PRINT=1`, the seams); `LetterShapeTests`' seam follows `ShapeTheirs`.
+  - Game side: `Letters/LetterThreads.cs` (new): `Correspond` (from `ShapeTheirs` once their town's facts are in, and
+    `ShapeOurs`, before the shape is chosen: the standing from the correspondence, `NotableBook.Opinion`, goodwill,
+    `NotableBook.Hostile`, `PenFriends.Is`, `FactionMemory` 120 days; the stage, `fam:long`, running jokes in the context,
+    `{TOFULL}`, `{TONICK}`, `pen:new` and `{LASTPEN}`, a short signature, the thread), `Corresponded` (after every letter
+    either way: counted, the thread marked, the threads raised kept), `Summary` (the reading window's foot).
+    `LetterBook`: `Correspondence` and `LetterThread` (saved), `correspondences` (`MaxCorrespondences` 60, the longest quiet
+    let go; an older save's counted from the kept letters), `CorrespondenceWith`; modelled in `save_estimate.py`.
+    `LetterForm`: the pick keeps the drawn line's tags (`LetterSpec.drawn`), `AnswerFacts.sent`/`sentWhat` (set in
+    `NeighbourLetters.Body`: help sent, help refused, a gift), `{LOSTNAME}` for condolences. Keys `CC_LetterThread_*` in
+    `Rimfolk_LetterForm.xml`. The DefValidator knows `{RE}`, `{TOFULL}`, `{TONICK}`, `{LASTPEN}`. No Sched slot, no setting.
+  - Pools: `Rimfolk_Letters_Familiar` (410: the stage's salutations, openings, closings, a new hand's word, a long
+    silence's), `_Thread` (360: news asked after and followed up, news told first, things sent, pieces, jokes, the riddle's
+    guess, the cold word); 159 medieval, 35 unschooled, 41 strange voices'. The running jokes' first tellings in `_Aside` and
+    `_PS` tagged `!jk:...` (25 lines).
+  - Not run here (none of it could be): any of it in the game (a long correspondence over a year with real notables and
+    regard; the facts' town:ill and their:war at the follow-up; the drawn lines' tags through the game's picker; an older
+    save's count from its kept letters; the reading window's foot line at its width; a new hand noticed with real
+    colonists' names; `Nickname` on the player's pawns' and notables' names; Hospitality, Ideology and the race mods' names).
+  - Try in the game: 1. Write greetings to a notable who has never had a letter from you: the letter (and their answer)
+    is formal, introduces itself, signs in full, "To Dagna Holt of Ashford". 2. Keep writing to them every few days: after
+    four letters both ways over a week or so the salutations and closings are easy ("Dagna, as ever,", "As always,"); after
+    eight over a month, with their regard at 30, old friends ("Dearest Stace,", "Your old friend,"), signed with the name
+    alone, longer letters now and then. 3. Read any of the letters with them: the window's foot says "N letters so far:
+    on easy terms." 4. When their letter says someone of theirs is ill, your next letter asks after them, and a later one
+    of theirs says they are better, still ill or gone, as the notable really is. 5. Their aside about a goat that opens the
+    gate: a later letter of theirs goes on with the goat, and yours asks after it. 6. Your letter mentions the harvest:
+    they ask how it went, and your next says it came in (or was thin, or the stores are full). 7. Ask for medicine and get
+    it: your next letter thanks them for it; theirs hopes it was of use. 8. Have someone else write to them after the same
+    colonist wrote twice: their answer notices the new hand. 9. Wrong their people (a guest slighted, a caravan robbed) or go
+    to war with them: their next letter is formal again, short, no jokes, now and then naming what passed. 10. Leave a
+    correspondence quiet for forty days: the next letter says it has been a long while. 11. Answer a riddle letter: your
+    letter guesses (wrongly); their next P.S. gives the answer as before. 12. An older save with letters kept: the
+    correspondence starts counted from them.
 - 0.206.1, carriers straight to the mailbag,
   back in the saddle, a new face each time (10 November 2026). The player: "the couriers that bring letters and material
   take an awkward routine around my base before delivering the message a bit away from the base. if anything they should

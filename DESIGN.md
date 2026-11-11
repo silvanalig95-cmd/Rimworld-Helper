@@ -8939,6 +8939,71 @@ a shape's pieces come after it.
   pieces (10 petitions, 46 lines of lists and accounts, 16 recipes and remedies, 25 riddles with their answers); 38 lines
   added by other hands; 35 enclosures; 47 diary lines; 82 long letters' headings (26), news (22) and everyday life (34).
 
+### A correspondence that builds up (the player's request, 10 November 2026)
+
+The player: "continued letter exchange should build up, the contents and familiarity between the colony and others
+should develop and be reflected in the messages". Not released yet. In `Source/ColonyCouncil/Letters/`: the pure rules
+`LetterThreadMath.cs` (linked in Tests.csproj; `Tools/Tests/LetterThreadTests.cs`, "correspondence: "), the game's side
+`LetterThreads.cs` (before a letter is shaped, `Correspond`, and after it is written, `Corresponded`), the saved state in
+`LetterBook.cs` (`Correspondence`, `LetterThread`); the pools `Defs/FlavorPoolDefs/Rimfolk_Letters_Familiar.xml` and
+`_Thread.xml` (each documents its tags). Everything of the letters before is kept; only letters written out in full are
+read, and a call and words passed on are counted with no stage of their own.
+
+- **How things stand** (`LetterThreads.Standing`, from what the letters already know): the letters each way and when
+  (`Correspondence`: `ours`, `theirs`, `first`, `last`, `lastOurs`, `lastTheirs`; an older save's counted from the
+  letters `LetterBook` keeps with them), their regard of the colony now and the warmest it reached while they wrote
+  (`peak`), their people's goodwill, a war, a pen friend, their people's memory (`FactionMemory`, 120 days) of good turns
+  either way (summed) and the newest wrong either way of weight 6 or more.
+- **The stage** (`LetterThreadMath.StageOf`, a tag the pools read): the writer's first letter in it is New (`fam:new`); a
+  war, a wrong (8 within 30 days, or 20 within 90) or their regard fallen 30 from its warmest to under 20 cools it
+  (`fam:cooled`); else Close after 8 letters (good turns count one at 10 and two at 20, a pen friend two) over 30 days at
+  a regard of 30 with their people's goodwill not below 0 (`fam:close`), Familiar after 4 over 8 days at a regard not
+  below 0 (`fam:familiar`), else Known (`fam:known`). A long silence, 40 days, is a step back, never below Known, and its
+  own tag (`fam:long`). Tested over a grid: more letters never make it colder.
+- **The form by the stage** (`LetterFormMath.Compose`): the stage's own salutation, opening and closing come first now
+  and then (`FamiliarChance`: a first letter's introductions about half the time, the known a third, the familiar half,
+  old friends and a cooled correspondence seven in ten; else the usual pools), warm in a warm letter and settled into
+  habit in a cordial one ("{TO}, as ever,", "As always,"). Names (`LetterThreads.Names`): `{TOFULL}` by first and last name
+  for a first letter and a cooled one; `{TONICK}`, a short name between old friends where the name gives one
+  (`Nickname`: "Dagna" Dag, "Hessa" Hess, else none), of the colony's writer only when they usually write; a new hand
+  writing for the colony is noticed (`pen:new`, `{LASTPEN}`, while the one before is still of the colony: "I see the hand
+  is Hessa's this time. Give Stace my regards"). Old friends sign with the name alone (`SignsShort`). The shapes
+  (`KindFactor`): nobody sends several pages to a stranger (the long shapes, others' lines, enclosures and riddles half as
+  often at New), old friends write long (1.4 times) and add more (others' lines, enclosures, a diary page, a riddle 1.5
+  times), a bare note between them is rarer (0.6); a cooled correspondence writes only the usual letter or a note (a note
+  2.5 times as often), half the asides and no jokes, a P.S. a third as often.
+- **Threads** (`ThreadRec`, saved as `LetterThread`; `Raised`, `Move`, `Outcome`, `Choose`, `Mark`, `Slot`): what a letter
+  said that a later one takes up, raised only from what it said. Theirs: someone ill, their war, hard times and why, a
+  new head, a death, only when the words named them (never the writer themselves); a raid told; a running joke begun (an
+  aside or a P.S. tagged `!jk:goat`, `!jk:pumpkin`, `!jk:singer`, `!jk:cat`, `!jk:mule`, `!jk:crow`, `!jk:chickens`,
+  `!jk:bridge`, `!jk:well`, drawn only while that joke isn't already running with them); a piece (a poem, a story, a
+  sermon, a recipe, something folded in, a long letter, their town's news, a diary page); others' lines; help sent, a gift,
+  help refused (`AnswerFacts.sent`, set in `NeighbourLetters.Body`). The colony's: its news as its lines said it (the
+  facts' colony:harvest, :raid, :newcomer, :hungry, :birth, :wedding, :death, read from the lines drawn, `LetterSpec.drawn`),
+  its poet's verse, its cook's recipe, others' lines, a warning given, condolences sent, goods agreed to on their request.
+  A letter now and then tells news first (`re:tell:`), raising a thread the next can ask after.
+- **Taken up** (`Choose`): nothing in a first letter; a cooled one names the wrong coldly seven times in ten
+  (`re:slight:word`, `:harm`, `:insult`, `:theirs`, `:war`; `SlightOf` groups FactionMemory's wrongs); else a thread
+  (Known 0.45 of letters, Familiar 0.65, Close 0.8): the other side's news asked after (a death sorrowed for) the next
+  letter on, once; one's own news followed up once, after it was asked after or three letters on, by what is true then
+  (`Outcome`: someone ill still ill, gone, or better; a war won, lost, still on, made peace or gone quiet; hard times still
+  or easing; a new head settled only while head; the colony's harvest thin, plentiful or in; raiders again or quiet; a
+  newcomer settled and a child growing only while at home); something sent thanked for once (twice between old friends),
+  after their own answer for a warning, condolences and goods; the sender hoping it was of use; a piece spoken of; others'
+  lines greeted back; help refused regretted among friends and remembered in a cool letter; a joke gone on with twice and
+  asked after each telling; the colony's guess at their riddle (`re:riddle:guess`; their next P.S. gives the answer as
+  before); fresher threads first. A follow-up of something the other side's last letter raised or asked says so
+  (`re:last`); a quick question or a hope goes in the P.S. now and then (`at:ps`). News goes stale after 40 days, things
+  sent after 90, a joke after 240.
+- **Kept** (`LetterBook.correspondences`, saved): one record a notable written with, `MaxCorrespondences` (60) at most,
+  the longest quiet let go; its threads `LetterThreadMath.MaxThreads` (8) at most, one of a kind (news of someone else ill
+  takes the old one's place), a full list giving up a thread already taken up first. Modelled in `save_estimate.py`. The
+  reading window says how it stands at its foot ("14 letters so far: old friends by letter.", `LetterThreads.Summary`).
+- **The library** (the tests count it): 410 lines in the stage's own words (salutations, openings, closings, a new hand's
+  word, a long silence's) and 360 threads (news asked after and followed up, news told first, things sent, pieces, jokes,
+  the cold word); every situation in plain English for its side and the common ones in medieval English (159 lines), 35
+  unschooled, 41 in the strange voices; 25 asides and postscripts of the running jokes tagged.
+
 ### Diplomacy
 
 Stage 2's base and its first item, favours owed and called in (docs/design/stage2-diplomacy.md, release 2a.1):

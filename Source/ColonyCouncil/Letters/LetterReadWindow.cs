@@ -69,6 +69,8 @@ namespace ColonyCouncil
         /// <summary>Who the letters are with, for "Write back" (Letters/LetterReply.cs); its reason not, looked at twice a second.</summary>
         private readonly Notable with;
         private string backWhy;
+        /// <summary>How the correspondence stands, at the foot ("14 letters so far: old friends by letter."; Letters/LetterThreads.cs).</summary>
+        private readonly string standing;
         private float backAt = -1f;
 
         /// <summary>The foot of the window: "Write back".</summary>
@@ -95,6 +97,7 @@ namespace ColonyCouncil
             forcePause = false;
             title = "CC_LetterRead_Title".Translate((x?.name ?? "?").Named("NAME"), (x?.town ?? "").Named("TOWN")).Resolve();
             with = LetterReply.Of(x);
+            standing = with != null ? LetterThreads.Summary(with) : null;
             if (x == null) return;
             foreach (var p in x.pages)
             {
@@ -202,6 +205,8 @@ namespace ColonyCouncil
                 backWhy = LetterReply.WhyNot(with);
             }
             float bw = Mathf.Clamp(UiKit.KeptWidth(LetterReply.Label, GameFont.Small) + 28f, 110f, 220f);
+            // How the correspondence stands, beside it in a quiet hand.
+            if (!standing.NullOrEmpty()) UiKit.LabelFit(new Rect(r.x, r.y, r.width - bw - 10f, r.height), standing, UiKit.Faint, GameFont.Tiny);
             if (UiKit.Button(new Rect(r.xMax - bw, r.y, bw, r.height), LetterReply.Label, ButtonKind.Normal, backWhy == null,
                     backWhy ?? "CC_LetterRead_WriteBackTip".Translate(with.Name.Named("NAME")).Resolve()))
                 LetterReply.Open(with);

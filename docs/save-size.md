@@ -7,8 +7,8 @@ colony of 20, with the game keeping 30 more people it knows and 5 more each year
 generous guesses; sizes are rough XML sizes. Caps named as constants are read from the source. "Counted under" rows are
 kept inside another record (a journal's lines, a heart's lists) and are already in that record's size.
 
-Saved collections found: 615; modelled: 615; growing without end: 0.
-Rimfolk's part of the save, roughly: **2,762 KB** after a year, **3,340 KB** after two, **3,623 KB** after five.
+Saved collections found: 617; modelled: 617; growing without end: 0.
+Rimfolk's part of the save, roughly: **2,775 KB** after a year, **3,366 KB** after two, **3,689 KB** after five.
 
 | Collection | Rule | Kind | 1 year | 2 years | 5 years | KB at 5 years |
 |---|---|---|---|---|---|---|
@@ -22,6 +22,7 @@ Rimfolk's part of the save, roughly: **2,762 KB** after a year, **3,340 KB** aft
 | `UI/WeekMemory.cs:dilemmas` | DilemmaLog.MaxRecords; each with what the answer was to do in numbers (about 500 characters, at most 1600), in words (about 400, at most 1200) and the flavour line under it (about 70, at most 200) | cap | 30 | 60 | 60 | 82.0 |
 | `World/Ledger/WorldLedger.cs:ties` | ties between two parties: 3 of a kind per pair, 60 per kind (regard 300), TieRules.MaxTies in all; closed ones dropped after 60 days | cap | 60 | 120 | 300 | 76.2 |
 | `Persona/TraitChanges.cs:watches` | one per colonist with its deeds and ten snapshots; known pawns only | colonists | 20 | 20 | 20 | 66.4 |
+| `Letters/LetterBook.cs:correspondences` | each correspondence as it builds up: LetterBook.MaxCorrespondences at most, the longest quiet let go | cap | 9 | 18 | 45 | 65.9 |
 | `Social/Gossip/ReputationTracker.cs:deeds` | 10 per colonist, 220 in all, faded ones dropped | cap | 200 | 200 | 200 | 58.6 |
 | `Camps/CampGround.cs:plans` | every old site's layout as it was left, its constructions and its beds' places (about forty a site, six sites) | fixed | 240 | 240 | 240 | 46.9 |
 | `Journal.cs:everydaySeen` | 24 days | window | 480 | 480 | 480 | 42.2 |
@@ -575,6 +576,7 @@ Rimfolk's part of the save, roughly: **2,762 KB** after a year, **3,340 KB** aft
 | `Integrations/GuestHelp.cs:told` | per guest: the kinds of work they said why they took up, GuestHelpMath.MaxTold at most (counted under guests) | fixed | 12 | 12 | 12 | (in its record) |
 | `Journal.cs:entries` | per journal: 60 lines (counted under journals) | fixed | 60 | 60 | 60 | (in its record) |
 | `Letters/LetterBook.cs:pages` | per exchange: the colony's letter and theirs, or theirs first, the reply and their thanks; each capped (counted under exchanges) | fixed | 3 | 3 | 3 | (in its record) |
+| `Letters/LetterBook.cs:threads` | per correspondence: its threads, LetterThreadMath.MaxThreads at most, stale ones let go (counted under correspondences) | fixed | 8 | 8 | 8 | (in its record) |
 | `Missions/Missions.cs:goals` | per mission (counted under missions) | fixed | 3 | 3 | 3 | (in its record) |
 | `Outsiders/OutsiderBook.cs:asks` | per visit: the last 8 asks made of them (counted under visits) | fixed | 8 | 8 | 8 | (in its record) |
 | `Outsiders/OutsiderBook.cs:last` | per pair: when they last did each of the 16 things (counted under pairs) | fixed | 16 | 16 | 16 | (in its record) |

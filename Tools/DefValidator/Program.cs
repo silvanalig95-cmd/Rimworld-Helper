@@ -550,6 +550,9 @@ wishPh.UnionWith(new[] { "FROM", "TO", "TOTITLE", "COUNCIL", "PURPOSE", "DEAL", 
 // Letters of many shapes (Letters/LetterFormShapes.cs, Rimfolk_Letters_*.xml): one of the wild animals of the land round
 // the writer (with its article) and its plural, one of its wild plants, one of its trees, their faith's god, the answer to a riddle owed.
 wishPh.UnionWith(new[] { "ANIMAL", "ANANIMAL", "ANIMALS", "PLANT", "TREE", "DEITY", "ANSWER" });
+// A correspondence that builds up (Letters/LetterThreads.cs, Rimfolk_Letters_Familiar, _Thread): an earlier letter's
+// thread in words, the one written to by full name and by a short one, the colonist who usually wrote.
+wishPh.UnionWith(new[] { "RE", "TOFULL", "TONICK", "LASTPEN" });
 var pawnSuffixes = new HashSet<string> { "nameDef", "nameFull", "labelShort", "pronoun", "possessive", "objective", "label", "definite", "indefinite", "gender", "kind" };
 foreach (var (file, doc) in docs)
 {

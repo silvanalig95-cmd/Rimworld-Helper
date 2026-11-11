@@ -13,9 +13,9 @@
     <lines>
       <plain>
         <!-- ================= Theirs, plain English ================= -->
-        <li>[theirs,joke,a:plain|a:friend,warmly] The goat says hello. The goat has also eaten the envelope, so I am folding this one twice.</li>
-        <li>[theirs,joke,a:plain|a:friend,warmly] I forgot to say how the pumpkin is doing. It is doing badly. It has been given a name anyway.</li>
-        <li>[theirs,joke,a:plain|a:friend,warmly] My neighbour has stopped singing. My neighbour has started playing the drum.</li>
+        <li>[theirs,joke,a:plain|a:friend,warmly,!jk:goat] The goat says hello. The goat has also eaten the envelope, so I am folding this one twice.</li>
+        <li>[theirs,joke,a:plain|a:friend,warmly,!jk:pumpkin] I forgot to say how the pumpkin is doing. It is doing badly. It has been given a name anyway.</li>
+        <li>[theirs,joke,a:plain|a:friend,warmly,!jk:singer] My neighbour has stopped singing. My neighbour has started playing the drum.</li>
         <li>[theirs,joke,a:plain|a:friend,warmly] The children want to know if you have any frogs. I said I would ask.</li>
         <li>[theirs,joke,a:plain|a:friend,warmly] I drew you a map of {TOWN} on the back of this. It is not to scale. Nothing here is to scale.</li>
         <li>[theirs,joke,a:friend,warmly] If you see the one carrying this, ask them about the pie. Then watch their face.</li>
@@ -80,8 +80,8 @@
         <li>[ours,everyday,a:empire,warm|cordial|cool] We hope we have written properly. If not, forgive us: we are learning.</li>
 
         <!-- ================= Medieval English (olde) ================= -->
-        <li>[theirs,olde,joke,a:plain|a:friend,warmly] The goat greeteth thee. The goat hath also eaten the wrapper, so I fold this one twice.</li>
-        <li>[theirs,olde,joke,a:plain|a:friend,warmly] My neighbour hath put down the lute. My neighbour hath taken up the drum.</li>
+        <li>[theirs,olde,joke,a:plain|a:friend,warmly,!jk:goat] The goat greeteth thee. The goat hath also eaten the wrapper, so I fold this one twice.</li>
+        <li>[theirs,olde,joke,a:plain|a:friend,warmly,!jk:singer] My neighbour hath put down the lute. My neighbour hath taken up the drum.</li>
         <li>[theirs,olde,joke,a:plain|a:friend,warmly|cordial|cool] Pardon the blot in the second part. It rained, or I was eating. One or the other.</li>
         <li>[theirs,olde,joke,a:plain|a:friend,warmly|cordial|cool] The rider biddeth me say the road is foul. The road is foul.</li>
         <li>[theirs,olde,joke,a:plain|a:friend,warmly|cordial|cool] I have read this over and it is longer than I meant. The fault is thine, for writing first.</li>
@@ -147,11 +147,11 @@
         <li>[u:some,joke,warmly|cordial|cool] Sory about the spelling, the one who checks it was out.</li>
         <li>[u:some,everyday,warmly|cordial|cool] Write back if you want.</li>
         <li>[u:some,serious] Look after yourselfs.</li>
-        <li>[u:some,joke,warmly|cordial|cool] The goat says hello. Well, not reely, but she would if she could.</li>
+        <li>[u:some,joke,warmly|cordial|cool,!jk:goat] The goat says hello. Well, not reely, but she would if she could.</li>
         <li>[u:some,everyday,cordial|cool] Our trader comes your way next month if you want anything.</li>
         <li>[u:some,everyday,curt] Dont send that courier agin, he ate everything.</li>
         <li>[u:some,serious] Things are hard. Keep your gate shut at nite.</li>
-        <li>[u:none,joke,warmly|cordial|cool] the goat sez hello. the goat cant rite. nor can i much</li>
+        <li>[u:none,joke,warmly|cordial|cool,!jk:goat] the goat sez hello. the goat cant rite. nor can i much</li>
         <li>[u:none,everyday,warmly|cordial|cool] rite back if you want. or dont</li>
         <li>[u:none,everyday,curt] dont send that one wot came last time agin he ate all the bread</li>
         <li>[u:none,serious] be carefull out there. its bad all over</li>

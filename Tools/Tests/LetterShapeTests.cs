@@ -1006,7 +1006,7 @@ public static class LetterShapeTests
         string src = Path.Combine(root, "Source", "ColonyCouncil");
         string Code(string rel) => File.Exists(Path.Combine(src, rel)) ? File.ReadAllText(Path.Combine(src, rel)) : "";
         string form = Code("Letters/LetterForm.cs"), shapes = Code("Letters/LetterFormShapes.cs"), book = Code("Letters/LetterBook.cs"), window = Code("Letters/LetterReadWindow.cs");
-        C(form.Contains("ShapeTheirs(s, n);") && form.Contains("ShapeOurs(s, l, n, writer, map);") && form.Contains("SignNote("), "their letters and the colony's own take their shape before they are composed");
+        C(form.Contains("ShapeTheirs(s, n, ") && form.Contains("ShapeOurs(s, l, n, writer, map);") && form.Contains("SignNote("), "their letters and the colony's own take their shape before they are composed");
         C(shapes.Contains("LetterKindMath.Choose(s, s.length, Rand.Value)") && shapes.Contains("LetterKindMath.Build(s, Words, Lines(s)"), "the shape is chosen and built from the pools");
         C(shapes.Contains("WorldSituations.Instance") && shapes.Contains("History.At(place") && shapes.Contains("\"townAttacked\"") && shapes.Contains("\"townDefended\""),
             "a raid's record is read from the world events, the ledger's history and their memory of the colony");

@@ -101,4 +101,13 @@
   <CC_SetNote_LetterLength_Mixed>Most letters are short, now and then a long one.</CC_SetNote_LetterLength_Mixed>
   <CC_SetNote_LetterLength_Long>Long, storied letters come often.</CC_SetNote_LetterLength_Long>
 
+  <!-- A correspondence that builds up (Letters/LetterThreads.cs): how it stands, at the foot of the reading window. -->
+  <CC_LetterThread_Summary>{N} letters so far: {STAGE}.</CC_LetterThread_Summary>
+  <CC_LetterThread_Stage_None>letters only</CC_LetterThread_Stage_None>
+  <CC_LetterThread_Stage_New>only just begun</CC_LetterThread_Stage_New>
+  <CC_LetterThread_Stage_Known>still on formal terms</CC_LetterThread_Stage_Known>
+  <CC_LetterThread_Stage_Familiar>on easy terms</CC_LetterThread_Stage_Familiar>
+  <CC_LetterThread_Stage_Close>old friends by letter</CC_LetterThread_Stage_Close>
+  <CC_LetterThread_Stage_Cooled>cooler than they were</CC_LetterThread_Stage_Cooled>
+
 </LanguageData>
