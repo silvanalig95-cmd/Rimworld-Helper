@@ -71,12 +71,12 @@ public static class TemperatureScaleTests
         var neutral = TemperatureScaleMath.Neutral;
         C(R(neutral) == G(neutral) && G(neutral) == B(neutral) && R(neutral) > 0.9f, "comfortable is white");
 
-        // ---------- Readable: on Rimfolk's dark panels in both looks, and over the game's map behind the dark edge ----------
+        // ---------- Readable: on Rimfolk's dark panels in both looks, and inside the thermometer's dark back over the map ----------
         // The game's look on the classic panels over a dark map (as HudTemperatureTests measured it), Rimfolk's own look's
-        // cards (its panel for the dark look, its window ground for the darker and the clear ones), and black: the dark edge
+        // cards (its panel for the dark look, its window ground for the darker and the clear ones), and black: the dark back
         // round the game's own readout.
         uint classic = 0x181a1c;
-        var grounds = new (string name, uint rgb)[] { ("the classic panels", classic), ("the own look's dark card", SkinMath.Panel), ("the own look's darker card", SkinMath.WindowGround), ("the readout's dark edge", 0x000000) };
+        var grounds = new (string name, uint rgb)[] { ("the classic panels", classic), ("the own look's dark card", SkinMath.Panel), ("the own look's darker card", SkinMath.WindowGround), ("the thermometer's dark back", 0x000000) };
         foreach (var (name, ground) in grounds)
         {
             double worst = 99;
@@ -92,7 +92,61 @@ public static class TemperatureScaleTests
             }
             C(worst >= SkinMath.TextContrast, $"every temperature reads on {name} (at worst {worst:0.0} to 1, at {worstAt} °C)");
         }
-        C(TemperatureScaleMath.EdgeAlpha >= 0.5f && TemperatureScaleMath.EdgeAlpha <= 0.9f, "the readout's dark edge is solid enough to read over snow without looking heavy");
+        C(TemperatureScaleMath.ThermoBackAlpha >= 0.5f && TemperatureScaleMath.ThermoBackAlpha <= 0.8f, "the thermometer's dark back is solid enough to read over snow without looking heavy");
+
+        // ---------- The game's words beside it: near the game's white, a touch of the colour ----------
+        bool light = true, touched = true;
+        for (float t = -80f; t <= 90f; t += 0.5f)
+        {
+            uint c = At(t), w = TemperatureScaleMath.TextTint(c);
+            if (SkinMath.Luminance(w) < 0.5) light = false;
+            if (c != neutral && w == 0xffffff) touched = false;
+        }
+        C(light, "the words stay light at every temperature, as readable over the map as the game's white");
+        C(touched, "and take a touch of the colour wherever the thermometer isn't white");
+        C(TemperatureScaleMath.TextTintShare > 0.2f && TemperatureScaleMath.TextTintShare < 0.5f, "a light touch: the thermometer carries the colour");
+
+        // ---------- The thermometer: filled to the temperature ----------
+        C(TemperatureScaleMath.Level(-30f, lo, hi) == 0f && TemperatureScaleMath.Level(-60f, lo, hi) == 0f && TemperatureScaleMath.Level(50f, lo, hi) == 1f
+          && TemperatureScaleMath.Level(80f, lo, hi) == 1f, "empty at killing cold, full at killing heat");
+        C(Math.Abs(TemperatureScaleMath.Level(21f, lo, hi) - 51f / 80f) < 0.001f && Math.Abs(TemperatureScaleMath.Level(10f, lo, hi) - 0.5f) < 0.001f,
+            "in a straight line between: 10 °C half full, 21 °C about two thirds");
+        bool rising = true;
+        float lastLevel = -1f;
+        for (float t = -80f; t <= 90f; t += 0.5f)
+        {
+            float l = TemperatureScaleMath.Level(t, lo, hi);
+            if (l < lastLevel) rising = false;
+            lastLevel = l;
+        }
+        C(rising, "warmer is never lower");
+        C(TemperatureScaleMath.Level(float.NaN, lo, hi) == TemperatureScaleMath.Level(21f, lo, hi) && TemperatureScaleMath.Level(0f, 30f, 10f) == TemperatureScaleMath.Level(0f, 10f, 30f),
+            "an unknown temperature at comfortable, a range the wrong way round taken the right way");
+        C(TemperatureScaleMath.Shown(0f) == TemperatureScaleMath.ThermoBulbTop && TemperatureScaleMath.Shown(1f) == TemperatureScaleMath.ThermoTubeTop
+          && TemperatureScaleMath.Shown(-1f) == TemperatureScaleMath.ThermoBulbTop && TemperatureScaleMath.Shown(2f) == TemperatureScaleMath.ThermoTubeTop
+          && TemperatureScaleMath.Shown(0.5f) > TemperatureScaleMath.ThermoBulbTop && TemperatureScaleMath.Shown(0.5f) < TemperatureScaleMath.ThermoTubeTop,
+            "the bulb always full, the tube from its foot to its top by the level");
+        C(TemperatureScaleMath.ThermoWidth * 2f == TemperatureScaleMath.ThermoHeight && TemperatureScaleMath.ThermoHeight <= 24f, "half as wide as tall, under the game's line's height");
+
+        // ---------- The word ----------
+        var feel = new (float t, TemperatureFeel f)[]
+        {
+            (-45f, TemperatureFeel.KillingCold), (-30f, TemperatureFeel.KillingCold), (-29f, TemperatureFeel.Cold), (5.9f, TemperatureFeel.Cold), (6f, TemperatureFeel.Chilly),
+            (15.9f, TemperatureFeel.Chilly), (16f, TemperatureFeel.Comfortable), (26f, TemperatureFeel.Comfortable), (26.1f, TemperatureFeel.Warm), (36f, TemperatureFeel.Warm),
+            (36.1f, TemperatureFeel.Hot), (49.9f, TemperatureFeel.Hot), (50f, TemperatureFeel.KillingHeat), (80f, TemperatureFeel.KillingHeat)
+        };
+        foreach (var (t, f) in feel) C(TemperatureScaleMath.Feel(t, lo, hi) == f, $"{t} °C is {f} (got {TemperatureScaleMath.Feel(t, lo, hi)})");
+        C(TemperatureScaleMath.Feel(float.NaN, lo, hi) == TemperatureFeel.Comfortable && TemperatureScaleMath.Feel(20f, float.NaN, float.NaN) == TemperatureFeel.Comfortable,
+            "an unknown temperature or range is not a warning");
+        bool agrees = true;
+        for (float t = -80f; t <= 90f; t += 0.25f)
+        {
+            var f = TemperatureScaleMath.Feel(t, lo, hi);
+            uint c = At(t);
+            if ((f == TemperatureFeel.Comfortable) != (c == neutral)) agrees = false;
+            if (f == TemperatureFeel.KillingCold && c != TemperatureScaleMath.DeepBlue || f == TemperatureFeel.KillingHeat && c != TemperatureScaleMath.DeepRed) agrees = false;
+        }
+        C(agrees, "the word agrees with the colour: comfortable is white, killing cold deep blue, killing heat deep red");
 
         // ---------- Another comfort range, the edges ----------
         C(TemperatureScaleMath.Rgb(20f, 10f, 30f) == neutral && TemperatureScaleMath.Rgb(0f, 10f, 30f) == TemperatureScaleMath.PaleBlue
@@ -117,14 +171,22 @@ public static class TemperatureScaleTests
         string settings = File.ReadAllText(Path.Combine(src, "CouncilSettings.cs"));
         string catalog = File.ReadAllText(Path.Combine(src, "UI", "SettingsCatalog.cs"));
         string keyed = File.ReadAllText(Path.Combine(root, "Languages", "English", "Keyed", "Rimfolk_Panels.xml"));
+        string thermo = File.ReadAllText(Path.Combine(src, "Hud", "Thermometer.cs"));
+        string lines = File.ReadAllText(Path.Combine(src, "Hud", "HudLines.cs"));
+        string linesLook = File.ReadAllText(Path.Combine(src, "Hud", "Look", "HudLinesLook.cs"));
+        string script = File.ReadAllText(Path.Combine(root, "Tools", "make_thermometer.py"));
         C(patch.Contains("[HarmonyPatch(typeof(GlobalControls), nameof(GlobalControls.GlobalControlsOnGUI))]")
           && patch.Contains("AccessTools.Method(typeof(GlobalControls), \"TemperatureString\")")
           && patch.Contains("AccessTools.Method(typeof(Widgets), nameof(Widgets.Label), new[] { typeof(Rect), typeof(string) })") && patch.Contains("list[j].operand = ours;"),
             "the game's own label for its temperature line, right after its words, is sent through Rimfolk's");
-        C(patch.Contains("TemperatureScale.Rgb((float)shown.GetValue(null))") && patch.Contains("\"cachedTemperatureStringForTemperature\""),
+        C(patch.Contains("float c = (float)shown.GetValue(null);") && patch.Contains("lastRgb = TemperatureScale.Rgb(c);") && patch.Contains("\"cachedTemperatureStringForTemperature\""),
             "the readout's colour is the scale's, for the very temperature the game's words were made from");
-        C(patch.Contains("TemperatureScale.ColorOf(rgb)") && patch.Contains("TemperatureScaleMath.EdgeAlpha") && patch.Contains("finally") && patch.Contains("GUI.color = was;"),
-            "drawn in that colour over a dark edge, and the game's colour put back after");
+        C(patch.Contains("Thermometer.Draw(at, lastLevel, TemperatureScale.ColorOf(rgb), was.a);") && patch.Contains("lastLevel = TemperatureScale.Level(c);")
+          && patch.Contains("rect.xMax - lastWidth - 3f - w"), "a thermometer in that colour, filled to that temperature, just left of the game's words");
+        C(patch.Contains("TemperatureScale.ColorOf(TemperatureScaleMath.TextTint(rgb))") && patch.Contains("finally") && patch.Contains("GUI.color = was;"),
+            "the words a touch toward the colour, and the game's colour put back after");
+        C(patch.Contains("lastTip = TemperatureScale.Tip(c);") && patch.Contains("if (lastTip != null && Mouse.IsOver(tip)) TooltipHandler.TipRegion(tip, lastTip);"),
+            "hovering it says the temperature in a word (made when the words change, not each frame)");
         C(patch.Contains("public static bool On => RimfolkPatches.On && (ColonyCouncilMod.Settings?.tempReadoutColour ?? true);") && patch.Contains("Widgets.Label(rect, text);\n                return;"),
             "behind the deeper game hooks and its own setting; off, the game's line as it was");
         C(patch.Contains("[HarmonyPatch(typeof(GlobalControls), \"TemperatureString\")]") && patch.Contains("if (Patch_TemperatureReadout.swapped")
@@ -141,6 +203,36 @@ public static class TemperatureScaleTests
             "the setting, on by default, under what shows on the map, with the deeper game hooks");
         C(keyed.Contains("<CC_Settings_TempReadoutColour>") && keyed.Contains("<CC_Settings_TempReadoutColour_Tip>") && keyed.Contains("<CC_SetNote_TempReadoutColour>"),
             "the setting's words");
+        foreach (TemperatureFeel f in Enum.GetValues<TemperatureFeel>())
+            C(System.Text.RegularExpressions.Regex.IsMatch(keyed, $"<CC_TempFeel_{f}>[a-z ]+</CC_TempFeel_{f}>"), $"the word for {f}, in lower case for the middle of the tooltip");
+        C(keyed.Contains("<CC_TempReadout_Tip>{TEMP}: {FEEL}.") && scale.Contains("\"CC_TempFeel_\" + TemperatureScaleMath.Feel(celsius, HumanMin, HumanMax)"),
+            "the tooltip: the temperature, its word, the colonists' comfortable range");
+
+        // ---------- The thermometer's pictures and drawing ----------
+        foreach (var name in new[] { "Back", "Fill", "Glass" })
+            C(File.Exists(Path.Combine(root, "Textures", "ColonyCouncil", "Thermometer", name + ".png")), $"its {name} picture is there");
+        int Num(string key)
+        {
+            var m = System.Text.RegularExpressions.Regex.Match(script, key + @"\s*=\s*(\d+)");
+            return m.Success ? int.Parse(m.Groups[1].Value) : -1;
+        }
+        var tube = System.Text.RegularExpressions.Regex.Match(script, @"TUBE_X0, TUBE_X1, TUBE_TOP, TUBE_R = (\d+), (\d+), (\d+), (\d+)");
+        var bulb = System.Text.RegularExpressions.Regex.Match(script, @"BULB_CX, BULB_CY, BULB_R = (\d+), (\d+), (\d+)");
+        int glass = Num("GLASS");
+        C(tube.Success && bulb.Success && glass > 0, "the script's shapes read");
+        if (tube.Success && bulb.Success && glass > 0)
+        {
+            int tubeInner = int.Parse(tube.Groups[3].Value) + glass, bulbInner = int.Parse(bulb.Groups[2].Value) - (int.Parse(bulb.Groups[3].Value) - glass);
+            C(Math.Abs(TemperatureScaleMath.ThermoTubeTop - (256f - tubeInner) / 256f) < 1e-4 && Math.Abs(TemperatureScaleMath.ThermoBulbTop - (256f - bulbInner) / 256f) < 1e-4,
+                $"the fill's lines agree with the pictures (the tube's inside from {tubeInner}, the bulb's from {bulbInner})");
+            C(int.Parse(bulb.Groups[2].Value) + int.Parse(bulb.Groups[3].Value) + Num("RIM") <= 256 && int.Parse(tube.Groups[3].Value) - Num("RIM") >= 0
+              && int.Parse(tube.Groups[2].Value) - int.Parse(tube.Groups[1].Value) - 2 * glass >= 24, "the dark back fits the picture, and the tube's inside is wide enough to show its colour");
+        }
+        C(thermo.Contains("GUI.DrawTextureWithTexCoords(part, Fill, new Rect(0f, 0f, 1f, shown))") && thermo.Contains("TemperatureScaleMath.Shown(level)")
+          && thermo.Contains("TemperatureScaleMath.ThermoBackAlpha") && thermo.Contains("\"ColonyCouncil/Thermometer/\""),
+            "drawn as the dark back, the fill cut off at the level, the glass on top");
+        C(lines.Contains("if (l.thermo >= 0f && Thermometer.Ready) Thermometer.Draw(") && linesLook.Contains("if (l.thermo >= 0f && Thermometer.Ready) Thermometer.Draw(")
+          && vitals.Contains("line.thermo = TemperatureScale.Level(t);"), "the vitals' outdoor temperature has the same thermometer for its icon, in both looks");
         return n;
     }
 }

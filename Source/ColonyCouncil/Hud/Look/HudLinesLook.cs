@@ -44,7 +44,8 @@ namespace ColonyCouncil
                 HudLook.Stripe(row, level, s);
                 var c = level >= HudLevel.Soon ? HudLook.LevelColor(level) : l.quiet;
                 float x = row.x + HudLookMath.At(HudLookMath.Stripe + 3f, s);
-                if (l.icon != null) HudLook.Icon(HudLook.IconAt(x, row.y, rh, icon), l.icon, level >= HudLevel.Soon ? c : UiKit.WithAlpha(UiKit.Heading, 0.85f));
+                if (l.thermo >= 0f && Thermometer.Ready) Thermometer.Draw(new Rect(x, row.y + 1f, icon, rh - 2f), l.thermo, ValueColorLook(l, level));
+                else if (l.icon != null) HudLook.Icon(HudLook.IconAt(x, row.y, rh, icon), l.icon, level >= HudLevel.Soon ? c : UiKit.WithAlpha(UiKit.Heading, 0.85f));
                 x += icon + HudLookMath.At(5f, s);
                 bool hasBar = l.fill >= 0f || l.spanFrom >= 0f;
                 bool nameClick = false;

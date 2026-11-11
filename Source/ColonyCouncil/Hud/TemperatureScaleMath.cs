@@ -6,12 +6,14 @@ namespace ColonyCouncil
     /// The temperature in colour, on one scale by the colonists' comfort (the player's request, 10 November 2026: "can the
     /// temperature meter be clearly color coded from blue to red, so i can at immediate glance see how warm or cold it
     /// is"): deep blue in killing cold, lighter blues through chilly, white where people are comfortable, yellow and orange
-    /// through hot, deep red in killing heat. The game's own readout at the bottom right (Hud/Patch_TemperatureReadout.cs)
-    /// and the vitals' outdoor temperature (Hud/HudVitals.cs) both take it. Each step sits so far outside the comfort range
-    /// (the game's human one, 16 to 26 °C, unless a mod moves it): around the human range the lines fall where the vitals'
-    /// row turns orange and red (HudRank), and between two steps the colour goes over smoothly. Every colour is light enough
-    /// to read on Rimfolk's dark panels in both its looks, and over the game's map behind a dark edge. Free of game types,
-    /// so Tools/Tests can check it.
+    /// through hot, deep red in killing heat; then, at the player's word ("this should not just be colored text, but some
+    /// symbol/field that's colored"), a thermometer in that colour, filled to the temperature's height, with the word for
+    /// it. The game's own readout at the bottom right (Hud/Patch_TemperatureReadout.cs) and the vitals' outdoor temperature
+    /// (Hud/HudVitals.cs) both take it. Each step sits so far outside the comfort range (the game's human one, 16 to 26 °C,
+    /// unless a mod moves it): around the human range the lines fall where the vitals' row turns orange and red (HudRank),
+    /// and between two steps the colour goes over smoothly. Every colour is light enough to read on Rimfolk's dark panels in
+    /// both its looks, and inside the thermometer's dark back over the game's map. Free of game types, so Tools/Tests can
+    /// check it.
     /// </summary>
     public static class TemperatureScaleMath
     {
@@ -67,12 +69,7 @@ namespace ColonyCouncil
         public static uint Rgb(float celsius, float comfyMin, float comfyMax)
         {
             if (float.IsNaN(celsius) || float.IsInfinity(celsius)) return Neutral;
-            if (float.IsNaN(comfyMin) || float.IsNaN(comfyMax) || float.IsInfinity(comfyMin) || float.IsInfinity(comfyMax))
-            {
-                comfyMin = HudRank.HumanComfyMin;
-                comfyMax = HudRank.HumanComfyMax;
-            }
-            if (comfyMin > comfyMax) (comfyMin, comfyMax) = (comfyMax, comfyMin);
+            Range(ref comfyMin, ref comfyMax);
             if (celsius < comfyMin) return Along(Cold, comfyMin - celsius);
             if (celsius > comfyMax) return Along(Hot, celsius - comfyMax);
             return Neutral;
@@ -110,7 +107,89 @@ namespace ColonyCouncil
         /// <summary>A line of text wrapped in its colour as the game's labels read it ("&lt;color=#5e87ff&gt;-31C&lt;/color&gt;").</summary>
         public static string Wrap(string text, uint rgb) => string.IsNullOrEmpty(text) ? text : "<color=#" + Hex(rgb) + ">" + text + "</color>";
 
-        /// <summary>How dark the edge round the game's readout is drawn (its alpha): enough for the colour to read over snow.</summary>
-        public const float EdgeAlpha = 0.7f;
+        // ---------------- The words ----------------
+
+        /// <summary>
+        /// The temperature in a word, for the colonists: killing cold at deep blue and under, cold under the game's safe
+        /// line, chilly under the comfort range, comfortable in it, warm up to the safe line above it, hot under killing
+        /// heat, killing heat at deep red and over. An unknown temperature is comfortable.
+        /// </summary>
+        public static TemperatureFeel Feel(float celsius, float comfyMin, float comfyMax)
+        {
+            if (float.IsNaN(celsius) || float.IsInfinity(celsius)) return TemperatureFeel.Comfortable;
+            Range(ref comfyMin, ref comfyMax);
+            if (celsius <= comfyMin - DeadlyBelow) return TemperatureFeel.KillingCold;
+            if (celsius < comfyMin - SafeMargin) return TemperatureFeel.Cold;
+            if (celsius < comfyMin) return TemperatureFeel.Chilly;
+            if (celsius <= comfyMax) return TemperatureFeel.Comfortable;
+            if (celsius <= comfyMax + SafeMargin) return TemperatureFeel.Warm;
+            if (celsius < comfyMax + DeadlyAbove) return TemperatureFeel.Hot;
+            return TemperatureFeel.KillingHeat;
+        }
+
+        /// <summary>An unknown range is the human one; one given the wrong way round is taken the right way.</summary>
+        private static void Range(ref float comfyMin, ref float comfyMax)
+        {
+            if (float.IsNaN(comfyMin) || float.IsNaN(comfyMax) || float.IsInfinity(comfyMin) || float.IsInfinity(comfyMax))
+            {
+                comfyMin = HudRank.HumanComfyMin;
+                comfyMax = HudRank.HumanComfyMax;
+            }
+            if (comfyMin > comfyMax) (comfyMin, comfyMax) = (comfyMax, comfyMin);
+        }
+
+        // ---------------- The thermometer ----------------
+
+        /// <summary>
+        /// How full the thermometer is, 0 to 1: empty (the bulb alone) at killing cold, full at killing heat, in a straight
+        /// line between (with the human range: -30 °C empty, 21 °C about two thirds, 50 °C full). Unknown: the middle of the
+        /// comfort range's.
+        /// </summary>
+        public static float Level(float celsius, float comfyMin, float comfyMax)
+        {
+            Range(ref comfyMin, ref comfyMax);
+            if (float.IsNaN(celsius) || float.IsInfinity(celsius)) celsius = (comfyMin + comfyMax) / 2f;
+            float lo = comfyMin - DeadlyBelow, hi = comfyMax + DeadlyAbove;
+            float t = (celsius - lo) / (hi - lo);
+            return t < 0f ? 0f : t > 1f ? 1f : t;
+        }
+
+        /// <summary>
+        /// Where the inside of the bulb and of the tube's top fall in the thermometer's picture, as shares of its height from
+        /// the bottom (Tools/make_thermometer.py: BULB_INNER_TOP 157 and TUBE_INNER_TOP 23 of 256 from the top).
+        /// </summary>
+        public const float ThermoBulbTop = (256f - 157f) / 256f, ThermoTubeTop = (256f - 23f) / 256f;
+
+        /// <summary>How much of the fill's picture is shown, from the bottom: the bulb always, the tube up to the level.</summary>
+        public static float Shown(float level)
+        {
+            if (float.IsNaN(level)) level = 0f;
+            level = level < 0f ? 0f : level > 1f ? 1f : level;
+            return ThermoBulbTop + level * (ThermoTubeTop - ThermoBulbTop);
+        }
+
+        /// <summary>How dark the thermometer's back is drawn (black, its alpha): enough for the glass and the colour to read over snow.</summary>
+        public const float ThermoBackAlpha = 0.6f;
+
+        /// <summary>The thermometer's size on screen beside the game's line: half as wide as tall, a little under the line's height.</summary>
+        public const float ThermoHeight = 22f, ThermoWidth = 11f;
+
+        /// <summary>How far the game's own words are tinted toward the temperature's colour (lightly: they stay near the game's white).</summary>
+        public const float TextTintShare = 0.35f;
+
+        /// <summary>The game's words beside the thermometer: white, a little toward the temperature's colour.</summary>
+        public static uint TextTint(uint rgb) => Mix(0xffffff, rgb, TextTintShare);
+    }
+
+    /// <summary>The temperature in a word, for the colonists (TemperatureScaleMath.Feel), coldest first.</summary>
+    public enum TemperatureFeel
+    {
+        KillingCold,
+        Cold,
+        Chilly,
+        Comfortable,
+        Warm,
+        Hot,
+        KillingHeat
     }
 }

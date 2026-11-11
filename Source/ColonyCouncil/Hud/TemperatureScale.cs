@@ -60,5 +60,16 @@ namespace ColonyCouncil
         public static Color Of(float celsius) => ColorOf(Rgb(celsius));
 
         public static Color ColorOf(uint rgb) => new Color(((rgb >> 16) & 0xff) / 255f, ((rgb >> 8) & 0xff) / 255f, (rgb & 0xff) / 255f);
+
+        /// <summary>How full the thermometer is for a temperature (Celsius), 0 to 1.</summary>
+        public static float Level(float celsius) => TemperatureScaleMath.Level(celsius, HumanMin, HumanMax);
+
+        /// <summary>The temperature in a word ("comfortable", "killing cold").</summary>
+        public static string Word(float celsius) => ("CC_TempFeel_" + TemperatureScaleMath.Feel(celsius, HumanMin, HumanMax)).Translate().Resolve();
+
+        /// <summary>The thermometer's tooltip: the temperature and its word, and the colonists' comfortable range, in the player's unit.</summary>
+        public static string Tip(float celsius) =>
+            "CC_TempReadout_Tip".Translate(celsius.ToStringTemperature("F0").Named("TEMP"), Word(celsius).Named("FEEL"), HumanMin.ToStringTemperature("F0").Named("MIN"),
+                HumanMax.ToStringTemperature("F0").Named("MAX")).Resolve();
     }
 }

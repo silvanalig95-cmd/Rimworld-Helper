@@ -165,6 +165,8 @@ namespace ColonyCouncil
                     if (ps != null) ps.showTemperatureOverlay = !ps.showTemperatureOverlay;
                 });
             line.valueColor = TemperatureScale.Of(t);
+            // Its icon the same thermometer as beside the game's own temperature line, filled to the temperature.
+            line.thermo = TemperatureScale.Level(t);
         }
 
         /// <summary>Each free colonist's comfort range on the map, dressed as they are.</summary>

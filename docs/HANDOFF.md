@@ -59,34 +59,45 @@ tree at once, alongside whatever runs. Each piece is merged as its own release, 
   absent.
 - The temperature readout in colour (11 November 2026). The player, with a picture of the game's readout at the bottom
   right ("No wind / Indoors 21C / Clear"): "can the temperature meter be clearly color coded from blue to red, so i can at
-  immediate glance see how warm or cold it is". Not released: no version, no What's new round, About.xml and CHANGELOG
-  untouched. DESIGN.md "The temperature in colour" (after the on-screen panels) has all of it; README the vitals'
-  paragraph and a new one for the readout; the Almanac's panels page, the vitals' Outside line (prose only, keywords
-  unchanged).
+  immediate glance see how warm or cold it is"; then, of the first build's coloured words: "this should not just be
+  colored text, but some symbol/field that's colored, you can use other temperature indicators as reference". Not
+  released: no version, no What's new round, About.xml and CHANGELOG untouched. DESIGN.md "The temperature in colour"
+  (after the on-screen panels) has all of it, and why a thermometer over a coloured field or a gradient bar; README the
+  vitals' paragraph and a new one for the readout; the Almanac's panels page, the vitals' Outside line (prose only,
+  keywords unchanged).
   - Pure: `Hud/TemperatureScaleMath.cs` (new, linked): `Rgb(celsius, comfyMin, comfyMax)` from deep blue (`5e87ff`) at 46
     under the comfort range through blue, light blue and pale blue to white inside it, then pale yellow, yellow, orange
     and deep red (`ff5248`) at 24 over, mixed smoothly between the steps; with the human range (16 to 26 °C) the steps
-    fall on HudRank's lines (-30, -15, 40, 50 °C) and the game's safe line; `Mix`, `Hex`, `Wrap`, `EdgeAlpha`. Tests
+    fall on HudRank's lines (-30, -15, 40, 50 °C) and the game's safe line. `Feel` (killing cold, cold, chilly,
+    comfortable, warm, hot, killing heat), `Level` (the thermometer empty at -30 °C, full at 50 °C), `Shown` (the level
+    on the picture's height), `TextTint` (the words 35% toward the colour), `Mix`, `Hex`, `Wrap`. Tests
     `Tools/Tests/TemperatureScaleTests.cs` (the steps, blue below and warm above, lightest at comfortable, smooth,
-    4.5 to 1 on the classic panels, both own-look cards and black at every quarter degree, moved and odd ranges, the
-    seams); `HudTemperatureTests` follow the vitals onto it.
-  - Game side: `Hud/TemperatureScale.cs` (new: the Human def's comfort range asked once, `Rgb`, `Of`, `ColorOf`; the
-    vitals' own copy of the range removed); `Hud/Patch_TemperatureReadout.cs` (new): a transpiler on
+    4.5 to 1 on the classic panels, both own-look cards and black at every quarter degree, the words light, the level and
+    the word, the pictures' lines against the script, moved and odd ranges, the seams); `HudTemperatureTests` follow the
+    vitals onto it.
+  - Game side: `Tools/make_thermometer.py` (new) draws `Textures/ColonyCouncil/Thermometer/Back`, `Fill`, `Glass` (white,
+    48x96); `Hud/Thermometer.cs` (new) draws them: the back in black at 60%, the fill in the colour cut at the level, the
+    glass light on top. `Hud/TemperatureScale.cs` (new: the Human def's comfort range asked once, `Rgb`, `Of`, `Level`,
+    `Word`, `Tip`; the vitals' own copy of the range removed). `Hud/Patch_TemperatureReadout.cs` (new): a transpiler on
     `GlobalControls.GlobalControlsOnGUI` sends the `Widgets.Label(Rect, string)` right after `TemperatureString` through
-    `Label` (a black edge at 70% a pixel each side, then the words in the colour of the game's own
-    `cachedTemperatureStringForTemperature`, read again only when its words change); if not found, a postfix on
-    `TemperatureString` wraps the words in rich-text colour instead. The setting "The game's temperature in colour"
-    (`tempReadoutColour`, on, under What shows on the map, needs the deeper hooks). `HudVitals` takes
-    `TemperatureScale.Of(t)`; `HudKit`'s banded scale (green in the middle) is gone. ApiDiff: nothing it uses changed in
-    1.7 (`GlobalControlsOnGUI`, `TemperatureString`, the cached field, `Widgets.Label`).
-  - Not run here: the readout in the game, how the edge looks, that 1.7's `GlobalControlsOnGUI` still calls the label
-    right after the words (the body can't be compared; without it the words are coloured without the edge).
-  - Try in the game: 1. Hover a bedroom at 21 °C: "Indoors 21C" is white. 2. Hover outside on a cold morning (about
-    5 °C): pale blue; at -10 °C a clear blue; at -30 °C deep blue. 3. A hot day or a kitchen next to a stove (32 °C and
-    up): pale yellow, then yellow, orange at 40 °C, deep red at 50 °C. 4. On a snowy map at noon the coloured line still
-    reads (the dark edge). 5. The vitals panel's outside temperature shows the same colour as the readout when you hover
-    outdoors, in both looks (Rimfolk's own look and the classic panels). 6. Turn "The game's temperature in colour" off:
-    the game's white line as before; turn the deeper game hooks off: the same.
+    `Label` (the words lightly tinted, the thermometer 11x22 just left of them, the tooltip "21 °C: comfortable", all from
+    the game's own `cachedTemperatureStringForTemperature` and worked out only when its words change); if not found, a
+    postfix on `TemperatureString` wraps the words in the full colour instead. The setting "The game's temperature in
+    colour" (`tempReadoutColour`, on, under What shows on the map, needs the deeper hooks); keys `CC_TempReadout_Tip`,
+    `CC_TempFeel_*`. `HudVitals` takes `TemperatureScale.Of(t)` and `line.thermo` (`HudLine.thermo`, drawn in place of
+    the icon by `HudLines` and `HudLinesLook`); `HudKit`'s banded scale (green in the middle) is gone. ApiDiff: nothing it
+    uses changed in 1.7 (`GlobalControlsOnGUI`, `TemperatureString`, the cached field, `Widgets.Label`).
+  - Not run here: the readout in the game, how the thermometer sits beside the words at each interface scale and font,
+    the tooltip, that 1.7's `GlobalControlsOnGUI` still calls the label right after the words (the body can't be
+    compared; without it the words are coloured and there is no thermometer).
+  - Try in the game: 1. Hover a bedroom at 21 °C: a thermometer just left of "Indoors 21C", white and about two thirds
+    full; hovering it says "21 °C: comfortable". 2. Hover outside on a cold morning (about 5 °C): pale blue, under half
+    full, "cold"; at -10 °C a clear blue; at -30 °C deep blue with only the bulb filled, "killing cold". 3. A hot day or
+    beside a stove (32 °C and up): pale yellow, then yellow, orange at 40 °C, deep red and full at 50 °C. 4. On a snowy
+    map at noon the thermometer still reads (its dark back). 5. Change the interface scale: the thermometer stays beside
+    the words without covering them or the weather above. 6. The vitals panel's outside temperature has the same
+    thermometer for its icon, in both looks (Rimfolk's own look and the classic panels). 7. Turn "The game's temperature
+    in colour" off: the game's white line as before, no thermometer; turn the deeper game hooks off: the same.
 - 0.206.1, carriers straight to the mailbag,
   back in the saddle, a new face each time (10 November 2026). The player: "the couriers that bring letters and material
   take an awkward routine around my base before delivering the message a bit away from the base. if anything they should

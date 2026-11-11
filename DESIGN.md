@@ -11602,7 +11602,11 @@ above), and the classic drawing described here is the player's backup behind "Cl
 ### The temperature in colour (the player's request, 10 November 2026)
 
 The player, with a picture of the game's readout at the bottom right ("No wind / Indoors 21C / Clear"): "can the
-temperature meter be clearly color coded from blue to red, so i can at immediate glance see how warm or cold it is".
+temperature meter be clearly color coded from blue to red, so i can at immediate glance see how warm or cold it is";
+then, of the coloured words: "this should not just be colored text, but some symbol/field that's colored, you can use
+other temperature indicators as reference". A thermometer was chosen over a coloured field behind the number or a
+gradient bar with a marker: it reads as a temperature at a glance, its colour and its height say the same thing twice,
+and it fits the line's height at every interface scale without crowding the weather above.
 
 - **One scale** (`Hud/TemperatureScaleMath.cs`, pure, tested in `TemperatureScaleTests`): by the colonists' comfort range,
   the game's own for people (the Human def's `ComfyTemperatureMin` and `Max`, 16 to 26 °C, asked once by
@@ -11612,21 +11616,34 @@ temperature meter be clearly color coded from blue to red, so i can at immediate
   yellow at six over, yellow at the safe line, orange at fierce heat and deep red at killing heat (14 and 24 over: 40 and
   50 °C). Between two steps the colour goes over channel by channel, so each degree is a little bluer or warmer, the
   lightest at comfortable. Every colour holds 4.5 to 1 on the classic panels, on the own look's dark and darker cards and
-  on black (the readout's edge); deep blue (`5e87ff`) and deep red (`ff5248`) are as deep as that allows.
+  on black (the thermometer's back); deep blue (`5e87ff`) and deep red (`ff5248`) are as deep as that allows. A word for
+  it (`Feel`): killing cold at deep blue and under, cold under the safe line, chilly under the range, comfortable,
+  warm up to the safe line above, hot, killing heat at deep red and over. How full the thermometer is (`Level`): empty at
+  killing cold, full at killing heat, straight between (-30 °C empty, 10 °C half, 21 °C about two thirds, 50 °C full).
+- **The thermometer** (`Hud/Thermometer.cs`; its pictures by `Tools/make_thermometer.py`, three white layers of 48x96 in
+  `Textures/ColonyCouncil/Thermometer`, drawn at 3x and scaled down): the shape a little larger in black at 60% under
+  everything (so the glass and the colour read over snow, where the game's winter shadow is faint), the inside of the
+  tube and bulb in the temperature's colour cut off at the level with `GUI.DrawTextureWithTexCoords` (the bulb always
+  full; `Shown` maps the level onto the picture's height, its lines checked against the script's shapes), the glass in
+  light grey on top. The tube's inside is a fifth of the picture's width, so the colour still shows at the smallest
+  scale.
 - **The game's readout** (`Hud/Patch_TemperatureReadout.cs`, the setting "The game's temperature in colour", with the
   deeper game hooks): `GlobalControls.GlobalControlsOnGUI` draws the line with `Widgets.Label(Rect, string)`, its words
   from the private `TemperatureString`; a transpiler sends that one call (the first label call within three instructions
-  of the words) through `Label`, which draws the words four times in black at 70% a pixel to each side (a thin edge, so the
-  colour reads over snow, where the game's own winter shadow is faint) and then once in the colour. The temperature is the
-  game's own `cachedTemperatureStringForTemperature`, the value its words were made from, so colour and number always
-  agree; it is read again only when the game's words change (the same string until then). Should a game version draw the
-  line some other way, nothing is swapped and a postfix on `TemperatureString` wraps the words in a rich-text colour
-  instead (no edge), kept by the words it was made from. Off, or should the temperature not be readable, the line is the
-  game's.
+  of the words) through `Label`, which draws the words a light touch toward the colour (35% of the way from white, so
+  they read as the game's white do) and the thermometer, 11x22 (less on a shorter line), just left of where the
+  right-aligned words begin (their width measured once per new words and font). Hovering the thermometer or the words
+  says the temperature, its word and the colonists' comfortable range. The temperature is the game's own
+  `cachedTemperatureStringForTemperature`, the value its words were made from, so colour, height and number always
+  agree; the colour, level, tooltip and width are worked out again only when the game's words change (the same string
+  until then). Should a game version draw the line some other way, nothing is swapped and a postfix on
+  `TemperatureString` wraps the words in the full colour as rich text instead (no thermometer), kept by the words it was
+  made from. Off, or should the temperature not be readable, the line is the game's.
 - **Rimfolk's own panels**: the vitals' outdoor temperature (`HudVitals.Temperature`) takes the same colour
-  (`TemperatureScale.Of`), in both looks, in place of its earlier banded scale with green in the middle; its tooltip
-  still names the band (`HudRank.Band`) and the row still turns orange and red at hard frost, fierce heat and beyond. No
-  other panel shows a temperature.
+  (`TemperatureScale.Of`) for its value and the same thermometer, filled to the temperature, in place of its icon
+  (`HudLine.thermo`, drawn by the classic panels and the own look alike, the icon kept should the pictures be missing);
+  its earlier banded scale with green in the middle is gone. Its tooltip still names the band (`HudRank.Band`) and
+  the row still turns orange and red at hard frost, fierce heat and beyond. No other panel shows a temperature.
 
 ### Checking a new game version
 
