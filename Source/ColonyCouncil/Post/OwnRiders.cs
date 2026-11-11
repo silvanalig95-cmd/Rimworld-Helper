@@ -213,7 +213,7 @@ namespace ColonyCouncil
             var l = ride != null ? NeighbourLetters.Get(ride.letterId) : null;
             var map = p?.Map;
             var town = ride != null ? NotableBook.TownOf(ride.town) : null;
-            if (ride == null || l == null || map == null || town == null || !p.Spawned || p.Downed) return false;
+            if (ride == null || l == null || l.stage != LetterStage.Riding || map == null || town == null || !p.Spawned || p.Downed) return false;
             var mount = ride.mount;
             if (mount != null && (!mount.Spawned || mount.Map != map || mount.Dead || mount.Downed || mount.InMentalState || mount.GetLord() != null)) mount = ride.mount = null;
             var pack = RiderPacks.For(l.id);

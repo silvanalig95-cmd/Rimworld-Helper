@@ -93,7 +93,9 @@ namespace ColonyCouncil
 
         private void Contents(Rect inRect)
         {
-            if (model?.map == null || !Find.Maps.Contains(model.map) || model.rider == null || model.rider.Dead || model.town == null)
+            // Gone with what it belongs to: the map, the rider, the town, or the letter's window it was opened from.
+            if (model?.map == null || !Find.Maps.Contains(model.map) || model.rider == null || model.rider.Dead || model.town == null
+                || send == null && Find.WindowStack.WindowOfType<Dialog_NeighbourLetter>() == null)
             {
                 Close();
                 return;
