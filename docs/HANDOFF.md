@@ -12,15 +12,20 @@ tree at once, alongside whatever runs. Each piece is merged as its own release, 
 
 ## State (5 November 2026)
 
-- **Paused by the player (10 November 2026): "anything i add just add to the to do list until i say we continue".**
-  Until they say to continue, every new wish or report goes onto this list as a "To do when the player asks" entry
-  (with their words), and nothing is built.
+- **How the player wants new wishes handled (11 November 2026, standing): "any new idea/request i give you is first
+  gathered on the to-do list, unless i say something like "do this now" or "start now". then we can collect tasks
+  until we have a few so we can implement them more effectively."** Each new wish or report goes onto this list as a
+  "To do when the player asks" entry (with their words) and the task list, and nothing is built, unless they say to
+  start it now. When they ask, the gathered entries are planned together, grouped by area, and built side by side.
+  (On 11 November 2026 they asked for every entry then on the list; the peoples' list waits for their picks.)
 - **To do when the player asks (10 November 2026): events and interactions of each of Rimfolk's peoples, by their lore.**
   The player: "I really LOVE the new factions you created, and I'd be down for more later. however, I'd first like more
   faction specific events, interactions etc. like this event i had with these gene guys who gave my pawn a new gene.
   Super cool idea and these should be applied to the other factions according to their lore, design and theme! don't
   start with that though, just add it as to-do". When asked: propose a list per people first (Peoples/, their tags and
-  lore in docs/design/peoples*.md), then build; new peoples only after.
+  lore in docs/design/peoples*.md), then build; new peoples only after. Proposed (11 November 2026, with each people's own
+  camps, as the player added): `docs/peoples-events-proposals.md`, 100 numbered items; the lead recommends 10, 5, 47,
+  83, 51, 1, 19, 17, 34 and 95 first. Waits for the player's picks.
 - **Held by the player (10 November 2026): no new letters content jobs until they ask** ("for the letters please hold
   after this job then ... I'd like to keep such jobs for the end of the week to use up my remaining tokens"). The letters
   round 2 part 1 agent was already running; its part 2 (more content in the same shapes) waits for their word.
