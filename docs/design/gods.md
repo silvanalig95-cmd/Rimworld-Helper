@@ -293,3 +293,26 @@ What every part builds to:
   - **The Chronicle:** the colony's own history with the gods, dated, in prose.
 - **The gods' hands in the game's events** (the brainstorm's section C), by the realness step: a believer's bubble, a
   line in the news, and the act in the chronicle. The vanilla letter itself is never altered.
+
+## The gods are unseen (the player's rule, 11 November 2026, binding for every part)
+
+The player, the same day, on the book: "I don't even know if there should be a God menu like that. So please abandon
+this for the time being and remove it. Because, yeah, the gods should also feel like an ominous presence. To me, as the
+player as well, and there should be more kind of seen as a sort of storyteller style aspect of the game, giving impact,
+and generating stuff and appearing or not or reacting, but not in a way that I see what's going on or can, read about
+it ... if I look at the gods in like a fancy list in the menu, it kind of takes out some of the their ominous presence."
+
+- **Never shown:**
+  - what a god thinks, wants or feels about the colony;
+  - no gods menu, page, book, list or Almanac page;
+  - no favour words in the news, inspect lines, tooltips or This week;
+  - no rules or prices spelled out.
+- **What the player meets instead:**
+  - what happens on the map and in the world;
+  - what people say about it: one-sentence bubbles, supper talk, neighbours' letters, visitors' tales, a priest's
+    line, a scoffer's doubt;
+  - the stories, in pieces, only through people.
+- **A manifestation's card** says what was seen and heard, eerily, with no why. At Felt the god may stay unnamed.
+- **Favour, ties, natures and kinds** are hidden state that drives what the gods do. The realness setting and the dev
+  actions stay.
+- The Book of the Gods described above is withdrawn.

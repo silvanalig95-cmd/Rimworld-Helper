@@ -114,6 +114,14 @@ tree at once, alongside whatever runs. Each piece is merged as its own release, 
   - worship: `worktree-agent-a0cfe8f4a840fc8fc` at 71734f1 (`GodWorshipDef`).
   Each builds; the test suite and the long checks still need a run. Resume each with the settled pantheon: re-key on
   the hand-made gods, keep the domain tables as a fallback only, finish the checks and report.
+  **Then (the same day):** the player approved the nine, renamed Dearest to Undertow, and asked for the full
+  implementation, first with a text-only gods menu. Then they withdrew it: "the gods should also feel like an ominous
+  presence ... a sort of storyteller style aspect of the game ... not in a way that I see what's going on or can, read
+  about it". The rule is in CLAUDE.md and docs/design/gods.md, "The gods are unseen".
+  - Building: the core rework (the nine as defs, the generated pantheon retired, the Gods page and the gods' Almanac
+    page removed, the hands in events as people's words, cryptic cards).
+  - Resumed on the nine and on the rule: on the map, and the world.
+  - Worship waits for a slot.
   Mods suggested to the player for the gods (11 November 2026, by the new rule in CLAUDE.md "Name mods that would
   help"; their 1.7 status to be checked on the Workshop): Forest Gods (3263099058: a white stag's ritual, bear and deer
   gods; 1.6), Dragon's Descent (2026992161; 1.6), Weapons of the Gods (Continued) (1.6). Not suggested: Call of Cthulhu
