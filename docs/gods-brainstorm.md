@@ -1,5 +1,8 @@
 # Gods in Rimfolk: a first brainstorm (11 November 2026)
 
+> **Superseded.** The first brainstorm. The gods are now the nine of `docs/gods-pantheon-brainstorm.md`, under the
+> rules at the end of `docs/design/gods.md`. Kept for the ideas about weight, sound and the machinery.
+
 The player: "the concept of gods within RimWorld ... like a pantheon of gods ... Maybe some nature or animal god could
 also be actually on the map, or like a god that is acting like a guest and then reveal himself and have some humanoid
 form ... that they actually are and interact and are into the lore and get referred to, and pawns react to gods ... I'm

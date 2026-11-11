@@ -1,5 +1,18 @@
 # Gods: the design (11 November 2026)
 
+> **Read this first (11 November 2026).** Most of this file describes the first design: a generated pantheon from
+> Ideology's deities, domain patrons ("the Storm-father", "the Ferryman"), and a Gods page. All of that is retired.
+> What holds now:
+> - the nine of `docs/gods-pantheon-brainstorm.md` (Hollin, Smoulder, Bellwether, Morel, Ennu, Pip, Cirrus, Hush,
+>   Undertow);
+> - the sections at the end of this file: "The nine ... the contract for the rework", "The gods are unseen" and "The
+>   colony's book".
+>
+> The parts in between are kept for the machinery they describe (favour as hidden state, realness, the presence's look
+> and moment, the stage 2 parts). Wherever they show the player a god's favour, symbol, name label or rules, the later
+> sections overrule them.
+
+
 The player's words, in order:
 1. "the concept of gods within RimWorld ... like a pantheon of gods ... Maybe some nature or animal god could also be
    actually on the map, or like a god that is acting like a guest and then reveal himself and have some humanoid form ...
