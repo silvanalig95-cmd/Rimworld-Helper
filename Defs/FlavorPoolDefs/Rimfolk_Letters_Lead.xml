@@ -12,6 +12,8 @@
     tale, rd:boast for a raider's boast of what they did to the colony. A sermon's names zeal:crank for a writer of the
     fringe. Lines are chosen like any part of a letter (their side theirs or ours, register, address, motive, age w:...,
     speech olde, u:none, sv:...). A line that says {TOWN} is home is tagged theirs; the colony's own are tagged ours.
+    empire for an Empire writer; fam:new, fam:familiar, fam:close, fam:cooled by the correspondence's stage
+    (Letters/LetterThreadMath.cs), so a piece comes in as a stranger's, an old friend's or a cooled one's would.
   -->
   <ColonyCouncil.FlavorPoolDef>
     <defName>Rimfolk_Pool_LetterLead</defName>
@@ -158,6 +160,64 @@
         <li>[lk:diary,warmly,lk:lead] I write a little every night. Here is what this week looked like, more or less.</li>
         <li>[olde,lk:diary,lk:lead] I have copied out some days from my book, that thou mayst see how we live.</li>
         <li>[sv:ancient,lk:diary,lk:lead] Some entries from my journal, from the last few days. You will find them dull. So did I, and I have had practice.</li>
+
+        <!-- ================= Round 2, part 2: lead-ins and lines after, by how well they know each other ================= -->
+        <li>[lk:story,lk:lead,fam:familiar|fam:close] You know me well enough by now to know I cannot write a letter without a story in it. Here is this one's.</li>
+        <li>[lk:story,lk:lead,fam:new,theirs] Since we do not know each other yet, let me tell you a story of {TOWN}; it will tell you more than I could.</li>
+        <li>[lk:poem,lk:lead,fam:familiar|fam:close] You have put up with my verses before, so here is another.</li>
+        <li>[lk:poem,lk:lead,fam:new] I hope you will forgive a stranger a verse.</li>
+        <li>[lk:recipe,lk:lead,fam:familiar|fam:close] I have been meaning to send you this for a long while. Here it is at last.</li>
+        <li>[lk:riddle,lk:lead,fam:familiar|fam:close] A riddle, because you strike me as someone who likes one, and because I have run out of excuses not to.</li>
+        <li>[lk:diary,lk:lead,fam:close] I am sending you a page of my days, because you are the one person who would read it.</li>
+        <li>[olde,lk:story,lk:lead,fam:familiar|fam:close] Thou knowest me well enough to know I cannot write a letter but there be a tale in it. Here is this one's.</li>
+        <li>[lk:story,lk:after,fam:familiar|fam:close,theirs] There. Now you know one more thing about us than anyone outside {TOWN} does.</li>
+        <li>[lk:poem,lk:after] That is all of it. It is better read aloud, if you can bear to.</li>
+        <li>[lk:sermon,lk:after] I have said my piece. I will not say it again unless you ask.</li>
+        <li>[lk:raid,lk:after,rd:now,theirs] I have written it down so that it is written somewhere outside {TOWN}. Keep it.</li>
+        <li>[lk:chronicle,lk:after] That is the news. The sheet will be wrong about some of it, as always.</li>
+        <li>[lk:recipe,lk:after] If it goes wrong, it is the oven. It is always the oven.</li>
+        <li>[olde,lk:poem,lk:after] There, that is all of it. It is better sung, if thou canst bear it.</li>
+
+        <!-- ================= Round 2, part 2: a raid on their road, and the colony's own attack ================= -->
+        <li>[lk:raid,rd:now,rd:road,theirs,lk:lead] Our road has been dangerous lately, and you should know how dangerous, since your letters travel it.</li>
+        <li>[lk:raid,rd:now,rd:you,theirs,lk:lead] I will not shout. I will only tell you what it was like on the other side of your attack.</li>
+        <li>[olde,lk:raid,rd:now,rd:road,theirs,lk:lead] There hath been trouble upon our roads, and thou shouldst know it, for thy letters travel them.</li>
+
+        <!-- ================= Round 2, part 2: a tribe's, the medieval, the machine ages' ================= -->
+        <li>[lk:story,lk:lead,w:tribal] This is a story the old ones tell when the fire is low. I tell it to you now.</li>
+        <li>[lk:poem,lk:lead,w:tribal] Here is a song of ours. Sing it at your fire, if you have one.</li>
+        <li>[lk:chronicle,lk:lead,w:tribal] Here is our season, as it was told at the fire.</li>
+        <li>[lk:recipe,lk:lead,w:tribal] The grandmother says I must send you this, so here it is.</li>
+        <li>[lk:riddle,lk:lead,w:tribal] The children made me promise to send you a riddle.</li>
+        <li>[lk:diary,lk:lead,w:tribal] Here are some of my days, as I would tell them at the fire.</li>
+        <li>[olde,lk:poem,lk:lead] I have made some verses, and thou shalt have them whether thou wilt or no.</li>
+        <li>[olde,lk:sermon,lk:lead] Bear with me, friend, for I would speak of holy things.</li>
+        <li>[olde,lk:recipe,lk:lead] Thou didst never ask, but here is how we make it.</li>
+        <li>[olde,lk:riddle,lk:lead] Here is a riddle to pass a winter's night.</li>
+        <li>[olde,lk:diary,lk:lead] I send thee some pages of my days, such as they are.</li>
+        <li>[olde,lk:chronicle,lk:lead,theirs] Here followeth the crier's roll of {TOWN}, as it was cried this quarter.</li>
+        <li>[olde,lk:account,lk:lead] Here is the reckoning, set down fair.</li>
+        <li>[olde,lk:petition,lk:lead,theirs,k:request] The folk of {TOWN} have set their names to this, and I send it on.</li>
+        <li>[lk:chronicle,lk:lead,w:spacer] Attaching this cycle's bulletin, printed, since I know you prefer paper.</li>
+        <li>[lk:diary,lk:lead,w:spacer] Attaching some log entries. Personal ones. Do not tell anyone I keep a personal log.</li>
+
+        <!-- ================= Round 2, part 2: strange voices ================= -->
+        <li>[sv:machine,lk:recipe,lk:lead] ATTACHED: ONE (1) PROCEDURE. HUMANS REPORT IT AS PLEASANT.</li>
+        <li>[sv:machine,lk:diary,lk:lead] ATTACHED: EXCERPTS FROM THIS UNIT'S LOG, SELECTED FOR RELEVANCE AND, THIS UNIT IS TOLD, CHARM.</li>
+        <li>[sv:machine,lk:riddle,lk:lead] QUERY FOLLOWS. YOU MAY ATTEMPT AN ANSWER.</li>
+        <li>[sv:green,lk:poem,lk:lead] We grew you a song.</li>
+        <li>[sv:green,lk:recipe,lk:lead] You asked nothing, but we will tell you how we eat.</li>
+        <li>[sv:beast,lk:recipe,lk:lead] You two-legs like to know how things are eaten. Here.</li>
+        <li>[sv:beast,lk:diary,lk:lead] Some of our days, by nose.</li>
+        <li>[sv:hive,lk:poem,lk:lead] The many made a hum for you.</li>
+        <li>[sv:hive,lk:sermon,lk:lead] The many believe. Here is how.</li>
+        <li>[sv:deep,lk:riddle,lk:lead] A question, from below.</li>
+        <li>[sv:deep,lk:poem,lk:lead] A song we heard through the floor of the world.</li>
+
+        <!-- ================= Round 2, part 2: the court's lead-ins ================= -->
+        <li>[lk:story,lk:lead,empire] A story of the court, which I may tell you because it is not mine.</li>
+        <li>[lk:poem,lk:lead,empire] A piece of court verse, as it is sung at the long table when the wine has gone round.</li>
+        <li>[lk:diary,lk:lead,empire] A page of my days at court, which are less splendid than you might imagine.</li>
       </plain>
     </lines>
   </ColonyCouncil.FlavorPoolDef>

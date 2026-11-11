@@ -14,7 +14,8 @@
     - A riddle (ri:riddle), whole, its answer after ~~ (kept, and given in the writer's next letter's P.S.); the line
       that the answer comes next time (ri:later); the P.S. that gives it (ri:answer, {ANSWER}).
     Chosen like any part of a letter (side, register, motive, age w:..., speech olde, u:none, sv:...). The unschooled
-    lines' misspellings are deliberate.
+    lines' misspellings are deliberate. Recipes in sv:machine, sv:green and sv:beast; riddles in sv:fey, sv:ancient,
+    sv:machine and sv:deep (each with its own ri:later and ri:answer).
   -->
   <ColonyCouncil.FlavorPoolDef>
     <defName>Rimfolk_Pool_LetterSet</defName>
@@ -132,6 +133,128 @@
         <li>[olde,ri:answer] The answer to my riddle, if thou hast not found it: {ANSWER}</li>
         <li>[sv:fey,ri:answer] The riddle's answer, given as promised: {ANSWER}</li>
         <li>[sv:ancient,ri:answer] The answer to the riddle, as undertaken: {ANSWER}</li>
+
+        <!-- ================= Round 2, part 2: petitions ================= -->
+        <li>[pe:body,theirs,k:request,w:tribal] All the people of {TOWN} have put their marks here, by the fire, in the ash. We ask {COLONY} for {GOODS}. The children are thin. We would not ask for ourselves.</li>
+        <li>[pe:body,theirs,k:request,olde,grave] Unto the good folk of {COLONY}, the humble petition of the people of {TOWN}, being in sore need:\n\nThat it may please {COLONY} to spare us {GOODS} in this hard season, for which the petitioners shall ever be grateful, and shall remember it at every board.\n\nGiven under our hands, such as can write, and our marks, such as cannot.</li>
+        <li>[pe:body,theirs,k:request,w:spacer] Formal request, {TOWN} to {COLONY}. Subject: {GOODS}. Urgency: real.\n\nSignatories below, in the order they reached the terminal.</li>
+        <li>[pe:body,theirs,k:request,u:none] we all of us at {TOWN} want {GOODS} plese. we put our names. sum of us put marks. one put a drawing of a pig, ignore him</li>
+        <li>[pe:body,ours,help,olde] We of {COLONY}, being in need, beseech our friends of {TOWN} for {HELP}, and set our names hereunder, every one, that it may be known how many shall remember it.</li>
+
+        <!-- ================= Round 2, part 2: lists and accounts, by the peoples' callings ================= -->
+        <li>[ac:item,their:traders] Wagons out: six. Wagons back: five. The sixth is somewhere between here and the coast, having a wonderful time, presumably.</li>
+        <li>[ac:item,their:scholars] Books catalogued: three hundred. Books found misfiled while cataloguing: three hundred and one.</li>
+        <li>[ac:item,their:salvagers] Salvage hauled this month: four tons of something. Identified: a ton and a half. The rest is under discussion.</li>
+        <li>[ac:item,their:crew] Hull plates replaced: twelve. Hull plates still needing replacement: all the others.</li>
+        <li>[ac:item,their:drillers] Holes drilled: nine. Holes with anything at the bottom: two. Holes with water: one. Holes with a hat in: one. We are looking into the hat.</li>
+        <li>[ac:item,their:linesmen] Masts climbed: thirty. Masts climbed twice because somebody forgot the wrench: eleven.</li>
+        <li>[ac:item,their:herders] Goats counted at dawn: forty. Goats counted at dusk: forty-one. We are not asking questions.</li>
+        <li>[ac:item,their:citizens] Motions proposed: forty. Motions passed: two. Motion to stop proposing motions: tabled.</li>
+        <li>[ac:item,their:vaultfolk] Days since the door opened: more than we expected. Days spent going back inside because outside is too big: fewer each month.</li>
+        <li>[ac:item,their:mechanitors] Mechs maintained: all of them. Mechs that seem to enjoy it: one, possibly.</li>
+        <li>[ac:item,their:seers] Storms foretold: eleven. Storms that came: nine. Storms that came without being foretold, and were rude about it: two.</li>
+        <li>[ac:item,their:tamers] Bouts in the ring: twenty. Bouts won by the beast: twelve. Bouts won by the beast's dignity: all of them.</li>
+        <li>[ac:item,their:healers,olde] Item: bandages rolled, two hundred; bandages lost, a hundred and ninety, and none can say whither.</li>
+        <li>[ac:item,their:pilgrims,olde] Item: pilgrims lodged this season, forty; pilgrims that paid, three; pilgrims that prayed for us, forty, which is better coin.</li>
+        <li>[ac:item,their:fishers,olde] Item: fish taken, a great many; fish that got away, a greater many, by every account given at the inn.</li>
+        <li>[ac:item,their:hunters,olde] Item: lanterns trimmed and lit, every night of the year. Item: things seen beyond the lantern, which we list not.</li>
+        <li>[ac:item,their:sextons,olde] Item: bells rung for the dead, nine; for weddings, four; for the miller's name-day, once, by mischance, and none will let him forget it.</li>
+        <li>[ac:item,their:artisans,olde] Item: pots thrown, eighty; pots fired whole, sixty; pots the kiln-master holdeth worthy of the mark, nine.</li>
+        <li>[ac:item,olde] Item: one cow, being of a contrary mind. Item: one plough, being broken. Item: one ploughman, being much aggrieved.</li>
+        <li>[ac:head,olde] The reckoning, as it standeth:</li>
+        <li>[ac:item,w:tribal] Skins cured: many. Skins traded: some. Skins the dogs got to first: one, and the dogs are very pleased.</li>
+        <li>[ac:item,w:tribal] Arrows made: two hands. Arrows lost in the long grass: one hand. The grass is richer than we are.</li>
+        <li>[ac:end,their:scholars] Errors in this account: to be corrected in the next account, which will contain new errors.</li>
+        <li>[ac:end,w:tribal] That is the count, as near as the fingers go.</li>
+        <li>[ac:end,olde] Thus standeth the reckoning, and woe to them that dispute it.</li>
+        <li>[ac:item,u:none] fings we got: a pig a nife and sum rope. fings we need: evryfing els</li>
+
+        <!-- ================= Round 2, part 2: recipes and remedies ================= -->
+        <li>[rc:recipe,olde] Pottage, as my grandam made it.\n\nTake whatsoever is in the garden, and a bone if thou hast one, and set it all in the great pot with water and a fistful of barley. Let it sit at the back of the fire from matins till vespers. Stir it when thou passest, and not else. Salt at the end, never the beginning, for so the old wives say, and the old wives have outlived all that doubted them.</li>
+        <li>[rc:recipe,olde,!p:sober] A posset, for one that hath taken cold.\n\nHeat milk till it trembleth, but let it not boil. Pour in ale, a cup to the pint, and stir with a stick of cinnamon if thou hast such, or a clean spoon if thou hast not. Honey to taste. Drink it abed, and pull up the coverlet, and let none speak to thee till morning.</li>
+        <li>[rc:recipe,olde] Frumenty, for a feast day.\n\nWheat, cracked and soaked a night. Boil it in milk till it be soft and thick. Stir in two eggs, beaten, and a little saffron if thou art rich, which thou art not, so leave it out. Serve hot with venison if thou art rich, which, again. Serve it with bread.</li>
+        <li>[rc:recipe,olde,help,medicine] For a fever, when there is no physic to be had.\n\nSteep willow bark in hot water till it be brown and bitter, and give a cup at morn and eve. Keep the sick one warm and give them drink, much drink. Cool cloths upon the brow. Sit by them. Most fevers break upon the third night, and the sitting is half the cure.</li>
+        <li>[rc:recipe,their:fishers,olde] Fish smoked the river way.\n\nGut thy fish and split them, and lay them in brine the length of a sermon, a short one. Hang them in the smoke-house over a fire of green wood, slow, two days and a night. They will be the colour of an old saddle and keep till spring. All thou ownest will smell of them. That is the price.</li>
+        <li>[rc:recipe,their:healers,olde,help,medicine] For a cough that will not leave, from the Order's book.\n\nHoney and hot water, and a sprig of {PLANT} steeped in it. A spoon of it every hour the sick one waketh. Keep them from the smoke and from the cold air at night. Prayer will not hurt, the Order saith, but neither will the honey.</li>
+        <li>[rc:recipe,w:tribal] Pemmican, as the old ones make it.\n\nDry the meat in strips over a slow fire until it snaps. Pound it to dust between two stones. Melt the fat and pour it in, with berries if the berries are ripe. Press it into the skin bag and tie it. It will keep longer than you will, and taste better than it looks, which is not difficult.</li>
+        <li>[rc:recipe,w:tribal] Ash cakes, for the trail.\n\nMeal and water and a pinch of salt, worked into flat cakes on a warm stone. Bury them in the hot ashes, not the coals, and count a long song. Dig them out and knock the ash off. Eat them walking. Everyone does.</li>
+        <li>[rc:recipe,w:tribal,help,medicine] For a wound, when the medicine is gone.\n\nChew {PLANT} until it is soft and lay it on the wound. Bind it with a clean strip of hide. Change it at sunrise and sunset. Keep the wounded one still, and sing to them, because the singing keeps them still. It mends slowly, but it mends.</li>
+        <li>[rc:recipe,their:herders] Herder's cheese, quick.\n\nWarm the milk by the fire until it is as warm as a hand. Stir in a spoon of sour whey from the last batch. Wait until it sets. Cut it, salt it, hang it in a cloth from the tent pole. If the dog gets to it first, start again, and tie it higher.</li>
+        <li>[rc:recipe,w:industrial] Tinned stew, improved.\n\nOpen two tins of stew and pour them into a pan. Add an onion, browned first, and whatever is wilting in the cupboard. A spoon of mustard. A splash of the strong tea from the bottom of the pot. Heat until it bubbles. It will still taste of tins, but now it tastes of tins that are trying.</li>
+        <li>[rc:recipe,w:industrial] Coffee, the way the night shift makes it.\n\nFill the pot with grounds until you are ashamed, then add one more spoon. Water just off the boil. Let it stand while you find a clean cup, which will take long enough. Drink it standing. Do not ask the night shift how they sleep. They do not.</li>
+        <li>[rc:recipe,w:spacer] Hydroponic salad, for those who have forgotten what a leaf is.\n\nTake whatever came up green in the tanks this week. Rinse it twice, once for dirt and once for luck. Tear, do not cut; the tank-keeper insists. Oil, salt, a little vinegar from the ration store. Eat it slowly and look out of a window. It helps to look out of a window.</li>
+        <li>[rc:recipe,their:crew] Galley coffee, from the old ship's book.\n\nOne measure of grounds for each of the crew, and one for the pot. Boil it, which every cook in the world will tell you not to do. Boil it anyway; the ship's book says so, and the ship's book has never been wrong about coffee, only about everything else.</li>
+        <li>[rc:recipe,sv:machine] PROCEDURE: TOAST.\n\nSTEP 1: OBTAIN BREAD.\nSTEP 2: APPLY HEAT. DURATION: UNTIL GOLDEN.\nSTEP 3: OBSERVE. DO NOT LOOK AWAY. THE TRANSITION FROM GOLDEN TO BLACK TAKES 11 SECONDS.\nSTEP 4: BUTTER.\nNOTE: THIS UNIT HAS COMPLETED THE PROCEDURE 4,012 TIMES. SUCCESS RATE: IMPROVING.</li>
+        <li>[rc:recipe,sv:machine] PROCEDURE: TEA, OPTIMISED.\n\nWATER: 100 DEGREES. LEAVES: 2.5 GRAMS. STEEP: 4 MINUTES. MILK: OPTIONAL, BUT THE HUMANS BECOME DISTRESSED IF IT GOES IN FIRST.\nTHIS UNIT DOES NOT DRINK TEA. THIS UNIT MAKES IT VERY WELL.</li>
+        <li>[rc:recipe,sv:green] Rain soup.\n\nTake one bucket. Put it out under the sky. Wait for rain. Wait longer. Add one handful of good soil and one warm afternoon. Do not stir. Stand in it, if you are like us. If you are not like us, we are told this recipe is less useful to you. We are sorry. It is our favourite.</li>
+        <li>[rc:recipe,sv:green] Compost, the right way.\n\nEverything that was alive, in a heap. Turn it when the moon is full. Water it when it is thirsty. Leave it alone the rest of the time; it is busy. In a season it will be the best thing you have ever made, and it will not look like it, and that is the lesson.</li>
+        <li>[rc:recipe,sv:beast] Find the meat. Smell it. If it smells right, eat it. If it smells wrong, give it to the young ones; they will eat anything.\n\nThat is the whole of it. You two-legs put fire on everything. We have tried it. It is not bad. It is not better.</li>
+        <li>[rc:recipe,sv:beast] Bone broth, for a cold den.\n\nThe bones from the hunt, cracked. Water from the stream. A hot stone dropped in, and another, and another, until it steams. Lap it while it is hot. Then lie close together. The broth is half of it. The lying close is the other half.</li>
+
+        <!-- ================= Round 2, part 2: riddles (the riddle ~~ its answer) ================= -->
+        <li>[ri:riddle] The more you take, the more you leave behind. ~~ Footsteps.</li>
+        <li>[ri:riddle] I have a neck but no head, and I wear a cap. ~~ A bottle.</li>
+        <li>[ri:riddle] What has a bed but never sleeps, and a mouth but never eats? ~~ A river.</li>
+        <li>[ri:riddle] I am always in front of you and can never be seen. ~~ Tomorrow.</li>
+        <li>[ri:riddle] What can fill a room but takes up no space? ~~ Light.</li>
+        <li>[ri:riddle,!w:tribal] What has hands but cannot clap? ~~ A clock.</li>
+        <li>[ri:riddle] What goes up but never comes down? ~~ Your age.</li>
+        <li>[ri:riddle] What belongs to you, but others use it more than you do? ~~ Your name.</li>
+        <li>[ri:riddle,olde] What hath roots that none see, is taller than trees, up, up it goeth, and yet never groweth? ~~ A mountain.</li>
+        <li>[ri:riddle,olde] Thirty white horses upon a red hill; now they champ, now they stamp, now they stand still. ~~ Teeth.</li>
+        <li>[ri:riddle,olde] A box without hinges, key or lid, yet golden treasure inside is hid. ~~ An egg.</li>
+        <li>[ri:riddle,olde] The more thou hast of it, the less thou seest. ~~ Darkness.</li>
+        <li>[ri:riddle,olde] What walketh on four legs at morn, on two at noon, and on three at eve? ~~ One of us: a babe that crawleth, a grown body that walketh, and an old one with a staff.</li>
+        <li>[ri:riddle,w:tribal] I fly without wings and cry without eyes, and wherever I go the dark follows me. ~~ A storm cloud.</li>
+        <li>[ri:riddle,w:tribal] I am the old one's beard and the young one's blanket, and I fall without hurting anyone. ~~ Snow.</li>
+        <li>[ri:riddle,w:tribal] What walks with the hunter and cannot be caught? ~~ The hunter's shadow.</li>
+        <li>[ri:later,w:tribal] When your words come back to our fire, I will tell you.</li>
+        <li>[sv:fey,ri:riddle] What do you give us that you never miss, and we keep forever? ~~ Your name, if you are careless. Be careful.</li>
+        <li>[sv:fey,ri:riddle] Ring of mushrooms, ring of stone, ring of dancers: which ring has no end? ~~ All of them. That is what a ring is for.</li>
+        <li>[sv:ancient,ri:riddle] I was young once, then old, then young again, and I am none of those now. ~~ The moon. I have watched it do this some forty thousand times.</li>
+        <li>[sv:ancient,ri:riddle] What do the dead keep that the living lose? ~~ Their opinions. Mine have been very stable.</li>
+        <li>[sv:machine,ri:riddle] QUERY: WHAT HAS ONE STATE WHEN OBSERVED AND ANOTHER WHEN NOT? ~~ THE CAT. THIS UNIT HAS BEEN MONITORING THE CAT.</li>
+        <li>[sv:machine,ri:riddle] QUERY: WHAT INCREASES WHEN SHARED AND DECREASES WHEN HOARDED? ~~ INFORMATION. ALSO SOUP.</li>
+        <li>[sv:machine,ri:riddle] QUERY: I HAVE A FACE AND TWO HANDS AND NO ARMS. WHAT AM I? ~~ A CLOCK. THIS UNIT FINDS THE CLOCK RELATABLE.</li>
+        <li>[sv:machine,ri:later] ANSWER: TO BE TRANSMITTED IN THE NEXT CORRESPONDENCE.</li>
+        <li>[sv:machine,ri:answer] THE ANSWER TO THE PREVIOUS QUERY: {ANSWER}</li>
+        <li>[sv:deep,ri:riddle] What is below the below? ~~ Us. Waiting. Kindly.</li>
+        <li>[sv:deep,ri:riddle] Answer this: what shape has a door that opens inward, from the other side? ~~ The shape of you, listening.</li>
+        <li>[sv:deep,ri:later] The answer comes later. Everything comes later.</li>
+        <li>[sv:deep,ri:answer] The answer, from below: {ANSWER}</li>
+
+        <!-- ================= Round 2, part 2: more riddles, recipes and accounts ================= -->
+        <li>[ri:riddle] What has an eye but cannot see? ~~ A needle.</li>
+        <li>[ri:riddle] I go round the house and in the house, but never touch the house. ~~ The sun.</li>
+        <li>[ri:riddle,!w:tribal] What can travel all round the world while staying in a corner? ~~ A stamp.</li>
+        <li>[ri:riddle] The more of me there is, the less you see. ~~ Fog.</li>
+        <li>[ri:riddle] What breaks but never falls, and what falls but never breaks? ~~ Day breaks and night falls.</li>
+        <li>[ri:riddle,w:spacer] I have no body, but I can be heard across the stars, and I vanish when you answer. ~~ A signal.</li>
+        <li>[ri:riddle,olde] What is it that the more thou takest from it, the greater it groweth? ~~ A hole.</li>
+        <li>[ri:riddle,w:tribal] What runs all day and never tires, and lies down at night in the same bed? ~~ The river.</li>
+        <li>[ac:head] What we have, more or less:</li>
+        <li>[ac:item] Candles: enough for a month, if nobody reads in bed. Somebody reads in bed.</li>
+        <li>[ac:item] Chickens: eleven. Eggs: nine. One of the chickens is not pulling her weight, and we know which.</li>
+        <li>[ac:item] Firewood: stacked to the eaves on the north side, and to the knee on the south, because the south side was stacked by the children.</li>
+        <li>[ac:item] Owed to us: two sacks of grain, a favour, and an apology. The grain seems likeliest.</li>
+        <li>[ac:item] Owed by us: rather more than the above.</li>
+        <li>[ac:item,season:winter] Blankets: one each, two for the old ones, three for whoever complains loudest.</li>
+        <li>[ac:end] There. Now you know more about our stores than our own steward does.</li>
+        <li>[rc:recipe] Bread, for those afraid of bread.\n\nFlour, water, salt, and a spoon of last week's dough. Mix it with your hands until your hands are tired. Leave it under a cloth near the fire until it doubles, which it will, whatever you have done wrong. Bake it hot. Burn the first loaf; everyone does. The second will be the best thing you have eaten all week.</li>
+        <li>[rc:recipe] Onion soup, for a cold evening.\n\nSlice more onions than seems reasonable and cook them slowly in butter until they are brown and sweet and the whole house has given up resisting. Add water or stock, salt, and a crust of old bread. Simmer. Eat it with the person who chopped the onions, as an apology for the crying.</li>
+        <li>[rc:recipe,help,medicine] For a burn, when there is nothing better.\n\nCool water over it, for a long while, longer than they will want. Never butter, whatever the old ones say. Cover it loosely with clean cloth, and keep it clean. Honey on it after the first day if you have honey. Watch for heat and redness spreading; if it spreads, they need a proper healer, and quickly.</li>
+
+        <!-- ================= Round 2, part 2: a few more recipes and riddles ================= -->
+        <li>[rc:recipe,olde] Oat cakes, for the road.\n\nOatmeal and a little salt, and water hot enough to make thee wince. Work it to a paste and flatten it thin upon the griddle. Turn it once, and never twice. They keep a fortnight in thy pack and taste of it.</li>
+        <li>[ri:riddle,olde,!w:tribal] I am the beginning of eternity, the end of time and space, the beginning of every end, and the end of every place. ~~ The letter e.</li>
+        <li>[rc:recipe,w:tribal] Fish baked in clay.\n\nWrap the fish in leaves and then in river clay, thick as your thumb. Put it in the coals and forget it while a story is told. Crack the clay with a stone. The skin comes away with it, and what is left is the best fish you will ever eat with your fingers.</li>
+        <li>[ri:riddle,w:tribal] What can you catch but never throw? ~~ A cold.</li>
+
+        <!-- ================= Round 2, part 2: an unschooled list ================= -->
+        <li>[u:none,ac:head] wot we got</li>
+        <li>[u:none,ac:item] sords: 3. good sords: 1. the uther 2 are more like sticks</li>
+        <li>[u:none,ac:item] peple in the gang: 9. peple who can rite: me. sort of</li>
+        <li>[u:none,ac:end,!nr:head] thats evryfing. dont tel the boss i counted rong</li>
       </plain>
     </lines>
   </ColonyCouncil.FlavorPoolDef>

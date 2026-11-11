@@ -5,6 +5,16 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## A thousand more letters
+
+*11 November 2026, version 0.212.0*
+
+- About a thousand new lines for letters: more stories, poems, sermons, chronicles, diaries, recipes, riddles and notes.
+- New tales of journeys, contests and feasts, and medieval writers keep to thee and thou in every one.
+- Bandits on the road and your own attacks are told from the other side, as they really happened.
+- Empire nobles send a court gazette and court verse.
+- Androids, beast folk, plant folk, hives and stranger things write poems, recipes, riddles and diaries in their own voice.
+
 ## Old friends by letter
 
 *11 November 2026, version 0.211.0*

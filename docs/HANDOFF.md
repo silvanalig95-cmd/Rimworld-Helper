@@ -71,6 +71,36 @@ tree at once, alongside whatever runs. Each piece is merged as its own release, 
   distance, as the couriers and journeys reckon it), their reading and writing time, and the answer's own road back;
   a refusal or silence is only known when it could be (a returning rider, their courier, or no word by the time an
   answer would have come). Check each against the map: the courier gone off the map is not the letter delivered.
+- 0.212.0, **Letters, content pass 2**
+  (11 November 2026). The second content pass the player asked for with the letter shapes ("i just want a lot of variety,
+  content and interesting writing"; medieval writers in thee and thou, strange races "experimentive with grammar", "how a
+  stupid bandit could not spell words correctly"). DESIGN.md "Letters of many shapes", the bullets "Round 2, part 2" and
+  "The library after part 2"; README "Letters of many shapes"; `docs/design/post-and-letters.md`, round 2, part 2, points
+  31 to 34; the Almanac's neighbours page, "Letters that grow familiar" (a sentence; keywords unchanged).
+  - Pools (about 1,020 lines more; 253 medieval, 47 unschooled, 116 in the strange voices): `_Story` 213 to 395 (themes
+    st:journey, st:contest, st:feast; medieval parts for every theme), `_Poem` 61 to 173, `_Sermon` 62 to 128 (two at
+    least for every meme family), `_Raid` 156 to 234 (`rd:road` and `rd:you` told whole; town-only lines `!rd:road`),
+    `_Chronicle` 115 to 222 (the Empire's gazette; a town sheet's masthead and foot `!empire`), `_Set` 108 to 216,
+    `_Part` 82 to 186 (every calling's pa:life, the medieval ones in olde; the strange voices' days for a diary broken
+    off), `_Lead` 131 to 179, `_Note` 47 to 98, `_Diary` 47 to 122, `_Enclosure` 35 to 88, `_Hands` 38 to 73. Lines may
+    name the stage (`fam:new`, `fam:familiar`, `fam:close`, `fam:cooled`). Each pool's header names its new tags.
+  - Pure: `LetterKindMath.Themes` (+3), `Speeches` opened (Poem: beast, hive, deep; Sermon: hive; Recipe: machine, green,
+    beast; Riddle: machine, deep; Enclosure: green, machine, ancient, hive; Diary: machine, beast, green); a long letter
+    never draws one heading twice. Tests: `LetterShapeTests.PartTwo` (medieval parts for every theme, every calling's days,
+    road and colony-attack raids whole, the Empire's pieces, sermons per meme, the crier's roll and a tribe's season by
+    subject, the stage tags only as the stages, the new strange shapes speaking, no repeated paragraph in a long letter,
+    the library's counts). No game-side change, no new state, no setting.
+  - Not run here: any of it in the game (the pools through the game's picker and memory; a real road raid's and the
+    colony's attack's records; the Empire's writers; the strange races' writers as the player's race mods make them).
+  - Try in the game: 1. Write to a notable of a medieval people until a long letter or a story comes: thee and thou
+    throughout, a tale of a journey, a contest or a feast now and then. 2. Have bandits hit a people's road (a bandit road
+    world event near them) and write to them: their raid account is of wagons on the road, not their walls. 3. Attack a
+    town, then write to its people: an answer may tell, coldly, what your attack was like on their side. 4. Write to an
+    Empire noble: their chronicle comes as the Empire's gazette, their verse as court verse. 5. Write to an android, a
+    beast-folk, plant-folk or hive writer (with the race mods): a machine's recipe or log, a beast's song, a hive's hymn,
+    an eldritch riddle with its answer next time. 6. Write to a raider people's boss: an unschooled boast, misspelt and
+    readable. 7. Keep a correspondence going: the pieces' lead-ins, notes and lines from home warm with it, and cool after
+    a wrong.
 - 0.211.0, **A correspondence that builds up**
   (11 November 2026). The player asked for the held letters work; their to-do (10 November 2026): "continued letter
   exchange should build up, the contents and familiarity between the colony and others should develop and be reflected

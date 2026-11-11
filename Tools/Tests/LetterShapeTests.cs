@@ -50,6 +50,7 @@ public static class LetterShapeTests
         Samples(C, print);
         Seams(root, C);
         Card(root, C);
+        PartTwo(C);
         return n;
     }
 
@@ -141,6 +142,80 @@ public static class LetterShapeTests
                     C(p.tags.Contains("nr:head") && Has(p, "theirs"), "a writer who calls themselves the boss is their head: " + p.text);
                 if (Regex.IsMatch(p.text, @"\bthe boss says\b", RegexOptions.IgnoreCase)) C(p.tags.Contains("!nr:head"), "the boss bid them write: not the head: " + p.text);
             }
+    }
+
+    // ================= Round 2, part 2: the content pass =================
+
+    /// <summary>
+    /// The second content pass (11 November 2026): every story theme in medieval English and plain; the peoples' everyday
+    /// life for every calling; a raid on their road and the colony's own attack told whole; the Empire's gazette and court
+    /// letters; each faith's sermons; the strange voices in the shapes opened to them; the familiarity tags the pieces use
+    /// only the stages'; the library at its new size.
+    /// </summary>
+    private static void PartTwo(Action<bool, string> C)
+    {
+        string Speech(string l) => LetterFormMath.SpeechOf(P(l));
+        foreach (var theme in LetterKindMath.Themes)
+            foreach (var part in new[] { "st:open", "st:turn", "st:end" })
+                C(Lines(LetterPart.Story).Count(l => Has(P(l), theme) && Has(P(l), part) && Speech(l) == LetterFormMath.Olde) >= 2, $"medieval {part} lines for {theme}");
+        // Every people's calling has days of its own in a long letter; a medieval people's in medieval English.
+        var medieval = new[] { "healers", "pilgrims", "hunters", "sextons", "mercenaries", "artisans", "fishers" };
+        foreach (var calling in PeoplesMath.Callings)
+        {
+            var mine = Lines(LetterPart.Part).Where(l => Has(P(l), "pa:life") && Has(P(l), "their:" + calling)).ToList();
+            C(mine.Count >= 1, "everyday life for their:" + calling);
+            if (medieval.Contains(calling)) C(mine.Any(l => Speech(l) == LetterFormMath.Olde), "a medieval people's days in medieval English: " + calling);
+        }
+        // A raid on their road and the colony's own attack, told whole.
+        foreach (var (rec, what) in new[] { ("rd:road", "on their road"), ("rd:you", "by the colony") })
+            foreach (var part in new[] { "rd:come", "rd:stand", "rd:end", "rd:after" })
+                C(Lines(LetterPart.Raid).Count(l => Has(P(l), rec) && Has(P(l), part) && Speech(l) == null) >= 2, $"a raid {what}: {part}");
+        foreach (var end in new[] { "held", "hurt", "sacked", "ongoing", "unknown" })
+            C(Lines(LetterPart.Raid).Any(l => Has(P(l), "rd:road") && Has(P(l), "rd:end:" + end)), "a road's raid that ended " + end);
+        // The Empire's own pieces: its gazette, its court letters' parts, its court verse, its notes.
+        C(Lines(LetterPart.Chronicle).Count(l => Has(P(l), "empire") && Has(P(l), "ch:head")) >= 3 && Lines(LetterPart.Chronicle).Count(l => Has(P(l), "empire") && Has(P(l), "ch:item")) >= 8
+          && Lines(LetterPart.Chronicle).Count(l => Has(P(l), "empire") && Has(P(l), "ch:notice")) >= 3, "the Empire's gazette");
+        C(Lines(LetterPart.Part).Count(l => Has(P(l), "empire")) >= 5 && Lines(LetterPart.Poem).Count(l => Has(P(l), "empire")) >= 6 && Lines(LetterPart.Note).Count(l => Has(P(l), "empire") || Has(P(l), "a:empire")) >= 4,
+            "the Empire's court letters, verse and notes");
+        // Each faith's sermons, by its memes' tags.
+        foreach (var tag in LetterCultureMath.MemeTags.Values.SelectMany(x => x).Distinct())
+            C(Lines(LetterPart.Sermon).Count(l => Has(P(l), tag)) >= 2, "sermons for " + tag);
+        // A long letter never says one paragraph or heading twice, in any speech.
+        foreach (var speech in new[] { null, LetterFormMath.Olde })
+            for (int seed = 0; seed < 150; seed++)
+            {
+                var s = For(LetterKind.Long, speech, WorldAge.Industrial);
+                s.length = LetterLength.Long;
+                if (Make(s, LetterKind.Long, 9000 + seed) == null) continue;
+                C(s.piece.Count == s.piece.Distinct().Count(), "a long letter with a paragraph or heading twice: " + string.Join(" / ", s.piece.GroupBy(x => x).Where(g => g.Count() > 1).Select(g => g.Key)));
+            }
+        // The crier's roll and a tribe's season: an item on most subjects in each.
+        foreach (var (tag, speech, what) in new[] { ((string)null, LetterFormMath.Olde, "the crier's roll"), ("w:tribal", (string)null, "a tribe's season told") })
+        {
+            int subjects = LetterKindMath.Subjects.Count(subj => Lines(LetterPart.Chronicle).Any(l => Has(P(l), subj) && Speech(l) == speech && (tag == null || Has(P(l), tag))));
+            C(subjects >= 12, $"{what} tells of {subjects} subjects");
+        }
+        // The familiarity the pieces read is only the stages' (Letters/LetterThreadMath.cs).
+        var stages = new HashSet<string>(LetterThreadMath.Stages.Select(LetterThreadMath.Tag)) { LetterThreadMath.LongTag };
+        foreach (var (part, line) in All())
+            foreach (var t in P(line).tags)
+                foreach (var a in t.Split('|').Select(x => x.TrimStart('!')).Where(x => x.StartsWith("fam:")))
+                    C(stages.Contains(a), $"a known stage {a}: {P(line).text}");
+        C(All().Count(x => P(x.line).tags.Any(t => t.Contains("fam:"))) >= 25, "pieces that read how well the two know each other");
+        // The strange voices in the shapes opened to them this round.
+        foreach (var (k, voices) in new[] { (LetterKind.Poem, new[] { LetterCultureMath.Beast, LetterCultureMath.Hive, LetterCultureMath.Deep }),
+                     (LetterKind.Recipe, new[] { LetterCultureMath.Machine, LetterCultureMath.Green, LetterCultureMath.Beast }),
+                     (LetterKind.Riddle, new[] { LetterCultureMath.Machine, LetterCultureMath.Deep }),
+                     (LetterKind.Enclosure, new[] { LetterCultureMath.Green, LetterCultureMath.Machine, LetterCultureMath.Ancient, LetterCultureMath.Hive }),
+                     (LetterKind.Diary, new[] { LetterCultureMath.Machine, LetterCultureMath.Beast, LetterCultureMath.Green }),
+                     (LetterKind.Sermon, new[] { LetterCultureMath.Hive }) })
+            foreach (var v in voices)
+                C(LetterKindMath.SpeaksIn(k, v), $"{v} writes {k}");
+        // The library, at its new size (the second content pass, about a thousand lines more).
+        var counts = NewParts.ToDictionary(x => x, x => Lines(x).Count);
+        C(counts[LetterPart.Poem] >= 160 && counts[LetterPart.Sermon] >= 120 && counts[LetterPart.Story] >= 380 && counts[LetterPart.Raid] >= 220 && counts[LetterPart.Chronicle] >= 210
+          && counts[LetterPart.Set] >= 200 && counts[LetterPart.Lead] >= 170 && counts[LetterPart.Part] >= 170 && counts[LetterPart.Diary] >= 110 && counts[LetterPart.Note] >= 90
+          && counts[LetterPart.Enclosure] >= 80 && counts[LetterPart.Hands] >= 70, "the library after the second pass: " + string.Join(", ", counts.Select(kv => kv.Key + " " + kv.Value)));
     }
 
     // ================= Pools and specs =================
@@ -348,7 +423,8 @@ public static class LetterShapeTests
                     C(LetterKindMath.SpeaksIn(k, speech), $"{speech} writes {k} only in its own pieces");
         }
         var hive = Talker(LetterCultureMath.Hive);
-        C(kinds.Where(k => LetterKindMath.Fits(k, hive)).All(k => k == LetterKind.Usual || k == LetterKind.Note || k == LetterKind.Chronicle), "a hive writes a letter, a note or the many's count");
+        C(kinds.Where(k => LetterKindMath.Fits(k, hive)).All(k => k == LetterKind.Usual || k == LetterKind.Note || k == LetterKind.Chronicle || k == LetterKind.Poem || k == LetterKind.Sermon
+                                                       || k == LetterKind.Enclosure), "a hive writes a letter, a note, the many's count, its hum, its creed or what it folds in");
         var some = Talker(LetterFormMath.SomeSchool);
         C(LetterKindMath.Fits(LetterKind.Story, some) && LetterKindMath.PieceSpeech(LetterFormMath.SomeSchool) == null, "a barely schooled hand writes the plain pieces");
         // The colony's own: a verse from a poet, a zealot's sermon, a note, other hands, an enclosure, the cook's recipe, a petition for help, its own raid.

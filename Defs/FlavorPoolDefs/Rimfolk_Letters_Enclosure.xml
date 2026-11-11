@@ -7,7 +7,8 @@
     {TREE}, {ANIMAL} of the land round their town; theirs); the colony's own only by what the facts say is so at home
     (colony:children for a child's drawing, the season for a flower, colony:harvest for its grain, colony:animals; ours).
     A word of sympathy is tagged condolences, everything else !condolences. Ages: w:tribal, w:industrial, w:spacer,
-    !w:tribal for paper and print. Speech: olde, u:none (misspellings deliberate), sv:fey, sv:beast.
+    !w:tribal for paper and print. Speech: olde, u:none (misspellings deliberate), sv:fey, sv:beast, sv:green, sv:machine,
+    sv:ancient, sv:hive. fam:familiar|fam:close for what only an old friend would fold in.
   -->
   <ColonyCouncil.FlavorPoolDef>
     <defName>Rimfolk_Pool_LetterEnclosure</defName>
@@ -53,6 +54,67 @@
         <li>[sv:fey,en:line] Enclosed: one dewdrop, kept. It may have dried by the time you read this. That is its own kind of message.</li>
         <li>[sv:beast,en:line,!condolences] With this, a scrap of cloth that smells of our den, so you will know us when we meet.</li>
         <li>[sv:beast,en:line,!condolences] With this, a tooth, from the last hunt. It is lucky. We are sure of it.</li>
+
+        <!-- ================= Round 2, part 2: what the peoples fold in ================= -->
+        <li>[en:line,theirs,!condolences,their:scholars] Enclosed: an index card from the archive, cross-referencing you. You are filed under Correspondents, Pleasant, and also, by a clerical error, under Weather.</li>
+        <li>[en:line,theirs,!condolences,their:traders] Enclosed: a price list, out of date, because it is always out of date by the time it reaches anyone. Use it to haggle.</li>
+        <li>[en:line,theirs,!condolences,their:salvagers] Enclosed: a small gear from something we pulled out of the ground. We have no idea what it did. It seemed like the kind of thing you would like.</li>
+        <li>[en:line,theirs,!condolences,their:crew] Enclosed: a hull rivet, polished. Everyone of the crew carries one. You are not crew, but you are close enough to carry a spare.</li>
+        <li>[en:line,theirs,!condolences,their:seers] Enclosed: the tower's forecast for your country for the next month. It is probably wrong. It is beautifully drawn.</li>
+        <li>[en:line,theirs,!condolences,their:linesmen] Enclosed: a length of the old wire, braided into a ring. The linesmen make them in the long nights on the masts.</li>
+        <li>[en:line,theirs,!condolences,their:drillers] Enclosed: a little bottle of oil from the first gusher of the season. It is meant to be lucky. It is mostly sticky.</li>
+        <li>[en:line,theirs,!condolences,their:vaultfolk] Enclosed: a picture of the sky. We take a great many of them. We are still not used to it.</li>
+        <li>[en:line,theirs,!condolences,their:tamers] Enclosed: a ribbon from the ring, won by a beast who did not care for it at all.</li>
+        <li>[en:line,theirs,!condolences,their:grovekeepers] Enclosed: a seed from the oldest tree in our grove. Plant it where it can grow for a hundred years, and then do not cut it.</li>
+        <li>[en:line,theirs,!condolences,their:herders] Enclosed: a twist of wool from the first shearing, still smelling of sheep. You will not need to be told which sheep.</li>
+        <li>[en:line,theirs,!condolences,their:editors] Enclosed: a seed, edited. It should come up {PLANT}, more or less. Report back.</li>
+        <li>[en:line,theirs,!condolences,their:listeners] Enclosed: a slip of paper with the hum written on it, as near as it can be written. Read it aloud at night. Or do not.</li>
+        <li>[olde,en:line,theirs,!condolences,their:pilgrims] Herewith a pilgrim's badge from the shrine, of pewter, a little bent from the road.</li>
+        <li>[olde,en:line,theirs,!condolences,their:healers] Herewith a little bag of dried {PLANT}, for the stomach-ache, which the Order sendeth to all its friends.</li>
+        <li>[olde,en:line,theirs,!condolences,their:artisans] Herewith a shard of our best glaze, that thou mayst see the colour, and it beareth the mark.</li>
+        <li>[olde,en:line,theirs,!condolences,their:hunters] Herewith a feather from the lantern-post, where the owls sit and keep watch with us.</li>
+        <li>[olde,en:line,theirs,!condolences,their:sextons] Herewith a pressed flower from the bell-yard, where the quiet ones sleep. They will not mind.</li>
+        <li>[olde,en:line,theirs,!condolences,their:fishers] Herewith a fish-hook of bone, of the old making, for luck upon the water.</li>
+        <li>[olde,en:line,theirs,!condolences,their:mercenaries] Herewith a copper token of the Banner, such as is given to friends of the company. Show it at our camp, and thou shalt be fed.</li>
+        <li>[olde,en:line,theirs,!condolences] Herewith a sketch of our hall, done by one that thinketh themself a limner. The door is wrong. The rest is near enough.</li>
+        <li>[en:line,theirs,!condolences,w:tribal,fam:familiar|fam:close] With this, a string of beads from the river, one for each moon since your words first came.</li>
+        <li>[en:line,theirs,!condolences,w:tribal] With this, something the {ANIMAL} left behind on the trail, found, not taken. We do not take them.</li>
+        <li>[en:line,theirs,!condolences,w:tribal] With this, a little bundle of sweet grass, braided. Burn a strand when the house feels heavy.</li>
+        <li>[en:line,theirs,!condolences,w:spacer] Enclosed: a data chip with the night sky from our roof, recorded from dusk to dawn. It is mostly dark. The good part is near the end.</li>
+        <li>[en:line,theirs,!condolences,w:industrial] Enclosed: a postcard of {TOWN} from the printer's, showing the main street on a sunny day, which it has had at least once.</li>
+        <li>[en:line,theirs,condolences] Enclosed: a candle from our shrine, lit once for your loss and put out, so that you can light it again yourselves.</li>
+        <li>[en:line,theirs,condolences,w:tribal] With this, a little ash from our fire, where we sang for your dead.</li>
+        <li>[en:line,theirs,!condolences,fam:familiar|fam:close] Enclosed: a copy of one of your letters, which I copied out because I wore the first one through. You will not need it. I wanted you to know.</li>
+        <li>[en:line,theirs,!condolences,fam:close] Enclosed: a key to the gate at {TOWN}. You know where we are. Come.</li>
+        <li>[en:line,ours,!condolences,fam:close] Enclosed: a little drawing of our gate, so that when you finally come you will know it from the others.</li>
+        <li>[en:line,ours,!condolences,season:autumn] Enclosed: a leaf from the first tree to turn here this year. We argued about which tree. This one won.</li>
+        <li>[en:line,ours,!condolences,season:winter] Enclosed: nothing, because the thing I meant to enclose was snow, and I have learned that it does not travel.</li>
+        <li>[en:line,ours,!condolences,colony:harvest] Enclosed: a twist of seed from our harvest, the best of it, for your own fields if you want it.</li>
+
+        <!-- ================= Round 2, part 2: strange voices' enclosures ================= -->
+        <li>[sv:green,en:line,!condolences] Enclosed: a seed. It is one of our cousins. Please plant it somewhere with afternoon light. It will write to you in its own way.</li>
+        <li>[sv:green,en:line,!condolences] Enclosed: a leaf. It was ours. Now it is yours. That is what leaves are for.</li>
+        <li>[sv:machine,en:line,!condolences] ATTACHMENT: ONE (1) PRESSED FLOWER. THIS UNIT WAS INFORMED THAT HUMANS ENJOY THESE. THIS UNIT HAS PRESSED IT VERY FLAT.</li>
+        <li>[sv:machine,en:line,!condolences] ATTACHMENT: ONE (1) DRAWING OF THIS UNIT, BY A CHILD. ACCURACY: LOW. THIS UNIT HAS KEPT THE ORIGINAL AND SENDS A COPY.</li>
+        <li>[sv:ancient,en:line,!condolences] Enclosed: a coin from a kingdom that no longer exists. I was at its founding and at its end. The coin outlasted both, as coins do.</li>
+        <li>[sv:ancient,en:line,!condolences] Enclosed: a letter I wrote two hundred years ago to someone who died before it arrived. I thought it deserved a reader at last.</li>
+        <li>[sv:hive,en:line,!condolences] With this, one cell of our comb, empty, cleaned. Hold it to your ear. That is what home sounds like.</li>
+        <li>[sv:hive,en:line,!condolences] With this, a wax token. Every one of us touched it. It is warm from all of us.</li>
+        <li>[sv:beast,en:line,!condolences] With this, a pine cone the young ones played with all evening. They want you to have it. It is slightly chewed.</li>
+        <li>[sv:fey,en:line,!condolences] Enclosed: three hairs from a unicorn, or a horse; the light was poor. Keep them anyway. Keep them under your pillow, and dream sideways.</li>
+
+        <!-- ================= Round 2, part 2: more folded in ================= -->
+        <li>[en:line,theirs,!condolences] Enclosed: half a recipe card, the other half having been eaten. You may guess the rest.</li>
+        <li>[en:line,theirs,!condolences] Enclosed: a lucky stone with a hole in it, which you look through to see things as they really are. I have looked. Things are much the same.</li>
+        <li>[en:line,theirs,!condolences,!w:tribal] Enclosed: a button, which came off my coat while I was writing this, and which I am sending on rather than sewing back, out of laziness and affection.</li>
+        <li>[en:line,theirs,!condolences] Enclosed: a feather the children found and insisted be sent to you in particular. They would not say why.</li>
+        <li>[en:line,theirs,!condolences,season:spring] Enclosed: the first flower of the spring here, which by rights should be on someone's table, and is instead on its way to yours.</li>
+        <li>[en:line,theirs,!condolences,season:winter,!w:tribal] Enclosed: a paper snowflake, cut by the youngest here. It is a very square snowflake.</li>
+        <li>[en:line,ours,!condolences] Enclosed: a sketch of the view from our gate, so you can picture where these letters come from. The hill is smaller in life.</li>
+        <li>[en:line,ours,!condolences,colony:children] Enclosed: a drawing by one of our children of what they think {TOWN} looks like. You have, apparently, a castle and a dragon.</li>
+
+        <!-- ================= Round 2, part 2: an unschooled enclosure ================= -->
+        <li>[u:none,en:line,!condolences] i put a nife in. its not a thret its a present. its a good nife</li>
       </plain>
     </lines>
   </ColonyCouncil.FlavorPoolDef>

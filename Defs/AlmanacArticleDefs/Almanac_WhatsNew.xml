@@ -31,6 +31,19 @@ When you load a save after an update, a letter lists the newest round once. The 
     <rounds>
 
       <li>
+        <version>0.212.0</version>
+        <date>11 November 2026</date>
+        <title>A thousand more letters</title>
+        <points>
+          <li>About a thousand new lines for letters: more stories, poems, sermons, chronicles, diaries, recipes, riddles and notes.</li>
+          <li>New tales of journeys, contests and feasts, and medieval writers keep to thee and thou in every one.</li>
+          <li>Bandits on the road and your own attacks are told from the other side, as they really happened.</li>
+          <li>Empire nobles send a court gazette and court verse.</li>
+          <li>Androids, beast folk, plant folk, hives and stranger things write poems, recipes, riddles and diaries in their own voice.</li>
+        </points>
+      </li>
+
+      <li>
         <version>0.211.0</version>
         <date>11 November 2026</date>
         <title>Old friends by letter</title>

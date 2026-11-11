@@ -14,7 +14,8 @@
     at their town. Slots: {ANIMAL}, {ANIMALS}, {PLANT}, {TREE} from the land round them, {DEITY} their faith's god,
     {TOWN} (tagged theirs), {COLONY} for the colony's own poet (tagged ours). A poem says nothing that happened: it is a
     song. Medieval English (olde) keeps to thee and thou; u:none is an unschooled ditty, its misspellings deliberate;
-    sv:fey, sv:green, sv:machine, sv:ancient sing in their own way.
+    sv:fey, sv:green, sv:machine, sv:ancient, sv:beast, sv:hive, sv:deep sing in their own way. empire for a court's verse
+    (an Empire writer); fam:new, fam:familiar, fam:close by the correspondence's stage.
   -->
   <ColonyCouncil.FlavorPoolDef>
     <defName>Rimfolk_Pool_LetterPoem</defName>
@@ -96,6 +97,142 @@
         <li>[sv:machine,po:verse,!condolences] VERSE 1 OF 1.\nTHE SUN ROSE AT 0613.\nIT WAS ADEQUATE.\nI OBSERVED IT FOR FOURTEEN MINUTES,\nWHICH WAS NOT REQUIRED.</li>
         <li>[sv:machine,po:verse,light] ATTEMPT 7 AT RHYME:\nTHE RAIN FALLS ON THE ROOF.\nTHE ROOF IS WATERPROOF.\nTHIS IS BOTH A FACT AND PROOF.\nI AM TOLD THIS SOUNDS ALOOF.</li>
         <li>[sv:ancient,po:song] In the old tongue this was sung at the turning of the year, and took a night to sing. I give you the last verse only, which is the part everyone remembered.\n\nLet the cold come; it has come before.\nLet the dark come; it has gone before.\nWe are still at the table.\nPour.</li>
+
+        <!-- ================= Round 2, part 2: laments ================= -->
+        <li>[po:lament,grave,!len:short] Lay the tools down by the door,\nthe ones the hands won't need;\nthe seed is in, the field is sown,\nand someone else will weed.\n\nHang the coat upon the peg\nwhere it has always hung;\nwe'll leave it there a little while,\nthe way a song is left unsung.\n\nAnd when the spring comes up the lane\nwith all its noise and green,\nwe'll say the name out loud, and then\nwe'll do the things between.</li>
+        <li>[po:lament,grave] The kettle sings, the bread still bakes,\nthe sun comes up the same;\nthe whole world goes about its work\nand never learns the name.</li>
+        <li>[po:lament,grave,w:tribal] We sang your name to the river,\nand the river carried it on;\nwe sang your name to the fire,\nand the fire burned until dawn.\n\nGo where the old ones are walking,\nwhere the grass is long and the herds are near;\nleave a track at the edge of the morning,\nand we will follow, but not this year.</li>
+        <li>[po:lament,grave,w:spacer] We sent you up in the shuttle's fire,\nthe old way, the ship way, the way of the crew;\nthe stars didn't notice, the stars never do,\nbut we did, and we do.</li>
+        <li>[po:lament,grave,w:industrial] The whistle blew at the end of the shift\nand everyone came up but one;\nwe stood in the yard with our caps in our hands\nand waited, and the waiting's not done.</li>
+        <li>[po:lament,grave,their:herders] The herd went up to the high grass\nwithout you walking at the back;\nthe old cow stopped at the bend of the hill\nand looked for you along the track.</li>
+        <li>[po:lament,grave,empire] The banners hang at half the mast\nin every hall of the court;\nthe heralds read the titles out,\nand the list is one name short.</li>
+        <li>[olde,po:lament,grave] Now is the candle burnt away\nthat lit thee to thy bed;\nnow is the long day done, and we\nmust tell it to the dead.\n\nWe keep thy chair beside the hearth,\nthy cup upon the shelf;\nand if we weep, forgive us that:\nthou wouldst have wept thyself.</li>
+        <li>[olde,po:lament,grave,theirs] The bells of {TOWN} rang slow and low\nfor one that we did love;\nthe rooks went up, the rain came down,\nthe grey sky hung above.\n\nGo softly, friend, the road is long\nand thou art weary-shod;\nwe'll walk with thee unto the gate\nand lay thee in the sod.</li>
+        <li>[olde,po:lament,grave] Here lieth one that mended nets\nand would not mend a quarrel;\nwho never won a single race,\nand never wanted laurel.</li>
+        <li>[olde,po:lament,grave,their:fishers] The river took thee in the dark\nand gave thee back at morn;\nwe laid thee on the landing stage\nwhere first thy boat was borne.\n\nSleep, waterman, the tide is out,\nthe nets are hung to dry;\nthe river saith thy name each night,\nand so, each night, do I.</li>
+        <li>[u:none,po:lament,grave] we put him in the ground\nand sed sum wurds\nnot good wurds\nbut the best we had</li>
+
+        <!-- ================= Round 2, part 2: drinking songs ================= -->
+        <li>[po:drinking,light,!p:sober,!condolences,w:industrial|w:spacer] Here's to the boss, who is out of the room,\nhere's to the foreman, who's out of his head,\nhere's to the shift that is over at last,\nand here's to the morning, which waits by the bed.</li>
+        <li>[po:drinking,light,!p:sober,!condolences,w:spacer] One for the hull and one for the drive,\none for the stars that we left behind,\none for the planet that kept us alive,\nand one for the cook, because she's been kind.</li>
+        <li>[po:drinking,light,!p:sober,!condolences,w:tribal] Pass the skin, the berry wine is sweet,\nthe fire is high, the drums are at our feet;\ntomorrow we hunt and tomorrow we roam,\nbut tonight the hill is home.</li>
+        <li>[po:drinking,light,!p:sober,!condolences,c:highlife] Pour the good bottle, the one that we keep,\nthe night is too young to be wasted on sleep;\nlet the wise ones be wise and the sober ones stand,\nwe'll be wise in the morning, with heads in our hands.</li>
+        <li>[olde,po:drinking,light,!p:sober,!condolences] Bring in the jug and set it down,\nthe frost is on the thatch;\nthe miller's drunk, the reeve's in town,\nand none will mind the latch.\n\nSo drink to thee and drink to me,\nand drink to all the rest,\nand last of all unto the cask\nthat we do love the best.</li>
+        <li>[olde,po:drinking,light,!p:sober,!condolences] Ale for the reaper and mead for the bride,\nwine for the friar, who saith he hath none;\nwater for horses, and all for the guest,\nand naught for the tax-man till all the work's done.</li>
+        <li>[u:none,po:drinking,light,!p:sober,!condolences,!nr:head] drink up drink up\nthe ale is free\nwell it isnt\nbut dont tel the boss</li>
+
+        <!-- ================= Round 2, part 2: hymns, by the writer's faith ================= -->
+        <li>[po:hymn,c:pious,!condolences] {DEITY}, who keeps the lamps alight\nwhen all the world goes dark,\nkeep watch upon the road tonight\nand on the ones who walk.\n\nAnd if we stray, as strays the sheep,\nand if we fall, as falls the rain,\nbe patient with us while we sleep,\nand wake us up again.</li>
+        <li>[po:hymn,c:pious,!condolences] Morning, and the light comes in\nthrough the gap above the door;\nwe did not earn it, did not ask,\nand it comes in, as before.\n\nEvening, and the light goes out\nbehind the hill and down the lane;\nwe thank it for the day it gave,\nand trust it will come back again.</li>
+        <li>[po:hymn,c:nature,!condolences] Old tree, older than our names,\nwe come to you with open hands;\nwe take the fallen, not the green,\nand leave the root where the root stands.\n\nRain on the leaf and rain on the stone,\nrain on the ones who are not yet grown;\nwe are the guests, and you are the hall,\nand the hall was here before us all.</li>
+        <li>[po:hymn,c:transhuman,!condolences] Blessed be the steady hand\nthat sets the wire beneath the skin;\nblessed be the better eye\nthat lets the farther light come in.\n\nThe flesh is clay, and clay will crack,\nthe bone is chalk, and chalk will wear;\nbut we were made to make ourselves,\nand what we make, we can repair.</li>
+        <li>[po:hymn,c:martial,!condolences,!p:sober] Raise the shield and raise the song,\nthe hall is warm, the night is long;\nthe ones who fell are at the board\nwith a cup in the hand that held the sword.\n\nWe'll join them when the time has come,\nnot before, and not from fear;\ntill then we keep the fire lit\nand drink to them, and drink to here.</li>
+        <li>[po:hymn,c:together,!condolences] Many hands beneath one roof,\nmany mouths around one pot;\nwhat one has, the many have,\nand what one lacks, the many not.\n\nSing it at the long table,\nsing it in the furrowed field:\nnone of us is fed till all are,\nand that is how a town is healed.</li>
+        <li>[po:hymn,c:pain,!condolences] The cold is a teacher, the thorn is a friend,\nthe long road a sermon that comes to no end;\nwe bless what is bitter, we bless what is hard,\nfor the soft things forget us, and the hard things keep guard.</li>
+        <li>[po:hymn,c:dark,!condolences] Put out the lamp, the dark is kind,\nit asks for nothing, hides the scars;\nthe eye that's closed can learn to find\nwhat's lost in all the glare of stars.</li>
+        <li>[po:hymn,c:sea,!condolences] Tide come in and tide go out,\ntake the boat and bring it back;\nwe are yours beyond a doubt,\nwhether the net is full or slack.\n\nWater give and water take,\nwater keep us in your hand;\nall we are is for your sake,\nand what we are is not of land.</li>
+        <li>[po:hymn,c:herd,!condolences] Bless the herd that walks before us,\nbless the dog that walks behind;\nbless the grass that waits up yonder,\nbless the weather, if it's kind.</li>
+        <li>[po:hymn,c:peace,!condolences] Lay the spear across the door\nand let it gather dust;\nthe hand that never strikes a blow\nis the hand that we can trust.</li>
+        <li>[po:hymn,c:tunnel,!condolences] Down in the deep where the roots come through,\nwhere the stone is warm and the dark is true,\nwe dig and we sing and the mountain hears,\nand it keeps us safe, as it has for years.</li>
+        <li>[po:hymn,w:tribal,!condolences] Spirit of the long grass,\nspirit of the stone,\nwe have taken only what was given,\nwe have left the rest alone.</li>
+        <li>[olde,po:hymn,c:pious,!condolences] At matins, when the cock doth crow,\nand vespers, when the light is low,\nwe lift our hands, we bend the knee,\nand ask a blessing upon thee.</li>
+        <li>[olde,po:hymn,c:pious,!condolences] O {DEITY}, keep the harvest dry,\nand keep the river in its bed;\nkeep wolf from fold and hawk from sky,\nand give us each our daily bread.</li>
+
+        <!-- ================= Round 2, part 2: the Empire's court verse ================= -->
+        <li>[po:verse,empire,!condolences] In the white halls where the fountains play\nand the floors are older than the sun,\nwe bow at the turning of every day\nto the one who is owed by everyone.\n\nAnd I, who am small in the long parade,\na name on a scroll in a gilded case,\nwould trade the whole of the court's brocade\nfor an hour of the road to your gate, and your face.</li>
+        <li>[po:verse,empire,!condolences] Honour is a heavy coat;\nit keeps the cold off, keeps you straight,\nit fits too tight across the throat,\nand someone else decides its weight.</li>
+        <li>[po:song,empire,!condolences] Sing of the Stellarch, sing of the throne,\nsing of the stars that the Empire has known;\nsing of the knights who have knelt in the hall,\nand sing very softly: the walls hear it all.</li>
+        <li>[po:ballad,empire,!condolences,!len:short] There was a knight of little land\nand less of anything,\nwho bowed so well, and kissed so well,\nthe hand of every king.\n\nHe bowed his way to baronet,\nhe bowed his way to count,\nand every bow went in a book,\nand every book went to account.\n\nAnd when at last they made him duke\nhe found, to his surprise,\nthat all the bows were owed to him,\nand none would meet his eyes.</li>
+
+        <!-- ================= Round 2, part 2: medieval ballads and songs ================= -->
+        <li>[olde,po:ballad,!condolences,!len:short] The ferryman's daughter of the ford\nwas fairer than the morn,\nand every lad on either bank\nwould cross, and be forlorn.\n\nFor she would take thy penny, aye,\nand take thee o'er the stream,\nbut not a word nor smile at all\nfor any lad's sweet dream.\n\nTill came a tinker, deaf and old,\nthat could not hear her scorn,\nand talked the whole way over-stream\nof kettles, and of corn.\n\nAnd now they keep the ferry both,\nand quarrel night and morn,\nand she is happy as a lark,\nand he hath never sworn.</li>
+        <li>[olde,po:ballad,!condolences,!len:short] Old Wat the ringer rang the bell\nfor births and deaths and weddings too,\nand rang it loud for those he loved,\nand soft for those he never knew.\n\nHe rang for lords, he rang for thieves,\nhe rang for any that would pay,\nand rang it twice for the miller's goat\nthat wandered home on Lammas day.\n\nAnd when Old Wat lay down at last\nand none was left that knew the rope,\nthe bell rang once, all by itself,\nand all the town looked up in hope.</li>
+        <li>[olde,po:ballad,!condolences,!len:short] There is a lantern at the cross\nwhere the four roads meet the wood,\nand one keeps watch beneath it still,\nas the Wardens always should.\n\nAnd if thou comest late at night\nwith something at thy back,\nrun to the light, and do not turn,\nand do not leave the track.\n\nFor what is in the wood is old,\nand what is by the lamp is older;\nand one of them would eat thee whole,\nand one will set thee on its shoulder.</li>
+        <li>[olde,po:ballad,!condolences,!len:short] The lord came down to count his sheep\nand found one sheep a goat;\nhe had it seized, he had it tried,\nhe had it read a note.\n\nThe goat it ate the note, my lord,\nit ate the lord's own seal,\nit ate the hem of the judge's gown\nand half the judge's meal.\n\nAnd now it standeth in the hall\nwith ribbons on its horn:\nthe only beast in all the shire\nthat hath a pardon sworn.</li>
+        <li>[olde,po:ballad,!condolences] She waited at the orchard wall\nthe whole of the apple year;\nhe went to the wars with a borrowed horse,\na promise, and a spear.\n\nThe apples budded, the apples fell,\nthe apples went to cider;\nhe came back home with a wooden leg,\na wife, and a horse beside her.</li>
+        <li>[olde,po:song,!condolences,their:pilgrims] We walk, we walk, the road is long,\nthe shrine is far away;\nwe sing the same four lines of song\nfrom dawn to close of day.\n\nAnd when we reach the shrine at last\nand kneel upon the stone,\nwe find we walked the whole way there\nto learn we're not alone.</li>
+        <li>[olde,po:song,!condolences,their:healers] Bring the sick and bring the lame,\nbring the ones that have no name;\nwe ask no coin and ask no creed,\nwe ask but this: what dost thou need?</li>
+        <li>[olde,po:song,!condolences,their:sextons] Ring for the morning, ring for the dead,\nring for the bride and the bridal bed;\nring for the stranger that came to the town,\nring for us all when the sun goeth down.</li>
+        <li>[olde,po:war,!condolences,their:mercenaries] Sign thy name upon the roll\nand take thy silver, take thy pike;\nthe Banner payeth on the nail,\nand the Banner's dead are all alike.\n\nWe'll write thee down if thou shouldst fall\nin the long book with the rest;\nthe Banner never loseth a name,\nand that is what the Banner doth best.</li>
+        <li>[olde,po:work,!condolences,their:artisans] Clay on the wheel and fire in the kiln,\nmark on the bottom and glaze on the brim;\nit leaveth our hands and it goeth abroad,\nbut the mark saith whose, and the mark is our word.</li>
+        <li>[olde,po:verse,!condolences,season:autumn] The leaves are down, the barns are full,\nthe swallows gone to warmer lands;\nI write to thee by candlelight\nwith cold and ink upon my hands.</li>
+        <li>[olde,po:verse,!condolences,fam:familiar|fam:close] I keep thy letters in a chest\nthat held my grandam's wedding thread;\nit shutteth with a little sound,\nlike one that goeth up to bed.</li>
+        <li>[olde,po:nonsense,light,!condolences,theirs] There was a monk of {TOWN}\nthat kept a hen in his hood;\nshe laid an egg at every prayer,\nwhich all agreed was good.</li>
+
+        <!-- ================= Round 2, part 2: short verses ================= -->
+        <li>[po:verse,!condolences,season:autumn] The geese went over in the night;\nI heard them, though I could not see;\nthey called and called the whole way south,\nas if they meant the call for me.</li>
+        <li>[po:verse,!condolences,season:winter] The snow has made the town a page\nthat no one's written on as yet;\nthe children will be out by noon\nto fill it up, and get it wet.</li>
+        <li>[po:verse,!condolences,season:summer] The bees are drunk on the lime tree,\nthe dog is asleep in the road;\nthe whole of the day is a slow thing,\nand nobody's carrying a load.</li>
+        <li>[po:verse,!condolences,season:spring,light] Mud to the ankle, mud to the knee,\nlambs in the yard and a frog in the tea;\nspring has come back like a cousin who stays,\ntoo loud and too muddy, and we've missed her for days.</li>
+        <li>[po:verse,!condolences,fam:familiar|fam:close] I keep your letters in a box\nthat used to hold my mother's thread;\nit closes with a little click,\nlike someone going up to bed.</li>
+        <li>[po:verse,!condolences,fam:new] To someone I have never met:\nthe road is long, the ink is wet;\nI do not know your face or name,\nbut here's a verse for you all the same.</li>
+        <li>[po:verse,!condolences,w:spacer] Up there the ships go over slow,\nsilver needles on the blue;\nsomeone up there is writing home,\nand someone down here's writing too.</li>
+        <li>[po:verse,!condolences,w:industrial] The mill-race runs, the engines hum,\nthe stacks put out their smoky thread;\nthe whole town works the whole night through\nso that the whole town can be fed.</li>
+
+        <!-- ================= Round 2, part 2: work songs, war songs, nonsense ================= -->
+        <li>[po:work,!condolences,their:drillers] Down goes the bit and up comes the mud,\nup comes the water and up comes the crud;\ndown goes the pay and up go the bills,\nand round goes the wheel in the Deepwell hills.</li>
+        <li>[po:work,!condolences,their:linesmen] Climb the mast and mind the wire,\nmind the wind and mind the rust;\nsomeone down the line is talking,\nand the line's the line we trust.</li>
+        <li>[po:work,!condolences,w:tribal] Stone on stone and seed between,\ngrind it fine and grind it clean;\nthe sun is high, the work is long,\nso the stone gets half the song.</li>
+        <li>[po:war,!condolences,c:martial] Stand in the line and lock the shield,\nthe one beside you is the field;\nif that one falls, then you stand twice,\nand that is all of the advice.</li>
+        <li>[po:war,!condolences,c:raider] Over the hill when the moon is gone,\ndown on the wagons before the dawn;\ntake what is heavy and leave what is slow,\nand be over the hill before the cocks crow.</li>
+        <li>[po:nonsense,light,!condolences] The mayor of the moon came down for tea\nand sat on the cat, who objected;\nhe drank all the milk and he ate all the bread\nand left rather sooner than expected.</li>
+        <li>[po:nonsense,light,!condolences] A pig in a hat and a cow in a coat\nwent sailing away in a leaky boat;\nthey sailed for a week and they sailed for a day,\nand they're sailing still, or so the pigs say.</li>
+        <li>[u:none,po:song,!condolences,!nr:head] oh the boss is a big man\nand the boss has a big hat\nand the boss is in the kichen\nand thats the end of that</li>
+
+        <!-- ================= Round 2, part 2: the peoples' own songs ================= -->
+        <li>[po:song,!condolences,their:crew] Hold the line and hold the deck,\nthe ship is old, the ship's a wreck;\nbut every bolt is one we know,\nand someday, someday, up we go.</li>
+        <li>[po:song,!condolences,their:seers,light] Red at morning, glass is low,\nwind from the west and rain to follow;\nthe tower sees what the sky will do,\nand tells the town, and the town says: so?</li>
+        <li>[po:song,!condolences,their:traders] Silk for the city and salt for the hills,\niron for anyone paying the bills;\nthe road is long and the profit is thin,\nbut the wagon goes out and the wagon comes in.</li>
+        <li>[po:song,!condolences,their:tamers] Gentle the beast with a hand on the flank,\ngentle the beast with a word;\nthe ring is the place where the two of you learn\nwhich one of you's going to be heard.</li>
+        <li>[po:song,!condolences,their:salvagers] Rust on the wheel and rust on the hull,\nnothing is empty and nothing is full;\nwhat the old world dropped, the Wheel picks up,\nand somebody drinks from a stranger's cup.</li>
+        <li>[po:song,!condolences,their:listeners] Hush, the Spire is humming low,\nsomething in it wants to know;\nwe sit and listen, row on row,\nand some of us hear, and some of us go.</li>
+        <li>[po:song,!condolences,their:vaultfolk] The door came open after all those years,\nand the sun came in like a shout;\nwe'd learned every song for the dark inside,\nand none for the world without.</li>
+        <li>[po:song,!condolences,their:scholars,light] Shelve it, label it, file it away,\ncross-reference everything said today;\nsomewhere a fact is beginning to fade,\nso copy it twice, and be very afraid.</li>
+        <li>[po:song,!condolences,their:citizens] For the Republic, the bread and the vote,\nthe meeting that ran till the moon was afloat;\nwe argued all night and we voted at dawn,\nand nobody won, but the motion went on.</li>
+        <li>[po:song,!condolences,their:grovekeepers] For every tree that falls, a seed;\nfor every seed, a hand;\nfor every hand, a year of rain,\nand then a tree will stand.</li>
+        <li>[po:song,!condolences,their:mechanitors] Many hands and one mind,\nmany treads and one road;\nthe Lattice hums and the Lattice thinks,\nand none of us carries the load.</li>
+        <li>[po:song,!condolences,their:editors] Change the code and change the skin,\nchange the light the eye lets in;\nwhat you were born is where you start,\nand not the whole of the art.</li>
+
+        <!-- ================= Round 2, part 2: strange voices ================= -->
+        <li>[sv:fey,po:song,!condolences] By leaf, by string, by the hour of dew:\nwe made a song, and it is for you.\nIt has no end, so we stop it here,\nand it goes on singing for a year.\nBy dew, by string, by the leaf: it is true.</li>
+        <li>[sv:fey,po:verse,!condolences] Count the mushrooms in the ring:\none for a wish and two for a king,\nthree for a debt that is never paid,\nfour for the bargain you never made.</li>
+        <li>[sv:fey,po:lament,grave] By ash and by ember, by the last of the light:\none of the ring has gone out of the ring.\nWe dance with a gap in the circle tonight.\nBy the light, by the ember, by ash: we sing.</li>
+        <li>[sv:green,po:lament,grave] One of us has gone to the soil.\nThis is not sad,\nwe tell ourselves,\nslowly,\nall season.</li>
+        <li>[sv:green,po:song,!condolences,season:spring] Up. Up.\nThe frost has let go of the root.\nUp. Up.\nThe light has come back for us.\nWe have waited all winter to say this:\nup.</li>
+        <li>[sv:machine,po:lament,grave] RECORD OF LOSS.\nUNIT COUNT: ONE FEWER.\nTHIS UNIT HAS RUN THE NUMBERS SEVERAL TIMES.\nTHEY DO NOT IMPROVE.\nEND OF VERSE.</li>
+        <li>[sv:machine,po:song,!condolences,light] SONG, ATTEMPT 12:\nLA.\nLA.\nLA IS A NOTE. I AM TOLD THERE ARE OTHERS.\nI AM SAVING THEM.</li>
+        <li>[sv:ancient,po:verse,!condolences] I wrote this in a language that has died.\nI have translated it for you, badly.\nIt says: the river does not remember the boat,\nbut the boat remembers the river.\nIt rhymed, once.</li>
+        <li>[sv:ancient,po:lament,grave] I have buried friends in eleven centuries.\nIt does not get easier.\nIt gets quieter.\nI have mistaken the quiet for easier, more than once.</li>
+        <li>[sv:beast,po:song,!condolences] Moon up.\nNose up.\nThe whole pack sings,\nnot well,\nbut all at once,\nwhich is the point.</li>
+        <li>[sv:beast,po:lament,grave] One track stops at the river.\nWe walk up and down the bank,\nall night,\nsmelling for the other side.</li>
+        <li>[sv:hive,po:song,!condolences] We hum.\nThe cells hum.\nThe queen hums.\nThe hum is the song.\nThe song is us.</li>
+        <li>[sv:hive,po:lament,grave] One cell is quiet.\nWe hum around it.\nWe will hum around it\nfor a long time.</li>
+        <li>[sv:deep,po:verse,!condolences] Below the floor of the sea is a floor.\nBelow that floor, a door.\nTo the door we sing.\nThe door, it sings back, more.</li>
+
+        <!-- ================= Round 2, part 2: more short verses, and the court's ================= -->
+        <li>[po:verse,!condolences] A letter is a slow thing,\nit walks the road on someone's feet;\nit stops at inns and takes the rain,\nand when it comes, it comes complete.</li>
+        <li>[po:verse,!condolences,season:winter] Frost on the window, frost on the pail,\nfrost on the cart in the yard;\nI breathe on the glass and write your name,\nand the name stays there, small and hard.</li>
+        <li>[po:verse,!condolences] The bread is rising, the fire is in,\nthe cat is somewhere she shouldn't be;\nthe whole of the house is a quiet thing,\nand the quietest part of it's me.</li>
+        <li>[po:verse,!condolences,season:spring] The swallows are back in the barn again\nas if they had never been away;\nthey don't explain and they don't apologise,\nwhich I mean to try myself one day.</li>
+        <li>[po:verse,!condolences,season:summer] Long day, short night,\nthe moon just barely in;\nthe whole town sleeps up on the roofs\nand wakes with the sun on its skin.</li>
+        <li>[po:verse,!condolences,w:tribal] The fire is the oldest friend,\nolder than the oldest one;\nit was here before the stories,\nand it listens till they're done.</li>
+        <li>[po:verse,!condolences,w:industrial] The tram goes by at half past eight,\nthe bell rings at the gate,\nand somewhere in the whole machine\nsomeone is writing, late.</li>
+        <li>[po:verse,!condolences,w:spacer] Out past the last of the lit windows\nthe dark goes on for good;\nwe keep a lamp in the end house\nas the old ships said we should.</li>
+        <li>[olde,po:verse,!condolences] A letter is a little road\nthat runneth hand to hand;\nit stayeth not for rain nor snow,\nand cometh where 'tis planned.</li>
+        <li>[olde,po:verse,!condolences,season:spring] The swallows to the barn are come\nas they had never flown;\nthey make no plea, nor tell their way,\nand so the spring is shown.</li>
+        <li>[po:verse,!condolences,empire] The candles burn in the long gallery,\nthe portraits watch the floor;\nI walk the length of it every night\nand think of the world outside the door.</li>
+        <li>[po:song,!condolences,empire,!len:short,light] Sir Tancred went to the Stellarch's ball\nwith a borrowed sword and a borrowed shoe;\nhe bowed to the left, he bowed to the right,\nand he bowed to the punch bowl too.\n\nThey gave him a title, they gave him a hall,\nthey gave him a horse and a seat at the fore;\nand he never once knew what he'd done to deserve it,\nso he went back and bowed some more.</li>
+
+        <!-- ================= Round 2, part 2: more of the peoples' songs ================= -->
+        <li>[po:lament,grave,their:crew] We gave them to the dark the old way,\nwith the ship's book read and the lights turned low;\nthe stars took them in without a word,\nthe way the stars take all we know.</li>
+        <li>[olde,po:lament,grave,their:sextons] Ring once for the cradle and once for the bride,\nand once for the one that is laid to rest;\nthe bell that rang thee into the world\nshall ring thee out of it, and ring it best.</li>
+        <li>[po:hymn,!condolences,their:listeners] Hum of the Spire, low and long,\nfill the empty with your song;\nwe do not know what you are saying,\nbut we stay, and we keep praying.</li>
+        <li>[po:song,!condolences,their:tamers,light] My beast is a terror, my beast is a dream,\nmy beast is a nuisance, my beast is a team;\nwe've been in the ring every day since the spring,\nand my beast has won nothing, and won everything.</li>
+        <li>[olde,po:song,!condolences,their:fishers,light] Row, row, the river is wide,\nand the fish are all on the other side;\nrow, row, the river is long,\nand the fish have heard of us, and are gone.</li>
+        <li>[olde,po:song,!condolences,their:hunters] Trim the lamp and watch the wood,\nthe night is long, the light is good;\nwhat walketh out there walketh slow,\nand keepeth from the lantern's glow.</li>
+
+        <!-- ================= Round 2, part 2: an unschooled raiders' song ================= -->
+        <li>[u:none,po:war,!condolences,c:raider] we are the lads from over the hil\nwe dont pay and we never wil\nwe take wot we like and we like a lot\nand we rote this song. its all we got</li>
       </plain>
     </lines>
   </ColonyCouncil.FlavorPoolDef>

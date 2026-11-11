@@ -5,7 +5,7 @@
     A story told in a letter (Letters/LetterKindMath.cs, Story): a tale of the writer's own town or life, built from parts
     so they combine into many: an opening (st:open), a turn (st:turn) and an ending (st:end) of one theme, then now and
     then a coda (st:moral, or st:joke in a light letter). The themes: st:hunt, st:feud, st:wedding, st:ghost, st:winter,
-    st:storm, st:fair, st:stranger, st:harvest, st:lost. Every opening of a theme must read on into every turn of it, and
+    st:storm, st:fair, st:stranger, st:harvest, st:lost, st:journey, st:contest, st:feast. Every opening of a theme must read on into every turn of it, and
     every turn into every ending: write a part around the theme's shared nouns (the hunters and "the {ANIMAL}", the feud,
     the wedding, the stranger), not around a person introduced in one part only.
 
@@ -16,7 +16,8 @@
     line is tagged theirs). Ages: w:tribal for a tribe's tale as told at the fire; !w:tribal for anything a tribe would not
     have (a mill, a records office, a barn); w:industrial|w:spacer for machines. Speech: olde (medieval English), u:none
     (an unschooled hand, its misspellings deliberate), sv:beast (smells and trails), sv:ancient (the long-lived, over
-    centuries); any other writer draws the plain lines. The next content pass can add themes freely: a new theme needs
+    centuries); any other writer draws the plain lines. A coda tagged by the correspondence's stage (Letters/LetterThreadMath.cs:
+    fam:new, fam:familiar, fam:close) speaks to a new friend or an old one. The next content pass can add themes freely: a new theme needs
     its name in LetterKindMath.Themes and at least one opening, turn and ending in each speech it is written for.
   -->
   <ColonyCouncil.FlavorPoolDef>
@@ -76,7 +77,7 @@
         <!-- ================= The winter ================= -->
         <li>[st:open,st:winter] The old ones here still talk about the winter when the snow came up to the eaves and stayed there until spring.</li>
         <li>[st:open,st:winter] I was a child the year the cold came early, and I still remember the sound the trees made, cracking in the night.</li>
-        <li>[st:open,st:winter,theirs] There was a winter at {TOWN}, before the walls were finished, that people still measure all the others by.</li>
+        <li>[st:open,st:winter,theirs,!w:tribal] There was a winter at {TOWN}, before the walls were finished, that people still measure all the others by.</li>
         <li>[st:open,st:winter,w:tribal] There was a winter so long that the people forgot what green was, and the young ones born that year were named for the snow.</li>
         <li>[st:turn,st:winter] The stores ran low by midwinter, and everyone shared what they had, even the ones who never share anything, and especially them.</li>
         <li>[st:turn,st:winter] Then the {ANIMALS} came down out of the hills, hungry as we were, and for a while nobody went out alone.</li>
@@ -253,6 +254,208 @@
         <li>[sv:ancient,st:end,st:winter] Everyone lived. It was considered a miracle. It was in fact a great deal of soup.</li>
         <li>[sv:ancient,st:end,st:winter] Not all saw the spring. I keep their names in a book, and read them through each midwinter, slowly, in order.</li>
         <li>[sv:ancient,st:moral] I record it here because I have found that nobody else will, and somebody ought to.</li>
+
+        <!-- ================= Round 2, part 2: the journey (st:journey), a trip that went as trips do ================= -->
+        <li>[st:open,st:journey,!w:tribal] One spring a party of ours set off for the big market down the valley, with a cart, a list, and far too much confidence.</li>
+        <li>[st:open,st:journey] Some years back four of our people went to see the sea, because none of them had, and they had heard it was large.</li>
+        <li>[st:open,st:journey,theirs] A few from {TOWN} once walked to the great shrine in the mountains, to give thanks, and to see whether the stories about the road were true.</li>
+        <li>[st:open,st:journey,w:tribal] When I was young, a band of our people walked many days toward the setting sun to the salt flats, to bring back salt for the whole winter.</li>
+        <li>[st:turn,st:journey] On the second day they took a short cut an old woman by the road swore by, and on the fourth day they found her again, by the same road, swearing by it to someone else.</li>
+        <li>[st:turn,st:journey,!w:tribal] Halfway there their cart lost a wheel, and the wheel went down a slope, and three of them went down after it, and only the wheel came back up quickly.</li>
+        <li>[st:turn,st:journey] One night they were taken in by a family who fed them like kings and would not hear of payment, and they still argue about whether that was the best night of the trip or the strangest.</li>
+        <li>[st:turn,st:journey,w:tribal] On the way they met another people going the same way, and walked with them, and traded songs, and by the end nobody could say which songs were whose.</li>
+        <li>[st:end,st:journey] They came home a week late, sunburnt and footsore, with half of what they went for and twice as many stories.</li>
+        <li>[st:end,st:journey] They never got where they were going. They came home anyway, very pleased with themselves, and nobody has ever been able to explain why.</li>
+        <li>[st:end,st:journey] They swore they would never go again. They have gone every year since.</li>
+        <li>[st:end,st:journey,w:tribal] When they came back the whole people came out to meet them, and the story of the road was told that night, and every winter after.</li>
+        <li>[olde,st:open,st:journey] One spring a band of ours set forth for the great market down the valley, with a cart, a list, and over-much confidence.</li>
+        <li>[olde,st:open,st:journey,theirs] Some years agone four from {TOWN} went on pilgrimage to the shrine in the mountains, to give thanks, and to learn if the tales of the road were true.</li>
+        <li>[olde,st:turn,st:journey] Upon the second day they took a short way that an old wife by the road swore by, and upon the fourth they found her again, swearing by it to another.</li>
+        <li>[olde,st:turn,st:journey] One night they were taken in by a household that fed them like lords and would hear naught of payment, and they dispute yet whether that was the best night of the journey or the strangest.</li>
+        <li>[olde,st:end,st:journey] They came home a week late, sunburnt and footsore, with half of what they went for and twice the tales.</li>
+        <li>[olde,st:end,st:journey] They swore never to go again. They have gone every year since.</li>
+
+        <!-- ================= Round 2, part 2: the contest (st:contest), settled the way such things are ================= -->
+        <li>[st:open,st:contest,theirs] Every few years {TOWN} and the next village over hold a tug of war across the stream, for the honour of both and the dryness of one.</li>
+        <li>[st:open,st:contest,!w:tribal] Two of our bakers once fell out over whose bread was better, and the town, which loves bread and loves a quarrel more, decided to settle it with a contest.</li>
+        <li>[st:open,st:contest] One summer someone boasted that they could outrun a horse, and somebody else had a horse, and that was that.</li>
+        <li>[st:open,st:contest,w:tribal] When two of our young hunters both wanted the same honour, the elders said it would be settled by a race to the high rock and back.</li>
+        <li>[st:turn,st:contest] Everyone came to watch, and everyone took a side, and by noon there were more people arguing about the rules than taking part.</li>
+        <li>[st:turn,st:contest] Halfway through it began to rain, which helped one side and not the other, and nobody could agree afterwards which.</li>
+        <li>[st:turn,st:contest] Someone cheated, of course. The trouble was that both sides had, in different ways, so it came out a draw by cheating.</li>
+        <li>[st:turn,st:contest,w:tribal] The old ones watched from the rocks and said nothing, which is how you know they were enjoying it.</li>
+        <li>[st:end,st:contest] In the end it was called a draw, which satisfied nobody, which is the mark of a fair judgement.</li>
+        <li>[st:end,st:contest] The winner was carried round the square on everyone's shoulders, and dropped once, and has never let anyone forget either part.</li>
+        <li>[st:end,st:contest] Nobody remembers who won. Everybody remembers the fight afterwards, and the supper after that, where everyone made up.</li>
+        <li>[st:end,st:contest,w:tribal] The elders gave the honour to both, which is what they always do, and both are still sure it was theirs.</li>
+        <li>[olde,st:open,st:contest,theirs] Every few years {TOWN} and the next village hold a tug of war across the brook, for the honour of both and the dryness of one.</li>
+        <li>[olde,st:open,st:contest] Two of our bakers fell out over whose bread was the better, and the town, that loveth bread and loveth a quarrel more, would have it settled by contest.</li>
+        <li>[olde,st:turn,st:contest] All came to watch, and all took a side, and by noon more were disputing the rules than were in the contest.</li>
+        <li>[olde,st:turn,st:contest] Some cheated, as ever. The trouble was that both sides had, by divers means, and so it was a draw by cheating.</li>
+        <li>[olde,st:end,st:contest] In the end it was called a draw, which pleased none, which is the mark of a just judgement.</li>
+        <li>[olde,st:end,st:contest] The winner was borne round the square upon all shoulders, and let fall but once, and will let none forget either part.</li>
+
+        <!-- ================= Round 2, part 2: medieval storms, fairs and the lost ================= -->
+        <li>[olde,st:open,st:storm] Some years agone the river rose higher than any could remember, and kept on rising.</li>
+        <li>[olde,st:open,st:storm] There was a tempest, some seasons past, that the old folk dispute yet: whether it was the worst they had seen, or but the second.</li>
+        <li>[olde,st:open,st:storm,theirs] One summer the wind came upon {TOWN} so hard that it lifted the roof from the hall and set it down, right gently, in a field.</li>
+        <li>[olde,st:turn,st:storm] All ran to help all, which is the one good thing in a tempest, and for a night none remembered who owed whom.</li>
+        <li>[olde,st:turn,st:storm] In the midst of it one bethought them that the beasts were still abroad, and half the town went out into the dark after them, crying out.</li>
+        <li>[olde,st:turn,st:storm] At its worst, the old sot that sleepeth by the mill began to sing, right loud, and kept on till it was spent, and none had the heart to stay him.</li>
+        <li>[olde,st:end,st:storm] We built again, as we ever do, a little better than before, and a little further from where the trouble came.</li>
+        <li>[olde,st:end,st:storm] At morn the sky was the cleanest blue that ever was, as though naught had passed, and we stood amid the wreck and knew not whether to laugh.</li>
+        <li>[olde,st:end,st:storm] They show the marks of it yet, and the children dare one another to touch them.</li>
+        <li>[olde,st:open,st:fair,theirs] We held our fair at the end of one season, and for three days {TOWN} was twice its size and four times as loud.</li>
+        <li>[olde,st:open,st:fair] A troupe of players came through with music and a tent and a man who swore he could speak with {ANIMALS}.</li>
+        <li>[olde,st:open,st:fair] Each year there is a contest at our fair for the greatest marrow, and each year it maketh more strife than all the rest of the year together.</li>
+        <li>[olde,st:turn,st:fair] Then came rain, and all crowded beneath the one great awning, and someone struck up a song, and the strangers knew the words, which none looked for.</li>
+        <li>[olde,st:turn,st:fair] A cutpurse worked the crowd all the first day, and on the second was taken, and on the third was selling the purses back to their owners at a fair price.</li>
+        <li>[olde,st:turn,st:fair] One was caught hollowing out a rival's marrow and filling it with stones, and the judges sat till midnight upon the matter.</li>
+        <li>[olde,st:end,st:fair] It was a good fair. All say so, which meaneth all have somewhat to complain of, which is how thou knowest.</li>
+        <li>[olde,st:end,st:fair] None made any coin, and all made merry, which the merchants say is the wrong way about.</li>
+        <li>[olde,st:end,st:fair] The strangers departed upon the fourth morn, and the town seemed right quiet and right small, and we all slept a day.</li>
+        <li>[olde,st:open,st:lost,theirs] One of the children was missed at dusk, and all {TOWN} went out with lanterns.</li>
+        <li>[olde,st:open,st:lost] A shepherd went up into the hills after a strayed ewe, and came not back by dark, nor by morn.</li>
+        <li>[olde,st:open,st:lost] Our oldest hound wandered off one autumn, and we gave him up for lost, and the house was right quiet without him.</li>
+        <li>[olde,st:turn,st:lost] We searched all night, calling, and the cold came down hard, and by morn none said what all were thinking.</li>
+        <li>[olde,st:turn,st:lost] The searchers found tracks by the stream, and lost them, and found them again, and fell to disputing whether they were the right tracks.</li>
+        <li>[olde,st:turn,st:lost] Upon the third day one bethought them to follow the crows, which is an old craft, and the crows knew.</li>
+        <li>[olde,st:end,st:lost] Found at the last, asleep in a hollow beneath the {TREE} a mile off, cold and hungry and nowise troubled, and wondering at all the to-do.</li>
+        <li>[olde,st:end,st:lost] Home again, thinner and wiser, and none hath been let out of sight since.</li>
+        <li>[olde,st:end,st:lost] We never found them. We set a lantern burning at the edge of the fields a month. It standeth there yet, though none lighteth it now.</li>
+
+        <!-- ================= Round 2, part 2: a tribe's tales, as told at the fire ================= -->
+        <li>[st:turn,st:storm,w:tribal] The shaman stood out in the wind and sang at it, and the wind sang back louder, and she came inside.</li>
+        <li>[st:end,st:storm,w:tribal] When it passed we found the river had moved in the night, and we moved the camp to follow it, as one does with a friend who wanders.</li>
+        <li>[st:open,st:winter,w:tribal] One winter the snow came before the meat was dried, and the people looked at the sky and then at each other.</li>
+        <li>[st:end,st:winter,w:tribal] When the thaw came, the people walked out onto the soft ground and nobody spoke for a long time, and then everybody spoke at once.</li>
+        <li>[st:turn,st:stranger,w:tribal] The stranger ate with us and slept by our fire and taught the children a game with stones, and still none of us knew a word the stranger said.</li>
+        <li>[st:end,st:stranger,w:tribal] One morning the stranger was gone, and the game with stones is still played here, and nobody remembers that it was ever new.</li>
+        <li>[st:turn,st:harvest,w:tribal] The bears had found the bushes first, and there was a long argument between the people and the bears, which the bears won by being bears.</li>
+        <li>[st:end,st:harvest,w:tribal] We came back with full baskets and purple hands, and the old ones said it was the best gathering since they were small, which they say every year.</li>
+        <li>[st:turn,st:lost,w:tribal] The trackers read the ground the way you read this letter, slowly, and with their lips moving.</li>
+        <li>[st:end,st:lost,w:tribal] Found at the edge of the old hunting grounds, sitting on a rock as if waiting for us, and asking what had kept us.</li>
+        <li>[st:turn,st:ghost,w:tribal] That night the dogs would not lie down, and the fire burned blue at the edges, and the old ones painted the doorways.</li>
+        <li>[st:end,st:ghost,w:tribal] In the morning there was nothing to see but footprints at the edge of the water, going in and not coming out. We do not go there now.</li>
+        <li>[st:turn,st:feud,w:tribal] At the gathering the two hearths sat at opposite ends of the circle, and the whole people watched them instead of the dancing.</li>
+        <li>[st:end,st:feud,w:tribal] In the end they shared a pipe, because the elders made them, and nobody could tell if it took, but the hunting went better after.</li>
+        <li>[st:end,st:hunt,w:tribal] They came back with nothing but a feather, and said the {ANIMAL} had let them see it, which was enough, and the old ones nodded as if that was the right answer.</li>
+        <li>[st:turn,st:wedding,w:tribal] Halfway through the joining {ANANIMAL} came down to drink on the far bank and watched the whole thing, and the elders said it was a blessing, and the young ones said it was thirsty.</li>
+        <li>[st:end,st:wedding,w:tribal] They are joined, and their hearth is warm, and the drums went on so long that the next day was declared a day of sleeping.</li>
+
+        <!-- ================= Round 2, part 2: an unschooled hand's tales (u:none, misspellings on purpose) ================= -->
+        <li>[u:none,st:open,st:fair] wunce ther was a fare and evryone went. me to</li>
+        <li>[u:none,st:turn,st:fair] sumone stole a pig. it wasnt me. i had a pie</li>
+        <li>[u:none,st:end,st:fair] good fare. best one. i dont rember the end of it</li>
+        <li>[u:none,st:open,st:lost,!w:tribal] my brother got lost in the hils wunce</li>
+        <li>[u:none,st:turn,st:lost,!w:tribal] we looked evrywere. we looked in the pub to</li>
+        <li>[u:none,st:end,st:lost,!w:tribal] he was in the pub</li>
+        <li>[u:none,st:open,st:contest] we had a contest who cud eat the most pies</li>
+        <li>[u:none,st:turn,st:contest] i was winning. then i wasnt</li>
+        <li>[u:none,st:end,st:contest] nobody won. evryone was sick. good day tho</li>
+
+        <!-- ================= Round 2, part 2: by smell (sv:beast) and by the centuries (sv:ancient) ================= -->
+        <li>[sv:beast,st:open,st:storm] The wind turned in the night and brought a smell none of us had smelled before: rain, but angry.</li>
+        <li>[sv:beast,st:turn,st:storm] We dug in, tails over noses, and listened to the trees argue with the sky.</li>
+        <li>[sv:beast,st:end,st:storm] In the morning everything smelled new, and the young ones ran and ran and could not stop.</li>
+        <li>[sv:beast,st:open,st:fair] The two-legs held a market below the hill, and the smells came up to us all day: smoke, sugar, sweat, dog.</li>
+        <li>[sv:beast,st:turn,st:fair] Our youngest went down to see. Our youngest came back with a sausage and a ribbon and no explanation.</li>
+        <li>[sv:beast,st:end,st:fair] We do not go to markets. But we lie on the hill when there is one, noses up, and it is nearly as good.</li>
+        <li>[sv:ancient,st:open,st:lost] Four hundred years ago, give or take a decade, a girl of the village went missing in the wood. I was present.</li>
+        <li>[sv:ancient,st:turn,st:lost] The search lasted three days. I remember the lanterns, and the cold, and that her mother would not stop knitting, which I did not understand until much later.</li>
+        <li>[sv:ancient,st:end,st:lost] She came out of the trees on the fourth morning, quite unharmed, and lived to be ninety-one. I went to the funeral. I go to all of them, eventually.</li>
+        <li>[sv:ancient,st:open,st:fair] I have attended, by my count, three hundred and twelve fairs. The one I mean is the one with the bear.</li>
+        <li>[sv:ancient,st:turn,st:fair] The bear was meant to dance. The bear had other plans, and so, it turned out, did the bear's keeper, and so did the pie stall.</li>
+        <li>[sv:ancient,st:end,st:fair] I have forgotten a great many things, as one must. I have not forgotten the bear.</li>
+
+        <!-- ================= Round 2, part 2: codas between those who know each other ================= -->
+        <li>[st:joke,light,fam:familiar|fam:close] You will say I have told you this one before. I have not. I have told you one very like it, which is different.</li>
+        <li>[st:moral,fam:familiar|fam:close] You know me well enough by now to know I will not tell you what it means. Work it out, and write and tell me.</li>
+        <li>[st:joke,light,fam:new] I hope you do not mind a story from a stranger. They are the best kind; you cannot check them.</li>
+        <li>[olde,st:joke,light,fam:familiar|fam:close] Thou wilt say I have told thee this one ere now. I have not. I have told thee one very like it, which is another thing.</li>
+        <li>[olde,st:moral,fam:familiar|fam:close] Thou knowest me well enough to know I will not tell thee what it signifieth. Puzzle it out, and write and tell me.</li>
+
+        <!-- ================= Round 2, part 2: more parts for every theme ================= -->
+        <li>[st:open,st:hunt] Every autumn the young ones swear they will be the ones to bring in the great {ANIMAL} of the hills, and every autumn the old ones let them try.</li>
+        <li>[st:turn,st:hunt] On the second night the {ANIMAL} came right up to their fire, bold as a guest, and ate their supper while they slept, and left the bowl.</li>
+        <li>[st:end,st:hunt] They came home a day late and very quiet, and when we asked, they said they had decided the {ANIMAL} deserved to live, which is what you say when it outran you.</li>
+        <li>[st:open,st:feud] Two of our oldest families fell out over who had the better claim to a bench by the well, and the bench, I should say, is not even a good bench.</li>
+        <li>[st:turn,st:feud] The quarrel spread to the children, then to the dogs, and for one whole summer the two halves of the street walked to market by different roads.</li>
+        <li>[st:end,st:feud] In the end a wedding settled it, as weddings do, between the two families, and now they argue about the grandchildren instead.</li>
+        <li>[st:open,st:wedding] Two of our young ones decided to marry at midwinter, which everyone said was madness, and which everyone came to anyway.</li>
+        <li>[st:turn,st:wedding] The rings were lost, then found in the pudding, then lost again in somebody's mouth, which was a short and anxious search.</li>
+        <li>[st:end,st:wedding] The dancing went on until the lamps ran dry, and then in the dark, and the two of them were the last ones still on their feet.</li>
+        <li>[st:open,st:ghost,!w:tribal] The old mill has stood empty for years, and one winter the wheel started turning on its own, at night, with no water in the race.</li>
+        <li>[st:turn,st:ghost,!w:tribal] The priest was sent for, and sat up with it a whole night, and in the morning looked thoughtful and asked for a drink.</li>
+        <li>[st:end,st:ghost] It stopped as suddenly as it started. The children still dare each other to go and look. Nobody has ever won the dare.</li>
+        <li>[st:open,st:winter,!w:tribal] One winter the river froze so hard that the children skated to the next town and back, and the next town skated to us.</li>
+        <li>[st:turn,st:winter,!w:tribal] The firewood ran out before the cold did, and we burned the old fence, then the old cart, then a chair nobody liked.</li>
+        <li>[st:end,st:winter] Spring came late and all at once, and the snowmelt flooded the cellars, and nobody minded in the least.</li>
+        <li>[st:open,st:stranger] A traveller came in out of a storm one night and asked for a bed, and paid for it with a song, and nobody has ever forgotten the song.</li>
+        <li>[st:turn,st:stranger] The stranger knew everyone's name by the third day and everyone's secrets by the fifth, and by the seventh nobody minded either.</li>
+        <li>[st:end,st:stranger] One morning the stranger was gone, and on every doorstep in town there was a small carved bird, and nobody had heard a thing in the night.</li>
+        <li>[st:open,st:harvest] One year the {PLANT} ripened all on the same day, in every field, and the whole town looked at it and then at each other.</li>
+        <li>[st:turn,st:harvest,!w:tribal] The children were set to scaring the birds, and they scared the birds, and the dogs, and the cart horse, and one of the grandmothers.</li>
+        <li>[st:end,st:harvest] It was the best harvest anyone could remember, and we spent the whole winter complaining about how much there was to store.</li>
+        <li>[st:open,st:storm] A storm came in off the hills so fast that the washing was still on the line when it hit, and some of the washing is still missing.</li>
+        <li>[st:turn,st:storm] The lightning struck the old {TREE} by the gate and split it in two, and the whole town flinched at once.</li>
+        <li>[st:end,st:storm] When it was over we went round counting roofs, and we were one short. It was found two fields away, perfectly whole, upside down.</li>
+        <li>[st:open,st:fair] The fair came to us one year with a dancing bear, a fortune teller, and a man who sold a cure for everything, including, he said, the cure.</li>
+        <li>[st:turn,st:fair] The fortune teller told everyone the same fortune, which was that they would meet a stranger, and since the fair was full of strangers, everyone did.</li>
+        <li>[st:end,st:fair] When the fair moved on it left behind a great deal of litter, a great many stories, and one very happy dog who had eaten most of the pies.</li>
+        <li>[st:open,st:lost] The miller's youngest went out to fetch the cows one evening, and the cows came home, and the miller's youngest did not.</li>
+        <li>[st:turn,st:lost] The whole town lined up across the far field with lanterns and walked it slowly, calling, the way you comb a fleece.</li>
+        <li>[st:end,st:lost,!w:tribal] Found at dawn, asleep in the hayloft of a barn nobody had thought to look in, warm, well, and puzzled by all the lanterns.</li>
+        <li>[st:open,st:journey,!w:tribal] Once a few of us went to the city to sell cheese, and came back with no cheese, no money, and a very large hat.</li>
+        <li>[st:turn,st:journey] On the way they were cheated once, nearly robbed twice, and fed very well, all on the same day.</li>
+        <li>[st:end,st:journey] They still tell it every winter, and every winter the road gets longer and the story gets better.</li>
+        <li>[st:open,st:contest] Every spring the young ones race to the top of the hill and back, and every spring someone claims there was cheating.</li>
+        <li>[st:turn,st:contest] Then the mayor's dog joined in, on no side at all, and was very nearly declared the winner.</li>
+        <li>[st:end,st:contest] The judges, who are the three oldest people in town and cannot see very far, declared everyone a winner and went home to eat.</li>
+        <li>[st:moral] The moral, if you want one, is that nothing goes as planned here, and we have stopped planning, and things go much the same.</li>
+        <li>[st:joke,light] I have changed some of the names. Not to protect anyone. I just forgot them.</li>
+        <li>[olde,st:open,st:hunt] Each autumn the young swear they shall be the ones to bring in the great {ANIMAL} of the hills, and each autumn the old let them try.</li>
+        <li>[olde,st:end,st:hunt] They came home a day late and right quiet, and said the {ANIMAL} deserved to live, which is what one saith when it hath outrun one.</li>
+        <li>[olde,st:open,st:feud] Two of our oldest households fell out over who had the better right to a bench by the well, and the bench is not even a good bench.</li>
+        <li>[olde,st:end,st:feud] At the last a wedding mended it, as weddings will, betwixt the two households, and now they quarrel over the grandchildren instead.</li>
+        <li>[olde,st:open,st:wedding] Two of our young folk would be wed at midwinter, which all said was madness, and to which all came.</li>
+        <li>[olde,st:turn,st:wedding] The rings were lost, then found in the pudding, then lost again in somebody's mouth, which was a short search and an anxious one.</li>
+        <li>[olde,st:open,st:ghost] The old mill hath stood empty these many years, and one winter the wheel began to turn of itself, by night, with no water in the race.</li>
+        <li>[olde,st:end,st:ghost] It ceased as suddenly as it began. The children dare one another to touch the wheel. None hath yet won the dare.</li>
+        <li>[olde,st:turn,st:winter] The firewood failed before the cold did, and we burned the old fence, and then the old cart, and then a chair none liked.</li>
+        <li>[olde,st:end,st:winter] Spring came late and all at once, and the snowmelt flooded the cellars, and none minded it in the least.</li>
+        <li>[olde,st:turn,st:stranger] The stranger knew every name by the third day and every secret by the fifth, and by the seventh none minded either.</li>
+        <li>[olde,st:end,st:stranger] One morn the stranger was gone, and upon every doorstep lay a little carved bird, and none had heard aught in the night.</li>
+        <li>[olde,st:turn,st:harvest] The children were set to scaring the birds, and scared the birds, and the dogs, and the cart-horse, and one of the grandams.</li>
+        <li>[olde,st:end,st:harvest] It was the best harvest any could remember, and we spent the whole winter complaining of how much there was to store.</li>
+
+        <!-- ================= Round 2, part 2: the feast (st:feast), and how it went ================= -->
+        <li>[st:open,st:feast,theirs] One midwinter we decided to have the biggest feast {TOWN} had ever seen, and planned it for a month, which is where it went wrong.</li>
+        <li>[st:open,st:feast] The year the harvest came in early, someone said we should have a feast, and someone else said everyone should bring a dish, and nobody said who should bring what.</li>
+        <li>[st:open,st:feast,!w:tribal] A grateful neighbour once sent us a whole roast pig, and we decided it deserved a feast of its own.</li>
+        <li>[st:open,st:feast,w:tribal] When the great hunt came home heavy, the whole people gathered at the long fire for the eating that goes on for three days.</li>
+        <li>[st:turn,st:feast] Everyone brought a pudding. Nobody brought anything else. There were forty-one puddings.</li>
+        <li>[st:turn,st:feast] The tables were set outside, and just as everyone sat down the sky opened, and we carried every dish indoors at a run, and lost only the gravy.</li>
+        <li>[st:turn,st:feast] The speeches went on so long that the children took the food under the table and ate it there, and nobody noticed until the speeches ended.</li>
+        <li>[st:turn,st:feast,w:tribal] The old ones started the long songs before the meat was done, and the meat was done before the songs were, and the songs won.</li>
+        <li>[st:end,st:feast] It was a wonderful feast. Nobody remembers what we ate. Everybody remembers who fell asleep in the bread.</li>
+        <li>[st:end,st:feast] We are still finding plates in other people's houses. It has become a sort of game.</li>
+        <li>[st:end,st:feast] The next morning everyone agreed never again, and by evening they were planning the next one.</li>
+        <li>[st:end,st:feast,w:tribal] When it was over the people slept where they had sat, and the dogs ate the rest, and everyone, dogs included, was content.</li>
+        <li>[olde,st:open,st:feast,theirs] One midwinter we would hold the greatest feast {TOWN} had ever seen, and planned it a month, which is where it went amiss.</li>
+        <li>[olde,st:open,st:feast] The year the harvest came early, one said we should feast, and another that each should bring a dish, and none said who should bring what.</li>
+        <li>[olde,st:turn,st:feast] Each brought a pudding. None brought aught else. There were one and forty puddings.</li>
+        <li>[olde,st:turn,st:feast] The speeches ran so long that the children bore the food beneath the board and ate it there, and none marked it till the speeches ended.</li>
+        <li>[olde,st:end,st:feast] It was a goodly feast. None remembereth what was eaten. All remember who fell asleep in the bread.</li>
+        <li>[olde,st:end,st:feast] At morn all swore never again, and by evensong were planning the next.</li>
+        <li>[u:none,st:open,st:feast] we had a feest wunce. biggest one</li>
+        <li>[u:none,st:turn,st:feast] evryone brung pudding. just pudding</li>
+        <li>[u:none,st:end,st:feast] best day. i was sick after. wurth it</li>
+
+        <!-- ================= Round 2, part 2: an unschooled hunt ================= -->
+        <li>[u:none,st:open,st:hunt] we went huntin for a {ANIMAL} wunce. big one</li>
+        <li>[u:none,st:turn,st:hunt] it hid. we lookd. it hid beter</li>
+        <li>[u:none,st:end,st:hunt] we et beans that nite. the {ANIMAL} is stil out ther laffing</li>
       </plain>
     </lines>
   </ColonyCouncil.FlavorPoolDef>

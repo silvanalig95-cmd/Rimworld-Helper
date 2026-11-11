@@ -402,7 +402,7 @@
         <li>[re:jk:goat:more,theirs,u:none] the goat got in the howse agin. she ate a boot</li>
         <li>[re:recipe:hope,theirs,u:none] did you cook the thing i sent</li>
         <li>[re:slight:harm,theirs,u:none] wot yous did is not forgot</li>
-        <li>[re:slight:war,theirs,u:none] we are at war but i am riting anyway. dont tell the boss</li>
+        <li>[re:slight:war,theirs,u:none,!nr:head] we are at war but i am riting anyway. dont tell the boss</li>
 
         <!-- ================= Strange voices ================= -->
         <li>[re:ill:still,theirs,sv:machine] Status of {RE}: unwell. Unchanged since the last report.</li>

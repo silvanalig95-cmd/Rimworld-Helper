@@ -21,7 +21,9 @@
 
     Ages and speech: w:tribal for a tribe, !w:tribal or w:industrial|w:spacer where it matters, olde (medieval English),
     u:none (an unschooled bandit's boast or a plain unschooled account; the misspellings are deliberate), sv:machine (an
-    android's incident report), sv:beast (by smell). {RAIDERS} is who came when the record names them.
+    android's incident report), sv:beast (by smell). {RAIDERS} is who came when the record names them. A line about the
+    town itself (its walls, gate, granary, houses) is !rd:road: bandits on the road never reached it; a line that only
+    fits strangers coming is !rd:you, kept from the colony's own attack; a boast of a raiding people's boss is !nr:head.
   -->
   <ColonyCouncil.FlavorPoolDef>
     <defName>Rimfolk_Pool_LetterRaid</defName>
@@ -33,7 +35,7 @@
         <li>[rd:come,rd:now,rd:walls,theirs] The watch saw dust on the road and thought it was traders. By the time anyone thought otherwise, {RAIDERS} were at the gate.</li>
         <li>[rd:come,rd:now,rd:walls,theirs,rd:wry] They came at our walls in broad daylight, which I suppose saves everyone the trouble of staying up.</li>
         <li>[rd:come,rd:now,rd:end:ongoing,theirs] They are camped in the hills above us, {RAIDERS}, and they come down when they please, and they please often.</li>
-        <li>[rd:come,rd:now,rd:end:ongoing,theirs] For days now we have had raiders about. They try the walls at night and are gone by morning, and nobody sleeps much.</li>
+        <li>[rd:come,rd:now,rd:end:ongoing,theirs,!rd:road] For days now we have had raiders about. They try the walls at night and are gone by morning, and nobody sleeps much.</li>
         <li>[rd:come,rd:now,rd:road,theirs] They hit our wagons on the road, where the trees come down close on both sides and a cart cannot turn.</li>
         <li>[rd:come,rd:now,rd:road,theirs] The traders went out with the usual guard, and came back with half of it, and fewer wagons, and a story.</li>
         <li>[rd:come,rd:now,rd:you,theirs] Your people came over the ridge at dawn, and we saw them come, and we knew them.</li>
@@ -45,18 +47,18 @@
         <li>[rd:stand,rd:now,rd:road,theirs] The drivers turned the wagons into a ring, as they are taught, and fought from behind the wheels until the oxen bolted and took the ring with them.</li>
         <li>[rd:stand,rd:now,rd:helped,theirs] Your people held the east side, and held it well, and there are some here who would not be alive if they had not.</li>
         <li>[rd:stand,rd:now,rd:you,theirs] We held what we could, for as long as we could. You know how long that was.</li>
-        <li>[rd:stand,rd:now,rd:end:ongoing,theirs] We keep the watch doubled and the fires lit, and the young ones take turns on the wall, which they think is a game until the second night.</li>
+        <li>[rd:stand,rd:now,rd:end:ongoing,theirs,!rd:road] We keep the watch doubled and the fires lit, and the young ones take turns on the wall, which they think is a game until the second night.</li>
         <!-- ================= What burned ================= -->
-        <li>[rd:burn,rd:now,rd:end:hurt|rd:end:sacked,theirs] They fired the stores first, which tells you they had done this before.</li>
-        <li>[rd:burn,rd:now,rd:end:hurt|rd:end:sacked,theirs] Two homes on the north side burned to the ground, and the smoke hung over us for a day.</li>
-        <li>[rd:burn,rd:now,rd:end:hurt|rd:end:sacked,theirs,rd:wry] They burned the meeting hall, which nobody liked anyway, and the new well cover, which everybody did.</li>
-        <li>[rd:burn,rd:now,rd:end:sacked,theirs] By the end there was more burning than standing, and you could see the glow of it from the hills, I am told.</li>
+        <li>[rd:burn,rd:now,rd:end:hurt|rd:end:sacked,theirs,!rd:road] They fired the stores first, which tells you they had done this before.</li>
+        <li>[rd:burn,rd:now,rd:end:hurt|rd:end:sacked,theirs,!rd:road] Two homes on the north side burned to the ground, and the smoke hung over us for a day.</li>
+        <li>[rd:burn,rd:now,rd:end:hurt|rd:end:sacked,theirs,rd:wry,!rd:road] They burned the meeting hall, which nobody liked anyway, and the new well cover, which everybody did.</li>
+        <li>[rd:burn,rd:now,rd:end:sacked,theirs,!rd:road] By the end there was more burning than standing, and you could see the glow of it from the hills, I am told.</li>
         <!-- ================= Who fell, as the record has it ================= -->
         <li>[rd:fall,rd:now,rd:dead:none,theirs] Nobody died. I keep writing that sentence down, just to look at it.</li>
-        <li>[rd:fall,rd:now,rd:dead:none,theirs] There were wounds, some bad, but everyone who went up on the wall came down again, which nobody expected.</li>
+        <li>[rd:fall,rd:now,rd:dead:none,theirs,!rd:road] There were wounds, some bad, but everyone who went up on the wall came down again, which nobody expected.</li>
         <li>[rd:fall,rd:now,rd:dead:none,theirs,rd:wry] Nobody died, though the goat came close, and the goat would like you to know it.</li>
         <li>[rd:fall,rd:now,rd:dead:some,theirs] We lost people. I will not write their names here. You did not know them, and I find I cannot.</li>
-        <li>[rd:fall,rd:now,rd:dead:some,theirs] Not everyone came down from the wall. We buried them by the old stone, where we bury the ones we are proud of.</li>
+        <li>[rd:fall,rd:now,rd:dead:some,theirs,!rd:road] Not everyone came down from the wall. We buried them by the old stone, where we bury the ones we are proud of.</li>
         <li>[rd:fall,rd:now,rd:dead:many,theirs] We buried more than I can bear to count. The digging took two days, and nobody spoke much.</li>
         <li>[rd:fall,rd:now,rd:dead:many,theirs] So many fell that there are homes here with nobody left in them, and we do not go past them if we can help it.</li>
         <!-- ================= How it ended ================= -->
@@ -65,10 +67,10 @@
         <li>[rd:end,rd:now,rd:end:held,theirs,rd:wry] They left in a hurry, which was the only thing they did well all day.</li>
         <li>[rd:end,rd:now,rd:end:held,rd:road,theirs] The guard drove them off in the end, and the wagons came home, slowly, with the dead oxen left behind.</li>
         <li>[rd:end,rd:now,rd:end:hurt,theirs] They got away with the grain and most of the animals, and left us the rest, and the rest is not much.</li>
-        <li>[rd:end,rd:now,rd:end:hurt,theirs] We held the inner yard, but they had the rest of the town for an afternoon, and an afternoon is long enough.</li>
+        <li>[rd:end,rd:now,rd:end:hurt,theirs,!rd:road] We held the inner yard, but they had the rest of the town for an afternoon, and an afternoon is long enough.</li>
         <li>[rd:end,rd:now,rd:end:sacked,theirs] By evening there was nothing left worth defending, and they knew it, and they left.</li>
-        <li>[rd:end,rd:now,rd:end:sacked,theirs] They took everything that would carry and broke what would not. We are living in what is left, and it is not much of a town just now.</li>
-        <li>[rd:end,rd:now,rd:end:ongoing,theirs] They are still out there. We keep the gate shut and the watch doubled, and we wait, which is the hardest part.</li>
+        <li>[rd:end,rd:now,rd:end:sacked,theirs,!rd:road] They took everything that would carry and broke what would not. We are living in what is left, and it is not much of a town just now.</li>
+        <li>[rd:end,rd:now,rd:end:ongoing,theirs,!rd:road] They are still out there. We keep the gate shut and the watch doubled, and we wait, which is the hardest part.</li>
         <li>[rd:end,rd:now,rd:end:ongoing,theirs] Nothing is settled yet. If you are on the roads near us, keep to the open ground and do not travel at dusk.</li>
         <li>[rd:end,rd:now,rd:end:unknown,theirs] It ended the way these things end, with smoke, and then quiet, and then everyone counting.</li>
         <li>[rd:end,rd:now,rd:end:unknown,rd:you,theirs] You know how it ended. You were there.</li>
@@ -77,7 +79,7 @@
         <li>[rd:after,rd:now,rd:end:held|rd:end:unknown,theirs] The children play at raiders now. Our side always wins, which is how it should be.</li>
         <li>[rd:after,rd:now,rd:end:hurt|rd:end:sacked,theirs] We will be short this winter. We will manage. We always have.</li>
         <li>[rd:after,rd:now,rd:end:hurt|rd:end:sacked,theirs] People are talking about leaving. Most of them will stay. Some of them will not.</li>
-        <li>[rd:after,rd:now,rd:helped,theirs] There is a place at our table for any of your people who stood on the wall, for as long as any of us are alive to set it.</li>
+        <li>[rd:after,rd:now,rd:helped,theirs,!rd:road] There is a place at our table for any of your people who stood on the wall, for as long as any of us are alive to set it.</li>
         <li>[rd:after,rd:now,rd:you,theirs] We have not forgotten. We will not.</li>
         <li>[rd:after,rd:now,rd:end:ongoing,theirs] If this letter reaches you, it means the road is open, at least for now. Pray that it stays so, in whatever way your people pray.</li>
         <li>[rd:after,rd:now,theirs,rd:wry] The raiders, I am pleased to say, left a good deal of their gear behind, and some of it fits.</li>
@@ -136,17 +138,17 @@
         <li>[olde,rd:come,rd:now,rd:you,theirs] Thy people came over the ridge at dawn, and we saw them come, and we knew them.</li>
         <li>[olde,rd:stand,rd:now,rd:walls,theirs] Every soul that could bear arms was upon the wall, and some that could not, and the children bore water and stones.</li>
         <li>[olde,rd:stand,rd:now,rd:helped,theirs] Thy people held the east side, and held it well, and there are some here who live by it.</li>
-        <li>[olde,rd:burn,rd:now,rd:end:hurt|rd:end:sacked,theirs] They fired the granary first, which showeth they had done this before.</li>
+        <li>[olde,rd:burn,rd:now,rd:end:hurt|rd:end:sacked,theirs,!rd:road] They fired the granary first, which showeth they had done this before.</li>
         <li>[olde,rd:fall,rd:now,rd:dead:none,theirs] None died. I write it again and again, that I may look upon it.</li>
         <li>[olde,rd:fall,rd:now,rd:dead:some,theirs] We lost folk. I will not write their names. Thou knewest them not, and I cannot.</li>
         <li>[olde,rd:fall,rd:now,rd:dead:many,theirs] We buried more than I can bear to number. The digging took two days, and none spake much.</li>
         <li>[olde,rd:end,rd:now,rd:end:held,theirs] At the last they broke and fled, and we let them go, for none had strength left to follow.</li>
         <li>[olde,rd:end,rd:now,rd:end:hurt,theirs] They bore off the grain and the most of the beasts, and left us the rest, and the rest is little.</li>
         <li>[olde,rd:end,rd:now,rd:end:sacked,theirs] By evening there was naught left worth the keeping, and they knew it, and went.</li>
-        <li>[olde,rd:end,rd:now,rd:end:ongoing,theirs] They are abroad yet. We keep the gate barred and the watch doubled, and we wait.</li>
+        <li>[olde,rd:end,rd:now,rd:end:ongoing,theirs,!rd:road] They are abroad yet. We keep the gate barred and the watch doubled, and we wait.</li>
         <li>[olde,rd:end,rd:now,rd:end:unknown,theirs] It ended as such things end, with smoke, and then quiet, and then the counting.</li>
-        <li>[olde,rd:after,rd:now,theirs] We are mending the gate, and every man hath his counsel on how, so it goeth slowly.</li>
-        <li>[olde,rd:after,rd:now,rd:helped,theirs] There is a place at our board for any of thy people who stood upon the wall, so long as any of us live to set it.</li>
+        <li>[olde,rd:after,rd:now,theirs,!rd:road] We are mending the gate, and every man hath his counsel on how, so it goeth slowly.</li>
+        <li>[olde,rd:after,rd:now,rd:helped,theirs,!rd:road] There is a place at our board for any of thy people who stood upon the wall, so long as any of us live to set it.</li>
         <li>[olde,rd:come,rd:old] When I was small the reavers came over the hill at harvest, a long line of them, and the bell rang till the rope parted.</li>
         <li>[olde,rd:stand,rd:old] Every grown soul went to the wall, and the children were shut in the cellar with the bread, and bidden be still, and were.</li>
         <li>[olde,rd:burn,rd:old] They fired the barns, and the smoke was seen two valleys over.</li>
@@ -160,7 +162,7 @@
         <!-- ================= An unschooled hand (u:none) ================= -->
         <li>[u:none,rd:come,rd:now,theirs] they come at nite, lots of them</li>
         <li>[u:none,rd:stand,rd:now,theirs] we got on the wal with evrythin we had</li>
-        <li>[u:none,rd:burn,rd:now,rd:end:hurt|rd:end:sacked,theirs] they burnd the barn</li>
+        <li>[u:none,rd:burn,rd:now,rd:end:hurt|rd:end:sacked,theirs,!rd:road] they burnd the barn</li>
         <li>[u:none,rd:fall,rd:now,rd:dead:none,theirs] nobody dyed. lucky</li>
         <li>[u:none,rd:fall,rd:now,rd:dead:some|rd:dead:many,theirs] we lost sum</li>
         <li>[u:none,rd:end,rd:now,rd:end:held,theirs] we run them off</li>
@@ -182,26 +184,120 @@
         <li>[sv:machine,rd:come,rd:now,theirs] 0412: HOSTILES OBSERVED AT PERIMETER. COUNT: SIGNIFICANT. IDENTITY: UNIMPORTANT.</li>
         <li>[sv:machine,rd:stand,rd:now,theirs] 0415: DEFENSIVE POSITIONS ASSUMED. ALL ABLE RESIDENTS ARMED. SOME UNABLE RESIDENTS ALSO ARMED, AGAINST ADVICE.</li>
         <li>[sv:machine,rd:stand,rd:now,rd:helped,theirs] 0430: ALLIED UNITS FROM YOUR SETTLEMENT HOLD EAST SECTOR. PERFORMANCE: EXCELLENT. THIS IS NOT FLATTERY.</li>
-        <li>[sv:machine,rd:burn,rd:now,rd:end:hurt|rd:end:sacked,theirs] 0540: STRUCTURAL LOSSES: STORES, TWO DWELLINGS. FIRE CONTAINED AT 0610.</li>
+        <li>[sv:machine,rd:burn,rd:now,rd:end:hurt|rd:end:sacked,theirs,!rd:road] 0540: STRUCTURAL LOSSES: STORES, TWO DWELLINGS. FIRE CONTAINED AT 0610.</li>
         <li>[sv:machine,rd:fall,rd:now,rd:dead:none,theirs] CASUALTIES: NONE. THIS IS NOTED WITH SOMETHING I WILL CALL RELIEF.</li>
         <li>[sv:machine,rd:fall,rd:now,rd:dead:some,theirs] CASUALTIES: SOME. NAMES WITHHELD FROM THIS RECORD AT MY DISCRETION.</li>
         <li>[sv:machine,rd:fall,rd:now,rd:dead:many,theirs] CASUALTIES: MANY. EACH HAS BEEN RECORDED. I WILL NOT REPRODUCE THE LIST HERE.</li>
         <li>[sv:machine,rd:end,rd:now,rd:end:held,theirs] 0702: HOSTILES WITHDREW. PERIMETER RESTORED.</li>
         <li>[sv:machine,rd:end,rd:now,rd:end:hurt,theirs] 0702: HOSTILES WITHDREW WITH STORES. PURSUIT NOT ATTEMPTED.</li>
-        <li>[sv:machine,rd:end,rd:now,rd:end:sacked,theirs] 0900: SETTLEMENT FUNCTION SEVERELY REDUCED. REBUILDING ESTIMATE: LONG.</li>
+        <li>[sv:machine,rd:end,rd:now,rd:end:sacked,theirs,!rd:road] 0900: SETTLEMENT FUNCTION SEVERELY REDUCED. REBUILDING ESTIMATE: LONG.</li>
         <li>[sv:machine,rd:end,rd:now,rd:end:ongoing,theirs] STATUS: HOSTILES REMAIN IN AREA. UNRESOLVED.</li>
         <li>[sv:machine,rd:end,rd:now,rd:end:unknown,theirs] OUTCOME: CONTESTED.</li>
-        <li>[sv:machine,rd:after,rd:now,theirs] LESSONS RECORDED. GATE REINFORCED. RESIDENTS ADVISED TO SLEEP. ADVICE IGNORED.</li>
+        <li>[sv:machine,rd:after,rd:now,theirs,!rd:road] LESSONS RECORDED. GATE REINFORCED. RESIDENTS ADVISED TO SLEEP. ADVICE IGNORED.</li>
         <li>[sv:machine,rd:come,rd:old] ARCHIVE ENTRY: RAID ON THIS SETTLEMENT, YEAR UNRECORDED. HOSTILES APPROACHED FROM THE NORTH.</li>
         <li>[sv:machine,rd:end,rd:old] ARCHIVE OUTCOME: SETTLEMENT SURVIVED, EVIDENTLY.</li>
         <!-- ================= By smell (sv:beast) ================= -->
         <li>[sv:beast,rd:come,rd:now,theirs] We smelled them a day off: oil, smoke, too many of them.</li>
         <li>[sv:beast,rd:stand,rd:now,theirs] We waited in the long grass where the wind favoured us, and we were very still.</li>
         <li>[sv:beast,rd:end,rd:now,rd:end:held,theirs] They ran. Their scent was fear by the end, and it is still on the stones.</li>
-        <li>[sv:beast,rd:end,rd:now,rd:end:hurt|rd:end:sacked|rd:end:unknown,theirs] They took what they came for. The den smells of them still. We are scrubbing it.</li>
+        <li>[sv:beast,rd:end,rd:now,rd:end:hurt|rd:end:sacked|rd:end:unknown,theirs,!rd:road] They took what they came for. The den smells of them still. We are scrubbing it.</li>
         <li>[sv:beast,rd:end,rd:now,rd:end:ongoing,theirs] They are still near. We smell them every night, and we do not sleep deep.</li>
         <li>[sv:beast,rd:come,rd:old] The old ones say the raiders came in the year the river froze. The old ones remember everything by smell.</li>
         <li>[sv:beast,rd:end,rd:old] They were chased off. The old ones still growl at the smell of oil.</li>
+
+        <!-- ================= Round 2, part 2: a raid on their road (rd:road) ================= -->
+        <li>[rd:come,rd:now,rd:road,theirs] They waited for our caravan at the ford, where the wagons must go slow and single file, and they knew it, which means someone told them.</li>
+        <li>[rd:come,rd:now,rd:road,theirs] {RAIDERS} came down off the ridge onto our road, and the first anyone knew of it was the lead ox going down in the traces.</li>
+        <li>[rd:come,rd:now,rd:road,theirs,rd:wry] They held up the post on our road, which tells you something about them, since the post was carrying mostly turnips and complaints.</li>
+        <li>[rd:stand,rd:now,rd:road,theirs] The guards put the wagons between themselves and the trees and held there, shouting to each other so the raiders would think there were more of them.</li>
+        <li>[rd:stand,rd:now,rd:road,theirs] One of the drivers cut the traces and rode the lead horse back to us for help, which was either very brave or very sensible, and she says it was both.</li>
+        <li>[rd:burn,rd:now,rd:road,rd:end:hurt|rd:end:sacked,theirs] They fired two of the wagons before they left, the ones they could not drag away, and the smoke was seen from the town.</li>
+        <li>[rd:fall,rd:now,rd:road,rd:dead:none,theirs] Nobody was killed, by some luck none of us has earned. A broken arm, a bad cut, and a driver who will not stop talking about it.</li>
+        <li>[rd:fall,rd:now,rd:road,rd:dead:some,theirs] We lost people on the road. Good people, who were only taking cloth to market.</li>
+        <li>[rd:fall,rd:now,rd:road,rd:dead:many,theirs] Most of the guard did not come home. We brought them back on the empty wagons, which is a thing nobody should have to do.</li>
+        <li>[rd:end,rd:now,rd:end:hurt,rd:road,theirs] They got away with half the goods and all the horses they could catch, and the rest of us walked home.</li>
+        <li>[rd:end,rd:now,rd:end:ongoing,rd:road,theirs] They are still out there on the road. No wagon goes out now without twice the guard, and some do not go out at all.</li>
+        <li>[rd:end,rd:now,rd:end:unknown,rd:road,theirs] Nobody is quite sure how it ended; the ones who were there tell it three different ways, and all three end with running.</li>
+        <li>[rd:end,rd:now,rd:end:sacked,rd:road,theirs] They took everything: the wagons, the goods, the beasts. Our people came home with the clothes they stood in, and some not even those.</li>
+        <li>[rd:after,rd:now,rd:road,theirs] The traders are arguing about a new road, a longer one, through country where you can see who is coming. Longer roads are cheaper than funerals.</li>
+        <li>[rd:after,rd:now,rd:road,theirs,rd:wry] The post now travels with three guards and a very bad-tempered goose, which has proved more frightening than the guards.</li>
+        <li>[sv:machine,rd:come,rd:now,rd:road,theirs] INCIDENT: CARAVAN INTERCEPTED ON ROUTE. LOCATION: THE FORD. WARNING: NONE.</li>
+        <li>[sv:machine,rd:end,rd:now,rd:end:held,rd:road,theirs] RESOLUTION: ATTACKERS WITHDREW. CARGO: RETAINED. OXEN: OFFENDED.</li>
+        <li>[sv:machine,rd:end,rd:now,rd:end:hurt,rd:road,theirs] RESOLUTION: CARGO PARTIALLY LOST. INSURANCE: NOT A CONCEPT IN THIS REGION.</li>
+        <li>[sv:beast,rd:come,rd:now,rd:road,theirs] They were waiting on the trail, downwind, which is clever, and they smelled of iron and old fear, which is not.</li>
+        <li>[olde,rd:come,rd:now,rd:road,theirs] They lay in wait for our wagons at the ford, where carts must go slow and one by one, and they knew it, which meaneth some one told them.</li>
+        <li>[olde,rd:end,rd:now,rd:end:hurt,rd:road,theirs] They made off with half the goods and every horse they could catch, and the rest of us walked home.</li>
+        <li>[olde,rd:end,rd:now,rd:end:ongoing,rd:road,theirs] They are upon the road yet. No wagon goeth forth now but with twice the guard, and some go not at all.</li>
+
+        <!-- ================= Round 2, part 2: the colony's own attack, told from their side (rd:you) ================= -->
+        <li>[rd:come,rd:now,rd:you,theirs] The watch called out that riders were coming, and somebody said it must be friends from {COLONY}. Somebody was wrong.</li>
+        <li>[rd:come,rd:now,rd:you,theirs] You came in the grey before morning, when the children were still asleep. I want you to know that we noticed that.</li>
+        <li>[rd:stand,rd:now,rd:you,theirs] We put the old ones and the children in the cellars and stood in the doorways with whatever we had. Some of it was tools. Some of it was courage. Neither was enough.</li>
+        <li>[rd:stand,rd:now,rd:you,theirs] I stood at the gate. I want you to know that. I saw your faces, and I will know them again.</li>
+        <li>[rd:end,rd:now,rd:end:unknown,rd:you,theirs] Then you left, with whatever it was you came for. I hope it was worth it to you. It was not worth it to us.</li>
+        <li>[rd:end,rd:now,rd:end:unknown,rd:you,theirs] It was over by noon. We are still counting what it cost, and we have not finished.</li>
+        <li>[rd:after,rd:now,rd:you,theirs] The children ask who you were. I tell them: neighbours, once.</li>
+        <li>[rd:after,rd:now,rd:you,theirs] We have mended the gate and put a second bar on it. The second bar is for you.</li>
+        <li>[olde,rd:stand,rd:now,rd:you,theirs] We set the old and the young in the cellars and stood in the doorways with what we had. It sufficed not.</li>
+        <li>[olde,rd:end,rd:now,rd:end:unknown,rd:you,theirs] Then thy people departed, with whatsoever they came for. I trust it was worth it to them. It was not to us.</li>
+        <li>[olde,rd:after,rd:now,rd:you,theirs] The children ask who they were. I tell them: neighbours, once.</li>
+
+        <!-- ================= Round 2, part 2: medieval accounts at their walls ================= -->
+        <li>[olde,rd:come,rd:now,rd:walls,theirs] They came at first light, {RAIDERS}, more of them than we had thought were in all the hills.</li>
+        <li>[olde,rd:come,rd:now,rd:walls,theirs] They came at dusk, which is the worst hour, when all are weary and thinking on supper and the light playeth tricks.</li>
+        <li>[olde,rd:stand,rd:now,!rd:road,theirs] The smith stood in the gate with his great hammer, and none passed him while he stood.</li>
+        <li>[olde,rd:stand,rd:now,!rd:road,theirs] We set them that could draw a bow upon the wall, and them that could not behind with stones, and it served.</li>
+        <li>[olde,rd:stand,rd:now,rd:helped,theirs,!rd:road] The folk of {COLONY} stood with us upon the wall, and we shall not forget it while there is a wall to stand on.</li>
+        <li>[olde,rd:burn,rd:now,rd:end:hurt|rd:end:sacked,theirs,!rd:road] They fired the barns ere they went, and the sky was red all night, and at morn there was naught but ash where the winter's bread had been.</li>
+        <li>[olde,rd:fall,rd:now,rd:dead:none,theirs] By some grace none was slain. Many were hurt, and some will bear the marks, but all came home to supper.</li>
+        <li>[olde,rd:fall,rd:now,rd:dead:some,theirs,!rd:road] Some of ours fell. We buried them by the old wall, where the sun cometh first.</li>
+        <li>[olde,rd:fall,rd:now,rd:dead:many,theirs] Many fell. The bell rang the whole of the next day, and none bade it stop.</li>
+        <li>[olde,rd:end,rd:now,rd:end:held,!rd:road,theirs] By noon it was done. They had learned our walls are higher than they seem, and we that we are braver than we thought.</li>
+        <li>[olde,rd:end,rd:now,rd:end:hurt,!rd:road,theirs] They went away with what they could carry, and left us the rest, and the rest was little enough.</li>
+        <li>[olde,rd:end,rd:now,rd:end:sacked,!rd:road,theirs] They took all. What they could not take they burned, and what they could not burn they broke.</li>
+        <li>[olde,rd:end,rd:now,rd:end:ongoing,!rd:road,theirs] They are about us yet, in the woods and upon the roads. We keep the gate shut and the watch doubled.</li>
+        <li>[olde,rd:after,rd:now,rd:end:held,!rd:road,theirs] We mend the gate now, and all have counsel how, and none is shy of giving it, so the mending goeth slow.</li>
+        <li>[olde,rd:after,rd:now,rd:end:hurt|rd:end:sacked,theirs,!rd:road] We are building again. It is slow, and the winter cometh, and we will be ready, because we must.</li>
+
+        <!-- ================= Round 2, part 2: a tribe's raids ================= -->
+        <li>[rd:come,rd:now,rd:walls,theirs,w:tribal] They came through the long grass at night, low, the way the {ANIMALS} come, and the dogs smelled them before anyone saw them.</li>
+        <li>[rd:stand,rd:now,!rd:road,theirs,w:tribal] The hunters made a ring around the fires with the young ones inside, and the old ones sang the war songs to keep the ring tight.</li>
+        <li>[rd:burn,rd:now,rd:end:hurt|rd:end:sacked,theirs,w:tribal,!rd:road] They pulled down the drying racks and burned the hides, and a whole season's work went up in one night.</li>
+        <li>[rd:fall,rd:now,rd:dead:some,theirs,w:tribal] Some of ours went into the long grass that night and did not come out. We have sung for them.</li>
+        <li>[rd:fall,rd:now,rd:dead:none,theirs,w:tribal] Nobody died. The old ones say the spirits were watching. The young ones say the spirits were very busy.</li>
+        <li>[rd:end,rd:now,rd:end:held,!rd:road,theirs,w:tribal] By dawn they had run back into the grass, and we did not follow, because a running enemy is a gift you do not chase.</li>
+        <li>[rd:end,rd:now,rd:end:hurt,theirs,w:tribal,!rd:road] They took some of the meat and some of the dogs, and were gone before the sun, and we let them go, because we had to.</li>
+        <li>[rd:after,rd:now,theirs,w:tribal,!rd:road,!rd:you] Now the young hunters keep watch from the high rock, and they are proud of it, and they will be bored of it before the moon is full.</li>
+        <li>[rd:come,rd:old,w:tribal] When my grandmother was small, raiders came out of the east on painted horses, and the people ran to the cliffs.</li>
+        <li>[rd:end,rd:old,w:tribal] The people came down from the cliffs when the raiders had gone, and built the camp again where it had always been, out of stubbornness.</li>
+
+        <!-- ================= Round 2, part 2: an unschooled raider's boast (rd:boast; misspellings on purpose) ================= -->
+        <li>[u:none,rd:come,rd:boast,theirs] we come for you wunce. you rember. we rember it beter</li>
+        <li>[u:none,rd:stand,rd:boast,theirs] yor walls are not that big. we lookd</li>
+        <li>[u:none,rd:end,rd:boast,theirs] next time we bring more of us and less of the stupid ones</li>
+        <li>[u:none,rd:after,rd:boast,theirs,!nr:head] the boss sez to say hello. its not a nice hello</li>
+
+        <!-- ================= Round 2, part 2: more of real raids at their walls ================= -->
+        <li>[rd:come,rd:now,rd:walls,theirs,!rd:you] They came in the rain, which nobody expected, because nobody in their right mind fights in the rain, and that was the whole point.</li>
+        <li>[rd:stand,rd:now,!rd:road,theirs,!rd:you] The cooks held the back gate with kitchen knives and a great deal of shouting, and the raiders decided the front gate looked easier.</li>
+        <li>[rd:stand,rd:now,rd:helped,theirs,!rd:road] Your people were on the wall with ours. I saw one of them stand over a wounded child of ours and not move until it was over.</li>
+        <li>[rd:burn,rd:now,rd:end:hurt|rd:end:sacked,theirs,!rd:road] They fired the granary on the way out. We saved half of it with buckets and the other half with prayers, and the buckets did better.</li>
+        <li>[rd:fall,rd:now,rd:dead:some,theirs] We lost some. You will forgive me if I do not write the names here. We say them at night.</li>
+        <li>[rd:fall,rd:now,rd:dead:none,theirs,rd:wry,!rd:road] Nobody was killed, though the smith's pride was badly hurt when the gate he made bent in the middle.</li>
+        <li>[rd:end,rd:now,rd:end:held,!rd:road,theirs,!rd:you] They ran when the bell started ringing. I think they took it to mean more of us were coming. It meant the bell-ringer was angry.</li>
+        <li>[rd:end,rd:now,rd:end:hurt,!rd:road,theirs,!rd:you] They broke in at the east side and took what they could carry, and we let them go, because the other choice was more funerals.</li>
+        <li>[rd:end,rd:now,rd:end:unknown,theirs,!rd:road,!rd:you] Nobody can say for sure how it ended. One moment they were at the wall, the next the field was empty, and the only sign was the trampled grass.</li>
+        <li>[rd:after,rd:now,theirs,!rd:road,!rd:you] The children have made a game of it now: one side are raiders, the other side hold the wall. The raiders always lose. We see to that.</li>
+        <li>[rd:after,rd:now,rd:end:hurt|rd:end:sacked,theirs,!rd:road] We are sleeping in the hall, all of us, until the houses are mended. It is crowded and loud, and somehow it helps.</li>
+
+        <!-- ================= Round 2, part 2: more of an unschooled raider's boast ================= -->
+        <li>[u:none,rd:come,rd:boast,theirs] we cum over the hil at nite. wel it was mornin by the time we got ther. the hil is big</li>
+        <li>[u:none,rd:end,rd:boast,theirs] we wil be back. not soon. but we wil</li>
+
+        <!-- Round 2, part 2: what burned on the road, in the other speeches -->
+        <li>[olde,rd:burn,rd:now,rd:road,rd:end:hurt|rd:end:sacked,theirs] They fired the wains they could not drive off, and the smoke of them was seen from the town ere any rider came.</li>
+        <li>[u:none,rd:burn,rd:now,rd:road,rd:end:hurt|rd:end:sacked,theirs] they set the carts on fire. the good cart to</li>
+        <li>[sv:machine,rd:burn,rd:now,rd:road,rd:end:hurt|rd:end:sacked,theirs] 0540: CARGO LOSSES: TWO WAGONS, BURNED. ONE WAGON, MISSING. ONE OX, UNACCOUNTED FOR, LATER FOUND EATING.</li>
       </plain>
     </lines>
   </ColonyCouncil.FlavorPoolDef>
