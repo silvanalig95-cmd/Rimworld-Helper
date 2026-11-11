@@ -39,12 +39,6 @@ tree at once, alongside whatever runs. Each piece is merged as its own release, 
   for there and back by the journey planner's rules and road days, a little medicine, the mount's feed, extras the
   player picks), greyed with why when the stores can't cover it, and the rider gathering it before setting out, as the
   envoy abroad and the journey planner do (Journeys/, Diplomacy/EnvoysAbroad.cs).
-- **To do when the player asks (10 November 2026): camps that come in the coldest winter.** The player: "i haven't had
-  any camps probably becauser it was just freezing cold all the time, i'd like a handful of camp events that can also
-  come in the coldest winter". When asked: check why camps never came in their cold (Camps/: the season and temperature
-  gates), then propose a handful of winter camps (people who travel or work in deep cold: ice fishers, fur trappers, a
-  caravan sheltering from a blizzard, hunters following a herd, a winter pilgrimage, salt or ice cutters), each with
-  shelter and fire as the cold demands, by every age and the player's mods.
 - **To do when the player asks (10 November 2026): the temperature readout in colour.** The player, with a picture of
   the game's readout at the bottom right ("No wind / Indoors 21C / Clear"): "can the temperature meter be clearly color
   coded from blue to red, so i can at immediate glance see how warm or cold it is". When asked: colour the game's own
@@ -58,6 +52,50 @@ tree at once, alongside whatever runs. Each piece is merged as its own release, 
   area, guest beds, its guest tab and recruiting rules, Rimfolk's guest help), softly by type name; Rimfolk's own visit
   purpose (the feast, the talks, the envoy's season) kept on top, and its own visitor lord left for when Hospitality is
   absent.
+- Not released: no version, no What's new round, About.xml and CHANGELOG untouched. **Camps in the coldest winter:
+  winter folk** (11 November 2026). The player: "i haven't had any camps probably becauser it was just freezing cold all
+  the time, i'd like a handful of camp events that can also come in the coldest winter". DESIGN.md "Camps in the coldest
+  winter: winter folk" (under the camps); README's camps paragraph; the Almanac's camps page (the description, the kinds'
+  table, a new section "Winter folk"; keywords unchanged).
+  - What kept them away: the day's try was shut below -30 °C outside whatever they could wear
+    (`CampWeatherMath.TooExtremeToCome`, the blocker "weather"); on milder days every one of them, in layers bought
+    within a cloth parka's worth and a half (about -44 °C safe with a tuque), had to be safe through the stay's coldest
+    hour less three degrees over four to ten winter days; a standing camp packed up below -35 °C. The two winter kinds
+    there were come only from Rimfolk's herding and trading peoples.
+  - Winter folk (`CampKindDef.winter`): no flat floor of the cold, coming or staying; the game's own limit for each of
+    them as dressed decides (`WouldStop`, `Exposed`/`PackUp`). Every other kind keeps its gates as they were. A kind's
+    weather (`FitsWeather`: the floor, `coldBelow` against the coming week's warmest hour via `CampWeather.Usual`,
+    `inSnow`) is asked by a new camp, a returning one and a rival party; the blocker keeps a day past the floor open only
+    while a winter kind fits. The herders' winter grazing and the league's winter quarters are winter folk too.
+  - Winter clothes: `CampWearDef` `Rimfolk_CampWear_Winter` (`CampKindDef.wearSet`, or `wears` of a kind's own;
+    `CampWear` with `minTech`/`maxTech`), put on first by `CampWeather.WearOwn` when the stay is colder than they're
+    comfortable in: by age, the player's mods first (Vanilla Apparel Expanded's pelt coat, boots, scarf and gloves; Vanilla
+    Christmas Expanded's warm jacket and hat; VFE Medieval 2's mantle; VFE Tribals' heavy tribalwear; Ideology's tailcap or
+    broadwrap), the game's parka (of fur, wool or synthread) and kid parka, tuque.
+  - Five kinds (`Defs/CampDefs/Rimfolk_CampKinds_Winter.xml`): ice fishers (need `ice`, work `icefish`, a hut), fur
+    trappers (hunt, stretch pelts, a hut), a snowbound caravan (only in snow, tents, a stall, asks for the colony's
+    roof), herd followers (need a wild herd, hunt it, beds round the fire behind a windbreak), pilgrims of the long night
+    (winter, a vigil, a blessing, a carved sun left at the gate, ask for the roof); each three asks, good turns, words by
+    their people's age; job defs `Rimfolk_CampIceFish`, `_CampMendLines`, `_CampStretchPelts`, `_CampReadyGear`.
+  - Game side: `Camps/CampWinter.cs` (new): `CampLand.Ice`, `SnowNow`, `Blizzard`, `UnderIce`, `IceTargets`, `IceOn`,
+    `WorkTick` (the hole kept open with the game's `RemoveTempTerrain`), `Camp.IceSpots`/`IceFishJob`, `Camp.Shelters`;
+    `CampKindsLand.cs` (the `ice` need and site, the `icefish` work, `Fished` through the ice, the stormy night's roof
+    for any kind with a "shelter" request); `JobDriver_CampTask` calls `WorkTick`; `CampWords.AddTags` adds `snow`,
+    `blizzard`, `ice`; facts tags `them:camp:IceFishers` and the rest (`Text/Facts/FactsMath.cs`); key
+    `CC_CampLand_Facts_icefish`. Tests `Tools/Tests/CampWinterTests.cs` (95 checks). Nothing new saved.
+  - Not run here: any winter camp on a map; the clothes on each age's people and how far they carry them; the hole cut,
+    kept open, fished and frozen over again; the caravan's and pilgrims' night in the colony.
+  - Try in the game: 1. In a winter below -30 °C (a day's try, or the dev action "Camps: another camp here now, beside those here", which picks by the same weather): the World page's
+    diary no longer says "weather" while a winter kind fits; a winter camp comes, its letter saying what they wear
+    (pelt coats for a tribal people, wool parkas for a medieval one, a warm jacket, scarf and gloves for an industrial
+    one). 2. With Odyssey and frozen shallow water with fish clear of the colony: ice fishers pitch a hut on the shore,
+    walk out onto the ice, a hole opens beside the one fishing and stays open while they fish ("fishing through the
+    ice"), fish go into their stash, and the hole freezes over after. 3. In falling snow: a snowbound caravan with pack
+    beasts and a stall; on a hard snowy evening a letter asks for the colony's roof; granted, they sleep in free beds and
+    go back in the morning. 4. A wild herd on the land in the cold: herd followers camp round a fire behind a windbreak
+    and hunt the herd. 5. An ordinary camp still never comes below -30 °C, and a winter camp packs up only when the
+    cold would hurt most of them. 6. Trappers' furs laid out by their butchering spot; pilgrims' vigil by the fire, and
+    the carved sun at the gate after a good stay.
 - Not released: no version, no What's new round, About.xml and CHANGELOG untouched. **A beast is no reason to go:
   camps leave only for real attacks** (11 November 2026, a bug). The player: "camps packed up after an animal taking
   revenge after being attacked, animal and other more arbitrary attacks should not get the camp to leave". DESIGN.md "A

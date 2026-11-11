@@ -1,0 +1,928 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- Winter camps (the player's request, 10 November 2026: "i haven't had any camps probably becauser it was just
+       freezing cold all the time, i'd like a handful of camp events that can also come in the coldest winter"): five kinds
+       of people who travel or work in deep cold, ColonyCouncil.CampKindDef as in Council_CampKinds.xml. Winter folk
+       (CampKindDef.winter): the flat floor of the cold that keeps every other camp away isn't theirs, so whether they come
+       and stay is the game's own limit for each of them as they're dressed, in their own winter clothes (wears: the
+       player's mods first, the game's own last, by their people's age). Each comes only while the land stays cold
+       (coldBelow: the coming week's warmest hour), the caravan only while snow falls (inSnow). Ice fishers cut holes in the
+       ice of frozen water with fish under it (Odyssey's thin ice) and fish through them (Camps/CampWinter.cs); trappers
+       and herd followers hunt and dress their furs; a caravan sits the snow out by a friendly wall and asks for the
+       colony's roof on a stormy night; pilgrims keep the long night by their fire. -->
+
+  <JobDef ParentName="Council_CampJobBase">
+    <defName>Rimfolk_CampIceFish</defName>
+    <reportString>fishing through the ice.</reportString>
+    <modExtensions>
+      <li Class="ColonyCouncil.CampJobExtension"><ticks>2200</ticks><effecterNamed>Fishing</effecterNamed><progress>true</progress></li>
+    </modExtensions>
+  </JobDef>
+
+  <JobDef ParentName="Council_CampJobBase">
+    <defName>Rimfolk_CampMendLines</defName>
+    <reportString>mending lines by the fire.</reportString>
+    <modExtensions>
+      <li Class="ColonyCouncil.CampJobExtension"><ticks>1400</ticks><social>true</social></li>
+    </modExtensions>
+  </JobDef>
+
+  <JobDef ParentName="Council_CampJobBase">
+    <defName>Rimfolk_CampStretchPelts</defName>
+    <reportString>stretching a pelt to dry.</reportString>
+    <modExtensions>
+      <li Class="ColonyCouncil.CampJobExtension"><ticks>1600</ticks></li>
+    </modExtensions>
+  </JobDef>
+
+  <JobDef ParentName="Council_CampJobBase">
+    <defName>Rimfolk_CampReadyGear</defName>
+    <reportString>readying their gear for the hunt.</reportString>
+    <modExtensions>
+      <li Class="ColonyCouncil.CampJobExtension"><ticks>1200</ticks><social>true</social></li>
+    </modExtensions>
+  </JobDef>
+
+  <!-- What every winter kind wears against the cold, by their people's age: a coat (tribal folk a pelt coat or a fur
+       parka, the medieval a wool parka and a mantle over it, the industrial a warm jacket or a parka, spacers a synthread
+       parka; a kid's parka for a child), a warm hat or a fur cap, boots from the medieval age on, a scarf and gloves from
+       the industrial. The first of each that exists and fits the wearer. -->
+  <ColonyCouncil.CampWearDef>
+    <defName>Rimfolk_CampWear_Winter</defName>
+    <label>winter clothes</label>
+    <wears>
+      <li>
+        <maxTech>Neolithic</maxTech>
+        <defs><li MayRequire="VanillaExpanded.VAPPE">VAE_Apparel_PeltCoat</li><li>Apparel_Parka</li><li MayRequire="Ludeon.RimWorld.Biotech">Apparel_KidParka</li></defs>
+        <stuff><li>Leather_Heavy</li><li>Leather_Bear</li><li>Leather_Wolf</li><li MayRequire="Ludeon.RimWorld.Odyssey">Leather_Sealskin</li><li>Leather_Fox</li><li>Leather_Plain</li></stuff>
+      </li>
+      <li>
+        <maxTech>Neolithic</maxTech>
+        <defs><li MayRequire="OskarPotocki.VFE.Tribals">VFET_Apparel_TribalHeavy</li></defs>
+        <stuff><li>Leather_Plain</li><li>Leather_Light</li></stuff>
+      </li>
+      <li>
+        <maxTech>Neolithic</maxTech>
+        <defs><li MayRequire="Ludeon.RimWorld.Ideology">Apparel_Tailcap</li><li MayRequire="Ludeon.RimWorld.Ideology">Apparel_Broadwrap</li></defs>
+        <stuff><li>Leather_Fox</li><li>Leather_Wolf</li><li>Leather_Plain</li><li>Cloth</li></stuff>
+      </li>
+      <li>
+        <minTech>Medieval</minTech>
+        <maxTech>Medieval</maxTech>
+        <defs><li>Apparel_Parka</li><li MayRequire="Ludeon.RimWorld.Biotech">Apparel_KidParka</li></defs>
+        <stuff><li>WoolMuffalo</li><li>WoolSheep</li><li>WoolAlpaca</li><li>Leather_Bear</li><li>Cloth</li></stuff>
+      </li>
+      <li>
+        <minTech>Medieval</minTech>
+        <maxTech>Medieval</maxTech>
+        <defs><li MayRequire="OskarPotocki.VFE.Medieval2">VFEM2_Apparel_Mantle</li></defs>
+        <stuff><li>WoolSheep</li><li>WoolMuffalo</li><li>Cloth</li></stuff>
+      </li>
+      <li>
+        <minTech>Industrial</minTech>
+        <maxTech>Industrial</maxTech>
+        <defs><li MayRequire="VE.VanillaChristmasExpanded">VCE_Apparel_WarmJacket</li><li>Apparel_Parka</li><li MayRequire="Ludeon.RimWorld.Biotech">Apparel_KidParka</li></defs>
+        <stuff><li>WoolSheep</li><li>WoolMuffalo</li><li>Cloth</li></stuff>
+      </li>
+      <li>
+        <minTech>Spacer</minTech>
+        <defs><li>Apparel_Parka</li><li MayRequire="Ludeon.RimWorld.Biotech">Apparel_KidParka</li></defs>
+        <stuff><li>Synthread</li><li>DevilstrandCloth</li><li>WoolMuffalo</li></stuff>
+      </li>
+      <li>
+        <minTech>Medieval</minTech>
+        <defs><li MayRequire="VE.VanillaChristmasExpanded">VCE_Apparel_WarmHat</li><li>Apparel_Tuque</li></defs>
+        <stuff><li>WoolSheep</li><li>WoolAlpaca</li><li>Cloth</li></stuff>
+      </li>
+      <li>
+        <minTech>Medieval</minTech>
+        <defs><li MayRequire="VanillaExpanded.VAPPE">VAE_Footwear_Boots</li></defs>
+        <stuff><li>Leather_Heavy</li><li>Leather_Plain</li></stuff>
+      </li>
+      <li>
+        <minTech>Industrial</minTech>
+        <defs><li MayRequire="VanillaExpanded.VAPPE">VAE_Headgear_Scarf</li></defs>
+        <stuff><li>WoolSheep</li><li>Cloth</li></stuff>
+      </li>
+      <li>
+        <minTech>Industrial</minTech>
+        <defs><li MayRequire="VanillaExpanded.VAPPE">VAE_Handwear_Gloves</li></defs>
+        <stuff><li>WoolSheep</li><li>Leather_Plain</li><li>Cloth</li></stuff>
+      </li>
+    </wears>
+  </ColonyCouncil.CampWearDef>
+
+  <!-- ===================== Ice fishers ===================== -->
+
+  <ColonyCouncil.CampKindDef>
+    <defName>Rimfolk_Camp_IceFishers</defName>
+    <label>ice fishers</label>
+    <winter>true</winter>
+    <wearSet>Rimfolk_CampWear_Winter</wearSet>
+    <arrives>6~11</arrives>
+    <minTech>Neolithic</minTech>
+    <weight>1.1</weight>
+    <coldBelow>2</coldBelow>
+    <people>3~5</people>
+    <days>3~7</days>
+    <ages>14~62</ages>
+    <family>true</family>
+    <needs>ice</needs>
+    <work>icefish</work>
+    <chopsPerDay>0.5</chopsPerDay>
+    <task>Rimfolk_CampMendLines</task>
+    <hireChance>0.25</hireChance>
+    <joinChance>0.04</joinChance>
+    <helpChance>0.25</helpChance>
+    <help>
+      <li>fish</li>
+      <li>tales</li>
+    </help>
+    <buys>
+      <li>Meal</li>
+      <li>Drink</li>
+      <li>Textiles</li>
+    </buys>
+    <pride>0.25</pride>
+    <breakTerms>0.08</breakTerms>
+    <tensionPerDay>0.9</tensionPerDay>
+    <extendChance>0.35</extendChance>
+    <situationKinds>
+      <li>ice</li>
+      <li>weather</li>
+    </situationKinds>
+    <structures>
+      <li><role>fire</role><defs><li>Campfire</li></defs></li>
+    </structures>
+    <sleep>Hut</sleep>
+    <works><li>Chop</li></works>
+    <animals>
+      <li><kinds><li>Husky</li><li>LabradorRetriever</li></kinds><count>1~1</count><follow>true</follow><named>true</named></li>
+    </animals>
+    <campGoods>
+      <li><defs><li>WoodLog</li></defs><count>30~45</count><at>fire</at></li>
+    </campGoods>
+    <titles>
+      <li>Ice fishers on the frozen water</li>
+      <li>Holes in the ice</li>
+      <li>A fishing family on the ice</li>
+    </titles>
+    <texts>
+      <li>A fishing family of {FACTION} has come out to the frozen water near the colony, where the ice holds and the fish are slow under it. {X_nameDef}, who does the talking for them, asked {A_nameDef} for leave to camp {PLACE} and fish through the ice for a few days.</li>
+      <li>[their:tribal] Ice fishers of {FACTION} came over the snow dragging their gear behind them, bone hooks and sinew lines and an axe for the ice. {X_nameDef} asked {A_nameDef} whether they might camp {PLACE}, by the frozen water, while the ice is good.</li>
+      <li>[their:medieval] A family of {FACTION} has walked down to the frozen water with lines, creels and an iron bar for breaking the ice. {X_nameDef} asked {A_nameDef} for leave to camp {PLACE} and fish through it until the thaw or the hunger sends them home.</li>
+      <li>[their:hightech] Ice fishers of {FACTION} have hauled a sled of gear to the frozen water near the colony: an ice auger, rods, a stove. {X_nameDef} asked {A_nameDef} for leave to camp {PLACE} and fish through the ice for a few days.</li>
+      <li>[ws:ice] With the ice road open and every lake frozen hard, a fishing family of {FACTION} has come to fish the colony's water through the ice. {X_nameDef} asked {A_nameDef} for leave to camp {PLACE}.</li>
+      <li>[their:grateful] The ice fishers of {FACTION} remember the colony kindly, and {X_nameDef} came up off the ice to ask {A_nameDef}, as an old friend would, for a few days' camp {PLACE}.</li>
+    </texts>
+    <settled>
+      <li>[shelter:hut] The ice fishers of {FACTION} have put up a hut {PLACE}, close to the frozen water, with a fire outside it that they keep fed and a pile of wood beside it.</li>
+      <li>The fishing family's camp is up {PLACE}: a fire, a woodpile, shelter for the night, and a dog asleep in the snow by the door.</li>
+      <li>The ice fishers have settled {PLACE}, and one of them is already out on the ice cutting the first hole.</li>
+    </settled>
+    <joinTexts>
+      <li>{X_nameDef}, the ice fishers' youngest, says {X_pronoun} would sooner fish the colony's water every winter than walk to a new lake each one, and asks whether the colony could use someone who knows the ice.</li>
+      <li>{X_nameDef} from the ice fishers' camp has been bringing fish up to the colony's door of an evening, unasked. Tonight {X_pronoun} asked whether {X_pronoun} might stay for good.</li>
+    </joinTexts>
+    <farewell>
+      <li>The ice fishers from {FACTION} pulled their lines, packed their gear and walked off over the snow at first light, the dog running ahead.</li>
+      <li>The ice fishers' camp {PLACE} is empty. Out on the ice the holes they cut are already freezing over.</li>
+      <li>[ice] The fishing family from {FACTION} has gone on to the next frozen water, and the only sign of them out on the ice is a ring of fish scales round each hole.</li>
+    </farewell>
+    <lines>
+      <li>Keep the hole open, it skins over fast.</li>
+      <li>Never stand where the ice is grey.</li>
+      <li>They bite slow in the cold, but they bite.</li>
+      <li>Throw another log on before we go out.</li>
+      <li>Feel that, it's good and thick here.</li>
+      <li>Fish freeze stiff before you get them home.</li>
+      <li>[their:hightech] Is the auger still sharp?</li>
+      <li>[their:lowtech] Hand me the bar, this one's thick.</li>
+      <li>[snow] Snow on the ice means quiet water under it.</li>
+      <li>Warm your hands before you tie that line.</li>
+    </lines>
+    <momentLines>
+      <li>[ice] Right, let's open a hole.</li>
+      <li>[ice] Mind your feet out there.</li>
+      <li>[fish] There, up through the ice.</li>
+      <li>[fish] Basket's filling.</li>
+      <li>[fish] Small, but it'll do for supper.</li>
+    </momentLines>
+    <helpTexts>
+      <li>[fish] {X_nameDef} set out {COUNT} {THING} from the ice fishers' catch at the edge of their camp for the colony, frozen stiff in the snow.</li>
+      <li>[fish] The ice fishers left {COUNT} {THING} on the colony's side of their camp, and {X_nameDef} waved at {A_nameDef} to come and take it before the foxes did.</li>
+      <li>[tales] {A_nameDef} sat with the ice fishers at their fire and heard about every lake between here and the north, and which of them freeze thick enough to walk on.</li>
+    </helpTexts>
+    <asks>
+      <li>
+        <key>catch</key>
+        <label>Buy their catch: {THING}</label>
+        <tip>One of the ice fishers takes up the fish lying at their camp and carries it to the colony's gate. Once it's set down there, the colony pays what it comes to at its worth, and a colonist takes the silver over to their camp.</tip>
+        <once>false</once>
+        <price>catch</price>
+        <needs>theirCatch</needs>
+        <tension>-3</tension>
+        <deed>traded</deed>
+        <outcomes>
+          <li>{X_nameDef} nodded and sent one of the family to the baskets: the catch will be set down by the colony's gate.</li>
+          <li>The ice fishers are bringing their catch up to the colony's gate, frozen as it came out of the hole.</li>
+        </outcomes>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_CampCatchSale" />
+        </effects>
+      </li>
+      <li>
+        <key>ice</key>
+        <label>Send {A_nameDef} out on the ice with them</label>
+        <tip>{A_nameDef} spends a few hours at the ice fishers' side learning to read the ice and fish through it (Animals practice).</tip>
+        <skill>Animals</skill>
+        <minDays>0.5</minDays>
+        <tension>-3</tension>
+        <warm>2</warm>
+        <deed>campHelped</deed>
+        <outcomes>
+          <li>{X_nameDef} said the ice was good today, and that {A_nameDef} should bring warm hands and a lot of patience.</li>
+          <li>{A_nameDef} is going over to the ice fishers' camp, and {X_nameDef} has already picked out a hole for the two of them.</li>
+        </outcomes>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Lesson"><teacher>X</teacher><student>A</student><skill>Animals</skill><duration>2~3</duration></li>
+        </effects>
+      </li>
+      <li>
+        <key>evening</key>
+        <label>Spend an evening at their fire</label>
+        <tip>The colony goes over to the ice fishers' fire this evening for fried fish and talk. Recreation for whoever comes; the family warms to the colony.</tip>
+        <needs>evening</needs>
+        <tension>-5</tension>
+        <outcomes>
+          <li>The colony is going over to the ice fishers' fire this evening, and {X_nameDef} has put the best of the day's catch aside for the pan.</li>
+          <li>Whoever can be spared is going to the ice fishers' fire tonight, and the family is already arguing over who caught the biggest.</li>
+        </outcomes>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Gathering"><label>an evening at the ice fishers' fire</label><spots><li>Camp</li><li>Outdoors</li></spots><hours>17~22</hours><duration>2~3</duration></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Joy"><target>Colony</target><amount>0.08</amount></li>
+        </effects>
+      </li>
+    </asks>
+  </ColonyCouncil.CampKindDef>
+
+  <!-- ===================== Fur trappers ===================== -->
+
+  <ColonyCouncil.CampKindDef>
+    <defName>Rimfolk_Camp_Trappers</defName>
+    <label>fur trappers</label>
+    <winter>true</winter>
+    <wearSet>Rimfolk_CampWear_Winter</wearSet>
+    <arrives>8~14</arrives>
+    <minTech>Neolithic</minTech>
+    <maxTech>Industrial</maxTech>
+    <weight>1</weight>
+    <coldBelow>8</coldBelow>
+    <people>2~4</people>
+    <days>4~9</days>
+    <ages>18~58</ages>
+    <huntsPerDay>1.4</huntsPerDay>
+    <chopsPerDay>0.5</chopsPerDay>
+    <armedHunters>true</armedHunters>
+    <task>Rimfolk_CampStretchPelts</task>
+    <taskAt>butcher</taskAt>
+    <hireChance>0.3</hireChance>
+    <joinChance>0.03</joinChance>
+    <helpChance>0.2</helpChance>
+    <help>
+      <li>meat</li>
+      <li>tales</li>
+    </help>
+    <buys>
+      <li>RoadFood</li>
+      <li>Medicine</li>
+      <li>Metal</li>
+    </buys>
+    <pride>0.4</pride>
+    <breakTerms>0.12</breakTerms>
+    <tensionPerDay>1.3</tensionPerDay>
+    <extendChance>0.3</extendChance>
+    <situationKinds>
+      <li>weather</li>
+      <li>trade</li>
+    </situationKinds>
+    <structures>
+      <li><role>fire</role><defs><li>Campfire</li></defs></li>
+      <li><role>butcher</role></li>
+    </structures>
+    <sleep>Hut</sleep>
+    <works><li>Hunt</li><li>Chop</li><li>Craft</li></works>
+    <animals>
+      <li><kinds><li>Husky</li></kinds><count>1~1</count><follow>true</follow><named>true</named></li>
+      <li><pack>true</pack><kinds><li>Yak</li><li>Muffalo</li><li>Alpaca</li><li>Horse</li></kinds><count>1~1</count><at>picket</at></li>
+    </animals>
+    <campGoods>
+      <li><defs><li MayRequire="Ludeon.RimWorld.Odyssey">Leather_Mink</li><li>Leather_Fox</li><li>Leather_Bluefur</li><li>Leather_Wolf</li></defs><count>15~30</count><at>butcher</at></li>
+      <li><defs><li>WoodLog</li></defs><count>25~40</count><at>fire</at></li>
+    </campGoods>
+    <titles>
+      <li>Trappers in the snow</li>
+      <li>Fur trappers</li>
+      <li>A trapline through the woods</li>
+    </titles>
+    <texts>
+      <li>A few fur trappers of {FACTION} have come through the snow with their traps on their backs. The furs are thick this time of year, {X_nameDef} told {A_nameDef}, and they ask for leave to camp {PLACE} and run a trapline out from it for a few days.</li>
+      <li>[their:tribal] Trappers of {FACTION} came in on snowshoes, deadfalls and snares hung from their belts and a dog trotting ahead. {X_nameDef} asked {A_nameDef} whether they might camp {PLACE} while the foxes are in their winter coats.</li>
+      <li>[their:medieval] {X_nameDef}, a trapper of {FACTION}, has come with two partners and a pack beast loaded with iron traps, and asked {A_nameDef} for leave to camp {PLACE} and work the woods and hills beyond the colony until the furs are taken.</li>
+      <li>[their:industrial] Fur trappers of {FACTION} have come through the snow with rifles, steel traps and a pack beast for the pelts. {X_nameDef} asked {A_nameDef} for leave to camp {PLACE}, and promised to keep their lines away from the colony's own animals.</li>
+      <li>[ws:weather] The hard cold has driven the game down from the high country, and trappers of {FACTION} have followed it. {X_nameDef} asked {A_nameDef} for leave to camp {PLACE} while it lasts.</li>
+      <li>[their:grateful] The trappers of {FACTION} remember the colony kindly, and {X_nameDef} came straight to it out of the woods to ask for a camp {PLACE} this winter.</li>
+    </texts>
+    <settled>
+      <li>[shelter:hut] The trappers of {FACTION} have put up a hut {PLACE}, its door to the fire, and pegged out the first pelts by the butchering spot.</li>
+      <li>The trappers' camp is up {PLACE}: a fire kept high against the cold, a butchering spot, furs drying, and the dog on guard over all of it.</li>
+      <li>The fur trappers have settled {PLACE}. By the time their fire was going, one of them was already off into the trees with a rifle.</li>
+    </settled>
+    <joinTexts>
+      <li>{X_nameDef}, one of the trappers, says {X_pronoun} has spent too many winters alone in the woods, and asks whether the colony could use someone who can feed a household through one.</li>
+      <li>{X_nameDef} from the trappers' camp has been sitting at the colony's fire more evenings than at their own. Tonight {X_pronoun} asked whether {X_pronoun} might stay when the others move on.</li>
+    </joinTexts>
+    <farewell>
+      <li>The trappers from {FACTION} took up their traps and their furs and went on into the snow, the dog breaking the trail ahead of them.</li>
+      <li>The trappers' camp {PLACE} is empty, and there's a ring of trampled snow round the cold fire and the pegs where the furs were stretched.</li>
+      <li>The fur trappers of {FACTION} loaded the last of their pelts on the pack beast and left at first light, bound for a market that pays for good winter fur.</li>
+    </farewell>
+    <lines>
+      <li>A fox in its winter coat is worth three in summer.</li>
+      <li>Check the line before the snow covers the tracks.</li>
+      <li>Keep the fire high, the pelts stiffen in this cold.</li>
+      <li>Fresh tracks by the stream this morning.</li>
+      <li>Don't waste the meat, the dog needs it too.</li>
+      <li>Scrape it clean or it'll rot on the frame.</li>
+      <li>[their:lowtech] Set the snare low, they keep to the runs.</li>
+      <li>[their:hightech] One shot, clean, so the fur isn't spoiled.</li>
+      <li>[snow] New snow, good tracking tomorrow.</li>
+    </lines>
+    <momentLines>
+      <li>[kill] Clean through, the pelt's whole.</li>
+      <li>[kill] That's a good coat on that one.</li>
+      <li>[butcher] Gently now, don't tear the skin.</li>
+      <li>[butcher] This one goes on the frame.</li>
+    </momentLines>
+    <helpTexts>
+      <li>[meat] The trappers had more meat than they could carry, and {X_nameDef} left {COUNT} of it at the edge of their camp for the colony.</li>
+      <li>[tales] {A_nameDef} sat up with the trappers at their fire and heard about a winter so long the wolves came down to the villages, and how {X_nameDef} still has the scar.</li>
+      <li>[tales] {X_nameDef} told {A_nameDef} which tracks in the snow mean food and which mean trouble, and drew them in the ash by the fire.</li>
+    </helpTexts>
+    <asks>
+      <li>
+        <key>furs</key>
+        <label>Buy a bundle of their furs ({COUNT} silver)</label>
+        <tip>Pelts from the trappers' line, scraped and dried at their camp, at their price: one of them sets them out at the edge of the camp for the colony to fetch.</tip>
+        <silver>80</silver>
+        <minDays>1</minDays>
+        <deed>traded</deed>
+        <outcomes>
+          <li>{X_nameDef} counted the silver and set out a bundle of furs at the edge of the trappers' camp, the best on top.</li>
+          <li>The trappers have laid out a bundle of winter furs for the colony at the edge of their camp, tied with sinew.</li>
+        </outcomes>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_CampGives"><what>leather</what><count>30</count><fallback>Leather_Fox</fallback></li>
+        </effects>
+      </li>
+      <li>
+        <key>trapline</key>
+        <label>Send {A_nameDef} out on the trapline with them</label>
+        <tip>{A_nameDef} goes out after game with the trappers for a few hours, and learns the tracks in the snow. What {A_nameDef} brings down is the colony's.</tip>
+        <skill>Shooting</skill>
+        <minDays>0.5</minDays>
+        <warm>2</warm>
+        <tension>-4</tension>
+        <outcomes>
+          <li>{X_nameDef} looked {A_nameDef} over, said to walk where {X_pronoun} walks, and handed over a pair of snowshoes.</li>
+          <li>{A_nameDef} is going out on the trapline with {X_nameDef} this afternoon, and has been told to keep quiet in the trees.</li>
+        </outcomes>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_HuntParty"><label>the trapline</label><who>A</who><count>2</count><animals>1</animals></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Learn"><target>A</target><skill>Animals</skill><xp>250</xp></li>
+        </effects>
+      </li>
+      <li>
+        <key>supper</key>
+        <theyAsk>true</theyAsk>
+        <label>Trade them a hot supper for a pelt</label>
+        <refuseLabel>The colony needs its meals</refuseLabel>
+        <needs>evening</needs>
+        <tension>-5</tension>
+        <deed>traded</deed>
+        <askTexts>
+          <li>{X_nameDef} came up from the trappers' camp with a pelt over one arm, and asked {A_nameDef} whether the colony would trade a few hot meals for it. A long day on the line, {X_pronoun} says, and nothing but jerky at the end of it.</li>
+          <li>The trappers have eaten their own meat every night for a week. {X_nameDef} asked {A_nameDef} whether the colony would send over a hot supper, and offered furs for it.</li>
+        </askTexts>
+        <tip>Three of the colony's meals go out to their camp; they set out a few pelts at the edge of it for the colony to fetch.</tip>
+        <outcomes>
+          <li>The trappers are getting a hot supper tonight, and {X_nameDef} has set aside some furs for the colony.</li>
+          <li>{X_nameDef} thanked {A_nameDef} and laid out a few pelts at the edge of the trappers' camp.</li>
+        </outcomes>
+        <refused>
+          <li>{X_nameDef} shrugged and went back to the trappers' fire, and the jerky.</li>
+          <li>The trappers will eat their own meat again tonight. {X_nameDef} didn't say much about it.</li>
+        </refused>
+        <refuseTension>4</refuseTension>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>a hot supper for the trappers</label><what>meals</what><count>3</count><to>Camp</to></li>
+          <li Class="ColonyCouncil.DilemmaEffect_CampGives"><what>leather</what><count>15</count><fallback>Leather_Fox</fallback></li>
+        </effects>
+      </li>
+    </asks>
+  </ColonyCouncil.CampKindDef>
+
+  <!-- ===================== A caravan out of the snow ===================== -->
+
+  <ColonyCouncil.CampKindDef>
+    <defName>Rimfolk_Camp_SnowboundCaravan</defName>
+    <label>snowbound caravan</label>
+    <winter>true</winter>
+    <wearSet>Rimfolk_CampWear_Winter</wearSet>
+    <minTech>Neolithic</minTech>
+    <weight>1.2</weight>
+    <coldBelow>5</coldBelow>
+    <inSnow>true</inSnow>
+    <people>4~7</people>
+    <days>1.5~3</days>
+    <ages>17~62</ages>
+    <chopsPerDay>0.6</chopsPerDay>
+    <trader>true</trader>
+    <task>Council_CampKeepStall</task>
+    <taskAt>stall</taskAt>
+    <hireChance>0.2</hireChance>
+    <joinChance>0.02</joinChance>
+    <helpChance>0.25</helpChance>
+    <help>
+      <li>goods</li>
+      <li>tales</li>
+    </help>
+    <buys>
+      <li>Feed</li>
+      <li>Meal</li>
+      <li>RoadFood</li>
+    </buys>
+    <pride>0.25</pride>
+    <breakTerms>0.05</breakTerms>
+    <tensionPerDay>0.8</tensionPerDay>
+    <extendChance>0.4</extendChance>
+    <situationKinds>
+      <li>ice</li>
+      <li>road</li>
+      <li>trade</li>
+      <li>weather</li>
+    </situationKinds>
+    <structures>
+      <li><role>fire</role><defs><li>Campfire</li></defs></li>
+      <li><role>stall</role></li>
+    </structures>
+    <sleep>Tents</sleep>
+    <works><li>Chop</li></works>
+    <animals>
+      <li><pack>true</pack><kinds><li>Yak</li><li>Muffalo</li><li>Alpaca</li><li>Horse</li><li>Dromedary</li></kinds><count>2~3</count><at>picket</at></li>
+      <li><kinds><li>Husky</li></kinds><count>1~1</count><follow>true</follow><named>true</named></li>
+    </animals>
+    <campGoods>
+      <li><defs><li>WoolMuffalo</li><li>WoolSheep</li><li>Cloth</li></defs><count>30~60</count><at>picket</at><carryTo>stall</carryTo></li>
+      <li><defs><li>Hay</li></defs><count>40~60</count><at>picket</at></li>
+      <li><defs><li>WoodLog</li></defs><count>25~40</count><at>fire</at></li>
+    </campGoods>
+    <titles>
+      <li>A caravan out of the snow</li>
+      <li>[blizzard] Caught in the blizzard</li>
+      <li>Snowbound</li>
+    </titles>
+    <texts>
+      <li>A caravan of {FACTION} has turned off the road in the snow and made for the colony's smoke. {X_nameDef}, who leads it, asked {A_nameDef} for leave to camp {PLACE} until the weather breaks, and will trade from the camp while they wait.</li>
+      <li>[blizzard] Out of the blizzard came a string of laden beasts, heads down, and a caravan of {FACTION} behind them. {X_nameDef} shouted over the wind to {A_nameDef}: they can't go on in this, and ask for a camp {PLACE} until it passes.</li>
+      <li>[their:lowtech] A caravan of {FACTION} has come in white with snow, its beasts blanketed and its people wrapped to the eyes. {X_nameDef} asked {A_nameDef} whether they might sit the snow out {PLACE}, and trade there while they do.</li>
+      <li>[their:hightech] A convoy of {FACTION} has given up on the snowbound road and pulled in near the colony, its beasts steaming in the cold. {X_nameDef} asked {A_nameDef} for leave to camp {PLACE} until the road clears.</li>
+      <li>[ws:ice] The caravan of {FACTION} was making for the ice road when the snow came down, and {X_nameDef} has turned it toward the colony instead. They ask for a camp {PLACE} until it passes.</li>
+      <li>[their:grateful] A caravan of {FACTION} has come straight to the colony out of the snow, because {X_nameDef} remembers a friendly wall here. {X_nameDef} asks {A_nameDef} for a camp {PLACE} until the weather breaks.</li>
+    </texts>
+    <settled>
+      <li>[shelter:tents|tentbeds] The caravan of {FACTION} has pitched its tents {PLACE} with their backs to the wind, the beasts tethered and blanketed by the stash and a big fire going.</li>
+      <li>The snowbound caravan has dug in {PLACE}: a fire they keep high, the beasts at the picket with their hay, and a trading table set up for whoever comes.</li>
+      <li>The caravan of {FACTION} is camped {PLACE}, waiting out the weather. Their trader has the table out already, snow or no snow.</li>
+    </settled>
+    <joinTexts>
+      <li>{X_nameDef}, one of the caravan's drivers, says the road has had all of {X_objective} it's getting, and asks whether the colony could use someone who's good with beasts and better with a ledger.</li>
+    </joinTexts>
+    <farewell>
+      <li>The weather broke, and the caravan of {FACTION} loaded up and went on its way, the beasts glad to be moving.</li>
+      <li>The snowbound caravan is gone from {PLACE}. All that's left is trampled snow, the cold fire and the marks of the picket.</li>
+      <li>The caravan of {FACTION} went out at first light, bells on the lead beast, with {X_nameDef} calling thanks back over the snow.</li>
+    </farewell>
+    <lines>
+      <li>Blanket the beasts before dark.</li>
+      <li>No one goes out in this alone.</li>
+      <li>We'll make the pass when it clears, not before.</li>
+      <li>Keep the hay dry, it's all they'll get.</li>
+      <li>Snow like this, the road won't be there tomorrow.</li>
+      <li>Count the crates again, I lost one in the drift.</li>
+      <li>[blizzard] Can't see the picket from the fire.</li>
+      <li>Another log, it bites tonight.</li>
+    </lines>
+    <momentLines>
+      <li>[carry] Mind the crate, the snow's slick.</li>
+      <li>[carry] Last one for the table.</li>
+      <li>[gift] For the colony, with the caravan's thanks.</li>
+    </momentLines>
+    <helpTexts>
+      <li>[goods] {X_nameDef} set aside a few things from the caravan's crates for the colony, by way of thanks for the shelter of its wall: {THING}.</li>
+      <li>[tales] {A_nameDef} sat by the caravan's fire while the snow came down and heard of every road in the region, and which of them the snow closes first.</li>
+    </helpTexts>
+    <asks>
+      <li>
+        <key>shelter</key>
+        <theyAsk>true</theyAsk>
+        <once>false</once>
+        <label>Let them sleep under the colony's roof tonight</label>
+        <refuseLabel>They'll have to weather it at their camp</refuseLabel>
+        <needs>storm</needs>
+        <tension>-6</tension>
+        <deed>sheltered</deed>
+        <askTexts>
+          <li>The snow is coming down hard and the caravan's tents are sagging under it. {X_nameDef} asked {A_nameDef} whether they might sleep in the colony tonight, and promised they'd be gone back to their camp at first light.</li>
+          <li>{X_nameDef} came up from the caravan's camp white with snow, and asked for beds under the colony's roof until the worst of it passes.</li>
+        </askTexts>
+        <tip>The caravan's people walk in at nightfall and sleep in the colony's free beds (none that anyone else owns), and give them back in the morning. Their beasts stay at their picket.</tip>
+        <outcomes>
+          <li>{X_nameDef} thanked {A_nameDef}. The caravan's people will come in when it's dark.</li>
+          <li>The caravan will sleep in the colony tonight, and {X_nameDef} says the beasts are used to worse.</li>
+        </outcomes>
+        <refused>
+          <li>{X_nameDef} said they'd manage, and went back down to the camp through the snow.</li>
+          <li>The caravan is sitting out the night at its camp, packed into the tents round the fire.</li>
+        </refused>
+        <refuseTension>5</refuseTension>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_CampShelter" />
+        </effects>
+      </li>
+      <li>
+        <key>stores</key>
+        <label>Buy a share of their road stores ({COUNT} silver)</label>
+        <tip>Preserved fare the caravan carries for the road, at their price: one of the drivers carries it over to the colony's gate.</tip>
+        <silver>80</silver>
+        <deed>traded</deed>
+        <outcomes>
+          <li>{X_nameDef} counted out sacks of road fare for the colony and sent a driver over with them through the snow.</li>
+          <li>{X_nameDef} sold the colony a share of the road stores at a fair price and had a driver carry it to the gate.</li>
+        </outcomes>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_CampBrings"><thing>Pemmican</thing><count>40</count></li>
+        </effects>
+      </li>
+      <li>
+        <key>evening</key>
+        <label>Spend an evening at their fire</label>
+        <tip>The colony goes over to the caravan's fire this evening for the road's news while the snow comes down. Recreation for whoever comes; the caravan warms to the colony.</tip>
+        <needs>evening</needs>
+        <tension>-5</tension>
+        <outcomes>
+          <li>The colony is going over to the caravan's fire this evening, and {X_nameDef} has opened a cask for it.</li>
+          <li>Whoever can be spared is going to the caravan's fire tonight, snow or no snow.</li>
+        </outcomes>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Gathering"><label>an evening at the caravan's fire</label><spots><li>Camp</li><li>Outdoors</li></spots><hours>17~22</hours><duration>2~3</duration></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Joy"><target>Colony</target><amount>0.08</amount></li>
+        </effects>
+      </li>
+    </asks>
+  </ColonyCouncil.CampKindDef>
+
+  <!-- ===================== Hunters following a herd ===================== -->
+
+  <ColonyCouncil.CampKindDef>
+    <defName>Rimfolk_Camp_HerdFollowers</defName>
+    <label>herd followers</label>
+    <winter>true</winter>
+    <wearSet>Rimfolk_CampWear_Winter</wearSet>
+    <arrives>6~12</arrives>
+    <minTech>Neolithic</minTech>
+    <weight>0.9</weight>
+    <coldBelow>5</coldBelow>
+    <people>3~5</people>
+    <days>2~5</days>
+    <ages>17~55</ages>
+    <needs>wildHerd</needs>
+    <huntsPerDay>1.5</huntsPerDay>
+    <chopsPerDay>0.4</chopsPerDay>
+    <armedHunters>true</armedHunters>
+    <task>Rimfolk_CampReadyGear</task>
+    <hireChance>0.3</hireChance>
+    <joinChance>0.04</joinChance>
+    <helpChance>0.25</helpChance>
+    <help>
+      <li>meat</li>
+      <li>tales</li>
+    </help>
+    <buys>
+      <li>RoadFood</li>
+      <li>Medicine</li>
+    </buys>
+    <pride>0.35</pride>
+    <breakTerms>0.12</breakTerms>
+    <tensionPerDay>1.3</tensionPerDay>
+    <extendChance>0.25</extendChance>
+    <situationKinds>
+      <li>herds</li>
+      <li>weather</li>
+    </situationKinds>
+    <structures>
+      <li><role>fire</role><defs><li>Campfire</li></defs></li>
+      <li><role>butcher</role></li>
+    </structures>
+    <sleep>Ring</sleep>
+    <works><li>Hunt</li><li>Chop</li></works>
+    <animals>
+      <li><kinds><li>Husky</li><li>LabradorRetriever</li></kinds><count>1~2</count><follow>true</follow><named>true</named></li>
+    </animals>
+    <campGoods>
+      <li><defs><li>WoodLog</li></defs><count>20~35</count><at>fire</at></li>
+    </campGoods>
+    <titles>
+      <li>Following the herd</li>
+      <li>Hunters on the herd's trail</li>
+      <li>Winter hunters</li>
+    </titles>
+    <texts>
+      <li>Hunters of {FACTION} have followed a wild herd through the snow to the colony's land. {X_nameDef} asked {A_nameDef} for leave to camp {PLACE}, within sight of the herd, and take what they need from it before it moves on.</li>
+      <li>[their:tribal] A hunting band of {FACTION} has come over the snow on the herd's trail, spears and bows on their shoulders. {X_nameDef} asked {A_nameDef} whether they might camp {PLACE} while the herd grazes here, and promised to hunt only the herd.</li>
+      <li>[their:medieval] Hunters of {FACTION} have been on the herd's trail for days, and it has led them to the colony. {X_nameDef} asked {A_nameDef} for leave to camp {PLACE} and take a few beasts from it before it moves on.</li>
+      <li>[their:hightech] Hunters of {FACTION} with rifles and field glasses have tracked a wild herd onto the colony's land. {X_nameDef} asked {A_nameDef} for leave to camp {PLACE} and hunt it for a few days.</li>
+      <li>[ws:herds] With the great herds on the move, hunters of {FACTION} have followed one onto the colony's land. {X_nameDef} asked {A_nameDef} for leave to camp {PLACE} while it grazes here.</li>
+      <li>[their:grateful] The herd's trail led the hunters of {FACTION} to the colony, and {X_nameDef} was glad of it. {X_pronoun} asked {A_nameDef}, as a friend, for a camp {PLACE} while the herd stays.</li>
+    </texts>
+    <settled>
+      <li>[shelter:ring] The herd followers of {FACTION} have made a light camp {PLACE}: bedrolls drawn in round a big fire, out of the wind, and the dogs curled up in the snow beside them.</li>
+      <li>The hunters' camp is up {PLACE}, a fire, a butchering spot and little else. They mean to move when the herd moves.</li>
+      <li>The herd followers have settled {PLACE}, and one of them is already watching the herd from the rise.</li>
+    </settled>
+    <joinTexts>
+      <li>{X_nameDef}, one of the herd followers, says {X_pronoun} is tired of walking after the herds, and asks whether the colony could use a hunter who stays put.</li>
+    </joinTexts>
+    <farewell>
+      <li>The herd moved on, and the hunters of {FACTION} went with it, their packs heavier than when they came.</li>
+      <li>The herd followers' camp {PLACE} is empty, a ring of bedroll hollows in the snow round the cold fire.</li>
+      <li>The hunters of {FACTION} packed up before dawn and were off on the herd's trail by first light.</li>
+    </farewell>
+    <lines>
+      <li>Keep downwind of them, they spook in the cold.</li>
+      <li>Take the old ones and leave the young.</li>
+      <li>The herd's restless, it'll move soon.</li>
+      <li>Tracks lead to the high ground.</li>
+      <li>Dress it quick before it freezes.</li>
+      <li>[their:lowtech] Sharpen the points tonight.</li>
+      <li>[their:hightech] Count your rounds before you go out.</li>
+      <li>[snow] Fresh snow, they'll be easy to follow.</li>
+    </lines>
+    <momentLines>
+      <li>[kill] Down, and the rest didn't even run.</li>
+      <li>[kill] That'll feed us for a week.</li>
+      <li>[butcher] Quick, before it stiffens.</li>
+    </momentLines>
+    <helpTexts>
+      <li>[meat] The herd followers had more meat than they could carry on the trail, and {X_nameDef} left {COUNT} of it at the edge of their camp for the colony.</li>
+      <li>[tales] {A_nameDef} sat with the herd followers at their fire and heard where the herds go in winter, and where they come back to in spring.</li>
+    </helpTexts>
+    <asks>
+      <li>
+        <key>hunt</key>
+        <label>Send {A_nameDef} after the herd with them</label>
+        <tip>{A_nameDef} goes out with the herd followers for a few hours. Practice with a bow or a gun, and what {A_nameDef} brings down is the colony's.</tip>
+        <skill>Shooting</skill>
+        <minDays>0.5</minDays>
+        <warm>2</warm>
+        <tension>-4</tension>
+        <outcomes>
+          <li>{X_nameDef} said to stay low and downwind, and handed {A_nameDef} a white cloak to go over everything.</li>
+          <li>{A_nameDef} is going out after the herd with {X_nameDef} this afternoon.</li>
+        </outcomes>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_HuntParty"><label>the hunt after the herd</label><who>A</who><count>2</count><animals>2</animals></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Learn"><target>A</target><skill>Shooting</skill><xp>300</xp></li>
+        </effects>
+      </li>
+      <li>
+        <key>hides</key>
+        <label>Buy their hides ({COUNT} silver)</label>
+        <tip>Hides from the herd followers' kills, scraped at their fire, at their price: set out at the edge of their camp for the colony to fetch.</tip>
+        <silver>60</silver>
+        <minDays>1</minDays>
+        <deed>traded</deed>
+        <outcomes>
+          <li>{X_nameDef} counted the silver and had the hides set out at the edge of the camp.</li>
+          <li>The herd followers have laid out their hides for the colony at the edge of their camp, glad to carry less on the trail.</li>
+        </outcomes>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_CampGives"><what>leather</what><count>30</count><fallback>Leather_Plain</fallback></li>
+        </effects>
+      </li>
+      <li>
+        <key>meals</key>
+        <theyAsk>true</theyAsk>
+        <label>Trade them cooking for meat</label>
+        <refuseLabel>The colony needs its meals</refuseLabel>
+        <needs>theirMeat</needs>
+        <tension>-6</tension>
+        <deed>traded</deed>
+        <askTexts>
+          <li>{X_nameDef} came up from the herd followers' camp and asked {A_nameDef} whether the colony would trade a few cooked meals for a share of the meat. Meat and nothing but meat, {X_pronoun} says, wears on a body.</li>
+        </askTexts>
+        <tip>Four of the colony's meals go out to their camp; they set out a share of their meat at the edge of it for the colony to fetch.</tip>
+        <outcomes>
+          <li>The herd followers are getting a cooked supper tonight, and the colony a good share of their meat.</li>
+        </outcomes>
+        <refused>
+          <li>{X_nameDef} nodded and went back down to the herd followers' fire.</li>
+        </refused>
+        <refuseTension>4</refuseTension>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>cooked meals for the herd followers</label><what>meals</what><count>4</count><to>Camp</to></li>
+          <li Class="ColonyCouncil.DilemmaEffect_CampGives"><what>meat</what><count>35</count></li>
+        </effects>
+      </li>
+    </asks>
+  </ColonyCouncil.CampKindDef>
+
+  <!-- ===================== Pilgrims of the long night ===================== -->
+
+  <ColonyCouncil.CampKindDef>
+    <defName>Rimfolk_Camp_WinterPilgrims</defName>
+    <label>pilgrims of the long night</label>
+    <winter>true</winter>
+    <wearSet>Rimfolk_CampWear_Winter</wearSet>
+    <arrives>15~20</arrives>
+    <weight>0.8</weight>
+    <drawnBy><li>Devout</li></drawnBy>
+    <seasons>
+      <li>Winter</li>
+      <li>PermanentWinter</li>
+    </seasons>
+    <coldBelow>8</coldBelow>
+    <people>3~6</people>
+    <days>2~4</days>
+    <ages>18~75</ages>
+    <chopsPerDay>0.5</chopsPerDay>
+    <task>Council_CampVigil</task>
+    <hireChance>0.1</hireChance>
+    <joinChance>0.05</joinChance>
+    <helpChance>0.25</helpChance>
+    <help>
+      <li>blessing</li>
+      <li>tales</li>
+    </help>
+    <buys>
+      <li>Meal</li>
+      <li>Clothes</li>
+    </buys>
+    <pride>0.1</pride>
+    <breakTerms>0.03</breakTerms>
+    <tensionPerDay>0.5</tensionPerDay>
+    <canPay>false</canPay>
+    <extendChance>0.2</extendChance>
+    <situationKinds>
+      <li>faith</li>
+      <li>weather</li>
+    </situationKinds>
+    <structures>
+      <li><role>fire</role><defs><li>Campfire</li></defs></li>
+    </structures>
+    <sleep>Ring</sleep>
+    <works><li>Chop</li></works>
+    <animals>
+      <li><pack>true</pack><kinds><li>Donkey</li><li>Muffalo</li><li>Yak</li></kinds><count>1~1</count><at>picket</at></li>
+    </animals>
+    <campGoods>
+      <li><defs><li>WoodLog</li></defs><count>30~45</count><at>fire</at></li>
+    </campGoods>
+    <leaveBehind>
+      <li>
+        <key>sun</key>
+        <at>gate</at>
+        <maxTension>40</maxTension>
+        <dayName>the pilgrims' sun</dayName>
+        <named>the carved sun</named>
+        <defs><li>SculptureSmall</li></defs>
+        <stuff><li>WoodLog</li><li>BlocksGranite</li><li>BlocksLimestone</li></stuff>
+        <minified>true</minified>
+        <titles>
+          <li>The sun comes back</li>
+          <li>After the long night</li>
+          <li>A light for a friendly gate</li>
+        </titles>
+      </li>
+    </leaveBehind>
+    <farewellWalk>
+      <to>gate</to>
+      <who>leader</who>
+      <gift>sun</gift>
+    </farewellWalk>
+    <titles>
+      <li>Pilgrims of the long night</li>
+      <li>A pilgrimage in the snow</li>
+      <li>Walking to the turn of the year</li>
+    </titles>
+    <texts>
+      <li>A few pilgrims of {FACTION} are walking through the deep of winter, as their people do each year, to keep the long night at a holy place. {X_nameDef} asked {A_nameDef} whether they might rest {PLACE} and keep a night's vigil by their fire before they go on.</li>
+      <li>[ideology] Pilgrims of {IDEO} from {FACTION} have come through the snow on the winter walk their faith asks of them. {X_nameDef} asked {A_nameDef} for leave to camp {PLACE} and keep their vigil there.</li>
+      <li>[their:lowtech] Pilgrims of {FACTION} have come out of the snow with staves and a single laden beast, singing to keep their feet moving. {X_nameDef} asked {A_nameDef} for a place to rest {PLACE} and keep the long night by a fire.</li>
+      <li>[their:hightech] A party of {FACTION} on a winter pilgrimage, the old way, on foot and in the cold, has come to the colony. {X_nameDef} asked {A_nameDef} for leave to camp {PLACE} and keep a vigil by their fire.</li>
+      <li>[sameFaith] Pilgrims of the colony's own faith have come through the snow from {FACTION}. {X_nameDef} asked {A_nameDef} whether they might rest {PLACE}, among friends, and keep the long night there.</li>
+      <li>[ws:faith] With the faithful on the roads this winter, pilgrims of {FACTION} have come to the colony. {X_nameDef} asked {A_nameDef} for leave to camp {PLACE} and keep their vigil by a fire.</li>
+    </texts>
+    <settled>
+      <li>[shelter:ring] The pilgrims of {FACTION} have made their camp {PLACE}: bedrolls drawn in round a fire behind a windbreak, and one of them always awake beside it.</li>
+      <li>The pilgrims' camp is up {PLACE}: a fire they mean to keep burning all night, and their beast tethered beside a pile of wood.</li>
+      <li>The winter pilgrims have settled {PLACE}, and their eldest has taken the first watch by the fire.</li>
+    </settled>
+    <joinTexts>
+      <li>{X_nameDef}, the youngest of the pilgrims, says the walk has shown {X_objective} what {X_pronoun} was walking toward, and asks whether {X_pronoun} might stay at the colony when the others go on.</li>
+    </joinTexts>
+    <farewell>
+      <li>[left:sun] The pilgrims of {FACTION} went on their way at first light, and {X_nameDef} stopped at the colony's gate to leave a carved sun in its crate, their sign that the long night turns.</li>
+      <li>[left:sun] The winter pilgrims are gone, singing, into the snow. By the colony's gate they left a little carved sun, for the light coming back.</li>
+      <li>The pilgrims of {FACTION} put out their fire at dawn and walked on into the snow, still singing.</li>
+      <li>The pilgrims' camp {PLACE} is empty, and the ring round their fire is trodden flat where they kept the vigil.</li>
+    </farewell>
+    <lines>
+      <li>The night is longest now, and then it turns.</li>
+      <li>Keep the fire, someone always keeps the fire.</li>
+      <li>Cold feet, warm heart.</li>
+      <li>We walk so the light comes back.</li>
+      <li>Rest now, we walk again at first light.</li>
+      <li>[ideology] Remember who we walk for.</li>
+      <li>[snow] Snow on the road, and the road still there under it.</li>
+    </lines>
+    <momentLines>
+      <li>[blessing] May your fires never go out.</li>
+      <li>[blessing] Light come back to this house.</li>
+      <li>[gift] A sun for the long night.</li>
+    </momentLines>
+    <helpTexts>
+      <li>[blessing,fields] At dusk the pilgrims walked to the colony's fields and blessed them, that they come back green when the sun does.</li>
+      <li>[blessing,gate] At dusk the pilgrims came to the colony's gate and blessed it, that its fires keep burning through the long night.</li>
+      <li>[tales] {A_nameDef} sat with the pilgrims at their fire and heard the story of the night the sun didn't come back, and how their people's first pilgrims walked to bring it home.</li>
+    </helpTexts>
+    <asks>
+      <li>
+        <key>coat</key>
+        <label>Give their eldest a coat for the road</label>
+        <tip>One of the colony's spare coats (a parka, a duster or a cloak from the stores) is carried over to the pilgrims' camp for the road ahead. Their people remember it.</tip>
+        <tension>-6</tension>
+        <warm>2</warm>
+        <deed>aid</deed>
+        <outcomes>
+          <li>A warm coat is going over to the pilgrims' camp, and {X_nameDef} says the eldest will wear it all the way home.</li>
+          <li>{X_nameDef} thanked {A_nameDef} with both hands for the coat the colony is sending to their eldest.</li>
+        </outcomes>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>a coat for the pilgrims</label><what>coat</what><count>1</count><to>Camp</to></li>
+        </effects>
+      </li>
+      <li>
+        <key>vigil</key>
+        <label>Keep the long night with them</label>
+        <tip>The colony goes over to the pilgrims' fire this evening and keeps the vigil with them for a few hours. Recreation for whoever comes; the pilgrims warm to the colony.</tip>
+        <needs>evening</needs>
+        <tension>-5</tension>
+        <outcomes>
+          <li>The colony is going over to keep the long night at the pilgrims' fire, and {X_nameDef} has laid on more wood for it.</li>
+          <li>Whoever can be spared is going to sit the vigil with the pilgrims tonight.</li>
+        </outcomes>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Gathering"><label>the long night at the pilgrims' fire</label><spots><li>Camp</li><li>Outdoors</li></spots><hours>18~22</hours><duration>2~3</duration></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Joy"><target>Colony</target><amount>0.08</amount></li>
+        </effects>
+      </li>
+      <li>
+        <key>shelter</key>
+        <theyAsk>true</theyAsk>
+        <once>false</once>
+        <label>Let them sleep under the colony's roof tonight</label>
+        <refuseLabel>They'll keep their vigil at their camp</refuseLabel>
+        <needs>storm</needs>
+        <tension>-6</tension>
+        <deed>sheltered</deed>
+        <askTexts>
+          <li>The snow has turned to a storm, and the pilgrims have only their fire and their bedrolls. {X_nameDef} asked {A_nameDef} whether they might sleep in the colony tonight; one of them will keep the fire at the camp.</li>
+        </askTexts>
+        <tip>The pilgrims walk in at nightfall and sleep in the colony's free beds (none that anyone else owns), and give them back in the morning.</tip>
+        <outcomes>
+          <li>{X_nameDef} thanked {A_nameDef}. The pilgrims will come in when it's dark.</li>
+        </outcomes>
+        <refused>
+          <li>{X_nameDef} bowed and went back to the pilgrims' fire through the snow.</li>
+        </refused>
+        <refuseTension>4</refuseTension>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_CampShelter" />
+        </effects>
+      </li>
+    </asks>
+  </ColonyCouncil.CampKindDef>
+
+</Defs>

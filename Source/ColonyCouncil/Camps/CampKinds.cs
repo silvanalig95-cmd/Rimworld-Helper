@@ -121,6 +121,13 @@ namespace ColonyCouncil
                 // One of Rimfolk's peoples, by what it lives by: their:traders, their:healers, their:herders (Peoples/).
                 Peoples.AddTags(f, tags);
             }
+            // The sky and the water (CampWinter.cs): snow falling, a blizzard, water frozen over somewhere on the land.
+            if (map != null)
+            {
+                if (CampLand.SnowNow(map)) tags.Add("snow");
+                if (CampLand.Blizzard(map)) tags.Add("blizzard");
+                if (CampLand.IceOn(map)) tags.Add("ice");
+            }
             if (map != null && !tags.Contains("spring") && !tags.Contains("summer") && !tags.Contains("fall") && !tags.Contains("winter"))
             {
                 switch (GenLocalDate.Season(map))

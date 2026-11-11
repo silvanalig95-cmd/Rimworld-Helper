@@ -831,7 +831,7 @@ namespace ColonyCouncil
             var tracker = CampTracker.Instance;
             if (map == null || tracker == null || !CampTracker.RoomFor(map) || !CampCrowds.AtPeaceHere(map, people)) return;
             var g = CampGrounds.ById(c.groundId);
-            var kinds = DefDatabase<CampKindDef>.AllDefs.Where(k => k.FitsEra() && k.Possible && !k.fights && k.FitsMap(map) && k.FitsSeason(map) && k.FitsFaction(people) && Peoples.CanSend(k)
+            var kinds = DefDatabase<CampKindDef>.AllDefs.Where(k => k.FitsEra() && k.Possible && !k.fights && k.FitsMap(map) && k.FitsSeason(map) && k.FitsWeather(map) && k.FitsFaction(people) && Peoples.CanSend(k)
                                                                     && k.needs.NullOrEmpty() && !k.seekOnly).ToList();
             if (kinds.Count == 0) return;
             var kind = kinds.RandomElementByWeight(k => k.WeightNow(map));

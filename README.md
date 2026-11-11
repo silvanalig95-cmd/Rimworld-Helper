@@ -3149,7 +3149,12 @@ medieval things). Many ask the council what to do, with a day or so to answer.
   players** who put on a show, **surveyors** who may show you a seam of ore, a **salt caravan** or **merchants from
   afar** with a stall, **drovers** with a herd, barefoot **penitents**, **tree-singers** (Ideology, of an ideoligion that
   holds trees sacred), a **traveling healer**, a band of **minstrels** whose music the colony walks over to hear, and
-  **mourners** carrying their dead home. Refugees come more often while a famine, plague, war, flood, drought, hard
+  **mourners** carrying their dead home. In the coldest winter come the **winter folk**, who travel and work in deep
+  cold: **ice fishers** who cut a hole in the frozen water (Odyssey) and fish through it, **fur trappers**, a
+  **snowbound caravan** sitting out the snow by your wall, **herd followers** on a wild herd's trail and **pilgrims of
+  the long night**, each in winter clothes of their people's age from your mods (a pelt coat, a wool parka and mantle,
+  a warm jacket, scarf and gloves). Below -30 °C only they come, as far as the game's own limits let each of them,
+  dressed as they are; every other camp stays away. Refugees come more often while a famine, plague, war, flood, drought, hard
   winter or great fire runs in the region, and say what they fled; pilgrims follow a holy year, surveyors a new road
   or a rush, minstrels a season of songs, mourners a people's mourning, wounded fighters a war, stonecutters a great
   work. Every kind can be asked for something

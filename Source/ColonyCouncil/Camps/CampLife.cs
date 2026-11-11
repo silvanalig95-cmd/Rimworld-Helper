@@ -927,7 +927,8 @@ namespace ColonyCouncil
         private bool BadWeather()
         {
             float temp = map.mapTemperature.OutdoorTemp;
-            if (CampWeatherMath.TooExtremeToStay(temp) || CampWeather.Hazard(map) != null) return true;
+            // Winter folk wait out the cold as long as it doesn't hurt most of them (CampKindDef.winter).
+            if (CampWeatherMath.TooExtremeToStay(temp, kind?.winter ?? false) || CampWeather.Hazard(map) != null) return true;
             // Weather that would start to hurt most of them, dressed as they are (CampWeatherMath).
             var here = Here;
             int exposed = 0;

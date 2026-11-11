@@ -17,6 +17,9 @@
   <ColonyCouncil.CampKindDef>
     <defName>Rimfolk_Camp_WinterHerd</defName>
     <label>winter herd</label>
+    <!-- Winter folk: no flat floor of the cold, and their winter clothes (Rimfolk_CampKinds_Winter.xml). -->
+    <winter>true</winter>
+    <wearSet>Rimfolk_CampWear_Winter</wearSet>
     <arrives>8~15</arrives>
     <minTech>Neolithic</minTech>
     <calling>herders</calling>
