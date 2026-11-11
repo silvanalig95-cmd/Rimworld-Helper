@@ -81,6 +81,17 @@ tree at once, alongside whatever runs. Each piece is merged as its own release, 
   seasons, the gods behind the game's events, the Gods page as a book, Ideology in three steps). It waits for the
   player's choices; then the generated pantheon of 0.215.0 is replaced by it, the rest of the machinery kept. RoM's
   textures from the player are in the scratchpad (`rom_Motes`, `rom_Books`; sheets in `romsheet/`).
+  **Third version (the same day):** the player found the second too human ("human names, human characteristic, human
+  shapes, that should really not be the standard ... really abandon this Greek pantheon idea ... come up with some new
+  god concepts"). `docs/gods-pantheon-brainstorm.md` now holds 21 gods, each its own kind of thing, with no template:
+  - presences and processes: all plant life, the sky, the urge of herds, rot, a walking fire, winter, the god in
+    machines, the archotechs;
+  - a beast and a dragon: the Thrumbo, the Coil Under the Mountain;
+  - concepts: a number, an echo of every word, being watched, a melody, a laughing wind, the small spirits;
+  - the Guest, the only one made of human shapes;
+  - a dead god's bones as the land, the void, the colony's own;
+  - relations as cycles and fears, not a family;
+  - a table of the game's own events and whose hand people see in them, which is how they pull the strings.
   Mods suggested to the player for the gods (11 November 2026, by the new rule in CLAUDE.md "Name mods that would
   help"; their 1.7 status to be checked on the Workshop): Forest Gods (3263099058: a white stag's ritual, bear and deer
   gods; 1.6), Dragon's Descent (2026992161; 1.6), Weapons of the Gods (Continued) (1.6). Not suggested: Call of Cthulhu
