@@ -92,6 +92,27 @@ tree at once, alongside whatever runs. Each piece is merged as its own release, 
   - a dead god's bones as the land, the void, the colony's own;
   - relations as cycles and fears, not a family;
   - a table of the game's own events and whose hand people see in them, which is how they pull the strings.
+  **Fourth version (the same day):** "you went a little bit too much into the abstract, or with too many of them ...
+  perhaps 9 different ones ... some actuall names, be it multiple ones ... not just some concepts, but an actual entity,
+  be it some a bit more or lesse abstract or like a character". `docs/gods-pantheon-brainstorm.md` now holds nine
+  beings with names and characters:
+  1. Yllemor, the Rootmother: all roots, heart in the first anima tree;
+  2. Kharvoth, the Coil Under the Mountain: a dragon;
+  3. Hrom, the Old Horn: the first thrumbo;
+  4. Mhul, the Soft Mother: a fungal being;
+  5. the Guest (Ennu): one being in many human shapes;
+  6. Kett, the Hum: a young god in machines;
+  7. Vael, Who Drifts Above: a being of the high sky;
+  8. Isk, the Long White: the walker with winter;
+  9. Nhal, the Hunger: the void.
+  It waits for the player's word.
+  **Stage 2 paused for the redesign** (the player asked; each agent committed work in progress and reported what is
+  tied to the generated pantheon, mostly domain, nature, kind and tie lookups with per-god defs ready to take over):
+  - on the map: `worktree-agent-a57a9550a4acd85e5` at f056f64 (`GodShapeDef`, `GodShapes.Override`);
+  - the world: `worktree-agent-a6ff009e6387b0c8d` at 6696e7f (`GodWaysDef`);
+  - worship: `worktree-agent-a0cfe8f4a840fc8fc` at 71734f1 (`GodWorshipDef`).
+  Each builds; the test suite and the long checks still need a run. Resume each with the settled pantheon: re-key on
+  the hand-made gods, keep the domain tables as a fallback only, finish the checks and report.
   Mods suggested to the player for the gods (11 November 2026, by the new rule in CLAUDE.md "Name mods that would
   help"; their 1.7 status to be checked on the Workshop): Forest Gods (3263099058: a white stag's ritual, bear and deer
   gods; 1.6), Dragon's Descent (2026992161; 1.6), Weapons of the Gods (Continued) (1.6). Not suggested: Call of Cthulhu
