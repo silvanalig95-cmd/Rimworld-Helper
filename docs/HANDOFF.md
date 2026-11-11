@@ -56,7 +56,11 @@ tree at once, alongside whatever runs. Each piece is merged as its own release, 
   (known to the colony, not already at full goodwill, the nearest and the coolest first, a handful, the rest under
   "Others"); goods by who owes and what they have: a trader from their trade goods, a healer medicine, a farmer or
   herder food, a smith steel, a town's stores by its fortune, and food as a sensible staple load (meals, grain, pemmican
-  of their age), never a handful of a dear oddity. Propose the shape with the player first.
+  of their age), never a handful of a dear oddity. The player on the plan: "sounds good! "a word with" should
+  probably only be listed when the favour can actually be called in, same as for others": when the debt can't be
+  called now (called lately, a letter to them still unanswered, out of reach), no option is offered as if it could be;
+  the words follow the same gate as the goods, the captive, peace and fighters, and each option's own why. Propose the
+  shape with the player first.
 - **To do when the player asks (11 November 2026), a bug: letters' answers come before a letter could arrive.** The
   player: "letter replies & interactions don't always make sense timing-wise. for example when i send a letter to a
   base, i think once the courier is off the map I already get a pop up saying "you will not receive a reply". It
