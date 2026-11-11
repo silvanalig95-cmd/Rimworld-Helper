@@ -4429,10 +4429,11 @@ panel, it gets the click and the tooltip:
   26 °C, the game's own human range), yellow and orange as it gets hotter, deep red in killing heat; its tooltip names
   the band and says whether the colonists on the map, dressed as they are, would be too cold or too hot outside. Clicks
   go to the advisor, the temperature overlay, the defenses, the research tab.
-- **The game's temperature in colour**: a small thermometer beside the game's own temperature line at the bottom right
-  ("Indoors 21C"), filled to the temperature and coloured from deep blue in killing cold (about -30 °C) through pale blue
-  to white where the colonists are comfortable, then yellow and orange to deep red in killing heat (about 50 °C); the
-  words take a light touch of the colour, and hovering says it in a word (chilly, comfortable, hot, killing cold). A
+- **The game's temperature in colour**: the game's own temperature line at the bottom right ("Indoors 21C") sits on a
+  field in the temperature's colour, from deep blue in killing cold (about -30 °C) through pale blue to white where the
+  colonists are comfortable, then yellow and orange to deep red in killing heat (about 50 °C), with a small thermometer
+  at its left filled to the temperature; the words are dark on the field, and hovering says it in a word (chilly,
+  comfortable, hot, killing cold). A
   setting of its own, with the deeper game hooks.
 - **Council at a glance**: the plan's next step; what waits on you, read from This week's Needs you, so it shows what
   This week and the council button count: open wishes and whose has waited longest, petitions, promises at risk,

@@ -5,6 +5,13 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## The temperature on a coloured field
+
+*11 November 2026, version 0.213.1*
+
+- The game's temperature at the bottom right now sits on a field in the temperature's colour, from deep blue in killing cold through white to deep red in killing heat, so you can see it at a glance.
+- The words are dark on the field so they stay easy to read, and the thermometer at its left is a darker shade of the same colour.
+
 ## Gifts of the peoples
 
 *11 November 2026, version 0.213.0*

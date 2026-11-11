@@ -10,12 +10,12 @@ using Verse;
 namespace ColonyCouncil
 {
     /// <summary>
-    /// The game's temperature readout at the bottom right ("Indoors 21C") with a thermometer beside it in the temperature's
-    /// colour, by the colonists' comfort: deep blue in killing cold, white where they're comfortable, deep red in killing
-    /// heat, filled to the temperature's height, its tooltip the temperature and a word for it (TemperatureScaleMath; the
+    /// The game's temperature readout at the bottom right ("Indoors 21C") on a field in the temperature's colour, by the
+    /// colonists' comfort: deep blue in killing cold, white where they're comfortable, deep red in killing heat; the words
+    /// dark on it and a thermometer at its left, filled to the temperature's height, its tooltip the temperature and a word for it (TemperatureScaleMath; the
     /// setting "The game's temperature in colour", with the deeper game hooks). The game draws that line in
     /// GlobalControlsOnGUI with Widgets.Label, its words from TemperatureString; the transpiler sends that one label through
-    /// <see cref="Label"/>, which draws the words a little toward the colour and the thermometer just left of them. The
+    /// <see cref="Label"/>, which draws the field, the words on it and the thermometer just left of them. The
     /// temperature is the one the game made its words from (its own cached value), so the thermometer always matches the
     /// number shown. Should another game version draw the line some other way, the call isn't found and
     /// <see cref="Patch_TemperatureReadoutText"/> colours the words themselves instead (no thermometer).
@@ -66,7 +66,7 @@ namespace ColonyCouncil
             return list;
         }
 
-        /// <summary>The game's temperature line: its words a little toward the colour, the thermometer left of them; with the setting off, as the game draws it.</summary>
+        /// <summary>The game's temperature line: a field in the colour behind it, its words dark on the field, the thermometer left of them; with the setting off, as the game draws it.</summary>
         public static void Label(Rect rect, string text)
         {
             if (!On || text.NullOrEmpty() || !Colour(text, out uint rgb))
@@ -77,10 +77,6 @@ namespace ColonyCouncil
             var was = GUI.color;
             try
             {
-                var words = TemperatureScale.ColorOf(TemperatureScaleMath.TextTint(rgb));
-                GUI.color = new Color(words.r, words.g, words.b, was.a);
-                Widgets.Label(rect, text);
-                GUI.color = was;
                 // The words are drawn against the line's right edge: the thermometer just left of them.
                 if (lastWidth < 0f || lastFont != Text.Font)
                 {
@@ -89,7 +85,16 @@ namespace ColonyCouncil
                 }
                 float h = Mathf.Min(rect.height - 2f, TemperatureScaleMath.ThermoHeight), w = TemperatureScaleMath.ThermoWidth * h / TemperatureScaleMath.ThermoHeight;
                 var at = new Rect(rect.xMax - lastWidth - 3f - w, rect.y + (rect.height - h) / 2f, w, h);
-                Thermometer.Draw(at, lastLevel, TemperatureScale.ColorOf(rgb), was.a);
+                // A field in the temperature's colour behind the thermometer and the words, a little wider than both.
+                var field = new Rect(at.x - TemperatureScaleMath.FieldPadX, rect.y + TemperatureScaleMath.FieldPadY,
+                    rect.xMax - at.x + TemperatureScaleMath.FieldPadX * 2f, rect.height - TemperatureScaleMath.FieldPadY * 2f);
+                var fill = TemperatureScale.ColorOf(rgb);
+                UiKit.Round(field, new Color(fill.r, fill.g, fill.b, TemperatureScaleMath.FieldAlpha * was.a), SkinMath.RadiusSmall);
+                var words = TemperatureScale.ColorOf(TemperatureScaleMath.FieldText(rgb));
+                GUI.color = new Color(words.r, words.g, words.b, was.a);
+                Widgets.Label(rect, text);
+                GUI.color = was;
+                Thermometer.Draw(at, lastLevel, TemperatureScale.ColorOf(TemperatureScaleMath.FieldThermo(rgb)), was.a);
                 var tip = new Rect(at.x - 2f, rect.y, rect.xMax - at.x + 2f, rect.height);
                 if (lastTip != null && Mouse.IsOver(tip)) TooltipHandler.TipRegion(tip, lastTip);
             }

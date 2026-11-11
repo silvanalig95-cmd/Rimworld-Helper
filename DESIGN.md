@@ -12044,6 +12044,15 @@ and it fits the line's height at every interface scale without crowding the weat
   until then). Should a game version draw the line some other way, nothing is swapped and a postfix on
   `TemperatureString` wraps the words in the full colour as rich text instead (no thermometer), kept by the words it was
   made from. Off, or should the temperature not be readable, the line is the game's.
+- **On a coloured field** (11 November 2026, released 0.213.1; the player, after 0.208.0: "great start! I'd just like a
+  larger surface that's colored so it's more clearly visible, perhaps behind the text could be a colored background
+  around the size of the field or so"): `Label` draws a rounded field (`UiKit.Round`, the small radius; a plain box
+  where the skin's pictures are missing) in the scale's colour at 90% behind the thermometer and the words, from five
+  units left of the thermometer to five past the words, the line's height less a unit top and bottom. On it the words
+  are drawn in `FieldText`, dark ink (`161616`) or white, whichever reads better (dark on every colour of the scale, at
+  least 4.5 to 1), in place of the light tint; the thermometer's fill is the colour halved toward black (`FieldThermo`),
+  so it stands out from a field of its own colour (at least 2 to 1). The vitals panel keeps its thermometer icon and
+  coloured value, as before.
 - **Rimfolk's own panels**: the vitals' outdoor temperature (`HudVitals.Temperature`) takes the same colour
   (`TemperatureScale.Of`) for its value and the same thermometer, filled to the temperature, in place of its icon
   (`HudLine.thermo`, drawn by the classic panels and the own look alike, the icon kept should the pictures be missing);

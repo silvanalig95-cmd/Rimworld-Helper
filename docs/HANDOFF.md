@@ -43,14 +43,6 @@ tree at once, alongside whatever runs. Each piece is merged as its own release, 
   8. The Republic 71 to 74; the Fleet 75 to 78; the Helix Works 79 to 82.
   9. The Lattice 84, 85, 86; the Choir 87 to 90; the Vault 91 to 94.
   10. Between peoples 96 to 99; every people's art handed on, 100.
-- **To do when the player asks (11 November 2026): the temperature on a coloured field.** The player, with a picture of
-  0.208.0's readout (the small blue thermometer beside "Indoors -4C"): "great start! I'd just like a larger surface
-  that's colored so it's more clearly visible, perhaps behind the text could be a colored background around the size
-  of the field or so". When asked: behind the game's temperature line (`Hud/` the thermometer patch on
-  `GlobalControls.GlobalControlsOnGUI`, `TemperatureScaleMath`), a rounded field the width of the line's text and a
-  little more, filled in the scale's colour (strong enough to read at a glance, the words kept legible on it: dark or
-  light text by the fill, or a soft edge), the thermometer kept at its left; the vitals panel's outdoor temperature the
-  same where it has room; both looks; the setting unchanged.
 - **To do when the player asks (11 November 2026): calling in a favour, made clear.** The player, with a picture of the
   letter window's "Ask for" list on a debt owed by "Acraeraes of Karond-Keth 2, a trader who called" (five loads of
   goods, some forty "A word for the colony with ... (a kind one)", a captive, peace, fighters): "this favour menu is also
@@ -81,6 +73,20 @@ tree at once, alongside whatever runs. Each piece is merged as its own release, 
   distance, as the couriers and journeys reckon it), their reading and writing time, and the answer's own road back;
   a refusal or silence is only known when it could be (a returning rider, their courier, or no word by the time an
   answer would have come). Check each against the map: the courier gone off the map is not the letter delivered.
+- 0.213.1, **The temperature on a coloured
+  field** (11 November 2026). The player, with a picture of 0.208.0's readout (the small blue thermometer beside
+  "Indoors -4C"): "great start! I'd just like a larger surface that's colored so it's more clearly visible, perhaps
+  behind the text could be a colored background around the size of the field or so"; then "colored temperature field
+  you can go ahead". DESIGN.md "The temperature in colour", its last point; README's paragraph; the setting's tip.
+  - `Hud/Patch_TemperatureReadout.Label`: a rounded field (`UiKit.Round`, `SkinMath.RadiusSmall`) in the scale's
+    colour at `TemperatureScaleMath.FieldAlpha` (90%) behind the thermometer and the words, `FieldPadX` (5) past both,
+    `FieldPadY` (1) in from the line's top and bottom; the words in `FieldText` (dark `FieldInk` or white, whichever
+    reads better: dark on the whole scale) in place of `TextTint`; the thermometer's fill `FieldThermo` (the colour
+    halved toward black). Tests in `TemperatureScaleTests` (the words at least 4.5 to 1 on the field at every
+    temperature, the thermometer at least 2 to 1 from it, the seam's order). The vitals panel is unchanged.
+  - Try in the game: 1. The bottom right in the cold: the line on a blue field, dark words, a darker blue thermometer at
+    its left. 2. Indoors at 21 °C: a near-white field, dark words. 3. In heat: yellow to red. 4. Another interface
+    scale: the field fits the line without covering the weather above. 5. The setting off: the game's white line.
 - 0.213.0, **The peoples' own events, round 1**
   (11 November 2026). The player: "I really LOVE the new factions you created ... I'd first like more faction specific
   events, interactions etc. like this event i had with these gene guys who gave my pawn a new gene", "also some

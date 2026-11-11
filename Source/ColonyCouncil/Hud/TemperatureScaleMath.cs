@@ -179,6 +179,28 @@ namespace ColonyCouncil
 
         /// <summary>The game's words beside the thermometer: white, a little toward the temperature's colour.</summary>
         public static uint TextTint(uint rgb) => Mix(0xffffff, rgb, TextTintShare);
+
+        /// <summary>
+        /// The coloured field behind the game's temperature line (the player, 11 November 2026: "a larger surface that's colored
+        /// so it's more clearly visible, perhaps behind the text could be a colored background around the size of the
+        /// field"): the scale's colour this strong, so it reads at a glance over the map.
+        /// </summary>
+        public const float FieldAlpha = 0.9f;
+
+        /// <summary>The field's room left of the thermometer and right of the words, and its inset from the line's top and bottom.</summary>
+        public const float FieldPadX = 5f, FieldPadY = 1f;
+
+        /// <summary>Dark words, for the field's light colours.</summary>
+        public const uint FieldInk = 0x161616;
+
+        /// <summary>The words on the field: dark or white, whichever reads better on its colour (dark on every colour of the scale).</summary>
+        public static uint FieldText(uint fill) => SkinMath.Contrast(fill, FieldInk) >= SkinMath.Contrast(fill, 0xffffff) ? FieldInk : 0xffffffu;
+
+        /// <summary>How far the thermometer's fill is darkened on the field, so it stands out from a field of its own colour.</summary>
+        public const float FieldThermoDark = 0.5f;
+
+        /// <summary>The thermometer's fill on the field: the temperature's colour, darker.</summary>
+        public static uint FieldThermo(uint fill) => Mix(fill, 0x000000, FieldThermoDark);
     }
 
     /// <summary>The temperature in a word, for the colonists (TemperatureScaleMath.Feel), coldest first.</summary>

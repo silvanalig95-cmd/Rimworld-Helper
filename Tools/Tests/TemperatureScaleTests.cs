@@ -106,6 +106,22 @@ public static class TemperatureScaleTests
         C(touched, "and take a touch of the colour wherever the thermometer isn't white");
         C(TemperatureScaleMath.TextTintShare > 0.2f && TemperatureScaleMath.TextTintShare < 0.5f, "a light touch: the thermometer carries the colour");
 
+        // ---------- The field behind the line: the colour, the words dark on it, the thermometer darker ----------
+        double worstWords = 99, worstThermo = 99;
+        for (float t = -80f; t <= 90f; t += 0.5f)
+        {
+            uint c = At(t);
+            worstWords = Math.Min(worstWords, SkinMath.Contrast(c, TemperatureScaleMath.FieldText(c)));
+            worstThermo = Math.Min(worstThermo, SkinMath.Contrast(c, TemperatureScaleMath.FieldThermo(c)));
+        }
+        C(worstWords >= SkinMath.TextContrast, $"the words read on the field at every temperature (at worst {worstWords:0.0} to 1)");
+        C(TemperatureScaleMath.FieldText(TemperatureScaleMath.Neutral) == TemperatureScaleMath.FieldInk && TemperatureScaleMath.FieldText(TemperatureScaleMath.DeepBlue) == TemperatureScaleMath.FieldInk
+          && TemperatureScaleMath.FieldText(TemperatureScaleMath.DeepRed) == TemperatureScaleMath.FieldInk && TemperatureScaleMath.FieldText(0x202020) == 0xffffffu,
+            "dark words on every colour of the scale, white only on a dark field");
+        C(worstThermo >= 2.0, $"the thermometer stands out from a field of its own colour (at worst {worstThermo:0.0} to 1)");
+        C(TemperatureScaleMath.FieldAlpha >= 0.75f && TemperatureScaleMath.FieldAlpha <= 1f && TemperatureScaleMath.FieldPadX >= 3f && TemperatureScaleMath.FieldPadX <= 8f,
+            "the field is strong enough to read at a glance and only a little wider than the line");
+
         // ---------- The thermometer: filled to the temperature ----------
         C(TemperatureScaleMath.Level(-30f, lo, hi) == 0f && TemperatureScaleMath.Level(-60f, lo, hi) == 0f && TemperatureScaleMath.Level(50f, lo, hi) == 1f
           && TemperatureScaleMath.Level(80f, lo, hi) == 1f, "empty at killing cold, full at killing heat");
@@ -181,10 +197,13 @@ public static class TemperatureScaleTests
             "the game's own label for its temperature line, right after its words, is sent through Rimfolk's");
         C(patch.Contains("float c = (float)shown.GetValue(null);") && patch.Contains("lastRgb = TemperatureScale.Rgb(c);") && patch.Contains("\"cachedTemperatureStringForTemperature\""),
             "the readout's colour is the scale's, for the very temperature the game's words were made from");
-        C(patch.Contains("Thermometer.Draw(at, lastLevel, TemperatureScale.ColorOf(rgb), was.a);") && patch.Contains("lastLevel = TemperatureScale.Level(c);")
-          && patch.Contains("rect.xMax - lastWidth - 3f - w"), "a thermometer in that colour, filled to that temperature, just left of the game's words");
-        C(patch.Contains("TemperatureScale.ColorOf(TemperatureScaleMath.TextTint(rgb))") && patch.Contains("finally") && patch.Contains("GUI.color = was;"),
-            "the words a touch toward the colour, and the game's colour put back after");
+        C(patch.Contains("Thermometer.Draw(at, lastLevel, TemperatureScale.ColorOf(TemperatureScaleMath.FieldThermo(rgb)), was.a);") && patch.Contains("lastLevel = TemperatureScale.Level(c);")
+          && patch.Contains("rect.xMax - lastWidth - 3f - w"), "a thermometer, filled to that temperature, just left of the game's words, darker than the field");
+        C(patch.Contains("UiKit.Round(field, new Color(fill.r, fill.g, fill.b, TemperatureScaleMath.FieldAlpha * was.a), SkinMath.RadiusSmall);")
+          && patch.Contains("rect.xMax - at.x + TemperatureScaleMath.FieldPadX * 2f") && patch.IndexOf("UiKit.Round(field") < patch.IndexOf("Widgets.Label(rect, text);\n                GUI.color = was;\n                Thermometer.Draw"),
+            "a field in the temperature's colour behind the thermometer and the words, a little wider than both, drawn under them");
+        C(patch.Contains("TemperatureScale.ColorOf(TemperatureScaleMath.FieldText(rgb))") && patch.Contains("finally") && patch.Contains("GUI.color = was;"),
+            "the words in the field's own ink, and the game's colour put back after");
         C(patch.Contains("lastTip = TemperatureScale.Tip(c);") && patch.Contains("if (lastTip != null && Mouse.IsOver(tip)) TooltipHandler.TipRegion(tip, lastTip);"),
             "hovering it says the temperature in a word (made when the words change, not each frame)");
         C(patch.Contains("public static bool On => RimfolkPatches.On && (ColonyCouncilMod.Settings?.tempReadoutColour ?? true);") && patch.Contains("Widgets.Label(rect, text);\n                return;"),
