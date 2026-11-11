@@ -1077,6 +1077,8 @@ namespace ColonyCouncil
             if (victim.RaceProps?.Animal == true) HappeningWorker_WardensHunt.Killed(victim);
             // The gods (Gods/GodDeeds.cs): a great beast brought down by the colony, a sacred animal slaughtered or hunted.
             if (victim.RaceProps?.Animal == true) GodDeeds.Killed(victim, dinfo, note.beast, note.map);
+            // The gods in the world (Gods/World/GodHealth.cs): a god that takes the sacred beast's death ill holds it against the killer.
+            if (victim.RaceProps?.Animal == true) GodHealth.Killed(victim, dinfo, note.map);
         }
 
         // ---------------- Memos for later events ----------------

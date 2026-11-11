@@ -313,6 +313,7 @@ namespace ColonyCouncil
                 case ChoiceLetter_Hamlet h: return h.Waiting ? "CC_Inbox_Sub_Hamlet" : null;
                 case ChoiceLetter_Election e: return e.Waiting ? "CC_Inbox_Sub_Election" : null;
                 case ChoiceLetter_Journey j: return j.Waiting ? "CC_Inbox_Sub_Journey" : null;
+                case ChoiceLetter_GodWorld g: return g.Waiting ? "CC_Inbox_Sub_Gods" : null;
                 default: return null;
             }
         }
