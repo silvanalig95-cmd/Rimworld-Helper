@@ -301,6 +301,16 @@ namespace ColonyCouncil
                 b.coming = null;
                 return;
             }
+            // Mog's season: Ennu may come to the gate while she stays, and she will know it (SacredAnimal.Stare).
+            if (b.coming == null && b.stranger == null && SacredAnimal.IsMog(b.beast))
+            {
+                var ennu = Gods.All.FirstOrDefault(g => g != null && GodShapes.LineTag(g) == "ennu");
+                var at = b.beast.map;
+                if (ennu != null && at != null && Homes.IsHome(at)
+                    && GodsOnMapMath.GuestInHerSeason(Days(now, b.lastStranger), GodStranger.CanCome(at), Rand.Value))
+                    Plan(b, ComingKind.Stranger, at, ennu, Rand.RangeInclusive(1, 2));
+                return;
+            }
             if (Busy(b)) return;
             var home = Homes.Seat ?? Homes.All.FirstOrDefault();
             if (home == null || !home.IsPlayerHome) return;

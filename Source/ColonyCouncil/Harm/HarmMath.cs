@@ -60,7 +60,9 @@ namespace ColonyCouncil
         /// <summary>Already fighting: drafted, in a fight or a rage, or hurt in the last hour.</summary>
         Fighting,
         /// <summary>A Rimfolk-made hurt in the last three days (the shared cap).</summary>
-        Lately
+        Lately,
+        /// <summary>Mog's chosen one in her season (SacredAnimal.Lucky): it passes them by.</summary>
+        Lucky
     }
 
     /// <summary>What a decree can bring on the body while it holds (DecreeDef.hurts; Harm/DrillBouts.cs, Harm/WorkHurts.cs).</summary>

@@ -31,6 +31,17 @@ When you load a save after an update, a letter lists the newest round once. The 
     <rounds>
 
       <li>
+        <version>0.221.0</version>
+        <date>11 November 2026</date>
+        <title>Mog's season</title>
+        <points>
+          <li>The one Mog chooses has a lucky season while she stays: sicknesses pick someone else, and everyday mishaps pass them by.</li>
+          <li>Mog sees Ennu for what it is: in her season the stranger may come to the gate, and she leaves her favourite to follow it about, staring.</li>
+          <li>People notice, and say so, and the colony's book of the gods has it.</li>
+        </points>
+      </li>
+
+      <li>
         <version>0.220.0</version>
         <date>11 November 2026</date>
         <title>Shrines, prayers and vows</title>

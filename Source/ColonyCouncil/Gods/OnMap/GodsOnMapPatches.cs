@@ -34,6 +34,20 @@ namespace ColonyCouncil
         }
     }
 
+    /// <summary>
+    /// A sickness passes Mog's chosen one by in her season (SacredAnimal.Lucky): the game's disease events, the mods' and
+    /// Rimfolk's own ailments (all IncidentWorker_Disease) pick from everyone else.
+    /// </summary>
+    [HarmonyPatch(typeof(IncidentWorker_Disease), "PotentialVictims")]
+    public static class Patch_MogsLuck
+    {
+        public static void Postfix(ref IEnumerable<Pawn> __result)
+        {
+            if (__result == null || !GodAvatar.Any || !RimfolkPatches.On || GodsOnMapBook.Instance?.beast == null) return;
+            __result = __result.Where(p => !SacredAnimal.Lucky(p));
+        }
+    }
+
     /// <summary>One of the colony tended the stranger's wounds: a kindness the god remembers.</summary>
     [HarmonyPatch(typeof(TendUtility), nameof(TendUtility.DoTend))]
     public static class Patch_GodTended

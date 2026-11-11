@@ -174,6 +174,19 @@ tree at once, alongside whatever runs. Each piece is merged as its own release, 
   distance, as the couriers and journeys reckon it), their reading and writing time, and the answer's own road back;
   a refusal or silence is only known when it could be (a returning rider, their courier, or no word by the time an
   answer would have come). Check each against the map: the courier gone off the map is not the letter delivered.
+- 0.221.0, **Mog's luck and her stare**
+  (11 November 2026), the follow-up to the gods on the map from the pantheon's Mog ("the one she chooses has a lucky
+  season ... she sees Ennu for what it is, and stares at it"). DESIGN.md "The gods on the map", the sacred animal.
+  - Code: `SacredAnimal.IsMog`, `Lucky` (her chosen one while she stays unharmed), `Stare` (FollowClose on the stranger,
+    radius 3, a line from `Rimfolk_Pool_MogStares` and `CC_GodM_Saw_Stare` for the book, on the stay's `lastSeenSaid`
+    gap); `HurtBar.Lucky` in `Harm.Bar` and `MayAtOwnAttack`; `Patch_MogsLuck` (postfix on the game's
+    `IncidentWorker_Disease.PotentialVictims`, so Rimfolk's ailments too); `GodComings.Daily` plans Ennu as the stranger
+    in her season (`GodsOnMapMath.GuestInHerSeason`, 0.03 a day past `StrangerGapDays`). Three more `[mog]` seen lines.
+    Tests in `GodsOnMapTests`. No new saved field.
+  - Try in the game (dev mode, gods Felt or Walking): *Rimfolk*, *Gods: a sacred animal now...*, Mog, a cat; she follows
+    one colonist. Fire a disease event (flu, plague) from the dev incidents: never that colonist while she stays. Then
+    *Gods: a stranger at the gate now...*, Ennu: Mog leaves her chosen one and trails the stranger, and someone remarks
+    on it within a few hours.
 - 0.220.0, **Gods, stage 2: worship**
   (shrines and offerings, prayer in hard moments, festivals, vows, the priest and the council's questions, the gods in
   dreams, the heart of faith; brainstorm items 10, 11, 13, 14, 15, 16 and 20; 11 November 2026, re-keyed the same day

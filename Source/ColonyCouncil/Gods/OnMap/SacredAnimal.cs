@@ -300,7 +300,9 @@ namespace ColonyCouncil
                 return;
             }
             var god = s.God;
-            if (GodsOnMapMath.Follows(a.BodySize)) Follow(s, a, now);
+            // Mog leaves her chosen one while a stranger stays, and keeps to the stranger instead.
+            if (IsMog(s) && Stare(b.stranger, s, a, now)) { }
+            else if (GodsOnMapMath.Follows(a.BodySize)) Follow(s, a, now);
             else if (GodShapes.Leads(god) && !s.led && !s.beckoned && s.follower == null && now - s.since > GenDate.TicksPerDay / 2
                      && Rand.Chance(GodsOnMapMath.BeckonChanceADay / 24f))
                 Beckon(s, a);
@@ -456,6 +458,60 @@ namespace ColonyCouncil
         /// <summary>A fearful nature (nervous, volatile, a coward), or null.</summary>
         private static Trait Fear(Pawn p) =>
             p?.story?.traits?.allTraits?.FirstOrDefault(t => t?.def != null && (t.def.defName == "Nerves" && t.Degree < 0 || t.def.defName == "Wimp"));
+
+        public const string StarePool = "Rimfolk_Pool_MogStares";
+
+        /// <summary>Mog's stay (her shape's line tag), while she is unharmed and here.</summary>
+        public static bool IsMog(SacredStay s) => s?.a != null && !s.hurt && !s.slain && !s.ended && GodShapes.LineTag(s.God) == "mog";
+
+        /// <summary>
+        /// The one Mog has chosen has a lucky season while she stays (docs/gods-pantheon-brainstorm.md, Mog): a sickness
+        /// passes them by (the game's disease events, the mods' and Rimfolk's own pick someone else: Patch_MogsLuck), and
+        /// Rimfolk's everyday hurts don't land (Harm.Bar: a fall doesn't break a bone). Nothing says so; people notice.
+        /// </summary>
+        public static bool Lucky(Pawn p)
+        {
+            if (p == null) return false;
+            var s = GodsOnMapBook.Instance?.beast;
+            return s != null && s.chosen == p && s.a.Spawned && IsMog(s);
+        }
+
+        /// <summary>
+        /// Mog sees a god in disguise for what it is: while a stranger stays, she keeps a few steps from it wherever it goes,
+        /// staring, and someone who sees it says so now and then (and the colony's book has it). False when there is no
+        /// stranger here to stare at.
+        /// </summary>
+        private static bool Stare(StrangerStay st, SacredStay s, Pawn a, int now)
+        {
+            var x = st?.x;
+            if (x == null || x.Dead || !x.Spawned || x.Map != a.Map) return false;
+            if (a.InMentalState || a.Downed || !a.Awake()) return true;
+            if (!(a.CurJobDef == JobDefOf.FollowClose && a.CurJob?.targetA.Thing == x))
+            {
+                try
+                {
+                    var j = JobMaker.MakeJob(JobDefOf.FollowClose, x);
+                    j.followRadius = 3f;
+                    j.expiryInterval = GenDate.TicksPerHour;
+                    j.checkOverrideOnExpire = true;
+                    a.jobs.StartJob(j, JobCondition.InterruptForced);
+                }
+                catch (Exception e)
+                {
+                    CouncilLog.ErrorOnce("gods: Mog staring at the stranger", e);
+                }
+            }
+            if (now - s.lastSeenSaid < GenDate.TicksPerHour * 6 || !Rand.Chance(0.4f)) return true;
+            var p = a.Map.mapPawns.FreeColonistsSpawned.Where(o => Together.Able(o) && o.Position.InHorDistOf(a.Position, 14f) && GenSight.LineOfSight(o.Position, a.Position, a.Map, true))
+                .RandomElementWithFallback();
+            if (p == null) return true;
+            string called = Called(a, s.God);
+            string line = Flavor.FromPool(StarePool, p, null, null);
+            if (line.NullOrEmpty() || !Speech.Say(p, line.Formatted(called.Named("BEAST"), x.LabelShort.Named("NAME")).Resolve())) return true;
+            s.lastSeenSaid = now;
+            GodsOnMapWords.Saw(s.God, a.Map, a.Position, GodActKind.Act, p, "CC_GodM_Saw_Stare", called.Named("BEAST"), x.LabelShort.Named("NAME"));
+            return true;
+        }
 
         /// <summary>A small one follows its chosen colonist about while they are out and about.</summary>
         private static void Follow(SacredStay s, Pawn a, int now)

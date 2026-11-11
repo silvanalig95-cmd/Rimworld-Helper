@@ -282,6 +282,7 @@ namespace ColonyCouncil
         public static HurtBar Bar(Pawn p, HurtClass c = HurtClass.Injury)
         {
             if (p?.health?.hediffSet == null || p.Dead || p.RaceProps == null || !p.RaceProps.Humanlike) return HurtBar.Off;
+            if (SacredAnimal.Lucky(p)) return HurtBar.Lucky;
             int now = Now;
             var stage = p.DevelopmentalStage;
             return HarmMath.Bar(Scale, stage.Baby(), stage.Juvenile() && !stage.Baby(), p.Downed, Sickbed(p), Pregnant(p), Fighting(p, now),
@@ -296,6 +297,7 @@ namespace ColonyCouncil
         public static bool MayAtOwnAttack(Pawn p, HurtClass c = HurtClass.Injury)
         {
             if (p?.health?.hediffSet == null || p.Dead || p.RaceProps == null || !p.RaceProps.Humanlike) return false;
+            if (SacredAnimal.Lucky(p)) return false;
             int now = Now;
             var stage = p.DevelopmentalStage;
             bool fighting = Fighting(p, now, false);

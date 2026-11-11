@@ -227,6 +227,7 @@
   <CC_GodM_Saw_Led>{WHO} followed the {BEAST} out across the land until it stopped and looked back.</CC_GodM_Saw_Led>
   <CC_GodM_Saw_Sat>{WHO} sat near the {BEAST} a long while as it grazed.</CC_GodM_Saw_Sat>
   <CC_GodM_Saw_Horn>{WHO} touched the {BEAST}'s horn, and it let them.</CC_GodM_Saw_Horn>
+  <CC_GodM_Saw_Stare>{WHO} saw the {BEAST} follow {NAME} about, staring, as if she knew what they were.</CC_GodM_Saw_Stare>
   <CC_GodM_Saw_Struck>{WHO} saw {HARMER} draw blood from the {BEAST}, and everything went quiet.</CC_GodM_Saw_Struck>
   <CC_GodM_Saw_Slain>{WHO} saw the {BEAST} fall, and the light go out of it.</CC_GodM_Saw_Slain>
   <CC_GodM_Saw_KinStruck>{WHO} saw {HARMER} hurt one of the {KIN}s that followed the {BEAST}, and the {BEAST} turned and looked.</CC_GodM_Saw_KinStruck>

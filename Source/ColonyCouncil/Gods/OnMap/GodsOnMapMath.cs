@@ -217,6 +217,15 @@ namespace ColonyCouncil
         /// <summary>Days between two strangers at the gate, and two sacred animals.</summary>
         public const int StrangerGapDays = 120, AnimalGapDays = 90;
 
+        /// <summary>
+        /// While Mog stays, the chance a day that Ennu comes to the gate in its disguise, once the stranger's own gap has
+        /// passed: about one of her seasons in three (docs/gods-pantheon-brainstorm.md, Mog: "she sees Ennu for what it is").
+        /// </summary>
+        public const float GuestInHerSeasonADay = 0.03f;
+
+        public static bool GuestInHerSeason(int daysSinceStranger, bool strangerCan, float roll) =>
+            strangerCan && daysSinceStranger >= StrangerGapDays && roll < GuestInHerSeasonADay;
+
         /// <summary>Once the gaps are past, the chance a day that a god sets out (about one in thirty days).</summary>
         public const float DailyChance = 0.033f;
 

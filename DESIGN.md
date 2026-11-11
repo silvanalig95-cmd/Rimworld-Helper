@@ -12342,7 +12342,13 @@ core as it stood at its base, reaching each god by its short name.
   found); let pass, a strange peace on the colony for a season; harming him or his kin is the worst thing: every god
   colder and every people with someone on the map hears of it (`Rimfolk_HarmedSacredBeast`, the game's own goodwill
   line). Mog, a gray cat (`Rimfolk_GodLook_Mog`) staying a season with one chosen colonist, her own and the colony's cats
-  following her, taking food she didn't ask for; marked to be tamed, she goes. A large beast of another god may lead
+  following her, taking food she didn't ask for; marked to be tamed, she goes. Her chosen one has a lucky season while
+  she stays (`SacredAnimal.Lucky`): Rimfolk's everyday hurts pass them by (`HurtBar.Lucky`) and every disease event,
+  the game's, the mods' and Rimfolk's own, picks someone else (`Patch_MogsLuck` on `IncidentWorker_Disease`); nothing
+  says so, and people only remark that her favourite has all the luck. She sees Ennu for what it is: in her season Ennu
+  may come to the gate (`GodsOnMapMath.GuestInHerSeason`, past the stranger's own gap, about one season in three), and
+  while any stranger stays she leaves her chosen one to trail it a few steps behind, staring; someone who sees it says
+  so (`Rimfolk_Pool_MogStares`) and the colony's book has it (`CC_GodM_Saw_Stare`). A large beast of another god may lead
   someone to a find, a cure or a vein. Hurt: the game's revenge, a Wrath moment, a fever at the game's rate; slain, its
   body to ash.
 - **Rising and waking** (`GodRising`, `GodWaking`): Hollin's roots drawn up into a shape taller than any tree for an hour

@@ -300,6 +300,22 @@ public static class GodsOnMapTests
         var mog = Shape("Mog");
         C(mog?.Element("beasts")?.Elements("li").Single().Value == "Cat" && mog.Element("kin")?.Value == "Cat" && mog.Element("stayDays") != null && mog.Element("feeds")?.Value == "true",
             "Mog: a grey cat with cats following, staying a season, taking food she didn't ask for");
+        // Mog's chosen one has a lucky season, and she sees Ennu for what it is (the brainstorm's Mog).
+        C(!GodsOnMapMath.GuestInHerSeason(GodsOnMapMath.StrangerGapDays - 1, true, 0f) && !GodsOnMapMath.GuestInHerSeason(999, false, 0f)
+          && GodsOnMapMath.GuestInHerSeason(GodsOnMapMath.StrangerGapDays, true, 0f) && !GodsOnMapMath.GuestInHerSeason(999, true, GodsOnMapMath.GuestInHerSeasonADay),
+            "Ennu may come in Mog's season only past the stranger's own gap, when a stranger can come, at its chance");
+        float seasonOdds = 1f - (float)Math.Pow(1f - GodsOnMapMath.GuestInHerSeasonADay, 15);
+        C(seasonOdds > 0.25f && seasonOdds < 0.45f, $"about one of her seasons in three sees Ennu ({seasonOdds:P0})");
+        {
+            string beast = Code(root, "SacredAnimal.cs"), harm = File.ReadAllText(Path.Combine(root, "Source", "ColonyCouncil", "Harm", "Harm.cs")), mogPatch = Code(root, "GodsOnMapPatches.cs"), comings = Code(root, "GodsOnMapBook.cs");
+            C(harm.Contains("if (SacredAnimal.Lucky(p)) return HurtBar.Lucky;") && harm.Contains("if (SacredAnimal.Lucky(p)) return false;")
+              && mogPatch.Contains("[HarmonyPatch(typeof(IncidentWorker_Disease), \"PotentialVictims\")]") && mogPatch.Contains("!SacredAnimal.Lucky(p)"),
+                "Mog's chosen one: Rimfolk's hurts pass them by, and every disease event picks someone else");
+            C(beast.Contains("s.chosen == p && s.a.Spawned && IsMog(s)") && beast.Contains("IsMog(s) && Stare(b.stranger, s, a, now)")
+              && beast.Contains("JobMaker.MakeJob(JobDefOf.FollowClose, x)") && beast.Contains("\"CC_GodM_Saw_Stare\""),
+                "the luck lasts while she stays with her chosen one; she trails a stranger, and someone says so and the book has it");
+            C(comings.Contains("GodsOnMapMath.GuestInHerSeason(") && comings.Contains("Plan(b, ComingKind.Stranger, at, ennu,"), "Ennu's coming is planned in her season");
+        }
         C(Shape("Smoulder")?.Element("trueForm")?.Value == "True_Dragon" && Shape("Murmur")?.Element("trueForm")?.Value == "ColossusToad" && Shape("Murmur")?.Element("rises")?.Value == "true"
           && Shape("Hollin")?.Element("rises")?.Value == "true", "the sleeper's true form and Old Croak's, by name; Hollin and Murmur rise");
         C(Shape("Selene")?.Element("returns")?.Value == "true" && Shape("Selene").Element("voices")?.Elements("li").Any(l => l.Value == "Eclipse") == true
@@ -432,7 +448,7 @@ public static class GodsOnMapTests
         C(!code.Contains("TorannMagic.") || code.Contains("AccessTools.TypeByName(\"TorannMagic"), "A RimWorld of Magic reached by name only");
         C(!Regex.IsMatch(bare, @"DefDatabase<\w+>\.GetNamed\("), "every def looked up softly");
         string patches = Code(root, "GodsOnMapPatches.cs");
-        C(Regex.Matches(patches, @"\[HarmonyPatch\(").Count == 4 && Regex.Matches(patches, @"GodAvatar\.Any|GodOmens\.Out").Count >= 4, "each hook looks first whether anything of the gods' is about");
+        C(Regex.Matches(patches, @"\[HarmonyPatch\(").Count == 5 && Regex.Matches(patches, @"GodAvatar\.Any|GodOmens\.Out").Count >= 5, "each hook looks first whether anything of the gods' is about");
         C(Code(root, "GodsOnMapDebug.cs").Split("[DebugAction(\"Rimfolk\", \"Gods: ").Length - 1 >= 8, "the dev actions: the stranger, its end, the animal, a lead, the weather, the omens, a mark, the log");
         string book = File.ReadAllText(Path.Combine(root, "Source", "ColonyCouncil", "Gods", "GodBook.cs"));
         C(book.Contains("GodsOnMapBook.Daily(now)") && book.Contains("GodsOnMapBook.Hourly(now)"), "kept in the gods' own day and hour, no pass of its own");

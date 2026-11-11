@@ -5,6 +5,14 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## Mog's season
+
+*11 November 2026, version 0.221.0*
+
+- The one Mog chooses has a lucky season while she stays: sicknesses pick someone else, and everyday mishaps pass them by.
+- Mog sees Ennu for what it is: in her season the stranger may come to the gate, and she leaves her favourite to follow it about, staring.
+- People notice, and say so, and the colony's book of the gods has it.
+
 ## Shrines, prayers and vows
 
 *11 November 2026, version 0.220.0*

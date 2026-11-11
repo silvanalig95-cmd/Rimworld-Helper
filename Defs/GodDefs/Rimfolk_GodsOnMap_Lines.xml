@@ -336,6 +336,23 @@
         <li>[mog] That {BEAST} has picked her person, and it isn't you.</li>
         <li>[mog] The cats all follow her about like courtiers.</li>
         <li>[mog] She sleeps in the warmest spot in the colony, every time.</li>
+        <li>[mog] Whoever that cat sits with has all the luck this season.</li>
+        <li>[mog] I'd stay close to whoever that cat picks, if I were you.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- Someone who sees Mog trailing a stranger and staring at them (SacredAnimal.Stare). {BEAST} is what she is seen as, {NAME} the stranger. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_MogStares</defName>
+    <lines>
+      <plain>
+        <li>That cat hasn't taken her eyes off {NAME} all day.</li>
+        <li>The cat follows {NAME} everywhere and just stares.</li>
+        <li>Even the cat thinks there's something odd about {NAME}.</li>
+        <li>Look at the cat, staring at {NAME} like she knows something we don't.</li>
+        <li>She's left her favourite to sit and watch {NAME}, of all people.</li>
+        <li>Every time {NAME} turns round, that cat is right there, staring.</li>
       </plain>
     </lines>
   </ColonyCouncil.FlavorPoolDef>
