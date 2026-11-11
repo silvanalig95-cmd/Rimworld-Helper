@@ -609,6 +609,9 @@ namespace ColonyCouncil
             Choice("speechShows", "CC_SetLabel_SpeechShows", "CC_SetTip_SpeechShows", "CC_SpeechShows_", "CC_SetNote_SpeechShows_",
                 new[] { "Bubbles", "Floating", "Off" });
             Toggle("visualTouches", "CC_Settings_VisualTouches", "CC_SetNote_VisualTouches");
+            // A god on the map and its moments (Gods/Presence/).
+            Toggle("godAura", "CC_Settings_GodAura", "CC_SetNote_GodAura");
+            Toggle("godMusic", "CC_Settings_GodMusic", "CC_SetNote_GodMusic");
             Toggle("moodBubbleText", "CC_Settings_MoodBubbleText", "CC_SetNote_MoodBubbleText");
             Toggle("moodInsight", "CC_Settings_MoodInsight", "CC_SetNote_MoodInsight");
             Toggle("needsTabHints", "CC_Settings_NeedsTabHints", "CC_SetNote_NeedsTabHints", "moodInsight");

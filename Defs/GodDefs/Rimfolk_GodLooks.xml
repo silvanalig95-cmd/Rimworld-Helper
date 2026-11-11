@@ -1,0 +1,1372 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    How a god of each domain looks and comes (docs/design/gods.md, "Presence"; Source/ColonyCouncil/Gods/Presence/): one
+    look a domain for every age (Rimfolk_GodLook_<Domain>), and an age variant where the age changes it (the Machine
+    before the machine age, the War and the Craft among spacers). Everything named is looked up by name and skipped when
+    it isn't in the player's game; the robes and crowns are tried in order on a person, the first that fits its body worn
+    and recoloured. Sounds are one-shots or sustainers, played as each is; the sting is the first two that exist, the
+    game's start sting under them where none does. Tracks are SongDefs (Anomaly's, Odyssey's, Ideology's, the player's
+    mods'), after any the player puts in Sounds/Rimfolk/Gods/<Domain>/. Motes, effecters and circles are A RimWorld of
+    Magic's first (Rimfolk's own motes and the game's flash stand in without it). GodPresenceTests checks every name
+    against the player's mods (docs/player-mods).
+  -->
+
+  <!-- The Harvest (and rain): wheat-gold and green; a toga and a wreath; flowers where it walks and a ring of them where it stood. -->
+  <ColonyCouncil.GodLookDef>
+    <defName>Rimfolk_GodLook_Harvest</defName>
+    <label>the harvest</label>
+    <description>A god of the harvest and the rain: wheat-gold and green, crowned with a wreath, and flowers where it walks.</description>
+    <domain>Harvest</domain>
+    <sampleName>the Sheaf-mother</sampleName>
+    <colorA>(0.95, 0.78, 0.35)</colorA>
+    <colorB>(0.55, 0.78, 0.35)</colorB>
+    <glowColor>(1, 0.86, 0.52)</glowColor>
+    <glowRadius>6</glowRadius>
+    <size>1.25</size>
+    <skin>(0.86, 0.7, 0.45)</skin>
+    <hair>(0.95, 0.82, 0.45)</hair>
+    <eyes>(1, 0.86, 0.4)</eyes>
+    <animalTint>(1, 0.88, 0.62)</animalTint>
+    <body>
+      <li>VFEC_Toga</li>
+      <li>TM_DreamcatcherBuckskin</li>
+      <li>Apparel_Robe</li>
+    </body>
+    <head>
+      <li>VFEC_Wreath</li>
+      <li>Apparel_Coronet</li>
+    </head>
+    <trail>Flowers</trail>
+    <motes>
+      <li>Mote_Flowers</li>
+      <li>Mote_Twinkle</li>
+      <li>Mote_GreenTwinkle</li>
+    </motes>
+    <flash>
+      <li>TM_LightBurstED</li>
+    </flash>
+    <circle>
+      <li>Mote_ArcaneCircle</li>
+    </circle>
+    <sky>(1, 0.9, 0.6)</sky>
+    <still>0.9</still>
+    <mark>Flowers</mark>
+    <wrathMark>Ash</wrathMark>
+    <sting>
+      <li>Bestowing_Start</li>
+      <li>TM_Gong</li>
+      <li>RitualConclusion_Positive</li>
+    </sting>
+    <wrathSting>
+      <li>Thunder_OffMap</li>
+      <li>RitualConclusion_Negative</li>
+    </wrathSting>
+    <omen>
+      <li>LeavesRustle</li>
+      <li>TinyBell</li>
+    </omen>
+    <depart>
+      <li>Bestowing_Finished</li>
+    </depart>
+    <hum>
+      <li>RitualSustainer_Rustic</li>
+      <li>AM_RitualSustainer_Neolithic</li>
+      <li>VFET_RitualSustainer_TribalGathering</li>
+    </hum>
+    <tracks>
+      <li>Sky_Farmer</li>
+      <li>Wabi_Sabi</li>
+      <li>Baubles</li>
+    </tracks>
+    <darkTracks>
+      <li>Blood_Rain_Falling</li>
+    </darkTracks>
+    <animals>
+      <li>Muskox</li>
+      <li>Bison</li>
+      <li>Cow</li>
+    </animals>
+  </ColonyCouncil.GodLookDef>
+
+  <!-- The Storm: storm-grey and silver; a dead calm, then thunder and a pulse; rain where it walks, a lightning-struck stone where it stood. -->
+  <ColonyCouncil.GodLookDef>
+    <defName>Rimfolk_GodLook_Storm</defName>
+    <label>the storm</label>
+    <description>A god of the storm: storm-gray and silver, a dead calm before it and thunder when it comes.</description>
+    <domain>Storm</domain>
+    <sampleName>the Storm-father</sampleName>
+    <colorA>(0.55, 0.65, 0.88)</colorA>
+    <colorB>(0.9, 0.95, 1)</colorB>
+    <glowColor>(0.7, 0.8, 1)</glowColor>
+    <glowRadius>7</glowRadius>
+    <size>1.35</size>
+    <skin>(0.72, 0.75, 0.82)</skin>
+    <hair>(0.92, 0.94, 1)</hair>
+    <eyes>(0.7, 0.9, 1)</eyes>
+    <animalTint>(0.76, 0.84, 1)</animalTint>
+    <body>
+      <li>ArchMageRobe</li>
+      <li>DemonLordCloak</li>
+      <li>Apparel_Cape</li>
+    </body>
+    <head>
+      <li>RoyalHelm</li>
+      <li>Apparel_CrownStellic</li>
+      <li>Apparel_Crown</li>
+    </head>
+    <trail>Rain</trail>
+    <motes>
+      <li>Mote_Bolt</li>
+      <li>Mote_BlueTwinkle</li>
+      <li>Mote_Psi</li>
+    </motes>
+    <flash>
+      <li>TM_LightningShield_Effecter</li>
+      <li>TM_LightBurstED</li>
+    </flash>
+    <circle>
+      <li>Mote_ArcaneCircle</li>
+    </circle>
+    <sky>(0.62, 0.68, 0.85)</sky>
+    <still>0.95</still>
+    <mark>Stone</mark>
+    <wrathMark>Scorch</wrathMark>
+    <sting>
+      <li>Thunder_OnMap</li>
+      <li>TM_Thunder_OnMap</li>
+      <li>PsychicPulseGlobal</li>
+    </sting>
+    <wrathSting>
+      <li>TM_Lightning</li>
+      <li>Thunder_OnMap</li>
+    </wrathSting>
+    <omen>
+      <li>Thunder_OffMap</li>
+      <li>TM_Thunder_OffMap</li>
+    </omen>
+    <depart>
+      <li>Thunder_OffMap</li>
+    </depart>
+    <hum>
+      <li>FlashstormAmbience</li>
+      <li>Ambient_Wind_Storm</li>
+    </hum>
+    <tracks>
+      <li>Low_Planetary_Orbit</li>
+      <li>Have_They_Come_For_Us</li>
+      <li>Floating_Points</li>
+    </tracks>
+    <darkTracks>
+      <li>Blood_Rain_Falling</li>
+      <li>Death_Pall_Rising</li>
+    </darkTracks>
+    <animals>
+      <li>AA_Thunderox</li>
+      <li>AA_ShockGoat</li>
+      <li>Thrumbo</li>
+    </animals>
+  </ColonyCouncil.GodLookDef>
+
+  <!-- The Hunt (and beasts): forest green and bone; a deer skull, a wanderer's cloak; spirit wolves run out at its coming. -->
+  <ColonyCouncil.GodLookDef>
+    <defName>Rimfolk_GodLook_Hunt</defName>
+    <label>the hunt</label>
+    <description>A god of the hunt and the beasts: forest green and bone, wearing a deer's skull, with spirit wolves running at its coming.</description>
+    <domain>Hunt</domain>
+    <sampleName>the Hunter</sampleName>
+    <colorA>(0.32, 0.55, 0.32)</colorA>
+    <colorB>(0.92, 0.88, 0.75)</colorB>
+    <glowColor>(0.75, 1, 0.75)</glowColor>
+    <glowRadius>5</glowRadius>
+    <size>1.3</size>
+    <skin>(0.7, 0.62, 0.5)</skin>
+    <hair>(0.3, 0.25, 0.2)</hair>
+    <eyes>(1, 0.75, 0.3)</eyes>
+    <animalTint>(0.95, 0.93, 0.86)</animalTint>
+    <body>
+      <li>DevDesigner_WoodElves_Cloak</li>
+      <li>TM_MaestersCloak</li>
+      <li>Apparel_Cape</li>
+    </body>
+    <head>
+      <li>VIEHAR_Apparel_DeerSkull</li>
+      <li>DevDesigner_WoodElves_StagKnightHelmet</li>
+      <li>Apparel_TribalHeaddress</li>
+      <li>Apparel_HatHood</li>
+    </head>
+    <trail>Light</trail>
+    <motes>
+      <li>Mote_GreenTwinkle</li>
+      <li>Mote_Twinkle</li>
+    </motes>
+    <spirits>
+      <li>Mote_SpiritWolf_East</li>
+      <li>Mote_SpiritWolf_West</li>
+    </spirits>
+    <flash>
+      <li>TM_SpiritPulseED</li>
+    </flash>
+    <circle>
+      <li>Mote_ArcaneCircle</li>
+    </circle>
+    <sky>(0.72, 0.86, 0.7)</sky>
+    <still>0.8</still>
+    <mark>Stone</mark>
+    <wrathMark>Ash</wrathMark>
+    <sting>
+      <li>TM_WolfHowl</li>
+      <li>Sightstealer_DistantHowlLarge</li>
+      <li>Bestowing_Start</li>
+    </sting>
+    <wrathSting>
+      <li>TM_Roar</li>
+      <li>Ability_TerrorRoar</li>
+    </wrathSting>
+    <omen>
+      <li>TM_WolfHowl</li>
+      <li>Pawn_Crow_Call</li>
+    </omen>
+    <depart>
+      <li>Sightstealer_DistantHowl</li>
+    </depart>
+    <hum>
+      <li>AM_RitualSustainer_Neolithic</li>
+      <li>RitualSustainer_Totemic</li>
+      <li>RitualSustainer_Animalist</li>
+    </hum>
+    <tracks>
+      <li>A_Twisted_Path</li>
+      <li>Shadow_Work</li>
+      <li>Is_There_Still_Time</li>
+    </tracks>
+    <darkTracks>
+      <li>They_See_You</li>
+      <li>Corpse_Attack</li>
+    </darkTracks>
+    <animals>
+      <li>Wolf_Great</li>
+      <li>AA_DuskProwler</li>
+      <li>Wolf_Timber</li>
+      <li>Panther</li>
+    </animals>
+  </ColonyCouncil.GodLookDef>
+
+  <!-- Healing (and sickness): warm white and green; a disciple's robe and a mask of serenity; light where it walks, herbs and flowers where it stood. -->
+  <ColonyCouncil.GodLookDef>
+    <defName>Rimfolk_GodLook_Healing</defName>
+    <label>healing</label>
+    <description>A god of healing and of sickness: warm white and pale green, serene, with a soft light where it walks.</description>
+    <domain>Healing</domain>
+    <sampleName>the Healer</sampleName>
+    <colorA>(0.96, 0.93, 0.82)</colorA>
+    <colorB>(0.6, 0.9, 0.7)</colorB>
+    <glowColor>(0.9, 1, 0.85)</glowColor>
+    <glowRadius>6</glowRadius>
+    <size>1.2</size>
+    <skin>(0.95, 0.92, 0.86)</skin>
+    <hair>(0.98, 0.97, 0.92)</hair>
+    <eyes>(0.7, 1, 0.8)</eyes>
+    <animalTint>(1, 1, 0.95)</animalTint>
+    <body>
+      <li>TM_DiscipleRobe</li>
+      <li>Apparel_Robe</li>
+    </body>
+    <head>
+      <li>TM_SagesMask</li>
+      <li>TM_DreamcatcherCoronet</li>
+      <li>Apparel_Coronet</li>
+    </head>
+    <trail>Light</trail>
+    <motes>
+      <li>Mote_Regen</li>
+      <li>Mote_Healing_Small</li>
+      <li>Mote_Twinkle</li>
+    </motes>
+    <flash>
+      <li>TM_ChiBurstED</li>
+      <li>TM_LightBurstED</li>
+    </flash>
+    <circle>
+      <li>Mote_MagicCircleInner</li>
+    </circle>
+    <sky>(0.95, 1, 0.9)</sky>
+    <still>0.9</still>
+    <mark>Flowers</mark>
+    <wrathMark>Ash</wrathMark>
+    <sting>
+      <li>PreachHealth_Resolve</li>
+      <li>Bestowing_Finished</li>
+      <li>PsychicSootheGlobal</li>
+    </sting>
+    <wrathSting>
+      <li>AgonyPulse_Cast</li>
+      <li>RitualConclusion_Negative</li>
+    </wrathSting>
+    <omen>
+      <li>TinyBell</li>
+      <li>AnimalCalm_Resolve</li>
+    </omen>
+    <depart>
+      <li>Bestowing_Finished</li>
+      <li>PsychicSootheGlobal</li>
+    </depart>
+    <hum>
+      <li>RitualSustainer_Buddhist</li>
+      <li>AM_RitualSustainer_Jain</li>
+      <li>RitualSustainer_Christian</li>
+    </hum>
+    <tracks>
+      <li>Is_There_Still_Time</li>
+      <li>Wabi_Sabi</li>
+      <li>Impermanent_Waves</li>
+    </tracks>
+    <darkTracks>
+      <li>Spent_Introject</li>
+    </darkTracks>
+    <animals>
+      <li>Swan</li>
+      <li>Heron</li>
+      <li>AA_AngelMoth</li>
+    </animals>
+  </ColonyCouncil.GodLookDef>
+
+  <!-- War: blood red and iron; the cloak of supremacy and the helm of the valiant; blood wolves run out, scorch where it walks. -->
+  <ColonyCouncil.GodLookDef>
+    <defName>Rimfolk_GodLook_War</defName>
+    <label>war</label>
+    <description>A god of war: blood red and iron, helmed and cloaked, with scorched ground behind it and blood wolves at its coming.</description>
+    <domain>War</domain>
+    <sampleName>the Red Captain</sampleName>
+    <maxTech>Industrial</maxTech>
+    <colorA>(0.75, 0.18, 0.15)</colorA>
+    <colorB>(0.6, 0.6, 0.66)</colorB>
+    <glowColor>(1, 0.45, 0.3)</glowColor>
+    <glowRadius>6</glowRadius>
+    <size>1.4</size>
+    <skin>(0.8, 0.56, 0.46)</skin>
+    <hair>(0.28, 0.08, 0.06)</hair>
+    <eyes>(1, 0.35, 0.2)</eyes>
+    <animalTint>(0.95, 0.66, 0.6)</animalTint>
+    <body>
+      <li>DemonLordCloak</li>
+      <li>VFEM2_Apparel_Tabard</li>
+      <li>Apparel_Cape</li>
+    </body>
+    <head>
+      <li>RoyalHelm</li>
+      <li>VFEC_Apparel_CenturionHelmet</li>
+      <li>ParagonHelm</li>
+      <li>Apparel_WarMask</li>
+    </head>
+    <trail>Scorch</trail>
+    <motes>
+      <li>Mote_Psi_Grayscale</li>
+      <li>Mote_Chi_Grayscale</li>
+    </motes>
+    <spirits>
+      <li>Mote_BloodWolfEast</li>
+      <li>Mote_BloodWolfWest</li>
+    </spirits>
+    <flash>
+      <li>TM_RageWaveED</li>
+      <li>TM_CommanderOrderED</li>
+    </flash>
+    <circle>
+      <li>Mote_BloodCircle</li>
+    </circle>
+    <sky>(0.85, 0.5, 0.45)</sky>
+    <still>0.7</still>
+    <mark>Stone</mark>
+    <wrathMark>Scorch</wrathMark>
+    <sting>
+      <li>Bestowing_Start</li>
+      <li>TM_Roar</li>
+      <li>TM_Gong</li>
+    </sting>
+    <wrathSting>
+      <li>Ability_TerrorRoar</li>
+      <li>TM_FlashBang</li>
+    </wrathSting>
+    <omen>
+      <li>TM_MetalImpact</li>
+      <li>Pawn_Crow_Call</li>
+    </omen>
+    <depart>
+      <li>TM_Gong</li>
+    </depart>
+    <hum>
+      <li>VFEM2_Viking_RitualSustainer</li>
+      <li>AM_RitualSustainer_Mesoamerican</li>
+      <li>RitualSustainer_Spikecore</li>
+    </hum>
+    <tracks>
+      <li>VFED_FinalBattle</li>
+      <li>Corpse_Attack</li>
+      <li>Have_They_Come_For_Us</li>
+    </tracks>
+    <darkTracks>
+      <li>Blood_Rain_Falling</li>
+      <li>VFED_DivineInferno</li>
+    </darkTracks>
+    <animals>
+      <li>pphhyy_CrimsonDemigryph</li>
+      <li>AA_RipperHound</li>
+      <li>Wolf_Great</li>
+      <li>Tiger</li>
+      <li>Bear_Grizzly</li>
+    </animals>
+  </ColonyCouncil.GodLookDef>
+
+  <!-- War among spacers: the war-mind, red light on dark plasteel; a forsaken cloak and a psycaster's helm. -->
+  <ColonyCouncil.GodLookDef>
+    <defName>Rimfolk_GodLook_War_Spacer</defName>
+    <label>war, among the stars</label>
+    <description>The war god of a spacer people: red light on dark plasteel, a mind that has fought every war it has seen.</description>
+    <domain>War</domain>
+    <sampleName>the War-mind</sampleName>
+    <minTech>Spacer</minTech>
+    <colorA>(0.85, 0.2, 0.18)</colorA>
+    <colorB>(0.3, 0.32, 0.36)</colorB>
+    <glowColor>(1, 0.35, 0.3)</glowColor>
+    <glowRadius>6</glowRadius>
+    <size>1.4</size>
+    <skin>(0.7, 0.66, 0.66)</skin>
+    <hair>(0.15, 0.15, 0.17)</hair>
+    <eyes>(1, 0.25, 0.2)</eyes>
+    <animalTint>(0.85, 0.6, 0.6)</animalTint>
+    <body>
+      <li>AG_ForsakenCloak</li>
+      <li>Apparel_UGCloak</li>
+      <li>DemonLordCloak</li>
+    </body>
+    <head>
+      <li>AG_ForsakenMarineHelmetPsy</li>
+      <li>VPE_Apparel_EltexMask</li>
+      <li>Apparel_EltexSkullcap</li>
+    </head>
+    <trail>Scorch</trail>
+    <motes>
+      <li>Mote_Psi_Grayscale</li>
+      <li>Mote_PsiCurrent</li>
+    </motes>
+    <spirits>
+      <li>Mote_BloodWolfEast</li>
+      <li>Mote_BloodWolfWest</li>
+    </spirits>
+    <flash>
+      <li>TM_RageWaveED</li>
+      <li>TM_MKWaveED</li>
+    </flash>
+    <circle>
+      <li>Mote_BloodCircle</li>
+    </circle>
+    <sky>(0.8, 0.45, 0.45)</sky>
+    <still>0.7</still>
+    <mark>Slag</mark>
+    <wrathMark>Scorch</wrathMark>
+    <sting>
+      <li>Archotech_Invoked</li>
+      <li>Bestowing_Start</li>
+    </sting>
+    <wrathSting>
+      <li>Ability_TerrorRoar</li>
+      <li>Explosion_EMP</li>
+    </wrathSting>
+    <omen>
+      <li>Zap_Quiet</li>
+    </omen>
+    <depart>
+      <li>Psycast_Skip_Exit</li>
+    </depart>
+    <hum>
+      <li>RitualSustainer_Spikecore</li>
+      <li>VME_RitualSustainer_Authoritarian</li>
+    </hum>
+    <tracks>
+      <li>VFED_FinalBattle</li>
+      <li>Low_Planetary_Orbit</li>
+      <li>Have_They_Come_For_Us</li>
+    </tracks>
+    <darkTracks>
+      <li>VFED_DivineInferno</li>
+      <li>Blood_Rain_Falling</li>
+    </darkTracks>
+    <animals>
+      <li>AA_RipperHound</li>
+      <li>Mech_Legionary</li>
+      <li>Wolf_Great</li>
+    </animals>
+  </ColonyCouncil.GodLookDef>
+
+  <!-- Craft (the forge): ember orange and bronze; an apron and a mantle; sparks where it walks, runes on the ground, a lump of slag where it stood. -->
+  <ColonyCouncil.GodLookDef>
+    <defName>Rimfolk_GodLook_Craft</defName>
+    <label>the forge</label>
+    <description>A god of the forge and of every craft: ember orange and bronze, soot-dark skin and fire in its eyes, sparks where it walks.</description>
+    <domain>Craft</domain>
+    <sampleName>the Smith</sampleName>
+    <maxTech>Industrial</maxTech>
+    <colorA>(0.95, 0.55, 0.2)</colorA>
+    <colorB>(0.78, 0.58, 0.32)</colorB>
+    <glowColor>(1, 0.6, 0.3)</glowColor>
+    <glowRadius>6</glowRadius>
+    <size>1.35</size>
+    <skin>(0.62, 0.45, 0.32)</skin>
+    <hair>(0.18, 0.14, 0.12)</hair>
+    <eyes>(1, 0.6, 0.2)</eyes>
+    <animalTint>(0.92, 0.72, 0.52)</animalTint>
+    <body>
+      <li>VAE_Apparel_Apron</li>
+      <li>VFEM2_Apparel_Mantle</li>
+      <li>Apparel_Robe</li>
+    </body>
+    <head>
+      <li>VIEHAR_Apparel_Skullcap</li>
+      <li>Apparel_HatHood</li>
+    </head>
+    <trail>Sparks</trail>
+    <motes>
+      <li>Mote_ArcaneFabricationA</li>
+      <li>Mote_ArcaneFabricationB</li>
+      <li>Mote_ArcaneFabricationC</li>
+      <li>Mote_ArcaneFabricationD</li>
+    </motes>
+    <flash>
+      <li>TM_RuneCarving_EffecterED</li>
+      <li>TM_Stoneskin_Effecter</li>
+    </flash>
+    <circle>
+      <li>Mote_GlowingRune</li>
+      <li>Mote_GlowingRuneA</li>
+    </circle>
+    <sky>(0.95, 0.72, 0.5)</sky>
+    <still>0.85</still>
+    <mark>Slag</mark>
+    <wrathMark>Scorch</wrathMark>
+    <sting>
+      <li>ItemEnchanted</li>
+      <li>TM_Gong</li>
+      <li>Bestowing_Start</li>
+    </sting>
+    <wrathSting>
+      <li>TM_FireBombSD</li>
+      <li>Explosion_Flame</li>
+    </wrathSting>
+    <omen>
+      <li>TM_MetalImpact</li>
+      <li>ItemEnchanted</li>
+    </omen>
+    <depart>
+      <li>ItemEnchanted</li>
+    </depart>
+    <hum>
+      <li>AM_RitualSustainer_SteampunkRevival</li>
+      <li>RitualSustainer_Techist</li>
+      <li>AM_RitualSustainer_Kemetic</li>
+    </hum>
+    <tracks>
+      <li>Baubles</li>
+      <li>Floating_Points</li>
+      <li>Sky_Farmer</li>
+    </tracks>
+    <darkTracks>
+      <li>MetalHell_Ambience</li>
+    </darkTracks>
+    <animals>
+      <li>AA_IronhuskBeetle</li>
+      <li>Bear_Grizzly</li>
+    </animals>
+  </ColonyCouncil.GodLookDef>
+
+  <!-- The Craft among spacers: the Fabricator, cyan light and pale steel; a techfriar's crown. -->
+  <ColonyCouncil.GodLookDef>
+    <defName>Rimfolk_GodLook_Craft_Spacer</defName>
+    <label>the fabricator</label>
+    <description>The forge god of a spacer people: the Fabricator, cyan light on pale steel, sparks and glowing runes where it works.</description>
+    <domain>Craft</domain>
+    <sampleName>the Fabricator</sampleName>
+    <minTech>Spacer</minTech>
+    <colorA>(0.4, 0.85, 0.95)</colorA>
+    <colorB>(0.85, 0.88, 0.92)</colorB>
+    <glowColor>(0.55, 0.9, 1)</glowColor>
+    <glowRadius>6</glowRadius>
+    <size>1.3</size>
+    <skin>(0.78, 0.8, 0.84)</skin>
+    <hair>(0.85, 0.9, 0.95)</hair>
+    <eyes>(0.4, 0.95, 1)</eyes>
+    <animalTint>(0.8, 0.92, 1)</animalTint>
+    <body>
+      <li>Apparel_PsyfocusRobe</li>
+      <li>VFE_Apparel_StellicRobe</li>
+      <li>Apparel_Robe</li>
+    </body>
+    <head>
+      <li>VFEE_Apparel_TechfriarCrown</li>
+      <li>Apparel_EltexSkullcap</li>
+    </head>
+    <trail>Sparks</trail>
+    <motes>
+      <li>Mote_ArcaneFabricationA</li>
+      <li>Mote_ArcaneFabricationC</li>
+      <li>Mote_Twinkle_grayscale</li>
+    </motes>
+    <flash>
+      <li>TM_RuneCarving_EffecterED</li>
+      <li>TM_MKWaveED</li>
+    </flash>
+    <circle>
+      <li>Mote_GlowingRuneA</li>
+    </circle>
+    <sky>(0.7, 0.88, 0.95)</sky>
+    <still>0.85</still>
+    <mark>Slag</mark>
+    <wrathMark>Scorch</wrathMark>
+    <sting>
+      <li>ItemEnchanted</li>
+      <li>Archotech_Invoked</li>
+    </sting>
+    <wrathSting>
+      <li>Explosion_EMP</li>
+    </wrathSting>
+    <omen>
+      <li>Zap_Quiet</li>
+      <li>ItemEnchanted</li>
+    </omen>
+    <depart>
+      <li>Psycast_Skip_Exit</li>
+    </depart>
+    <hum>
+      <li>RitualSustainer_Techist</li>
+      <li>VME_RitualSustainer_Corporate</li>
+    </hum>
+    <tracks>
+      <li>Floating_Points</li>
+      <li>Low_Planetary_Orbit</li>
+      <li>Baubles</li>
+    </tracks>
+    <darkTracks>
+      <li>MetalHell_Ambience</li>
+    </darkTracks>
+    <animals>
+      <li>AA_IronhuskBeetle</li>
+      <li>Mech_Constructoid</li>
+    </animals>
+  </ColonyCouncil.GodLookDef>
+
+  <!-- The Way (roads, trade and travellers): road dust and sky blue; the wanderer's cloak; a waystone where it stood. -->
+  <ColonyCouncil.GodLookDef>
+    <defName>Rimfolk_GodLook_Way</defName>
+    <label>the way</label>
+    <description>A god of roads, trade and travelers: road dust and open sky, in a wanderer's cloak, a waystone where it stood.</description>
+    <domain>Way</domain>
+    <sampleName>the Way</sampleName>
+    <colorA>(0.86, 0.76, 0.5)</colorA>
+    <colorB>(0.55, 0.75, 0.95)</colorB>
+    <glowColor>(1, 0.92, 0.7)</glowColor>
+    <glowRadius>6</glowRadius>
+    <size>1.25</size>
+    <skin>(0.82, 0.7, 0.55)</skin>
+    <hair>(0.6, 0.5, 0.35)</hair>
+    <eyes>(0.6, 0.85, 1)</eyes>
+    <animalTint>(1, 0.95, 0.82)</animalTint>
+    <body>
+      <li>TM_MaestersCloak</li>
+      <li>FCA2_PurpleTravelRobe</li>
+      <li>Apparel_Cape</li>
+    </body>
+    <head>
+      <li>TM_HoodOfProtection</li>
+      <li>Apparel_HatHood</li>
+    </head>
+    <trail>Light</trail>
+    <motes>
+      <li>Mote_Twinkle</li>
+      <li>Mote_Holy</li>
+    </motes>
+    <flash>
+      <li>TM_RecallToED</li>
+      <li>TM_LightBurstED</li>
+    </flash>
+    <circle>
+      <li>Mote_ArcaneCircle</li>
+    </circle>
+    <sky>(0.95, 0.9, 0.76)</sky>
+    <still>0.85</still>
+    <mark>Stone</mark>
+    <wrathMark>Ash</wrathMark>
+    <sting>
+      <li>Psycast_Skip_Entry</li>
+      <li>Bestowing_Start</li>
+      <li>TM_Gong</li>
+    </sting>
+    <wrathSting>
+      <li>Psycast_Skip_Pulse</li>
+      <li>Thunder_OffMap</li>
+    </wrathSting>
+    <omen>
+      <li>TinyBell</li>
+      <li>Psycast_Skip_Pulse</li>
+    </omen>
+    <depart>
+      <li>Psycast_Skip_Exit</li>
+      <li>TM_AirWoosh</li>
+    </depart>
+    <hum>
+      <li>AM_RitualSustainer_Sikh</li>
+      <li>VFET_RitualSustainer_MedievalGathering</li>
+      <li>RitualSustainer_Theist</li>
+    </hum>
+    <tracks>
+      <li>A_Twisted_Path</li>
+      <li>Is_There_Still_Time</li>
+      <li>Impermanent_Waves</li>
+    </tracks>
+    <darkTracks>
+      <li>They_See_You</li>
+    </darkTracks>
+    <animals>
+      <li>AA_Skiphound</li>
+      <li>Horse</li>
+      <li>Crow</li>
+    </animals>
+  </ColonyCouncil.GodLookDef>
+
+  <!-- The Dead: bone white and ash; the soulreaper's shroud and cowl; a gong like a bell for the dead; ash where it walks. -->
+  <ColonyCouncil.GodLookDef>
+    <defName>Rimfolk_GodLook_Dead</defName>
+    <label>the dead</label>
+    <description>A god of the dead and the way they go: bone white and ash gray, shrouded and cowled, with ghosts rising off it.</description>
+    <domain>Dead</domain>
+    <sampleName>the Ferryman</sampleName>
+    <colorA>(0.88, 0.86, 0.8)</colorA>
+    <colorB>(0.45, 0.45, 0.52)</colorB>
+    <glowColor>(0.75, 0.85, 1)</glowColor>
+    <glowRadius>5</glowRadius>
+    <size>1.3</size>
+    <skin>(0.82, 0.82, 0.8)</skin>
+    <hair>(0.95, 0.95, 0.95)</hair>
+    <eyes>(0.6, 0.85, 1)</eyes>
+    <animalTint>(0.76, 0.76, 0.8)</animalTint>
+    <body>
+      <li>TM_Necromancer_Body</li>
+      <li>Apparel_Robe</li>
+    </body>
+    <head>
+      <li>TM_Necromancer_Hood</li>
+      <li>TM_Necromancer_Mask</li>
+      <li>Apparel_VisageMask</li>
+      <li>Apparel_WarVeil</li>
+    </head>
+    <trail>Ash</trail>
+    <motes>
+      <li>Mote_Ghost</li>
+      <li>Mote_BoneDust</li>
+      <li>Mote_SpiritFlame</li>
+    </motes>
+    <flash>
+      <li>TM_FadeEffecterED</li>
+      <li>TM_HolyImplosion</li>
+    </flash>
+    <circle>
+      <li>Mote_ArcaneCircle</li>
+    </circle>
+    <sky>(0.7, 0.72, 0.8)</sky>
+    <still>0.95</still>
+    <mark>Ash</mark>
+    <wrathMark>Ash</wrathMark>
+    <sting>
+      <li>TM_Gong</li>
+      <li>PsychicRitual_Complete</li>
+    </sting>
+    <wrathSting>
+      <li>PsychicBanshee</li>
+      <li>Pawn_Revenant_Revealed</li>
+    </wrathSting>
+    <omen>
+      <li>TinyBell</li>
+      <li>HateChant_Sighing</li>
+    </omen>
+    <depart>
+      <li>TM_Gong</li>
+      <li>Psycast_Skip_Exit</li>
+    </depart>
+    <hum>
+      <li>RitualSustainer_Morbid</li>
+      <li>VME_RitualSustainer_Eschatological</li>
+    </hum>
+    <tracks>
+      <li>Death_Pall_Rising</li>
+      <li>Abandoned_By_The_Light</li>
+      <li>Spent_Introject</li>
+      <li>Shamblers_Blues</li>
+    </tracks>
+    <darkTracks>
+      <li>Corpse_Attack</li>
+      <li>They_See_You</li>
+    </darkTracks>
+    <animals>
+      <li>Vulture</li>
+      <li>pphhyy_VultureDemigryph</li>
+      <li>Crow</li>
+    </animals>
+  </ColonyCouncil.GodLookDef>
+
+  <!-- The Night (moon and dreams): night blue and silver; a mage's robe and the dreamcatcher's coronet; frost where it walks. -->
+  <ColonyCouncil.GodLookDef>
+    <defName>Rimfolk_GodLook_Night</defName>
+    <label>the night</label>
+    <description>A god of the night, the moon and dreams: night blue and silver, moon-pale, with frost where it walks.</description>
+    <domain>Night</domain>
+    <sampleName>the Moon</sampleName>
+    <colorA>(0.38, 0.42, 0.82)</colorA>
+    <colorB>(0.85, 0.88, 1)</colorB>
+    <glowColor>(0.6, 0.65, 1)</glowColor>
+    <glowRadius>7</glowRadius>
+    <size>1.3</size>
+    <skin>(0.78, 0.8, 0.92)</skin>
+    <hair>(0.12, 0.12, 0.22)</hair>
+    <eyes>(0.85, 0.9, 1)</eyes>
+    <animalTint>(0.72, 0.76, 0.96)</animalTint>
+    <body>
+      <li>DarkRobe</li>
+      <li>DevDesigner_DarkElves_Cape</li>
+      <li>Apparel_Robe</li>
+    </body>
+    <head>
+      <li>TM_DreamcatcherCoronet</li>
+      <li>Apparel_Coronet</li>
+    </head>
+    <trail>Frost</trail>
+    <motes>
+      <li>Mote_Twinkle_grayscale</li>
+      <li>Mote_BlueTwinkle</li>
+      <li>Mote_Psi</li>
+    </motes>
+    <flash>
+      <li>TM_SnapFreezeED</li>
+      <li>TM_LightBurstED</li>
+    </flash>
+    <circle>
+      <li>Mote_ArcaneCircle</li>
+    </circle>
+    <sky>(0.48, 0.52, 0.82)</sky>
+    <still>0.95</still>
+    <mark>Frost</mark>
+    <wrathMark>Frost</wrathMark>
+    <sting>
+      <li>PsychicSootheGlobal</li>
+      <li>Bestowing_Finished</li>
+    </sting>
+    <wrathSting>
+      <li>PsychicBanshee</li>
+      <li>Sightstealer_DistantHowlLarge</li>
+    </wrathSting>
+    <omen>
+      <li>TinyBell</li>
+      <li>Interact_ReleaseSkylantern</li>
+    </omen>
+    <depart>
+      <li>Psycast_Skip_Exit</li>
+    </depart>
+    <hum>
+      <li>VME_RitualSustainer_Esotericism</li>
+      <li>AM_RitualSustainer_Ocular</li>
+      <li>RitualSustainer_Hindu</li>
+    </hum>
+    <tracks>
+      <li>Floating_Points</li>
+      <li>Shadow_Work</li>
+      <li>Abandoned_By_The_Light</li>
+      <li>Wabi_Sabi</li>
+    </tracks>
+    <darkTracks>
+      <li>They_See_You</li>
+      <li>Death_Pall_Rising</li>
+    </darkTracks>
+    <animals>
+      <li>AA_NightRam</li>
+      <li>AA_PhoenixOwlcat</li>
+      <li>RG_Owlbeast</li>
+      <li>Crow</li>
+    </animals>
+  </ColonyCouncil.GodLookDef>
+
+  <!-- The Hearth (fire and home): ember amber and warm red; a mantle and a coronet; flames rise off it, a hearthstone where it stood. -->
+  <ColonyCouncil.GodLookDef>
+    <defName>Rimfolk_GodLook_Hearth</defName>
+    <label>the hearth</label>
+    <description>A god of fire and of home: ember amber and warm red, flame-haired, with small flames rising off it and a hearthstone where it stood.</description>
+    <domain>Hearth</domain>
+    <sampleName>the Hearth-keeper</sampleName>
+    <colorA>(1, 0.6, 0.25)</colorA>
+    <colorB>(0.85, 0.32, 0.15)</colorB>
+    <glowColor>(1, 0.66, 0.36)</glowColor>
+    <glowRadius>6</glowRadius>
+    <size>1.25</size>
+    <skin>(0.92, 0.72, 0.55)</skin>
+    <hair>(0.85, 0.35, 0.12)</hair>
+    <eyes>(1, 0.7, 0.3)</eyes>
+    <animalTint>(1, 0.8, 0.6)</animalTint>
+    <body>
+      <li>VFEM2_Apparel_Mantle</li>
+      <li>Apparel_Robe</li>
+    </body>
+    <head>
+      <li>VFEC_Wreath</li>
+      <li>Apparel_Coronet</li>
+    </head>
+    <trail>Scorch</trail>
+    <motes>
+      <li>Mote_Flame</li>
+      <li>Mote_Twinkle</li>
+    </motes>
+    <flash>
+      <li>TM_FireShield_Effecter</li>
+      <li>TM_LightBurstED</li>
+    </flash>
+    <circle>
+      <li>Mote_ArcaneCircle</li>
+    </circle>
+    <sky>(1, 0.8, 0.6)</sky>
+    <still>0.9</still>
+    <mark>Stone</mark>
+    <wrathMark>Scorch</wrathMark>
+    <sting>
+      <li>TM_FireWooshSD</li>
+      <li>Bestowing_Start</li>
+      <li>RitualConclusion_Positive</li>
+    </sting>
+    <wrathSting>
+      <li>TM_FireBombSD</li>
+      <li>Explosion_Flame</li>
+    </wrathSting>
+    <omen>
+      <li>TM_FireBurn</li>
+      <li>TinyBell</li>
+    </omen>
+    <depart>
+      <li>Bestowing_Finished</li>
+    </depart>
+    <hum>
+      <li>AM_RitualSustainer_TeaCeremony</li>
+      <li>RitualSustainer_Rustic</li>
+    </hum>
+    <tracks>
+      <li>FG_ScarboroughFair_Complete</li>
+      <li>Baubles</li>
+      <li>Wabi_Sabi</li>
+      <li>Sky_Farmer</li>
+    </tracks>
+    <darkTracks>
+      <li>VFED_DivineInferno</li>
+      <li>Blood_Rain_Falling</li>
+    </darkTracks>
+    <animals>
+      <li>AA_FlamingoPhoenix</li>
+      <li>AA_PhoenixOwlcat</li>
+      <li>Cat</li>
+    </animals>
+  </ColonyCouncil.GodLookDef>
+
+  <!-- The Wild (the green and growing things): deep green and bark; the shaman's crown; grass where it walks, a tree where it stood. -->
+  <ColonyCouncil.GodLookDef>
+    <defName>Rimfolk_GodLook_Wild</defName>
+    <label>the wild</label>
+    <description>A god of the green and growing things: bark-skinned and moss-haired, crowned like a shaman, grass springing where it walks and a tree where it stood.</description>
+    <domain>Wild</domain>
+    <sampleName>the Green</sampleName>
+    <colorA>(0.32, 0.72, 0.36)</colorA>
+    <colorB>(0.52, 0.4, 0.26)</colorB>
+    <glowColor>(0.6, 1, 0.55)</glowColor>
+    <glowRadius>6</glowRadius>
+    <size>1.35</size>
+    <skin>(0.55, 0.42, 0.3)</skin>
+    <hair>(0.35, 0.6, 0.25)</hair>
+    <eyes>(0.6, 1, 0.5)</eyes>
+    <animalTint>(0.86, 1, 0.86)</animalTint>
+    <body>
+      <li>DevDesigner_WoodElves_ShamanCloak</li>
+      <li>TM_DreamcatcherBuckskin</li>
+      <li>VFEC_Toga</li>
+      <li>Apparel_Robe</li>
+    </body>
+    <head>
+      <li>DevDesigner_WoodElves_ShamanCrown</li>
+      <li>VFEC_Wreath</li>
+      <li>Apparel_TribalHeaddress</li>
+    </head>
+    <trail>Grass</trail>
+    <motes>
+      <li>Mote_Flowers</li>
+      <li>Mote_GreenTwinkle</li>
+    </motes>
+    <flash>
+      <li>TM_EarthShield_Effecter</li>
+      <li>TM_LightBurstED</li>
+    </flash>
+    <circle>
+      <li>Mote_ArcaneCircle</li>
+    </circle>
+    <sky>(0.75, 0.95, 0.7)</sky>
+    <still>0.85</still>
+    <mark>Tree</mark>
+    <wrathMark>Ash</wrathMark>
+    <sting>
+      <li>DryadCasteSet</li>
+      <li>LeavesRustle</li>
+      <li>Bestowing_Start</li>
+    </sting>
+    <wrathSting>
+      <li>HarbingerTreeScream</li>
+      <li>TM_Roar</li>
+    </wrathSting>
+    <omen>
+      <li>LeavesRustle</li>
+      <li>Pawn_Dryad_Call</li>
+    </omen>
+    <depart>
+      <li>LeavesRustle</li>
+    </depart>
+    <hum>
+      <li>RitualSustainer_Animalist</li>
+      <li>VME_RitualSustainer_Pantheist</li>
+      <li>AM_RitualSustainer_Neolithic</li>
+    </hum>
+    <tracks>
+      <li>Wabi_Sabi</li>
+      <li>Sky_Farmer</li>
+      <li>Impermanent_Waves</li>
+    </tracks>
+    <darkTracks>
+      <li>A_Twisted_Path</li>
+      <li>Is_It_Truly_Alive</li>
+    </darkTracks>
+    <animals>
+      <li>DevDesigner_AncientDeer</li>
+      <li>AlphaThrumbo</li>
+      <li>Elk</li>
+      <li>Moose</li>
+      <li>Thrumbo</li>
+    </animals>
+  </ColonyCouncil.GodLookDef>
+
+  <!-- The Waters (rivers and sea): sea blue and foam; a veil; puddles where it walks, a spring where it stood. -->
+  <ColonyCouncil.GodLookDef>
+    <defName>Rimfolk_GodLook_Waters</defName>
+    <label>the waters</label>
+    <description>A god of rivers and the sea: sea blue and foam white, veiled, wet footprints of light where it walks and a spring where it stood.</description>
+    <domain>Waters</domain>
+    <sampleName>the River</sampleName>
+    <colorA>(0.3, 0.6, 0.88)</colorA>
+    <colorB>(0.75, 0.95, 0.95)</colorB>
+    <glowColor>(0.5, 0.85, 1)</glowColor>
+    <glowRadius>6</glowRadius>
+    <size>1.3</size>
+    <skin>(0.68, 0.82, 0.86)</skin>
+    <hair>(0.25, 0.55, 0.6)</hair>
+    <eyes>(0.6, 1, 1)</eyes>
+    <animalTint>(0.76, 0.9, 1)</animalTint>
+    <body>
+      <li>TM_DiscipleRobe</li>
+      <li>Apparel_Robe</li>
+    </body>
+    <head>
+      <li>Apparel_WarVeil</li>
+      <li>Apparel_Coronet</li>
+    </head>
+    <trail>Water</trail>
+    <motes>
+      <li>Mote_BlueTwinkle</li>
+      <li>Mote_Twinkle_grayscale</li>
+    </motes>
+    <flash>
+      <li>TM_WaterShield_Effecter</li>
+      <li>TM_SpiritPulseED</li>
+    </flash>
+    <circle>
+      <li>Mote_ArcaneWaves</li>
+    </circle>
+    <sky>(0.65, 0.85, 0.96)</sky>
+    <still>0.8</still>
+    <mark>Spring</mark>
+    <wrathMark>Ash</wrathMark>
+    <sting>
+      <li>PsychicSootheGlobal</li>
+      <li>Bestowing_Start</li>
+    </sting>
+    <wrathSting>
+      <li>Thunder_OnMap</li>
+      <li>TM_HailHitSD</li>
+    </wrathSting>
+    <omen>
+      <li>Pawn_Heron_Call</li>
+      <li>Interact_CatchFish</li>
+    </omen>
+    <depart>
+      <li>Psycast_Skip_Exit</li>
+    </depart>
+    <hum>
+      <li>Ambient_Rain</li>
+      <li>RitualSustainer_Hindu</li>
+      <li>VME_RitualSustainer_Shintao</li>
+    </hum>
+    <tracks>
+      <li>Impermanent_Waves</li>
+      <li>Wabi_Sabi</li>
+      <li>Floating_Points</li>
+    </tracks>
+    <darkTracks>
+      <li>Blood_Rain_Falling</li>
+    </darkTracks>
+    <animals>
+      <li>SeaOtter</li>
+      <li>Otter</li>
+      <li>SeaTurtle</li>
+      <li>Swan</li>
+      <li>Heron</li>
+    </animals>
+  </ColonyCouncil.GodLookDef>
+
+  <!-- The Machine: steel and cyan light; the eltex robe and a techfriar's crown; Ideology's archotech sounds and the archonexus song. -->
+  <ColonyCouncil.GodLookDef>
+    <defName>Rimfolk_GodLook_Machine</defName>
+    <label>the machine</label>
+    <description>A god of the machine, an archotech's mind walking in a body: steel and cyan light, chrome-pale, sparks where it walks.</description>
+    <domain>Machine</domain>
+    <sampleName>the Broker</sampleName>
+    <minTech>Industrial</minTech>
+    <colorA>(0.35, 0.85, 0.95)</colorA>
+    <colorB>(0.38, 0.4, 0.45)</colorB>
+    <glowColor>(0.5, 0.9, 1)</glowColor>
+    <glowRadius>7</glowRadius>
+    <size>1.35</size>
+    <skin>(0.72, 0.76, 0.8)</skin>
+    <hair>(0.85, 0.9, 0.95)</hair>
+    <eyes>(0.3, 0.95, 1)</eyes>
+    <animalTint>(0.76, 0.9, 1)</animalTint>
+    <body>
+      <li>Apparel_PsyfocusRobe</li>
+      <li>VFE_Apparel_StellicRobe</li>
+      <li>Apparel_Robe</li>
+    </body>
+    <head>
+      <li>VFEE_Apparel_TechfriarCrown</li>
+      <li>Apparel_EltexSkullcap</li>
+      <li>VPE_Apparel_EltexMask</li>
+    </head>
+    <trail>Sparks</trail>
+    <motes>
+      <li>Mote_Twinkle_grayscale</li>
+      <li>Mote_Psi_Grayscale</li>
+    </motes>
+    <flash>
+      <li>TM_MKWaveED</li>
+      <li>TM_SpiritDistortionED</li>
+    </flash>
+    <circle>
+      <li>Mote_Scan</li>
+      <li>Mote_ArcaneCircle</li>
+    </circle>
+    <sky>(0.6, 0.8, 0.9)</sky>
+    <still>0.9</still>
+    <mark>Slag</mark>
+    <wrathMark>Scorch</wrathMark>
+    <sting>
+      <li>Archotech_Invoked</li>
+      <li>ArchonexusNewColonyAccept</li>
+      <li>Psycast_Skip_Entry</li>
+    </sting>
+    <wrathSting>
+      <li>Explosion_EMP</li>
+      <li>PsychicPulseGlobal</li>
+    </wrathSting>
+    <omen>
+      <li>Archonexus_Throb</li>
+      <li>Zap_Quiet</li>
+    </omen>
+    <depart>
+      <li>Psycast_Skip_Exit</li>
+      <li>Archonexus_Throb</li>
+    </depart>
+    <hum>
+      <li>ArchonexusCore_Ambience</li>
+      <li>RitualSustainer_Techist</li>
+      <li>VME_RitualSustainer_Corporate</li>
+    </hum>
+    <tracks>
+      <li>ArchonexusVictorySong</li>
+      <li>Low_Planetary_Orbit</li>
+      <li>Floating_Points</li>
+      <li>Is_It_Truly_Alive</li>
+    </tracks>
+    <darkTracks>
+      <li>MetalHell_Ambience</li>
+      <li>Have_They_Come_For_Us</li>
+    </darkTracks>
+    <animals>
+      <li>AM_Aura</li>
+      <li>Mech_Cyclops</li>
+      <li>Mech_Lancer</li>
+      <li>Mech_Scyther</li>
+    </animals>
+  </ColonyCouncil.GodLookDef>
+
+  <!-- The Machine before the machine age: the Iron Spirit, rust and bronze; a visage mask; Alpha Memes' Kemetic chant. -->
+  <ColonyCouncil.GodLookDef>
+    <defName>Rimfolk_GodLook_Machine_Old</defName>
+    <label>the iron spirit</label>
+    <description>The machine god of a people before machines: the Iron Spirit of the old ruins, rust and bronze, its face a mask.</description>
+    <domain>Machine</domain>
+    <sampleName>the Iron Spirit</sampleName>
+    <maxTech>Medieval</maxTech>
+    <colorA>(0.78, 0.46, 0.26)</colorA>
+    <colorB>(0.82, 0.66, 0.36)</colorB>
+    <glowColor>(1, 0.75, 0.42)</glowColor>
+    <glowRadius>6</glowRadius>
+    <size>1.35</size>
+    <skin>(0.62, 0.5, 0.42)</skin>
+    <hair>(0.3, 0.22, 0.16)</hair>
+    <eyes>(1, 0.8, 0.4)</eyes>
+    <animalTint>(0.9, 0.72, 0.56)</animalTint>
+    <body>
+      <li>ArchMageRobe</li>
+      <li>Apparel_Robe</li>
+    </body>
+    <head>
+      <li>Apparel_VisageMask</li>
+      <li>Apparel_Coronet</li>
+    </head>
+    <trail>Sparks</trail>
+    <motes>
+      <li>Mote_ArcaneFabricationA</li>
+      <li>Mote_ArcaneFabricationB</li>
+      <li>Mote_Twinkle</li>
+    </motes>
+    <flash>
+      <li>TM_RuneCarving_EffecterED</li>
+      <li>TM_LightBurstED</li>
+    </flash>
+    <circle>
+      <li>Mote_GlowingRune</li>
+    </circle>
+    <sky>(0.9, 0.72, 0.55)</sky>
+    <still>0.9</still>
+    <mark>Slag</mark>
+    <wrathMark>Scorch</wrathMark>
+    <sting>
+      <li>Archotech_Invoked</li>
+      <li>TM_Gong</li>
+    </sting>
+    <wrathSting>
+      <li>TM_Implosion</li>
+      <li>Thunder_OffMap</li>
+    </wrathSting>
+    <omen>
+      <li>TM_MetalImpact</li>
+    </omen>
+    <depart>
+      <li>TM_Gong</li>
+    </depart>
+    <hum>
+      <li>AM_RitualSustainer_Kemetic</li>
+      <li>AM_RitualSustainer_SteampunkRevival</li>
+    </hum>
+    <tracks>
+      <li>A_Twisted_Path</li>
+      <li>Is_It_Truly_Alive</li>
+      <li>ArchonexusVictorySong</li>
+    </tracks>
+    <darkTracks>
+      <li>MetalHell_Ambience</li>
+    </darkTracks>
+    <animals>
+      <li>AA_IronhuskBeetle</li>
+      <li>Mech_Scyther</li>
+    </animals>
+  </ColonyCouncil.GodLookDef>
+
+  <!-- The Void: black and violet with pale eyes; the ritual mask of the void's cult; Anomaly's monolith and the maddening chant; dead still. -->
+  <ColonyCouncil.GodLookDef>
+    <defName>Rimfolk_GodLook_Void</defName>
+    <label>the void</label>
+    <description>A god of the void, the hunger behind the dark: black and violet, pale-eyed, its face a ritual mask, shadow where it walks and the air dead still.</description>
+    <domain>Void</domain>
+    <sampleName>the Hunger</sampleName>
+    <colorA>(0.48, 0.22, 0.62)</colorA>
+    <colorB>(0.82, 0.76, 0.96)</colorB>
+    <glowColor>(0.55, 0.3, 0.8)</glowColor>
+    <glowRadius>5</glowRadius>
+    <size>1.45</size>
+    <skin>(0.16, 0.14, 0.19)</skin>
+    <hair>(0.05, 0.05, 0.07)</hair>
+    <eyes>(0.92, 0.9, 1)</eyes>
+    <animalTint>(0.42, 0.36, 0.48)</animalTint>
+    <body>
+      <li>AG_ForsakenCloak</li>
+      <li>DarkRobe</li>
+      <li>Apparel_Robe</li>
+    </body>
+    <head>
+      <li>Apparel_CultistMask</li>
+      <li>Apparel_CeremonialCultistMask</li>
+      <li>HoodOfMadness</li>
+    </head>
+    <trail>Shadow</trail>
+    <motes>
+      <li>Mote_Psi_Black</li>
+      <li>Mote_ShadowCloud</li>
+      <li>Mote_EvilEye</li>
+    </motes>
+    <flash>
+      <li>TM_FearWave</li>
+      <li>TM_FadeEffecterED</li>
+    </flash>
+    <circle>
+      <li>Mote_SummoningCircle</li>
+    </circle>
+    <sky>(0.45, 0.35, 0.55)</sky>
+    <still>1</still>
+    <mark>Scorch</mark>
+    <wrathMark>Scorch</wrathMark>
+    <sting>
+      <li>VoidMonolith_ActivatedL2L3</li>
+      <li>AgonyPulse_Cast</li>
+    </sting>
+    <wrathSting>
+      <li>PsychicBanshee</li>
+      <li>VoidStructure_Activate</li>
+    </wrathSting>
+    <omen>
+      <li>VoidMonolith_Gleaming</li>
+      <li>HateChant_Sighing</li>
+    </omen>
+    <depart>
+      <li>Psycast_Skip_Exit</li>
+      <li>VoidMonolith_Gleaming</li>
+    </depart>
+    <hum>
+      <li>AM_RitualSustainer_MaddeningChant</li>
+      <li>PsychicRitual_Ongoing</li>
+      <li>VME_RitualSustainer_Eldritch</li>
+    </hum>
+    <tracks>
+      <li>They_See_You</li>
+      <li>Abandoned_By_The_Light</li>
+      <li>Is_It_Truly_Alive</li>
+      <li>Spent_Introject</li>
+    </tracks>
+    <darkTracks>
+      <li>Have_They_Come_For_Us</li>
+      <li>Death_Pall_Rising</li>
+      <li>AnomalyCreditsSong</li>
+    </darkTracks>
+    <animals>
+      <li>AA_DuskProwler</li>
+      <li>AA_BlackSpider</li>
+      <li>Crow</li>
+    </animals>
+  </ColonyCouncil.GodLookDef>
+
+</Defs>

@@ -115,6 +115,8 @@ namespace ColonyCouncil
             // an answer, the foot's buttons (EventCardMath.LeastW, LeastH); the rest scrolls.
             new FrameKey("Letter", 580f, 740f),
             new FrameKey("EventCard", 520f, 440f),
+            // A god's card (Gods/Presence/GodCard.cs).
+            new FrameKey("GodCard", 420f, 460f),
             // A letter exchanged, to read again (Letters/LetterReadWindow.cs): a sheet or two of paper at the least width; the rest scrolls.
             new FrameKey("LetterRead", 420f, 360f),
             new FrameKey("Journey", 760f, 540f),
