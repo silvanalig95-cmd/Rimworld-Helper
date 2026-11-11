@@ -66,7 +66,9 @@ tree at once, alongside whatever runs. Each piece is merged as its own release, 
   asking the wrong notable: the card names Waesvaris as involved while Tocac wrote), make "Write back" open on any
   letter that answers the colony's last one, and say plainly on every greyed reply what it waits for and when it
   opens; the Almanac's letters page says when the colony can write to whom.
-- **To do when the player asks (11 November 2026): gods, a brainstorm under way.** The player: "the concept of gods
+- **Being built (11 November 2026): gods.** The player, after the brainstorm: "I just want you to get going ... I have
+  confidence in your initial draft ... go for it. And you can really spend effort and tokens into the subject." The
+  design the agents build to, with the lead's defaults and the stages, is `docs/design/gods.md`. The player: "the concept of gods
   within RimWorld ... like a pantheon of gods ... Maybe some nature or animal god could also be actually on the map, or
   like a god that is acting like a guest and then reveal himself and have some humanoid form ... that they actually are
   and interact and are into the lore and get referred to, and pawns react to gods". The first brainstorm (22 ideas and
