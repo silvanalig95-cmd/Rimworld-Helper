@@ -18,10 +18,11 @@ names that don't all have to follow the same style. Ennu the Guest is cool thoug
 - the pull beneath the surface (Undertow).
 
 The player then added four: "There should also be a god of the sun & moon, a cat god, the rain god, a god of gold"
-(Wake, Mog, Murmur and Ducat, 10 to 13; the sun and moon renamed and made primordial at the player's word: "it
-should be primeordial and not some worldly item").
+(Noon and Lull, Mog, Murmur and Ducat, 10 to 13). The sun and moon were first one god, then made primordial at the
+player's word ("it should be primeordial and not some worldly item"), then two ("Can the moon & sun themselves not be
+some sort of duality gods that are interwined?").
 
-So these are thirteen beings: each one someone, with a will, a character and names. Some are vast and hard to see, some
+So these are fourteen beings: each one someone, with a will, a character and names. Some are vast and hard to see, some
 are plainly a creature, and only one wears human faces. Each is written as it is, without a shared checklist.
 - **Still holding from before:**
   - gods are behind the game's own events, and the colony reads them there (section C);
@@ -244,33 +245,42 @@ It gives exactly what was asked, and it always takes more than was agreed, slowl
 to have eaten a god once, long ago, whose bones are the old ruins of this world. A colony that bargains with it will
 find Hollin, Bellwether and the Guest turning away, and Pip, for once, very quiet.
 
-### 10. Wake, the Eye That Opens
-*Grandfather Eye to the tribes; the Wake to the medieval peoples; "the sun, of course" to industrial folk; to spacers,
-"the primary star's psychic coupling", which they don't believe in either.*
+### 10. Noon and Lull, the Two Who Were One
+*The sun and the moon. Brother and Sister to the tribes, though nobody agrees which is which; the Pair to the medieval
+peoples; to industrial folk, "the sun and the moon, obviously"; to spacers, "a binary psychic phenomenon tied to the
+day cycle", which they log and don't believe.*
 
-**What it is.** The oldest thing there is: older than the world, older than the others, older than the dark. Before
-anything, there was its sleep. Then it opened one eye, and that was the first day. Its open eye is the sun. When it
-sleeps, its dreaming eye is the moon. It has never fully woken, and the world is what it sees in that half-sleep.
+**What they are.** Two gods who were once one. Before the world there was a single light, folded in on itself and
+asleep. When it woke, it tore in two, and the space between the halves became the world. **Noon** is the half that
+burns: the sun. **Lull** is the half that dreams: the moon. They have chased each other across the sky ever since,
+each always just out of the other's sight.
+- Dawn and dusk are the only moments they glimpse each other, so twilight is holy to both.
+- An eclipse is when they finally meet. For those few minutes the world holds its breath, and nobody knows whether it
+  is an embrace or a quarrel. The oldest stories say it is both.
 
-**How it is seen.** As the light itself, everywhere. It never takes a form and never comes down, because everything is
-already in its sight.
-- When it attends: the sun stands still a moment too long, and the shadows don't move. Or the moon comes up huge and
-  close and stays over the colony all night.
-- An eclipse is Wake blinking.
-- A heat wave is it staring too hard. A long grey season is it looking away.
+**Noon.** Loud, warm, generous and impatient. Noon loves work done in daylight, boldness, growth, things that ripen
+and burn. When Noon attends, the sun stands still a moment too long and the shadows stop moving. Noon's favour is long
+clear days and fields that race toward harvest. A heat wave is Noon staring too hard. A long grey season is Noon
+sulking.
 
-**Its character.** Impartial, immense and half-asleep. It doesn't speak, because its gaze is everything it has to say.
-What it notices it notices completely, and then it forgets, the way a dreamer does.
+**Lull.** Quiet, cool, patient and secret. Lull loves rest, sleep, mercy, things done gently and things kept hidden.
+When Lull attends, the moon rises huge and close and stays over the colony all night, and the dreams that night come
+true. Lull's favour is deep sleep, healing in the night, and a moon bright enough to work by when it matters. Lull's
+displeasure is sleeplessness, and nightmares that follow people into the day.
 
-**What it wants.** Nothing anyone can name, except to be kept company in its long watch.
-- **It notices:** those who keep vigil, who rise to meet the dawn, who stand watch through the night under its dreaming
-  eye.
-- **What it gives them:** long clear days in the growing season, a moon bright enough to work by when it's needed, and
-  dreams under the moon that come true.
-- **What it doesn't like:** a colony that hides from the sky under lamps and roofs and never looks up. It looks away
-  from them, and the season goes grey.
-- **The old fear:** the oldest stories say that if Wake ever fully opens both eyes, this world will end, or begin
-  properly at last. No one agrees which.
+**Intertwined.** Neither can be pleased alone, because each is jealous of the other's share of the world.
+- **A colony of the day** (working through the night under lamps, never resting, never looking up at the moon) has
+  Noon's warmth and Lull's coldness: restless nights, bad dreams, wounds slow to heal.
+- **A colony of the night** (sleeping late, working by lamplight, hiding from the sun) has Lull's quiet and Noon's
+  sulk: grey days, slow fields.
+- **The colony that keeps both:** works by day, rests by night, and stops to watch the sun go down and the moon come
+  up. It is the one both remember kindly. Those who keep vigil at dawn and dusk are noticed by both at once.
+
+**With the others.**
+- Cirrus drifts between them and the world, and both resent it.
+- Hush's long winter nights are Lull's season and Noon's exile.
+- Pip hates Noon's flares.
+- Mog sleeps in Noon's sunbeams and hunts by Lull's light, and belongs to neither.
 
 ### 11. Mog
 *the Cat, to everyone; the Grey Lady of the Hearth to the medieval peoples; to the tribes, Whiskers-in-the-Dark.*
@@ -346,9 +356,10 @@ never stays.
 - **The Guest** goes between all of them and carries their news, and all of them are a little careful of it.
 - **The great fear:** Undertow, feared by all.
 - **The four added later:**
-  - Cirrus drifts across Wake's eye, and is the only one that ever comes between Wake and the world.
-  - Pip hates Wake's flares.
-  - Mog sits in Wake's sunbeams and stares at Ennu.
+  - Noon and Lull are one torn in two, chasing each other, meeting only in eclipse.
+  - Cirrus drifts between them and the world.
+  - Pip hates Noon's flares.
+  - Mog sleeps in Noon's sunbeams, hunts by Lull's light, and stares at Ennu.
   - Murmur sleeps angry through Hush's months.
   - Ducat and Smoulder: the flow of gold against the hoard.
 - **The Silent Ones,** the archotechs, are not among the nine and are not gods. Pip aches for them, and Hollin
@@ -368,7 +379,9 @@ Walking it's said plainly. Colonists talk of it at supper, and neighbours write 
 | Wanderer joins, refugee pod, a stranger asking shelter | the Guest |
 | Solar flare, short circuits, machines failing or running unpowered | Pip |
 | Meteorite, aurora, flashstorm, cargo pods falling | Cirrus |
-| Eclipse, solar flare, heat wave, a long clear growing season, a long grey season | Wake |
+| Solar flare, heat wave, a long clear growing season, a long grey season | Noon |
+| A huge moon, dreams that come true, nights of sleeplessness and nightmares | Lull |
+| Eclipse | Noon and Lull, meeting |
 | A cat wanders in, a run of small luck for one colonist | Mog |
 | Rain after dry weeks, drought, a flood | Murmur |
 | A trader arriving at the right time, silver gone missing, a deal gone sour | Ducat |
