@@ -104,7 +104,7 @@ tree at once, alongside whatever runs. Each piece is merged as its own release, 
   6. Pip, the Hum: a young god in machines;
   7. Cirrus, Who Drifts Above: a being of the high sky;
   8. Hush, the Long White: the walker with winter;
-  9. Dearest, the Hunger: the void.
+  9. Undertow, the Hunger: the void.
   Renamed the same day, away from the edgy fantasy names (the player: "Ennu the Guest is cool though"). It waits for
   the player's word.
   **Stage 2 paused for the redesign** (the player asked; each agent committed work in progress and reported what is
@@ -395,7 +395,7 @@ tree at once, alongside whatever runs. Each piece is merged as its own release, 
   - Try in the game: 1. Write greetings to a notable who has never had a letter from you: the letter (and their answer)
     is formal, introduces itself, signs in full, "To Dagna Holt of Ashford". 2. Keep writing to them every few days: after
     four letters both ways over a week or so the salutations and closings are easy ("Dagna, as ever,", "As always,"); after
-    eight over a month, with their regard at 30, old friends ("Dearest Stace,", "Your old friend,"), signed with the name
+    eight over a month, with their regard at 30, old friends ("Undertow Stace,", "Your old friend,"), signed with the name
     alone, longer letters now and then. 3. Read any of the letters with them: the window's foot says "N letters so far:
     on easy terms." 4. When their letter says someone of theirs is ill, your next letter asks after them, and a later one
     of theirs says they are better, still ill or gone, as the notable really is. 5. Their aside about a goat that opens the

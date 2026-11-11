@@ -15,7 +15,7 @@ names that don't all have to follow the same style. Ennu the Guest is cool thoug
 - a child's name (Pip);
 - a kind of cloud (Cirrus);
 - a sound (Hush);
-- an endearment (Dearest).
+- the pull beneath the surface (Undertow).
 
 So these are nine beings: each one someone, with a will, a character and names. Some are vast and hard to see, some
 are plainly a creature, and only one wears human faces. Each is written as it is, without a shared checklist.
@@ -219,9 +219,8 @@ has, and it keeps the dead whole and unrotting, which the Soft Mother resents. I
 - **The colony that does not:** cold snaps that follow a death.
 - **Its old quarrel:** with Smoulder, whose warm breath melts its snow in the high valleys.
 
-### 9. Dearest, the Hunger
-*Dearest is what it calls everyone, and what its servants learn to call it back; the Sweet Dark to the Choir of
-the Spire; the Hunger to everyone who fears it; "what waits under" in the oldest
+### 9. Undertow, the Hunger
+*Undertow to those who have felt it pull; the Sweet Dark to the Choir of the Spire; the Hunger to everyone who fears it; "what waits under" in the oldest
 stories.*
 
 **What it is.** The being that lives in the void beneath the world and beneath all the other gods. With Anomaly, it is
@@ -250,7 +249,7 @@ find Hollin, Bellwether and the Guest turning away, and Pip, for once, very quie
 - **Fondness:** Cirrus looks down fondly only on Bellwether. The children who touch Bellwether's horn are the only people Cirrus has
   ever been seen to notice.
 - **The Guest** goes between all of them and carries their news, and all of them are a little careful of it.
-- **The great fear:** Dearest, feared by all.
+- **The great fear:** Undertow, feared by all.
 - **The Silent Ones,** the archotechs, are not among the nine and are not gods. Pip aches for them, and Hollin
   distrusts them.
 
@@ -269,7 +268,7 @@ Walking it's said plainly. Colonists talk of it at supper, and neighbours write 
 | Solar flare, short circuits, machines failing or running unpowered | Pip |
 | Meteorite, aurora, eclipse, flashstorm, cargo pods falling | Cirrus |
 | Cold snap, a hard winter, frost in summer | Hush |
-| Psychic drone, Anomaly's events | Dearest |
+| Psychic drone, Anomaly's events | Undertow |
 
 Beyond reading their hands in what happens anyway, each of the nine has its own doings, as section A says. They unfold
 over seasons and through the region, so the colony meets them in its own life.

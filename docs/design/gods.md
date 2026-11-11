@@ -259,21 +259,21 @@ implementation"), and asked for the gods' menu: "for the god menu, which should 
 existing buttons, don't use some symbol or so to represent the god, since that probably makes it less convincing. just
 make it text-based but use formatting to give it character. also do a nice menu overall about the lore of the gods,
 potential interactions, history etc." The gods are those of `docs/gods-pantheon-brainstorm.md`: Hollin, Smoulder,
-Bellwether, Morel, Ennu, Pip, Cirrus, Hush and Dearest. The generated pantheon (gods from Ideology's deities and
+Bellwether, Morel, Ennu, Pip, Cirrus, Hush and Undertow. The generated pantheon (gods from Ideology's deities and
 Rimfolk's name makers) is retired.
 
 What every part builds to:
 - **A god is a def.** `ColonyCouncil.GodDef`, defNames `Rimfolk_God_Hollin`, `_Smoulder`, `_Bellwether`, `_Morel`,
-  `_Ennu`, `_Pip`, `_Cirrus`, `_Hush`, `_Dearest`. A `God` record keeps its runtime state (favour per home, acts,
+  `_Ennu`, `_Pip`, `_Cirrus`, `_Hush`, `_Undertow`. A `God` record keeps its runtime state (favour per home, acts,
   known), and `God.name` is the short name ("Hollin"). `God.def` reaches the def, and `Gods.ByKey("Hollin")` finds a god
   by its short name.
 - **The `Gods` API stays.** The same signatures, fed from the defs:
   - each def sets a domain and a second domain (the stage 2 fallbacks only), a nature and a kind;
   - its ties are authored, each with words of its own;
-  - Dearest is the Hunger kind, and the rest are Ordinary.
+  - Undertow is the Hunger kind, and the rest are Ordinary.
 
   Domains as the fallback key: Hollin Wild and Harvest; Smoulder Craft and Hearth; Bellwether Hunt and Wild; Morel Dead
-  and Harvest; Ennu Way and Hearth; Pip Machine and Craft; Cirrus Storm and Night; Hush Night and Dead; Dearest Void.
+  and Harvest; Ennu Way and Hearth; Pip Machine and Craft; Cirrus Storm and Night; Hush Night and Dead; Undertow Void.
 - **Per-god data in the stage 2 parts is keyed by the short name** (`Hollin` ...) in their own defs (`GodShapeDef`,
   `GodWaysDef`, `GodWorshipDef`), with the domain tables as a fallback only. Each part writes its nine entries from
   the brainstorm's characters:
