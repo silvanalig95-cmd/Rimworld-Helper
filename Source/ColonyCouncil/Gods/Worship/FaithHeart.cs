@@ -23,17 +23,18 @@ namespace ColonyCouncil
         public static void Unanswered(WorshipBook b, PrayerRecord r, Pawn p, God g, Map map)
         {
             if (p == null || p.Dead || g == null || r.answered) return;
-            // The colony's book: it didn't come, as the one who prayed tells it.
-            Worship.Witness(g, map, GodActKind.Favour, ("CC_Wsh_Book_Unanswered_" + r.kind).Translate(p.LabelShort.Named("PAWN"), Worship.CardName(g).Named("GOD"),
-                (r.aboutName ?? "").Named("ABOUT")).Resolve(), p.PositionHeld);
+            // The colony's book: it didn't come, as the one who prayed tells it (a few days apart a person).
+            string words = ("CC_Wsh_Book_Unanswered_" + r.kind).Translate(Worship.Called(g, p).Named("GOD"), (r.aboutName ?? "").Named("ABOUT")).Resolve();
+            Worship.Witness(g, map, GodActKind.Favour, words, p.PositionHeld);
+            if (Interplay.Ready("worship-book|" + p.thingIDNumber, WorshipMath.BookGapDays)) GodLore.Prayed(p, g, words);
             if (!Rand.Chance(WorshipMath.CrisisChance)) return;
             int now = Worship.Now;
             b.AddMark(p, "crisis", g.id);
-            using (Causes.Push("CC_Wsh_Cause_Unanswered".Translate(Worship.CardName(g).Named("GOD"), (r.aboutName ?? "").Named("ABOUT")).Resolve()))
+            using (Causes.Push("CC_Wsh_Cause_Unanswered".Translate(Worship.Called(g).Named("GOD"), (r.aboutName ?? "").Named("ABOUT")).Resolve()))
                 CouncilGameComponent.GiveThought(p, WorshipDefOf.Rimfolk_Worship_Unanswered);
             if (Faiths.On) Faiths.Shake(p, WorshipMath.CrisisShake);
             if (p.Spawned) Worship.Say(p, "Rimfolk_Pool_Worship_Crisis", g, null, "pray:" + r.kind.ToString().ToLowerInvariant());
-            string line = ("CC_Wsh_Crisis_" + r.kind).Translate(p.LabelShort.Named("PAWN"), Worship.CardName(g).Named("GOD"), (r.aboutName ?? "").Named("ABOUT")).Resolve();
+            string line = ("CC_Wsh_Crisis_" + r.kind).Translate(p.LabelShort.Named("PAWN"), Worship.Called(g).Named("GOD"), (r.aboutName ?? "").Named("ABOUT")).Resolve();
             CouncilGameComponent.Instance?.journals.WriteText(p, Worship.Line("Rimfolk_Pool_Worship_CrisisJournal", p, g) ?? line);
             Tell.Minor(NewsKind.People, Importance.Notable, map, line, p);
             int crises = b.Count(p, "crisis", now - WorshipMath.CrisisWindowDays * GenDate.TicksPerDay);
@@ -53,7 +54,7 @@ namespace ColonyCouncil
             var to = pool.Count == 0 ? null : pool.RandomElement();
             if (to == null) return null;
             b.AddMark(p, "turned", to.id);
-            string text = "CC_Wsh_Turned".Translate(p.LabelShort.Named("PAWN"), Worship.CardName(from).Named("FROM"), Worship.CardName(to).Named("GOD")).Resolve();
+            string text = "CC_Wsh_Turned".Translate(p.LabelShort.Named("PAWN"), Worship.Called(from).Named("FROM"), Worship.Called(to).Named("GOD")).Resolve();
             Tell.Message(NewsKind.People, Importance.Notable, map, text, p, MessageTypeDefOf.NeutralEvent);
             CouncilGameComponent.Instance?.AddChronicle(new ChronicleEntry(ChronicleKind.Life, text, p));
             Worship.Witness(to, map, GodActKind.Favour, text, p.PositionHeld);
@@ -143,7 +144,7 @@ namespace ColonyCouncil
             if (!Worship.Say(a, "Rimfolk_Pool_Worship_Bicker", ga, b, tag)) return;
             string reply = Worship.Line("Rimfolk_Pool_Worship_BickerReply", b, gb, a, tag == "mine" ? "theirs" : tag == "theirs" ? "mine" : null);
             if (!reply.NullOrEmpty()) Speech.Say(b, reply, a);
-            Speech.Logged(a, b, "CC_Wsh_BickerLog".Translate(a.LabelShort.Named("A"), b.LabelShort.Named("B"), Worship.CardName(ga).Named("GODA"), Worship.CardName(gb).Named("GODB")).Resolve(), false);
+            Speech.Logged(a, b, "CC_Wsh_BickerLog".Translate(a.LabelShort.Named("A"), b.LabelShort.Named("B"), Worship.Called(ga).Named("GODA"), Worship.Called(gb).Named("GODB")).Resolve(), false);
             CouncilGameComponent.GiveThought(a, WorshipDefOf.Rimfolk_Worship_Bickered, b);
             CouncilGameComponent.GiveThought(b, WorshipDefOf.Rimfolk_Worship_Bickered, a);
         }

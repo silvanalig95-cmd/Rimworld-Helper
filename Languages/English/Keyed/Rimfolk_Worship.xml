@@ -2,8 +2,9 @@
 <LanguageData>
 
   <!-- Worship of the gods (Source/ColonyCouncil/Gods/Worship/). The gods are unseen: no line here tells a god's mind, favour or
-       rules. What people did is told plainly; what a god did is named plainly only where the colony knows it was that god, and is
-       otherwise what people say, "some say", or a believer's word. The Why_ keys are the gods' own hidden log, never shown. -->
+       rules. What people did is told plainly, with the god they did it for. What a god may have done is told as what was seen,
+       and the hand behind it is added after only as the core allows (Worship.Hand, Gods.CardName: "It was Hollin." or "Some
+       say it was Hollin."); a believer's own word goes in a bubble. The Why_ keys are the gods' own hidden log, never shown. -->
 
   <CC_Settings_GodWorship>Worship of the gods</CC_Settings_GodWorship>
   <CC_Settings_GodWorship_Tip>Places dedicated to a god and the offerings carried there, prayer in hard moments, the gods' festivals on the calendar, vows, a priest and the council's questions about the gods, the gods in dreams, and crises of faith. Off: none of it, and the gods themselves go on as before.</CC_Settings_GodWorship_Tip>
@@ -75,38 +76,34 @@
   <CC_Wsh_Kind_Other>a gift</CC_Wsh_Kind_Other>
   <CC_Wsh_Why_Offering>{WHAT} left at {SHRINE}</CC_Wsh_Why_Offering>
   <CC_Wsh_Taken_Title>The offering at {SHRINE}</CC_Wsh_Taken_Title>
-  <CC_Wsh_Taken_Taken_Believed>The offering at {SHRINE} is gone: {WHAT}. The colony says {GOD} took it.</CC_Wsh_Taken_Taken_Believed>
-  <CC_Wsh_Taken_Taken_Felt>The offering at {SHRINE} was gone by morning: {WHAT}. Nobody saw it go, and some say {GOD} came for it in the night.</CC_Wsh_Taken_Taken_Felt>
-  <CC_Wsh_Taken_Taken_Walking>The offering at {SHRINE} went before everyone's eyes, in a breath of light: {WHAT}. Nobody who saw it doubts it was {GOD}.</CC_Wsh_Taken_Taken_Walking>
-  <CC_Wsh_Taken_Animal>An animal came to {SHRINE} and ate the offering: {WHAT}. Some say {GOD} sent it.</CC_Wsh_Taken_Animal>
-  <CC_Wsh_Taken_Passerby>Someone passing took the offering from {SHRINE} with them: {WHAT}. Some say {GOD} sent them.</CC_Wsh_Taken_Passerby>
-  <CC_Wsh_Taken_Spoiled>The offering at {SHRINE} lay there and spoiled: {WHAT}. Some say that was the taking of it.</CC_Wsh_Taken_Spoiled>
-  <CC_Wsh_Taken_Returned>Nobody came for the offering at {SHRINE}, and it went back to the stores: {WHAT}. People say it's the thought that counts.</CC_Wsh_Taken_Returned>
+  <CC_Wsh_Taken_Taken_Believed>The offering at {SHRINE} is gone: {WHAT}.</CC_Wsh_Taken_Taken_Believed>
+  <CC_Wsh_Taken_Taken_Felt>The offering at {SHRINE} was gone by morning: {WHAT}. Nobody saw it go.</CC_Wsh_Taken_Taken_Felt>
+  <CC_Wsh_Taken_Taken_Walking>The offering at {SHRINE} went before everyone's eyes, in a breath of light: {WHAT}.</CC_Wsh_Taken_Taken_Walking>
+  <CC_Wsh_Taken_Animal>An animal came to {SHRINE} and ate the offering: {WHAT}.</CC_Wsh_Taken_Animal>
+  <CC_Wsh_Taken_Passerby>Someone passing took the offering from {SHRINE} with them: {WHAT}.</CC_Wsh_Taken_Passerby>
+  <CC_Wsh_Taken_Spoiled>The offering at {SHRINE} lay there and spoiled: {WHAT}.</CC_Wsh_Taken_Spoiled>
+  <CC_Wsh_Taken_Returned>Nobody came for the offering at {SHRINE}, and it went back to the stores: {WHAT}.</CC_Wsh_Taken_Returned>
 
   <!-- ===================== Prayer: what came after is people's word, never the god's ===================== -->
   <CC_Wsh_Why_Prayer>{PAWN} prayed</CC_Wsh_Why_Prayer>
   <CC_Wsh_Answer_Title>After the prayer</CC_Wsh_Answer_Title>
-  <CC_Wsh_Answer_Sickness_Believed>{SICK}'s {ILLNESS} eased in the night after {PAWN} prayed. {PAWN} says {GOD} heard.</CC_Wsh_Answer_Sickness_Believed>
-  <CC_Wsh_Answer_Sickness_Felt>{SICK}'s {ILLNESS} eased in the night after {PAWN} prayed. Some say {GOD} laid a hand on {SICK}.</CC_Wsh_Answer_Sickness_Felt>
-  <CC_Wsh_Answer_Sickness_Walking>{PAWN} prayed to {GOD}, and a light stood over {SICK} a moment; the {ILLNESS} loosened its hold. {PAWN} is sure it was {GOD}.</CC_Wsh_Answer_Sickness_Walking>
-  <CC_Wsh_Answer_Death_Believed>{PAWN} prayed for {DEAD}, and the grief let go a little. {PAWN} says {GOD} is keeping {DEAD} now.</CC_Wsh_Answer_Death_Believed>
-  <CC_Wsh_Answer_Death_Felt>{PAWN} prayed for {DEAD}, and the grief let go a little. Some say {DEAD} will come to {PAWN} in a dream.</CC_Wsh_Answer_Death_Felt>
-  <CC_Wsh_Answer_Death_Walking>{PAWN} prayed to {GOD} for {DEAD}, and the grief let go. {PAWN} says {DEAD} is safe across, and will come to say so in a dream.</CC_Wsh_Answer_Death_Walking>
-  <CC_Wsh_Answer_Raid_Believed>{PAWN} prayed before the fight and came up from it steady-handed. {PAWN} says {GOD} was with them.</CC_Wsh_Answer_Raid_Believed>
-  <CC_Wsh_Answer_Raid_Felt>{PAWN} prayed to {GOD} before the fight and came up from it steady-handed. Some say {GOD} steadied {PAWN}.</CC_Wsh_Answer_Raid_Felt>
-  <CC_Wsh_Answer_Raid_Walking>{PAWN} rose from a prayer to {GOD} with a fighter's fire in the eyes, and says {GOD} put it there.</CC_Wsh_Answer_Raid_Walking>
+  <CC_Wsh_Answer_Sickness_Believed>{SICK}'s {ILLNESS} eased in the night after {PAWN} prayed to {GOD}.</CC_Wsh_Answer_Sickness_Believed>
+  <CC_Wsh_Answer_Sickness_Felt>{SICK}'s {ILLNESS} eased in the night after {PAWN} prayed to {GOD}.</CC_Wsh_Answer_Sickness_Felt>
+  <CC_Wsh_Answer_Sickness_Walking>{PAWN} prayed to {GOD}, and a light stood over {SICK} a moment; the {ILLNESS} loosened its hold.</CC_Wsh_Answer_Sickness_Walking>
+  <CC_Wsh_Answer_Death_Believed>{PAWN} prayed for {DEAD}, and the grief let go a little.</CC_Wsh_Answer_Death_Believed>
+  <CC_Wsh_Answer_Death_Felt>{PAWN} prayed to {GOD} for {DEAD}, and the grief let go a little. {PAWN} hopes to see {DEAD} in a dream.</CC_Wsh_Answer_Death_Felt>
+  <CC_Wsh_Answer_Death_Walking>{PAWN} prayed to {GOD} for {DEAD}, and the grief let go. {PAWN} says {DEAD} is safe across.</CC_Wsh_Answer_Death_Walking>
+  <CC_Wsh_Answer_Raid_Believed>{PAWN} prayed before the fight and came up from it steady-handed.</CC_Wsh_Answer_Raid_Believed>
+  <CC_Wsh_Answer_Raid_Felt>{PAWN} prayed to {GOD} before the fight and came up from it steady-handed.</CC_Wsh_Answer_Raid_Felt>
+  <CC_Wsh_Answer_Raid_Walking>{PAWN} rose from a prayer to {GOD} with a fighter's fire in the eyes.</CC_Wsh_Answer_Raid_Walking>
   <CC_Wsh_Answer_RaidReason>{PAWN} prayed to {GOD} before the fight.</CC_Wsh_Answer_RaidReason>
-  <CC_Wsh_Answer_Drought_Believed>Rain at last, the evening after the colony prayed for it. Some say {GOD} sent it.</CC_Wsh_Answer_Drought_Believed>
-  <CC_Wsh_Answer_Drought_Felt>Rain at last, the evening after the colony prayed for it. Some say {GOD} opened the sky.</CC_Wsh_Answer_Drought_Felt>
-  <CC_Wsh_Answer_Drought_Walking>The sky opened with thunder the hour after the colony prayed to {GOD}, and the rain came. Few are arguing about who sent it.</CC_Wsh_Answer_Drought_Walking>
+  <CC_Wsh_Answer_Drought_Believed>Rain at last, the evening after the colony prayed for it.</CC_Wsh_Answer_Drought_Believed>
+  <CC_Wsh_Answer_Drought_Felt>Rain at last, the evening after the colony prayed to {GOD} for it.</CC_Wsh_Answer_Drought_Felt>
+  <CC_Wsh_Answer_Drought_Walking>The sky opened with thunder the hour after the colony prayed to {GOD}, and the rain came.</CC_Wsh_Answer_Drought_Walking>
   <CC_Wsh_Why_Credit_Sickness>{SICK} is well again, as {PAWN} prayed</CC_Wsh_Why_Credit_Sickness>
   <CC_Wsh_Why_Credit_Death>{PAWN} prayed for the dead</CC_Wsh_Why_Credit_Death>
   <CC_Wsh_Why_Credit_Raid>the colony came through the raid, as {PAWN} prayed</CC_Wsh_Why_Credit_Raid>
   <CC_Wsh_Why_Credit_Drought>the rain came, as {PAWN} prayed</CC_Wsh_Why_Credit_Drought>
-  <CC_Wsh_HungerDue_Title>Gone from the stores</CC_Wsh_HungerDue_Title>
-  <CC_Wsh_HungerDue_Believed>{WHAT} is gone from the stores, and nobody will own to taking it. Some say {GOD} came for what it was owed.</CC_Wsh_HungerDue_Believed>
-  <CC_Wsh_HungerDue_Felt>{WHAT} is gone from the stores, and nobody took it. Some say {GOD} came back for what it was owed.</CC_Wsh_HungerDue_Felt>
-  <CC_Wsh_HungerDue_Walking>{WHAT} is gone from the stores without a trace, the night after someone asked {GOD} for help. Whoever asked knows where it went.</CC_Wsh_HungerDue_Walking>
   <CC_Wsh_Dev_NoGod>{0} has no god to turn to.</CC_Wsh_Dev_NoGod>
 
   <!-- ===================== The heart ===================== -->
@@ -149,9 +146,9 @@
   <CC_Wsh_Why_GreatVow_BeastSpared>{PAWN} kept a vow</CC_Wsh_Why_GreatVow_BeastSpared>
   <CC_Wsh_Why_Wrath>{PAWN} broke a vow to it, and it took it hard</CC_Wsh_Why_Wrath>
   <CC_Wsh_Wrath_Title>A shadow over {PAWN}</CC_Wsh_Wrath_Title>
-  <CC_Wsh_Wrath_Believed>Some say {GOD} hasn't forgotten {PAWN}'s broken vow, and people give {PAWN} a wide berth.</CC_Wsh_Wrath_Believed>
-  <CC_Wsh_Wrath_Felt>A shadow passed over {PAWN} that nobody could account for. Some say it was {GOD}, for the broken vow.</CC_Wsh_Wrath_Felt>
-  <CC_Wsh_Wrath_Walking>A shadow fell on {PAWN} in broad day and stayed the evening. Everyone who saw it says it was {GOD}, for the broken vow.</CC_Wsh_Wrath_Walking>
+  <CC_Wsh_Wrath_Believed>People give {PAWN} a wide berth since the broken vow.</CC_Wsh_Wrath_Believed>
+  <CC_Wsh_Wrath_Felt>A shadow passed over {PAWN} that nobody could account for.</CC_Wsh_Wrath_Felt>
+  <CC_Wsh_Wrath_Walking>A shadow fell on {PAWN} in broad day and stayed the evening.</CC_Wsh_Wrath_Walking>
   <CC_Wsh_PilgrimOut>{PAWN} has set out on foot, on a pilgrimage to {GOD}'s holy place.</CC_Wsh_PilgrimOut>
   <CC_Wsh_Why_Pilgrimage>{PAWN} walked a pilgrimage to its holy place</CC_Wsh_Why_Pilgrimage>
   <CC_Wsh_Goal_PilgrimDone>walked to {GOD}'s holy place</CC_Wsh_Goal_PilgrimDone>
@@ -217,16 +214,16 @@
   <CC_Wsh_Impact_Offering>An offering carried to {SHRINE}</CC_Wsh_Impact_Offering>
   <CC_Wsh_Impact_OfferingBrief>an offering</CC_Wsh_Impact_OfferingBrief>
   <CC_Wsh_DryBegins_Title>The rain stays away</CC_Wsh_DryBegins_Title>
-  <CC_Wsh_DryBegins_Believed>The colony says {GOD} will keep the rain away for the refusal.</CC_Wsh_DryBegins_Believed>
-  <CC_Wsh_DryBegins_Felt>The sky has gone hard and bright since the council said no. Some say {GOD} is keeping the rain away.</CC_Wsh_DryBegins_Felt>
-  <CC_Wsh_DryBegins_Walking>The clouds turned aside from the colony the day the council said no, as {GOD}'s people said they would.</CC_Wsh_DryBegins_Walking>
+  <CC_Wsh_DryBegins_Believed>The colony fears the rain will stay away now.</CC_Wsh_DryBegins_Believed>
+  <CC_Wsh_DryBegins_Felt>The sky has gone hard and bright since the council said no.</CC_Wsh_DryBegins_Felt>
+  <CC_Wsh_DryBegins_Walking>The clouds turned aside from the colony the day the council said no.</CC_Wsh_DryBegins_Walking>
   <CC_Wsh_DryPass_Believed>The rain clouds passed over again.</CC_Wsh_DryPass_Believed>
-  <CC_Wsh_DryPass_Felt>Rain clouds came up and passed over. Some say {GOD} is still keeping the rain away.</CC_Wsh_DryPass_Felt>
-  <CC_Wsh_DryPass_Walking>The rain clouds broke apart overhead again. People say it is {GOD}'s doing.</CC_Wsh_DryPass_Walking>
+  <CC_Wsh_DryPass_Felt>Rain clouds came up and passed over again.</CC_Wsh_DryPass_Felt>
+  <CC_Wsh_DryPass_Walking>The rain clouds broke apart overhead again.</CC_Wsh_DryPass_Walking>
   <CC_Wsh_BeastGiven_Title>Given to {GOD}</CC_Wsh_BeastGiven_Title>
   <CC_Wsh_BeastGiven_Believed>{PET} went off into the wild, given to {GOD}.</CC_Wsh_BeastGiven_Believed>
   <CC_Wsh_BeastGiven_Felt>{PET} went off into the wild. Some say {GOD} was waiting for it at the edge of the land.</CC_Wsh_BeastGiven_Felt>
-  <CC_Wsh_BeastGiven_Walking>{PET} walked straight to the edge of the land as if called, and nobody saw it again. {GOD}'s people say they know where it went.</CC_Wsh_BeastGiven_Walking>
+  <CC_Wsh_BeastGiven_Walking>{PET} walked straight to the edge of the land as if called, and nobody saw it again.</CC_Wsh_BeastGiven_Walking>
 
   <!-- ===================== This week ===================== -->
   <CC_Wsh_Week_Vow_NoMeat>{PAWN} keeps a vow to {GOD}: no meat until {ABOUT} is well</CC_Wsh_Week_Vow_NoMeat>
@@ -243,17 +240,17 @@
   <CC_Wsh_Week_DemandNote>dreamt</CC_Wsh_Week_DemandNote>
   <CC_Wsh_Week_DemandTip>{PAWN} told the dream. Someone will carry it there when they are free.</CC_Wsh_Week_DemandTip>
 
-  <!-- ===================== The colony's book: in the words of those who were there ===================== -->
+  <!-- ===================== The colony's book: an offering's hidden note, a festival seen, and what followed a prayer as the one who prayed tells it ===================== -->
   <CC_Wsh_Book_Offered>{PAWN} left {WHAT} at {SHRINE}.</CC_Wsh_Book_Offered>
   <CC_Wsh_Book_Festival>The colony kept {NAME}: {DISHES}.</CC_Wsh_Book_Festival>
   <CC_Wsh_Book_FestivalPassed>{NAME} went by unkept this year.</CC_Wsh_Book_FestivalPassed>
-  <CC_Wsh_Book_Credit_Sickness>{PAWN} prayed to {GOD} for {SICK}, and {SICK} got well. {PAWN} is sure it was {GOD}.</CC_Wsh_Book_Credit_Sickness>
-  <CC_Wsh_Book_Credit_Death>{PAWN} prayed to {GOD} for the dead, and was easier after.</CC_Wsh_Book_Credit_Death>
-  <CC_Wsh_Book_Credit_Raid>{PAWN} prayed to {GOD} before the raid, and the colony came through it. {PAWN} thanks {GOD} for that.</CC_Wsh_Book_Credit_Raid>
-  <CC_Wsh_Book_Credit_Drought>{PAWN} prayed to {GOD} for rain, and it came. {PAWN} says it was {GOD}; not everyone agrees.</CC_Wsh_Book_Credit_Drought>
-  <CC_Wsh_Book_Unanswered_Sickness>{PAWN} prayed to {GOD} for {ABOUT}, and {ABOUT} died all the same.</CC_Wsh_Book_Unanswered_Sickness>
-  <CC_Wsh_Book_Unanswered_Death>{PAWN} prayed to {GOD} for {ABOUT}, and felt nothing come back.</CC_Wsh_Book_Unanswered_Death>
-  <CC_Wsh_Book_Unanswered_Raid>{PAWN} prayed to {GOD} before the raid, and {ABOUT} fell in it.</CC_Wsh_Book_Unanswered_Raid>
-  <CC_Wsh_Book_Unanswered_Drought>{PAWN} prayed to {GOD} for rain, and none came.</CC_Wsh_Book_Unanswered_Drought>
+  <CC_Wsh_Book_Credit_Sickness>{SICK} got well, and that was {GOD}'s doing.</CC_Wsh_Book_Credit_Sickness>
+  <CC_Wsh_Book_Credit_Death>the grief let go a little after, and {GOD} was there in it.</CC_Wsh_Book_Credit_Death>
+  <CC_Wsh_Book_Credit_Raid>the colony came through the raid, and {GOD} brought it through.</CC_Wsh_Book_Credit_Raid>
+  <CC_Wsh_Book_Credit_Drought>the rain came, and {GOD} sent it, whatever anyone says.</CC_Wsh_Book_Credit_Drought>
+  <CC_Wsh_Book_Unanswered_Sickness>nothing came back, and {ABOUT} died all the same.</CC_Wsh_Book_Unanswered_Sickness>
+  <CC_Wsh_Book_Unanswered_Death>nothing came back from {GOD}, not a word.</CC_Wsh_Book_Unanswered_Death>
+  <CC_Wsh_Book_Unanswered_Raid>{ABOUT} fell all the same.</CC_Wsh_Book_Unanswered_Raid>
+  <CC_Wsh_Book_Unanswered_Drought>no rain came, and the fields stayed dust.</CC_Wsh_Book_Unanswered_Drought>
 
 </LanguageData>

@@ -71,17 +71,19 @@ namespace ColonyCouncil
 
         // ================= A RimWorld of Magic =================
 
-        private static void GiveClass(Pawn p, string name)
+        /// <summary>A class of A RimWorld of Magic given (also a god's gift, Gods/World/GodGifts.cs): true when it was.</summary>
+        internal static bool GiveClass(Pawn p, string name)
         {
             var def = DefDatabase<TraitDef>.GetNamedSilentFail(name);
-            if (def == null || !ClassOn(name, p.Faction)) return;
+            if (def == null || p?.story?.traits == null || !ClassOn(name, p.Faction)) return false;
             var traits = p.story.traits;
             // One class a pawn, as the mod itself keeps it (its classes conflict with each other): none if it rolled its own.
-            if (traits.HasTrait(def) || traits.allTraits.Any(t => t?.def != null && (t.def.ConflictsWith(def) || def.ConflictsWith(t.def)))) return;
+            if (traits.HasTrait(def) || traits.allTraits.Any(t => t?.def != null && (t.def.ConflictsWith(def) || def.ConflictsWith(t.def)))) return false;
             int degree = def.degreeDatas.NullOrEmpty() ? 0 : def.degreeDatas[0].degree;
-            if (p.story.AllBackstories.Any(b => b != null && b.DisallowsTrait(def, degree))) return;
+            if (p.story.AllBackstories.Any(b => b != null && b.DisallowsTrait(def, degree))) return false;
             traits.GainTrait(new Trait(def, degree, false));
             Renew(p);
+            return true;
         }
 
         private static Type settingsType;

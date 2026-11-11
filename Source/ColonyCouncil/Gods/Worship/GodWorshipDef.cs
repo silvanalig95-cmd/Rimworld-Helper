@@ -80,7 +80,7 @@ namespace ColonyCouncil
             return found;
         }
 
-        private static bool Names(string n, God g) => !n.NullOrEmpty() && (n == g.name || n == g.patron || n == "Rimfolk_God_" + g.name);
+        private static bool Names(string n, God g) => !n.NullOrEmpty() && (n == g.Key || n == g.name || n == g.def?.defName || n == g.patron || n == "Rimfolk_God_" + g.name);
 
         /// <summary>The (kind, weight) table of what a god likes: its own def's, or null for its domains'.</summary>
         public static (OfferingKind, float)[] LikesOf(God g)

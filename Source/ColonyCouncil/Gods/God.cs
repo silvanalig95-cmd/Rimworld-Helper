@@ -6,16 +6,20 @@ using Verse;
 namespace ColonyCouncil
 {
     /// <summary>
-    /// One god of the pantheon, saved with the game (Gods/GodBook.cs): who it is (its name and epithet, its domains, the form
-    /// its people picture it in, its kind and nature), who holds it (peoples and faiths), where it came from (an Ideology
-    /// deity, Rimfolk's makers, a people's patron, the old places, the colony's own faith), its colours and symbol and the
-    /// look the presence part draws it in, and whether the colony knows it yet.
+    /// One of the nine, saved with the game (Gods/GodBook.cs): its def (<see cref="def"/>, Defs/GodDefs/Rimfolk_Gods.xml) and
+    /// what is filled from it on every load (its short name, epithet, domains, kind and nature, colours, the look the
+    /// presence part draws it in), and its state here: the form the colony pictures it in, who holds it (peoples), and
+    /// whether the colony knows of it (hidden state: nothing shows it). The fields an older save's generated gods had
+    /// (a deity, a patron, a source) are kept for the parts that read them, and stay empty.
     /// </summary>
     public class God : IExposable
     {
         public int id;
+        /// <summary>The god's def; null only for an older save's generated god, which the load drops.</summary>
+        public GodDef def;
+        /// <summary>The short name ("Hollin"), the key every part uses (Gods.ByKey).</summary>
         public string name;
-        /// <summary>A noun phrase after its name: "the Storm-father", "the Walker of the Dead".</summary>
+        /// <summary>A noun phrase after its name, from its def: "the Rootmother", "the Old Horn".</summary>
         public string epithet;
         public GodDomain domain, second;
         public GodForm form;
@@ -46,23 +50,39 @@ namespace ColonyCouncil
         /// <summary>A newborn's growth with the colony's devotion (GodsMath.NewbornGrown grows it up).</summary>
         public float devotion;
 
-        /// <summary>Its domain's def (colours, symbol, sacred things), or null.</summary>
+        /// <summary>Its domain's def (the stage 2 parts' fallback table), or null.</summary>
         public GodDomainDef DomainDef => GodDomainDef.Of(domain);
 
-        /// <summary>Its patron def, or null.</summary>
-        public GodPatronDef PatronDef => patron.NullOrEmpty() ? null : DefDatabase<GodPatronDef>.GetNamedSilentFail(patron);
-
-        /// <summary>The texture path of its symbol (its domain's).</summary>
-        public string SymbolPath => DomainDef?.symbol;
+        /// <summary>The short name every part keys it by: its def's key, else its name.</summary>
+        public string Key => def?.key ?? name;
 
         /// <summary>Someone still holds it.</summary>
         public bool Worshipped => factions.Count > 0 || ideos.Count > 0;
 
         public override string ToString() => name ?? "god " + id;
 
+        /// <summary>Its words and workings from its def (on making and on every load, so a def's change reaches an old save).</summary>
+        public void FromDef()
+        {
+            if (def == null) return;
+            name = def.key;
+            epithet = def.epithet;
+            domain = def.domain;
+            second = def.second;
+            baseKind = def.kind;
+            if (kind != GodKind.Fading && kind != GodKind.Dead) kind = def.kind;
+            nature = def.nature;
+            gender = def.gender;
+            colour = def.color;
+            colour2 = def.color2;
+            look = def.look;
+            source = "def";
+        }
+
         public void ExposeData()
         {
             Scribe_Values.Look(ref id, "id");
+            Scribe_Defs.Look(ref def, "def");
             Scribe_Values.Look(ref name, "name");
             Scribe_Values.Look(ref epithet, "epithet");
             Scribe_Values.Look(ref domain, "domain", GodDomain.None);
@@ -94,6 +114,7 @@ namespace ColonyCouncil
                 factions.RemoveAll(f => f == null);
                 ideos ??= new List<Ideo>();
                 ideos.RemoveAll(i => i == null);
+                FromDef();
                 if (look.NullOrEmpty()) look = "Rimfolk_GodLook_" + domain;
             }
         }
@@ -172,8 +193,9 @@ namespace ColonyCouncil
     }
 
     /// <summary>
-    /// One act of a god the colony remembers (Gods.Remember): which god (and another, for a tie), at which home, when, what
-    /// it was, its words, the favour it moved and where on the map (a mark, an appearance). Shown on the god's page.
+    /// One act of a god in the gods' hidden history (Gods.Remember): which god (and another, for a tie), at which home, when,
+    /// what it was, its words, the favour it moved, where on the map (a mark, an appearance), and the colonists who saw it
+    /// (or who told of it). Never shown as such: one someone saw reaches the colony's book as they saw it.
     /// </summary>
     public class GodAct : IExposable
     {
@@ -186,6 +208,12 @@ namespace ColonyCouncil
         /// <summary>The favour it moved with the colony (0: none); never shown as a number.</summary>
         public float favour;
         public IntVec3 cell = IntVec3.Invalid;
+        /// <summary>The colonists who saw it, by name (Gods.Remember fills them for an act on the land when the caller gave none); empty: nobody saw it.</summary>
+        public List<string> witnesses;
+        /// <summary>Who told of it, for something heard rather than seen ("Mirel of Karond-Keth"), or null.</summary>
+        public string teller;
+        /// <summary>It has reached the colony's book already (not saved: a load doesn't write it again).</summary>
+        public bool booked;
 
         public void ExposeData()
         {
@@ -197,6 +225,9 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref text, "text");
             Scribe_Values.Look(ref favour, "favour");
             Scribe_Values.Look(ref cell, "cell", IntVec3.Invalid);
+            Scribe_Collections.Look(ref witnesses, "witnesses", LookMode.Value);
+            Scribe_Values.Look(ref teller, "teller");
+            if (Scribe.mode == LoadSaveMode.PostLoadInit) booked = true;
         }
     }
 

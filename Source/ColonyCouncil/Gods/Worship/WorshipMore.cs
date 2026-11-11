@@ -144,14 +144,14 @@ namespace ColonyCouncil
                 if (v == null || v.done || v.pawn == null || v.pawn.Dead) continue;
                 var g = Gods.ById(v.god);
                 if (g == null) continue;
-                string text = ("CC_Wsh_Week_Vow_" + v.kind).Translate(WeekModel.Name(v.pawn).Named("PAWN"), Worship.CardName(g).Named("GOD"), (v.aboutName ?? "").Named("ABOUT"),
+                string text = ("CC_Wsh_Week_Vow_" + v.kind).Translate(WeekModel.Name(v.pawn).Named("PAWN"), Worship.Called(g).Named("GOD"), (v.aboutName ?? "").Named("ABOUT"),
                     (v.beast?.label ?? "").Named("BEAST")).Resolve();
                 var target = v.pawn.Spawned ? new GlobalTargetInfo(v.pawn) : GlobalTargetInfo.Invalid;
                 rows.Add(new WeekRow
                 {
                     pawn = v.pawn,
                     text = text,
-                    sub = "CC_Wsh_Week_VowSub".Translate(Worship.CardName(g).Named("GOD")).Resolve(),
+                    sub = "CC_Wsh_Week_VowSub".Translate(Worship.Called(g).Named("GOD")).Resolve(),
                     note = "CC_Wsh_Week_Vow".Translate(),
                     noteColor = UiKit.Gold,
                     tip = WeekModel.Tip(("CC_Wsh_Week_VowTip_" + v.kind).Translate(), target.IsValid ? "CC_Week_ClickMap".Translate(v.pawn.LabelShort).Resolve() : null),
@@ -170,7 +170,7 @@ namespace ColonyCouncil
                 rows.Add(new WeekRow
                 {
                     pawn = d.dreamer != null && !d.dreamer.Dead ? d.dreamer : null,
-                    text = "CC_Wsh_Week_Demand".Translate(WeekModel.Name(d.dreamer).Named("PAWN"), Worship.CardName(g).Named("GOD"), ("CC_Wsh_Kind_" + d.kind).Translate().Named("WHAT"),
+                    text = "CC_Wsh_Week_Demand".Translate(WeekModel.Name(d.dreamer).Named("PAWN"), Worship.Called(g).Named("GOD"), ("CC_Wsh_Kind_" + d.kind).Translate().Named("WHAT"),
                         Worship.ShrineOf(g).Named("SHRINE")).Resolve(),
                     note = "CC_Wsh_Week_DemandNote".Translate(),
                     noteColor = UiKit.Faint,

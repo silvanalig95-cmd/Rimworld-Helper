@@ -263,6 +263,12 @@ namespace Balance
         /// (PeoplesFMath.AccidentChance; the tests hold the two the same).
         /// </summary>
         private const float UnionDrills = 1.2f, UnionDrillWith = 0.5f, UnionDrillBlow = 1f / 20f;
+        /// <summary>
+        /// The gods in the world (Gods/World/GodHealth.cs, GodWorldGifts.cs), a colony-year: a sacred beast killed with a loud god
+        /// watching and its beasts finding the killer out (half of them drawing blood); a storm god's grudge, its strike in a
+        /// thunderstorm and a fire that reaches someone; a gift taken whose price is blood.
+        /// </summary>
+        private const float GodBeastGrudges = 0.15f, GodBeastsBite = 0.5f, GodLightningGrudges = 0.1f, GodLightningHurts = 0.25f, GodGiftsTaken = 0.3f, GodBloodPrice = 1f / 6f;
         /// <summary>A home with a people bearing a grudge or a notable that cold within reach, and its schemes' fights a year then (SchemeSim: 0.16 to 0.21).</summary>
         private const float Schemer = 0.3f, SchemeFights = 0.18f;
         // ---- Harm, part 4 ----
@@ -1141,6 +1147,25 @@ namespace Balance
             {
                 var p = Any(y, gud);
                 y.today.Add((14, () => Hurt(y, p, HarmKinds.UnionDrill)));
+            }
+            // The gods in the world: their beasts after one who killed a sacred animal, their lightning, a gift paid for in blood.
+            var ggb = rng("god beasts");
+            if (ggb.NextDouble() < GodBeastGrudges / Days && Comes(y, HarmKinds.GodBeasts, ggb, GodBeastsBite))
+            {
+                var p = Any(y, ggb);
+                y.today.Add((10, () => Hurt(y, p, HarmKinds.GodBeasts)));
+            }
+            var ggl = rng("god lightning");
+            if (ggl.NextDouble() < GodLightningGrudges / Days && Comes(y, HarmKinds.GodLightning, ggl, GodLightningHurts))
+            {
+                var p = Any(y, ggl);
+                y.today.Add((2, () => Hurt(y, p, HarmKinds.GodLightning)));
+            }
+            var ggp = rng("god price");
+            if (ggp.NextDouble() < GodGiftsTaken / Days && Comes(y, HarmKinds.GodPrice, ggp, GodBloodPrice))
+            {
+                var p = Any(y, ggp);
+                y.today.Add((12, () => Hurt(y, p, HarmKinds.GodPrice)));
             }
             // Games with real contests: the bouts' real blows and the race's turned ankles.
             var gt = rng("games");

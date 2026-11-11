@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    What people say about a god, aloud (Source/ColonyCouncil/Gods/Presence/GodReactions.cs, through Speech.Say): one
+    sentence each, and only what the map shows. {NAME} is the god as the colony knows it ("the Old Horn", or what is seen of it: "a great white thrumbo"); a line naming it
+    is tagged named, for a god that is named (a veiled one isn't). Tags: the god's domain in small letters (storm, wild,
+    dead...), the moment's kind (appear, act, reveal, depart, blessing, wrath, omen), night; for the tells of a god in
+    disguise, what can be noticed (night: a shimmer about it; snow: no footprints behind it; animals: animals following
+    it; psychic: the speaker's own gift) and animal when the god walks as one. Untagged lines fit every god.
+  -->
+
+  <!-- Someone who stops as a shown god walks past. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_GodAwe</defName>
+    <lines>
+      <plain>
+        <li>[named] That's {NAME}, walking right past us.</li>
+        <li>Don't stare, it can tell when you stare.</li>
+        <li>I can feel it from here, like standing near a fire.</li>
+        <li>My hands won't stop shaking.</li>
+        <li>Nobody told me a god would be that tall.</li>
+        <li>I keep wanting to kneel and I don't know why.</li>
+        <li>It looked at me, I swear it looked right at me.</li>
+        <li>Everyone's gone quiet around it.</li>
+        <li>I'll be telling my grandchildren about this.</li>
+        <li>[night] It walks like it owns the night.</li>
+        <li>[storm] The air smells like rain before lightning.</li>
+        <li>[storm] Every hair on my arms is standing up.</li>
+        <li>[harvest] It smells like a field at harvest time.</li>
+        <li>[wild] It moves like a tree would, if a tree could walk.</li>
+        <li>[hunt] It moves like something that has never once missed.</li>
+        <li>[healing] Being near it is like the first warm day after a fever.</li>
+        <li>[war] I'd follow that into any fight.</li>
+        <li>[craft] Its hands look like they've made mountains.</li>
+        <li>[way] It looks like it has walked every road there is.</li>
+        <li>[dead] It's so cold near it, and so quiet.</li>
+        <li>[night] It's like looking at the moon up close.</li>
+        <li>[hearth] It feels like coming in from the cold.</li>
+        <li>[waters] It smells of the river after rain.</li>
+        <li>[machine] It moves too smoothly to be flesh.</li>
+        <li>[void] I can't look at its eyes for long.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- Someone at a god's coming. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_GodMoment</defName>
+    <lines>
+      <plain>
+        <li>Everyone stop, look over there.</li>
+        <li>Did you feel that?</li>
+        <li>The wind just died.</li>
+        <li>Look at the sky.</li>
+        <li>I've never seen the sky that color.</li>
+        <li>Something is here, something big.</li>
+        <li>Nobody move.</li>
+        <li>[appear,named] That's {NAME}, it has to be.</li>
+        <li>[appear] It's come, the old stories were true.</li>
+        <li>[reveal] The stranger, it was the stranger all along.</li>
+        <li>[reveal] It's growing, look at it grow.</li>
+        <li>[blessing] It's warm, the light is warm.</li>
+        <li>[blessing] Whatever we did, it was the right thing.</li>
+        <li>[wrath] What did we do to deserve this?</li>
+        <li>[wrath] Get inside, everyone get inside.</li>
+        <li>[wrath] It's angry, I can feel how angry it is.</li>
+        <li>[depart] It's leaving, I think it's leaving.</li>
+        <li>[depart] Will it come back?</li>
+        <li>[act] It's doing something, look.</li>
+        <li>[storm] That thunder came out of nowhere.</li>
+        <li>[dead] I heard a gong, did anyone else hear it?</li>
+        <li>[void] I can hear something whispering under everything.</li>
+        <li>[night] It's brighter than the moon.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- The devout, praying before a god. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_GodPrayer</defName>
+    <lines>
+      <plain>
+        <li>[named] Watch over us, {NAME}.</li>
+        <li>[named] We are yours, {NAME}, we always were.</li>
+        <li>Thank you for coming to us.</li>
+        <li>I knew you would come, I always knew.</li>
+        <li>Forgive us whatever we did wrong.</li>
+        <li>Bless this place and everyone in it.</li>
+        <li>Whoever you are, be kind to us.</li>
+        <li>[harvest,named] Give us rain and a good harvest, {NAME}.</li>
+        <li>[storm,named] Spare our roofs, {NAME}, and send the rain.</li>
+        <li>[hunt,named] Give our hunters a straight aim, {NAME}.</li>
+        <li>[healing,named] Heal our sick, {NAME}, I beg you.</li>
+        <li>[war,named] Stand with us when the raiders come, {NAME}.</li>
+        <li>[craft,named] Guide our hands at the bench, {NAME}.</li>
+        <li>[way,named] Keep our travelers safe on the road, {NAME}.</li>
+        <li>[dead,named] Carry our dead gently, {NAME}.</li>
+        <li>[night,named] Send us good dreams, {NAME}.</li>
+        <li>[hearth,named] Keep our fires lit and our home warm, {NAME}.</li>
+        <li>[wild,named] Let the land grow green around us, {NAME}.</li>
+        <li>[waters,named] Keep the river kind to us, {NAME}.</li>
+        <li>[machine,named] We are listening, {NAME}.</li>
+        <li>[void] Take what you came for and leave us be.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- A sharp-eyed or psychic colonist noticing a god in disguise. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_GodTell</defName>
+    <lines>
+      <plain>
+        <li>There's something about that one I can't put my finger on.</li>
+        <li>Has anyone else noticed how quiet it gets around that one?</li>
+        <li>I keep finding myself watching that one, and I don't know why.</li>
+        <li>That one is not what it looks like, I'd bet on it.</li>
+        <li>[!animal] That traveler stands too still, like nothing can hurry them.</li>
+        <li>[!animal] I don't think that's an ordinary traveler.</li>
+        <li>[!animal] They look at everything as if they've seen it all before.</li>
+        <li>[animal] That animal isn't afraid of anything, have you noticed?</li>
+        <li>[animal] That beast looks at us like it knows our names.</li>
+        <li>[night] The air shimmers around that one, look.</li>
+        <li>[night] There's a light about that one, I'm not imagining it.</li>
+        <li>[snow] It doesn't leave any footprints in the snow.</li>
+        <li>[snow] Look behind it, the snow isn't even pressed.</li>
+        <li>[animals] Every animal on the land keeps following that one.</li>
+        <li>[animals] Why do the animals follow it like that?</li>
+        <li>[psychic] My head rings like a bell when that one's near.</li>
+        <li>[psychic] Whatever that is, it's far bigger on the inside.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- Someone noticing an omen. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_GodOmen</defName>
+    <lines>
+      <plain>
+        <li>Did you see that?</li>
+        <li>That's a sign, if ever I saw one.</li>
+        <li>Something is coming, I can feel it.</li>
+        <li>I've got the strangest feeling all of a sudden.</li>
+        <li>Did anyone else hear that?</li>
+        <li>[storm] Thunder, out of nowhere.</li>
+        <li>[dead] I heard a bell from nowhere.</li>
+        <li>[wild] The leaves rustled, all of them at once.</li>
+        <li>[hunt] Was that a wolf?</li>
+        <li>[void] I heard someone sigh right behind me.</li>
+        <li>[night] Something glimmered over there.</li>
+        <li>[machine] Something hummed under the ground just now.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+</Defs>

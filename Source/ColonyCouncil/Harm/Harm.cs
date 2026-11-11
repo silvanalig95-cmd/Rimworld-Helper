@@ -201,6 +201,8 @@ namespace ColonyCouncil
                 case "gateSickness": return s.worldSituations && Interplay.On;
                 case "campFever": return CampTracker.Enabled;
                 case "campLeft": return CampTracker.Enabled;
+                // The gods in the world (Gods/World/): their beasts, their lightning, a gift's price in blood.
+                case "gods": return Gods.On;
                 case "courierSick": return Couriers.On && s.worldSituations && Interplay.On;
                 case "patientIll": return HealthTracker.ReputationOn && AilmentTracker.SeriousOn;
                 case "badBatch": return true;

@@ -117,7 +117,7 @@ namespace ColonyCouncil
             r.god = g.id;
             r.pending = true;
             r.asked = Worship.Now;
-            Messages.Message("CC_Wsh_DedicateAsked".Translate(t.LabelShort.Named("PLACE"), Worship.CardName(g).Named("GOD")).Resolve(), t, MessageTypeDefOf.SilentInput, false);
+            Messages.Message("CC_Wsh_DedicateAsked".Translate(t.LabelShort.Named("PLACE"), Worship.Called(g).Named("GOD")).Resolve(), t, MessageTypeDefOf.SilentInput, false);
         }
 
         /// <summary>The player takes a place from its god: it is the god's no longer, and the god notices.</summary>
@@ -221,10 +221,12 @@ namespace ColonyCouncil
                 Worship.Favour(old, map, WorshipMath.RededicateFavour, "CC_Wsh_Why_TakenFrom".Translate(t.LabelShort.Named("PLACE"), g.name.Named("OTHER")).Resolve(),
                     FavourSource.Neglect, GodOffence.Rivals);
             Worship.Glow(map, t.Position, g);
-            string text = ("CC_Wsh_Dedicated_" + Worship.Step).Translate((p?.LabelShort ?? "?").Named("PAWN"), t.LabelShort.Named("PLACE"), Worship.CardName(g).Named("GOD"),
+            string text = ("CC_Wsh_Dedicated_" + Worship.Step).Translate((p?.LabelShort ?? "?").Named("PAWN"), t.LabelShort.Named("PLACE"), Worship.Called(g).Named("GOD"),
                 place.Named("SHRINE")).Resolve();
             Tell.Minor(NewsKind.Colony, Importance.Notable, map, text, t);
-            Worship.Witness(g, map, GodActKind.Mark, text, t.Position);
+            // The colony gave it to this god itself, and knows it: in the colony's book by those who saw the words said.
+            Worship.Witness(g, map, GodActKind.Favour, text, t.Position);
+            Worship.Booked(g, map, t.Position, text, p);
             if (p != null) CouncilGameComponent.Instance?.journals.WriteText(p, Worship.Line("Rimfolk_Pool_Worship_DedicateJournal", p, g) ?? why);
         }
 
@@ -237,10 +239,10 @@ namespace ColonyCouncil
             var r = Worship.Book?.ShrineOf(t);
             var g = r != null ? Gods.ById(r.god) : null;
             string label = r == null ? "CC_Wsh_Gizmo_Dedicate".Translate().Resolve()
-                : r.pending ? "CC_Wsh_Gizmo_Pending".Translate(Worship.CardName(g).Named("GOD")).Resolve()
-                : "CC_Wsh_Gizmo_Dedicated".Translate(Worship.CardName(g).Named("GOD")).Resolve();
+                : r.pending ? "CC_Wsh_Gizmo_Pending".Translate(Worship.Called(g).Named("GOD")).Resolve()
+                : "CC_Wsh_Gizmo_Dedicated".Translate(Worship.Called(g).Named("GOD")).Resolve();
             string desc = "CC_Wsh_Gizmo_Desc".Translate(Worship.ShrineWord.Named("SHRINE")).Resolve();
-            if (g != null && r.by != null && !r.pending) desc += "\n\n" + "CC_Wsh_Gizmo_Of".Translate(Worship.CardName(g).Named("GOD"), (r.byName ?? "?").Named("PAWN")).Resolve();
+            if (g != null && r.by != null && !r.pending) desc += "\n\n" + "CC_Wsh_Gizmo_Of".Translate(Worship.Called(g).Named("GOD"), (r.byName ?? "?").Named("PAWN")).Resolve();
             // The place's own picture: no god is drawn as a symbol.
             var cmd = new Command_Action
             {
@@ -263,7 +265,7 @@ namespace ColonyCouncil
             foreach (var g in Choices(map))
             {
                 var god = g;
-                string label = "CC_Wsh_Menu_God".Translate(Worship.CardName(god).Named("GOD"),
+                string label = "CC_Wsh_Menu_God".Translate(Worship.Called(god).Named("GOD"),
                     (mine.Contains(god) ? "CC_Wsh_Menu_Ours" : "CC_Wsh_Menu_Known").Translate().Named("WHOSE")).Resolve();
                 if (r != null && r.god == god.id) label += " " + "CC_Wsh_Menu_Now".Translate();
                 opts.Add(new FloatMenuOption(label, () => Ask(t, god)));
@@ -279,8 +281,8 @@ namespace ColonyCouncil
             if (r == null) return null;
             var g = Gods.ById(r.god);
             if (g == null) return null;
-            if (r.pending) return "CC_Wsh_Inspect_Pending".Translate(Worship.CardName(g).Named("GOD")).Resolve();
-            string line = (IsTemple(t) ? "CC_Wsh_Inspect_Temple" : "CC_Wsh_Inspect").Translate(Worship.CardName(g).Named("GOD"), Worship.ShrineWord.Named("SHRINE"),
+            if (r.pending) return "CC_Wsh_Inspect_Pending".Translate(Worship.Called(g).Named("GOD")).Resolve();
+            string line = (IsTemple(t) ? "CC_Wsh_Inspect_Temple" : "CC_Wsh_Inspect").Translate(Worship.Called(g).Named("GOD"), Worship.ShrineWord.Named("SHRINE"),
                 (r.byName ?? "?").Named("PAWN")).Resolve();
             var waiting = Worship.Book.offerings.FirstOrDefault(o => o != null && o.set && o.fate == OfferingFate.Waiting && o.shrine == t);
             if (waiting != null) line += "\n" + "CC_Wsh_Inspect_Offering".Translate((waiting.label ?? "?").Named("WHAT")).Resolve();

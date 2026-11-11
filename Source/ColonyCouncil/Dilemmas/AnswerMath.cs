@@ -58,7 +58,8 @@ namespace ColonyCouncil
             ("fealty", ChronicleKind.World, "ChoiceLetter_FealtyOffer"),
             ("pact", ChronicleKind.World, "ChoiceLetter_PactOffer"),
             ("truce", ChronicleKind.World, "ChoiceLetter_TruceOffer"),
-            ("founding", ChronicleKind.World, "ChoiceLetter_Founding")
+            ("founding", ChronicleKind.World, "ChoiceLetter_Founding"),
+            ("gods", ChronicleKind.World, "ChoiceLetter_GodWorld")
         };
 
         /// <summary>The word for a small answer: kept in the history and the answers' log, but not one for the chronicle (an event that was never chronicled, "let the vote run").</summary>

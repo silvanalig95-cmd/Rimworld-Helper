@@ -3,17 +3,6 @@ using Verse;
 
 namespace ColonyCouncil
 {
-    /// <summary>The kinds of a god's coming the presence part plays (docs/design/gods.md, "the moment").</summary>
-    public enum PresenceKind
-    {
-        Appear,
-        Act,
-        Reveal,
-        Depart,
-        Blessing,
-        Wrath,
-        Omen
-    }
 
     /// <summary>
     /// What a god's coming is, as the core asks the presence part for it (docs/design/gods.md, "Seams the later parts
@@ -49,14 +38,19 @@ namespace ColonyCouncil
     {
         public static Func<PresenceSpec, bool> Manifest;
 
-        /// <summary>Plays a god's moment through the presence part, if it is there and the gods are on. False when nothing was played.</summary>
+        /// <summary>
+        /// Plays a god's moment through the presence part, if it is there and the gods are on, and writes it into the colony's
+        /// book as those who saw it saw it (Gods.Moment). False when nothing was played.
+        /// </summary>
         public static bool Call(PresenceSpec spec)
         {
             var m = Manifest;
             if (m == null || spec?.god == null || !Gods.On) return false;
             try
             {
-                return m(spec);
+                bool played = m(spec);
+                if (played) Gods.Moment(spec);
+                return played;
             }
             catch (Exception e)
             {

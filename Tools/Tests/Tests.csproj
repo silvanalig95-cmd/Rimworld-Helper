@@ -250,6 +250,9 @@
     <Compile Include="../../Source/ColonyCouncil/Gods/GodsMath.cs" Link="GodsMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Gods/GodTiesMath.cs" Link="GodTiesMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Gods/Worship/WorshipMath.cs" Link="WorshipMath.cs" />
+    <Compile Include="../../Source/ColonyCouncil/Gods/GodHandsMath.cs" Link="GodHandsMath.cs" />
+    <Compile Include="../../Source/ColonyCouncil/Gods/GodLoreMath.cs" Link="GodLoreMath.cs" />
+    <Compile Include="../../Source/ColonyCouncil/Gods/World/GodWorldMath.cs" Link="GodWorldMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Hud/HudHealthMath.cs" Link="HudHealthMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Hud/HudWorkMath.cs" Link="HudWorkMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Hud/HudEnums.cs" Link="HudEnums.cs" />
@@ -312,5 +315,7 @@
     <Compile Include="../../Source/ColonyCouncil/Letters/LetterKindMath.cs" Link="LetterKindMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Letters/LetterThreadMath.cs" Link="LetterThreadMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Letters/LetterClickMath.cs" Link="LetterClickMath.cs" />
+    <Compile Include="../../Source/ColonyCouncil/Gods/Presence/GodPresenceMath.cs" Link="GodPresenceMath.cs" />
+    <Compile Include="../../Source/ColonyCouncil/Gods/OnMap/GodsOnMapMath.cs" Link="GodsOnMapMath.cs" />
   </ItemGroup>
 </Project>

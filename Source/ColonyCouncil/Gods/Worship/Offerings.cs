@@ -398,7 +398,7 @@ namespace ColonyCouncil
             string why = "CC_Wsh_Why_Offering".Translate(what.Named("WHAT"), place.Named("SHRINE")).Resolve();
             Worship.Favour(g, map, o.favour * share, why, FavourSource.Offering);
             string key = "CC_Wsh_Taken_" + fate + (fate == OfferingFate.Taken ? "_" + Worship.Step : "");
-            string text = key.Translate(what.Named("WHAT"), place.Named("SHRINE"), Worship.CardName(g).Named("GOD"), (o.carrier?.LabelShort ?? "?").Named("PAWN")).Resolve();
+            string text = key.Translate(what.Named("WHAT"), place.Named("SHRINE"), Worship.Called(g).Named("GOD"), (o.carrier?.LabelShort ?? "?").Named("PAWN")).Resolve();
             if (fate == OfferingFate.Taken && Gods.Realness == GodRealness.Walking)
                 Worship.Sign(g, map, cell, PresenceKind.Act, "CC_Wsh_Taken_Title".Translate(place.Named("SHRINE")).Resolve(), text, new LookTargets(cell, map), false);
             else

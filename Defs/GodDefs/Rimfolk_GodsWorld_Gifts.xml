@@ -1,0 +1,237 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    The gods' gifts on a body, and what they cost (Source/ColonyCouncil/Gods/World/GodGifts.cs; docs/design/gods.md, stage
+    2, brainstorm item 21): a god's own (GodWaysDef.hand: Smoulder's, Morel's, Ennu's, Hush's, Selene's, Mog's, Murmur's, Ducat's; the rest use the
+    domain's), one a domain as the fallback (Rimfolk_GodGift_<Domain>, GodWorldMath.HandOf), the mark a gift may cost, and
+    the calm the Hunger pays with (GodVoid). Lasting and quiet: small, real, and seen on the health tab. The gods are
+    unseen: each says what it is like to have, never who gave it or why.
+  -->
+
+  <HediffDef Name="Rimfolk_GodGiftBase" Abstract="True">
+    <hediffClass>HediffWithComps</hediffClass>
+    <defaultLabelColor>(0.95, 0.82, 0.45)</defaultLabelColor>
+    <isBad>false</isBad>
+    <everCurableByItem>false</everCurableByItem>
+    <scenarioCanAdd>false</scenarioCanAdd>
+  </HediffDef>
+
+  <!-- ===================== The nine's own ===================== -->
+
+  <HediffDef ParentName="Rimfolk_GodGiftBase">
+    <defName>Rimfolk_GodGift_Smoulder</defName>
+    <label>miner's luck</label>
+    <description>The rock opens for this one. They find the seam on the first stroke, the ore comes out clean, and in the deep places the stone feels warm under their hands, like something asleep.</description>
+    <stages><li><statOffsets><MiningSpeed>0.2</MiningSpeed><MiningYield>0.1</MiningYield></statOffsets></li></stages>
+  </HediffDef>
+
+  <HediffDef ParentName="Rimfolk_GodGiftBase">
+    <defName>Rimfolk_GodGift_Morel</defName>
+    <label>soft hand</label>
+    <description>Sickness passes through this one quickly and leaves little behind, and wounds they tend close clean. Their hands smell faintly of earth after rain, whatever they wash them in.</description>
+    <stages><li><statOffsets><ImmunityGainSpeed>0.15</ImmunityGainSpeed><MedicalTendQuality>0.06</MedicalTendQuality></statOffsets></li></stages>
+  </HediffDef>
+
+  <HediffDef ParentName="Rimfolk_GodGiftBase">
+    <defName>Rimfolk_GodGift_Ennu</defName>
+    <label>a guest's warmth</label>
+    <description>People open up to this one. Strangers tell them things they have told nobody, quarrels cool when they sit down, and they always seem to know where the spare blanket is.</description>
+    <stages><li><statOffsets><SocialImpact>0.15</SocialImpact><NegotiationAbility>0.1</NegotiationAbility><MentalBreakThreshold>-0.03</MentalBreakThreshold></statOffsets></li></stages>
+  </HediffDef>
+
+  <HediffDef ParentName="Rimfolk_GodGiftBase">
+    <defName>Rimfolk_GodGift_Hush</defName>
+    <label>winter in the blood</label>
+    <description>The cold does not bite this one the way it bites the rest. They walk out in the snow with their coat open, and on the longest nights they are the last to come in from the quiet.</description>
+    <stages><li><statOffsets><ComfyTemperatureMin>-10</ComfyTemperatureMin></statOffsets></li></stages>
+  </HediffDef>
+
+  <HediffDef ParentName="Rimfolk_GodGiftBase">
+    <defName>Rimfolk_GodGift_Selene</defName>
+    <label>moon-sleep</label>
+    <description>This one sleeps deep and wakes clear, and their wounds mend in the night as if someone sat with them. On bright nights they can see to work by the moon.</description>
+    <stages><li><statOffsets><RestRateMultiplier>0.15</RestRateMultiplier><InjuryHealingFactor>0.15</InjuryHealingFactor></statOffsets></li></stages>
+  </HediffDef>
+
+  <HediffDef ParentName="Rimfolk_GodGiftBase">
+    <defName>Rimfolk_GodGift_Mog</defName>
+    <label>a lucky season</label>
+    <description>Things go right for this one this season. A sickness passes them by, a fall doesn't break a bone, and the cats follow them about. It won't last, and they know it.</description>
+    <comps>
+      <li Class="HediffCompProperties_Disappears">
+        <disappearsAfterTicks>900000~900000</disappearsAfterTicks>
+        <showRemainingTime>false</showRemainingTime>
+      </li>
+    </comps>
+    <stages><li><statOffsets><ImmunityGainSpeed>0.1</ImmunityGainSpeed><IncomingDamageFactor>-0.1</IncomingDamageFactor></statOffsets></li></stages>
+  </HediffDef>
+
+  <HediffDef ParentName="Rimfolk_GodGiftBase">
+    <defName>Rimfolk_GodGift_Murmur</defName>
+    <label>rain-ear</label>
+    <description>This one hears rain a day before it comes, and what they sow in wet ground comes up thick. Frogs sing louder where they walk.</description>
+    <stages><li><statOffsets><PlantWorkSpeed>0.1</PlantWorkSpeed><PlantHarvestYield>0.05</PlantHarvestYield></statOffsets></li></stages>
+  </HediffDef>
+
+  <HediffDef ParentName="Rimfolk_GodGiftBase">
+    <defName>Rimfolk_GodGift_Ducat</defName>
+    <label>the glint</label>
+    <description>Deals go this one's way. Traders find themselves agreeing to prices they didn't mean to, and a coin turns up in their pocket now and then that they don't remember having.</description>
+    <stages><li><statOffsets><TradePriceImprovement>0.06</TradePriceImprovement><NegotiationAbility>0.05</NegotiationAbility></statOffsets></li></stages>
+  </HediffDef>
+
+  <!-- ===================== By domain, for any god whose ways name none ===================== -->
+
+  <HediffDef ParentName="Rimfolk_GodGiftBase">
+    <defName>Rimfolk_GodGift_Harvest</defName>
+    <label>sower's luck</label>
+    <description>Seed takes where this one sows it, and the crop they bring in is heavier than it has any right to be.</description>
+    <stages><li><statOffsets><PlantWorkSpeed>0.15</PlantWorkSpeed><PlantHarvestYield>0.08</PlantHarvestYield></statOffsets></li></stages>
+  </HediffDef>
+
+  <HediffDef ParentName="Rimfolk_GodGiftBase">
+    <defName>Rimfolk_GodGift_Storm</defName>
+    <label>storm-sense</label>
+    <description>This one feels weather coming in their teeth, hours before the sky shows it. The psychic world is louder for them, though they keep their nerve when it roars.</description>
+    <stages><li><statOffsets><PsychicSensitivity>0.25</PsychicSensitivity><MentalBreakThreshold>-0.04</MentalBreakThreshold></statOffsets></li></stages>
+  </HediffDef>
+
+  <HediffDef ParentName="Rimfolk_GodGiftBase">
+    <defName>Rimfolk_GodGift_Hunt</defName>
+    <label>hunter's eye</label>
+    <description>This one's shots fly truer than they used to, and game does not hear them coming.</description>
+    <stages><li><statOffsets><ShootingAccuracyPawn>2</ShootingAccuracyPawn><HuntingStealth>0.2</HuntingStealth></statOffsets></li></stages>
+  </HediffDef>
+
+  <HediffDef ParentName="Rimfolk_GodGiftBase">
+    <defName>Rimfolk_GodGift_Healing</defName>
+    <label>healer's touch</label>
+    <description>Wounds close cleaner under this one's hands, and they work quickly and gently at a bedside.</description>
+    <stages><li><statOffsets><MedicalTendQuality>0.1</MedicalTendQuality><MedicalTendSpeed>0.15</MedicalTendSpeed></statOffsets></li></stages>
+  </HediffDef>
+
+  <HediffDef ParentName="Rimfolk_GodGiftBase">
+    <defName>Rimfolk_GodGift_War</defName>
+    <label>fighter's luck</label>
+    <description>This one strikes surer and slips blows better than they used to, and pain takes longer to put them down.</description>
+    <stages><li><statOffsets><MeleeHitChance>2</MeleeHitChance><MeleeDodgeChance>2</MeleeDodgeChance><PainShockThreshold>0.08</PainShockThreshold></statOffsets></li></stages>
+  </HediffDef>
+
+  <HediffDef ParentName="Rimfolk_GodGiftBase">
+    <defName>Rimfolk_GodGift_Craft</defName>
+    <label>sure hand</label>
+    <description>Work goes quicker and truer in this one's hands, and building most of all.</description>
+    <stages><li><statOffsets><WorkSpeedGlobal>0.06</WorkSpeedGlobal><ConstructionSpeed>0.1</ConstructionSpeed></statOffsets></li></stages>
+  </HediffDef>
+
+  <HediffDef ParentName="Rimfolk_GodGiftBase">
+    <defName>Rimfolk_GodGift_Way</defName>
+    <label>road-luck</label>
+    <description>This one's feet are quick and the miles short, and traders find themselves giving a better price than they meant to.</description>
+    <stages><li><statOffsets><MoveSpeed>0.3</MoveSpeed><TradePriceImprovement>0.05</TradePriceImprovement></statOffsets></li></stages>
+  </HediffDef>
+
+  <HediffDef ParentName="Rimfolk_GodGiftBase">
+    <defName>Rimfolk_GodGift_Dead</defName>
+    <label>far-bank ear</label>
+    <description>Grief and terror sit lighter on this one, and they talk sometimes of a quiet that is always near.</description>
+    <stages><li><statOffsets><MentalBreakThreshold>-0.06</MentalBreakThreshold><PsychicSensitivity>0.15</PsychicSensitivity></statOffsets></li></stages>
+  </HediffDef>
+
+  <HediffDef ParentName="Rimfolk_GodGiftBase">
+    <defName>Rimfolk_GodGift_Night</defName>
+    <label>dream-sight</label>
+    <description>This one's sleep is deep and quick, and they wake with the feeling of having been somewhere.</description>
+    <stages><li><statOffsets><RestRateMultiplier>0.15</RestRateMultiplier><PsychicSensitivity>0.15</PsychicSensitivity></statOffsets></li></stages>
+  </HediffDef>
+
+  <HediffDef ParentName="Rimfolk_GodGiftBase">
+    <defName>Rimfolk_GodGift_Hearth</defName>
+    <label>warm hearth</label>
+    <description>This one's cooking is quick and safe, and people sit easier in their company.</description>
+    <stages><li><statOffsets><CookSpeed>0.2</CookSpeed><SocialImpact>0.1</SocialImpact></statOffsets></li></stages>
+  </HediffDef>
+
+  <HediffDef ParentName="Rimfolk_GodGiftBase">
+    <defName>Rimfolk_GodGift_Wild</defName>
+    <label>green hand</label>
+    <description>Growing things thrive under this one's hands, and beasts trust them sooner than they should. Roots seem to lean toward them.</description>
+    <stages><li><statOffsets><PlantWorkSpeed>0.15</PlantWorkSpeed><TameAnimalChance>0.1</TameAnimalChance><AnimalGatherYield>0.1</AnimalGatherYield></statOffsets></li></stages>
+  </HediffDef>
+
+  <HediffDef ParentName="Rimfolk_GodGiftBase">
+    <defName>Rimfolk_GodGift_Waters</defName>
+    <label>river-luck</label>
+    <description>Fevers wash out of this one like silt, and they move as easily as a current.</description>
+    <stages><li><statOffsets><ImmunityGainSpeed>0.1</ImmunityGainSpeed><MoveSpeed>0.15</MoveSpeed></statOffsets></li></stages>
+  </HediffDef>
+
+  <HediffDef ParentName="Rimfolk_GodGiftBase">
+    <defName>Rimfolk_GodGift_Machine</defName>
+    <label>machine-tongue</label>
+    <description>Machines make sense to this one in a way they did not before. Problems that stump everyone else come apart in their head like clockwork, and the workshop lights flicker when they come in.</description>
+    <stages><li><statOffsets><ResearchSpeed>0.12</ResearchSpeed><GeneralLaborSpeed>0.05</GeneralLaborSpeed></statOffsets></li></stages>
+  </HediffDef>
+
+  <HediffDef ParentName="Rimfolk_GodGiftBase">
+    <defName>Rimfolk_GodGift_Void</defName>
+    <label>hollow ear</label>
+    <description>This one has an ear for what is beneath the world. They hear it clearly now, and it does not always let them rest.</description>
+    <stages><li><statOffsets><PsychicSensitivity>0.4</PsychicSensitivity><MentalBreakThreshold>0.04</MentalBreakThreshold></statOffsets></li></stages>
+  </HediffDef>
+
+  <!-- ===================== What a gift may cost, and what the Hunger pays with ===================== -->
+
+  <!-- A gift's price: a mark, for good. -->
+  <HediffDef>
+    <defName>Rimfolk_GodMark</defName>
+    <hediffClass>HediffWithComps</hediffClass>
+    <label>pale mark</label>
+    <description>A pale sign on the skin, in a shape nobody can name, that was not there before and never fades. People notice it, and some of them look away.</description>
+    <defaultLabelColor>(0.85, 0.7, 0.55)</defaultLabelColor>
+    <isBad>true</isBad>
+    <everCurableByItem>false</everCurableByItem>
+    <scenarioCanAdd>false</scenarioCanAdd>
+    <stages><li><statOffsets><PawnBeauty>-1</PawnBeauty><SocialImpact>-0.05</SocialImpact></statOffsets></li></stages>
+  </HediffDef>
+
+  <!-- Bad dreams that follow a few of the colony into the day (GodHealth: a cruelty returned at night). -->
+  <HediffDef>
+    <defName>Rimfolk_BadDreams</defName>
+    <hediffClass>HediffWithComps</hediffClass>
+    <label>bad dreams</label>
+    <description>This one has slept badly for nights, always the same dream, and it follows them into the day. They wake tired, and small hurts are slow to mend.</description>
+    <defaultLabelColor>(0.6, 0.6, 0.8)</defaultLabelColor>
+    <isBad>true</isBad>
+    <everCurableByItem>false</everCurableByItem>
+    <scenarioCanAdd>false</scenarioCanAdd>
+    <comps>
+      <li Class="HediffCompProperties_Disappears">
+        <disappearsAfterTicks>90000~150000</disappearsAfterTicks>
+        <showRemainingTime>false</showRemainingTime>
+      </li>
+    </comps>
+    <stages><li><statOffsets><RestRateMultiplier>-0.2</RestRateMultiplier><InjuryHealingFactor>-0.15</InjuryHealingFactor><MentalBreakThreshold>0.03</MentalBreakThreshold></statOffsets></li></stages>
+  </HediffDef>
+
+  <!-- What the Hunger pays a breaking mind with: two days of calm out of the dark (GodVoid). -->
+  <HediffDef>
+    <defName>Rimfolk_VoidCalm</defName>
+    <hediffClass>HediffWithComps</hediffClass>
+    <label>calm from the dark</label>
+    <description>This one was at the edge, and then their mind went still. The calm is cold and complete, and it will not last.</description>
+    <defaultLabelColor>(0.55, 0.5, 0.75)</defaultLabelColor>
+    <isBad>false</isBad>
+    <everCurableByItem>false</everCurableByItem>
+    <scenarioCanAdd>false</scenarioCanAdd>
+    <comps>
+      <li Class="HediffCompProperties_Disappears">
+        <disappearsAfterTicks>120000~120000</disappearsAfterTicks>
+        <showRemainingTime>true</showRemainingTime>
+      </li>
+    </comps>
+    <stages><li><statOffsets><MentalBreakThreshold>-0.3</MentalBreakThreshold></statOffsets></li></stages>
+  </HediffDef>
+
+</Defs>

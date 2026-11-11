@@ -56,7 +56,6 @@ namespace ColonyCouncil
                 if (map == null || !map.IsPlayerHome) continue;
                 Safe("the day's offerings", () => Offerings.Daily(b, map, now));
                 Safe("the day's vows", () => Vows.Daily(b, map, now));
-                Safe("the Hunger's due", () => Prayers.HungerDue(b, map, now));
             }
             Safe("demands", () => GodDreams.Daily(b, now));
             Safe("pruning", () => b.Prune(now));
@@ -243,7 +242,7 @@ namespace ColonyCouncil
         public static string ShrineWord => ("CC_Wsh_Shrine_" + WorshipMath.ShrineWord((int)Ages.Ours)).Translate();
 
         /// <summary>A god's place in words: "Ceren's chapel".</summary>
-        public static string ShrineOf(God g) => "CC_Wsh_ShrineOf".Translate(CardName(g).Named("GOD"), ShrineWord.Named("SHRINE")).Resolve();
+        public static string ShrineOf(God g) => "CC_Wsh_ShrineOf".Translate(Called(g).Named("GOD"), ShrineWord.Named("SHRINE")).Resolve();
 
         /// <summary>A line from a pool for someone and their god ({GOD}, {GODEPITHET}, {GODOF}, {PAWN}, {OTHER}), tagged with the god's domain and kind, the step and the extra tags; null when nothing fits.</summary>
         public static string Line(string pool, Pawn p, God g, Pawn other = null, params string[] extra) => LineWith(pool, p, g, other, null, extra);
@@ -258,8 +257,8 @@ namespace ColonyCouncil
                 if (g != null)
                 {
                     tags.AddRange(GodSpeech.Tags(g));
-                    // The god itself, for a hand-made god's own lines ([godkey:auren]): its patron's or its own name.
-                    tags.Add("godkey:" + (g.patron ?? g.name ?? "").ToLowerInvariant());
+                    // The god itself, for its own lines ([godkey:smoulder]): its key (its short name).
+                    tags.Add("godkey:" + (g.Key ?? g.patron ?? "").ToLowerInvariant());
                 }
                 tags.Add("step:" + Step.ToLowerInvariant());
                 if (extra != null) tags.AddRange(extra.Where(t => !t.NullOrEmpty()));
@@ -268,7 +267,7 @@ namespace ColonyCouncil
                 string line = Flavor.FromPool(pool, p, null, null, tags.ToArray());
                 if (line.NullOrEmpty()) return null;
                 var args = new List<NamedArgument> { p.Named("PAWN"), (other ?? p).Named("OTHER") };
-                args.AddRange(Gods.Args(g));
+                if (g != null) args.AddRange(new[] { Called(g, p).Named(GodsMath.God), (g.epithet ?? "").Named(GodsMath.Epithet), Gods.GodOf(g).Named(GodsMath.Of) });
                 if (g == null) args.AddRange(new[] { "".Named(GodsMath.God), "".Named(GodsMath.Epithet), "".Named(GodsMath.Of) });
                 if (more != null) args.AddRange(more);
                 return line.Formatted(args.ToArray()).Resolve().CapitalizeFirst();
@@ -292,8 +291,9 @@ namespace ColonyCouncil
 
         /// <summary>
         /// A god's sign at a place: the presence part plays its moment (GodPresenceSeam), and while that isn't there, a plain
-        /// card or a line in the news worded for the step of how real the gods are (the caller's text already is: what was
-        /// seen and what people say, never why), with a glow at the place in Felt and Walking. In the colony's book either way.
+        /// card or a line in the news, with a glow at the place in Felt and Walking. The caller's text says only what was seen,
+        /// for the step of how real the gods are; the god behind it is named after it only as the core allows (<see cref="Hand"/>).
+        /// Remembered among the god's acts, and in the colony's book through those who saw it.
         /// </summary>
         public static void Sign(God g, Map map, IntVec3 cell, PresenceKind kind, string title, string text, LookTargets look, bool letter, GodActKind act = GodActKind.Act)
         {
@@ -302,6 +302,8 @@ namespace ColonyCouncil
             {
                 var spec = PresenceSpec.For(g, map, kind, cell);
                 spec.title = title;
+                string seen = text;
+                text += Hand(g, map, cell);
                 spec.text = text;
                 if (!GodPresenceSeam.Call(spec))
                 {
@@ -309,7 +311,7 @@ namespace ColonyCouncil
                     if (letter) Tell.Letter(NewsKind.Colony, Importance.Notable, map, title, text, LetterDefOf.NeutralEvent, look);
                     else Tell.Minor(NewsKind.Colony, Importance.Notable, map, text, look);
                 }
-                Witness(g, map, act, text, cell);
+                Witness(g, map, act, seen, cell);
             }
             catch (Exception e)
             {
@@ -380,8 +382,9 @@ namespace ColonyCouncil
         // ================= The colony's book =================
 
         /// <summary>
-        /// Something the colony's people saw or did with a god, for the colony's book (Gods.Remember; the core fills in who
-        /// witnessed it): <paramref name="text"/> in their own words and beliefs, possibly wrong, never the god's mind.
+        /// Something of a god's at a home for the gods' history (Gods.Remember): an act on the land (a sign, a blessing, a
+        /// wrath) reaches the colony's book through those who saw it, as they took it; anything else (an offering left, a
+        /// festival's favour, a vow) stays hidden. <paramref name="text"/> is what was seen, never why.
         /// </summary>
         public static void Witness(God g, Map map, GodActKind kind, string text, IntVec3 cell = default)
         {
@@ -390,14 +393,51 @@ namespace ColonyCouncil
         }
 
         /// <summary>
-        /// The god as worship's cards and messages name it: plainly, by the colony's name for it, once the colony knows it
-        /// (a shrine given to it, its festival, a vow to it); else "a god".
-        /// For the lead at the merge: swap this for the reworked core's Gods.CardName(god, home).
+        /// The colony's book, written by what its people saw of their own worship (a place given to a god, a festival kept, a
+        /// vow kept or broken, a beast let go): those near enough to see it, and <paramref name="also"/>, under the god they
+        /// gave it to, which they know because they did it themselves.
         /// </summary>
-        public static string CardName(God g, Map home = null)
+        public static void Booked(God g, Map map, IntVec3 cell, string words, Pawn also = null)
+        {
+            if (g == null || map == null || words.NullOrEmpty()) return;
+            try
+            {
+                var who = Gods.Witnesses(map, cell);
+                if (also != null && also.IsColonist && !who.Contains(also)) who.Insert(0, also);
+                if (who.Count > 0) GodLore.Saw(who, g, words);
+            }
+            catch (Exception e)
+            {
+                CouncilLog.ErrorOnce("worship: the colony's book", e);
+            }
+        }
+
+        /// <summary>
+        /// The colony's name for a god its people pray to, give places to, vow to and keep the days of (their own doings, which
+        /// they know): its page in the colony's book, else the name <paramref name="speaker"/> uses for it (GodLore.NameOf), else
+        /// its own; "a god" for one the colony doesn't know. Never a claim that the god did anything: for that, <see cref="Hand"/>.
+        /// </summary>
+        public static string Called(God g, Pawn speaker = null)
         {
             if (g == null) return "";
-            return Gods.Known(g) ? Gods.Name(g) : "CC_Wsh_UnknownGod".Translate().ToString();
+            if (!Gods.Known(g)) return "CC_Wsh_UnknownGod".Translate().ToString();
+            return speaker != null ? GodLore.NameOf(g, speaker) ?? Gods.Name(g) : GodLore.Instance?.PageOf(g)?.name ?? Gods.Name(g);
+        }
+
+        /// <summary>
+        /// Who was behind something that happened, as a card may say it (the core's rule, Gods.CardName): plainly where the
+        /// colony knows it was this god (the gods walk, it has seen the god act plainly, or it knows the sign), else "some say"
+        /// where the gods are felt and someone of the colony saw it (<paramref name="seen"/>, else whoever was near the cell),
+        /// else nothing: what happened stays unnamed.
+        /// </summary>
+        public static string Hand(God g, Map map, IntVec3 cell, bool? seen = null, string sign = null)
+        {
+            if (g == null) return "";
+            string name = Gods.CardName(g, map, sign);
+            if (name != null) return " " + "CC_GW_Hand_Plain".Translate(name.Named("GOD")).Resolve();
+            if (Gods.Known(g) && Gods.Realness == GodRealness.Felt && (seen ?? GodWorld.Witnessed(map, cell)))
+                return " " + "CC_GW_Hand_Felt".Translate(Called(g).Named("GOD")).Resolve();
+            return "";
         }
     }
 }

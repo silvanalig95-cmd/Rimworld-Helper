@@ -21,6 +21,12 @@ Work in progress and the next steps are in `docs/HANDOFF.md`: read it first.
   mods actually enabled in their list and save (the player: "always consider the actual mods i have enabled in my save
   and mod list"), and check every def name and tag against it.
 - Bug fixes come before features. No filler.
+- The gods are unseen (the player's rule since 11 November 2026): the gods act like a storyteller, an ominous presence,
+  above the player as above the pawns. The player learns only what the pawns know: what they saw, were told, believe or
+  felt, attributed and possibly wrong (the colony's own book of the gods, kept by its keeper). Never a meta view: no
+  favour, wants, rules or truths shown, and no Almanac page of the gods (docs/design/gods.md, "The gods are unseen").
+  Events and cards may name a god when the colony knows it was that god (it was seen, revealed itself, or the gods walk
+  openly), by the name the colony knows it by; else unnamed or "some say".
 - New ideas and requests go on the to-do list first (the player's rule since 11 November 2026): every new wish or
   report is written into `docs/HANDOFF.md` as a "To do when the player asks" entry with their words, and nothing is
   built until they say "do this now", "start now" or the like; gathered entries are then planned and built together.

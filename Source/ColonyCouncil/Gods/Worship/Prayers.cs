@@ -21,7 +21,8 @@ namespace ColonyCouncil
     /// A god answers at most once in five days at a home, through the presence part's moment or a plain card. Later, a
     /// prayer comes good on its own (the sick get well, the rain comes, nobody falls in the raid) and the god is credited;
     /// or it goes unanswered (the sick die, the rain never comes, someone falls), and that can be a crisis of faith
-    /// (Worship/FaithHeart.cs). The Hunger answers anyone, and comes back for its due.
+    /// (Worship/FaithHeart.cs). The Hunger is never answered here: it hears the desperate on its own terms, through the
+    /// world part's bargain (Gods/World/GodVoid.cs).
     /// </summary>
     public static class Prayers
     {
@@ -289,7 +290,8 @@ namespace ColonyCouncil
             if (last != null && now - last.value < WorshipMath.AnswerGapDays * GenDate.TicksPerDay) return;
             bool priest = Worship.IsPriest(p) || Worship.Priest(map) != null && r.atShrine && Worship.Priest(map).Position.InHorDistOf(p.Position, 10f);
             // A god worship doesn't move answers nobody (Helios gives to all alike); one that returns by night hears the night's prayers better (Selene).
-            if (!GodWorshipDef.Moved(g)) return;
+            // The Hunger answers only through its own bargain with the desperate (Gods/World/GodVoid.cs), never a prayer here.
+            if (!GodWorshipDef.Moved(g) || g.kind == GodKind.Hunger || g.baseKind == GodKind.Hunger) return;
             float chance = WorshipMath.AnswerChance(Gods.Realness, g.kind, Gods.Loudness(g), Gods.Favour(g, map), priest, r.atShrine, Worship.IsHonoured(g, map));
             int hour = GenLocalDate.HourOfDay(map);
             if (hour >= 20 || hour < 5) chance = Mathf.Min(0.6f, chance * (GodWorshipDef.For(g)?.nightFactor ?? 1f));
@@ -298,16 +300,18 @@ namespace ColonyCouncil
             r.answered = true;
             b.SetMark(key, "answer", g.id, now, now);
             CouncilGameComponent.GiveThought(p, WorshipDefOf.Rimfolk_Worship_Answered);
-            if (g.kind == GodKind.Hunger) b.SetMark(key, "due", g.id, now, now + GenDate.TicksPerDay);
             FaithHeart.Witnessed(map, g, p.Position);
         }
 
         private static string Step => Worship.Step;
 
-        /// <summary>The god's answer, at the step's strength, shown on the map; false when there was nothing to answer after all.</summary>
+        /// <summary>
+        /// The god's answer, at the step's strength, shown on the map as what happened after the prayer; the god behind it named
+        /// only as the core allows (Worship.Sign). False when there was nothing to answer after all.
+        /// </summary>
         private static bool Answer(PrayerRecord r, Pawn p, God g, Map map)
         {
-            string title = "CC_Wsh_Answer_Title".Translate(Worship.CardName(g).Named("GOD")).Resolve();
+            string title = "CC_Wsh_Answer_Title".Translate().Resolve();
             switch (r.kind)
             {
                 case PrayerKind.Sickness:
@@ -318,7 +322,7 @@ namespace ColonyCouncil
                     h.Severity = Mathf.Max(0.01f, h.Severity - WorshipMath.SicknessEase(Gods.Realness) * h.def.lethalSeverity);
                     var imm = sick.health?.immunity?.GetImmunityRecord(h.def);
                     if (imm != null) imm.immunity = Mathf.Min(1f, imm.immunity + WorshipMath.SicknessEase(Gods.Realness) * 0.6f);
-                    string text = ("CC_Wsh_Answer_Sickness_" + Step).Translate(sick.LabelShort.Named("SICK"), Worship.CardName(g).Named("GOD"), h.LabelBase.Named("ILLNESS"),
+                    string text = ("CC_Wsh_Answer_Sickness_" + Step).Translate(sick.LabelShort.Named("SICK"), Worship.Called(g).Named("GOD"), h.LabelBase.Named("ILLNESS"),
                         p.LabelShort.Named("PAWN")).Resolve();
                     Worship.Sign(g, map, sick.PositionHeld, PresenceKind.Blessing, title, text, sick, Gods.Realness == GodRealness.Walking, GodActKind.Blessing);
                     return true;
@@ -327,7 +331,7 @@ namespace ColonyCouncil
                 {
                     Interplay.Ease(p, 8f, StrainRelief.Quiet);
                     GodDreams.QueueLost(p, g, r.aboutName);
-                    string text = ("CC_Wsh_Answer_Death_" + Step).Translate(p.LabelShort.Named("PAWN"), Worship.CardName(g).Named("GOD"), (r.aboutName ?? "?").Named("DEAD")).Resolve();
+                    string text = ("CC_Wsh_Answer_Death_" + Step).Translate(p.LabelShort.Named("PAWN"), Worship.Called(g).Named("GOD"), (r.aboutName ?? "?").Named("DEAD")).Resolve();
                     Worship.Sign(g, map, p.Position, PresenceKind.Act, title, text, p, false);
                     return true;
                 }
@@ -335,8 +339,8 @@ namespace ColonyCouncil
                 {
                     var frenzy = DefDatabase<InspirationDef>.GetNamedSilentFail("Frenzy_Shoot");
                     if (frenzy == null || p.WorkTagIsDisabled(WorkTags.Violent) || p.Inspired || p.mindState?.inspirationHandler == null) return false;
-                    if (!p.mindState.inspirationHandler.TryStartInspiration(frenzy, "CC_Wsh_Answer_RaidReason".Translate(p.LabelShort.Named("PAWN"), Worship.CardName(g).Named("GOD")).Resolve())) return false;
-                    string text = ("CC_Wsh_Answer_Raid_" + Step).Translate(p.LabelShort.Named("PAWN"), Worship.CardName(g).Named("GOD")).Resolve();
+                    if (!p.mindState.inspirationHandler.TryStartInspiration(frenzy, "CC_Wsh_Answer_RaidReason".Translate(p.LabelShort.Named("PAWN"), Worship.Called(g).Named("GOD")).Resolve())) return false;
+                    string text = ("CC_Wsh_Answer_Raid_" + Step).Translate(p.LabelShort.Named("PAWN"), Worship.Called(g).Named("GOD")).Resolve();
                     Worship.Sign(g, map, p.Position, PresenceKind.Blessing, title, text, p, false, GodActKind.Blessing);
                     return true;
                 }
@@ -362,8 +366,8 @@ namespace ColonyCouncil
             var rain = DefDatabase<WeatherDef>.GetNamedSilentFail(Gods.Realness == GodRealness.Walking ? "RainyThunderstorm" : "Rain") ?? DefDatabase<WeatherDef>.GetNamedSilentFail("Rain");
             if (rain == null || map.weatherManager.curWeather == rain) return;
             map.weatherManager.TransitionTo(rain);
-            string text = ("CC_Wsh_Answer_Drought_" + Step).Translate(Worship.CardName(g).Named("GOD")).Resolve();
-            Worship.Sign(g, map, map.Center, PresenceKind.Blessing, "CC_Wsh_Answer_Title".Translate(Worship.CardName(g).Named("GOD")).Resolve(), text, null,
+            string text = ("CC_Wsh_Answer_Drought_" + Step).Translate(Worship.Called(g).Named("GOD")).Resolve();
+            Worship.Sign(g, map, map.Center, PresenceKind.Blessing, "CC_Wsh_Answer_Title".Translate().Resolve(), text, null,
                 Gods.Realness == GodRealness.Walking, GodActKind.Blessing);
             FaithHeart.RainAfterDrought(map, g);
         }
@@ -434,37 +438,10 @@ namespace ColonyCouncil
             // A raid beaten off is the gods of war's own deed already (Gods/GodDeeds.cs): thanks and favour, no mood of its own.
             if (r.kind != PrayerKind.Raid) CouncilGameComponent.GiveThought(p, WorshipDefOf.Rimfolk_Worship_Answered);
             if (Faiths.On) Faiths.Steady(p, 0.03f);
-            // The colony's book: what was prayed for and what followed, as the one who prayed tells it.
-            Worship.Witness(g, map, GodActKind.Favour, ("CC_Wsh_Book_Credit_" + r.kind).Translate(p.LabelShort.Named("PAWN"), Worship.CardName(g).Named("GOD"),
-                (r.aboutName ?? "").Named("SICK")).Resolve(), p.PositionHeld);
-        }
-
-        // ================= The Hunger's due =================
-
-        /// <summary>The region's day: where the Hunger answered, it takes its due from the stores the next night, something of worth, gone without a trace.</summary>
-        public static void HungerDue(WorshipBook b, Map map, int now)
-        {
-            var m = b.Mark(Gods.HomeKey(map), "due");
-            if (m == null || now < m.until) return;
-            b.homeMarks.Remove(m);
-            var g = Gods.ById(m.god);
-            if (g == null) return;
-            Thing best = null;
-            foreach (var group in map.haulDestinationManager.AllGroupsListForReading)
-                foreach (var t in group.HeldThings)
-                {
-                    if (t == null || !t.Spawned || t.def.category != ThingCategory.Item || t.def.IsCorpse) continue;
-                    float v = t.MarketValue * t.stackCount;
-                    if (v < 60f || v > 600f) continue;
-                    if (best == null || v > best.MarketValue * best.stackCount) best = t;
-                }
-            if (best == null) return;
-            string what = best.LabelCap;
-            var cell = best.Position;
-            best.Destroy(DestroyMode.Vanish);
-            string text = ("CC_Wsh_HungerDue_" + Step).Translate(what.Named("WHAT"), Worship.CardName(g).Named("GOD")).Resolve();
-            Worship.Sign(g, map, cell, PresenceKind.Wrath, "CC_Wsh_HungerDue_Title".Translate(Worship.CardName(g).Named("GOD")).Resolve(), text, new LookTargets(cell, map), false,
-                GodActKind.Wrath);
+            // The colony's book: what was prayed for and what followed, as the one who prayed tells it (a few days apart a person).
+            string words = ("CC_Wsh_Book_Credit_" + r.kind).Translate(Worship.Called(g, p).Named("GOD"), (r.aboutName ?? "").Named("SICK")).Resolve();
+            Worship.Witness(g, map, GodActKind.Favour, words, p.PositionHeld);
+            if (Interplay.Ready("worship-book|" + p.thingIDNumber, WorshipMath.BookGapDays)) GodLore.Prayed(p, g, words);
         }
 
         // ================= Dev =================

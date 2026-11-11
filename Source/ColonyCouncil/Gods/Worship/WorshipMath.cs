@@ -326,6 +326,9 @@ namespace ColonyCouncil
         /// <summary>A god answers at most once in this many days at a home.</summary>
         public const float AnswerGapDays = 5f;
 
+        /// <summary>A person's prayers reach the colony's book at most once in this many days (what followed, as they tell it).</summary>
+        public const float BookGapDays = 4f;
+
         /// <summary>How much of a sickness an answer eases (its severity), by the step: a little in Felt, plainly in Walking.</summary>
         public static float SicknessEase(GodRealness r) => r == GodRealness.Walking ? 0.15f : r == GodRealness.Felt ? 0.08f : 0f;
 

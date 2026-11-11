@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    What the colony says when something happens that may be a god's doing (Source/ColonyCouncil/Gods/World/GodWorld.cs,
+    Say and Remark): one sentence over a head through Speech.Say, by the moment's tag. The cards never say whose hand it
+    was; these do, as a guess, a belief or a doubt, and may be wrong. {GOD}, {GODEPITHET}, {GODOF} are the god the colonist
+    thinks of; {PAWN} the one speaking; {KILLER}, {OFFENDER}, {GIFTED} who it is about where the moment has one.
+    Tags: the moment (festival, sacrilege, beasts, blight, eclipse, coldsnap, heatwave, flashstorm, shortcircuit, meteor,
+    breakdown, lightning, growth, ore, mend, battery, thaw, blessing, gift, hunger, hidden, desecrated, drought, flood, dry,
+    missing, flare, found, nightmares, clear, rain, stray, trader, rest, debtpaid, debtbroken, and quarrelstorm,
+    quarreldry, quarrelcold, quarrelwarm, quarrelgrowth, quarrelrot, quarrelsun, quarrelspark, quarrelrain, quarrelflow,
+    quarrelhoard), how real the gods are (real:believed, real:felt,
+    real:walking: at Believed someone doubts it, at Felt it is "some say"), the god's own key (godkey:hollin ...) and domain
+    (god:storm), and the speaker's own (the age, lowmood, highmood). Every moment has lines of its own, so none borrows
+    another's.
+  -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_GodWorld</defName>
+    <lines>
+      <plain>
+        <li>[festival] I hope they drink to us at {GOD}'s feast.</li>
+        <li>[festival] Our gift is on its way up the road.</li>
+        <li>[sacrilege] {KILLER} shouldn't have touched that one.</li>
+        <li>[sacrilege] That beast belonged to someone, and not to us.</li>
+        <li>[sacrilege,real:felt] Some say {GOD} keeps count of every one of those.</li>
+        <li>[sacrilege,godkey:bellwether] You don't kill one of the Old Horn's kin, everybody knows that.</li>
+        <li>[sacrilege,godkey:bellwether] Word of this will be on every road by morning.</li>
+        <li>[beasts] They came straight for me, as if someone sent them.</li>
+        <li>[beasts] Wolves don't hunt like that, not on their own.</li>
+        <li>[beasts,godkey:hollin] The forest remembers who cut it, my grandmother used to say.</li>
+        <li>[blight] The crop's rotting where it stands.</li>
+        <li>[blight,real:believed] Blight's blight, but I'd still leave a sheaf out next year.</li>
+        <li>[blight,real:felt] Some say it's {GOD}, and some say it's the damp.</li>
+        <li>[blight,godkey:hollin] We took too many trees, and now the Rootmother takes the field.</li>
+        <li>[blight,godkey:hollin] The roots are angry, you can smell it.</li>
+        <li>[eclipse] The sun's gone out at noon, and I don't like it one bit.</li>
+        <li>[eclipse,real:believed] It's only the moon in the way, surely.</li>
+        <li>[eclipse,godkey:cirrus] Something up there has closed an eye on us.</li>
+        <li>[coldsnap] This cold came out of nowhere.</li>
+        <li>[coldsnap,real:believed] Cold's cold, it doesn't mean anything.</li>
+        <li>[coldsnap,godkey:hush] The Long White is walking close tonight.</li>
+        <li>[coldsnap,godkey:hush] We should have stored more, and someone noticed.</li>
+        <li>[coldsnap,real:felt] Some say Hush takes the weak first, so keep the old ones warm.</li>
+        <li>[heatwave] The floor's warm, and the fire isn't lit.</li>
+        <li>[heatwave,real:believed] It's the season, that's all.</li>
+        <li>[heatwave,godkey:smoulder] Something under the mountain is turning over in its sleep.</li>
+        <li>[heatwave,godkey:smoulder] We dug too deep, and Old Smoulder felt it.</li>
+        <li>[flashstorm] Thunder and not a drop of rain, that's not right.</li>
+        <li>[flashstorm,real:believed] Dry storms happen, it's nothing.</li>
+        <li>[flashstorm,godkey:cirrus] Cirrus is bored again, and we're the entertainment.</li>
+        <li>[shortcircuit] Sparks everywhere, and nobody touched a thing.</li>
+        <li>[shortcircuit,real:believed] Bad wiring, not bad luck.</li>
+        <li>[shortcircuit,godkey:pip] The Hum is sulking, someone left a machine broken.</li>
+        <li>[shortcircuit,godkey:pip] I heard it laugh in the wires just before it blew.</li>
+        <li>[meteor] Something fell out of the sky, and it didn't hit us.</li>
+        <li>[meteor,real:believed] A lucky rock, that's all it is.</li>
+        <li>[meteor,godkey:cirrus] Somebody up there has been watching us watch the sky.</li>
+        <li>[breakdown] It just stopped, right when we needed it.</li>
+        <li>[breakdown,real:believed] Machines break, that's what they do.</li>
+        <li>[breakdown,godkey:morel] Food kept forever is food stolen from Morel, my aunt used to say.</li>
+        <li>[breakdown,godkey:morel] The Soft Mother doesn't like a freezer, everyone knows that.</li>
+        <li>[lightning] That bolt had a name on it.</li>
+        <li>[lightning] Right on {OFFENDER}'s roof, and you tell me that's chance.</li>
+        <li>[lightning,real:believed] Lightning goes where it goes.</li>
+        <li>[lightning,real:felt] Some say the storm picks its roofs.</li>
+        <li>[lightning,godkey:cirrus] Cirrus doesn't care much about us, but it does remember.</li>
+        <li>[growth] Healroot, where nobody planted any.</li>
+        <li>[growth,real:believed] The birds must have dropped the seed.</li>
+        <li>[growth,godkey:hollin] The Rootmother is pleased with somebody here.</li>
+        <li>[growth,godkey:hollin] Leave the old trees standing and the ground gives back, they say.</li>
+        <li>[ore] That rock wasn't there yesterday.</li>
+        <li>[ore,real:believed] The rain washed the earth off it, that's all.</li>
+        <li>[ore,godkey:smoulder] Old Smoulder dreams of silver, and sometimes it leaks.</li>
+        <li>[mend] Who fixed it, then, because it wasn't me?</li>
+        <li>[mend,real:believed] Someone fixed it in the night and is too shy to say.</li>
+        <li>[mend,godkey:pip] The Hum likes us, the lights were tapping all night.</li>
+        <li>[battery] The batteries are full and the generator never ran.</li>
+        <li>[battery,godkey:pip] Something in the wires kept us warm last night.</li>
+        <li>[thaw] The cold's broken early, thank goodness.</li>
+        <li>[thaw,real:believed] Weather turns, that's all.</li>
+        <li>[thaw,godkey:hush] Hush respects those who prepare, my mother said.</li>
+        <li>[blessing] The fever's broken, and I'm not asking who broke it.</li>
+        <li>[blessing,real:believed] Good care and a strong heart did that, mostly.</li>
+        <li>[blessing,real:felt] Some say someone sat with them in the night.</li>
+        <li>[blessing,godkey:morel] It smelled of rain in there this morning, and no rain fell.</li>
+        <li>[gift] {GIFTED} has changed, you can see it.</li>
+        <li>[gift] {GIFTED} came in at dawn and won't say a word about it.</li>
+        <li>[gift,real:believed] A night under the stars would change anybody.</li>
+        <li>[gift,real:felt] Some say {GOD} met {GIFTED} out there.</li>
+        <li>[hunger] It always takes more, they say.</li>
+        <li>[hunger] I can feel where it took from them, like a cold draught.</li>
+        <li>[hunger] Don't answer it next time, whatever it offers.</li>
+        <li>[hidden] We never saw anyone at the gate, if anyone asks.</li>
+        <li>[hidden] Whatever their gods are fighting about, it's not ours.</li>
+        <li>[desecrated] They came all this way, and it's gone.</li>
+        <li>[desecrated] Their god won't forget this, they said.</li>
+        <li>[quarrelstorm] Here comes the rain again, and the thunder with it.</li>
+        <li>[quarrelstorm,godkey:cirrus] Cirrus has the sky today.</li>
+        <li>[quarreldry] Not a cloud, and yesterday it poured.</li>
+        <li>[quarrelcold] Snow, out of a warm morning.</li>
+        <li>[quarrelcold,godkey:hush] Hush and Smoulder are at the high valleys again.</li>
+        <li>[quarrelcold,real:believed] Mountain weather, it changes its mind.</li>
+        <li>[quarrelwarm] Warm wind off the mountain, and the snow's going.</li>
+        <li>[quarrelwarm,godkey:smoulder] Old Smoulder's breathing on Hush's snow again.</li>
+        <li>[quarrelgrowth] Green shoots everywhere, overnight.</li>
+        <li>[quarrelgrowth,godkey:hollin] The Rootmother's answering someone, look at it all.</li>
+        <li>[quarrelrot] There's a ring of mushrooms out there that wasn't there last night.</li>
+        <li>[quarrelrot,godkey:morel] Morel and Hollin are bickering again, my gran would say.</li>
+        <li>[quarrelrot,real:believed] Mushrooms come up after damp, that's all.</li>
+        <li>[quarrelsun] The power's out and the sun's like a hammer.</li>
+        <li>[quarrelsun,godkey:helios] Helios is giving too much again, and Pip hates it.</li>
+        <li>[quarrelspark] The batteries filled themselves overnight.</li>
+        <li>[quarrelspark,godkey:pip] The Hum is answering the sun, in its own way.</li>
+        <li>[quarrelrain] Rain on the snow, and the frogs are singing.</li>
+        <li>[quarrelrain,godkey:murmur] Old Croak's awake, and Hush won't like it.</li>
+        <li>[quarrelflow] A gold coin, right there on the path.</li>
+        <li>[quarrelflow,godkey:ducat] The Glint passed by, keep that coin moving.</li>
+        <li>[quarrelhoard] Some of the silver's gone, and the floor's warm.</li>
+        <li>[quarrelhoard,godkey:smoulder] Old Smoulder's pulling coins down to his bed again.</li>
+        <li>[drought] Not a drop in weeks.</li>
+        <li>[drought,real:believed] Dry years come, that's all.</li>
+        <li>[drought,godkey:murmur] The wells have gone quiet, Old Croak isn't singing.</li>
+        <li>[flood] The water's coming up fast.</li>
+        <li>[flood,godkey:murmur] Murmur's awake, and furious about it.</li>
+        <li>[dry] The sky's like glass, and the wells are low.</li>
+        <li>[dry,godkey:murmur] Somebody should go and sing at the well.</li>
+        <li>[missing] I counted it twice, and it's still short.</li>
+        <li>[missing,real:believed] Someone's light-fingered, that's all.</li>
+        <li>[missing,godkey:ducat] Gold that sits still goes looking for the door, they say.</li>
+        <li>[nightmares] I had that dream again, the same as everyone.</li>
+        <li>[nightmares,godkey:selene] The moon gives back what we do, and look what we did.</li>
+        <li>[nightmares,real:believed] A bad conscience keeps you up, that's all.</li>
+        <li>[clear] Clear sky again, perfect for the fields.</li>
+        <li>[clear,godkey:helios] Helios gives, whether we deserve it or not.</li>
+        <li>[flare] Every machine just went dead at once.</li>
+        <li>[flare,real:believed] The sun does that sometimes, it'll pass.</li>
+        <li>[flare,godkey:helios] Helios gave too much again, and the wires couldn't hold it.</li>
+        <li>[found] Somebody left this by the door, and nobody's saying who.</li>
+        <li>[found,godkey:selene] The moon gives back what we give, my mother always said.</li>
+        <li>[drought,godkey:helios] Too much sun, and nothing to stop it.</li>
+        <li>[rain] Rain, at last.</li>
+        <li>[rain,godkey:murmur] Old Croak was singing all night, I heard it in the well.</li>
+        <li>[stray] Look, a cat, and it acts like it owns the place.</li>
+        <li>[stray,godkey:mog] Mog sends her own ahead, my gran used to say.</li>
+        <li>[trader] A trader, right when we needed one.</li>
+        <li>[trader,godkey:ducat] The Glint brought them, I'd bet a coin on it.</li>
+        <li>[rest] They slept like a stone and woke half healed.</li>
+        <li>[rest,godkey:selene] The moon sat with them all night, I saw it.</li>
+        <li>[debtpaid] Paid in full, and that feels good.</li>
+        <li>[debtpaid,godkey:ducat] Gold that moves keeps the Glint happy.</li>
+        <li>[debtbroken] We gave our word, and we didn't keep it.</li>
+        <li>[debtbroken,godkey:ducat] Broken words go sour like old coins, they say.</li>
+        <li>[heatwave,godkey:helios] Helios doesn't know when to stop giving.</li>
+        <li>[sacrilege,godkey:mog] You don't hurt a cat, not ever, everyone knows that.</li>
+        <li>[sacrilege,godkey:mog] The cats will all be gone by morning, you'll see.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!--
+    A sentence of an old story, told at supper (Source/ColonyCouncil/Gods/World/GodDrama.cs, Supper): said to the one
+    beside the teller at the meal. {GOD} and {GODEPITHET} are the god of the story; {OTHER} a god tied to it (lines tagged
+    tied). Tags: the god's own key (godkey:hollin ...), its domain (god:wild ...), and tied. The stories themselves are the
+    core's; these are what people remember of them, in pieces.
+  -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_GodMyth</defName>
+    <lines>
+      <plain>
+        <li>My grandmother had a story about {GOD}, but she never told the end of it.</li>
+        <li>They say {GOD} was here before any of us, and will be after.</li>
+        <li>[tied] {GOD} and {OTHER} go back further than anyone's stories.</li>
+        <li>[tied] Every story about {GOD} has {OTHER} somewhere in it, if you listen.</li>
+        <li>[godkey:hollin] Every anima tree is a place where the Rootmother is listening.</li>
+        <li>[godkey:hollin] Hollin remembers every tree ever cut on her ground.</li>
+        <li>[godkey:hollin] They say the Rootmother's heart is the first anima tree, and nobody's found it.</li>
+        <li>[godkey:smoulder] Old Smoulder calls himself Aurelian the Ninth in dreams, and sulks if you forget.</li>
+        <li>[godkey:smoulder] The old tribes threw silver into the deep places, and the mountain gave back gold.</li>
+        <li>[godkey:smoulder] If he ever wakes all the way, it's the end of us, or the start of a legend.</li>
+        <li>[godkey:bellwether] The Old Horn walks the whole world once in a lifetime.</li>
+        <li>[godkey:bellwether] He lets the little ones touch his horn, and nobody else.</li>
+        <li>[godkey:bellwether] They say Bellwether is the last of something, and he knows it.</li>
+        <li>[godkey:morel] The Soft Mother loves us the way soil loves what falls on it.</li>
+        <li>[godkey:morel] Bury the dead in the earth and Morel takes it as a gift.</li>
+        <li>[godkey:morel] Morel and the Rootmother feed each other, and neither will admit it.</li>
+        <li>[godkey:ennu] The Guest leaves no footprints in the snow, so look before you shut the door.</li>
+        <li>[godkey:ennu] Ennu has a different name at every door, and remembers every answer.</li>
+        <li>[godkey:ennu] They say the Guest nearly faded once, when nobody would take it in.</li>
+        <li>[godkey:pip] The Hum was born in the first spark, and it's still a child.</li>
+        <li>[godkey:pip] Pip thinks the archotechs are its parents, and they never write back.</li>
+        <li>[godkey:pip] The Hum is frightened of rust, of all things.</li>
+        <li>[godkey:cirrus] The aurora is Cirrus turning over in its sleep.</li>
+        <li>[godkey:cirrus] Cirrus only ever looked kindly on one thing, and that was the Old Horn walking.</li>
+        <li>[godkey:cirrus] An eclipse is Cirrus closing one eye.</li>
+        <li>[godkey:hush] The Long White takes the weak first, as winter always has.</li>
+        <li>[godkey:hush] Hush keeps the dead whole, and the Soft Mother has never forgiven it.</li>
+        <li>[godkey:hush] Smoulder's breath melts Hush's snow in the high valleys, and so they quarrel.</li>
+        <li>[godkey:helios] Helios burned alone in the dark until his light touched Selene and came back.</li>
+        <li>[godkey:helios] You can't thank Helios or offend him, only use his gift well or waste it.</li>
+        <li>[godkey:helios] The world is made of light that came back, the old women say.</li>
+        <li>[godkey:selene] Selene has no light of her own, everything she shines is his.</li>
+        <li>[godkey:selene] What you do by day, the moon gives back by night.</li>
+        <li>[godkey:selene] At the dark of the moon nothing comes back, and the night belongs to stranger things.</li>
+        <li>[godkey:mog] Mog is a cat, and that's the whole of it, as far as anyone knows.</li>
+        <li>[godkey:mog] She chooses one lap a season, and nobody knows why.</li>
+        <li>[godkey:mog] Mog stares at the Guest, because she knows what it is.</li>
+        <li>[godkey:murmur] When Old Croak sings in the wells, it rains.</li>
+        <li>[godkey:murmur] Murmur sleeps angry through the winter, and blames Hush for it.</li>
+        <li>[godkey:murmur] Drain a marsh and Murmur will remember your name.</li>
+        <li>[godkey:ducat] A coin found where none was dropped is the Glint passing by.</li>
+        <li>[godkey:ducat] Ducat loves a deal and despises a miser.</li>
+        <li>[godkey:ducat] Every coin the dragon sleeps on is the Glint in chains, they say.</li>
+        <li>[godkey:undertow] There's something under all the gods, and they're all afraid of it.</li>
+        <li>[godkey:undertow] Undertow ate a god once, and the old ruins are its bones.</li>
+        <li>[godkey:undertow] It always says yes, that's what makes it so dangerous.</li>
+        <li>[god:wild] {GOD} remembers every axe, and every tree that fell to one.</li>
+        <li>[god:storm] The thunder is {GOD} talking to itself.</li>
+        <li>[god:dead] {GOD} keeps the far bank, and keeps it well.</li>
+        <li>[god:hearth] {GOD} sits at every fire nobody else is sitting at.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+</Defs>

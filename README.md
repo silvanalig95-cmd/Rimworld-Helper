@@ -1525,6 +1525,72 @@ Each part has its own rate on How much happens (*Pack alphas*, *Beast nemeses co
 *Great herds*, 0% to 200%). Together they add about 0.025 hurts a colonist-year at 100%, beside a raid's 1.4 to 2.0
 (`Tools/Balance --harm`). The Almanac page *alphas, legends and great herds* has the numbers.
 
+### A god on the map
+A god always looks like one, unless it hides on purpose. Each of the fourteen domains (Harvest, Storm, Hunt, Healing,
+War, Craft, Way, Dead, Night, Hearth, Wild, Waters, Machine, Void) has its look, with another form in another age where
+the age changes it (the Machine before machines and after; the War and the Craft among spacers), and each of the gods
+walks in the look of its own:
+- **Its body.** A person or an animal made a god's is drawn larger than its kind and walks slowly, never hurried. A
+  person takes the god's skin, hair and light in the eyes, and a robe, cloak or mantle and a crown, hood or mask no
+  mortal wears, recoloured in its colours: the game's own and the player's mods' (A RimWorld of Magic's archmage robes
+  and soulreaper's shroud, Vanilla Factions Expanded's toga and wreath, the elves' shaman crowns, a deer's skull), the
+  first that fits the body. An animal is tinted whole. A god is never sold, stripped, recruited, tamed, eaten or arrested.
+- **Its aura.** A soft halo and a slowly turning carved ring on the ground under it, a glow and a ring behind it that
+  breathe, small lights rising off it in its colours (A RimWorld of Magic's holy lights, twinkles, flowers, bolts,
+  ghosts and shadows, as its domain has them), a light that moves with it so the ground round it glows at night, a
+  shine over the dark, and over it in its colour the name the colony knows it by, or what is seen of it ("a great
+  white thrumbo") when nobody here has heard of it. The ground answers where it walks: flowers, grass, a little
+  snow, scorch marks, ash or puddles (never on a field, a floor or under a roof, filth only outside the home area), or
+  sparks, light and shadow that fade.
+- **The world turns to it.** People and animals near it stop and look, one of them says so now and then; a god near
+  the camera hums softly with its own sound (Alpha Memes' and Ideology's ritual chants, Anomaly's psychic ritual).
+- **In disguise** it shows only its tells: no footprints in the snow, animals following it, a shimmer about it at
+  night, and a colonist with a sharp eye or a psychic gift remarking on it. Revealed, it grows into itself in front of
+  everyone.
+- **Its coming.** The game drops to normal speed and the camera goes there; the music fades into a beat of silence;
+  then the sting (thunder for the Storm, a gong for the Dead, a wolf's howl for the Hunt, Royalty's bestowing, the
+  archotech's call for the Machine, the void monolith for the Void), the sky flashes in its colour and its circle shows
+  on the ground, everyone on the map turns toward it, the devout pray, calm animals lie down and shy ones run; the sky
+  takes its colour and the wind dies for a few hours; a mark is left where it stood (a ring of flowers or scorched
+  ground, a spring, a tree, frost, ash, slag or a standing stone); its track plays (Anomaly's, Odyssey's, Ideology's
+  archonexus song, or your own); and its card comes, dark paper and gold with its symbol, plain or "some say". An omen
+  is small: a sound, a glimmer, someone looking up.
+
+Your own music for a god: put .ogg, .wav or .mp3 files in `Sounds/Rimfolk/Gods/<Domain>/` inside Rimfolk's folder (for
+example `Sounds/Rimfolk/Gods/Storm/`) and restart the game; they play before the look's own tracks. Settings: *Gods'
+auras* and *Gods' music* (How you're told, On the map and in the game's tabs), both on. Dev mode has *Gods: ...*
+actions to make any person or animal a god's, reveal one and play each kind of moment.
+
+### The gods on the map
+The gods are a presence, never explained. Now and then, after days of signs, something comes to the colony, and
+nobody can say for certain what it was or why. You see what the colonists see, and hear what they say about it.
+- **Signs.** The birds all leaving at once, a calm with the wind dead, two people waking from the same dream, a lamp
+  that won't stay lit, the animals all looking one way. Each god has signs of its own: leaves drifting toward one place
+  on no wind, an anima tree humming loud enough to hear indoors; a vast winged shadow crossing the land at noon (Dragon's
+  Descent's own flying dragon, when it's loaded), steam from the ground, the rock rumbling over the deep mines; a ring of
+  mushrooms overnight, white threads across a floor; lights flickering in a pattern, a comms console's static, a lamp
+  glowing with no power; a star moving the wrong way; frost by a wall in lines like writing, a sudden silence, a tall
+  white figure at the edge of the night; a dark a lamp won't reach, a sweet voice to the most desperate; a deep croaking
+  from the wet ground before rain; the sun standing still with the shadows not moving, a heat haze; the moon huge and
+  close all night; a glint of gold, a golden beetle crossing a table, a coin where nobody dropped one.
+- **The moon's face.** The moon waxes and wanes through each season. People mention it, and it shapes the night's signs.
+- **A stranger at the gate.** Sometimes a lone traveller asks for shelter. Give them a bed, let them sleep by the gate,
+  or turn them away. They notice things. When they go, something happens, and what it means is up to you.
+- **Beasts.** A great white thrumbo may pass through, other thrumbos following at a distance. Someone can sit near it
+  while it grazes. A gray cat with too-bright eyes may come and stay a season with one colonist, cats following her,
+  and she won't be kept. Harm either one and see what follows.
+- **Rarer still.** Roots drawing themselves up out of the ground into a shape taller than any tree. A toad the size of a
+  house surfacing in the marsh (Odyssey). A colony that keeps mining deep under the mountain, past every warning, may find
+  out what it has been disturbing (Dragon's Descent).
+- **The night.** What was done by day sometimes comes back by morning: something found, a good dream, a wound healed, or
+  a nightmare, a frost, an animal at the door. It's talked about at breakfast.
+- **The weather.** Sometimes the sky seems to answer, and someone outside always says so.
+
+What people saw goes into the god's history in their own words, the chronicle, their journals and their shared memories.
+The places stay talked about for years: someone walks out to one on a quiet day, it comes up at supper, and visitors ask
+about it. *Believed* brings none of this; the colony reads its gods into what happens anyway. Dev mode has *Gods: ...*
+actions to call each of these.
+
 ### Offices and elections
 Five council seats: **speaker** (chairs meetings, everyone's trust rises a little each day), **marshal** (drills
 count for more, better aim), **quartermaster** (dilemmas cost less, better trade), **physician** (faster healing)
@@ -4232,23 +4298,52 @@ they lost, and their card and the region's page of peoples show their age and wh
 visitors come dressed and armed as the new age is (and nothing of a later age among a people that fell back), their
 camps are built its way and their traders carry its goods. Setting: *Peoples' ages change* (on).
 
-**The gods.** One pantheon for the whole world, and every people has gods it swears by. With Ideology they are each
-faith's own deities, what each is god of read from its own words and its faith's memes and precepts; without it, each
-people has two or three gods of its age, its ways and its land. Rimfolk's peoples each have a patron of their own: the
-Way of the road league, the Healer of the hospitallers, the Herdmother of the herders and the tamers, the Storm-father
-of the Stormglass Conclave, the Ferryman of the Quiet Bell, the Broker, an archotech, of the spacer enclave, and the
-rest. Gods take the form of their people's age (spirits, old gods and saints, half-forgotten gods and gods of the
-machine, archotechs), and they have ties as the old pantheons did: rivals over the rain, lovers and lovers estranged,
-parents and children, twins, allies and old wrongs, shifting over the years. Each has a nature (proud, jealous,
-generous, capricious, wrathful, patient, playful, cold or grieving), and some don't fit at all: archotechs that care
-nothing for offerings, the Hunger the Choir of the Spire keeps quiet for, a trickster, a dead god, a fading god, the
-Sleeper in the Sunken Vault, and in time perhaps a god born of the colony's own faith. The colony stands with each god at
-each home in words, from wrathful to beloved, by what it does: a big harvest, a threat beaten off, a great beast
-brought down, a funeral, and the dead left lying or a sacred animal slaughtered the other way; pleasing a god a little
-galls its rivals. Colonists swear by their gods now and then, and the neighbours' letters name theirs. The region
-window's Peoples has a Gods page: the colony's gods, the others it knows, the rumours of the rest, the whole pantheon as
-a web, and each god's symbol, people, domain, nature, ties and acts. Settings: *Gods* (on) and *How real are the gods*
-(Believed, Felt, Walking; Felt). The Almanac has a page, *the gods*.
+**The gods.** Fourteen gods, each a being with names and a character of its own: Hollin, whose body is the roots under
+the world; Smoulder, a dragon asleep under the mountains; Bellwether, the first thrumbo; Morel, the soft mother of rot
+and mushrooms; Ennu, the Guest who comes in many human shapes; Pip, the young god in the wires; Cirrus, who drifts
+above the clouds; Hush, who walks with winter; Undertow, the hunger under everything; Helios and Selene, the sun who
+gives without looking and the moon who returns at night what was done by day; Mog, a gray cat; Murmur, the toad who
+sings up the rain; and Ducat, the gold that will not stay still. They are an unseen presence, like a storyteller: no
+page tells you what a god thinks or wants. Their hands are in the world's own events (a thrumbo passing, a cold snap, an
+eclipse, a short circuit, mushrooms after rain), and you hear of them only as your colonists do: a believer says whose
+doing they think it was, sometimes wrongly, and while the gods are only felt someone near them says it was the weather.
+At the evening fire colonists tell each other the old stories a piece at a time, visitors tell their own people's by
+their own names for the gods, and neighbours' letters retell one whole or ask after something they heard happened at
+your place. The colony keeps its own book of the gods, a tab of the region window: what its people saw, were told and
+believe, dated and in the hand of whoever keeps it (the chaplain, the devout or the lettered), the names it has heard
+each god by, which may turn out to be one, and nothing more than they know. Every people reveres the gods its lore
+gives it. Settings: *Gods* (on) and *How real are the gods* (Believed, Felt, Walking; Felt).
+
+**The gods in the world.** The gods act beyond the colony's walls and on its land like a storyteller you never see: the
+game's own weather, blight, flares and traders come, and nothing says whose hand it was or why. People say, though:
+a believer's word over their head, a scoffer's doubt, a story at supper, a neighbour's letter swearing by their god, a
+seer at the edge of the land who says true things darkly. A friend invites the colony to its god's feast, a people asks
+it into a holy war, a temple's envoy wants a relic back, and one hunted for their gods' quarrel asks to be hidden. Each
+god has its own ways: Hollin's wild food round the walls or her blight, Smoulder's vein of silver or his heat, Morel's
+fever broken in the night or a freezer failing at the worst hour, Pip's machine mended overnight or its short circuit,
+Cirrus's meteorite or its lightning on one roof, Hush's thaw or its cold snap, Helios's long clear days and his
+flares, Selene returning at night what the colony did by day, Murmur's rain or drought, Ducat's trader at the right
+time or silver gone from a hoard, Mog's cat wandering in, and Bellwether's kin, which nobody harms twice. Two gods
+quarrel where the colony can see it, in snow and warm wind or mushrooms and wild growth. Someone tells a dream at
+breakfast and asks to spend a night under the open sky, and comes back changed (A RimWorld of Magic's classes and
+spells, Vanilla Psycasts Expanded's paths, a green hand, gold, a passion), sometimes marked or older. The dying hear a
+sweet voice that always says yes and always takes more. All at the game's own rate and in the shared budget of hurts.
+
+**Worship.** An altar, a sculpture, a nature shrine or an old terminal can be given to a god: someone walks over and
+says the words, and it becomes the god's shrine (a chapel, a church or a terminal in later ages; a temple in a fine
+room). Now and then someone carries an offering there from the stores, each god's own kind (silver for Smoulder, a
+bowl for the Guest, parts for Pip, a fish for Mog, nothing for Helios), and later it is gone, or an animal had it, or it
+just spoiled. In hard moments people pray: for the gravely ill, for the dead, before a raid, for rain in a drought.
+Sometimes a fever eases in the night after, or the rain comes; nobody can say for certain why, and believers and
+scoffers argue it out, while a couple who pray to different gods bicker over whose sent the rain. A prayer that goes
+unanswered can shake someone's faith, and twice shaken they may turn to another god. People make vows: no meat until
+the sick one is well, a pilgrimage on foot, a temple, a beast spared for a season. Each god the colony holds has its
+festival day on the calendar, kept with a feast, a rite and a chant, and sometimes visitors who hold the same god. An
+elected priest (a shaman, a priest, a pastor or an oracle by the age) dedicates the places, carries the offerings and
+leads the rites, and the council is asked which god to keep the year for, whether to vow a temple, what to do when
+someone dreams a god wants the colony's finest beast, and whose rite comes first when two rival gods' people quarrel.
+Gods speak in dreams. None of it ever says what a god thinks; what people saw goes into the colony's book. Setting:
+*Worship of the gods* (on).
 
 ## Scenarios with stakes
 Seventeen scenarios, marked "(Rimfolk)" on the scenario page with how hard they are. Each starts the game with

@@ -174,12 +174,12 @@ namespace ColonyCouncil
         }
     }
 
-    /// <summary>Something kept for a home for a while: the god honoured this year, the rain kept away, the Hunger's due, a god's last answer.</summary>
+    /// <summary>Something kept for a home for a while: the god honoured this year, the rain kept away, a god's last answer.</summary>
     public class HomeMark : IExposable
     {
         public int home = HomesMath.None;
         /// <summary>
-        /// "honoured" (the year in <see cref="value"/>), "dry" (until <see cref="until"/>), "due" (the Hunger's, from <see cref="until"/>),
+        /// "honoured" (the year in <see cref="value"/>), "dry" (until <see cref="until"/>),
         /// "answer" (the tick of the god's last in <see cref="value"/>), "rain" (an answered prayer's rain, at <see cref="value"/>).
         /// </summary>
         public string what;
@@ -200,7 +200,7 @@ namespace ColonyCouncil
     /// Worship of the gods, saved with the game (docs/design/gods.md, stage 2 "Worship"; the rules in WorshipMath): the
     /// places dedicated to a god, the offerings at them, the prayers said in hard moments, the vows' kinds, the gods' demands
     /// in dreams, the faith's marks on a person (a crisis, a turning, a pilgrimage), and a home's marks (the god honoured this
-    /// year, the rain kept away, the Hunger's due, each god's last answer). Kept in the region's hour and day beside the
+    /// year, the rain kept away, each god's last answer). Kept in the region's hour and day beside the
     /// pantheon (World/Region/RegionBook.cs); everything else goes through the core's <see cref="Gods"/> and its two seams.
     /// </summary>
     public class WorshipBook : GameComponent

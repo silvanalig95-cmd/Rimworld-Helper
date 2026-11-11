@@ -99,6 +99,8 @@ namespace ColonyCouncil
             }
             Lead(s, l, n, a);
             s.outcomes.AddRange(a.outcomes);
+            // A letter of the colony's that slighted their god (Gods/World/GodLetters.cs): they say they took offence.
+            GodLetters.Answered(s, l, n);
             // Its shape (Letters/LetterFormShapes.cs): the usual letter, a bare note, a story, a poem, a raid's account...
             ShapeTheirs(s, n, a.speaker ?? l.writer);
             SignNote(s, false, s.values.ContainsKey("TITLE"));
@@ -562,9 +564,13 @@ namespace ColonyCouncil
 
         // ================= Lines =================
 
-        /// <summary>The letter made from its spec, its lines drawn here.</summary>
-        private static LetterText Compose(LetterSpec s) =>
-            LetterFormMath.Compose(s, Words, (part, tags) => Pick(part, tags, s.values, s.drawn) is string line ? Texts.Fill(line, s.values) : null, () => Rand.Value);
+        /// <summary>The letter made from its spec, its lines drawn here; what of the gods made it into its words goes into the colony's book (Gods/GodTales.cs).</summary>
+        private static LetterText Compose(LetterSpec s)
+        {
+            var text = LetterFormMath.Compose(s, Words, (part, tags) => Pick(part, tags, s.values, s.drawn) is string line ? Texts.Fill(line, s.values) : null, () => Rand.Value);
+            GodTales.Written(s.values, text?.full ?? text?.letter);
+            return text;
+        }
 
         private static string PickFilled(LetterPart part, HashSet<string> tags, LetterSpec s) => Pick(part, tags, s.values, s.drawn) is string line ? Texts.Fill(line, s.values) : null;
 

@@ -367,6 +367,25 @@ MODEL = {
     "Camps/Camp.cs:trees": ("while", 10, P, "while the camp stays"),
     "Camps/CampKindsLand3.cs:caught": ("while", 2, P, "the beasts beast-catchers roped this stay, two at most (CampLandMath.MaxCaught), while the camp stays"),
     "Camps/CampStory.cs:beats": ("while", 3, V, "the beats of the stay played (ask, trouble, parting), while the camp stays"),
+    # A god walking on the map (Gods/Presence/GodAvatar.cs): the robe and crown it was given, and what they covered, put away
+    # in its pack; two pieces each at most, while it is a god (a few gods at most in a long game).
+    "Gods/Presence/GodAvatar.cs:given": ("while", 2, P, "the god's robe and crown, while it walks as one"),
+    "Gods/Presence/GodAvatar.cs:stored": ("while", 4, P, "what the robe and crown covered, kept in its pack, while it walks as one"),
+    # The gods on the map (Gods/OnMap/): the stranger's stay while it lasts (each colonist's kindness to them, side by side,
+    # and who talked with them: the colony's people at most); the omens waiting before a coming (GodsOnMapBook.MaxOmens);
+    # the marks remembered (GodsOnMapMath.MaxMarks, let go after five years); when a god last answered in the weather, one
+    # per home (two lists side by side, one home in the model).
+    "Gods/OnMap/GodStranger.cs:kind": ("while", COLONISTS, P, "each colonist's kindness to the stranger, while they stay (a day or two, a few times in a long game)"),
+    "Gods/OnMap/GodStranger.cs:points": ("while", COLONISTS, V, "beside it, the points, while the stranger stays"),
+    "Gods/OnMap/GodStranger.cs:talkers": ("while", COLONISTS, P, "who talked with the stranger, while they stay"),
+    "Gods/OnMap/GodsOnMapBook.cs:omens": ("fixed", const("Gods/OnMap/GodsOnMapBook.cs", "MaxOmens", 12), 160, "omens waiting before a god's coming, a few days' worth, GodsOnMapBook.MaxOmens at most"),
+    "Gods/OnMap/GodsOnMapBook.cs:marks": ("cap", (const("Gods/OnMap/GodsOnMapMath.cs", "MaxMarks", 24), 0.05), 260, "the marks the gods left, GodsOnMapMath.MaxMarks, let go after five years"),
+    "Gods/OnMap/GodsOnMapBook.cs:weatherHomes": ("fixed", 1, V, "one per home: when a god last answered in the weather there"),
+    "Gods/OnMap/GodsOnMapBook.cs:weatherTicks": ("fixed", 1, V, "beside it, the tick"),
+    # The sacred beast's stay, while it lasts: its kin following at a distance (GodShapeDef.kinCount, three at most) and those
+    # who sat near it (GodsOnMapMath.SittersAVisit).
+    "Gods/OnMap/SacredAnimal.cs:kin": ("while", 3, P, "the beast's kin following at a distance, while it stays (a few times in a long game)"),
+    "Gods/OnMap/SacredAnimal.cs:sat": ("while", 3, P, "those who sat near the great beast this visit, while it stays"),
     "Camps/CampTracker.cs:past": ("fixed", 6, R, "camps the colony remembers, six at most (CampStoryMath.RememberMax), faded after some seasons"),
     "Camps/CampTracker.cs:homes": ("fixed", 1, 260, "one per colony (CampHome: its camp, holding, war party and clock; one home in the model, a second doubles the rows "
                                    "below), a lost home's kept 30 days, then let go"),
@@ -804,6 +823,34 @@ MODEL = {
     "Gods/Worship/WorshipBook.cs:demands": ("cap", (const("Gods/Worship/WorshipBook.cs", "MaxDemands", 12), 0.05), 160, "the gods' demands in dreams, a few days each and ten after, WorshipBook.MaxDemands"),
     "Gods/Worship/WorshipBook.cs:marks": ("cap", (const("Gods/Worship/WorshipBook.cs", "MaxMarks", 120), 0.2), 120, "a person's crises (a month), turnings and pilgrimages, WorshipBook.MaxMarks"),
     "Gods/Worship/WorshipBook.cs:homeMarks": ("cap", (const("Gods/Worship/WorshipBook.cs", "MaxHomeMarks", 80), 0.3), 140, "a home's marks: the god of the year, the rain kept away, each god's last answer, WorshipBook.MaxHomeMarks"),
+    "Gods/God.cs:witnesses": ("fixed", 3, 20, "per act: the colonists who saw it, by name (counted under acts)"),
+    # The colony's own book of the gods (Gods/GodLore.cs): its entries, each a few lines of text in the keeper's voice
+    # with its witnesses' names, GodLoreMath.MaxEntries kept (the oldest let go), a few a week at most (the hands are weeks
+    # apart, talk at most once an evening); the names it has heard the gods by, GodLoreMath.MaxNames at most; how much of
+    # each story it has heard (one a story); each god's last hand and each home's, and its last talk; the hands seen lately,
+    # for neighbours' letters (eight at most); the stories retold in letters (one a story); and how many of the gods'
+    # doings each colonist has seen.
+    "Gods/GodLore.cs:entries": ("cap", (const("Gods/GodLoreMath.cs", "MaxEntries", 600), 0.5), 420, "the colony's book: an entry in the keeper's voice, with its date and witnesses, GodLoreMath.MaxEntries kept"),
+    "Gods/GodLore.cs:who": ("fixed", 3, 20, "per entry: the colonists who saw it or believe it, by name (counted under entries)"),
+    "Gods/GodLore.cs:names": ("cap", (const("Gods/GodLoreMath.cs", "MaxNames", 60), 0.05), 200, "the names the colony has heard the gods by, each a page of the book"),
+    "Gods/GodLore.cs:told": ("fixed", 60, 40, "how much of each old story the colony has heard, one a story"),
+    "Gods/GodLore.cs:lastHand": ("fixed", 14, 40, "each god's last hand remarked on"),
+    "Gods/GodLore.cs:lastHandAt": ("fixed", 4, 30, "each home's last god's hand remarked on"),
+    "Gods/GodLore.cs:lastTalk": ("fixed", 4, 30, "each home's last talk of the gods"),
+    "Gods/GodLore.cs:hands": ("fixed", 8, 140, "the gods' hands seen lately, for a neighbour's letter, eight at most"),
+    "Gods/GodLore.cs:retold": ("fixed", 60, 30, "the stories retold whole in a neighbour's letter, one a story"),
+    "Gods/GodLore.cs:seen": ("cap", (COLONISTS, 0.01), 40, "how many of the gods' doings each colonist has seen, by name"),
+    "Gods/GodLore.cs:seenActing": ("fixed", 14, 10, "the gods the colony has seen act plainly, one a god at most"),
+    "Gods/GodLore.cs:signs": ("fixed", 60, 40, "the signs the colony has learned as a god's own, a few a god"),
+    # The gods in the wider world (Gods/World/GodWorldBook.cs): the gifts colonists hold (one of a kind a colonist, spaced
+    # with the peoples' gifts: a handful a year at most; GodWorldBook.MaxGifts kept, those no longer held let go first);
+    # what is under way (a dream told, a night under the sky, a grudge, the Hunger's due, a quarrel, a holy place a home: a few at
+    # once, GodWorldBook.MaxDoings at most, the done let go each day); the illnesses a god has eased (once each,
+    # GodWorldBook.MaxBlessed); when each kind of thing last came (a key a kind and a home, a few dozen).
+    "Gods/World/GodWorldBook.cs:gifts": ("cap", (const("Gods/World/GodWorldBook.cs", "MaxGifts", 60), 0.03), 220, "gods' gifts to colonists, GodWorldBook.MaxGifts kept"),
+    "Gods/World/GodWorldBook.cs:doings": ("cap", (const("Gods/World/GodWorldBook.cs", "MaxDoings", 40), 0.3), 260, "the gods' doings under way, the done let go each day"),
+    "Gods/World/GodWorldBook.cs:blessed": ("cap", (const("Gods/World/GodWorldBook.cs", "MaxBlessed", 40), 0.05), V, "illnesses a god has eased, once each"),
+    "Gods/World/GodWorldBook.cs:lasts": ("fixed", 30, 90, "when each kind of the gods' doings last came, a key a kind and a home"),
     # The peoples' ages as they change (Peoples/PeopleAges.cs): one record a people of Rimfolk's (a reference and ten
     # values: its age now and the one it began in, its progress, when it was first heard of, looked at and last changed,
     # its heading and why), made the first time the region's day looks at it; the fifteen at once, and one for each that

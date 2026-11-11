@@ -86,13 +86,15 @@ namespace ColonyCouncil
             ["Paladin"] = "Paladin", ["Priest"] = "Priest", ["TM_Bard"] = "Bard", ["Geomancer"] = "Geomancer", ["Technomancer"] = "Technomancer",
             ["Enchanter"] = "Enchanter", ["Chronomancer"] = "Chronomancer", ["Summoner"] = "Summoner", ["TM_Wanderer"] = "Wanderer",
             ["Gladiator"] = "Gladiator", ["Bladedancer"] = "Bladedancer", ["Ranger"] = "Ranger", ["TM_Sniper"] = "Sniper", ["TM_Psionic"] = "Psionic",
-            ["TM_Monk"] = "Monk", ["TM_Commander"] = "Commander", ["TM_SuperSoldier"] = "SuperSoldier", ["TM_Wayfarer"] = "Wayfarer"
+            ["TM_Monk"] = "Monk", ["TM_Commander"] = "Commander", ["TM_SuperSoldier"] = "SuperSoldier", ["TM_Wayfarer"] = "Wayfarer",
+            // The gods' gifts (Gods/World/GodWorldGifts.cs): the dead's and the Hunger's.
+            ["Necromancer"] = "Necromancer", ["DeathKnight"] = "DeathKnight"
         };
 
         /// <summary>The fighters among <see cref="MagicClasses"/> (A RimWorld of Magic's might classes): the rest are mages.</summary>
         public static readonly HashSet<string> MightClasses = new HashSet<string>
         {
-            "Gladiator", "Bladedancer", "Ranger", "TM_Sniper", "TM_Psionic", "TM_Monk", "TM_Commander", "TM_SuperSoldier", "TM_Wayfarer"
+            "Gladiator", "Bladedancer", "Ranger", "TM_Sniper", "TM_Psionic", "TM_Monk", "TM_Commander", "TM_SuperSoldier", "TM_Wayfarer", "DeathKnight"
         };
 
         /// <summary>The setting that turns a class on, or null for a trait Rimfolk's peoples don't give.</summary>

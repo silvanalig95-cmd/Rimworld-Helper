@@ -76,6 +76,7 @@ namespace ColonyCouncil
                 Land(s, town?.Tile ?? PlanetTile.Invalid);
                 Faith(s, pawn);
                 GodWords.Letter(s.values, pawn, f);
+                GodLetters.Shape(s, pawn, f);
                 if (who.raid != null && !who.raid.raiders.NullOrEmpty() && !s.values.ContainsKey("RAIDERS")) s.values["RAIDERS"] = who.raid.raiders;
                 string signed = LetterKindMath.Signed(who.signers, true, n.townName ?? f?.Name, Words);
                 if (!signed.NullOrEmpty()) s.values["SIGNERS"] = signed;
@@ -125,6 +126,7 @@ namespace ColonyCouncil
                 Land(s, map?.Tile ?? PlanetTile.Invalid);
                 Faith(s, writer);
                 GodWords.Letter(s.values, writer, Faction.OfPlayer);
+                GodLetters.ShapeOurs(s, l, n, writer);
                 // The correspondence: its stage, names and the thread the colony's letter takes up (Letters/LetterThreads.cs).
                 LetterThreads.Correspond(s, n, true, n.pawn, writer.LabelShort);
                 Make(s);

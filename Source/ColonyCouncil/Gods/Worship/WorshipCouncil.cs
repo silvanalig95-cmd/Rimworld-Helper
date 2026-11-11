@@ -33,7 +33,7 @@ namespace ColonyCouncil
             map.weatherManager.TransitionTo(WeatherDefOf.Clear);
             var g = Gods.ById(m.god);
             if (g != null && Interplay.Ready("worship-dry-told|" + Gods.HomeKey(map), 2f))
-                Tell.Minor(NewsKind.Colony, Importance.Flavor, map, ("CC_Wsh_DryPass_" + Worship.Step).Translate(Worship.CardName(g).Named("GOD")).Resolve(), null);
+                Tell.Minor(NewsKind.Colony, Importance.Flavor, map, ("CC_Wsh_DryPass_" + Worship.Step).Translate().Resolve() + Worship.Hand(g, map, IntVec3.Invalid), null);
         }
 
         /// <summary>The god the colony honours at a home for the year (the council's answer): marked, pleased, told.</summary>
@@ -67,8 +67,8 @@ namespace ColonyCouncil
             base.AddArgs(args);
             var g = God1;
             args.AddRange(g != null ? Gods.Args(g) : new[] { "".Named(GodsMath.God), "".Named(GodsMath.Epithet), "".Named(GodsMath.Of) });
-            args.Add(Worship.CardName(God2).Named("GOD2"));
-            args.Add(Worship.CardName(God3).Named("GOD3"));
+            args.Add(Worship.Called(God2).Named("GOD2"));
+            args.Add(Worship.Called(God3).Named("GOD3"));
             args.Add((g != null ? Worship.ShrineOf(g) : Worship.ShrineWord).Named("PLACE"));
         }
 
@@ -226,7 +226,7 @@ namespace ColonyCouncil
         {
             var g = (ctx as GodDilemmaContext)?.GodAt(god);
             if (g == null || !Worship.On) return;
-            sheet.Add(ImpactKind.Other, 1, "CC_Wsh_Impact_Honour".Translate(Worship.CardName(g).Named("GOD")).Resolve(), "CC_Wsh_Impact_HonourBrief".Translate(Worship.CardName(g).Named("GOD")).Resolve());
+            sheet.Add(ImpactKind.Other, 1, "CC_Wsh_Impact_Honour".Translate(Worship.Called(g).Named("GOD")).Resolve(), "CC_Wsh_Impact_HonourBrief".Translate(Worship.Called(g).Named("GOD")).Resolve());
         }
 
         public override void Apply(DilemmaContext ctx)
@@ -268,7 +268,7 @@ namespace ColonyCouncil
         {
             var g = (ctx as GodDilemmaContext)?.God1;
             if (g == null || ctx.a == null || !Worship.On) return;
-            sheet.Add(ImpactKind.Other, 0, "CC_Wsh_Impact_TempleVow".Translate(ctx.a.LabelShort.Named("PAWN"), Worship.CardName(g).Named("GOD"), days.Named("DAYS")).Resolve());
+            sheet.Add(ImpactKind.Other, 0, "CC_Wsh_Impact_TempleVow".Translate(ctx.a.LabelShort.Named("PAWN"), Worship.Called(g).Named("GOD"), days.Named("DAYS")).Resolve());
         }
 
         public override void Apply(DilemmaContext ctx)
@@ -300,8 +300,8 @@ namespace ColonyCouncil
             int days = WorshipMath.DrySpellDays(Gods.Realness, lesser);
             if (g == null || days <= 0 || ctx.map == null || lesser && !Rand.Chance(0.5f)) return;
             Worship.Book?.SetMark(Gods.HomeKey(ctx.map), "dry", g.id, Worship.Now, Worship.Now + days * GenDate.TicksPerDay);
-            string text = ("CC_Wsh_DryBegins_" + Worship.Step).Translate(Worship.CardName(g).Named("GOD")).Resolve();
-            Worship.Sign(g, ctx.map, ctx.map.Center, PresenceKind.Omen, "CC_Wsh_DryBegins_Title".Translate(Worship.CardName(g).Named("GOD")).Resolve(), text, null, false, GodActKind.Wrath);
+            string text = ("CC_Wsh_DryBegins_" + Worship.Step).Translate(Worship.Called(g).Named("GOD")).Resolve();
+            Worship.Sign(g, ctx.map, IntVec3.Invalid, PresenceKind.Omen, "CC_Wsh_DryBegins_Title".Translate().Resolve(), text, null, false, GodActKind.Omen);
         }
     }
 
@@ -311,7 +311,7 @@ namespace ColonyCouncil
         public override string Unavailable(DilemmaContext ctx)
         {
             var g = (ctx as GodDilemmaContext)?.God1;
-            return g == null || ctx.map == null || Shrines.Of(ctx.map, g).Count == 0 ? "CC_Wsh_Unavailable_NoShrine".Translate(Worship.CardName(g).Named("GOD")).Resolve() : null;
+            return g == null || ctx.map == null || Shrines.Of(ctx.map, g).Count == 0 ? "CC_Wsh_Unavailable_NoShrine".Translate(Worship.Called(g).Named("GOD")).Resolve() : null;
         }
 
         public override void Describe(DilemmaContext ctx, ImpactSheet sheet)
@@ -370,11 +370,17 @@ namespace ColonyCouncil
                 go.exitMapOnArrival = true;
                 go.locomotionUrgency = LocomotionUrgency.Walk;
                 beast.jobs.StartJob(go, JobCondition.InterruptForced, null, false, true);
-                string text = ("CC_Wsh_BeastGiven_" + Worship.Step).Translate(beast.LabelShort.Named("PET"), Worship.CardName(g).Named("GOD")).Resolve();
+                string text = ("CC_Wsh_BeastGiven_" + Worship.Step).Translate(beast.LabelShort.Named("PET"), Worship.Called(g).Named("GOD")).Resolve();
                 Worship.Favour(g, map, WorshipMath.BeastGiven, "CC_Wsh_Why_BeastGiven".Translate(beast.LabelShort.Named("PET")).Resolve(), FavourSource.Offering);
                 if (Gods.Realness == GodRealness.Walking)
-                    Worship.Sign(g, map, beast.Position, PresenceKind.Act, "CC_Wsh_BeastGiven_Title".Translate(Worship.CardName(g).Named("GOD")).Resolve(), text, beast, false);
-                else Worship.Witness(g, map, GodActKind.Favour, text, beast.Position);
+                    Worship.Sign(g, map, beast.Position, PresenceKind.Act, "CC_Wsh_BeastGiven_Title".Translate(Worship.Called(g).Named("GOD")).Resolve(), text, beast, false);
+                else
+                {
+                    // Let go by the colony's own hand, to the god it named: in the colony's book by those who saw it go.
+                    Tell.Minor(NewsKind.Colony, Importance.Notable, map, text, beast);
+                    Worship.Witness(g, map, GodActKind.Favour, text, beast.Position);
+                    Worship.Booked(g, map, beast.Position, text, ctx.a);
+                }
             }
             catch (Exception e)
             {

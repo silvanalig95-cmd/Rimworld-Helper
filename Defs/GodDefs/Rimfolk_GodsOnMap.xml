@@ -1,0 +1,301 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    The gods on the map (Source/ColonyCouncil/Gods/OnMap/; docs/design/gods.md, "On the map"): the stranger at the gate's
+    event, the walks and errands it brings (a mark visited, food taken out to a sacred beast), what those who saw a god
+    remember together, and the deeds the colony talks of. The lines said aloud are in Rimfolk_GodsOnMap_Lines.xml, who
+    comes as what in Rimfolk_GodsOnMap_Shapes.xml.
+  -->
+
+  <!-- ===================== The stranger at the gate ===================== -->
+
+  <!--
+    Only the gods' own coming fires it (GodComings, a few times in a long game, after days of omens), never the
+    storyteller: its chance is 0. {TALE} is the traveller by the colony's age (a wanderer, a pilgrim, a drifter, a lost
+    spacer); the texts' tags are the colony's age (age0 to age3) and the god's domains, for a hint a traveller couldn't
+    give. The stranger is a god in disguise, and nothing here says so.
+  -->
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Rimfolk_Evt_GodStranger</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>a stranger at the gate</label>
+    <workerClass>ColonyCouncil.HappeningWorker_GodStranger</workerClass>
+    <baseChance>0</baseChance>
+    <minRefireDays>0</minRefireDays>
+    <earliestDay>0</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Visitors</group>
+        <ages>25~60</ages>
+        <answerDays>0.4</answerDays>
+        <notable>false</notable>
+        <titles>
+          <li>A stranger at the gate</li>
+          <li>A {TALE} asks for shelter</li>
+          <li>Someone at the gate</li>
+        </titles>
+        <texts>
+          <li>[age0] {X_nameDef}, a {TALE} with no people near, has come to the gate as the light goes and asks {A_nameDef} for a place by the fire for the night. {X_pronoun} carries nothing but a stick and a skin of water, and doesn't seem tired at all.</li>
+          <li>[age1] {X_nameDef}, a {TALE} on the long road, has knocked at the gate and asks {A_nameDef} for a bed and a bowl for one night, in the name of whatever the colony holds holy. The dust on {X_possessive} cloak is from no road anyone here knows.</li>
+          <li>[age2] {X_nameDef}, a {TALE} with a battered pack and a coat too thin for the season, is waiting at the gate. {X_pronoun} asks {A_nameDef} for a roof for the night and a plate of whatever is going, and offers nothing for it but thanks.</li>
+          <li>[age3] {X_nameDef}, a {TALE} in a scuffed suit with no ship and no beacon, walked in out of the wilds and asks {A_nameDef} for shelter for a night. {X_possessive} suit's readings are all zeroes, which shouldn't be possible.</li>
+          <li>A {TALE} named {X_nameDef} is standing at the gate with {X_possessive} hood down and asks {A_nameDef}, quite simply, whether there is room for one more tonight.</li>
+          <li>[storm] {X_nameDef}, a {TALE}, asks {A_nameDef} for shelter for the night. The sky has been heavy all afternoon, and {X_pronoun} glances at it the way someone glances at an old friend.</li>
+          <li>[harvest] {X_nameDef}, a {TALE} with seeds caught in the hem of {X_possessive} coat, asks {A_nameDef} for a bed for the night and says the colony's fields look thirsty.</li>
+          <li>[hunt] {X_nameDef}, a {TALE} who walks without a sound, asks {A_nameDef} for shelter for the night. The dogs, for once, have not barked at all.</li>
+          <li>[healing] {X_nameDef}, a {TALE} with a satchel that smells of clean herbs, asks {A_nameDef} for a bed for the night and asks after the colony's sick before anything else.</li>
+          <li>[way] {X_nameDef}, a {TALE} who seems to have walked every road there is, asks {A_nameDef} for a corner for the night and the news from these parts.</li>
+          <li>[hearth] {X_nameDef}, an old {TALE} with ember-bright eyes and a shawl that smells of smoke, asks {A_nameDef} for a bowl and a corner by the fire.</li>
+          <li>[dead] {X_nameDef}, a {TALE} in gray who knows the names on the colony's graves without being told, asks {A_nameDef} for shelter for the night.</li>
+          <li>[night] {X_nameDef}, a {TALE} who only came out of the trees at dusk, asks {A_nameDef} for a bed and says {X_pronoun} sleeps lightly.</li>
+          <li>[wild] {X_nameDef}, a {TALE} with leaves in {X_possessive} hair and mud to the knee, asks {A_nameDef} for shelter for the night, and the birds come down to the wall to look.</li>
+          <li>[waters] {X_nameDef}, a {TALE} whose clothes are wet though it hasn't rained for days, asks {A_nameDef} for a dry corner for the night.</li>
+          <li>[war] {X_nameDef}, a {TALE} with an old soldier's way of standing, asks {A_nameDef} for a bed for the night and doesn't take {X_possessive} eyes off the colony's walls.</li>
+          <li>[craft] {X_nameDef}, a {TALE} with burn scars on both hands, asks {A_nameDef} for a bed for the night and looks over the colony's tools with interest.</li>
+          <li>[machine] {X_nameDef}, a {TALE} who talks a little too evenly, asks {A_nameDef} for shelter for the night and somehow knows the colony's power is low.</li>
+          <li>[void] {X_nameDef}, a {TALE} whose shadow seems a little late to follow, asks {A_nameDef} for shelter for the night. It's hard to remember {X_possessive} face afterwards.</li>
+          <li>[ennu,rememberskind] {X_nameDef}, a {TALE}, is at the gate again, or someone very like the last one. {X_pronoun} smiles at {A_nameDef} as if they were old friends, and asks for a bed for the night.</li>
+          <li>[ennu,rememberscold] {X_nameDef}, a {TALE}, stands at the gate and asks {A_nameDef} for shelter. {X_pronoun} looks at the colony's door for a long moment before knocking, as if remembering how it was answered once.</li>
+          <li>[ennu,remembersharm] {X_nameDef}, a {TALE} with an old bruise on {X_possessive} cheek, asks {A_nameDef} for shelter for the night. Nobody here can say why the bruise looks so familiar.</li>
+          <li>[ennu,remembers] {X_nameDef}, a {TALE}, asks {A_nameDef} for a place for the night, and already seems to know where the well is.</li>
+        </texts>
+        <defaultOption>2</defaultOption>
+        <options>
+          <li>
+            <label>Give {X_objective} a bed and a place at the table</label>
+            <outcome>{A_nameDef} brings {X_nameDef} in, and the colony finds the {TALE} a bed for the night and a place at the table.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Visit"><to>Stranger</to><hours>17~22</hours><duration>1.5~2.5</duration></li>
+            </effects>
+            <ways><openness>2</openness><tradition>1</tradition></ways>
+          </li>
+          <li>
+            <label>Turn {X_objective} away</label>
+            <outcome>{A_nameDef} tells {X_nameDef} there is no room here. The {TALE} only nods, and turns back down the road.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_SendAway" />
+            </effects>
+            <ways><openness>-2</openness></ways>
+          </li>
+          <li>
+            <label>Let {X_objective} sleep by the gate</label>
+            <outcome>{X_nameDef} may sleep outside by the gate tonight. No bed, no table, but no one will move {X_objective} on.</outcome>
+          </li>
+        </options>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ===================== Walks and errands ===================== -->
+
+  <!-- Walking out to a god's mark on a quiet day, standing there a while and remembering aloud (GodMarks, JobDriver_VisitGodMark). -->
+  <JobDef>
+    <defName>Rimfolk_VisitGodMark</defName>
+    <driverClass>ColonyCouncil.JobDriver_VisitGodMark</driverClass>
+    <reportString>remembering a god.</reportString>
+    <casualInterruptible>true</casualInterruptible>
+    <checkOverrideOnDamage>Always</checkOverrideOnDamage>
+    <allowOpportunisticPrefix>true</allowOpportunisticPrefix>
+  </JobDef>
+
+  <!-- Taking food out to a god's beast and setting it down before it (JobDriver_FeedSacredAnimal). -->
+  <JobDef>
+    <defName>Rimfolk_FeedSacredAnimal</defName>
+    <driverClass>ColonyCouncil.JobDriver_FeedSacredAnimal</driverClass>
+    <reportString>taking food out.</reportString>
+    <casualInterruptible>true</casualInterruptible>
+    <checkOverrideOnDamage>Always</checkOverrideOnDamage>
+  </JobDef>
+
+  <!-- Sitting near the great white beast as it grazes, an hour, or a child reaching up to touch its horn (JobDriver_SitNearSacredAnimal). -->
+  <JobDef>
+    <defName>Rimfolk_SitNearSacredAnimal</defName>
+    <driverClass>ColonyCouncil.JobDriver_SitNearSacredAnimal</driverClass>
+    <reportString>sitting near it.</reportString>
+    <casualInterruptible>true</casualInterruptible>
+    <checkOverrideOnDamage>Always</checkOverrideOnDamage>
+  </JobDef>
+
+  <!-- ===================== What it leaves in them ===================== -->
+
+  <!-- Sat near the great white beast a while (stage 0), or touched its horn (stage 1, a child). -->
+  <ThoughtDef>
+    <defName>Rimfolk_Thought_SatNearSacred</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
+    <durationDays>8</durationDays>
+    <stackLimit>1</stackLimit>
+    <stages>
+      <li>
+        <label>sat near the great beast</label>
+        <description>I sat near it while it grazed, and for a while nothing hurt.</description>
+        <baseMoodEffect>6</baseMoodEffect>
+      </li>
+      <li>
+        <label>touched its horn</label>
+        <description>It let me come right up close and touch its horn. It was warm.</description>
+        <baseMoodEffect>10</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <!-- The great white beast went its way and nobody raised a hand to it: a strange peace, for a season. -->
+  <ThoughtDef>
+    <defName>Rimfolk_Thought_StrangePeace</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
+    <durationDays>15</durationDays>
+    <stackLimit>1</stackLimit>
+    <stages>
+      <li>
+        <label>a strange peace</label>
+        <description>The great white beast went its way and nobody raised a hand to it. Something has been quieter since.</description>
+        <baseMoodEffect>4</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <!-- A nightmare that follows them into the day (GodWeather: a moon displeased). -->
+  <ThoughtDef>
+    <defName>Rimfolk_Thought_MoonNightmare</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
+    <durationDays>1</durationDays>
+    <stackLimit>1</stackLimit>
+    <stages>
+      <li>
+        <label>a nightmare under the moon</label>
+        <description>I woke in the night from a dream I can't shake. The moon was very bright.</description>
+        <baseMoodEffect>-4</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <!-- Every people with someone on the map hears that the colony harmed the great white beast or its herd (SacredAnimal.Worst). -->
+  <HistoryEventDef>
+    <defName>Rimfolk_HarmedSacredBeast</defName>
+    <label>harmed the great white beast</label>
+  </HistoryEventDef>
+
+  <!-- ===================== Remembered together ===================== -->
+
+  <ColonyCouncil.SharedMemoryDef>
+    <defName>Rimfolk_Mem_GodSeen</defName>
+    <label>saw a god come</label>
+    <description>They were there when a god came to the colony, or something that might have been one. People who saw that together bring it up for years.</description>
+    <text>saw {LABEL} together</text>
+    <weight>1.6</weight>
+    <fadeDays>600</fadeDays>
+    <valence>0</valence>
+  </ColonyCouncil.SharedMemoryDef>
+
+  <!-- ===================== The deeds talked of ===================== -->
+
+  <ColonyCouncil.DeedDef>
+    <defName>Rimfolk_Deed_GodSheltered</defName>
+    <label>was kind to a stranger who was more</label>
+    <theme>godsheltered</theme>
+    <facets><kindness>9</kindness></facets>
+    <fadeDays>300</fadeDays>
+    <interest>1.6</interest>
+    <text>was kindest to the {DETAIL} who came to the gate</text>
+    <logTopic>Rimfolk_GossipTopic_GodSheltered</logTopic>
+  </ColonyCouncil.DeedDef>
+
+  <ColonyCouncil.DeedDef>
+    <defName>Rimfolk_Deed_GodStruck</defName>
+    <label>struck the stranger at the gate</label>
+    <theme>godstruck</theme>
+    <facets><kindness>-9</kindness><temper>4</temper></facets>
+    <fadeDays>300</fadeDays>
+    <interest>1.8</interest>
+    <grave>true</grave>
+    <text>struck the {DETAIL} who came to the gate</text>
+    <logTopic>Rimfolk_GossipTopic_GodStruck</logTopic>
+  </ColonyCouncil.DeedDef>
+
+  <ColonyCouncil.DeedDef>
+    <defName>Rimfolk_Deed_FollowedSacred</defName>
+    <label>followed a god's beast</label>
+    <theme>followedsacred</theme>
+    <facets><courage>4</courage><discretion>3</discretion></facets>
+    <fadeDays>240</fadeDays>
+    <interest>1.4</interest>
+    <text>followed the {DETAIL} where it led</text>
+    <logTopic>Rimfolk_GossipTopic_FollowedSacred</logTopic>
+  </ColonyCouncil.DeedDef>
+
+  <ColonyCouncil.DeedDef>
+    <defName>Rimfolk_Deed_FedSacred</defName>
+    <label>fed a god's beast</label>
+    <theme>fedsacred</theme>
+    <facets><kindness>5</kindness></facets>
+    <fadeDays>150</fadeDays>
+    <interest>1.1</interest>
+    <text>took food out to the {DETAIL}</text>
+    <logTopic>Rimfolk_GossipTopic_FedSacred</logTopic>
+  </ColonyCouncil.DeedDef>
+
+  <ColonyCouncil.DeedDef>
+    <defName>Rimfolk_Deed_HuntedSacred</defName>
+    <label>hurt a god's beast</label>
+    <theme>huntedsacred</theme>
+    <facets><kindness>-6</kindness><courage>2</courage></facets>
+    <fadeDays>300</fadeDays>
+    <interest>1.8</interest>
+    <grave>true</grave>
+    <text>drew blood from the {DETAIL}</text>
+    <logTopic>Rimfolk_GossipTopic_HuntedSacred</logTopic>
+  </ColonyCouncil.DeedDef>
+
+  <RulePackDef>
+    <defName>Rimfolk_GossipTopic_GodSheltered</defName>
+    <rulePack>
+      <rulesStrings>
+        <li>gossip_topic->the stranger who came to the gate</li>
+        <li>gossip_topic->who was kind to the traveler, and what came of it</li>
+        <li>gossip_topic->the night a god slept under the colony's roof</li>
+      </rulesStrings>
+    </rulePack>
+  </RulePackDef>
+
+  <RulePackDef>
+    <defName>Rimfolk_GossipTopic_GodStruck</defName>
+    <rulePack>
+      <rulesStrings>
+        <li>gossip_topic->the blow struck at the stranger</li>
+        <li>gossip_topic->the day the colony angered a god</li>
+        <li>gossip_topic->what happened to the traveler at the gate</li>
+      </rulesStrings>
+    </rulePack>
+  </RulePackDef>
+
+  <RulePackDef>
+    <defName>Rimfolk_GossipTopic_FollowedSacred</defName>
+    <rulePack>
+      <rulesStrings>
+        <li>gossip_topic->the beast that led someone out of the colony</li>
+        <li>gossip_topic->what was found where the god's beast stopped</li>
+      </rulesStrings>
+    </rulePack>
+  </RulePackDef>
+
+  <RulePackDef>
+    <defName>Rimfolk_GossipTopic_FedSacred</defName>
+    <rulePack>
+      <rulesStrings>
+        <li>gossip_topic->the food taken out to the god's beast</li>
+        <li>gossip_topic->the beast that ate from a colonist's hand</li>
+      </rulesStrings>
+    </rulePack>
+  </RulePackDef>
+
+  <RulePackDef>
+    <defName>Rimfolk_GossipTopic_HuntedSacred</defName>
+    <rulePack>
+      <rulesStrings>
+        <li>gossip_topic->the god's beast that was shot at</li>
+        <li>gossip_topic->the sacrilege in the fields</li>
+      </rulesStrings>
+    </rulePack>
+  </RulePackDef>
+
+</Defs>

@@ -65,6 +65,8 @@ namespace ColonyCouncil
             ["Rimfolk_RansomOffer"] = "Peoples",
             ["Rimfolk_RansomByHand"] = "Peoples",
             ["Rimfolk_EnvoyOffer"] = "Peoples",
+            // A person's question the gods' doings put (a neighbour, an envoy, a dreamer, one hunted at the gate).
+            ["Rimfolk_GodWorldAsk"] = "Peoples",
             // The region and the colony's own.
             ["Rimfolk_HamletAsk"] = "Region",
             ["Rimfolk_RaidersCampTerms"] = "Region",
@@ -74,6 +76,8 @@ namespace ColonyCouncil
             ["Council_NewsLetter"] = "News",
             ["Council_WelcomeLetter"] = "Rimfolk",
             ["Council_UpdateLetter"] = "Rimfolk",
+            // A god's card (Gods/Presence/GodCard.cs): it opens its own dark card, a letter that tells.
+            ["Rimfolk_GodCard"] = "Told",
             // The game's own kinds, as Rimfolk's plain letters use them.
             ["ThreatBig"] = "ThreatBig",
             ["ThreatSmall"] = "Threat",

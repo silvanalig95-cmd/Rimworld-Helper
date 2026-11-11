@@ -1854,3 +1854,16 @@ Cults_ByakheeRace	zal.cocc	no	byakhee	animal	2.0	CarnivoreAnimal, OvivoreAnimal	
 Cults_FormlessSpawnRace	zal.cocc	no	formless spawn	animal	2.0	CarnivoreAnimal, OvivoreAnimal			
 GuardianBast	zal.cocc	no	Guardian	animal	2.2	CarnivoreAnimal, OvivoreAnimal	true	false	
 ReanimatedCorpse	zal.cocc	no	reanimated corpse	humanlike	1	CarnivoreAnimalStrict			
+DD_Drake	onyxae.dragonsdescent	yes	drake	animal	2.4				
+Talbuk	onyxae.dragonsdescent	yes	talbuk	animal	2.4				
+Black_Dragon	onyxae.dragonsdescent	yes	black dragon	animal					
+Blue_Dragon	onyxae.dragonsdescent	yes	blue dragon	animal					
+Green_Dragon	onyxae.dragonsdescent	yes	green dragon	animal					
+Purple_Dragon	onyxae.dragonsdescent	yes	purple dragon	animal					
+Red_Dragon	onyxae.dragonsdescent	yes	red dragon	animal					
+White_Dragon	onyxae.dragonsdescent	yes	white dragon	animal					
+Yellow_Dragon	onyxae.dragonsdescent	yes	yellow dragon	animal					
+Gold_Dragon	onyxae.dragonsdescent	yes	gold dragon	animal					
+Silver_Dragon	onyxae.dragonsdescent	yes	silver dragon	animal					
+Jade_Dragon	onyxae.dragonsdescent	yes	jade dragon	animal					
+True_Dragon	onyxae.dragonsdescent	yes	true dragon	animal	4.6				

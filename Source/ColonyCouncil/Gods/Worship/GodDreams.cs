@@ -131,9 +131,10 @@ namespace ColonyCouncil
             comp.journals.WriteText(p, text);
             comp.dreams.recent.Add(new DreamRecord { pawn = p, name = p.LabelShort, text = text, kind = DreamKind.Strange, tick = Worship.Now });
             while (comp.dreams.recent.Count > 80) comp.dreams.recent.RemoveAt(0);
-            string message = "CC_Wsh_DreamMessage".Translate(p.Named("PAWN"), text.Named("DREAM"), Worship.CardName(g).Named("GOD")).Resolve();
+            string message = "CC_Wsh_DreamMessage".Translate(p.Named("PAWN"), text.Named("DREAM"), Worship.Called(g).Named("GOD")).Resolve();
             News.Post(message, p, NewsKind.People, MessageTypeDefOf.NeutralEvent, kind == "warning" || kind == "demand" ? Importance.Notable : Importance.Flavor);
-            Worship.Witness(g, p.MapHeld, GodActKind.Omen, message, p.PositionHeld);
+            // The colony's book: the dream as it was told at breakfast.
+            GodLore.Dreamt(p, g, text);
             return true;
         }
 
@@ -169,7 +170,7 @@ namespace ColonyCouncil
                 var g = Gods.ById(d.god);
                 var map = Homes.MapOf(d.home);
                 if (g == null) continue;
-                string text = "CC_Wsh_DemandIgnored".Translate(Worship.CardName(g).Named("GOD"), ("CC_Wsh_Kind_" + d.kind).Translate().Named("WHAT")).Resolve();
+                string text = "CC_Wsh_DemandIgnored".Translate(Worship.Called(g).Named("GOD"), ("CC_Wsh_Kind_" + d.kind).Translate().Named("WHAT")).Resolve();
                 Worship.Favour(g, map, WorshipMath.DemandIgnored, text, FavourSource.Neglect, GodOffence.Neglect);
                 Tell.Minor(NewsKind.Colony, Importance.Notable, map, text, d.shrine != null && d.shrine.Spawned ? new LookTargets(d.shrine) : null);
             }

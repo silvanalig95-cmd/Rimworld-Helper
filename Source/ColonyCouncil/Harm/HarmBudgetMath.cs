@@ -178,6 +178,17 @@ namespace ColonyCouncil
         /// </summary>
         public static readonly HarmKind UnionDrill = new HarmKind("unionDrill", "a mining accident at the union's drill (peoples)", "peoples", 0.005f, false);
 
+        // ---------------- The gods in the world (11 November 2026) ----------------
+
+        /// <summary>A god's beasts sent after the colonist who killed its sacred animal (Gods/World/GodHealth.cs): the game's wolves, manhunting.</summary>
+        public static readonly HarmKind GodBeasts = new HarmKind("godBeasts", "a god's beasts sent after an offender (gods)", "gods", 0.012f, false);
+
+        /// <summary>A god's lightning on the roof over an offender in a thunderstorm (Gods/World/GodHealth.cs): the game's own strike, clear of anyone.</summary>
+        public static readonly HarmKind GodLightning = new HarmKind("godLightning", "a god's lightning on an offender's roof (gods)", "gods", 0.004f, false);
+
+        /// <summary>A gift's price paid in blood (Gods/World/GodWorldGifts.cs): a cut on the arm, taken there and then.</summary>
+        public static readonly HarmKind GodPrice = new HarmKind("godPrice", "a god's gift paid for in blood (gods)", "gods", 0.008f, false);
+
         /// <summary>Every kind, in the order they were built.</summary>
         public static readonly HarmKind[] All =
         {
@@ -194,7 +205,8 @@ namespace ColonyCouncil
             OpenGates, GamblerTurns, BarberNick, RankEnemy, CrowdFight, PastFirstBlood, LetterChallenge, HeirGrudge, HatedTrader, GateZeal, HungryHands, CreekBrawl,
             WorstNight, FirstSteps, WorkingWrong,
             CampLeft,
-            UnionDrill
+            UnionDrill,
+            GodBeasts, GodLightning, GodPrice
         };
 
         public static HarmKind Of(string key)

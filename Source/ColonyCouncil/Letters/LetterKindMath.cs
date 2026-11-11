@@ -482,14 +482,18 @@ namespace ColonyCouncil
         /// <summary>The themes of a story told (each with its openings, turns and endings in Rimfolk_Pool_LetterStory).</summary>
         public static readonly string[] Themes =
         {
-            "st:hunt", "st:feud", "st:wedding", "st:ghost", "st:winter", "st:storm", "st:fair", "st:stranger", "st:harvest", "st:lost", "st:journey", "st:contest", "st:feast"
+            "st:hunt", "st:feud", "st:wedding", "st:ghost", "st:winter", "st:storm", "st:fair", "st:stranger", "st:harvest", "st:lost", "st:journey", "st:contest", "st:feast",
+            // Their god's sign, curse or myth (Gods/World/GodLetters.cs): only when the letter tells of one (god:miracle, god:curse, god:myth).
+            "st:god"
         };
 
         /// <summary>What a chronicle's items can be about, one item each (Rimfolk_Pool_LetterChronicle, ch:item and one of these).</summary>
         public static readonly string[] Subjects =
         {
             "chs:fortune", "chs:situation", "chs:loss", "chs:head", "chs:ill", "chs:war", "chs:peace", "chs:newtown", "chs:camp", "chs:raid", "chs:deed", "chs:colony",
-            "chs:caravan", "chs:season", "chs:short"
+            "chs:caravan", "chs:season", "chs:short",
+            // Their god's sign or curse, or their holy war (Gods/World/GodLetters.cs).
+            "chs:god"
         };
 
         /// <summary>A poem's forms (Rimfolk_Pool_LetterPoem): each poem names one, which only says what it is.</summary>

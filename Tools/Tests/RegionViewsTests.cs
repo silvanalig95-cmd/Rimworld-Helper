@@ -131,7 +131,7 @@ public static class RegionViewsTests
         string src = Path.Combine(root, "Source", "ColonyCouncil");
         string Code(string rel) => File.ReadAllText(Path.Combine(src, rel));
         string window = Code("UI/MainTabWindow_World.cs");
-        C(Regex.Matches(window, @"Own\(RegionView\.\w+").Count == 4 && !window.Contains("Own(\"Neighbours\""), "the window builds four views and no old page");
+        C(Regex.Matches(window, @"Own\(RegionView\.\w+").Count == 5 && !window.Contains("Own(\"Neighbours\""), "the window builds five views (the colony's book of the gods the fourth) and no old page");
         C(window.Contains("PagesMath.TryAddress(name, out var a)") && window.Contains("RegionView.Apply(a)"), "an address sets the view's lens and mode");
         C(window.Contains("Nav.Observe(RimfolkWindow.World, current.name, RegionView.Within(current.name)"), "a lens or a mode chosen is a step of the way back");
         C(Code("UI/Cards/Nav.cs").Contains("Pages.Open(s.mode == null ? s.page : s.page + \"/\" + s.mode)"), "going back puts the lens and the mode back");

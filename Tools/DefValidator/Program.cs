@@ -558,6 +558,13 @@ wishPh.UnionWith(new[] { "ANIMAL", "ANANIMAL", "ANIMALS", "PLANT", "TREE", "DEIT
 wishPh.UnionWith(new[] { "GOD", "GODEPITHET", "GODOF" });
 // Worship of the gods (Gods/Worship/WorshipCouncil.cs, GodDilemmaContext): a council question's second and third god.
 wishPh.UnionWith(new[] { "GOD2", "GOD3" });
+// The gods as a neighbour writes of them (Gods/GodTales.cs, Letter): one of their stories retold, a god's hand they heard of at the colony.
+wishPh.UnionWith(new[] { "GODTALE", "GODHAND" });
+// The gods in the wider world (Gods/World/): the god of a sign or curse their letter tells of, a myth's two gods, the god and
+// people their holy war is against (GodLetters.Shape); a holy place on the colony's land (GodCamps); a myth told at supper.
+wishPh.UnionWith(new[] { "SIGNGOD", "SIGNGODEPITHET", "MYTHGOD", "MYTHOTHER", "ENEMYGOD", "ENEMYPEOPLE", "SITE" });
+// What the colony says when a god acts (Rimfolk_Pool_GodWorld): who it is about.
+wishPh.UnionWith(new[] { "KILLER", "OFFENDER", "GIFTED" });
 // A correspondence that builds up (Letters/LetterThreads.cs, Rimfolk_Letters_Familiar, _Thread): an earlier letter's
 // thread in words, the one written to by full name and by a short one, the colonist who usually wrote.
 wishPh.UnionWith(new[] { "RE", "TOFULL", "TONICK", "LASTPEN" });

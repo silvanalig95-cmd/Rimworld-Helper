@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <!-- A god's presence on the map and its moments (Source/ColonyCouncil/Gods/Presence/). -->
+
+  <!-- The settings ("On the map"). -->
+  <CC_Settings_GodAura>Gods' auras</CC_Settings_GodAura>
+  <CC_Settings_GodAura_Tip>A god on the map that isn't hiding has a soft halo and a carved ring under it, a glow and a ring behind it that breathe slowly, small lights rising off it in its colors, and a light that moves with it so the ground round it glows at night. Over it, the name the colony knows it by, or what the colony sees of it when nobody here has heard of it. Off, a god is still drawn larger, in its own colors and clothes, with that name over it.</CC_Settings_GodAura_Tip>
+  <CC_SetNote_GodAura>A god on the map glows: a halo, rings, rising lights and a light that walks with it.</CC_SetNote_GodAura>
+  <CC_Settings_GodMusic>Gods' music</CC_Settings_GodMusic>
+  <CC_Settings_GodMusic_Tip>When a god comes, the music fades into a beat of silence before the sting, and a track of the god's own plays after it: one of yours from Sounds/Rimfolk/Gods/(its domain)/ in Rimfolk's folder first, else one of the game's or your mods' (Anomaly's, Odyssey's, Ideology's). A god near the camera hums softly with its own sound. Off, the music goes on as it was; the sounds of a god's coming still play.</CC_Settings_GodMusic_Tip>
+  <CC_SetNote_GodMusic>The music falls silent for a god, then its own track plays.</CC_SetNote_GodMusic>
+
+  <!-- The avatar. -->
+  <CC_GodP_AvatarTip>What the colony sees: {NAME}.</CC_GodP_AvatarTip>
+  <CC_GodP_TheLight>the light</CC_GodP_TheLight>
+
+  <!-- Those who turn to a god (the job's line in their card). -->
+  <CC_GodP_Job_Behold>in awe of {NAME}.</CC_GodP_Job_Behold>
+  <CC_GodP_Job_BeholdPlace>looking toward the light.</CC_GodP_Job_BeholdPlace>
+  <CC_GodP_Job_Pray>praying to {NAME}.</CC_GodP_Job_Pray>
+  <CC_GodP_Job_PrayPlace>praying toward the light.</CC_GodP_Job_PrayPlace>
+  <CC_GodP_Job_Lie>lying down before {NAME}.</CC_GodP_Job_Lie>
+  <CC_GodP_Job_LiePlace>lying down, facing the light.</CC_GodP_Job_LiePlace>
+
+  <!-- The presence on the sky. -->
+  <CC_GodP_Condition>the presence of {NAME}</CC_GodP_Condition>
+  <CC_GodP_ConditionVeiled>a strange stillness</CC_GodP_ConditionVeiled>
+  <CC_GodP_ConditionDesc>{NAME} is here. The sky has a color nobody has a word for, and the wind has died. It will stay so for a few hours.</CC_GodP_ConditionDesc>
+  <CC_GodP_ConditionVeiledDesc>The sky has an odd color and the wind has died. Nobody can say why.</CC_GodP_ConditionVeiledDesc>
+
+  <!-- The card. -->
+  <CC_GodP_Card_SomeSay>Nobody could say what it was</CC_GodP_Card_SomeSay>
+  <CC_GodP_Card_Go>Go there</CC_GodP_Card_Go>
+  <CC_GodP_Card_Close>Close</CC_GodP_Card_Close>
+  <CC_GodP_Card_VeiledTitle>Something came</CC_GodP_Card_VeiledTitle>
+  <CC_GodP_Card_Title_Appear>{NAME}</CC_GodP_Card_Title_Appear>
+  <CC_GodP_Card_Title_Act>{NAME}</CC_GodP_Card_Title_Act>
+  <CC_GodP_Card_Title_Reveal>{NAME}, among us</CC_GodP_Card_Title_Reveal>
+  <CC_GodP_Card_Title_Depart>{NAME} is gone</CC_GodP_Card_Title_Depart>
+  <CC_GodP_Card_Title_Blessing>{NAME}, and the light</CC_GodP_Card_Title_Blessing>
+  <CC_GodP_Card_Title_Wrath>{NAME}, and the dark</CC_GodP_Card_Title_Wrath>
+  <CC_GodP_Card_Title_Omen>Something of {NAME}</CC_GodP_Card_Title_Omen>
+  <CC_GodP_Card_Text_Appear>{NAME} came onto the land. The sky took a color nobody had a word for, the wind stopped, and everyone stood where they were and looked.</CC_GodP_Card_Text_Appear>
+  <CC_GodP_Card_Text_Appear_Veiled>Something came onto the land. The sky changed color and the wind died, and everyone stopped and turned to look at a place where nothing could be seen.</CC_GodP_Card_Text_Appear_Veiled>
+  <CC_GodP_Card_Text_Act>{NAME} was here. Everyone saw what was done, and nobody has said it aloud yet.</CC_GodP_Card_Text_Act>
+  <CC_GodP_Card_Text_Act_Veiled>Something happened here. Those who saw it don't agree on what.</CC_GodP_Card_Text_Act_Veiled>
+  <CC_GodP_Card_Text_Reveal>The stranger was not a stranger. It grew in front of them, and the light came with it, and it was {NAME}.</CC_GodP_Card_Text_Reveal>
+  <CC_GodP_Card_Text_Reveal_Veiled>The stranger changed in front of everyone: taller, brighter, and wrong. Then the light was too much to look at.</CC_GodP_Card_Text_Reveal_Veiled>
+  <CC_GodP_Card_Text_Depart>{NAME} has gone. The wind is coming back slowly, as if it isn't sure it may.</CC_GodP_Card_Text_Depart>
+  <CC_GodP_Card_Text_Depart_Veiled>Whatever it was has gone. Nobody heard it go.</CC_GodP_Card_Text_Depart_Veiled>
+  <CC_GodP_Card_Text_Blessing>A warm light lay on one place for a long moment, and {NAME} stood in it. The ground there has not forgotten.</CC_GodP_Card_Text_Blessing>
+  <CC_GodP_Card_Text_Blessing_Veiled>A warm light fell on one place, and the ground there is changed.</CC_GodP_Card_Text_Blessing_Veiled>
+  <CC_GodP_Card_Text_Wrath>The sky went dark over the land, and where {NAME} stood the ground is marked.</CC_GodP_Card_Text_Wrath>
+  <CC_GodP_Card_Text_Wrath_Veiled>The sky darkened over the land, and the ground was marked.</CC_GodP_Card_Text_Wrath_Veiled>
+  <CC_GodP_Card_Text_Omen>Something of {NAME}: a sound, a light, a moment when everything held still.</CC_GodP_Card_Text_Omen>
+  <CC_GodP_Card_Text_Omen_Veiled>A sign. Nobody can read it.</CC_GodP_Card_Text_Omen_Veiled>
+
+  <!-- The dev actions' words. -->
+  <CC_GodP_DevEpithet>tried in dev mode</CC_GodP_DevEpithet>
+  <CC_GodP_DevOmen>Something stirred, as if {NAME} were near.</CC_GodP_DevOmen>
+
+</LanguageData>

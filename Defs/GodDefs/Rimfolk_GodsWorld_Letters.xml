@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    The questions the gods' doings put to the colony in the wider world (Source/ColonyCouncil/Gods/World/GodAsks.cs),
+    through Tell.Ask, each asked by a person, never by a god: a neighbour's invitation to their feast, a people's holy war,
+    a temple's envoy, a dream told at breakfast, a second dream asking for a gift back, one hunted asking to be hidden, a
+    voice heard by someone desperate.
+  -->
+  <LetterDef>
+    <defName>Rimfolk_GodWorldAsk</defName>
+    <letterClass>ColonyCouncil.ChoiceLetter_GodWorld</letterClass>
+    <color>(205, 170, 95)</color>
+    <flashColor>(235, 200, 120)</flashColor>
+    <flashInterval>90</flashInterval>
+    <arriveSound>LetterArrive</arriveSound>
+    <bounce>true</bounce>
+  </LetterDef>
+
+</Defs>

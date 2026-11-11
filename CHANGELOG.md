@@ -5,6 +5,63 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## The gods in the world
+
+*11 November 2026, version 0.219.0*
+
+- The gods act unseen, like a storyteller: weather, blight, flares and traders come, and a god is named only when the colony knows the hand.
+- Each god has its own ways, from Hollin's wild growth and blight to Smoulder's silver and heat, Pip's mended machines and short circuits, and Murmur's rain and drought.
+- Someone may tell a dream at breakfast and ask to spend a night under the open sky, then come back changed, sometimes marked or older.
+- At night the moon returns what the colony did by day, kindness as kindness and cruelty as cruelty.
+- Gods quarrel where you can see it: snow and warm wind over the valleys, wild growth and rings of mushrooms.
+- Harm one of Bellwether's thrumbos and every people hears of it; harm a cat and the cats leave and the rats come back.
+- People talk of the gods in bubbles, at supper and in their letters, and a hermit seer says true things darkly.
+
+## The gods on the map
+
+*11 November 2026, version 0.218.0*
+
+- Each god now shows itself in its own way: drifting leaves, a winged shadow at noon, fairy rings, lights flickering in a pattern, frost like writing, a croak before rain, a coin where nobody dropped one.
+- A stranger may come to the gate under a name of its own, remember how it was welcomed, and show what it was when it goes.
+- A great white thrumbo may pass through with others following at a distance, and someone can sit near him while he grazes.
+- A gray cat may come and stay a while with one colonist, and she will not be kept.
+- Mining deep under the mountain can make the rock rumble, and a colony that keeps going may wake what sleeps there.
+- The moon waxes and wanes through each season, and what was done by day can come back by morning.
+
+## Fourteen gods, unseen
+
+*11 November 2026, version 0.217.0*
+
+- The gods are now fourteen beings with names and characters of their own, from Hollin the Rootmother and Bellwether the Old Horn to Helios and Selene, Mog the cat and Ducat the restless gold.
+- The gods stay unseen: you hear of them only as your colonists do, and they may be wrong.
+- When a thrumbo passes or the sun goes dark, someone says whose doing they think it was, and someone else says it was only the weather.
+- At the evening fire colonists tell the old stories a piece at a time, and visitors and neighbours' letters bring their own.
+- The colony keeps its own book of the gods, a new tab of the region window, written by whoever keeps it.
+- A god is named plainly only once the colony knows it was its doing.
+- The old Gods page, the patrons and the gods' symbols are gone, and an older save's gods give way to the new ones.
+
+## A god walks among you
+
+*11 November 2026, version 0.216.0*
+
+- A god on the map now looks like one: larger than anyone near it, in its own colours, robe and crown, with a halo and a slowly turning ring under it, lights rising off it and a light that walks with it at night.
+- When a god comes, the game slows to normal speed and the camera goes there; the music fades into a beat of silence, then a sting and a track of the god's own, while the sky takes its colour and the wind dies.
+- Everyone on the map turns toward a god's coming: the devout pray, calm animals lie down, shy ones run, and a few people say what they see.
+- The ground answers where a god walks (flowers, grass, snow, scorch marks, ash or puddles), and its coming leaves a mark such as a ring of flowers, a spring, a tree or a standing stone.
+- A god in disguise looks like anyone, but it leaves no footprints in the snow, animals follow it, and a sharp-eyed colonist may notice a shimmer about it at night; revealed, it grows into itself in front of everyone.
+- A RimWorld of Magic's lights, circles, spirit wolves and sounds, Alpha Memes' chants and the DLC songs carry each god's presence, and your own tracks in Sounds/Rimfolk/Gods/ play first.
+
+## The gods are real
+
+*11 November 2026, version 0.215.0*
+
+- The gods: one pantheon for the whole world. Every faith's deities are real gods with a domain of their own, a people without Ideology has two or three gods of its age and land, and Rimfolk's peoples each have a patron.
+- Gods have ties and natures: rivals, lovers, kin, allies and old wrongs, proud ones, jealous ones and cold ones. Some don't fit at all: archotechs, the Hunger, a trickster, a dead god, a fading god and the Sleeper in the vault.
+- The colony stands with each god in words, from wrathful to beloved, by what it does: a big harvest, a raid beaten off, a great beast brought down, a funeral. Pleasing one god a little galls its rivals.
+- A Gods page in the region window, under Peoples: the colony's gods, the others it knows and the rumours of the rest, with the whole pantheon drawn as a web.
+- Colonists swear by their gods now and then, and the neighbours' letters name theirs.
+- Two new settings: Gods, and How real are the gods (Believed, Felt, Walking).
+
 ## A simple meal for every diet
 
 *11 November 2026, version 0.214.0*

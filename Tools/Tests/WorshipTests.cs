@@ -194,10 +194,18 @@ public static class WorshipTests
           && files["Festivals.cs"].Contains("GodWorshipDef.For(g)?.chants"), "a god's own worship def first (likes, festival, chant), the domain's tables after");
         C(!Regex.IsMatch(all, @"FavourValue\([^)]*\)\.ToString|ToStringPercent\(\)[^;]*Favour"), "favour never shown as a number");
         C(!all.Contains("GodSymbols") && !all.Contains("GodWords.Word(") && !Regex.IsMatch(all, @"\.Named\(""WORD""\)"), "the unseen rule: no favour word or symbol on worship's buttons, lines or cards");
-        C(files["Worship.cs"].Contains("public static string CardName(God g") && files["Worship.cs"].Contains("Gods.Known(g)") && files["Worship.cs"].Contains("Gods.Remember(new GodAct"),
-            "a god named on a card only as the colony knows it (CardName, for the core's at the merge), and what people saw kept in the colony's book (Gods.Remember)");
-        foreach (var f in new[] { "Shrines.cs", "Offerings.cs", "Prayers.cs", "FaithHeart.cs", "Vows.cs", "Festivals.cs", "GodDreams.cs" })
-            C(files[f].Contains("Worship.Witness(") || files[f].Contains("Worship.Sign("), "what people witness goes into the colony's book: " + f);
+        C(files["Worship.cs"].Contains("Gods.CardName(g, map, sign)") && files["Worship.cs"].Contains("CC_GW_Hand_Plain") && files["Worship.cs"].Contains("CC_GW_Hand_Felt")
+          && files["Worship.cs"].Contains("text += Hand(g, map, cell)"),
+            "the god behind a sign named only as the core allows (Gods.CardName), else \"some say\" at Felt when someone saw it, else unnamed");
+        C(!all.Contains("Worship.CardName(") && !all.Contains("MarkActing("), "no stand-in for the core's naming, and worship never decides the colony saw a god act");
+        C(files["Worship.cs"].Contains("Gods.Remember(new GodAct") && files["Worship.cs"].Contains("GodLore.Saw(who, g, words)"),
+            "the gods' history through Gods.Remember, and the colony's book through what its people saw (GodLore.Saw)");
+        C(files["Prayers.cs"].Contains("GodLore.Prayed(p, g, words)") && files["FaithHeart.cs"].Contains("GodLore.Prayed(p, g, words)") && files["GodDreams.cs"].Contains("GodLore.Dreamt(p, g, text)"),
+            "a prayer and what followed, and a dream told, in the colony's book in the words of the one it happened to");
+        foreach (var f in new[] { "Shrines.cs", "Vows.cs", "Festivals.cs", "WorshipCouncil.cs" })
+            C(files[f].Contains("Worship.Booked("), "what people saw of their own worship goes into the colony's book: " + f);
+        C(files["Prayers.cs"].Contains("g.kind == GodKind.Hunger || g.baseKind == GodKind.Hunger) return;") && !files["Prayers.cs"].Contains("HungerDue"),
+            "the Hunger is the world part's (GodVoid's bargain): worship never answers it or takes its due");
 
         // Hooks into the shared systems, small and local.
         C(Read("World/Region/RegionBook.cs").Contains("Worship.Hourly(now)") && Read("World/Region/RegionBook.cs").Contains("Worship.Daily(now)"), "worship runs in the region's hour and day");
@@ -245,7 +253,7 @@ public static class WorshipTests
             C(keys.Contains(m.Groups[1].Value), "key " + m.Groups[1].Value);
         // The families of keys built from a step, a kind or a domain.
         foreach (var step in new[] { "Believed", "Felt", "Walking" })
-            foreach (var fam in new[] { "CC_Wsh_Dedicated_", "CC_Wsh_Answer_Sickness_", "CC_Wsh_Answer_Death_", "CC_Wsh_Answer_Raid_", "CC_Wsh_Answer_Drought_", "CC_Wsh_HungerDue_",
+            foreach (var fam in new[] { "CC_Wsh_Dedicated_", "CC_Wsh_Answer_Sickness_", "CC_Wsh_Answer_Death_", "CC_Wsh_Answer_Raid_", "CC_Wsh_Answer_Drought_",
                          "CC_Wsh_Wrath_", "CC_Wsh_DryBegins_", "CC_Wsh_DryPass_", "CC_Wsh_BeastGiven_", "CC_Wsh_Taken_Taken_" })
                 C(keys.Contains(fam + step), "key " + fam + step);
         foreach (var kind in Enum.GetNames(typeof(OfferingKind))) C(keys.Contains("CC_Wsh_Kind_" + kind), "key CC_Wsh_Kind_" + kind);

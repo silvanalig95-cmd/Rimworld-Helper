@@ -8,12 +8,13 @@ using System.Xml.Linq;
 using ColonyCouncil;
 
 /// <summary>
-/// The gods, the core (docs/design/gods.md, "Core: the pantheon" and "Drama between the gods, and the ones who don't fit"):
-/// the pure rules (a god's domain from a deity's words, its faith's memes and precepts; Rimfolk's makers' gods by age, ways
-/// and land; the age's forms; natures and kinds; favour in words, its drift and how a nature weighs it; how real the gods
-/// are; the ties, how favour spills along them and how they shift; newborns, fading and dead gods; the first favour
-/// sources), the defs (fourteen domains, the patrons of every one of Rimfolk's peoples, the sacred things in the player's
-/// active mods), the words, the speech pool, and the seams the presence part and stage 2 call.
+/// The gods (docs/design/gods.md, "the contract"): the pure rules kept from the core (favor and its drift, natures and
+/// kinds, how real the gods are, the ties, how favor spills and how ties shift, the first favor sources, the domain table
+/// as a fallback), the fourteen hand-made gods as defs (names by age, lore, sayings, believers' and scoffers' lines, stories
+/// in pieces, authored ties, who reveres them), their hands in the game's events (the table, the quiet spells, the realness
+/// forms), the lore rules (who reveres whom, names, stories in pieces, who believes, what a believer takes it for, names
+/// worked out), the colony's own book, the unseen rule (no page, no favor told, no symbols), the words, the speech pool,
+/// and the seams the presence part and stage 2 call.
 /// </summary>
 public static class GodsTests
 {
@@ -260,149 +261,53 @@ public static class GodsTests
             "lovers part, rivals make peace, kin stay kin, a rivalry cools to nothing, an old wrong is remembered faintly");
         C(GodTiesMath.ShiftChancePerDay <= 1f / 60f && GodTiesMath.NewTieChancePerDay <= 1f / 10f, "slowly: a tie shifts about once in two years");
 
-        // ================= The defs: fourteen domains =================
+        // ================= A gift and its return (Helios and Selene) =================
 
-        var domainsXml = XDocument.Load(Path.Combine(root, "Defs", "GodDefs", "Rimfolk_Pantheon_Domains.xml")).Root!.Elements("ColonyCouncil.GodDomainDef").ToList();
-        var byDomain = domainsXml.ToDictionary(e => e.Element("domain")!.Value, e => e);
-        C(domainsXml.Count == 14 && GodsMath.Domains.All(d => byDomain.ContainsKey(d.ToString())), "a def for each of the fourteen domains");
-        var activeThings = new HashSet<string>();
+        C(GodTiesMath.Spill(10f, GodTieKind.Return, 1f, true, GodNature.Cold) > 0f && GodTiesMath.Spill(10f, GodTieKind.Return, 1f, false, GodNature.Patient) == 0f,
+            "a gift and its return: what is meant for the giver reaches the one who returns it, and nothing goes back");
+        C(GodTiesMath.Kin(GodTieKind.Return) && !GodTiesMath.Hostile(GodTieKind.Return), "the gift and the return are kin for good, never set against each other");
+
+        // ================= The gods as defs =================
+
+        var godDefs = XDocument.Load(Path.Combine(root, "Defs", "GodDefs", "Rimfolk_Gods.xml")).Root!.Elements("ColonyCouncil.GodDef").ToList();
+        string V(XElement e, string f) => e.Element(f)?.Value ?? "";
+        List<string> Li(XElement e, string f) => e.Element(f)?.Elements("li").Select(x => x.Value).ToList() ?? new List<string>();
+        var byKey = godDefs.ToDictionary(e => V(e, "key"));
+        C(godDefs.Count == 14 && GodLoreMath.Keys.Length == 14 && GodLoreMath.Keys.All(byKey.ContainsKey) && GodLoreMath.Keys.Distinct().Count() == 14,
+            $"fourteen gods, one def each, keyed by their short names ({string.Join(", ", byKey.Keys)})");
+        foreach (var k in new[] { "Hollin", "Smoulder", "Bellwether", "Morel", "Ennu", "Pip", "Cirrus", "Hush", "Undertow", "Helios", "Selene", "Mog", "Murmur", "Ducat" })
+            C(byKey.ContainsKey(k) && V(byKey[k], "defName") == "Rimfolk_God_" + k && V(byKey[k], "label") == k, $"{k}: Rimfolk_God_{k}, its short name its label");
+        var domainsWanted = new Dictionary<string, (string, string)>
+        {
+            ["Hollin"] = ("Wild", "Harvest"), ["Smoulder"] = ("Craft", "Hearth"), ["Bellwether"] = ("Hunt", "Wild"), ["Morel"] = ("Dead", "Harvest"), ["Ennu"] = ("Way", "Hearth"),
+            ["Pip"] = ("Machine", "Craft"), ["Cirrus"] = ("Storm", "Night"), ["Hush"] = ("Night", "Dead"), ["Undertow"] = ("Void", ""), ["Helios"] = ("Hearth", "Harvest"),
+            ["Selene"] = ("Night", "Healing"), ["Mog"] = ("Hearth", "Hunt"), ["Murmur"] = ("Waters", "Harvest"), ["Ducat"] = ("Way", "Craft")
+        };
+        foreach (var kv in domainsWanted)
+            C(V(byKey[kv.Key], "domain") == kv.Value.Item1 && V(byKey[kv.Key], "second") == kv.Value.Item2, $"{kv.Key}: the fallback domains {kv.Value.Item1} and {kv.Value.Item2}");
+        C(godDefs.All(e => V(e, "kind") == (V(e, "key") == "Undertow" ? "Hunger" : "Ordinary")), "Undertow is the Hunger, the rest ordinary");
+        C(V(byKey["Helios"], "unmoved") == "true" && godDefs.Count(e => V(e, "unmoved") == "true") == 1, "Helios gives without looking: favor doesn't move him");
+        string godsCode = Read("Gods/Gods.cs");
+        C(godsCode.Contains("bool unmoved = g.def?.unmoved == true;") && godsCode.Contains("if (!unmoved) b.Move(g, key, a, out _, out _);") && godsCode.Contains("other.def?.unmoved == true) continue;"),
+            "an unmoved god's favor goes only along its ties (to Selene)");
+        var looks = XDocument.Load(Path.Combine(root, "Defs", "GodDefs", "Rimfolk_GodLooks.xml")).Root!.Elements().Select(x => x.Element("defName")?.Value).ToHashSet();
+        HashSet<string> activeDefs = new HashSet<string>(), activeThings = new HashSet<string>(), activeFactions = new HashSet<string>(), activeIncidents = new HashSet<string>();
         using (var gz = new GZipStream(File.OpenRead(Path.Combine(root, "docs", "player-mods", "defs.tsv.gz")), CompressionMode.Decompress))
-        using (var reader = new StreamReader(gz))
+        using (var rd = new StreamReader(gz))
         {
             string line;
-            while ((line = reader.ReadLine()) != null)
+            while ((line = rd.ReadLine()) != null)
             {
-                var f = line.Split('\t');
-                if (f.Length >= 4 && f[0] == "ThingDef" && f[3] == "yes") activeThings.Add(f[1]);
+                var c = line.Split('\t');
+                if (c.Length < 4 || c[3] != "yes") continue;
+                activeDefs.Add(c[1]);
+                if (c[0] == "ThingDef") activeThings.Add(c[1]);
+                if (c[0] == "FactionDef") activeFactions.Add(c[1]);
+                if (c[0] == "IncidentDef") activeIncidents.Add(c[1]);
             }
         }
-        var allNames = new List<string>();
-        foreach (var d in GodsMath.Domains)
-        {
-            var e = byDomain[d.ToString()];
-            List<string> L(string tag) => e.Element(tag)?.Elements("li").Select(x => x.Value).ToList() ?? new List<string>();
-            string sym = e.Element("symbol")?.Value ?? "";
-            C(sym == "ColonyCouncil/GodSymbols/" + d && File.Exists(Path.Combine(root, "Textures", sym + ".png")), $"{d}: its symbol, drawn");
-            C(L("spiritNames").Count >= 3 && L("oldNames").Count >= 3 && L("newNames").Count >= 3 && L("archotechNames").Count >= 3 && L("machineNames").Count >= 2,
-                $"{d}: names for every age");
-            C(L("epithets").Count >= 5 && L("epithets").All(x => x.StartsWith("the ")), $"{d}: five epithets, each a noun phrase after the name");
-            C(!string.IsNullOrEmpty(e.Element("ofWords")?.Value) && !string.IsNullOrEmpty(e.Element("sacredPlace")?.Value) && !string.IsNullOrEmpty(e.Element("sacredDeed")?.Value)
-              && !string.IsNullOrEmpty(e.Element("newbornName")?.Value), $"{d}: what it is of, its sacred place and deed, a newborn's name");
-            C(L("sacredAnimals").Concat(L("sacredPlants")).All(activeThings.Contains), $"{d}: its sacred animals and plants are in the player's active mods ({string.Join(", ", L("sacredAnimals").Concat(L("sacredPlants")).Where(x => !activeThings.Contains(x)))})");
-            C(e.Element("colour") != null && e.Element("colour2") != null, $"{d}: two colours");
-            allNames.AddRange(L("spiritNames").Concat(L("oldNames")).Concat(L("saintNames")).Concat(L("newNames")).Concat(L("machineNames")).Concat(L("archotechNames")));
-        }
-        C(new[] { "Harvest", "Way", "Healing", "Dead" }.All(d => byDomain[d].Element("sacredAnimals") != null) && byDomain["Hunt"].Element("sacredAnimals")!.Elements("li").All(x => x.Value != "Deer"),
-            "sacred animals that aren't everyday livestock or the hunter's daily deer");
-        C(File.Exists(Path.Combine(root, "Textures", "ColonyCouncil", "GodSymbols", "Pantheon.png")) && File.Exists(Path.Combine(root, "Tools", "make_god_symbols.py")),
-            "the pantheon's own symbol, and the script that draws them all");
-
-        // ================= The patrons of Rimfolk's peoples =================
-
-        var patrons = XDocument.Load(Path.Combine(root, "Defs", "GodDefs", "Rimfolk_Pantheon_Patrons.xml")).Root!.Elements("ColonyCouncil.GodPatronDef").ToList();
-        var peopleDefs = Directory.GetFiles(Path.Combine(root, "Defs", "PeopleDefs"), "Rimfolk_People_*.xml")
-            .SelectMany(f => XDocument.Load(f).Root!.Elements("FactionDef")).Where(e => e.Descendants("calling").Any()).Select(e => e.Element("defName")!.Value).ToList();
-        var patronOf = new Dictionary<string, XElement>();
-        foreach (var p in patrons)
-            foreach (var li in p.Element("peoples")!.Elements("li"))
-                patronOf[li.Value] = p;
-        C(peopleDefs.Count >= 23 && peopleDefs.All(patronOf.ContainsKey), $"every one of Rimfolk's peoples has a patron ({string.Join(", ", peopleDefs.Where(x => !patronOf.ContainsKey(x)))})");
-        C(patrons.SelectMany(p => p.Element("peoples")!.Elements("li")).Count() == patrons.SelectMany(p => p.Element("peoples")!.Elements("li")).Select(x => x.Value).Distinct().Count(),
-            "one patron a people");
-        string P(string people, string tag) => patronOf.TryGetValue(people, out var e) ? e.Element(tag)?.Value : null;
-        C(P("Rimfolk_Herders", "godName") == "the Herdmother" && P("Rimfolk_Tamers", "godName") == "the Herdmother", "the herders and the tamers share the Herdmother");
-        C(P("Rimfolk_Enclave", "kind") == "Archotech" && P("Rimfolk_HollowFleet", "kind") == "Archotech" && P("Rimfolk_HelixWorks", "kind") == "Archotech",
-            "the spacer peoples' archotechs: the Broker, the Silent Captain, the Weaver");
-        C(P("Rimfolk_Choir", "kind") == "Hunger" && P("Rimfolk_Choir", "domain") == "Void" && P("Rimfolk_SunkenVault", "kind") == "Imprisoned",
-            "the Hunger with the Choir of the Spire, the Sleeper imprisoned in the Sunken Vault");
-        C(P("Rimfolk_Republic", "form") == "HalfForgotten" && P("Rimfolk_Order", "form") == "Saint", "the Republic half-forgets its Lady; the order's Healer is a saint");
-        C(P("Rimfolk_Stormglass", "godName") == "the Storm-father" && P("Rimfolk_QuietBell", "domain") == "Dead" && P("Rimfolk_Mossborn", "domain") == "Wild"
-          && P("Rimfolk_AshenBanner", "domain") == "War" && P("Rimfolk_KilnGuild", "domain") == "Craft" && P("Rimfolk_RiverFolk", "domain") == "Waters",
-            "the storm, the dead, the wild, war, the forge and the waters by each people's lore");
-        C(patrons.All(p => (p.Element("epithet")?.Value ?? "").StartsWith("the ") && (p.Element("lore")?.Value ?? "").Length > 60
-                           && Enum.TryParse<GodDomain>(p.Element("domain")!.Value, out var pd) && pd != GodDomain.None
-                           && (p.Element("second") == null || p.Element("second")!.Value != p.Element("domain")!.Value)),
-            "each patron's epithet, a line of lore and its domains");
-        C(patrons.All(p => !allNames.Contains(p.Element("godName")!.Value)), "Rimfolk's makers never give a patron's name to another god");
-        C(allNames.Count == allNames.Distinct().Count(), $"no name twice among the domains' ({string.Join(", ", allNames.GroupBy(x => x).Where(g => g.Count() > 1).Select(g => g.Key))})");
-
-        // ================= The words =================
-
-        string keyed = File.ReadAllText(Path.Combine(root, "Languages", "English", "Keyed", "Rimfolk_Gods.xml"));
-        bool Has(string key) => keyed.Contains("<" + key + ">");
-        var missing = new List<string>();
-        void Need(string key)
-        {
-            if (!Has(key)) missing.Add(key);
-        }
-        foreach (FavourWord w in Enum.GetValues(typeof(FavourWord)))
-        {
-            Need("CC_God_Word_" + w);
-            Need("CC_God_Stands_" + w);
-        }
-        foreach (GodTieKind k in Enum.GetValues(typeof(GodTieKind)))
-        {
-            Need("CC_God_Tie_" + k);
-            Need("CC_God_TieAct_" + k);
-            Need("CC_God_TieAct_New" + k);
-            if (k == GodTieKind.Parent || k == GodTieKind.CastDown || k == GodTieKind.StolePeople)
-            {
-                Need("CC_God_TieOf_" + k + "_First");
-                Need("CC_God_TieOf_" + k + "_Second");
-            }
-            else Need("CC_God_TieOf_" + k);
-        }
-        Need("CC_God_TieAct_Gone");
-        foreach (var nat in GodsMath.Natures)
-        {
-            Need("CC_God_Nature_" + nat);
-            Need("CC_God_NatureLine_" + nat);
-        }
-        foreach (var k in GodsMath.Kinds)
-        {
-            Need("CC_God_Kind_" + k);
-            Need("CC_God_KindLine_" + k);
-        }
-        foreach (GodForm f in Enum.GetValues(typeof(GodForm)))
-        {
-            Need("CC_God_Form_" + f);
-            for (int gender = 0; gender < 3; gender++) Need("CC_God_Noun_" + GodsMath.Noun(f, gender));
-        }
-        foreach (var r in new[] { GodRealness.Believed, GodRealness.Felt, GodRealness.Walking })
-        {
-            Need("CC_God_Voice_" + GodsMath.Voice(r));
-            Need("CC_GodRealness_" + r);
-            Need("CC_GodRealness_" + r + "_Tip");
-            Need("CC_SetNote_GodRealness_" + r);
-        }
-        foreach (var how in new[] { "faith", "neighbours", "letter", "visitors" })
-        {
-            Need("CC_God_KnownFrom_" + how);
-            Need("CC_God_KnownPeopleNews_" + how);
-        }
-        for (int i = 0; i < 5; i++)
-        {
-            Need("CC_God_Epithet_Dead_" + i);
-            Need("CC_God_Epithet_Fading_" + i);
-        }
-        foreach (var what in new[] { "Fading", "Dead", "Returned" })
-        {
-            Need("CC_God_KindAct_" + what);
-            Need("CC_God_KindNews_" + what);
-        }
-        foreach (var k in new[] { "CC_God_OldLore_Dead", "CC_God_OldLore_Fading", "CC_SetSec_Gods", "CC_Settings_Gods", "CC_Settings_Gods_Tip", "CC_SetNote_Gods", "CC_Settings_GodRealness",
-                     "CC_Settings_GodRealness_Tip", "CC_Mode_Gods", "CC_Mode_Gods_Tip" })
-            Need(k);
-        C(missing.Count == 0, $"every word the gods say by their kind, nature, tie, form and favour ({string.Join(", ", missing)})");
-        C(Read("Gods/Pantheon.cs").Contains("public const int OldEpithets = 5;"), "five old epithets of each kind");
-        var keyText = Regex.Matches(keyed, @"<(CC_[A-Za-z_]+)>([^<]*)</").Select(m => m.Groups[2].Value).ToList();
-        C(keyText.All(t => !t.Contains("—") && !t.Contains("!")), "no dashes or exclamation marks in the gods' words");
-
-        // ================= The speech pool =================
-
-        var pool = XDocument.Load(Path.Combine(root, "Defs", "FlavorPoolDefs", "Rimfolk_Gods_Speech.xml")).Root!.Elements("ColonyCouncil.FlavorPoolDef")
-            .First(e => e.Element("defName")!.Value == "Rimfolk_Pool_SayGod").Descendants("li").Select(x => x.Value).ToList();
-        string Body(string l) => Regex.Replace(l, @"^\[[^\]]*\]\s*", "");
+        var peopleDefs = Directory.GetFiles(Path.Combine(root, "Defs", "PeopleDefs"), "Rimfolk_People_*.xml").SelectMany(f => XDocument.Load(f).Root!.Elements("FactionDef"))
+            .Select(e => e.Element("defName")?.Value).Where(x => x != null && !x.StartsWith("Rimfolk_People_")).ToList();
         string First(string s)
         {
             for (int i = 12; i < s.Length; i++)
@@ -410,65 +315,223 @@ public static class GodsTests
                     return s.Substring(0, i + 1);
             return s;
         }
-        C(pool.Count >= 25, $"swearing by a god: {pool.Count} lines");
-        foreach (var l in pool)
+        string Body(string l) => Regex.Replace(l, @"^\[[^\]]*\]\s*", "");
+        bool Clean(string s) => !s.Contains("—") && !s.Contains("!");
+        int Longest(XElement e) => new[] { V(e, "key") }.Concat(new[] { "tribalNames", "medievalNames", "industrialNames", "spacerNames" }.Select(f => Li(e, f).FirstOrDefault() ?? "")).Max(x => x.Length);
+        bool Said(string line, XElement e) => First(Body(line)) == Body(line) && Body(line).Replace("{GOD}", new string('x', Longest(e))).Length <= 90 && Clean(line)
+                                             && Regex.Matches(line, @"\{([A-Z_]+)\}").Cast<Match>().All(m => GodsMath.Placeholders.Contains(m.Groups[1].Value));
+        foreach (var e in godDefs)
         {
-            string body = Body(l);
-            C(First(body) == body && body.Length <= 90 && !body.StartsWith("\""), $"'{body}' is one sentence, said over a head");
-            C(Regex.Matches(body, @"\{([A-Z_]+)\}").Select(m => m.Groups[1].Value).All(h => GodsMath.Placeholders.Contains(h)), $"'{body}' names only the god");
+            string k = V(e, "key");
+            C(V(e, "epithet").Length > 3 && V(e, "godOf").Length > 10 && (V(e, "unheard").StartsWith("a ") || V(e, "unheard").StartsWith("something ")),
+                $"{k}: an epithet, what it is, and what is seen of it before anyone has heard of it");
+            C(new[] { "tribalNames", "medievalNames", "industrialNames", "spacerNames" }.All(f => Li(e, f).Count >= 1 && Li(e, f).All(n => n.Length <= 22)),
+                $"{k}: a name among the peoples of every age");
+            C(new[] { "whatItIs", "howSeen", "character", "wants" }.All(f => V(e, f).Length >= 80 && Clean(V(e, f))) && Li(e, "pleases").Count >= 1 && Li(e, "angers").Count >= 1,
+                $"{k}: what it is, how it is seen, its character, what it wants, what pleases and angers it");
+            C(Li(e, "sayings").Count >= 5 && Li(e, "hands").Count >= 5 && Li(e, "scoffs").Count >= 3 && Li(e, "letterLines").Count >= 2, $"{k}: sayings, believers' lines, scoffers' answers, letters");
+            foreach (var l in Li(e, "sayings").Concat(Li(e, "hands")).Concat(Li(e, "scoffs")))
+                C(Said(l, e), $"{k}: '{Body(l)}' is one sentence over a head, naming only the god");
+            foreach (var l in Li(e, "letterLines")) C(Clean(l) && l.Length > 40, $"{k}: a neighbor's line of its hand reads as a letter's");
+            var stories = e.Element("stories")!.Elements("li").ToList();
+            C(stories.Count >= 2, $"{k}: at least two old stories ({stories.Count})");
+            foreach (var st in stories)
+            {
+                var pieces = Li(st, "pieces");
+                C(V(st, "key").StartsWith(k + "_") && V(st, "title").Length > 3 && pieces.Count >= 2 && V(st, "retelling").Length > 150 && Clean(V(st, "retelling")),
+                    $"{V(st, "key")}: a title, two pieces or more, and a retelling for a letter");
+                foreach (var p in pieces) C(First(p) == p && p.Length <= 90 && Clean(p) && !p.Contains("{"), $"{V(st, "key")}: '{p}' is one sentence a person can tell");
+                foreach (var w in Li(st, "with")) C(byKey.ContainsKey(w) && w != k, $"{V(st, "key")}: of {w}, another of the gods");
+            }
+            foreach (var t in e.Element("ties")?.Elements("li") ?? Enumerable.Empty<XElement>())
+                C(byKey.ContainsKey(V(t, "other")) && V(t, "other") != k && Enum.TryParse<GodTieKind>(V(t, "kind"), out _) && First(V(t, "words")) == V(t, "words") && V(t, "words").Length <= 90,
+                    $"{k}: its tie to {V(t, "other")} ({V(t, "kind")}) has words of its own, one sentence");
+            C(Li(e, "peoples").All(p => peopleDefs.Contains(p) || activeFactions.Contains(p)), $"{k}: the peoples that revere it are Rimfolk's or the player's active mods' ({string.Join(", ", Li(e, "peoples").Where(p => !peopleDefs.Contains(p) && !activeFactions.Contains(p)))})");
+            C(Li(e, "kinds").All(GodLoreMath.Kinds.Contains), $"{k}: the kinds of people that revere it are known kinds");
+            C(Li(e, "sacredAnimals").All(activeThings.Contains), $"{k}: its sacred animals are in the player's active mods");
+            C(looks.Contains(V(e, "look")), $"{k}: its look ({V(e, "look")}) is one of the presence part's");
+            C(e.Element("color") != null && e.Element("color2") != null, $"{k}: its two colors");
         }
-        foreach (var tag in new[] { "storm", "cold", "heat", "snow", "hurt", "grieving", "kind:archotech", "kind:trickster", "kind:hunger" })
-            C(pool.Any(l => Regex.IsMatch(l, @"^\[[^\]]*\b" + Regex.Escape(tag) + @"\b")), $"lines for {tag}");
-        C(pool.Count(l => !l.StartsWith("[")) >= 4, "lines for any moment");
-        string speech = Read("Gods/GodSpeech.cs");
-        foreach (Match m in Regex.Matches(speech, "\\[\"(Council_Pool_Say[A-Za-z]+)\"\\]"))
-            C(Directory.GetFiles(Path.Combine(root, "Defs"), "*.xml", SearchOption.AllDirectories).Any(f => File.ReadAllText(f).Contains("<defName>" + m.Groups[1].Value + "</defName>")),
-                $"the weather's pool {m.Groups[1].Value} is there");
-        C(Read("Immersion/StateSpeech.cs").Contains("Try(() => God(p), \"god\");") && Read("Immersion/StateSpeech.cs").Contains("GodSpeech.StateTags(p, out var args)"),
-            "a word to their god among the things on a colonist's mind");
-        C(Read("Immersion/WeatherTalk.cs").Split("GodSpeech.InPlaceOf(pool, p) ?? Flavor.FromPool(pool, p, null, null, tags)").Length == 3, "and when the weather turns");
-        C(speech.Contains("Rand.Chance(StateChance)") && speech.Contains("Rand.Chance(WeatherChance)") && GodSpeechChance(speech), "now and then, on top of each moment's own rate");
+        var revered = godDefs.SelectMany(e => Li(e, "peoples")).ToHashSet();
+        C(peopleDefs.Count >= 23 && peopleDefs.All(revered.Contains), $"each of Rimfolk's peoples reveres at least one god by its lore ({string.Join(", ", peopleDefs.Where(p => !revered.Contains(p)))})");
+        foreach (var kind in new[] { "Tribal", "Medieval", "Industrial", "Spacer", "Raiders", "Empire", "Cannibal" })
+            C(godDefs.Any(e => Li(e, "kinds").Contains(kind)), $"the game's faction kinds: some god is revered by the {kind}");
+        var tieKinds = godDefs.SelectMany(e => (e.Element("ties")?.Elements("li") ?? Enumerable.Empty<XElement>()).Select(t => (a: V(e, "key"), b: V(t, "other"), kind: V(t, "kind")))).ToList();
+        C(tieKinds.Select(t => string.CompareOrdinal(t.a, t.b) < 0 ? t.a + "|" + t.b : t.b + "|" + t.a).Distinct().Count() == tieKinds.Count, "each tie authored once");
+        bool Tie(string a, string b, string kind) => tieKinds.Any(t => (t.a == a && t.b == b || t.a == b && t.b == a) && t.kind == kind);
+        C(Tie("Hollin", "Morel", "Allies") && Tie("Smoulder", "Hush", "Rivals") && Tie("Pip", "Morel", "Rivals") && Tie("Cirrus", "Bellwether", "Allies")
+          && Tie("Undertow", "Hollin", "Rivals") && Tie("Undertow", "Ennu", "Rivals") && Tie("Helios", "Selene", "Return") && Tie("Helios", "Pip", "Rivals")
+          && Tie("Mog", "Ennu", "Rivals") && Tie("Murmur", "Hush", "Rivals") && Tie("Ducat", "Smoulder", "Rivals"),
+            "the ties as the gods stand with each other (the brainstorm's section B)");
+        var allNames = godDefs.SelectMany(e => new[] { V(e, "key") }.Concat(new[] { "tribalNames", "medievalNames", "industrialNames", "spacerNames" }.SelectMany(f => Li(e, f)))).ToList();
+        foreach (var old in new[] { "Storm-father", "Ferryman", "Herdmother", "Far Light", "Red Captain", "Voice in the Wire", "Deep Mother", "Lady of the Vote", "Silent Captain", "Lattice-mind", "Sleeper", "Broker", "Tinker" })
+            C(!File.ReadAllText(Path.Combine(root, "Defs", "GodDefs", "Rimfolk_Gods.xml")).Contains(old) && !File.ReadAllText(Path.Combine(root, "Defs", "GodDefs", "Rimfolk_GodLooks.xml")).Contains(old)
+              && !File.ReadAllText(Path.Combine(root, "Languages", "English", "Keyed", "Rimfolk_Gods.xml")).Contains(old), $"the old patron {old} is retired from the gods' defs and words");
+        C(!File.Exists(Path.Combine(root, "Defs", "GodDefs", "Rimfolk_Pantheon_Patrons.xml")) && !Read("Gods/GodDefs.cs").Contains("GodPatronDef"), "the old patrons are retired with the generated pantheon");
 
-        // ================= The letters =================
+        // ================= The domains, a fallback table only =================
 
-        string shapes = Read("Letters/LetterFormShapes.cs");
-        C(shapes.Contains("GodWords.Letter(s.values, pawn, f);") && shapes.Contains("GodWords.Letter(s.values, writer, Faction.OfPlayer);"), "the writer's god in their letters and the colony's own");
-        int godLines = 0;
-        foreach (var f in new[] { "Rimfolk_Letters_Close.xml", "Rimfolk_Letters_PS.xml", "Rimfolk_Letters_Sermon.xml" })
-            godLines += Regex.Matches(File.ReadAllText(Path.Combine(root, "Defs", "FlavorPoolDefs", f)), @"\{GOD(EPITHET|OF)?\}").Count > 0
-                ? File.ReadAllText(Path.Combine(root, "Defs", "FlavorPoolDefs", f)).Split('\n').Count(x => x.Contains("{GOD")) : 0;
-        C(godLines >= 6 && godLines <= 14, $"a handful of letter lines name their god ({godLines})");
-        C(Read("Gods/GodWords.cs").Contains("Gods.Learn(g, \"letter\")"), "a letter that names a god teaches the colony of it");
+        var domainsXml = XDocument.Load(Path.Combine(root, "Defs", "GodDefs", "Rimfolk_Pantheon_Domains.xml")).Root!.Elements("ColonyCouncil.GodDomainDef").ToList();
+        C(domainsXml.Count == 14 && domainsXml.All(e => e.Element("symbol") == null && e.Element("oldNames") == null && e.Element("epithets") == null && !string.IsNullOrEmpty(e.Element("ofWords")?.Value)),
+            "fourteen domains kept as the fallback table: no symbols, no generated names");
+        C(domainsXml.SelectMany(e => (e.Element("sacredAnimals")?.Elements("li") ?? Enumerable.Empty<XElement>()).Concat(e.Element("sacredPlants")?.Elements("li") ?? Enumerable.Empty<XElement>()))
+            .All(x => activeThings.Contains(x.Value)), "the domains' sacred animals and plants are in the player's active mods");
 
-        // ================= The seams =================
+        // ================= No symbols =================
 
-        string seam = Read("Gods/GodPresenceSeam.cs");
-        C(seam.Contains("public static Func<PresenceSpec, bool> Manifest;") && seam.Contains("public static Action<Pawn, God, bool> MakeAvatar;"),
-            "the presence part's two seams: Manifest and MakeAvatar, null until it sets them");
-        C(new[] { "public God god;", "public Map map;", "public IntVec3 cell", "public PresenceKind kind;", "public Pawn avatar;", "public string title, text;", "public bool veiled;" }.All(seam.Contains),
-            "the plain PresenceSpec: god, map, cell, kind, avatar, the card's title and text, plain or veiled");
-        C(new[] { "Appear", "Act", "Reveal", "Depart", "Blessing", "Wrath", "Omen" }.All(k => Regex.IsMatch(seam, @"\b" + k + @",?\s")), "its kinds: appear, act, reveal, depart, blessing, wrath, omen");
-        C(seam.Contains("if (m == null || spec?.god == null || !Gods.On) return false;") && seam.Contains("if (m == null || p == null || god == null || !Gods.On || !GodsMath.AvatarsCome(Gods.Realness)) return false;"),
-            "calls do nothing while the presence part isn't there, the gods are off, or (an avatar) they are only believed");
-        C(seam.Contains("veiled = !GodsMath.PlainCard(Gods.Realness)"), "veiled by how real the gods are");
-        C(!Directory.Exists(Path.Combine(src, "Gods", "Presence")) || !Directory.GetFiles(Path.Combine(src, "Gods", "Presence")).Any(f => File.ReadAllText(f).Contains("class GodBook")),
-            "the core keeps out of the presence part's folder");
-        foreach (var api in new[]
-                 {
-                     "public static IReadOnlyList<God> All", "public static List<God> Of(Faction f)", "public static List<God> OfIdeo(Ideo ideo)", "public static List<God> ColonyGods(Map home)",
-                     "public static God Patron(Map home)", "public static FavourWord Favour(God g, Map home)", "public static void AddFavour(God g, Map home, float amount, string why",
-                     "public static GodRealness Realness", "public static void Remember(GodAct act)", "public static string Name(God g)", "public static string Epithet(God g)",
-                     "public static God SwearBy(Pawn p", "public static List<GodTie> TiesOf(God g)", "public static List<God> Rivals(God g)", "public static List<God> Allies(God g)",
-                     "public static GodNature NatureOf(God g)", "public static GodKind KindOf(God g)", "public static float Loudness(God g)", "public static void Deed(GodDomain d, Map home"
-                 })
-            C(gods.Contains(api), "Gods: " + api.Replace("public static ", ""));
-        string godCs = Read("Gods/God.cs");
-        C(new[] { "public int id;", "public string name;", "public string epithet;", "public GodDomain domain, second;", "public GodForm form;", "public List<Faction> factions",
-                "public List<Ideo> ideos", "public string deityKey, deityType;", "public Color colour = Color.white, colour2", "public string look;" }.All(godCs.Contains),
-            "a god's record: id, name, epithet, domains, form, peoples and faiths, the deity it came from, colours, the look's defName as a string");
-        C(!Regex.IsMatch(string.Join("\n", Directory.GetFiles(Path.Combine(src, "Gods"), "*.cs").Select(File.ReadAllText)), @"\bclass GodLookDef\b"), "the core never defines GodLookDef");
+        C(!Directory.Exists(Path.Combine(root, "Textures", "ColonyCouncil", "GodSymbols")) && !File.Exists(Path.Combine(root, "Tools", "make_god_symbols.py")) && !File.Exists(Path.Combine(src, "Gods", "GodSymbols.cs"))
+          && !File.Exists(Path.Combine(root, "Textures", "ColonyCouncil", "Gods", "Aura", "Emblem.png")), "the gods' symbols, their script and the card's emblem are gone");
+        string card = Read(Path.Combine("Gods", "Presence", "GodCard.cs"));
+        C(!card.Contains("Symbol") && !card.Contains("Emblem") && card.Contains("<size=28>"), "the god's card shows the god in words: its name set large in its color");
+        C(!Read(Path.Combine("Gods", "Presence", "GodLookDef.cs")).Contains("Texture2D Symbol"), "a look has no symbol");
 
-        // ================= The hooks, the book, the settings, the page =================
+        // ================= The hands =================
+
+        foreach (var kv in GodHandsMath.ByDef.Concat(GodHandsMath.ByWorker))
+        {
+            C(byKey.ContainsKey(kv.Value.god) && (kv.Value.with == null || byKey.ContainsKey(kv.Value.with)) && kv.Value.chance > 0f && kv.Value.chance <= 0.8f,
+                $"the hand in {kv.Key} is {kv.Value.god}'s{(kv.Value.with != null ? " with " + kv.Value.with : "")}, and people don't always remark on it");
+        }
+        foreach (var kv in GodHandsMath.ByDef)
+            C(activeIncidents.Contains(kv.Key) || activeDefs.Contains(kv.Key), $"the event {kv.Key} is the game's or one of the player's active mods'");
+        C(GodHandsMath.Of("AmbrosiaSprout", null).god == "Hollin" && GodHandsMath.Of("ThrumboPasses", null).god == "Bellwether" && GodHandsMath.Of("CropBlight", null).god == "Morel"
+          && GodHandsMath.Of("CropBlight", null, true).god == "Hollin" && GodHandsMath.Of("WandererJoin", null).god == "Ennu" && GodHandsMath.Of("ShortCircuit", null).god == "Pip"
+          && GodHandsMath.Of("MeteoriteImpact", null).god == "Cirrus" && GodHandsMath.Of("ColdSnap", null).god == "Hush" && GodHandsMath.Of("PsychicDrone", null).god == "Undertow"
+          && GodHandsMath.Of("SolarFlare", null).god == "Helios" && GodHandsMath.Of("HeatWave", null).god == "Helios" && GodHandsMath.Of("Eclipse", null).god == "Selene"
+          && GodHandsMath.Of("Eclipse", null).with == "Helios" && GodHandsMath.Of("Council_Evt_Stray", null).god == "Mog" && GodHandsMath.Of("SeasonalFlooding", null).god == "Murmur"
+          && GodHandsMath.Of("OrbitalTraderArrival", null).god == "Ducat" && GodHandsMath.Of("Council_Evt_RichSeam", null).god == "Smoulder",
+            "whose hand people see (the brainstorm's section C): blight on the axe-happy is Hollin's, the eclipse Selene stepping between Helios and the world");
+        C(GodHandsMath.Of("RaidEnemy", "IncidentWorker_RaidEnemy").Valid == false && GodHandsMath.Of("Mod_Thing", "IncidentWorker_ThrumboPasses").god == "Bellwether", "a raid is nobody's hand; a mod's event with the game's worker is read by its worker");
+        int day = 60000;
+        C(!GodHandsMath.Remarked(0, -1, 5 * day, 1f, 0f, day) && GodHandsMath.Remarked(0, -1, GodHandsMath.QuietDays * day, 1f, 0.5f, day)
+          && !GodHandsMath.Remarked(-1, 10 * day, 11 * day, 1f, 0f, day) && !GodHandsMath.Remarked(-1, -1, 0, 0.3f, 0.5f, day) && GodHandsMath.Remarked(-1, -1, 0, 0.3f, 0.2f, day),
+            "a god keeps quiet a while after its hand is remarked on, no two hands close together at a home, and each event's own chance");
+        C(GodHandsMath.QuietDays >= 14 && GodHandsMath.AnyQuietDays >= 3, "rare enough not to nag");
+        C(GodHandsMath.Scoffer(GodRealness.Felt) && !GodHandsMath.Scoffer(GodRealness.Believed) && !GodHandsMath.Scoffer(GodRealness.Walking),
+            "a scoffer answers only while the gods are felt; believed, the colony is sure; walking, nobody doubts it");
+        C(GodHandsMath.Fits("[gift] x", HandKind.Gift, GodRealness.Felt) && !GodHandsMath.Fits("[gift] x", HandKind.Wrath, GodRealness.Felt) && GodHandsMath.Fits("plain", HandKind.Wrath, GodRealness.Felt)
+          && !GodHandsMath.Fits("[walking] x", HandKind.Sign, GodRealness.Felt) && GodHandsMath.Fits("[walking] x", HandKind.Sign, GodRealness.Walking)
+          && !GodHandsMath.Fits("[meeting] x", HandKind.Sign, GodRealness.Felt) && GodHandsMath.Fits("[meeting] x", HandKind.Sign, GodRealness.Felt, true),
+            "a line fits its hand by its tags: the kind, how real the gods are, a meeting");
+        C(GodHandsMath.Fitting(new[] { "[gift] a", "b", "[wrath] c" }, HandKind.Gift, GodRealness.Felt).SequenceEqual(new[] { "a" })
+          && GodHandsMath.Fitting(new[] { "[gift] a", "b" }, HandKind.Sign, GodRealness.Felt).SequenceEqual(new[] { "b" }), "a line made for the moment beats one for any");
+        C(GodHandsMath.NightOnly("Selene") && !GodHandsMath.NightOnly("Helios") && GodHandsMath.Night(22) && GodHandsMath.Night(3) && !GodHandsMath.Night(12), "Selene returns at night what was done by day");
+        C(GodHandsMath.Writable(0, 5 * day, false, day) && !GodHandsMath.Writable(0, 1 * day, false, day) && !GodHandsMath.Writable(0, 5 * day, true, day) && !GodHandsMath.Writable(0, 60 * day, false, day),
+            "a neighbor writes of a hand a few days after, once, while it is still news");
+        foreach (var e in godDefs)
+            C(Li(e, "hands").Any(l => !l.StartsWith("[") || l.StartsWith("[sign") || l.StartsWith("[gift") || l.StartsWith("[wrath") || l.StartsWith("[meeting")), $"{V(e, "key")}: a believer's line for its hands");
+        C(Li(byKey["Selene"], "hands").Count(l => l.StartsWith("[meeting]")) >= 2, "Selene has lines for stepping between Helios and the world");
+        string hands = Read("Gods/GodHands.cs");
+        C(hands.Contains("[HarmonyPatch(typeof(IncidentWorker), nameof(IncidentWorker.TryExecute))]") && hands.Contains("if (!__result || !RimfolkPatches.On) return;"),
+            "a soft postfix on IncidentWorker.TryExecute, after the event has happened, off with the deeper hooks");
+        C(!hands.Contains("Tell.") && !hands.Contains("Letter") && !hands.Contains("Messages.") && hands.Contains("Speech.Say(believer, line)") && hands.Contains("Speech.Say(scoffer, answer, believer)")
+          && hands.Contains("Together.Can(believer, x)"), "people's words only: a believer's bubble, a scoffer near them, no letter or news line, the game's letter untouched");
+        C(hands.Contains("GodLoreMath.Attribute(god.Key, knownOf, Rand.Value)") && hands.Contains("GodLore.Saw(witnesses, taken, label, said, \"SawHand\")"),
+            "a believer names the god they take it for (maybe wrongly), and the book has it as they saw and said it");
+
+        // ================= The lore: names, who reveres whom, stories in pieces =================
+
+        C(GodLoreMath.Reveres(new[] { "Rimfolk_Mossborn" }, new[] { "Tribal" }, "Rimfolk_Mossborn", new[] { "Tribal" }, true)
+          && !GodLoreMath.Reveres(new[] { "Rimfolk_Order" }, new[] { "Tribal" }, "Rimfolk_Mossborn", new[] { "Tribal" }, true)
+          && GodLoreMath.Reveres(new string[0], new[] { "Tribal" }, "TribeCivil", new[] { "Tribal" }, false)
+          && !GodLoreMath.Reveres(new string[0], new[] { "Spacer" }, "Empire", new[] { "Spacer", "Empire" }, false)
+          && GodLoreMath.Reveres(new string[0], new[] { "Empire" }, "Empire", new[] { "Spacer", "Empire" }, false),
+            "a people a god names reveres only those that name it; the rest by kind; the Empire by its own ways");
+        C(GodLoreMath.KindsOf(0, false, false, false).SequenceEqual(new[] { "Tribal" }) && GodLoreMath.KindsOf(3, true, false, true).SequenceEqual(new[] { "Spacer", "Raiders", "Cannibal" }),
+            "a people's kinds: its age, and raiders, the Empire, cannibals");
+        var ageNames = new[] { "Grandmother Root" };
+        int shortSaid = Enumerable.Range(0, 400).Count(i => GodLoreMath.NameFor("Hollin", ageNames, i, 1) == "Hollin");
+        C(shortSaid > 120 && shortSaid < 280 && GodLoreMath.NameFor("Hollin", ageNames, 7, 1) == GodLoreMath.NameFor("Hollin", ageNames, 7, 1) && GodLoreMath.NameFor("Hollin", null, 7, 1) == "Hollin",
+            $"about half say a god's short name and half their age's, each always the same ({shortSaid} of 400)");
+        var sketches = new List<TaleSketch> { new TaleSketch("A", 3, "Hollin"), new TaleSketch("B", 2, "Pip"), new TaleSketch("C", 2, "Hollin", "Morel") };
+        var told = new Dictionary<string, int> { ["A"] = 1 };
+        C(GodLoreMath.Next(sketches, told, new[] { "Hollin" }, 0.9f, out var key1, out int p1) && key1 == "A" && p1 == 1, "a story begun is carried on first, its next piece");
+        told["A"] = 3;
+        C(GodLoreMath.Next(sketches, told, new[] { "Hollin" }, 0.1f, out var key2, out int p2) && key2 == "C" && p2 == 0, "then a new one of the teller's own gods, from its first piece");
+        C(GodLoreMath.Next(sketches, told, new[] { "Undertow" }, 0.1f, out var key3, out _) && (key3 == "B" || key3 == "C"), "a teller with none of their own tells any not yet heard");
+        var all = new Dictionary<string, int> { ["A"] = 3, ["B"] = 2, ["C"] = 2 };
+        C(GodLoreMath.Next(sketches, all, null, 0.5f, out _, out int p4) && p4 == 0, "all heard: an old one told again from its start");
+        C(GodLoreMath.AfterTelling(1, 1, 3) == 2 && GodLoreMath.AfterTelling(3, 0, 3) == 3 && GodLoreMath.AfterTelling(1, 0, 3) == 1, "the colony's count moves on only with a piece it hasn't heard");
+        int[] inOrder = new int[4];
+        var t2 = new Dictionary<string, int>();
+        for (int i = 0; i < 3; i++)
+        {
+            GodLoreMath.Next(new[] { new TaleSketch("S", 3, "Hush") }, t2, null, 0.5f, out _, out int pc);
+            inOrder[i] = pc;
+            t2["S"] = GodLoreMath.AfterTelling(t2.TryGetValue("S", out int n0) ? n0 : 0, pc, 3);
+        }
+        C(inOrder[0] == 0 && inOrder[1] == 1 && inOrder[2] == 2, "a story reaches the colony in pieces, in order, never all at once");
+        C(GodLoreMath.TalkNow(19, -1, 1f, 0f) && !GodLoreMath.TalkNow(12, -1, 1f, 0f) && !GodLoreMath.TalkNow(19, 3, 1f, 0f) && GodLoreMath.EveningChance <= 0.1f && GodLoreMath.GapHours >= 12,
+            "talk of the gods at the evening fire, now and then, never twice in an evening");
+        C(Enum.GetValues(typeof(GodTalkKind)).Length == 3 && GodLoreMath.Talk(0.1f) == GodTalkKind.Piece && GodLoreMath.Talk(0.7f) == GodTalkKind.Saying && GodLoreMath.Talk(0.95f) == GodTalkKind.Tie,
+            "mostly the next piece of a story, else a saying, now and then a word on two gods");
+        C(Enumerable.Range(0, 300).All(i => Math.Abs(GodLoreMath.Credence(1f, 0.5f, false, false, 0, i)) <= 1f) && GodLoreMath.Credence(1.6f, 0.9f, true, false, 4, 3) > GodLoreMath.Credence(1f, 0.5f, false, true, 0, 3)
+          && GodLoreMath.Credence(1f, -1f, false, false, 0, 9) == GodLoreMath.Credence(1f, -1f, false, false, 0, 9),
+            "who believes: the psychically sensitive, the sure of their faith, the old and those who have seen for themselves, more than the too clever; each the same");
+        var knownOf = new HashSet<string> { "Hollin", "Smoulder" };
+        C(GodLoreMath.Attribute("Hollin", knownOf, 0.9f) == "Hollin" && GodLoreMath.Attribute("Pip", knownOf, 0.5f) == "Smoulder" && GodLoreMath.Attribute("Ennu", knownOf, 0.5f) == null
+          && GodLoreMath.Attribute("Morel", knownOf, 0.1f) == "Hollin",
+            "a believer names the god they know of: the right one mostly, one they confuse it with, or nothing they can name");
+        C(GodLoreMath.Keys.All(GodLoreMath.Confused.ContainsKey) && GodLoreMath.Confused.Values.All(v => v.All(GodLoreMath.Keys.Contains)), "every god can be taken for another");
+        C(GodLoreMath.ConnectChance(0, 0) > 0f && GodLoreMath.ConnectChance(20, 10) <= 0.12f && GodLoreMath.ConnectChance(15, 5) > GodLoreMath.ConnectChance(2, 5),
+            "two names worked out to be one, sooner with a sharp mind on it");
+        C(GodLoreMath.VoiceOf(false, true, true, 20) == GodLoreMath.Voice.Bare && GodLoreMath.VoiceOf(true, true, false, 2) == GodLoreMath.Voice.Devout
+          && GodLoreMath.VoiceOf(true, false, false, 12) == GodLoreMath.Voice.Learned && GodLoreMath.VoiceOf(true, false, false, 4) == GodLoreMath.Voice.Plain,
+            "the book's voice is its keeper's: devout, learned or plain; bare with nobody");
+
+        // ================= The colony's book =================
+
+        string lore = Read("Gods/GodLore.cs"), page = Read("Gods/GodLorePage.cs"), tales = Read("Gods/GodTales.cs");
+        foreach (var api in new[] { "public static LoreEntry Saw(IEnumerable<Pawn> pawns, God g, string words", "public static LoreEntry Heard(Pawn teller, God g, string words",
+                     "public static LoreEntry Heard(string teller, God g, string words", "public static LoreEntry Believes(Pawn p, God g, string words",
+                     "public static LoreEntry Dreamt(Pawn p, God g, string words)", "public static LoreEntry Prayed(Pawn p, God g, string words)", "public static string LabelFor(string key)" })
+            C(lore.Contains(api), "GodLore: " + api.Replace("public static ", ""));
+        C(lore.Contains("Interplay.Officer(Interplay.Chaplain") && lore.Contains("MoralGuide") && lore.Contains("OrderByDescending(Credence)") && lore.Contains("OrderByDescending(Intellect)"),
+            "the keeper: the chaplain, else the moral guide, else the most devout, else the most lettered");
+        foreach (var coll in new[] { "entries", "names", "hands", "retold" })
+            C(lore.Contains("Scribe_Collections.Look(ref " + coll + ", \"" + coll + "\"") && lore.Contains(coll + " ??= new List<"), $"the book saves its {coll} and mends them on a load");
+        C(lore.Contains("public void Connect(LoreName a, LoreName into, Pawn by, string teller)") && lore.Contains("GodLoreMath.TellerConnects"),
+            "two names worked out to be one, by a colonist or a teller saying so");
+        C(!page.Contains("Favour") && !page.Contains("FavourValue") && !page.Contains("ColorA") && !page.Contains(".colour"), "the book shows no favor, and no god's color that would give away which names are one");
+        C(page.Contains("<size=26>") && page.Contains("\"<i>\"") && page.Contains("Rule(") && page.Contains("public const float Column = 600f;") && page.Contains("CC_GodLore_Hand"),
+            "type with character: a title set large, italics, rules, a readable column, the keeper's hand marked");
+        C(Read("UI/MainTabWindow_World.cs").Contains("Own(RegionView.Gods, Icons.Journal ?? Icons.Chronicle, 40f, GodLorePage.Draw)"), "the book is its own tab of the region window");
+        C(tales.Contains("Speech.Say(teller, text, listener)") && tales.Contains("GodLore.Heard(teller, g, text, how, key, piece, name)") && tales.Contains("Together.Can(teller, p)") && tales.Contains("Together.Can(v, c)"),
+            "stories told by people near each other, and written as heard");
+        C(Read("Letters/LetterForm.cs").Contains("GodTales.Written(s.values, text?.full ?? text?.letter);") && tales.Contains("if (!text.Contains(kv.Key)) continue;"),
+            "a letter's tale reaches the book only once its words are in the letter");
+        C(validator.Contains("wishPh.UnionWith(new[] { \"GODTALE\", \"GODHAND\" });"), "the def validator knows {GODTALE} and {GODHAND}");
+        string ps = File.ReadAllText(Path.Combine(root, "Defs", "FlavorPoolDefs", "Rimfolk_Letters_PS.xml"));
+        C(ps.Contains("{GODTALE}") && ps.Contains("{GODHAND}"), "neighbors' postscripts retell a story, and speak of a god's hand at the colony");
+
+        // ================= Unseen: no page, no favor told =================
+
+        C(!File.Exists(Path.Combine(src, "Gods", "GodsPage.cs")) && !Read("UI/Region/PeoplesView.cs").Contains("Gods") && !Read("UI/Region/RegionView.cs").Contains("bool gods"),
+            "no Gods page under Peoples");
+        C(!godsCode.Contains("Tell.Minor") && !godsCode.Contains("CC_God_Stands_") && !Read("Gods/Pantheon.cs").Contains("Tell.") && !Read("Gods/GodTales.cs").Contains("Tell."),
+            "no news line says what a god thinks: favor, a god known, a tie, a fading god are hidden state");
+        C(godsCode.Contains("public static God ByKey(string key)") && godsCode.Contains("public static string NameBy(God g, Pawn speaker)") && godsCode.Contains("public static void Moment(PresenceSpec spec)"),
+            "Gods.ByKey, a god as a speaker names it, and a god's moment as its witnesses saw it");
+        C(godsCode.Contains("act.witnesses.NullOrEmpty() ? Witnesses(map, act.cell)") && godsCode.Contains("public const float WitnessRange = 20f;") && godsCode.Contains("GenSight.LineOfSight(p.Position, cell, map, true)"),
+            "an act remembered without witnesses gets them: those awake in sight within 20 cells, or everyone for a sign with no place");
+        C(Read("Gods/GodPresenceSeam.cs").Contains("if (played) Gods.Moment(spec);"), "a god's moment reaches the book as those who saw it saw it");
+        C(godsCode.Contains("public static string CardName(God god, Map home, string sign = null)") && godsCode.Contains("lore.KnowsActing(god) && !lore.Knows(god, sign)")
+          && godsCode.Contains("if (plain) lore.MarkActing(spec.god);"),
+            "Gods.CardName: a god named plainly only when the colony knows it was its doing (seen acting, revealed, a sign learned, or walking openly)");
+        C(Read("Gods/GodsWiring.cs").Contains("string known = Gods.CardName(s.god, s.map);") && Read("Gods/GodHands.cs").Contains("bool known = Gods.CardName(god, map, sign) != null;")
+          && Read("Gods/GodHands.cs").Contains("if (GodHandsMath.Scoffer(realness) && !known)"), "the card and the hands name a god only when the colony knows; then nobody doubts it");
+        C(lore.Contains("public static void LearnSign(God g, string sign)") && Read("Gods/GodTales.cs").Contains("foreach (var sign in story.teaches ?? new List<string>())"),
+            "a sign learned as a god's own: from a story heard whole, or any part's call");
+        foreach (var e in godDefs)
+            foreach (var st in e.Element("stories")!.Elements("li"))
+                foreach (var sign in Li(st, "teaches"))
+                    C(GodHandsMath.ByDef.TryGetValue(sign, out var h) && (h.god == V(e, "key") || h.with == V(e, "key") || V(e, "key") == "Hollin" && sign == "CropBlight"),
+                        $"{V(st, "key")}: the sign it teaches ({sign}) is its god's hand");
+        C(godDefs.SelectMany(e => e.Element("stories")!.Elements("li")).Count(st => Li(st, "teaches").Count > 0) >= 14, "stories teach the colony what the gods' signs are");
+        C(Read("Gods/GodsWiring.cs").Contains("HediffComp_GodAvatar.Label = GodLore.LabelFor;") && Read(Path.Combine("Gods", "Presence", "GodAvatar.cs")).Contains("return Label?.Invoke(n) ?? n;"),
+            "the name over a god on the map is the colony's name for it, or what is seen of it");
+
+        // ================= The hooks, the book, the settings =================
 
         C(Read("World/Region/RegionBook.cs").Contains("if (Gods.On) Safe(\"the gods\", () => GodBook.Daily(now));") && Read("World/Region/RegionBook.cs").Contains("GodBook.Hourly(now)"),
             "kept in the region's day and hour, no pass of its own");
@@ -476,24 +539,96 @@ public static class GodsTests
             "a great beast brought down, a sacred animal slaughtered, a funeral's eulogy");
         string book = Read("Gods/GodBook.cs");
         foreach (var coll in new[] { "gods", "ties", "standings", "acts", "vows", "deeds" })
-            C(book.Contains("Scribe_Collections.Look(ref " + coll + ", \"" + coll + "\", LookMode.Deep);") && book.Contains(coll + " ??= new List<"), $"the book saves its {coll} and mends them on a load");
-        C(book.Contains("if (!built) Pantheon.Build(this);") && book.Contains("public const int MaxActs = 300, MaxActsPerGod = 30;"), "built once per world, an older save on its first load; the acts bounded");
-        C(Read("Gods/Pantheon.cs").Contains("GodsMath.Seed(WorldSeed") && Read("Gods/Pantheon.cs").Contains("ModsConfig.IdeologyActive"), "the same for the same world; Ideology soft");
+            C(book.Contains("Scribe_Collections.Look(ref " + coll + ", \"" + coll + "\", LookMode.Deep);") && book.Contains(coll + " ??= new List<"), $"the hidden state saves its {coll} and mends them on a load");
+        C(book.Contains("if (!built || version < Pantheon.Nine) Pantheon.Build(this);") && book.Contains("Scribe_Values.Look(ref version, \"version\");"), "the gods from their defs; an older save's generated gods let go on its first load");
+        string pantheon = Read("Gods/Pantheon.cs");
+        C(pantheon.Contains("b.gods.Clear();") && pantheon.Contains("b.standings.Clear();") && pantheon.Contains("b.acts.Clear();") && pantheon.Contains("if (older) b.retired = true;")
+          && !pantheon.Contains("IdeoFoundation_Deity"), "the generated gods dropped with their standings and acts, the line told once; Ideology's deities ignored");
+        C(Read("Gods/God.cs").Contains("Scribe_Defs.Look(ref def, \"def\");") && Read("Gods/God.cs").Contains("public void FromDef()"), "a god keeps its def, and takes its words from it on every load");
         string settings = Read("CouncilSettings.cs"), catalog = Read("UI/SettingsCatalog.cs");
-        C(settings.Contains("public bool gods = true;") && settings.Contains("public GodRealness godRealness = GodRealness.Felt;") && settings.Contains("Scribe_Values.Look(ref gods, \"gods\", true);")
-          && settings.Contains("Scribe_Values.Look(ref godRealness, \"godRealness\", GodRealness.Felt);"), "the settings: Gods on, How real Felt, by default");
-        C(catalog.Contains("Toggle(\"gods\", \"CC_Settings_Gods\"") && catalog.Contains("Choice(\"godRealness\"") && catalog.Contains("new[] { \"Believed\", \"Felt\", \"Walking\" }, \"gods\")")
-          && catalog.Contains("\"CC_SetSec_Gods\", \"CC_SetSec_Neighbours\""), "both on the What's on page, in a section of their own the setups reach");
-        C(Read("UI/PagesMath.cs").Contains("[\"Peoples\"] = new[] { \"Peoples\", \"Faces\", \"Gods\" }") && Read("UI/Region/PeoplesView.cs").Contains("if (gods) GodsPage.Draw(body);")
-          && Read("UI/Region/RegionView.cs").Contains("gods = a.mode == \"Gods\";"), "the Gods page: the Peoples view's third mode, by address Peoples/Gods");
-        string page = Read("Gods/GodsPage.cs");
-        C(page.Contains("RumourName(g)") && page.Contains("Gods.Favour(g, map)") && page.Contains("Gods.TiesOf(g)") && page.Contains("GodWords.NatureLine(g.nature)")
-          && page.Contains("GodWords.KindLine(g.kind)") && page.Contains("Gods.ActsOf(g)") && page.Contains("UiKit.OwnLook"),
-            "the page: rumours, favour in words, ties as a web and in words, the nature, the kind, the acts, in either look");
-        C(!page.Contains("FavourValue(g, map).ToString") && !Regex.IsMatch(page, @"FavourValue\([^)]*\)\s*\.ToString"), "favour never shown as a number");
-        C(Read("Gods/GodsDebug.cs").Contains("Gods: show the pantheon (log)") && Read("Gods/GodsDebug.cs").Contains("Gods: add favour here...")
-          && Read("Gods/GodsDebug.cs").Contains("Gods: set how real the gods are..."), "dev actions: show the pantheon, add favour, set realness");
-        C(File.ReadAllText(Path.Combine(root, "Tools", "save_estimate.py")).Contains("Gods/GodBook.cs:gods"), "the saved book modelled in the save estimate");
+        C(settings.Contains("public bool gods = true;") && settings.Contains("public GodRealness godRealness = GodRealness.Felt;"), "the settings: Gods on, How real Felt, by default");
+        C(catalog.Contains("Toggle(\"gods\", \"CC_Settings_Gods\"") && catalog.Contains("Choice(\"godRealness\""), "both on the What's on page");
+        C(Read("Gods/GodsDebug.cs").Contains("Gods: an event's hand here...") && Read("Gods/GodsDebug.cs").Contains("Gods: hear every story (testing)")
+          && Read("Gods/GodsDebug.cs").Contains("Gods: open the book of the gods") && Read("Gods/GodsDebug.cs").Contains("Gods: set how real the gods are..."),
+            "dev actions: an event's hand, every story heard, the book opened, how real the gods are");
+        string estimate = File.ReadAllText(Path.Combine(root, "Tools", "save_estimate.py"));
+        C(estimate.Contains("Gods/GodBook.cs:gods") && estimate.Contains("Gods/GodLore.cs:entries"), "the hidden state and the colony's book modelled in the save estimate");
+
+        // ================= The words =================
+
+        string keyed = File.ReadAllText(Path.Combine(root, "Languages", "English", "Keyed", "Rimfolk_Gods.xml"));
+        var missing = new List<string>();
+        foreach (var v in Enum.GetNames(typeof(GodLoreMath.Voice)))
+            foreach (var what in new[] { "Saw", "SawHand", "Said", "Scoffed", "Heard", "HeardStory", "Believes", "Doubts", "Connected", "ConnectedTold", "Dreamt", "Prayed" })
+                if (!keyed.Contains("<CC_GodLore_" + what + "_" + v + ">")) missing.Add(what + "_" + v);
+        foreach (var how in new[] { "Fire", "Gate", "Letter", "Supper", "Sermon" })
+            if (!keyed.Contains("<CC_GodLore_How_" + how + ">")) missing.Add("How_" + how);
+        foreach (var k in new[] { "Appear", "Act", "Reveal", "Depart", "Blessing", "Wrath", "Omen" })
+            if (!keyed.Contains("<CC_GodLore_Moment_" + k + ">")) missing.Add("Moment_" + k);
+        for (int i = 0; i < 6; i++)
+            if (!keyed.Contains("<CC_GodHand_Unnamed_" + i + ">")) missing.Add("Unnamed_" + i);
+        for (int i = 0; i < 4; i++)
+            if (!keyed.Contains("<CC_GodHand_UnnamedScoff_" + i + ">")) missing.Add("UnnamedScoff_" + i);
+        foreach (GodTieKind k in Enum.GetValues(typeof(GodTieKind)))
+            if (!keyed.Contains("<CC_God_Tie_" + k + ">")) missing.Add("Tie_" + k);
+        C(missing.Count == 0, $"every word the book, the hands and the moments say ({string.Join(", ", missing)})");
+        C(Read("Gods/GodHands.cs").Contains("public const int UnnamedLines = 6, UnnamedScoffs = 4;"), "six lines for something nobody can name, four answers to them");
+        var keyText = Regex.Matches(keyed, @"<(CC_[A-Za-z_]+)>([^<]*)</").Cast<Match>().Select(m => m.Groups[2].Value).ToList();
+        C(keyText.All(t => !t.Contains("—") && !t.Contains("!")), "no dashes or exclamation marks in the gods' words");
+        foreach (Match m in Regex.Matches(keyed, @"<CC_GodHand_Unnamed(Scoff)?_\d>([^<]*)</"))
+            C(First(m.Groups[2].Value) == m.Groups[2].Value && m.Groups[2].Value.Length <= 90, $"'{m.Groups[2].Value}' is one sentence over a head");
+        C(!keyed.Contains("favour") && !Regex.IsMatch(keyed, @"\bcolour"), "American spelling in the gods' words");
+
+        // ================= The speech pool =================
+
+        var pool = XDocument.Load(Path.Combine(root, "Defs", "FlavorPoolDefs", "Rimfolk_Gods_Speech.xml")).Root!.Elements("ColonyCouncil.FlavorPoolDef")
+            .First(e => e.Element("defName")!.Value == "Rimfolk_Pool_SayGod").Descendants("li").Select(x => x.Value).ToList();
+        C(pool.Count >= 25, $"swearing by a god: {pool.Count} lines");
+        foreach (var l in pool)
+        {
+            string body = Body(l);
+            C(First(body) == body && body.Length <= 90 && !body.StartsWith("\""), $"'{body}' is one sentence, said over a head");
+            C(Regex.Matches(body, @"\{([A-Z_]+)\}").Cast<Match>().Select(m => m.Groups[1].Value).All(h => GodsMath.Placeholders.Contains(h)), $"'{body}' names only the god");
+        }
+        foreach (var tag in new[] { "storm", "cold", "heat", "snow", "hurt", "grieving", "kind:hunger", "god:hush", "god:cirrus" })
+            C(pool.Any(l => Regex.IsMatch(l, @"^\[[^\]]*\b" + Regex.Escape(tag) + @"\b")), $"lines for {tag}");
+        string speech = Read("Gods/GodSpeech.cs");
+        C(speech.Contains("tags.Add(\"god:\" + g.Key.ToLowerInvariant());") && speech.Contains("GodLore.NameOf(g, p).Named(GodsMath.God)"), "a god by its own tag, and by the colony's name for it");
+        C(Read("Immersion/StateSpeech.cs").Contains("Try(() => God(p), \"god\");") && Read("Immersion/WeatherTalk.cs").Split("GodSpeech.InPlaceOf(pool, p) ?? Flavor.FromPool(pool, p, null, null, tags)").Length == 3,
+            "a word to their god among the things on a colonist's mind, and when the weather turns");
+        C(speech.Contains("Rand.Chance(StateChance)") && speech.Contains("Rand.Chance(WeatherChance)") && GodSpeechChance(speech), "now and then, on top of each moment's own rate");
+
+        // ================= The seams =================
+
+        string seam = Read("Gods/GodPresenceSeam.cs");
+        C(seam.Contains("public static Func<PresenceSpec, bool> Manifest;") && seam.Contains("public static Action<Pawn, God, bool> MakeAvatar;"), "the presence part's two seams");
+        C(new[] { "public God god;", "public Map map;", "public IntVec3 cell", "public PresenceKind kind;", "public Pawn avatar;", "public string title, text;", "public bool veiled;" }.All(seam.Contains),
+            "the plain PresenceSpec");
+        C(seam.Contains("veiled = !GodsMath.PlainCard(Gods.Realness)"), "veiled by how real the gods are");
+        foreach (var api in new[]
+                 {
+                     "public static IReadOnlyList<God> All", "public static List<God> Of(Faction f)", "public static List<God> OfIdeo(Ideo ideo)", "public static List<God> ColonyGods(Map home)",
+                     "public static God Patron(Map home)", "public static FavourWord Favour(God g, Map home)", "public static void AddFavour(God g, Map home, float amount, string why",
+                     "public static GodRealness Realness", "public static void Remember(GodAct act)", "public static string Name(God g)", "public static string Epithet(God g)",
+                     "public static God SwearBy(Pawn p", "public static List<GodTie> TiesOf(God g)", "public static List<God> Rivals(God g)", "public static List<God> Allies(God g)",
+                     "public static GodNature NatureOf(God g)", "public static GodKind KindOf(God g)", "public static float Loudness(God g)", "public static void Deed(GodDomain d, Map home",
+                     "public static God ById(int id)", "public static bool Known(God g)", "public static void Learn(God g, string how, bool tell = true)", "public static string GodOf(God g)",
+                     "public static string FullName(God g)", "public static NamedArgument[] Args(God g)", "public static GodVow Vow(God g, Pawn p, string what, int days)"
+                 })
+            C(godsCode.Contains(api), "Gods keeps: " + api.Replace("public static ", ""));
+        string godCs = Read("Gods/God.cs");
+        C(new[] { "public int id;", "public GodDef def;", "public string name;", "public string epithet;", "public GodDomain domain, second;", "public GodForm form;", "public List<Faction> factions",
+                "public List<Ideo> ideos", "public string deityKey, deityType;", "public string patron;", "public Color colour = Color.white, colour2", "public string look;",
+                "public List<string> witnesses;", "public string teller;" }.All(godCs.Contains),
+            "a god's record keeps every field the parts read, with its def; an act its witnesses and teller");
+        C(!Regex.IsMatch(string.Join("\n", Directory.GetFiles(Path.Combine(src, "Gods"), "*.cs").Select(File.ReadAllText)), @"\bclass GodLookDef\b"), "the core never defines GodLookDef");
+        string wiring = Read(Path.Combine("Gods", "GodsWiring.cs"));
+        C(wiring.Contains("GodPresence.Manifest(LookOf(s.god), known ?? GodLore.LabelFor(Gods.Name(s.god)), null,") && wiring.Contains("s.god.colour, s.god.colour2);")
+          && wiring.Contains("bool veiled = s.veiled && known == null && s.kind != PresenceKind.Reveal;"),
+            "the moment seam: the god's own look and colors, named only as the colony knows it, no epithet on its card");
+        C(wiring.Contains("GodLookSeam.MakeAvatar = (p, god, disguised) => GodAvatar.Make(p, LookOf(god), Gods.Name(god), disguised, god.colour, god.colour2);"), "the avatar seam");
+        C(wiring.Contains("GodLooks.Named(god.look) ?? GodLooks.For(god.domain.ToString(), AgeOf(god.age))"), "the god's own look, else its domain's in its people's age");
+
         return n;
     }
 

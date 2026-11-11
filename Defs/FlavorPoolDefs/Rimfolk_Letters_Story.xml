@@ -456,6 +456,44 @@
         <li>[u:none,st:open,st:hunt] we went huntin for a {ANIMAL} wunce. big one</li>
         <li>[u:none,st:turn,st:hunt] it hid. we lookd. it hid beter</li>
         <li>[u:none,st:end,st:hunt] we et beans that nite. the {ANIMAL} is stil out ther laffing</li>
+        <!-- ================= Their god's sign, curse or myth (Gods/World/GodLetters.cs: god:miracle, god:curse, god:myth) =================
+             Told only when their letter tells of their god ({SIGNGOD}) or of an old story of two gods ({MYTHGOD}, {MYTHOTHER}). -->
+        <li>[st:open,st:god,god:miracle] The year the well ran low, the old women went up the hill to ask {SIGNGOD} for water.</li>
+        <li>[st:open,st:god,god:miracle] There was a winter, some years back, when the stores would not last, and the whole town went out to pray to {SIGNGOD}.</li>
+        <li>[st:open,st:god,god:miracle] My grandmother used to tell of the spring nothing would grow, and of the night the town begged {SIGNGOD} on its knees.</li>
+        <li>[st:turn,st:god,god:miracle] Nothing happened for three days, and people began to say the god had better things to do.</li>
+        <li>[st:turn,st:god,god:miracle] On the third night the sky went the colour of a bruise, and the dogs would not stop howling.</li>
+        <li>[st:turn,st:god,god:miracle] Then a stranger came through, ate one bowl of soup, thanked nobody in particular, and left before dawn.</li>
+        <li>[st:end,st:god,god:miracle] Since then the town has never gone short, and we leave a cup for {SIGNGOD} at the gate every spring.</li>
+        <li>[st:end,st:god,god:miracle] By morning things had turned, and nobody in the town has laughed at {SIGNGOD}'s shrine since.</li>
+        <li>[st:end,st:god,god:miracle] The priests say it was {SIGNGOD}, the doubters say it was luck, and the town keeps the feast either way.</li>
+        <li>[st:open,st:god,god:curse] There was a man here once who laughed at {SIGNGOD} in the square, in front of everyone.</li>
+        <li>[st:open,st:god,god:curse] Long ago someone cut the oak by {SIGNGOD}'s stone for firewood, and thought nothing of it.</li>
+        <li>[st:open,st:god,god:curse] A trader once cheated the shrine of {SIGNGOD}, swapping its silver for tin, and went off whistling.</li>
+        <li>[st:turn,st:god,god:curse] From that day nothing went right for him: his roof leaked, his goats sickened, and his dog would not come near him.</li>
+        <li>[st:turn,st:god,god:curse] The rain stopped coming to his fields, though it fell on his neighbour's on either side.</li>
+        <li>[st:turn,st:god,god:curse] Wherever he went the crows went with him, and they were never quiet.</li>
+        <li>[st:end,st:god,god:curse] He left in the end, and his field is still bare, and nobody will buy it.</li>
+        <li>[st:end,st:god,god:curse] He made it right at last with a whole year's wages laid at the shrine, and the crows let him be.</li>
+        <li>[st:end,st:god,god:curse] We still tell the children about him, whenever one of them sticks out a tongue at the shrine.</li>
+        <li>[st:open,st:god,god:myth] The old ones tell how {MYTHGOD} and {MYTHOTHER} once met at the edge of the world.</li>
+        <li>[st:open,st:god,god:myth] Before there were towns, they say, {MYTHGOD} and {MYTHOTHER} shared the sky between them.</li>
+        <li>[st:open,st:god,god:myth] In the first days, as our people tell it, {MYTHGOD} went looking for {MYTHOTHER} with a lamp.</li>
+        <li>[st:turn,st:god,god:myth] Words were said that cannot be unsaid, and the hills shook with it for a hundred years.</li>
+        <li>[st:turn,st:god,god:myth] Neither would give way, and the world held its breath to see which would.</li>
+        <li>[st:turn,st:god,god:myth] What passed between them nobody saw, but the rivers ran backwards for a night.</li>
+        <li>[st:end,st:god,god:myth] They have never quite made it up, and that, the old ones say, is why the weather is as it is.</li>
+        <li>[st:end,st:god,god:myth] So it is still, and that is why we pour two cups at the feast and not one.</li>
+        <li>[st:end,st:god,god:myth] And every child here knows it, though no two tell it the same.</li>
+        <li>[olde,st:open,st:god,god:miracle] In a year agone the well ran low, and the old wives went up the hill to beseech {SIGNGOD}.</li>
+        <li>[olde,st:turn,st:god,god:miracle] Three days naught befell, and on the third night the sky went black as a bruise.</li>
+        <li>[olde,st:end,st:god,god:miracle] Since that day the town hath not gone short, and we set a cup for {SIGNGOD} at the gate each spring.</li>
+        <li>[olde,st:open,st:god,god:curse] There was a man here once that mocked {SIGNGOD} in the square before all.</li>
+        <li>[olde,st:turn,st:god,god:curse] From that day naught went well with him, and his own dog fled his door.</li>
+        <li>[olde,st:end,st:god,god:curse] He departed at the last, and his field lieth bare unto this day.</li>
+        <li>[olde,st:open,st:god,god:myth] The old ones tell how {MYTHGOD} and {MYTHOTHER} met upon the edge of the world.</li>
+        <li>[olde,st:turn,st:god,god:myth] Words were spoken that may not be unspoken, and the hills did shake a hundred years.</li>
+        <li>[olde,st:end,st:god,god:myth] So it is yet, and therefore we pour two cups at the feast and not one.</li>
       </plain>
     </lines>
   </ColonyCouncil.FlavorPoolDef>
