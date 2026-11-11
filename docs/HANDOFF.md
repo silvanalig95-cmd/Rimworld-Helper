@@ -17,7 +17,7 @@ tree at once, alongside whatever runs. Each piece is merged as its own release, 
   until we have a few so we can implement them more effectively."** Each new wish or report goes onto this list as a
   "To do when the player asks" entry (with their words) and the task list, and nothing is built, unless they say to
   start it now. When they ask, the gathered entries are planned together, grouped by area, and built side by side.
-  (On 11 November 2026 they asked for every entry then on the list; the peoples' list waits for their picks.)
+  (On 11 November 2026 they asked for every entry then on the list; the peoples' 100 are on it, not started.)
 - **To do when the player asks (10 November 2026): events and interactions of each of Rimfolk's peoples, by their lore.**
   The player: "I really LOVE the new factions you created, and I'd be down for more later. however, I'd first like more
   faction specific events, interactions etc. like this event i had with these gene guys who gave my pawn a new gene.
@@ -25,7 +25,11 @@ tree at once, alongside whatever runs. Each piece is merged as its own release, 
   start with that though, just add it as to-do". When asked: propose a list per people first (Peoples/, their tags and
   lore in docs/design/peoples*.md), then build; new peoples only after. Proposed (11 November 2026, with each people's own
   camps, as the player added): `docs/peoples-events-proposals.md`, 100 numbered items; the lead recommends 10, 5, 47,
-  83, 51, 1, 19, 17, 34 and 95 first. Waits for the player's picks.
+  83, 51, 1, 19, 17, 34 and 95 first. **The player picked all 100 (11 November 2026): "the events sounds really
+  cool!! add all to to-do".** On the list until they say to start; when they do, build them in rounds of about ten,
+  the recommended ten first, grouped so shared shapes come early (the visitor working on a colonist: 5, 47, 83, then
+  22, 40, 79, 80, 87, 92; goods held in trust: 1, then 20; the caravan of one or a season away: 14, then 3, 67, 77,
+  98), each people's camps with their events.
 - **Held by the player (10 November 2026): no new letters content jobs until they ask** ("for the letters please hold
   after this job then ... I'd like to keep such jobs for the end of the week to use up my remaining tokens"). The letters
   round 2 part 1 agent was already running; its part 2 (more content in the same shapes) waits for their word.
