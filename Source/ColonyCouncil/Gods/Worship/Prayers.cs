@@ -427,7 +427,8 @@ namespace ColonyCouncil
             string why = ("CC_Wsh_Why_Credit_" + r.kind).Translate(p.LabelShort.Named("PAWN"), (r.aboutName ?? "").Named("SICK")).Resolve();
             Worship.Favour(g, map, WorshipMath.CreditFavour, why, FavourSource.Rite);
             if (p.Spawned) Worship.Say(p, "Rimfolk_Pool_Worship_Thanks", g, null, "pray:" + r.kind.ToString().ToLowerInvariant());
-            CouncilGameComponent.GiveThought(p, WorshipDefOf.Rimfolk_Worship_Answered);
+            // A raid beaten off is the gods of war's own deed already (Gods/GodDeeds.cs): thanks and favour, no mood of its own.
+            if (r.kind != PrayerKind.Raid) CouncilGameComponent.GiveThought(p, WorshipDefOf.Rimfolk_Worship_Answered);
             if (Faiths.On) Faiths.Steady(p, 0.03f);
         }
 

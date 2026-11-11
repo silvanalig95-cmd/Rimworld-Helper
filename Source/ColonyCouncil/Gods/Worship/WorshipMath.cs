@@ -371,7 +371,7 @@ namespace ColonyCouncil
         }
 
         /// <summary>A scoffer's mockery offends the believer's god this much (Scoffing), once in this many days at a home; a couple bickers once in this many.</summary>
-        public const float MockFavour = -1.5f, MockGapDays = 3f, BickerGapDays = 5f;
+        public const float MockFavour = -1.5f, MockGapDays = 5f, BickerGapDays = 5f;
 
         // ================= Festivals =================
 
