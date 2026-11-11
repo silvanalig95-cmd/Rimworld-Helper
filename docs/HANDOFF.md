@@ -43,6 +43,19 @@ tree at once, alongside whatever runs. Each piece is merged as its own release, 
   8. The Republic 71 to 74; the Fleet 75 to 78; the Helix Works 79 to 82.
   9. The Lattice 84, 85, 86; the Choir 87 to 90; the Vault 91 to 94.
   10. Between peoples 96 to 99; every people's art handed on, 100.
+- **To do when the player asks (11 November 2026): vegetarian and meat simple meals.** The player: "can i please have
+  dedicated recipes for vegetarian & meat simple meals? so i actually have a dedicated slot for it and can better manage
+  different diets". The game has vegetarian and carnivore fine and lavish meals (`MealFine_Veg`/`_Meat`,
+  `MealLavish_Veg`/`_Meat`) but one simple meal; none of the player's active mods adds simple variants (checked in
+  `docs/player-mods/items.tsv`). When asked: `Rimfolk_MealSimple_Veg` "vegetarian simple meal" and `_Meat` "carnivore
+  simple meal" made as the game makes its fine variants (the same nutrition, worth, rot and poisoning as the simple
+  meal; ingredients plant food only, or meat and animal products only, as the game's own `_Veg`/`_Meat` filters), a
+  look of their own told apart at a glance (the simple meal's picture tinted, or drawn new), each with its cook and
+  bulk-of-four recipes at every bench that cooks simple meals (the game's stoves and campfire, and the player's mods'
+  benches found by the simple meal recipe's own users at load), the same skill and research; in FoodMeals, so food
+  policies, shelves and stockpiles list them apart. Rimfolk's own counting of simple meals (feasts, hosting, the road
+  food, the journey planner, the stores panel, the rider's supplies) takes them as simple meals; the Almanac's food
+  page and README.
 - **To do when the player asks (11 November 2026): calling in a favour, made clear.** The player, with a picture of the
   letter window's "Ask for" list on a debt owed by "Acraeraes of Karond-Keth 2, a trader who called" (five loads of
   goods, some forty "A word for the colony with ... (a kind one)", a captive, peace, fighters): "this favour menu is also
