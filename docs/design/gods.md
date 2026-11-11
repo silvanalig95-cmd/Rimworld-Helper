@@ -352,10 +352,11 @@ most devout or most literate colonist, in their voice):
 
 "There should also be a god of the sun & moon, a cat god, the rain god, a god of gold." Added to the build in progress
 as gods 10 to 13 of `docs/gods-pantheon-brainstorm.md`:
-- `Rimfolk_God_Dial`: sun and moon, one being with two faces.
+- `Rimfolk_God_Wake`: sun and moon, the oldest thing there is. The sun is its open eye, the moon its dreaming eye.
+  Renamed from Dial at the player's word: "it should be primeordial and not some worldly item".
 - `Rimfolk_God_Mog`: a grey cat on the map, plainly.
 - `Rimfolk_God_Murmur`: a vast toad of the wells and marshes whose song calls the rain.
 - `Rimfolk_God_Ducat`: gold that wants to move.
 
-Fallback domains: Dial Night and Storm; Mog Hearth and Hunt; Murmur Waters and Harvest; Ducat Way and Craft. Dial now
+Fallback domains: Wake Night and Storm; Mog Hearth and Hunt; Murmur Waters and Harvest; Ducat Way and Craft. Wake now
 takes the eclipse, solar flare and heat wave from Cirrus and Pip.

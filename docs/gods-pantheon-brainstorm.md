@@ -18,7 +18,8 @@ names that don't all have to follow the same style. Ennu the Guest is cool thoug
 - the pull beneath the surface (Undertow).
 
 The player then added four: "There should also be a god of the sun & moon, a cat god, the rain god, a god of gold"
-(Dial, Mog, Murmur and Ducat, 10 to 13).
+(Wake, Mog, Murmur and Ducat, 10 to 13; the sun and moon renamed and made primordial at the player's word: "it
+should be primeordial and not some worldly item").
 
 So these are thirteen beings: each one someone, with a will, a character and names. Some are vast and hard to see, some
 are plainly a creature, and only one wears human faces. Each is written as it is, without a shared checklist.
@@ -243,27 +244,33 @@ It gives exactly what was asked, and it always takes more than was agreed, slowl
 to have eaten a god once, long ago, whose bones are the old ruins of this world. A colony that bargains with it will
 find Hollin, Bellwether and the Guest turning away, and Pip, for once, very quiet.
 
-### 10. Dial, the Lamp of Day and Night
-*the Sun at noon and the Moon at night, to those who don't know they're one; Old Lamp to the tribes; the Dial to the
-medieval clockmakers; to spacers, "the stellar-lunar psychic period".*
+### 10. Wake, the Eye That Opens
+*Grandfather Eye to the tribes; the Wake to the medieval peoples; "the sun, of course" to industrial folk; to spacers,
+"the primary star's psychic coupling", which they don't believe in either.*
 
-**What it is.** One being with two faces: the light of the sun by day and of the moon by night. It turns, and the day
-turns with it. People who think the sun and the moon are two gods are not wrong, only half right.
+**What it is.** The oldest thing there is: older than the world, older than the others, older than the dark. Before
+anything, there was its sleep. Then it opened one eye, and that was the first day. Its open eye is the sun. When it
+sleeps, its dreaming eye is the moon. It has never fully woken, and the world is what it sees in that half-sleep.
 
-**How it is seen.** As itself, in the sky, plainly.
-- When it attends, a single shaft of sunlight falls through cloud onto one person, or the moon is suddenly very large
-  and very close over the colony for a night.
-- An eclipse is Dial blinking.
-- A solar flare is Dial too close, and the machines suffer for it (Pip hates this).
+**How it is seen.** As the light itself, everywhere. It never takes a form and never comes down, because everything is
+already in its sight.
+- When it attends: the sun stands still a moment too long, and the shadows don't move. Or the moon comes up huge and
+  close and stays over the colony all night.
+- An eclipse is Wake blinking.
+- A heat wave is it staring too hard. A long grey season is it looking away.
 
-**Its character.** Orderly, patient and fair. It keeps time and expects time to be kept. It sees everything by day and
-only half of everything by night, and that half is what it is curious about.
+**Its character.** Impartial, immense and half-asleep. It doesn't speak, because its gaze is everything it has to say.
+What it notices it notices completely, and then it forgets, the way a dreamer does.
 
-**What it wants.** For the days to be lived and the nights to be rested.
-- **What it likes:** a colony that works by day and sleeps by night, that keeps the hours, that greets the dawn.
-- **What it gives:** long clear days in growing season, a moon bright enough to work by when it matters.
-- **What it doesn't like:** a colony that works all night under lamps, never sleeps, and never looks up at dawn. It has
-  its heat waves, and its long cloud.
+**What it wants.** Nothing anyone can name, except to be kept company in its long watch.
+- **It notices:** those who keep vigil, who rise to meet the dawn, who stand watch through the night under its dreaming
+  eye.
+- **What it gives them:** long clear days in the growing season, a moon bright enough to work by when it's needed, and
+  dreams under the moon that come true.
+- **What it doesn't like:** a colony that hides from the sky under lamps and roofs and never looks up. It looks away
+  from them, and the season goes grey.
+- **The old fear:** the oldest stories say that if Wake ever fully opens both eyes, this world will end, or begin
+  properly at last. No one agrees which.
 
 ### 11. Mog
 *the Cat, to everyone; the Grey Lady of the Hearth to the medieval peoples; to the tribes, Whiskers-in-the-Dark.*
@@ -339,9 +346,9 @@ never stays.
 - **The Guest** goes between all of them and carries their news, and all of them are a little careful of it.
 - **The great fear:** Undertow, feared by all.
 - **The four added later:**
-  - Dial and Cirrus share the sky: Cirrus drifts across Dial's face.
-  - Pip hates Dial's flares.
-  - Mog sits in Dial's sunbeams and stares at Ennu.
+  - Cirrus drifts across Wake's eye, and is the only one that ever comes between Wake and the world.
+  - Pip hates Wake's flares.
+  - Mog sits in Wake's sunbeams and stares at Ennu.
   - Murmur sleeps angry through Hush's months.
   - Ducat and Smoulder: the flow of gold against the hoard.
 - **The Silent Ones,** the archotechs, are not among the nine and are not gods. Pip aches for them, and Hollin
@@ -361,7 +368,7 @@ Walking it's said plainly. Colonists talk of it at supper, and neighbours write 
 | Wanderer joins, refugee pod, a stranger asking shelter | the Guest |
 | Solar flare, short circuits, machines failing or running unpowered | Pip |
 | Meteorite, aurora, flashstorm, cargo pods falling | Cirrus |
-| Eclipse, solar flare, heat wave, a long clear growing season | Dial |
+| Eclipse, solar flare, heat wave, a long clear growing season, a long grey season | Wake |
 | A cat wanders in, a run of small luck for one colonist | Mog |
 | Rain after dry weeks, drought, a flood | Murmur |
 | A trader arriving at the right time, silver gone missing, a deal gone sour | Ducat |
