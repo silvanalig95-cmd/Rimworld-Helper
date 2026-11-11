@@ -188,7 +188,8 @@ namespace ColonyCouncil
         /// <summary>
         /// Hospitality's guests helping out (Integrations/GuestHelp.cs; only while its guests are on a home map or a record
         /// waits to be let go): each guest's hours, the cap, the trouble's work types, side by side, hurt at the work, a
-        /// thanks day, a farewell.
+        /// thanks day, a farewell; and a feast's guests or an envoy in Hospitality's care, their visit's look
+        /// (Integrations/InvitedGuests.cs).
         /// </summary>
         public const int RareGuestHelp = 119;
 

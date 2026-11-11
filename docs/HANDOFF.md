@@ -50,13 +50,47 @@ tree at once, alongside whatever runs. Each piece is merged as its own release, 
   the camp to leave". When asked: find what makes a camp leave when attacked (Camps/: its lord's harm or danger trigger)
   and leave it to real attacks on the camp (raiders, a people at war, the colony); a manhunting or revenging animal, a
   stray insect or a predator is fought off or fled from, the camp staying, with any hurt shown.
-- **To do when the player asks (10 November 2026): invited visitors are Hospitality's guests.** The player: "visitors
-  that you invite with diplomatic actions should also be treated as guests with hospitality". When asked: notables and
-  envoys who come because the colony invited them (a letter's invitation, a feast's guests, an envoy for a season, a
-  pen friend's visit, a festival's return), with Hospitality loaded, arrive and stay as its guests (its lord and guest
-  area, guest beds, its guest tab and recruiting rules, Rimfolk's guest help), softly by type name; Rimfolk's own visit
-  purpose (the feast, the talks, the envoy's season) kept on top, and its own visitor lord left for when Hospitality is
-  absent.
+- Invited visitors are Hospitality's guests (11 November 2026). The player: "visitors that you invite with diplomatic
+  actions should also be treated as guests with hospitality". Not released: no version, no What's new round, About.xml
+  and CHANGELOG untouched. DESIGN.md "Invited visitors are Hospitality's guests" (after "Guests who help out") has all of
+  it; README the Hospitality paragraph and the other mods' list; the Almanac's Hospitality page (With Rimfolk), the
+  diplomacy page's feast and envoy paragraphs (prose only, keywords unchanged).
+  - Handed to Hospitality: a letter's invitation taken up (`NeighbourLetters.TryVisit`, so a pen friend's and a gathering
+    day's), a town's folk asked to the colony's feast or fair or come to its proclaimed fair (`Dealings.Guests`), a guest
+    of note told yes (`HappeningWorker_NotableGuest`), a feast's or a wedding's guests (`Feasts.Arrive`), an envoy for a
+    season (`Envoys.Arrive`, `Regroup`). Not: hosting missions (their people asked; the mission counts the colony's own
+    table and beds), errands at the gate (wards, match escorts, parleys, oaths, ransom messengers, couriers), stories'
+    strangers, those asked to live here; no festival's return exists (the colony's party goes by caravan, nobody comes
+    back with them).
+  - Pure: `Integrations/InvitedGuestsMath.cs` (new, linked): `ArrivalWhy`, `Invited`, `WhyNot`, `RimfolkEnds` (feast,
+    envoy), `RimfolkSteers` (feast), `StayTicks` (Rimfolk's hours, at least 4, a day more where Rimfolk ends it, never
+    past 16 days), `UpsetWhenLost`, `HandOver`, `Who` (Hospitality, indoors in danger, Rimfolk's focus). Tests
+    `Tools/Tests/InvitedGuestsTests.cs` (96 checks: the rules and the seams, the non-invited left alone);
+    `DealingTests` follow the folk's call.
+  - Game side: `Integrations/InvitedGuests.cs` (new): by name, Hospitality's `IncidentWorker_VisitorGroup.CreateLord` (no
+    letter, its displeasure and stay by the rules) after its `GiveItems`; `Hosted`, `Staying`, `Steer`/`Release` (the
+    visit's duty at its place, else Hospitality's duties back), `Leave` (its own stay-over transition executed), `GoHome`,
+    `Rejoin` (`JoinLate`, `OnGuestJoinedLate`), `Harmed`, `Following`/`Rare` on the guests' pass (`GuestHelpBook`,
+    `Sched.RareGuestHelp`); `Patch_InvitedGuestHarmed` (postfix on `Lord.Notify_PawnDamaged`). `Arrivals.Invited`
+    (`HappeningHelpers.cs`); `Feasts`: `Lords`/`LordOf` find Hospitality's groups, `Focus` saves `GuestFeast.focus` and
+    steers them (`SteerHosted` each look, `HostedLook` the 250-tick look), `Settled`/`Free` count the stay, `LeaveAll`
+    `GoHome`; `Envoys`: `LordOf`, `Free`, `HostedLook` (indoors in danger, a meal or night Hospitality gave counted),
+    `End`/`Died`/`HomeLost` `GoHome`. The setting "Invited visitors are guests" (`invitedAsGuests`, on, Your other mods
+    under Hospitality, needs the deeper hooks). Each falls back to Rimfolk's own group when Hospitality is absent, the
+    setting is off, or the handing over fails. ApiDiff: nothing it uses changed in 1.7.
+  - Not run here (none of it could be): Hospitality taking the groups (`CreateLord`, `GiveItems` found by name in its
+    current source), the guest tab listing them, guest beds claimed and paid for, the feast's steering against
+    Hospitality's guest duty, the leaving by its own transition with its message and goodwill reckoning, the late rejoin.
+  - Try in the game (with Hospitality): 1. Invite a notable by letter: when they come they show on Hospitality's guest
+    tab, keep to the guest area, may take a guest bed, and leave in daylight after their hours with Hospitality's leaving
+    message; your letter still says they came. 2. Hold a feast with guests: they walk in, gather at the gate, watch and
+    join the contests, sit at the table for the feast, go indoors and to bed for the night, and leave at first light,
+    all while listed on the guest tab; the feast's welcome and regard as before. 3. Agree to an envoy: they appear on the
+    guest tab, wander the guest area by day, come to your table and the bed you set aside, sit in at a council meeting,
+    walk out to their runner, and leave at the season's end; in a raid they go indoors. 4. Hit a feast guest or the
+    envoy with a colonist (not an agreed bout): they leave offended, as before. 5. Turn "Invited visitors are guests"
+    off, or play without Hospitality: they come as Rimfolk's own visitors exactly as before. 6. A hosting mission's
+    dignitary, a ward's party or a parley: unchanged.
 - The temperature readout in colour (11 November 2026). The player, with a picture of the game's readout at the bottom
   right ("No wind / Indoors 21C / Clear"): "can the temperature meter be clearly color coded from blue to red, so i can at
   immediate glance see how warm or cold it is"; then, of the first build's coloured words: "this should not just be

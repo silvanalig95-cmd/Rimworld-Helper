@@ -2848,6 +2848,63 @@ Two settings on Your other mods, under Hospitality, both on and behind the deepe
   the minor conditions tendable now in its own order; nothing minor left when they reach the patient, nothing is done and
   no medicine used. The guest tab says so ("Tends only bruises, cuts and other minor ailments").
 
+### Invited visitors are Hospitality's guests (the player's request, 10 November 2026)
+
+The player: "visitors that you invite with diplomatic actions should also be treated as guests with hospitality". With
+Hospitality loaded, those the colony invited come and stay as its guests, so its guest area, guest beds, guest tab,
+recruiting rules and Rimfolk's guest help (above) apply to them; Rimfolk's purpose for the visit stays on top. The rules
+are `Integrations/InvitedGuestsMath.cs` (`InvitedGuestsTests`), the game side `Integrations/InvitedGuests.cs`; the setting
+"Invited visitors are guests" (`invitedAsGuests`, on, Your other mods under Hospitality, with the deeper hooks).
+
+- **Who is invited** (`ArrivalWhy`, `Invited`): a notable (or one of their town who can travel) who took up a letter's
+  invitation (`NeighbourLetters.TryVisit`: any letter that invites, a pen friend's, a gathering day's); a town's folk asked
+  to the colony's feast or fair, or come to a fair it proclaimed (`Dealings.Guests`); a guest of note who wrote ahead and
+  was told yes (`HappeningWorker_NotableGuest`); a feast's or a wedding's guests with their retinue (`Feasts.Arrive`); an
+  envoy and attendant for a season (`Envoys.Arrive`, `Regroup`). Not invited, and Rimfolk's own as before: a hosting
+  mission's guests (a dignitary, refugees, an apprentice, a choir: their people asked, and the mission counts the
+  colony's own table and beds, `Hosting.Tend`); errands at the gate with their own ending (a ward's party, a match's
+  escort, a parley, an oath, a ransom's messenger, couriers and riders); the strangers stories bring; and those asked to
+  live here (kin invited to stay, a visitor asked to join), who join rather than visit. There is no festival's return:
+  the colony's entertainers go to the town's festival by caravan and nobody comes back with them. Pen friends visit by a
+  letter's invitation.
+- **Handed over** (`InvitedGuests.HandOver`), once the group is on the map, when `HandOver` says so (invited, Hospitality's
+  way found, the setting and hooks on, their people at peace, every one of them a person of theirs on the map): by name,
+  Hospitality's incident's `CreateLord(faction, spot, pawns, map, showLetter: false, getUpsetWhenLost, duration)` (its
+  `LordJob_VisitColony`, guest comps, trader status and its map component's guest list), after its own `GiveItems` (the
+  food, money and wares its visitors carry). Rimfolk's letter says they came, so Hospitality's isn't shown. Taken whole,
+  their group is returned; otherwise any half-made group is let go and the caller makes Rimfolk's own as before
+  (`Arrivals.Invited` the game's visit at an errand's pace, the feast `LordJob_FeastGuests`, the envoy
+  `LordJob_EnvoyStay`), and everything that touches Hospitality is caught and logged once.
+- **How long** (`StayTicks`): the hours Rimfolk planned (a letter's guest 8 to 14, a town's folk 9, a guest of note 18 to
+  26; never under 4), and Hospitality's own rule ends it (in daylight). Where Rimfolk ends the stay itself (`RimfolkEnds`:
+  the feast's guests, two days; the envoy, the season of 15), a day more, so Hospitality's clock never sends them first;
+  never past 16 days. Hospitality's displeasure at losing the whole group (`getUpsetWhenLost`) only where Rimfolk keeps no
+  count of its own.
+- **The feast on top**: its groups are found among Hospitality's too (`Feasts.Lords`, `LordOf`). Where the day takes them
+  (`Feasts.Focus`: the gate, a contest, the table, indoors for the night) is kept with the feast (`GuestFeast.focus`,
+  `focusRadius`, saved) and given to Hospitality's guests as the feast's own duty (`InvitedGuests.Steer`,
+  `Rimfolk_FeastGuest` at the place, `Rimfolk_FeastIndoors` in danger) at each look, only while they're settled at
+  their stay (walking in and out is Hospitality's). The feast's 250-tick look, which its own group gave, comes from the
+  guests' pass (`GuestHelpBook`, `Sched.RareGuestHelp`, while a feast's guests or an envoy are at a home:
+  `InvitedGuests.Following`, `Rare`). Settled and free to be fed and bedded count Hospitality's stay
+  (`InvitedGuests.Staying`), so the feast's hosting rules feed them at its table and put them to bed (Hospitality's guest
+  beds first) as before; the play-out's feast keeps them at the table by its own jobs. At first light
+  (`Feasts.LeaveAll`) their stay ends as Hospitality's own does (`InvitedGuests.GoHome`, `Leave`: the transition out of
+  the stay that its length sets off, with its message, its reckoning of the visit, its gift and its next visit; still
+  walking in, straight to its way out).
+- **The envoy on top**: found among Hospitality's groups (`Envoys.LordOf`); Hospitality's guest area and rules lead their
+  day (the envoy's own common rooms were the same place in effect), indoors in danger by the stay's own duty
+  (`Rimfolk_EnvoyIndoors`, `Envoys.HostedLook` every 250 ticks). The stay's hour still feeds them at the colony's table,
+  beds them (the bed set aside first), seats the envoy at a council meeting and sends their letters home (`Envoys.Free`
+  counts Hospitality's stay); a meal of the colony's or a night in one of its beds that Hospitality gave the envoy first
+  still counts for the day. One of them up again with no group goes back the way Hospitality takes a guest in late
+  (`LordToil_VisitPoint.JoinLate`, `OnGuestJoinedLate`), else a new group, Hospitality's or the stay's own. The season
+  over, the envoy dead or the home lost: `GoHome`.
+- **Hurt by the colony**: their own groups heard it from the game's harm trigger; for Hospitality's, a postfix on
+  `Lord.Notify_PawnDamaged` (`Patch_InvitedGuestHarmed`) takes outside violence by the colony's people (never a blow in
+  an agreed bout, `Outsiders.InBout`) to `Feasts.Harmed` or `Envoys.Harmed`, which end the visit as an insult and send
+  them home. Deaths and arrests are seen by the feast's look and the stay's hour as before.
+
 ### Neighbours' requests and callers at the gate (the player's request, 6 November 2026)
 
 "Do another big content update to existing mechanics": this part the neighbours and the people who come to the colony,
@@ -11763,7 +11820,7 @@ chains, nemeses, camps, play-outs, the fights pass and the worn-out episode read
 | 83 | Colonists starting a talk with an outsider near them (Outsiders/OutsiderTalk.cs; on each home map with outsiders on it, whichever map is in view, with the setting on); every fourth look, the right-click's things done by themselves (Outsiders/OutsiderAuto.cs, with its setting on) | per home map, per free outsider: a free colonist near, the pair's and the visit's waits, then a small chance by both natures; one talk at most a home. By themselves: the day's pace first, then per home with no danger, per free outsider (three weighed at most) the pace with them, the six nearest free colonists times the things allowed (cheap facts), the best six checked by the menu's own reasons and the stores; one at most a look |
 | 241 | A meal or a drink shared with an outsider, a bout or a brawl with one (Outsiders/; only while there is one) | per meal: both still eating; per bout: still at it, its end by its terms; per brawl: still fighting |
 | 233 | Defense lines watch a raid (only while hostile people or mechanoids are on a home map that has lines) | per raider: in front of or behind each line, how it got behind; colonists newly downed near a line; the raid's lessons once it's over |
-| 119 | Hospitality's guests helping out (Integrations/GuestHelp.cs; only while its guests are on a home map or a record waits to be let go): each guest's hours today against the cap, unhappy or overworked, the trouble's work types on and off, a trouble's job put down when it ends, side by side with a colonist, hurt at the work, a thanks day offered; a guest gone, their farewell | per guest: their job, their troubles (each home map's fires, downed, wounded, frost harvest and food looked at once a pass), colonists within six cells |
+| 119 | Hospitality's guests helping out (Integrations/GuestHelp.cs; only while its guests are on a home map or a record waits to be let go): each guest's hours today against the cap, unhappy or overworked, the trouble's work types on and off, a trouble's job put down when it ends, side by side with a colonist, hurt at the work, a thanks day offered; a guest gone, their farewell. Then, while a feast's guests or an envoy are at a home and Hospitality is loaded, the invited guests in its care (Integrations/InvitedGuests.cs): the feast's look their own group would have given, each group steered where the visit wants it, an envoy's meal or night counted | per guest: their job, their troubles (each home map's fires, downed, wounded, frost harvest and food looked at once a pass), colonists within six cells |
 | 7 | Carrying and hauling (Hauling/HaulBook.cs; only while a pawn carries something for Rimfolk): never more owed than it has, the run's build area looked at (what it still needs of each material, for the other builders' cover) and a run over sent to storage, a load the job choice can't send queued for storage | per pawn carrying something: a radial look round its run's frame per material carried (15 cells at most) |
 
 **Other rhythms**

@@ -1635,7 +1635,8 @@ namespace ColonyCouncil
                 if (l.tries > 48) Finish(l, n);
                 return;
             }
-            var lord = Arrivals.Visit(new List<Pawn> { x }, map, f, Gathering(map), Rand.Range(8f, 14f));
+            // Invited: with Hospitality, its guest (Integrations/InvitedGuests.cs).
+            var lord = Arrivals.Invited(ArrivalWhy.LetterInvitation, new List<Pawn> { x }, map, f, Gathering(map), Rand.Range(8f, 14f));
             if (lord == null)
             {
                 l.tries++;

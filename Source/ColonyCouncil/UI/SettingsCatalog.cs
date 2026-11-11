@@ -748,6 +748,8 @@ namespace ColonyCouncil
             Mod(Toggle("guestsPitchIn", "CC_Settings_GuestsPitchIn", "CC_SetNote_GuestsPitchIn", "deepHooks"), HospitalityId);
             Mod(Toggle("guestGroupsFitBeds", "CC_Settings_GuestGroupsFitBeds", "CC_SetNote_GuestGroupsFitBeds", "deepHooks"), HospitalityId);
             Mod(Slider("guestBedsExtra", "CC_Settings_GuestBedsExtra", "CC_SetNote_GuestBedsExtra", 0f, 4f, 1f, "0", "guestGroupsFitBeds"), HospitalityId);
+            // Visitors the colony invited come as Hospitality's guests (Integrations/InvitedGuests.cs).
+            Mod(Toggle("invitedAsGuests", "CC_Settings_InvitedAsGuests", "CC_SetNote_InvitedAsGuests", "deepHooks"), HospitalityId);
             Section("CC_SetSec_Mod_RimMarket");
             Mod(Toggle("marketStallWindow", "CC_Settings_MarketStallWindow", "CC_SetNote_MarketStallWindow", "deepHooks"), RimMarketId);
             Mod(Toggle("marketStallShips", "CC_Settings_MarketStallShips", "CC_SetNote_MarketStallShips", "deepHooks"), RimMarketId);

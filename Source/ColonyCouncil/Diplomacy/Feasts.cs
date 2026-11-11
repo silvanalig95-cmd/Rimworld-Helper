@@ -712,7 +712,10 @@ namespace ColonyCouncil
                 if (party.Count == 0) continue;
                 try
                 {
-                    LordMaker.MakeNewLord(group.Key, new LordJob_FeastGuests(Homes.KeyOf(map), gate), map, party);
+                    // Invited: with Hospitality, its guests for the feast's two days (Integrations/InvitedGuests.cs); the feast
+                    // still keeps them where the day takes them (Focus), fed and bedded by its hosting rules.
+                    if (InvitedGuests.HandOver(ArrivalWhy.FeastGuests, party, map, group.Key, gate, StayHours) == null)
+                        LordMaker.MakeNewLord(group.Key, new LordJob_FeastGuests(Homes.KeyOf(map), gate), map, party);
                     came.AddRange(party);
                 }
                 catch (Exception e)
@@ -748,35 +751,67 @@ namespace ColonyCouncil
                 new LookTargets(came.Take(3)), people);
         }
 
-        /// <summary>A guest's group on the home, or null.</summary>
+        /// <summary>The longest the guests stay: two days, past a second night never (Look).</summary>
+        public const float StayHours = 2f * GenDate.HoursPerDay;
+
+        /// <summary>A guest's group on the home (their own, or Hospitality's: Integrations/InvitedGuests.cs), or null.</summary>
         public static Lord LordOf(Map map, Pawn p)
         {
             var l = p?.GetLord();
-            return l?.LordJob is LordJob_FeastGuests ? l : null;
+            return l?.LordJob is LordJob_FeastGuests || InvitedGuests.Hosted(l) && Of(p) != null ? l : null;
         }
 
-        /// <summary>Every group of the feast's guests on the home.</summary>
+        /// <summary>Every group of the feast's guests on the home: their own, or Hospitality's as its guests.</summary>
         public static List<Lord> Lords(Map map, GuestFeast p)
         {
             var list = new List<Lord>();
             if (map?.lordManager == null || p == null) return list;
             foreach (var l in map.lordManager.lords)
-                if (l?.LordJob is LordJob_FeastGuests && l.ownedPawns.Any(x => p.GuestOf(x) != null))
+                if ((l?.LordJob is LordJob_FeastGuests || InvitedGuests.Hosted(l)) && l.ownedPawns.Any(x => p.GuestOf(x) != null))
                     list.Add(l);
             return list;
         }
 
-        /// <summary>Where the guests keep about now: the gate, a contest, the feast, indoors for the night.</summary>
+        /// <summary>
+        /// Where the guests keep about now: the gate, a contest, the feast, indoors for the night. Kept with the feast, so
+        /// Hospitality's guests are steered back there at each look, also after a reload (SteerHosted).
+        /// </summary>
         public static void Focus(Map map, GuestFeast p, IntVec3 cell, float radius = 6f)
         {
-            if (!cell.IsValid) return;
+            if (!cell.IsValid || p == null) return;
+            p.focus = cell;
+            p.focusRadius = radius;
             foreach (var l in Lords(map, p))
+            {
                 if (l.LordJob is LordJob_FeastGuests j && (j.focus != cell || Math.Abs(j.radius - radius) > 0.1f))
                 {
                     j.focus = cell;
                     j.radius = radius;
                     l.CurLordToil?.UpdateAllDuties();
                 }
+                else if (InvitedGuests.Hosted(l)) InvitedGuests.Steer(l, FeastDefOf.Rimfolk_FeastGuest, cell, radius, FeastDefOf.Rimfolk_FeastIndoors);
+            }
+        }
+
+        /// <summary>Hospitality's guests of the feast kept where the day takes them (the feast's focus), indoors in danger.</summary>
+        private static void SteerHosted(Map map, GuestFeast p)
+        {
+            var at = p.focus.IsValid ? p.focus : PlaySpots.GateCell(map, null);
+            foreach (var l in Lords(map, p))
+                if (InvitedGuests.Hosted(l))
+                    InvitedGuests.Steer(l, FeastDefOf.Rimfolk_FeastGuest, at, p.focusRadius, FeastDefOf.Rimfolk_FeastIndoors);
+        }
+
+        /// <summary>
+        /// The feast's guests in Hospitality's care (Integrations/InvitedGuests.cs), every 250 ticks: the day's look their own
+        /// group would have given (LordToil_FeastGuests), with them kept where the day takes them.
+        /// </summary>
+        internal static void HostedLook(DiplomacyHome h)
+        {
+            var map = h?.Map;
+            var p = h?.feast;
+            if (map == null || p == null || !p.OnMap || !Lords(map, p).Any(InvitedGuests.Hosted)) return;
+            Rare(Homes.KeyOf(map));
         }
 
         // ================= The day, every 250 ticks from their group =================
@@ -845,6 +880,7 @@ namespace ColonyCouncil
                 End(h, p, map, false);
                 return;
             }
+            SteerHosted(map, p);
             Watch(p, map);
             Tend(p, map);
             int hour = GenLocalDate.HourOfDay(map);
@@ -899,7 +935,8 @@ namespace ColonyCouncil
         }
 
         /// <summary>Everyone of theirs has reached the gate (or is past their walk in).</summary>
-        private static bool Settled(GuestFeast p) => p.AllGuests.All(x => x == null || !x.Spawned || x.GetLord()?.CurLordToil is LordToil_FeastGuests) || Now - p.arrived > 8 * GenDate.TicksPerHour;
+        private static bool Settled(GuestFeast p) =>
+            p.AllGuests.All(x => x == null || !x.Spawned || x.GetLord()?.CurLordToil is LordToil_FeastGuests || InvitedGuests.Staying(x)) || Now - p.arrived > 8 * GenDate.TicksPerHour;
 
         private static readonly HashSet<int> greeted = new HashSet<int>();
 
@@ -941,7 +978,7 @@ namespace ColonyCouncil
         public static bool Free(Pawn p)
         {
             if (p == null || p.Dead || !p.Spawned || p.Downed || p.InMentalState || p.Drafted || !p.Awake() || p.InBed()) return false;
-            if (!(p.GetLord()?.CurLordToil is LordToil_FeastGuests)) return false;
+            if (!(p.GetLord()?.CurLordToil is LordToil_FeastGuests) && !InvitedGuests.Staying(p)) return false;
             if (FeastContests.InContest(p)) return false;
             var d = p.CurJobDef;
             if (d == JobDefOf.Ingest || d == FeastDefOf.Rimfolk_FeastRun || d == FeastDefOf.Rimfolk_FeastShoot || d == JobDefOf.Hunt || d == OutsiderDefOf.Council_OutsiderBout) return false;
@@ -1399,7 +1436,8 @@ namespace ColonyCouncil
             if (map == null) return;
             try
             {
-                foreach (var l in Lords(map, p)) l.ReceiveMemo(LordJob_FeastGuests.MemoLeave);
+                // Hospitality's guests leave as its own stay ends (Integrations/InvitedGuests.cs).
+                foreach (var l in Lords(map, p)) InvitedGuests.GoHome(l, LordJob_FeastGuests.MemoLeave);
                 foreach (var g in p.guests)
                     foreach (var x in g.Party.ToList())
                     {

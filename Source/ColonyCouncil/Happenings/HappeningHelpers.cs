@@ -122,7 +122,15 @@ namespace ColonyCouncil
         }
 
         /// <summary>Visitors walk in from the edge and spend some hours at a spot (outside the colony, or at a grave).</summary>
-        public static Lord Visit(List<Pawn> pawns, Map map, Faction f, IntVec3? chill, float hours)
+        public static Lord Visit(List<Pawn> pawns, Map map, Faction f, IntVec3? chill, float hours) => Visit(pawns, map, f, chill, hours, null);
+
+        /// <summary>
+        /// Visitors the colony invited walk in from the edge and stay some hours at a spot: with Hospitality, as its guests
+        /// (Integrations/InvitedGuests.cs, <paramref name="why"/> the kind of invitation), else as <see cref="Visit"/>'s.
+        /// </summary>
+        public static Lord Invited(ArrivalWhy why, List<Pawn> pawns, Map map, Faction f, IntVec3? chill, float hours) => Visit(pawns, map, f, chill, hours, why);
+
+        private static Lord Visit(List<Pawn> pawns, Map map, Faction f, IntVec3? chill, float hours, ArrivalWhy? invited)
         {
             if (pawns.NullOrEmpty() || f == null) return null;
             // Here already (a Hospitality guest the story is about): their own stay goes on as it was.
@@ -132,6 +140,8 @@ namespace ColonyCouncil
                 if (!Spawn(p, map, entry)) return null;
             IntVec3 spot = chill ?? IntVec3.Invalid;
             if (!spot.IsValid && !RCellFinder.TryFindRandomSpotJustOutsideColony(pawns[0], out spot)) spot = entry;
+            var hosted = invited.HasValue ? InvitedGuests.HandOver(invited.Value, pawns, map, f, spot, hours) : null;
+            if (hosted != null) return hosted;
             return LordMaker.MakeNewLord(f, new LordJob_VisitOnErrand(f, spot, Mathf.RoundToInt(hours * GenDate.TicksPerHour)), map, pawns);
         }
 
