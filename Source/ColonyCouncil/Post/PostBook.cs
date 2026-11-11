@@ -132,7 +132,7 @@ namespace ColonyCouncil
 
     /// <summary>
     /// The post's book (docs/design/post-and-letters.md, step 1): mail for the colony waiting for a carrier, each home's
-    /// regular post, and the colony's own riders out with a letter. The letters going out wait in the outbox as letters of
+    /// regular post, and the colony's own riders out with a letter and the supplies packed for them. The letters going out wait in the outbox as letters of
     /// the neighbour book (World/NeighbourLetters.cs, stage Outbox). Looked at on the neighbours' passes (World/Notables.cs):
     /// hourly, and every 250 ticks while there is something to watch.
     /// </summary>
@@ -141,6 +141,8 @@ namespace ColonyCouncil
         public List<PostItem> incoming = new List<PostItem>();
         public List<PostRound> rounds = new List<PostRound>();
         public List<OwnRide> rides = new List<OwnRide>();
+        /// <summary>The supplies packed for each letter going with the colony's own rider, until they're home (Post/RiderPacks.cs).</summary>
+        public List<RiderPack> packs = new List<RiderPack>();
         public int nextId = 1;
 
         private static PostBook cached;
@@ -207,10 +209,12 @@ namespace ColonyCouncil
                     if (r.lord != null && !r.map.lordManager.lords.Contains(r.lord))
                         r.lord = null;
                 rides.RemoveAll(r => r == null || r.rider == null || r.rider.Dead);
+                RiderPacks.Prune();
             }
             Scribe_Collections.Look(ref incoming, "incoming", LookMode.Deep);
             Scribe_Collections.Look(ref rounds, "rounds", LookMode.Deep);
             Scribe_Collections.Look(ref rides, "rides", LookMode.Deep);
+            Scribe_Collections.Look(ref packs, "packs", LookMode.Deep);
             Scribe_Values.Look(ref nextId, "nextId", 1);
             if (Scribe.mode == LoadSaveMode.PostLoadInit)
             {
@@ -220,6 +224,8 @@ namespace ColonyCouncil
                 rounds.RemoveAll(r => r == null || r.map == null);
                 rides ??= new List<OwnRide>();
                 rides.RemoveAll(r => r == null || r.rider == null);
+                packs ??= new List<RiderPack>();
+                packs.RemoveAll(p => p == null);
             }
         }
     }

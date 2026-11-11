@@ -295,6 +295,7 @@
     <Compile Include="../../Source/ColonyCouncil/Animals/AnimalNatureMath.cs" Link="AnimalNatureMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Beasts/BeastsMath.cs" Link="BeastsMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Post/PostMath.cs" Link="PostMath.cs" />
+    <Compile Include="../../Source/ColonyCouncil/Post/RiderPackMath.cs" Link="RiderPackMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/UI/Region/PeoplesViewMath.cs" Link="PeoplesViewMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/UI/Region/PeopleActMath.cs" Link="PeopleActMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Dealings/DealingMath.cs" Link="DealingMath.cs" />

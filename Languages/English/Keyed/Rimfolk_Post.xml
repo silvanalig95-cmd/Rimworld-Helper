@@ -77,7 +77,7 @@
   <CC_Mail_Bag_More>  ...and {COUNT} more.</CC_Mail_Bag_More>
   <CC_Mail_Bag_Coming>Mail for the colony on its way in: {COUNT}.</CC_Mail_Bag_Coming>
   <CC_Mail_Gizmo_Rider>Send with our rider</CC_Mail_Gizmo_Rider>
-  <CC_Mail_Gizmo_RiderDesc>Send a letter waiting here with one of the colony's own: they ride out to the town (on a colony animal if one is big enough to ride, else on foot), hand it over, and bring the answer home. They are away for the whole road there and back.</CC_Mail_Gizmo_RiderDesc>
+  <CC_Mail_Gizmo_RiderDesc>Send a letter waiting here with one of the colony's own, with the supplies you choose for the road: they gather them, ride out to the town (on a colony animal if one is big enough to ride, else on foot), hand it over, and bring the answer home. They are away for the whole road there and back.</CC_Mail_Gizmo_RiderDesc>
   <CC_Mail_Gizmo_Back>Take a letter back</CC_Mail_Gizmo_Back>
   <CC_Mail_Gizmo_BackDesc>Take a letter out of the mailbag: it is not sent.</CC_Mail_Gizmo_BackDesc>
   <CC_Mail_Gizmo_None>No letters waiting in the mailbag.</CC_Mail_Gizmo_None>
@@ -124,9 +124,14 @@
   <CC_Mail_Why_NoRoad>There is no way over land to {TOWN}.</CC_Mail_Why_NoRoad>
   <CC_Mail_Why_Alone>Someone has to stay at home.</CC_Mail_Why_Alone>
   <CC_Mail_Why_NoRider>Nobody is free to ride out.</CC_Mail_Why_NoRider>
-  <CC_Mail_Msg_RiderReady>{PAWN} takes the letter from the mailbag and makes for the edge of the map with {MOUNT}, to ride to {TOWN}.</CC_Mail_Msg_RiderReady>
-  <CC_Mail_Msg_RiderReadyFoot>{PAWN} takes the letter from the mailbag and makes for the edge of the map, to walk to {TOWN}.</CC_Mail_Msg_RiderReadyFoot>
+  <CC_Mail_Msg_RiderReady>{PAWN} goes to the mailbag for the letter, then gathers the supplies and {MOUNT} to ride to {TOWN}.</CC_Mail_Msg_RiderReady>
+  <CC_Mail_Msg_RiderReadyFoot>{PAWN} goes to the mailbag for the letter, then gathers the supplies to walk to {TOWN}.</CC_Mail_Msg_RiderReadyFoot>
   <CC_Mail_Msg_RiderOut>{PAWN} has set out for {TOWN} with the letter.</CC_Mail_Msg_RiderOut>
+  <CC_Mail_Msg_RiderOutFed>{PAWN} has set out for {TOWN} with the letter and food for about {FOOD} days; the road there and back is about {ROAD}.</CC_Mail_Msg_RiderOutFed>
+  <CC_Mail_Msg_RiderOutShort>{PAWN} has set out for {TOWN} with the letter and food for only about {FOOD} of the {ROAD} days there and back: they will go hungry on the road.</CC_Mail_Msg_RiderOutShort>
+  <CC_Mail_Msg_RiderOutNoFood>{PAWN} has set out for {TOWN} with the letter and no food for the {ROAD} days there and back: they will go hungry on the road.</CC_Mail_Msg_RiderOutNoFood>
+  <CC_Mail_Msg_RiderStoresShort>The stores are short of {WHAT} for {PAWN}'s road to {TOWN}: they go without it.</CC_Mail_Msg_RiderStoresShort>
+  <CC_Mail_Msg_PackLeft>{PAWN} is home with what is left of the supplies ({LEFT}), and it goes back into the stores.</CC_Mail_Msg_PackLeft>
   <CC_Mail_Msg_RiderHomeward>{PAWN} has the answer and has turned for home from {TOWN}.</CC_Mail_Msg_RiderHomeward>
   <CC_Mail_Msg_RiderNoAnswer>{PAWN} is home from {TOWN}: they heard the letter out and sent nothing back.</CC_Mail_Msg_RiderNoAnswer>
   <CC_Mail_Msg_RiderLost>{PAWN} never came home from the road to {TOWN}, and the letter is lost with them.</CC_Mail_Msg_RiderLost>
@@ -146,6 +151,6 @@
   <CC_LetterDlg_WhoSpeaks>Whose words:</CC_LetterDlg_WhoSpeaks>
   <CC_LetterDlg_PostNote>The writer sits down at a table for about an hour to write it, then takes it to the mailbag at the gate, where it waits until someone going that way takes it. The answer comes back the same way.</CC_LetterDlg_PostNote>
   <CC_LetterDlg_SpokenNote>A tribe sends no letters: when someone going that way comes for it, a colonist gives them the words at the gate, and they carry them. The answer comes back the same way.</CC_LetterDlg_SpokenNote>
-  <CC_LetterDlg_RiderNote>{PAWN} takes it from the mailbag once it is written and rides out to them, then brings the answer home. They are away for the whole road there and back.</CC_LetterDlg_RiderNote>
+  <CC_LetterDlg_RiderNote>{PAWN} takes it from the mailbag once it is written, gathers the supplies packed for the road, and rides out to them, then brings the answer home. They are away for the whole road there and back.</CC_LetterDlg_RiderNote>
 
 </LanguageData>

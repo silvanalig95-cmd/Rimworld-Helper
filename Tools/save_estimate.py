@@ -496,6 +496,8 @@ MODEL = {
     "Post/PostBook.cs:incoming": ("cap", (C["PostIncoming"], 1), 700, "answers and the world's letters waiting for a carrier: PostMath.MaxIncoming at most (the oldest goes by messenger), each gone once it opens"),
     "Post/PostBook.cs:rounds": ("fixed", 1, 120, "one regular post a home (one home in the model): when it next comes, the rider's group while here"),
     "Post/PostBook.cs:rides": ("cap", (COLONISTS / 4, 0.1), 600, "the colony's own riders out with a letter, until they're home: one a letter, a few at most"),
+    "Post/PostBook.cs:packs": ("cap", (COLONISTS / 4, 0.1), 160, "the supplies packed for each letter going with the colony's own rider, from the send until they're home or it goes back in the bag: one a ride"),
+    "Post/RiderPacks.cs:lines": ("fixed", 6, 90, "per pack of the rider's supplies: the lines taken (food, medicine, drugs, feed, a few added), counted under packs"),
     # Dealings with whole peoples and towns, pen friends, the world's letters (Dealings/DealingBook.cs, a game component of
     # its own: an older save starts it empty).
     "Dealings/DealingBook.cs:deals": ("cap", (C["Deals"], 0.4), 420,

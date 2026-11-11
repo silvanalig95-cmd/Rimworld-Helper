@@ -292,6 +292,8 @@ namespace ColonyCouncil
         /// <summary>The colony's own rider takes it (Post/OwnRiders.cs), and who.</summary>
         private bool riderChosen;
         private Pawn rider;
+        /// <summary>The rider's supplies for the road (Post/RiderPacks.cs), chosen here with them.</summary>
+        private readonly RiderPackPart riderPack = new RiderPackPart();
         private List<string> reach = new List<string>();
         private List<LetterTopic> topics = new List<LetterTopic>();
 
@@ -624,8 +626,11 @@ namespace ColonyCouncil
                 }
             }
             y += 26f;
+            // The rider's supplies for the road: what is packed and whether it reaches (Post/RiderPacks.cs).
+            bool packing = bearer == null && PostBook.On && channel == LetterChannel.Courier && riderChosen && byRider == null && rider != null;
+            if (packing) y += riderPack.Draw(new Rect(inRect.x + 124f, y, inRect.width - 124f, 0f), map, to, rider);
             string channelWhy = bearer != null ? (bearer.Spawned && Outsiders.IsOutsider(bearer) ? null : "CC_LetterDlg_BearerGone".Translate(bearer.Named("BEARER")).Resolve())
-                : channel == LetterChannel.Courier ? (riderChosen ? byRider ?? (rider == null ? "CC_Mail_Why_NoRider".Translate().Resolve() : null) : byHand) : byCall;
+                : channel == LetterChannel.Courier ? (riderChosen ? byRider ?? (rider == null ? "CC_Mail_Why_NoRider".Translate().Resolve() : packing ? riderPack.Why : null) : byHand) : byCall;
             string how = channelWhy ?? (bearer != null ? "CC_LetterDlg_BearerNote".Translate(bearer.Named("BEARER"), (to.faction?.Name ?? "").Named("FACTION")).Resolve()
                 : channel == LetterChannel.Courier && riderChosen
                 ? "CC_LetterDlg_RiderNote".Translate((rider?.LabelShort ?? "?").Named("PAWN")).Resolve()
@@ -660,7 +665,17 @@ namespace ColonyCouncil
                 bool about = purpose == LetterPurpose.Condolences || purpose == LetterPurpose.Warning || DiplomacyLetters.Owns(purpose);
                 LetterTopic? topic = topics.Count > 0 && about ? topics[Mathf.Clamp(topicIndex, 0, topics.Count - 1)] : (LetterTopic?)null;
                 string asked = purpose == LetterPurpose.Help ? help : DiplomacyLetters.Owns(purpose) ? dipAsk : null;
-                if (NeighbourLetters.Send(to, purpose, channel, writer, topic, asked, bearer, channel == LetterChannel.Courier && riderChosen ? rider : null) != null) Close();
+                bool byOwnRider = channel == LetterChannel.Courier && riderChosen;
+                // The supplies go with the letter the window sends now (taken by OwnRiders.Send).
+                RiderPacks.ForNext(byOwnRider ? riderPack.Pack : null);
+                try
+                {
+                    if (NeighbourLetters.Send(to, purpose, channel, writer, topic, asked, bearer, byOwnRider ? rider : null) != null) Close();
+                }
+                finally
+                {
+                    RiderPacks.ForNext(null);
+                }
             }
             if (UiKit.Button(new Rect(inRect.xMax - 160f, inRect.yMax - 34f, 160f, 32f), "CC_LetterDlg_Cancel".Translate())) Close();
         }

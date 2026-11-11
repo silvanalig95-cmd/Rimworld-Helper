@@ -119,6 +119,8 @@ namespace ColonyCouncil
             new FrameKey("LetterRead", 420f, 360f),
             new FrameKey("Journey", 760f, 540f),
             new FrameKey("JourneyPick", 440f, 400f),
+            // The colony's own rider's supplies for the road (Post/RiderPackWindow.cs): a few lines and the food against the road; the list scrolls.
+            new FrameKey("RiderPack", 460f, 480f),
             new FrameKey("Camp", 560f, 480f),
             new FrameKey("Founding", 760f, 560f),
             new FrameKey("Newcomers", 1000f, 760f),
