@@ -281,7 +281,9 @@ namespace ColonyCouncil
                 if (!Rand.Chance(fever ? 0.7f : Mathf.Min(0.95f, ChancePerWaking * S.dreamFrequency * QuirkEvents.DreamFactor(p)))) continue;
                 try
                 {
-                    if (TryDream(comp, p, fever)) lastDreamTick[p] = now;
+                    // Now and then the dream is their god's (Gods/Worship/GodDreams.cs).
+                    if (!fever && GodDreams.TryDream(comp, p)) lastDreamTick[p] = now;
+                    else if (TryDream(comp, p, fever)) lastDreamTick[p] = now;
                 }
                 catch (Exception e)
                 {

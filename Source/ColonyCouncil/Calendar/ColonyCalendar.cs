@@ -414,6 +414,7 @@ namespace ColonyCouncil
                 case CalendarKind.FaithDay: return 3;
                 case CalendarKind.Rescue: return 2;
                 case CalendarKind.Parting: return 3;
+                case CalendarKind.GodFestival: return WorshipMath.MaxFestivals;
                 default: return 1;
             }
         }
@@ -485,6 +486,7 @@ namespace ColonyCouncil
                 case CalendarKind.Situation: return "CC_Cal_Name_Situation".Translate(d.subject ?? "?");
                 case CalendarKind.FaithDay: return d.otherName.NullOrEmpty() ? "CC_Cal_Name_FaithDay".Translate(d.subject ?? "?").ToString() : d.otherName;
                 case CalendarKind.Rescue: return "CC_Cal_Name_Rescue".Translate(d.pawnName ?? "?");
+                case CalendarKind.GodFestival: return GodOfDay(d) is God g ? Festivals.Name(g) : "CC_Cal_Name_Holiday".Translate().ToString();
                 case CalendarKind.Custom:
                     var def = d.CustomDef;
                     return def == null ? d.about ?? "?" : def.traditionLabel.NullOrEmpty() ? def.label : def.traditionLabel;
