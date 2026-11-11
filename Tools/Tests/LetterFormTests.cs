@@ -27,7 +27,9 @@ public static class LetterFormTests
         "ANIMAL", "ANANIMAL", "ANIMALS", "PLANT", "TREE", "DEITY", "IDEO", "ANSWER", "FORTUNEWHY", "TOWNSITUATION", "SITUATION", "LOST", "LOSTTITLE", "HEAD", "HEADTITLE",
         "OLDHEAD", "ILL", "ILLTITLE", "WAR", "PEACEWITH", "NEWTOWN", "NEWTOWNPEOPLE", "RAIDCAMP", "DEED", "KNOWNFOR", "DEAD",
         // A correspondence that builds up (Letters/LetterThreadMath.cs): an earlier letter's thread, the names, the colony's news told.
-        "RE", "TOFULL", "TONICK", "LASTPEN", "BORN", "WEDDING"
+        "RE", "TOFULL", "TONICK", "LASTPEN", "BORN", "WEDDING",
+        // The writer's god (Gods/GodWords.cs, Letter): its name, its epithet, what it is.
+        "GOD", "GODEPITHET", "GODOF"
     };
 
     /// <summary>The values every letter has (the coverage asks only for these).</summary>

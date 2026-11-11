@@ -25,6 +25,9 @@ namespace ColonyCouncil
         /// <summary>Peoples shows their faces (the people the colony knows by name and those who left) rather than the peoples.</summary>
         public static bool faces;
 
+        /// <summary>Peoples shows the gods (Gods/GodsPage.cs) rather than the peoples or their faces.</summary>
+        public static bool gods;
+
         /// <summary>The map's List all in one, closest first, rather than in its groups.</summary>
         public static bool closest;
 
@@ -62,14 +65,18 @@ namespace ColonyCouncil
                 list = a.mode == "List";
                 if (a.lens != null && RegionViewsMath.TryLens(a.lens, out var l)) lens = l;
             }
-            else if (a.page == Peoples) faces = a.mode == "Faces";
+            else if (a.page == Peoples)
+            {
+                faces = a.mode == "Faces";
+                gods = a.mode == "Gods";
+            }
         }
 
         /// <summary>A view's lens and mode as the way back keeps them ("Trade/List", "Faces"), or null.</summary>
         public static string Within(string page)
         {
             if (page == Map) return lens + (list ? "/List" : "/Map");
-            if (page == Peoples) return faces ? "Faces" : null;
+            if (page == Peoples) return gods ? "Gods" : faces ? "Faces" : null;
             return null;
         }
 
@@ -79,6 +86,7 @@ namespace ColonyCouncil
             lens = Lens.Land;
             list = false;
             faces = false;
+            gods = false;
             query = "";
             chosen = NoneChosen;
             tab = PeopleTab.Overview;
@@ -106,11 +114,13 @@ namespace ColonyCouncil
 
         public static Texture2D[] MapModeIcons => mapModeIcons ??= new[] { Icons.ModeMap, Icons.ModeList };
 
-        public static string[] PeopleModes => peopleModes ??= new[] { "CC_Mode_Peoples".Translate().ToString(), "CC_Mode_Faces".Translate().ToString() };
+        /// <summary>The Peoples view's modes: the peoples, their faces, and the gods (the third only while the gods are on).</summary>
+        public static string[] PeopleModes => peopleModes ??= new[] { "CC_Mode_Peoples".Translate().ToString(), "CC_Mode_Faces".Translate().ToString(), "CC_Mode_Gods".Translate().ToString() };
 
-        public static string[] PeopleModeTips => peopleModeTips ??= new[] { "CC_Mode_Peoples_Tip".Translate().ToString(), "CC_Mode_Faces_Tip".Translate().ToString() };
+        public static string[] PeopleModeTips => peopleModeTips ??= new[]
+            { "CC_Mode_Peoples_Tip".Translate().ToString(), "CC_Mode_Faces_Tip".Translate().ToString(), "CC_Mode_Gods_Tip".Translate().ToString() };
 
-        public static Texture2D[] PeopleModeIcons => peopleModeIcons ??= new[] { Icons.Trust ?? Icons.People, Icons.Visitor };
+        public static Texture2D[] PeopleModeIcons => peopleModeIcons ??= new[] { Icons.Trust ?? Icons.People, Icons.Visitor, GodSymbols.Pantheon ?? Icons.Ways };
 
         /// <summary>A view's name with the mode or lens an address names ("Map: Trade, as a list"), for the buttons and tooltips that lead there.</summary>
         public static string Name(PagesMath.Address a, string viewName)
@@ -118,6 +128,7 @@ namespace ColonyCouncil
             if (a.page == Map && a.lens != null && RegionViewsMath.TryLens(a.lens, out var l))
                 return (a.mode == "List" ? "CC_Region_AddrLensList" : "CC_Region_AddrLens").Translate(viewName.Named("VIEW"), LensLabel(l).Named("LENS")).Resolve();
             if (a.page == Peoples && a.mode == "Faces") return "CC_Region_AddrLens".Translate(viewName.Named("VIEW"), PeopleModes[1].Named("LENS")).Resolve();
+            if (a.page == Peoples && a.mode == "Gods") return "CC_Region_AddrLens".Translate(viewName.Named("VIEW"), PeopleModes[2].Named("LENS")).Resolve();
             return viewName;
         }
     }

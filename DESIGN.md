@@ -12082,6 +12082,65 @@ simple meal, and none of the player's active mods adds simple variants.
 - Rimfolk counts them as simple meals wherever it reads a meal's preferability (feasts, hosting, the road food, the
   rider's supplies, the stores panel); the storage review groups them with the meals. Tested in `DietMealsTests`.
 
+### The gods: the pantheon (the player's request, 11 November 2026; not released yet)
+
+The player: "the concept of gods within RimWorld ... like a pantheon of gods ... that they actually are and interact and
+are into the lore and get referred to, and pawns react to gods", and "when I think of gods as kind of one reference, you
+know, it's the Greek pantheon ... there's drama between the gods ... there could definitely be also outliers". The whole
+design, its decisions, its stages and the contract between the parts are in `docs/design/gods.md`; the brainstorm is
+`docs/gods-brainstorm.md`. This is stage 1's core (`Source/ColonyCouncil/Gods/`, not `Gods/Presence/`, which the
+presence part builds against the same contract).
+
+- **The pantheon** (`Gods/Pantheon.cs`, saved in `Gods/GodBook.cs`): built once per world (an older save on its first
+  load), the same for the same world's seed, and kept in the region's day (`RegionBook.Daily`; no pass of its own) as
+  peoples and faiths come and go. With Ideology each faith's deities are gods, their domain from their own words, the
+  meme they came from, the faith's memes (the game's, Alpha Memes', Vanilla Ideology Expanded's, by defName, others by
+  their label's words) and precepts (`GodsMath.DeityDomains`); an animist faith gets spirits, an archist one an
+  archotech, an ideological one none. Without Ideology (and for a people with no faith to read) Rimfolk's makers give
+  two or three gods by age, ways and land (`GodsMath.MakerDomains`; raiders always a war god). Rimfolk's peoples each
+  have a patron (`Defs/GodDefs/Rimfolk_Pantheon_Patrons.xml`, `GodPatronDef`), one of their faith's gods where it fits,
+  else added to it. The fourteen domains (`Defs/GodDefs/Rimfolk_Pantheon_Domains.xml`, `GodDomainDef`) give colours,
+  a symbol, names per age form, epithets, a newborn's name and sacred things (animals and plants by defName, from the
+  player's active mods). Forms by age (`GodsMath.FormOf`): spirit, old god or saint, half-forgotten or machine god,
+  archotech.
+- **The ones who don't fit** (`GodKind`): archotechs (every spacer god's form; ignore offerings, judge deeds), the Hunger
+  (the Choir's patron, else the world's darkest void god), one trickster, a dead god and a fading god made with the
+  world (the old places), the Sleeper imprisoned (the Sunken Vault's), and a newborn of the colony's own faith when its
+  deeds keep serving a domain the faith has no god of (`GodsMath.NewbornDue`; three at most, 120 days apart; it grows
+  with favour into an ordinary god). A god nobody holds fades, and in time falls silent (`GodsMath.KindNow`).
+- **Ties** (`Gods/GodTiesMath.cs`): rivals, lovers, estranged, parent and child, siblings, twins, allies, cast down,
+  stole the people; from the natural table by domain, a faith's family, peoples at war or allied, a people that arose
+  from another, and chance; four a god at most and one lover; shifting about once in two years each.
+- **Natures** (`GodNature`): how fast favour moves (`GodsMath.Speed`, `HalfLifeDays`), what offends most
+  (`GodsMath.Offends`), how loudly it answers (`GodsMath.Loudness`).
+- **Favour** per god per home, -100 to 100 inside, words outside (`GodsMath.Word`: wrathful, displeased, unknown,
+  noticed, pleased, favoured, beloved), drifting back toward unknown (worked out when read, `GodsMath.Drift`), weighed by
+  nature and kind (`GodsMath.Scale`), spilling to tied gods (`GodTiesMath.Spill`), remembered as acts, told in the news
+  when a known god's word changes (in the voice of how real the gods are). The first sources (`Gods/GodDeeds.cs`): a big
+  harvest, a threat beaten off, the dead left lying (the region's day), a great beast brought down, a sacred animal
+  slaughtered or hunted (Happenings' death hook), a funeral's eulogy (`Secrets/Vendettas.cs`).
+- **The public face** (`Gods/Gods.cs`): `All`, `Of(Faction)`, `OfIdeo`, `ColonyGods(home)`, `Patron(home)` (a known god
+  from noticed up), `Favour`, `FavourValue` (for rules, never shown), `AddFavour(god, home, amount, why, source)`,
+  `Deed(domain, home, amount, why)`, `Realness`, `Remember(GodAct)`, `ActsOf`, `TiesOf`, `Rivals`, `Allies`, `NatureOf`,
+  `KindOf`, `Loudness`, `Name`, `Epithet`, `GodOf`, `FullName`, `SwearBy(pawn, domain)`, `Fill`/`Args` for `{GOD}`,
+  `{GODEPITHET}`, `{GODOF}` (taught to the DefValidator), `Learn`, `Vow`/`EndVow`.
+- **The seams** (`Gods/GodPresenceSeam.cs`): `GodPresenceSeam.Manifest` (`Func<PresenceSpec, bool>`) with the plain
+  `PresenceSpec` (god, map, cell, kind, avatar, title, text, veiled) and `GodLookSeam.MakeAvatar`
+  (`Action<Pawn, God, bool>`), null until the presence part sets them; `Call` and `Make` do nothing then.
+- **What the colony knows**: its own faith's gods from the start; others from the neighbours it knows by name, their
+  letters, their people on its land (the region's hour), one line in the news a people. Unknown gods are rumours on
+  the page.
+- **Felt from day one**: colonists swear by their god now and then (`Gods/GodSpeech.cs`, `Rimfolk_Pool_SayGod`) in
+  StateSpeech's look and in place of WeatherTalk's storm, cold, heat and first-snow words; letters fill `{GOD}`,
+  `{GODEPITHET}`, `{GODOF}` from the writer's god (`GodWords.Letter`), with a handful of lines in the close, the
+  postscript and the sermons.
+- **The Gods page** (`Gods/GodsPage.cs`): the region window's Peoples view, third mode (address `Peoples/Gods`): the
+  colony's gods, the others known, the rumours; the whole pantheon as a web; a god's page with its symbol in its
+  colours, what it is, its kind, the colony's standing at each home, who holds it, its domain and sacred things, its
+  nature, its ties as a small web and in words, its lore and its remembered acts. Symbols by `Tools/make_god_symbols.py`.
+- **Settings**: "Gods" (on) and "How real are the gods" (Believed, Felt, Walking; Felt), What's on, The gods.
+- Dev actions "Gods: ...". The Almanac page "the gods" (`Council_Alm_C_Gods`). Tested in `GodsTests`.
+
 ### Checking a new game version
 
 One DLL serves every supported version: it is built against the 1.6 references into `1.6/Assemblies`, and on 1.7

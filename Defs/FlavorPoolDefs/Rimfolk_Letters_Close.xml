@@ -39,6 +39,8 @@
         <li>[theirs,a:plain,warm|cordial] Yours,</li>
         <li>[theirs,a:plain,warm|cordial] With good wishes,</li>
         <li>[theirs,a:plain,warm|cordial,c:pious] Go with peace, and keep the faith,</li>
+        <li>[theirs,a:plain,warm|cordial] May {GOD} keep you,</li>
+        <li>[theirs,a:plain,warmly] Under the eye of {GODEPITHET}, and with love,</li>
         <li>[theirs,a:plain,warm|cordial,c:together] From all of us at {TOWN}, together,</li>
         <li>[theirs,a:plain,cordial] With regards,</li>
         <li>[theirs,a:plain,cordial] Kind regards,</li>
@@ -129,6 +131,7 @@
         <li>[ours,a:plain,warmly] With warm regards,</li>
         <li>[ours,a:plain,warmly] With good wishes from all of us,</li>
         <li>[ours,a:plain,warmly] Write back when you can,</li>
+        <li>[ours,a:plain,warmly] With {GOD}'s blessing on all of you,</li>
         <li>[ours,a:plain,warmly,v:kind] Look after yourselves,</li>
         <li>[ours,a:plain,warmly,v:cheerful] With a smile from all of us,</li>
         <li>[ours,a:plain,warmly,v:eloquent] I remain, with every good wish, yours,</li>
@@ -180,6 +183,7 @@
         <li>[theirs,olde,a:plain,warm|cordial] Fare thee well,</li>
         <li>[theirs,olde,a:plain,warm|cordial] Thine,</li>
         <li>[theirs,olde,a:plain,warm|cordial,c:pious] Go thou with peace, and keep the faith,</li>
+        <li>[theirs,olde,a:plain,warm|cordial] {GOD} keep thee,</li>
         <li>[theirs,olde,a:plain,cordial] Thy servant in this matter,</li>
         <li>[theirs,olde,a:plain,cordial] Given in good faith,</li>
         <li>[theirs,olde,a:plain,cordial] Speed thee well upon thy road,</li>

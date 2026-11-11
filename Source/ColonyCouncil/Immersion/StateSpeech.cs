@@ -102,6 +102,7 @@ namespace ColonyCouncil
             Try(() => Story(p), "story");
             Try(() => Tomorrow(p, map), "calendar");
             Try(() => Setback(p), "setback");
+            Try(() => God(p), "god");
             if (comp != null)
             {
                 Try(() => TakenBack(p, comp, now), "promise");
@@ -127,6 +128,14 @@ namespace ColonyCouncil
             var s = new Said { pool = pool, weight = weight, tags = tags };
             options.Add(s);
             return s;
+        }
+
+        /// <summary>Now and then a word to their god, by how they are (Gods/GodSpeech.cs): its name and words as {GOD}, {GODEPITHET}, {GODOF}.</summary>
+        private static void God(Pawn p)
+        {
+            var tags = GodSpeech.StateTags(p, out var args);
+            if (tags == null) return;
+            Add(GodSpeech.Pool, GodSpeech.StateWeight, tags.ToArray()).args.AddRange(args);
         }
 
         /// <summary>The strongest feeling, if it's strong: [feeling:Grief], bright or hard, and [about] when it has someone in it.</summary>
