@@ -366,3 +366,12 @@ as gods 10 to 13 of `docs/gods-pantheon-brainstorm.md`:
 
 Fallback domains: Helios Hearth and Harvest, Selene Night and Healing; Mog Hearth and Hunt; Murmur Waters and Harvest; Ducat Way and Craft. Helios takes the solar flare
 and heat wave from Cirrus and Pip; the eclipse is Helios and Selene meeting.
+
+### Naming a god in events (the player, the same day)
+
+"I mean in events etc the god can be named, if we know it's them that caused something."
+- **Named:** an event, card or letter names the god plainly, by the name the colony knows it by, when the colony knows
+  it was that god: it was seen acting, a disguised god revealed itself, the colony has learned that sign as the god's
+  own, or the realness setting is Walking.
+- **Unnamed:** when the colony only suspects, it's "some say". When it has never heard of the god, nothing is named.
+- **Never:** the god's mind, its favour or its rules.
