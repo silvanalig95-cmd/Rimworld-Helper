@@ -189,6 +189,8 @@ namespace ColonyCouncil
             Safe("the day's deeds", () => GodDeeds.Daily(b, now));
             Safe("the colony's book", () => GodLore.Daily(now));
             Safe("pruning", () => b.Prune(now));
+            // The gods on the map (Gods/OnMap/): a coming planned, the marks kept and visited.
+            Safe("on the map", () => GodsOnMapBook.Daily(now));
         }
 
         /// <summary>The region's hour: the gods' hands remarked on, talk of the gods at the evening fire and from visitors, and who is on a home map, so the colony learns their gods.</summary>
@@ -200,6 +202,8 @@ namespace ColonyCouncil
             Safe("the gods' hands", () => GodHands.Hourly(now));
             Safe("talk of the gods", () => GodTales.Hourly(now));
             Safe("visitors", () => Pantheon.LearnFromVisitors(b));
+            // The gods on the map (Gods/OnMap/): the omens, the coming, the stranger, the beast, the weather, the marks.
+            Safe("on the map", () => GodsOnMapBook.Hourly(now));
         }
 
         private static void Safe(string what, Action a)

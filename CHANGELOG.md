@@ -5,6 +5,17 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## The gods on the map
+
+*11 November 2026, version 0.218.0*
+
+- Each god now shows itself in its own way: drifting leaves, a winged shadow at noon, fairy rings, lights flickering in a pattern, frost like writing, a croak before rain, a coin where nobody dropped one.
+- A stranger may come to the gate under a name of its own, remember how it was welcomed, and show what it was when it goes.
+- A great white thrumbo may pass through with others following at a distance, and someone can sit near him while he grazes.
+- A gray cat may come and stay a while with one colonist, and she will not be kept.
+- Mining deep under the mountain can make the rock rumble, and a colony that keeps going may wake what sleeps there.
+- The moon waxes and wanes through each season, and what was done by day can come back by morning.
+
 ## Fourteen gods, unseen
 
 *11 November 2026, version 0.217.0*

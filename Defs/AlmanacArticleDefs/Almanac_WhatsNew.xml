@@ -31,6 +31,20 @@ When you load a save after an update, a letter lists the newest round once. The 
     <rounds>
 
       <li>
+        <version>0.218.0</version>
+        <date>11 November 2026</date>
+        <title>The gods on the map</title>
+        <points>
+          <li>Each god now shows itself in its own way: drifting leaves, a winged shadow at noon, fairy rings, lights flickering in a pattern, frost like writing, a croak before rain, a coin where nobody dropped one.</li>
+          <li>A stranger may come to the gate under a name of its own, remember how it was welcomed, and show what it was when it goes.</li>
+          <li>A great white thrumbo may pass through with others following at a distance, and someone can sit near him while he grazes.</li>
+          <li>A gray cat may come and stay a while with one colonist, and she will not be kept.</li>
+          <li>Mining deep under the mountain can make the rock rumble, and a colony that keeps going may wake what sleeps there.</li>
+          <li>The moon waxes and wanes through each season, and what was done by day can come back by morning.</li>
+        </points>
+      </li>
+
+      <li>
         <version>0.217.0</version>
         <date>11 November 2026</date>
         <title>Fourteen gods, unseen</title>

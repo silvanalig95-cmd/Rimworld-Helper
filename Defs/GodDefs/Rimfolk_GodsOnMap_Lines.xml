@@ -1,0 +1,514 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    What is said aloud about the gods on the map (Source/ColonyCouncil/Gods/OnMap/, through Speech.Say): one sentence
+    each, and only what the map shows. {GOD} is the god as the colony knows it (its name, or what it is: "a goddess of the
+    harvest", so never at the start of a line); {OTHER} the one spoken to. Tags: the god's domain in small letters (storm,
+    harvest, way...), the colony's age (age0 tribal to age3 spacer), how real the gods are (believed, felt, walking), and
+    each pool's own, said in its comment. The dream pool is the dream itself, written in the journal, not said aloud.
+  -->
+
+  <!-- The stranger, to whoever is beside them: things a traveller couldn't know. Tags: walking (plainer), gate (they sleep outside), animals (the colony's animals neglected). -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_GodStrangerHint</defName>
+    <lines>
+      <plain>
+        <li>You keep a good house here, mostly.</li>
+        <li>I've been walking a long time, longer than you'd believe.</li>
+        <li>Don't trouble yourself over me, I sleep very little.</li>
+        <li>Your grandmother would have liked this place, {OTHER_nameDef}.</li>
+        <li>People show what they are to strangers, I find.</li>
+        <li>I'll remember this, one way or another.</li>
+        <li>Every door I knock on tells me something.</li>
+        <li>[gate] It's a fine night to sleep under the sky, as it happens.</li>
+        <li>[gate] The wall keeps the wind off, and that's something.</li>
+        <li>[animals] Your beasts are hungry, did you know that?</li>
+        <li>[animals] An animal remembers who fed it, and so do I.</li>
+        <li>[walking] You know what I am, I think, so let's not pretend at supper.</li>
+        <li>[walking] Ask me what you want to ask, {OTHER_nameDef}, while I'm here.</li>
+        <li>[storm] The rain will hold off until I've gone.</li>
+        <li>[storm] Listen, that's not thunder yet, but it will be.</li>
+        <li>[harvest] Your fields have two more weeks before the frost, not three.</li>
+        <li>[harvest] The barley by the wall is ready, whatever your farmer says.</li>
+        <li>[hunt] There are three deer in the trees to the north, and one is lame.</li>
+        <li>[hunt] Your hunters walk too loudly, tell them that from me.</li>
+        <li>[healing] That cough of yours will clear by morning, {OTHER_nameDef}.</li>
+        <li>[healing] Boil your water a little longer, all of you.</li>
+        <li>[war] Your east wall is the weak one, and they'll know it too.</li>
+        <li>[war] I've stood in worse places than this, and come out of them.</li>
+        <li>[craft] Whoever made that blade knew what they were about.</li>
+        <li>[craft] Your forge runs too cold, that's why the iron cracks.</li>
+        <li>[way] The road east is clear, and the one north isn't.</li>
+        <li>[way] I know the way to everywhere, more or less.</li>
+        <li>[dead] Your dead are resting well, I looked in on them.</li>
+        <li>[dead] I knew someone buried here, a long time ago.</li>
+        <li>[night] You dreamed of water last night, {OTHER_nameDef}, didn't you.</li>
+        <li>[night] The moon will be full in two nights, watch for it.</li>
+        <li>[hearth] A house is its fire, and yours burns well.</li>
+        <li>[hearth] Never eat while a guest goes hungry, my mother said.</li>
+        <li>[wild] The old oak on the ridge is older than your whole colony.</li>
+        <li>[wild] Leave the last of the berries for the birds this year.</li>
+        <li>[waters] Your well is sweet, and it will stay sweet if you're kind to it.</li>
+        <li>[waters] The river has been asking after you.</li>
+        <li>[machine] Your batteries will last the night, just barely.</li>
+        <li>[machine] I can hear the generator from here, it wants oil.</li>
+        <li>[void] Don't look too long at the dark between the stars.</li>
+        <li>[void] Something down in the deep is listening, but not to you.</li>
+        <li>[age0] The old spirits still walk these hills, whatever the young ones say.</li>
+        <li>[age3] Your scanners won't find me, so don't bother running them.</li>
+        <li>[knowsdead] {LOST} would have liked you, I think, {OTHER_nameDef}.</li>
+        <li>[knowsdead] I met {LOST} once, on a long road, a long time ago.</li>
+        <li>[knowsdead] You stand the way {LOST} used to, {OTHER_nameDef}.</li>
+        <li>[ennu] A house is known by its door, and I've knocked on a great many.</li>
+        <li>[ennu] I only want what any traveler wants, a roof and a little talk.</li>
+        <li>[ennu,first] I don't believe I've ever slept under this roof before.</li>
+        <li>[ennu,remembers] I've been here before, though you won't remember me.</li>
+        <li>[ennu,rememberskind] You kept a warm bed for me last time, I haven't forgotten.</li>
+        <li>[ennu,rememberscold] Last time I slept by your wall, and the wall was kinder.</li>
+        <li>[ennu,remembersharm] I still have the bruise from my last visit here.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- The stranger thanks the cook by name, after a good meal. {OTHER} is the colony's best cook. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_GodStrangerThanks</defName>
+    <lines>
+      <plain>
+        <li>Tell {OTHER_nameDef} that was the best meal I've had in an age.</li>
+        <li>My thanks to {OTHER_nameDef}, who cooks like someone who means it.</li>
+        <li>{OTHER_nameDef} has good hands, and I'll remember them.</li>
+        <li>That stew was {OTHER_nameDef}'s, wasn't it, I could tell.</li>
+        <li>[hearth] Give {OTHER_nameDef} my blessing, for the bowl and the bread.</li>
+        <li>[harvest] {OTHER_nameDef} knows what grain is for, tell them I said so.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- A colonist who saw an omen. Tags: the omen (birds, calm, candle, restless) and the coming god's domain. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_GodOmenRemark</defName>
+    <lines>
+      <plain>
+        <li>That's not right, something's coming.</li>
+        <li>I've got a strange feeling about today.</li>
+        <li>Did anyone else see that, or is it just me?</li>
+        <li>My grandmother would have called that a sign.</li>
+        <li>[birds] The birds are all leaving, look at them go.</li>
+        <li>[birds] Every bird on the land took off at once.</li>
+        <li>[birds] Not a single bird left in the trees.</li>
+        <li>[calm] The wind's just stopped dead.</li>
+        <li>[calm] It's too quiet, even the grass isn't moving.</li>
+        <li>[calm] I can't hear a single leaf.</li>
+        <li>[candle] That lamp keeps going out, and there's no draft.</li>
+        <li>[candle] Third time I've lit that, it won't stay lit.</li>
+        <li>[candle] The flame just died, like someone pinched it.</li>
+        <li>[restless] The animals won't settle today.</li>
+        <li>[restless] They're all looking the same way, what do they see.</li>
+        <li>[restless] Something has the beasts spooked.</li>
+        <li>[storm] Feels like a storm, but there's no cloud.</li>
+        <li>[dead] My grandmother used to say this meant someone was crossing over.</li>
+        <li>[wild] The woods are listening, I swear it.</li>
+        <li>[hearth] Somewhere close by, someone is baking bread, but nobody is.</li>
+        <li>[drift] Every leaf on the ground is blowing the same way, and there's no wind.</li>
+        <li>[drift] Look at the seeds, they're all drifting toward one spot.</li>
+        <li>[animahum] Can you hear the tree humming, even from in here?</li>
+        <li>[animahum] The old tree is singing to itself tonight.</li>
+        <li>[dryadsstill] The dryads have all stopped dead, and they're facing the same way.</li>
+        <li>[dryadsstill] Why have the dryads gone so still?</li>
+        <li>[shadow] Something with wings just crossed the sun, and it was enormous.</li>
+        <li>[shadow] Did you feel that wind, and see the shadow go over?</li>
+        <li>[steam] The ground is breathing steam, like something's asleep under it.</li>
+        <li>[steam] That steam is warm as breath, I don't like it.</li>
+        <li>[rumble] The rock just groaned over our heads.</li>
+        <li>[rumble] That wasn't the rock settling, something down there moved.</li>
+        <li>[fairyring] Mushrooms in a perfect ring, and they weren't there yesterday.</li>
+        <li>[fairyring] Don't step inside that ring, my mother always said.</li>
+        <li>[earth] It smells like rain on earth, but nothing's wet.</li>
+        <li>[earth] Can you smell that, like a forest floor after a storm?</li>
+        <li>[threads] There are white threads all over the floor in there.</li>
+        <li>[threads] Something has been growing across that floor overnight.</li>
+        <li>[flicker] The lights are blinking like someone's tapping out a message.</li>
+        <li>[flicker] Short, long, short, those lights are doing it on purpose.</li>
+        <li>[static] The console is hissing, and I swear it laughed just now.</li>
+        <li>[static] There's breathing in that static, listen.</li>
+        <li>[unpowered] That light's on, and there's no power to it at all.</li>
+        <li>[unpowered] Who switched that lamp on, it isn't even connected?</li>
+        <li>[vastshadow] That shadow is far too big for any cloud I can see.</li>
+        <li>[vastshadow] Something passed between us and the sun, and there's nothing up there.</li>
+        <li>[star] That star is moving, and the wrong way.</li>
+        <li>[star] Look, one star is crossing the sky against all the others.</li>
+        <li>[frostwriting] The frost by the wall has made letters, or near enough.</li>
+        <li>[frostwriting] That frost looks like writing, but in no hand I know.</li>
+        <li>[silence] Did everything just go quiet, or is it me?</li>
+        <li>[silence] Not a sound anywhere, not even the wind.</li>
+        <li>[whitefigure] There's someone tall and white out at the edge of the dark.</li>
+        <li>[whitefigure] I saw a figure out there, and now it's gone.</li>
+        <li>[dark] That corner is too dark, the lamp should reach it.</li>
+        <li>[dark] The light just stops, right there, like a wall.</li>
+        <li>[whisper] Did someone just say my name, so kindly?</li>
+        <li>[whisper] There was a voice, so reasonable, telling me it's all right to stop.</li>
+        <li>[croak] Do you feel that croaking in your chest, from the wet ground?</li>
+        <li>[croak] Something old is singing down in the water, rain's coming.</li>
+        <li>[stillsun] The sun hasn't moved, look at the shadows.</li>
+        <li>[stillsun] My shadow hasn't shifted in an hour, I swear it.</li>
+        <li>[heathaze] The air's shimmering over the fields like a forge.</li>
+        <li>[heathaze] Look at the heat coming off the ground, it's wavering.</li>
+        <li>[bigmoon] The moon's never been that big, it's right over us.</li>
+        <li>[bigmoon] You could read by that moon tonight.</li>
+        <li>[glint] Something gold, just there, and gone when I turned.</li>
+        <li>[glint] I keep seeing a glint of gold out of the corner of my eye.</li>
+        <li>[beetle] A little gold beetle just walked right across the table.</li>
+        <li>[beetle] Did you see that beetle, it looked like it was made of gold?</li>
+        <li>[coin] A gold coin, right at my feet, and nobody dropped it.</li>
+        <li>[coin] Whose coin is this, it wasn't here a moment ago.</li>
+        <li>[rising] It has a face, there in the wood, and it's looking at us.</li>
+        <li>[rising] The roots came up out of the ground and stood up.</li>
+        <li>[fullmoon] Under a full moon like this, I'd believe anything.</li>
+        <li>[darkmoon] No moon tonight, and that's when strange things walk.</li>
+        <li>[halfmoon] Half a moon, half a warning, my grandmother said.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- The dream two colonists share before a coming, in the first person (the journal and the dream book). Tag: the coming god's domain. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_GodDream</defName>
+    <lines>
+      <plain>
+        <li>I dreamed someone was standing at the gate, waiting for it to open, and the light was behind them.</li>
+        <li>I dreamed every door in the colony was open, and a voice was counting them.</li>
+        <li>I dreamed I was asked a question at the gate, and I couldn't remember the answer when I woke.</li>
+        <li>[storm] I dreamed of a man made of thunder sitting on the roof, waiting.</li>
+        <li>[harvest] I dreamed the fields were gold to the horizon, and someone was walking through them.</li>
+        <li>[hunt] I dreamed a wolf bigger than a horse lay down by the fire and watched me.</li>
+        <li>[healing] I dreamed a woman in white washed my hands, and the water ran clear.</li>
+        <li>[war] I dreamed of a banner on the hill, red, and no army under it.</li>
+        <li>[craft] I dreamed I heard a hammer all night, and the anvil sang.</li>
+        <li>[way] I dreamed of a road that led to our gate from every direction at once.</li>
+        <li>[dead] I dreamed of a lantern crossing the river, and it stopped to look at me.</li>
+        <li>[night] I dreamed the moon came down and stood in the yard.</li>
+        <li>[hearth] I dreamed an old woman sat at our fire and asked for a bowl.</li>
+        <li>[wild] I dreamed of a white stag in the dining hall, eating from the table.</li>
+        <li>[waters] I dreamed the well overflowed, and the water was warm.</li>
+        <li>[machine] I dreamed the walls were humming, and the hum was a voice.</li>
+        <li>[void] I dreamed of a hole in the sky shaped like an eye.</li>
+        <li>[bellwether] I dreamed of a white beast with one horn, grazing by the well and looking at me.</li>
+        <li>[ennu] I dreamed someone knocked at the gate all night, patiently, and I didn't get up.</li>
+        <li>[mog] I dreamed a gray cat sat on my chest and stared until I woke.</li>
+        <li>[selene] I dreamed the moon came down to the yard and looked at everything we did today.</li>
+        <li>[fullmoon] I dreamed under a full moon, and everything in the dream was true.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- The two who shared that dream, when they are next together: said to {OTHER}. Tag: the domain. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_GodDreamTalk</defName>
+    <lines>
+      <plain>
+        <li>{OTHER_nameDef}, I had the strangest dream, and I think you had it too.</li>
+        <li>You dreamed it too, didn't you, {OTHER_nameDef}, the gate.</li>
+        <li>Tell me you didn't dream what I dreamed, {OTHER_nameDef}.</li>
+        <li>Two of us, the same dream, that means something.</li>
+        <li>[wild] You saw the stag too, {OTHER_nameDef}, I can see it in your face.</li>
+        <li>[storm] You heard the thunder man too, {OTHER_nameDef}, didn't you.</li>
+        <li>[dead] The lantern, {OTHER_nameDef}, you saw the lantern too.</li>
+        <li>[hearth] The old woman by the fire, {OTHER_nameDef}, you saw her too.</li>
+        <li>[bellwether] The white beast with one horn, {OTHER_nameDef}, you dreamed it too.</li>
+        <li>[mog] The gray cat, {OTHER_nameDef}, it sat on you too, didn't it?</li>
+        <li>[selene] The moon in the yard, {OTHER_nameDef}, you saw it as well.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- A colonist out of doors names a god's answer in the weather. Tags: rain, thunder, eclipse, aurora; pleased or angered; believed (read into what the weather did of itself). -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_GodWeatherSay</defName>
+    <lines>
+      <plain>
+        <li>That's an answer if ever I saw one.</li>
+        <li>Somebody up there is listening to us.</li>
+        <li>Did you see the sky just now, that was for us.</li>
+        <li>[rain] Rain, right on time, thanks to {GOD}.</li>
+        <li>[rain] Feel that, {GOD} heard us.</li>
+        <li>[rain] Rain for the fields, I told you we'd be heard.</li>
+        <li>[thunder,pleased] Thunder on a clear day, that's {GOD} laughing.</li>
+        <li>[thunder,angered] That's {GOD}, and not pleased with us either.</li>
+        <li>[thunder] Did you hear that, that was meant for us.</li>
+        <li>[eclipse] The sun's gone dark, we've angered {GOD}.</li>
+        <li>[eclipse] Look at the sun, something's very wrong.</li>
+        <li>[aurora] Look at the sky, {GOD} is pleased with us tonight.</li>
+        <li>[aurora] Lights across the whole sky, for us.</li>
+        <li>[believed] See, I told you {GOD} would hear us.</li>
+        <li>[believed,rain] Say what you like, that rain came from {GOD}.</li>
+        <li>[believed,eclipse] Laugh all you want, but that's {GOD}'s doing.</li>
+        <li>[cold] This cold came down like a slammed door.</li>
+        <li>[cold] That's no ordinary frost, it's meant.</li>
+        <li>[snow] Snow, soft and right on time, like a blessing.</li>
+        <li>[snow] Look at it fall, as if someone is shaking out a blanket.</li>
+        <li>[heat] It's like being stared at, this heat.</li>
+        <li>[heat] Too much sun, as if someone forgot to stop giving it.</li>
+        <li>[clear] Not a cloud anywhere, it'll be a long good day.</li>
+        <li>[clear] A sky like this is a gift, whoever it's from.</li>
+        <li>[sleepless] Nobody slept, and the moon watched us all night.</li>
+        <li>[sleepless] Bad dreams in every bed, and the moon so bright.</li>
+        <li>[eclipse] Something just stepped in front of the sun.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- Said at a god's mark on a quiet day. {WHAT} is what the god did there. Tags: the moment's kind (reveal, depart, blessing, wrath, appear), the domain, believed, felt, walking. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_GodMarkVisit</defName>
+    <lines>
+      <plain>
+        <li>This is the place, right here.</li>
+        <li>I still come out here sometimes, just to stand where it happened.</li>
+        <li>Nobody walks across this spot without slowing down.</li>
+        <li>I remember it like it was this morning.</li>
+        <li>[walking] This is where {GOD} stood, as close as you are to me.</li>
+        <li>[felt] Some say {GOD} stood right here, and I believe them.</li>
+        <li>[believed] My grandchildren will hear that {GOD} came here.</li>
+        <li>[blessing] Something good was left here once, and it still feels good.</li>
+        <li>[wrath] The ground still remembers how angry it was.</li>
+        <li>[reveal] I never got to say goodbye properly, not to a god.</li>
+        <li>[depart] I watched the stranger go from right here.</li>
+        <li>[wild] The flowers here never quite die back.</li>
+        <li>[waters] The spring hasn't run dry once since.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- A visitor passing a god's mark. Tags as above. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_GodMarkVisitor</defName>
+    <lines>
+      <plain>
+        <li>So this is the place they talk about on the road.</li>
+        <li>Is it true what they say happened here?</li>
+        <li>I've heard about this spot three towns away.</li>
+        <li>[walking] They say {GOD} came to this very place.</li>
+        <li>[felt] Some say {GOD} walked here, is that so?</li>
+        <li>[believed] My people say {GOD} came here once.</li>
+        <li>[wrath] Best not to linger where a god was angry.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- At supper, to whoever eats beside them. Tags as above. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_GodSupper</defName>
+    <lines>
+      <plain>
+        <li>Remember the night the stranger came, {OTHER_nameDef}?</li>
+        <li>I still think about what happened out by the gate, {OTHER_nameDef}.</li>
+        <li>Do you ever think about it, {OTHER_nameDef}, the god?</li>
+        <li>[walking] Imagine, {OTHER_nameDef}, {GOD} ate at this table.</li>
+        <li>[felt] I still say it was {GOD}, {OTHER_nameDef}, whatever you think.</li>
+        <li>[believed] My mother would say that was {GOD}'s doing, {OTHER_nameDef}.</li>
+        <li>[wrath] We were lucky, {OTHER_nameDef}, it could have been much worse.</li>
+        <li>[blessing] We've had good luck ever since, {OTHER_nameDef}, haven't we.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- A colonist who sees the god's beast. Tags: small (it follows someone) or large, chosen (it follows the speaker), the domain. {KIND} is its kind. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_SacredAnimalSeen</defName>
+    <lines>
+      <plain>
+        <li>That's no ordinary {KIND}, look at it.</li>
+        <li>Nobody touch that {KIND}, I mean it.</li>
+        <li>I've never seen a {KIND} glow like that.</li>
+        <li>It looked right at me, the {KIND}.</li>
+        <li>[large] It walks like it owns the land.</li>
+        <li>[small] That {KIND} has been following someone all day.</li>
+        <li>[chosen] This {KIND} won't leave my side, and I don't mind.</li>
+        <li>[chosen] I think it picked me, the {KIND}.</li>
+        <li>[wild] The whole wood went quiet when it came out.</li>
+        <li>[hunt] Even the hunters lowered their bows.</li>
+        <li>[dead] A {KIND} like that only comes when someone is remembered.</li>
+        <li>[bellwether] The {BEAST} hasn't so much as looked at a fence.</li>
+        <li>[bellwether] Look at the others hanging back behind it, like pilgrims.</li>
+        <li>[bellwether] The grass is greener everywhere the {BEAST} grazed.</li>
+        <li>[mog] That {BEAST} has picked her person, and it isn't you.</li>
+        <li>[mog] The cats all follow her about like courtiers.</li>
+        <li>[mog] She sleeps in the warmest spot in the colony, every time.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- Someone who sat near the great beast, or a child who touched its horn. Tags: horn, grief, fear, passion, nothing; the god's line tag. {BEAST} is what it is seen as. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_SacredAnimalSat</defName>
+    <lines>
+      <plain>
+        <li>I sat with the {BEAST} a while, and it let me.</li>
+        <li>It's so quiet near the {BEAST}, you can hear yourself think.</li>
+        <li>I don't know what I expected, but I feel better.</li>
+        <li>[horn] I touched its horn, and it was warm.</li>
+        <li>[horn] It put its head right down so I could reach.</li>
+        <li>[grief] It's lighter, somehow, the thing I've been carrying.</li>
+        <li>[grief] I cried a bit out there, and then I didn't need to.</li>
+        <li>[fear] I'm not afraid of it anymore, whatever it was.</li>
+        <li>[fear] Funny, my hands have stopped shaking.</li>
+        <li>[passion] I can't stop thinking about something I want to try.</li>
+        <li>[passion] I know what I want to be good at now.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- Someone the stranger looked at before it went: they feel changed and can't say how. Tags: spell, class, passion, trait, favour. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_GodTouched</defName>
+    <lines>
+      <plain>
+        <li>Something's different in me since the stranger left.</li>
+        <li>I feel like I've been handed something, and I don't know what.</li>
+        <li>The way it looked at me, I can't stop thinking about it.</li>
+        <li>[spell] There's a scroll by my bed, and I didn't put it there.</li>
+        <li>[class] Something woke up in me, something I can't explain.</li>
+        <li>[passion] I've never wanted to work at anything so much.</li>
+        <li>[trait] I don't feel like myself, but I feel like more of myself.</li>
+        <li>[favour] I've got an idea, a real one, and it won't wait.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- The dream the moon returns for a deed of the day, in the first person (the journal and the dream book). Tags: good, bad, the moon's face (fullmoon...). -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_GodReturnDream</defName>
+    <lines>
+      <plain>
+        <li>I dreamed the moon was looking in at my window, and I couldn't look away.</li>
+        <li>I dreamed my whole day over again, slowly, with the moon watching.</li>
+        <li>I dreamed someone pale held up a mirror, and my day was in it.</li>
+        <li>[good] I dreamed the one I helped today was laughing, and so was I.</li>
+        <li>[good] I dreamed of warm hands and a quiet house, and woke rested.</li>
+        <li>[good,fullmoon] I dreamed in moonlight so bright I could see every good thing I'd ever done.</li>
+        <li>[bad] I dreamed what I did today was done to me, again and again.</li>
+        <li>[bad] I dreamed of a cold room and a face I'd hurt, watching me.</li>
+        <li>[bad,fullmoon] I dreamed the full moon turned to look at me, and it knew.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- At breakfast, to whoever they sit with, about what came back in the night. Tags: found, gooddream, healed, nightmare, frost, animalback; the moon's face. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_GodReturnTalk</defName>
+    <lines>
+      <plain>
+        <li>Something happened in the night, {OTHER_nameDef}, and I can't explain it.</li>
+        <li>Did you see the moon last night, {OTHER_nameDef}?</li>
+        <li>I've been thinking about yesterday all morning, {OTHER_nameDef}.</li>
+        <li>[found] There was something by my bed this morning, {OTHER_nameDef}, and nobody left it.</li>
+        <li>[gooddream] I had the best dream, {OTHER_nameDef}, and I don't want to lose it.</li>
+        <li>[healed] My wound's half gone overnight, {OTHER_nameDef}, look.</li>
+        <li>[nightmare] I didn't sleep, {OTHER_nameDef}, and I don't want to talk about why.</li>
+        <li>[frost] Frost all round my window, {OTHER_nameDef}, and nowhere else.</li>
+        <li>[animalback] An animal stood at my door half the night, {OTHER_nameDef}, just looking.</li>
+        <li>[fullmoon] The moon was full last night, {OTHER_nameDef}, and I think it saw everything.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- The colonist the god's beast comes to: it wants them to follow. {KIND} is its kind. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_SacredAnimalBeckon</defName>
+    <lines>
+      <plain>
+        <li>It wants me to follow it, I'm sure of it.</li>
+        <li>The {KIND} keeps looking back at me, so I'll go.</li>
+        <li>All right, I'm coming, show me.</li>
+        <li>I think I'm meant to go with it.</li>
+        <li>[wild] Lead on, then, I'm right behind you.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!--
+    Two who saw a god come, remembering it when they talk (Rimfolk_Mem_GodSeen, the talk's own picker: at the table, at
+    work, by the fire). {LABEL} is what came: "the pilgrim who came to the gate", "the elk that was more than a beast".
+  -->
+  <ColonyCouncil.TalkLinesDef>
+    <defName>Rimfolk_TL_Mem_GodSeen_Open</defName>
+    <memory>Rimfolk_Mem_GodSeen</memory>
+    <turn>Open</turn>
+    <outcomes><li>Reminisce</li></outcomes>
+    <lines>
+      <plain>
+        <li>Do you still think about {LABEL}?</li>
+        <li>I dreamed about {LABEL} again last night.</li>
+        <li>I walked past where it happened, and I slowed down without meaning to.</li>
+        <li>[first] I never told anyone how scared I was, with {LABEL}.</li>
+        <li>Somebody asked me about {LABEL} today, and I didn't know what to say.</li>
+        <li>Was it really a god, do you think, {LABEL}?</li>
+      </plain>
+      <warm>
+        <li>I'm glad it was you beside me when we saw {LABEL}.</li>
+      </warm>
+      <blunt>
+        <li>I still don't know what to make of {LABEL}, and I've tried.</li>
+      </blunt>
+      <cheerful>
+        <li>Imagine telling our grandchildren about {LABEL}.</li>
+      </cheerful>
+      <gloomy>
+        <li>Ever since {LABEL}, I feel like something is watching us.</li>
+      </gloomy>
+      <cold>
+        <li>We should write down what we saw of {LABEL}, before we forget it.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.TalkLinesDef>
+
+  <ColonyCouncil.TalkLinesDef>
+    <defName>Rimfolk_TL_Mem_GodSeen_Reply</defName>
+    <memory>Rimfolk_Mem_GodSeen</memory>
+    <turn>Reply</turn>
+    <outcomes><li>Reminisce</li></outcomes>
+    <lines>
+      <plain>
+        <li>Every day, some days more than others.</li>
+        <li>I keep remembering how quiet everything went.</li>
+        <li>I've stopped trying to explain it to the others.</li>
+        <li>[first] I thought I was the only one who couldn't stop thinking about it.</li>
+        <li>The light, I remember the light most of all.</li>
+        <li>Some days I'm sure, some days I'm not sure at all.</li>
+      </plain>
+      <warm>
+        <li>I'm glad I wasn't alone for it.</li>
+      </warm>
+      <blunt>
+        <li>It happened, and that's all I know.</li>
+      </blunt>
+      <cheerful>
+        <li>Best thing that ever happened to this place, if you ask me.</li>
+      </cheerful>
+      <gloomy>
+        <li>I hope it never comes back, to be honest.</li>
+      </gloomy>
+      <cold>
+        <li>I've thought about it, and I still can't account for it.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.TalkLinesDef>
+
+  <ColonyCouncil.TalkLinesDef>
+    <defName>Rimfolk_TL_Mem_GodSeen_Close</defName>
+    <memory>Rimfolk_Mem_GodSeen</memory>
+    <turn>Close</turn>
+    <outcomes><li>Reminisce</li></outcomes>
+    <lines>
+      <plain>
+        <li>Whatever it was, we saw it together.</li>
+        <li>Let's not tell it too often, or it'll stop being true.</li>
+        <li>If it ever comes again, I'll know it this time.</li>
+        <li>I'll light a candle for it tonight, just in case.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.TalkLinesDef>
+
+</Defs>

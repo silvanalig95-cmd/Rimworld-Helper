@@ -174,6 +174,45 @@ tree at once, alongside whatever runs. Each piece is merged as its own release, 
   distance, as the couriers and journeys reckon it), their reading and writing time, and the answer's own road back;
   a refusal or silence is only known when it could be (a returning rider, their courier, or no word by the time an
   answer would have come). Check each against the map: the courier gone off the map is not the letter delivered.
+- 0.218.0, **Gods, the on-map part: the gods on
+  the map** (11 November 2026). The player: gods "real and present on the map, with weight"; "each god should be
+  individual in what it looks like and whether it has any form at all"; and, binding, the gods are an ominous, unseen
+  presence like a storyteller: never show what a god thinks, wants or feels about the colony, spell out no rule (no
+  Almanac page, no favour words in news, cards, inspect lines or This week); then "in events etc the god can be named,
+  if we know it's them that caused something". Built in `Source/ColonyCouncil/Gods/OnMap/` (DESIGN.md, "Gods on the
+  map"; README, "The gods on the map"): each god of the pantheon by its short name (`Rimfolk_GodsOnMap_Shapes.xml`:
+  Hollin, Smoulder, Bellwether, Morel, Ennu, Pip, Cirrus, Hush, Undertow, Helios, Selene, Mog, Murmur, Ducat), its own
+  signs (26 kinds), the stranger at the gate (Ennu only, who remembers the colony's welcome), Bellwether's white thrumbo
+  and Mog's gray cat, Hollin's rising and Murmur's surfacing (Odyssey's colossus toad by name), Smoulder turning under
+  the deep mines and, past every warning, waking (Dragon's Descent's true dragon by name; its flight sprites as the noon
+  shadow), the sun standing still, the moon's face through each season and what it returns by night, the weather as a
+  voice, and the colony's book in the witnesses' own words (`GodsOnMapWords.Saw`). Notes for the merge:
+  - `GodsOnMapWords.CardName` is a stand-in for the core's `Gods.CardName(god, home)` (marked `MERGE:`); swap it in.
+  - Gods are reached by short name (`GodShapeDef.gods`: "Bellwether", "Rimfolk_God_Bellwether"); the core's pantheon
+    defs should use those names or set `GodShapes.Override`.
+  - Dragon's Descent is in the player's list but not in this worktree's `docs/player-mods`; the true dragon and the
+    flight sprites are reached by name and path only (no MayRequire), so `poolcheck` is unaffected.
+  - Each act is kept with `Gods.Remember` in a witness's words; the core fills in the witnesses.
+
+  Try in the game (dev mode, *Gods: ...*; Walking for the plain forms, Felt for the veiled):
+  - *a stranger at the gate now...* (pick Ennu): give a bed, talk, feed; *end the stranger's stay now*; then again, and
+    see the Guest's words at the gate remember the last welcome.
+  - *a sacred animal now...* (Bellwether): the white thrumbo with thrumbos following at a distance; right-click it with
+    a colonist, *Sit near*; a child goes on their own now and then; let it go its way (a strange peace), or hurt one of
+    the herd and watch the goodwill lines. Mog: she keeps to one colonist for a season, the colony's cats follow her;
+    designate her to be tamed and she goes.
+  - *a god rises from the land now...* (Hollin by day; Murmur with Odyssey and wet ground near the colony).
+  - *the rock turns over a miner now* while someone mines under thick rock (stone may fall from the third time), then
+    *the sleeper under the mountain wakes now* (Walking with Dragon's Descent: the true dragon; else the quake and the
+    shadow).
+  - *an omen here...*: each sign (StillSun in the afternoon, BigMoon at night with a moon up, Shadow at noon with Dragon's
+    Descent's sprites, Beetle by a table, Croak by a well or marsh).
+  - *the moon returns a deed tonight...*: each kind, then watch it spoken of at breakfast.
+  - *a god answers in the weather here...*: Selene's eclipse (everyone outside stops to watch), Helios's heat wave.
+  - *the gods on the map (log)*: the moon's face tonight, the deep's count, what is up.
+  - Check: cards and news say only what was seen; the god is named only where the colony knows it; the god's page
+    shows the witnesses' own words.
+
 - 0.217.0, **Gods: fourteen hand-made gods,
   unseen, and the colony's own book of the gods** (11 November 2026). The player approved the nine ("alright, great! you
   can go ahead with full implementation"), then, the same day: the gods as an unseen presence ("there should be more

@@ -12290,6 +12290,95 @@ pure rules in `GodPresenceMath.cs` (linked, `GodPresenceTests`).
   look is `GodLooks.Named(god.look)` or `GodLooks.For(domain, age)`). The presence builds on its own types and needs
   nothing of the core's.
 
+### Gods on the map (the player's request, 11 November 2026; stage 2; released 0.218.0)
+
+Stage 2's "on the map" part of the gods (`docs/design/gods.md`, "The parts and who builds what", and its last section, the
+pantheon; `docs/gods-pantheon-brainstorm.md`, the gods by their short names; brainstorm items 7, 8, 9, 23 and 26). The
+player: gods "real and present on the map, with weight", never a plain pawn unless hiding on purpose; "each god should be
+individual in what it looks like and whether it has any form at all"; and, binding, the gods are an ominous, unseen
+presence, like a storyteller: never show the player what a god thinks, wants or feels about the colony, spell out no
+rule, explain nothing. So no favour words where the player reads them (news, cards, inspect lines, This week), no
+Almanac page, and This week never names a god; what happens is seen on the map and said by the colonists (one-sentence
+bubbles, supper, letters, visitors' tales), and the cards say only what was seen and heard. The colony's book (the
+god's acts, `Gods.Remember`) is written from the pawns' side: `GodsOnMapWords.Saw` keeps what someone saw in their own
+words ("Tamsin saw frost by a wall in lines that looked like writing"), the core filling in who else could see it.
+Favour still moves underneath (`Gods.AddFavour` with no words), and drives what comes.
+
+Code in `Source/ColonyCouncil/Gods/OnMap/`, pure rules in `GodsOnMapMath.cs` (linked, `GodsOnMapTests`); defs
+`Defs/GodDefs/Rimfolk_GodsOnMap.xml` (the event, three jobs, three memories, the history event, the shared memory, five
+deeds), `_Shapes.xml` (who comes as what, and the looks of the beasts and true forms), `_Lines.xml` (the pools said
+aloud, the dreams, the memory's talk); keys `Rimfolk_GodsOnMap.xml`; textures `Textures/ColonyCouncil/Gods/Sky/`
+(`Tools/make_god_sky.py`). It calls `Gods`, the two seams and the presence part's `GodAvatar`, and compiles against the
+core as it stood at its base, reaching each god by its short name.
+
+- **The rhythm** (`GodsOnMapBook`, `GodComings`): kept in the gods' own day and hour (`GodBook.Daily`/`Hourly`, one line
+  each; no pass of its own). A coming is planned in the day, a few days ahead, never in Believed, never two at once, from
+  day 20, 40 days at least between any two, 120 between strangers and 90 between beasts, one chance in thirty a day
+  (`GodsOnMapMath.Due`); a rising after 300 days and at 0.4% a day (`RisingDue`). Its omens are planned with it; the
+  coming waits up to a day for a quiet map (and the stranger for `Tell.CanAsk`), then lets go. Short steps run on a due
+  tick of the component's own.
+- **Who comes as what is data** (`GodShapeDef`, `GodShapes.Of`): a god's own shape by its short name (Hollin, Smoulder,
+  Bellwether, Morel, Ennu, Pip, Cirrus, Hush, Undertow, Helios, Selene, Mog, Murmur, Ducat; also its patron's, look's or
+  own def's name; `GodShapes.Override` for the hand-made pantheon), else its domain's, else the default: `stranger`,
+  `beast`/`beasts`/`look`/`kin`/`kinCount`/`leads`/`feeds`/`sitNear`/`harmIsWorst`/`peace`/`stayDays`, `weather`/
+  `voices`, `bodiless`, `omens`, `rises`, `trueForm`/`trueLook` (a creature by name, so a mod's can be it when loaded),
+  `returns`, and a `lineTag` for its own lines. Only Ennu comes to the gate; only Bellwether and Mog walk as beasts.
+- **The stranger at the gate** (`GodStranger`, `HappeningWorker_GodStranger`, `Rimfolk_Evt_GodStranger` with chance 0):
+  made a person of a people at peace, disguised (`GodAvatar.Make` with the name it gives at the door; the god's own name
+  over it only once it shows itself), waiting while the colony answers: a bed (Hospitality's guest when it is loaded,
+  else `VisitorServices.Lodge`), the gate (the default) or away. Over the stay each hour reads how it goes for them, the
+  meals, where they sleep, the talk, kindnesses, the animals' keeping, any blow or theft; every few hours they say
+  something a traveller couldn't know (a dead relative's name), the first such kept in the colony's book; the Guest
+  remembers the colony's last welcome (`GodsOnMapMath.Remembers`: the event's words at the gate and its own lines say
+  so) and a good one is answered seasons later by something left at the gate (`GodGifts.LateGift`). At the end
+  (`GodsOnMapMath.Judge`), Walking: it shows itself at the gate; Felt: it is simply gone. What follows happens without a
+  word of why (`GodGifts.Outcome`): a find, the kindest's lasting gift (felt, said, journalled, never named), its answer
+  in the weather, or its domain withheld and a fever on whoever struck it (`Harm.May`, `IllnessBudget`, `Harm.Scale`).
+- **The beasts** (`SacredAnimal`): in from the edge with the Appear moment and all a god's presence, wild, the game's own
+  leaving, kept fed; over it the colony's name for the god once one of them has heard of it, else what it is seen as
+  (`SacredAnimal.Label`). Bellwether, a great white thrumbo (`Rimfolk_GodLook_Bellwether`) with other thrumbos following
+  at a distance; someone may sit near him an hour (`JobDriver_SitNearSacredAnimal`; a child on their own now and then)
+  and come away changed (`GodsOnMapMath.Sat`: a child touches the horn, a grief eased, a nervous nature gone, a passion
+  found); let pass, a strange peace on the colony for a season; harming him or his kin is the worst thing: every god
+  colder and every people with someone on the map hears of it (`Rimfolk_HarmedSacredBeast`, the game's own goodwill
+  line). Mog, a gray cat (`Rimfolk_GodLook_Mog`) staying a season with one chosen colonist, her own and the colony's cats
+  following her, taking food she didn't ask for; marked to be tamed, she goes. A large beast of another god may lead
+  someone to a find, a cure or a vein. Hurt: the game's revenge, a Wrath moment, a fever at the game's rate; slain, its
+  body to ash.
+- **Rising and waking** (`GodRising`, `GodWaking`): Hollin's roots drawn up into a shape taller than any tree for an hour
+  (`GodSky`, `Rising.png`); Murmur surfacing in the wet ground as Odyssey's colossus toad by name, two hours, then
+  sinking. Smoulder: mining under thick rock makes the rock rumble over the miner days apart (`GodsOnMapMath.Warned`),
+  stone may fall from the third time (`Harm.Injure`, `HarmKinds.Dangers`, `StoneFalls`), and past every warning
+  (`Wakes`, years apart) the deep working closes behind collapsed rock (never on anyone) and, Walking, Dragon's
+  Descent's true dragon comes up out of the mountain for three hours (`TrueForm`), else the mountain quakes and the
+  winged shadow passes.
+- **The sky and the night** (`GodSky`, `GodSkyDrawer`, `WeatherEvent_StillSun`): signs drawn softly on the map, never
+  saved: the winged shadow at noon (Dragon's Descent's flight sprites when loaded, else Rimfolk's), a shadow too large, a
+  star crossing the wrong way, a white figure at the night's edge that fades as the view comes near, a dark a lamp
+  doesn't reach, white threads, the huge moon (as large as its face), a golden beetle; the sun standing still holds the
+  shadows through the game's own override for a weather event. The moon's face (`GodsOnMapMath.Face`, one round each
+  fifteen-day season) is felt only in words and signs: full, the dreams have their own lines and the moon's returns are
+  likeliest; dark, nothing returns and Undertow's signs come half a day early.
+- **The moon's return** (`GodReturn`): in the small hours, as much as the face shows (`Returns`), the strongest deed of
+  the colony's from that day (the deeds talked of, by their kindness) comes back to whoever did it (`ReturnFor`):
+  something found by their bed, a good dream, a wound healed; a nightmare, a hard frost about where they sleep, an animal
+  at their door. One a night, three days apart; whoever was awake sees it, it goes in the book, and it is spoken of at
+  breakfast. Selene also notices those who keep the night (`GodOmens.NightWatch`), unseen.
+- **Weather as a voice** (`GodWeather`): a god whose shape speaks in the sky answers a change of favour by chance with its
+  shape's voices or its domain's (rain, thunder, an eclipse with everyone out of doors stopping to watch, an aurora, a
+  cold snap, snow, a heat wave, clear skies, a night of nightmares), as the land and the game's conditions allow. A
+  colonist out of doors names it as a belief; there is no news line. Believed: the game's own weather is read as the
+  answer. `GodWeather.Answer(god, map, amount)` is for the worship's festival nights.
+- **The omens** (`GodOmens`, `GodOmensOwn`; `GodOmens.Before(god, map, days)` for the other parts): one a day before a
+  coming, at most four, the god's own signs (`GodShapeDef.omens`, 26 kinds) or the five any god may send, each at its
+  hour (`OmenHour`). Each shows on the map, through the presence's omen moment veiled (not in Believed), a colonist who
+  saw it says what they make of it, and the book keeps it; no news line, no god named.
+- **What remains** (`GodMarks`): the colony's book, the chronicle, the mark on the land (twenty-four kept five years),
+  `Rimfolk_Mem_GodSeen` for those who saw it, deeds for the kindest, the follower, the feeder and whoever struck a god;
+  a quiet-day visit to a mark, supper talk, visitors asking.
+- **This week** (`GodsOnMapPanels`): Under way lists the stranger staying and the beast on the land as the colony sees
+  them, never a god's name, never a coming. Dev actions *Gods: ...* for each part.
+
 ### Checking a new game version
 
 One DLL serves every supported version: it is built against the 1.6 references into `1.6/Assemblies`, and on 1.7

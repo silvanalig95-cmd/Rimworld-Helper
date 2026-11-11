@@ -1561,6 +1561,36 @@ example `Sounds/Rimfolk/Gods/Storm/`) and restart the game; they play before the
 auras* and *Gods' music* (How you're told, On the map and in the game's tabs), both on. Dev mode has *Gods: ...*
 actions to make any person or animal a god's, reveal one and play each kind of moment.
 
+### The gods on the map
+The gods are a presence, never explained. Now and then, after days of signs, something comes to the colony, and
+nobody can say for certain what it was or why. You see what the colonists see, and hear what they say about it.
+- **Signs.** The birds all leaving at once, a calm with the wind dead, two people waking from the same dream, a lamp
+  that won't stay lit, the animals all looking one way. Each god has signs of its own: leaves drifting toward one place
+  on no wind, an anima tree humming loud enough to hear indoors; a vast winged shadow crossing the land at noon (Dragon's
+  Descent's own flying dragon, when it's loaded), steam from the ground, the rock rumbling over the deep mines; a ring of
+  mushrooms overnight, white threads across a floor; lights flickering in a pattern, a comms console's static, a lamp
+  glowing with no power; a star moving the wrong way; frost by a wall in lines like writing, a sudden silence, a tall
+  white figure at the edge of the night; a dark a lamp won't reach, a sweet voice to the most desperate; a deep croaking
+  from the wet ground before rain; the sun standing still with the shadows not moving, a heat haze; the moon huge and
+  close all night; a glint of gold, a golden beetle crossing a table, a coin where nobody dropped one.
+- **The moon's face.** The moon waxes and wanes through each season. People mention it, and it shapes the night's signs.
+- **A stranger at the gate.** Sometimes a lone traveller asks for shelter. Give them a bed, let them sleep by the gate,
+  or turn them away. They notice things. When they go, something happens, and what it means is up to you.
+- **Beasts.** A great white thrumbo may pass through, other thrumbos following at a distance. Someone can sit near it
+  while it grazes. A gray cat with too-bright eyes may come and stay a season with one colonist, cats following her,
+  and she won't be kept. Harm either one and see what follows.
+- **Rarer still.** Roots drawing themselves up out of the ground into a shape taller than any tree. A toad the size of a
+  house surfacing in the marsh (Odyssey). A colony that keeps mining deep under the mountain, past every warning, may find
+  out what it has been disturbing (Dragon's Descent).
+- **The night.** What was done by day sometimes comes back by morning: something found, a good dream, a wound healed, or
+  a nightmare, a frost, an animal at the door. It's talked about at breakfast.
+- **The weather.** Sometimes the sky seems to answer, and someone outside always says so.
+
+What people saw goes into the god's history in their own words, the chronicle, their journals and their shared memories.
+The places stay talked about for years: someone walks out to one on a quiet day, it comes up at supper, and visitors ask
+about it. *Believed* brings none of this; the colony reads its gods into what happens anyway. Dev mode has *Gods: ...*
+actions to call each of these.
+
 ### Offices and elections
 Five council seats: **speaker** (chairs meetings, everyone's trust rises a little each day), **marshal** (drills
 count for more, better aim), **quartermaster** (dilemmas cost less, better trade), **physician** (faster healing)
