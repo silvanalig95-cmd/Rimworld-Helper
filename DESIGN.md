@@ -8938,6 +8938,30 @@ a shape's pieces come after it.
   mastheads, 74 items on 15 subjects, 21 notices, 8 feet; a crier's roll, an android's digest, a hive's count); 108 set
   pieces (10 petitions, 46 lines of lists and accounts, 16 recipes and remedies, 25 riddles with their answers); 38 lines
   added by other hands; 35 enclosures; 47 diary lines; 82 long letters' headings (26), news (22) and everyday life (34).
+- **Round 2, part 2: the content pass** (11 November 2026, not released yet). The same shapes filled, about 1,020 lines
+  more (253 medieval, 47 unschooled, 116 in the strange voices), every age: three new story themes (a journey, a contest,
+  a feast; `LetterKindMath.Themes`) and medieval openings, turns and endings for every theme; raids on their road
+  (`rd:road`, a line about the town itself `!rd:road`: bandits on the road never reached its walls) and the colony's own
+  attack told from their side (`rd:you`, a line that only fits strangers `!rd:you`), told whole, every ending; the
+  Empire's gazette (its own mastheads, items and notices; a town sheet's masthead and foot `!empire`), its court's verse,
+  notes and letters' parts; at least two sermons for every meme family; everyday life for every people's calling
+  (`PeoplesMath.Callings`), the medieval peoples' in medieval English; strange voices opened to more shapes
+  (`LetterKindMath.Speeches`: poems for the beast folk, the hive and the eldritch; sermons for the hive; recipes for
+  machines, plant folk and beast folk; riddles for machines and the eldritch; enclosures for plant folk, machines, the
+  ancient and the hive; diaries for machines, beast folk and plant folk, each with its own days for a letter broken off).
+  Lines in the shape pools may name the correspondence's stage (`fam:new`, `fam:familiar`, `fam:close`, `fam:cooled`), so
+  a lead-in, a coda, a note or a hand's line reads as a stranger's, an old friend's or a cooled one's. A long letter
+  never says one heading twice. The tests count it all (`LetterShapeTests.PartTwo`); the pools' headers name the new tags.
+- **The library after part 2** (about 2,110 lines): 98 note lines; 179 lead-ins and after-lines; 395 story parts in
+  thirteen themes (126 openings, 123 turns, 124 endings, 22 codas; 107 medieval, 40 unschooled, 18 beast-folk, 19 ancient,
+  39 tribal); 234 raid parts (165 of real raids, 30 on their road, 17 of the colony's attack, 36 old tales, 17 boasts, 16
+  of the colony's own; 49 medieval, 25 unschooled, 20 an android's, 8 by smell); 173 poems (13 ballads, 43 short verses, 26
+  laments, 11 drinking songs, 22 hymns, 9 nonsense verses, 8 work songs, 5 war songs, 36 songs; 38 medieval, 8 the
+  Empire's court's, 21 in the strange voices); 128 sermons and tracts (25 cranks', 11 consolations; 16 medieval, 6
+  unschooled, 5 strange); 222 chronicle lines (17 mastheads, 144 items, 47 notices, 14 feet; 54 a crier's, 43 a tribe's,
+  16 the Empire's); 216 set pieces (15 petitions, 84 lines of lists and accounts, 41 recipes and remedies, 76 riddle lines;
+  46 medieval); 73 lines by other hands; 88 enclosures; 122 diary lines; 186 long letters' headings (39), news (32) and
+  everyday life (115).
 
 ### A correspondence that builds up (the player's request, 10 November 2026)
 

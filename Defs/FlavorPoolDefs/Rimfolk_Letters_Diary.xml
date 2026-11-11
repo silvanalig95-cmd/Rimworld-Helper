@@ -9,7 +9,9 @@
     {TO} is the one written to). A letter broken off: a line that breaks it off (di:break), a line that takes it up the
     next day (di:resume), then a paragraph of everyday life (Rimfolk_Letters_Part.xml, pa:life). Everyday flavour of their
     own life, by the season and land at their town; a line that says a letter of the colony's came is tagged !first (their
-    letter written first had none before it). Ages: w:tribal, w:spacer. Speech: olde, sv:ancient.
+    letter written first had none before it). Ages: w:tribal, w:spacer; empire for a court writer. Speech: olde,
+    sv:ancient, sv:machine (a log), sv:beast, sv:green; each has its own pa:life paragraphs for a letter broken off.
+    fam:new, fam:familiar, fam:close for an entry about the one written to.
   -->
   <ColonyCouncil.FlavorPoolDef>
     <defName>Rimfolk_Pool_LetterDiary</defName>
@@ -66,6 +68,89 @@
         <li>[sv:ancient,di:entry] A visitor asked my age. I told them. They did not believe me. I did not insist.</li>
         <li>[sv:ancient,di:entry] Reordered the archive by colour, then by smell, then back. A productive day.</li>
         <li>[sv:ancient,di:entry,di:latest] Began a letter to {TO}. Finished it. Unusually prompt of me.</li>
+
+        <!-- ================= Round 2, part 2: more days' entries ================= -->
+        <li>[di:entry] Mended the fence where the {ANIMALS} come through. Watched the {ANIMALS} come through somewhere else.</li>
+        <li>[di:entry] Baked. Burned the first batch, ate the second, gave away the third, which was the best, which is always the way.</li>
+        <li>[di:entry] Long walk to the far field and back. Nothing to report except the sky, which was very large today.</li>
+        <li>[di:entry,grave] Sat with someone who needed sitting with. Did not say much. Did not need to.</li>
+        <li>[di:entry,di:latest,fam:familiar|fam:close] Sat down to write to {TO}. The usual chair, the usual lamp, the usual too much to say.</li>
+        <li>[di:entry,di:latest,fam:new] Began a letter to {TO}, whom I have never met. Crossed out the first line four times.</li>
+        <li>[di:entry,!first,fam:familiar|fam:close] Took out your old letters and read three of them. Laughed at the same places. Some of them are going soft at the folds.</li>
+        <li>[di:entry,season:autumn] The first frost. Brought in the last of the {PLANT}. The whole house smells of it.</li>
+        <li>[di:entry,season:spring] Lambs. Mud. Lambs in the mud. Lambs in the kitchen, briefly.</li>
+        <li>[di:entry,w:spacer] Shuttle overhead at dawn. Logged it, out of habit. Nobody asked me to log it.</li>
+        <li>[di:entry,w:spacer] Recalibrated the water reclaimer. It now reclaims slightly better and complains slightly louder.</li>
+        <li>[di:entry,w:spacer] Watched the comms panel blink for an hour. Nothing came through. It was restful.</li>
+        <li>[di:entry,w:industrial] The mill whistle went at six, and I was already up, which has never happened before and will not happen again.</li>
+        <li>[di:entry,w:industrial] Wrote out the accounts. They do not balance. They have never balanced. I suspect they are not meant to.</li>
+        <li>[di:entry,w:tribal] Walked to the river with the young ones. Showed them where the fish sleep. They did not believe me until the fish woke up.</li>
+        <li>[di:entry,w:tribal] The hunters came back. Enough meat for the moon. The dogs are smiling.</li>
+        <li>[di:entry,w:tribal] Sat by the fire and mended a net and listened to the old ones argue about a story that happened before any of them were born.</li>
+        <li>[di:entry,w:tribal,di:latest] Asked the one who makes marks to put down these words for {TO}. Watched the marks come. They look like birds walking.</li>
+        <li>[di:break,w:tribal] The fire is low and the story-teller is starting. I will put down the rest at first light.</li>
+        <li>[di:resume,w:tribal] It is light. The story went on until the stars faded. I will tell it to you another time.</li>
+        <li>[di:entry,their:scholars] Spent the day in the archive. Found a letter from a hundred years ago complaining about the weather. Nothing changes.</li>
+        <li>[di:entry,their:salvagers] The Wheel moved on six miles. Found a door in the dirt. Did not open it. We have rules about doors.</li>
+        <li>[di:entry,their:crew] Hull inspection. Talked to the ship while I worked. The ship did not answer, which is normal, and also lucky.</li>
+        <li>[di:entry,their:seers] Read the glass at dawn: rain by noon. It rained at dusk. The glass and I are not speaking.</li>
+        <li>[di:entry,their:traders] Counted the takings twice. Got two different numbers. Took the larger. Business is good.</li>
+        <li>[di:entry,their:herders] Moved the herd to the high grass. The herd moved itself, really. I followed and took the credit.</li>
+        <li>[olde,di:entry] Mended the hedge where the {ANIMALS} come through. Watched the {ANIMALS} come through elsewhere.</li>
+        <li>[olde,di:entry] Baked. Burnt the first batch, ate the second, gave away the third, which was the best, as ever it is.</li>
+        <li>[olde,di:entry,season:autumn] The first frost. Brought in the last of the {PLANT}, and the whole house smelleth of it.</li>
+        <li>[olde,di:entry,theirs] To the market cross at {TOWN}. Sold the eggs, bought a ribbon, and know not why I bought it.</li>
+        <li>[olde,di:entry] The bell rang thrice for vespers, and once more after, for no cause any could tell me.</li>
+        <li>[olde,di:entry,grave] Sat up with one that needed sitting with. Said little. There was no need.</li>
+        <li>[olde,di:entry,di:latest,fam:familiar|fam:close] Sat down to write to {TO}, in the wonted chair, by the wonted candle, with too much to say, as ever.</li>
+        <li>[olde,di:entry,their:healers] Three came with fevers, one with a broken arm, and one for the company. All five were tended.</li>
+        <li>[olde,di:entry,their:pilgrims] Walked nine miles. Prayed at two shrines. Ate at one inn. Slept in a hayloft, which was holier than it soundeth.</li>
+        <li>[olde,di:entry,their:sextons] Rang the bell for old Mother Agnes, that was ninety and had planned the whole of it, down to the hymns.</li>
+        <li>[olde,di:break] The bell ringeth for supper, and I will not miss it, not even for thee. Anon.</li>
+        <li>[olde,di:resume] Fed, and warm, and back at the letter. Where was I? Here.</li>
+        <li>[sv:ancient,di:entry] Watched a tree I planted in my second century fall in a storm. Planted another. One must keep one's hand in.</li>
+        <li>[sv:ancient,di:entry] Received a visitor who wished to know my secret. Told them: patience, and avoid the sun. Neither was what they had hoped.</li>
+        <li>[sv:ancient,di:entry,!first] Reread the correspondence. Yours is the only one of this century that I reread.</li>
+
+        <!-- ================= Round 2, part 2: a machine's log, a beast's days, the plant folk's ================= -->
+        <li>[sv:machine,di:entry] LOG: SUNRISE OBSERVED. DURATION OF OBSERVATION: LONGER THAN NECESSARY. NO CORRECTIVE ACTION TAKEN.</li>
+        <li>[sv:machine,di:entry] LOG: ASSISTED WITH THE HARVEST. HUMANS SANG. THIS UNIT DID NOT SING. THIS UNIT KEPT TIME.</li>
+        <li>[sv:machine,di:entry] LOG: A CHILD ASKED IF THIS UNIT DREAMS. THIS UNIT SAID NO. THIS UNIT IS RECONSIDERING.</li>
+        <li>[sv:machine,di:entry,di:latest] LOG: BEGAN CORRESPONDENCE TO {TO}. DRAFTS: 6. THIS IS DRAFT 7.</li>
+        <li>[sv:machine,di:break] LOG ENTRY INTERRUPTED: MAINTENANCE CYCLE. RESUMING AFTER.</li>
+        <li>[sv:machine,di:resume] LOG ENTRY RESUMED. ALL SYSTEMS NOMINAL. CONTINUING.</li>
+        <li>[sv:beast,di:entry] Rain. Lay in the den. Smelled the rain. Good day.</li>
+        <li>[sv:beast,di:entry] Found a new trail by the creek. Followed it. It went in a circle. Followed it again, to be sure.</li>
+        <li>[sv:beast,di:entry] The young ones fought over a stick. Then over a better stick. Then they slept on both.</li>
+        <li>[sv:beast,di:entry,di:latest] Sat down, two-leg fashion, to make marks for {TO}. Hard on the back. Worth it.</li>
+        <li>[sv:green,di:entry] Sun all morning. Drank it. Cloud in the afternoon. Waited.</li>
+        <li>[sv:green,di:entry] Grew a little. Not enough to see. Enough to know.</li>
+        <li>[sv:green,di:entry] A bird sat on one of us for an hour. Nobody minded. The bird sang. Good.</li>
+        <li>[sv:green,di:entry,di:latest] Turned toward {TO}, the way we turn toward light. Wrote this.</li>
+
+        <!-- ================= Round 2, part 2: more days ================= -->
+        <li>[di:entry] Wrote a list of things to do. Did the first one. Rewrote the list.</li>
+        <li>[di:entry] Rain again. The roof held. I sat under it feeling very pleased with the roof.</li>
+        <li>[di:entry] Helped with a birth at the end of the lane. Mother and child well. I am less well; I have not slept.</li>
+        <li>[di:entry] Someone knocked at dusk asking the way to somewhere I had never heard of. Gave directions anyway. Hope they find it.</li>
+        <li>[di:entry,!w:tribal] Went to market with eggs. Came back with a chair. Do not ask how.</li>
+        <li>[di:entry,season:winter] Too cold to do anything but sit by the fire and think about doing things. Thought about a great many.</li>
+        <li>[di:entry,di:latest,!first] Read your letter again before beginning this one, {TO}, to remind myself what I owe you a reply to.</li>
+        <li>[di:break] The kettle is boiling over. I will finish this tomorrow, with tea.</li>
+        <li>[di:resume] Tomorrow, as promised, with tea. The kettle survived. So did I.</li>
+        <li>[di:entry,empire] Audience in the morning, banquet in the evening, and between them an hour alone in the garden, which was the best of it.</li>
+        <li>[di:entry,empire] Bowed to fourteen people today. Was bowed to by two. The arithmetic of rank is unforgiving.</li>
+        <li>[olde,di:entry] Wrote a list of tasks. Did the first. Wrote the list anew.</li>
+        <li>[olde,di:entry] Rain again. The roof held. I sat beneath it right pleased with the roof.</li>
+        <li>[olde,di:entry,season:winter] Too cold for aught but to sit by the fire and think upon doing things. Thought upon a great many.</li>
+        <li>[olde,di:entry] One knocked at dusk asking the way to a place I had never heard of. Gave directions all the same, and wished them good speed.</li>
+
+        <!-- ================= Round 2, part 2: a few more days ================= -->
+        <li>[di:entry] Planted beans. A bird watched me do it, and then, I am fairly sure, unplanted them.</li>
+        <li>[di:entry] Nobody argued at supper. I am not sure what it means. I am keeping an eye on everyone.</li>
+        <li>[di:entry,season:summer] Too hot to work, so we did not. Sat in the river until our fingers wrinkled and our troubles floated off downstream.</li>
+        <li>[di:entry,season:autumn] Raked leaves. The wind unraked them. We have agreed to call it a draw.</li>
+        <li>[di:entry,w:tribal] Saw a hawk take a fish from the river and drop it on the bank. Took the fish. The hawk and I have an understanding now, or the hawk has a grudge.</li>
       </plain>
     </lines>
   </ColonyCouncil.FlavorPoolDef>

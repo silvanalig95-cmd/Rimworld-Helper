@@ -14,7 +14,10 @@
     - everyday life (pa:life): a paragraph of their own days, flavour plausible for their town, by the season and land at
       their town (season:..., home:...), their age (w:tribal, w:industrial, w:spacer), their people's ways (their:herders,
       their:fishers, their:scholars...), how their town fares (town:struggling, town:thriving...), hard times (grave).
-    Also the broken-off letter's last paragraph (Rimfolk_Letters_Diary.xml). Speech: olde; any other writer the plain lines.
+    Also the broken-off letter's last paragraph (Rimfolk_Letters_Diary.xml). Every calling has its pa:life (their:...,
+    PeoplesMath.Callings), the medieval ones in olde too; empire for court life; fam:familiar|fam:close for a part only
+    an old friend would write. Speech: olde, sv:machine, sv:beast, sv:green, sv:ancient (their days, for a diary broken
+    off); any other writer the plain lines.
   -->
   <ColonyCouncil.FlavorPoolDef>
     <defName>Rimfolk_Pool_LetterPart</defName>
@@ -107,6 +110,126 @@
         <li>[olde,pa:life] Someone hath been leaving flowers on the bench by the well each morn, and none knoweth who, and the whole town hath made it their business to find out.</li>
         <li>[olde,pa:life] The young folk race each other to the river and back each evening. None winneth, for none can agree where the river beginneth.</li>
         <li>[olde,pa:life,grave] Times are hard, and I will not feign otherwise. We share what we have. Some nights it is enough.</li>
+
+        <!-- ================= Round 2, part 2: headings ================= -->
+        <li>[pa:head,pa:first,ph:life,fam:familiar|fam:close] First, the usual, since you will ask.</li>
+        <li>[pa:head,ph:story] Now, a story. You knew this was coming.</li>
+        <li>[pa:head,pa:last,ph:poem] And to finish, a few lines I made.</li>
+        <li>[pa:head,ph:raid] I must tell you about the raid.</li>
+        <li>[pa:head,ph:news,w:tribal] First, what the runners brought.</li>
+        <li>[pa:head,ph:life,w:tribal] Now, how it is with the people.</li>
+        <li>[pa:head,pa:next,ph:life,w:spacer] Status, personal: as follows.</li>
+        <li>[olde,pa:head,ph:news] First the tidings, for they keep not.</li>
+        <li>[olde,pa:head,ph:life] And now the common round, which is the most of life.</li>
+        <li>[olde,pa:head,ph:story] Now hear a tale.</li>
+        <li>[olde,pa:head,pa:last,ph:poem] And last, some verses of my making.</li>
+        <li>[olde,pa:head,ph:raid] I must tell thee of the raid.</li>
+
+        <!-- ================= Round 2, part 2: the news, as the facts hold it ================= -->
+        <li>[pa:news,w:tribal,town:loss] {LOST} has gone to the long fire. We sang until the stars went out. I wanted you to hear it from us.</li>
+        <li>[pa:news,w:tribal,their:war] We are at war with {WAR}. The young ones are eager and the old ones are quiet, and I trust the quiet ones more.</li>
+        <li>[pa:news,w:tribal,town:newhead] {HEAD} speaks for us now. The old ones are watching how {HEAD} listens, which is how they judge a speaker.</li>
+        <li>[pa:news,w:spacer,their:war] The war with {WAR} is all anyone talks about on the comms. I am talking about something else, on purpose, in the rest of this letter.</li>
+        <li>[pa:news,town:ill] {ILL} has been ill, and the town is quieter for worrying about it. I will tell you more when there is more to tell.</li>
+        <li>[olde,pa:news,town:loss] We have lost {LOST}, {LOSTTITLE}, and the town is the poorer. All went out to the burying.</li>
+        <li>[olde,pa:news,town:ill] {ILL} lieth sick, and we sit up by turns. Remember {ILL}, if thou prayest.</li>
+        <li>[olde,pa:news,region:newtown] There is a new town, {NEWTOWN}, raised by {NEWTOWNPEOPLE}, a few days hence. Folk go to gawp at it.</li>
+        <li>[olde,pa:news,town:caravan] Our folk make ready a caravan for thy way. If there be aught thou wouldst have carried back, have it ready.</li>
+
+        <!-- ================= Round 2, part 2: everyday life, by the peoples' callings ================= -->
+        <li>[olde,pa:life,their:healers] The sickhouse is never empty. This season it is chiefly coughs, and one fellow that swallowed a ring for a wager and must now wait. We sit with them all, which is the half of physic that no book teacheth.</li>
+        <li>[olde,pa:life,their:pilgrims] The hostel hath been full every night since the thaw. Pilgrims are good guests: they are weary, they are grateful, and they leave early. Some leave a prayer for us behind them, which we keep in a box by the door.</li>
+        <li>[olde,pa:life,their:hunters] The lanterns are trimmed every dusk and the watch kept every night, and most nights naught cometh out of the wood but owls. It is the other nights we keep the lanterns for.</li>
+        <li>[olde,pa:life,their:sextons] We rang for three this month: an old shepherd, a babe that lived but a day, and the miller, that would not die quietly and did not. The bell is heavy work. It is honest work.</li>
+        <li>[olde,pa:life,their:mercenaries] The company is in winter quarters, which meaneth dice, mending, and a great deal of boasting of battles that grow larger with each telling. The roll is read every first day. No name is ever struck from it.</li>
+        <li>[olde,pa:life,their:artisans] The kilns have burned day and night for the fair. My hands are cracked, my eyes are red, and I have made the best bowl of my life, which I shall not sell.</li>
+        <li>[olde,pa:life,their:fishers] The river is high and brown and the fish sulk at the bottom of it. We mend nets and tell lies about the fish we took when the river was kinder.</li>
+        <li>[pa:life,their:herders] We moved to the summer grass. The herd knew the way better than we did and arrived first, and looked at us as if we were late, which we were.</li>
+        <li>[pa:life,their:grovekeepers] We planted forty seedlings this season for the trees that were taken. The grove counts them; we are sure of it. When we walk among them in the evening, the leaves move with no wind.</li>
+        <li>[pa:life,their:traders] The caravans are out, so the town is half empty and very peaceful, and everyone left behind is pretending not to enjoy it.</li>
+        <li>[pa:life,their:scholars] We have begun copying the oldest books before they crumble, which means a great deal of sitting very still and breathing very carefully, and someone sneezing at the worst possible moment.</li>
+        <li>[pa:life,their:salvagers] The Wheel rolled another few miles this month. Every time we stop, the children run out to see what the ground has for us. Mostly rust. Sometimes treasure. Once, a very surprised badger.</li>
+        <li>[pa:life,their:seers] The glass in the tower has foretold rain for nine days. It has not rained. The seers say the sky is late. The rest of us say the glass is wrong. The glass says nothing, smugly.</li>
+        <li>[pa:life,their:tamers] There was a bout in the ring last week between {ANANIMAL} and its own reflection in a puddle. The {ANIMAL} won. We are still deciding whether it counts.</li>
+        <li>[pa:life,their:linesmen] Up the masts again to mend what the wind broke. From the top you can see three towns and a great deal of nothing. On a clear day the wire hums as if it is thinking.</li>
+        <li>[pa:life,their:drillers] The new rig went down two hundred feet and found water, mud and somebody's lost lunch tin, which nobody will claim. Spirits are high. The tin is on a shelf in the canteen as a trophy.</li>
+        <li>[pa:life,their:citizens] The assembly met three times this week to discuss the agenda for next week's assembly. I spoke twice. I was not listened to either time, which is democracy, and I would not trade it.</li>
+        <li>[pa:life,their:crew] The ship groans at night when it cools, as it always has. The young ones say it is talking. The old ones say it is complaining. We all agree that it is ours.</li>
+        <li>[pa:life,their:editors] We have a new strain of grain coming up in the test plots. It is very good, very quick, and very purple. Nobody is quite sure about the purple.</li>
+        <li>[pa:life,their:mechanitors] The mechs were restless all week; the Lattice says it is the weather. Mechs do not feel weather. The Lattice says that is exactly what a mech would say.</li>
+        <li>[pa:life,their:listeners] The Spire hums louder in the cold months. We sit with it in shifts, listening. Some nights I think I hear words. In the morning I can never remember them, which is probably for the best.</li>
+        <li>[pa:life,their:vaultfolk] We have been out of the vault a while now, and still some of us go back down at night to sleep, because the sky is too big to sleep under. I am one of them. I am not ashamed of it.</li>
+        <li>[pa:life,their:brokers] Three ships came down this month and two went up, and somewhere in the middle of all that I made a living. The landing field smells of fuel and money, and I have grown fond of both.</li>
+
+        <!-- ================= Round 2, part 2: everyday life, by the land, the age and how well they know each other ================= -->
+        <li>[pa:life,home:desert] The heat is everything here. We work at dawn and dusk and lie still between, like lizards, and the lizards look at us as if we are copying them, which we are.</li>
+        <li>[pa:life,home:frozen] The ice talks at night, cracking and groaning out on the lake. You stop hearing it after a while, and then one night it goes quiet, and that is when you worry.</li>
+        <li>[pa:life,home:mountains|home:hills] Everything here is uphill, including the way down. The goats think this is very funny.</li>
+        <li>[pa:life,home:coast] The sea threw a whole tree up on the beach, roots and all, from who knows where. The children have made it a ship. It sails every afternoon.</li>
+        <li>[pa:life,home:forest] The woods have been loud this season, all creak and birdsong and something large that walks at night and is never seen. We have named it. The name has made it less frightening, slightly.</li>
+        <li>[pa:life,home:plains] Out here the sky is half of everything. You can watch weather coming for a day before it arrives, which is useful, and also a kind of torture.</li>
+        <li>[pa:life,w:tribal] The young ones have been learning to throw the spear, which means the old ones have been learning to stand somewhere else.</li>
+        <li>[pa:life,w:tribal] We traded skins for salt with a people from the south. They talk very fast and laugh at nothing, and we liked them, though we counted the skins twice.</li>
+        <li>[pa:life,grave,w:tribal] The hunting has been bad and the old ones eat last. Nobody complains. We are good at going without; I wish we did not have to be.</li>
+        <li>[pa:life,w:spacer] The power grid flickered three times this week. Each time everyone stopped and looked at the lights, and each time the lights came back, a little embarrassed.</li>
+        <li>[pa:life,w:industrial] The new engine at the mill runs day and night, and the whole town has learned to sleep to its thump. When it stops for repairs, nobody can sleep at all.</li>
+        <li>[pa:life,fam:familiar|fam:close] You will know by now that nothing much ever changes here, and that I write about it anyway. Here is this season's nothing much.</li>
+        <li>[pa:life,fam:close] I find myself saving things up for you, the way you save a good apple: the look on the miller's face, the thing the children said, the sky the other evening. Here they are, a little bruised from waiting.</li>
+        <li>[olde,pa:life,fam:familiar|fam:close] Thou knowest by now that little changeth here, and that I write of it all the same. Here is this season's little.</li>
+
+        <!-- ================= Round 2, part 2: more everyday life ================= -->
+        <li>[pa:life] The baker has taken on an apprentice, and the bread has been interesting ever since. Not bad. Interesting.</li>
+        <li>[pa:life] Somebody painted the meeting hall door blue without asking anybody. Half the town is furious and the other half has started painting their own doors.</li>
+        <li>[pa:life] I have been teaching myself to whistle properly, which has made me very unpopular in a very short time.</li>
+        <li>[pa:life] A stray dog turned up at the gate last month, thin and wary. It is now fat and bossy and sleeps on the best chair, and nobody remembers deciding to keep it.</li>
+        <li>[pa:life] The well was cleaned out for the first time in years. They found three buckets, a boot, a great many coins, and a ring that started a very awkward conversation.</li>
+        <li>[pa:life] It has been the kind of season where nothing happens, and then nothing happens again, and you start to suspect it is building up to something.</li>
+        <li>[pa:life,!w:tribal] The roof is finally mended, by which I mean it leaks in a new place, further from my bed.</li>
+        <li>[pa:life] One of the old ones tells the same story every evening now, and the children have started finishing it for them, word for word, which everybody pretends not to notice.</li>
+        <li>[pa:life,season:winter] We have been snowed in for most of a week. We have played every game we know and invented three more. One of them has caused a feud.</li>
+        <li>[pa:life,season:summer] Long evenings, short tempers, and the river warm enough to swim in. Half the town is in it every night after work. The other half is watching for the ones who cannot swim.</li>
+        <li>[pa:life,season:spring] Everything is being planted at once, by everyone, in every direction. The goats have read the planting plan and are making their own arrangements.</li>
+        <li>[pa:life,season:autumn] The apples came in heavy, and the whole town smells of cider, and nobody can agree whether that is a good thing.</li>
+        <li>[pa:life,town:struggling|town:poor] We have been making do. Patching the patches. You would be surprised how long a coat lasts when there is no other coat.</li>
+        <li>[pa:life,town:thriving|town:flourishing] There is more on the table this year, and the children have stopped asking whether there will be enough, which is the best thing I can tell you.</li>
+        <li>[pa:life,w:industrial|w:spacer] The radio picked up music from somewhere far away the other night. Nobody knows where. We sat around it until it faded, and nobody said much.</li>
+        <li>[pa:life,w:tribal] The young ones found a cave with old paintings in it: hands, and animals, and something we cannot name. The old ones went to look, and came back quiet.</li>
+        <li>[olde,pa:life] The baker hath taken an apprentice, and the bread hath been strange ever since. Not ill. Strange.</li>
+        <li>[olde,pa:life] One painted the hall door blue without leave of any. Half the town is wroth, and the other half paint their own doors.</li>
+        <li>[olde,pa:life] A stray hound came to the gate last month, lean and wary. Now it is fat and masterful and sleepeth in the best chair, and none remembereth deciding to keep it.</li>
+        <li>[olde,pa:life,season:winter] We have been snowed in the most part of a week, and have played every game we know and devised three more. One hath begun a feud.</li>
+
+        <!-- ================= Round 2, part 2: a court letter's parts (the Empire) ================= -->
+        <li>[pa:head,ph:life,empire] As for the court, it goes on as courts do.</li>
+        <li>[pa:news,empire,town:newhead] The holding has a new {HEADTITLE}, {HEAD}, and the court is busy learning how {HEAD} likes to be addressed.</li>
+        <li>[pa:life,empire] Court has been very formal this season. I have bowed so often that I now bow to doors, which the doors accept graciously.</li>
+        <li>[pa:life,empire] There was a ball at the hall last week. I danced twice, ate once, and was introduced to eleven people whose names were longer than my arm.</li>
+        <li>[pa:life,empire] The steward has reordered the precedence at table. I have moved two places up and one place down, and nobody can tell me which happened first.</li>
+        <li>[pa:life,empire] My duties this season are mostly ceremonial, which is to say I stand very still in very heavy clothes while other people say important things.</li>
+
+        <!-- ================= Round 2, part 2: more of the peoples' days ================= -->
+        <li>[olde,pa:life,their:healers] An old soldier came to us with a wound that would not heal, and would not leave when it did, and now sweepeth the floors and telleth the sick lies about his battles. They mend the faster for it.</li>
+        <li>[olde,pa:life,their:pilgrims] A pilgrim came to the hostel with a pack full of stones, one from every shrine he had walked to. He set one upon our step ere he left. It is there yet, and we sweep round it.</li>
+        <li>[olde,pa:life,their:mercenaries] We have taken on three new recruits this season. One can fight, one can cook, and one can do neither but singeth well, and the captain saith a company needeth all three.</li>
+        <li>[olde,pa:life,their:artisans] The guild met to choose the mark for the year. It took four days. The mark is a circle. Last year's mark was also a circle. The debate was over the thickness.</li>
+        <li>[olde,pa:life,their:sextons] A child asked me why we ring the bell for strangers. I said: because someone, somewhere, would have rung it for them, if they could. She thought on it and said she would ring it for me, one day. I hope she is late.</li>
+        <li>[olde,pa:life,their:hunters] One of the young Wardens swore he saw a thing at the wood's edge with too many eyes. The captain bade him trim his lamp and say naught of it. He trimmeth it right carefully now.</li>
+        <li>[pa:life,w:spacer] Somebody got into the public screens and showed pictures of cats for a whole afternoon. The council is investigating. The council is also, I am told, enjoying the cats.</li>
+        <li>[pa:life,w:spacer] The medical bay has a new scanner, and everyone has found a reason to be scanned. Most of us are fine. One of us is a bit too fine, and is now unbearable about it.</li>
+        <li>[pa:life,w:industrial] The new streetlamps went in along the main road, and for a week nobody could sleep for the brightness, and now nobody can sleep without it.</li>
+        <li>[pa:life,w:industrial] The factory whistle broke, and nobody knew when to start work or stop, so for three days everybody worked exactly as long as they felt like. It was the best week the factory has had in years.</li>
+        <li>[pa:life,their:brokers] A ship's captain tried to pay me in a currency I had never heard of, from a world I am not sure exists. I took it. It is on my wall. It is the most interesting thing I own.</li>
+        <li>[pa:life,their:citizens] The Republic's archive flooded, and three hundred years of minutes are drying on lines across the square like laundry. It is the most anyone has ever looked at them.</li>
+
+        <!-- ================= Round 2, part 2: a day taken up again, in the strange voices (a broken-off diary's last paragraph) ================= -->
+        <li>[sv:machine,pa:life] DAILY SUMMARY: MAINTENANCE COMPLETED. HUMANS FED. ONE HUMAN EMBRACED THIS UNIT WITHOUT WARNING. NO DAMAGE SUSTAINED. SOME DAMAGE SUSTAINED.</li>
+        <li>[sv:machine,pa:life] DAILY SUMMARY: RAIN. THIS UNIT STOOD IN IT FOR SOME TIME TO OBSERVE IT. THE HUMANS BROUGHT AN UMBRELLA. THIS UNIT DID NOT REQUIRE ONE. THIS UNIT KEPT IT.</li>
+        <li>[sv:beast,pa:life] The pack moved to the high den for the warm months. The young ones ran ahead and came back, ran ahead and came back, the whole way. They covered the trail three times. We covered it once, and slept.</li>
+        <li>[sv:beast,pa:life] The hunting is good this moon. Everyone is fat and slow and pleased, and nobody wants the night watch, so the old one keeps it, and complains, and would not give it up for anything.</li>
+        <li>[sv:green,pa:life] The days are long and we are drinking all of them. Some of the young ones have flowered early. They are very proud. We let them be.</li>
+        <li>[sv:green,pa:life] A storm took one of our tallest. Where it stood there is light on the ground now, and in the light something new is already coming up. That is how it goes with us.</li>
+        <li>[sv:ancient,pa:life] The seasons here are much as they were three centuries ago, which is to say they are always about to be unusual. I have stopped expecting them to surprise me. They continue to try.</li>
+        <li>[sv:ancient,pa:life] A young scholar came to ask me about the old wars. I told them. They took notes. They were very polite about the parts they did not believe, which were the true ones.</li>
       </plain>
     </lines>
   </ColonyCouncil.FlavorPoolDef>

@@ -10,7 +10,8 @@
     address (a:war, a:council, a:empire, a:friend), motive (m:duty, m:trade, m:wary, m:proud), the writer's age (w:tribal,
     w:industrial|w:spacer for the machine ages) and speech (olde for medieval English, u:none for an unschooled hand,
     sv:machine, sv:hive, sv:beast, sv:green, sv:fey, sv:deep; the ancient never write a bare note). Keep every line short:
-    a note that runs on is not a note. The unschooled lines' misspellings are deliberate.
+    a note that runs on is not a note. The unschooled lines' misspellings are deliberate. empire for an Empire writer;
+    fam:familiar|fam:close for an old friend's few words, fam:cooled for a cooled correspondence's.
   -->
   <ColonyCouncil.FlavorPoolDef>
     <defName>Rimfolk_Pool_LetterNote</defName>
@@ -68,6 +69,65 @@
         <li>[sv:green,note:close] The light is short today.</li>
         <li>[sv:fey,note:open] Said once, quickly, which is a rudeness we will make up later.</li>
         <li>[sv:deep,note:close] Fewer words. They are listening.</li>
+
+        <!-- ================= Round 2, part 2: bare notes, by the age, the motive and how well they know each other ================= -->
+        <li>[note:open,theirs,w:spacer] Short message; the relay closes in ten minutes:</li>
+        <li>[note:open,theirs,w:industrial] On the back of a docket, in a hurry:</li>
+        <li>[note:open,theirs,w:tribal] Few words, because the fire is waiting:</li>
+        <li>[note:open,cordial|cool|curt,fam:cooled] Briefly.</li>
+        <li>[note:open,warm|cordial,fam:familiar|fam:close] Only a quick one this time, old friend:</li>
+        <li>[note:open,warm|cordial,fam:close] You will forgive a short one. You always do.</li>
+        <li>[note:open,theirs,m:wary] I will say only what needs saying:</li>
+        <li>[note:open,theirs,m:proud] I will not waste your time, or mine:</li>
+        <li>[note:open,theirs,their:traders] Between two caravans, quickly:</li>
+        <li>[note:open,theirs,their:scholars] An abstract, since the full text would run to volumes:</li>
+        <li>[note:open,ours,v:eloquent] A short letter, for once, and I apologise for its brevity, though not for its content:</li>
+        <li>[note:close,warm|cordial,fam:familiar|fam:close] More soon, as ever.</li>
+        <li>[note:close,warm,fam:close] The rest when there is time. There is always more.</li>
+        <li>[note:close,cool|curt,fam:cooled] That is all.</li>
+        <li>[note:close,theirs,w:spacer] End of transmission.</li>
+        <li>[note:close,theirs,w:industrial] Must dash; the post is going.</li>
+        <li>[note:close,theirs,w:tribal] The fire calls. Go well.</li>
+        <li>[note:close,theirs,m:trade] Prices on request.</li>
+        <li>[note:close,theirs,m:duty] By the hand of the office.</li>
+        <li>[note:close,theirs,m:wary] Write if you must.</li>
+        <li>[note:close,ours,v:blunt] Done.</li>
+        <li>[note:close,ours,v:cheerful] More soon, and happier.</li>
+        <li>[note:close,theirs,refusal] Do not ask again.</li>
+        <li>[note:close,curt] Nothing more to say.</li>
+        <li>[olde,note:open,cordial|cool|curt] In haste, for the post rider tarrieth not:</li>
+        <li>[olde,note:open,warm|cordial,fam:familiar|fam:close] But a short one this time, old friend:</li>
+        <li>[olde,note:open,fam:cooled] Briefly, as is fitting.</li>
+        <li>[olde,note:close,fam:cooled] No more.</li>
+        <li>[olde,note:close,theirs,m:trade] Prices upon request.</li>
+        <li>[u:none,note:open,theirs] quik one</li>
+        <li>[u:none,note:close,theirs] bye</li>
+        <li>[u:none,note:close,warm|cordial] rite soon</li>
+        <li>[u:none,note:open,fam:cooled] not much to say to you</li>
+        <li>[sv:machine,note:close] TRANSMISSION ENDS.</li>
+        <li>[sv:machine,note:open,fam:cooled] FORMAL NOTICE FOLLOWS.</li>
+        <li>[sv:beast,note:open] Quick. The wind is changing.</li>
+        <li>[sv:green,note:open] Few words. The sun is short.</li>
+        <li>[sv:hive,note:open] The many are busy. One writes.</li>
+        <li>[sv:fey,note:close] Said once, and quickly, and that is our rudeness for the season.</li>
+        <li>[sv:deep,note:open] Short. The floor is thin today.</li>
+
+        <!-- ================= Round 2, part 2: the court's notes ================= -->
+        <li>[note:open,theirs,empire] Briefly, between audiences:</li>
+        <li>[note:close,theirs,empire] By leave of the court, and in haste.</li>
+        <li>[note:open,theirs,empire,fam:familiar|fam:close] A short note, old friend, the court permitting:</li>
+
+        <!-- ================= Round 2, part 2: more bare notes ================= -->
+        <li>[note:close,warm|cordial] Longer next time. I promise, which you know is worth exactly what it costs.</li>
+        <li>[note:open,cool|curt,theirs] Your letter came. Here is what you need to know:</li>
+        <li>[note:close,theirs,w:tribal,warm|cordial] More when the moon is new.</li>
+        <li>[note:open,ours,v:plain] A short one, since there is not much to say this time:</li>
+        <li>[olde,note:close,warm|cordial] More anon, when the candle alloweth.</li>
+        <li>[u:none,note:open,cool|curt] got yor leter. here</li>
+
+        <!-- ================= Round 2, part 2: an unschooled note ================= -->
+        <li>[u:none,note:open,theirs,a:war] oi</li>
+        <li>[u:none,note:close,theirs,refusal] no means no. thats it</li>
       </plain>
     </lines>
   </ColonyCouncil.FlavorPoolDef>

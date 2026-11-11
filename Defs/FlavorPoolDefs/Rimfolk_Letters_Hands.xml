@@ -9,6 +9,7 @@
     something that happened, but where the facts say so for the colony's own (ours: colony:harvest, colony:children,
     colony:animals, the season at home). A line is ha:line, with its side (theirs, ours), register (warmly, warm|cordial),
     purpose (condolences for a word of sympathy; every other line !condolences), age (w:tribal) and speech (olde, u:none).
+    fam:new for a hand meeting the one written to on paper, fam:familiar|fam:close for one that knows them by now.
   -->
   <ColonyCouncil.FlavorPoolDef>
     <defName>Rimfolk_Pool_LetterHands</defName>
@@ -56,6 +57,47 @@
         <li>[u:none,ha:line,!condolences] rite back plese</li>
         <li>[u:none,ha:line,theirs,!condolences] the goat sez hello</li>
         <li>[u:none,ha:line,condolences] we are sory</li>
+
+        <!-- ================= Round 2, part 2: more lines from the others at home ================= -->
+        <li>[ha:line,theirs,!condolences,fam:familiar|fam:close] Tell your writer I have given up trying to read the handwriting and now just enjoy the shapes.</li>
+        <li>[ha:line,theirs,!condolences] The cook says there is a plate waiting for anyone from {COLONY}. The cook does not say what is on it.</li>
+        <li>[ha:line,theirs,!condolences] I wanted to add a line. Here it is. I had more to say, but somebody needs the pen.</li>
+        <li>[ha:line,theirs,!condolences,warmly] Every time a letter comes from you, the evening goes better. Thank you for the evenings.</li>
+        <li>[ha:line,theirs,!condolences] I am the youngest, so I get the bottom of the page. Hello. I can write all my letters now.</li>
+        <li>[ha:line,theirs,!condolences,fam:close] We have heard so much about you that we feel we have met. We have not. Please fix that.</li>
+        <li>[ha:line,theirs,!condolences,fam:new] We do not know you yet, but we know the one writing this, and so we send our greetings too.</li>
+        <li>[ha:line,theirs,condolences] We are thinking of you, all of us. We do not know what else to put.</li>
+        <li>[ha:line,theirs,condolences] I did not know your friend. I am sorry all the same, and most of all for you.</li>
+        <li>[ha:line,theirs,!condolences,w:tribal] The small one says to tell you she has caught her first fish. She also says it was very big. It was not very big.</li>
+        <li>[ha:line,theirs,!condolences,w:tribal] The grandmother says: come and sit at our fire before you are as old as she is.</li>
+        <li>[ha:line,theirs,condolences,w:tribal] We sang for your dead too. The song is long enough for everyone.</li>
+        <li>[ha:line,theirs,!condolences,w:spacer] Adding a line from the next terminal over. Hello. The coffee here is terrible; please send better.</li>
+        <li>[ha:line,theirs,!condolences,w:industrial] Written on the back of a work docket, sorry. Hello from the yard.</li>
+        <li>[ha:line,ours,!condolences] I asked to add a line, and was given one. This is it. Hello from the kitchen.</li>
+        <li>[ha:line,ours,!condolences,fam:familiar|fam:close] We all read your letters, you know. Some of us more than once. I am one of those.</li>
+        <li>[ha:line,ours,!condolences] I am not much of a writer, so: hello, and good wishes, and please write back.</li>
+        <li>[ha:line,ours,!condolences,warmly] Whoever reads this at {TOWN}: you have friends here, even the ones who never write.</li>
+        <li>[ha:line,ours,condolences] We are sorry, all of us. I am adding my name so you know how many of us are sorry.</li>
+        <li>[ha:line,ours,!condolences,colony:children] The children want to know if there are children at {TOWN}, and what games they play.</li>
+        <li>[olde,ha:line,theirs,!condolences] I would add a line. Here it is. I had more, but another wanteth the pen.</li>
+        <li>[olde,ha:line,theirs,!condolences,fam:familiar|fam:close] Tell thy writer I have given over reading the hand, and do but enjoy the shapes.</li>
+        <li>[olde,ha:line,theirs,!condolences] I am the youngest, and so have the foot of the page. Greeting. I can write my letters now.</li>
+        <li>[olde,ha:line,theirs,condolences] We knew not thy friend, yet we grieve with thee, for thy sake.</li>
+        <li>[olde,ha:line,ours,!condolences] I add my greeting to the rest, and ask that thou write again soon.</li>
+        <li>[olde,ha:line,ours,condolences] We are sorry, every one of us, and set down our grief beside the rest.</li>
+        <li>[u:none,ha:line,!condolences] i rote this bit. its not much but its mine</li>
+        <li>[u:none,ha:line,!condolences,fam:familiar|fam:close] i like yor leters. the uthers read them to me</li>
+
+        <!-- ================= Round 2, part 2: more added lines ================= -->
+        <li>[ha:line,theirs,!condolences] The one writing this is too modest to say they stayed up half the night over it. So I am saying it.</li>
+        <li>[ha:line,theirs,!condolences,light] I have been asked to add something clever. I have nothing clever. Hello.</li>
+        <li>[ha:line,theirs,!condolences] My grandmother says to tell you she remembers when this was all fields. She says this to everyone. It is still all fields.</li>
+        <li>[ha:line,ours,!condolences,light] Someone has to keep this one honest. I have read the whole letter. Most of it is true.</li>
+        <li>[ha:line,ours,!condolences] Hello from the one who carries the letters to the gate. I am told that does not count as writing them, but I think it should.</li>
+        <li>[ha:line,ours,!condolences,colony:animals] The animals here send their regards, through me, since none of them can hold a pen. Some have tried.</li>
+
+        <!-- ================= Round 2, part 2: an unschooled line added ================= -->
+        <li>[u:none,ha:line,theirs,!condolences] i aded this bit myself. my bruther holds the pen rong</li>
       </plain>
     </lines>
   </ColonyCouncil.FlavorPoolDef>

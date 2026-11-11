@@ -3715,20 +3715,23 @@ condolence, a drinking song, a hymn, nonsense verse, a tribe's fire-song); a zea
 memes and precepts, a true believer's sermon or a crank's tract; a town that was really raided tells you how the raiders
 came, who stood where, what burned and who fell, exactly as the world's record has it (raiders still about, the town
 held, hurt or sacked, your own people on its walls), and with no raid on record only an old tale ("when I was small, the
-raiders came over the hill at harvest"); a raiding people boasts of the visit they paid you. There are tales of their
-town (a hunt, a feud, a wedding gone wrong, a ghost, a winter), a town's newsletter or a crier's roll or a tribe's season
-told, with only what is true there (a death, a new head, their war, a hard time, a caravan setting out for you),
-petitions signed with real names, lists and accounts, recipes and remedies (a remedy in place of the medicine they cannot
-send), riddles with the answer in their next letter, lines added by their family at home, a pressed sprig of a plant of
-their own land folded in, a diary page, or a letter broken off and taken up again the next morning. Each in the writer's
-own speech: a medieval ballad in thee and thou, an android's incident report of a raid, an unschooled bandit's boast. Your
-colony's own take some shapes too: a verse from a poet, a little preaching from a zealot, a note from a blunt writer,
-lines from the others at home, the cook's recipe, a petition for help signed by everyone, your own raid told to a friend
-as it happened. A long letter shows its first page in the game's letter; "Read the whole letter" on its card, or the
-Diplomacy screen's People, opens it a page at a time. *How long letters may get* sets how often the long ones come
-(Short, Mixed, Long and storied; Mixed by default). A letter you receive is drawn on paper on its event card, as the
-letter it is, with what it brings under it; "Write back" on its card, in the reading window and on the People page opens
-a letter back to them (the answer their letter waits for, or greetings).
+raiders came over the hill at harvest"); a raiding people boasts of the visit they paid you; bandits who fell on their
+wagons on the road are told as that, and a town your colony attacked tells you, coldly, what it was like on their side.
+There are tales of their town (a hunt, a feud, a wedding gone wrong, a ghost, a winter, a journey, a contest, a feast),
+a town's newsletter or a crier's roll or a tribe's season told or the Empire's gazette, with only what is true there (a
+death, a new head, their war, a hard time, a caravan setting out for you), petitions signed with real names, lists and
+accounts, recipes and remedies (a remedy in place of the medicine they cannot send), riddles with the answer in their
+next letter, lines added by their family at home, a pressed sprig of a plant of their own land folded in, a diary page,
+or a letter broken off and taken up again the next morning. Each in the writer's own speech: a medieval ballad in thee
+and thou, an android's incident report of a raid, an unschooled bandit's boast, a machine's recipe, a beast folk's song,
+a hive's hymn, an eldritch riddle, an Empire court's verse. Your colony's own take some shapes too: a verse from a poet,
+a little preaching from a zealot, a note from a blunt writer, lines from the others at home, the cook's recipe, a
+petition for help signed by everyone, your own raid told to a friend as it happened. A long letter shows its first page
+in the game's letter; "Read the whole letter" on its card, or the Diplomacy screen's People, opens it a page at a time.
+*How long letters may get* sets how often the long ones come (Short, Mixed, Long and storied; Mixed by default). A
+letter you receive is drawn on paper on its event card, as the letter it is, with what it brings under it; "Write back"
+on its card, in the reading window and on the People page opens a letter back to them (the answer their letter waits
+for, or greetings).
 
 **A correspondence that builds up.** Each exchange of letters with someone grows familiar as it goes on: how many letters
 have passed both ways, for how long, and how things stand (their regard, their people's goodwill, good turns, a war). A

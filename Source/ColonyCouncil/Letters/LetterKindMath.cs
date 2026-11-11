@@ -207,16 +207,18 @@ namespace ColonyCouncil
             [LetterKind.Long] = new[] { null, LetterFormMath.Olde },
             [LetterKind.Story] = new[] { null, LetterFormMath.Olde, LetterFormMath.NoSchool, LetterCultureMath.Beast, LetterCultureMath.Ancient },
             [LetterKind.Raid] = new[] { null, LetterFormMath.Olde, LetterFormMath.NoSchool, LetterCultureMath.Machine, LetterCultureMath.Beast },
-            [LetterKind.Poem] = new[] { null, LetterFormMath.Olde, LetterFormMath.NoSchool, LetterCultureMath.Fey, LetterCultureMath.Green, LetterCultureMath.Machine, LetterCultureMath.Ancient },
-            [LetterKind.Sermon] = new[] { null, LetterFormMath.Olde, LetterFormMath.NoSchool, LetterCultureMath.Deep },
+            [LetterKind.Poem] = new[] { null, LetterFormMath.Olde, LetterFormMath.NoSchool, LetterCultureMath.Fey, LetterCultureMath.Green, LetterCultureMath.Machine, LetterCultureMath.Ancient,
+                LetterCultureMath.Beast, LetterCultureMath.Hive, LetterCultureMath.Deep },
+            [LetterKind.Sermon] = new[] { null, LetterFormMath.Olde, LetterFormMath.NoSchool, LetterCultureMath.Deep, LetterCultureMath.Hive },
             [LetterKind.Chronicle] = new[] { null, LetterFormMath.Olde, LetterCultureMath.Machine, LetterCultureMath.Hive },
             [LetterKind.Petition] = new[] { null, LetterFormMath.Olde, LetterFormMath.NoSchool },
             [LetterKind.Account] = new[] { null, LetterFormMath.Olde, LetterFormMath.NoSchool, LetterCultureMath.Machine },
-            [LetterKind.Recipe] = new[] { null, LetterFormMath.Olde },
-            [LetterKind.Riddle] = new[] { null, LetterFormMath.Olde, LetterCultureMath.Fey, LetterCultureMath.Ancient },
+            [LetterKind.Recipe] = new[] { null, LetterFormMath.Olde, LetterCultureMath.Machine, LetterCultureMath.Green, LetterCultureMath.Beast },
+            [LetterKind.Riddle] = new[] { null, LetterFormMath.Olde, LetterCultureMath.Fey, LetterCultureMath.Ancient, LetterCultureMath.Machine, LetterCultureMath.Deep },
             [LetterKind.Hands] = new[] { null, LetterFormMath.Olde, LetterFormMath.NoSchool },
-            [LetterKind.Enclosure] = new[] { null, LetterFormMath.Olde, LetterFormMath.NoSchool, LetterCultureMath.Fey, LetterCultureMath.Beast },
-            [LetterKind.Diary] = new[] { null, LetterFormMath.Olde, LetterCultureMath.Ancient }
+            [LetterKind.Enclosure] = new[] { null, LetterFormMath.Olde, LetterFormMath.NoSchool, LetterCultureMath.Fey, LetterCultureMath.Beast, LetterCultureMath.Green,
+                LetterCultureMath.Machine, LetterCultureMath.Ancient, LetterCultureMath.Hive },
+            [LetterKind.Diary] = new[] { null, LetterFormMath.Olde, LetterCultureMath.Ancient, LetterCultureMath.Machine, LetterCultureMath.Beast, LetterCultureMath.Green }
         };
 
         /// <summary>Whether a shape has pieces in this writer's speech (the usual letter and the note in every speech; the ancient never write a bare note).</summary>
@@ -480,7 +482,7 @@ namespace ColonyCouncil
         /// <summary>The themes of a story told (each with its openings, turns and endings in Rimfolk_Pool_LetterStory).</summary>
         public static readonly string[] Themes =
         {
-            "st:hunt", "st:feud", "st:wedding", "st:ghost", "st:winter", "st:storm", "st:fair", "st:stranger", "st:harvest", "st:lost"
+            "st:hunt", "st:feud", "st:wedding", "st:ghost", "st:winter", "st:storm", "st:fair", "st:stranger", "st:harvest", "st:lost", "st:journey", "st:contest", "st:feast"
         };
 
         /// <summary>What a chronicle's items can be about, one item each (Rimfolk_Pool_LetterChronicle, ch:item and one of these).</summary>
@@ -704,8 +706,15 @@ namespace ColonyCouncil
                 if (roll() < (made == 0 ? 0.35f : 0.75f))
                 {
                     // A heading names what follows by ph: (the body's own lines are pa:), so a body never stands for a heading.
-                    string head = lines.Pick(LetterPart.Part, PieceTags(s, LetterKind.Long, "pa:head", order, "ph:" + bodies[i].Substring(3)));
-                    if (!string.IsNullOrEmpty(head)) part.Insert(0, head);
+                    // Never the same heading twice in one letter.
+                    var headTags = PieceTags(s, LetterKind.Long, "pa:head", order, "ph:" + bodies[i].Substring(3));
+                    string head = null;
+                    for (int k = 0; k < 3 && (head == null || seen.Contains(head)); k++)
+                    {
+                        string h = lines.Pick(LetterPart.Part, headTags);
+                        head = string.IsNullOrEmpty(h) ? null : Lines(h).Trim();
+                    }
+                    if (!string.IsNullOrEmpty(head) && seen.Add(head)) part.Insert(0, head);
                 }
                 foreach (var p in part)
                     foreach (var q in Paragraphs(p))

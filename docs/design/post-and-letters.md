@@ -168,6 +168,28 @@ and others should develop and be reflected in the messages".
 30. **Small and bounded**: one record a correspondent (60 at most), eight threads each, stale ones let go; the reading
     window says how it stands.
 
+### Round 2, part 2: the content pass
+
+The second content pass the player asked for with the shapes ("i just want a lot of variety, content and interesting
+writing"), and their words on voices the same day: medieval writers in thee and thou, strange races "experimentive with
+grammar", "how a stupid bandit could not spell words correctly".
+
+*Built (11 November 2026), not released yet: the pools of round 2, part 1 filled (about 1,020 lines more), three story
+themes and the strange voices' new shapes in `LetterKindMath.cs`; DESIGN.md "Letters of many shapes", part 2.*
+
+31. **More of every shape, every age**: stories of a journey, a contest and a feast besides the ten themes, medieval
+    parts for every theme; poems (laments, drinking songs, hymns, ballads, work and war songs, the peoples' own songs, the
+    Empire court's verse); sermons for every meme family; chronicles (a crier's roll, a tribe's season, the Empire's
+    gazette, a spacer's bulletin); recipes, riddles, petitions, accounts, enclosures, diaries, notes and long letters'
+    parts, by age (tribal, medieval, industrial, spacer) and by people (every calling's own days).
+32. **Raids as they really were**: bandits on their road (wagons, not walls) and the colony's own attack told from their
+    side, coldly, whole and by how it ended.
+33. **Voices**: medieval English kept to thee and thou; the unschooled spell badly and readably; the beast folk, plant
+    folk, machines, the hive, the ancient and the eldritch write poems, recipes, riddles, enclosures and diaries in their
+    own grammar.
+34. **Familiarity in the pieces**: lead-ins, codas, notes, enclosures, others' lines and diary entries for a new
+    correspondent, an old friend and a cooled one.
+
 ## Order of building
 
 Step 1, then step 2, one after another (same area); step 3 after both.
