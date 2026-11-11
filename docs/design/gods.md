@@ -352,13 +352,14 @@ most devout or most literate colonist, in their voice):
 
 "There should also be a god of the sun & moon, a cat god, the rain god, a god of gold." Added to the build in progress
 as gods 10 to 13 of `docs/gods-pantheon-brainstorm.md`:
-- `Rimfolk_God_Helios` and `Rimfolk_God_Selene`: the sun and the moon, two gods who were once one primordial light, torn
-  in two when the world began, chasing each other and meeting only in eclipse. The player first had one sun-and-moon god
-  (Dial, then Wake), then asked: "Can the moon & sun themselves not be some sort of duality gods that are
-  interwined?" Each one's favour stirs the other's jealousy, and a colony that keeps both day and night is blessed by
-  both. They have no names (the player: "any human style name doesn't really fit if they here since the dawn of
-  time"): people call them the Burning One and the Dreaming One, together the Torn Light, and each people has its own
-  words. Then at the player's word, the Greek words: Helios and Selene (keys "Helios" and "Selene").
+- `Rimfolk_God_Helios` and `Rimfolk_God_Selene`: the sun and the moon, Helios the Giver and Selene the Mirror, the Gift
+  and the Return. The concept went through one god (Dial, Wake), two torn halves (Noon and Lull, Ardent and Wane, the
+  nameless pair, Helios and Selene as the Torn Light), and then, at the player's word ("A new concept please with these
+  names"), this:
+  - Helios gives without looking and can't be bargained with.
+  - Selene, who has no light of her own, returns at night what was done by day, as much as her face shows.
+  - She loves him, and nobody knows if he knows.
+  - The eclipse is her stepping between him and the world.
 - `Rimfolk_God_Mog`: a grey cat on the map, plainly.
 - `Rimfolk_God_Murmur`: a vast toad of the wells and marshes whose song calls the rain.
 - `Rimfolk_God_Ducat`: gold that wants to move.

@@ -248,83 +248,57 @@ It gives exactly what was asked, and it always takes more than was agreed, slowl
 to have eaten a god once, long ago, whose bones are the old ruins of this world. A colony that bargains with it will
 find Hollin, Bellwether and the Guest turning away, and Pip, for once, very quiet.
 
-### 10. Helios and Selene, the Torn Light
-*The sun and the moon. Brother and Sister to the tribes, though nobody agrees which is which; the Pair to the medieval
-peoples; to industrial folk, "the sun and the moon, obviously"; to spacers, "a binary psychic phenomenon tied to the
-day cycle", which they log and don't believe.*
+### 10. Helios and Selene, the Gift and the Return
+*The sun and the moon, in the oldest words there are for them. The Giver and the Mirror. Father Fire and the Pale
+Sister to the tribes; the Gift and the Return to the medieval peoples; industrial folk point out that the moon only
+reflects the sun, and the old women nod and say "yes, that's the story"; to spacers, "a stellar emitter and its
+reflecting body", which is the story too.*
 
-**What they are.** Two gods who were once one. Before the world there was a single light, folded in on itself and
-asleep. When it woke, it tore in two, and the space between the halves became the world. The half that burns is the
-sun, and the half that dreams is the moon. They have chased each other across the sky ever since, each always just out
-of the other's sight.
+**How it began.** In the beginning Helios burned alone in an empty dark. His light went out in every direction and
+touched nothing, and nothing came back. Then it touched Selene, and for the first time something shone back. That
+returned light was the first thing ever seen, and from it the world began: the world is made of light that came back.
+Selene has no light of her own. Everything she shines is his.
 
-They are called by the oldest words there are for the sun and the moon: **Helios** and **Selene**. People also speak of
-them as the Burning One and the Dreaming One, and of the two together as **the Torn Light**. Every people has its own
-words for them besides.
-- Dawn and dusk are the only moments they glimpse each other, so twilight is holy to both.
-- An eclipse is when they finally meet. For those few minutes the world holds its breath, and nobody knows whether it
-  is an embrace or a quarrel. The oldest stories say it is both.
+**Helios, the Giver.** Vast, warm and blind to his own gifts. Helios gives without asking and without looking: growth,
+warmth, long days, the power in the colony's solar panels, the ripening in the fields. He faces outward forever and
+never sees what becomes of what he gives. You cannot bargain with him, thank him or offend him. You can only use his
+gift well or waste it.
+- His wrath is not anger. It is too much giving: a heat wave, a drought, a solar flare overflowing into the colony's
+  machines (Pip hates him for it).
+- His kindness is not a reward. It is simply a long clear growing season, given to everyone alike.
 
-**Helios, the Burning One.** Loud, warm, generous and impatient. Helios loves work done in daylight, boldness, growth, things that ripen
-and burn. When Helios attends, the sun stands still a moment too long and the shadows stop moving. Helios's favour is long
-clear days and fields that race toward harvest. A heat wave is Helios staring too hard. A long grey season is Helios
-sulking.
+**Selene, the Mirror.** Quiet, cool and attentive, and the only one who sees what Helios gives become something. She
+returns. At night, what was done in daylight comes back:
+- a kindness done by day returns as something found, a good dream, a wound healed by morning;
+- a cruelty done by day returns as a nightmare, a hard frost, a door that won't stay shut, an animal that comes back.
 
-**Selene, the Dreaming One.** Quiet, cool, patient and secret. Selene loves rest, sleep, mercy, things done gently and things kept hidden.
-When Selene attends, the moon rises huge and close and stays over the colony all night, and the dreams that night come
-true. Selene's favour is deep sleep, healing in the night, and a moon bright enough to work by when it matters. Selene's
-displeasure is sleeplessness, and nightmares that follow people into the day.
+She remembers everything Helios has ever lit.
 
-**From their names.** The player: "Great, now create something based on these names." The old words carry old
-stories, and Rimfolk's world keeps them in its own way.
+**Her face.** How much of the world's day she returns follows her face:
+- **Full:** she returns everything. Dreams are truest, consequences come home, the night watch sees farthest.
+- **Thin:** she returns a little.
+- **Dark:** she has turned her whole face toward Helios to look at him. Nothing returns, and the night belongs to
+  stranger things. Undertow's signs come easier in the dark of the moon.
 
-- **Helios sees everything under the sun.** He is the witness.
-  - **Oaths.** Whatever is done in daylight under the open sky, Helios saw. Oaths sworn outdoors at noon are the ones
-    that hold: a peace, a marriage match, a debt of honour, a promise to a neighbour. The peoples swear "by the open
-    sky" for that reason. A colony that breaks an oath sworn in the sun finds the next season harsher than it should
-    be, and its neighbours somehow know.
-  - **Secrets.** People hide things at night because Helios can't see in the dark, and the old stories say that is why
-    Selene's night exists at all.
-- **The sun's road.** Every day Helios drives the same road across the sky. The tribes say burning beasts pull him;
-  the medieval peoples say a chariot of gold; industrial folk say orbital mechanics, and then look up anyway. On the
-  longest day of the year his road is longest, and people who keep watch from dawn to dusk that day are said to be
-  given a little of his sight: they notice what others miss for a season.
-- **The Cattle of the Sun.** Somewhere a herd of tall, gentle cattle with gold-tipped horns grazes on the open land.
-  They are Helios's own, and he counts them every morning.
-  - They wander onto a map once in a long game, and graze through the colony's land for a few days.
-  - They are not to be touched. A colony that slaughters or steals one has the oldest story come true: its next
-    journey goes wrong (the caravan, the gravship voyage). Helios counts his herd, finds it short, and the road turns
-    against the travellers.
-  - A colony that guards them while they pass, and sees them safely off its land, has the long days of a good summer.
-- **Selene loves a sleeper.** In the oldest story she fell in love with a mortal shepherd, and could not bear that he
-  would age and die. So she asked that he sleep forever, unchanging, and she visits him every night. He sleeps still,
-  somewhere.
-  - **The ancient sleepers.** Because of him, the sleepers are hers. The ancient cryptosleep caskets in the world's old
-    places, with their sleepers who never woke, are said to be her keeping. Opening one is taking something from
-    Selene, and the one who does it dreams of her, sadly, for nights after.
-  - **The sleeping colony.** A colonist in a long coma, or deep in cryptosleep, is under her eye. Those who sleep well
-    and long are her favourites. A colony that keeps its people rested has her quiet blessing: wounds that heal by
-    morning, dreams that warn.
-- **The moon's face.** Selene's face changes through the season: thin, half, full, gone. On her full nights the dreams
-  are truest and the night watch sees farthest. On her dark nights she is away visiting her sleeper, and the night
-  belongs to stranger things.
-- **Sight and secret.** Helios sees everything in the day, and Selene keeps everything at night. That is the oldest
-  quarrel in the Torn Light: he would know everything, and she would keep some things hidden. Every eclipse, when they
-  meet, they argue it again, and nobody knows who wins.
+**Intertwined.** She loves him. Whether he knows she exists, nobody can say: he faces the world, and she is always
+behind him or across from him, catching what he gives and giving it back.
+- **The eclipse.** Once in a long while she steps between him and the world. For a few minutes the world sees what she
+  sees: his light, and the dark behind it. Then she steps away again. The old stories say that is the only time Helios
+  ever looks back, and that it is why he burns so hot afterward.
+- **Without each other.** Without Helios, Selene is dark. Without Selene, Helios's light goes out into nothing and
+  nothing is ever seen.
 
-**Intertwined.** Neither can be pleased alone, because each is jealous of the other's share of the world.
-- **A colony of the day** (working through the night under lamps, never resting, never looking up at the moon) has
-  Helios's warmth and Selene's coldness: restless nights, bad dreams, wounds slow to heal.
-- **A colony of the night** (sleeping late, working by lamplight, hiding from the sun) has Selene's quiet and Helios's
-  sulk: grey days, slow fields.
-- **The colony that keeps both:** works by day, rests by night, and stops to watch the sun go down and the moon come
-  up. It is the one both remember kindly. Those who keep vigil at dawn and dusk are noticed by both at once.
+**Who they notice.** Helios notices nothing and gives to all. Selene notices those who keep the night:
+- watchers on the walls;
+- those who sleep under the open sky;
+- those who tell at breakfast what they dreamed;
+- above all, those whose day was worth returning.
 
 **With the others.**
-- Cirrus drifts between them and the world, and both resent it.
-- Hush's long winter nights are Selene's season and Helios's exile.
+- Cirrus drifts between them and the world and blurs the gift.
+- Hush's long winter nights are Selene's long season, and Helios's distance.
 - Pip hates Helios's flares.
-- Mog sleeps in Helios's sunbeams and hunts by Selene's light, and belongs to neither.
+- Mog sleeps in Helios's sunbeams, hunts by Selene's light, and belongs to neither.
 
 ### 11. Mog
 *the Cat, to everyone; the Grey Lady of the Hearth to the medieval peoples; to the tribes, Whiskers-in-the-Dark.*
@@ -423,8 +397,8 @@ Walking it's said plainly. Colonists talk of it at supper, and neighbours write 
 | Wanderer joins, refugee pod, a stranger asking shelter | the Guest |
 | Solar flare, short circuits, machines failing or running unpowered | Pip |
 | Meteorite, aurora, flashstorm, cargo pods falling | Cirrus |
-| Solar flare, heat wave, a long clear growing season, a long grey season | Helios |
-| A huge moon, dreams that come true, nights of sleeplessness and nightmares | Selene |
+| Solar flare, heat wave, drought, a long clear growing season | Helios |
+| A full moon's night, dreams that come true, a kindness or a cruelty coming back at night | Selene |
 | Eclipse | Helios and the Dreaming One, meeting |
 | A cat wanders in, a run of small luck for one colonist | Mog |
 | Rain after dry weeks, drought, a flood | Murmur |
