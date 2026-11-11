@@ -31,6 +31,18 @@ When you load a save after an update, a letter lists the newest round once. The 
     <rounds>
 
       <li>
+        <version>0.208.0</version>
+        <date>11 November 2026</date>
+        <title>A thermometer at a glance</title>
+        <points>
+          <li>A small thermometer now stands beside the game's temperature at the bottom right, filled to the temperature and coloured from deep blue in killing cold, through white where your colonists are comfortable, to deep red in killing heat.</li>
+          <li>Hover it to see the temperature in a word, from killing cold to killing heat, and your colonists' comfortable range.</li>
+          <li>The outdoor temperature on the vitals panel has the same thermometer and colours, in both looks.</li>
+          <li>The setting "The game's temperature in colour" turns it off.</li>
+        </points>
+      </li>
+
+      <li>
         <version>0.207.0</version>
         <date>11 November 2026</date>
         <title>Camps in the coldest winter</title>

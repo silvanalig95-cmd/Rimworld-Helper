@@ -5,6 +5,15 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## A thermometer at a glance
+
+*11 November 2026, version 0.208.0*
+
+- A small thermometer now stands beside the game's temperature at the bottom right, filled to the temperature and coloured from deep blue in killing cold, through white where your colonists are comfortable, to deep red in killing heat.
+- Hover it to see the temperature in a word, from killing cold to killing heat, and your colonists' comfortable range.
+- The outdoor temperature on the vitals panel has the same thermometer and colours, in both looks.
+- The setting "The game's temperature in colour" turns it off.
+
 ## Camps in the coldest winter
 
 *11 November 2026, version 0.207.0*

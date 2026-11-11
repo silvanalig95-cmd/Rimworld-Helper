@@ -1,4 +1,3 @@
-using System.Globalization;
 using System.Text.RegularExpressions;
 using ColonyCouncil;
 
@@ -59,49 +58,19 @@ public static class HudTemperatureTests
         C(HudRank.Band(float.NaN, lo, hi) == TemperatureBand.Comfortable, "an unknown temperature is not coloured as a danger");
         C(HudRank.Band(20f, float.NaN, float.NaN) == TemperatureBand.Comfortable, "an unknown comfort range is the human one");
 
-        // ---------- The colours ----------
+        // ---------- The colours: the one temperature scale (TemperatureScaleTests), the same as the game's readout ----------
         string src = Path.Combine(root, "Source", "ColonyCouncil");
         string kit = File.ReadAllText(Path.Combine(src, "Hud", "HudKit.cs"));
-        var scale = Regex.Match(kit, @"TemperatureScale =\s*\{(?<body>[^}]*)\}");
-        C(scale.Success, "the scale is one list in HudKit");
-        var entries = scale.Success ? Regex.Split(scale.Groups["body"].Value.Trim(), @",\s*(?=new Color|UiKit\.)") : Array.Empty<string>();
-        C(entries.Length == Enum.GetValues<TemperatureBand>().Length, $"a colour for each band ({entries.Length})");
-        if (entries.Length == 10)
-        {
-            C(entries[5].Trim() == "UiKit.Warm" && entries[8].Trim() == "UiKit.Soon" && entries[9].Trim() == "UiKit.Sour",
-                "comfortable is the interface's green, very hot and deadly heat the orange and red the row itself turns");
-            // The dark look (HudKit.Background) over a dark map, as text on it: at least 4.5 to 1.
-            double Lin(double c) => c <= 0.04045 ? c / 12.92 : Math.Pow((c + 0.055) / 1.055, 2.4);
-            double Lum(double[] c) => 0.2126 * Lin(c[0]) + 0.7152 * Lin(c[1]) + 0.0722 * Lin(c[2]);
-            var panel = new[] { 0.1 * 0.74 + 0.08 * 0.26, 0.11 * 0.74 + 0.08 * 0.26, 0.12 * 0.74 + 0.08 * 0.26 };
-            var rgb = new List<double[]>();
-            for (int i = 0; i < 10; i++)
-            {
-                var m = Regex.Match(entries[i], @"new Color\((?<r>[\d.]+)f, (?<g>[\d.]+)f, (?<b>[\d.]+)f\)");
-                if (!m.Success) continue;
-                var c = new[] { double.Parse(m.Groups["r"].Value, CultureInfo.InvariantCulture), double.Parse(m.Groups["g"].Value, CultureInfo.InvariantCulture),
-                    double.Parse(m.Groups["b"].Value, CultureInfo.InvariantCulture) };
-                double ratio = (Lum(c) + 0.05) / (Lum(panel) + 0.05);
-                C(ratio >= 4.5, $"{(TemperatureBand)i} reads on the dark look over a dark map ({ratio:0.0} to 1)");
-                rgb.Add(c);
-            }
-            C(rgb.Count == 7, "seven colours of the scale's own, three the interface's");
-            if (rgb.Count == 7)
-            {
-                C(rgb.Take(4).All(c => c[2] > c[0] + 0.4), "the four coldest are blues and cyan (much more blue than red)");
-                C(rgb[0][1] < rgb[1][1] && rgb[1][1] < rgb[2][1] && rgb[2][1] < rgb[3][1], "from deep blue to cyan, lighter each step");
-                C(rgb[4][1] > rgb[4][0] + 0.4 && rgb[4][2] > rgb[4][0], "cool is a blue-green, between the cold and the green");
-                C(rgb[5][0] > 0.75 && rgb[5][1] > 0.75 && rgb[5][2] < 0.5 && rgb[6][0] > rgb[6][1] && rgb[6][2] < 0.3, "warm a yellow-green, hot a yellow");
-            }
-        }
+        C(!kit.Contains("TemperatureScale =") && !kit.Contains("TemperatureColor("), "the panels keep no scale of their own: the value takes the temperature scale's colour");
 
         // ---------- On the panel ----------
         string vitals = File.ReadAllText(Path.Combine(src, "Hud", "HudVitals.cs"));
         string lines = File.ReadAllText(Path.Combine(src, "Hud", "HudLines.cs"));
-        C(vitals.Contains("var band = HudRank.Band(t, humanMin, humanMax);") && vitals.Contains("line.valueColor = HudKit.TemperatureColor(band);"),
-            "the value takes its band's colour");
+        C(vitals.Contains("var band = HudRank.Band(t, TemperatureScale.HumanMin, TemperatureScale.HumanMax);") && vitals.Contains("line.valueColor = TemperatureScale.Of(t);"),
+            "the value takes the temperature scale's colour, the tooltip its band's word");
         C(vitals.Contains("HudRank.Temperature(t)"), "the row still turns orange and red as before");
-        C(vitals.Contains("ThingDefOf.Human") && vitals.Contains("StatDefOf.ComfyTemperatureMin") && vitals.Contains("StatDefOf.ComfyTemperatureMax"),
+        string scaleSrc = File.ReadAllText(Path.Combine(src, "Hud", "TemperatureScale.cs"));
+        C(scaleSrc.Contains("ThingDefOf.Human") && scaleSrc.Contains("StatDefOf.ComfyTemperatureMin") && scaleSrc.Contains("StatDefOf.ComfyTemperatureMax"),
             "the scale is set around the game's own human comfort range");
         C(vitals.Contains("p.ComfortableTemperatureRange()") && vitals.Contains("FreeColonistsSpawned"), "the tooltip asks the game how comfortable each colonist is, dressed as they are");
         C(vitals.Contains("t.ToStringTemperature(\"F0\")"), "the value in the player's own unit");

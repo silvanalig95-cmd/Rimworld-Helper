@@ -614,6 +614,8 @@ namespace ColonyCouncil
             Toggle("needsTabHints", "CC_Settings_NeedsTabHints", "CC_SetNote_NeedsTabHints", "moodInsight");
             // Which things have the wrong style for a colonist's ideoligion (Moods/StyleSurroundings.cs, with Ideology).
             Toggle("styleNotes", "CC_Settings_StyleNotes", "CC_SetNote_StyleNotes", "deepHooks");
+            // The game's temperature readout at the bottom right in colour (Hud/Patch_TemperatureReadout.cs).
+            Toggle("tempReadoutColour", "CC_Settings_TempReadoutColour", "CC_SetNote_TempReadoutColour", "deepHooks");
             Toggle("heartInspector", "CC_Settings_HeartInspector", "CC_SetNote_HeartInspector", "heart");
             Toggle("socialTabColumn", "CC_Settings_SocialTabColumn", "CC_SetNote_SocialTabColumn", "deepHooks");
             Section("CC_Settings_Alerts");

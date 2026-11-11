@@ -29,6 +29,11 @@ namespace ColonyCouncil
         /// value white, or orange or red when the line matters.
         /// </summary>
         public Color? valueColor;
+        /// <summary>
+        /// The icon as a thermometer filled to this share (0 to 1) in the value's colour, the same as beside the game's own
+        /// temperature line (Hud/Thermometer.cs: the outdoor temperature); below 0, the line's icon.
+        /// </summary>
+        public float thermo = -1f;
 
         // Rimfolk's own look (Hud/Look/HudLinesLook.cs): a value with a range as a bar beside it, made when gathered.
         /// <summary>The bar's share (days of food against the warning line, medicine against the advisor's, research done); below 0 for none.</summary>
@@ -139,7 +144,8 @@ namespace ColonyCouncil
                 if (Over(row)) Widgets.DrawBoxSolid(row, UiKit.CardHover);
                 var c = l.Color;
                 float x = row.x + 2f;
-                if (l.icon != null) UiKit.Icon(new Rect(x, row.y + (rh - icon) / 2f, icon, icon), l.icon, level >= HudLevel.Soon ? c : UiKit.WithAlpha(UiKit.HeaderColor, 0.85f));
+                if (l.thermo >= 0f && Thermometer.Ready) Thermometer.Draw(new Rect(x, row.y + 1f, icon, rh - 2f), l.thermo, l.ValueColor);
+                else if (l.icon != null) UiKit.Icon(new Rect(x, row.y + (rh - icon) / 2f, icon, icon), l.icon, level >= HudLevel.Soon ? c : UiKit.WithAlpha(UiKit.HeaderColor, 0.85f));
                 x += icon + Mathf.Round(5f * s);
                 if (compact)
                 {

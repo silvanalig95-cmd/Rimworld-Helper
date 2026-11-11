@@ -29,11 +29,10 @@ namespace ColonyCouncil
         private float seasonTemp;
 
         // The colonists' own comfort ranges, dressed as they are (the game's, which its cold and hot moods use), taken
-        // once a rare tick; and the human comfort range the scale is set around.
+        // once a rare tick. The human comfort range the scale is set around is TemperatureScale's.
         private int comfortTick = -1;
         private Map comfortMap;
         private readonly System.Collections.Generic.List<FloatRange> comfort = new System.Collections.Generic.List<FloatRange>();
-        private static float humanMin = float.NaN, humanMax = float.NaN;
 
         public HudVitals() : base(HudLayout.Vitals)
         {
@@ -125,9 +124,10 @@ namespace ColonyCouncil
         }
 
         /// <summary>
-        /// The outdoor temperature, its value coloured by where it sits on the scale (HudRank.Band, around the game's
-        /// human comfort range), the row orange or red as before; the tooltip names the band and says how the colonists on
-        /// the map, dressed as they are, would find it.
+        /// The outdoor temperature, its value coloured on the temperature scale from deep blue to deep red (TemperatureScale,
+        /// around the game's human comfort range: the same colours as the game's own readout), the row orange or red as
+        /// before; the tooltip names its band (HudRank.Band) and says how the colonists on the map, dressed as they are,
+        /// would find it.
         /// </summary>
         private void Temperature(Map map)
         {
@@ -153,8 +153,7 @@ namespace ColonyCouncil
                 seasonLine = "CC_Pnl_SeasonIn".Translate(SeasonUtility.LabelCap(nextSeason), seasonDays).Resolve();
                 text = seasonLine;
             }
-            HumanComfort();
-            var band = HudRank.Band(t, humanMin, humanMax);
+            var band = HudRank.Band(t, TemperatureScale.HumanMin, TemperatureScale.HumanMax);
             string tip = "CC_Pnl_TempTip".Translate(t.ToStringTemperature("F0"), HudKit.T("CC_Pnl_TempBand_" + band)).Resolve();
             string colonists = ColonistsComfort(t);
             if (colonists != null) tip += "\n" + colonists;
@@ -165,28 +164,9 @@ namespace ColonyCouncil
                     var ps = Find.PlaySettings;
                     if (ps != null) ps.showTemperatureOverlay = !ps.showTemperatureOverlay;
                 });
-            line.valueColor = HudKit.TemperatureColor(band);
-        }
-
-        /// <summary>The human comfort range from the game (the Human def's own, which its warm-clothes alert uses too), once; else the base game's.</summary>
-        private static void HumanComfort()
-        {
-            if (!float.IsNaN(humanMin)) return;
-            humanMin = HudRank.HumanComfyMin;
-            humanMax = HudRank.HumanComfyMax;
-            try
-            {
-                var human = ThingDefOf.Human;
-                if (human == null) return;
-                humanMin = human.GetStatValueAbstract(StatDefOf.ComfyTemperatureMin);
-                humanMax = human.GetStatValueAbstract(StatDefOf.ComfyTemperatureMax);
-            }
-            catch (Exception e)
-            {
-                humanMin = HudRank.HumanComfyMin;
-                humanMax = HudRank.HumanComfyMax;
-                CouncilLog.ErrorOnce("vitals: the human comfort range", e);
-            }
+            line.valueColor = TemperatureScale.Of(t);
+            // Its icon the same thermometer as beside the game's own temperature line, filled to the temperature.
+            line.thermo = TemperatureScale.Level(t);
         }
 
         /// <summary>Each free colonist's comfort range on the map, dressed as they are.</summary>
