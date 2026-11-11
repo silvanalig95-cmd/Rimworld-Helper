@@ -43,6 +43,14 @@ tree at once, alongside whatever runs. Each piece is merged as its own release, 
   8. The Republic 71 to 74; the Fleet 75 to 78; the Helix Works 79 to 82.
   9. The Lattice 84, 85, 86; the Choir 87 to 90; the Vault 91 to 94.
   10. Between peoples 96 to 99; every people's art handed on, 100.
+- **To do when the player asks (11 November 2026): the temperature on a coloured field.** The player, with a picture of
+  0.208.0's readout (the small blue thermometer beside "Indoors -4C"): "great start! I'd just like a larger surface
+  that's colored so it's more clearly visible, perhaps behind the text could be a colored background around the size
+  of the field or so". When asked: behind the game's temperature line (`Hud/` the thermometer patch on
+  `GlobalControls.GlobalControlsOnGUI`, `TemperatureScaleMath`), a rounded field the width of the line's text and a
+  little more, filled in the scale's colour (strong enough to read at a glance, the words kept legible on it: dark or
+  light text by the fill, or a soft edge), the thermometer kept at its left; the vitals panel's outdoor temperature the
+  same where it has room; both looks; the setting unchanged.
 - **To do when the player asks (11 November 2026): calling in a favour, made clear.** The player, with a picture of the
   letter window's "Ask for" list on a debt owed by "Acraeraes of Karond-Keth 2, a trader who called" (five loads of
   goods, some forty "A word for the colony with ... (a kind one)", a captive, peace, fighters): "this favour menu is also
