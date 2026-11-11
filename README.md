@@ -3170,7 +3170,10 @@ medieval things). Many ask the council what to do, with a day or so to answer.
   gathering wild plants, making something at their spot, mending their camp) and the evening talking by the fire. They
   take only what's wild and plain, never anything of yours (buildings, machinery, stockpiled or forbidden things, crops,
   animals, your home area and zones), no ore and nothing worth more than plain stone. Enemies at their camp, those with
-  weapons defend it; an allied people fights beside you. They trade, sometimes help, and may ask to join. Going in their
+  weapons defend it; an allied people fights beside you. Only a real attack sends them off (raiders, a people at war with
+  theirs, the colony harming one of them on purpose): a beast taking revenge for their hunt, a manhunter, a predator, an
+  insect or a stray shot meant for an enemy of both is fought off by those who can fight, by their fire, while the rest
+  keep clear, and the camp stays. They trade, sometimes help, and may ask to join. Going in their
   own time, they pack their bedrolls, tents and furniture on the map in their last hours and leave their walls, huts and
   fire pit standing, nobody's (the penitents, the tree-singers and deserters take theirs down; the Banner's squad leaves
   its post to you); a good stay can leave a woodpile, hides, a cairn or a gift, a sour or hurried one refuse, offal that
