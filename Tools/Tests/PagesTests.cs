@@ -153,7 +153,7 @@ public static class PagesTests
         foreach (var kv in PagesMath.Lenses)
             C(names.Contains(kv.Key) && kv.Value.Length <= PagesMath.MaxLenses && kv.Value.Distinct().Count() == kv.Value.Length, $"{kv.Key} has at most {PagesMath.MaxLenses} lenses, each once");
         C(PagesMath.LensesOf("Map").SequenceEqual(RegionViewsMath.Lenses.Select(l => l.ToString())), "the map's lenses by address are the lens bar's, in its order");
-        C(Same(PagesMath.ModesOf("Map"), "Map", "List") && Same(PagesMath.ModesOf("Peoples"), "Peoples", "Faces"), "Map or List; Peoples or Faces");
+        C(Same(PagesMath.ModesOf("Map"), "Map", "List") && Same(PagesMath.ModesOf("Peoples"), "Peoples", "Faces", "Gods"), "Map or List; Peoples, Faces or Gods");
         C(PagesMath.ModesOf("HereAndAway").Length == 0 && PagesMath.ModesOf("WorldHistory").Length == 0, "Here and away and History have no modes (History's scope is its filter)");
         foreach (var kv in PagesMath.MovedFilters) C(PagesMath.Moved.ContainsKey(kv.Key), $"the old name {kv.Key} that is a filter now also leads to its page");
 

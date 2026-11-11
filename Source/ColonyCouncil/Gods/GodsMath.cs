@@ -193,8 +193,9 @@ namespace ColonyCouncil
             }
             W(GodDomain.Harvest, 1f, "harvest", "harvests", "grain", "grains", "crop", "crops", "field", "fields", "bread", "sower", "sowing", "seed", "seeds",
                 "fertility", "plenty", "abundance", "barley", "wheat", "corn", "rice", "farm", "farming", "farmer", "plough", "plow", "sheaf", "orchard", "fruit",
-                "granary", "ranching", "tea", "coffee", "sweetness");
+                "granary", "tea", "coffee", "sweetness");
             W(GodDomain.Harvest, 0.6f, "rain", "rains", "summer", "sun");
+            W(GodDomain.Harvest, 0.4f, "ranching");
             W(GodDomain.Storm, 1f, "storm", "storms", "thunder", "lightning", "sky", "skies", "wind", "winds", "weather", "tempest", "hail", "gale", "cloud",
                 "clouds", "heavens", "heaven", "sun");
             W(GodDomain.Storm, 0.4f, "rain", "rains");
@@ -534,8 +535,8 @@ namespace ColonyCouncil
         /// The domains of the two or three gods Rimfolk's makers give a people with no faith to read (no Ideology, or a faith
         /// that names no god but holds the world alive: animist spirits, archist minds): the age's leanings, raiders' war and
         /// night, and the land round their towns (forest: the wild; desert: storm and harvest; ice: night and storm; marsh:
-        /// waters and the dead; a river or the coast: waters). <paramref name="count"/> 0 picks two or three by the seed
-        /// (three more often in the older ages).
+        /// waters and the dead; a river or the coast: waters). Raiders always have a god of war. <paramref name="count"/> 0
+        /// picks two or three by the seed (three more often in the older ages).
         /// </summary>
         public static List<GodDomain> MakerDomains(int age, bool raiders, string biome, bool water, int seed, int count = 0)
         {
@@ -543,16 +544,19 @@ namespace ColonyCouncil
             foreach (var d in Domains) w[d] = AgeLean(age, d);
             if (raiders)
             {
-                w[GodDomain.War] += 3f;
                 w[GodDomain.Night] += 1f;
                 w[GodDomain.Void] += 0.5f;
                 w[GodDomain.Hearth] *= 0.5f;
             }
-            foreach (var (d, b) in BiomeLean(biome)) w[d] += b;
-            if (water) w[GodDomain.Waters] += 2f;
+            foreach (var (d, b) in BiomeLean(biome)) w[d] += b * 1.5f;
+            if (water) w[GodDomain.Waters] += 3f;
+            // The age's own god counts more (the machine of spacers, the hunt and the wild of tribes).
+            var top = Domains.OrderByDescending(d => AgeLean(age, d)).First();
+            w[top] += 1.5f;
             if (count <= 0) count = Roll(seed, 3) < (age <= 1 ? 0.6f : 0.35f) ? 3 : 2;
             var picked = new List<GodDomain>();
-            for (int i = 0; i < count; i++)
+            if (raiders) picked.Add(GodDomain.War);
+            for (int i = 0; picked.Count < count; i++)
             {
                 var pool = Domains.Where(d => !picked.Contains(d) && w[d] > 0f).ToList();
                 if (pool.Count == 0) break;
@@ -881,13 +885,18 @@ namespace ColonyCouncil
         /// <summary>A god with no worshippers fades; after this many days faded it is a dead god.</summary>
         public const int FadingToDeadDays = 120;
 
-        /// <summary>The kind a god has now by whether anyone holds it and how long since anyone did (a lore kind stays).</summary>
+        /// <summary>
+        /// The kind a god has now by whether anyone holds it and how long since anyone did: one nobody holds fades, and in time
+        /// falls silent (a dead god); one taken up again comes back to its own kind (an ordinary god for one that was always
+        /// faded or dead: the old ones of the old places). A god whose own kind is fading stays fading while nobody holds it,
+        /// and the lore's own (the Hunger, the Sleeper) keep theirs.
+        /// </summary>
         public static GodKind KindNow(GodKind kind, GodKind own, bool worshipped, int daysSinceWorship)
         {
             if (kind == GodKind.Fading || kind == GodKind.Dead)
             {
                 if (worshipped) return own == GodKind.Fading || own == GodKind.Dead ? GodKind.Ordinary : own;
-                return kind == GodKind.Fading && daysSinceWorship >= FadingToDeadDays ? GodKind.Dead : kind;
+                return kind == GodKind.Fading && own != GodKind.Fading && daysSinceWorship >= FadingToDeadDays ? GodKind.Dead : kind;
             }
             if (worshipped) return kind;
             // The lore's own (the Hunger, the Sleeper) keep theirs even with their people gone.
