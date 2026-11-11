@@ -36,6 +36,8 @@ namespace ColonyCouncil
         private static float builtAt = -10f;
         private static int builtVersion = -1;
         private static readonly List<God> ours = new List<God>(), known = new List<God>(), rumours = new List<God>();
+        /// <summary>Each home's patron (its god's id), worked out with the rest.</summary>
+        private static readonly Dictionary<int, int> patrons = new Dictionary<int, int>();
 
         private static void Refresh()
         {
@@ -56,9 +58,15 @@ namespace ColonyCouncil
             }
             known.Sort((a, b) => Gods.FavourValue(b, map).CompareTo(Gods.FavourValue(a, map)));
             rumours.Sort((a, b) => a.domain.CompareTo(b.domain));
+            patrons.Clear();
+            foreach (var home in Homes.All.Count > 0 ? Homes.All.ToList() : new List<Map> { map })
+                patrons[Gods.HomeKey(home)] = Gods.Patron(home)?.id ?? -1;
             if (chosen == NoneChosen) chosen = Gods.Patron(map)?.id ?? ours.FirstOrDefault()?.id ?? Whole;
             else if (chosen != Whole && Gods.ById(chosen) == null) chosen = Whole;
         }
+
+        /// <summary>The colony's patron at a home (as worked out this second).</summary>
+        private static bool IsPatron(God g, Map home) => g != null && patrons.TryGetValue(Gods.HomeKey(home), out int id) && id == g.id;
 
         /// <summary>The home the page speaks of: the colony in view's, else the seat.</summary>
         private static Map Home => Find.CurrentMap != null && Homes.IsHome(Find.CurrentMap) ? Find.CurrentMap : Homes.Seat;
@@ -193,8 +201,7 @@ namespace ColonyCouncil
             }
             else
             {
-                bool patron = Gods.Patron(map) == g;
-                if (patron)
+                if (IsPatron(g, map))
                 {
                     UiKit.Icon(new Rect(right - 14f, r.y + 5f, 14f, 14f), GodSymbols.Pantheon, UiKit.Gold);
                     right -= 18f;
@@ -422,7 +429,7 @@ namespace ColonyCouncil
             foreach (var home in homes.Count > 0 ? homes.ToList() : new List<Map> { map })
             {
                 var word = Gods.Favour(g, home);
-                bool patron = Gods.Patron(home) == g;
+                bool patron = IsPatron(g, home);
                 string place = homes.Count > 1 ? Homes.Name(home) : "CC_God_TheColony".Translate().CapitalizeFirst();
                 string line = "CC_Gods_FavourLine".Translate(place.Named("HOME"), GodWords.Word(word).Named("WORD")).Resolve();
                 UiKit.LabelFit(new Rect(0f, y, w * 0.6f, 20f), line, GodWords.WordColor(word));

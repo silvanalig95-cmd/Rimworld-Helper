@@ -214,6 +214,10 @@
   <CC_God_KnownFrom_letter>from the letters of {PEOPLE}</CC_God_KnownFrom_letter>
   <CC_God_KnownFrom_visitors>from {PEOPLE} on its land</CC_God_KnownFrom_visitors>
   <CC_God_KnownAct>the colony came to know of it {FROM}</CC_God_KnownAct>
+  <CC_God_KnownPeopleNews_neighbours>The colony's neighbours among {PEOPLE} have spoken of the gods they keep: {GODS}.</CC_God_KnownPeopleNews_neighbours>
+  <CC_God_KnownPeopleNews_visitors>{PEOPLE} on the colony's land have spoken of the gods they keep: {GODS}.</CC_God_KnownPeopleNews_visitors>
+  <CC_God_KnownPeopleNews_letter>A letter of {PEOPLE} speaks of the gods they keep: {GODS}.</CC_God_KnownPeopleNews_letter>
+  <CC_God_KnownPeopleNews_faith>The colony keeps the gods of {PEOPLE}: {GODS}.</CC_God_KnownPeopleNews_faith>
   <CC_God_KnownNews>The colony has heard of {GOD}, {GODOF}, {FROM}.</CC_God_KnownNews>
 
   <!-- Vows (stage 2 makes them; Gods.Vow, Gods.EndVow). -->
@@ -222,9 +226,9 @@
   <CC_God_VowBroken>{PAWN} broke a vow: {WHAT}</CC_God_VowBroken>
 
   <!-- The first favour sources (Gods/GodDeeds.cs), as the gods' acts and the news say them. -->
-  <CC_God_Deed_Harvest>a big harvest brought in at {HOME}</CC_God_Deed_Harvest>
-  <CC_God_Deed_Threat>a threat beaten off at {HOME}</CC_God_Deed_Threat>
-  <CC_God_Deed_DeadLying>{COUNT} of the dead left lying unburied at {HOME}</CC_God_Deed_DeadLying>
+  <CC_God_Deed_Harvest>a big harvest brought in</CC_God_Deed_Harvest>
+  <CC_God_Deed_Threat>a threat beaten off</CC_God_Deed_Threat>
+  <CC_God_Deed_DeadLying>{COUNT} of the dead left lying unburied</CC_God_Deed_DeadLying>
   <CC_God_Deed_GreatBeast>the {BEAST} brought down by {WHO}</CC_God_Deed_GreatBeast>
   <CC_God_Deed_SacredSlaughtered>a {KIND}, sacred to the gods of {WHAT}, slaughtered by {WHO}</CC_God_Deed_SacredSlaughtered>
   <CC_God_Deed_SacredHunted>a {KIND}, sacred to the gods of {WHAT}, hunted down by {WHO}</CC_God_Deed_SacredHunted>

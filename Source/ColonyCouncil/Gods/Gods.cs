@@ -101,7 +101,7 @@ namespace ColonyCouncil
             return list;
         }
 
-        /// <summary>The god the colony stands best with at this home (from noticed up), or null: "the colony's patron".</summary>
+        /// <summary>The god the colony knows and stands best with at this home (from noticed up), or null: "the colony's patron".</summary>
         public static God Patron(Map home)
         {
             var b = Book;
@@ -114,7 +114,8 @@ namespace ColonyCouncil
             {
                 if (s == null || s.home != key) continue;
                 var g = b.ById(s.god);
-                if (g == null) continue;
+                // Only a god the colony knows can be its patron.
+                if (g == null || !g.known) continue;
                 float v = b.ValueNow(g, key) + (mine.Contains(g) ? 0.01f : 0f);
                 if (!GodsMath.PatronWorthy(v) || v <= most) continue;
                 most = v;
@@ -176,7 +177,8 @@ namespace ColonyCouncil
                             god = other.id, other = g.id, home = key, tick = Now, kind = GodActKind.Favour, favour = s,
                             text = (s < 0f ? "CC_God_SpillAct_Against" : "CC_God_SpillAct_With").Translate(g.name.Named("OTHER"), GodWords.TieWord(t.kind).Named("TIE")).Resolve()
                         });
-                    if (ob != oa) Tell(other, home, oa, null);
+                    if (ob != oa)
+                        Tell(other, home, oa, (s < 0f ? "CC_God_SpillAct_Against" : "CC_God_SpillAct_With").Translate(g.name.Named("OTHER"), GodWords.TieWord(t.kind).Named("TIE")).Resolve());
                 }
             }
             catch (Exception e)
@@ -361,11 +363,16 @@ namespace ColonyCouncil
                 ColonyCouncil.Tell.Minor(NewsKind.World, Importance.Flavor, null, "CC_God_KnownNews".Translate(FullName(g).Named("GOD"), AGodOf(g).Named("GODOF"), from.Named("FROM")).Resolve(), null);
         }
 
-        /// <summary>The colony learns the gods of a people (their letter named one, they came to the gate).</summary>
-        public static void Learn(Faction f, string how)
+        /// <summary>The colony learns the gods of a people (their people known by name, they came to the gate): one line in the news for them all.</summary>
+        public static void Learn(Faction f, string how, bool tell = true)
         {
-            if (f == null || f.IsPlayer) return;
-            foreach (var g in Of(f)) Learn(g, how);
+            if (f == null || f.IsPlayer || Book == null) return;
+            var fresh = Of(f).Where(g => !g.known).ToList();
+            if (fresh.Count == 0) return;
+            foreach (var g in fresh) Learn(g, how, false);
+            if (!tell) return;
+            string names = fresh.Select(FullName).ToList().ToCommaList(true);
+            ColonyCouncil.Tell.Minor(NewsKind.World, Importance.Flavor, null, ("CC_God_KnownPeopleNews_" + how).Translate(f.Name.Named("PEOPLE"), names.Named("GODS")).Resolve(), null);
         }
 
         /// <summary>The peoples (and faiths) that hold a god, in words: "the Ashen Banner and the road league"; the colony's own "the colony".</summary>

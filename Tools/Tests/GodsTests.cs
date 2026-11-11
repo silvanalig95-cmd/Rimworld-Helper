@@ -375,7 +375,11 @@ public static class GodsTests
             Need("CC_GodRealness_" + r + "_Tip");
             Need("CC_SetNote_GodRealness_" + r);
         }
-        foreach (var how in new[] { "faith", "neighbours", "letter", "visitors" }) Need("CC_God_KnownFrom_" + how);
+        foreach (var how in new[] { "faith", "neighbours", "letter", "visitors" })
+        {
+            Need("CC_God_KnownFrom_" + how);
+            Need("CC_God_KnownPeopleNews_" + how);
+        }
         for (int i = 0; i < 5; i++)
         {
             Need("CC_God_Epithet_Dead_" + i);

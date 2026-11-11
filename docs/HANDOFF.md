@@ -12,6 +12,42 @@ tree at once, alongside whatever runs. Each piece is merged as its own release, 
 
 ## State (5 November 2026)
 
+- **Gods, stage 1: the core (the pantheon), built 11 November 2026. Not released: no version, no What's new round,
+  About.xml and CHANGELOG untouched.** The player: "the concept of gods within RimWorld ... like a pantheon of gods",
+  "go for it ... you can really spend effort and tokens into the subject", and "when I think of gods as kind of one
+  reference, you know, it's the Greek pantheon ... there's drama between the gods ... there could definitely be also
+  outliers". `docs/design/gods.md`, "Core: the pantheon" and "Drama between the gods, and the ones who don't fit";
+  DESIGN.md "The gods: the pantheon"; README "The gods"; the Almanac page "the gods" (`Council_Alm_C_Gods`, new). The
+  presence part (`Gods/Presence/`, `GodLookDef`, the avatar and the moment) is built beside it against the same
+  contract; the stage 2 merge wires it to `GodPresenceSeam.Manifest` and `GodLookSeam.MakeAvatar`.
+  - Code: `Source/ColonyCouncil/Gods/` (new): `GodsMath.cs` and `GodTiesMath.cs` (pure, linked), `God.cs` (the records:
+    `God`, `GodTie`, `GodStanding`, `GodAct`, `GodVow`, `GodDeed`), `GodBook.cs` (the saved book, kept in the region's
+    day and hour), `Pantheon.cs` (built once per world, kept, ties, newborns, what the colony knows), `Gods.cs` (the public
+    face), `GodDeeds.cs` (the first favour sources), `GodSpeech.cs`, `GodWords.cs`, `GodSymbols.cs`, `GodsPage.cs`,
+    `GodsDebug.cs`, `GodDefs.cs` (`GodDomainDef`, `GodPatronDef`), `GodPresenceSeam.cs` (the two seams). Defs
+    `Defs/GodDefs/Rimfolk_Pantheon_Domains.xml` (14), `Rimfolk_Pantheon_Patrons.xml` (22 patrons for the 23 peoples),
+    `Defs/FlavorPoolDefs/Rimfolk_Gods_Speech.xml`; ten god lines in the letters' close, postscript and sermon pools.
+    Keyed `Rimfolk_Gods.xml`. Symbols `Textures/ColonyCouncil/GodSymbols/` by `Tools/make_god_symbols.py`. Small hooks:
+    `RegionBook.Daily`/`Hourly`, `Happenings.Notify_Killed`, `Vendettas.Eulogy`, `StateSpeech.Gather`, `WeatherTalk.Say`/
+    `SayBy`, `LetterFormShapes` (both shapes), `RegionView`/`PeoplesView`/`PagesMath` (the Peoples view's third mode
+    `Peoples/Gods`), `CouncilSettings` (`gods`, `godRealness`), `SettingsCatalog` (section "The gods"), the DefValidator
+    (`{GOD}`, `{GODEPITHET}`, `{GODOF}`), `Tools/save_estimate.py`. Tests `GodsTests`; `PagesTests`, `LetterFormTests`
+    and `RegionViewsTests` taught the third mode and the placeholders.
+  - Try in the game: 1. A new game with Ideology: dev "Gods: show the pantheon (log)" lists every god with its domain,
+    form, kind, nature, people and ties; Rimfolk's peoples in the world have their patrons. 2. The region window, Peoples,
+    Gods: the colony's gods, the others known, the rumours (a god of war of the Ashen Banner, no name); "The whole
+    pantheon" draws the web; a god's page shows its symbol in its colours, its standing, ties, nature and acts, in both of
+    Rimfolk's looks. 3. Dev "Gods: add favour here..." on a known god: the word changes on the page and a line in the news
+    ("some say ... is pleased with ..."), and its rivals and allies move a little. 4. Dev "Gods: set how real the gods
+    are...": the news's voice changes (the colony believes / some say / plain). 5. A big harvest day, a raid beaten off,
+    a legend beast or alpha killed, a funeral's eulogy: the god's acts on its page. 6. A colonist hurt or grieving, a
+    storm rolling in: now and then a one-sentence word to their god over their head. 7. A neighbour's letter: "May
+    Thoran keep you," and the colony learns their gods. 8. Dev "Gods: a deed of a domain here..." eight times on a domain
+    the colony's faith lacks, then a day: a newborn god and its letter (or dev "Gods: a newborn of the colony's
+    faith..."). 9. A game without Ideology: each people has two or three gods of its age and land. 10. An older save: the
+    pantheon is built on load. 11. "Gods" off: the Gods mode leaves the Peoples view and nothing moves.
+  - Can't be checked without the game: the page's layout at small window sizes, the web's readability with forty gods,
+    how often swearing shows, the deity domains read from real generated ideoligions, the patrons joining arisen peoples.
 - **How the player wants new wishes handled (11 November 2026, standing): "any new idea/request i give you is first
   gathered on the to-do list, unless i say something like "do this now" or "start now". then we can collect tasks
   until we have a few so we can implement them more effectively."** Each new wish or report goes onto this list as a

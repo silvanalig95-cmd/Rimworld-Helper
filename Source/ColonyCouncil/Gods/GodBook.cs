@@ -68,7 +68,7 @@ namespace ColonyCouncil
             {
                 // A new world's pantheon, or an older save's on its first load.
                 if (!built) Pantheon.Build(this);
-                else Pantheon.Keep(this, Now);
+                else Pantheon.Keep(this, Now, false);
             }
             catch (Exception e)
             {

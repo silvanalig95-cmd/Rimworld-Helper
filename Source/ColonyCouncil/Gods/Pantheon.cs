@@ -444,8 +444,9 @@ namespace ColonyCouncil
         /// The region's day (and every load): new peoples and faiths get their gods (and their ties), deities renamed or added
         /// in a reform are followed, peoples and faiths gone are let go, a god with nobody left fades (and in time falls
         /// silent), one taken up again comes back, and the colony learns the gods of its faith and its neighbours.
+        /// <paramref name="tell"/> false (a load): nothing told, only kept.
         /// </summary>
-        public static void Keep(GodBook b, int now)
+        public static void Keep(GodBook b, int now, bool tell = true)
         {
             if (b == null) return;
             if (!b.built)
@@ -462,9 +463,9 @@ namespace ColonyCouncil
             {
                 g.factions.RemoveAll(f => f == null || f.defeated || !factions.Contains(f));
                 g.ideos.RemoveAll(i => i == null || !ideos.Contains(i) || g.deityKey != null && g.deityKey.StartsWith(i.id + "|") && !HasDeity(i, g.deityKey));
-                // A faith's gods held by a people that no longer keeps that faith: let go of the people.
-                if (g.source == "deity" || g.source == "maker" && g.deityKey != null && g.deityKey.StartsWith("maker|i"))
-                    g.factions.RemoveAll(f => g.ideos.Count > 0 && !FaithsOf(f).Any(i => g.ideos.Contains(i)));
+                // A faith's gods held by a people that no longer keeps that faith (or the faith gone): let go of the people.
+                if (ModsConfig.IdeologyActive && (g.source == "deity" || g.source == "maker" && g.deityKey != null && g.deityKey.StartsWith("maker|i")))
+                    g.factions.RemoveAll(f => !FaithsOf(f).Any(i => g.ideos.Contains(i)));
                 bool held = g.Worshipped;
                 if (held) g.lastHeld = now;
                 var k = GodsMath.KindNow(g.kind, g.baseKind, held, (now - g.lastHeld) / GenDate.TicksPerDay);
@@ -477,7 +478,7 @@ namespace ColonyCouncil
                     god = g.id, tick = now, kind = k == GodKind.Fading || k == GodKind.Dead ? GodActKind.Faded : GodActKind.Returned,
                     text = ("CC_God_KindAct_" + what).Translate(g.name.Named("GOD")).Resolve()
                 });
-                if (g.known) Tell.Minor(NewsKind.World, Importance.Flavor, null, ("CC_God_KindNews_" + what).Translate(g.name.Named("GOD"), Gods.GodOf(g).Named("GODOF")).Resolve(), null);
+                if (g.known && tell) Tell.Minor(NewsKind.World, Importance.Flavor, null, ("CC_God_KindNews_" + what).Translate(g.name.Named("GOD"), Gods.GodOf(g).Named("GODOF")).Resolve(), null);
             }
             for (int i = before; i < b.gods.Count; i++)
             {
@@ -486,8 +487,8 @@ namespace ColonyCouncil
                 b.Remember(new GodAct { god = g.id, tick = now, kind = GodActKind.Born, text = "CC_God_BornAct".Translate(g.name.Named("GOD")).Resolve() });
             }
             if (b.gods.Count != before) MarkKinds(b);
-            LearnColony(b, now, true);
-            LearnFromNotables(b, true);
+            LearnColony(b, now, tell);
+            LearnFromNotables(b, tell);
             Gods.Changed();
         }
 
@@ -575,10 +576,8 @@ namespace ColonyCouncil
         {
             var book = NotableBook.Instance;
             if (book?.notables == null) return;
-            var peoples = new HashSet<Faction>(book.notables.Where(n => n?.faction != null).Select(n => n.faction));
-            foreach (var g in b.gods)
-                if (!g.known && g.factions.Any(peoples.Contains))
-                    Gods.Learn(g, "neighbours", tell);
+            foreach (var f in book.notables.Where(n => n?.faction != null).Select(n => n.faction).Distinct().ToList())
+                Gods.Learn(f, "neighbours", tell);
         }
 
         /// <summary>The region's hour: someone of another people on a home map (a trader, a guest, a raider swearing): the colony learns their gods.</summary>
@@ -597,10 +596,7 @@ namespace ColonyCouncil
                     if (f == null || f.IsPlayer || f.Hidden || p.RaceProps?.Humanlike != true || !seen.Add(f)) continue;
                 }
             }
-            if (seen.Count == 0) return;
-            foreach (var g in b.gods)
-                if (!g.known && g.factions.Any(seen.Contains))
-                    Gods.Learn(g, "visitors", true);
+            foreach (var f in seen) Gods.Learn(f, "visitors", true);
         }
     }
 }
