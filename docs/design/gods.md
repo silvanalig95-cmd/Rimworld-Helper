@@ -56,6 +56,41 @@ questions answered by the lead's defaults, the parts, who builds what, and the c
     Alpha Memes, Hospitality and Giddy-Up are all optional.
   - Words match the map, speech goes through `Speech.Say`, and the full mod pool is used.
 
+## Drama between the gods, and the ones who don't fit (the player, the same day)
+
+The player: "when I think of gods as kind of one reference, you know, it's the Greek pantheon. In the sense that ...
+there's drama between the gods. I'm not saying that every god must be Greek or must fit to this ... reference, but ...
+the general idea. But there could definitely be also outliers that work differently or have really different way of
+interacting, being".
+
+- **Ties between gods** (core: saved in `GodBook`, shown on the Gods page):
+  - rivals (Storm and Harvest over the rain, the Hunter and the Herdmother over the beasts);
+  - lovers, and lovers estranged;
+  - kin: parent and child, siblings, twins;
+  - allies, and old wrongs (one cast the other down, one stole the other's people).
+
+  The ties come from the domains (a table of natural rivals and allies), from the faiths that share or fight over them,
+  and from chance, and they shift slowly. Favour with a god a little displeases its rivals and a little pleases its
+  allies. The colony can be caught between two gods.
+- **Each god's nature**: proud, jealous, generous, capricious, wrathful, patient, playful, cold or grieving. It decides
+  how fast favour moves, what offends and how loudly the god answers.
+- **The drama, played out** (stage 2):
+  - two gods' quarrel seen in the weather, a storm against a drought in turns;
+  - a god asking the colony to slight a rival, or to hide someone a rival hunts;
+  - a rival's avatar coming to undo a blessing;
+  - a feud between peoples that is really their gods';
+  - a reconciliation the colony brokers at a festival;
+  - myths of the gods told at suppers, in letters and at camps, as the history of their ties grows.
+- **The ones who don't fit** (core marks them; stage 2 gives them their ways):
+  - **The archotechs:** cold and exact. They bargain in terms, keep every term, and care nothing for offerings, only for
+    deeds that serve their aims.
+  - **The Hunger** (the void): answers anyone, always pays, and always takes more.
+  - **A trickster:** lies, swaps blessings for curses and back, and loves a joke at a priest's expense.
+  - **A dead god:** worshipped by a few, silent, its mark found in old places. Its faithful hope.
+  - **A new god born from the colony's own faith:** small and weak, growing with the colony's devotion.
+  - **A fading god:** no worshippers left, bitter or gentle.
+  - **A god imprisoned:** the Sleeper in the Sunken Vault, who wants out.
+
 ## Domains
 
 Harvest (and rain), Storm, Hunt (and beasts), Healing (and sickness), War, Craft (the forge), Way (roads, trade and
