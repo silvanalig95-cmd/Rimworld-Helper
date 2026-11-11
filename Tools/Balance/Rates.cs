@@ -594,6 +594,25 @@ namespace Balance
             ("Council_Setback_StoodBy", 0, 0.0015f, null)
         };
 
+        // ---------------- Worship of the gods (Gods/Worship/) ----------------
+
+        /// <summary>
+        /// Per colonist per day, with the gods and their worship on (Rimfolk_Worship_Thoughts.xml). Estimates from the code's
+        /// own rates, over all colonists (about one in seven a scoffer who never prays): a hard moment to pray in (a sickness, a
+        /// death, a raid, a drought) about once in twenty days a believer, an answer about a third of those at Felt
+        /// (WorshipMath.AnswerChance), a raid's answer giving thanks with no mood of its own; unanswered most of the rest, a
+        /// crisis of faith about a third of those (CrisisChance); a scoffer's mockery once in five days a home at most, among
+        /// the believers near a sign; a few vows a colony-year, most kept.
+        /// </summary>
+        public static readonly (string thought, float perDay)[] Worship =
+        {
+            ("Rimfolk_Worship_Answered", 0.011f),
+            ("Rimfolk_Worship_Unanswered", 0.0022f),
+            ("Rimfolk_Worship_Mocked", 0.008f),
+            ("Rimfolk_Worship_VowKept", 0.004f),
+            ("Rimfolk_Worship_VowBroken", 0.0008f)
+        };
+
         /// <summary>Setbacks a well-run colony mostly avoids and a neglected one keeps having: their rate follows the style squared.</summary>
         public static readonly HashSet<string> CareSetbacks = new HashSet<string>
         {

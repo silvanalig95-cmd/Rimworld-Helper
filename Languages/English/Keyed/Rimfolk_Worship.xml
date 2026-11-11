@@ -1,12 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LanguageData>
 
-  <!-- Worship of the gods (Source/ColonyCouncil/Gods/Worship/). Favour is only ever in words. -->
+  <!-- Worship of the gods (Source/ColonyCouncil/Gods/Worship/). The gods are unseen: no line here tells a god's mind, favour or
+       rules. What people did is told plainly; what a god did is named plainly only where the colony knows it was that god, and is
+       otherwise what people say, "some say", or a believer's word. The Why_ keys are the gods' own hidden log, never shown. -->
 
   <CC_Settings_GodWorship>Worship of the gods</CC_Settings_GodWorship>
   <CC_Settings_GodWorship_Tip>Places dedicated to a god and the offerings carried there, prayer in hard moments, the gods' festivals on the calendar, vows, a priest and the council's questions about the gods, the gods in dreams, and crises of faith. Off: none of it, and the gods themselves go on as before.</CC_Settings_GodWorship_Tip>
   <CC_SetNote_GodWorship>Shrines, offerings, prayer, festivals, vows, a priest and the gods in dreams.</CC_SetNote_GodWorship>
   <CC_God_KnownFrom_dream>from a dream</CC_God_KnownFrom_dream>
+  <CC_Wsh_UnknownGod>a god</CC_Wsh_UnknownGod>
 
   <!-- ===================== Places ===================== -->
   <CC_Wsh_Shrine_Shrine>shrine</CC_Wsh_Shrine_Shrine>
@@ -18,24 +21,23 @@
   <CC_Wsh_Gizmo_Dedicate>Dedicate to a god</CC_Wsh_Gizmo_Dedicate>
   <CC_Wsh_Gizmo_Pending>Being given to {GOD}</CC_Wsh_Gizmo_Pending>
   <CC_Wsh_Gizmo_Dedicated>{GOD}'s place</CC_Wsh_Gizmo_Dedicated>
-  <CC_Wsh_Gizmo_Desc>Give this place to one of the gods. Someone of the colony walks over and says the words there, and it becomes the god's {SHRINE}: offerings are carried to it, prayers said at it, and the god's festival rite held there.</CC_Wsh_Gizmo_Desc>
-  <CC_Wsh_Gizmo_Of>Given to {GOD}, {GODOF}. The colony's standing with {GOD}: {WORD}.</CC_Wsh_Gizmo_Of>
+  <CC_Wsh_Gizmo_Desc>Give this place to one of the gods the colony knows. Someone of the colony walks over and says the words there, and it becomes the god's {SHRINE}: people carry offerings to it, pray at it, and keep the god's festival rite there.</CC_Wsh_Gizmo_Desc>
+  <CC_Wsh_Gizmo_Of>Given to {GOD} by {PAWN}.</CC_Wsh_Gizmo_Of>
   <CC_Wsh_Gizmo_NoGods>The colony knows no god yet.</CC_Wsh_Gizmo_NoGods>
-  <CC_Wsh_Menu_God>{GOD}, {GODOF} ({WHOSE})</CC_Wsh_Menu_God>
-  <CC_Wsh_Menu_Ours>the colony's</CC_Wsh_Menu_Ours>
-  <CC_Wsh_Menu_Known>known to the colony</CC_Wsh_Menu_Known>
+  <CC_Wsh_Menu_God>{GOD} ({WHOSE})</CC_Wsh_Menu_God>
+  <CC_Wsh_Menu_Ours>prayed to here</CC_Wsh_Menu_Ours>
+  <CC_Wsh_Menu_Known>heard of</CC_Wsh_Menu_Known>
   <CC_Wsh_Menu_Now>(now)</CC_Wsh_Menu_Now>
-  <CC_Wsh_Menu_Archotech>(takes no offerings, judges deeds)</CC_Wsh_Menu_Archotech>
   <CC_Wsh_Menu_Undedicate>Give it back to nobody</CC_Wsh_Menu_Undedicate>
   <CC_Wsh_DedicateAsked>Someone will walk over and give the {PLACE} to {GOD}.</CC_Wsh_DedicateAsked>
   <CC_Wsh_DedicateLetGo>Nobody was free to dedicate the {PLACE}, and it was let be.</CC_Wsh_DedicateLetGo>
-  <CC_Wsh_Inspect>A {SHRINE} of {GOD}. The colony's standing: {WORD}.</CC_Wsh_Inspect>
-  <CC_Wsh_Inspect_Temple>A temple of {GOD}. The colony's standing: {WORD}.</CC_Wsh_Inspect_Temple>
+  <CC_Wsh_Inspect>A {SHRINE} of {GOD}, given by {PAWN}.</CC_Wsh_Inspect>
+  <CC_Wsh_Inspect_Temple>A temple of {GOD}, given by {PAWN}.</CC_Wsh_Inspect_Temple>
   <CC_Wsh_Inspect_Pending>Waiting to be given to {GOD}.</CC_Wsh_Inspect_Pending>
   <CC_Wsh_Inspect_Offering>An offering waits here: {WHAT}.</CC_Wsh_Inspect_Offering>
   <CC_Wsh_Dedicated_Believed>{PAWN} gave the {PLACE} to {GOD} with the words the colony knows. It is {SHRINE} now.</CC_Wsh_Dedicated_Believed>
   <CC_Wsh_Dedicated_Felt>{PAWN} gave the {PLACE} to {GOD}, and it is {SHRINE} now. Some say a warmth settled on it as the words were said.</CC_Wsh_Dedicated_Felt>
-  <CC_Wsh_Dedicated_Walking>{PAWN} gave the {PLACE} to {GOD}, and {GOD} took it: it shone a moment, and everyone near felt it. It is {SHRINE} now.</CC_Wsh_Dedicated_Walking>
+  <CC_Wsh_Dedicated_Walking>{PAWN} gave the {PLACE} to {GOD}, and it shone a moment as the words were said; everyone near felt it. It is {SHRINE} now.</CC_Wsh_Dedicated_Walking>
   <CC_Wsh_Why_Dedicated>{PAWN} made the {PLACE} into {SHRINE}</CC_Wsh_Why_Dedicated>
   <CC_Wsh_Why_TakenFrom>the {PLACE} given to {OTHER} instead</CC_Wsh_Why_TakenFrom>
   <CC_Wsh_Why_Undedicated>the {PLACE} taken from it</CC_Wsh_Why_Undedicated>
@@ -72,39 +74,39 @@
   <CC_Wsh_Kind_Craft>something well made</CC_Wsh_Kind_Craft>
   <CC_Wsh_Kind_Other>a gift</CC_Wsh_Kind_Other>
   <CC_Wsh_Why_Offering>{WHAT} left at {SHRINE}</CC_Wsh_Why_Offering>
-  <CC_Wsh_Taken_Title>{GOD} takes the offering</CC_Wsh_Taken_Title>
+  <CC_Wsh_Taken_Title>The offering at {SHRINE}</CC_Wsh_Taken_Title>
   <CC_Wsh_Taken_Taken_Believed>The offering at {SHRINE} is gone: {WHAT}. The colony says {GOD} took it.</CC_Wsh_Taken_Taken_Believed>
   <CC_Wsh_Taken_Taken_Felt>The offering at {SHRINE} was gone by morning: {WHAT}. Nobody saw it go, and some say {GOD} came for it in the night.</CC_Wsh_Taken_Taken_Felt>
-  <CC_Wsh_Taken_Taken_Walking>{GOD} took the offering from {SHRINE} before everyone's eyes: {WHAT}, gone in a breath of light.</CC_Wsh_Taken_Taken_Walking>
-  <CC_Wsh_Taken_Animal>An animal came to {SHRINE} and ate the offering: {WHAT}. The colony says {GOD} sent it.</CC_Wsh_Taken_Animal>
-  <CC_Wsh_Taken_Passerby>Someone passing took the offering from {SHRINE} with them: {WHAT}. The colony says {GOD} sent them.</CC_Wsh_Taken_Passerby>
-  <CC_Wsh_Taken_Spoiled>The offering at {SHRINE} lay there and spoiled: {WHAT}. The colony says {GOD} took what it wanted from it.</CC_Wsh_Taken_Spoiled>
-  <CC_Wsh_Taken_Returned>Nobody came for the offering at {SHRINE}, and it went back to the stores: {WHAT}. The colony says {GOD} took the thought.</CC_Wsh_Taken_Returned>
+  <CC_Wsh_Taken_Taken_Walking>The offering at {SHRINE} went before everyone's eyes, in a breath of light: {WHAT}. Nobody who saw it doubts it was {GOD}.</CC_Wsh_Taken_Taken_Walking>
+  <CC_Wsh_Taken_Animal>An animal came to {SHRINE} and ate the offering: {WHAT}. Some say {GOD} sent it.</CC_Wsh_Taken_Animal>
+  <CC_Wsh_Taken_Passerby>Someone passing took the offering from {SHRINE} with them: {WHAT}. Some say {GOD} sent them.</CC_Wsh_Taken_Passerby>
+  <CC_Wsh_Taken_Spoiled>The offering at {SHRINE} lay there and spoiled: {WHAT}. Some say that was the taking of it.</CC_Wsh_Taken_Spoiled>
+  <CC_Wsh_Taken_Returned>Nobody came for the offering at {SHRINE}, and it went back to the stores: {WHAT}. People say it's the thought that counts.</CC_Wsh_Taken_Returned>
 
-  <!-- ===================== Prayer ===================== -->
+  <!-- ===================== Prayer: what came after is people's word, never the god's ===================== -->
   <CC_Wsh_Why_Prayer>{PAWN} prayed</CC_Wsh_Why_Prayer>
-  <CC_Wsh_Answer_Title>{GOD} answers</CC_Wsh_Answer_Title>
-  <CC_Wsh_Answer_Sickness_Believed>{SICK}'s {ILLNESS} eased in the night after {PAWN} prayed. The colony says {GOD} heard.</CC_Wsh_Answer_Sickness_Believed>
+  <CC_Wsh_Answer_Title>After the prayer</CC_Wsh_Answer_Title>
+  <CC_Wsh_Answer_Sickness_Believed>{SICK}'s {ILLNESS} eased in the night after {PAWN} prayed. {PAWN} says {GOD} heard.</CC_Wsh_Answer_Sickness_Believed>
   <CC_Wsh_Answer_Sickness_Felt>{SICK}'s {ILLNESS} eased in the night after {PAWN} prayed. Some say {GOD} laid a hand on {SICK}.</CC_Wsh_Answer_Sickness_Felt>
-  <CC_Wsh_Answer_Sickness_Walking>{GOD} heard {PAWN}: a light stood over {SICK} a moment, and the {ILLNESS} loosened its hold.</CC_Wsh_Answer_Sickness_Walking>
-  <CC_Wsh_Answer_Death_Believed>{PAWN} prayed for {DEAD}, and the grief let go a little. The colony says {GOD} is keeping {DEAD} now.</CC_Wsh_Answer_Death_Believed>
-  <CC_Wsh_Answer_Death_Felt>{PAWN} prayed for {DEAD}, and the grief let go a little. Some say {GOD} will bring {DEAD} to {PAWN} in a dream.</CC_Wsh_Answer_Death_Felt>
-  <CC_Wsh_Answer_Death_Walking>{GOD} answered {PAWN}'s prayer for {DEAD}: {DEAD} is safe across, and will come to say so in a dream.</CC_Wsh_Answer_Death_Walking>
-  <CC_Wsh_Answer_Raid_Believed>{PAWN} prayed before the fight and came up from it steady-handed. The colony says {GOD} was with them.</CC_Wsh_Answer_Raid_Believed>
+  <CC_Wsh_Answer_Sickness_Walking>{PAWN} prayed to {GOD}, and a light stood over {SICK} a moment; the {ILLNESS} loosened its hold. {PAWN} is sure it was {GOD}.</CC_Wsh_Answer_Sickness_Walking>
+  <CC_Wsh_Answer_Death_Believed>{PAWN} prayed for {DEAD}, and the grief let go a little. {PAWN} says {GOD} is keeping {DEAD} now.</CC_Wsh_Answer_Death_Believed>
+  <CC_Wsh_Answer_Death_Felt>{PAWN} prayed for {DEAD}, and the grief let go a little. Some say {DEAD} will come to {PAWN} in a dream.</CC_Wsh_Answer_Death_Felt>
+  <CC_Wsh_Answer_Death_Walking>{PAWN} prayed to {GOD} for {DEAD}, and the grief let go. {PAWN} says {DEAD} is safe across, and will come to say so in a dream.</CC_Wsh_Answer_Death_Walking>
+  <CC_Wsh_Answer_Raid_Believed>{PAWN} prayed before the fight and came up from it steady-handed. {PAWN} says {GOD} was with them.</CC_Wsh_Answer_Raid_Believed>
   <CC_Wsh_Answer_Raid_Felt>{PAWN} prayed to {GOD} before the fight and came up from it steady-handed. Some say {GOD} steadied {PAWN}.</CC_Wsh_Answer_Raid_Felt>
-  <CC_Wsh_Answer_Raid_Walking>{GOD} answered {PAWN}'s prayer: {PAWN} rose from it with a fighter's fire in the eyes.</CC_Wsh_Answer_Raid_Walking>
-  <CC_Wsh_Answer_RaidReason>{GOD} answered a prayer.</CC_Wsh_Answer_RaidReason>
-  <CC_Wsh_Answer_Drought_Believed>Rain at last, the evening after the colony prayed for it. The colony says {GOD} sent it.</CC_Wsh_Answer_Drought_Believed>
+  <CC_Wsh_Answer_Raid_Walking>{PAWN} rose from a prayer to {GOD} with a fighter's fire in the eyes, and says {GOD} put it there.</CC_Wsh_Answer_Raid_Walking>
+  <CC_Wsh_Answer_RaidReason>{PAWN} prayed to {GOD} before the fight.</CC_Wsh_Answer_RaidReason>
+  <CC_Wsh_Answer_Drought_Believed>Rain at last, the evening after the colony prayed for it. Some say {GOD} sent it.</CC_Wsh_Answer_Drought_Believed>
   <CC_Wsh_Answer_Drought_Felt>Rain at last, the evening after the colony prayed for it. Some say {GOD} opened the sky.</CC_Wsh_Answer_Drought_Felt>
-  <CC_Wsh_Answer_Drought_Walking>{GOD} answered the colony's prayers: the sky opened with thunder, and the rain came.</CC_Wsh_Answer_Drought_Walking>
+  <CC_Wsh_Answer_Drought_Walking>The sky opened with thunder the hour after the colony prayed to {GOD}, and the rain came. Few are arguing about who sent it.</CC_Wsh_Answer_Drought_Walking>
   <CC_Wsh_Why_Credit_Sickness>{SICK} is well again, as {PAWN} prayed</CC_Wsh_Why_Credit_Sickness>
   <CC_Wsh_Why_Credit_Death>{PAWN} prayed for the dead</CC_Wsh_Why_Credit_Death>
   <CC_Wsh_Why_Credit_Raid>the colony came through the raid, as {PAWN} prayed</CC_Wsh_Why_Credit_Raid>
   <CC_Wsh_Why_Credit_Drought>the rain came, as {PAWN} prayed</CC_Wsh_Why_Credit_Drought>
-  <CC_Wsh_HungerDue_Title>{GOD} takes its due</CC_Wsh_HungerDue_Title>
-  <CC_Wsh_HungerDue_Believed>{WHAT} is gone from the stores, and nobody will own to taking it. The colony says {GOD} came for its due.</CC_Wsh_HungerDue_Believed>
-  <CC_Wsh_HungerDue_Felt>{WHAT} is gone from the stores, and nobody took it. Some say {GOD} came back for its due.</CC_Wsh_HungerDue_Felt>
-  <CC_Wsh_HungerDue_Walking>{GOD} took its due in the night: {WHAT}, gone from the stores without a trace.</CC_Wsh_HungerDue_Walking>
+  <CC_Wsh_HungerDue_Title>Gone from the stores</CC_Wsh_HungerDue_Title>
+  <CC_Wsh_HungerDue_Believed>{WHAT} is gone from the stores, and nobody will own to taking it. Some say {GOD} came for what it was owed.</CC_Wsh_HungerDue_Believed>
+  <CC_Wsh_HungerDue_Felt>{WHAT} is gone from the stores, and nobody took it. Some say {GOD} came back for what it was owed.</CC_Wsh_HungerDue_Felt>
+  <CC_Wsh_HungerDue_Walking>{WHAT} is gone from the stores without a trace, the night after someone asked {GOD} for help. Whoever asked knows where it went.</CC_Wsh_HungerDue_Walking>
   <CC_Wsh_Dev_NoGod>{0} has no god to turn to.</CC_Wsh_Dev_NoGod>
 
   <!-- ===================== The heart ===================== -->
@@ -113,7 +115,7 @@
   <CC_Wsh_Crisis_Death>{PAWN} prayed to {GOD} for {ABOUT}, and felt nothing come back. {PAWN} isn't sure of {GOD} any more.</CC_Wsh_Crisis_Death>
   <CC_Wsh_Crisis_Raid>{PAWN} prayed to {GOD} before the fight, and {ABOUT} fell in it. {PAWN} isn't sure of {GOD} any more.</CC_Wsh_Crisis_Raid>
   <CC_Wsh_Crisis_Drought>{PAWN} prayed to {GOD} for rain, and none came. {PAWN} isn't sure of {GOD} any more, and some say {GOD} turned away.</CC_Wsh_Crisis_Drought>
-  <CC_Wsh_Turned>{PAWN} has turned from {FROM} to {GOD}, {GODOF}, and prays to {GOD} now.</CC_Wsh_Turned>
+  <CC_Wsh_Turned>{PAWN} has turned from {FROM} to {GOD}, and prays to {GOD} now.</CC_Wsh_Turned>
   <CC_Wsh_Why_TurnedFrom>{PAWN} turned away from it</CC_Wsh_Why_TurnedFrom>
   <CC_Wsh_Why_TurnedTo>{PAWN} turned to it</CC_Wsh_Why_TurnedTo>
   <CC_Wsh_Why_Mocked>{PAWN} mocked it</CC_Wsh_Why_Mocked>
@@ -137,7 +139,7 @@
   <CC_Wsh_VowBroken_Temple>{PAWN} broke the vow to {GOD}: no temple was raised.</CC_Wsh_VowBroken_Temple>
   <CC_Wsh_VowBroken_BeastSpared>{PAWN}'s vow to {GOD} is broken: a {BEAST} fell to the colony.</CC_Wsh_VowBroken_BeastSpared>
   <CC_Wsh_How_ToTheEnd>{ABOUT} didn't live to see it, and the vow was kept to the end.</CC_Wsh_How_ToTheEnd>
-  <CC_Wsh_How_Days>Twenty days, and not a bite of meat.</CC_Wsh_How_Days>
+  <CC_Wsh_How_Days>A long while, and not a bite of meat.</CC_Wsh_How_Days>
   <CC_Wsh_How_Ate>It was {FOOD} that broke it.</CC_Wsh_How_Ate>
   <CC_Wsh_How_Killed>{KILLER} brought it down.</CC_Wsh_How_Killed>
   <CC_Wsh_How_GoalLost>The vow was let go.</CC_Wsh_How_GoalLost>
@@ -146,10 +148,10 @@
   <CC_Wsh_Why_GreatVow_NoMeat>{PAWN} kept a vow</CC_Wsh_Why_GreatVow_NoMeat>
   <CC_Wsh_Why_GreatVow_BeastSpared>{PAWN} kept a vow</CC_Wsh_Why_GreatVow_BeastSpared>
   <CC_Wsh_Why_Wrath>{PAWN} broke a vow to it, and it took it hard</CC_Wsh_Why_Wrath>
-  <CC_Wsh_Wrath_Title>{GOD}'s anger</CC_Wsh_Wrath_Title>
-  <CC_Wsh_Wrath_Believed>The colony says {GOD} is angry with {PAWN} for the broken vow, and gives {PAWN} a wide berth.</CC_Wsh_Wrath_Believed>
-  <CC_Wsh_Wrath_Felt>A shadow passed over {PAWN} that nobody could account for. Some say {GOD}'s anger is on {PAWN} for the broken vow.</CC_Wsh_Wrath_Felt>
-  <CC_Wsh_Wrath_Walking>{GOD}'s anger fell on {PAWN} for the broken vow, and everyone saw the shadow of it.</CC_Wsh_Wrath_Walking>
+  <CC_Wsh_Wrath_Title>A shadow over {PAWN}</CC_Wsh_Wrath_Title>
+  <CC_Wsh_Wrath_Believed>Some say {GOD} hasn't forgotten {PAWN}'s broken vow, and people give {PAWN} a wide berth.</CC_Wsh_Wrath_Believed>
+  <CC_Wsh_Wrath_Felt>A shadow passed over {PAWN} that nobody could account for. Some say it was {GOD}, for the broken vow.</CC_Wsh_Wrath_Felt>
+  <CC_Wsh_Wrath_Walking>A shadow fell on {PAWN} in broad day and stayed the evening. Everyone who saw it says it was {GOD}, for the broken vow.</CC_Wsh_Wrath_Walking>
   <CC_Wsh_PilgrimOut>{PAWN} has set out on foot, on a pilgrimage to {GOD}'s holy place.</CC_Wsh_PilgrimOut>
   <CC_Wsh_Why_Pilgrimage>{PAWN} walked a pilgrimage to its holy place</CC_Wsh_Why_Pilgrimage>
   <CC_Wsh_Goal_PilgrimDone>walked to {GOD}'s holy place</CC_Wsh_Goal_PilgrimDone>
@@ -177,7 +179,7 @@
   <CC_Wsh_Dishes_Storm>a cup poured out in the open, and a meal eaten under the sky</CC_Wsh_Dishes_Storm>
   <CC_Wsh_Dishes_Hunt>the season's best meat roasted whole, and the bones given back</CC_Wsh_Dishes_Hunt>
   <CC_Wsh_Dishes_Healing>broth for everyone, and the year's healed sat at the head of the table</CC_Wsh_Dishes_Healing>
-  <CC_Wsh_Dishes_War>a soldier's meal, eaten standing, and the weapons laid out to be blessed</CC_Wsh_Dishes_War>
+  <CC_Wsh_Dishes_War>a soldier's meal, eaten on foot, and the weapons laid out to be blessed</CC_Wsh_Dishes_War>
   <CC_Wsh_Dishes_Craft>the year's best work laid out, and the forge's fire relit</CC_Wsh_Dishes_Craft>
   <CC_Wsh_Dishes_Way>a place at the table kept for a stranger, and a coin for the road</CC_Wsh_Dishes_Way>
   <CC_Wsh_Dishes_Dead>a place laid for each of the dead, and their names said aloud</CC_Wsh_Dishes_Dead>
@@ -192,12 +194,12 @@
   <CC_Wsh_Why_FestivalPassed>{NAME} let pass</CC_Wsh_Why_FestivalPassed>
   <CC_Wsh_RiteDone>{PAWN} kept {GOD}'s rite at {SHRINE}: {DISHES}.</CC_Wsh_RiteDone>
   <CC_Wsh_FestivalVisitors>People of {PEOPLE} have come for {GOD}'s festival.</CC_Wsh_FestivalVisitors>
-  <CC_Cal_Origin_GodFestival>The festival of {GOD}, {GODEPITHET}, one of the colony's gods, on its day since {YEAR}.</CC_Cal_Origin_GodFestival>
+  <CC_Cal_Origin_GodFestival>The festival of {GOD}, {GODEPITHET}, kept on its day since {YEAR}.</CC_Cal_Origin_GodFestival>
 
   <!-- ===================== Dreams ===================== -->
   <CC_Wsh_DreamMessage>{PAWN_nameDef} dreamt of {GOD}: "{DREAM}"</CC_Wsh_DreamMessage>
   <CC_Wsh_Why_DemandMet>it was brought what it asked for in a dream, {WHAT}</CC_Wsh_Why_DemandMet>
-  <CC_Wsh_DemandIgnored>{GOD} asked in a dream for {WHAT} at its place, and nobody brought it.</CC_Wsh_DemandIgnored>
+  <CC_Wsh_DemandIgnored>Nobody carried {WHAT} to {GOD}'s place, as the dream asked. Some say {GOD} won't forget it.</CC_Wsh_DemandIgnored>
 
   <!-- ===================== The council and the rain ===================== -->
   <CC_Wsh_Why_Honoured>the colony honours it this year, the year {YEAR}</CC_Wsh_Why_Honoured>
@@ -205,28 +207,26 @@
   <CC_Wsh_Unavailable_NoGod>The colony has no third god to honour.</CC_Wsh_Unavailable_NoGod>
   <CC_Wsh_Unavailable_NoShrine>{GOD} has no place in the colony to carry it to.</CC_Wsh_Unavailable_NoShrine>
   <CC_Wsh_Unavailable_NoBeast>The beast isn't here any more.</CC_Wsh_Unavailable_NoBeast>
-  <CC_Wsh_Impact_Honour>{GOD} is the colony's god this year: its festival first, its prayers and rites a quarter more, and its rivals take note.</CC_Wsh_Impact_Honour>
+  <CC_Wsh_Impact_Honour>The colony keeps {GOD}'s year: people carry offerings to {GOD}'s place more often, and {GOD}'s festival is kept first.</CC_Wsh_Impact_Honour>
   <CC_Wsh_Impact_HonourBrief>{GOD}'s year</CC_Wsh_Impact_HonourBrief>
-  <CC_Wsh_Impact_Pleased>{GOD} is pleased</CC_Wsh_Impact_Pleased>
-  <CC_Wsh_Impact_Displeased>{GOD} is displeased</CC_Wsh_Impact_Displeased>
-  <CC_Wsh_Impact_TempleVow>{PAWN} vows {GOD} a temple: a place of {GOD}'s in a room of {IMPRESSIVE} impressiveness or more, indoors, within {DAYS} days, or the vow is broken.</CC_Wsh_Impact_TempleVow>
-  <CC_Wsh_Impact_Dry>No rain for {DAYS} days</CC_Wsh_Impact_Dry>
-  <CC_Wsh_Impact_DryMaybe>Perhaps no rain for {DAYS} days</CC_Wsh_Impact_DryMaybe>
+  <CC_Wsh_Impact_TempleVow>{PAWN} vows {GOD} a temple before two seasons are out: a place of {GOD}'s indoors, in a room fine enough to be called one.</CC_Wsh_Impact_TempleVow>
+  <CC_Wsh_Impact_Dry>{PAWN} is sure the rain will stay away</CC_Wsh_Impact_Dry>
+  <CC_Wsh_Impact_DryMaybe>{PAWN} fears the rain may stay away a while</CC_Wsh_Impact_DryMaybe>
   <CC_Wsh_Impact_GiveBeast>{PET} is walked out and let go into the wild</CC_Wsh_Impact_GiveBeast>
   <CC_Wsh_Impact_GiveBeastBrief>a beast given</CC_Wsh_Impact_GiveBeastBrief>
   <CC_Wsh_Impact_Offering>An offering carried to {SHRINE}</CC_Wsh_Impact_Offering>
   <CC_Wsh_Impact_OfferingBrief>an offering</CC_Wsh_Impact_OfferingBrief>
-  <CC_Wsh_DryBegins_Title>{GOD} keeps the rain away</CC_Wsh_DryBegins_Title>
-  <CC_Wsh_DryBegins_Believed>The colony says {GOD} will keep the rain away for refusing it.</CC_Wsh_DryBegins_Believed>
-  <CC_Wsh_DryBegins_Felt>The sky has gone hard and bright. Some say {GOD} will keep the rain away a while.</CC_Wsh_DryBegins_Felt>
-  <CC_Wsh_DryBegins_Walking>{GOD} has turned the clouds away from the colony, and there will be no rain for a while.</CC_Wsh_DryBegins_Walking>
+  <CC_Wsh_DryBegins_Title>The rain stays away</CC_Wsh_DryBegins_Title>
+  <CC_Wsh_DryBegins_Believed>The colony says {GOD} will keep the rain away for the refusal.</CC_Wsh_DryBegins_Believed>
+  <CC_Wsh_DryBegins_Felt>The sky has gone hard and bright since the council said no. Some say {GOD} is keeping the rain away.</CC_Wsh_DryBegins_Felt>
+  <CC_Wsh_DryBegins_Walking>The clouds turned aside from the colony the day the council said no, as {GOD}'s people said they would.</CC_Wsh_DryBegins_Walking>
   <CC_Wsh_DryPass_Believed>The rain clouds passed over again.</CC_Wsh_DryPass_Believed>
   <CC_Wsh_DryPass_Felt>Rain clouds came up and passed over. Some say {GOD} is still keeping the rain away.</CC_Wsh_DryPass_Felt>
-  <CC_Wsh_DryPass_Walking>The rain clouds broke apart overhead: {GOD} is still keeping the rain away.</CC_Wsh_DryPass_Walking>
-  <CC_Wsh_BeastGiven_Title>{GOD} takes the beast</CC_Wsh_BeastGiven_Title>
+  <CC_Wsh_DryPass_Walking>The rain clouds broke apart overhead again. People say it is {GOD}'s doing.</CC_Wsh_DryPass_Walking>
+  <CC_Wsh_BeastGiven_Title>Given to {GOD}</CC_Wsh_BeastGiven_Title>
   <CC_Wsh_BeastGiven_Believed>{PET} went off into the wild, given to {GOD}.</CC_Wsh_BeastGiven_Believed>
   <CC_Wsh_BeastGiven_Felt>{PET} went off into the wild. Some say {GOD} was waiting for it at the edge of the land.</CC_Wsh_BeastGiven_Felt>
-  <CC_Wsh_BeastGiven_Walking>{GOD} called {PET} to the edge of the land, and it went.</CC_Wsh_BeastGiven_Walking>
+  <CC_Wsh_BeastGiven_Walking>{PET} walked straight to the edge of the land as if called, and nobody saw it again. {GOD}'s people say they know where it went.</CC_Wsh_BeastGiven_Walking>
 
   <!-- ===================== This week ===================== -->
   <CC_Wsh_Week_Vow_NoMeat>{PAWN} keeps a vow to {GOD}: no meat until {ABOUT} is well</CC_Wsh_Week_Vow_NoMeat>
@@ -235,12 +235,25 @@
   <CC_Wsh_Week_Vow_BeastSpared>{PAWN} has vowed {GOD} no {BEAST} hunted this season</CC_Wsh_Week_Vow_BeastSpared>
   <CC_Wsh_Week_VowSub>a vow to {GOD}</CC_Wsh_Week_VowSub>
   <CC_Wsh_Week_Vow>vow</CC_Wsh_Week_Vow>
-  <CC_Wsh_Week_VowTip_NoMeat>Kept when the sick one is well, or after twenty days; broken by a single meal with meat in it. Vegetarian meals in the stores help.</CC_Wsh_Week_VowTip_NoMeat>
-  <CC_Wsh_Week_VowTip_Pilgrimage>A life goal: on a free day they walk out to the god's holy place on the colony's land and pray there an hour.</CC_Wsh_Week_VowTip_Pilgrimage>
-  <CC_Wsh_Week_VowTip_Temple>Kept when a place of the god's stands indoors in a fine room (impressiveness 50 or more, 16 cells or more).</CC_Wsh_Week_VowTip_Temple>
+  <CC_Wsh_Week_VowTip_NoMeat>Sworn until the sick one is well. A single meal with meat in it breaks it; vegetarian meals in the stores help.</CC_Wsh_Week_VowTip_NoMeat>
+  <CC_Wsh_Week_VowTip_Pilgrimage>A life goal: on a free day they walk out to the god's holy place on the colony's land and pray there a while.</CC_Wsh_Week_VowTip_Pilgrimage>
+  <CC_Wsh_Week_VowTip_Temple>Kept when a place of the god's stands indoors, in a room fine enough to be called a temple.</CC_Wsh_Week_VowTip_Temple>
   <CC_Wsh_Week_VowTip_BeastSpared>Broken if anyone of the colony kills an animal of that kind before the season is out.</CC_Wsh_Week_VowTip_BeastSpared>
-  <CC_Wsh_Week_Demand>{GOD} asked for {WHAT} at {SHRINE}</CC_Wsh_Week_Demand>
-  <CC_Wsh_Week_DemandNote>asked</CC_Wsh_Week_DemandNote>
-  <CC_Wsh_Week_DemandTip>{PAWN} dreamt it. Someone will carry it there when they are free; let it go past three days, and the god is displeased.</CC_Wsh_Week_DemandTip>
+  <CC_Wsh_Week_Demand>{PAWN} dreamt that {GOD} wants {WHAT} at {SHRINE}</CC_Wsh_Week_Demand>
+  <CC_Wsh_Week_DemandNote>dreamt</CC_Wsh_Week_DemandNote>
+  <CC_Wsh_Week_DemandTip>{PAWN} told the dream. Someone will carry it there when they are free.</CC_Wsh_Week_DemandTip>
+
+  <!-- ===================== The colony's book: in the words of those who were there ===================== -->
+  <CC_Wsh_Book_Offered>{PAWN} left {WHAT} at {SHRINE}.</CC_Wsh_Book_Offered>
+  <CC_Wsh_Book_Festival>The colony kept {NAME}: {DISHES}.</CC_Wsh_Book_Festival>
+  <CC_Wsh_Book_FestivalPassed>{NAME} went by unkept this year.</CC_Wsh_Book_FestivalPassed>
+  <CC_Wsh_Book_Credit_Sickness>{PAWN} prayed to {GOD} for {SICK}, and {SICK} got well. {PAWN} is sure it was {GOD}.</CC_Wsh_Book_Credit_Sickness>
+  <CC_Wsh_Book_Credit_Death>{PAWN} prayed to {GOD} for the dead, and was easier after.</CC_Wsh_Book_Credit_Death>
+  <CC_Wsh_Book_Credit_Raid>{PAWN} prayed to {GOD} before the raid, and the colony came through it. {PAWN} thanks {GOD} for that.</CC_Wsh_Book_Credit_Raid>
+  <CC_Wsh_Book_Credit_Drought>{PAWN} prayed to {GOD} for rain, and it came. {PAWN} says it was {GOD}; not everyone agrees.</CC_Wsh_Book_Credit_Drought>
+  <CC_Wsh_Book_Unanswered_Sickness>{PAWN} prayed to {GOD} for {ABOUT}, and {ABOUT} died all the same.</CC_Wsh_Book_Unanswered_Sickness>
+  <CC_Wsh_Book_Unanswered_Death>{PAWN} prayed to {GOD} for {ABOUT}, and felt nothing come back.</CC_Wsh_Book_Unanswered_Death>
+  <CC_Wsh_Book_Unanswered_Raid>{PAWN} prayed to {GOD} before the raid, and {ABOUT} fell in it.</CC_Wsh_Book_Unanswered_Raid>
+  <CC_Wsh_Book_Unanswered_Drought>{PAWN} prayed to {GOD} for rain, and none came.</CC_Wsh_Book_Unanswered_Drought>
 
 </LanguageData>

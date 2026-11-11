@@ -68,7 +68,7 @@ namespace ColonyCouncil
                 case CalendarKind.Rescue: return Icons.Heart;
                 case CalendarKind.Custom: return Icons.Ways;
                 case CalendarKind.Parting: return Icons.Colony;
-                case CalendarKind.GodFestival: return GodSymbols.For(ColonyCalendar.GodOfDay(d)?.domain ?? GodDomain.None) ?? GodSymbols.Pantheon ?? Icons.Ways;
+                case CalendarKind.GodFestival: return Icons.Ways;
                 default: return Icon ?? Icons.Chronicle;
             }
         }

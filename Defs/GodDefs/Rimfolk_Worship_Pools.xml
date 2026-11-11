@@ -63,6 +63,19 @@
         <li>[offer:art] Something made with care, {GOD}, for you to look at.</li>
         <li>[offer:component] Parts that work, {GOD}, which is more than we can say for most things.</li>
         <li>[kind:hunger] There, {GOD}, now leave us be a while.</li>
+        <li>[godkey:hollin] Grown, not cut, {GOD}, as you like it.</li>
+        <li>[godkey:smoulder] Silver for the deep, {GOD}, and every word of it praise.</li>
+        <li>[godkey:bellwether] Sweet grass for the road, {GOD}, and go in peace.</li>
+        <li>[godkey:morel] Let it go back to you, {GOD}, the way everything does.</li>
+        <li>[godkey:ennu] A bowl for whoever comes to the door tonight, {GOD}, whatever face you wear.</li>
+        <li>[godkey:pip] It hums again, {GOD}, I fixed it myself.</li>
+        <li>[godkey:cirrus] Something to look down on, {GOD}, if you ever look down.</li>
+        <li>[godkey:hush] Warm things for the lean months, {GOD}, and nothing wasted.</li>
+        <li>[godkey:undertow] Take it, {GOD}, and nothing more than this.</li>
+        <li>[godkey:selene] Silver for the moon, {GOD}, from a good day.</li>
+        <li>[godkey:mog] Nobody asked for this, {GOD}, so it's yours if you want it.</li>
+        <li>[godkey:murmur] Clean water from the well, {GOD}, and a song with it.</li>
+        <li>[godkey:ducat] Here, {GOD}, it was never ours to keep.</li>
       </plain>
     </lines>
   </ColonyCouncil.FlavorPoolDef>
@@ -91,6 +104,17 @@
         <li>[kind:archotech] {GOD}, our case is set out plainly: judge it.</li>
         <li>[kind:hunger] I know what you'll want for it, {GOD}, and I'm asking anyway.</li>
         <li>[step:believed] Whoever is listening, {GOD} or nobody, please.</li>
+        <li>[godkey:hollin] {GOD}, I planted three for every one we cut, so hear me.</li>
+        <li>[godkey:smoulder] {GOD}, name your price, and let us sleep easy.</li>
+        <li>[godkey:morel] {GOD}, be gentle, and be slow.</li>
+        <li>[godkey:ennu] Whoever you are tonight, {GOD}, there's a place by our fire.</li>
+        <li>[godkey:pip] {GOD}, if you're in the wires, keep the lights on for us.</li>
+        <li>[godkey:hush] {GOD}, we kept everything, wasted nothing, so pass us by.</li>
+        <li>[godkey:undertow] I know you always say yes, {GOD}, so say yes.</li>
+        <li>[godkey:helios] I know you don't listen, {GOD}, but thank you for the light.</li>
+        <li>[godkey:selene] {GOD}, I'll tell you everything tonight, so bring it back to us.</li>
+        <li>[godkey:murmur,pray:drought] Sing, {GOD}, please, the wells are low.</li>
+        <li>[godkey:ducat] {GOD}, I gave what I had, so turn our luck.</li>
       </plain>
     </lines>
   </ColonyCouncil.FlavorPoolDef>
@@ -105,6 +129,11 @@
         <li>[pray:drought] Rain at last, and {GOD} sent it.</li>
         <li>[scoffer] Fine, maybe {GOD} had something to do with it.</li>
         <li>[step:believed] Call it luck if you like, I'm thanking {GOD}.</li>
+        <li>[godkey:hollin] The roots held, and that was {GOD}, I'd swear to it.</li>
+        <li>[godkey:morel] Slow and soft, the way {GOD} does everything.</li>
+        <li>[godkey:selene] It came back in the night, just as they say {GOD} does it.</li>
+        <li>[godkey:murmur,pray:drought] That was {GOD}, croaking under the well before the rain.</li>
+        <li>[godkey:undertow] {GOD} said yes, and now I wonder what it'll want for it.</li>
       </plain>
     </lines>
   </ColonyCouncil.FlavorPoolDef>
@@ -315,7 +344,7 @@
         <li>[dream:warning,danger:beast,veiled] I dreamt of {SUBJECT} with a light on its brow, and something behind it that watched me. I think it was {GOD}.</li>
         <li>[dream:warning,danger:sickness,clear] {GOD} sat at {SUBJECT}'s bedside in my dream and would not look at me. Watch them closely.</li>
         <li>[dream:warning,danger:sickness,veiled] I dreamt someone was counting breaths beside {SUBJECT}'s bed. They stopped counting before I woke.</li>
-        <li>[dream:warning,danger:anger,clear] {GOD} was angry. Not shouting. Just looking at the colony from very far away.</li>
+        <li>[dream:warning,danger:anger,clear] I dreamt {GOD} stood far off, looking at the colony, and came no nearer however long I waited.</li>
         <li>[dream:warning,danger:anger,veiled] The sky in my dream was the wrong colour, and everyone said it was {GOD}'s doing.</li>
         <li>[dream:demand,clear] {GOD} came to me and asked for {NAME}, at {GOD}'s own place, within three days.</li>
         <li>[dream:demand,veiled] I dreamt of {NAME} laid at the shrine, and a hand reaching for it. I think {GOD} wants it.</li>
@@ -394,21 +423,5 @@
       </plain>
     </lines>
   </ColonyCouncil.FlavorPoolDef>
-
-  <!--
-    How each god is worshipped, by its own character (Gods/Worship/GodWorshipDef.cs, GodWorshipDef): what it loves offered
-    and refuses, its festival's day, name and dishes, its chant, the vows its people make. None yet: the generated pantheon
-    runs on the domains' tables (WorshipMath). The hand-made pantheon (docs/gods-pantheon-brainstorm.md) fills one a god,
-    for example:
-      <ColonyCouncil.GodWorshipDef>
-        <defName>Rimfolk_Worship_Auren</defName>
-        <gods><li>Auren</li></gods>
-        <likes><li><kind>Meal</kind><weight>1.6</weight></li><li><kind>Textile</kind><weight>1.1</weight></li></likes>
-        <festivalSeason>3</festivalSeason><festivalDay>7</festivalDay>
-        <festivalName>the Longest Night of {GOD}</festivalName>
-        <festivalDishes>bread broken at every hearth and a bowl set by the gate</festivalDishes>
-        <vows><li>NoMeat</li></vows>
-      </ColonyCouncil.GodWorshipDef>
-  -->
 
 </Defs>

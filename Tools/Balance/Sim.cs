@@ -180,6 +180,8 @@ namespace Balance
         private readonly Random heartRng;
         /// <summary>The heart's good side's own draws (HeartSim.cs), so the rest of the heart draws the same with it on or off.</summary>
         private readonly Random goodRng;
+        /// <summary>Worship's own draws (Rates.Worship), so the rest of the year draws the same with it on or off.</summary>
+        private readonly Random worshipRng;
         private int lastColonyEpisode = -999999;
         /// <summary>The colony's last bad afternoon (shared by its colonists' hearts).</summary>
         private readonly int[] colonyBadDay = { -999999 };
@@ -209,6 +211,7 @@ namespace Balance
             heartLife = HeartState.For(style.key);
             heartRng = new Random(seed ^ 0x5eed);
             goodRng = new Random(seed ^ 0x600d);
+            worshipRng = new Random(seed ^ 0x90d5);
             diseaseRng = new Random(seed ^ 0x5157);
             budgetRng = new Random(seed ^ 0xb0d6);
             gameSickRng = new Random(seed ^ 0x51c4);
@@ -933,6 +936,16 @@ namespace Balance
                     float f = Rates.CareSetbacks.Contains(thought) ? style.setbackFactor * style.setbackFactor : style.setbackFactor;
                     if (Chance(perDay * f)) Setback(c, thought, stage);
                 }
+                // Worship (Gods/Worship/): an answered prayer, a crisis of faith, a scoffer's mockery, a vow kept or broken.
+                if (set.B("gods") && set.B("godWorship"))
+                    foreach (var (thought, perDay) in Rates.Worship)
+                    {
+                        if (worshipRng.NextDouble() >= perDay) continue;
+                        string was = source;
+                        source = "worship";
+                        Give(c, thought);
+                        source = was;
+                    }
                 // Quiet troubles (Setbacks/Troubles.cs): content days in a row, then a chance a day of a low day from their life.
                 c.contentDays = GoodLifeMath.NextContentDays(c.contentDays, c.mood);
                 if (set.MoodEffects && set.B("quietTroubles") && hour - c.lastTrouble >= GoodLifeMath.TroubleGapDays * 24

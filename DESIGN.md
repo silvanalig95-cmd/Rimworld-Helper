@@ -12141,6 +12141,81 @@ presence part builds against the same contract).
 - **Settings**: "Gods" (on) and "How real are the gods" (Believed, Felt, Walking; Felt), What's on, The gods.
 - Dev actions "Gods: ...". The Almanac page "the gods" (`Council_Alm_C_Gods`). Tested in `GodsTests`.
 
+### The gods: worship (the player's request, 11 November 2026; not released yet)
+
+Stage 2 of `docs/design/gods.md` ("Worship"): shrines and offerings, prayer in hard moments, festivals, vows, a priest
+and the council's questions about the gods, the gods in dreams, and the heart of it (comfort, crises of faith, turning
+to another god, scoffers, couples of two gods). The code is `Source/ColonyCouncil/Gods/Worship/`, the defs
+`Defs/GodDefs/Rimfolk_Worship*.xml`, the words `Languages/English/Keyed/Rimfolk_Worship.xml`. It reaches the gods only
+through the core's `Gods` and the two seams: a god's sign goes to `GodPresenceSeam.Call`, and while the presence part
+isn't there, to a plain card (`Tell.Letter`) or the news.
+
+- **The unseen rule** (the player's, 11 November 2026): nothing the player reads tells a god's favour, standing, mind
+  or rules: not the place's button or inspect line, This week, the news, the cards or the council's questions. A
+  question comes from a person, in their words. A god is named plainly on a card only where the colony knows it was
+  that god (a place dedicated, a festival, a vow; `Worship.CardName`, which the core's `Gods.CardName` replaces at the
+  merge); what people only suspect, an answered prayer above all, is "some say" or a believer's own word, and people
+  argue over it. What people saw or did goes into the colony's book (`Gods.Remember`) in the words of those who were
+  there: a place dedicated, an offering left and what became of it, a prayer and what followed, a festival kept or let
+  pass, a vow made, kept or broken, a dream told. Worship has no Almanac page: the gods are learned in play.
+- **Places** (`Shrines.cs`): anything with a ritual focus (Ideology's and the mods' altars, ideograms, lecterns,
+  slabs), art, Royalty's nature shrines, an ancient terminal, or a building called an altar or a shrine can be given
+  to a god the colony knows: a button on it, and a colonist (the priest first, else one who prays to that god) walks
+  over and says the words there. In the colony's age it is a shrine, a chapel, a church or a terminal; one in a fine
+  room indoors (impressiveness 50, 16 cells) is a temple.
+- **Offerings** (`Offerings.cs`): about once a day a place, someone carries something the god likes from the stores
+  and sets it down there, forbidden, with a word. Then, by how real the gods are: Walking, it goes before everyone's
+  eyes; Felt, it is gone by morning; Believed, an animal eats it, someone passing takes it, it spoils, or it goes back
+  to the stores, and the colony says what it says. Never the flesh of people or insects. Favour by its worth, how well
+  it suits the god and the god's nature, hidden.
+- **Prayer** (`Prayers.cs`): someone gravely ill, a death, raiders at the gate, a drought in the growing season. The
+  devout pray most, a scoffer never; they walk to the god's place in their free time, or kneel where they stand, or say
+  it in bed or in the fight. A prayer comforts (in the heart's daily cap). Sometimes something follows (a fever eases at
+  night, the grieving are consoled, a fighter's nerve, rain), never in Believed and at most once in five days a home,
+  told as what happened after; later the prayer comes good on its own or goes unanswered. The Hunger answers anyone,
+  and something of worth goes missing from the stores the next night.
+- **The heart** (`FaithHeart.cs`): an unanswered prayer is a crisis of faith about a third of the time (-4, four days;
+  with Ideology their certainty shaken); two in a month and they may turn to another god, a rival of the one that
+  failed them first. Scoffers (a faith that despises religion, with Ideology one far from sure, else about one in
+  seven by who they are; Ideology's deities play no part) mock what believers saw, face to face and once in five days
+  a home (-2 and an opinion). A couple who pray to different gods bicker over whose god sent the rain after a dry
+  spell (an opinion only).
+- **Vows** (`Vows.cs`, made with the core's `Gods.Vow`): no meat until the sick one is well (vegetarian meals asked for
+  as a wish), a pilgrimage on foot to the god's holy place on the colony's land (a life goal), a temple (a life goal,
+  also vowed before the council), and a beast spared for a season. Kept: +3 and pride; broken: -4, and a god that takes
+  a broken word hard may cast a shadow on them.
+- **Festivals** (`Festivals.cs`, a part of the calendar): the colony's gods (the one honoured this year, then the most
+  widely held, three at most) each have a day (`CalendarKind.GodFestival`) kept with a feast and a rite at the god's
+  place, with a chant from Alpha Memes or Ideology by the god, and visitors from the peoples who hold it. A god no
+  longer the colony's has its day taken off, unless it has become a tradition.
+- **The priest** (`Rimfolk_Worship_Office.xml`): an elected seat by Social, only with the gods on and never beside
+  Ideology's chaplain; A RimWorld of Magic's priests, paladins and brightmages first. In the colony's age a shaman, a
+  priest, a pastor or an oracle. Dedicates the places, carries the offerings, leads the rites.
+- **The council** (`WorshipCouncil.cs`, four questions): which god the colony keeps the year for; a temple vowed; a god
+  in a dream asking for the colony's finest beast or the rain stays away (as the dreamer fears); two rival gods' people
+  wanting the next rite. Every answer plays out: words said at the god's place, an offering carried, the beast walked
+  out and let go.
+- **Dreams** (`GodDreams.cs`): a share of waking dreams are a god's (more for the priest, a psychic or a mage): a
+  warning of something real now, an offering asked for at its place within three days (This week shows it as the
+  dreamer's dream), a god's name the colony didn't know, a vision. A dream mood that gives awe, not mood.
+- **A RimWorld of Magic** (`WorshipMore.cs`, by name): a caster's mana comes back faster or slower by how the colony
+  stands with the god their class serves; hidden, and nothing in Believed.
+- **Each god's own worship** (`GodWorshipDef`, `Rimfolk_Worship_Gods.xml`): keyed by the god's short name, from its
+  character in `docs/gods-pantheon-brainstorm.md`: what it likes offered and refuses, its festival's day, name, dishes
+  and chant, its people's vows, and a few of its own ways (Smoulder takes silver first; Ducat wants it given away, so
+  an offering that goes back to the stores is nothing to it; Mog keeps no calendar and never asks; Helios takes
+  nothing and is moved by nothing; Selene hears by night and in dreams told; Undertow takes anything; Morel takes what
+  rots; Murmur and Cirrus are believed to keep the rain). A god no def names falls back to its domain's tables
+  (`WorshipMath`). A handful of lines in the pools are a god's own (`[godkey:smoulder]`).
+- **Saved**: `WorshipBook` (places, offerings, prayers, vows, dream demands and marks, each capped; modelled in
+  `Tools/save_estimate.py`).
+- **Balance** (`Tools/Balance`, `Rates.Worship`): an answer +4, a crisis of faith -4, mockery -2, a vow kept +3 or
+  broken -4, at a few a colonist-year: worship adds about +0.17 and takes about -0.1 a colonist (well run to neglected),
+  inside the targets as before.
+- **Setting**: "Worship of the gods" (on), under The gods; nothing without "Gods". Dev actions "Gods: a prayer now...",
+  "a vow now...", "a god's dream now", "a crisis of faith", "offerings at every shrine now", "worship's hour now",
+  "worship's day now", "the gods' festivals onto the calendar now", "show worship (log)". Tested in `WorshipTests`.
+
 ### Checking a new game version
 
 One DLL serves every supported version: it is built against the 1.6 references into `1.6/Assemblies`, and on 1.7

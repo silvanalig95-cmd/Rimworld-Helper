@@ -42,7 +42,7 @@ namespace ColonyCouncil
                 string label = Festivals.Name(g);
                 if (have != null)
                 {
-                    have.subject = g.name;
+                    have.subject = Worship.CardName(g);
                     have.otherName = g.epithet;
                     if (!have.byPlayer) have.label = label;
                     continue;
@@ -53,7 +53,7 @@ namespace ColonyCouncil
                 int day = WorshipMath.FestivalDay(q, inSeason, clashes);
                 var d = new CalendarDay
                 {
-                    id = id, kind = CalendarKind.GodFestival, way = DayWay.Feast, label = label, subject = g.name, otherName = g.epithet,
+                    id = id, kind = CalendarKind.GodFestival, way = DayWay.Feast, label = label, subject = Worship.CardName(g), otherName = g.epithet,
                     about = g.domain.ToString().ToLowerInvariant(), day = day, sinceYear = year, tick = Find.TickManager.TicksGame, weight = CalendarMath.FaithDayWeight,
                     lastYear = CalendarMath.InitialLastYear(today, year, day, false)
                 };
@@ -88,17 +88,16 @@ namespace ColonyCouncil
     /// </summary>
     public static class Festivals
     {
-        /// <summary>The colony's gods that keep a festival: the one honoured this year, the patron, then the most widely held (never a dead god).</summary>
+        /// <summary>The gods whose festivals the colony keeps: the one honoured this year, then those its people pray to, the most first (never a dead god, nor one that keeps none).</summary>
         public static List<God> GodsFor(Map map)
         {
             var list = new List<God>();
             void Add(God g)
             {
-                if (g != null && g.kind != GodKind.Dead && !list.Contains(g) && list.Count < WorshipMath.MaxFestivals) list.Add(g);
+                if (GodWorshipDef.KeepsFestival(g) && !list.Contains(g) && list.Count < WorshipMath.MaxFestivals) list.Add(g);
             }
             Add(Worship.Honoured(map));
-            Add(Gods.Patron(map));
-            foreach (var g in Gods.ColonyGods(map)) Add(g);
+            foreach (var g in Worship.PrayedTo(map)) Add(g);
             return list;
         }
 
@@ -141,13 +140,14 @@ namespace ColonyCouncil
             if (g == null || map == null || !Worship.On) return;
             string why = "CC_Wsh_Why_Festival".Translate(d.label.Named("NAME")).Resolve();
             Worship.Favour(g, map, WorshipMath.FestivalKept, why, FavourSource.Rite);
+            Worship.Witness(g, map, GodActKind.Favour, "CC_Wsh_Book_Festival".Translate(d.label.Named("NAME"), Dishes(g).Named("DISHES")).Resolve());
             var b = Worship.Book;
             var shrine = Shrines.Of(map, g).Select(s => s.thing).OrderByDescending(Shrines.IsTemple).FirstOrDefault();
             if (shrine != null && b != null)
             {
                 // The rite at its place, and an offering carried there.
                 b.SetMark(Gods.HomeKey(map), "rite", g.id, Worship.Now, Worship.Now + GenDate.TicksPerDay / 2);
-                if (WorshipMath.TakesOfferings(g.kind) && !b.offerings.Any(o => o != null && o.shrine == shrine && o.fate == OfferingFate.Waiting))
+                if (GodWorshipDef.TakesOfferings(g) && !b.offerings.Any(o => o != null && o.shrine == shrine && o.fate == OfferingFate.Waiting))
                     b.offerings.Add(new OfferingRecord { shrine = shrine, god = g.id, home = Gods.HomeKey(map), chosen = Worship.Now });
             }
             Visitors(g, map);
@@ -157,7 +157,8 @@ namespace ColonyCouncil
         {
             var g = ColonyCalendar.GodOfDay(d);
             if (g == null || map == null || !Worship.On) return;
-            Gods.AddFavour(g, map, WorshipMath.FestivalPassed, "CC_Wsh_Why_FestivalPassed".Translate(d.label.Named("NAME")).Resolve(), FavourSource.Neglect, GodOffence.Neglect);
+            Worship.Favour(g, map, WorshipMath.FestivalPassed, "CC_Wsh_Why_FestivalPassed".Translate(d.label.Named("NAME")).Resolve(), FavourSource.Neglect, GodOffence.Neglect);
+            Worship.Witness(g, map, GodActKind.Favour, "CC_Wsh_Book_FestivalPassed".Translate(d.label.Named("NAME")).Resolve());
         }
 
         /// <summary>The region's hour (WorshipCouncil.Hourly): a festival's rite waiting is held by whoever leads it, once free.</summary>
@@ -209,7 +210,7 @@ namespace ColonyCouncil
             if (g == null) return;
             var map = shrine.Map;
             float more = 2f * (Worship.IsPriest(p) ? WorshipMath.PriestRiteFactor : 1f) * (Worship.MagicPriest(p) ? 1.25f : 1f);
-            string text = "CC_Wsh_RiteDone".Translate(p.LabelShort.Named("PAWN"), Worship.ShrineOf(g).Named("SHRINE"), Gods.FullName(g).Named("GOD"), Dishes(g).Named("DISHES")).Resolve();
+            string text = "CC_Wsh_RiteDone".Translate(p.LabelShort.Named("PAWN"), Worship.ShrineOf(g).Named("SHRINE"), Worship.CardName(g).Named("GOD"), Dishes(g).Named("DISHES")).Resolve();
             Worship.Favour(g, map, more, text, FavourSource.Rite);
             Tell.Minor(NewsKind.Colony, Importance.Flavor, map, text, shrine);
             if (Worship.IsPriest(p)) CouncilRecords.Add(p, "Council_RitualsLed");
@@ -286,7 +287,7 @@ namespace ColonyCouncil
                 parms.forced = true;
                 if (!def.Worker.CanFireNow(parms)) return;
                 if (def.Worker.TryExecute(parms))
-                    Tell.Minor(NewsKind.World, Importance.Notable, map, "CC_Wsh_FestivalVisitors".Translate(f.Name.Named("PEOPLE"), Gods.Name(g).Named("GOD")).Resolve(), null);
+                    Tell.Minor(NewsKind.World, Importance.Notable, map, "CC_Wsh_FestivalVisitors".Translate(f.Name.Named("PEOPLE"), Worship.CardName(g).Named("GOD")).Resolve(), null);
             }
             catch (Exception e)
             {

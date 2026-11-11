@@ -54,7 +54,7 @@ namespace ColonyCouncil
             {
             }
             string key = "CC_Wsh_Report_" + Act + (g != null ? "" : "_NoGod");
-            return key.Translate(Gods.Name(g).Named("GOD")).Resolve();
+            return key.Translate(Worship.CardName(g).Named("GOD")).Resolve();
         }
 
         protected override IEnumerable<Toil> MakeNewToils()
@@ -168,7 +168,7 @@ namespace ColonyCouncil
         public override string GetReport()
         {
             var g = Offerings.GodOf(job.targetA.Thing ?? pawn.carryTracker?.CarriedThing, job.targetB.Thing);
-            return (g != null ? "CC_Wsh_Report_Offer" : "CC_Wsh_Report_Offer_NoGod").Translate(Gods.Name(g).Named("GOD")).Resolve();
+            return (g != null ? "CC_Wsh_Report_Offer" : "CC_Wsh_Report_Offer_NoGod").Translate(Worship.CardName(g).Named("GOD")).Resolve();
         }
 
         protected override IEnumerable<Toil> MakeNewToils()
@@ -242,7 +242,7 @@ namespace ColonyCouncil
         public override string GetReport()
         {
             var g = Vows.PilgrimGod(pawn);
-            return (there ? "CC_Wsh_Report_PilgrimThere" : "CC_Wsh_Report_Pilgrim").Translate(Gods.Name(g).Named("GOD")).Resolve();
+            return (there ? "CC_Wsh_Report_PilgrimThere" : "CC_Wsh_Report_Pilgrim").Translate(Worship.CardName(g).Named("GOD")).Resolve();
         }
 
         protected override IEnumerable<Toil> MakeNewToils()

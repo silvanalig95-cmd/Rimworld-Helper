@@ -112,13 +112,12 @@ namespace ColonyCouncil
 
         public static bool Wavering(Pawn p) => p != null && Faiths.On && Faiths.Wavering(p);
 
-        /// <summary>A scoffer (WorshipMath.Scoffer): their faith despises religion, has no gods, or they are far from sure of it.</summary>
+        /// <summary>A scoffer (WorshipMath.Scoffer): their faith despises religion, they are far from sure of it, or it's who they are.</summary>
         public static bool Scoffer(Pawn p)
         {
             if (p == null) return false;
             bool ideology = Faiths.On && Faiths.Of(p) != null;
-            bool godless = ideology && Gods.OfIdeo(Faiths.Of(p)).Count == 0;
-            return WorshipMath.Scoffer(Beliefs.Forbids(p, Belief.NoReligion), ideology, godless, ideology ? Faiths.Certainty(p) : 1f, p.thingIDNumber);
+            return WorshipMath.Scoffer(Beliefs.Forbids(p, Belief.NoReligion), ideology, ideology ? Faiths.Certainty(p) : 1f, p.thingIDNumber);
         }
 
         /// <summary>A psychic gift: the game's psychic sensitivity well above the usual, or a RimWorld of Magic caster.</summary>
@@ -157,8 +156,8 @@ namespace ColonyCouncil
         public const string PriestDefName = "Rimfolk_Office_Priest", ChaplainDefName = "Council_Office_Chaplain";
 
         /// <summary>
-        /// The priest's seat is open: the gods and their worship on, a god the colony holds, and no chaplain's seat (with
-        /// Ideology and a faith of the colony's own, the chaplain is the colony's priest).
+        /// The priest's seat is open: the gods and their worship on, a god someone of the colony prays to, and no chaplain's
+        /// seat (with Ideology and a faith of the colony's own, the chaplain is the colony's priest, as a role only).
         /// </summary>
         public static bool PriestSeatOpen
         {
@@ -167,9 +166,31 @@ namespace ColonyCouncil
                 if (!On) return false;
                 var chaplain = DefDatabase<OfficeDef>.GetNamedSilentFail(ChaplainDefName);
                 if (chaplain != null && chaplain.Available) return false;
-                var seat = Homes.Seat;
-                return Gods.ColonyGods(seat).Count > 0 || Gods.Patron(seat) != null;
+                return PrayedTo(Homes.Seat).Count > 0;
             }
+        }
+
+        /// <summary>
+        /// The gods the colony's people pray to at a home (each one's god, Worship.GodOf), the most prayed-to first, and those
+        /// with a place dedicated to them there; never a dead god. What the colony does, not how a god stands with it.
+        /// </summary>
+        public static List<God> PrayedTo(Map map)
+        {
+            var count = new Dictionary<God, int>();
+            if (map == null || !On) return new List<God>();
+            foreach (var p in Homes.People(map))
+            {
+                if (!Ours(p) || Scoffer(p)) continue;
+                var g = GodOf(p);
+                if (g == null || g.kind == GodKind.Dead) continue;
+                count[g] = (count.TryGetValue(g, out int n) ? n : 0) + 1;
+            }
+            foreach (var s in Shrines.Of(map, null))
+            {
+                var g = Gods.ById(s.god);
+                if (g != null && g.kind != GodKind.Dead && !count.ContainsKey(g)) count[g] = 0;
+            }
+            return count.Keys.OrderByDescending(g => count[g]).ThenBy(g => g.id).ToList();
         }
 
         /// <summary>The colony's priest at this home: its chaplain where the colony has one, else the priest; null without either.</summary>
@@ -222,7 +243,7 @@ namespace ColonyCouncil
         public static string ShrineWord => ("CC_Wsh_Shrine_" + WorshipMath.ShrineWord((int)Ages.Ours)).Translate();
 
         /// <summary>A god's place in words: "Ceren's chapel".</summary>
-        public static string ShrineOf(God g) => "CC_Wsh_ShrineOf".Translate(Gods.Name(g).Named("GOD"), ShrineWord.Named("SHRINE")).Resolve();
+        public static string ShrineOf(God g) => "CC_Wsh_ShrineOf".Translate(CardName(g).Named("GOD"), ShrineWord.Named("SHRINE")).Resolve();
 
         /// <summary>A line from a pool for someone and their god ({GOD}, {GODEPITHET}, {GODOF}, {PAWN}, {OTHER}), tagged with the god's domain and kind, the step and the extra tags; null when nothing fits.</summary>
         public static string Line(string pool, Pawn p, God g, Pawn other = null, params string[] extra) => LineWith(pool, p, g, other, null, extra);
@@ -271,8 +292,8 @@ namespace ColonyCouncil
 
         /// <summary>
         /// A god's sign at a place: the presence part plays its moment (GodPresenceSeam), and while that isn't there, a plain
-        /// card or a line in the news worded for the step of how real the gods are (the caller's text already is), with a
-        /// glow at the place in Felt and Walking. Remembered among the god's acts either way.
+        /// card or a line in the news worded for the step of how real the gods are (the caller's text already is: what was
+        /// seen and what people say, never why), with a glow at the place in Felt and Walking. In the colony's book either way.
         /// </summary>
         public static void Sign(God g, Map map, IntVec3 cell, PresenceKind kind, string title, string text, LookTargets look, bool letter, GodActKind act = GodActKind.Act)
         {
@@ -288,7 +309,7 @@ namespace ColonyCouncil
                     if (letter) Tell.Letter(NewsKind.Colony, Importance.Notable, map, title, text, LetterDefOf.NeutralEvent, look);
                     else Tell.Minor(NewsKind.Colony, Importance.Notable, map, text, look);
                 }
-                Gods.Remember(new GodAct { god = g.id, home = Gods.HomeKey(map), kind = act, text = text, cell = cell });
+                Witness(g, map, act, text, cell);
             }
             catch (Exception e)
             {
@@ -345,12 +366,38 @@ namespace ColonyCouncil
 
         // ================= Favour, with the year's honour =================
 
-        /// <summary>Favour from worship (an offering, a rite), a quarter more for the god the council honours this year.</summary>
+        /// <summary>
+        /// Favour from worship (an offering, a rite), a quarter more for the god the council honours this year; nothing for a
+        /// god worship doesn't move (Helios). Hidden state: never shown, only acted on.
+        /// </summary>
         public static void Favour(God g, Map map, float amount, string why, FavourSource source, GodOffence offence = GodOffence.None)
         {
-            if (g == null || amount == 0f) return;
+            if (g == null || amount == 0f || !GodWorshipDef.Moved(g)) return;
             if (amount > 0f && IsHonoured(g, map) && source != FavourSource.Offering) amount *= WorshipMath.HonourFactor;
             Gods.AddFavour(g, map, amount, why, source, offence);
+        }
+
+        // ================= The colony's book =================
+
+        /// <summary>
+        /// Something the colony's people saw or did with a god, for the colony's book (Gods.Remember; the core fills in who
+        /// witnessed it): <paramref name="text"/> in their own words and beliefs, possibly wrong, never the god's mind.
+        /// </summary>
+        public static void Witness(God g, Map map, GodActKind kind, string text, IntVec3 cell = default)
+        {
+            if (g == null || text.NullOrEmpty()) return;
+            Gods.Remember(new GodAct { god = g.id, home = Gods.HomeKey(map), kind = kind, text = text, cell = cell == default ? IntVec3.Invalid : cell });
+        }
+
+        /// <summary>
+        /// The god as worship's cards and messages name it: plainly, by the colony's name for it, once the colony knows it
+        /// (a shrine given to it, its festival, a vow to it); else "a god".
+        /// For the lead at the merge: swap this for the reworked core's Gods.CardName(god, home).
+        /// </summary>
+        public static string CardName(God g, Map home = null)
+        {
+            if (g == null) return "";
+            return Gods.Known(g) ? Gods.Name(g) : "CC_Wsh_UnknownGod".Translate().ToString();
         }
     }
 }

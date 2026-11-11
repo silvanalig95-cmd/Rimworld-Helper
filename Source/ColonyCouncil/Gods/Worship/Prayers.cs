@@ -288,7 +288,11 @@ namespace ColonyCouncil
             var last = b.Mark(key, "answer", g.id);
             if (last != null && now - last.value < WorshipMath.AnswerGapDays * GenDate.TicksPerDay) return;
             bool priest = Worship.IsPriest(p) || Worship.Priest(map) != null && r.atShrine && Worship.Priest(map).Position.InHorDistOf(p.Position, 10f);
+            // A god worship doesn't move answers nobody (Helios gives to all alike); one that returns by night hears the night's prayers better (Selene).
+            if (!GodWorshipDef.Moved(g)) return;
             float chance = WorshipMath.AnswerChance(Gods.Realness, g.kind, Gods.Loudness(g), Gods.Favour(g, map), priest, r.atShrine, Worship.IsHonoured(g, map));
+            int hour = GenLocalDate.HourOfDay(map);
+            if (hour >= 20 || hour < 5) chance = Mathf.Min(0.6f, chance * (GodWorshipDef.For(g)?.nightFactor ?? 1f));
             if (!Rand.Chance(chance)) return;
             if (!Answer(r, p, g, map)) return;
             r.answered = true;
@@ -303,7 +307,7 @@ namespace ColonyCouncil
         /// <summary>The god's answer, at the step's strength, shown on the map; false when there was nothing to answer after all.</summary>
         private static bool Answer(PrayerRecord r, Pawn p, God g, Map map)
         {
-            string title = "CC_Wsh_Answer_Title".Translate(Gods.Name(g).Named("GOD")).Resolve();
+            string title = "CC_Wsh_Answer_Title".Translate(Worship.CardName(g).Named("GOD")).Resolve();
             switch (r.kind)
             {
                 case PrayerKind.Sickness:
@@ -314,7 +318,7 @@ namespace ColonyCouncil
                     h.Severity = Mathf.Max(0.01f, h.Severity - WorshipMath.SicknessEase(Gods.Realness) * h.def.lethalSeverity);
                     var imm = sick.health?.immunity?.GetImmunityRecord(h.def);
                     if (imm != null) imm.immunity = Mathf.Min(1f, imm.immunity + WorshipMath.SicknessEase(Gods.Realness) * 0.6f);
-                    string text = ("CC_Wsh_Answer_Sickness_" + Step).Translate(sick.LabelShort.Named("SICK"), Gods.FullName(g).Named("GOD"), h.LabelBase.Named("ILLNESS"),
+                    string text = ("CC_Wsh_Answer_Sickness_" + Step).Translate(sick.LabelShort.Named("SICK"), Worship.CardName(g).Named("GOD"), h.LabelBase.Named("ILLNESS"),
                         p.LabelShort.Named("PAWN")).Resolve();
                     Worship.Sign(g, map, sick.PositionHeld, PresenceKind.Blessing, title, text, sick, Gods.Realness == GodRealness.Walking, GodActKind.Blessing);
                     return true;
@@ -323,7 +327,7 @@ namespace ColonyCouncil
                 {
                     Interplay.Ease(p, 8f, StrainRelief.Quiet);
                     GodDreams.QueueLost(p, g, r.aboutName);
-                    string text = ("CC_Wsh_Answer_Death_" + Step).Translate(p.LabelShort.Named("PAWN"), Gods.FullName(g).Named("GOD"), (r.aboutName ?? "?").Named("DEAD")).Resolve();
+                    string text = ("CC_Wsh_Answer_Death_" + Step).Translate(p.LabelShort.Named("PAWN"), Worship.CardName(g).Named("GOD"), (r.aboutName ?? "?").Named("DEAD")).Resolve();
                     Worship.Sign(g, map, p.Position, PresenceKind.Act, title, text, p, false);
                     return true;
                 }
@@ -331,8 +335,8 @@ namespace ColonyCouncil
                 {
                     var frenzy = DefDatabase<InspirationDef>.GetNamedSilentFail("Frenzy_Shoot");
                     if (frenzy == null || p.WorkTagIsDisabled(WorkTags.Violent) || p.Inspired || p.mindState?.inspirationHandler == null) return false;
-                    if (!p.mindState.inspirationHandler.TryStartInspiration(frenzy, "CC_Wsh_Answer_RaidReason".Translate(Gods.Name(g).Named("GOD")).Resolve())) return false;
-                    string text = ("CC_Wsh_Answer_Raid_" + Step).Translate(p.LabelShort.Named("PAWN"), Gods.FullName(g).Named("GOD")).Resolve();
+                    if (!p.mindState.inspirationHandler.TryStartInspiration(frenzy, "CC_Wsh_Answer_RaidReason".Translate(p.LabelShort.Named("PAWN"), Worship.CardName(g).Named("GOD")).Resolve())) return false;
+                    string text = ("CC_Wsh_Answer_Raid_" + Step).Translate(p.LabelShort.Named("PAWN"), Worship.CardName(g).Named("GOD")).Resolve();
                     Worship.Sign(g, map, p.Position, PresenceKind.Blessing, title, text, p, false, GodActKind.Blessing);
                     return true;
                 }
@@ -358,8 +362,8 @@ namespace ColonyCouncil
             var rain = DefDatabase<WeatherDef>.GetNamedSilentFail(Gods.Realness == GodRealness.Walking ? "RainyThunderstorm" : "Rain") ?? DefDatabase<WeatherDef>.GetNamedSilentFail("Rain");
             if (rain == null || map.weatherManager.curWeather == rain) return;
             map.weatherManager.TransitionTo(rain);
-            string text = ("CC_Wsh_Answer_Drought_" + Step).Translate(Gods.FullName(g).Named("GOD")).Resolve();
-            Worship.Sign(g, map, map.Center, PresenceKind.Blessing, "CC_Wsh_Answer_Title".Translate(Gods.Name(g).Named("GOD")).Resolve(), text, null,
+            string text = ("CC_Wsh_Answer_Drought_" + Step).Translate(Worship.CardName(g).Named("GOD")).Resolve();
+            Worship.Sign(g, map, map.Center, PresenceKind.Blessing, "CC_Wsh_Answer_Title".Translate(Worship.CardName(g).Named("GOD")).Resolve(), text, null,
                 Gods.Realness == GodRealness.Walking, GodActKind.Blessing);
             FaithHeart.RainAfterDrought(map, g);
         }
@@ -430,6 +434,9 @@ namespace ColonyCouncil
             // A raid beaten off is the gods of war's own deed already (Gods/GodDeeds.cs): thanks and favour, no mood of its own.
             if (r.kind != PrayerKind.Raid) CouncilGameComponent.GiveThought(p, WorshipDefOf.Rimfolk_Worship_Answered);
             if (Faiths.On) Faiths.Steady(p, 0.03f);
+            // The colony's book: what was prayed for and what followed, as the one who prayed tells it.
+            Worship.Witness(g, map, GodActKind.Favour, ("CC_Wsh_Book_Credit_" + r.kind).Translate(p.LabelShort.Named("PAWN"), Worship.CardName(g).Named("GOD"),
+                (r.aboutName ?? "").Named("SICK")).Resolve(), p.PositionHeld);
         }
 
         // ================= The Hunger's due =================
@@ -455,8 +462,8 @@ namespace ColonyCouncil
             string what = best.LabelCap;
             var cell = best.Position;
             best.Destroy(DestroyMode.Vanish);
-            string text = ("CC_Wsh_HungerDue_" + Step).Translate(what.Named("WHAT"), Gods.FullName(g).Named("GOD")).Resolve();
-            Worship.Sign(g, map, cell, PresenceKind.Wrath, "CC_Wsh_HungerDue_Title".Translate(Gods.Name(g).Named("GOD")).Resolve(), text, new LookTargets(cell, map), false,
+            string text = ("CC_Wsh_HungerDue_" + Step).Translate(what.Named("WHAT"), Worship.CardName(g).Named("GOD")).Resolve();
+            Worship.Sign(g, map, cell, PresenceKind.Wrath, "CC_Wsh_HungerDue_Title".Translate(Worship.CardName(g).Named("GOD")).Resolve(), text, new LookTargets(cell, map), false,
                 GodActKind.Wrath);
         }
 

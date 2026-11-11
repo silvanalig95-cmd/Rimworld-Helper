@@ -1,0 +1,257 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    How each of Rimfolk's own gods is worshipped, from its own character (Source/ColonyCouncil/Gods/Worship/GodWorshipDef.cs;
+    docs/gods-pantheon-brainstorm.md). Keyed by the god's short name; a god no def names falls back to its domain's tables
+    (WorshipMath). All of it is hidden: what a god likes, refuses or ignores is never told, only seen in what happens after.
+    Festival seasons are 0 spring to 3 winter, days 0 to 14. Chants are SoundDef names, the first loaded one kept (Alpha
+    Memes' first, Ideology's after; none without either).
+  -->
+
+  <!-- Hollin, the Rootmother: what grows, never what was cut. -->
+  <ColonyCouncil.GodWorshipDef>
+    <defName>Rimfolk_Worship_Hollin</defName>
+    <gods><li>Hollin</li></gods>
+    <likes>
+      <li><kind>Plant</kind><weight>1.5</weight></li>
+      <li><kind>Medicine</kind><weight>1.2</weight></li>
+      <li><kind>Meal</kind><weight>0.8</weight></li>
+    </likes>
+    <refuses><li>Wood</li><li>Pelt</li></refuses>
+    <festivalSeason>0</festivalSeason><festivalDay>2</festivalDay>
+    <festivalName>the Greening of {GOD}</festivalName>
+    <festivalDishes>a sapling set in the ground for every tree felled this year, and bread eaten under the oldest tree</festivalDishes>
+    <chants><li>RitualSustainer_Totemic</li><li>AM_RitualSustainer_Neolithic</li></chants>
+    <vows><li>Pilgrimage</li><li>BeastSpared</li></vows>
+  </ColonyCouncil.GodWorshipDef>
+
+  <!-- Smoulder, the Coil Under the Mountain: silver thrown into deep places, and praise. -->
+  <ColonyCouncil.GodWorshipDef>
+    <defName>Rimfolk_Worship_Smoulder</defName>
+    <gods><li>Smoulder</li></gods>
+    <likes>
+      <li><kind>Silver</kind><weight>1.7</weight></li>
+      <li><kind>Art</kind><weight>1.2</weight></li>
+      <li><kind>Metal</kind><weight>1.0</weight></li>
+    </likes>
+    <festivalSeason>2</festivalSeason><festivalDay>10</festivalDay>
+    <festivalName>the Deep Silver of {GOD}</festivalName>
+    <festivalDishes>silver thrown down the deepest shaft or crack in the rock, and the mountain praised by every name it has</festivalDishes>
+    <chants><li>AM_RitualSustainer_Mesoamerican</li><li>RitualSustainer_Rustic</li></chants>
+    <vows><li>Temple</li></vows>
+  </ColonyCouncil.GodWorshipDef>
+
+  <!-- Bellwether, the Old Horn: to be let pass. Grass, and his kin spared. -->
+  <ColonyCouncil.GodWorshipDef>
+    <defName>Rimfolk_Worship_Bellwether</defName>
+    <gods><li>Bellwether</li></gods>
+    <likes>
+      <li><kind>Plant</kind><weight>1.4</weight></li>
+    </likes>
+    <refuses><li>Meat</li><li>Pelt</li><li>Weapon</li></refuses>
+    <festivalSeason>1</festivalSeason><festivalDay>10</festivalDay>
+    <festivalName>the Letting Pass of {GOD}</festivalName>
+    <festivalDishes>the grass at the colony's edge left long for whoever walks that way, and the children told the old story</festivalDishes>
+    <chants><li>AM_RitualSustainer_Neolithic</li><li>RitualSustainer_Animalist</li></chants>
+    <vows><li>BeastSpared</li><li>Pilgrimage</li></vows>
+  </ColonyCouncil.GodWorshipDef>
+
+  <!-- Morel, the Soft Mother: nothing kept from her. What rots at her place is hers. -->
+  <ColonyCouncil.GodWorshipDef>
+    <defName>Rimfolk_Worship_Morel</defName>
+    <gods><li>Morel</li></gods>
+    <likes>
+      <li><kind>Meal</kind><weight>1.3</weight></li>
+      <li><kind>Plant</kind><weight>1.2</weight></li>
+      <li><kind>Meat</kind><weight>1.2</weight></li>
+      <li><kind>Fish</kind><weight>1.1</weight></li>
+      <li><kind>Wood</kind><weight>0.9</weight></li>
+    </likes>
+    <spoiledIsTaken>true</spoiledIsTaken>
+    <festivalSeason>2</festivalSeason><festivalDay>13</festivalDay>
+    <festivalName>the Turning Under of {GOD}</festivalName>
+    <festivalDishes>the year's scraps and husks given back to the earth, and mushroom stew for everyone</festivalDishes>
+    <chants><li>AM_RitualSustainer_Kemetic</li><li>RitualSustainer_Morbid</li></chants>
+    <vows><li>Pilgrimage</li><li>NoMeat</li></vows>
+  </ColonyCouncil.GodWorshipDef>
+
+  <!-- Ennu, the Guest: a bed, a bowl, a kind word, a place by the fire. -->
+  <ColonyCouncil.GodWorshipDef>
+    <defName>Rimfolk_Worship_Ennu</defName>
+    <gods><li>Ennu</li><li>Guest</li></gods>
+    <likes>
+      <li><kind>Meal</kind><weight>1.6</weight></li>
+      <li><kind>Textile</kind><weight>1.2</weight></li>
+      <li><kind>Drink</kind><weight>1.1</weight></li>
+      <li><kind>Apparel</kind><weight>1.0</weight></li>
+    </likes>
+    <festivalSeason>3</festivalSeason><festivalDay>2</festivalDay>
+    <festivalName>the Open Door</festivalName>
+    <festivalDishes>a bed made up and a bowl set out for whoever comes, and stories told by the fire till late</festivalDishes>
+    <chants><li>AM_RitualSustainer_TeaCeremony</li><li>RitualSustainer_Rustic</li></chants>
+    <vows><li>Pilgrimage</li><li>NoMeat</li></vows>
+    <dreamFactor>1.2</dreamFactor>
+  </ColonyCouncil.GodWorshipDef>
+
+  <!-- Pip, the Hum: machines kept, parts that work, the colony humming at night. -->
+  <ColonyCouncil.GodWorshipDef>
+    <defName>Rimfolk_Worship_Pip</defName>
+    <gods><li>Pip</li></gods>
+    <likes>
+      <li><kind>Component</kind><weight>1.7</weight></li>
+      <li><kind>Metal</kind><weight>1.1</weight></li>
+      <li><kind>Craft</kind><weight>1.0</weight></li>
+    </likes>
+    <refuses><li>Plant</li></refuses>
+    <festivalSeason>2</festivalSeason><festivalDay>5</festivalDay>
+    <festivalName>the First Spark of {GOD}</festivalName>
+    <festivalDishes>a broken thing mended, every machine oiled, and every light left burning through the night</festivalDishes>
+    <chants><li>AM_RitualSustainer_SteampunkRevival</li><li>RitualSustainer_Techist</li></chants>
+    <vows><li>Temple</li></vows>
+  </ColonyCouncil.GodWorshipDef>
+
+  <!-- Cirrus, Who Drifts Above: it notices those who look up. Little it wants from the ground. -->
+  <ColonyCouncil.GodWorshipDef>
+    <defName>Rimfolk_Worship_Cirrus</defName>
+    <gods><li>Cirrus</li></gods>
+    <likes>
+      <li><kind>Art</kind><weight>1.3</weight></li>
+      <li><kind>Textile</kind><weight>0.9</weight></li>
+    </likes>
+    <festivalSeason>1</festivalSeason><festivalDay>13</festivalDay>
+    <festivalName>the Upward Look of {GOD}</festivalName>
+    <festivalDishes>a night spent out on the roofs and hills, looking up, and nobody saying much</festivalDishes>
+    <chants><li>AM_RitualSustainer_Ocular</li><li>RitualSustainer_Theist</li></chants>
+    <vows><li>Pilgrimage</li></vows>
+    <nightFactor>1.2</nightFactor>
+    <rainKeeper>true</rainKeeper>
+  </ColonyCouncil.GodWorshipDef>
+
+  <!-- Hush, the Long White: stillness, and nothing wasted in the lean months. -->
+  <ColonyCouncil.GodWorshipDef>
+    <defName>Rimfolk_Worship_Hush</defName>
+    <gods><li>Hush</li></gods>
+    <likes>
+      <li><kind>Pelt</kind><weight>1.3</weight></li>
+      <li><kind>Apparel</kind><weight>1.2</weight></li>
+      <li><kind>Medicine</kind><weight>1.0</weight></li>
+    </likes>
+    <refuses><li>Drink</li><li>Drug</li></refuses>
+    <festivalSeason>3</festivalSeason><festivalDay>12</festivalDay>
+    <festivalName>the Stillness of {GOD}</festivalName>
+    <festivalDishes>a silent supper of the plainest food, not a crumb thrown away, and the old and sick sat nearest the fire</festivalDishes>
+    <chants><li>AM_RitualSustainer_Kemetic</li><li>RitualSustainer_Morbid</li></chants>
+    <vows><li>NoMeat</li></vows>
+  </ColonyCouncil.GodWorshipDef>
+
+  <!-- Undertow, the Hunger: it takes anything, which is the danger. -->
+  <ColonyCouncil.GodWorshipDef>
+    <defName>Rimfolk_Worship_Undertow</defName>
+    <gods><li>Undertow</li></gods>
+    <likes>
+      <li><kind>Meat</kind><weight>1.2</weight></li>
+      <li><kind>Meal</kind><weight>1.0</weight></li>
+      <li><kind>Plant</kind><weight>1.0</weight></li>
+      <li><kind>Fish</kind><weight>1.0</weight></li>
+      <li><kind>Pelt</kind><weight>1.0</weight></li>
+      <li><kind>Drink</kind><weight>1.0</weight></li>
+      <li><kind>Drug</kind><weight>1.0</weight></li>
+      <li><kind>Medicine</kind><weight>1.0</weight></li>
+      <li><kind>Weapon</kind><weight>1.0</weight></li>
+      <li><kind>Apparel</kind><weight>1.0</weight></li>
+      <li><kind>Art</kind><weight>1.0</weight></li>
+      <li><kind>Silver</kind><weight>1.0</weight></li>
+      <li><kind>Metal</kind><weight>1.0</weight></li>
+      <li><kind>Wood</kind><weight>1.0</weight></li>
+      <li><kind>Component</kind><weight>1.0</weight></li>
+      <li><kind>Textile</kind><weight>1.0</weight></li>
+      <li><kind>Craft</kind><weight>1.0</weight></li>
+      <li><kind>Other</kind><weight>1.0</weight></li>
+    </likes>
+    <festivalSeason>3</festivalSeason><festivalDay>14</festivalDay>
+    <festivalName>the Shuttered Night</festivalName>
+    <festivalDishes>the shutters closed and every lamp lit, so that it passes by</festivalDishes>
+    <chants><li>AM_RitualSustainer_MaddeningChant</li><li>RitualSustainer_Morbid</li></chants>
+  </ColonyCouncil.GodWorshipDef>
+
+  <!-- Helios, the Giver: you can't give him anything, thank him or offend him. He gives to all alike. -->
+  <ColonyCouncil.GodWorshipDef>
+    <defName>Rimfolk_Worship_Helios</defName>
+    <gods><li>Helios</li></gods>
+    <takesNoOfferings>true</takesNoOfferings>
+    <unmoved>true</unmoved>
+    <festivalSeason>1</festivalSeason><festivalDay>7</festivalDay>
+    <festivalName>the Long Day of {GOD}</festivalName>
+    <festivalDishes>the whole colony out under the noon sun, and the first fruit eaten where it grew, with nothing asked for</festivalDishes>
+    <chants><li>AM_RitualSustainer_Mesoamerican</li><li>RitualSustainer_Theist</li></chants>
+  </ColonyCouncil.GodWorshipDef>
+
+  <!-- Selene, the Mirror: she notices those who keep the night, and dreams told at breakfast. -->
+  <ColonyCouncil.GodWorshipDef>
+    <defName>Rimfolk_Worship_Selene</defName>
+    <gods><li>Selene</li></gods>
+    <likes>
+      <li><kind>Silver</kind><weight>1.4</weight></li>
+      <li><kind>Drink</kind><weight>1.1</weight></li>
+      <li><kind>Art</kind><weight>1.0</weight></li>
+    </likes>
+    <festivalSeason>3</festivalSeason><festivalDay>7</festivalDay>
+    <festivalName>the Longest Night of {GOD}</festivalName>
+    <festivalDishes>a vigil kept on the walls till dawn, and every dream told over breakfast</festivalDishes>
+    <chants><li>AM_RitualSustainer_Kemetic</li><li>RitualSustainer_Theist</li></chants>
+    <vows><li>Pilgrimage</li><li>NoMeat</li></vows>
+    <nightFactor>1.6</nightFactor>
+    <dreamFactor>1.8</dreamFactor>
+  </ColonyCouncil.GodWorshipDef>
+
+  <!-- Mog: a full bowl she didn't ask for. She never asks, and keeps no calendar. -->
+  <ColonyCouncil.GodWorshipDef>
+    <defName>Rimfolk_Worship_Mog</defName>
+    <gods><li>Mog</li></gods>
+    <likes>
+      <li><kind>Fish</kind><weight>1.6</weight></li>
+      <li><kind>Meat</kind><weight>1.3</weight></li>
+      <li><kind>Textile</kind><weight>1.0</weight></li>
+    </likes>
+    <refuses><li>Weapon</li><li>Silver</li></refuses>
+    <noFestival>true</noFestival>
+    <asksNothing>true</asksNothing>
+    <chants><li>RitualSustainer_Rustic</li></chants>
+  </ColonyCouncil.GodWorshipDef>
+
+  <!-- Murmur, Old Croak: wells kept clean, wet ground kept wet, and to be sung back to. -->
+  <ColonyCouncil.GodWorshipDef>
+    <defName>Rimfolk_Worship_Murmur</defName>
+    <gods><li>Murmur</li></gods>
+    <likes>
+      <li><kind>Drink</kind><weight>1.4</weight></li>
+      <li><kind>Plant</kind><weight>1.1</weight></li>
+      <li><kind>Fish</kind><weight>0.8</weight></li>
+    </likes>
+    <festivalSeason>0</festivalSeason><festivalDay>5</festivalDay>
+    <festivalName>the Singing at the Wells</festivalName>
+    <festivalDishes>songs sung down every well and over the marsh, and the first rain drunk from cupped hands</festivalDishes>
+    <chants><li>AM_RitualSustainer_Neolithic</li><li>RitualSustainer_Animalist</li></chants>
+    <vows><li>Pilgrimage</li><li>BeastSpared</li></vows>
+    <rainKeeper>true</rainKeeper>
+  </ColonyCouncil.GodWorshipDef>
+
+  <!-- Ducat, the Restless Gold: gold given away, never kept. -->
+  <ColonyCouncil.GodWorshipDef>
+    <defName>Rimfolk_Worship_Ducat</defName>
+    <gods><li>Ducat</li></gods>
+    <likes>
+      <li><kind>Silver</kind><weight>1.6</weight></li>
+      <li><kind>Art</kind><weight>1.1</weight></li>
+      <li><kind>Craft</kind><weight>1.0</weight></li>
+    </likes>
+    <givenAway>true</givenAway>
+    <festivalSeason>2</festivalSeason><festivalDay>2</festivalDay>
+    <festivalName>the Open Purse of {GOD}</festivalName>
+    <festivalDishes>every debt paid, and a coin pressed into a stranger's hand</festivalDishes>
+    <chants><li>AM_RitualSustainer_Corsair</li><li>RitualSustainer_Rustic</li></chants>
+    <vows><li>Temple</li></vows>
+  </ColonyCouncil.GodWorshipDef>
+
+</Defs>

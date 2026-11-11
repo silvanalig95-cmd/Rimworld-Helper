@@ -90,12 +90,11 @@ namespace ColonyCouncil
         /// <summary>The gods worth dedicating to from here: the colony's own first, then those it knows (no dead god).</summary>
         public static List<God> Choices(Map map)
         {
+            // Those the colony's people pray to first, then the others it has heard of by name, in no order of their regard.
             var list = new List<God>();
-            foreach (var g in Gods.ColonyGods(map))
+            foreach (var g in Worship.PrayedTo(map))
                 if (!list.Contains(g)) list.Add(g);
-            var patron = Gods.Patron(map);
-            if (patron != null && !list.Contains(patron)) list.Add(patron);
-            foreach (var g in Gods.All.Where(x => x.known && x.kind != GodKind.Dead).OrderByDescending(x => Gods.FavourValue(x, map)))
+            foreach (var g in Gods.All.Where(x => x.known && x.kind != GodKind.Dead).OrderBy(x => x.name))
                 if (!list.Contains(g)) list.Add(g);
             return list.Take(16).ToList();
         }
@@ -118,7 +117,7 @@ namespace ColonyCouncil
             r.god = g.id;
             r.pending = true;
             r.asked = Worship.Now;
-            Messages.Message("CC_Wsh_DedicateAsked".Translate(t.LabelShort.Named("PLACE"), Gods.FullName(g).Named("GOD")).Resolve(), t, MessageTypeDefOf.SilentInput, false);
+            Messages.Message("CC_Wsh_DedicateAsked".Translate(t.LabelShort.Named("PLACE"), Worship.CardName(g).Named("GOD")).Resolve(), t, MessageTypeDefOf.SilentInput, false);
         }
 
         /// <summary>The player takes a place from its god: it is the god's no longer, and the god notices.</summary>
@@ -132,7 +131,7 @@ namespace ColonyCouncil
             b.Changed();
             var g = Gods.ById(god);
             if (g != null)
-                Gods.AddFavour(g, t.MapHeld, WorshipMath.RededicateFavour, "CC_Wsh_Why_Undedicated".Translate(t.LabelShort.Named("PLACE")).Resolve(), FavourSource.Neglect);
+                Worship.Favour(g, t.MapHeld, WorshipMath.RededicateFavour, "CC_Wsh_Why_Undedicated".Translate(t.LabelShort.Named("PLACE")).Resolve(), FavourSource.Neglect);
         }
 
         /// <summary>The region's hour: a place waiting to be dedicated gets someone to go and say the words; too long waiting, it is let go.</summary>
@@ -219,13 +218,13 @@ namespace ColonyCouncil
             string why = "CC_Wsh_Why_Dedicated".Translate((p?.LabelShort ?? "?").Named("PAWN"), t.LabelShort.Named("PLACE"), place.Named("SHRINE")).Resolve();
             Worship.Favour(g, map, WorshipMath.DedicateFavour, why, FavourSource.Rite);
             if (old != null)
-                Gods.AddFavour(old, map, WorshipMath.RededicateFavour, "CC_Wsh_Why_TakenFrom".Translate(t.LabelShort.Named("PLACE"), g.name.Named("OTHER")).Resolve(),
+                Worship.Favour(old, map, WorshipMath.RededicateFavour, "CC_Wsh_Why_TakenFrom".Translate(t.LabelShort.Named("PLACE"), g.name.Named("OTHER")).Resolve(),
                     FavourSource.Neglect, GodOffence.Rivals);
             Worship.Glow(map, t.Position, g);
-            string text = ("CC_Wsh_Dedicated_" + Worship.Step).Translate((p?.LabelShort ?? "?").Named("PAWN"), t.LabelShort.Named("PLACE"), Gods.FullName(g).Named("GOD"),
+            string text = ("CC_Wsh_Dedicated_" + Worship.Step).Translate((p?.LabelShort ?? "?").Named("PAWN"), t.LabelShort.Named("PLACE"), Worship.CardName(g).Named("GOD"),
                 place.Named("SHRINE")).Resolve();
             Tell.Minor(NewsKind.Colony, Importance.Notable, map, text, t);
-            Gods.Remember(new GodAct { god = g.id, home = Gods.HomeKey(map), kind = GodActKind.Mark, text = why, cell = t.Position });
+            Worship.Witness(g, map, GodActKind.Mark, text, t.Position);
             if (p != null) CouncilGameComponent.Instance?.journals.WriteText(p, Worship.Line("Rimfolk_Pool_Worship_DedicateJournal", p, g) ?? why);
         }
 
@@ -238,17 +237,16 @@ namespace ColonyCouncil
             var r = Worship.Book?.ShrineOf(t);
             var g = r != null ? Gods.ById(r.god) : null;
             string label = r == null ? "CC_Wsh_Gizmo_Dedicate".Translate().Resolve()
-                : r.pending ? "CC_Wsh_Gizmo_Pending".Translate(Gods.Name(g).Named("GOD")).Resolve()
-                : "CC_Wsh_Gizmo_Dedicated".Translate(Gods.Name(g).Named("GOD")).Resolve();
+                : r.pending ? "CC_Wsh_Gizmo_Pending".Translate(Worship.CardName(g).Named("GOD")).Resolve()
+                : "CC_Wsh_Gizmo_Dedicated".Translate(Worship.CardName(g).Named("GOD")).Resolve();
             string desc = "CC_Wsh_Gizmo_Desc".Translate(Worship.ShrineWord.Named("SHRINE")).Resolve();
-            if (g != null) desc += "\n\n" + "CC_Wsh_Gizmo_Of".Translate(Gods.FullName(g).Named("GOD"), Gods.AGodOf(g).Named("GODOF"), GodWords.Word(Gods.Favour(g, map)).Named("WORD")).Resolve();
-            var tex = g != null ? GodSymbols.For(g.domain) : GodSymbols.Pantheon;
+            if (g != null && r.by != null && !r.pending) desc += "\n\n" + "CC_Wsh_Gizmo_Of".Translate(Worship.CardName(g).Named("GOD"), (r.byName ?? "?").Named("PAWN")).Resolve();
+            // The place's own picture: no god is drawn as a symbol.
             var cmd = new Command_Action
             {
                 defaultLabel = label,
                 defaultDesc = desc,
-                icon = tex ?? BaseContent.BadTex,
-                defaultIconColor = g?.colour ?? Color.white,
+                icon = t.def.uiIcon ?? BaseContent.BadTex,
                 action = () => Menu(t)
             };
             var choices = Choices(map);
@@ -261,15 +259,14 @@ namespace ColonyCouncil
             var map = t.Map;
             var r = Worship.Book?.ShrineOf(t);
             var opts = new List<FloatMenuOption>();
-            var mine = Gods.ColonyGods(map);
+            var mine = Worship.PrayedTo(map);
             foreach (var g in Choices(map))
             {
                 var god = g;
-                string label = "CC_Wsh_Menu_God".Translate(Gods.FullName(god).Named("GOD"), Gods.GodOf(god).Named("GODOF"),
+                string label = "CC_Wsh_Menu_God".Translate(Worship.CardName(god).Named("GOD"),
                     (mine.Contains(god) ? "CC_Wsh_Menu_Ours" : "CC_Wsh_Menu_Known").Translate().Named("WHOSE")).Resolve();
                 if (r != null && r.god == god.id) label += " " + "CC_Wsh_Menu_Now".Translate();
-                if (god.kind == GodKind.Archotech) label += " " + "CC_Wsh_Menu_Archotech".Translate();
-                opts.Add(new FloatMenuOption(label, () => Ask(t, god), GodSymbols.For(god.domain), god.colour));
+                opts.Add(new FloatMenuOption(label, () => Ask(t, god)));
             }
             if (r != null) opts.Add(new FloatMenuOption("CC_Wsh_Menu_Undedicate".Translate(), () => Undedicate(t)));
             if (opts.Count > 0) Find.WindowStack.Add(new FloatMenu(opts));
@@ -282,9 +279,9 @@ namespace ColonyCouncil
             if (r == null) return null;
             var g = Gods.ById(r.god);
             if (g == null) return null;
-            if (r.pending) return "CC_Wsh_Inspect_Pending".Translate(Gods.FullName(g).Named("GOD")).Resolve();
-            string line = (IsTemple(t) ? "CC_Wsh_Inspect_Temple" : "CC_Wsh_Inspect").Translate(Gods.FullName(g).Named("GOD"), Worship.ShrineWord.Named("SHRINE"),
-                GodWords.Word(Gods.Favour(g, t.Map)).Named("WORD")).Resolve();
+            if (r.pending) return "CC_Wsh_Inspect_Pending".Translate(Worship.CardName(g).Named("GOD")).Resolve();
+            string line = (IsTemple(t) ? "CC_Wsh_Inspect_Temple" : "CC_Wsh_Inspect").Translate(Worship.CardName(g).Named("GOD"), Worship.ShrineWord.Named("SHRINE"),
+                (r.byName ?? "?").Named("PAWN")).Resolve();
             var waiting = Worship.Book.offerings.FirstOrDefault(o => o != null && o.set && o.fate == OfferingFate.Waiting && o.shrine == t);
             if (waiting != null) line += "\n" + "CC_Wsh_Inspect_Offering".Translate((waiting.label ?? "?").Named("WHAT")).Resolve();
             return line;

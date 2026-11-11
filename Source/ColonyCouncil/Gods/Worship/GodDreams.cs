@@ -42,11 +42,11 @@ namespace ColonyCouncil
                 var g = Worship.GodOf(p);
                 bool priest = Worship.IsPriest(p);
                 bool psychic = Worship.Psychic(p);
-                float share = WorshipMath.GodDreamShare(g != null, priest, psychic, Worship.Devout(p), Worship.Scoffer(p));
+                float share = WorshipMath.GodDreamShare(g != null, priest, psychic, Worship.Devout(p), Worship.Scoffer(p)) * (GodWorshipDef.For(g)?.dreamFactor ?? 1f);
                 if (!Rand.Chance(share)) return false;
                 var map = p.MapHeld;
                 string danger = Danger(p, g, map, out var about);
-                bool canDemand = map != null && WorshipMath.TakesOfferings(g.kind) && Shrines.Of(map, g).Count > 0
+                bool canDemand = map != null && GodWorshipDef.TakesOfferings(g) && !(GodWorshipDef.For(g)?.asksNothing ?? false) && Shrines.Of(map, g).Count > 0
                                  && !b.demands.Any(d => d != null && !d.done && d.god == g.id && d.home == Gods.HomeKey(map));
                 var unknown = Gods.All.Where(x => !x.known && x.kind != GodKind.Dead).ToList();
                 var kind = WorshipMath.PickDream(danger != null, canDemand, unknown.Count > 0, priest || psychic, Rand.Value);
@@ -131,9 +131,9 @@ namespace ColonyCouncil
             comp.journals.WriteText(p, text);
             comp.dreams.recent.Add(new DreamRecord { pawn = p, name = p.LabelShort, text = text, kind = DreamKind.Strange, tick = Worship.Now });
             while (comp.dreams.recent.Count > 80) comp.dreams.recent.RemoveAt(0);
-            string message = "CC_Wsh_DreamMessage".Translate(p.Named("PAWN"), text.Named("DREAM"), Gods.Name(g).Named("GOD")).Resolve();
+            string message = "CC_Wsh_DreamMessage".Translate(p.Named("PAWN"), text.Named("DREAM"), Worship.CardName(g).Named("GOD")).Resolve();
             News.Post(message, p, NewsKind.People, MessageTypeDefOf.NeutralEvent, kind == "warning" || kind == "demand" ? Importance.Notable : Importance.Flavor);
-            Gods.Remember(new GodAct { god = g.id, home = Gods.HomeKey(p.MapHeld), kind = GodActKind.Omen, text = message });
+            Worship.Witness(g, p.MapHeld, GodActKind.Omen, message, p.PositionHeld);
             return true;
         }
 
@@ -157,7 +157,7 @@ namespace ColonyCouncil
             if (d == null) return;
             d.met = true;
             d.done = true;
-            Gods.AddFavour(g, map, WorshipMath.DemandMet, "CC_Wsh_Why_DemandMet".Translate((o.label ?? "").Named("WHAT")).Resolve(), FavourSource.Offering);
+            Worship.Favour(g, map, WorshipMath.DemandMet, "CC_Wsh_Why_DemandMet".Translate((o.label ?? "").Named("WHAT")).Resolve(), FavourSource.Offering);
         }
 
         /// <summary>The region's day: a demand let go past its days displeases the god.</summary>
@@ -169,8 +169,8 @@ namespace ColonyCouncil
                 var g = Gods.ById(d.god);
                 var map = Homes.MapOf(d.home);
                 if (g == null) continue;
-                string text = "CC_Wsh_DemandIgnored".Translate(Gods.FullName(g).Named("GOD"), ("CC_Wsh_Kind_" + d.kind).Translate().Named("WHAT")).Resolve();
-                Gods.AddFavour(g, map, WorshipMath.DemandIgnored, text, FavourSource.Neglect, GodOffence.Neglect);
+                string text = "CC_Wsh_DemandIgnored".Translate(Worship.CardName(g).Named("GOD"), ("CC_Wsh_Kind_" + d.kind).Translate().Named("WHAT")).Resolve();
+                Worship.Favour(g, map, WorshipMath.DemandIgnored, text, FavourSource.Neglect, GodOffence.Neglect);
                 Tell.Minor(NewsKind.Colony, Importance.Notable, map, text, d.shrine != null && d.shrine.Spawned ? new LookTargets(d.shrine) : null);
             }
         }
@@ -196,7 +196,7 @@ namespace ColonyCouncil
             var map = p.MapHeld;
             string danger = Danger(p, g, map, out var about);
             if (danger != null) return Have(comp, p, g, "warning:" + danger, about, null);
-            if (map != null && Shrines.Of(map, g).Count > 0 && WorshipMath.TakesOfferings(g.kind)) return Demand(comp, Worship.Book, p, g, map);
+            if (map != null && Shrines.Of(map, g).Count > 0 && GodWorshipDef.TakesOfferings(g) && !(GodWorshipDef.For(g)?.asksNothing ?? false)) return Demand(comp, Worship.Book, p, g, map);
             return Have(comp, p, g, "vision", null, null);
         }
     }

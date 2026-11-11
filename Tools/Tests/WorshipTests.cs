@@ -12,7 +12,8 @@ using ColonyCouncil;
 /// how often an answer comes, crises of faith, festivals' dates, vows, dreams, scoffers, RimWorld of Magic's mana), and in
 /// the source and defs: the core's API and seams only, a god's sign falling back to a plain card, the hooks into the
 /// region's hour and day, the dreams, the calendar and the offices, the per-god worship def, every key and pool, spoken
-/// lines of one sentence, and the Almanac page.
+/// lines of one sentence, and the unseen rule: no favour, standing or god's rule anywhere the player reads, and no page of
+/// its own in the Almanac.
 /// </summary>
 public static class WorshipTests
 {
@@ -117,10 +118,10 @@ public static class WorshipTests
 
         // ================= Scoffers =================
 
-        C(WorshipMath.Scoffer(true, true, false, 1f, 1) && WorshipMath.Scoffer(false, true, true, 0.5f, 1) && !WorshipMath.Scoffer(false, true, true, 0.9f, 1)
-          && WorshipMath.Scoffer(false, true, false, 0.2f, 1) && !WorshipMath.Scoffer(false, true, false, 0.7f, 1),
-            "a scoffer: a faith that despises religion, a godless faith not held devoutly, or far from sure");
-        int scoffers = Enumerable.Range(1000, 7000).Count(i => WorshipMath.Scoffer(false, false, false, 1f, i));
+        C(WorshipMath.Scoffer(true, true, 1f, 1) && WorshipMath.Scoffer(false, true, 0.2f, 1) && !WorshipMath.Scoffer(false, true, 0.7f, 1)
+          && !WorshipMath.Scoffer(false, false, 0.1f, 1),
+            "a scoffer: a faith that despises religion, or with Ideology far from sure of their faith (its deities play no part)");
+        int scoffers = Enumerable.Range(1000, 7000).Count(i => WorshipMath.Scoffer(false, false, 1f, i));
         C(scoffers > 700 && scoffers < 1300, $"without Ideology, about one in seven scoffs ({scoffers} of 7000), the same each time");
 
         // ================= Festivals =================
@@ -192,6 +193,11 @@ public static class WorshipTests
         C(all.Contains("GodWorshipDef.Fit(g, k)") && all.Contains("GodWorshipDef.Likes(g)") && files["Festivals.cs"].Contains("GodWorshipDef.For(g)?.festivalName")
           && files["Festivals.cs"].Contains("GodWorshipDef.For(g)?.chants"), "a god's own worship def first (likes, festival, chant), the domain's tables after");
         C(!Regex.IsMatch(all, @"FavourValue\([^)]*\)\.ToString|ToStringPercent\(\)[^;]*Favour"), "favour never shown as a number");
+        C(!all.Contains("GodSymbols") && !all.Contains("GodWords.Word(") && !Regex.IsMatch(all, @"\.Named\(""WORD""\)"), "the unseen rule: no favour word or symbol on worship's buttons, lines or cards");
+        C(files["Worship.cs"].Contains("public static string CardName(God g") && files["Worship.cs"].Contains("Gods.Known(g)") && files["Worship.cs"].Contains("Gods.Remember(new GodAct"),
+            "a god named on a card only as the colony knows it (CardName, for the core's at the merge), and what people saw kept in the colony's book (Gods.Remember)");
+        foreach (var f in new[] { "Shrines.cs", "Offerings.cs", "Prayers.cs", "FaithHeart.cs", "Vows.cs", "Festivals.cs", "GodDreams.cs" })
+            C(files[f].Contains("Worship.Witness(") || files[f].Contains("Worship.Sign("), "what people witness goes into the colony's book: " + f);
 
         // Hooks into the shared systems, small and local.
         C(Read("World/Region/RegionBook.cs").Contains("Worship.Hourly(now)") && Read("World/Region/RegionBook.cs").Contains("Worship.Daily(now)"), "worship runs in the region's hour and day");
@@ -213,7 +219,7 @@ public static class WorshipTests
                      "Rimfolk_Worship_Answered", "Rimfolk_Worship_Unanswered", "Rimfolk_Worship_Offered", "Rimfolk_Worship_Mocked", "Rimfolk_Worship_Bickered",
                      "Rimfolk_Worship_VowKept", "Rimfolk_Worship_VowBroken", "Rimfolk_Dream_God", "Rimfolk_Office_Priest", "Rimfolk_OfficeWords_Priest", "Rimfolk_Asp_Pilgrimage",
                      "Rimfolk_Asp_Temple", "Rimfolk_Wish_VowMeals", "Rimfolk_Dlm_GodOfTheYear", "Rimfolk_Dlm_Temple", "Rimfolk_Dlm_GodAsks", "Rimfolk_Dlm_RivalGods",
-                     "Council_Alm_C_Worship", "Council_Cal_Letter_GodFestival", "Council_Cal_Pass_GodFestival", "Council_Journal_Cal_GodFestival", "Council_Cal_Talk_GodFestival"
+                     "Council_Cal_Letter_GodFestival", "Council_Cal_Pass_GodFestival", "Council_Journal_Cal_GodFestival", "Council_Cal_Talk_GodFestival"
                  })
             C(names.Contains(d), "def " + d);
         var pools = defs.SelectMany(d => d.Item2.Root.Elements().Where(e => e.Name.LocalName.EndsWith("FlavorPoolDef"))).ToDictionary(e => e.Element("defName").Value, e => e);
@@ -253,9 +259,60 @@ public static class WorshipTests
         C(keys.Contains("CC_God_KnownFrom_dream") && keys.Contains("CC_Cal_Origin_GodFestival") && keys.Contains("CC_Settings_GodWorship"), "the colony learns a god from a dream; the calendar's origin; the setting");
         C(!Regex.IsMatch(Regex.Replace(keyed, @"(?s)<!--.*?-->", ""), @"<CC_Wsh_[^>]*>[^<]*(—|!)"), "no em dashes or exclamation marks in worship's words");
 
-        // The Almanac page.
-        string alm = File.ReadAllText(Path.Combine(root, "Defs", "AlmanacArticleDefs", "Almanac_Worship.xml"));
-        C(alm.Contains("Council_Alm_C_Worship") && alm.Contains("<seeAlso><li>Council_Alm_C_Gods</li></seeAlso>") && !alm.Contains("—"), "the Almanac page, beside the gods'");
+        foreach (var k in Enum.GetNames(typeof(PrayerKind)))
+            C(keys.Contains("CC_Wsh_Book_Credit_" + k) && keys.Contains("CC_Wsh_Book_Unanswered_" + k), "the colony's book after a " + k + " prayer");
+        C(keys.Contains("CC_Wsh_UnknownGod") && keys.Contains("CC_Wsh_Book_Offered") && keys.Contains("CC_Wsh_Book_Festival") && keys.Contains("CC_Wsh_Book_FestivalPassed"),
+            "the colony's book: an offering, a festival kept or let pass, and a god not known by name");
+
+        // ================= The unseen rule =================
+
+        // Nothing the player reads tells a god's favour, standing, mind or rules: the gods' own hidden log (Why_) aside.
+        var shown = Regex.Matches(Regex.Replace(keyed, @"(?s)<!--.*?-->", ""), @"<(CC_Wsh_[A-Za-z_]+)>([^<]*)<").Cast<Match>()
+            .Where(m => !m.Groups[1].Value.StartsWith("CC_Wsh_Why_")).ToList();
+        var favourWords = new Regex(@"\b(favour|favours|favoured|standing|pleased|displeased|wrath|angry|anger|answers|answered)\b", RegexOptions.IgnoreCase);
+        foreach (var m in shown.Where(m => favourWords.IsMatch(m.Groups[2].Value)))
+            C(false, "the unseen rule, no god's favour or mind in " + m.Groups[1].Value);
+        C(shown.Count > 150, $"worship's words read ({shown.Count})");
+        C(!File.Exists(Path.Combine(root, "Defs", "AlmanacArticleDefs", "Almanac_Worship.xml"))
+          && !defs.Any(d => d.Item2.ToString().Contains("Council_Alm_C_Worship")), "no Almanac page of worship's own: the gods are learned in play");
+        var worshipDefs = defs.Where(d => Path.GetFileName(d.f).StartsWith("Rimfolk_Worship")).ToList();
+        foreach (var d in worshipDefs)
+            foreach (var e in d.Item2.Descendants().Where(e => e.Name.LocalName == "fix" || e.Name.LocalName == "description" || e.Name.LocalName == "text"
+                                                             || e.Parent?.Name.LocalName == "duties" || e.Parent?.Name.LocalName == "texts"))
+                C(!Regex.IsMatch(e.Value, @"\b(favour|standing|pleased|displeased|weigh more|counted twice)\b", RegexOptions.IgnoreCase), "the unseen rule in " + Path.GetFileName(d.f) + ": " + e.Value.Substring(0, Math.Min(50, e.Value.Length)));
+
+        // ================= The gods' own worship (Rimfolk_Worship_Gods.xml) =================
+
+        var godDefs = defs.SelectMany(d => d.Item2.Root.Elements().Where(e => e.Name.LocalName.EndsWith("GodWorshipDef"))).ToList();
+        XElement Of(string god) => godDefs.FirstOrDefault(e => e.Element("gods")?.Elements("li").Any(l => l.Value == god) == true);
+        bool Flag(string god, string field) => Of(god)?.Element(field)?.Value == "true";
+        string[] Likes(string god) => Of(god)?.Element("likes")?.Elements("li").Select(l => l.Element("kind")?.Value).ToArray() ?? new string[0];
+        var fourteen = new[] { "Hollin", "Smoulder", "Bellwether", "Morel", "Ennu", "Pip", "Cirrus", "Hush", "Undertow", "Helios", "Selene", "Mog", "Murmur", "Ducat" };
+        foreach (var g in fourteen) C(Of(g) != null, "the worship of " + g + ", keyed by its short name");
+        var kinds = new HashSet<string>(Enum.GetNames(typeof(OfferingKind)));
+        var vowKinds = new HashSet<string>(Enum.GetNames(typeof(VowKind)));
+        foreach (var e in godDefs)
+        {
+            string name = e.Element("defName")?.Value;
+            var liked = e.Element("likes")?.Elements("li").Select(l => l.Element("kind")?.Value).ToList() ?? new List<string>();
+            var refused = e.Element("refuses")?.Elements("li").Select(l => l.Value).ToList() ?? new List<string>();
+            C(liked.All(kinds.Contains) && refused.All(kinds.Contains) && !liked.Intersect(refused).Any(), name + ": offering kinds that exist, none both liked and refused");
+            C((e.Element("vows")?.Elements("li").Select(l => l.Value) ?? new string[0]).All(vowKinds.Contains), name + ": vows that exist");
+            int season = int.Parse(e.Element("festivalSeason")?.Value ?? "-1"), day = int.Parse(e.Element("festivalDay")?.Value ?? "-1");
+            C(season <= 3 && day <= 14 && (season >= 0) == (day >= 0), name + ": a festival's season 0 to 3 and day 0 to 14");
+            var fest = e.Element("festivalName")?.Value ?? "";
+            C(!fest.Contains("—") && !fest.Contains("!") && !(e.Element("festivalDishes")?.Value ?? "").Contains("—"), name + ": plain words");
+        }
+        C(Flag("Helios", "takesNoOfferings") && Flag("Helios", "unmoved") && Likes("Helios").Length == 0, "Helios takes nothing and gives to all alike");
+        C(Likes("Smoulder").FirstOrDefault() == "Silver", "Smoulder takes silver first");
+        C(Likes("Ducat").FirstOrDefault() == "Silver" && Flag("Ducat", "givenAway"), "Ducat wants gold given away, not kept");
+        C(Flag("Mog", "noFestival") && Flag("Mog", "asksNothing"), "Mog keeps no calendar and never asks: a bowl she didn't ask for");
+        C(Flag("Morel", "spoiledIsTaken"), "what rots at Morel's place is hers");
+        C(float.Parse(Of("Selene")?.Element("nightFactor")?.Value ?? "1", System.Globalization.CultureInfo.InvariantCulture) > 1f
+          && float.Parse(Of("Selene")?.Element("dreamFactor")?.Value ?? "1", System.Globalization.CultureInfo.InvariantCulture) > 1f, "Selene hears by night and in dreams told");
+        C(Likes("Undertow").Length == kinds.Count, "Undertow takes anything");
+        C(Flag("Murmur", "rainKeeper") && Flag("Cirrus", "rainKeeper") && !Flag("Helios", "rainKeeper"), "the rain is Murmur's and Cirrus's to keep, as people believe");
+        C(files["GodDreams.cs"].Contains("asksNothing") && files["Offerings.cs"].Contains("givenAway"), "a god that never asks, and gifts that must go on, in the code");
         return n;
     }
 }

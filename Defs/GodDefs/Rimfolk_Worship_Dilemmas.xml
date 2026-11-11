@@ -7,7 +7,7 @@
     the first god's place in the colony's age ("Ceren's chapel"), {PET_...} the beast a god asks for. A is the priest (or
     the most devout of the god's people), B the other side. Each answer plays out on the map: words said at the god's
     place (ShrineWords, the priest leading), an offering carried there, a beast walked out and let go; the gods' favour
-    moves through the core (never a number), and a god's rivals feel the honour paid to it.
+    moves through the core, unseen, and a god's rivals feel the honour paid to it.
   -->
 
   <!-- ===================== Which god the colony honours this year ===================== -->
@@ -19,7 +19,7 @@
     <cooldownDays>40</cooldownDays>
     <minColonists>3</minColonists>
     <texts>
-      <li>{A_nameDef} has come to the council with a question that can't wait for the year to turn: which god does the colony honour this year? {GOD}, {GOD2}, or another? The god honoured will have its festival kept first and its offerings counted twice over, and the others will notice.</li>
+      <li>{A_nameDef} has come to the council with a question that can't wait for the year to turn: which god does the colony honour this year? {GOD}, {GOD2}, or another? Whichever god is named, {A_pronoun} says, has its festival kept first and the most offerings carried to it this year.</li>
       <li>A new year, and {A_nameDef} asks the council to name the god the colony will keep it for. {GOD} has carried us this far, {A_pronoun} says, but {GOD2} has been owed a year for a long time.</li>
       <li>[lowtech] {A_nameDef} has laid out the god-stones by the fire and asks the council to choose one to carry through the year: {GOD}, {GOD2}, or another.</li>
       <li>[priest] A year belongs to one god, {A_nameDef} keeps reminding everyone, and it's the priest's work to ask which. {GOD}, {GOD2}, or another?</li>
@@ -111,7 +111,7 @@
     <cooldownDays>60</cooldownDays>
     <minColonists>3</minColonists>
     <texts>
-      <li>{A_nameDef} woke shaking and came straight to the council. {GOD} spoke in {A_possessive} dream, {A_pronoun} says, and asked for {PET_labelShort}, the finest beast the colony has. Give it, and the rain keeps coming. Refuse, and {GOD} keeps it away.</li>
+      <li>{A_nameDef} woke shaking and came straight to the council. {GOD} spoke in {A_possessive} dream, {A_pronoun} says, and asked for {PET_labelShort}, the finest beast the colony has. Give it, {A_pronoun} says, and the rain keeps coming; refuse, and {A_pronoun} is sure the sky will stay dry.</li>
       <li>{A_nameDef} says {GOD} wants {PET_labelShort}. {A_pronoun} dreamt it three nights running: the beast walking out past the last field, and the sky dry as bone behind it if it doesn't.</li>
       <li>[bonded] {A_nameDef} says {GOD} wants {PET_labelShort}, of all the beasts, and knows exactly whose heart that breaks. {GOD} was very clear, {A_pronoun} says. Give it, or the rain stays away.</li>
       <li>[lowtech] {A_nameDef} read the bones and read them again. {GOD} wants {PET_labelShort} given to the wild, or no rain will come to the fields.</li>
@@ -163,7 +163,7 @@
     <minColonists>4</minColonists>
     <roleB />
     <texts>
-      <li>{A_nameDef} prays to {GOD}, {B_nameDef} to {GOD2}, and the two gods have never been able to stand each other. Now {A_nameDef} and {B_nameDef} can't either. Each wants the colony's next rite for their own god, and says the other god will take it as an insult.</li>
+      <li>{A_nameDef} prays to {GOD}, {B_nameDef} to {GOD2}, and the stories say the two gods have never been able to stand each other. Now {A_nameDef} and {B_nameDef} can't either. Each wants the colony's next rite for their own god, and says the other god will take it as an insult.</li>
       <li>{GOD} and {GOD2} are old rivals, and the colony has people of both. {A_nameDef} says {GOD} won't share a shrine's smoke with {GOD2}. {B_nameDef} says {GOD2} was here first. The council is asked to settle it.</li>
       <li>[lowtech] There's one fire and two gods who hate each other. {A_nameDef} will tend it for {GOD}, {B_nameDef} for {GOD2}, and neither will step back.</li>
     </texts>

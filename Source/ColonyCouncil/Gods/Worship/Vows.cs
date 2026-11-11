@@ -60,9 +60,10 @@ namespace ColonyCouncil
             };
             b.vows.Add(r);
             var map = p.MapHeld;
-            string text = ("CC_Wsh_Vowed_" + k).Translate(p.LabelShort.Named("PAWN"), Gods.FullName(g).Named("GOD"), (about?.LabelShort ?? "").Named("ABOUT"),
+            string text = ("CC_Wsh_Vowed_" + k).Translate(p.LabelShort.Named("PAWN"), Worship.CardName(g).Named("GOD"), (about?.LabelShort ?? "").Named("ABOUT"),
                 (beast?.label ?? "").Named("BEAST")).Resolve();
             Tell.Minor(NewsKind.People, Importance.Notable, map, text, p);
+            Worship.Witness(g, map, GodActKind.Vow, text, p.PositionHeld);
             if (p.Spawned) Worship.Say(p, "Rimfolk_Pool_Worship_Vow", g, null, "vow:" + k.ToString().ToLowerInvariant());
             CouncilGameComponent.Instance?.journals.WriteText(p, text);
             if (k == VowKind.NoMeat) MealsWish(p);
@@ -81,11 +82,12 @@ namespace ColonyCouncil
             var map = p?.MapHeld;
             if (g == null || p == null) return;
             string key = (kept ? "CC_Wsh_VowKept_" : "CC_Wsh_VowBroken_") + r.kind;
-            string text = key.Translate(p.LabelShort.Named("PAWN"), Gods.FullName(g).Named("GOD"), (r.aboutName ?? "").Named("ABOUT"), (r.beast?.label ?? "").Named("BEAST"),
+            string text = key.Translate(p.LabelShort.Named("PAWN"), Worship.CardName(g).Named("GOD"), (r.aboutName ?? "").Named("ABOUT"), (r.beast?.label ?? "").Named("BEAST"),
                 "".Named("HOW")).Resolve() + (how.NullOrEmpty() ? "" : " " + how);
             if (!p.Dead)
                 CouncilGameComponent.GiveThought(p, kept ? WorshipDefOf.Rimfolk_Worship_VowKept : WorshipDefOf.Rimfolk_Worship_VowBroken);
             Tell.Minor(NewsKind.People, Importance.Notable, map, text, p);
+            Worship.Witness(g, map, GodActKind.Vow, text, p.PositionHeld);
             CouncilGameComponent.Instance?.journals.WriteText(p, Worship.Line(kept ? "Rimfolk_Pool_Worship_VowKeptJournal" : "Rimfolk_Pool_Worship_VowBrokenJournal", p, g,
                 null, "vow:" + r.kind.ToString().ToLowerInvariant()) ?? text);
             if (kept && (r.kind == VowKind.Temple || r.kind == VowKind.Pilgrimage))
@@ -95,9 +97,9 @@ namespace ColonyCouncil
             }
             if (!kept && WorshipMath.WrathAfterBroken(g.nature, Rand.Value))
             {
-                Gods.AddFavour(g, map, WorshipMath.WrathFavour, "CC_Wsh_Why_Wrath".Translate(p.LabelShort.Named("PAWN")).Resolve(), FavourSource.Vow, GodOffence.BrokenWord);
-                string wrath = ("CC_Wsh_Wrath_" + Worship.Step).Translate(p.LabelShort.Named("PAWN"), Gods.FullName(g).Named("GOD")).Resolve();
-                Worship.Sign(g, map, p.PositionHeld, PresenceKind.Wrath, "CC_Wsh_Wrath_Title".Translate(Gods.Name(g).Named("GOD")).Resolve(), wrath, p, false, GodActKind.Wrath);
+                Worship.Favour(g, map, WorshipMath.WrathFavour, "CC_Wsh_Why_Wrath".Translate(p.LabelShort.Named("PAWN")).Resolve(), FavourSource.Vow, GodOffence.BrokenWord);
+                string wrath = ("CC_Wsh_Wrath_" + Worship.Step).Translate(p.LabelShort.Named("PAWN"), Worship.CardName(g).Named("GOD")).Resolve();
+                Worship.Sign(g, map, p.PositionHeld, PresenceKind.Wrath, "CC_Wsh_Wrath_Title".Translate(Worship.CardName(g).Named("GOD")).Resolve(), wrath, p, false, GodActKind.Wrath);
             }
         }
 
@@ -195,7 +197,7 @@ namespace ColonyCouncil
         private static void BeastVow(WorshipBook b, Map map, int now)
         {
             if (!Interplay.Ready("worship-beastvow|" + Gods.HomeKey(map), 10f)) return;
-            foreach (var g in Gods.ColonyGods(map))
+            foreach (var g in Worship.PrayedTo(map))
             {
                 var def = GodDomainDef.Of(g.domain);
                 if (def?.Animals == null || def.Animals.Count == 0) continue;
@@ -304,7 +306,7 @@ namespace ColonyCouncil
         {
             var g = PilgrimGod(p);
             Worship.Say(p, "Rimfolk_Pool_Worship_PilgrimOut", g);
-            var text = "CC_Wsh_PilgrimOut".Translate(p.LabelShort.Named("PAWN"), Gods.Name(g).Named("GOD")).Resolve();
+            var text = "CC_Wsh_PilgrimOut".Translate(p.LabelShort.Named("PAWN"), Worship.CardName(g).Named("GOD")).Resolve();
             Tell.Minor(NewsKind.People, Importance.Flavor, p.Map, text, p);
         }
 
@@ -382,7 +384,7 @@ namespace ColonyCouncil
             return g != null && b != null && b.Count(a.pawn, "pilgrimage", a.startedTick, g.id) > 0 ? 1f : 0f;
         }
 
-        public override string ProgressText(Aspiration a) => (Progress(a) >= 1f ? "CC_Wsh_Goal_PilgrimDone" : "CC_Wsh_Goal_PilgrimNot").Translate(Gods.Name(GodOf(a)).Named("GOD")).Resolve();
+        public override string ProgressText(Aspiration a) => (Progress(a) >= 1f ? "CC_Wsh_Goal_PilgrimDone" : "CC_Wsh_Goal_PilgrimNot").Translate(Worship.CardName(GodOf(a)).Named("GOD")).Resolve();
     }
 
     public class AspirationWorker_GodTemple : AspirationWorker_GodVow
@@ -412,8 +414,8 @@ namespace ColonyCouncil
             var map = a.pawn?.MapHeld;
             if (g == null || map == null) return null;
             int places = Shrines.Of(map, g).Count;
-            return places == 0 ? "CC_Wsh_Goal_TempleNone".Translate(Gods.Name(g).Named("GOD"), Worship.ShrineWord.Named("SHRINE")).Resolve()
-                : "CC_Wsh_Goal_TempleSome".Translate(Gods.Name(g).Named("GOD"), Progress(a).ToStringPercent().Named("PERCENT")).Resolve();
+            return places == 0 ? "CC_Wsh_Goal_TempleNone".Translate(Worship.CardName(g).Named("GOD"), Worship.ShrineWord.Named("SHRINE")).Resolve()
+                : "CC_Wsh_Goal_TempleSome".Translate(Worship.CardName(g).Named("GOD"), Progress(a).ToStringPercent().Named("PERCENT")).Resolve();
         }
     }
 

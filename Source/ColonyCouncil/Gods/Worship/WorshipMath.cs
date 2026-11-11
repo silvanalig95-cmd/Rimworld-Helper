@@ -359,13 +359,13 @@ namespace ColonyCouncil
         // ================= Scoffers =================
 
         /// <summary>
-        /// A scoffer: someone whose faith despises religion, whose faith has no gods and who isn't devout, or who is far from
-        /// sure of it (with Ideology); without Ideology, about one in seven by who they are (the same each time).
+        /// A scoffer: someone whose faith despises religion, or who is far from sure of their faith (with Ideology, its
+        /// certainty; its deities play no part), or about one in seven by who they are (the same each time).
         /// </summary>
-        public static bool Scoffer(bool noReligion, bool ideology, bool godlessFaith, float certainty, int id)
+        public static bool Scoffer(bool noReligion, bool ideology, float certainty, int id)
         {
             if (noReligion) return true;
-            if (ideology) return godlessFaith && certainty < 0.85f || certainty < 0.3f;
+            if (ideology && certainty < 0.3f) return true;
             uint h = unchecked((uint)id * 2654435761u);
             return (h >> 16) % 7 == 0;
         }

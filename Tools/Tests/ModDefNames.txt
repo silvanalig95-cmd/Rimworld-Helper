@@ -131,6 +131,15 @@ AM_GauranlenSupremacy
 AM_Gladiator
 AM_Iconoclast
 AM_Monastic
+AM_RitualSustainer_Corsair
+AM_RitualSustainer_Cubicism
+AM_RitualSustainer_Kemetic
+AM_RitualSustainer_MaddeningChant
+AM_RitualSustainer_Mesoamerican
+AM_RitualSustainer_Neolithic
+AM_RitualSustainer_Ocular
+AM_RitualSustainer_SteampunkRevival
+AM_RitualSustainer_TeaCeremony
 AM_Sadist
 AM_Sharpshooter
 AM_WaterPrimacy

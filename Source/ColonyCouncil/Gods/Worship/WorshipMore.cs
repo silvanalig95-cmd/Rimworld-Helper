@@ -144,14 +144,14 @@ namespace ColonyCouncil
                 if (v == null || v.done || v.pawn == null || v.pawn.Dead) continue;
                 var g = Gods.ById(v.god);
                 if (g == null) continue;
-                string text = ("CC_Wsh_Week_Vow_" + v.kind).Translate(WeekModel.Name(v.pawn).Named("PAWN"), Gods.Name(g).Named("GOD"), (v.aboutName ?? "").Named("ABOUT"),
+                string text = ("CC_Wsh_Week_Vow_" + v.kind).Translate(WeekModel.Name(v.pawn).Named("PAWN"), Worship.CardName(g).Named("GOD"), (v.aboutName ?? "").Named("ABOUT"),
                     (v.beast?.label ?? "").Named("BEAST")).Resolve();
                 var target = v.pawn.Spawned ? new GlobalTargetInfo(v.pawn) : GlobalTargetInfo.Invalid;
                 rows.Add(new WeekRow
                 {
                     pawn = v.pawn,
                     text = text,
-                    sub = "CC_Wsh_Week_VowSub".Translate(Gods.FullName(g).Named("GOD")).Resolve(),
+                    sub = "CC_Wsh_Week_VowSub".Translate(Worship.CardName(g).Named("GOD")).Resolve(),
                     note = "CC_Wsh_Week_Vow".Translate(),
                     noteColor = UiKit.Gold,
                     tip = WeekModel.Tip(("CC_Wsh_Week_VowTip_" + v.kind).Translate(), target.IsValid ? "CC_Week_ClickMap".Translate(v.pawn.LabelShort).Resolve() : null),
@@ -166,13 +166,14 @@ namespace ColonyCouncil
                 var g = Gods.ById(d.god);
                 if (g == null) continue;
                 var target = d.shrine != null && d.shrine.Spawned ? new GlobalTargetInfo(d.shrine) : GlobalTargetInfo.Invalid;
+                // What the dreamer says the god wants, as they tell it: a person's word, never the god's terms.
                 rows.Add(new WeekRow
                 {
-                    icon = GodSymbols.For(g.domain),
-                    color = g.colour,
-                    text = "CC_Wsh_Week_Demand".Translate(Gods.Name(g).Named("GOD"), ("CC_Wsh_Kind_" + d.kind).Translate().Named("WHAT"), Worship.ShrineOf(g).Named("SHRINE")).Resolve(),
+                    pawn = d.dreamer != null && !d.dreamer.Dead ? d.dreamer : null,
+                    text = "CC_Wsh_Week_Demand".Translate(WeekModel.Name(d.dreamer).Named("PAWN"), Worship.CardName(g).Named("GOD"), ("CC_Wsh_Kind_" + d.kind).Translate().Named("WHAT"),
+                        Worship.ShrineOf(g).Named("SHRINE")).Resolve(),
                     note = "CC_Wsh_Week_DemandNote".Translate(),
-                    noteColor = UiKit.Warn,
+                    noteColor = UiKit.Faint,
                     tip = WeekModel.Tip("CC_Wsh_Week_DemandTip".Translate((d.dreamer?.LabelShort ?? "?").Named("PAWN")).Resolve(),
                         target.IsValid ? "CC_Week_ClickMap".Translate(d.shrine.LabelShort).Resolve() : null),
                     click = target.IsValid ? WeekModel.Go(target) : null,
@@ -241,7 +242,7 @@ namespace ColonyCouncil
             foreach (var s in Shrines.Of(map, null))
             {
                 var g = Gods.ById(s.god);
-                if (g == null || !WorshipMath.TakesOfferings(g.kind) || b.offerings.Any(o => o != null && o.shrine == s.thing && o.fate == OfferingFate.Waiting)) continue;
+                if (g == null || !GodWorshipDef.TakesOfferings(g) || b.offerings.Any(o => o != null && o.shrine == s.thing && o.fate == OfferingFate.Waiting)) continue;
                 b.offerings.Add(new OfferingRecord { shrine = s.thing, god = g.id, home = Gods.HomeKey(map), chosen = Worship.Now });
             }
             Offerings.Hourly(b, map, Worship.Now);

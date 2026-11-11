@@ -152,7 +152,7 @@ namespace ColonyCouncil
             {
                 if (planned >= ADay) break;
                 var g = Gods.ById(s.god);
-                if (g == null || !WorshipMath.TakesOfferings(g.kind)) continue;
+                if (g == null || !GodWorshipDef.TakesOfferings(g)) continue;
                 // One at a time at a place.
                 if (b.offerings.Any(o => o != null && o.shrine == s.thing && o.fate == OfferingFate.Waiting)) continue;
                 bool demanded = b.demands.Any(d => d != null && !d.done && !d.met && d.god == g.id && d.home == Gods.HomeKey(map));
@@ -291,6 +291,10 @@ namespace ColonyCouncil
             Worship.Say(p, "Rimfolk_Pool_Worship_Offer", g, null, "offer:" + o.kind.ToString().ToLowerInvariant(), o.demand ? "demand" : null);
             Worship.PriestLight(p, shrine.Position);
             CouncilGameComponent.GiveThought(p, WorshipDefOf.Rimfolk_Worship_Offered);
+            // The colony's book: what was left, and by whom.
+            if (g != null)
+                Worship.Witness(g, shrine.Map, GodActKind.Favour, "CC_Wsh_Book_Offered".Translate(p.LabelShort.Named("PAWN"), (o.label ?? "?").Named("WHAT"),
+                    Worship.ShrineOf(g).Named("SHRINE")).Resolve(), shrine.Position);
         }
 
         // ================= The taking =================
@@ -384,20 +388,24 @@ namespace ColonyCouncil
             if (g == null) return;
             if (!cell.IsValid || cell == default) cell = o.shrine?.Position ?? IntVec3.Invalid;
             if ((fate == OfferingFate.Spoiled || fate == OfferingFate.Returned) && o.thing != null && o.thing.Spawned) o.thing.SetForbidden(false, false);
-            float share = fate == OfferingFate.Spoiled ? 0.5f : fate == OfferingFate.Returned ? 0.25f : 1f;
+            // What rots at the Soft Mother's place is hers in full (her worship def: spoiledIsTaken); what goes back to the
+            // stores is nothing to a god whose gifts must go on (givenAway: Ducat).
+            var own = GodWorshipDef.For(g);
+            bool rotIsTaking = own?.spoiledIsTaken ?? false;
+            float share = fate == OfferingFate.Spoiled ? (rotIsTaking ? 1f : 0.5f) : fate == OfferingFate.Returned ? (own?.givenAway == true ? 0f : 0.25f) : 1f;
             string place = Worship.ShrineOf(g);
             string what = o.label ?? "?";
             string why = "CC_Wsh_Why_Offering".Translate(what.Named("WHAT"), place.Named("SHRINE")).Resolve();
-            Gods.AddFavour(g, map, o.favour * share, why, FavourSource.Offering);
+            Worship.Favour(g, map, o.favour * share, why, FavourSource.Offering);
             string key = "CC_Wsh_Taken_" + fate + (fate == OfferingFate.Taken ? "_" + Worship.Step : "");
-            string text = key.Translate(what.Named("WHAT"), place.Named("SHRINE"), Gods.FullName(g).Named("GOD"), (o.carrier?.LabelShort ?? "?").Named("PAWN")).Resolve();
+            string text = key.Translate(what.Named("WHAT"), place.Named("SHRINE"), Worship.CardName(g).Named("GOD"), (o.carrier?.LabelShort ?? "?").Named("PAWN")).Resolve();
             if (fate == OfferingFate.Taken && Gods.Realness == GodRealness.Walking)
-                Worship.Sign(g, map, cell, PresenceKind.Act, "CC_Wsh_Taken_Title".Translate(Gods.Name(g).Named("GOD")).Resolve(), text, new LookTargets(cell, map), false);
+                Worship.Sign(g, map, cell, PresenceKind.Act, "CC_Wsh_Taken_Title".Translate(place.Named("SHRINE")).Resolve(), text, new LookTargets(cell, map), false);
             else
             {
                 if (fate == OfferingFate.Taken) Worship.Glow(map, cell, g);
                 Tell.Minor(NewsKind.Colony, Importance.Flavor, map, text, o.shrine != null && o.shrine.Spawned ? new LookTargets(o.shrine) : null);
-                Gods.Remember(new GodAct { god = g.id, home = o.home, kind = GodActKind.Favour, text = text, cell = cell });
+                Worship.Witness(g, map, GodActKind.Favour, text, cell);
             }
             // A demand in a dream met.
             if (o.demand) GodDreams.Met(b, g, map, o);

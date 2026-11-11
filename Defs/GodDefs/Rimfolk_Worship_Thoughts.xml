@@ -128,10 +128,9 @@
   <ColonyCouncil.MoodHintDef>
     <defName>Rimfolk_Mood_Worship_Unanswered</defName>
     <thoughts><li>Rimfolk_Worship_Unanswered</li></thoughts>
-    <fix>It passes with time. A priest's word, a prayer that comes good, or a festival kept for their god all steady them; two crises in a month and they may turn to another god.</fix>
+    <fix>It passes with time. A priest's word, or a festival kept for their god, steadies them. Someone shaken twice may turn to another god.</fix>
     <act>Passes with time</act>
     <actionable>false</actionable>
-    <article>Council_Alm_C_Worship</article>
   </ColonyCouncil.MoodHintDef>
 
   <ColonyCouncil.MoodHintDef>
@@ -140,16 +139,14 @@
     <fix>It passes with time. For a vow of no meat, keep vegetarian meals in the stores while it lasts, and let them keep to them in their food policy.</fix>
     <act>Passes with time</act>
     <actionable>false</actionable>
-    <article>Council_Alm_C_Worship</article>
   </ColonyCouncil.MoodHintDef>
 
   <ColonyCouncil.MoodHintDef>
     <defName>Rimfolk_Mood_Worship_Mocked</defName>
     <thoughts><li>Rimfolk_Worship_Mocked</li></thoughts>
-    <fix>It passes in a day or two. Scoffers mock what the believers saw; keeping the two apart at the god's place, or a word between them, keeps it from festering.</fix>
+    <fix>It passes in a day or two. Scoffers mock what believers saw; keeping the two apart at the god's place, or a word between them, keeps it from festering.</fix>
     <act>Passes with time</act>
     <actionable>false</actionable>
-    <article>Council_Alm_C_Worship</article>
   </ColonyCouncil.MoodHintDef>
 
 </Defs>

@@ -14,7 +14,7 @@
   <ColonyCouncil.OfficeDef>
     <defName>Rimfolk_Office_Priest</defName>
     <label>priest</label>
-    <description>Keeps the colony's gods: dedicates its shrines, carries its offerings, leads the festivals' rites, and is the first to hear what the gods want.</description>
+    <description>Keeps the colony's gods: dedicates its shrines, carries its offerings, leads the festivals' rites, and sits with anyone whose prayers went unanswered.</description>
     <order>10</order>
     <minColonists>4</minColonists>
     <needsGods>true</needsGods>
@@ -25,7 +25,7 @@
     <duties>
       <li>Dedicates the places the colony gives to its gods, and carries the offerings left there.</li>
       <li>Leads each god's festival rite at its shrine.</li>
-      <li>The priest's prayers and rites weigh more with the gods, and the gods speak more plainly in the priest's dreams.</li>
+      <li>Prays with those who ask; people say the gods come to the priest in dreams.</li>
       <li>Only with the gods on and a god the colony holds; with Ideology and a faith of the colony's own, the chaplain does this instead. Opens once the colony has four people who can vote.</li>
     </duties>
     <elected>
@@ -67,8 +67,8 @@
       <li><key>comfort</key><promise>to pray with anyone who asked</promise><test>Mood</test></li>
     </promises>
     <planks>
-      <li><key>doubt</key><text>{PAWN_nameDef} promises a word with anyone whose prayers have gone unanswered.</text><promise>a word for anyone whose prayers went unanswered</promise><test>Faith</test></li>
-      <li><key>grief</key><text>{PAWN_nameDef} promises that the colony's dead will be prayed for, every one.</text><promise>that the colony's dead would be prayed for</promise><test>Mood</test></li>
+      <li><key>unanswered</key><text>{PAWN_nameDef} promises a word with anyone whose prayers have gone unanswered.</text><promise>a word for anyone whose prayers went unanswered</promise><test>Faith</test></li>
+      <li><key>dead</key><text>{PAWN_nameDef} promises that the colony's dead will be prayed for, every one.</text><promise>that the colony's dead would be prayed for</promise><test>Mood</test></li>
     </planks>
   </ColonyCouncil.OfficeWordsDef>
 
@@ -83,5 +83,28 @@
       </li>
     </offices>
   </ColonyCouncil.ModPeopleDef>
+
+  <!-- What a candidate for priest says of the priest's own planks, canvassing and at the hustings. -->
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_Worship_CanvassPriest</defName>
+    <pool>Rimfolk_Pool_ElectionCanvass</pool>
+    <lines>
+      <plain>
+        <li>[plank:unanswered] If your prayers have gone unanswered, come and sit with me a while.</li>
+        <li>[plank:dead] Every one of our dead will be prayed for, I promise you that.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_Worship_HustingsPriest</defName>
+    <pool>Rimfolk_Pool_HustingsGood</pool>
+    <lines>
+      <plain>
+        <li>[plank:unanswered] Nobody whose prayers went unanswered will be left to sit alone with it.</li>
+        <li>[plank:dead] Our dead will be prayed for by name, every one of them, as long as I hold this seat.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
 
 </Defs>
