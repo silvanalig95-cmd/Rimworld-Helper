@@ -304,6 +304,16 @@ tree at once, alongside whatever runs. Each piece is merged as its own release, 
   card's rating and tip) drawn in each weapon's row left of its mass, and apparel's the same way, by a soft hook on that
   tab's row by name (and on the game's own contents tabs, which share `ITab_ContentsBase.DoThingRow`); nothing on rows
   that are not gear, as in the inventory panel ("badges only on real gear").
+- **To do when the player asks (12 November 2026): medics carry a few medicines.** The player: "my medics should
+  always carry a few medicines with them for spontaniouis battles". How it is now: the game has its own per-colonist
+  "carry medicine" (the Assign tab's inventory stock, `Pawn_InventoryStockTracker`, group `Medicine`: a kind and a
+  count, set by hand, taken up by `JobGiver_TakeForInventoryStock`, and a doctor tends from their pack in the field);
+  Rimfolk only keeps it when unloading (`Hauling/Carrying.Kept`). When asked: Rimfolk sets that stock itself for the
+  colony's medics (doctoring on, the best few by Medical, babies and the sick left out): two or three, of a kind the
+  colony has plenty of (herbal or industrial, the finest kept at home for the hospital, as "Medicine by what is
+  treated" chooses), never so many that the home's stores fall below what its sick need; a stock the player set by
+  hand left alone; taken off again when someone stops being a medic. Shown where the game shows it (the Assign tab),
+  and said once ("Alder packs two kits of medicine").
 - 0.221.0, **Mog's luck and her stare**
   (11 November 2026), the follow-up to the gods on the map from the pantheon's Mog ("the one she chooses has a lucky
   season ... she sees Ennu for what it is, and stares at it"). DESIGN.md "The gods on the map", the sacred animal.
