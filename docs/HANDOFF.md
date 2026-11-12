@@ -258,6 +258,25 @@ tree at once, alongside whatever runs. Each piece is merged as its own release, 
   checked for the same pattern (free, then certain at the next chance). Scope (the player, asked whether this goes for
   all of Rimfolk's events): "no, not necessarily, as so far it has not felt like this besides this selene event". So
   the gods' happenings only, the moon's return first; the rest of Rimfolk is left as it is.
+- **To do when the player asks (12 November 2026): the Gods' book as a holy book, not a log.** The player, with a
+  picture of Ducat's page (two dated entries, a trader's words at the gate and Avila's at supper): "the god's book
+  should not only be a log of events, but more like a wiki page basically building each up based on gained knowledge,
+  only a more mysterious and ominous wiki, you know like a religious text-style wiki". How it is now
+  (`Gods/GodLorePage.cs`, `GodLore`): a name's page is the name, the other names it was found to be, when and from whom
+  it was first heard, the colonists' beliefs side by side, then every entry by date. The god's own lore is already
+  written in its def (`Defs/GodDefs/Rimfolk_Gods.xml`: names by age, what it is, how it is seen, its character, what
+  pleases and angers it, sayings, scoffs, stories in pieces with their retelling and the gods they touch) and reaches
+  the book only as dated entries. When asked, proposed: each name's page as a chapter of a holy book that grows as the
+  colony learns, its parts appearing only once someone of the colony has seen, been told or come to believe them, each
+  line said as theirs ("so the League's traders say", "Avila holds", "the seer said, darkly"), never as fact; parts
+  like "Of its names" (who calls it what, by people and age), "Of what it is" (as told, in the tellers' words), "Of
+  how it is known" (its signs, once learned), "Of what it loves and what it hates" (as the colony believes, from what
+  it saw follow its deeds, and so possibly wrong), "The sayings" (as heard), "The tales" (a story set down piece by
+  piece as its pieces are heard, the missing ones left as gaps), "Of its kin and its enemies" (other gods' pages it
+  touches, linked), "Its feast and its rites", and "The witnesses" (the dated log, last); contradictions kept side by
+  side ("Some say... Others hold..."); unknown parts shown as silence or a torn page, so the player sees how much is
+  still dark; in the style of scripture (chapter and verse, a drop capital, the keeper's notes in the margin, a change
+  of hand marked) and ominous in tone. The unseen rule holds: nothing the pawns don't know, no favour, no truth marked.
 - 0.221.0, **Mog's luck and her stare**
   (11 November 2026), the follow-up to the gods on the map from the pantheon's Mog ("the one she chooses has a lucky
   season ... she sees Ennu for what it is, and stares at it"). DESIGN.md "The gods on the map", the sacred animal.
