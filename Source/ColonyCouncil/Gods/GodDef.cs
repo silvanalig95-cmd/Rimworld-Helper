@@ -41,6 +41,11 @@ namespace ColonyCouncil
 
         /// <summary>Sayings about it, one sentence each, said over a head ({GOD} is the speaker's name for it).</summary>
         [MustTranslate] public List<string> sayings = new List<string>();
+        /// <summary>
+        /// What it is and how it is seen, as people tell it: one sentence each, said over a head in order at the fire or at the
+        /// gate ({GOD} the teller's name for it), and set down in the colony's book as told (Gods/GodTales.cs, WhatOf).
+        /// </summary>
+        [MustTranslate] public List<string> whatLines = new List<string>(), seenLines = new List<string>();
         /// <summary>A believer's line when its hand is seen in an event (tagged [gift], [sign], [wrath]; [near] when it is drawn near, [veiled] when not), one sentence.</summary>
         [MustTranslate] public List<string> hands = new List<string>();
         /// <summary>A scoffer's answer where the colony doesn't know the hand for the god's, one sentence.</summary>
@@ -107,6 +112,7 @@ namespace ColonyCouncil
                 yield return "a god has a name among the peoples of every age";
             if (whatItIs.NullOrEmpty() || howSeen.NullOrEmpty() || character.NullOrEmpty() || wants.NullOrEmpty()) yield return "a god has its lore: what it is, how it is seen, its character, what it wants";
             if (sayings.NullOrEmpty() || hands.NullOrEmpty() || scoffs.NullOrEmpty()) yield return "a god has sayings, believers' lines and scoffers' answers";
+            if (whatLines.NullOrEmpty() || seenLines.NullOrEmpty()) yield return "a god has lines on what it is and how it is seen, as people tell it";
             if (stories.NullOrEmpty() || stories.Count < 2) yield return "a god has at least two stories";
             if (stories != null)
                 foreach (var s in stories)

@@ -260,6 +260,9 @@ namespace ColonyCouncil
                 string taken = g == null || lore == null ? null : GodLoreMath.Attribute(g.Key, lore.KnownOf(), Rand.Value);
                 GodLore.Saw(pawns, ByKey(taken), act.text);
                 act.booked = true;
+                // A kindness or an anger seen: the believer among them comes to hold what the god they took it for loves or hates.
+                if (taken != null && (act.kind == GodActKind.Blessing || act.kind == GodActKind.Wrath))
+                    GodLore.Inferred(GodLore.Believer(pawns), ByKey(taken), g, act.kind == GodActKind.Wrath);
             }
             catch (Exception e)
             {
@@ -305,6 +308,10 @@ namespace ColonyCouncil
                 if (plain) taken = spec.god;
                 GodLore.Saw(witnesses, taken, words);
                 if (plain) lore.MarkActing(spec.god);
+                // The holy book: what the colony saw of it plainly, and what a believer now holds it loves or hates.
+                if (plain) GodLore.Sighted(witnesses, spec.god, words);
+                if (taken != null && (spec.kind == PresenceKind.Blessing || spec.kind == PresenceKind.Wrath))
+                    GodLore.Inferred(GodLore.Believer(witnesses), taken, spec.god, spec.kind == PresenceKind.Wrath);
                 momentGod = spec.god.id;
                 momentAt = Now;
             }

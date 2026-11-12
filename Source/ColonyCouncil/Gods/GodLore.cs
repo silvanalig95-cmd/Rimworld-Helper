@@ -116,8 +116,13 @@ namespace ColonyCouncil
     /// <see cref="Believes"/>, <see cref="Dreamt"/> and <see cref="Prayed"/>. Saved with the game; the region window's
     /// "Book of the gods" reads it (Gods/GodLorePage.cs).
     /// </para>
+    /// <para>
+    /// Besides its entries, the book keeps the verses each name's chapter is made of (Gods/GodLoreVerses.cs): its names by
+    /// people and age, what it is, how it is known, what it loves and hates, its sayings, tales, kin, feasts and rites, each
+    /// set down only as someone of the colony saw, was told or came to believe it, and said as theirs.
+    /// </para>
     /// </summary>
-    public class GodLore : GameComponent
+    public partial class GodLore : GameComponent
     {
         public List<LoreEntry> entries = new List<LoreEntry>();
         public List<LoreName> names = new List<LoreName>();
@@ -386,6 +391,7 @@ namespace ColonyCouncil
                 string page = g != null ? b.Page(NameOf(g, first), g, "CC_GodLore_FromSeen".Translate(Names(list.Select(p => p.LabelShort)).Named("WHO")).Resolve()) : null;
                 foreach (var p in list.Where(p => p.IsColonist))
                     b.seen[p.LabelShort] = (b.seen.TryGetValue(p.LabelShort, out int n) ? n : 0) + 1;
+                if (g != null && first.IsColonist) b.Called(NameOf(g, first), g, first.LabelShort, null, "Saw");
                 var who = list.Select(p => p.LabelShort).ToList();
                 return b.Write(LoreKind.Saw, page, who, null, v =>
                 {
@@ -406,10 +412,13 @@ namespace ColonyCouncil
 
         /// <summary>A teller (a visitor, a neighbour, a colonist at supper, the priest) told something of a god (or of something unnamed): <paramref name="how"/> is where (CC_GodLore_How_*: Fire, Gate, Letter, Supper, Sermon).</summary>
         public static LoreEntry Heard(Pawn teller, God g, string words, string how = "Fire", string storyKey = null, int piece = -1, string name = null) =>
-            Heard(TellerOf(teller), g, words, how, storyKey, piece, name ?? NameOf(g, teller));
+            Heard(TellerOf(teller), g, words, how, storyKey, piece, name ?? NameOf(g, teller), PeopleOf(teller), teller?.LabelShort);
 
-        /// <summary>The same, from a teller known only by name ("Mirel of Karond-Keth"), with the name they used for the god.</summary>
-        public static LoreEntry Heard(string teller, God g, string words, string how, string storyKey, int piece, string name)
+        /// <summary>
+        /// The same, from a teller known only by name ("Mirel of Karond-Keth"), with the name they used for the god; their
+        /// people and their own name (<paramref name="by"/>), when known, set the name down as that people's (Of its names).
+        /// </summary>
+        public static LoreEntry Heard(string teller, God g, string words, string how, string storyKey, int piece, string name, Faction people = null, string by = null)
         {
             var b = Book;
             if (b == null || words.NullOrEmpty()) return null;
@@ -420,6 +429,7 @@ namespace ColonyCouncil
                 string title = storyKey != null ? g?.def?.Story(storyKey)?.title ?? StoryTitle(storyKey) : null;
                 var e = b.Write(LoreKind.Heard, page, null, teller, v => (title != null ? Key("HeardStory", v) : Key("Heard", v))
                     .Translate(teller.Named("TELLER"), HowWords(how).Named("HOW"), words.Named("WORDS"), (title ?? "").UncapitalizeFirst().Named("TITLE")).Resolve(), storyKey, piece);
+                if (g != null && e != null && (people != null || by != null)) b.Called(name ?? Gods.Name(g), g, by, people, how);
                 // A teller who uses another name than the colony's for a god may say so.
                 var root = g != null ? b.PageOf(g) : null;
                 if (e != null && root != null && page != null && page != root.name && Rand.Chance(GodLoreMath.TellerConnects))
@@ -456,6 +466,7 @@ namespace ColonyCouncil
             try
             {
                 string page = g != null ? b.Page(NameOf(g, p), g, "CC_GodLore_FromBelief".Translate(p.LabelShort.Named("PAWN")).Resolve()) : null;
+                if (g != null && p.IsColonist) b.Called(NameOf(g, p), g, p.LabelShort, null, "Holds");
                 return b.Write(doubts ? LoreKind.Doubts : LoreKind.Believes, page, new[] { p.LabelShort }, null,
                     v => Key(doubts ? "Doubts" : "Believes", v).Translate(p.LabelShort.Named("PAWN"), words.Named("WORDS")).Resolve());
             }
@@ -479,6 +490,7 @@ namespace ColonyCouncil
             try
             {
                 string page = g != null ? b.Page(NameOf(g, p), g, "CC_GodLore_FromBelief".Translate(p.LabelShort.Named("PAWN")).Resolve()) : null;
+                if (g != null && p.IsColonist) b.Called(NameOf(g, p), g, p.LabelShort, null, "Holds");
                 return b.Write(kind, page, new[] { p.LabelShort }, null, v => Key(key, v).Translate(p.LabelShort.Named("PAWN"), words.Named("WORDS")).Resolve());
             }
             catch (Exception e)
@@ -496,10 +508,19 @@ namespace ColonyCouncil
         {
             if (a == null || into == null || a == into || a.joinedTo != null) return;
             a.joinedTo = into.name;
+            // The verses under the later name now stand in the earlier name's chapter.
+            foreach (var v in verses)
+                if (v.page == a.name)
+                    v.page = into.name;
             Version++;
             string who = by?.LabelShort ?? teller;
-            Write(LoreKind.Connected, into.name, by != null ? new[] { by.LabelShort } : null, teller,
+            var e = Write(LoreKind.Connected, into.name, by != null ? new[] { by.LabelShort } : null, teller,
                 v => Key(by != null ? "Connected" : "ConnectedTold", v).Translate((who ?? "").Named("WHO"), a.name.Named("A"), into.name.Named("B")).Resolve());
+            // Of its names: the two worked out to be one, in the words the book has it in.
+            var g = Gods.ById(into.god >= 0 ? into.god : a.god);
+            if (e == null || g == null) return;
+            var verse = new LoreVerse { part = BookPart.Names, god = g.id, page = into.name, key = a.name, text = e.text, by = who, how = "Joined", tick = e.tick, keeper = e.keeper };
+            if (GodBookMath.Accepts(verses, verse)) verses.Add(verse);
         }
 
         // ================= What the colony knows was a god's doing =================
@@ -570,6 +591,8 @@ namespace ColonyCouncil
             Scribe_Collections.Look(ref seen, "seen", LookMode.Value, LookMode.Value, ref tmpKeys, ref tmpInts);
             Scribe_Collections.Look(ref seenActing, "seenActing", LookMode.Value);
             Scribe_Collections.Look(ref signs, "signs", LookMode.Value);
+            Scribe_Collections.Look(ref verses, "verses", LookMode.Deep);
+            Scribe_Values.Look(ref versesFrom, "versesFrom");
             if (Scribe.mode == LoadSaveMode.PostLoadInit)
             {
                 entries ??= new List<LoreEntry>();
@@ -586,6 +609,8 @@ namespace ColonyCouncil
                 seen ??= new Dictionary<string, int>();
                 seenActing ??= new List<int>();
                 signs ??= new List<string>();
+                verses ??= new List<LoreVerse>();
+                verses.RemoveAll(v => v == null || v.text.NullOrEmpty() || v.page.NullOrEmpty());
                 Version++;
             }
         }

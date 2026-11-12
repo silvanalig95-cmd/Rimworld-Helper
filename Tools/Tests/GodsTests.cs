@@ -492,8 +492,9 @@ public static class GodsTests
         C(inOrder[0] == 0 && inOrder[1] == 1 && inOrder[2] == 2, "a story reaches the colony in pieces, in order, never all at once");
         C(GodLoreMath.TalkNow(19, -1, 1f, 0f) && !GodLoreMath.TalkNow(12, -1, 1f, 0f) && !GodLoreMath.TalkNow(19, 3, 1f, 0f) && GodLoreMath.EveningChance <= 0.1f && GodLoreMath.GapHours >= 12,
             "talk of the gods at the evening fire, now and then, never twice in an evening");
-        C(Enum.GetValues(typeof(GodTalkKind)).Length == 3 && GodLoreMath.Talk(0.1f) == GodTalkKind.Piece && GodLoreMath.Talk(0.7f) == GodTalkKind.Saying && GodLoreMath.Talk(0.95f) == GodTalkKind.Tie,
-            "mostly the next piece of a story, else a saying, now and then a word on two gods");
+        C(Enum.GetValues(typeof(GodTalkKind)).Length == 5 && GodLoreMath.Talk(0.1f) == GodTalkKind.Piece && GodLoreMath.Talk(0.6f) == GodTalkKind.Saying
+          && GodLoreMath.Talk(0.7f) == GodTalkKind.What && GodLoreMath.Talk(0.8f) == GodTalkKind.Seen && GodLoreMath.Talk(0.95f) == GodTalkKind.Tie,
+            "most often the next piece of a story, else a saying, what a god is or how it is seen, now and then a word on two gods");
         C(Enumerable.Range(0, 300).All(i => Math.Abs(GodLoreMath.Credence(1f, 0.5f, false, false, 0, i)) <= 1f) && GodLoreMath.Credence(1.6f, 0.9f, true, false, 4, 3) > GodLoreMath.Credence(1f, 0.5f, false, true, 0, 3)
           && GodLoreMath.Credence(1f, -1f, false, false, 0, 9) == GodLoreMath.Credence(1f, -1f, false, false, 0, 9),
             "who believes: the psychically sensitive, the sure of their faith, the old and those who have seen for themselves, more than the too clever; each the same");

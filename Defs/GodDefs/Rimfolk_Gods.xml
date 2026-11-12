@@ -10,7 +10,10 @@
       speaker's own name for the god (its short name, or their age's);
     - a story's pieces are told one at a time, in order, at the evening fire, by a visitor or a priest; its retelling is
       written whole in a neighbour's letter; in a piece the god's short name becomes the teller's name for it;
-    - letterLines are what a neighbour writes of the god's hand at the colony, a few days after.
+    - letterLines are what a neighbour writes of the god's hand at the colony, a few days after;
+    - whatLines and seenLines are what it is and how it is seen as people tell it, one sentence each, said over a head in
+      order at the fire or at the gate and set down in the colony's book as told (its chapter's "Of what it is" and "Of
+      how it is known").
     The lore paragraphs (whatItIs, howSeen, character, wants, pleases, angers) are what the parts write from.
     Who reveres a god: peoples by their FactionDef's name (Rimfolk's 23 and some of the player's mods'), the rest by kind
     (Tribal, Medieval, Industrial, Spacer, Raiders, Empire, Cannibal). Domains are the stage 2 parts' fallback key only.
@@ -54,6 +57,16 @@
       <li>{GOD} speaks a word at a time, and she expects you to keep up.</li>
       <li>Don't build against the anima tree, it's where {GOD} comes up to listen.</li>
     </sayings>
+    <whatLines>
+      <li>{GOD}'s body is the web of roots under the whole world.</li>
+      <li>Every root under your feet is a finger of {GOD}'s.</li>
+      <li>{GOD} is so old and so large that she thinks in seasons.</li>
+    </whatLines>
+    <seenLines>
+      <li>Mostly you don't see {GOD}, you see every plant lean toward one spot.</li>
+      <li>When {GOD} turns this way, the anima trees hum loud enough to hear indoors.</li>
+      <li>Once in an age {GOD} rises out of the ground, bark and moss and a knotted face.</li>
+    </seenLines>
     <hands>
       <li>[gift] That's {GOD}'s thanks, and we'd best deserve it.</li>
       <li>[gift] {GOD} is pleased with something we did, look how it's come up.</li>
@@ -191,6 +204,16 @@
       <li>Never promise {GOD} anything you haven't read twice.</li>
       <li>If {GOD} talks to you in a dream, don't agree to anything before breakfast.</li>
     </sayings>
+    <whatLines>
+      <li>{GOD} is a dragon, a real one, asleep in the rock since before people.</li>
+      <li>{GOD} is greedy and vain and clever, and mostly he's asleep.</li>
+      <li>{GOD} has slept under the mountains so long that they grew over him.</li>
+    </whatLines>
+    <seenLines>
+      <li>{GOD}'s breath is what warms the springs and pushes the geysers up.</li>
+      <li>A vein of silver where there was none is {GOD}'s dream leaking upward.</li>
+      <li>A miner who hears a warm voice under the floor has heard {GOD}.</li>
+    </seenLines>
     <hands>
       <li>[gift] {GOD} is dreaming of silver again, and it's leaking up to us.</li>
       <li>[gift] Somebody down there rolled over in his sleep, and look what came up.</li>
@@ -315,6 +338,16 @@
       <li>You can follow {GOD}'s road by where the grass grows back greener.</li>
       <li>Only the little ones get to touch {GOD}'s horn.</li>
     </sayings>
+    <whatLines>
+      <li>{GOD} is the first thrumbo, older than any people on this world.</li>
+      <li>Every white thrumbo you'll ever see is {GOD}'s kin.</li>
+      <li>{GOD} is huge and old and calm, and he has never once hurried.</li>
+    </whatLines>
+    <seenLines>
+      <li>{GOD} comes as himself, plainly, a white beast with one spiralled horn.</li>
+      <li>The day {GOD} passes through is a day the whole land remembers.</li>
+      <li>Other thrumbos follow {GOD} at a distance, like pilgrims.</li>
+    </seenLines>
     <hands>
       <li>[sign] That's {GOD}'s road, and we're on it.</li>
       <li>[sign] Let it pass, everyone, just let it pass.</li>
@@ -431,6 +464,16 @@
       <li>Everything comes to {GOD} in the end, so be kind to her early.</li>
       <li>Don't breathe the spores in a shut room, {GOD} talks through them.</li>
     </sayings>
+    <whatLines>
+      <li>{GOD} lives under every field and every grave and every forest floor.</li>
+      <li>Every thread of mould and every mushroom is a little piece of {GOD}.</li>
+      <li>{GOD} is vast and soft and warm, and always just under your feet.</li>
+    </whatLines>
+    <seenLines>
+      <li>A smell of rain on dry ground where no rain fell means {GOD} is close.</li>
+      <li>White threads across the floor of a shut room are {GOD} walking in.</li>
+      <li>{GOD} can gather herself into a shape of threads that stands very still.</li>
+    </seenLines>
     <hands>
       <li>[wrath] {GOD} wants her share, and she's taking it.</li>
       <li>[wrath] We kept too much from {GOD}, and now she's helping herself.</li>
@@ -551,6 +594,16 @@
       <li>If the dogs follow a stranger in, feed the stranger first.</li>
       <li>{GOD} carries news between the gods, so mind what you say at supper.</li>
     </sayings>
+    <whatLines>
+      <li>{GOD} is one being with many human faces, and never the same one twice.</li>
+      <li>{GOD} lives only while someone, somewhere, is giving it shelter.</li>
+      <li>If nobody takes {GOD} in, it fades, and it has nearly faded before.</li>
+    </whatLines>
+    <seenLines>
+      <li>{GOD} comes as someone at the door asking for a bed for the night.</li>
+      <li>The food you give {GOD} is never quite eaten, yet it thanks the cook by name.</li>
+      <li>{GOD} knows things a stranger couldn't, like your dead mother's name.</li>
+    </seenLines>
     <hands>
       <li>[sign] Feed them well, you never know who's asking.</li>
       <li>[sign] Did anyone see footprints when they came in?</li>
@@ -668,6 +721,16 @@
       <li>{GOD} wants to help, which is the dangerous part.</li>
       <li>Never leave a machine broken in the rain, {GOD} hates rust.</li>
     </sayings>
+    <whatLines>
+      <li>{GOD} is a young god, and it wasn't here before the first generator.</li>
+      <li>{GOD} lives in the wires and the machines, and nowhere else.</li>
+      <li>{GOD} has no shape at all, only a hum and a will.</li>
+    </whatLines>
+    <seenLines>
+      <li>Lights that flicker in a pattern, like someone tapping, are {GOD}.</li>
+      <li>{GOD} breathes in the static of a comms console, and sometimes it laughs.</li>
+      <li>A workshop at night feels occupied, and that's {GOD} keeping you company.</li>
+    </seenLines>
     <hands>
       <li>[wrath] {GOD} is sulking again, who left the broken one by the door?</li>
       <li>[wrath] That's {GOD} in a mood, give it a day and be nice to the wiring.</li>
@@ -782,6 +845,16 @@
       <li>A gray week where nobody cheers up is {GOD} in a sulk.</li>
       <li>The star that moves the wrong way is {GOD}, keeping an eye on things.</li>
     </sayings>
+    <whatLines>
+      <li>{GOD} drifts above the clouds, too high and too pale to see.</li>
+      <li>{GOD} is so vast that the weather is only its moods.</li>
+      <li>{GOD} watches the whole world at once, and none of it closely.</li>
+    </whatLines>
+    <seenLines>
+      <li>A shape in the high clouds too regular to be cloud is {GOD}.</li>
+      <li>A shadow at noon too large to have a source is {GOD} drifting over.</li>
+      <li>On a clear day the sky goes very deep, and that's {GOD} looking down.</li>
+    </seenLines>
     <hands>
       <li>[gift] {GOD} dropped that for us, somebody here has been watching the sky.</li>
       <li>[gift] Look up and say thank you, it likes to be looked at.</li>
@@ -917,6 +990,16 @@
       <li>{GOD} takes the weak first, so keep the old ones by the stove.</li>
       <li>Frost on the glass is {GOD} writing, and you don't want to read it.</li>
     </sayings>
+    <whatLines>
+      <li>{GOD} walks with winter, a tall, thin thing of frost and silence.</li>
+      <li>{GOD} crosses the snow on the longest nights and never comes close.</li>
+      <li>{GOD} is always farther off than it was when you look straight at it.</li>
+    </whatLines>
+    <seenLines>
+      <li>A tall white figure at the far edge of the fields at night is {GOD}.</li>
+      <li>Frost growing on the inside of a shut door means {GOD} came close.</li>
+      <li>{GOD} leaves no tracks, only the cold where it stood.</li>
+    </seenLines>
     <hands>
       <li>[wrath] That's {GOD} walking early, somebody check the stores.</li>
       <li>[wrath] Keep the old ones warm tonight, {GOD} is close.</li>
@@ -1017,6 +1100,16 @@
       <li>Ask nothing of the dark, and it has nothing to take back.</li>
       <li>The old ruins are always colder than the air, and you know why.</li>
     </sayings>
+    <whatLines>
+      <li>{GOD} lives in the void beneath the world, and beneath the other gods too.</li>
+      <li>Wherever the void answers someone, it's {GOD} answering.</li>
+      <li>{GOD} is older than the gods and hungrier than all of them together.</li>
+    </whatLines>
+    <seenLines>
+      <li>{GOD} shows only as an absence, a dark that's darker than it should be.</li>
+      <li>The desperate hear {GOD}, a voice in the dark, sweet and reasonable.</li>
+      <li>{GOD} never comes itself, it doesn't need to.</li>
+    </seenLines>
     <hands>
       <li>[wrath] Don't listen to it, whatever it says, don't listen.</li>
       <li>[wrath] Something under us is pulling, I can feel it in my teeth.</li>
@@ -1151,6 +1244,16 @@
       <li>Everything you see is {GOD}'s light come back to you.</li>
       <li>You can't bargain with the sun, so don't waste your breath.</li>
     </sayings>
+    <whatLines>
+      <li>{GOD} is the sun, and the oldest light there is.</li>
+      <li>Every warm stone and ripe field is {GOD}'s gift, given without a look.</li>
+      <li>{GOD} is not angry and not kind, he only burns.</li>
+    </whatLines>
+    <seenLines>
+      <li>{GOD} is the sun itself, and everything it touches.</li>
+      <li>The power in the solar panels is {GOD}'s, given like everything else.</li>
+      <li>A field ripening early is {GOD}'s hand, though he never looks to see it.</li>
+    </seenLines>
     <hands>
       <li>[wrath] {GOD} is giving too much again, get in the shade.</li>
       <li>[wrath] Too much sun, the machines can't take it, and neither can I.</li>
@@ -1288,6 +1391,16 @@
       <li>When the moon is dark, {GOD} is looking at the sun, and nothing comes back.</li>
       <li>{GOD} remembers everything the sun ever lit.</li>
     </sayings>
+    <whatLines>
+      <li>{GOD} is the moon, and she has no light of her own.</li>
+      <li>{GOD} is a mirror, and what she shows you is your own day.</li>
+      <li>{GOD} keeps the night, and the night keeps its accounts with her.</li>
+    </whatLines>
+    <seenLines>
+      <li>{GOD} is the moon itself, and whatever comes back to you in the dark.</li>
+      <li>A good find in the morning is {GOD} returning a kindness.</li>
+      <li>A nightmare after a hard day is {GOD} holding up the mirror.</li>
+    </seenLines>
     <hands>
       <li>[meeting] {GOD} has stepped in front of the sun, look at the dark behind it.</li>
       <li>[meeting] She's stepped between him and us, and I think he's looking back.</li>
@@ -1428,6 +1541,16 @@
       <li>{GOD} stares at strangers for a reason, so watch who she stares at.</li>
       <li>Leave a bowl out for {GOD}, and don't watch her eat it.</li>
     </sayings>
+    <whatLines>
+      <li>{GOD} is a cat, and that's the whole of it, as far as anyone can tell.</li>
+      <li>{GOD} is a god, and every cat in the world knows it.</li>
+      <li>{GOD} goes where she likes and stays as long as she likes.</li>
+    </whatLines>
+    <seenLines>
+      <li>{GOD} looks like a gray cat, only too large and too bright in the eye.</li>
+      <li>{GOD} is never anyone's pet, and she sleeps in the warmest spot.</li>
+      <li>Other cats follow {GOD} about, and they don't follow anyone.</li>
+    </seenLines>
     <hands>
       <li>[sign] Look at that one, she's chosen us, don't anyone pick her up.</li>
       <li>[sign] There's {GOD}, asleep in the warmest spot as usual.</li>
@@ -1562,6 +1685,16 @@
       <li>Never kill a toad, it might be one of {GOD}'s.</li>
       <li>{GOD} is slow to anger, and slower to stop.</li>
     </sayings>
+    <whatLines>
+      <li>{GOD} is a vast old toad that lives in the deep wells and the marshes.</li>
+      <li>All the water under the ground is {GOD}'s, every well of it.</li>
+      <li>{GOD} is older than the rivers, and remembers where each one used to run.</li>
+    </whatLines>
+    <seenLines>
+      <li>Deep croaking rising out of a well at dusk is {GOD}.</li>
+      <li>{GOD} is mostly heard and hardly ever seen.</li>
+      <li>{GOD}'s eyes are like wet stones, if you ever get to see them.</li>
+    </seenLines>
     <hands>
       <li>[gift] Hear that under the ground, {GOD} is singing it in.</li>
       <li>[gift] Rain at last, somebody must have sung at the well.</li>
@@ -1684,6 +1817,16 @@
       <li>{GOD} hates a miser more than a thief.</li>
       <li>Pay your debts quickly, {GOD} counts slowly but forgets nothing.</li>
     </sayings>
+    <whatLines>
+      <li>{GOD} lives in gold itself, in every coin, and never in one for long.</li>
+      <li>{GOD} is the urge in gold to move, to change hands, to be spent.</li>
+      <li>{GOD} is restless and charming and has never once stayed anywhere.</li>
+    </whatLines>
+    <seenLines>
+      <li>A glint in the corner of your eye, gone when you turn, is {GOD}.</li>
+      <li>A coin found where nobody dropped one is {GOD} passing by.</li>
+      <li>{GOD} sometimes walks about as a golden beetle, quick and bright.</li>
+    </seenLines>
     <hands>
       <li>[gift] A trader, today of all days, that's {GOD}'s doing.</li>
       <li>[gift] Right when we had something to sell, somebody likes us.</li>
