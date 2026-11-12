@@ -18,7 +18,9 @@ tree at once, alongside whatever runs. Each piece is merged as its own release, 
   "To do when the player asks" entry (with their words) and the task list, and nothing is built, unless they say to
   start it now. When they ask, the gathered entries are planned together, grouped by area, and built side by side.
   (On 11 November 2026 they asked for every entry then on the list and the peoples' round 1: all built and released
-  0.206.2 to 0.213.0. Rounds 2 to 10, the letters' timing and the favour menu wait for their word.)
+  0.206.2 to 0.213.0. On 12 November 2026, "you can go ahead on the todos": the letters, the gods' one way and repeats,
+  magic among the peoples and the four small asks are being built; the Gods' book and the peoples' rounds 2 to 10
+  follow, the rounds one batch at a time.)
 - **To do when the player asks (10 November 2026): events and interactions of each of Rimfolk's peoples, by their lore.**
   The player: "I really LOVE the new factions you created, and I'd be down for more later. however, I'd first like more
   faction specific events, interactions etc. like this event i had with these gene guys who gave my pawn a new gene.
@@ -43,19 +45,6 @@ tree at once, alongside whatever runs. Each piece is merged as its own release, 
   8. The Republic 71 to 74; the Fleet 75 to 78; the Helix Works 79 to 82.
   9. The Lattice 84, 85, 86; the Choir 87 to 90; the Vault 91 to 94.
   10. Between peoples 96 to 99; every people's art handed on, 100.
-- **To do when the player asks (11 November 2026): vegetarian and meat simple meals.** The player: "can i please have
-  dedicated recipes for vegetarian & meat simple meals? so i actually have a dedicated slot for it and can better manage
-  different diets". The game has vegetarian and carnivore fine and lavish meals (`MealFine_Veg`/`_Meat`,
-  `MealLavish_Veg`/`_Meat`) but one simple meal; none of the player's active mods adds simple variants (checked in
-  `docs/player-mods/items.tsv`). When asked: `Rimfolk_MealSimple_Veg` "vegetarian simple meal" and `_Meat` "carnivore
-  simple meal" made as the game makes its fine variants (the same nutrition, worth, rot and poisoning as the simple
-  meal; ingredients plant food only, or meat and animal products only, as the game's own `_Veg`/`_Meat` filters), a
-  look of their own told apart at a glance (the simple meal's picture tinted, or drawn new), each with its cook and
-  bulk-of-four recipes at every bench that cooks simple meals (the game's stoves and campfire, and the player's mods'
-  benches found by the simple meal recipe's own users at load), the same skill and research; in FoodMeals, so food
-  policies, shelves and stockpiles list them apart. Rimfolk's own counting of simple meals (feasts, hosting, the road
-  food, the journey planner, the stores panel, the rider's supplies) takes them as simple meals; the Almanac's food
-  page and README.
 - **To do when the player asks (11 November 2026), a bug: "Write back" greyed on the very answer.** The player, with a
   picture of "A letter from Tocac" (Tocac, heir of Karond-Keth 2, Stormriders, allied: the answer to Guido's letter of
   invitation, "Tocac will come to visit before long"; "Who is involved: Waesvaris") and "Write back" greyed with "One
@@ -66,84 +55,6 @@ tree at once, alongside whatever runs. Each piece is merged as its own release, 
   asking the wrong notable: the card names Waesvaris as involved while Tocac wrote), make "Write back" open on any
   letter that answers the colony's last one, and say plainly on every greyed reply what it waits for and when it
   opens; the Almanac's letters page says when the colony can write to whom.
-- **Being built (11 November 2026): gods.** The player, after the brainstorm: "I just want you to get going ... I have
-  confidence in your initial draft ... go for it. And you can really spend effort and tokens into the subject." The
-  design the agents build to, with the lead's defaults and the stages, is `docs/design/gods.md`.
-  **Redone by the player (11 November 2026), after 0.215.0 and 0.216.0:** "the existing rimworld gods are just randomly
-  generated it feels and they have little to no character ... i'd rather we start creating our own pantheon, where
-  each god feels hand-crafted and unique ... either fully ignore the rimworld ideology gods or eventually try to
-  integrate our gods into the rimworld ideology system. let's redo the brainstorm"; then "not every god necessarily has
-  to have a sacred beast, each god should be individual in what it looks like and whether it has any form at all",
-  "gods should cover all kinds of designs, concepts, ideas, forms or no form", "gods should really feel like godly
-  characters pulling the strings of the universe, not just another menu with a list of values, names and symbols", and
-  "you don't only have to rely on the rimworld of magic effects". The new brainstorm is `docs/gods-pantheon-brainstorm.md`
-  (a hand-made pantheon of thirteen and ten more of every kind, each with its own shape or none, plans that unfold over
-  seasons, the gods behind the game's events, the Gods page as a book, Ideology in three steps). It waits for the
-  player's choices; then the generated pantheon of 0.215.0 is replaced by it, the rest of the machinery kept. RoM's
-  textures from the player are in the scratchpad (`rom_Motes`, `rom_Books`; sheets in `romsheet/`).
-  **Third version (the same day):** the player found the second too human ("human names, human characteristic, human
-  shapes, that should really not be the standard ... really abandon this Greek pantheon idea ... come up with some new
-  god concepts"). `docs/gods-pantheon-brainstorm.md` now holds 21 gods, each its own kind of thing, with no template:
-  - presences and processes: all plant life, the sky, the urge of herds, rot, a walking fire, winter, the god in
-    machines, the archotechs;
-  - a beast and a dragon: the Thrumbo, the Coil Under the Mountain;
-  - concepts: a number, an echo of every word, being watched, a melody, a laughing wind, the small spirits;
-  - the Guest, the only one made of human shapes;
-  - a dead god's bones as the land, the void, the colony's own;
-  - relations as cycles and fears, not a family;
-  - a table of the game's own events and whose hand people see in them, which is how they pull the strings.
-  **Fourth version (the same day):** "you went a little bit too much into the abstract, or with too many of them ...
-  perhaps 9 different ones ... some actuall names, be it multiple ones ... not just some concepts, but an actual entity,
-  be it some a bit more or lesse abstract or like a character". `docs/gods-pantheon-brainstorm.md` now holds nine
-  beings with names and characters:
-  1. Hollin, the Rootmother: all roots, heart in the first anima tree;
-  2. Smoulder, the Coil Under the Mountain: a dragon;
-  3. Bellwether, the Old Horn: the first thrumbo;
-  4. Morel, the Soft Mother: a fungal being;
-  5. the Guest (Ennu): one being in many human shapes;
-  6. Pip, the Hum: a young god in machines;
-  7. Cirrus, Who Drifts Above: a being of the high sky;
-  8. Hush, the Long White: the walker with winter;
-  9. Undertow, the Hunger: the void.
-  Renamed the same day, away from the edgy fantasy names (the player: "Ennu the Guest is cool though"). It waits for
-  the player's word.
-  **Stage 2 paused for the redesign** (the player asked; each agent committed work in progress and reported what is
-  tied to the generated pantheon, mostly domain, nature, kind and tie lookups with per-god defs ready to take over):
-  - on the map: `worktree-agent-a57a9550a4acd85e5` at f056f64 (`GodShapeDef`, `GodShapes.Override`);
-  - the world: `worktree-agent-a6ff009e6387b0c8d` at 6696e7f (`GodWaysDef`);
-  - worship: `worktree-agent-a0cfe8f4a840fc8fc` at 71734f1 (`GodWorshipDef`).
-  Each builds; the test suite and the long checks still need a run. Resume each with the settled pantheon: re-key on
-  the hand-made gods, keep the domain tables as a fallback only, finish the checks and report.
-  **Then (the same day):** the player approved the nine, renamed Dearest to Undertow, and asked for the full
-  implementation, first with a text-only gods menu. Then they withdrew it: "the gods should also feel like an ominous
-  presence ... a sort of storyteller style aspect of the game ... not in a way that I see what's going on or can, read
-  about it". The rule is in CLAUDE.md and docs/design/gods.md, "The gods are unseen".
-  - Building: the core rework (the nine as defs, the generated pantheon retired, the Gods page and the gods' Almanac
-    page removed, the hands in events as people's words, cryptic cards).
-  - Resumed on the nine and on the rule: on the map, and the world.
-  - Worship waits for a slot.
-  **Refined:** "information about the gods should only ever be like from the point of view of a the pawn ... in that
-  case a book or overview can exist and develop, but I just never want this 'meta' level player information". The book
-  returns as the colony's own: attributed entries of what its people saw, heard, believe and felt, possibly wrong, kept
-  by its keeper (docs/design/gods.md, "The colony's book").
-  **For worship's resume** (worktree-agent-a0cfe8f4a840fc8fc, still paused, told none of this yet):
-  - re-key `GodWorshipDef` to the nine by short name;
-  - remove the favour words from the shrine inspect line, the This week row, its Almanac page, and council questions
-    that state a god's terms;
-  - make dreams, prayers' answers and vows diegetic;
-  - feed the book through `Gods.Remember`, in the witness's voice.
-  Mods suggested to the player for the gods (11 November 2026, by the new rule in CLAUDE.md "Name mods that would
-  help"; their 1.7 status to be checked on the Workshop): Forest Gods (3263099058: a white stag's ritual, bear and deer
-  gods; 1.6), Dragon's Descent (2026992161; 1.6), Weapons of the Gods (Continued) (1.6). Not suggested: Call of Cthulhu
-  Cults (Continued) (in their folder, inactive, 1.5 and 1.6 only), Alpha Mythology (1.5 at most). Once added, catalogue
-  them (`docs/player-mods`) and let the avatars and relics use their creatures and weapons softly. The player: "the concept of gods
-  within RimWorld ... like a pantheon of gods ... Maybe some nature or animal god could also be actually on the map, or
-  like a god that is acting like a guest and then reveal himself and have some humanoid form ... that they actually are
-  and interact and are into the lore and get referred to, and pawns react to gods". The first brainstorm (22 ideas and
-  the questions for the player) is `docs/gods-brainstorm.md`; then "they should then always carry some kind of weight
-  and ominosity ... imposing sound effects or really kind of epic ones" (its section F, sound from the game's own assets,
-  no generated music); then a god always looks like one on the map unless it hides on purpose (section G: size,
-  colouring, an aura, the ground and the world answering it). Nothing is built until they choose and say to start.
 - **To do when the player asks (11 November 2026): calling in a favour, made clear.** The player, with a picture of the
   letter window's "Ask for" list on a debt owed by "Acraeraes of Karond-Keth 2, a trader who called" (five loads of
   goods, some forty "A word for the colony with ... (a kind one)", a captive, peace, fighters): "this favour menu is also
@@ -277,43 +188,34 @@ tree at once, alongside whatever runs. Each piece is merged as its own release, 
   side ("Some say... Others hold..."); unknown parts shown as silence or a torn page, so the player sees how much is
   still dark; in the style of scripture (chapter and verse, a drop capital, the keeper's notes in the margin, a change
   of hand marked) and ominous in tone. The unseen rule holds: nothing the pawns don't know, no favour, no truth marked.
-- **To do when the player asks (12 November 2026): decrees' cooldowns at about 70 %.** The player: "decrees should be
-  around 70% of their general cooldown only please". How it is now: each decree has its own `cooldownDays`
-  (`DecreeDef`, default 7, set per decree in `Defs/DecreeDefs/`); the council's understanding lets off up to 65 % of
-  it (`DecreeMath.CooldownTicks`, never under `MinCooldownDays` 1); `readyAt` is set from the full days at enactment
-  (`Decrees.cs`). When asked: one factor of 0.7 on every decree's cooldown (`DecreeMath.CooldownShare`), used where the
-  cooldown is set and where it is let off, so a 10-day decree waits 7 days before the council's understanding; the
-  cooldown shown on the decrees page follows; the floor of one day stays; a test for the factor.
-- **To do when the player asks (12 November 2026): builders leave the trees to the plant cutters.** The player: "if a
-  pawn that wants to do construction on something where they need to cut trees for it, then they should rather do
-  another construction job first so the plant cutters can get the trees first". How it is now: the game's own
-  `GenConstruct.HandleBlockingThingJob` gives a builder whose blueprint or frame stands on a plant a cut-plant job of
-  their own (when they are willing to cut it and can reach it); nothing of Rimfolk's touches it. When asked: a hook on
-  it (deep hooks setting): a plant in the way of a build the builder took on their own (not forced by the player) is
-  marked for cutting instead (the game's CutPlant designation, so it shows), and the builder goes on to another build
-  that is free; they cut it themselves only when there is nothing else to build, when nobody of the home has plant
-  cutting on and can reach it, or when it has waited marked for a while (half a day) without anyone taking it. The
-  room and defence planners' "cut plants" option stays as it is.
-- **To do when the player asks (12 November 2026): weapon ratings on a storage's Contents list.** The player, with a
-  picture of a steel weapons rack's "Contents" tab ("2 / 12 items with total mass of 3 kg": a steel spear and a steel
-  hatchet, each with drop, allow and info buttons): "i'd like to see the weapns rating here", "steeel weapons rack".
-  The rack is Vanilla Expanded Framework's `Shelf_WeaponRack` (vanillaexpanded.vfecore); a list with a capacity like
-  that is LWM's Deep Storage's contents tab (lwm.deepstorage, in the player's list), not the game's own
-  (`ITab_ContentsBase`, which shelves don't use): to be confirmed from that mod's code (its source is public; else the
-  player's copy). When asked: Rimfolk's rating badge (`WeaponUi.Badge`, the number in its band's colour, the item
-  card's rating and tip) drawn in each weapon's row left of its mass, and apparel's the same way, by a soft hook on that
-  tab's row by name (and on the game's own contents tabs, which share `ITab_ContentsBase.DoThingRow`); nothing on rows
-  that are not gear, as in the inventory panel ("badges only on real gear").
-- **To do when the player asks (12 November 2026): medics carry a few medicines.** The player: "my medics should
-  always carry a few medicines with them for spontaniouis battles". How it is now: the game has its own per-colonist
-  "carry medicine" (the Assign tab's inventory stock, `Pawn_InventoryStockTracker`, group `Medicine`: a kind and a
-  count, set by hand, taken up by `JobGiver_TakeForInventoryStock`, and a doctor tends from their pack in the field);
-  Rimfolk only keeps it when unloading (`Hauling/Carrying.Kept`). When asked: Rimfolk sets that stock itself for the
-  colony's medics (doctoring on, the best few by Medical, babies and the sick left out): two or three, of a kind the
-  colony has plenty of (herbal or industrial, the finest kept at home for the hospital, as "Medicine by what is
-  treated" chooses), never so many that the home's stores fall below what its sick need; a stock the player set by
-  hand left alone; taken off again when someone stops being a medic. Shown where the game shows it (the Assign tab),
-  and said once ("Alder packs two kits of medicine").
+- 0.222.0, **Four small asks** (12 November
+  2026): the player's "decrees should be around 70% of their general cooldown only please"; "if a pawn that wants to do
+  construction on something where they need to cut trees for it, then they should rather do another construction job
+  first so the plant cutters can get the trees first"; "i'd like to see the weapns rating here" (a steel weapons rack's
+  Contents tab); "my medics should always carry a few medicines with them for spontaniouis battles". DESIGN.md "Four
+  small asks".
+  - Decrees: `DecreeMath.CooldownShare` 0.7 and `RestDays` (never under a day), used where a decree's rest is set
+    (`Decrees.Repeal`) and let off (`ReadyAt`). A rest already running from before keeps its end.
+  - Trees: `Building/BuildersTrees.cs` (`Patch_BuildersLeaveTrees`, a postfix on `GenConstruct.HandleBlockingThingJob`)
+    and `BuildersTreesMath`: a tree in the way of a blueprint or frame the builder took on themselves gets the game's
+    cut mark and the builder goes on; they cut it themselves when no other build is free, nobody at home has plant
+    cutting on, the player ordered the build, or it has waited marked half a day (session memory, nothing saved).
+  - Ratings: `Weapons/StorageContentsRatings.cs` (`Patch_DeepStorageContentsRating`, by name on
+    `LWM.DeepStorage.ITab_DeepStorage_Inventory.DrawThingRow`, checked against the mod's public source): the gear tab's
+    badge and card button at the end of each weapon and apparel row, under the same "Ratings on the gear tab" settings;
+    stands down without the mod or with another row.
+  - Medics: `Health/MedicKits.cs` and `MedicKitsMath`, every six hours from the council's hourly life pass: the best few
+    medics of each home (one up to four colonists, two up to eight, three beyond) are given the game's own carry
+    medicine, two or three of herbal or industrial (whichever leaves them most; glitterworld stays home) while the
+    home keeps one a colonist (four at least) and two for each one sick; a stock the player set is theirs for good;
+    Rimfolk's is put back when someone stops being a medic. Saved: `CouncilGameComponent.medicKits` ("id|def|count",
+    -1 for one the player took over). Setting "Medics carry medicine" beside "Medicine by what is treated". Said once:
+    "Alder now carries 2 industrial medicine for the field."
+  - Try in the game: 1. Enact a decree, repeal it: its wait on the decrees page is 70 % of what it was. 2. Place a wall
+    blueprint over a tree with a free blueprint elsewhere: the builder marks the tree and builds the other; a plant
+    cutter takes the tree; with no other build, the builder cuts it. 3. Store a weapon on a weapons rack with Deep
+    Storage: its Contents rows show the rating badge and the card button. 4. Wait six hours with doctors on: the best
+    medics' Assign tab shows carry medicine 2 or 3, and they fetch it.
 - 0.221.0, **Mog's luck and her stare**
   (11 November 2026), the follow-up to the gods on the map from the pantheon's Mog ("the one she chooses has a lucky
   season ... she sees Ennu for what it is, and stares at it"). DESIGN.md "The gods on the map", the sacred animal.

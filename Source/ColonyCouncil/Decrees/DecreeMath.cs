@@ -19,6 +19,15 @@ namespace ColonyCouncil
         /// <summary>The fewest days between a decree's end and declaring it again, however much it's needed.</summary>
         public const float MinCooldownDays = 1f;
 
+        /// <summary>
+        /// The share of a decree's own rest (its def's cooldownDays) the colony waits before declaring it again (the
+        /// player, 12 November 2026: "decrees should be around 70% of their general cooldown only please").
+        /// </summary>
+        public const float CooldownShare = 0.7f;
+
+        /// <summary>A decree's rest in days: its own, times <see cref="CooldownShare"/>, never under a day.</summary>
+        public static float RestDays(float cooldownDays) => Math.Max(MinCooldownDays, cooldownDays * CooldownShare);
+
         /// <summary>At most this share of a decree's rest is let off when it's needed and wanted, and of the resentment of a repeat.</summary>
         public const float MostCooldownLetOff = 0.65f, MostBacklashLetOff = 0.6f;
 

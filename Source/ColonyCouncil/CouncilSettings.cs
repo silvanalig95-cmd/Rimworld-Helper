@@ -429,6 +429,8 @@ namespace ColonyCouncil
         /// choice filled in where the player set none.
         /// </summary>
         public bool medicineByNeed = true;
+        /// <summary>The best few medics of each home carry two or three medicines for a fight (Health/MedicKits.cs).</summary>
+        public bool medicKits = true;
         /// <summary>What harmless wounds (a bruise, a crack, the smallest scratch) get under medicine by what is treated.</summary>
         public HarmlessMedicine harmlessMedicine = HarmlessMedicine.None;
         /// <summary>
@@ -1033,6 +1035,7 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref convalescence, "convalescence", true);
             Scribe_Values.Look(ref healerReputations, "healerReputations", true);
             Scribe_Values.Look(ref medicineByNeed, "medicineByNeed", true);
+            Scribe_Values.Look(ref medicKits, "medicKits", true);
             Scribe_Values.Look(ref harmlessMedicine, "harmlessMedicine", HarmlessMedicine.None);
             Scribe_Values.Look(ref restByNeed, "restByNeed", true);
             Scribe_Values.Look(ref slowButtons, "slowButtons", true);

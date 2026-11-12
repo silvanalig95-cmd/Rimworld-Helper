@@ -42,4 +42,10 @@
   <CC_Med_Why_Clean>it neither bleeds nor can get infected</CC_Med_Why_Clean>
   <CC_Med_Why_Small>it barely bleeds and is unlikely to go bad</CC_Med_Why_Small>
 
+
+  <!-- The medics' kits (Health/MedicKits.cs). -->
+  <CC_Settings_MedicKits>Medics carry medicine</CC_Settings_MedicKits>
+  <CC_Settings_MedicKits_Tip>The best few medics of each home, by Medical with doctoring on, carry two or three medicines for a fight that comes without warning, through the game's own carry medicine (the Assign tab): herbal or industrial, whichever the home has plenty of, the finest kept at home, and never so many that the home's sick would go short. A medicine stock you set by hand is left alone; Rimfolk's own is put back when someone stops being one of the medics.</CC_Settings_MedicKits_Tip>
+  <CC_SetNote_MedicKits>The best few medics carry two or three medicines, set through the game's own carry medicine.</CC_SetNote_MedicKits>
+  <CC_MedicKit_Packs>{PAWN} now carries {COUNT} {MEDICINE} for the field.</CC_MedicKit_Packs>
 </LanguageData>

@@ -5069,6 +5069,10 @@ answer to give a doctor who is the patient the best medicine keeps everything of
 stays at it. Switch "Medicine by what is treated" on the What's on page (on by default, needs the deeper game hooks),
 and "Harmless wounds get" (no medicine, or herbal at most).
 
+**Medics carry medicine.** The best few medics of each home carry two or three medicines for a fight that comes without
+warning, through the game's own carry medicine on the Assign tab: herbal or industrial, whichever the home can spare,
+the finest kept at home, never so many that the sick would go short. A medicine stock you set by hand is left alone.
+
 **With Smart Medicine** (Uuugggg's mod, continued by MemeGoddess), which lets you choose the medicine for each injury
 with a right click on the health tab, Rimfolk fills in that choice where you set none (no medicine for a bruise,
 herbal at most for a cut, nothing for the serious, which keep your default), and Smart Medicine does the treating: it

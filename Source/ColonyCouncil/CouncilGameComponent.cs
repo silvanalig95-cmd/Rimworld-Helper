@@ -154,6 +154,8 @@ namespace ColonyCouncil
 
         /// <summary>1: the vegetarian and carnivore simple meals were let in wherever simple meals are (DietMeals.AllowWhereSimple).</summary>
         public int dietMealsVersion;
+        /// <summary>The medics Rimfolk set a medicine stock for ("id|def|count"), and those the player took over (count -1): Health/MedicKits.cs.</summary>
+        public List<string> medicKits = new List<string>();
 
         private Dictionary<string, int> cooldowns = new Dictionary<string, int>();
         /// <summary>Recent wishes colony-wide (defName and tick), so the same wish doesn't come round again and again.</summary>
@@ -371,6 +373,8 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref tamingsVersion, "tamingsVersion");
             Scribe_Values.Look(ref fungusBillsVersion, "fungusBillsVersion");
             Scribe_Values.Look(ref dietMealsVersion, "dietMealsVersion");
+            Scribe_Collections.Look(ref medicKits, "medicKits", LookMode.Value);
+            if (Scribe.mode == LoadSaveMode.PostLoadInit) medicKits ??= new List<string>();
             Scribe_Collections.Look(ref cooldowns, "cooldowns", LookMode.Value, LookMode.Value, ref tmpKeys, ref tmpValues);
             Scribe_Collections.Look(ref recentWishDefs, "recentWishDefs", LookMode.Value);
             Scribe_Collections.Look(ref recentWishTicks, "recentWishTicks", LookMode.Value);
@@ -494,6 +498,7 @@ namespace ColonyCouncil
             else if (hourTick == Sched.CouncilLife)
             {
                 using (PassClock.Time(Pass.CouncilLife)) HourlyLife();
+                if (t / HourTicks % MedicKits.EveryHours == 0) Safe("medics' medicine", () => MedicKits.Update(this));
             }
             else if (hourTick == Sched.CouncilPeople)
             {

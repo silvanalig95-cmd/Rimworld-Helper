@@ -181,6 +181,7 @@ V, P, D, R = 25, 40, 90, 300  # a value, a pawn reference, a dictionary entry, a
 MODEL = {
     # The council
     "CouncilGameComponent.cs:wishes": ("cap", (COLONISTS, 1), 600, "open wishes only (one per colonist at most)"),
+    "CouncilGameComponent.cs:medicKits": ("fixed", 9, V, "the medics Rimfolk set a medicine stock for, and those the player took over: three a home at most (Health/MedicKits.cs)"),
     "CouncilGameComponent.cs:expectingTold": ("fixed", 60, V, "pregnancies told to the family, the newest 60 (Social/FamilyLife.cs)"),
     "CouncilGameComponent.cs:guardianAsked": ("fixed", 40, V, "children the council was asked about, who raises them, the newest 40 (Social/FamilyGuardians.cs)"),
     "CouncilGameComponent.cs:sharedNameAsked": ("fixed", 40, V, "couples the council was asked about, one name or two, the newest 40 (Social/FamilyNames.cs)"),

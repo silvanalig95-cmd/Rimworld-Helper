@@ -36,6 +36,8 @@ public static class DecreeMathTests
             "a second time is understood; from the third in a month, patience wears thin");
         const int Day = 60000;
         Check(DecreeMath.CooldownTicks(8f, 0f, Day) == 8 * Day, "not needed: its own rest");
+        Check(System.Math.Abs(DecreeMath.RestDays(10f) - 7f) < 0.001f && System.Math.Abs(DecreeMath.RestDays(20f) - 14f) < 0.001f && DecreeMath.RestDays(1f) == DecreeMath.MinCooldownDays,
+              "a decree rests 70 % of its own days (the player's word), never under a day");
         int sooner = DecreeMath.CooldownTicks(8f, 1f, Day);
         Check(sooner < 3 * Day && sooner >= Day, $"a clean sweep after fight on fight, filth and wounds, wanted by most: ready in under three days ({sooner / (float)Day:0.0}), never under one");
         Check(DecreeMath.CooldownTicks(2f, 1f, Day) == Day && DecreeMath.CooldownTicks(0.5f, 1f, Day) == Day / 2, "never shorter than a day, nor longer than its own rest");

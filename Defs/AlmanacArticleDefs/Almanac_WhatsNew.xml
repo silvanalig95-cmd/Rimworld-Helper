@@ -31,6 +31,18 @@ When you load a save after an update, a letter lists the newest round once. The 
     <rounds>
 
       <li>
+        <version>0.222.0</version>
+        <date>12 November 2026</date>
+        <title>Four small asks</title>
+        <points>
+          <li>Decrees can be declared again sooner: each now waits about 70 percent of its old rest.</li>
+          <li>A builder whose blueprint stands on a tree marks it for the plant cutters and builds something else first, and cuts it only when nothing else is free.</li>
+          <li>Weapon racks, lockers and cabinets of Deep Storage show each weapon's and garment's rating in their Contents list.</li>
+          <li>The best few medics carry two or three medicines for a fight that comes without warning, and the finest stays home for the hospital.</li>
+        </points>
+      </li>
+
+      <li>
         <version>0.221.0</version>
         <date>11 November 2026</date>
         <title>Mog's season</title>

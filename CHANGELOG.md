@@ -5,6 +5,15 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## Four small asks
+
+*12 November 2026, version 0.222.0*
+
+- Decrees can be declared again sooner: each now waits about 70 percent of its old rest.
+- A builder whose blueprint stands on a tree marks it for the plant cutters and builds something else first, and cuts it only when nothing else is free.
+- Weapon racks, lockers and cabinets of Deep Storage show each weapon's and garment's rating in their Contents list.
+- The best few medics carry two or three medicines for a fight that comes without warning, and the finest stays home for the hospital.
+
 ## Mog's season
 
 *11 November 2026, version 0.221.0*

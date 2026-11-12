@@ -379,6 +379,7 @@ namespace ColonyCouncil
             Toggle("convalescence", "CC_Settings_Convalescence", "CC_SetNote_Convalescence");
             Toggle("healerReputations", "CC_Settings_HealerReputations", "CC_SetNote_HealerReputations");
             Toggle("medicineByNeed", "CC_Settings_MedicineByNeed", "CC_SetNote_MedicineByNeed", "deepHooks");
+            Toggle("medicKits", "CC_Settings_MedicKits", "CC_SetNote_MedicKits");
             Choice("harmlessMedicine", "CC_Settings_HarmlessMedicine", "CC_Settings_HarmlessMedicine_Tip", "CC_HarmlessMed_", "CC_SetNote_HarmlessMed_",
                 new[] { "None", "Herbal" }, "medicineByNeed");
             Toggle("restByNeed", "CC_Settings_RestByNeed", "CC_SetNote_RestByNeed", "deepHooks");

@@ -12516,6 +12516,23 @@ isn't there, to a plain card (`Tell.Letter`) or the news.
   "a vow now...", "a god's dream now", "a crisis of faith", "offerings at every shrine now", "worship's hour now",
   "worship's day now", "the gods' festivals onto the calendar now", "show worship (log)". Tested in `WorshipTests`.
 
+### Four small asks (the player's request, 12 November 2026; released 0.222.0)
+
+- **Decrees rest less:** every decree waits 70 % of its own rest before it can be declared again (`DecreeMath.CooldownShare`,
+  `RestDays`, never under a day), and the colony's understanding lets off from that as before.
+- **Builders leave trees to the cutters** (`Building/BuildersTrees.cs`, `BuildersTreesMath`): a tree in the way of a
+  blueprint or frame a builder took on themselves is marked with the game's own cut mark and the builder goes on to
+  another build; they cut it themselves when no other build is free, nobody at the home has plant cutting on, the player
+  ordered the build, or it has waited marked half a day. Only trees; only builds; behind the deep hooks setting.
+- **Ratings on Deep Storage's contents** (`Weapons/StorageContentsRatings.cs`): LWM's Deep Storage "Contents" tab (weapon
+  racks, lockers, cabinets) gets the gear tab's rating badge and card button at the end of each weapon and apparel row,
+  read by name and standing down without the mod; the gear tab's settings cover it.
+- **Medics carry medicine** (`Health/MedicKits.cs`, `MedicKitsMath`; setting "Medics carry medicine"): every six hours the
+  best few medics of each home (by Medical, doctoring on; one up to four colonists, two up to eight, three beyond) are
+  given the game's own carry medicine: two or three of herbal or industrial, whichever the home can spare most of, the
+  glitterworld kind kept home, never below one a colonist (four at least) and two for each one sick. A stock the player
+  set is left alone for good; Rimfolk's is put back when someone stops being one of the medics. Said once a medic.
+
 ### Checking a new game version
 
 One DLL serves every supported version: it is built against the 1.6 references into `1.6/Assemblies`, and on 1.7

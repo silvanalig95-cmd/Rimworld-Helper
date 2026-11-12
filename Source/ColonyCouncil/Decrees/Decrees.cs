@@ -428,8 +428,9 @@ namespace ColonyCouncil
             if (t <= Find.TickManager.TicksGame) return t;
             float u = NeedOf(def).understanding;
             if (u <= 0f) return t;
-            int full = Mathf.RoundToInt(def.cooldownDays * GenDate.TicksPerDay);
-            return Mathf.Min(t, t - full + DecreeMath.CooldownTicks(def.cooldownDays, u, GenDate.TicksPerDay));
+            float rest = DecreeMath.RestDays(def.cooldownDays);
+            int full = Mathf.RoundToInt(rest * GenDate.TicksPerDay);
+            return Mathf.Min(t, t - full + DecreeMath.CooldownTicks(rest, u, GenDate.TicksPerDay));
         }
 
         /// <summary>Its rest is shorter now than its own, because it's needed and wanted.</summary>
@@ -691,7 +692,7 @@ namespace ColonyCouncil
             var a = Get(def);
             if (a == null) return;
             active.Remove(a);
-            readyAt[def.defName] = Find.TickManager.TicksGame + Mathf.RoundToInt(def.cooldownDays * GenDate.TicksPerDay);
+            readyAt[def.defName] = Find.TickManager.TicksGame + Mathf.RoundToInt(DecreeMath.RestDays(def.cooldownDays) * GenDate.TicksPerDay);
             needs.Remove(def);
             SyncHediffs();
             DecreeWork.Ended(this, def);

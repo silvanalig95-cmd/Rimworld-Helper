@@ -84,6 +84,8 @@
     <Compile Include="../../Source/ColonyCouncil/Building/ChainMath.cs" Link="ChainMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Building/UseLog.cs" Link="UseLog.cs" />
     <Compile Include="../../Source/ColonyCouncil/Building/AheadMath.cs" Link="AheadMath.cs" />
+    <Compile Include="../../Source/ColonyCouncil/Building/BuildersTreesMath.cs" Link="BuildersTreesMath.cs" />
+    <Compile Include="../../Source/ColonyCouncil/Health/MedicKitsMath.cs" Link="MedicKitsMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Building/AheadMoreMath.cs" Link="AheadMoreMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Building/Suggest/SuggestMath.cs" Link="SuggestMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Building/GrowthMath.cs" Link="GrowthMath.cs" />

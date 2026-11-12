@@ -7,7 +7,7 @@ colony of 20, with the game keeping 30 more people it knows and 5 more each year
 generous guesses; sizes are rough XML sizes. Caps named as constants are read from the source. "Counted under" rows are
 kept inside another record (a journal's lines, a heart's lists) and are already in that record's size.
 
-Saved collections found: 670; modelled: 670; growing without end: 0.
+Saved collections found: 671; modelled: 671; growing without end: 0.
 Rimfolk's part of the save, roughly: **2,930 KB** after a year, **3,620 KB** after two, **4,019 KB** after five.
 
 | Collection | Rule | Kind | 1 year | 2 years | 5 years | KB at 5 years |
@@ -433,6 +433,7 @@ Rimfolk's part of the save, roughly: **2,930 KB** after a year, **3,620 KB** aft
 | `Weather/WeatherDynamics.cs:pulls` | WeatherDynamicsMath.MaxPulls: events' pulls on the weather, a few days each, per home map | fixed | 6 | 6 | 6 | 0.2 |
 | `World/Region/Hamlet.cs:escorts` | per home: the colonists who walked its hamlet's settlers out, HamletMath.MaxSettlers at most | cap | 3 | 6 | 8 | 0.2 |
 | `World/Region/Hamlet.cs:settlers` | per home: the settlers of its hamlet on their way, HamletMath.MaxSettlers at most, let go once it stands | cap | 3 | 6 | 8 | 0.2 |
+| `CouncilGameComponent.cs:medicKits` | the medics Rimfolk set a medicine stock for, and those the player took over: three a home at most (Health/MedicKits.cs) | fixed | 9 | 9 | 9 | 0.2 |
 | `Camps/CampLook.cs:herd` | the camp's animals (CampLookMath.MaxAnimals), while it stays | while | 5 | 5 | 5 | 0.2 |
 | `Decrees/Decrees.cs:threatTicks` | DecreeTracker.MaxThreats: the big threats of the last half month, for how needed a decree is | fixed | 8 | 8 | 8 | 0.2 |
 | `Heart/HeartData.cs:goodRecent` | per heart: one per source of the good side | fixed | 8 | 8 | 8 | 0.2 |
