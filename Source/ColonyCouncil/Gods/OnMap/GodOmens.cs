@@ -27,7 +27,7 @@ namespace ColonyCouncil
     /// </list>
     /// The player: the gods are an ominous presence, never explained. So an omen is only seen and said: no line in the
     /// news, no god named; the presence part's small sign where it shows (GodPresenceSeam, PresenceKind.Omen: a soft
-    /// sound, a glimmer, someone looking up), never in Believed. <see cref="Before"/> is what the other parts call.
+    /// sound, a glimmer, someone looking up). <see cref="Before"/> is what the other parts call.
     /// </summary>
     public static partial class GodOmens
     {
@@ -174,12 +174,12 @@ namespace ColonyCouncil
         }
 
         /// <summary>
-        /// The presence's small sign where it shows (not in Believed, and never a line in the news), and a colonist who saw
-        /// it says so in a bubble: what they make of it, never whose it was.
+        /// The presence's small sign where it shows (never a line in the news), and a colonist who saw it says so in a bubble:
+        /// what they make of it, never whose it was.
         /// </summary>
         internal static void Seen(God god, Map map, IntVec3 at, OmenKind kind, Pawn speaker)
         {
-            if (Gods.Realness != GodRealness.Believed && at.IsValid) GodPresenceSeam.Call(new PresenceSpec { god = god, map = map, cell = at, kind = PresenceKind.Omen, veiled = true });
+            if (at.IsValid) GodPresenceSeam.Call(new PresenceSpec { god = god, map = map, cell = at, kind = PresenceKind.Omen, veiled = true });
             // The colony's book keeps it in the words of who saw it (or of someone at home, for a sign nobody stood near).
             GodsOnMapWords.Saw(god, map, at, GodActKind.Omen, speaker, "CC_GodM_Saw_" + kind);
             if (speaker == null) return;
@@ -268,7 +268,7 @@ namespace ColonyCouncil
             string text = "CC_GodM_Omen_Dream".Translate(a.Named("PAWN"), b.Named("OTHER"), raw.Formatted(a.Named("PAWN")).Resolve().Named("DREAM")).Resolve();
             // apart: two dreams had the same night, each in their own bed; they speak of it below, together.
             Tell.Message(NewsKind.People, Importance.Notable, map, text, new LookTargets(new[] { a, b }.Select(x => new GlobalTargetInfo(x))), MessageTypeDefOf.NeutralEvent);
-            if (Gods.Realness != GodRealness.Believed) GodPresenceSeam.Call(new PresenceSpec { god = god, map = map, cell = a.Position, kind = PresenceKind.Omen, veiled = true });
+            GodPresenceSeam.Call(new PresenceSpec { god = god, map = map, cell = a.Position, kind = PresenceKind.Omen, veiled = true });
             GodsOnMapWords.Saw(god, map, a.Position, GodActKind.Omen, a, "CC_GodM_Saw_Dream", b.LabelShort.Named("OTHER"));
             Together.When("godDream|" + a.thingIDNumber + "|" + b.thingIDNumber, a, b, () =>
             {

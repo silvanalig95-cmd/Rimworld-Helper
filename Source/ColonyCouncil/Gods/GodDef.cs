@@ -41,9 +41,9 @@ namespace ColonyCouncil
 
         /// <summary>Sayings about it, one sentence each, said over a head ({GOD} is the speaker's name for it).</summary>
         [MustTranslate] public List<string> sayings = new List<string>();
-        /// <summary>A believer's line when its hand is seen in an event (tagged [gift], [sign], [wrath], [believed], [felt], [walking]), one sentence.</summary>
+        /// <summary>A believer's line when its hand is seen in an event (tagged [gift], [sign], [wrath]; [near] when it is drawn near, [veiled] when not), one sentence.</summary>
         [MustTranslate] public List<string> hands = new List<string>();
-        /// <summary>A scoffer's answer while the gods are only felt, one sentence.</summary>
+        /// <summary>A scoffer's answer where the colony doesn't know the hand for the god's, one sentence.</summary>
         [MustTranslate] public List<string> scoffs = new List<string>();
         /// <summary>What a neighbour writes of its hand at the colony, in a letter's postscript ({GOD}: the writer's name for it).</summary>
         [MustTranslate] public List<string> letterLines = new List<string>();

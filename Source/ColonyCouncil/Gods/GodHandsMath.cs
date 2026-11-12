@@ -35,8 +35,8 @@ namespace ColonyCouncil
     /// <summary>
     /// The gods' hands in the game's events (docs/gods-pantheon-brainstorm.md, section C; docs/design/gods.md, "the
     /// contract"): which god people see behind which event (by the IncidentDef's name, else its worker's class), how often
-    /// they say so, how long a god keeps quiet after, and how the colony says it by how real the gods are. People only say
-    /// it: a believer's line over their head, and while the gods are only felt a scoffer's answer; never a letter, a news
+    /// they say so, how long a god keeps quiet after, and how the colony says it (a god drawn near is felt plainly). People
+    /// only say it: a believer's line over their head, and a scoffer's answer unless the colony knows the hand; never a letter, a news
     /// line or a word of what the god thinks. Pure, so Tools/Tests checks it.
     /// </summary>
     public static class GodHandsMath
@@ -218,17 +218,11 @@ namespace ColonyCouncil
         }
 
         /// <summary>
-        /// How the colony says it, by how real the gods are: a believer's line always; a scoffer's answer only while the gods
-        /// are felt (some say so, and someone says otherwise); none when they are only believed (the colony is sure) or walk
-        /// plainly (nobody doubts it).
+        /// The tags a line about a hand may carry ([gift], [sign], [wrath]; [near] for a god drawn near enough to be felt
+        /// plainly, GodNear, [veiled] for one that isn't; [meeting], for two gods meeting in it): it fits when each of its tags
+        /// holds.
         /// </summary>
-        public static bool Scoffer(GodRealness r) => r == GodRealness.Felt;
-
-        /// <summary>
-        /// The tags a line about a hand may carry ([gift], [sign], [wrath]; [believed], [felt], [walking]; [meeting], for two
-        /// gods meeting in it): it fits when each of its tags holds.
-        /// </summary>
-        public static bool Fits(string line, HandKind kind, GodRealness r, bool meeting = false)
+        public static bool Fits(string line, HandKind kind, bool near, bool meeting = false)
         {
             if (string.IsNullOrEmpty(line)) return false;
             if (!line.StartsWith("[")) return true;
@@ -243,9 +237,8 @@ namespace ColonyCouncil
                     "gift" => kind == HandKind.Gift,
                     "sign" => kind == HandKind.Sign,
                     "wrath" => kind == HandKind.Wrath,
-                    "believed" => r == GodRealness.Believed,
-                    "felt" => r == GodRealness.Felt,
-                    "walking" => r == GodRealness.Walking,
+                    "near" => near,
+                    "veiled" => !near,
                     "meeting" => meeting,
                     _ => false
                 };
@@ -263,14 +256,14 @@ namespace ColonyCouncil
         }
 
         /// <summary>The lines that fit a hand, the ones tagged for it first: a line made for the moment beats one for any.</summary>
-        public static List<string> Fitting(IList<string> lines, HandKind kind, GodRealness r, bool meeting = false)
+        public static List<string> Fitting(IList<string> lines, HandKind kind, bool near, bool meeting = false)
         {
             var tagged = new List<string>();
             var plain = new List<string>();
             if (lines == null) return tagged;
             foreach (var l in lines)
             {
-                if (!Fits(l, kind, r, meeting)) continue;
+                if (!Fits(l, kind, near, meeting)) continue;
                 (l.StartsWith("[") ? tagged : plain).Add(Body(l));
             }
             return tagged.Count > 0 ? tagged : plain;

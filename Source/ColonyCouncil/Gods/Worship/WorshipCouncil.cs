@@ -33,7 +33,7 @@ namespace ColonyCouncil
             map.weatherManager.TransitionTo(WeatherDefOf.Clear);
             var g = Gods.ById(m.god);
             if (g != null && Interplay.Ready("worship-dry-told|" + Gods.HomeKey(map), 2f))
-                Tell.Minor(NewsKind.Colony, Importance.Flavor, map, ("CC_Wsh_DryPass_" + Worship.Step).Translate().Resolve() + Worship.Hand(g, map, IntVec3.Invalid), null);
+                Tell.Minor(NewsKind.Colony, Importance.Flavor, map, ("CC_Wsh_DryPass_" + Worship.Step(GodNear.Plain(g, map))).Translate().Resolve() + Worship.Hand(g, map, IntVec3.Invalid), null);
         }
 
         /// <summary>The god the colony honours at a home for the year (the council's answer): marked, pleased, told.</summary>
@@ -177,12 +177,13 @@ namespace ColonyCouncil
         }
     }
 
-    /// <summary>The gods' questions' tags: the step of how real the gods are ([step:felt]) and whether A is the priest ([priest]).</summary>
+    /// <summary>The gods' questions' tags: whether the god in it is drawn near now ([near], else [veiled]: GodNear) and whether A is the priest ([priest]).</summary>
     public abstract class DilemmaWorker_Gods : DilemmaWorker
     {
         public override void AddTags(DilemmaContext ctx, HashSet<string> tags)
         {
-            tags.Add("step:" + Worship.Step.ToLowerInvariant());
+            var g = (ctx as GodDilemmaContext)?.God1;
+            tags.Add(g != null && GodNear.Near(g, ctx.map) ? "near" : "veiled");
             if (ctx?.a != null && Worship.IsPriest(ctx.a)) tags.Add("priest");
         }
     }
@@ -281,7 +282,7 @@ namespace ColonyCouncil
         }
     }
 
-    /// <summary>The rain kept away by the god refused (none in Believed), shorter and only half the time for a lesser gift.</summary>
+    /// <summary>The rain kept away by the god refused (longer the nearer it is), shorter and only half the time for a lesser gift.</summary>
     public class DilemmaEffect_DrySpell : DilemmaEffect
     {
         public bool lesser;
@@ -297,11 +298,13 @@ namespace ColonyCouncil
         {
             // apart: the weather over the whole colony.
             var g = (ctx as GodDilemmaContext)?.God1;
-            int days = WorshipMath.DrySpellDays(Gods.Realness, lesser);
-            if (g == null || days <= 0 || ctx.map == null || lesser && !Rand.Chance(0.5f)) return;
+            if (g == null || ctx.map == null) return;
+            int days = WorshipMath.DrySpellDays(GodNear.Of(g, ctx.map), lesser);
+            if (days <= 0 || lesser && !Rand.Chance(0.5f)) return;
             Worship.Book?.SetMark(Gods.HomeKey(ctx.map), "dry", g.id, Worship.Now, Worship.Now + days * GenDate.TicksPerDay);
-            string text = ("CC_Wsh_DryBegins_" + Worship.Step).Translate(Worship.Called(g).Named("GOD")).Resolve();
-            Worship.Sign(g, ctx.map, IntVec3.Invalid, PresenceKind.Omen, "CC_Wsh_DryBegins_Title".Translate().Resolve(), text, null, false, GodActKind.Omen);
+            bool plain = GodNear.Plain(g, ctx.map);
+            string text = ("CC_Wsh_DryBegins_" + Worship.Step(plain)).Translate(Worship.Called(g).Named("GOD")).Resolve();
+            Worship.Sign(g, ctx.map, IntVec3.Invalid, PresenceKind.Omen, "CC_Wsh_DryBegins_Title".Translate().Resolve(), text, null, false, GodActKind.Omen, plain);
         }
     }
 
@@ -334,7 +337,7 @@ namespace ColonyCouncil
 
     /// <summary>
     /// The beast the god asked for is given: the one who asked walks it out toward the edge of the colony's land, and there it
-    /// is let go to walk off into the wild (Walking: the god's own come for it), the god much pleased.
+    /// is let go to walk off into the wild (plainly called, when the god is drawn near), the god much pleased.
     /// </summary>
     public class DilemmaEffect_GiveBeast : DilemmaEffect
     {
@@ -370,10 +373,12 @@ namespace ColonyCouncil
                 go.exitMapOnArrival = true;
                 go.locomotionUrgency = LocomotionUrgency.Walk;
                 beast.jobs.StartJob(go, JobCondition.InterruptForced, null, false, true);
-                string text = ("CC_Wsh_BeastGiven_" + Worship.Step).Translate(beast.LabelShort.Named("PET"), Worship.Called(g).Named("GOD")).Resolve();
+                bool plain = GodNear.Plain(g, map);
+                string text = ("CC_Wsh_BeastGiven_" + Worship.Step(plain)).Translate(beast.LabelShort.Named("PET"), Worship.Called(g).Named("GOD")).Resolve();
                 Worship.Favour(g, map, WorshipMath.BeastGiven, "CC_Wsh_Why_BeastGiven".Translate(beast.LabelShort.Named("PET")).Resolve(), FavourSource.Offering);
-                if (Gods.Realness == GodRealness.Walking)
-                    Worship.Sign(g, map, beast.Position, PresenceKind.Act, "CC_Wsh_BeastGiven_Title".Translate(Worship.Called(g).Named("GOD")).Resolve(), text, beast, false);
+                if (plain)
+                    Worship.Sign(g, map, beast.Position, PresenceKind.Act, "CC_Wsh_BeastGiven_Title".Translate(Worship.Called(g).Named("GOD")).Resolve(), text, beast, false,
+                        GodActKind.Act, true);
                 else
                 {
                     // Let go by the colony's own hand, to the god it named: in the colony's book by those who saw it go.

@@ -32,21 +32,20 @@ public static class GodsOnMapTests
         // ================= How often a god comes =================
 
         int day = 200;
-        C(GodsOnMapMath.Due(GodRealness.Believed, day, 999, 999, 999, true, true, 0f, 0f) == ComingKind.None, "never in Believed");
-        C(GodsOnMapMath.Due(GodRealness.Felt, GodsOnMapMath.EarliestDay - 1, 999, 999, 999, true, true, 0f, 0f) == ComingKind.None, "not in the colony's first days");
-        C(GodsOnMapMath.Due(GodRealness.Felt, day, GodsOnMapMath.AnyGapDays - 1, 999, 999, true, true, 0f, 0f) == ComingKind.None, "never two comings close together");
-        C(GodsOnMapMath.Due(GodRealness.Felt, day, 999, 999, 999, true, true, GodsOnMapMath.DailyChance + 0.001f, 0f) == ComingKind.None, "only on the day's roll");
-        C(GodsOnMapMath.Due(GodRealness.Walking, day, 999, 10, 999, true, true, 0f, 0f) == ComingKind.Animal, "a stranger lately: the animal");
-        C(GodsOnMapMath.Due(GodRealness.Walking, day, 999, 999, 10, true, true, 0f, 0.99f) == ComingKind.Stranger, "an animal lately: the stranger");
-        C(GodsOnMapMath.Due(GodRealness.Felt, day, 999, 999, 999, false, false, 0f, 0f) == ComingKind.None, "nothing that can come: nothing comes");
-        C(GodsOnMapMath.Due(GodRealness.Felt, day, 999, 999, 999, true, false, 0f, 0.99f) == ComingKind.Stranger, "only a stranger can come: a stranger");
-        C(GodsOnMapMath.Due(GodRealness.Felt, day, 999, 999, 999, false, true, 0f, 0f) == ComingKind.Animal, "only an animal can come: an animal");
+        C(GodsOnMapMath.Due(GodsOnMapMath.EarliestDay - 1, 999, 999, 999, true, true, 0f, 0f) == ComingKind.None, "not in the colony's first days");
+        C(GodsOnMapMath.Due(day, GodsOnMapMath.AnyGapDays - 1, 999, 999, true, true, 0f, 0f) == ComingKind.None, "never two comings close together");
+        C(GodsOnMapMath.Due(day, 999, 999, 999, true, true, GodsOnMapMath.DailyChance + 0.001f, 0f) == ComingKind.None, "only on the day's roll");
+        C(GodsOnMapMath.Due(day, 999, 10, 999, true, true, 0f, 0f) == ComingKind.Animal, "a stranger lately: the animal");
+        C(GodsOnMapMath.Due(day, 999, 999, 10, true, true, 0f, 0.99f) == ComingKind.Stranger, "an animal lately: the stranger");
+        C(GodsOnMapMath.Due(day, 999, 999, 999, false, false, 0f, 0f) == ComingKind.None, "nothing that can come: nothing comes");
+        C(GodsOnMapMath.Due(day, 999, 999, 999, true, false, 0f, 0.99f) == ComingKind.Stranger, "only a stranger can come: a stranger");
+        C(GodsOnMapMath.Due(day, 999, 999, 999, false, true, 0f, 0f) == ComingKind.Animal, "only an animal can come: an animal");
         // In a long game, a few times each.
         var rng = new Random(11);
         int strangers = 0, animals = 0, lastAny = -999, lastS = -999, lastA = -999;
         for (int d = 0; d < 600; d++)
         {
-            var k = GodsOnMapMath.Due(GodRealness.Felt, d, d - lastAny, d - lastS, d - lastA, true, true, (float)rng.NextDouble(), (float)rng.NextDouble());
+            var k = GodsOnMapMath.Due(d, d - lastAny, d - lastS, d - lastA, true, true, (float)rng.NextDouble(), (float)rng.NextDouble());
             if (k == ComingKind.None) continue;
             lastAny = d;
             if (k == ComingKind.Stranger)
@@ -61,8 +60,6 @@ public static class GodsOnMapTests
             }
         }
         C(strangers >= 2 && strangers <= 5 && animals >= 2 && animals <= 6, $"ten years: a few strangers ({strangers}) and a few sacred animals ({animals}), never a flood");
-        C(GodsOnMapMath.Show(GodRealness.Walking) == GodShow.Plain && GodsOnMapMath.Show(GodRealness.Felt) == GodShow.Veiled && GodsOnMapMath.Show(GodRealness.Believed) == GodShow.None,
-            "Walking shows plainly, Felt veiled, Believed not at all");
         C(GodsOnMapMath.StrangerWeight(GodDomain.Way, GodDomain.None, GodKind.Ordinary, false, false, true)
           > GodsOnMapMath.StrangerWeight(GodDomain.War, GodDomain.None, GodKind.Ordinary, false, false, true), "the road's god is the likeliest stranger");
         C(GodsOnMapMath.StrangerWeight(GodDomain.War, GodDomain.None, GodKind.Ordinary, false, true, true)
@@ -197,27 +194,41 @@ public static class GodsOnMapTests
             "a loud god answers more often, never every time");
         C(GodsOnMapMath.VoiceChance(0.5f, 8f, true) > GodsOnMapMath.VoiceChance(0.5f, 8f) && GodsOnMapMath.WeatherGap(true) < GodsOnMapMath.WeatherGap(false),
             "a god with no body acts through the sky: more readily and more often");
-        C(GodsOnMapMath.WeatherGapDays >= 10, "at the game's own pace: days between answers at a home");
+        C(GodsOnMapMath.WeatherGapDays >= 10 && GodsOnMapMath.WeatherGap(true) >= 10f, "at the game's own pace: days between answers at a home, the sky's gods too");
+        var only = new[] { WeatherVoice.Rain, WeatherVoice.Thunder };
+        C(GodsOnMapMath.Voice(GodDomain.Waters, GodDomain.None, 8f, false, only) == WeatherVoice.Rain
+          && GodsOnMapMath.Voice(GodDomain.Waters, GodDomain.None, 8f, false, only, new[] { "Rain" }) == WeatherVoice.Thunder
+          && GodsOnMapMath.Voice(GodDomain.Waters, GodDomain.None, -8f, false, only, new[] { "Thunder" }) == WeatherVoice.Thunder,
+            "a voice it didn't answer in last time where it has another; the same when nothing else fits");
 
         // ================= The rising =================
 
-        C(!GodsOnMapMath.RisingDue(GodRealness.Believed, 999, 999, 9999, true, 0f) && !GodsOnMapMath.RisingDue(GodRealness.Walking, 999, 999, 10, true, 0f)
-          && GodsOnMapMath.RisingDue(GodRealness.Felt, 999, 999, 9999, true, 0f) && !GodsOnMapMath.RisingDue(GodRealness.Felt, 999, 999, 9999, true, 0.5f),
-            "a god rising: never in Believed, years apart, very rarely");
+        C(!GodsOnMapMath.RisingDue(999, 999, 10, true, 0f) && GodsOnMapMath.RisingDue(999, 999, 9999, true, 0f) && !GodsOnMapMath.RisingDue(999, 999, 9999, true, 0.5f),
+            "a god rising: years apart, very rarely");
+        float justPast = GodsOnMapMath.RisingChance * 1.5f;
+        C(!GodsOnMapMath.RisingDue(999, 999, 9999, true, justPast) && GodsOnMapMath.RisingDue(999, 999, 9999, true, justPast, 1f)
+          && !GodsOnMapMath.RisingDue(999, 999, 9999, true, GodsOnMapMath.RisingChance * (1f + GodsOnMapMath.RisingNearFactor), 1f),
+            "drawn near (Murmur in a long drought), a little likelier, never sure");
         C(GodsOnMapMath.RisingChance < GodsOnMapMath.DailyChance && GodsOnMapMath.RisingGapDays >= 240, "rarer than any coming");
 
         // ================= The sleeper under the mountain =================
 
         C(GodsOnMapMath.Warned(0, 99999) == 1 && GodsOnMapMath.Warned(3, 2) == 4 && GodsOnMapMath.Warned(5, GodsOnMapMath.DeepForgottenDays) == 1,
             "each rumble counts, and the deep left alone long enough forgets them");
-        C(!GodsOnMapMath.Wakes(GodRealness.Walking, GodsOnMapMath.WakesAt - 1, 99999) && GodsOnMapMath.Wakes(GodRealness.Walking, GodsOnMapMath.WakesAt, 99999)
-          && !GodsOnMapMath.Wakes(GodRealness.Walking, GodsOnMapMath.WakesAt, GodsOnMapMath.WakeGapDays - 1) && !GodsOnMapMath.Wakes(GodRealness.Believed, 99, 99999),
-            "it wakes only past every warning, years apart, and never while only believed in");
-        C(GodsOnMapMath.TrueForm(GodRealness.Walking, true) && !GodsOnMapMath.TrueForm(GodRealness.Felt, true) && !GodsOnMapMath.TrueForm(GodRealness.Walking, false),
-            "its true form only where the gods walk plainly, and only with the mod that has it");
+        C(!GodsOnMapMath.Wakes(GodsOnMapMath.WakesAt - 1, 99999) && GodsOnMapMath.Wakes(GodsOnMapMath.WakesAt, 99999)
+          && !GodsOnMapMath.Wakes(GodsOnMapMath.WakesAt, GodsOnMapMath.WakeGapDays - 1), "it wakes only past every warning, years apart");
+        C(GodsOnMapMath.TrueForm(1f, true, 0.99f) && !GodsOnMapMath.TrueForm(0f, true, 0f) && !GodsOnMapMath.TrueForm(1f, false, 0f)
+          && GodsOnMapMath.TrueForm(0.6f, true, 0.1f) && !GodsOnMapMath.TrueForm(0.6f, true, 0.9f),
+            "its true form only when the deep has drawn it near enough, now and then short of sure, and only with the mod that has it");
+        C(GodNearMath.DeepStir(GodsOnMapMath.WakesAt, GodsOnMapMath.WakesAt, false) == 1f
+          && GodNearMath.PlainChance(GodNearMath.Nearness(1f, 0f, 0f)) > 0.3f && GodNearMath.PlainChance(GodNearMath.Nearness(1f, 0f, 0f)) < 1f,
+            "woken past every warning, the deep alone draws it near enough to be seen more often than not, never surely");
         C(!GodsOnMapMath.StoneFalls(GodsOnMapMath.StoneFallsFrom - 1, 1f, 0f) && GodsOnMapMath.StoneFalls(GodsOnMapMath.StoneFallsFrom, 1f, 0f)
           && !GodsOnMapMath.StoneFalls(9, 0f, 0f) && !GodsOnMapMath.StoneFalls(9, 2f, 0.61f), "stone falls only after warnings, by the harm setting, never often");
-        C(GodsOnMapMath.DeepGapDays >= 2 && GodsOnMapMath.DeepChanceAnHour <= 0.2f && GodsOnMapMath.WakesAt >= 5, "the rock rumbles days apart");
+        C(GodsOnMapMath.DeepGapDays >= 5 && GodsOnMapMath.DeepChanceAnHour <= 0.05f && GodsOnMapMath.WakesAt >= 5 && GodsOnMapMath.DeepForgottenDays > GodsOnMapMath.DeepGapDays + GodsOnMapMath.DeepRampDays,
+            "the rock rumbles days apart, and keeps count while the miners keep digging");
+        C(GodsOnMapMath.DeepNow(GodsOnMapMath.DeepGapDays - 1) == 0f && GodsOnMapMath.DeepNow(GodsOnMapMath.DeepGapDays) < GodsOnMapMath.DeepNow(GodsOnMapMath.DeepGapDays + GodsOnMapMath.DeepRampDays)
+          && GodsOnMapMath.DeepNow(999) == GodsOnMapMath.DeepChanceAnHour, "free, its chance starts small and grows: never the first hour of mining after");
 
         // ================= Sitting near the great beast =================
 
@@ -242,14 +253,83 @@ public static class GodsOnMapTests
         C(faces.Zip(faces.Skip(1), (a, b) => Math.Abs((int)a - (int)b) <= 1).All(x => x), "it waxes and wanes a step at a time");
         C(GodsOnMapMath.MoonLight(GodsOnMapMath.MoonFace.Full) > GodsOnMapMath.MoonLight(GodsOnMapMath.MoonFace.Half)
           && GodsOnMapMath.MoonLight(GodsOnMapMath.MoonFace.Thin) > 0f && GodsOnMapMath.MoonLight(GodsOnMapMath.MoonFace.Gone) == 0f, "the huge moon as big as its face");
-        C(!GodsOnMapMath.Returns(GodsOnMapMath.MoonFace.Gone, 0f) && GodsOnMapMath.Returns(GodsOnMapMath.MoonFace.Full, 0.5f) && !GodsOnMapMath.Returns(GodsOnMapMath.MoonFace.Thin, 0.5f)
-          && !GodsOnMapMath.Returns(GodsOnMapMath.MoonFace.Full, float.NaN), "full, it returns most; thin, a little; dark, nothing");
+        // The moon's return (the player, 12 November 2026: Selene's night twice within a few days): by the moon itself, a cycle apart, only for a reason, never sure.
+        var ord = GodPaceMath.Trigger.Ordinary;
+        var strong = GodPaceMath.Trigger.Strong;
+        C(GodsOnMapMath.ReturnTonight(GodsOnMapMath.MoonFace.Gone, 999, strong) == 0f && GodsOnMapMath.ReturnTonight(GodsOnMapMath.MoonFace.Thin, 999, strong) == 0f
+          && GodsOnMapMath.ReturnTonight(GodsOnMapMath.MoonFace.Full, 999, GodPaceMath.Trigger.None) == 0f, "only around the full moon, and only for a reason");
+        C(GodsOnMapMath.ReturnGapDays >= 12 && GodsOnMapMath.ReturnTonight(GodsOnMapMath.MoonFace.Full, GodsOnMapMath.ReturnGapDays - 1, strong) == 0f,
+            "a cycle of the moon apart at least, far more than three days");
+        C(GodsOnMapMath.ReturnTonight(GodsOnMapMath.MoonFace.Full, GodsOnMapMath.ReturnGapDays, strong) < 0.15f
+          && GodsOnMapMath.ReturnTonight(GodsOnMapMath.MoonFace.Full, GodsOnMapMath.ReturnGapDays, ord) < GodsOnMapMath.ReturnTonight(GodsOnMapMath.MoonFace.Full, 999, ord)
+          && GodsOnMapMath.ReturnTonight(GodsOnMapMath.MoonFace.Full, 999, strong) < 0.5f && GodsOnMapMath.ReturnTonight(GodsOnMapMath.MoonFace.Half, 999, ord) < GodsOnMapMath.ReturnTonight(GodsOnMapMath.MoonFace.Full, 999, ord),
+            "free, the first full moon is the least likely, its chance growing over the cycles after, never sure");
+        C(!GodsOnMapMath.Returns(GodsOnMapMath.MoonFace.Full, 999, ord, float.NaN) && GodsOnMapMath.Returns(GodsOnMapMath.MoonFace.Full, 999, ord, 0.01f)
+          && !GodsOnMapMath.Returns(GodsOnMapMath.MoonFace.Full, 999, ord, 0.5f), "on the night's roll");
+        C(GodsOnMapMath.ReturnTrigger(5f, true, 0, 0f, false) == ord && GodsOnMapMath.ReturnTrigger(8f, true, 0, 0f, false) == strong
+          && GodsOnMapMath.ReturnTrigger(2f, true, 0, 0f, false) == GodPaceMath.Trigger.None && GodsOnMapMath.ReturnTrigger(8f, false, 0, 0f, false) == GodPaceMath.Trigger.None,
+            "a deed of the day calls the moon: a strong one more, a small one or an old one not at all");
+        C(GodsOnMapMath.ReturnTrigger(8f, true, GodsOnMapMath.RoutineCount, 0f, false) == GodPaceMath.Trigger.None
+          && GodsOnMapMath.ReturnTrigger(8f, true, 0, GodsOnMapMath.RoutineAgeDays, false) == GodPaceMath.Trigger.None,
+            "what the colony does every day (tending the injured) is no reason: a condition nearly always true triggers nothing");
+        C(GodsOnMapMath.ReturnTrigger(-5f, true, 9, 9f, true) == strong && GodsOnMapMath.ReturnTrigger(5f, true, 9, 9f, true) == GodPaceMath.Trigger.None,
+            "the same cruelty done again by one the moon already came back to: the world's reason, even as a habit");
+        C(GodsOnMapMath.WorldTrigger(0, 0) == GodPaceMath.Trigger.None && GodsOnMapMath.WorldTrigger(2, 2) == GodPaceMath.Trigger.None
+          && GodsOnMapMath.WorldTrigger(1, 0) == ord && GodsOnMapMath.WorldTrigger(0, 3) == strong, "the colony's day with the peoples, good turns less wrongs");
         C(GodsOnMapMath.ReturnFor(1f, false, false, false, 0f) == GodsOnMapMath.NightReturn.None && GodsOnMapMath.ReturnFor(5f, true, false, false, 0.1f) == GodsOnMapMath.NightReturn.Healed
           && GodsOnMapMath.ReturnFor(5f, false, false, false, 0.1f) == GodsOnMapMath.NightReturn.Found && GodsOnMapMath.ReturnFor(5f, false, false, false, 0.9f) == GodsOnMapMath.NightReturn.GoodDream,
             "a kindness comes back as something found, a good dream, or a wound healed; a small deed not at all");
-        C(GodsOnMapMath.ReturnFor(-5f, false, true, false, 0.1f) == GodsOnMapMath.NightReturn.AnimalBack && GodsOnMapMath.ReturnFor(-5f, false, false, true, 0.1f) == GodsOnMapMath.NightReturn.Frost
-          && GodsOnMapMath.ReturnFor(-5f, false, false, false, 0.1f) == GodsOnMapMath.NightReturn.Nightmare, "a cruelty as an animal back, a frost, or a nightmare");
-        C(GodsOnMapMath.ReturnGapDays >= 2 && GodsOnMapMath.DarkNightEarlyHours > 0, "small and rare; on a dark night the void's signs come early");
+        C(GodsOnMapMath.ReturnFor(-5f, false, true, false, 0.1f) == GodsOnMapMath.NightReturn.AnimalBack && GodsOnMapMath.ReturnFor(-5f, false, false, true, 0.3f) == GodsOnMapMath.NightReturn.Frost
+          && GodsOnMapMath.ReturnFor(-5f, false, false, false, 0.5f) == GodsOnMapMath.NightReturn.Nightmare, "a cruelty as an animal back, a frost, or a nightmare");
+        C(new[] { 0.1f, 0.3f, 0.5f, 0.7f, 0.9f }.All(r => GodsOnMapMath.ReturnFor(5f, false, false, false, r, new[] { "Found" }) == GodsOnMapMath.NightReturn.GoodDream)
+          && new[] { 0.1f, 0.5f, 0.9f }.All(r => GodsOnMapMath.ReturnFor(-5f, false, false, false, r, new[] { "Nightmare" }) != GodsOnMapMath.NightReturn.Nightmare),
+            "when it comes back it leans to a different form: never the same kind twice running while another can come");
+        C(GodsOnMapMath.ReturnFor(-5f, false, false, true, 0.5f, null, GodsOnMapMath.NightReturn.Nightmare) == GodsOnMapMath.NightReturn.Frost
+          && GodsOnMapMath.ReturnFor(-5f, false, false, false, 0.5f, null, GodsOnMapMath.NightReturn.Nightmare) == GodsOnMapMath.NightReturn.AnimalBack
+          && GodsOnMapMath.ReturnFor(5f, true, false, false, 0.5f, null, GodsOnMapMath.NightReturn.Found) == GodsOnMapMath.NightReturn.GoodDream
+          && GodsOnMapMath.ReturnFor(5f, false, false, false, 0.5f, null, GodsOnMapMath.NightReturn.GoodDream) == GodsOnMapMath.NightReturn.Found,
+            "back to the same person for the same kind of deed: the next step of their story, not the same card");
+        // Ten years of full moons with a reason every night (the worst case): rare, a cycle apart, and never on a night anyone could name.
+        var mrng = new Random(17);
+        var nights = new List<int>();
+        int lastReturn = -9999;
+        for (int d = 0; d < 600; d++)
+            if (GodsOnMapMath.Returns(GodsOnMapMath.Face(d), d - lastReturn, ord, (float)mrng.NextDouble()))
+            {
+                nights.Add(d);
+                lastReturn = d;
+            }
+        var gaps = nights.Zip(nights.Skip(1), (a, b) => b - a).ToList();
+        double meanGap = gaps.Count > 0 ? gaps.Average() : 0, gapSpread = gaps.Count > 1 ? Math.Sqrt(gaps.Average(g => (g - meanGap) * (g - meanGap))) : 0;
+        C(nights.Count >= 4 && nights.Count <= 30 && gaps.All(g => g >= GodsOnMapMath.ReturnGapDays) && gapSpread >= 5,
+            $"ten years with a reason every night: {nights.Count} returns, each a cycle apart at least ({(gaps.Count > 0 ? gaps.Min() : 0)} days the closest), spread unevenly (by {gapSpread:0} days)");
+        C(GodsOnMapMath.DarkNightEarlyHours > 0, "on a dark night the void's signs come early");
+
+        // ================= The gods' pace (GodPaceMath): no blanket cap, a long uneven window, a different form =================
+
+        C(GodPaceMath.Ramp(9f, 10f, 10f) == 0f && GodPaceMath.Ramp(10f, 10f, 10f) == GodPaceMath.RampFrom && GodPaceMath.Ramp(15f, 10f, 10f) > GodPaceMath.RampFrom
+          && GodPaceMath.Ramp(20f, 10f, 10f) == 1f && GodPaceMath.Ramp(99f, 10f, 0f) == 1f && GodPaceMath.Ramp(float.NaN, 0f, 10f) == 0f,
+            "free, a happening's chance starts at a quarter and grows: never certain at the first chance");
+        C(GodPaceMath.DayChance(5f, 10f, 30f, 10f) == 0f && GodPaceMath.DayChance(10f, 10f, 30f, 10f) < GodPaceMath.DayChance(40f, 10f, 30f, 10f)
+          && GodPaceMath.DayChance(999f, 10f, 30f, 10f) < 0.05f && GodPaceMath.PerCheck(0.5f, 24f) < 0.05f && GodPaceMath.PerCheck(0f, 24f) == 0f,
+            "a small chance spread over a long window");
+        C(GodPaceMath.Weight(GodPaceMath.Trigger.None) == 0f && GodPaceMath.Weight(GodPaceMath.Trigger.Ordinary) == 1f && GodPaceMath.Weight(GodPaceMath.Trigger.Strong) > 1f,
+            "no reason, no happening; a strong or unusual one likelier");
+        var memory = new List<string>();
+        for (int i = 0; i < 20; i++) GodPaceMath.Note(memory, i % 2 == 0 ? "return" : "weather", "F" + i, i < 10 ? "7" : "8");
+        C(memory.Count == GodPaceMath.Memory && GodPaceMath.Forms(memory, "return")[0] == "F18" && GodPaceMath.Forms(memory, "return", "7").Count == 1
+          && GodPaceMath.Forms(memory, "weather", "8").Count == 5, "a short memory of the last ones, newest first, the oldest let go");
+        C(GodPaceMath.Lean("A", new[] { "A", "B" }) == GodPaceMath.LastLean && GodPaceMath.Lean("B", new[] { "A", "B" }) == 0.5f && GodPaceMath.Lean("C", new[] { "A", "B" }) == 1f,
+            "the last form hardly, the one before half, any other fully");
+        C(GodPaceMath.Pick(new[] { "A", "B" }, new[] { 1f, 1f }, new[] { "A" }, 0.2f) == 1 && GodPaceMath.Pick(new[] { "A" }, new[] { 1f }, new[] { "A" }, 0.9f) == 0
+          && GodPaceMath.Pick(new[] { "A", "B" }, new[] { 0f, 0f }, null, 0.5f) == -1, "a different form wins whenever there is one; the same only when nothing else can come");
+        C(GodPaceMath.NextStep(new[] { "a", "b", "c" }, "a", x => true) == "b" && GodPaceMath.NextStep(new[] { "a", "b", "c" }, "a", x => x != "b") == "c"
+          && GodPaceMath.NextStep(new[] { "a", "b", "c" }, null, x => true) == "a" && GodPaceMath.NextStep(new[] { "a", "b" }, "b", x => true) == "b"
+          && GodPaceMath.NextStep(new[] { "a" }, "a", x => false) == null, "a story that comes back takes its next step");
+        // The other short gaps the player named, now far longer than three days.
+        C(GodWorldMath.MythGapDays >= 10 && WorshipMath.AnswerGapDays >= 10 && WorshipMath.MockGapDays >= 10 && WorshipMath.BickerGapDays >= 10
+          && WorshipMath.BickerDryDays >= 5 && GodsOnMapMath.VisitGapDays >= 10 && GodsOnMapMath.SupperMarkGapDays >= 5 && WorshipMath.GodDreamGapDays >= 7 && GodWorldMath.FeverGapDays >= 3,
+            "a myth at supper, a prayer answered, mocking and bickering, a mark visited or brought up, a god's dream, a fever eased: none again within days");
 
         // ================= The marks =================
 
@@ -362,7 +442,7 @@ public static class GodsOnMapTests
         var domains = new HashSet<string>(GodsMath.Domains.Select(d => d.ToString().ToLowerInvariant()));
         var known = new HashSet<string>(domains)
         {
-            "age0", "age1", "age2", "age3", "walking", "felt", "believed", "gate", "animals", "pleased", "angered", "named", "appear", "act", "reveal", "depart", "blessing",
+            "age0", "age1", "age2", "age3", "near", "veiled", "again", "gate", "animals", "pleased", "angered", "named", "appear", "act", "reveal", "depart", "blessing",
             "wrath", "omen", "small", "large", "chosen", "knowsdead", "first", "remembers", "rememberskind", "rememberscold", "remembersharm", "rising", "fullmoon", "halfmoon",
             "thinmoon", "darkmoon", "good", "bad", "spell", "class", "trait", "favour", "passion"
         };

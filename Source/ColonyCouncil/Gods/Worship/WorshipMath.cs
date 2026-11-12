@@ -62,15 +62,15 @@ namespace ColonyCouncil
     public enum OfferingFate
     {
         Waiting,
-        /// <summary>The god took it (Felt: gone in the night; Walking: before everyone's eyes).</summary>
+        /// <summary>The god took it: gone in the night, or before everyone's eyes when it showed itself plainly.</summary>
         Taken,
-        /// <summary>Believed: an animal came and ate it.</summary>
+        /// <summary>Gone before the god took it: an animal came and ate it where it lay.</summary>
         Animal,
-        /// <summary>Believed: someone passing took it with them.</summary>
+        /// <summary>Gone before the god took it: someone passing took it with them.</summary>
         Passerby,
-        /// <summary>Believed: it lay there and spoiled.</summary>
+        /// <summary>It lay there and spoiled (kept for older saves: the god takes every offering by its first night now).</summary>
         Spoiled,
-        /// <summary>Believed: nobody came for it, and it went back to the stores.</summary>
+        /// <summary>It went back to the stores (kept for older saves, as Spoiled).</summary>
         Returned
     }
 
@@ -90,7 +90,7 @@ namespace ColonyCouncil
     /// <summary>
     /// The pure rules of worship (docs/design/gods.md, stage 2 "Worship"; Source/ColonyCouncil/Gods/Worship/), with no game
     /// types so Tools/Tests can check them: what a shrine is called in each age; what each domain likes offered, how its
-    /// nature weighs a gift, and how much favour it moves; when an offering is taken at each step of how real the gods are;
+    /// nature weighs a gift, and how much favour it moves; when an offering is taken, in the night or plainly;
     /// who prays in a hard moment, how much it comforts, and how often an answer comes; when an unanswered prayer becomes a
     /// crisis of faith and a turning to another god; the festivals' dates by domain; vows; dreams; scoffers; RimWorld of
     /// Magic's mana by favour; and the council's choices.
@@ -236,30 +236,15 @@ namespace ColonyCouncil
             return Math.Min(0.5f, c);
         }
 
-        /// <summary>Believed: an offering of food left this long, nobody having eaten it, has spoiled; anything else this long goes back to the stores.</summary>
-        public const int SpoilDays = 2, ReturnDays = 3;
-
         /// <summary>
-        /// An offering's fate in Believed: food goes to an animal that comes for it, anything to someone passing, else food
-        /// spoils and the rest goes back to the stores once it has waited its time.
+        /// The god takes it now: in the small hours (an hour of the day from 0 to 23), when nobody saw it go, as the gods are
+        /// felt; or, when it shows itself plainly (<paramref name="plain"/>: drawn near, GodNear), at the next look once it is
+        /// set down, before anyone's eyes, in a breath of light.
         /// </summary>
-        public static OfferingFate BelievedFate(bool food, bool animalNear, bool passerby, float daysWaited)
+        public static bool GodTakesNow(bool plain, int hourOfDay, float hoursWaited)
         {
-            if (food && animalNear) return OfferingFate.Animal;
-            if (passerby) return OfferingFate.Passerby;
-            if (food) return daysWaited >= SpoilDays ? OfferingFate.Spoiled : OfferingFate.Waiting;
-            return daysWaited >= ReturnDays ? OfferingFate.Returned : OfferingFate.Waiting;
-        }
-
-        /// <summary>
-        /// The god takes it now (Felt and Walking): Walking at the next look once it is set down, before anyone's eyes; Felt
-        /// in the small hours (an hour of the day from 0 to 23), when nobody saw it go. Believed: never (WorshipMath.BelievedFate).
-        /// </summary>
-        public static bool GodTakesNow(GodRealness r, int hourOfDay, float hoursWaited)
-        {
-            if (r == GodRealness.Walking) return hoursWaited >= 1f;
-            if (r == GodRealness.Felt) return hoursWaited >= 3f && hourOfDay >= 1 && hourOfDay <= 4;
-            return false;
+            if (plain) return hoursWaited >= 1f;
+            return hoursWaited >= 3f && hourOfDay >= 1 && hourOfDay <= 4;
         }
 
         // ================= Prayer =================
@@ -287,15 +272,15 @@ namespace ColonyCouncil
         public static float PrayerFavour(bool atShrine) => atShrine ? 1.5f : 0.8f;
 
         /// <summary>
-        /// The chance a prayer is answered (a sign at the strength of the step): never in Believed; in Felt now and then, in
-        /// Walking more; by how loudly the god answers (Gods.Loudness), the colony's standing with it, a priest leading it, a
-        /// dedicated place, and the god the council honours this year. An archotech judges deeds, not prayers (Walking only,
-        /// and seldom); the Hunger answers anyone; a dead god never; a newborn or a fading one weakly.
+        /// The chance a prayer is answered: now and then, more the nearer the god is (<paramref name="nearness"/>, GodNear); by
+        /// how loudly the god answers (Gods.Loudness), the colony's standing with it, a priest leading it, a dedicated place,
+        /// and the god the council honours this year. An archotech judges deeds, not prayers (only when drawn near, and
+        /// seldom); the Hunger answers anyone; a dead god never; a newborn or a fading one weakly.
         /// </summary>
-        public static float AnswerChance(GodRealness r, GodKind kind, float loudness, FavourWord w, bool priest, bool atShrine, bool honoured)
+        public static float AnswerChance(float nearness, GodKind kind, float loudness, FavourWord w, bool priest, bool atShrine, bool honoured)
         {
-            if (r == GodRealness.Believed || kind == GodKind.Dead) return 0f;
-            float c = r == GodRealness.Walking ? 0.25f : 0.12f;
+            if (kind == GodKind.Dead) return 0f;
+            float c = GodNearMath.AnswerBase(nearness);
             c *= 0.6f + Clamp01(loudness);
             c *= WordFactor(w);
             if (priest) c *= 1.5f;
@@ -303,7 +288,7 @@ namespace ColonyCouncil
             if (honoured) c *= 1.2f;
             switch (kind)
             {
-                case GodKind.Archotech: c = r == GodRealness.Walking ? c * 0.25f : 0f; break;
+                case GodKind.Archotech: c *= 0.25f * GodNearMath.Strength(nearness); break;
                 case GodKind.Hunger: return Math.Min(0.8f, Math.Max(c, 0.2f) * 2f);
                 case GodKind.Newborn:
                 case GodKind.Fading: c *= 0.5f; break;
@@ -323,14 +308,17 @@ namespace ColonyCouncil
             _ => 2f
         };
 
-        /// <summary>A god answers at most once in this many days at a home.</summary>
-        public const float AnswerGapDays = 5f;
+        /// <summary>
+        /// A god answers at most once in this many days at a home, and its will to answer grows back over the days after
+        /// (GodPaceMath.Ramp): a drought that goes on and a colony that keeps praying may be answered again, never on a set day.
+        /// </summary>
+        public const float AnswerGapDays = 10f, AnswerRampDays = 10f;
 
         /// <summary>A person's prayers reach the colony's book at most once in this many days (what followed, as they tell it).</summary>
         public const float BookGapDays = 4f;
 
-        /// <summary>How much of a sickness an answer eases (its severity), by the step: a little in Felt, plainly in Walking.</summary>
-        public static float SicknessEase(GodRealness r) => r == GodRealness.Walking ? 0.15f : r == GodRealness.Felt ? 0.08f : 0f;
+        /// <summary>How much of a sickness an answer eases (its severity): a little as the gods are felt, more the nearer the god is.</summary>
+        public static float SicknessEase(float nearness) => GodNearMath.SicknessEase(nearness);
 
         /// <summary>How many days a prayer waits to see how things turn out, by its kind.</summary>
         public static int ResolveDays(PrayerKind k) => k switch
@@ -374,7 +362,10 @@ namespace ColonyCouncil
         }
 
         /// <summary>A scoffer's mockery offends the believer's god this much (Scoffing), once in this many days at a home; a couple bickers once in this many.</summary>
-        public const float MockFavour = -1.5f, MockGapDays = 5f, BickerGapDays = 5f;
+        public const float MockFavour = -1.5f, MockGapDays = 10f, BickerGapDays = 10f;
+
+        /// <summary>Rain after this many dry days sets a couple of two gods arguing over whose it was (a real dry spell, not any few days without rain).</summary>
+        public const int BickerDryDays = 5;
 
         // ================= Festivals =================
 
@@ -460,8 +451,8 @@ namespace ColonyCouncil
         /// <summary>The god's asking: the beast given, refused, or something lesser offered instead.</summary>
         public const float BeastGiven = 15f, BeastRefused = -10f, LesserGiven = 4f;
 
-        /// <summary>A refusal keeps the rain away this many days (Felt), more when the gods walk; the lesser gift half as long, half the time.</summary>
-        public static int DrySpellDays(GodRealness r, bool lesser) => r == GodRealness.Believed ? 0 : (r == GodRealness.Walking ? 8 : 5) / (lesser ? 2 : 1);
+        /// <summary>A refusal keeps the rain away this many days, more the nearer the god is; the lesser gift half as long, half the time.</summary>
+        public static int DrySpellDays(float nearness, bool lesser) => GodNearMath.DrySpellDays(nearness, lesser);
 
         /// <summary>Two rival gods: the one honoured is pleased this much, both honoured each this much (jealous ones take it as a slight).</summary>
         public const float RivalChosen = 6f, RivalBoth = 2f, RivalJealous = -2f;
@@ -482,6 +473,9 @@ namespace ColonyCouncil
             if (scoffer) s *= 0.3f;
             return Math.Min(0.5f, s);
         }
+
+        /// <summary>A god's dream is one to remember: the same person has one at most once in this many days (an answered prayer for the dead aside).</summary>
+        public const float GodDreamGapDays = 10f;
 
         /// <summary>The kinds of god dream that can come now, by weight: a warning where there's a real danger, a demand where there's a shrine and none asked, a name where a god is unknown, a vision for those who see clearly.</summary>
         public static GodDreamKind PickDream(bool danger, bool demand, bool unknownGod, bool clear, float roll)
@@ -506,11 +500,11 @@ namespace ColonyCouncil
 
         /// <summary>
         /// A caster's mana coming back, by the colony's standing with their god: beloved half again, favoured a third more,
-        /// pleased, noticed a little; displeased slower, wrathful cut off. Nothing in Believed; in Felt only most of the way.
+        /// pleased, noticed a little; displeased slower, wrathful cut off: most of the way as the gods are felt, all of it the
+        /// nearer the god is (GodNearMath.ManaShare).
         /// </summary>
-        public static float ManaFactor(FavourWord w, GodRealness r)
+        public static float ManaFactor(FavourWord w, float nearness)
         {
-            if (r == GodRealness.Believed) return 1f;
             float f = w switch
             {
                 FavourWord.Beloved => 1.5f,
@@ -521,7 +515,7 @@ namespace ColonyCouncil
                 FavourWord.Wrathful => 0f,
                 _ => 1f
             };
-            return r == GodRealness.Felt ? 1f + (f - 1f) * 0.6f : f;
+            return 1f + (f - 1f) * GodNearMath.ManaShare(nearness);
         }
 
         /// <summary>The domain a RimWorld of Magic class serves (its trait's defName), or None (docs/design/gods.md, "Gifts").</summary>

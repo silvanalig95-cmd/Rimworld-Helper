@@ -12169,7 +12169,7 @@ last section. The generated pantheon of 0.215.0 (below, retired) is replaced; th
   Bellwether, Morel, Ennu, Pip, Cirrus, Hush, Undertow, Helios, Selene, Mog, Murmur and Ducat. Each has its short name
   (the label and the `key`), an epithet, names among the peoples by age (the first of each is what a speaker of that age
   says), what it is, how it is seen, its character, what it wants, what pleases and angers it, sayings, believers' lines
-  (tagged `[gift]`, `[sign]`, `[wrath]`, `[walking]`, `[meeting]`), scoffers' answers, what a neighbour writes of its
+  (tagged `[gift]`, `[sign]`, `[wrath]`, `[near]` since 12 November 2026, `[meeting]`), scoffers' answers, what a neighbour writes of its
   hand, two to five stories (one-sentence pieces, a retelling for letters, the signs a story teaches), authored ties with
   words (`GodTieSpec`; a kind of their own for the sun and moon, `GodTieKind.Return`: what is meant for Helios reaches
   Selene, and Helios, `unmoved`, is never moved by favour), who reveres it (Rimfolk's 23 peoples and some of the player's
@@ -12183,7 +12183,7 @@ last section. The generated pantheon of 0.215.0 (below, retired) is replaced; th
 - **Unseen** (the rule for every part): no page or list of the gods, no favour words, no news line saying what a god
   thinks (favour, a god known, a tie, a fading god are hidden state); the god's card is cryptic, the world's voice, no
   why; a felt god's card is unnamed. `Gods.CardName(god, home, sign)` names a god plainly only when the colony knows it
-  was its doing: the gods walk openly, the colony saw it act plainly (a manifestation, a disguised god revealing itself:
+  was its doing: the colony saw it act plainly (a manifestation, a god drawn near enough to show itself, a disguised god revealing itself:
   `GodLore.MarkActing`), or it learned the sign as the god's own (`GodLore.LearnSign`, also when a story that teaches it
   is heard whole). The name over a god on the map is the colony's name for it, or what is seen of it
   (`GodLore.LabelFor`; a disguised god shows only the name it gives).
@@ -12216,8 +12216,8 @@ last section. The generated pantheon of 0.215.0 (below, retired) is replaced; th
   favour, no colour that would give away which names are one.
 - **Retired:** the generated pantheon, the patrons (`GodPatronDef`), the domains' names, epithets and symbols (the
   domain table stays as a fallback), the Gods page under Peoples, `GodSymbols` and its textures and script, the card's
-  emblem. Dev actions "Gods: ..." (show the gods, favour, realness, a hand here, every story, work out a name, open the
-  book, make the gods again). Tested in `GodsTests`; saved state modelled in `Tools/save_estimate.py`.
+  emblem. Dev actions "Gods: ..." (show the gods, favour, how near each god is and a god drawn near (since 12 November
+  2026, in place of the realness one), a hand here, every story, work out a name, open the book, make the gods again). Tested in `GodsTests`; saved state modelled in `Tools/save_estimate.py`.
 
 ### The gods: the pantheon (0.215.0; retired: the generated pantheon, its patrons and the Gods page, replaced by the section above)
 
@@ -12253,12 +12253,12 @@ presence part builds against the same contract).
 - **Favour** per god per home, -100 to 100 inside, words outside (`GodsMath.Word`: wrathful, displeased, unknown,
   noticed, pleased, favoured, beloved), drifting back toward unknown (worked out when read, `GodsMath.Drift`), weighed by
   nature and kind (`GodsMath.Scale`), spilling to tied gods (`GodTiesMath.Spill`), remembered as acts, told in the news
-  when a known god's word changes (in the voice of how real the gods are). The first sources (`Gods/GodDeeds.cs`): a big
+  when a known god's word changes. The first sources (`Gods/GodDeeds.cs`): a big
   harvest, a threat beaten off, the dead left lying (the region's day), a great beast brought down, a sacred animal
   slaughtered or hunted (Happenings' death hook), a funeral's eulogy (`Secrets/Vendettas.cs`).
 - **The public face** (`Gods/Gods.cs`): `All`, `Of(Faction)`, `OfIdeo`, `ColonyGods(home)`, `Patron(home)` (a known god
   from noticed up), `Favour`, `FavourValue` (for rules, never shown), `AddFavour(god, home, amount, why, source)`,
-  `Deed(domain, home, amount, why)`, `Realness`, `Remember(GodAct)`, `ActsOf`, `TiesOf`, `Rivals`, `Allies`, `NatureOf`,
+  `Deed(domain, home, amount, why)`, `Remember(GodAct)` (`Realness` retired 12 November 2026: `GodNear`), `ActsOf`, `TiesOf`, `Rivals`, `Allies`, `NatureOf`,
   `KindOf`, `Loudness`, `Name`, `Epithet`, `GodOf`, `FullName`, `SwearBy(pawn, domain)`, `Fill`/`Args` for `{GOD}`,
   `{GODEPITHET}`, `{GODOF}` (taught to the DefValidator), `Learn`, `Vow`/`EndVow`.
 - **The seams** (`Gods/GodPresenceSeam.cs`): `GodPresenceSeam.Manifest` (`Func<PresenceSpec, bool>`) with the plain
@@ -12275,7 +12275,8 @@ presence part builds against the same contract).
   colony's gods, the others known, the rumours; the whole pantheon as a web; a god's page with its symbol in its
   colours, what it is, its kind, the colony's standing at each home, who holds it, its domain and sacred things, its
   nature, its ties as a small web and in words, its lore and its remembered acts. Symbols by `Tools/make_god_symbols.py`.
-- **Settings**: "Gods" (on) and "How real are the gods" (Believed, Felt, Walking; Felt), What's on, The gods.
+- **Settings**: "Gods" (on), What's on, The gods. "How real are the gods" (Believed, Felt, Walking) was retired on
+  12 November 2026: one way, felt, each god as near as what happens draws it (the section "Gods: one way" below).
 - Dev actions "Gods: ...". The Almanac page "the gods" (`Council_Alm_C_Gods`). Tested in `GodsTests`.
 
 ### Gods: how a god looks and comes (the player's request, 11 November 2026; released 0.216.0)
@@ -12383,7 +12384,7 @@ aloud, the dreams, the memory's talk); keys `Rimfolk_GodsOnMap.xml`; textures `T
 core as it stood at its base, reaching each god by its short name.
 
 - **The rhythm** (`GodsOnMapBook`, `GodComings`): kept in the gods' own day and hour (`GodBook.Daily`/`Hourly`, one line
-  each; no pass of its own). A coming is planned in the day, a few days ahead, never in Believed, never two at once, from
+  each; no pass of its own). A coming is planned in the day, a few days ahead, never two at once, from
   day 20, 40 days at least between any two, 120 between strangers and 90 between beasts, one chance in thirty a day
   (`GodsOnMapMath.Due`); a rising after 300 days and at 0.4% a day (`RisingDue`). Its omens are planned with it; the
   coming waits up to a day for a quiet map (and the stranger for `Tell.CanAsk`), then lets go. Short steps run on a due
@@ -12402,7 +12403,8 @@ core as it stood at its base, reaching each god by its short name.
   something a traveller couldn't know (a dead relative's name), the first such kept in the colony's book; the Guest
   remembers the colony's last welcome (`GodsOnMapMath.Remembers`: the event's words at the gate and its own lines say
   so) and a good one is answered seasons later by something left at the gate (`GodGifts.LateGift`). At the end
-  (`GodsOnMapMath.Judge`), Walking: it shows itself at the gate; Felt: it is simply gone. What follows happens without a
+  (`GodsOnMapMath.Judge`), as the gods are felt it is simply gone; when the god was drawn near enough as it came
+  (`StrangerStay.plain`, `GodNear.Plain`) it shows itself at the gate. What follows happens without a
   word of why (`GodGifts.Outcome`): a find, the kindest's lasting gift (felt, said, journalled, never named), its answer
   in the weather, or its domain withheld and a fever on whoever struck it (`Harm.May`, `IllnessBudget`, `Harm.Scale`).
 - **The beasts** (`SacredAnimal`): in from the edge with the Appear moment and all a god's presence, wild, the game's own
@@ -12426,9 +12428,10 @@ core as it stood at its base, reaching each god by its short name.
   (`GodSky`, `Rising.png`); Murmur surfacing in the wet ground as Odyssey's colossus toad by name, two hours, then
   sinking. Smoulder: mining under thick rock makes the rock rumble over the miner days apart (`GodsOnMapMath.Warned`),
   stone may fall from the third time (`Harm.Injure`, `HarmKinds.Dangers`, `StoneFalls`), and past every warning
-  (`Wakes`, years apart) the deep working closes behind collapsed rock (never on anyone) and, Walking, Dragon's
-  Descent's true dragon comes up out of the mountain for three hours (`TrueForm`), else the mountain quakes and the
-  winged shadow passes.
+  (`Wakes`, years apart) the deep working closes behind collapsed rock (never on anyone) and, when the deep has drawn
+  him near enough (`GodNear`, `TrueForm` by his nearness), Dragon's Descent's true dragon comes up out of the mountain
+  for three hours, else the mountain quakes and the winged shadow passes. The rumbles come days apart at a small chance
+  in each hour of deep mining, growing after (`DeepNow`), never on a day anyone could name.
 - **The sky and the night** (`GodSky`, `GodSkyDrawer`, `WeatherEvent_StillSun`): signs drawn softly on the map, never
   saved: the winged shadow at noon (Dragon's Descent's flight sprites when loaded, else Rimfolk's), a shadow too large, a
   star crossing the wrong way, a white figure at the night's edge that fades as the view comes near, a dark a lamp
@@ -12436,19 +12439,21 @@ core as it stood at its base, reaching each god by its short name.
   shadows through the game's own override for a weather event. The moon's face (`GodsOnMapMath.Face`, one round each
   fifteen-day season) is felt only in words and signs: full, the dreams have their own lines and the moon's returns are
   likeliest; dark, nothing returns and Undertow's signs come half a day early.
-- **The moon's return** (`GodReturn`): in the small hours, as much as the face shows (`Returns`), the strongest deed of
-  the colony's from that day (the deeds talked of, by their kindness) comes back to whoever did it (`ReturnFor`):
-  something found by their bed, a good dream, a wound healed; a nightmare, a hard frost about where they sleep, an animal
-  at their door. One a night, three days apart; whoever was awake sees it, it goes in the book, and it is spoken of at
-  breakfast. Selene also notices those who keep the night (`GodOmens.NightWatch`), unseen.
+- **The moon's return** (`GodReturn`): in the small hours, around the full moon only and a cycle apart at least, for a
+  deed of the colony's that day out of the ordinary (`ReturnTrigger`) or its day with the peoples (since 12 November
+  2026: `ReturnTonight`, the section "Gods: one way" below), the deed comes back to whoever did it (`ReturnFor`, leaning
+  away from the moon's last forms, the next step for the same person again): something found by their bed, a good dream,
+  a wound healed; a nightmare, a hard frost about where they sleep, an animal at their door. Whoever was awake sees it,
+  it goes in the book, and it is spoken of at breakfast. Selene also notices those who keep the night (`GodOmens.NightWatch`), unseen.
 - **Weather as a voice** (`GodWeather`): a god whose shape speaks in the sky answers a change of favour by chance with its
   shape's voices or its domain's (rain, thunder, an eclipse with everyone out of doors stopping to watch, an aurora, a
   cold snap, snow, a heat wave, clear skies, a night of nightmares), as the land and the game's conditions allow. A
-  colonist out of doors names it as a belief; there is no news line. Believed: the game's own weather is read as the
-  answer. `GodWeather.Answer(god, map, amount)` is for the worship's festival nights.
+  colonist out of doors names it as a belief; there is no news line. Fifteen days apart at a home (ten and a half for a
+  god of the sky), its chance growing back after (`GodPaceMath.Ramp`), in a voice it didn't use there last time.
+  `GodWeather.Answer(god, map, amount)` is for the worship's festival nights.
 - **The omens** (`GodOmens`, `GodOmensOwn`; `GodOmens.Before(god, map, days)` for the other parts): one a day before a
   coming, at most four, the god's own signs (`GodShapeDef.omens`, 26 kinds) or the five any god may send, each at its
-  hour (`OmenHour`). Each shows on the map, through the presence's omen moment veiled (not in Believed), a colonist who
+  hour (`OmenHour`). Each shows on the map, through the presence's omen moment veiled, a colonist who
   saw it says what they make of it, and the book keeps it; no news line, no god named.
 - **What remains** (`GodMarks`): the colony's book, the chronicle, the mark on the land (twenty-four kept five years),
   `Rimfolk_Mem_GodSeen` for those who saw it, deeds for the kindest, the follower, the feeder and whoever struck a god;
@@ -12471,8 +12476,9 @@ the ways below are hidden state.
   part isn't there, a plain card of what was seen (`GodWorld.Moment`). What is seen and told is kept with
   `Gods.Remember` in the world's voice ("as Mirel of Karond-Keth wrote", `CC_GW_Seen_*`, `CC_GW_Told_*`) for the
   colony's book of the gods. Questions through `Tell.Ask` as one letter class (`GodAsks`, `ChoiceLetter_GodWorld`),
-  always asked by a person; questions that can wait wait for `Tell.CanAsk`. Rates by how real the gods are
-  (`GodWorldMath.Realness`); what only a real god does (gifts, the void, a rival's dream) never while Believed.
+  always asked by a person; questions that can wait wait for `Tell.CanAsk`. Each god's own doings a little more often
+  the nearer it is drawn (`GodWorld.Factor(god, map)`, `GodNearMath.WorldFactor`, at most two fifths more); anything
+  that hurts someone keeps the game's own rate.
 - **A god's ways** (`GodWays.cs`, `GodWaysDef`, `Rimfolk_GodsWorld_Ways.xml`): keyed on the god's short name ("Hollin"),
   the domain tables in `GodWorldMath` only as the fallback. What it gives and to whom, its price and offering, its dream
   (unnamed), its anger at a home (one shape or several), a grudge's shape, its kindness, its temper, its kin, its holy
@@ -12494,7 +12500,8 @@ the ways below are hidden state.
   rain, silver missing from a hoard, a freezer failing); a fever broken in the small hours; a grudge's lightning or
   beasts; Bellwether's kin killed (every people colder) and Mog's (the cats leave, the rats come). Helios gives blindly
   at his own rate. Selene returns the day at night (`FactionMemory.Note` and a prisoner executed fill
-  `GodHealth.Deed`), by her face (`MoonFace`): a wound healed or something found, or bad dreams. Hurts in the shared
+  `GodHealth.Deed`) on a night the moon's return chose (`GodReturn`, one rule for both since 12 November 2026): a wound
+  healed or something found, or bad dreams. Hurts in the shared
   harm budget (`godBeasts`, `godLightning`, `godPrice`, system `gods`).
 - **Gifts** (`GodWorldGifts.cs`): a dream told at breakfast (the god unnamed, `GodWays.Dream`; Selene's tell the gift), a
   night under the open sky, and by morning the change with nothing said of why: a blessing on the body, a RimWorld of
@@ -12535,22 +12542,23 @@ isn't there, to a plain card (`Tell.Letter`) or the news.
   over and says the words there. In the colony's age it is a shrine, a chapel, a church or a terminal; one in a fine
   room indoors (impressiveness 50, 16 cells) is a temple.
 - **Offerings** (`Offerings.cs`): about once a day a place, someone carries something the god likes from the stores
-  and sets it down there, forbidden, with a word. Then, by how real the gods are: Walking, it goes before everyone's
-  eyes; Felt, it is gone by morning; Believed, an animal eats it, someone passing takes it, it spoils, or it goes back
-  to the stores. Never the flesh of people or insects. Favour by its worth, how well
+  and sets it down there, forbidden, with a word. Then it is gone by morning, as the gods are felt, or, when the god is
+  drawn near enough to show itself, before everyone's eyes in a breath of light (decided once an offering). An animal or
+  someone passing may get to it first. Never the flesh of people or insects. Favour by its worth, how well
   it suits the god and the god's nature, hidden.
 - **Prayer** (`Prayers.cs`): someone gravely ill, a death, raiders at the gate, a drought in the growing season. The
   devout pray most, a scoffer never; they walk to the god's place in their free time, or kneel where they stand, or say
   it in bed or in the fight. A prayer comforts (in the heart's daily cap). Sometimes something follows (a fever eases at
-  night, the grieving are consoled, a fighter's nerve, rain), never in Believed and at most once in five days a home,
+  night, the grieving are consoled, a fighter's nerve, rain), stronger the nearer the god is, at most once in ten days a
+  god at a home and its will to answer growing back slowly after,
   told as what happened after; later the prayer comes good on its own or goes unanswered. The Hunger is never answered
   here: it bargains with the desperate on its own terms (`Gods/World/GodVoid.cs`).
 - **The heart** (`FaithHeart.cs`): an unanswered prayer is a crisis of faith about a third of the time (-4, four days;
   with Ideology their certainty shaken); two in a month and they may turn to another god, a rival of the one that
   failed them first. Scoffers (a faith that despises religion, with Ideology one far from sure, else about one in
-  seven by who they are; Ideology's deities play no part) mock what believers saw, face to face and once in five days
+  seven by who they are; Ideology's deities play no part) mock what believers saw, face to face and once in ten days
   a home (-2 and an opinion). A couple who pray to different gods bicker over whose god sent the rain after a dry
-  spell (an opinion only).
+  spell of five days or more, once in ten days a couple (an opinion only).
 - **Vows** (`Vows.cs`, made with the core's `Gods.Vow`): no meat until the sick one is well (vegetarian meals asked for
   as a wish), a pilgrimage on foot to the god's holy place on the colony's land (a life goal), a temple (a life goal,
   also vowed before the council), and a beast spared for a season. Kept: +3 and pride; broken: -4, and a god that takes
@@ -12570,7 +12578,7 @@ isn't there, to a plain card (`Tell.Letter`) or the news.
   warning of something real now, an offering asked for at its place within three days (This week shows it as the
   dreamer's dream), a god's name the colony didn't know, a vision. A dream mood that gives awe, not mood.
 - **A RimWorld of Magic** (`WorshipMore.cs`, by name): a caster's mana comes back faster or slower by how the colony
-  stands with the god their class serves; hidden, and nothing in Believed.
+  stands with the god their class serves; hidden, felt most of the way, all of it when that god is drawn near.
 - **Each god's own worship** (`GodWorshipDef`, `Rimfolk_Worship_Gods.xml`): keyed by the god's short name, from its
   character in `docs/gods-pantheon-brainstorm.md`: what it likes offered and refuses, its festival's day, name, dishes
   and chant, its people's vows, and a few of its own ways (Smoulder takes silver first; Ducat wants it given away, so
@@ -12586,6 +12594,75 @@ isn't there, to a plain card (`Tell.Letter`) or the news.
 - **Setting**: "Worship of the gods" (on), under The gods; nothing without "Gods". Dev actions "Gods: a prayer now...",
   "a vow now...", "a god's dream now", "a crisis of faith", "offerings at every shrine now", "worship's hour now",
   "worship's day now", "the gods' festivals onto the calendar now", "show worship (log)". Tested in `WorshipTests`.
+
+### Gods: one way, each god's own presence, and variety first (the player's request, 12 November 2026; released 0.224.0)
+
+Two of the player's wishes of the day, built together, the bug first.
+
+**Variety first** (the player: "important is that there is enough variety that i don't have the same events etc. within a
+short time. just had the selene night event twice within a few days"; then "it just shouldn't feel like events are
+repeating unless there's an actual 'lore' reason for it", "if it's triggering on something where no other events
+really trigger, it shouldn't like 'auto-trigger' this event automatically when it's free"; the gods' happenings only).
+- **Why it repeated.** The moon returned the day twice over, each on its own: the night's return (`GodReturn`, every
+  third night, 70% on a full moon, for any day's deed of enough kindness, and tending the injured is one nearly every
+  day) and the world's mirror (`GodHealth.Mirror`, every night with no gap at all, for the day's good turns and wrongs
+  to the peoples, raiders killed among them). Both preferred an injured colonist (a wound healed by morning, a deep rest).
+- **The shared pace** (`Gods/GodPaceMath.cs`, pure; `Gods/GodPace.cs`): no blanket cap; each happening keeps its own
+  gap, by what it is. Once free, its chance starts at a quarter and grows over a long window (`Ramp`), so the first
+  chance is the least likely and nobody can tell when it will come. A condition nearly always true is no trigger
+  (`Trigger`: none, ordinary, strong). A short memory of the last twelve happenings (`GodsOnMapBook.lately`,
+  "what|form|who") makes the next lean to a different form (`Lean`, `Pick`: the last form hardly, the one before half);
+  a story that comes back for a reason the player can see takes its next step (`NextStep`).
+- **The moon's return**, one rule for both (`GodsOnMapMath.ReturnTonight`): only around the full moon (full 0.2 a
+  night, half 0.05, else none), a cycle apart at least (`ReturnGapDays` 12), its chance growing over the next thirty
+  days, and only for a reason: a deed of the day out of the ordinary (`ReturnTrigger`: from 3 of kindness or cruelty,
+  strong from 7; none for a kind of deed the colony did three times in fifteen days or one running three days, so daily
+  tending is no reason), or the colony's day with the peoples (`WorldTrigger`, the seat's, reset each night). The
+  world's mirror plays only on a night the moon's return chose (`GodHealth.Mirror(map, kind, cruel)`). What comes back
+  leans away from the moon's last forms; back to the same person for the same kind of deed it is the next step of their
+  story (a kindness: something found, a good dream, a wound healed; a cruelty: a nightmare, a frost, an animal at the
+  door), written and spoken of as happening again (`CC_GodM_Saw_Return_*Again`, talk lines `[again]`). The same cruelty
+  done again by one the moon already came back to is a strong reason even as a habit. About once a colony-year.
+- **The other short gaps**, each now far longer than three days and growing back after: a myth at supper twelve days
+  (`MythGapDays`, and not the god of the last one told at that table), the rock over deep mining five days and then a
+  small chance in each hour of mining (`DeepNow`; the warnings now kept thirty days), a prayer answered ten days a god
+  at a home (`AnswerGapDays`), mocking and a couple's bickering ten days (and bickering only after five dry days), a
+  god answering in the weather fifteen days (ten and a half for a sky god) in a voice it didn't use last time, a mark
+  visited twelve days and brought up at supper six, a fever eased five days at a home, a god's dream ten days a person.
+  The comings, risings, gifts, kindness, anger and the world's other doings already came as small chances after long
+  gaps, and the gods' hands after their own quiet spells; they stay.
+- **The check** (`Tools/Balance/GodsSim.cs`, `--gods`): each happening a colony-year by the mod's own rules, the closest
+  two, the same form twice running, and a check each must keep (at most so many a year, never two within so many days);
+  a check that fails ends the run with exit code 1. The moon's return comes about once a colony-year, never within 12 days.
+
+**One way, each god's own presence** (the player: "yes, let's stick to one level and use felt as primary reference. i
+just want the 'walking'-exclusive options also to be able to appears, like smoulders true form. i guess the level could
+be dynamic, some gods might become more present depending on situations, relations, actions etc. also the 'cards' level
+on felt is great, the god should only be named if it's sure it was them").
+- **Felt is the base.** The setting "How real are the gods" is gone, with the Believed and Walking branches and their
+  line tags; an older settings file's choice is read and let go (`CouncilSettings`, `retiredRealness`).
+- **How near each god is** (`Gods/GodNear.cs`, `Gods/GodNearMath.cs`; hidden state, never shown), 0 felt to 1, worked
+  out at most once an hour a god a home, from three things: the situation on the land (six tenths of it: each shape's
+  `nearWhen`, `GodStir`: a drought for Murmur, the deep for Smoulder and heat, a hard winter for Hush, a storm for
+  Cirrus, the full moon for Selene, the dark of the moon and the desperate for Undertow, an anima tree and the growing
+  season for Hollin, the dead left lying and sickness for Morel, guests for Ennu, machines for Pip, a hoard and a trader
+  for Ducat, a thrumbo or a great herd for Bellwether, cats for Mog, heat for Helios); its relations (a quarrel it is in,
+  the most stirred of the gods tied to it); and what the colony does (offerings to it in ten days, harm in fifteen, its
+  entries in the colony's book in thirty, a standing strong either way; two fifths at most).
+- **What nearness does** (all exactly felt at 0): a moment plain rather than veiled (`PlainChance`, from two fifths
+  near, sure from four fifths; `PresenceSpec.For` rolls it, so the colony sees it plainly, is sure, and names it from
+  then on through `Gods.CardName`), the stranger showing itself at the gate (`StrangerStay.plain`), Smoulder's true form
+  on waking and Murmur surfacing a little more readily (`RisingDue`), stronger answers (a sickness eased up to 15%, rain
+  within the hour with thunder, a longer dry spell), an offering gone in a breath of light, less disguise, a caster's
+  mana by the whole of the standing, and the god's own doings in the world up to two fifths more often. One god can
+  walk plainly while another stays hidden.
+- **Cards stay felt:** a god is named only where the colony is sure it was that god (`Gods.CardName`: seen plainly or
+  revealed, or the sign learned), else unnamed or "some say".
+- **Lines:** `[walking]` became `[near]` (the god drawn near, seen plainly), `[felt]` and `real:felt`/`step:felt`
+  became `[veiled]`, the Believed lines became `[doubt]` (said by one who believes little: a scoffer in the world's
+  lines, a waverer in worship's) or fit everyone; the worship keys' `_Walking` became `_Plain`, the `_Believed` ones went.
+- **Dev:** "Gods: how near each god is here (log)", "Gods: draw a god near (or let it be)..." in place of the realness
+  one; the gods on the map's log shows the short memory.
 
 ### Four small asks (the player's request, 12 November 2026; released 0.222.0)
 

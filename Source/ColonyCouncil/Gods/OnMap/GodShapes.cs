@@ -68,6 +68,12 @@ namespace ColonyCouncil
         /// <summary>How many days its beast stays (Mog: a season), else the usual few.</summary>
         public FloatRange stayDays = new FloatRange(0f, 0f);
 
+        /// <summary>
+        /// What on the land draws it nearer the colony (GodNear; a drought for Murmur, a deep mine for Smoulder, a hard winter
+        /// for Hush): the nearer it is, the more plainly it acts.
+        /// </summary>
+        public List<GodStir> nearWhen = new List<GodStir>();
+
         public override IEnumerable<string> ConfigErrors()
         {
             foreach (var e in base.ConfigErrors()) yield return e;
@@ -226,7 +232,7 @@ namespace ColonyCouncil
         /// </summary>
         public static string CardName(God g, Map home, bool sure)
         {
-            if (g == null || Gods.Realness == GodRealness.Believed) return null;
+            if (g == null) return null;
             if (sure) GodLore.Instance?.MarkActing(g);
             return Gods.CardName(g, home);
         }

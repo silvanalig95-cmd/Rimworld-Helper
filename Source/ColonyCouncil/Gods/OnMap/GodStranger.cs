@@ -18,15 +18,15 @@ namespace ColonyCouncil
         Waiting,
         /// <summary>Let in, or let sleep by the gate: the stay itself.</summary>
         Staying,
-        /// <summary>On their own way off the map (Felt, or turned away): the end comes once they are gone.</summary>
+        /// <summary>On their own way off the map (unrevealed, or turned away): the end comes once they are gone.</summary>
         Leaving,
-        /// <summary>Stopped and shown for who they are (Walking): standing a moment before they walk off.</summary>
+        /// <summary>Stopped and shown for who they are (a god drawn near): standing a moment before they walk off.</summary>
         Farewell,
         /// <summary>Walking off the map as a god.</summary>
         WalkingOff,
         /// <summary>Struck by the colony: the god's anger comes at the next step.</summary>
         Struck,
-        /// <summary>Shown in its anger (Walking): a breath, then gone in a flash.</summary>
+        /// <summary>Shown in its anger (a god drawn near): a breath, then gone in a flash.</summary>
         Vanishing
     }
 
@@ -63,6 +63,11 @@ namespace ColonyCouncil
         public bool thanked;
         /// <summary>A tell of theirs is in the colony's book already (one a stay).</summary>
         public bool tellKept;
+        /// <summary>
+        /// The god was drawn near enough when it came to show itself plainly at the end (GodNear.Plain, once a stay): it stops,
+        /// turns and shows who it was. Else it goes its way unrevealed, as the gods are felt.
+        /// </summary>
+        public bool plain;
 
         public God God => Gods.ById(god);
 
@@ -113,6 +118,7 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref lastSaid, "lastSaid", -1);
             Scribe_Values.Look(ref thanked, "thanked");
             Scribe_Values.Look(ref tellKept, "tellKept");
+            Scribe_Values.Look(ref plain, "plain");
             if (Scribe.mode == LoadSaveMode.PostLoadInit)
             {
                 kind ??= new List<Pawn>();
@@ -141,8 +147,9 @@ namespace ColonyCouncil
     /// let in, they are Hospitality's guest when it is loaded and Rimfolk's own visitor otherwise. Over the stay they
     /// notice who is kind (the bed they got, the food, who talked with them and did them a kindness, how the animals were
     /// kept, whether anyone struck or robbed them), and say things a traveller couldn't know. When they leave, or if they
-    /// are struck, they show who they were: in Walking plainly (they stop, grow into themselves and speak, then walk off as a
-    /// god), in Felt only "some say" once they are gone; in Believed they never come. The colony is blessed or cursed by how
+    /// are struck, they show who they were: as the gods are felt, only "some say" once they are gone; plainly when the god was
+    /// drawn near enough as it came (GodNear: they stop, grow into themselves and speak, then walk off as a god, and the
+    /// colony names it from then on). The colony is blessed or cursed by how
     /// the stranger was treated (GodGifts.cs), and the kindest colonist gets a lasting gift.
     /// </summary>
     public static class GodStranger
@@ -218,7 +225,7 @@ namespace ColonyCouncil
             if (kind == null) return null;
             var x = Arrivals.Make(kind, f, new FloatRange(25f, 60f));
             if (x == null) return null;
-            if (!Gods.On || !GodsMath.AvatarsCome(Gods.Realness) || !GodAvatar.Make(x, GodsWiring.LookOf(god), x.LabelShort, true, god.colour, god.colour2))
+            if (!Gods.On || !GodAvatar.Make(x, GodsWiring.LookOf(god), x.LabelShort, true, god.colour, god.colour2))
             {
                 Arrivals.Discard(x);
                 return null;
@@ -234,7 +241,8 @@ namespace ColonyCouncil
             b.stranger = new StrangerStay
             {
                 x = ctx.stranger, god = god.id, map = ctx.map, faction = ctx.stranger.Faction, since = Now, letIn = ctx.a, phase = StrangerPhase.Waiting,
-                leaveAt = Now + Mathf.RoundToInt(GenDate.TicksPerDay * GodsOnMapMath.AnswerDays) + GenDate.TicksPerHour * 2
+                leaveAt = Now + Mathf.RoundToInt(GenDate.TicksPerDay * GodsOnMapMath.AnswerDays) + GenDate.TicksPerHour * 2,
+                plain = GodNear.Plain(god, ctx.map)
             };
         }
 
@@ -257,8 +265,8 @@ namespace ColonyCouncil
             if (s.welcome == StrangerWelcome.TurnedAway)
             {
                 s.phase = StrangerPhase.Leaving;
-                // Walking: they stop on their way and show who they were, there and then.
-                if (GodsOnMapMath.Show(Gods.Realness) == GodShow.Plain) End(b, s, now);
+                // Drawn near enough to show itself: they stop on their way and show who they were, there and then.
+                if (s.plain) End(b, s, now);
                 return;
             }
             if (s.welcome == StrangerWelcome.Bed) s.Credit(ctx.a, GodsOnMapMath.LetIn);
@@ -334,7 +342,7 @@ namespace ColonyCouncil
                 b.stranger = null;
                 return;
             }
-            // Gone from the map on their own way (Felt, or turned away): the end, where they stayed.
+            // Gone from the map on their own way (unrevealed, or turned away): the end, where they stayed.
             if (!x.Spawned && !x.Dead && s.phase != StrangerPhase.WalkingOff)
             {
                 if (s.phase == StrangerPhase.Waiting && !s.answered) s.welcome = StrangerWelcome.TurnedAway;
@@ -481,7 +489,8 @@ namespace ColonyCouncil
         }
 
         /// <summary>
-        /// Now and then the stranger says something a traveller couldn't know (by its god's domain, more pointed in Walking),
+        /// Now and then the stranger says something a traveller couldn't know (by its god's domain, more pointed when it is
+        /// drawn near enough to show itself),
         /// to whoever is beside them; once, after a good meal, they thank the cook by name.
         /// </summary>
         private static void Speak(StrangerStay s, Pawn x, int now)
@@ -504,7 +513,7 @@ namespace ColonyCouncil
                 }
             }
             var tags = Tags(god);
-            if (Gods.Realness == GodRealness.Walking) tags.Add("walking");
+            if (s.plain) tags.Add("near");
             if (s.welcome == StrangerWelcome.Gate) tags.Add("gate");
             if (s.animalsNeglected) tags.Add("animals");
             var book = GodsOnMapBook.Instance;
@@ -627,7 +636,7 @@ namespace ColonyCouncil
             }
         }
 
-        /// <summary>The stay is over: judged, and the god shows itself (Walking) or goes its way unrevealed (Felt).</summary>
+        /// <summary>The stay is over: judged, and the god shows itself (drawn near enough: <see cref="StrangerStay.plain"/>) or goes its way unrevealed, as the gods are felt.</summary>
         internal static void End(GodsOnMapBook b, StrangerStay s, int now)
         {
             var x = s.x;
@@ -637,15 +646,15 @@ namespace ColonyCouncil
                 b.stranger = null;
                 return;
             }
-            if (GodsOnMapMath.Show(Gods.Realness) != GodShow.Plain || !x.Spawned || x.Dead)
+            if (!s.plain || !x.Spawned || x.Dead)
             {
-                // Felt: they go their own way, unrevealed; the end comes once they are gone.
+                // As the gods are felt: they go their own way, unrevealed; the end comes once they are gone.
                 s.phase = StrangerPhase.Leaving;
                 if (x.Spawned && !x.Dead) SendOff(x);
                 return;
             }
             var t = Judge(s, out _);
-            // Walking: they stop, turn, and show who they were.
+            // Drawn near: they stop, turn, and show who they were.
             try
             {
                 x.GetLord()?.RemovePawn(x);
@@ -663,14 +672,14 @@ namespace ColonyCouncil
             var kindest = Kindest(s);
             var cell = x.Position;
             GodGifts.Outcome(god, s.map, cell, t, kindest, s.harmer, s.welcome);
-            Moment(god, s.map, cell, x, GodsOnMapMath.EndKind(t), Title(god, true), Text(s, god, t, kindest, true));
-            Remember(s, god, cell, t, kindest);
+            Moment(god, s.map, cell, x, GodsOnMapMath.EndKind(t), Title(god, true), Text(s, god, t, kindest, true), true);
+            Remember(s, god, cell, t, kindest, true);
             s.phase = StrangerPhase.Farewell;
             s.phaseDue = now + GodsOnMapMath.FarewellTicks;
             b.Due(s.phaseDue);
         }
 
-        /// <summary>They have left the map on their own (Felt, or turned away and not shown): the end, veiled, where they stayed.</summary>
+        /// <summary>They have left the map on their own (unrevealed, or turned away and not shown): the end, veiled, where they stayed.</summary>
         private static void Gone(GodsOnMapBook b, StrangerStay s, int now)
         {
             var god = s.God;
@@ -684,14 +693,13 @@ namespace ColonyCouncil
             var t = Judge(s, out _);
             var kindest = Kindest(s);
             var cell = s.place.IsValid ? s.place : s.gate.IsValid ? s.gate : map.Center;
-            bool plain = GodsOnMapMath.Show(Gods.Realness) == GodShow.Plain;
             GodGifts.Outcome(god, map, cell, t, kindest, s.harmer, s.welcome);
-            Moment(god, map, cell, null, GodsOnMapMath.EndKind(t), Title(god, plain), Text(s, god, t, kindest, plain));
-            Remember(s, god, cell, t, kindest);
+            Moment(god, map, cell, null, GodsOnMapMath.EndKind(t), Title(god, false), Text(s, god, t, kindest, false), false);
+            Remember(s, god, cell, t, kindest, false);
             Vanish(s.x);
         }
 
-        /// <summary>Struck: the god shows its anger where the stranger stands (Walking: it shows itself first, then is gone in a breath) and is gone.</summary>
+        /// <summary>Struck: the god shows its anger where the stranger stands (drawn near: it shows itself first, then is gone in a breath) and is gone.</summary>
         private static void Anger(GodsOnMapBook b, StrangerStay s, int now)
         {
             var x = s.x;
@@ -705,7 +713,7 @@ namespace ColonyCouncil
             }
             var corpse = x?.Corpse;
             var cell = x != null && x.Spawned ? x.Position : corpse != null && corpse.Spawned ? corpse.Position : s.gate.IsValid ? s.gate : map.Center;
-            bool plain = GodsOnMapMath.Show(Gods.Realness) == GodShow.Plain && x != null && x.Spawned && !x.Dead;
+            bool plain = s.plain && x != null && x.Spawned && !x.Dead;
             if (corpse != null && !corpse.Destroyed) corpse.Destroy();
             // apart: a god shows itself to everyone on the map; nobody confides anything to anyone.
             if (plain)
@@ -722,12 +730,12 @@ namespace ColonyCouncil
                 GodAvatar.Reveal(x, false);
                 Named(x, god);
             }
-            // Felt: one moment there, the next only scorched ground where they stood.
+            // Unrevealed: one moment there, the next only scorched ground where they stood.
             else Vanish(x);
             var kindest = Kindest(s);
             GodGifts.Outcome(god, map, cell, Treatment.Harmed, kindest, s.harmer, s.welcome);
-            Moment(god, map, cell, plain ? x : null, PresenceKind.Wrath, Title(god, plain), Text(s, god, Treatment.Harmed, kindest, plain));
-            Remember(s, god, cell, Treatment.Harmed, kindest);
+            Moment(god, map, cell, plain ? x : null, PresenceKind.Wrath, Title(god, plain), Text(s, god, Treatment.Harmed, kindest, plain), plain);
+            Remember(s, god, cell, Treatment.Harmed, kindest, plain);
             if (!plain)
             {
                 b.stranger = null;
@@ -814,16 +822,17 @@ namespace ColonyCouncil
 
         // ================= The words =================
 
-        private static void Moment(God god, Map map, IntVec3 cell, Pawn avatar, PresenceKind kind, string title, string text)
+        private static void Moment(God god, Map map, IntVec3 cell, Pawn avatar, PresenceKind kind, string title, string text, bool plain)
         {
             var spec = PresenceSpec.For(god, map, kind, cell, avatar);
+            spec.veiled = !plain;
             spec.title = title;
             spec.text = text;
             if (!GodPresenceSeam.Call(spec)) Tell.Letter(NewsKind.Land, Importance.Important, map, title, text, LetterDefOf.NeutralEvent, new LookTargets(cell, map));
         }
 
         // The card says only what was seen and heard (the player: the gods are an ominous presence, never explained): no why,
-        // no blessing or curse spelled out; what follows simply happens on the map. At Felt the god stays unnamed.
+        // no blessing or curse spelled out; what follows simply happens on the map. Unrevealed, the god stays unnamed.
 
         private static string Title(God god, bool plain) =>
             plain ? GodsOnMapWords.Title(god, null, true, "CC_GodM_Stranger_Title", "CC_GodM_Stranger_TitleNamed") : "CC_GodM_Stranger_TitleVeiled".Translate().Resolve().CapitalizeFirst();
@@ -845,11 +854,10 @@ namespace ColonyCouncil
         }
 
         /// <summary>The visit remembered: in the god's acts, the colony's chronicle, the mark on the land, among those who saw it, and the deeds talked of.</summary>
-        private static void Remember(StrangerStay s, God god, IntVec3 cell, Treatment t, Pawn kindest)
+        private static void Remember(StrangerStay s, God god, IntVec3 cell, Treatment t, Pawn kindest, bool plain)
         {
             var map = s.map;
             string what = ("CC_GodM_Stranger_Act_" + t).Translate(Traveller(Age).Named("TRAVELLER")).Resolve();
-            bool plain = GodsOnMapMath.Show(Gods.Realness) == GodShow.Plain;
             // The colony's book and chronicle, in the words of one who saw it (or who sat with it, or was kindest to it).
             var seer = GodsOnMapWords.Seer(map, cell, 40f) ?? kindest ?? s.talkers.FirstOrDefault(p => p != null && !p.Dead);
             string key = t == Treatment.Harmed ? plain ? "CC_GodM_Saw_StrangerStruckShown" : "CC_GodM_Saw_StrangerStruckGone"
@@ -857,7 +865,7 @@ namespace ColonyCouncil
             string saw = GodsOnMapWords.Saw(god, map, cell, plain ? GodActKind.Reveal : GodActKind.Depart, seer, key, Traveller(Age).Named("TRAVELLER"),
                 (s.harmer?.LabelShort ?? "CC_GodM_Someone".Translate().Resolve()).Named("HARMER"));
             if (plain) Gods.Learn(god, "visitors");
-            GodMarks.Note(god, map, cell, what, GodsOnMapMath.EndKind(t));
+            GodMarks.Note(god, map, cell, what, GodsOnMapMath.EndKind(t), plain);
             GodMarks.Witnessed(map, cell, "CC_GodM_Memory_Stranger".Translate(Traveller(Age).Named("TRAVELLER")).Resolve(), s.talkers.Concat(s.kind));
             if (saw != null) CouncilGameComponent.Instance?.AddChronicle(new ChronicleEntry(ChronicleKind.World, saw, seer));
             if (kindest != null && t >= Treatment.Kind) Deeds.Record("Rimfolk_Deed_GodSheltered", kindest, null, -1f, null, Traveller(Age));
@@ -897,8 +905,7 @@ namespace ColonyCouncil
     public class HappeningWorker_GodStranger : HappeningWorker_Visitors
     {
         protected override bool CanHappen(Map map, HappeningExtension ext) =>
-            GodStranger.pendingGod != null && GodStranger.pendingMap == map && GodsOnMapBook.Instance?.stranger == null && GodsMath.AvatarsCome(Gods.Realness)
-            && base.CanHappen(map, ext);
+            GodStranger.pendingGod != null && GodStranger.pendingMap == map && GodsOnMapBook.Instance?.stranger == null && base.CanHappen(map, ext);
 
         protected override bool Cast(HappeningContext ctx, HappeningExtension ext)
         {

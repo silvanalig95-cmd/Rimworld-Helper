@@ -10,11 +10,12 @@ namespace ColonyCouncil
     /// <summary>
     /// Worship of the gods (docs/design/gods.md, stage 2 "Worship"; brainstorm items 10, 11, 13, 14, 15, 16 and 20): the
     /// public face of the worship part and the passes it runs in. The region's hour (World/Region/RegionBook.cs, beside the
-    /// pantheon's) looks for hard moments to pray in, sends dedications and offerings on their way, takes offerings at the
-    /// step of how real the gods are, settles prayers, keeps vows and demands, and keeps the rain away where a god said so;
+    /// pantheon's) looks for hard moments to pray in, sends dedications and offerings on their way, takes offerings (in the
+    /// night, or plainly when the god is drawn near: GodNear), settles prayers, keeps vows and demands, and keeps the rain
+    /// away where a god said so;
     /// the region's day prunes and rolls the day's offerings and vows. It calls only the core's <see cref="Gods"/> and its
     /// two seams (<see cref="GodPresenceSeam"/>, <see cref="GodLookSeam"/>): a god's sign goes to the presence part, and while
-    /// that isn't there, to a plain card worded for the step (<see cref="Sign"/>).
+    /// that isn't there, to a plain card worded as plainly as the god acted (<see cref="Sign"/>).
     /// </summary>
     public static class Worship
     {
@@ -235,8 +236,11 @@ namespace ColonyCouncil
 
         // ================= Words =================
 
-        /// <summary>The step's ending for a key (CC_Wsh_..._Believed, _Felt, _Walking).</summary>
-        public static string Step => GodsMath.Voice(Gods.Realness);
+        /// <summary>
+        /// A key's ending for how plainly a god acted this time (CC_Wsh_..._Felt, _Plain): as the gods are felt, or plainly,
+        /// when it was drawn near enough to show itself (GodNear.Plain).
+        /// </summary>
+        public static string Step(bool plain) => plain ? "Plain" : "Felt";
 
         /// <summary>What a dedicated place is called in the colony's age: a shrine, a chapel, a church, a terminal.</summary>
         public static string ShrineWord => ("CC_Wsh_Shrine_" + WorshipMath.ShrineWord((int)Ages.Ours)).Translate();
@@ -244,7 +248,11 @@ namespace ColonyCouncil
         /// <summary>A god's place in words: "Ceren's chapel".</summary>
         public static string ShrineOf(God g) => "CC_Wsh_ShrineOf".Translate(Called(g).Named("GOD"), ShrineWord.Named("SHRINE")).Resolve();
 
-        /// <summary>A line from a pool for someone and their god ({GOD}, {GODEPITHET}, {GODOF}, {PAWN}, {OTHER}), tagged with the god's domain and kind, the step and the extra tags; null when nothing fits.</summary>
+        /// <summary>
+        /// A line from a pool for someone and their god ({GOD}, {GODEPITHET}, {GODOF}, {PAWN}, {OTHER}), tagged with the god's
+        /// domain and kind, whether it is drawn near now (near, else veiled: GodNear), the speaker's doubt (doubt, for one who
+        /// wavers) and the extra tags; null when nothing fits.
+        /// </summary>
         public static string Line(string pool, Pawn p, God g, Pawn other = null, params string[] extra) => LineWith(pool, p, g, other, null, extra);
 
         /// <summary>A line as <see cref="Line"/>, with more of its own values ({SUBJECT}, {NAME}...).</summary>
@@ -260,7 +268,8 @@ namespace ColonyCouncil
                     // The god itself, for its own lines ([godkey:smoulder]): its key (its short name).
                     tags.Add("godkey:" + (g.Key ?? g.patron ?? "").ToLowerInvariant());
                 }
-                tags.Add("step:" + Step.ToLowerInvariant());
+                tags.Add(g != null && GodNear.Near(g, p.MapHeld) ? "near" : "veiled");
+                if (Wavering(p)) tags.Add("doubt");
                 if (extra != null) tags.AddRange(extra.Where(t => !t.NullOrEmpty()));
                 if (IsPriest(p)) tags.Add("priest");
                 if (Scoffer(p)) tags.Add("scoffer");
@@ -291,23 +300,30 @@ namespace ColonyCouncil
 
         /// <summary>
         /// A god's sign at a place: the presence part plays its moment (GodPresenceSeam), and while that isn't there, a plain
-        /// card or a line in the news, with a glow at the place in Felt and Walking. The caller's text says only what was seen,
-        /// for the step of how real the gods are; the god behind it is named after it only as the core allows (<see cref="Hand"/>).
+        /// card or a line in the news, with a glow at the place. The caller's text says only what was seen, as plainly as the
+        /// god acted this time (<paramref name="plain"/>, decided by the caller with the words it chose; else the god's own
+        /// nearness now, GodNear.Plain); the god behind it is named after it only as the core allows (<see cref="Hand"/>).
         /// Remembered among the god's acts, and in the colony's book through those who saw it.
         /// </summary>
-        public static void Sign(God g, Map map, IntVec3 cell, PresenceKind kind, string title, string text, LookTargets look, bool letter, GodActKind act = GodActKind.Act)
+        public static void Sign(God g, Map map, IntVec3 cell, PresenceKind kind, string title, string text, LookTargets look, bool letter, GodActKind act = GodActKind.Act,
+            bool? plain = null)
         {
             if (g == null || text.NullOrEmpty()) return;
             try
             {
                 var spec = PresenceSpec.For(g, map, kind, cell);
+                if (plain.HasValue) spec.veiled = !plain.Value;
+                // Plain only where someone of the colony was there to see it; then the colony is sure, and says whose it was.
+                if (!spec.veiled && !GodWorld.Witnessed(map, cell)) spec.veiled = true;
                 spec.title = title;
                 string seen = text;
-                text += Hand(g, map, cell);
+                text += !spec.veiled && Gods.CardName(g, map) == null && Gods.Known(g)
+                    ? " " + "CC_GW_Hand_Plain".Translate(Called(g).Named("GOD")).Resolve()
+                    : Hand(g, map, cell);
                 spec.text = text;
                 if (!GodPresenceSeam.Call(spec))
                 {
-                    Glow(map, cell, g, kind == PresenceKind.Wrath);
+                    Glow(map, cell, g, kind == PresenceKind.Wrath, !spec.veiled);
                     if (letter) Tell.Letter(NewsKind.Colony, Importance.Notable, map, title, text, LetterDefOf.NeutralEvent, look);
                     else Tell.Minor(NewsKind.Colony, Importance.Notable, map, text, look);
                 }
@@ -323,15 +339,15 @@ namespace ColonyCouncil
         private static readonly string[] DarkMotes = { "TM_Mote_ShadowCircleIn", "Mote_BloodCircle" };
 
         /// <summary>
-        /// A small light at a place where a god acted (never in Believed): A RimWorld of Magic's holy light and glowing runes
-        /// where it's loaded (softly, by name), else the game's own glow; its shadow for wrath.
+        /// A small light at a place where a god acted: A RimWorld of Magic's holy light and glowing runes where it's loaded
+        /// (softly, by name), else the game's own glow; its shadow for wrath; larger, with a flash, when the god acted plainly.
         /// </summary>
-        public static void Glow(Map map, IntVec3 cell, God g, bool dark = false)
+        public static void Glow(Map map, IntVec3 cell, God g, bool dark = false, bool plain = false)
         {
-            if (map == null || !cell.IsValid || !cell.InBounds(map) || Gods.Realness == GodRealness.Believed) return;
+            if (map == null || !cell.IsValid || !cell.InBounds(map)) return;
             try
             {
-                float scale = Gods.Realness == GodRealness.Walking ? 2.2f : 1.2f;
+                float scale = plain ? 2.2f : 1.2f;
                 foreach (var name in dark ? DarkMotes : HolyMotes)
                 {
                     var mote = DefDatabase<ThingDef>.GetNamedSilentFail(name);
@@ -340,7 +356,7 @@ namespace ColonyCouncil
                     return;
                 }
                 FleckMaker.Static(cell, map, dark ? FleckDefOf.PsycastAreaEffect : FleckDefOf.Meditating, scale);
-                if (Gods.Realness == GodRealness.Walking) FleckMaker.ThrowLightningGlow(cell.ToVector3Shifted(), map, 1.5f);
+                if (plain) FleckMaker.ThrowLightningGlow(cell.ToVector3Shifted(), map, 1.5f);
             }
             catch (Exception e)
             {
@@ -426,16 +442,16 @@ namespace ColonyCouncil
 
         /// <summary>
         /// Who was behind something that happened, as a card may say it (the core's rule, Gods.CardName): plainly where the
-        /// colony knows it was this god (the gods walk, it has seen the god act plainly, or it knows the sign), else "some say"
-        /// where the gods are felt and someone of the colony saw it (<paramref name="seen"/>, else whoever was near the cell),
-        /// else nothing: what happened stays unnamed.
+        /// colony knows it was this god (it has seen the god act plainly, or it knows the sign), else "some say" where someone
+        /// of the colony saw it (<paramref name="seen"/>, else whoever was near the cell), else nothing: what happened stays
+        /// unnamed.
         /// </summary>
         public static string Hand(God g, Map map, IntVec3 cell, bool? seen = null, string sign = null)
         {
             if (g == null) return "";
             string name = Gods.CardName(g, map, sign);
             if (name != null) return " " + "CC_GW_Hand_Plain".Translate(name.Named("GOD")).Resolve();
-            if (Gods.Known(g) && Gods.Realness == GodRealness.Felt && (seen ?? GodWorld.Witnessed(map, cell)))
+            if (Gods.Known(g) && (seen ?? GodWorld.Witnessed(map, cell)))
                 return " " + "CC_GW_Hand_Felt".Translate(Called(g).Named("GOD")).Resolve();
             return "";
         }

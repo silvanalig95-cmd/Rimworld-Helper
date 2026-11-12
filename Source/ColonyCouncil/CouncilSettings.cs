@@ -241,8 +241,6 @@ namespace ColonyCouncil
         /// peoples' patrons, the colony's favour with each in words, their ties, the Gods page. Off: no pantheon, nothing moves.
         /// </summary>
         public bool gods = true;
-        /// <summary>How real the gods are: Believed (nothing supernatural), Felt (the default: never so plain nobody could doubt it), Walking.</summary>
-        public GodRealness godRealness = GodRealness.Felt;
         /// <summary>
         /// Worship of the gods (Gods/Worship/; docs/design/gods.md, stage 2 "Worship"): places dedicated to a god and their
         /// offerings, prayer in hard moments, the gods' festivals, vows, the priest, the gods in dreams, faith in the heart.
@@ -957,7 +955,13 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref newPeoples, "newPeoples", 1f);
             Scribe_Values.Look(ref peopleAges, "peopleAges", true);
             Scribe_Values.Look(ref gods, "gods", true);
-            Scribe_Values.Look(ref godRealness, "godRealness", GodRealness.Felt);
+            // "How real the gods are" (Believed, Felt, Walking) is retired: the gods are felt, one way, and each god's own
+            // nearness moves how plainly it acts (Gods/GodNear.cs). An older settings file's choice is read and let go.
+            if (Scribe.mode == LoadSaveMode.LoadingVars)
+            {
+                string retiredRealness = null;
+                Scribe_Values.Look(ref retiredRealness, "godRealness");
+            }
             Scribe_Values.Look(ref godWorship, "godWorship", true);
             Scribe_Values.Look(ref packAlphas, "packAlphas", 1f);
             Scribe_Values.Look(ref beastNemeses, "beastNemeses", 1f);

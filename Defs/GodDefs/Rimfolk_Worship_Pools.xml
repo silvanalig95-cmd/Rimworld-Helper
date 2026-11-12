@@ -5,7 +5,7 @@
     Worship's words (Source/ColonyCouncil/Gods/Worship/; Worship.Line). {GOD} is the god, {GODEPITHET} its epithet ("the
     Bringer of Rain"), {GODOF} what it is ("goddess of the harvest"); {PAWN} the speaker, {OTHER} whom they speak to. The
     tags: the god's domains and kind (god:harvest, kind:archotech, kind:hunger), the god itself (godkey:..., for a hand-made
-    god's own lines), the step of how real the gods are (step:believed, step:felt, step:walking), priest, scoffer, the
+    god's own lines), whether the god is felt only (veiled) or drawn near (near: GodNear), doubt (the speaker wavers), priest, scoffer, the
     moment (pray:sickness, pray:death, pray:raid, pray:drought; offer:meal and the like; vow:nomeat...), and the speaker's own
     (the age, lowtech, hurt, grieving, the tone). Spoken lines are one sentence each, said over the head (Speech.Say).
   -->
@@ -38,7 +38,7 @@
         <li>I gave a place to {GOD} today. I said the words I knew, and some I made up, and I think they were heard.</li>
         <li>We have a place for {GOD} now. I went back after supper just to stand there.</li>
         <li>[priest] I dedicated a place to {GOD} on the colony's behalf. It's a heavy thing to speak for everyone.</li>
-        <li>[step:believed] I set a place aside for {GOD}. Whether anyone lives there or not, it's ours to look after now.</li>
+        <li>[doubt] I set a place aside for {GOD}. Whether anyone lives there or not, it's ours to look after now.</li>
       </plain>
     </lines>
   </ColonyCouncil.FlavorPoolDef>
@@ -103,7 +103,7 @@
         <li>[atshrine] I came to your place, {GOD}, so you'd know I meant it.</li>
         <li>[kind:archotech] {GOD}, our case is set out plainly: judge it.</li>
         <li>[kind:hunger] I know what you'll want for it, {GOD}, and I'm asking anyway.</li>
-        <li>[step:believed] Whoever is listening, {GOD} or nobody, please.</li>
+        <li>[doubt] Whoever is listening, {GOD} or nobody, please.</li>
         <li>[godkey:hollin] {GOD}, I planted three for every one we cut, so hear me.</li>
         <li>[godkey:smoulder] {GOD}, name your price, and let us sleep easy.</li>
         <li>[godkey:morel] {GOD}, be gentle, and be slow.</li>
@@ -128,7 +128,7 @@
         <li>[pray:raid] {GOD} stood at the wall with us today, I'm sure of it.</li>
         <li>[pray:drought] Rain at last, and {GOD} sent it.</li>
         <li>[scoffer] Fine, maybe {GOD} had something to do with it.</li>
-        <li>[step:believed] Call it luck if you like, I'm thanking {GOD}.</li>
+        <li>[doubt] Call it luck if you like, I'm thanking {GOD}.</li>
         <li>[godkey:hollin] The roots held, and that was {GOD}, I'd swear to it.</li>
         <li>[godkey:morel] Slow and soft, the way {GOD} does everything.</li>
         <li>[godkey:selene] It came back in the night, just as they say {GOD} does it.</li>
@@ -148,7 +148,7 @@
         <li>[pray:sickness] I begged {GOD} for them, and {GOD} let them go.</li>
         <li>[pray:drought] Not a drop, {GOD}, not one drop.</li>
         <li>[pray:raid] Where were you at the wall, {GOD}?</li>
-        <li>[step:believed] Nobody was listening, were they.</li>
+        <li>[doubt] Nobody was listening, were they.</li>
       </plain>
     </lines>
   </ColonyCouncil.FlavorPoolDef>
@@ -159,8 +159,8 @@
       <plain>
         <li>I prayed to {GOD} and nothing came. Either nobody is there, or {GOD} looked at me and turned away. I don't know which frightens me more.</li>
         <li>I've said {GOD}'s name every night since I can remember. Tonight I couldn't.</li>
-        <li>[step:felt] Some say {GOD} turns a face away to test the faithful. If this is a test, I'm failing it.</li>
-        <li>[step:walking] {GOD} heard me. I know that much. {GOD} heard me and chose not to answer.</li>
+        <li>[veiled] Some say {GOD} turns a face away to test the faithful. If this is a test, I'm failing it.</li>
+        <li>[near] {GOD} heard me. I know that much. {GOD} heard me and chose not to answer.</li>
       </plain>
     </lines>
   </ColonyCouncil.FlavorPoolDef>
@@ -174,7 +174,7 @@
         <li>You'd thank {GOD} for the sunrise, {OTHER_nameDef}.</li>
         <li>If {GOD} is so busy helping us, ask for a new roof.</li>
         <li>Coincidence, {OTHER_nameDef}, it's all coincidence.</li>
-        <li>[step:walking] All right, I saw it, and I still won't kneel to {GOD}.</li>
+        <li>[near] All right, I saw it, and I still won't kneel to {GOD}.</li>
         <li>[god:harvest] It rained because it's the season, not because of {GOD}.</li>
         <li>[god:healing] The medicine did that, {OTHER_nameDef}, not {GOD}.</li>
       </plain>
@@ -251,7 +251,7 @@
         <li>I broke my vow to {GOD}. I told myself it didn't matter, and I knew it did.</li>
         <li>[vow:nomeat] I ate meat. I was hungry and I didn't think, and now I can't stop thinking.</li>
         <li>[vow:beastspared] One of {GOD}'s beasts is dead at our hands. I swore it wouldn't be.</li>
-        <li>[step:felt] Some say {GOD} turned away from me the moment I broke it. I felt the cold of it.</li>
+        <li>[veiled] Some say {GOD} turned away from me the moment I broke it. I felt the cold of it.</li>
       </plain>
     </lines>
   </ColonyCouncil.FlavorPoolDef>
@@ -315,7 +315,7 @@
         <li>Say it with me: {GOD} keep us.</li>
         <li>Whatever comes this year, we'll meet it with {GOD}.</li>
         <li>[lowtech] Touch the stone, and say the name: {GOD}.</li>
-        <li>[step:believed] It's for the colony as much as for {GOD}, and that's fine.</li>
+        <li>[doubt] It's for the colony as much as for {GOD}, and that's fine.</li>
       </plain>
     </lines>
   </ColonyCouncil.FlavorPoolDef>
@@ -357,7 +357,7 @@
         <li>[dream:vision,god:storm] I stood on a hill and {GOD} spoke to me in thunder, and I understood all of it.</li>
         <li>[dream:vision,kind:hunger] Something with no face asked what I'd give for anything I wanted. I almost answered.</li>
         <li>[dream:lost] {NAME} came back to me last night, well and laughing. {GOD} was with them, and they were not afraid.</li>
-        <li>[dream:lost,step:believed] I dreamt of {NAME}, well and at peace. I'll believe it was {GOD}'s kindness.</li>
+        <li>[dream:lost,doubt] I dreamt of {NAME}, well and at peace. I'll believe it was {GOD}'s kindness.</li>
       </plain>
     </lines>
   </ColonyCouncil.FlavorPoolDef>

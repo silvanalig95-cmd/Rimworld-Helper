@@ -75,15 +75,12 @@ public static class WorshipTests
         C(WorshipMath.OfferingChance(0, false, false) > 0.1f && WorshipMath.OfferingChance(3, true, true) <= 0.5f
           && WorshipMath.OfferingChance(3, true, false) > WorshipMath.OfferingChance(0, false, false), "an offering a few days apart at a place, more with the devout and a priest, half a day's chance at most");
 
-        // The fates at each step.
-        C(!WorshipMath.GodTakesNow(GodRealness.Believed, 2, 40f), "Believed: the god never takes it");
-        C(WorshipMath.GodTakesNow(GodRealness.Walking, 14, 1f) && !WorshipMath.GodTakesNow(GodRealness.Walking, 14, 0.5f), "Walking: taken at the next look, before everyone's eyes");
-        C(WorshipMath.GodTakesNow(GodRealness.Felt, 3, 8f) && !WorshipMath.GodTakesNow(GodRealness.Felt, 14, 8f) && !WorshipMath.GodTakesNow(GodRealness.Felt, 3, 1f),
-            "Felt: gone in the small hours, never by day, never at once");
-        C(WorshipMath.BelievedFate(true, true, false, 0.2f) == OfferingFate.Animal && WorshipMath.BelievedFate(false, true, true, 0.2f) == OfferingFate.Passerby
-          && WorshipMath.BelievedFate(true, false, false, 1f) == OfferingFate.Waiting && WorshipMath.BelievedFate(true, false, false, WorshipMath.SpoilDays) == OfferingFate.Spoiled
-          && WorshipMath.BelievedFate(false, false, false, WorshipMath.ReturnDays) == OfferingFate.Returned,
-            "Believed: an animal eats it, someone passing takes it, or it spoils or goes back to the stores");
+        // When the god takes it: as the gods are felt, or plainly when it is drawn near.
+        C(WorshipMath.GodTakesNow(true, 14, 1f) && !WorshipMath.GodTakesNow(true, 14, 0.5f), "drawn near: taken at the next look, before everyone's eyes");
+        C(WorshipMath.GodTakesNow(false, 3, 8f) && !WorshipMath.GodTakesNow(false, 14, 8f) && !WorshipMath.GodTakesNow(false, 3, 1f),
+            "felt: gone in the small hours, never by day, never at once");
+        string offerings = File.ReadAllText(Path.Combine(root, "Source", "ColonyCouncil", "Gods", "Worship", "Offerings.cs"));
+        C(offerings.Contains("Rand.ValueSeeded(o.chosen") && !offerings.Contains("BelievedFate"), "one offering is taken plainly or not the same at every look; no Believed fates");
 
         // ================= Prayer =================
 
@@ -93,24 +90,24 @@ public static class WorshipTests
             "who prays: the devout most, the wavering little, a scoffer never; more for someone close");
         C(WorshipMath.Comfort(true, false) > WorshipMath.Comfort(false, false) && WorshipMath.Comfort(false, true) > WorshipMath.Comfort(false, false)
           && WorshipMath.PrayerFavour(true) > WorshipMath.PrayerFavour(false), "a prayer comforts more at a god's place, and pleases it more there");
-        C(WorshipMath.AnswerChance(GodRealness.Believed, GodKind.Ordinary, 1f, FavourWord.Beloved, true, true, true) == 0f,
-            "Believed: no prayer is ever answered");
-        C(WorshipMath.AnswerChance(GodRealness.Walking, GodKind.Ordinary, 0.5f, FavourWord.Noticed, false, false, false)
-          > WorshipMath.AnswerChance(GodRealness.Felt, GodKind.Ordinary, 0.5f, FavourWord.Noticed, false, false, false), "the gods answer more plainly when they walk");
-        C(WorshipMath.AnswerChance(GodRealness.Felt, GodKind.Ordinary, 0.5f, FavourWord.Wrathful, true, true, true) == 0f
-          && WorshipMath.AnswerChance(GodRealness.Felt, GodKind.Ordinary, 0.5f, FavourWord.Favoured, false, false, false)
-          > WorshipMath.AnswerChance(GodRealness.Felt, GodKind.Ordinary, 0.5f, FavourWord.Displeased, false, false, false), "a wrathful god never answers; a favouring one more often");
-        C(WorshipMath.AnswerChance(GodRealness.Felt, GodKind.Ordinary, 0.5f, FavourWord.Pleased, true, true, false)
-          > WorshipMath.AnswerChance(GodRealness.Felt, GodKind.Ordinary, 0.5f, FavourWord.Pleased, false, false, false), "a priest and a god's own place make an answer likelier");
-        C(WorshipMath.AnswerChance(GodRealness.Felt, GodKind.Archotech, 1f, FavourWord.Beloved, true, true, true) == 0f
-          && WorshipMath.AnswerChance(GodRealness.Walking, GodKind.Archotech, 1f, FavourWord.Beloved, false, false, false)
-          < WorshipMath.AnswerChance(GodRealness.Walking, GodKind.Ordinary, 1f, FavourWord.Beloved, false, false, false), "an archotech judges deeds, not prayers: seldom, and only when the gods walk");
-        C(WorshipMath.AnswerChance(GodRealness.Felt, GodKind.Hunger, 0.5f, FavourWord.Unknown, false, false, false)
-          > WorshipMath.AnswerChance(GodRealness.Felt, GodKind.Ordinary, 0.5f, FavourWord.Unknown, false, false, false)
-          && WorshipMath.AnswerChance(GodRealness.Felt, GodKind.Dead, 1f, FavourWord.Beloved, true, true, true) == 0f, "the Hunger answers anyone; a dead god never");
-        C(GodsMath.Natures.All(nat => WorshipMath.AnswerChance(GodRealness.Walking, GodKind.Ordinary, 1f, FavourWord.Beloved, true, true, true) <= 0.6f), "an answer is never sure");
-        C(WorshipMath.SicknessEase(GodRealness.Walking) > WorshipMath.SicknessEase(GodRealness.Felt) && WorshipMath.SicknessEase(GodRealness.Believed) == 0f,
-            "a sickness eased a little when the gods are felt, plainly when they walk, never when they're only believed in");
+        C(WorshipMath.AnswerChance(1f, GodKind.Ordinary, 0.5f, FavourWord.Noticed, false, false, false)
+          > WorshipMath.AnswerChance(0f, GodKind.Ordinary, 0.5f, FavourWord.Noticed, false, false, false) && WorshipMath.AnswerChance(0f, GodKind.Ordinary, 0.5f, FavourWord.Noticed, false, false, false) > 0f,
+            "a god answers now and then as the gods are felt, more when drawn near");
+        C(WorshipMath.AnswerChance(0f, GodKind.Ordinary, 0.5f, FavourWord.Wrathful, true, true, true) == 0f
+          && WorshipMath.AnswerChance(0f, GodKind.Ordinary, 0.5f, FavourWord.Favoured, false, false, false)
+          > WorshipMath.AnswerChance(0f, GodKind.Ordinary, 0.5f, FavourWord.Displeased, false, false, false), "a wrathful god never answers; a favouring one more often");
+        C(WorshipMath.AnswerChance(0f, GodKind.Ordinary, 0.5f, FavourWord.Pleased, true, true, false)
+          > WorshipMath.AnswerChance(0f, GodKind.Ordinary, 0.5f, FavourWord.Pleased, false, false, false), "a priest and a god's own place make an answer likelier");
+        C(WorshipMath.AnswerChance(0f, GodKind.Archotech, 1f, FavourWord.Beloved, true, true, true) == 0f
+          && WorshipMath.AnswerChance(1f, GodKind.Archotech, 1f, FavourWord.Beloved, false, false, false) > 0f
+          && WorshipMath.AnswerChance(1f, GodKind.Archotech, 1f, FavourWord.Beloved, false, false, false)
+          < WorshipMath.AnswerChance(1f, GodKind.Ordinary, 1f, FavourWord.Beloved, false, false, false), "an archotech judges deeds, not prayers: seldom, and only when drawn near");
+        C(WorshipMath.AnswerChance(0f, GodKind.Hunger, 0.5f, FavourWord.Unknown, false, false, false)
+          > WorshipMath.AnswerChance(0f, GodKind.Ordinary, 0.5f, FavourWord.Unknown, false, false, false)
+          && WorshipMath.AnswerChance(0f, GodKind.Dead, 1f, FavourWord.Beloved, true, true, true) == 0f, "the Hunger answers anyone; a dead god never");
+        C(GodsMath.Natures.All(nat => WorshipMath.AnswerChance(1f, GodKind.Ordinary, 1f, FavourWord.Beloved, true, true, true) <= 0.6f), "an answer is never sure");
+        C(WorshipMath.SicknessEase(1f) > WorshipMath.SicknessEase(0f) && WorshipMath.SicknessEase(0f) > 0f,
+            "a sickness eased a little as the gods are felt, more plainly when the god is drawn near");
         C(WorshipMath.Drought(6, true, true) && !WorshipMath.Drought(5, true, true) && !WorshipMath.Drought(9, false, true) && !WorshipMath.Drought(9, true, false),
             "a drought: six dry days in the growing season with a field sown");
         C(WorshipMath.Turns(2, 0.1f) && !WorshipMath.Turns(1, 0f) && !WorshipMath.Turns(3, 0.9f), "two crises of faith in a month, and they may turn to another god");
@@ -142,8 +139,8 @@ public static class WorshipTests
 
         // ================= The council =================
 
-        C(WorshipMath.DrySpellDays(GodRealness.Believed, false) == 0 && WorshipMath.DrySpellDays(GodRealness.Walking, false) > WorshipMath.DrySpellDays(GodRealness.Felt, false)
-          && WorshipMath.DrySpellDays(GodRealness.Felt, true) < WorshipMath.DrySpellDays(GodRealness.Felt, false), "the rain kept away: never in Believed, longer when the gods walk, shorter for a lesser gift");
+        C(WorshipMath.DrySpellDays(0f, false) == 5 && WorshipMath.DrySpellDays(1f, false) > WorshipMath.DrySpellDays(0f, false)
+          && WorshipMath.DrySpellDays(0f, true) < WorshipMath.DrySpellDays(0f, false), "the rain kept away: five days as felt, longer when the god is drawn near, shorter for a lesser gift");
         C(WorshipMath.BeastGiven > WorshipMath.LesserGiven && WorshipMath.BeastRefused < 0f && WorshipMath.HonourFactor > 1f, "the beast given pleases most; refused, the god is displeased");
 
         // ================= Dreams =================
@@ -158,10 +155,10 @@ public static class WorshipTests
 
         // ================= RimWorld of Magic =================
 
-        C(WorshipMath.ManaFactor(FavourWord.Beloved, GodRealness.Believed) == 1f && WorshipMath.ManaFactor(FavourWord.Wrathful, GodRealness.Believed) == 1f, "Believed: mana untouched");
-        C(WorshipMath.ManaFactor(FavourWord.Beloved, GodRealness.Walking) == 1.5f && WorshipMath.ManaFactor(FavourWord.Wrathful, GodRealness.Walking) == 0f
-          && WorshipMath.ManaFactor(FavourWord.Unknown, GodRealness.Walking) == 1f && WorshipMath.ManaFactor(FavourWord.Displeased, GodRealness.Felt) > WorshipMath.ManaFactor(FavourWord.Displeased, GodRealness.Walking),
-            "mana by favour: faster when beloved, cut off when wrathful (Walking), most of the way when the gods are felt");
+        C(WorshipMath.ManaFactor(FavourWord.Beloved, 1f) == 1.5f && WorshipMath.ManaFactor(FavourWord.Wrathful, 1f) == 0f
+          && WorshipMath.ManaFactor(FavourWord.Unknown, 0f) == 1f && WorshipMath.ManaFactor(FavourWord.Displeased, 0f) > WorshipMath.ManaFactor(FavourWord.Displeased, 1f)
+          && Math.Abs(WorshipMath.ManaFactor(FavourWord.Beloved, 0f) - 1.3f) < 0.001f,
+            "mana by favour: faster when beloved, slower when angry, most of the way as the gods are felt, all of it when the god is drawn near");
         C(WorshipMath.ClassDomain("Priest") == GodDomain.Healing && WorshipMath.ClassDomain("Druid") == GodDomain.Wild && WorshipMath.ClassDomain("StormBorn") == GodDomain.Storm
           && WorshipMath.ClassDomain("Necromancer") == GodDomain.Dead && WorshipMath.ClassDomain("Technomancer") == GodDomain.Machine && WorshipMath.ClassDomain("Ranger") == GodDomain.Hunt
           && WorshipMath.ClassDomain("Shooter") == GodDomain.None, "a RimWorld of Magic class serves its domain's gods (the design's gifts)");
@@ -195,8 +192,8 @@ public static class WorshipTests
         C(!Regex.IsMatch(all, @"FavourValue\([^)]*\)\.ToString|ToStringPercent\(\)[^;]*Favour"), "favour never shown as a number");
         C(!all.Contains("GodSymbols") && !all.Contains("GodWords.Word(") && !Regex.IsMatch(all, @"\.Named\(""WORD""\)"), "the unseen rule: no favour word or symbol on worship's buttons, lines or cards");
         C(files["Worship.cs"].Contains("Gods.CardName(g, map, sign)") && files["Worship.cs"].Contains("CC_GW_Hand_Plain") && files["Worship.cs"].Contains("CC_GW_Hand_Felt")
-          && files["Worship.cs"].Contains("text += Hand(g, map, cell)"),
-            "the god behind a sign named only as the core allows (Gods.CardName), else \"some say\" at Felt when someone saw it, else unnamed");
+          && files["Worship.cs"].Contains(": Hand(g, map, cell);") && files["Worship.cs"].Contains("if (!spec.veiled && !GodWorld.Witnessed(map, cell)) spec.veiled = true;"),
+            "the god behind a sign named only as the core allows (Gods.CardName) or when it showed itself plainly before someone, else \"some say\" when someone saw it, else unnamed");
         C(!all.Contains("Worship.CardName(") && !all.Contains("MarkActing("), "no stand-in for the core's naming, and worship never decides the colony saw a god act");
         C(files["Worship.cs"].Contains("Gods.Remember(new GodAct") && files["Worship.cs"].Contains("GodLore.Saw(who, g, words)"),
             "the gods' history through Gods.Remember, and the colony's book through what its people saw (GodLore.Saw)");
@@ -252,7 +249,7 @@ public static class WorshipTests
         foreach (Match m in Regex.Matches(all, "\"(CC_Wsh_[A-Za-z_]+[A-Za-z])\"(?!\\s*\\+)"))
             C(keys.Contains(m.Groups[1].Value), "key " + m.Groups[1].Value);
         // The families of keys built from a step, a kind or a domain.
-        foreach (var step in new[] { "Believed", "Felt", "Walking" })
+        foreach (var step in new[] { "Felt", "Plain" })
             foreach (var fam in new[] { "CC_Wsh_Dedicated_", "CC_Wsh_Answer_Sickness_", "CC_Wsh_Answer_Death_", "CC_Wsh_Answer_Raid_", "CC_Wsh_Answer_Drought_",
                          "CC_Wsh_Wrath_", "CC_Wsh_DryBegins_", "CC_Wsh_DryPass_", "CC_Wsh_BeastGiven_", "CC_Wsh_Taken_Taken_" })
                 C(keys.Contains(fam + step), "key " + fam + step);

@@ -5,6 +5,18 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## The gods, one way
+
+*12 November 2026, version 0.224.0*
+
+- Selene's night no longer comes twice in a few days: what was done by day comes back only around a full moon, a moon apart at least, and only after a day that stood out. Tending the wounded every day is no reason.
+- When the moon comes back to the same person for the same deed, it goes a step further and people say it happened again; otherwise it takes a different form from last time.
+- Every happening of the gods keeps its own pace: once it could come again its chance starts small and grows, so you can't tell when it will come.
+- A myth at supper, a prayer answered, the rock rumbling over a deep mine, a god answering in the weather, mocking and bickering over faith, a god's dream and a visit to a god's mark all come much further apart.
+- The gods are felt, one way in every game: the setting "How real are the gods" is gone.
+- Each god draws nearer by what happens: a drought for Murmur, a deep mine for Smoulder, a hard winter for Hush, quarrels between gods, offerings and harm. A god drawn near may show itself plainly, answer more strongly, take an offering in a breath of light or rise in its true form, while the others stay hidden.
+- A god is still named only when the colony is sure it was that god.
+
 ## Letters and favours made clear
 
 *12 November 2026, version 0.223.0*

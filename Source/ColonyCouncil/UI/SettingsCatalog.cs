@@ -458,10 +458,9 @@ namespace ColonyCouncil
             Toggle("diplomacyWards", "CC_Settings_DiplomacyWards", "CC_SetNote_DiplomacyWards", "factionMemory");
             Toggle("diplomacyRenown", "CC_Settings_DiplomacyRenown", "CC_SetNote_DiplomacyRenown", "factionMemory");
             Toggle("diplomacyNature", "CC_Settings_DiplomacyNature", "CC_SetNote_DiplomacyNature", "heart");
-            // The gods (Gods/): the pantheon, and how real they are.
+            // The gods (Gods/): the pantheon, felt one way, each god as near as what happens draws it (Gods/GodNear.cs).
             Section("CC_SetSec_Gods");
             Toggle("gods", "CC_Settings_Gods", "CC_SetNote_Gods");
-            Choice("godRealness", "CC_Settings_GodRealness", "CC_Settings_GodRealness_Tip", "CC_GodRealness_", "CC_SetNote_GodRealness_", new[] { "Believed", "Felt", "Walking" }, "gods");
             Toggle("godWorship", "CC_Settings_GodWorship", "CC_SetNote_GodWorship", "gods");
             Section("CC_SetSec_Neighbours");
             Toggle("notables", "CC_Settings_Notables", "CC_SetNote_Notables");

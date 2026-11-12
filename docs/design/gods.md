@@ -8,7 +8,7 @@
 > - the sections at the end of this file: "The nine ... the contract for the rework", "The gods are unseen" and "The
 >   colony's book".
 >
-> The parts in between are kept for the machinery they describe (favour as hidden state, realness, the presence's look
+> The parts in between are kept for the machinery they describe (favour as hidden state, how near each god is, the presence's look
 > and moment, the stage 2 parts). Wherever they show the player a god's favour, symbol, name label or rules, the later
 > sections overrule them.
 
@@ -32,12 +32,23 @@ questions answered by the lead's defaults, the parts, who builds what, and the c
 
 ## Decisions (the lead's defaults; the player can change them later)
 
-- **How real** (brainstorm 1): a setting "How real are the gods", with Believed, Felt (default) and Walking.
-  - Believed: nothing supernatural; prayers, rites, omens read into chance, and no avatars.
-  - Felt: gods act, but never so plainly that nobody could doubt it. Avatars come, mostly in disguise or as sacred
-    animals, and leave before anyone can be sure. The card says "some say" and colonists disagree.
-  - Walking: gods manifest openly, are named on the card, can be spoken with, and miracles are plain.
-  Every feature reads `Gods.Realness` and takes the form of the step.
+- **How real: one way, felt; each god as near as what happens draws it** (the player, 12 November 2026: "yes, let's
+  stick to one level and use felt as primary reference. i just want the 'walking'-exclusive options also to be able to
+  appears, like smoulders true form. i guess the level could be dynamic, some gods might become more present depending
+  on situations, relations, actions etc. also the 'cards' level on felt is great, the god should only be named if it's
+  sure it was them"). The setting "How real are the gods" (Believed, Felt, Walking) is retired, with its branches and
+  line tags.
+  - The gods are felt: they act, but never so plainly that nobody could doubt it. Avatars come, mostly in disguise or
+    as sacred animals, and leave before anyone can be sure. The card says "some say" and colonists disagree.
+  - Each god's nearness (`GodNear`, `GodNearMath`; hidden, never shown) moves on its own, by the situation on the land
+    (its shape's `nearWhen`: a drought for Murmur, a deep mine for Smoulder, a hard winter for Hush), its relations (a
+    quarrel it is in, a tied god stirred) and what the colony does (offerings, harm, its book, a strong standing).
+  - At nothing a god is exactly felt. Nearer, what only walking gods did can happen: a god seen plainly (and so named,
+    as the colony is sure), its true form (Smoulder as Dragon's Descent's true dragon, Murmur as Odyssey's colossus
+    toad), a stronger answer, an offering gone in a breath of light, less disguise. One god can walk plainly while
+    another stays hidden.
+  - Cards stay as felt: a god is named only where the colony is sure it was that god (`Gods.CardName`), else unnamed
+    or "some say".
 - **One pantheon per world, many faiths** (brainstorm 2 to 4):
   - Each ideoligion's deities are real figures, with a domain from the deity's own words and the faith's memes and
     precepts. Without Ideology, each faction gets two or three gods from Rimfolk's own pantheon makers.
@@ -189,7 +200,7 @@ The core agent may tune the names to the peoples' lore files.
 - `Gods`, the public face every other part uses:
   - `All`, `Of(Faction)`, `OfIdeo(Ideo)`, `ColonyGods(Map home)`, `Patron(Map home)`;
   - `Favour(God, home)` in words, and `AddFavour(God, home, amount, why)`, which the history records;
-  - `Realness`, the setting;
+  - how near each god is to the colony: `GodNear.Of(god, home)` (the realness setting retired 12 November 2026);
   - `Remember(GodAct)`, the history of acts;
   - `Name`, `Epithet`, `SwearBy(pawn)` (which god a pawn would swear by), and placeholders `{GOD}`, `{GODEPITHET}`,
     `{GODOF}` for text (taught to the DefValidator).
@@ -197,7 +208,7 @@ The core agent may tune the names to the peoples' lore files.
   and faiths, its domain, the colony's favour in words, and the acts remembered. Also an Almanac page.
 - The **symbols**: one per domain, drawn by `Tools/make_god_symbols.py` (white on transparent, tinted in code), as the
   mailbag and the thermometer were.
-- The setting "How real are the gods" and a master setting "Gods" (on by default).
+- A master setting "Gods" (on by default). (The setting "How real are the gods" is retired: one way, felt.)
 - **Seams the later parts call**, to be defined by Core:
   - `Gods/GodPresenceSeam.cs`: `public static Func<PresenceSpec, bool> Manifest` (null until the presence part sets it)
     and the plain `PresenceSpec` class: god, map, cell, kind (Appear, Act, Reveal, Depart, Blessing, Wrath, Omen),
@@ -319,9 +330,8 @@ What every part builds to:
   - what each one likes, refuses, gives and does.
 - **Named only when the colony knows.** `Gods.CardName(god, home, sign)` returns the colony's name for a god when the
   colony knows something was its doing, else null (unnamed, or "some say" where it is only suspected). It knows when:
-  - the gods walk openly (the realness setting Walking);
-  - it saw the god act plainly: a manifestation witnessed, a disguised god revealing itself (`GodLore.MarkActing`, done
-    by `Gods.Moment`);
+  - it saw the god act plainly: a manifestation witnessed, a god drawn near enough to show itself (`GodNear.Plain`), a
+    disguised god revealing itself (`GodLore.MarkActing`, done by `Gods.Moment`);
   - it learned that sign as the god's own: `GodLore.LearnSign(god, sign)`, called by a part when a teller explains it,
     and done when a story that teaches it (`GodStory.teaches`) is heard whole.
 
@@ -354,7 +364,8 @@ What every part builds to:
   book once someone has heard of it, else what is seen of it ("a great white thrumbo", `GodDef.unheard`). A disguised god
   shows only the name it gives. The card is cryptic, in the world's voice, with no why, no favour and no rules; a felt
   god's card is unnamed unless the colony knows (`CardName`).
-- **The realness setting** stays (Believed, Felt, Walking); the dev actions stay (dev mode only).
+- **One way, felt** (since 12 November 2026; the realness setting retired): each god as near as what happens draws it
+  (`GodNear`); the dev actions stay (dev mode only).
 
 ## The gods are unseen (the player's rule, 11 November 2026, binding for every part)
 
@@ -375,7 +386,7 @@ it ... if I look at the gods in like a fancy list in the menu, it kind of takes 
     line, a scoffer's doubt;
   - the stories, in pieces, only through people.
 - **A manifestation's card** says what was seen and heard, eerily, with no why. At Felt the god may stay unnamed.
-- **Favour, ties, natures and kinds** are hidden state that drives what the gods do. The realness setting and the dev
+- **Favour, ties, natures, kinds and how near each god is** are hidden state that drives what the gods do. The dev
   actions stay.
 - The Book of the Gods described above is withdrawn.
 
@@ -421,6 +432,6 @@ and heat wave from Cirrus and Pip; the eclipse is Helios and Selene meeting.
 "I mean in events etc the god can be named, if we know it's them that caused something."
 - **Named:** an event, card or letter names the god plainly, by the name the colony knows it by, when the colony knows
   it was that god: it was seen acting, a disguised god revealed itself, the colony has learned that sign as the god's
-  own, or the realness setting is Walking.
+  own (a god drawn near enough shows itself plainly, and is named from then on).
 - **Unnamed:** when the colony only suspects, it's "some say". When it has never heard of the god, nothing is named.
 - **Never:** the god's mind, its favour or its rules.

@@ -556,15 +556,17 @@ namespace ColonyCouncil
 
         /// <summary>
         /// Mining too deep under the mountain makes a sleeping god turn (GodWaking: a god whose shape's signs are the rock
-        /// rumbling): where one of the colony mines under thick rock, now and then, days apart.
+        /// rumbling): in an hour one of the colony mines under thick rock, at a small chance that grows the longer since the
+        /// last time (GodsOnMapMath.DeepNow), never within days of it.
         /// </summary>
         private static void Deep(GodsOnMapBook b, int now)
         {
-            if (b.woken != null || now - b.lastDeep < GenDate.TicksPerDay * GodsOnMapMath.DeepGapDays || !Rand.Chance(GodsOnMapMath.DeepChanceAnHour)) return;
+            if (b.woken != null || now - b.lastDeep < GenDate.TicksPerDay * GodsOnMapMath.DeepGapDays) return;
             var god = GodWaking.Sleeper;
             if (god == null) return;
             var miner = GodWaking.Miner(out var map);
-            if (miner != null && !MapFacts.ThreatOn(map)) GodWaking.Turned(b, god, map, miner, now);
+            if (miner == null || MapFacts.ThreatOn(map) || !Rand.Chance(GodsOnMapMath.DeepNow(GodPace.DaysSince(b.lastDeep, now)))) return;
+            GodWaking.Turned(b, god, map, miner, now);
         }
     }
 }

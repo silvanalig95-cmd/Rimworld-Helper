@@ -115,7 +115,7 @@
       <li>{A_nameDef} says {GOD} wants {PET_labelShort}. {A_pronoun} dreamt it three nights running: the beast walking out past the last field, and the sky dry as bone behind it if it doesn't.</li>
       <li>[bonded] {A_nameDef} says {GOD} wants {PET_labelShort}, of all the beasts, and knows exactly whose heart that breaks. {GOD} was very clear, {A_pronoun} says. Give it, or the rain stays away.</li>
       <li>[lowtech] {A_nameDef} read the bones and read them again. {GOD} wants {PET_labelShort} given to the wild, or no rain will come to the fields.</li>
-      <li>[step:believed] {A_nameDef} is sure of it: {GOD} wants {PET_labelShort} let go into the wild, and a dry spell will follow if the colony holds on to it. Half the council thinks it was a bad dream. The other half has seen what a dry spell does.</li>
+      <li>{A_nameDef} is sure of it: {GOD} wants {PET_labelShort} let go into the wild, and a dry spell will follow if the colony holds on to it. Half the council thinks it was a bad dream. The other half has seen what a dry spell does.</li>
     </texts>
     <defaultOption>2</defaultOption>
     <options>
@@ -123,7 +123,7 @@
         <label>Give {PET_labelShort} to {GOD}</label>
         <outcome>{A_nameDef} walked out to {PET_labelShort} and let it go. It went off toward the edge of the land at its own pace and didn't look back. Some say {GOD} was waiting for it there.</outcome>
         <outcomes>
-          <li>[step:walking] {A_nameDef} let {PET_labelShort} go, and everyone saw where it went: straight to the edge of the land, as if called.</li>
+          <li>[near] {A_nameDef} let {PET_labelShort} go, and everyone saw where it went: straight to the edge of the land, as if called.</li>
         </outcomes>
         <ways><tradition>2</tradition><generosity>2</generosity></ways>
         <effects>

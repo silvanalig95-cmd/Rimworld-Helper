@@ -62,7 +62,7 @@
       <li>[sign] {GOD} is close to the surface today, the ground feels like it's listening.</li>
       <li>[wrath] That's {GOD}, paying us back for the woodlot.</li>
       <li>[wrath] We cut too much, and the roots remember it.</li>
-      <li>[walking] {GOD} has spoken, and I'd answer her if I knew how.</li>
+      <li>[near] {GOD} has spoken, and I'd answer her if I knew how.</li>
     </hands>
     <scoffs>
       <li>Plants grow, that's all plants do.</li>
@@ -197,7 +197,7 @@
       <li>[wrath] We dug too deep, and {GOD} turned over.</li>
       <li>[wrath] That's the mountain breathing out, and he isn't pleased.</li>
       <li>[sign] Feel how warm the rock is, {GOD} is breathing close tonight.</li>
-      <li>[walking] I heard him, under the floor, I swear I heard him snore.</li>
+      <li>[near] I heard him, under the floor, I swear I heard him snore.</li>
     </hands>
     <scoffs>
       <li>Rock falls, that's what rock does.</li>
@@ -321,7 +321,7 @@
       <li>[sign] {GOD}'s kin are walking his road again.</li>
       <li>[sign] Bring the children, quick, before it's gone.</li>
       <li>[gift] The grass will come up greener where it grazed, you watch.</li>
-      <li>[walking] It looked right at me, and I'm not afraid of anything now.</li>
+      <li>[near] It looked right at me, and I'm not afraid of anything now.</li>
     </hands>
     <scoffs>
       <li>It's a thrumbo, they wander.</li>
@@ -437,7 +437,7 @@
       <li>[gift] Mushrooms all along the wall, {GOD} has been generous.</li>
       <li>[sign] Smell that, rich earth, and it hasn't rained.</li>
       <li>[sign] There's a ring of them round the grave, {GOD} wants us to look.</li>
-      <li>[walking] I heard her in the spores, soft as anything, and too close.</li>
+      <li>[near] I heard her in the spores, soft as anything, and too close.</li>
     </hands>
     <scoffs>
       <li>Things rot, it's damp, that's all there is to it.</li>
@@ -557,7 +557,7 @@
       <li>[sign] Look at the dogs, they'll follow that one anywhere.</li>
       <li>[sign] Set another bowl, my mother always said {GOD} comes in the cold.</li>
       <li>[gift] A guest at the gate is luck at the gate, that's what we always said.</li>
-      <li>[walking] It thanked me by my name, and I never told it my name.</li>
+      <li>[near] It thanked me by my name, and I never told it my name.</li>
     </hands>
     <scoffs>
       <li>It's a stranger, not a god in a coat.</li>
@@ -673,7 +673,7 @@
       <li>[wrath] That's {GOD} in a mood, give it a day and be nice to the wiring.</li>
       <li>[sign] The lights are tapping, {GOD} wants us to notice something.</li>
       <li>[sign] Listen to the static, that's breathing, I'm telling you.</li>
-      <li>[walking] It laughed, the console laughed at me.</li>
+      <li>[near] It laughed, the console laughed at me.</li>
     </hands>
     <scoffs>
       <li>It's bad wiring, not a ghost.</li>
@@ -788,7 +788,7 @@
       <li>[sign] {GOD} has one eye shut, keep your voices down.</li>
       <li>[sign] Look up, it's turning over up there.</li>
       <li>[wrath] {GOD} is bored, and it's taking it out on us.</li>
-      <li>[walking] There's a shape up there that isn't cloud, and it's looking down.</li>
+      <li>[near] There's a shape up there that isn't cloud, and it's looking down.</li>
     </hands>
     <scoffs>
       <li>It's weather, the sky does weather.</li>
@@ -923,7 +923,7 @@
       <li>[sign] Did you hear it go quiet, just for a breath?</li>
       <li>[sign] There's someone tall and white out past the fields, don't look at it.</li>
       <li>[sign] Look at the window, the frost has made letters.</li>
-      <li>[walking] It stood out there all night, and it didn't leave a single footprint.</li>
+      <li>[near] It stood out there all night, and it didn't leave a single footprint.</li>
     </hands>
     <scoffs>
       <li>It's cold, it's winter, that's the whole story.</li>
@@ -1022,7 +1022,7 @@
       <li>[wrath] Something under us is pulling, I can feel it in my teeth.</li>
       <li>[wrath] Light every lamp tonight, all of them.</li>
       <li>[sign] Don't go near that, and don't answer if it talks.</li>
-      <li>[walking] It said my name, so sweetly, and it knew what I wanted.</li>
+      <li>[near] It said my name, so sweetly, and it knew what I wanted.</li>
     </hands>
     <scoffs>
       <li>It's a psychic wave, the scholars have a word for it.</li>
@@ -1157,7 +1157,7 @@
       <li>[wrath] {GOD} doesn't mean it, he just gives and gives.</li>
       <li>[gift] Long clear days, {GOD} is giving to everyone this year.</li>
       <li>[sign] Look how the light lies on the fields today.</li>
-      <li>[walking] The light pressed down on all of us, warm as a hand.</li>
+      <li>[near] The light pressed down on all of us, warm as a hand.</li>
     </hands>
     <scoffs>
       <li>It's summer, summer is hot.</li>
@@ -1296,7 +1296,7 @@
       <li>[wrath] That's what we did coming back, {GOD} returns everything.</li>
       <li>[wrath] Whatever we sent out by day has come home tonight.</li>
       <li>[sign] Full moon tonight, {GOD} sees everything we did.</li>
-      <li>[walking] The moonlight lay on us like it was reading us.</li>
+      <li>[near] The moonlight lay on us like it was reading us.</li>
     </hands>
     <scoffs>
       <li>It's the moon, it does that.</li>
@@ -1433,7 +1433,7 @@
       <li>[sign] There's {GOD}, asleep in the warmest spot as usual.</li>
       <li>[gift] She sat on my lap all evening, I'll take the luck.</li>
       <li>[sign] Every cat on the place is following that gray one.</li>
-      <li>[walking] Her eyes are too bright, and the other cats bow their heads to her.</li>
+      <li>[near] Her eyes are too bright, and the other cats bow their heads to her.</li>
     </hands>
     <scoffs>
       <li>It's a cat, it wants the warm spot like any cat.</li>
@@ -1568,7 +1568,7 @@
       <li>[wrath] {GOD} has gone quiet, and the ground knows it.</li>
       <li>[wrath] That's {GOD} awake and furious, get the stores off the floor.</li>
       <li>[sign] Feel that in your chest, the wells are croaking.</li>
-      <li>[walking] Its eye came up out of the water, big as a cart wheel.</li>
+      <li>[near] Its eye came up out of the water, big as a cart wheel.</li>
     </hands>
     <scoffs>
       <li>It's a dry year, they come and go.</li>
@@ -1689,7 +1689,7 @@
       <li>[gift] Right when we had something to sell, somebody likes us.</li>
       <li>[wrath] Who's been sitting on the silver, {GOD} doesn't like a hoard.</li>
       <li>[sign] Did you see that glint by the door, just now?</li>
-      <li>[walking] A gold beetle walked over the ledger and stopped on the furs.</li>
+      <li>[near] A gold beetle walked over the ledger and stopped on the furs.</li>
     </hands>
     <scoffs>
       <li>Traders come by, it's a trade road.</li>

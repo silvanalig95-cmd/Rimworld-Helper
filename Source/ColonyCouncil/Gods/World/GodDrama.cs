@@ -306,7 +306,8 @@ namespace ColonyCouncil
             {
                 if (map == null || !GodWorldMath.SupperHour(GenLocalDate.HourOfDay(map))) continue;
                 string key = "myth:" + Homes.KeyOf(map);
-                if (!b.Gap(key, GodWorldMath.MythGapDays) || !GodWorld.Roll(GodWorldMath.MythEveningChance / 3f)) continue;
+                if (!b.Gap(key, GodWorldMath.MythGapDays)
+                    || !GodWorld.Roll(GodWorldMath.MythEveningChance / 3f * GodPaceMath.Ramp(b.DaysSince(key), GodWorldMath.MythGapDays, GodWorldMath.MythRampDays))) continue;
                 if (Supper(map)) b.Came(key);
             }
             foreach (var d in b.Of("undo").Concat(b.Of("hide")).Where(x => now > x.until).ToList())
@@ -331,6 +332,10 @@ namespace ColonyCouncil
                 var own = Gods.SwearBy(teller);
                 var god = own != null && Gods.Known(own) && GodWorld.Roll(0.7f) ? own : GodWorld.Known.RandomElementWithFallback();
                 if (god == null) return false;
+                // Not the god of the last story told at this table, where the colony knows another.
+                string home = Homes.KeyOf(map).ToString();
+                var told = GodPace.Forms("myth", home);
+                if (told.Count > 0 && told[0] == god.Key) god = GodWorld.Known.Where(x => x != god).RandomElementWithFallback() ?? god;
                 var other = Gods.TiesOf(god).Select(t => Gods.ById(t.Other(god.id))).Where(x => x != null && Gods.Known(x)).RandomElementWithFallback();
                 var tags = new List<string> { "god:" + god.domain.ToString().ToLowerInvariant() };
                 if (other != null) tags.Add("tied");
@@ -342,6 +347,7 @@ namespace ColonyCouncil
                 // together: the two are at their meal side by side (Together.Can above); the line is said to the listener.
                 if (!Speech.Say(teller, said, listener)) return false;
                 GodWorld.Remember(god, map, GodActKind.Act, "CC_GW_Told_Supper".Translate(teller.Named("PAWN"), listener.Named("LISTENER"), said.Named("WORDS")).Resolve(), other);
+                GodPace.Note("myth", god.Key, home);
                 return true;
             }
             return false;

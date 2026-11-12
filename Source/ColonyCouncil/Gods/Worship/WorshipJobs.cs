@@ -72,8 +72,8 @@ namespace ColonyCouncil
             stay.tickIntervalAction = delta =>
             {
                 if (job.targetA.HasThing) pawn.rotationTracker.FaceTarget(job.targetA);
-                // A small light now and then as they pray, where the gods are felt.
-                if (Act != WorshipAct.Dedicate && pawn.IsHashIntervalTick(400, delta) && Gods.Realness != GodRealness.Believed)
+                // A small light now and then as they pray.
+                if (Act != WorshipAct.Dedicate && pawn.IsHashIntervalTick(400, delta))
                     FleckMaker.ThrowMetaIcon(pawn.Position, pawn.Map, FleckDefOf.Meditating);
             };
             stay.defaultCompleteMode = ToilCompleteMode.Delay;
@@ -262,7 +262,7 @@ namespace ColonyCouncil
             pray.tickIntervalAction = delta =>
             {
                 if (job.targetB.IsValid) pawn.rotationTracker.FaceCell(job.targetB.Cell);
-                if (pawn.IsHashIntervalTick(500, delta) && Gods.Realness != GodRealness.Believed)
+                if (pawn.IsHashIntervalTick(500, delta))
                     FleckMaker.ThrowMetaIcon(pawn.Position, pawn.Map, FleckDefOf.Meditating);
             };
             yield return pray;

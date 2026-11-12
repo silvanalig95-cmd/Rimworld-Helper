@@ -383,6 +383,7 @@ MODEL = {
     "Gods/OnMap/GodsOnMapBook.cs:marks": ("cap", (const("Gods/OnMap/GodsOnMapMath.cs", "MaxMarks", 24), 0.05), 260, "the marks the gods left, GodsOnMapMath.MaxMarks, let go after five years"),
     "Gods/OnMap/GodsOnMapBook.cs:weatherHomes": ("fixed", 1, V, "one per home: when a god last answered in the weather there"),
     "Gods/OnMap/GodsOnMapBook.cs:weatherTicks": ("fixed", 1, V, "beside it, the tick"),
+    "Gods/OnMap/GodsOnMapBook.cs:lately": ("fixed", const("Gods/GodPaceMath.cs", "Memory", 12), 40, "the gods' short memory of their last happenings ('return|Nightmare|1234'), GodPaceMath.Memory at most"),
     # The sacred beast's stay, while it lasts: its kin following at a distance (GodShapeDef.kinCount, three at most) and those
     # who sat near it (GodsOnMapMath.SittersAVisit).
     "Gods/OnMap/SacredAnimal.cs:kin": ("while", 3, P, "the beast's kin following at a distance, while it stays (a few times in a long game)"),

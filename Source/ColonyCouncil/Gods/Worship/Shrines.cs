@@ -15,7 +15,8 @@ namespace ColonyCouncil
     /// and Structures' alike: anything with a ritual focus), its art (sculptures, statues), Royalty's nature shrines, and an
     /// ancient terminal of the archotechs can each be dedicated to a god: a button on the place asks which god, and a
     /// colonist (the priest first, else one who holds that god, else anyone free) walks over and says the words there. Only
-    /// then is it the god's: its name on the place, a small light where the gods are felt, the god pleased. Taken from one
+    /// then is it the god's: its name on the place, a small light (a brighter one when the god is drawn near and shows
+    /// itself), the god pleased. Taken from one
     /// god for another, the first is displeased. In the colony's age it is a shrine, a chapel, a church or a terminal; one
     /// standing in a fine room indoors is a temple.
     /// </summary>
@@ -220,8 +221,9 @@ namespace ColonyCouncil
             if (old != null)
                 Worship.Favour(old, map, WorshipMath.RededicateFavour, "CC_Wsh_Why_TakenFrom".Translate(t.LabelShort.Named("PLACE"), g.name.Named("OTHER")).Resolve(),
                     FavourSource.Neglect, GodOffence.Rivals);
-            Worship.Glow(map, t.Position, g);
-            string text = ("CC_Wsh_Dedicated_" + Worship.Step).Translate((p?.LabelShort ?? "?").Named("PAWN"), t.LabelShort.Named("PLACE"), Worship.Called(g).Named("GOD"),
+            bool plain = GodNear.Plain(g, map);
+            Worship.Glow(map, t.Position, g, false, plain);
+            string text = ("CC_Wsh_Dedicated_" + Worship.Step(plain)).Translate((p?.LabelShort ?? "?").Named("PAWN"), t.LabelShort.Named("PLACE"), Worship.Called(g).Named("GOD"),
                 place.Named("SHRINE")).Resolve();
             Tell.Minor(NewsKind.Colony, Importance.Notable, map, text, t);
             // The colony gave it to this god itself, and knows it: in the colony's book by those who saw the words said.

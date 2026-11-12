@@ -9,7 +9,8 @@ namespace ColonyCouncil
 {
     /// <summary>
     /// Dev mode: the gods ("Rimfolk", "Gods: ..."), the only place their hidden state shows. The gods in the log, with their
-    /// ties, who reveres them and the colony's favour; favour added to a god at this home; how real the gods are, set; every
+    /// ties, who reveres them, the colony's favour and how near each is; favour added to a god at this home; a god drawn near
+    /// for a test, or let be; every
     /// god made known; a deed of a domain done; a god's hand shown here; every story heard; the colony's book opened, and a
     /// name in it worked out; the gods made again for this world.
     /// </summary>
@@ -32,7 +33,7 @@ namespace ColonyCouncil
             var b = GodBook.Instance;
             var map = Find.CurrentMap;
             var lore = GodLore.Instance;
-            var sb = new StringBuilder("[Rimfolk] Gods: " + b.gods.Count + " gods, " + b.ties.Count + " ties, realness " + Gods.Realness + ", patron here "
+            var sb = new StringBuilder("[Rimfolk] Gods: " + b.gods.Count + " gods, " + b.ties.Count + " ties, patron here "
                                        + (Gods.Patron(map)?.name ?? "none") + "; the book: " + (lore?.entries.Count ?? 0) + " entries, " + (lore?.names.Count ?? 0) + " names, keeper "
                                        + (GodLore.Keeper(out var voice)?.LabelShort ?? "none") + " (" + voice + ").\n");
             foreach (var g in b.gods)
@@ -41,7 +42,8 @@ namespace ColonyCouncil
                 if (g.second != GodDomain.None) sb.Append('+').Append(g.second);
                 sb.Append(", ").Append(g.kind).Append(", ").Append(g.nature).Append(") revered by ").Append(Gods.PeopleWords(g)).Append("; ")
                     .Append(g.known ? "known (" + g.knownHow + ")" : "not known").Append("; the book calls it ").Append(lore?.PageOf(g)?.name ?? "nothing yet")
-                    .Append("; favour here ").Append(Gods.Favour(g, map)).Append(" (").Append(Gods.FavourValue(g, map).ToString("0.0")).Append(")\n");
+                    .Append("; favour here ").Append(Gods.Favour(g, map)).Append(" (").Append(Gods.FavourValue(g, map).ToString("0.0")).Append("); near here ")
+                    .Append(GodNear.Of(g, map).ToString("0.00")).Append("\n");
                 foreach (var t in Gods.TiesOf(g).Where(t => t.a == g.id))
                     sb.Append("      ").Append(t.kind).Append(" with ").Append(Gods.ById(t.b)?.name ?? "?").Append(" (").Append(t.strength.ToString("0.00")).Append(")\n");
             }
@@ -76,19 +78,36 @@ namespace ColonyCouncil
             Find.WindowStack.Add(new FloatMenu(options));
         }
 
-        [DebugAction("Rimfolk", "Gods: set how real the gods are...", allowedGameStates = AllowedGameStates.Playing)]
-        private static void DebugRealness()
+        [DebugAction("Rimfolk", "Gods: how near each god is here (log)", allowedGameStates = AllowedGameStates.PlayingOnMap)]
+        private static void DebugNear()
         {
-            var s = ColonyCouncilMod.Settings;
-            if (s == null) return;
+            if (!Ready()) return;
+            Log.Message("[Rimfolk] How near each god is at " + Homes.Name(Find.CurrentMap) + " (0 felt, 1 as near as a god comes):\n" + GodNear.Report(Find.CurrentMap));
+            Say("listed in the log.");
+        }
+
+        [DebugAction("Rimfolk", "Gods: draw a god near (or let it be)...", allowedGameStates = AllowedGameStates.PlayingOnMap)]
+        private static void DebugDrawNear()
+        {
+            if (!Ready()) return;
+            var map = Find.CurrentMap;
             var options = new List<FloatMenuOption>();
-            foreach (GodRealness r in System.Enum.GetValues(typeof(GodRealness)))
+            foreach (var g in Gods.All)
             {
-                var real = r;
-                options.Add(new FloatMenuOption(r + (s.godRealness == r ? " (now)" : ""), () =>
+                var god = g;
+                options.Add(new FloatMenuOption(Gods.FullName(g) + " (" + GodNear.Of(g, map).ToString("0.00") + ")", () =>
                 {
-                    s.godRealness = real;
-                    Say("how real the gods are: " + real + ".");
+                    var levels = new List<FloatMenuOption>();
+                    foreach (float n in new[] { 1f, 0.6f, 0f, -1f })
+                    {
+                        float to = n;
+                        levels.Add(new FloatMenuOption(to < 0f ? "as the game reads it" : to.ToString("0.0"), () =>
+                        {
+                            GodNear.Force(god, to);
+                            Say(god.name + " is " + GodNear.Of(god, map).ToString("0.00") + " near here now (until the game is left).");
+                        }));
+                    }
+                    Find.WindowStack.Add(new FloatMenu(levels));
                 }));
             }
             Find.WindowStack.Add(new FloatMenu(options));

@@ -111,17 +111,6 @@ namespace ColonyCouncil
         Generous
     }
 
-    /// <summary>How a god shows itself at the end of a coming, by how real the gods are.</summary>
-    public enum GodShow
-    {
-        /// <summary>Not at all: nothing supernatural happens (Believed).</summary>
-        None,
-        /// <summary>Never so plainly that nobody could doubt it: gone before anyone can be sure, "some say" (Felt).</summary>
-        Veiled,
-        /// <summary>Openly, named for what it is (Walking).</summary>
-        Plain
-    }
-
     /// <summary>The lasting gift the kindest colonist gets from a god pleased with them.</summary>
     public enum GodGift
     {
@@ -233,16 +222,14 @@ namespace ColonyCouncil
         public const int OmenDaysMin = 2, OmenDaysMax = 4;
 
         /// <summary>
-        /// Whether a god sets out for the colony today, and as what: only where avatars come at all (Felt and Walking; never
-        /// in Believed), after the colony's first days, the gaps past, and the day's roll (<paramref name="roll"/> in [0, 1))
-        /// under <see cref="DailyChance"/>. A stranger needs a people at peace to come from (<paramref name="strangerCan"/>),
+        /// Whether a god sets out for the colony today, and as what: after the colony's first days, the gaps past, and the
+        /// day's roll (<paramref name="roll"/> in [0, 1)) under <see cref="DailyChance"/>: never sure on any day. A stranger needs a people at peace to come from (<paramref name="strangerCan"/>),
         /// an animal a god whose look walks as one that can live here (<paramref name="animalCan"/>); when both may come, the
         /// one longest gone (the stranger on a tie), decided by <paramref name="pick"/> in [0, 1) when they are as long gone.
         /// </summary>
-        public static ComingKind Due(GodRealness r, int day, int daysSinceAny, int daysSinceStranger, int daysSinceAnimal, bool strangerCan, bool animalCan, float roll,
-            float pick)
+        public static ComingKind Due(int day, int daysSinceAny, int daysSinceStranger, int daysSinceAnimal, bool strangerCan, bool animalCan, float roll, float pick)
         {
-            if (!GodsMath.AvatarsCome(r) || day < EarliestDay || daysSinceAny < AnyGapDays || float.IsNaN(roll) || roll >= DailyChance) return ComingKind.None;
+            if (day < EarliestDay || daysSinceAny < AnyGapDays || float.IsNaN(roll) || roll >= DailyChance) return ComingKind.None;
             bool s = strangerCan && daysSinceStranger >= StrangerGapDays;
             bool a = animalCan && daysSinceAnimal >= AnimalGapDays;
             if (s && a)
@@ -252,9 +239,6 @@ namespace ColonyCouncil
             }
             return s ? ComingKind.Stranger : a ? ComingKind.Animal : ComingKind.None;
         }
-
-        /// <summary>How a god shows itself at a coming's end, by how real the gods are.</summary>
-        public static GodShow Show(GodRealness r) => r == GodRealness.Walking ? GodShow.Plain : r == GodRealness.Felt ? GodShow.Veiled : GodShow.None;
 
         /// <summary>
         /// How likely a god of a domain is the stranger at the gate: the road's gods and the hearth's most (the oldest
@@ -612,8 +596,8 @@ namespace ColonyCouncil
 
         // ================= Weather as a voice =================
 
-        /// <summary>Days between two answers in the weather at one home.</summary>
-        public const int WeatherGapDays = 12;
+        /// <summary>Days between two answers in the weather at one home, and the days after it over which its chance grows back (GodPaceMath.Ramp).</summary>
+        public const int WeatherGapDays = 15, WeatherRampDays = 15;
 
         /// <summary>A change of favour at least this big is something a god may answer in the weather.</summary>
         public const float WeatherFrom = 3f;
@@ -624,18 +608,23 @@ namespace ColonyCouncil
         /// (the dead, the night, the void) angered, with an eclipse by day; a god pleased at night, of the night, the road or
         /// the dead, with an aurora. A god whose shape names its own voices (<paramref name="only"/>, GodShapeDef.voices)
         /// answers with the first of them that fits the moment: rain and an aurora only when pleased (an aurora only at
-        /// night), an eclipse only when angered and by day, thunder either way. None for a small change.
+        /// night), an eclipse only when angered and by day, thunder either way; of those that fit, one it didn't answer in
+        /// last time at this home (<paramref name="lately"/>, newest first) where there is one. None for a small change.
         /// </summary>
-        public static WeatherVoice Voice(GodDomain d, GodDomain second, float amount, bool night, IList<WeatherVoice> only = null)
+        public static WeatherVoice Voice(GodDomain d, GodDomain second, float amount, bool night, IList<WeatherVoice> only = null, IList<string> lately = null)
         {
             if (float.IsNaN(amount) || Math.Abs(amount) < WeatherFrom) return WeatherVoice.None;
             bool pleased = amount > 0f;
             if (only != null && only.Count > 0)
             {
+                var first = WeatherVoice.None;
                 foreach (var v in only)
-                    if (Fits(v, pleased, night))
-                        return v;
-                return WeatherVoice.None;
+                {
+                    if (!Fits(v, pleased, night)) continue;
+                    if (first == WeatherVoice.None) first = v;
+                    if (GodPaceMath.Lean(v.ToString(), lately) > GodPaceMath.LastLean) return v;
+                }
+                return first;
             }
             bool Has(GodDomain x) => d == x || second == x;
             if (Has(GodDomain.Storm)) return WeatherVoice.Thunder;
@@ -661,7 +650,7 @@ namespace ColonyCouncil
         };
 
         /// <summary>A god with no body acts through the sky: it answers this much more readily, and its answers come this much closer together.</summary>
-        public const float BodilessChance = 1.6f, BodilessGap = 0.5f;
+        public const float BodilessChance = 1.6f, BodilessGap = 0.7f;
 
         /// <summary>The days between two answers in the weather at one home, for a god with a body or without.</summary>
         public static float WeatherGap(bool bodiless) => bodiless ? WeatherGapDays * BodilessGap : WeatherGapDays;
@@ -680,12 +669,6 @@ namespace ColonyCouncil
             return Math.Max(0f, Math.Min(bodiless ? 0.85f : 0.66f, c));
         }
 
-        /// <summary>
-        /// In Believed nothing is sent: the weather the game brings of its own within this many hours of a change of favour is
-        /// what the colony reads as the god's answer.
-        /// </summary>
-        public const int BelievedWithinHours = 24;
-
         // ================= The marks =================
 
         /// <summary>The marks remembered at most, the oldest let go first.</summary>
@@ -694,9 +677,13 @@ namespace ColonyCouncil
         /// <summary>A mark is spoken of for this many days (about five years).</summary>
         public const int MarkYears = 5;
 
-        /// <summary>Days between two visits to a mark, and the chance a quiet day brings one.</summary>
-        public const int VisitGapDays = 8;
-        public const float VisitChance = 0.2f;
+        /// <summary>Days between two visits to a mark, the chance a quiet day brings one once the gap is past, and the days that chance grows over (GodPaceMath.Ramp).</summary>
+        public const int VisitGapDays = 12, VisitRampDays = 12;
+        public const float VisitChance = 0.12f;
+
+        /// <summary>A mark brought up at supper: never within this many days of the last time, then at this chance an evening hour, growing over the days after.</summary>
+        public const int SupperMarkGapDays = 6, SupperMarkRampDays = 10;
+        public const float SupperMarkChance = 0.08f;
 
         /// <summary>A visitor near a mark remarks on it at most once a day a home.</summary>
         public const int VisitorRemarkGapTicks = 60000;
@@ -732,9 +719,16 @@ namespace ColonyCouncil
         public const int RisingGapDays = 300;
         public const float RisingChance = 0.004f;
 
-        /// <summary>A god with no body that can rise (its shape's rises) rises today: never in Believed, after its long gap, on the day's roll.</summary>
-        public static bool RisingDue(GodRealness r, int day, int daysSinceAny, int daysSinceRising, bool can, float roll) =>
-            GodsMath.AvatarsCome(r) && can && day >= EarliestDay * 3 && daysSinceAny >= AnyGapDays && daysSinceRising >= RisingGapDays && !float.IsNaN(roll) && roll < RisingChance;
+        /// <summary>
+        /// A god that can rise (its shape's rises) rises today: after its long gap, on the day's roll, a little likelier the
+        /// nearer it is drawn (<paramref name="nearness"/>: Murmur in a long drought), never sure.
+        /// </summary>
+        public static bool RisingDue(int day, int daysSinceAny, int daysSinceRising, bool can, float roll, float nearness = 0f) =>
+            can && day >= EarliestDay * 3 && daysSinceAny >= AnyGapDays && daysSinceRising >= RisingGapDays && !float.IsNaN(roll)
+            && roll < RisingChance * (1f + RisingNearFactor * GodNearMath.Strength(nearness));
+
+        /// <summary>A god drawn as near as it comes rises this many times more readily (on top of once).</summary>
+        public const float RisingNearFactor = 1.5f;
 
         // ================= The Guest's memory =================
 
@@ -784,12 +778,20 @@ namespace ColonyCouncil
 
         // ================= The sleeper under the mountain =================
 
-        /// <summary>The rock rumbles over the colony's deep mining (under thick rock) at most once in this many days, at this chance an hour.</summary>
-        public const int DeepGapDays = 3;
-        public const float DeepChanceAnHour = 0.1f;
+        /// <summary>
+        /// The rock rumbles over the colony's deep mining (under thick rock): never within <see cref="DeepGapDays"/> of the
+        /// last, then at a small chance in each hour someone mines there, growing over <see cref="DeepRampDays"/> days
+        /// (GodPaceMath.Ramp). Miners who keep digging past the warnings hear it again, each time the next step toward its
+        /// waking, but never on a day anyone could name.
+        /// </summary>
+        public const int DeepGapDays = 5, DeepRampDays = 10;
+        public const float DeepChanceAnHour = 0.03f;
+
+        /// <summary>The chance the rock rumbles in an hour someone of the colony mines deep, <paramref name="daysSince"/> days after the last.</summary>
+        public static float DeepNow(int daysSince) => DeepChanceAnHour * GodPaceMath.Ramp(daysSince, DeepGapDays, DeepRampDays);
 
         /// <summary>The rumbles are forgotten when the colony leaves the deep alone this long.</summary>
-        public const int DeepForgottenDays = 20;
+        public const int DeepForgottenDays = 30;
 
         /// <summary>From this many rumbles loose stone may fall on the miner; at this many it wakes.</summary>
         public const int StoneFallsFrom = 3, WakesAt = 6;
@@ -800,11 +802,15 @@ namespace ColonyCouncil
         /// <summary>The rumbles counted with this one: one more, or the first again when the last was long ago.</summary>
         public static int Warned(int warnings, int daysSinceLast) => (daysSinceLast >= DeepForgottenDays ? 0 : Math.Max(0, warnings)) + 1;
 
-        /// <summary>It wakes: past every warning, and not within years of its last waking. Never while the gods are only believed in.</summary>
-        public static bool Wakes(GodRealness r, int warnings, int daysSinceWake) => r != GodRealness.Believed && warnings >= WakesAt && daysSinceWake >= WakeGapDays;
+        /// <summary>It wakes: past every warning, and not within years of its last waking.</summary>
+        public static bool Wakes(int warnings, int daysSinceWake) => warnings >= WakesAt && daysSinceWake >= WakeGapDays;
 
-        /// <summary>Its true form is seen only where the gods walk plainly, and only when the game has one for it; else the mountain quakes and its shadow passes.</summary>
-        public static bool TrueForm(GodRealness r, bool hasForm) => r == GodRealness.Walking && hasForm;
+        /// <summary>
+        /// Its true form is seen only when the god is drawn near enough to show itself plainly (GodNearMath.Plain on its
+        /// nearness, <paramref name="roll"/> in [0, 1)), and only when the game has one for it; else the mountain quakes and its
+        /// shadow passes, or the land stirs and nothing more is seen.
+        /// </summary>
+        public static bool TrueForm(float nearness, bool hasForm, float roll) => hasForm && GodNearMath.Plain(nearness, roll);
 
         /// <summary>Loose stone falls on the miner with this rumble: from the third, at a chance by the harm setting (the shared cap is the caller's).</summary>
         public static bool StoneFalls(int warnings, float harmScale, float roll) =>
@@ -824,32 +830,115 @@ namespace ColonyCouncil
             AnimalBack
         }
 
-        /// <summary>A deed counts as a kindness or a cruelty from this much of its name's kindness (times its size).</summary>
-        public const float ReturnDeedFrom = 3f;
+        /// <summary>A deed counts as a kindness or a cruelty from this much of its name's kindness (times its size), and as a strong one from this much.</summary>
+        public const float ReturnDeedFrom = 3f, ReturnStrongFrom = 7f;
 
-        /// <summary>At most one return a night, and this many days apart at least: small and rare.</summary>
-        public const int ReturnGapDays = 3;
+        /// <summary>
+        /// The moon returns by the moon itself: at most once in a cycle of its face (fifteen days), never within this many days
+        /// of the last, and its chance grows over the next two cycles after (GodPaceMath.Ramp).
+        /// </summary>
+        public const int ReturnGapDays = 12, ReturnRampDays = 30;
 
-        /// <summary>Something comes back tonight: by the moon's face (all of it when full, a little when thin, nothing when dark).</summary>
-        public static bool Returns(MoonFace face, float roll) => !float.IsNaN(roll) && roll < face switch
+        /// <summary>A deed of a kind the colony did this often lately (in <see cref="RoutineDays"/>), or one that has run on for days, is routine: no reason for the moon.</summary>
+        public const int RoutineCount = 3, RoutineDays = 15, RoutineAgeDays = 3;
+
+        /// <summary>
+        /// How strongly the day's deed calls the moon: none for a small one or one the colony does all the time (tending the
+        /// sick every day is no reason); ordinary from <see cref="ReturnDeedFrom"/>, strong from <see cref="ReturnStrongFrom"/>.
+        /// A cruelty done again by someone the moon already came back to for one is a story the world gives a reason for:
+        /// strong, even when it has become their habit.
+        /// </summary>
+        public static GodPaceMath.Trigger ReturnTrigger(float kindness, bool doneToday, int sameKindLately, float ageDays, bool crueltyAgain)
         {
-            MoonFace.Full => 0.7f,
-            MoonFace.Half => 0.4f,
-            MoonFace.Thin => 0.15f,
+            if (float.IsNaN(kindness) || !doneToday || Math.Abs(kindness) < ReturnDeedFrom) return GodPaceMath.Trigger.None;
+            if (kindness < 0f && crueltyAgain) return GodPaceMath.Trigger.Strong;
+            if (sameKindLately >= RoutineCount || ageDays >= RoutineAgeDays) return GodPaceMath.Trigger.None;
+            return Math.Abs(kindness) >= ReturnStrongFrom ? GodPaceMath.Trigger.Strong : GodPaceMath.Trigger.Ordinary;
+        }
+
+        /// <summary>How strongly the colony's dealings with the peoples by day call the moon: the day's good turns less its wrongs.</summary>
+        public static GodPaceMath.Trigger WorldTrigger(int kindness, int cruelty)
+        {
+            int net = Math.Abs(kindness - cruelty);
+            return net >= 3 ? GodPaceMath.Trigger.Strong : net >= 1 ? GodPaceMath.Trigger.Ordinary : GodPaceMath.Trigger.None;
+        }
+
+        /// <summary>The chance on one night that the moon returns, for an ordinary reason, by her face: around the full moon only.</summary>
+        public static float ReturnNight(MoonFace face) => face switch
+        {
+            MoonFace.Full => 0.2f,
+            MoonFace.Half => 0.05f,
             _ => 0f
         };
 
         /// <summary>
-        /// What comes back for a deed (its kindness weight: positive kind, negative cruel): a kindness healed when the one who
-        /// did it is hurt, else found or a good dream; a cruelty an animal back when the cruelty was to an animal, else a
-        /// frost when the night is cold enough, else a nightmare.
+        /// The moon returns tonight: only with a reason (<paramref name="t"/>), only around the full moon (her face), a cycle
+        /// apart at least, its chance small at first and growing over the cycles after (GodPaceMath.Ramp); never sure.
         /// </summary>
-        public static NightReturn ReturnFor(float kindness, bool hurt, bool toAnimal, bool cold, float roll)
+        public static float ReturnTonight(MoonFace face, int daysSince, GodPaceMath.Trigger t) =>
+            ReturnNight(face) * GodPaceMath.Weight(t) * GodPaceMath.Ramp(daysSince, ReturnGapDays, ReturnRampDays);
+
+        public static bool Returns(MoonFace face, int daysSince, GodPaceMath.Trigger t, float roll) => !float.IsNaN(roll) && roll < ReturnTonight(face, daysSince, t);
+
+        /// <summary>The order a kindness and a cruelty come back in when the same one comes back to the same person again: each time the next.</summary>
+        public static readonly NightReturn[] KindSteps = { NightReturn.Found, NightReturn.GoodDream, NightReturn.Healed };
+
+        public static readonly NightReturn[] CruelSteps = { NightReturn.Nightmare, NightReturn.Frost, NightReturn.AnimalBack };
+
+        /// <summary>A form can come back now: a wound healed only for one who is hurt, a frost only on a cold night.</summary>
+        public static bool ReturnCan(NightReturn k, bool hurt, bool cold) => k switch
+        {
+            NightReturn.Healed => hurt,
+            NightReturn.Frost => cold,
+            NightReturn.None => false,
+            _ => true
+        };
+
+        /// <summary>
+        /// What comes back for a deed (its kindness weight: positive kind, negative cruel): a kindness as a wound healed when the
+        /// one who did it is hurt, something found or a good dream; a cruelty as an animal back (most when the cruelty was to an
+        /// animal), a frost when the night is cold enough, or a nightmare. It leans away from the forms the moon took lately
+        /// (<paramref name="lately"/>, newest first: GodPaceMath.Lean). When it comes back to the same person for the same kind
+        /// of deed (<paramref name="theirLast"/>, the form it took for them last time), it is the next step of that story
+        /// (<see cref="KindSteps"/>, <see cref="CruelSteps"/>), not the same card.
+        /// </summary>
+        public static NightReturn ReturnFor(float kindness, bool hurt, bool toAnimal, bool cold, float roll, IList<string> lately = null, NightReturn theirLast = NightReturn.None)
         {
             if (float.IsNaN(kindness) || Math.Abs(kindness) < ReturnDeedFrom || float.IsNaN(roll)) return NightReturn.None;
-            if (kindness > 0f) return hurt && roll < 0.5f ? NightReturn.Healed : roll < 0.75f ? NightReturn.Found : NightReturn.GoodDream;
-            if (toAnimal && roll < 0.6f) return NightReturn.AnimalBack;
-            return cold && roll < 0.4f ? NightReturn.Frost : NightReturn.Nightmare;
+            bool kind = kindness > 0f;
+            var steps = kind ? KindSteps : CruelSteps;
+            if (theirLast != NightReturn.None && Array.IndexOf(steps, theirLast) >= 0)
+            {
+                var order = new List<string>();
+                foreach (var k in steps) order.Add(k.ToString());
+                string next = GodPaceMath.NextStep(order, theirLast.ToString(), f => ReturnCan((NightReturn)Enum.Parse(typeof(NightReturn), f), hurt, cold));
+                if (next != null && next != theirLast.ToString()) return (NightReturn)Enum.Parse(typeof(NightReturn), next);
+                // No step further can come tonight: a different form all the same, never theirs of last time.
+                var mind = new List<string> { theirLast.ToString() };
+                if (lately != null) mind.AddRange(lately);
+                lately = mind;
+            }
+            var forms = new List<string>();
+            var weights = new List<float>();
+            void Add(NightReturn k, float w)
+            {
+                forms.Add(k.ToString());
+                weights.Add(ReturnCan(k, hurt, cold) ? w : 0f);
+            }
+            if (kind)
+            {
+                Add(NightReturn.Healed, 2f);
+                Add(NightReturn.Found, 1.5f);
+                Add(NightReturn.GoodDream, 1f);
+            }
+            else
+            {
+                Add(NightReturn.AnimalBack, toAnimal ? 2f : 0.4f);
+                Add(NightReturn.Frost, 1f);
+                Add(NightReturn.Nightmare, 1.5f);
+            }
+            int i = GodPaceMath.Pick(forms, weights, lately, roll);
+            return i < 0 ? NightReturn.None : (NightReturn)Enum.Parse(typeof(NightReturn), forms[i]);
         }
 
         // ================= The moon's face =================

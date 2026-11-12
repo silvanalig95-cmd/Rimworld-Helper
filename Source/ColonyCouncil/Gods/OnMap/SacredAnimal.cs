@@ -197,7 +197,7 @@ namespace ColonyCouncil
         /// </summary>
         private static bool Show(Pawn a, God god)
         {
-            if (!Gods.On || !GodsMath.AvatarsCome(Gods.Realness)) return false;
+            if (!Gods.On) return false;
             string name = Label(a, god);
             var own = GodShapes.Look(god);
             return own != null ? GodAvatar.Make(a, own, name, false) : GodAvatar.Make(a, GodsWiring.LookOf(god), name, false, god.colour, god.colour2);

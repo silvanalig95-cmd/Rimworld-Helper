@@ -11,7 +11,7 @@ namespace ColonyCouncil
     /// The gods' hands in the game's events (docs/gods-pantheon-brainstorm.md, section C; docs/design/gods.md, "the
     /// contract"), as people's words only. When one of the events in the hands' table happens at a home
     /// (GodHandsMath.ByDef), within the hour a colonist who believes such things says whose hand they take it for, over
-    /// their head, in one sentence; while the gods are only felt, someone near answers as a scoffer. They may be wrong: a
+    /// their head, in one sentence; unless the colony knows the hand, someone near answers as a scoffer. They may be wrong: a
     /// believer names the god they know of and take it for (GodLoreMath.Attribute), or "something" when they know of none.
     /// The colony's book writes it down as they saw and said it, with who was there; the gods' hidden history keeps the act;
     /// a neighbour may write of it later (Gods/GodTales.cs). The game's own letter is never touched, and nothing tells the
@@ -81,8 +81,8 @@ namespace ColonyCouncil
         }
 
         /// <summary>
-        /// A god's hand remarked on at a home (the hands, and the dev action): a believer's line, a scoffer's answer while the
-        /// gods are felt, the colony's book, the gods' hidden history, and a note for a neighbour's letter. <paramref name="with"/>:
+        /// A god's hand remarked on at a home (the hands, and the dev action): a believer's line, a scoffer's answer unless the
+        /// colony knows the hand, the colony's book, the gods' hidden history, and a note for a neighbour's letter. <paramref name="with"/>:
         /// a second god met in it (the eclipse: Selene stepping between Helios and the world), so a believer who takes it
         /// for the first says a line of their meeting. False when nobody there would say it.
         /// </summary>
@@ -93,25 +93,26 @@ namespace ColonyCouncil
             var people = map.mapPawns.FreeColonistsSpawned.Where(Able).ToList();
             var believer = people.Where(x => GodLore.Credence(x) >= GodLoreMath.BelieverFrom).OrderByDescending(x => GodLore.Credence(x) + Rand.Range(0f, 0.3f)).FirstOrDefault();
             if (believer == null) return false;
-            var realness = Gods.Realness;
             // Whose hand they take it for: one they know of, rightly or not, or something they can't name.
             var knownOf = lore.KnownOf();
             foreach (var g in Gods.ColonyGods(map)) knownOf.Add(g.Key);
-            // Known for the god's own (the colony saw it act, learned this sign as its own, or the gods walk openly): named
-            // plainly, and nobody doubts it. Else whoever the believer takes it for.
+            // Known for the god's own (the colony saw it act plainly, or learned this sign as its own): named plainly, and nobody
+            // doubts it. Else whoever the believer takes it for.
             bool known = Gods.CardName(god, map, sign) != null;
             var taken = known ? god : Gods.ByKey(GodLoreMath.Attribute(god.Key, knownOf, Rand.Value));
             bool meeting = with != null && (taken == god || taken == with);
-            string line = Line(taken?.def?.hands, kind, realness, "CC_GodHand_Unnamed_", UnnamedLines, taken, believer, meeting);
+            // The god they take it for drawn near (GodNear): their words say it was felt plainly.
+            bool near = taken != null && GodNear.Near(taken, map);
+            string line = Line(taken?.def?.hands, kind, near, "CC_GodHand_Unnamed_", UnnamedLines, taken, believer, meeting);
             if (line.NullOrEmpty()) return false;
             // apart: a believer's word on something everyone on the land can see, said to nobody in particular.
             Speech.Say(believer, line);
             var said = new List<(Pawn, string, bool)> { (believer, line, false) };
             Pawn scoffer = null;
-            if (GodHandsMath.Scoffer(realness) && !known)
+            if (!known)
             {
                 scoffer = people.Where(x => x != believer && Together.Can(believer, x) && GodLore.Credence(x) < GodLoreMath.ScofferBelow).OrderBy(GodLore.Credence).FirstOrDefault();
-                string answer = scoffer == null ? null : Line(taken?.def?.scoffs, kind, realness, "CC_GodHand_UnnamedScoff_", UnnamedScoffs, taken, scoffer, false);
+                string answer = scoffer == null ? null : Line(taken?.def?.scoffs, kind, near, "CC_GodHand_UnnamedScoff_", UnnamedScoffs, taken, scoffer, false);
                 if (!answer.NullOrEmpty() && Speech.Say(scoffer, answer, believer)) said.Add((scoffer, answer, true));
                 else scoffer = null;
             }
@@ -144,10 +145,10 @@ namespace ColonyCouncil
                                             && p.RaceProps?.Humanlike == true && !p.DevelopmentalStage.Baby() && People.HasInnerLife(p);
 
         /// <summary>A line for the moment: one of the god's (tagged for it first), else one of the keyed ones for something unnamed, filled with the speaker's name for it.</summary>
-        private static string Line(List<string> lines, HandKind kind, GodRealness r, string unnamedKey, int unnamedCount, God taken, Pawn speaker, bool meeting)
+        private static string Line(List<string> lines, HandKind kind, bool near, string unnamedKey, int unnamedCount, God taken, Pawn speaker, bool meeting)
         {
             string raw;
-            var fit = taken != null ? GodHandsMath.Fitting(lines, kind, r, meeting) : new List<string>();
+            var fit = taken != null ? GodHandsMath.Fitting(lines, kind, near, meeting) : new List<string>();
             if (fit.Count > 0) raw = fit.RandomElement();
             else raw = (unnamedKey + Rand.Range(0, unnamedCount)).Translate();
             if (raw.NullOrEmpty()) return null;

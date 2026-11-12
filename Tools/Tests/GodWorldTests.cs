@@ -37,11 +37,8 @@ public static class GodWorldTests
 
         // ================= How often =================
 
-        C(GodWorldMath.Realness(GodRealness.Believed) < GodWorldMath.Realness(GodRealness.Felt) && GodWorldMath.Realness(GodRealness.Felt) < GodWorldMath.Realness(GodRealness.Walking),
-            "the gods act more often the more real they are");
-        C(!GodWorldMath.Supernatural(GodRealness.Believed) && GodWorldMath.Supernatural(GodRealness.Felt) && GodWorldMath.Supernatural(GodRealness.Walking)
-          && GodWorldMath.Factor(GodRealness.Believed, true) == 0f && GodWorldMath.Factor(GodRealness.Believed, false) > 0f,
-            "what only a real god does never comes while they are only believed");
+        C(GodNearMath.WorldFactor(0f) == 1f && GodNearMath.WorldFactor(1f) > GodNearMath.WorldFactor(0.5f) && GodNearMath.WorldFactor(0.5f) > 1f,
+            "a god's own doings come at their own pace as the gods are felt, a little more often the nearer it is drawn");
         C(GodWorldMath.DayChance(0f) == 0f && GodWorldMath.DayChance(-3f) == 0f && GodWorldMath.DayChance(float.NaN) == 0f
           && GodWorldMath.DayChance(10f) > GodWorldMath.DayChance(100f) && Near(GodWorldMath.DayChance(100f), 1f - (float)Math.Exp(-0.01), 1e-5f),
             "a day's chance of something that comes every so many days");
@@ -131,10 +128,12 @@ public static class GodWorldTests
         // ================= Helios gives, Selene returns =================
 
         C(GodWorldMath.MoonFace(7) == 1f && GodWorldMath.MoonFace(0) == 0f && GodWorldMath.MoonFace(14) < 0.2f && GodWorldMath.MoonFace(22) == 1f, "the moon's face: full mid-quadrum, dark at its turn");
-        C(GodWorldMath.MirrorChance(0f, 9, 0) == 0f && GodWorldMath.MirrorChance(1f, 3, 3) == 0f && GodWorldMath.MirrorChance(1f, 4, 0) == 1f
-          && GodWorldMath.MirrorChance(0.5f, 0, 1) < GodWorldMath.MirrorChance(1f, 0, 1), "she returns the day as much as her face shows, nothing on an even day or a dark moon");
         C(GodWorldMath.DarkOfTheMoon(0f) == 1.5f && GodWorldMath.DarkOfTheMoon(1f) == 1f, "the Hunger's voice comes easier in the dark of the moon");
-        C(GodWorldMath.MirrorHour(2) && !GodWorldMath.MirrorHour(14) && GodWorldMath.BlindBlessingDays >= 30f, "the return at night; the gift on its own rate");
+        C(GodWorldMath.BlindBlessingDays >= 30f, "the gift on its own rate");
+        string health = Read("Gods/World/GodHealth.cs"), moon = Read("Gods/OnMap/GodReturn.cs");
+        C(!health.Contains("MirrorHour") && health.Contains("internal static bool Mirror(Map map, int kind, int cruel)") && moon.Contains("GodHealth.Mirror(map, kind, cruel)")
+          && moon.Contains("GodsOnMapMath.WorldTrigger(kind, cruel)") && moon.Contains("world.kindness = world.cruelty = 0;"),
+            "the colony's day with the peoples comes back only by the moon's own return: one rule, one night, never a second return of its own");
         C(world.Contains("GodWays.Blind(g) ? GodWays.WrathDays(g)") && world.Contains("GodWays.Blind(g) ? GodWorldMath.BlindBlessingDays") && world.Contains("Where(x => !GodWays.Mirror(x))"),
             "Helios gives and overflows whatever the colony does; Selene answers the day, not her standing");
         C(Read("World/FactionMemory.cs").Contains("GodHealth.Deed(k.side == DeedSide.Favor, k.side == DeedSide.Wrong);") && world.Contains("DamageDefOf.ExecutionCut && (victim.IsPrisonerOfColony"),
@@ -196,7 +195,8 @@ public static class GodWorldTests
             "each quarrel keeps the sides it began with; a flare once, a coin found, silver sunk");
         C(GodWorldMath.QuarrelTurn(0) == 0 && GodWorldMath.QuarrelTurn(GodWorldMath.QuarrelTurnDays) == 1 && GodWorldMath.QuarrelTurn(2 * GodWorldMath.QuarrelTurnDays) == 0
           && GodWorldMath.QuarrelLastsDays >= 4 * GodWorldMath.QuarrelTurnDays, "one side, then the other, several turns each");
-        C(GodWorldMath.SupperHour(19) && !GodWorldMath.SupperHour(12) && GodWorldMath.MythEveningChance < 0.3f && GodWorldMath.MythGapDays >= 2, "a story at supper, now and then");
+        C(GodWorldMath.SupperHour(19) && !GodWorldMath.SupperHour(12) && GodWorldMath.MythEveningChance < 0.3f && GodWorldMath.MythGapDays >= 10 && GodWorldMath.MythRampDays > 0,
+            "a story at supper, now and then: never within days, its chance growing slowly after");
         C(!world.Contains("QuarrelAnswers") && !world.Contains("SlightAnswers"), "a quarrel is seen, never asked about; no god asks the colony to slight another");
 
         // ================= The Hunger =================
@@ -321,7 +321,8 @@ public static class GodWorldTests
           && !Directory.GetFiles(Path.Combine(root, "Defs", "AlmanacArticleDefs"), "*.xml").Any(f => File.ReadAllText(f).Contains("Council_Alm_C_GodsWorld")),
             "no Almanac page for the gods in the world");
         C(!world.Contains("CC_GW_Voice_") && !Regex.IsMatch(world, @"GodWords\.(Word|NatureWord)\("), "no card in the voice of a god's standing, no standing or nature in words");
-        C(world.Contains("string name = Gods.CardName(g, home);") && !world.Contains("public static string CardName(") && keyed["CC_GW_Hand_Plain"].Contains("{GOD}")
+        C(world.Contains("string name = Gods.CardName(g, home) ?? (spec.veiled ? null : GodLore.LabelFor(g.Key));") && world.Contains("if (!seen) spec.veiled = true;")
+          && !world.Contains("public static string CardName(") && keyed["CC_GW_Hand_Plain"].Contains("{GOD}")
           && keyed["CC_GW_Hand_Felt"].StartsWith("Some say"), "a card names the hand only where the colony knows it, else some say, never the god's mind");
         C(Regex.Matches(world, @"GodWorld\.Remember\(|Gods\.Remember\(").Count >= 14 && world.Contains("\"CC_GW_Told_Supper\"") && world.Contains("\"CC_GW_Told_Seer\"")
           && world.Contains("\"CC_GW_Told_\" + tells") && world.Contains("(\"CC_GW_Seen_\" + tag)"), "what is seen and told is kept for the colony's book, in the world's voice");
@@ -381,7 +382,7 @@ public static class GodWorldTests
         string budget = Read("Harm/HarmBudgetMath.cs");
         C(budget.Contains("\"godBeasts\"") && budget.Contains("\"godLightning\"") && budget.Contains("\"godPrice\"") && Read("Harm/Harm.cs").Contains("case \"gods\": return Gods.On;"),
             "its three kinds in the harm budget, on with the gods");
-        C(world.Contains("GodWorld.Factor(true)") && world.Contains("GodWorldMath.Supernatural(Gods.Realness)"), "gifts of power and the void only where the gods are more than believed");
+        C(world.Contains("GodWorld.Factor(g, map)") && !world.Contains("Realness"), "gifts of power and the void at the god's own pace, a little more often when it is drawn near");
         C(Read("World/Region/RegionBook.cs").Contains("GodWorld.Daily(now)") && Read("World/Region/RegionBook.cs").Contains("GodWorld.Hourly(now)"), "kept in the region's day and hour");
         C(Read("Happenings/Happenings.cs").Contains("GodHealth.Killed(victim, dinfo, note.map);"), "a sacred beast's death heard");
         C(Read("Letters/LetterFormShapes.cs").Contains("GodLetters.Shape(s, pawn, f);") && Read("Letters/LetterFormShapes.cs").Contains("GodLetters.ShapeOurs(s, l, n, writer);")

@@ -35,7 +35,8 @@ namespace ColonyCouncil
     /// mana a caster gains comes back faster while the colony stands well with their god, and slower, or not at all, while
     /// the god is angry (WorshipMath.ManaFactor). Their god is the one their class serves where they have one (the Healer for
     /// a priest or a paladin, the Green for a druid, the Storm-father for the storm born: WorshipMath.ClassDomain), else the
-    /// one they pray to. Nothing in Believed. Read once an hour a caster; the mod is reached by name only.
+    /// one they pray to; the pull is felt more fully the nearer that god is (GodNear). Read once an hour a caster; the mod is
+    /// reached by name only.
     /// </summary>
     public static class MagicFavour
     {
@@ -43,7 +44,7 @@ namespace ColonyCouncil
 
         public static float Factor(Pawn p)
         {
-            if (p == null || !Worship.On || Gods.Realness == GodRealness.Believed || p.Faction == null || !p.Faction.IsPlayer) return 1f;
+            if (p == null || !Worship.On || p.Faction == null || !p.Faction.IsPlayer) return 1f;
             int now = Worship.Now;
             if (cache.TryGetValue(p.thingIDNumber, out var c) && now >= c.tick && now - c.tick < GenDate.TicksPerHour) return c.factor;
             float f = 1f;
@@ -60,7 +61,7 @@ namespace ColonyCouncil
                         break;
                     }
                 var g = Worship.GodOf(p, domain);
-                if (g != null) f = WorshipMath.ManaFactor(Gods.Favour(g, p.MapHeld), Gods.Realness);
+                if (g != null) f = WorshipMath.ManaFactor(Gods.Favour(g, p.MapHeld), GodNear.Of(g, p.MapHeld));
             }
             catch (Exception e)
             {

@@ -26,7 +26,6 @@ namespace ColonyCouncil
     /// <item>A god that quarrels with the giver may want the gift back: the one who has it tells a second, colder dream,
     /// and the colony leaves an offering past the gate, or lets the gift go.</item>
     /// </list>
-    /// Only where the gods are more than believed (Felt and Walking).
     /// </summary>
     public static class GodWorldGifts
     {
@@ -239,7 +238,7 @@ namespace ColonyCouncil
                     var word = Gods.Favour(g, map);
                     if (word < FavourWord.Favoured) continue;
                     float days = word == FavourWord.Beloved ? GodWorldMath.GiftDays / 2f : GodWorldMath.GiftDays;
-                    if (!GodWorld.Roll(GodWorldMath.DayChance(days, GodWorld.Factor(true)))) continue;
+                    if (!GodWorld.Roll(GodWorldMath.DayChance(days, GodWorld.Factor(g, map)))) continue;
                     var p = Chosen(g, map);
                     if (p == null) continue;
                     var (kind, what, label) = Pick(g, p);
@@ -568,7 +567,7 @@ namespace ColonyCouncil
             if (days < GodWorldMath.UndoAfterDays || days > GodWorldMath.UndoUntilDays) return;
             var g = Gods.ById(gift.god);
             var r = g == null ? null : Gods.Rivals(g).FirstOrDefault(x => Gods.Known(x) && x.kind != GodKind.Hunger);
-            if (r == null || !GodWorld.Roll(GodWorldMath.UndoDayChance * GodWorld.Factor(true))) return;
+            if (r == null || !GodWorld.Roll(GodWorldMath.UndoDayChance * GodWorld.Factor(r, gift.pawn.Map))) return;
             gift.undoTried = true;
             var map = gift.pawn.Map;
             int count = OfferingCount(r, GodWorldMath.PriceSilver(GodGiftKind.Hand, GodWorld.Wealth(map)));

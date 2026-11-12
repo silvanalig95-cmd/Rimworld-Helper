@@ -18,14 +18,17 @@ namespace ColonyCouncil
         /// <summary>The pawn or animal the god walks as, or null.</summary>
         public Pawn avatar;
         public string title, text;
-        /// <summary>The card says "some say" (Felt) or "the colony says" (Believed) rather than naming it plainly (Walking).</summary>
+        /// <summary>
+        /// The card says "some say", or leaves the god unnamed, rather than naming it plainly: as the gods are felt. A god drawn
+        /// near enough shows itself plainly now and then (GodNear.Plain), and is named, as the colony is sure it was that god.
+        /// </summary>
         public bool veiled;
 
-        /// <summary>A moment of a god at a place, veiled by how real the gods are.</summary>
+        /// <summary>A moment of a god at a place: veiled as the gods are felt, plain when the god is drawn near enough this time (GodNear.Plain).</summary>
         public static PresenceSpec For(God god, Map map, PresenceKind kind, IntVec3 cell = default, Pawn avatar = null) => new PresenceSpec
         {
             god = god, map = map, kind = kind, avatar = avatar, cell = cell == default ? IntVec3.Invalid : cell,
-            veiled = !GodsMath.PlainCard(Gods.Realness)
+            veiled = !GodNear.Plain(god, map)
         };
     }
 
@@ -73,7 +76,7 @@ namespace ColonyCouncil
         public static bool Make(Pawn p, God god, bool disguised)
         {
             var m = MakeAvatar;
-            if (m == null || p == null || god == null || !Gods.On || !GodsMath.AvatarsCome(Gods.Realness)) return false;
+            if (m == null || p == null || god == null || !Gods.On) return false;
             try
             {
                 m(p, god, disguised);

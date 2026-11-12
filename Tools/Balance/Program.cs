@@ -18,6 +18,8 @@
 //   dotnet run -c Release --project Tools/Balance -- --schemes [--runs N] [--seed S]
 // Serious illness a colony-year, Rimfolk's and the game's own, with the shared illness budget and without (IllnessSim.cs, printed):
 //   dotnet run -c Release --project Tools/Balance -- --illness [repo root] [--runs N] [--interval F]
+// The gods' happenings a colony-year, each by its own rules, as a check (GodsSim.cs, printed; exit code 1 when one comes too often):
+//   dotnet run -c Release --project Tools/Balance -- --gods [--runs N] [--seed S]
 
 using System.Globalization;
 using System.Text.Json;
@@ -60,6 +62,11 @@ if (args.Contains("--schemes"))
 if (args.Contains("--illness"))
 {
     IllnessSim.Run(args);
+    return;
+}
+if (args.Contains("--gods"))
+{
+    GodsSim.Run(args);
     return;
 }
 

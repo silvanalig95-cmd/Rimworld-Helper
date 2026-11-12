@@ -60,6 +60,8 @@ namespace ColonyCouncil
         public PresenceKind kind;
         public int visits;
         public int lastVisit = -1;
+        /// <summary>The god showed itself plainly there (drawn near: GodNear), so what is said there says so; else it was felt.</summary>
+        public bool plain;
 
         public void ExposeData()
         {
@@ -71,6 +73,7 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref kind, "kind", PresenceKind.Appear);
             Scribe_Values.Look(ref visits, "visits");
             Scribe_Values.Look(ref lastVisit, "lastVisit", -1);
+            Scribe_Values.Look(ref plain, "plain");
         }
     }
 
@@ -112,6 +115,11 @@ namespace ColonyCouncil
         public int risenUntil = -1;
         /// <summary>When the moon last returned a deed by night (GodReturn).</summary>
         public int lastReturn = -999999;
+        /// <summary>
+        /// A short memory of the gods' last happenings, newest last ("return|Nightmare|1234": GodPaceMath.Note, at most
+        /// GodPaceMath.Memory), so the next one leans to a different form and a story that comes back takes its next step.
+        /// </summary>
+        public List<string> lately = new List<string>();
 
         /// <summary>At most this many omens wait at once.</summary>
         public const int MaxOmens = 12;
@@ -260,8 +268,11 @@ namespace ColonyCouncil
             Scribe_References.Look(ref risen, "risen");
             Scribe_Values.Look(ref risenUntil, "risenUntil", -1);
             Scribe_Values.Look(ref lastReturn, "lastReturn", -999999);
+            Scribe_Collections.Look(ref lately, "lately", LookMode.Value);
             if (Scribe.mode == LoadSaveMode.PostLoadInit)
             {
+                lately ??= new List<string>();
+                lately.RemoveAll(x => x == null);
                 omens ??= new List<GodOmenNote>();
                 omens.RemoveAll(o => o == null || o.map == null);
                 marks ??= new List<GodMarkNote>();
@@ -284,8 +295,8 @@ namespace ColonyCouncil
     /// <summary>
     /// When a god sets out for the colony, and as what (GodsOnMapMath.Due): planned in the gods' day, a few days ahead, with
     /// its omens in the days before (GodOmens.Before); in the hour it comes, the stranger's question once the letters'
-    /// gap allows it (Tell.CanAsk) and the map is quiet, the sacred animal once the map is quiet. Never in Believed, never
-    /// two at once, and never announced: only the omens say something is coming.
+    /// gap allows it (Tell.CanAsk) and the map is quiet, the sacred animal once the map is quiet. Never two at once, and never
+    /// announced: only the omens say something is coming.
     /// </summary>
     public static class GodComings
     {
@@ -296,11 +307,6 @@ namespace ColonyCouncil
 
         internal static void Daily(GodsOnMapBook b, int now)
         {
-            if (!GodsMath.AvatarsCome(Gods.Realness))
-            {
-                b.coming = null;
-                return;
-            }
             // Mog's season: Ennu may come to the gate while she stays, and she will know it (SacredAnimal.Stare).
             if (b.coming == null && b.stranger == null && SacredAnimal.IsMog(b.beast))
             {
@@ -316,16 +322,16 @@ namespace ColonyCouncil
             if (home == null || !home.IsPlayerHome) return;
             int day = GenDate.DaysPassedSinceSettle;
             // Very rarely, a god with no body rises from the land for an hour (Hollin), after its own long gap.
-            var riser = Gods.All.Where(g => g != null && GodShapes.Rises(g)).RandomElementWithFallback();
-            if (riser != null && GodsOnMapMath.RisingDue(Gods.Realness, day, Days(now, b.lastAny), Days(now, b.lastRising), true, Rand.Value))
+            // The one drawn nearest is the likelier (Murmur in a long drought).
+            var riser = Gods.All.Where(g => g != null && GodShapes.Rises(g)).RandomElementByWeightWithFallback(g => 0.25f + GodNear.Of(g, home));
+            if (riser != null && GodsOnMapMath.RisingDue(day, Days(now, b.lastAny), Days(now, b.lastRising), true, Rand.Value, GodNear.Of(riser, home)))
             {
                 Plan(b, ComingKind.Rising, home, riser, Rand.RangeInclusive(GodsOnMapMath.OmenDaysMin, GodsOnMapMath.OmenDaysMax));
                 return;
             }
             bool strangerCan = GodStranger.CanCome(home);
             bool animalCan = SacredAnimal.AnyFor(home);
-            var kind = GodsOnMapMath.Due(Gods.Realness, day, Days(now, b.lastAny), Days(now, b.lastStranger), Days(now, b.lastAnimal), strangerCan, animalCan, Rand.Value,
-                Rand.Value);
+            var kind = GodsOnMapMath.Due(day, Days(now, b.lastAny), Days(now, b.lastStranger), Days(now, b.lastAnimal), strangerCan, animalCan, Rand.Value, Rand.Value);
             if (kind == ComingKind.None) return;
             Plan(b, kind, home, null, Rand.RangeInclusive(GodsOnMapMath.OmenDaysMin, GodsOnMapMath.OmenDaysMax));
         }
@@ -354,7 +360,7 @@ namespace ColonyCouncil
             var c = b.coming;
             if (c == null || now < c.at) return;
             var god = Gods.ById(c.god);
-            if (god == null || c.map == null || !Homes.IsHome(c.map) || !GodsMath.AvatarsCome(Gods.Realness))
+            if (god == null || c.map == null || !Homes.IsHome(c.map))
             {
                 b.coming = null;
                 return;
