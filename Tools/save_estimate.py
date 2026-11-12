@@ -971,6 +971,9 @@ MODEL = {
     "Couriers/CourierTrip.cs:toUnload": ("while", C["CourierPeople"] + 1, P, "who still carries the colony's goods, while the trip lasts"),
     # Visitors: visits waiting or on the map (VisitorMath.MaxTrips), each dropped a day after it ends at most
     "Visitors/VisitorTracker.cs:trips": ("cap", (C["VisitorTrips"], 0.4), 700, "visits waiting or under way: VisitorMath.MaxTrips; ended ones dropped within a day"),
+    # Every other visitor group's turns at the market (Visitors/VisitorTradeGuests.cs): one a group while it is on a map,
+    # dropped once it's gone when a new one is made, at most VisitorTrade.MaxCalls
+    "Visitors/VisitorTracker.cs:calls": ("cap", (const("Visitors/VisitorTradeGuests.cs", "MaxCalls", 16), 0.5), 130, "a visitor group's purchases and next try at the market, while it is on a map; at most VisitorTrade.MaxCalls"),
     "Visitors/VisitorTrip.cs:people": ("while", C["VisitorPeople"], P, "a visit's people, while it lasts"),
     "Visitors/VisitorTrip.cs:animals": ("while", C["VisitorAnimals"], P, "a visit's animals (a pack beast, a family's dog, a herd), while it lasts"),
     "Visitors/VisitorsMore2.cs:deals": ("while", 2, 260, "a book swapper's bargain, while their visit lasts, two days at most (Visitors/VisitorsMore2.cs)"),

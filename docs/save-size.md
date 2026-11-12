@@ -7,8 +7,8 @@ colony of 20, with the game keeping 30 more people it knows and 5 more each year
 generous guesses; sizes are rough XML sizes. Caps named as constants are read from the source. "Counted under" rows are
 kept inside another record (a journal's lines, a heart's lists) and are already in that record's size.
 
-Saved collections found: 675; modelled: 675; growing without end: 0.
-Rimfolk's part of the save, roughly: **2,940 KB** after a year, **3,639 KB** after two, **4,065 KB** after five.
+Saved collections found: 676; modelled: 676; growing without end: 0.
+Rimfolk's part of the save, roughly: **2,942 KB** after a year, **3,641 KB** after two, **4,067 KB** after five.
 
 | Collection | Rule | Kind | 1 year | 2 years | 5 years | KB at 5 years |
 |---|---|---|---|---|---|---|
@@ -205,6 +205,7 @@ Rimfolk's part of the save, roughly: **2,940 KB** after a year, **3,639 KB** aft
 | `Dilemmas/Dilemmas.cs:traditionBreaks` | per tradition | defs | 25 | 25 | 25 | 2.2 |
 | `Weather/WeatherBook.cs:days` | WeatherMath.MaxDays: the last month, a short line a day, per home map | fixed | 30 | 30 | 30 | 2.1 |
 | `Dealings/DealingBook.cs:asks` | the world's letters waiting for an answer (DealingMath.MaxWaiting at once) and answered ones kept a month | cap | 8 | 8 | 8 | 2.0 |
+| `Visitors/VisitorTracker.cs:calls` | a visitor group's purchases and next try at the market, while it is on a map; at most VisitorTrade.MaxCalls | cap | 16 | 16 | 16 | 2.0 |
 | `Weapons/WeaponPickBook.cs:raids` | raids the colony met: how many came, mechanoids, armoured, a siege, a tribe; WeaponPickBook.MaxRaids newest | cap | 12 | 12 | 12 | 2.0 |
 | `Aspirations/Aspirations.cs:inspiredBy` | known pawns only | known | 16 | 18 | 22 | 2.0 |
 | `Building/PersonalTouches.cs:pending` | until built or dropped | cap | 10 | 10 | 10 | 2.0 |

@@ -1,10 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LanguageData>
 
-  <!-- Visitors and campers buying at RimMarket's colony stalls (Source/ColonyCouncil/Visitors/VisitorTrade.cs). -->
+  <!-- Visitors and campers buying at RimMarket's colony stalls (Source/ColonyCouncil/Visitors/VisitorTrade.cs, VisitorTradeGuests.cs). -->
   <CC_Settings_MarketCampersBuy>Campers buy at RimMarket's stalls</CC_Settings_MarketCampersBuy>
   <CC_Settings_MarketCampersBuy_Tip>With RimMarket: visitors staying the night out on the colony's land, and people from a camp near the colony, now and then walk over to the colony's own stalls in the market's hours and buy something lying on the counter that suits them: drovers feed for their herd, a smith metal, a family a meal, anyone on the road food that keeps. They pay as RimMarket's shoppers do: the article goes off the counter and off its sale line, and their silver is set down at the stall for someone to put away. A dear price may put them off. A few purchases a visit, only at peace and with the map quiet. Off: they keep to their camp.</CC_Settings_MarketCampersBuy_Tip>
   <CC_SetNote_MarketCampersBuy>With RimMarket: visitors camped on the land and nearby camps buy off the colony's stalls.</CC_SetNote_MarketCampersBuy>
+  <CC_Settings_MarketVisitorsBuy>Visitors shop at RimMarket's stalls</CC_Settings_MarketVisitorsBuy>
+  <CC_Settings_MarketVisitorsBuy_Tip>With RimMarket: every other visitor at the colony may stop at the colony's own stalls in the market's hours and buy something on the counter that fits who they are: the game's visitors passing a day, a trade caravan's guards, envoys, notables, a feast's guests, the peoples' callers and invited guests. A trader's people buy what their trader deals in, with coin from the trader's silver; an envoy or a notable looks for something fine; a feast's guests something to take home; a people of Rimfolk's by its calling; anyone else on the road food that keeps. One of a group at a time, a purchase or two a day, never more than a few at the stalls at once, only while their group is at its stay. Never on their way out, at war or with the map in danger. Their group leaves as always: a caravan's people go with the caravan. Off: they keep to their spot. Needs the deeper game hooks.</CC_Settings_MarketVisitorsBuy_Tip>
+  <CC_SetNote_MarketVisitorsBuy>With RimMarket: every other visitor may buy at the colony's stalls too.</CC_SetNote_MarketVisitorsBuy>
   <CC_VisitTrade_Mote>{0}: {1} silver</CC_VisitTrade_Mote>
   <CC_VisitTrade_Bought>{PAWN_nameDef} of {FACTION} bought {THING} at the colony's market stall for {COUNT} silver.</CC_VisitTrade_Bought>
 

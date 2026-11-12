@@ -39,8 +39,8 @@ public static class ImmersionTests
         // The quirks a hurt, an ailment, a founding, a parting and a camp's evening leave (People4).
         "Rimfolk_Pool_BubbleFooting", "Rimfolk_Pool_BubbleTapsRoof", "Rimfolk_Pool_BubbleBoots", "Rimfolk_Pool_BubbleBoils", "Rimfolk_Pool_BubbleFirstFire",
         "Rimfolk_Pool_BubbleLooksBack", "Rimfolk_Pool_BubbleRoadSong", "Rimfolk_Pool_BubbleDusk",
-        // Visitors and campers at the colony's market stalls (Visitors/VisitorTrade.cs).
-        "Rimfolk_Pool_MarketBuy",
+        // Visitors and campers at the colony's market stalls, and the keeper's word as a sale is made (Visitors/VisitorTrade.cs).
+        "Rimfolk_Pool_MarketBuy", "Rimfolk_Pool_MarketKeeper",
         // Visitors at the colony's instrument, their kill, its dressing (Visitors/VisitorActs.cs).
         "Rimfolk_VisitorActLines",
         // What visitors say on arriving, waiting, staying and leaving (Visitors/VisitorWords.cs).

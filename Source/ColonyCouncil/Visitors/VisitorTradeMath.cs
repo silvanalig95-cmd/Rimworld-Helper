@@ -26,14 +26,161 @@ namespace ColonyCouncil
         Art = 512
     }
 
+    /// <summary>The kind of group a visitor at the colony came in, as far as the market goes (Visitors/VisitorTradeGuests.cs).</summary>
+    public enum GuestGroup
+    {
+        /// <summary>Not one that stops at the market this way (Rimfolk's own visits and camps have their own turn; raiders, quests, others' lords).</summary>
+        None,
+        /// <summary>A visit: the game's visitor groups, and Rimfolk's visitors and invited guests that come as the game's visit does.</summary>
+        Visit,
+        /// <summary>A trade caravan.</summary>
+        Caravan,
+        /// <summary>An envoy's party staying the season.</summary>
+        Envoys,
+        /// <summary>Guests of a feast.</summary>
+        Feast
+    }
+
+    /// <summary>A visitor's place in their group.</summary>
+    public enum GuestRole
+    {
+        /// <summary>A guard, a guest, one of the party.</summary>
+        Plain,
+        /// <summary>The trader, who keeps to their own trade.</summary>
+        Trader,
+        /// <summary>A caravan's pack beast or porter, who follows the trader.</summary>
+        Carrier,
+        /// <summary>Someone or something the caravan has for sale.</summary>
+        Chattel
+    }
+
+    /// <summary>What decides whether one visitor may walk over to the market now (<see cref="VisitorTradeMath.WhyNot"/>).</summary>
+    public struct GuestFacts
+    {
+        public GuestGroup group;
+        public GuestRole role;
+        /// <summary>A person, and grown.</summary>
+        public bool person, grown;
+        /// <summary>On their feet, in their right mind, not drafted; awake.</summary>
+        public bool up, awake;
+        /// <summary>Hungry or worn out enough to see to it first, or it's their time to sleep.</summary>
+        public bool pressed;
+        /// <summary>Their group is at its stay (not walking in, not gathering to go), and they themselves aren't on their way out.</summary>
+        public bool atStay, leaving;
+        /// <summary>Their people at peace with the colony; the map quiet; in the market's hours.</summary>
+        public bool atPeace, quiet, hours;
+        /// <summary>Something holds them where they are: an answer the colony still owes them, a caller's work, a story of their own, the gods' affairs, a quest, Hospitality's stay.</summary>
+        public bool held;
+    }
+
+    /// <summary>A group's turn at the market (<see cref="VisitorTradeMath.Turn"/>).</summary>
+    public enum MarketTurn
+    {
+        /// <summary>They've bought what they will today.</summary>
+        Done,
+        /// <summary>Just settled at their spot: their first look comes a little later.</summary>
+        FirstSeen,
+        /// <summary>Not yet their time again.</summary>
+        NotYet,
+        /// <summary>One of theirs is at the market already, or the market is full.</summary>
+        Busy,
+        Go
+    }
+
     /// <summary>
     /// The arithmetic of visitors and campers buying at the colony's market stalls (Visitors/VisitorTrade.cs, with
     /// RimMarket): what each kind of traveller looks for, how well an article fits, how many they take, what their purse
-    /// holds, and the price and the chance to buy as RimMarket reckons a shopper's sale. No game types, so Tools/Tests
-    /// checks it.
+    /// holds, and the price and the chance to buy as RimMarket reckons a shopper's sale; and for every other visitor
+    /// (Visitors/VisitorTradeGuests.cs) who may walk over and when, and what a trader's people look for. No game types,
+    /// so Tools/Tests checks it.
     /// </summary>
     public static class VisitorTradeMath
     {
+        // ---------------- Every other visitor (Visitors/VisitorTradeGuests.cs) ----------------
+
+        /// <summary>What these visitors are called, for what they look for and what they say: a trader's people, an envoy, a notable (a leader, a titled one), a feast's guests, anyone else on the road.</summary>
+        public const string Caravan = "caravan", Envoy = "envoy", Notable = "notable", Guests = "guests", Travellers = "travellers";
+
+        /// <summary>Purchases a visitor's group makes in a day at most.</summary>
+        public const int GuestBuys = 2;
+
+        /// <summary>Visitors of every group at the stalls at once at most (campers and market days count too): the market isn't swamped.</summary>
+        public const int MostAtStalls = 3;
+
+        /// <summary>Hours after a group settles at its spot before the first of them goes over, at least and at most.</summary>
+        public const float FirstLookMin = 0.5f, FirstLookMax = 1.5f;
+
+        /// <summary>Hours before a group tries again when nothing came of it (nothing for them, too dear, no way there).</summary>
+        public const int RetryHours = 2;
+
+        /// <summary>
+        /// Why this visitor doesn't go over to the market now, or null when they may: a person and grown, of a group that
+        /// stops at the market and not its trader or its beasts, up and awake, not pressed by hunger or sleep, at their stay
+        /// and not leaving, their people at peace, the map quiet, in the market's hours, and nothing holding them.
+        /// </summary>
+        public static string WhyNot(GuestFacts f)
+        {
+            if (f.group == GuestGroup.None) return "group";
+            if (!f.person || f.role != GuestRole.Plain) return "role";
+            if (!f.grown) return "child";
+            if (!f.atPeace) return "war";
+            if (!f.quiet) return "danger";
+            if (f.leaving || !f.atStay) return "going";
+            if (!f.up || !f.awake) return "unable";
+            if (f.pressed) return "needs";
+            if (f.held) return "held";
+            if (!f.hours) return "hours";
+            return null;
+        }
+
+        /// <summary>The purchases a group has made today: none if the count is from another day.</summary>
+        public static int ShoppedToday(int shopped, int day, int today) => day == today ? Math.Max(0, shopped) : 0;
+
+        /// <summary>
+        /// A group's turn at the market now: done for the day after <see cref="GuestBuys"/>, a first look a little after
+        /// they settle, not before their next try, one of them at a time and never more than <see cref="MostAtStalls"/> at
+        /// the stalls in all.
+        /// </summary>
+        public static MarketTurn Turn(int shoppedToday, int next, int now, bool oneOfThemThere, int atStalls)
+        {
+            if (shoppedToday >= GuestBuys) return MarketTurn.Done;
+            if (next < 0) return MarketTurn.FirstSeen;
+            if (now < next) return MarketTurn.NotYet;
+            if (oneOfThemThere || atStalls >= MostAtStalls) return MarketTurn.Busy;
+            return MarketTurn.Go;
+        }
+
+        /// <summary>Envoys and notables look for something fine: what has a quality is good or better.</summary>
+        public static bool IsFine(string who) => who == Envoy || who == Notable;
+
+        /// <summary>An article good enough for them: anything for most, good quality or better for the fine (things without a quality always do). Quality as the game counts it, 0 awful to 6 legendary, -1 for none.</summary>
+        public static bool GoodEnough(int quality, bool fine) => !fine || quality < 0 || quality >= 3;
+
+        /// <summary>
+        /// What a trader's people look for: the kinds of goods their trader deals in, by the share of each kind the trader
+        /// takes (<paramref name="handled"/> of <paramref name="all"/> the kinds' articles), the three biggest first (ties
+        /// in the kinds' own order), then food that keeps for the road. What the road needs when the trader deals in none.
+        /// </summary>
+        public static TradeGoods[] TraderWants(IDictionary<TradeGoods, int> handled, IDictionary<TradeGoods, int> all)
+        {
+            var kinds = new List<(TradeGoods g, float share)>();
+            if (handled != null)
+                foreach (var kv in handled)
+                {
+                    if (kv.Value <= 0 || !IsOne(kv.Key) || kv.Key == TradeGoods.None) continue;
+                    int of = all != null && all.TryGetValue(kv.Key, out int n) ? Math.Max(n, kv.Value) : kv.Value;
+                    kinds.Add((kv.Key, kv.Value / (float)of));
+                }
+            if (kinds.Count == 0) return RoadNeeds;
+            kinds.Sort((a, b) => a.share != b.share ? b.share.CompareTo(a.share) : ((int)a.g).CompareTo((int)b.g));
+            var list = new List<TradeGoods>();
+            for (int i = 0; i < kinds.Count && list.Count < 3; i++) list.Add(kinds[i].g);
+            if (!list.Contains(TradeGoods.RoadFood)) list.Add(TradeGoods.RoadFood);
+            return list.ToArray();
+        }
+
+        // ---------------- Campers, Rimfolk's visits and market days ----------------
+
         /// <summary>Purchases a visit makes at most, and a camp over its whole stay (one a day).</summary>
         public const int VisitBuys = 2, CampBuys = 3;
 
@@ -59,15 +206,25 @@ namespace ColonyCouncil
         /// <summary>What anyone on the road needs: food that keeps, a meal, something for a wound.</summary>
         public static readonly TradeGoods[] RoadNeeds = { TradeGoods.RoadFood, TradeGoods.Meal, TradeGoods.Medicine };
 
-        private static readonly string[] Herders = { "drovers", "herders" };
+        // A visit's own word (drovers, a smith...), or a visitor's people's calling (Peoples.CallingOf: herders, traders...).
+        private static readonly string[] Herders = { "drovers", "herders", "tamers" };
         private static readonly string[] Poor = { "family", "families", "settlers", "exiles", "orphans", "orphan", "mother", "survivor", "captive", "fugitive", "deserter", "refugees" };
-        private static readonly string[] Faithful = { "pilgrims", "mourners", "preacher", "penitents" };
-        private static readonly string[] Diggers = { "prospectors", "prospector", "salvagers", "digger" };
-        private static readonly string[] Makers = { "smith", "tinker" };
+        private static readonly string[] Faithful = { "pilgrims", "mourners", "preacher", "penitents", "sextons" };
+        private static readonly string[] Diggers = { "prospectors", "prospector", "salvagers", "digger", "drillers" };
+        private static readonly string[] Makers = { "smith", "tinker", "artisans", "linesmen", "mechanitors" };
         private static readonly string[] Players = { "singer", "band", "stargazer" };
-        private static readonly string[] Dealers = { "merchant", "agent", "smuggler" };
+        private static readonly string[] Dealers = { "merchant", "agent", "smuggler", "traders", "brokers", Caravan };
+        private static readonly string[] Fine = { Envoy, Notable };
+        private static readonly string[] Fighters = { "mercenaries", "crew" };
+        private static readonly string[] Learned = { "scholars", "editors", "listeners", "seers" };
+        private static readonly string[] Townsfolk = { "citizens", "vaultfolk", Guests };
 
-        /// <summary>What a visit's people look for first, by what they are (a visit's <c>what</c>): drovers feed for the herd, a smith metal, a family a meal and clothes.</summary>
+        /// <summary>
+        /// What a visit's people look for first, by what they are (a visit's <c>what</c>, or a visitor's people's calling,
+        /// or what <see cref="Envoy"/>, <see cref="Notable"/>, <see cref="Guests"/> and <see cref="Travellers"/> name):
+        /// drovers feed for the herd, a smith metal, a family a meal and clothes, an envoy something fine, a traveller food
+        /// that keeps.
+        /// </summary>
         public static TradeGoods[] Wants(string who)
         {
             if (who == Buyers) return MarketNeeds;
@@ -80,6 +237,14 @@ namespace ColonyCouncil
             if (Is(who, Dealers)) return new[] { TradeGoods.Art, TradeGoods.Textiles, TradeGoods.Clothes };
             if (who == "gleaners") return new[] { TradeGoods.Meal, TradeGoods.RawFood };
             if (who == "hunters") return new[] { TradeGoods.RoadFood, TradeGoods.Medicine, TradeGoods.Drink };
+            // An envoy or a notable something fine; a feast's guests and townsfolk something to take home.
+            if (Is(who, Fine)) return new[] { TradeGoods.Art, TradeGoods.Clothes, TradeGoods.Drink };
+            if (Is(who, Townsfolk)) return new[] { TradeGoods.Drink, TradeGoods.Art, TradeGoods.Clothes, TradeGoods.Meal };
+            if (Is(who, Fighters)) return new[] { TradeGoods.Medicine, TradeGoods.RoadFood, TradeGoods.Drink };
+            if (Is(who, Learned)) return new[] { TradeGoods.Art, TradeGoods.Drink, TradeGoods.Meal };
+            if (who == "healers") return new[] { TradeGoods.Medicine, TradeGoods.Textiles, TradeGoods.Meal };
+            if (who == "fishers") return new[] { TradeGoods.Textiles, TradeGoods.RoadFood, TradeGoods.Drink };
+            if (who == "grovekeepers") return new[] { TradeGoods.RawFood, TradeGoods.Medicine };
             return RoadNeeds;
         }
 
@@ -170,12 +335,13 @@ namespace ColonyCouncil
             return c < 0f ? 0f : c > 1f ? 1f : c;
         }
 
-        /// <summary>The coin a group carries for the road, by what they are: none if robbed, a little for the poor and the faithful, more for those going to market or with a trade.</summary>
+        /// <summary>The coin a group carries for the road, by what they are: none if robbed, a little for the poor and the faithful, more for those going to market or with a trade, most for an envoy or a notable.</summary>
         public static (int min, int max) Purse(string who, bool robbed)
         {
             if (robbed) return (0, 0);
             if (who == Buyers) return (80, 220);
             if (Is(who, Poor) || Is(who, Faithful) || who == "gleaners") return (15, 50);
+            if (Is(who, Fine)) return (80, 240);
             if (Is(who, Herders) || Is(who, Dealers) || Is(who, Makers) || Is(who, Diggers) || who == "surveyors") return (60, 160);
             return (30, 100);
         }

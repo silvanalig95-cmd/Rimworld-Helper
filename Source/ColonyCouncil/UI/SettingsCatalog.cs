@@ -768,6 +768,7 @@ namespace ColonyCouncil
             Mod(Toggle("marketStallWindow", "CC_Settings_MarketStallWindow", "CC_SetNote_MarketStallWindow", "deepHooks"), RimMarketId);
             Mod(Toggle("marketStallShips", "CC_Settings_MarketStallShips", "CC_SetNote_MarketStallShips", "deepHooks"), RimMarketId);
             Mod(Toggle("marketCampersBuy", "CC_Settings_MarketCampersBuy", "CC_SetNote_MarketCampersBuy"), RimMarketId);
+            Mod(Toggle("marketVisitorsBuy", "CC_Settings_MarketVisitorsBuy", "CC_SetNote_MarketVisitorsBuy", "deepHooks"), RimMarketId);
             // Guests shopping at the market needs both RimMarket and Hospitality.
             Mod(Toggle("marketGuestsShop", "CC_Settings_MarketGuestsShop", "CC_SetNote_MarketGuestsShop", "deepHooks"), RimMarketId, HospitalityId);
             Section("CC_SetSec_Mod_AlphaSkills");
