@@ -32,11 +32,12 @@ tree at once, alongside whatever runs. Each piece is merged as its own release, 
   cool!! add all to to-do"; then "but perhaps do several batches so i don't have a huge job after"; then "also hold
   with the peoples update also until i say so!"; then "no actually do one round but after it should just be on
   to-do like any new request please".** Round 1 is released (0.213.0, "The peoples' own events,
-  round 1" below); rounds 2 to 10 are held until they ask. Ten
+  round 1" below); round 2 is built and not released yet ("The peoples' own events, round 2" below, 12 November 2026,
+  on "you can go ahead on the todos"); rounds 3 to 10 are held until they ask. Ten
   rounds, one at a time when asked (each round its own agent and release; shared shapes come early: the
   visitor working on a colonist in round 1, goods held in trust 1 then 20, the caravan of one 14 then 3, 67, 77, 98):
   1. 10, 5, 47, 83, 51, 1, 19, 17, 34, 95 (the recommended ten). Done (11 November 2026), not released yet.
-  2. 14, 22, 26, 59, 12, 25, 3, 20, 40, 63.
+  2. 14, 22, 26, 59, 12, 25, 3, 20, 40, 63. Done (12 November 2026), not released yet.
   3. The league 2, 4; the order 6, 7, 8; the herders 9, 11, 13; the pilgrims 15, 16.
   4. The society 18, 21; the enclave 23, 24; the river folk 27, 28, 29, 30; the Wardens 31, 32, 33.
   5. The Bell 35 to 38; the Circuit 39, 41, 42; the Wheel 43 to 46.
@@ -188,6 +189,60 @@ tree at once, alongside whatever runs. Each piece is merged as its own release, 
   side ("Some say... Others hold..."); unknown parts shown as silence or a torn page, so the player sees how much is
   still dark; in the style of scripture (chapter and verse, a drop capital, the keeper's notes in the margin, a change
   of hand marked) and ominous in tone. The unseen rule holds: nothing the pawns don't know, no favour, no truth marked.
+- Not released: no version, no What's new round, About.xml and CHANGELOG untouched. **The peoples' own events, round 2**
+  (12 November 2026, the player's "you can go ahead on the todos"). Items 14, 22, 26, 59, 12, 25, 3, 20, 40 and 63 of
+  `docs/peoples-events-proposals.md`; DESIGN.md "The peoples' own events, round 2"; README "The peoples' own events, the
+  second round"; the Almanac's peoples' pages, *Of their own: gifts, trust and camps* (the Signal Line's page gains the
+  section; keywords unchanged).
+  - Code: `Source/ColonyCouncil/Peoples/Events2/` (new): `PeopleEvents2Math.cs` (pure, linked), `PeopleEvents2Book.cs` (a
+    game component: crossings, the enclave's terms, the guild's names in blades, the league's year of caravans),
+    `PeopleEvents2.cs` (the visits' dispatch, `Fire` for an event fired on its day, `MayLeave`), `SeasonAway.cs` (the new
+    shared shape: a colonist away as a caravan of one, `AwayKind`, `JobDriver_SetOut`), `Pilgrimage.cs` (14), `LeagueGuard.cs`
+    (3), `EnclaveBody.cs` (22, its terms and instalments, `Patch_EnclaveDefaultCaravans`), `RiverCrossing.cs` (26, the knot
+    night), `GuildMark.cs` (59, `Patch_GuildMarkLabel`), `DryWater.cs` (12, its camp), `EnclavePad.cs` (25, its camp),
+    `ArchiveTrust.cs` (20, `Patch_ArchiveSold`), `LameBeast.cs` (40), `NewsForSale.cs` (63), `PeopleEvents2Debug.cs`.
+    Small hooks: `PeopleEvents.Hour` (round 2's visits, one line), `PeopleWorkOn` (`PeopleWorkJob.atPlace`: the worker at the
+    place, the master at the bench), `PeopleTowns.LayDocks` (a bridge of the people's age), `Peoples.CaravanFactor` (times
+    `LeagueGuard.CaravanFactor`), the enclave's lander (`HappeningWorker_EnclaveLander`, none while a default stands),
+    `PlayCarry.Archive` (only the society's books carried out), `Feelings.Feeds` (a thought's grief or shame). Defs:
+    `Rimfolk_Events_PeopleEvents2.xml` (twelve events, two fired only on their day: the instalment's letter, the knot night),
+    `Rimfolk_CampKinds_PeopleEvents2.xml` (two camps), `Rimfolk_PeopleEvents2_Misc.xml` (jobs, `Rimfolk_PilgrimShell`, the
+    shrine's memory), Keyed `Rimfolk_PeopleEvents2.xml`, `Textures/ColonyCouncil/Things/PilgrimShell.png`. Tools: the play-out
+    audit's effects and skips, the save model's lists.
+  - Shared shape for the later rounds: *the season away* (`SeasonAway`: walk to the edge, a caravan of their own on the
+    game's roads, kept in the world at the place for its days, home by the same roads, what it was for by its `AwayKind`;
+    for 67 and 98). Round 1's shapes reused: the visitor who works on a colonist (the bionic, the beast's leg, the guild's
+    work at the bench), goods held in trust (the archive, a `TrustRecord` of real books), the camp kind with ways of its own.
+  - Tests: `Tools/Tests/PeopleEvents2Tests.cs` (the rules, the defs, the words, the player's mods, the seams).
+  - Not run here (none of it could be): every play-out on the map and the world (the caravan of one at the edge and home,
+    a beast ridden out with Giddy-Up, the surgeon's pod and the bed, the bionic's `ApplyOnPawn` with a visitor as surgeon and
+    for an Alpha Implants beast, the instalment letter firing and its courier at the gate, the boatmen's spans and the
+    bridge's terrain under foot, the knot night's rest, the master at the bench and the unique weapon's name and traits,
+    the blade's name in its label, the dry-year camp by the water with its strays and predator, the pad's tiles and the
+    morning's pod into the trader's stock, the rent and its raise, the archive's books on shelves and carried out, the
+    stables' lead, the news's quest and its heard-of mark).
+  - Try in the game (dev mode; "Rimfolk", "Peoples' events 2: what the record keeps (log)" shows the state; fire each event
+    with the game's own incident tool, each needs what it says): 1. The pilgrim fellowship at peace and a shrine in reach:
+    `Rimfolk_Evt_Pilgrimage`; send the colonist: they walk out with the file and leave from the edge; "Peoples' events 2:
+    a season away's days there over now" once the shrine's letter came; they come home with a shell at their feet and the
+    message names the grief eased. 2. A great caravan or a trading season running ("Start world event...") and a pack beast:
+    `Rimfolk_Evt_LeagueGuard`; the guard leads (or rides) the beast out; at home the share is set down. 3. The enclave at
+    peace and a medical bed: `Rimfolk_Evt_EnclaveBody`; on terms: the surgeon drops by pod, two hours of sparks, the part
+    fitted; "Peoples' events 2: the enclave's next letter due now", answer "Not this season" for a default (their lander and
+    caravans stop), then pay all that is owed on the next letter. 4. A river on the map and the river folk at peace:
+    `Rimfolk_Evt_RiverCrossing`; the wood goes out, the boatmen lay the spans from both banks with a bar each;
+    "Peoples' events 2: the river folk's knot night now" for their rest at it. 5. A colonist with a bow or a gun (Odyssey on)
+    or a blade, a crafting bench, the guild at peace: `Rimfolk_Evt_GuildMark`; the weapon is handed over, the master works a
+    day at the bench while the colonist stands by; the new piece carries their name. 6. A drought (Odyssey's or VEE's from
+    the incident tool, or the long drought world event) and water on the map: `Rimfolk_Evt_HerdersDrought`; the camp by
+    the water, the hay or grazing letter, the herd in the fields; "Peoples' events 2: one of their camps here now..." brings
+    it directly. 7. `Rimfolk_Evt_EnclavePad` (or the camp action): the pad laid tile by tile, a pod at six, the stock in the
+    factor's trade, the rent every five days, "Raise their rent" on its page. 8. A society town fallen (a ruin in the
+    region) or a great fire: `Rimfolk_Evt_ArchiveTrust`; the books by the stores (and the tome's crate with Anomaly);
+    "Peoples' events 2: the archive's cart now"; sell one first for the wrong. 9. A colony animal missing a leg (the dev
+    "Remove body part") and the Circuit at peace: `Rimfolk_Evt_LameBeast`; with Alpha Implants and an industrial Circuit the
+    leg fitted where it stands, else the stables and the young one. 10. The Signal Line at peace: `Rimfolk_Evt_NewsForSale`;
+    buy one: the game's quest letter, and the world map's heard-of mark at the site.
 - 0.222.0, **Four small asks** (12 November
   2026): the player's "decrees should be around 70% of their general cooldown only please"; "if a pawn that wants to do
   construction on something where they need to cut trees for it, then they should rather do another construction job

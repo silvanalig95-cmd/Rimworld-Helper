@@ -34,7 +34,7 @@ namespace ColonyCouncil
     /// town or a tile); there they are kept in the world for their days; then a caravan of their own brings them home by the
     /// same roads. Whether they come back is the world's: the roads' ambushes and weather are the game's own, nothing of
     /// Rimfolk's hurts them on the way. One of the events' visits (kind "pev:away"): x the colonist, a their beast, its text
-    /// "people|kind|tile|place|days", its stake the stage, its due the end of their days there.
+    /// "people|kind|tile|place|days|extra", its stake the stage, its due the end of their days there.
     /// </summary>
     public static class SeasonAway
     {
@@ -84,6 +84,13 @@ namespace ColonyCouncil
             return p.Length > 4 && float.TryParse(p[4], System.Globalization.NumberStyles.Float, System.Globalization.CultureInfo.InvariantCulture, out float d) ? d : 3f;
         }
 
+        /// <summary>What the kind kept for itself (the pilgrimage's shrine kind: "relic"), or null.</summary>
+        public static string ExtraOf(Visit v)
+        {
+            var p = Parts(v);
+            return p.Length > 5 && p[5].Length > 0 ? p[5] : null;
+        }
+
         public static AwayKind HandlerOf(Visit v) => KeyOf(v) is string k && Kinds.TryGetValue(k, out var h) ? h : null;
 
         /// <summary>Days on the road from the home to a tile, roughly (a walking caravan of one).</summary>
@@ -92,16 +99,18 @@ namespace ColonyCouncil
 
         /// <summary>
         /// Sent: food for the road in their pack, a walk to the map's edge (their beast at heel, or ridden with Giddy-Up), the
-        /// visit begun. <paramref name="days"/> is how long they stay at <paramref name="place"/>.
+        /// visit begun. <paramref name="days"/> is how long they stay at <paramref name="place"/>; <paramref name="extra"/> is
+        /// the kind's own (ExtraOf).
         /// </summary>
-        public static Visit Send(string key, IncidentDef incident, Pawn p, Pawn beast, Faction f, PlanetTile tile, string place, float days, Map home)
+        public static Visit Send(string key, IncidentDef incident, Pawn p, Pawn beast, Faction f, PlanetTile tile, string place, float days, Map home, string extra = null)
         {
             var t = CouncilGameComponent.Instance?.happenings;
             var job = OutJob;
             if (t == null || p == null || f == null || !tile.Valid || home == null || job == null || !p.Spawned || AwayNow(p) || !Kinds.ContainsKey(key)) return null;
             if (!RCellFinder.TryFindBestExitSpot(p, out var edge, TraverseMode.ByPawn)) return null;
             var v = t.AddVisit(Kind, incident, home, p, beast, null, Now + PeopleEvents2Math.AwayMaxDays * GenDate.TicksPerDay);
-            v.text = f.GetUniqueLoadID() + "|" + key + "|" + tile + "|" + (place ?? "?").Replace("|", "/") + "|" + days.ToString("0.##", System.Globalization.CultureInfo.InvariantCulture);
+            v.text = f.GetUniqueLoadID() + "|" + key + "|" + tile + "|" + (place ?? "?").Replace("|", "/") + "|" + days.ToString("0.##", System.Globalization.CultureInfo.InvariantCulture)
+                     + "|" + (extra ?? "").Replace("|", "/");
             v.stake = PeopleEvents2Math.SettingOut;
             WorldLedger.Keep(p, KeepFor.Lent, false);
             try

@@ -172,7 +172,7 @@ namespace ColonyCouncil
         /// <summary>Planks laid on each bank.</summary>
         public const int BankPlanks = 2;
 
-        /// <summary>The game's bridge of the river folk's age: rope and plank, then timber on piles (Odyssey's heavy bridge).</summary>
+        /// <summary>The game's bridge of the river folk's age: rope and plank, then a heavy bridge on piles (Odyssey's).</summary>
         public static string BridgeFor(int age) => age >= 2 ? "HeavyBridge" : "Bridge";
 
         /// <summary>The colony's wood for it: each span's and plank's own cost, at least 20.</summary>

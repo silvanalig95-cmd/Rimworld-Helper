@@ -15,7 +15,7 @@ namespace ColonyCouncil
     /// The river folk's crossing (item 26): where a river or a stream cuts the colony's map, two or three boatmen spend a day
     /// laying the game's bridge over the water that takes one, and planks on the banks, with wood the colony gives; their
     /// own town's dock-laying (PeopleTowns.LayDocks), cell by cell, a bar for each. Rope and plank (the game's bridge) in
-    /// the tribal and medieval ages, timber on piles (Odyssey's heavy bridge) after. The crossing is the colony's. Once a
+    /// the tribal and medieval ages, a heavy bridge on piles (Odyssey's) after. The crossing is the colony's. Once a
     /// year, on their knot night, they ask to rest at it (Rimfolk_Evt_KnotNight).
     /// </summary>
     public static class RiverCrossing

@@ -230,6 +230,7 @@
       <li><role>light</role><defs><li>TorchLamp</li></defs></li>
     </structures>
     <sleep>Tents</sleep>
+    <works><li>Haul</li></works>
     <titles>
       <li>The enclave's pad</li>
     </titles>

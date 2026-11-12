@@ -32,12 +32,16 @@ namespace ColonyCouncil
         /// <summary>An archive held in trust now (one at a time).</summary>
         public static TrustRecord Open() => Records.FirstOrDefault(r => !r.done);
 
-        /// <summary>The archive's books (and the tome's crate) on this map, still theirs: what the fetch carries out.</summary>
+        /// <summary>
+        /// The archive's books (and the tome's crate) on this map, still theirs: what the fetch carries out. The fetch closes
+        /// the record as their cart comes, and the books are carried out after, so a fetched record's books count until they
+        /// are handed over; the one left with the colony, those sold and a lapsed archive's are the colony's.
+        /// </summary>
         public static IEnumerable<Thing> Held(Map map)
         {
-            var r = Open();
-            if (r == null || map == null || r.map != map) return Enumerable.Empty<Thing>();
-            return r.crates.Where(t => t != null && !t.Destroyed && t.Spawned && t.Map == map && r.FateOf(t.thingIDNumber) == null);
+            if (map == null) return Enumerable.Empty<Thing>();
+            return Records.Where(r => r.map == map && r.ink != "lapsed")
+                .SelectMany(r => r.crates.Where(t => t != null && !t.Destroyed && t.Spawned && t.Map == map && r.FateOf(t.thingIDNumber) == null)).Distinct().ToList();
         }
 
         /// <summary>One of the archive's things (a book or the tome's crate) still held in trust.</summary>
@@ -153,7 +157,12 @@ namespace ColonyCouncil
                 foreach (var t in things.Where(t => !(t is TrustCrate)))
                     t.SetForbidden(true, false);
             var v = CouncilGameComponent.Instance?.happenings?.AddVisit(Kind, ctx.incident, map, null, null, null, rec.due + 3 * GenDate.TicksPerDay);
-            if (v != null) v.stake = rec.id;
+            if (v != null)
+            {
+                v.stake = rec.id;
+                // Kept locked away: the books stay forbidden while they wait (the porters set them down unforbidden).
+                if (locked) v.text = "locked";
+            }
             FactionMemory.Note(f, "sheltered", "CC_PEv2_ArchiveName".Translate().Resolve());
             return rec;
         }
@@ -163,7 +172,13 @@ namespace ColonyCouncil
         {
             var rec = PeopleEventsBook.Instance?.trusts?.FirstOrDefault(r => r != null && r.id == v.stake);
             if (rec == null || rec.done) return false;
-            if (now < rec.due) return true;
+            if (now < rec.due)
+            {
+                if (v.text == "locked" && rec.map != null)
+                    foreach (var t in rec.crates.Where(t => t != null && t.Spawned && t.Map == rec.map && !(t is TrustCrate) && rec.FateOf(t.thingIDNumber) == null && !t.IsForbidden(Faction.OfPlayer)))
+                        t.SetForbidden(true, false);
+                return true;
+            }
             var map = rec.map ?? v.map;
             if (map == null || rec.faction == null || rec.faction.defeated || rec.faction.HostileTo(Faction.OfPlayer))
             {

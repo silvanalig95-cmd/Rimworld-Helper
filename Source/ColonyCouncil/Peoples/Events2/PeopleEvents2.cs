@@ -46,7 +46,6 @@ namespace ColonyCouncil
                 var parms = StorytellerUtility.DefaultParmsNow(def.category ?? IncidentCategoryDefOf.Misc, map);
                 parms.forced = true;
                 parms.faction = f;
-                Fired = f;
                 return def.Worker.CanFireNow(parms) && def.Worker.TryExecute(parms);
             }
             catch (Exception e)
@@ -54,14 +53,7 @@ namespace ColonyCouncil
                 CouncilLog.ErrorOnce("peoples' events 2: firing " + defName, e);
                 return false;
             }
-            finally
-            {
-                Fired = null;
-            }
         }
-
-        /// <summary>The people an event fired from code is about, while it is being fired.</summary>
-        public static Faction Fired;
 
         /// <summary>The colony's age now (0 tribal to 3 spacer), for "a tribal colony sees pods fall" and the like.</summary>
         public static int ColonyAge => (int)Ages.Ours;

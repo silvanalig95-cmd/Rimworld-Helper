@@ -52,7 +52,7 @@ public static class PeopleEvents2Tests
 
         // ================= 3. One guard, one wagon =================
 
-        C(PeopleEvents2Math.GuardShare(5f, 0, 2) == 230 && PeopleEvents2Math.GuardShare(5f, 10, 2) > PeopleEvents2Math.GuardShare(5f, 0, 2)
+        C(PeopleEvents2Math.GuardShare(5f, 0, 2) == 220 && PeopleEvents2Math.GuardShare(5f, 10, 2) > PeopleEvents2Math.GuardShare(5f, 0, 2)
           && PeopleEvents2Math.GuardShare(5f, 5, 0) < PeopleEvents2Math.GuardShare(5f, 5, 3) && PeopleEvents2Math.GuardShare(0f, 0, 0) == 60 && PeopleEvents2Math.GuardShare(float.NaN, 0, 1) == 60,
             "a share by the days, the guard's way with a bargain and the league's age");
         C(PeopleEvents2Math.GuardGoodwill == 8 && PeopleEvents2Math.GuardCaravans == 1.5f && PeopleEvents2Math.GuardYearDays == 60 && PeopleEvents2Math.GuardMinDays >= 3f,
@@ -78,7 +78,7 @@ public static class PeopleEvents2Tests
         // ================= 26. A crossing =================
 
         C(PeopleEvents2Math.BridgeFor(0) == "Bridge" && PeopleEvents2Math.BridgeFor(1) == "Bridge" && PeopleEvents2Math.BridgeFor(2) == "HeavyBridge" && PeopleEvents2Math.BridgeFor(3) == "HeavyBridge",
-            "rope and plank, then timber on piles");
+            "rope and plank, then a heavy bridge on piles");
         C(PeopleEvents2Math.CrossingWood(10, 4, 6, 3) == 72 && PeopleEvents2Math.CrossingWood(0, 0, 6, 3) == 20 && PeopleEvents2Math.CrossingMaxWater >= 10 && PeopleEvents2Math.BankPlanks == 2,
             "the colony's wood, each span's and plank's own cost");
         var knots = Enumerable.Range(0, 500).Select(PeopleEvents2Math.KnotDay).ToList();

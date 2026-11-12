@@ -186,7 +186,7 @@ namespace ColonyCouncil
                 {
                     int eaten = c.EatCrops(Rand.RangeInclusive(4, 9));
                     if (eaten > 0)
-                        Tell.Message(NewsKind.World, Importance.Notable, map, "CC_PEv2_DryAte".Translate(c.Label.Named("NAME"), eaten.Named("COUNT")).Resolve(),
+                        Tell.Message(NewsKind.World, Importance.Notable, map, "CC_PEv2_DryAte".Translate((c.faction?.Name ?? "?").Named("FACTION"), eaten.Named("COUNT")).Resolve(),
                             new LookTargets(new TargetInfo(c.errandCell, map)), MessageTypeDefOf.NegativeEvent);
                     c.EndErrand();
                 }

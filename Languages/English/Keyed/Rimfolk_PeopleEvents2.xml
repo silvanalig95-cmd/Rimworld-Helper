@@ -54,6 +54,7 @@
   <CC_PEv2_GuardThereAlone>{PAWN} has reached {PLACE} without the beast, which didn't keep up, and walks with {FACTION}'s caravan under the colony's flag for {DAYS} days before turning for home.</CC_PEv2_GuardThereAlone>
   <CC_PEv2_GuardHome>{PAWN} is home from walking with {FACTION}'s caravan, {BEAST} at {PAWN_possessive} side, and has set the colony's share down: {SHARE} silver. The league's caravans will come this way more often for a year.</CC_PEv2_GuardHome>
   <CC_PEv2_GuardHomeBeastLost>{PAWN} is home from walking with {FACTION}'s caravan and has set the colony's share down, {SHARE} silver, but {BEAST} didn't come back from the road.</CC_PEv2_GuardHomeBeastLost>
+  <CC_PEv2_GuardHomeAlone>{PAWN} is home from walking with {FACTION}'s caravan and has set the colony's share down: {SHARE} silver. The league's caravans will come this way more often for a year.</CC_PEv2_GuardHomeAlone>
   <CC_PEv2_GuardHomeEarly>{PAWN} is home from {PLACE} early, the caravan's walk cut short, and with no share.</CC_PEv2_GuardHomeEarly>
 
   <!-- ===================== 22. The body made better, on terms (EnclaveBody.cs) ===================== -->
@@ -79,7 +80,7 @@
   <!-- ===================== 26. A crossing on the colony's river (RiverCrossing.cs) ===================== -->
 
   <CC_PEv2_Bridge_rope>a crossing of rope and plank</CC_PEv2_Bridge_rope>
-  <CC_PEv2_Bridge_piles>a crossing of timber on piles</CC_PEv2_Bridge_piles>
+  <CC_PEv2_Bridge_piles>a heavy bridge on driven piles</CC_PEv2_Bridge_piles>
   <CC_PEv2_NoBuilder>The colony has nobody who builds.</CC_PEv2_NoBuilder>
   <CC_PEv2_Impact_Crossing>{0} and the boatmen lay {2} over {1} cells of water and plank both banks, a span at a time.</CC_PEv2_Impact_Crossing>
   <CC_PEv2_Impact_CrossingBrief>A crossing laid</CC_PEv2_Impact_CrossingBrief>
@@ -118,10 +119,10 @@
   <!-- ===================== 12. Water in the dry year (DryWater.cs) ===================== -->
 
   <CC_PEv2_DryLost>On the dry road to the next water, {FACTION}'s herders lost {COUNT} head, so the drovers say.</CC_PEv2_DryLost>
-  <CC_PEv2_DryAte>The {NAME}'s herd ate {COUNT} of the colony's crops before the herders drove it out of the field.</CC_PEv2_DryAte>
+  <CC_PEv2_DryAte>{FACTION}'s herd ate {COUNT} of the colony's crops before the herders drove it out of the field.</CC_PEv2_DryAte>
   <CC_PEv2_DryGrazing>{FACTION}'s herd is out grazing the colony's far ground, a herder walking its edge.</CC_PEv2_DryGrazing>
   <CC_PEv2_DryStray>Some of {FACTION}'s herd has strayed from the {NAME} into the colony's fields.</CC_PEv2_DryStray>
-  <CC_PEv2_DryPredator>{THING} has followed {FACTION}'s herd in from the edge, and is stalking it by the water.</CC_PEv2_DryPredator>
+  <CC_PEv2_DryPredator>A predator of the land, {THING}, has followed {FACTION}'s herd in from the edge, and is stalking it by the water.</CC_PEv2_DryPredator>
   <CC_PEv2_DryName>the water in the dry year</CC_PEv2_DryName>
   <CC_PEv2_DryRegion>The region hears that the colony shared its water with {FACTION}'s herders in the dry year.</CC_PEv2_DryRegion>
   <CC_PEv2_NoRoomCamp>There's no room on the colony's land for another camp now.</CC_PEv2_NoRoomCamp>

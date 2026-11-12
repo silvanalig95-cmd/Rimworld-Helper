@@ -1450,3 +1450,27 @@ budget, the pilgrims' cough and a camp brawl's rate).
   the Peoples page.
 - A visitor of the order who stays a season at the colony's hospital.
 - Their notables' own small stories (a waymaster's caravan lost, a prior's illness).
+
+## What was built (the peoples' own events, round 2)
+
+The second of the ten rounds (12 November 2026, on the player's "you can go ahead on the todos"): items 14, 22, 26, 59,
+12, 25, 3, 20, 40 and 63 of `docs/peoples-events-proposals.md`. DESIGN.md "The peoples' own events, round 2" has the code;
+here, what each people does.
+
+| People | Item | What happens on the map | Its age | The player's mods |
+|---|---|---|---|---|
+| The pilgrim fellowship | A pilgrimage (14) | A file at the gate bound for a shrine in reach; the colonist who goes walks out with it and leaves as a caravan of one; ten to thirty days away; home with a shell at their feet, a memory of the shrine, steadier faith and a grief or guilt eased | On foot in every age | Ideology (a relic's town, certainty); Vanilla Ideology Expanded - Relics and Artifacts (a relic's token); Odyssey's landmarks (an old shrine) |
+| The road league | One guard, one wagon (3) | While a great caravan or a trading season runs: a fighter and a pack beast walk out under the colony's flag and come home with a share of the profit and a trade lesson; the league's caravans half again as often for a year | A pack beast in every age | Giddy-Up 2 (the guard rides) |
+| The spacer enclave | The body made better, on terms (22) | A bionic eye, arm, leg or spine fitted at the colony's bed by their surgeon, paid now or a fifth down and four seasonal instalments by letter; a default keeps their landers away until paid | By pod; on foot into a tribal colony | The game's bionics; Alpha Implants' animal bionics for a bonded beast |
+| The river folk | A crossing on the colony's river (26) | Boatmen lay spans over the river's narrows from both banks, a bar each, planks on the banks, with the colony's wood; the crossing is the colony's; their knot night's rest at it each year | Rope and plank, then a heavy bridge on piles | Odyssey's heavy bridge |
+| The Kiln Guild | The guild's mark (59) | The weapon handed over; a master works a day at the colony's bench while the colonist watches; a unique piece, or a masterwork in better stuff, with the colonist's name | A greatbow or crossbow, then rifles and charge guns | Odyssey's and Vanilla Weapons Expanded's unique weapons, found by name |
+| The herding folk | Water in the dry year (12, camp) | In a drought, a camp by the colony's water five to eight days with up to a dozen head and dogs; hay or grazing asked; milk, a hand with the beasts, a young beast after a good stay; strays in the fields, a predator after the herd; turned away, the head lost on the road told later | On foot in every age | Odyssey's and Vanilla Events Expanded's droughts |
+| The spacer enclave | A pad by the colony (25, camp) | Two factors and two marshals rent ground at the edge, lay a pad tile by tile, a pod of fresh stock each dawn, trade every day; rent every five days to the last digit; keep off the pad, sell them meals, raise the rent | Their spacer kit in every age; a tribal colony sees something fall from the sky at dawn | None needed |
+| The learned society | Books kept from the fire (20) | A cart of books saved from a fallen or burning town, set by the stores for a season; read or locked away; Anomaly's tome sealed; the cart comes back, thanks and a book left, or a lasting wrong | The game's books by their age | Vanilla Books Expanded's papers; Anomaly's tome |
+| The Circuit of Tamers | A leg for a lame beast (40) | The beast-doctor fits a leg where the beast stands, or takes it to their stables and leaves a young one of its kind | A leg from the industrial age; the stables before | Alpha Implants' animal prosthetic leg |
+| The Signal Line | News for sale (63) | An operator sells what the masts heard; the game's own quest site appears, marked as heard of from their masts | Runners walk the word where the colony has no radio | Odyssey's orbital wreck where the game would send the colony |
+
+Gifts (the pilgrimage, the bionic, the guild's mark, the beast's leg) come once to a colonist or a beast and are spaced
+with round 1's. What can hurt, at the game's own rate and shown: the roads of a season away (the game's caravans), a
+fitting that fails (the game's surgery), a band against the pad (bands against a camp), and Rimfolk's harm budget's
+pilgrims' cough and the predator a herd draws in.

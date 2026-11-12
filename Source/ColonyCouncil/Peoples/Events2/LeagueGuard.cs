@@ -214,8 +214,8 @@ namespace ColonyCouncil
                 var b = PeopleEvents2Book.Instance;
                 if (b != null) b.guardUntil = Find.TickManager.TicksGame + PeopleEvents2Math.GuardYearDays * GenDate.TicksPerDay;
             }
-            bool beastLost = v.a != null && v.a.Dead;
-            string key = !served ? "CC_PEv2_GuardHomeEarly" : beastLost ? "CC_PEv2_GuardHomeBeastLost" : "CC_PEv2_GuardHome";
+            // The beast stayed home (it didn't keep up at the edge), died on the road, or came home with them.
+            string key = !served ? "CC_PEv2_GuardHomeEarly" : v.a == null ? "CC_PEv2_GuardHomeAlone" : v.a.Dead ? "CC_PEv2_GuardHomeBeastLost" : "CC_PEv2_GuardHome";
             Tell.Message(NewsKind.World, Importance.Notable, home, key.Translate(p.Named("PAWN"), SeasonAway.PlaceOf(v).Named("PLACE"), share.Named("SHARE"), (f?.Name ?? "?").Named("FACTION"),
                 (v.a?.LabelShort ?? "").Named("BEAST")).Resolve(), p.Spawned ? new LookTargets(p) : LookTargets.Invalid, MessageTypeDefOf.PositiveEvent);
         }

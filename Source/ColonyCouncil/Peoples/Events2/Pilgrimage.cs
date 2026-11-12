@@ -156,6 +156,8 @@ namespace ColonyCouncil
             PeopleEvents.AgeTags(tags, ctx.faction);
             string kind = (ctx.note ?? "").Split('|')[0];
             if (!kind.NullOrEmpty()) tags.Add(kind);
+            // A second one who might go: only then may a text name {B}.
+            if (ctx.b != null && ctx.b != ctx.a) tags.Add("second");
             if (Pilgrimage.Burden(ctx.a, out string which) != null) tags.Add(which);
             else if (Faiths.Holds(ctx.a) && Faiths.Certainty(ctx.a) < 0.5f) tags.Add("doubt");
         }
@@ -207,7 +209,7 @@ namespace ColonyCouncil
             var bits = (hc.note ?? "").Split('|');
             if (bits.Length < 3 || !PlanetTile.TryParse(bits[1], out var tile)) return;
             float days = float.TryParse(bits[2], System.Globalization.NumberStyles.Float, System.Globalization.CultureInfo.InvariantCulture, out float d) ? d : 3f;
-            var v = SeasonAway.Send(Pilgrimage.AwayKey, hc.incident, who, null, hc.faction, tile, (bits[0] == "relic" ? "relic:" : "") + hc.placeName, days, hc.map);
+            var v = SeasonAway.Send(Pilgrimage.AwayKey, hc.incident, who, null, hc.faction, tile, hc.placeName, days, hc.map, bits[0]);
             if (v == null) return;
             PeopleEventsBook.Gave(Pilgrimage.GiftKind, who);
             // The file goes on its way at the same time, toward the same road.
@@ -220,13 +222,11 @@ namespace ColonyCouncil
     {
         public override string Key => Pilgrimage.AwayKey;
 
-        private static string Shrine(string place) => place != null && place.StartsWith("relic:", StringComparison.Ordinal) ? place.Substring(6) : place;
-
         public override void Arrived(Visit v, Map home, Faction f, string place)
         {
             var p = v.x;
             Tell.Letter(NewsKind.World, Importance.Notable, home, "CC_PEv2_ShrineLabel".Translate(p.LabelShort).Resolve(),
-                "CC_PEv2_Shrine".Translate(p.Named("PAWN"), Shrine(place).Named("PLACE"), (f?.Name ?? "?").Named("FACTION"), Mathf.RoundToInt(SeasonAway.DaysOf(v)).Named("DAYS")).Resolve(),
+                "CC_PEv2_Shrine".Translate(p.Named("PAWN"), place.Named("PLACE"), (f?.Name ?? "?").Named("FACTION"), Mathf.RoundToInt(SeasonAway.DaysOf(v)).Named("DAYS")).Resolve(),
                 LetterDefOf.NeutralEvent, LookTargets.Invalid, f);
         }
 
@@ -234,8 +234,7 @@ namespace ColonyCouncil
         {
             var p = v.x;
             string place = SeasonAway.PlaceOf(v);
-            bool relic = place != null && place.StartsWith("relic:", StringComparison.Ordinal);
-            place = Shrine(place);
+            bool relic = SeasonAway.ExtraOf(v) == "relic";
             var things = new List<string>();
             // The shell, and with Relics and Artifacts a token of the relic's shrine: set down at their feet as they come in.
             var shell = Pilgrimage.ShellDef;
