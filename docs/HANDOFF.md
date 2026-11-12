@@ -248,7 +248,14 @@ tree at once, alongside whatever runs. Each piece is merged as its own release, 
   that story, not the same card again. A happening that should feel unique or rare (the moon's return, a god's
   moment, a gift, a myth told at supper) waits far longer than 3 days, the moon's return by the moon itself (around
   the full moon, a cycle apart), and when one does come back it leans to a different form. The yearly count in
-  `Tools/Balance` stays, as a check, not a cap.
+  `Tools/Balance` stays, as a check, not a cap. **And (the player, the same day):** "and if it's triggering on something
+  where no other events really trigger, it shouldn't like "auto-trigger" this event automatically when it's free,
+  otherwise you can almost predict it". So: a happening never fires just because its gap is over and its condition
+  holds, the first night it may (now the moon's return comes on the first eligible night at 70 % on a full moon, and
+  the colony's deeds hold almost every day); once it is free, its chance stays small and spread over a long, uneven
+  window, so the player can't tell when it will come or whether it will at all; a condition that is nearly always true
+  (someone did a kindness today) is no trigger on its own, only a strong or unusual one is. Every gods' happening
+  checked for the same pattern (free, then certain at the next chance).
 - 0.221.0, **Mog's luck and her stare**
   (11 November 2026), the follow-up to the gods on the map from the pantheon's Mog ("the one she chooses has a lucky
   season ... she sees Ennu for what it is, and stares at it"). DESIGN.md "The gods on the map", the sacred animal.
