@@ -12,6 +12,11 @@ fields, the illness and harm budgets, the gods. The player's list already holds 
 three, Vanilla Expanded's fourteen: tribal, medieval, classical, pirates, insect, empire, deserters, psycasts, waves,
 persistent, invader, settlers, Christmas), so none of these repeats theirs: those set what comes; these set why it comes.
 
+The player's rule (12 November 2026): "the storytellers will still always include a chance for any kind of event ... not
+that i lock myself out of some of them". Each storyteller and direction leans toward its way and never away from anything:
+every kind of event, the game's and Rimfolk's, keeps a chance under every one (each lever has a floor, and every incident
+category has a way to fire).
+
 ## A. Storytellers
 
 1. **The Long Road.** The world calls the colony out. Fewer threats come to the gate, more come from the region: letters
