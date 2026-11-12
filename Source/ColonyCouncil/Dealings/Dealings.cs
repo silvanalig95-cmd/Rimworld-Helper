@@ -162,7 +162,7 @@ namespace ColonyCouncil
             if (DealingMath.TownOnly(k) && town == null) return Why("NoTown");
             string cacheKey = k + ":" + sub + ":" + f.loadID + ":" + (town?.ID ?? -1) + ":" + (home?.uniqueID ?? -1);
             float t = Time.realtimeSinceStartup;
-            int open = NeighbourLetters.OpenCount;
+            int open = NeighbourLetters.UnderWay;
             if (whyKept.TryGetValue(cacheKey, out var kept) && t - kept.at < 1f && t >= kept.at && kept.version == Version + open * 100003) return kept.why;
             string why = DealingMath.WhyNot(k, sub, Facts(k, sub, f, town, home));
             string words = why == null ? null : DealingMath.WhyKey(why).Translate((f.Name ?? "?").Named("PEOPLE"), (town?.Name ?? f.Name ?? "?").Named("TOWN")).Resolve();

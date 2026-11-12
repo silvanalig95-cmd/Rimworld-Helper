@@ -34,6 +34,28 @@ namespace ColonyCouncil
         Fighters
     }
 
+    /// <summary>
+    /// Who owes a debt, for what goods they have to give (the player, 11 November 2026: "based on what are these favours
+    /// created? this guy is a trader"): their people's town stores, or a notable in person by their trade.
+    /// </summary>
+    public enum GoodsFrom
+    {
+        /// <summary>Their people's debt: from their town's stores, by its fortune.</summary>
+        Stores,
+        /// <summary>A trader (their town's trader, or one who called at the colony): what they deal in.</summary>
+        Trader,
+        /// <summary>A healer: medicine.</summary>
+        Healer,
+        /// <summary>A farmer: food.</summary>
+        Farmer,
+        /// <summary>A herder: food.</summary>
+        Herder,
+        /// <summary>A smith (or a crafter of a tribe): metal (a tribe's, wood).</summary>
+        Smith,
+        /// <summary>Anyone else in person: what a household can spare, food (and silver past the tribal age).</summary>
+        Person
+    }
+
     /// <summary>A debt's weight in words: "a small debt", "a debt", "a great debt".</summary>
     public enum DebtWeight
     {
@@ -237,6 +259,137 @@ namespace ColonyCouncil
                 default: return new[] { "food", "medicine", "steel", "silver" };
             }
         }
+
+        // ---------------- Goods by who owes (the player, 11 November 2026: "4 yoghurts is a funny option?") ----------------
+
+        /// <summary>A skill this high (and their best of medicine, plants, animals and crafting) makes someone a healer, farmer, herder or smith for what they give.</summary>
+        public const int TradeSkill = 8;
+
+        /// <summary>Who owes, for the goods: their people's stores; in person, a trader by their trade, else by their best skill when it is a trade.</summary>
+        public static GoodsFrom From(bool personal, bool trader, int medicine, int plants, int animals, int crafting)
+        {
+            if (!personal) return GoodsFrom.Stores;
+            if (trader) return GoodsFrom.Trader;
+            int best = Math.Max(Math.Max(medicine, plants), Math.Max(animals, crafting));
+            if (best < TradeSkill) return GoodsFrom.Person;
+            if (medicine == best) return GoodsFrom.Healer;
+            if (plants == best) return GoodsFrom.Farmer;
+            if (animals == best) return GoodsFrom.Herder;
+            return GoodsFrom.Smith;
+        }
+
+        /// <summary>
+        /// The goods they can give, by who owes: a trader what they deal in (and silver past the tribal age), a healer medicine,
+        /// a farmer or herder food, a smith steel (a tribe's crafter, wood), anyone else food (and silver past the tribal age);
+        /// their people's stores by its age (<see cref="GoodsKinds"/>), what their people are known for first (a people of
+        /// healers, medicine; of herders, hunters, fishers, grovekeepers or tamers, food; of traders or brokers, trade goods; of
+        /// drillers or salvagers, steel).
+        /// </summary>
+        public static string[] GoodsKindsFrom(GoodsFrom from, WorldAge age, string calling)
+        {
+            bool tribal = age == WorldAge.Tribal;
+            switch (from)
+            {
+                case GoodsFrom.Trader: return tribal ? new[] { "trade" } : new[] { "trade", "silver" };
+                case GoodsFrom.Healer: return new[] { "medicine" };
+                case GoodsFrom.Farmer:
+                case GoodsFrom.Herder: return new[] { "food" };
+                case GoodsFrom.Smith: return tribal ? new[] { "wood" } : new[] { "steel" };
+                case GoodsFrom.Person: return tribal ? new[] { "food" } : new[] { "food", "silver" };
+            }
+            var kinds = new System.Collections.Generic.List<string>(GoodsKinds(age));
+            string first = CallingGoods(calling);
+            if (first != null && (first != "steel" || !tribal))
+            {
+                kinds.Remove(first);
+                kinds.Insert(0, first);
+            }
+            return kinds.ToArray();
+        }
+
+        /// <summary>What a people of this calling (Peoples/) is known to have to give, or null.</summary>
+        public static string CallingGoods(string calling)
+        {
+            switch (calling)
+            {
+                case "healers": return "medicine";
+                case "herders":
+                case "hunters":
+                case "fishers":
+                case "grovekeepers":
+                case "tamers": return "food";
+                case "traders":
+                case "brokers": return "trade";
+                case "drillers":
+                case "salvagers": return "steel";
+                default: return null;
+            }
+        }
+
+        /// <summary>Food in a load is a staple: no fine or lavish dish, at most this much silver for each unit of nutrition (a simple meal 17, grain 22, a survival meal 27).</summary>
+        public const float StapleValuePerNutrition = 60f;
+
+        /// <summary>And never a handful of it: at least this many in the load.</summary>
+        public const int StapleMinCount = 10;
+
+        /// <summary>A food that makes a sensible staple load worth <paramref name="worth"/>: plain, cheap for what it feeds, and not a handful.</summary>
+        public static bool Staple(bool fineOrBetter, float value, float nutrition, float worth) =>
+            !fineOrBetter && nutrition > 0f && value > 0f && value / nutrition <= StapleValuePerNutrition && GoodsCount(worth, value) >= StapleMinCount;
+
+        /// <summary>Trade goods in a load: a material that comes in loads, worth this much a unit at most (cloth, leather, metal, blocks; no gold bars by the handful).</summary>
+        public const float TradeGoodsMaxValue = 15f;
+
+        public static bool TradeGood(float value, int stackLimit) => value >= 0.3f && value <= TradeGoodsMaxValue && stackLimit >= 10;
+
+        // ---------------- A word with a third people ----------------
+
+        /// <summary>A word's peoples shown at once (a handful); the rest are folded under "Others".</summary>
+        public const int WordsShown = 4;
+
+        /// <summary>Which peoples a word helps most come first: the coolest toward the colony and the nearest (lower first).</summary>
+        public static float WordRank(int goodwill, float tiles) => goodwill + Math.Max(0f, tiles);
+
+        /// <summary>A word does nothing for a people already at full goodwill toward the colony.</summary>
+        public static bool WordHelps(int goodwill) => goodwill < 100;
+
+        /// <summary>How much a word raises their goodwill, in words: "a little" below 6, "a fair amount" below 9, else "a good deal".</summary>
+        public static string WordMuchKey(int goodwill) => goodwill >= 9 ? "Much" : goodwill >= 6 ? "Some" : "Little";
+
+        // ---------------- The menu (the player, 11 November 2026: "this favour menu is also a bit overwhelming") ----------------
+
+        /// <summary>
+        /// The order of what can be asked: by kind (goods, a word, a captive, peace, fighters), what can be asked now first;
+        /// the words past the first handful under "Others", and what can't be asked now under "Not now" with why. Each item is
+        /// (its kind's order, can be asked now, folded under Others); returns the indexes of those shown, under Others and under
+        /// Not now, each in order.
+        /// </summary>
+        public static void MenuOrder(System.Collections.Generic.IList<(int group, bool can, bool more)> items, out System.Collections.Generic.List<int> shown,
+            out System.Collections.Generic.List<int> others, out System.Collections.Generic.List<int> notNow)
+        {
+            shown = new System.Collections.Generic.List<int>();
+            others = new System.Collections.Generic.List<int>();
+            notNow = new System.Collections.Generic.List<int>();
+            if (items == null) return;
+            // A stable sort by kind: each kind's own order kept.
+            var sorted = new System.Collections.Generic.List<int>();
+            for (int i = 0; i < items.Count; i++) sorted.Add(i);
+            sorted.Sort((a, b) => items[a].group != items[b].group ? items[a].group.CompareTo(items[b].group) : a.CompareTo(b));
+            foreach (int i in sorted)
+            {
+                if (!items[i].can) notNow.Add(i);
+                else if (items[i].more) others.Add(i);
+                else shown.Add(i);
+            }
+        }
+
+        /// <summary>Days of the road for a deed done far away (a captive's walk home, their word reaching another people): at least half a day.</summary>
+        public static float DeedDays(float roadDays) => Math.Max(0.5f, roadDays);
+
+        /// <summary>A debt honoured by letter waits for its answer to reach the colony, or this many days after it was read at most (an answer lost on the road).</summary>
+        public const float LetterDeedFallbackDays = 30f;
+
+        /// <summary>The deeds that wait for the road (or the answer): a word with another people, a captive let go, their help toward peace.</summary>
+        public static bool DoneLater(FavourAsk a) => a == FavourAsk.Word || a == FavourAsk.Captive || a == FavourAsk.Peace;
 
         /// <summary>How much better a people at war with the colony thinks of a truce asked with their help (read by 2a.2's truce answer).</summary>
         public const int PeaceRegard = 20;

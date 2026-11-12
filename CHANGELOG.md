@@ -5,6 +5,18 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## Letters and favours made clear
+
+*12 November 2026, version 0.223.0*
+
+- "Write back" opens on the very answer to your letter: you can write again once their answer is in, even while a guest they promised is still to come.
+- Every greyed letter says what it waits for and when it opens: where your last letter to them is, or the day the wait for the same thing ends.
+- A letter is on the road only once whoever carries it has left the map, so a guest who stays on no longer has it answered while still at your gate.
+- Answers, refusals and silence come only when they could: an answer nobody can carry waits for its road back, and mail sent on by a messenger never comes before it reached the region.
+- Calling in a debt is a short list by kind, what can be asked now first and the rest under "Not now" with why, each saying what it does and how much.
+- The goods follow who owes and what they have: a trader sends from their stock, a healer medicine, a farmer food, a smith steel, and food comes as a staple load, never four yoghurts.
+- A word with another people is offered only where it would help, and by letter a word, a captive let go and help toward peace come with the answer.
+
 ## Four small asks
 
 *12 November 2026, version 0.222.0*

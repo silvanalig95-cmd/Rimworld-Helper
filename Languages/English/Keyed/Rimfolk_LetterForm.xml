@@ -71,7 +71,8 @@
   <CC_LetterRead_PageOn>Turn the page</CC_LetterRead_PageOn>
   <CC_LetterRead_WriteBack>Write back</CC_LetterRead_WriteBack>
   <CC_LetterRead_WriteBackTip>Write a letter back to {NAME}: the answer their letter waits for when it waits for one, else greetings.</CC_LetterRead_WriteBackTip>
-  <CC_LetterRead_Why_NoWriter>Nobody at home can write a letter now.</CC_LetterRead_Why_NoWriter>
+  <CC_LetterRead_Why_NoWriter>Nobody at home can write a letter now: Write back opens when someone who can is home.</CC_LetterRead_Why_NoWriter>
+  <CC_LetterRead_Why_Lately>The colony has written to {NAME} lately about everything it could write about now: Write back opens on the {DATE}.</CC_LetterRead_Why_Lately>
   <CC_LetterRead_Msg>It can be read at the mailbag, and with {NAME} on the Diplomacy screen's People.</CC_LetterRead_Msg>
   <CC_LetterRead_MsgPeople>It can be read with {NAME} on the Diplomacy screen's People.</CC_LetterRead_MsgPeople>
   <CC_LetterRead_MsgClick>Click to read it.</CC_LetterRead_MsgClick>

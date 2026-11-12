@@ -39,6 +39,15 @@ namespace ColonyCouncil
             /// <summary>Another purpose's own code for it (a truce's price, a trade pact's cart), or null for a debt's ask.</summary>
             public string code;
 
+            /// <summary>Its kind's place in the list (a debt's: goods, a word, a captive, peace, fighters); 0 for another purpose's.</summary>
+            public int group;
+
+            /// <summary>What it does and how much, in a line ("they put in a word with the Verea Herd: their goodwill toward the colony rises a little"), or null.</summary>
+            public string what;
+
+            /// <summary>Folded under "Others" (a word with a people it would help less).</summary>
+            public bool more;
+
             public string Code => code ?? FavourMath.AskCode(ask, arg);
         }
 
@@ -98,59 +107,171 @@ namespace ColonyCouncil
         private static string SizeWhy(FavourAsk a, Tie t) =>
             FavourMath.Allows(a, Worth(t)) ? null : DipWords.P(FavoursOwed.IsPersonal(t) ? "CC_Dip_Why_TooSmallPersonal" : "CC_Dip_Why_TooSmall", WeightWords(t).Named("WEIGHT"));
 
-        /// <summary>What they could do now for this debt, each with why not.</summary>
+        /// <summary>
+        /// What they could do for this debt, each with what it does and how much, and why not when it can't be now (the player,
+        /// 11 November 2026: "this favour menu is also a bit overwhelming and i'm not really sure what many of these options
+        /// really do"): goods by who owes and what they have; a word with the few peoples it would help most (the rest folded
+        /// under "Others"); a captive of the colony's they hold; their help toward peace; their fighters. While the debt can't
+        /// be called in now (called lately, their people at war, the one who owes gone), no option is offered as if it could
+        /// be: each is greyed with that why (the player: ""a word with" should probably only be listed when the favour can
+        /// actually be called in, same as for others").
+        /// </summary>
         public static List<Option> Options(Tie t, Map home)
         {
             var list = new List<Option>();
             var f = FavoursOwed.PeopleOf(t);
             if (f == null) return list;
             home ??= FavoursOwed.HomeOf(t);
-            // A load of goods, by their ways.
-            foreach (var kind in FavourMath.GoodsKinds(Ages.Of(f)))
+            string who = DebtorName(t, f);
+            // A load of goods, by who owes and what they have.
+            var from = FromOf(t, f);
+            foreach (var kind in FavourMath.GoodsKindsFrom(from, Ages.Of(f), Peoples.CallingOf(f)))
             {
                 var (def, count) = Goods(kind, f, t);
+                string goods = def != null ? Couriers.Amount(count, null, def) : "";
                 list.Add(new Option
                 {
-                    ask = FavourAsk.Goods, arg = kind, why = def == null ? DipWords.P("CC_Dip_Why_NoGoods") : null,
-                    label = DipWords.P("CC_Dip_Opt_Goods", Couriers.Amount(count, null, def).Named("GOODS"), DipWords.People(f).Named("PEOPLE"))
+                    ask = FavourAsk.Goods, arg = kind, group = 0, why = def == null ? DipWords.P("CC_Dip_Why_NoGoods") : null,
+                    label = DipWords.P("CC_Dip_Opt_Goods", goods.Named("GOODS"), DipWords.People(f).Named("PEOPLE")),
+                    what = def == null ? null : DipWords.P("CC_Dip_What_Goods_" + from, who.Named("WHO"), goods.Named("GOODS"), Mathf.RoundToInt(def.BaseMarketValue * count).Named("SILVER"),
+                        DipWords.People(f).Named("PEOPLE"))
                 });
             }
-            // A word with a third people they are on good terms with.
-            var friends = ThirdPeoples(f).ToList();
+            // A word with the third peoples it would help most: known to the colony, on good terms with them, not yet at full
+            // goodwill; the coolest and the nearest first, a handful shown, the rest under "Others".
+            int gw = FavourMath.WordGoodwill(Worth(t));
+            var friends = WordPeoples(f, home);
             if (friends.Count == 0)
-                list.Add(new Option { ask = FavourAsk.Word, label = DipWords.P("CC_Dip_Opt_WordAny"), why = DipWords.P("CC_Dip_Why_NoFriends", DipWords.People(f).Named("PEOPLE")) });
-            foreach (var o in friends)
+                list.Add(new Option { ask = FavourAsk.Word, group = 1, label = DipWords.P("CC_Dip_Opt_WordAny"), why = DipWords.P("CC_Dip_Why_NoFriends", DipWords.People(f).Named("PEOPLE")) });
+            for (int i = 0; i < friends.Count; i++)
+            {
+                var o = friends[i];
                 list.Add(new Option
                 {
-                    ask = FavourAsk.Word, arg = Refs.Of(o).ToString(), label = DipWords.P("CC_Dip_Opt_Word", DipWords.People(o).Named("PEOPLE"), WordWords(Worth(t)).Named("HOWMUCH")),
-                    why = o.HasGoodwill && o.PlayerGoodwill >= 100 ? DipWords.P("CC_Dip_Why_FullGoodwill", DipWords.People(o).Named("PEOPLE")) : null
+                    ask = FavourAsk.Word, arg = Refs.Of(o).ToString(), group = 1, more = i >= FavourMath.WordsShown,
+                    label = DipWords.P("CC_Dip_Opt_Word", DipWords.People(o).Named("PEOPLE"), WordWords(Worth(t)).Named("HOWMUCH")),
+                    what = DipWords.P("CC_Dip_What_Word", who.Named("WHO"), DipWords.People(o).Named("PEOPLE"), DipWords.P("CC_Dip_What_Much_" + FavourMath.WordMuchKey(gw)).Named("HOWMUCH"),
+                        gw.Named("GOODWILL"))
                 });
+            }
             // A colonist of the colony they hold.
             var held = Held(f);
             if (held.Count == 0)
-                list.Add(new Option { ask = FavourAsk.Captive, label = DipWords.P("CC_Dip_Opt_CaptiveAny"), why = DipWords.P("CC_Dip_Why_NoCaptive", DipWords.People(f).Named("PEOPLE")) });
+                list.Add(new Option { ask = FavourAsk.Captive, group = 2, label = DipWords.P("CC_Dip_Opt_CaptiveAny"), why = DipWords.P("CC_Dip_Why_NoCaptive", DipWords.People(f).Named("PEOPLE")) });
             foreach (var p in held)
                 list.Add(new Option
                 {
-                    ask = FavourAsk.Captive, arg = Refs.Of(p).ToString(), label = DipWords.P("CC_Dip_Opt_Captive", p.Named("PAWN")),
-                    why = SizeWhy(FavourAsk.Captive, t) ?? (home == null ? DipWords.P("CC_Dip_Why_NoHome") : null)
+                    ask = FavourAsk.Captive, arg = Refs.Of(p).ToString(), group = 2, label = DipWords.P("CC_Dip_Opt_Captive", p.Named("PAWN")),
+                    why = SizeWhy(FavourAsk.Captive, t) ?? (home == null ? DipWords.P("CC_Dip_Why_NoHome") : null),
+                    what = DipWords.P("CC_Dip_What_Captive", p.Named("PAWN"), DipWords.People(f).Named("PEOPLE"))
                 });
             // Their help toward peace with a people at war with the colony.
             var enemies = Enemies(f).ToList();
             if (enemies.Count == 0)
-                list.Add(new Option { ask = FavourAsk.Peace, label = DipWords.P("CC_Dip_Opt_PeaceAny"), why = DipWords.P("CC_Dip_Why_NoEnemy", DipWords.People(f).Named("PEOPLE")) });
+                list.Add(new Option { ask = FavourAsk.Peace, group = 3, label = DipWords.P("CC_Dip_Opt_PeaceAny"), why = DipWords.P("CC_Dip_Why_NoEnemy", DipWords.People(f).Named("PEOPLE")) });
             foreach (var e in enemies)
                 list.Add(new Option
                 {
-                    ask = FavourAsk.Peace, arg = Refs.Of(e).ToString(), label = DipWords.P("CC_Dip_Opt_Peace", DipWords.People(e).Named("PEOPLE")),
-                    why = SizeWhy(FavourAsk.Peace, t) ?? (PeacePromised(f, e) != null ? DipWords.P("CC_Dip_Why_Promised", DipWords.People(f).Named("PEOPLE")) : null)
+                    ask = FavourAsk.Peace, arg = Refs.Of(e).ToString(), group = 3, label = DipWords.P("CC_Dip_Opt_Peace", DipWords.People(e).Named("PEOPLE")),
+                    why = SizeWhy(FavourAsk.Peace, t) ?? (PeacePromised(f, e) != null ? DipWords.P("CC_Dip_Why_Promised", DipWords.People(f).Named("PEOPLE")) : null),
+                    what = DipWords.P("CC_Dip_What_Peace", DipWords.People(f).Named("PEOPLE"), DipWords.People(e).Named("ENEMY"))
                 });
             // Their fighters, only while a threat is on a home (release 2a.2).
             list.Add(new Option
             {
-                ask = FavourAsk.Fighters, arg = home != null ? Homes.KeyOf(home).ToString() : "", label = DipWords.P("CC_Dip_Opt_Fighters", DipWords.People(f).Named("PEOPLE")),
-                why = SizeWhy(FavourAsk.Fighters, t) ?? FightersWhy(f, home)
+                ask = FavourAsk.Fighters, arg = home != null ? Homes.KeyOf(home).ToString() : "", group = 4, label = DipWords.P("CC_Dip_Opt_Fighters", DipWords.People(f).Named("PEOPLE")),
+                why = SizeWhy(FavourAsk.Fighters, t) ?? FightersWhy(f, home),
+                what = DipWords.P("CC_Dip_What_Fighters", DipWords.People(f).Named("PEOPLE"))
             });
+            // The debt itself can't be called in now: nothing is offered as if it could be.
+            string gate = WhyNot(t);
+            if (gate != null)
+                foreach (var o in list)
+                    o.why = gate;
+            return list;
+        }
+
+        /// <summary>The one who owes it, for its words: the notable in person, else their people.</summary>
+        private static string DebtorName(Tie t, Faction f) => FavoursOwed.NotableOf(t)?.Name ?? DipWords.People(f);
+
+        /// <summary>Who owes it, for what goods they have: their people's stores, or the notable in person by their trade (a trader, a healer, a farmer...).</summary>
+        public static GoodsFrom FromOf(Tie t, Faction f)
+        {
+            var n = FavoursOwed.NotableOf(t);
+            if (n == null) return GoodsFrom.Stores;
+            var p = n.pawn;
+            int Skill(SkillDef s) => p?.skills?.GetSkill(s)?.Level ?? 0;
+            bool trader = n.role == NotableRole.Trader || n.met == "trader" || p?.TraderKind != null;
+            return FavourMath.From(true, trader, Skill(SkillDefOf.Medicine), Skill(SkillDefOf.Plants), Skill(SkillDefOf.Animals), Skill(SkillDefOf.Crafting));
+        }
+
+        /// <summary>
+        /// The peoples a word with would help most: on good terms with them and not at war with the colony, known to the colony
+        /// (one of theirs known by name, their deeds remembered, or a town of theirs within reach), not yet at full goodwill
+        /// toward it; the coolest toward the colony and the nearest first.
+        /// </summary>
+        public static List<Faction> WordPeoples(Faction f, Map home)
+        {
+            var list = new List<Faction>();
+            foreach (var o in ThirdPeoples(f))
+                if (Known(o) && FavourMath.WordHelps(o.PlayerGoodwill))
+                    list.Add(o);
+            return list.OrderBy(o => FavourMath.WordRank(o.PlayerGoodwill, home != null ? WorldSituationWorker.Distance(home, WorldSituationWorker.NearestTown(o, home)) : 0f)).ToList();
+        }
+
+        /// <summary>The colony knows this people: one of theirs by name, their deeds in its memory, or a town of theirs within a home's reach.</summary>
+        private static bool Known(Faction o)
+        {
+            try
+            {
+                if (NotableBook.Instance?.notables.Any(n => n != null && n.faction == o) ?? false) return true;
+                if (FactionMemory.Instance?.Of(o).Any() ?? false) return true;
+                foreach (var r in RegionTowns.Reach)
+                    if (r?.towns != null && r.towns.Any(s => s?.Faction == o))
+                        return true;
+            }
+            catch (Exception e)
+            {
+                CouncilLog.ErrorOnce("favours: a people known", e);
+            }
+            return false;
+        }
+
+        /// <summary>
+        /// The menu of what can be asked (the player's plan, 11 November 2026: "a short list in a few kinds"): what can be asked
+        /// now, by kind, each with what it does and how much as its tip; a word with the peoples it would help less under
+        /// "Others"; what can't be asked now under "Not now", each with why. <paramref name="prefix"/>: words before each label
+        /// (whose debt it is, face to face). Used for every purpose's asks (a truce's price, a pact's cart) as well as a debt's.
+        /// </summary>
+        public static List<FloatMenuOption> Menu(List<Option> asks, Action<Option> pick, string prefix = null)
+        {
+            var list = new List<FloatMenuOption>();
+            if (asks == null || asks.Count == 0) return list;
+            FavourMath.MenuOrder(asks.Select(o => (o.group, o.why == null, o.more)).ToList(), out var shown, out var others, out var notNow);
+            string Label(Option o) => prefix.NullOrEmpty() ? o.label : prefix + ": " + o.label;
+            FloatMenuOption Can(Option o)
+            {
+                var m = new FloatMenuOption(Label(o), () => pick(o));
+                if (!o.what.NullOrEmpty()) m.tooltip = new TipSignal(o.what);
+                return m;
+            }
+            FloatMenuOption Not(Option o)
+            {
+                var m = new FloatMenuOption("CC_Out_Disabled".Translate(Label(o).Named("LABEL"), (o.why ?? "").Named("WHY")).Resolve(), null);
+                if (!o.what.NullOrEmpty()) m.tooltip = new TipSignal(o.what);
+                return m;
+            }
+            list.AddRange(shown.Select(i => Can(asks[i])));
+            if (others.Count > 0)
+            {
+                var more = others.Select(i => asks[i]).ToList();
+                list.Add(new FloatMenuOption(DipWords.P("CC_Dip_Menu_Others", more.Count.Named("COUNT")), () => Find.WindowStack.Add(new FloatMenu(more.Select(Can).ToList()))));
+            }
+            if (notNow.Count > 0)
+            {
+                var not = notNow.Select(i => asks[i]).ToList();
+                list.Add(new FloatMenuOption(DipWords.P("CC_Dip_Menu_NotNow", not.Count.Named("COUNT")), () => Find.WindowStack.Add(new FloatMenu(not.Select(Not).ToList()))));
+            }
             return list;
         }
 
@@ -174,13 +295,16 @@ namespace ColonyCouncil
 
         /// <summary>
         /// The goods a kind means for them, and how many make the load (the debt's worth by their nearest town's fortune and
-        /// their means): medicine and food that keeps of their own age (Things/ThingRoles.cs: a mod's as well as the game's),
-        /// wood, steel, silver. The same kind of a tie picks the same goods each time it's asked (its words and its load).
+        /// their means): medicine of their own age (Things/ThingRoles.cs: a mod's as well as the game's); food as a staple load
+        /// of their age (plain meals or food that keeps, else grain or roots: never a handful of a dear dish); what a trader of
+        /// theirs deals in (a material their caravans carry, in loads); wood, steel, silver. The same kind of a tie picks the
+        /// same goods each time it's asked (its words and its load).
         /// </summary>
         public static (ThingDef def, int count) Goods(string kind, Faction f, Tie t)
         {
             ThingDef def;
             int seed = ThingRoles.Seed("favour goods", kind, f, t?.id ?? 0);
+            float worth = FavourMath.GoodsWorth(Worth(t), Prosperity(f, t), FavourMath.Means(Ages.Of(f)));
             switch (kind)
             {
                 case "medicine":
@@ -189,13 +313,83 @@ namespace ColonyCouncil
                 case "wood": def = ThingDefOf.WoodLog; break;
                 case "steel": def = ThingDefOf.Steel; break;
                 case "silver": def = ThingDefOf.Silver; break;
+                case "trade": def = TradeGoods(f, seed) ?? ThingDefOf.Silver; break;
                 default:
-                    def = ThingRoles.From(ThingRole.Provisions, f, null, seed) ?? ThingDefOf.RawPotatoes;
+                    def = StapleFood(f, worth, seed);
                     break;
             }
             if (def == null) return (null, 0);
-            float worth = FavourMath.GoodsWorth(Worth(t), Prosperity(f, t), FavourMath.Means(Ages.Of(f)));
             return (def, FavourMath.GoodsCount(worth, def.BaseMarketValue));
+        }
+
+        /// <summary>
+        /// Food as a staple load of their age (FavourMath.Staple): plain meals or food that keeps, else grain, roots or fruit
+        /// from the fields, from the full pool of the player's mods (Things/ThingRoles.cs); pemmican when nothing fits.
+        /// </summary>
+        private static ThingDef StapleFood(Faction f, float worth, int seed)
+        {
+            bool Fits(ThingDef d)
+            {
+                if (d?.ingestible == null) return false;
+                bool fine = d.ingestible.preferability >= FoodPreferability.MealFine;
+                return FavourMath.Staple(fine, d.BaseMarketValue, d.GetStatValueAbstract(StatDefOf.Nutrition), worth);
+            }
+            return ThingRoles.From(ThingRole.Provisions, f, null, seed, Fits) ?? ThingRoles.From(ThingRole.Produce, f, null, seed, Fits) ?? ThingDefOf.Pemmican;
+        }
+
+        private static readonly Dictionary<FactionDef, List<ThingDef>> tradeGoods = new Dictionary<FactionDef, List<ThingDef>>();
+
+        /// <summary>
+        /// What a trader of theirs deals in: a material their caravans carry (cloth, leather, metal, blocks and the like, from
+        /// the player's mods as well as the game), in loads and cheap a unit (FavourMath.TradeGood); never silver, a weapon,
+        /// clothes, a drug or a dish. Null when their caravans carry none.
+        /// </summary>
+        private static ThingDef TradeGoods(Faction f, int seed)
+        {
+            var fd = f?.def;
+            if (fd == null) return null;
+            if (!tradeGoods.TryGetValue(fd, out var list))
+            {
+                list = new List<ThingDef>();
+                try
+                {
+                    var gens = (fd.caravanTraderKinds ?? new List<TraderKindDef>()).Where(k => k?.stockGenerators != null).SelectMany(k => k.stockGenerators).Where(g => g != null).ToList();
+                    if (gens.Count > 0)
+                        foreach (var d in DefDatabase<ThingDef>.AllDefsListForReading)
+                        {
+                            if (d == null || d.category != ThingCategory.Item || !d.IsStuff || d == ThingDefOf.Silver || d.IsWeapon || d.IsApparel || d.IsDrug || d.IsIngestible) continue;
+                            if (!d.tradeability.TraderCanSell() || !FavourMath.TradeGood(d.BaseMarketValue, d.stackLimit)) continue;
+                            if (gens.Any(g => SafeHandles(g, d))) list.Add(d);
+                        }
+                }
+                catch (Exception e)
+                {
+                    CouncilLog.ErrorOnce("favours: a trader's goods", e);
+                }
+                tradeGoods[fd] = list;
+            }
+            if (list.Count == 0) return null;
+            Rand.PushState(seed);
+            try
+            {
+                return list.RandomElement();
+            }
+            finally
+            {
+                Rand.PopState();
+            }
+        }
+
+        private static bool SafeHandles(StockGenerator g, ThingDef d)
+        {
+            try
+            {
+                return g.HandlesThingDef(d);
+            }
+            catch
+            {
+                return false;
+            }
         }
 
         /// <summary>Their nearest town's fortune (the notable's own town for a personal debt), 50 when the region keeps none.</summary>
@@ -301,9 +495,13 @@ namespace ColonyCouncil
         /// <summary>
         /// They hear the ask (their letter is read, or one of theirs hears it face to face) and answer it. Honoured: it is
         /// done (goods are in <see cref="Answer.things"/> for the letter's messenger to bring, or brought by their porters
-        /// when <paramref name="byLetter"/> is false). Refused: the deed "brokeWord".
+        /// when <paramref name="byLetter"/> is false). Refused: the deed "brokeWord". <paramref name="answerDays"/>: by
+        /// letter, the days its answer takes to come back (-1 a call or face to face): what is done far away waits for the
+        /// answer to reach the colony (a word with another people, a captive let go, their help toward peace: AnswerIn), and
+        /// their fighters walk in no sooner than it (the player, 11 November 2026: "It should always take the necessary time
+        /// for stuff to actually get delivered, depending on the distance"). A captive let go otherwise walks the road home.
         /// </summary>
-        public static Answer Hear(Tie t, string code, Map home, Pawn asker, bool byLetter, float roll)
+        public static Answer Hear(Tie t, string code, Map home, Pawn asker, bool byLetter, float roll, float answerDays = -1f)
         {
             var a = new Answer();
             var f = FavoursOwed.PeopleOf(t);
@@ -323,17 +521,32 @@ namespace ColonyCouncil
                 a.line = DipWords.T("CC_Dip_Ans_Refused", who.Named("WHO"), DipWords.People(f).Named("PEOPLE"), DipWords.Ask(ask, arg).Named("ASK"));
                 return a;
             }
+            // Done far away: it waits for its answer's road (by letter), or for the captive's walk home.
+            bool letter = answerDays >= 0f;
+            if (letter && FavourMath.DoneLater(ask) || ask == FavourAsk.Captive)
+            {
+                string later = Later(t, f, ask, arg, home, letter);
+                if (later != null)
+                {
+                    a.line = DipWords.T("CC_Dip_Ans_Honoured", who.Named("WHO"), DipWords.People(f).Named("PEOPLE"), DipWords.Ask(ask, arg).Named("ASK")) + " " + later;
+                    return a;
+                }
+                FavoursOwed.Close(t, Tie.State.Open);
+                a.honoured = false;
+                a.line = DipWords.T("CC_Dip_Ans_NotNow", DipWords.People(f).Named("PEOPLE"), DipWords.Ask(ask, arg).Named("ASK"));
+                return a;
+            }
             string done;
             try
             {
-                done = Do(t, f, ask, arg, home, asker, byLetter, a.things);
+                done = Do(t, f, ask, arg, home, asker, byLetter, a.things, answerDays);
             }
             catch (Exception e)
             {
                 CouncilLog.ErrorOnce("favours: honoured", e);
                 done = null;
             }
-            if (done == null && (ask == FavourAsk.Captive || ask == FavourAsk.Fighters))
+            if (done == null && ask == FavourAsk.Fighters)
             {
                 // Willing, but it couldn't be done now (no way onto the colony's land): the debt stands, open again.
                 FavoursOwed.Close(t, Tie.State.Open);
@@ -341,15 +554,142 @@ namespace ColonyCouncil
                 a.line = DipWords.T("CC_Dip_Ans_NotNow", DipWords.People(f).Named("PEOPLE"), DipWords.Ask(ask, arg).Named("ASK"));
                 return a;
             }
-            // Their fighters are kept when the band walks in (Pacts.cs); everything else is done now.
+            // Their fighters are kept when the band walks in (Pacts.cs); goods and the rest are done now.
             if (ask != FavourAsk.Fighters) FavoursOwed.Close(t, Tie.State.Kept);
             a.line = DipWords.T("CC_Dip_Ans_Honoured", who.Named("WHO"), DipWords.People(f).Named("PEOPLE"), DipWords.Ask(ask, arg).Named("ASK"))
                      + (done.NullOrEmpty() ? "" : " " + done);
             return a;
         }
 
+        /// <summary>
+        /// Honoured, and done far away: the debt stays called in, due when its answer is in (by letter: AnswerIn, or at
+        /// <see cref="FavourMath.LetterDeedFallbackDays"/> if that answer never comes) or when the captive's walk home is done
+        /// (the road from their town); the hour does it then (<see cref="Hourly"/>). Returns a line for their answer, or null
+        /// when it can't be done (the captive no longer theirs to let go, the other people gone).
+        /// </summary>
+        private static string Later(Tie t, Faction f, FavourAsk ask, string arg, Map home, bool letter)
+        {
+            float now = Now / (float)FavourMath.DayTicks;
+            switch (ask)
+            {
+                case FavourAsk.Captive:
+                {
+                    var p = DipWords.PawnOf(arg);
+                    if (p == null || p.Dead || home == null || !Held(f).Contains(p)) return null;
+                    t.terms.days = now + (letter ? FavourMath.LetterDeedFallbackDays : FavourMath.DeedDays(RoadDays(f, home)));
+                    WorldLedger.Touch(t);
+                    return DipWords.P(letter ? "CC_Dip_Done_Captive" : "CC_Dip_Done_CaptiveRoad", p.Named("PAWN"));
+                }
+                case FavourAsk.Word:
+                {
+                    var other = DipWords.FactionOf(arg);
+                    if (other == null) return null;
+                    t.terms.days = now + FavourMath.LetterDeedFallbackDays;
+                    WorldLedger.Touch(t);
+                    return DipWords.P("CC_Dip_Done_Word", DipWords.People(other).Named("PEOPLE"));
+                }
+                default:
+                {
+                    var enemy = DipWords.FactionOf(arg);
+                    if (enemy == null) return null;
+                    t.terms.days = now + FavourMath.LetterDeedFallbackDays;
+                    WorldLedger.Touch(t);
+                    return DipWords.P("CC_Dip_Done_Peace", DipWords.People(enemy).Named("PEOPLE"));
+                }
+            }
+        }
+
+        /// <summary>Days of the road from their nearest town to the colony's home, by their people's means.</summary>
+        private static float RoadDays(Faction f, Map home)
+        {
+            var town = home != null ? WorldSituationWorker.NearestTown(f, home) : null;
+            return LetterMath.LegDays(town != null ? WorldSituationWorker.Distance(home, town) : 20f, LetterMath.MeansOf(Ages.Of(f)));
+        }
+
+        /// <summary>A debt of theirs honoured and waiting for its road or its answer: a word, a captive let go, their help toward peace.</summary>
+        private static bool Waits(Tie t, out FavourAsk ask, out string arg)
+        {
+            ask = FavourAsk.Goods;
+            arg = null;
+            return t != null && t.state == Tie.State.CalledIn && !FavoursOwed.ColonyOwes(t) && FavourMath.ParseAsk(t.terms.goods, out ask, out arg) && FavourMath.DoneLater(ask)
+                   && t.terms.days > 0f;
+        }
+
+        /// <summary>
+        /// A letter's answer is in (NeighbourLetters.Owed): a debt it called in and they honoured with a word, a captive let go or
+        /// their help toward peace is done now, with the answer that says so. A call's waits for the road (Hourly).
+        /// </summary>
+        public static void AnswerIn(NeighbourLetter l)
+        {
+            if (l == null || l.purpose != LetterPurpose.Favour || l.channel == LetterChannel.Console || l.topicKey == null) return;
+            if (!l.topicKey.StartsWith(DiplomacyLetters.TiePrefix, StringComparison.Ordinal) || !int.TryParse(l.topicKey.Substring(DiplomacyLetters.TiePrefix.Length), out int id)) return;
+            var t = FavoursOwed.Get(id);
+            if (!Waits(t, out _, out _)) return;
+            try
+            {
+                Keep(t, Now / (float)FavourMath.DayTicks);
+            }
+            catch (Exception e)
+            {
+                CouncilLog.ErrorOnce("favours: done with the answer", e);
+            }
+        }
+
+        /// <summary>The hour: debts honoured far away whose road is done (or whose letter's answer never came) are done now.</summary>
+        public static void Hourly(int now)
+        {
+            float day = now / (float)FavourMath.DayTicks;
+            List<Tie> due = null;
+            foreach (var t in FavoursOwed.Live())
+                if (Waits(t, out _, out _) && day >= t.terms.days)
+                    (due ??= new List<Tie>()).Add(t);
+            if (due == null) return;
+            foreach (var t in due) Keep(t, day);
+        }
+
+        /// <summary>
+        /// Done now: the word put in, the captive set down at the edge of the colony's land to walk home, the promise of peace;
+        /// the debt kept. A captive who can't be set down now waits an hour; one no longer theirs, the debt stands again.
+        /// </summary>
+        private static void Keep(Tie t, float day)
+        {
+            if (!Waits(t, out var ask, out string arg)) return;
+            var f = FavoursOwed.PeopleOf(t);
+            var home = FavoursOwed.HomeOf(t) ?? HappeningTracker.HomeMap();
+            if (f == null || home == null || Diplomacy.Hostile(f))
+            {
+                FavoursOwed.Close(t, Tie.State.Ended);
+                return;
+            }
+            if (ask == FavourAsk.Captive)
+            {
+                var p = DipWords.PawnOf(arg);
+                if (p == null || p.Dead || !Held(f).Contains(p))
+                {
+                    FavoursOwed.Close(t, Tie.State.Open);
+                    return;
+                }
+                if (!WalkHome(f, p, home))
+                {
+                    t.terms.days = day + 1f / 24f;
+                    return;
+                }
+            }
+            else if (ask == FavourAsk.Word)
+            {
+                var other = DipWords.FactionOf(arg);
+                if (other != null) PutInWord(f, other, home, FavourMath.WordGoodwill(Worth(t)));
+            }
+            else
+            {
+                var enemy = DipWords.FactionOf(arg);
+                if (enemy != null) PromisePeace(f, enemy, home);
+            }
+            FavoursOwed.Close(t, Tie.State.Kept);
+        }
+
         /// <summary>What honouring it does now; returns a line for their answer about what follows on the map.</summary>
-        private static string Do(Tie t, Faction f, FavourAsk ask, string arg, Map home, Pawn asker, bool byLetter, List<Thing> things)
+        private static string Do(Tie t, Faction f, FavourAsk ask, string arg, Map home, Pawn asker, bool byLetter, List<Thing> things, float answerDays = -1f)
         {
             switch (ask)
             {
@@ -378,19 +718,15 @@ namespace ColonyCouncil
                     PutInWord(f, other, home, FavourMath.WordGoodwill(Worth(t)));
                     return DipWords.P("CC_Dip_Done_Word", DipWords.People(other).Named("PEOPLE"));
                 }
-                case FavourAsk.Captive:
-                {
-                    var p = DipWords.PawnOf(arg);
-                    if (p == null || home == null) return null;
-                    return WalkHome(f, p, home) ? DipWords.P("CC_Dip_Done_Captive", p.Named("PAWN")) : null;
-                }
                 case FavourAsk.Fighters:
                 {
                     var at = int.TryParse(arg, out int key) ? Homes.MapOf(key) ?? home : home;
                     if (at == null) return null;
-                    // Their band sets out now and walks in some hours later (a letter's answer adds its walk back).
+                    // Their band sets out now and walks in some hours later (a letter's answer adds its walk back), never
+                    // before the answer that says they are coming.
                     var town = WorldSituationWorker.NearestTown(f, at);
                     float hours = PactMath.BandHours(town != null ? WorldSituationWorker.Distance(at, town) : 6f) + (byLetter ? 12f : 0f);
+                    if (answerDays > 0f) hours = Mathf.Max(hours, answerDays * 24f);
                     t.terms.days = Find.TickManager.TicksGame / (float)FavourMath.DayTicks + hours / 24f;
                     WorldLedger.Touch(t);
                     return DipWords.P("CC_Dip_Done_Fighters", DipWords.People(f).Named("PEOPLE"));
@@ -413,8 +749,11 @@ namespace ColonyCouncil
         {
             WorldSituationWorker.Goodwill(other, Mathf.Max(1, goodwill), false);
             string text = DipWords.T("CC_Dip_WordLetter", DipWords.People(other).Named("PEOPLE"), DipWords.People(f).Named("FRIEND"));
-            Tell.Letter(NewsKind.World, Importance.Notable, home, DipWords.P("CC_Dip_WordLetter_Label", DipWords.People(other).Named("PEOPLE")), text,
-                LetterDefOf.PositiveEvent, LookTargets.Invalid, other);
+            string label = DipWords.P("CC_Dip_WordLetter_Label", DipWords.People(other).Named("PEOPLE"));
+            // Their letter comes by the road from their nearest town, in the post (Post/MailIn.cs); the post off, told now.
+            var town = home != null ? WorldSituationWorker.NearestTown(other, home) : null;
+            if (!MailIn.FromAbroad(home, other, town, label, text, LetterDefOf.PositiveEvent))
+                Tell.Letter(NewsKind.World, Importance.Notable, home, label, text, LetterDefOf.PositiveEvent, LookTargets.Invalid, other);
             Diplomacy.Write(DiplomacyMath.Word, new List<HistoryActor>
             {
                 new HistoryActor(Refs.Of(f), HistoryRole.Did), new HistoryActor(Diplomacy.Colony(home), HistoryRole.For), new HistoryActor(Refs.Of(other), HistoryRole.With)

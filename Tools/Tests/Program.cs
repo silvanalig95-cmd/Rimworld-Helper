@@ -528,6 +528,7 @@ Console.WriteLine($"Checked {InboxTests.Run(root, Check)} things about one inbox
         Console.WriteLine($"Checked {RiderPackTests.Run(root, Check)} things about the colony's own rider's supplies (the trip, the food, medicine and feed by the journey planner's rules, when the send is greyed or sent short knowingly, the words, gathering, the road and home, the seams).");
         Console.WriteLine($"Checked {CarrierTests.Run(root, Check)} things about carriers on the map (the mailbag first, each in their place, the nearest way in, who a people sends and on what beast for every one of Rimfolk's peoples, back in the saddle before leaving, the seams).");
         Console.WriteLine($"Checked {LetterRouteTests.Run(root, Check)} things about whom a letter goes to and the places heard of (every purpose's scope, who answers it for every kind of addressee, passing a town's matter on and the go-between's word, the window's words, an older save's letter, the marks' keep time and fading, Show on map, the seams).");
+        Console.WriteLine($"Checked {LettersClearTests.Run(root, Check)} things about letters and favours made clear (what the colony waits on for a letter and when another can go, Write back on the very answer, the road from when the carrier leaves the map, silence known only once an answer would have come, goods by who owes, a word with the peoples it would help, the short menu, the player's save, the words, the seams).");
     }
 }
 

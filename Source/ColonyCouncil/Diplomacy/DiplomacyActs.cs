@@ -97,22 +97,13 @@ namespace ColonyCouncil
             {
                 if (FavourCalls.WhyNot(t) != null) continue;
                 string about = FavoursOwed.IsPersonal(t) ? DipWords.P("CC_Dip_Menu_Personal", x.Named("OTHER")) : DipWords.P("CC_Dip_Menu_People", DipWords.People(Outsiders.PeopleOf(x)).Named("PEOPLE"));
-                foreach (var o in FavourCalls.Options(t, home))
+                int id = t.id;
+                // The same short list as the letter's (FavourCalls.Menu): by kind, what can be asked now first, each with what it does.
+                opts.AddRange(FavourCalls.Menu(FavourCalls.Options(t, home), o =>
                 {
-                    string label = about + ": " + o.label;
-                    if (o.why != null)
-                    {
-                        opts.Add(new FloatMenuOption("CC_Out_Disabled".Translate(label.Named("LABEL"), o.why.Named("WHY")).Resolve(), null));
-                        continue;
-                    }
-                    int id = t.id;
-                    string code = o.Code;
-                    opts.Add(new FloatMenuOption(label, () =>
-                    {
-                        chosen[c.thingIDNumber] = (id, code);
-                        Outsiders.StartTalk(c, x, a);
-                    }));
-                }
+                    chosen[c.thingIDNumber] = (id, o.Code);
+                    Outsiders.StartTalk(c, x, a);
+                }, about));
             }
             if (opts.Count == 0) opts.Add(new FloatMenuOption("CC_Out_Nothing".Translate().Resolve(), null));
             Find.WindowStack.Add(new FloatMenu(opts, DipWords.P("CC_Dip_Menu_Title", x.Named("OTHER"))));

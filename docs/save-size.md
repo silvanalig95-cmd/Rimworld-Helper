@@ -7,7 +7,7 @@ colony of 20, with the game keeping 30 more people it knows and 5 more each year
 generous guesses; sizes are rough XML sizes. Caps named as constants are read from the source. "Counted under" rows are
 kept inside another record (a journal's lines, a heart's lists) and are already in that record's size.
 
-Saved collections found: 671; modelled: 671; growing without end: 0.
+Saved collections found: 672; modelled: 672; growing without end: 0.
 Rimfolk's part of the save, roughly: **2,930 KB** after a year, **3,620 KB** after two, **4,019 KB** after five.
 
 | Collection | Rule | Kind | 1 year | 2 years | 5 years | KB at 5 years |
@@ -674,6 +674,7 @@ Rimfolk's part of the save, roughly: **2,930 KB** after a year, **3,620 KB** aft
 | `World/Ledger/LedgerFormers.cs:formers` | per town the colony was: the colony's former people who stayed (counted under formerRecords) | while | 12 | 12 | 12 | (in its record) |
 | `World/Ledger/LedgerPersons.cs:kept` | per person: the reasons they're kept in the world, one per part of Rimfolk (counted under persons) | fixed | 2 | 2 | 2 | (in its record) |
 | `World/Ledger/LedgerRegion.cs:members` | per house: its members by first name, RegionMath.MembersPerHouse at most (counted under houses) | fixed | 4 | 4 | 4 | (in its record) |
+| `World/NeighbourLetters.cs:heldThings` | per letter whose answer nobody can carry: what it sends, a few stacks, until its road back is done (counted under letters) | fixed | 2 | 2 | 2 | (in its record) |
 | `World/Notables.cs:done` | per notable: losses mourned, the newest 12 (counted under notables; warnings are their people's since 10 November 2026) | fixed | 12 | 12 | 12 | (in its record) |
 | `World/Notables.cs:lastKeys` | per notable: one per purpose of a letter, and the last gift with an answer (counted under notables) | fixed | 7 | 7 | 7 | (in its record) |
 | `World/Notables.cs:lastTicks` | per notable: one per purpose of a letter, and the last gift with an answer (counted under notables) | fixed | 7 | 7 | 7 | (in its record) |

@@ -104,15 +104,16 @@
   <!-- Why it can't be written now -->
   <CC_Letter_Why_Off>Letters to neighbours are switched off in the settings.</CC_Letter_Why_Off>
   <CC_Letter_Why_NoHome>The colony has no home to write from.</CC_Letter_Why_NoHome>
-  <CC_Letter_Why_NoMessenger>No messenger can come: no people at peace with the colony to carry it.</CC_Letter_Why_NoMessenger>
+  <CC_Letter_Why_NoMessenger>No messenger can come: no people at peace with the colony to carry it. A letter can go once one is.</CC_Letter_Why_NoMessenger>
   <CC_Letter_Why_NoMeans>The {0} have no means to answer a call; a letter by hand reaches them.</CC_Letter_Why_NoMeans>
   <CC_Letter_Why_NoConsole>The colony has no comms console.</CC_Letter_Why_NoConsole>
   <CC_Letter_Why_DeadAir>The air is dead: no comms console has power and a clear sky to call through.</CC_Letter_Why_DeadAir>
   <CC_Letter_Why_Gone>They are gone.</CC_Letter_Why_Gone>
-  <CC_Letter_Why_OneAtATime>One letter at a time: the last one to them isn't answered yet.</CC_Letter_Why_OneAtATime>
-  <CC_Letter_Why_TooMany>{0} letters and calls are already under way; wait for an answer first.</CC_Letter_Why_TooMany>
-  <CC_Letter_Why_Here>{NAME} is here on the map; go and talk to them.</CC_Letter_Why_Here>
-  <CC_Letter_Why_Lately>The colony wrote to them for this only lately.</CC_Letter_Why_Lately>
+  <CC_Letter_Why_OneAtATime>One letter at a time to each. {WAIT} Another can go to {NAME} once their answer reaches the colony.</CC_Letter_Why_OneAtATime>
+  <CC_Letter_Why_OneAtATime_NoWord>One letter at a time to each. {WAIT} Another can go to {NAME} once their answer comes, or once it is plain that none will.</CC_Letter_Why_OneAtATime_NoWord>
+  <CC_Letter_Why_TooMany>{0} letters and calls already wait for their answers, as many as can at once: another can go when one of those answers comes in.</CC_Letter_Why_TooMany>
+  <CC_Letter_Why_Here>{NAME} is here on the map: go and talk to them. A letter can go to them again once they have left.</CC_Letter_Why_Here>
+  <CC_Letter_Why_Lately>The colony wrote to them for this only lately: it can again from the {DATE}.</CC_Letter_Why_Lately>
   <CC_Letter_Why_NoLoss>The colony knows of no loss of theirs.</CC_Letter_Why_NoLoss>
   <CC_Letter_Why_NoThreat>The colony knows of no threat to them it hasn't warned of.</CC_Letter_Why_NoThreat>
   <CC_Letter_Why_AtWar>Not while their people are at war with the colony.</CC_Letter_Why_AtWar>
@@ -165,6 +166,7 @@
   <CC_Letter_Msg_PickupMissed>Nobody brought {PAWN}'s letter to {TO} out to the messenger, who left without it. Another will come.</CC_Letter_Msg_PickupMissed>
   <CC_Letter_Msg_PickupNever>No messenger could come for {PAWN}'s letter to {TO} (no way in, or never safe on the road). Another will try.</CC_Letter_Msg_PickupNever>
   <CC_Letter_Msg_NoAnswer>No answer came to {PAWN}'s letter to {TO}.</CC_Letter_Msg_NoAnswer>
+  <CC_Letter_Msg_CarrierLost>{CARRIER} never left with {PAWN}'s letter to {TO}: it is back at the gate for the next carrier.</CC_Letter_Msg_CarrierLost>
   <CC_Letter_Msg_VisitOff>{NAME} could not come to visit after all.</CC_Letter_Msg_VisitOff>
   <CC_Letter_Msg_Guest>{NAME} of {TOWN} has come to visit, as the colony asked.</CC_Letter_Msg_Guest>
   <CC_Letter_Cancel_Gone>{PAWN}'s letter to {TO} won't go: they are gone.</CC_Letter_Cancel_Gone>
@@ -183,6 +185,8 @@
   <CC_Letter_Status_Answering>Their answer to {PAWN} is on its way.</CC_Letter_Status_Answering>
   <CC_Letter_Status_Visiting>{NAME} has said they will come to visit.</CC_Letter_Status_Visiting>
   <CC_Letter_Status_Guesting>A guest of theirs is at the colony now.</CC_Letter_Status_Guesting>
+  <CC_Letter_Wait_NotLeft>{CARRIER} has {PAWN}'s letter to {NAME} and hasn't set off yet.</CC_Letter_Wait_NotLeft>
+  <CC_Letter_Wait_NoWord>No answer to {PAWN}'s letter has come from {NAME} yet.</CC_Letter_Wait_NoWord>
   <CC_Letter_Status_ToCall>{PAWN} will call them at the next free moment.</CC_Letter_Status_ToCall>
   <CC_Letter_Status_Calling>{PAWN} is on the comms console to them now.</CC_Letter_Status_Calling>
   <CC_Letter_Status_CallbackWait>An aide took {PAWN}'s message; {NAME} will call back.</CC_Letter_Status_CallbackWait>
@@ -297,8 +301,8 @@
   <CC_Route_PurposeCap_FavourPersonal>A favor they owe in person</CC_Route_PurposeCap_FavourPersonal>
   <CC_Route_PurposeCap_DealingReply>Answering their letter</CC_Route_PurposeCap_DealingReply>
   <CC_Route_Why_HeadOnly>Only the town's head can answer this: write to {HEAD}.</CC_Route_Why_HeadOnly>
-  <CC_Route_Why_HeadBusy>A letter to {HEAD} is under way already: one at a time.</CC_Route_Why_HeadBusy>
-  <CC_Route_Why_HeadLately>The colony wrote to {HEAD} for this only lately.</CC_Route_Why_HeadLately>
+  <CC_Route_Why_HeadBusy>One letter at a time to {HEAD}, who answers this. {WAIT} This can go once that answer reaches the colony.</CC_Route_Why_HeadBusy>
+  <CC_Route_Why_HeadLately>The colony wrote to {HEAD} for this only lately: it can again from the {DATE}.</CC_Route_Why_HeadLately>
   <CC_Route_Why_NoHead>Nobody the colony knows speaks for {TOWN} yet: its head comes to be known once the colony deals with the town (meeting their people, their news).</CC_Route_Why_NoHead>
   <CC_Route_Why_NoSpeaker>Nobody the colony knows speaks for {PEOPLE} as a whole yet: their leader or a town's head comes to be known once the colony deals with them (meeting their people, their news).</CC_Route_Why_NoSpeaker>
   <CC_Route_Why_Nothing_Favour_Town>Their people owe the colony nothing to call in now.</CC_Route_Why_Nothing_Favour_Town>

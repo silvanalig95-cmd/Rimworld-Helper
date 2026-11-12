@@ -298,6 +298,8 @@ namespace ColonyCouncil
             l.relayName = relay?.Name;
             l.backDays = days;
             l.packedBy = null;
+            // On the road once they have left the map with it (NeighbourLetters.CarrierHere): its days count from then.
+            l.carriedBy = by;
             l.stage = LetterStage.Travelling;
             l.stageTick = Now;
             l.due = Now + Mathf.RoundToInt((days + NotableMath.ReplyDays(Rand.Value)) * GenDate.TicksPerDay);
