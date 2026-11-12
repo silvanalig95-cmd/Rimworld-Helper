@@ -1,10 +1,18 @@
-# New storytellers: ways to play (proposal, 12 November 2026)
+# New storytellers: ways to play (proposal, 12 November 2026; built the same day, not released yet)
+
+**Built** (12 November 2026, at the player's "halt the current tasks to do the storytellers first!"): eight of the ten,
+as storytellers and as the story direction over any storyteller (DESIGN.md "Ways to play: eight storytellers and the
+story direction"; docs/HANDOFF.md has the code map, each storyteller's parts and levers, and how to try them). Small
+Hours and The Frontier were left out at the player's word ("leave out small hours, the frontier"). Built to the player's
+rule of the same day, "but the storytellers will still always include a chance for any kind of event, right? not that
+i lock myself out of some of them": every way leans toward something and never away from anything (every lever and
+share at a quarter at least, every kind of event with a route).
 
 The player: "i'd like you to create new and interesting storytellers. that can enhance existing or make up new ways to
 play the game & directions", then "if they don't have an image that's totally fine, and they also don't have to be this
 "character" with a name etc., i find that strange anyways".
 
-Nothing here is built. Each storyteller is a way to play, named for what it does, with no character and no portrait (the
+As proposed (before it was built): each storyteller is a way to play, named for what it does, with no character and no portrait (the
 game's choose-a-storyteller screen needs a picture, so each gets a plain plate: its name lettered on the skin's ground,
 drawn by a script like the other Rimfolk textures). Each is a full storyteller with the game's own difficulty settings, and
 each leans on what Rimfolk already has: the peoples, letters and favours, camps and journeys, the council, the seasons and
@@ -26,10 +34,10 @@ persistent, invader, settlers, Christmas), so none of these repeats theirs: thos
 4. **What You Sow.** The colony's deeds decide. Cruelty draws revenge, outlaws and fear (traders stop coming, refugees go
    elsewhere); kindness brings visitors, help in a bad season, refugees, friends at the gate in a fight. Nothing is told:
    the world simply answers, through Rimfolk's faction memory, reputation and the peoples' letters.
-5. **Small Hours.** A slow life. No great raids: small dangers (a beast, a fever, a storm, a quarrel, a thief at night),
+5. **Small Hours** (left out at the player's word). A slow life. No great raids: small dangers (a beast, a fever, a storm, a quarrel, a thief at night),
    and the weight on life together: the council, wishes, suppers, feasts, letters, the gods' presence. For a game played
    for the colony's people.
-6. **The Frontier.** Danger follows growth. The old heart of the colony grows quiet while its newest homes, outposts and
+6. **The Frontier** (left out at the player's word). Danger follows growth. The old heart of the colony grows quiet while its newest homes, outposts and
    fields far out are tested: claims contested by the peoples, raiders on the edges, the wild pushing back. The more land,
    the more frontier.
 7. **Old Powers.** The world feels watched. Omens, strange nights, the gods drawing near more often, pilgrims and seers,
@@ -48,7 +56,7 @@ The same ten could instead (or also) be a "direction" setting that leans whichev
 Randy, one of the Vanilla Expanded ones) toward one of these ways: Cassandra's pacing, Neighbours' reasons. The lead
 recommends both: the storytellers for a new game, the direction for a game already running.
 
-## C. Questions for the player
+## C. Questions for the player (answered: the eight above, both as storytellers and as a direction)
 
 - Which of the ten, or all?
 - As storytellers, as a direction over any storyteller, or both?

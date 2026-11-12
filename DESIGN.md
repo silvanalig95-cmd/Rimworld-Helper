@@ -12755,6 +12755,112 @@ on felt is great, the god should only be named if it's sure it was them").
   glitterworld kind kept home, never below one a colonist (four at least) and two for each one sick. A stock the player
   set is left alone for good; Rimfolk's is put back when someone stops being one of the medics. Said once a medic.
 
+### Ways to play: eight storytellers and the story direction (the player's request, 12 November 2026; not released yet)
+
+The player: "i'd like you to create new and interesting storytellers. that can enhance existing or make up new ways to
+play the game & directions", then "if they don't have an image that's totally fine, and they also don't have to be this
+"character" with a name etc., i find that strange anyways", then "halt the current tasks to do the storytellers first!".
+Of the ten proposed (docs/storytellers-proposals.md), "leave out small hours, the frontier": eight are built, as
+storytellers and as a direction over any storyteller. And the rule that binds every one of them: "but the storytellers
+will still always include a chance for any kind of event, right? not that i lock myself out of some of them".
+
+**What a way is.** A StorytellerDef on the game's `BaseStoryteller` (its endgame and DLC quests, the deep drill, the
+anima and polux trees, Gauranlen pods, the monolith, and whatever other mods patch onto it, Medieval Overhaul's
+mineshaft among them), with the game's own difficulty settings, named for what it does, no character and no portrait:
+a plain plate with its name on Rimfolk's ground (`Tools/make_storyteller_plates.py`: 580 by 620, the size the game draws
+it, and 228 by 244 for the list, twice its size). Its parts are the game's own comps tuned to its way, Rimfolk's own
+comps where the game's can't say it (below), and a `StoryWayExtension`: Rimfolk's levers on its own happenings, a shape
+(the seasons, the colony's deeds, the long arc), kinds of world situation it leans to, kinds of everyday hurt it leans
+to. Each description says plainly how it plays and ends "It leans toward these, never away from anything: every kind of
+event can still come."
+
+**The levers** (`Story/StoryLevers.cs`, `StoryWaysMath.Keys`), each a factor on Rimfolk's own rate, read through
+`StoryDirection.Factor(key)`: the direction's when one is chosen in the settings, else the storyteller's when it is one
+of the eight, else 1 (the raids' reasons 0). The season, the deeds or the arc shape it as the way is
+(`StoryWaysMath.Combine`). The seams:
+
+| Lever | What it moves | Where |
+|---|---|---|
+| visitors, challenges, pasts, nature, fights | Rimfolk's events by group (fights: those that may end in one) | `HappeningTracker.StorytellerFactor` (the storyteller's pools) and `Weight` (Rimfolk's own timer), by `StoryDirection.HappeningFactor` |
+| camps | a camp on an open morning | `TravelLand.CampChance` |
+| traders | trading camps among the camps; a town's market caravans | `CampTracker` (the kind's pick), `Dealings.MarketHour` |
+| letters | the world writing first | `WorldWrites.Daily` |
+| favours | debts called in; a people's call to arms | `FavourAsks.Daily`, `CallsToArms` |
+| missions | Rimfolk's missions in both pools | `MissionPool.Factor` |
+| situations | how soon the next world event (and, by `SituationFactor`, which kinds: three times the weight for a leaned kind) | `WorldSituations.Interval`, `Weight` |
+| gods | the gods' doings that hurt no one (pilgrims, seers, invitations, envoys, quarrels, asks, blessings, gifts) and a god's visit to a mark | `GodWorld.Lean` at those callers, `GodMarks`; wrath, a god's beasts and lightning, the void's hunger and a holy war keep `GodWorld.Factor` |
+| arcs | a personal story beginning | `ArcTracker.TryStart` |
+| memory | the size of a deed the peoples remember | `FactionMemory.Note` |
+| allies | a people at peace sending fighters | `WarCamps.Hourly` |
+| schemes | a scheme against the colony | `Schemes.Daily` |
+| raidReasons | the share of the storyteller's raids sent without a people that come from the one with the most reason | `Patch_Story_RaidReasons` on `IncidentWorker_RaidEnemy.TryResolveRaidFaction` (with the deeper hooks) |
+
+The everyday hurts: a way's `harmLean` tilts the shared budget's weight toward its kinds (`Harm.Reckon`, the tilt in
+the shared weight and in each pass), so the hurts move between kinds and their total stays the budget.
+
+**Two rules.** A way leans toward something and never away from anything: no lever, shape or share of a storyteller
+part goes below `StoryWaysMath.Floor` (a quarter); the raids' reasons are a share of who comes, never more than
+`MaxRaidReasons` (0.85), and only from a people that could have come anyway; every incident category of the game and
+the player's mods keeps a route under every way (the tests check each def against docs/player-mods: ThreatBig,
+ThreatSmall, Misc, FactionArrival and OrbitalVisitor beyond the named arrivals, at 25 and 40 days, AllyAssistance,
+GiveQuest, ShipChunkDrop, both diseases, the Settlers' LTS softly at 60 days; Special, DeepDrillInfestation and
+EndGame_ShipEscape by their named parts, Council_WorldEvent by Rimfolk's timer, GR_HybridRaid by its mod's code), and
+no comp disallows an incident by def, tag or category (only the raid beacon's map keeps its own raids, as the game's
+own storytellers do). Harm keeps the game's own rate: a lever on what hurts (fights, schemes) is never above 1, a shape
+that moves it about over a year or an arc averages 1 or less, each way's big threats come at the classic pace or less
+over a year, an arc or the worst deeds, its sickness about as often as the game's own.
+
+**Rimfolk's own parts** (`Story/StoryComps.cs`): `WayCycle` (the game's on-off cycle, its share of the peak by the
+shape: the Turning Year's seasons 0.3, 0.55, 0.75, 1; What You Sow's deeds 0.65 kind to 1 cruel; Rise and Fall's arc
+0.45, 0.6, 1 for a war or 0.7, 0.3; and Crossroads' threat points, half to all), `WayDisease` (the game's sickness, its
+chance moved by the shape and the same over a year: spring 2.2, the rest 0.6; Rise and Fall's plague trouble 2.6),
+`WayPicks` (named happenings about every so many days, by season, phase and trouble, the last one a tenth as likely
+for 20 days), `WayVisits` (the game's faction interaction by the shape: traders in autumn, by the deeds, by the arc;
+a quarter at least), `WayOmen` (Rise and Fall's word of the trouble: a world situation of its kinds a few days into the
+omens, `OmenDay`, once an arc, when one may start). Nothing is saved: the season, the deeds (the peoples' memory, good
+turns against wrongs, read once a day) and the arc (days since settling, its trouble set by the world's seed, never
+the same twice running) are read when asked.
+
+| Way | Its parts (besides the game's caravans, quests, misc, sickness, orbital traders and the stranger in black) | Rimfolk's levers |
+|---|---|---|
+| The Long Road | big and small threats 4.6 days on, 9.4 off; caravan meetings every 6 days and small threats every 12 on the road; quests every 8 days, one or two; travellers 9, traders 6 a year | visitors 1.2, camps 1.5, traders 1.2, letters, favours and missions 1.6, situations 1.3; roads, towns, rushes, tolls; hurts: on the road and at the gate |
+| Neighbours | threats 4.6 on, 7.4 off; friends sent in danger 25 a year; visitors 6 | visitors 1.4, letters 1.5, favours 1.6, memory 1.25, allies 1.8, situations 1.2, fights 0.8, raidReasons 0.85; feuds, wars, courts, creeds, levies, exiles, sellswords; hurts: the hated trader, the guest of rank, a challenge, the gate |
+| The Turning Year | `WayCycle` by the seasons (1.5 to 3 at the peak); the season's weather and happenings every 12 days; `WayDisease` by the seasons; traders 10 and visitors 5.5 at their peak by the seasons | seasonal: camps, traders, visitors, missions, letters, nature, gods, fights, schemes, each about 1 over the year (harm 1); the season's world situations |
+| What You Sow | `WayCycle` by the deeds on the classic cycle; friends 24, traders 8, visitors 7 at their peak by the deeds | memory 1.4, raidReasons 0.75; by the deeds: visitors, traders, camps, allies, favours, letters, missions up for kindness and down toward the floor for cruelty, fights and schemes only ever lower |
+| Old Powers | threats 4.6 on, 10 off; strange threats every 25 days (psychic drones, maddened herds, infestations, Anomaly's own where its content is on); omens every 8 days (eclipse, aurora, psychic calm, ambrosia, thrumbos, a meteorite, spores) | gods 1.8, nature 1.4, pasts 1.2, situations 1.2, fights 0.7; skies, comets, faith, wrecks; hurts: sleepwalking, the soldier's nightmare, restless walks, the worst night, dawn walks |
+| Lean Years | threats 4.6 on, 11 off; a hardship every 7 days (blight, cold, heat, storms, flares, alphabeavers, gill rot; now and then fallout or a volcanic winter); traders 2.5 a year, orbital traders 7 on, 14 off | traders 0.5, camps and visitors 0.8, situations 1.2, fights 0.7; hunger, drought, scarcity, sickness, weather; hurts: hungry hands, the cold, the sick at work, dirty water, ailments of the land |
+| Rise and Fall | `WayCycle` by the arc (2 to 3.8 at the peak); the trouble's own every 5 days in its 20 days (blight and gill rot for a famine, cold for a winter, drones and darkness for a void); `WayOmen`; `WayDisease` by the arc; friends 18, traders 9, visitors 6 by the arc | arcs 1.3, raidReasons 0.6; by the phase (growth, omens, trouble, rebuilding): visitors, traders, camps, missions, letters, gods, nature, allies, favours, situations, fights, schemes, raidReasons; growth's trade and fairs, the trouble's kinds, the rebuilding's |
+| Crossroads | `WayCycle` with the classic cycle by threat points (300: half, 1500: 0.85, 4000: all); traders 12, visitors 7, travellers 10 a year; orbital traders 5 on, 5 off | traders 2, camps and visitors 1.3, letters 1.2, favours 1.3, missions 1.1, raidReasons 0.35; trade, fairs, roads, rushes, tolls, sellswords; hurts: traders and guests, the gambler |
+
+From the player's own mods, softly (`MayRequire` on each pick's incident, checked by poolcheck against docs/player-mods'
+active rows), only events their own mods fire by chance: Vanilla Events Expanded (crops sprouting, drought, whiteout,
+scorch, long night, psychic hum, stimulation and bloom, meteor shower), Seasonal Weather (wildfire), Vanilla Plants
+Expanded - Flowers (weeds), Alpha Biomes (acid rain), A RimWorld of Magic (mana surge and storm), Vanilla Races
+Expanded - Archon (psychic storm). Left out on purpose: Odyssey's drought (fired by hand, never by chance), Ideology's
+skylantern (a ritual's), Anomaly's harbinger tree (the monolith's), Royalty's mech cluster (not uncanny), Alpha Animals'
+eclipse and the blood moon (no chance of their own), Factional War's assault (a battle on the home map: harm).
+
+**The direction** (`CouncilSettings.storyDirection`, a dropdown on What's on, "Story direction": none or one of the
+eight, a note per choice) leans any storyteller with the way's levers, its shape, its world situations, its hurts and
+its raids' reasons; the storyteller keeps its own parts and pace. With one of the eight as the storyteller, a direction
+chosen leans instead of the storyteller's own. Both apply at once in a running game.
+
+**Old Powers and the gods.** The gods are unseen: the way only leans the world toward the uncanny. Its description,
+note and Almanac line never name or explain a god; the gods' own doings that hurt no one come more often, the rest at
+their own rate.
+
+**Balance** (`Tools/Balance -- --storytellers`, 400 runs, the game's wealth-by-time and points curves for six
+colonists): big threats a year in the first year and the two after, against the classic storyteller's 7.4 and 8.2:
+The Long Road 5.9 and 6.2, Neighbours 6.4 and 7.5, The Turning Year 7.9 and 8.1, What You Sow 5.1 and 5.7 kind, 6.4
+and 7.0 of no name, 7.2 and 8.0 cruel, Old Powers 7.3 and 7.7 (with 7.1 and 7.8 omens and strange happenings), Lean
+Years 5.2 and 5.6 (with 7.6 and 8.0 hardships), Rise and Fall 6.9 and 8.3 (the trouble's year), Crossroads 3.8 and 5.7;
+sickness 0.6 to 1.1 a year against the classic 0.8 and 1.1; traders from 2.2 (What You Sow, cruel) and 2.3 (Lean
+Years) to 11 and 12 (Crossroads) against 4.6 and 5. A way above the classic pace over the years fails the run.
+
+**What only the game can show**: the storyteller screen with the plates, each comp's firings in a real colony
+(Rimfolk's parts follow the game's own rules, checked by the tests and the balance tool but not run in the game), the
+raid aimed by reason and its letter's line, the omen's world situation, and the direction changing a running game.
+
 ### Checking a new game version
 
 One DLL serves every supported version: it is built against the 1.6 references into `1.6/Assemblies`, and on 1.7
@@ -12891,6 +12997,7 @@ chains, nemeses, camps, play-outs, the fights pass and the worn-out episode read
 | every 300 ticks | A council meeting in session talks (its lord job) | the attendees |
 | every 250 ticks of a gathering | An answer playing out: a feast's plates, a toast's cups, its touches | those not yet served: the meals, found and sorted once for all of them, each colonist asked in that order only until one fits |
 | every 1000 ticks, tick 433 | Other mods' people: new play-log lines and tales; who changed (Big & Small, an editor, a xenogerm) | the new entries only; a few fields per free colonist |
+| every 1000 ticks, the game's storyteller interval (no tick of Rimfolk's clock) | The ways to play's own storyteller parts (Story/StoryComps.cs; only while one of the eight is the storyteller): a shaped threat cycle, sickness, picks and visits for each target; Rise and Fall's omen once for the seat, in the omens' days only | per comp and target: the shape's share (a season, the deeds read once a day, the arc from the day), then the game's own cycle or roll |
 | every 30 ticks of a camp's toil | A camp's lord: hunters' jobs; every 2,500 a camp without a record leaves | per camp member |
 | every 200 ticks per hediff | Ailment comps: incubation and treatment course (immunizable); severity per day (medicine, course, recovery, diet), read by the game | the colonist with the ailment |
 | every 250 ticks per pawn | The heart's worn-out episode (a mental state): ends on danger, a wound, cold or heat | the colonist in it |
@@ -12910,6 +13017,10 @@ and pages rebuild their models every half second to second while open (UiCache, 
 the Social tab column's own caches).
 
 **Called by the game often (no clock of their own).** These must stay cheap:
+- *The ways' levers* (`StoryDirection.Factor`, asked by Rimfolk's events' chances in the storyteller's pools, the camps'
+  morning, the harm budget's reckoning every 250 ticks and the rest at their own passes): the active way is the
+  direction's def (a dictionary lookup) or the storyteller's extension, then a few multiplications; the deeds are read
+  once a day.
 - *Situational moods* (asked for every colonist every few seconds): heart strain, the colony's ways, decrees, trust,
   quirks, vendettas, heirlooms, a goal within reach, the comet, everyday pressures, ailments and
   convalescence. Each answers from data worked out on the hour (a dictionary or a short loop, no LINQ), and the
