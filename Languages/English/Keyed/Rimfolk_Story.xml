@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <!-- The ways to play and the story direction (Source/ColonyCouncil/Story/, Defs/StorytellerDefs/Rimfolk_Storytellers.xml). -->
+
+  <CC_SetSec_Direction>Story direction</CC_SetSec_Direction>
+  <CC_SetSec_Direction_Note>One of Rimfolk's eight ways to play, leaning whichever storyteller you play. With one of the eight as your storyteller, it plays its own way unless a direction is chosen here.</CC_SetSec_Direction_Note>
+  <CC_Settings_StoryDirection>Story direction</CC_Settings_StoryDirection>
+  <CC_Settings_StoryDirection_Tip>Leans the storyteller you play toward one of Rimfolk's eight ways to play. It shapes Rimfolk's own happenings (visitors, camps, letters, favours, missions, world situations, friends in a fight) and who a raid comes from. The storyteller keeps its own pace of threats and sickness. It leans toward something, never away from anything: every kind of event can still come. It can be changed at any time, in a running game too.</CC_Settings_StoryDirection_Tip>
+  <CC_SetNote_StoryDirection>Leans any storyteller toward one of the eight ways to play.</CC_SetNote_StoryDirection>
+
+  <CC_StoryWay_None>none</CC_StoryWay_None>
+  <CC_StoryWay_LongRoad>The Long Road</CC_StoryWay_LongRoad>
+  <CC_StoryWay_Neighbours>Neighbours</CC_StoryWay_Neighbours>
+  <CC_StoryWay_TurningYear>The Turning Year</CC_StoryWay_TurningYear>
+  <CC_StoryWay_WhatYouSow>What You Sow</CC_StoryWay_WhatYouSow>
+  <CC_StoryWay_OldPowers>Old Powers</CC_StoryWay_OldPowers>
+  <CC_StoryWay_LeanYears>Lean Years</CC_StoryWay_LeanYears>
+  <CC_StoryWay_RiseAndFall>Rise and Fall</CC_StoryWay_RiseAndFall>
+  <CC_StoryWay_Crossroads>Crossroads</CC_StoryWay_Crossroads>
+
+  <CC_SetNote_StoryDirection_None>No lean: the storyteller plays as it does (one of the eight plays its own way).</CC_SetNote_StoryDirection_None>
+  <CC_SetNote_StoryDirection_LongRoad>More letters, favours asked, camps, missions and word from the region.</CC_SetNote_StoryDirection_LongRoad>
+  <CC_SetNote_StoryDirection_Neighbours>Raids mostly come from a people with a reason; more visitors, letters, favours and friends.</CC_SetNote_StoryDirection_Neighbours>
+  <CC_SetNote_StoryDirection_TurningYear>Camps, trade, visitors, letters and fights follow the year: busy autumns, hard winters.</CC_SetNote_StoryDirection_TurningYear>
+  <CC_SetNote_StoryDirection_WhatYouSow>The peoples remember more; kindness brings visitors and friends, cruelty thins the roads.</CC_SetNote_StoryDirection_WhatYouSow>
+  <CC_SetNote_StoryDirection_OldPowers>The world feels watched: pilgrims and seers on the road, the land and sky stir, word of strange skies.</CC_SetNote_StoryDirection_OldPowers>
+  <CC_SetNote_StoryDirection_LeanYears>Fewer traders and camps; the region's word turns to famine, drought and hard winters.</CC_SetNote_StoryDirection_LeanYears>
+  <CC_SetNote_StoryDirection_RiseAndFall>Arcs of two years: busy good years, then the region's word turns dark, then the rebuilding.</CC_SetNote_StoryDirection_RiseAndFall>
+  <CC_SetNote_StoryDirection_Crossroads>More traders, camps, visitors, favours and debts; some raids come from rivals with a grudge.</CC_SetNote_StoryDirection_Crossroads>
+
+</LanguageData>

@@ -589,7 +589,8 @@ namespace ColonyCouncil
             for (int tries = 0; tries < 6; tries++)
             {
                 // A refugee family comes more often while a town in reach struggles, and is likeliest of its people (World/Region/RiseFallEffects.cs).
-                var kind = kinds.RandomElementByWeight(k => k.WeightNow(map) * k.HourFit(hourNow) * TravelLand.SeekWeight(k, map, land) * RiseFallEffects.CampFactor(k, map));
+                var kind = kinds.RandomElementByWeight(k => k.WeightNow(map) * k.HourFit(hourNow) * TravelLand.SeekWeight(k, map, land) * RiseFallEffects.CampFactor(k, map)
+                                                            * (k.trader ? StoryDirection.Factor(StoryWaysMath.Traders) : 1f));
                 // Peoples the colony did good turns for camp here more often, those with grudges less (Interplay/), and a kind
                 // one of Rimfolk's peoples favours (their drovers, their healers on the road) likelier from them (Peoples/).
                 // Two peoples at war never camp on the same land (CampCrowds.AtPeaceHere).

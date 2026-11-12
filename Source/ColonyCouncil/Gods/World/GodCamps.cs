@@ -143,7 +143,7 @@ namespace ColonyCouncil
         internal static void PilgrimsCome(GodWorldBook b)
         {
             var kind = Pilgrims;
-            if (kind == null || !b.Gap("pilgrims", GodWorldMath.PilgrimGap) || !GodWorld.Roll(GodWorldMath.DayChance(GodWorldMath.PilgrimDays, GodWorld.Factor()))) return;
+            if (kind == null || !b.Gap("pilgrims", GodWorldMath.PilgrimGap) || !GodWorld.Roll(GodWorldMath.DayChance(GodWorldMath.PilgrimDays, GodWorld.Lean()))) return;
             foreach (var map in Homes.All.InRandomOrder().ToList())
             {
                 if (!CampTracker.RoomFor(map) || CampTracker.VisitorsAt(map).Any(c => c.kind == kind)) continue;
@@ -203,7 +203,7 @@ namespace ColonyCouncil
         internal static void SeerComes(GodWorldBook b)
         {
             var kind = Seer;
-            if (kind == null || !b.Gap("seer", GodWorldMath.SeerGap) || !GodWorld.Roll(GodWorldMath.DayChance(GodWorldMath.SeerDays, GodWorld.Factor()))) return;
+            if (kind == null || !b.Gap("seer", GodWorldMath.SeerGap) || !GodWorld.Roll(GodWorldMath.DayChance(GodWorldMath.SeerDays, GodWorld.Lean()))) return;
             var map = Homes.All.Where(m => CampTracker.RoomFor(m) && !CampTracker.VisitorsAt(m).Any(c => c.kind == kind)).RandomElementWithFallback();
             if (map == null) return;
             var f = Find.FactionManager.AllFactionsListForReading.Where(x => Arrivals.Usable(x) && Gods.Of(x).Any()).RandomElementWithFallback();

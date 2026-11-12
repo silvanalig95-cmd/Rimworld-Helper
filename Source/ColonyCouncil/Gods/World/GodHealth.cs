@@ -384,7 +384,7 @@ namespace ColonyCouncil
                 string key = "kind:" + g.id + ":" + Homes.KeyOf(map);
                 // Helios gives to everyone alike, whatever the colony's standing.
                 float days = GodWays.Blind(g) ? GodWorldMath.BlindBlessingDays : GodWorldMath.BlessingDays(Gods.Favour(g, map));
-                if (days <= 0f || !b.Gap(key, GodWorldMath.BlessingGap) || !GodWorld.Roll(GodWorldMath.DayChance(days, GodWorld.Factor(g, map)))) continue;
+                if (days <= 0f || !b.Gap(key, GodWorldMath.BlessingGap) || !GodWorld.Roll(GodWorldMath.DayChance(days, GodWorld.Lean(g, map)))) continue;
                 if (!Bless(g, map, blessing)) continue;
                 b.Came(key);
                 return;
@@ -639,7 +639,7 @@ namespace ColonyCouncil
                 var g = HealerFor(p, map, b);
                 if (g == null) continue;
                 // A night's chance over its five small hours.
-                float chance = GodWorldMath.BlessingChance(Gods.Favour(g, map)) * GodWorld.Factor(g, map) / 5f * back;
+                float chance = GodWorldMath.BlessingChance(Gods.Favour(g, map)) * GodWorld.Lean(g, map) / 5f * back;
                 if (!GodWorld.Roll(chance)) continue;
                 b.Came(key);
                 b.Bless(h.loadID);

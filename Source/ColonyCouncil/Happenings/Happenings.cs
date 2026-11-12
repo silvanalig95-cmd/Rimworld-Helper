@@ -588,6 +588,8 @@ namespace ColonyCouncil
             if (ext != null && ext.group == HappeningGroup.Visitors && !ColonyState.Several) f *= DecreeWork.VisitorFactor(null);
             // What the colony is known for draws those who come for it (Immersion/VisitorNotices.cs).
             f *= DrawnFactor(ext, null);
+            // The way to play leaning the game: more visitors, fewer fights (Story/StoryDirection.cs).
+            f *= StoryDirection.HappeningFactor(ext);
             return f;
         }
 
@@ -789,6 +791,8 @@ namespace ColonyCouncil
             w *= RiseFallEffects.EventFactor(d, map);
             // A colony (or one of its people by name) known for something draws the world's events of its kind (Diplomacy/Renown.cs).
             w *= Renown.EventFactor(d, map);
+            // The way to play leaning the game, as in the storyteller's pools (Story/StoryDirection.cs).
+            w *= StoryDirection.HappeningFactor(ext);
             return Mathf.Max(0.001f, w);
         }
 

@@ -341,6 +341,12 @@ namespace ColonyCouncil
             Page(SettingsPage.WhatsOn);
             Section("CC_Settings_Presets");
             Action("quickSetup", "CC_Settings_Presets", "CC_Settings_Presets_Tip", "CC_SetNote_QuickSetup");
+            // The story direction (Story/StoryDirection.cs): one of the eight ways to play leaning any storyteller.
+            Section("CC_SetSec_Direction");
+            NoteUnder("CC_SetSec_Direction_Note");
+            var direction = Dropdown("storyDirection", "CC_Settings_StoryDirection", "CC_Settings_StoryDirection_Tip", "CC_SetNote_StoryDirection", "CC_StoryWay_",
+                new[] { "None", "LongRoad", "Neighbours", "TurningYear", "WhatYouSow", "OldPowers", "LeanYears", "RiseAndFall", "Crossroads" });
+            direction.notePrefix = "CC_SetNote_StoryDirection_";
             // The council: the advisor and the plan, wishes, meetings, questions, decrees and offices.
             Section("CC_Settings_Layers");
             Toggle("enableAdvisor", "CC_Settings_EnableAdvisor", "CC_SetNote_EnableAdvisor");

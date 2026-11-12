@@ -233,7 +233,7 @@ namespace ColonyCouncil
 
         internal static void Envoy(GodWorldBook b)
         {
-            if (!GodWorld.CanAsk || !b.Gap("envoy", GodWorldMath.EnvoyGap) || !GodWorld.Roll(GodWorldMath.DayChance(GodWorldMath.EnvoyDays, GodWorld.Factor()))) return;
+            if (!GodWorld.CanAsk || !b.Gap("envoy", GodWorldMath.EnvoyGap) || !GodWorld.Roll(GodWorldMath.DayChance(GodWorldMath.EnvoyDays, GodWorld.Lean()))) return;
             var ask = FindAsk();
             if (ask == null) return;
             var a = ask.Value;

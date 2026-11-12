@@ -40,7 +40,7 @@ namespace ColonyCouncil
                     if (d.workerClass != null && typeof(HappeningWorker_Mission).IsAssignableFrom(d.workerClass) && d.baseChance > 0f && MissionPeople.Weighed(d))
                         total += d.baseChance;
             }
-            return NeighboursFourMath.PoolFactor(total);
+            return NeighboursFourMath.PoolFactor(total) * StoryDirection.Factor(StoryWaysMath.Missions);
         }
     }
 

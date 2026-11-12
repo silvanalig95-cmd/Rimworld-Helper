@@ -75,7 +75,7 @@ namespace ColonyCouncil
             var writers = Writers(home);
             int waiting = book.asks.Count(a => !a.answered);
             float since = book.lastWrote < 0 ? -1f : (now - book.lastWrote) / (float)DealingMath.DayTicks;
-            float chance = DealingMath.WriteChance(writers.Count, PenFriends.Count, waiting, since);
+            float chance = DealingMath.WriteChance(writers.Count, PenFriends.Count, waiting, since) * StoryDirection.Factor(StoryWaysMath.Letters);
             if (!Rand.Chance(chance)) return;
             // Pen friends write more often than anyone else.
             var n = writers.RandomElementByWeightWithFallback(x => PenFriends.Is(x) ? 3f : 1f);

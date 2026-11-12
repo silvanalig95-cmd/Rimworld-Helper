@@ -156,7 +156,7 @@ namespace ColonyCouncil
         /// </summary>
         public static void Daily(GodWorldBook b, int now)
         {
-            if (!GodWorld.CanAsk || !b.Gap("invite", GodWorldMath.InviteGap) || !GodWorld.Roll(GodWorldMath.DayChance(GodWorldMath.InviteDays, GodWorld.Factor()))) return;
+            if (!GodWorld.CanAsk || !b.Gap("invite", GodWorldMath.InviteGap) || !GodWorld.Roll(GodWorldMath.DayChance(GodWorldMath.InviteDays, GodWorld.Lean()))) return;
             var home = Homes.Seat;
             if (home == null) return;
             var f = Find.FactionManager.AllFactionsListForReading.Where(x => Arrivals.Usable(x) && x.HasGoodwill && x.PlayerGoodwill >= 10)

@@ -176,7 +176,7 @@ namespace ColonyCouncil
         public static void Daily(int now)
         {
             if (!On || WorldLedger.Instance == null) return;
-            float chance = SchemeMath.Chance(Setting);
+            float chance = SchemeMath.Chance(Setting) * StoryDirection.Factor(StoryWaysMath.Schemes);
             foreach (var home in Homes.All.ToList())
             {
                 try
