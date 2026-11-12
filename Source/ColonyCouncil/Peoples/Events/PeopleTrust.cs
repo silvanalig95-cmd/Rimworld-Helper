@@ -315,12 +315,14 @@ namespace ColonyCouncil
             CouncilGameComponent.Instance?.AddChronicle(new ChronicleEntry(ChronicleKind.World, text, null));
         }
 
-        /// <summary>Good ink: the price offset every people of the traders' calling gives the colony, while it lasts.</summary>
+        /// <summary>Good ink: the price offset every people of the traders' calling gives the colony, while it lasts (less while red ink of round 3 stands open).</summary>
         public static float Terms(Faction f)
         {
             var b = PeopleEventsBook.Instance;
-            if (b == null || f == null || f.IsPlayer || b.goodInkUntil < 0 || Find.TickManager.TicksGame > b.goodInkUntil) return 0f;
-            return Peoples.CallingOf(f) == PeoplesMath.Traders ? PeopleEventsMath.GoodInkTerms : 0f;
+            // Red ink of round 3 (Peoples/Events3/RedInk.cs): worse terms with every league while the colony's page stands open.
+            float red = RedInk.Terms(f);
+            if (b == null || f == null || f.IsPlayer || b.goodInkUntil < 0 || Find.TickManager.TicksGame > b.goodInkUntil) return red;
+            return (Peoples.CallingOf(f) == PeoplesMath.Traders ? PeopleEventsMath.GoodInkTerms : 0f) + red;
         }
 
         /// <summary>Red ink: no caravan of the traders' calling comes while it lasts.</summary>
