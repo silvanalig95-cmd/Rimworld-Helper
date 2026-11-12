@@ -179,7 +179,7 @@ public static class StoryWaysTests
         {
             ["TraderCaravanArrival"] = "FactionArrival", ["VisitorGroup"] = "FactionArrival", ["TravelerGroup"] = "FactionArrival", ["RaidFriendly"] = "AllyAssistance",
             ["OrbitalTraderArrival"] = "OrbitalVisitor", ["StrangerInBlackJoin"] = "Special", ["AnimalInsanityMass"] = "ThreatBig", ["Infestation"] = "ThreatBig",
-            ["SightstealerSwarm"] = "ThreatBig", ["UnnaturalDarkness"] = "ThreatBig", ["DeathPall"] = "ThreatBig", ["BloodRain"] = "ThreatBig", ["HateChanters"] = "ThreatBig"
+            ["SightstealerSwarm"] = "ThreatBig", ["UnnaturalDarkness"] = "ThreatBig", ["DeathPall"] = "ThreatBig", ["BloodRain"] = "ThreatBig", ["HateChanters"] = "ThreatBig", ["VREA_PsychicStorm"] = "ThreatBig"
         };
         // Fired by hand in the game, never by chance: no way names them.
         var manual = new[] { "Drought", "DroughtInitial", "WanderersSkylantern", "HarbingerTreeSpawn", "MechCluster", "Infestation_Jelly", "StrangerInBlackJoin" };

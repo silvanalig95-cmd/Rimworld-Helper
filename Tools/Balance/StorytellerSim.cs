@@ -45,7 +45,7 @@ namespace Balance
         {
             ["TraderCaravanArrival"] = "trader", ["VisitorGroup"] = "visitor", ["TravelerGroup"] = "traveller", ["RaidFriendly"] = "friends",
             ["OrbitalTraderArrival"] = "orbital", ["AnimalInsanityMass"] = "ThreatBig", ["Infestation"] = "ThreatBig", ["SightstealerSwarm"] = "ThreatBig",
-            ["UnnaturalDarkness"] = "ThreatBig", ["DeathPall"] = "ThreatBig", ["BloodRain"] = "ThreatBig", ["HateChanters"] = "ThreatBig"
+            ["UnnaturalDarkness"] = "ThreatBig", ["DeathPall"] = "ThreatBig", ["BloodRain"] = "ThreatBig", ["HateChanters"] = "ThreatBig", ["VREA_PsychicStorm"] = "ThreatBig"
         };
 
         private sealed class Tally

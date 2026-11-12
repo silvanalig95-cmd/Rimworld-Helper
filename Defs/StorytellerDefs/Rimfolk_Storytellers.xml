@@ -587,6 +587,31 @@
             <weight>1.0</weight>
             <seasons><li>Winter</li></seasons>
           </li>
+          <li>
+            <incident MayRequire="VanillaExpanded.VEE">VEE_CropSprout</incident>
+            <weight>1.0</weight>
+            <seasons><li>Spring</li></seasons>
+          </li>
+          <li>
+            <incident MayRequire="VanillaExpanded.VEE">VEE_Drought</incident>
+            <weight>1.0</weight>
+            <seasons><li>Summer</li></seasons>
+          </li>
+          <li>
+            <incident MayRequire="Mlie.SeasonalWeather">Wildfire</incident>
+            <weight>0.8</weight>
+            <seasons><li>Summer</li></seasons>
+          </li>
+          <li>
+            <incident MayRequire="VanillaExpanded.VPEFlowers">VPEF_Weeds</incident>
+            <weight>0.8</weight>
+            <seasons><li>Summer</li></seasons>
+          </li>
+          <li>
+            <incident MayRequire="VanillaExpanded.VEE">VEE_Whiteout</incident>
+            <weight>0.3</weight>
+            <seasons><li>Winter</li></seasons>
+          </li>
         </picks>
       </li>
       <!-- Sickness with the thaw: the game's own rate over the year, most of it in spring -->
@@ -1073,6 +1098,10 @@
             <incident MayRequire="Ludeon.RimWorld.Anomaly">HateChanters</incident>
             <weight>0.4</weight>
           </li>
+          <li>
+            <incident MayRequire="VanillaRacesExpanded.Archon">VREA_PsychicStorm</incident>
+            <weight>0.5</weight>
+          </li>
         </picks>
       </li>
       <li Class="StorytellerCompProperties_CategoryMTB">
@@ -1119,6 +1148,34 @@
           <li>
             <incident MayRequire="Ludeon.RimWorld.Odyssey">BioluminescentSpores</incident>
             <weight>0.8</weight>
+          </li>
+          <li>
+            <incident MayRequire="VanillaExpanded.VEE">VEE_PsychicHum</incident>
+            <weight>0.8</weight>
+          </li>
+          <li>
+            <incident MayRequire="VanillaExpanded.VEE">VEE_PsychicStimulation</incident>
+            <weight>0.6</weight>
+          </li>
+          <li>
+            <incident MayRequire="VanillaExpanded.VEE">VEE_MeteoriteShower</incident>
+            <weight>0.5</weight>
+          </li>
+          <li>
+            <incident MayRequire="VanillaExpanded.VEE">VEE_PsychicBloom</incident>
+            <weight>0.3</weight>
+          </li>
+          <li>
+            <incident MayRequire="VanillaExpanded.VEE">VEE_LongNight</incident>
+            <weight>0.3</weight>
+          </li>
+          <li>
+            <incident MayRequire="Torann.ARimworldOfMagic">ManaSurge</incident>
+            <weight>0.8</weight>
+          </li>
+          <li>
+            <incident MayRequire="Torann.ARimworldOfMagic">TM_ManaStorm</incident>
+            <weight>0.4</weight>
           </li>
         </picks>
       </li>
@@ -1387,6 +1444,30 @@
           </li>
           <li>
             <incident>VolcanicWinter</incident>
+            <weight>0.3</weight>
+          </li>
+          <li>
+            <incident MayRequire="VanillaExpanded.VEE">VEE_Drought</incident>
+            <weight>2.0</weight>
+          </li>
+          <li>
+            <incident MayRequire="VanillaExpanded.VPEFlowers">VPEF_Weeds</incident>
+            <weight>1.5</weight>
+          </li>
+          <li>
+            <incident MayRequire="Mlie.SeasonalWeather">Wildfire</incident>
+            <weight>1.0</weight>
+          </li>
+          <li>
+            <incident MayRequire="sarg.alphabiomes">AB_AcidRain</incident>
+            <weight>0.8</weight>
+          </li>
+          <li>
+            <incident MayRequire="VanillaExpanded.VEE">VEE_Scorch</incident>
+            <weight>0.3</weight>
+          </li>
+          <li>
+            <incident MayRequire="VanillaExpanded.VEE">VEE_Whiteout</incident>
             <weight>0.3</weight>
           </li>
         </picks>
@@ -1682,6 +1763,36 @@
           <li>
             <incident MayRequire="Ludeon.RimWorld.Anomaly">DeathPall</incident>
             <weight>0.8</weight>
+            <phases><li>Trouble</li></phases>
+            <troubles><li>Void</li></troubles>
+          </li>
+          <li>
+            <incident MayRequire="VanillaExpanded.VEE">VEE_Drought</incident>
+            <weight>2.0</weight>
+            <phases><li>Trouble</li></phases>
+            <troubles><li>Hunger</li></troubles>
+          </li>
+          <li>
+            <incident MayRequire="VanillaExpanded.VPEFlowers">VPEF_Weeds</incident>
+            <weight>1.0</weight>
+            <phases><li>Trouble</li></phases>
+            <troubles><li>Hunger</li></troubles>
+          </li>
+          <li>
+            <incident MayRequire="VanillaExpanded.VEE">VEE_Whiteout</incident>
+            <weight>1.0</weight>
+            <phases><li>Trouble</li></phases>
+            <troubles><li>Winter</li></troubles>
+          </li>
+          <li>
+            <incident MayRequire="VanillaExpanded.VEE">VEE_LongNight</incident>
+            <weight>1.0</weight>
+            <phases><li>Trouble</li></phases>
+            <troubles><li>Void</li></troubles>
+          </li>
+          <li>
+            <incident MayRequire="VanillaExpanded.VEE">VEE_PsychicHum</incident>
+            <weight>1.0</weight>
             <phases><li>Trouble</li></phases>
             <troubles><li>Void</li></troubles>
           </li>
