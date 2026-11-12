@@ -200,6 +200,22 @@ tree at once, alongside whatever runs. Each piece is merged as its own release, 
   try." So: a visitor casts only helpful spells, and only while content on the map or of a people allied with the
   colony; raiders cast harmful ones, the mod's strongest kept out at first and the list watched (a play test, then a
   pass on any spell that proves broken).
+- **To do when the player asks (12 November 2026): one way the gods are, not three.** The player: "what do the
+  different god settings levels do? is it just about how many events are generated? if yes we can keep that, but
+  otherwise I don't think we have to spend effort to maintain different levels, instead just focusing on one and
+  tailoring that towards what i enjoy". How it is now: "How real the gods are" (`CouncilSettings.godRealness`,
+  `GodRealness`, read in 28 files and 6 line files) changes what the gods are, not only how often: Believed has no
+  god on the map at all (no stranger, beast, rising or waking, no weather answers, no void bargains, no moon's
+  return), prayers only comfort and offerings go to animals and rot; Felt (the default) has the gods come mostly in
+  disguise (`DisguiseShare` 0.85), cards veiled ("some say"), the colony able to take one god's act for another's,
+  milder answers (a fever eased 8 %, rain after 3 to 14 hours), offerings gone by morning, scoffers; Walking has the
+  gods walk openly (disguise 0.3), named on every card, true forms (Smoulder as Dragon's Descent's true dragon,
+  Murmur as Odyssey's colossus toad), stronger answers (15 %, rain within the hour, a thunderstorm), offerings
+  vanishing in light, the world's god events at 1.4 times the rate (Believed 0.5). When asked, proposed: keep one way,
+  Felt, as the game is built around (the unseen gods, "some say", the colony's own book), and fold in from Walking what
+  fits it: the true forms when Smoulder wakes or Murmur surfaces (they are seen, so plainly named), and perhaps a
+  little less disguise; drop Believed and Walking and their branches and line tags; in their place, if the player
+  wants one, a plain "how often the gods act" setting (rarely, as now, often) that changes only the rates.
 - 0.221.0, **Mog's luck and her stare**
   (11 November 2026), the follow-up to the gods on the map from the pantheon's Mog ("the one she chooses has a lucky
   season ... she sees Ennu for what it is, and stares at it"). DESIGN.md "The gods on the map", the sacred animal.
