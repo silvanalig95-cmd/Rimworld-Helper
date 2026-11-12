@@ -80,6 +80,14 @@ tree at once, alongside whatever runs. Each piece is merged as its own release, 
   own silver (VisitorTradeMath.Wants by who they are: a trader's people their trade goods' kind, an envoy something fine,
   travellers food that keeps), a purchase or two a visit, played out as the campers' are (at the counter, the article
   into their pack, the silver set down at the stall), never on leaving in haste, at war, or with the map in danger.
+- 0.227.1, **Raids at the classic pace in every
+  way to play** (12 November 2026). The player, after 0.227.0: "many of the storytellers reduce raids, which is not
+  necessary". `Defs/StorytellerDefs/Rimfolk_Storytellers.xml`: The Long Road (off 9.4), Neighbours (7.4) and Lean Years
+  (11) back to Cassandra's cycle (on 4.6, off 6); What You Sow's `StoryWaysMath.DeedThreatAccept` is 1 (deeds decide who,
+  not how often); Crossroads' threat-points curve on raids removed; Old Powers' strange threats every 40 days (was 25)
+  and its cycle off 7.3, so raids and strange threats together keep the classic pace (the parity test). Descriptions,
+  the Almanac's ways to play page, README and DESIGN say the classic pace. Try: start a game on any of
+  the eight, or set the story direction; raids come as often as under Cassandra.
 - 0.227.0, **Eight ways to play: storytellers and the story direction**
   (eight built: Small Hours and The Frontier left out at the player's word, "leave out small hours, the frontier";
   12 November 2026). The player: "i'd like you to create new and interesting storytellers. that can enhance existing

@@ -31,6 +31,17 @@ When you load a save after an update, a letter lists the newest round once. The 
     <rounds>
 
       <li>
+        <version>0.227.1</version>
+        <date>12 November 2026</date>
+        <title>Raids at the classic pace</title>
+        <points>
+          <li>The new storytellers no longer cut raids: each brings raids at the classic pace and changes why and where they come, not how many.</li>
+          <li>Old Powers keeps its stranger threats, a little rarer, with raids and strange threats together at the classic pace.</li>
+          <li>What You Sow's deeds now decide who raids you and who visits, not how often raids come.</li>
+        </points>
+      </li>
+
+      <li>
         <version>0.227.0</version>
         <date>12 November 2026</date>
         <title>Ways to play</title>

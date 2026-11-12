@@ -12826,6 +12826,14 @@ for its guests.
 
 ### Ways to play: eight storytellers and the story direction (the player's request, 12 November 2026; released 0.227.0)
 
+**Raids at the classic pace (the player, 12 November 2026, after 0.227.0: "many of the storytellers reduce raids, which is
+not necessary").** Every way's big and small threat cycles run at Cassandra's own (on 4.6 days, off 6): The Long Road,
+Neighbours and Lean Years no longer lengthen the quiet; What You Sow's deeds no longer thin the raids
+(`StoryWaysMath.DeedThreatAccept` is 1, the deeds decide who comes through the raid reasons); Crossroads' raids no longer
+thin by wealth (raid points still grow with it). Old Powers keeps its stranger threats (now about every 40 days) and runs
+its raids a little slower (off 7.3) so the two together stay at the classic pace. The Turning Year and Rise and Fall
+shape the pace over the year and the arc around the classic mean, as before. Released 0.227.1.
+
 The player: "i'd like you to create new and interesting storytellers. that can enhance existing or make up new ways to
 play the game & directions", then "if they don't have an image that's totally fine, and they also don't have to be this
 "character" with a name etc., i find that strange anyways", then "halt the current tasks to do the storytellers first!".

@@ -297,14 +297,10 @@ namespace ColonyCouncil
         public static IEnumerable<string> DeedKeys => deeds.Keys;
 
         /// <summary>
-        /// What You Sow's threats: the share of the game's own pace that comes, 1 for a cruel colony (the game's rate, never
-        /// more), 0.85 for one of no name, 0.65 for a kind one.
+        /// What You Sow's threats: the game's own pace whatever the deeds (the player, 12 November 2026: the ways need not
+        /// lessen raids). The deeds decide who comes (the raid reasons) and who else does (DeedVisitAccept), not how often.
         /// </summary>
-        public static float DeedThreatAccept(float balance)
-        {
-            float b = Math.Max(-1f, Math.Min(1f, Nan0(balance)));
-            return b >= 0f ? 0.85f - 0.2f * b : 0.85f + 0.15f * -b;
-        }
+        public static float DeedThreatAccept(float balance) => 1f;
 
         /// <summary>What You Sow's traders, visitors and friends in a fight: the share of their peak that comes by the deeds.</summary>
         public static float DeedVisitAccept(string key, float balance)

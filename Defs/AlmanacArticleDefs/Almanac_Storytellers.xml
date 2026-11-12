@@ -20,19 +20,19 @@ The story direction (Rimfolk's settings, What's on) leans whichever storyteller 
         <heading>The eight</heading>
         <table>
           <li>Way | How it plays | Raids against the classic pace | Rimfolk leans toward</li>
-          <li>The Long Road | The world calls the colony out: more of the story waits in the region | About three quarters at home, more ambushes and meetings on the road | Letters, favours asked, camps, missions, the region's word</li>
-          <li>Neighbours | The peoples around are the story | About seven eighths, most from a people with a reason | Visitors, letters, favours, friends in a fight, peoples remembering</li>
+          <li>The Long Road | The world calls the colony out: more of the story waits in the region | The classic pace at home, more ambushes and meetings on the road | Letters, favours asked, camps, missions, the region's word</li>
+          <li>Neighbours | The peoples around are the story | The classic pace, most from a people with a reason | Visitors, letters, favours, friends in a fight, peoples remembering</li>
           <li>The Turning Year | The calendar decides, the same shape each year | About the same over a year: quiet springs, hard winters | Camps and trade in autumn, letters in winter, the season's world events</li>
-          <li>What You Sow | The colony's deeds decide | The classic pace when cruel, two thirds when kind | Traders, visitors and friends for kindness; peoples remembering more</li>
-          <li>Old Powers | The world feels watched | About three quarters, with stranger threats in their place | Omens, the land and sky, pilgrims and seers, strange skies</li>
-          <li>Lean Years | Scarcity is the enemy | About two thirds | Fewer traders and camps; blights, cold and heat; famine and drought in the region's word</li>
+          <li>What You Sow | The colony's deeds decide | The classic pace; who comes is the deeds' | Traders, visitors and friends for kindness; peoples remembering more</li>
+          <li>Old Powers | The world feels watched | Nearly the classic pace, stranger threats making up the rest | Omens, the land and sky, pilgrims and seers, strange skies</li>
+          <li>Lean Years | Scarcity is the enemy | The classic pace | Fewer traders and camps; blights, cold and heat; famine and drought in the region's word</li>
           <li>Rise and Fall | Long arcs of growth, a trouble foretold, the trouble, the rebuilding | About the same over an arc of two years | Plenty in the good years, the trouble's own news, friends in the rebuilding</li>
-          <li>Crossroads | The colony as a market | Half for a poor colony up to the classic pace for a rich one | Traders, camps, visitors, favours and debts; rivals with a grudge</li>
+          <li>Crossroads | The colony as a market | The classic pace, larger raids as it grows rich | Traders, camps, visitors, favours and debts; rivals with a grudge</li>
         </table>
       </li>
       <li>
         <heading>The Long Road</heading>
-        <text>Raids come to the gate on the classic cycle with longer quiet spells. Caravans meet the land's happenings as with any storyteller, and more besides: a chance meeting about every 6 days on the road and a small threat about every 12. Quests come a little more often. Rimfolk's letters from the region's notables come 1.6 times as often, so do favours called in and missions offered, camps 1.5 times, world events a little sooner, and the region's word leans to roads, towns, rushes and tolls.</text>
+        <text>Raids come to the gate on the classic cycle. Caravans meet the land's happenings as with any storyteller, and more besides: a chance meeting about every 6 days on the road and a small threat about every 12. Quests come a little more often. Rimfolk's letters from the region's notables come 1.6 times as often, so do favours called in and missions offered, camps 1.5 times, world events a little sooner, and the region's word leans to roads, towns, rushes and tolls.</text>
       </li>
       <li>
         <heading>Neighbours</heading>
@@ -44,15 +44,15 @@ The story direction (Rimfolk's settings, What's on) leans whichever storyteller 
       </li>
       <li>
         <heading>What You Sow</heading>
-        <text>The colony's deeds are what the peoples remember of it: the good turns it did them against the wrongs. A colony nobody remembers anything of is in the middle. The crueller it is, the nearer its raids come to the classic pace, never past it, and the more of them come from a people it wronged; the kinder, the fewer, down to two thirds. Traders, visitors and friends in a fight come by the deeds: all of their number for a kind colony, a quarter for a cruel one. The peoples remember everything 1.4 times as strongly. Nothing is told: the world simply answers.</text>
+        <text>The colony's deeds are what the peoples remember of it: the good turns it did them against the wrongs. A colony nobody remembers anything of is in the middle. Raids come at the classic pace whatever it does; the crueller it is, the more of them come from a people it wronged. Traders, visitors and friends in a fight come by the deeds: all of their number for a kind colony, a quarter for a cruel one. The peoples remember everything 1.4 times as strongly. Nothing is told: the world simply answers.</text>
       </li>
       <li>
         <heading>Old Powers</heading>
-        <text>Fewer raids, and stranger threats in their place about every 25 days: psychic drones, maddened herds, things in the earth, a psychic storm (Vanilla Races Expanded - Archon), and the void's own where its content is on. Omens and strange nights about every 8 days: eclipses, auroras, a psychic calm, ambrosia, thrumbos passing, a meteorite, glowing spores, and from your mods a psychic hum, a meteor shower, a long night, a psychic bloom (Vanilla Events Expanded) or a mana surge and storm (A RimWorld of Magic). Pilgrims and seers come more often, and so do blessings and gifts no one can explain; the land and the sky stir more in Rimfolk's events, the past catches up a little more, and the region's word leans to strange skies, comets, faith and wrecks. It leans the world toward the uncanny and names nothing.</text>
+        <text>Raids nearly at the classic pace, and stranger threats making up the rest about every 40 days: psychic drones, maddened herds, things in the earth, a psychic storm (Vanilla Races Expanded - Archon), and the void's own where its content is on. Omens and strange nights about every 8 days: eclipses, auroras, a psychic calm, ambrosia, thrumbos passing, a meteorite, glowing spores, and from your mods a psychic hum, a meteor shower, a long night, a psychic bloom (Vanilla Events Expanded) or a mana surge and storm (A RimWorld of Magic). Pilgrims and seers come more often, and so do blessings and gifts no one can explain; the land and the sky stir more in Rimfolk's events, the past catches up a little more, and the region's word leans to strange skies, comets, faith and wrecks. It leans the world toward the uncanny and names nothing.</text>
       </li>
       <li>
         <heading>Lean Years</heading>
-        <text>Raids come about two thirds as often, but a hardship about every 7 days: blight most of all, cold snaps and heat waves, storms, solar flares, alphabeavers, now and then a toxic fallout or a volcanic winter, and from your mods droughts, weeds in the fields, wildfires, acid rain, now and then a scorch or a whiteout (Vanilla Events Expanded, Vanilla Plants Expanded - Flowers, Seasonal Weather, Alpha Biomes). Traders come 2.5 times a year, orbital traders half as often, and Rimfolk's trading camps and market caravans half as often; camps and visitors a little less. The region's word leans to famine, drought, scarcity, sickness and hard winters, and the everyday hurts Rimfolk adds lean to the cold, the hungry and the sick, within the same budget.</text>
+        <text>Raids come at the classic pace, and a hardship about every 7 days: blight most of all, cold snaps and heat waves, storms, solar flares, alphabeavers, now and then a toxic fallout or a volcanic winter, and from your mods droughts, weeds in the fields, wildfires, acid rain, now and then a scorch or a whiteout (Vanilla Events Expanded, Vanilla Plants Expanded - Flowers, Seasonal Weather, Alpha Biomes). Traders come 2.5 times a year, orbital traders half as often, and Rimfolk's trading camps and market caravans half as often; camps and visitors a little less. The region's word leans to famine, drought, scarcity, sickness and hard winters, and the everyday hurts Rimfolk adds lean to the cold, the hungry and the sick, within the same budget.</text>
       </li>
       <li>
         <heading>Rise and Fall</heading>
@@ -60,7 +60,7 @@ The story direction (Rimfolk's settings, What's on) leans whichever storyteller 
       </li>
       <li>
         <heading>Crossroads</heading>
-        <text>Traders come 12 times a year, orbital traders about twice as often, visitors and travellers more often, and Rimfolk's trading camps and market caravans twice as often. Raiders are drawn by the colony's wealth: half the classic pace for a poor colony, up to the full pace for a rich one, and about a third of them come from rivals with a grudge. Favours and debts, letters, camps and missions come more often, and the region's word leans to fairs, trade, roads, rushes and tolls.</text>
+        <text>Traders come 12 times a year, orbital traders about twice as often, visitors and travellers more often, and Rimfolk's trading camps and market caravans twice as often. Raids come at the classic pace, larger as the colony grows rich, and about a third of them come from rivals with a grudge. Favours and debts, letters, camps and missions come more often, and the region's word leans to fairs, trade, roads, rushes and tolls.</text>
       </li>
       <li>
         <heading>Choosing and changing</heading>

@@ -80,8 +80,8 @@ public static class StoryWaysTests
         }
         C(StoryWaysMath.DeedsBalance(0f, 0f) == 0f && StoryWaysMath.DeedsBalance(30f, 0f) > 0.5f && StoryWaysMath.DeedsBalance(0f, 30f) < -0.5f && StoryWaysMath.DeedsBalance(float.NaN, 5f) < 0f,
             "the deeds: none is no name, good turns kind, wrongs cruel");
-        C(StoryWaysMath.DeedThreatAccept(-1f) <= 1f && StoryWaysMath.DeedThreatAccept(1f) >= 0.6f && StoryWaysMath.DeedThreatAccept(1f) < StoryWaysMath.DeedThreatAccept(0f)
-          && StoryWaysMath.DeedThreatAccept(0f) < StoryWaysMath.DeedThreatAccept(-1f), "What You Sow: the classic pace for cruelty, less for kindness, never more");
+        C(StoryWaysMath.DeedThreatAccept(-1f) == 1f && StoryWaysMath.DeedThreatAccept(0f) == 1f && StoryWaysMath.DeedThreatAccept(1f) == 1f,
+            "What You Sow: raids at the classic pace whatever the deeds; the deeds decide who comes");
         foreach (var lever in new[] { StoryWaysMath.Traders, StoryWaysMath.Visitors, StoryWaysMath.Allies })
             C(StoryWaysMath.DeedVisitAccept(lever, -1f) >= StoryWaysMath.Floor && StoryWaysMath.DeedVisitAccept(lever, 1f) <= 1f, lever + ": a cruel colony's roads thin, never close");
         for (int q = 0; q < 4; q++)

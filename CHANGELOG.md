@@ -5,6 +5,14 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## Raids at the classic pace
+
+*12 November 2026, version 0.227.1*
+
+- The new storytellers no longer cut raids: each brings raids at the classic pace and changes why and where they come, not how many.
+- Old Powers keeps its stranger threats, a little rarer, with raids and strange threats together at the classic pace.
+- What You Sow's deeds now decide who raids you and who visits, not how often raids come.
+
 ## Ways to play
 
 *12 November 2026, version 0.227.0*

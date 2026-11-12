@@ -12,11 +12,11 @@
     less over a year or an arc, and its levers on what hurts are never above 1.
   -->
 
-  <!-- 1. The Long Road: the world calls the colony out. Threats at home about three quarters of the classic pace; more on the road. -->
+  <!-- 1. The Long Road: the world calls the colony out. Threats at home at the classic pace; more on the road. -->
   <StorytellerDef ParentName="BaseStoryteller">
     <defName>Rimfolk_Story_LongRoad</defName>
     <label>The Long Road</label>
-    <description>The world calls the colony out. Fewer raids come to the gate, about three quarters of the classic pace, and more of the story waits in the region: letters asking for help, favours called in, camps on the land, missions and quests, travellers on the road. Ambushes and chance meetings follow the colony's caravans more than its walls.\n\nFor a game of journeys and the region map.\n\nIt leans toward these, never away from anything: every kind of event can still come.</description>
+    <description>The world calls the colony out. Raids come to the gate at the classic pace, and more of the story waits in the region: letters asking for help, favours called in, camps on the land, missions and quests, travellers on the road. Ambushes and chance meetings follow the colony's caravans more than its walls.\n\nFor a game of journeys and the region map.\n\nIt leans toward these, never away from anything: every kind of event can still come.</description>
     <portraitLarge>ColonyCouncil/Storytellers/LongRoad</portraitLarge>
     <portraitTiny>ColonyCouncil/Storytellers/LongRoadTiny</portraitTiny>
     <listOrder>61</listOrder>
@@ -27,7 +27,7 @@
         <category>ThreatBig</category>
         <minDaysPassed>11.0</minDaysPassed>
         <onDays>4.6</onDays>
-        <offDays>9.4</offDays>
+        <offDays>6.0</offDays>
         <minSpacingDays>1.9</minSpacingDays>
         <numIncidentsRange>1~2</numIncidentsRange>
         <forceRaidEnemyBeforeDaysPassed>20</forceRaidEnemyBeforeDaysPassed>
@@ -52,7 +52,7 @@
         <category>ThreatSmall</category>
         <minDaysPassed>11.0</minDaysPassed>
         <onDays>4.6</onDays>
-        <offDays>9.4</offDays>
+        <offDays>6.0</offDays>
         <numIncidentsRange>0.2~1</numIncidentsRange>
         <acceptPercentFactorPerThreatPointsCurve>
           <points>
@@ -257,11 +257,11 @@
     </modExtensions>
   </StorytellerDef>
 
-  <!-- 2. Neighbours: trouble grows out of relations. Raids at about seven eighths of the classic pace, most of them aimed by grievance. -->
+  <!-- 2. Neighbours: trouble grows out of relations. Raids at the classic pace, most of them aimed by grievance. -->
   <StorytellerDef ParentName="BaseStoryteller">
     <defName>Rimfolk_Story_Neighbours</defName>
     <label>Neighbours</label>
-    <description>The peoples around are the story. Raids come a little less often than the classic pace, and most come from a people with a reason: one the colony wronged, an old enemy. Peoples call in their favours and ask the colony into their quarrels, write and visit more, and a people the colony helped is likelier to send fighters when it is attacked.\n\nFor a game of diplomacy, debts and old grudges.\n\nIt leans toward these, never away from anything: every kind of event can still come.</description>
+    <description>The peoples around are the story. Raids come at the classic pace, and most come from a people with a reason: one the colony wronged, an old enemy. Peoples call in their favours and ask the colony into their quarrels, write and visit more, and a people the colony helped is likelier to send fighters when it is attacked.\n\nFor a game of diplomacy, debts and old grudges.\n\nIt leans toward these, never away from anything: every kind of event can still come.</description>
     <portraitLarge>ColonyCouncil/Storytellers/Neighbours</portraitLarge>
     <portraitTiny>ColonyCouncil/Storytellers/NeighboursTiny</portraitTiny>
     <listOrder>62</listOrder>
@@ -271,7 +271,7 @@
         <category>ThreatBig</category>
         <minDaysPassed>11.0</minDaysPassed>
         <onDays>4.6</onDays>
-        <offDays>7.4</offDays>
+        <offDays>6.0</offDays>
         <minSpacingDays>1.9</minSpacingDays>
         <numIncidentsRange>1~2</numIncidentsRange>
         <forceRaidEnemyBeforeDaysPassed>20</forceRaidEnemyBeforeDaysPassed>
@@ -296,7 +296,7 @@
         <category>ThreatSmall</category>
         <minDaysPassed>11.0</minDaysPassed>
         <onDays>4.6</onDays>
-        <offDays>7.4</offDays>
+        <offDays>6.0</offDays>
         <numIncidentsRange>0.2~1</numIncidentsRange>
         <acceptPercentFactorPerThreatPointsCurve>
           <points>
@@ -782,17 +782,17 @@
     </modExtensions>
   </StorytellerDef>
 
-  <!-- 4. What You Sow: the colony's deeds decide. Raids from the classic pace (cruel) down to two thirds of it (kind), never more. -->
+  <!-- 4. What You Sow: the colony's deeds decide who comes. Raids at the classic pace, aimed by grievance; traders and friends by the deeds. -->
   <StorytellerDef ParentName="BaseStoryteller">
     <defName>Rimfolk_Story_WhatYouSow</defName>
     <label>What You Sow</label>
-    <description>The colony's deeds decide, as the peoples remember them. Cruelty draws raiders with a grievance at the classic pace, and the roads thin: a quarter of the traders, visitors and friends in a fight still come. Kindness spares the colony a third of the raids and brings traders, visitors and friends at the gate in a fight. Nothing is told: the world simply answers, and its peoples remember longer.\n\nFor a game where how the colony treats others matters.\n\nIt leans toward these, never away from anything: every kind of event can still come.</description>
+    <description>The colony's deeds decide, as the peoples remember them. Raids come at the classic pace whatever the colony does, but who comes is its deeds: cruelty draws raiders with a grievance, and the roads thin (a quarter of the traders, visitors and friends in a fight still come); kindness brings traders, visitors and friends at the gate in a fight. Nothing is told: the world simply answers, and its peoples remember longer.\n\nFor a game where how the colony treats others matters.\n\nIt leans toward these, never away from anything: every kind of event can still come.</description>
     <portraitLarge>ColonyCouncil/Storytellers/WhatYouSow</portraitLarge>
     <portraitTiny>ColonyCouncil/Storytellers/WhatYouSowTiny</portraitTiny>
     <listOrder>64</listOrder>
     <comps>
       <li Class="StorytellerCompProperties_ClassicIntro"/>
-      <!-- Threats by the deeds: the classic pace for a cruel colony, less for a kind one -->
+      <!-- Threats at the classic pace whatever the deeds: who comes is the deeds' (raid reasons) -->
       <li Class="ColonyCouncil.StorytellerCompProperties_WayCycle">
         <category>ThreatBig</category>
         <shape>Deeds</shape>
@@ -1010,11 +1010,11 @@
     </modExtensions>
   </StorytellerDef>
 
-  <!-- 5. Old Powers: the world feels watched. Fewer raids, stranger threats, more omens. Leans the world toward the uncanny; names nothing. -->
+  <!-- 5. Old Powers: the world feels watched. Raids and stranger threats together at the classic pace, more omens. Leans the world toward the uncanny; names nothing. -->
   <StorytellerDef ParentName="BaseStoryteller">
     <defName>Rimfolk_Story_OldPowers</defName>
     <label>Old Powers</label>
-    <description>The world feels watched. Raids come about three quarters as often as the classic pace, and stranger things come in their place: psychic drones, maddened herds, things in the earth, and the void where its powers are awake. Nights are full of omens, eclipses and auroras; pilgrims and seers are more often on the road, the land and the sky stir more, and the region's word turns to strange skies.\n\nFor a game of omens and the unknown.\n\nIt leans toward these, never away from anything: every kind of event can still come.</description>
+    <description>The world feels watched. Raids come nearly at the classic pace, and stranger things make up the rest of it: psychic drones, maddened herds, things in the earth, and the void where its powers are awake. Nights are full of omens, eclipses and auroras; pilgrims and seers are more often on the road, the land and the sky stir more, and the region's word turns to strange skies.\n\nFor a game of omens and the unknown.\n\nIt leans toward these, never away from anything: every kind of event can still come.</description>
     <portraitLarge>ColonyCouncil/Storytellers/OldPowers</portraitLarge>
     <portraitTiny>ColonyCouncil/Storytellers/OldPowersTiny</portraitTiny>
     <listOrder>65</listOrder>
@@ -1024,7 +1024,7 @@
         <category>ThreatBig</category>
         <minDaysPassed>11.0</minDaysPassed>
         <onDays>4.6</onDays>
-        <offDays>10</offDays>
+        <offDays>7.3</offDays>
         <minSpacingDays>1.9</minSpacingDays>
         <numIncidentsRange>1~2</numIncidentsRange>
         <forceRaidEnemyBeforeDaysPassed>20</forceRaidEnemyBeforeDaysPassed>
@@ -1049,7 +1049,7 @@
         <category>ThreatSmall</category>
         <minDaysPassed>11.0</minDaysPassed>
         <onDays>4.6</onDays>
-        <offDays>10</offDays>
+        <offDays>7.3</offDays>
         <numIncidentsRange>0.2~1</numIncidentsRange>
         <acceptPercentFactorPerThreatPointsCurve>
           <points>
@@ -1061,7 +1061,7 @@
       <!-- Fewer raids, stranger threats -->
       <li Class="ColonyCouncil.StorytellerCompProperties_WayPicks">
         <minDaysPassed>11</minDaysPassed>
-        <mtbDays>25</mtbDays>
+        <mtbDays>40</mtbDays>
         <allowedTargetTags>
           <li>Map_PlayerHome</li>
         </allowedTargetTags>
@@ -1345,11 +1345,11 @@
     </modExtensions>
   </StorytellerDef>
 
-  <!-- 6. Lean Years: scarcity is the enemy. Raids at about two thirds of the classic pace; hardships and few traders. -->
+  <!-- 6. Lean Years: scarcity is the enemy. Raids at the classic pace; hardships and few traders. -->
   <StorytellerDef ParentName="BaseStoryteller">
     <defName>Rimfolk_Story_LeanYears</defName>
     <label>Lean Years</label>
-    <description>Scarcity is the enemy, not raiders. Raids come about two thirds as often as the classic pace, but blights, cold snaps, heat waves and storms come often, traders are few and camps come seldom, and the region's word is of famine, drought and hard winters. The colony must feed and keep everyone through years that test it.\n\nFor a game of fields, stores and keeping everyone fed.\n\nIt leans toward these, never away from anything: every kind of event can still come.</description>
+    <description>Scarcity is the enemy, not raiders. Raids come at the classic pace, and blights, cold snaps, heat waves and storms come often, traders are few and camps come seldom, and the region's word is of famine, drought and hard winters. The colony must feed and keep everyone through years that test it.\n\nFor a game of fields, stores and keeping everyone fed.\n\nIt leans toward these, never away from anything: every kind of event can still come.</description>
     <portraitLarge>ColonyCouncil/Storytellers/LeanYears</portraitLarge>
     <portraitTiny>ColonyCouncil/Storytellers/LeanYearsTiny</portraitTiny>
     <listOrder>66</listOrder>
@@ -1359,7 +1359,7 @@
         <category>ThreatBig</category>
         <minDaysPassed>11.0</minDaysPassed>
         <onDays>4.6</onDays>
-        <offDays>11</offDays>
+        <offDays>6.0</offDays>
         <minSpacingDays>1.9</minSpacingDays>
         <numIncidentsRange>1~2</numIncidentsRange>
         <forceRaidEnemyBeforeDaysPassed>20</forceRaidEnemyBeforeDaysPassed>
@@ -1384,7 +1384,7 @@
         <category>ThreatSmall</category>
         <minDaysPassed>11.0</minDaysPassed>
         <onDays>4.6</onDays>
-        <offDays>11</offDays>
+        <offDays>6.0</offDays>
         <numIncidentsRange>0.2~1</numIncidentsRange>
         <acceptPercentFactorPerThreatPointsCurve>
           <points>
@@ -1972,11 +1972,11 @@
     </modExtensions>
   </StorytellerDef>
 
-  <!-- 8. Crossroads: the colony as a market. Many traders; raids by the colony's wealth, half to the full classic pace. -->
+  <!-- 8. Crossroads: the colony as a market. Many traders; raids at the classic pace, larger with its wealth. -->
   <StorytellerDef ParentName="BaseStoryteller">
     <defName>Rimfolk_Story_Crossroads</defName>
     <label>Crossroads</label>
-    <description>The colony as a market on a road through the land. Traders come about twice as often, orbital traders too, with visitors, travellers and camps of merchants, and debts and favours between the colony and its neighbours. Raiders are drawn by its wealth: a poor colony sees about half the classic pace of raids, a rich one the classic pace, and some raids come from rivals with a grudge. The region's word is of fairs, trade, roads and their tolls.\n\nFor a game of trade and wealth.\n\nIt leans toward these, never away from anything: every kind of event can still come.</description>
+    <description>The colony as a market on a road through the land. Traders come about twice as often, orbital traders too, with visitors, travellers and camps of merchants, and debts and favours between the colony and its neighbours. Raids come at the classic pace, larger as its wealth grows, and some come from rivals with a grudge. The region's word is of fairs, trade, roads and their tolls.\n\nFor a game of trade and wealth.\n\nIt leans toward these, never away from anything: every kind of event can still come.</description>
     <portraitLarge>ColonyCouncil/Storytellers/Crossroads</portraitLarge>
     <portraitTiny>ColonyCouncil/Storytellers/CrossroadsTiny</portraitTiny>
     <listOrder>68</listOrder>
@@ -1992,13 +1992,6 @@
         <minSpacingDays>1.9</minSpacingDays>
         <numIncidentsRange>1~2</numIncidentsRange>
         <forceRaidEnemyBeforeDaysPassed>20</forceRaidEnemyBeforeDaysPassed>
-        <acceptPercentFactorPerThreatPointsCurve>
-          <points>
-            <li>(300, 0.5)</li>
-            <li>(1500, 0.85)</li>
-            <li>(4000, 1)</li>
-          </points>
-        </acceptPercentFactorPerThreatPointsCurve>
         <disallowedTargetTags>
           <li>Map_RaidBeacon</li>
         </disallowedTargetTags>
