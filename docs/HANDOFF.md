@@ -64,6 +64,13 @@ tree at once, alongside whatever runs. Each piece is merged as its own release, 
   side ("Some say... Others hold..."); unknown parts shown as silence or a torn page, so the player sees how much is
   still dark; in the style of scripture (chapter and verse, a drop capital, the keeper's notes in the margin, a change
   of hand marked) and ominous in tone. The unseen rule holds: nothing the pawns don't know, no favour, no truth marked.
+- **To do when the player asks (12 November 2026): new storytellers, ways to play.** The player: "i'd like you to
+  create new and interesting storytellers. that can enhance existing or make up new ways to play the game &
+  directions", then "if they don't have an image that's totally fine, and they also don't have to be this "character"
+  with a name etc., i find that strange anyways". Proposed: `docs/storytellers-proposals.md`, ten ways to play named
+  for what they do (The Long Road, Neighbours, The Turning Year, What You Sow, Small Hours, The Frontier, Old Powers,
+  Lean Years, Rise and Fall, Crossroads), each built on Rimfolk's own systems, none repeating the 21 storytellers in
+  the player's list; as storytellers, as a direction over any storyteller, or both. Waits for the player's picks.
 - 0.225.0, **Magic among the peoples, seen**
   (12 November 2026), the player's to-do of that day, built on "you can go ahead on the todos". The player: "one thing i
   want to ask whether you integrate rimworld of magic "classes" & spells into our custom made faction? i don't think i've
