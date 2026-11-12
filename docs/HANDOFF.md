@@ -174,6 +174,26 @@ tree at once, alongside whatever runs. Each piece is merged as its own release, 
   distance, as the couriers and journeys reckon it), their reading and writing time, and the answer's own road back;
   a refusal or silence is only known when it could be (a returning rider, their courier, or no word by the time an
   answer would have come). Check each against the map: the courier gone off the map is not the letter delivered.
+- **To do when the player asks (12 November 2026): A RimWorld of Magic's classes and spells among the peoples, seen.**
+  The player: "one thing i want to ask whether you integrate rimworld of magic "classes" & spells into our custom made
+  faction? i don't think i've seen any of them, but they should surely be thematically fitting. since these spells can
+  be quite strong or even broken, just use them sparingly overall, unless of course the faction revolves around magic
+  or so, so that it's thematically fitting always". How it is now: each people's kinds give a class by their lore
+  (`PeopleKindExtension.gifts`, `Peoples/PeopleGifts.GiveClass`, one gift a pawn at most), at 2 to 10 % for most kinds
+  and 20 to 35 % for the elders and leaders of the peoples built on it (Stormglass storm-born and heart of frost,
+  Mossborn, Herders, River Folk and Tamers druids, Scholars arcanists and chronomancers, Order, Quiet Bell and Pilgrims
+  priests and paladins, Kiln Guild enchanters and geomancers, Lattice, Wheel and Signal Line technomancers, the
+  Wardens' rangers, Ashen Banner commanders and gladiators), and only where the mod has that class on and its own
+  faction share isn't none. In the player's save (League of Toba, 11 November 2026) 3 of 25 peoples' pawns had one (a
+  Mossborn thorn a ranger, a League guard a sniper, a Scholars' don a chronomancer); nothing marks them, and a visitor
+  never casts in peace, so they go unseen. When asked, proposed: 1. a caster looks like one (their class's own robe,
+  hood or staff from the mod, where it has one, checked against `docs/player-mods`); 2. said aloud (a visitor names
+  their craft on arriving, the colony remarks on it, their letters and the diplomacy page mention "among them,
+  druids"); 3. a spell in peace now and then, played out with the mod's own effects and only where it fits the people
+  (a priest of the Quiet Bell heals one of the colony's sick, a Mossborn druid makes a field grow, a storm-born of the
+  Conclave brings rain in a drought, a Kiln Guild enchanter's work for silver), rare and once a visit at most; 4. in a
+  fight, the peoples' casters cast (the mod's own AI) as allies and as raiders of the peoples built on magic; 5. the
+  shares reviewed against each people's lore: kept sparing everywhere but the peoples built on magic.
 - 0.221.0, **Mog's luck and her stare**
   (11 November 2026), the follow-up to the gods on the map from the pantheon's Mog ("the one she chooses has a lucky
   season ... she sees Ennu for what it is, and stares at it"). DESIGN.md "The gods on the map", the sacred animal.
