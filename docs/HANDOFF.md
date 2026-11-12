@@ -255,7 +255,9 @@ tree at once, alongside whatever runs. Each piece is merged as its own release, 
   the colony's deeds hold almost every day); once it is free, its chance stays small and spread over a long, uneven
   window, so the player can't tell when it will come or whether it will at all; a condition that is nearly always true
   (someone did a kindness today) is no trigger on its own, only a strong or unusual one is. Every gods' happening
-  checked for the same pattern (free, then certain at the next chance).
+  checked for the same pattern (free, then certain at the next chance). Scope (the player, asked whether this goes for
+  all of Rimfolk's events): "no, not necessarily, as so far it has not felt like this besides this selene event". So
+  the gods' happenings only, the moon's return first; the rest of Rimfolk is left as it is.
 - 0.221.0, **Mog's luck and her stare**
   (11 November 2026), the follow-up to the gods on the map from the pantheon's Mog ("the one she chooses has a lucky
   season ... she sees Ennu for what it is, and stares at it"). DESIGN.md "The gods on the map", the sacred animal.
