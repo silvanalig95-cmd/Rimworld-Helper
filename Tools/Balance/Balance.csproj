@@ -66,5 +66,7 @@
     <Compile Include="../../Source/ColonyCouncil/Gods/World/GodWorldMath.cs" Link="Linked/GodWorldMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Gods/Worship/WorshipMath.cs" Link="Linked/WorshipMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Gods/Presence/GodPresenceMath.cs" Link="Linked/GodPresenceMath.cs" />
+    <Compile Include="../../Source/ColonyCouncil/Story/StoryWaysMath.cs" Link="Linked/StoryWaysMath.cs" />
+    <Compile Include="../../Source/ColonyCouncil/Story/StoryLevers.cs" Link="Linked/StoryLevers.cs" />
   </ItemGroup>
 </Project>

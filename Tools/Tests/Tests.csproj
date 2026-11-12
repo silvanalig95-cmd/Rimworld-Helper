@@ -323,5 +323,7 @@
     <Compile Include="../../Source/ColonyCouncil/Gods/OnMap/GodsOnMapMath.cs" Link="GodsOnMapMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Gods/GodPaceMath.cs" Link="GodPaceMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Gods/GodNearMath.cs" Link="GodNearMath.cs" />
+    <Compile Include="../../Source/ColonyCouncil/Story/StoryWaysMath.cs" Link="StoryWaysMath.cs" />
+    <Compile Include="../../Source/ColonyCouncil/Story/StoryLevers.cs" Link="StoryLevers.cs" />
   </ItemGroup>
 </Project>
