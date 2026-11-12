@@ -26,11 +26,14 @@ namespace ColonyCouncil
     /// keeps (VisitorTradeMath.Wants, a camp kind's <c>buys</c>). They stand at the counter a while, then the article goes
     /// off the counter into their pack and their silver is set down at the stall, as with RimMarket's own shoppers. A few
     /// purchases a visit, in the market's hours, only at peace and with the map quiet. Without RimMarket, without a colony
-    /// stall with goods on its counter, or with the setting off, nothing of it happens.
+    /// stall with goods on its counter, or with the setting off, nothing of it happens. Every other visitor at the colony
+    /// (the game's visitor groups, a trade caravan's people, Rimfolk's envoys, notables, guests and callers) walks over the
+    /// same way, from their own day (Visitors/VisitorTradeGuests.cs).
     /// </summary>
-    public static class VisitorTrade
+    public static partial class VisitorTrade
     {
         private const string Pool = "Rimfolk_Pool_MarketBuy";
+        private const string KeeperPool = "Rimfolk_Pool_MarketKeeper";
 
         private static int Now => Find.TickManager.TicksGame;
 
@@ -46,7 +49,8 @@ namespace ColonyCouncil
         }
 
         /// <summary>The stall can still sell to them: open as RimMarket has it, and nothing threatening on the map.</summary>
-        public static bool StillOpen(Pawn p, Thing stall) => On && stall != null && stall.Spawned && !MapFacts.ThreatOn(p.Map) && RimMarketStall.OpenForSale(stall);
+        public static bool StillOpen(Pawn p, Thing stall) =>
+            (On || GuestsOn) && stall != null && stall.Spawned && !MapFacts.ThreatOn(p.Map) && RimMarketStall.OpenForSale(stall);
 
         /// <summary>A market day's buyers, there at their spot (a world event's visit "buyers"): they came to shop, each of them.</summary>
         public static bool Market(VisitorTrip t) => t != null && t.what == VisitorTradeMath.Buyers && t.state == VisitState.Here;
@@ -57,13 +61,15 @@ namespace ColonyCouncil
         // ---------------- What a thing on the counter is ----------------
 
         /// <summary>The kinds of goods a thing on the counter is (a carving in its crate is art; hay is feed; pemmican a meal that keeps).</summary>
-        public static TradeGoods Facts(Thing t)
+        public static TradeGoods Facts(Thing t) => FactsOf(RimMarketStall.StockDef(t) ?? t?.def, t is MinifiedThing);
+
+        /// <summary>The kinds of goods an article of this def is; <paramref name="minified"/> for one packed in its crate, which is only ever art.</summary>
+        public static TradeGoods FactsOf(ThingDef def, bool minified = false)
         {
-            var def = RimMarketStall.StockDef(t) ?? t?.def;
             if (def == null) return TradeGoods.None;
             var g = TradeGoods.None;
             if (def.IsArt) g |= TradeGoods.Art;
-            if (t is MinifiedThing) return g;
+            if (minified) return g;
             var ing = def.ingestible;
             if (ing != null && def.IsNutritionGivingIngestible && !def.IsDrug)
             {
@@ -96,11 +102,14 @@ namespace ColonyCouncil
 
         private static VisitorTrip TripOf(Pawn p) => p?.GetLord()?.LordJob is LordJob_RimfolkVisit j ? VisitorTracker.Instance?.Get(j.tripId) : null;
 
-        /// <summary>What the buyer's people look for, how many mouths they are and how many beasts they drive.</summary>
-        private static TradeGoods[] WantsOf(Pawn p, out VisitorTrip trip, out Camp camp, out int people, out int animals)
+        /// <summary>What the buyer's people look for (and whether only something fine will do), how many mouths they are and how many beasts they drive.</summary>
+        private static TradeGoods[] WantsOf(Pawn p, out VisitorTrip trip, out Camp camp, out MarketCall call, out string who, out bool fine, out int people, out int animals)
         {
             trip = TripOf(p);
             camp = trip == null ? CampTracker.CampOf(p) : null;
+            call = null;
+            who = trip?.what;
+            fine = false;
             people = 1;
             animals = 0;
             if (trip != null)
@@ -115,20 +124,20 @@ namespace ColonyCouncil
                 animals = camp.herd.Count(a => a != null && !a.Dead);
                 return VisitorTradeMath.Wants(camp.kind?.buys);
             }
-            return null;
+            return GuestWants(p, out call, out who, out fine, out people, out animals);
         }
 
         // ---------------- Going to buy ----------------
 
-        /// <summary>The article on this counter that fits them best and they can pay one of, or null. Ties go to chance.</summary>
-        private static Thing BestOn(Thing stall, IList<TradeGoods> wants, int purse, out int fit)
+        /// <summary>The article on this counter that fits them best and they can pay one of, or null (for the fine, only something good). Ties go to chance.</summary>
+        private static Thing BestOn(Thing stall, IList<TradeGoods> wants, int purse, bool fine, out int fit)
         {
             fit = 0;
             Thing best = null;
             int ties = 0;
             foreach (var t in RimMarketStall.Stock(stall))
             {
-                if (!RimMarketStall.ForSale(stall, t)) continue;
+                if (!RimMarketStall.ForSale(stall, t) || !VisitorTradeMath.GoodEnough(QualityOf(t), fine)) continue;
                 int f = VisitorTradeMath.Fit(Facts(t), wants);
                 if (f <= 0 || f < fit || RimMarketStall.UnitPrice(stall, t) > purse) continue;
                 if (f > fit)
@@ -142,11 +151,14 @@ namespace ColonyCouncil
             return best;
         }
 
+        /// <summary>The article's quality as the game counts it (0 awful to 6 legendary; a carving in its crate by what's inside), -1 for none.</summary>
+        private static int QualityOf(Thing t) => (t?.GetInnerIfMinified() ?? t).TryGetQuality(out var q) ? (int)q : -1;
+
         /// <summary>
         /// The walk to the colony's stall with the article that fits them best (the nearest stall of those that have one),
         /// to RimMarket's own place in front of its counter. Null with nothing there for them, or no way to it.
         /// </summary>
-        public static Job ShopJob(Pawn p, IList<TradeGoods> wants)
+        public static Job ShopJob(Pawn p, IList<TradeGoods> wants, bool fine = false)
         {
             int purse = RimMarketStall.SilverIn(p);
             if (p?.Map == null || wants == null || purse < VisitorTradeMath.LeastSilver) return null;
@@ -155,7 +167,7 @@ namespace ColonyCouncil
             float bestDist = float.MaxValue;
             foreach (var s in RimMarketStall.OpenStalls(p.Map))
             {
-                if (BestOn(s, wants, purse, out int fit) == null) continue;
+                if (BestOn(s, wants, purse, fine, out int fit) == null) continue;
                 float d = s.Position.DistanceToSquared(p.Position);
                 if (fit < bestFit || fit == bestFit && d >= bestDist || !p.CanReach(s, PathEndMode.Touch, Danger.Some)) continue;
                 stall = s;
@@ -246,28 +258,31 @@ namespace ColonyCouncil
         /// </summary>
         public static void Buy(Pawn p, Thing stall)
         {
-            if (!On || p?.Map == null || stall == null || !stall.Spawned) return;
+            if (!(On || GuestsOn) || p?.Map == null || stall == null || !stall.Spawned) return;
             try
             {
-                var wants = WantsOf(p, out var trip, out var camp, out int people, out int animals);
+                var wants = WantsOf(p, out var trip, out var camp, out var call, out string who, out bool fine, out int people, out int animals);
                 if (wants == null) return;
                 int purse = RimMarketStall.SilverIn(p);
-                var article = BestOn(stall, wants, purse, out _);
+                var article = BestOn(stall, wants, purse, fine, out _);
                 if (article == null)
                 {
-                    Say(p, "none", TradeGoods.None, trip, 0.5f);
+                    Say(p, "none", TradeGoods.None, who, 0.5f);
                     return;
                 }
                 var kind = VisitorTradeMath.Kind(Facts(article), wants);
                 int count = VisitorTradeMath.HowMany(VisitorTradeMath.Need(kind, people, animals), article.stackCount, RimMarketStall.UnitPrice(stall, article), purse);
                 if (count <= 0 || !Rand.Chance(RimMarketStall.BuyChance(stall, RimMarketStall.StockDef(article))))
                 {
-                    Say(p, "dear", kind, trip, 0.7f);
+                    Say(p, "dear", kind, who, 0.7f);
                     return;
                 }
                 if (!RimMarketStall.SellTo(p, stall, article, count, out var sale)) return;
                 RimMarketStall.BoughtTouches(p, stall, sale);
-                Say(p, "buy", kind, trip, 0.6f);
+                // Now and then the keeper behind the counter has the word, else the buyer.
+                var keeper = RimMarketStall.Keeper(stall);
+                if (keeper != null && Rand.Chance(0.35f)) KeeperSay(keeper, p, kind, who);
+                else Say(p, "buy", kind, who, 0.6f);
                 Notify.Message("CC_VisitTrade_Bought".Translate(p.Named("PAWN"), (p.Faction?.Name ?? "?").Named("FACTION"), sale.label.Named("THING"), sale.paid.Named("COUNT")).Resolve(),
                     new LookTargets(p), MessageTypeDefOf.NeutralEvent, Importance.Notable);
                 if (trip != null)
@@ -277,6 +292,7 @@ namespace ColonyCouncil
                     trip.shopNext = Now + Rand.Range(GenDate.TicksPerHour * lo, GenDate.TicksPerHour * hi);
                 }
                 camp?.MarketBought();
+                call?.Bought(Now);
             }
             catch (Exception e)
             {
@@ -284,13 +300,24 @@ namespace ColonyCouncil
             }
         }
 
-        /// <summary>A line from the buyer at the counter: "buy" (with what kind it was), "dear" (put off by the price), "none" (nothing there for them).</summary>
-        private static void Say(Pawn p, string moment, TradeGoods kind, VisitorTrip trip, float chance)
+        /// <summary>A line from the buyer at the counter: "buy" (with what kind it was), "dear" (put off by the price), "none" (nothing there for them); what they are a tag too (drovers, envoy, caravan).</summary>
+        private static void Say(Pawn p, string moment, TradeGoods kind, string who, float chance)
         {
             if (p == null || !p.Spawned || !Rand.Chance(chance)) return;
-            string line = Flavor.FromPool(Pool, p, null, null, moment, kind == TradeGoods.None ? null : kind.ToString().ToLowerInvariant(), trip?.what);
+            string line = Flavor.FromPool(Pool, p, null, null, moment, KindTag(kind), who);
             if (!line.NullOrEmpty()) Speech.Say(p, line);
         }
+
+        /// <summary>The keeper's word to the buyer as the sale is made, by what it was and who bought it.</summary>
+        private static void KeeperSay(Pawn keeper, Pawn buyer, TradeGoods kind, string who)
+        {
+            if (keeper == null || !keeper.Spawned || keeper.Map != buyer?.Map) return;
+            // together: the keeper behind the counter (RimMarket's keeper at the stall) and the buyer standing at it, the sale just made.
+            string line = Flavor.FromPool(KeeperPool, keeper, null, null, "sold", KindTag(kind), who);
+            if (!line.NullOrEmpty()) Speech.Say(keeper, line, buyer);
+        }
+
+        private static string KindTag(TradeGoods kind) => kind == TradeGoods.None ? null : kind.ToString().ToLowerInvariant();
     }
 
     /// <summary>A visit's people camped on the land go over to the colony's market now and then (VisitorTrade.VisitorJob).</summary>
@@ -312,7 +339,8 @@ namespace ColonyCouncil
 
     /// <summary>
     /// A visitor or a camper buying at the colony's market stall: the walk to the place in front of its counter, a look
-    /// over the goods facing the stall, then the purchase (VisitorTrade.Buy). Over if the stall closes or trouble comes.
+    /// over the goods facing the stall, then the purchase (VisitorTrade.Buy). Over if the stall closes, trouble comes, or
+    /// a visitor's group sets off.
     /// </summary>
     public class JobDriver_MarketBuy : JobDriver
     {
@@ -323,7 +351,8 @@ namespace ColonyCouncil
         protected override IEnumerable<Toil> MakeNewToils()
         {
             this.FailOnDespawnedOrNull(TargetIndex.A);
-            this.FailOn(() => pawn.IsHashIntervalTick(60) && !VisitorTrade.StillOpen(pawn, job.targetA.Thing));
+            // Over too when a visitor's group sets off home: they go with it.
+            this.FailOn(() => pawn.IsHashIntervalTick(60) && (!VisitorTrade.StillOpen(pawn, job.targetA.Thing) || VisitorTrade.GuestGoing(pawn)));
             yield return Toils_Goto.GotoCell(TargetIndex.B, PathEndMode.OnCell);
             var look = ToilMaker.MakeToil("MarketBuyLook");
             look.defaultCompleteMode = ToilCompleteMode.Delay;

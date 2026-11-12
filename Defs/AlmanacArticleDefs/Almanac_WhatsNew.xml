@@ -31,6 +31,21 @@ When you load a save after an update, a letter lists the newest round once. The 
     <rounds>
 
       <li>
+        <version>0.228.0</version>
+        <date>12 November 2026</date>
+        <title>Every visitor shops</title>
+        <points>
+          <li>Every visitor now shops at your RimMarket stalls: the game's visitors, a trade caravan's guards, envoys, notables, a feast's guests, the peoples' callers and the guests you invite.</li>
+          <li>Each buys what fits who they are: a trader's people what their trader deals in, an envoy or a notable something fine, a feast's guests something to take home, anyone on the road food that keeps.</li>
+          <li>They pay with their own silver, a caravan's guards with their trader's, and it plays out at the counter as it does for campers.</li>
+          <li>A purchase or two a group a day, one of them at a time and never more than three at the stalls, so the market isn't swamped.</li>
+          <li>Never on their way out, at war or with the map in danger, and a caravan's guards leave with the caravan when it goes.</li>
+          <li>Now and then the keeper at the stall says a word as the sale is made.</li>
+          <li>A new setting on the Your other mods page, "Visitors shop at RimMarket's stalls", turns it off.</li>
+        </points>
+      </li>
+
+      <li>
         <version>0.227.1</version>
         <date>12 November 2026</date>
         <title>Raids at the classic pace</title>

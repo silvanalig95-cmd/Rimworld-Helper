@@ -18,6 +18,8 @@ namespace ColonyCouncil
     {
         public List<VisitorTrip> trips = new List<VisitorTrip>();
         private int nextId = 1;
+        /// <summary>Every other visitor group's turns at the colony's market (VisitorTradeGuests.cs): one a group while it is on a map, 16 at most.</summary>
+        public List<MarketCall> calls = new List<MarketCall>();
 
         private static VisitorTracker cached;
         private static Game cachedGame;
@@ -686,10 +688,13 @@ namespace ColonyCouncil
             base.ExposeData();
             Scribe_Collections.Look(ref trips, "trips", LookMode.Deep);
             Scribe_Values.Look(ref nextId, "nextId", 1);
+            Scribe_Collections.Look(ref calls, "marketCalls", LookMode.Deep);
             if (Scribe.mode == LoadSaveMode.PostLoadInit)
             {
                 if (trips == null) trips = new List<VisitorTrip>();
                 trips.RemoveAll(t => t == null);
+                calls ??= new List<MarketCall>();
+                calls.RemoveAll(c => c == null);
             }
         }
     }

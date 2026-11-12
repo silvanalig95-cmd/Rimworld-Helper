@@ -5,6 +5,18 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## Every visitor shops
+
+*12 November 2026, version 0.228.0*
+
+- Every visitor now shops at your RimMarket stalls: the game's visitors, a trade caravan's guards, envoys, notables, a feast's guests, the peoples' callers and the guests you invite.
+- Each buys what fits who they are: a trader's people what their trader deals in, an envoy or a notable something fine, a feast's guests something to take home, anyone on the road food that keeps.
+- They pay with their own silver, a caravan's guards with their trader's, and it plays out at the counter as it does for campers.
+- A purchase or two a group a day, one of them at a time and never more than three at the stalls, so the market isn't swamped.
+- Never on their way out, at war or with the map in danger, and a caravan's guards leave with the caravan when it goes.
+- Now and then the keeper at the stall says a word as the sale is made.
+- A new setting on the Your other mods page, "Visitors shop at RimMarket's stalls", turns it off.
+
 ## Raids at the classic pace
 
 *12 November 2026, version 0.227.1*

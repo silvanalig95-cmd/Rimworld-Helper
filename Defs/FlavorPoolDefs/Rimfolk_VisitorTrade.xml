@@ -5,7 +5,9 @@
     What a visitor or a camper says at the colony's market stall (Source/ColonyCouncil/Visitors/VisitorTrade.cs), over
     their head through Speech. Every line has its moment: buy (they bought something, with what kind it was: feed, meal,
     roadfood, rawfood, medicine, drink, clothes, textiles, metal, art), dear (the price put them off), none (nothing on
-    the counter for them). What they are (a visit's drovers, pilgrims...) may be a tag too. One short sentence each.
+    the counter for them). What they are (a visit's drovers, pilgrims...; every other visitor's caravan, envoy,
+    notable, guests, travellers, or their people's calling: Visitors/VisitorTradeGuests.cs) may be a tag too. One short
+    sentence each.
   -->
   <ColonyCouncil.FlavorPoolDef>
     <defName>Rimfolk_Pool_MarketBuy</defName>
@@ -29,6 +31,61 @@
         <li>[dear] I'd hoped it would be cheaper.</li>
         <li>[none] Nothing here for us today.</li>
         <li>[none] Not what we need, more's the pity.</li>
+        <li>[buy,caravan] That'll sell well further down the road.</li>
+        <li>[buy,textiles,caravan] Good cloth always finds a buyer.</li>
+        <li>[buy,metal,caravan] Metal like this sells anywhere.</li>
+        <li>[buy,art,caravan] I know a collector who'll want this.</li>
+        <li>[buy,clothes,caravan] Well made, it'll fetch a good price.</li>
+        <li>[buy,envoy] A fine thing to bring home.</li>
+        <li>[buy,art,envoy] This will look well in our hall.</li>
+        <li>[buy,clothes,envoy] Well made, I'll wear it home.</li>
+        <li>[buy,drink,envoy] Something good for the evenings here.</li>
+        <li>[buy,notable] Fine work, well worth the silver.</li>
+        <li>[buy,guests] Something to remember the day by.</li>
+        <li>[buy,drink,guests] For the road home, and the evening after.</li>
+        <li>[buy,roadfood,travellers] Enough for the road home.</li>
+        <li>[buy,meal,travellers] A proper meal before we go on.</li>
+        <li>[buy,medicine,healers] Good, our own stock was running low.</li>
+        <li>[buy,feed,herders] The herd will thank you for this.</li>
+        <li>[dear,caravan] I couldn't sell it on at that price.</li>
+        <li>[dear,envoy] Fine, but not at that price.</li>
+        <li>[none,caravan] Nothing here I could sell on.</li>
+        <li>[none,envoy] Nothing fine enough today, I'm afraid.</li>
+        <li>[none,notable] Nothing here quite good enough, I'm afraid.</li>
+        <li>[none,travellers] Nothing I need for the road.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!--
+    What the colony's keeper at the stall says to a visitor or a camper as a sale is made (Visitors/VisitorTrade.cs),
+    now and then in place of the buyer's own line. The moment is sold, with the kind of goods it was and what the buyer
+    is as tags (as above). One short sentence each.
+  -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_MarketKeeper</defName>
+    <lines>
+      <plain>
+        <li>[sold] Thank you, come again.</li>
+        <li>[sold] Mind how you go.</li>
+        <li>[sold] A good choice, that.</li>
+        <li>[sold] Fair trade, friend.</li>
+        <li>[sold,feed] Your beasts will eat well tonight.</li>
+        <li>[sold,meal] Enjoy it, friend.</li>
+        <li>[sold,roadfood] That will keep for weeks.</li>
+        <li>[sold,rawfood] Good for the pot, that.</li>
+        <li>[sold,medicine] I hope you never need it.</li>
+        <li>[sold,drink] Don't drink it all at once.</li>
+        <li>[sold,clothes] It suits you.</li>
+        <li>[sold,textiles] That's a lot of mending.</li>
+        <li>[sold,metal] Good metal, that.</li>
+        <li>[sold,art] Take good care of it.</li>
+        <li>[sold,caravan] Sell it on for a good price.</li>
+        <li>[sold,envoy] Give our regards to your people.</li>
+        <li>[sold,notable] An honour to have your custom.</li>
+        <li>[sold,guests] Something to remember us by.</li>
+        <li>[sold,travellers] Safe roads to you.</li>
+        <li>[sold,winter] Keep warm on the road.</li>
       </plain>
     </lines>
   </ColonyCouncil.FlavorPoolDef>

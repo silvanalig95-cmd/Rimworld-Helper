@@ -2905,6 +2905,78 @@ are `Integrations/InvitedGuestsMath.cs` (`InvitedGuestsTests`), the game side `I
   an agreed bout, `Outsiders.InBout`) to `Feasts.Harmed` or `Envoys.Harmed`, which end the visit as an insult and send
   them home. Deaths and arrests are seen by the feast's look and the stay's hour as before.
 
+### Every visitor shops the market (the player's request, 12 November 2026; released 0.228.0)
+
+Nobody is made to shop (the player: "the visitors are not forced to shop, only if i have products that ar actually
+interesting to them"): a visitor walks over only when an open stall has an article on its counter that fits what they
+want and they can pay for (`VisitorTrade.ShopJob` is null otherwise), and goes on with their visit when nothing does.
+
+The player: "do visitors also shop the markets? if not please implement that", then "later, to do", then "continue
+with the other tasks". With RimMarket, those camped on the colony's land, people from a camp near it and a market day's
+buyers already walked over to the colony's stalls (`Visitors/VisitorTrade.cs`, `Camps/CampMarket.cs`), and
+Hospitality's guests shop by RimMarket's own duty (`Integrations/MarketGuests.cs`). Now every other visitor does too:
+the game's visitor groups passing a day, a trade caravan's people, Rimfolk's envoys, notables, guests and callers, the
+guests the colony invited without Hospitality, and a feast's guests. The rules are in `Visitors/VisitorTradeMath.cs`
+(`VisitorTradeTests`), the game side in `Visitors/VisitorTradeGuests.cs`; the setting "Visitors shop at RimMarket's
+stalls" (`marketVisitorsBuy`, on, Your other mods under RimMarket, with the deeper hooks).
+
+- **The way in**: a postfix on `ThinkNode_Duty.TryIssueJobPackage` (`Patch_VisitorsShop`, applied only with RimMarket
+  loaded, else it stands down with why) looks at the job a visitor's duty chose, and only an idle wander near their spot
+  (`GotoWander`, `Wait_Wander`, what the game's `Defend` duty and Rimfolk's envoy and feast duties end in) may become the
+  walk to the market (`VisitorTrade.GuestJob`). Fighting, eating, sleeping and whatever else their duty has for them come
+  first, and the duty itself is never touched: the walk is a job of theirs, with the lord's own `lord`, `source` and
+  `dutyTag`. When their group sets off, the walk ends within a second (`JobDriver_MarketBuy` fails on
+  `VisitorTrade.GuestGoing`: the lord off its stay, or the pawn leaving), so a caravan's people leave with the caravan
+  (its time up goes to `LordToil_ExitMapAndEscortCarriers` without ending jobs) and a visit's lord gathers its people
+  for the way out as always (its leaving transition doesn't end jobs either).
+- **Which groups** (`GroupOf`, `GuestGroup`): `LordJob_TradeWithColony` (a caravan), `LordJob_VisitColony` and what
+  derives from it (the game's visitors; Rimfolk's `LordJob_VisitOnErrand`, which nearly every happening's visitors,
+  invited guests without Hospitality and the peoples' callers come in), `LordJob_EnvoyStay`, `LordJob_FeastGuests`; never
+  RimMarket's or Hospitality's own lords (by namespace), Rimfolk's own visits and camps (which keep their own turn,
+  `VisitorJob`, `Camp.MarketJob`), raiders, a quest's or anyone else's. At their stay only (`AtStay`): a visit or a
+  caravan at its spot (`LordToil_DefendPoint`, the caravan's own derives from it), envoys at `LordToil_EnvoyStay`, a feast
+  at `LordToil_FeastGuests`.
+- **Who may go** (`VisitorTradeMath.WhyNot`, `GuestFacts`): a person, grown, not the trader (who keeps to the trade),
+  never a caravan's pack beasts or what it has for sale (the game's caravan roles); their people at peace, the map quiet
+  (`MapFacts.ThreatOn`, the danger rating), at the stay and not leaving (`Outsiders.Leaving`); up, awake, not hungry or
+  worn out or due to sleep or ought to be in a sickbed; in the market's hours (RimMarket's `ShopHoursStart`, an hour
+  before its end); and nothing holding them (`Held`): Hospitality's stay, a quest, a lodger; a question's letter about
+  them still open (the stranger or the group of a `ChoiceLetter_Dilemma`); a caller's work (`Callers.tasks`); a
+  happening's visit under way (`happenings.visits`, its visitor or group); a god's stranger or anyone in the gods'
+  affairs in the world; a trade, a talk or a scene with the colony; their hands full.
+- **When** (`VisitorTradeMath.Turn`, `MarketCall`): a group's first look comes half an hour to an hour and a half after it
+  settles; one of them at a time; never more than three at the stalls in all, campers and market days counted
+  (`MostAtStalls`); two hours after a try that came to nothing (the campers' wait), four to eight after a purchase
+  (`NextTryHours`); two purchases a day at most (`GuestBuys`, `ShoppedToday`). A game's visit stays three to nine hours
+  and a caravan eleven to eighteen, so most buy once and some twice; envoys and feast guests who stay longer buy a
+  purchase or two a day. The record, one a group by its lord's load id, is saved in `VisitorTracker.calls`
+  (`marketCalls`), the records of groups gone from every map dropped when a new one is made, sixteen at most.
+- **What they look for** (`VisitorTradeMath.Wants` by what they are, `WhoOf`): a trader's people (any group with a trader:
+  a caravan, a visit's small trader, a people's factor with goods) what their trader deals in, `TraderWants` over the
+  game's own test of what the trader takes (`TraderKindDef.WillTrade`) for every article of the game and the mods, the
+  three biggest shares of a kind first, then food that keeps, worked out once a trader kind; an envoy or a notable (a
+  people's leader, one with a title, a notable the colony knows by name) something fine, art, clothes and drink of good
+  quality or better (`GoodEnough`); a feast's guests something to take home; one of Rimfolk's peoples by its calling
+  (healers medicine, tamers feed, artisans and linesmen metal, mercenaries medicine, fishers cloth, traders and brokers
+  art and cloth, the learned art and drink); anyone else on the road food that keeps (`RoadNeeds`). How many: as campers,
+  by the mouths in their group and its beasts (`Need`).
+- **Their coin** (`GuestCoin`, `OtherCarries`, `FromTrader`): their own silver first; someone else grown of theirs who has
+  some goes instead, and the turn waits for them; a trader's people take theirs from their trader's silver and their pack
+  beasts' (never while the colony trades with that trader, and never a pack beast's last coin, which would leave it
+  counted as a beast for sale), the purse by what they are; anyone else counts out their coin for the road once a visit
+  (`Purse`: an envoy or a notable 80 to 240, a trade 60 to 160, a traveller 30 to 100). Paid in silver as campers pay:
+  RimMarket's payment can take goods when silver is short, but its own shoppers never do, it takes things by their full
+  worth one by one so it seldom comes to the price, and visitors seldom carry goods of their own, so there is no barter.
+- **At the counter**: the campers' own path (`ShopJob`, `JobDriver_MarketBuy`, `Buy`, `RimMarketStall.SellTo`,
+  `BoughtTouches`): they stand at the counter a while, the article goes off the counter and its sale line into their
+  pack, their silver is set down at the stall, the coins' sound, the price over their head, the colony's message. A line
+  now and then goes through `Speech.Say`, one sentence: the buyer's from `Rimfolk_Pool_MarketBuy` with what they are as a
+  tag (caravan, envoy, notable, guests, travellers, a calling), or, a little over a third of the time when the colony has
+  a keeper at the stall, the keeper's word as the sale is made (`Rimfolk_Pool_MarketKeeper`, moment `sold`, by the kind
+  of goods and the buyer; campers and market days hear it too).
+- **Dev mode**: "Market: send this visitor to the stalls now" (the group's turn and the hours aside, everything else as
+  always, why not in the log), "Market: every visitor and why (log)" (`Visitors/VisitorTradeDebug.cs`).
+
 ### Neighbours' requests and callers at the gate (the player's request, 6 November 2026)
 
 "Do another big content update to existing mechanics": this part the neighbours and the people who come to the colony,

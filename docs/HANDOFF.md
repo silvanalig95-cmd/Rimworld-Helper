@@ -69,17 +69,70 @@ tree at once, alongside whatever runs. Each piece is merged as its own release, 
   ordering them off is ruder still), less when they were trouble (a thief, a brawler, a drunk); with Hospitality its
   own way for its guests; never a caravan mid-trade without the trade closed first, and never anyone downed or a
   prisoner.
-- **To do when the player asks (12 November 2026): every visitor shops the market.** The player: "do visitors also
-  shop the markets? if not please implement that", then "later, to d[o]". How it is now (with RimMarket): people camped
-  on the colony's land and from camps near it walk over to the colony's stalls and buy what fits them
-  (`Visitors/VisitorTrade.cs`, `Camps/CampMarket.cs`, setting `marketCampersBuy`); Hospitality's guests may reach a
-  stall outside their area (`Integrations/MarketGuests.cs`) and shop by RimMarket's own duty; RimMarket's own market
-  days bring its shoppers. Not shopping: the game's visitor groups passing a day, trade caravans' people, Rimfolk's own
-  visitors (envoys, notables, letters' guests, the peoples' callers) and invited guests without Hospitality. When asked:
-  any peaceful visitor at the colony in the market's hours may stop at an open stall and buy what fits them with their
-  own silver (VisitorTradeMath.Wants by who they are: a trader's people their trade goods' kind, an envoy something fine,
-  travellers food that keeps), a purchase or two a visit, played out as the campers' are (at the counter, the article
-  into their pack, the silver set down at the stall), never on leaving in haste, at war, or with the map in danger.
+- 0.228.0, **Every visitor shops the market**
+  (12 November 2026). The player: "do visitors also shop the markets? if not please implement that", then "later, to
+  do", then "continue with the other tasks". DESIGN.md "Every visitor shops the market (the player's request, 12
+  November 2026; not released yet)", README (RimMarket under the optional mods, the Your other mods page), the
+  Almanac's RimMarket page (a new section "Every visitor at the market", keywords unchanged) and the visitors page.
+  - Built: with RimMarket, every other visitor at the colony may stop at an open colony stall in the market's hours and
+    buy what fits who they are, the campers' own way (they stand at the counter, the article goes into their pack, their
+    silver is set down at the stall): the game's visitor groups passing a day, a trade caravan's guards, Rimfolk's
+    envoys (without Hospitality), notables, letters' and happenings' guests and the peoples' callers (all who come as
+    the game's visit does, `LordJob_VisitOnErrand`), invited guests without Hospitality, and a feast's guests. A trader's
+    people (a caravan, a visit's small trader, a people's factor with goods) buy what their trader deals in, paid from
+    the trader's silver; an envoy or a notable something fine, of good quality or better; a feast's guests something to
+    take home; one of Rimfolk's peoples by its calling; anyone else on the road food that keeps. Only in place of an idle
+    wander near their spot; a purchase or two a group a day, the first half an hour to an hour and a half after they
+    settle, one of a group at a time, three at the stalls at most in all (campers and market days counted); never on
+    their way out, at war, with the map in danger, hungry, tired or sick, or while something holds them (an answer the
+    colony owes them, a caller's work, a happening's visit, the gods' affairs, a quest, Hospitality, a trade or talk with
+    the colony). The walk ends the moment their group sets off, so a caravan's guards leave with the caravan and a
+    visit's lord gathers its people. A short line now and then: the buyer's (new lines tagged caravan, envoy, notable,
+    guests, travellers, healers, herders) or, with a keeper at the stall, the keeper's as the sale is made (a new pool,
+    campers hear it too). New setting "Visitors shop at RimMarket's stalls" (`marketVisitorsBuy`, on, Your other mods
+    under RimMarket, needs the deeper hooks). Left out, at the lead's word: barter. They pay in silver as campers do;
+    RimMarket's payment could take goods (`takeGoods`), but its own shoppers never do, it takes things by full worth one
+    by one so it seldom comes to the price, and visitors seldom carry goods, so a visitor with no silver of their own,
+    no trader's silver and no coin for the road left doesn't buy. Rimfolk's own visits that don't camp (waiting at the
+    gate, a corner indoors, passing) keep to their spot as before.
+  - Code map: `Source/ColonyCouncil/Visitors/VisitorTradeMath.cs` (pure: `GuestGroup`, `GuestRole`, `GuestFacts`,
+    `WhyNot`, `MarketTurn`, `Turn`, `ShoppedToday`, `GuestBuys` 2, `MostAtStalls` 3, `FirstLookMin`/`Max`, `RetryHours`,
+    `IsFine`, `GoodEnough`, `TraderWants`; the words `Caravan`, `Envoy`, `Notable`, `Guests`, `Travellers`; `Wants` and
+    `Purse` for them and the peoples' callings). `Visitors/VisitorTradeGuests.cs` (new: `MarketCall`, a group's record
+    by its lord's load id; `VisitorTrade.GuestsOn`, `GroupOf`, `AtStay`, `TraderOf`, `RoleOf`, `IsNotable`, `WhoOf`,
+    `Held`, `FactsFor`, `GuestJob`, `GuestWants`, `AtStalls`, `OtherCarries`, `GuestCoin`, `FromTrader` (never a pack
+    beast's last coin), `WantsOfTrader` (the game's `TraderKindDef.WillTrade` over every article, once a trader kind),
+    `CallOf`, `GuestWhyNot`, `GuestNow`, `GuestReport`, `GuestGoing`; `Patch_VisitorsShop`, a postfix on
+    `ThinkNode_Duty.TryIssueJobPackage` that swaps only `GotoWander`/`Wait_Wander` for the walk, under `RimfolkPatches.On`,
+    standing down without RimMarket). `Visitors/VisitorTrade.cs` (now partial; `FactsOf(ThingDef)`, `QualityOf`, the
+    fine filter in `BestOn`/`ShopJob`, `Buy` for guests too and the keeper's word `KeeperSay`, `Say` by what they are;
+    `JobDriver_MarketBuy` fails on `GuestGoing`). `Visitors/VisitorTracker.cs` (`calls`, saved as `marketCalls`, 16 at
+    most; modelled in `Tools/save_estimate.py`). `Visitors/VisitorTradeDebug.cs` (new: two dev actions). Settings:
+    `CouncilSettings.marketVisitorsBuy`, `UI/SettingsCatalog.cs`, `Languages/English/Keyed/Rimfolk_VisitorTrade.xml`
+    (`CC_Settings_MarketVisitorsBuy`, its tip and note). Lines: `Defs/FlavorPoolDefs/Rimfolk_VisitorTrade.xml` (new
+    buyer lines; new pool `Rimfolk_Pool_MarketKeeper`). Tests: `Tools/Tests/VisitorTradeTests.cs` (`Guests`: who may go
+    and why not, the turns, wants and purses, trader wants, the code's seams, the lines), `ImmersionTests` (the keeper's
+    pool spoken), `SettingsTests` (the new switch on Your other mods).
+  - Try in the game (dev mode on, RimMarket loaded, a market marker with a colony stall that has goods on its counter
+    and is open for sale; the settings "Visitors shop at RimMarket's stalls" and the deeper game hooks on):
+    1. Debug actions, Incidents, "VisitorGroup" (or "TraderCaravanArrival") on the colony's map. Let them walk to their
+       spot. Between 8:00 and 17:00, within about an hour and a half one of them walks to the stall, stands at the
+       counter facing it, and the article goes into their pack; the coins land at the stall, the price shows over their
+       head and the message "... bought ... at the colony's market stall for ... silver" comes.
+    2. Debug actions, Rimfolk, "Market: every visitor and why (log)": each group (Visit, Caravan, Envoys, Feast), its
+       turn, its trader's goods kinds, and for each of them what they are, their silver and why they would or wouldn't go.
+    3. Debug actions, Rimfolk, "Market: send this visitor to the stalls now", then click a visitor: they set off at
+       once (the group's turn and the hours aside), or the log says why not (a trader, a child, their group leaving,
+       no stall open, no coin, nothing on the counter for them).
+    4. A caravan: a guard goes, not the trader; put cloth or metal on the counter for a bulk goods trader, art for an
+       exotic one. With a caravan's guard at the stall, let the caravan's time run out (or dismiss the trader): the guard
+       turns back within a second and leaves with the caravan.
+    5. An envoy (without Hospitality): only good or better clothes and art on the counter are looked at; put only
+       normal quality there and they say there's nothing fine enough.
+    6. Start a raid while one walks over: the walk ends at once, and nobody goes again until the map is quiet. After
+       17:00 nobody sets off (one already on the way finishes).
+  - Mods that would help: none needed. It uses RimMarket (already in the player's list) and nothing new to look at or
+    hear.
 - 0.227.1, **Raids at the classic pace in every
   way to play** (12 November 2026). The player, after 0.227.0: "many of the storytellers reduce raids, which is not
   necessary". `Defs/StorytellerDefs/Rimfolk_Storytellers.xml`: The Long Road (off 9.4), Neighbours (7.4) and Lean Years

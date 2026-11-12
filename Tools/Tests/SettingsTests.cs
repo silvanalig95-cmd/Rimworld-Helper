@@ -107,7 +107,7 @@ public static class SettingsTests
         // Other mods' switches are on their own page, each under its mod, shown only with the mod loaded.
         var modded = new[]
         {
-            "guestWill", "guestStories", "guestCheck", "marketStallWindow", "marketStallShips", "marketCampersBuy", "marketGuestsShop", "drinkBeforeWork",
+            "guestWill", "guestStories", "guestCheck", "marketStallWindow", "marketStallShips", "marketCampersBuy", "marketVisitorsBuy", "marketGuestsShop", "drinkBeforeWork",
             "drinkBeforeHotWork", "smokeBeforeWork", "coveredLooks", "magicGolemRepair", "magicNeedRules", "territoryNewsQuiet", "medicalTriage"
         };
         foreach (var r in modded)

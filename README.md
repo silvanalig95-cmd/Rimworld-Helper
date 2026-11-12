@@ -5452,8 +5452,8 @@ The pages:
 - **Your other mods**: only the mods you have loaded show, and the page's foot names the others Rimfolk works with:
   Hospitality (guests joining only when they would, guests in the colony's stories, recruiting spelled out on the
   guest tab, guests helping with what they love, guests pitching in when the colony is in trouble, invited visitors as its
-  guests), RimMarket (Rimfolk's sales table, stall goods for trade ships, campers buying at the stalls, and with
-  Hospitality guests always shopping), Alpha Skills (a drink or a smoke before work), **A covered face hides looks
+  guests), RimMarket (Rimfolk's sales table, stall goods for trade ships, campers and every other visitor buying at the
+  stalls, and with Hospitality guests always shopping), Alpha Skills (a drink or a smoke before work), **A covered face hides looks
   (Alpha Genes)**, RimWorld of Magic (golems keep their energy, the mod's rules about needs hold, and under Harmony 3 the patches its
   own setup leaves out after its refused healing-rain patch are applied one at a time, with the healing rain run by
   Rimfolk; familiars), PokéWorld (what Pokémon sound like; the Pokémon types at home and each of their six parts), Faction
@@ -5482,7 +5482,15 @@ page, so a new setting needs a row there, and that every field before the five p
   RimMarket and the new, and RimMarket's window opens if they're not what Rimfolk expects. People from a camp on the
   colony's land walk over to the stalls by day and buy what suits them, paying at the stall (setting "Campers buy at
   RimMarket's stalls"), and **market days**, a world event, bring buyers from a friendly people up the road for a
-  fortnight while a stall has goods on its counter (see "World events"). With a powered
+  fortnight while a stall has goods on its counter (see "World events"). **Every other visitor** shops there too: the
+  game's visitors passing a day, a trade caravan's guards, envoys, notables, a feast's guests, the peoples' callers and
+  the guests the colony invited. One of a group with nothing else to do near their spot walks over in the market's hours
+  and buys what fits who they are with their own silver: a trader's people what their trader deals in, paid from the
+  trader's silver; an envoy or a notable something fine, of good quality or better; a feast's guests something to take
+  home; one of Rimfolk's peoples by its calling; anyone else on the road food that keeps. A purchase or two a group a
+  day, one of them at a time and never more than three at the stalls at once; never on their way out, at war or with
+  the map in danger, and when their group sets off they go with it. Now and then the keeper at the stall says a word as
+  the sale is made (setting "Visitors shop at RimMarket's stalls", with the deeper game hooks). With a powered
   orbital trade beacon on the map, what lies on the colony's stalls is offered to trade ships too, after what lies in
   the beacon's range, and what a ship buys from a stall comes off its sale line; a stall alone is never a beacon
   (setting "RimMarket's stall goods for trade ships"). With Hospitality too, guests always may shop at the market's
