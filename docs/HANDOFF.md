@@ -239,7 +239,16 @@ tree at once, alongside whatever runs. Each piece is merged as its own release, 
   running; one shared rule for every god's happening (the same happening not again at a home within a season, the
   same god's within some days, and the pick leaning to what hasn't happened lately, from a short memory of the last
   ones); the short gaps above lengthened; and a count per colony-year of each happening in `Tools/Balance`, so that
-  repeats are caught by the checks.
+  repeats are caught by the checks. **The player's answer (12 November 2026):** "i mean it should just make sense, i
+  don't necessarily want hard restrictions if they're not required, but it just shouldn't feel like events are
+  repeating unless there's a an actual "lore" reason for it. but yes, for unique events the span should definitely be
+  more than 3 days for sure". So: no blanket caps; each happening spaced by what it is and why it comes. A repeat is
+  fine when the world gives it a reason the player can see (the drought goes on and the colony keeps praying, the
+  miners keep digging past the warnings, the same cruelty done again), and then it should read as the next step of
+  that story, not the same card again. A happening that should feel unique or rare (the moon's return, a god's
+  moment, a gift, a myth told at supper) waits far longer than 3 days, the moon's return by the moon itself (around
+  the full moon, a cycle apart), and when one does come back it leans to a different form. The yearly count in
+  `Tools/Balance` stays, as a check, not a cap.
 - 0.221.0, **Mog's luck and her stare**
   (11 November 2026), the follow-up to the gods on the map from the pantheon's Mog ("the one she chooses has a lucky
   season ... she sees Ennu for what it is, and stares at it"). DESIGN.md "The gods on the map", the sacred animal.
