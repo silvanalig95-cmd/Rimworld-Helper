@@ -15,9 +15,10 @@ namespace ColonyCouncil
     /// and then (days apart) the rock rumbles over the miner, dust and loose stone come down, and the floor warms; from the
     /// third time, stone may fall on the miner (the shared harm budget, "dangers on the map", shown as the game shows a
     /// hit). Past every warning (GodsOnMapMath.Wakes), and not within years of the last time, it wakes: the deep working
-    /// closes behind a fall of rock (never on anyone), and where the gods walk plainly its true form comes up out of the
-    /// mountain (its shape's trueForm: Dragon's Descent's true dragon, by name, when the mod is loaded), with all its
-    /// presence, looks at the colony a few hours and goes; elsewhere the mountain quakes and its shadow crosses the land.
+    /// closes behind a fall of rock (never on anyone), and when the deep has drawn it near enough to show itself (GodNear: the
+    /// rumbles, its relations and what the colony did) its true form comes up out of the mountain (its shape's trueForm:
+    /// Dragon's Descent's true dragon, by name, when the mod is loaded), with all its presence, looks at the colony a few
+    /// hours and goes; else the mountain quakes and its shadow crosses the land.
     /// It is never hostile unless harmed (then the game's own revenge). The card says what was seen; nothing explains it.
     /// </summary>
     public static class GodWaking
@@ -64,7 +65,7 @@ namespace ColonyCouncil
                 Tell.Message(NewsKind.People, Importance.Important, map, "CC_GodM_StoneFell".Translate(miner.Named("PAWN")).Resolve(), new LookTargets(miner),
                     MessageTypeDefOf.NegativeHealthEvent);
             int sinceWake = b.lastWake < -900000 ? 99999 : (now - b.lastWake) / GenDate.TicksPerDay;
-            if (GodsOnMapMath.Wakes(Gods.Realness, b.deepWarnings, sinceWake)) Wake(b, god, map, miner, now);
+            if (GodsOnMapMath.Wakes(b.deepWarnings, sinceWake)) Wake(b, god, map, miner, now);
         }
 
         // ================= Waking =================
@@ -74,6 +75,8 @@ namespace ColonyCouncil
         {
             if (b == null || god == null || map == null || b.woken != null) return false;
             var at = miner?.Position ?? map.Center;
+            // How near the waking finds it, before the warnings are let go.
+            float near = GodNear.Of(god, map);
             b.deepWarnings = 0;
             b.lastWake = now;
             Close(map, at, miner);
@@ -87,10 +90,12 @@ namespace ColonyCouncil
             }
             Gods.AddFavour(god, map, -4f, null, FavourSource.Neglect);
             var kind = GodShapes.TrueForm(god);
-            Pawn form = GodsOnMapMath.TrueForm(Gods.Realness, kind != null) ? Rise(b, god, map, at, kind) : null;
+            Pawn form = GodsOnMapMath.TrueForm(near, kind != null, Rand.Value) ? Rise(b, god, map, at, kind) : null;
             var cell = form?.Position ?? at;
             if (form == null) GodSky.Pass(map, SkySign.Wings);
             var spec = PresenceSpec.For(god, map, form != null ? PresenceKind.Appear : PresenceKind.Wrath, cell, form);
+            // Its true form up on the land is the god seen plainly.
+            if (form != null) spec.veiled = false;
             spec.title = form != null ? GodsOnMapWords.Title(god, map, false, "CC_GodM_Woken_Title", "CC_GodM_Woken_TitleNamed")
                 : "CC_GodM_Quake_Title".Translate().Resolve().CapitalizeFirst();
             spec.text = (form != null ? "CC_GodM_Woken_Text" : "CC_GodM_Quake_Text").Translate(Homes.Name(map).Named("HOME")).Resolve();
@@ -98,7 +103,7 @@ namespace ColonyCouncil
             var seer = GodsOnMapWords.Seer(map, cell, 50f) ?? miner;
             string saw = GodsOnMapWords.Saw(god, map, cell, form != null ? GodActKind.Appear : GodActKind.Wrath, seer, form != null ? "CC_GodM_Saw_Woken" : "CC_GodM_Saw_Quake");
             if (form != null && !spec.veiled) Gods.Learn(god, "visitors");
-            GodMarks.Note(god, map, cell, (form != null ? "CC_GodM_Woken_Act" : "CC_GodM_Quake_Act").Translate().Resolve(), PresenceKind.Wrath);
+            GodMarks.Note(god, map, cell, (form != null ? "CC_GodM_Woken_Act" : "CC_GodM_Quake_Act").Translate().Resolve(), PresenceKind.Wrath, form != null && !spec.veiled);
             GodMarks.Witnessed(map, cell, (form != null ? "CC_GodM_Memory_Woken" : "CC_GodM_Memory_Quake").Translate().Resolve(), miner == null ? null : new[] { miner });
             if (saw != null) CouncilGameComponent.Instance?.AddChronicle(new ChronicleEntry(ChronicleKind.World, saw, seer));
             return true;

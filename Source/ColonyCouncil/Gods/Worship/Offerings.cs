@@ -13,10 +13,10 @@ namespace ColonyCouncil
     /// once a day a place) someone carries something of the god's liking from the stores to a place dedicated to it: food
     /// for the harvest and the hearth, a hunt's best pelt for the hunter, a weapon for war, silver for the road, components
     /// for the machine, anything for the Hunger (WorshipMath.Likes, from every mod's things by what they are). It is set down
-    /// beside the place, forbidden, with a word to the god. Then, at the step of how real the gods are: Walking, the god takes
-    /// it before everyone's eyes; Felt, it is gone in the small hours and nobody saw it go; Believed, an animal comes and eats
-    /// it, someone passing takes it with them, or it simply spoils or goes back to the stores, and the colony says the god sent
-    /// them. The favour comes then, by its worth, how well it suits the god and its nature (WorshipMath.OfferingFavour).
+    /// beside the place, forbidden, with a word to the god. Then it is gone in the small hours and nobody saw it go, as the
+    /// gods are felt; or, when the god is drawn near enough to show itself (GodNear), before everyone's eyes in a breath of
+    /// light. An animal or someone passing may get to it first. The favour comes then, by its worth, how well it suits the
+    /// god and its nature (WorshipMath.OfferingFavour).
     /// Archotechs take none: they judge deeds.
     /// </summary>
     public static class Offerings
@@ -186,7 +186,7 @@ namespace ColonyCouncil
                 }
                 if (o.thing == null || o.thing.Destroyed)
                 {
-                    // Gone from the place (Believed): eaten where it lay, or carried off.
+                    // Gone from the place before the god took it: eaten where it lay, or carried off.
                     Settle(b, o, map, o.kind == OfferingKind.Meal || o.kind == OfferingKind.Plant || o.kind == OfferingKind.Meat || o.kind == OfferingKind.Fish ? OfferingFate.Animal : OfferingFate.Passerby);
                     continue;
                 }
@@ -308,80 +308,22 @@ namespace ColonyCouncil
                 return;
             }
             float hours = (now - o.placed) / (float)GenDate.TicksPerHour;
-            var r = Gods.Realness;
-            if (r != GodRealness.Believed)
-            {
-                if (WorshipMath.GodTakesNow(r, GenLocalDate.HourOfDay(map), hours)) Take(b, o, map, g);
-                return;
-            }
-            // Believed: who comes for it, or it spoils or goes back. Someone already on their way to it: wait and see.
-            bool food = o.thing.def.IsNutritionGivingIngestible;
-            if (Coming(map, o.thing)) return;
-            Pawn animal = food && hours >= 3f ? Animal(map, o.thing) : null;
-            Pawn passer = hours >= 3f ? Passerby(map, o.thing) : null;
-            var fate = WorshipMath.BelievedFate(food, animal != null, passer != null, hours / 24f);
-            switch (fate)
-            {
-                case OfferingFate.Animal:
-                    var eat = JobMaker.MakeJob(JobDefOf.Ingest, o.thing);
-                    eat.count = o.thing.stackCount;
-                    animal.jobs.StartJob(eat, JobCondition.InterruptForced, null, false, true);
-                    break;
-                case OfferingFate.Passerby:
-                    var take = JobMaker.MakeJob(JobDefOf.TakeCountToInventory, o.thing);
-                    take.count = o.thing.stackCount;
-                    passer.jobs.StartJob(take, JobCondition.InterruptForced, null, false, true);
-                    break;
-                case OfferingFate.Spoiled:
-                case OfferingFate.Returned:
-                    Settle(b, o, map, fate);
-                    break;
-            }
+            // Gone by morning, as the gods are felt; before everyone's eyes in a breath of light when the god is drawn near
+            // enough to show itself (the same for this offering at every look) and someone of the colony is there to see it.
+            bool plain = GodNearMath.Plain(GodNear.Of(g, map), Rand.ValueSeeded(o.chosen ^ (o.god * 7919))) && GodWorld.Witnessed(map, o.thing.Position);
+            if (WorshipMath.GodTakesNow(plain, GenLocalDate.HourOfDay(map), hours)) Take(b, o, map, plain);
         }
 
-        /// <summary>Someone not of the colony already on their way to it (to eat it, to take it).</summary>
-        private static bool Coming(Map map, Thing t)
-        {
-            foreach (var p in map.mapPawns.AllPawnsSpawned)
-                if (p != null && p.Faction != Faction.OfPlayer && p.CurJob != null && p.CurJob.targetA.Thing == t) return true;
-            return false;
-        }
-
-        /// <summary>A wild animal near enough that would eat it (never a hunting predator for anything but meat), or null.</summary>
-        private static Pawn Animal(Map map, Thing t)
-        {
-            foreach (var a in map.mapPawns.AllPawnsSpawned.ToList())
-            {
-                if (a?.RaceProps == null || !a.RaceProps.Animal || a.Faction != null || a.Downed || a.InMentalState || a.Dead) continue;
-                if (!a.Position.InHorDistOf(t.Position, 45f) || !a.RaceProps.CanEverEat(t) || !a.WillEat(t)) continue;
-                if (!a.CanReach(t, PathEndMode.ClosestTouch, Danger.Some)) continue;
-                return a;
-            }
-            return null;
-        }
-
-        /// <summary>Someone passing on the map (a trader, a visitor, a traveller; never the colony's own, a prisoner or an enemy), or null.</summary>
-        private static Pawn Passerby(Map map, Thing t)
-        {
-            foreach (var p in map.mapPawns.AllHumanlikeSpawned.ToList())
-            {
-                if (p == null || p.Faction == null || p.Faction.IsPlayer || p.HostileTo(Faction.OfPlayer) || p.IsPrisoner || p.Downed || p.InMentalState) continue;
-                if (!p.CanReach(t, PathEndMode.ClosestTouch, Danger.Some)) continue;
-                return p;
-            }
-            return null;
-        }
-
-        /// <summary>Felt and Walking: the god takes it. Gone from the place, with the god's sign at its step, and the favour.</summary>
-        private static void Take(WorshipBook b, OfferingRecord o, Map map, God g)
+        /// <summary>The god takes it: gone from the place, with its sign as plainly as it acted, and the favour.</summary>
+        private static void Take(WorshipBook b, OfferingRecord o, Map map, bool plain)
         {
             var cell = o.thing.Position;
             o.thing.Destroy(DestroyMode.Vanish);
             o.thing = null;
-            Settle(b, o, map, OfferingFate.Taken, cell);
+            Settle(b, o, map, OfferingFate.Taken, cell, plain);
         }
 
-        private static void Settle(WorshipBook b, OfferingRecord o, Map map, OfferingFate fate, IntVec3 cell = default)
+        private static void Settle(WorshipBook b, OfferingRecord o, Map map, OfferingFate fate, IntVec3 cell = default, bool plain = false)
         {
             var g = Gods.ById(o.god);
             o.fate = fate;
@@ -397,10 +339,10 @@ namespace ColonyCouncil
             string what = o.label ?? "?";
             string why = "CC_Wsh_Why_Offering".Translate(what.Named("WHAT"), place.Named("SHRINE")).Resolve();
             Worship.Favour(g, map, o.favour * share, why, FavourSource.Offering);
-            string key = "CC_Wsh_Taken_" + fate + (fate == OfferingFate.Taken ? "_" + Worship.Step : "");
+            string key = "CC_Wsh_Taken_" + fate + (fate == OfferingFate.Taken ? "_" + Worship.Step(plain) : "");
             string text = key.Translate(what.Named("WHAT"), place.Named("SHRINE"), Worship.Called(g).Named("GOD"), (o.carrier?.LabelShort ?? "?").Named("PAWN")).Resolve();
-            if (fate == OfferingFate.Taken && Gods.Realness == GodRealness.Walking)
-                Worship.Sign(g, map, cell, PresenceKind.Act, "CC_Wsh_Taken_Title".Translate(place.Named("SHRINE")).Resolve(), text, new LookTargets(cell, map), false);
+            if (fate == OfferingFate.Taken && plain)
+                Worship.Sign(g, map, cell, PresenceKind.Act, "CC_Wsh_Taken_Title".Translate(place.Named("SHRINE")).Resolve(), text, new LookTargets(cell, map), false, GodActKind.Act, true);
             else
             {
                 if (fate == OfferingFate.Taken) Worship.Glow(map, cell, g);

@@ -44,6 +44,8 @@ namespace ColonyCouncil
                 bool psychic = Worship.Psychic(p);
                 float share = WorshipMath.GodDreamShare(g != null, priest, psychic, Worship.Devout(p), Worship.Scoffer(p)) * (GodWorshipDef.For(g)?.dreamFactor ?? 1f);
                 if (!Rand.Chance(share)) return false;
+                // A god's dream is one to remember, not one of every few nights.
+                if (!Interplay.Ready("worship-godDream|" + p.thingIDNumber, WorshipMath.GodDreamGapDays)) return false;
                 var map = p.MapHeld;
                 string danger = Danger(p, g, map, out var about);
                 bool canDemand = map != null && GodWorshipDef.TakesOfferings(g) && !(GodWorshipDef.For(g)?.asksNothing ?? false) && Shrines.Of(map, g).Count > 0

@@ -11,10 +11,11 @@ namespace ColonyCouncil
     /// The gods' public face (docs/design/gods.md, "the contract"): every other part asks here. The nine
     /// (<see cref="All"/>, <see cref="ByKey"/>, <see cref="Of(Faction)"/>, <see cref="OfIdeo"/>, <see cref="ColonyGods"/>,
     /// <see cref="Patron"/>), the colony's favour with each god at each home (<see cref="Favour"/>, <see cref="AddFavour"/>,
-    /// <see cref="Deed"/>), how real the gods are (<see cref="Realness"/>), the acts of the gods (<see cref="Remember"/>, each
+    /// <see cref="Deed"/>), the acts of the gods (<see cref="Remember"/>, each
     /// with the colonists who saw it), the ties (<see cref="TiesOf"/>, <see cref="Rivals"/>, <see cref="Allies"/>), a god's
     /// nature and kind, its words (<see cref="Name"/>, <see cref="NameBy"/>, <see cref="Epithet"/>, <see cref="GodOf"/>,
-    /// <see cref="SwearBy"/>, the placeholders {GOD}, {GODEPITHET} and {GODOF}), and what the colony knows.
+    /// <see cref="SwearBy"/>, the placeholders {GOD}, {GODEPITHET} and {GODOF}), and what the colony knows. The gods are felt,
+    /// one way for every game; how near each one is to the colony now, and so how plainly it acts, is its own (GodNear).
     /// <para>
     /// All of it is hidden state that drives what the gods do. The gods are an unseen presence, like a storyteller (the
     /// player, 11 November 2026): nothing here is shown or told as what a god thinks, wants or feels. The player learns of
@@ -28,9 +29,6 @@ namespace ColonyCouncil
 
         /// <summary>The gods are on (the setting "Gods", on by default).</summary>
         public static bool On => S?.gods ?? true;
-
-        /// <summary>How real the gods are (the setting): Believed, Felt (the default) or Walking.</summary>
-        public static GodRealness Realness => S?.godRealness ?? GodRealness.Felt;
 
         private static GodBook Book => On ? GodBook.Instance : null;
 
@@ -273,25 +271,24 @@ namespace ColonyCouncil
 
         /// <summary>
         /// The colony's name for a god when the colony knows something was its doing, for an event, a card or a letter to name
-        /// it plainly; else null (the thing stays unnamed, or "some say" where it is only suspected). The colony knows when the
-        /// gods walk openly (Walking), when it has seen this god act plainly (a manifestation it witnessed, a disguised god
+        /// it plainly; else null (the thing stays unnamed, or "some say" where it is only suspected). The colony knows when it
+        /// has seen this god act plainly (a manifestation it witnessed, a god drawn near enough to show itself, a disguised god
         /// revealed), or when it has learned <paramref name="sign"/> as the god's own (GodLore.LearnSign: a teller explained
-        /// that the croaking before rain is Murmur). The name is the colony's: its name in the colony's book, else (walking
-        /// openly, and never heard of) the god's own. Never anything of the god's mind, favor or ways.
+        /// that the croaking before rain is Murmur). The name is the colony's: its name in the colony's book. Never anything of
+        /// the god's mind, favor or ways.
         /// </summary>
         public static string CardName(God god, Map home, string sign = null)
         {
             if (god == null || !On) return null;
             var lore = GodLore.Instance;
-            bool walking = Realness == GodRealness.Walking;
-            if (!walking && (lore == null || !lore.KnowsActing(god) && !lore.Knows(god, sign))) return null;
-            return lore?.PageOf(god)?.name ?? (walking ? Name(god) : GodLore.LabelFor(god.Key));
+            if (lore == null || !lore.KnowsActing(god) && !lore.Knows(god, sign)) return null;
+            return lore.PageOf(god)?.name ?? GodLore.LabelFor(god.Key);
         }
 
         /// <summary>
         /// A god's moment was played (GodPresenceSeam.Call): the colony's book has it as those who saw it saw it, with the god
-        /// they took it for (plainly named while the gods walk; else whoever they believe it was, or nothing they can name), and
-        /// in the card's words or, with none, what was seen (CC_GodLore_Moment_*).
+        /// they took it for (plainly named when it showed itself plainly; else whoever they believe it was, or nothing they can
+        /// name), and in the card's words or, with none, what was seen (CC_GodLore_Moment_*).
         /// </summary>
         public static void Moment(PresenceSpec spec)
         {
@@ -301,7 +298,7 @@ namespace ColonyCouncil
                 var lore = GodLore.Instance;
                 var witnesses = Witnesses(spec.map, spec.kind == PresenceKind.Omen ? IntVec3.Invalid : spec.cell);
                 if (lore == null || witnesses.Count == 0) return;
-                var taken = Realness == GodRealness.Walking ? spec.god : ByKey(GodLoreMath.Attribute(spec.god.Key, lore.KnownOf(), Rand.Value));
+                var taken = ByKey(GodLoreMath.Attribute(spec.god.Key, lore.KnownOf(), Rand.Value));
                 string words = !spec.text.NullOrEmpty() ? spec.text : ("CC_GodLore_Moment_" + spec.kind).Translate().Resolve();
                 // Seen plainly (not veiled), or a disguised god revealing itself: the colony knows it was this god, and names it.
                 bool plain = !spec.veiled || spec.kind == PresenceKind.Reveal;

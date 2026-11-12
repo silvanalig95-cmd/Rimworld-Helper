@@ -9,10 +9,10 @@ using ColonyCouncil;
 
 /// <summary>
 /// The gods (docs/design/gods.md, "the contract"): the pure rules kept from the core (favor and its drift, natures and
-/// kinds, how real the gods are, the ties, how favor spills and how ties shift, the first favor sources, the domain table
+/// kinds, how near each god is (one way, felt), the ties, how favor spills and how ties shift, the first favor sources, the domain table
 /// as a fallback), the fourteen hand-made gods as defs (names by age, lore, sayings, believers' and scoffers' lines, stories
-/// in pieces, authored ties, who reveres them), their hands in the game's events (the table, the quiet spells, the realness
-/// forms), the lore rules (who reveres whom, names, stories in pieces, who believes, what a believer takes it for, names
+/// in pieces, authored ties, who reveres them), their hands in the game's events (the table, the quiet spells, a god drawn
+/// near), the lore rules (who reveres whom, names, stories in pieces, who believes, what a believer takes it for, names
 /// worked out), the colony's own book, the unseen rule (no page, no favor told, no symbols), the words, the speech pool,
 /// and the seams the presence part and stage 2 call.
 /// </summary>
@@ -135,13 +135,41 @@ public static class GodsTests
         C(GodsMath.Scale(17f, GodNature.Cold, GodKind.Archotech, FavourSource.Dev) == 17f && GodsMath.Scale(float.NaN, GodNature.Cold, GodKind.Ordinary, FavourSource.Deed) == 0f,
             "the dev tools' favour unscaled; nothing for nothing");
 
-        // ================= How real =================
+        // ================= How near each god is (one way, felt; GodNearMath) =================
 
-        C(!GodsMath.AvatarsCome(GodRealness.Believed) && GodsMath.AvatarsCome(GodRealness.Felt) && GodsMath.AvatarsCome(GodRealness.Walking), "no avatars when the gods are only believed");
-        C(GodsMath.PlainCard(GodRealness.Walking) && !GodsMath.PlainCard(GodRealness.Felt) && !GodsMath.PlainCard(GodRealness.Believed)
-          && GodsMath.CanSpeak(GodRealness.Walking) && !GodsMath.CanSpeak(GodRealness.Felt), "named plainly and spoken with only when they walk");
-        C(GodsMath.DisguiseShare(GodRealness.Felt) > GodsMath.DisguiseShare(GodRealness.Walking) && GodsMath.DisguiseShare(GodRealness.Felt) >= 0.8f, "felt: avatars nearly always in disguise");
-        C(new[] { GodRealness.Believed, GodRealness.Felt, GodRealness.Walking }.Select(GodsMath.Voice).Distinct().Count() == 3, "each step its own voice in the news");
+        C(GodNearMath.Nearness(0f, 0f, 0f) == 0f && GodNearMath.Strength(0f) == 0f && GodNearMath.PlainChance(0f) == 0f && !GodNearMath.Near(0f),
+            "at nothing a god is exactly felt: never plain, never near");
+        C(GodNearMath.DisguiseShare(0f) >= 0.8f && GodNearMath.AnswerBase(0f) == 0.12f && GodNearMath.SicknessEase(0f) == 0.08f && GodNearMath.DrySpellDays(0f, false) == 5
+          && GodNearMath.ManaShare(0f) == 0.6f && GodNearMath.WorldFactor(0f) == 1f,
+            "felt, the base: avatars nearly always disguised, the answers, the dry spell, the mana and the world's pace as they always were");
+        C(GodNearMath.DisguiseShare(1f) < GodNearMath.DisguiseShare(0f) && GodNearMath.AnswerBase(1f) > GodNearMath.AnswerBase(0f) && GodNearMath.SicknessEase(1f) > GodNearMath.SicknessEase(0f)
+          && GodNearMath.DrySpellDays(1f, false) > GodNearMath.DrySpellDays(0f, false) && GodNearMath.ManaShare(1f) == 1f && GodNearMath.WorldFactor(1f) > 1f && GodNearMath.WorldFactor(1f) <= 1.4f,
+            "drawn near, what only walking gods did can happen: less disguise, stronger answers, its doings a little more often");
+        C(GodNearMath.PlainChance(1f) == 1f && GodNearMath.PlainChance(0.6f) > 0f && GodNearMath.PlainChance(0.6f) < 1f && GodNearMath.Plain(0.6f, 0.1f) && !GodNearMath.Plain(0.6f, 0.9f)
+          && !GodNearMath.Plain(0.3f, 0f), "a god shows itself plainly only when drawn near, and then not every time");
+        C(GodNearMath.Nearness(1f, 0f, 0f) == GodNearMath.SituationShare && GodNearMath.Nearness(1f, 1f, 1f) == 1f && GodNearMath.Nearness(0f, 0f, 5f) == GodNearMath.ColonyMost
+          && GodNearMath.Nearness(float.NaN, float.NaN, float.NaN) == 0f, "the situation the most of it; what the colony does capped; never past 1");
+        C(GodNearMath.Relations(true, 0f) == GodNearMath.QuarrelNear && GodNearMath.Relations(false, 1f) == GodNearMath.TiedShare && GodNearMath.Relations(false, 0f) == 0f,
+            "a quarrel it is in, and a tied god stirred, draw it near");
+        C(GodNearMath.Colony(0, 0, 0, 0f) == 0f && GodNearMath.Colony(2, 0, 0, 0f) > 0f && GodNearMath.Colony(0, 1, 0, 0f) > GodNearMath.Colony(1, 0, 0, 0f)
+          && GodNearMath.Colony(0, 0, 3, 0f) > 0f && GodNearMath.Colony(0, 0, 0, 90f) > 0f && GodNearMath.Colony(0, 0, 0, -90f) > 0f && GodNearMath.Colony(0, 0, 0, 40f) == 0f
+          && GodNearMath.Colony(99, 99, 99, 100f) == GodNearMath.ColonyMost, "offerings, harm, the colony's book and a strong standing either way draw it near; harm most");
+        C(GodNearMath.DroughtStir(3) == 0f && GodNearMath.DroughtStir(12) == 1f && GodNearMath.WinterStir(0f, false) == 0f && GodNearMath.WinterStir(-25f, false) == 1f
+          && GodNearMath.WinterStir(5f, true) >= 0.7f && GodNearMath.HeatStir(20f, false) == 0f && GodNearMath.HeatStir(20f, true) == 1f
+          && GodNearMath.DeepStir(3, 6, false) == 0.5f && GodNearMath.DeepStir(0, 6, true) == 1f && GodNearMath.CountStir(5f, 2f, 8f) == 0.5f,
+            "a drought for Murmur, a hard winter for Hush, heat, the deep for Smoulder: how strongly each holds");
+        // Each of the fourteen has something on the land that draws it near (its shape's nearWhen).
+        string shapesXml = File.ReadAllText(Path.Combine(root, "Defs", "GodDefs", "Rimfolk_GodsOnMap_Shapes.xml"));
+        foreach (var (god, stir) in new[] { ("Murmur", "Drought"), ("Smoulder", "DeepMine"), ("Hush", "HardWinter"), ("Selene", "FullMoon"), ("Cirrus", "Storm"), ("Undertow", "Desperate") })
+        {
+            int at = shapesXml.IndexOf("<defName>Rimfolk_GodShape_" + god + "</defName>", StringComparison.Ordinal);
+            int end = at < 0 ? -1 : shapesXml.IndexOf("</ColonyCouncil.GodShapeDef>", at, StringComparison.Ordinal);
+            C(at >= 0 && end > at && shapesXml.Substring(at, end - at).Contains("<li>" + stir + "</li>"), god + " is drawn near by " + stir);
+        }
+        string near = Read("Gods/GodNear.cs");
+        C(near.Contains("GodShapes.Of(g).nearWhen") && near.Contains("world.Of(\"quarrel\")") && near.Contains("Gods.TiesOf(g)") && near.Contains("worship.offerings")
+          && near.Contains("GodNearMath.HarmFrom") && near.Contains("lore.entries") && near.Contains("Gods.FavourValue(g, map)"),
+            "nearness from the situation, the quarrels and ties, and the offerings, harm, book and standing");
 
         // ================= Placeholders =================
 
@@ -407,14 +435,15 @@ public static class GodsTests
           && !GodHandsMath.Remarked(-1, 10 * day, 11 * day, 1f, 0f, day) && !GodHandsMath.Remarked(-1, -1, 0, 0.3f, 0.5f, day) && GodHandsMath.Remarked(-1, -1, 0, 0.3f, 0.2f, day),
             "a god keeps quiet a while after its hand is remarked on, no two hands close together at a home, and each event's own chance");
         C(GodHandsMath.QuietDays >= 14 && GodHandsMath.AnyQuietDays >= 3, "rare enough not to nag");
-        C(GodHandsMath.Scoffer(GodRealness.Felt) && !GodHandsMath.Scoffer(GodRealness.Believed) && !GodHandsMath.Scoffer(GodRealness.Walking),
-            "a scoffer answers only while the gods are felt; believed, the colony is sure; walking, nobody doubts it");
-        C(GodHandsMath.Fits("[gift] x", HandKind.Gift, GodRealness.Felt) && !GodHandsMath.Fits("[gift] x", HandKind.Wrath, GodRealness.Felt) && GodHandsMath.Fits("plain", HandKind.Wrath, GodRealness.Felt)
-          && !GodHandsMath.Fits("[walking] x", HandKind.Sign, GodRealness.Felt) && GodHandsMath.Fits("[walking] x", HandKind.Sign, GodRealness.Walking)
-          && !GodHandsMath.Fits("[meeting] x", HandKind.Sign, GodRealness.Felt) && GodHandsMath.Fits("[meeting] x", HandKind.Sign, GodRealness.Felt, true),
-            "a line fits its hand by its tags: the kind, how real the gods are, a meeting");
-        C(GodHandsMath.Fitting(new[] { "[gift] a", "b", "[wrath] c" }, HandKind.Gift, GodRealness.Felt).SequenceEqual(new[] { "a" })
-          && GodHandsMath.Fitting(new[] { "[gift] a", "b" }, HandKind.Sign, GodRealness.Felt).SequenceEqual(new[] { "b" }), "a line made for the moment beats one for any");
+        string handsCode = Read("Gods/GodHands.cs");
+        C(handsCode.Contains("if (!known)") && !handsCode.Contains("Realness"), "a scoffer answers unless the colony knows the hand for the god's");
+        C(GodHandsMath.Fits("[gift] x", HandKind.Gift, false) && !GodHandsMath.Fits("[gift] x", HandKind.Wrath, false) && GodHandsMath.Fits("plain", HandKind.Wrath, false)
+          && !GodHandsMath.Fits("[near] x", HandKind.Sign, false) && GodHandsMath.Fits("[near] x", HandKind.Sign, true) && GodHandsMath.Fits("[veiled] x", HandKind.Sign, false)
+          && !GodHandsMath.Fits("[veiled] x", HandKind.Sign, true) && !GodHandsMath.Fits("[walking] x", HandKind.Sign, true)
+          && !GodHandsMath.Fits("[meeting] x", HandKind.Sign, false) && GodHandsMath.Fits("[meeting] x", HandKind.Sign, false, true),
+            "a line fits its hand by its tags: the kind, the god drawn near or not, a meeting");
+        C(GodHandsMath.Fitting(new[] { "[gift] a", "b", "[wrath] c" }, HandKind.Gift, false).SequenceEqual(new[] { "a" })
+          && GodHandsMath.Fitting(new[] { "[gift] a", "b" }, HandKind.Sign, false).SequenceEqual(new[] { "b" }), "a line made for the moment beats one for any");
         C(GodHandsMath.NightOnly("Selene") && !GodHandsMath.NightOnly("Helios") && GodHandsMath.Night(22) && GodHandsMath.Night(3) && !GodHandsMath.Night(12), "Selene returns at night what was done by day");
         C(GodHandsMath.Writable(0, 5 * day, false, day) && !GodHandsMath.Writable(0, 1 * day, false, day) && !GodHandsMath.Writable(0, 5 * day, true, day) && !GodHandsMath.Writable(0, 60 * day, false, day),
             "a neighbor writes of a hand a few days after, once, while it is still news");
@@ -517,9 +546,9 @@ public static class GodsTests
         C(Read("Gods/GodPresenceSeam.cs").Contains("if (played) Gods.Moment(spec);"), "a god's moment reaches the book as those who saw it saw it");
         C(godsCode.Contains("public static string CardName(God god, Map home, string sign = null)") && godsCode.Contains("lore.KnowsActing(god) && !lore.Knows(god, sign)")
           && godsCode.Contains("if (plain) lore.MarkActing(spec.god);"),
-            "Gods.CardName: a god named plainly only when the colony knows it was its doing (seen acting, revealed, a sign learned, or walking openly)");
+            "Gods.CardName: a god named plainly only when the colony knows it was its doing (seen acting plainly, revealed, or a sign learned)");
         C(Read("Gods/GodsWiring.cs").Contains("string known = Gods.CardName(s.god, s.map);") && Read("Gods/GodHands.cs").Contains("bool known = Gods.CardName(god, map, sign) != null;")
-          && Read("Gods/GodHands.cs").Contains("if (GodHandsMath.Scoffer(realness) && !known)"), "the card and the hands name a god only when the colony knows; then nobody doubts it");
+          && Read("Gods/GodHands.cs").Contains("if (!known)"), "the card and the hands name a god only when the colony knows; then nobody doubts it");
         C(lore.Contains("public static void LearnSign(God g, string sign)") && Read("Gods/GodTales.cs").Contains("foreach (var sign in story.teaches ?? new List<string>())"),
             "a sign learned as a god's own: from a story heard whole, or any part's call");
         foreach (var e in godDefs)
@@ -546,11 +575,21 @@ public static class GodsTests
           && !pantheon.Contains("IdeoFoundation_Deity"), "the generated gods dropped with their standings and acts, the line told once; Ideology's deities ignored");
         C(Read("Gods/God.cs").Contains("Scribe_Defs.Look(ref def, \"def\");") && Read("Gods/God.cs").Contains("public void FromDef()"), "a god keeps its def, and takes its words from it on every load");
         string settings = Read("CouncilSettings.cs"), catalog = Read("UI/SettingsCatalog.cs");
-        C(settings.Contains("public bool gods = true;") && settings.Contains("public GodRealness godRealness = GodRealness.Felt;"), "the settings: Gods on, How real Felt, by default");
-        C(catalog.Contains("Toggle(\"gods\", \"CC_Settings_Gods\"") && catalog.Contains("Choice(\"godRealness\""), "both on the What's on page");
+        C(settings.Contains("public bool gods = true;") && !settings.Contains("public GodRealness") && settings.Contains("Scribe_Values.Look(ref retiredRealness, \"godRealness\");")
+          && settings.Contains("LoadSaveMode.LoadingVars"), "the settings: Gods on by default; the retired How real read from an older file and let go");
+        C(catalog.Contains("Toggle(\"gods\", \"CC_Settings_Gods\"") && !catalog.Contains("godRealness"), "Gods on the What's on page, and How real gone from it");
         C(Read("Gods/GodsDebug.cs").Contains("Gods: an event's hand here...") && Read("Gods/GodsDebug.cs").Contains("Gods: hear every story (testing)")
-          && Read("Gods/GodsDebug.cs").Contains("Gods: open the book of the gods") && Read("Gods/GodsDebug.cs").Contains("Gods: set how real the gods are..."),
-            "dev actions: an event's hand, every story heard, the book opened, how real the gods are");
+          && Read("Gods/GodsDebug.cs").Contains("Gods: open the book of the gods") && Read("Gods/GodsDebug.cs").Contains("Gods: how near each god is here (log)")
+          && Read("Gods/GodsDebug.cs").Contains("Gods: draw a god near (or let it be)..."),
+            "dev actions: an event's hand, every story heard, the book opened, how near each god is, a god drawn near");
+        // One way: nothing reads a realness any more, and no line is tagged by one.
+        foreach (var f in Directory.GetFiles(Path.Combine(root, "Source", "ColonyCouncil"), "*.cs", SearchOption.AllDirectories))
+            C(!File.ReadAllText(f).Contains("GodRealness") && !File.ReadAllText(f).Contains("Gods.Realness"), "one way, no realness read: " + Path.GetFileName(f));
+        foreach (var f in Directory.GetFiles(Path.Combine(root, "Defs", "GodDefs"), "*.xml"))
+        {
+            string x = File.ReadAllText(f);
+            C(!x.Contains("[walking") && !x.Contains("[believed") && !x.Contains("[felt") && !x.Contains("real:") && !x.Contains("step:"), "no line tagged by a realness: " + Path.GetFileName(f));
+        }
         string estimate = File.ReadAllText(Path.Combine(root, "Tools", "save_estimate.py"));
         C(estimate.Contains("Gods/GodBook.cs:gods") && estimate.Contains("Gods/GodLore.cs:entries"), "the hidden state and the colony's book modelled in the save estimate");
 
@@ -604,12 +643,12 @@ public static class GodsTests
         C(seam.Contains("public static Func<PresenceSpec, bool> Manifest;") && seam.Contains("public static Action<Pawn, God, bool> MakeAvatar;"), "the presence part's two seams");
         C(new[] { "public God god;", "public Map map;", "public IntVec3 cell", "public PresenceKind kind;", "public Pawn avatar;", "public string title, text;", "public bool veiled;" }.All(seam.Contains),
             "the plain PresenceSpec");
-        C(seam.Contains("veiled = !GodsMath.PlainCard(Gods.Realness)"), "veiled by how real the gods are");
+        C(seam.Contains("veiled = !GodNear.Plain(god, map)"), "veiled as the gods are felt, plain when the god is drawn near enough this time");
         foreach (var api in new[]
                  {
                      "public static IReadOnlyList<God> All", "public static List<God> Of(Faction f)", "public static List<God> OfIdeo(Ideo ideo)", "public static List<God> ColonyGods(Map home)",
                      "public static God Patron(Map home)", "public static FavourWord Favour(God g, Map home)", "public static void AddFavour(God g, Map home, float amount, string why",
-                     "public static GodRealness Realness", "public static void Remember(GodAct act)", "public static string Name(God g)", "public static string Epithet(God g)",
+                     "public static void Remember(GodAct act)", "public static string Name(God g)", "public static string Epithet(God g)",
                      "public static God SwearBy(Pawn p", "public static List<GodTie> TiesOf(God g)", "public static List<God> Rivals(God g)", "public static List<God> Allies(God g)",
                      "public static GodNature NatureOf(God g)", "public static GodKind KindOf(God g)", "public static float Loudness(God g)", "public static void Deed(GodDomain d, Map home",
                      "public static God ById(int id)", "public static bool Known(God g)", "public static void Learn(God g, string how, bool tell = true)", "public static string GodOf(God g)",

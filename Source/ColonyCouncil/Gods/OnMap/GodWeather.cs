@@ -13,10 +13,10 @@ namespace ColonyCouncil
     /// (the gods' acts of favour, GodBook's), one god answers in its domain with the game's own weather and conditions:
     /// rain after the harvest's or the waters' god is pleased, thunder on cue for a god of storms, an eclipse by day for a
     /// dark god's anger, an aurora on a god's night. Only as the land allows it (a weather the biome has and the season
-    /// suits, the game's own condition rules), at most once in GodsOnMapMath.WeatherGapDays at a home, by a chance by how
-    /// loudly the god answers (GodsOnMapMath.VoiceChance). A colonist out of doors always names it in a bubble. In
-    /// Believed nothing is sent: the weather the game brings of itself soon after is what the colony reads as the god's
-    /// answer. The rival gods' quarrel in the weather is the world's part, not this.
+    /// suits, the game's own condition rules), never within GodsOnMapMath.WeatherGapDays of the last answer at a home, by a
+    /// chance by how loudly the god answers (GodsOnMapMath.VoiceChance) that grows back over the days after
+    /// (GodPaceMath.Ramp), in a voice it didn't use there last time where it has another. A colonist out of doors always
+    /// names it in a bubble. The rival gods' quarrel in the weather is the world's part, not this.
     /// </summary>
     public static class GodWeather
     {
@@ -24,22 +24,13 @@ namespace ColonyCouncil
 
         private static int Now => Find.TickManager.TicksGame;
 
-        // Believed: a change of favour waiting to be read into the weather that comes (not saved: a day's memory).
-        private static readonly List<(int god, int home, float amount, int until, WeatherVoice was)> reading = new List<(int, int, float, int, WeatherVoice)>();
-        private static Game game;
-
-        private static void Fresh()
-        {
-            if (Current.Game == game) return;
-            game = Current.Game;
-            reading.Clear();
-        }
+        /// <summary>A god's answer in the weather in the gods' short memory (GodPace), by home.</summary>
+        public const string What = "weather";
 
         // ================= After the colony's deeds =================
 
         internal static void Hourly(GodsOnMapBook b, int now)
         {
-            Fresh();
             var book = GodBook.Instance;
             if (book == null) return;
             if (b.actsSeen < 0)
@@ -56,14 +47,11 @@ namespace ColonyCouncil
                 var map = Homes.MapOf(act.home);
                 // Only a god whose shape speaks in the weather, and one the colony knows (it can't hear a stranger's voice).
                 if (god == null || map == null || !Homes.IsHome(map) || !god.known || !GodShapes.Weather(god)) continue;
-                if (Gods.Realness == GodRealness.Believed)
-                {
-                    reading.Add((god.id, act.home, act.favour, now + GodsOnMapMath.BelievedWithinHours * GenDate.TicksPerHour, NowShowing(map)));
-                    continue;
-                }
-                if (Rand.Chance(GodsOnMapMath.VoiceChance(Gods.Loudness(god), act.favour, GodShapes.Bodiless(god)))) Answer(god, map, act.favour);
+                // Its chance grows back over the days after its last answer here, so an answer is never due on a set day.
+                float gap = GodsOnMapMath.WeatherGap(GodShapes.Bodiless(god));
+                float back = GodPaceMath.Ramp(GodPace.DaysSince(b.LastWeather(act.home), now), gap, GodsOnMapMath.WeatherRampDays);
+                if (Rand.Chance(GodsOnMapMath.VoiceChance(Gods.Loudness(god), act.favour, GodShapes.Bodiless(god)) * back)) Answer(god, map, act.favour);
             }
-            if (reading.Count > 0) Read(b, now);
         }
 
         /// <summary>
@@ -75,15 +63,16 @@ namespace ColonyCouncil
         public static bool Answer(God god, Map map, float amount, bool anyway = false)
         {
             var b = GodsOnMapBook.Instance;
-            if (b == null || god == null || map == null || !Gods.On || Gods.Realness == GodRealness.Believed || !WeatherDynamics.Applies(map) || !GodShapes.Weather(god)) return false;
+            if (b == null || god == null || map == null || !Gods.On || !WeatherDynamics.Applies(map) || !GodShapes.Weather(god)) return false;
             int home = Gods.HomeKey(map);
             if (Now - b.LastWeather(home) < GodsOnMapMath.WeatherGap(GodShapes.Bodiless(god)) * GenDate.TicksPerDay) return false;
             bool night = GenCelestial.CurCelestialSunGlow(map) < 0.4f;
             float size = anyway ? Math.Sign(amount) * Math.Max(Math.Abs(amount), GodsOnMapMath.WeatherFrom) : amount;
-            var voice = GodsOnMapMath.Voice(god.domain, god.second, size, night, GodShapes.Voices(god));
+            var voice = GodsOnMapMath.Voice(god.domain, god.second, size, night, GodShapes.Voices(god), GodPace.Forms(What, home.ToString()));
             if (voice == WeatherVoice.None || !Bring(map, voice, amount < 0f)) return false;
             b.NoteWeather(home, Now);
-            Told(god, map, voice, amount > 0f, false);
+            GodPace.Note(What, voice.ToString(), home.ToString());
+            Told(god, map, voice, amount > 0f);
             return true;
         }
 
@@ -267,49 +256,10 @@ namespace ColonyCouncil
             return true;
         }
 
-        private static WeatherVoice NowShowing(Map map)
-        {
-            var k = WeatherDynamics.KindOf(map.weatherManager.curWeather);
-            if (map.gameConditionManager.ConditionIsActive(GameConditionDefOf.Eclipse)) return WeatherVoice.Eclipse;
-            if (GameConditionDefOf.Aurora != null && map.gameConditionManager.ConditionIsActive(GameConditionDefOf.Aurora)) return WeatherVoice.Aurora;
-            if (k == WeatherKind.Storm || k == WeatherKind.DryStorm) return WeatherVoice.Thunder;
-            if (k == WeatherKind.Rain || k == WeatherKind.Downpour) return WeatherVoice.Rain;
-            if (map.gameConditionManager.ConditionIsActive(GameConditionDefOf.ColdSnap)) return WeatherVoice.Cold;
-            if (map.gameConditionManager.ConditionIsActive(GameConditionDefOf.HeatWave)) return WeatherVoice.Heat;
-            if (k == WeatherKind.Snow) return WeatherVoice.Snow;
-            return WeatherVoice.None;
-        }
-
-        // ================= Believed: the weather read as an answer =================
-
-        /// <summary>Believed: the weather the game brought of itself after a change of favour, if it is the god's kind of answer, read as one.</summary>
-        private static void Read(GodsOnMapBook b, int now)
-        {
-            for (int i = reading.Count - 1; i >= 0; i--)
-            {
-                var r = reading[i];
-                var god = Gods.ById(r.god);
-                var map = Homes.MapOf(r.home);
-                if (god == null || map == null || now > r.until)
-                {
-                    reading.RemoveAt(i);
-                    continue;
-                }
-                var cur = NowShowing(map);
-                if (cur == WeatherVoice.None || cur == r.was) continue;
-                bool night = GenCelestial.CurCelestialSunGlow(map) < 0.4f;
-                if (GodsOnMapMath.Voice(god.domain, god.second, r.amount, night, GodShapes.Voices(god)) != cur) continue;
-                reading.RemoveAt(i);
-                if (now - b.LastWeather(r.home) < GodsOnMapMath.WeatherGap(GodShapes.Bodiless(god)) * GenDate.TicksPerDay) continue;
-                b.NoteWeather(r.home, now);
-                Told(god, map, cur, r.amount > 0f, true);
-            }
-        }
-
         // ================= Said and remembered =================
 
         /// <summary>A colonist out of doors names it in a bubble (what they make of it), and the god's act is remembered; nothing else is told.</summary>
-        private static void Told(God god, Map map, WeatherVoice v, bool pleased, bool readInto)
+        private static void Told(God god, Map map, WeatherVoice v, bool pleased)
         {
             string tag = v.ToString().ToLowerInvariant();
             var speaker = map.mapPawns.FreeColonistsSpawned.Where(p => p.Awake() && !p.Downed && !p.InMentalState && !p.Position.Roofed(map) && People.HasInnerLife(p))
@@ -317,7 +267,7 @@ namespace ColonyCouncil
             if (speaker != null)
             {
                 string line = Flavor.FromPool(SayPool, speaker, null, null, tag, pleased ? "pleased" : "angered", "named", GodShapes.LineTag(god),
-                    god.domain.ToString().ToLowerInvariant(), readInto ? "believed" : null);
+                    god.domain.ToString().ToLowerInvariant());
                 string said = line.NullOrEmpty() ? null : line.Formatted(GodsOnMapWords.Args(god, false).Concat(new[] { speaker.Named("PAWN") }).ToArray()).Resolve();
                 if (said != null) Speech.Say(speaker, said);
             }

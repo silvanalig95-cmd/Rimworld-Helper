@@ -212,7 +212,7 @@ namespace ColonyCouncil
             var seer = GodsOnMapWords.Seer(map, at, 45f);
             string saw = GodsOnMapWords.Saw(god, map, at, GodActKind.Appear, seer, sawKey, more);
             if (!veiled) Gods.Learn(god, "visitors");
-            GodMarks.Note(god, map, at, actKey.Translate(more).Resolve(), PresenceKind.Appear);
+            GodMarks.Note(god, map, at, actKey.Translate(more).Resolve(), PresenceKind.Appear, !veiled);
             GodMarks.Witnessed(map, at, memoryKey.Translate(more).Resolve(), null);
             if (saw != null) CouncilGameComponent.Instance?.AddChronicle(new ChronicleEntry(ChronicleKind.World, saw, seer));
         }

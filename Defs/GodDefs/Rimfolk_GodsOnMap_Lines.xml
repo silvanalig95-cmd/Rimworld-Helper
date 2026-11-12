@@ -5,11 +5,11 @@
     What is said aloud about the gods on the map (Source/ColonyCouncil/Gods/OnMap/, through Speech.Say): one sentence
     each, and only what the map shows. {GOD} is the god as the colony knows it (its name, or what it is: "a goddess of the
     harvest", so never at the start of a line); {OTHER} the one spoken to. Tags: the god's domain in small letters (storm,
-    harvest, way...), the colony's age (age0 tribal to age3 spacer), how real the gods are (believed, felt, walking), and
+    harvest, way...), the colony's age (age0 tribal to age3 spacer), whether the god was felt only (veiled) or drawn near and seen plainly (near: GodNear), and
     each pool's own, said in its comment. The dream pool is the dream itself, written in the journal, not said aloud.
   -->
 
-  <!-- The stranger, to whoever is beside them: things a traveller couldn't know. Tags: walking (plainer), gate (they sleep outside), animals (the colony's animals neglected). -->
+  <!-- The stranger, to whoever is beside them: things a traveller couldn't know. Tags: near (the god drawn near enough to show itself: plainer), gate (they sleep outside), animals (the colony's animals neglected). -->
   <ColonyCouncil.FlavorPoolDef>
     <defName>Rimfolk_Pool_GodStrangerHint</defName>
     <lines>
@@ -25,8 +25,8 @@
         <li>[gate] The wall keeps the wind off, and that's something.</li>
         <li>[animals] Your beasts are hungry, did you know that?</li>
         <li>[animals] An animal remembers who fed it, and so do I.</li>
-        <li>[walking] You know what I am, I think, so let's not pretend at supper.</li>
-        <li>[walking] Ask me what you want to ask, {OTHER_nameDef}, while I'm here.</li>
+        <li>[near] You know what I am, I think, so let's not pretend at supper.</li>
+        <li>[near] Ask me what you want to ask, {OTHER_nameDef}, while I'm here.</li>
         <li>[storm] The rain will hold off until I've gone.</li>
         <li>[storm] Listen, that's not thunder yet, but it will be.</li>
         <li>[harvest] Your fields have two more weeks before the frost, not three.</li>
@@ -223,7 +223,7 @@
     </lines>
   </ColonyCouncil.FlavorPoolDef>
 
-  <!-- A colonist out of doors names a god's answer in the weather. Tags: rain, thunder, eclipse, aurora; pleased or angered; believed (read into what the weather did of itself). -->
+  <!-- A colonist out of doors names a god's answer in the weather. Tags: rain, thunder, eclipse, aurora; pleased or angered. -->
   <ColonyCouncil.FlavorPoolDef>
     <defName>Rimfolk_Pool_GodWeatherSay</defName>
     <lines>
@@ -241,9 +241,9 @@
         <li>[eclipse] Look at the sun, something's very wrong.</li>
         <li>[aurora] Look at the sky, {GOD} is pleased with us tonight.</li>
         <li>[aurora] Lights across the whole sky, for us.</li>
-        <li>[believed] See, I told you {GOD} would hear us.</li>
-        <li>[believed,rain] Say what you like, that rain came from {GOD}.</li>
-        <li>[believed,eclipse] Laugh all you want, but that's {GOD}'s doing.</li>
+        <li>See, I told you {GOD} would hear us.</li>
+        <li>[rain] Say what you like, that rain came from {GOD}.</li>
+        <li>[eclipse] Laugh all you want, but that's {GOD}'s doing.</li>
         <li>[cold] This cold came down like a slammed door.</li>
         <li>[cold] That's no ordinary frost, it's meant.</li>
         <li>[snow] Snow, soft and right on time, like a blessing.</li>
@@ -259,7 +259,7 @@
     </lines>
   </ColonyCouncil.FlavorPoolDef>
 
-  <!-- Said at a god's mark on a quiet day. {WHAT} is what the god did there. Tags: the moment's kind (reveal, depart, blessing, wrath, appear), the domain, believed, felt, walking. -->
+  <!-- Said at a god's mark on a quiet day. {WHAT} is what the god did there. Tags: the moment's kind (reveal, depart, blessing, wrath, appear), the domain, veiled (felt there) or near (seen plainly there). -->
   <ColonyCouncil.FlavorPoolDef>
     <defName>Rimfolk_Pool_GodMarkVisit</defName>
     <lines>
@@ -268,9 +268,9 @@
         <li>I still come out here sometimes, just to stand where it happened.</li>
         <li>Nobody walks across this spot without slowing down.</li>
         <li>I remember it like it was this morning.</li>
-        <li>[walking] This is where {GOD} stood, as close as you are to me.</li>
-        <li>[felt] Some say {GOD} stood right here, and I believe them.</li>
-        <li>[believed] My grandchildren will hear that {GOD} came here.</li>
+        <li>[near] This is where {GOD} stood, as close as you are to me.</li>
+        <li>[veiled] Some say {GOD} stood right here, and I believe them.</li>
+        <li>My grandchildren will hear that {GOD} came here.</li>
         <li>[blessing] Something good was left here once, and it still feels good.</li>
         <li>[wrath] The ground still remembers how angry it was.</li>
         <li>[reveal] I never got to say goodbye properly, not to a god.</li>
@@ -289,9 +289,9 @@
         <li>So this is the place they talk about on the road.</li>
         <li>Is it true what they say happened here?</li>
         <li>I've heard about this spot three towns away.</li>
-        <li>[walking] They say {GOD} came to this very place.</li>
-        <li>[felt] Some say {GOD} walked here, is that so?</li>
-        <li>[believed] My people say {GOD} came here once.</li>
+        <li>[near] They say {GOD} came to this very place.</li>
+        <li>[veiled] Some say {GOD} walked here, is that so?</li>
+        <li>My people say {GOD} came here once.</li>
         <li>[wrath] Best not to linger where a god was angry.</li>
       </plain>
     </lines>
@@ -305,9 +305,9 @@
         <li>Remember the night the stranger came, {OTHER_nameDef}?</li>
         <li>I still think about what happened out by the gate, {OTHER_nameDef}.</li>
         <li>Do you ever think about it, {OTHER_nameDef}, the god?</li>
-        <li>[walking] Imagine, {OTHER_nameDef}, {GOD} ate at this table.</li>
-        <li>[felt] I still say it was {GOD}, {OTHER_nameDef}, whatever you think.</li>
-        <li>[believed] My mother would say that was {GOD}'s doing, {OTHER_nameDef}.</li>
+        <li>[near] Imagine, {OTHER_nameDef}, {GOD} ate at this table.</li>
+        <li>[veiled] I still say it was {GOD}, {OTHER_nameDef}, whatever you think.</li>
+        <li>My mother would say that was {GOD}'s doing, {OTHER_nameDef}.</li>
         <li>[wrath] We were lucky, {OTHER_nameDef}, it could have been much worse.</li>
         <li>[blessing] We've had good luck ever since, {OTHER_nameDef}, haven't we.</li>
       </plain>
@@ -427,6 +427,12 @@
         <li>[frost] Frost all round my window, {OTHER_nameDef}, and nowhere else.</li>
         <li>[animalback] An animal stood at my door half the night, {OTHER_nameDef}, just looking.</li>
         <li>[fullmoon] The moon was full last night, {OTHER_nameDef}, and I think it saw everything.</li>
+        <li>[again,found] Again last night, {OTHER_nameDef}, and this time something was left by my bed.</li>
+        <li>[again,gooddream] Again, {OTHER_nameDef}, and this time it was a dream so good I woke up laughing.</li>
+        <li>[again,healed] It came back for me again, {OTHER_nameDef}, and my wound's nearly closed.</li>
+        <li>[again,nightmare] It came back again last night, {OTHER_nameDef}, and it was worse than the first time.</li>
+        <li>[again,frost] Frost round my bed again, {OTHER_nameDef}, as if something keeps count.</li>
+        <li>[again,animalback] It came back, {OTHER_nameDef}, an animal at my door again, and it knew whose door it was.</li>
       </plain>
     </lines>
   </ColonyCouncil.FlavorPoolDef>

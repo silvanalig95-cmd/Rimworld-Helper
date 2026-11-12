@@ -4,19 +4,8 @@
   <!-- The gods (Source/ColonyCouncil/Gods/; docs/design/gods.md): the settings. -->
   <CC_SetSec_Gods>The gods</CC_SetSec_Gods>
   <CC_Settings_Gods>Gods</CC_Settings_Gods>
-  <CC_Settings_Gods_Tip>The gods of this world, unseen. They act through the world's own events and moments, and the colonists talk of them: who they think was behind the storm, the old stories they grew up on, what visitors and neighbors tell. Nothing tells you what a god thinks. What the colony has seen, been told and believes is written in its own book of the gods, in the region window, and it may be wrong.</CC_Settings_Gods_Tip>
+  <CC_Settings_Gods_Tip>The gods of this world, unseen. They act through the world's own events and moments, felt more than seen, though now and then one shows itself plainly. The colonists talk of them: who they think was behind the storm, the old stories they grew up on, what visitors and neighbors tell. Nothing tells you what a god thinks. What the colony has seen, been told and believes is written in its own book of the gods, in the region window, and it may be wrong.</CC_Settings_Gods_Tip>
   <CC_SetNote_Gods>Unseen gods, the colonists' talk of them, and the colony's own book of the gods.</CC_SetNote_Gods>
-  <CC_Settings_GodRealness>How real are the gods</CC_Settings_GodRealness>
-  <CC_Settings_GodRealness_Tip>How plainly the gods act. Believed: nothing supernatural; the colonists see a god's hand in what happens anyway, and are sure of it. Felt (the default): the gods act, but never so plainly that nobody could doubt it, and someone always says it was only the weather. Walking: the gods show themselves openly, and nobody doubts it.</CC_Settings_GodRealness_Tip>
-  <CC_GodRealness_Believed>Believed</CC_GodRealness_Believed>
-  <CC_GodRealness_Believed_Tip>Nothing supernatural: the gods are what the colony believes of them.</CC_GodRealness_Believed_Tip>
-  <CC_GodRealness_Felt>Felt</CC_GodRealness_Felt>
-  <CC_GodRealness_Felt_Tip>The gods act, but never so plainly that nobody could doubt it.</CC_GodRealness_Felt_Tip>
-  <CC_GodRealness_Walking>Walking</CC_GodRealness_Walking>
-  <CC_GodRealness_Walking_Tip>The gods show themselves openly, and nobody doubts it.</CC_GodRealness_Walking_Tip>
-  <CC_SetNote_GodRealness_Believed>The gods are believed in: nothing supernatural.</CC_SetNote_GodRealness_Believed>
-  <CC_SetNote_GodRealness_Felt>The gods are felt, never so plainly that nobody could doubt it.</CC_SetNote_GodRealness_Felt>
-  <CC_SetNote_GodRealness_Walking>The gods show themselves openly.</CC_SetNote_GodRealness_Walking>
 
   <!-- An older save's generated gods let go on load (Gods/GodBook.cs): one line, in the world's voice. -->
   <CC_God_Retired>The old ones' stories of the gods have changed, the way stories do. They tell them differently now, and nobody can quite remember how they went before.</CC_God_Retired>

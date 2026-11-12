@@ -112,7 +112,7 @@ namespace ColonyCouncil
     /// <summary>
     /// The pure rules of the gods in the wider world (docs/design/gods.md, stage 2's "The world": brainstorm items 17, 18, 19,
     /// 21 and 22, and the drama between the gods), with no game types so Tools/Tests checks them (GodWorldTests): how often
-    /// each thing comes, by how real the gods are; what a god gives and what it asks in return, by its domain, nature and
+    /// each thing comes (a little more often for a god drawn near: GodNearMath.WorldFactor); what a god gives and what it asks in return, by its domain, nature and
     /// kind (a god's own ways first: Gods/World/GodWays.cs; these tables are the fallback by domain); the shapes of its anger
     /// and its kindness and how likely each is by the colony's standing; the quarrels of rival gods in the sky and the
     /// ground; the Hunger's bargains and what it takes next; and what a neighbour's letter tells of its god.
@@ -122,12 +122,6 @@ namespace ColonyCouncil
         public const int DayTicks = 60000, HourTicks = 2500;
 
         // ================= How often =================
-
-        /// <summary>How much more or less often the gods act in the world: half as often when only believed, more when they walk.</summary>
-        public static float Realness(GodRealness r) => r == GodRealness.Believed ? 0.5f : r == GodRealness.Walking ? 1.4f : 1f;
-
-        /// <summary>What only a real god can do (gifts of power, the void's bargains, a rival undoing a gift): Felt and Walking, never Believed.</summary>
-        public static bool Supernatural(GodRealness r) => r != GodRealness.Believed;
 
         /// <summary>The chance on one day of something that comes every <paramref name="meanDays"/> on average, times <paramref name="factor"/>.</summary>
         public static float DayChance(float meanDays, float factor = 1f)
@@ -168,9 +162,6 @@ namespace ColonyCouncil
 
         /// <summary>The mean days between a god's own blessings at a home by the colony's standing: none below pleased.</summary>
         public static float BlessingDays(FavourWord w) => w == FavourWord.Beloved ? 25f : w == FavourWord.Favoured ? 40f : w == FavourWord.Pleased ? 70f : 0f;
-
-        /// <summary>The scale on a chance for how real the gods are, and whether it can come at all.</summary>
-        public static float Factor(GodRealness r, bool supernatural) => supernatural && !Supernatural(r) ? 0f : Realness(r);
 
         // ================= Letters and diplomacy =================
 
@@ -276,6 +267,12 @@ namespace ColonyCouncil
 
         /// <summary>How far an illness eases at the blessing (its severity down by this), never below a sliver.</summary>
         public const float BlessingEase = 0.15f, BlessingFloor = 0.02f;
+
+        /// <summary>
+        /// A fever eased at a home never within this many days of the last one there, and its chance grows back over the days
+        /// after (GodPaceMath.Ramp): a sickness going through the colony may see it again, never night after night.
+        /// </summary>
+        public const float FeverGapDays = 5f, FeverRampDays = 5f;
 
         /// <summary>A blessing comes in the small hours (0 to 4).</summary>
         public static bool BlessingHour(int hour) => hour >= 0 && hour <= 4;
@@ -560,9 +557,12 @@ namespace ColonyCouncil
         /// <summary>One the rival hunts stays this many days when hidden.</summary>
         public const int HiddenDays = 3;
 
-        /// <summary>A myth told at supper: an evening's chance at a home, and the days between two.</summary>
+        /// <summary>
+        /// A myth told at supper: never within <see cref="MythGapDays"/> of the last at a home, then an evening's chance that
+        /// grows over <see cref="MythRampDays"/> (GodPaceMath.Ramp), so a story at supper stays an evening to remember.
+        /// </summary>
         public const float MythEveningChance = 0.12f;
-        public const int MythGapDays = 3;
+        public const int MythGapDays = 12, MythRampDays = 15;
 
         /// <summary>The hours of supper (local).</summary>
         public static bool SupperHour(int hour) => hour >= 18 && hour <= 20;
@@ -637,7 +637,7 @@ namespace ColonyCouncil
 
         /// <summary>
         /// Selene's face on a day of the quadrum (0 to 14): full in the middle of it (1), dark at its turn (0), a cycle a
-        /// quadrum. How much of the day she returns.
+        /// quadrum. When she returns the day is the moon's return's own rule (GodsOnMapMath.ReturnTonight).
         /// </summary>
         public static float MoonFace(int dayOfQuadrum)
         {
@@ -647,20 +647,6 @@ namespace ColonyCouncil
 
         /// <summary>The dark of the moon makes the Hunger's voice easier to hear: up to half as likely again at a dark moon.</summary>
         public static float DarkOfTheMoon(float face) => 1f + 0.5f * (1f - Clamp(face, 0f, 1f));
-
-        /// <summary>Selene returns the day at this hour of the night (local).</summary>
-        public static bool MirrorHour(int hour) => hour == 2;
-
-        /// <summary>
-        /// The night's chance that Selene returns the day: by her face and by how much the day's kindness and cruelty differ
-        /// (one deed a quarter, four or more all of it); nothing at a dark moon or an even day.
-        /// </summary>
-        public static float MirrorChance(float face, int kindness, int cruelty)
-        {
-            int net = Math.Abs(kindness - cruelty);
-            if (net == 0) return 0f;
-            return Clamp(face, 0f, 1f) * Math.Min(1f, net * 0.25f);
-        }
 
         /// <summary>Selene's rest: a wounded colonist's hurts this much better (severity healed, spread over their injuries).</summary>
         public const float RestHeal = 4f;
@@ -684,11 +670,6 @@ namespace ColonyCouncil
 
         /// <summary>The gold's count for the silver given and gold's worth (at least one).</summary>
         public static int HoardGold(int silver, float goldValue) => goldValue <= 0f || float.IsNaN(goldValue) ? 0 : Math.Max(1, (int)Math.Round(silver * HoardReturn / goldValue));
-
-        // ================= Words =================
-
-        /// <summary>How real the gods are, as the tag on a colonist's words about them (real:believed, real:felt, real:walking).</summary>
-        public static string Voice(GodRealness r) => GodsMath.Voice(r);
 
         public static float Clamp(float v, float lo, float hi) => float.IsNaN(v) ? lo : Math.Max(lo, Math.Min(hi, v));
     }

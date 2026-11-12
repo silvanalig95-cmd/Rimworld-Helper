@@ -200,64 +200,6 @@ tree at once, alongside whatever runs. Each piece is merged as its own release, 
   try." So: a visitor casts only helpful spells, and only while content on the map or of a people allied with the
   colony; raiders cast harmful ones, the mod's strongest kept out at first and the list watched (a play test, then a
   pass on any spell that proves broken).
-- **To do when the player asks (12 November 2026): one way the gods are, not three.** The player: "what do the
-  different god settings levels do? is it just about how many events are generated? if yes we can keep that, but
-  otherwise I don't think we have to spend effort to maintain different levels, instead just focusing on one and
-  tailoring that towards what i enjoy". How it is now: "How real the gods are" (`CouncilSettings.godRealness`,
-  `GodRealness`, read in 28 files and 6 line files) changes what the gods are, not only how often: Believed has no
-  god on the map at all (no stranger, beast, rising or waking, no weather answers, no void bargains, no moon's
-  return), prayers only comfort and offerings go to animals and rot; Felt (the default) has the gods come mostly in
-  disguise (`DisguiseShare` 0.85), cards veiled ("some say"), the colony able to take one god's act for another's,
-  milder answers (a fever eased 8 %, rain after 3 to 14 hours), offerings gone by morning, scoffers; Walking has the
-  gods walk openly (disguise 0.3), named on every card, true forms (Smoulder as Dragon's Descent's true dragon,
-  Murmur as Odyssey's colossus toad), stronger answers (15 %, rain within the hour, a thunderstorm), offerings
-  vanishing in light, the world's god events at 1.4 times the rate (Believed 0.5). When asked, proposed: keep one way,
-  Felt, as the game is built around (the unseen gods, "some say", the colony's own book), and fold in from Walking what
-  fits it: the true forms when Smoulder wakes or Murmur surfaces (they are seen, so plainly named), and perhaps a
-  little less disguise; drop Believed and Walking and their branches and line tags; in their place, if the player
-  wants one, a plain "how often the gods act" setting (rarely, as now, often) that changes only the rates. **The
-  player's answer (12 November 2026), saved for later, not to start yet:** "yes, let's stick to one level and use felt
-  as primary reference. i just want the "walking"-exclusive options also to be able to appears, like smoulders true
-  form. i guess the level could be dynamic, some gods might become more present depending on situations, relations,
-  actions etc. also the "cards" level on felt is great, the god should only be named if it's sure it was them." So:
-  one way, Felt's as the base; every Walking-only thing can still happen (true forms, a god seen plainly, a stronger
-  answer, an offering vanishing in light), when a god is more present; how present each god is moves on its own, by
-  what happens (the situation: a drought for Murmur, a deep mine for Smoulder, a hard winter for Hush), its relations
-  (a quarrel, a tie) and what the colony does (offerings, harm, its book), so one god can walk plainly while another
-  stays hidden; the cards stay as Felt's: a god is named only where the colony is sure it was that god
-  (`Gods.CardName`), else unnamed or "some say".
-- **To do when the player asks (12 November 2026), a bug: the same god's happening again within days; variety first.**
-  The player: "important is that there is enough variety that i don't have the same events etc. within a short time.
-  just had the selene night event twice within a few days (one of my pawns is injured, not sure if that triggers it)".
-  Why: the moon's return (`GodReturn.Hourly`) may come every third night (`GodsOnMapMath.ReturnGapDays` 3), at 3 in
-  the morning, 70 % on a full moon and 40 % on a half one, whenever the day held a deed of the colony's of enough
-  kindness or cruelty (`ReturnDeedFrom` 3: rescuing and tending the injured counts, and a kind doer who is hurt gets
-  "a wound healed by morning"). The injury itself doesn't call it; the care around it gives the deeds. Other short
-  gaps of the same kind: a myth told at supper every 3 days (`GodWorldMath.MythGapDays`), the rock rumbling over a
-  miner every 3 (`DeepGapDays`), a prayer answered every 5 (`WorshipMath.AnswerGapDays`), mocking and bickering every 5.
-  When asked: the moon's return at most once a moon (a season of 15 days), near the full moon, never the same kind twice
-  running; one shared rule for every god's happening (the same happening not again at a home within a season, the
-  same god's within some days, and the pick leaning to what hasn't happened lately, from a short memory of the last
-  ones); the short gaps above lengthened; and a count per colony-year of each happening in `Tools/Balance`, so that
-  repeats are caught by the checks. **The player's answer (12 November 2026):** "i mean it should just make sense, i
-  don't necessarily want hard restrictions if they're not required, but it just shouldn't feel like events are
-  repeating unless there's a an actual "lore" reason for it. but yes, for unique events the span should definitely be
-  more than 3 days for sure". So: no blanket caps; each happening spaced by what it is and why it comes. A repeat is
-  fine when the world gives it a reason the player can see (the drought goes on and the colony keeps praying, the
-  miners keep digging past the warnings, the same cruelty done again), and then it should read as the next step of
-  that story, not the same card again. A happening that should feel unique or rare (the moon's return, a god's
-  moment, a gift, a myth told at supper) waits far longer than 3 days, the moon's return by the moon itself (around
-  the full moon, a cycle apart), and when one does come back it leans to a different form. The yearly count in
-  `Tools/Balance` stays, as a check, not a cap. **And (the player, the same day):** "and if it's triggering on something
-  where no other events really trigger, it shouldn't like "auto-trigger" this event automatically when it's free,
-  otherwise you can almost predict it". So: a happening never fires just because its gap is over and its condition
-  holds, the first night it may (now the moon's return comes on the first eligible night at 70 % on a full moon, and
-  the colony's deeds hold almost every day); once it is free, its chance stays small and spread over a long, uneven
-  window, so the player can't tell when it will come or whether it will at all; a condition that is nearly always true
-  (someone did a kindness today) is no trigger on its own, only a strong or unusual one is. Every gods' happening
-  checked for the same pattern (free, then certain at the next chance). Scope (the player, asked whether this goes for
-  all of Rimfolk's events): "no, not necessarily, as so far it has not felt like this besides this selene event". So
-  the gods' happenings only, the moon's return first; the rest of Rimfolk is left as it is.
 - **To do when the player asks (12 November 2026): the Gods' book as a holy book, not a log.** The player, with a
   picture of Ducat's page (two dated entries, a trader's words at the gate and Avila's at supper): "the god's book
   should not only be a log of events, but more like a wiki page basically building each up based on gained knowledge,
@@ -314,6 +256,88 @@ tree at once, alongside whatever runs. Each piece is merged as its own release, 
   treated" chooses), never so many that the home's stores fall below what its sick need; a stock the player set by
   hand left alone; taken off again when someone stops being a medic. Shown where the game shows it (the Assign tab),
   and said once ("Alder packs two kits of medicine").
+- Not released: no version, no What's new round, About.xml and CHANGELOG untouched. **Gods: one way, each god's own presence**,
+  and variety first (12 November 2026, "you can go ahead on the todos"): the player's two entries of the day built
+  together, the bug first. DESIGN.md "Gods: one way, each god's own presence, and variety first"; docs/design/gods.md
+  "Decisions" ("How real").
+  - **The bug.** The player: "important is that there is enough variety that i don't have the same events etc. within a
+    short time. just had the selene night event twice within a few days (one of my pawns is injured, not sure if that
+    triggers it)"; then "it should just make sense, i don't necessarily want hard restrictions if they're not required,
+    but it just shouldn't feel like events are repeating unless there's an actual 'lore' reason for it. but yes, for
+    unique events the span should definitely be more than 3 days for sure", "if it's triggering on something where no
+    other events really trigger, it shouldn't like 'auto-trigger' this event automatically when it's free, otherwise you
+    can almost predict it", and the scope: the gods' happenings only. Why: the moon returned the day twice over, each on
+    its own, both preferring an injured colonist: the night's return (`GodReturn`, every third night, 70% on a full moon,
+    for any deed of enough kindness, and tending the injured is one nearly every day) and the world's mirror
+    (`GodHealth.Mirror`, every night at 2 with no gap at all, for the day's good turns and wrongs to the peoples, raiders
+    killed among them).
+  - **Built (variety first).** A shared pace for the gods' happenings, no blanket cap (`GodPaceMath`): each keeps its own
+    gap; once free its chance starts at a quarter and grows over a long window (`Ramp`); a condition nearly always true
+    is no trigger (`Trigger`); a short memory of the last twelve happenings (`GodsOnMapBook.lately`, `GodPace`) leans
+    the next to a different form; a story that comes back for a visible reason takes its next step (`NextStep`). The
+    moon's return is one rule for both: around the full moon only, a cycle apart at least (12 days), growing over thirty
+    days after, only for a deed out of the ordinary (not a kind of deed done three times in fifteen days, not one running
+    for days) or the day with the peoples; the world's mirror plays only on a night the return chose; it leans away from
+    its last forms, and back to the same person for the same kind of deed it is the next step, spoken of as happening
+    again (`CC_GodM_Saw_Return_*Again`, `[again]` talk lines). The other short gaps: a myth at supper 12 days (and not
+    the last god told at that table), the rock over deep mining 5 days then a small chance an hour of mining (`DeepNow`),
+    a prayer answered 10 days a god a home, mocking and bickering 10 (bickering after 5 dry days, not 3), the weather 15
+    (10.5 for a sky god) in a voice it didn't use last, a mark visited 12 and brought up at supper 6, a fever eased 5 at a
+    home, a god's dream 10 a person; each grows back after its gap. Checked: comings, risings, gifts, kindness, anger,
+    the world's doings and the hands already came as small chances after long gaps, and stay. The count:
+    `dotnet run -c Release --project Tools/Balance -- --gods` (each happening a colony-year, the closest two, the same form
+    twice running, a check each keeps; exit code 1 when one fails): the moon's return about once a colony-year, never
+    within 12 days.
+  - **Built (one way).** The player: "yes, let's stick to one level and use felt as primary reference. i just want the
+    'walking'-exclusive options also to be able to appears, like smoulders true form. i guess the level could be dynamic,
+    some gods might become more present depending on situations, relations, actions etc. also the 'cards' level on felt
+    is great, the god should only be named if it's sure it was them." The setting "How real are the gods" and the
+    Believed and Walking branches are gone; an older settings file's choice is read and let go. Felt is the base; each
+    god's nearness (`GodNear`, `GodNearMath`, hidden, 0 to 1, an hour's cache a god a home) moves by the situation (its
+    shape's `nearWhen`, `GodStir`: Murmur a drought, Smoulder the deep and heat, Hush a hard winter, Cirrus a storm,
+    Selene the full moon, Undertow the dark of the moon and the desperate, Hollin an anima tree and the growing season,
+    Morel the dead left lying and sickness, Ennu guests, Pip machines, Ducat a hoard and a trader, Bellwether a thrumbo
+    or a great herd, Mog cats, Helios heat), its relations (a quarrel it is in, a tied god stirred) and what the colony
+    does (offerings, harm, its book's entries lately, a strong standing). Nearer: a moment plain and named (as the colony
+    is sure), the stranger showing itself, Smoulder's true form on waking, Murmur surfacing more readily, stronger answers,
+    an offering gone in light, more of its doings; at 0 exactly felt. Cards stay felt (`Gods.CardName`). Lines: `[walking]`
+    to `[near]`, felt to `[veiled]`, the Believed ones to `[doubt]` (a scoffer's or a waverer's) or for everyone; worship
+    keys `_Walking` to `_Plain`, `_Believed` gone.
+  - Code map: `Gods/GodPaceMath.cs`, `Gods/GodPace.cs` (new); `Gods/GodNearMath.cs`, `Gods/GodNear.cs` (new);
+    `OnMap/GodReturn.cs` (rewritten head: `Night`, `DayDeed` with its trigger, `TheirLast`), `OnMap/GodsOnMapMath.cs`
+    (`ReturnTrigger`, `WorldTrigger`, `ReturnTonight`, `ReturnFor` with the memory and the story, `DeepNow`, weather and
+    marks' gaps, `Voice` leaning, `RisingDue` by nearness, `TrueForm` by nearness; `GodShow`, `Show`, `BelievedWithinHours`
+    gone), `OnMap/GodsOnMapBook.cs` (`lately`, saved; the rising by nearness), `World/GodHealth.cs` (`Mirror(map, kind,
+    cruel)`, the fever's gap), `World/GodDrama.cs` (the myth), `OnMap/GodOmensOwn.cs` (the deep), `OnMap/GodWeather.cs`,
+    `OnMap/GodMarks.cs` (`GodMarkNote.plain`), `OnMap/GodStranger.cs` (`StrangerStay.plain`), `OnMap/GodWaking.cs`,
+    `Worship/*` (`Worship.Step(plain)`, `Sign(..., plain)`, `Glow(..., plain)`, the answers, offerings, dreams' gap),
+    `World/GodWorld.cs` (`Factor(god, map)`, the near, veiled and doubt tags), `GodHands.cs`, `GodHandsMath.cs`,
+    `GodPresenceSeam.cs`, `Gods.cs`, `GodsDebug.cs`, `CouncilSettings.cs`, `UI/SettingsCatalog.cs`; the shapes' `nearWhen`
+    in `Rimfolk_GodsOnMap_Shapes.xml`; `Tools/Balance/GodsSim.cs`; tests in `GodsTests`, `GodsOnMapTests`,
+    `WorshipTests`, `GodWorldTests`; `GodsOnMapBook.lately` modelled in `Tools/save_estimate.py`. Another agent rebuilds
+    the Gods' book page next; `GodLore.cs` and `GodLorePage.cs` were not touched.
+  - Try in the game (dev mode):
+    - *Rimfolk*, *Gods: how near each god is here (log)*: every god's nearness with its situation, relations and colony
+      parts. Let the ground go dry ten days or more and look again: Murmur nearer.
+    - *Gods: draw a god near (or let it be)...*, Smoulder, 1.0; then *Gods: the sleeper under the mountain wakes now* (or
+      mine under thick rock past six rumbles, *Gods: the rock turns over a miner now*): with Dragon's Descent loaded, the
+      true dragon comes up and the card names him; at 0.0, the mountain quakes and the shadow passes. Pick "as the game
+      reads it" to let it be.
+    - Draw Ennu near, then *Gods: a stranger at the gate now...*, Ennu: at the end it stops, shows itself, and is named;
+      let it be and do it again: it goes its way unrevealed.
+    - Draw a god with a shrine near and leave an offering: it goes before everyone's eyes within the hour, in a flash of
+      light; let it be: gone in the small hours.
+    - *Gods: the moon returns a deed tonight...*, a form: that form comes back. After a colonist's cruelty today (an
+      insult, a prisoner executed), pick "the day's own deed" twice on two nights: the second is the next step (a
+      nightmare, then a frost on a cold night or an animal at the door), and the colony's book says it happened again.
+      *Gods: the gods on the map (log)* shows the short memory ("lately") and the days since the last return.
+    - Play a few seasons fast with a colonist hurt and tended every day: no return from the tending alone; at most one
+      around a full moon, a cycle apart.
+    - The count: `dotnet run -c Release --project Tools/Balance -- --gods`.
+  - Not checked without the game: how the stirs read on a real map (the anima tree, corpses lying, machines and silver
+    counts, a trader in range, the moon's face), how often a deed of a real colony is out of the ordinary (the estimates
+    in `GodsSim.cs`), the true dragon and the colossus toad in play with their mods, and the feel of the new pace over a
+    long game.
 - 0.221.0, **Mog's luck and her stare**
   (11 November 2026), the follow-up to the gods on the map from the pantheon's Mog ("the one she chooses has a lucky
   season ... she sees Ennu for what it is, and stares at it"). DESIGN.md "The gods on the map", the sacred animal.

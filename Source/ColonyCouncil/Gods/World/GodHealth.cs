@@ -225,7 +225,7 @@ namespace ColonyCouncil
             {
                 // Helios is blind to the colony: his too-much-giving comes at its own rate, whatever its standing.
                 float days = GodWays.Blind(g) ? GodWays.WrathDays(g) : GodWorldMath.WrathDays(Gods.Favour(g, map), g.nature, GodWays.WrathDays(g));
-                if (days <= 0f || !GodWorld.Roll(GodWorldMath.DayChance(days, GodWorld.Factor()))) continue;
+                if (days <= 0f || !GodWorld.Roll(GodWorldMath.DayChance(days, GodWorld.Factor(g, map)))) continue;
                 if (!GodWays.Wraths(g).InRandomOrder().Any(shape => Wrath(g, map, shape))) continue;
                 b.Came("anger:" + Homes.KeyOf(map));
                 return;
@@ -384,7 +384,7 @@ namespace ColonyCouncil
                 string key = "kind:" + g.id + ":" + Homes.KeyOf(map);
                 // Helios gives to everyone alike, whatever the colony's standing.
                 float days = GodWays.Blind(g) ? GodWorldMath.BlindBlessingDays : GodWorldMath.BlessingDays(Gods.Favour(g, map));
-                if (days <= 0f || !b.Gap(key, GodWorldMath.BlessingGap) || !GodWorld.Roll(GodWorldMath.DayChance(days, GodWorld.Factor()))) continue;
+                if (days <= 0f || !b.Gap(key, GodWorldMath.BlessingGap) || !GodWorld.Roll(GodWorldMath.DayChance(days, GodWorld.Factor(g, map)))) continue;
                 if (!Bless(g, map, blessing)) continue;
                 b.Came(key);
                 return;
@@ -611,7 +611,6 @@ namespace ColonyCouncil
                 if (map == null) continue;
                 int hour = GenLocalDate.HourOfDay(map);
                 if (GodWorldMath.BlessingHour(hour)) GodWorld.Safe("a fever broken", () => Blessings(b, map));
-                if (GodWorldMath.MirrorHour(hour) && map == Homes.Seat) GodWorld.Safe("the day returned", () => Mirror(b, map));
             }
             foreach (var d in b.Of("grudge").Where(x => x.what == nameof(GodWrath.Lightning)).ToList()) GodWorld.Safe("lightning", () => Lightning(d));
         }
@@ -630,6 +629,9 @@ namespace ColonyCouncil
 
         internal static void Blessings(GodWorldBook b, Map map)
         {
+            string key = "fever:" + Homes.KeyOf(map);
+            if (!b.Gap(key, GodWorldMath.FeverGapDays)) return;
+            float back = GodPaceMath.Ramp(b.DaysSince(key), GodWorldMath.FeverGapDays, GodWorldMath.FeverRampDays);
             foreach (var p in map.mapPawns.FreeColonistsSpawned.ToList())
             {
                 var h = p.health?.hediffSet?.hediffs?.FirstOrDefault(x => Easable(x, b));
@@ -637,8 +639,9 @@ namespace ColonyCouncil
                 var g = HealerFor(p, map, b);
                 if (g == null) continue;
                 // A night's chance over its five small hours.
-                float chance = GodWorldMath.BlessingChance(Gods.Favour(g, map)) * GodWorld.Factor() / 5f;
+                float chance = GodWorldMath.BlessingChance(Gods.Favour(g, map)) * GodWorld.Factor(g, map) / 5f * back;
                 if (!GodWorld.Roll(chance)) continue;
+                b.Came(key);
                 b.Bless(h.loadID);
                 h.Severity = Mathf.Max(GodWorldMath.BlessingFloor, h.Severity - GodWorldMath.BlessingEase);
                 FleckMaker.ThrowMetaIcon(p.Position, map, FleckDefOf.HealingCross);
@@ -662,23 +665,36 @@ namespace ColonyCouncil
         }
 
         /// <summary>
-        /// At the night's mirror hour, at the colony's seat: a god that returns (Selene) gives the day back, as much as her
-        /// face shows (GodWorldMath.MoonFace, MirrorChance): a kindness as a wound healed by morning or something found at the
-        /// door, a cruelty as bad dreams. The day's account starts again either way.
+        /// The moon gives the colony's day with the peoples back, on a night the moon's return chose (GodReturn: around the
+        /// full moon, a cycle apart, the day's good turns and wrongs its reason): a kindness as a wounded colonist's deep rest
+        /// or something found at the door, whichever it didn't take lately; a cruelty as bad dreams. Needs the colony to know
+        /// the god that returns (Selene). False when nothing could show.
         /// </summary>
-        internal static void Mirror(GodWorldBook b, Map map)
+        internal static bool Mirror(Map map, int kind, int cruel)
         {
-            int kind = b.kindness, cruel = b.cruelty;
-            b.kindness = b.cruelty = 0;
             var g = GodWorld.Known.FirstOrDefault(GodWays.Mirror);
-            if (g == null || kind == cruel) return;
-            float face = GodWorldMath.MoonFace(GenLocalDate.DayOfQuadrum(map));
-            if (!GodWorld.Roll(GodWorldMath.MirrorChance(face, kind, cruel) * GodWorld.Factor())) return;
+            if (g == null || map == null || kind == cruel) return false;
+            string form;
+            bool shown;
             if (kind > cruel)
             {
-                if (!Rest(g, map)) Found(g, map);
+                var lately = GodPace.Forms(GodReturn.What);
+                bool restFirst = GodPaceMath.Lean(nameof(GodsOnMapMath.NightReturn.Healed), lately) >= GodPaceMath.Lean(nameof(GodsOnMapMath.NightReturn.Found), lately);
+                form = restFirst ? nameof(GodsOnMapMath.NightReturn.Healed) : nameof(GodsOnMapMath.NightReturn.Found);
+                shown = restFirst ? Rest(g, map) : Found(g, map);
+                if (!shown)
+                {
+                    form = restFirst ? nameof(GodsOnMapMath.NightReturn.Found) : nameof(GodsOnMapMath.NightReturn.Healed);
+                    shown = restFirst ? Found(g, map) : Rest(g, map);
+                }
             }
-            else Nightmares(g, map);
+            else
+            {
+                form = nameof(GodsOnMapMath.NightReturn.Nightmare);
+                shown = Nightmares(g, map);
+            }
+            if (shown) GodPace.Note(GodReturn.What, form, GodReturn.ThePeoples);
+            return shown;
         }
 
         /// <summary>A kindness returned: one wounded colonist asleep wakes with their hurts days better.</summary>

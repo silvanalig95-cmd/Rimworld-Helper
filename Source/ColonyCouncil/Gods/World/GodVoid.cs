@@ -25,7 +25,6 @@ namespace ColonyCouncil
     /// <item>The Choir of the Spire know the voice: they write when the colony has bargained, and think better of an
     /// honest refusal.</item>
     /// </list>
-    /// Only where the gods are more than believed.
     /// </summary>
     public static class GodVoid
     {
@@ -44,6 +43,16 @@ namespace ColonyCouncil
         }
 
         // ================= Who is desperate =================
+
+        /// <summary>How desperate the colony is at a home now (GodWorldMath.Desperation: 0 none, 3 the most), for how near the void draws (GodNear).</summary>
+        public static int Desperation(Map map)
+        {
+            if (map?.mapPawns == null) return 0;
+            var people = map.mapPawns.FreeColonistsSpawned;
+            bool dying = people.Any(Dying);
+            bool breaking = !dying && people.Any(Breaking);
+            return GodWorldMath.Desperation(dying, breaking, !dying && !breaking && Starving(map));
+        }
 
         private static bool Dying(Pawn p)
         {
@@ -67,7 +76,7 @@ namespace ColonyCouncil
         public static void Hourly(GodWorldBook b, int now)
         {
             var g = Hunger;
-            if (g == null || !GodWorldMath.Supernatural(Gods.Realness) || !b.Gap("hunger", GodWorldMath.HungerGapDays(b.hungerBargains))) return;
+            if (g == null || !b.Gap("hunger", GodWorldMath.HungerGapDays(b.hungerBargains))) return;
             foreach (var map in Homes.All.ToList())
             {
                 if (map == null || !b.Gap("hunger:" + Homes.KeyOf(map), 1f)) continue;
@@ -81,7 +90,7 @@ namespace ColonyCouncil
                 b.Came("hunger:" + Homes.KeyOf(map));
                 // Its voice comes easier in the dark of the moon.
                 float dark = GodWorldMath.DarkOfTheMoon(GodWorldMath.MoonFace(GenLocalDate.DayOfQuadrum(map)));
-                if (!GodWorld.Roll(GodWorldMath.HungerHears(desperation) * dark * GodWorld.Factor(true))) continue;
+                if (!GodWorld.Roll(GodWorldMath.HungerHears(desperation) * dark * GodWorld.Factor(g, map))) continue;
                 Whisper(b, g, map, dying ?? breaking, dying != null ? "dying" : breaking != null ? "breaking" : "starving");
                 return;
             }

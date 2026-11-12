@@ -153,6 +153,13 @@ namespace ColonyCouncil
 
         public bool Gap(string key, float days) => GodWorld.Force || GodWorldMath.Gap(Now, Last(key), days);
 
+        /// <summary>Days since a thing last came (a long time for never), for a chance that grows after its gap (GodPaceMath.Ramp).</summary>
+        public float DaysSince(string key)
+        {
+            int last = Last(key);
+            return last < 0 ? 9999f : (Now - last) / (float)GodWorldMath.DayTicks;
+        }
+
         // ================= Under way =================
 
         public GodDoing Add(GodDoing d)

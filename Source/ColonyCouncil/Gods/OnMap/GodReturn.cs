@@ -10,60 +10,118 @@ namespace ColonyCouncil
 {
     /// <summary>
     /// The moon returning by night what was done by day (Selene, the Mirror: brainstorm 10; a god whose shape
-    /// <c>returns</c>). In the small hours, as much as the moon's face shows (GodsOnMapMath.Returns: full, half, thin; nothing
-    /// on a night with no moon), one real deed of the colony's from that day comes back to whoever did it (the deeds the
-    /// colony talks of, Social/Gossip: a kindness or a cruelty by the deed's own name). A kindness comes back as something
-    /// found by their bed, a good dream or a wound healed by morning; a cruelty as a nightmare, a hard frost about where
-    /// they sleep, or an animal that comes and stands at their door. Small and rare (one a night, days apart). Whoever is
-    /// awake sees it, it goes in the colony's book in their words, and it is spoken of at breakfast. Nothing says why.
+    /// <c>returns</c>). By the moon itself (the player, 12 November 2026: variety first): only around the full moon, a cycle
+    /// apart at least, and only for a reason, a deed of the day that stands out (GodsOnMapMath.ReturnTrigger: a kindness
+    /// or a cruelty out of the ordinary, never the tending the colony does every day) or the colony's dealings with the
+    /// peoples that day (GodHealth.Deed); even then its chance is small at first and grows over the cycles after
+    /// (GodsOnMapMath.ReturnTonight), so nobody can tell which full moon it will be. A kindness comes back to whoever did it
+    /// as something found by their bed, a good dream or a wound healed by morning; a cruelty as a nightmare, a hard frost
+    /// about where they sleep, or an animal that comes and stands at their door; the colony's day with the peoples as a
+    /// wounded colonist's deep rest, something found at the door, or bad dreams (GodHealth.Mirror). Each time it leans to a
+    /// form it didn't take lately; when it comes back to the same person (the same cruelty done again), it is the next step
+    /// of their story, and it is spoken of as happening again. Whoever is awake sees it, it goes in the colony's book in
+    /// their words, and it is spoken of at breakfast. Nothing says why.
     /// </summary>
     public static class GodReturn
     {
         public const string DreamPool = "Rimfolk_Pool_GodReturnDream";
         public const string TalkPool = "Rimfolk_Pool_GodReturnTalk";
 
+        /// <summary>The moon's return in the gods' short memory (GodPace).</summary>
+        public const string What = "return";
+
+        /// <summary>The colony's dealings with the peoples, as whom the moon returns them to in the short memory.</summary>
+        public const string ThePeoples = "peoples";
+
         private static int Now => Find.TickManager.TicksGame;
+
+        /// <summary>The god that returns by night (Selene), while it lives, or null.</summary>
+        public static God Moon => Gods.All.FirstOrDefault(g => g != null && g.kind != GodKind.Dead && GodShapes.Of(g).returns);
 
         internal static void Hourly(GodsOnMapBook b, int now)
         {
-            if (now - b.lastReturn < GodsOnMapMath.ReturnGapDays * GenDate.TicksPerDay) return;
-            var moon = Gods.All.FirstOrDefault(g => g != null && g.kind != GodKind.Dead && GodShapes.Of(g).returns);
-            if (moon == null || Gods.Realness == GodRealness.Believed) return;
+            var moon = Moon;
             foreach (var map in Homes.All.ToList())
             {
                 if (map == null || GenLocalDate.HourOfDay(map) != 3) continue;
-                if (!GodsOnMapMath.Returns(GodOmens.MoonTonight, Rand.Value)) return;
-                if (Return(b, moon, map, now)) return;
+                // The colony's good turns and wrongs to the peoples by day are the seat's to answer for; the day's account starts again each night.
+                var world = map == Homes.Seat ? GodWorld.Book : null;
+                int kind = world?.kindness ?? 0, cruel = world?.cruelty ?? 0;
+                if (world != null) world.kindness = world.cruelty = 0;
+                if (moon != null && Night(b, moon, map, now, world != null, kind, cruel)) return;
             }
         }
 
-        /// <summary>The day's strongest deed of the colony's people on <paramref name="map"/> (since the morning before), and its kindness weight.</summary>
-        private static (Pawn doer, Deed deed, float weight) DayDeed(Map map, int now)
+        /// <summary>The moon's night at a home: whether a reason stands out, whether she returns tonight, and what. True when something came back.</summary>
+        private static bool Night(GodsOnMapBook b, God moon, Map map, int now, bool seat, int kind, int cruel)
         {
+            var day = DayDeed(map, now);
+            var byWorld = seat && GodWorld.On ? GodsOnMapMath.WorldTrigger(kind, cruel) : GodPaceMath.Trigger.None;
+            var t = day.trigger >= byWorld ? day.trigger : byWorld;
+            if (!GodsOnMapMath.Returns(GodOmens.MoonTonight, GodPace.DaysSince(b.lastReturn, now), t, Rand.Value)) return false;
+            if (day.trigger != GodPaceMath.Trigger.None && day.trigger >= byWorld && Return(b, moon, map, now, day, GodsOnMapMath.NightReturn.None)) return true;
+            if (byWorld == GodPaceMath.Trigger.None || !GodHealth.Mirror(map, kind, cruel)) return false;
+            b.lastReturn = now;
+            return true;
+        }
+
+        /// <summary>The day's deed that most calls the moon, of the colony's people on a map: who did it, the deed, its kindness weight and how strongly it calls.</summary>
+        private struct DayDeedNote
+        {
+            public Pawn doer;
+            public Deed deed;
+            public float weight;
+            public GodPaceMath.Trigger trigger;
+        }
+
+        /// <summary>
+        /// The day's deed of the colony's people on <paramref name="map"/> that most calls the moon (done since the morning
+        /// before): one out of the ordinary first (GodsOnMapMath.ReturnTrigger: not one the colony does all the time, or a
+        /// cruelty done again by one the moon came back to for one), then the weightiest.
+        /// </summary>
+        private static DayDeedNote DayDeed(Map map, int now)
+        {
+            var best = new DayDeedNote();
             var tr = Reputations.Tracker;
-            if (tr?.deeds == null) return (null, null, 0f);
+            if (tr?.deeds == null) return best;
             var people = map.mapPawns.FreeColonistsSpawned.ToDictionary(p => p.thingIDNumber);
-            Pawn best = null;
-            Deed bestDeed = null;
-            float bestW = 0f;
+            int lately = GodsOnMapMath.RoutineDays * GenDate.TicksPerDay;
             foreach (var d in tr.deeds)
             {
                 if (d?.def?.facets == null || now - d.lastTick > GenDate.TicksPerHour * 20 || !people.TryGetValue(d.doer, out var p)) continue;
                 float w = d.def.facets.kindness * Mathf.Max(0.5f, d.size);
-                if (Math.Abs(w) > Math.Abs(bestW))
-                {
-                    best = p;
-                    bestDeed = d;
-                    bestW = w;
-                }
+                if (Math.Abs(w) < GodsOnMapMath.ReturnDeedFrom) continue;
+                int same = 0;
+                foreach (var x in tr.deeds)
+                    if (x != d && x?.def == d.def && now - x.lastTick < lately)
+                        same++;
+                bool again = w < 0f && TheirLast(p, false) != GodsOnMapMath.NightReturn.None;
+                var t = GodsOnMapMath.ReturnTrigger(w, true, same, d.AgeDays(now), again);
+                if (t < best.trigger || t == best.trigger && Math.Abs(w) <= Math.Abs(best.weight)) continue;
+                best = new DayDeedNote { doer = p, deed = d, weight = w, trigger = t };
             }
-            return (best, bestDeed, bestW);
+            return best;
         }
 
-        /// <summary>One deed comes back tonight. False when none was worth returning, or it couldn't show.</summary>
-        public static bool Return(GodsOnMapBook b, God moon, Map map, int now, GodsOnMapMath.NightReturn force = GodsOnMapMath.NightReturn.None)
+        /// <summary>What the moon brought back to this person last time for a deed of this kind (a kindness or a cruelty), from the short memory; None when nothing.</summary>
+        private static GodsOnMapMath.NightReturn TheirLast(Pawn p, bool kind)
         {
-            var (p, deed, w) = DayDeed(map, now);
+            var steps = kind ? GodsOnMapMath.KindSteps : GodsOnMapMath.CruelSteps;
+            foreach (var f in GodPace.Forms(What, p.thingIDNumber.ToString()))
+                if (Enum.TryParse(f, out GodsOnMapMath.NightReturn k) && Array.IndexOf(steps, k) >= 0)
+                    return k;
+            return GodsOnMapMath.NightReturn.None;
+        }
+
+        /// <summary>One deed comes back tonight (the dev action: <paramref name="force"/> a form). False when none was worth returning, or it couldn't show.</summary>
+        public static bool Return(GodsOnMapBook b, God moon, Map map, int now, GodsOnMapMath.NightReturn force = GodsOnMapMath.NightReturn.None) =>
+            Return(b, moon, map, now, DayDeed(map, now), force);
+
+        private static bool Return(GodsOnMapBook b, God moon, Map map, int now, DayDeedNote day, GodsOnMapMath.NightReturn force)
+        {
+            var p = day.doer;
+            var deed = day.deed;
+            float w = day.weight;
             if (force != GodsOnMapMath.NightReturn.None && p == null)
             {
                 p = map.mapPawns.FreeColonistsSpawned.Where(x => People.HasInnerLife(x)).RandomElementWithFallback();
@@ -74,7 +132,10 @@ namespace ColonyCouncil
             bool toAnimal = deed != null && deed.victim < 0 && (deed.def.defName.IndexOf("Animal", StringComparison.OrdinalIgnoreCase) >= 0
                                                                  || deed.def.defName.IndexOf("Sacred", StringComparison.OrdinalIgnoreCase) >= 0);
             bool cold = map.mapTemperature.OutdoorTemp < 8f;
-            var kind = force != GodsOnMapMath.NightReturn.None ? force : GodsOnMapMath.ReturnFor(w, hurt, toAnimal, cold, Rand.Value);
+            // Back to the same person for the same kind of deed: the next step of their story, and it is spoken of as happening again.
+            var theirLast = TheirLast(p, w > 0f);
+            bool again = theirLast != GodsOnMapMath.NightReturn.None;
+            var kind = force != GodsOnMapMath.NightReturn.None ? force : GodsOnMapMath.ReturnFor(w, hurt, toAnimal, cold, Rand.Value, GodPace.Forms(What), theirLast);
             if (kind == GodsOnMapMath.NightReturn.None) return false;
             var at = p.CurrentBed()?.Position ?? p.Position;
             bool shown;
@@ -89,17 +150,18 @@ namespace ColonyCouncil
             }
             if (!shown) return false;
             b.lastReturn = now;
+            GodPace.Note(What, kind.ToString(), p.thingIDNumber.ToString());
             // Hidden: the moon's regard follows what came back.
             Gods.AddFavour(moon, map, w > 0f ? 0.5f : -0.5f, null);
             var awake = map.mapPawns.FreeColonistsSpawned.Where(x => x != p && x.Awake() && !x.Downed && People.HasInnerLife(x)).OrderBy(x => x.Position.DistanceToSquared(at))
                 .FirstOrDefault();
             string tag = kind.ToString().ToLowerInvariant();
-            GodsOnMapWords.Saw(moon, map, at, w > 0f ? GodActKind.Blessing : GodActKind.Wrath, awake ?? p, "CC_GodM_Saw_Return_" + kind + (awake != null ? "Seen" : ""),
-                p.LabelShort.Named("DOER"));
+            GodsOnMapWords.Saw(moon, map, at, w > 0f ? GodActKind.Blessing : GodActKind.Wrath, awake ?? p,
+                "CC_GodM_Saw_Return_" + kind + (again ? "Again" : awake != null ? "Seen" : ""), p.LabelShort.Named("DOER"));
             // Spoken of at breakfast, to whoever they sit with.
             Together.WhenInCompany("godReturn|" + p.thingIDNumber + "|" + now / GenDate.TicksPerDay, p, other =>
             {
-                string line = Flavor.FromPool(TalkPool, p, null, null, tag, GodShapes.LineTag(moon), FaceTag());
+                string line = Flavor.FromPool(TalkPool, p, null, null, tag, GodShapes.LineTag(moon), FaceTag(), again ? "again" : null);
                 if (!line.NullOrEmpty()) Speech.Say(p, line.Formatted(other.Named("OTHER")).Resolve(), other);
             }, 12f);
             return true;

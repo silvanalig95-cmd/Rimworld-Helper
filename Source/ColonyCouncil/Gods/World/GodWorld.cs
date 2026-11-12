@@ -52,8 +52,12 @@ namespace ColonyCouncil
         /// <summary>One of Rimfolk's questions may come now (Tell.CanAsk), or the dev tools ask it.</summary>
         public static bool CanAsk => Force || Tell.CanAsk;
 
-        /// <summary>The scale on a chance for how real the gods are; 0 for what only a real god can do while they are only believed.</summary>
-        public static float Factor(bool supernatural = false) => GodWorldMath.Factor(Gods.Realness, supernatural);
+        /// <summary>
+        /// The scale on the chance of a god's own doing in the world: a little more often the nearer that god is to the colony
+        /// (GodNearMath.WorldFactor); 1 for what is no one god's (a letter, pilgrims, an envoy), and for anything that hurts
+        /// someone (that keeps the game's own rate).
+        /// </summary>
+        public static float Factor(God g = null, Map map = null) => g == null ? 1f : GodNearMath.WorldFactor(GodNear.Of(g, map ?? Homes.Seat));
 
         // ================= The day and the hour =================
 
@@ -124,16 +128,18 @@ namespace ColonyCouncil
         }
 
         /// <summary>
-        /// A colonist's one sentence about what just happened (Rimfolk_Pool_GodWorld, by the moment's tag, how real the gods
-        /// are, and the god's own key and domain), over their head through Speech.Say; to nobody in particular. This is where
-        /// a god is named, if anywhere: a believer's guess, a scoffer's doubt. False when nothing was said.
+        /// A colonist's one sentence about what just happened (Rimfolk_Pool_GodWorld, by the moment's tag, whether the god is
+        /// drawn near (near) or not (veiled: "some say"), the speaker's doubt (doubt, for one who believes little), and the
+        /// god's own key and domain), over their head through Speech.Say; to nobody in particular. This is where a god is
+        /// named, if anywhere: a believer's guess, a scoffer's doubt. False when nothing was said.
         /// </summary>
         public static bool Say(Pawn p, string moment, God g, params NamedArgument[] more)
         {
             if (p == null || !p.Spawned || moment.NullOrEmpty()) return false;
             try
             {
-                var tags = new List<string> { moment, "real:" + GodWorldMath.Voice(Gods.Realness).ToLowerInvariant() };
+                var tags = new List<string> { moment, g != null && GodNear.Near(g, p.Map) ? "near" : "veiled" };
+                if (GodLore.Credence(p) < GodLoreMath.ScofferBelow) tags.Add("doubt");
                 if (g != null)
                 {
                     tags.AddRange(GodSpeech.Tags(g));
@@ -168,23 +174,26 @@ namespace ColonyCouncil
         /// A god's moment on the map: through the presence part (Gods/Presence/: the sound, the sky, its own card) when it is
         /// there, else a plain card: a letter for what matters (<paramref name="letter"/>), else a message. The caller's words
         /// say only what was seen and heard, with no why; the god is named after them only where the colony knows the hand
-        /// (Gods.CardName: the gods walk, or the colony saw it act plainly or knows the sign), else "some say" when it was
-        /// seen at Felt. Remembered among the god's acts either way.
+        /// (Gods.CardName: the colony saw it act plainly or knows the sign), else "some say" when someone of the colony saw it.
+        /// Remembered among the god's acts either way.
         /// </summary>
         public static void Moment(God g, Map map, PresenceKind kind, IntVec3 cell, Pawn avatar, string title, string text, bool letter = true,
             LetterDef def = null, LookTargets look = null, Faction faction = null, Importance importance = Importance.Notable)
         {
             if (g == null || text.NullOrEmpty()) return;
             var home = HomeOr(map);
-            // The hand behind it, where the colony knows it: plainly, or "some say" (the god's mind stays unseen).
-            string name = Gods.CardName(g, home);
+            // Plainly this time (a god drawn near: GodNear.Plain), only where someone of the colony was there to see it.
+            var spec = PresenceSpec.For(g, map, kind, cell.IsValid ? cell : default, avatar);
+            bool seen = Witnessed(map, cell);
+            if (!seen) spec.veiled = true;
+            // The hand behind it, where the colony knows it (or saw it plainly just now): plainly, or "some say" (the god's mind stays unseen).
+            string name = Gods.CardName(g, home) ?? (spec.veiled ? null : GodLore.LabelFor(g.Key));
             if (name != null) text += " " + "CC_GW_Hand_Plain".Translate(name.Named("GOD")).Resolve();
-            else if (Gods.Known(g) && Gods.Realness == GodRealness.Felt && Witnessed(map, cell)) text += " " + "CC_GW_Hand_Felt".Translate(KnownName(g).Named("GOD")).Resolve();
+            else if (Gods.Known(g) && seen) text += " " + "CC_GW_Hand_Felt".Translate(KnownName(g).Named("GOD")).Resolve();
             look ??= cell.IsValid && map != null ? new LookTargets(new TargetInfo(cell, map)) : avatar != null && avatar.Spawned ? new LookTargets(avatar) : LookTargets.Invalid;
             bool shown = false;
             try
             {
-                var spec = PresenceSpec.For(g, map, kind, cell.IsValid ? cell : default, avatar);
                 spec.title = title;
                 spec.text = text;
                 shown = GodPresenceSeam.Call(spec);

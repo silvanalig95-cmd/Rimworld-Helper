@@ -29,11 +29,11 @@ namespace ColonyCouncil
         // ================= Remembering =================
 
         /// <summary>A mark the god left at <paramref name="cell"/> of <paramref name="map"/>, with what it did there in a few words.</summary>
-        public static void Note(God god, Map map, IntVec3 cell, string words, PresenceKind kind)
+        public static void Note(God god, Map map, IntVec3 cell, string words, PresenceKind kind, bool plain = false)
         {
             var b = GodsOnMapBook.Instance;
             if (b == null || god == null || map == null || !cell.IsValid || !Homes.IsHome(map)) return;
-            b.marks.Add(new GodMarkNote { god = god.id, home = Homes.KeyOf(map), cell = cell, tick = Now, words = words, kind = kind });
+            b.marks.Add(new GodMarkNote { god = god.id, home = Homes.KeyOf(map), cell = cell, tick = Now, words = words, kind = kind, plain = plain });
             while (b.marks.Count > GodsOnMapMath.MaxMarks) b.marks.RemoveAt(0);
             Gods.Remember(new GodAct
             {
@@ -80,7 +80,8 @@ namespace ColonyCouncil
         internal static void Daily(GodsOnMapBook b, int now)
         {
             b.marks.RemoveAll(m => m == null || Gods.ById(m.god) == null || Homes.MapOf(m.home) == null || !GodsOnMapMath.Remembered((now - m.tick) / GenDate.TicksPerDay));
-            if (now - b.lastVisit < GodsOnMapMath.VisitGapDays * GenDate.TicksPerDay || !PlayOuts.On || !Rand.Chance(GodsOnMapMath.VisitChance)) return;
+            if (now - b.lastVisit < GodsOnMapMath.VisitGapDays * GenDate.TicksPerDay || !PlayOuts.On) return;
+            if (!Rand.Chance(GodsOnMapMath.VisitChance * GodPaceMath.Ramp(GodPace.DaysSince(b.lastVisit, now), GodsOnMapMath.VisitGapDays, GodsOnMapMath.VisitRampDays))) return;
             foreach (var map in Homes.All.ToList())
             {
                 // A quiet day only: no fight on the map and nothing big lately.
@@ -128,14 +129,14 @@ namespace ColonyCouncil
             return b.marks.Where(m => m.home == key && m.cell.InHorDistOf(cell, 4f)).OrderByDescending(m => m.tick).FirstOrDefault();
         }
 
-        /// <summary>Said aloud at the mark: who it was and what it did there, by how real the gods are.</summary>
+        /// <summary>Said aloud at the mark: who it was and what it did there, as plainly as it showed itself there.</summary>
         internal static void Remember(Pawn p, GodMarkNote mark)
         {
             var god = Gods.ById(mark?.god ?? -1);
             if (p == null || god == null) return;
             mark.visits++;
             mark.lastVisit = Now;
-            string line = Flavor.FromPool(VisitPool, p, null, null, mark.kind.ToString().ToLowerInvariant(), god.domain.ToString().ToLowerInvariant(), Voice(), GodShapes.LineTag(god));
+            string line = Flavor.FromPool(VisitPool, p, null, null, mark.kind.ToString().ToLowerInvariant(), god.domain.ToString().ToLowerInvariant(), Voice(mark), GodShapes.LineTag(god));
             string said = line.NullOrEmpty() ? null : line.Formatted(GodsOnMapWords.Args(god, false).Concat(new[] { (mark.words ?? "").Named("WHAT"), p.Named("PAWN") }).ToArray()).Resolve();
             if (said != null) Speech.Say(p, said);
             // A small good moment that gives a quiet hour, not a mood.
@@ -145,8 +146,8 @@ namespace ColonyCouncil
                 "CC_GodM_Journal_Mark".Translate(GodsOnMapWords.Args(god, false).Concat(new[] { (mark.words ?? "").Named("WHAT") }).ToArray()).Resolve());
         }
 
-        /// <summary>The tag of how real the gods are for the lines: believed, felt, walking.</summary>
-        private static string Voice() => GodsMath.Voice(Gods.Realness).ToLowerInvariant();
+        /// <summary>The tag of how the god showed itself at a mark, for the lines: near (plainly), else veiled (felt).</summary>
+        private static string Voice(GodMarkNote mark) => mark != null && mark.plain ? "near" : "veiled";
 
         // ================= The hour: spoken of =================
 
@@ -158,7 +159,9 @@ namespace ColonyCouncil
             if (Current.Game != game)
             {
                 game = Current.Game;
-                lastVisitorRemark = lastSupper = -999999;
+                lastVisitorRemark = -999999;
+                // Not kept in the save: counted as half its gap ago, so loading a game doesn't bring it up at the next supper.
+                lastSupper = now - GodsOnMapMath.SupperMarkGapDays * GenDate.TicksPerDay / 2;
             }
             if (b.marks.Count == 0) return;
             foreach (var map in Homes.All.ToList())
@@ -183,7 +186,7 @@ namespace ColonyCouncil
                 var mark = here.FirstOrDefault(m => x.Position.InHorDistOf(m.cell, 8f) && GenSight.LineOfSight(x.Position, m.cell, map, true));
                 var god = mark == null ? null : Gods.ById(mark.god);
                 if (god == null) continue;
-                string line = Flavor.FromPool(VisitorPool, x, null, null, mark.kind.ToString().ToLowerInvariant(), god.domain.ToString().ToLowerInvariant(), Voice());
+                string line = Flavor.FromPool(VisitorPool, x, null, null, mark.kind.ToString().ToLowerInvariant(), god.domain.ToString().ToLowerInvariant(), Voice(mark));
                 if (line.NullOrEmpty()) continue;
                 string said = line.Formatted(GodsOnMapWords.Args(god, false).Concat(new[] { (mark.words ?? "").Named("WHAT") }).ToArray()).Resolve();
                 if (Speech.Say(x, said))
@@ -194,11 +197,15 @@ namespace ColonyCouncil
             }
         }
 
-        /// <summary>At supper, someone at the table brings it up to whoever eats beside them (once a day at most, in the evening).</summary>
+        /// <summary>
+        /// At supper, someone at the table brings it up to whoever eats beside them: never within days of the last time, then
+        /// at a small chance an evening hour that grows the longer since (GodsOnMapMath.SupperMarkChance).
+        /// </summary>
         private static void Supper(Map map, List<GodMarkNote> here, int now)
         {
             int hour = GenLocalDate.HourOfDay(map);
-            if (hour < 17 || hour > 21 || now - lastSupper < GenDate.TicksPerDay || !Rand.Chance(0.35f)) return;
+            if (hour < 17 || hour > 21 || now - lastSupper < GodsOnMapMath.SupperMarkGapDays * GenDate.TicksPerDay) return;
+            if (!Rand.Chance(GodsOnMapMath.SupperMarkChance * GodPaceMath.Ramp(GodPace.DaysSince(lastSupper, now), GodsOnMapMath.SupperMarkGapDays, GodsOnMapMath.SupperMarkRampDays))) return;
             foreach (var p in map.mapPawns.FreeColonistsSpawned.ToList())
             {
                 if (p.CurJobDef != JobDefOf.Ingest || !People.HasInnerLife(p)) continue;
@@ -207,7 +214,7 @@ namespace ColonyCouncil
                 var mark = here.RandomElement();
                 var god = Gods.ById(mark.god);
                 if (god == null) continue;
-                string line = Flavor.FromPool(SupperPool, p, null, null, mark.kind.ToString().ToLowerInvariant(), god.domain.ToString().ToLowerInvariant(), Voice(), GodShapes.LineTag(god));
+                string line = Flavor.FromPool(SupperPool, p, null, null, mark.kind.ToString().ToLowerInvariant(), god.domain.ToString().ToLowerInvariant(), Voice(mark), GodShapes.LineTag(god));
                 if (line.NullOrEmpty()) continue;
                 if (Speech.Say(p, line.Formatted(GodsOnMapWords.Args(god, false).Concat(new[] { (mark.words ?? "").Named("WHAT"), other.Named("OTHER") }).ToArray()).Resolve(), other))
                 {

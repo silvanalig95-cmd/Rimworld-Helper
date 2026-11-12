@@ -96,7 +96,7 @@ namespace ColonyCouncil
         private static void DebugSeer() => Push("a seer", GodCamps.SeerComes);
 
         [DebugAction("Rimfolk", "Gods in the world: a dream told (a gift)", allowedGameStates = AllowedGameStates.PlayingOnMap)]
-        private static void DebugGift() => Push("a dream and a gift (needs a god that favors the colony here; dev 'Gods: add favour here...'; Felt or Walking)", GodWorldGifts.Offer);
+        private static void DebugGift() => Push("a dream and a gift (needs a god that favors the colony here; dev 'Gods: add favour here...')", GodWorldGifts.Offer);
 
         [DebugAction("Rimfolk", "Gods in the world: gifts received now", allowedGameStates = AllowedGameStates.PlayingOnMap)]
         private static void DebugReceive()
@@ -173,19 +173,17 @@ namespace ColonyCouncil
         [DebugAction("Rimfolk", "Gods in the world: the moon returns a kind day tonight", allowedGameStates = AllowedGameStates.PlayingOnMap)]
         private static void DebugMirrorKind() => Push("a kindness returned (needs Selene known; a wounded colonist asleep, else something found)", b =>
         {
-            b.kindness += 4;
-            GodHealth.Mirror(b, Find.CurrentMap);
+            if (GodHealth.Mirror(Find.CurrentMap, 4, 0) && GodsOnMapBook.Instance != null) GodsOnMapBook.Instance.lastReturn = GodWorld.Now;
         });
 
         [DebugAction("Rimfolk", "Gods in the world: the moon returns a cruel day tonight", allowedGameStates = AllowedGameStates.PlayingOnMap)]
         private static void DebugMirrorCruel() => Push("a cruelty returned (needs Selene known)", b =>
         {
-            b.cruelty += 4;
-            GodHealth.Mirror(b, Find.CurrentMap);
+            if (GodHealth.Mirror(Find.CurrentMap, 0, 4) && GodsOnMapBook.Instance != null) GodsOnMapBook.Instance.lastReturn = GodWorld.Now;
         });
 
         [DebugAction("Rimfolk", "Gods in the world: the Hunger hears", allowedGameStates = AllowedGameStates.PlayingOnMap)]
-        private static void DebugHunger() => Push("the Hunger (needs someone dying, breaking or the colony starving; Felt or Walking)", b => GodVoid.Hourly(b, GodWorld.Now));
+        private static void DebugHunger() => Push("the Hunger (needs someone dying, breaking or the colony starving)", b => GodVoid.Hourly(b, GodWorld.Now));
 
         [DebugAction("Rimfolk", "Gods in the world: the Hunger takes now", allowedGameStates = AllowedGameStates.PlayingOnMap)]
         private static void DebugTake()

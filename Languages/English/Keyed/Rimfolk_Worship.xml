@@ -36,9 +36,8 @@
   <CC_Wsh_Inspect_Temple>A temple of {GOD}, given by {PAWN}.</CC_Wsh_Inspect_Temple>
   <CC_Wsh_Inspect_Pending>Waiting to be given to {GOD}.</CC_Wsh_Inspect_Pending>
   <CC_Wsh_Inspect_Offering>An offering waits here: {WHAT}.</CC_Wsh_Inspect_Offering>
-  <CC_Wsh_Dedicated_Believed>{PAWN} gave the {PLACE} to {GOD} with the words the colony knows. It is {SHRINE} now.</CC_Wsh_Dedicated_Believed>
   <CC_Wsh_Dedicated_Felt>{PAWN} gave the {PLACE} to {GOD}, and it is {SHRINE} now. Some say a warmth settled on it as the words were said.</CC_Wsh_Dedicated_Felt>
-  <CC_Wsh_Dedicated_Walking>{PAWN} gave the {PLACE} to {GOD}, and it shone a moment as the words were said; everyone near felt it. It is {SHRINE} now.</CC_Wsh_Dedicated_Walking>
+  <CC_Wsh_Dedicated_Plain>{PAWN} gave the {PLACE} to {GOD}, and it shone a moment as the words were said; everyone near felt it. It is {SHRINE} now.</CC_Wsh_Dedicated_Plain>
   <CC_Wsh_Why_Dedicated>{PAWN} made the {PLACE} into {SHRINE}</CC_Wsh_Why_Dedicated>
   <CC_Wsh_Why_TakenFrom>the {PLACE} given to {OTHER} instead</CC_Wsh_Why_TakenFrom>
   <CC_Wsh_Why_Undedicated>the {PLACE} taken from it</CC_Wsh_Why_Undedicated>
@@ -76,9 +75,8 @@
   <CC_Wsh_Kind_Other>a gift</CC_Wsh_Kind_Other>
   <CC_Wsh_Why_Offering>{WHAT} left at {SHRINE}</CC_Wsh_Why_Offering>
   <CC_Wsh_Taken_Title>The offering at {SHRINE}</CC_Wsh_Taken_Title>
-  <CC_Wsh_Taken_Taken_Believed>The offering at {SHRINE} is gone: {WHAT}.</CC_Wsh_Taken_Taken_Believed>
   <CC_Wsh_Taken_Taken_Felt>The offering at {SHRINE} was gone by morning: {WHAT}. Nobody saw it go.</CC_Wsh_Taken_Taken_Felt>
-  <CC_Wsh_Taken_Taken_Walking>The offering at {SHRINE} went before everyone's eyes, in a breath of light: {WHAT}.</CC_Wsh_Taken_Taken_Walking>
+  <CC_Wsh_Taken_Taken_Plain>The offering at {SHRINE} went before everyone's eyes, in a breath of light: {WHAT}.</CC_Wsh_Taken_Taken_Plain>
   <CC_Wsh_Taken_Animal>An animal came to {SHRINE} and ate the offering: {WHAT}.</CC_Wsh_Taken_Animal>
   <CC_Wsh_Taken_Passerby>Someone passing took the offering from {SHRINE} with them: {WHAT}.</CC_Wsh_Taken_Passerby>
   <CC_Wsh_Taken_Spoiled>The offering at {SHRINE} lay there and spoiled: {WHAT}.</CC_Wsh_Taken_Spoiled>
@@ -87,19 +85,15 @@
   <!-- ===================== Prayer: what came after is people's word, never the god's ===================== -->
   <CC_Wsh_Why_Prayer>{PAWN} prayed</CC_Wsh_Why_Prayer>
   <CC_Wsh_Answer_Title>After the prayer</CC_Wsh_Answer_Title>
-  <CC_Wsh_Answer_Sickness_Believed>{SICK}'s {ILLNESS} eased in the night after {PAWN} prayed to {GOD}.</CC_Wsh_Answer_Sickness_Believed>
   <CC_Wsh_Answer_Sickness_Felt>{SICK}'s {ILLNESS} eased in the night after {PAWN} prayed to {GOD}.</CC_Wsh_Answer_Sickness_Felt>
-  <CC_Wsh_Answer_Sickness_Walking>{PAWN} prayed to {GOD}, and a light stood over {SICK} a moment; the {ILLNESS} loosened its hold.</CC_Wsh_Answer_Sickness_Walking>
-  <CC_Wsh_Answer_Death_Believed>{PAWN} prayed for {DEAD}, and the grief let go a little.</CC_Wsh_Answer_Death_Believed>
+  <CC_Wsh_Answer_Sickness_Plain>{PAWN} prayed to {GOD}, and a light stood over {SICK} a moment; the {ILLNESS} loosened its hold.</CC_Wsh_Answer_Sickness_Plain>
   <CC_Wsh_Answer_Death_Felt>{PAWN} prayed to {GOD} for {DEAD}, and the grief let go a little. {PAWN} hopes to see {DEAD} in a dream.</CC_Wsh_Answer_Death_Felt>
-  <CC_Wsh_Answer_Death_Walking>{PAWN} prayed to {GOD} for {DEAD}, and the grief let go. {PAWN} says {DEAD} is safe across.</CC_Wsh_Answer_Death_Walking>
-  <CC_Wsh_Answer_Raid_Believed>{PAWN} prayed before the fight and came up from it steady-handed.</CC_Wsh_Answer_Raid_Believed>
+  <CC_Wsh_Answer_Death_Plain>{PAWN} prayed to {GOD} for {DEAD}, and the grief let go. {PAWN} says {DEAD} is safe across.</CC_Wsh_Answer_Death_Plain>
   <CC_Wsh_Answer_Raid_Felt>{PAWN} prayed to {GOD} before the fight and came up from it steady-handed.</CC_Wsh_Answer_Raid_Felt>
-  <CC_Wsh_Answer_Raid_Walking>{PAWN} rose from a prayer to {GOD} with a fighter's fire in the eyes.</CC_Wsh_Answer_Raid_Walking>
+  <CC_Wsh_Answer_Raid_Plain>{PAWN} rose from a prayer to {GOD} with a fighter's fire in the eyes.</CC_Wsh_Answer_Raid_Plain>
   <CC_Wsh_Answer_RaidReason>{PAWN} prayed to {GOD} before the fight.</CC_Wsh_Answer_RaidReason>
-  <CC_Wsh_Answer_Drought_Believed>Rain at last, the evening after the colony prayed for it.</CC_Wsh_Answer_Drought_Believed>
   <CC_Wsh_Answer_Drought_Felt>Rain at last, the evening after the colony prayed to {GOD} for it.</CC_Wsh_Answer_Drought_Felt>
-  <CC_Wsh_Answer_Drought_Walking>The sky opened with thunder the hour after the colony prayed to {GOD}, and the rain came.</CC_Wsh_Answer_Drought_Walking>
+  <CC_Wsh_Answer_Drought_Plain>The sky opened with thunder the hour after the colony prayed to {GOD}, and the rain came.</CC_Wsh_Answer_Drought_Plain>
   <CC_Wsh_Why_Credit_Sickness>{SICK} is well again, as {PAWN} prayed</CC_Wsh_Why_Credit_Sickness>
   <CC_Wsh_Why_Credit_Death>{PAWN} prayed for the dead</CC_Wsh_Why_Credit_Death>
   <CC_Wsh_Why_Credit_Raid>the colony came through the raid, as {PAWN} prayed</CC_Wsh_Why_Credit_Raid>
@@ -146,9 +140,8 @@
   <CC_Wsh_Why_GreatVow_BeastSpared>{PAWN} kept a vow</CC_Wsh_Why_GreatVow_BeastSpared>
   <CC_Wsh_Why_Wrath>{PAWN} broke a vow to it, and it took it hard</CC_Wsh_Why_Wrath>
   <CC_Wsh_Wrath_Title>A shadow over {PAWN}</CC_Wsh_Wrath_Title>
-  <CC_Wsh_Wrath_Believed>People give {PAWN} a wide berth since the broken vow.</CC_Wsh_Wrath_Believed>
   <CC_Wsh_Wrath_Felt>A shadow passed over {PAWN} that nobody could account for.</CC_Wsh_Wrath_Felt>
-  <CC_Wsh_Wrath_Walking>A shadow fell on {PAWN} in broad day and stayed the evening.</CC_Wsh_Wrath_Walking>
+  <CC_Wsh_Wrath_Plain>A shadow fell on {PAWN} in broad day and stayed the evening.</CC_Wsh_Wrath_Plain>
   <CC_Wsh_PilgrimOut>{PAWN} has set out on foot, on a pilgrimage to {GOD}'s holy place.</CC_Wsh_PilgrimOut>
   <CC_Wsh_Why_Pilgrimage>{PAWN} walked a pilgrimage to its holy place</CC_Wsh_Why_Pilgrimage>
   <CC_Wsh_Goal_PilgrimDone>walked to {GOD}'s holy place</CC_Wsh_Goal_PilgrimDone>
@@ -214,16 +207,13 @@
   <CC_Wsh_Impact_Offering>An offering carried to {SHRINE}</CC_Wsh_Impact_Offering>
   <CC_Wsh_Impact_OfferingBrief>an offering</CC_Wsh_Impact_OfferingBrief>
   <CC_Wsh_DryBegins_Title>The rain stays away</CC_Wsh_DryBegins_Title>
-  <CC_Wsh_DryBegins_Believed>The colony fears the rain will stay away now.</CC_Wsh_DryBegins_Believed>
   <CC_Wsh_DryBegins_Felt>The sky has gone hard and bright since the council said no.</CC_Wsh_DryBegins_Felt>
-  <CC_Wsh_DryBegins_Walking>The clouds turned aside from the colony the day the council said no.</CC_Wsh_DryBegins_Walking>
-  <CC_Wsh_DryPass_Believed>The rain clouds passed over again.</CC_Wsh_DryPass_Believed>
+  <CC_Wsh_DryBegins_Plain>The clouds turned aside from the colony the day the council said no.</CC_Wsh_DryBegins_Plain>
   <CC_Wsh_DryPass_Felt>Rain clouds came up and passed over again.</CC_Wsh_DryPass_Felt>
-  <CC_Wsh_DryPass_Walking>The rain clouds broke apart overhead again.</CC_Wsh_DryPass_Walking>
+  <CC_Wsh_DryPass_Plain>The rain clouds broke apart overhead again.</CC_Wsh_DryPass_Plain>
   <CC_Wsh_BeastGiven_Title>Given to {GOD}</CC_Wsh_BeastGiven_Title>
-  <CC_Wsh_BeastGiven_Believed>{PET} went off into the wild, given to {GOD}.</CC_Wsh_BeastGiven_Believed>
   <CC_Wsh_BeastGiven_Felt>{PET} went off into the wild. Some say {GOD} was waiting for it at the edge of the land.</CC_Wsh_BeastGiven_Felt>
-  <CC_Wsh_BeastGiven_Walking>{PET} walked straight to the edge of the land as if called, and nobody saw it again.</CC_Wsh_BeastGiven_Walking>
+  <CC_Wsh_BeastGiven_Plain>{PET} walked straight to the edge of the land as if called, and nobody saw it again.</CC_Wsh_BeastGiven_Plain>
 
   <!-- ===================== This week ===================== -->
   <CC_Wsh_Week_Vow_NoMeat>{PAWN} keeps a vow to {GOD}: no meat until {ABOUT} is well</CC_Wsh_Week_Vow_NoMeat>

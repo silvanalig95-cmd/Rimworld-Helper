@@ -18,10 +18,10 @@
 
   <!-- ===================== The stranger at the gate: the end ===================== -->
 
-  <!-- Plain: where the gods walk, it shows itself. Veiled: where they are only felt, it is simply gone. -->
+  <!-- Plain: a god drawn near enough shows itself (GodNear). Veiled: as the gods are felt, it is simply gone. -->
   <CC_GodM_Stranger_Title>The stranger at the gate</CC_GodM_Stranger_Title>
   <CC_GodM_Stranger_TitleVeiled>The stranger is gone</CC_GodM_Stranger_TitleVeiled>
-  <!-- Named where the colony knows it was the god (it showed itself, or the colony knows it and the gods walk plainly). {GOD} is the colony's name for it. -->
+  <!-- Named where the colony knows it was the god (it showed itself plainly, or the colony knows the sign as its own). {GOD} is the colony's name for it. -->
   <CC_GodM_Stranger_TitleNamed>{GOD} at the gate</CC_GodM_Stranger_TitleNamed>
   <CC_GodM_Animal_TitleNamed>{GOD} on the land</CC_GodM_Animal_TitleNamed>
   <CC_GodM_Boon_TitleNamed>Where {GOD} led</CC_GodM_Boon_TitleNamed>
@@ -208,6 +208,13 @@
   <CC_GodM_Saw_Return_FrostSeen>{WHO} saw frost creep over the ground about where {DOER} sleeps, in the night at {HOME}.</CC_GodM_Saw_Return_FrostSeen>
   <CC_GodM_Saw_Return_AnimalBack>{WHO} woke at {HOME} to an animal standing at their door, looking in.</CC_GodM_Saw_Return_AnimalBack>
   <CC_GodM_Saw_Return_AnimalBackSeen>{WHO} saw an animal come and stand at {DOER}'s door in the night at {HOME}, looking in.</CC_GodM_Saw_Return_AnimalBackSeen>
+  <!-- The same happening coming back to the same person (the same kind of deed done again): the next step of their story, spoken of as happening again. -->
+  <CC_GodM_Saw_Return_FoundAgain>It happened to {DOER} at {HOME} again in the night: this time something was left by their bed.</CC_GodM_Saw_Return_FoundAgain>
+  <CC_GodM_Saw_Return_GoodDreamAgain>It happened to {DOER} at {HOME} again in the night: this time a good dream they couldn't stop smiling about.</CC_GodM_Saw_Return_GoodDreamAgain>
+  <CC_GodM_Saw_Return_HealedAgain>It happened to {DOER} at {HOME} again in the night: this time their wound was far better by morning.</CC_GodM_Saw_Return_HealedAgain>
+  <CC_GodM_Saw_Return_NightmareAgain>It happened to {DOER} at {HOME} again in the night: a nightmare, worse than the last.</CC_GodM_Saw_Return_NightmareAgain>
+  <CC_GodM_Saw_Return_FrostAgain>It happened to {DOER} at {HOME} again in the night: this time a hard frost about where they sleep, and nowhere else.</CC_GodM_Saw_Return_FrostAgain>
+  <CC_GodM_Saw_Return_AnimalBackAgain>It happened to {DOER} at {HOME} again in the night: this time an animal came and stood at their door, looking in.</CC_GodM_Saw_Return_AnimalBackAgain>
 
   <!-- The stranger. -->
   <CC_GodM_Saw_StrangerTell>{WHO} heard the {TRAVELLER} at the gate say something no traveller could have known.</CC_GodM_Saw_StrangerTell>

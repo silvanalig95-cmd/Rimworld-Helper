@@ -42,11 +42,6 @@ namespace ColonyCouncil
         {
             var b = Book;
             if (b == null) return;
-            if (!GodsMath.AvatarsCome(Gods.Realness))
-            {
-                Say("in Believed no god comes to the gate (set how real the gods are first).");
-                return;
-            }
             PickGod(GodShapes.Stranger, g => Say(GodStranger.Fire(b, Find.CurrentMap, g, true) ? Gods.Name(g) + " is at the gate, in disguise." : "the stranger couldn't come (one already here, or no people at peace)."));
         }
 
@@ -225,7 +220,7 @@ namespace ColonyCouncil
             var b = Book;
             if (b == null) return;
             int now = Find.TickManager.TicksGame;
-            var sb = new StringBuilder("[Rimfolk] Gods on the map (" + Gods.Realness + "):\n");
+            var sb = new StringBuilder("[Rimfolk] Gods on the map:\n");
             var c = b.coming;
             sb.AppendLine("  coming: " + (c == null ? "none" : c.kind + " of " + Gods.Name(Gods.ById(c.god)) + " in " + ((c.at - now) / 2500f).ToString("0.0") + " h, waited " + c.waited));
             foreach (var o in b.omens) sb.AppendLine("  omen: " + o.kind + " of " + Gods.Name(Gods.ById(o.god)) + " in " + ((o.at - now) / 2500f).ToString("0.0") + " h");
@@ -241,6 +236,7 @@ namespace ColonyCouncil
             sb.AppendLine("  last: stranger " + (now - b.lastStranger) / 60000 + " d ago, animal " + (now - b.lastAnimal) / 60000 + " d ago, any " + (now - b.lastAny) / 60000 + " d ago");
             sb.AppendLine("  the moon tonight: " + GodOmens.MoonTonight + "; the deep rumbled " + b.deepWarnings + " times; woken " + b.woken?.LabelShort + "; risen " + b.risen?.LabelShort
                           + "; last return " + (now - b.lastReturn) / 60000 + " d ago");
+            sb.AppendLine("  lately: " + string.Join(", ", b.lately));
             foreach (var m in b.marks) sb.AppendLine("  mark: " + Gods.Name(Gods.ById(m.god)) + " at " + m.cell + " (" + m.kind + ", " + (now - m.tick) / 60000 + " d, " + m.visits + " visits): " + m.words);
             foreach (var g in Gods.All.Take(80))
             {

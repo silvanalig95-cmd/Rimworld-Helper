@@ -1582,14 +1582,19 @@ nobody can say for certain what it was or why. You see what the colonists see, a
 - **Rarer still.** Roots drawing themselves up out of the ground into a shape taller than any tree. A toad the size of a
   house surfacing in the marsh (Odyssey). A colony that keeps mining deep under the mountain, past every warning, may find
   out what it has been disturbing (Dragon's Descent).
-- **The night.** What was done by day sometimes comes back by morning: something found, a good dream, a wound healed, or
-  a nightmare, a frost, an animal at the door. It's talked about at breakfast.
+- **The night.** Around a full moon, and only after a day that stood out, what was done by day sometimes comes back by
+  morning: something found, a good dream, a wound healed, or a nightmare, a frost, an animal at the door. It's rare, a
+  moon apart at least, and seldom the same twice; when it comes back to someone for the same deed again, it is talked
+  about as happening again, and goes further. It's talked about at breakfast.
 - **The weather.** Sometimes the sky seems to answer, and someone outside always says so.
 
 What people saw goes into the god's history in their own words, the chronicle, their journals and their shared memories.
 The places stay talked about for years: someone walks out to one on a quiet day, it comes up at supper, and visitors ask
-about it. *Believed* brings none of this; the colony reads its gods into what happens anyway. Dev mode has *Gods: ...*
-actions to call each of these.
+about it. The gods are felt more than seen, but not all alike: what happens on your land, between the gods and in your
+colony can draw one of them nearer, a drought, a deep mine, a hard winter, offerings or harm, and a god drawn near may
+show itself plainly, answer more strongly, or take its true form, while the others stay hidden. Nothing tells you how
+near a god is; you see what it does. None of this repeats on a schedule: each thing keeps its own pace, comes only for a
+reason, and never on a day you could name. Dev mode has *Gods: ...* actions to call each of these.
 
 ### Offices and elections
 Five council seats: **speaker** (chairs meetings, everyone's trust rises a little each day), **marshal** (drills
@@ -4306,13 +4311,13 @@ gives without looking and the moon who returns at night what was done by day; Mo
 sings up the rain; and Ducat, the gold that will not stay still. They are an unseen presence, like a storyteller: no
 page tells you what a god thinks or wants. Their hands are in the world's own events (a thrumbo passing, a cold snap, an
 eclipse, a short circuit, mushrooms after rain), and you hear of them only as your colonists do: a believer says whose
-doing they think it was, sometimes wrongly, and while the gods are only felt someone near them says it was the weather.
+doing they think it was, sometimes wrongly, and unless the colony knows it was that god, someone near them says it was the weather.
 At the evening fire colonists tell each other the old stories a piece at a time, visitors tell their own people's by
 their own names for the gods, and neighbours' letters retell one whole or ask after something they heard happened at
 your place. The colony keeps its own book of the gods, a tab of the region window: what its people saw, were told and
 believe, dated and in the hand of whoever keeps it (the chaplain, the devout or the lettered), the names it has heard
 each god by, which may turn out to be one, and nothing more than they know. Every people reveres the gods its lore
-gives it. Settings: *Gods* (on) and *How real are the gods* (Believed, Felt, Walking; Felt).
+gives it. Settings: *Gods* (on). The gods are felt, one way for every game; how plainly each one acts is its own.
 
 **The gods in the world.** The gods act beyond the colony's walls and on its land like a storyteller you never see: the
 game's own weather, blight, flares and traders come, and nothing says whose hand it was or why. People say, though:

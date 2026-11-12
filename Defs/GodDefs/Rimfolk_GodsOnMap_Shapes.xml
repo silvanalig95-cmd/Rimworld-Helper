@@ -15,7 +15,10 @@
         in the sky more readily;
       omens: its own signs (GodOmens), in place of the five any god may send;
       rises: very rarely it rises from the land for an hour, with no body of its own (Hollin);
-      lineTag: the tag its own lines carry.
+      lineTag: the tag its own lines carry;
+      nearWhen: what on the land draws it nearer the colony (GodNear: Drought, DeepMine, HardWinter, Storm, FullMoon,
+        DarkMoon, Heat, Growth, Death, Sickness, Guests, Machines, Hoard, Trade, Herd, Cats, Desperate); the nearer it is,
+        the more plainly it acts, and a god drawn near enough walks plainly while the others stay hidden.
     The nine are named by their short name in gods (docs/gods-pantheon-brainstorm.md, "The nine"). The shapes by domain
     after them are the fallback only, for a god with no shape of its own.
   -->
@@ -33,13 +36,14 @@
     <voices><li>Rain</li></voices>
     <omens><li>Drift</li><li>AnimaHum</li><li>DryadsStill</li></omens>
     <lineTag>hollin</lineTag>
+    <nearWhen><li>Growth</li></nearWhen>
   </ColonyCouncil.GodShapeDef>
 
   <!--
     Smoulder, the Coil Under the Mountain: a dragon asleep in the rock. He never comes on the map: his shadow at noon,
     his breath in the steam, his turning in the deep mines. A colony that mines past every warning wakes him (GodWaking):
-    the deep working closes, and where the gods walk plainly his true form comes up out of the mountain for a few hours,
-    Dragon's Descent's true dragon (by name, when the mod is loaded), red and black.
+    the deep working closes, and when the deep has drawn him near enough his true form comes up out of the mountain for a
+    few hours, Dragon's Descent's true dragon (by name, when the mod is loaded), red and black.
   -->
   <ColonyCouncil.GodShapeDef>
     <defName>Rimfolk_GodShape_Smoulder</defName>
@@ -50,6 +54,7 @@
     <weather>false</weather>
     <omens><li>Shadow</li><li>Steam</li><li>Rumble</li></omens>
     <lineTag>smoulder</lineTag>
+    <nearWhen><li>DeepMine</li><li>Heat</li></nearWhen>
     <trueForm>True_Dragon</trueForm>
     <trueLook>Rimfolk_GodLook_Smoulder</trueLook>
   </ColonyCouncil.GodShapeDef>
@@ -71,6 +76,7 @@
     <weather>false</weather>
     <omens><li>Restless</li><li>Calm</li><li>Dream</li></omens>
     <lineTag>bellwether</lineTag>
+    <nearWhen><li>Herd</li></nearWhen>
   </ColonyCouncil.GodShapeDef>
 
   <!-- Morel, the Soft Mother: alive in every thread of mould and mushroom. Fairy rings, the smell of earth, white threads. -->
@@ -83,6 +89,7 @@
     <weather>false</weather>
     <omens><li>FairyRing</li><li>Earth</li><li>Threads</li></omens>
     <lineTag>morel</lineTag>
+    <nearWhen><li>Death</li><li>Sickness</li></nearWhen>
   </ColonyCouncil.GodShapeDef>
 
   <!-- Ennu, the Guest: the only one who wears human shapes, as the stranger at the gate. -->
@@ -94,6 +101,7 @@
     <weather>false</weather>
     <omens><li>Dream</li><li>Candle</li><li>Restless</li></omens>
     <lineTag>ennu</lineTag>
+    <nearWhen><li>Guests</li></nearWhen>
   </ColonyCouncil.GodShapeDef>
 
   <!-- Pip, the Hum: a young god in the wires. Lights that tap, static that breathes, a lamp that glows with no power. -->
@@ -106,6 +114,7 @@
     <weather>false</weather>
     <omens><li>Flicker</li><li>Static</li><li>Unpowered</li></omens>
     <lineTag>pip</lineTag>
+    <nearWhen><li>Machines</li></nearWhen>
   </ColonyCouncil.GodShapeDef>
 
   <!-- Cirrus, Who Drifts Above: the upper sky. A shadow too large at noon, a star that moves the wrong way; the aurora is it turning, an eclipse it closing an eye. -->
@@ -118,6 +127,7 @@
     <voices><li>Aurora</li><li>Eclipse</li><li>Thunder</li></voices>
     <omens><li>VastShadow</li><li>Star</li><li>Birds</li></omens>
     <lineTag>cirrus</lineTag>
+    <nearWhen><li>Storm</li></nearWhen>
   </ColonyCouncil.GodShapeDef>
 
   <!-- Hush, the Long White: frost and silence. Writing in the frost, a silence, the white figure at the edge of the night; snow when pleased, a cold snap when not. -->
@@ -130,6 +140,7 @@
     <voices><li>Snow</li><li>Cold</li></voices>
     <omens><li>FrostWriting</li><li>Silence</li><li>WhiteFigure</li></omens>
     <lineTag>hush</lineTag>
+    <nearWhen><li>HardWinter</li></nearWhen>
   </ColonyCouncil.GodShapeDef>
 
   <!-- Undertow, the Hunger: the void beneath. It never comes itself: a dark a light doesn't reach, a sweet voice to the desperate, Anomaly's signs. -->
@@ -142,6 +153,7 @@
     <weather>false</weather>
     <omens><li>Dark</li><li>Whisper</li><li>Candle</li></omens>
     <lineTag>undertow</lineTag>
+    <nearWhen><li>DarkMoon</li><li>Desperate</li></nearWhen>
   </ColonyCouncil.GodShapeDef>
 
   <!-- ===================== The ones added after the nine ===================== -->
@@ -162,6 +174,7 @@
     <voices><li>Clear</li><li>Heat</li></voices>
     <omens><li>StillSun</li><li>HeatHaze</li><li>Calm</li></omens>
     <lineTag>helios</lineTag>
+    <nearWhen><li>Heat</li></nearWhen>
   </ColonyCouncil.GodShapeDef>
 
   <ColonyCouncil.GodShapeDef>
@@ -174,6 +187,7 @@
     <omens><li>BigMoon</li><li>Dream</li><li>Calm</li></omens>
     <returns>true</returns>
     <lineTag>selene</lineTag>
+    <nearWhen><li>FullMoon</li></nearWhen>
   </ColonyCouncil.GodShapeDef>
 
   <!--
@@ -195,6 +209,7 @@
     <weather>false</weather>
     <omens><li>Restless</li><li>Calm</li><li>Dream</li></omens>
     <lineTag>mog</lineTag>
+    <nearWhen><li>Cats</li></nearWhen>
   </ColonyCouncil.GodShapeDef>
 
   <!--
@@ -213,6 +228,7 @@
     <trueForm>ColossusToad</trueForm>
     <trueLook>Rimfolk_GodLook_Murmur</trueLook>
     <lineTag>murmur</lineTag>
+    <nearWhen><li>Drought</li></nearWhen>
   </ColonyCouncil.GodShapeDef>
 
   <!-- Ducat, the Restless Gold: lives in gold and never stays. A glint, a golden beetle on a table, a coin found where none was dropped. -->
@@ -225,6 +241,7 @@
     <weather>false</weather>
     <omens><li>Glint</li><li>Beetle</li><li>Coin</li></omens>
     <lineTag>ducat</lineTag>
+    <nearWhen><li>Hoard</li><li>Trade</li></nearWhen>
   </ColonyCouncil.GodShapeDef>
 
   <!--

@@ -137,22 +137,12 @@ namespace ColonyCouncil
         Scoffing = 128
     }
 
-    /// <summary>How real the gods are (the setting "How real are the gods").</summary>
-    public enum GodRealness
-    {
-        /// <summary>Nothing supernatural: prayers, rites and omens read into chance; no avatars.</summary>
-        Believed,
-        /// <summary>The gods act, but never so plainly that nobody could doubt it (the default).</summary>
-        Felt,
-        /// <summary>The gods manifest openly, are named on the card and can be spoken with.</summary>
-        Walking
-    }
-
     /// <summary>
     /// The pure rules of the pantheon (docs/design/gods.md, "Core: the pantheon"), with no game types so Tools/Tests can
     /// check them: a god's domain from its own words and its faith's memes and precepts, its form by its people's age, the
     /// gods Rimfolk's makers give a people when Ideology isn't there, favour in words and its slow drift back toward
-    /// unknown, how a nature and a kind weigh favour, how real the gods are in each step, and the text placeholders.
+    /// unknown, how a nature and a kind weigh favour, and the text placeholders. How near each god is, and so how plainly it
+    /// acts, is GodNearMath's.
     /// </summary>
     public static class GodsMath
     {
@@ -903,23 +893,6 @@ namespace ColonyCouncil
             if (kind == GodKind.Hunger || kind == GodKind.Imprisoned) return kind;
             return GodKind.Fading;
         }
-
-        // ================= How real =================
-
-        /// <summary>Avatars come at all: in Felt (mostly in disguise or as sacred animals) and Walking; never in Believed.</summary>
-        public static bool AvatarsCome(GodRealness r) => r != GodRealness.Believed;
-
-        /// <summary>A god's card names it plainly (Walking), or says "some say" (Felt) or "the colony says" (Believed).</summary>
-        public static bool PlainCard(GodRealness r) => r == GodRealness.Walking;
-
-        /// <summary>A god can be spoken with and bargained with (Walking only).</summary>
-        public static bool CanSpeak(GodRealness r) => r == GodRealness.Walking;
-
-        /// <summary>An avatar comes in disguise, or as a sacred animal: in Felt nearly always, in Walking now and then.</summary>
-        public static float DisguiseShare(GodRealness r) => r == GodRealness.Felt ? 0.85f : r == GodRealness.Walking ? 0.3f : 1f;
-
-        /// <summary>The words a piece of news about a god opens with: "Folk say", "Some say", or nothing (the key's ending, CC_God_Real_*).</summary>
-        public static string Voice(GodRealness r) => r == GodRealness.Believed ? "Believed" : r == GodRealness.Felt ? "Felt" : "Walking";
 
         // ================= Words =================
 

@@ -106,10 +106,10 @@ namespace ColonyCouncil
             if (w == null || w.rainRate <= 0.1f) return;
             var book = WeatherBook.Of(map);
             if (book?.DaysBefore == null || book.DaysBefore.Count == 0) return;
-            // The dry days before today: rain today after three or more.
+            // The dry days before today: rain today after a real dry spell (WorshipMath.BickerDryDays or more).
             int dryBefore = 0;
             for (int i = book.DaysBefore.Count - 1; i >= 0 && book.DaysBefore[i].Dry; i--) dryBefore++;
-            if (dryBefore < 3 || !Interplay.Ready("worship-rain|" + Gods.HomeKey(map), 2f)) return;
+            if (dryBefore < WorshipMath.BickerDryDays || !Interplay.Ready("worship-rain|" + Gods.HomeKey(map), 2f)) return;
             RainAfterDrought(map, null);
         }
 

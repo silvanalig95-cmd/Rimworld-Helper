@@ -14,7 +14,7 @@
     <order>19</order>
     <summary>The gods are not explained here. The colony learns of them the way its people do.</summary>
     <tip>The colony's own book of the gods is a tab of the region window: what its people saw, were told and believe.</tip>
-    <description>Whatever gods this world has, nobody explains them, and neither does this Almanac. Your colonists will see things, hear the old stories from visitors and neighbors, argue about what they mean, and sometimes be wrong; what they saw, were told and believe is written in the colony's own book of the gods, a tab of the region window. Two settings, under The gods on the What's on page, decide whether the gods are there at all, and how real they are: only believed, felt but never certain (the default), or walking openly.</description>
+    <description>Whatever gods this world has, nobody explains them, and neither does this Almanac. Your colonists will see things, hear the old stories from visitors and neighbors, argue about what they mean, and sometimes be wrong; what they saw, were told and believe is written in the colony's own book of the gods, a tab of the region window. One setting, under The gods on the What's on page, decides whether the gods are there at all. How real they are is the same in every game: felt but never certain, though now and then one shows itself plainly, and what happens decides which.</description>
     <keywords><li>gods</li><li>pantheon</li><li>god</li><li>patron god</li><li>how real are the gods</li><li>archotech god</li></keywords>
     <seeAlso><li>Council_Alm_C_Peoples</li><li>Council_Alm_C_PeoplesG</li></seeAlso>
   </ColonyCouncil.AlmanacArticleDef>

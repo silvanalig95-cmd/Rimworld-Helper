@@ -57,5 +57,14 @@
     <!-- The wild's alphas and bosses (BeastSim.cs, after the everyday hurts with &#45;&#45;harm): the stampedes' and the beast nemeses' rates. -->
     <Compile Include="../../Source/ColonyCouncil/Beasts/BeastsMath.cs" Link="Linked/BeastsMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Hauling/HaulMath.cs" Link="Linked/HaulMath.cs" />
+    <!-- The gods' happenings a colony-year (GodsSim.cs, with &#45;&#45;gods): their pace, each happening's own rules. -->
+    <Compile Include="../../Source/ColonyCouncil/Gods/GodsMath.cs" Link="Linked/GodsMath.cs" />
+    <Compile Include="../../Source/ColonyCouncil/Gods/GodPaceMath.cs" Link="Linked/GodPaceMath.cs" />
+    <Compile Include="../../Source/ColonyCouncil/Gods/GodNearMath.cs" Link="Linked/GodNearMath.cs" />
+    <Compile Include="../../Source/ColonyCouncil/Gods/GodHandsMath.cs" Link="Linked/GodHandsMath.cs" />
+    <Compile Include="../../Source/ColonyCouncil/Gods/OnMap/GodsOnMapMath.cs" Link="Linked/GodsOnMapMath.cs" />
+    <Compile Include="../../Source/ColonyCouncil/Gods/World/GodWorldMath.cs" Link="Linked/GodWorldMath.cs" />
+    <Compile Include="../../Source/ColonyCouncil/Gods/Worship/WorshipMath.cs" Link="Linked/WorshipMath.cs" />
+    <Compile Include="../../Source/ColonyCouncil/Gods/Presence/GodPresenceMath.cs" Link="Linked/GodPresenceMath.cs" />
   </ItemGroup>
 </Project>
