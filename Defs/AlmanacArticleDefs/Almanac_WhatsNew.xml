@@ -31,6 +31,16 @@ When you load a save after an update, a letter lists the newest round once. The 
     <rounds>
 
       <li>
+        <version>0.226.1</version>
+        <date>12 November 2026</date>
+        <title>A guest may join</title>
+        <points>
+          <li>When the council agrees a guest should join the colony, they join, Hospitality guest or not: the council's answer now comes before the guest tab.</li>
+          <li>They are taken in the way Hospitality's own Recruit button does it, so their stay as a guest ends cleanly, and the event says what their people think of it.</li>
+        </points>
+      </li>
+
+      <li>
         <version>0.226.0</version>
         <date>12 November 2026</date>
         <title>A holy book</title>

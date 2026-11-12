@@ -12816,6 +12816,14 @@ and "The colony's book"): only what the pawns know, each line as theirs, no favo
   glitterworld kind kept home, never below one a colonist (four at least) and two for each one sick. A stock the player
   set is left alone for good; Rimfolk's is put back when someone stops being one of the medics. Said once a medic.
 
+### A guest may join when the council says so (the player's request, 12 November 2026; released 0.226.1)
+
+An event's "join the colony" (`DilemmaEffect_Recruit`) takes a Hospitality guest in like anyone else: the council's
+answer comes before the guest tab. It goes through Hospitality's own recruiting (`GuestWill.RecruitNow`, past the
+council's own objection, no goodwill price of its own), so the guest's stay closes as its Recruit button closes it; without
+that method, the guest leaves its guests' lord and is recruited by the game. The right-click "Invite" stays Hospitality's
+for its guests.
+
 ### Checking a new game version
 
 One DLL serves every supported version: it is built against the 1.6 references into `1.6/Assemblies`, and on 1.7

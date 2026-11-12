@@ -1577,7 +1577,6 @@ Granting one of {PAWN_possessive} wishes, or keeping a promise, can win {PAWN_ob
   <CC_Stranger_Away>{0} is away from home.</CC_Stranger_Away>
   <CC_Stranger_PetGone>The animal no longer belongs to the colony.</CC_Stranger_PetGone>
   <CC_Stranger_HospitalitySendAway>{0} is a Hospitality guest. Hospitality decides when guests leave, not the council.</CC_Stranger_HospitalitySendAway>
-  <CC_Stranger_HospitalityRecruit>{0} is a Hospitality guest. To invite them to stay, use their Guest tab.</CC_Stranger_HospitalityRecruit>
   <CC_Stranger_NoHeirloom>{0} no longer has the heirloom.</CC_Stranger_NoHeirloom>
 
   <CC_Nemesis_Deed_downed>struck down {0}</CC_Nemesis_Deed_downed>

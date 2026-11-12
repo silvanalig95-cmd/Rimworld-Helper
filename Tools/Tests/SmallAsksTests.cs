@@ -44,6 +44,11 @@ public static class SmallAsksTests
         string rack = File.ReadAllText(Path.Combine(src, "Weapons", "StorageContentsRatings.cs"));
         C(rack.Contains("\"LWM.DeepStorage.ITab_DeepStorage_Inventory\"") && rack.Contains("\"DrawThingRow\"") && rack.Contains("StandsDownWhy") && rack.Contains("WeaponGearTab.Bits(")
           && rack.Contains("ApparelGearTab.Bits("), "the weapon and apparel badge on Deep Storage's contents rows, by name, standing down without the mod");
+        // A guest joins when the council says so, Hospitality or not (the player, 12 November 2026).
+        string join = File.ReadAllText(Path.Combine(src, "Strangers", "StrangerEffects.cs"));
+        C(join.Contains("GuestWill.RecruitNow(x, 0, false)") && !join.Contains("CC_Stranger_HospitalityRecruit")
+          && !join.Contains("x.Faction == Faction.OfPlayer || Strangers.IsHospitalityGuest(x)"),
+            "an event's join takes a Hospitality guest in through Hospitality's own recruiting, never greyed for being a guest");
         return n;
     }
 }

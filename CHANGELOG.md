@@ -5,6 +5,13 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## A guest may join
+
+*12 November 2026, version 0.226.1*
+
+- When the council agrees a guest should join the colony, they join, Hospitality guest or not: the council's answer now comes before the guest tab.
+- They are taken in the way Hospitality's own Recruit button does it, so their stay as a guest ends cleanly, and the event says what their people think of it.
+
 ## A holy book
 
 *12 November 2026, version 0.226.0*

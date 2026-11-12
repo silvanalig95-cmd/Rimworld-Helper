@@ -8,7 +8,13 @@ using Verse.AI.Group;
 
 namespace ColonyCouncil
 {
-    /// <summary>The stranger joins the colony: a visitor who stays, a prisoner won over, a wild animal that follows A home.</summary>
+    /// <summary>
+    /// The stranger joins the colony: a visitor who stays, a prisoner won over, a wild animal that follows A home. A
+    /// Hospitality guest joins too: the council's answer overrides the guest tab (the player, 12 November 2026: "i need to
+    /// be able to join despite hospitality, events like these should always override"), taken in by Hospitality's own
+    /// recruiting so its guest state is closed as its Recruit button closes it (GuestWill.RecruitNow, with no goodwill price
+    /// of its own: the event's own effects carry what the guest's people think of it).
+    /// </summary>
     public class DilemmaEffect_Recruit : DilemmaEffect
     {
         public override bool ChanceEach => false;
@@ -16,26 +22,32 @@ namespace ColonyCouncil
         public override void Describe(DilemmaContext ctx, ImpactSheet sheet)
         {
             var x = ctx?.stranger;
-            if (x == null || x.Dead || !x.Spawned || x.Faction == Faction.OfPlayer || Strangers.IsHospitalityGuest(x) || (x.Downed && x.RaceProps.Humanlike)) return;
+            if (x == null || x.Dead || !x.Spawned || x.Faction == Faction.OfPlayer || (x.Downed && x.RaceProps.Humanlike)) return;
             sheet.Add(ImpactKind.People, 1, (x.RaceProps.Humanlike ? "CC_Impact_Join" : "CC_Impact_JoinAnimal").Translate(x.LabelShort).Resolve(), "CC_Impact_JoinBrief".Translate(x.LabelShort).Resolve(), "join|" + x.thingIDNumber);
         }
 
         public override string Unavailable(DilemmaContext ctx)
         {
             if (ctx.stranger == null || ctx.stranger.Dead || !ctx.stranger.Spawned) return "CC_Stranger_Gone".Translate(ctx.stranger?.LabelShort ?? "?").ToString();
-            if (Strangers.IsHospitalityGuest(ctx.stranger)) return "CC_Stranger_HospitalityRecruit".Translate(ctx.stranger.LabelShort).ToString();
             return null;
         }
 
         public override void Apply(DilemmaContext ctx)
         {
             var x = ctx.stranger;
-            if (x == null || x.Dead || !x.Spawned || x.Faction == Faction.OfPlayer || Strangers.IsHospitalityGuest(x)) return;
+            if (x == null || x.Dead || !x.Spawned || x.Faction == Faction.OfPlayer) return;
             if (chance < 1f && !Rand.Chance(chance)) return;
             var recruiter = ctx.a != null && !ctx.a.Dead ? ctx.a : ctx.Colonists.FirstOrDefault();
             if (recruiter == null) return;
             if (x.Downed && x.RaceProps.Humanlike) return;
-            InteractionWorker_RecruitAttempt.DoRecruit(recruiter, x, true);
+            // A Hospitality guest: through its own recruiting first; where that can't be found, out of its guests' lord and
+            // in as anyone else.
+            if (Strangers.IsHospitalityGuest(x))
+            {
+                if (GuestWill.RecruitNow(x, 0, false)) return;
+                x.GetLord()?.Notify_PawnLost(x, PawnLostCondition.ChangedFaction);
+            }
+            if (x.Faction != Faction.OfPlayer) InteractionWorker_RecruitAttempt.DoRecruit(recruiter, x, true);
         }
     }
 

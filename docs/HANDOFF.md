@@ -65,6 +65,19 @@ tree at once, alongside whatever runs. Each piece is merged as its own release, 
   the player's list; as storytellers, as a direction over any storyteller, or both. The player: "halt the current
   tasks to do the storytellers first!", then "leave out small hours, the frontier": eight are being built, with the
   direction over any storyteller.
+- 0.226.1, **A guest may join when the council
+  says so** (12 November 2026). The player, with "Dilemma: A love from outside" (Guido asking to go home with Gocrirnas,
+  a Hospitality guest of the Stormriders; "Ask Gocrirnas to join the colony" greyed "Not now: Gocrirnas is a
+  Hospitality guest. To invite them to stay, use their Guest tab.") and their save: "i need to be able to join despite
+  hospitality, events like these should always override, do right now". `DilemmaEffect_Recruit`
+  (`Strangers/StrangerEffects.cs`) no longer greys or skips a Hospitality guest: it takes them in through Hospitality's
+  own recruiting (`GuestWill.RecruitNow`, which goes past the council's own objection, with no goodwill price of its
+  own: the event's effects carry what the guest's people think), else out of the guests' lord and in by the game's
+  recruiting. The text `CC_Stranger_HospitalityRecruit` is gone. Every event using the effect (the strangers' and
+  moving-on dilemmas, the creatures' encounter, the reputation dilemma, the living events) now joins guests too. The
+  right-click "Invite" stays the guest tab's for guests. Try: a Hospitality guest courting a colonist, the dilemma "A
+  love from outside", answer "Ask ... to join the colony": they join, their guest stay closed as Hospitality's Recruit
+  button closes it.
 - 0.226.0, **The Gods' book, a holy book**
   (12 November 2026), the player's to-do of that day, built on "you can go ahead on the todos". The player, with a
   picture of Ducat's page (two dated entries, a trader's words at the gate and Avila's at supper): "the god's book
