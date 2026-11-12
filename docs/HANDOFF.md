@@ -45,6 +45,17 @@ tree at once, alongside whatever runs. Each piece is merged as its own release, 
   8. The Republic 71 to 74; the Fleet 75 to 78; the Helix Works 79 to 82.
   9. The Lattice 84, 85, 86; the Choir 87 to 90; the Vault 91 to 94.
   10. Between peoples 96 to 99; every people's art handed on, 100.
+- **To do when the player asks (12 November 2026): every visitor shops the market.** The player: "do visitors also
+  shop the markets? if not please implement that", then "later, to d[o]". How it is now (with RimMarket): people camped
+  on the colony's land and from camps near it walk over to the colony's stalls and buy what fits them
+  (`Visitors/VisitorTrade.cs`, `Camps/CampMarket.cs`, setting `marketCampersBuy`); Hospitality's guests may reach a
+  stall outside their area (`Integrations/MarketGuests.cs`) and shop by RimMarket's own duty; RimMarket's own market
+  days bring its shoppers. Not shopping: the game's visitor groups passing a day, trade caravans' people, Rimfolk's own
+  visitors (envoys, notables, letters' guests, the peoples' callers) and invited guests without Hospitality. When asked:
+  any peaceful visitor at the colony in the market's hours may stop at an open stall and buy what fits them with their
+  own silver (VisitorTradeMath.Wants by who they are: a trader's people their trade goods' kind, an envoy something fine,
+  travellers food that keeps), a purchase or two a visit, played out as the campers' are (at the counter, the article
+  into their pack, the silver set down at the stall), never on leaving in haste, at war, or with the map in danger.
 - **To do when the player asks (12 November 2026): new storytellers, ways to play.** The player: "i'd like you to
   create new and interesting storytellers. that can enhance existing or make up new ways to play the game &
   directions", then "if they don't have an image that's totally fine, and they also don't have to be this "character"
