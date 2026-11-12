@@ -39,7 +39,7 @@ namespace ColonyCouncil
         public static TerrainDef Planks => DefDatabase<TerrainDef>.GetNamedSilentFail("WoodPlankFloor");
 
         /// <summary>
-        /// The crossing's line: from a bank across the river to the other, straight (along a row, a column or a diagonal),
+        /// The crossing's line: from a bank across the river to the other, straight (along a row or a column),
         /// every water cell one a bridge stands in and nothing built there, two planks on each bank; the narrowest near the
         /// colony. Water cells first-to-last from one bank, then the planks. Null when the map has no river it can cross.
         /// </summary>
@@ -56,7 +56,8 @@ namespace ColonyCouncil
                 List<IntVec3> best = null;
                 float bestScore = float.MaxValue;
                 int bestWater = 0;
-                var dirs = new[] { new IntVec3(1, 0, 0), new IntVec3(0, 0, 1), new IntVec3(1, 0, 1), new IntVec3(1, 0, -1) };
+                // Along a row or a column only: nobody walks a diagonal of spans over deep water (the game's corners).
+                var dirs = new[] { new IntVec3(1, 0, 0), new IntVec3(0, 0, 1) };
                 foreach (var s in river)
                     foreach (var d in dirs)
                     {
