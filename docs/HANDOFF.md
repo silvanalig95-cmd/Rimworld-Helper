@@ -45,6 +45,19 @@ tree at once, alongside whatever runs. Each piece is merged as its own release, 
   8. The Republic 71 to 74; the Fleet 75 to 78; the Helix Works 79 to 82.
   9. The Lattice 84, 85, 86; the Choir 87 to 90; the Vault 91 to 94.
   10. Between peoples 96 to 99; every people's art handed on, 100.
+- **To do when the player asks (12 November 2026): visitors busy with their own day.** The player: "guests should spend
+  more of their time doing things. i don't want them to generate value for me, but it just looks a bit weird when they
+  spend most of their day just standing and walking around. they can talk, do actions, recreation, many things that
+  don't make them work for me", then "to do later". How it is now: the game's visitor groups wander their lord's spot;
+  Rimfolk's own visits have their duties (`Rimfolk_VisitWait`, `Rimfolk_VisitWork`), the market, services, guests who
+  help out (`GuestHelp`, work for the colony, which this is not) and small habits (`Immersion/MoreHabits`,
+  `SmallHabits`). When asked: a visitor's idle hours filled with things of their own, none of it work or value for the
+  colony: talking with each other and with colonists nearby (the game's social interactions, Rimfolk's outsider talk),
+  sitting by a fire or on a bench, warming their hands in the cold, sheltering from rain, eating from their own packs,
+  a nap in the shade, the colony's games and joy things where free (horseshoes, chess, an instrument, a telescope),
+  looking at its art, a prayer at a shrine of their faith, tending their own animals, children playing, a smoke or a
+  drink of their own; by their people's age and ways and the hour; given way to colonists at a joy thing; a guest of
+  Hospitality left to its own recreation where it already has it.
 - **To do when the player asks (12 November 2026): sending visitors away.** The player: "for later: i should be able
   to kick out visitors". How it is now: the right-click talks with outsiders (`Outsiders/`, `OutsiderAct`: Chat, Ask
   home, Meal, Drink, Gift, Good word, Letter, Teach, Bring, Invite, Befriend, Court, Faith, Spar, Provoke, Duel, Ask a
