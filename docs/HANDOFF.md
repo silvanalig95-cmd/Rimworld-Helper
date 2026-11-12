@@ -277,6 +277,13 @@ tree at once, alongside whatever runs. Each piece is merged as its own release, 
   side ("Some say... Others hold..."); unknown parts shown as silence or a torn page, so the player sees how much is
   still dark; in the style of scripture (chapter and verse, a drop capital, the keeper's notes in the margin, a change
   of hand marked) and ominous in tone. The unseen rule holds: nothing the pawns don't know, no favour, no truth marked.
+- **To do when the player asks (12 November 2026): decrees' cooldowns at about 70 %.** The player: "decrees should be
+  around 70% of their general cooldown only please". How it is now: each decree has its own `cooldownDays`
+  (`DecreeDef`, default 7, set per decree in `Defs/DecreeDefs/`); the council's understanding lets off up to 65 % of
+  it (`DecreeMath.CooldownTicks`, never under `MinCooldownDays` 1); `readyAt` is set from the full days at enactment
+  (`Decrees.cs`). When asked: one factor of 0.7 on every decree's cooldown (`DecreeMath.CooldownShare`), used where the
+  cooldown is set and where it is let off, so a 10-day decree waits 7 days before the council's understanding; the
+  cooldown shown on the decrees page follows; the floor of one day stays; a test for the factor.
 - 0.221.0, **Mog's luck and her stare**
   (11 November 2026), the follow-up to the gods on the map from the pantheon's Mog ("the one she chooses has a lucky
   season ... she sees Ennu for what it is, and stares at it"). DESIGN.md "The gods on the map", the sacred animal.
