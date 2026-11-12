@@ -351,7 +351,9 @@ namespace ColonyCouncil
             {
                 // Taking people in counts toward a name for hospitality (Character/ColonyTraits.cs).
                 if (ColonyTraitMath.Hosting(kind)) ColonyTraits.Tally("welcomed");
-                var d = Instance.Add(f, kind, k, name, weight > 0 ? weight : k.weight, Mathf.Max(1, count));
+                // The way to play leaning the game: What You Sow's peoples remember more strongly (Story/StoryDirection.cs).
+                int size = Mathf.Max(1, Mathf.RoundToInt((weight > 0 ? weight : k.weight) * StoryDirection.Factor(StoryWaysMath.Memory)));
+                var d = Instance.Add(f, kind, k, name, size, Mathf.Max(1, count));
                 // The world's history keeps every one, where the memory merges and fades them (World/Ledger/History.cs).
                 History.Deed(f, kind, k.side, weight > 0 ? weight : k.weight, Mathf.Max(1, count), name);
                 // A good turn big enough is a debt of honour, either way (Diplomacy/FavoursOwed.cs).

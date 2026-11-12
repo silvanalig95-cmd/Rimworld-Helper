@@ -3072,6 +3072,44 @@ didn't), which council decision, which decree and how long it has left, which vi
 moment, which setback (the building wrecked, the field lost, the friend who is ill). The trust mood lists what moved
 it lately.
 
+## Ways to play: eight storytellers and the story direction
+
+Rimfolk adds eight storytellers to the game's storyteller screen. None is a character with a name and a face: each is a
+way to play, named for what it does, with a plain plate in Rimfolk's look for its picture. Each is a whole storyteller
+with the game's own difficulty settings, and each leans Rimfolk's own happenings its way (its visitors, camps, letters,
+favours asked, missions, world events, friends in a fight, omens, and who a raid comes from):
+
+- **The Long Road**: the world calls the colony out. Raids at the gate about three quarters of the classic pace, more
+  ambushes and chance meetings on the road, quests a little more often; more letters from the region, favours called
+  in, camps and missions.
+- **Neighbours**: the peoples around are the story. Raids at about seven eighths of the pace, most of them from a people
+  with a reason (a wrong the colony did them, an old enmity), and the raid's letter names it; allies and friends come to
+  a fight more often; more letters, favours, calls to arms and visitors.
+- **The Turning Year**: the calendar decides. Quiet springs with sickness at the thaw, summers of heat waves and blight,
+  trade and camps in autumn, cold snaps and the hungry raids of late winter; about the classic pace over a year.
+- **What You Sow**: the colony's deeds decide, as the peoples remember them. Cruelty brings raids at the classic pace
+  and thins the roads to a quarter; kindness spares a third of the raids and brings traders, visitors and friends.
+- **Old Powers**: the world feels watched. Fewer raids, stranger threats in their place, omens and strange nights
+  (eclipses, auroras, a psychic calm), more pilgrims and seers, and word of strange skies. It names nothing.
+- **Lean Years**: scarcity is the enemy. Raids at about two thirds of the pace, a hardship about every week (blight
+  most, cold snaps, heat waves, storms), few traders, and word of famine, drought and hard winters.
+- **Rise and Fall**: arcs of about two years: a year of growth, then the region's word of a trouble (a war, a plague, a
+  famine, a hard winter, a strange sky), the trouble itself, the rebuilding; about the classic pace over an arc.
+- **Crossroads**: the colony as a market. Traders twice as often, visitors and travellers more, favours and debts;
+  raiders drawn by its wealth, half the pace for a poor colony up to the full pace for a rich one.
+
+**Every kind of event can still come.** A way leans toward something, never away from anything: nothing of Rimfolk's
+comes at less than a quarter of its own rate, every one of the game's kinds of event (the DLCs' and your mods' among
+them) keeps a route under every way, and no way rules any event out. Harm keeps the game's own rate: each way's threats
+come at the classic storyteller's pace or less over a year or an arc, its sickness about as often as the game's own,
+and Rimfolk's everyday hurts stay within the same budget (a way only moves them between kinds).
+
+**The story direction** (settings, What's on, Story direction) leans whichever storyteller you play, the game's or a
+mod's, toward one of the eight, through Rimfolk's own happenings and the reasons raids come for; the storyteller keeps
+its own pace of threats and sickness. With one of the eight as your storyteller it plays its own way unless a direction
+is chosen. Both change in a running game: the game's options, Gameplay, Change storyteller; and the setting. The
+Almanac's page "ways to play" has each in full.
+
 ## Rimfolk events
 Every few days, something happens to the colony from outside: Rimfolk's own events. They join your storyteller's own
 random events with about the odds of one of the game's own (a setting scales this, and they never make up more than

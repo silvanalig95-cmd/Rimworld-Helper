@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- The Almanac page on Rimfolk's ways to play and the story direction (Defs/StorytellerDefs/Rimfolk_Storytellers.xml, Source/ColonyCouncil/Story/). -->
+
+  <ColonyCouncil.AlmanacArticleDef>
+    <defName>Rimfolk_Alm_C_Storytellers</defName>
+    <label>ways to play</label>
+    <category>Council</category>
+    <order>16</order>
+    <summary>Eight storytellers named for what they do, and the story direction that leans any storyteller toward one of them.</summary>
+    <tip>Pick the way for a new game; change the direction any time in a game already running.</tip>
+    <description>Rimfolk adds eight storytellers to the game's storyteller screen. None of them is a character: each is a way to play, named for what it does, with a plain plate for its picture. Each is a whole storyteller with the game's own difficulty settings and the game's own endgame and DLC parts, and each leans Rimfolk's own happenings its way: its visitors, camps, letters, favours asked, missions, world events, friends in a fight, omens and who a raid comes from.
+
+A way leans toward something, never away from anything: every kind of event the game, its DLCs, your mods and Rimfolk have can still come under every one of them. Nothing of Rimfolk's comes at less than a quarter of its own rate, and the game's kinds of event each keep a route. Harm keeps the game's own rate: over a year or an arc each way's threats come at the classic storyteller's pace or less (Cassandra's: a cycle of about 4.6 days with threats, then 6 quiet), its sickness about as often as the game's own, and the everyday hurts Rimfolk adds stay within the same budget, a way only moving them between kinds.
+
+The story direction (Rimfolk's settings, What's on) leans whichever storyteller you play toward one of the eight, through Rimfolk's own happenings and the reasons raids come for. The storyteller keeps its own pace of threats and sickness. With one of the eight as your storyteller, it plays its own way unless a direction is chosen; a direction chosen is the one that leans.</description>
+    <sections>
+      <li>
+        <heading>The eight</heading>
+        <table>
+          <li>Way | How it plays | Raids against the classic pace | Rimfolk leans toward</li>
+          <li>The Long Road | The world calls the colony out: more of the story waits in the region | About three quarters at home, more ambushes and meetings on the road | Letters, favours asked, camps, missions, the region's word</li>
+          <li>Neighbours | The peoples around are the story | About seven eighths, most from a people with a reason | Visitors, letters, favours, friends in a fight, peoples remembering</li>
+          <li>The Turning Year | The calendar decides, the same shape each year | About the same over a year: quiet springs, hard winters | Camps and trade in autumn, letters in winter, the season's world events</li>
+          <li>What You Sow | The colony's deeds decide | The classic pace when cruel, two thirds when kind | Traders, visitors and friends for kindness; peoples remembering more</li>
+          <li>Old Powers | The world feels watched | About three quarters, with stranger threats in their place | Omens, the land and sky, pilgrims and seers, strange skies</li>
+          <li>Lean Years | Scarcity is the enemy | About two thirds | Fewer traders and camps; blights, cold and heat; famine and drought in the region's word</li>
+          <li>Rise and Fall | Long arcs of growth, a trouble foretold, the trouble, the rebuilding | About the same over an arc of two years | Plenty in the good years, the trouble's own news, friends in the rebuilding</li>
+          <li>Crossroads | The colony as a market | Half for a poor colony up to the classic pace for a rich one | Traders, camps, visitors, favours and debts; rivals with a grudge</li>
+        </table>
+      </li>
+      <li>
+        <heading>The Long Road</heading>
+        <text>Raids come to the gate on the classic cycle with longer quiet spells. Caravans meet the land's happenings as with any storyteller, and more besides: a chance meeting about every 6 days on the road and a small threat about every 12. Quests come a little more often. Rimfolk's letters from the region's notables come 1.6 times as often, so do favours called in and missions offered, camps 1.5 times, world events a little sooner, and the region's word leans to roads, towns, rushes and tolls.</text>
+      </li>
+      <li>
+        <heading>Neighbours</heading>
+        <text>Most raids the storyteller sends without saying from whom come from the hostile people with the most reason: the wrongs the colony did them as they remember them, an old enmity, a cold goodwill. The raid's letter names the old wrong. With no people that has reason enough, the game chooses as ever, and a share of the raids always does. Allies send fighters more often when the colony is in danger, and Rimfolk's friends in a fight come 1.8 times as often. Letters, favours called in, a people's call to arms and visitors come more often, the peoples remember a quarter more strongly, and the region's word leans to feuds, wars, courts and peace talks.</text>
+      </li>
+      <li>
+        <heading>The Turning Year</heading>
+        <text>Threats come by the season: about a third of their peak in spring, half in summer, three quarters in autumn, all of it in winter. Sickness comes with the thaw, more than twice as often in spring and less the rest of the year. Traders come mostly in autumn and visitors in summer. Each season has its own happenings: herds on the move and floods in spring, heat waves and blight in summer, cold snaps and auroras in winter, and from your mods crops sprouting in spring, droughts, wildfires and weeds in summer and a whiteout in winter (Vanilla Events Expanded, Seasonal Weather, Vanilla Plants Expanded - Flowers). Rimfolk's camps come with the good weather and stay away in deep winter, letters come by the winter fire, fights from Rimfolk's events are hardest in late winter, and the region's word follows the year: floods and herds, fairs, the harvest, the hard winter.</text>
+      </li>
+      <li>
+        <heading>What You Sow</heading>
+        <text>The colony's deeds are what the peoples remember of it: the good turns it did them against the wrongs. A colony nobody remembers anything of is in the middle. The crueller it is, the nearer its raids come to the classic pace, never past it, and the more of them come from a people it wronged; the kinder, the fewer, down to two thirds. Traders, visitors and friends in a fight come by the deeds: all of their number for a kind colony, a quarter for a cruel one. The peoples remember everything 1.4 times as strongly. Nothing is told: the world simply answers.</text>
+      </li>
+      <li>
+        <heading>Old Powers</heading>
+        <text>Fewer raids, and stranger threats in their place about every 25 days: psychic drones, maddened herds, things in the earth, a psychic storm (Vanilla Races Expanded - Archon), and the void's own where its content is on. Omens and strange nights about every 8 days: eclipses, auroras, a psychic calm, ambrosia, thrumbos passing, a meteorite, glowing spores, and from your mods a psychic hum, a meteor shower, a long night, a psychic bloom (Vanilla Events Expanded) or a mana surge and storm (A RimWorld of Magic). Pilgrims and seers come more often, and so do blessings and gifts no one can explain; the land and the sky stir more in Rimfolk's events, the past catches up a little more, and the region's word leans to strange skies, comets, faith and wrecks. It leans the world toward the uncanny and names nothing.</text>
+      </li>
+      <li>
+        <heading>Lean Years</heading>
+        <text>Raids come about two thirds as often, but a hardship about every 7 days: blight most of all, cold snaps and heat waves, storms, solar flares, alphabeavers, now and then a toxic fallout or a volcanic winter, and from your mods droughts, weeds in the fields, wildfires, acid rain, now and then a scorch or a whiteout (Vanilla Events Expanded, Vanilla Plants Expanded - Flowers, Seasonal Weather, Alpha Biomes). Traders come 2.5 times a year, orbital traders half as often, and Rimfolk's trading camps and market caravans half as often; camps and visitors a little less. The region's word leans to famine, drought, scarcity, sickness and hard winters, and the everyday hurts Rimfolk adds lean to the cold, the hungry and the sick, within the same budget.</text>
+      </li>
+      <li>
+        <heading>Rise and Fall</heading>
+        <text>An arc lasts about two years. The first 55 days are growth: few raids, traders, visitors and camps in plenty. Then the omens: a few days in, the region's word of the coming trouble comes as one of Rimfolk's world events (a war, a plague, a famine, a hard winter or a strange sky), set by the world and never the same as the last arc's. 25 days later the trouble itself, for 20 days: the war's raids, the plague's sickness, the famine's blights (and droughts and weeds with your mods), the winter's cold snaps (and a whiteout), the sky's darkness (a long night, a psychic hum). Then 20 days of rebuilding, quiet, with friends more likely at hand, and the next arc. Personal stories begin a little more often.</text>
+      </li>
+      <li>
+        <heading>Crossroads</heading>
+        <text>Traders come 12 times a year, orbital traders about twice as often, visitors and travellers more often, and Rimfolk's trading camps and market caravans twice as often. Raiders are drawn by the colony's wealth: half the classic pace for a poor colony, up to the full pace for a rich one, and about a third of them come from rivals with a grudge. Favours and debts, letters, camps and missions come more often, and the region's word leans to fairs, trade, roads, rushes and tolls.</text>
+      </li>
+      <li>
+        <heading>Choosing and changing</heading>
+        <points>
+          <li>A new game: pick the way on the storyteller screen, with any difficulty.</li>
+          <li>A game already running: the game's options, Gameplay, Change storyteller. The new way leans from that moment.</li>
+          <li>The story direction: Rimfolk's settings, What's on, Story direction. It leans from that moment, over any storyteller, and none takes it off.</li>
+          <li>What a way leans needs its part of Rimfolk switched on: camps, letters, world events, the gods. A part switched off stays off.</li>
+        </points>
+      </li>
+    </sections>
+    <keywords>
+      <li>storyteller</li>
+      <li>storytellers</li>
+      <li>ways to play</li>
+      <li>story direction</li>
+      <li>direction</li>
+      <li>long road</li>
+      <li>neighbours</li>
+      <li>turning year</li>
+      <li>what you sow</li>
+      <li>old powers</li>
+      <li>lean years</li>
+      <li>rise and fall</li>
+      <li>crossroads</li>
+    </keywords>
+  </ColonyCouncil.AlmanacArticleDef>
+
+</Defs>

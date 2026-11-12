@@ -1032,7 +1032,7 @@ namespace ColonyCouncil
                 return;
             }
             if (!Sched.FirstHourOfDay(now) || d.next < 0 || now < d.next || MapFacts.ThreatOn(home)) return;
-            if (!Rand.Chance(DealingMath.MarketCaravanChance)) return;
+            if (!Rand.Chance(DealingMath.MarketCaravanChance * StoryDirection.Factor(StoryWaysMath.Traders))) return;
             if (Arrival(IncidentDefOf.TraderCaravanArrival, home, d.people)) d.next = now + (int)(DealingMath.MarketCaravanGapDays * DealingMath.DayTicks);
         }
 

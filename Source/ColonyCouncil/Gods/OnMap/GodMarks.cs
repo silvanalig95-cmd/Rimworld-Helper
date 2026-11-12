@@ -81,7 +81,7 @@ namespace ColonyCouncil
         {
             b.marks.RemoveAll(m => m == null || Gods.ById(m.god) == null || Homes.MapOf(m.home) == null || !GodsOnMapMath.Remembered((now - m.tick) / GenDate.TicksPerDay));
             if (now - b.lastVisit < GodsOnMapMath.VisitGapDays * GenDate.TicksPerDay || !PlayOuts.On) return;
-            if (!Rand.Chance(GodsOnMapMath.VisitChance * GodPaceMath.Ramp(GodPace.DaysSince(b.lastVisit, now), GodsOnMapMath.VisitGapDays, GodsOnMapMath.VisitRampDays))) return;
+            if (!Rand.Chance(GodsOnMapMath.VisitChance * StoryDirection.Factor(StoryWaysMath.Gods) * GodPaceMath.Ramp(GodPace.DaysSince(b.lastVisit, now), GodsOnMapMath.VisitGapDays, GodsOnMapMath.VisitRampDays))) return;
             foreach (var map in Homes.All.ToList())
             {
                 // A quiet day only: no fight on the map and nothing big lately.

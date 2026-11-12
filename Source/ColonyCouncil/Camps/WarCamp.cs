@@ -95,7 +95,8 @@ namespace ColonyCouncil
             home.threatRolled = true;
             if (!CampTracker.Enabled || !CanCome(map, out var enemy, out var helper)) return;
             // An ally answers the call as an old foe of the attacker would: surely enough to be counted on.
-            if (!Rand.Chance(CampStoryMath.WarChance(helper.PlayerGoodwill, Allies.IsAlly(helper) || (enemy.def.humanlikeFaction && helper.HostileTo(enemy))))) return;
+            if (!Rand.Chance(CampStoryMath.WarChance(helper.PlayerGoodwill, Allies.IsAlly(helper) || (enemy.def.humanlikeFaction && helper.HostileTo(enemy)))
+                             * StoryDirection.Factor(StoryWaysMath.Allies))) return;
             var def = DefDatabase<IncidentDef>.GetNamedSilentFail("Council_Evt_WarCamp");
             if (def?.Worker == null) return;
             var parms = StorytellerUtility.DefaultParmsNow(def.category ?? IncidentCategoryDefOf.Misc, map);

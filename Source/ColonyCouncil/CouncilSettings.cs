@@ -169,6 +169,12 @@ namespace ColonyCouncil
         public bool eventsFromStoryteller = true;
         /// <summary>How likely each of them is, compared with one of the game's own events.</summary>
         public float storytellerEventWeight = 1f;
+        /// <summary>
+        /// The story direction (Story/StoryDirection.cs): one of Rimfolk's eight ways to play leaning whichever storyteller is
+        /// playing, through Rimfolk's own happenings and the reasons raids come for; none leaves the storyteller as it is
+        /// (and one of the eight storytellers leans its own way).
+        /// </summary>
+        public StoryWay storyDirection = StoryWay.None;
         /// <summary>World events: rare, region-wide situations that last a while (a plague, a warlord, a succession).</summary>
         public bool worldSituations = true;
         public float daysBetweenWorldSituations = 45f;
@@ -933,6 +939,7 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref daysBetweenWorldEvents, "daysBetweenWorldEvents", 4f);
             Scribe_Values.Look(ref eventsFromStoryteller, "eventsFromStoryteller", true);
             Scribe_Values.Look(ref storytellerEventWeight, "storytellerEventWeight", 1f);
+            Scribe_Values.Look(ref storyDirection, "storyDirection", StoryWay.None);
             Scribe_Values.Look(ref worldSituations, "worldSituations", true);
             Scribe_Values.Look(ref daysBetweenWorldSituations, "daysBetweenWorldSituations", 45f);
             Scribe_Values.Look(ref factionMemory, "factionMemory", true);

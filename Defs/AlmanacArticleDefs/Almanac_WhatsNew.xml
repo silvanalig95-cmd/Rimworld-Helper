@@ -31,6 +31,22 @@ When you load a save after an update, a letter lists the newest round once. The 
     <rounds>
 
       <li>
+        <version>0.227.0</version>
+        <date>12 November 2026</date>
+        <title>Ways to play</title>
+        <points>
+          <li>Eight new storytellers, each a way to play named for what it does, with no character and a plain plate: The Long Road, Neighbours, The Turning Year, What You Sow, Old Powers, Lean Years, Rise and Fall and Crossroads.</li>
+          <li>The Long Road calls the colony out into the region, Neighbours sends raids from peoples with a reason, The Turning Year gives every year the same shape, and What You Sow lets the world answer the colony's deeds.</li>
+          <li>Old Powers makes the world feel watched, Lean Years makes scarcity the enemy, Rise and Fall tells long arcs with a trouble foretold, and Crossroads makes the colony a market that draws traders and raiders by its wealth.</li>
+          <li>Every kind of event can still come under each of them: a storyteller leans toward something, never away from anything.</li>
+          <li>Threats stay at the classic storyteller's pace or less over a year, and sickness about as often as the game's own.</li>
+          <li>A new setting, Story direction, leans any storyteller you play toward one of the eight, in a new game or one already running.</li>
+          <li>The ways draw on your mods' events where they fit, such as Vanilla Events Expanded, Seasonal Weather and A RimWorld of Magic.</li>
+          <li>The Almanac has a new page on the ways to play.</li>
+        </points>
+      </li>
+
+      <li>
         <version>0.226.1</version>
         <date>12 November 2026</date>
         <title>A guest may join</title>

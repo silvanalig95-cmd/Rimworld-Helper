@@ -769,7 +769,8 @@ namespace ColonyCouncil
             float perYear = ArcMath.PerYear(frequency, people);
             int year = (int)(ArcMath.DaysPerYear * Day);
             int lastYear = past.Count(r => now - r.startTick < year) + active.Count(a => now - a.startedTick < year);
-            float chance = ArcMath.DailyChance(perYear, lastYear, (now - lastStartTick) / (float)Day, active.Count, ArcMath.MaxActive(frequency, people));
+            float chance = ArcMath.DailyChance(perYear, lastYear, (now - lastStartTick) / (float)Day, active.Count, ArcMath.MaxActive(frequency, people))
+                           * StoryDirection.Factor(StoryWaysMath.Arcs);
             if (!Rand.Chance(chance)) return;
             var options = Candidates(home, now);
             if (options.Count == 0) return;

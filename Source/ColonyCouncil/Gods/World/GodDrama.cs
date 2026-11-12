@@ -45,7 +45,7 @@ namespace ColonyCouncil
 
         internal static void Quarrel(GodWorldBook b)
         {
-            if (b.Of("quarrel").Any() || !b.Gap("quarrel", GodWorldMath.QuarrelGap) || !GodWorld.Roll(GodWorldMath.DayChance(GodWorldMath.QuarrelDays, GodWorld.Factor()))) return;
+            if (b.Of("quarrel").Any() || !b.Gap("quarrel", GodWorldMath.QuarrelGap) || !GodWorld.Roll(GodWorldMath.DayChance(GodWorldMath.QuarrelDays, GodWorld.Lean()))) return;
             var home = Homes.Seat;
             if (home == null) return;
             foreach (var a in GodWorld.Known.Where(g => GodWays.Sides(g).Count > 0).InRandomOrder().ToList())
@@ -201,7 +201,7 @@ namespace ColonyCouncil
 
         internal static void Ask(GodWorldBook b)
         {
-            if (!GodWorld.CanAsk || !b.Gap("ask", GodWorldMath.AskGap) || !GodWorld.Roll(GodWorldMath.DayChance(GodWorldMath.AskDays, GodWorld.Factor()))) return;
+            if (!GodWorld.CanAsk || !b.Gap("ask", GodWorldMath.AskGap) || !GodWorld.Roll(GodWorldMath.DayChance(GodWorldMath.AskDays, GodWorld.Lean()))) return;
             var home = Homes.Seat;
             if (home == null) return;
             foreach (var g in GodWorld.Near(home).InRandomOrder().ToList())

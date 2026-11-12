@@ -238,7 +238,7 @@ namespace ColonyCouncil
                     var word = Gods.Favour(g, map);
                     if (word < FavourWord.Favoured) continue;
                     float days = word == FavourWord.Beloved ? GodWorldMath.GiftDays / 2f : GodWorldMath.GiftDays;
-                    if (!GodWorld.Roll(GodWorldMath.DayChance(days, GodWorld.Factor(g, map)))) continue;
+                    if (!GodWorld.Roll(GodWorldMath.DayChance(days, GodWorld.Lean(g, map)))) continue;
                     var p = Chosen(g, map);
                     if (p == null) continue;
                     var (kind, what, label) = Pick(g, p);

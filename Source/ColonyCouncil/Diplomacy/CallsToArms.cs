@@ -89,7 +89,7 @@ namespace ColonyCouncil
             // A liege's call on the colony's levies (Fealty.cs) rides on the same hour, by the setting of its own.
             bool on = t.kind == Tie.Kind.Fealty ? Fealty.On : Pacts.On;
             if (!on || !Sched.FirstHourOfDay(Now) || !Tell.CanAsk) return;
-            if (!Attacked(f, home, out var s, out var enemy) || !Rand.Chance(PactMath.ArmsDaily)) return;
+            if (!Attacked(f, home, out var s, out var enemy) || !Rand.Chance(PactMath.ArmsDaily * StoryDirection.Factor(StoryWaysMath.Favours))) return;
             // One call for each attack: not again while the same war goes on against the same town (this session's asks, and
             // across a reload the history's call kept there against them lately).
             if (asked.Contains(Key(t.id, s.ID, enemy)) || KeptLately(s, enemy)) return;

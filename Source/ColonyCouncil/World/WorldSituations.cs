@@ -192,7 +192,7 @@ namespace ColonyCouncil
         /// <summary>The setting, varied: by default 30 to 60 days. A second one at once is less likely to come soon.</summary>
         private int Interval()
         {
-            float days = Mathf.Max(5f, S.daysBetweenWorldSituations) * Rand.Range(0.67f, 1.33f);
+            float days = Mathf.Max(5f, S.daysBetweenWorldSituations) * Rand.Range(0.67f, 1.33f) / Mathf.Max(0.25f, StoryDirection.Factor(StoryWaysMath.Situations));
             if (active.Any(s => !s.ended)) days *= 1.25f;
             return Mathf.RoundToInt(days * GenDate.TicksPerDay);
         }
@@ -297,6 +297,8 @@ namespace ColonyCouncil
             var ch = d.drawnBy.NullOrEmpty() ? null : CharacterTracker.For(map);
             if (ch != null && d.drawnBy.Any(ch.Is)) w *= 2f;
             int times = history.Count(r => r.defName == d.defName);
+            // The way to play leaning the game draws the kinds it is about (Story/StoryDirection.cs).
+            w *= StoryDirection.SituationFactor(d.kind);
             return w / (1f + times * 0.5f);
         }
 

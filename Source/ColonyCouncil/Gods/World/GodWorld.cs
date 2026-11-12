@@ -59,6 +59,13 @@ namespace ColonyCouncil
         /// </summary>
         public static float Factor(God g = null, Map map = null) => g == null ? 1f : GodNearMath.WorldFactor(GodNear.Of(g, map ?? Homes.Seat));
 
+        /// <summary>
+        /// <see cref="Factor"/> leaned by the way to play (Story/StoryDirection.cs: Old Powers' world feels watched), for what
+        /// never hurts anyone: pilgrims and seers, letters and envoys, quarrels and asks, blessings and gifts. Wrath, a god's
+        /// beasts and lightning, the void's hunger and a holy war keep <see cref="Factor"/>, the game's own rate.
+        /// </summary>
+        public static float Lean(God g = null, Map map = null) => Factor(g, map) * StoryDirection.Factor(StoryWaysMath.Gods);
+
         // ================= The day and the hour =================
 
         /// <summary>The region's day (World/Region/RegionBook.cs).</summary>

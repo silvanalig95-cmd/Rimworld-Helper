@@ -5,6 +5,19 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## Ways to play
+
+*12 November 2026, version 0.227.0*
+
+- Eight new storytellers, each a way to play named for what it does, with no character and a plain plate: The Long Road, Neighbours, The Turning Year, What You Sow, Old Powers, Lean Years, Rise and Fall and Crossroads.
+- The Long Road calls the colony out into the region, Neighbours sends raids from peoples with a reason, The Turning Year gives every year the same shape, and What You Sow lets the world answer the colony's deeds.
+- Old Powers makes the world feel watched, Lean Years makes scarcity the enemy, Rise and Fall tells long arcs with a trouble foretold, and Crossroads makes the colony a market that draws traders and raiders by its wealth.
+- Every kind of event can still come under each of them: a storyteller leans toward something, never away from anything.
+- Threats stay at the classic storyteller's pace or less over a year, and sickness about as often as the game's own.
+- A new setting, Story direction, leans any storyteller you play toward one of the eight, in a new game or one already running.
+- The ways draw on your mods' events where they fit, such as Vanilla Events Expanded, Seasonal Weather and A RimWorld of Magic.
+- The Almanac has a new page on the ways to play.
+
 ## A guest may join
 
 *12 November 2026, version 0.226.1*

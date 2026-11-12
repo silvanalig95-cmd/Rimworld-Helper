@@ -80,15 +80,89 @@ tree at once, alongside whatever runs. Each piece is merged as its own release, 
   own silver (VisitorTradeMath.Wants by who they are: a trader's people their trade goods' kind, an envoy something fine,
   travellers food that keeps), a purchase or two a visit, played out as the campers' are (at the counter, the article
   into their pack, the silver set down at the stall), never on leaving in haste, at war, or with the map in danger.
-- **To do when the player asks (12 November 2026): new storytellers, ways to play.** The player: "i'd like you to
-  create new and interesting storytellers. that can enhance existing or make up new ways to play the game &
-  directions", then "if they don't have an image that's totally fine, and they also don't have to be this "character"
-  with a name etc., i find that strange anyways". Proposed: `docs/storytellers-proposals.md`, ten ways to play named
-  for what they do (The Long Road, Neighbours, The Turning Year, What You Sow, Small Hours, The Frontier, Old Powers,
-  Lean Years, Rise and Fall, Crossroads), each built on Rimfolk's own systems, none repeating the 21 storytellers in
-  the player's list; as storytellers, as a direction over any storyteller, or both. The player: "halt the current
-  tasks to do the storytellers first!", then "leave out small hours, the frontier": eight are being built, with the
-  direction over any storyteller.
+- 0.227.0, **Eight ways to play: storytellers and the story direction**
+  (eight built: Small Hours and The Frontier left out at the player's word, "leave out small hours, the frontier";
+  12 November 2026). The player: "i'd like you to create new and interesting storytellers. that can enhance existing
+  or make up new ways to play the game & directions", then "if they don't have an image that's totally fine, and they
+  also don't have to be this "character" with a name etc., i find that strange anyways", then "halt the current tasks
+  to do the storytellers first!"; and the rule for every one of them: "but the storytellers will still always include
+  a chance for any kind of event, right? not that i lock myself out of some of them". DESIGN.md "Ways to play: eight
+  storytellers and the story direction (the player's request, 12 November 2026; not released yet)", README "Ways to
+  play", the Almanac's new page "ways to play" (`Rimfolk_Alm_C_Storytellers`, Council 16),
+  docs/storytellers-proposals.md marked built.
+  - Built: eight StorytellerDefs on the game's `BaseStoryteller` (The Long Road, Neighbours, The Turning Year, What You
+    Sow, Old Powers, Lean Years, Rise and Fall, Crossroads), no character, a plain plate each, the game's difficulty
+    settings, each description saying how it plays and that it leans, never shuts anything out; Rimfolk's levers on
+    its own happenings (17, a floor of a quarter, harm never above 1); the story direction setting leaning any
+    storyteller toward one of the eight; raids aimed by reason; the everyday hurts tilted within the same budget;
+    every incident category of the game and the player's mods with a route under every way.
+  - Code map: `Source/ColonyCouncil/Story/` (new): `StoryWaysMath.cs` (pure, linked into the tests and the balance
+    tool: the eight and their def names, the 17 lever keys, `Floor` 0.25, `MaxRaidReasons` 0.85, `Clamp`, `Combine`,
+    the season, deeds and arc tables and their means, the arc's phases (`PhaseAt`, 55/25/20/20 days of 120), troubles
+    (`TroubleOf`, never twice running), `OmenDay`, the comps' shares `ThreatAccept`, `DiseaseFactor`, `VisitAccept`,
+    `PickRecency`, `SituationFactor`, `HarmTilt`, `Grievance`), `StoryLevers.cs` (pure: the lever fields),
+    `StoryDirection.cs` (`StoryWayExtension`, the def's levers, shape, situation kinds and hurts leaned to, with its
+    config errors; `StoryDirection`: `Active` (the direction's def, else the storyteller's), `Factor(key)`,
+    `HappeningFactor`, `Quarter`, `Deeds` (the peoples' memory, once a day), `Phase`, `Trouble`, `SituationFactor`,
+    `HarmTilt`, `Describe`), `StoryComps.cs` (`StorytellerComp_WayCycle`, `WayDisease` (props subclass the game's
+    Disease props, so the illness budget reads it as the game's own), `WayPicks` with `WayPick`, `WayVisits`,
+    `WayOmen` and its `Try`), `StoryReasons.cs` (`StoryReasons.Pick`, `Reason`; `Patch_Story_RaidReasons`, a prefix on
+    `IncidentWorker_RaidEnemy.TryResolveRaidFaction` under `RimfolkPatches.On`), `StoryWaysDebug.cs` (dev actions). The
+    seams (one multiplication each): `HappeningTracker.StorytellerFactor` and `Weight`, `TravelLand.CampChance`,
+    `CampTracker` (trading camps), `Dealings.MarketHour`, `WorldWrites.Daily`, `FavourAsks.Daily`, `CallsToArms`,
+    `MissionPool.Factor`, `WorldSituations.Interval` and `Weight`, `GodWorld.Lean` (new, for the gods' doings that hurt
+    no one: `GodCamps` pilgrims and seers, `GodLetters` invitations, `GodDrama` quarrels and asks, `GodPeoples` envoys,
+    `GodHealth` blessings, `GodWorldGifts` gifts) and `GodMarks` (visits), `ArcTracker.TryStart`, `FactionMemory.Note`
+    (a deed's size), `WarCamps.Hourly`, `Schemes.Daily`, `Harm.Reckon` (`tiltNow`, in the shared weight and each pass).
+    `CouncilSettings.storyDirection` (`StoryWay`, saved as "storyDirection"), its dropdown on What's on
+    (`SettingsCatalog`, section `CC_SetSec_Direction`, a note per choice), keys in
+    `Languages/English/Keyed/Rimfolk_Story.xml`. `Defs/StorytellerDefs/Rimfolk_Storytellers.xml` (written by a one-off
+    generator; edit the XML itself now), `Textures/ColonyCouncil/Storytellers/*.png` from
+    `Tools/make_storyteller_plates.py` (580x620 and 228x244), `Defs/AlmanacArticleDefs/Almanac_Storytellers.xml`. `Tools/DefValidator` knows the game's
+    `BaseStoryteller` as a parent (rebuilt). Tests: `Tools/Tests/StoryWaysTests.cs` (1,444 checks). Balance:
+    `Tools/Balance/StorytellerSim.cs` (`--storytellers`). No new pass, nothing saved (no save model needed).
+  - Each storyteller (besides the game's caravan, quest, misc, sickness, orbital trader and stranger-in-black parts,
+    and two low base parts every way has: other faction arrivals every 25 days, other orbital visitors every 40, and
+    the Settlers' LTS every 60 with that mod):
+
+    | Way | Its parts | Rimfolk's levers |
+    |---|---|---|
+    | The Long Road | threats 4.6 on, 9.4 off; caravans: meetings every 6 days, small threats every 12; quests every 8 days, 1 to 2; travellers 9, traders 6, visitors 5 a year | visitors 1.2, camps 1.5, traders 1.2, letters 1.6, favours 1.6, missions 1.6, situations 1.3; roads, roads (bandits), towns, rushes, tolls; hurts: courierSick, sickHome, gateSickness, saddle |
+    | Neighbours | threats 4.6 on, 7.4 off; RaidFriendly 25 a year; visitors 6 | visitors 1.4, letters 1.5, favours 1.6, memory 1.25, allies 1.8, situations 1.2, fights 0.8, raidReasons 0.85; feud, war, peace, court, creed, levy, exile, sellswords; hurts: hatedTrader, rankEnemy, letterChallenge, heirGrudge, gateZeal, storesVisitor, guestNight |
+    | The Turning Year | `WayCycle` Seasons, big 1.5 to 3 and small 0.3 to 1.5 at the peak; `WayPicks` every 12 days by season (herds, floods, farm animals, heat, blight, cold, aurora); `WayDisease` Seasons; `WayVisits` traders 10, visitors 5.5 at the peak | shape Seasons (camps, traders, visitors, missions, letters, nature, gods, fights, schemes by the quarter, about 1 over the year); the season's situations |
+    | What You Sow | `WayCycle` Deeds on the classic cycle (big and small); `WayVisits` Deeds: friends 24, traders 8, visitors 7 at the peak | shape Deeds; memory 1.4, raidReasons 0.75 |
+    | Old Powers | threats 4.6 on, 10 off; `WayPicks` strange threats every 25 days; `WayPicks` omens every 8 days; misc every 6 | gods 1.8, nature 1.4, pasts 1.2, situations 1.2, fights 0.7; sky, comet, faith, wreck; hurts: sleepwalk, soldierNight, restlessWalk, worstNight, dawnWalk |
+    | Lean Years | threats 4.6 on, 11 off; `WayPicks` hardships every 7 days; misc every 7; traders 2.5, visitors 3, travellers 5 a year; orbital 7 on, 14 off | traders 0.5, camps 0.8, visitors 0.8, situations 1.2, fights 0.7; hunger, drought, scarcity, sickness, weather; hurts: hungryHands, coldNight, gateCold, nightWatch, sickWorkOn, dirtyWater, landAilments, hurriedHarvest |
+    | Rise and Fall | `WayCycle` Arc, big 2 to 3.8 and small 0.4 to 2 at the peak; `WayPicks` the trouble's own every 5 days; `WayOmen`; `WayDisease` Arc; `WayVisits` Arc: friends 18, traders 9, visitors 6 | shape Arc; arcs 1.3, raidReasons 0.6 |
+    | Crossroads | `WayCycle` None on the classic cycle by threat points (300: 0.5, 1500: 0.85, 4000: 1); traders 12, visitors 7, travellers 10 a year; orbital 5 on, 5 off | traders 2, camps 1.3, visitors 1.3, letters 1.2, favours 1.3, missions 1.1, raidReasons 0.35; trade, fair, road, roads, rush, toll, sellswords; hurts: hatedTrader, storesVisitor, guestNight, gamblerTurns, rankEnemy, gateSickness |
+
+  - From the player's mods, soft (`MayRequire`, poolcheck OK), only events fired by chance in their own mods: Vanilla
+    Events Expanded (VEE_CropSprout, VEE_Drought, VEE_Whiteout, VEE_Scorch, VEE_LongNight, VEE_PsychicHum,
+    VEE_PsychicStimulation, VEE_PsychicBloom, VEE_MeteoriteShower), Seasonal Weather (Wildfire), Vanilla Plants Expanded
+    - Flowers (VPEF_Weeds), Alpha Biomes (AB_AcidRain), A RimWorld of Magic (ManaSurge, TM_ManaStorm), VRE Archon
+    (VREA_PsychicStorm). Left out: Odyssey's Drought (fired by hand), WanderersSkylantern, HarbingerTreeSpawn,
+    MechCluster, AA_Eclipse and VRE_BloodMoon (no chance of their own), SrFactionWar (a battle on the home map).
+  - Balance (`dotnet run -c Release --project Tools/Balance -- --storytellers`, 400 runs): big threats a year, first
+    year then the next two, the classic storyteller 7.4 and 8.2: The Long Road 5.9, 6.2; Neighbours 6.4, 7.5; The
+    Turning Year 7.9, 8.1; What You Sow kind 5.1, 5.7, of no name 6.4, 7.0, cruel 7.2, 8.0; Old Powers 7.3, 7.7; Lean
+    Years 5.2, 5.6; Rise and Fall 6.9, 8.3; Crossroads 3.8, 5.7. Every way at the classic pace or under over the years.
+  - Try in the game (dev mode on):
+    1. A new game: the storyteller screen lists the eight after the game's own, each with its plate and description.
+       Pick one, any difficulty.
+    2. A running game: Esc, Options, Gameplay, Change storyteller (the game's own); or Rimfolk's settings, What's on,
+       Story direction, for a lean over any storyteller (applies at once). The dev action "Rimfolk", "Ways to play: next
+       story direction" steps through them.
+    3. "Ways to play: show the levers now (log)": the way leaning the game (the direction or the storyteller), the
+       season, deeds and arc, and every lever in the def and now.
+    4. Neighbours or What You Sow: give a hostile people a wrong (capture or kill one of theirs), then "Ways to play:
+       who a raid with a reason would come from" and a storyteller raid (dev "Execute incident", RaidEnemy, no faction): it comes
+       from that people and its letter names the wrong.
+    5. Rise and Fall: "Ways to play: Rise and Fall's omen now" starts the arc's trouble as a world situation of its
+       kind (the trouble is in the levers' log).
+    6. Harm: "Harm four: the shared budget (log)" shows each leaned kind's "leaned x2.0" (Lean Years: hungryHands,
+       coldNight...) and the budget unchanged.
+    7. What can't be checked without the game: the screen with the plates, each comp firing in a real colony, the raid
+       aimed by reason and its letter, the omen's world situation, the direction in a running game.
 - 0.226.1, **A guest may join when the council
   says so** (12 November 2026). The player, with "Dilemma: A love from outside" (Guido asking to go home with Gocrirnas,
   a Hospitality guest of the Stormriders; "Ask Gocrirnas to join the colony" greyed "Not now: Gocrirnas is a

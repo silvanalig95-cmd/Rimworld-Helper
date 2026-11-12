@@ -32,7 +32,8 @@ namespace ColonyCouncil
                 if (t.state != Tie.State.Open || !FavoursOwed.ColonyOwes(t)) continue;
                 var f = Refs.Faction(t.to);
                 if (f == null || !Diplomacy.Deals(f) || Diplomacy.Hostile(f)) continue;
-                if (!FavourMath.CallsToday(Rand.Value)) continue;
+                // The way to play leaning the game asks more or fewer of them (Story/StoryDirection.cs).
+                if (!FavourMath.CallsToday(Rand.Value / Math.Max(0.01f, StoryDirection.Factor(StoryWaysMath.Favours)))) continue;
                 if (!FavourMath.AskAllowed(LastAsk(f), now)) continue;
                 var home = FavoursOwed.HomeOf(t);
                 if (home == null) continue;

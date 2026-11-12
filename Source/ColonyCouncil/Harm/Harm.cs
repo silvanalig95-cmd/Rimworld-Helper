@@ -85,6 +85,20 @@ namespace ColonyCouncil
         private static readonly float[] passes = new float[HarmKinds.All.Length];
         private static readonly bool[] onNow = new bool[HarmKinds.All.Length];
         private static readonly float[] daysNow = new float[HarmKinds.All.Length];
+        /// <summary>Each kind's tilt by the way to play leaning the game (1 for none), as last reckoned.</summary>
+        private static readonly float[] tiltNow = new float[HarmKinds.All.Length];
+
+        private static float StoryDirectionTilt(HarmKind k)
+        {
+            try
+            {
+                return StoryDirection.HarmTilt(k.key);
+            }
+            catch
+            {
+                return 1f;
+            }
+        }
         private static int passAt = int.MinValue;
         private static Game passGame;
         private static float budgetNow, sharedNow;
@@ -118,15 +132,18 @@ namespace ColonyCouncil
             {
                 var k = all[i];
                 daysNow[i] = HarmBudgetMath.DaysSince(book?.LastOf(k) ?? HarmMath.Never, now);
+                // The way to play leaning the game tilts the share toward the kinds it is about (Story/StoryDirection.cs): the
+                // tilt is in the shared weight as in each pass, so the hurts move between kinds and their total stays the budget.
+                tiltNow[i] = StoryDirectionTilt(k);
                 onNow[i] = SystemOnSafe(k.system);
                 if (!onNow[i]) continue;
                 float w = Math.Max(0f, k.weight);
                 if (k.founding) budget += w;
-                shared += w * HarmBudgetMath.Variety(daysNow[i]);
+                shared += w * HarmBudgetMath.Variety(daysNow[i]) * tiltNow[i];
             }
             budgetNow = budget;
             sharedNow = shared;
-            for (int i = 0; i < all.Length; i++) passes[i] = HarmBudgetMath.PassFor(HarmBudgetMath.Variety(daysNow[i]), budget, shared);
+            for (int i = 0; i < all.Length; i++) passes[i] = HarmBudgetMath.PassFor(HarmBudgetMath.Variety(daysNow[i]) * tiltNow[i], budget, shared);
         }
 
         /// <summary>For the dev tools: each kind, whether its system is on, days since it came, its pass; and the budget.</summary>
@@ -141,6 +158,7 @@ namespace ColonyCouncil
             for (int i = 0; i < all.Length; i++)
                 sb.Append("  ").Append(all[i].label).Append(": ").Append(onNow[i] ? "on" : "off").Append(", base ").Append(all[i].weight.ToString("0.000"))
                     .Append(daysNow[i] >= HarmBudgetMath.VarietyDays ? "" : ", came " + daysNow[i].ToString("0.0") + " days ago")
+                    .Append(tiltNow[i] == 1f ? "" : ", leaned x" + tiltNow[i].ToString("0.0"))
                     .Append(", pass ").Append(passes[i].ToString("0.00")).AppendLine();
             return sb.ToString();
         }
