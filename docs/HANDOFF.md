@@ -215,7 +215,17 @@ tree at once, alongside whatever runs. Each piece is merged as its own release, 
   Felt, as the game is built around (the unseen gods, "some say", the colony's own book), and fold in from Walking what
   fits it: the true forms when Smoulder wakes or Murmur surfaces (they are seen, so plainly named), and perhaps a
   little less disguise; drop Believed and Walking and their branches and line tags; in their place, if the player
-  wants one, a plain "how often the gods act" setting (rarely, as now, often) that changes only the rates.
+  wants one, a plain "how often the gods act" setting (rarely, as now, often) that changes only the rates. **The
+  player's answer (12 November 2026), saved for later, not to start yet:** "yes, let's stick to one level and use felt
+  as primary reference. i just want the "walking"-exclusive options also to be able to appears, like smoulders true
+  form. i guess the level could be dynamic, some gods might become more present depending on situations, relations,
+  actions etc. also the "cards" level on felt is great, the god should only be named if it's sure it was them." So:
+  one way, Felt's as the base; every Walking-only thing can still happen (true forms, a god seen plainly, a stronger
+  answer, an offering vanishing in light), when a god is more present; how present each god is moves on its own, by
+  what happens (the situation: a drought for Murmur, a deep mine for Smoulder, a hard winter for Hush), its relations
+  (a quarrel, a tie) and what the colony does (offerings, harm, its book), so one god can walk plainly while another
+  stays hidden; the cards stay as Felt's: a god is named only where the colony is sure it was that god
+  (`Gods.CardName`), else unnamed or "some say".
 - 0.221.0, **Mog's luck and her stare**
   (11 November 2026), the follow-up to the gods on the map from the pantheon's Mog ("the one she chooses has a lucky
   season ... she sees Ennu for what it is, and stares at it"). DESIGN.md "The gods on the map", the sacred animal.
