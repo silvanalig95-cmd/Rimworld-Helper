@@ -302,7 +302,7 @@
       <li Class="ColonyCouncil.PeopleKindExtension">
         <gifts>
           <li><trait>TM_Sniper</trait><chance>0.03</chance></li>
-          <li><trait>Gladiator</trait><chance>0.02</chance></li>
+          <li><trait>Gladiator</trait><chance>0.01</chance></li>
           <li><trait>TM_SuperSoldier</trait><chance>0.02</chance><ages>2~3</ages></li>
         </gifts>
         <!-- The issue of another age, armour and arms together. -->

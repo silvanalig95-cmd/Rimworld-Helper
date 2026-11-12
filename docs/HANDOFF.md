@@ -174,32 +174,6 @@ tree at once, alongside whatever runs. Each piece is merged as its own release, 
   distance, as the couriers and journeys reckon it), their reading and writing time, and the answer's own road back;
   a refusal or silence is only known when it could be (a returning rider, their courier, or no word by the time an
   answer would have come). Check each against the map: the courier gone off the map is not the letter delivered.
-- **To do when the player asks (12 November 2026): A RimWorld of Magic's classes and spells among the peoples, seen.**
-  The player: "one thing i want to ask whether you integrate rimworld of magic "classes" & spells into our custom made
-  faction? i don't think i've seen any of them, but they should surely be thematically fitting. since these spells can
-  be quite strong or even broken, just use them sparingly overall, unless of course the faction revolves around magic
-  or so, so that it's thematically fitting always". How it is now: each people's kinds give a class by their lore
-  (`PeopleKindExtension.gifts`, `Peoples/PeopleGifts.GiveClass`, one gift a pawn at most), at 2 to 10 % for most kinds
-  and 20 to 35 % for the elders and leaders of the peoples built on it (Stormglass storm-born and heart of frost,
-  Mossborn, Herders, River Folk and Tamers druids, Scholars arcanists and chronomancers, Order, Quiet Bell and Pilgrims
-  priests and paladins, Kiln Guild enchanters and geomancers, Lattice, Wheel and Signal Line technomancers, the
-  Wardens' rangers, Ashen Banner commanders and gladiators), and only where the mod has that class on and its own
-  faction share isn't none. In the player's save (League of Toba, 11 November 2026) 3 of 25 peoples' pawns had one (a
-  Mossborn thorn a ranger, a League guard a sniper, a Scholars' don a chronomancer); nothing marks them, and a visitor
-  never casts in peace, so they go unseen. When asked, proposed: 1. a caster looks like one (their class's own robe,
-  hood or staff from the mod, where it has one, checked against `docs/player-mods`); 2. said aloud (a visitor names
-  their craft on arriving, the colony remarks on it, their letters and the diplomacy page mention "among them,
-  druids"); 3. a spell in peace now and then, played out with the mod's own effects and only where it fits the people
-  (a priest of the Quiet Bell heals one of the colony's sick, a Mossborn druid makes a field grow, a storm-born of the
-  Conclave brings rain in a drought, a Kiln Guild enchanter's work for silver), rare and once a visit at most; 4. in a
-  fight, the peoples' casters cast (the mod's own AI) as allies and as raiders of the peoples built on magic; 5. the
-  shares reviewed against each people's lore: kept sparing everywhere but the peoples built on magic. **The player
-  picked all five (12 November 2026), not to start yet:** "yes, that sounds great. add everything to do-do list.
-  visitors should be able to cast benefitial spells if they are happy or allied with me. raiders should be able to cast
-  harmful spells, although there we might need to revisit because some spells are quite broken, but let's give it a
-  try." So: a visitor casts only helpful spells, and only while content on the map or of a people allied with the
-  colony; raiders cast harmful ones, the mod's strongest kept out at first and the list watched (a play test, then a
-  pass on any spell that proves broken).
 - **To do when the player asks (12 November 2026): one way the gods are, not three.** The player: "what do the
   different god settings levels do? is it just about how many events are generated? if yes we can keep that, but
   otherwise I don't think we have to spend effort to maintain different levels, instead just focusing on one and
@@ -314,6 +288,91 @@ tree at once, alongside whatever runs. Each piece is merged as its own release, 
   treated" chooses), never so many that the home's stores fall below what its sick need; a stock the player set by
   hand left alone; taken off again when someone stops being a medic. Shown where the game shows it (the Assign tab),
   and said once ("Alder packs two kits of medicine").
+- Not released: no version, no What's new round, About.xml and CHANGELOG untouched. **Magic among the peoples, seen**
+  (12 November 2026), the player's to-do of that day, built on "you can go ahead on the todos". The player: "one thing i
+  want to ask whether you integrate rimworld of magic "classes" & spells into our custom made faction? i don't think i've
+  seen any of them, but they should surely be thematically fitting. since these spells can be quite strong or even broken,
+  just use them sparingly overall, unless of course the faction revolves around magic or so, so that it's thematically
+  fitting always"; on the five parts proposed: "yes, that sounds great. add everything to do-do list. visitors should be
+  able to cast benefitial spells if they are happy or allied with me. raiders should be able to cast harmful spells,
+  although there we might need to revisit because some spells are quite broken, but let's give it a try". DESIGN.md
+  "Magic among the peoples, seen (the player's request, 12 November 2026; not released yet)", README "Magic among the
+  peoples", the Almanac's six peoples' pages (*What they wear, carry and know*, a point each) and A RimWorld of Magic's
+  page (*With Rimfolk*), keywords unchanged. Everything reads the mod by name; without it nothing happens.
+  - Built, all five parts: 1. a caster looks like one: as a new pawn of the peoples is made with a class (Rimfolk's gift
+    or the mod's own roll), their class's own piece from the mod by their people's age (priest and monk disciple hood;
+    druid, geomancer and summoner hood of protection; arcanist arcane hood; chronomancer, enchanter and minstrel wizard
+    hat; wandering mage the wanderer's cloak; paladin the Helm of the Valiant, over a later age's armour the Mantle of
+    Protection; fire, ice and lightning mages their wand in the tribal and medieval ages, only for one already armed, an
+    arcane hood after; fighters and technomancers none, the mod has none for them), a signature piece it replaces giving it
+    the people's colour. 2. Said aloud: a visitor with a class names their craft to the first colonist with them in their
+    first six hours, who remarks on it (two lines in turn); a colonist who sees a raider's caster within 28 cells names it,
+    once a people a map every six hours; the people's card (the diplomacy page) says "A few among them are druids and
+    rangers." (for a people built on magic "Among them are ..., more of them than among most peoples."), the commonest three
+    crafts its kinds give that fit its age and that the mod has on for it; their letters carry the same words for an aside
+    now and then ("Our druids and rangers send their regards"). 3. A spell in peace: a visitor of a class with one (priest
+    Advanced Heal and Purify, paladin Heal, druid Cure Disease and Regenerate, ice mage Rainmaker), not hostile, up and
+    about, no danger, not leaving, not yet this visit, and content (mood half or more) or of an allied people, rolls 6 in a
+    hundred an hour among the peoples built on magic and 3 elsewhere, and casts with the mod's own job for the colony's
+    most hurt (bleeding or wounds of 4), an infection or a flu, an old scar, or rain in a heat wave, a fire or a week with
+    nothing fallen (not freezing, not while it rains); told once the mod has the ability on cooldown and the job is over (a
+    message, a cure that didn't take told as tried; the caster's word and the answer of the one it was for, or of a
+    colonist under the rain); once a visit, saved; nothing with the mod's "AI can cast" off. 4. In a fight the mod's own
+    AI and settings cast for every people's casters, as allies and raiders; Rimfolk keeps its most broken spells out (two
+    guards, off with the deeper game hooks), so the AI picks another. 5. The shares reviewed: the four peoples built on
+    magic (the Conclave, the Mossborn, the Choir, the Bell: callings seers, grovekeepers, listeners, sextons) up to 15 in a
+    hundred a kind and 40 their leader, the rest 6 and 15; the order's healers 15 to 6 and prior 35 to 15, the elder
+    druids of the herders, river folk and tamers to 15, the wardens', Banner's, guild's, league's, Wheel's, Line's,
+    union's and pilgrims' heads to 15, their ordinary kinds above 6 to 6; the Mossborn's kinds 10 to 14 and eldest 35, the
+    Conclave's readers 12 (ice mages for the rain now among them), walkers 11, apprentices 4, first reader 15, the Choir's
+    cantors and quiet wardens 8 and first voice 5, the Bell's gravewardens 10 and sextons 5. A test checks every kind.
+  - Code: `Source/ColonyCouncil/Peoples/Magic/` (new): `PeoplesMagicMath.cs` (pure, linked into the tests: the callings
+    built on magic, `ShareCap`, `Garb`, `PeaceSpells`, `MayCastInPeace`, `PeaceChance`, `RainWanted`, `CuredAtFirst`,
+    `Among`, `KeptOut` with why), `PeoplesMagic.cs` (`Craft`, `Word`, `Dress`, `Among`, `CardLines`, `LetterTags`,
+    `KeptFrom`; `PeoplesMagicCard` on the people's card; `RomSpells`, the mod's casting by name: `IsMagicUser`,
+    `AbilityData.Powers`, `PawnAbility.Def`, `CooldownTicksLeft`, `CanCastPowerCheck`, `GetJob` with AbilityContext 1 as the
+    mod's own casting for those not of the colony asks it, its "AI can cast" setting), `PeoplesMagicWatch.cs`
+    (`PeoplesMagicBook`, a game component: `cast`, the visitors who cast this visit, saved and modelled in
+    `Tools/save_estimate.py`; `PeoplesMagicWatch`, the pass every 250 ticks at `Sched.RarePeoplesMagic` = 179, on Rimfolk's
+    clock as `Pass.RarePeoplesMagic`: names, foes, the hour's peace roll, the casts followed), `PeoplesMagicPatches.cs`
+    (`Patch_PeoplesMagicKeptOut` on `TorannMagic.TM_Calc.HasResourcesForAbility`, `Patch_PeoplesMagicKeptOutCheck` on
+    `MagicAbility`/`MightAbility.CanCastPowerCheck`), `PeoplesMagicDebug.cs`. Small hooks: `PeopleGifts.Give` (the gift
+    split into `GiveGift`, then `PeoplesMagic.Dress`; `ClassOn` internal), `LetterForm.Theirs` (`LetterTags`). Defs: the
+    peoples' gift shares (18 files), `Defs/FlavorPoolDefs/Rimfolk_PeoplesMagic_Lines.xml` (`Rimfolk_Pool_MagicName`,
+    `MagicSeen`, `MagicFoe`, `MagicCast`, `MagicThanks`), seven `among:magic` asides in `Rimfolk_Letters_Aside.xml`, Keyed
+    `Rimfolk_PeoplesMagic.xml` (each class one and many, the card, `CC_PeoplesMagic_Did_*`) and the clock's pass name.
+    Tools: the def validator knows {CRAFT}, {ACRAFT}, {CRAFTS} and {AMONG}. Tests: `Tools/Tests/PeoplesMagicTests.cs`
+    (about 400 checks), the pools in `ImmersionTests`, {AMONG} in `LetterFormTests`.
+  - Kept out of the peoples' hands, to revisit after a play test (`PeoplesMagicMath.KeptOut`, each with why): the masters'
+    Firestorm, Blizzard, Eye of the Storm, Meteor, Holy Wrath, Orbital Strike, Gateway (Fold Reality), Resurrection,
+    Summon Poppi, Blood Moon, Scorn, Lich Form and Grave Blade (a base wrecked, a whole map hit, the dead raised or a
+    fallen raider brought back at a stroke); Lightning Storm and Psychic Shock (uncontrolled, over everyone near);
+    Chronostatic Field (a fight decided at a stroke); Polymorph (the colony's people turned into beasts); Summon Elemental
+    (a small raid of its own); Sabotage (the colony's turrets, mechs and guns turned on themselves); the Mark-IV turret
+    (rockets and mortars); Raise Undead; the sniper's Headshot (kills outright), the super soldier's 60mm mortar and
+    breaching charge (a barrage before the fight, a wall down at a throw), the psionic's storm. Everything else (fireballs,
+    lightning bolts, frost rays, poison, heals and shields, the fighters' techniques) the mod's AI decides.
+  - Not run here (none of it could be): the mod's components waking for a class given at generation (the flags set back,
+    as before), its `GetJob` and `TryTakeOrderedJob` for a visitor under a lord, the cast job walking into range and the
+    cooldown read after, `CanCastPowerCheck` by reflection with its out reason, the two Harmony prefixes on the mod's
+    methods (by index, `__0`, `__1`), the Rainmaker's weather read at once, the hoods and wands worn as made (the mod's
+    stuff and the colour taken from a signature piece), the card line on the diplomacy page, the asides in a letter.
+  - Try in the game (dev mode, A RimWorld of Magic loaded; Debug actions, Rimfolk): 1. "Peoples' magic: a caster of
+    theirs here now, as a visitor (testing)...", pick a priest of the hospitaller order near a colonist: they wear a
+    disciple hood; within a few seconds they name their craft and the colonist answers, in turn over their heads.
+    2. "Peoples' magic: the casters on this map (log)": their worn pieces, the mod's abilities they hold, any kept out, and
+    whether they may cast in peace now and why not. 3. Hurt a colonist (the game's dev tool, a cut or a burn), then
+    "Peoples' magic: a spell in peace now (testing)": the priest walks into range and casts Advanced Heal (the mod's motes
+    and sound); a message names who healed whom, the priest says a word and the colonist answers. With the visitor's
+    mood low and their people not allied, the log says why not. 4. A druid of the Mossborn or the herders and a colonist
+    with the flu or an infection: the cure; a heat wave (the dev incidents) and an ice mage of the Conclave (from a reader
+    or the first reader): the rain starts, someone outside remarks on it. 5. The card of the Mossborn, the Conclave or the
+    order on the diplomacy page: "A few among them are ..." or "Among them are ..., more of them than among most
+    peoples."; "Peoples' magic: what each people is known for (log)" lists every people's line. 6. A raid of the Conclave
+    or the Mossborn (the game's dev raid, the faction picked): a colonist names a caster on sight; they cast by the mod's
+    AI; no Firestorm, Blizzard, Meteor, Eye of the Storm or the other kept-out spells (the log's list of what they hold
+    shows them, the guards stop them). 7. "Peoples: their gear, kinds of people and gifts (log)..." for the Conclave and
+    the order: casters with their pieces, fewer priests among the order than before, more casters among the Conclave.
 - 0.221.0, **Mog's luck and her stare**
   (11 November 2026), the follow-up to the gods on the map from the pantheon's Mog ("the one she chooses has a lucky
   season ... she sees Ennu for what it is, and stares at it"). DESIGN.md "The gods on the map", the sacred animal.

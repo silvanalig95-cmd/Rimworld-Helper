@@ -339,7 +339,7 @@
     <modExtensions>
       <li Class="ColonyCouncil.PeopleKindExtension">
         <gifts>
-          <li><trait>Gladiator</trait><chance>0.04</chance></li>
+          <li><trait>Gladiator</trait><chance>0.03</chance></li>
           <li><trait>TM_Sniper</trait><chance>0.03</chance></li>
         </gifts>
         <!-- A league of the medieval age guards its caravans with great bows, crossbows and swords; of the spacer age, with charge rifles. -->
@@ -396,7 +396,7 @@
     <modExtensions>
       <li Class="ColonyCouncil.PeopleKindExtension">
         <gifts>
-          <li><trait>TM_Sniper</trait><chance>0.08</chance></li>
+          <li><trait>TM_Sniper</trait><chance>0.06</chance></li>
         </gifts>
         <!-- Outriders of the medieval age ride with crossbows and swords; of the spacer age, with charge rifles. -->
         <ageArms>
@@ -505,7 +505,7 @@
     <modExtensions>
       <li Class="ColonyCouncil.PeopleKindExtension">
         <gifts>
-          <li><trait>TM_Commander</trait><chance>0.2</chance></li>
+          <li><trait>TM_Commander</trait><chance>0.15</chance></li>
         </gifts>
       </li>
     </modExtensions>

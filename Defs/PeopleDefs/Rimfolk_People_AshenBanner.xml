@@ -272,9 +272,9 @@
     <modExtensions>
       <li Class="ColonyCouncil.PeopleKindExtension">
         <gifts>
-          <li><trait>Gladiator</trait><chance>0.04</chance></li>
-          <li><trait>Paladin</trait><chance>0.02</chance></li>
-          <li><trait>TM_SuperSoldier</trait><chance>0.03</chance><ages>2~3</ages></li>
+          <li><trait>Gladiator</trait><chance>0.03</chance></li>
+          <li><trait>Paladin</trait><chance>0.01</chance></li>
+          <li><trait>TM_SuperSoldier</trait><chance>0.02</chance><ages>2~3</ages></li>
         </gifts>
         <!-- The issue of another age, armour and weapon together. -->
         <ageArms>
@@ -356,7 +356,7 @@
     <modExtensions>
       <li Class="ColonyCouncil.PeopleKindExtension">
         <gifts>
-          <li><trait>Ranger</trait><chance>0.04</chance></li>
+          <li><trait>Ranger</trait><chance>0.03</chance></li>
           <li><trait>TM_Sniper</trait><chance>0.03</chance></li>
         </gifts>
         <ageArms>
@@ -434,8 +434,8 @@
     <modExtensions>
       <li Class="ColonyCouncil.PeopleKindExtension">
         <gifts>
-          <li><trait>TM_Commander</trait><chance>0.1</chance></li>
-          <li><trait>Paladin</trait><chance>0.04</chance></li>
+          <li><trait>TM_Commander</trait><chance>0.04</chance></li>
+          <li><trait>Paladin</trait><chance>0.02</chance></li>
         </gifts>
         <!-- The officers keep their cape and sash in every age: only the helmet and the weapon change. -->
         <ageArms>
@@ -539,8 +539,8 @@
     <modExtensions>
       <li Class="ColonyCouncil.PeopleKindExtension">
         <gifts>
-          <li><trait>TM_Commander</trait><chance>0.3</chance></li>
-          <li><trait>Gladiator</trait><chance>0.05</chance></li>
+          <li><trait>TM_Commander</trait><chance>0.12</chance></li>
+          <li><trait>Gladiator</trait><chance>0.03</chance></li>
         </gifts>
       </li>
     </modExtensions>

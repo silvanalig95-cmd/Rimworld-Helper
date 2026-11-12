@@ -264,8 +264,8 @@
             </paths>
             <chance>0.35</chance>
           </li>
-          <li><trait>StormBorn</trait><chance>0.05</chance></li>
-          <li><trait>HeartOfFrost</trait><chance>0.03</chance></li>
+          <li><trait>StormBorn</trait><chance>0.06</chance></li>
+          <li><trait>HeartOfFrost</trait><chance>0.06</chance></li>
         </gifts>
       </li>
     </modExtensions>
@@ -306,7 +306,7 @@
             </paths>
             <chance>0.1</chance>
           </li>
-          <li><trait>StormBorn</trait><chance>0.05</chance></li>
+          <li><trait>StormBorn</trait><chance>0.08</chance></li>
           <li><trait>TM_Sniper</trait><chance>0.03</chance></li>
         </gifts>
         <!-- Crossbows in the tribal and medieval ages; charge rifles in the spacer age. -->
@@ -383,6 +383,7 @@
             </paths>
             <chance>0.15</chance>
           </li>
+          <li><trait>HeartOfFrost</trait><chance>0.04</chance></li>
         </gifts>
       </li>
     </modExtensions>
@@ -489,6 +490,7 @@
             <chance>0.45</chance>
           </li>
           <li><trait>StormBorn</trait><chance>0.1</chance></li>
+          <li><trait>HeartOfFrost</trait><chance>0.05</chance></li>
         </gifts>
       </li>
     </modExtensions>

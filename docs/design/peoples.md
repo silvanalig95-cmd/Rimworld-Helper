@@ -446,7 +446,11 @@ only freshly made pawns of these kinds, with the deeper game hooks on; `PeoplesG
   enchanter 2%, scholars arcanist 5% and chronomancer 3%, the provost arcanist 12% and chronomancer 8%; enclave hands
   technomancer 4%, marshals psionic 5%; river ferry hands druid 3%, wardens ranger 5%, archers ranger 8%, the river master
   druid 30%. Since the check against the player's own mods: lay archers ranger 4%, herd wardens gladiator 4%, league
-  wayfarers wayfarer 3% and minstrel 2%, pilgrims monk 3%.
+  wayfarers wayfarer 3% and minstrel 2%, pilgrims monk 3%. Reviewed against each people's lore on 12 November 2026
+  (DESIGN.md "Magic among the peoples, seen"; `PeoplesMagicMath.ShareCap`): sparing everywhere, a kind's classes at most
+  6% and a people's head 15%, but among the four peoples built on magic (the Conclave, the Mossborn, the Choir and the
+  Bell) 15% and 40%; so the hospitallers' priests are 6% and the prior 15%, the elder and master druids 15%, the guards'
+  and archers' classes 6% together. The defs hold the shares; a test checks each kind against its cap.
 - A psylink (Royalty), the game's own way with no letter (each level a psycast of its level); with Vanilla Psycasts
   Expanded, whose psylinks give points instead, one of the kind's paths it can follow and a few of its powers in order,
   as that mod's own pawn generation does (read by name). Scholars 5% (1 to 2 levels, chronopath or empath), the provost

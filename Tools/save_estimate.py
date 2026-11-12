@@ -797,6 +797,9 @@ MODEL = {
     "Peoples/Events/PeopleEventsBook.cs:fates": ("fixed", 10, V, "per trust: how each crate went that isn't there (counted under trusts)"),
     "Peoples/Events/PeopleCamps.cs:trail": ("fixed", 2, 40, "the lantern post's hunters out on the trail, while the camp stands"),
     "Peoples/Events/PeopleCamps.cs:travellers": ("fixed", 4, 40, "the hostel's travellers resting there now, while the camp stands"),
+    # Magic among the peoples (Peoples/Magic/PeoplesMagicWatch.cs): the visitors of the peoples who cast a spell for the colony this
+    # visit, by id, dropped when they leave the map, PeoplesMagicMath.MaxCast at most.
+    "Peoples/Magic/PeoplesMagicWatch.cs:cast": ("while", 4, V, "the visitors who cast for the colony this visit (once a visit each), dropped when they leave"),
     # The gods (Gods/GodBook.cs): the pantheon, one record a god (its names, domains, form, kind and nature, colours, the
     # peoples and faiths that hold it), built once per world (30 to 70 in a world of a dozen to twenty peoples) and a few
     # more as peoples arise and newborns come (GodsMath.MaxNewborns); the ties between them, GodTiesMath.MaxTies a god at

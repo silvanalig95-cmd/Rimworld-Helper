@@ -302,7 +302,7 @@
     <modExtensions>
       <li Class="ColonyCouncil.PeopleKindExtension">
         <gifts>
-          <li><trait>Geomancer</trait><chance>0.03</chance></li>
+          <li><trait>Geomancer</trait><chance>0.05</chance></li>
         </gifts>
       </li>
     </modExtensions>
@@ -338,7 +338,7 @@
     <modExtensions>
       <li Class="ColonyCouncil.PeopleKindExtension">
         <gifts>
-          <li><trait>Paladin</trait><chance>0.08</chance></li>
+          <li><trait>Paladin</trait><chance>0.1</chance></li>
         </gifts>
         <!-- For what will not stay down: a flamer or a firebomb in the industrial and spacer ages. -->
         <ageArms>

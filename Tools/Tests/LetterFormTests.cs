@@ -31,7 +31,9 @@ public static class LetterFormTests
         // The writer's god (Gods/GodWords.cs, Letter): its name, its epithet, what it is.
         "GOD", "GODEPITHET", "GODOF", "GODTALE", "GODHAND",
         // What their letter tells of their god (Gods/World/GodLetters.cs): a sign or curse's god, a myth's two, a holy war's enemy.
-        "SIGNGOD", "SIGNGODEPITHET", "MYTHGOD", "MYTHOTHER", "ENEMYGOD", "ENEMYPEOPLE"
+        "SIGNGOD", "SIGNGODEPITHET", "MYTHGOD", "MYTHOTHER", "ENEMYGOD", "ENEMYPEOPLE",
+        // A RimWorld of Magic's crafts among one of Rimfolk's peoples (Peoples/Magic/PeoplesMagic.cs, LetterTags): "druids and rangers".
+        "AMONG"
     };
 
     /// <summary>The values every letter has (the coverage asks only for these).</summary>

@@ -445,6 +445,9 @@ wishPh.UnionWith(new[] { "CAMP", "WHO" });
 // The peoples' own camps (Peoples/Events/PeopleCamps.cs, OldPlaces.cs): how many travellers the hostel kept, the old
 // place the scholars measured, and what they read in it (CampWorker.Fill).
 wishPh.UnionWith(new[] { "GUESTS", "OLDPLACE", "READING" });
+// Magic among the peoples (Peoples/Magic/PeoplesMagicWatch.cs, PeoplesMagic.LetterTags): a caster's class in a word, with its
+// article and many of them, and in a letter the classes among the writer's people ("druids and rangers").
+wishPh.UnionWith(new[] { "CRAFT", "ACRAFT", "CRAFTS", "AMONG" });
 // Beliefs: the feast someone sat through with nothing fit to eat (Beliefs.NoteNothingFit).
 wishPh.Add("GATHERING");
 // Animals and PokéWorld (Animals/, Integrations/PokeWorldLife.cs): an animal's kind, a species, and an evolution's

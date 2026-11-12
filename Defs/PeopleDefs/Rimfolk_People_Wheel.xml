@@ -458,8 +458,8 @@
     <modExtensions>
       <li Class="ColonyCouncil.PeopleKindExtension">
         <gifts>
-          <li><trait>Technomancer</trait><chance>0.2</chance></li>
-          <li><trait>TM_Commander</trait><chance>0.08</chance></li>
+          <li><trait>Technomancer</trait><chance>0.1</chance></li>
+          <li><trait>TM_Commander</trait><chance>0.05</chance></li>
         </gifts>
       </li>
     </modExtensions>

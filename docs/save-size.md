@@ -7,7 +7,7 @@ colony of 20, with the game keeping 30 more people it knows and 5 more each year
 generous guesses; sizes are rough XML sizes. Caps named as constants are read from the source. "Counted under" rows are
 kept inside another record (a journal's lines, a heart's lists) and are already in that record's size.
 
-Saved collections found: 670; modelled: 670; growing without end: 0.
+Saved collections found: 671; modelled: 671; growing without end: 0.
 Rimfolk's part of the save, roughly: **2,930 KB** after a year, **3,620 KB** after two, **4,019 KB** after five.
 
 | Collection | Rule | Kind | 1 year | 2 years | 5 years | KB at 5 years |
@@ -506,6 +506,7 @@ Rimfolk's part of the save, roughly: **2,930 KB** after a year, **3,620 KB** aft
 | `Arcs/Arc.cs:heldOr` | per story | fixed | 4 | 4 | 4 | 0.1 |
 | `Heart/HeartData.cs:feelingSinceTicks` | per heart | fixed | 4 | 4 | 4 | 0.1 |
 | `Heart/HeartData.cs:needLack` | per heart: the four needs | fixed | 4 | 4 | 4 | 0.1 |
+| `Peoples/Magic/PeoplesMagicWatch.cs:cast` | the visitors who cast for the colony this visit (once a visit each), dropped when they leave | while | 4 | 4 | 4 | 0.1 |
 | `Building/Automations.cs:cells` | per action: cells added to a zone that was there | fixed | 8 | 8 | 8 | 0.1 |
 | `Annals.cs:threatSeen` | each home's last big threat counted, one per home (one in the model); homes no longer ours dropped | fixed | 1 | 1 | 1 | 0.1 |
 | `Happenings/Happenings.cs:timers` | Rimfolk's own event timer, one per home (one home here); a home lost takes its timer with it | fixed | 1 | 1 | 1 | 0.1 |

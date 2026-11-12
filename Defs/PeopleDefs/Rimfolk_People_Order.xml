@@ -343,7 +343,7 @@
     <modExtensions>
       <li Class="ColonyCouncil.PeopleKindExtension">
         <gifts>
-          <li><trait>Priest</trait><chance>0.15</chance></li>
+          <li><trait>Priest</trait><chance>0.06</chance></li>
         </gifts>
       </li>
     </modExtensions>
@@ -378,7 +378,7 @@
     <modExtensions>
       <li Class="ColonyCouncil.PeopleKindExtension">
         <gifts>
-          <li><trait>Paladin</trait><chance>0.08</chance></li>
+          <li><trait>Paladin</trait><chance>0.06</chance></li>
         </gifts>
         <!-- In the industrial age the sworn guards keep the habit's tabard over a flak vest, with the age's guns. -->
         <ageArms>
@@ -541,7 +541,7 @@
     <modExtensions>
       <li Class="ColonyCouncil.PeopleKindExtension">
         <gifts>
-          <li><trait>Priest</trait><chance>0.35</chance></li>
+          <li><trait>Priest</trait><chance>0.15</chance></li>
         </gifts>
       </li>
     </modExtensions>

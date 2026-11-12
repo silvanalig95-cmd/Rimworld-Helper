@@ -49,6 +49,9 @@ public static class ImmersionTests
         "Rimfolk_VisitorLines2",
         // What callers say at their work, beside their event's own lines (Visitors/Callers.cs).
         "Rimfolk_Pool_CallerSays",
+        // A caster of the peoples naming their craft, the colony's remark, a raider's craft named, a spell in peace's word and
+        // its answer (Peoples/Magic/PeoplesMagicWatch.cs).
+        "Rimfolk_Pool_MagicName", "Rimfolk_Pool_MagicSeen", "Rimfolk_Pool_MagicFoe", "Rimfolk_Pool_MagicCast", "Rimfolk_Pool_MagicThanks",
         // A drink raised or a joint lit before work for Alpha Skills' drunken and stoned passions (Integrations/BeforeWork.cs).
         "Rimfolk_Pool_DrinkBeforeWork", "Rimfolk_Pool_SmokeBeforeWork",
         // A colonist setting off to carry a lighter case to another bed for someone worse off, or for an operation

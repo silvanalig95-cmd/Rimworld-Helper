@@ -7889,6 +7889,80 @@ pure rules in `PeoplesMath.cs` (`Tools/Tests/PeoplesTests.cs`, "peoples: ").
     camp's `workState`. Dev actions "Peoples' events: ...". The Almanac's peoples' pages, *Of their own: gifts, trust and
     camps*.
 
+### Magic among the peoples, seen (the player's request, 12 November 2026; not released yet)
+
+The player: "one thing i want to ask whether you integrate rimworld of magic "classes" & spells into our custom made
+faction? i don't think i've seen any of them, but they should surely be thematically fitting. since these spells can be
+quite strong or even broken, just use them sparingly overall, unless of course the faction revolves around magic or so,
+so that it's thematically fitting always"; on the five parts proposed, "yes, that sounds great. add everything ...
+visitors should be able to cast benefitial spells if they are happy or allied with me. raiders should be able to cast
+harmful spells, although there we might need to revisit because some spells are quite broken, but let's give it a try".
+Before this, a share of the peoples' kinds were given a class of A RimWorld of Magic as they were made
+(`PeopleKindExtension.gifts`, `Peoples/PeopleGifts.cs`), and nothing showed it: in the player's save 3 of 25 peoples'
+pawns had one, unseen. All of it reads the mod by name (`AccessTools.TypeByName`, defs by name); without it nothing
+happens. The rules are pure, in `Peoples/Magic/PeoplesMagicMath.cs` (`Tools/Tests/PeoplesMagicTests.cs`, "peoples' magic: ").
+
+- **The peoples built on magic, and the shares** (`PeoplesMagicMath.MagicCallings`, `ShareCap`). By each people's lore,
+  four revolve around what the mod does: the Stormglass Conclave (weather felt in the mind), the Mossborn (the forest
+  remembers), the Choir of the Spire (they touch other minds) and the Quiet Bell (they listen to the ground for what
+  should not stir). Their kinds may have a class up to 15 in a hundred, their leader up to 40; every other people's
+  kinds up to 6, their leader up to 15. The defs were reviewed against it: the order's healers 15 to 6 and its prior 35
+  to 15, the herders', river folk's and tamers' elder druids 30 and 25 to 15, the wardens' master 25 to 15, the Banner's
+  captain 35 to 15, the guild's master 30 to 15, the league's master 20 to 15, the Wheel's 28 to 15, the Line's chief 18
+  to 15, the Deepwell boss 18 to 15, the pilgrims' keeper 30 to 15, and their ordinary kinds above 6 brought to 6; the
+  Mossborn's tenders, thorns and seed-carriers 10 to 14 (from 4 to 7), their eldest 35; the Conclave's readers 12 (ice
+  mages for the rain among them), walkers 11, apprentices an ice mage share of 4, the first reader 15; the Choir's cantors
+  and wardens 8, the first voice a minstrel's 5; the Bell's gravewardens 10, sextons 5. A test checks every kind's shares
+  against its people's cap.
+- **A caster looks like one** (`PeoplesMagic.Dress`, from `PeopleGifts.Give` as a new pawn of the peoples is made,
+  whoever gave the class, the gift or the mod's own roll; `PeoplesMagicMath.Garb`). The class's own piece from the mod,
+  by the age the people lives in: a priest's or monk's disciple hood, a druid's, geomancer's or summoner's hood of
+  protection, an arcanist's arcane hood, a chronomancer's, enchanter's or minstrel's wizard hat, a wandering mage's
+  wanderer's cloak; a paladin's Helm of the Valiant in the tribal and medieval ages and the Mantle of Protection over a
+  later age's armour; a fire, ice or lightning mage's wand in the old ages in place of their weapon (only one already
+  armed), their arcane hood once the age's guns take its place. Worn in place of what it can't be worn with; a signature
+  piece it replaces gives it the people's colour. The fighters and the technomancer have no piece of their own in the
+  mod, so none. Every piece is in the player's active mods (checked against `docs/player-mods`).
+- **Said aloud** (`PeoplesMagicWatch`, every 250 ticks at `Sched.RarePeoplesMagic` = 179). A visitor of the peoples
+  with a class, in their first six hours on the map, names their craft to the first colonist with them, who remarks on
+  it, the two lines in turn over their heads (`OutsiderTalk.Play`; `Rimfolk_Pool_MagicName`, `Rimfolk_Pool_MagicSeen`,
+  by class); a colonist who sees a raider of the peoples with a class within 28 cells names it
+  (`Rimfolk_Pool_MagicFoe`), once a people a map every six hours. The people's card (the diplomacy page) says "A few
+  among them are druids and rangers." ("Among them are ..., more of them than among most peoples." for a people built
+  on magic), the commonest three crafts of its kinds that fit its age and that the mod has switched on for it
+  (`PeoplesMagic.Among`, `CardLines`); their letters carry the same words for an aside to mention now and then
+  (`among:magic`, `{AMONG}`: "Our druids and rangers send their regards").
+- **A spell in peace** (on the pass's tick of the hour). A visitor of a class with a helpful spell (`PeaceSpells`: the
+  priest's Advanced Heal and Purify, the paladin's Heal, the druid's Cure Disease and Regenerate, the ice mage's
+  Rainmaker) who may (`MayCastInPeace`: not hostile, up and about, no danger on the map, not leaving, not yet this visit,
+  and content on the map, mood at half or more, or of a people allied with the colony), rolls 6 in a hundred an hour
+  among the peoples built on magic and 3 elsewhere, and casts for whoever needs it: the colony's most hurt (bleeding,
+  or wounds of 4 or more), an infection or a flu (what the druid's cure takes at the mod's first level), an old scar, or
+  rain in a heat wave, a fire or a week with nothing fallen (not freezing, not while it rains). The cast is the mod's
+  own (`RomSpells`: the ability by name, its own `CanCastPowerCheck`, its `GetJob` as its casting for those not of the
+  colony asks it, `TryTakeOrderedJob`), so its walk into range, its motes, sounds, mana and cooldown are the mod's.
+  Once the mod has the ability on its cooldown and the job is over, it is told: a message
+  (`CC_PeoplesMagic_Did_*`; a cure that didn't take is told as tried), a word from the caster and from the one it was
+  for, or a colonist out under the rain (`Rimfolk_Pool_MagicCast`, `Rimfolk_Pool_MagicThanks`); a try the mod didn't carry
+  out is let go unsaid after an hour. Each visitor at most once a visit (`PeoplesMagicBook.cast`, saved, dropped when they
+  leave). With the mod's "AI can cast" off, no visitor is asked to. The enchanter's, geomancer's and technomancer's
+  workings last only while their maker keeps them, and the chronomancer's Accelerate Time ages anyone in its field, so
+  they have none.
+- **In a fight** the mod's own AI casts for every people's casters, as allies and as raiders, by its own settings (AI
+  casting, aggressive casting, hard mode, death retaliation): the peoples built on magic bring many, the others few.
+  Rimfolk only keeps the mod's most broken spells out of the peoples' hands (`PeoplesMagicMath.KeptOut`, with why;
+  `Patch_PeoplesMagicKeptOut` on `TM_Calc.HasResourcesForAbility`, which the mod's casting for those not of the colony
+  asks before it casts by itself, and `Patch_PeoplesMagicKeptOutCheck` on `MagicAbility` and `MightAbility`'s
+  `CanCastPowerCheck`, which its decision tree for fights asks; both say no, so its AI picks another): the masters'
+  Firestorm, Blizzard, Eye of the Storm, Meteor, Holy Wrath, Orbital Strike, Gateway (Fold Reality), Resurrection,
+  Summon Poppi, Blood Moon, Scorn, Lich Form and Grave Blade; Lightning Storm, Chronostatic Field, Polymorph, Summon
+  Elemental, Sabotage, the Mark-IV turret, Raise Undead and Psychic Shock; the sniper's Headshot, the super soldier's
+  60mm mortar and breaching charge, the psionic's storm. Off with the deeper game hooks. A pawn of the peoples who joins
+  the colony is the colony's, and the mod's own rules hold. The list is to be watched in a play test.
+- Nothing else is saved. The pass's clock is "The peoples' casters" on Rimfolk's clock. Dev actions "Peoples' magic:
+  ...": the casters on this map (log), a caster of theirs here now as a visitor, a spell in peace now, what each people
+  is known for (log). The Almanac's peoples' pages, *What they wear, carry and know*; README "Magic among the peoples".
+
 ### Peoples whose age changes
 
 The player's words (8 November 2026): "different generations or time spans represented in factions, or that the
@@ -12625,6 +12699,7 @@ chains, nemeses, camps, play-outs, the fights pass and the worn-out episode read
 | 167 | The colony news: what waits goes out (as the evening's digest, around six) | the waiting news |
 | 173 | The food policy on the road (Journeys/RoadFood.cs; once an hour, at tick 173 of the hour, and on the first pass after a load; only while one is chosen or someone is on it): the colony's people in caravans onto it, those home again back to their own | per player caravan, per colonist in it; per traveller on it |
 | 173 | A journey planned ahead (Journeys/JourneyRun.cs; only while there is one): the stage its hour has reached (a day before, the travellers' timetables shifted; the last hours begun), each traveller's next step, the hour itself and the question when someone isn't ready | per traveller: free for a step, the step's job; at the hour, each one ready or not |
+| 179 | The peoples' casters on the homes (Peoples/Magic/PeoplesMagicWatch.cs; only with A RimWorld of Magic): a visitor's craft named to the first colonist with them, a raider's named by a colonist who sees them, a spell asked of a caster followed until the mod casts it; once an hour (tick 179 of the hour) the visitors who may cast a helpful spell in peace roll for it | per humanlike on a home map (a trait look); per caster of the peoples: a company look, a sight look for a raider, at the hour a few rules and one roll, and only then the colonists for someone to cast for |
 | 199 | The council window's memory: the day's trust sample, the dilemmas and answers it watches | per colonist once a day |
 | 187 | Who stands beside whom in a fight at home (only while one is on; Social/FightSides.cs), so only they remember it together and become comrades; who carries, tends or stands over someone down; and the colony's animals in it (Animals/AnimalTempers.cs, AnimalVoices.cs): a brave one goes to stand by its person, a timid one bolts from the shooting, a speaking one warns of the raiders | per fighting colonist pair on that map (close, then the same room or in sight); per named or bonded animal there that is brave, timid or speaks |
 | 193 | The wild's alphas and bosses (Beasts/BeastBook.cs; each part by its rate): an alpha fallen (its pack scattered) or tamed (its pack walking in), a big threat looked at for a manhunters' alpha, a beast nemesis badly hurt turning to run, one fled off the map kept, a sworn one's fury, each home map's herds crossing for an edge spooked into a stampede, its runners' way, those who stop to watch; the colony's pets' hunts kept to their rules, and a bleeding animal's order to take its body dropped once it stops bleeding, is tamed or leaves (Animals/); its hour on the same tick of the hour (alphas' threats and sightings, beast nemeses' returns and oaths), its day in the first hour of the day (packs led by an alpha, the season's great herd) | per open alpha and its pack, per beast nemesis on a home map, per home map's exit groups of four or more wild animals; a stampede's runners against the map's pawns for an hour |
@@ -12761,6 +12836,7 @@ on a map, in the world or in a caravan), so such a record is let go when the gam
 | The animals' natures | by id, never by reference: temperaments 300 (unseen 120 days let go), pairs, friends and rivals 80 (pairs first; apart 40 days, or a friend missed 30 days, let go), animals gone alive 30 with their handler (120 days, or the handler dead) |
 | Autonomy | who acted when: the last 2 days, not the dead; plans until built |
 | Rimfolk's events | raids until they come; the departed 2 years (unless asked about); memos 3 years (children's 10), used ones a day; quests already told of: those the game still keeps; the event timer, one per home (a home lost takes its own) |
+| Magic among the peoples | the visitors of the peoples who cast a spell for the colony this visit, by id, dropped when they leave the homes, forty at most (Peoples/Magic/PeoplesMagicWatch.cs) |
 | Homes | one entry per colonist who has been on a home (the last home they lived on), forgotten once they're dead, discarded or no longer the colony's; the stored seat; the homes at the last look |
 | World ledger | its own ties (grudges, favours, good words, claims, the scenario's debt, fealty, a notable's and a regular's regard): three of a kind between the same two, sixty of a kind (three hundred regards), closed ones dropped after sixty days; a grudge's dead ten at most over all peoples, two years; persons while a notable, named by a tie or kept in the world, with their reasons; towns while a notable lives there or while they stand within the region map's reach of a home (the nearest 40 a home), a gone one two years; the founding families of new towns, two per town, six members each by first name, going with the town's record; the towns being built within reach, six at most, dropped when built or gone; the counter for ledger numbers |
 | The region | one part per colony (when a new town last wrote to it and last welcomed it), a lost home's kept 30 days; the towns in detail and remoteness are worked out, not saved |

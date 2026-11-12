@@ -452,7 +452,7 @@
     <modExtensions>
       <li Class="ColonyCouncil.PeopleKindExtension">
         <gifts>
-          <li><trait>Druid</trait><chance>0.25</chance></li>
+          <li><trait>Druid</trait><chance>0.15</chance></li>
           <li>
             <psylink>2~3</psylink>
             <paths>
