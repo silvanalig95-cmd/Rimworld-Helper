@@ -249,7 +249,7 @@
     <modExtensions>
       <li Class="ColonyCouncil.PeopleKindExtension">
         <gifts>
-          <li><trait>Druid</trait><chance>0.05</chance></li>
+          <li><trait>Druid</trait><chance>0.1</chance></li>
         </gifts>
       </li>
     </modExtensions>
@@ -281,7 +281,7 @@
       <li Class="ColonyCouncil.PeopleKindExtension">
         <gifts>
           <li><trait>Ranger</trait><chance>0.06</chance></li>
-          <li><trait>Druid</trait><chance>0.04</chance></li>
+          <li><trait>Druid</trait><chance>0.08</chance></li>
         </gifts>
         <!-- Hunting rifles in the industrial and spacer ages (a people of their ways that arose there). -->
         <ageArms>
@@ -334,7 +334,7 @@
     <modExtensions>
       <li Class="ColonyCouncil.PeopleKindExtension">
         <gifts>
-          <li><trait>Druid</trait><chance>0.07</chance></li>
+          <li><trait>Druid</trait><chance>0.12</chance></li>
         </gifts>
       </li>
     </modExtensions>
@@ -411,7 +411,7 @@
     <modExtensions>
       <li Class="ColonyCouncil.PeopleKindExtension">
         <gifts>
-          <li><trait>Druid</trait><chance>0.3</chance></li>
+          <li><trait>Druid</trait><chance>0.35</chance></li>
           <!-- One who hears the grove: Vanilla Psycasts Expanded's Wildspeaker (else the game's psycasts). -->
           <li>
             <psylink>1~2</psylink>

@@ -281,9 +281,9 @@
     <modExtensions>
       <li Class="ColonyCouncil.PeopleKindExtension">
         <gifts>
-          <li><trait>TM_Wanderer</trait><chance>0.04</chance></li>
-          <li><trait>TM_Bard</trait><chance>0.03</chance></li>
-          <li><trait>TM_Monk</trait><chance>0.03</chance></li>
+          <li><trait>TM_Wanderer</trait><chance>0.02</chance></li>
+          <li><trait>TM_Bard</trait><chance>0.02</chance></li>
+          <li><trait>TM_Monk</trait><chance>0.02</chance></li>
         </gifts>
       </li>
     </modExtensions>
@@ -318,7 +318,7 @@
     <modExtensions>
       <li Class="ColonyCouncil.PeopleKindExtension">
         <gifts>
-          <li><trait>Paladin</trait><chance>0.1</chance></li>
+          <li><trait>Paladin</trait><chance>0.06</chance></li>
         </gifts>
       </li>
     </modExtensions>
@@ -477,7 +477,7 @@
     <modExtensions>
       <li Class="ColonyCouncil.PeopleKindExtension">
         <gifts>
-          <li><trait>Priest</trait><chance>0.3</chance></li>
+          <li><trait>Priest</trait><chance>0.15</chance></li>
         </gifts>
       </li>
     </modExtensions>

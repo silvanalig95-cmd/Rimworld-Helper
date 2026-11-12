@@ -314,8 +314,8 @@
     <modExtensions>
       <li Class="ColonyCouncil.PeopleKindExtension">
         <gifts>
-          <li><trait>Arcanist</trait><chance>0.05</chance></li>
-          <li><trait>Chronomancer</trait><chance>0.03</chance></li>
+          <li><trait>Arcanist</trait><chance>0.04</chance></li>
+          <li><trait>Chronomancer</trait><chance>0.02</chance></li>
           <li>
             <psylink>1~2</psylink>
             <paths>
@@ -481,8 +481,8 @@
     <modExtensions>
       <li Class="ColonyCouncil.PeopleKindExtension">
         <gifts>
-          <li><trait>Arcanist</trait><chance>0.12</chance></li>
-          <li><trait>Chronomancer</trait><chance>0.08</chance></li>
+          <li><trait>Arcanist</trait><chance>0.09</chance></li>
+          <li><trait>Chronomancer</trait><chance>0.06</chance></li>
           <li>
             <psylink>1~3</psylink>
             <paths>

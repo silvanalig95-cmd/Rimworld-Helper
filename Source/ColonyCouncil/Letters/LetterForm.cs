@@ -381,6 +381,8 @@ namespace ColonyCouncil
             bool trader = n.role == NotableRole.Trader || calling == PeoplesMath.Traders || calling == PeoplesMath.Brokers;
             s.motive = LetterFormMath.Motive(false, war, s.penFriend, s.council, s.empire, purpose, NotableBook.Opinion(n), trader, pride, trust);
             Peoples.AddTags(f, s.tags);
+            // A RimWorld of Magic's crafts among one of Rimfolk's peoples, for an aside to mention now and then (among:magic, {AMONG}).
+            PeoplesMagic.LetterTags(f, s.tags, s.values);
             // Who they are in their town (nr:head, nr:heir, nr:envoy, nr:trader, nr:acquaintance): a line that names the writer as the boss is the head's.
             s.tags.Add("nr:" + n.role.ToString().ToLowerInvariant());
             if (facts != null)

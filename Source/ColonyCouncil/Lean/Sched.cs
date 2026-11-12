@@ -151,7 +151,14 @@ namespace ColonyCouncil
         /// better piece to ask for; nothing with both its settings off.
         /// </summary>
         public const int RareApparelPicks = 43;
-        public static readonly int[] RareOffsets = { RareWorldKeep, RarePlanQueue, RareHeart, RareCamp, RareMissions, RareWelcome, RareAilments, RareHealth, RareDefenseLines, RareFightSides, RareSmoke, RareBuildPriority, RareWeather, RareHarm, RarePowers, RareBeasts, RareWeaponPicks, RareApparelPicks };
+
+        /// <summary>
+        /// The peoples' casters on the colony's homes (Peoples/Magic/PeoplesMagicWatch.cs; only with A RimWorld of Magic): a
+        /// visitor naming their craft, a raider's named, a spell asked of a caster followed until it is cast; on the pass's
+        /// tick of the hour (179) the visitors who may cast a helpful spell in peace roll for it.
+        /// </summary>
+        public const int RarePeoplesMagic = 179;
+        public static readonly int[] RareOffsets = { RareWorldKeep, RarePlanQueue, RareHeart, RareCamp, RareMissions, RareWelcome, RareAilments, RareHealth, RareDefenseLines, RareFightSides, RareSmoke, RareBuildPriority, RareWeather, RareHarm, RarePowers, RareBeasts, RareWeaponPicks, RareApparelPicks, RarePeoplesMagic };
 
         /// <summary>Passes on the 250-tick cycle that only run while something is waiting (the news of the evening, an answer playing out, the council window's memory).</summary>
         public const int RareNews = 167;

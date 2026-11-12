@@ -46,6 +46,7 @@ namespace ColonyCouncil
         RareWeather,
         RareWelcome,
         RareHealth,
+        RarePeoplesMagic,
         RareFightSides,
         RareBeasts,
         /// <summary>The wild's alphas and bosses' hour, on the tick of their own 250-tick pass (Sched.RareBeasts).</summary>
@@ -153,6 +154,7 @@ namespace ColonyCouncil
             new PassInfo(Pass.RareWeather, "CC_Clock_Pass_RareWeather", nameof(Sched.RareWeather), R, Sched.RareWeather),
             new PassInfo(Pass.RareWelcome, "CC_Clock_Pass_RareWelcome", nameof(Sched.RareWelcome), R, Sched.RareWelcome),
             new PassInfo(Pass.RareHealth, "CC_Clock_Pass_RareHealth", nameof(Sched.RareHealth), R, Sched.RareHealth),
+            new PassInfo(Pass.RarePeoplesMagic, "CC_Clock_Pass_RarePeoplesMagic", nameof(Sched.RarePeoplesMagic), R, Sched.RarePeoplesMagic),
             new PassInfo(Pass.RareFightSides, "CC_Clock_Pass_RareFightSides", nameof(Sched.RareFightSides), R, Sched.RareFightSides),
             new PassInfo(Pass.RareBeasts, "CC_Clock_Pass_RareBeasts", nameof(Sched.RareBeasts), R, Sched.RareBeasts),
             new PassInfo(Pass.Beasts, "CC_Clock_Pass_Beasts", nameof(Sched.RareBeasts), H, Sched.RareBeasts),

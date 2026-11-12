@@ -163,6 +163,11 @@
         <li>[theirs,everyday,a:plain|a:friend,warmly|cordial|cool,their:healers] The sickhouse has been quiet this month, which is the best news a sickhouse can give.</li>
         <li>[theirs,everyday,a:plain|a:friend,warmly|cordial|cool,their:fishers] The river is high and brown this week, and the ferry rests while it rages.</li>
         <li>[theirs,everyday,a:plain|a:friend,warmly|cordial|cool,their:scholars] We had a new crate of books in from the coast, and the reading room has not been empty since.</li>
+        <!-- A RimWorld of Magic's crafts among Rimfolk's peoples ({AMONG}: "druids and rangers"; Peoples/Magic/PeoplesMagic.cs). -->
+        <li>[theirs,everyday,a:plain|a:friend,warmly|cordial|cool,among:magic] Our {AMONG} send their regards, for whatever that is worth from them.</li>
+        <li>[theirs,everyday,a:plain|a:friend,warmly|cordial|cool,among:magic] Among us the {AMONG} still keep their old crafts, and the young still come to learn them.</li>
+        <li>[theirs,everyday,a:plain|a:friend,warmly|cordial,among:magic] Our {AMONG} argue about everything, which I am told is how their crafts stay sharp.</li>
+        <li>[theirs,everyday,a:plain|a:friend,warmly,among:magic] One of our {AMONG} asked after your people the other day, which surprised us all.</li>
         <li>[theirs,everyday,a:plain|a:friend,warmly|cordial|cool,c:pious] We kept the holy days this season, all of them, and the shrine has new candles.</li>
         <li>[theirs,everyday,a:plain|a:friend,warmly|cordial|cool,c:nature] We let the north field go wild again this year, and the deer came back to it.</li>
         <li>[theirs,everyday,a:plain|a:friend,warmly|cordial|cool,c:herd] The herd is fat and the grass is good, which is all a herder asks of a season.</li>
@@ -337,6 +342,9 @@
         <li>[theirs,olde,everyday,a:plain|a:friend,curt] We are busy here.</li>
         <li>[theirs,olde,everyday,a:plain|a:friend,warmly] There is a new babe two doors hence, and she hath the loudest voice in {TOWN}.</li>
         <li>[theirs,olde,everyday,a:plain|a:friend,warmly] I walk out to the hill each evening to watch the light go, and I commend it to thee.</li>
+        <li>[theirs,olde,everyday,a:plain|a:friend,warmly|cordial|cool,among:magic] Our {AMONG} send their greeting, and their blessing with it.</li>
+        <li>[theirs,olde,everyday,a:plain|a:friend,warmly|cordial|cool,among:magic] Among us the {AMONG} keep the old crafts still, and teach them to any child with the gift.</li>
+        <li>[theirs,olde,everyday,a:plain|a:friend,warmly,among:magic] One of our {AMONG} asked after thy people, which none of us looked for.</li>
         <li>[theirs,olde,everyday,a:plain|a:friend,warmly|cordial|cool,season:winter] We keep mostly indoors, mending things and telling old tales.</li>
         <li>[theirs,olde,everyday,a:plain|a:friend,warmly|cordial|cool,season:autumn] The storehouse is fuller than last year, and I sleep the better for it.</li>
         <li>[theirs,olde,everyday,a:plain|a:friend,warmly|cordial|cool,c:pious] We kept every holy day this season, and the chapel hath new candles.</li>

@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+  <!-- Magic among the peoples, seen (Source/ColonyCouncil/Peoples/Magic/PeoplesMagic.cs, PeoplesMagicWatch.cs): A RimWorld of
+       Magic's classes in plain words, one and many (by the class's trait); the people's card; what a spell in peace did. -->
+  <CC_PeoplesMagic_Craft_Arcanist>arcanist</CC_PeoplesMagic_Craft_Arcanist>
+  <CC_PeoplesMagic_Crafts_Arcanist>arcanists</CC_PeoplesMagic_Crafts_Arcanist>
+  <CC_PeoplesMagic_Craft_InnerFire>fire mage</CC_PeoplesMagic_Craft_InnerFire>
+  <CC_PeoplesMagic_Crafts_InnerFire>fire mages</CC_PeoplesMagic_Crafts_InnerFire>
+  <CC_PeoplesMagic_Craft_HeartOfFrost>ice mage</CC_PeoplesMagic_Craft_HeartOfFrost>
+  <CC_PeoplesMagic_Crafts_HeartOfFrost>ice mages</CC_PeoplesMagic_Crafts_HeartOfFrost>
+  <CC_PeoplesMagic_Craft_StormBorn>lightning mage</CC_PeoplesMagic_Craft_StormBorn>
+  <CC_PeoplesMagic_Crafts_StormBorn>lightning mages</CC_PeoplesMagic_Crafts_StormBorn>
+  <CC_PeoplesMagic_Craft_Druid>druid</CC_PeoplesMagic_Craft_Druid>
+  <CC_PeoplesMagic_Crafts_Druid>druids</CC_PeoplesMagic_Crafts_Druid>
+  <CC_PeoplesMagic_Craft_Paladin>paladin</CC_PeoplesMagic_Craft_Paladin>
+  <CC_PeoplesMagic_Crafts_Paladin>paladins</CC_PeoplesMagic_Crafts_Paladin>
+  <CC_PeoplesMagic_Craft_Priest>priest</CC_PeoplesMagic_Craft_Priest>
+  <CC_PeoplesMagic_Crafts_Priest>priests</CC_PeoplesMagic_Crafts_Priest>
+  <CC_PeoplesMagic_Craft_TM_Bard>minstrel</CC_PeoplesMagic_Craft_TM_Bard>
+  <CC_PeoplesMagic_Crafts_TM_Bard>minstrels</CC_PeoplesMagic_Crafts_TM_Bard>
+  <CC_PeoplesMagic_Craft_Geomancer>geomancer</CC_PeoplesMagic_Craft_Geomancer>
+  <CC_PeoplesMagic_Crafts_Geomancer>geomancers</CC_PeoplesMagic_Crafts_Geomancer>
+  <CC_PeoplesMagic_Craft_Technomancer>technomancer</CC_PeoplesMagic_Craft_Technomancer>
+  <CC_PeoplesMagic_Crafts_Technomancer>technomancers</CC_PeoplesMagic_Crafts_Technomancer>
+  <CC_PeoplesMagic_Craft_Enchanter>enchanter</CC_PeoplesMagic_Craft_Enchanter>
+  <CC_PeoplesMagic_Crafts_Enchanter>enchanters</CC_PeoplesMagic_Crafts_Enchanter>
+  <CC_PeoplesMagic_Craft_Chronomancer>chronomancer</CC_PeoplesMagic_Craft_Chronomancer>
+  <CC_PeoplesMagic_Crafts_Chronomancer>chronomancers</CC_PeoplesMagic_Crafts_Chronomancer>
+  <CC_PeoplesMagic_Craft_Summoner>summoner</CC_PeoplesMagic_Craft_Summoner>
+  <CC_PeoplesMagic_Crafts_Summoner>summoners</CC_PeoplesMagic_Crafts_Summoner>
+  <CC_PeoplesMagic_Craft_TM_Wanderer>wandering mage</CC_PeoplesMagic_Craft_TM_Wanderer>
+  <CC_PeoplesMagic_Crafts_TM_Wanderer>wandering mages</CC_PeoplesMagic_Crafts_TM_Wanderer>
+  <CC_PeoplesMagic_Craft_Gladiator>gladiator</CC_PeoplesMagic_Craft_Gladiator>
+  <CC_PeoplesMagic_Crafts_Gladiator>gladiators</CC_PeoplesMagic_Crafts_Gladiator>
+  <CC_PeoplesMagic_Craft_Bladedancer>bladedancer</CC_PeoplesMagic_Craft_Bladedancer>
+  <CC_PeoplesMagic_Crafts_Bladedancer>bladedancers</CC_PeoplesMagic_Crafts_Bladedancer>
+  <CC_PeoplesMagic_Craft_Ranger>ranger</CC_PeoplesMagic_Craft_Ranger>
+  <CC_PeoplesMagic_Crafts_Ranger>rangers</CC_PeoplesMagic_Crafts_Ranger>
+  <CC_PeoplesMagic_Craft_TM_Sniper>sharpshooter</CC_PeoplesMagic_Craft_TM_Sniper>
+  <CC_PeoplesMagic_Crafts_TM_Sniper>sharpshooters</CC_PeoplesMagic_Crafts_TM_Sniper>
+  <CC_PeoplesMagic_Craft_TM_Psionic>psionic</CC_PeoplesMagic_Craft_TM_Psionic>
+  <CC_PeoplesMagic_Crafts_TM_Psionic>psionics</CC_PeoplesMagic_Crafts_TM_Psionic>
+  <CC_PeoplesMagic_Craft_TM_Monk>monk</CC_PeoplesMagic_Craft_TM_Monk>
+  <CC_PeoplesMagic_Crafts_TM_Monk>monks</CC_PeoplesMagic_Crafts_TM_Monk>
+  <CC_PeoplesMagic_Craft_TM_Commander>commander</CC_PeoplesMagic_Craft_TM_Commander>
+  <CC_PeoplesMagic_Crafts_TM_Commander>commanders</CC_PeoplesMagic_Crafts_TM_Commander>
+  <CC_PeoplesMagic_Craft_TM_SuperSoldier>super soldier</CC_PeoplesMagic_Craft_TM_SuperSoldier>
+  <CC_PeoplesMagic_Crafts_TM_SuperSoldier>super soldiers</CC_PeoplesMagic_Crafts_TM_SuperSoldier>
+  <CC_PeoplesMagic_Craft_TM_Wayfarer>wayfarer</CC_PeoplesMagic_Craft_TM_Wayfarer>
+  <CC_PeoplesMagic_Crafts_TM_Wayfarer>wayfarers</CC_PeoplesMagic_Crafts_TM_Wayfarer>
+  <CC_PeoplesMagic_Craft_Necromancer>necromancer</CC_PeoplesMagic_Craft_Necromancer>
+  <CC_PeoplesMagic_Crafts_Necromancer>necromancers</CC_PeoplesMagic_Crafts_Necromancer>
+  <CC_PeoplesMagic_Craft_DeathKnight>death knight</CC_PeoplesMagic_Craft_DeathKnight>
+  <CC_PeoplesMagic_Crafts_DeathKnight>death knights</CC_PeoplesMagic_Crafts_DeathKnight>
+
+  <CC_PeoplesMagic_Card_Few>A few among them are {CRAFTS}.</CC_PeoplesMagic_Card_Few>
+  <CC_PeoplesMagic_Card_Many>Among them are {CRAFTS}, more of them than among most peoples.</CC_PeoplesMagic_Card_Many>
+
+  <CC_PeoplesMagic_Did_Heal>{CASTER_nameDef}, {ACRAFT} of {PEOPLE}, worked a healing on {TARGET_nameDef}'s wounds.</CC_PeoplesMagic_Did_Heal>
+  <CC_PeoplesMagic_Did_Cure>{CASTER_nameDef}, {ACRAFT} of {PEOPLE}, cured {TARGET_nameDef} of the {ILLNESS}.</CC_PeoplesMagic_Did_Cure>
+  <CC_PeoplesMagic_Did_CureTried>{CASTER_nameDef}, {ACRAFT} of {PEOPLE}, tried to cure {TARGET_nameDef} of the {ILLNESS}, but it held.</CC_PeoplesMagic_Did_CureTried>
+  <CC_PeoplesMagic_Did_Scar>{CASTER_nameDef}, {ACRAFT} of {PEOPLE}, eased one of {TARGET_nameDef}'s old scars.</CC_PeoplesMagic_Did_Scar>
+  <CC_PeoplesMagic_Did_Rain>{CASTER_nameDef}, {ACRAFT} of {PEOPLE}, called down the rain.</CC_PeoplesMagic_Did_Rain>
+</LanguageData>

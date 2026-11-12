@@ -267,9 +267,9 @@
     <modExtensions>
       <li Class="ColonyCouncil.PeopleKindExtension">
         <gifts>
-          <li><trait>Enchanter</trait><chance>0.03</chance></li>
-          <li><trait>Geomancer</trait><chance>0.03</chance></li>
-          <li><trait>Technomancer</trait><chance>0.03</chance><ages>2~3</ages></li>
+          <li><trait>Enchanter</trait><chance>0.02</chance></li>
+          <li><trait>Geomancer</trait><chance>0.02</chance></li>
+          <li><trait>Technomancer</trait><chance>0.02</chance><ages>2~3</ages></li>
         </gifts>
       </li>
     </modExtensions>
@@ -451,8 +451,8 @@
     <modExtensions>
       <li Class="ColonyCouncil.PeopleKindExtension">
         <gifts>
-          <li><trait>Enchanter</trait><chance>0.2</chance></li>
-          <li><trait>Geomancer</trait><chance>0.1</chance></li>
+          <li><trait>Enchanter</trait><chance>0.1</chance></li>
+          <li><trait>Geomancer</trait><chance>0.05</chance></li>
         </gifts>
       </li>
     </modExtensions>

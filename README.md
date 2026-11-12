@@ -4165,6 +4165,23 @@ age: A RimWorld of Magic's priests among the hospitallers, paladins among the wa
 the river folk and the herders, arcanists with the scholars; psylinks (Royalty) in the enclave and the society, on Vanilla
 Psycasts Expanded's paths when it is loaded. Pawns already in a game keep what they have; new ones come dressed this way.
 
+**Magic among the peoples.** With A RimWorld of Magic, every people of Rimfolk's has a few casters by its lore, sparingly
+(a few of a hundred of a kind, a people's head more often), and more among the four built on magic: the Stormglass
+Conclave, the Mossborn, the Choir of the Spire and the Quiet Bell. A caster looks like one, in their class's own piece from
+the mod by their people's age: a priest's disciple hood, a druid's hood of protection, an arcanist's arcane hood, a
+chronomancer's, enchanter's or minstrel's wizard hat, a wandering mage's cloak, a paladin's Helm of the Valiant (the Mantle
+of Protection over a later age's armour), a fire, ice or lightning mage's wand in the tribal and medieval ages and an
+arcane hood after. It is said aloud: a visitor names their craft to the first of the colony they meet, who remarks on it,
+and a colonist who sees a raider's caster names it; the people's card says what crafts are among them ("A few among them
+are druids and rangers."), and their letters mention them now and then. Now and then a visitor who is content, or of a
+people allied with the colony, casts a helpful spell for it with the mod's own effects and mana, once a visit at most: a
+priest or paladin heals the colony's most hurt, a druid cures an infection or a flu, a priest eases an old scar, an ice mage
+calls the rain in a heat wave, a fire or a week with nothing fallen; a message tells what it did, and the two say a word. In
+a fight the peoples' casters cast by the mod's own AI and settings, as allies and as raiders, with the mod's most broken
+spells kept out of their hands (the masters' storms, meteors and wraths, resurrection, polymorph, the summoned poppi and
+elementals, sabotage, the sniper's headshot, the mortar and the breaching charge, and the like). Off without the mod; the
+guard off with the deeper game hooks; no visitor casts in peace with the mod's "AI can cast" off.
+
 **Where their ways began.** Each of the seven keeps a founding story (in its description on the faction page), a few
 sayings, and what it honours and fears, shown on its card: the league's Edda Vane, who took nine waymasters' wagons
 through Harrow Ford under their flags and began the Waystone Book of good ink and red; the order's Aldith, who nursed a

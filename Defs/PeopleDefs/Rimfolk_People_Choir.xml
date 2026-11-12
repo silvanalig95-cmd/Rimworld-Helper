@@ -302,7 +302,7 @@
             </genes>
             <chance>0.05</chance>
           </li>
-          <li><trait>TM_Bard</trait><chance>0.04</chance></li>
+          <li><trait>TM_Bard</trait><chance>0.08</chance></li>
         </gifts>
       </li>
     </modExtensions>
@@ -343,7 +343,7 @@
             </paths>
             <chance>0.5</chance>
           </li>
-          <li><trait>TM_Psionic</trait><chance>0.05</chance></li>
+          <li><trait>TM_Psionic</trait><chance>0.08</chance></li>
         </gifts>
       </li>
     </modExtensions>
@@ -425,6 +425,7 @@
             </genes>
             <chance>0.1</chance>
           </li>
+          <li><trait>TM_Bard</trait><chance>0.05</chance></li>
         </gifts>
       </li>
     </modExtensions>

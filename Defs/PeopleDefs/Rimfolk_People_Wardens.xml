@@ -300,8 +300,8 @@
     <modExtensions>
       <li Class="ColonyCouncil.PeopleKindExtension">
         <gifts>
-          <li><trait>Ranger</trait><chance>0.08</chance></li>
-          <li><trait>TM_Sniper</trait><chance>0.03</chance></li>
+          <li><trait>Ranger</trait><chance>0.04</chance></li>
+          <li><trait>TM_Sniper</trait><chance>0.02</chance></li>
         </gifts>
         <!-- Hunting rifles in the industrial and spacer ages (a people of their ways that arose there). -->
         <ageArms>
@@ -344,7 +344,7 @@
     <modExtensions>
       <li Class="ColonyCouncil.PeopleKindExtension">
         <gifts>
-          <li><trait>TM_Wayfarer</trait><chance>0.04</chance></li>
+          <li><trait>TM_Wayfarer</trait><chance>0.03</chance></li>
           <li><trait>Gladiator</trait><chance>0.03</chance></li>
         </gifts>
       </li>
@@ -423,7 +423,7 @@
     <modExtensions>
       <li Class="ColonyCouncil.PeopleKindExtension">
         <gifts>
-          <li><trait>Ranger</trait><chance>0.25</chance></li>
+          <li><trait>Ranger</trait><chance>0.15</chance></li>
           <!-- An old tracker who hears the beasts: Vanilla Psycasts Expanded's Wildspeaker (else the game's psycasts). -->
           <li>
             <psylink>1~2</psylink>

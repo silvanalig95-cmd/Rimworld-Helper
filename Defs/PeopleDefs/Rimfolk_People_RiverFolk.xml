@@ -374,7 +374,7 @@
     <modExtensions>
       <li Class="ColonyCouncil.PeopleKindExtension">
         <gifts>
-          <li><trait>Ranger</trait><chance>0.08</chance></li>
+          <li><trait>Ranger</trait><chance>0.06</chance></li>
         </gifts>
         <!-- River wardens' archers of the industrial age carry guns. -->
         <ageArms>
@@ -446,7 +446,7 @@
     <modExtensions>
       <li Class="ColonyCouncil.PeopleKindExtension">
         <gifts>
-          <li><trait>Druid</trait><chance>0.3</chance></li>
+          <li><trait>Druid</trait><chance>0.15</chance></li>
         </gifts>
       </li>
     </modExtensions>

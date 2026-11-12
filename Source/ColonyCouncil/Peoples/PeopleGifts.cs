@@ -18,7 +18,8 @@ namespace ColonyCouncil
     /// the people from it in its own settings; a psylink of a few levels (Royalty: the game's own random psycasts of
     /// each level; with Vanilla Psycasts Expanded, one of the kind's paths and a few of its powers, read by name); or a
     /// gene or two put in (Biotech: a baseliner of the scholars or the enclave given them as xenogenes, by name, the game's
-    /// or a mod's). No letter, nothing saved, nothing on a clock. Without a mod, its gift is simply never given.
+    /// or a mod's). No letter, nothing saved, nothing on a clock. Without a mod, its gift is simply never given. A pawn of
+    /// the peoples with a class, this gift's or the mod's own, is then dressed as a caster (Peoples/Magic/PeoplesMagic.cs).
     /// </summary>
     public static class PeopleGifts
     {
@@ -33,7 +34,14 @@ namespace ColonyCouncil
             if (ext != null && !ext.ageArms.NullOrEmpty()) AgeArms.Arm(p, ext.ageArms, age);
             // Every age whole (Peoples/PeopleAges.cs): in an age other than the one its kind was made for, nothing of a later age.
             if (Peoples.IsOurs(p.Faction) && age != (int)LedgerMath.AgeOf((int)p.Faction.def.techLevel)) AgeArms.ToAge(p, age, AgeArms.LastArmed, AgeArms.LastKit);
-            if (ext == null || ext.gifts.NullOrEmpty()) return;
+            if (ext != null && !ext.gifts.NullOrEmpty()) GiveGift(p, ext, age);
+            // A caster looks like one (Peoples/Magic/PeoplesMagic.cs): their class's own piece from the mod, whoever gave the
+            // class, this gift or A RimWorld of Magic's own roll.
+            PeoplesMagic.Dress(p, age);
+        }
+
+        private static void GiveGift(Pawn p, PeopleKindExtension ext, int age)
+        {
             // A gift of another age (the tamers' Wildspeakers in the spacer age) is no share of this one.
             int i = PeoplesGearMath.Pick(ext.gifts.Select(g => g != null && PeoplesDMath.AgeFits(age, g.ages.min, g.ages.max) ? g.chance : 0f).ToList(), Rand.Value);
             if (i < 0 || ext.gifts[i] == null) return;
@@ -90,7 +98,7 @@ namespace ColonyCouncil
         private static bool settingsLooked;
 
         /// <summary>The class is switched on in the mod's settings, and the mod's own share for this people isn't none.</summary>
-        private static bool ClassOn(string trait, Faction f)
+        internal static bool ClassOn(string trait, Faction f)
         {
             string setting = PeoplesGearMath.MagicSetting(trait);
             if (setting == null) return false;

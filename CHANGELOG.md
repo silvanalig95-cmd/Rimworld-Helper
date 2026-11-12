@@ -5,6 +5,17 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## Magic among the peoples
+
+*12 November 2026, version 0.225.0*
+
+- The peoples' casters of A RimWorld of Magic now look the part: a priest's hood, a druid's hood, a paladin's helm, a wizard hat or a wand, by their people's age.
+- A visiting caster names their craft to the first colonist they meet, and the colonist remarks on it; a colonist warns when a raider's caster is seen.
+- Each people's card and letters say what crafts are among them, such as druids and rangers.
+- Now and then a content or allied visitor casts a helpful spell for you with the mod's own effects: a healing, a cure, an old scar eased, or rain in a dry spell, once a visit at most.
+- In a fight the peoples' casters cast by the mod's own AI, but its most broken spells (meteors, firestorms, resurrection, polymorph and the like) are kept out of their hands.
+- Casters are rarer among most peoples and more common among the four built on magic: the Stormglass Conclave, the Mossborn, the Choir of the Spire and the Quiet Bell.
+
 ## The gods, one way
 
 *12 November 2026, version 0.224.0*

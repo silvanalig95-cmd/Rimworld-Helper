@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Magic among the peoples, seen (Source/ColonyCouncil/Peoples/Magic/PeoplesMagicWatch.cs): what is said over heads about A
+    RimWorld of Magic's casters of Rimfolk's peoples. Each line one sentence. {CRAFT} is their class in a word ("druid"),
+    {ACRAFT} with its article ("a druid"), {CRAFTS} many ("druids"); a line tagged cl:<the class's trait> is for that class
+    (cl:Druid, cl:Priest, cl:TM_Bard...), the untagged ones for any. Every age: nothing in them is of one age alone.
+  -->
+
+  <!-- A visitor names their craft to the first of the colony they meet, in their first hours on the map. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_MagicName</defName>
+    <lines>
+      <plain>
+        <li>[cl:Druid] I keep the grove's old craft, if your fields or your sick have need of it.</li>
+        <li>[cl:Druid] I'm a druid, so be kind to your trees while I'm about.</li>
+        <li>[cl:Priest] I'm a priest of my people, and I'll pray over your sick if you let me.</li>
+        <li>[cl:Priest] Call on me if anyone here is hurt, for I have the healer's blessing.</li>
+        <li>[cl:Paladin] I'm sworn as a paladin, and my hands can mend as well as fight.</li>
+        <li>[cl:Ranger] I'm a ranger, and I can tell you what walks your woods at night.</li>
+        <li>[cl:Arcanist] I study the arcane, so don't be alarmed if the air hums near me.</li>
+        <li>[cl:Chronomancer] Time bends a little around me, as it does around any chronomancer.</li>
+        <li>[cl:Enchanter] I'm an enchanter, and I can tell good work from great at a glance.</li>
+        <li>[cl:Geomancer] The stone listens when I speak, which comes of being a geomancer.</li>
+        <li>[cl:Technomancer] Machines and I understand each other, as a technomancer's should.</li>
+        <li>[cl:HeartOfFrost] I carry the cold in me, and the rain comes when I call it.</li>
+        <li>[cl:StormBorn] I was born in a storm, and the lightning still knows my name.</li>
+        <li>[cl:InnerFire] I carry a fire inside, so keep your thatch well away from me.</li>
+        <li>[cl:TM_Bard] I'm a minstrel, and I'll pay for my supper with a song.</li>
+        <li>[cl:TM_Wanderer] I'm a wandering mage, a little of every craft and master of none.</li>
+        <li>[cl:TM_Monk] I'm a monk of my people, and I mostly keep my hands to myself.</li>
+        <li>[cl:Gladiator] I fought in the ring once, and I've the scars to show for it.</li>
+        <li>[cl:TM_Sniper] I can put a shot through a keyhole from across a valley.</li>
+        <li>[cl:TM_Commander] I lead wherever I go, so forgive me an order or two.</li>
+        <li>[cl:Summoner] Don't mind the things I call up, they behave for me.</li>
+        <li>[cl:TM_Psionic] My mind pushes as hard as my hands, so I keep it calm.</li>
+        <li>I'm {ACRAFT}, should anyone here have need of one.</li>
+        <li>Among my people I'm known as {ACRAFT}, for what that's worth to you.</li>
+        <li>They call me {ACRAFT} at home, and I've earned the name.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- The colonist they met remarks on it, in turn. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_MagicSeen</defName>
+    <lines>
+      <plain>
+        <li>{ACRAFT}, here, talking to me like it's nothing.</li>
+        <li>I've heard of {CRAFTS}, but I never thought to meet one.</li>
+        <li>So that's what {ACRAFT} looks like up close.</li>
+        <li>Wait till the others hear we had {ACRAFT} at the gate.</li>
+        <li>I'll mind my manners around {ACRAFT}, then.</li>
+        <li>[cl:Druid] A druid, so we'd best mind our axes while you're here.</li>
+        <li>[cl:Priest|cl:Paladin] A healer's blessing, here at our gate.</li>
+        <li>[cl:TM_Bard] A minstrel, then the evening won't be quiet.</li>
+        <li>[cl:HeartOfFrost|cl:StormBorn|cl:InnerFire] I'll stand a little further off, if it's all the same to you.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- A colonist who sees a raider of the peoples with a class names it, once a people a map every six hours. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_MagicFoe</defName>
+    <lines>
+      <plain>
+        <li>They've {ACRAFT} with them, so keep your heads down.</li>
+        <li>Watch that one, that's {ACRAFT}.</li>
+        <li>That one's {ACRAFT}, don't let them get close.</li>
+        <li>They brought {ACRAFT} along, so this won't be an ordinary fight.</li>
+        <li>I know that look, that's {ACRAFT} out there.</li>
+        <li>[cl:Arcanist|cl:InnerFire|cl:HeartOfFrost|cl:StormBorn|cl:Druid|cl:Priest|cl:Geomancer|cl:Technomancer|cl:Enchanter|cl:Chronomancer|cl:Summoner|cl:Necromancer] That's {ACRAFT} out there, so mind the spells.</li>
+        <li>[cl:Arcanist|cl:InnerFire|cl:HeartOfFrost|cl:StormBorn|cl:Druid|cl:Priest|cl:Geomancer|cl:Technomancer|cl:Enchanter|cl:Chronomancer|cl:Summoner|cl:Necromancer] Take {ACRAFT} down first, before the spells start.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- The caster's word once the mod shows a spell for the colony cast, by what it was for. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_MagicCast</defName>
+    <lines>
+      <plain>
+        <li>[need:heal] There, that will close clean now.</li>
+        <li>[need:heal] Rest a while, the worst of it is mended.</li>
+        <li>[need:heal] It's knitting, so give it a day and it won't trouble you.</li>
+        <li>[need:cure] The sickness is out of you, so go and eat something.</li>
+        <li>[need:cure] That one won't come back, not after this.</li>
+        <li>[need:scar] Old scars fade slowly, but that one will fade a little faster now.</li>
+        <li>[need:scar] Some hurts are old, but they can still be eased.</li>
+        <li>[need:rain] The sky owed you this much.</li>
+        <li>[need:rain] There, let it fall.</li>
+        <li>It's done.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- The one it was for answers (the healed, the cured; for the rain, a colonist out under it). -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_MagicThanks</defName>
+    <lines>
+      <plain>
+        <li>[need:heal] It hardly hurts now, thank you.</li>
+        <li>[need:heal] I felt it close, like warm water over the wound.</li>
+        <li>[need:cure] The fever's gone, just like that.</li>
+        <li>[need:cure] I can breathe again, thank you.</li>
+        <li>[need:scar] The old scar feels softer somehow.</li>
+        <li>[need:rain] Rain at last, and all they did was raise a hand.</li>
+        <li>[need:rain] Smell that, the ground is drinking it in.</li>
+        <li>Thank you, truly.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+</Defs>
