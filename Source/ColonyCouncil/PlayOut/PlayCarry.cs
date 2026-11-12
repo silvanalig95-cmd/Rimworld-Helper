@@ -63,6 +63,9 @@ namespace ColonyCouncil
         /// <summary>Raw meat in the stores, for beasts that eat it (the Lantern Wardens' hounds: Peoples/Events/PeopleCamps.cs), human and insect meat last.</summary>
         public const string Meat = "meat";
 
+        /// <summary>The learned society's books held in trust, fetched again (Peoples/Events2/ArchiveTrust.cs): only theirs, never the colony's own books.</summary>
+        public const string Archive = "archive";
+
         /// <summary>The kinds of an errand that carries one of each ("meals+coat"), in the order they go; null for one kind.</summary>
         public static string[] Parts(string what) => what != null && what.IndexOf('+') >= 0 ? what.Split('+') : null;
 
@@ -83,6 +86,7 @@ namespace ColonyCouncil
                 case MechParts:
                 case Art:
                 case Meat:
+                case Archive:
                     return null;
             }
             return what.NullOrEmpty() ? fallback : DefDatabase<ThingDef>.GetNamedSilentFail(what);
@@ -154,6 +158,8 @@ namespace ColonyCouncil
                     return Missions.Matching(map, "art").OrderByDescending(t => t.MarketValue);
                 case Meat:
                     return map.listerThings.ThingsInGroup(ThingRequestGroup.FoodSourceNotPlantOrTree).Where(t => t.def.IsMeat && IsRawFood(t)).OrderBy(Unwelcome);
+                case Archive:
+                    return ArchiveTrust.Held(map);
             }
             def = def ?? DefOf(what, null);
             if (def == null) return Enumerable.Empty<Thing>();
@@ -241,6 +247,7 @@ namespace ColonyCouncil
                 case MechParts: return "CC_PeoplesG_MechParts".Translate();
                 case Art: return "CC_PeoplesG_Art".Translate();
                 case Meat: return "CC_PEv_Meat".Translate();
+                case Archive: return "CC_PEv2_ArchiveBooks".Translate();
             }
             return (def ?? DefOf(what, null))?.label ?? what ?? "";
         }

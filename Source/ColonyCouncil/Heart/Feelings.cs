@@ -282,6 +282,19 @@ namespace ColonyCouncil
             }
         }
 
+        /// <summary>Whether this kind of mood feeds the feeling of this key ("Grief", "Shame"): a pilgrimage eases one (Peoples/Events2/Pilgrimage.cs).</summary>
+        public static bool Feeds(ThoughtDef def, string key)
+        {
+            if (def == null || key == null) return false;
+            var all = All;
+            var feeds = FeedsOf(def);
+            if (feeds == null) return false;
+            foreach (var (fi, _, _) in feeds)
+                if (fi >= 0 && fi < all.Count && all[fi].key == key)
+                    return true;
+            return false;
+        }
+
         private static readonly Dictionary<ThoughtDef, bool> wearing = new Dictionary<ThoughtDef, bool>();
 
         /// <summary>

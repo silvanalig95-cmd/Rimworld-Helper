@@ -34,7 +34,8 @@ namespace ColonyCouncil
                 case HuntOrTame.TameKind: return HuntOrTame.TameHour(v, now);
                 case HuntOrTame.CoachKind: return HuntOrTame.CoachHour(v, now);
             }
-            return false;
+            // Round 2's (Peoples/Events2/): a season away, a crossing laid and its knot night, the enclave's terms, an archive's fetch, the road's news.
+            return PeopleEvents2.Hour(v, comp, now);
         }
 
         /// <summary>The people's age (0 tribal to 3 spacer), for the tags "age0" to "age3" in their lines.</summary>

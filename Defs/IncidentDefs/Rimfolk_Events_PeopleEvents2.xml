@@ -1,0 +1,787 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    The peoples' own events, round 2 (docs/peoples-events-proposals.md, items 14, 22, 26, 59, 12, 25, 3, 20, 40 and 63;
+    Source/ColonyCouncil/Peoples/Events2/). Each only from a people of its calling at peace with the colony, each played
+    out on the map. The gifts (a pilgrimage, a bionic, the guild's mark, a beast's leg) come once to a colonist or a beast,
+    and never two of the peoples' gifts close together (PeopleEventsMath.GiftGapDays). Two come only from code when their
+    day comes (base chance 0): the enclave's letter for an instalment, and the river folk's knot night at their crossing.
+    {RELATION}, {BEAST} and {DEAD} carry what the event's own code says they do (a part, a price, a name); every other
+    placeholder is the events' own.
+  -->
+
+  <!-- ===================== 14. A pilgrimage (the pilgrim fellowship) ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Rimfolk_Evt_Pilgrimage</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>a pilgrimage</label>
+    <workerClass>ColonyCouncil.HappeningWorker_Pilgrimage</workerClass>
+    <baseChance>0.4</baseChance>
+    <minRefireDays>60</minRefireDays>
+    <earliestDay>20</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Visitors</group>
+        <ages>24~70</ages>
+        <stayHours>5~8</stayHours>
+        <answerDays>0.3</answerDays>
+        <notable>false</notable>
+        <titles>
+          <li>A file of pilgrims</li>
+          <li>Bound for {PLACE}</li>
+          <li>A shell for every shrine</li>
+        </titles>
+        <texts>
+          <li>A file of {FACTION}'s pilgrims has stopped at the gate on its way to {PLACE}, {X_nameDef} at its head with a staff hung with shells. They ask whether anyone of the colony would walk with them: {TALE} there and back, on foot, and home with a shell of the shrine. {X_nameDef} looks longest at {A_nameDef}.</li>
+          <li>[grief] {X_nameDef} of {FACTION} has brought a file of pilgrims to the gate, bound for {PLACE}. {X_pronoun} has heard what {A_nameDef} carries, and says the road is good for a grief: {TALE} there and back with the fellowship, and a shell to bring home.</li>
+          <li>[guilt] Pilgrims of {FACTION} are resting at the gate on the road to {PLACE}. {X_nameDef}, who leads them, says that a walk to a shrine has eased heavier things than whatever {A_nameDef} is carrying, and that there is room in the file for one more: {TALE} there and back.</li>
+          <li>[doubt] {X_nameDef}, a keeper of {FACTION}'s pilgrims, has stopped at the gate with a file bound for {PLACE}. Faith is steadier for walking, {X_pronoun} told {A_nameDef}, and anyone of the colony is welcome to walk with them: {TALE} there and back.</li>
+          <li>[relic] A file of {FACTION}'s pilgrims has come to the gate, bound for {PLACE}. {X_nameDef} says the relic is shown to walkers only, and anyone of the colony who walks with them, {A_nameDef} or {B_nameDef}, will see it: {TALE} there and back.</li>
+          <li>[old] {X_nameDef} of {FACTION} has stopped at the gate with pilgrims bound for {PLACE}, a shrine older than any of the peoples. They would take one of the colony with them, {X_pronoun} says, {TALE} there and back on foot, if {A_nameDef} or {B_nameDef} would come.</li>
+          <li>[lowtech] Pilgrims of {FACTION} in dusty cloaks have stopped at the gate, Old Brannoc's road under their feet and {PLACE} at the end of it. {X_nameDef} blesses the gate, open or shut, and asks whether {A_nameDef} would walk with them: {TALE} there and back.</li>
+          <li>[their:grateful] The pilgrim fellowship remembers the colony's welcome, and {X_nameDef} has come to ask whether one of its people would walk with them to {PLACE}: {TALE} there and back, a shell to bring home.</li>
+        </texts>
+        <defaultOption>2</defaultOption>
+        <options>
+          <li>
+            <label>{A_nameDef} walks with them</label>
+            <outcome>{A_nameDef} is packing for the road, and will walk out with the pilgrims and set out on their way.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Pilgrimage" />
+            </effects>
+            <ways><openness>1</openness></ways>
+          </li>
+          <li>
+            <label>{B_nameDef} walks with them</label>
+            <outcome>{B_nameDef} is packing for the road, and will walk out with the pilgrims and set out on their way.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Pilgrimage"><second>true</second></li>
+            </effects>
+            <ways><openness>1</openness></ways>
+          </li>
+          <li>
+            <label>Wish them a good road</label>
+            <outcome>{X_nameDef} blesses the gate on the way out, open or shut, and the file walks on toward {PLACE}.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_SendAway" />
+            </effects>
+          </li>
+        </options>
+        <lines>
+          <li>[walk] A shell for every shrine, and one for you.</li>
+          <li>[walk] Walk at the back with me, and we'll keep the same pace.</li>
+          <li>[thanks] Bless this door, open or shut.</li>
+          <li>[thanks] Another year, then, and the road will still be there.</li>
+        </lines>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ===================== 3. One guard, one wagon (the road league) ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Rimfolk_Evt_LeagueGuard</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>one guard, one wagon</label>
+    <workerClass>ColonyCouncil.HappeningWorker_LeagueGuard</workerClass>
+    <baseChance>0.5</baseChance>
+    <minRefireDays>45</minRefireDays>
+    <earliestDay>15</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Visitors</group>
+        <ages>28~60</ages>
+        <stayHours>5~8</stayHours>
+        <answerDays>0.3</answerDays>
+        <notable>false</notable>
+        <titles>
+          <li>One guard, one wagon</li>
+          <li>Under the colony's flag</li>
+        </titles>
+        <texts>
+          <li>{X_nameDef}, a waymaster of {FACTION}, has ridden up to the gate. With {TALE} gathering at {PLACE}, the league asks every friend on the road for one fighter and one pack beast to walk under their own flag, as every waymaster did for Edda Vane. {A_nameDef} and {PET_nameDef} would be away {COUNT} days or so, and come home with a share of the profit.</li>
+          <li>[ride] A waymaster of {FACTION}, {X_nameDef}, has stopped at the gate with the league's book under {X_possessive} arm. {TALE} is gathering at {PLACE}, and the league would have the colony's flag in it: one fighter riding one beast, {A_nameDef} on {PET_nameDef}, some {COUNT} days, and a share at the end.</li>
+          <li>[season] {X_nameDef} of {FACTION} has come to the gate with a list of names. It is {TALE}, and every friend of the league sends one guard and one wagon to walk with its caravans out of {PLACE}. {A_nameDef} and {PET_nameDef}, {X_pronoun} suggests: some {COUNT} days, and a share of whatever the caravans make.</li>
+          <li>[lowtech] A waymaster of {FACTION} has walked up the road with a staff and a waystone's mark on {X_possessive} cloak, {X_nameDef} by name. {TALE} goes out from {PLACE}, and the league asks the colony for one fighter and one pack beast to walk with it under the colony's own flag: some {COUNT} days, and a share of the profit.</li>
+          <li>[their:grateful] The league writes the colony in good ink, and {X_nameDef} has come to ask it first: one fighter and one pack beast to walk with {TALE} out of {PLACE}, under the colony's flag, for some {COUNT} days and a share of the profit.</li>
+        </texts>
+        <defaultOption>2</defaultOption>
+        <options>
+          <li>
+            <label>Send {A_nameDef} and {PET_nameDef}</label>
+            <outcome>{A_nameDef} is going out with {PET_nameDef} on a lead, the colony's flag rolled on the pack.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_LeagueGuard" />
+            </effects>
+            <ways><openness>1</openness></ways>
+          </li>
+          <li>
+            <label>Send {B_nameDef} and {PET_nameDef}, for a better bargain</label>
+            <outcome>{B_nameDef} is going out with {PET_nameDef}, the colony's flag rolled on the pack and a head for prices.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_LeagueGuard"><second>true</second></li>
+            </effects>
+            <ways><openness>1</openness></ways>
+          </li>
+          <li>
+            <label>Not this season</label>
+            <outcome>{X_nameDef} writes it down without a word against the colony and rides on to the next gate.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_SendAway" />
+            </effects>
+          </li>
+        </options>
+        <lines>
+          <li>[flag] One guard, one wagon, and the colony's name on the road.</li>
+          <li>[flag] Edda Vane went under nine flags, and yours makes ten.</li>
+          <li>[thanks] The road won't wait, so neither will we.</li>
+        </lines>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ===================== 22. The body made better, on terms (the spacer enclave) ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Rimfolk_Evt_EnclaveBody</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>the body made better</label>
+    <workerClass>ColonyCouncil.HappeningWorker_EnclaveBody</workerClass>
+    <baseChance>0.5</baseChance>
+    <minRefireDays>45</minRefireDays>
+    <earliestDay>20</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Visitors</group>
+        <ages>30~60</ages>
+        <stayHours>10~14</stayHours>
+        <answerDays>0.4</answerDays>
+        <notable>false</notable>
+        <titles>
+          <li>The body made better</li>
+          <li>A part on terms</li>
+          <li>[!beast] {TALE} for {B_nameDef}</li>
+        </titles>
+        <texts>
+          <li>[!beast] {X_nameDef}, a factor of {FACTION}, has come with a surgeon and a marshal and a case that hums. The enclave would fit {B_nameDef} with {TALE} for the {RELATION}, at the colony's medical bed: {COUNT} silver now, or on terms, a fifth down and the rest in four seasonal instalments asked for by letter. A bargain struck is kept to the last digit, {X_pronoun} adds.</li>
+          <li>[need,!beast] {X_nameDef} of {FACTION} has heard about {B_nameDef}'s {RELATION}, and has brought {TALE} down to fit it. The enclave's surgeon would work at the colony's bed; {COUNT} silver now, or a fifth down and four instalments, one each season, asked for by letter.</li>
+          <li>[better,!beast] A factor of {FACTION}, {X_nameDef}, has come to the gate with an offer for {B_nameDef}: {TALE} in place of the {RELATION} {B_pronoun} has, fitted at the colony's bed by the enclave's surgeon. {COUNT} silver, or terms: a fifth down, then four seasonal instalments.</li>
+          <li>[beast] {X_nameDef}, a factor of {FACTION}, has come with a surgeon who knows beasts as well as people. {PET_nameDef}, {B_nameDef}'s beast, could have {TALE} for the {RELATION}, fitted where it stands: {COUNT} silver, or a fifth down and four instalments asked for by letter each season.</li>
+          <li>[pod,!beast] A pod came down by the trade spot this morning, and {X_nameDef} of {FACTION} stepped out of it with a surgeon and a marshal. The enclave would fit {B_nameDef} with {TALE} at the colony's bed: {COUNT} silver, or terms, a fifth down and four instalments.</li>
+          <li>[walk,!beast] {X_nameDef} of {FACTION} has walked in from the road with a surgeon and a marshal, their spacer kit dusty, since a tribe's land has no place for a pod to land. The enclave would fit {B_nameDef} with {TALE} at the colony's bed: {COUNT} silver, or terms.</li>
+          <li>[their:grateful,!beast] The enclave thinks well of the colony's dealings, and {X_nameDef} has brought {TALE} for {B_nameDef} on a friend's terms: {COUNT} silver now, or a fifth down and the rest in four seasonal instalments.</li>
+        </texts>
+        <defaultOption>2</defaultOption>
+        <options>
+          <li>
+            <label>Pay now ({COUNT} silver)</label>
+            <outcome>The silver is going out to {X_nameDef}, and the enclave's surgeon is getting ready to work.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>the silver for {X_nameDef}</label><what>silver</what><steward>false</steward></li>
+              <li Class="ColonyCouncil.DilemmaEffect_EnclaveBody" />
+            </effects>
+            <ways><openness>1</openness></ways>
+          </li>
+          <li>
+            <label>On terms: a fifth down, the rest by the season</label>
+            <outcome>The down payment is going out to {X_nameDef}, the terms are written to the last digit, and the enclave's surgeon is getting ready to work.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>the down payment for {X_nameDef}</label><what>silver</what><variant>true</variant><steward>false</steward></li>
+              <li Class="ColonyCouncil.DilemmaEffect_EnclaveBody"><terms>true</terms></li>
+            </effects>
+          </li>
+          <li>
+            <label>Not today</label>
+            <outcome>{X_nameDef} notes the colony's answer to the last digit, and the enclave's people go back the way they came.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_SendAway" />
+            </effects>
+          </li>
+        </options>
+        <lines>
+          <li>[paid] Paid in full, and the bargain is kept to the last digit.</li>
+          <li>[terms] A fifth down, and four letters to come.</li>
+          <li>[thanks] The offer stands until it doesn't.</li>
+          <li>[fitted] It will answer you better than the old one did.</li>
+          <li>[fitted] Give it a day to learn you.</li>
+          <li>[sorry] It wouldn't take, and I'll say so plainly.</li>
+        </lines>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Rimfolk_Evt_EnclaveInstalment</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>the enclave's terms</label>
+    <workerClass>ColonyCouncil.HappeningWorker_EnclaveInstalment</workerClass>
+    <baseChance>0</baseChance>
+    <minRefireDays>0</minRefireDays>
+    <earliestDay>0</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Visitors</group>
+        <answerDays>1</answerDays>
+        <notable>false</notable>
+        <titles>
+          <li>The enclave's letter</li>
+          <li>An instalment due</li>
+          <li>[default] What is owed</li>
+        </titles>
+        <texts>
+          <li>[due] A letter has come from {FACTION}, every figure in it to the last digit. The season's instalment for {DEAD}'s {TALE} is due: {COUNT} silver, of {RELATION} still owed. Their courier will wait at the gate for it.</li>
+          <li>[due] {FACTION}'s letter is short and polite. The instalment for {TALE} fitted to {DEAD} is {COUNT} silver this season, {RELATION} owed in all, carried to the gate where their courier waits.</li>
+          <li>[last] {FACTION} writes that the last instalment for {DEAD}'s {TALE} is due: {COUNT} silver, and the bargain is kept. Their courier will wait at the gate for it.</li>
+          <li>[default] {FACTION} writes again about {DEAD}'s {TALE}. The colony missed an instalment, the debt stands in its name, and no lander of theirs comes until it is paid: {RELATION} silver, to the last digit, carried to the gate.</li>
+          <li>[default] A letter from {FACTION}, in a cooler hand than before: {RELATION} silver is owed for {TALE}, the default is written in the colony's debts, and their landers will not come down until it is settled.</li>
+        </texts>
+        <defaultOption>2</defaultOption>
+        <options>
+          <li>
+            <label>Pay the instalment ({COUNT} silver)</label>
+            <outcome>The silver is going out to the gate, where the enclave's courier waits.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_EnclaveInstalment" />
+            </effects>
+          </li>
+          <li>
+            <label>Pay all that is owed ({RELATION} silver)</label>
+            <outcome>All that is owed is going out to the gate, and the enclave's terms are kept to the last digit.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_EnclaveInstalment"><all>true</all></li>
+            </effects>
+          </li>
+          <li>
+            <label>Not this season</label>
+            <outcome>No silver goes out, and the enclave writes it down as a default.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_EnclaveDefault" />
+            </effects>
+          </li>
+        </options>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ===================== 26. A crossing on the colony's river (the river folk) ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Rimfolk_Evt_RiverCrossing</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>a crossing on the river</label>
+    <workerClass>ColonyCouncil.HappeningWorker_RiverCrossing</workerClass>
+    <baseChance>0.5</baseChance>
+    <minRefireDays>40</minRefireDays>
+    <earliestDay>12</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Visitors</group>
+        <ages>22~60</ages>
+        <stayHours>8~12</stayHours>
+        <answerDays>0.4</answerDays>
+        <notable>false</notable>
+        <titles>
+          <li>A crossing on the river</li>
+          <li>Carry the stranger across</li>
+        </titles>
+        <texts>
+          <li>{X_nameDef}, a boatman of {FACTION}, has come up from the water with two of the river folk and a coil of rope. The colony's river could have a crossing, {X_pronoun} says: {TALE} over the water where it runs narrow, planks on both banks, laid in a day with {COUNT} of the colony's wood. Carry the stranger across, and a crossing does it every day.</li>
+          <li>[rope] Boatmen of {FACTION} have pulled up on the colony's bank, {X_nameDef} with a mallet in {X_possessive} belt. They would lay {TALE} across the river where it is narrowest, a day's work, if the colony gives {COUNT} wood for it, and the crossing would be the colony's.</li>
+          <li>[piles] {X_nameDef} of {FACTION} has come to the gate with a drawing of the colony's river and a cart of iron shoes for piles. {TALE}, {X_pronoun} says, driven into the narrows in a day, planks on the banks, for {COUNT} of the colony's wood.</li>
+          <li>[nobuilder] Three boatmen of {FACTION} are waiting by the gate, {X_nameDef} doing the talking. A crossing over the colony's river, {TALE}, laid in a day with {COUNT} wood, and the colony's own forever; nobody of the colony need lift a plank.</li>
+          <li>[lowtech] River folk of {FACTION} have come up from the water with poles and coils of rope, {X_nameDef} at their head. There is a knot in the net for everyone pulled out of a river, {X_pronoun} says, and a crossing pulls them out before they fall in: {TALE}, a day's work, {COUNT} wood.</li>
+          <li>[their:grateful] The river folk remember the colony kindly, and {X_nameDef} has come to give back what they can: {TALE} over the colony's river where it runs narrow, laid in a day with {COUNT} of the colony's wood.</li>
+        </texts>
+        <defaultOption>2</defaultOption>
+        <options>
+          <li>
+            <label>Give the wood and let them lay it ({COUNT} wood)</label>
+            <outcome>The wood is going down to the boatmen, and they are already pacing out the narrows.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>the wood for the crossing</label><what>wood</what><steward>false</steward></li>
+              <li Class="ColonyCouncil.DilemmaEffect_RiverCrossing" />
+            </effects>
+            <ways><openness>1</openness></ways>
+          </li>
+          <li>
+            <label>Give the wood, and {A_nameDef} works beside them</label>
+            <outcome>The wood is going down to the boatmen, and {A_nameDef} is going with it to learn how the river folk sink a pile.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>the wood for the crossing</label><what>wood</what><steward>false</steward></li>
+              <li Class="ColonyCouncil.DilemmaEffect_RiverCrossing" />
+              <li Class="ColonyCouncil.DilemmaEffect_Lesson"><teacher>X</teacher><student>A</student><skill>Construction</skill><duration>3~5</duration></li>
+            </effects>
+            <ways><openness>1</openness></ways>
+          </li>
+          <li>
+            <label>Our river stays as it is</label>
+            <outcome>{X_nameDef} coils the rope again and the boatmen go back down to the water.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_SendAway" />
+            </effects>
+          </li>
+        </options>
+        <lines>
+          <li>[lay] Carry the stranger across.</li>
+          <li>[lay] Plank on plank, and mind the current.</li>
+          <li>[lay] One more span, then the next.</li>
+          <li>[done] It's yours now, and the river's.</li>
+          <li>[done] There's a knot in the net for this crossing.</li>
+          <li>[thanks] Never foul the water another drinks.</li>
+        </lines>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Rimfolk_Evt_KnotNight</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>the river folk's knot night</label>
+    <workerClass>ColonyCouncil.HappeningWorker_KnotNight</workerClass>
+    <baseChance>0</baseChance>
+    <minRefireDays>0</minRefireDays>
+    <earliestDay>0</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Visitors</group>
+        <ages>20~65</ages>
+        <stayHours>4~6</stayHours>
+        <answerDays>0.15</answerDays>
+        <notable>false</notable>
+        <titles>
+          <li>Knot night</li>
+          <li>A rest at the crossing</li>
+        </titles>
+        <texts>
+          <li>It is the river folk's knot night, and {X_nameDef} of {FACTION} has come to the gate with a net over {X_possessive} shoulder and {COUNT} boatmen behind. They tie a knot for everyone pulled out of the water this year, {X_pronoun} says, and ask to rest the night at the crossing they laid.</li>
+          <li>Boatmen of {FACTION} are at the gate as the sun goes down, {X_nameDef} with a lantern. On knot night they rest by a crossing and tie the year's knots, and they ask to rest at the one they laid on the colony's river.</li>
+          <li>[lowtech] {X_nameDef} of {FACTION} has come to the gate with a coil of new net and a knotting pin. It is knot night, {X_pronoun} says, and the river folk would rest at the colony's crossing and tie their knots by it.</li>
+          <li>[!lowtech] {X_nameDef} and the boatmen of {FACTION} have walked up from the water with a lamp and a net. On their knot night they ask to rest by the crossing they laid, and tie the year's knots there.</li>
+          <li>[their:grateful] The river folk remember the colony kindly, and on their knot night {X_nameDef} asks to rest at its crossing with {COUNT} of them, and to tie a knot there for the colony.</li>
+        </texts>
+        <defaultOption>2</defaultOption>
+        <options>
+          <li>
+            <label>Let them rest at the crossing</label>
+            <outcome>The boatmen are walking down to the crossing with their nets, and will stay there until morning.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_KnotRest" />
+            </effects>
+            <ways><openness>1</openness></ways>
+          </li>
+          <li>
+            <label>Let them rest, and send them supper</label>
+            <outcome>The boatmen are walking down to the crossing, and a colonist is carrying supper out to them.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>supper for the boatmen</label><what>meals</what><steward>false</steward><eat>true</eat></li>
+              <li Class="ColonyCouncil.DilemmaEffect_KnotRest" />
+            </effects>
+            <ways><generosity>1</generosity></ways>
+          </li>
+          <li>
+            <label>Not this year</label>
+            <outcome>{X_nameDef} nods and leads the boatmen back toward the water to rest somewhere else.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_SendAway" />
+            </effects>
+          </li>
+        </options>
+        <lines>
+          <li>[rest] A knot for everyone pulled out, and one for the crossing.</li>
+          <li>[rest] We'll be gone by first light.</li>
+          <li>[thanks] Another year, then, and another knot.</li>
+        </lines>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ===================== 59. The guild's mark (the Kiln Guild) ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Rimfolk_Evt_GuildMark</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>the guild's mark</label>
+    <workerClass>ColonyCouncil.HappeningWorker_GuildMark</workerClass>
+    <baseChance>0.5</baseChance>
+    <minRefireDays>45</minRefireDays>
+    <earliestDay>15</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Visitors</group>
+        <ages>35~70</ages>
+        <stayHours>16~20</stayHours>
+        <answerDays>0.4</answerDays>
+        <notable>false</notable>
+        <titles>
+          <li>The guild's mark</li>
+          <li>A master at the bench</li>
+          <li>{A_nameDef}'s {TALE}</li>
+        </titles>
+        <texts>
+          <li>{X_nameDef}, a master-smith of {FACTION}, has looked at {A_nameDef}'s {TALE} and says it could be more than it is. A day at the colony's bench, with {A_nameDef} watching, would make it {RELATION}, with {A_nameDef}'s name in it: {COUNT} silver and {THING} for the work. Bad work is a lie told in stone, {X_pronoun} adds, and this would be no lie.</li>
+          <li>[unique] A master of {FACTION}, {X_nameDef}, has turned {A_nameDef}'s {TALE} over in {X_possessive} hands and named the piece it could be: {RELATION}, with {A_nameDef}'s name on it. A day at the colony's bench while {A_nameDef} watches, {COUNT} silver and {THING}.</li>
+          <li>[masterwork] {X_nameDef} of {FACTION} says {A_nameDef}'s {TALE} is honest work that could be {RELATION}, with {A_nameDef}'s name cut into it. A day at the colony's bench, {COUNT} silver and {THING}.</li>
+          <li>[bow] A master of {FACTION}'s guild, {X_nameDef}, has strung and unstrung {A_nameDef}'s {TALE} twice. A day at the colony's bench, {X_pronoun} says, and it would be {RELATION}, with {A_nameDef}'s name along the grip: {COUNT} silver and {THING}.</li>
+          <li>[blade] {X_nameDef}, a master-smith of {FACTION}, has run a thumb along {A_nameDef}'s {TALE}. Reworked at the colony's bench, a day's work, it would be {RELATION}, with {A_nameDef}'s name in it: {COUNT} silver and {THING}.</li>
+          <li>[nocrafter] {X_nameDef} of {FACTION} has come to the gate with an apprentice and a roll of tools. {A_nameDef}'s {TALE} could be {RELATION}, {X_pronoun} says, a day at the colony's bench while {A_nameDef} watches, for {COUNT} silver and {THING}.</li>
+          <li>[their:grateful] The Kiln Guild thinks well of the colony's work, and {X_nameDef} has come from {PLACE} to make {A_nameDef}'s {TALE} into {RELATION}, with {A_nameDef}'s name in it: a day at the bench, {COUNT} silver and {THING}.</li>
+        </texts>
+        <defaultOption>2</defaultOption>
+        <options>
+          <li>
+            <label>Let the master rework it ({COUNT} silver and {THING})</label>
+            <outcome>{A_nameDef} is handing the {TALE} over to {X_nameDef}, and they are walking to the colony's bench together.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_GuildMark" />
+            </effects>
+            <ways><openness>1</openness></ways>
+          </li>
+          <li>
+            <label>Rework it with {B_nameDef} at the master's side, for less</label>
+            <outcome>{A_nameDef} is handing the {TALE} over, and {B_nameDef} is going to the bench to work beside {X_nameDef} for the day.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_GuildMark"><crafter>true</crafter></li>
+            </effects>
+            <ways><openness>1</openness></ways>
+          </li>
+          <li>
+            <label>It does what it is for</label>
+            <outcome>{X_nameDef} hands the {TALE} back to {A_nameDef} with a nod, as one maker to another, and goes on to the next town.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_SendAway" />
+            </effects>
+          </li>
+        </options>
+        <lines>
+          <li>[work] Bad work is a lie told in stone, and I don't lie.</li>
+          <li>[work] Stand where you can see the work, and say nothing.</li>
+          <li>[marked] Your name is in it now, so carry it well.</li>
+          <li>[marked] Kell cut his mark in every stone, and I cut yours in this.</li>
+          <li>[thanks] Honest work is honest work.</li>
+        </lines>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ===================== 12. Water in the dry year (the herding folk): their camp comes by this ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Rimfolk_Evt_HerdersDrought</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>water in the dry year</label>
+    <workerClass>ColonyCouncil.HappeningWorker_HerdersDrought</workerClass>
+    <baseChance>0.7</baseChance>
+    <minRefireDays>30</minRefireDays>
+    <earliestDay>10</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Visitors</group>
+        <ages>40~75</ages>
+        <stayHours>4~6</stayHours>
+        <answerDays>0.3</answerDays>
+        <notable>false</notable>
+        <titles>
+          <li>Water in the dry year</li>
+          <li>A herd to the water</li>
+        </titles>
+        <texts>
+          <li>{X_nameDef}, an elder of {FACTION}'s herders, has walked to the gate with a dry waterskin. The drought has taken every spring on their road, {X_pronoun} says, and they ask to bring the herd, {COUNT} head and their dogs, to the colony's water and camp by it for some days.</li>
+          <li>[odyssey] The drought has cracked the ground for miles, and {X_nameDef} of {FACTION} has come to the gate ahead of the herd. {COUNT} head and their dogs need water, {X_pronoun} told {A_nameDef}, and the colony's is the nearest that still runs.</li>
+          <li>[vee] {X_nameDef}, an elder of {FACTION}, has come through the drought to the colony's gate. The herd is a day behind, {COUNT} head and their dogs, and {X_pronoun} asks to water it at the colony's river and camp there until the rain.</li>
+          <li>[region] The long drought has reached the herders' road, and {X_nameDef} of {FACTION} has come to the gate to ask for the colony's water: {COUNT} head and their dogs, a few days by the river, and hay if the colony has any.</li>
+          <li>[lowtech] An old herder of {FACTION}, {X_nameDef}, has come to the gate barefoot over the hard ground. A guest eats from the same pot, {X_pronoun} says, and asks whether the herd, {COUNT} head, might drink from the colony's water until the dry year breaks.</li>
+          <li>[their:grateful] The herding folk remember the colony kindly, and {X_nameDef} has brought their herd to it first in the drought: {COUNT} head and their dogs, to drink at the colony's water and camp by it a while.</li>
+        </texts>
+        <defaultOption>2</defaultOption>
+        <options>
+          <li>
+            <label>Let them water the herd here</label>
+            <outcome>{X_nameDef} is going back for the herd, and the herders will make camp by the colony's water.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_DryWaterCamp" />
+            </effects>
+            <ways><generosity>1</generosity></ways>
+          </li>
+          <li>
+            <label>Let them, for a toll ({BEAST} silver)</label>
+            <outcome>{X_nameDef} counts out the toll at the gate without a word and goes back for the herd.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_DryWaterCamp"><toll>true</toll></li>
+            </effects>
+          </li>
+          <li>
+            <label>Turn them away</label>
+            <outcome>{X_nameDef} turns back to the dry road without arguing, and walks off to find the herd another water.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_SendAway" />
+              <li Class="ColonyCouncil.DilemmaEffect_DryTurnedAway" />
+            </effects>
+          </li>
+        </options>
+        <lines>
+          <li>[water] The herd will smell your water before they see it.</li>
+          <li>[water] Count them at dusk with us, if you like.</li>
+          <li>[thanks] The grass is patient, but water isn't.</li>
+        </lines>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ===================== 25. A pad by the colony (the spacer enclave): their camp comes by this ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Rimfolk_Evt_EnclavePad</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>a pad by the colony</label>
+    <workerClass>ColonyCouncil.HappeningWorker_EnclavePad</workerClass>
+    <baseChance>0.4</baseChance>
+    <minRefireDays>50</minRefireDays>
+    <earliestDay>20</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Visitors</group>
+        <ages>28~60</ages>
+        <stayHours>4~6</stayHours>
+        <answerDays>0.4</answerDays>
+        <notable>false</notable>
+        <titles>
+          <li>A pad by the colony</li>
+          <li>Ground for rent</li>
+        </titles>
+        <texts>
+          <li>{X_nameDef}, a factor of {FACTION}, has come to the gate with a slate of figures. The enclave would rent ground at the colony's edge for ten to fifteen days, lay a small pad and stalls on it, and trade from it every day: {COUNT} silver every five days, to the last digit.</li>
+          <li>[tribal] A stranger in close-fitting spacer kit, {X_nameDef} of {FACTION}, has come to the gate with a slate that glows. The enclave would rent ground at the colony's edge, {X_pronoun} says, and lay a flat place where things come down from the sky each morning to trade: {COUNT} silver every five days.</li>
+          <li>[lowtech] {X_nameDef} of {FACTION} has walked in from beyond the hills where the enclave's people set down. They would rent a patch of ground at the colony's edge for their pad and stalls, ten to fifteen days, and pay {COUNT} silver every five days, an exact figure.</li>
+          <li>[!lowtech] A factor of {FACTION}, {X_nameDef}, has come by the colony's gate with an offer worked out to the last digit: rent for a patch of ground at the edge, {COUNT} silver every five days, for a pad, a few stalls and fresh stock by pod each morning.</li>
+          <li>[their:grateful] The enclave thinks well of the colony's dealings, and {X_nameDef} would rather rent its ground than anyone's: a pad and stalls at the edge for ten to fifteen days, {COUNT} silver every five days.</li>
+        </texts>
+        <defaultOption>2</defaultOption>
+        <options>
+          <li>
+            <label>Rent them the ground ({COUNT} silver every five days)</label>
+            <outcome>{X_nameDef} writes the rent down to the last digit and goes to fetch the enclave's people.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_EnclavePad" />
+            </effects>
+            <ways><openness>1</openness></ways>
+          </li>
+          <li>
+            <label>Let them have it for nothing, as friends</label>
+            <outcome>{X_nameDef} writes a zero where the rent goes, looks at it a while, and goes to fetch the enclave's people.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_EnclavePad"><free>true</free></li>
+            </effects>
+            <ways><generosity>1</generosity></ways>
+          </li>
+          <li>
+            <label>Not on our ground</label>
+            <outcome>{X_nameDef} notes the answer on the slate and goes back the way {X_pronoun} came.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_SendAway" />
+            </effects>
+          </li>
+        </options>
+        <lines>
+          <li>[rent] Every five days, to the last digit.</li>
+          <li>[rent] A bargain struck is kept to the last digit.</li>
+          <li>[thanks] The offer stands until it doesn't.</li>
+        </lines>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ===================== 20. Books kept from the fire (the learned society) ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Rimfolk_Evt_ArchiveTrust</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>books kept from the fire</label>
+    <workerClass>ColonyCouncil.HappeningWorker_ArchiveTrust</workerClass>
+    <baseChance>0.7</baseChance>
+    <minRefireDays>40</minRefireDays>
+    <earliestDay>12</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Visitors</group>
+        <ages>28~70</ages>
+        <stayHours>6~10</stayHours>
+        <answerDays>0.4</answerDays>
+        <notable>false</notable>
+        <titles>
+          <li>Books kept from the fire</li>
+          <li>An archive in the colony's care</li>
+        </titles>
+        <texts>
+          <li>{X_nameDef}, a copyist of {FACTION}, has come to the gate with a cart of books saved from {PLACE}. Nothing known should be lost, {X_pronoun} says, and asks the colony to keep the archive, {COUNT} books, for a season until a cart can fetch it.</li>
+          <li>[fire] {X_nameDef} of {FACTION} smells of smoke, and so does the cart behind {X_objective}: {COUNT} books carried out of {PLACE} as the fire came. Ilse Varro carried eleven, {X_pronoun} says, and asks the colony to keep these for a season.</li>
+          <li>[fell] {PLACE} has fallen, and {X_nameDef}, a copyist of {FACTION}, got out with a cart of the archive. {X_pronoun} asks the colony to keep the books, {COUNT} of them, for a season, until the society can send a cart for them.</li>
+          <li>[tome] {X_nameDef} of {FACTION} has brought a cart of {COUNT} books saved from {PLACE}, and a crate bound with wire and sealed. The books may be read, {X_pronoun} says, but the crate stays shut; would the colony keep them all for a season?</li>
+          <li>[lowtech] A copyist of {FACTION} has pulled a handcart to the gate, {X_nameDef} by name, with {COUNT} books under an oiled cloth, saved from {PLACE}. Nothing known should be lost: would the colony keep them for a season?</li>
+          <li>[their:grateful] The learned society trusts the colony, and {X_nameDef} has brought it the archive saved from {PLACE}, {COUNT} books, to keep for a season.</li>
+        </texts>
+        <defaultOption>2</defaultOption>
+        <options>
+          <li>
+            <label>Keep it, and let our readers read</label>
+            <outcome>{X_nameDef} and the porter are carrying the books in to the colony's stores, and {A_nameDef} has already asked about one of them.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_ArchiveKeep" />
+            </effects>
+            <ways><openness>1</openness></ways>
+          </li>
+          <li>
+            <label>Keep it locked away</label>
+            <outcome>The books are going in to the colony's stores, and nobody of the colony will touch them until the cart comes.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_ArchiveKeep"><locked>true</locked></li>
+            </effects>
+          </li>
+          <li>
+            <label>We can't keep it</label>
+            <outcome>{X_nameDef} pulls the cloth back over the books and takes the cart on down the road.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_SendAway" />
+            </effects>
+          </li>
+        </options>
+        <lines>
+          <li>[keep] Nothing known should be lost.</li>
+          <li>[keep] Read them gently, and put them back where they were.</li>
+          <li>[thanks] Strictly speaking, that is two questions.</li>
+          <li>[kept] Every book home, and one of them yours to keep.</li>
+          <li>[wronged] A book lost is a thing the world doesn't know any more.</li>
+        </lines>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ===================== 40. A leg for a lame beast (the Circuit of Tamers) ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Rimfolk_Evt_LameBeast</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>a leg for a lame beast</label>
+    <workerClass>ColonyCouncil.HappeningWorker_LameBeast</workerClass>
+    <baseChance>0.6</baseChance>
+    <minRefireDays>35</minRefireDays>
+    <earliestDay>12</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Visitors</group>
+        <ages>28~65</ages>
+        <stayHours>8~12</stayHours>
+        <answerDays>0.4</answerDays>
+        <notable>false</notable>
+        <titles>
+          <li>A leg for a lame beast</li>
+          <li>The Circuit's beast-doctor</li>
+        </titles>
+        <texts>
+          <li>{X_nameDef}, a beast-doctor of {FACTION}, has come to the gate because the Circuit heard {PET_nameDef} lost {PET_possessive} {RELATION}. A bond is not a leash, {X_pronoun} says, but a beast on three legs needs more than a bond.</li>
+          <li>[leg] {X_nameDef} of {FACTION} has brought {TALE} for {PET_nameDef}, who lost {PET_possessive} {RELATION}. {X_pronoun} would fit it where the beast stands, by the Circuit's own way of it, for {COUNT} silver. Or {X_pronoun} would take {PET_nameDef} to the Circuit's stables, and leave a young one of its kind.</li>
+          <li>[stables] A beast-doctor of {FACTION}, {X_nameDef}, has come for {PET_nameDef}, lame since {PET_pronoun} lost {PET_possessive} {RELATION}. The Circuit has no legs to fit, but it has stables and grass, and {PET_nameDef} could live out {PET_possessive} days there; {X_pronoun} has brought a young one of its kind to leave in {PET_possessive} place.</li>
+          <li>[noyoung] {X_nameDef} of {FACTION} has come about {PET_nameDef} and the {RELATION} {PET_pronoun} lost. The Circuit's stables are open to {PET_objective}, {X_pronoun} says, or a leg fitted here if the Circuit has one to give.</li>
+          <li>[lowtech] A beast-doctor of {FACTION} has walked in from the road with a pack of herbs and splints, {X_nameDef} by name. Nessa Pell never left a lame beast behind, {X_pronoun} says, and asks to see {PET_nameDef}.</li>
+          <li>[their:grateful] The Circuit remembers the colony kindly, and {X_nameDef} has come to see to {PET_nameDef}, who lost {PET_possessive} {RELATION}.</li>
+        </texts>
+        <defaultOption>2</defaultOption>
+        <options>
+          <li>
+            <label>Let {X_nameDef} fit the leg ({COUNT} silver)</label>
+            <outcome>The silver is going out to {X_nameDef}, and {X_pronoun} is walking over to {PET_nameDef} with {X_possessive} case.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>the silver for {X_nameDef}</label><what>silver</what><steward>false</steward></li>
+              <li Class="ColonyCouncil.DilemmaEffect_BeastLeg" />
+            </effects>
+            <ways><openness>1</openness></ways>
+          </li>
+          <li>
+            <label>Let {X_nameDef} take {PET_nameDef} to the Circuit's stables</label>
+            <outcome>{PET_nameDef} is going with {X_nameDef} to the Circuit's stables, and the young one {X_pronoun} brought is the colony's.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_BeastStables" />
+            </effects>
+          </li>
+          <li>
+            <label>We keep {PET_nameDef} as it is</label>
+            <outcome>{X_nameDef} scratches {PET_nameDef} behind the ears and goes on to the next town.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_SendAway" />
+            </effects>
+          </li>
+        </options>
+        <lines>
+          <li>[fit] Hold still, and you'll be walking by tonight.</li>
+          <li>[stables] There's grass at the stables, and nobody will ask you to carry anything.</li>
+          <li>[thanks] A bond is not a leash.</li>
+          <li>[walks] Four legs again, more or less.</li>
+        </lines>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ===================== 63. News for sale (the Signal Line) ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Rimfolk_Evt_NewsForSale</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>news for sale</label>
+    <workerClass>ColonyCouncil.HappeningWorker_NewsForSale</workerClass>
+    <baseChance>0.5</baseChance>
+    <minRefireDays>35</minRefireDays>
+    <earliestDay>15</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Visitors</group>
+        <ages>25~60</ages>
+        <stayHours>5~8</stayHours>
+        <answerDays>0.3</answerDays>
+        <notable>false</notable>
+        <titles>
+          <li>News for sale</li>
+          <li>What the masts heard</li>
+        </titles>
+        <texts>
+          <li>{X_nameDef}, an operator of {FACTION}, has come to the gate with a notebook of what the masts at {PLACE} heard. Silence is the only storm, {X_pronoun} says, and sells what the line carries: {TALE}, for {COUNT} silver, or {RELATION}, for {BEAST}.</li>
+          <li>[noradio] The colony has no radio, so {X_nameDef} of {FACTION} has walked the word in from the masts at {PLACE}: {TALE} for {COUNT} silver, or {RELATION} for {BEAST}, and where it lies.</li>
+          <li>[outpost] {X_nameDef} of {FACTION} has come to the gate with a headset round {X_possessive} neck. The masts at {PLACE} caught bandits talking on an open band; {X_pronoun} would sell where they camp, or another thing the line heard: {TALE} for {COUNT} silver, {RELATION} for {BEAST}.</li>
+          <li>[wreck] An operator of {FACTION}, {X_nameDef}, has a scrap of paper with a beacon's call written on it, heard by the masts at {PLACE}. {TALE} for {COUNT} silver, or {RELATION} for {BEAST}.</li>
+          <li>[lowtech] A runner of {FACTION}'s line, {X_nameDef}, has come to the gate with the masts' news copied in a careful hand from the flag towers at {PLACE}: {TALE} for {COUNT} silver, or {RELATION} for {BEAST}.</li>
+          <li>[their:grateful] The Signal Line thinks well of the colony, and {X_nameDef} has come from {PLACE} with the line's news before anyone else hears it: {TALE} for {COUNT} silver, or {RELATION} for {BEAST}.</li>
+        </texts>
+        <defaultOption>2</defaultOption>
+        <options>
+          <li>
+            <label>Buy the word of {TALE} ({COUNT} silver)</label>
+            <outcome>The silver is going out to {X_nameDef}, who reads out where it lies and how the masts heard it.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_NewsBought" />
+            </effects>
+          </li>
+          <li>
+            <label>Buy the word of {RELATION} ({BEAST} silver)</label>
+            <outcome>The silver is going out to {X_nameDef}, who reads out where it lies and how the masts heard it.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_NewsBought"><second>true</second></li>
+            </effects>
+          </li>
+          <li>
+            <label>Not today</label>
+            <outcome>{X_nameDef} closes the notebook and walks on toward the next mast.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_SendAway" />
+            </effects>
+          </li>
+        </options>
+        <lines>
+          <li>[sold] Silence is the only storm.</li>
+          <li>[sold] The masts hear everything, and now so do you.</li>
+          <li>[thanks] The line will carry it to someone else, then.</li>
+        </lines>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+</Defs>

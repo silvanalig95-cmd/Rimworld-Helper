@@ -1,0 +1,324 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    The peoples' own camps of round 2 (Source/ColonyCouncil/Peoples/Events2/DryWater.cs, EnclavePad.cs; each a camp kind
+    with ways of its own, Camps/CampWorker.cs): the herding folk by the colony's water in the dry year (item 12), and the
+    spacer enclave's pad at the colony's edge (item 25). Neither comes on the camps' own draw (weight 0): each comes when
+    the colony answers its event (Rimfolk_Evt_HerdersDrought, Rimfolk_Evt_EnclavePad).
+  -->
+
+  <!-- ===================== 12. Water in the dry year (the herding folk) ===================== -->
+
+  <ColonyCouncil.CampKindDef>
+    <defName>Rimfolk_Camp_DryWater</defName>
+    <label>herders by the water</label>
+    <workerClass>ColonyCouncil.CampWorker_DryWater</workerClass>
+    <arrives>8~14</arrives>
+    <calling>herders</calling>
+    <weight>0</weight>
+    <maxAnimals>14</maxAnimals>
+    <people>3~5</people>
+    <days>5~8</days>
+    <ages>16~65</ages>
+    <chopsPerDay>0.3</chopsPerDay>
+    <task>Council_CampHerd</task>
+    <taskAt>herd</taskAt>
+    <hireChance>0.1</hireChance>
+    <joinChance>0.02</joinChance>
+    <helpChance>0.3</helpChance>
+    <help>
+      <li>milk</li>
+      <li>tales</li>
+    </help>
+    <buys>
+      <li>Feed</li>
+      <li>RoadFood</li>
+    </buys>
+    <pride>0.3</pride>
+    <breakTerms>0.05</breakTerms>
+    <tensionPerDay>0.6</tensionPerDay>
+    <extendChance>0.1</extendChance>
+    <situationKinds>
+      <li>drought</li>
+      <li>herds</li>
+    </situationKinds>
+    <structures>
+      <li><role>fire</role><defs><li>Campfire</li></defs></li>
+    </structures>
+    <sleep>Tents</sleep>
+    <works><li>Gather</li></works>
+    <campGoods>
+      <li><defs><li>WoolSheep</li><li>Leather_Plain</li></defs><count>15~30</count><at>wall</at></li>
+    </campGoods>
+    <!-- Up to a dozen head (the beasts that suit the weather here likelier) and their dogs at a herder's heels. -->
+    <animals>
+      <li><kinds><li>Muffalo</li><li>Yak</li><li>Sheep</li><li>Goat</li><li>Cow</li><li>Alpaca</li><li>Dromedary</li></kinds><count>5~7</count><at>pasture</at></li>
+      <li><kinds><li>Cow</li><li>Goat</li><li>Sheep</li><li>Dromedary</li><li>Horse</li></kinds><count>3~5</count><at>pasture</at></li>
+      <li><kinds><li>Husky</li><li>LabradorRetriever</li></kinds><count>1~2</count><follow>true</follow><named>true</named></li>
+    </animals>
+    <!-- Their thanks for the water after a good stay: a young beast of the herd, handed over at the gate as they go. -->
+    <leaveBehind>
+      <li>
+        <key>young</key>
+        <at>gate</at>
+        <young>true</young>
+        <maxTension>40</maxTension>
+        <dayName>the herders' young beast</dayName>
+        <named>the young beast</named>
+        <defs><li>Sheep</li><li>Goat</li><li>Yak</li><li>Muffalo</li><li>Cow</li></defs>
+      </li>
+    </leaveBehind>
+    <farewellWalk>
+      <to>gate</to>
+      <who>leader</who>
+      <gift>young</gift>
+    </farewellWalk>
+    <titles>
+      <li>Herders by the water</li>
+      <li>A herd in the dry year</li>
+    </titles>
+    <texts>
+      <li>{FACTION}'s herders are bringing their herd to the colony's water {PLACE}, {X_nameDef} at the front and the dogs working the edges. They have come through the drought, {X_pronoun} told {A_nameDef}, and will camp by the water until the herd has drunk its fill.</li>
+      <li>[ws:drought] With {SITUATION} on the land, {FACTION}'s herders have brought their herd to the colony's water {PLACE}, the beasts lowing as they smell it.</li>
+    </texts>
+    <settled>
+      <li>The herders of {FACTION} have made camp by the water {PLACE}: tents, a fire, and the herd standing in the shallows with the dogs lying in the shade.</li>
+      <li>{FACTION}'s camp is up by the water {PLACE}, and the herd has drunk and spread out along the bank, every head counted.</li>
+    </settled>
+    <joinTexts>
+      <li>{X_nameDef} of the herders by the water has watched the colony share what it had in a dry year, and asks whether it could use someone who knows beasts.</li>
+    </joinTexts>
+    <farewell>
+      <li>[hay] The herders of {FACTION} gathered the herd and went back to the road, the beasts fat on the colony's hay. Their people will remember who had water in the dry year.</li>
+      <li>[grazing] {FACTION}'s herd went out at first light, the colony's far ground grazed short behind it, and {X_nameDef} counted every head aloud at the gate.</li>
+      <li>[strayed] The herders packed up and went, {X_nameDef} still apologising for the beasts in the fields.</li>
+      <li>[left:young] {FACTION}'s herders gathered the herd and went on, and {X_nameDef} stopped at the gate to hand over a young beast of it, for the water. It is the colony's now.</li>
+      <li>The herders' camp by the water is empty, the bank trampled and the fire raked out. The herd went on toward the rain.</li>
+    </farewell>
+    <lines>
+      <li>Count them again, slowly.</li>
+      <li>Let them drink, then move them off the bank.</li>
+      <li>Not one lost on the road, not yet.</li>
+      <li>The old ones drink first.</li>
+      <li>Easy, easy.</li>
+      <li>Rain will come, it always does.</li>
+    </lines>
+    <momentLines>
+      <li>[herd] All here, every head.</li>
+      <li>[herd] Drink, and then rest.</li>
+      <li>[stray] Get them out of there before they eat it to the ground.</li>
+      <li>[gift] For the water, and you'll count this one at dusk now.</li>
+    </momentLines>
+    <helpTexts>
+      <li>[milk] {X_nameDef} saw to one of the herd by the water and carried what it gave over to the edge of the camp for the colony: {COUNT} {THING}.</li>
+      <li>[tales] {A_nameDef} sat at the herders' fire by the water and heard about every spring between here and the mountains, and which of them the drought has taken.</li>
+    </helpTexts>
+    <asks>
+      <li>
+        <key>hay</key>
+        <label>Send hay out to the herd (60 hay)</label>
+        <tip>One of the colony carries hay out to the herders' camp for the beasts, so they need not graze the colony's land.</tip>
+        <theyAsk>true</theyAsk>
+        <askTexts>
+          <li>{X_nameDef} of the herders by the water has come to the gate with an empty sack. The drought has left nothing to graze on the road, {X_pronoun} says, and asks whether the colony could spare hay for the herd.</li>
+        </askTexts>
+        <refuseLabel>None to spare</refuseLabel>
+        <refused>
+          <li>{X_nameDef} nods and says the herd will make do with the reeds by the water.</li>
+        </refused>
+        <refuseTension>4</refuseTension>
+        <tension>-6</tension>
+        <warm>2</warm>
+        <deed>campHelped</deed>
+        <outcomes>
+          <li>Hay is going out to the herders' camp, and the beasts are already crowding the edge of it.</li>
+        </outcomes>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>hay for the herd</label><what>Hay</what><count>60</count><to>Camp</to><who>None</who><steward>false</steward></li>
+          <li Class="ColonyCouncil.DilemmaEffect_DryAsk" />
+        </effects>
+      </li>
+      <li>
+        <key>grazing</key>
+        <label>Let the herd graze our land</label>
+        <tip>The herd goes out on the colony's open ground by day. It feeds itself, but beasts out on the colony's land are likelier to stray into its fields.</tip>
+        <theyAsk>true</theyAsk>
+        <askTexts>
+          <li>{X_nameDef} of the herders by the water has come to the gate. The colony has no hay to spare, {X_pronoun} understands, but the herd is thin: might it graze the colony's far ground by day?</li>
+        </askTexts>
+        <refuseLabel>Keep them by the water</refuseLabel>
+        <refused>
+          <li>{X_nameDef} says they will keep the herd by the water, and goes back to cut reeds for it.</li>
+        </refused>
+        <refuseTension>4</refuseTension>
+        <tension>-5</tension>
+        <warm>2</warm>
+        <deed>campHelped</deed>
+        <outcomes>
+          <li>The herd will go out on the colony's far ground by day, and {X_nameDef} promises a herder will walk its edge.</li>
+        </outcomes>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_DryAsk"><grazing>true</grazing></li>
+        </effects>
+      </li>
+      <li>
+        <key>milk</key>
+        <label>Buy the herd's milk: {THING}</label>
+        <tip>A herder milks every beast of the herd that has milk to give and carries the milk to the colony's gate. Once it's set down there, the colony pays what it comes to at its worth, and a colonist takes the silver over to their camp.</tip>
+        <once>false</once>
+        <price>milk</price>
+        <needs>herdMilk</needs>
+        <tension>-3</tension>
+        <deed>traded</deed>
+        <outcomes>
+          <li>{X_nameDef} has sent a herder out to the herd with a pail, and the milk will be set down by the colony's gate.</li>
+        </outcomes>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_CampMilkSale" />
+        </effects>
+      </li>
+      <li>
+        <key>beasts</key>
+        <label>Ask a herder for a hand with our beasts</label>
+        <tip>One of the herders works the colony's animals beside {A_nameDef} for some hours, showing how a herd is kept in a hard season. Practice with animals.</tip>
+        <needs>herdHere</needs>
+        <skill>Animals</skill>
+        <warm>2</warm>
+        <outcomes>
+          <li>{X_nameDef} is going over to the colony's beasts with {A_nameDef}, and says the first thing is to count them.</li>
+        </outcomes>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Lesson"><teacher>X</teacher><student>A</student><skill>Animals</skill><duration>2~3</duration></li>
+        </effects>
+      </li>
+    </asks>
+  </ColonyCouncil.CampKindDef>
+
+  <!-- ===================== 25. A pad by the colony (the spacer enclave) ===================== -->
+
+  <ColonyCouncil.CampKindDef>
+    <defName>Rimfolk_Camp_EnclavePad</defName>
+    <label>enclave's pad</label>
+    <workerClass>ColonyCouncil.CampWorker_EnclavePad</workerClass>
+    <arrives>8~14</arrives>
+    <calling>brokers</calling>
+    <weight>0</weight>
+    <people>4~4</people>
+    <days>10~15</days>
+    <ages>28~60</ages>
+    <trader>true</trader>
+    <task>Council_CampKeepStall</task>
+    <taskAt>stall</taskAt>
+    <hireChance>0.02</hireChance>
+    <joinChance>0.01</joinChance>
+    <helpChance>0</helpChance>
+    <buys>
+      <li>Meal</li>
+    </buys>
+    <pride>0.35</pride>
+    <breakTerms>0.15</breakTerms>
+    <tensionPerDay>0.4</tensionPerDay>
+    <canPay>true</canPay>
+    <extendChance>0.1</extendChance>
+    <situationKinds>
+      <li>trade</li>
+    </situationKinds>
+    <structures>
+      <li><role>fire</role><defs><li>Campfire</li></defs></li>
+      <li><role>stall</role></li>
+      <li><role>light</role><defs><li>TorchLamp</li></defs></li>
+    </structures>
+    <sleep>Tents</sleep>
+    <titles>
+      <li>The enclave's pad</li>
+    </titles>
+    <texts>
+      <li>Two factors and two marshals of {FACTION} are walking in to the ground the colony rented them {PLACE}, {X_nameDef} with the slate where the rent is written to the last digit.</li>
+    </texts>
+    <settled>
+      <li>The enclave's stalls are up {PLACE}, and a marshal is already marking out the pad beside them, where the morning's pod will come down.</li>
+      <li>{FACTION}'s factors have opened their stalls {PLACE}; the pad beside them is being laid tile by tile.</li>
+    </settled>
+    <joinTexts>
+      <li>{X_nameDef} of the enclave's pad has watched the colony's people trade fairly, and asks whether the colony could use someone who keeps accounts to the last digit.</li>
+    </joinTexts>
+    <farewell>
+      <li>[raised] The enclave paid what the colony asked to the end, packed their stalls into the last pod and went, {X_nameDef} reading the figures over twice.</li>
+      <li>[keptoff] The enclave's factors packed up their stalls and thanked the colony for keeping its people off the pad, which they had not expected.</li>
+      <li>The enclave's people packed their stalls and walked back toward their lander, the pad left behind them, scorched and empty.</li>
+    </farewell>
+    <lines>
+      <li>Every five days, to the last digit.</li>
+      <li>Fresh stock this morning.</li>
+      <li>A bargain struck is kept to the last digit.</li>
+      <li>Mind the pad, a pod comes down at dawn.</li>
+      <li>The price is the price.</li>
+    </lines>
+    <momentLines>
+      <li>[offpad] Off the pad, please, a pod could come down at any time.</li>
+      <li>[stock] Stock's in, and the stalls are open.</li>
+    </momentLines>
+    <asks>
+      <li>
+        <key>pad</key>
+        <label>Keep our people off their pad</label>
+        <tip>The colony's people keep off the enclave's pad while it stands. They notice when someone walks on it.</tip>
+        <theyAsk>true</theyAsk>
+        <askTexts>
+          <li>{X_nameDef} of the enclave's pad has come to the gate with the slate. The pods come down hard, {X_pronoun} says, and asks that the colony keep its people off the pad while they are here.</li>
+        </askTexts>
+        <refuseLabel>We walk where we like</refuseLabel>
+        <refused>
+          <li>{X_nameDef} writes something down and says they will shout before each pod.</li>
+        </refused>
+        <refuseTension>5</refuseTension>
+        <tension>-3</tension>
+        <warm>1</warm>
+        <outcomes>
+          <li>The colony will keep its people off the enclave's pad, and {X_nameDef} notes it to the last digit.</li>
+        </outcomes>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_PadAsk"><what>keepoff</what></li>
+        </effects>
+      </li>
+      <li>
+        <key>meals</key>
+        <label>Sell them meals (10 meals)</label>
+        <tip>One of the colony carries ten meals out to the enclave's camp, and they pay their worth and a tenth more, left at the edge of their camp.</tip>
+        <theyAsk>true</theyAsk>
+        <askTexts>
+          <li>{X_nameDef} of the enclave's pad has come to ask whether the colony would sell them its meals: ten of them, at their worth and a tenth more, paid to the last digit.</li>
+        </askTexts>
+        <refuseLabel>We need them</refuseLabel>
+        <refused>
+          <li>{X_nameDef} says they will eat from their packs, then.</li>
+        </refused>
+        <refuseTension>2</refuseTension>
+        <tension>-3</tension>
+        <deed>traded</deed>
+        <outcomes>
+          <li>Ten meals are going out to the enclave's camp, and the silver will be left at its edge.</li>
+        </outcomes>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_PadAsk"><what>meals</what></li>
+        </effects>
+      </li>
+      <li>
+        <key>raise</key>
+        <label>Raise their rent</label>
+        <tip>The colony asks half again for its ground. They may pay it, or pack up and go; a proud or a sour group is likelier to go.</tip>
+        <minDays>2</minDays>
+        <tension>6</tension>
+        <warm>0</warm>
+        <outcomes>
+          <li>{A_nameDef} has gone over to the enclave's stalls with the colony's new figure.</li>
+        </outcomes>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_PadAsk"><what>raise</what></li>
+        </effects>
+      </li>
+    </asks>
+  </ColonyCouncil.CampKindDef>
+
+</Defs>

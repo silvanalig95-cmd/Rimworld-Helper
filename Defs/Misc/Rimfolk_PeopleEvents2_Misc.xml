@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- The peoples' own events, round 2 (Source/ColonyCouncil/Peoples/Events2/): the jobs they are seen doing on the map,
+       the shell a pilgrim brings home, and the memory of the shrine. -->
+
+  <!-- ===================== The season away (SeasonAway.cs) ===================== -->
+
+  <JobDef>
+    <defName>Rimfolk_PEv2_SetOut</defName>
+    <driverClass>ColonyCouncil.JobDriver_SetOut</driverClass>
+    <reportString>setting out on the road.</reportString>
+    <casualInterruptible>false</casualInterruptible>
+  </JobDef>
+
+  <!-- ===================== The visitor who works on a colonist or a beast (round 1's PeopleWorkOn.cs) ===================== -->
+
+  <JobDef>
+    <defName>Rimfolk_PEv2_Bionic</defName>
+    <driverClass>ColonyCouncil.JobDriver_PeopleWorkOn</driverClass>
+    <reportString>fitting a part to TargetA.</reportString>
+    <casualInterruptible>false</casualInterruptible>
+    <modExtensions>
+      <li Class="ColonyCouncil.PeopleWorkJob"><place>bed</place><mark>sparks</mark><done>ColonyCouncil.EnclaveBodyDone</done></li>
+    </modExtensions>
+  </JobDef>
+
+  <JobDef>
+    <defName>Rimfolk_PEv2_BeastBionic</defName>
+    <driverClass>ColonyCouncil.JobDriver_PeopleWorkOn</driverClass>
+    <reportString>fitting a part to TargetA.</reportString>
+    <casualInterruptible>false</casualInterruptible>
+    <modExtensions>
+      <li Class="ColonyCouncil.PeopleWorkJob"><place>here</place><mark>sparks</mark><done>ColonyCouncil.EnclaveBodyDone</done></li>
+    </modExtensions>
+  </JobDef>
+
+  <JobDef>
+    <defName>Rimfolk_PEv2_BeastLeg</defName>
+    <driverClass>ColonyCouncil.JobDriver_PeopleWorkOn</driverClass>
+    <reportString>fitting a leg to TargetA.</reportString>
+    <casualInterruptible>false</casualInterruptible>
+    <modExtensions>
+      <li Class="ColonyCouncil.PeopleWorkJob"><place>here</place><mark>cross</mark><done>ColonyCouncil.BeastLegDone</done></li>
+    </modExtensions>
+  </JobDef>
+
+  <!-- The guild's master works at the colony's bench while the colonist stands by and watches. -->
+  <JobDef>
+    <defName>Rimfolk_PEv2_Mark</defName>
+    <driverClass>ColonyCouncil.JobDriver_PeopleWorkOn</driverClass>
+    <reportString>reworking TargetA's weapon at the bench.</reportString>
+    <casualInterruptible>false</casualInterruptible>
+    <modExtensions>
+      <li Class="ColonyCouncil.PeopleWorkJob"><place>beside</place><mark>sparks</mark><atPlace>true</atPlace><done>ColonyCouncil.GuildMarkDone</done></li>
+    </modExtensions>
+  </JobDef>
+
+  <!-- ===================== Laid on the colony's land (RiverCrossing.cs, EnclavePad.cs) ===================== -->
+
+  <JobDef>
+    <defName>Rimfolk_PEv2_LayCrossing</defName>
+    <driverClass>ColonyCouncil.JobDriver_LayCrossing</driverClass>
+    <reportString>laying a crossing.</reportString>
+    <casualInterruptible>false</casualInterruptible>
+  </JobDef>
+
+  <JobDef>
+    <defName>Rimfolk_PEv2_LayPad</defName>
+    <driverClass>ColonyCouncil.JobDriver_LayPad</driverClass>
+    <reportString>laying the pad.</reportString>
+    <casualInterruptible>false</casualInterruptible>
+  </JobDef>
+
+  <!-- ===================== A pilgrimage (Pilgrimage.cs) ===================== -->
+
+  <ThingDef>
+    <defName>Rimfolk_PilgrimShell</defName>
+    <label>pilgrim's shell</label>
+    <description>A scallop shell on a cord, the pilgrim fellowship's sign that someone walked to a shrine and came home. Old Brannoc gave one for every shrine; this one was given at the end of a long road.</description>
+    <thingClass>ThingWithComps</thingClass>
+    <category>Item</category>
+    <selectable>true</selectable>
+    <altitudeLayer>Item</altitudeLayer>
+    <drawerType>MapMeshOnly</drawerType>
+    <alwaysHaulable>true</alwaysHaulable>
+    <rotatable>false</rotatable>
+    <pathCost>14</pathCost>
+    <drawGUIOverlay>true</drawGUIOverlay>
+    <resourceReadoutPriority>Middle</resourceReadoutPriority>
+    <healthAffectsPrice>false</healthAffectsPrice>
+    <useHitPoints>true</useHitPoints>
+    <comps>
+      <li Class="CompProperties_Forbiddable" />
+    </comps>
+    <graphicData>
+      <texPath>ColonyCouncil/Things/PilgrimShell</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+      <drawSize>(0.7,0.7)</drawSize>
+    </graphicData>
+    <stackLimit>10</stackLimit>
+    <statBases>
+      <MarketValue>12</MarketValue>
+      <Mass>0.05</Mass>
+      <MaxHitPoints>40</MaxHitPoints>
+      <Flammability>0</Flammability>
+      <DeteriorationRate>0</DeteriorationRate>
+    </statBases>
+    <thingCategories>
+      <li>ItemsMisc</li>
+    </thingCategories>
+    <tradeability>All</tradeability>
+  </ThingDef>
+
+  <ThoughtDef>
+    <defName>Rimfolk_Thought_Pilgrimage</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
+    <durationDays>40</durationDays>
+    <stackLimit>1</stackLimit>
+    <stages><li><label>walked to a shrine</label><description>I walked with the pilgrims all the way to the shrine and home again. Something I carried there I didn't carry back.</description><baseMoodEffect>5</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+</Defs>
