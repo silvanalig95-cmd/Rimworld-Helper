@@ -284,6 +284,16 @@ tree at once, alongside whatever runs. Each piece is merged as its own release, 
   (`Decrees.cs`). When asked: one factor of 0.7 on every decree's cooldown (`DecreeMath.CooldownShare`), used where the
   cooldown is set and where it is let off, so a 10-day decree waits 7 days before the council's understanding; the
   cooldown shown on the decrees page follows; the floor of one day stays; a test for the factor.
+- **To do when the player asks (12 November 2026): builders leave the trees to the plant cutters.** The player: "if a
+  pawn that wants to do construction on something where they need to cut trees for it, then they should rather do
+  another construction job first so the plant cutters can get the trees first". How it is now: the game's own
+  `GenConstruct.HandleBlockingThingJob` gives a builder whose blueprint or frame stands on a plant a cut-plant job of
+  their own (when they are willing to cut it and can reach it); nothing of Rimfolk's touches it. When asked: a hook on
+  it (deep hooks setting): a plant in the way of a build the builder took on their own (not forced by the player) is
+  marked for cutting instead (the game's CutPlant designation, so it shows), and the builder goes on to another build
+  that is free; they cut it themselves only when there is nothing else to build, when nobody of the home has plant
+  cutting on and can reach it, or when it has waited marked for a while (half a day) without anyone taking it. The
+  room and defence planners' "cut plants" option stays as it is.
 - 0.221.0, **Mog's luck and her stare**
   (11 November 2026), the follow-up to the gods on the map from the pantheon's Mog ("the one she chooses has a lucky
   season ... she sees Ennu for what it is, and stares at it"). DESIGN.md "The gods on the map", the sacred animal.
