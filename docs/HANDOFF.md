@@ -193,7 +193,13 @@ tree at once, alongside whatever runs. Each piece is merged as its own release, 
   (a priest of the Quiet Bell heals one of the colony's sick, a Mossborn druid makes a field grow, a storm-born of the
   Conclave brings rain in a drought, a Kiln Guild enchanter's work for silver), rare and once a visit at most; 4. in a
   fight, the peoples' casters cast (the mod's own AI) as allies and as raiders of the peoples built on magic; 5. the
-  shares reviewed against each people's lore: kept sparing everywhere but the peoples built on magic.
+  shares reviewed against each people's lore: kept sparing everywhere but the peoples built on magic. **The player
+  picked all five (12 November 2026), not to start yet:** "yes, that sounds great. add everything to do-do list.
+  visitors should be able to cast benefitial spells if they are happy or allied with me. raiders should be able to cast
+  harmful spells, although there we might need to revisit because some spells are quite broken, but let's give it a
+  try." So: a visitor casts only helpful spells, and only while content on the map or of a people allied with the
+  colony; raiders cast harmful ones, the mod's strongest kept out at first and the list watched (a play test, then a
+  pass on any spell that proves broken).
 - 0.221.0, **Mog's luck and her stare**
   (11 November 2026), the follow-up to the gods on the map from the pantheon's Mog ("the one she chooses has a lucky
   season ... she sees Ennu for what it is, and stares at it"). DESIGN.md "The gods on the map", the sacred animal.
