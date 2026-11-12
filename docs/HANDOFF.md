@@ -45,6 +45,17 @@ tree at once, alongside whatever runs. Each piece is merged as its own release, 
   8. The Republic 71 to 74; the Fleet 75 to 78; the Helix Works 79 to 82.
   9. The Lattice 84, 85, 86; the Choir 87 to 90; the Vault 91 to 94.
   10. Between peoples 96 to 99; every people's art handed on, 100.
+- **To do when the player asks (12 November 2026): sending visitors away.** The player: "for later: i should be able
+  to kick out visitors". How it is now: the right-click talks with outsiders (`Outsiders/`, `OutsiderAct`: Chat, Ask
+  home, Meal, Drink, Gift, Good word, Letter, Teach, Bring, Invite, Befriend, Court, Faith, Spar, Provoke, Duel, Ask a
+  favour, Speak of a pact, Offer an exchange, Speak of a match) have no way to send anyone off; only some dilemmas'
+  answers do (`DilemmaEffect_SendAway`), and Hospitality has its own for its guests. When asked: a right-click act on
+  any visitor or their group, "Ask them to leave": a colonist goes over and says so (one sentence each), and the group's
+  lord ends its visit and they walk off the map; a guest of a letter or the colony's invitation asked to leave goes too;
+  their people think less of the colony by how it was done (polite with a reason, curt, or by force: a drafted colonist
+  ordering them off is ruder still), less when they were trouble (a thief, a brawler, a drunk); with Hospitality its
+  own way for its guests; never a caravan mid-trade without the trade closed first, and never anyone downed or a
+  prisoner.
 - **To do when the player asks (12 November 2026): every visitor shops the market.** The player: "do visitors also
   shop the markets? if not please implement that", then "later, to d[o]". How it is now (with RimMarket): people camped
   on the colony's land and from camps near it walk over to the colony's stalls and buy what fits them
