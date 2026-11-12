@@ -226,6 +226,20 @@ tree at once, alongside whatever runs. Each piece is merged as its own release, 
   (a quarrel, a tie) and what the colony does (offerings, harm, its book), so one god can walk plainly while another
   stays hidden; the cards stay as Felt's: a god is named only where the colony is sure it was that god
   (`Gods.CardName`), else unnamed or "some say".
+- **To do when the player asks (12 November 2026), a bug: the same god's happening again within days; variety first.**
+  The player: "important is that there is enough variety that i don't have the same events etc. within a short time.
+  just had the selene night event twice within a few days (one of my pawns is injured, not sure if that triggers it)".
+  Why: the moon's return (`GodReturn.Hourly`) may come every third night (`GodsOnMapMath.ReturnGapDays` 3), at 3 in
+  the morning, 70 % on a full moon and 40 % on a half one, whenever the day held a deed of the colony's of enough
+  kindness or cruelty (`ReturnDeedFrom` 3: rescuing and tending the injured counts, and a kind doer who is hurt gets
+  "a wound healed by morning"). The injury itself doesn't call it; the care around it gives the deeds. Other short
+  gaps of the same kind: a myth told at supper every 3 days (`GodWorldMath.MythGapDays`), the rock rumbling over a
+  miner every 3 (`DeepGapDays`), a prayer answered every 5 (`WorshipMath.AnswerGapDays`), mocking and bickering every 5.
+  When asked: the moon's return at most once a moon (a season of 15 days), near the full moon, never the same kind twice
+  running; one shared rule for every god's happening (the same happening not again at a home within a season, the
+  same god's within some days, and the pick leaning to what hasn't happened lately, from a short memory of the last
+  ones); the short gaps above lengthened; and a count per colony-year of each happening in `Tools/Balance`, so that
+  repeats are caught by the checks.
 - 0.221.0, **Mog's luck and her stare**
   (11 November 2026), the follow-up to the gods on the map from the pantheon's Mog ("the one she chooses has a lucky
   season ... she sees Ennu for what it is, and stares at it"). DESIGN.md "The gods on the map", the sacred animal.
