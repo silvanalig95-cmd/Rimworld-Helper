@@ -294,6 +294,16 @@ tree at once, alongside whatever runs. Each piece is merged as its own release, 
   that is free; they cut it themselves only when there is nothing else to build, when nobody of the home has plant
   cutting on and can reach it, or when it has waited marked for a while (half a day) without anyone taking it. The
   room and defence planners' "cut plants" option stays as it is.
+- **To do when the player asks (12 November 2026): weapon ratings on a storage's Contents list.** The player, with a
+  picture of a steel weapons rack's "Contents" tab ("2 / 12 items with total mass of 3 kg": a steel spear and a steel
+  hatchet, each with drop, allow and info buttons): "i'd like to see the weapns rating here", "steeel weapons rack".
+  The rack is Vanilla Expanded Framework's `Shelf_WeaponRack` (vanillaexpanded.vfecore); a list with a capacity like
+  that is LWM's Deep Storage's contents tab (lwm.deepstorage, in the player's list), not the game's own
+  (`ITab_ContentsBase`, which shelves don't use): to be confirmed from that mod's code (its source is public; else the
+  player's copy). When asked: Rimfolk's rating badge (`WeaponUi.Badge`, the number in its band's colour, the item
+  card's rating and tip) drawn in each weapon's row left of its mass, and apparel's the same way, by a soft hook on that
+  tab's row by name (and on the game's own contents tabs, which share `ITab_ContentsBase.DoThingRow`); nothing on rows
+  that are not gear, as in the inventory panel ("badges only on real gear").
 - 0.221.0, **Mog's luck and her stare**
   (11 November 2026), the follow-up to the gods on the map from the pantheon's Mog ("the one she chooses has a lucky
   season ... she sees Ennu for what it is, and stares at it"). DESIGN.md "The gods on the map", the sacred animal.
