@@ -421,6 +421,8 @@ namespace ColonyCouncil
                 var who = Gods.Witnesses(map, cell);
                 if (also != null && also.IsColonist && !who.Contains(also)) who.Insert(0, also);
                 if (who.Count > 0) GodLore.Saw(who, g, words);
+                // The holy book: a rite kept here, in its chapter's feasts and rites.
+                if (who.Count > 0) GodLore.Kept(g, words);
             }
             catch (Exception e)
             {

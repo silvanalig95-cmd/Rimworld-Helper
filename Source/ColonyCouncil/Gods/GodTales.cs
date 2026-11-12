@@ -11,14 +11,17 @@ namespace ColonyCouncil
     /// contract"). Each is said over a head, one sentence, and written into the colony's book as heard:
     /// <list type="bullet">
     /// <item>At the evening fire or at supper, now and then, a colonist tells another the next piece of an old story of
-    /// their people's gods (its pieces in order, GodLoreMath.Next), a saying, or a word on two gods; the colony's priest or
-    /// moral guide, when it's them, as a sermon.</item>
-    /// <item>A visitor of another people near a colonist tells a piece of their own gods' stories, by their own names for
-    /// them: a name new to the colony becomes a page of its own.</item>
+    /// their people's gods (its pieces in order, GodLoreMath.Next), a saying, a line of what a god is or how it is seen (the
+    /// next the colony hasn't heard, <see cref="WhatOf"/>), or a word on two gods; the colony's priest or moral guide, when
+    /// it's them, as a sermon.</item>
+    /// <item>A visitor of another people near a colonist tells a piece of their own gods' stories, a saying, or what one of
+    /// them is or how it is seen, by their own names for them: a name new to the colony becomes a page of its own.</item>
     /// <item>A neighbour's letter retells one of their stories whole, or speaks of a god's hand they heard of at the colony
     /// ({GODTALE}, {GODHAND} in the postscripts), written into the book only once the words are in the letter
     /// (<see cref="Written"/>).</item>
     /// </list>
+    /// Each is also set down as a verse of the name's chapter, as the teller's (GodLore.Set): a piece of a tale, a saying, a
+    /// line of what it is or how it is seen, kin, a sign learned from a tale heard whole.
     /// <see cref="Tell"/> lets the other parts (worship's priest, dreams) have someone tell a piece.
     /// </summary>
     public static class GodTales
@@ -76,14 +79,19 @@ namespace ColonyCouncil
             if (listener == null) return false;
             bool sermon = teller == keeper && voice == GodLoreMath.Voice.Devout;
             var mine = Gods.ColonyGods(map).Select(g => g.Key).ToList();
+            string how = sermon ? "Sermon" : "Supper";
             switch (GodLoreMath.Talk(Rand.Value))
             {
-                case GodTalkKind.Saying when Saying(teller, listener, mine):
+                case GodTalkKind.Saying when Saying(teller, listener, mine, how):
                     return true;
                 case GodTalkKind.Tie when TieWords(teller, listener):
                     return true;
+                case GodTalkKind.What when WhatOf(teller, listener, mine, false, how):
+                    return true;
+                case GodTalkKind.Seen when WhatOf(teller, listener, mine, true, how):
+                    return true;
                 default:
-                    return Tell(teller, listener, mine, sermon ? "Sermon" : "Supper");
+                    return Tell(teller, listener, mine, how);
             }
         }
 
@@ -99,7 +107,18 @@ namespace ColonyCouncil
                 var theirs = Gods.Of(v.Faction).Select(g => g.Key).ToList();
                 if (theirs.Count == 0) continue;
                 int hour = GenLocalDate.HourOfDay(map);
-                return Tell(v, listener, theirs, hour >= GodLoreMath.EveningFrom || hour < 5 ? "Fire" : "Gate");
+                string how = hour >= GodLoreMath.EveningFrom || hour < 5 ? "Fire" : "Gate";
+                switch (GodLoreMath.VisitorTalk(Rand.Value))
+                {
+                    case GodTalkKind.Saying when Saying(v, listener, theirs, how):
+                        return true;
+                    case GodTalkKind.What when WhatOf(v, listener, theirs, false, how):
+                        return true;
+                    case GodTalkKind.Seen when WhatOf(v, listener, theirs, true, how):
+                        return true;
+                    default:
+                        return Tell(v, listener, theirs, how);
+                }
             }
             return false;
         }
@@ -126,32 +145,77 @@ namespace ColonyCouncil
             // together: the listener was found near the teller (Together.Can); with none (a part's own call), said to nobody in particular.
             Speech.Say(teller, text, listener);
             lore.told[key] = GodLoreMath.AfterTelling(lore.told.TryGetValue(key, out int n) ? n : 0, piece, story.pieces.Count);
-            // Heard whole, a story teaches the signs it explains as the god's own.
+            GodLore.Heard(teller, g, text, how, key, piece, name);
+            // The tale in its chapter, piece by piece as told.
+            GodLore.Set(BookPart.Tales, g, name, text, teller, how, key, piece);
+            // Heard whole, a story teaches the signs it explains as the god's own, set down with the tale and its teller.
             if (lore.told[key] >= story.pieces.Count)
                 foreach (var sign in story.teaches ?? new List<string>())
-                    GodLore.LearnSign(g, sign);
-            GodLore.Heard(teller, g, text, how, key, piece, name);
-            // The other gods named in it are names the colony has now heard.
+                    GodLore.LearnSign(g, sign, key, name, teller.LabelShort, GodLore.PeopleOf(teller), how);
+            // The other gods named in it are names the colony has now heard, and kin of this one in each other's chapters.
             foreach (var other in story.with ?? new List<string>())
             {
                 var og = Gods.ByKey(other);
                 if (og == null) continue;
                 string on = lore.PageOf(og)?.name ?? og.name;
                 lore.Page(on, og, "CC_GodLore_FromStory".Translate(GodLore.TellerOf(teller).Named("TELLER"), story.title.UncapitalizeFirst().Named("TITLE")).Resolve());
+                GodLore.Set(BookPart.Kin, g, name, story.title, teller.LabelShort, GodLore.PeopleOf(teller), "Tale", key, -1, false, og);
+                GodLore.Set(BookPart.Kin, og, on, story.title, teller.LabelShort, GodLore.PeopleOf(teller), "Tale", key, -1, false, g);
             }
             return true;
         }
 
-        /// <summary>A saying about one of their gods, said to someone near and written as the teller's belief.</summary>
-        private static bool Saying(Pawn teller, Pawn listener, List<string> gods)
+        /// <summary>
+        /// Someone tells another one line of what a god of theirs is (or, <paramref name="seen"/>, of how it is seen): the next
+        /// line the colony hasn't heard of a god it still has some to hear of (in order, GodBookMath.NextInOrder), else one again;
+        /// said over their head by their own name for the god, written into the book as heard and set down in its chapter.
+        /// </summary>
+        public static bool WhatOf(Pawn teller, Pawn listener, ICollection<string> gods, bool seen, string how)
         {
-            var g = gods.Select(Gods.ByKey).Where(x => x?.def?.sayings != null && x.def.sayings.Count > 0).InRandomOrder().FirstOrDefault();
-            if (g == null) return false;
-            string line = g.def.sayings.RandomElement().Formatted(GodLore.NameOf(g, teller).Named(GodsMath.God)).Resolve().CapitalizeFirst();
+            var lore = GodLore.Instance;
+            if (lore == null || teller == null) return false;
+            var part = seen ? BookPart.Known : BookPart.What;
+            string mark = seen ? "seen" : null;
+            List<string> Lines(God x) => seen ? x?.def?.seenLines : x?.def?.whatLines;
+            var pool = (gods ?? Gods.All.Select(x => x.Key).ToList()).Select(Gods.ByKey).Where(x => !Lines(x).NullOrEmpty()).ToList();
+            if (pool.Count == 0) return false;
+            var g = pool.Where(x => GodBookMath.NextInOrder(Lines(x).Count, lore.LinesHeard(part, x, mark)) >= 0).InRandomOrder().FirstOrDefault() ?? pool.RandomElement();
+            var lines = Lines(g);
+            int i = GodBookMath.NextInOrder(lines.Count, lore.LinesHeard(part, g, mark));
+            if (i < 0) i = Rand.Range(0, lines.Count);
+            string name = GodLore.NameOf(g, teller);
+            string line = lines[i].Formatted(name.Named(GodsMath.God)).Resolve().CapitalizeFirst();
+            if (line.Length > 90)
+            {
+                name = g.name;
+                line = lines[i].Formatted(name.Named(GodsMath.God)).Resolve().CapitalizeFirst();
+            }
             if (line.Length > 90) return false;
-            // together: the evening's talk found the listener near the teller (Together.Can), and Speech.Say checks it again.
+            // together: the evening's talk and a visitor's found the listener near the teller (Together.Can), and Speech.Say checks it again.
             Speech.Say(teller, line, listener);
-            GodLore.Believes(teller, g, line);
+            GodLore.Heard(teller, g, line, how, null, -1, name);
+            GodLore.Set(part, g, name, line, teller, how, mark, i);
+            return true;
+        }
+
+        /// <summary>
+        /// A saying about one of their gods (one the colony hasn't heard, where there is one: GodBookMath.NextLine), said to
+        /// someone near: a colonist's written as their belief, a visitor's as told; set down among the god's sayings as theirs.
+        /// </summary>
+        public static bool Saying(Pawn teller, Pawn listener, List<string> gods, string how = "Supper")
+        {
+            var lore = GodLore.Instance;
+            var g = gods.Select(Gods.ByKey).Where(x => x?.def?.sayings != null && x.def.sayings.Count > 0).InRandomOrder().FirstOrDefault();
+            if (g == null || lore == null || teller == null) return false;
+            int i = GodBookMath.NextLine(g.def.sayings.Count, lore.LinesHeard(BookPart.Sayings, g), Rand.Value);
+            string name = GodLore.NameOf(g, teller);
+            string line = g.def.sayings[i].Formatted(name.Named(GodsMath.God)).Resolve().CapitalizeFirst();
+            if (line.Length > 90) return false;
+            // together: the evening's talk and a visitor's found the listener near the teller (Together.Can), and Speech.Say checks it again.
+            Speech.Say(teller, line, listener);
+            if (teller.IsColonist) GodLore.Believes(teller, g, line);
+            else GodLore.Heard(teller, g, line, how, null, -1, name);
+            GodLore.Set(BookPart.Sayings, g, name, line, teller, how, null, i);
             return true;
         }
 
@@ -172,6 +236,9 @@ namespace ColonyCouncil
             // together: the evening's talk found the listener near the teller (Together.Can), and Speech.Say checks it again.
             Speech.Say(teller, words, listener);
             GodLore.Heard(teller, a, words, "Supper", null, -1, lore.PageOf(a).name);
+            // Kin, in both chapters, as the teller put it.
+            GodLore.Set(BookPart.Kin, a, lore.PageOf(a).name, words, teller, "Supper", "tie", -1, false, b);
+            GodLore.Set(BookPart.Kin, b, lore.PageOf(b).name, words, teller, "Supper", "tie", -1, false, a);
             return true;
         }
 
@@ -214,6 +281,9 @@ namespace ColonyCouncil
             public God god;
             public string teller, name, story;
             public LoreHand hand;
+            /// <summary>The writer by their own name (null: written for their people), and their people.</summary>
+            public string by;
+            public Faction people;
         }
 
         /// <summary>What a letter being made may say of the gods, by its value, until the letter's words are known (Written).</summary>
@@ -243,7 +313,7 @@ namespace ColonyCouncil
                     string name = writer != null ? Gods.NameBy(g, writer) : g.name;
                     string text = line.Formatted(name.Named(GodsMath.God)).Resolve().CapitalizeFirst();
                     values["GODHAND"] = text;
-                    waiting[text] = new LetterLore { god = g, teller = teller, name = name, hand = hand };
+                    waiting[text] = new LetterLore { god = g, teller = teller, name = name, hand = hand, by = writer?.LabelShort, people = f };
                 }
             }
             // A story of theirs retold whole, one the colony hasn't had in a letter.
@@ -254,7 +324,7 @@ namespace ColonyCouncil
             string tn = writer != null ? Gods.NameBy(tale.g, writer) : tale.g.name;
             string retelling = Named(tale.s.retelling, tale.g.name, tn, int.MaxValue, out _);
             values["GODTALE"] = retelling;
-            waiting[retelling] = new LetterLore { god = tale.g, teller = teller, name = tn, story = tale.s.key };
+            waiting[retelling] = new LetterLore { god = tale.g, teller = teller, name = tn, story = tale.s.key, by = writer?.LabelShort, people = f };
         }
 
         /// <summary>
@@ -272,15 +342,22 @@ namespace ColonyCouncil
                 {
                     if (!text.Contains(kv.Key)) continue;
                     var w = kv.Value;
-                    GodLore.Heard(w.teller, w.god, kv.Key, "Letter", w.story, -1, w.name);
+                    GodLore.Heard(w.teller, w.god, kv.Key, "Letter", w.story, -1, w.name, w.people, w.by);
                     if (w.story != null && !lore.retold.Contains(w.story)) lore.retold.Add(w.story);
                     if (w.story != null)
+                    {
+                        // The tale whole in its chapter, as the letter has it, and the signs it explains.
+                        GodLore.Set(BookPart.Tales, w.god, w.name, kv.Key, w.by, w.people, "Letter", w.story, -1);
                         foreach (var sign in w.god?.def?.Story(w.story)?.teaches ?? new List<string>())
-                            GodLore.LearnSign(w.god, sign);
+                            GodLore.LearnSign(w.god, sign, w.story, w.name, w.by, w.people, "Letter");
+                    }
                     if (w.hand != null) w.hand.written = true;
                 }
                 if (values.TryGetValue(GodsMath.God, out string named) && !named.NullOrEmpty() && text.Contains(named) && lastLetterGod != null && lastLetterTeller != null)
+                {
                     lore.Page(named, lastLetterGod, "CC_GodLore_FromLetter".Translate(lastLetterTeller.Named("TELLER")).Resolve());
+                    if (lastLetterPeople != null) lore.Called(named, lastLetterGod, lastLetterBy, lastLetterPeople, "Letter");
+                }
             }
             catch (Exception e)
             {
@@ -291,11 +368,16 @@ namespace ColonyCouncil
                 waiting.Clear();
                 lastLetterGod = null;
                 lastLetterTeller = null;
+                lastLetterBy = null;
+                lastLetterPeople = null;
             }
         }
 
         /// <summary>The god a letter being made names ({GOD}), and its writer, until its words are known.</summary>
         internal static God lastLetterGod;
         internal static string lastLetterTeller;
+        /// <summary>The writer by their own name (null: written for their people), and their people: whose name for the god it is.</summary>
+        internal static string lastLetterBy;
+        internal static Faction lastLetterPeople;
     }
 }

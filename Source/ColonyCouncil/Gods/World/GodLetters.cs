@@ -171,6 +171,10 @@ namespace ColonyCouncil
             if (GodAsks.Ask(GodAsks.Invite, home, god, GodWorld.T("CC_GW_Invite_Label", god), text, null, null, f, null, silver, null, -1, 4f) == null) return;
             b.Came("invite");
             GodWorld.Remember(god, home, GodActKind.Act, GodWorld.T("CC_GW_Told_Invite", god, f.Name.Named("PEOPLE"), town.Named("TOWN"), GodWays.Feast(god).Named("FEAST")));
+            // The colony's book: their god's feast, as their letter has it, in its chapter's feasts and rites.
+            GodLore.Set(BookPart.Rites, god, GodLore.Instance?.PageOf(god)?.name ?? Gods.Name(god),
+                "CC_GodBook_FeastOf".Translate(f.Name.Named("PEOPLE"), GodWays.Feast(god).Named("FEAST")).Resolve(), (string)null, f, "Letter", "feast|" + f.Name,
+                from: "CC_GodLore_FromLetter".Translate(f.Name.Named("TELLER")).Resolve());
         }
 
         public static IEnumerable<GodAnswer> InviteAnswers(ChoiceLetter_GodWorld l)

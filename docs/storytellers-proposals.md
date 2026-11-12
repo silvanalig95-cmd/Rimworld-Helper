@@ -1,4 +1,4 @@
-# New storytellers: ways to play (proposal, 12 November 2026)
+# New storytellers: ways to play (proposal, 12 November 2026; the player: "leave out small hours, the frontier", so eight are built)
 
 The player: "i'd like you to create new and interesting storytellers. that can enhance existing or make up new ways to
 play the game & directions", then "if they don't have an image that's totally fine, and they also don't have to be this

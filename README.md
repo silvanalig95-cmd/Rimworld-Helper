@@ -4345,10 +4345,21 @@ eclipse, a short circuit, mushrooms after rain), and you hear of them only as yo
 doing they think it was, sometimes wrongly, and unless the colony knows it was that god, someone near them says it was the weather.
 At the evening fire colonists tell each other the old stories a piece at a time, visitors tell their own people's by
 their own names for the gods, and neighbours' letters retell one whole or ask after something they heard happened at
-your place. The colony keeps its own book of the gods, a tab of the region window: what its people saw, were told and
-believe, dated and in the hand of whoever keeps it (the chaplain, the devout or the lettered), the names it has heard
-each god by, which may turn out to be one, and nothing more than they know. Every people reveres the gods its lore
-gives it. Settings: *Gods* (on). The gods are felt, one way for every game; how plainly each one acts is its own.
+your place. The colony keeps its own book of the gods, a tab of the region window (below). Every people reveres the
+gods its lore gives it. Settings: *Gods* (on). The gods are felt, one way for every game; how plainly each one acts is
+its own.
+
+**The Gods' book.** The colony's own holy book, kept by whoever keeps it (the chaplain, the devout or the lettered) and
+in their hand. Each name the colony has heard a god by is a chapter, numbered as it was first heard, and a chapter
+grows only as your people learn: of its names (here among us, and among each people, by their age), of what it is, of
+how it is known (its signs once a tale explains them, and what the colony saw of it plainly), of what it loves and what
+it hates (as someone here came to hold after a god's hand they saw, so it may be wrong), its sayings, its tales set down
+piece by piece as they are told with the missing pieces left as gaps, its kin and its enemies (a link to their chapters),
+and its feast and its rites. Every line is said as someone's ("so Mirel of the League told it at our gate", "so Avila
+holds", "so they say among the people of ..."), never as fact; where two disagree, both stand side by side. What
+nobody has heard of is silence or a torn page. It reads like scripture: chapter and verse, a drop capital, the
+keeper's notes and the dates in the margin, a change of hand marked, the dated witnesses last. Names that turn out to be
+one god become one chapter, and nothing in it is more than your people know.
 
 **The gods in the world.** The gods act beyond the colony's walls and on its land like a storyteller you never see: the
 game's own weather, blight, flares and traders come, and nothing says whose hand it was or why. People say, though:

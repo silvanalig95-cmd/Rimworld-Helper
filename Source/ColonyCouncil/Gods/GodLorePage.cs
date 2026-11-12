@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using RimWorld;
 using UnityEngine;
 using Verse;
@@ -9,13 +10,19 @@ using Verse.Sound;
 namespace ColonyCouncil
 {
     /// <summary>
-    /// Region → Book of the gods: the colony's own book (Gods/GodLore.cs), as its keeper has written it. Text only, in
-    /// either of Rimfolk's looks: on the left the names the colony has heard gods by (and "the whole book", and the things
-    /// nobody could name), on the right a name's page: the name set large, the other names it was worked out to be in
-    /// italics, when and from whom it was first heard, what the colony's people believe of it side by side, and every entry
-    /// in order with its date, a change of hand marked where the keeper changed. Nothing in it is more than the colonists
-    /// saw, were told and believe: no favour, no rules, no truth marked. A god the colony has never heard of isn't in it.
-    /// What it shows is laid out at most once a second, or when the book changes.
+    /// Region → Gods' book: the colony's own book (Gods/GodLore.cs), as a holy book (the player, 12 November 2026: "more like
+    /// a wiki page basically building each up based on gained knowledge, only a more mysterious and ominous wiki, you know
+    /// like a religious text-style wiki"). Text only, in either of Rimfolk's looks: on the left the chapters (the names the
+    /// colony has heard gods by, numbered as they were first heard), "the whole book" and the things nobody could name; on
+    /// the right a name's chapter: its number in small capitals, the name set large, the other names it was worked out to
+    /// be, when and from whom it was first heard, an ornament, then its parts (GodBookMath.Compose): of its names, of what it
+    /// is, of how it is known, of what it loves and what it hates, the sayings, the tales, of its kin and its enemies, its
+    /// feast and its rites; each verse numbered, the first opening with a drop capital, each said as someone's; disputes
+    /// side by side; a tale's untold pieces left as gaps; a part with nothing in it as silence, two or more as a torn page.
+    /// The margin keeps each verse's date, a change of the keeper's hand, and the keeper's own notes; the witnesses (every
+    /// entry by date) come last. Nothing in it is more than the colonists saw, were told and believe: no favour, no rules, no
+    /// truth marked. A god the colony has never heard of isn't in it. What it shows is laid out at most once a second, or
+    /// when the book changes.
     /// </summary>
     public static class GodLorePage
     {
@@ -30,9 +37,12 @@ namespace ColonyCouncil
         private sealed class Page
         {
             public string title;
+            public int chapter;
             public List<string> also = new List<string>();
             public LoreName name;
             public List<LoreEntry> entries = new List<LoreEntry>();
+            public List<BookVerse> verses = new List<BookVerse>();
+            public List<BookLine> lines;
         }
 
         private static readonly List<Page> pages = new List<Page>();
@@ -40,13 +50,32 @@ namespace ColonyCouncil
         private static float builtAt = -10f;
         private static int builtVersion = -1;
 
+        private static Dictionary<string, int> pieces;
+
+        /// <summary>How many pieces each tale has (a tale's length shows only once one of its pieces is heard).</summary>
+        private static Dictionary<string, int> Pieces
+        {
+            get
+            {
+                if (pieces != null) return pieces;
+                pieces = new Dictionary<string, int>();
+                foreach (var d in DefDatabase<GodDef>.AllDefsListForReading)
+                    foreach (var s in d.stories ?? new List<GodStory>())
+                        if (s != null && !s.key.NullOrEmpty())
+                            pieces[s.key] = s.pieces?.Count ?? 0;
+                return pieces;
+            }
+        }
+
         private static void Refresh(GodLore lore)
         {
             if (Time.realtimeSinceStartup - builtAt < 1f && builtAt <= Time.realtimeSinceStartup && builtVersion == GodLore.Version) return;
+            lore.Migrate();
             builtAt = Time.realtimeSinceStartup;
             builtVersion = GodLore.Version;
             pages.Clear();
             unnamed.Clear();
+            splits.Clear();
             var byTitle = new Dictionary<string, Page>();
             foreach (var n in lore.names.OrderBy(x => x.first))
             {
@@ -54,7 +83,7 @@ namespace ColonyCouncil
                 if (root == null) continue;
                 if (!byTitle.TryGetValue(root.name, out var page))
                 {
-                    page = new Page { title = root.name, name = root };
+                    page = new Page { title = root.name, name = root, chapter = pages.Count + 1 };
                     byTitle[root.name] = page;
                     pages.Add(page);
                 }
@@ -69,6 +98,19 @@ namespace ColonyCouncil
                 }
                 var root = lore.Root(lore.Named(e.page));
                 if (root != null && byTitle.TryGetValue(root.name, out var page)) page.entries.Add(e);
+            }
+            foreach (var v in lore.verses)
+            {
+                var root = lore.Root(lore.Named(v.page));
+                if (root != null && byTitle.TryGetValue(root.name, out var page)) page.verses.Add(v);
+            }
+            foreach (var p in pages)
+            {
+                // A name the book has but no verse of its names (heard in a tale, or kept before the verses): as first heard.
+                foreach (var n in lore.names.Where(x => lore.Root(x) == p.name))
+                    if (!p.verses.Any(v => v.part == BookPart.Names && v.key == n.name))
+                        p.verses.Add(new BookVerse { part = BookPart.Names, god = n.god, page = p.title, key = n.name, text = n.name, how = "First", about = n.from, tick = n.first });
+                p.lines = GodBookMath.Compose(p.verses, Pieces);
             }
             if (chosen != Whole && chosen != Unnamed && !byTitle.ContainsKey(chosen)) chosen = Whole;
         }
@@ -118,7 +160,7 @@ namespace ColonyCouncil
             }
         }
 
-        // ================= The names =================
+        // ================= The chapters =================
 
         private static void List(Rect rect)
         {
@@ -127,18 +169,18 @@ namespace ColonyCouncil
             try
             {
                 float y = 0f, w = view.width;
-                y = Row(y, w, Whole, "CC_GodLore_Whole".Translate(), null, 0);
+                y = Row(y, w, Whole, "CC_GodLore_Whole".Translate(), null, null, 0);
                 y += 6f;
                 for (int i = 0; i < pages.Count; i++)
                 {
                     var p = pages[i];
                     string sub = p.also.Count > 0 ? "CC_GodLore_AlsoShort".Translate(p.also.ToCommaList(true).Named("NAMES")).Resolve() : null;
-                    y = Row(y, w, p.title, p.title.CapitalizeFirst(), sub, i);
+                    y = Row(y, w, p.title, p.title.CapitalizeFirst(), sub, GodBookMath.Roman(p.chapter), i);
                 }
                 if (unnamed.Count > 0)
                 {
                     y += 6f;
-                    y = Row(y, w, Unnamed, "CC_GodLore_Unnamed".Translate(), null, 0);
+                    y = Row(y, w, Unnamed, "CC_GodLore_Unnamed".Translate(), null, null, 0);
                 }
                 listHeight = Mathf.Max(y + 6f, 60f);
             }
@@ -150,7 +192,7 @@ namespace ColonyCouncil
             }
         }
 
-        private static float Row(float y, float w, string key, string label, string sub, int index)
+        private static float Row(float y, float w, string key, string label, string sub, string number, int index)
         {
             float h = sub.NullOrEmpty() ? 28f : 40f;
             var r = new Rect(0f, y, w, h);
@@ -161,8 +203,15 @@ namespace ColonyCouncil
                 UiKit.Zebra(r, index);
                 UiKit.RowHover(r);
             }
-            UiKit.LabelFit(new Rect(r.x + 8f, r.y + 4f, r.width - 12f, 20f), label, on ? UiKit.Gold : UiKit.Ink);
-            if (!sub.NullOrEmpty()) UiKit.LabelFit(new Rect(r.x + 8f, r.y + 22f, r.width - 12f, 16f), sub, UiKit.Faint, GameFont.Tiny);
+            float nx = 0f;
+            if (!number.NullOrEmpty())
+            {
+                // The chapter's number, small and quiet, before its name.
+                nx = 30f;
+                UiKit.LabelFit(new Rect(r.x + 6f, r.y + 4f, nx - 6f, 20f), number, UiKit.Faint, GameFont.Tiny, TextAnchor.MiddleRight);
+            }
+            UiKit.LabelFit(new Rect(r.x + 8f + nx, r.y + 4f, r.width - 12f - nx, 20f), label, on ? UiKit.Gold : UiKit.Ink);
+            if (!sub.NullOrEmpty()) UiKit.LabelFit(new Rect(r.x + 8f + nx, r.y + 22f, r.width - 12f - nx, 16f), sub, UiKit.Faint, GameFont.Tiny);
             if (Widgets.ButtonInvisible(r, false))
             {
                 SoundDefOf.Click.PlayOneShotOnCamera();
@@ -177,21 +226,28 @@ namespace ColonyCouncil
         /// <summary>The widest a column of the book's text runs, for reading.</summary>
         public const float Column = 600f;
 
+        /// <summary>The margin beside the column for dates, hands and the keeper's notes, when the page is wide enough.</summary>
+        private const float Margin = 150f, Gutter = 26f;
+
         private static void PageView(Rect rect)
         {
             var view = new Rect(0f, 0f, rect.width - 16f, pageHeight);
             Widgets.BeginScrollView(rect, ref pageScroll, view);
             try
             {
-                float cw = Mathf.Min(Column, view.width - 32f);
-                float x = (view.width - cw) / 2f;
-                float y = 14f;
+                bool wide = view.width >= Column + Margin + 72f;
+                float cw = wide ? Column : Mathf.Min(Column, view.width - 40f);
+                float x = wide ? Mathf.Max(20f, (view.width - cw - Margin - 16f) / 2f) : (view.width - cw) / 2f;
+                float mx = x + cw + 16f, mw = wide ? Margin : 0f;
+                // The page itself: a leaf the column and its margin sit on.
+                UiKit.Card(new Rect(x - 18f, 4f, cw + 36f + (wide ? Margin + 16f : 0f), pageHeight - 8f), null, false, false);
+                float y = 22f;
                 if (chosen == Whole) y = WholeBook(x, y, cw);
                 else if (chosen == Unnamed) y = Entries(x, Title(x, y, cw, "CC_GodLore_Unnamed".Translate(), null, "CC_GodLore_UnnamedLine".Translate()), cw, unnamed, false);
                 else
                 {
                     var p = pages.FirstOrDefault(q => q.title == chosen);
-                    if (p != null) y = NamePage(x, y, cw, p);
+                    if (p != null) y = Chapter(x, y, cw, mx, mw, p);
                 }
                 pageHeight = Mathf.Max(y + 30f, rect.height);
             }
@@ -204,34 +260,190 @@ namespace ColonyCouncil
             }
         }
 
-        /// <summary>The page's head: a title set large, an italic line under it, and a small italic note; then a rule.</summary>
+        /// <summary>The page's head: a title set large, an italic line under it, and a small italic note; then an ornament.</summary>
         private static float Title(float x, float y, float w, string title, string italic, string note)
         {
             y += Para(x, y, w, "<size=26>" + title.CapitalizeFirst() + "</size>", UiKit.Ink, GameFont.Medium, TextAnchor.UpperCenter) + 2f;
             if (!italic.NullOrEmpty()) y += Para(x, y, w, "<i>" + italic + "</i>", UiKit.Faint, GameFont.Small, TextAnchor.UpperCenter) + 2f;
             if (!note.NullOrEmpty()) y += Para(x, y, w, "<i>" + note + "</i>", UiKit.Dim, GameFont.Tiny, TextAnchor.UpperCenter);
-            return Rule(x, y + 10f, w) + 10f;
+            return Ornament(x, y + 12f, w) + 14f;
         }
 
-        private static float NamePage(float x, float y, float w, Page p)
+        // ================= A chapter =================
+
+        private static float Chapter(float x, float y, float w, float mx, float mw, Page p)
         {
+            y += Para(x, y, w, SmallCaps("CC_GodBook_Chapter".Translate(GodBookMath.Roman(p.chapter).Named("NUM")).Resolve(), 13, 10), UiKit.Faint, GameFont.Small,
+                TextAnchor.UpperCenter) + 2f;
             string also = p.also.Count > 0 ? "CC_GodLore_Also".Translate(p.also.ToCommaList(true).Named("NAMES")).Resolve() : null;
             string first = p.name != null
                 ? "CC_GodLore_FirstHeard".Translate(Date(p.name.first).Named("DATE"), (p.name.from ?? "CC_GodLore_FromNowhere".Translate().ToString()).Named("FROM")).Resolve()
                 : null;
             y = Title(x, y, w, p.title, also, first);
-            // What the colony's people believe of it, side by side: each one's latest word.
-            var beliefs = p.entries.Where(e => e.kind == LoreKind.Believes || e.kind == LoreKind.Doubts).GroupBy(e => e.who.FirstOrDefault() ?? "")
-                .Select(gr => gr.Last()).OrderBy(e => e.kind).ThenByDescending(e => e.tick).Take(6).ToList();
-            if (beliefs.Count >= 1)
+            marginBottom = y;
+            GodLore.Keeper(out var voice);
+            foreach (var l in p.lines ?? new List<BookLine>())
             {
-                y += Para(x, y, w, "<i>" + "CC_GodLore_Believe".Translate() + "</i>", UiKit.Faint, GameFont.Small, TextAnchor.UpperCenter) + 6f;
-                foreach (var e in beliefs) y += Para(x + 16f, y, w - 32f, e.text, e.kind == LoreKind.Doubts ? UiKit.Faint : UiKit.Ink, GameFont.Small) + 6f;
-                y = Rule(x, y + 6f, w) + 10f;
+                try
+                {
+                    y = Line(x, y, w, mx, mw, p, l, voice);
+                }
+                catch (Exception e)
+                {
+                    CouncilLog.ErrorOnce("gods: a line of the book", e);
+                }
             }
-            if (p.entries.Count == 0) return y + Para(x, y, w, "<i>" + "CC_GodLore_OnlyTheName".Translate() + "</i>", UiKit.Dim, GameFont.Small, TextAnchor.UpperCenter);
+            // The witnesses: every entry under the name, by date.
+            y = PartHead(x, y, w, "CC_GodBook_Part_Witnesses".Translate(), UiKit.Quieter(UiKit.Gold, 0.35f));
+            if (p.entries.Count == 0) return y + Para(x, y, w, "<i>" + "CC_GodBook_Silence_0".Translate() + "</i>", UiKit.Dim, GameFont.Small, TextAnchor.UpperCenter) + 8f;
             return Entries(x, y, w, p.entries, false);
         }
+
+        private static float Line(float x, float y, float w, float mx, float mw, Page p, BookLine l, GodLoreMath.Voice voice)
+        {
+            float tx = x + Gutter, tw = w - Gutter;
+            var v = l.verse;
+            switch (l.kind)
+            {
+                case BookLineKind.Head:
+                    return PartHead(x, y, w, Part(l.part), UiKit.Quieter(UiKit.Gold, 0.35f));
+                case BookLineKind.Silence:
+                {
+                    y = PartHead(x, y, w, Part(l.part), UiKit.Dim);
+                    return y + Para(x, y, w, "<i>" + Words(l, p) + "</i>", UiKit.Dim, GameFont.Small, TextAnchor.UpperCenter) + 6f;
+                }
+                case BookLineKind.Torn:
+                {
+                    y += 14f;
+                    y = Tear(x, y, w, (int)l.part + 3) + 8f;
+                    y += Para(x + 20f, y, w - 40f, "<i>" + Words(l, p) + "</i>", UiKit.Dim, GameFont.Small, TextAnchor.UpperCenter) + 8f;
+                    return Tear(x, y, w, (int)l.part + 11) + 8f;
+                }
+                case BookLineKind.TaleHead:
+                    y += 6f;
+                    return y + Para(x, y, w, SmallCaps(Words(l, p), 12, 10), UiKit.Quieter(UiKit.Ink, 0.25f), GameFont.Small, TextAnchor.UpperCenter) + 6f;
+                case BookLineKind.Gap:
+                {
+                    // One row of faint dots for each piece not yet heard, and the telling broken off.
+                    for (int i = 0; i < Mathf.Clamp(l.gaps, 1, 4); i++)
+                    {
+                        Dots(tx, y + 7f, tw);
+                        y += 14f;
+                    }
+                    return y + Para(tx, y, tw, "<i>" + Words(l, p) + "</i>", UiKit.Dim, GameFont.Tiny, TextAnchor.UpperCenter) + 8f;
+                }
+                case BookLineKind.Note:
+                {
+                    string note = Note(l.note, voice);
+                    if (note.NullOrEmpty()) return y;
+                    if (mw > 0f)
+                    {
+                        // The keeper's note in the margin, beside the end of the part it is about, below the margin's last note;
+                        // the column goes on below it, so the next verse's margin stays clear.
+                        float top = Mathf.Max(y - 14f, marginBottom + 6f);
+                        float nh = Para(mx, top, mw, "<i>" + note + "</i>", UiKit.Quieter(UiKit.Gold, 0.3f), GameFont.Tiny);
+                        marginBottom = top + nh;
+                        return Mathf.Max(y, marginBottom - 6f);
+                    }
+                    return y + Para(tx, y, tw, "<i>" + note + "</i>", UiKit.Quieter(UiKit.Gold, 0.3f), GameFont.Tiny, TextAnchor.UpperRight) + 6f;
+                }
+                case BookLineKind.Doubt:
+                {
+                    Number(x, y, l.number);
+                    float h = Para(tx + 14f, y, tw - 14f, "<i>" + Words(l, p) + "</i>", UiKit.Faint, GameFont.Small);
+                    return y + Mathf.Max(h, Margins(mx, mw, y, l, v)) + 8f;
+                }
+                case BookLineKind.Retold:
+                {
+                    Number(x, y, l.number);
+                    float h = Para(tx, y, tw, "<i>" + GodBookWords.Retold(v, WordsFor(p.title)) + "</i>", UiKit.Faint, GameFont.Tiny) + 2f;
+                    float body = Para(tx + 12f, y + h, tw - 12f, "<i>" + Words(l, p) + "</i>", UiKit.Ink, GameFont.Small);
+                    Widgets.DrawBoxSolid(new Rect(tx + 3f, y + h + 2f, 1f, body - 4f), UiKit.Quieter(UiKit.Gold, 0.35f));
+                    return y + Mathf.Max(h + body, Margins(mx, mw, y, l, v)) + 10f;
+                }
+                case BookLineKind.Verse:
+                {
+                    if (l.hand && mw <= 0f) y += Para(tx, y, tw, "<i>" + Hand(v) + "</i>", UiKit.Dim, GameFont.Tiny, TextAnchor.UpperCenter) + 2f;
+                    Number(x, y, l.number);
+                    string s = Words(l, p);
+                    float h = l.first ? DropCap(tx, y, tw, s, UiKit.Ink) : Para(tx, y, tw, s, UiKit.Ink, GameFont.Small);
+                    if (l.part == BookPart.Tales && mw <= 0f) h += Para(tx, y + h, tw, "<i>" + ToldBy(v) + "</i>", UiKit.Dim, GameFont.Tiny, TextAnchor.UpperRight);
+                    // Kin: the other's chapter, a step away.
+                    if (l.part == BookPart.Kin && Other(v) is string other && other != p.title && pages.Any(q => q.title == other))
+                        h += 2f + Link(tx, y + h + 2f, tw, "CC_GodBook_SeeOther".Translate(other.Named("OTHER")).Resolve(), other);
+                    return y + Mathf.Max(h, Margins(mx, mw, y, l, v)) + 8f;
+                }
+            }
+            return y;
+        }
+
+        /// <summary>The margin beside a verse, when the page is wide: who told a tale's piece, its date, and a new hand.</summary>
+        private static float Margins(float mx, float mw, float y, BookLine l, BookVerse v)
+        {
+            if (mw <= 0f || v == null) return 0f;
+            var notes = new List<string>();
+            if (l.part == BookPart.Tales && l.kind == BookLineKind.Verse) notes.Add(ToldBy(v));
+            if (v.tick > 0) notes.Add(Date(v.tick));
+            if (l.hand) notes.Add(Hand(v));
+            if (notes.Count == 0) return 0f;
+            float h = Para(mx, y + 2f, mw, "<i>" + string.Join("\n", notes) + "</i>", UiKit.Dim, GameFont.Tiny);
+            marginBottom = y + 2f + h;
+            return h;
+        }
+
+        /// <summary>Where the margin's last note ends, so a keeper's note goes below it.</summary>
+        private static float marginBottom;
+
+        // ================= The words of a line (chosen in GodBookWords) =================
+
+        private static BookWordsContext words;
+
+        /// <summary>What the words need from the game, for a chapter: keys in the player's language, the book's names for the other gods, a tale's title.</summary>
+        private static BookWordsContext WordsFor(string chapter)
+        {
+            words ??= new BookWordsContext
+            {
+                T = (key, args) => key.Translate(args.Select(a => a.value.Named(a.name)).ToArray()).Resolve(),
+                OtherName = id => GodLore.Instance?.PageOf(Gods.ById(id))?.name,
+                TaleTitle = TaleTitle,
+                The = The
+            };
+            words.Chapter = chapter;
+            return words;
+        }
+
+        private static string Part(BookPart part) => GodBookWords.Part(part, WordsFor(null));
+
+        private static string Words(BookLine l, Page p) => GodBookWords.Line(l, WordsFor(p.title));
+
+        private static string ToldBy(BookVerse v) => GodBookWords.ToldBy(v, WordsFor(null));
+
+        private static string Hand(BookVerse v) => GodBookWords.Hand(v, WordsFor(null));
+
+        private static string Note(string note, GodLoreMath.Voice voice) => GodBookWords.Note(note, voice.ToString(), WordsFor(null));
+
+        /// <summary>An event in words after "after": "the crop blight".</summary>
+        private static string The(string what)
+        {
+            if (what.NullOrEmpty()) return what;
+            string w = what.UncapitalizeFirst();
+            return w.StartsWith("a ") || w.StartsWith("an ") || w.StartsWith("the ") ? w : Find.ActiveLanguageWorker.WithDefiniteArticle(w);
+        }
+
+        /// <summary>The other god's name in the colony's book, for a verse of kin.</summary>
+        private static string Other(BookVerse v) => v?.other >= 0 ? GodLore.Instance?.PageOf(Gods.ById(v.other))?.name : null;
+
+        private static string TaleTitle(string key)
+        {
+            foreach (var d in DefDatabase<GodDef>.AllDefsListForReading)
+            {
+                var s = d.Story(key);
+                if (s != null) return s.title;
+            }
+            return key ?? "";
+        }
+
+        // ================= The whole book, and the witnesses =================
 
         private static float WholeBook(float x, float y, float w)
         {
@@ -285,6 +497,109 @@ namespace ColonyCouncil
             return h;
         }
 
+        /// <summary>
+        /// Small capitals by size (the game has no small-caps font): every letter a capital, each word's first a size larger,
+        /// the little words all small.
+        /// </summary>
+        private static string SmallCaps(string s, int big, int small)
+        {
+            if (s.NullOrEmpty()) return s;
+            var sb = new StringBuilder();
+            var words = s.Split(' ');
+            for (int i = 0; i < words.Length; i++)
+            {
+                string word = words[i];
+                if (word.Length == 0) continue;
+                if (sb.Length > 0) sb.Append(' ');
+                string up = word.ToUpperInvariant();
+                bool little = i > 0 && Little.Contains(word);
+                if (little) sb.Append("<size=").Append(small).Append('>').Append(up).Append("</size>");
+                else sb.Append("<size=").Append(big).Append('>').Append(up[0]).Append("</size><size=").Append(small).Append('>').Append(up.Substring(1)).Append("</size>");
+            }
+            return sb.ToString();
+        }
+
+        /// <summary>The little words a heading in small capitals keeps small throughout.</summary>
+        private static readonly HashSet<string> Little = new HashSet<string> { "of", "and", "the", "its", "it", "is", "what", "on", "in", "a", "to", "by" };
+
+        /// <summary>A part's heading: small capitals over a short rule.</summary>
+        private static float PartHead(float x, float y, float w, string label, Color c)
+        {
+            y += 14f;
+            y += Para(x, y, w, SmallCaps(label, 15, 11), c, GameFont.Small, TextAnchor.UpperCenter) + 3f;
+            return Rule(x + w * 0.3f, y, w * 0.4f) + 10f;
+        }
+
+        /// <summary>A verse's number in the gutter, small and quiet.</summary>
+        private static void Number(float x, float y, int n)
+        {
+            if (n <= 0) return;
+            Para(x, y + 3f, Gutter - 8f, n.ToString(), UiKit.Faint, GameFont.Tiny, TextAnchor.UpperRight);
+        }
+
+        /// <summary>The cache of where a drop capital's verse breaks from beside the capital to the full column.</summary>
+        private static readonly Dictionary<string, (string beside, string after)> splits = new Dictionary<string, (string, string)>();
+
+        /// <summary>
+        /// A verse opening with a drop capital: its first letter drawn large in the book's gold, the words beside it for two
+        /// lines, then the full column.
+        /// </summary>
+        private static float DropCap(float x, float y, float w, string text, Color c)
+        {
+            if (text.NullOrEmpty() || text.Length < 3 || text.Contains("<")) return Para(x, y, w, text, c, GameFont.Small);
+            string cap = "<size=38>" + text.Substring(0, 1) + "</size>";
+            Text.Font = GameFont.Small;
+            var size = Text.CalcSize(cap);
+            float capW = size.x + 4f, lineH = Text.LineHeight;
+            GUI.color = UiKit.Gold;
+            Widgets.Label(new Rect(x, y - 7f, capW + 6f, size.y + 4f), cap);
+            GUI.color = Color.white;
+            string rest = text.Substring(1);
+            string k = rest + "|" + (int)w;
+            if (!splits.TryGetValue(k, out var split))
+            {
+                // The most words that fit beside the capital in two lines.
+                var words = rest.Split(' ');
+                int lo = 1, hi = words.Length, best = 1;
+                while (lo <= hi)
+                {
+                    int mid = (lo + hi) / 2;
+                    if (Text.CalcHeight(string.Join(" ", words, 0, mid), w - capW) <= lineH * 2f + 1f)
+                    {
+                        best = mid;
+                        lo = mid + 1;
+                    }
+                    else hi = mid - 1;
+                }
+                split = (string.Join(" ", words, 0, best), best < words.Length ? string.Join(" ", words, best, words.Length - best) : null);
+                if (splits.Count > 200) splits.Clear();
+                splits[k] = split;
+            }
+            float h = Mathf.Max(Para(x + capW, y, w - capW, split.beside, c, GameFont.Small), lineH * 2f);
+            if (!split.after.NullOrEmpty()) h += Para(x, y + h, w, split.after, c, GameFont.Small);
+            return h;
+        }
+
+        /// <summary>A link to another chapter: small, underlined, in the link colour.</summary>
+        private static float Link(float x, float y, float w, string label, string target)
+        {
+            Text.Font = GameFont.Tiny;
+            var size = Text.CalcSize(label);
+            var r = new Rect(x, y, Mathf.Min(size.x, w), size.y);
+            bool over = Mouse.IsOver(r);
+            GUI.color = over ? UiKit.LinkHot : UiKit.Link;
+            Widgets.Label(r, label);
+            GUI.color = Color.white;
+            Widgets.DrawBoxSolid(new Rect(r.x, r.yMax - 2f, r.width, 1f), over ? UiKit.LinkHot : UiKit.LinkLine);
+            Text.Font = GameFont.Small;
+            if (Widgets.ButtonInvisible(r, false))
+            {
+                SoundDefOf.Click.PlayOneShotOnCamera();
+                Show(target);
+            }
+            return size.y;
+        }
+
         /// <summary>A thin rule across the column, a little shorter than it.</summary>
         private static float Rule(float x, float y, float w)
         {
@@ -292,6 +607,55 @@ namespace ColonyCouncil
             Widgets.DrawLineHorizontal(x + w * 0.1f, y, w * 0.8f);
             GUI.color = Color.white;
             return y + 1f;
+        }
+
+        /// <summary>A small diamond, drawn a row at a time.</summary>
+        private static void Diamond(float cx, float cy, int r, Color c)
+        {
+            for (int i = -r; i <= r; i++)
+            {
+                int half = r - Math.Abs(i);
+                Widgets.DrawBoxSolid(new Rect(Mathf.Round(cx) - half, Mathf.Round(cy) + i, half * 2 + 1, 1f), c);
+            }
+        }
+
+        /// <summary>The book's ornament under a title: two rules, a gold diamond between them, a small one either side.</summary>
+        private static float Ornament(float x, float y, float w)
+        {
+            float cx = x + w / 2f, arm = w * 0.26f;
+            Widgets.DrawBoxSolid(new Rect(cx - 18f - arm, y, arm, 1f), UiKit.DividerColor);
+            Widgets.DrawBoxSolid(new Rect(cx + 18f, y, arm, 1f), UiKit.DividerColor);
+            Diamond(cx, y, 4, UiKit.Quieter(UiKit.Gold, 0.25f));
+            Diamond(cx - 11f, y, 1, UiKit.DividerColor);
+            Diamond(cx + 11f, y, 1, UiKit.DividerColor);
+            return y + 5f;
+        }
+
+        /// <summary>Three faint dots across the column: a piece of a tale nobody here has heard.</summary>
+        private static void Dots(float x, float y, float w)
+        {
+            float cx = x + w / 2f;
+            for (int i = -1; i <= 1; i++) Diamond(cx + i * 14f, y, 1, UiKit.Dim);
+        }
+
+        /// <summary>A torn edge across the column: a ragged line, the same for the same page.</summary>
+        private static float Tear(float x, float y, float w, int seed)
+        {
+            int n = Mathf.Max(10, (int)(w / 12f));
+            var prev = new Vector2(x, y + Jag(seed, 0));
+            for (int i = 1; i <= n; i++)
+            {
+                var next = new Vector2(x + w * i / n, y + Jag(seed, i));
+                Widgets.DrawLine(prev, next, UiKit.DividerColor, 1f);
+                prev = next;
+            }
+            return y + 5f;
+        }
+
+        private static float Jag(int seed, int i)
+        {
+            uint h = ((uint)(seed * 73856093) ^ (uint)(i * 19349663)) * 2654435761u;
+            return (h >> 16) % 7 - 3f;
         }
 
         /// <summary>A date as the colony writes it: "3rd of Aprimay, 5502".</summary>

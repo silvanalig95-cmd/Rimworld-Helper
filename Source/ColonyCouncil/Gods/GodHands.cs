@@ -109,10 +109,11 @@ namespace ColonyCouncil
             Speech.Say(believer, line);
             var said = new List<(Pawn, string, bool)> { (believer, line, false) };
             Pawn scoffer = null;
+            string answer = null;
             if (!known)
             {
                 scoffer = people.Where(x => x != believer && Together.Can(believer, x) && GodLore.Credence(x) < GodLoreMath.ScofferBelow).OrderBy(GodLore.Credence).FirstOrDefault();
-                string answer = scoffer == null ? null : Line(taken?.def?.scoffs, kind, near, "CC_GodHand_UnnamedScoff_", UnnamedScoffs, taken, scoffer, false);
+                answer = scoffer == null ? null : Line(taken?.def?.scoffs, kind, near, "CC_GodHand_UnnamedScoff_", UnnamedScoffs, taken, scoffer, false);
                 if (!answer.NullOrEmpty() && Speech.Say(scoffer, answer, believer)) said.Add((scoffer, answer, true));
                 else scoffer = null;
             }
@@ -120,6 +121,10 @@ namespace ColonyCouncil
             if (scoffer != null) witnesses.Add(scoffer);
             witnesses.AddRange(people.Where(x => !witnesses.Contains(x) && x.Position.DistanceTo(believer.Position) <= 12f).Take(3));
             GodLore.Saw(witnesses, taken, label, said, "SawHand");
+            // The holy book: what the believer now holds the god they named loves or hates (from what they saw follow, so maybe
+            // wrongly), and the scoffer's answer beside it.
+            if (kind != HandKind.Sign) GodLore.Inferred(believer, taken, god, kind == HandKind.Wrath, label);
+            if (scoffer != null) GodLore.Disputed(scoffer, taken, answer);
             int home = Homes.KeyOf(map);
             lore.lastHand[god.Key] = now;
             lore.lastHandAt[home] = now;

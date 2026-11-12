@@ -851,6 +851,10 @@ MODEL = {
     "Gods/GodLore.cs:seen": ("cap", (COLONISTS, 0.01), 40, "how many of the gods' doings each colonist has seen, by name"),
     "Gods/GodLore.cs:seenActing": ("fixed", 14, 10, "the gods the colony has seen act plainly, one a god at most"),
     "Gods/GodLore.cs:signs": ("fixed", 60, 40, "the signs the colony has learned as a god's own, a few a god"),
+    # The book's chapters as a holy book (Gods/GodLoreVerses.cs): each verse the words someone said, who and where, a
+    # handful a week at most (talk at most once an evening, a hand weeks apart), never twice from one teller nor from more
+    # than two; GodBookMath.MaxVerses kept, and then nothing more is set down.
+    "Gods/GodLore.cs:verses": ("cap", (const("Gods/GodBookMath.cs", "MaxVerses", 720), 0.6), 260, "the verses of the book's chapters, each with its words, teller and date, GodBookMath.MaxVerses at most"),
     # The gods in the wider world (Gods/World/GodWorldBook.cs): the gifts colonists hold (one of a kind a colonist, spaced
     # with the peoples' gifts: a handful a year at most; GodWorldBook.MaxGifts kept, those no longer held let go first);
     # what is under way (a dream told, a night under the sky, a grudge, the Hunger's due, a quarrel, a holy place a home: a few at

@@ -82,6 +82,8 @@ namespace ColonyCouncil
                 // A letter before this one that never got its words leaves nothing behind.
                 GodTales.lastLetterGod = null;
                 GodTales.lastLetterTeller = null;
+                GodTales.lastLetterBy = null;
+                GodTales.lastLetterPeople = null;
                 var g = Gods.SwearBy(writer) ?? (f != null ? Gods.Of(f).FirstOrDefault(x => x.kind != GodKind.Dead) : null);
                 if (g == null) return;
                 Gods.Fill(values, g);
@@ -90,6 +92,8 @@ namespace ColonyCouncil
                 Gods.Learn(g, "letter");
                 GodTales.lastLetterGod = g;
                 GodTales.lastLetterTeller = writer != null ? GodLore.TellerOf(writer) : f.Name;
+                GodTales.lastLetterBy = writer?.LabelShort;
+                GodTales.lastLetterPeople = f;
                 GodTales.Letter(values, writer, f);
             }
             catch (Exception e)

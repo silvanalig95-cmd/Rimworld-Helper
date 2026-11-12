@@ -7,8 +7,8 @@ colony of 20, with the game keeping 30 more people it knows and 5 more each year
 generous guesses; sizes are rough XML sizes. Caps named as constants are read from the source. "Counted under" rows are
 kept inside another record (a journal's lines, a heart's lists) and are already in that record's size.
 
-Saved collections found: 674; modelled: 674; growing without end: 0.
-Rimfolk's part of the save, roughly: **2,931 KB** after a year, **3,621 KB** after two, **4,020 KB** after five.
+Saved collections found: 675; modelled: 675; growing without end: 0.
+Rimfolk's part of the save, roughly: **2,940 KB** after a year, **3,639 KB** after two, **4,065 KB** after five.
 
 | Collection | Rule | Kind | 1 year | 2 years | 5 years | KB at 5 years |
 |---|---|---|---|---|---|---|
@@ -27,6 +27,7 @@ Rimfolk's part of the save, roughly: **2,931 KB** after a year, **3,621 KB** aft
 | `Gods/GodLore.cs:entries` | the colony's book: an entry in the keeper's voice, with its date and witnesses, GodLoreMath.MaxEntries kept | cap | 30 | 60 | 150 | 61.5 |
 | `Social/Gossip/ReputationTracker.cs:deeds` | 10 per colonist, 220 in all, faded ones dropped | cap | 200 | 200 | 200 | 58.6 |
 | `Camps/CampGround.cs:plans` | every old site's layout as it was left, its constructions and its beds' places (about forty a site, six sites) | fixed | 240 | 240 | 240 | 46.9 |
+| `Gods/GodLore.cs:verses` | the verses of the book's chapters, each with its words, teller and date, GodBookMath.MaxVerses at most | cap | 36 | 72 | 180 | 45.7 |
 | `Journal.cs:everydaySeen` | 24 days | window | 480 | 480 | 480 | 42.2 |
 | `Defense/DefenseLines.cs:lines` | lines the player made (only their clicks), per map; gone with the map | fixed | 4 | 4 | 4 | 35.7 |
 | `Lives/LifeNew.cs:read` | books read, once each per reader, the newest 600 (Lives/LifeNewMath.MaxRead) | fixed | 600 | 600 | 600 | 35.2 |

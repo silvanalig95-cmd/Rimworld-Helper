@@ -408,6 +408,39 @@ most devout or most literate colonist, in their voice):
 - **Stories are written as heard,** in pieces, and differ between tellers.
 - **Never in it:** favour, rules, or anything the colony couldn't know.
 
+**A holy book, not a log** (the player, 12 November 2026, with a picture of Ducat's page: "the god's book should not only
+be a log of events, but more like a wiki page basically building each up based on gained knowledge, only a more
+mysterious and ominous wiki, you know like a religious text-style wiki"). Each name's page is a chapter, numbered as the
+name was first heard, whose parts grow only as the colony learns (`Gods/GodLoreVerses.cs` keeps the verses,
+`Gods/GodBookMath.cs` lays a chapter out and chooses its words, `Gods/GodLorePage.cs` draws it). A verse is set down
+only when something happens in play that someone of the colony saw, was told or came to believe; nothing comes from a
+god's def alone (its lines are only the words people say):
+- **Of its names:** a name used by anyone whose words reach the book, once a people (once for the colony's own), with that
+  people's age in words; two names worked out to be one. A name the book has with no verse (heard in a tale, or kept
+  before the verses) as first heard.
+- **Of what it is:** a line told at the fire, at supper or at the gate (the def's `whatLines`, in order, one sentence,
+  by the teller's name for the god); a scoffer's answer to a believer beside it as a doubt ("Some say: ... Others hold,
+  with Bram: ...").
+- **Of how it is known:** a line on how it is seen told the same way (`seenLines`); a sign learned from a tale heard whole
+  or retold in a letter, with the tale and its teller; what the colony saw of it plainly, with who saw it.
+- **Of what it loves and what it hates:** what a believer came to hold after a god's hand they saw (a gift or an anger,
+  in the game's events or the gods' own doings), set down under the god they took it for, as one of the things the
+  hand's own god cares for; taken for the wrong god, the belief sits under the wrong name, and nothing says so. A
+  second holder beside the first: "Others hold, with ...".
+- **The sayings** as said aloud (by a colonist at supper or a visitor at the gate), **the tales** piece by piece as told
+  (a piece not yet heard a gap, none once a letter retold the tale whole), **its kin and its enemies** (a word on two
+  gods at supper, a tale that names another, each in both chapters, with a link to the other's), **its feast and its
+  rites** (a rite kept here with someone there to see it; a neighbour's invitation to their god's feast).
+- **Said as theirs:** every verse ends with who said it and where ("so Mirel of the League told it at our gate", "so
+  Avila says", "so Avila holds", "so their letter said"), or, said through more than one mouth of one people, "so they
+  say among the people of ..."; "who told it is not written" for what an older book kept without its teller.
+- **What is still dark:** one empty part is a silence, two or more together a torn page; a tale never heard is not in
+  it at all.
+- **Scripture's look,** from layout alone (the game has no fonts of its own): the chapter's number and the parts in
+  small capitals by size, the name set large, a drawn ornament, verses numbered in the gutter, the first with a drop
+  capital in the book's gold, the margin keeping each verse's date, a change of the keeper's hand and the keeper's
+  notes in their own voice, the dated witnesses last; the page a card in either of Rimfolk's looks.
+
 ### Four more (the player, the same day)
 
 "There should also be a god of the sun & moon, a cat god, the rain god, a god of gold." Added to the build in progress

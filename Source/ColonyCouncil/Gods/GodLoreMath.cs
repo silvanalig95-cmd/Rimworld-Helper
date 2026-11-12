@@ -18,12 +18,14 @@ namespace ColonyCouncil
         }
     }
 
-    /// <summary>What a bit of talk about the gods is: the next piece of a story, a saying, or a word on two gods.</summary>
+    /// <summary>What a bit of talk about the gods is: the next piece of a story, a saying, a word on two gods, a line of what a god is or of how it is seen.</summary>
     public enum GodTalkKind
     {
         Piece,
         Saying,
-        Tie
+        Tie,
+        What,
+        Seen
     }
 
     /// <summary>
@@ -154,8 +156,16 @@ namespace ColonyCouncil
         /// <summary>The colony's count of a story's pieces after one more is told (an old one told again counts nothing new).</summary>
         public static int AfterTelling(int told, int piece, int pieces) => piece == told && told < pieces ? told + 1 : told;
 
-        /// <summary>What a bit of evening talk about the gods is: mostly the next piece of a story, else a saying, now and then a word on two gods.</summary>
-        public static GodTalkKind Talk(float roll) => roll < 0.6f ? GodTalkKind.Piece : roll < 0.85f ? GodTalkKind.Saying : GodTalkKind.Tie;
+        /// <summary>
+        /// What a bit of evening talk about the gods is: most often the next piece of a story, else a saying, a line of what a
+        /// god is or how it is seen, now and then a word on two gods.
+        /// </summary>
+        public static GodTalkKind Talk(float roll) =>
+            roll < 0.45f ? GodTalkKind.Piece : roll < 0.65f ? GodTalkKind.Saying : roll < 0.77f ? GodTalkKind.What : roll < 0.89f ? GodTalkKind.Seen : GodTalkKind.Tie;
+
+        /// <summary>What a visitor tells of their gods: most often a piece of a story, else a saying, what one of them is, or how it is seen.</summary>
+        public static GodTalkKind VisitorTalk(float roll) =>
+            roll < 0.5f ? GodTalkKind.Piece : roll < 0.7f ? GodTalkKind.Saying : roll < 0.85f ? GodTalkKind.What : GodTalkKind.Seen;
 
         // ================= How often =================
 

@@ -5,6 +5,18 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## A holy book
+
+*12 November 2026, version 0.226.0*
+
+- The Gods' book is now a holy book: each name the colony has heard a god by is a chapter that grows as your people learn.
+- A chapter's parts fill only from what your people saw, were told or came to believe: its names among each people, what it is, how it is known, what it loves and hates, its sayings, tales, kin, feasts and rites.
+- Every line is said as someone's ("so Mirel of the League told it at our gate", "so Avila holds"), and when two disagree both stand side by side.
+- Tales are set down piece by piece as they are told, with the missing pieces left as gaps, and what nobody has heard of is silence or a torn page.
+- Colonists and visitors now also tell what a god is and how it is seen, and new sayings come before old ones.
+- A believer who sees a god's hand comes to hold what that god loves or hates, under the god they took it for, so they can be wrong.
+- The book reads like scripture: chapter and verse, a drop capital, the keeper's notes and dates in the margin, and a change of hand marked.
+
 ## Magic among the peoples
 
 *12 November 2026, version 0.225.0*

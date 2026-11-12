@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <!--
+    The colony's book of the gods as a holy book (Gods/GodLorePage.cs, Gods/GodLoreVerses.cs, Gods/GodBookMath.cs): each
+    name's page a chapter in parts, each verse said as someone's, never as fact. {NAME} the chapter's name (or a name
+    said), {BY} who said it, {PEOPLE} their people, {AGE} their people's age in words, {HOW} where (CC_GodLore_How_*),
+    {WORDS} their words, {ATTR} who said them, {ITEM} a thing loved or hated, {WHAT} what it was held after, {TITLE} a
+    tale's, {OTHER} another god's name in the book, {SIGN} a sign in words, {KEEPER} the book's keeper.
+  -->
+  <CC_GodBook_Chapter>Chapter {NUM}</CC_GodBook_Chapter>
+
+  <!-- The parts, in the order a chapter sets them down. -->
+  <CC_GodBook_Part_Names>Of its names</CC_GodBook_Part_Names>
+  <CC_GodBook_Part_What>Of what it is</CC_GodBook_Part_What>
+  <CC_GodBook_Part_Known>Of how it is known</CC_GodBook_Part_Known>
+  <CC_GodBook_Part_Loves>Of what it loves and what it hates</CC_GodBook_Part_Loves>
+  <CC_GodBook_Part_Sayings>The sayings</CC_GodBook_Part_Sayings>
+  <CC_GodBook_Part_Tales>The tales</CC_GodBook_Part_Tales>
+  <CC_GodBook_Part_Kin>Of its kin and its enemies</CC_GodBook_Part_Kin>
+  <CC_GodBook_Part_Rites>Its feast and its rites</CC_GodBook_Part_Rites>
+  <CC_GodBook_Part_Witnesses>The witnesses</CC_GodBook_Part_Witnesses>
+
+  <!-- What is still dark: one part with nothing in it, or a run of them. -->
+  <CC_GodBook_Silence_0>Silence.</CC_GodBook_Silence_0>
+  <CC_GodBook_Silence_1>Nothing is written here yet.</CC_GodBook_Silence_1>
+  <CC_GodBook_Silence_2>Of this, nobody here has heard a word.</CC_GodBook_Silence_2>
+  <CC_GodBook_Torn>Here the leaves are torn away: {PARTS}.</CC_GodBook_Torn>
+
+  <!-- Of its names, by people and age. -->
+  <CC_GodBook_Name_Ours>Here among us it is called {NAME}; so {BY} says.</CC_GodBook_Name_Ours>
+  <CC_GodBook_Name_Theirs>Among the people of {PEOPLE}, {AGE}, it is called {NAME}; so {BY} told it {HOW}.</CC_GodBook_Name_Theirs>
+  <CC_GodBook_Name_Letter>Among the people of {PEOPLE}, {AGE}, it is called {NAME}; so {BY} wrote.</CC_GodBook_Name_Letter>
+  <CC_GodBook_Name_TheirLetter>Among the people of {PEOPLE}, {AGE}, it is called {NAME}; so their letter said.</CC_GodBook_Name_TheirLetter>
+  <CC_GodBook_Name_First>It is called {NAME}, first heard {FROM}.</CC_GodBook_Name_First>
+  <CC_GodBook_Age_0>a people of the bow and the spear</CC_GodBook_Age_0>
+  <CC_GodBook_Age_1>a people of the sword and the keep</CC_GodBook_Age_1>
+  <CC_GodBook_Age_2>a people of engines and guns</CC_GodBook_Age_2>
+  <CC_GodBook_Age_3>a people of the stars</CC_GodBook_Age_3>
+  <CC_GodBook_Age_4>a people of titles and honor</CC_GodBook_Age_4>
+  <CC_GodBook_Age_Far>a people from far off</CC_GodBook_Age_Far>
+
+  <!-- A verse in someone's words, and who said them. -->
+  <CC_GodBook_Verse>{WORDS}; {ATTR}.</CC_GodBook_Verse>
+  <CC_GodBook_SomeSay>Some say: {VERSE}</CC_GodBook_SomeSay>
+  <CC_GodBook_OthersHold>Others hold, with {BY}: "{WORDS}"</CC_GodBook_OthersHold>
+  <CC_GodBook_HoldsNone>{BY} will have none of it: "{WORDS}"</CC_GodBook_HoldsNone>
+  <CC_GodBook_By_Told>so {BY} told it {HOW}</CC_GodBook_By_Told>
+  <CC_GodBook_By_Says>so {BY} says</CC_GodBook_By_Says>
+  <CC_GodBook_By_Sermon>so {BY} preached</CC_GodBook_By_Sermon>
+  <CC_GodBook_By_Holds>so {BY} holds</CC_GodBook_By_Holds>
+  <CC_GodBook_By_Letter>so {BY} wrote</CC_GodBook_By_Letter>
+  <CC_GodBook_By_TheirLetter>so their letter said</CC_GodBook_By_TheirLetter>
+  <CC_GodBook_By_People>so they say among the people of {PEOPLE}</CC_GodBook_By_People>
+  <CC_GodBook_By_Nobody>who told it is not written</CC_GodBook_By_Nobody>
+
+  <!-- Of how it is known. -->
+  <CC_GodBook_SignOf>Its sign is {SIGN}, as the tale of {TITLE} has it</CC_GodBook_SignOf>
+  <CC_GodBook_SignIs>Its sign is {SIGN}</CC_GodBook_SignIs>
+  <CC_GodBook_Sight>{WHO} saw it plainly: {WHAT}.</CC_GodBook_Sight>
+
+  <!-- Of what it loves and what it hates: what someone here holds, after what they saw follow. -->
+  <CC_GodBook_Loves>{NAME} loves {ITEM}; so {BY} holds.</CC_GodBook_Loves>
+  <CC_GodBook_LovesAfter>{NAME} loves {ITEM}; so {BY} holds, after {WHAT}.</CC_GodBook_LovesAfter>
+  <CC_GodBook_Hates>{NAME} hates {ITEM}; so {BY} holds.</CC_GodBook_Hates>
+  <CC_GodBook_HatesAfter>{NAME} hates {ITEM}; so {BY} holds, after {WHAT}.</CC_GodBook_HatesAfter>
+  <CC_GodBook_OthersLove>Others hold, with {BY}, that {NAME} loves {ITEM}.</CC_GodBook_OthersLove>
+  <CC_GodBook_OthersHate>Others hold, with {BY}, that {NAME} hates {ITEM}.</CC_GodBook_OthersHate>
+
+  <!-- The tales. -->
+  <CC_GodBook_Gap>Here the telling breaks off.</CC_GodBook_Gap>
+  <CC_GodBook_Retold>As {BY} wrote it, whole:</CC_GodBook_Retold>
+  <CC_GodBook_RetoldNobody>As a letter had it, whole:</CC_GodBook_RetoldNobody>
+  <CC_GodBook_ToldBy>told by {BY}, {HOW}</CC_GodBook_ToldBy>
+  <CC_GodBook_ToldByOnly>told by {BY}</CC_GodBook_ToldByOnly>
+  <CC_GodBook_ToldByNobody>told here once; who told it is not written</CC_GodBook_ToldByNobody>
+
+  <!-- Of its kin and its enemies. -->
+  <CC_GodBook_KinTale>In the tale of {TITLE}, {NAME} is named beside {OTHER}.</CC_GodBook_KinTale>
+  <CC_GodBook_SeeOther>See the chapter of {OTHER}.</CC_GodBook_SeeOther>
+
+  <!-- Its feast and its rites. -->
+  <CC_GodBook_FeastOf>The people of {PEOPLE} keep {FEAST} in its honor</CC_GodBook_FeastOf>
+
+  <!-- The margin: the keeper's hand, and their notes in their own voice (none when nobody keeps the book). -->
+  <CC_GodBook_HandOf>in {KEEPER}'s hand</CC_GodBook_HandOf>
+  <CC_GodBook_NoHand>set down when nobody kept the book</CC_GodBook_NoHand>
+  <CC_GodBook_Note_Disagree_Plain>They don't agree, and I've written down both.</CC_GodBook_Note_Disagree_Plain>
+  <CC_GodBook_Note_Disagree_Devout>Both are set down; the faithful will know which to keep.</CC_GodBook_Note_Disagree_Devout>
+  <CC_GodBook_Note_Disagree_Learned>The accounts disagree, and both are given.</CC_GodBook_Note_Disagree_Learned>
+  <CC_GodBook_Note_Untold_Plain>Nobody here knows the whole of it.</CC_GodBook_Note_Untold_Plain>
+  <CC_GodBook_Note_Untold_Devout>Not all of it has been given to us yet.</CC_GodBook_Note_Untold_Devout>
+  <CC_GodBook_Note_Untold_Learned>The account is incomplete.</CC_GodBook_Note_Untold_Learned>
+
+  <!-- The signs the tales explain, in words (GodStory.teaches; GodLore.SignWords). -->
+  <CC_GodBook_Sign_AnimaTreeSpawn>an anima tree sprung up where none stood</CC_GodBook_Sign_AnimaTreeSpawn>
+  <CC_GodBook_Sign_GauranlenPodSpawn>a gauranlen pod come up out of the ground</CC_GodBook_Sign_GauranlenPodSpawn>
+  <CC_GodBook_Sign_CropBlight>blight in the fields</CC_GodBook_Sign_CropBlight>
+  <CC_GodBook_Sign_Council_Evt_RichSeam>a rich seam opening in the rock</CC_GodBook_Sign_Council_Evt_RichSeam>
+  <CC_GodBook_Sign_Council_Evt_Rockslide>a rockslide in the hills</CC_GodBook_Sign_Council_Evt_Rockslide>
+  <CC_GodBook_Sign_Earthquake>the ground shaking</CC_GodBook_Sign_Earthquake>
+  <CC_GodBook_Sign_VEE_Earthquake>the ground shaking</CC_GodBook_Sign_VEE_Earthquake>
+  <CC_GodBook_Sign_ThrumboPasses>a thrumbo passing</CC_GodBook_Sign_ThrumboPasses>
+  <CC_GodBook_Sign_HerdMigration>a great herd passing along its road</CC_GodBook_Sign_HerdMigration>
+  <CC_GodBook_Sign_Council_Evt_MushroomFlush>mushrooms come up overnight</CC_GodBook_Sign_Council_Evt_MushroomFlush>
+  <CC_GodBook_Sign_WandererJoin>a wanderer asking to stay</CC_GodBook_Sign_WandererJoin>
+  <CC_GodBook_Sign_Council_Evt_MidwinterGuest>a guest at the door in midwinter</CC_GodBook_Sign_Council_Evt_MidwinterGuest>
+  <CC_GodBook_Sign_Council_Evt_QuietStranger>a quiet stranger at the gate</CC_GodBook_Sign_Council_Evt_QuietStranger>
+  <CC_GodBook_Sign_StrangerInBlackJoin>a stranger in black come to help</CC_GodBook_Sign_StrangerInBlackJoin>
+  <CC_GodBook_Sign_ShortCircuit>a short circuit in the wires</CC_GodBook_Sign_ShortCircuit>
+  <CC_GodBook_Sign_Rimfolk_Evt_TwitchingScrap>scrap that twitches as if alive</CC_GodBook_Sign_Rimfolk_Evt_TwitchingScrap>
+  <CC_GodBook_Sign_Aurora>the aurora</CC_GodBook_Sign_Aurora>
+  <CC_GodBook_Sign_VEE_Aurora>the aurora</CC_GodBook_Sign_VEE_Aurora>
+  <CC_GodBook_Sign_MeteoriteImpact>a stone fallen out of the sky</CC_GodBook_Sign_MeteoriteImpact>
+  <CC_GodBook_Sign_Council_Evt_Starfall>stars falling</CC_GodBook_Sign_Council_Evt_Starfall>
+  <CC_GodBook_Sign_Council_Evt_StarIron>star iron fallen to the ground</CC_GodBook_Sign_Council_Evt_StarIron>
+  <CC_GodBook_Sign_ColdSnap>a cold snap</CC_GodBook_Sign_ColdSnap>
+  <CC_GodBook_Sign_Council_Evt_KillingFrost>a killing frost</CC_GodBook_Sign_Council_Evt_KillingFrost>
+  <CC_GodBook_Sign_PsychicDrone>a dread that hums in the mind</CC_GodBook_Sign_PsychicDrone>
+  <CC_GodBook_Sign_HeatWave>a heat wave</CC_GodBook_Sign_HeatWave>
+  <CC_GodBook_Sign_Drought>a drought</CC_GodBook_Sign_Drought>
+  <CC_GodBook_Sign_VEE_Drought>a drought</CC_GodBook_Sign_VEE_Drought>
+  <CC_GodBook_Sign_SolarFlare>a flare that stops every machine</CC_GodBook_Sign_SolarFlare>
+  <CC_GodBook_Sign_VGE_SpaceSolarFlare>a flare that stops every machine</CC_GodBook_Sign_VGE_SpaceSolarFlare>
+  <CC_GodBook_Sign_Council_Evt_NemesisReturns>an old enemy come back</CC_GodBook_Sign_Council_Evt_NemesisReturns>
+  <CC_GodBook_Sign_Council_Evt_FormerPatient>one once healed here coming back</CC_GodBook_Sign_Council_Evt_FormerPatient>
+  <CC_GodBook_Sign_Eclipse>an eclipse</CC_GodBook_Sign_Eclipse>
+  <CC_GodBook_Sign_AA_Eclipse>an eclipse</CC_GodBook_Sign_AA_Eclipse>
+  <CC_GodBook_Sign_Council_Evt_Eclipse>an eclipse</CC_GodBook_Sign_Council_Evt_Eclipse>
+  <CC_GodBook_Sign_Council_Evt_Stray>a stray come to the door to stay</CC_GodBook_Sign_Council_Evt_Stray>
+  <CC_GodBook_Sign_Council_Evt_LongRains>long rains</CC_GodBook_Sign_Council_Evt_LongRains>
+  <CC_GodBook_Sign_VEE_FertileRains>rain that leaves the ground rich</CC_GodBook_Sign_VEE_FertileRains>
+  <CC_GodBook_Sign_SeasonalFlooding>the flood season</CC_GodBook_Sign_SeasonalFlooding>
+  <CC_GodBook_Sign_Council_Evt_HighWater>high water</CC_GodBook_Sign_Council_Evt_HighWater>
+  <CC_GodBook_Sign_TraderCaravanArrival>a trader's caravan come at just the right hour</CC_GodBook_Sign_TraderCaravanArrival>
+  <CC_GodBook_Sign_OrbitalTraderArrival>a trade ship passing over at just the right hour</CC_GodBook_Sign_OrbitalTraderArrival>
+  <CC_GodBook_Sign_Council_Evt_FarMarket>word of a far market</CC_GodBook_Sign_Council_Evt_FarMarket>
+
+</LanguageData>

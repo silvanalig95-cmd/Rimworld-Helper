@@ -45,32 +45,86 @@ tree at once, alongside whatever runs. Each piece is merged as its own release, 
   8. The Republic 71 to 74; the Fleet 75 to 78; the Helix Works 79 to 82.
   9. The Lattice 84, 85, 86; the Choir 87 to 90; the Vault 91 to 94.
   10. Between peoples 96 to 99; every people's art handed on, 100.
-- **To do when the player asks (12 November 2026): the Gods' book as a holy book, not a log.** The player, with a
-  picture of Ducat's page (two dated entries, a trader's words at the gate and Avila's at supper): "the god's book
-  should not only be a log of events, but more like a wiki page basically building each up based on gained knowledge,
-  only a more mysterious and ominous wiki, you know like a religious text-style wiki". How it is now
-  (`Gods/GodLorePage.cs`, `GodLore`): a name's page is the name, the other names it was found to be, when and from whom
-  it was first heard, the colonists' beliefs side by side, then every entry by date. The god's own lore is already
-  written in its def (`Defs/GodDefs/Rimfolk_Gods.xml`: names by age, what it is, how it is seen, its character, what
-  pleases and angers it, sayings, scoffs, stories in pieces with their retelling and the gods they touch) and reaches
-  the book only as dated entries. When asked, proposed: each name's page as a chapter of a holy book that grows as the
-  colony learns, its parts appearing only once someone of the colony has seen, been told or come to believe them, each
-  line said as theirs ("so the League's traders say", "Avila holds", "the seer said, darkly"), never as fact; parts
-  like "Of its names" (who calls it what, by people and age), "Of what it is" (as told, in the tellers' words), "Of
-  how it is known" (its signs, once learned), "Of what it loves and what it hates" (as the colony believes, from what
-  it saw follow its deeds, and so possibly wrong), "The sayings" (as heard), "The tales" (a story set down piece by
-  piece as its pieces are heard, the missing ones left as gaps), "Of its kin and its enemies" (other gods' pages it
-  touches, linked), "Its feast and its rites", and "The witnesses" (the dated log, last); contradictions kept side by
-  side ("Some say... Others hold..."); unknown parts shown as silence or a torn page, so the player sees how much is
-  still dark; in the style of scripture (chapter and verse, a drop capital, the keeper's notes in the margin, a change
-  of hand marked) and ominous in tone. The unseen rule holds: nothing the pawns don't know, no favour, no truth marked.
 - **To do when the player asks (12 November 2026): new storytellers, ways to play.** The player: "i'd like you to
   create new and interesting storytellers. that can enhance existing or make up new ways to play the game &
   directions", then "if they don't have an image that's totally fine, and they also don't have to be this "character"
   with a name etc., i find that strange anyways". Proposed: `docs/storytellers-proposals.md`, ten ways to play named
   for what they do (The Long Road, Neighbours, The Turning Year, What You Sow, Small Hours, The Frontier, Old Powers,
   Lean Years, Rise and Fall, Crossroads), each built on Rimfolk's own systems, none repeating the 21 storytellers in
-  the player's list; as storytellers, as a direction over any storyteller, or both. Waits for the player's picks.
+  the player's list; as storytellers, as a direction over any storyteller, or both. The player: "halt the current
+  tasks to do the storytellers first!", then "leave out small hours, the frontier": eight are being built, with the
+  direction over any storyteller.
+- 0.226.0, **The Gods' book, a holy book**
+  (12 November 2026), the player's to-do of that day, built on "you can go ahead on the todos". The player, with a
+  picture of Ducat's page (two dated entries, a trader's words at the gate and Avila's at supper): "the god's book
+  should not only be a log of events, but more like a wiki page basically building each up based on gained knowledge,
+  only a more mysterious and ominous wiki, you know like a religious text-style wiki". Built to the plan agreed in the
+  to-do. DESIGN.md "The Gods' book, a holy book",
+  docs/design/gods.md "The colony's book" ("A holy book, not a log"), README "The Gods' book". No Almanac page (the
+  unseen rule); keywords unchanged.
+  - Built: each name's page is a chapter, numbered as the names were first heard (I, II, III, in the list too): its
+    number in small capitals, the name set large, the names it was worked out to be, when and from whom it was first
+    heard, the book's ornament, then its parts in order: of its names; of what it is; of how it is known; of what it
+    loves and what it hates; the sayings; the tales; of its kin and its enemies; its feast and its rites; and the
+    witnesses (every entry by date, as before) last. Verses numbered through the chapter, the first with a drop capital
+    in the book's gold; the margin (on a wide enough page) keeps each verse's date, a change of the keeper's hand and the
+    keeper's notes in their voice; a disputed claim "Some say: ..." with "Others hold, with Bram: ..." beside it; a
+    tale's untold pieces as rows of dots ("Here the telling breaks off."), none once a letter retold it whole; one empty
+    part a silence, two or more together a torn page between ragged edges. Every verse ends with who said it and where.
+  - What unlocks each part (each verse set down only by something that happens in play, `GodLore.Set`; nothing from a
+    def alone): names, whenever the book writes under a name, once a people with their age and once for the colony's
+    own, and two names worked out to be one; what it is and how it is seen, a new kind of talk at the fire and from
+    visitors (`GodTales.WhatOf`, the def's new `whatLines` and `seenLines`, three each, said aloud in order); a doubt, a
+    scoffer's answer to a believer at a god's hand; signs, learned from a tale heard whole or retold in a letter, with
+    the tale and teller; seen plainly, from a god's moment shown plainly; loves and hates, what a believer came to hold
+    after a hand or the gods' own kindness or anger they saw, under the god they took it for, from what the hand's own
+    god cares for (so a wrongly named hand leaves a wrong belief, unmarked); sayings, as said (now one not yet heard
+    first, and from visitors too); tales, piece by piece and retold whole; kin, a word on two gods at supper and a tale
+    naming another, in both chapters, linked; rites, a festival kept, a place given, a vow, a beast let go with someone
+    there, and a neighbour's invitation to their god's feast. An older book is written into its chapters once, from its
+    tales' counts, the entries that told them, the letters' retellings and the signs.
+  - Code map: `Gods/GodBookMath.cs` (new, pure, linked into the tests: `BookPart`, `BookVerse`, `BookLine`,
+    `GodBookMath.Accepts` (the caps: `MaxVerses` 720, `RoomForNew` 640, `MaxTellers` 2, `MaxRites` 6), `NextInOrder`,
+    `NextLine`, `Compose`, `Roman`, `Bare`; `GodBookWords`: every line's words through a translator, `AttributionKey`);
+    `Gods/GodLoreVerses.cs` (new: `LoreVerse`, `GodLore.verses` and `versesFrom`, saved and modelled in
+    `Tools/save_estimate.py`; `Set`, `Called`, `Inferred`, `Believer`, `Disputed`, `Sighted`, `Kept`, the sign
+    `LearnSign` overload and `SignWords`, `Migrate`); `Gods/GodLore.cs` (partial; names set down from `Saw`, `Heard`,
+    `Believes`, `Felt`, `Connect`; `Heard` takes the teller's people); `Gods/GodLorePage.cs` (rewritten: chapters);
+    `Gods/GodTales.cs` (`WhatOf`, `Saying` public, visitors' talk, verses in `Tell`, `TieWords`, `Written`; letters keep
+    the writer and people); `Gods/GodLoreMath.cs` (`GodTalkKind.What`, `Seen`, `Talk`, `VisitorTalk`); `Gods/GodDef.cs`
+    (`whatLines`, `seenLines`); small hooks in `GodHands.Show`, `Gods.Remember`, `Gods.Moment`, `GodWords.Letter`,
+    `Worship.Booked`, `GodLetters.Daily`; `GodsDebug` ("Gods: tell of a god here (testing)..."). Defs: the fourteen's
+    `whatLines` and `seenLines` in `Rimfolk_Gods.xml`. Words: `Languages/English/Keyed/Rimfolk_GodBook.xml` (new). Tests:
+    `Tools/Tests/GodBookTests.cs` (new), `GodsTests` (the talk's kinds).
+  - Try in the game (dev mode; Debug actions, Rimfolk):
+    1. "Gods: open the book of the gods": the list numbers each name (I, II ...); a chapter opens with its number in
+       small capitals, the name, its ornament, and only the parts something has reached; the rest silence or a torn page.
+    2. "Gods: tell of a god here (testing)...", Ducat: the first colonist tells the second what Ducat is, how it is seen,
+       a saying and a piece of a tale, each over their head; the chapter gains a verse in each of those parts, each ending
+       "so Avila says", and the name under "Of its names" ("Here among us it is called Ducat; so Avila says."). Again:
+       the next line of each, never the same one twice from her; the tale's next piece, the untold ones as dots.
+    3. "Gods: hear every story (testing)": the tales whole, the signs they teach under "Of how it is known" ("Its sign is
+       a trader's caravan come at just the right hour, as the tale of the beetle on the ledger has it; ..."), and kin
+       verses with "See the chapter of ..." links (click one).
+    4. "Gods: an event's hand here...", a god, Gift, then Wrath, with a believer and a scoffer awake near each other: under
+       the god the believer named, "... loves ...; so Avila holds, after ..." and "... hates ...", and the scoffer's answer
+       under "Of what it is" ("Bram will have none of it: ..."; after step 2 for the same god, "Some say: ..." on its
+       first claim, "Others hold, with Bram: ..." beside it and the keeper's note in the margin). A hand the believer
+       takes for another god (repeat until their line names another): the belief sits in that god's chapter, and nothing
+       says it is wrong.
+    5. A visitor of another people near a colonist in the evening (or wait for one): their name for a god under "Of its
+       names", "Among the people of ..., a people of ..., it is called ...; so ... told it at our gate."; two of their
+       tellers and their verses read "so they say among the people of ...".
+    6. "Gods: work out a name in the book" with two names of one god: one chapter, both names under "Of its names", the
+       working-out the last of them.
+    7. Keep a god's festival, or dedicate a shrine (Worship): "Its feast and its rites". With Rimfolk's windows moving and
+       resizing, narrow the region window: the dates leave the margin, a change of hand and a tale's teller show under the
+       verse. Both looks (the setting "Rimfolk's own look").
+    8. An older save: opening the book writes its tales, retold stories and signs into the chapters once ("who told it is
+       not written" where its entries no longer have the teller).
+  - Not checked without the game: the page's look (the drop capital's size beside two lines, small capitals by size,
+    the ragged edges, the margin's width) at both screen sizes and in both looks; how often the new talk comes up in a
+    real evening; the verses' count over a long game (modelled at 0.6 a day, 720 kept).
 - 0.225.0, **Magic among the peoples, seen**
   (12 November 2026), the player's to-do of that day, built on "you can go ahead on the todos". The player: "one thing i
   want to ask whether you integrate rimworld of magic "classes" & spells into our custom made faction? i don't think i've

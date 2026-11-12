@@ -12738,6 +12738,67 @@ on felt is great, the god should only be named if it's sure it was them").
 - **Dev:** "Gods: how near each god is here (log)", "Gods: draw a god near (or let it be)..." in place of the realness
   one; the gods on the map's log shows the short memory.
 
+### The Gods' book, a holy book (the player's request, 12 November 2026; released 0.226.0)
+
+The player, with a picture of Ducat's page (two dated entries, a trader's words at the gate and Avila's at supper): "the
+god's book should not only be a log of events, but more like a wiki page basically building each up based on gained
+knowledge, only a more mysterious and ominous wiki, you know like a religious text-style wiki". Built on "you can go
+ahead on the todos", to the plan agreed in the to-do. The unseen rule holds (docs/design/gods.md, "The gods are unseen"
+and "The colony's book"): only what the pawns know, each line as theirs, no favour, no truth marked, no Almanac page.
+
+- **A chapter a name** (`Gods/GodLorePage.cs`): the list numbers the names as they were first heard (I, II, III); a
+  chapter opens with its number in small capitals, the name set large, the names it was worked out to be, when and
+  from whom it was first heard, and the book's ornament (two rules, a gold diamond, two small ones), then its parts in
+  order (`GodBookMath.Order`): of its names; of what it is; of how it is known; of what it loves and what it hates; the
+  sayings; the tales; of its kin and its enemies; its feast and its rites; and the witnesses (every entry by date, as
+  before) last. Verses are numbered through the chapter in the gutter, the first opening with a drop capital in the
+  book's gold (two lines beside it, then the full column). On a page wide enough the margin keeps each verse's date, a
+  change of the keeper's hand and the keeper's notes in their own voice (devout, learned or plain: "Both are set down;
+  the faithful will know which to keep."; none with nobody keeping the book); narrower, a change of hand and a tale's
+  teller go under the verse. The page is a card (`UiKit.Card`) in either look, every colour a token.
+- **The verses** (`Gods/GodLoreVerses.cs`, `LoreVerse : BookVerse`, `GodLore.verses`, saved, `GodBookMath.MaxVerses`
+  720; a second teller of one thing only while the book has fewer than 640, two tellers at most, a god's rites six):
+  each the words as said, who said them (a colonist by name, anyone else by name and people with the people's age), where
+  (`how`: Fire, Gate, Letter, Supper, Sermon, Saw, Holds, Kept, Joined, Tale), when, under which name, and whose hand set
+  it down. Set down only through `GodLore.Set` and its callers, each at something that happens in play:
+  - **Of its names** (`GodLore.Called`): every time the book writes under a name, the name as the one who said it uses
+    it, once a people and once for the colony's own; two names worked out to be one (`Connect`), with the later name's
+    verses moved under the earlier. A name the book has with no verse (heard in a tale, kept before) shows as first heard.
+  - **Of what it is** and **how it is seen** (`GodTales.WhatOf`): a new kind of talk at the evening fire (12 in a hundred
+    each, `GodLoreMath.Talk`) and from visitors (`VisitorTalk`: 15 each): the teller says the next line the colony hasn't
+    heard of one of their gods (the def's `whatLines` and `seenLines`, three each, one sentence of at most 90 letters,
+    by the teller's name for it), over their head to the one near them; the book has it as heard and as a verse.
+  - **Doubts** (`GodLore.Disputed`): a scoffer's answer to a believer at a god's hand, beside what it is.
+  - **Signs** (`GodLore.LearnSign(g, sign, story, ...)`): learned when a tale is heard whole at the fire or retold in a
+    letter, set down with the tale and its teller ("Its sign is a trader's caravan come at just the right hour, as the
+    tale of the beetle on the ledger has it; so Mirel of the Silver League told it at our gate."), in words of their own
+    (`CC_GodBook_Sign_*`, one for every sign a tale teaches, the event's name otherwise).
+  - **Seen plainly** (`GodLore.Sighted`, from `Gods.Moment`): who saw the god plainly and what they saw.
+  - **Loves and hates** (`GodLore.Inferred`): after a god's hand (`GodHands.Show`, a gift or an anger) or a kindness or
+    anger of the gods' own seen (`Gods.Remember`, `Gods.Moment`), the believer among those who saw it comes to hold one
+    of the things the hand's own god cares for (its def's `pleases` or `angers`, one not yet held there first), set down
+    under the god they took it for (which may not be the god it was: then it sits under the wrong name, and nothing says
+    so), "after" the event where there is one.
+  - **Sayings** (`GodTales.Saying`, now one not yet heard first and from visitors too), **tales** (`GodTales.Tell`, each
+    piece; `Written`, a letter's retelling whole), **kin** (`TieWords` at supper and a tale that names another, in both
+    chapters), **rites** (`Worship.Booked`: a festival kept, a place given, a vow, a beast let go, with someone there to
+    see it; `GodLetters`: a neighbour's invitation to their god's feast).
+- **Laid out** (`GodBookMath.Compose`, pure): nothing that isn't a verse given, except headings, a begun tale's gaps,
+  silences and tears and the keeper's notes; a part's verses in its order (names: the colony's own, then by age, then
+  worked out; loves before hates; kin by the other god); a disputed claim opens "Some say:" with the doubt "Others hold,
+  with ..." after it and the keeper's note; a second holder of what it loves "Others hold, with ..."; a tale's pieces in
+  order with a run of missing ones as a gap (a row of dots each, "Here the telling breaks off."), none once retold whole,
+  a piece told twice once; one empty part a silence ("Silence.", "Nothing is written here yet.", "Of this, nobody here
+  has heard a word."), two or more together a torn page between two ragged edges ("Here the leaves are torn away: ...").
+- **Said as theirs** (`GodBookWords`, pure, the page's words through a translator): every verse ends with who said it
+  and where (`AttributionKey`: says, preached, holds, told it at our gate, wrote, their letter said, or, said through two
+  mouths of one people, "so they say among the people of ..."; "who told it is not written" for an older book's).
+- **An older book** (`GodLore.Migrate`, once, the first time it is opened or written in): its tales from each story's
+  count and the entries that told them (with their tellers), the stories retold in letters, and the signs learned.
+- **Dev:** "Gods: tell of a god here (testing)...": a colonist tells another one of each (what it is, how it is seen, a
+  saying, a piece of a tale) of the god picked. Tested in `GodBookTests` (the rules, nothing unearned, the words, the
+  defs' lines, the seams, the page); `GodLore.verses` modelled in `Tools/save_estimate.py`.
+
 ### Four small asks (the player's request, 12 November 2026; released 0.222.0)
 
 - **Decrees rest less:** every decree waits 70 % of its own rest before it can be declared again (`DecreeMath.CooldownShare`,

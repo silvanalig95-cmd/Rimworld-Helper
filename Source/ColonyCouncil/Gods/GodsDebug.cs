@@ -175,6 +175,37 @@ namespace ColonyCouncil
             Say(told + " pieces told by " + teller.LabelShort + "; see the book.");
         }
 
+        [DebugAction("Rimfolk", "Gods: tell of a god here (testing)...", allowedGameStates = AllowedGameStates.PlayingOnMap)]
+        private static void DebugTellOf()
+        {
+            if (!Ready()) return;
+            var people = Find.CurrentMap?.mapPawns.FreeColonistsSpawned.Where(p => !p.Dead && !p.Downed).ToList() ?? new List<Pawn>();
+            if (people.Count == 0)
+            {
+                Say("nobody here to tell it.");
+                return;
+            }
+            var options = new List<FloatMenuOption>();
+            foreach (var g in Gods.All)
+            {
+                var god = g;
+                options.Add(new FloatMenuOption(Gods.FullName(g), () =>
+                {
+                    // What a colonist at supper would tell, one of each: what it is, how it is seen, a saying, a piece of a tale.
+                    var teller = people[0];
+                    var listener = people.Count > 1 ? people[1] : null;
+                    var keys = new List<string> { god.Key };
+                    int told = 0;
+                    if (GodTales.WhatOf(teller, listener, keys, false, "Supper")) told++;
+                    if (GodTales.WhatOf(teller, listener, keys, true, "Supper")) told++;
+                    if (GodTales.Saying(teller, listener, keys)) told++;
+                    if (GodTales.Tell(teller, listener, keys)) told++;
+                    Say(told + " things told of " + god.name + " by " + teller.LabelShort + "; see the book.");
+                }));
+            }
+            Find.WindowStack.Add(new FloatMenu(options));
+        }
+
         [DebugAction("Rimfolk", "Gods: work out a name in the book", allowedGameStates = AllowedGameStates.Playing)]
         private static void DebugConnect()
         {
