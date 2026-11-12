@@ -513,6 +513,10 @@ MODEL = {
     "World/Notables.cs:letters": ("cap", (C["PostOpen"] + 3, 0.5), 590,
                                   "letters and calls under way, PostMath.MaxOpen at once with the post (NotableMath.MaxOpen without); ended ones kept two days; "
                                   "the bringing flag while the writer carries one to the mailbag, cleared once in; the head a town's matter is passed on to"),
+    # An answer with nobody to carry it (no people at peace left to send a messenger) keeps what it sends with the letter
+    # until its road back is done, a few days at most, then sets it down (World/NeighbourLetters.cs, Hold; 11 November
+    # 2026): a gift or the help asked for, a few stacks, in one letter at a time at most, almost always none.
+    "World/NeighbourLetters.cs:heldThings": ("fixed", 2, 400, "per letter whose answer nobody can carry: what it sends, a few stacks, until its road back is done (counted under letters)"),
     # The post (Post/PostBook.cs): mail for the colony waiting for a carrier, each home's regular post, the colony's riders out.
     "Post/PostBook.cs:incoming": ("cap", (C["PostIncoming"], 1), 700, "answers and the world's letters waiting for a carrier: PostMath.MaxIncoming at most (the oldest goes by messenger), each gone once it opens"),
     "Post/PostBook.cs:rounds": ("fixed", 1, 120, "one regular post a home (one home in the model): when it next comes, the rider's group while here"),

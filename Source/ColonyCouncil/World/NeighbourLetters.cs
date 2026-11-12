@@ -125,6 +125,24 @@ namespace ColonyCouncil
         /// <summary>Passed on: it is with <see cref="passTo"/> now, and their answer is the one that comes.</summary>
         public bool passed;
 
+        // ---- The road (the player, 11 November 2026: "It should always take the necessary time for stuff to actually get
+        // delivered, depending on the distance") ----
+
+        /// <summary>
+        /// Who took it from the mailbag or the gate (a trader, a visitor, the post rider): it is on the road only once they have
+        /// left the map; until then its days to them wait (NeighbourLetters.StillHere).
+        /// </summary>
+        public Pawn carriedBy;
+
+        /// <summary>
+        /// An answer with nobody to carry it (no people at peace left to send a messenger): kept at their end until its road
+        /// back is done, then told (NeighbourLetters.Release); -1 when none is held.
+        /// </summary>
+        public int heldDue = -1;
+        public string heldTitle, heldText, heldChronicle;
+        public LetterDef heldDef;
+        public List<Thing> heldThings = new List<Thing>();
+
         public bool Open => stage != LetterStage.Done && stage != LetterStage.Cancelled;
 
         public string WriterName => writer != null && !writer.Discarded ? writer.LabelShort : writerName ?? "?";
@@ -138,7 +156,9 @@ namespace ColonyCouncil
                 if (bearer != null && bearer.Discarded) bearer = null;
                 if (rider != null && rider.Discarded) rider = null;
                 if (packedBy != null && packedBy.Discarded) packedBy = null;
+                if (carriedBy != null && carriedBy.Discarded) carriedBy = null;
                 if (map != null && !Find.Maps.Contains(map)) map = null;
+                heldThings?.RemoveAll(t => t == null || t.Destroyed);
             }
             Scribe_Values.Look(ref id, "id");
             Scribe_Values.Look(ref notable, "notable");
@@ -181,6 +201,14 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref bringing, "bringing");
             Scribe_Values.Look(ref passTo, "passTo", -1);
             Scribe_Values.Look(ref passed, "passed");
+            Scribe_References.Look(ref carriedBy, "carriedBy");
+            Scribe_Values.Look(ref heldDue, "heldDue", -1);
+            Scribe_Values.Look(ref heldTitle, "heldTitle");
+            Scribe_Values.Look(ref heldText, "heldText");
+            Scribe_Values.Look(ref heldChronicle, "heldChronicle");
+            Scribe_Defs.Look(ref heldDef, "heldDef");
+            Scribe_Collections.Look(ref heldThings, "heldThings", LookMode.Deep);
+            if (Scribe.mode == LoadSaveMode.PostLoadInit) heldThings ??= new List<Thing>();
         }
     }
 
@@ -237,8 +265,85 @@ namespace ColonyCouncil
 
         public static NeighbourLetter Get(int id) => Book?.letters.FirstOrDefault(l => l.id == id);
 
-        /// <summary>The letter open to them: written to them, or passed on (or to be passed on) to them by someone else (World/LetterRoutes.cs).</summary>
-        public static NeighbourLetter OpenTo(Notable n) => n == null ? null : Book?.letters.FirstOrDefault(l => l.Open && (l.notable == n.id || l.passTo == n.id));
+        /// <summary>
+        /// The letter open to them: written to them, or passed on (or to be passed on) to them by someone else (World/LetterRoutes.cs);
+        /// one whose answer the colony still waits for before one whose answer is in (an invitation taken up, its guest to come).
+        /// </summary>
+        public static NeighbourLetter OpenTo(Notable n) => n == null ? null : AwaitedFrom(n) ?? Book?.letters.FirstOrDefault(l => l.Open && To(l, n));
+
+        private static bool To(NeighbourLetter l, Notable n) => l.notable == n.id || l.passTo == n.id;
+
+        /// <summary>
+        /// A letter to them (or passed on to them) whose answer has not reached the colony yet, or null: one letter at a time to
+        /// each holds only while one is (the player's save, 11 November 2026: an invitation's answer in, its guest still to come,
+        /// kept "Write back" greyed on the very answer).
+        /// </summary>
+        public static NeighbourLetter AwaitedFrom(Notable n) => n == null ? null : Book?.letters.FirstOrDefault(l => l.Open && To(l, n) && Awaited(l));
+
+        /// <summary>The colony still waits for this letter's answer (Letters/LetterWaitMath.cs).</summary>
+        public static bool Awaited(NeighbourLetter l) => LetterWaitMath.Waits(WaitOf(l));
+
+        /// <summary>What the colony still waits on for this letter: being written, at the gate, not left yet, on the road, the answer coming back, no word yet, or nothing.</summary>
+        public static LetterWait WaitOf(NeighbourLetter l)
+        {
+            if (l == null || !l.Open) return LetterWait.None;
+            switch (l.stage)
+            {
+                case LetterStage.ToWrite:
+                case LetterStage.Writing:
+                case LetterStage.ToCall:
+                case LetterStage.Calling:
+                    return LetterWait.Writing;
+                case LetterStage.Outbox:
+                case LetterStage.AwaitMessenger:
+                    return LetterWait.Gate;
+                case LetterStage.Travelling:
+                    return CarrierHere(l) != null ? LetterWait.NotLeft : LetterWait.Road;
+                case LetterStage.Riding:
+                case LetterStage.CallbackWait:
+                case LetterStage.Ringing:
+                    return LetterWait.Road;
+                case LetterStage.Answering:
+                    return LetterWaitMath.AfterReading(true, Carried(l), AnswerOut(l));
+                default:
+                    // An invitation taken up: its answer in (or on its way), the guest still to come.
+                    return LetterWaitMath.AfterReading(false, Carried(l), AnswerOut(l));
+            }
+        }
+
+        /// <summary>Its answer goes by someone: the post, a messenger, the colony's own rider, or held at their end for its road back.</summary>
+        private static bool Carried(NeighbourLetter l) => l.tripId >= 0 || l.postId >= 0 || l.ownRider || l.heldDue >= 0;
+
+        /// <summary>Its answer is still on its way: held at their end, waiting in the post, with a messenger who hasn't handed it over, or with the colony's rider.</summary>
+        public static bool AnswerOut(NeighbourLetter l)
+        {
+            if (l == null) return false;
+            if (l.heldDue >= 0) return true;
+            if (l.postId >= 0 && PostBook.Instance?.Item(l.postId) != null) return true;
+            if (l.ownRider && PostBook.Instance?.RideFor(l.id) != null) return true;
+            if (l.tripId < 0) return false;
+            var trip = CourierTracker.Instance?.Get(l.tripId);
+            return trip != null && !trip.settled;
+        }
+
+        /// <summary>
+        /// The one carrying it who is still on the colony's map (one of theirs taking it home, whoever took it from the mailbag,
+        /// their messenger who had it at the gate), or null: until they leave, it isn't on the road (the player: "once the
+        /// courier is off the map I already get a pop up").
+        /// </summary>
+        public static Pawn CarrierHere(NeighbourLetter l)
+        {
+            if (l?.map == null || l.stage != LetterStage.Travelling) return null;
+            bool Here(Pawn p) => p != null && !p.Dead && p.Spawned && p.Map == l.map;
+            if (Here(l.bearer)) return l.bearer;
+            if (Here(l.carriedBy)) return l.carriedBy;
+            if (l.tripId < 0) return null;
+            var trip = CourierTracker.Instance?.Get(l.tripId);
+            return trip != null && !trip.settled && trip.received ? trip.Bearers.FirstOrDefault(Here) : null;
+        }
+
+        /// <summary>Letters and calls whose answers the colony still waits for: the cap on letters under way counts these.</summary>
+        public static int UnderWay => Book?.letters.Count(Awaited) ?? 0;
 
         /// <summary>The one a letter's matter is for: the head it is passed on to, else the one it was written to.</summary>
         public static Notable ForWhom(NeighbourLetter l)
@@ -247,8 +352,6 @@ namespace ColonyCouncil
             var to = l.passTo >= 0 ? Book?.Get(l.passTo) : null;
             return to ?? Book?.Get(l.notable);
         }
-
-        public static int OpenCount => Book?.letters.Count(l => l.Open) ?? 0;
 
         // ---------------- What can be written, by whom, how ----------------
 
@@ -343,18 +446,66 @@ namespace ColonyCouncil
         /// </summary>
         public static string WhyNot(Notable n, LetterPurpose p) => LetterRoutes.WhyNot(n, p, false);
 
-        /// <summary>The letters' own checks on the one it is written to: alive, one at a time, not too many under way, not here at the colony, the wait for the same thing.</summary>
+        /// <summary>
+        /// The letters' own checks on the one it is written to: alive, one at a time, not too many under way, not here at the
+        /// colony, the wait for the same thing. Each says what it waits for and when it opens (the player, 11 November 2026: "i'm
+        /// a bit confused about when i can reply to a message and when not").
+        /// </summary>
         public static string GeneralWhyNot(Notable n, LetterPurpose p)
         {
             if (n == null || !n.Alive) return "CC_Letter_Why_Gone".Translate();
-            if (OpenTo(n) != null) return "CC_Letter_Why_OneAtATime".Translate();
+            string one = OneAtATimeWhy(n);
+            if (one != null) return one;
             // With the post the outbox keeps letters from leaving at once, so only a sane cap on letters open (PostMath.MaxOpen).
-            int max = PostBook.On ? PostMath.MaxOpen : NotableMath.MaxOpen;
-            if (OpenCount >= max) return "CC_Letter_Why_TooMany".Translate(max).Resolve();
+            if (UnderWay >= MaxUnderWay) return "CC_Letter_Why_TooMany".Translate(MaxUnderWay).Resolve();
             if (n.pawn.Spawned) return "CC_Letter_Why_Here".Translate(n.Name.Named("NAME")).Resolve();
-            int last = n.Last(p);
-            if (last >= 0 && Now - last < NotableMath.WaitDays(p) * GenDate.TicksPerDay) return "CC_Letter_Why_Lately".Translate();
+            int opens = OpensAgain(n, p);
+            if (opens >= 0) return "CC_Letter_Why_Lately".Translate(DateOf(opens).Named("DATE")).Resolve();
             return null;
+        }
+
+        /// <summary>Letters and calls whose answers can be awaited at once: twelve with the post, three without.</summary>
+        public static int MaxUnderWay => PostBook.On ? PostMath.MaxOpen : NotableMath.MaxOpen;
+
+        /// <summary>When a letter for this thing can go to them again after the last (NotableMath.WaitDays), or -1 when it can now.</summary>
+        public static int OpensAgain(Notable n, LetterPurpose p)
+        {
+            int last = n?.Last(p) ?? -1;
+            return LetterWaitMath.SoonestOpen(new[] { last }, new[] { NotableMath.WaitDays(p) }, Now);
+        }
+
+        /// <summary>
+        /// One letter at a time to each: what the colony's last one to them still waits on, and that another can go once their
+        /// answer reaches the colony; null when none waits.
+        /// </summary>
+        public static string OneAtATimeWhy(Notable n)
+        {
+            var l = AwaitedFrom(n);
+            if (l == null) return null;
+            var w = WaitOf(l);
+            return LetterWaitMath.OneAtATimeKey(w).Translate(WaitWords(l).Named("WAIT"), n.Name.Named("NAME")).Resolve();
+        }
+
+        /// <summary>Where the colony's letter is, in words, as the colony knows it (never a countdown).</summary>
+        public static string WaitWords(NeighbourLetter l)
+        {
+            var reader = ForWhom(l);
+            return NeighboursPanel.StatusWords(l, reader) ?? ("CC_Letter_Status_" + l.stage).Translate(l.WriterName.Named("PAWN"), (reader?.Name ?? "?").Named("NAME")).Resolve();
+        }
+
+        /// <summary>A day as the colony's calendar says it ("the 5th of Aprimay" reads "5th of Aprimay").</summary>
+        public static string DateOf(int tick)
+        {
+            try
+            {
+                var map = HappeningTracker.HomeMap();
+                float lon = map != null ? Find.WorldGrid.LongLatOf(map.Tile).x : 0f;
+                return GenDate.QuadrumDateStringAt(GenDate.TickGameToAbs(tick), lon);
+            }
+            catch
+            {
+                return "?";
+            }
         }
 
         /// <summary>The purpose's own checks on the one who answers it: something to write about, enough regard, their people at peace.</summary>
@@ -717,10 +868,29 @@ namespace ColonyCouncil
                     }
                     return;
                 case LetterStage.Travelling:
+                    // On the road only once whoever carries it has left the map (a guest staying on, a trader at their stall):
+                    // until then its days to them wait. Lost with them on the map, it is back at the gate.
+                    if (CarrierLost(l, n, now)) return;
+                    if (CarrierHere(l) != null)
+                    {
+                        l.due = LetterWaitMath.Shifted(l.due, l.stageTick, now);
+                        l.stageTick = now;
+                        return;
+                    }
+                    // Gone with it: who carried it is no longer this letter's business.
+                    l.bearer = null;
+                    l.carriedBy = null;
+                    if (l.tripId >= 0 && (CourierTracker.Instance?.Get(l.tripId)?.settled ?? true)) l.tripId = -1;
                     if (now >= l.due) Arrive(l, n, l.writer, now);
                     return;
                 case LetterStage.Answering:
                 {
+                    // An answer kept at their end for want of anyone to carry it comes once its road back is done.
+                    if (l.heldDue >= 0)
+                    {
+                        if (now >= l.heldDue) Release(l, n);
+                        return;
+                    }
                     // The colony's own rider brings it, or it waits in the post for a carrier (Post/): they say when it's in.
                     if (l.ownRider && PostBook.Instance?.RideFor(l.id) != null) return;
                     if (l.postId >= 0 && PostBook.Instance?.Item(l.postId) != null) return;
@@ -749,9 +919,11 @@ namespace ColonyCouncil
                     return;
                 }
                 case LetterStage.Visiting:
+                    if (l.heldDue >= 0 && now >= l.heldDue) Release(l, n);
                     if (now >= l.due) TryVisit(l, n, now);
                     return;
                 case LetterStage.Guesting:
+                    if (l.heldDue >= 0) Release(l, n);
                     Guesting(l, n, now);
                     return;
                 case LetterStage.CallbackWait:
@@ -982,8 +1154,8 @@ namespace ColonyCouncil
             if (RelayMast.Working(l.map)) l.backDays = PeoplesFMath.Relayed(l.backDays);
             l.stage = LetterStage.Travelling;
             l.stageTick = Now;
-            // They set off for home when their stay ends: about half a day on.
-            l.due = Now + Mathf.RoundToInt((there + 0.5f + NotableMath.ReplyDays(Rand.Value)) * GenDate.TicksPerDay);
+            // They set off for home when their stay ends: its days on the road count from when they leave the map (Step).
+            l.due = Now + Mathf.RoundToInt((there + NotableMath.ReplyDays(Rand.Value)) * GenDate.TicksPerDay);
             Say(by, "hand", n);
             // together: handed over face to face (the talk job brought the two together).
             Notify.LetterMessage("CC_Letter_Msg_HandedBearer".Translate(by.Named("PAWN"), l.toName.Named("TO"), bearer.Named("BEARER")).Resolve(), l.id, new LookTargets(bearer),
@@ -1052,6 +1224,7 @@ namespace ColonyCouncil
             }
             l.stage = LetterStage.Travelling;
             l.stageTick = Now;
+            // Its days on the road count from when the messenger leaves the map (Step).
             l.due = Now + Mathf.RoundToInt((there + NotableMath.ReplyDays(Rand.Value)) * GenDate.TicksPerDay);
             NotableBook.Changed();
         }
@@ -1248,9 +1421,10 @@ namespace ColonyCouncil
             }
             if (tone == AnswerTone.Silence)
             {
+                // Silence is known only once an answer would have come and none did (Letters/LetterWaitMath.cs).
                 l.stage = LetterStage.Answering;
                 l.tripId = -1;
-                l.due = now + Mathf.RoundToInt((l.backDays * 2f + 2f) * GenDate.TicksPerDay);
+                l.due = now + Mathf.RoundToInt(LetterWaitMath.NoWordDays(l.backDays) * GenDate.TicksPerDay);
                 l.stageTick = now;
                 NotableBook.Changed();
                 return tone;
@@ -1280,8 +1454,9 @@ namespace ColonyCouncil
                 var trip = Couriers.MailAnswer(l.map, n.faction, things, l.id, arrive, label, title, text, def, chronicle, KinMemory.Ours(l.writer) ? l.writer : null);
                 if (trip == null)
                 {
-                    // Nobody to carry it (no people at peace left): it comes the old way, with what it brings set down.
-                    SendNow(l, title, text, def, chronicle, things);
+                    // Nobody to carry it (no people at peace left): it comes the old way, with what it brings set down, once
+                    // its road back is done (never the moment they read the letter).
+                    Hold(l, title, text, def, chronicle, things, now);
                 }
                 else
                 {
@@ -1290,8 +1465,8 @@ namespace ColonyCouncil
                 }
             }
             else SendNow(l, title, text, def, chronicle, things);
-            // Told at once (a call, or nobody to carry it): what it says they owe is owed at once.
-            bool carried = l.tripId >= 0 || l.postId >= 0 || l.ownRider;
+            // Told at once (a call): what it says they owe is owed at once; carried (or held for its road back), once it is in.
+            bool carried = Carried(l);
             if (!carried) Owed(l, n);
             if (visit == null || feast != null)
             {
@@ -1302,7 +1477,77 @@ namespace ColonyCouncil
             return tone;
         }
 
-        /// <summary>The answer comes as a letter now (a call, or nobody to carry it); what it brings comes by courier.</summary>
+        /// <summary>
+        /// Nobody to carry the answer (no people at peace left to send a messenger): it is kept at their end until its road back
+        /// is done (Release), never told the moment they read the letter.
+        /// </summary>
+        private static void Hold(NeighbourLetter l, string title, string text, LetterDef def, string chronicle, List<Thing> things, int now)
+        {
+            l.heldDue = now + Mathf.RoundToInt(Mathf.Max(0f, l.backDays) * GenDate.TicksPerDay);
+            l.heldTitle = title;
+            l.heldText = text;
+            l.heldDef = def;
+            l.heldChronicle = chronicle;
+            l.heldThings = things?.Where(t => t != null && !t.Destroyed && !t.Spawned).ToList() ?? new List<Thing>();
+            l.tripId = -1;
+        }
+
+        /// <summary>A held answer's road back is done: it comes now (what it brings with a courier of theirs, or set down the old way), and what it says they owe is owed from now.</summary>
+        private static void Release(NeighbourLetter l, Notable n)
+        {
+            if (l == null || l.heldDue < 0) return;
+            var things = l.heldThings ?? new List<Thing>();
+            l.heldThings = new List<Thing>();
+            l.heldDue = -1;
+            SendNow(l, l.heldTitle ?? "", l.heldText ?? "", l.heldDef ?? LetterDefOf.NeutralEvent, l.heldChronicle ?? "", things);
+            l.heldTitle = l.heldText = l.heldChronicle = null;
+            l.heldDef = null;
+            if (n != null) Owed(l, n);
+            if (l.stage == LetterStage.Answering) Finish(l, n);
+            else NotableBook.Changed();
+        }
+
+        /// <summary>
+        /// Whoever carried it is lost on the colony's map (dead, held by the colony, turned on it): it never left, and is back at
+        /// the gate for the next carrier (with the post off, or their people at war, a messenger comes for it again). True when so.
+        /// </summary>
+        private static bool CarrierLost(NeighbourLetter l, Notable n, int now)
+        {
+            bool Lost(Pawn p) => p != null && l.map != null && (p.Dead && p.MapHeld == l.map || p.Spawned && p.Map == l.map && (p.IsPrisonerOfColony || p.HostileTo(Faction.OfPlayer)));
+            Pawn lost = Lost(l.bearer) ? l.bearer : Lost(l.carriedBy) ? l.carriedBy : null;
+            // Their messenger who had it at the gate, killed or taken on the colony's land: it never left either.
+            var trip = l.tripId >= 0 ? CourierTracker.Instance?.Get(l.tripId) : null;
+            if (lost == null && trip != null && trip.received) lost = trip.people.FirstOrDefault(Lost);
+            if (lost == null) return false;
+            l.bearer = null;
+            l.carriedBy = null;
+            l.tripId = -1;
+            l.carrier = PostCarrier.None;
+            l.carrierName = null;
+            l.relayName = null;
+            // apart: what became of a letter, told in a message.
+            Notify.LetterMessage("CC_Letter_Msg_CarrierLost".Translate(lost.LabelShort.Named("CARRIER"), l.WriterName.Named("PAWN"), (l.toName ?? "?").Named("TO")).Resolve(), l.id,
+                lost.Spawned ? new LookTargets(lost) : LookTargets.Invalid, MessageTypeDefOf.NeutralEvent, Importance.Notable);
+            if (PostBook.On && !l.hostile && !NotableBook.Hostile(n))
+            {
+                l.stage = LetterStage.Outbox;
+                l.stageTick = now;
+                l.bringing = false;
+                l.packedBy = null;
+                l.packed = false;
+                l.metAtGate = false;
+            }
+            else
+            {
+                l.stage = LetterStage.AwaitMessenger;
+                l.stageTick = now;
+                Pickup(l, n);
+            }
+            NotableBook.Changed();
+            return true;
+        }
+
+        /// <summary>The answer comes as a letter now (a call, or a held answer's road back done); what it brings comes by courier.</summary>
         private static void SendNow(NeighbourLetter l, string title, string text, LetterDef def, string chronicle, List<Thing> things)
         {
             var map = l.map ?? HappeningTracker.HomeMap();
@@ -1462,6 +1707,8 @@ namespace ColonyCouncil
         {
             // A dealing's answer in: agreed, it starts now (Dealings/DealingLetters.cs).
             DealingLetters.AnswerIn(l);
+            // A debt called in and honoured with a word, a captive let go or their help toward peace: done now its answer is in.
+            FavourCalls.AnswerIn(l);
             // The places its news named are heard of from now (World/HeardPlaces.cs).
             HeardPlaces.AnswerIn(l);
             if (l == null || !l.owed || n?.faction == null) return;

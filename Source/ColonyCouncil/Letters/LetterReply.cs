@@ -11,7 +11,11 @@ namespace ColonyCouncil
     /// beside each notable's letters. It opens the letter's window to them for what fits what came in
     /// (LetterKindMath.ReplyOf): the answer their letter written first waits for (Dealings/DealingActs.Reply), else
     /// greetings, else whatever can be written to them now; greyed with why when nothing can be (nobody at home who can
-    /// write, no way for it to go, a letter to them already under way, the reasons each purpose gives).
+    /// write, no way for it to go, the colony's own last letter to them still waiting for its answer, the waits between
+    /// letters for the same thing), each saying plainly what it waits for and when it opens (the player, 11 November 2026:
+    /// "i'm a bit confused about when i can reply to a message and when not? this one just came in but i can't reply to
+    /// it"). Their answer to the colony's last letter always lets a letter back go: the colony waits only while an answer
+    /// is still to come, not for what follows it (a guest who said they will visit).
     /// </summary>
     public static class LetterReply
     {
@@ -33,13 +37,43 @@ namespace ColonyCouncil
                 string byHand = NeighbourLetters.ChannelWhyNot(n, LetterChannel.Courier, map);
                 if (byHand != null && NeighbourLetters.ChannelWhyNot(n, LetterChannel.Console, map) != null) return byHand;
                 if (ReplyOf(n) == ReplyAs.Answer) return null;
-                return NeighboursPanel.WhyNoLetter(n);
+                // The colony's own last letter to them still waits for its answer: where it is, and that it opens once that answer is in.
+                string one = NeighbourLetters.OneAtATimeWhy(n);
+                if (one != null) return one;
+                string why = NeighboursPanel.WhyNoLetter(n);
+                if (why == null) return null;
+                // Held only by the waits between letters for the same thing: it opens with the soonest of them.
+                int opens = SoonestAgain(n);
+                return opens >= 0 ? "CC_LetterRead_Why_Lately".Translate(n.Name.Named("NAME"), NeighbourLetters.DateOf(opens).Named("DATE")).Resolve() : why;
             }
             catch (Exception e)
             {
                 CouncilLog.ErrorOnce("letters: writing back", e);
                 return "CC_Letter_Why_Gone".Translate().Resolve();
             }
+        }
+
+        /// <summary>The kind letters a letter back could be (each with nothing of its own against it now).</summary>
+        private static readonly LetterPurpose[] Kind =
+            { LetterPurpose.Greetings, LetterPurpose.Condolences, LetterPurpose.Warning, LetterPurpose.News, LetterPurpose.Invitation, LetterPurpose.Help };
+
+        /// <summary>
+        /// When a letter back can go, when nothing holds it but the waits between letters for the same thing (none waits for an
+        /// answer, not too many under way, they aren't here): the soonest of the kind letters with nothing else against them; -1
+        /// when something else holds it.
+        /// </summary>
+        private static int SoonestAgain(Notable n)
+        {
+            if (NeighbourLetters.AwaitedFrom(n) != null || NeighbourLetters.UnderWay >= NeighbourLetters.MaxUnderWay || (n.pawn?.Spawned ?? false)) return -1;
+            var lasts = new System.Collections.Generic.List<int>();
+            var waits = new System.Collections.Generic.List<float>();
+            foreach (var p in Kind)
+            {
+                if (NeighbourLetters.PurposeWhyNot(n, p) != null) continue;
+                lasts.Add(n.Last(p));
+                waits.Add(NotableMath.WaitDays(p));
+            }
+            return LetterWaitMath.SoonestOpen(lasts, waits, Find.TickManager.TicksGame);
         }
 
         /// <summary>What a letter back to them would be.</summary>

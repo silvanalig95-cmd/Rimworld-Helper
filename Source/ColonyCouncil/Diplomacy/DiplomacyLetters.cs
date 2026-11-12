@@ -270,10 +270,10 @@ namespace ColonyCouncil
             var chosen = asks.FirstOrDefault(o => o.Code == now);
             Widgets.Label(new Rect(inRect.x, y + 2f, 120f, 24f), "CC_LetterDlg_Ask".Translate());
             string shown = chosen?.label ?? DipWords.P("CC_Dip_Dlg_NothingToAsk");
+            // A short list by kind, what can be asked now first; a word with the peoples it would help less under "Others",
+            // and what can't be asked now under "Not now" with why (FavourCalls.Menu).
             if (UiKit.Button(new Rect(inRect.x + 124f, y, inRect.width - 124f, 26f), shown.Truncate(inRect.width - 140f)))
-                Find.WindowStack.Add(new FloatMenu(asks.Select(o => o.why == null
-                    ? new FloatMenuOption(o.label, () => Asked = o.Code)
-                    : new FloatMenuOption("CC_Out_Disabled".Translate(o.label.Named("LABEL"), o.why.Named("WHY")).Resolve(), null)).ToList()));
+                Find.WindowStack.Add(new FloatMenu(FavourCalls.Menu(asks, o => Asked = o.Code)));
             if (Asked != null)
             {
                 ask = Asked;
@@ -281,6 +281,18 @@ namespace ColonyCouncil
             }
             if (chosen == null) why = DipWords.P("CC_Dip_Dlg_NothingToAsk");
             y += 30f;
+            // What the chosen ask does and how much, under it.
+            string what = chosen?.what;
+            if (!what.NullOrEmpty())
+            {
+                Text.Font = GameFont.Tiny;
+                float h = Text.CalcHeight(what, inRect.width - 124f);
+                GUI.color = UiKit.Info;
+                Widgets.Label(new Rect(inRect.x + 124f, y, inRect.width - 124f, h), what);
+                GUI.color = Color.white;
+                Text.Font = GameFont.Small;
+                y += h + 4f;
+            }
             return y - start;
         }
 
@@ -429,7 +441,9 @@ namespace ColonyCouncil
                     a.line = DipWords.T("CC_Dip_Ans_Moot");
                     return a;
                 }
-                var heard = FavourCalls.Hear(t, l.help, l.map, KinMemory.Ours(speaker) ? speaker : null, true, Rand.Value);
+                // By letter, what is done far away waits for the answer's road back (a call's for the captive's walk home).
+                var heard = FavourCalls.Hear(t, l.help, l.map, KinMemory.Ours(speaker) ? speaker : null, true, Rand.Value,
+                    l.channel == LetterChannel.Courier ? Mathf.Max(0f, l.backDays) : -1f);
                 a.line = heard.line;
                 a.things.AddRange(heard.things);
                 if (!heard.honoured) tone = AnswerTone.Refusal;

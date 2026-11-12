@@ -9011,6 +9011,77 @@ the seams).
   marks on the region map beside a site's own; the world map overlay (its position beside the game's icons, the far side,
   another layer in view, a tooltip over the planet) and with mods that draw on the world map; "Show on map" from a heard line.
 
+## Letters and favours made clear (the player's request, 11 November 2026; not released yet)
+
+Three reports of the same day, built together, the bugs first. "Write back" greyed on the very answer: "i must say i'm a
+bit confused about when i can reply to a message and when not? this one just came in but i can't reply to it" (their
+card: "A letter from Tocac", "One letter at a time: the last one to them isn't answered yet."). Answers before a letter
+could arrive: "once the courier is off the map I already get a pop up saying "you will not receive a reply". It should
+always take the necessary time for stuff to actually get delivered, depending on the distance". And the favour menu:
+"this favour menu is also a bit overwhelming and i'm not really sure what many of these options really do. also 4
+yoghurts is a funny option? based on what are these favours created? this guy is a trader", and on the plan: ""a word
+with" should probably only be listed when the favour can actually be called in, same as for others". The pure rules
+are `Letters/LetterWaitMath.cs` (new) and `Diplomacy/FavourMath.cs`, linked; `Tools/Tests/LettersClearTests.cs`
+("letters and favours made clear: ", with the player's save's case).
+
+- **Why it was greyed.** In their save Guido's invitation to Tocac was answered ("Tocac will come to visit before
+  long") and the answer set down at the mailbag, but the letter stayed open in the stage Visiting until the visit, and
+  one letter at a time counted every open letter. The card's "Who is involved: Waesvaris" was the visitor who carried
+  the bag in, not the letter's reader: the gate asked Tocac.
+- **One letter at a time, while the colony waits for the answer.** What the colony waits on for a letter
+  (`LetterWait`, `NeighbourLetters.WaitOf`): it is still to be written, at the gate or in the mailbag, with a carrier who
+  hasn't left yet, on the road (or with an aide to call back), its answer on the way back (in the post, with a messenger,
+  with the colony's rider, held at their end), or read with no word yet. Once the answer is in, nothing: a letter can go
+  to them again even while what it promised is still to come (the guest who said they will visit). The cap on letters
+  under way counts the same (twelve with the post, three without), and so do the head a letter is passed to, one of
+  theirs carrying a letter home and a dealing with their council.
+- **Every greyed letter says what it waits for and when it opens.** One at a time: where the last letter to them is,
+  in the words of their card ("Guido's letter is on its way to them."), and "Another can go to Tocac once their answer
+  reaches the colony." (with no word yet, "once their answer comes, or once it is plain that none will"). The wait for
+  the same thing: "it can again from the 5th of Aprimay". Too many waiting: "another can go when one of those answers
+  comes in". Here on the map: "once they have left". Nobody to write: "Write back opens when someone who can is home".
+  No messenger: "A letter can go once one is." "Write back" itself, when only the waits between letters hold it: "The
+  colony has written to Tocac lately about everything it could write about now: Write back opens on the 9th of
+  Septober." (the soonest of greetings, condolences, a warning, news, an invitation and help with nothing else against
+  them). A letter set down at the mailbag says who brought it, as its card names them among who is involved.
+- **The road, from when the carrier leaves the map.** A letter is on the road only once whoever carries it has left:
+  one of their people at the colony taking it home (before, read "about half a day on" whatever they did, so a guest
+  staying days had it answered while still here), whoever took it from the mailbag, their messenger who had it at the
+  gate. While they stay, the day it is read moves on with the clock, its days on the road kept
+  (`LetterWaitMath.Shifted`); the card says "... has the letter and hasn't set off yet". A carrier killed, taken or
+  turned on the colony on its land never left with it: it is back at the gate for the next carrier (a messenger again,
+  with the post off or their people at war).
+- **An answer, a refusal or silence only when it could be known.** An answer with nobody to carry it (no people at
+  peace left to send a messenger) is kept at their end for its road back and comes then, with what it sends. Mail the
+  post sends on by a messenger (too many waiting, the post turned off) comes no sooner than it reached the region, and
+  with nobody to send it waits until then. Silence is known, as before, only at twice the road back and two days after
+  they read it.
+- **A debt's deeds take the road.** By letter, a word with another people, a captive let go and their help toward
+  peace are done when the answer reaches the colony (a month on if it never comes), with the answer that says so; their
+  fighters walk in no sooner than the answer. By a call or face to face a captive walks the road home from their town
+  first. The other people's letter about the word comes by the road from their nearest town, in the post. The debt
+  stays called in until it is done.
+- **The favour menu: a short list by kind.** Goods, a word, a captive, peace, fighters, in that order, what can be
+  asked now first; the words past the first four under "A word with other peoples (n)", what can't be asked now under
+  "Not now (n)", each with why. Each says what it does and how much, as its tip and in a line under "Ask for": "Acraeraes
+  is a trader, and sends from their stock: 120 cloth, about 180 silver's worth, set down at the colony's gate."; "A word
+  for the colony goes to the Verea Herd: their goodwill toward the colony rises a little (+5), and they write to say
+  so." The same menu face to face, and for every purpose's asks (a truce's price, a pact's cart). While the debt can't be
+  called in now (called this season, their people at war, the one who owes gone) every option is greyed with that why.
+- **Goods by who owes and what they have.** A people's debt comes from their town's stores (by its fortune, as before),
+  what the people are known for first: medicine from healers; food from herders, hunters, fishers, grovekeepers and
+  tamers; trade goods from traders and brokers; steel from drillers and salvagers. A notable's favour in person by their
+  trade: a trader (their town's, or one who called) from their stock, a material their caravans carry by the stock
+  generators of the people's caravan trader kinds over every def of the player's mods (cloth, leather, metal, blocks;
+  in loads, at most 15 silver a unit) or silver; a healer medicine; a farmer or herder food; a smith steel (a tribe's
+  crafter wood); anyone else food and silver (a tribe's, food). A trade is their best of medicine, plants, animals and
+  crafting at 8 or more. Food is a staple load of their age: no fine or lavish dish, at most 60 silver a unit of
+  nutrition, and ten or more of it, from the player's provisions, else their produce (grain, roots, fruit), else
+  pemmican. The yoghurt (a fine dish at 30) is never offered.
+- **A word only where it helps.** The peoples on good terms with them and at peace with the colony, known to it (one of
+  theirs by name, their deeds remembered, a town within a home's reach), not yet at full goodwill toward it; the coolest
+  toward the colony and the nearest first, four shown.
+
 ## Letters that read like letters (the player's request, 9 November 2026)
 
 The player: "letters exchanged from and to pawns should also read like actual letters, make a varied selection of

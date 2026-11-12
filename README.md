@@ -3816,7 +3816,7 @@ in the game's letter; "Read the whole letter" on its card, or the Diplomacy scre
 *How long letters may get* sets how often the long ones come (Short, Mixed, Long and storied; Mixed by default). A
 letter you receive is drawn on paper on its event card, as the letter it is, with what it brings under it; "Write back"
 on its card, in the reading window and on the People page opens a letter back to them (the answer their letter waits
-for, or greetings).
+for, or greetings), on the very answer to the colony's last letter.
 
 **A correspondence that builds up.** Each exchange of letters with someone grows familiar as it goes on: how many letters
 have passed both ways, for how long, and how things stand (their regard, their people's goodwill, good turns, a war). A
@@ -3932,6 +3932,20 @@ for their homeless, the colony's word in a feud; refused or left unanswered, the
 region map shows its debts, and the map's Stance and ties lens draws each as a dotted line from home; the region
 window's Peoples has what is owed each way, and its Here and away who is here from outside and who is away. 51 conversation pieces, 45 letter lines and 30 spoken lines speak of it. Setting: *Favors owed and called in*. The Almanac
 has a page, *diplomacy*.
+
+**Letters and favours, made clear.** One letter at a time to each person holds only while the colony waits for its
+answer: once the answer is in, you can write again, even while what it promised is still to come (a guest who said they
+will visit). Every letter that can't go says what it waits for and when it opens: where the last letter to them is ("is
+on its way to them", "their answer is on its way back") and that another can go once their answer reaches the colony,
+or the day a wait for the same thing ends. A letter is on the road only once whoever carries it has left the map: a
+guest who stays on keeps it until they go, and a carrier killed or taken on your land never left with it. An answer, a
+refusal or silence comes only when it could: with its carrier, your rider or their messenger, or no word by the time an
+answer would have come. A letter set down at the mailbag says who brought it. Calling in a debt is a short list by kind
+(goods, a word, a captive, peace, fighters), what can be asked now first, the rest under "Not now" with why, each saying
+what it does and how much. The goods are by who owes and what they have: a trader sends from their stock, a healer
+medicine, a farmer or herder food, a smith steel, a town from its stores; food is a staple load of their age, never a
+handful of a dear dish. A word goes only to the peoples it would help, the coolest and nearest first. By letter, a word,
+a captive let go and their help toward peace come with the answer, and a captive walks the road home.
 
 **Pacts and truces.** After the colony beats a raid, holds one of their notables or kin, or a friend of both speaks
 for peace, it can offer a people at war a truce by letter or call: a season or a year, a price either way. Agreed,

@@ -46,6 +46,8 @@
   <CC_Mail_Msg_AtGateLate>{PAWN}'s letter to {TO} waits by the gate now (place a mailbag to keep the colony's letters in one spot). It will leave {LIKELY}.</CC_Mail_Msg_AtGateLate>
   <CC_Mail_Msg_Spoken>{PAWN} has the words for {TO} ready, to give to whoever goes that way. They will go {LIKELY}.</CC_Mail_Msg_Spoken>
   <CC_Mail_Msg_Taken>{CARRIER} took {PAWN}'s letter to {TO} with them.</CC_Mail_Msg_Taken>
+  <CC_Mail_BroughtBy>{CARRIER} brought it to the mailbag.</CC_Mail_BroughtBy>
+  <CC_Mail_BroughtInPerson>{CARRIER} brought it in person.</CC_Mail_BroughtInPerson>
   <CC_Mail_Msg_TakenRelay>{CARRIER} took {PAWN}'s letter to {TO} with them, to be handed on at {RELAY}.</CC_Mail_Msg_TakenRelay>
   <CC_Mail_Msg_Packed>{PAWN} took {COUNT} letters from the mailbag for the caravan's road.</CC_Mail_Msg_Packed>
   <CC_Mail_Cancel_TakenBack>{PAWN}'s letter to {TO} was taken out of the mailbag again.</CC_Mail_Cancel_TakenBack>

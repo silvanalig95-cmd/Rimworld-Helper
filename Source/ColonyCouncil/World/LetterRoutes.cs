@@ -155,10 +155,12 @@ namespace ColonyCouncil
         private static string HeadWhyNot(Notable who, LetterPurpose p)
         {
             if (who == null || !who.Alive) return "CC_Letter_Why_Gone".Translate();
-            if (NeighbourLetters.OpenTo(who) != null) return "CC_Route_Why_HeadBusy".Translate(who.Name.Named("HEAD")).Resolve();
+            // One at a time to the head too, while the colony still waits for the last one's answer: what it waits for, in words.
+            var busy = NeighbourLetters.AwaitedFrom(who);
+            if (busy != null) return "CC_Route_Why_HeadBusy".Translate(who.Name.Named("HEAD"), NeighbourLetters.WaitWords(busy).Named("WAIT")).Resolve();
             if (who.pawn.Spawned) return "CC_Letter_Why_Here".Translate(who.Name.Named("NAME")).Resolve();
-            int last = who.Last(p);
-            if (last >= 0 && Now - last < NotableMath.WaitDays(p) * GenDate.TicksPerDay) return "CC_Route_Why_HeadLately".Translate(who.Name.Named("HEAD")).Resolve();
+            int opens = NeighbourLetters.OpensAgain(who, p);
+            if (opens >= 0) return "CC_Route_Why_HeadLately".Translate(who.Name.Named("HEAD"), NeighbourLetters.DateOf(opens).Named("DATE")).Resolve();
             return null;
         }
 

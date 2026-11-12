@@ -111,7 +111,7 @@ namespace ColonyCouncil
             foreach (var i in mine)
             {
                 book.incoming.Remove(i);
-                Open(i, new LookTargets(carrier));
+                Open(i, new LookTargets(carrier), carrier, "CC_Mail_BroughtBy");
             }
             PostWords.Say(carrier, "drop", null);
             NotableBook.Changed();
@@ -124,16 +124,22 @@ namespace ColonyCouncil
             var i = book?.Item(id);
             if (i == null) return;
             book.incoming.Remove(i);
-            Open(i, by != null ? new LookTargets(by) : LookTargets.Invalid);
+            Open(i, by != null ? new LookTargets(by) : LookTargets.Invalid, by, "CC_Mail_BroughtInPerson");
             NotableBook.Changed();
         }
 
-        /// <summary>A letter opens: told as a letter, written in the chronicle, and its answer counted in.</summary>
-        private static void Open(PostItem i, LookTargets look)
+        /// <summary>
+        /// A letter opens: told as a letter, written in the chronicle, and its answer counted in. <paramref name="by"/>: who
+        /// brought it, said in a line under it, as its card names them among who is involved (the player's card, 11 November
+        /// 2026, named the carrier, not the one who wrote).
+        /// </summary>
+        private static void Open(PostItem i, LookTargets look, Pawn by = null, string byKey = null)
         {
             try
             {
-                Tell.Letter(NewsKind.World, Importance.Notable, i.map, i.label, i.text, i.def ?? LetterDefOf.NeutralEvent, look, i.from);
+                string text = i.text;
+                if (by != null && !byKey.NullOrEmpty()) text += "\n\n" + byKey.Translate(by.Named("CARRIER")).Resolve();
+                Tell.Letter(NewsKind.World, Importance.Notable, i.map, i.label, text, i.def ?? LetterDefOf.NeutralEvent, look, i.from);
                 if (!i.chronicle.NullOrEmpty())
                     CouncilGameComponent.Instance?.AddChronicle(new ChronicleEntry(ChronicleKind.World, i.chronicle, KinMemory.Ours(i.chroniclePawn) ? i.chroniclePawn : null));
                 if (i.letterId >= 0) NeighbourLetters.AnswerIn(i.letterId);
@@ -156,12 +162,20 @@ namespace ColonyCouncil
             try
             {
                 int id = i.letterId >= 0 ? i.letterId : MailId;
+                // No sooner than it came into the region (the oldest sent on when too many wait, the post turned off).
+                int arrive = LetterWaitMath.MessengerArrives(Now, i.arrive);
                 var trip = i.map != null && Find.Maps.Contains(i.map)
-                    ? Couriers.MailAnswer(i.map, i.from, new List<Thing>(), id, Now, i.bringLabel ?? i.label, i.label, i.text, i.def, i.chronicle, i.chroniclePawn)
+                    ? Couriers.MailAnswer(i.map, i.from, new List<Thing>(), id, arrive, i.bringLabel ?? i.label, i.label, i.text, i.def, i.chronicle, i.chroniclePawn)
                     : null;
                 if (trip != null)
                 {
                     if (i.letterId >= 0) NeighbourLetters.MessengerFor(i.letterId, trip.id);
+                    return;
+                }
+                // Nobody to send and not in the region yet: it waits for its road to be done.
+                if (Now < i.arrive && i.map != null && Find.Maps.Contains(i.map))
+                {
+                    book.incoming.Add(i);
                     return;
                 }
                 var town = NotableBook.TownOf(i.town);

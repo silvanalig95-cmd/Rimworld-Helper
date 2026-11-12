@@ -67,13 +67,15 @@ namespace ColonyCouncil
             return LetterWhyNot(Dealings.Receiver(f, town, home));
         }
 
-        /// <summary>The letters' own rules for the one who receives it: alive, not here, no letter to them on its way already, not too many open.</summary>
+        /// <summary>The letters' own rules for the one who receives it: alive, not here, no letter to them still waiting for its answer, not too many under way.</summary>
         public static string LetterWhyNot(Notable n)
         {
             if (n == null || !n.Alive) return "CC_Letter_Why_Gone".Translate();
-            if (NeighbourLetters.OpenTo(n) != null) return "CC_Letter_Why_OneAtATime".Translate();
-            int max = PostBook.On ? PostMath.MaxOpen : NotableMath.MaxOpen;
-            if (NeighbourLetters.OpenCount >= max) return "CC_Letter_Why_TooMany".Translate(max).Resolve();
+            // One at a time to each, while the colony still waits for the last one's answer (what it waits for, in words).
+            string one = NeighbourLetters.OneAtATimeWhy(n);
+            if (one != null) return one;
+            int max = NeighbourLetters.MaxUnderWay;
+            if (NeighbourLetters.UnderWay >= max) return "CC_Letter_Why_TooMany".Translate(max).Resolve();
             if (n.pawn != null && n.pawn.Spawned) return "CC_Letter_Why_Here".Translate(n.Name.Named("NAME")).Resolve();
             return null;
         }

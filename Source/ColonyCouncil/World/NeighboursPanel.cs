@@ -128,6 +128,12 @@ namespace ColonyCouncil
         /// <summary>Where the letter is, in words (never a countdown).</summary>
         public static string StatusWords(NeighbourLetter l, Notable n)
         {
+            // Taken by someone still on the map (not on the road yet), or read with no word back yet: as the colony knows it.
+            var wait = NeighbourLetters.WaitOf(l);
+            if (wait == LetterWait.NotLeft)
+                return "CC_Letter_Wait_NotLeft".Translate((NeighbourLetters.CarrierHere(l)?.LabelShort ?? "?").Named("CARRIER"), l.WriterName.Named("PAWN"),
+                    (n?.Name ?? "?").Named("NAME")).Resolve();
+            if (wait == LetterWait.NoWord) return "CC_Letter_Wait_NoWord".Translate(l.WriterName.Named("PAWN"), (n?.Name ?? "?").Named("NAME")).Resolve();
             // Passed on to the head by the one it was written to (World/LetterRoutes.cs): with the head now.
             if (l.passed && (l.stage == LetterStage.Travelling || l.stage == LetterStage.CallbackWait))
             {

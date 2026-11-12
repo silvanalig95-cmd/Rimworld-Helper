@@ -18,7 +18,8 @@ tree at once, alongside whatever runs. Each piece is merged as its own release, 
   "To do when the player asks" entry (with their words) and the task list, and nothing is built, unless they say to
   start it now. When they ask, the gathered entries are planned together, grouped by area, and built side by side.
   (On 11 November 2026 they asked for every entry then on the list and the peoples' round 1: all built and released
-  0.206.2 to 0.213.0. Rounds 2 to 10, the letters' timing and the favour menu wait for their word.)
+  0.206.2 to 0.213.0. Rounds 2 to 10 wait for their word; the letters' timing and the favour menu were built on 12
+  November 2026.)
 - **To do when the player asks (10 November 2026): events and interactions of each of Rimfolk's peoples, by their lore.**
   The player: "I really LOVE the new factions you created, and I'd be down for more later. however, I'd first like more
   faction specific events, interactions etc. like this event i had with these gene guys who gave my pawn a new gene.
@@ -56,16 +57,6 @@ tree at once, alongside whatever runs. Each piece is merged as its own release, 
   policies, shelves and stockpiles list them apart. Rimfolk's own counting of simple meals (feasts, hosting, the road
   food, the journey planner, the stores panel, the rider's supplies) takes them as simple meals; the Almanac's food
   page and README.
-- **To do when the player asks (11 November 2026), a bug: "Write back" greyed on the very answer.** The player, with a
-  picture of "A letter from Tocac" (Tocac, heir of Karond-Keth 2, Stormriders, allied: the answer to Guido's letter of
-  invitation, "Tocac will come to visit before long"; "Who is involved: Waesvaris") and "Write back" greyed with "One
-  letter at a time: the last one to them isn't answered yet.", and their save (scratchpad `save_toba4/League of
-  Toba.rws`, read with `python3 -I`): "i must say i'm a bit confused about when i can reply to a message and when
-  not? this one just came in but i can't reply to it. for to do". When asked: find why the answer itself doesn't count
-  as the answer (the invitation's answer kept open until the visit, a second letter to them under way, or the gate
-  asking the wrong notable: the card names Waesvaris as involved while Tocac wrote), make "Write back" open on any
-  letter that answers the colony's last one, and say plainly on every greyed reply what it waits for and when it
-  opens; the Almanac's letters page says when the colony can write to whom.
 - **Being built (11 November 2026): gods.** The player, after the brainstorm: "I just want you to get going ... I have
   confidence in your initial draft ... go for it. And you can really spend effort and tokens into the subject." The
   design the agents build to, with the lead's defaults and the stages, is `docs/design/gods.md`.
@@ -144,36 +135,6 @@ tree at once, alongside whatever runs. Each piece is merged as its own release, 
   and ominosity ... imposing sound effects or really kind of epic ones" (its section F, sound from the game's own assets,
   no generated music); then a god always looks like one on the map unless it hides on purpose (section G: size,
   colouring, an aura, the ground and the world answering it). Nothing is built until they choose and say to start.
-- **To do when the player asks (11 November 2026): calling in a favour, made clear.** The player, with a picture of the
-  letter window's "Ask for" list on a debt owed by "Acraeraes of Karond-Keth 2, a trader who called" (five loads of
-  goods, some forty "A word for the colony with ... (a kind one)", a captive, peace, fighters): "this favour menu is also
-  a bit overwhelming and i'm not really sure what many of these options really do. also 4 yoghurts is a funny option?
-  based on what are these favours created? this guy is a trader". How it works now (`Diplomacy/FavourCalls.Options`):
-  a load of each goods kind of their age (`FavourMath.GoodsKinds`: food, medicine, wood, steel, silver), the food a
-  random "provisions" thing of the player's mods (`ThingRoles.From(ThingRole.Provisions)`, so a yoghurt), counted as the
-  debt's worth by their town's fortune and means over the thing's value; a word with every third people they are on
-  good terms with; any captive; peace with each people at war; their fighters. Nothing reads who the debtor is. When
-  asked: a short list in a few kinds (goods, a word, a captive, peace, fighters), only what can be asked now first, the
-  rest folded under "Not now" with why; each with a line on what it does and how much ("they put in a word with the
-  Verea Herd: their goodwill toward the colony rises a little"); the words narrowed to the peoples it would help most
-  (known to the colony, not already at full goodwill, the nearest and the coolest first, a handful, the rest under
-  "Others"); goods by who owes and what they have: a trader from their trade goods, a healer medicine, a farmer or
-  herder food, a smith steel, a town's stores by its fortune, and food as a sensible staple load (meals, grain, pemmican
-  of their age), never a handful of a dear oddity. The player on the plan: "sounds good! "a word with" should
-  probably only be listed when the favour can actually be called in, same as for others": when the debt can't be
-  called now (called lately, a letter to them still unanswered, out of reach), no option is offered as if it could be;
-  the words follow the same gate as the goods, the captive, peace and fighters, and each option's own why. Propose the
-  shape with the player first.
-- **To do when the player asks (11 November 2026), a bug: letters' answers come before a letter could arrive.** The
-  player: "letter replies & interactions don't always make sense timing-wise. for example when i send a letter to a
-  base, i think once the courier is off the map I already get a pop up saying "you will not receive a reply". It
-  should always take the necessary time for stuff to actually get delivered, depending on the distance". When asked:
-  find every answer, refusal or "no reply" to the colony's letters, asks and dealings (Post/ the outbox and the colony's
-  own rider, Couriers/, World/NeighbourLetters, Dealings/WorldWrites, Letters/LetterBook and LetterReply, the
-  diplomacy screen's sends) and make each wait for the letter to reach them by the road (the journey's days by
-  distance, as the couriers and journeys reckon it), their reading and writing time, and the answer's own road back;
-  a refusal or silence is only known when it could be (a returning rider, their courier, or no word by the time an
-  answer would have come). Check each against the map: the courier gone off the map is not the letter delivered.
 - **To do when the player asks (12 November 2026): A RimWorld of Magic's classes and spells among the peoples, seen.**
   The player: "one thing i want to ask whether you integrate rimworld of magic "classes" & spells into our custom made
   faction? i don't think i've seen any of them, but they should surely be thematically fitting. since these spells can
@@ -314,6 +275,90 @@ tree at once, alongside whatever runs. Each piece is merged as its own release, 
   treated" chooses), never so many that the home's stores fall below what its sick need; a stock the player set by
   hand left alone; taken off again when someone stops being a medic. Shown where the game shows it (the Assign tab),
   and said once ("Alder packs two kits of medicine").
+- Not released: no version, no What's new round, About.xml and CHANGELOG untouched. **Letters and favours made clear**
+  (12 November 2026), the player's three entries of 11 November 2026 built together, the two bugs first. "Write back"
+  greyed on the very answer (with a picture of "A letter from Tocac" and "One letter at a time: the last one to them isn't
+  answered yet.": "i must say i'm a bit confused about when i can reply to a message and when not? this one just came in
+  but i can't reply to it"); letters' answers before a letter could arrive ("once the courier is off the map I already
+  get a pop up saying "you will not receive a reply". It should always take the necessary time for stuff to actually get
+  delivered, depending on the distance"); calling in a favour made clear ("this favour menu is also a bit overwhelming
+  and i'm not really sure what many of these options really do. also 4 yoghurts is a funny option? based on what are
+  these favours created? this guy is a trader"; on the plan: ""a word with" should probably only be listed when the
+  favour can actually be called in, same as for others"). DESIGN.md "Letters and favours made clear"; the Almanac's
+  Neighbours and letters page (Writing a letter, The answer, Talking with outsiders) and Diplomacy page (Calling a debt
+  in); README "Letters and favours, made clear".
+  - The causes, from the code and the player's save (League of Toba, read with `python3 -I`). Write back: Guido's
+    invitation to Tocac (letter 22) was answered "Tocac will come to visit before long", the answer set down at the
+    mailbag, but the letter stayed open in the stage Visiting until the visit, and one letter at a time counted every
+    open letter (`NeighbourLetters.OpenTo`), so every letter back to Tocac was greyed. The gate asked the right notable:
+    the card's "Who is involved: Waesvaris" was the carrier who set the bag down (Arin Waesvaris, a Stormriders visitor;
+    the three letters of that tick all name her). The timing: a letter given to one of their people at the colony was
+    read "about half a day on" whatever they did, so a guest staying days had it read and answered while still here;
+    every carrier's road counted from the mailbag, not from leaving the map; mail the post sent on by a messenger (too
+    many waiting, the post turned off) came at once, even before it reached the region, and with nobody to send was told
+    then; an answer with nobody to carry it was told the moment they read the letter; a debt called in by letter for a
+    word, a captive or peace was done the moment they read it (the other people's letter, the captive at the edge of the
+    map, before the answer saying so), and their fighters could walk in before it. Silence was already known only after
+    twice the road back and two days.
+  - Built. One letter at a time, and the cap on letters under way, hold only while the colony waits for an answer
+    (`Letters/LetterWaitMath.cs`, pure and linked: `LetterWait` None, Writing, Gate, NotLeft, Road, Back, NoWord;
+    `NeighbourLetters.WaitOf`, `AwaitedFrom`, `UnderWay`): once the answer is in, a letter can go again, whatever it
+    promised is still to come. Every greyed letter says what it waits for and when it opens (`OneAtATimeWhy` with
+    `WaitWords`, the stage as the colony knows it; `OpensAgain` and `DateOf` for the wait for the same thing, "from the
+    5th of Aprimay"; too many, here on the map, nobody to write, no messenger); "Write back" adds the soonest of the kind
+    letters when only those waits hold it (`LetterReply.SoonestAgain`, `CC_LetterRead_Why_Lately`). The head a letter is
+    passed to, a visitor carrying one and a dealing follow the same rule. The road: on it only once whoever carries it has
+    left the map (`carriedBy` set by `Outbox.Carried`, the bearer, their messenger: `CarrierHere`; the day it is read
+    moves on with the clock while they stay, `LetterWaitMath.Shifted`); a carrier killed, taken or turned on the colony
+    there never left, and it is back at the gate (`CarrierLost`, `CC_Letter_Msg_CarrierLost`); an answer nobody can carry
+    is held at their end for its road back (`Hold`, `Release`; saved `heldDue`, `heldTitle`, `heldText`, `heldDef`,
+    `heldChronicle`, `heldThings`); mail sent on by a messenger no sooner than it reached the region, and with nobody to
+    send it waits (`MailIn.Messenger`); a letter set down at the mailbag says who brought it (`CC_Mail_BroughtBy`,
+    `CC_Mail_BroughtInPerson`). Favours: by letter, a word, a captive or peace are done when the answer is in
+    (`FavourCalls.AnswerIn` from `NeighbourLetters.Owed`), or a month on if it never comes; by a call or face to face a
+    captive walks the road home first (the tie stays called in with its due day: `FavourCalls.Later`, `Keep`, `Hourly`
+    from `Diplomacy.Hourly`); fighters never before the answer; the other people's letter about the word comes by the
+    road from their nearest town (`MailIn.FromAbroad`). The menu (`FavourCalls.Menu`, `FavourMath.MenuOrder`, for every
+    purpose's asks and face to face): by kind, what can be asked now first, the words past the first four under "A word
+    with other peoples", what can't be asked now under "Not now" with why; each says what it does and how much (`Option.what`
+    as the tip and a line under "Ask for", `CC_Dip_What_*`). Goods by who owes (`FavourMath.GoodsFrom`, `From`,
+    `GoodsKindsFrom`, `CallingGoods`; `FavourCalls.FromOf`): their people's stores, what the people are known for first;
+    a notable in person by their trade, a trader from what their caravans carry (`TradeGoods`, the stock generators of
+    their caravan trader kinds over every def of the player's mods) and silver, a healer medicine, a farmer or herder food,
+    a smith steel (a tribe's crafter wood), anyone else food and silver; food a staple load of their age (`StapleFood`,
+    `FavourMath.Staple`: no fine dish, at most 60 silver a unit of nutrition, ten or more, else produce, else pemmican).
+    Words only with the peoples it would help (`WordPeoples`: known to the colony, not at full goodwill, coolest and
+    nearest first). A debt that can't be called in now greys every option with why.
+  - Code map: `World/NeighbourLetters.cs` (the fields; `WaitOf`, `AwaitedFrom`, `UnderWay`, `MaxUnderWay`,
+    `GeneralWhyNot`, `OneAtATimeWhy`, `WaitWords`, `OpensAgain`, `DateOf`; `Step`'s Travelling, Answering, Visiting and
+    Guesting; `Hold`, `Release`, `CarrierLost`; `HandedToBearer`, `Handed`; `Owed`), `World/NeighboursPanel.cs`
+    (`StatusWords`), `World/LetterRoutes.cs` (`HeadWhyNot`), `Letters/LetterReply.cs`, `Letters/LetterWaitMath.cs` (new),
+    `Post/Outbox.cs` (`Carried`), `Post/MailIn.cs` (`Messenger`, `Open`), `Dealings/DealingActs.cs`, `Dealings/Dealings.cs`,
+    `Outsiders/Outsiders.cs`, `Diplomacy/FeastDialog.cs`, `Diplomacy/FavourCalls.cs`, `Diplomacy/FavourMath.cs`,
+    `Diplomacy/DiplomacyLetters.cs` (`DrawRows`, `Read`), `Diplomacy/DiplomacyActs.cs` (`Choose`), `Diplomacy/Diplomacy.cs`.
+    Keyed `Rimfolk_Notables.xml`, `Rimfolk_LetterForm.xml`, `Rimfolk_Diplomacy.xml`, `Rimfolk_Post.xml`. Tests
+    `Tools/Tests/LettersClearTests.cs`; the save estimate's `World/NeighbourLetters.cs:heldThings`.
+  - Not checked without the game: the second menus (Others, Not now) opening from the first and the tips on hover; the
+    line under "Ask for" at the window's width; a trader's goods for each people from their caravans' stock; a guest of
+    Hospitality's who stays days with a letter; the dates in words.
+  - Try in the game (dev mode):
+    1. Write back on the very answer: Peoples, a notable at peace, Write, an invitation to visit (by the post). *Rimfolk*,
+       *Post: the post rider now*; when it is taken, *Post: the mail on the road is here now* once the rider has left,
+       then again for the answer. When "A letter from ..." says they will come, its card's Write back is open (greetings,
+       or the letter's window), and the card names who brought it to the mailbag.
+    2. Greyed with what it waits for: write to someone, and before the answer comes hover Write on their row: "One letter
+       at a time to each." with where it is ("... is in the mailbag", "... on its way to them", "Their answer ... is on its
+       way") and "Another can go to them once their answer reaches the colony.". A purpose written lately: "... it can
+       again from the 5th of ...".
+    3. The road from leaving the map: with visitors on the map, talk with one, "Give them a letter to carry home...", and hand it over.
+       *Post: the mail on the road is here now*: nothing happens while they stay ("... has the letter and hasn't set off
+       yet" on the notable's card); once they leave, run it again and the letter is read. The same for traders who took
+       letters from the mailbag (*Post: a visitor group leaves now with the mail...*).
+    4. Calling in a favour: *Favours: make a debt of honour...*, a people, "they owe the colony"; then Write to their town's
+       head, A debt of honor (a favor a trader who called owes in person, "A favor they owe in person", shows their trade's
+       goods: "Goods: 120 cloth"). The Ask for list is short: goods by who owes, a few
+       words, "A word with other peoples (n)", "Not now (n)"; hover each for what it does, and the chosen one's line shows
+       under it. Ask for a word: the answer says so, and the other people's letter comes by the post some days later.
 - 0.221.0, **Mog's luck and her stare**
   (11 November 2026), the follow-up to the gods on the map from the pantheon's Mog ("the one she chooses has a lucky
   season ... she sees Ennu for what it is, and stares at it"). DESIGN.md "The gods on the map", the sacred animal.

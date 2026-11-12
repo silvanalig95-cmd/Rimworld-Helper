@@ -33,6 +33,7 @@ namespace ColonyCouncil
         {
             Safe("lines", () => FavoursOwed.Hourly(now));
             Safe("calls", () => FavourAsks.Hourly(now));
+            Safe("favours done far away", () => FavourCalls.Hourly(now));
             Safe("truces", () => Truces.Hourly(now));
             Safe("pacts", () => Pacts.Hourly(now));
             // Fealty and vassals (release 2c.2): an oath awaited, the liege's tribute, protection and levies; vassals' levies.

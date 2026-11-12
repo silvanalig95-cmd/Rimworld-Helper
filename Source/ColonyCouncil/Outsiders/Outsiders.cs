@@ -395,8 +395,9 @@ namespace ColonyCouncil
                 {
                     var to = LetterTo(x);
                     if (to == null) return Why("NoNotable");
-                    if (NeighbourLetters.OpenTo(to) != null) return Why("OneLetter", to.Name.Named("NAME"));
-                    if (NeighbourLetters.OpenCount >= NotableMath.MaxOpen) return Why("TooManyLetters");
+                    // One at a time, while the colony still waits for the last one's answer.
+                    if (NeighbourLetters.AwaitedFrom(to) != null) return Why("OneLetter", to.Name.Named("NAME"));
+                    if (NeighbourLetters.UnderWay >= NotableMath.MaxOpen) return Why("TooManyLetters");
                     break;
                 }
                 case OutsiderAct.Teach:

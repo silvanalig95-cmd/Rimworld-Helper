@@ -111,7 +111,24 @@
   <CC_Dip_Goods_wood>wood</CC_Dip_Goods_wood>
   <CC_Dip_Goods_steel>steel</CC_Dip_Goods_steel>
   <CC_Dip_Goods_silver>silver</CC_Dip_Goods_silver>
-  <CC_Dip_Opt_Goods>A load of goods: {GOODS}, brought by their porters</CC_Dip_Opt_Goods>
+  <CC_Dip_Opt_Goods>Goods: {GOODS}</CC_Dip_Opt_Goods>
+  <!-- What each ask does and how much (Diplomacy/FavourCalls.cs, Options): goods by who owes and what they have. -->
+  <CC_Dip_What_Goods_Stores>{PEOPLE} send it from their town's stores, more from a town that flourishes and less from one that struggles: {GOODS}, about {SILVER} silver's worth, set down at the colony's gate.</CC_Dip_What_Goods_Stores>
+  <CC_Dip_What_Goods_Trader>{WHO} is a trader, and sends from their stock: {GOODS}, about {SILVER} silver's worth, set down at the colony's gate.</CC_Dip_What_Goods_Trader>
+  <CC_Dip_What_Goods_Healer>{WHO} is a healer, and sends medicine: {GOODS}, about {SILVER} silver's worth, set down at the colony's gate.</CC_Dip_What_Goods_Healer>
+  <CC_Dip_What_Goods_Farmer>{WHO} works the fields, and sends food: {GOODS}, about {SILVER} silver's worth, set down at the colony's gate.</CC_Dip_What_Goods_Farmer>
+  <CC_Dip_What_Goods_Herder>{WHO} keeps herds, and sends food: {GOODS}, about {SILVER} silver's worth, set down at the colony's gate.</CC_Dip_What_Goods_Herder>
+  <CC_Dip_What_Goods_Smith>{WHO} is a crafter, and sends from their own work: {GOODS}, about {SILVER} silver's worth, set down at the colony's gate.</CC_Dip_What_Goods_Smith>
+  <CC_Dip_What_Goods_Person>{WHO} sends what their household can spare: {GOODS}, about {SILVER} silver's worth, set down at the colony's gate.</CC_Dip_What_Goods_Person>
+  <CC_Dip_What_Word>A word for the colony goes to {PEOPLE}: their goodwill toward the colony rises {HOWMUCH} (+{GOODWILL}), and they write to say so.</CC_Dip_What_Word>
+  <CC_Dip_What_Much_Little>a little</CC_Dip_What_Much_Little>
+  <CC_Dip_What_Much_Some>a fair amount</CC_Dip_What_Much_Some>
+  <CC_Dip_What_Much_Much>a good deal</CC_Dip_What_Much_Much>
+  <CC_Dip_What_Captive>{PEOPLE} let {PAWN} go: {PAWN_pronoun} walks the road home from their town and comes in at the edge of the colony's land.</CC_Dip_What_Captive>
+  <CC_Dip_What_Peace>{PEOPLE} speak for the colony to {ENEMY}: for a year, a truce the colony offers {ENEMY} is the better taken for it.</CC_Dip_What_Peace>
+  <CC_Dip_What_Fighters>A band of {PEOPLE}'s fighters walks in to stand with the colony against the threat on it, some hours after they hear.</CC_Dip_What_Fighters>
+  <CC_Dip_Menu_Others>A word with other peoples ({COUNT})</CC_Dip_Menu_Others>
+  <CC_Dip_Menu_NotNow>Not now ({COUNT})</CC_Dip_Menu_NotNow>
   <CC_Dip_Opt_Word>A word for the colony with {PEOPLE} ({HOWMUCH})</CC_Dip_Opt_Word>
   <CC_Dip_Opt_WordAny>A word for the colony with another people</CC_Dip_Opt_WordAny>
   <CC_Dip_Word_Good>a kind one</CC_Dip_Word_Good>
@@ -162,6 +179,7 @@
   <CC_Dip_Done_Goods>Porters of {PEOPLE} will bring {GOODS} to the colony's gate.</CC_Dip_Done_Goods>
   <CC_Dip_Done_Word>Word has gone to {PEOPLE} already.</CC_Dip_Done_Word>
   <CC_Dip_Done_Captive>{PAWN} has been set down at the edge of the colony's land and is walking home.</CC_Dip_Done_Captive>
+  <CC_Dip_Done_CaptiveRoad>{PAWN} is let go, and walks the road home to the colony's land.</CC_Dip_Done_CaptiveRoad>
   <CC_Dip_Done_Peace>They have promised to speak for the colony to {PEOPLE}, should it seek terms with them.</CC_Dip_Done_Peace>
 
   <!-- A word put in with a third people: that people's own letter -->

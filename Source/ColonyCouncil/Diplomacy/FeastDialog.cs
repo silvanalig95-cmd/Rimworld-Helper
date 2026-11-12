@@ -78,8 +78,8 @@ namespace ColonyCouncil
             if (picked.Count == 0) return FeastWords.P("CC_Feast_Why_NoGuests");
             if (writer == null || writer.Dead || writer.MapHeld != home) return FeastWords.P("CC_Feast_Why_NoWriter");
             // One letter or call to each guest, and only so many under way at once.
-            if (NeighbourLetters.OpenCount + picked.Count > NotableMath.MaxOpen)
-                return FeastWords.P("CC_Feast_Why_Letters", (NotableMath.MaxOpen - NeighbourLetters.OpenCount).Named("COUNT"));
+            if (NeighbourLetters.UnderWay + picked.Count > NotableMath.MaxOpen)
+                return FeastWords.P("CC_Feast_Why_Letters", (NotableMath.MaxOpen - NeighbourLetters.UnderWay).Named("COUNT"));
             return Picked.Select(GuestWhy).FirstOrDefault(w => w != null);
         }
 
