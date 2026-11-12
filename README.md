@@ -4358,6 +4358,26 @@ region's travellers pass a night with their news; the **Lantern Wardens'** post 
 roams it; and the **Wardens and the Circuit** at the gate the same day over a legend, to hunt it, to tame it, or to settle
 it in a bout. The Almanac's peoples' pages have a section each, *Of their own: gifts, trust and camps*.
 
+**The peoples' own events, the second round.** Ten more, each only from a people at peace with the colony, and all of
+it on the map or on the world's own roads. Some send a colonist away for a season, as a caravan of their own: the
+**pilgrim fellowship** asks whether anyone would walk with a file bound for a shrine (a fellowship town, a town whose faith
+keeps a relic, an old shrine at a landmark), and the one who goes comes home ten to thirty days later with a shell, a
+memory of the shrine, steadier faith and a grief or guilt eased; the **road league** asks for one guard and one pack beast
+to walk with a great caravan or a trading season under the colony's own flag, home with a share of the profit, and the
+league's caravans come more often for a year. Some work on a colonist or a beast: the **spacer enclave's** surgeon drops in
+by pod (walks in to a tribal colony) and fits a bionic eye, arm, leg or spine, or with Alpha Implants a bonded beast's,
+paid now or on terms with four seasonal instalments, a missed one a default that keeps their landers away until it is
+paid; a master of the **Kiln Guild** reworks a colonist's bow or gun into a unique piece of its kind (Odyssey's and Vanilla
+Weapons Expanded's) or a blade into a masterwork in better stuff, the colonist's name in it, a day at the colony's bench
+while they watch; the **Circuit's** beast-doctor fits a lame beast with Alpha Implants' leg, or takes it to their stables and
+leaves a young one of its kind. The **river folk** lay a crossing over the colony's river in a day with its wood, and rest at
+it on their knot night each year. The **learned society** brings the books saved from a town that burned or fell for the
+colony to keep a season (read, or locked away; Anomaly's tome sealed), thanks and a book left if every one is there. The
+**Signal Line** sells what its masts heard, the game's own site marked on the map as heard of. And two camps: the **herding
+folk** by the colony's water in a drought, asking hay or grazing, their herd straying into the fields now and then, a young
+beast at the gate after a good stay; and the **enclave's** pad at the colony's edge, rent to the last digit every five days,
+a pod of fresh stock each dawn and the game's own trading every day. The Almanac's peoples' pages say what each does.
+
 **Peoples whose age changes.** Rimfolk's peoples don't stay in the age they began in. Each season every one of them
 moves toward the next age at a pace of its own ways: the learned society, the Stormglass Conclave and the road league
 soonest, the Signal Line soon after, the herders and the Mossborn latest and never past the industrial and the medieval

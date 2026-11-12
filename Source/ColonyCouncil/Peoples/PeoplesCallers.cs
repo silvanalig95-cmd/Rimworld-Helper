@@ -184,7 +184,8 @@ namespace ColonyCouncil
     /// </summary>
     public class HappeningWorker_EnclaveLander : IncidentWorker_Happening
     {
-        private static bool Theirs(Faction f) => Peoples.CallingOf(f) == PeoplesMath.Brokers && Arrivals.Usable(f) && EnclaveLanding.CanTrade(f);
+        // A default on the enclave's terms unpaid: no lander of theirs comes until it is (Peoples/Events2/EnclaveBody.cs).
+        private static bool Theirs(Faction f) => Peoples.CallingOf(f) == PeoplesMath.Brokers && Arrivals.Usable(f) && EnclaveLanding.CanTrade(f) && !EnclaveTerms.InDefault(f);
 
         protected override bool CanHappen(Map map, HappeningExtension ext) =>
             PeoplesMath.LanderAge((int)Ages.Ours) && map.IsPlayerHome && !MapFacts.InVacuum(map) && map.dangerWatcher.DangerRating == StoryDanger.None

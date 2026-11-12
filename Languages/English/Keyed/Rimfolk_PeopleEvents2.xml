@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <!-- The peoples' own events, round 2 (Source/ColonyCouncil/Peoples/Events2/). -->
+
+  <!-- ===================== The season away (SeasonAway.cs) ===================== -->
+
+  <CC_PEv2_SetOut>{PAWN} has set out from the map's edge for {PLACE}, a caravan of one.</CC_PEv2_SetOut>
+  <CC_PEv2_Stayed>{PAWN} didn't set out after all.</CC_PEv2_Stayed>
+  <CC_PEv2_AwayLostLabel>{0} lost on the road</CC_PEv2_AwayLostLabel>
+  <CC_PEv2_AwayLost>{PAWN} never reached home from {PLACE}: the road took {PAWN_objective}, as the world's roads do. {FACTION} send word that they are sorry.</CC_PEv2_AwayLost>
+  <CC_PEv2_Homeward>{PAWN}'s days at {PLACE} are over, and {PAWN_pronoun} has set out for home, a caravan of one on the road.</CC_PEv2_Homeward>
+  <CC_PEv2_HomewardEarly>{PAWN} has left {PLACE} before {PAWN_possessive} days there were done, and is on the road home.</CC_PEv2_HomewardEarly>
+  <CC_PEv2_NoSecond>Nobody else of the colony is free to go.</CC_PEv2_NoSecond>
+  <CC_PEv2_CantLeave>{PAWN} can't leave the colony now.</CC_PEv2_CantLeave>
+  <CC_PEv2_Impact_Away>{0} is away {1}: the road to {2} and back as a caravan of one, and the days there.</CC_PEv2_Impact_Away>
+  <CC_PEv2_Impact_AwayBrief>Away a while</CC_PEv2_Impact_AwayBrief>
+  <CC_PEv2_Impact_WalkOut>{0} walks out with {1} and the others and sets out from the map's edge.</CC_PEv2_Impact_WalkOut>
+  <CC_PEv2_Impact_WalkOutBrief>Walks out</CC_PEv2_Impact_WalkOutBrief>
+  <CC_PEv2_Impact_Road>The roads and the weather are the world's own, and {0} meets them as any caravan does.</CC_PEv2_Impact_Road>
+  <CC_PEv2_Impact_RoadBrief>The road's dangers</CC_PEv2_Impact_RoadBrief>
+
+  <!-- ===================== 14. A pilgrimage (Pilgrimage.cs) ===================== -->
+
+  <CC_PEv2_RelicShrine>{TOWN}, where {RELIC} is kept</CC_PEv2_RelicShrine>
+  <CC_PEv2_OldShrine>the old shrine at {NAME}</CC_PEv2_OldShrine>
+  <CC_PEv2_Impact_Cough>{0} may bring the pilgrims' cough home from the crowded road (about {1}%, through the harm budget).</CC_PEv2_Impact_Cough>
+  <CC_PEv2_Impact_CoughBrief>The pilgrims' cough</CC_PEv2_Impact_CoughBrief>
+  <CC_PEv2_Impact_Home>Home, {0} brings a shell, a lasting memory of the shrine and steadier faith.</CC_PEv2_Impact_Home>
+  <CC_PEv2_Impact_HomeEased>Home, {0} brings a shell, a lasting memory of the shrine and steadier faith, and "{1}" weighs less.</CC_PEv2_Impact_HomeEased>
+  <CC_PEv2_Impact_HomeBrief>Home with a shell</CC_PEv2_Impact_HomeBrief>
+  <CC_PEv2_Impact_Fellowship>{0} +{1} goodwill when the pilgrim comes home.</CC_PEv2_Impact_Fellowship>
+  <CC_PEv2_Impact_FellowshipBrief>The fellowship's thanks</CC_PEv2_Impact_FellowshipBrief>
+  <CC_PEv2_ShrineLabel>{0} at the shrine</CC_PEv2_ShrineLabel>
+  <CC_PEv2_Shrine>{PAWN} has walked with {FACTION}'s pilgrims all the way to {PLACE}. {PAWN_pronoun} will keep the shrine with them {DAYS} days, and then take the road home.</CC_PEv2_Shrine>
+  <CC_PEv2_PilgrimHome>{PAWN} is home from {PLACE} with {THINGS}, the shrine still on {PAWN_possessive} mind, and {PAWN_possessive} faith steadier for the road. {FACTION} think the better of the colony for it.</CC_PEv2_PilgrimHome>
+  <CC_PEv2_PilgrimHomeEased>{PAWN} is home from {PLACE} with {THINGS}, the shrine still on {PAWN_possessive} mind. "{EASED}" weighs less than it did, and {PAWN_possessive} faith is steadier for the road. {FACTION} think the better of the colony for it.</CC_PEv2_PilgrimHomeEased>
+  <CC_PEv2_PilgrimHomeEarly>{PAWN} is home from the road to {PLACE}, the pilgrimage cut short.</CC_PEv2_PilgrimHomeEarly>
+  <CC_PEv2_PilgrimChronicle>{PAWN} walked with the pilgrims to {PLACE} and came home with a shell.</CC_PEv2_PilgrimChronicle>
+  <CC_PEv2_PilgrimCough>{PAWN} has brought the pilgrims' cough home from the crowded road.</CC_PEv2_PilgrimCough>
+
+  <!-- ===================== 3. One guard, one wagon (LeagueGuard.cs) ===================== -->
+
+  <CC_PEv2_BeastGone>The beast isn't here any more.</CC_PEv2_BeastGone>
+  <CC_PEv2_Impact_Guard>{0} and {1} are away {2}: the road to {3} and back as a caravan of their own, and days walking with the caravan under the colony's flag.</CC_PEv2_Impact_Guard>
+  <CC_PEv2_Impact_GuardRide>{0} rides {1} out to the map's edge and sets out.</CC_PEv2_Impact_GuardRide>
+  <CC_PEv2_Impact_GuardWalk>{0} leads {1} out to the map's edge and sets out.</CC_PEv2_Impact_GuardWalk>
+  <CC_PEv2_Impact_Share>{0} comes home with the colony's share of the profit, about {1} silver, and a trade lesson.</CC_PEv2_Impact_Share>
+  <CC_PEv2_Impact_ShareBrief>A share of the profit</CC_PEv2_Impact_ShareBrief>
+  <CC_PEv2_Impact_GuardThanks>{0} +{1} goodwill when they come home, and the league's caravans come half again as often for a year.</CC_PEv2_Impact_GuardThanks>
+  <CC_PEv2_Impact_GuardThanksBrief>The league's thanks</CC_PEv2_Impact_GuardThanksBrief>
+  <CC_PEv2_GuardThereLabel>{0} with the caravan</CC_PEv2_GuardThereLabel>
+  <CC_PEv2_GuardThere>{PAWN} has reached {PLACE} with {BEAST}, and walks with {FACTION}'s caravan under the colony's flag for {DAYS} days before turning for home.</CC_PEv2_GuardThere>
+  <CC_PEv2_GuardThereAlone>{PAWN} has reached {PLACE} without the beast, which didn't keep up, and walks with {FACTION}'s caravan under the colony's flag for {DAYS} days before turning for home.</CC_PEv2_GuardThereAlone>
+  <CC_PEv2_GuardHome>{PAWN} is home from walking with {FACTION}'s caravan, {BEAST} at {PAWN_possessive} side, and has set the colony's share down: {SHARE} silver. The league's caravans will come this way more often for a year.</CC_PEv2_GuardHome>
+  <CC_PEv2_GuardHomeBeastLost>{PAWN} is home from walking with {FACTION}'s caravan and has set the colony's share down, {SHARE} silver, but {BEAST} didn't come back from the road.</CC_PEv2_GuardHomeBeastLost>
+  <CC_PEv2_GuardHomeAlone>{PAWN} is home from walking with {FACTION}'s caravan and has set the colony's share down: {SHARE} silver. The league's caravans will come this way more often for a year.</CC_PEv2_GuardHomeAlone>
+  <CC_PEv2_GuardHomeEarly>{PAWN} is home from {PLACE} early, the caravan's walk cut short, and with no share.</CC_PEv2_GuardHomeEarly>
+
+  <!-- ===================== 22. The body made better, on terms (EnclaveBody.cs) ===================== -->
+
+  <CC_PEv2_Impact_Bionic>{0} gets {1} for the {2}, fitted by the enclave's surgeon.</CC_PEv2_Impact_Bionic>
+  <CC_PEv2_Impact_BionicBrief>A bionic part</CC_PEv2_Impact_BionicBrief>
+  <CC_PEv2_Impact_Terms>On terms it comes to {0} silver: {1} down now, then {3} instalments of about {2}, one asked for by letter each season.</CC_PEv2_Impact_Terms>
+  <CC_PEv2_Impact_TermsBrief>On terms</CC_PEv2_Impact_TermsBrief>
+  <CC_PEv2_Impact_Default>A missed instalment is a default: {0} think less of the colony, the debt joins its debts, and no lander of theirs comes until it is paid.</CC_PEv2_Impact_Default>
+  <CC_PEv2_Impact_DefaultBrief>A default</CC_PEv2_Impact_DefaultBrief>
+  <CC_PEv2_Impact_Pod>Their surgeon drops in by pod by the trade spot and fits it on {0}.</CC_PEv2_Impact_Pod>
+  <CC_PEv2_Impact_WalkIn>Their surgeon walks in from the road and fits it on {0}.</CC_PEv2_Impact_WalkIn>
+  <CC_PEv2_Impact_PodBrief>The surgeon's work</CC_PEv2_Impact_PodBrief>
+  <CC_PEv2_BionicDone>{SURGEON} of {FACTION} has fitted {PAWN} with {PART}.</CC_PEv2_BionicDone>
+  <CC_PEv2_BionicDoneTerms>{SURGEON} of {FACTION} has fitted {PAWN} with {PART}. The terms are written, and each season a letter will ask for the next instalment.</CC_PEv2_BionicDoneTerms>
+  <CC_PEv2_TermsGone>These terms are settled already.</CC_PEv2_TermsGone>
+  <CC_PEv2_DefaultWhole>A default is settled whole: only all that is owed will do.</CC_PEv2_DefaultWhole>
+  <CC_PEv2_Impact_Instalment>{0} silver is carried out to the gate for {1}'s courier.</CC_PEv2_Impact_Instalment>
+  <CC_PEv2_Impact_InstalmentBrief>Paid at the gate</CC_PEv2_Impact_InstalmentBrief>
+  <CC_PEv2_InstalmentLabel>the instalment for {0}</CC_PEv2_InstalmentLabel>
+  <CC_PEv2_Impact_DefaultNow>A default: {1} silver owed to {0} joins the colony's debts, and no lander of theirs comes until it is paid.</CC_PEv2_Impact_DefaultNow>
+
+  <!-- ===================== 26. A crossing on the colony's river (RiverCrossing.cs) ===================== -->
+
+  <CC_PEv2_Bridge_rope>a crossing of rope and plank</CC_PEv2_Bridge_rope>
+  <CC_PEv2_Bridge_piles>a heavy bridge on driven piles</CC_PEv2_Bridge_piles>
+  <CC_PEv2_NoBuilder>The colony has nobody who builds.</CC_PEv2_NoBuilder>
+  <CC_PEv2_Impact_Crossing>{0} and the boatmen lay {2} over {1} cells of water and plank both banks, a span at a time.</CC_PEv2_Impact_Crossing>
+  <CC_PEv2_Impact_CrossingBrief>A crossing laid</CC_PEv2_Impact_CrossingBrief>
+  <CC_PEv2_Impact_CrossingOurs>The crossing is the colony's, and once a year, on their knot night, {0} ask to rest at it.</CC_PEv2_Impact_CrossingOurs>
+  <CC_PEv2_Impact_CrossingOursBrief>The colony's crossing</CC_PEv2_Impact_CrossingOursBrief>
+  <CC_PEv2_CrossingName>the crossing on the colony's river</CC_PEv2_CrossingName>
+  <CC_PEv2_CrossingDone>{FACTION}'s boatmen have laid the last span, and the crossing over the colony's river is the colony's own.</CC_PEv2_CrossingDone>
+  <CC_PEv2_CrossingPart>{FACTION}'s boatmen have gone before the crossing was finished; what they laid is the colony's.</CC_PEv2_CrossingPart>
+  <CC_PEv2_CrossingChronicle>The river folk of {FACTION} laid a crossing over the colony's river.</CC_PEv2_CrossingChronicle>
+  <CC_PEv2_Impact_KnotRest>{0} and the boatmen rest the night at the crossing, tie their knots, and walk on in the morning.</CC_PEv2_Impact_KnotRest>
+  <CC_PEv2_Impact_KnotRestBrief>A night at the crossing</CC_PEv2_Impact_KnotRestBrief>
+
+  <!-- ===================== 59. The guild's mark (GuildMark.cs) ===================== -->
+
+  <CC_PEv2_MarkPrefix>{PAWN}'s</CC_PEv2_MarkPrefix>
+  <CC_PEv2_MarkUnique>{PAWN}'s {NAME}</CC_PEv2_MarkUnique>
+  <CC_PEv2_MarkAsUnique>a {0} of its own kind</CC_PEv2_MarkAsUnique>
+  <CC_PEv2_MarkAsStuff>a masterwork in {0}</CC_PEv2_MarkAsStuff>
+  <CC_PEv2_MarkAsMaster>a masterwork</CC_PEv2_MarkAsMaster>
+  <CC_PEv2_OwnerGone>Its owner isn't here any more.</CC_PEv2_OwnerGone>
+  <CC_PEv2_WeaponGone>{PAWN} isn't carrying it any more.</CC_PEv2_WeaponGone>
+  <CC_PEv2_NoCrafter>The colony has nobody else who crafts.</CC_PEv2_NoCrafter>
+  <CC_PEv2_Impact_MarkUnique>{0}'s {1} becomes {2}, with traits of its own and {0}'s name in it.</CC_PEv2_Impact_MarkUnique>
+  <CC_PEv2_Impact_MarkMaster>{0}'s {1} becomes {2}, with {0}'s name in its label.</CC_PEv2_Impact_MarkMaster>
+  <CC_PEv2_Impact_MarkBrief>Reworked</CC_PEv2_Impact_MarkBrief>
+  <CC_PEv2_Impact_MarkBench>{0} hands it over and watches at the colony's bench while {1} works on it a day.</CC_PEv2_Impact_MarkBench>
+  <CC_PEv2_Impact_MarkBenchBrief>A day at the bench</CC_PEv2_Impact_MarkBenchBrief>
+  <CC_PEv2_Impact_MarkCrafter>{0} works beside the master all day, and learns from it.</CC_PEv2_Impact_MarkCrafter>
+  <CC_PEv2_Impact_MarkCrafterBrief>A crafter's lesson</CC_PEv2_Impact_MarkCrafterBrief>
+  <CC_PEv2_MarkSilverLabel>the silver for {X}</CC_PEv2_MarkSilverLabel>
+  <CC_PEv2_MarkStuffLabel>the stuff for {X}'s work</CC_PEv2_MarkStuffLabel>
+  <CC_PEv2_MarkDone>{SMITH} of {FACTION} has finished at the bench and handed {PAWN} {PIECE}.</CC_PEv2_MarkDone>
+  <CC_PEv2_MarkChronicle>A master of {FACTION} reworked {PAWN}'s weapon at the colony's bench into {PIECE}.</CC_PEv2_MarkChronicle>
+  <CC_PEv2_MarkGivenUp>{SMITH} couldn't finish the work, and has handed {PAWN}'s weapon back.</CC_PEv2_MarkGivenUp>
+
+  <!-- ===================== 12. Water in the dry year (DryWater.cs) ===================== -->
+
+  <CC_PEv2_DryLost>On the dry road to the next water, {FACTION}'s herders lost {COUNT} head, so the drovers say.</CC_PEv2_DryLost>
+  <CC_PEv2_DryAte>{FACTION}'s herd ate {COUNT} of the colony's crops before the herders drove it out of the field.</CC_PEv2_DryAte>
+  <CC_PEv2_DryGrazing>{FACTION}'s herd is out grazing the colony's far ground, a herder walking its edge.</CC_PEv2_DryGrazing>
+  <CC_PEv2_DryStray>Some of {FACTION}'s herd has strayed from the {NAME} into the colony's fields.</CC_PEv2_DryStray>
+  <CC_PEv2_DryPredator>A predator of the land, {THING}, has followed {FACTION}'s herd in from the edge, and is stalking it by the water.</CC_PEv2_DryPredator>
+  <CC_PEv2_DryName>the water in the dry year</CC_PEv2_DryName>
+  <CC_PEv2_DryRegion>The region hears that the colony shared its water with {FACTION}'s herders in the dry year.</CC_PEv2_DryRegion>
+  <CC_PEv2_NoRoomCamp>There's no room on the colony's land for another camp now.</CC_PEv2_NoRoomCamp>
+  <CC_PEv2_Impact_DryCamp>{0}'s herders camp by the colony's water five to eight days with {1} head and their dogs. They ask for hay or grazing, offer milk and a hand with the colony's beasts, and leave a young beast after a good stay.</CC_PEv2_Impact_DryCamp>
+  <CC_PEv2_Impact_DryCampBrief>A camp by the water</CC_PEv2_Impact_DryCampBrief>
+  <CC_PEv2_Impact_DryRisk>It can turn: the herd may stray into the colony's fields and eat some of the crops, or a predator follow it in.</CC_PEv2_Impact_DryRisk>
+  <CC_PEv2_Impact_DryRiskBrief>The herd's risks</CC_PEv2_Impact_DryRiskBrief>
+  <CC_PEv2_Impact_DryThanks>{0} +{1} goodwill after a good stay, and the region hears of it.</CC_PEv2_Impact_DryThanks>
+  <CC_PEv2_Impact_DryThanksBrief>The herders' thanks</CC_PEv2_Impact_DryThanksBrief>
+  <CC_PEv2_Impact_DryTurned>{0}'s herd takes the dry road to the next water, and word will come of what it cost them.</CC_PEv2_Impact_DryTurned>
+  <CC_PEv2_Impact_DryTurnedBrief>Turned away</CC_PEv2_Impact_DryTurnedBrief>
+  <CC_PEv2_Impact_DryGrazing>The herd grazes the colony's open ground by day, and strays into its fields more easily.</CC_PEv2_Impact_DryGrazing>
+  <CC_PEv2_Impact_DryGrazingBrief>Grazing given</CC_PEv2_Impact_DryGrazingBrief>
+
+  <!-- ===================== 25. A pad by the colony (EnclavePad.cs) ===================== -->
+
+  <CC_PEv2_PadRaisePaid>{X_nameDef} read the colony's new figure twice and agreed to it: {COUNT} silver every five days.</CC_PEv2_PadRaisePaid>
+  <CC_PEv2_PadRaiseGone>{X_nameDef} read the colony's new figure, wrote nothing down, and told the enclave's people to pack up.</CC_PEv2_PadRaiseGone>
+  <CC_PEv2_PadTrespass>{A_nameDef} walked across the enclave's pad, and the factors noticed.</CC_PEv2_PadTrespass>
+  <CC_PEv2_PadPod>A pod came down on the enclave's pad this morning with fresh stock for their stalls.</CC_PEv2_PadPod>
+  <CC_PEv2_PadPodTribal>At dawn something fell out of the sky onto the strangers' flat place, smoking, and they carried goods out of it to their stalls.</CC_PEv2_PadPodTribal>
+  <CC_PEv2_PadMealsLabel>meals for the {NAME}</CC_PEv2_PadMealsLabel>
+  <CC_PEv2_PadMealsPaid>{FACTION} paid {COUNT} silver for the colony's meals, left at the edge of their camp.</CC_PEv2_PadMealsPaid>
+  <CC_PEv2_Impact_Pad>{0}'s two factors and two marshals rent ground at the colony's edge for ten to fifteen days, lay a small pad by their stalls, and trade every day from the fresh stock the morning's pod brings.</CC_PEv2_Impact_Pad>
+  <CC_PEv2_Impact_PadBrief>A pad and stalls</CC_PEv2_Impact_PadBrief>
+  <CC_PEv2_Impact_PadRent>They pay {0} silver every {1} days, left at the edge of their camp.</CC_PEv2_Impact_PadRent>
+  <CC_PEv2_Impact_PadRentBrief>The rent</CC_PEv2_Impact_PadRentBrief>
+  <CC_PEv2_Impact_PadTrade>Their factor trades with the colony every day, the game's own trading.</CC_PEv2_Impact_PadTrade>
+  <CC_PEv2_Impact_PadTradeBrief>Trade every day</CC_PEv2_Impact_PadTradeBrief>
+  <CC_PEv2_Impact_PadBand>Their stock may draw a band of their enemies against the pad.</CC_PEv2_Impact_PadBand>
+  <CC_PEv2_Impact_PadBandBrief>A band may come</CC_PEv2_Impact_PadBandBrief>
+  <CC_PEv2_Impact_PadRaise>The colony asks {0} silver every five days; about {1}% they pay it, else they pack up and go.</CC_PEv2_Impact_PadRaise>
+  <CC_PEv2_Impact_PadRaiseBrief>They pay or go</CC_PEv2_Impact_PadRaiseBrief>
+  <CC_PEv2_Impact_PadOff>The colony's people keep off the pad while it stands, and the factors notice anyone who walks on it.</CC_PEv2_Impact_PadOff>
+  <CC_PEv2_Impact_PadOffBrief>Off the pad</CC_PEv2_Impact_PadOffBrief>
+
+  <!-- ===================== 20. Books kept from the fire (ArchiveTrust.cs) ===================== -->
+
+  <CC_PEv2_ArchiveBooks>the society's books</CC_PEv2_ArchiveBooks>
+  <CC_PEv2_ArchiveName>the archive kept from the fire</CC_PEv2_ArchiveName>
+  <CC_PEv2_ArchiveLabel>the society's books for their cart</CC_PEv2_ArchiveLabel>
+  <CC_PEv2_ArchiveLapsed>{FACTION} can no longer come for their archive, and the books stay where they are.</CC_PEv2_ArchiveLapsed>
+  <CC_PEv2_ArchiveKeptTitle>The archive goes home</CC_PEv2_ArchiveKeptTitle>
+  <CC_PEv2_ArchiveKept>{X} of {FACTION} has come with the cart and counted the archive: all {TOTAL} there. The society thanks the colony, and leaves it {BOOK} for its keeping.</CC_PEv2_ArchiveKept>
+  <CC_PEv2_ArchiveWrongedTitle>The archive is short</CC_PEv2_ArchiveWrongedTitle>
+  <CC_PEv2_ArchiveWronged>{X} of {FACTION} has come with the cart and counted the archive: of {TOTAL}, {WHAT}. A book lost is a thing the world doesn't know any more, and the society will not forget it.</CC_PEv2_ArchiveWronged>
+  <CC_PEv2_ArchiveSold>{0} sold</CC_PEv2_ArchiveSold>
+  <CC_PEv2_ArchiveOpened>the tome's seal broken</CC_PEv2_ArchiveOpened>
+  <CC_PEv2_ArchiveLost>{0} lost</CC_PEv2_ArchiveLost>
+  <CC_PEv2_ArchiveOpen>The colony is keeping an archive already.</CC_PEv2_ArchiveOpen>
+  <CC_PEv2_Impact_Archive>{1}'s people carry {0} books in and set them down by the colony's stores.</CC_PEv2_Impact_Archive>
+  <CC_PEv2_Impact_ArchiveBrief>Books carried in</CC_PEv2_Impact_ArchiveBrief>
+  <CC_PEv2_Impact_ArchiveRead>The colony's readers may read them while they are here.</CC_PEv2_Impact_ArchiveRead>
+  <CC_PEv2_Impact_ArchiveLocked>They are kept locked away (forbidden), and nobody reads them.</CC_PEv2_Impact_ArchiveLocked>
+  <CC_PEv2_Impact_ArchiveReadBrief>Read, or locked away</CC_PEv2_Impact_ArchiveReadBrief>
+  <CC_PEv2_Impact_ArchiveTome>A sealed crate holds a tome that stays shut, and breaking its seal is a wrong.</CC_PEv2_Impact_ArchiveTome>
+  <CC_PEv2_Impact_ArchiveTomeBrief>A sealed tome</CC_PEv2_Impact_ArchiveTomeBrief>
+  <CC_PEv2_Impact_ArchiveThanks>When their cart comes with every book there: {0} +{1} goodwill, and one book left with the colony.</CC_PEv2_Impact_ArchiveThanks>
+  <CC_PEv2_Impact_ArchiveThanksBrief>Their thanks</CC_PEv2_Impact_ArchiveThanksBrief>
+  <CC_PEv2_Impact_ArchiveRisk>A book lost or sold, or the tome's seal broken, is a lasting wrong to {0}.</CC_PEv2_Impact_ArchiveRisk>
+  <CC_PEv2_Impact_ArchiveRiskBrief>A lasting wrong</CC_PEv2_Impact_ArchiveRiskBrief>
+
+  <!-- ===================== 40. A leg for a lame beast (LameBeast.cs) ===================== -->
+
+  <CC_PEv2_NoBeastLegMod>{0} fit beasts with Alpha Implants' legs, and there are none of those to be had: only their stables.</CC_PEv2_NoBeastLegMod>
+  <CC_PEv2_NoBeastLegAge>{0} have no fitted legs for beasts in their age: only their stables.</CC_PEv2_NoBeastLegAge>
+  <CC_PEv2_Impact_BeastLeg>{0} gets {1}, fitted where it stands by the Circuit's beast-doctor.</CC_PEv2_Impact_BeastLeg>
+  <CC_PEv2_Impact_BeastLegBrief>A leg fitted</CC_PEv2_Impact_BeastLegBrief>
+  <CC_PEv2_BeastLegDone>{DOCTOR} has fitted {BEAST} with {LEG}, and {BEAST} is up and walking on it.</CC_PEv2_BeastLegDone>
+  <CC_PEv2_BeastLegFailed>{DOCTOR} couldn't make the leg take on {BEAST}.</CC_PEv2_BeastLegFailed>
+  <CC_PEv2_Impact_Stables>{0} goes with {1} to the Circuit's stables to live out its days.</CC_PEv2_Impact_Stables>
+  <CC_PEv2_Impact_StablesBrief>To the stables</CC_PEv2_Impact_StablesBrief>
+  <CC_PEv2_Impact_Young>The young one brought along, {0}, is the colony's in its place.</CC_PEv2_Impact_Young>
+  <CC_PEv2_Impact_YoungBrief>A young one</CC_PEv2_Impact_YoungBrief>
+  <CC_PEv2_Stables>{BEAST} has gone with {DOCTOR} to the Circuit's stables.</CC_PEv2_Stables>
+  <CC_PEv2_StablesYoung>{BEAST} has gone with {DOCTOR} to the Circuit's stables, and {YOUNG}, a young one of its kind, is the colony's in its place.</CC_PEv2_StablesYoung>
+
+  <!-- ===================== 63. News for sale (NewsForSale.cs) ===================== -->
+
+  <CC_PEv2_News_stash>an item stash</CC_PEv2_News_stash>
+  <CC_PEv2_News_wreck>a wreck's cargo</CC_PEv2_News_wreck>
+  <CC_PEv2_News_outpost>a bandit outpost</CC_PEv2_News_outpost>
+  <CC_PEv2_NewsWhat_stash>An item stash, heard of on the Signal Line's masts.</CC_PEv2_NewsWhat_stash>
+  <CC_PEv2_NewsWhat_wreck>A wrecked ship's cargo, its beacon heard on the Signal Line's masts.</CC_PEv2_NewsWhat_wreck>
+  <CC_PEv2_NewsWhat_outpost>A bandit outpost, its talk heard on the Signal Line's masts.</CC_PEv2_NewsWhat_outpost>
+  <CC_PEv2_NoMoreNews>The masts heard nothing else worth selling.</CC_PEv2_NoMoreNews>
+  <CC_PEv2_NewsStale>The place the masts heard of is gone.</CC_PEv2_NewsStale>
+  <CC_PEv2_Impact_News>The game's own site of {0} appears on the world, marked as heard of from the masts at {1}.</CC_PEv2_Impact_News>
+  <CC_PEv2_Impact_NewsBrief>A site heard of</CC_PEv2_Impact_NewsBrief>
+  <CC_PEv2_Impact_NewsPaid>The silver is carried out to {0} at the gate.</CC_PEv2_Impact_NewsPaid>
+  <CC_PEv2_Impact_NewsPaidBrief>Paid at the gate</CC_PEv2_Impact_NewsPaidBrief>
+  <CC_PEv2_NewsTeller>{X} of the Signal Line, from the masts at {PLACE}</CC_PEv2_NewsTeller>
+  <CC_PEv2_NewsGone>{X} looked again at the notebook: the place the masts heard of is gone, and no silver changed hands.</CC_PEv2_NewsGone>
+  <CC_PEv2_NewsSilverLabel>the silver for {X}</CC_PEv2_NewsSilverLabel>
+
+</LanguageData>

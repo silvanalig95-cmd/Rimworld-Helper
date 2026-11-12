@@ -134,11 +134,14 @@ namespace ColonyCouncil
 
         // ================= How often =================
 
-        /// <summary>How much likelier this people's trader caravan is the one the game sends (the league's: many caravans).</summary>
+        /// <summary>
+        /// How much likelier this people's trader caravan is the one the game sends (the league's: many caravans; half again
+        /// for a year after the colony lent the league a guard, Peoples/Events2/LeagueGuard.cs).
+        /// </summary>
         public static float CaravanFactor(Faction f)
         {
             var ext = Of(f);
-            return ext == null ? 1f : PeoplesMath.CaravanFactor(ext.caravanWeight);
+            return ext == null ? 1f : PeoplesMath.CaravanFactor(ext.caravanWeight) * LeagueGuard.CaravanFactor(f);
         }
 
         /// <summary>Whether any people in this world weighs its caravans other than the game's way.</summary>

@@ -575,3 +575,6 @@ Rimfolk_Evt_StormSense [option 2] a refusal: the reader is sent back out into th
 Rimfolk_Evt_LatticeMechlink [option 2] a refusal: the mech-tender is sent back to the road (SendAway)
 Rimfolk_Evt_ScholarsReading [option 2] a refusal: the scholars are sent back to the road (SendAway)
 Rimfolk_Evt_LanternPost [letter] the camp itself is the play-out: the Wardens' post pitched at the edge of the land (HappeningWorker_LanternPost.Begin)
+Rimfolk_Evt_Pilgrimage [option 2] a refusal: the pilgrims are sent on their way to the shrine (SendAway)
+Rimfolk_Evt_HerdersDrought [option 2] a refusal: the elder is sent back to the dry road (SendAway), the road's news told later
+Rimfolk_Evt_NewsForSale [option 2] a refusal: the operator is sent on to the next mast (SendAway)

@@ -28,6 +28,11 @@ namespace ColonyCouncil
         public string place = "here";
         /// <summary>"cross" (the healing cross), "sparks", "hum" (the psychic hum), "storm" (the hum and the rain), "sow" (earth turned).</summary>
         public string mark = "cross";
+        /// <summary>
+        /// The worker works at the place itself (a bench), its mark there, while the one it is for stands by and watches
+        /// (round 2: the guild's rework of a colonist's weapon at the colony's bench); else at the colonist.
+        /// </summary>
+        public bool atPlace;
         /// <summary>A PeopleWorkDone: what the work was for.</summary>
         public Type done;
 
@@ -338,6 +343,11 @@ namespace ColonyCouncil
 
         public override bool TryMakePreToilReservations(bool errorOnFailed) => true;
 
+        /// <summary>To where the work is done: the colonist, or the place itself (its interaction spot, a bench's) when the work is done there.</summary>
+        private Toil GoWork(bool atPlace) =>
+            atPlace ? Toils_Goto.Goto(TargetIndex.B, Place.HasThing && Place.Thing.def.hasInteractionCell ? PathEndMode.InteractionCell : PathEndMode.Touch)
+                : Toils_Goto.Goto(TargetIndex.A, PathEndMode.Touch);
+
         protected override IEnumerable<Toil> MakeNewToils()
         {
             this.FailOn(() => On == null || On.Dead || !On.Spawned || On.Map != pawn.Map);
@@ -350,7 +360,8 @@ namespace ColonyCouncil
             };
             bring.defaultCompleteMode = ToilCompleteMode.Instant;
             yield return bring;
-            yield return Toils_Goto.Goto(TargetIndex.A, PathEndMode.Touch);
+            bool atPlace = Ext?.atPlace == true && Place.IsValid;
+            yield return GoWork(atPlace);
             // Until they are in place: the bed lain in, the place reached; brought again if something called them off.
             var wait = ToilMaker.MakeToil("PEvWaitFor");
             wait.tickIntervalAction = delta =>
@@ -370,19 +381,20 @@ namespace ColonyCouncil
             wait.defaultCompleteMode = ToilCompleteMode.Never;
             wait.handlingFacing = true;
             yield return wait;
-            yield return Toils_Goto.Goto(TargetIndex.A, PathEndMode.Touch);
+            yield return GoWork(atPlace);
             var work = ToilMaker.MakeToil("PEvWork");
             work.tickIntervalAction = delta =>
             {
                 var on = On;
                 if (on == null) return;
-                pawn.rotationTracker.FaceCell(on.Position);
+                var at = atPlace && Place.IsValid ? Place.Cell : on.Position;
+                pawn.rotationTracker.FaceCell(at);
                 if (pawn.IsHashIntervalTick(600, delta) && !PeopleWorkOn.InPlace(on, Place, how)) PeopleWorkOn.Bring(on, Place, how, job.count + 1500);
                 if (!pawn.IsHashIntervalTick(240, delta)) return;
                 var map = pawn.Map;
                 switch (Ext?.mark)
                 {
-                    case "sparks": FleckMaker.ThrowMicroSparks(on.Position.ToVector3Shifted(), map); break;
+                    case "sparks": FleckMaker.ThrowMicroSparks(at.ToVector3Shifted(), map); break;
                     case "hum": FleckMaker.ThrowMetaIcon(on.Position, map, FleckDefOf.Meditating); break;
                     case "storm":
                         FleckMaker.ThrowMetaIcon(on.Position, map, FleckDefOf.Meditating);
@@ -392,7 +404,7 @@ namespace ColonyCouncil
                     default: FleckMaker.ThrowMetaIcon(on.Position, map, FleckDefOf.HealingCross); break;
                 }
             };
-            work.WithProgressBarToilDelay(TargetIndex.A);
+            work.WithProgressBarToilDelay(atPlace ? TargetIndex.B : TargetIndex.A);
             work.handlingFacing = true;
             work.defaultCompleteMode = ToilCompleteMode.Delay;
             work.defaultDuration = Mathf.Max(60, job.count);

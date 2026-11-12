@@ -90,7 +90,9 @@ namespace ColonyCouncil
             // The winter folk (Rimfolk_CampKinds_Winter.xml).
             "them:camp:IceFishers", "them:camp:Trappers", "them:camp:SnowboundCaravan", "them:camp:HerdFollowers", "them:camp:WinterPilgrims",
             // The peoples' own camps of round 1 (Rimfolk_CampKinds_PeopleEvents.xml).
-            "them:camp:PilgrimHostel", "them:camp:LanternPost", "them:camp:ScholarsMeasure"
+            "them:camp:PilgrimHostel", "them:camp:LanternPost", "them:camp:ScholarsMeasure",
+            // And of round 2 (Rimfolk_CampKinds_PeopleEvents2.xml).
+            "them:camp:DryWater", "them:camp:EnclavePad"
         };
 
         /// <summary>The tag for one of a camp of this kind: them:camp: and the kind's defName without its Council_Camp_ or Rimfolk_Camp_ ("them:camp:SaltCaravan").</summary>

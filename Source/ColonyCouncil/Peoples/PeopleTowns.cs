@@ -152,12 +152,14 @@ namespace ColonyCouncil
 
         /// <summary>
         /// The landing's docks once its plan is laid: a jetty (the game's bridge) over water a bridge can stand in, a
-        /// floor of planks on dry ground that bears one; deep water and rough ground left as they are.
+        /// floor of planks on dry ground that bears one; deep water and rough ground left as they are. The river folk's
+        /// crossing on the colony's river lays its cells one by one the same way, with the bridge of their age
+        /// (<paramref name="bridgeDef"/>: Peoples/Events2/RiverCrossing.cs).
         /// </summary>
-        public static void LayDocks(Map map, List<IntVec3> cells)
+        public static void LayDocks(Map map, List<IntVec3> cells, TerrainDef bridgeDef = null)
         {
             if (map == null || cells.NullOrEmpty()) return;
-            var bridge = TerrainDefOf.Bridge;
+            var bridge = bridgeDef ?? TerrainDefOf.Bridge;
             var planks = DefDatabase<TerrainDef>.GetNamedSilentFail("WoodPlankFloor");
             foreach (var c in cells)
             {

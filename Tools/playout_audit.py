@@ -189,6 +189,23 @@ PLAY = {
     "DilemmaEffect_HuntOrTame": "a hunt, a taming or a bout",
     "DilemmaEffect_LanternTrail": "out on the trail",
     "DilemmaEffect_HostelBread": "bread carried out",
+    # The peoples' own events, round 2 (Peoples/Events2/): a colonist away for a season (a pilgrimage, a guard with the
+    # league's caravan), a part fitted at the bed, an instalment carried to the gate, a crossing laid span by span and a
+    # night of rest at it, a weapon reworked at the bench, a camp by the water or a pad by the colony, an archive carried
+    # in, a beast's leg fitted or the beast led to the stables, the silver for the news carried out.
+    "DilemmaEffect_Pilgrimage": "walks out with the pilgrims",
+    "DilemmaEffect_LeagueGuard": "walks out with a beast",
+    "DilemmaEffect_EnclaveBody": "a part fitted",
+    "DilemmaEffect_EnclaveInstalment": "silver to the gate",
+    "DilemmaEffect_RiverCrossing": "a crossing laid",
+    "DilemmaEffect_KnotRest": "a night at the crossing",
+    "DilemmaEffect_GuildMark": "reworked at the bench",
+    "DilemmaEffect_DryWaterCamp": "a camp by the water",
+    "DilemmaEffect_EnclavePad": "a pad and stalls",
+    "DilemmaEffect_ArchiveKeep": "books carried in",
+    "DilemmaEffect_BeastLeg": "a leg fitted",
+    "DilemmaEffect_BeastStables": "led to the stables",
+    "DilemmaEffect_NewsBought": "silver carried out",
 }
 
 # Words that say people do something together, or go somewhere on the map. Deliberately wide: the list is read by hand.

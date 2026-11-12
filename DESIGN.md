@@ -7960,6 +7960,85 @@ pure rules in `PeoplesMath.cs` (`Tools/Tests/PeoplesTests.cs`, "peoples: ").
     Saved: `PeopleEventsBook` (gifts, trusts, the promise, places read; modelled in `Tools/save_estimate.py`) and a
     camp's `workState`. Dev actions "Peoples' events: ...". The Almanac's peoples' pages, *Of their own: gifts, trust and
     camps*.
+- **The peoples' own events, round 2** (the player's request, 12 November 2026; released 0.229.0)
+  `docs/peoples-events-proposals.md`, items 14, 22, 26, 59, 12, 25, 3, 20, 40 and 63, on "you can go ahead on the todos";
+  `Source/ColonyCouncil/Peoples/Events2/`, the pure rules in `PeopleEvents2Math.cs`, `Tools/Tests/PeopleEvents2Tests.cs`
+  ("the peoples' events, round 2: "). As round 1: only from a people of its calling at peace (`PeoplesD.Friendly`), in the
+  Visitors group, base chance 0.4 to 0.7, 30 to 60 days apart and never in the first ten days, every age in its own form,
+  played out on the map or the world's own roads.
+  - **The season away** (`SeasonAway.cs`, the shape for 67 and 98 later): release F's conscript made general. One of the
+    events' visits (`pev:away`, its text "people|kind|tile|place|days|extra"): the colonist walks to the map's edge
+    (`JobDriver_SetOut`), a beast at heel or ridden with Giddy-Up (`GiddyUpMounts.MountNow`), and sets out as a caravan of
+    their own (`CaravanExitMapUtility`) to a town or a tile; there they are kept in the world (`KeepFor.Lent`) for their days;
+    then `CaravanMaker` and the game's roads bring them home, and the kind's `AwayKind.Home` says what it was for. Lost on
+    the road, told as such; turned back by the player, the season ends. `PeopleEvents2.MayLeave`: never one of the colony's
+    last two grown-ups.
+  - **A pilgrimage** (pilgrims; a gift): a shrine within reach (`PeopleEvents2Math.ShrineInReach`: both roads and two days
+    there in thirty): a fellowship town, a town whose faith keeps a relic (Ideology's `Precept_Relic`), an old shrine at a
+    landmark (Odyssey's `WorldLandmarks`). The one who'd go: whoever carries a grief or a guilt (a memory feeding the heart's
+    Grief or Shame, `Feelings.Feeds`), else the shakiest faith; or the colony's most faithful. Ten to thirty days away in all
+    (`ShrineDays`). Home: `Rimfolk_PilgrimShell` at their feet (with Vanilla Ideology Expanded - Relics and Artifacts a token
+    of a relic's shrine), `Rimfolk_Thought_Pilgrimage` (+5, forty days), `Faiths.Steady` 0.15, the heaviest grief or guilt
+    worn to three quarters of its time (`EasedAge`), the fellowship +6; the pilgrims' cough at 0.08 through the harm budget.
+  - **One guard, one wagon** (league): a great caravan or a trading season running (`Rimfolk_WS_GreatCaravan`,
+    `Council_WS_TradeBoom`) and its town in reach; the colony's best fighter or its best talker who fights, with its
+    strongest pack beast (ridable first with Giddy-Up); four to seven days with the caravan; home with `GuardShare` (by days,
+    Social and the league's age) set at their feet, 2400 Social practice, +8, and `guardUntil`: the league's caravans weigh
+    half again for sixty days (`LeagueGuard.CaravanFactor` in `Peoples.CaravanFactor`).
+  - **The body made better, on terms** (enclave; a gift): the game's bionic eye, arm, leg or spine for a part missing or
+    scarred (`EnclaveBody.Need`), else the best fighter's arm or leg made better; with Alpha Implants one of its animal
+    bionics for a colonist's bonded beast. `BionicPrice` now, or `TermsTotal` (a fifth more), a fifth down and four
+    `Instalment`s: `TermsRecord` in the book, a visit (`pev:terms`) that fires `Rimfolk_Evt_EnclaveInstalment` each fifteen
+    days (base chance 0), the silver carried to the gate for their courier. Not paid: `EnclaveTerms.Default`, -15,
+    `contractBroken`, a debt tie in the world's ledger (origin "enclaveTerms"), and no lander (`HappeningWorker_EnclaveLander`)
+    or trader caravan (`Patch_EnclaveDefaultCaravans`) until all is paid. The surgeon (Medicine 14 to 18) by pod by the trade
+    spot, on foot into a tribal colony; `Rimfolk_PEv2_Bionic` at the bed or `_BeastBionic` where the beast stands, the game's
+    own surgery and its chance on the card.
+  - **A crossing on the colony's river** (river folk): `RiverCrossing.Line`, the narrowest straight line (a row or a
+    column: nobody walks a diagonal of spans) over bridgeable river water near the colony, at most 22 cells, two planks on
+    each bank; `CrossingWood` by the bridge's and the floor's own costs. The boatmen lay it from both banks
+    (`JobDriver_LayCrossing`, an hour a span, half on a bank, the next cell queued) with `PeopleTowns.LayDocks` and the bridge
+    of their age (`Bridge`, Odyssey's `HeavyBridge` from the industrial age); the colony's builder may learn beside them.
+    `CrossingRecord`; their knot night (`KnotDay` by their people) fires `Rimfolk_Evt_KnotNight` while it stands: a night's
+    rest at it (their lord by it until morning), supper if the colony sends it.
+  - **The guild's mark** (Kiln Guild; a gift): `GuildMark.Plan`: a bow or a gun's unique kind by name ("_Unique",
+    Odyssey's and Vanilla Weapons Expanded's, with Odyssey), else a blade in the sharpest stuff the colony has enough of
+    (`Better`), else a masterwork of what it is. `MarkPrice` and the main material (half its makings, or the new stuff).
+    The weapon handed over; `Rimfolk_PEv2_Mark` (`PeopleWorkJob.atPlace`: the master at the bench, the colonist beside it)
+    a working day; `GuildMark.Remake`: the unique piece's own name made "Alder's ..." (`CompUniqueWeapon.name`), a blade's
+    label by `Patch_GuildMarkLabel` (the book's `marks`). With the colony's crafter at the bench, a quarter off and 2000
+    Crafting.
+  - **Water in the dry year** (herders; a camp): a drought (Odyssey's `Drought`, VEE's `VEE_Drought`, or
+    `Council_WS_Drought`) and fresh water; let in (or for a `Toll`, -3), `Rimfolk_Camp_DryWater` by the water
+    (`CampWorker_DryWater`): hay asked (60, carried out) or the colony's grazing (the herd out on its ground each morning);
+    milk, a herder's lesson with the colony's beasts, the young beast at the gate after a good stay; once a stay the herd
+    strays into the fields (`StrayChance`, the camps' own `StrayHerd` and `EatCrops`), and a predator of the land follows it
+    in (`HarmKinds.CampLeft`, 0.3, the game's own hunt). Leaving after a good stay: +10, `campHelped`, a region news line.
+    Turned away: -4 and a news line (`pev:lost`) of `LostOnRoad` head.
+  - **A pad by the colony** (enclave; a camp): `Rimfolk_Camp_EnclavePad`, two factors and two marshals, ten to fifteen days,
+    `PadRent` (never a round figure) through the camps' fee every five days (or none, as friends); a marshal lays a five by
+    five pad of metal tiles (`JobDriver_LayPad`); at six a pod of fresh stock (their trader kind's, 250 to 450 silver) lands
+    on it and an hour later goes into the factor's stock; asks: keep off the pad (watched), ten meals at `MealsPrice`, and
+    the colony's own "Raise their rent" (`PaysRaise`: they pay half again, or go). The camps' terms bend now and then
+    (breakTerms 0.15), and the stock draws a band against the camp (`PadBandChance` on top of the camps' own).
+  - **Books kept from the fire** (society): a ruin of theirs in the ledger within a month (not the colony's doing) or a
+    great fire near one of their towns; four to eight of the game's books by their age (Vanilla Books Expanded's papers)
+    and with Anomaly the tome in a `TrustCrate`; a `TrustRecord` of real books (means "cart") set down by the stores,
+    read, or locked away (forbidden); `Patch_ArchiveSold` notes one sold; the cart 12 to 18 days on (`pev:archive`): every
+    book there (`Kept`) is +8, `keptWord` and the best book left; one lost, sold or the tome's seal broken is -8 and
+    `robbed` (20). The books carried out are only theirs (`PlayCarry.Archive`).
+  - **A leg for a lame beast** (Circuit): a colony beast missing a leg; Alpha Implants' `AI_AnimalProstheticLeg` from the
+    industrial age (`BeastLeg`), fitted where it stands (`Rimfolk_PEv2_BeastLeg`); in any age the stables: the beast to
+    their people and at the beast-doctor's heels, and the young one of its kind brought along the colony's.
+  - **News for sale** (Signal Line): two of the kinds the game can make now (`NewsKinds`: the item stash, Odyssey's orbital
+    wreck, the bandit camp) at `NewsPrice` (60 to 200); bought, `QuestUtility.GenerateQuestAndMakeAvailable` and the new
+    site marked heard of (`HeardPlaces.Heard`, "site:id") from the masts at their town. No ground site for a downed
+    shuttle's cargo exists in the player's mods, so the wreck is Odyssey's in orbit, offered only when the game would send
+    the colony there.
+  - Harm of Rimfolk's own: only the pilgrims' cough and the predator the herd draws, through the harm budget; the roads,
+    the surgery and the bands are the game's own. Saved: `PeopleEvents2Book` (crossings, terms, marks, the league's year)
+    and the pad's state, modelled in `Tools/save_estimate.py`. Dev actions "Peoples' events 2: ...". The Almanac's peoples'
+    pages, *Of their own: gifts, trust and camps*.
 
 ### Magic among the peoples, seen (the player's request, 12 November 2026; released 0.225.0)
 

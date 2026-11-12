@@ -806,6 +806,19 @@ MODEL = {
     # Magic among the peoples (Peoples/Magic/PeoplesMagicWatch.cs): the visitors of the peoples who cast a spell for the colony this
     # visit, by id, dropped when they leave the map, PeoplesMagicMath.MaxCast at most.
     "Peoples/Magic/PeoplesMagicWatch.cs:cast": ("while", 4, V, "the visitors who cast for the colony this visit (once a visit each), dropped when they leave"),
+    # The peoples' own events, round 2 (Peoples/Events2/PeopleEvents2Book.cs): the river folk's crossings, one a map,
+    # PeopleEvents2Math.MaxCrossings kept, each its few dozen cells; the enclave's terms, one open with a people at a time,
+    # PeopleEvents2Math.MaxTerms kept; the names the guild's marks put into blades' labels, PeopleEvents2Math.MaxMarks kept.
+    # The enclave's pad (Peoples/Events2/EnclavePad.cs) keeps its pad's cells and the morning's stock while the camp stands.
+    "Peoples/Events2/PeopleEvents2Book.cs:crossings": ("cap", (const("Peoples/Events2/PeopleEvents2Math.cs", "MaxCrossings", 4), 1 / 120), 160,
+                                                       "the crossings the river folk laid, one a map, PeopleEvents2Math.MaxCrossings kept"),
+    "Peoples/Events2/PeopleEvents2Book.cs:cells": ("fixed", 26, V, "per crossing: its water and bank cells, at most 22 and four (counted under crossings)"),
+    "Peoples/Events2/PeopleEvents2Book.cs:terms": ("cap", (const("Peoples/Events2/PeopleEvents2Math.cs", "MaxTerms", 6), 1 / 90), 260,
+                                                   "the enclave's terms for a part fitted, one open with a people at a time, PeopleEvents2Math.MaxTerms kept"),
+    "Peoples/Events2/PeopleEvents2Book.cs:marks": ("cap", (const("Peoples/Events2/PeopleEvents2Math.cs", "MaxMarks", 40), 1 / 45), V,
+                                                   "the blades the guild marked with a colonist's name, PeopleEvents2Math.MaxMarks kept"),
+    "Peoples/Events2/EnclavePad.cs:pad": ("fixed", 25, V, "the enclave's pad's cells, while its camp stands"),
+    "Peoples/Events2/EnclavePad.cs:stock": ("fixed", 8, 40, "the morning's stock come down by pod, until taken into their stalls"),
     # The gods (Gods/GodBook.cs): the pantheon, one record a god (its names, domains, form, kind and nature, colours, the
     # peoples and faiths that hold it), built once per world (30 to 70 in a world of a dozen to twenty peoples) and a few
     # more as peoples arise and newborns come (GodsMath.MaxNewborns); the ties between them, GodTiesMath.MaxTies a god at

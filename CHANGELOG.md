@@ -5,6 +5,17 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## The peoples' own events, round 2
+
+*12 November 2026, version 0.229.0*
+
+- A pilgrim fellowship may ask if anyone would walk with them to a shrine; whoever goes is away ten to thirty days and comes home with a shell, steadier faith and a grief or guilt eased.
+- The road league asks for one guard and one pack beast to walk with a great caravan or a trading season, home with a share of the profit, and its caravans come more often for a while.
+- The spacer enclave fits a bionic part at your medical bed, paid now or in four instalments; miss one and their landers stay away until the debt is paid. They may also rent ground for a pad and trade every day.
+- River folk lay a crossing over your river in a day with your wood, and rest at it on their knot night each year.
+- A Kiln Guild master reworks a colonist's bow or gun into a unique piece, or a blade into a masterwork, with their name in it.
+- In a drought the herders bring their herd to your water and camp by it; the learned society asks you to keep books saved from the fire; the Circuit fits a lame beast with a leg or takes it to their stables; the Signal Line sells news of sites nearby.
+
 ## Every visitor shops
 
 *12 November 2026, version 0.228.0*
