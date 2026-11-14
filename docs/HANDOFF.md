@@ -84,6 +84,21 @@ tree at once, alongside whatever runs. Each piece is merged as its own release, 
     are storylines across multiple quests". When asked: proposed first, a list of quests by the peoples, the gods and the
     region, and storylines that run over several quests (a chain whose next quest depends on how the last went), built
     on the game's own quests (QuestScriptDef) and Rimfolk's chains, letters and missions.
+- **To do when the player asks (14 November 2026): the best meals on a reserved shelf** (a bug first). The player, with a
+  screenshot of a wooden big shelf reserving "Any meals" (3 slots, 4 per stack): "i think the shelf reservation still
+  don't prioritize the "best" meal, right? it's now filled with simple meals & bakes and i also have fine meals in the
+  fridge. it should always take the best or the meal that pawns are going to prioritize, or i should have such an option
+  toggle available". Found: the picker's "the best at hand" tick for a group (`ShelfReservePick`, `best:<category>`) shows
+  only when every kind of the group the shelf may hold can be ranked (`ShelfReserves.RankableGroup`: food that is no drug
+  and RawBad or better, or all medicine); in the player's mods `FoodMeals` also holds 23 that can't (Vanilla Brewing's
+  cocktails and Vanilla Cooking's desserts, social drugs; VCE's canned and deep-fried goods and Alpha Crafts' chips, kefir,
+  lassi, puree, ricotta and jamón, DesperateOnly), so for meals the tick never shows, and "Any meals" fills its slots with
+  whatever meal comes first. Told meanwhile: reserve the kinds themselves (fine meal, fine bake, lavish...) under
+  "Everything", or untick those 23 in the shelf's storage settings to bring the tick back. When asked: "the best at hand"
+  ranks the group's kinds a colonist eats as a meal (no drug, RawBad or better) and is offered whenever two or more of
+  them are there, the others ignored for the ranking; "any" of a rankable group fills its slots best first, by the order
+  colonists pick their food in (preferability, then worth), and a better kind that turns up takes a lesser stack's slot
+  (the lesser carried back to the store). Tests in the shelf reserve tests; the Almanac's shelf page says so.
 - **To do when the player asks (14 November 2026): the days of food counted as the meals the stores would make.** The
   player, with a screenshot of the "2 days worth of food" readout under the weather: "i think this counter is bugged or
   so? since i have a lot of flour for example that i can make into meals. it should always count how many of my raw
