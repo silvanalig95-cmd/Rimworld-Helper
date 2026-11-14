@@ -323,6 +323,7 @@ namespace ColonyCouncil
                 }
             }
             y = Holders(x, y, w, p);
+            y = SaintsPart(x, y, w, p);
             // The witnesses: every entry under the name, by date.
             y = PartHead(x, y, w, "CC_GodBook_Part_Witnesses".Translate(), UiKit.Quieter(UiKit.Gold, 0.35f));
             if (p.entries.Count == 0) return y + Para(x, y, w, "<i>" + "CC_GodBook_Silence_0".Translate() + "</i>", UiKit.Dim, GameFont.Small, TextAnchor.UpperCenter) + 8f;
@@ -358,6 +359,24 @@ namespace ColonyCouncil
             y += Para(x + Gutter, y, w - Gutter, "<i>" + c.head + "</i>", UiKit.Quieter(UiKit.Gold, 0.3f), GameFont.Tiny) + 2f;
             if (c.hold != null) y += Para(x + Gutter, y, w - Gutter, c.hold, UiKit.Ink, GameFont.Small) + 4f;
             if (c.dread != null) y += Para(x + Gutter, y, w - Gutter, c.dread, UiKit.Ink, GameFont.Small) + 4f;
+            return y + 8f;
+        }
+
+        /// <summary>
+        /// The saints held to be the god's, in the keeper's hand (Gods/Saints/Saints.cs, BookLines): the colony's own, its faiths'
+        /// saints and damned, those kept no more; under the chapter the colony keeps that god under only. Nothing while none.
+        /// </summary>
+        private static float SaintsPart(float x, float y, float w, Page p)
+        {
+            var g = p?.name != null && p.name.god >= 0 ? Gods.ById(p.name.god) : null;
+            if (g == null || GodLore.Instance?.PageOf(g)?.name != p.title) return y;
+            var lines = Saints.BookLines(g);
+            if (lines.Count == 0) return y;
+            var keeper = GodLore.Keeper(out _);
+            y = PartHead(x, y, w, "CC_Saint_Book_Part".Translate(), UiKit.Quieter(UiKit.Gold, 0.35f));
+            string head = keeper != null ? "CC_Saint_Book_Hand".Translate(keeper.LabelShort.Named("KEEPER")).Resolve() : "CC_Saint_Book_Nobody".Translate().Resolve();
+            y += Para(x + Gutter, y, w - Gutter, "<i>" + head + "</i>", UiKit.Quieter(UiKit.Gold, 0.3f), GameFont.Tiny) + 2f;
+            foreach (var l in lines) y += Para(x + Gutter, y, w - Gutter, l, UiKit.Ink, GameFont.Small) + 4f;
             return y + 8f;
         }
 

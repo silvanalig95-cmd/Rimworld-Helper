@@ -13671,6 +13671,85 @@ nothing here.
 - Saved small: one record a colonist, six gods at most, the departed let go each day and the discarded at saving
   (`Tools/save_estimate.py`). Tested in `PawnGodsTests` (324 checks).
 
+### The saints: a faith's deities and the colony's own (the player's go, 14 November 2026; round 5; not released)
+
+The player: "And I guess in that regard, the whole ideology implementation, we can also think about how we adapt the
+ideology system to integrate and relate to our gods instead of, you know, the ones that are created by the game. And one
+idea I thought, maybe if we can, or if we need to reuse the god, so to say, or this, the way it's implemented now with
+ideology, perhaps instead of these being the gods that are currently registered to an ideology, this could, for example,
+be some sort of saints or important characters. So kind of a middle ground between God and the pawns and the ideology,
+kind of saints or holy men or unholy men or whatever"; then "let's go with saints then". Section F of
+`docs/gods-next-proposals.md`, option b. A saint is a person, named plainly; the gods behind them stay unseen, named only
+by the colony's name for them and only where the colony knows them. A person honoured, never their kin: nothing of it
+passes to anyone, and nothing reads a family.
+
+- **A faith's deities are its saints, or its damned** (`Gods/Saints/Saints.cs`, `Of`; pure rules in `SaintsMath`): each
+  of Ideology's deities (`IdeoFoundation_Deity`) is read, never changed, so the editor, a reform or a new roll simply gives
+  new saints (the old ones kept in the book as kept no more). Its domains come from its own words, its meme, the faith's
+  memes and precepts (`GodsMath.DeityDomains`), and it is tied to the god whose own domain is the deity's (3), whose second
+  is (2), and so on, a domain no god holds first going to the nearest (war to Smoulder, then Cirrus; healing to Selene's
+  second, then Morel), ties by the deity's name so it keeps its god (`SaintsMath.GodFor`). A saint is never the Hunger's.
+  One of a dark meme (raider, cannibal, pain is virtue, bloodfeeding, Anomaly's inhuman and ritualist, the pirates', Alpha
+  Memes' and Vanilla Memes Expanded's darker ones, every one enabled in the player's list), with dark words in its name or
+  title, or of the void is one of the damned (`SaintsMath.Damned`), tied only to the dark gods (the Hunger, Hush, Smoulder;
+  the Hunger where nothing else fits): feared, never prayed to, no statue raised to one. A faith with no deities (animist,
+  ideological, archist) has no saints.
+- **Their words, by age and culture** (`SaintsMath.WordSet`, `DamnedSet`; `CC_Saint_*`): the tribes' Ancestors ("Ancestor
+  Aranea"), the medieval and industrial Saints ("Saint Aranea"), the spacers' Exemplars; the Corunan's Venerated and the
+  Kriminul's Martyrs; the damned as the Forsaken, the Damned and the Fallen ("Vorgath the Damned"). A faith's age is the
+  colony's where its own people hold it, else its people's.
+- **Shown as saints** (`Patch_SaintsWord`, on `IdeoFoundation_Deity.DoInfo`): while the game draws a faith's deity box,
+  its word "Deities" (found by the game's own English text, so a renamed key leaves it as it is) reads as the faith's own
+  ("Saints", "Ancestors", "Damned" where every one is damned), swapped for the drawing and put back by a finalizer; under
+  the box, in play only, "As the colony holds them: Saint Aranea, of the Old Horn; Vorgath the Damned, feared, of the
+  Hunger.", each only where the colony knows that god by that name. A neighbour's sermon or hymn names its faith's
+  saint by title ({DEITY}: "Praise to Saint Aranea in the morning"), now and then one of the colony's own where the writer
+  shares their faith (`Saints.SermonName`, `Letters/LetterFormShapes.cs`), else the game's own name.
+- **The colony's own saints** (`Saints.Died`, `SaintsMath.Merit`, `Patch_SaintDeath` on `Pawn.Kill`): a free colonist of
+  the colony's own, grown, dies a remarkable death: carrying, rescuing or tending someone while an enemy's attack is on the
+  colony (a saint's death on its own); holding the line, drafted, against one; the healer's years (medicine 12 and 80
+  tended, or a passion, 8 and 150); two years devoted to a god, or as the priest. Each but the first needs a year with the
+  colony besides (or a vow kept to the end, or a god's presence on the land). Never a scoffer, one who held the Hunger
+  first, a child, a slave, a guest. Their god is the one they held first, else the one their deed speaks of. The death
+  waits for the council's card at most twelve days (`SaintsMath.CandidateDays`).
+- **The council's card** (`Rimfolk_Dlm_Saint`, `DilemmaWorker_Saint`, asked in its moment, `timely`, 30 days apart): the
+  priest (else the most devout who holds the fallen one's god) asks the council to name them "a saint of Hollin" (by age:
+  "an Ancestor who walks with Hollin"; "a saint" where the colony doesn't know the god). Named (`DilemmaEffect_NameSaint`,
+  `Saints.Name`): the one who asked says the words at the grave that evening and those who come listen
+  (`DilemmaEffect_SaintWords`, a play-out at the grave, else the god's place); the colony's people, never its scoffers and
+  never more for kin, "one of ours named a saint" +3 for five days; a relic of theirs set by the grave; the colony's book
+  under their god by those who saw it (`Worship.Booked`); a line in the asker's journal. Honoured without it: a few words
+  at the grave. Let rest (the default): the asker trusts the council a little less.
+- **Their places** (`Gods/Saints/SaintsPlaces.cs`), each a lesser shrine: a colony saint's grave; a statue raised to a
+  saint (the button "Raise to a saint" on the game's sculptures, Odyssey's statue, Vanilla Furniture Expanded - Art's,
+  Vanilla Furniture Expanded - Empire's, Vanilla Memes Expanded's and Props and Decor's statues and Alpha Memes' statue,
+  sphinx, megalith, obelisk and stele: `SaintsMath.IsStatue`; the colony's own saints or its faiths' holy ones): someone
+  walks over and says one sentence (`Rimfolk_Saint_Raise`), the art's title becomes the saint's ("Saint Mira") and is given
+  back when cleared; an Odyssey statue of the fallen one's likeness is known for theirs (`LikenessComps`, the seam for
+  Pawns on Display); the relic (`Rimfolk_SaintRelic`, `CompSaintRelic`: a lock of hair bound in cord, a small bone in a
+  carved box, a lock of hair under glass, their voice sealed in a case, by the colony's age; never sold). Now and then
+  (`PrayChance`, about once in two days at a home with one place) a devotee (one who holds the saint's god, the devout of
+  the saint's faith, the priest) walks to one in their free time, faces it, says one sentence (`Rimfolk_Pool_Saint_Prayer`)
+  and holds the saint's god a little more (a prayer at its place); +2 for a day, +3 before a relic where their faith keeps
+  relics (Ideology's relic precept). The inspect line says whose it is, and "of Hollin" only where the colony knows it.
+- **Their day** (`SaintsMath.FeastDue`, `SaintsPlaces.Keep`): each year, from the year after they were named, on the day
+  they died, in the evening, the devoted gather at the grave (else the statue, else the god's place) for an hour's words led
+  by the priest or the most devoted, the keeper's sermon on the saint (`Rimfolk_Pool_Saint_Feast`); +3 for those who came,
+  belief as at a festival. With answers not played out on the map, they keep it quietly where they are.
+- **What a saint gives their god** (`Saints.Lean`, from round 3's `PawnGods.Sketch`): a faith's saints lean its believers
+  toward each saint's god a little more (`SaintsMath.WithSaints`, +0.35 of the strongest lean, never past it); its damned
+  leave each believer uneasy about the god each is tied to, once (`SaintsMath.DamnedDread` 20, with its line of why).
+- **The book** (`Saints.BookLines`, `GodLorePage.SaintsPart`): "Of its saints", in the keeper's hand, under the chapter the
+  colony keeps the god under: its own ("Saint Mira, who kept the sick for years, named by the council on 5th of Aprimay,
+  5502. Her day is kept each year on the day she died."), its faiths' ("The faith of the Way of Ash holds Saint Aranea among
+  its saints."), the damned ("The faith of the Way of Ash fears Vorgath the Damned, and never prays to them.") and those
+  kept no more.
+- Kept in worship's own hour and day (`Worship.Hourly`, `Daily`): no Sched slot of its own. Dev actions: "Gods: a faith's
+  saints (log)", "Gods: a fallen colonist waits for the saint's card", "Gods: the saint's card now", "Gods: a saint's day
+  kept now", "Gods: pray at a saint's place now". Saved small (`SaintsBook`: the colony's saints, the deaths waiting, the
+  statues, the faiths' saints seen, who took the damned to heart, each with its cap: `Tools/save_estimate.py`). Tested in
+  `SaintsTests`.
+
 ### Four small asks (the player's request, 12 November 2026; released 0.222.0)
 
 - **Decrees rest less:** every decree waits 70 % of its own rest before it can be declared again (`DecreeMath.CooldownShare`,

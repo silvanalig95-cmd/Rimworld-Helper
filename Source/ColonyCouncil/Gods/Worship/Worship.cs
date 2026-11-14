@@ -45,6 +45,7 @@ namespace ColonyCouncil
                 Safe("the rain kept away", () => WorshipCouncil.Hourly(b, map, now));
                 Safe("scoffers and couples", () => FaithHeart.Hourly(b, map, now));
                 Safe("each one's gods", () => PawnGods.Hourly(map, now));
+                Safe("the saints", () => Saints.Hourly(map, now));
             }
             Safe("a god's place gone", PawnGodsActs.ShrinesLost);
         }
@@ -62,6 +63,7 @@ namespace ColonyCouncil
             }
             Safe("demands", () => GodDreams.Daily(b, now));
             Safe("each one's gods", () => PawnGods.Daily(now));
+            Safe("the saints", () => Saints.Daily(now));
             Safe("pruning", () => b.Prune(now));
         }
 

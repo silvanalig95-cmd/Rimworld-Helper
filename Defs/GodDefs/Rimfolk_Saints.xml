@@ -1,0 +1,273 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    The saints (Source/ColonyCouncil/Gods/Saints/; docs/gods-next-proposals.md, section F, option b; DESIGN.md "The saints").
+    A faith's deities read as its saints or its damned; the council's card after a remarkable death; a saint's grave, a
+    statue raised to them and their relic as places to pray; their day kept each year by the devoted. A person honoured,
+    never their kin. Moods kept small, as worship's are (Tools/Balance, Rates.Worship).
+    {DEAD} the fallen's name, {DEED} why ("who kept the sick for years"), {SAINT} their title ("Saint Mira"), {ASAINT} what
+    the council would name them ("a saint of Hollin", "a saint"), {GOD} the colony's name for their god. Spoken lines are one
+    sentence each; [known] lines name the god, picked only where the colony knows it.
+  -->
+
+  <!-- ===================== The council's card after a remarkable death ===================== -->
+  <ColonyCouncil.DilemmaDef>
+    <defName>Rimfolk_Dlm_Saint</defName>
+    <label>the honoured dead</label>
+    <workerClass>ColonyCouncil.DilemmaWorker_Saint</workerClass>
+    <weight>2</weight>
+    <cooldownDays>30</cooldownDays>
+    <minColonists>3</minColonists>
+    <timely>true</timely>
+    <answerDays>3</answerDays>
+    <texts>
+      <li>{A_nameDef} has come to the council about {DEAD}, {DEED}. Some are already saying {SAINT}, {A_pronoun} says, and {A_pronoun} asks the council to say so too: name {DEAD} {ASAINT}, and let the grave be a place to pray.</li>
+      <li>[reason:rescuer] {A_nameDef} can't stop talking about how {DEAD} died, carrying someone out while the fighting was still going on. {A_pronoun} asks the council to name {DEAD} {ASAINT}, so the colony never forgets it.</li>
+      <li>[reason:defender] {DEAD} held the line until the end, and {A_nameDef} wants it remembered properly: {ASAINT}, {A_pronoun} says, with a day of {DEAD}'s own every year.</li>
+      <li>[reason:healer] Half the colony owes {DEAD} a life or a limb, {A_nameDef} says. {A_pronoun} asks the council to name {DEAD} {ASAINT}, and to let the sick pray at the grave.</li>
+      <li>[reason:keeper] {DEAD} kept faith longer and more surely than anyone here, {A_nameDef} says. {A_pronoun} asks the council to name {DEAD} {ASAINT}.</li>
+      <li>[reason:vow] {DEAD} died with a vow still being kept, {A_nameDef} says, and kept it to the very end. {A_pronoun} asks the council to name {DEAD} {ASAINT}.</li>
+      <li>[priest] It falls to the priest to ask, {A_nameDef} says: {DEAD}, {DEED}, should be named {ASAINT}, and the grave made a place to pray.</li>
+    </texts>
+    <defaultOption>2</defaultOption>
+    <options>
+      <li>
+        <label>Name {DEAD} {ASAINT}</label>
+        <outcome>The council named {DEAD} {ASAINT}. {A_nameDef} said the words at the grave that evening, and those who came stayed a while after.</outcome>
+        <outcomes>
+          <li>[known] The council named {DEAD} {ASAINT}. {A_nameDef} said the words at the grave that evening, and someone left a candle there for {GOD}.</li>
+        </outcomes>
+        <ways><tradition>2</tradition></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_NameSaint" />
+          <li Class="ColonyCouncil.DilemmaEffect_SaintWords"><label>{SAINT} named</label><spots><li>Gather</li><li>Outdoors</li></spots><hours>17~21</hours><duration>0.75~1.25</duration><pool>Rimfolk_Pool_Saint_Words</pool></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>2</amount></li>
+        </effects>
+      </li>
+      <li>
+        <label>Honour {DEAD}, and go no further</label>
+        <outcome>The council would not go that far, but {A_nameDef} said a few words at the grave that evening, and nobody thought less of {DEAD} for it.</outcome>
+        <ways><tradition>1</tradition></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_SaintWords"><label>{DEAD} remembered</label><spots><li>Gather</li><li>Outdoors</li></spots><hours>17~21</hours><duration>0.5~1</duration><pool>Rimfolk_Pool_Saint_Remembered</pool></li>
+        </effects>
+      </li>
+      <li>
+        <label>Let {DEAD} rest</label>
+        <outcome>The council let {DEAD} rest as {DEAD} was. {A_nameDef} took it quietly.</outcome>
+        <ways><tradition>-1</tradition></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>-1</amount></li>
+        </effects>
+      </li>
+    </options>
+  </ColonyCouncil.DilemmaDef>
+
+  <!-- ===================== Moods ===================== -->
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_Saint_Named</defName>
+    <durationDays>5</durationDays>
+    <stages>
+      <li>
+        <label>one of ours named a saint</label>
+        <description>The council named one of our own a saint. Whatever else happens, they'll be remembered here.</description>
+        <baseMoodEffect>3</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_Saint_Prayed</defName>
+    <durationDays>1</durationDays>
+    <stages>
+      <li>
+        <label>prayed to a saint</label>
+        <description>I said a few words at a saint's place. Someone who was one of us is listening, I'm sure of it.</description>
+        <baseMoodEffect>2</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_Saint_PrayedRelic</defName>
+    <durationDays>1</durationDays>
+    <stages>
+      <li>
+        <label>prayed before a relic</label>
+        <description>I knelt before a saint's relic, as my faith teaches. It felt like they were in the room.</description>
+        <baseMoodEffect>3</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_Saint_FeastKept</defName>
+    <durationDays>1</durationDays>
+    <stages>
+      <li>
+        <label>kept a saint's day</label>
+        <description>We kept a saint's day together. It's good to remember the ones who went before us.</description>
+        <baseMoodEffect>3</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <!-- ===================== Praying at a saint's place, raising a statue to one ===================== -->
+  <JobDef>
+    <defName>Rimfolk_Saint_Pray</defName>
+    <driverClass>ColonyCouncil.JobDriver_SaintPlace</driverClass>
+    <reportString>praying to a saint.</reportString>
+    <casualInterruptible>true</casualInterruptible>
+    <checkOverrideOnDamage>Always</checkOverrideOnDamage>
+  </JobDef>
+
+  <JobDef>
+    <defName>Rimfolk_Saint_Raise</defName>
+    <driverClass>ColonyCouncil.JobDriver_SaintPlace</driverClass>
+    <reportString>raising a statue to a saint.</reportString>
+    <casualInterruptible>true</casualInterruptible>
+    <checkOverrideOnDamage>Always</checkOverrideOnDamage>
+  </JobDef>
+
+  <!-- ===================== A saint's relic ===================== -->
+  <ThingDef>
+    <defName>Rimfolk_SaintRelic</defName>
+    <label>saint's relic</label>
+    <description>A keepsake of one of the colony's own saints, set aside when the council named them: a lock of hair, a small bone, a worn token, whatever the colony keeps such things in. It is a place to pray to them wherever it lies, and a faith that keeps relics venerates it as one.</description>
+    <thingClass>ThingWithComps</thingClass>
+    <category>Item</category>
+    <selectable>true</selectable>
+    <altitudeLayer>Item</altitudeLayer>
+    <drawerType>MapMeshOnly</drawerType>
+    <alwaysHaulable>true</alwaysHaulable>
+    <rotatable>false</rotatable>
+    <pathCost>14</pathCost>
+    <drawGUIOverlay>true</drawGUIOverlay>
+    <healthAffectsPrice>false</healthAffectsPrice>
+    <useHitPoints>true</useHitPoints>
+    <comps>
+      <li Class="CompProperties_Forbiddable" />
+      <li>
+        <compClass>ColonyCouncil.CompSaintRelic</compClass>
+      </li>
+    </comps>
+    <graphicData>
+      <texPath>ColonyCouncil/Things/SaintRelic</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+      <drawSize>(0.7,0.7)</drawSize>
+    </graphicData>
+    <stackLimit>1</stackLimit>
+    <statBases>
+      <MarketValue>20</MarketValue>
+      <Mass>0.1</Mass>
+      <MaxHitPoints>60</MaxHitPoints>
+      <Flammability>0</Flammability>
+      <DeteriorationRate>0</DeteriorationRate>
+      <Beauty>2</Beauty>
+    </statBases>
+    <thingCategories>
+      <li>ItemsMisc</li>
+    </thingCategories>
+    <tradeability>None</tradeability>
+  </ThingDef>
+
+  <!-- ===================== Words ===================== -->
+
+  <!-- Said at a saint's place (SaintsPlaces.PrayArrive): place:grave, place:statue, place:relic. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_Saint_Prayer</defName>
+    <lines>
+      <plain>
+        <li>{SAINT}, you knew this place, so keep an eye on it for us.</li>
+        <li>{SAINT}, it's me again, and we could use a little luck.</li>
+        <li>Remember us, {SAINT}, the way we remember you.</li>
+        <li>{SAINT}, I don't know if you can hear me, but I'm saying it anyway.</li>
+        <li>[known] {SAINT}, put in a word with {GOD} for us.</li>
+        <li>[known] Ask {GOD} to go easy on us this season, {SAINT}.</li>
+        <li>[known] You're closer to {GOD} than any of us now, {SAINT}, so tell it we're trying.</li>
+        <li>[place:grave] Rest easy, {SAINT}, we're still here and still trying.</li>
+        <li>[place:grave] I brought nothing but myself today, {SAINT}, I hope that's enough.</li>
+        <li>[place:statue] It doesn't look much like you, {SAINT}, but it's the thought that counts.</li>
+        <li>[place:relic] I'll keep this safe for you, {SAINT}, I promise.</li>
+        <li>[tribal] Ancestor, walk beside us when we go out past the fires.</li>
+        <li>[spacer] {SAINT}, if any part of you is out there, we're still listening.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- A saint's day (SaintsPlaces.Keep): the lines of the keeper's sermon on the saint, said at the grave or the statue. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_Saint_Feast</defName>
+    <lines>
+      <plain>
+        <li>A year ago today we lost {DEAD}, and we still haven't stopped talking about them.</li>
+        <li>{SAINT}, {DEED}, is why we're all standing here tonight.</li>
+        <li>Say {DEAD}'s name, everyone, so the ground knows we haven't forgotten.</li>
+        <li>We keep {SAINT}'s day so that whoever comes after us keeps it too.</li>
+        <li>If you're new here, ask anyone about {DEAD}, they'll tell you.</li>
+        <li>[known] {SAINT} walks with {GOD} now, and puts in a word for us.</li>
+        <li>[known] {GOD} took {DEAD} home, and we keep the day for both of them.</li>
+        <li>[tribal] The fire is lit for {SAINT}, so the Ancestors can find their way here tonight.</li>
+        <li>[spacer] We kept {DEAD}'s voice, and tonight we let it speak again.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- Raising a statue to a saint (SaintsPlaces.RaiseArrive). -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_Saint_Raise</defName>
+    <lines>
+      <plain>
+        <li>From today this stands for {SAINT}, and anyone may pray here.</li>
+        <li>This is {SAINT}'s now, so treat it kindly.</li>
+        <li>Let this be {SAINT}'s, for as long as it stands.</li>
+        <li>[known] For {SAINT}, and for {GOD} who keeps them.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- The words said at the grave when the council names a saint (DilemmaEffect_SaintWords). -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_Saint_Words</defName>
+    <lines>
+      <plain>
+        <li>The council has spoken, and from today we call them by a holier name.</li>
+        <li>They were one of us, and they still are, only closer to the gods now.</li>
+        <li>Anyone who needs to can come here and pray, any hour of the day.</li>
+        <li>We'll keep their day every year, on the day we lost them.</li>
+        <li>Nobody here will forget what they did, I'll see to that.</li>
+        <li>They'd laugh at all this, but they'd be glad of it too.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- The words said at the grave when the council honours the fallen without a saint (DilemmaEffect_SaintWords). -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_Saint_Remembered</defName>
+    <lines>
+      <plain>
+        <li>The council went no further, but nobody said we can't remember them.</li>
+        <li>They did what they did, and that's worth saying out loud.</li>
+        <li>We'll come here now and then and talk to them, saint or not.</li>
+        <li>They were the best of us, whatever anyone calls them.</li>
+        <li>Rest well, and thank you for everything.</li>
+        <li>A few words for them, and then we'll get on, as they would want.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- The one who asked the council, in their journal (Saints.Name). -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_Saint_NamedJournal</defName>
+    <lines>
+      <plain>
+        <li>{SAINT}: the council said it today, and I said the words myself, and my voice only shook once.</li>
+        <li>{SAINT}. It still sounds strange. It also sounds right.</li>
+        <li>I asked for it and they said yes. {DEAD} would have rolled their eyes at the fuss, and been pleased.</li>
+        <li>[known] {SAINT}, with {GOD} now. I hope they're looking after each other.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+</Defs>
