@@ -519,6 +519,46 @@ own", has the whole of it. For the contract:
   wells, coins), so each takes the age's form by what the colony has: a tribal colony's Pip has no wires to hum in and
   its prank has no door if it has none.
 
+### Each one's gods: a colonist's own belief (the player, 14 November 2026; round 3)
+
+"pawns should have and develop kind of a relationship in a way, or rather a belief to gods ... the more they pray and
+interact to a god, that they kind of, yeah, get a stronger belief in that god"; "pawn belief should be reflected in book
+and culture tab". DESIGN.md, "Each one's gods", has the whole of it. For the contract:
+- A belief is the pawn's own, a pawn fact the unseen rule allows: how strongly a colonist holds a god and dreads it,
+  shown only in words ("devoted to Hollin", "leans toward Ducat", "in dread of the Hunger", "doubts them all"), with a
+  line of why. Never a number, never the god's favour, wants or rules; it never reads or moves favour.
+- It is held in the god they took a thing for (`GodLoreMath.Attribute`, as the book is written), so it can be wrong, and
+  shown by the colony's name for that god (its first chapter in the book). A god the colony hasn't heard of is named
+  nowhere; a second name not yet worked out to be the same has nobody under it.
+- Never inherited: drawn from who they are (traits, passions, xenotype, their past, the people they came from, their
+  faith, a bond with an animal), what they do and what they see. Nothing reads their parents or kin.
+- `Worship.GodOf` and `Gods.SwearBy` read it first (`PawnGods.Held`): the god someone prays to and swears by is their own,
+  else the moment's domain's, else their work's. Parts ask those two, never the belief record directly.
+- Growth comes through the seams that are already there (prayer, offerings, vows, festivals, dreams, tales, a god's
+  hand, `Gods.Remember` and `Gods.Moment`, a god's own presence ending, a gift found taken in its own way), so a part
+  that goes through them moves belief with no code of its own.
+- Only the colony's own people (`Worship.Ours`); no harm but the rare scuffle in a quarrel at the game's insult's rate.
+
+### The saints: a faith's deities and the colony's own (the player, 14 November 2026; round 5)
+
+"perhaps instead of these being the gods that are currently registered to an ideology, this could, for example, be some
+sort of saints or important characters. So kind of a middle ground between God and the pawns and the ideology, kind of
+saints or holy men or unholy men or whatever"; "let's go with saints then". DESIGN.md, "The saints", has the whole of it.
+For the contract:
+- Ideology's deities are read as the faith's saints or its damned (`Saints.Of`), never changed: no part writes to an
+  ideoligion's deities, name, memes or precepts. A deity is tied to one of the gods by its own words
+  (`GodsMath.DeityDomains`, `SaintsMath.GodFor`), as the faith's belief; the damned only to the dark gods, a saint never
+  to the Hunger.
+- The unseen rule holds: a saint is a person, named plainly; "of" a god (on the ideoligion screen, a statue's or a grave's
+  inspect line, the card, the book) only by the colony's name for it and only where the colony knows it (`Saints.OfGod`);
+  else nothing is said of the god at all. The book lists saints only under the chapter the colony keeps the god under.
+- The colony is the family: a saint is one person the council honoured; nothing of it passes to kin, no mood or mechanic
+  reads a family, and the card never speaks of one.
+- Every age: the word is the faith's by age and culture (ancestors, saints, exemplars; the venerated, martyrs; the
+  forsaken, the damned, the fallen), the relic's form the colony's age's.
+- No harm: the saints only add places to pray, a day kept and small good moods; the damned leave a believer uneasy, never
+  more.
+
 ### Each god's own happenings, batch 1 (the player's go, 14 November 2026; round 4)
 
 "each of the gods should feel really unique in what it does and whether or how it interacts with the world, what the

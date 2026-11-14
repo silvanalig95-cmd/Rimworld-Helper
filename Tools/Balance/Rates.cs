@@ -605,7 +605,11 @@ namespace Balance
         /// (WorshipMath.AnswerGapDays, its will growing back after); a scoffer's mockery once in ten days a home at most, among
         /// the believers near a sign; a few vows a colony-year, most kept. The small moods of worship: a prayer said in about
         /// half of those hard moments, a third of them at the god's own place; an offering carried about once in three days
-        /// at a home with a shrine or two, by one of six colonists or so.
+        /// at a home with a shrine or two, by one of six colonists or so. Each one's own gods (Gods/Belief/): the god someone
+        /// holds to acting before them, about once in two weeks for those who hold one (half the colony or so), once a day at
+        /// most; a god's place gone a few times a colony-year; a feast day let pass one of about nine in a year, for those who
+        /// hold that god; a flinch at a dreaded sign rare (few are in dread, and signs are days apart); won over rarer still
+        /// (a strong moment, about a third of the time, once in twenty days a person at most).
         /// </summary>
         public static readonly (string thought, float perDay)[] Worship =
         {
@@ -616,7 +620,19 @@ namespace Balance
             ("Rimfolk_Worship_Unanswered", 0.0022f),
             ("Rimfolk_Worship_Mocked", 0.005f),
             ("Rimfolk_Worship_VowKept", 0.004f),
-            ("Rimfolk_Worship_VowBroken", 0.0008f)
+            ("Rimfolk_Worship_VowBroken", 0.0008f),
+            ("Rimfolk_Belief_GodActed", 0.035f),
+            ("Rimfolk_Belief_ShrineLost", 0.003f),
+            ("Rimfolk_Belief_FeastPassed", 0.004f),
+            ("Rimfolk_Belief_Flinched", 0.002f),
+            ("Rimfolk_Belief_WonOver", 0.001f),
+            // The saints (Gods/Saints/): one of the colony's own named a saint about once in a colony-year or two, for all but
+            // its scoffers; a prayer at a saint's place about once in two days at a home with one or two (SaintsMath.PrayChance),
+            // a few of them before a relic; a saint's day once a year a saint, for those devoted to them.
+            ("Rimfolk_Saint_Named", 0.012f),
+            ("Rimfolk_Saint_Prayed", 0.02f),
+            ("Rimfolk_Saint_PrayedRelic", 0.006f),
+            ("Rimfolk_Saint_FeastKept", 0.008f)
         };
 
         /// <summary>Setbacks a well-run colony mostly avoids and a neglected one keeps having: their rate follows the style squared.</summary>

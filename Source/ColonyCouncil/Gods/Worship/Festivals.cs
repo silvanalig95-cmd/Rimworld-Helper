@@ -143,6 +143,8 @@ namespace ColonyCouncil
             string kept = "CC_Wsh_Book_Festival".Translate(d.label.Named("NAME"), Dishes(g).Named("DISHES")).Resolve();
             Worship.Witness(g, map, GodActKind.Favour, kept);
             Worship.Booked(g, map, IntVec3.Invalid, kept);
+            // Each one's own belief, kept by everyone at home (Gods/Belief/PawnGods.cs).
+            PawnGods.Festival(home, g, d.label);
             var b = Worship.Book;
             var shrine = Shrines.Of(map, g).Select(s => s.thing).OrderByDescending(Shrines.IsTemple).FirstOrDefault();
             if (shrine != null && b != null)
@@ -163,6 +165,8 @@ namespace ColonyCouncil
             if (g == null || map == null || !Worship.On) return;
             Worship.Favour(g, map, WorshipMath.FestivalPassed, "CC_Wsh_Why_FestivalPassed".Translate(d.label.Named("NAME")).Resolve(), FavourSource.Neglect, GodOffence.Neglect);
             Worship.Witness(g, map, GodActKind.Favour, "CC_Wsh_Book_FestivalPassed".Translate(d.label.Named("NAME")).Resolve());
+            // Those who hold the god feel its day let pass (Gods/Belief/PawnGodsActs.cs).
+            PawnGodsActs.FeastPassed(map, g, d.label);
         }
 
         /// <summary>The region's hour (WorshipCouncil.Hourly): a festival's rite waiting is held by whoever leads it, once free.</summary>
@@ -218,6 +222,7 @@ namespace ColonyCouncil
             Worship.Favour(g, map, more, text, FavourSource.Rite);
             Tell.Minor(NewsKind.Colony, Importance.Flavor, map, text, shrine);
             if (Worship.IsPriest(p)) CouncilRecords.Add(p, "Council_RitualsLed");
+            PawnGods.RiteLed(p, g);
             FaithHeart.Witnessed(map, g, shrine.Position);
         }
 

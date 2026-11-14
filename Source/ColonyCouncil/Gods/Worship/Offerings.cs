@@ -325,6 +325,8 @@ namespace ColonyCouncil
             string line = OfferingWays.NoticedLine(p, g, mine) ?? Worship.Line("Rimfolk_Pool_Worship_Noticed", p, g, null, mine ? "mine" : "theirs");
             if (!line.NullOrEmpty()) Speech.Say(p, line);
             if (!scoffer) Worship.Glow(shrine.Map, shrine.Position, g);
+            // What they found where it lay, for their own belief in the god of the place (Gods/Belief/PawnGods.cs).
+            if (!scoffer) PawnGods.SawTaken(p, g);
         }
 
         private static void Forget(WorshipBook b, OfferingRecord o)
@@ -421,6 +423,8 @@ namespace ColonyCouncil
             if (!words.NullOrEmpty()) Speech.Say(p, words);
             Worship.PriestLight(p, shrine.Position);
             CouncilGameComponent.GiveThought(p, WorshipDefOf.Rimfolk_Worship_Offered);
+            // The carrier's own belief in the god it was for (Gods/Belief/PawnGods.cs).
+            PawnGods.Offered(p, g);
             // The place keeps what was left last, by whom and with what words, for its inspect line.
             var s = b.ShrineOf(shrine);
             if (s != null)

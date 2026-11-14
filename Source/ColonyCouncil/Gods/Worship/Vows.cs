@@ -86,6 +86,8 @@ namespace ColonyCouncil
                 "".Named("HOW")).Resolve() + (how.NullOrEmpty() ? "" : " " + how);
             if (!p.Dead)
                 CouncilGameComponent.GiveThought(p, kept ? WorshipDefOf.Rimfolk_Worship_VowKept : WorshipDefOf.Rimfolk_Worship_VowBroken);
+            // Their own belief: a vow kept binds them closer, a broken one leaves guilt and a little fear (Gods/Belief/PawnGods.cs).
+            if (!p.Dead) PawnGods.Vowed(p, g, kept, r.kind == VowKind.Temple || r.kind == VowKind.Pilgrimage);
             Tell.Minor(NewsKind.People, Importance.Notable, map, text, p);
             Worship.Witness(g, map, GodActKind.Vow, text, p.PositionHeld);
             Worship.Booked(g, map, p.PositionHeld, text, p);

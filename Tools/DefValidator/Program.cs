@@ -571,6 +571,10 @@ wishPh.UnionWith(new[] { "GODTALE", "GODHAND" });
 wishPh.UnionWith(new[] { "SIGNGOD", "SIGNGODEPITHET", "MYTHGOD", "MYTHOTHER", "ENEMYGOD", "ENEMYPEOPLE", "SITE" });
 // What the colony says when a god acts (Rimfolk_Pool_GodWorld): who it is about.
 wishPh.UnionWith(new[] { "KILLER", "OFFENDER", "GIFTED" });
+// Each colonist's own gods (Gods/Belief/PawnGodsActs.cs, Rimfolk_Pool_Belief_Rival): the other devotee's god in a quarrel.
+wishPh.UnionWith(new[] { "RIVAL" });
+// The saints (Gods/Saints/SaintsCouncil.cs, SaintDilemmaContext; Saints.Args): a saint's title, and what the council would name them.
+wishPh.UnionWith(new[] { "SAINT", "ASAINT" });
 // A correspondence that builds up (Letters/LetterThreads.cs, Rimfolk_Letters_Familiar, _Thread): an earlier letter's
 // thread in words, the one written to by full name and by a short one, the colonist who usually wrote.
 wishPh.UnionWith(new[] { "RE", "TOFULL", "TONICK", "LASTPEN" });

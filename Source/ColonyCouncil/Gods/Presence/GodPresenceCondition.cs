@@ -288,11 +288,16 @@ namespace ColonyCouncil
         public override void End()
         {
             var map = Map;
+            // As it was while it lasted: whether the colony was sure whose it was, its label, a wrath or not.
+            bool named = Effect != PresenceEffect.None && Named, harsh = Harsh;
+            string label = Effect != PresenceEffect.None ? Label : null;
             base.End();
             if (Effect == PresenceEffect.None || map == null) return;
             try
             {
                 GodPresenceShows.Ended(this, map);
+                // Each one's own belief, from a presence lived through (Gods/Belief/PawnGods.cs).
+                PawnGods.PresencePassed(GodPresenceOwn.GodOf(this), map, named, harsh, label);
             }
             catch (Exception e)
             {

@@ -13563,6 +13563,193 @@ shows any condition's, never as a god's favour or mind.
   words and show, the next day's notice, the new signs, how a god plugs in); `MogTests` follows her presence folded in.
   Not seen in a real game (none of it could be): see the handoff's entry.
 
+### Each one's gods: a colonist's own belief in each god (the player's go, 14 November 2026; round 3; released 0.235.0)
+
+The player: "and then also kind of the interactions between pawns and the gods, you know, I guess pawns should have and
+develop kind of a relationship in a way, or rather a belief to gods. You know, if maybe they feel attached to a specific god
+for because of their characteristics or history or whatever, and that they kind of, the more they pray and interact to a
+god, that they kind of, yeah, get a stronger belief in that god, kind of develop a relationship"; then "pawn belief should
+be reflected in book and culture tab", "gods effect should be noticeable". Section E of `docs/gods-next-proposals.md`.
+A belief is the pawn's own, a pawn fact the unseen rule allows: how they hold a god, in words, never the god's favour,
+wants or rules, and never a number in play. The colony's own people only (`Worship.Ours`): guests and prisoners hold
+nothing here.
+
+- **What it is** (`Gods/Belief/PawnGodsMath.cs`, pure; `PawnGodsBook`, saved): for each colonist, at most six gods
+  (`MaxHeld`), each with how strongly they hold it (0 to 100), how much they dread it (0 to 100), what their character
+  drew at first, when it last grew, and a short line of why. In words (`Word`): leans toward (10), holds to (30), devoted
+  to (55), wholly given to (80); uneasy about (dread 20) and in dread of (45) where the dread is as strong as the belief
+  (they still believe, in fear). A scoffer "doubts them all".
+- **What draws them** (`PawnGodsMath.Draw`, once, the first time they are among the colony's people;
+  `PawnGods.Sketch`): their traits (the game's, Vanilla Traits Expanded's, Anomaly's, Rimfolk's own and A RimWorld of
+  Magic's classes: kind to Ennu, greedy and tycoon to Ducat, night owl to Selene, ascetic and cold-inclined to Hush,
+  pyromaniac and mountain lover to Smoulder, too smart and body modder to Pip, ecologist and green thumb to Hollin, animal
+  lover and menagerist to Bellwether, cat person to Tamiu, ocean lover to Murmur, psychic sensitivity and the tortured
+  artist to Cirrus, sanguine to Helios, cannibal, psychopath and void fascination open to Undertow); their passions (a
+  burning one twice a minor one: plants to Hollin and Murmur, mining to Smoulder, animals to Bellwether, medicine to Selene
+  and Morel, crafting to Pip, social to Ennu and Ducat, art to Cirrus); what they are (the player's xenotypes by name:
+  phytokin and wood elves to Hollin, fungoid and mycomorph to Morel, lycans to Selene, androids to Pip, the merren and
+  boglegs to Murmur, yttakin to Hush, stoneborn and drakonori to Smoulder, starjacks to Cirrus); their past (a backstory's
+  words from their start: a miner, a farmer, an undertaker, a sailor, a trader); the gods of the people they came from
+  (three at most); their faith's memes and precepts (Ideology, `GodsMath.ScoreMeme` by domain, `FaithLean`); a bond with a
+  cat (Tamiu) or another animal (Bellwether). Every trait and xenotype named is an enabled one in the player's list
+  (tested against `docs/player-mods`). Never their parents or kin: nothing here reads a family, only a bond with an
+  animal. Character alone takes them past holding to a god and short of devotion (`DrawCap` 48); devotion comes from what
+  they do and see. An older save's turning after a crisis of faith carries over as a belief held.
+- **How it grows** (`Amount`, `Grow`: each step smaller the more they hold): a prayer (+2, +3 at the god's place), an
+  answer (+9), what they prayed for come to pass (+5), an offering carried (+3), a vow kept (+8, a temple or pilgrimage
+  +12), a festival kept at home (+3, half for one who holds the god little), leading its rite (+5), their own small rite
+  (+1.5), a god's moment seen (+4, plainly +10, a kindness +6, a sign +2), a gift of a god's (+12), a dream of it (+4), a
+  tale, a line of what it is or a saying told to them (+1.5), something lived through (+6: the cold that nearly took them
+  for Hush, the heat for Helios, a deadly sickness got over for Morel, once a month each), a god's own presence lived
+  through on the land to its end (+3, and now and then won over, where the colony was sure whose it was; in anger, dread
+  instead: `PawnGods.PresencePassed` from `GameCondition_GodPresence.End`), a gift found taken by day in the god's own way
+  (+3, `PawnGods.SawTaken` from `Offerings.Noticed`). A moment counts for the god its
+  witnesses took it for (`GodLoreMath.Attribute`, as the book does), so a belief can grow in the wrong god; a gift too, as
+  the dream that brought it may not have named it. A scoffer is moved only by a god seen plainly, and half.
+- **How it fades** (`Fade`, `FadeDread`): unused twelve days, half a point a day, down to half of what their character
+  drew (a kind heart still leans toward the Guest); a prayer unanswered (-4), a crisis of faith (-12), a vow broken (-10,
+  and a little fear), a scoffer's mockery (-1). Two crises still turn them (`FaithHeart.TurnAway`), now through their
+  beliefs: to another god they hold where they hold one, never to one they dread; the god turned from -25, the one turned
+  to their first from then on. Dread lingers fifteen days, then fades.
+- **Dread** (`DreadAmount`): a god's anger on them (+22, uneasy at once), beside them (+12) or only seen (+4), a believer
+  of that god fearing it the more; a broken vow (+6). One in dread of a god keeps away from its place (`PawnGodsActs.
+  KeepAway`: found within 8 cells of it in their free time, they look at it, say why in one sentence and walk 14 cells
+  off, once a day at most) and flinches at its signs (`Flinch`: a sentence, a small bad mood, a step back from where it
+  showed); they never pray to it, carry it a gift or turn to it. Passing into dread is in their journal.
+- **Whom they turn to** (`PawnGods.Held`, `PawnGodsMath.Choose`; through `Worship.GodOf` and `Gods.SwearBy`, which every
+  part already asks, so prayers, offerings, festivals' leaders, vows, dreams, the council's questions and every sworn
+  line follow): their first god (the one they hold most, at least leaning toward it, not dreaded); for a moment with a
+  domain (a sickness, a death, a raid, a drought) one of that domain they at least lean toward, unless they are devoted to
+  their first, which they turn to in everything; drawn to none, the god of the moment's domain, or with none the domain of
+  the work they're best at (`WorkDomain`). The pick by id number only stands where none of these finds a god. They pray at
+  their own god's place.
+- **Won over** (`PawnGodsMath.WonOver`, `PawnGodsActs.MaybeWonOver`): a strong moment of a god not their first (seen
+  plainly, a gift, an answered prayer, a kindness seen, something lived through), by its strength about a third of the
+  time at most, once in twenty days a person: it is their first god from then on, said in a bubble
+  (`Rimfolk_Pool_Belief_WonOver`, by how it happened), their journal, a news line ("Mira holds to Hollin now, and says so
+  to anyone who asks.") and the colony's book as their belief; +4 for three days. A scoffer is won over far more rarely, and
+  scoffs no more after (`Worship.Scoffer`), unless their faith despises religion.
+- **Their own small rite** (`PawnGodsMath.Rites`, `RiteHour`, `RiteChance`; `PawnGodsActs.Rites`,
+  `JobDriver_BeliefRite`, `Rimfolk_Belief_Rite`): each god's devotees keep one, short and seen, in their free time at its
+  hour: Hollin's lay a hand on a tree, Smoulder's drop a coin into the rock, Bellwether's stand with a grazing beast,
+  Morel's bury scraps in the soil, Ennu's set an extra bowl at the table, Pip's tap a working machine twice (sparks), Cirrus's
+  look up at the sky at dusk, Hush's keep a silence out in the cold (else at nightfall), Undertow's whisper into a dark
+  corner at night, Helios's face the sunrise, Selene's look at the moon, Tamiu's sit by a grave at dusk or else feed a cat,
+  Murmur's hum at the water's edge or Dubs Bad Hygiene's well, Ducat's turn a coin over at the stored silver. They walk
+  there, stay a few seconds facing it, say one sentence (`Rimfolk_Pool_Belief_Rite`, each god's own words), and hold
+  their god a little more surely. By how they hold it: about every few days for the devoted, nearly daily for the
+  fervent, once a week or so for one who holds to it; once a day a person, two begun an hour a home at most. The job
+  reports it ("laying a hand on a tree for Hollin."). With nowhere near to keep it (no tree, no machine), no rite.
+- **Small moods** (`Rimfolk_Belief.xml`): the god they hold to acting before them +3 for a day (`GodActed`); slighted, its
+  place gone (torn down, burned, broken in a raid: `ShrinesLost`, the one who holds it most saying so) -3 for two days, its
+  feast day let pass -2 for a day; a flinch -2 for half a day. In `Tools/Balance` (`Rates.Worship`).
+- **Rival devotees** (`InteractionWorker_RivalGods`, `Rimfolk_Belief_RivalGods`): two of the colony who hold rival gods
+  (the gods' own hostile ties, `GodTiesMath.Hostile`; Tamiu and Morel over the dead, Smoulder and Hush, Murmur and Hush,
+  Ducat and Smoulder, Undertow and the hearth's gods) bicker in the game's own social talk now and then (a weight of 0.02
+  to 0.06 beside chit-chat's 1, the more devoted the likelier, once in six days a pair): the log line names no god, their
+  words over their heads do, each by the colony's name for it (`Rimfolk_Pool_Belief_Rival`, `_RivalReply`); -4 opinion for
+  three days; a scuffle at the game's own insult's rate (0.005); each holds their own the harder.
+- **How it shows** (no number anywhere in play):
+  - the Culture tab (`UI/ITab_Pawn_Culture.cs`, "Their gods", under their faith): each god the colony has heard of that
+    they hold or dread, in words, by the colony's name for it ("Devoted to Hollin", "Leans toward Ducat", "In dread of the
+    Hunger"), the line of why when hovered ("Since 5th of Aprimay, 5501: the roots rose and took the north wall.", "Drawn
+    by who they are: kind."); a scoffer "Doubts them all" (and any god they still fear); drawn to none, "No god has drawn
+    them yet";
+  - the Gods' book (`GodLorePage.Holders`): each chapter, before its witnesses, "Of those who hold to it", in the
+    keeper's hand ("As Avila keeps it:"), "Who holds to it here: Mira, devoted; Bram, who leans toward it." and "Who
+    dreads it here: Ida, in dread of it.", under the name the colony keeps the god by (its first chapter for it; a second
+    name not yet worked out to be the same has nobody, so nothing gives away which names are one). A god the colony hasn't
+    heard of is named nowhere.
+- **The seams** (so round 2's presences, offering ways and omens plug in): `Prayers.Said`, `TryAnswer`, `Credit`;
+  `FaithHeart.Unanswered`, `TurnAway`, `Mock`; `Offerings.Placed`; `Vows.End`; `Festivals.Kept`, `Passed`, `RiteDone`;
+  `GodDreams`; `GodTales.Tell`, `WhatOf`, `Saying`; `GodHands.Show`; `GodWorldGifts.Give`; `Gods.Remember` and
+  `Gods.Moment` (every act and moment seen on the land, the gods' own omens among them); round 2's own presences
+  (`GameCondition_GodPresence.End`) and ways of taking (`Offerings.Noticed`, and a gift taken plainly through
+  `Worship.Sign`). Kept in worship's own hour and day (`Worship.Hourly`, `Daily`):
+  no pass and no Sched slot of its own. Dev actions: "Gods: a colonist's own gods (log)", "Gods: set a colonist's
+  belief...", "Gods: their small rite now", "Gods: win them over now...", "Gods: rival devotees bicker now".
+- Saved small: one record a colonist, six gods at most, the departed let go each day and the discarded at saving
+  (`Tools/save_estimate.py`). Tested in `PawnGodsTests` (324 checks).
+
+### The saints: a faith's deities and the colony's own (the player's go, 14 November 2026; round 5; released 0.236.0)
+
+The player: "And I guess in that regard, the whole ideology implementation, we can also think about how we adapt the
+ideology system to integrate and relate to our gods instead of, you know, the ones that are created by the game. And one
+idea I thought, maybe if we can, or if we need to reuse the god, so to say, or this, the way it's implemented now with
+ideology, perhaps instead of these being the gods that are currently registered to an ideology, this could, for example,
+be some sort of saints or important characters. So kind of a middle ground between God and the pawns and the ideology,
+kind of saints or holy men or unholy men or whatever"; then "let's go with saints then". Section F of
+`docs/gods-next-proposals.md`, option b. A saint is a person, named plainly; the gods behind them stay unseen, named only
+by the colony's name for them and only where the colony knows them. A person honoured, never their kin: nothing of it
+passes to anyone, and nothing reads a family.
+
+- **A faith's deities are its saints, or its damned** (`Gods/Saints/Saints.cs`, `Of`; pure rules in `SaintsMath`): each
+  of Ideology's deities (`IdeoFoundation_Deity`) is read, never changed, so the editor, a reform or a new roll simply gives
+  new saints (the old ones kept in the book as kept no more). Its domains come from its own words, its meme, the faith's
+  memes and precepts (`GodsMath.DeityDomains`), and it is tied to the god whose own domain is the deity's (3), whose second
+  is (2), and so on, a domain no god holds first going to the nearest (war to Smoulder, then Cirrus; healing to Selene's
+  second, then Morel), ties by the deity's name so it keeps its god (`SaintsMath.GodFor`). A saint is never the Hunger's.
+  One of a dark meme (raider, cannibal, pain is virtue, bloodfeeding, Anomaly's inhuman and ritualist, the pirates', Alpha
+  Memes' and Vanilla Memes Expanded's darker ones, every one enabled in the player's list), with dark words in its name or
+  title, or of the void is one of the damned (`SaintsMath.Damned`), tied only to the dark gods (the Hunger, Hush, Smoulder;
+  the Hunger where nothing else fits): feared, never prayed to, no statue raised to one. A faith with no deities (animist,
+  ideological, archist) has no saints.
+- **Their words, by age and culture** (`SaintsMath.WordSet`, `DamnedSet`; `CC_Saint_*`): the tribes' Ancestors ("Ancestor
+  Aranea"), the medieval and industrial Saints ("Saint Aranea"), the spacers' Exemplars; the Corunan's Venerated and the
+  Kriminul's Martyrs; the damned as the Forsaken, the Damned and the Fallen ("Vorgath the Damned"). A faith's age is the
+  colony's where its own people hold it, else its people's.
+- **Shown as saints** (`Patch_SaintsWord`, on `IdeoFoundation_Deity.DoInfo`): while the game draws a faith's deity box,
+  its word "Deities" (found by the game's own English text, so a renamed key leaves it as it is) reads as the faith's own
+  ("Saints", "Ancestors", "Damned" where every one is damned), swapped for the drawing and put back by a finalizer; under
+  the box, in play only, "As the colony holds them: Saint Aranea, of the Old Horn; Vorgath the Damned, feared, of the
+  Hunger.", each only where the colony knows that god by that name. A neighbour's sermon or hymn names its faith's
+  saint by title ({DEITY}: "Praise to Saint Aranea in the morning"), now and then one of the colony's own where the writer
+  shares their faith (`Saints.SermonName`, `Letters/LetterFormShapes.cs`), else the game's own name.
+- **The colony's own saints** (`Saints.Died`, `SaintsMath.Merit`, `Patch_SaintDeath` on `Pawn.Kill`): a free colonist of
+  the colony's own, grown, dies a remarkable death: carrying, rescuing or tending someone while an enemy's attack is on the
+  colony (a saint's death on its own); holding the line, drafted, against one; the healer's years (medicine 12 and 80
+  tended, or a passion, 8 and 150); two years devoted to a god, or as the priest. Each but the first needs a year with the
+  colony besides (or a vow kept to the end, or a god's presence on the land). Never a scoffer, one who held the Hunger
+  first, a child, a slave, a guest. Their god is the one they held first, else the one their deed speaks of. The death
+  waits for the council's card at most twelve days (`SaintsMath.CandidateDays`).
+- **The council's card** (`Rimfolk_Dlm_Saint`, `DilemmaWorker_Saint`, asked in its moment, `timely`, 30 days apart): the
+  priest (else the most devout who holds the fallen one's god) asks the council to name them "a saint of Hollin" (by age:
+  "an Ancestor who walks with Hollin"; "a saint" where the colony doesn't know the god). Named (`DilemmaEffect_NameSaint`,
+  `Saints.Name`): the one who asked says the words at the grave that evening and those who come listen
+  (`DilemmaEffect_SaintWords`, a play-out at the grave, else the god's place); the colony's people, never its scoffers and
+  never more for kin, "one of ours named a saint" +3 for five days; a relic of theirs set by the grave; the colony's book
+  under their god by those who saw it (`Worship.Booked`); a line in the asker's journal. Honoured without it: a few words
+  at the grave. Let rest (the default): the asker trusts the council a little less.
+- **Their places** (`Gods/Saints/SaintsPlaces.cs`), each a lesser shrine: a colony saint's grave; a statue raised to a
+  saint (the button "Raise to a saint" on the game's sculptures, Odyssey's statue, Vanilla Furniture Expanded - Art's,
+  Vanilla Furniture Expanded - Empire's, Vanilla Memes Expanded's and Props and Decor's statues and Alpha Memes' statue,
+  sphinx, megalith, obelisk and stele: `SaintsMath.IsStatue`; the colony's own saints or its faiths' holy ones): someone
+  walks over and says one sentence (`Rimfolk_Saint_Raise`), the art's title becomes the saint's ("Saint Mira") and is given
+  back when cleared; an Odyssey statue of the fallen one's likeness is known for theirs (`LikenessComps`, the seam for
+  Pawns on Display); the relic (`Rimfolk_SaintRelic`, `CompSaintRelic`: a lock of hair bound in cord, a small bone in a
+  carved box, a lock of hair under glass, their voice sealed in a case, by the colony's age; never sold). Now and then
+  (`PrayChance`, about once in two days at a home with one place) a devotee (one who holds the saint's god, the devout of
+  the saint's faith, the priest) walks to one in their free time, faces it, says one sentence (`Rimfolk_Pool_Saint_Prayer`)
+  and holds the saint's god a little more (a prayer at its place); +2 for a day, +3 before a relic where their faith keeps
+  relics (Ideology's relic precept). The inspect line says whose it is, and "of Hollin" only where the colony knows it.
+- **Their day** (`SaintsMath.FeastDue`, `SaintsPlaces.Keep`): each year, from the year after they were named, on the day
+  they died, in the evening, the devoted gather at the grave (else the statue, else the god's place) for an hour's words led
+  by the priest or the most devoted, the keeper's sermon on the saint (`Rimfolk_Pool_Saint_Feast`); +3 for those who came,
+  belief as at a festival. With answers not played out on the map, they keep it quietly where they are.
+- **What a saint gives their god** (`Saints.Lean`, from round 3's `PawnGods.Sketch`): a faith's saints lean its believers
+  toward each saint's god a little more (`SaintsMath.WithSaints`, +0.35 of the strongest lean, never past it); its damned
+  leave each believer uneasy about the god each is tied to, once (`SaintsMath.DamnedDread` 20, with its line of why).
+- **The book** (`Saints.BookLines`, `GodLorePage.SaintsPart`): "Of its saints", in the keeper's hand, under the chapter the
+  colony keeps the god under: its own ("Saint Mira, who kept the sick for years, named by the council on 5th of Aprimay,
+  5502. Her day is kept each year on the day she died."), its faiths' ("The faith of the Way of Ash holds Saint Aranea among
+  its saints."), the damned ("The faith of the Way of Ash fears Vorgath the Damned, and never prays to them.") and those
+  kept no more.
+- Kept in worship's own hour and day (`Worship.Hourly`, `Daily`): no Sched slot of its own. Dev actions: "Gods: a faith's
+  saints (log)", "Gods: a fallen colonist waits for the saint's card", "Gods: the saint's card now", "Gods: a saint's day
+  kept now", "Gods: pray at a saint's place now". Saved small (`SaintsBook`: the colony's saints, the deaths waiting, the
+  statues, the faiths' saints seen, who took the damned to heart, each with its cap: `Tools/save_estimate.py`). Tested in
+  `SaintsTests`.
+
 ### Each god's own happenings, batch 1 (the player's go, 14 November 2026; not released yet)
 
 The player, 14 November 2026: "each God's events and interactions and effects, etc., you know, feel unique to the god,

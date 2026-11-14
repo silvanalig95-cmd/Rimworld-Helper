@@ -125,6 +125,7 @@ namespace ColonyCouncil
         {
             var list = new List<PaneSection>();
             Add(list, Faith(p));
+            Add(list, TheirGods(p));
             if (Persona.On && Persona.Eligible(p))
             {
                 var views = CharacterPage.Make("talk.views", p);
@@ -237,6 +238,44 @@ namespace ColonyCouncil
             }
             // What it asks of them, what moved it lately, who could sway them (Faith/FaithCharacter.cs).
             s.character = FaithCharacter.Details(p);
+            return s;
+        }
+
+        // ---------------- Their gods ----------------
+
+        /// <summary>
+        /// Their own belief in the gods the colony has heard of (Gods/Belief/PawnGods.cs), in words and by the colony's name for
+        /// each ("devoted to Hollin", "in dread of the Hunger"), with the line of why when hovered; a scoffer "doubts them all".
+        /// The colony's own people only; never a number, never the god's view of them.
+        /// </summary>
+        private static PaneSection TheirGods(Pawn p)
+        {
+            if (!PawnGods.On || !Worship.Ours(p)) return null;
+            var s = new PaneSection { key = "gods", header = "CC_Belief_Section".Translate(), icon = Icons.Journal ?? Icons.Chronicle };
+            bool scoffer = Worship.Scoffer(p);
+            if (scoffer) s.Add("CC_Belief_Scoffer".Translate(p.Named("PAWN")).Resolve(), UiKit.Faint, "CC_Belief_ScofferTip".Translate(p.Named("PAWN")).Resolve());
+            // A scoffer doubts them all, and may still be afraid of one.
+            var shown = PawnGods.ShownFor(p).Where(b => !scoffer || PawnGodsMath.Fears(b.word)).ToList();
+            if (scoffer && shown.Count == 0) return s;
+            if (shown.Count == 0)
+            {
+                s.Add("CC_Belief_Nothing".Translate(p.Named("PAWN")).Resolve(), UiKit.Faint, "CC_Belief_NothingTip".Translate(p.Named("PAWN")).Resolve());
+                return s;
+            }
+            foreach (var b in shown)
+            {
+                var color = b.word switch
+                {
+                    BeliefWord.Fervent => UiKit.Gold,
+                    BeliefWord.Devoted => UiKit.Good,
+                    BeliefWord.Holds => UiKit.Info,
+                    BeliefWord.Dread => UiKit.Bad,
+                    BeliefWord.Uneasy => UiKit.Warn,
+                    _ => UiKit.Faint
+                };
+                string text = PawnGods.WordKey(b.word).Translate(b.name.Named("GOD")).Resolve().CapitalizeFirst();
+                s.Add(text, color, b.why.NullOrEmpty() ? null : b.why);
+            }
             return s;
         }
 

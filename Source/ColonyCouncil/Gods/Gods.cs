@@ -260,6 +260,8 @@ namespace ColonyCouncil
                 string taken = g == null || lore == null ? null : GodLoreMath.Attribute(g.Key, lore.KnownOf(), Rand.Value);
                 GodLore.Saw(pawns, ByKey(taken), act.text);
                 act.booked = true;
+                // Each witness's own belief in the god they took it for (Gods/Belief/PawnGods.cs).
+                PawnGods.Saw(pawns, ByKey(taken), act.kind, false, act.text, act.cell, map);
                 // A kindness or an anger seen: the believer among them comes to hold what the god they took it for loves or hates.
                 if (taken != null && (act.kind == GodActKind.Blessing || act.kind == GodActKind.Wrath))
                     GodLore.Inferred(GodLore.Believer(pawns), ByKey(taken), g, act.kind == GodActKind.Wrath);
@@ -312,6 +314,8 @@ namespace ColonyCouncil
                 if (plain) GodLore.Sighted(witnesses, spec.god, words);
                 if (taken != null && (spec.kind == PresenceKind.Blessing || spec.kind == PresenceKind.Wrath))
                     GodLore.Inferred(GodLore.Believer(witnesses), taken, spec.god, spec.kind == PresenceKind.Wrath);
+                // Each witness's own belief in the god they took it for, plainly seen the more (Gods/Belief/PawnGods.cs).
+                PawnGods.Saw(witnesses, taken, PawnGods.KindOf(spec.kind), plain, words, spec.cell, spec.map);
                 momentGod = spec.god.id;
                 momentAt = Now;
             }
@@ -422,15 +426,20 @@ namespace ColonyCouncil
         public static string FullName(God g) => g == null ? "" : g.epithet.NullOrEmpty() ? g.name : "CC_God_FullName".Translate(g.name.Named("GOD"), g.epithet.Named("EPITHET")).Resolve();
 
         /// <summary>
-        /// The god a pawn would swear by: one of their own faith's gods (with Ideology), else their people's (a colonist: the
-        /// colony's own, else the god it stands best with); with <paramref name="about"/>, one of that domain where they have
-        /// one. The same god for the same pawn each time otherwise (their people's patron first). Null with none.
+        /// The god a pawn would swear by: a colonist's own belief first (the god they hold most, or one of the moment's domain
+        /// they hold: Gods/Belief/PawnGods.cs); else one of their own faith's gods (with Ideology), else their people's (a
+        /// colonist: the colony's own, else the god it stands best with); with <paramref name="about"/> (for a colonist drawn to
+        /// no god, else the domain of the work they're best at), one of that domain where they have one. The same god for the
+        /// same pawn each time otherwise (their people's patron first). Null with none.
         /// </summary>
         public static God SwearBy(Pawn p, GodDomain about = GodDomain.None)
         {
             if (Book == null || p == null) return null;
             try
             {
+                var held = PawnGods.Held(p, about);
+                if (held != null) return held;
+                if (about == GodDomain.None) about = PawnGods.WorkDomain(p);
                 List<God> pool = null;
                 if (ModsConfig.IdeologyActive && p.Ideo != null) pool = OfIdeo(p.Ideo).Where(g => g.kind != GodKind.Dead).ToList();
                 if (pool.NullOrEmpty() && p.Faction != null)
