@@ -571,12 +571,8 @@ namespace ColonyCouncil
             }
         }
 
-        public static int CountMeals(Map map)
-        {
-            int n = 0;
-            foreach (var t in Meals(map)) n += t.stackCount;
-            return n;
-        }
+        /// <summary>The colony's cooked meals in servings by their nutrition: a stack of pemmican is the few meals it makes, not one a piece.</summary>
+        public static int CountMeals(Map map) => MealWorth.Servings(Meals(map));
 
         /// <summary>
         /// The best meal this colonist may have: the finest kind first, then the nearest to the feast; one they'd eat,

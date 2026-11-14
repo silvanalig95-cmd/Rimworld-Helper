@@ -58,9 +58,13 @@ namespace ColonyCouncil
         /// <summary>Each shared need of the basket (food and feed in nutrition, medicine and the rest in pieces), from the last reading.</summary>
         private static readonly Dictionary<string, float> groupNeeds = new Dictionary<string, float>();
 
-        /// <summary>The colony's food as the readout needs it: what it has, what it eats a day, whether it cooks.</summary>
-        public static float mealNutrition, rawNutrition, eatADay;
-        public static bool cooks, foodKnown;
+        /// <summary>
+        /// The colony's food as the readout needs it: the home it is read on, its stores as the meals its kitchen would make
+        /// of them (Things/MealWorth.cs, in nutrition), and what its people eat a day.
+        /// </summary>
+        public static Map foodMap;
+        public static float storeWorth, eatADay;
+        public static bool foodKnown;
 
         /// <summary>A row's advice, or null.</summary>
         public static TradeNote For(Tradeable t)
@@ -647,15 +651,14 @@ namespace ColonyCouncil
             private void Food()
             {
                 if (needs == null) return;
-                mealNutrition = needs.HaveOf(AheadMath.Meal);
-                rawNutrition = needs.HaveOf(AheadMath.Raw);
+                foodMap = needs.map;
+                storeWorth = MealWorth.Total(needs.map);
                 eatADay = needs.humanNeed;
-                cooks = needs.bills.Any(b => b.kind == AheadMath.Meal) || needs.canAdd.Any(a => a.kind == AheadMath.Meal) || needs.dispenser;
                 foodKnown = eatADay > 0.0001f;
                 reserveDays = ColonyCouncilMod.Settings?.aheadReserveDays ?? 5f;
                 withoutDays = view?.plan?.withoutDays ?? 0;
                 needDays = TradeAdviceMath.FoodNeedDays(reserveDays + withoutDays);
-                haveDays = TradeAdviceMath.FoodDays(mealNutrition, rawNutrition, eatADay, cooks);
+                haveDays = TradeAdviceMath.FoodDays(storeWorth, eatADay);
                 feedHaveDays = needs.feedNeed > 0.0001f ? needs.HaveOf(AheadMath.Feed) / needs.feedNeed : AheadMath.Far;
             }
 
@@ -671,8 +674,8 @@ namespace ColonyCouncil
                 }
             }
 
-            /// <summary>What a piece of food gives toward days of eating: a meal its nutrition, raw food the meals it cooks into.</summary>
-            private float FoodWorth(ThingDef d) => Nutrition(d) * (ColonyNeeds.KindOf(d) == AheadMath.Raw && cooks ? TradeAdviceMath.CookGain : 1f);
+            /// <summary>What a piece of food gives toward days of eating: a meal its nutrition, raw food and flour the meals the kitchen makes of them.</summary>
+            private float FoodWorth(ThingDef d) => MealWorth.PerPiece(needs.map, d);
 
             private void FoodRows(List<Tradeable> rows)
             {

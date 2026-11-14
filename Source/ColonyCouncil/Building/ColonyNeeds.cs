@@ -115,7 +115,10 @@ namespace ColonyCouncil
             Benches();
         }
 
-        /// <summary>A good's kind for the rows: meal, raw, feed, medicine or clothes; null for anything else.</summary>
+        /// <summary>
+        /// A good's kind for the rows: meal, raw, feed, medicine or clothes; null for anything else. What a person doesn't eat
+        /// as it is but the game's meal recipes take (flour) is raw food for cooking, not animal feed.
+        /// </summary>
         public static string KindOf(ThingDef d)
         {
             if (d == null) return null;
@@ -124,7 +127,8 @@ namespace ColonyCouncil
             if (d.IsCorpse || d.IsDrug || !d.IsNutritionGivingIngestible || d.ingestible == null) return null;
             string making = Making.KindOf(d);
             if (making == "meals") return AheadMath.Meal;
-            if (making == "feed" || !d.ingestible.HumanEdible) return AheadMath.Feed;
+            if (making == "feed") return AheadMath.Feed;
+            if (!d.ingestible.HumanEdible) return MealWorth.CookingIngredient(d) ? AheadMath.Raw : AheadMath.Feed;
             var pref = d.ingestible.preferability;
             if (pref == FoodPreferability.RawBad || pref == FoodPreferability.RawTasty) return AheadMath.Raw;
             if (pref == FoodPreferability.NeverForNutrition && d.thingCategories != null && d.thingCategories.Any(c => c == ThingCategoryDefOf.PlantFoodRaw || c == ThingCategoryDefOf.MeatRaw)) return AheadMath.Raw;

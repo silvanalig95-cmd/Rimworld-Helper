@@ -150,7 +150,7 @@ namespace ColonyCouncil
             if (!FreeBed(map, g, false)) w.noRoom.Add("CC_GuestWill_NoBed".Translate(g.Named("PAWN")).Resolve());
             else if (own && !FreeBed(map, g, true)) w.noRoom.Add("CC_GuestWill_NoOwnRoom".Translate(g.Named("PAWN")).Resolve());
             int eaters = colonists.Count + map.mapPawns.PrisonersOfColonySpawnedCount + 1;
-            float days = GuestWillMath.DaysOfFood(map.resourceCounter.TotalHumanEdibleNutrition, eaters);
+            float days = GuestWillMath.DaysOfFood(MealWorth.Total(map), eaters);
             if (days < GuestWillMath.FoodDays) w.noRoom.Add("CC_GuestWill_NoFood".Translate(days.ToString("0.#").Named("DAYS"), GuestWillMath.FoodDays.ToString("0").Named("NEED")).Resolve());
 
             // What they want of a home, by their passions and nature: only what the colony could build.
@@ -470,7 +470,7 @@ namespace ColonyCouncil
                 }
             }
             int eaters = adults.Count + map.mapPawns.PrisonersOfColonySpawnedCount + 1;
-            if (GuestWillMath.DaysOfFood(map.resourceCounter.TotalHumanEdibleNutrition, eaters) < GuestWillMath.FoodDays)
+            if (GuestWillMath.DaysOfFood(MealWorth.Total(map), eaters) < GuestWillMath.FoodDays)
             {
                 var cook = adults.Where(c => c.skills?.GetSkill(SkillDefOf.Cooking) is SkillRecord r && !r.TotallyDisabled).OrderByDescending(c => c.skills.GetSkill(SkillDefOf.Cooking).Level).FirstOrDefault();
                 if (cook != null)

@@ -5,7 +5,7 @@
     The mods and DLCs Rimfolk works with, and what it does with each: the registry behind the Almanac's compatibility
     table (Council_Alm_Mods_Compatibility, filled in when a game starts) and the self-check's "Mods Rimfolk works with"
     (the ones marked code: Rimfolk reads them in code). label: the mod's name. packageIds: any of them counts.
-    live: a reading the self-check can test (expertise, vsie, pokeworld, hospitality). Keep "what" to a sentence or
+    live: a reading the self-check can test (expertise, vsie, pokeworld, hospitality, foodalert). Keep "what" to a sentence or
     two: it's a table cell. Almanac pages about a mod don't need an entry here; the table is for what Rimfolk does.
   -->
 
@@ -388,6 +388,16 @@
     <code>true</code>
     <packageIds><li>memegoddess.smartmedicine</li><li>uuugggg.smartmedicine</li></packageIds>
     <what>Medicine by what is treated fills in its choice for each injury where you set none (none for a bruise, herbal at most for a cut, the default for the serious), and Smart Medicine does the treating; a choice set by hand stands.</what>
+  </ColonyCouncil.ModSupportDef>
+
+  <ColonyCouncil.ModSupportDef>
+    <defName>Council_Support_FoodAlert</defName>
+    <label>Food Alert</label>
+    <order>28</order>
+    <code>true</code>
+    <live>foodalert</live>
+    <packageIds><li>mlie.foodalert</li></packageIds>
+    <what>Its days of food count the meals the stores would make: meals as they are, raw food and flour as the meals the colony's kitchen would cook from them, animal feed left out (a setting under your other mods).</what>
   </ColonyCouncil.ModSupportDef>
 
   <ColonyCouncil.ModSupportDef>

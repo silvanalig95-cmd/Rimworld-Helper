@@ -84,25 +84,6 @@ tree at once, alongside whatever runs. Each piece is merged as its own release, 
     are storylines across multiple quests". When asked: proposed first, a list of quests by the peoples, the gods and the
     region, and storylines that run over several quests (a chain whose next quest depends on how the last went), built
     on the game's own quests (QuestScriptDef) and Rimfolk's chains, letters and missions.
-- **To do when the player asks (14 November 2026): the days of food counted as the meals the stores would make.** The
-  player, with a screenshot of the "2 days worth of food" readout under the weather: "i think this counter is bugged or
-  so? since i have a lot of flour for example that i can make into meals. it should always count how many of my raw
-  foods i can turn into enjoyable meals and use that number". The readout is Food Alert (Continued) (`mlie.foodalert`,
-  active; source public at github.com/emipa606/FoodAlert, `Source/FoodAlert/NutritionCounter.cs` and
-  `HarmonyPatches.cs`), not Rimfolk's, and it works as written: on the home map, only while the game's own low-food alert
-  is off, it adds up the nutrition of things a person can eat as they are, at or above the preferability chosen in its
-  settings (theirs is its default, RawBad), raw food at its raw worth. Its "Estimate also from ingredients" (offered only
-  with a meal preferability; automatic is simple and fine x1.8, awful x3, lavish x1) counts raw food as meals, but flour
-  never counts: Vanilla Cooking Expanded's flour is plant matter (`foodType` Plant, not food a person eats) and Alpha
-  Crafts' specialty flour is never-for-nutrition. Told meanwhile: in Food Alert's settings, MealSimple with the automatic
-  estimate counts their raw food as simple meals, still without the flour. When asked: Rimfolk gives Food Alert its count
-  through Food Alert's own public list of counters (`FoodAlert.NutritionCounter.NutritionFinders`, made for other mods;
-  by name, nothing without the mod; its "default" entry replaced while Rimfolk runs): meals in store at their worth,
-  each raw ingredient the colony's own cooking recipes take (flour and every other one, from the player's mods, read
-  from the recipes, not a list) at the worth of the enjoyable meals it would make (simple meal or better; paste and
-  awful meals don't count as enjoyable), food only ever eaten raw at its own worth, animal feed (hay, kibble) left out;
-  limited to what can be cooked there (a stove of the right kind built); the tooltip's preferability line saying what is
-  counted. Check the count against the screenshot's stores. No mod is needed: Rimfolk can do it itself.
 - **To do when the player asks (14 November 2026): the peoples' descriptions rewritten.** The player: "i really like the
   different factions you created, but when i look at their faction and read the description text with their history
   etc., it really reads like AI gibberish and I don't understand what is really meant. also they all follow the same
@@ -141,6 +122,42 @@ tree at once, alongside whatever runs. Each piece is merged as its own release, 
   ordering them off is ruder still), less when they were trouble (a thief, a brawler, a drunk); with Hospitality its
   own way for its guests; never a caravan mid-trade without the trade closed first, and never anyone downed or a
   prisoner.
+- Not released: no version, no What's new round, About.xml and CHANGELOG untouched. **The days of food as the meals the
+  stores would make** (14 November 2026; the player, with a screenshot of Food Alert's "2 days worth of food": "i think
+  this counter is bugged or so? since i have a lot of flour for example that i can make into meals. it should always
+  count how many of my raw foods i can turn into enjoyable meals and use that number", then "please do the food alert
+  fix. also always use the nutritional value, not that chickpeas get counted per unit. do this now"). Food Alert
+  (Continued)'s readout now counts, by Rimfolk: meals at their own nutrition, raw food, flour and every other ingredient
+  at the meals the colony's own recipes would cook from them (simple or better, research done, a bench built, a cook
+  with the skill, each ingredient group in store), food eaten raw that no recipe takes as it is, kibble, hay and other
+  feed left out; always nutrition, never pieces (chickpeas are 0.0125 a piece, and Food Alert already counted them so).
+  Its tooltip's "Food preferability" line says what is counted. Rimfolk's own days of food count the same way. DESIGN.md
+  "The days of food as the kitchen would make them, with Food Alert"; the Almanac's *doctoring and larder helpers*
+  (With Rimfolk; keywords unchanged); the compatibility table's Food Alert row.
+  - Code: `Source/ColonyCouncil/Things/MealWorthMath.cs` (pure, linked: a recipe's gain, an ingredient's worth, the
+    best, the cap at three, what counts, the total, servings), `Things/MealWorth.cs` (per map: the benches' recipes read
+    from the game, every mod's, by their ingredient groups and value getters; the stores' total; `CookingIngredient`;
+    `StoredServings`), `Integrations/FoodAlertCount.cs` (Food Alert's `NutritionCounter.NutritionFinders` by reflection,
+    its `"default"` kept and used while the setting is off or after a failure; `Patch_FoodAlertTip` on its readout method
+    by name, the tooltip's one line rewritten through `TooltipHandler.activeTips`, standing down without it). Setting
+    `foodAlertMealCount` (Your other mods, Food Alert), keys in `ColonyCouncil.xml` and `Rimfolk_Settings_Pages.xml`;
+    `Council_Support_FoodAlert` (live `foodalert` in the self-check).
+  - Rimfolk's own counts, checked: the advisor's days of food (`AdvisorWorker_Food.DaysOfFood`, so `MapFacts.FoodDays`
+    and the panels, heart, decrees, letters, allies and ambitions), the trade screen's days now and after a trade and its
+    food worth (`TradeAdvice.storeWorth`, `TradeAdviceMath.FoodDays(worth, need)`, `CookGain` gone), `GuestWill`'s room
+    for one more and the remembered "hungry" mood now count meal worth; planning ahead counts flour as raw food, not feed
+    (`ColonyNeeds.KindOf`); meals told as a number count servings by nutrition (`AdvisorFacts.Meals`, the elections'
+    `Meals`, `PlaySpots.CountMeals` for feasts, `OutsiderAuto.MealsStored`). Left as they are: the journey planner's and
+    the rider's packed food (nutrition as packed), the caravan's days (the game's), the starving checks (`GodVoid`) and
+    `WishWorker` food to keep (what can be eaten now, in nutrition), the harvest counts (pieces of a crop brought in).
+  - Tests: `Tools/Tests/MealWorthTests.cs` (the arithmetic, the player's foods by `docs/player-mods`, the seams);
+    `TradeScreenTests` (days from the meal-worth count), `SettingsTests` (the row).
+  - The player's save (League of Toba 4, 13 November): Food Alert counts 48.6 (corn 302, potatoes 224, chickpeas 589,
+    eight simple meals, kibble 155) for about 4 days at 11.2 a day; Rimfolk counts 138.1 (the 1,005 flour 70.4 as
+    simple bakes; no meat in store, so no fine bakes), about 12 days. The screenshot's stores: 23.3 and 2 days against
+    25.3 before the flour and about 96 with it, 8 days.
+  - Not run here: the readout and its tooltip in the game with Food Alert loaded, the setting switched off and on, a
+    stove built or taken down, a fine bake counted once meat is in store.
 - 0.229.1, **Letters without deliberate slips**
   (14 November 2026; the player: "you can remove these purposely placed typos in letter, they don't really work", then
   "you can go ahead with ... the small ones"). Every line of a barely schooled (`u:some`) or unschooled (`u:none`) hand
