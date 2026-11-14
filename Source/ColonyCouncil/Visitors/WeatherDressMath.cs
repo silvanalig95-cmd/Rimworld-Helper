@@ -373,6 +373,61 @@ namespace ColonyCouncil
             return c;
         }
 
+        // ---------------- A piece that hinders them ----------------
+
+        /// <summary>
+        /// A piece they came in that hinders them (it lowers their moving, work, aim, hit or dodge: the game's free warm layer
+        /// puts a straitjacket on a wayfarer when it's the cheapest warm thing about), that their kind neither requires nor
+        /// asks for by its tags, and that isn't kept (armour, a title's or a role's): swapped for a plain piece of their age,
+        /// whatever the weather.
+        /// </summary>
+        public static bool OutOfPlace(bool hinders, bool kept, bool askedFor) => hinders && !kept && !askedFor;
+
+        /// <summary>
+        /// The plain piece to take the place of worn piece <paramref name="old"/> (<see cref="OutOfPlace"/>), or -1 to keep it:
+        /// one that takes exactly its place (it can't be worn with it, and can with all else they wear), keeps them as warm
+        /// for the stay (no further short of comfortable than half a degree, and still safe if they were), and costs what
+        /// came off less than <paramref name="room"/>. Their own kind's first, then the one leaving them least short (alike
+        /// within <see cref="Tie"/>), then the cheapest. None that keeps them as warm: it stays on rather than leave them cold.
+        /// </summary>
+        public static int Swap(IList<Piece> worn, int old, IList<Piece> offered, Func<int, int, bool> clashWorn, float bareMin, float bareMax, float low, float high, float room)
+        {
+            if (worn == null || old < 0 || old >= worn.Count || offered == null) return -1;
+            float cold = 0f, heat = 0f;
+            foreach (var w in worn)
+            {
+                cold += w.cold;
+                heat += w.heat;
+            }
+            float min = bareMin - cold, max = bareMax + heat;
+            float before = Short(min, max, low, high);
+            bool safe = SafeThrough(min, max, low, high);
+            int best = -1;
+            float bestShort = 0f, bestCost = 0f;
+            for (int o = 0; o < offered.Count; o++)
+            {
+                if (!clashWorn(o, old)) continue;
+                bool more = false;
+                for (int w = 0; w < worn.Count && !more; w++)
+                    if (w != old && clashWorn(o, w))
+                        more = true;
+                if (more) continue;
+                var p = offered[o];
+                float cost = p.worth - worn[old].worth;
+                if (cost > room + 0.01f) continue;
+                float aMin = min + worn[old].cold - p.cold, aMax = max - worn[old].heat + p.heat;
+                float s = Short(aMin, aMax, low, high);
+                if (s > before + MinGain || safe && !SafeThrough(aMin, aMax, low, high)) continue;
+                bool better = best < 0 || p.fit > offered[best].fit
+                              || p.fit == offered[best].fit && (s < bestShort - Tie || s <= bestShort + Tie && cost < bestCost);
+                if (!better) continue;
+                best = o;
+                bestShort = s;
+                bestCost = cost;
+            }
+            return best;
+        }
+
         // ---------------- Why they still go ----------------
 
         /// <summary>Rimfolk's own visitors go on once the cold or heat starts to hurt them this much (early, before the game's own).</summary>

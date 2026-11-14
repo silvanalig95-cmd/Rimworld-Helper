@@ -25,6 +25,7 @@ public static class WeatherDressTests
         Pieces(C);
         Worth(C);
         Pick(C);
+        Hindering(C);
         TheSave(C);
         Leaving(C);
         Pool(root, C);
@@ -251,6 +252,38 @@ public static class WeatherDressTests
         C(cv.on.Count == 1 && cv.on[0] == 1 && WeatherDressMath.SafeThrough(cv.comfyMin, cv.comfyMax, -30f, -10f), "but a coat that alone keeps out the cold before one that doesn't");
     }
 
+    // ---------------- A piece that hinders them ----------------
+
+    private static void Hindering(Action<bool, string> C)
+    {
+        C(WeatherDressMath.OutOfPlace(true, false, false), "a piece that slows or hinders them, that their kind didn't ask for, comes off (the free warm layer's straitjacket)");
+        C(!WeatherDressMath.OutOfPlace(true, true, false), "never armour, a title's or a role's apparel, however it hinders");
+        C(!WeatherDressMath.OutOfPlace(true, false, true), "never what their kind requires or asks for by its apparel tags");
+        C(!WeatherDressMath.OutOfPlace(false, false, false), "a plain piece that doesn't hinder stays");
+
+        // Worn: a sash, the straitjacket (1.6 x cloth 18 = 28.8 cold, 3.6 heat), a visage mask. Bare 16 to 26.
+        var worn = new List<P> { new P(1.8f, 1.8f, 20f), new P(28.8f, 3.6f, 60f), new P(0.5f, 0.5f, 30f) };
+        // On offer: a cloth parka and a cloth jacket (Shell, the straitjacket's place), a tuque (the mask's place), a coat
+        // that would take the sash's place too.
+        var offered = new List<P> { new P(36f, 0f, 120f, 2), new P(14.4f, 5.4f, 90f, 2), new P(9f, 0f, 30f, 2), new P(40f, 2f, 100f, 2) };
+        bool Clash(int o, int w) => (o == 0 || o == 1) && w == 1 || o == 2 && w == 2 || o == 3 && (w == 0 || w == 1);
+        int mild = WeatherDressMath.Swap(worn, 1, offered, Clash, 16f, 26f, 10f, 20f, 999f);
+        C(mild == 1, "whatever the weather: on a mild day, the jacket of their kind, the cheapest that keeps them as comfortable");
+        int cold = WeatherDressMath.Swap(worn, 1, offered, Clash, 16f, 26f, -24f, -12f, 999f);
+        C(cold == 0, "on a night of -24, the parka: a jacket would leave them colder than they came");
+        C(WeatherDressMath.Swap(worn, 1, offered, Clash, 16f, 26f, -24f, -12f, 20f) == -1, "within the same worth budget, or it stays on");
+        C(WeatherDressMath.Swap(worn, 1, new List<P> { offered[1] }, (o, w) => w == 1, 16f, 26f, -24f, -12f, 999f) == -1,
+            "none that keeps them as warm (only a jacket on offer at -24): it stays on rather than leave them colder");
+        C(WeatherDressMath.Swap(worn, 1, offered, Clash, 16f, 26f, -50f, -40f, 999f) == 0, "past the extremes still swapped for a warmer one: never colder than they came");
+        var onlyWide = new List<P> { offered[3] };
+        C(WeatherDressMath.Swap(worn, 1, onlyWide, (o, w) => w == 0 || w == 1, 16f, 26f, -24f, -12f, 999f) == -1,
+            "a piece that would take more than its place (the sash too) isn't the swap");
+        var stranger = new List<P> { new P(36f, 0f, 100f, 0), new P(36f, 0f, 120f, 2) };
+        C(WeatherDressMath.Swap(worn, 1, stranger, (o, w) => w == 1, 16f, 26f, -24f, -12f, 999f) == 1, "their own kind's piece first");
+        C(WeatherDressMath.Swap(worn, 7, offered, Clash, 16f, 26f, 10f, 20f, 999f) == -1 && WeatherDressMath.Swap(null, 0, offered, Clash, 16f, 26f, 10f, 20f, 999f) == -1,
+            "nothing to swap: nothing done");
+    }
+
     // ---------------- The player's case ----------------
 
     private static void TheSave(Action<bool, string> C)
@@ -273,6 +306,11 @@ public static class WeatherDressTests
         C(c.on.Contains(0) && c.off.Contains(1), "now a teal parka (their coat's colour by their kind) in place of the duster");
         C(WeatherDressMath.Outcome(nowMin, nowMax, c.comfyMin, c.comfyMax, -24f, -12f) == WeatherDressMath.Dressing.Dressed && WeatherDressMath.SafeThrough(c.comfyMin, c.comfyMax, -24f, -12f),
             "and the night on the far meadow no longer hurts them: they stay");
+        // Human531631 came in the game's free warm layer, Vanilla Anomaly Expanded's straitjacket (MoveSpeed -1, tagged only
+        // VAE_Straitjacket, not of the wayfarer's kind): it comes off for the parka.
+        var jacketed = new List<P> { new P(1.8f, 1.8f, 20f), new P(28.8f, 3.6f, 60f), new P(0.5f, 0.5f, 30f) };
+        C(WeatherDressMath.OutOfPlace(true, false, false) && WeatherDressMath.Swap(jacketed, 1, offered, (o, w) => o == 0 && w == 1, bare, top, -24f, -12f, 510f) == 0,
+            "and the wayfarer the game put in a straitjacket comes in a parka instead");
     }
 
     // ---------------- Why they still go ----------------
@@ -336,6 +374,13 @@ public static class WeatherDressTests
         C(dress.Contains("[HarmonyPatch(typeof(TransitionAction_Message), nameof(TransitionAction_Message.DoAction))]") && dress.Contains("\"MessageVisitorsDangerousTemperature\".Translate(plural, f.Name)")
           && dress.Contains("a.message = WeatherDressMath.GameKey(cold, heat).Translate(plural, f.Name);"),
             "the game's own leaving for the temperature stays, said as the extreme cold or heat");
+        C(Regex.IsMatch(dress, @"float room = RoomFor\(p, hostile\);\s*room -= SwapHindering\(p, tech, low, high, room\);\s*float nowMin = Min\(p\), nowMax = Max\(p\);\s*if \(WeatherDressMath\.Short\(nowMin, nowMax, low, high\) <= WeatherDressMath\.Enough\)")
+          && dress.Contains("var plan = Make(p, low, high, nowMin, nowMax, tech, hostile, Math.Max(0f, room));"),
+            "a piece that hinders them is swapped first, whatever the weather, within the same worth budget");
+        C(dress.Contains("WeatherDressMath.OutOfPlace(Hinders(a.def), Kept(a, p), AskedFor(a.def, p.kindDef))") && dress.Contains("WeatherDressMath.Swap(wornPieces, old, pieces,")
+          && dress.Contains("PutOn(p, offered[i], new List<Apparel> { a })"), "by the pure rule, the swapped piece gone as every replaced piece is");
+        C(dress.Contains("kind.apparelRequired.Contains(d)") && dress.Contains("kind.apparelTags.Any(t => tags.Contains(t))") && dress.Contains("r.ApparelDef == d")
+          && dress.Contains("tags.Contains(r.RequiredTag)") && dress.Contains("r.AlternateTagChoices.Any("), "what their kind requires or asks for by its tags is theirs to keep");
         C(Code("Camps/CampWeather.cs").Contains("added.AddRange(WeatherDress.Layers(p, low, high, tech, f.HostileTo(Faction.OfPlayer)));")
           && Code("Camps/CampWeather.cs").Contains("WeatherDress.Kept(a, p)"), "camps dress the same way, their winter clothes never over armour");
         string visitors = Code("Visitors/Visitors.cs");

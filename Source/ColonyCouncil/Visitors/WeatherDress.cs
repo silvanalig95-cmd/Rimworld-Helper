@@ -19,7 +19,9 @@ namespace ColonyCouncil
     /// way, in their faith's style and their kind's colours, never taking off armour, belts, gear or what a title or role
     /// asks of them, and within what their clothes may cost (a raider's close to what it was). Only where it keeps them
     /// safe through the stay: past that, the extreme cold or heat, they come as they are and the game's own leaving
-    /// stays, and the message says it was the extreme cold or heat (<see cref="Patch_WeatherLeaveWords"/>). Camps dress
+    /// stays, and the message says it was the extreme cold or heat (<see cref="Patch_WeatherLeaveWords"/>). Whatever the
+    /// weather, a piece they came in that hinders them and their kind didn't ask for (the game's free warm layer's
+    /// straitjacket) is swapped first for a plain piece of their age as warm (<see cref="SwapHindering"/>). Camps dress
     /// the same way for their own stay (CampWeather.Dress). Nothing is shown for it, and nothing is saved.
     /// </summary>
     public static class WeatherDress
@@ -177,25 +179,43 @@ namespace ColonyCouncil
 
         private static float Max(Pawn p) => p.GetStatValue(StatDefOf.ComfyTemperatureMax);
 
-        private static Plan Make(Pawn p, float low, float high, float nowMin, float nowMax, TechLevel tech, bool hostile)
+        /// <summary>What they wear as the pick sees it, and how comfortable they would be with nothing on.</summary>
+        private static List<WeatherDressMath.Piece> Worn(Pawn p, List<Apparel> worn, float nowMin, float nowMax, out float bareMin, out float bareMax, out float wornWorth)
         {
-            var body = p.RaceProps.body;
-            var worn = p.apparel.WornApparel.ToList();
-            var wornPieces = new List<WeatherDressMath.Piece>();
-            float bareMin = nowMin, bareMax = nowMax, wornWorth = 0f;
+            var pieces = new List<WeatherDressMath.Piece>();
+            bareMin = nowMin;
+            bareMax = nowMax;
+            wornWorth = 0f;
             foreach (var a in worn)
             {
                 float c = Cold(a), h = Heat(a);
                 bareMin += c;
                 bareMax -= h;
                 wornWorth += a.MarketValue;
-                wornPieces.Add(new WeatherDressMath.Piece(c, h, a.MarketValue, 0, Kept(a, p)));
+                pieces.Add(new WeatherDressMath.Piece(c, h, a.MarketValue, 0, Kept(a, p)));
             }
+            return pieces;
+        }
+
+        /// <summary>How much more their clothes may be worth when they're dressed (WeatherDressMath.Room).</summary>
+        private static float RoomFor(Pawn p, bool hostile)
+        {
+            Prices();
+            return WeatherDressMath.Room(hostile, p.apparel.WornApparel.Sum(a => a.MarketValue), p.kindDef?.apparelMoney.max ?? 0f, parka, tuque);
+        }
+
+        private static WeatherDressMath.Piece Offer(ThingStuffPair pa, Pawn p, Ideo ideo) =>
+            new WeatherDressMath.Piece(Cold(pa), Heat(pa), pa.Price, WeatherDressMath.Fit(TheirKind(pa.thing, p), ideo?.GetStyleFor(pa.thing) != null));
+
+        private static Plan Make(Pawn p, float low, float high, float nowMin, float nowMax, TechLevel tech, bool hostile, float room = -1f)
+        {
+            var body = p.RaceProps.body;
+            var worn = p.apparel.WornApparel.ToList();
+            var wornPieces = Worn(p, worn, nowMin, nowMax, out float bareMin, out float bareMax, out float wornWorth);
             bool needCold = low < nowMin, needHeat = high > nowMax;
             var ideo = ModsConfig.IdeologyActive ? p.Ideo : null;
             var offered = Pairs.Where(pa => (needCold && Cold(pa) > 0f || needHeat && Heat(pa) > 0f) && Fits(pa, p, tech)).ToList();
-            var pieces = offered.Select(pa => new WeatherDressMath.Piece(Cold(pa), Heat(pa), pa.Price,
-                WeatherDressMath.Fit(TheirKind(pa.thing, p), ideo?.GetStyleFor(pa.thing) != null))).ToList();
+            var pieces = offered.Select(pa => Offer(pa, p, ideo)).ToList();
             var withWorn = new Dictionary<long, bool>();
             var withOffered = new Dictionary<long, bool>();
             bool ClashWorn(int o, int w)
@@ -211,7 +231,7 @@ namespace ColonyCouncil
                 return v;
             }
             Prices();
-            float room = WeatherDressMath.Room(hostile, wornWorth, p.kindDef?.apparelMoney.max ?? 0f, parka, tuque);
+            if (room < 0f) room = WeatherDressMath.Room(hostile, wornWorth, p.kindDef?.apparelMoney.max ?? 0f, parka, tuque);
             var choice = WeatherDressMath.Choose(wornPieces, pieces, ClashWorn, ClashOffered, bareMin, bareMax, low, high, room);
             return new Plan { worn = worn, offered = offered, choice = choice };
         }
@@ -226,24 +246,77 @@ namespace ColonyCouncil
                 var pa = plan.offered[o];
                 var off = p.apparel.WornApparel.Where(w => !ApparelUtility.CanWearTogether(w.def, pa.thing, body)).ToList();
                 if (off.Any(w => Kept(w, p))) continue;
-                var ap = (Apparel)ThingMaker.MakeThing(pa.thing, pa.stuff);
-                PawnGenerator.PostProcessGeneratedGear(ap, p);
-                PawnApparelGenerator.PostProcessApparel(ap, p);
-                if (!EquipmentUtility.CanEquip(ap, p))
-                {
-                    ap.Destroy();
-                    continue;
-                }
-                foreach (var w in off)
-                {
-                    p.apparel.Remove(w);
-                    w.Destroy();
-                }
-                p.apparel.Wear(ap, false);
-                put.Add(ap);
+                var ap = PutOn(p, pa, off);
+                if (ap != null) put.Add(ap);
             }
             put.RemoveAll(a => a.Destroyed || a.Wearer != p);
             return put;
+        }
+
+        /// <summary>One piece made and put on, in their kind's colours and faith's style, if the game lets them wear it; what it takes the place of is gone.</summary>
+        private static Apparel PutOn(Pawn p, ThingStuffPair pa, List<Apparel> off)
+        {
+            var ap = (Apparel)ThingMaker.MakeThing(pa.thing, pa.stuff);
+            PawnGenerator.PostProcessGeneratedGear(ap, p);
+            PawnApparelGenerator.PostProcessApparel(ap, p);
+            if (!EquipmentUtility.CanEquip(ap, p))
+            {
+                ap.Destroy();
+                return null;
+            }
+            foreach (var w in off)
+            {
+                p.apparel.Remove(w);
+                w.Destroy();
+            }
+            p.apparel.Wear(ap, false);
+            return ap;
+        }
+
+        /// <summary>A piece their kind requires (apparelRequired, a specific requirement's piece or tag) or asks for by its apparel tags.</summary>
+        private static bool AskedFor(ThingDef d, PawnKindDef kind)
+        {
+            if (kind == null || d?.apparel == null) return false;
+            if (kind.apparelRequired != null && kind.apparelRequired.Contains(d)) return true;
+            var tags = d.apparel.tags;
+            if (tags != null && kind.apparelTags != null && kind.apparelTags.Any(t => tags.Contains(t))) return true;
+            if (kind.specificApparelRequirements != null)
+                foreach (var r in kind.specificApparelRequirements)
+                {
+                    if (r == null) continue;
+                    if (r.ApparelDef == d) return true;
+                    if (tags == null) continue;
+                    if (!r.RequiredTag.NullOrEmpty() && tags.Contains(r.RequiredTag)) return true;
+                    if (r.AlternateTagChoices != null && r.AlternateTagChoices.Any(c => c.tag != null && tags.Contains(c.tag))) return true;
+                }
+            return false;
+        }
+
+        /// <summary>
+        /// A piece they came in that hinders them and that their kind didn't ask for (the game's free warm layer's
+        /// straitjacket: WeatherDressMath.OutOfPlace) is swapped for a plain piece of their age that keeps them as warm for
+        /// the stay, whatever the weather (WeatherDressMath.Swap), within <paramref name="room"/>. What the swaps cost.
+        /// </summary>
+        private static float SwapHindering(Pawn p, TechLevel tech, float low, float high, float room)
+        {
+            float spent = 0f;
+            var body = p.RaceProps.body;
+            foreach (var a in p.apparel.WornApparel.ToList())
+            {
+                if (a.Destroyed || a.Wearer != p || !WeatherDressMath.OutOfPlace(Hinders(a.def), Kept(a, p), AskedFor(a.def, p.kindDef))) continue;
+                var worn = p.apparel.WornApparel.ToList();
+                int old = worn.IndexOf(a);
+                var wornPieces = Worn(p, worn, Min(p), Max(p), out float bareMin, out float bareMax, out _);
+                var offered = Pairs.Where(pa => !ApparelUtility.CanWearTogether(pa.thing, a.def, body) && Fits(pa, p, tech)).ToList();
+                var ideo = ModsConfig.IdeologyActive ? p.Ideo : null;
+                var pieces = offered.Select(pa => Offer(pa, p, ideo)).ToList();
+                int i = WeatherDressMath.Swap(wornPieces, old, pieces, (o, w) => !ApparelUtility.CanWearTogether(offered[o].thing, worn[w].def, body),
+                    bareMin, bareMax, low, high, room - spent);
+                if (i < 0) continue;
+                float was = a.MarketValue;
+                if (PutOn(p, offered[i], new List<Apparel> { a }) != null) spent += offered[i].Price - was;
+            }
+            return spent;
         }
 
         private static bool Dressable(Pawn p) => p?.apparel != null && p.RaceProps?.Humanlike == true && !p.Dead;
@@ -264,7 +337,8 @@ namespace ColonyCouncil
 
         /// <summary>
         /// Dresses someone about to appear on <paramref name="map"/> for its next <paramref name="hours"/>, if clothing of their
-        /// people's age keeps them safe through it; past that they come as they are.
+        /// people's age keeps them safe through it; past that they come as they are. A piece they came in that hinders them
+        /// is swapped first, whatever the weather.
         /// </summary>
         public static WeatherDressMath.Dressing ForStay(Pawn p, Map map, int hours)
         {
@@ -272,9 +346,13 @@ namespace ColonyCouncil
             var tech = Peoples.TechOf(p.Faction);
             if ((int)tech < WeatherDressMath.Neolithic) return WeatherDressMath.Dressing.AsTheyAre;
             var (low, high) = Stay(map, hours);
+            bool hostile = p.Faction.HostileTo(Faction.OfPlayer);
+            // First a piece that hinders them comes off for a plain one as warm, whatever the weather; then the weather.
+            float room = RoomFor(p, hostile);
+            room -= SwapHindering(p, tech, low, high, room);
             float nowMin = Min(p), nowMax = Max(p);
             if (WeatherDressMath.Short(nowMin, nowMax, low, high) <= WeatherDressMath.Enough) return WeatherDressMath.Dressing.AsTheyAre;
-            var plan = Make(p, low, high, nowMin, nowMax, tech, p.Faction.HostileTo(Faction.OfPlayer));
+            var plan = Make(p, low, high, nowMin, nowMax, tech, hostile, Math.Max(0f, room));
             var outcome = WeatherDressMath.Outcome(nowMin, nowMax, plan.choice.comfyMin, plan.choice.comfyMax, low, high);
             if (outcome == WeatherDressMath.Dressing.Dressed) Apply(p, plan);
             return outcome;

@@ -154,20 +154,26 @@ tree at once, alongside whatever runs. Each piece is merged as its own release, 
   - Built: `Source/ColonyCouncil/Visitors/WeatherDressMath.cs` (pure, linked: `Qualifies` and its `Arrival`, `Came`,
     `Who`; `ArrivalHours` 48, `VisitHours`, `Enough` 4 degrees, `Outcome` AsTheyAre, Dressed, PastTheirClothes;
     `Armour` 0.45 of the material or 0.3 sharp of its own, `Kept`, `Offered`, `AgeFits`, `Fit`; `Room` with `FreeShare`
-    1.3, `PieceShare` 1.5, `HostileShare` 0.15; `Choose`, five layers, `MinGain` 0.5, `Tie` 2; `Suffering` 0.04,
-    `GameLeaves` 0.15, `Suffers`, `NightWhy`, `VisitKey`, `GameKey`). `Source/ColonyCouncil/Visitors/WeatherDress.cs`
+    1.3, `PieceShare` 1.5, `HostileShare` 0.15; `Choose`, five layers, `MinGain` 0.5, `Tie` 2; `OutOfPlace` and `Swap`
+    for a piece that hinders; `Suffering` 0.04, `GameLeaves` 0.15, `Suffers`, `NightWhy`, `VisitKey`, `GameKey`). `Source/ColonyCouncil/Visitors/WeatherDress.cs`
     (the pool, `Pairs`, each plain piece in its cheapest, warmest and coolest material; `IsArmour`, `Kept` with the
     title's and role's apparel, `Fits`; `Stay` from `CampWeather.StayRange`; the plan and `Apply` with the kind's
     colours, faith's style and quality, `EquipmentUtility.CanEquip`; `Layers` for camps, `ForStay` with the verdict;
-    `HowCame`, `Arriving`, `OnSpawn`, `AsTheyCame`; `LeaveWords`; `Patch_ArrivalDress`, a prefix on `GenSpawn.Spawn`,
+    `AskedFor` and `SwapHindering`, run first in `ForStay`; `HowCame`, `Arriving`, `OnSpawn`, `AsTheyCame`; `LeaveWords`; `Patch_ArrivalDress`, a prefix on `GenSpawn.Spawn`,
     and `Patch_WeatherLeaveWords` on `TransitionAction_Message.DoAction`). `Visitors/Visitors.cs`: `MakePeople`
     dresses a visit for its hours and nights (the robbed as they were left), `Suffering`/`SufferingFrom` through the
     pure rule, `WeatherWhy`, `Night`, `SafeOvernight` by the forecast to first light out in the open.
     `Visitors/VisitorWords.cs`: the message by why. `Camps/CampWeather.cs`: `Dress` through `WeatherDress.Layers`, the
     winter folk's own clothes never over a kept piece. Keys in `Languages/English/Keyed/Rimfolk_Visitors.xml`
     (`CC_Visit_Weather_cold`, `_heat`, `_hunger` in place of `CC_Visit_Weather`; `CC_WeatherLeave_Cold`, `_Heat`). Tests
-    `Tools/Tests/WeatherDressTests.cs` (100 checks: who and who not, the line, the pieces, the age, the worth, the pick,
-    the player's save and pool, the seams). Nothing saved, no Sched slot, under the deeper game hooks setting.
+    `Tools/Tests/WeatherDressTests.cs` (who and who not, the line, the pieces, the age, the worth, the pick, the swap of
+    a piece that hinders, the player's save and pool, the seams). Nothing saved, no Sched slot, under the deeper game hooks setting.
+  - A piece that hinders them (the coordinator's follow-up of the same day, from the straitjacket the game's free warm
+    layer put on Human531631): whatever the weather, a piece someone came in that lowers their moving, work, aim, hit or
+    dodge, that their kind neither requires nor asks for by its tags (`apparelRequired`, `apparelTags`, a specific
+    requirement) and that isn't kept (armour, a title's or a role's apparel), is swapped first for a plain piece of their
+    age that takes exactly its place and keeps them as warm for the stay, their kind's first, within the same worth
+    budget, the old piece destroyed; with nothing as warm on offer it stays on.
   - Covered, as they appear on a home map: the game's visitors, trade caravans, travellers, quest guests, lodgers,
     refugees and beggars, Royalty's envoys and bestowers, allies, raids, sieges and ambushes (on foot, by pod or
     shuttle), Hospitality's guests, other mods' arrivals through the game's spawning, all of Rimfolk's (visits, envoys,
@@ -187,7 +193,8 @@ tree at once, alongside whatever runs. Each piece is merged as its own release, 
     vests, plate and belts still on; a killed raider drops what they wore, worth about what it would have been. 3. A
     heat wave: cowboy hats and dusters. 4. A cold snap far past anything their clothes keep out (say -60 °C): they come
     as they are and leave, and the message says the extreme cold. 5. A crashed refugee pod in the frost: the survivor is
-    as the crash left them. 6. Mild weather: nobody changes.
+    as the crash left them. 6. Mild weather: nobody changes, but for 7. 7. A visitor the game dressed in Vanilla Anomaly
+    Expanded's straitjacket comes in a plain coat of their kind instead: a jacket on a mild day, a parka in the frost.
 - 0.231.2, **The best meals on a reserved
   shelf** (14 November 2026; the player's words, with a screenshot of the Ballroom's wooden big shelf reserving "Any
   meals", 3 slots, 4 per stack, Always, and Wood: "i think the shelf reservation still don't prioritize the "best" meal,

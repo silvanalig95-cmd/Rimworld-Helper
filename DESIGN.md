@@ -2812,6 +2812,17 @@ clothing".
   comfortable enough, their kind's and then the cheapest; else the one that leaves them least short (within two degrees,
   their kind's, then the cheapest). A layer of their own gives way only to one two degrees better. Camps dress through
   the same pick (`CampWeather.Dress`, after their winter folk's own clothes, which now never go over armour).
+- **A piece that hinders them** (the coordinator's follow-up, the same day). The game's free warm layer takes any cheap
+  warm torso piece without looking at its tags, and put Vanilla Anomaly Expanded's straitjacket on one of the convoy's
+  wayfarers (Human531631). Whatever the weather, a piece someone came in that lowers their moving, work, aim, hit or
+  dodge (the same rule that keeps such pieces off the offer), that their kind neither requires nor asks for (its
+  `apparelRequired`, its `apparelTags`, a specific requirement's piece or tag) and that isn't kept (armour, a title's or a
+  role's apparel), is swapped first for a plain piece of their age that takes exactly its place and keeps them as warm for
+  the stay (no more than half a degree further from comfortable, and still safe if they were): their kind's first, then
+  the one leaving them least short, then the cheapest, within the same worth budget, the old piece gone
+  (`WeatherDressMath.OutOfPlace`, `Swap`; `WeatherDress.SwapHindering`, at the head of `ForStay`). With nothing as warm
+  on offer, it stays on rather than leave them colder. On a mild day the wayfarer comes in a jacket of their kind, on a
+  night of -24 in a parka.
 - **Still going for the weather.** Rimfolk's own visitors go on at 0.04 hypothermia or heatstroke and the game's own
   groups at 0.15 (`Trigger_PawnExperiencingDangerousTemperatures`), as before; dressed for it, only the extremes get
   that far. Rimfolk's night-out check follows the same line: safe through the night to first light on the forecast, as
@@ -2821,7 +2832,7 @@ clothing".
   extreme cold or the extreme heat, whichever has taken hold of them (`Patch_WeatherLeaveWords` on
   `TransitionAction_Message.DoAction`, `CC_WeatherLeave_Cold`, `_Heat`). Nothing else is shown, and nothing is saved.
 - Code: `Visitors/WeatherDressMath.cs` (pure, linked: who, the line, the pieces, the age, the worth, the pick, the
-  leaving), `Visitors/WeatherDress.cs` (the pool, the pieces, the stay, the plan and putting it on, the arrival hook, the
+  swap of a piece that hinders, the leaving), `Visitors/WeatherDress.cs` (the pool, the pieces, the stay, the plan and putting it on, the arrival hook, the
   words), `Visitors/Visitors.cs` (the visit's own dressing, `Suffering`, `WeatherWhy`, `SafeOvernight`),
   `Visitors/VisitorWords.cs`, `Camps/CampWeather.cs`, `Languages/English/Keyed/Rimfolk_Visitors.xml`; tests
   `Tools/Tests/WeatherDressTests.cs`. Under the deeper game hooks setting; no Sched slot.
