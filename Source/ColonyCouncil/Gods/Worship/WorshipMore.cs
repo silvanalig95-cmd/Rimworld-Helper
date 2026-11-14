@@ -244,7 +244,7 @@ namespace ColonyCouncil
             foreach (var s in Shrines.Of(map, null))
             {
                 var g = Gods.ById(s.god);
-                if (g == null || !GodWorshipDef.TakesOfferings(g) || b.offerings.Any(o => o != null && o.shrine == s.thing && o.fate == OfferingFate.Waiting)) continue;
+                if (g == null || !GodWorshipDef.GiftsLeft(g) || b.offerings.Any(o => o != null && o.shrine == s.thing && o.fate == OfferingFate.Waiting)) continue;
                 b.offerings.Add(new OfferingRecord { shrine = s.thing, god = g.id, home = Gods.HomeKey(map), chosen = Worship.Now });
             }
             Offerings.Hourly(b, map, Worship.Now);

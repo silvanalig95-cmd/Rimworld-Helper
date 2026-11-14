@@ -37,7 +37,9 @@ namespace ColonyCouncil
         /// <summary>Murmur, "a croaking in the wells": a deep croak, frogs, water at the well, rain within the hour, wells run clean.</summary>
         Rain,
         /// <summary>Ducat, "a glint": coins glint in the stores, traders pay better, a few coins trail toward the gate.</summary>
-        Glint
+        Glint,
+        /// <summary>Tamiu (Mog), "the cats keeping watch": from her coming to her going, the rats run off, the cats sit facing the graves.</summary>
+        Watch
     }
 
     /// <summary>A plant as a presence's growth sees it.</summary>
@@ -336,8 +338,18 @@ namespace ColonyCouncil
             return ticks;
         }
 
-        /// <summary>The presence stays while the god walks the land (the Old Horn grazing, the Guest under the roof): this much left at least while it is here.</summary>
-        public static bool HeldWhileHere(PresenceEffect e) => e == PresenceEffect.Grazing || e == PresenceEffect.Warmth;
+        /// <summary>
+        /// The presence stays while the god walks the land (the Old Horn grazing, the Guest under the roof, Tamiu among the
+        /// graves): this much left at least while it is here, and begun again on the hour when another's has passed and it is
+        /// still here.
+        /// </summary>
+        public static bool HeldWhileHere(PresenceEffect e) => e == PresenceEffect.Grazing || e == PresenceEffect.Warmth || e == PresenceEffect.Watch;
+
+        /// <summary>Tamiu's watch is hers from her coming to her going: it ends once she has gone (after its first hour), not two hours on.</summary>
+        public static bool EndsWhenGone(PresenceEffect e, bool here, int ticksPassed) => e == PresenceEffect.Watch && !here && ticksPassed >= 2500;
+
+        /// <summary>The cats go and sit facing the graves this likely in an hour of Tamiu's watch (and once as she comes).</summary>
+        public const float WatchHourChance = 0.2f;
 
         public const int HeldTicks = 2 * 2500;
 

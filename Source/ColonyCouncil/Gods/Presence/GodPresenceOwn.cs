@@ -187,8 +187,8 @@ namespace ColonyCouncil
             var def = DefOf(g);
             var own = def?.GetModExtension<OwnPresence>();
             if (g == null || map == null || own == null || !Gods.On || !GodPresenceOwnMath.HeldWhileHere(own.effect)) return;
-            var cur = map.gameConditionManager.GetActiveCondition<GameCondition_GodPresence>();
-            if (cur != null && cur.def == def) return;
+            // Never in place of another presence on the land (its own, or another god's moment): it begins on the hour after that has passed.
+            if (map.gameConditionManager.GetActiveCondition<GameCondition_GodPresence>() != null) return;
             string known = Gods.CardName(g, map);
             var look = GodsWiring.LookOf(g);
             GameCondition_GodPresence.Begin(map, PresenceKind.Appear, g.colour, look?.still ?? 0.5f, known ?? GodLore.LabelFor(Gods.Name(g)), known == null, def, g.Key);
@@ -200,11 +200,22 @@ namespace ColonyCouncil
         /// <summary>The gods' hour (GodsOnMapBook.Hourly): each home map's own presence has its hour (a croak, a call, a dream at dawn).</summary>
         internal static void Hourly(int now)
         {
-            if (now > GameCondition_GodPresence.AnyOwnUntil) return;
             foreach (var map in Homes.All.ToList())
             {
                 var c = On(map);
-                if (c == null) continue;
+                if (c == null)
+                {
+                    // A god whose presence lasts while it walks the land, still here when another's has passed: its own again.
+                    if (map.gameConditionManager.GetActiveCondition<GameCondition_GodPresence>() == null)
+                        foreach (var g in Gods.All)
+                        {
+                            var own = DefOf(g)?.GetModExtension<OwnPresence>();
+                            if (own == null || !GodPresenceOwnMath.HeldWhileHere(own.effect) || Here(g, map) == null) continue;
+                            Quiet(g, map);
+                            break;
+                        }
+                    continue;
+                }
                 try
                 {
                     GodPresenceShows.Hourly(c, map, now);

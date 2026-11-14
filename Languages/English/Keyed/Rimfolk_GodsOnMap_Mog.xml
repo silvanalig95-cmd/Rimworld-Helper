@@ -12,12 +12,6 @@
   <CC_Mog_Came_Text>A {BEAST} has come in from the edge of the land, larger than any lion, gold-eyed, with a collar of lapis and gold that nobody put on her. She is walking toward the graves as if she knows the way.</CC_Mog_Came_Text>
   <CC_Mog_Came_TextKin>A {BEAST} has come in from the edge of the land, larger than any lion, gold-eyed, with a collar of lapis and gold that nobody put on her. Cats are following her, and she is walking toward the graves as if she knows the way.</CC_Mog_Came_TextKin>
 
-  <!-- Her presence on the land while she stays (GameCondition_MogPresence). {NAME} is the colony's name for her, once it knows it is her. -->
-  <CC_Mog_Presence>the cats keeping watch</CC_Mog_Presence>
-  <CC_Mog_Presence_Named>{NAME} keeping watch</CC_Mog_Presence_Named>
-  <CC_Mog_Presence_Desc>A great sand-gold cat is on the land. The rats have run off it, every few hours the colony's cats go and sit facing the graves, and the air by the graves smells of warm stone and resin. Nobody can say why.</CC_Mog_Presence_Desc>
-  <CC_Mog_Presence_NamedDesc>{NAME} is on the land. The rats have run off it, every few hours the colony's cats go and sit facing the graves, and the air by the graves smells of warm stone and resin.</CC_Mog_Presence_NamedDesc>
-
   <!-- ===================== The riddle at the threshold ===================== -->
 
   <!-- Her riddles by the colony's age (0 tribal to 3 spacer): the question (on the card), and its answer (said aloud, or guessed wrongly from another of the age's). -->

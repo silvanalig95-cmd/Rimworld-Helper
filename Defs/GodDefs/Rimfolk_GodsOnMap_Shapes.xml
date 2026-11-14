@@ -74,7 +74,7 @@
     <harmIsWorst>true</harmIsWorst>
     <peace>true</peace>
     <weather>false</weather>
-    <omens><li>Restless</li><li>Calm</li><li>Dream</li></omens>
+    <omens><li>ThrumbosFace</li><li>GrassBowed</li><li>Hoofprint</li></omens>
     <lineTag>bellwether</lineTag>
     <nearWhen><li>Herd</li></nearWhen>
   </ColonyCouncil.GodShapeDef>
@@ -99,7 +99,7 @@
     <stranger>true</stranger>
     <beast>false</beast>
     <weather>false</weather>
-    <omens><li>Dream</li><li>Candle</li><li>Restless</li></omens>
+    <omens><li>Knock</li><li>Footprints</li><li>DogsSilent</li></omens>
     <lineTag>ennu</lineTag>
     <nearWhen><li>Guests</li></nearWhen>
   </ColonyCouncil.GodShapeDef>

@@ -36,7 +36,9 @@ namespace ColonyCouncil
         /// <summary>Murmur: taken down into the well or the wet ground, with a croak from below.</summary>
         Well,
         /// <summary>Ducat: never left lying: given to the next visitor or trader, to carry on.</summary>
-        Given
+        Given,
+        /// <summary>Tamiu (Mog): a cat comes at dawn and eats it, her taking and no theft; else gone by dawn, paw prints where it lay.</summary>
+        Cat
     }
 
     /// <summary>
@@ -56,20 +58,26 @@ namespace ColonyCouncil
         /// <summary>Night, as the ways count it: from nine in the evening to four in the morning.</summary>
         public static bool Night(int hourOfDay) => hourOfDay >= 21 || hourOfDay <= 4;
 
+        /// <summary>Dawn, as the ways count it: five to seven in the morning.</summary>
+        public static bool Dawn(int hourOfDay) => hourOfDay >= 5 && hourOfDay <= 7;
+
         /// <summary>
         /// The god takes it now: before everyone's eyes an hour after it was left when it shows itself plainly (and is the
-        /// kind to take at all), else in its own hour: the shared small hours for most; dawn after a night's frost for Hush;
-        /// a night whose moon shows any face for Selene; by day with a visitor or a trader on the land to give it to for
-        /// Ducat; never for Helios.
+        /// kind to take at all), else in its own hour: the shared small hours for most; dawn after a night's frost for Hush,
+        /// and dawn for Tamiu's cats; a night whose moon shows any face for Selene; by day with a visitor or a trader on the
+        /// land to give it to for Ducat (<paramref name="bearerHere"/>); never for Helios.
         /// </summary>
-        public static bool TakesNow(OfferingWay w, bool plain, int hourOfDay, float hoursWaited, float moonLight, bool visitorHere)
+        public static bool TakesNow(OfferingWay w, bool plain, int hourOfDay, float hoursWaited, float moonLight, bool bearerHere)
         {
             switch (w)
             {
                 case OfferingWay.Never:
                     return false;
                 case OfferingWay.Given:
-                    return visitorHere && hoursWaited >= 1f && hourOfDay >= 7 && hourOfDay <= 20;
+                    return bearerHere && hoursWaited >= 1f && hourOfDay >= 7 && hourOfDay <= 20;
+                case OfferingWay.Cat:
+                    if (plain) return hoursWaited >= 1f;
+                    return hoursWaited >= 3f && Dawn(hourOfDay);
                 case OfferingWay.Moon:
                     if (moonLight <= 0f) return false;
                     return plain ? hoursWaited >= 1f && Night(hourOfDay) : hoursWaited >= 3f && Night(hourOfDay);
@@ -129,5 +137,33 @@ namespace ColonyCouncil
 
         /// <summary>The way's key ending in the words: CC_Wsh_Taken_Way_ and the way.</summary>
         public static string Key(OfferingWay w) => "CC_Wsh_Taken_Way_" + w;
+
+        /// <summary>
+        /// Which of the way's words tell how it went (the key's last part): Felt (its own sign left, nobody saw it go), Plain
+        /// (the god shown plainly, before everyone's eyes), Seen (it went before someone's eyes all the same: a cat ate it,
+        /// a visitor was given it), Bare (Hollin's soil turned with no tree to stand in it), None (Pip's part gone with no
+        /// broken machine to mend: a light winks), Only (the Hunger found nothing else near to take).
+        /// </summary>
+        public static readonly string[] Variants = { "Felt", "Plain", "Seen", "Bare", "None", "Only" };
+
+        /// <summary>The words each way has (its key's endings); Returned where it may go back to the colony.</summary>
+        public static string[] VariantsOf(OfferingWay w)
+        {
+            switch (w)
+            {
+                case OfferingWay.Vanish: return new string[0];
+                case OfferingWay.Never: return new[] { "Returned" };
+                case OfferingWay.Given: return new[] { "Seen", "Plain" };
+                case OfferingWay.Moon: return new[] { "Felt", "Plain", "Returned" };
+                case OfferingWay.Sapling: return new[] { "Felt", "Plain", "Bare" };
+                case OfferingWay.Mended: return new[] { "Felt", "Plain", "None" };
+                case OfferingWay.Hunger: return new[] { "Felt", "Plain", "Only" };
+                case OfferingWay.Cat: return new[] { "Felt", "Plain", "Seen" };
+                default: return new[] { "Felt", "Plain" };
+            }
+        }
+
+        /// <summary>The ways a gift may go before someone's eyes without the god shown (and so needn't be noticed gone later).</summary>
+        public static bool SeenGoing(string variant) => variant == "Seen" || variant == "Plain";
     }
 }

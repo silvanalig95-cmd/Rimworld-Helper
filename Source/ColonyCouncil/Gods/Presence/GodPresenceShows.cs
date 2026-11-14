@@ -59,7 +59,7 @@ namespace ColonyCouncil
             switch (c.Effect)
             {
                 case PresenceEffect.Growth:
-                    Dryads(map, Focus(map), 1500);
+                    Dryads(map, c.FocusAt(map), 1500);
                     break;
                 case PresenceEffect.WarmStone:
                     Steam(map, 4);
@@ -102,7 +102,24 @@ namespace ColonyCouncil
                     Beetle(map);
                     CoinTrail(map);
                     break;
+                case PresenceEffect.Watch:
+                {
+                    // The land's rats and mice run off it as she comes, and the cats go to sit with the graves.
+                    int now = Now;
+                    foreach (var p in map.mapPawns.AllPawnsSpawned.Where(p => p.Faction == null && p.RaceProps.Animal && !p.Dead && !p.Downed && Vermin(p.def)).ToList())
+                        p.mindState.exitMapAfterTick = now + Rand.Range(60, 1200);
+                    MogsWays.CatsWatch(map);
+                    break;
+                }
             }
+        }
+
+        /// <summary>Rats and mice (the game's and the player's mods', by name).</summary>
+        private static bool Vermin(ThingDef d)
+        {
+            string n = d?.defName ?? "";
+            return n == "Rat" || n.IndexOf("Rat_", StringComparison.Ordinal) >= 0 || n.IndexOf("Mouse", StringComparison.OrdinalIgnoreCase) >= 0
+                   || n.IndexOf("Rodent", StringComparison.OrdinalIgnoreCase) >= 0;
         }
 
         // ================= Over the land, where the player looks =================
@@ -136,7 +153,7 @@ namespace ColonyCouncil
                 case PresenceEffect.Growth:
                 {
                     // Leaves and seeds drift toward one place on no wind.
-                    var to = Focus(map).ToVector3Shifted();
+                    var to = c.FocusAt(map).ToVector3Shifted();
                     for (int i = 0; i < 3; i++)
                     {
                         var cell = InView(map, x => x.GetPlant(map) != null);
@@ -208,7 +225,7 @@ namespace ColonyCouncil
                     break;
                 case PresenceEffect.Dark:
                 {
-                    var corner = DarkCell(map);
+                    var corner = c.DarkAt(map);
                     if (corner.IsValid && Find.CameraDriver.CurrentViewRect.ExpandedBy(6).Contains(corner))
                         for (int i = 0; i < 2; i++)
                             GodFx.Throw(Mote(c), (corner + GenRadial.RadialPattern[Rand.Range(0, 30)]).ToVector3Shifted(), map, Rand.Range(0.6f, 1f), Shade, Rand.Range(-20f, 20f), 0.2f, 0f, 1.6f);
@@ -257,10 +274,16 @@ namespace ColonyCouncil
         private static void Rare(GameCondition_GodPresence c, Map map, int now)
         {
             var god = GodPresenceOwn.GodOf(c);
-            // Held while its god walks the land.
+            // Held while its god walks the land (Tamiu's ended once she has gone).
             if (GodPresenceOwnMath.HeldWhileHere(c.Effect))
             {
                 bool here = GodPresenceOwn.Here(god, map) != null;
+                if (GodPresenceOwnMath.EndsWhenGone(c.Effect, here, c.TicksPassed))
+                {
+                    // Its time is up now: the game ends it on its next turn (never from inside its own tick).
+                    c.TicksLeft = 0;
+                    return;
+                }
                 int left = GodPresenceOwnMath.Held(c.TicksLeft, here);
                 if (left != c.TicksLeft)
                 {
@@ -316,12 +339,12 @@ namespace ColonyCouncil
                     FrostByWalls(map, 3);
                     break;
                 case PresenceEffect.Dark:
-                    if (!GodSky.On(map, SkySign.Dark)) DarkCorner(c, map);
                 {
+                    if (!GodSky.On(map, SkySign.Dark)) DarkCorner(c, map);
                     int hour = GenLocalDate.HourOfDay(map);
                     if (!c.whispered && (hour >= 20 || hour <= 4)) c.whispered = Whisper(c, map);
-                }
                     break;
+                }
             }
         }
 
@@ -331,8 +354,8 @@ namespace ColonyCouncil
             var at = Center(map);
             Pawn who = c.Effect switch
             {
-                PresenceEffect.Dark => GodOmens.Witness(map, DarkCell(map).IsValid ? DarkCell(map) : at, 25f),
-                PresenceEffect.Grazing => GodPresenceOwn.Here(GodPresenceOwn.GodOf(c), map) is Pawn g ? GodOmens.Witness(map, g.Position, 30f) : null,
+                PresenceEffect.Dark => GodOmens.Witness(map, c.DarkAt(map).IsValid ? c.DarkAt(map) : at, 25f),
+                PresenceEffect.Grazing or PresenceEffect.Watch => GodPresenceOwn.Here(GodPresenceOwn.GodOf(c), map) is Pawn g ? GodOmens.Witness(map, g.Position, 30f) : null,
                 PresenceEffect.Warmth => map.mapPawns.FreeColonistsSpawned.Where(GodOmens.Awake).FirstOrDefault(p => Hearths(map).Any(f => f.Position.InHorDistOf(p.Position, 8f))),
                 PresenceEffect.MoonSleep => map.mapPawns.FreeColonistsSpawned.Where(p => GodOmens.Awake(p) && !p.Position.Roofed(map)).RandomElementWithFallback(),
                 PresenceEffect.WarmStone => map.mapPawns.FreeColonistsSpawned.Where(GodOmens.Awake).OrderBy(p => p.Position.GetRoof(map) == RoofDefOf.RoofRockThick ? 0 : 1).FirstOrDefault(),
@@ -370,6 +393,9 @@ namespace ColonyCouncil
                     break;
                 case PresenceEffect.WarmStone:
                     if (c.dreamDay != GenLocalDate.DayOfYear(map) && GodPresenceOwnMath.WarmVoiceNow(c.Effect, hour) && WarmVoice(c, map)) c.dreamDay = GenLocalDate.DayOfYear(map);
+                    break;
+                case PresenceEffect.Watch:
+                    if (Rand.Chance(GodPresenceOwnMath.WatchHourChance)) MogsWays.CatsWatch(map);
                     break;
             }
         }
@@ -713,7 +739,7 @@ namespace ColonyCouncil
         }
 
         /// <summary>The corner of the colony the dark keeps: the home ground's cell farthest from its middle, within reach of its people.</summary>
-        private static IntVec3 DarkCell(Map map)
+        internal static IntVec3 DarkCell(Map map)
         {
             var home = map.areaManager.Home;
             var center = Center(map);
@@ -733,7 +759,7 @@ namespace ColonyCouncil
 
         private static void DarkCorner(GameCondition_GodPresence c, Map map)
         {
-            var at = DarkCell(map);
+            var at = c.DarkAt(map);
             if (at.IsValid) GodSky.Stay(map, SkySign.Dark, at, Math.Max(GenDate.TicksPerHour, c.TicksLeft), c.Harsh ? 9f : 7f);
         }
 
@@ -859,7 +885,7 @@ namespace ColonyCouncil
             string tag = GodPresenceOwnMath.TrueDream(raid, visitors, beast != null, rot, sad != null);
             string dir = beast != null ? Direction(map, beast.Position) : "";
             // apart: a dream of someone told aloud at breakfast; the one dreamt of takes no part.
-            string line = GodPresenceOwn.Line(GodPresenceOwn.DreamPool, p, c, tag, (sad?.LabelShort ?? "").Named("OTHER"), dir.Named("DIR"),
+            string line = GodPresenceOwn.Line(GodPresenceOwn.DreamPool, p, c, tag, (sad?.LabelShort ?? "").Named("OTHER"), dir.Named("SITE"),
                 (beast?.KindLabel ?? "").Named("BEAST"));
             if (line.NullOrEmpty()) return false;
             Speech.Say(p, line);

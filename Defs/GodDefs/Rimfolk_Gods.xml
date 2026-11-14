@@ -157,6 +157,8 @@
     <nature>Patient</nature>
     <kind>Ordinary</kind>
     <look>Rimfolk_GodLook_Wild</look>
+    <!-- Its own presence on the land after its moments (Rimfolk_GodPresence_Own.xml; GodPresenceOwn). -->
+    <presence>Rimfolk_GodPresence_Hollin</presence>
     <sacredAnimals>
       <li>Dryad_Basic</li>
       <li>Dryad_Woodmaker</li>
@@ -305,6 +307,8 @@
     <nature>Proud</nature>
     <kind>Ordinary</kind>
     <look>Rimfolk_GodLook_Craft</look>
+    <!-- Its own presence on the land after its moments (Rimfolk_GodPresence_Own.xml; GodPresenceOwn). -->
+    <presence>Rimfolk_GodPresence_Smoulder</presence>
   </ColonyCouncil.GodDef>
 
   <!-- ==================== 3. Bellwether, the Old Horn ==================== -->
@@ -428,6 +432,8 @@
     <nature>Grieving</nature>
     <kind>Ordinary</kind>
     <look>Rimfolk_GodLook_Wild</look>
+    <!-- Its own presence on the land after its moments (Rimfolk_GodPresence_Own.xml; GodPresenceOwn). -->
+    <presence>Rimfolk_GodPresence_Bellwether</presence>
     <sacredAnimals>
       <li>Thrumbo</li>
       <li>AlphaThrumbo</li>
@@ -562,6 +568,8 @@
     <nature>Generous</nature>
     <kind>Ordinary</kind>
     <look>Rimfolk_GodLook_Dead</look>
+    <!-- Its own presence on the land after its moments (Rimfolk_GodPresence_Own.xml; GodPresenceOwn). -->
+    <presence>Rimfolk_GodPresence_Morel</presence>
   </ColonyCouncil.GodDef>
 
   <!-- ==================== 5. Ennu, the Guest ==================== -->
@@ -692,6 +700,8 @@
     <nature>Generous</nature>
     <kind>Ordinary</kind>
     <look>Rimfolk_GodLook_Way</look>
+    <!-- Its own presence on the land after its moments (Rimfolk_GodPresence_Own.xml; GodPresenceOwn). -->
+    <presence>Rimfolk_GodPresence_Ennu</presence>
   </ColonyCouncil.GodDef>
 
   <!-- ==================== 6. Pip, the Hum ==================== -->
@@ -817,6 +827,8 @@
     <nature>Playful</nature>
     <kind>Ordinary</kind>
     <look>Rimfolk_GodLook_Machine</look>
+    <!-- Its own presence on the land after its moments (Rimfolk_GodPresence_Own.xml; GodPresenceOwn). -->
+    <presence>Rimfolk_GodPresence_Pip</presence>
   </ColonyCouncil.GodDef>
 
   <!-- ==================== 7. Cirrus, Who Drifts Above ==================== -->
@@ -960,6 +972,8 @@
     <nature>Capricious</nature>
     <kind>Ordinary</kind>
     <look>Rimfolk_GodLook_Storm</look>
+    <!-- Its own presence on the land after its moments (Rimfolk_GodPresence_Own.xml; GodPresenceOwn). -->
+    <presence>Rimfolk_GodPresence_Cirrus</presence>
   </ColonyCouncil.GodDef>
 
   <!-- ==================== 8. Hush, the Long White ==================== -->
@@ -1076,6 +1090,8 @@
     <nature>Cold</nature>
     <kind>Ordinary</kind>
     <look>Rimfolk_GodLook_Night</look>
+    <!-- Its own presence on the land after its moments (Rimfolk_GodPresence_Own.xml; GodPresenceOwn). -->
+    <presence>Rimfolk_GodPresence_Hush</presence>
   </ColonyCouncil.GodDef>
 
   <!-- ==================== 9. Undertow, the Hunger ==================== -->
@@ -1213,6 +1229,8 @@
     <nature>Jealous</nature>
     <kind>Hunger</kind>
     <look>Rimfolk_GodLook_Void</look>
+    <!-- Its own presence on the land after its moments (Rimfolk_GodPresence_Own.xml; GodPresenceOwn). -->
+    <presence>Rimfolk_GodPresence_Undertow</presence>
   </ColonyCouncil.GodDef>
 
   <!-- ==================== 10. Helios and Selene, the Gift and the Return ==================== -->
@@ -1367,6 +1385,8 @@
     <kind>Ordinary</kind>
     <unmoved>true</unmoved>
     <look>Rimfolk_GodLook_Harvest</look>
+    <!-- Its own presence on the land after its moments (Rimfolk_GodPresence_Own.xml; GodPresenceOwn). -->
+    <presence>Rimfolk_GodPresence_Helios</presence>
   </ColonyCouncil.GodDef>
 
   <ColonyCouncil.GodDef>
@@ -1517,6 +1537,8 @@
     <nature>Cold</nature>
     <kind>Ordinary</kind>
     <look>Rimfolk_GodLook_Healing</look>
+    <!-- Its own presence on the land after its moments (Rimfolk_GodPresence_Own.xml; GodPresenceOwn). -->
+    <presence>Rimfolk_GodPresence_Selene</presence>
   </ColonyCouncil.GodDef>
 
   <!--
@@ -1710,6 +1732,8 @@
     <nature>Proud</nature>
     <kind>Ordinary</kind>
     <look>Rimfolk_GodLook_Mog</look>
+    <!-- Its own presence on the land after its moments (Rimfolk_GodPresence_Own.xml; GodPresenceOwn). -->
+    <presence>Rimfolk_GodPresence_Mog</presence>
     <sacredAnimals>
       <li>Cat</li>
       <li>AEXP_CatSphynx</li>
@@ -1847,6 +1871,8 @@
     <nature>Wrathful</nature>
     <kind>Ordinary</kind>
     <look>Rimfolk_GodLook_Waters</look>
+    <!-- Its own presence on the land after its moments (Rimfolk_GodPresence_Own.xml; GodPresenceOwn). -->
+    <presence>Rimfolk_GodPresence_Murmur</presence>
     <sacredAnimals>
       <li>ColossusToad</li>
     </sacredAnimals>
@@ -1973,6 +1999,8 @@
     <nature>Generous</nature>
     <kind>Ordinary</kind>
     <look>Rimfolk_GodLook_Way</look>
+    <!-- Its own presence on the land after its moments (Rimfolk_GodPresence_Own.xml; GodPresenceOwn). -->
+    <presence>Rimfolk_GodPresence_Ducat</presence>
   </ColonyCouncil.GodDef>
 
 </Defs>

@@ -27,10 +27,8 @@ namespace ColonyCouncil
         public bool neverNamed;
         /// <summary>The motes it sends up over the land (mote things and flecks by name, the loaded ones used).</summary>
         public List<string> motes = new List<string>();
-        /// <summary>The sounds it makes now and then (SoundDefs by name, the loaded ones used).</summary>
+        /// <summary>The sounds it makes as it begins (SoundDefs by name, the loaded ones used).</summary>
         public List<string> sounds = new List<string>();
-        /// <summary>The colour of its motes and sky where it isn't the god's own (r, g, b; alpha unused): white for none.</summary>
-        public Color tint = Color.white;
 
         [Unsaved] private List<Def> moteDefs;
         [Unsaved] private List<SoundDef> soundDefs;
@@ -92,6 +90,14 @@ namespace ColonyCouncil
         /// <summary>The last tick any god's own presence lasts until (the effects' hooks look at nothing after it).</summary>
         internal static int AnyOwnUntil = -1;
 
+        [Unsaved] private IntVec3 focus = IntVec3.Invalid, dark = IntVec3.Invalid;
+
+        /// <summary>Where Hollin's green leans (worked out once a presence, the land's plants being many).</summary>
+        public IntVec3 FocusAt(Map map) => focus.IsValid ? focus : focus = GodPresenceShows.Focus(map);
+
+        /// <summary>The corner the dark keeps (worked out once a presence).</summary>
+        public IntVec3 DarkAt(Map map) => dark.IsValid ? dark : dark = GodPresenceShows.DarkCell(map);
+
         [Unsaved] private OwnPresence own;
         [Unsaved] private bool ownRead;
 
@@ -123,8 +129,30 @@ namespace ColonyCouncil
         /// <summary>How far in it is, 0 to 1, easing in and out over the transition.</summary>
         public float Lerp => GameConditionUtility.LerpInOutValue(this, TransitionTicks);
 
+        [Unsaved] private string nameNow;
+        [Unsaved] private int nameAt = -99999;
+
+        /// <summary>
+        /// The colony's name for the god when it is sure whose presence this is: named at its moment, or known since (a long
+        /// stay: Tamiu among the graves, the Guest under the roof); null otherwise, and always for the Hunger's.
+        /// </summary>
+        public string NameNow
+        {
+            get
+            {
+                if (Own?.neverNamed ?? false) return null;
+                if (!veiled && !godName.NullOrEmpty()) return godName;
+                int now = Find.TickManager?.TicksGame ?? 0;
+                if (now - nameAt < 250) return nameNow;
+                nameAt = now;
+                var g = godKey.NullOrEmpty() || Map == null ? null : Gods.ByKey(godKey);
+                nameNow = g == null ? null : Gods.CardName(g, Map);
+                return nameNow;
+            }
+        }
+
         /// <summary>Named only when the colony is sure whose it is (and never the Hunger's).</summary>
-        public bool Named => !veiled && !godName.NullOrEmpty() && !(Own?.neverNamed ?? false);
+        public bool Named => NameNow != null;
 
         public override string Label
         {
@@ -133,7 +161,8 @@ namespace ColonyCouncil
                 var o = Own;
                 if (o == null)
                     return veiled || godName.NullOrEmpty() ? "CC_GodP_ConditionVeiled".Translate().Resolve() : "CC_GodP_Condition".Translate(godName.Named("NAME")).Resolve();
-                return Named && !o.named.NullOrEmpty() ? o.named.Formatted(godName.Named("NAME")).Resolve() : def.label;
+                string n = NameNow;
+                return n != null && !o.named.NullOrEmpty() ? o.named.Formatted(n.Named("NAME")).Resolve() : def.label;
             }
         }
 
@@ -144,7 +173,8 @@ namespace ColonyCouncil
                 var o = Own;
                 if (o == null)
                     return veiled || godName.NullOrEmpty() ? "CC_GodP_ConditionVeiledDesc".Translate().Resolve() : "CC_GodP_ConditionDesc".Translate(godName.Named("NAME")).Resolve().CapitalizeFirst();
-                string text = Named && !o.namedText.NullOrEmpty() ? o.namedText.Formatted(godName.Named("NAME")).Resolve() : def.description;
+                string n = NameNow;
+                string text = n != null && !o.namedText.NullOrEmpty() ? o.namedText.Formatted(n.Named("NAME")).Resolve() : def.description;
                 var lines = GodPresenceOwn.NumberLines(this);
                 return lines.Count == 0 ? text : text + "\n\n" + string.Join("\n", lines);
             }
@@ -187,7 +217,20 @@ namespace ColonyCouncil
 
         public override float TemperatureOffset() => GodPresenceOwnMath.Temperature(Effect, Strength, Harsh) * GameConditionUtility.LerpInOutValue(this, 2500f);
 
+        [Unsaved] private WeatherDef forced;
+        [Unsaved] private int forcedAt = -99999;
+
+        /// <summary>The weather it brings or holds (GodPresenceOwnMath.Weather), worked out again every 250 ticks (the game asks often).</summary>
         public override WeatherDef ForcedWeather()
+        {
+            int now = Find.TickManager?.TicksGame ?? 0;
+            if (now - forcedAt < 250 && now >= forcedAt) return forced;
+            forcedAt = now;
+            forced = WorkOutWeather();
+            return forced;
+        }
+
+        private WeatherDef WorkOutWeather()
         {
             var e = Effect;
             var map = Map;
@@ -311,6 +354,7 @@ namespace ColonyCouncil
                 cond.godKey = godKey;
                 cond.kind = kind;
                 map.gameConditionManager.RegisterCondition(cond);
+                GodPresenceOwn.Forget(map);
             }
             catch (Exception e)
             {

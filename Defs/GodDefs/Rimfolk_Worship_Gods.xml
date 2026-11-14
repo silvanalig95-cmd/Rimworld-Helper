@@ -13,6 +13,7 @@
   <ColonyCouncil.GodWorshipDef>
     <defName>Rimfolk_Worship_Hollin</defName>
     <gods><li>Hollin</li></gods>
+    <taking>Sapling</taking>
     <likes>
       <li><kind>Plant</kind><weight>1.5</weight></li>
       <li><kind>Medicine</kind><weight>1.2</weight></li>
@@ -30,6 +31,7 @@
   <ColonyCouncil.GodWorshipDef>
     <defName>Rimfolk_Worship_Smoulder</defName>
     <gods><li>Smoulder</li></gods>
+    <taking>Crack</taking>
     <likes>
       <li><kind>Silver</kind><weight>1.7</weight></li>
       <li><kind>Art</kind><weight>1.2</weight></li>
@@ -46,6 +48,7 @@
   <ColonyCouncil.GodWorshipDef>
     <defName>Rimfolk_Worship_Bellwether</defName>
     <gods><li>Bellwether</li></gods>
+    <taking>Grazed</taking>
     <likes>
       <li><kind>Plant</kind><weight>1.4</weight></li>
     </likes>
@@ -61,6 +64,7 @@
   <ColonyCouncil.GodWorshipDef>
     <defName>Rimfolk_Worship_Morel</defName>
     <gods><li>Morel</li></gods>
+    <taking>Rot</taking>
     <likes>
       <li><kind>Meal</kind><weight>1.3</weight></li>
       <li><kind>Plant</kind><weight>1.2</weight></li>
@@ -80,6 +84,7 @@
   <ColonyCouncil.GodWorshipDef>
     <defName>Rimfolk_Worship_Ennu</defName>
     <gods><li>Ennu</li><li>Guest</li></gods>
+    <taking>Guest</taking>
     <likes>
       <li><kind>Meal</kind><weight>1.6</weight></li>
       <li><kind>Textile</kind><weight>1.2</weight></li>
@@ -98,6 +103,7 @@
   <ColonyCouncil.GodWorshipDef>
     <defName>Rimfolk_Worship_Pip</defName>
     <gods><li>Pip</li></gods>
+    <taking>Mended</taking>
     <likes>
       <li><kind>Component</kind><weight>1.7</weight></li>
       <li><kind>Metal</kind><weight>1.1</weight></li>
@@ -115,6 +121,7 @@
   <ColonyCouncil.GodWorshipDef>
     <defName>Rimfolk_Worship_Cirrus</defName>
     <gods><li>Cirrus</li></gods>
+    <taking>TakenUp</taking>
     <likes>
       <li><kind>Art</kind><weight>1.3</weight></li>
       <li><kind>Textile</kind><weight>0.9</weight></li>
@@ -132,6 +139,7 @@
   <ColonyCouncil.GodWorshipDef>
     <defName>Rimfolk_Worship_Hush</defName>
     <gods><li>Hush</li></gods>
+    <taking>Frost</taking>
     <likes>
       <li><kind>Pelt</kind><weight>1.3</weight></li>
       <li><kind>Apparel</kind><weight>1.2</weight></li>
@@ -149,6 +157,7 @@
   <ColonyCouncil.GodWorshipDef>
     <defName>Rimfolk_Worship_Undertow</defName>
     <gods><li>Undertow</li></gods>
+    <taking>Hunger</taking>
     <likes>
       <li><kind>Meat</kind><weight>1.2</weight></li>
       <li><kind>Meal</kind><weight>1.0</weight></li>
@@ -179,6 +188,7 @@
   <ColonyCouncil.GodWorshipDef>
     <defName>Rimfolk_Worship_Helios</defName>
     <gods><li>Helios</li></gods>
+    <taking>Never</taking>
     <takesNoOfferings>true</takesNoOfferings>
     <unmoved>true</unmoved>
     <festivalSeason>1</festivalSeason><festivalDay>7</festivalDay>
@@ -191,6 +201,7 @@
   <ColonyCouncil.GodWorshipDef>
     <defName>Rimfolk_Worship_Selene</defName>
     <gods><li>Selene</li></gods>
+    <taking>Moon</taking>
     <likes>
       <li><kind>Silver</kind><weight>1.4</weight></li>
       <li><kind>Drink</kind><weight>1.1</weight></li>
@@ -209,6 +220,7 @@
   <ColonyCouncil.GodWorshipDef>
     <defName>Rimfolk_Worship_Mog</defName>
     <gods><li>Mog</li></gods>
+    <taking>Cat</taking>
     <likes>
       <li><kind>Fish</kind><weight>1.6</weight></li>
       <li><kind>Textile</kind><weight>1.3</weight></li>
@@ -224,6 +236,7 @@
   <ColonyCouncil.GodWorshipDef>
     <defName>Rimfolk_Worship_Murmur</defName>
     <gods><li>Murmur</li></gods>
+    <taking>Well</taking>
     <likes>
       <li><kind>Drink</kind><weight>1.4</weight></li>
       <li><kind>Plant</kind><weight>1.1</weight></li>
@@ -241,6 +254,7 @@
   <ColonyCouncil.GodWorshipDef>
     <defName>Rimfolk_Worship_Ducat</defName>
     <gods><li>Ducat</li></gods>
+    <taking>Given</taking>
     <likes>
       <li><kind>Silver</kind><weight>1.6</weight></li>
       <li><kind>Art</kind><weight>1.1</weight></li>

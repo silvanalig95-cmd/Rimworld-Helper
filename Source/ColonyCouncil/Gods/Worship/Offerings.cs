@@ -162,7 +162,7 @@ namespace ColonyCouncil
                     if (given == null) continue;
                     var k = Kind(given.def);
                     if (only.HasValue && k != only.Value) continue;
-                    float f = GodWorshipDef.Fit(g, k);
+                    float f = GodWorshipDef.Believed(g, k);
                     if (f <= 0f || f < 0.9f && g.kind != GodKind.Hunger && !only.HasValue) continue;
                     int n;
                     if (given != t)
@@ -205,7 +205,7 @@ namespace ColonyCouncil
             {
                 if (planned >= ADay) break;
                 var g = Gods.ById(s.god);
-                if (g == null || !GodWorshipDef.TakesOfferings(g)) continue;
+                if (g == null || !GodWorshipDef.GiftsLeft(g)) continue;
                 // One at a time at a place.
                 if (b.offerings.Any(o => o != null && o.shrine == s.thing && o.fate == OfferingFate.Waiting)) continue;
                 bool demanded = b.demands.Any(d => d != null && !d.done && !d.met && d.god == g.id && d.home == Gods.HomeKey(map));
@@ -239,6 +239,14 @@ namespace ColonyCouncil
                     if (o.carrier == null) Send(b, o, map);
                     continue;
                 }
+                if ((o.thing == null || o.thing.Destroyed) && OfferingWays.Eaten(o, Gods.ById(o.god)))
+                {
+                    // Tamiu's cat came at dawn and ate it: her taking, seen.
+                    var at = o.cat != null && o.cat.Spawned ? o.cat.Position : o.shrine.Position;
+                    o.thing = null;
+                    Settle(b, o, map, OfferingFate.Taken, at, false, "Seen", "", "");
+                    continue;
+                }
                 if (o.thing == null || o.thing.Destroyed)
                 {
                     // Gone from the place before the god took it: eaten where it lay, or carried off.
@@ -247,6 +255,8 @@ namespace ColonyCouncil
                 }
                 if (!o.thing.Spawned)
                 {
+                    // In the mouth of Tamiu's cat, sent to eat it: told once she has.
+                    if (OfferingWays.Eaten(o, Gods.ById(o.god)) && o.thing.ParentHolder is Pawn_CarryTracker carry && carry.pawn == o.cat) continue;
                     // In someone's pack: a passer-by took it with them.
                     Settle(b, o, map, OfferingFate.Passerby);
                     continue;
@@ -310,7 +320,9 @@ namespace ColonyCouncil
             if (g == null) return;
             bool scoffer = Worship.Scoffer(p);
             p.rotationTracker?.FaceTarget(shrine);
-            string line = Worship.Line("Rimfolk_Pool_Worship_Noticed", p, g, null, Worship.GodOf(p) == g ? "mine" : "theirs");
+            bool mine = Worship.GodOf(p) == g;
+            // What they see where it lay, in the god's own way's words (a sapling, black soil, a warm floor), else the shared ones.
+            string line = OfferingWays.NoticedLine(p, g, mine) ?? Worship.Line("Rimfolk_Pool_Worship_Noticed", p, g, null, mine ? "mine" : "theirs");
             if (!line.NullOrEmpty()) Speech.Say(p, line);
             if (!scoffer) Worship.Glow(shrine.Map, shrine.Position, g);
         }
@@ -436,27 +448,62 @@ namespace ColonyCouncil
                 return;
             }
             float hours = (now - o.placed) / (float)GenDate.TicksPerHour;
-            // Gone by morning, as the gods are felt; before everyone's eyes in a breath of light when the god is drawn near
-            // enough to show itself (the same for this offering at every look) and someone of the colony is there to see it.
-            bool plain = GodNearMath.Plain(GodNear.Of(g, map), Rand.ValueSeeded(o.chosen ^ (o.god * 7919))) && GodWorld.Witnessed(map, o.thing.Position);
-            if (WorshipMath.GodTakesNow(plain, GenLocalDate.HourOfDay(map), hours)) Take(b, o, map, plain);
+            int hour = GenLocalDate.HourOfDay(map);
+            var way = OfferingWays.Of(g);
+            // Its own way's signs while it waits (Hush's frost forming, Helios's noon light), and a cat sent at dawn that never came.
+            OfferingWays.Before(o, map, g, way, hour, hours);
+            if (o.stage == 1 && way == OfferingWay.Cat)
+            {
+                if (hour > 7) Take(b, o, map, false, way, true);
+                return;
+            }
+            // Let go back to the colony: Helios's still there at dusk, Ducat's with nobody to give it to, Selene's after a dark week.
+            if (OfferingWayMath.LetGo(way, hour, hours))
+            {
+                Settle(b, o, map, OfferingFate.Returned, o.thing.Position, false, "Returned");
+                return;
+            }
+            // Gone by morning, as the gods are felt (each god in its own way and hour); before everyone's eyes in a breath of
+            // light when the god is drawn near enough to show itself (the same for this offering at every look) and someone of
+            // the colony is there to see it.
+            bool plain = GodWorshipDef.TakesOfferings(g) && GodNearMath.Plain(GodNear.Of(g, map), Rand.ValueSeeded(o.chosen ^ (o.god * 7919)))
+                         && GodWorld.Witnessed(map, o.thing.Position);
+            if (OfferingWayMath.TakesNow(way, plain, hour, hours, GodsOnMapMath.MoonLight(GodOmens.MoonTonight), OfferingWays.BearerHere(way, map)))
+                Take(b, o, map, plain, way, false);
         }
 
-        /// <summary>The god takes it: gone from the place, with its sign as plainly as it acted, and the favour.</summary>
-        private static void Take(WorshipBook b, OfferingRecord o, Map map, bool plain)
-        {
-            var cell = o.thing.Position;
-            o.thing.Destroy(DestroyMode.Vanish);
-            o.thing = null;
-            Settle(b, o, map, OfferingFate.Taken, cell, plain);
-        }
-
-        private static void Settle(WorshipBook b, OfferingRecord o, Map map, OfferingFate fate, IntVec3 cell = default, bool plain = false)
+        /// <summary>Dev mode: the god takes it now in its own way, whatever the hour (Helios's let go, as at dusk).</summary>
+        internal static void TakeNow(WorshipBook b, OfferingRecord o, Map map)
         {
             var g = Gods.ById(o.god);
+            var way = OfferingWays.Of(g);
+            if (way == OfferingWay.Never) Settle(b, o, map, OfferingFate.Returned, o.thing.Position, false, "Returned");
+            else Take(b, o, map, false, way, false);
+        }
+
+        /// <summary>
+        /// The god takes it in its own way (OfferingWays.Take: a sapling where it lay, a crack, black soil, given to a visitor...),
+        /// with its sign as plainly as it acted, and the favour; or, for Tamiu's cat sent to eat it, once she has.
+        /// </summary>
+        private static void Take(WorshipBook b, OfferingRecord o, Map map, bool plain, OfferingWay way, bool late)
+        {
+            var cell = o.thing.Position;
+            var g = Gods.ById(o.god);
+            if (late) o.stage = 2;
+            string variant = OfferingWays.Take(o, map, g, way, cell, plain, out string extra, out string extra2);
+            if (variant == null) return;
+            o.thing = null;
+            Settle(b, o, map, OfferingFate.Taken, cell, plain, variant, extra, extra2);
+        }
+
+        private static void Settle(WorshipBook b, OfferingRecord o, Map map, OfferingFate fate, IntVec3 cell = default, bool plain = false, string variant = null, string extra = "",
+            string extra2 = "")
+        {
+            var g = Gods.ById(o.god);
+            var way = OfferingWays.Of(g);
             o.fate = fate;
-            // Seen going plainly, nobody needs to notice it gone later.
-            o.noticed = fate != OfferingFate.Taken || plain;
+            // Seen going (plainly, or a cat eating it, a visitor given it), or the kind of way nobody notices gone: nobody needs to notice it later.
+            o.noticed = fate != OfferingFate.Taken || plain || OfferingWayMath.SeenGoing(variant) || !OfferingWayMath.NoticedByDay(way);
             var s = b.ShrineOf(o.shrine);
             if (s != null && s.lastAt == o.placed) s.lastFate = fate;
             if (g == null) return;
@@ -466,18 +513,24 @@ namespace ColonyCouncil
             // stores is nothing to a god whose gifts must go on (givenAway: Ducat).
             var own = GodWorshipDef.For(g);
             bool rotIsTaking = own?.spoiledIsTaken ?? false;
-            float share = fate == OfferingFate.Spoiled ? (rotIsTaking ? 1f : 0.5f) : fate == OfferingFate.Returned ? (own?.givenAway == true ? 0f : 0.25f) : 1f;
+            float share = fate == OfferingFate.Spoiled ? (rotIsTaking ? 1f : 0.5f)
+                : fate == OfferingFate.Returned ? (own?.givenAway == true ? 0f : OfferingWayMath.ReturnedShare(way)) : 1f;
             string place = Worship.ShrineOf(g);
             string what = o.label ?? "?";
             string why = "CC_Wsh_Why_Offering".Translate(what.Named("WHAT"), place.Named("SHRINE")).Resolve();
             Worship.Favour(g, map, o.favour * share, why, FavourSource.Offering);
-            string key = "CC_Wsh_Taken_" + fate + (fate == OfferingFate.Taken ? "_" + Worship.Step(plain) : "");
-            string text = key.Translate(what.Named("WHAT"), place.Named("SHRINE"), Worship.Called(g).Named("GOD"), (o.carrier?.LabelShort ?? "?").Named("PAWN")).Resolve();
+            // The god's own way's words where it has them (OfferingWays.Key: CC_Wsh_Taken_Way_Sapling_Felt...), else the shared ones.
+            string key = (fate == OfferingFate.Taken || fate == OfferingFate.Returned) && variant != null ? OfferingWays.Key(way, variant) : null;
+            bool ownWords = key != null;
+            key ??= "CC_Wsh_Taken_" + fate + (fate == OfferingFate.Taken ? "_" + Worship.Step(plain) : "");
+            string text = key.Translate(what.Named("WHAT"), place.Named("SHRINE"), Worship.Called(g).Named("GOD"), (o.carrier?.LabelShort ?? "?").Named("PAWN"),
+                (extra ?? "").Named("EXTRA"), (extra2 ?? "").Named("FACTION")).Resolve();
             if (fate == OfferingFate.Taken && plain)
                 Worship.Sign(g, map, cell, PresenceKind.Act, "CC_Wsh_Taken_Title".Translate(place.Named("SHRINE")).Resolve(), text, new LookTargets(cell, map), false, GodActKind.Act, true);
             else
             {
-                if (fate == OfferingFate.Taken) Worship.Glow(map, cell, g);
+                // The shared way leaves a small light where it lay; a god's own way leaves its own sign (made as it took it).
+                if (fate == OfferingFate.Taken && !ownWords) Worship.Glow(map, cell, g);
                 Tell.Minor(NewsKind.Colony, Importance.Flavor, map, text, o.shrine != null && o.shrine.Spawned ? new LookTargets(o.shrine) : null);
                 Worship.Witness(g, map, GodActKind.Favour, text, cell);
             }

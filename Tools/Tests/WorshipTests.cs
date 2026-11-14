@@ -187,7 +187,7 @@ public static class WorshipTests
         C(files["WorshipMore.cs"].Contains("AccessTools.TypeByName(\"TorannMagic.Need_Mana\")") && files["WorshipMore.cs"].Contains("ModsConfig.IsActive(\"torann.arimworldofmagic\")")
           && files["WorshipMore.cs"].Contains("StandsDownWhy"), "A RimWorld of Magic by name only, standing down without it");
         C(files["WorshipMore.cs"].Contains("Inbox.Register(\"worship-vows\", InboxSection.UnderWay"), "This week lists vows and demands under way");
-        C(all.Contains("GodWorshipDef.Fit(g, k)") && all.Contains("GodWorshipDef.Likes(g)") && files["Festivals.cs"].Contains("GodWorshipDef.For(g)?.festivalName")
+        C(all.Contains("GodWorshipDef.Believed(g, k)") && all.Contains("TakesOfferings(g) ? Fit(g, k)") && all.Contains("GodWorshipDef.Likes(g)") && files["Festivals.cs"].Contains("GodWorshipDef.For(g)?.festivalName")
           && files["Festivals.cs"].Contains("GodWorshipDef.For(g)?.chants"), "a god's own worship def first (likes, festival, chant), the domain's tables after");
         C(!Regex.IsMatch(all, @"FavourValue\([^)]*\)\.ToString|ToStringPercent\(\)[^;]*Favour"), "favour never shown as a number");
         C(!all.Contains("GodSymbols") && !all.Contains("GodWords.Word(") && !Regex.IsMatch(all, @"\.Named\(""WORD""\)"), "the unseen rule: no favour word or symbol on worship's buttons, lines or cards");
