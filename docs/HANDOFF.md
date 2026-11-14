@@ -46,6 +46,50 @@ tree at once, alongside whatever runs. Each piece is merged as its own release, 
   8. The Republic 71 to 74; the Fleet 75 to 78; the Helix Works 79 to 82.
   9. The Lattice 84, 85, 86; the Choir 87 to 90; the Vault 91 to 94.
   10. Between peoples 96 to 99; every people's art handed on, 100.
+- **To do when the player asks (13 November 2026, gathered while the usage limit was reached; the player: "gather all
+  the comments since the limit is reached and add to to-do"):**
+  - **Guests out of sleeping colonists' rooms and the fridge** (a bug). The player, with their save (upload
+    `e8cfe489-League_of_Toba_4.7z`; untrusted: extract into its own scratchpad folder, read with `python3 -I`): "guests
+    should not step into my pawns rooms when they're sleeping and also not into the fridge (even though my fridge is
+    detected as kitchen because of the butcher's table in it." When asked: visitors and guests (the game's, Rimfolk's,
+    Hospitality's where it doesn't already) never path into a bedroom while its owner sleeps (and keep out of private
+    bedrooms at all hours unless invited), and never into a cold store, judged by what it is (a room kept cold for food,
+    whatever its role: a freezer with a butcher's table counts as a store, not a kitchen); find in the save why they go
+    there now (Rimfolk's visit duties' wander spots, the market or services, food).
+  - **Disturbed sleep, as asked** ("do pawns also get the 'disturbed sleep' when something happens outside of their
+    room? what triggers this?"): answered; the game's own (`Pawn.HearClamor`): a colonist asleep hears another pawn's
+    movement or a baby's cry within a few cells, the sound carrying through open doors and doorless openings but not
+    through walls or closed doors, at most once in 300 ticks, and never from a lover, a pet or a bonded animal; so a
+    guest walking past an open door or into the room wakes them, one outside a closed door does not.
+  - **Mog remade as an Egyptian cat god.** The player: "the cat card we have. Let's remake it into something new. Still a
+    cat card, but kind of one inspired by, you know, Egyptian mythology and the Sphinx, you know, with an Egyptian name.
+    And I don't know if we have like a god of the dead in that sense already, but maybe the cat god could be, you know,
+    with mummies and like Egyptian gear wearing zombies style followers, you know. Perhaps that is the god, and there's
+    also some sort of cult behind it. That would be interesting instead of this cat type". When asked: a new concept
+    and name, proposed first (the pantheon has no god of the dead as such: Morel is rot and the soft end, Undertow the
+    void); the cat god as the one who keeps the dead (a sphinx's riddles at the threshold, the dead wrapped and walking
+    in its service, a cult that tends tombs and keeps cats), with the unseen rule; drawn from the player's mods: Alpha
+    Memes' Kemetic style, mummification precept and ritual, Kemetic chant, Alpha Biomes' and Alpha Prefabs' Kemetic
+    temples, Vanilla Factions Expanded's sarcophagus props; Mog's existing parts (her chosen's luck, staring at Ennu) to
+    carry over or go, as the player picks.
+  - **No more deliberate slips in letters.** The player: "you can remove these purposely placed typos in letter, they
+    don't really work", "to do". When asked: a barely or unschooled writer (`LetterFormMath.Schooling.Some`/`None`)
+    writes plainly and shortly instead of with misspellings; keep their simpler words and short sentences.
+  - **The animals, made more visible.** The player: "i must say that i can't really see a lot from the animal features we
+    included, please add to to-do list to enhance and build up on these". When asked: list what Rimfolk's animal parts do
+    now and what of it shows on the map (Animals/, the pets, herds, bonds, the beasts' encounters and dilemmas), propose
+    a round that makes them seen and builds on them.
+  - **More of Old Powers' kind.** The player: "i like the old powers storyteller and want you to do some more more events
+    in this style, including the gods and using ressources from rimworld of magic". When asked: a list of uncanny events
+    first (omens, strange nights, things in the earth, the gods drawing near, seers and pilgrims), with A RimWorld of
+    Magic's motes, sounds and effects (its textures are in the scratchpad's `rom_Motes`), for Old Powers and any way.
+  - **The "lost my dinner to an animal" mood removed.** The player: "remove the "lost my dinner to an animal" debuff".
+    It is `Defs/ThoughtDefs/Council_Thoughts_Encounters_Creatures.xml` (stage label "lost my dinner to an animal", -1)
+    and the encounter that gives it.
+  - **Quests, and storylines across quests.** The player: "the next thing to include will be more quests, and quests that
+    are storylines across multiple quests". When asked: proposed first, a list of quests by the peoples, the gods and the
+    region, and storylines that run over several quests (a chain whose next quest depends on how the last went), built
+    on the game's own quests (QuestScriptDef) and Rimfolk's chains, letters and missions.
 - **To do when the player asks (12 November 2026): visitors busy with their own day.** The player: "guests should spend
   more of their time doing things. i don't want them to generate value for me, but it just looks a bit weird when they
   spend most of their day just standing and walking around. they can talk, do actions, recreation, many things that
