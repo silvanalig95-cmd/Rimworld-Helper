@@ -5,6 +5,15 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## The best meals on the shelf
+
+*14 November 2026, version 0.231.1*
+
+- Any meals and any medicine on a reserved shelf fill their slots best first: a better kind that turns up takes a lesser stack's slot, and the lesser goes back to the store.
+- The best at hand now shows for meals too, with drinks, desserts and food eaten only when starving left out of the ranking.
+- Meals are ranked the way colonists choose them, so a simple meal comes before a survival pack and a fine meal and a fine bake count alike.
+- A reserved kind is now also brought from storage of the shelf's own priority, never from a higher one, and the shelf's list says when it is only kept in higher storage.
+
 ## The days of food as the kitchen would make them
 
 *14 November 2026, version 0.231.0*
