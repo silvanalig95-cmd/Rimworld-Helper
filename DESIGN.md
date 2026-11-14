@@ -8039,6 +8039,93 @@ pure rules in `PeoplesMath.cs` (`Tools/Tests/PeoplesTests.cs`, "peoples: ").
     the surgery and the bands are the game's own. Saved: `PeopleEvents2Book` (crossings, terms, marks, the league's year)
     and the pad's state, modelled in `Tools/save_estimate.py`. Dev actions "Peoples' events 2: ...". The Almanac's peoples'
     pages, *Of their own: gifts, trust and camps*.
+- **The peoples' own events, round 3** (the player's request, 12 November 2026; not released yet)
+  `docs/peoples-events-proposals.md`, items 2, 4, 6, 7, 8, 9, 11, 13, 15 and 16, on "you can go ahead on the todos";
+  `Source/ColonyCouncil/Peoples/Events3/`, the pure rules in `PeopleEvents3Math.cs`, `Tools/Tests/PeopleEvents3Tests.cs`
+  ("the peoples' events, round 3: "). As rounds 1 and 2: only from a people of its calling at peace (`PeoplesD.Friendly`), in
+  the Visitors group, base chance 0.5 to 0.7, 30 to 60 days apart and never in the first ten days, every age in its own
+  form, played out on the map. Three come from code at their moment (base chance 0, `PeopleEvents2.Fire`): the litters an
+  hour or so after a raid, the riders the morning after a theft, the herder with a hard birth; the first two at a small
+  chance times the storytellers' lean on visitors (`StoryDirection.Factor(StoryWaysMath.Visitors)`, never below a quarter).
+  - **Red ink** (league): an unsettled "robbed" or "caravanRaided" wrong of the colony's against any people but the league,
+    2 to 120 days old (a "killed" wrong within two days of it names the page when it is the bigger), not the crates in
+    trust (round 1's own red ink). Paid: `Restitution` (twelve silver a point of the wrong's weight, more for a run, 80 to
+    1500) carried out, the wrong settled (`FactionMemory.Settle`), `GoodwillBack` to the wronged and +2 the league. Argued:
+    the talker's Social on the card (risk 0.7, 3.5% a level): struck out, or written twice and owed double. Refused, or
+    written twice: every league 5% worse (`LeagueRedInk.Terms` on round 1's `PeopleTrust.Terms`) until paid, the factor
+    back to ask (`RedInkRecord`, `MaxRedInk` kept).
+  - **The road gang** (league; a camp, `Rimfolk_Camp_RoadGang`, `CampWorker_RoadGang`): while `Council_WS_NewRoad` runs.
+    The waymaster asks leave: through the fields, round them (their way unless let through), or not across the colony's
+    land (laid round it, kept `AroundMargin` cells from its home area and buildings, -5). The way from edge to edge
+    (`PeopleEvents3Math.Route`, four ways only, a turn dearer, a field `FieldCost` dearer unless let through; `Widen` two
+    wide) on ground that takes the floor (`RoadGang.Takes`); the floor by the league's age (`RoadFloor`: packed earth,
+    flagstones of the land's stone, concrete, paved tile). Waymaster, two road wardens and two or three labourers camp at
+    the edge eight to twelve days and lay it a stretch a day (`Stretch`, `JobDriver_LayRoad`, plants cleared, the colony's
+    own floors left alone), the day's stretch told at dusk. Asks: a day's food sold (eight meals at their worth and a
+    tenth), the colony's builder for the day (`BuilderWage`, practice a cell, straight on to the next), a spur from the gate
+    for silver (`SpurPrice`) or the colony's stone blocks (`SpurStone`). A robber band (`GangBandChance` on top of the
+    camps' own). The road stays; +3 when let across.
+  - **Nobody on a sickbed is anyone's enemy** (order): raiders lying downed (humanlike, at war, never everyone's enemy for
+    good), the fight over, 0.45 a raid, an hour to three on, fifteen days apart; two or three bearers (`Litters`), litters or
+    a stretcher cart by the age. All, or only the worst hurt (`WorstHurt`), carried to the edge (`JobDriver_LitterCarry`) and
+    off; each people `PeoplesDMath.GoodwillFor` by how many (the Bell's rule), the order +5. Kept: counted in the book
+    (`kept`), nothing said.
+  - **The sick room** (order): a serious spreading sickness (`AilmentInfo.spreadPerHour`) and a room with two medical beds or
+    the hospital. The sick carried (the game's rescue) or sent to its beds; her rounds at 7, 12, 17 and 22 (`VisitorServices.Dose`
+    with `Rimfolk_OrderNursed`); `AilmentTracker.Spread` at a third (`SickRoom.SpreadFactor`) for three days; from the
+    industrial age the colony's medicine carried to her. The colony's doctor may walk the rounds (practice). She may catch it
+    (`HarmKinds.Physician` 0.06 a day, the illness budget) and is nursed as the colony's guest until well. +3, `relief`.
+  - **A field sickhouse** (order; a camp, `Rimfolk_Camp_FieldSickhouse`, `CampWorker_Sickhouse`): a plague running or a war
+    ended within a month. A long hut (`sleep` Hut, left standing) and the lamp at its door; two to six of the region's sick
+    or wounded (`Patients`) walk in or are carried in by one of their own (`JobDriver_CarryToWard`), each a bed in the ward,
+    tended and dosed on rounds (`JobDriver_WardRound`), home when well. Asks: medicine, food, clean cloth, the doctor's day
+    in the ward (`WardXp`, the sickness home at `DoctorCatch` through the budgets), the colony's own sick taken in. It can
+    turn: the sickness crosses (`HarmKinds.CampFever`, `CrossChance`), a patient dies and the Quiet Bell's sexton comes for
+    them (else a sister carries them home), a band for the medicine. Gone: +8, `campHelped` ("the field sickhouse"), each
+    people whose sick it fed +3.
+  - **Grazing across the land** (herders): spring to autumn, a drove of twenty to forty head of the land's beasts by name
+    (`DroveKinds`: the game's, Odyssey's muskox, Vanilla Animals Expanded's camel, Alpha Animals' thunderox and mouflon,
+    Megafauna's aurochs) walks in at one edge (`LordJob_Drove`, its ground moved across the map each hour, eased in and out,
+    `DroveShare`), the drovers' fire at the far edge, two or three days. Let across: a young beast of the drove (0.6) or
+    hides and milk at the fire, the colony's best hand rides a day with it (`RideXp`). Unfenced fields within reach grazed at
+    noon (`Grazed`, told); a kick once a drove at most (`HarmKinds.DroversBull`). Toll (`DroveToll`, -3) or turned away (-6).
+  - **The thief on the drove road** (herders): a raid's group on its way out (exit, flight, kidnap or steal cover) may drive
+    off one to three of the colony's stock within 22 cells (`DriveOffChance`: 0.3 with beasts of its own, Animal Husbandry
+    Raids, else 0.12), told; left behind by fallen or fled drovers, the colony's again; off the map, kept in the world
+    (`TheftRecord`). The next morning, 6 to 10, at 0.6: the riders at the gate (mounted with Giddy-Up). The colony's rider: the
+    game's own bandit camp of the thieves a tile or two off (`ThiefPoints` of the threat, `CampDays` before it goes cold),
+    a caravan of one to it (`JobDriver_RideOut`, `CaravanArrivalAction_VisitSite`), and on its map (`Patch_ThievesCampMapMade`,
+    under `RimfolkPatches.On`) the herders' riders beside the colony (`LordJob_AssistColony`) and the beasts there, the
+    colony's again to take home; won, +6. Alone: one to three days, each beast back at 0.6, one kept as their due, led home by
+    a rider, +2. Or the beasts let go.
+  - **Spring calving** (herders; a camp, `Rimfolk_Camp_SpringCalving`, `CampWorker_Calving`): in spring, eight to twelve days.
+    Four to seven grown beasts of the herd given the game's pregnancy (`GestationAt`, births over the stay's first two
+    thirds); calves born by the game's own `DoBirthSpawn` join the herd; the count at dusk spoken aloud. Once a stay at 0.35 a
+    birth goes hard (held at 97%): the herder at the gate (`Rimfolk_Evt_HardBirth`), the colony's best hand (with the next
+    best learning) or the herders themselves, the roll on the card (risk 0.55 less 3.5% a level of Animals; 0.27 for the
+    herders): both live (the colony's hand: the calf the colony's) or the mother lost, worked at her side
+    (`JobDriver_HardBirth`). Hay asked, milk offered. It can turn: the afterbirth's predator at night (`HarmKinds.CampLeft`,
+    the offal rule), a calf missing (0.18) and two herders with lanterns walking toward it at night
+    (`JobDriver_LanternSearch`, the fire glow), found or back at first light. Gone after a good stay: +6.
+  - **An old shrine on the colony's ground** (pilgrims): something holy (`OldShrine.Holy`: an ancient building out of the
+    fog, a grave not the colony's with someone in it, a tree three years old, the landmark), a free cell beside it. Two
+    pilgrims set stones three days (two with the colony's helper; `JobDriver_SetStones`), counted at dusk; blessed, the
+    `Rimfolk_OldShrine` is the colony's (a lamp's glow; a dignified meditation focus with Royalty), with Ideology an inert
+    relic of Vanilla Ideology Expanded - Relics and Artifacts at its foot. Pilgrims stop in spring and summer (0.1 a morning,
+    ten days apart) and leave 15 to 40 silver or 2 to 5 herbal medicine. The colony prays there (`JoyGiver`, meditative,
+    `Rimfolk_Thought_PrayedAtShrine` +4 for those of a faith, or anyone without Ideology). It wears 2% a day out in the weather;
+    below a third it is mourned (-3), above three fifths kept again (`OldShrineRecord`).
+  - **Two faiths at one table** (pilgrims, Ideology): two faiths clashing with a quarrel lately (`FaithClash`), or the
+    colony's largest faith near a split (`NearSplit`: three believers or more, a third wavering below 0.3, as Splits and
+    Schisms splits). The palmer: an evening gathering (`DilemmaEffect_Gathering`, the palmer a guest), each side's best
+    speaking; the roll on the card (risk 0.67 less 3.5% a level of the better Social): settled (`settledUntil` fifteen days,
+    the clash dilemma rests; certainty +0.1 for those who came; +3), or the split anyway, said plainly (certainty -0.08),
+    applied when the gathering ends (`TwoFaiths.GatheringOver`). Or the palmer blesses each believer apart (+0.05).
+  - Harm of Rimfolk's own: only the sister's and the doctor's catching, the sickness crossing, the drove's kick and the
+    afterbirth's predator, through the harm and illness budgets; the fights, the births and the roads are the game's own. The
+    raiders driving off beasts is a loss of stock, not a hurt, at a raid's small chance. Saved: `PeopleEvents3Book` (red ink,
+    shrines, thefts, the table) and the camps' states, modelled in `Tools/save_estimate.py`. Dev actions "Peoples' events 3:
+    ...". The Almanac's peoples' pages, *Of their own: gifts, trust and camps*.
 
 ### Magic among the peoples, seen (the player's request, 12 November 2026; released 0.225.0)
 

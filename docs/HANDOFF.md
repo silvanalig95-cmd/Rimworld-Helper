@@ -38,7 +38,7 @@ tree at once, alongside whatever runs. Each piece is merged as its own release, 
   visitor working on a colonist in round 1, goods held in trust 1 then 20, the caravan of one 14 then 3, 67, 77, 98):
   1. 10, 5, 47, 83, 51, 1, 19, 17, 34, 95 (the recommended ten). Done (11 November 2026), not released yet.
   2. 14, 22, 26, 59, 12, 25, 3, 20, 40, 63. Released 0.229.0 (12 November 2026).
-  3. The league 2, 4; the order 6, 7, 8; the herders 9, 11, 13; the pilgrims 15, 16.
+  3. The league 2, 4; the order 6, 7, 8; the herders 9, 11, 13; the pilgrims 15, 16. Done (12 November 2026), not released yet.
   4. The society 18, 21; the enclave 23, 24; the river folk 27, 28, 29, 30; the Wardens 31, 32, 33.
   5. The Bell 35 to 38; the Circuit 39, 41, 42; the Wheel 43 to 46.
   6. The Conclave 48, 49, 50; the Mossborn 52, 53, 54; the Banner 55 to 58.
@@ -70,6 +70,65 @@ tree at once, alongside whatever runs. Each piece is merged as its own release, 
   ordering them off is ruder still), less when they were trouble (a thief, a brawler, a drunk); with Hospitality its
   own way for its guests; never a caravan mid-trade without the trade closed first, and never anyone downed or a
   prisoner.
+- Not released: no version, no What's new round, About.xml and CHANGELOG untouched. **The peoples' own events, round 3**
+  (12 November 2026, the player's "you can go ahead on the todos"). Items 2, 4, 6, 7, 8, 9, 11, 13, 15 and 16 of
+  `docs/peoples-events-proposals.md` (the league's red ink and road gang; the order's litters, sick room and field
+  sickhouse; the herders' drove, thieves' trail and spring calving; the pilgrims' old shrine and two faiths at one table);
+  DESIGN.md "The peoples' own events, round 3"; README "The peoples' own events, the third round"; the Almanac's peoples'
+  pages, *Of their own: gifts, trust and camps* (Almanac_Peoples.xml and Almanac_PeoplesC.xml; keywords unchanged).
+  - Code: `Source/ColonyCouncil/Peoples/Events3/` (new; begun by an earlier agent as WIP and finished here):
+    `PeopleEvents3Math.cs` (pure, linked; the road's way `Route` and `Widen`), `PeopleEvents3Book.cs` (a game component:
+    red ink, the old shrines, the thefts, the order's book, the sick room, the faiths settled and the palmer's table),
+    `PeopleEvents3.cs` (the visits' dispatch, the homes' hour `Hourly`), `RedInk.cs` (2, `LeagueRedInk`), `RoadGang.cs` (4,
+    its camp `CampWorker_RoadGang`, `JobDriver_LayRoad`), `Litters.cs` (6), `SickRoom.cs` (7), `FieldSickhouse.cs` (8, its
+    camp `CampWorker_Sickhouse`), `DroveCrossing.cs` (9, `LordJob_Drove`), `ThiefTrail.cs` (11, the raiders' drive-off,
+    the trail, `Patch_ThievesCampMapMade`), `SpringCalving.cs` (13, its camp `CampWorker_Calving`, the hard birth),
+    `OldShrine.cs` (15, `JobDriver_ShrinePray`), `TwoFaiths.cs` (16), `PeopleEvents3Debug.cs`. Small hooks:
+    `PeopleEvents2.Hour` (round 3's visits, one line), `HappeningTracker.Hourly` (`PeopleEvents3.Hourly`),
+    `AilmentTracker.Spread` (`* SickRoom.SpreadFactor(p)`), `PeopleTrust.Terms` (`LeagueRedInk.Terms`),
+    `DilemmaWorker_FaithClash.CanHappenNow` (`TwoFaiths.Settled`), `Interplay.Notify_GatheringOver`
+    (`TwoFaiths.GatheringOver`), `FactsMath` (the three camps' tags). Defs: `Rimfolk_Events_PeopleEvents3.xml` (eleven
+    events; three fired from code when their moment comes: the litters, the riders' morning, the hard birth),
+    `Rimfolk_CampKinds_PeopleEvents3.xml` (three camps), `Rimfolk_PeopleEvents3_Misc.xml` (nine jobs, `Rimfolk_OldShrine`, its
+    joy and memory), Keyed `Rimfolk_PeopleEvents3.xml`, `Textures/ColonyCouncil/Things/OldShrine.png`. Tools: the def
+    validator's camp placeholders (FLOOR, PATIENTS, CALVES), the play-out audit's effects and skips, the save model's lists.
+  - New for the game: raiders on their way off the map may drive off one to three of the colony's stock (0.3 a raid with
+    beasts of their own from Animal Husbandry Raids, 0.12 without), the trigger item 11 needs; a beast whose drovers fell or
+    ran is the colony's again where it stands.
+  - Tests: `Tools/Tests/PeopleEvents3Tests.cs` (the rules, the defs, the words, the player's mods, the seams).
+  - Not run here (none of it could be): every play-out on the map and the world (the litters carried to the edge, the sick
+    room's gathering and rounds and the sister nursed, the long hut's ward with its patients, beds, the Bell's sexton and
+    the doctor's day, the drove's ground moving across the map and its fire, the raiders driving beasts off and leaving
+    some behind, the caravan of one to the thieves' camp, the riders and the beasts on its map, the riders alone leading
+    beasts home, the calving camp's pregnancies and births, the hard birth and the lantern search, the road's way on real
+    maps and its stretches, the spur, the hired builder, the shrine's three days, its blessing, wear and pilgrims' stops,
+    the prayer joy, the palmer's evening and its verdict).
+  - Try in the game (dev mode; "Rimfolk", "Peoples' events 3: what the record keeps (log)" shows the state and what each
+    event would find here; fire each event with the game's own incident tool, each needs what it says): 1. Red ink: rob or
+    attack a trader's caravan of any people (a "robbed" or "caravanRaided" wrong), wait two days, the league at peace:
+    `Rimfolk_Evt_RedInk`; pay (the silver carried out), argue (the Social roll on the card) or refuse (worse prices with
+    every league; fire it again and the factor is back). 2. The road gang: start the new road ("Start world event...",
+    `Council_WS_NewRoad`), the league at peace: `Rimfolk_Evt_RoadGang`, or "Peoples' events 3: one of their camps here
+    now..." for the camp straight away; watch the road grow a stretch a day, ask the spur from the camp's page, answer the
+    food and builder letters. 3. The litters: a raid, a few raiders downed, the order at peace; "Peoples' events 3: the
+    order's litters for those lying here now", the hospitallers come within the hour once the fight is over. 4. The sick
+    room: give two colonists a serious spreading sickness (the dev "Add hediff", Rimfolk's ailments) and two medical beds in
+    a room: `Rimfolk_Evt_SickRoom`; "Peoples' events 3: the sick room's, the drove's days over now" ends it. 5. The field
+    sickhouse: a plague running (`Council_WS_Plague`) or a war ended in the last month: `Rimfolk_Evt_FieldSickhouse`;
+    "Peoples' events 3: a patient for the field sickhouse now" for the next stranger. 6. The drove: spring to autumn, the
+    herders at peace: `Rimfolk_Evt_DroveCrossing`; the drove's days over with the same dev action. 7. The thief's trail:
+    "Peoples' events 3: the herders' riders on a thief's trail now" (takes a beast of the colony's when no theft is open),
+    between six and ten in the morning; send the rider: the caravan of one to the thieves' camp on the world map, the riders
+    and the beasts on its map. 8. Spring calving: spring, the herders at peace: `Rimfolk_Evt_SpringCalving` or the camp dev
+    action; "Peoples' events 3: the calving's hard birth now" for the herder at the gate. 9. The old shrine: a map with an
+    ancient structure, a grave not the colony's, a tree three years old or a landmark: `Rimfolk_Evt_OldShrine`; "Peoples'
+    events 3: a pilgrim at the shrine now" and "the shrine worn to ruin now". 10. Two faiths: Ideology, two faiths with two
+    believers each and a quarrel between them lately, or the colony's faith with a third wavering: `Rimfolk_Evt_TwoFaiths`;
+    gather, and the verdict comes when the evening ends.
+  - Mods that would help: none needed. For a lamp of their own at the field sickhouse's door and on the shrine's stones,
+    Outland - Furniture & Decor (https://steamcommunity.com/sharedfiles/filedetails/?id=2897435739, with Outland - Core,
+    https://steamcommunity.com/sharedfiles/filedetails/?id=2755501685; both list 1.6 and 1.7 and are kept up) has stone oil
+    lanterns; they are in the player's catalogue but not enabled.
 - 0.229.0, **The peoples' own events, round 2**
   (12 November 2026, the player's "you can go ahead on the todos"). Items 14, 22, 26, 59, 12, 25, 3, 20, 40 and 63 of
   `docs/peoples-events-proposals.md`; DESIGN.md "The peoples' own events, round 2"; README "The peoples' own events, the
