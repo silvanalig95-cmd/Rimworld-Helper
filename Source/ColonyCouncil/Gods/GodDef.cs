@@ -76,6 +76,12 @@ namespace ColonyCouncil
         public bool unmoved;
         /// <summary>The look its presence is drawn in (a GodLookDef's defName), or none.</summary>
         public string look;
+        /// <summary>
+        /// Its own presence on the land after its moments (a GameConditionDef with an OwnPresence extension: its own names,
+        /// words and effect in the world; Defs/GodDefs/Rimfolk_GodPresence_Own.xml), or none for the shared presence (the
+        /// sky in its colour and the wind dying, nothing else).
+        /// </summary>
+        public GameConditionDef presence;
         /// <summary>The animals sacred to it (defNames, the game's and the player's mods', looked up softly).</summary>
         public List<string> sacredAnimals = new List<string>();
 
@@ -134,6 +140,13 @@ namespace ColonyCouncil
                     if (!GodLoreMath.Kinds.Contains(k))
                         yield return "'" + k + "' isn't a kind of people (" + string.Join(", ", GodLoreMath.Kinds) + ")";
             if (domain == GodDomain.None) yield return "a god has a domain (the fallback key)";
+            if (presence != null)
+            {
+                var own = presence.GetModExtension<OwnPresence>();
+                if (own == null || own.god != key) yield return "a god's own presence is a condition whose OwnPresence names this god";
+                if (presence.conditionClass == null || !typeof(GameCondition_GodPresence).IsAssignableFrom(presence.conditionClass))
+                    yield return "a god's own presence's condition is a GameCondition_GodPresence";
+            }
         }
     }
 

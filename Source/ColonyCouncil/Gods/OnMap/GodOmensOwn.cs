@@ -21,19 +21,19 @@ namespace ColonyCouncil
 
         private static bool Night(Map map) => map.skyManager.CurSkyGlow < 0.3f;
 
-        private static List<Thing> AnimaTrees(Map map)
+        internal static List<Thing> AnimaTrees(Map map)
         {
             var def = Thing("Plant_TreeAnima");
             return def == null ? new List<Thing>() : map.listerThings.ThingsOfDef(def).Where(t => t.Spawned).ToList();
         }
 
-        private static List<Pawn> Dryads(Map map) =>
+        internal static List<Pawn> Dryads(Map map) =>
             map.mapPawns.AllPawnsSpawned.Where(p => !p.Dead && !p.Downed && p.def.defName.StartsWith("Dryad_", StringComparison.Ordinal)).ToList();
 
         private static Building Console(Map map) => map.listerBuildings.allBuildingsColonist.FirstOrDefault(b => b is Building_CommsConsole && b.Spawned);
 
         /// <summary>The colony's powered lights: lit (for a flicker), or dark for want of power or a switch (for one that glows anyway).</summary>
-        private static List<ThingWithComps> Powered(Map map, bool lit) =>
+        internal static List<ThingWithComps> Powered(Map map, bool lit) =>
             map.listerBuildings.allBuildingsColonist.OfType<ThingWithComps>().Where(b => b.Spawned && b.GetComp<CompPowerTrader>() != null
                                                                                         && b.GetComp<CompGlower>() is CompGlower g && g.Glows == lit).ToList();
 
@@ -44,12 +44,12 @@ namespace ColonyCouncil
                 .FirstOrDefault();
 
         /// <summary>The most desperate of the colony awake: the lowest spirits, under four in ten.</summary>
-        private static Pawn Desperate(Map map) =>
+        internal static Pawn Desperate(Map map) =>
             map.mapPawns.FreeColonistsSpawned.Where(p => Awake(p) && (p.needs?.mood?.CurLevelPercentage ?? 1f) < 0.4f).OrderBy(p => p.needs.mood.CurLevelPercentage)
                 .FirstOrDefault();
 
         /// <summary>A cell under the mountain's thick rock, near where the colony is, or none.</summary>
-        private static IntVec3 UnderMountain(Map map)
+        internal static IntVec3 UnderMountain(Map map)
         {
             var thick = RoofDefOf.RoofRockThick;
             foreach (var p in map.mapPawns.FreeColonistsSpawned)
@@ -408,7 +408,7 @@ namespace ColonyCouncil
         }
 
         /// <summary>Wet ground near the colony's people (a marsh, mud, shallow water) or a well of the colony's, or none.</summary>
-        private static IntVec3 Wet(Map map)
+        internal static IntVec3 Wet(Map map)
         {
             var well = map.listerBuildings.allBuildingsColonist.FirstOrDefault(b => b.Spawned && b.def.defName.IndexOf("Well", StringComparison.OrdinalIgnoreCase) >= 0);
             if (well != null) return well.Position;
@@ -428,14 +428,14 @@ namespace ColonyCouncil
         }
 
         /// <summary>A table of the colony's someone could watch a beetle cross, or null.</summary>
-        private static Building Table(Map map) =>
+        internal static Building Table(Map map) =>
             map.listerBuildings.allBuildingsColonist.Where(b => b.Spawned && b.def.IsTable && !b.Position.Fogged(map)).OrderByDescending(b => Colonists(map, b.Position, 10f)).FirstOrDefault();
 
         /// <summary>The moon's face tonight (Rimfolk's own calendar: GodsOnMapMath.Face, one round a season).</summary>
         internal static GodsOnMapMath.MoonFace MoonTonight => GodsOnMapMath.Face(Find.TickManager.TicksAbs / GenDate.TicksPerDay);
 
         /// <summary>An open cell of the colony's land outdoors near its people, for a sign with nothing else to point at.</summary>
-        private static IntVec3 Open(Map map)
+        internal static IntVec3 Open(Map map)
         {
             var near = map.mapPawns.FreeColonistsSpawned.FirstOrDefault(p => p.Spawned);
             if (near != null && RCellFinder.TryFindRandomSpotJustOutsideColony(near, out var spot)) return spot;
@@ -464,7 +464,7 @@ namespace ColonyCouncil
         }
 
         /// <summary>A ring of mushrooms overnight round something she wants noticed: a grave, a body left lying, else open ground.</summary>
-        private static bool FairyRing(Map map, out IntVec3 at, out Pawn speaker)
+        internal static bool FairyRing(Map map, out IntVec3 at, out Pawn speaker)
         {
             speaker = null;
             var grave = map.listerBuildings.allBuildingsColonist.FirstOrDefault(b => b is Building_Grave && !b.Position.Roofed(map));
@@ -526,7 +526,7 @@ namespace ColonyCouncil
             return true;
         }
 
-        private static void Rime(Map map, IntVec3 c)
+        internal static void Rime(Map map, IntVec3 c)
         {
             if (!c.InBounds(map) || c.Roofed(map)) return;
             map.snowGrid.AddDepth(c, 0.55f);

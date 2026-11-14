@@ -191,10 +191,10 @@ namespace ColonyCouncil
 
         private static bool Undertow(OmenKind k) => k == OmenKind.Dark || k == OmenKind.Whisper;
 
-        private static bool Awake(Pawn p) => p != null && p.Awake() && !p.Downed && !p.InMentalState && !p.Drafted && People.HasInnerLife(p);
+        internal static bool Awake(Pawn p) => p != null && p.Awake() && !p.Downed && !p.InMentalState && !p.Drafted && People.HasInnerLife(p);
 
         /// <summary>A colonist awake within <paramref name="range"/> who can see the place.</summary>
-        private static Pawn Witness(Map map, IntVec3 at, float range) =>
+        internal static Pawn Witness(Map map, IntVec3 at, float range) =>
             map.mapPawns.FreeColonistsSpawned.Where(p => Awake(p) && p.Position.InHorDistOf(at, range) && GenSight.LineOfSight(p.Position, at, map, true))
                 .OrderBy(p => p.Position.DistanceToSquared(at)).FirstOrDefault();
 
@@ -203,7 +203,7 @@ namespace ColonyCouncil
         // ================= The birds =================
 
         /// <summary>The land's wild birds, up and about (the game's and the mods' birds: a bird's body).</summary>
-        private static List<Pawn> Birds(Map map) =>
+        internal static List<Pawn> Birds(Map map) =>
             map.mapPawns.AllPawnsSpawned.Where(p => p.Faction == null && p.RaceProps.Animal && !p.Downed && !p.Dead && !p.InMentalState && !GodAvatar.Is(p)
                                                     && (p.RaceProps.body?.defName ?? "").IndexOf("Bird", StringComparison.OrdinalIgnoreCase) >= 0).ToList();
 
@@ -229,7 +229,7 @@ namespace ColonyCouncil
         // ================= The calm =================
 
         /// <summary>A strange calm: the wind dies for a few hours, the plants stop swaying ("a strange stillness", the presence's own sky barely tinted).</summary>
-        private static bool Calm(Map map)
+        internal static bool Calm(Map map)
         {
             var def = DefDatabase<GameConditionDef>.GetNamedSilentFail(GameCondition_GodPresence.DefName);
             if (def == null || map.gameConditionManager.GetActiveCondition<GameCondition_GodPresence>() != null) return false;
@@ -323,7 +323,7 @@ namespace ColonyCouncil
         }
 
         /// <summary>The colony's lit lights on the home ground (a lamp, a torch, a candle of a mod's): what has a glower and glows.</summary>
-        private static List<ThingWithComps> Lights(Map map) =>
+        internal static List<ThingWithComps> Lights(Map map) =>
             map.listerBuildings.allBuildingsColonist.OfType<ThingWithComps>().Where(b => b.Spawned && map.areaManager.Home[b.Position] && b.GetComp<CompGlower>() is CompGlower g && g.Glows)
                 .ToList();
 
@@ -343,7 +343,7 @@ namespace ColonyCouncil
         /// A light played with for <paramref name="ticks"/>: guttering out and back, flickering fast in a pattern
         /// (<paramref name="fast"/>), or glowing with no power (<paramref name="forced"/>, a light that is out). 1 when it is.
         /// </summary>
-        private static int Play(Map map, ThingWithComps light, int ticks, bool fast, bool forced)
+        internal static int Play(Map map, ThingWithComps light, int ticks, bool fast, bool forced)
         {
             var c = light?.GetComp<CompGlower>();
             if (c == null || c.Glows == forced) return 0;
@@ -410,7 +410,7 @@ namespace ColonyCouncil
         // ================= The animals restless =================
 
         /// <summary>An animal starts, runs a few steps, and stands looking one way (toward where the god will come from).</summary>
-        private static void Restless(Pawn a, IntVec3 toward)
+        internal static void Restless(Pawn a, IntVec3 toward)
         {
             try
             {

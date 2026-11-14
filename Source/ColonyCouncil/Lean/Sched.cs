@@ -199,6 +199,12 @@ namespace ColonyCouncil
         /// (Integrations/InvitedGuests.cs).
         /// </summary>
         public const int RareGuestHelp = 119;
+        /// <summary>
+        /// A god's own presence on a home map (Gods/Presence/GodPresenceShows.cs; only while one lasts): what it does over the
+        /// land at each turn (the beasts calmed, the hearths kept, the frost by the walls, the heat under the rock, the dark
+        /// corner kept, Pip's prank), each presence's own.
+        /// </summary>
+        public const int RareGodPresence = 91;
 
         // ---------------- Other rhythms ----------------
 
