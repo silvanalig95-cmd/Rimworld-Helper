@@ -7,11 +7,20 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 ## No empty groups left behind
 
-*14 November 2026, version 0.230.2*
+*14 November 2026, version 0.231.1*
 
 - Visitors, war parties, camps and others moved from one group to another no longer leave the old group behind, empty and running in the background for the rest of the game.
 - Saves that already hold such empty groups of Rimfolk's are cleared when you load them, and the log names each group that was ended.
 - The game's own groups and other mods' groups are only ended when Rimfolk itself emptied them, the way the game ends a group that lost its last member.
+
+## The days of food as the kitchen would make them
+
+*14 November 2026, version 0.231.0*
+
+- Food Alert's days of food now count what your stores would make: meals as they are, and raw food, flour and every other ingredient as the meals your own recipes and benches would cook from them.
+- Kibble, hay and other animal feed are left out, and everything is counted by its nutrition, never by the piece; Food Alert's tooltip says what is counted, and a switch under your other mods turns it off.
+- Rimfolk's own days of food (the advisor, the panels, the trade screen, a guest who wants to stay) count the same way, and planning ahead counts flour as food for cooking, not animal feed.
+- Meals in store are counted in servings by their nutrition, so a stack of pemmican is the few meals it makes.
 
 ## Doors kept for the colony
 

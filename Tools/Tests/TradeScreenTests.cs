@@ -52,9 +52,9 @@ public static class TradeScreenTests
           && !TradeAdviceMath.WorthSaying(0, 0, 100f), "a surplus is said only when it is a tenth of the stock and worth a little silver");
 
         // ---------- Food by days ----------
-        C(Math.Abs(TradeAdviceMath.FoodDays(9f, 5f, 2f, true) - (9f + 5f * 1.8f) / 2f) < 0.001f && Math.Abs(TradeAdviceMath.FoodDays(9f, 5f, 2f, false) - 7f) < 0.001f,
-            "days of food: meals as they are, raw food as the meals it cooks into where there is cooking");
-        C(TradeAdviceMath.FoodDays(10f, 10f, 0f, true) >= AheadMath.Far, "nobody eating: food lasts for ever");
+        C(Math.Abs(TradeAdviceMath.FoodDays(18f, 2f) - 9f) < 0.001f && TradeAdviceMath.FoodDays(-3f, 2f) == 0f,
+            "days of food: the stores as the meals the kitchen would make of them, over what is eaten a day");
+        C(TradeAdviceMath.FoodDays(10f, 0f) >= AheadMath.Far, "nobody eating: food lasts for ever");
         C(TradeAdviceMath.FoodNeedDays(5f) == TradeAdviceMath.FoodDaysAtLeast && TradeAdviceMath.FoodNeedDays(25f) == 25f, "the food need: the plan ahead's days, ten at least");
         C(TradeAdviceMath.FoodShortDays(4f, 10f) == 6f && TradeAdviceMath.FoodShortDays(12f, 10f) == 0f, "short of food below the need");
         C(TradeAdviceMath.FoodSurplusDays(26f, 10f) == 6f && TradeAdviceMath.FoodSurplusDays(18f, 10f) == 0f && TradeAdviceMath.FoodSurplusDays(AheadMath.Far, 10f) == 0f,

@@ -629,11 +629,11 @@ namespace ColonyCouncil
         private static ThingCategoryDef meals;
         private static WorkTypeDef cooking;
 
-        /// <summary>Meals in the colony's stores (the game's own count).</summary>
+        /// <summary>Meals in the colony's stores (the game's own count), in servings by their nutrition: a stack of pemmican is the few meals it makes.</summary>
         public static int Meals(Map map)
         {
             meals ??= DefDatabase<ThingCategoryDef>.GetNamedSilentFail("FoodMeals");
-            return meals == null || map == null ? 0 : map.resourceCounter.GetCountIn(meals);
+            return meals == null || map == null ? 0 : MealWorth.StoredServings(map, d => d.IsWithinCategory(meals));
         }
 
         public static WorkTypeDef Cooking => cooking ??= DefDatabase<WorkTypeDef>.GetNamedSilentFail("Cooking");

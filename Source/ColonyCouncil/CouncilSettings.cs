@@ -609,6 +609,8 @@ namespace ColonyCouncil
         public bool invitedAsGuests = true;
         /// <summary>With Move the Patient: patients take the best free medical bed, and a lighter case is moved to another bed for someone worse off (Integrations/MedicalTriage.cs).</summary>
         public bool medicalTriage = true;
+        /// <summary>With Food Alert: its days of food count the meals the stores would make, flour and all, animal feed left out (Integrations/FoodAlertCount.cs).</summary>
+        public bool foodAlertMealCount = true;
         /// <summary>What PokéWorld's Pokémon sound like (Integrations/PokeWorldSounds.cs): the nearest animal's calls, their own a third as often, or their own.</summary>
         public PokemonSounds pokemonSounds = PokemonSounds.Creatures;
         /// <summary>With PokéWorld: the colony's own Pokémon do a little at home by their type (Integrations/PokeWorldTypes.cs); its parts below.</summary>
@@ -1146,6 +1148,7 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref guestBedsExtra, "guestBedsExtra", 2);
             Scribe_Values.Look(ref invitedAsGuests, "invitedAsGuests", true);
             Scribe_Values.Look(ref medicalTriage, "medicalTriage", true);
+            Scribe_Values.Look(ref foodAlertMealCount, "foodAlertMealCount", true);
             Scribe_Values.Look(ref pokemonSounds, "pokemonSounds", PokemonSounds.Creatures);
             Scribe_Values.Look(ref pokemonTypes, "pokemonTypes", true);
             Scribe_Values.Look(ref pokemonTypeWarmth, "pokemonTypeWarmth", true);

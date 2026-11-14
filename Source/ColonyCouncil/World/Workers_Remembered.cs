@@ -173,8 +173,8 @@ namespace ColonyCouncil
             if (map == null) return null;
             var people = map.mapPawns.FreeColonistsSpawned;
             if (people.Count == 0) return null;
-            // Less than about four days' food for everyone.
-            if (map.resourceCounter.TotalHumanEdibleNutrition < people.Count * 1.6f * 4f) return "hungry";
+            // Less than about four days' food for everyone (the stores as the meals the kitchen would make of them).
+            if (MealWorth.Total(map) < people.Count * 1.6f * 4f) return "hungry";
             int sick = people.Count(p => p.health?.hediffSet?.hediffs?.Any(h => h.def.makesSickThought) ?? false);
             if (sick >= 2 && sick * 3 >= people.Count) return "sick";
             return null;

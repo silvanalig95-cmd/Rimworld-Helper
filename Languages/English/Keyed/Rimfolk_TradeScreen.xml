@@ -88,7 +88,7 @@
   <CC_Trade_SilverAfter>after: {0}</CC_Trade_SilverAfter>
   <CC_Trade_SilverAfterTip>Silver after this trade: the colony {COLONY}, the trader {TRADER}.</CC_Trade_SilverAfterTip>
   <CC_Trade_FoodAfter>Food {NOW} days, after {AFTER}</CC_Trade_FoodAfter>
-  <CC_Trade_FoodAfterTip>How many days the colony's food lasts, now and after this trade: the meals and raw food its people eat (raw food counted as the meals it cooks into), at {NEED} nutrition a day.</CC_Trade_FoodAfterTip>
+  <CC_Trade_FoodAfterTip>How many days the colony's food lasts, now and after this trade: its meals, and raw food and flour as the meals its kitchen would make of them, at {NEED} nutrition a day.</CC_Trade_FoodAfterTip>
   <CC_Trade_Banks>In the banks: {0} silver</CC_Trade_Banks>
   <CC_Trade_BanksTip>Silver the colony keeps in Vanilla Trading Expanded's banks. It can't pay for this trade; the trading terminal moves it.\n\n{LIST}</CC_Trade_BanksTip>
 

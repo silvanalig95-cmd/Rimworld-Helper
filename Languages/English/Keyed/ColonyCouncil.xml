@@ -2154,4 +2154,11 @@ Those against it ({WHO}) will trust the council less and resent it more than usu
   <CC_Nemesis_Deed_betrayed>betrayed {0}</CC_Nemesis_Deed_betrayed>
   <CC_Nemesis_Deed_enslaved>held {0} in chains</CC_Nemesis_Deed_enslaved>
   <CC_Quirk_ItemFallback>charm</CC_Quirk_ItemFallback>
+
+  <!-- Food Alert's days of food from Rimfolk's count (Integrations/FoodAlertCount.cs, Things/MealWorth.cs) -->
+  <CC_Settings_FoodAlertMeals>Food Alert counts the meals the stores would make</CC_Settings_FoodAlertMeals>
+  <CC_Settings_FoodAlertMeals_Tip>With Food Alert (Continued): its days of food under the date count what the colony would eat. Meals in store count at their own nutrition. Raw food, flour and every other ingredient the colony's recipes take count at the nutrition of the meals its kitchen would cook from them: simple meals or better, on a bench the colony has built, with the research done and a cook who can make them (a simple meal of 0.9 from 0.5 of raw food). Food people eat raw that no recipe takes counts as it is, and so does all raw food while there is no stove. Kibble, hay and anything else only animals eat is left out. It is always counted in nutrition, never by pieces. While this is on, Food Alert's own choice of which foods count no longer applies, and its tooltip says what is counted. Off: Food Alert counts on its own. Rimfolk's own days of food (the advisor, the panels, the trade screen) count this way either way.</CC_Settings_FoodAlertMeals_Tip>
+  <CC_SetNote_FoodAlertMeals>With Food Alert, its days of food count the meals the stores would make, flour and all, with animal feed left out.</CC_SetNote_FoodAlertMeals>
+  <CC_FoodAlert_Counted>Counted by Rimfolk: meals, and raw food and flour as the meals the kitchen would make of them. Animal feed is left out.</CC_FoodAlert_Counted>
+  <CC_FoodAlert_CountedRaw>Counted by Rimfolk: meals, and raw food as it is, since there is no stove to cook on. Animal feed is left out.</CC_FoodAlert_CountedRaw>
 </LanguageData>

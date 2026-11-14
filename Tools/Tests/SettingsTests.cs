@@ -108,7 +108,7 @@ public static class SettingsTests
         var modded = new[]
         {
             "guestWill", "guestStories", "guestCheck", "marketStallWindow", "marketStallShips", "marketCampersBuy", "marketVisitorsBuy", "marketGuestsShop", "drinkBeforeWork",
-            "drinkBeforeHotWork", "smokeBeforeWork", "coveredLooks", "magicGolemRepair", "magicNeedRules", "territoryNewsQuiet", "medicalTriage"
+            "drinkBeforeHotWork", "smokeBeforeWork", "coveredLooks", "magicGolemRepair", "magicNeedRules", "territoryNewsQuiet", "medicalTriage", "foodAlertMealCount"
         };
         foreach (var r in modded)
         {

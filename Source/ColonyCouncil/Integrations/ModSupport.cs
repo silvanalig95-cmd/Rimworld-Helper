@@ -19,7 +19,7 @@ namespace ColonyCouncil
         [MustTranslate] public string what;
         /// <summary>Rimfolk reads it in code (the self-check lists these); otherwise it only writes content for it.</summary>
         public bool code;
-        /// <summary>A reading the self-check can test: expertise, vsie, pokeworld, hospitality, magic.</summary>
+        /// <summary>A reading the self-check can test: expertise, vsie, pokeworld, hospitality, magic, foodalert.</summary>
         public string live;
         public int order = 100;
 
@@ -60,6 +60,9 @@ namespace ColonyCouncil
                     case "vsie": return SocialInteractions.Active ? " (its events read)" : " (its events NOT found)";
                     case "pokeworld": return PokeWorldLink.Active ? " (linked)" : " (NOT linked)";
                     case "hospitality": return Guests.CanAdopt ? " (guests read)" : " (its guest code NOT found)";
+                    case "foodalert":
+                        if (!FoodAlertCount.Hooked) return " (its count NOT reached: " + FoodAlertCount.NotWhy + ")";
+                        return FoodAlertCount.Failed ? " (Rimfolk's count failed, its own is used)" : FoodAlertCount.Counting ? " (its count is Rimfolk's)" : " (its own count: the setting is off)";
                     default: return "";
                 }
             }
@@ -79,6 +82,7 @@ namespace ColonyCouncil
                 case "vsie": return SocialInteractions.Active;
                 case "pokeworld": return PokeWorldLink.Active;
                 case "hospitality": return Guests.CanAdopt;
+                case "foodalert": return FoodAlertCount.Hooked;
                 default: return null;
             }
         }

@@ -785,6 +785,9 @@ namespace ColonyCouncil
             Mod(Toggle("territoryNewsQuiet", "CC_Settings_TerritoryNewsQuiet", "CC_SetNote_TerritoryNewsQuiet", "deepHooks"), TerritoriesId);
             Section("CC_SetSec_Mod_MoveThePatient");
             Mod(Toggle("medicalTriage", "CC_Settings_MedicalTriage", "CC_SetNote_MedicalTriage", "deepHooks"), MoveThePatientId);
+            // Food Alert's days of food from Rimfolk's count (Integrations/FoodAlertCount.cs): its list of counters, no game hook.
+            Section("CC_SetSec_Mod_FoodAlert");
+            Mod(Toggle("foodAlertMealCount", "CC_Settings_FoodAlertMeals", "CC_SetNote_FoodAlertMeals"), FoodAlertId);
             Section("CC_SetSec_Mod_PokeWorld");
             Mod(Choice("pokemonSounds", "CC_Settings_PokemonSounds", "CC_Settings_PokemonSounds_Tip", "CC_PokemonSounds_", "CC_SetNote_PokemonSounds_",
                 new[] { "Creatures", "Rarer", "Own" }), PokeWorldId);
@@ -810,7 +813,7 @@ namespace ColonyCouncil
         // The other mods' package ids, as their integrations check them (Integrations/), for the page that shows only those loaded.
         public const string HospitalityId = "orion.hospitality", RimMarketId = "forti.rimmarket", AlphaSkillsId = "sarg.alphaskills", AlphaGenesId = "sarg.alphagenes",
             MagicId = "torann.arimworldofmagic", TerritoriesId = "jaeger972.factionterritories", MoveThePatientId = "konstantynopolitaneczka.movethepatient",
-            VteId = "vanillaexpanded.vanillatradingexpanded";
+            VteId = "vanillaexpanded.vanillatradingexpanded", FoodAlertId = "mlie.foodalert";
 
         /// <summary>
         /// PokéWorld's row: its versions have had several package ids, so it is found by its Pokémon instead
@@ -829,6 +832,7 @@ namespace ColonyCouncil
             [TerritoriesId] = "CC_SetSec_Mod_Territories",
             [MoveThePatientId] = "CC_SetSec_Mod_MoveThePatient",
             [VteId] = "CC_SetSec_Mod_Vte",
+            [FoodAlertId] = "CC_SetSec_Mod_FoodAlert",
             [PokeWorldId] = "CC_SetSec_Mod_PokeWorld"
         };
 

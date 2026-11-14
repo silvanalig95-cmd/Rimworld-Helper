@@ -462,17 +462,17 @@ namespace ColonyCouncil
             return true;
         }
 
-        /// <summary>Meals in the colony's stores (not paste made on demand, not raw food).</summary>
+        /// <summary>Meals in the colony's stores (not paste made on demand, not raw food), in servings by their nutrition.</summary>
         private static int MealsStored(Map map)
         {
-            int n = 0;
+            var stored = new List<Thing>();
             foreach (var t in map.listerThings.ThingsInGroup(ThingRequestGroup.FoodSourceNotPlantOrTree))
             {
                 var pref = t?.def?.ingestible?.preferability ?? FoodPreferability.Undefined;
                 if (pref < FoodPreferability.MealAwful || pref > FoodPreferability.MealLavish || t.def.IsDrug || !t.Spawned || !t.IsInAnyStorage()) continue;
-                n += t.stackCount;
+                stored.Add(t);
             }
-            return n;
+            return MealWorth.Servings(stored);
         }
 
         /// <summary>How many of this kind the colony has in its stores.</summary>
