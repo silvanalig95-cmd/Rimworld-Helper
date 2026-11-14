@@ -105,11 +105,15 @@ namespace ColonyCouncil
 
     public class AdvisorWorker_Food : AdvisorSignalWorker
     {
+        /// <summary>
+        /// The home's days of food: the stores as the meals the colony's kitchen would make of them (Things/MealWorth.cs:
+        /// meals, raw food and flour as the meals they cook into, animal feed left out), with paste in vats, in nutrition.
+        /// </summary>
         public static float DaysOfFood(Map map)
         {
             float eaters = map.mapPawns.FreeColonistsSpawnedCount + map.mapPawns.PrisonersOfColonySpawnedCount;
             if (eaters <= 0) return 999f;
-            return (map.resourceCounter.TotalHumanEdibleNutrition + Avail.StoredPasteNutrition(map)) / (eaters * 1.6f);
+            return (MealWorth.Total(map) + Avail.StoredPasteNutrition(map)) / (eaters * 1.6f);
         }
 
         public override IEnumerable<AdvisorSignal> Evaluate(Map map)

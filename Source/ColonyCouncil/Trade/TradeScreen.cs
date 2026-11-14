@@ -213,16 +213,15 @@ namespace ColonyCouncil
             var notes = TradeAdvice.All;
             if (TradeSession.playerNegotiator?.GetCaravan() == null && TradeSession.playerNegotiator?.MapHeld?.IsPlayerHome == true && notes != null && TradeAdvice.foodKnown)
             {
-                float now = TradeAdviceMath.FoodDays(TradeAdvice.mealNutrition, TradeAdvice.rawNutrition, TradeAdvice.eatADay, TradeAdvice.cooks);
-                float meal = TradeAdvice.mealNutrition, raw = TradeAdvice.rawNutrition;
+                // In nutrition, as the meals the colony's kitchen would make of them (Things/MealWorth.cs).
+                float now = TradeAdviceMath.FoodDays(TradeAdvice.storeWorth, TradeAdvice.eatADay);
+                float worth = TradeAdvice.storeWorth;
                 foreach (var t in TradeSession.deal.AllTradeables)
                 {
                     if (t == null || t.IsCurrency || t.CountToTransfer == 0 || !t.HasAnyThing || TradeAdvice.KindOf(t.ThingDef) != TradeGood.Food) continue;
-                    float nutrition = t.ThingDef.GetStatValueAbstract(StatDefOf.Nutrition) * t.CountToTransferToSource;
-                    if (ColonyNeeds.KindOf(t.ThingDef) == AheadMath.Raw) raw += nutrition;
-                    else meal += nutrition;
+                    worth += MealWorth.PerPiece(TradeAdvice.foodMap, t.ThingDef) * t.CountToTransferToSource;
                 }
-                float after = TradeAdviceMath.FoodDays(meal, raw, TradeAdvice.eatADay, TradeAdvice.cooks);
+                float after = TradeAdviceMath.FoodDays(worth, TradeAdvice.eatADay);
                 lines.Add(("CC_Trade_FoodAfter".Translate(Days(now).Named("NOW"), Days(after).Named("AFTER")).Resolve(),
                     "CC_Trade_FoodAfterTip".Translate(TradeAdvice.eatADay.ToString("0.#").Named("NEED")).Resolve()));
             }

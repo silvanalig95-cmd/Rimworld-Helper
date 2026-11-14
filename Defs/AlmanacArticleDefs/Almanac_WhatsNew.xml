@@ -31,6 +31,18 @@ When you load a save after an update, a letter lists the newest round once. The 
     <rounds>
 
       <li>
+        <version>0.231.0</version>
+        <date>14 November 2026</date>
+        <title>The days of food as the kitchen would make them</title>
+        <points>
+          <li>Food Alert's days of food now count what your stores would make: meals as they are, and raw food, flour and every other ingredient as the meals your own recipes and benches would cook from them.</li>
+          <li>Kibble, hay and other animal feed are left out, and everything is counted by its nutrition, never by the piece; Food Alert's tooltip says what is counted, and a switch under your other mods turns it off.</li>
+          <li>Rimfolk's own days of food (the advisor, the panels, the trade screen, a guest who wants to stay) count the same way, and planning ahead counts flour as food for cooking, not animal feed.</li>
+          <li>Meals in store are counted in servings by their nutrition, so a stack of pemmican is the few meals it makes.</li>
+        </points>
+      </li>
+
+      <li>
         <version>0.230.1</version>
         <date>14 November 2026</date>
         <title>Doors kept for the colony</title>

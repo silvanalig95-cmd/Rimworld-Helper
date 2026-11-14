@@ -73,14 +73,9 @@ namespace ColonyCouncil
 
         private static int Eaters(Map map) => map.mapPawns.FreeColonistsSpawnedCount + map.mapPawns.PrisonersOfColonySpawnedCount;
 
-        /// <summary>Cooked meals in the colony's count.</summary>
-        private static int Meals(Map map)
-        {
-            int n = 0;
-            foreach (var kv in map.resourceCounter.AllCountedAmounts)
-                if (kv.Value > 0 && kv.Key?.ingestible != null && kv.Key.ingestible.IsMeal && kv.Key.ingestible.HumanEdible && !kv.Key.IsDrug) n += kv.Value;
-            return n;
-        }
+        /// <summary>Cooked meals in the colony's count, in servings by their nutrition.</summary>
+        private static int Meals(Map map) =>
+            MealWorth.StoredServings(map, d => d.ingestible != null && d.ingestible.IsMeal && d.ingestible.HumanEdible && !d.IsDrug);
 
         /// <summary>
         /// A plank for each candidate of a race, the frontrunner first: what is pressing now goes first (planks whose

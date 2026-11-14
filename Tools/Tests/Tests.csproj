@@ -250,6 +250,7 @@
     <Compile Include="../../Source/ColonyCouncil/Hud/HudRank.cs" Link="HudRank.cs" />
     <Compile Include="../../Source/ColonyCouncil/Hud/TemperatureScaleMath.cs" Link="TemperatureScaleMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Things/DietMealsMath.cs" Link="DietMealsMath.cs" />
+    <Compile Include="../../Source/ColonyCouncil/Things/MealWorthMath.cs" Link="MealWorthMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Gods/GodsMath.cs" Link="GodsMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Gods/GodTiesMath.cs" Link="GodTiesMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Gods/Worship/WorshipMath.cs" Link="WorshipMath.cs" />

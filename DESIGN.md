@@ -7375,6 +7375,60 @@ unchanged.
 The setting `restByNeed` ("Bed rest only when it makes sense", What's on, people's lives, after medicine by what is
 treated; on by default, needs the deeper hooks). Nothing saved; no Sched slot.
 
+### The days of food as the kitchen would make them, with Food Alert (the player's request, 14 November 2026; released 0.231.0)
+
+The player, with a screenshot of the "2 days worth of food" readout under the weather: "i think this counter is bugged
+or so? since i have a lot of flour for example that i can make into meals. it should always count how many of my raw
+foods i can turn into enjoyable meals and use that number", then "please do the food alert fix. also always use the
+nutritional value, not that chickpeas get counted per unit". The readout is Food Alert (Continued)'s
+(`mlie.foodalert`): it adds up what a person eats as it is, raw food at its raw worth, at or above the preferability
+its settings choose (RawBad by default, so kibble counts and desserts don't), and flour never counts (Vanilla Cooking
+Expanded's is plant matter, Alpha Crafts' never for nutrition). It already counts nutrition, not pieces: chickpeas are
+0.0125 a piece, a quarter of corn.
+
+- **The count** (`Things/MealWorth.cs`, the arithmetic in `MealWorthMath.cs`, Tools/Tests `MealWorthTests`), always in
+  nutrition, from the game's own count of the stores (`ResourceCounter.AllCountedAmounts`): a meal in store (paste and
+  awful ones too) at its own nutrition; every other food at the meals its best recipe makes of it, or its own nutrition
+  when a person eats it raw and that is more; drugs, corpses and animal feed (kibble and the like by its food kind, hay
+  and the rest only animals eat by having no recipe) count nothing. A recipe counts when it makes a meal a person enjoys
+  (`MealSimple` or better, human-edible, not a drug), `AvailableNow` (its research), a bench of the colony's on the map
+  has it (`AllRecipes`, frames aside), someone at home meets its skill, and, for a meal of several ingredients, the
+  stores hold something for each group. Its gain is the meals' nutrition (each times how many it makes) over what its
+  groups take, a group counted by nutrition its count, one counted by pieces its count times a piece's nutrition (the
+  recipe's own `IngredientValueGetter`, so Vanilla Expanded's condiments by the piece take their small share); a piece
+  of any ingredient makes the gain times its own nutrition (the simple meal: 1.8; the simple bake: two of 0.7 from 1.0
+  of flour, 1.4; the lavish meal 1.0), capped at three, the game's own nutrient paste. What a new bill would take: the
+  recipe's fixed and default filters and their special filters at the def. With no such bench, raw food counts at its
+  raw worth, flour nothing. Kept per map: the recipes read again when the colony's benches change and every hour
+  (research, cooks, stores), the total for 60 ticks; the recipes' shapes once a session.
+- **Food Alert** (`Integrations/FoodAlertCount.cs`), by name only: `FoodAlert.NutritionCounter.NutritionFinders`, its
+  public dictionary of counters for other mods, read by reflection at startup; Rimfolk's count takes its `"default"`
+  entry's place and keeps the original, which answers while the setting is off and for the rest of the session after
+  Rimfolk's count fails once (logged once; nothing is ever thrown into Food Alert, whose sum logs each counter's error
+  red). A dictionary of another shape stands it down with one line in the log. Food Alert's other counters (its
+  Vanilla Nutrient Paste Expanded vats) stay as they are. Its tooltip's line "Food preferability: ..." no longer says
+  what is counted, so `Patch_FoodAlertTip`, a prefix and postfix on Food Alert's own readout method
+  (`FoodAlert.HarmonyPatches.FoodCounter_NearDatePostfix`, by name), wraps the tooltip text Food Alert has just set
+  (the game's `TooltipHandler.activeTips`, Food Alert's id 76515) so that one line reads as what Rimfolk counts (with a
+  stove, or without one); found by Food Alert's own words (`SettingDescription`), anything else left as it is, its
+  keys never overridden; it stands down (the self-check's list) without the mod or with either method other than
+  expected. The self-check's mods list says whether the count is Rimfolk's, Food Alert's own, or not reached.
+- **Rimfolk's own days of food** count the same: the advisor's (`AdvisorWorker_Food.DaysOfFood`, and through
+  `MapFacts.FoodDays` the panels, the heart, decrees, letters, allies, ambitions and the rest), the trade screen's days
+  now and after a trade and its food worth (`TradeAdvice.storeWorth`, `TradeAdviceMath.FoodDays`), a guest's room for
+  one more (`GuestWill`), the remembered "hungry" mood. Planning ahead counts flour as raw food for cooking, not animal
+  feed (`ColonyNeeds.KindOf`, `MealWorth.CookingIngredient`). Meals in store told as a number count servings by their
+  nutrition (`MealWorth.StoredServings`, `MealWorthMath.Servings`: a stack of 75 pemmican is four meals): the advisor's
+  and the elections', the feasts' and the outsiders'. Food packed for a journey or a rider is eaten as packed and keeps
+  its own nutrition (the journey planner and the rider's pack already count nutrition).
+- **The player's stores.** The screenshot's (chickpeas 416, corn 77, kibble 105, nine simple meals and a fine one,
+  flour, hay, a dessert): Food Alert counts 23.3 (kibble in, flour out) for 2 days at 11 a day; Rimfolk counts 25.3
+  before the flour (chickpeas 9.4, corn 6.9, meals 9.0), and the save's 1,005 flour as simple bakes adds 70.4: about 96,
+  eight days.
+
+The setting `foodAlertMealCount` (Your other mods, Food Alert, shown while it is loaded; on by default; not a game hook,
+so the deeper hooks setting leaves the count alone and switches only the tooltip line). Nothing saved; no Sched slot.
+
 ### Ages
 
 Every feature takes the form of the age (ROADMAP.md, "Every age, not only the medieval one"), and the ages are read in

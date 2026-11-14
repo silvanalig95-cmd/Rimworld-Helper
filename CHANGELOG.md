@@ -5,6 +5,15 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## The days of food as the kitchen would make them
+
+*14 November 2026, version 0.231.0*
+
+- Food Alert's days of food now count what your stores would make: meals as they are, and raw food, flour and every other ingredient as the meals your own recipes and benches would cook from them.
+- Kibble, hay and other animal feed are left out, and everything is counted by its nutrition, never by the piece; Food Alert's tooltip says what is counted, and a switch under your other mods turns it off.
+- Rimfolk's own days of food (the advisor, the panels, the trade screen, a guest who wants to stay) count the same way, and planning ahead counts flour as food for cooking, not animal feed.
+- Meals in store are counted in servings by their nutrition, so a stack of pemmican is the few meals it makes.
+
 ## Doors kept for the colony
 
 *14 November 2026, version 0.230.1*

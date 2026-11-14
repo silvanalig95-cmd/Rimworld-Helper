@@ -86,8 +86,6 @@ namespace ColonyCouncil
         /// <summary>A surplus worth a word: this share of what there is, and this much silver at the trader's price.</summary>
         public const float MinSurplusShare = 0.1f;
         public const float MinSurplusSilver = 40f;
-        /// <summary>Raw food cooks into this much more meal nutrition (0.5 of ingredients make a 0.9 meal).</summary>
-        public const float CookGain = 0.9f / 0.5f;
 
         /// <summary>The floor of a kind of good for a colony of so many people; 0 for a kind with none.</summary>
         public static int Floor(TradeGood kind, int people)
@@ -125,11 +123,14 @@ namespace ColonyCouncil
 
         // ---------------- Food, by days of eating ----------------
 
-        /// <summary>Days the colony eats from its food: meals as they are, raw food as the meals it cooks into when there is cooking.</summary>
-        public static float FoodDays(float mealNutrition, float rawNutrition, float needADay, bool cooks)
+        /// <summary>
+        /// Days the colony eats from its food: the stores as the meals its kitchen would make of them (Things/MealWorth.cs,
+        /// in nutrition: meals as they are, raw food and flour as the meals they cook into), over what its people eat a day.
+        /// </summary>
+        public static float FoodDays(float storeWorth, float needADay)
         {
             if (needADay <= 0.0001f) return AheadMath.Far;
-            return (Math.Max(0f, mealNutrition) + Math.Max(0f, rawNutrition) * (cooks ? CookGain : 1f)) / needADay;
+            return Math.Max(0f, storeWorth) / needADay;
         }
 
         /// <summary>The food need in days: the plan ahead's (days kept in store and the days ahead nothing grows), at least ten.</summary>

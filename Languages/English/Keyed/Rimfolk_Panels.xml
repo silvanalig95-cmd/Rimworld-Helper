@@ -70,7 +70,7 @@
   <CC_Pnl_NoMap>No home map.</CC_Pnl_NoMap>
   <CC_Pnl_Food>Food</CC_Pnl_Food>
   <CC_Pnl_DaysValue>{0} days</CC_Pnl_DaysValue>
-  <CC_Pnl_FoodTip>About {0} days of food at the colony's rate: meals and raw food people can eat, counted as the advisor counts it. Orange under {1} days, red under {2} (Rimfolk's settings).</CC_Pnl_FoodTip>
+  <CC_Pnl_FoodTip>About {0} days of food at the colony's rate: meals, and raw food and flour as the meals the kitchen would make of them, with animal feed left out (the advisor's count). Orange under {1} days, red under {2} (Rimfolk's settings).</CC_Pnl_FoodTip>
   <CC_Pnl_ClickAdvisor>Click for the advisor's priorities.</CC_Pnl_ClickAdvisor>
   <CC_Pnl_Medicine>Medicine</CC_Pnl_Medicine>
   <CC_Pnl_MedicineTip>{0} medicine on the map and with the colonists. The advisor likes two for each colonist ({1}).</CC_Pnl_MedicineTip>
