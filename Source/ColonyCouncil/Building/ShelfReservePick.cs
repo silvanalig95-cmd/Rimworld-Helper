@@ -8,10 +8,10 @@ namespace ColonyCouncil
 {
     /// <summary>
     /// "Reserve a slot for...": what may be reserved on the selected shelves, with a search box. First what's on the shelf
-    /// now; then the groups (any meal, any drug...), each with "the best at hand" where its kinds can be ranked (food,
-    /// medicine); then everything the shelves' storage settings allow, dimmed where the colony has none on the map. A
-    /// click reserves one slot for it or takes it off again, and the window stays open to pick several; the shelf
-    /// window sets how many slots each keeps.
+    /// now; then the groups (any meal, any drug...), "any" of meals or medicine kept best first, each with "the best at
+    /// hand" where two or more of its kinds can be ranked (meals, medicine); then everything the shelves' storage settings
+    /// allow, dimmed where the colony has none on the map. A click reserves one slot for it or takes it off again, and
+    /// the window stays open to pick several; the shelf window sets how many slots each keeps.
     /// </summary>
     public class Dialog_ShelfReservePick : FramedWindow
     {
@@ -30,7 +30,7 @@ namespace ColonyCouncil
             public ThingDef def;
             public ThingCategoryDef cat;
             public int depth, section;
-            public bool onMap, rankable;
+            public bool onMap, rankable, ranked;
         }
 
         private readonly List<Building_Storage> shelves;
@@ -114,7 +114,7 @@ namespace ColonyCouncil
                     rows.Add(new Row
                     {
                         kind = RowKind.Group, cat = c, label = c.LabelCap.Resolve(), search = c.label.ToLowerInvariant(), icon = c.icon, depth = depth,
-                        rankable = ShelfReserves.RankableGroup(defs), section = 1
+                        rankable = ShelfReserves.RankableGroup(defs), ranked = ShelfReserves.RankedGroup(defs), section = 1
                     });
                 if (c.childCategories != null)
                     foreach (var child in c.childCategories) Walk(child, c.parent == null ? 0 : depth + 1);
@@ -202,11 +202,12 @@ namespace ColonyCouncil
                 if (Widgets.ButtonInvisible(row)) Toggle(kinds, raw);
                 return;
             }
-            // A group: "any" of it, and where its kinds can be ranked, "the best at hand".
+            // A group: "any" of it (best first where its kinds can be ranked), and where two or more can, "the best at hand".
             UiKit.LabelFit(new Rect(x, row.y, row.width - x - 220f, row.height), r.label, Color.white);
             string any = "cat:" + r.cat.defName, best = "best:" + r.cat.defName;
             var anyRect = new Rect(row.xMax - 220f, row.y, 80f, row.height);
-            CheckLabel(anyRect, "CC_ShelfPick_Any".Translate(), kinds.Contains(any), "CC_ShelfPick_AnyTip".Translate(r.cat.label.Named("GROUP")), () => Toggle(kinds, any));
+            CheckLabel(anyRect, "CC_ShelfPick_Any".Translate(), kinds.Contains(any), (r.ranked ? "CC_ShelfPick_AnyBestFirstTip" : "CC_ShelfPick_AnyTip").Translate(r.cat.label.Named("GROUP")),
+                () => Toggle(kinds, any));
             if (r.rankable)
             {
                 var bestRect = new Rect(row.xMax - 136f, row.y, 134f, row.height);

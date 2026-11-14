@@ -31,7 +31,8 @@ namespace ColonyCouncil
     /// - Ordered: a colonist's menu on a stack of a reserved kind the game finds no storage for offers "Make room on the
     ///   shelf and haul it there" (FloatMenuOptionProvider_RimfolkShelfRoom), in place of the game's "Cannot haul" line
     ///   (Patch_ShelfMakeRoomMenu). Taken, the colonist carries a stack off the shelf to its best other storage, else sets
-    ///   it down beside the shelf, then hauls the stack into the freed cell, kept for them from the order on.
+    ///   it down beside the shelf, then hauls the stack into the freed cell, kept for them from the order on. The shelf
+    ///   may be of the same priority as where the stack lies (a reserved kind is fetched from there too), never lower.
     /// </summary>
     public static class ShelfMakeRoom
     {
@@ -117,7 +118,8 @@ namespace ColonyCouncil
             if (shelf.OccupiedRect().Contains(thing.Position) || !shelf.HaulDestinationEnabled) return null;
             var settings = shelf.GetStoreSettings();
             bool allowed = settings.AllowedToAccept(thing) && !st.Barred(thing.def);
-            bool better = (int)settings.Priority > (int)current;
+            // As good as where it lies or better: a reserved kind is fetched from storage of the shelf's own priority too.
+            bool better = (int)settings.Priority >= (int)current;
             if (!ShelfReserveMath.MayMakeRoom(st.capacity, st.held, st.FillsMissing(thing.def), allowed, better)) return null;
             // What goes: what the reserves mark to move out, counting this kind as waiting if it isn't yet (it lies
             // outside the home area, say), else the stack of least worth of no reserved kind.
@@ -298,7 +300,9 @@ namespace ColonyCouncil
 
     /// <summary>
     /// A stack the reserves mark to move out that no other storage takes is set down beside the shelf while a reserved kind
-    /// waits for its room (ShelfMakeRoom.SetDownJob), so it never blocks the slot for good.
+    /// waits for its room (ShelfMakeRoom.SetDownJob), so it never blocks the slot for good; and a stack in storage of a
+    /// reserved shelf's own priority that the shelf wants, which the game's search finds no better storage for, is
+    /// fetched to it (ShelfReserves.FetchJob).
     /// </summary>
     [HarmonyPatch(typeof(HaulAIUtility), nameof(HaulAIUtility.HaulToStorageJob))]
     public static class Patch_ShelfMakeRoomAuto
@@ -310,7 +314,7 @@ namespace ColonyCouncil
             if (__result != null || broken || ShelfReserves.Reserved.Count == 0 || t == null || p == null) return;
             try
             {
-                var job = ShelfMakeRoom.SetDownJob(p, t);
+                var job = ShelfMakeRoom.SetDownJob(p, t) ?? ShelfReserves.FetchJob(p, t);
                 if (job == null) return;
                 JobFailReason.Clear();
                 __result = job;

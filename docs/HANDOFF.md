@@ -82,21 +82,6 @@ tree at once, alongside whatever runs. Each piece is merged as its own release, 
   lords by moving their pawns out, so they stay in the save and keep ticking. When asked: wherever Rimfolk moves the last
   pawn out of its own lord, end that lord (`map.lordManager.RemoveLord`), and on load and every so often end any of
   Rimfolk's own lords left with no pawns; the game's and other mods' lords untouched.
-- **To do when the player asks (14 November 2026): the best meals on a reserved shelf** (a bug first). The player, with a
-  screenshot of a wooden big shelf reserving "Any meals" (3 slots, 4 per stack): "i think the shelf reservation still
-  don't prioritize the "best" meal, right? it's now filled with simple meals & bakes and i also have fine meals in the
-  fridge. it should always take the best or the meal that pawns are going to prioritize, or i should have such an option
-  toggle available". Found: the picker's "the best at hand" tick for a group (`ShelfReservePick`, `best:<category>`) shows
-  only when every kind of the group the shelf may hold can be ranked (`ShelfReserves.RankableGroup`: food that is no drug
-  and RawBad or better, or all medicine); in the player's mods `FoodMeals` also holds 23 that can't (Vanilla Brewing's
-  cocktails and Vanilla Cooking's desserts, social drugs; VCE's canned and deep-fried goods and Alpha Crafts' chips, kefir,
-  lassi, puree, ricotta and jamón, DesperateOnly), so for meals the tick never shows, and "Any meals" fills its slots with
-  whatever meal comes first. Told meanwhile: reserve the kinds themselves (fine meal, fine bake, lavish...) under
-  "Everything", or untick those 23 in the shelf's storage settings to bring the tick back. When asked: "the best at hand"
-  ranks the group's kinds a colonist eats as a meal (no drug, RawBad or better) and is offered whenever two or more of
-  them are there, the others ignored for the ranking; "any" of a rankable group fills its slots best first, by the order
-  colonists pick their food in (preferability, then worth), and a better kind that turns up takes a lesser stack's slot
-  (the lesser carried back to the store). Tests in the shelf reserve tests; the Almanac's shelf page says so.
 - **To do when the player asks (14 November 2026): the days of food counted as the meals the stores would make.** The
   player, with a screenshot of the "2 days worth of food" readout under the weather: "i think this counter is bugged or
   so? since i have a lot of flour for example that i can make into meals. it should always count how many of my raw
@@ -154,6 +139,48 @@ tree at once, alongside whatever runs. Each piece is merged as its own release, 
   ordering them off is ruder still), less when they were trouble (a thief, a brawler, a drunk); with Hospitality its
   own way for its guests; never a caravan mid-trade without the trade closed first, and never anyone downed or a
   prisoner.
+- Not released: no version, no What's new round, About.xml and CHANGELOG untouched. **The best meals on a reserved
+  shelf** (14 November 2026; the player's words, with a screenshot of the Ballroom's wooden big shelf reserving "Any
+  meals", 3 slots, 4 per stack, Always, and Wood: "i think the shelf reservation still don't prioritize the "best" meal,
+  right? it's now filled with simple meals & bakes and i also have fine meals in the fridge. it should always take the
+  best or the meal that pawns are going to prioritize, or i should have such an option toggle available", then "do the
+  meal fix now"). DESIGN.md "The best meals on a reserved shelf" (in "Reserved slots on shelves"); the Almanac's
+  "Reserved slots" (Management, keywords unchanged).
+  - The cause, three parts. "Any meals" took whichever meal came first and nothing ever put a better kind in a lesser
+    one's place. "The best at hand" never showed for meals: every kind of the group had to be rankable, and the
+    player's mods put 23 that aren't in `FoodMeals` (Vanilla Brewing's cocktails and Vanilla Cooking's desserts, social
+    drugs; VCE's canned and deep-fried goods and Alpha Crafts' chips, kefir, lassi, puree, ricotta and jamón, desperate
+    only). And a reserved kind never came from storage of the shelf's own priority: the game hauls only to strictly
+    better storage, and `ShelfReserves.ComesDef` skipped it. Their save (`League_of_Toba_4`, the day before): the shelf
+    is `LWM_BigShelf86117` at 72, 208, Important, eight stacks on its two cells and full (simple meals 7 and 1, two of
+    wood, three of steel, components; reserved any meals x3 at 4 per stack, Rimfolk's vegetarian simple meal at 3, wood);
+    those eight simple meals were the only meals lying on the map (others only in pawns' packs), no fine meal yet and
+    no fridge built (RimFridge is in their list). The fridge is the freezer (61 to 66 by 202 to 205, the cooler at 60,
+    203): its six food baskets are Important (one Critical) but take only canned food, cheese and honey, and its
+    stockpile is Preferred and takes every meal. The
+    Ballroom shelf is the only Important storage that takes meals, so fine meals cooked while it was full went to the
+    freezer's stockpile, below the shelf, where the game would have carried them up had the shelf let them in: its
+    three meal slots were full of simple meals and bakes and its other cells of steel and wood, so they stayed.
+  - Built: "the best at hand" ranks the meals of a group that is at least half meals (`ShelfReserveMath.RankedKinds`,
+    `OffersBest`), offered with two or more, the others left out; "any" of such a group (or of medicine) is kept best
+    first, in the order colonists pick their food, checked against the game's `FoodOptimality` (`FoodRank`,
+    `TasteOptimality`): a meal before raw food, then the taste thought's mood through the game's curve plus the def's
+    `optimalityOffsetHumanlikes`, then preferability, then worth (preferability then worth had a survival pack before a
+    simple meal). Stacks fill the slots best first; an empty slot takes nothing less than the best that would come; a
+    better kind that turns up takes a lesser stack's slot (`SwapDue`, strictly better), into a free slot or with the
+    lesser carried back to a store that takes it (`SwapOut`, `HasOtherStore`), never back and forth; a better kind
+    waited for three hours in vain is left out for a day. Every reserved kind now comes from storage of the shelf's own
+    priority too, fetched by Rimfolk (`Patch_ShelfReserveFetch` on `StoreUtility.IsInValidBestStorage`, `WantedOn`,
+    `FetchJob` from `Patch_ShelfMakeRoomAuto`), never from higher; the game never carries it back. The list says "on
+    the shelf, the fine meal comes in place of the simple meal" and "only in storage of a higher priority than this
+    shelf, which keeps it".
+  - Code: `Building/ShelfReserveMath.cs` (the pure rules, `Stack.rank`), `Building/ShelfReserves.cs` (`RankOf`,
+    `Look`, `Fetchable`, `WaitForBetter`, `Coming`, `WantedOn`, `FetchJob`, `Patch_ShelfReserveFetch`, the statuses),
+    `Building/ShelfMakeRoom.cs` (the fetch in the haul hook; the ordered make-room at the same priority too),
+    `Building/ShelfReservePick.cs` (the tick and the "any" tip), `Languages/English/Keyed/Rimfolk_Stores.xml`,
+    `Rimfolk_Rooms.xml` (the setting's tip); tests in `Tools/Tests/ShelfReserveTests.cs`. Nothing saved, no Sched slot.
+  - Not checked in the game: the fetch taken by haulers (with Pick Up And Haul too), the swaps on LWM's cells, the words.
+    No mod would help: Rimfolk can do it itself.
 - 0.230.1, **Guests keep out of bedrooms and the cold store**
   (13 November 2026; the player's report: "guests should not step into my pawns rooms when they're sleeping and also not
   into the fridge (even though my fridge is detected as kitchen because of the butcher's table in it.", then "you can go

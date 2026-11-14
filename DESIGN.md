@@ -4784,6 +4784,61 @@ configured to store it"), and a stack marked to move out that no other storage t
   by the game's own words), the queued haul starting after the first job and its reservations held between, the haul
   aside's cell beside a shelf, the stack set down being left alone while the slot waits, and LWM's Deep Storage cells.
 
+**The best meals on a reserved shelf** (the player's report, 14 November 2026; not released yet): "i think the shelf
+reservation still don't prioritize the "best" meal, right? it's now filled with simple meals & bakes and i also have fine
+meals in the fridge. it should always take the best or the meal that pawns are going to prioritize". "Any meals" took
+whatever came first and nothing ever put a better kind in a lesser one's place; "the best at hand" never showed for
+meals (every kind of the group had to be rankable, and the player's mods put 23 drinks, desserts, canned and deep-fried
+goods in it); and a reserved kind never came from storage of the shelf's own priority (a haul needs strictly better
+storage, and `Coming` counted only lower). In their save (the day before) the Ballroom's big shelf is Important and
+full (eight stacks: three any-meal slots, wood, steel, components); the freezer's baskets are Important but take only
+canned food, cheese and honey, its stockpile Preferred: so fine meals cooked once the shelf was full went to the
+freezer and stayed.
+
+- **Ranked kinds** (`ShelfReserveMath.RankedKinds`, `OffersBest`; `ShelfReserves.RankedOf`, `RankableGroup`): all of a
+  group when all are medicine; when none is and at least half of the group are kinds a colonist eats as a meal
+  (`EatenAsMeal`: no drug, raw food or better), those, the rest left out of the ranking and last in an "any". The half
+  keeps a group that is mostly not food (Alpha Crafts' artisan goods: five to eat of 58; plant matter, with its flour)
+  as it was: its "any" isn't swapped for popcorn. "The best at hand" shows with two or more; "any" of a group with one
+  or more is kept best first. The picker's "any" says so (`CC_ShelfPick_AnyBestFirstTip`).
+- **The order** (`ShelfReserveMath.FoodRank`, `TasteOptimality`; `ShelfReserves.RankOf`, cached per def): the game's
+  `FoodUtility.FoodOptimality` without the distance and the eater: a meal (awful or better) before raw food and
+  terrible meals, which `BestFoodSourceOnMap` looks for only when urgently hungry; then the taste thought's mood through
+  the game's own curve plus `optimalityOffsetHumanlikes` (lavish 112, fine 56, simple 16, survival pack -5, paste -49);
+  then preferability, then worth. Preferability then worth, as before, put a survival pack (worth 24) before a simple
+  meal and Vanilla Cooking's ruined fine grill (offset -5) before both, the reverse of what colonists pick. A fine meal
+  and a fine bake rank alike.
+- **Best first** (`ShelfReserves.Look`): stacks carry their rank and `Fill` takes the better first, then the bigger.
+  `bestComing` is the best rank of the entry's kinds that would come (`Fetchable`); an empty slot takes nothing less
+  (`State.Admits`, `TakesEmptySlot`), so nothing comes in that would at once go out again. With every slot filled and a
+  better kind coming (`SwapDue`, strictly better, so kinds ranked alike never swap), the swap takes a free slot if one is
+  left (kept for it: `MayTakeSlot` counts `swaps`, `FillsSwap` lets the better kind in), else the lesser goes back
+  (`SwapOut`: a spare stack of the group first, else the slot's own), only when another store would take it
+  (`HasOtherStore`; never set down). A carried-back stack can't come in again while the better kind comes: the empty
+  slot refuses it and no free slot is left over. An empty slot that waits `GateTicks` (three hours) with nothing filled
+  gives up on that kind for `RestTicks` (a day; `WaitForBetter`, not saved), so a kind that can't be fetched never keeps
+  a slot empty or swaps a stack back and forth.
+- **Where a reserved kind comes from** (every reserved slot, not only meals): loose in the home area, or storage of the
+  shelf's priority or lower, never a stack holding another reserved shelf's slot; higher storage keeps what it holds (the
+  game would carry it straight back). Lower the game's own hauling empties. The same priority Rimfolk fetches:
+  `Patch_ShelfReserveFetch` (a postfix on `StoreUtility.IsInValidBestStorage`) tells `ListerHaulables` such a stack isn't
+  in its best storage while a reserved shelf wants it (`WantedOn`: the same priority, an empty slot or a swap waiting
+  for its kind, more of them than cells already reserved for hauls), and `Patch_ShelfMakeRoomAuto` gives
+  `ShelfReserves.FetchJob` where the game's search found no better storage: the game's `HaulToCellStorageJob` into a
+  cell from `TryFindBestBetterStoreCellForIn`. On the shelf the game never carries it back (no strictly better storage).
+  The ordered make-room accepts the same priority too. A look reads storage priorities and filters straight from the
+  slot groups, never `Accepts` (which looks at a reserved shelf again), and `StateOf` never looks at a shelf twice at once.
+- **Words**: the shelf's list says "on the shelf, the fine meal comes in place of the simple meal" during a swap and
+  "on the map, but only in storage of a higher priority than this shelf, which keeps it" (`CC_Shelf_BetterComing`,
+  `CC_Shelf_KeptHigher`); the window's explanation, the picker's tips, the setting's tip and the Almanac's "Reserved
+  slots" say it. Nothing saved, no Sched slot. Tests: `ShelfReserveTests` (the player's 23 left out of their meals, the
+  order, best-first fill, swaps, a play-out from their shelf to three fine stacks with each simple one carried back
+  once and none let back in, the seams).
+- **Not checked here**: none of it could be run in the game: haulers taking the fetch (and whether Pick Up And Haul,
+  whose hauling to inventory makes its own storage search, leaves such a stack to the game's haul as expected), the
+  stacks swapped on LWM's cells, the status lines, and the cost of the best-storage postfix on a big colony (it returns
+  at once without a reserved shelf).
+
 ## The trade screen (the player's requests, 7 and 8 November 2026)
 
 "I still don't really like the new trade interface, i'm thinking more of a totally redone one by you, not an adjusted
