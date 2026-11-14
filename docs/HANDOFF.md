@@ -76,13 +76,6 @@ tree at once, alongside whatever runs. Each piece is merged as its own release, 
     are storylines across multiple quests". When asked: proposed first, a list of quests by the peoples, the gods and the
     region, and storylines that run over several quests (a chain whose next quest depends on how the last went), built
     on the game's own quests (QuestScriptDef) and Rimfolk's chains, letters and missions.
-- **Being built (14 November 2026, the player's go): visitors dressed for the weather.** The player: "so i just had an
-  event from the aracoier league that they use my meadow for a heard or something like this, and they appeared on the
-  map but left it again soon after due to "weather conditions". it was -20 degrees cold. in general i really want that
-  the people who spawn from events, visitors, caravans, camps etc. just dress appropriately for the weather, so that they
-  don't have to leave because of it. of course if it's super cold or any other extreme conditions that's fair, but not
-  when it's "hard weather" that they could however do well in proper clothing." (the same message ended "go ahead with
-  all of this").
 - **Being built (14 November 2026, the player's go): the gods, each their own.** Proposed in `docs/gods-next-proposals.md`
   with the draft sheet `docs/gods-symbols-draft.png` (the player's first words on it are in the handoff's history: "So
   for the gods, I still kind of want you to create an image or a symbol or use one for each god ..."). The player's
@@ -134,6 +127,74 @@ tree at once, alongside whatever runs. Each piece is merged as its own release, 
   ordering them off is ruder still), less when they were trouble (a thief, a brawler, a drunk); with Hospitality its
   own way for its guests; never a caravan mid-trade without the trade closed first, and never anyone downed or a
   prisoner.
+- 0.232.1, **Dressed for the weather as they
+  come** (14 November 2026; the player's words: "so i just had an event from the aracoier league that they use my meadow
+  for a heard or something like this, and they appeared on the map but left it again soon after due to "weather
+  conditions". it was -20 degrees cold. in general i really want that the people who spawn from events, visitors,
+  caravans, camps etc. just dress appropriately for the weather, so that they don't have to leave because of it. of
+  course if it's super cold or any other extreme conditions that's fair, but not when it's "hard weather" that they could
+  however do well in proper clothing", then "make sure this weather resilience update is applied to all kinds of
+  occurences that make people come to my map, as long as the faction/type of event etc. reasonably allows this and makes
+  sense from a "realism" perspective", then "so for raiders it would also make sense if they come dressed for the
+  weather, assuming their faction actually fits the clothing"). DESIGN.md "Dressed for the weather as they come" (after
+  "Visitors on the map", whose "When they go" now says the night's forecast); the Almanac's visitors page ("When they
+  don't come, and when they go early", keywords unchanged).
+  - The cause, in their save (League of Toba, 14 November 2026, extracted in the session's scratchpad): the world event
+    *a great caravan* (`Rimfolk_WS_Variety3_Roads`, "the hauler convoy" of the road league named "Ararcoler League"),
+    its outriders' beat answered "The meadow is theirs for the night": `VisitEffect_Come` caravan, three people, four
+    yaks, the far spot, one night. Trip 3 (`VisitorTracker`, `LordJob_RimfolkVisit`, Lord_209): three
+    `Rimfolk_League_Wayfarer`, set out at 5962631, gone at 5965881 (1.3 hours), `end` Weather, never reached the meadow.
+    One (Human531639) wore a cloth sash, a fox-leather duster and a visage mask and had hypothermia 0.0525, past
+    Rimfolk's own line (`Visitors.Suffering`, 0.04), so the group turned back with "couldn't stay out in this weather"
+    (Rimfolk's message, not the game's; messages aren't kept in the save). The game dressed them for the season's
+    average at the tile and only safe at that average (`PawnApparelGenerator.ApparelWarmthNeededNow`), not for a -20 day
+    and its night; its free warm layer never gives an industrial people the parka (Neolithic by its age,
+    `CorrectFactionForApparel`) and gave another of them Vanilla Anomaly Expanded's straitjacket (Human531631) instead.
+    Rimfolk's own check for a night out wanted them safe eight degrees below the hour's temperature.
+  - Built: `Source/ColonyCouncil/Visitors/WeatherDressMath.cs` (pure, linked: `Qualifies` and its `Arrival`, `Came`,
+    `Who`; `ArrivalHours` 48, `VisitHours`, `Enough` 4 degrees, `Outcome` AsTheyAre, Dressed, PastTheirClothes;
+    `Armour` 0.45 of the material or 0.3 sharp of its own, `Kept`, `Offered`, `AgeFits`, `Fit`; `Room` with `FreeShare`
+    1.3, `PieceShare` 1.5, `HostileShare` 0.15; `Choose`, five layers, `MinGain` 0.5, `Tie` 2; `OutOfPlace` and `Swap`
+    for a piece that hinders; `Suffering` 0.04, `GameLeaves` 0.15, `Suffers`, `NightWhy`, `VisitKey`, `GameKey`). `Source/ColonyCouncil/Visitors/WeatherDress.cs`
+    (the pool, `Pairs`, each plain piece in its cheapest, warmest and coolest material; `IsArmour`, `Kept` with the
+    title's and role's apparel, `Fits`; `Stay` from `CampWeather.StayRange`; the plan and `Apply` with the kind's
+    colours, faith's style and quality, `EquipmentUtility.CanEquip`; `Layers` for camps, `ForStay` with the verdict;
+    `AskedFor` and `SwapHindering`, run first in `ForStay`; `HowCame`, `Arriving`, `OnSpawn`, `AsTheyCame`; `LeaveWords`; `Patch_ArrivalDress`, a prefix on `GenSpawn.Spawn`,
+    and `Patch_WeatherLeaveWords` on `TransitionAction_Message.DoAction`). `Visitors/Visitors.cs`: `MakePeople`
+    dresses a visit for its hours and nights (the robbed as they were left), `Suffering`/`SufferingFrom` through the
+    pure rule, `WeatherWhy`, `Night`, `SafeOvernight` by the forecast to first light out in the open.
+    `Visitors/VisitorWords.cs`: the message by why. `Camps/CampWeather.cs`: `Dress` through `WeatherDress.Layers`, the
+    winter folk's own clothes never over a kept piece. Keys in `Languages/English/Keyed/Rimfolk_Visitors.xml`
+    (`CC_Visit_Weather_cold`, `_heat`, `_hunger` in place of `CC_Visit_Weather`; `CC_WeatherLeave_Cold`, `_Heat`). Tests
+    `Tools/Tests/WeatherDressTests.cs` (who and who not, the line, the pieces, the age, the worth, the pick, the swap of
+    a piece that hinders, the player's save and pool, the seams). Nothing saved, no Sched slot, under the deeper game hooks setting.
+  - A piece that hinders them (the coordinator's follow-up of the same day, from the straitjacket the game's free warm
+    layer put on Human531631): whatever the weather, a piece someone came in that lowers their moving, work, aim, hit or
+    dodge, that their kind neither requires nor asks for by its tags (`apparelRequired`, `apparelTags`, a specific
+    requirement) and that isn't kept (armour, a title's or a role's apparel), is swapped first for a plain piece of their
+    age that takes exactly its place and keeps them as warm for the stay, their kind's first, within the same worth
+    budget, the old piece destroyed; with nothing as warm on offer it stays on.
+  - Covered, as they appear on a home map: the game's visitors, trade caravans, travellers, quest guests, lodgers,
+    refugees and beggars, Royalty's envoys and bestowers, allies, raids, sieges and ambushes (on foot, by pod or
+    shuttle), Hospitality's guests, other mods' arrivals through the game's spawning, all of Rimfolk's (visits, envoys,
+    herders, drovers, pilgrims, camps, riders, couriers, the peoples' events, war bands, bandits, the gods' strangers,
+    whose god's robes are locked so kept), a wanderer who joins. Left as they are: animals, insects, mechanoids,
+    entities and the walking dead, anyone down as they appear (crash survivors), prisoners and slaves, babies, the
+    factionless and the wild, peoples of no age with clothing, anyone already on the map or off one within the hour,
+    the colony's own coming home or bought and sent down in a pod, maps in space, the robbed merchant.
+  - Not run here: the hook in the game (every arrival kind above, with Hospitality and VE Events), the pick's choices
+    from the player's whole pool by each people's tags, the kind's colours on a new parka, Hospitality's lodgers and
+    the game's lodgers' own rules (`CanEquip`), the cost of a large raid arriving at once, the reworded game message.
+    Mods that would help: none; Rimfolk dresses them from what the player's mods already add.
+  - Try in the game: 1. In a hard frost (about -20 °C), let the road league's convoy rest on the far meadow, or answer
+    drovers asking for grass: they walk in wearing parkas (a teal one for the league's wayfarers) and tuques, reach the
+    meadow, stay the night and go on at first light. 2. A trade caravan, a visitor group and a raid in the same frost:
+    each comes in warm layers of its own age (tribes and outlanders alike in parkas or warm jackets), their flak
+    vests, plate and belts still on; a killed raider drops what they wore, worth about what it would have been. 3. A
+    heat wave: cowboy hats and dusters. 4. A cold snap far past anything their clothes keep out (say -60 °C): they come
+    as they are and leave, and the message says the extreme cold. 5. A crashed refugee pod in the frost: the survivor is
+    as the crash left them. 6. Mild weather: nobody changes, but for 7. 7. A visitor the game dressed in Vanilla Anomaly
+    Expanded's straitjacket comes in a plain coat of their kind instead: a jacket on a mild day, a parka in the frost.
 - 0.232.0, **The gods understood: the fixes,
   the signs, the plain lines and shrines made clear** (14 November 2026; the player's words: "the god signs are awesome,
   go ahead! should be seen in the book and on cards. also like the one-line meaning for the chapter ... gods effect
