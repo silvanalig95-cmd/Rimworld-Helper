@@ -31,6 +31,21 @@ When you load a save after an update, a letter lists the newest round once. The 
     <rounds>
 
       <li>
+        <version>0.230.0</version>
+        <date>14 November 2026</date>
+        <title>The peoples' own events, round 3</title>
+        <points>
+          <li>The road league now comes with the Waystone Book when you robbed or killed traders: pay the wronged back, send your best talker to argue the entry, or trade worse with every league until you pay.</li>
+          <li>While a new road goes through the region, the league's road gang camps at your edge and lays it across your land a stretch a day, with a spur to your gate for silver or stone.</li>
+          <li>After a raid, hospitallers may come with litters for the raiders still lying downed, and a sister keeps a sick room when a sickness spreads.</li>
+          <li>In a plague year or after a war, the order pitches a field sickhouse by your colony, a long hut with a lamp at its door for the region's sick.</li>
+          <li>The herding folk drive a drove across your land, and their riders follow the trail when raiders drive off your beasts.</li>
+          <li>In spring the herders bring beasts in calf to your sheltered ground, and a hard birth may bring one of them to your gate.</li>
+          <li>Pilgrims raise an old shrine by something holy on your map, and a palmer brings two quarrelling faiths to one table for an evening.</li>
+        </points>
+      </li>
+
+      <li>
         <version>0.229.1</version>
         <date>14 November 2026</date>
         <title>Plain words and a dinner forgiven</title>

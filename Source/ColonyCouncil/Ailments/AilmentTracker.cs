@@ -1190,8 +1190,9 @@ namespace ColonyCouncil
                     if (room == null || room.PsychologicallyOutdoors) return;
                 }
                 bool dirtyRoom = AilmentChecks.Dirty(room);
-                // A quarantine decree of their colony keeps the sick apart (DecreeWork.ContagionFactorFor).
-                float chance = info.spreadPerHour * (h.IsTended() ? info.spreadWhileTended : 1f) * Freq * DecreeWork.ContagionFactorFor(p);
+                // A quarantine decree of their colony keeps the sick apart (DecreeWork.ContagionFactorFor); so does the order's
+                // sick room while it stands (Peoples/Events3/SickRoom.cs).
+                float chance = info.spreadPerHour * (h.IsTended() ? info.spreadWhileTended : 1f) * Freq * DecreeWork.ContagionFactorFor(p) * SickRoom.SpreadFactor(p);
                 foreach (var bed in room.ContainedBeds)
                 {
                     foreach (var other in bed.CurOccupants)

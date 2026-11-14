@@ -33,7 +33,8 @@ namespace ColonyCouncil
                 case ArchiveTrust.Kind: return ArchiveTrust.Hour(v, now);
                 case DryWater.LostKind: return DryWater.LostHour(v, now);
             }
-            return false;
+            // Round 3's (Peoples/Events3/): the litters, the sick room, the ward, a drove, the thieves' trail, a birth, a shrine.
+            return PeopleEvents3.Hour(v, comp, now);
         }
 
         /// <summary>One of round 2's events fired from code when its day comes (an instalment due, the knot night): false when it can't be now.</summary>

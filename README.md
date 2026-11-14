@@ -4379,6 +4379,28 @@ folk** by the colony's water in a drought, asking hay or grazing, their herd str
 beast at the gate after a good stay; and the **enclave's** pad at the colony's edge, rent to the last digit every five days,
 a pod of fresh stock each dawn and the game's own trading every day. The Almanac's peoples' pages say what each does.
 
+**The peoples' own events, the third round.** Ten more, from the road league, the hospitaller order, the herding folk
+and the pilgrim fellowship, each only while that people is at peace with the colony. The **road league's** factor comes
+with the Waystone Book open at the colony's page when it robbed or killed traders of any people: pay the wronged back, send
+its best talker to argue the entry (a Social roll on the card, struck out or written twice), or refuse and trade with
+every league at worse terms until it pays. While a new road is laid through the region, the league's **road gang** asks
+leave to lay it across the colony's land (through the fields, round them, or round the whole land, which they take
+badly), camps at the edge eight to twelve days and lays it a stretch a day in the league's age's floor, from packed earth
+to paved tile; it buys food, hires the colony's builder by the day, and lays a spur to the gate for silver or stone, and
+the road stays. The **hospitallers** come with litters after a raid for the raiders still lying downed, and the raiders'
+own people think better of the colony for each carried off; a sister keeps a **sick room** three days when a sickness is
+spreading, so it passes at a third of its rate; and in a plague year or after a war the sisters pitch a **field
+sickhouse**, a long hut with a lamp at its door, where the region's sick and wounded come, asking the colony for medicine,
+food, cloth and its doctor's day. The **herding folk** drive a **drove** of twenty to forty head across the colony's land
+over two or three days (a young beast or hides and milk for the grass, a ride with them for the colony's hand at beasts,
+some crops grazed); their riders come **on the thieves' trail** the morning after raiders drive off the colony's beasts, with
+the colony's rider as a caravan of one to the thieves' camp or alone, keeping one beast as their due; and in spring they
+**calve** on the colony's sheltered ground, a hard birth bringing a herder to the gate for the colony's best hand. The
+**pilgrims** set stones and a lamp by something holy on the colony's ground, an **old shrine** of the colony's that
+pilgrims stop at in spring and summer and the faithful pray at, mourned if it falls to ruin; and when two faiths quarrel or
+the colony's faith is near a split, a palmer brings them to **one table** for an evening, settled for a season or, by the
+speakers' Social, split anyway. The Almanac's peoples' pages say what each does.
+
 **Peoples whose age changes.** Rimfolk's peoples don't stay in the age they began in. Each season every one of them
 moves toward the next age at a pace of its own ways: the learned society, the Stormglass Conclave and the road league
 soonest, the Signal Line soon after, the herders and the Mossborn latest and never past the industrial and the medieval

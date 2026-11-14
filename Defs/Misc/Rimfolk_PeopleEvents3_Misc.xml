@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    The peoples' own events, round 3 (Source/ColonyCouncil/Peoples/Events3/): the jobs their people and the colony's do on
+    the map, the pilgrims' old shrine (a building of the colony's once blessed, Textures/ColonyCouncil/Things/OldShrine.png),
+    the prayer at it and the memory it leaves.
+  -->
+
+  <!-- ===================== 6. The litters, 8. the ward (Litters.cs, FieldSickhouse.cs) ===================== -->
+
+  <JobDef>
+    <defName>Rimfolk_PEv3_LitterCarry</defName>
+    <driverClass>ColonyCouncil.JobDriver_LitterCarry</driverClass>
+    <reportString>carrying TargetA away on a litter.</reportString>
+    <casualInterruptible>false</casualInterruptible>
+  </JobDef>
+
+  <JobDef>
+    <defName>Rimfolk_PEv3_WardRound</defName>
+    <driverClass>ColonyCouncil.JobDriver_WardRound</driverClass>
+    <reportString>seeing to TargetA in the ward.</reportString>
+    <casualInterruptible>false</casualInterruptible>
+  </JobDef>
+
+  <JobDef>
+    <defName>Rimfolk_PEv3_CarryToWard</defName>
+    <driverClass>ColonyCouncil.JobDriver_CarryToWard</driverClass>
+    <reportString>carrying TargetA in to the ward.</reportString>
+    <casualInterruptible>false</casualInterruptible>
+  </JobDef>
+
+  <!-- ===================== 4. The road gang (RoadGang.cs) ===================== -->
+
+  <JobDef>
+    <defName>Rimfolk_PEv3_LayRoad</defName>
+    <driverClass>ColonyCouncil.JobDriver_LayRoad</driverClass>
+    <reportString>laying the road.</reportString>
+    <casualInterruptible>false</casualInterruptible>
+  </JobDef>
+
+  <!-- ===================== 11. The thief on the drove road (ThiefTrail.cs) ===================== -->
+
+  <JobDef>
+    <defName>Rimfolk_PEv3_RideOut</defName>
+    <driverClass>ColonyCouncil.JobDriver_RideOut</driverClass>
+    <reportString>setting out on the thieves' trail.</reportString>
+    <casualInterruptible>false</casualInterruptible>
+  </JobDef>
+
+  <!-- ===================== 13. Spring calving (SpringCalving.cs) ===================== -->
+
+  <JobDef>
+    <defName>Rimfolk_PEv3_HardBirth</defName>
+    <driverClass>ColonyCouncil.JobDriver_HardBirth</driverClass>
+    <reportString>helping TargetA calve.</reportString>
+    <casualInterruptible>false</casualInterruptible>
+  </JobDef>
+
+  <JobDef>
+    <defName>Rimfolk_PEv3_LanternSearch</defName>
+    <driverClass>ColonyCouncil.JobDriver_LanternSearch</driverClass>
+    <reportString>looking for a lost calf by lantern.</reportString>
+    <casualInterruptible>false</casualInterruptible>
+  </JobDef>
+
+  <!-- ===================== 15. An old shrine on the colony's ground (OldShrine.cs) ===================== -->
+
+  <JobDef>
+    <defName>Rimfolk_PEv3_SetStones</defName>
+    <driverClass>ColonyCouncil.JobDriver_SetStones</driverClass>
+    <reportString>setting the shrine's stones.</reportString>
+    <casualInterruptible>false</casualInterruptible>
+  </JobDef>
+
+  <JobDef>
+    <defName>Rimfolk_PEv3_ShrinePray</defName>
+    <driverClass>ColonyCouncil.JobDriver_ShrinePray</driverClass>
+    <reportString>praying at TargetA.</reportString>
+    <joyDuration>2500</joyDuration>
+    <joyMaxParticipants>2</joyMaxParticipants>
+    <joyKind>Meditative</joyKind>
+    <checkOverrideOnDamage>Always</checkOverrideOnDamage>
+  </JobDef>
+
+  <JoyGiverDef>
+    <defName>Rimfolk_PrayAtOldShrine</defName>
+    <giverClass>JoyGiver_InteractBuildingInteractionCell</giverClass>
+    <baseChance>2</baseChance>
+    <thingDefs>
+      <li>Rimfolk_OldShrine</li>
+    </thingDefs>
+    <jobDef>Rimfolk_PEv3_ShrinePray</jobDef>
+    <joyKind>Meditative</joyKind>
+    <requiredCapacities>
+      <li>Moving</li>
+    </requiredCapacities>
+  </JoyGiverDef>
+
+  <ThingDef ParentName="BuildingBase">
+    <defName>Rimfolk_OldShrine</defName>
+    <label>old shrine</label>
+    <description>Stones set by pilgrims of the fellowship beside something holy on the colony's ground, a shell set into them and a small lamp on the capstone, blessed when the last stone was laid. Pilgrims stop at it in spring and summer and leave a little at its foot, and the colony's faithful feel it when they pray there. Out in the weather it wears; let fall to ruin, the fellowship mourns it.</description>
+    <thingClass>Building</thingClass>
+    <graphicData>
+      <texPath>ColonyCouncil/Things/OldShrine</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+      <drawSize>(1.3,1.3)</drawSize>
+      <damageData>
+        <rect>(0.1,0.1,0.8,0.8)</rect>
+      </damageData>
+    </graphicData>
+    <altitudeLayer>Building</altitudeLayer>
+    <passability>PassThroughOnly</passability>
+    <fillPercent>0.45</fillPercent>
+    <pathCost>42</pathCost>
+    <rotatable>false</rotatable>
+    <hasInteractionCell>true</hasInteractionCell>
+    <interactionCellOffset>(0,0,-1)</interactionCellOffset>
+    <terrainAffordanceNeeded>Light</terrainAffordanceNeeded>
+    <useHitPoints>true</useHitPoints>
+    <building>
+      <isInert>true</isInert>
+      <ai_chillDestination>false</ai_chillDestination>
+    </building>
+    <statBases>
+      <MaxHitPoints>180</MaxHitPoints>
+      <Mass>40</Mass>
+      <MarketValue>120</MarketValue>
+      <Flammability>0</Flammability>
+      <Beauty>8</Beauty>
+      <MeditationFocusStrength MayRequire="Ludeon.RimWorld.Royalty">0.14</MeditationFocusStrength>
+    </statBases>
+    <tradeability>None</tradeability>
+    <comps>
+      <li Class="CompProperties_Glower">
+        <glowRadius>3.5</glowRadius>
+        <glowColor>(240,180,90,0)</glowColor>
+      </li>
+      <li Class="CompProperties_MeditationFocus" MayRequire="Ludeon.RimWorld.Royalty">
+        <statDef>MeditationFocusStrength</statDef>
+        <focusTypes>
+          <li>Dignified</li>
+        </focusTypes>
+      </li>
+    </comps>
+  </ThingDef>
+
+  <ThoughtDef>
+    <defName>Rimfolk_Thought_PrayedAtShrine</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
+    <durationDays>1.5</durationDays>
+    <stackLimit>1</stackLimit>
+    <stages><li><label>prayed at the old shrine</label><description>I prayed a while at the old shrine the pilgrims blessed. It was quiet there, and I felt heard.</description><baseMoodEffect>4</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+</Defs>

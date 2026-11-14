@@ -5,6 +5,18 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## The peoples' own events, round 3
+
+*14 November 2026, version 0.230.0*
+
+- The road league now comes with the Waystone Book when you robbed or killed traders: pay the wronged back, send your best talker to argue the entry, or trade worse with every league until you pay.
+- While a new road goes through the region, the league's road gang camps at your edge and lays it across your land a stretch a day, with a spur to your gate for silver or stone.
+- After a raid, hospitallers may come with litters for the raiders still lying downed, and a sister keeps a sick room when a sickness spreads.
+- In a plague year or after a war, the order pitches a field sickhouse by your colony, a long hut with a lamp at its door for the region's sick.
+- The herding folk drive a drove across your land, and their riders follow the trail when raiders drive off your beasts.
+- In spring the herders bring beasts in calf to your sheltered ground, and a hard birth may bring one of them to your gate.
+- Pilgrims raise an old shrine by something holy on your map, and a palmer brings two quarrelling faiths to one table for an evening.
+
 ## Plain words and a dinner forgiven
 
 *14 November 2026, version 0.229.1*

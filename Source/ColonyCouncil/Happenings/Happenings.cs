@@ -655,6 +655,8 @@ namespace ColonyCouncil
             Safe("commissions", () => HappeningWorker_Commission.Hourly(this, comp, now));
             // Later parts of the fourth batch: arrivals, caravans and fairs coming back, old memories fading, founding day.
             Safe("living", () => LivingEvents.Hourly(this, comp, now));
+            // The peoples' own events, round 3 (Peoples/Events3/): a raid's end, a theft of beasts, the old shrines' seasons.
+            Safe("peoples' events 3", () => PeopleEvents3.Hourly(now));
             // The storyteller batch's own: ventures, campaigns and gifts coming back (Workers_Storyteller.cs).
             Safe("storyteller events", () => StorytellerEvents.Hourly(this, comp, now));
             // Before the daily tidy-up, so a hunt whose leader just died is told before its memo goes.

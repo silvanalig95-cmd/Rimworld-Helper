@@ -206,6 +206,21 @@ PLAY = {
     "DilemmaEffect_BeastLeg": "a leg fitted",
     "DilemmaEffect_BeastStables": "led to the stables",
     "DilemmaEffect_NewsBought": "silver carried out",
+    # The peoples' own events, round 3 (Peoples/Events3/): the raiders carried off on litters, a sick room kept with its
+    # rounds, a field sickhouse pitched, a drove across the land, a road gang's camp and road, a rider out on the thieves'
+    # trail or the herders riding alone, a calving camp and a hard birth worked at the mother's side, an old shrine raised
+    # stone by stone, the palmer's walk from believer to believer.
+    "DilemmaEffect_Litters": "carried off on litters",
+    "DilemmaEffect_SickRoom": "a sick room and its rounds",
+    "DilemmaEffect_SickhouseCamp": "a sickhouse pitched",
+    "DilemmaEffect_Drove": "a drove across the land",
+    "DilemmaEffect_RoadGang": "a road laid a stretch a day",
+    "DilemmaEffect_ThiefRide": "out on the thieves' trail",
+    "DilemmaEffect_ThiefAlone": "the riders out and back",
+    "DilemmaEffect_CalvingCamp": "a calving camp",
+    "DilemmaEffect_HardBirth": "a birth worked at the mother's side",
+    "DilemmaEffect_OldShrine": "stones set and a lamp lit",
+    "DilemmaEffect_TwoFaithsApart": "blessed one by one",
 }
 
 # Words that say people do something together, or go somewhere on the map. Deliberately wide: the list is read by hand.

@@ -92,7 +92,9 @@ namespace ColonyCouncil
             // The peoples' own camps of round 1 (Rimfolk_CampKinds_PeopleEvents.xml).
             "them:camp:PilgrimHostel", "them:camp:LanternPost", "them:camp:ScholarsMeasure",
             // And of round 2 (Rimfolk_CampKinds_PeopleEvents2.xml).
-            "them:camp:DryWater", "them:camp:EnclavePad"
+            "them:camp:DryWater", "them:camp:EnclavePad",
+            // And of round 3 (Rimfolk_CampKinds_PeopleEvents3.xml).
+            "them:camp:RoadGang", "them:camp:FieldSickhouse", "them:camp:SpringCalving"
         };
 
         /// <summary>The tag for one of a camp of this kind: them:camp: and the kind's defName without its Council_Camp_ or Rimfolk_Camp_ ("them:camp:SaltCaravan").</summary>
