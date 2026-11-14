@@ -668,6 +668,10 @@ job report ("praying to Hollin"), their bubbles and a journal line.
   that names the god (`Textures/ColonyCouncil/Gods/Signs/`, every age's form); each chapter's plain line; shrines made
   clear (the dedication card, the inspect line, the carrier's why, a gift noticed gone by day). DESIGN.md "The gods
   understood". A colonist's god is still picked as before, for round 3.
+- Not released yet (14 November 2026): round 3, section E, each colonist's own belief in each god (drawn from who they
+  are, never kin; grown and faded by what they do and see; dread; won over; whom they pray to; each god's small rite;
+  rival devotees bickering; on the Culture tab and in each chapter of the book, in words only). The id-number pick is
+  replaced. DESIGN.md "Each one's gods".
 
 - Not released yet (14 November 2026, the player's go): round 2 of section H. Each god's own presence (fourteen, one
   effect each, every one different, Tamiu's folded in), each god's own way of taking a gift, Bellwether's and Ennu's own

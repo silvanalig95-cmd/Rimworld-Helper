@@ -5,6 +5,16 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## Each one's gods
+
+*14 November 2026, version 0.235.0*
+
+- Each colonist now holds the gods in their own way: who they are draws them toward one or another, never their family, and praying, gifts, vows, feast days and what they see make it stronger while neglect and unanswered prayers wear it down.
+- A colonist's Culture tab shows their gods in words, such as devoted to one or in dread of another, with the reason when you hover, and each chapter of the Gods' book lists who holds to that god and who dreads it.
+- Colonists pray to and swear by the god they hold most, and the devoted keep a small rite of their own now and then: a hand on a tree, a coin dropped into the rock, an extra bowl at the table, a sit by a grave at dusk.
+- A strong moment can win someone over to another god, said aloud and in their journal, while a god's anger can leave someone afraid of it, keeping away from its place and flinching at its signs.
+- Two colonists who hold rival gods bicker about it now and then, and a colonist feels it when their god shows itself, its place is torn down or its feast day passes unkept.
+
 ## The gods, each their own
 
 *14 November 2026, version 0.234.0*

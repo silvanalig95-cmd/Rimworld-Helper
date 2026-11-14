@@ -322,11 +322,46 @@ namespace ColonyCouncil
                     CouncilLog.ErrorOnce("gods: a line of the book", e);
                 }
             }
+            y = Holders(x, y, w, p);
             // The witnesses: every entry under the name, by date.
             y = PartHead(x, y, w, "CC_GodBook_Part_Witnesses".Translate(), UiKit.Quieter(UiKit.Gold, 0.35f));
             if (p.entries.Count == 0) return y + Para(x, y, w, "<i>" + "CC_GodBook_Silence_0".Translate() + "</i>", UiKit.Dim, GameFont.Small, TextAnchor.UpperCenter) + 8f;
             return Entries(x, y, w, p.entries, false);
         }
+
+        /// <summary>
+        /// Who holds to the god here, and who dreads it, in the keeper's hand (Gods/Belief/PawnGods.cs): the colony's people by
+        /// name with how they hold it in a word, under the chapter the colony keeps that god under (its first name for it; a
+        /// second name not yet worked out to be the same has nobody). Nothing while nobody does.
+        /// </summary>
+        private static float Holders(float x, float y, float w, Page p)
+        {
+            var g = p?.name != null && p.name.god >= 0 ? Gods.ById(p.name.god) : null;
+            if (g == null || GodLore.Instance?.PageOf(g)?.name != p.title) return y;
+            // Worked out at most once a second.
+            float now = Time.realtimeSinceStartup;
+            if (!holdersCache.TryGetValue(g.id, out var c) || now - c.at > 1f || now < c.at)
+            {
+                var holders = PawnGods.HoldersOf(g);
+                string Of(IEnumerable<(Pawn pawn, BeliefWord word)> list) =>
+                    string.Join("; ", list.Select(h => "CC_GodBook_Holder".Translate(h.pawn.LabelShort.Named("PAWN"), ("CC_Belief_Short_" + h.word).Translate().Named("WORD")).Resolve()));
+                var hold = holders.Where(h => !PawnGodsMath.Fears(h.word)).ToList();
+                var dread = holders.Where(h => PawnGodsMath.Fears(h.word)).ToList();
+                var keeper = GodLore.Keeper(out _);
+                c = (now, holders.Count == 0 ? null : keeper != null ? "CC_GodBook_HoldersHand".Translate(keeper.LabelShort.Named("KEEPER")).Resolve() : "CC_GodBook_HoldersNobody".Translate().Resolve(),
+                    hold.Count > 0 ? "CC_GodBook_HoldTo".Translate(Of(hold).Named("WHO")).Resolve() : null,
+                    dread.Count > 0 ? "CC_GodBook_DreadIt".Translate(Of(dread).Named("WHO")).Resolve() : null);
+                holdersCache[g.id] = c;
+            }
+            if (c.head == null) return y;
+            y = PartHead(x, y, w, "CC_GodBook_Part_Holders".Translate(), UiKit.Quieter(UiKit.Gold, 0.35f));
+            y += Para(x + Gutter, y, w - Gutter, "<i>" + c.head + "</i>", UiKit.Quieter(UiKit.Gold, 0.3f), GameFont.Tiny) + 2f;
+            if (c.hold != null) y += Para(x + Gutter, y, w - Gutter, c.hold, UiKit.Ink, GameFont.Small) + 4f;
+            if (c.dread != null) y += Para(x + Gutter, y, w - Gutter, c.dread, UiKit.Ink, GameFont.Small) + 4f;
+            return y + 8f;
+        }
+
+        private static readonly Dictionary<int, (float at, string head, string hold, string dread)> holdersCache = new Dictionary<int, (float, string, string, string)>();
 
         /// <summary>How large a chapter's sign is drawn beside its name.</summary>
         private const float SignSize = 56f;

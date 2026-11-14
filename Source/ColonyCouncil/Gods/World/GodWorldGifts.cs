@@ -530,6 +530,8 @@ namespace ColonyCouncil
                 return;
             }
             PeopleEventsBook.Gave(GiftKey(g), p);
+            // A gift of a god's to them, a strong moment for their own belief (Gods/Belief/PawnGods.cs).
+            PawnGods.Gift(p, g, label);
             b.AddGift(new GodGiftHeld { god = g.id, pawn = p, kind = kind, what = what, label = label, thing = thing, price = (GodPrice)d.stage });
             Gods.AddFavour(g, map, GodWorldMath.GiftTaken, GodWorld.T("CC_GW_Gift_Why", g, p.Named("PAWN"), label.Named("GIFT")));
             FleckMaker.ThrowMetaIcon(p.Position, map, FleckDefOf.PsycastAreaEffect);

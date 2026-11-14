@@ -146,6 +146,8 @@ namespace ColonyCouncil
             Speech.Say(teller, text, listener);
             lore.told[key] = GodLoreMath.AfterTelling(lore.told.TryGetValue(key, out int n) ? n : 0, piece, story.pieces.Count);
             GodLore.Heard(teller, g, text, how, key, piece, name);
+            // What they were told draws the listener a little (Gods/Belief/PawnGods.cs).
+            PawnGods.Told(listener, teller, g);
             // The tale in its chapter, piece by piece as told.
             GodLore.Set(BookPart.Tales, g, name, text, teller, how, key, piece);
             // Heard whole, a story teaches the signs it explains as the god's own, set down with the tale and its teller.
@@ -195,6 +197,7 @@ namespace ColonyCouncil
             Speech.Say(teller, line, listener);
             GodLore.Heard(teller, g, line, how, null, -1, name);
             GodLore.Set(part, g, name, line, teller, how, mark, i);
+            PawnGods.Told(listener, teller, g);
             return true;
         }
 
@@ -216,6 +219,7 @@ namespace ColonyCouncil
             if (teller.IsColonist) GodLore.Believes(teller, g, line);
             else GodLore.Heard(teller, g, line, how, null, -1, name);
             GodLore.Set(BookPart.Sayings, g, name, line, teller, how, null, i);
+            PawnGods.Told(listener, teller, g);
             return true;
         }
 

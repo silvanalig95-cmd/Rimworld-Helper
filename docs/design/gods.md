@@ -518,3 +518,23 @@ own", has the whole of it. For the contract:
 - Every age: the effects are the land's and the colony's own things (plants, rock, beasts, hearths, lamps, machines,
   wells, coins), so each takes the age's form by what the colony has: a tribal colony's Pip has no wires to hum in and
   its prank has no door if it has none.
+
+### Each one's gods: a colonist's own belief (the player, 14 November 2026; round 3)
+
+"pawns should have and develop kind of a relationship in a way, or rather a belief to gods ... the more they pray and
+interact to a god, that they kind of, yeah, get a stronger belief in that god"; "pawn belief should be reflected in book
+and culture tab". DESIGN.md, "Each one's gods", has the whole of it. For the contract:
+- A belief is the pawn's own, a pawn fact the unseen rule allows: how strongly a colonist holds a god and dreads it,
+  shown only in words ("devoted to Hollin", "leans toward Ducat", "in dread of the Hunger", "doubts them all"), with a
+  line of why. Never a number, never the god's favour, wants or rules; it never reads or moves favour.
+- It is held in the god they took a thing for (`GodLoreMath.Attribute`, as the book is written), so it can be wrong, and
+  shown by the colony's name for that god (its first chapter in the book). A god the colony hasn't heard of is named
+  nowhere; a second name not yet worked out to be the same has nobody under it.
+- Never inherited: drawn from who they are (traits, passions, xenotype, their past, the people they came from, their
+  faith, a bond with an animal), what they do and what they see. Nothing reads their parents or kin.
+- `Worship.GodOf` and `Gods.SwearBy` read it first (`PawnGods.Held`): the god someone prays to and swears by is their own,
+  else the moment's domain's, else their work's. Parts ask those two, never the belief record directly.
+- Growth comes through the seams that are already there (prayer, offerings, vows, festivals, dreams, tales, a god's
+  hand, `Gods.Remember` and `Gods.Moment`, a god's own presence ending, a gift found taken in its own way), so a part
+  that goes through them moves belief with no code of its own.
+- Only the colony's own people (`Worship.Ours`); no harm but the rare scuffle in a quarrel at the game's insult's rate.

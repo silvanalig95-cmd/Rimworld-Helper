@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    The words of each colonist's own belief (Source/ColonyCouncil/Gods/Belief/; Worship.Line). {GOD} is the speaker's own god by
+    the colony's name for it, {RIVAL} the other's god in a quarrel. The tags: the god itself (godkey:...), the rite's form
+    (rite:grave, rite:cat for Tamiu's), how they were won over (won:sawplain, won:sawblessing, won:gift, won:answered,
+    won:livedthrough), the god's kind (kind:hunger), doubt, priest, scoffer. Spoken lines are one sentence each, said over the
+    head (Speech.Say); journal lines are their own.
+  -->
+
+  <!-- ===================== Their own small rite (PawnGodsActs.Rites), one a god ===================== -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_Belief_Rite</defName>
+    <lines>
+      <plain>
+        <li>[godkey:hollin] Grow well, old one, and tell {GOD} I said so.</li>
+        <li>[godkey:hollin] A hand on the bark for {GOD}, so she knows we haven't forgotten.</li>
+        <li>[godkey:hollin] Still standing and still green, thanks to {GOD}.</li>
+        <li>[godkey:smoulder] A coin for the deep, {GOD}, and sleep easy.</li>
+        <li>[godkey:smoulder] There, {GOD}, a little silver for your dreams.</li>
+        <li>[godkey:smoulder] Down the crack it goes, and the rock is warm, as it should be.</li>
+        <li>[godkey:bellwether] Graze in peace, for {GOD}'s sake.</li>
+        <li>[godkey:bellwether] Leave the grass long here, {GOD} would want it so.</li>
+        <li>[godkey:bellwether] Easy now, I'm only here to stand with you a while.</li>
+        <li>[godkey:morel] Back to the earth with you, and {GOD} will know what to do with it.</li>
+        <li>[godkey:morel] Scraps for {GOD}, and the soil the richer for it.</li>
+        <li>[godkey:morel] Nothing wasted, {GOD}, it all comes back to you.</li>
+        <li>[godkey:ennu] One more bowl, in case {GOD} comes to the door tonight.</li>
+        <li>[godkey:ennu] A place at the table for the stranger, as {GOD} would ask.</li>
+        <li>[godkey:ennu] There's always room for one more, {GOD}.</li>
+        <li>[godkey:pip] Tap, tap, good morning, {GOD}.</li>
+        <li>[godkey:pip] Keep humming, {GOD}, we're glad of you.</li>
+        <li>[godkey:pip] Two taps for luck, so {GOD} knows somebody's listening.</li>
+        <li>[godkey:cirrus] Are you up there tonight, {GOD}?</li>
+        <li>[godkey:cirrus] The sky's turning, and {GOD} with it.</li>
+        <li>[godkey:cirrus] I look up at dusk, so {GOD} knows someone down here looks back.</li>
+        <li>[godkey:hush] I'll keep quiet a while, {GOD}, as you like it.</li>
+        <li>[godkey:hush] Cold and still, the way {GOD} keeps the world.</li>
+        <li>[godkey:hush] Not a word, {GOD}, just this.</li>
+        <li>[godkey:undertow] I know you're down there, and I know what you want.</li>
+        <li>[godkey:undertow] Just listening, that's all, just listening.</li>
+        <li>[godkey:undertow] Not yet, not tonight, but I haven't forgotten you.</li>
+        <li>[godkey:helios] There you are, {GOD}, give us a good day.</li>
+        <li>[godkey:helios] Warm on my face, as {GOD} gives to everyone.</li>
+        <li>[godkey:helios] Up again, {GOD}, and so are we.</li>
+        <li>[godkey:selene] Look kindly on what we did today, {GOD}.</li>
+        <li>[godkey:selene] Full or thin, {GOD}, I always come out to see you.</li>
+        <li>[godkey:selene] Give back the good, {GOD}, and forgive the rest.</li>
+        <li>[godkey:mog,rite:grave] Keep this one well, {GOD}, until the door opens for the rest of us.</li>
+        <li>[godkey:mog,rite:grave] I'll sit with them a while, {GOD}, so they're not alone.</li>
+        <li>[godkey:mog,rite:grave] Rest whole, and may {GOD} keep the door.</li>
+        <li>[godkey:mog,rite:cat] Eat up, little one, {GOD} sees you fed.</li>
+        <li>[godkey:mog,rite:cat] One for you, and one for {GOD}'s sake.</li>
+        <li>[godkey:murmur] Hmm, hmm, sing it back to us, {GOD}.</li>
+        <li>[godkey:murmur] A hum for {GOD}, down under the water.</li>
+        <li>[godkey:murmur] Sing, old one, and let the rain come.</li>
+        <li>[godkey:ducat] Heads it moves, tails it moves, and {GOD} keeps it going.</li>
+        <li>[godkey:ducat] A coin turned over, so {GOD} knows it won't sit still here.</li>
+        <li>[godkey:ducat] Off you go soon, little coin, as {GOD} likes.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- ===================== Won over to a god (PawnGodsActs.MaybeWonOver) ===================== -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_Belief_WonOver</defName>
+    <lines>
+      <plain>
+        <li>From today I hold to {GOD}, and I don't care who knows it.</li>
+        <li>I never held to {GOD} before today, and now I can't think of anything else.</li>
+        <li>[won:sawplain|won:sawblessing] I saw it with my own eyes, and I'm {GOD}'s now.</li>
+        <li>[won:sawplain|won:sawblessing,scoffer] I laughed at all of it, and then I saw {GOD} with my own eyes.</li>
+        <li>[won:gift] Nobody gives a gift like that for nothing, so I'm {GOD}'s from today.</li>
+        <li>[won:answered] I asked and {GOD} answered, so {GOD} has me now.</li>
+        <li>[won:livedthrough] I should be dead, and I think {GOD} is why I'm not.</li>
+        <li>[scoffer] Fine, I was wrong, and it was {GOD} all along.</li>
+        <li>[doubt] I don't know what I believed before, but I know it was {GOD}.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_Belief_WonOverJournal</defName>
+    <lines>
+      <plain>
+        <li>Something changed today. I've heard the stories of {GOD} all my life and never cared, and now I can't stop thinking about them.</li>
+        <li>I hold to {GOD} now. I can't explain it to the others, but I don't need to.</li>
+        <li>[scoffer] I used to laugh at the ones who prayed. Today I saw {GOD}'s hand myself, and I'm not laughing.</li>
+        <li>[won:answered] I asked {GOD} for help and help came. I'm keeping my side of it from now on.</li>
+        <li>[won:gift] {GOD} gave me something I never asked for. I don't know what I owe, but I know whom I owe it to.</li>
+        <li>[won:livedthrough] I came through it, and I don't think I did it alone. I'm {GOD}'s now.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- ===================== Dread (PawnGodsActs.Flinch, KeepAway; PawnGods.Fear) ===================== -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_Belief_Flinch</defName>
+    <lines>
+      <plain>
+        <li>Not that, not {GOD} again.</li>
+        <li>I know that sign, and I know who sent it.</li>
+        <li>Keep it away from me, whatever {GOD} wants.</li>
+        <li>I'm not looking at it, I'm not.</li>
+        <li>[kind:hunger] It's here, I can feel it, and I want it gone.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_Belief_KeepAway</defName>
+    <lines>
+      <plain>
+        <li>I'm not going near {GOD}'s place, not after what I saw.</li>
+        <li>Somebody else can walk past that shrine, I won't.</li>
+        <li>That's {GOD}'s place, and I keep my distance.</li>
+        <li>[kind:hunger] Whatever lives there can stay there, without me.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_Belief_DreadJournal</defName>
+    <lines>
+      <plain>
+        <li>I can't stop thinking about what {GOD} did. I used to say the name without a thought, and now I won't say it at all.</li>
+        <li>I'm afraid of {GOD}. There, I've written it.</li>
+        <li>[kind:hunger] Something under the world knows my name now. I keep the lamp lit all night.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- ===================== A god slighted (PawnGodsActs.ShrinesLost) ===================== -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_Belief_ShrineLost</defName>
+    <lines>
+      <plain>
+        <li>Somebody tore down {GOD}'s place, and it'll be remembered.</li>
+        <li>{GOD}'s place is gone, and we'll answer for it.</li>
+        <li>[doubt] I don't know if {GOD} minds, but I do.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- ===================== Rival devotees (InteractionWorker_RivalGods) ===================== -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_Belief_Rival</defName>
+    <lines>
+      <plain>
+        <li>{GOD} was here long before anyone prayed to {RIVAL}.</li>
+        <li>You can keep {RIVAL}, I'll stick with {GOD}.</li>
+        <li>If {RIVAL} were worth anything, {GOD} wouldn't have to do all the work.</li>
+        <li>{RIVAL} again, and you wonder why {GOD} is cross with us.</li>
+        <li>Say what you like about {GOD}, at least {GOD} isn't {RIVAL}.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_Belief_RivalReply</defName>
+    <lines>
+      <plain>
+        <li>{GOD} hears me fine, which is more than {RIVAL} ever did for you.</li>
+        <li>Keep your {RIVAL}, and I'll keep {GOD}, and we'll see.</li>
+        <li>You've got {RIVAL} all wrong, and {GOD} too.</li>
+        <li>At least {GOD} never asked me for anything I couldn't give.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+</Defs>
