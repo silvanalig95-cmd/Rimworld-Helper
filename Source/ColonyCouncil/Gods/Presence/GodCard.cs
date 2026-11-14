@@ -13,8 +13,9 @@ namespace ColonyCouncil
     /// comes as a letter of its own kind (gold in the stack, no tag) through the teller, a few seconds after the sting,
     /// once the camera is there and everyone has turned; opened, it is dark paper with a gold border, the god named in its
     /// colour and set large, as the colony knows it (veiled, not named at all), and the words set apart from the narrator's:
-    /// what was seen and heard, never why. No symbol: a god is shown in words. It doesn't pause the game, so the god's
-    /// track plays on behind it.
+    /// what was seen and heard, never why. Over the name, the colony's own sign of the god (Gods/GodSigns.cs) in the form of
+    /// its age, only when the card names the god and the colony has been told what it is; a veiled card shows none. It
+    /// doesn't pause the game, so the god's track plays on behind it.
     /// </summary>
     public static class GodCard
     {
@@ -24,7 +25,7 @@ namespace ColonyCouncil
         internal static GodLetter pending;
 
         internal static void Send(GodLookDef look, string name, string epithet, Map map, IntVec3 at, PresenceKind kind, Pawn avatar, string title, string text, bool veiled,
-            Color a, Color b)
+            Color a, Color b, string sign = null)
         {
             var def = DefDatabase<LetterDef>.GetNamedSilentFail(LetterDefName);
             if (def == null) return;
@@ -34,7 +35,7 @@ namespace ColonyCouncil
             label = label.CapitalizeFirst();
             string body = !text.NullOrEmpty() ? text : ("CC_GodP_Card_Text_" + kind + (veiled ? "_Veiled" : "")).Translate(name.Named("NAME")).Resolve().CapitalizeFirst();
             var look2 = avatar != null && avatar.Spawned ? new LookTargets(avatar) : new LookTargets(at, map);
-            pending = new GodLetter { look = look, godName = name, epithet = epithet, kind = kind, veiled = veiled, colorA = a, colorB = b };
+            pending = new GodLetter { look = look, godName = name, epithet = epithet, kind = kind, veiled = veiled, colorA = a, colorB = b, sign = veiled ? null : sign };
             try
             {
                 Tell.Letter(NewsKind.Land, Importance.Important, map, label, body, def, look2, null, "god|" + name + "|" + kind + "|" + GenTicks.TicksGame / 2500);
@@ -60,6 +61,8 @@ namespace ColonyCouncil
         public PresenceKind kind;
         public bool veiled;
         public Color colorA = Color.white, colorB = Color.white;
+        /// <summary>The colony's sign of the god on the card (a god's key, Gods/GodSigns.cs), or null.</summary>
+        public string sign;
 
         public override void Received()
         {
@@ -73,6 +76,7 @@ namespace ColonyCouncil
             veiled = p.veiled;
             colorA = p.colorA;
             colorB = p.colorB;
+            sign = p.sign;
         }
 
         public override IEnumerable<DiaOption> Choices
@@ -107,6 +111,7 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref veiled, "veiled");
             Scribe_Values.Look(ref colorA, "colorA", Color.white);
             Scribe_Values.Look(ref colorB, "colorB", Color.white);
+            Scribe_Values.Look(ref sign, "sign");
         }
     }
 
@@ -186,6 +191,13 @@ namespace ColonyCouncil
             }
             else
             {
+                // The colony's sign of it, over its name, in the form of the colony's age.
+                var tex = GodSigns.OfColony(letter.sign);
+                if (tex != null)
+                {
+                    GodSigns.Draw(new Rect(inner.center.x - 32f, y - 6f, 64f, 64f), tex);
+                    y += 62f;
+                }
                 Text.Font = GameFont.Medium;
                 GUI.color = godColor;
                 string name = "<size=28>" + (letter.godName ?? "").CapitalizeFirst() + "</size>";

@@ -19,8 +19,8 @@ namespace ColonyCouncil
     /// layered, the game's start sting under them where it has nothing of its own), the sky flashes in the god's colour,
     /// its effecters and circle go off, a disguised god grows into itself, the presence takes the sky and stills the wind,
     /// everyone on the map turns toward it and the devout pray, and the mark is left on the ground; a moment later the
-    /// god's track (the player's own from the god's folder first, else the look's); then its card, dark paper and gold
-    /// with the god's symbol, plain or "some say".</item>
+    /// god's track (the player's own from the god's folder first, else the look's); then its card, dark paper and gold,
+    /// the god named plainly (with the colony's own sign of it, where it has one) or "some say".</item>
     /// </list>
     /// The music's part (the fade, the silence, the track and a god's hum) has its own setting, "Gods' music"; the sounds
     /// always play. The moment runs on real seconds, as the music does, from one small update a frame while it lasts.
@@ -37,6 +37,8 @@ namespace ColonyCouncil
         {
             public GodLookDef look;
             public string name, epithet, title, text;
+            /// <summary>The colony's sign of the god for its card (a god's key, GodSigns), or null.</summary>
+            public string sign;
             public Map map;
             public IntVec3 at;
             public PresenceKind kind;
@@ -60,7 +62,12 @@ namespace ColonyCouncil
         /// god's own colours (the look's otherwise). True when it began.
         /// </summary>
         public static bool Manifest(GodLookDef look, string godName, string epithet, Map map, IntVec3 at, PresenceKind kind, Pawn avatar, string title, string text,
-            bool veiled, Color? colorA = null, Color? colorB = null)
+            bool veiled, Color? colorA = null, Color? colorB = null) =>
+            Manifest(look, godName, epithet, map, at, kind, avatar, title, text, veiled, colorA, colorB, null);
+
+        /// <summary>The same, with <paramref name="sign"/>: the colony's sign of the god (a god's key) shown on its card when the card names it.</summary>
+        public static bool Manifest(GodLookDef look, string godName, string epithet, Map map, IntVec3 at, PresenceKind kind, Pawn avatar, string title, string text,
+            bool veiled, Color? colorA, Color? colorB, string sign)
         {
             if (look == null || map == null) return false;
             if (avatar != null && avatar.Spawned && avatar.Map == map) at = avatar.Position;
@@ -79,6 +86,7 @@ namespace ColonyCouncil
                 kind = kind,
                 avatar = avatar,
                 veiled = veiled,
+                sign = veiled ? null : sign,
                 music = MusicOn,
                 a = colorA ?? c?.ColorA ?? look.colorA,
                 b = colorB ?? c?.ColorB ?? look.colorB,
@@ -173,7 +181,7 @@ namespace ColonyCouncil
                     if (!m.carded && m.stung && t >= GodPresenceMath.CardAt(m.kind, m.music))
                     {
                         m.carded = true;
-                        GodCard.Send(m.look, m.name, m.epithet, m.map, m.at, m.kind, m.avatar, m.title, m.text, m.veiled, m.a, m.b);
+                        GodCard.Send(m.look, m.name, m.epithet, m.map, m.at, m.kind, m.avatar, m.title, m.text, m.veiled, m.a, m.b, m.sign);
                     }
                     for (int k = m.held.Count - 1; k >= 0; k--)
                         if (now >= m.held[k].until)

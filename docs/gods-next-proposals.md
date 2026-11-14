@@ -661,6 +661,11 @@ job report ("praying to Hollin"), their bubbles and a journal line.
 - 0.224.0, one way (felt), each god as near as what happens draws it, and the pace that keeps the gods varied.
 - 0.226.0, the Gods' book as a holy book.
 - 0.227.0, the storytellers (Old Powers weighs the gods more).
+- Not released yet (14 November 2026, the player's go): rounds 0 and 1 of section H. A packed-away work of art can be
+  given, every kind of gift has its words, a prayer and a gift give a small mood; the signs in the book and on a card
+  that names the god (`Textures/ColonyCouncil/Gods/Signs/`, every age's form); each chapter's plain line; shrines made
+  clear (the dedication card, the inspect line, the carrier's why, a gift noticed gone by day). DESIGN.md "The gods
+  understood". A colonist's god is still picked as before, for round 3.
 
 **Still open (defined, not built):**
 - Mog remade as the Egyptian cat god (to-do, 13 November 2026, held).

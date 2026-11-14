@@ -19,6 +19,13 @@ namespace ColonyCouncil
         public int asked;
         /// <summary>The god it was dedicated to before (a pending re-dedication keeps the old one until the words are said), or -1.</summary>
         public int before = -1;
+        /// <summary>
+        /// The last offering left here, for its inspect line: what it was, who carried it, what they said as they set it down,
+        /// when, and what became of it (Waiting until then).
+        /// </summary>
+        public string lastWhat, lastBy, lastWords;
+        public int lastAt = -1;
+        public OfferingFate lastFate = OfferingFate.Waiting;
 
         public bool Live => thing != null && !thing.Destroyed && thing.Spawned;
 
@@ -32,6 +39,11 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref pending, "pending");
             Scribe_Values.Look(ref asked, "asked");
             Scribe_Values.Look(ref before, "before", -1);
+            Scribe_Values.Look(ref lastWhat, "lastWhat");
+            Scribe_Values.Look(ref lastBy, "lastBy");
+            Scribe_Values.Look(ref lastWords, "lastWords");
+            Scribe_Values.Look(ref lastAt, "lastAt", -1);
+            Scribe_Values.Look(ref lastFate, "lastFate", OfferingFate.Waiting);
         }
     }
 
@@ -54,9 +66,12 @@ namespace ColonyCouncil
         public OfferingFate fate = OfferingFate.Waiting;
         /// <summary>It answers the god's demand in a dream.</summary>
         public bool demand;
+        /// <summary>Taken in the night, and since noticed by day by someone passing (or let go after WorshipMath.NoticeDays).</summary>
+        public bool noticed;
 
         public void ExposeData()
         {
+            Scribe_Values.Look(ref noticed, "noticed");
             Scribe_References.Look(ref thing, "thing");
             Scribe_References.Look(ref shrine, "shrine");
             Scribe_Values.Look(ref god, "god", -1);

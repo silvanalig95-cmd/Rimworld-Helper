@@ -22,7 +22,7 @@
   <CC_Wsh_Gizmo_Dedicate>Dedicate to a god</CC_Wsh_Gizmo_Dedicate>
   <CC_Wsh_Gizmo_Pending>Being given to {GOD}</CC_Wsh_Gizmo_Pending>
   <CC_Wsh_Gizmo_Dedicated>{GOD}'s place</CC_Wsh_Gizmo_Dedicated>
-  <CC_Wsh_Gizmo_Desc>Give this place to one of the gods the colony knows. Someone of the colony walks over and says the words there, and it becomes the god's {SHRINE}: people carry offerings to it, pray at it, and keep the god's festival rite there.</CC_Wsh_Gizmo_Desc>
+  <CC_Wsh_Gizmo_Desc>Give this place to one of the gods the colony knows. Someone of the colony walks over and says the words there, and it becomes that god's {SHRINE}. A god's {SHRINE} is where the colony's people leave their small gifts to it, from what the stores can spare, where they come to pray in hard times, and where they keep its feast day. What the god makes of any of it, nobody can say.</CC_Wsh_Gizmo_Desc>
   <CC_Wsh_Gizmo_Of>Given to {GOD} by {PAWN}.</CC_Wsh_Gizmo_Of>
   <CC_Wsh_Gizmo_NoGods>The colony knows no god yet.</CC_Wsh_Gizmo_NoGods>
   <CC_Wsh_Menu_God>{GOD} ({WHOSE})</CC_Wsh_Menu_God>
@@ -36,6 +36,26 @@
   <CC_Wsh_Inspect_Temple>A temple of {GOD}, given by {PAWN}.</CC_Wsh_Inspect_Temple>
   <CC_Wsh_Inspect_Pending>Waiting to be given to {GOD}.</CC_Wsh_Inspect_Pending>
   <CC_Wsh_Inspect_Offering>An offering waits here: {WHAT}.</CC_Wsh_Inspect_Offering>
+  <CC_Wsh_Inspect_Last>Last left here: {WHAT}, by {PAWN}, {AGO}; {FATE}.</CC_Wsh_Inspect_Last>
+  <CC_Wsh_Inspect_Ago>{TIME} ago</CC_Wsh_Inspect_Ago>
+  <CC_Wsh_Inspect_Fate_Taken>it was gone soon after</CC_Wsh_Inspect_Fate_Taken>
+  <CC_Wsh_Inspect_Fate_Animal>an animal ate it</CC_Wsh_Inspect_Fate_Animal>
+  <CC_Wsh_Inspect_Fate_Passerby>someone passing took it</CC_Wsh_Inspect_Fate_Passerby>
+  <CC_Wsh_Inspect_Fate_Spoiled>it spoiled where it lay</CC_Wsh_Inspect_Fate_Spoiled>
+  <CC_Wsh_Inspect_Fate_Returned>it went back to the stores</CC_Wsh_Inspect_Fate_Returned>
+  <CC_Wsh_Inspect_Belief>{BY} holds that {GOD} loves {ITEM}.</CC_Wsh_Inspect_Belief>
+  <CC_Wsh_Inspect_Words>{PAWN} said, setting it down: "{WORDS}"</CC_Wsh_Inspect_Words>
+  <CC_Wsh_ArtTitled>{THING}, "{TITLE}"</CC_Wsh_ArtTitled>
+  <!-- The card on a place given to a god: what the colony's people will do there, as they do it (WorshipMath.ShrineDoings). -->
+  <CC_Wsh_Card_Doing>From now on this is where the colony's people {DOINGS}.</CC_Wsh_Card_Doing>
+  <CC_Wsh_Card_Do_Gifts>now and then leave {GOD} a small gift the stores can spare</CC_Wsh_Card_Do_Gifts>
+  <CC_Wsh_Card_Do_Pray>come to pray in hard times</CC_Wsh_Card_Do_Pray>
+  <CC_Wsh_Card_Do_Feast>keep {FEAST} each {SEASON}</CC_Wsh_Card_Do_Feast>
+  <CC_Wsh_Card_Season_0>spring</CC_Wsh_Card_Season_0>
+  <CC_Wsh_Card_Season_1>summer</CC_Wsh_Card_Season_1>
+  <CC_Wsh_Card_Season_2>autumn</CC_Wsh_Card_Season_2>
+  <CC_Wsh_Card_Season_3>winter</CC_Wsh_Card_Season_3>
+  <CC_Wsh_Card_Nobody>What {GOD} makes of it, nobody here can say.</CC_Wsh_Card_Nobody>
   <CC_Wsh_Dedicated_Felt>{PAWN} gave the {PLACE} to {GOD}, and it is {SHRINE} now. Some say a warmth settled on it as the words were said.</CC_Wsh_Dedicated_Felt>
   <CC_Wsh_Dedicated_Plain>{PAWN} gave the {PLACE} to {GOD}, and it shone a moment as the words were said; everyone near felt it. It is {SHRINE} now.</CC_Wsh_Dedicated_Plain>
   <CC_Wsh_Why_Dedicated>{PAWN} made the {PLACE} into {SHRINE}</CC_Wsh_Why_Dedicated>
@@ -51,6 +71,8 @@
   <CC_Wsh_Report_Rite_NoGod>keeping a god's rite.</CC_Wsh_Report_Rite_NoGod>
   <CC_Wsh_Report_Offer>carrying an offering to {GOD}.</CC_Wsh_Report_Offer>
   <CC_Wsh_Report_Offer_NoGod>carrying an offering.</CC_Wsh_Report_Offer_NoGod>
+  <CC_Wsh_Report_Look>looking in at {GOD}'s place.</CC_Wsh_Report_Look>
+  <CC_Wsh_Report_Look_NoGod>looking in at a god's place.</CC_Wsh_Report_Look_NoGod>
   <CC_Wsh_Report_Pilgrim>on a pilgrimage to {GOD}.</CC_Wsh_Report_Pilgrim>
   <CC_Wsh_Report_PilgrimThere>praying at {GOD}'s holy place.</CC_Wsh_Report_PilgrimThere>
 

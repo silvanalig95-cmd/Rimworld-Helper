@@ -858,7 +858,7 @@ MODEL = {
     # week, settled and let go after twenty days), the vows' kinds, the gods' demands in dreams, a person's crises (a month)
     # and turnings and pilgrimages, and a home's marks (the god honoured this year, the rain kept away, each god's last
     # answer); each with its WorshipBook.Max* cap.
-    "Gods/Worship/WorshipBook.cs:shrines": ("cap", (const("Gods/Worship/WorshipBook.cs", "MaxShrines", 60), 0.05), 200, "places dedicated to a god, WorshipBook.MaxShrines, gone when the place is"),
+    "Gods/Worship/WorshipBook.cs:shrines": ("cap", (const("Gods/Worship/WorshipBook.cs", "MaxShrines", 60), 0.05), 320, "places dedicated to a god with their last gift and its words, WorshipBook.MaxShrines, gone when the place is"),
     "Gods/Worship/WorshipBook.cs:offerings": ("cap", (const("Gods/Worship/WorshipBook.cs", "MaxOfferings", 40), 0.5), 300, "offerings open and lately done, ten days after, WorshipBook.MaxOfferings"),
     "Gods/Worship/WorshipBook.cs:prayers": ("cap", (const("Gods/Worship/WorshipBook.cs", "MaxPrayers", 80), 1), 260, "prayers said, settled and let go after twenty days, WorshipBook.MaxPrayers"),
     "Gods/Worship/WorshipBook.cs:vows": ("cap", (const("Gods/Worship/WorshipBook.cs", "MaxVows", 40), 0.1), 220, "the vows' kinds beside the core's, the open and the newest done, WorshipBook.MaxVows"),

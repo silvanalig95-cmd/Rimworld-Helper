@@ -274,7 +274,8 @@ namespace ColonyCouncil
             if (g == null) return;
             bool devout = Worship.Devout(p);
             Interplay.Ease(p, WorshipMath.Comfort(r.atShrine, devout), StrainRelief.Quiet);
-            CouncilGameComponent.GiveThought(p, WorshipDefOf.Rimfolk_Worship_Prayed);
+            // A small mood: more for a prayer said at the god's own place (WorshipMath.PrayedAtShrineMood).
+            CouncilGameComponent.GiveThought(p, r.atShrine ? WorshipDefOf.Rimfolk_Worship_PrayedAtShrine : WorshipDefOf.Rimfolk_Worship_Prayed);
             Worship.Favour(g, map, WorshipMath.PrayerFavour(r.atShrine) * (Worship.IsPriest(p) ? WorshipMath.PriestRiteFactor : 1f),
                 "CC_Wsh_Why_Prayer".Translate(p.LabelShort.Named("PAWN")).Resolve(), FavourSource.Rite);
             TryAnswer(b, r, p, g, map);

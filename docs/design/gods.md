@@ -359,7 +359,11 @@ What every part builds to:
   (`CardName`); the act in the hidden history and the book; now and then a neighbour's letter later. The game's own
   letter is never altered, and no news line is told. Rare: a god keeps quiet 20 days after, a home 4 days, and each event
   has its own chance. Selene's hand is seen only at night.
-- **No symbols for the gods**, anywhere: not in the book and not on the god's card. A god is shown in words. On the map
+- **No symbols for the gods**, anywhere: not in the book and not on the god's card. A god is shown in words. (Since 14
+  November 2026, the player's pick: the colony's own signs, its people's drawing of what they believe and never a
+  portrait, show in the god's chapter of the book once it tells what the god is, and on a card that names the god; not
+  on shrines, not on the map, and not for a god the colony hasn't heard of: `Gods/GodSigns.cs`, DESIGN.md "The gods
+  understood".) On the map
   a god that isn't hiding keeps its full presence, and the label over it follows the colony's knowledge: its name in the
   book once someone has heard of it, else what is seen of it ("a great white thrumbo", `GodDef.unheard`). A disguised god
   shows only the name it gives. The card is cryptic, in the world's voice, with no why, no favour and no rules; a felt

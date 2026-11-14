@@ -8,7 +8,7 @@ generous guesses; sizes are rough XML sizes. Caps named as constants are read fr
 kept inside another record (a journal's lines, a heart's lists) and are already in that record's size.
 
 Saved collections found: 695; modelled: 695; growing without end: 0.
-Rimfolk's part of the save, roughly: **2,962 KB** after a year, **3,661 KB** after two, **4,090 KB** after five.
+Rimfolk's part of the save, roughly: **2,962 KB** after a year, **3,662 KB** after two, **4,091 KB** after five.
 
 | Collection | Rule | Kind | 1 year | 2 years | 5 years | KB at 5 years |
 |---|---|---|---|---|---|---|
@@ -135,6 +135,7 @@ Rimfolk's part of the save, roughly: **2,962 KB** after a year, **3,661 KB** aft
 | `Arcs/ArcTracker.cs:active` | stories under way | colonists | 10 | 10 | 10 | 4.9 |
 | `Weapons/WeaponPickBook.cs:asks` | each colonist's last ask for a better weapon or trade proposed (one each), those of the gone kept fifteen days | colonists | 20 | 20 | 20 | 4.9 |
 | `Building/BuildAhead.cs:pieceDefs` | with the above: what each blueprint was | fixed | 120 | 120 | 120 | 4.7 |
+| `Gods/Worship/WorshipBook.cs:shrines` | places dedicated to a god with their last gift and its words, WorshipBook.MaxShrines, gone when the place is | cap | 3 | 6 | 15 | 4.7 |
 | `Outsiders/OutsiderBook.cs:wars` | OutsiderBook.MaxWars wars between other peoples, the ended let go after 60 days | fixed | 30 | 30 | 30 | 4.7 |
 | `Peoples/ArisingBook.cs:arisen` | peoples that arose during play: one record each, one every 20 days at the most (the setting at 200%), ArisingMath.MaxRecords kept | cap | 3 | 6 | 15 | 4.7 |
 | `PlayOut/PlayOutTracker.cs:plays` | waiting ones capped, done ones dropped | cap | 8 | 8 | 8 | 4.7 |
@@ -166,7 +167,6 @@ Rimfolk's part of the save, roughly: **2,962 KB** after a year, **3,661 KB** aft
 | `Building/BuildProjects.cs:levels` | with the above: the priorities they had | fixed | 120 | 120 | 120 | 2.9 |
 | `Decrees/Decrees.cs:nightHours` | a curfew's night hours, per colonist while it lasts; after it only those away (the dead, the gone and the unknown let go) | colonists | 20 | 20 | 20 | 2.9 |
 | `Gods/GodLore.cs:names` | the names the colony has heard the gods by, each a page of the book | cap | 3 | 6 | 15 | 2.9 |
-| `Gods/Worship/WorshipBook.cs:shrines` | places dedicated to a god, WorshipBook.MaxShrines, gone when the place is | cap | 3 | 6 | 15 | 2.9 |
 | `Journeys/Journeys.cs:done` | the last hours' steps each traveller has done (six steps) | fixed | 120 | 120 | 120 | 2.9 |
 | `Post/PostBook.cs:rides` | the colony's own riders out with a letter, until they're home: one a letter, a few at most | cap | 5 | 5 | 5 | 2.9 |
 | `Social/SocialWeb.cs:lost` | 40 lost bonds | cap | 3 | 6 | 15 | 2.9 |

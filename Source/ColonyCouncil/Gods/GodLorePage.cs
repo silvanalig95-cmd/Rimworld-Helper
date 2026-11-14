@@ -43,6 +43,8 @@ namespace ColonyCouncil
             public List<LoreEntry> entries = new List<LoreEntry>();
             public List<BookVerse> verses = new List<BookVerse>();
             public List<BookLine> lines;
+            /// <summary>The god the chapter holds itself to be about, from what was told under its name (GodSignsMath.Believed), or -1.</summary>
+            public int believed = -1;
         }
 
         private static readonly List<Page> pages = new List<Page>();
@@ -111,6 +113,7 @@ namespace ColonyCouncil
                     if (!p.verses.Any(v => v.part == BookPart.Names && v.key == n.name))
                         p.verses.Add(new BookVerse { part = BookPart.Names, god = n.god, page = p.title, key = n.name, text = n.name, how = "First", about = n.from, tick = n.first });
                 p.lines = GodBookMath.Compose(p.verses, Pieces);
+                p.believed = GodSignsMath.Believed(p.verses);
             }
             if (chosen != Whole && chosen != Unnamed && !byTitle.ContainsKey(chosen)) chosen = Whole;
         }
@@ -175,7 +178,7 @@ namespace ColonyCouncil
                 {
                     var p = pages[i];
                     string sub = p.also.Count > 0 ? "CC_GodLore_AlsoShort".Translate(p.also.ToCommaList(true).Named("NAMES")).Resolve() : null;
-                    y = Row(y, w, p.title, p.title.CapitalizeFirst(), sub, GodBookMath.Roman(p.chapter), i);
+                    y = Row(y, w, p.title, p.title.CapitalizeFirst(), sub, GodBookMath.Roman(p.chapter), i, SignOf(p, false));
                 }
                 if (unnamed.Count > 0)
                 {
@@ -192,7 +195,7 @@ namespace ColonyCouncil
             }
         }
 
-        private static float Row(float y, float w, string key, string label, string sub, string number, int index)
+        private static float Row(float y, float w, string key, string label, string sub, string number, int index, Texture2D sign = null)
         {
             float h = sub.NullOrEmpty() ? 28f : 40f;
             var r = new Rect(0f, y, w, h);
@@ -210,8 +213,15 @@ namespace ColonyCouncil
                 nx = 30f;
                 UiKit.LabelFit(new Rect(r.x + 6f, r.y + 4f, nx - 6f, 20f), number, UiKit.Faint, GameFont.Tiny, TextAnchor.MiddleRight);
             }
-            UiKit.LabelFit(new Rect(r.x + 8f + nx, r.y + 4f, r.width - 12f - nx, 20f), label, on ? UiKit.Gold : UiKit.Ink);
-            if (!sub.NullOrEmpty()) UiKit.LabelFit(new Rect(r.x + 8f + nx, r.y + 22f, r.width - 12f - nx, 16f), sub, UiKit.Faint, GameFont.Tiny);
+            // The colony's sign of the god, small, at the row's end, where the chapter shows one.
+            float sx = 0f;
+            if (sign != null)
+            {
+                sx = 24f;
+                GodSigns.Draw(new Rect(r.xMax - 24f, r.y + (h - 20f) / 2f, 20f, 20f), sign, on ? 1f : 0.8f);
+            }
+            UiKit.LabelFit(new Rect(r.x + 8f + nx, r.y + 4f, r.width - 12f - nx - sx, 20f), label, on ? UiKit.Gold : UiKit.Ink);
+            if (!sub.NullOrEmpty()) UiKit.LabelFit(new Rect(r.x + 8f + nx, r.y + 22f, r.width - 12f - nx - sx, 16f), sub, UiKit.Faint, GameFont.Tiny);
             if (Widgets.ButtonInvisible(r, false))
             {
                 SoundDefOf.Click.PlayOneShotOnCamera();
@@ -260,10 +270,28 @@ namespace ColonyCouncil
             }
         }
 
-        /// <summary>The page's head: a title set large, an italic line under it, and a small italic note; then an ornament.</summary>
-        private static float Title(float x, float y, float w, string title, string italic, string note)
+        /// <summary>The page's head: a title set large (with the colony's sign beside it, where it has one), an italic line under it, and a small italic note; then an ornament.</summary>
+        private static float Title(float x, float y, float w, string title, string italic, string note, Texture2D sign = null)
         {
-            y += Para(x, y, w, "<size=26>" + title.CapitalizeFirst() + "</size>", UiKit.Ink, GameFont.Medium, TextAnchor.UpperCenter) + 2f;
+            string big = "<size=26>" + title.CapitalizeFirst() + "</size>";
+            if (sign != null)
+            {
+                // The sign beside the name, the two set together in the middle of the column.
+                Text.Font = GameFont.Medium;
+                float tw = Mathf.Min(Text.CalcSize(big).x, w - SignSize - 12f), th = Mathf.Max(Text.CalcHeight(big, tw), SignSize);
+                Text.Font = GameFont.Small;
+                float x0 = x + (w - SignSize - 12f - tw) / 2f;
+                GodSigns.Draw(new Rect(x0, y + (th - SignSize) / 2f, SignSize, SignSize), sign);
+                Text.Font = GameFont.Medium;
+                Text.Anchor = TextAnchor.MiddleLeft;
+                GUI.color = UiKit.Ink;
+                Widgets.Label(new Rect(x0 + SignSize + 12f, y, tw + 4f, th), big);
+                GUI.color = Color.white;
+                Text.Anchor = TextAnchor.UpperLeft;
+                Text.Font = GameFont.Small;
+                y += th + 4f;
+            }
+            else y += Para(x, y, w, big, UiKit.Ink, GameFont.Medium, TextAnchor.UpperCenter) + 2f;
             if (!italic.NullOrEmpty()) y += Para(x, y, w, "<i>" + italic + "</i>", UiKit.Faint, GameFont.Small, TextAnchor.UpperCenter) + 2f;
             if (!note.NullOrEmpty()) y += Para(x, y, w, "<i>" + note + "</i>", UiKit.Dim, GameFont.Tiny, TextAnchor.UpperCenter);
             return Ornament(x, y + 12f, w) + 14f;
@@ -279,7 +307,8 @@ namespace ColonyCouncil
             string first = p.name != null
                 ? "CC_GodLore_FirstHeard".Translate(Date(p.name.first).Named("DATE"), (p.name.from ?? "CC_GodLore_FromNowhere".Translate().ToString()).Named("FROM")).Resolve()
                 : null;
-            y = Title(x, y, w, p.title, also, first);
+            y = Title(x, y, w, p.title, also, first, SignOf(p, true));
+            y = PlainLine(x, y, w, p);
             marginBottom = y;
             GodLore.Keeper(out var voice);
             foreach (var l in p.lines ?? new List<BookLine>())
@@ -297,6 +326,43 @@ namespace ColonyCouncil
             y = PartHead(x, y, w, "CC_GodBook_Part_Witnesses".Translate(), UiKit.Quieter(UiKit.Gold, 0.35f));
             if (p.entries.Count == 0) return y + Para(x, y, w, "<i>" + "CC_GodBook_Silence_0".Translate() + "</i>", UiKit.Dim, GameFont.Small, TextAnchor.UpperCenter) + 8f;
             return Entries(x, y, w, p.entries, false);
+        }
+
+        /// <summary>How large a chapter's sign is drawn beside its name.</summary>
+        private const float SignSize = 56f;
+
+        /// <summary>
+        /// The god a chapter holds itself to be about (its believed god, from what was told under its name), with a sign of
+        /// Rimfolk's own; null while nobody has told what it is under that name, nor seen it plainly.
+        /// </summary>
+        private static God BelievedGod(Page p)
+        {
+            var g = p?.believed >= 0 ? Gods.ById(p.believed) : null;
+            return GodSigns.KeyOf(g) != null ? g : null;
+        }
+
+        /// <summary>The chapter's sign: in the colony's age's form beside its name, plain in the list; none while nobody has told what it is or seen it.</summary>
+        private static Texture2D SignOf(Page p, bool ofAge)
+        {
+            string key = GodSigns.KeyOf(BelievedGod(p));
+            return key == null ? null : ofAge ? GodSigns.OfColony(key) : GodSigns.Plain(key);
+        }
+
+        /// <summary>
+        /// The chapter's plain line, under its head, in the keeper's hand: what the colony takes the god to be (its believed
+        /// god's own plain words), as held, never as a truth; nothing while nobody has told what it is under that name, nor
+        /// seen it.
+        /// </summary>
+        private static float PlainLine(float x, float y, float w, Page p)
+        {
+            string plain = BelievedGod(p)?.def?.plain;
+            if (plain.NullOrEmpty()) return y;
+            var keeper = GodLore.Keeper(out _);
+            string head = keeper != null ? "CC_GodBook_Plain".Translate(keeper.LabelShort.Named("KEEPER")).Resolve() : "CC_GodBook_PlainNobody".Translate().Resolve();
+            float iw = Mathf.Min(w, w * 0.86f + 40f), ix = x + (w - iw) / 2f;
+            y += Para(ix, y, iw, "<i>" + head + "</i>", UiKit.Quieter(UiKit.Gold, 0.3f), GameFont.Tiny, TextAnchor.UpperCenter) + 2f;
+            y += Para(ix, y, iw, plain, UiKit.Ink, GameFont.Small, TextAnchor.UpperCenter);
+            return Rule(x + w * 0.3f, y + 10f, w * 0.4f) + 8f;
         }
 
         private static float Line(float x, float y, float w, float mx, float mw, Page p, BookLine l, GodLoreMath.Voice voice)

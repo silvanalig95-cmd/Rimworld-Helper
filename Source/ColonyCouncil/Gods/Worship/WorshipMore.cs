@@ -16,6 +16,7 @@ namespace ColonyCouncil
     public static class WorshipDefOf
     {
         public static ThoughtDef Rimfolk_Worship_Prayed;
+        public static ThoughtDef Rimfolk_Worship_PrayedAtShrine;
         public static ThoughtDef Rimfolk_Worship_Answered;
         public static ThoughtDef Rimfolk_Worship_Unanswered;
         public static ThoughtDef Rimfolk_Worship_Offered;
