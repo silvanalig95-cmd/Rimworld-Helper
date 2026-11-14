@@ -35,6 +35,8 @@ namespace ColonyCouncil
         public Pawn keeper, cat;
         public int keeperUntil = -1, catUntil = -1;
         public bool keeperSat, catSeen, catOwn;
+        /// <summary>The grave is to be kept tonight: at dusk her keeper comes (else a cat).</summary>
+        public bool atDusk;
 
         /// <summary>When the wrapped dead last stood guard, when a raid near the tombs was last weighed, and when their lying down was last told.</summary>
         public int lastRisen = -999999, lastWeighed = -999999, lastDownTold = -999999;
@@ -119,6 +121,7 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref keeperSat, "keeperSat");
             Scribe_Values.Look(ref catSeen, "catSeen");
             Scribe_Values.Look(ref catOwn, "catOwn");
+            Scribe_Values.Look(ref atDusk, "atDusk");
             Scribe_Values.Look(ref lastRisen, "lastRisen", -999999);
             Scribe_Values.Look(ref lastWeighed, "lastWeighed", -999999);
             Scribe_Values.Look(ref lastDownTold, "lastDownTold", -999999);
@@ -155,7 +158,7 @@ namespace ColonyCouncil
     /// come, a cat of the colony's (else a stray walking in) sits on it instead. Those fond of the dead are comforted.</item>
     /// <item>The wrapped dead stand guard (with Anomaly, MogMath.RiseChance and the shared harm budget): in a raid that comes
     /// near a home's tombs while she is on the land or drawn near, a few of the land's old dead stand up among the graves in
-    /// grey linen (the game's shamblers, of the entities), keep to the graves and turn on anything that comes near, raider
+    /// gray linen (the game's shamblers, of the entities), keep to the graves and turn on anything that comes near, raider
     /// or colonist, and lie down as dust when the map is quiet (HediffComp_WrappedDead).</item>
     /// </list>
     /// </summary>
@@ -233,8 +236,8 @@ namespace ColonyCouncil
             var her = Her;
             var kin = her == null ? new List<string>() : GodWays.Kin(her).ToList();
             return map.mapPawns.AllPawnsSpawned.Where(p => p.RaceProps.Animal && !p.Dead && !p.Downed && !GodAvatar.Is(p) && (!colonyOnly || p.Faction == Faction.OfPlayer)
-                                                          && (kin.Contains(p.def.defName) || p.def.defName == "Cat" || p.def.label.IndexOf("cat", StringComparison.OrdinalIgnoreCase) >= 0
-                                                              && p.BodySize <= 1f))
+                                                          && (kin.Contains(p.def.defName) || p.def.defName == "Cat"
+                                                              || (p.def.label == "cat" || p.def.label.EndsWith(" cat", StringComparison.OrdinalIgnoreCase)) && p.BodySize <= 1f))
                 .ToList();
         }
 
@@ -292,7 +295,11 @@ namespace ColonyCouncil
         {
             var b = MogsBook.Instance;
             if (b == null || a.InMentalState || a.Downed || !a.Awake()) return;
-            if (b.riddleOf != null && b.riddleOf != a) b.riddleOf = null;
+            if (b.riddleOf != null && b.riddleOf != a)
+            {
+                b.riddleOf = null;
+                b.RiddleDone();
+            }
             if (b.Waiting && b.riddleOf == a)
             {
                 if (now > b.riddleUntil && b.answerer == null)
@@ -438,11 +445,14 @@ namespace ColonyCouncil
             return near != null && RCellFinder.TryFindRandomSpotJustOutsideColony(near, out var spot) ? spot : IntVec3.Invalid;
         }
 
+        /// <summary>Her riddle now, whatever the letters' gap says (the dev action). True once asked.</summary>
+        internal static bool AskNow(MogsBook b, SacredStay s) => s?.a != null && s.a.Spawned && Ask(b, s, s.a, true);
+
         /// <summary>She lies down across the way in and her card comes (the letters' gap and a quiet map allowing). True once asked.</summary>
-        private static bool Ask(MogsBook b, SacredStay s, Pawn a)
+        private static bool Ask(MogsBook b, SacredStay s, Pawn a, bool anyway = false)
         {
             var map = a.Map;
-            if (!Tell.CanAsk || MapFacts.ThreatOn(map) || s.hurt) return false;
+            if (!anyway && !Tell.CanAsk || MapFacts.ThreatOn(map) || s.hurt) return false;
             var door = Door(map, a);
             if (!door.IsValid) return false;
             var def = DefDatabase<IncidentDef>.GetNamedSilentFail(RiddleIncident);
@@ -641,7 +651,10 @@ namespace ColonyCouncil
                 if (b.grave != null || now - died > MogMath.KeepWithinDays * GenDate.TicksPerDay) continue;
                 bool holds = Gods.ColonyGods(map).Contains(god);
                 if (!Rand.Chance(MogMath.KeptChance(holds, GodNear.Of(god, map)))) continue;
-                Keep(b, god, map, newest);
+                // Kept tonight: at dusk (Graveside).
+                b.grave = newest;
+                b.dead = newest.Corpse.InnerPawn.LabelShort;
+                b.atDusk = true;
             }
         }
 
@@ -738,12 +751,23 @@ namespace ColonyCouncil
         private static void Graveside(MogsBook b, int now)
         {
             if (b.grave == null) return;
-            if (!(b.grave is Building_Grave g) || g.Destroyed || !g.Spawned)
+            if (!(b.grave is Building_Grave g) || g.Destroyed || !g.Spawned || !g.HasCorpse)
             {
                 b.grave = null;
+                b.atDusk = false;
                 return;
             }
             var map = g.Map;
+            if (b.atDusk)
+            {
+                // At dusk her keeper comes in from the road with a cat (else a cat alone), as the words say.
+                int hour = GenLocalDate.HourOfDay(map);
+                if (hour < MogMath.DuskFrom || hour >= MogMath.DuskTo || MapFacts.ThreatOn(map)) return;
+                b.atDusk = false;
+                var god = Her;
+                if (god == null || !Keep(b, god, map, g)) b.grave = null;
+                return;
+            }
             var k = b.keeper;
             if (k != null && (k.Dead || !k.Spawned || now > b.keeperUntil + GenDate.TicksPerHour * 2)) k = b.keeper = null;
             if (k != null && !k.Downed && !k.InMentalState && k.Position.InHorDistOf(g.Position, 5f))
@@ -842,10 +866,9 @@ namespace ColonyCouncil
             var map = g.Map;
             GodSounds.Play(GodSounds.Sound("TinyBell"), map, g.Position);
             // apart: said over the grave, to the dead.
-            string line = god != null ? Worship.Line(KeeperPool, k, god) : null;
+            string line = god != null ? Worship.LineWith(KeeperPool, k, god, null, new[] { (b.dead ?? "").Named("DEAD") }) : null;
             if (!line.NullOrEmpty())
             {
-                line = line.Formatted(b.dead.Named("DEAD")).Resolve();
                 Speech.Say(k, line);
                 if (god != null) GodLore.Heard(k, god, line, "Gate");
             }
@@ -872,6 +895,7 @@ namespace ColonyCouncil
                 if (opinion < 10 && p != seer) continue;
                 try
                 {
+                    // apart: a memory of the one buried there, who is dead.
                     p.needs.mood.thoughts.memories.TryGainMemory(def, dead);
                 }
                 catch (Exception e)
@@ -935,7 +959,7 @@ namespace ColonyCouncil
             }
         }
 
-        /// <summary>The wrapped dead stand up among the tombs: the game's shamblers of the entities, in grey linen, kept to the graves.</summary>
+        /// <summary>The wrapped dead stand up among the tombs: the game's shamblers of the entities, in gray linen, kept to the graves.</summary>
         public static bool Rise(God god, Map map, List<Thing> tombs, IntVec3 mid)
         {
             var kind = DefDatabase<PawnKindDef>.GetNamedSilentFail(ShamblerKind);
@@ -997,7 +1021,7 @@ namespace ColonyCouncil
             return true;
         }
 
-        /// <summary>Linen for the dead: their own clothes taken off, a wrap and a head wrap (Ideology's, else the game's robe and veil), grey-white, and no weapon.</summary>
+        /// <summary>Linen for the dead: their own clothes taken off, a wrap and a head wrap (Ideology's, else the game's robe and veil), gray-white, and no weapon.</summary>
         private static void Wrap(Pawn p)
         {
             try
@@ -1019,6 +1043,17 @@ namespace ColonyCouncil
             {
                 CouncilLog.ErrorOnce("gods: the wrapped dead's linen", e);
             }
+        }
+
+        /// <summary>The wrapped dead whose watch is kept, to lie down at the next step (never inside their own tick).</summary>
+        private static readonly List<Pawn> lying = new List<Pawn>();
+
+        /// <summary>One of the wrapped dead has kept its watch (HediffComp_WrappedDead): it lies down at the next step.</summary>
+        internal static void Lay(Pawn p)
+        {
+            if (p == null || lying.Contains(p)) return;
+            lying.Add(p);
+            MogsBook.Instance?.Due(Now + 1);
         }
 
         /// <summary>One of the wrapped dead lies down as dust (the map quiet of raiders, or its watch long kept): told once for them all.</summary>
@@ -1059,6 +1094,12 @@ namespace ColonyCouncil
 
         internal static void Dust()
         {
+            if (lying.Count > 0)
+            {
+                var down = lying.ToList();
+                lying.Clear();
+                foreach (var p in down) LieDown(p);
+            }
             if (fallen.Count == 0) return;
             var list = fallen.ToList();
             fallen.Clear();
@@ -1177,15 +1218,16 @@ namespace ColonyCouncil
             risenAt = loudAt = Find.TickManager.TicksGame;
         }
 
-        public override void CompPostTick(ref float severityAdjustment)
+        public override void CompPostTickInterval(ref float severityAdjustment, int delta)
         {
+            base.CompPostTickInterval(ref severityAdjustment, delta);
             var p = Pawn;
-            if (p == null || !p.Spawned || !p.IsHashIntervalTick(250)) return;
+            if (p == null || !p.Spawned || !p.IsHashIntervalTick(250, delta)) return;
             int now = Find.TickManager.TicksGame;
             try
             {
                 if (MogsWays.Raiders(p.Map)) loudAt = now;
-                if (MogMath.LieDown(now - loudAt, now - risenAt)) MogsWays.LieDown(p);
+                if (MogMath.LieDown(now - loudAt, now - risenAt)) MogsWays.Lay(p);
             }
             catch (Exception e)
             {

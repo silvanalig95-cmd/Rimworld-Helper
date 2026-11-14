@@ -137,7 +137,7 @@
     <stages>
       <li>
         <label>saw the dead stand up</label>
-        <description>Figures wrapped in grey cloth stood up out of the ground among the graves, slow and silent. They were facing the raiders, but they weren't ours anymore.</description>
+        <description>Figures wrapped in gray cloth stood up out of the ground among the graves, slow and silent. They were facing the raiders, but they weren't ours anymore.</description>
         <baseMoodEffect>-4</baseMoodEffect>
       </li>
     </stages>
@@ -150,7 +150,7 @@
   <HediffDef>
     <defName>Rimfolk_WrappedDead</defName>
     <label>wrapped dead</label>
-    <description>Wrapped in grey cloth from head to foot, it stood up out of the ground among the graves. It doesn't breathe, and it won't leave the graves.</description>
+    <description>Wrapped in gray cloth from head to foot, it stood up out of the ground among the graves. It doesn't breathe, and it won't leave the graves.</description>
     <hediffClass>HediffWithComps</hediffClass>
     <defaultLabelColor>(0.86, 0.8, 0.66)</defaultLabelColor>
     <isBad>false</isBad>

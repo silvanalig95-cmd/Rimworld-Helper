@@ -191,8 +191,8 @@
   </ColonyCouncil.GodShapeDef>
 
   <!--
-    Tamiu, the Keeper of the Threshold (defName and key Mog): plainly on the map, a great cat the colour of desert sand,
-    larger than any lion, with gold eyes and all a god's presence (Alpha Animals' sand lion first, Vanilla Animals Expanded's
+    Tamiu, the Keeper of the Threshold (defName and key Mog): plainly on the map, a great cat the color of desert sand,
+    larger than any lion, with gold eyes and all a god's presence (Vanilla Animals Expanded's lion first, Alpha Animals' sand
     lion, else the game's cougar or lynx, whichever is at ease in the season). The colony's cats follow her and sit with
     her. She walks to the graves and keeps among them (MogsWays); once a stay she may lie across the way in and ask a riddle;
     she takes food she didn't ask for, can't be tamed or kept (marked to be tamed, she goes), and leaves if she or a cat is
@@ -204,8 +204,8 @@
     <gods><li>Mog</li><li>Rimfolk_God_Mog</li></gods>
     <stranger>false</stranger>
     <beasts>
-      <li>AA_SandLion</li>
       <li>AEXP_Lion</li>
+      <li>AA_SandLion</li>
       <li>Cougar</li>
       <li>Lynx</li>
     </beasts>
@@ -459,14 +459,14 @@
   </ColonyCouncil.GodLookDef>
 
   <!--
-    Tamiu's look (defName Mog's): a great cat the colour of desert sand with gold eyes, sand rising off her and a lion's roar
+    Tamiu's look (defName Mog's): a great cat the color of desert sand with gold eyes, sand rising off her and a lion's roar
     and a gong at her coming, Alpha Memes' Kemetic chant while she is near. Archotech age alone, so no domain's god takes it;
     her own def and her shape name it.
   -->
   <ColonyCouncil.GodLookDef>
     <defName>Rimfolk_GodLook_Mog</defName>
     <label>great sand-gold cat</label>
-    <description>A great cat the colour of desert sand, larger than any lion, with gold eyes and a collar of lapis and gold that nobody put on her.</description>
+    <description>A great cat the color of desert sand, larger than any lion, with gold eyes and a collar of lapis and gold that nobody put on her.</description>
     <domain>Dead</domain>
     <sampleName>great sand-gold cat</sampleName>
     <minTech>Archotech</minTech>

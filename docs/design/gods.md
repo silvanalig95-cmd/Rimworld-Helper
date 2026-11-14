@@ -315,7 +315,7 @@ What every part builds to:
 
   Domains as the fallback key: Hollin Wild and Harvest; Smoulder Craft and Hearth; Bellwether Hunt and Wild; Morel Dead
   and Harvest; Ennu Way and Hearth; Pip Machine and Craft; Cirrus Storm and Night; Hush Night and Dead; Undertow Void;
-  Helios Hearth and Harvest; Selene Night and Healing; Mog Hearth and Hunt; Murmur Waters and Harvest; Ducat Way and
+  Helios Hearth and Harvest; Selene Night and Healing; Mog (Tamiu) Dead and Hearth; Murmur Waters and Harvest; Ducat Way and
   Craft.
 - **Who reveres whom** is the defs': Rimfolk's 23 peoples and some of the player's mods' factions by name (a people a
   def names reveres only the gods that name it), the rest by kind (Tribal, Medieval, Industrial, Spacer, Raiders, Empire,
@@ -324,7 +324,7 @@ What every part builds to:
   `GodWaysDef`, `GodWorshipDef`), with the domain tables as a fallback only. Each part writes its entries from the
   brainstorm's characters, and in people's words:
   - who can come as a stranger: only Ennu takes human shapes;
-  - who has a body: Bellwether, Mog (a gray cat on the map, never owned or tamed), Murmur (rarely, a house-sized toad in a
+  - who has a body: Bellwether, Mog (remade as Tamiu: a great sand-gold cat on the map, never owned or tamed), Murmur (rarely, a house-sized toad in a
     marsh, Odyssey's `ColossusToad` larger, softly) and Smoulder (a shadow only);
   - who acts only through plants, rot, machines, sky, frost, light, gold or the dark;
   - what each one likes, refuses, gives and does.
@@ -457,11 +457,12 @@ as gods 10 to 13 of `docs/gods-pantheon-brainstorm.md`:
   - Selene, who has no light of her own, returns at night what was done by day, as much as her face shows.
   - She loves him, and nobody knows if he knows.
   - The eclipse is her stepping between him and the world.
-- `Rimfolk_God_Mog`: a grey cat on the map, plainly.
+- `Rimfolk_God_Mog`: a grey cat on the map, plainly (remade as Tamiu, the Keeper of the Threshold, on 14 November 2026:
+  the last section).
 - `Rimfolk_God_Murmur`: a vast toad of the wells and marshes whose song calls the rain.
 - `Rimfolk_God_Ducat`: gold that wants to move.
 
-Fallback domains: Helios Hearth and Harvest, Selene Night and Healing; Mog Hearth and Hunt; Murmur Waters and Harvest; Ducat Way and Craft. Helios takes the solar flare
+Fallback domains: Helios Hearth and Harvest, Selene Night and Healing; Mog Hearth and Hunt (Tamiu since 14 November 2026: Dead and Hearth); Murmur Waters and Harvest; Ducat Way and Craft. Helios takes the solar flare
 and heat wave from Cirrus and Pip; the eclipse is Helios and Selene meeting.
 
 ### Naming a god in events (the player, the same day)
@@ -472,3 +473,26 @@ and heat wave from Cirrus and Pip; the eclipse is Helios and Selene meeting.
   own (a god drawn near enough shows itself plainly, and is named from then on).
 - **Unnamed:** when the colony only suspects, it's "some say". When it has never heard of the god, nothing is named.
 - **Never:** the god's mind, its favour or its rules.
+
+### Tamiu, the keeper of the dead: Mog remade (the player, 13 and 14 November 2026)
+
+"the cat card we have. Let's remake it into something new. Still a cat card, but kind of one inspired by, you know,
+Egyptian mythology and the Sphinx, you know, with an Egyptian name ... maybe the cat god could be, you know, with mummies
+and like Egyptian gear wearing zombies style followers ... and there's also some sort of cult behind it"; "yes, remake mog
+and create a corresponding sign for it". DESIGN.md, "Tamiu, the Keeper of the Threshold", has the whole of it. For the
+contract:
+- Her defName and key stay `Rimfolk_God_Mog` and `Mog` (saves, the parts, the textures); the name people say is her def's
+  label, Tamiu (`God.FromDef`: a god's name is its label, its key for the others). Parts key a god by `God.Key`, never by
+  the name it is said by.
+- She is the pantheon's keeper of the dead, apart from both others of death: Morel is the rot that takes the body back,
+  Undertow the hunger under the world; Tamiu keeps the dead whole and lies across their door (Morel's rival, the Hunger's).
+- The unseen rule holds in all of it: her riddle is "heard in no voice at all" by whoever goes near her, her keeper is
+  a person of a people that holds her and says only what their people do, the wrapped dead's card says what they do on
+  the map, and she is named on a card or in her presence only where the colony knows it is her (`GodsOnMapWords.Title`,
+  `Gods.CardName`).
+- Harm: the cuff of the paw for a wrong answer and the wrapped dead standing guard are both at the shared harm budget's
+  rate (`HarmKinds.GodRiddle`, `GodDead`), both from something on the map, both on a card that says so; the wrapped dead
+  need Anomaly and never come with hurts switched off.
+- Every age: her names, her riddles and the words of her keeper and of the wrapped dead each by the colony's age.
+- Her presence on the land is her own condition (`Rimfolk_GodPresence_Mog`), apart from the shared one of a moment, for
+  round 2's presence system to take in.

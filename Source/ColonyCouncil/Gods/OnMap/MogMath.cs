@@ -78,6 +78,9 @@ namespace ColonyCouncil
         /// <summary>The keeper's night at the grave, in hours (from dusk, until about dawn).</summary>
         public const float KeeperHours = 12f;
 
+        /// <summary>Dusk, when a grave to be kept tonight is kept: from this hour, before that one.</summary>
+        public const int DuskFrom = 17, DuskTo = 21;
+
         // ================= The wrapped dead stand guard =================
 
         /// <summary>Tombs (graves and sarcophagi holding the dead, Alpha Memes' mummies) a home needs before its dead stand guard.</summary>

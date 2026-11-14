@@ -270,7 +270,7 @@ public static class GodWorldTests
             "Murmur: rain, or a drought and then a flood");
         C(Ways("Ducat").Element("wrath")?.Value == "Missing" && Ways("Ducat").Element("blessing")?.Value == "Trader" && Ways("Ducat").Element("debts")?.Value == "true",
             "Ducat: traders at the right time, silver gone from a hoard, the colony's debts watched");
-        C(Read("Gods/World/GodWays.cs").Contains("public static string Key(God g) => g?.name;") && Regex.Matches(world, @"GodWays\.(Classes|Spells|Paths|Beasts|WrathBeasts|Hand|Wrath|Grudge|Blessing|Price|Offering|Site|Feast|Side|Dream|Kin|Tags)\(").Count >= 20,
+        C(Read("Gods/World/GodWays.cs").Contains("public static string Key(God g) => g?.Key;") && Regex.Matches(world, @"GodWays\.(Classes|Spells|Paths|Beasts|WrathBeasts|Hand|Wrath|Grudge|Blessing|Price|Offering|Site|Feast|Side|Dream|Kin|Tags)\(").Count >= 20,
             "every way of a god is read through its ways: by the god's short name, then its domain");
         C(!world.Contains("GodKind.Trickster") && !world.Contains("GodKind.Archotech") && !world.Contains("GodKind.Newborn") && !world.Contains("GodKind.Imprisoned")
           && !world.Contains("GodKind.Dead") && !File.Exists(Path.Combine(src, "Gods", "World", "GodOutliers.cs")),

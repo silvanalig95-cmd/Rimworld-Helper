@@ -1548,8 +1548,8 @@
     <industrialNames><li>the Cemetery Cat</li></industrialNames>
     <spacerNames><li>the Sphinx</li></spacerNames>
     <otherNames><li>the Keeper of the Dead</li><li>Mog</li></otherNames>
-    <whatItIs>A great cat who keeps the dead. She lies across the door between the living and the dead, a cat the colour of desert sand and larger than any lion, and she lets nobody through who cannot answer her. The dead she keeps are wrapped in linen and laid whole in the ground or the tomb, and they sleep well; if their rest is broken, she wakes them to keep it. Every cat in the world is hers. Each age keeps her its own way: the tribes say she sits on the cairns of their dead, the old kingdoms carved her at their crypt doors with a lion's paws, the towns keep a cat in every cemetery and don't say why, and spacers call her the Sphinx and say she sits by every cold berth that carries the dead between the stars. Wherever she is held, a cult of her keepers tends the tombs and feeds the cats.</whatItIs>
-    <howSeen>Plainly, on the map: a great cat the colour of desert sand, larger than any lion, with gold eyes and a collar of lapis and gold that nobody put on her. She walks straight to the graves and lies down among them, and the colony's cats come and sit with her. Now and then she lies across the way in and will not move until someone answers her riddle. Her keepers come to sit the first night with a new grave and leave a cat on it. Where the dead are kept well, she has been seen to wake them, wrapped and silent, to stand guard over their tombs.</howSeen>
+    <whatItIs>A great cat who keeps the dead. She lies across the door between the living and the dead, a cat the color of desert sand and larger than any lion, and she lets nobody through who cannot answer her. The dead she keeps are wrapped in linen and laid whole in the ground or the tomb, and they sleep well; if their rest is broken, she wakes them to keep it. Every cat in the world is hers. Each age keeps her its own way: the tribes say she sits on the cairns of their dead, the old kingdoms carved her at their crypt doors with a lion's paws, the towns keep a cat in every cemetery and don't say why, and spacers call her the Sphinx and say she sits by every cold berth that carries the dead between the stars. Wherever she is held, a cult of her keepers tends the tombs and feeds the cats.</whatItIs>
+    <howSeen>Plainly, on the map: a great cat the color of desert sand, larger than any lion, with gold eyes and a collar of lapis and gold that nobody put on her. She walks straight to the graves and lies down among them, and the colony's cats come and sit with her. Now and then she lies across the way in and will not move until someone answers her riddle. Her keepers come to sit the first night with a new grave and leave a cat on it. Where the dead are kept well, she has been seen to wake them, wrapped and silent, to stand guard over their tombs.</howSeen>
     <character>Proud, patient and exact, like a cat in a doorway who has decided nobody passes. She loves the dead kept whole and the living who are clever. She asks riddles of those who come to her door, and favours whoever answers well with a lucky season, walking at their heel; a wrong answer earns a cuff of the paw. She cannot be owned, tamed or kept, and leaves if anyone tries. She sees through any disguise at a door, so she stares at Ennu. She and Morel have never agreed: Morel would have every body back in the earth, and Tamiu wraps them and keeps them as they were. Every night she sits at the door of the dead with her claws out, so that the Hunger under the world cannot come through it.</character>
     <wants>The dead buried or laid in a tomb, never left out, robbed or eaten; graves tended; cats kept kindly; and a good answer at her door. A colony that keeps its dead well finds a cat sitting on each new grave, and her keepers come to sit the first night with the dead. The one she favours has a lucky season: a sickness passes them by, a fall breaks nothing. A colony that drives her out, or harms a cat, finds the cats all gone in one night and the rats come back.</wants>
     <pleases>
@@ -1572,12 +1572,12 @@
       <li>{GOD} stares at strangers for a reason, so watch who she stares at.</li>
     </sayings>
     <whatLines>
-      <li>{GOD} is a great cat who keeps the dead and lies across the door between them and us.</li>
-      <li>Every cat in the world is {GOD}'s, and they keep watch on the graves for her.</li>
-      <li>The dead {GOD} keeps are wrapped and whole, and they wake if their rest is broken.</li>
+      <li>{GOD} is a great cat who keeps the dead, and lies across their door.</li>
+      <li>Every cat in the world is {GOD}'s, and they watch the graves for her.</li>
+      <li>The dead {GOD} keeps are wrapped whole, and wake if their rest is broken.</li>
     </whatLines>
     <seenLines>
-      <li>{GOD} looks like a great cat the colour of desert sand, bigger than any lion.</li>
+      <li>{GOD} looks like a great sand-gold cat, bigger than any lion.</li>
       <li>{GOD} goes straight to the graves and lies down among them.</li>
       <li>When {GOD} lies across a doorway, she wants a riddle answered.</li>
     </seenLines>
@@ -1604,11 +1604,11 @@
         <key>Mog_Robber</key>
         <title>The tomb robber</title>
         <pieces>
-          <li>A robber once dug down into a queen's tomb at night and found a great cat lying on the coffin.</li>
+          <li>A robber once dug into a queen's tomb and found a great cat lying on her coffin.</li>
           <li>Tamiu asked him one riddle before he could touch it, and he got it wrong.</li>
-          <li>In the morning they found him at the tomb door, wrapped from head to foot in the queen's own linen.</li>
+          <li>In the morning he sat at the tomb door, wrapped from head to foot in the queen's linen.</li>
         </pieces>
-        <retelling>A robber once dug down into a queen's tomb at night, after her gold. He found a great cat lying on the coffin, the colour of the desert, and she asked him a riddle before he could touch it. He got it wrong. In the morning the keepers found him sitting at the tomb door, wrapped from head to foot in the queen's own linen and too frightened to speak, and the queen asleep inside with every ring still on her fingers. People here bury their dead with care, just in case.</retelling>
+        <retelling>A robber once dug down into a queen's tomb at night, after her gold. He found a great cat lying on the coffin, the color of the desert, and she asked him a riddle before he could touch it. He got it wrong. In the morning the keepers found him sitting at the tomb door, wrapped from head to foot in the queen's own linen and too frightened to speak, and the queen asleep inside with every ring still on her fingers. People here bury their dead with care, just in case.</retelling>
       </li>
       <li>
         <key>Mog_Chosen</key>
@@ -1616,7 +1616,7 @@
         <pieces>
           <li>Tamiu lies across the door of anyone she is curious about, and asks them a riddle.</li>
           <li>Whoever answers Tamiu well has a lucky season: a fever passes them, a fall breaks nothing.</li>
-          <li>Whoever answers badly gets a cuff of the paw, and should count themselves lucky it was only that.</li>
+          <li>Whoever answers badly gets a cuff of the paw, and should be glad it was only that.</li>
         </pieces>
         <retelling>Tamiu lies across the door of anyone she is curious about, the old ones say, and she won't get up until someone answers her riddle. The one who answers well has a lucky season after: a fever passes them by, a fall breaks nothing, and the great cat walks at their heel for as long as she stays. The one who answers badly gets a cuff of the paw for their trouble, and should count themselves lucky it was only that. So if she lies across your door, send the cleverest.</retelling>
       </li>
@@ -1655,7 +1655,7 @@
         <title>The cat at the door of the dead</title>
         <with><li>Undertow</li></with>
         <pieces>
-          <li>Every night something in the dark under the world comes up to the door of the dead, wanting them.</li>
+          <li>Every night something under the world comes up to the door of the dead, wanting them.</li>
           <li>And every night Tamiu sits in that door with her claws out, and it goes back down.</li>
         </pieces>
         <retelling>Every night, the keepers say, something in the dark under the world comes up to the door of the dead, wanting what is behind it. And every night a great cat sits in that door with her claws out, and it goes back down again. That is why her keepers never let the dead lie out unburied: a body left out is a door left open, and she cannot sit in every door at once.</retelling>
@@ -1672,7 +1672,7 @@
         <other>Morel</other>
         <kind>Rivals</kind>
         <strength>0.4</strength>
-        <words>Morel would have the dead back in the earth, and Tamiu keeps them whole, and they have never agreed.</words>
+        <words>Morel would have the dead back in the earth, and Tamiu keeps them whole.</words>
       </li>
       <li>
         <other>Undertow</other>
