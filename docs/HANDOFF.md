@@ -87,6 +87,20 @@ tree at once, alongside whatever runs. Each piece is merged as its own release, 
     are storylines across multiple quests". When asked: proposed first, a list of quests by the peoples, the gods and the
     region, and storylines that run over several quests (a chain whose next quest depends on how the last went), built
     on the game's own quests (QuestScriptDef) and Rimfolk's chains, letters and missions.
+- **To do when the player asks (14 November 2026): the peoples' descriptions rewritten.** The player: "i really like the
+  different factions you created, but when i look at their faction and read the description text with their history
+  etc., it really reads like AI gibberish and I don't understand what is really meant. also they all follow the same
+  structure and it's always one named individual who started the faction somehow. can you redo these descriptions and
+  do a better job? each faction shoud have it's own description & history, written and tailored for it exactly. for
+  to do list". Where it lives: the `<description>` of each of the 23 peoples' FactionDefs in
+  `Defs/PeopleDefs/Rimfolk_People_*.xml` (the faction's info window shows it; the TownPlanDefs' own descriptions are
+  not seen there). All 23 now share one pattern: who they are, then "Their ways began ... with" one named founder, then
+  their temper, fears and leaders. When asked: each written fresh for that people alone, in plain words a reader
+  follows at once (what they do, where they live, what they want from their neighbours), with a history of its own
+  shape (a war, a place, a trade, a schism, a slow drift, a law, an accident; a named person only where the people
+  would remember one), different lengths and openings, and still true to what their lore already says on the map
+  (`honours`, `fears`, `sayings`, leaders' titles, their events and letters); checked against the peoples' lore docs so
+  nothing on the map contradicts the new text.
 - **To do when the player asks (12 November 2026): visitors busy with their own day.** The player: "guests should spend
   more of their time doing things. i don't want them to generate value for me, but it just looks a bit weird when they
   spend most of their day just standing and walking around. they can talk, do actions, recreation, many things that
