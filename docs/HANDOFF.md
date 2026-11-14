@@ -53,11 +53,11 @@ tree at once, alongside whatever runs. Each piece is merged as its own release, 
     movement or a baby's cry within a few cells, the sound carrying through open doors and doorless openings but not
     through walls or closed doors, at most once in 300 ticks, and never from a lover, a pet or a bonded animal; so a
     guest walking past an open door or into the room wakes them, one outside a closed door does not.
-  - **The animals, made more visible.** The player: "i must say that i can't really see a lot from the animal features we
+  - **The animals, made more visible. (being built, the player's go of 14 November 2026)** The player: "i must say that i can't really see a lot from the animal features we
     included, please add to to-do list to enhance and build up on these". When asked: list what Rimfolk's animal parts do
     now and what of it shows on the map (Animals/, the pets, herds, bonds, the beasts' encounters and dilemmas), propose
     a round that makes them seen and builds on them.
-  - **More of Old Powers' kind.** The player: "i like the old powers storyteller and want you to do some more more events
+  - **More of Old Powers' kind. (being built, the player's go of 14 November 2026)** The player: "i like the old powers storyteller and want you to do some more more events
     in this style, including the gods and using ressources from rimworld of magic". When asked: a list of uncanny events
     first (omens, strange nights, things in the earth, the gods drawing near, seers and pilgrims), with A RimWorld of
     Magic's motes, sounds and effects (its textures are in the scratchpad's `rom_Motes`), for Old Powers and any way.
@@ -93,7 +93,9 @@ tree at once, alongside whatever runs. Each piece is merged as its own release, 
   would remember one), different lengths and openings, and still true to what their lore already says on the map
   (`honours`, `fears`, `sayings`, leaders' titles, their events and letters); checked against the peoples' lore docs so
   nothing on the map contradicts the new text.
-- **To do when the player asks (12 November 2026): visitors busy with their own day.** The player: "guests should spend
+- **Dropped (14 November 2026): sending visitors away.** The player: "so asking visitors to leave is not necessary, as i
+  found the already imlpemented function".
+- **Being built (14 November 2026, the player's go: "do the one that visitors fill their idle hours, more old powers style events, making animals more visible first, but you can do as you like if simultanious tasks make more sense"): visitors busy with their own day.** The player: "guests should spend
   more of their time doing things. i don't want them to generate value for me, but it just looks a bit weird when they
   spend most of their day just standing and walking around. they can talk, do actions, recreation, many things that
   don't make them work for me", then "to do later". How it is now: the game's visitor groups wander their lord's spot;
@@ -106,17 +108,6 @@ tree at once, alongside whatever runs. Each piece is merged as its own release, 
   looking at its art, a prayer at a shrine of their faith, tending their own animals, children playing, a smoke or a
   drink of their own; by their people's age and ways and the hour; given way to colonists at a joy thing; a guest of
   Hospitality left to its own recreation where it already has it.
-- **To do when the player asks (12 November 2026): sending visitors away.** The player: "for later: i should be able
-  to kick out visitors". How it is now: the right-click talks with outsiders (`Outsiders/`, `OutsiderAct`: Chat, Ask
-  home, Meal, Drink, Gift, Good word, Letter, Teach, Bring, Invite, Befriend, Court, Faith, Spar, Provoke, Duel, Ask a
-  favour, Speak of a pact, Offer an exchange, Speak of a match) have no way to send anyone off; only some dilemmas'
-  answers do (`DilemmaEffect_SendAway`), and Hospitality has its own for its guests. When asked: a right-click act on
-  any visitor or their group, "Ask them to leave": a colonist goes over and says so (one sentence each), and the group's
-  lord ends its visit and they walk off the map; a guest of a letter or the colony's invitation asked to leave goes too;
-  their people think less of the colony by how it was done (polite with a reason, curt, or by force: a drafted colonist
-  ordering them off is ruder still), less when they were trouble (a thief, a brawler, a drunk); with Hospitality its
-  own way for its guests; never a caravan mid-trade without the trade closed first, and never anyone downed or a
-  prisoner.
 - 0.238.0, **Each god's own happenings, the
   second seven: Hush, Undertow, Helios, Selene, Murmur, Ducat and two more for Tamiu** (14 November 2026; round 4, batch 2
   of `docs/gods-next-proposals.md`, section C; the player's words: "each God's events and interactions and effects, etc.,
