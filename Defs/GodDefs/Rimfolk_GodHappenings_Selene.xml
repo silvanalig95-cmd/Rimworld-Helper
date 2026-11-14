@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Selene's own happenings (Source/ColonyCouncil/Gods/OnMap/OwnSelene.cs; docs/gods-next-proposals.md, C 11): the
+    morning after a return, her face in still water, the watch she keeps company, the dark face kept at the door. Three
+    small moods, modelled in Tools/Balance (Rates.cs), and the watch's steadier aim. Tags: morning with
+    morning:<found|gooddream|healed|nightmare|frost|animalback> ({THING}), water, watch, darkface, named, scoffer.
+  -->
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_Thought_Selene_FaceInWater</defName>
+    <durationDays>1</durationDays>
+    <stackLimit>1</stackLimit>
+    <stages>
+      <li>
+        <label>her face in the water</label>
+        <description>The moon was lying in the still water, bright as a face, though the moon itself was behind me. I stood there a long while and it was very quiet.</description>
+        <baseMoodEffect>5</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_Thought_Selene_KeptCompany</defName>
+    <durationDays>0.5</durationDays>
+    <stackLimit>1</stackLimit>
+    <stages>
+      <li>
+        <label>the moon kept me company</label>
+        <description>I kept the night out of doors, and the moonlight sat with me the whole time. I could see further than I ever do at night.</description>
+        <baseMoodEffect>3</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_Thought_Selene_KeptDarkFace</defName>
+    <durationDays>1</durationDays>
+    <stackLimit>1</stackLimit>
+    <stages>
+      <li>
+        <label>kept the dark face</label>
+        <description>There was no moon, so I stood at the door and kept the night myself. Nothing came in while I was there.</description>
+        <baseMoodEffect>2</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <!-- The watch she keeps company: they see further and their aim is steadier till dawn. -->
+  <HediffDef>
+    <defName>Rimfolk_MoonlitWatch</defName>
+    <hediffClass>HediffWithComps</hediffClass>
+    <label>moonlit watch</label>
+    <description>The moonlight keeps them company on their watch. They see further than they should at night, and their aim is steady.</description>
+    <defaultLabelColor>(0.8, 0.86, 1)</defaultLabelColor>
+    <isBad>false</isBad>
+    <everCurableByItem>false</everCurableByItem>
+    <scenarioCanAdd>false</scenarioCanAdd>
+    <comps>
+      <li Class="HediffCompProperties_Disappears">
+        <disappearsAfterTicks>12500~12500</disappearsAfterTicks>
+        <showRemainingTime>true</showRemainingTime>
+      </li>
+    </comps>
+    <stages>
+      <li>
+        <capMods><li><capacity>Sight</capacity><offset>0.1</offset></li></capMods>
+        <statFactors><AimingDelayFactor>0.85</AimingDelayFactor></statFactors>
+      </li>
+    </stages>
+  </HediffDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_GodSelene_Say</defName>
+    <lines>
+      <plain>
+        <li>[morning,morning:found] There's {THING} by my bed that I've never seen before.</li>
+        <li>[morning,morning:found] Somebody left {THING} by my bed, and nobody will say who.</li>
+        <li>[morning,morning:found,named] {GOD} gave it back, the thing I did yesterday.</li>
+        <li>[morning,morning:gooddream] I dreamt of a silver road all night, and I woke up happy.</li>
+        <li>[morning,morning:gooddream] I had the kindest dream, like someone was thanking me.</li>
+        <li>[morning,morning:healed] My cut has closed in the night, as if days had gone by.</li>
+        <li>[morning,morning:healed] Look at my arm, it was open yesterday.</li>
+        <li>[morning,morning:nightmare] I dreamt about what I did yesterday, over and over.</li>
+        <li>[morning,morning:nightmare] I didn't sleep, it kept showing me the same thing.</li>
+        <li>[morning,morning:frost] There's frost all round where I slept, and nowhere else.</li>
+        <li>[morning,morning:frost] Only my side of the wall froze last night.</li>
+        <li>[morning,morning:animalback] There was an animal at my door at dawn, just looking at me.</li>
+        <li>[morning,morning:animalback] It stood at my door all morning and wouldn't go.</li>
+        <li>[morning,named] {GOD} sees everything we do, and gives it back.</li>
+        <li>[morning,scoffer] Strange things happen, it doesn't mean the moon did it.</li>
+
+        <li>[water] The moon is in the water, and it's looking back at me.</li>
+        <li>[water] It's so bright down there, like a face under the water.</li>
+        <li>[water,named] {GOD} is in the water tonight, come and see.</li>
+        <li>[water,scoffer] It's a reflection, the moon does that on still water.</li>
+
+        <li>[watch] The moon is keeping me company tonight.</li>
+        <li>[watch] I can see right to the treeline, it's nearly as bright as day.</li>
+        <li>[watch,named] {GOD} is sitting up with me on watch.</li>
+        <li>[watch,scoffer] Good clear night for a watch, that's all.</li>
+
+        <li>[darkface] No moon tonight, so nothing comes back, and something else might come instead.</li>
+        <li>[darkface] I'll keep the door tonight, while there's no moon to keep it.</li>
+        <li>[darkface,named] {GOD} has turned her face away, so somebody has to watch.</li>
+        <li>[darkface,scoffer] I can't sleep anyway, I may as well stand here.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+</Defs>

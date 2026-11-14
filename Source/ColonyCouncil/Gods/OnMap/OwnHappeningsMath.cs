@@ -66,7 +66,54 @@ namespace ColonyCouncil
         /// <summary>The aurora on the coldest night, for those out of doors.</summary>
         CirrusAurora,
         /// <summary>Thunder and lightning over the far hills on a clear day, no rain, never on the colony.</summary>
-        CirrusThunder
+        CirrusThunder,
+
+        // ---- Round 4, batch 2 (Gods/OnMap/OwnHush.cs and beside it; the rules in OwnSevenMath.cs) ----
+
+        /// <summary>A frosty morning: one word written in rime by the door (WARM, BREAD, WOOD, COUNT), pointing at something real.</summary>
+        HushWord,
+        /// <summary>In a cold snap, someone sits up the night by the bed of the old, a baby or the sick; kept, the cold breaks at dawn.</summary>
+        HushVigil,
+        /// <summary>On the longest night the white figure walks all the way round the colony's edge, leaving a ring of frost.</summary>
+        HushEdge,
+        /// <summary>A death in the lean months with food let rot: frost on the new grave and its white silence; it melts into a ring of mushrooms.</summary>
+        HushGrave,
+        /// <summary>After a bargain, the beasts keep away from the one who made it.</summary>
+        UndertowShun,
+        /// <summary>At night a darkness drifts toward someone at the edge of breaking, held off only by a lamp or someone sitting with them.</summary>
+        UndertowDrift,
+        /// <summary>Someone standing in a room of old ruins for the first time comes away with a hollow ear.</summary>
+        UndertowEar,
+        /// <summary>The day after an eclipse, his long noon in its hard form, and everyone outside shades their eyes.</summary>
+        HeliosLookBack,
+        /// <summary>His feast: the first fruit taken from the stores and eaten out in the noon sun by the fields.</summary>
+        HeliosFruit,
+        /// <summary>The morning after the longest night, those up walk out east and stand facing the sunrise.</summary>
+        HeliosDawn,
+        /// <summary>The morning after the moon returned a deed: they go and look, and a card says what was found by whose bed.</summary>
+        SeleneMorning,
+        /// <summary>At the full moon her light lies on still water, and whoever is up walks down and stands by it.</summary>
+        SeleneWater,
+        /// <summary>A watch kept out of doors under a moon at least half full: moonlight about them, sight and aim till dawn.</summary>
+        SeleneWatch,
+        /// <summary>A night with no moon: someone keeps the door, looking out, and the dark that drifts does not come.</summary>
+        SeleneDarkFace,
+        /// <summary>At his feast or in a dry spell, the colony stands round the well at dusk singing; answered, the rain comes.</summary>
+        MurmurSong,
+        /// <summary>After a wet run the water goes down and leaves things on the mud at its edge.</summary>
+        MurmurGiveBack,
+        /// <summary>The rain that breaks a dry spell brings frogs up out of the wet ground all over the colony.</summary>
+        MurmurFrogs,
+        /// <summary>Silver gone from a hoard leaves a trail of single coins from the store out to the edge.</summary>
+        DucatTrail,
+        /// <summary>At its feast, or by one devoted to it, coins pressed into a visitor's hand.</summary>
+        DucatPurse,
+        /// <summary>A golden beetle walks off a table to where a gold coin lies, and the one who saw it follows.</summary>
+        DucatBeetle,
+        /// <summary>Tamiu (key Mog): a cat comes to stay beside someone near death, and walks off once they come through.</summary>
+        MogThreshold,
+        /// <summary>Tamiu (key Mog): a cat cries by a colonist's body lying far out until someone finds it.</summary>
+        MogLostDead
     }
 
     /// <summary>The one word Hollin's dryads give, each pointing at something real on the land.</summary>
@@ -110,10 +157,10 @@ namespace ColonyCouncil
     /// nearly always true, a little more often the nearer its god is drawn (GodNearMath.WorldFactor); the ones that answer
     /// something on the map (a rising, a sign, a fight, a death) come only with it.
     /// </summary>
-    public static class OwnHappeningsMath
+    public static partial class OwnHappeningsMath
     {
-        /// <summary>The gods of this batch, by key.</summary>
-        public static readonly string[] Gods = { "Hollin", "Smoulder", "Bellwether", "Morel", "Ennu", "Pip", "Cirrus" };
+        /// <summary>The gods with happenings of their own, by key: batch 1's seven, then batch 2's (Tamiu by her key, Mog).</summary>
+        public static readonly string[] Gods = { "Hollin", "Smoulder", "Bellwether", "Morel", "Ennu", "Pip", "Cirrus", "Hush", "Undertow", "Helios", "Selene", "Murmur", "Ducat", "Mog" };
 
         public static readonly OwnHappening[] All = (OwnHappening[])Enum.GetValues(typeof(OwnHappening));
 
@@ -184,6 +231,30 @@ namespace ColonyCouncil
                 case OwnHappening.CirrusFall: return (20f, 0f, 0f);
                 case OwnHappening.CirrusAurora: return (30f, 0f, 0f);
                 case OwnHappening.CirrusThunder: return (25f, 30f, 30f);
+                // Batch 2: the ones that follow something (a bargain, an eclipse, his feast, the moon's return, silver gone)
+                // have no chance of their own; the rare ones far apart (the walk and the sun's return once a winter).
+                case OwnHappening.HushWord: return (12f, 14f, 20f);
+                case OwnHappening.HushVigil: return (15f, 2f, 6f);
+                case OwnHappening.HushEdge: return (40f, 3f, 10f);
+                case OwnHappening.HushGrave: return (20f, 1.5f, 4f);
+                case OwnHappening.UndertowShun: return (0f, 0f, 0f);
+                case OwnHappening.UndertowDrift: return (10f, 3f, 8f);
+                case OwnHappening.UndertowEar: return (12f, 0f, 0f);
+                case OwnHappening.HeliosLookBack: return (0f, 0f, 0f);
+                case OwnHappening.HeliosFruit: return (0f, 0f, 0f);
+                case OwnHappening.HeliosDawn: return (40f, 1.5f, 4f);
+                case OwnHappening.SeleneMorning: return (0f, 0f, 0f);
+                case OwnHappening.SeleneWater: return (14f, 2f, 15f);
+                case OwnHappening.SeleneWatch: return (6f, 4f, 8f);
+                case OwnHappening.SeleneDarkFace: return (14f, 2f, 15f);
+                case OwnHappening.MurmurSong: return (12f, 2f, 6f);
+                case OwnHappening.MurmurGiveBack: return (20f, 4f, 10f);
+                case OwnHappening.MurmurFrogs: return (25f, 1.5f, 10f);
+                case OwnHappening.DucatTrail: return (0f, 0f, 0f);
+                case OwnHappening.DucatPurse: return (15f, 5f, 10f);
+                case OwnHappening.DucatBeetle: return (15f, 12f, 15f);
+                case OwnHappening.MogThreshold: return (6f, 0.5f, 3f);
+                case OwnHappening.MogLostDead: return (5f, 1f, 3f);
                 default: return (30f, 0f, 0f);
             }
         }

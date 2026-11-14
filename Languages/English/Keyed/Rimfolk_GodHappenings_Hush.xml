@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <!--
+    Hush's own happenings (Source/ColonyCouncil/Gods/OnMap/OwnHush.cs). The cards say only what was seen and the plain
+    facts anyone could see beside it, never why; the god is named only in the ...Named titles ({GOD}), where the colony
+    knows it was Hush. The CC_GodHush_Saw_ lines are what the colony's book keeps of it, in the witness's words ({WHO}).
+  -->
+
+  <!-- ===================== The word in the frost ===================== -->
+
+  <CC_GodHush_Word_Title>A word in the frost</CC_GodHush_Word_Title>
+  <CC_GodHush_Word_TitleNamed>{GOD}'s word in the frost</CC_GodHush_Word_TitleNamed>
+  <CC_GodHush_Word_Text>When {PAWN} came out at first light, there was a word written in the frost {WHERE}, in letters no hand had made: {WORD}.</CC_GodHush_Word_Text>
+  <CC_GodHush_Where_Door>beside the {DOOR}</CC_GodHush_Where_Door>
+  <CC_GodHush_Where_Window>on the {DOOR}</CC_GodHush_Where_Window>
+  <CC_GodHush_Where_Ground>on the open ground at the edge of the colony</CC_GodHush_Where_Ground>
+  <CC_GodHush_Word_Warm>WARM</CC_GodHush_Word_Warm>
+  <CC_GodHush_Word_Bread>BREAD</CC_GodHush_Word_Bread>
+  <CC_GodHush_Word_Wood>WOOD</CC_GodHush_Word_Wood>
+  <CC_GodHush_Word_Count>COUNT</CC_GodHush_Word_Count>
+  <CC_GodHush_Fact_Warm>{COLD} slept cold last night.</CC_GodHush_Fact_Warm>
+  <CC_GodHush_Fact_Bread>There are about {DAYS} days of food left in the stores.</CC_GodHush_Fact_Bread>
+  <CC_GodHush_Fact_Wood>There are {WOOD} logs left for the fires.</CC_GodHush_Fact_Wood>
+  <CC_GodHush_Fact_Count>There is {WHAT} spoiling on the colony's ground.</CC_GodHush_Fact_Count>
+  <CC_GodHush_Saw_Word>{WHO} found a word written in the frost at {HOME} at first light: {WORD}.</CC_GodHush_Saw_Word>
+
+  <!-- ===================== The old man's fire ===================== -->
+
+  <CC_GodHush_Thaw_Title>The cold broke at dawn</CC_GodHush_Thaw_Title>
+  <CC_GodHush_Thaw_TitleNamed>{GOD} let the cold go</CC_GodHush_Thaw_TitleNamed>
+  <CC_GodHush_Thaw_Text>{KEEPER} sat up all night by {FRAIL}'s bed, {WARMTH}. At first light the cold broke, and the frost on the ground ran off like water.</CC_GodHush_Thaw_Text>
+  <!-- What keeping someone warm means by the colony's age (0 tribal to 3 spacer). -->
+  <CC_GodHush_Warmth_0>keeping the fire fed</CC_GodHush_Warmth_0>
+  <CC_GodHush_Warmth_1>keeping the hearth in</CC_GodHush_Warmth_1>
+  <CC_GodHush_Warmth_2>keeping the stove going</CC_GodHush_Warmth_2>
+  <CC_GodHush_Warmth_3>keeping the heater by the bed running</CC_GodHush_Warmth_3>
+  <CC_GodHush_Saw_Thaw>{WHO} sat up all night with {FRAIL} at {HOME} in a cold snap, and at first light the cold broke.</CC_GodHush_Saw_Thaw>
+
+  <!-- ===================== The walk round the edge ===================== -->
+
+  <CC_GodHush_Walk_Title>A ring of frost</CC_GodHush_Walk_Title>
+  <CC_GodHush_Walk_TitleNamed>{GOD} walked the edge</CC_GodHush_Walk_TitleNamed>
+  <CC_GodHush_Walk_Text>In the night something walked {HOW} {HOME}, out past the walls, and where it went there is a line of frost an arm's width wide. Nobody saw what made it.</CC_GodHush_Walk_Text>
+  <CC_GodHush_Walk_TextSeen>In the night something walked {HOW} {HOME}, out past the walls, and where it went there is a line of frost an arm's width wide. {WHO} saw it: tall and white, and it moved off whenever anyone came near.</CC_GodHush_Walk_TextSeen>
+  <CC_GodHush_Walk_All>all the way round</CC_GodHush_Walk_All>
+  <CC_GodHush_Walk_Part>part of the way round</CC_GodHush_Walk_Part>
+  <CC_GodHush_Saw_Walk>Something walked {HOW} {HOME} in the night and left a line of frost behind it.</CC_GodHush_Saw_Walk>
+  <CC_GodHush_Saw_WalkSeen>{WHO} saw a tall white figure walk {HOW} {HOME} in the night, leaving a line of frost, and it moved off whenever anyone came near.</CC_GodHush_Saw_WalkSeen>
+
+  <!-- ===================== Frost on the grave ===================== -->
+
+  <CC_GodHush_Grave_Title>Frost on {DEAD}'s grave</CC_GodHush_Grave_Title>
+  <CC_GodHush_Grave_TitleNamed>{GOD} at {DEAD}'s grave</CC_GodHush_Grave_TitleNamed>
+  <CC_GodHush_Grave_Text>At dusk frost lay thick on {DEAD}'s grave, and on nothing else. Then the cold came down over {HOME}, and nobody felt like talking.</CC_GodHush_Grave_Text>
+  <CC_GodHush_Grave_TextQuiet>At dusk frost lay thick on {DEAD}'s grave, and on nothing else.</CC_GodHush_Grave_TextQuiet>
+  <CC_GodHush_Saw_Grave>{WHO} saw frost lying on {DEAD}'s grave at {HOME} at dusk, and on nothing else.</CC_GodHush_Saw_Grave>
+  <CC_GodHush_Melt_Text>The frost on {DEAD}'s grave has melted, and where it lay there is a ring of mushrooms.</CC_GodHush_Melt_Text>
+  <CC_GodHush_Melt_TextBare>The frost on {DEAD}'s grave has melted away.</CC_GodHush_Melt_TextBare>
+  <CC_GodHush_Saw_Melt>The frost on {DEAD}'s grave at {HOME} melted away after a few days.</CC_GodHush_Saw_Melt>
+  <CC_GodHush_Saw_MeltRing>Where frost had lain on {DEAD}'s grave at {HOME}, a ring of mushrooms came up.</CC_GodHush_Saw_MeltRing>
+
+</LanguageData>

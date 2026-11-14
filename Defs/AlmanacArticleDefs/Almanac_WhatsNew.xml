@@ -31,6 +31,22 @@ When you load a save after an update, a letter lists the newest round once. The 
     <rounds>
 
       <li>
+        <version>0.238.0</version>
+        <date>14 November 2026</date>
+        <title>The gods' own happenings, part two</title>
+        <points>
+          <li>Hush writes one word in the frost by the door at first light, WARM, BREAD, WOOD or COUNT, and on the longest night a white figure walks a ring of frost round the colony.</li>
+          <li>In a cold snap someone may sit up all night by the bed of the old, a baby or the sick, and if they last till dawn the cold breaks.</li>
+          <li>At night a darkness may drift toward whoever is nearest to breaking; a lamp beside them or a friend sitting with them stops it.</li>
+          <li>The day after an eclipse the noon burns white and hot, and after the longest night the colony walks out to watch the sun come up.</li>
+          <li>When the moon gives back a deed, a morning card says what was found and by whose bed, and at the full moon her light lies on still water.</li>
+          <li>In a dry spell the colony may sing at the well at dusk and bring the rain, and when a long dry spell breaks, frogs come up all over the colony.</li>
+          <li>Silver gone from a hoard leaves a trail of coins out to the edge of the land, and at Ducat's feast someone presses coins into a visitor's hand.</li>
+          <li>A cat comes to stay beside anyone near death and walks off once they pull through, and a cat finds a colonist's body left lying far out.</li>
+        </points>
+      </li>
+
+      <li>
         <version>0.237.0</version>
         <date>14 November 2026</date>
         <title>The gods' own happenings, part one</title>

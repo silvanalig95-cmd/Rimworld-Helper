@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Hush's own happenings (Source/ColonyCouncil/Gods/OnMap/OwnHush.cs; docs/gods-next-proposals.md, C 8; DESIGN.md "Each
+    god's own happenings, the second seven"): the word in the frost by the door, the vigil that breaks a cold snap, the walk
+    round the colony's edge on the longest night, the frost on a grave that melts into a ring of mushrooms. Two small moods
+    for the vigil, modelled in Tools/Balance (Rates.cs). Lines are one sentence said over a head; a line names the god
+    ({GOD}, the colony's name for it) only when tagged named, which the code gives where the colony is sure. Tags: word and
+    word:<warm|bread|wood|count> ({WORD}), vigil with age0 to age3 ({OTHER}), thaw, walk with walk:seen or walk:near, grave
+    ({DEAD}), melt ({DEAD}; {GOD} there is the soft mother's name), scoffer.
+  -->
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_Thought_Hush_SatUp</defName>
+    <durationDays>3</durationDays>
+    <stackLimit>1</stackLimit>
+    <stages>
+      <li>
+        <label>sat up through the cold</label>
+        <description>I sat up all night by someone who couldn't keep warm on their own, and in the morning the cold let go. I'm tired to the bone and I'd do it again.</description>
+        <baseMoodEffect>4</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_Thought_Hush_SatWith</defName>
+    <durationDays>3</durationDays>
+    <stackLimit>1</stackLimit>
+    <stages>
+      <li>
+        <label>someone sat up with me</label>
+        <description>The night was so cold I thought it would take me. Someone sat by my bed till morning and kept me warm.</description>
+        <baseMoodEffect>5</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_GodHush_Say</defName>
+    <lines>
+      <plain>
+        <li>[word,word:warm] It says {WORD} in the frost, and somebody here slept cold last night.</li>
+        <li>[word,word:warm] {WORD}, it says, and I think it means whoever's room has no fire.</li>
+        <li>[word,word:warm,named] {GOD} wrote {WORD} by the door, so somebody's too cold.</li>
+        <li>[word,word:bread] Someone's written {WORD} in the frost, and the stores are nearly bare.</li>
+        <li>[word,word:bread] {WORD}, it says, as if we didn't know how little is left.</li>
+        <li>[word,word:bread,named] {GOD} is counting our bread, and it wrote {WORD} to tell us.</li>
+        <li>[word,word:wood] It says {WORD}, and the woodpile won't see us through the week.</li>
+        <li>[word,word:wood] {WORD} in the frost, so the cutting starts today.</li>
+        <li>[word,word:wood,named] {GOD} wants the fires fed, look, {WORD}.</li>
+        <li>[word,word:count] It says {WORD}, and I know what's spoiling in the stores.</li>
+        <li>[word,word:count] {WORD}, it says, like someone checking what we let go to waste.</li>
+        <li>[word,word:count,named] {GOD} wrote {WORD}, so count what we keep and waste none of it.</li>
+        <li>[word,scoffer] It's frost on the step, and people see words in clouds too.</li>
+
+        <li>[vigil,age0] I'll keep the fire fed beside {OTHER} until the cold goes.</li>
+        <li>[vigil,age1] I'll sit by {OTHER} and keep the hearth in till morning.</li>
+        <li>[vigil,age2] I'll keep the stove going by {OTHER}'s bed tonight.</li>
+        <li>[vigil,age3] I'll stay by {OTHER} and watch the heater till it's light.</li>
+        <li>[vigil] Nobody's leaving {OTHER} alone on a night like this.</li>
+        <li>[vigil] Go to sleep, I'll sit up with {OTHER}.</li>
+        <li>[vigil,named] {GOD} takes the weak first, so I'm sitting up with {OTHER}.</li>
+
+        <li>[thaw] The cold's broken, and the frost is running off the walls like water.</li>
+        <li>[thaw] It let go at first light, I felt it go.</li>
+        <li>[thaw,named] {GOD} let us keep this one.</li>
+        <li>[thaw,scoffer] The weather turned, it was always going to turn.</li>
+
+        <li>[walk,walk:seen] There's something tall and white walking round outside the walls.</li>
+        <li>[walk,walk:seen] Look out past the fence, something white is walking the edge.</li>
+        <li>[walk,walk:seen] It's walking all the way round us, and it never once looks in.</li>
+        <li>[walk,walk:seen,named] {GOD} is walking the edge tonight, so stay inside.</li>
+        <li>[walk,walk:near] The footprints just stop, there's nothing past them but snow.</li>
+        <li>[walk,walk:near] I got close and it was gone, and the tracks end right here.</li>
+        <li>[walk,walk:near,named] {GOD} won't let anyone near, the prints just end.</li>
+        <li>[walk,scoffer] It's a snow devil in the moonlight and nothing more.</li>
+
+        <li>[grave] There's frost on {DEAD}'s grave and nowhere else, look at it.</li>
+        <li>[grave] Only {DEAD}'s grave has frost on it, and it isn't that cold yet.</li>
+        <li>[grave] That's for the food we let rot, mark me.</li>
+        <li>[grave,named] {GOD} has come for {DEAD}, it's keeping the grave cold.</li>
+        <li>[grave,scoffer] A grave is cold ground, of course the frost sits there first.</li>
+
+        <li>[melt] The frost on {DEAD}'s grave is gone, and there are mushrooms all round it.</li>
+        <li>[melt] Something warm took back {DEAD}'s grave from the cold in the night.</li>
+        <li>[melt,named] {GOD} has taken {DEAD} back, the cold couldn't keep them.</li>
+        <li>[melt,scoffer] Frost melts and mushrooms grow, that's all a grave ever does.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+</Defs>

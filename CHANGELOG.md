@@ -5,6 +5,19 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## The gods' own happenings, part two
+
+*14 November 2026, version 0.238.0*
+
+- Hush writes one word in the frost by the door at first light, WARM, BREAD, WOOD or COUNT, and on the longest night a white figure walks a ring of frost round the colony.
+- In a cold snap someone may sit up all night by the bed of the old, a baby or the sick, and if they last till dawn the cold breaks.
+- At night a darkness may drift toward whoever is nearest to breaking; a lamp beside them or a friend sitting with them stops it.
+- The day after an eclipse the noon burns white and hot, and after the longest night the colony walks out to watch the sun come up.
+- When the moon gives back a deed, a morning card says what was found and by whose bed, and at the full moon her light lies on still water.
+- In a dry spell the colony may sing at the well at dusk and bring the rain, and when a long dry spell breaks, frogs come up all over the colony.
+- Silver gone from a hoard leaves a trail of coins out to the edge of the land, and at Ducat's feast someone presses coins into a visitor's hand.
+- A cat comes to stay beside anyone near death and walks off once they pull through, and a cat finds a colonist's body left lying far out.
+
 ## The gods' own happenings, part one
 
 *14 November 2026, version 0.237.0*

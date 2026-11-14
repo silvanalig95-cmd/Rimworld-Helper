@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Tamiu's two new happenings (defName and key Mog; Source/ColonyCouncil/Gods/OnMap/OwnTamiu.cs): the cat at the
+    threshold of death, the cat by the lost dead. One small mood, modelled in Tools/Balance (Rates.cs). Tags: threshold
+    ({OTHER}), died ({OTHER}), lost ({DEAD}), named, scoffer.
+  -->
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_Thought_Tamiu_CatWentAway</defName>
+    <durationDays>3</durationDays>
+    <stackLimit>1</stackLimit>
+    <stages>
+      <li>
+        <label>the cat let me go</label>
+        <description>A cat stayed by me the whole time I was at my worst. When I came through it got up, stretched and walked off, as if it had been waiting to see which way I'd go.</description>
+        <baseMoodEffect>4</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_GodTamiu_Say</defName>
+    <lines>
+      <plain>
+        <li>[threshold] The cat has come to lie by {OTHER}, and that's never a good sign.</li>
+        <li>[threshold] Leave the cat be, it's sitting the watch with {OTHER}.</li>
+        <li>[threshold] It won't leave {OTHER}, like it's waiting for someone to come for them.</li>
+        <li>[threshold,named] {GOD}'s cat is at the door for {OTHER}, so keep them here.</li>
+        <li>[threshold,scoffer] Cats like warm beds, that's all it is.</li>
+
+        <li>[died] The cat stayed with {OTHER} to the very end.</li>
+        <li>[died] It's still lying by {OTHER}, it won't leave them.</li>
+        <li>[died,named] {GOD} took {OTHER} across, and the cat saw them over.</li>
+
+        <li>[lost] It's {DEAD}, the cat found {DEAD} out here.</li>
+        <li>[lost] That cat was crying for {DEAD} all morning, and now I know why.</li>
+        <li>[lost,named] {GOD} sent the cat to bring {DEAD} home.</li>
+        <li>[lost,scoffer] A cat smelled a body, there's nothing holy in that.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+</Defs>

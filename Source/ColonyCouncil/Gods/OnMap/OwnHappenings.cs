@@ -16,7 +16,7 @@ namespace ColonyCouncil
     /// grows without end: the only lists are one a happening and the few children who touched the horn. A happening's
     /// short steps run on their own due tick, and nothing at all with none under way.
     /// </summary>
-    public class OwnHappeningsBook : GameComponent
+    public partial class OwnHappeningsBook : GameComponent
     {
         /// <summary>When each happening last came (OwnHappeningsMath.All's order), or long ago.</summary>
         public List<int> last = new List<int>();
@@ -231,6 +231,7 @@ namespace ColonyCouncil
         {
             base.ExposeData();
             Scribe_Collections.Look(ref last, "last", LookMode.Value);
+            ExposeSeven();
             Scribe_References.Look(ref lookBy, "lookBy");
             Scribe_Values.Look(ref lookAt, "lookAt", IntVec3.Invalid);
             Scribe_Values.Look(ref lookTag, "lookTag");
@@ -373,7 +374,7 @@ namespace ColonyCouncil
     /// little more often; harm only at the shared budget's rate (HarmKinds.GodBurn), and always shown. This file is the frame
     /// they share: the book's steps, the gods' day and hour, the words, and the hooks; each god's own are in Own*.cs.
     /// </summary>
-    public static class OwnHappenings
+    public static partial class OwnHappenings
     {
         public const string Pool = "Rimfolk_Pool_GodOwnSaid";
 
@@ -449,6 +450,7 @@ namespace ColonyCouncil
             Safe("Ennu's hour", () => OwnEnnu.Hourly(b, now));
             Safe("Pip's hour", () => OwnPip.Hourly(b, now));
             Safe("Cirrus's hour", () => OwnCirrus.Hourly(b, now));
+            Safe("the second seven's hour", () => Seven(b, now));
             Safe("an anger forewarned", () => Forewarned(b, now));
         }
 
@@ -463,6 +465,7 @@ namespace ColonyCouncil
             Safe("Ennu's steps", () => OwnEnnu.Step(b, now));
             Safe("Pip's steps", () => OwnPip.Step(b, now));
             Safe("Cirrus's steps", () => OwnCirrus.Step(b, now));
+            Safe("the second seven's steps", () => SevenSteps(b, now));
         }
 
         internal static void Safe(string what, Action a)
@@ -761,6 +764,7 @@ namespace ColonyCouncil
             if (god == null || map == null || Book == null) return;
             if (god.Key == OwnEnnu.Key) OwnEnnu.OpenDoor(map);
             else if (god.Key == OwnCirrus.Key) OwnCirrus.FestivalKept();
+            else SevenFestival(Book, god, map);
         }
 
         /// <summary>A tree felled by the colony's people (Patch_OwnTreeFelled): the cleared ground, and the count round the old tree.</summary>

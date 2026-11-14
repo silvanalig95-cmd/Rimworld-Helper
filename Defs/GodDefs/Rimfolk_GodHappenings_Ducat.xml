@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Ducat's own happenings (Source/ColonyCouncil/Gods/OnMap/OwnDucat.cs; docs/gods-next-proposals.md, C 14): the trail of
+    coins from a hoard out to the edge of the land, the open purse at a visitor's hand, the golden beetle that leads to a
+    coin. No moods of their own (the purse is the colony's rite: the festival's and the rite's). Tags: trail, purse
+    ({OTHER}), beetle, named, scoffer.
+  -->
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_GodDucat_Say</defName>
+    <lines>
+      <plain>
+        <li>[trail] There's a coin, and another, all the way out to the edge.</li>
+        <li>[trail] Somebody's silver walked out of the store on its own, look at the line.</li>
+        <li>[trail] Coins in a row out the door, like they were leaving.</li>
+        <li>[trail,named] {GOD} doesn't like it sitting still, that's where it went.</li>
+        <li>[trail,scoffer] Someone's sack had a hole in it, follow it and we'll find who.</li>
+
+        <li>[purse] Take it, {OTHER}, gold has to keep moving.</li>
+        <li>[purse] For the road, {OTHER}, and I won't take it back.</li>
+        <li>[purse,named] {GOD}'s day, {OTHER}, so the coin goes to you.</li>
+        <li>[purse,scoffer] Here, {OTHER}, call it good manners if you like.</li>
+
+        <li>[beetle] The beetle went under there, and there's a gold coin.</li>
+        <li>[beetle] I followed a little gold beetle and look what was at the end of it.</li>
+        <li>[beetle,named] {GOD} showed me where it was, the beetle walked me right to it.</li>
+        <li>[beetle,scoffer] Somebody dropped this, and a beetle happened to be crawling past.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+</Defs>

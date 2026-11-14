@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <!--
+    Helios's own happenings (Source/ColonyCouncil/Gods/OnMap/OwnHelios.cs). The cards say only what was seen; he is
+    named only in the ...Named titles ({GOD}), where the colony knows it was him (or has learned the eclipse as his and
+    the moon's). The CC_GodHelios_Saw_ and _Book_ lines are what the colony's book keeps.
+  -->
+
+  <CC_GodHelios_LookBack_Title>A white noon</CC_GodHelios_LookBack_Title>
+  <CC_GodHelios_LookBack_TitleNamed>{GOD} looks back</CC_GodHelios_LookBack_TitleNamed>
+  <CC_GodHelios_LookBack_Text>The day after the eclipse, the noon light stands white over {HOME} and the heat comes down hard: the shadows don't move, and the air shimmers off every stone. Those out of doors have stopped to shade their eyes.</CC_GodHelios_LookBack_Text>
+  <CC_GodHelios_Saw_LookBack>{WHO} saw the noon light stand white over {HOME} the day after the eclipse, and the shadows not move.</CC_GodHelios_Saw_LookBack>
+
+  <CC_GodHelios_Fruit_Text>{COUNT} of {HOME} walked out into the noon sun by the fields and ate the first fruit of the year there, asking for nothing.</CC_GodHelios_Fruit_Text>
+  <CC_GodHelios_Fruit_TextNone>{COUNT} of {HOME} walked out into the noon sun by the fields and stood there together a while; there was no fresh fruit in the stores to eat.</CC_GodHelios_Fruit_TextNone>
+  <CC_GodHelios_Book_Fruit>The first fruit of the year was eaten out under the noon sun by {COUNT} of us, asking for nothing.</CC_GodHelios_Book_Fruit>
+
+  <CC_GodHelios_Dawn_Text>After the longest night, {COUNT} of {HOME} walked out to the east side and stood facing the sunrise, and it came up gold and lay on them a while.</CC_GodHelios_Dawn_Text>
+  <CC_GodHelios_Saw_Dawn>{COUNT} of {HOME} stood facing the sunrise after the longest night, and it lay on them gold a while.</CC_GodHelios_Saw_Dawn>
+
+</LanguageData>

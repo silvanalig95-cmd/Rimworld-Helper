@@ -688,6 +688,13 @@ job report ("praying to Hollin"), their bubbles and a journal line.
   bargains in dreams and at the shaft and Morel's mourner at the graveyard among them. DESIGN.md "Each god's own
   happenings, batch 1". Batch 2 (Hush, Undertow, Helios, Selene, Murmur, Ducat, Tamiu) is next.
 
+- Not released yet (14 November 2026, the player's go): round 4 of section H, batch 2, in batch 1's frame. Each god's own
+  happenings for Hush, Undertow, Helios, Selene, Murmur and Ducat, and two more for Tamiu (22, from section C): Hush's
+  word in the frost, vigil, walk round the edge and frost on a grave; the dark's beasts keeping away, its drift and the
+  hollow ear; Helios looking back, the first fruit and the sun's return; Selene's morning card, her face in the water, the
+  watch and the dark face; Murmur sung to, the water giving back and the frogs; Ducat's trail of coins, open purse and
+  beetle; Tamiu's cat at the threshold and by the lost dead. DESIGN.md "Each god's own happenings, the second seven".
+
 **Still open (defined, not built):**
 - Mog remade as the Egyptian cat god: built 14 November 2026 as Tamiu, the Keeper of the Threshold (not released yet).
 - More of Old Powers' kind, with the gods and A RimWorld of Magic (to-do, 13 November 2026, held).

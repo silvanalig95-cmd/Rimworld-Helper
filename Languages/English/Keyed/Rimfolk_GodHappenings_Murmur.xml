@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <!--
+    Murmur's own happenings (Source/ColonyCouncil/Gods/OnMap/OwnMurmur.cs). The cards say only what was seen and heard;
+    he is named only in the ...Named titles ({GOD}), where the colony knows it was him (or has learned the long rains or the
+    high water as his). The CC_GodMurmur_Saw_ and _Book_ lines are what the colony's book keeps.
+  -->
+
+  <CC_GodMurmur_Song_Text>{COUNT} of {HOME} stood round the {WATER} at dusk and sang down into it.</CC_GodMurmur_Song_Text>
+  <CC_GodMurmur_Book_Song>{COUNT} of us stood round the {WATER} at dusk and sang down into it, for the rain.</CC_GodMurmur_Book_Song>
+  <CC_GodMurmur_Rain_Title>Rain after the singing</CC_GodMurmur_Rain_Title>
+  <CC_GodMurmur_Rain_TitleNamed>{GOD} sang back</CC_GodMurmur_Rain_TitleNamed>
+  <CC_GodMurmur_Rain_Text>The rain came after {HOME} sang at the water, soft at first and then steady, and a deep croak came up out of the water under it.</CC_GodMurmur_Rain_Text>
+  <CC_GodMurmur_Saw_Rain>{WHO} heard the rain come after the singing at {HOME}, and a deep croak out of the water under it.</CC_GodMurmur_Saw_Rain>
+
+  <CC_GodMurmur_GiveBack_Title>What the water gave back</CC_GodMurmur_GiveBack_Title>
+  <CC_GodMurmur_GiveBack_TitleNamed>What {GOD} gave back</CC_GodMurmur_GiveBack_TitleNamed>
+  <CC_GodMurmur_GiveBack_Text>When the water went down, {PAWN} found things left on the mud at its edge: {WHAT}. Nobody here lost them.</CC_GodMurmur_GiveBack_Text>
+  <CC_GodMurmur_Saw_GiveBack>{WHO} found {WHAT} on the mud at the water's edge at {HOME} when the water went down.</CC_GodMurmur_Saw_GiveBack>
+
+  <CC_GodMurmur_Frogs_Text>The rain came at last, and with it the frogs, dozens of them, up out of the wet ground all over {HOME}, croaking all night.</CC_GodMurmur_Frogs_Text>
+  <CC_GodMurmur_Frogs_TextHeard>The rain came at last, and with it a croaking of frogs from every puddle in {HOME}, though nobody could see a single one.</CC_GodMurmur_Frogs_TextHeard>
+  <CC_GodMurmur_Saw_Frogs>{WHO} saw frogs come up out of the wet ground all over {HOME} the night the rain came back.</CC_GodMurmur_Saw_Frogs>
+  <CC_GodMurmur_Saw_FrogsHeard>{WHO} heard frogs croaking all over {HOME} the night the rain came back, and saw none.</CC_GodMurmur_Saw_FrogsHeard>
+
+</LanguageData>
