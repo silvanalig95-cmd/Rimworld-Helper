@@ -22,13 +22,15 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_EncC_LunchStolen</defName>
     <durationDays>0.5</durationDays>
-    <stages><li><label>lost my dinner to an animal</label><description>I looked away for one breath, and one of our animals had the best of my dinner.</description><baseMoodEffect>-1</baseMoodEffect></li></stages>
+    <!-- No mood and not shown (the player, 13 November 2026: "remove the "lost my dinner to an animal" debuff"): only remembered, for a feud with the animal (Animals/AnimalArcs.cs). -->
+    <stages><li><label>lost my dinner to an animal</label><description>I looked away for one breath, and one of our animals had the best of my dinner.</description><baseMoodEffect>0</baseMoodEffect><visible>false</visible></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_EncC_GourmandRobbed</defName>
     <durationDays>1</durationDays>
-    <stages><li><label>the best bite, stolen</label><description>I was saving the best piece for last, and a four-legged thief swallowed it without even chewing.</description><baseMoodEffect>-3</baseMoodEffect></li></stages>
+    <!-- No mood and not shown, as the dinner lost above: only remembered, for a feud with the animal. -->
+    <stages><li><label>the best bite, stolen</label><description>I was saving the best piece for last, and a four-legged thief swallowed it without even chewing.</description><baseMoodEffect>0</baseMoodEffect><visible>false</visible></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">

@@ -83,9 +83,6 @@ tree at once, alongside whatever runs. Each piece is merged as its own release, 
     in this style, including the gods and using ressources from rimworld of magic". When asked: a list of uncanny events
     first (omens, strange nights, things in the earth, the gods drawing near, seers and pilgrims), with A RimWorld of
     Magic's motes, sounds and effects (its textures are in the scratchpad's `rom_Motes`), for Old Powers and any way.
-  - **The "lost my dinner to an animal" mood removed.** The player: "remove the "lost my dinner to an animal" debuff".
-    It is `Defs/ThoughtDefs/Council_Thoughts_Encounters_Creatures.xml` (stage label "lost my dinner to an animal", -1)
-    and the encounter that gives it.
   - **Quests, and storylines across quests.** The player: "the next thing to include will be more quests, and quests that
     are storylines across multiple quests". When asked: proposed first, a list of quests by the peoples, the gods and the
     region, and storylines that run over several quests (a chain whose next quest depends on how the last went), built
@@ -114,6 +111,13 @@ tree at once, alongside whatever runs. Each piece is merged as its own release, 
   ordering them off is ruder still), less when they were trouble (a thief, a brawler, a drunk); with Hospitality its
   own way for its guests; never a caravan mid-trade without the trade closed first, and never anyone downed or a
   prisoner.
+- Not released: no version, no What's new round, About.xml and CHANGELOG untouched. **No mood for a dinner lost to an
+  animal** (13 November 2026). The player: "remove the "lost my dinner to an animal" debuff", then "you can go ahead with
+  ... the small ones". `Defs/ThoughtDefs/Council_Thoughts_Encounters_Creatures.xml`: `Council_EncC_LunchStolen` ("lost
+  my dinner to an animal", was -1) and the Gourmand's `Council_EncC_GourmandRobbed` ("the best bite, stolen", was -3)
+  are now no mood and not shown; the encounter (`Council_EncC_LunchStolen` in Council_Encounters_Creatures.xml) still
+  plays out with its text, and the hidden memory still lets a feud with the animal start (`ArcWorker_AnimalRivalry`).
+  The kind colonist's "robbed, adorably" stays as it was (no mood, a journal line).
 - 0.229.0, **The peoples' own events, round 2**
   (12 November 2026, the player's "you can go ahead on the todos"). Items 14, 22, 26, 59, 12, 25, 3, 20, 40 and 63 of
   `docs/peoples-events-proposals.md`; DESIGN.md "The peoples' own events, round 2"; README "The peoples' own events, the
