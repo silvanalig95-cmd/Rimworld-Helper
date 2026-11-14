@@ -93,7 +93,7 @@ tree at once, alongside whatever runs. Each piece is merged as its own release, 
   would remember one), different lengths and openings, and still true to what their lore already says on the map
   (`honours`, `fears`, `sayings`, leaders' titles, their events and letters); checked against the peoples' lore docs so
   nothing on the map contradicts the new text.
-- **To do when the player asks (14 November 2026): all of Rimfolk's text in plain words.** The player: "when you write
+- **Being built (14 November 2026, the player's pick): Rimfolk's text in plain words.** The player: "when you write
   text for the mod, especially when it's supposed to be flavour, i'd like you to be more neutral, descriptive and
   "reasonable", over trying to make the text be creative, as this just most of the time sounds awkward. look through a
   selection of text snippets from all kinds of elements from the mod, and then put next to it a rewritten version using
@@ -108,6 +108,17 @@ tree at once, alongside whatever runs. Each piece is merged as its own release, 
   in the gods' and faiths' texts, still clear; CLAUDE.md says so), and "ok before you start, list me all the different
   categories of text and i will tell where to start and what to leave": the categories were listed (about 21, with
   line counts) and the pass waits for their pick of order and what to leave.
+  The player's pick: "leave: what colonists say, talk between colonists, moods and memories, dreams, character,
+  neighbours talk, ailments, journals" and "start with: event cards, advice and building, messages and interface,
+  storytellers". Left alone: speech bubbles (`FlavorPoolDefs` talk, lines and pools), `InteractionDefs`, gossip and
+  social events, `ThoughtDefs`, shared memories and mood hints' mood lines, `DreamDefs`, quirks, personas, groups and
+  epithets, `OutsiderTalkDefs`, `HediffDefs`, journals; and any of these where they sit in Keyed. Not yet picked
+  (later, when asked): the gods and faith, the letters, wishes and ambitions, personal stories, council questions, the
+  peoples, camps and visitors, the region map, council and decrees, the Almanac, What's new. Batches, one agent and
+  one release each (file lists in the lead's scratchpad `textpass/`): event cards 1 to 3 (`Defs/IncidentDefs`, by
+  size), messages and interface 1 to 4 (`Languages/English/Keyed`, the gods' files left for the gods' round), advice
+  and building with the storytellers and scenarios (`RoomTemplateDefs`, `DefenseTemplateDefs`, `DefenseStepDefs`,
+  `AdvisorSignalDefs`, `MoodHintDefs`' advice, `StorytellerDefs`, `Scenarios`).
 - **Dropped (14 November 2026): sending visitors away.** The player: "so asking visitors to leave is not necessary, as i
   found the already imlpemented function".
 - **Being built (14 November 2026, the player's go: "do the one that visitors fill their idle hours, more old powers style events, making animals more visible first, but you can do as you like if simultanious tasks make more sense"): visitors busy with their own day.** The player: "guests should spend
