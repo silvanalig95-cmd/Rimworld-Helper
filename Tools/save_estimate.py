@@ -865,6 +865,13 @@ MODEL = {
     "Gods/Worship/WorshipBook.cs:demands": ("cap", (const("Gods/Worship/WorshipBook.cs", "MaxDemands", 12), 0.05), 160, "the gods' demands in dreams, a few days each and ten after, WorshipBook.MaxDemands"),
     "Gods/Worship/WorshipBook.cs:marks": ("cap", (const("Gods/Worship/WorshipBook.cs", "MaxMarks", 120), 0.2), 120, "a person's crises (a month), turnings and pilgrimages, WorshipBook.MaxMarks"),
     "Gods/Worship/WorshipBook.cs:homeMarks": ("cap", (const("Gods/Worship/WorshipBook.cs", "MaxHomeMarks", 80), 0.3), 140, "a home's marks: the god of the year, the rain kept away, each god's last answer, WorshipBook.MaxHomeMarks"),
+    # Each colonist's own gods (Gods/Belief/PawnGodsBook.cs): one record a colonist of the colony's own (the dead, the departed
+    # and anyone no longer the colony's let go each day, the discarded at saving), each with at most PawnGodsMath.MaxHeld gods:
+    # how strongly they hold it and dread it, what their character drew, when it last grew, and a short line of why each.
+    "Gods/Belief/PawnGodsBook.cs:people": ("colonists", 1, 120 + const("Gods/Belief/PawnGodsMath.cs", "MaxHeld", 6) * 330,
+                                           "one per colonist of the colony's own, the departed let go daily and the discarded at saving"),
+    "Gods/Belief/PawnGodsBook.cs:gods": ("fixed", const("Gods/Belief/PawnGodsMath.cs", "MaxHeld", 6), 330,
+                                         "per colonist: their gods, PawnGodsMath.MaxHeld at most, the faded let go (counted under people)"),
     "Gods/God.cs:witnesses": ("fixed", 3, 20, "per act: the colonists who saw it, by name (counted under acts)"),
     # The colony's own book of the gods (Gods/GodLore.cs): its entries, each a few lines of text in the keeper's voice
     # with its witnesses' names, GodLoreMath.MaxEntries kept (the oldest let go), a few a week at most (the hands are weeks

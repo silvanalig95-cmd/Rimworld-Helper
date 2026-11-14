@@ -27,7 +27,10 @@ namespace ColonyCouncil
             string words = ("CC_Wsh_Book_Unanswered_" + r.kind).Translate(Worship.Called(g, p).Named("GOD"), (r.aboutName ?? "").Named("ABOUT")).Resolve();
             Worship.Witness(g, map, GodActKind.Favour, words, p.PositionHeld);
             if (Interplay.Ready("worship-book|" + p.thingIDNumber, WorshipMath.BookGapDays)) GodLore.Prayed(p, g, words);
-            if (!Rand.Chance(WorshipMath.CrisisChance)) return;
+            bool crisis = Rand.Chance(WorshipMath.CrisisChance);
+            // Their own belief in the god that failed them fades, a crisis the more (Gods/Belief/PawnGods.cs).
+            PawnGods.Unanswered(p, g, crisis);
+            if (!crisis) return;
             int now = Worship.Now;
             b.AddMark(p, "crisis", g.id);
             using (Causes.Push("CC_Wsh_Cause_Unanswered".Translate(Worship.Called(g).Named("GOD"), (r.aboutName ?? "").Named("ABOUT")).Resolve()))
@@ -42,18 +45,23 @@ namespace ColonyCouncil
         }
 
         /// <summary>
-        /// They turn from the god that failed them to another: one the stories set against it where they know one, else another
-        /// the colony's people pray to, else another god they have heard of. Told, in their journal, the chronicle and the colony's book.
+        /// They turn from the god that failed them to another: another they already hold where they do (their own belief), else
+        /// one the stories set against it where they know one, else another the colony's people pray to, else another god they
+        /// have heard of; never one they dread. Told, in their journal, the chronicle and the colony's book; their belief moves
+        /// with it (the god turned to is their first now).
         /// </summary>
         public static God TurnAway(WorshipBook b, Pawn p, God from, Map map)
         {
             var pool = new List<God>();
-            pool.AddRange(Gods.Rivals(from).Where(x => x.known && x.kind != GodKind.Dead));
-            if (pool.Count == 0) pool.AddRange(Worship.PrayedTo(map).Where(x => x != from && x.kind != GodKind.Dead));
-            if (pool.Count == 0) pool.AddRange(Gods.All.Where(x => x != from && x.known && x.kind != GodKind.Dead));
+            var held = PawnGods.NextHeld(p, from);
+            if (held != null) pool.Add(held);
+            if (pool.Count == 0) pool.AddRange(Gods.Rivals(from).Where(x => x.known && x.kind != GodKind.Dead && !PawnGods.Dreads(p, x)));
+            if (pool.Count == 0) pool.AddRange(Worship.PrayedTo(map).Where(x => x != from && x.kind != GodKind.Dead && !PawnGods.Dreads(p, x)));
+            if (pool.Count == 0) pool.AddRange(Gods.All.Where(x => x != from && x.known && x.kind != GodKind.Dead && !PawnGods.Dreads(p, x)));
             var to = pool.Count == 0 ? null : pool.RandomElement();
             if (to == null) return null;
             b.AddMark(p, "turned", to.id);
+            PawnGods.Turned(p, from, to);
             string text = "CC_Wsh_Turned".Translate(p.LabelShort.Named("PAWN"), Worship.Called(from).Named("FROM"), Worship.Called(to).Named("GOD")).Resolve();
             Tell.Message(NewsKind.People, Importance.Notable, map, text, p, MessageTypeDefOf.NeutralEvent);
             CouncilGameComponent.Instance?.AddChronicle(new ChronicleEntry(ChronicleKind.Life, text, p));
@@ -94,6 +102,7 @@ namespace ColonyCouncil
             if (!Worship.Say(scoffer, "Rimfolk_Pool_Worship_Scoff", g, believer)) return;
             Worship.Say(believer, "Rimfolk_Pool_Worship_ScoffReply", g, scoffer);
             CouncilGameComponent.GiveThought(believer, WorshipDefOf.Rimfolk_Worship_Mocked, scoffer);
+            PawnGods.Mocked(believer, g);
             Worship.Favour(g, map, WorshipMath.MockFavour, "CC_Wsh_Why_Mocked".Translate(scoffer.LabelShort.Named("PAWN")).Resolve(), FavourSource.Neglect, GodOffence.Scoffing);
         }
 

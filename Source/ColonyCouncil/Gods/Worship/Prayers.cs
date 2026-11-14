@@ -278,6 +278,8 @@ namespace ColonyCouncil
             CouncilGameComponent.GiveThought(p, r.atShrine ? WorshipDefOf.Rimfolk_Worship_PrayedAtShrine : WorshipDefOf.Rimfolk_Worship_Prayed);
             Worship.Favour(g, map, WorshipMath.PrayerFavour(r.atShrine) * (Worship.IsPriest(p) ? WorshipMath.PriestRiteFactor : 1f),
                 "CC_Wsh_Why_Prayer".Translate(p.LabelShort.Named("PAWN")).Resolve(), FavourSource.Rite);
+            // Their own belief in the god they prayed to (Gods/Belief/PawnGods.cs).
+            PawnGods.Prayed(p, g, r.atShrine);
             TryAnswer(b, r, p, g, map);
         }
 
@@ -303,6 +305,8 @@ namespace ColonyCouncil
             r.answered = true;
             b.SetMark(key, "answer", g.id, now, now);
             CouncilGameComponent.GiveThought(p, WorshipDefOf.Rimfolk_Worship_Answered);
+            // An answer, a strong moment: their belief, and maybe their first god from now on (Gods/Belief/PawnGods.cs).
+            PawnGods.Answered(p, g, r.aboutName);
             FaithHeart.Witnessed(map, g, p.Position);
         }
 
@@ -444,6 +448,7 @@ namespace ColonyCouncil
             // A raid beaten off is the gods of war's own deed already (Gods/GodDeeds.cs): thanks and favour, no mood of its own.
             if (r.kind != PrayerKind.Raid) CouncilGameComponent.GiveThought(p, WorshipDefOf.Rimfolk_Worship_Answered);
             if (Faiths.On) Faiths.Steady(p, 0.03f);
+            PawnGods.Credited(p, g);
             // The colony's book: what was prayed for and what followed, as the one who prayed tells it (a few days apart a person).
             string words = ("CC_Wsh_Book_Credit_" + r.kind).Translate(Worship.Called(g, p).Named("GOD"), (r.aboutName ?? "").Named("SICK")).Resolve();
             Worship.Witness(g, map, GodActKind.Favour, words, p.PositionHeld);

@@ -116,6 +116,73 @@ tree at once, alongside whatever runs. Each piece is merged as its own release, 
   ordering them off is ruder still), less when they were trouble (a thief, a brawler, a drunk); with Hospitality its
   own way for its guests; never a caravan mid-trade without the trade closed first, and never anyone downed or a
   prisoner.
+- Not released: no version, no What's new round, About.xml and CHANGELOG untouched. **Each one's gods: a colonist's own
+  belief in each god** (14 November 2026; round 3 of `docs/gods-next-proposals.md`, section E; the player's words: "and
+  then also kind of the interactions between pawns and the gods, you know, I guess pawns should have and develop kind of
+  a relationship in a way, or rather a belief to gods. You know, if maybe they feel attached to a specific god for because
+  of their characteristics or history or whatever, and that they kind of, the more they pray and interact to a god, that
+  they kind of, yeah, get a stronger belief in that god, kind of develop a relationship", then "pawn belief should be
+  reflected in book and culture tab", "gods effect should be noticeable"). DESIGN.md "Each one's gods" has all of it;
+  `docs/design/gods.md` "Each one's gods" the contract; the Almanac's page on the gods (prose only, keywords unchanged)
+  says how the colony's people hold their gods.
+  - What it is: each colonist of the colony's own (never a guest or prisoner) holds up to six gods, how strongly and how
+    much in dread, shown only in words ("devoted to Hollin", "leans toward Ducat", "in dread of the Hunger", "doubts them
+    all") with a line of why. Drawn once from who they are (traits, passions, xenotype, their past, the people they came
+    from, their faith, a bond with a cat or a beast; never kin), grown by prayer, answers, gifts carried, vows, festivals,
+    their own rite, what they saw (under the god they took it for), gifts, dreams and tales, faded by neglect, unanswered
+    prayers, crises, broken vows and mockery; dread from a god's anger on or beside them. The id-number pick is replaced:
+    `Worship.GodOf` and `Gods.SwearBy` read their belief first, then the moment's domain, then their work's.
+  - Code map: `Source/ColonyCouncil/Gods/Belief/PawnGodsMath.cs` (pure, linked in `Tools/Tests/Tests.csproj`: `Word` and
+    the steps `LeansFrom` 10, `HoldsFrom` 30, `DevotedFrom` 55, `FerventFrom` 80, `UneasyFrom` 20, `DreadFrom` 45;
+    `TraitDraws`, `PassionDraws`, `XenotypeDraws`, `BackstoryDraws`, `Words`, `Draw`, `DrawCap` 48, `FaithLean`;
+    `Amount`, `Grow`, `Fade`, `FadeDread`, `DreadAmount`; `Strength`, `WonOver`, `WonOverHold`; `Choose`,
+    `WorkDomain`; `Rites`, `RiteHour`, `RiteChance`, `RitesAnHour`; `BickerWeight`, `BickerGapDays`; `KeepAway*`,
+    `FlinchGapDays`; `Short`, `Keep`, `MaxHeld` 6). `Gods/Belief/PawnGodsBook.cs` (the saved GameComponent: `PawnBelief`
+    a colonist, `HeldGod` a god: `hold`, `dread`, `drawn`, `grew`, `feared`, `why`, `dreadWhy`; `wonOver`).
+    `Gods/Belief/PawnGods.cs` (`Of` draws on first sight, `Sketch`, `Held`, `First`, `Dreads`, `WordOf`, `ShownFor`,
+    `HoldersOf`, `NameOf`, `Move`, `Fear`, the seams `Prayed`, `Answered`, `Credited`, `Unanswered`, `Turned`,
+    `NextHeld`, `Offered`, `Vowed`, `Festival`, `RiteLed`, `Dreamt`, `Told`, `Mocked`, `Gift`, `Saw`; `Hourly`, `Daily`
+    with `LivedThrough`; `PawnGodsDefOf`). `Gods/Belief/PawnGodsActs.cs` (`MaybeWonOver`, `Flinch`, `KeepAway`,
+    `ShrinesLost`, `FeastPassed`, `Rites`, `Target`, `DevRite`, `BickerWeight`, `Bickered`; `InteractionWorker_RivalGods`;
+    `JobDriver_BeliefRite`, its god in the job's count). `Gods/Belief/PawnGodsDebug.cs` (five dev actions). The seams
+    touched: `Gods.cs` (`SwearBy`, `Remember`, `Moment`), `Worship.cs` (`GodOf`, `Scoffer`, the hour and day),
+    `Prayers.cs`, `FaithHeart.cs`, `Offerings.cs` (one line in `Placed`), `Vows.cs`, `Festivals.cs`, `GodDreams.cs`,
+    `GodTales.cs`, `GodHands.cs`, `World/GodWorldGifts.cs`. Shown in `UI/ITab_Pawn_Culture.cs` (`TheirGods`) and
+    `Gods/GodLorePage.cs` (`Holders`). Defs `Defs/GodDefs/Rimfolk_Belief.xml` (five moods, the quarrel's opinion, the
+    rite's JobDef, the rival devotees' InteractionDef) and `Rimfolk_Belief_Pools.xml` (each god's rite words, won over,
+    flinch, keep away, a place gone, rivals, two journals); keys `Languages/English/Keyed/Rimfolk_Belief.xml`. Tests
+    `Tools/Tests/PawnGodsTests.cs` (318 checks). `Tools/save_estimate.py` models `PawnGodsBook.cs:people` and `:gods`;
+    `Tools/Balance/Rates.cs` the five moods; `Tools/DefValidator` knows `{RIVAL}`. No Sched slot: worship's hour and day.
+  - For round 2 (presences, offering ways, omens) and round 4: anything that goes through `Gods.Remember`,
+    `Gods.Moment`/`GodPresenceSeam.Call`, `Worship.Sign`, `Offerings.Placed` or the prayer and vow seams moves belief with
+    no code of its own. A god's own omen given as `GodActKind.Omen` makes one in dread of the god they take it for flinch.
+  - Not run here (none of it could be): the rites walking to their places in a real colony (the targets: a tree, natural
+    rock, a beast, fertile soil, a dining table, a powered machine, open sky, a dark cell, a grave or a cat, water or Dubs
+    Bad Hygiene's `WaterWellInlet`, stored silver), the Culture tab's new section at its size, the book's new part, the
+    quarrel through the game's own talk and its rate in a real colony, the flinch's step back, the pace of growth over a
+    long game, an older save's turned colonists carried over.
+  - Mods that would help: none needed; Rimfolk draws on what the player's mods already add (Vanilla Traits Expanded's
+    traits, Vanilla Races Expanded's and Alpha Genes' xenotypes, A RimWorld of Magic's classes, Dubs Bad Hygiene's wells).
+  - Try in the game (dev mode):
+    1. "Gods: the colony knows every god", then select a colonist and open the Culture tab: under their faith, "Their
+       gods", each god they hold in words ("Leans toward Ennu" for a kind colonist), hover for why ("Drawn by who they
+       are: kind."). A scoffer reads "Doubts them all".
+    2. "Gods: a colonist's own gods (log)" on them: their gods with the numbers (dev only), and whom they pray to.
+    3. "Gods: set a colonist's belief..." Hollin, devoted, then "Gods: their small rite now": they walk to the nearest
+       tree, lay a hand on it, say one sentence ("A hand on the bark for Hollin, so she knows we haven't forgotten."),
+       and the job reads "laying a hand on a tree for Hollin.". Left alone, a devoted colonist does it every few days
+       in their free time.
+    4. Open the Gods' book at Hollin's chapter: before the witnesses, "Of those who hold to it", "As Avila keeps it:",
+       "Who holds to it here: Mira, devoted."
+    5. Set one colonist devoted to Smoulder and another to Hush (rivals), stand them together: "Gods: rival devotees
+       bicker now", or wait: the social log says they argued over their gods and each says a word for their own.
+    6. Set a colonist "in dread" of Ennu, dedicate a sculpture to Ennu where they idle: the next hour that finds them
+       within 8 cells of it in their free time, they look at it, say they're not going near it, and walk off.
+    7. "Gods: win them over now..." Murmur on someone devoted to another: a bubble, a journal line, the news ("Mira
+       holds to Murmur now, and says so to anyone who asks."), a line in Murmur's chapter of the book, "won over" +4,
+       and their prayers go to Murmur from then on.
+    8. "Gods: a prayer now..." on someone holding Morel, for a sickness: they pray to Morel; an answer may win over one
+       who prayed to a god not their first.
 - 0.233.0, **Tamiu, the Keeper of the
   Threshold: Mog remade as the cat who keeps the dead** (14 November 2026; the player's words, 13 November: "the cat card
   we have. Let's remake it into something new. Still a cat card, but kind of one inspired by, you know, Egyptian

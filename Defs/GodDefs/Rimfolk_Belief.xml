@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Each colonist's own belief in the gods (Source/ColonyCouncil/Gods/Belief/; docs/gods-next-proposals.md, section E; DESIGN.md
+    "Each one's gods"). Kept small, as worship's moods are: the god someone holds to acting before them a little (+3 for a
+    day), its place gone or its feast day let pass a little the other way (-3, -2), a sign of the god they dread (-2 for half a
+    day), and being won over to a god after a strong moment (+4, rare). Rival devotees' bickering is an opinion, in the game's
+    own talk, with a scuffle at the game's own insult's rate. Modelled in Tools/Balance (Rates.Worship).
+  -->
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_Belief_GodActed</defName>
+    <durationDays>1</durationDays>
+    <stages>
+      <li>
+        <label>my god showed itself</label>
+        <description>Whatever the others say, I know whose that was. The god I hold to is with us.</description>
+        <baseMoodEffect>3</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_Belief_ShrineLost</defName>
+    <durationDays>2</durationDays>
+    <stages>
+      <li>
+        <label>my god's place is gone</label>
+        <description>The place we gave my god is gone. It feels like a door shut in its face, and in mine.</description>
+        <baseMoodEffect>-3</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_Belief_FeastPassed</defName>
+    <durationDays>1</durationDays>
+    <stages>
+      <li>
+        <label>my god's day let pass</label>
+        <description>It was my god's feast day, and nobody kept it. I kept it in my head, alone.</description>
+        <baseMoodEffect>-2</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_Belief_Flinched</defName>
+    <durationDays>0.5</durationDays>
+    <stages>
+      <li>
+        <label>a sign of the one I fear</label>
+        <description>I saw its sign. I know what it did, and I keep looking over my shoulder.</description>
+        <baseMoodEffect>-2</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_Belief_WonOver</defName>
+    <durationDays>3</durationDays>
+    <stages>
+      <li>
+        <label>won over</label>
+        <description>I saw it, and I can't unsee it. I know now whose I am.</description>
+        <baseMoodEffect>4</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>Rimfolk_Belief_GodsQuarrel</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilSocial</thoughtClass>
+    <durationDays>3</durationDays>
+    <stackLimit>2</stackLimit>
+    <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
+    <stages>
+      <li>
+        <label>argued over our gods</label>
+        <description>They hold to a god set against mine, and they would not hear a word for mine.</description>
+        <baseMoodEffect>0</baseMoodEffect>
+        <baseOpinionOffset>-4</baseOpinionOffset>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <!-- Their own small rite for their god (PawnGodsActs.Rites): walk to its place, a moment there, one sentence. -->
+  <JobDef>
+    <defName>Rimfolk_Belief_Rite</defName>
+    <driverClass>ColonyCouncil.JobDriver_BeliefRite</driverClass>
+    <reportString>keeping a small rite.</reportString>
+    <checkOverrideOnDamage>Always</checkOverrideOnDamage>
+  </JobDef>
+
+  <!-- Two devotees of rival gods bicker in the game's own talk (InteractionWorker_RivalGods); their words name the gods. -->
+  <InteractionDef>
+    <defName>Rimfolk_Belief_RivalGods</defName>
+    <label>argued over their gods</label>
+    <workerClass>ColonyCouncil.InteractionWorker_RivalGods</workerClass>
+    <symbol>ColonyCouncil/Symbols/Friction</symbol>
+    <socialFightBaseChance>0.005</socialFightBaseChance>
+    <initiatorThought>Rimfolk_Belief_GodsQuarrel</initiatorThought>
+    <recipientThought>Rimfolk_Belief_GodsQuarrel</recipientThought>
+    <logRulesInitiator>
+      <rulesStrings>
+        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] argued over whose god [deserves].</li>
+        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] that [RECIPIENT_possessive] god was [slight], and [RECIPIENT_nameDef] gave it back in kind.</li>
+        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] fell out over their gods again.</li>
+        <li>r_logentry->[INITIATOR_nameDef] said a word for [INITIATOR_possessive] own god, and [RECIPIENT_nameDef] said two against it.</li>
+        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] went at it over whose god [deserves], and neither gave an inch.</li>
+        <li>deserves->deserves the colony's thanks</li>
+        <li>deserves->is the older</li>
+        <li>deserves->sent the last good thing</li>
+        <li>deserves->ought to have the colony's shrine</li>
+        <li>slight->nothing but a story for children</li>
+        <li>slight->the reason things keep going wrong</li>
+        <li>slight->no friend of anyone here</li>
+      </rulesStrings>
+    </logRulesInitiator>
+  </InteractionDef>
+
+</Defs>

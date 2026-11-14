@@ -7,8 +7,8 @@ colony of 20, with the game keeping 30 more people it knows and 5 more each year
 generous guesses; sizes are rough XML sizes. Caps named as constants are read from the source. "Counted under" rows are
 kept inside another record (a journal's lines, a heart's lists) and are already in that record's size.
 
-Saved collections found: 695; modelled: 695; growing without end: 0.
-Rimfolk's part of the save, roughly: **2,962 KB** after a year, **3,662 KB** after two, **4,091 KB** after five.
+Saved collections found: 697; modelled: 697; growing without end: 0.
+Rimfolk's part of the save, roughly: **3,003 KB** after a year, **3,703 KB** after two, **4,132 KB** after five.
 
 | Collection | Rule | Kind | 1 year | 2 years | 5 years | KB at 5 years |
 |---|---|---|---|---|---|---|
@@ -29,6 +29,7 @@ Rimfolk's part of the save, roughly: **2,962 KB** after a year, **3,662 KB** aft
 | `Camps/CampGround.cs:plans` | every old site's layout as it was left, its constructions and its beds' places (about forty a site, six sites) | fixed | 240 | 240 | 240 | 46.9 |
 | `Gods/GodLore.cs:verses` | the verses of the book's chapters, each with its words, teller and date, GodBookMath.MaxVerses at most | cap | 36 | 72 | 180 | 45.7 |
 | `Journal.cs:everydaySeen` | 24 days | window | 480 | 480 | 480 | 42.2 |
+| `Gods/Belief/PawnGodsBook.cs:people` | one per colonist of the colony's own, the departed let go daily and the discarded at saving | colonists | 20 | 20 | 20 | 41.0 |
 | `Defense/DefenseLines.cs:lines` | lines the player made (only their clicks), per map; gone with the map | fixed | 4 | 4 | 4 | 35.7 |
 | `Lives/LifeNew.cs:read` | books read, once each per reader, the newest 600 (Lives/LifeNewMath.MaxRead) | fixed | 600 | 600 | 600 | 35.2 |
 | `Persona/TraitChanges.cs:changes` | known pawns only, 8 per person, 200 at most; with their story | cap | 6 | 12 | 30 | 35.2 |
@@ -626,6 +627,7 @@ Rimfolk's part of the save, roughly: **2,962 KB** after a year, **3,662 KB** aft
 | `Diplomacy/FeastBook.cs:retinue` | per guest: one or two who walk in with them (counted under homes) | fixed | 2 | 2 | 2 | (in its record) |
 | `Faith/FaithPeople.cs:leanings` | per colonist: the ideoligions they're drawn to, the strongest 6 at most, faded ones forgotten daily (counted under people) | fixed | 6 | 6 | 6 | (in its record) |
 | `Faith/FaithPeople.cs:notes` | per colonist: the newest faith moments, 120 days at most (counted under people) | fixed | 5 | 5 | 5 | (in its record) |
+| `Gods/Belief/PawnGodsBook.cs:gods` | per colonist: their gods, PawnGodsMath.MaxHeld at most, the faded let go (counted under people) | fixed | 6 | 6 | 6 | (in its record) |
 | `Gods/God.cs:factions` | per god: the peoples that hold it (counted under gods) | fixed | 2 | 2 | 2 | (in its record) |
 | `Gods/God.cs:ideos` | per god: the faiths that hold it (counted under gods) | fixed | 1 | 1 | 1 | (in its record) |
 | `Gods/God.cs:witnesses` | per act: the colonists who saw it, by name (counted under acts) | fixed | 3 | 3 | 3 | (in its record) |

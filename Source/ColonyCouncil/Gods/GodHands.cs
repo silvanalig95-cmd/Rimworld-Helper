@@ -125,6 +125,8 @@ namespace ColonyCouncil
             // wrongly), and the scoffer's answer beside it.
             if (kind != HandKind.Sign) GodLore.Inferred(believer, taken, god, kind == HandKind.Wrath, label);
             if (scoffer != null) GodLore.Disputed(scoffer, taken, answer);
+            // Each witness's own belief in the god they took it for (Gods/Belief/PawnGods.cs).
+            PawnGods.Saw(witnesses, taken, kind == HandKind.Gift ? GodActKind.Blessing : kind == HandKind.Wrath ? GodActKind.Wrath : GodActKind.Omen, known, label, IntVec3.Invalid, map);
             int home = Homes.KeyOf(map);
             lore.lastHand[god.Key] = now;
             lore.lastHandAt[home] = now;

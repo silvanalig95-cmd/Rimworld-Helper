@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <!-- Each colonist's own belief in the gods (Source/ColonyCouncil/Gods/Belief/). A belief is the pawn's own: these lines say
+       how they hold a god and why, never what a god thinks, wants or rules. A god is named by the colony's name for it. -->
+
+  <!-- The Culture tab: their gods, in words. -->
+  <CC_Belief_Section>Their gods</CC_Belief_Section>
+  <CC_Belief_Word_None>knows of {GOD}</CC_Belief_Word_None>
+  <CC_Belief_Word_Leans>leans toward {GOD}</CC_Belief_Word_Leans>
+  <CC_Belief_Word_Holds>holds to {GOD}</CC_Belief_Word_Holds>
+  <CC_Belief_Word_Devoted>devoted to {GOD}</CC_Belief_Word_Devoted>
+  <CC_Belief_Word_Fervent>wholly given to {GOD}</CC_Belief_Word_Fervent>
+  <CC_Belief_Word_Uneasy>uneasy about {GOD}</CC_Belief_Word_Uneasy>
+  <CC_Belief_Word_Dread>in dread of {GOD}</CC_Belief_Word_Dread>
+  <CC_Belief_Scoffer>Doubts them all</CC_Belief_Scoffer>
+  <CC_Belief_ScofferTip>{PAWN} holds none of the gods' stories true, and says so.</CC_Belief_ScofferTip>
+  <CC_Belief_Nothing>No god has drawn {PAWN_objective} yet</CC_Belief_Nothing>
+  <CC_Belief_NothingTip>{PAWN} prays, when {PAWN_pronoun} prays, to whichever god the moment belongs to. What {PAWN_pronoun} sees, hears and does may draw {PAWN_objective} to one.</CC_Belief_NothingTip>
+
+  <!-- The line of why, shown when a belief is hovered: what drew them, or since when. -->
+  <CC_Belief_Why_Trait>Drawn by who they are: {WHAT}.</CC_Belief_Why_Trait>
+  <CC_Belief_Why_Trait_None>Drawn by who they are.</CC_Belief_Why_Trait_None>
+  <CC_Belief_Why_Passion>Drawn by the work they love: {WHAT}.</CC_Belief_Why_Passion>
+  <CC_Belief_Why_Passion_None>Drawn by the work they love.</CC_Belief_Why_Passion_None>
+  <CC_Belief_Why_Xenotype>Drawn by what they are: {WHAT}.</CC_Belief_Why_Xenotype>
+  <CC_Belief_Why_Xenotype_None>Drawn by what they are.</CC_Belief_Why_Xenotype_None>
+  <CC_Belief_Why_Backstory>Drawn by their past: {WHAT}.</CC_Belief_Why_Backstory>
+  <CC_Belief_Why_Backstory_None>Drawn by their past.</CC_Belief_Why_Backstory_None>
+  <CC_Belief_Why_People>Held among the people they came from, {WHAT}.</CC_Belief_Why_People>
+  <CC_Belief_Why_People_None>Held among the people they came from.</CC_Belief_Why_People_None>
+  <CC_Belief_Why_Faith>Their faith leans that way: {WHAT}.</CC_Belief_Why_Faith>
+  <CC_Belief_Why_Faith_None>Their faith leans that way.</CC_Belief_Why_Faith_None>
+  <CC_Belief_Why_Bond>Drawn by the animal they are bonded to.</CC_Belief_Why_Bond>
+  <CC_Belief_Why_Turned>Turned to it after a crisis of faith.</CC_Belief_Why_Turned>
+  <CC_Belief_Why_FirstPrayer>Since their first prayer to it, {DATE}.</CC_Belief_Why_FirstPrayer>
+  <CC_Belief_Why_FirstGift>Since the first gift they carried to it, {DATE}.</CC_Belief_Why_FirstGift>
+  <CC_Belief_Why_Answered>Since their prayer was answered, {DATE}.</CC_Belief_Why_Answered>
+  <CC_Belief_Why_AnsweredFor>Since their prayer for {ABOUT} was answered, {DATE}.</CC_Belief_Why_AnsweredFor>
+  <CC_Belief_Why_Credited>Since what they prayed for came to pass, {DATE}.</CC_Belief_Why_Credited>
+  <CC_Belief_Why_TurnedTo>Turned to it from {FROM}, {DATE}.</CC_Belief_Why_TurnedTo>
+  <CC_Belief_Why_VowKept>Since they kept their vow to it, {DATE}.</CC_Belief_Why_VowKept>
+  <CC_Belief_Why_VowBroken>Since they broke their vow to it, {DATE}.</CC_Belief_Why_VowBroken>
+  <CC_Belief_Why_Festival>Since keeping {NAME}, {DATE}.</CC_Belief_Why_Festival>
+  <CC_Belief_Why_RiteLed>Since they led its rite, {DATE}.</CC_Belief_Why_RiteLed>
+  <CC_Belief_Why_Dreamt>Since a dream of it, {DATE}.</CC_Belief_Why_Dreamt>
+  <CC_Belief_Why_Told>From what {TELLER} told of it.</CC_Belief_Why_Told>
+  <CC_Belief_Why_Gift>Since the gift of {GIFT}, {DATE}.</CC_Belief_Why_Gift>
+  <CC_Belief_Why_Saw>Since {DATE}: {WHAT}</CC_Belief_Why_Saw>
+  <CC_Belief_Why_Dread>Afraid since {DATE}: {WHAT}</CC_Belief_Why_Dread>
+  <CC_Belief_Why_Lived>Since they came through {WHAT}, {DATE}.</CC_Belief_Why_Lived>
+  <CC_Belief_Why_WonOver>Won over. {WHY}</CC_Belief_Why_WonOver>
+  <CC_Belief_Lived_Cold>the cold that nearly took them</CC_Belief_Lived_Cold>
+  <CC_Belief_Lived_Heat>the heat that nearly took them</CC_Belief_Lived_Heat>
+
+  <!-- The news, and the moods' causes. -->
+  <CC_Belief_WonOver_News>{PAWN} holds to {GOD} now, and says so to anyone who asks.</CC_Belief_WonOver_News>
+  <CC_Belief_Cause_Flinched>a sign of {GOD}</CC_Belief_Cause_Flinched>
+  <CC_Belief_Cause_ShrineLost>{SHRINE} is gone</CC_Belief_Cause_ShrineLost>
+  <CC_Belief_Cause_FeastPassed>{NAME} let pass</CC_Belief_Cause_FeastPassed>
+
+  <!-- The small rite, as the job reports it. -->
+  <CC_Belief_Report_None>keeping a small rite.</CC_Belief_Report_None>
+  <CC_Belief_Report_Tree>laying a hand on a tree for {GOD}.</CC_Belief_Report_Tree>
+  <CC_Belief_Report_Rock>dropping a coin into the rock for {GOD}.</CC_Belief_Report_Rock>
+  <CC_Belief_Report_Grazing>standing with the grazing beasts for {GOD}.</CC_Belief_Report_Grazing>
+  <CC_Belief_Report_Soil>burying scraps in the soil for {GOD}.</CC_Belief_Report_Soil>
+  <CC_Belief_Report_Table>setting an extra bowl for {GOD}.</CC_Belief_Report_Table>
+  <CC_Belief_Report_Machine>tapping a machine twice for {GOD}.</CC_Belief_Report_Machine>
+  <CC_Belief_Report_Sky>looking up at the sky for {GOD}.</CC_Belief_Report_Sky>
+  <CC_Belief_Report_Cold>keeping a silence in the cold for {GOD}.</CC_Belief_Report_Cold>
+  <CC_Belief_Report_Dark>whispering into the dark.</CC_Belief_Report_Dark>
+  <CC_Belief_Report_Sunrise>facing the sunrise for {GOD}.</CC_Belief_Report_Sunrise>
+  <CC_Belief_Report_Moon>looking at the moon for {GOD}.</CC_Belief_Report_Moon>
+  <CC_Belief_Report_Grave>sitting by a grave for {GOD}.</CC_Belief_Report_Grave>
+  <CC_Belief_Report_Grave_Cat>feeding a cat for {GOD}.</CC_Belief_Report_Grave_Cat>
+  <CC_Belief_Report_Water>humming at the water for {GOD}.</CC_Belief_Report_Water>
+  <CC_Belief_Report_Silver>turning a coin over for {GOD}.</CC_Belief_Report_Silver>
+
+  <!-- The Gods' book: under each chapter, who holds to it here and who dreads it, in the keeper's hand. -->
+  <CC_GodBook_Part_Holders>Of those who hold to it</CC_GodBook_Part_Holders>
+  <CC_GodBook_HoldersHand>As {KEEPER} keeps it:</CC_GodBook_HoldersHand>
+  <CC_GodBook_HoldersNobody>As the colony keeps it:</CC_GodBook_HoldersNobody>
+  <CC_GodBook_HoldTo>Who holds to it here: {WHO}.</CC_GodBook_HoldTo>
+  <CC_GodBook_DreadIt>Who dreads it here: {WHO}.</CC_GodBook_DreadIt>
+  <CC_GodBook_Holder>{PAWN}, {WORD}</CC_GodBook_Holder>
+  <CC_Belief_Short_None>who knows of it</CC_Belief_Short_None>
+  <CC_Belief_Short_Leans>who leans toward it</CC_Belief_Short_Leans>
+  <CC_Belief_Short_Holds>who holds to it</CC_Belief_Short_Holds>
+  <CC_Belief_Short_Devoted>devoted</CC_Belief_Short_Devoted>
+  <CC_Belief_Short_Fervent>wholly given to it</CC_Belief_Short_Fervent>
+  <CC_Belief_Short_Uneasy>uneasy about it</CC_Belief_Short_Uneasy>
+  <CC_Belief_Short_Dread>in dread of it</CC_Belief_Short_Dread>
+
+</LanguageData>

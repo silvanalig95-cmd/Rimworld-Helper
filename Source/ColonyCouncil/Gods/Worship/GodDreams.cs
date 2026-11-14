@@ -137,6 +137,7 @@ namespace ColonyCouncil
             News.Post(message, p, NewsKind.People, MessageTypeDefOf.NeutralEvent, kind == "warning" || kind == "demand" ? Importance.Notable : Importance.Flavor);
             // The colony's book: the dream as it was told at breakfast.
             GodLore.Dreamt(p, g, text);
+            PawnGods.Dreamt(p, g);
             return true;
         }
 

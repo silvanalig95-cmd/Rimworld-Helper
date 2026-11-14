@@ -44,7 +44,9 @@ namespace ColonyCouncil
                 Safe("vows", () => Vows.Hourly(b, map, now));
                 Safe("the rain kept away", () => WorshipCouncil.Hourly(b, map, now));
                 Safe("scoffers and couples", () => FaithHeart.Hourly(b, map, now));
+                Safe("each one's gods", () => PawnGods.Hourly(map, now));
             }
+            Safe("a god's place gone", PawnGodsActs.ShrinesLost);
         }
 
         /// <summary>The region's day (after the pantheon's own).</summary>
@@ -59,6 +61,7 @@ namespace ColonyCouncil
                 Safe("the day's vows", () => Vows.Daily(b, map, now));
             }
             Safe("demands", () => GodDreams.Daily(b, now));
+            Safe("each one's gods", () => PawnGods.Daily(now));
             Safe("pruning", () => b.Prune(now));
         }
 
@@ -77,12 +80,15 @@ namespace ColonyCouncil
         // ================= Who =================
 
         /// <summary>
-        /// The god someone prays to and swears by: the one they turned to after a crisis of faith, else the core's choice
-        /// (Gods.SwearBy), of the moment's domain where they have one.
+        /// The god someone prays to and swears by: by their own belief (Gods/Belief/PawnGods.cs: the god they hold most, or one
+        /// of the moment's domain they hold, never one they dread), else the one they turned to after a crisis of faith (an
+        /// older save's), else the core's choice (Gods.SwearBy), of the moment's domain where they have one.
         /// </summary>
         public static God GodOf(Pawn p, GodDomain about = GodDomain.None)
         {
             if (p == null || !Gods.On) return null;
+            var held = PawnGods.Held(p, about);
+            if (held != null) return held;
             var b = Book;
             int turned = b?.TurnedTo(p) ?? -1;
             if (turned >= 0)
@@ -112,12 +118,17 @@ namespace ColonyCouncil
 
         public static bool Wavering(Pawn p) => p != null && Faiths.On && Faiths.Wavering(p);
 
-        /// <summary>A scoffer (WorshipMath.Scoffer): their faith despises religion, they are far from sure of it, or it's who they are.</summary>
+        /// <summary>
+        /// A scoffer (WorshipMath.Scoffer): their faith despises religion, they are far from sure of it, or it's who they are;
+        /// not one won over to a god by a strong moment (Gods/Belief/PawnGods.cs), unless their faith despises religion.
+        /// </summary>
         public static bool Scoffer(Pawn p)
         {
             if (p == null) return false;
             bool ideology = Faiths.On && Faiths.Of(p) != null;
-            return WorshipMath.Scoffer(Beliefs.Forbids(p, Belief.NoReligion), ideology, ideology ? Faiths.Certainty(p) : 1f, p.thingIDNumber);
+            bool noReligion = Beliefs.Forbids(p, Belief.NoReligion);
+            if (!noReligion && PawnGods.WonOver(p)) return false;
+            return WorshipMath.Scoffer(noReligion, ideology, ideology ? Faiths.Certainty(p) : 1f, p.thingIDNumber);
         }
 
         /// <summary>A psychic gift: the game's psychic sensitivity well above the usual, or a RimWorld of Magic caster.</summary>
