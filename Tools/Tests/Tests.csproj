@@ -12,6 +12,7 @@
     <Compile Include="../../Source/ColonyCouncil/Decrees/DecreeMath.cs" Link="DecreeMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Integrations/StallCounterMath.cs" Link="StallCounterMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Visitors/VisitorTradeMath.cs" Link="VisitorTradeMath.cs" />
+    <Compile Include="../../Source/ColonyCouncil/Visitors/KeepOutMath.cs" Link="KeepOutMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Trade/TradeAdviceMath.cs" Link="TradeAdviceMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Trade/TradeMarketMath.cs" Link="TradeMarketMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Trade/TradeWindowMath.cs" Link="TradeWindowMath.cs" />

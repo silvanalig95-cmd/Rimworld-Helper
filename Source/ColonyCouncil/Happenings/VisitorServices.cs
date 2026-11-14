@@ -543,13 +543,16 @@ namespace ColonyCouncil
             return false;
         }
 
-        /// <summary>A room to sleep in: the colony's own, indoors and closed in, nobody's bedroom, sickroom or cell.</summary>
+        /// <summary>
+        /// A room to sleep in: the colony's own, indoors and closed in, nobody's bedroom, sickroom or cell, and no room
+        /// visitors keep out of (a bedroom of the colony's people whatever the game calls it, a cold store: KeepOut).
+        /// </summary>
         private static bool Fits(Room r)
         {
             if (r == null || r.TouchesMapEdge || r.PsychologicallyOutdoors || r.UsesOutdoorTemperature || !r.ProperRoom || r.IsHuge || r.IsDoorway || r.CellCount < 6) return false;
             var role = r.Role;
             return role != RoomRoleDefOf.Bedroom && role != RoomRoleDefOf.Barracks && role != RoomRoleDefOf.PrisonCell && role != RoomRoleDefOf.PrisonBarracks
-                   && role != RoomRoleDefOf.Hospital;
+                   && role != RoomRoleDefOf.Hospital && !KeepOut.IsKept(r);
         }
 
         /// <summary>A free spot on the floor: nothing built there, nobody on it or headed for it, not a doorway, and they can get to it.</summary>

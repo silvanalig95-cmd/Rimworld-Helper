@@ -110,6 +110,8 @@ namespace ColonyCouncil
             v.text = job.defName + (note.NullOrEmpty() ? "" : "|" + note);
             v.stake = stake;
             v.due = Mathf.Max(60, ticks);
+            // The worker's way into the colonist's room counts from now (visitors keep out of bedrooms but for a doctor's work).
+            KeepOut.Refresh(map);
             if (PlayOuts.On && Send(v, true)) return true;
             Finish(v, worker, on, job);
             return true;

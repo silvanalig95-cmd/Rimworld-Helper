@@ -34,7 +34,8 @@ namespace ColonyCouncil
                 if (b.IsBurning() || b.Medical || b.ForPrisoners || b.def.building?.bed_humanlike != true) continue;
                 if (!b.AnyUnownedSleepingSlot || b.OwnersForReading.Any(o => o != null && !ours.Contains(o))) continue;
                 var room = b.GetRoom();
-                if (room == null || room.PsychologicallyOutdoors || room.IsPrisonCell) continue;
+                // Never in a room visitors keep out of: a guest bed in a colonist's own room, or in a cold store (KeepOut).
+                if (room == null || room.PsychologicallyOutdoors || room.IsPrisonCell || KeepOut.IsKept(room)) continue;
                 yield return b;
             }
         }

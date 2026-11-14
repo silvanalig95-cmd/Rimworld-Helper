@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <!-- ===================== Visitors keep out of bedrooms and cold stores (Source/ColonyCouncil/Visitors/KeepOut.cs) ===================== -->
+
+  <!-- The clock (Lean/PassClockMath.cs) -->
+  <CC_Clock_Pass_RareKeepOut>Visitors kept out of bedrooms and cold stores</CC_Clock_Pass_RareKeepOut>
+
+</LanguageData>

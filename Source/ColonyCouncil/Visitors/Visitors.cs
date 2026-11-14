@@ -358,7 +358,7 @@ namespace ColonyCouncil
 
         /// <summary>
         /// A corner inside for guests when a night out would hurt them: an open spot in the colony's dining room or rec
-        /// room (never a cell, a bedroom or a hospital), warm enough for every one of them, that they can all reach.
+        /// room (never a cell, a bedroom, a hospital or a cold store), warm enough for every one of them, that they can all reach.
         /// </summary>
         public static IntVec3 IndoorsCell(Map map, List<Pawn> party, string role = null)
         {
@@ -373,6 +373,8 @@ namespace ColonyCouncil
                     .Where(r => r != null && !r.IsPrisonCell && !r.PsychologicallyOutdoors && r.CellCount >= 12).OrderByDescending(r => r.CellCount));
                 foreach (var room in rooms)
                 {
+                    // Never a room visitors keep out of (a bedroom of the colony's people, a cold store: KeepOut).
+                    if (KeepOut.IsKept(room)) continue;
                     var middle = room.ExtentsClose.CenterCell;
                     foreach (var c in room.Cells.OrderBy(x => x.DistanceToSquared(middle)).Take(30))
                     {

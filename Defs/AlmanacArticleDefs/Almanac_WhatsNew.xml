@@ -31,6 +31,18 @@ When you load a save after an update, a letter lists the newest round once. The 
     <rounds>
 
       <li>
+        <version>0.230.1</version>
+        <date>14 November 2026</date>
+        <title>Doors kept for the colony</title>
+        <points>
+          <li>Guests and visitors of every kind keep out of your colonists' bedrooms at any hour, unless the bed there is theirs.</li>
+          <li>Nobody goes into a cold store, a room kept cold with food in it, even when the game calls it a kitchen because of a butcher's table.</li>
+          <li>When a guest needs food that is only in the cold store, one of your colonists carries it out and hands it over.</li>
+          <li>Someone already standing in such a room when it becomes off limits walks back out.</li>
+        </points>
+      </li>
+
+      <li>
         <version>0.230.0</version>
         <date>14 November 2026</date>
         <title>The peoples' own events, round 3</title>

@@ -5,6 +5,15 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## Doors kept for the colony
+
+*14 November 2026, version 0.230.1*
+
+- Guests and visitors of every kind keep out of your colonists' bedrooms at any hour, unless the bed there is theirs.
+- Nobody goes into a cold store, a room kept cold with food in it, even when the game calls it a kitchen because of a butcher's table.
+- When a guest needs food that is only in the cold store, one of your colonists carries it out and hands it over.
+- Someone already standing in such a room when it becomes off limits walks back out.
+
 ## The peoples' own events, round 3
 
 *14 November 2026, version 0.230.0*

@@ -113,6 +113,12 @@ namespace ColonyCouncil
                         g.jobs.StartJob(eat, JobCondition.InterruptForced, null, false, true);
                         continue;
                     }
+                    // The meals lie where visitors don't go (a cold store): one of the colony brings one out to them (KeepOut).
+                    if (KeepOut.Fetch(g, meals.Where(t => !t.IsForbidden(g) && !Beliefs.MindsEating(g, t)), out var brought))
+                    {
+                        if (brought != null) served.Add(g);
+                        continue;
+                    }
                 }
                 if (g.CurJobDef == PlayOutDefOf.Council_PlayOutAttend) continue;
                 var at = PlaySpots.RingCell(map, spot, i + 2, g, null);

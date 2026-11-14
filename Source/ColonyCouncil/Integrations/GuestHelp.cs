@@ -645,7 +645,7 @@ namespace ColonyCouncil
                 new LookTargets(g), MessageTypeDefOf.PositiveEvent, "guesthelp|" + g.Map?.uniqueID + "|" + kind);
         }
 
-        /// <summary>Never into a private room, at the dead, a prisoner, or a tree for those who never fell one (a rescue goes where it must).</summary>
+        /// <summary>Never into a private room or a cold store, at the dead, a prisoner, or a tree for those who never fell one (a rescue goes where it must).</summary>
         private static bool Vetoed(Pawn g, Job job, View v)
         {
             if (job.def == JobDefOf.Rescue) return false;
@@ -672,7 +672,8 @@ namespace ColonyCouncil
             var cell = t.Cell;
             if (!cell.IsValid || !cell.InBounds(map)) return false;
             var room = cell.GetRoom(map);
-            return room != null && !room.PsychologicallyOutdoors && GuestHelpMath.PrivateRoom(room.Role?.defName);
+            // Nor a room visitors keep out of whatever the game calls it: a bedroom of the colony's people, a cold store (KeepOut).
+            return room != null && !room.PsychologicallyOutdoors && (GuestHelpMath.PrivateRoom(room.Role?.defName) || KeepOut.IsKept(room));
         }
 
         // ================= The pass =================

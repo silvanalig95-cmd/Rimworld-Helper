@@ -562,7 +562,18 @@ namespace ColonyCouncil
         private static bool Eat(EnvoyStay s, Pawn p, bool envoy)
         {
             var meal = Hosting.Meal(p, envoy) ?? (envoy ? null : Hosting.Raw(p));
-            if (meal == null) return false;
+            if (meal == null)
+            {
+                // What the colony has lies where visitors don't go (a cold store): one of the colony brings it out to them,
+                // counted when they set off with it (KeepOut).
+                if (!Hosting.Brought(p, envoy, !envoy, out var brought)) return false;
+                if (envoy && brought != null)
+                {
+                    s.meals++;
+                    if (brought.def.ingestible != null && brought.def.ingestible.preferability >= FoodPreferability.MealFine) s.fine++;
+                }
+                return true;
+            }
             bool fine = meal.def.ingestible != null && meal.def.ingestible.preferability >= FoodPreferability.MealFine;
             if (!Hosting.Eat(p, meal, null)) return false;
             if (!envoy) return true;

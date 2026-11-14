@@ -14,7 +14,8 @@ namespace ColonyCouncil
     /// is. Hospitality makes anything outside a guest's area unreachable for them, so a stall outside it never gets
     /// their custom; with the setting "Guests always shop at the market" on, a place at a stall (within a few cells of
     /// one) stays reachable for an arrived guest as it is for anyone, and once they've shopped Hospitality walks them
-    /// back into their area as it always does. Nothing else about their area changes. All of it is found by name.
+    /// back into their area as it always does. Nothing else about their area changes, and a stall's place inside a room
+    /// visitors keep out of (a bedroom, a cold store: KeepOut) is never opened to them. All of it is found by name.
     /// </summary>
     public static class MarketGuests
     {
@@ -129,6 +130,8 @@ namespace ColonyCouncil
             if (__result || !MarketGuests.On) return;
             var p = traverseParams.pawn;
             if (p == null || !p.Spawned || !dest.IsValid || !MarketGuests.AtStall(p.Map, dest.Cell)) return;
+            // Only the stall's own place, and never into a room visitors keep out of (a bedroom, a cold store: KeepOut).
+            if (KeepOut.KeptFrom(p, dest.Cell)) return;
             try
             {
                 var guest = MarketGuests.GuestOf(p);
