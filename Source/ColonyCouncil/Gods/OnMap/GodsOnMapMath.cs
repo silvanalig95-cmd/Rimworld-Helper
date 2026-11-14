@@ -85,7 +85,16 @@ namespace ColonyCouncil
         /// <summary>Ducat: a golden beetle walking across a table.</summary>
         Beetle,
         /// <summary>Ducat: a coin found where none was dropped.</summary>
-        Coin
+        Coin,
+
+        // ---- Tamiu's, the cat who keeps the dead (defName Mog; docs/gods-next-proposals.md, C 12) ----
+
+        /// <summary>Tamiu: every cat on the land stops and sits facing the graves (or the colony's door, with no graves).</summary>
+        CatsFacing,
+        /// <summary>Tamiu: two gold eyes low in the dark by the graves, and gone.</summary>
+        GoldEyes,
+        /// <summary>Tamiu: fine pale sand across a grave or a doorstep, where no wind blows sand.</summary>
+        Sand
     }
 
     /// <summary>How the colony answered the stranger at the gate.</summary>

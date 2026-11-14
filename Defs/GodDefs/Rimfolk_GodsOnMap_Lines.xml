@@ -163,6 +163,12 @@
         <li>[beetle] Did you see that beetle, it looked like it was made of gold?</li>
         <li>[coin] A gold coin, right at my feet, and nobody dropped it.</li>
         <li>[coin] Whose coin is this, it wasn't here a moment ago.</li>
+        <li>[catsfacing] Every cat on the place is sitting facing the graves, look.</li>
+        <li>[catsfacing] The cats have all stopped dead and turned to the graves.</li>
+        <li>[goldeyes] Two gold eyes, just there by the graves, and then nothing.</li>
+        <li>[goldeyes] Something low by the graves looked at me with eyes like lamps.</li>
+        <li>[sand] There's fine sand all over that grave, and there's no sand for miles.</li>
+        <li>[sand] Who'd put sand on a grave, and where would they even get it?</li>
         <li>[rising] It has a face, there in the wood, and it's looking at us.</li>
         <li>[rising] The roots came up out of the ground and stood up.</li>
         <li>[fullmoon] Under a full moon like this, I'd believe anything.</li>
@@ -196,7 +202,8 @@
         <li>[void] I dreamed of a hole in the sky shaped like an eye.</li>
         <li>[bellwether] I dreamed of a white beast with one horn, grazing by the well and looking at me.</li>
         <li>[ennu] I dreamed someone knocked at the gate all night, patiently, and I didn't get up.</li>
-        <li>[mog] I dreamed a gray cat sat on my chest and stared until I woke.</li>
+        <li>[mog] I dreamed a great gold cat lay across my door and asked me something I couldn't answer.</li>
+        <li>[mog] I dreamed the graves were open and a cat sat on every one, all of them looking at me.</li>
         <li>[selene] I dreamed the moon came down to the yard and looked at everything we did today.</li>
         <li>[fullmoon] I dreamed under a full moon, and everything in the dream was true.</li>
       </plain>
@@ -217,7 +224,7 @@
         <li>[dead] The lantern, {OTHER_nameDef}, you saw the lantern too.</li>
         <li>[hearth] The old woman by the fire, {OTHER_nameDef}, you saw her too.</li>
         <li>[bellwether] The white beast with one horn, {OTHER_nameDef}, you dreamed it too.</li>
-        <li>[mog] The gray cat, {OTHER_nameDef}, it sat on you too, didn't it?</li>
+        <li>[mog] The gold cat at the door, {OTHER_nameDef}, she asked you too, didn't she?</li>
         <li>[selene] The moon in the yard, {OTHER_nameDef}, you saw it as well.</li>
       </plain>
     </lines>
@@ -333,11 +340,12 @@
         <li>[bellwether] The {BEAST} hasn't so much as looked at a fence.</li>
         <li>[bellwether] Look at the others hanging back behind it, like pilgrims.</li>
         <li>[bellwether] The grass is greener everywhere the {BEAST} grazed.</li>
-        <li>[mog] That {BEAST} has picked her person, and it isn't you.</li>
+        <li>[mog] That {BEAST} went straight to the graves, as if she knew every name.</li>
         <li>[mog] The cats all follow her about like courtiers.</li>
-        <li>[mog] She sleeps in the warmest spot in the colony, every time.</li>
-        <li>[mog] Whoever that cat sits with has all the luck this season.</li>
-        <li>[mog] I'd stay close to whoever that cat picks, if I were you.</li>
+        <li>[mog] She lies among the graves all day, and nobody minds.</li>
+        <li>[mog] Whoever that cat walks beside has all the luck this season.</li>
+        <li>[mog,chosen] She walks at my heel now, and things keep going my way.</li>
+        <li>[mog] Every cat on the place is sitting with her by the graves.</li>
       </plain>
     </lines>
   </ColonyCouncil.FlavorPoolDef>
@@ -351,7 +359,7 @@
         <li>The cat follows {NAME} everywhere and just stares.</li>
         <li>Even the cat thinks there's something odd about {NAME}.</li>
         <li>Look at the cat, staring at {NAME} like she knows something we don't.</li>
-        <li>She's left her favourite to sit and watch {NAME}, of all people.</li>
+        <li>She's left the graves to sit and watch {NAME}, of all people.</li>
         <li>Every time {NAME} turns round, that cat is right there, staring.</li>
       </plain>
     </lines>

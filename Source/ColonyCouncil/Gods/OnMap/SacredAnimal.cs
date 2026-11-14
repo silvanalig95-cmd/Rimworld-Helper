@@ -172,6 +172,8 @@ namespace ColonyCouncil
                 // The game's own wandering beast: out to the open land, and off the map when its days are done.
                 a.mindState.exitMapAfterTick = s.leaveAt;
                 if (RCellFinder.TryFindRandomCellOutsideColonyNearTheCenterOfTheMap(entry, map, 10f, out var spot)) a.mindState.forcedGotoPosition = spot;
+                // The great cat who keeps the dead makes for the graves.
+                if (IsMog(s)) MogsWays.Arrived(s);
                 Fed(a);
             }
             catch (Exception e)
@@ -183,7 +185,8 @@ namespace ColonyCouncil
             string called = Called(a, god);
             bool kin = s.kin.Count > 0;
             spec.title = GodsOnMapWords.Title(god, map, false, "CC_GodM_Animal_Title", "CC_GodM_Animal_TitleNamed", called.Named("BEAST"));
-            spec.text = ("CC_GodM_Animal_Text" + (kin ? "Kin" : "")).Translate(called.Named("BEAST"), (s.kin.FirstOrDefault()?.def.label ?? "").Named("KIN")).Resolve();
+            spec.text = ((IsMog(s) ? "CC_Mog_Came_Text" : "CC_GodM_Animal_Text") + (kin ? "Kin" : "")).Translate(called.Named("BEAST"), (s.kin.FirstOrDefault()?.def.label ?? "").Named("KIN"))
+                .Resolve();
             if (!GodPresenceSeam.Call(spec)) Tell.Letter(NewsKind.Land, Importance.Important, map, spec.title, spec.text, LetterDefOf.NeutralEvent, new LookTargets(a));
             if (!spec.veiled) Gods.Learn(god, "visitors");
             GodsOnMapWords.Saw(god, map, entry, GodActKind.Appear, GodsOnMapWords.Seer(map, entry, 45f), "CC_GodM_Saw_Animal" + (kin ? "Kin" : ""), called.Named("BEAST"),
@@ -300,8 +303,11 @@ namespace ColonyCouncil
                 return;
             }
             var god = s.God;
-            // Mog leaves her chosen one while a stranger stays, and keeps to the stranger instead.
+            // Mog (Tamiu, the great cat who keeps the dead) leaves her chosen one while a stranger stays, and keeps to the
+            // stranger instead; else her own hour (MogsWays.Keep): her riddle at the door, the heel of the one she favours,
+            // the graves.
             if (IsMog(s) && Stare(b.stranger, s, a, now)) { }
+            else if (IsMog(s)) MogsWays.Keep(s, a, now);
             else if (GodsOnMapMath.Follows(a.BodySize)) Follow(s, a, now);
             else if (GodShapes.Leads(god) && !s.led && !s.beckoned && s.follower == null && now - s.since > GenDate.TicksPerDay / 2
                      && Rand.Chance(GodsOnMapMath.BeckonChanceADay / 24f))
@@ -734,6 +740,8 @@ namespace ColonyCouncil
             s.feeder = by;
             var god = s.God;
             if (god == null || s.a == null) return;
+            // The great cat walks at the heel of the one who brought her a bowl she didn't ask for, until someone answers her riddle.
+            if (IsMog(s) && s.chosen == null) MogsWays.Favour(s, by);
             Gods.AddFavour(god, s.map, GodsOnMapMath.Fed, null);
             string called = Called(s.a, god);
             Deeds.Record("Rimfolk_Deed_FedSacred", by, null, -1f, null, called);

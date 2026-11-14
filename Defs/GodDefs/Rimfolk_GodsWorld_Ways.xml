@@ -192,7 +192,7 @@
     <feast>the Night of the Full Moon</feast>
   </ColonyCouncil.GodWaysDef>
 
-  <!-- Mog, the cat: aloof, capricious; a lucky season for the one she chooses, a cat wandering in; the rats when cats are harmed. -->
+  <!-- Tamiu (defName Mog), the cat who keeps the dead: proud; a lucky season for the one she favours, a cat wandering in; the rats when cats are harmed. -->
   <ColonyCouncil.GodWaysDef>
     <defName>Rimfolk_GodWays_Mog</defName>
     <gods><li>Mog</li></gods>
@@ -210,13 +210,14 @@
       <li>AEXP_CatPersian</li>
       <li>AEXP_CatSiamese</li>
       <li>AEXP_CatSomali</li>
+      <li>AEXP_CatSphynx</li>
     </kin>
     <kinWrath>Rats</kinWrath>
     <blessing>Stray</blessing>
     <prices><li>Offering</li></prices>
     <offering>meals</offering>
-    <dream>a grey cat with too-bright eyes sat on the dreamer's chest all night, purring, and would not be moved</dream>
-    <feast>the Night of the Saucer</feast>
+    <dream>a great cat the colour of desert sand lay across the dreamer's door all night, gold-eyed, and would not let anyone by who couldn't answer her</dream>
+    <feast>the Night of the Lamps on the Graves</feast>
   </ColonyCouncil.GodWaysDef>
 
   <!-- Murmur, Old Croak: slow, moody, generous when sung to; rain when the fields need it, a drought and then a flood. -->

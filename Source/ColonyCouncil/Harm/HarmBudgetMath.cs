@@ -189,6 +189,12 @@ namespace ColonyCouncil
         /// <summary>A gift's price paid in blood (Gods/World/GodWorldGifts.cs): a cut on the arm, taken there and then.</summary>
         public static readonly HarmKind GodPrice = new HarmKind("godPrice", "a god's gift paid for in blood (gods)", "gods", 0.008f, false);
 
+        /// <summary>The great cat's cuff of the paw for a wrong answer to her riddle (Gods/OnMap/MogsWays.cs): a scratch on the arm.</summary>
+        public static readonly HarmKind GodRiddle = new HarmKind("godRiddle", "a great cat's cuff for a wrong answer (gods)", "gods", 0.004f, false);
+
+        /// <summary>The wrapped dead standing guard over a home's tombs in a raid (Gods/OnMap/MogsWays.cs): the game's shamblers, kept to the graves.</summary>
+        public static readonly HarmKind GodDead = new HarmKind("godDead", "the wrapped dead standing guard in a raid (gods)", "gods", 0.004f, false);
+
         /// <summary>Every kind, in the order they were built.</summary>
         public static readonly HarmKind[] All =
         {
@@ -206,7 +212,7 @@ namespace ColonyCouncil
             WorstNight, FirstSteps, WorkingWrong,
             CampLeft,
             UnionDrill,
-            GodBeasts, GodLightning, GodPrice
+            GodBeasts, GodLightning, GodPrice, GodRiddle, GodDead
         };
 
         public static HarmKind Of(string key)

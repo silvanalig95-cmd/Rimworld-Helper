@@ -205,19 +205,19 @@
     <dreamFactor>1.8</dreamFactor>
   </ColonyCouncil.GodWorshipDef>
 
-  <!-- Mog: a full bowl she didn't ask for. She never asks, and keeps no calendar. -->
+  <!-- Tamiu (defName Mog): fish for her cats, linen for wrapping the dead, a full bowl she didn't ask for. She never asks, and keeps no calendar; her keepers chant Alpha Memes' Kemetic chant where it is loaded. -->
   <ColonyCouncil.GodWorshipDef>
     <defName>Rimfolk_Worship_Mog</defName>
     <gods><li>Mog</li></gods>
     <likes>
       <li><kind>Fish</kind><weight>1.6</weight></li>
-      <li><kind>Meat</kind><weight>1.3</weight></li>
-      <li><kind>Textile</kind><weight>1.0</weight></li>
+      <li><kind>Textile</kind><weight>1.3</weight></li>
+      <li><kind>Meat</kind><weight>1.0</weight></li>
     </likes>
     <refuses><li>Weapon</li><li>Silver</li></refuses>
     <noFestival>true</noFestival>
     <asksNothing>true</asksNothing>
-    <chants><li>RitualSustainer_Rustic</li></chants>
+    <chants><li>AM_RitualSustainer_Kemetic</li><li>RitualSustainer_Morbid</li></chants>
   </ColonyCouncil.GodWorshipDef>
 
   <!-- Murmur, Old Croak: wells kept clean, wet ground kept wet, and to be sung back to. -->

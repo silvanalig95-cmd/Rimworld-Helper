@@ -142,7 +142,8 @@
         <li>[rain] Rain, at last.</li>
         <li>[rain,godkey:murmur] Old Croak was singing all night, I heard it in the well.</li>
         <li>[stray] Look, a cat, and it acts like it owns the place.</li>
-        <li>[stray,godkey:mog] Mog sends her own ahead, my gran used to say.</li>
+        <li>[stray,godkey:mog] Tamiu sends a cat ahead of her, my gran used to say.</li>
+        <li>[stray,godkey:mog] It'll go and sit on a grave first, you watch, that's how you know.</li>
         <li>[trader] A trader, right when we needed one.</li>
         <li>[trader,godkey:ducat] The Glint brought them, I'd bet a coin on it.</li>
         <li>[rest] They slept like a stone and woke half healed.</li>
@@ -202,9 +203,10 @@
         <li>[godkey:selene] Selene has no light of her own, everything she shines is his.</li>
         <li>[godkey:selene] What you do by day, the moon gives back by night.</li>
         <li>[godkey:selene] At the dark of the moon nothing comes back, and the night belongs to stranger things.</li>
-        <li>[godkey:mog] Mog is a cat, and that's the whole of it, as far as anyone knows.</li>
-        <li>[godkey:mog] She chooses one lap a season, and nobody knows why.</li>
-        <li>[godkey:mog] Mog stares at the Guest, because she knows what it is.</li>
+        <li>[godkey:mog] Tamiu is a great cat who keeps the dead, and every cat is hers.</li>
+        <li>[godkey:mog] Answer the Grave-Cat's riddle well and you'll have a lucky season.</li>
+        <li>[godkey:mog] Tamiu stares at the Guest, because she knows what it is at any door.</li>
+        <li>[godkey:mog] Morel wants the dead back in the earth, and Tamiu wraps them and keeps them whole.</li>
         <li>[godkey:murmur] When Old Croak sings in the wells, it rains.</li>
         <li>[godkey:murmur] Murmur sleeps angry through the winter, and blames Hush for it.</li>
         <li>[godkey:murmur] Drain a marsh and Murmur will remember your name.</li>

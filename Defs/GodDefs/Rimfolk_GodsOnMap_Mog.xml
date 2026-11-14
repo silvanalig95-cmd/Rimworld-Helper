@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Tamiu, the Keeper of the Threshold (defName and key Mog), on the map (Source/ColonyCouncil/Gods/OnMap/MogsWays.cs,
+    MogMath.cs): her riddle's card, what those who answered it remember, a new grave kept, and the wrapped dead who stand
+    guard over the tombs in a raid. Everything here says what was seen and heard, never why; she is named only where the
+    colony knows it was her (GodsOnMapWords.Title).
+  -->
+
+  <!--
+    Her presence on the land from her coming to her going (GameCondition_MogPresence), her own and apart from the shared one
+    of a god's moment: named as what anyone can see until the colony knows it is her. The land's rats run off as she comes,
+    and every few hours the cats go and sit facing the graves.
+  -->
+  <GameConditionDef>
+    <defName>Rimfolk_GodPresence_Mog</defName>
+    <conditionClass>ColonyCouncil.GameCondition_MogPresence</conditionClass>
+    <label>the cats keeping watch</label>
+    <description>The cats sit with the graves, and the rats have gone.</description>
+    <canBePermanent>false</canBePermanent>
+  </GameConditionDef>
+
+  <!-- ===================== The riddle at the threshold ===================== -->
+
+  <!--
+    Only her stay fires it (MogsWays.Ask: once a stay at most, in the day, MogMath.RiddleDue), never the storyteller: its
+    chance is 0. {BEAST} is what she is seen as, {TALE} the riddle (one of the colony's age's, CC_Mog_RiddleQ_*). A is the
+    colony's sharpest wits (Intellectual), B its best talker (Social); the risk is the answer coming out wrong, by the
+    answerer's own skill (HappeningWorker_GodRiddle.RiskChance, MogMath.WrongChance), told only when they reach her. The
+    texts' tags are the colony's age (age0 to age3), and alone when there is nobody else to send.
+  -->
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Rimfolk_Evt_GodRiddle</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>a riddle at the threshold</label>
+    <workerClass>ColonyCouncil.HappeningWorker_GodRiddle</workerClass>
+    <baseChance>0</baseChance>
+    <minRefireDays>0</minRefireDays>
+    <earliestDay>0</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Nature</group>
+        <answerDays>0.4</answerDays>
+        <notable>false</notable>
+        <titles>
+          <li>The {BEAST} at the door</li>
+          <li>A riddle at the threshold</li>
+        </titles>
+        <texts>
+          <li>The {BEAST} has lain down across the way in and will not move. Whoever goes near her hears a question in no voice at all: "{TALE}" She is waiting for an answer.</li>
+          <li>[age0] The {BEAST} has lain down across the way into the camp, like a cat on a cairn, and will not move. Whoever goes near her hears a question in no voice at all: "{TALE}" She is waiting for an answer.</li>
+          <li>[age1] The {BEAST} has lain down across the gate, still as the carvings at a crypt door, and will not move. Whoever goes near her hears a question in no voice at all: "{TALE}" She is waiting for an answer.</li>
+          <li>[age2] The {BEAST} has lain down across the doorway and will not move, and the colony's cats sit in a row behind her. Whoever goes near her hears a question in no voice at all: "{TALE}" She is waiting for an answer.</li>
+          <li>[age3] The {BEAST} has lain down across the way in, as the old stories put the Sphinx at the door, and will not move. Whoever goes near her hears a question in no voice at all: "{TALE}" She is waiting for an answer.</li>
+        </texts>
+        <defaultOption>2</defaultOption>
+        <options>
+          <li>
+            <label>Send {A_nameDef}, the sharpest wits here</label>
+            <outcome>{A_nameDef} walks out to the {BEAST} to answer her.</outcome>
+            <riskChance>0.5</riskChance>
+            <riskOutcome>{A_nameDef} walks out to the {BEAST} to answer her.</riskOutcome>
+            <ways><tradition>1</tradition></ways>
+          </li>
+          <li>
+            <label>Send {B_nameDef}, who talks best</label>
+            <outcome>{B_nameDef} walks out to the {BEAST} to answer her.</outcome>
+            <riskChance>0.5</riskChance>
+            <riskOutcome>{B_nameDef} walks out to the {BEAST} to answer her.</riskOutcome>
+            <ways><tradition>1</tradition></ways>
+          </li>
+          <li>
+            <label>Let her lie there</label>
+            <outcome>Nobody goes out to her. The {BEAST} lies across the way a while longer, then gets up and walks back to the graves.</outcome>
+          </li>
+        </options>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- Answered her riddle well: she walks at their heel. -->
+  <ThoughtDef>
+    <defName>Rimfolk_Thought_MogRiddleRight</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
+    <durationDays>6</durationDays>
+    <stackLimit>1</stackLimit>
+    <stages>
+      <li>
+        <label>answered the great cat</label>
+        <description>I stood in front of her and answered her riddle, and she got up and pressed her head under my hand. She walks with me now.</description>
+        <baseMoodEffect>6</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <!-- Gave her the wrong answer. -->
+  <ThoughtDef>
+    <defName>Rimfolk_Thought_MogRiddleWrong</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
+    <durationDays>3</durationDays>
+    <stackLimit>1</stackLimit>
+    <stages>
+      <li>
+        <label>gave the great cat a wrong answer</label>
+        <description>I got her riddle wrong, and she looked at me as if she had known all along that I would.</description>
+        <baseMoodEffect>-3</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <!-- ===================== A new grave kept ===================== -->
+
+  <!-- Someone of the colony fond of the one buried there (or who saw the cat on the grave): the dead are in good keeping. -->
+  <ThoughtDef>
+    <defName>Rimfolk_Thought_MogGraveKept</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
+    <durationDays>5</durationDays>
+    <stackLimit>1</stackLimit>
+    <stages>
+      <li>
+        <label>a grave kept</label>
+        <description>Someone sat the first night by the new grave, or a cat keeps it still and won't come away. Whoever lies there is in good keeping.</description>
+        <baseMoodEffect>3</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <!-- ===================== The wrapped dead ===================== -->
+
+  <!-- Saw the dead stand up among the graves. -->
+  <ThoughtDef>
+    <defName>Rimfolk_Thought_MogSawDeadStand</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
+    <durationDays>3</durationDays>
+    <stackLimit>1</stackLimit>
+    <stages>
+      <li>
+        <label>saw the dead stand up</label>
+        <description>Figures wrapped in grey cloth stood up out of the ground among the graves, slow and silent. They were facing the raiders, but they weren't ours anymore.</description>
+        <baseMoodEffect>-4</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <!--
+    The wrapped dead's mark (HediffComp_WrappedDead): on the game's shamblers that stood up among the tombs; they lie down
+    as dust once the map has been quiet of raiders an hour, or after the longest watch, and a body that falls goes to dust.
+  -->
+  <HediffDef>
+    <defName>Rimfolk_WrappedDead</defName>
+    <label>wrapped dead</label>
+    <description>Wrapped in grey cloth from head to foot, it stood up out of the ground among the graves. It doesn't breathe, and it won't leave the graves.</description>
+    <hediffClass>HediffWithComps</hediffClass>
+    <defaultLabelColor>(0.86, 0.8, 0.66)</defaultLabelColor>
+    <isBad>false</isBad>
+    <scenarioCanAdd>false</scenarioCanAdd>
+    <everCurableByItem>false</everCurableByItem>
+    <comps>
+      <li Class="ColonyCouncil.HediffCompProperties_WrappedDead" />
+    </comps>
+  </HediffDef>
+
+  <!-- ===================== The lines ===================== -->
+
+  <!-- The answer said aloud before her. {ANSWER} is what they say (the riddle's answer, or a wrong guess). Tags: right, wrong. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_MogRiddleSaid</defName>
+    <lines>
+      <plain>
+        <li>[right] It's {ANSWER}, I'm sure of it.</li>
+        <li>[right] The answer is {ANSWER}.</li>
+        <li>[right] I know this one, it's {ANSWER}.</li>
+        <li>[wrong] Is it {ANSWER}?</li>
+        <li>[wrong] I think it's {ANSWER}, isn't it?</li>
+        <li>[wrong] It must be {ANSWER}, surely.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- Her keeper over a new grave, to the dead. {GOD} is the keeper's own name for her, {DEAD} the one buried there. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_MogKeeper</defName>
+    <lines>
+      <plain>
+        <li>Sleep well, {DEAD}, {GOD} keeps the door tonight.</li>
+        <li>We sit with you this first night, {DEAD}, as {GOD} asks of us.</li>
+        <li>The cat will stay when I go, {DEAD}, so you won't be alone.</li>
+        <li>Rest whole, {DEAD}, and let nothing in the dark come near you.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- Someone who sees a cat keeping a new grave. {DEAD} is the one buried there. Tags: own (the colony's own cat), stray. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_MogGraveCat</defName>
+    <lines>
+      <plain>
+        <li>There's a cat on {DEAD}'s grave, and it won't come away.</li>
+        <li>Leave the cat be, it's keeping {DEAD} company.</li>
+        <li>My gran used to say a cat on a new grave means the dead are well kept.</li>
+        <li>[own] Our cat hasn't left {DEAD}'s grave all day.</li>
+        <li>[stray] Where did that cat come from, and why did it go straight to {DEAD}?</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- Someone who sees the wrapped dead stand up among the graves. Tag: rise. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_MogWrappedDead</defName>
+    <lines>
+      <plain>
+        <li>[rise] The dead are standing up out of the graves, keep away from them.</li>
+        <li>[rise] They're wrapped like the old dead, and they're facing the raiders.</li>
+        <li>[rise] Don't go near the graves, whatever's standing there isn't ours anymore.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+</Defs>

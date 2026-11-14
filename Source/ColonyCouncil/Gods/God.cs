@@ -17,7 +17,10 @@ namespace ColonyCouncil
         public int id;
         /// <summary>The god's def; null only for an older save's generated god, which the load drops.</summary>
         public GodDef def;
-        /// <summary>The short name ("Hollin"), the key every part uses (Gods.ByKey).</summary>
+        /// <summary>
+        /// The short name people say ("Hollin"): its def's label, which is its key for all but one (Tamiu, whose key stays
+        /// Mog so saves keep her). Parts key it by <see cref="Key"/>; Gods.ByKey finds it by either.
+        /// </summary>
         public string name;
         /// <summary>A noun phrase after its name, from its def: "the Rootmother", "the Old Horn".</summary>
         public string epithet;
@@ -65,7 +68,7 @@ namespace ColonyCouncil
         public void FromDef()
         {
             if (def == null) return;
-            name = def.key;
+            name = def.label.NullOrEmpty() ? def.key : def.label;
             epithet = def.epithet;
             domain = def.domain;
             second = def.second;

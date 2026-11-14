@@ -3,7 +3,7 @@
 
   <!--
     The thirteen (Source/ColonyCouncil/Gods/GodDef.cs; docs/gods-pantheon-brainstorm.md; docs/design/gods.md, "the
-    contract"): the nine, and Helios and Selene (the Gift and the Return), Mog, Murmur and Ducat added after. Each is a being with names and a character. The gods
+    contract"): the nine, and Helios and Selene (the Gift and the Return), Tamiu (defName Mog), Murmur and Ducat added after. Each is a being with names and a character. The gods
     are an unseen presence, like a storyteller: none of this is shown as such. It reaches the player only as people say or
     write it, and as the colony's own book has it (what its people saw, were told and believe):
     - sayings, believers' lines (hands) and scoffers' answers are said over a head, one sentence each, with {GOD} the
@@ -1506,87 +1506,114 @@
     <look>Rimfolk_GodLook_Healing</look>
   </ColonyCouncil.GodDef>
 
-  <!-- ==================== 11. Mog ==================== -->
+  <!--
+    ==================== 11. Tamiu, the Keeper of the Threshold ====================
+    Mog remade (the player, 13 and 14 November 2026: "Still a cat card, but kind of one inspired by, you know, Egyptian
+    mythology and the Sphinx, you know, with an Egyptian name ... maybe the cat god could be, you know, with mummies and like
+    Egyptian gear wearing zombies style followers ... and there's also some sort of cult behind it"). The pantheon's keeper of
+    the dead: not the rot that takes the body back into the earth (Morel) and not the hunger under the world (Undertow), but
+    the great cat who keeps the dead whole and lies across the door between them and the living. Her defName and key stay
+    Rimfolk_God_Mog and Mog so saves keep her; her old hearth-name Mog is among her other names, so an older save's chapter
+    of Mog is still hers.
+    Her plain line (the book's chapter opening; docs/gods-next-proposals.md, B): A great cat who keeps the dead. She guards
+    the graves, sets riddles at the threshold, and every cat is hers.
+    On the map (Gods/OnMap/MogsWays.cs, SacredAnimal.cs): the great sand-gold cat lying among the graves, the riddle at the
+    threshold, her keepers sitting the first night with a new grave and a cat left on it, and the wrapped dead standing
+    guard over the tombs in a raid (with Anomaly).
+  -->
   <ColonyCouncil.GodDef>
     <defName>Rimfolk_God_Mog</defName>
     <key>Mog</key>
-    <label>Mog</label>
-    <epithet>the Cat</epithet>
+    <label>Tamiu</label>
+    <epithet>the Keeper of the Threshold</epithet>
     <gender>Female</gender>
-    <godOf>the cat who sleeps in the warmest spot</godOf>
-    <unheard>a gray cat with eyes too bright</unheard>
-    <tribalNames><li>Whiskers-in-the-Dark</li></tribalNames>
-    <medievalNames><li>the Gray Lady</li></medievalNames>
-    <industrialNames><li>the Cat</li></industrialNames>
-    <spacerNames><li>the Cat</li></spacerNames>
-    <otherNames><li>the Gray Lady of the Hearth</li></otherNames>
-    <whatItIs>A cat. That is the whole of it, as far as anyone can tell: an ordinary-looking gray cat, perhaps too large, who wanders into a colony one day and stays as long as she likes. She is a god, and every cat knows it.</whatItIs>
-    <howSeen>Plainly, on the map: a gray cat with too-bright eyes, never anyone's pet, sleeping in the warmest spot in the colony. Other cats follow her. She has a way of being in two places in one day.</howSeen>
-    <character>Aloof, curious and capricious, fond of warmth and sunbeams. She chooses people: she will sit on one colonist's lap and nobody else's for a season, and nobody knows why. She cannot be owned, tamed or kept, and she leaves if anyone tries. She sees Ennu for what it is, and stares at it.</character>
-    <wants>Warmth, a full bowl she didn't ask for, and to be left to choose. The one she chooses has a lucky season: a sickness passes them by, a fall doesn't break a bone. A colony that is kind to its cats keeps her a long time. A colony that drives her out, or harms a cat, finds the rats come back, the luck turns, and the cats all leave in one night.</wants>
+    <godOf>the great cat who keeps the dead</godOf>
+    <unheard>a great sand-gold cat</unheard>
+    <tribalNames><li>the Grave-Cat</li></tribalNames>
+    <medievalNames><li>the Lady of the Tombs</li></medievalNames>
+    <industrialNames><li>the Cemetery Cat</li></industrialNames>
+    <spacerNames><li>the Sphinx</li></spacerNames>
+    <otherNames><li>the Keeper of the Dead</li><li>Mog</li></otherNames>
+    <whatItIs>A great cat who keeps the dead. She lies across the door between the living and the dead, a cat the colour of desert sand and larger than any lion, and she lets nobody through who cannot answer her. The dead she keeps are wrapped in linen and laid whole in the ground or the tomb, and they sleep well; if their rest is broken, she wakes them to keep it. Every cat in the world is hers. Each age keeps her its own way: the tribes say she sits on the cairns of their dead, the old kingdoms carved her at their crypt doors with a lion's paws, the towns keep a cat in every cemetery and don't say why, and spacers call her the Sphinx and say she sits by every cold berth that carries the dead between the stars. Wherever she is held, a cult of her keepers tends the tombs and feeds the cats.</whatItIs>
+    <howSeen>Plainly, on the map: a great cat the colour of desert sand, larger than any lion, with gold eyes and a collar of lapis and gold that nobody put on her. She walks straight to the graves and lies down among them, and the colony's cats come and sit with her. Now and then she lies across the way in and will not move until someone answers her riddle. Her keepers come to sit the first night with a new grave and leave a cat on it. Where the dead are kept well, she has been seen to wake them, wrapped and silent, to stand guard over their tombs.</howSeen>
+    <character>Proud, patient and exact, like a cat in a doorway who has decided nobody passes. She loves the dead kept whole and the living who are clever. She asks riddles of those who come to her door, and favours whoever answers well with a lucky season, walking at their heel; a wrong answer earns a cuff of the paw. She cannot be owned, tamed or kept, and leaves if anyone tries. She sees through any disguise at a door, so she stares at Ennu. She and Morel have never agreed: Morel would have every body back in the earth, and Tamiu wraps them and keeps them as they were. Every night she sits at the door of the dead with her claws out, so that the Hunger under the world cannot come through it.</character>
+    <wants>The dead buried or laid in a tomb, never left out, robbed or eaten; graves tended; cats kept kindly; and a good answer at her door. A colony that keeps its dead well finds a cat sitting on each new grave, and her keepers come to sit the first night with the dead. The one she favours has a lucky season: a sickness passes them by, a fall breaks nothing. A colony that drives her out, or harms a cat, finds the cats all gone in one night and the rats come back.</wants>
     <pleases>
-      <li>a full bowl set out without asking</li>
-      <li>the warmest spot left to her</li>
+      <li>a grave tended</li>
+      <li>the dead wrapped and laid whole</li>
       <li>cats kept kindly</li>
+      <li>a riddle answered well</li>
     </pleases>
     <angers>
-      <li>being caught, collared or kept</li>
+      <li>the dead left out, robbed or eaten</li>
       <li>a cat harmed</li>
-      <li>being driven out</li>
+      <li>being caught, collared or kept</li>
     </angers>
     <sayings>
-      <li>Never try to keep {GOD}, she'll keep you if she wants to.</li>
-      <li>If {GOD} sits on your lap, you'll have a lucky season.</li>
+      <li>Bury them properly, or {GOD} will want to know why.</li>
+      <li>If a cat sits on a new grave, let it be, it's keeping watch for {GOD}.</li>
       <li>Harm a cat and the rats come back, everyone knows that.</li>
+      <li>Never try to keep {GOD}, she'll keep you if she wants to.</li>
+      <li>If {GOD} lies across your door, think hard before you answer her.</li>
       <li>{GOD} stares at strangers for a reason, so watch who she stares at.</li>
-      <li>Leave a bowl out for {GOD}, and don't watch her eat it.</li>
     </sayings>
     <whatLines>
-      <li>{GOD} is a cat, and that's the whole of it, as far as anyone can tell.</li>
-      <li>{GOD} is a god, and every cat in the world knows it.</li>
-      <li>{GOD} goes where she likes and stays as long as she likes.</li>
+      <li>{GOD} is a great cat who keeps the dead and lies across the door between them and us.</li>
+      <li>Every cat in the world is {GOD}'s, and they keep watch on the graves for her.</li>
+      <li>The dead {GOD} keeps are wrapped and whole, and they wake if their rest is broken.</li>
     </whatLines>
     <seenLines>
-      <li>{GOD} looks like a gray cat, only too large and too bright in the eye.</li>
-      <li>{GOD} is never anyone's pet, and she sleeps in the warmest spot.</li>
-      <li>Other cats follow {GOD} about, and they don't follow anyone.</li>
+      <li>{GOD} looks like a great cat the colour of desert sand, bigger than any lion.</li>
+      <li>{GOD} goes straight to the graves and lies down among them.</li>
+      <li>When {GOD} lies across a doorway, she wants a riddle answered.</li>
     </seenLines>
     <hands>
-      <li>[sign] Look at that one, she's chosen us, don't anyone pick her up.</li>
-      <li>[sign] There's {GOD}, asleep in the warmest spot as usual.</li>
-      <li>[gift] She sat on my lap all evening, I'll take the luck.</li>
-      <li>[sign] Every cat on the place is following that gray one.</li>
-      <li>[near] Her eyes are too bright, and the other cats bow their heads to her.</li>
+      <li>[sign] A stray walked in and sat on the graves, {GOD} sends her own ahead.</li>
+      <li>[sign] Look at that one, straight to the graves, so leave her be.</li>
+      <li>[gift] Things keep going my way, I'd say {GOD} likes my answers.</li>
+      <li>[sign] Every cat on the place is sitting with the dead today.</li>
+      <li>[near] Her eyes are gold, and the other cats bow their heads to her.</li>
+      <li>[wrath] The cats are all gone, so somebody harmed one, didn't they.</li>
     </hands>
     <scoffs>
-      <li>It's a cat, it wants the warm spot like any cat.</li>
+      <li>It's a cat, and cats like graves because the ground is warm.</li>
       <li>Cats stare at everything, it means nothing.</li>
       <li>A stray is a stray.</li>
     </scoffs>
     <letterLines>
-      <li>We heard a cat came to you. Our old ones say if she's gray and her eyes are too bright, that's {GOD}, and you should feed her first.</li>
-      <li>Word came that a stray chose your place. Don't put a collar on her, whatever you do.</li>
+      <li>We heard a great cat came to you and lay down among your graves. Our old ones say that is {GOD}, and your dead are in good keeping.</li>
+      <li>Word came that a stray chose your place. Don't put a collar on her, whatever you do, and keep your graves tidy.</li>
+      <li>Our keepers say a cat sat on your newest grave. That is {GOD}'s, and it means the one you buried is well kept.</li>
     </letterLines>
     <stories>
       <li>
-        <key>Mog_Collar</key>
-        <title>The cat who would not be kept</title>
+        <key>Mog_Robber</key>
+        <title>The tomb robber</title>
         <pieces>
-          <li>A lord once put a jeweled collar on Mog to keep her.</li>
-          <li>In the morning the collar was on his own dog, and every cat in the castle was gone.</li>
-          <li>The rats came back to that castle the same week, and never left.</li>
+          <li>A robber once dug down into a queen's tomb at night and found a great cat lying on the coffin.</li>
+          <li>Tamiu asked him one riddle before he could touch it, and he got it wrong.</li>
+          <li>In the morning they found him at the tomb door, wrapped from head to foot in the queen's own linen.</li>
         </pieces>
-        <retelling>A lord once put a jeweled collar on Mog, to keep her in his hall, and boasted of it to his guests. In the morning the collar was round his old hound's neck instead, and every cat in the castle had gone in the night. The rats came back that same week, and the castle has had them ever since. People here leave our cats' necks bare, just in case.</retelling>
+        <retelling>A robber once dug down into a queen's tomb at night, after her gold. He found a great cat lying on the coffin, the colour of the desert, and she asked him a riddle before he could touch it. He got it wrong. In the morning the keepers found him sitting at the tomb door, wrapped from head to foot in the queen's own linen and too frightened to speak, and the queen asleep inside with every ring still on her fingers. People here bury their dead with care, just in case.</retelling>
       </li>
       <li>
         <key>Mog_Chosen</key>
-        <title>The one she chooses</title>
+        <title>The riddle at the door</title>
         <pieces>
-          <li>Mog sits on one person's lap all season and nobody else's, and nobody knows why.</li>
-          <li>The one Mog chooses has a lucky season: a fever passes them, a fall breaks nothing.</li>
-          <li>And when Mog gets up and goes, the luck goes with her, so be kind while it lasts.</li>
+          <li>Tamiu lies across the door of anyone she is curious about, and asks them a riddle.</li>
+          <li>Whoever answers Tamiu well has a lucky season: a fever passes them, a fall breaks nothing.</li>
+          <li>Whoever answers badly gets a cuff of the paw, and should count themselves lucky it was only that.</li>
         </pieces>
-        <retelling>Mog chooses people, the old ones say. She will sit on one person's lap all season and nobody else's, and nobody has ever worked out why. The one she chooses has a lucky season: a fever passes them by, a fall breaks nothing, a horse that should have thrown them doesn't. Then one day she gets up and goes, and the luck goes with her, so be kind to her while it lasts.</retelling>
+        <retelling>Tamiu lies across the door of anyone she is curious about, the old ones say, and she won't get up until someone answers her riddle. The one who answers well has a lucky season after: a fever passes them by, a fall breaks nothing, and the great cat walks at their heel for as long as she stays. The one who answers badly gets a cuff of the paw for their trouble, and should count themselves lucky it was only that. So if she lies across your door, send the cleverest.</retelling>
+      </li>
+      <li>
+        <key>Mog_Cats</key>
+        <title>The cats she sends ahead</title>
+        <pieces>
+          <li>Tamiu sends a cat ahead of her to every place whose dead she means to keep.</li>
+          <li>A stray that walks in and sits on a grave is hers, and must never be driven off.</li>
+        </pieces>
+        <retelling>Tamiu sends a cat ahead of her, they say, to every place whose dead she means to keep. It walks in from nowhere, thin and sure of itself, and the first thing it does is find the graves and sit on one. Her keepers will tell you never to drive such a cat off, and to feed it before you feed yourself.</retelling>
         <teaches><li>Council_Evt_Stray</li></teaches>
       </li>
       <li>
@@ -1594,19 +1621,30 @@
         <title>The stare</title>
         <with><li>Ennu</li></with>
         <pieces>
-          <li>Mog is the only one who sees Ennu for what it is, and she stares.</li>
+          <li>Tamiu lies at every door, so she is the one who always sees Ennu for what it is.</li>
           <li>If the cat won't stop staring at a stranger, set the stranger a bowl.</li>
         </pieces>
-        <retelling>Mog is the only one, they say, who always sees the Guest for what it is, whatever face it wears. She sits across the room and stares at it the whole night through, and the Guest, who is careful of nobody, is careful of her. So if your cat will not stop staring at a stranger, set the stranger a bowl, and make it a good one.</retelling>
+        <retelling>Tamiu lies at every door there is, they say, so she is the one who always sees the Guest for what it is, whatever face it wears. She sits across the room and stares at it the whole night through, and the Guest, who is careful of nobody, is careful of her. So if your cat will not stop staring at a stranger, set the stranger a bowl, and make it a good one.</retelling>
       </li>
       <li>
-        <key>Mog_TwoPlaces</key>
-        <title>Two places in one day</title>
+        <key>Mog_Morel</key>
+        <title>The quarrel over the dead</title>
+        <with><li>Morel</li></with>
         <pieces>
-          <li>Mog has a way of being in two places in one day, and nobody has seen her travel.</li>
-          <li>Two villages a week apart both swore Mog slept by their fire on the same night.</li>
+          <li>Morel would have every body back in the earth, and Tamiu wraps them and keeps them whole.</li>
+          <li>Where Tamiu has wrapped a body, no mushroom grows on it, and Morel has never forgiven her.</li>
         </pieces>
-        <retelling>Mog has a way of being in two places in one day. Two villages a week's walk apart once swore she had slept by their fire on the very same night, and both had the bowl to prove it. They argued about it at the market for years, until a child asked why it mattered, and nobody had an answer.</retelling>
+        <retelling>Morel and Tamiu have quarrelled over the dead since there were any. Morel would have every body back in the earth as soon as may be, soft and green and useful again; Tamiu wraps them in linen and keeps them whole, as they were, in the ground or the tomb. Where Tamiu has wrapped a body no mushroom grows on it, and Morel has never forgiven her for it. The old ones say a colony has to choose, and most choose a little of both.</retelling>
+      </li>
+      <li>
+        <key>Mog_Door</key>
+        <title>The cat at the door of the dead</title>
+        <with><li>Undertow</li></with>
+        <pieces>
+          <li>Every night something in the dark under the world comes up to the door of the dead, wanting them.</li>
+          <li>And every night Tamiu sits in that door with her claws out, and it goes back down.</li>
+        </pieces>
+        <retelling>Every night, the keepers say, something in the dark under the world comes up to the door of the dead, wanting what is behind it. And every night a great cat sits in that door with her claws out, and it goes back down again. That is why her keepers never let the dead lie out unburied: a body left out is a door left open, and she cannot sit in every door at once.</retelling>
       </li>
     </stories>
     <ties>
@@ -1614,39 +1652,56 @@
         <other>Ennu</other>
         <kind>Rivals</kind>
         <strength>0.2</strength>
-        <words>Mog sees the Guest for what it is, and stares at it.</words>
+        <words>Tamiu sees the Guest for what it is at every door, and stares at it.</words>
+      </li>
+      <li>
+        <other>Morel</other>
+        <kind>Rivals</kind>
+        <strength>0.4</strength>
+        <words>Morel would have the dead back in the earth, and Tamiu keeps them whole, and they have never agreed.</words>
+      </li>
+      <li>
+        <other>Undertow</other>
+        <kind>Rivals</kind>
+        <strength>0.3</strength>
+        <words>Every night Tamiu sits at the door of the dead so the Hunger cannot come through it.</words>
       </li>
       <li>
         <other>Helios</other>
         <kind>Allies</kind>
         <strength>0.3</strength>
-        <words>Mog sleeps in Helios's sunbeams, and belongs to neither of the two.</words>
+        <words>Tamiu sleeps in Helios's light by day, and keeps his doors by night.</words>
       </li>
       <li>
         <other>Selene</other>
         <kind>Allies</kind>
         <strength>0.3</strength>
-        <words>Mog hunts by Selene's light, and belongs to neither of the two.</words>
+        <words>Tamiu keeps the graves by Selene's light, and belongs to neither of the two.</words>
       </li>
     </ties>
     <peoples>
       <li>Rimfolk_RiverFolk</li>
-      <li>Rimfolk_Wheel</li>
+      <li>Rimfolk_QuietBell</li>
       <li>Rimfolk_Tamers</li>
     </peoples>
     <kinds>
+      <li>Tribal</li>
       <li>Medieval</li>
       <li>Industrial</li>
     </kinds>
-    <color>(0.78, 0.8, 0.84)</color>
-    <color2>(0.95, 0.88, 0.45)</color2>
-    <domain>Hearth</domain>
-    <second>Hunt</second>
-    <nature>Capricious</nature>
+    <color>(0.9, 0.76, 0.46)</color>
+    <color2>(0.3, 0.46, 0.82)</color2>
+    <domain>Dead</domain>
+    <second>Hearth</second>
+    <nature>Proud</nature>
     <kind>Ordinary</kind>
-    <look>Rimfolk_GodLook_Hearth</look>
+    <look>Rimfolk_GodLook_Mog</look>
     <sacredAnimals>
       <li>Cat</li>
+      <li>AEXP_CatSphynx</li>
+      <li>AEXP_CatAbyssinian</li>
+      <li>AEXP_Lion</li>
+      <li>AA_SandLion</li>
     </sacredAnimals>
   </ColonyCouncil.GodDef>
 

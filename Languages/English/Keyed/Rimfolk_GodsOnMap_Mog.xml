@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <!--
+    Tamiu, the Keeper of the Threshold (defName and key Mog), on the map (Source/ColonyCouncil/Gods/OnMap/MogsWays.cs).
+    These words say only what was seen and heard, never why, and name her only where the colony knows it was her
+    ({GOD}, in the ...Named titles).
+  -->
+
+  <!-- ===================== Her coming ===================== -->
+
+  <CC_Mog_Came_Text>A {BEAST} has come in from the edge of the land, larger than any lion, gold-eyed, with a collar of lapis and gold that nobody put on her. She is walking toward the graves as if she knows the way.</CC_Mog_Came_Text>
+  <CC_Mog_Came_TextKin>A {BEAST} has come in from the edge of the land, larger than any lion, gold-eyed, with a collar of lapis and gold that nobody put on her. Cats are following her, and she is walking toward the graves as if she knows the way.</CC_Mog_Came_TextKin>
+
+  <!-- Her presence on the land while she stays (GameCondition_MogPresence). {NAME} is the colony's name for her, once it knows it is her. -->
+  <CC_Mog_Presence>the cats keeping watch</CC_Mog_Presence>
+  <CC_Mog_Presence_Named>{NAME} keeping watch</CC_Mog_Presence_Named>
+  <CC_Mog_Presence_Desc>A great sand-gold cat is on the land. The rats have run off it, every few hours the colony's cats go and sit facing the graves, and the air by the graves smells of warm stone and resin. Nobody can say why.</CC_Mog_Presence_Desc>
+  <CC_Mog_Presence_NamedDesc>{NAME} is on the land. The rats have run off it, every few hours the colony's cats go and sit facing the graves, and the air by the graves smells of warm stone and resin.</CC_Mog_Presence_NamedDesc>
+
+  <!-- ===================== The riddle at the threshold ===================== -->
+
+  <!-- Her riddles by the colony's age (0 tribal to 3 spacer): the question (on the card), and its answer (said aloud, or guessed wrongly from another of the age's). -->
+  <CC_Mog_RiddleQ_0_0>What runs all day and never leaves its bed?</CC_Mog_RiddleQ_0_0>
+  <CC_Mog_RiddleA_0_0>a river</CC_Mog_RiddleA_0_0>
+  <CC_Mog_RiddleQ_0_1>What eats and eats and grows, and drinks once and dies?</CC_Mog_RiddleQ_0_1>
+  <CC_Mog_RiddleA_0_1>a fire</CC_Mog_RiddleA_0_1>
+  <CC_Mog_RiddleQ_0_2>What follows you all day and is gone the moment the sun is?</CC_Mog_RiddleQ_0_2>
+  <CC_Mog_RiddleA_0_2>your shadow</CC_Mog_RiddleA_0_2>
+  <CC_Mog_RiddleQ_0_3>The more of me you take, the more of me you leave behind. What am I?</CC_Mog_RiddleQ_0_3>
+  <CC_Mog_RiddleA_0_3>footsteps</CC_Mog_RiddleA_0_3>
+  <CC_Mog_RiddleQ_1_0>What grows shorter the longer it stands, and dies of its own light?</CC_Mog_RiddleQ_1_0>
+  <CC_Mog_RiddleA_1_0>a candle</CC_Mog_RiddleA_1_0>
+  <CC_Mog_RiddleQ_1_1>What has a tongue but never speaks, and calls everyone to the dead?</CC_Mog_RiddleQ_1_1>
+  <CC_Mog_RiddleA_1_1>a bell</CC_Mog_RiddleA_1_1>
+  <CC_Mog_RiddleQ_1_2>Whoever makes it sells it, whoever buys it never uses it, and whoever uses it never knows. What is it?</CC_Mog_RiddleQ_1_2>
+  <CC_Mog_RiddleA_1_2>a coffin</CC_Mog_RiddleA_1_2>
+  <CC_Mog_RiddleQ_1_3>What has teeth but never bites, and opens what no hand can?</CC_Mog_RiddleQ_1_3>
+  <CC_Mog_RiddleA_1_3>a key</CC_Mog_RiddleA_1_3>
+  <CC_Mog_RiddleQ_2_0>What has hands and a face but no arms or eyes, and never stops counting?</CC_Mog_RiddleQ_2_0>
+  <CC_Mog_RiddleA_2_0>a clock</CC_Mog_RiddleA_2_0>
+  <CC_Mog_RiddleQ_2_1>What has a neck but no head, and wears a cap?</CC_Mog_RiddleQ_2_1>
+  <CC_Mog_RiddleA_2_1>a bottle</CC_Mog_RiddleA_2_1>
+  <CC_Mog_RiddleQ_2_2>Whoever makes it sells it, whoever buys it never uses it, and whoever uses it never knows. What is it?</CC_Mog_RiddleQ_2_2>
+  <CC_Mog_RiddleA_2_2>a coffin</CC_Mog_RiddleA_2_2>
+  <CC_Mog_RiddleQ_2_3>What can fill a room and takes up no room at all?</CC_Mog_RiddleQ_2_3>
+  <CC_Mog_RiddleA_2_3>light</CC_Mog_RiddleA_2_3>
+  <CC_Mog_RiddleQ_3_0>What crosses the dark faster than anything, and arrives after the one who sent it is long dead?</CC_Mog_RiddleQ_3_0>
+  <CC_Mog_RiddleA_3_0>the light of a dead star</CC_Mog_RiddleA_3_0>
+  <CC_Mog_RiddleQ_3_1>What hums without a mouth, thinks without a head, and dies when you take its power away?</CC_Mog_RiddleQ_3_1>
+  <CC_Mog_RiddleA_3_1>a machine</CC_Mog_RiddleA_3_1>
+  <CC_Mog_RiddleQ_3_2>The more of it there is, the less you see. What is it?</CC_Mog_RiddleQ_3_2>
+  <CC_Mog_RiddleA_3_2>the dark</CC_Mog_RiddleA_3_2>
+  <CC_Mog_RiddleQ_3_3>What is always ahead of you, and nobody has ever seen it?</CC_Mog_RiddleQ_3_3>
+  <CC_Mog_RiddleA_3_3>tomorrow</CC_Mog_RiddleA_3_3>
+
+  <CC_Mog_Riddle_NoOther>there is nobody else to send</CC_Mog_Riddle_NoOther>
+
+  <!-- The answer, when they reach her. {PAWN} is the one who answered, {BEAST} what she is seen as, {ANSWER} what they said. -->
+  <CC_Mog_Right_Title>The {BEAST} at the door</CC_Mog_Right_Title>
+  <CC_Mog_Right_TitleNamed>{GOD} at the door</CC_Mog_Right_TitleNamed>
+  <CC_Mog_Right_Text>{PAWN_nameDef} stood before the {BEAST} and answered: "{ANSWER}". She got up, pressed her great head under {PAWN_possessive} hand, and now walks at {PAWN_possessive} heel.</CC_Mog_Right_Text>
+  <CC_Mog_Wrong_Title>The {BEAST} at the door</CC_Mog_Wrong_Title>
+  <CC_Mog_Wrong_TitleNamed>{GOD} at the door</CC_Mog_Wrong_TitleNamed>
+  <CC_Mog_Wrong_Text>{PAWN_nameDef} stood before the {BEAST} and answered: "{ANSWER}". She looked at {PAWN_objective} a long while, then got up and walked back to the graves without a sound.</CC_Mog_Wrong_Text>
+  <CC_Mog_Wrong_TextCuffed>{PAWN_nameDef} stood before the {BEAST} and answered: "{ANSWER}". She looked at {PAWN_objective} a long while, then cuffed {PAWN_objective} once across the arm, claws out, and walked back to the graves.</CC_Mog_Wrong_TextCuffed>
+  <CC_Mog_Journal_Right>I answered the great cat at the door, and she walks with me now.</CC_Mog_Journal_Right>
+  <CC_Mog_Journal_Wrong>I gave the great cat the wrong answer, and I could see it in her eyes before I had finished.</CC_Mog_Journal_Wrong>
+  <CC_Mog_Journal_Cuffed>I gave the great cat the wrong answer and she cuffed me for it, and I think I got off lightly.</CC_Mog_Journal_Cuffed>
+
+  <!-- ===================== A new grave kept ===================== -->
+
+  <!-- Her keeper comes in at dusk with a cat. {KEEPER} is the keeper, {PEOPLE} their people, {DEAD} the one buried, {HOME} the colony; by the colony's age. -->
+  <CC_Mog_Keeper_Title>A keeper at the grave</CC_Mog_Keeper_Title>
+  <CC_Mog_Keeper_Text_0>{KEEPER_nameDef} of {PEOPLE} came in from the edge of the land at dusk in a cloak of undyed hide, with a cat walking at {KEEPER_possessive} heel, and asked only the way to {DEAD}'s grave, to sit there through the night.</CC_Mog_Keeper_Text_0>
+  <CC_Mog_Keeper_Text_1>{KEEPER_nameDef} of {PEOPLE} came to the gate at dusk in undyed linen, with a cat walking at {KEEPER_possessive} heel, and asked nothing of {HOME} but the way to {DEAD}'s grave, to sit there tonight and sing under {KEEPER_possessive} breath.</CC_Mog_Keeper_Text_1>
+  <CC_Mog_Keeper_Text_2>{KEEPER_nameDef} of {PEOPLE} came to the gate at dusk in a plain grey coat, with a cat walking at {KEEPER_possessive} heel, and asked only to sit the night by {DEAD}'s grave, as {KEEPER_possessive} people do.</CC_Mog_Keeper_Text_2>
+  <CC_Mog_Keeper_Text_3>{KEEPER_nameDef} of {PEOPLE} walked in at dusk in a grey suit, with a cat at {KEEPER_possessive} heel, and asked only to sit the night by {DEAD}'s grave, as {KEEPER_possessive} people do for every one of their dead.</CC_Mog_Keeper_Text_3>
+
+  <!-- ===================== The wrapped dead ===================== -->
+
+  <!-- They stand up among the graves in a raid. {HOME} is the colony; by the colony's age. -->
+  <CC_Mog_Risen_Title>The dead at the graves</CC_Mog_Risen_Title>
+  <CC_Mog_Risen_TitleNamed>{GOD}'s dead at the graves</CC_Mog_Risen_TitleNamed>
+  <CC_Mog_Risen_Text_0>Among {HOME}'s graves the ground moved, and figures wrapped in grey cloth like the oldest dead stood up out of it, slow and silent, and turned toward the raiders. They will not leave the graves, and they turn on anything that comes near them.</CC_Mog_Risen_Text_0>
+  <CC_Mog_Risen_Text_1>Among {HOME}'s graves the ground moved, and figures wrapped from head to foot in grey linen stood up out of it, slow and silent, and turned toward the raiders. They will not leave the graves, and they turn on anything that comes near them.</CC_Mog_Risen_Text_1>
+  <CC_Mog_Risen_Text_2>Among {HOME}'s graves the ground moved, and figures in old grey burial wraps stood up out of it, slow and silent, and turned toward the raiders. They will not leave the graves, and they turn on anything that comes near them.</CC_Mog_Risen_Text_2>
+  <CC_Mog_Risen_Text_3>Among {HOME}'s graves the ground moved, and figures in grey burial shrouds stood up out of it, slow and silent, and turned toward the raiders. They will not leave the graves, and they turn on anything that comes near them.</CC_Mog_Risen_Text_3>
+  <CC_Mog_Risen_Down>The wrapped dead lay down again among the graves of {HOME}, and were dust.</CC_Mog_Risen_Down>
+  <!-- What happened there, in a few words (the place where they say {GOD} ...), and what those who saw it remember. -->
+  <CC_Mog_Risen_Act>woke the wrapped dead among the graves</CC_Mog_Risen_Act>
+  <CC_Mog_Memory_Risen>the night the dead stood up among the graves</CC_Mog_Memory_Risen>
+
+  <!-- ===================== The colony's book: what someone saw, in their own words ===================== -->
+
+  <!-- Her own omens. {WHO} is the one who saw it (or someone at {HOME}). -->
+  <CC_GodM_Saw_CatsFacing>{WHO} saw every cat at {HOME} stop where it was and sit facing the graves.</CC_GodM_Saw_CatsFacing>
+  <CC_GodM_Saw_GoldEyes>{WHO} saw two gold eyes low in the dark by the graves at {HOME}, and then nothing there.</CC_GodM_Saw_GoldEyes>
+  <CC_GodM_Saw_Sand>{WHO} found fine pale sand across a grave at {HOME}, where no wind blows sand.</CC_GodM_Saw_Sand>
+
+  <!-- The riddle, the grave kept, the wrapped dead. -->
+  <CC_GodM_Saw_RiddleRight>{WHO} answered the {BEAST} at the door, "{ANSWER}", and she got up and walked at their heel.</CC_GodM_Saw_RiddleRight>
+  <CC_GodM_Saw_RiddleWrong>{WHO} answered the {BEAST} at the door, "{ANSWER}", and she looked at them a long while and walked back to the graves.</CC_GodM_Saw_RiddleWrong>
+  <CC_GodM_Saw_RiddleCuffed>{WHO} answered the {BEAST} at the door, "{ANSWER}", and she cuffed them once across the arm and walked back to the graves.</CC_GodM_Saw_RiddleCuffed>
+  <CC_GodM_Saw_GraveCat>{WHO} saw a cat sitting on {DEAD}'s grave at {HOME}, and it would not come away.</CC_GodM_Saw_GraveCat>
+  <CC_GodM_Saw_WrappedDead>{WHO} saw figures wrapped in grey cloth stand up out of the ground among the graves at {HOME} and turn toward the raiders.</CC_GodM_Saw_WrappedDead>
+  <CC_GodM_Saw_WrappedDeadDown>{WHO} saw the wrapped dead lie down again among the graves at {HOME}, and turn to dust.</CC_GodM_Saw_WrappedDeadDown>
+
+</LanguageData>
