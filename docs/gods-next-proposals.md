@@ -669,6 +669,11 @@ job report ("praying to Hollin"), their bubbles and a journal line.
   clear (the dedication card, the inspect line, the carrier's why, a gift noticed gone by day). DESIGN.md "The gods
   understood". A colonist's god is still picked as before, for round 3.
 
+- Not released yet (14 November 2026, the player's go): round 2 of section H. Each god's own presence (fourteen, one
+  effect each, every one different, Tamiu's folded in), each god's own way of taking a gift, Bellwether's and Ennu's own
+  signs; declared per god (`GodDef.presence`, `GodWorshipDef.taking`, `GodShapeDef.omens`). DESIGN.md "The gods each their
+  own".
+
 **Still open (defined, not built):**
 - Mog remade as the Egyptian cat god: built 14 November 2026 as Tamiu, the Keeper of the Threshold (not released yet).
 - More of Old Powers' kind, with the gods and A RimWorld of Magic (to-do, 13 November 2026, held).

@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <!--
+    Each god's own presence, its own way of taking an offering, and Bellwether's and Ennu's own signs (round 2 of
+    docs/gods-next-proposals.md; Source/ColonyCouncil/Gods/Presence/GodPresenceOwn.cs, GodPresenceShows.cs,
+    Gods/Worship/OfferingWays.cs). Each says what is seen, never why, and names a god only where the colony knows it.
+  -->
+
+  <!-- Rimfolk's clock -->
+  <CC_Clock_Pass_RareGodPresence>A god's own presence on the land</CC_Clock_Pass_RareGodPresence>
+
+  <!-- ===================== A presence's numbers, under its words (as the game shows any condition's) ===================== -->
+
+  <CC_GodPO_Num_Warmer>{DEG} warmer out of doors.</CC_GodPO_Num_Warmer>
+  <CC_GodPO_Num_WarmerRock>{DEG} warmer out of doors, and warmer still in the rooms under the rock.</CC_GodPO_Num_WarmerRock>
+  <CC_GodPO_Num_Colder>{DEG} colder out of doors.</CC_GodPO_Num_Colder>
+  <CC_GodPO_Num_Growth>Plants grow {PCT} faster.</CC_GodPO_Num_Growth>
+  <CC_GodPO_Num_Mining>Mining yields {PCT} more.</CC_GodPO_Num_Mining>
+  <CC_GodPO_Num_Beasts>No animal on the land turns on anyone.</CC_GodPO_Num_Beasts>
+  <CC_GodPO_Num_Peace>Insults are {PCT} rarer, and fights {FIGHTS} rarer.</CC_GodPO_Num_Peace>
+  <CC_GodPO_Num_Rot>Food left out of the cold, and the dead, rot {PCT} faster.</CC_GodPO_Num_Rot>
+  <CC_GodPO_Num_Fungus>Mushrooms grow {PCT} faster.</CC_GodPO_Num_Fungus>
+  <CC_GodPO_Num_Immunity>Sicknesses pass {PCT} faster.</CC_GodPO_Num_Immunity>
+  <CC_GodPO_Num_Kinder>Insults are {PCT} rarer.</CC_GodPO_Num_Kinder>
+  <CC_GodPO_Num_Hearths>Hearths and fires burn longer and give more heat.</CC_GodPO_Num_Hearths>
+  <CC_GodPO_Num_Batteries>Batteries keep {PCT} of what they give out.</CC_GodPO_Num_Batteries>
+  <CC_GodPO_Num_Benches>Work at powered benches goes {PCT} faster.</CC_GodPO_Num_Benches>
+  <CC_GodPO_Num_WeatherHolds>The weather holds as it is.</CC_GodPO_Num_WeatherHolds>
+  <CC_GodPO_Num_Gaze>Looking up at the sky is twice as likely, and {PCT} more enjoyable.</CC_GodPO_Num_Gaze>
+  <CC_GodPO_Num_Silence>Nobody starts a conversation.</CC_GodPO_Num_Silence>
+  <CC_GodPO_Num_NoRot>Nothing out of doors rots.</CC_GodPO_Num_NoRot>
+  <CC_GodPO_Num_ColdSooner>The old, the sick and babies feel the cold {DEG} sooner.</CC_GodPO_Num_ColdSooner>
+  <CC_GodPO_Num_Lamps>Lamps reach {PCT} less far.</CC_GodPO_Num_Lamps>
+  <CC_GodPO_Num_Psychic>Psychic sensitivity is {PCT} higher.</CC_GodPO_Num_Psychic>
+  <CC_GodPO_Num_LightHeld>The light of the hour holds.</CC_GodPO_Num_LightHeld>
+  <CC_GodPO_Num_Solar>Solar panels give {PCT} more.</CC_GodPO_Num_Solar>
+  <CC_GodPO_Num_Crops>Crops grow {PCT} faster.</CC_GodPO_Num_Crops>
+  <CC_GodPO_Num_MoonNight>The night is as light as the moon's face is full.</CC_GodPO_Num_MoonNight>
+  <CC_GodPO_Num_SleepHeal>Wounds heal {PCT} faster in sleep.</CC_GodPO_Num_SleepHeal>
+  <CC_GodPO_Num_Rain>Rain comes within the hour.</CC_GodPO_Num_Rain>
+  <CC_GodPO_Num_Wet>Plants on wet ground grow {PCT} faster.</CC_GodPO_Num_Wet>
+  <CC_GodPO_Num_Wells>Nobody falls sick from bad water.</CC_GodPO_Num_Wells>
+  <CC_GodPO_Num_TradeBetter>Traders deal {PCT} better.</CC_GodPO_Num_TradeBetter>
+  <CC_GodPO_Num_TradeWorse>Traders deal {PCT} worse.</CC_GodPO_Num_TradeWorse>
+
+  <!-- Where something lies from the colony, in a true dream. -->
+  <CC_GodPO_Dir_North>to the north</CC_GodPO_Dir_North>
+  <CC_GodPO_Dir_East>to the east</CC_GodPO_Dir_East>
+  <CC_GodPO_Dir_South>to the south</CC_GodPO_Dir_South>
+  <CC_GodPO_Dir_West>to the west</CC_GodPO_Dir_West>
+
+  <!-- ===================== What the colony's book keeps of them ===================== -->
+
+  <CC_GodPO_Saw_WarmVoice>{WHO} slept under the mountain at {HOME} and woke saying a warm voice had spoken in the dark.</CC_GodPO_Saw_WarmVoice>
+  <CC_GodPO_Saw_TrueDream>{WHO} woke under the full moon at {HOME} and told a dream: "{DREAM}"</CC_GodPO_Saw_TrueDream>
+  <CC_GodM_Saw_ThrumbosFace>{WHO} saw every thrumbo on the land around {HOME} stop and stand facing the same way.</CC_GodM_Saw_ThrumbosFace>
+  <CC_GodM_Saw_GrassBowed>{WHO} saw the grass at {HOME} bowed flat in one long line, as if something huge had walked there.</CC_GodM_Saw_GrassBowed>
+  <CC_GodM_Saw_Hoofprint>{WHO} found a hoofprint the size of a table at {HOME} one dawn.</CC_GodM_Saw_Hoofprint>
+  <CC_GodM_Saw_Knock>{WHO} heard a knock at the door at {HOME} at dusk, and nobody was there.</CC_GodM_Saw_Knock>
+  <CC_GodM_Saw_Footprints>{WHO} found footprints up to the door at {HOME} one dawn, and none going away.</CC_GodM_Saw_Footprints>
+  <CC_GodM_Saw_DogsSilent>{WHO} saw the dogs at {HOME} go quiet all at once and stand facing the gate.</CC_GodM_Saw_DogsSilent>
+
+  <!-- ===================== Each god's own way of taking an offering (OfferingWays; GodWorshipDef.taking) ===================== -->
+  <!--
+    {WHAT} what was left, {SHRINE} the place, {GOD} the colony's name for its god, {PAWN} who left it; {EXTRA} the tree, the
+    machine mended, what else went, or the visitor it was given to, and {FACTION} the visitor's people. Felt: its own sign
+    left, nobody saw it go. Plain: the god shown plainly, before everyone's eyes. Seen: it went before someone's eyes all
+    the same. The shared way's words stay CC_Wsh_Taken_Taken_Felt and _Plain.
+  -->
+
+  <CC_Wsh_Taken_Way_Sapling_Felt>The offering at {SHRINE} sank into the soil in the night: {WHAT}. A young {EXTRA} stands where it lay.</CC_Wsh_Taken_Way_Sapling_Felt>
+  <CC_Wsh_Taken_Way_Sapling_Plain>The offering at {SHRINE} sank into the soil before everyone's eyes, and a young {EXTRA} came up where it lay: {WHAT}.</CC_Wsh_Taken_Way_Sapling_Plain>
+  <CC_Wsh_Taken_Way_Sapling_Bare>The offering at {SHRINE} sank into the ground: {WHAT}. The soil there is dark and freshly turned.</CC_Wsh_Taken_Way_Sapling_Bare>
+
+  <CC_Wsh_Taken_Way_Crack_Felt>The offering at {SHRINE} is gone down a crack in the rock beside it: {WHAT}. The floor there is warm.</CC_Wsh_Taken_Way_Crack_Felt>
+  <CC_Wsh_Taken_Way_Crack_Plain>The offering at {SHRINE} slid down a crack in the rock before everyone's eyes, and warm air came up after it: {WHAT}.</CC_Wsh_Taken_Way_Crack_Plain>
+
+  <CC_Wsh_Taken_Way_Grazed_Felt>The offering at {SHRINE} was grazed away in the night: {WHAT}. Beside the place there is a hoofprint the size of a plate.</CC_Wsh_Taken_Way_Grazed_Felt>
+  <CC_Wsh_Taken_Way_Grazed_Plain>Something nobody could see grazed the offering at {SHRINE} away before everyone's eyes and left a great hoofprint: {WHAT}.</CC_Wsh_Taken_Way_Grazed_Plain>
+
+  <CC_Wsh_Taken_Way_Rot_Felt>The offering at {SHRINE} rotted away overnight into black soil: {WHAT}.</CC_Wsh_Taken_Way_Rot_Felt>
+  <CC_Wsh_Taken_Way_Rot_Plain>The offering at {SHRINE} went soft and sank into black soil before everyone's eyes: {WHAT}.</CC_Wsh_Taken_Way_Rot_Plain>
+
+  <CC_Wsh_Taken_Way_Guest_Felt>The offering at {SHRINE} was gone by morning: {WHAT}. Footprints come up to it from the edge of the land, and none go away.</CC_Wsh_Taken_Way_Guest_Felt>
+  <CC_Wsh_Taken_Way_Guest_Plain>The offering at {SHRINE} was gone in a breath, and footprints came up to it out of nowhere: {WHAT}.</CC_Wsh_Taken_Way_Guest_Plain>
+
+  <CC_Wsh_Taken_Way_Mended_Felt>The part left at {SHRINE} is gone: {WHAT}. The {EXTRA} that had broken down is working again.</CC_Wsh_Taken_Way_Mended_Felt>
+  <CC_Wsh_Taken_Way_Mended_None>The part left at {SHRINE} is gone: {WHAT}. A light nearby winked three times.</CC_Wsh_Taken_Way_Mended_None>
+  <CC_Wsh_Taken_Way_Mended_Plain>The part left at {SHRINE} went in a spark before everyone's eyes: {WHAT}.</CC_Wsh_Taken_Way_Mended_Plain>
+
+  <CC_Wsh_Taken_Way_TakenUp_Felt>In the night a streak of light went up from {SHRINE}, and the offering was gone: {WHAT}.</CC_Wsh_Taken_Way_TakenUp_Felt>
+  <CC_Wsh_Taken_Way_TakenUp_Plain>The offering at {SHRINE} rose into the night sky in a streak of light, before everyone's eyes: {WHAT}.</CC_Wsh_Taken_Way_TakenUp_Plain>
+
+  <CC_Wsh_Taken_Way_Frost_Felt>The offering at {SHRINE} frosted over in the night and was gone at dawn, the frost still lying where it was: {WHAT}.</CC_Wsh_Taken_Way_Frost_Felt>
+  <CC_Wsh_Taken_Way_Frost_Plain>The offering at {SHRINE} frosted white before everyone's eyes and was gone: {WHAT}.</CC_Wsh_Taken_Way_Frost_Plain>
+
+  <CC_Wsh_Taken_Way_Hunger_Felt>The offering at {SHRINE} was gone by morning: {WHAT}, and with it {EXTRA} from the stores beside it.</CC_Wsh_Taken_Way_Hunger_Felt>
+  <CC_Wsh_Taken_Way_Hunger_Only>The offering at {SHRINE} was gone by morning: {WHAT}. The place is cold to stand near.</CC_Wsh_Taken_Way_Hunger_Only>
+  <CC_Wsh_Taken_Way_Hunger_Plain>The offering at {SHRINE} went into the dark before everyone's eyes: {WHAT}.</CC_Wsh_Taken_Way_Hunger_Plain>
+
+  <CC_Wsh_Taken_Way_Never_Returned>The offering at {SHRINE} lay in the noon light all day, and at dusk it was still there: {WHAT}.</CC_Wsh_Taken_Way_Never_Returned>
+
+  <CC_Wsh_Taken_Way_Moon_Felt>The offering at {SHRINE} was gone under the moon, and the place shone silver a while: {WHAT}.</CC_Wsh_Taken_Way_Moon_Felt>
+  <CC_Wsh_Taken_Way_Moon_Plain>The offering at {SHRINE} went up in the moonlight before everyone's eyes: {WHAT}.</CC_Wsh_Taken_Way_Moon_Plain>
+  <CC_Wsh_Taken_Way_Moon_Returned>The offering at {SHRINE} waited out a week of nights with no moon, and went back to the stores: {WHAT}.</CC_Wsh_Taken_Way_Moon_Returned>
+
+  <CC_Wsh_Taken_Way_Well_Felt>The offering at {SHRINE} is gone: {WHAT}. Something croaked deep down in the water when it went.</CC_Wsh_Taken_Way_Well_Felt>
+  <CC_Wsh_Taken_Way_Well_Plain>The offering at {SHRINE} was gone in a splash before everyone's eyes, and something croaked deep in the water: {WHAT}.</CC_Wsh_Taken_Way_Well_Plain>
+
+  <CC_Wsh_Taken_Way_Given_Seen>The offering at {SHRINE} went to {EXTRA} of {FACTION}, to carry on with them: {WHAT}.</CC_Wsh_Taken_Way_Given_Seen>
+  <CC_Wsh_Taken_Way_Given_Plain>The offering at {SHRINE} went to {EXTRA} of {FACTION} before everyone's eyes, in a glint of gold: {WHAT}.</CC_Wsh_Taken_Way_Given_Plain>
+
+  <CC_Wsh_Taken_Way_Cat_Seen>At dawn a cat came to {SHRINE} and ate the offering where it lay: {WHAT}.</CC_Wsh_Taken_Way_Cat_Seen>
+  <CC_Wsh_Taken_Way_Cat_Felt>The offering at {SHRINE} was gone at dawn, and there were paw prints where it had lain: {WHAT}.</CC_Wsh_Taken_Way_Cat_Felt>
+  <CC_Wsh_Taken_Way_Cat_Plain>The offering at {SHRINE} was gone in a breath before everyone's eyes, and paw prints were left where it had lain: {WHAT}.</CC_Wsh_Taken_Way_Cat_Plain>
+
+  <!-- What became of the last gift, in the place's inspect line (CC_Wsh_Inspect_Last's {FATE}). -->
+  <CC_Wsh_Inspect_Fate_Way_Sapling>it sank into the soil, and a young tree stood there by morning</CC_Wsh_Inspect_Fate_Way_Sapling>
+  <CC_Wsh_Inspect_Fate_Way_Crack>it went down a crack in the rock, and the floor was warm after</CC_Wsh_Inspect_Fate_Way_Crack>
+  <CC_Wsh_Inspect_Fate_Way_Grazed>it was grazed away, a great hoofprint beside it</CC_Wsh_Inspect_Fate_Way_Grazed>
+  <CC_Wsh_Inspect_Fate_Way_Rot>it rotted overnight into black soil</CC_Wsh_Inspect_Fate_Way_Rot>
+  <CC_Wsh_Inspect_Fate_Way_Guest>it was gone by morning, footprints coming in and none going away</CC_Wsh_Inspect_Fate_Way_Guest>
+  <CC_Wsh_Inspect_Fate_Way_Mended>the part was gone, and a machine nearby came back to life</CC_Wsh_Inspect_Fate_Way_Mended>
+  <CC_Wsh_Inspect_Fate_Way_TakenUp>it went up in the night in a streak of light</CC_Wsh_Inspect_Fate_Way_TakenUp>
+  <CC_Wsh_Inspect_Fate_Way_Frost>it frosted over in the night and was gone at dawn</CC_Wsh_Inspect_Fate_Way_Frost>
+  <CC_Wsh_Inspect_Fate_Way_Hunger>it was gone by morning, and something else of the colony's with it</CC_Wsh_Inspect_Fate_Way_Hunger>
+  <CC_Wsh_Inspect_Fate_Way_Never_Returned>it lay in the sun all day, and was still there at dusk</CC_Wsh_Inspect_Fate_Way_Never_Returned>
+  <CC_Wsh_Inspect_Fate_Way_Moon>it was gone under the moon</CC_Wsh_Inspect_Fate_Way_Moon>
+  <CC_Wsh_Inspect_Fate_Way_Moon_Returned>it waited a week of dark nights and went back to the stores</CC_Wsh_Inspect_Fate_Way_Moon_Returned>
+  <CC_Wsh_Inspect_Fate_Way_Well>it went down into the water with a croak</CC_Wsh_Inspect_Fate_Way_Well>
+  <CC_Wsh_Inspect_Fate_Way_Given>it was given to a visitor to carry on</CC_Wsh_Inspect_Fate_Way_Given>
+  <CC_Wsh_Inspect_Fate_Way_Cat>a cat had it at dawn</CC_Wsh_Inspect_Fate_Way_Cat>
+
+</LanguageData>

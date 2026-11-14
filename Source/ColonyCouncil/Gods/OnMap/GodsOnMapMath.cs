@@ -94,7 +94,22 @@ namespace ColonyCouncil
         /// <summary>Tamiu: two gold eyes low in the dark by the graves, and gone.</summary>
         GoldEyes,
         /// <summary>Tamiu: fine pale sand across a grave or a doorstep, where no wind blows sand.</summary>
-        Sand
+        Sand,
+
+        // ---- Bellwether's and Ennu's own (round 2, docs/gods-next-proposals.md, C 3 and C 5) ----
+
+        /// <summary>Bellwether: every thrumbo on the land stops and stands facing one way, a long while.</summary>
+        ThrumbosFace,
+        /// <summary>Bellwether: the grass bowed flat in one long line across the land, as if something huge had walked it.</summary>
+        GrassBowed,
+        /// <summary>Bellwether: at dawn, a hoofprint the size of a table near the colony's edge.</summary>
+        Hoofprint,
+        /// <summary>Ennu: a knock at the colony's door at dusk, and nobody there.</summary>
+        Knock,
+        /// <summary>Ennu: at dawn, footprints up to the colony's door, and none going away.</summary>
+        Footprints,
+        /// <summary>Ennu: the colony's dogs stop and stand silent, all facing the gate.</summary>
+        DogsSilent
     }
 
     /// <summary>How the colony answered the stranger at the gate.</summary>
@@ -301,6 +316,8 @@ namespace ColonyCouncil
             OmenKind.Croak => 17 + Mod(seed, 4),
             OmenKind.Candle or OmenKind.Flicker or OmenKind.Unpowered or OmenKind.Whisper => 19 + Mod(seed, 3),
             OmenKind.FrostWriting or OmenKind.Earth => 7 + Mod(seed, 2),
+            OmenKind.Hoofprint or OmenKind.Footprints => 6 + Mod(seed, 2),
+            OmenKind.Knock or OmenKind.DogsSilent => 18 + Mod(seed, 3),
             _ => 9 + Mod(seed, 8)
         };
 

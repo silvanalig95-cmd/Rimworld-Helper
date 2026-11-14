@@ -241,7 +241,8 @@ own `GodLookDef`, and the stage 2 merge wires it to Core's seams.
 - The **moment** (`GodPresence.Manifest(spec)`):
   - the build-up: an `Omen` kind, small and spread over days by the caller;
   - the music fades, a beat of silence, the sting, then the track;
-  - a short presence condition tints the sky and stills the wind;
+  - a short presence condition tints the sky and stills the wind: the god's own where its def declares one (round 2,
+    below), the shared one otherwise;
   - everyone on the map stops and turns toward it (a short job), the devout kneel, animals lie down or flee;
   - the game drops to normal speed, the camera jumps there;
   - its own card: dark paper and gold, no symbol (retired: the god in words), no "good news" or "bad news" tag; plain or "some say" by the
@@ -494,5 +495,26 @@ contract:
   rate (`HarmKinds.GodRiddle`, `GodDead`), both from something on the map, both on a card that says so; the wrapped dead
   need Anomaly and never come with hurts switched off.
 - Every age: her names, her riddles and the words of her keeper and of the wrapped dead each by the colony's age.
-- Her presence on the land is her own condition (`Rimfolk_GodPresence_Mog`), apart from the shared one of a moment, for
-  round 2's presence system to take in.
+- Her presence on the land (`Rimfolk_GodPresence_Mog`) was her own condition at first; round 2 took it in as one of the
+  gods' own presences (effect `Watch`, below), from her coming to her going as before.
+
+### Each god its own: presences, ways of taking, signs (the player, 14 November 2026; round 2)
+
+"gods effect should be noticeable"; "each of the gods should feel really unique in what it does and whether or how it
+interacts with the world, what the impact is, how these things play out on the map". DESIGN.md, "The gods each their
+own", has the whole of it. For the contract:
+- Each god's own presence, way of taking and signs are declared per god, never by name in code: `GodDef.presence` (a
+  `GameCondition_GodPresence` def with an `OwnPresence`: its god, one `PresenceEffect`, its names and words, motes and
+  sounds), `GodWorshipDef.taking` (an `OfferingWay`), `GodShapeDef.omens`. A god that declares none keeps the shared
+  presence (the sky and the still wind) and the shared way (gone by morning, nobody saw it go), so a new or remade god
+  plugs in by its defs alone, its effect or way given code only when it is a new kind.
+- The unseen rule holds: a presence is named only when the colony is sure whose it is (and the Hunger's never), else by
+  what anyone can see ("the green leaning", "a warm evening"); its numbers are shown under its label, as the game shows
+  any condition's (in the condition's tooltip and the stats' breakdowns), never as favour, wants or rules; what people say
+  of it is what they see, named only where the colony is sure; a gift's going is told as what was found where it lay.
+- Harm only at the game's own rate and always shown: a few degrees of cold or heat for a few hours (never past a cold
+  snap's or a heat wave's), the weak feeling Hush's cold sooner (their comfort, in its breakdown), faster rot under Morel,
+  Pip's prank (an hour at most, ended at once for need or danger), the Hunger's extra taking (a few of a stack, never all).
+- Every age: the effects are the land's and the colony's own things (plants, rock, beasts, hearths, lamps, machines,
+  wells, coins), so each takes the age's form by what the colony has: a tribal colony's Pip has no wires to hum in and
+  its prank has no door if it has none.

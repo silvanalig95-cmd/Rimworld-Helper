@@ -176,7 +176,7 @@ namespace ColonyCouncil
         public const string WrappedHediff = "Rimfolk_WrappedDead";
         public const string ShamblerKind = "ShamblerSwarmer";
 
-        /// <summary>Her shape's line tag (the cat who keeps the dead), and her presence on the land while she stays (GameCondition_MogPresence).</summary>
+        /// <summary>Her shape's line tag (the cat who keeps the dead), and her own presence on the land while she stays (GodDef.presence; PresenceEffect.Watch).</summary>
         public const string Tag = "mog";
         public const string PresenceDef = "Rimfolk_GodPresence_Mog";
 
@@ -284,7 +284,8 @@ namespace ColonyCouncil
             var at = Middle(Tombs(a.Map, true));
             if (at.IsValid && CellFinder.TryFindRandomCellNear(at, a.Map, 3, c => c.Standable(a.Map) && a.CanReach(c, PathEndMode.OnCell, Danger.Deadly), out var near))
                 a.mindState.forcedGotoPosition = near;
-            GameCondition_MogPresence.Begin(a.Map, s.leaveAt);
+            // Her own presence from her coming to her going (Rimfolk_GodPresence_Mog: GodDef.presence, the watch's effect).
+            GodPresenceOwn.Quiet(Her, a.Map);
         }
 
         /// <summary>
@@ -937,7 +938,6 @@ namespace ColonyCouncil
             var b = MogsBook.Instance;
             if (b == null) return;
             GodsOnMapBook.Safe("the grave kept", () => Graveside(b, now));
-            GodsOnMapBook.Safe("her presence", () => GameCondition_MogPresence.Hourly(now));
             if (!ModsConfig.AnomalyActive || now - b.lastRisen < MogMath.RiseGapDays * GenDate.TicksPerDay || now - b.lastWeighed < GenDate.TicksPerDay) return;
             var god = Her;
             if (god == null || !Harm.On) return;
@@ -1120,81 +1120,6 @@ namespace ColonyCouncil
                 {
                     CouncilLog.ErrorOnce("gods: a wrapped body to dust", e);
                 }
-            }
-        }
-    }
-
-    /// <summary>
-    /// Tamiu's presence on the land (Rimfolk_GodPresence_Mog), her own and apart from the shared one of a god's moment: from
-    /// her coming to her going, in the corner of the screen as what anyone can see ("the cats keeping watch"), or by the
-    /// colony's name for her once it knows it is her ("Tamiu keeping watch"; Gods.CardName). While it lasts: the land's rats
-    /// run off it as she comes, and every few hours the cats go and sit facing the graves a while (MogsWays.CatsWatch).
-    /// </summary>
-    public class GameCondition_MogPresence : GameCondition
-    {
-        /// <summary>The cats go and sit with the graves about this often while she stays (a chance an hour).</summary>
-        public const float WatchHourChance = 0.2f;
-
-        private static God Her => MogsWays.Her;
-
-        private string Named => Her == null || SingleMap == null ? null : Gods.CardName(Her, SingleMap);
-
-        public override string Label =>
-            Named is string n ? "CC_Mog_Presence_Named".Translate(n.Named("NAME")).Resolve() : "CC_Mog_Presence".Translate().Resolve();
-
-        public override string Description =>
-            Named is string n ? "CC_Mog_Presence_NamedDesc".Translate(n.Named("NAME")).Resolve() : "CC_Mog_Presence_Desc".Translate().Resolve();
-
-        public override void Init()
-        {
-            base.Init();
-            var map = SingleMap;
-            if (map == null) return;
-            // The land's rats and mice run off it as she comes.
-            int now = Find.TickManager.TicksGame;
-            foreach (var p in map.mapPawns.AllPawnsSpawned.Where(p => p.Faction == null && p.RaceProps.Animal && !p.Dead && !p.Downed && Vermin(p.def)).ToList())
-                p.mindState.exitMapAfterTick = now + Rand.Range(60, 1200);
-            MogsWays.CatsWatch(map);
-        }
-
-        private static bool Vermin(ThingDef d)
-        {
-            string n = d?.defName ?? "";
-            return n == "Rat" || n.IndexOf("Rat_", StringComparison.Ordinal) >= 0 || n.IndexOf("Mouse", StringComparison.OrdinalIgnoreCase) >= 0
-                   || n.IndexOf("Rodent", StringComparison.OrdinalIgnoreCase) >= 0;
-        }
-
-        /// <summary>Her presence begins on <paramref name="map"/> until <paramref name="until"/> (her stay's end), or goes on if it already has.</summary>
-        internal static void Begin(Map map, int until)
-        {
-            var def = DefDatabase<GameConditionDef>.GetNamedSilentFail(MogsWays.PresenceDef);
-            if (map == null || def == null) return;
-            try
-            {
-                if (map.gameConditionManager.GetActiveCondition<GameCondition_MogPresence>() != null) return;
-                int ticks = Math.Max(GenDate.TicksPerDay, until - Find.TickManager.TicksGame + GenDate.TicksPerDay);
-                map.gameConditionManager.RegisterCondition(GameConditionMaker.MakeCondition(def, ticks));
-            }
-            catch (Exception e)
-            {
-                CouncilLog.ErrorOnce("gods: the great cat's presence", e);
-            }
-        }
-
-        /// <summary>The gods' hour: ended where she has gone (or was harmed and left), and now and then the cats keep watch with the graves.</summary>
-        internal static void Hourly(int now)
-        {
-            var s = GodsOnMapBook.Instance?.beast;
-            foreach (var map in Homes.All.ToList())
-            {
-                var c = map?.gameConditionManager?.GetActiveCondition<GameCondition_MogPresence>();
-                if (c == null) continue;
-                if (!(SacredAnimal.IsMog(s) && s.map == map && s.a.Spawned))
-                {
-                    c.End();
-                    continue;
-                }
-                if (Rand.Chance(WatchHourChance)) MogsWays.CatsWatch(map);
             }
         }
     }

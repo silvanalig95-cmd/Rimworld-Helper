@@ -165,7 +165,7 @@ public static class GodsUnderstoodTests
         C(keys.Contains("CC_Wsh_Report_Look") && keys.Contains("CC_Wsh_Report_Look_NoGod"), "the look's report");
         string shrines = Read("Gods/Worship/Shrines.cs");
         C(shrines.Contains("Tell.Letter(NewsKind.Colony, Importance.Notable, map, place.CapitalizeFirst(), text + \"\\n\\n\" + Doings(g, map)")
-          && shrines.Contains("Festivals.GodsFor(map).Contains(g)") && shrines.Contains("GodWorshipDef.TakesOfferings(g)"),
+          && shrines.Contains("Festivals.GodsFor(map).Contains(g)") && shrines.Contains("WorshipMath.ShrineDoings(GodWorshipDef.GiftsLeft(g), feast)"),
             "the dedication card says plainly what the colony will do there, only what it really does at this home");
         C(shrines.Contains("\"CC_Wsh_Inspect_Last\"") && shrines.Contains("v.part == BookPart.Loves && !v.against && v.page == chapter") && shrines.Contains("\"CC_Wsh_Inspect_Words\""),
             "the inspect line: the last gift and what became of it, and what someone here holds, as theirs");
@@ -175,7 +175,7 @@ public static class GodsUnderstoodTests
         foreach (var f in new[] { "lastWhat", "lastBy", "lastWords", "lastAt", "lastFate", "noticed" })
             C(book.Contains("Scribe_Values.Look(ref " + f + ", \"" + f + "\""), "saved with the game: " + f);
         C(WorshipMath.Notices(10, 0.5f) && !WorshipMath.Notices(3, 0.5f) && !WorshipMath.Notices(10, WorshipMath.NoticeDays + 0.5f), "a gift gone in the night is noticed by day, within two days");
-        C(offerings.Contains("o.noticed = fate != OfferingFate.Taken || plain;") && offerings.Contains("WorshipJobs.LookJob") && offerings.Contains("if (!scoffer) Worship.Glow(shrine.Map, shrine.Position, g);"),
+        C(offerings.Contains("o.noticed = fate != OfferingFate.Taken || plain || OfferingWayMath.SeenGoing(variant)") && offerings.Contains("WorshipJobs.LookJob") && offerings.Contains("if (!scoffer) Worship.Glow(shrine.Map, shrine.Position, g);"),
             "seen going plainly needs no noticing; else someone passing, or someone who goes to look, says whose doing they take it for, with a small light");
         var looks = defs.SelectMany(d => d.doc.Root!.Elements("JobDef")).FirstOrDefault(e => e.Element("defName")?.Value == "Rimfolk_Worship_Look");
         C(looks != null && looks.ToString().Contains("<act>Look</act>"), "the look is a worship job of its own");

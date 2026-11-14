@@ -243,7 +243,7 @@ namespace ColonyCouncil
         {
             var parts = new List<string>();
             bool feast = GodWorshipDef.KeepsFestival(g) && map != null && Festivals.GodsFor(map).Contains(g);
-            foreach (var d in WorshipMath.ShrineDoings(GodWorshipDef.TakesOfferings(g), feast))
+            foreach (var d in WorshipMath.ShrineDoings(GodWorshipDef.GiftsLeft(g), feast))
             {
                 if (d == "Feast")
                 {
@@ -315,8 +315,9 @@ namespace ColonyCouncil
             else if (r.lastAt >= 0 && !r.lastWhat.NullOrEmpty() && r.lastFate != OfferingFate.Waiting)
             {
                 string ago = "CC_Wsh_Inspect_Ago".Translate(Math.Max(0, Worship.Now - r.lastAt).ToStringTicksToPeriodVague().Named("TIME")).Resolve();
+                // What became of it, in the god's own way's words where it has them (a sapling stood there, it lay in the sun all day).
                 line += "\n" + "CC_Wsh_Inspect_Last".Translate(r.lastWhat.Named("WHAT"), (r.lastBy ?? "?").Named("PAWN"), ago.Named("AGO"),
-                    ("CC_Wsh_Inspect_Fate_" + r.lastFate).Translate().Named("FATE")).Resolve();
+                    (OfferingWays.FateKey(g, r.lastFate) ?? "CC_Wsh_Inspect_Fate_" + r.lastFate).Translate().Named("FATE")).Resolve();
             }
             string held = Belief(g, r);
             if (!held.NullOrEmpty()) line += "\n" + held;

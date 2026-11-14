@@ -77,7 +77,8 @@ tree at once, alongside whatever runs. Each piece is merged as its own release, 
   presences with noticeable effects; every round of the doc. Rounds (the doc's order): 0 fixes and 1 signs, plain lines,
   shrines made clear (with the Mog remake beside them); then 2 the 14 presences and each god's own offerings and omens;
   3 each pawn's belief; 4 each god's happenings, two batches of 7; 5 saints. Pawns on Display was not answered, so it
-  is not used.
+  is not used. Rounds 0 and 1 are released (0.232.0), the Mog remake too (0.233.0); round 2 is built, not released (the
+  entry below); rounds 3 to 5 are next.
 - **To do when the player asks (14 November 2026): the peoples' descriptions rewritten.** The player: "i really like the
   different factions you created, but when i look at their faction and read the description text with their history
   etc., it really reads like AI gibberish and I don't understand what is really meant. also they all follow the same
@@ -116,6 +117,114 @@ tree at once, alongside whatever runs. Each piece is merged as its own release, 
   ordering them off is ruder still), less when they were trouble (a thief, a brawler, a drunk); with Hospitality its
   own way for its guests; never a caravan mid-trade without the trade closed first, and never anyone downed or a
   prisoner.
+- 0.234.0, **The gods, each their own: their
+  presences, their ways of taking a gift, Bellwether's and Ennu's signs** (14 November 2026; the player's words: "gods
+  effect should be noticeable"; "the "Each god its own" proposals sounds great too! go ahead with all of this"; and their
+  complaint, "when a godly event happens, there is kind of a presence on the map, which is seen in the bottom right
+  corner, and I think it's kind of the same description for this effect for each different god. So, you know, each of
+  the gods should feel really unique in what it does and whether or how it interacts with the world, what the impact is,
+  how these things play out on the map"). Round 2 of `docs/gods-next-proposals.md` (sections C and D, 5 and 6), built on
+  0.233.0 (Tamiu's presence folded in). DESIGN.md "The gods each their own" has all of it; `docs/design/gods.md` "Each god
+  its own" its contract notes; the Almanac's gods page says what becomes of a gift as anyone sees it (keywords unchanged).
+  - Each god's own presence after its moments (one effect each, every one different; numbers at full strength, a wrath
+    turning the kindly side off and the hard side up): Hollin "the green leaning" (plants a third faster, leaves drift to
+    one tree, dryads still, petals in spring, a felled tree sits badly); Smoulder "warm stone" (+4 degrees, heat in the
+    rooms under the rock, steam, ash, ore glinting, mining a quarter more, a warm voice dreamt under the mountain);
+    Bellwether "the white beast grazing" while he is on the land (no manhunters, beasts lie down near him, insults half,
+    fights a quarter); Morel "spore-fall" (spores, a mushroom ring, rot half again as fast, mushrooms faster, sicknesses
+    pass faster); Ennu "a warm evening" while the stranger stays (+2 degrees, hearths last and warm, kinder talk, an
+    animal follows the guest, +2 mood for the colony and +5 for visitors); Pip "a hum in the wires" (lights pulse,
+    batteries keep half of what they give, powered benches a tenth faster, one door won't open for one person until
+    someone else opens it); Cirrus "a sky too high" (clear and held, the birds gone, far dry lightning, stargazing
+    twice as likely and gladder, "watched from very high"); Hush "a white silence" (nobody talks, -5 degrees, frost by
+    the walls, fine snow or fog, nothing rots out of doors, the old, sick and babies feel the cold 4 degrees sooner);
+    Undertow "the dark", never named (lamps a third shorter, a dark corner, shadows, psychic sensitivity +20 percent, a
+    sweet voice to the most desperate); Helios "the long noon" (the light of the hour holds, still shadows, +4 degrees,
+    panels and crops a quarter more, night owls and the sun-sick can't rest); Selene "a moon too close" (the night as
+    light as her face, silver over sleepers, healing half again as fast in sleep, a true dream at the full moon, until
+    seven in the morning); Tamiu "the cats keeping watch" (as 0.233.0 built it, now one of the gods' own: the rats run
+    off, the cats sit with the graves, from her coming to her going); Murmur "a croaking in the wells" (water at the
+    well, bullfrogs, a croak, rain from the first hour, wet ground three tenths faster, with Dubs Bad Hygiene no water
+    sickness, six hours at least); Ducat "a glint" (coins glinting, the beetle, a few coins trailing toward the edge,
+    traders 8 percent better). Named only when the colony is sure ("Hollin listening"), looked at again as a stay goes
+    on; the unnamed form is what anyone sees. Someone who sees it says so once (Hush's after it lifts).
+  - Each god's own way of taking a gift, in place of "gone by morning ... Nobody saw it go" (kept for a god whose worship
+    names none): a sapling, a crack and a warm floor, grazed with a hoofprint, black soil and a mushroom, footprints in
+    and none away, a broken machine mended, taken up in a streak of light, frosted over and gone at dawn, gone and
+    something else with it, never taken (Helios: the noon light on it, still there at dusk, back to the stores; gifts are
+    left for him now), gone only under a moon, down the well with a croak, given to a visitor or trader, eaten by a cat at
+    dawn (Tamiu). The news, the inspect line and the next day's notice in each way's own words.
+  - Bellwether's own signs (the thrumbos facing one way, the grass bowed in a line, the hoofprint at dawn) and Ennu's
+    (a knock at dusk with nobody there, footprints in at dawn and none away, the dogs silent facing the gate), in place
+    of the shared five.
+  - How a god plugs in (the Mog remake did, after both merged): its presence by `GodDef.presence` (a
+    `GameCondition_GodPresence` def, parent `Rimfolk_GodPresenceOwnBase`, with an `OwnPresence` extension: god, effect,
+    named, namedText, neverNamed, motes, sounds), its way by `GodWorshipDef.taking`, its signs by `GodShapeDef.omens`.
+    None declared: the shared presence and the shared way. A new kind of effect or way needs code (below); a new god of
+    an existing kind needs only defs.
+  - Code map:
+    - `Source/ColonyCouncil/Gods/Presence/GodPresenceOwnMath.cs` (new, pure, linked): `PresenceEffect`, `PresencePlant`,
+      the strength, every size, the weather, the lengths, the hold, the true dream. `GodPresenceCondition.cs`: the
+      `OwnPresence` extension and the condition taking it (its names, numbers, sky, temperature, forced weather,
+      stargazing, saved fields `godKey`, `kind`, `shown`, `said`, `startWeather`, `heldGlow`, the prank's, `whispered`,
+      `dreamDay`; `AnyOwnUntil` for the hooks). `GodPresenceOwn.cs` (new): which presence is on a map (cached a tick),
+      the number lines, its god on the land (`Here`), `Quiet` (begun with no moment), its hour (and begun again for the
+      gods that walk the land), who says what. `GodPresenceShows.cs` (new): its start, motes in view, its turns
+      (`Sched.RareGodPresence`, tick 91, a waiting pass on the clock), its hour, its end; Pip's prank.
+      `GodPresenceOwnPatches.cs` (new): the hooks (`Plant.GrowthRate` and its breakdown, `CompRottable.TickInterval`,
+      `StatPart_GodPresence` on seven stats, `ThoughtWorker_GodPresence`, insults, slights, fights, `TryInteractRandomly`,
+      manhunters, batteries, solar, lamps, the door, a felled tree, Dubs Bad Hygiene's water sicknesses).
+      `GodPresenceOwnDebug.cs` (new): the dev actions. `GodPresence.cs` and `GodsWiring.cs`: the moment carries the
+      god's own presence def and key.
+    - `Source/ColonyCouncil/Gods/Worship/OfferingWayMath.cs` (new, pure, linked): `OfferingWay` and its rules.
+      `OfferingWays.cs` (new): each way's taking on the map, its words, the notice and inspect keys. `Offerings.cs`: the
+      look, the take and the settling through the way; `GodWorshipDef.taking`, `GiftsLeft`, `Believed`;
+      `OfferingRecord.stage` and `cat` (saved; `Tools/save_estimate.py` sizes the record larger); `Shrines.cs` the
+      inspect line and the dedication card's gifts.
+    - `Source/ColonyCouncil/Gods/OnMap/GodOmensOwn.cs`, `GodsOnMapMath.cs`: the six new signs, their hours.
+      `GodStranger.cs`: the Guest's presence when let in. `GodsOnMapBook.cs`: the presences' hour. `MogsWays.cs`: her
+      separate condition removed; her presence begins through `GodPresenceOwn.Quiet`.
+    - `Source/ColonyCouncil/Lean/Sched.cs`, `PassClockMath.cs`: `RareGodPresence`.
+    - Defs: `Defs/GodDefs/Rimfolk_GodPresence_Own.xml` (new: the thirteen, the base, five thoughts),
+      `Rimfolk_GodPresence_OwnLines.xml` (new: `Rimfolk_Pool_GodPO_Say`, `_Dream`, `Rimfolk_Pool_Worship_Way`),
+      `Rimfolk_GodsOnMap_Mog.xml` (hers folded in), `Rimfolk_Gods.xml` (`presence` on all fourteen),
+      `Rimfolk_Worship_Gods.xml` (`taking` on all fourteen), `Rimfolk_GodsOnMap_Shapes.xml` (Bellwether's and Ennu's
+      omens), `Rimfolk_GodsOnMap_Lines.xml` (their remarks); `Languages/English/Keyed/Rimfolk_GodPresenceOwn.xml` (new);
+      `Rimfolk_GodsOnMap_Mog.xml` keyed (her presence's words moved to the def).
+    - Tests: `Tools/Tests/GodsOwnTests.cs` (new, 501 checks); `MogTests`, `GodsTests`, `WorshipTests`,
+      `GodsUnderstoodTests`, `GodPresenceTests` follow the new shapes.
+  - Mods used (active rows, by name, vanilla fallback): A RimWorld of Magic's motes and sounds (green and blue twinkles,
+    flowers, heat, ice, shadows, holy light, psionic current, bolts; low vibration, low wind), Alpha Biomes' petal
+    storms, Seasonal Weather's fog-snow, Odyssey's bullfrogs and torrential rain, Dubs Bad Hygiene's water sicknesses,
+    Vanilla Social Interactions Expanded's skygazing, Alpha Genes' and Vanilla Races Expanded's light-shunning genes,
+    Royalty's anima tree sound. Would help: Ambient Rim ([3158997430](https://steamcommunity.com/sharedfiles/filedetails/?id=3158997430);
+    tags 1.4 to 1.6, no 1.7 tag yet, updated July 2026 with a 1.6 music-stutter fix): ambient sounds by what is on the map
+    (rivers, fires, trees and their birds and owls, flies over corpses), under Hush's silence, Ennu's hearths and Morel's
+    dead alike; nothing in Rimfolk needs it. P-Music is in the list but switched off.
+  - Not seen in a real game (none of it could be): the motes in view at each zoom; the lamps re-lit shorter under the
+    dark (if the game's glow grid reads the radius only when built, the shortening shows only as lamps are re-lit); a cat
+    walking over to eat at dawn; Pip's door with pathing (they should walk to it, find it shut and say so; if they stall,
+    it ends within the hour); the warm evening with Hospitality's guests; frogs spawning on maps with no wet ground (none
+    come); the true dream reading the storyteller's queue; the fog-snow and petal weathers forced by the condition.
+  - Try in the game (dev mode):
+    1. "Gods: the colony knows every god", then "Gods: a god's own presence here now..." Hollin, Blessing, as the colony
+       knows it: the corner reads "the green leaning" (named, "Hollin listening"), its tooltip says what is seen and
+       "Plants grow 33% faster."; a plant's growth rate breakdown shows the line; green motes drift to one tree; the
+       dryads stand still; someone says so. Fell a tree: "the axe felt wrong".
+    2. The same for Hush (talk stops, frost by the walls, fog or snow, colder), Undertow (lamps shorter, a dark corner,
+       the label never names it), Pip (lights pulse; one colonist walks to a door and it won't open for them; open it
+       with someone else and they say so), Murmur (water at the well, frogs, a croak, rain within the hour), Ducat (coins
+       in a line from a silver stack toward the edge; the trade dialog's negotiator stat shows "a glint: +8%").
+    3. Selene at night on a full moon (moon days 7 to 9 of each season): the night is brighter; at six someone tells a
+       true dream (queue a raid with the storyteller's dev tools first: the dream is of blades at the walls).
+    4. "Gods: a sacred animal now..." with Bellwether: "the white beast grazing" lasts while he is on the land; wild
+       animals lie down near him; spawn a manhunter pack: none turns.
+    5. Dedicate a place to Morel, "Gods: offerings at every shrine now", then "Gods: offerings here taken now, each god's
+       own way": the gift rots into black soil with a mushroom, the news says so, the inspect line too; the next morning
+       someone notices it in her way's words. For Helios the gift is left at dusk, still there; for Ducat with a trader
+       on the map it goes into their pack; for Tamiu at dawn a cat walks over and eats it.
+    6. "Gods: an omen here..." ThrumbosFace, GrassBowed, Hoofprint, Knock, Footprints, DogsSilent: each on the map and
+       said aloud.
 - 0.233.0, **Tamiu, the Keeper of the
   Threshold: Mog remade as the cat who keeps the dead** (14 November 2026; the player's words, 13 November: "the cat card
   we have. Let's remake it into something new. Still a cat card, but kind of one inspired by, you know, Egyptian
