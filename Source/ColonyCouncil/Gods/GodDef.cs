@@ -30,6 +30,12 @@ namespace ColonyCouncil
         [MustTranslate] public string godOf;
         /// <summary>What people see when it shows itself and the colony has never heard of it (over it on the map, on its card): "a great white thrumbo".</summary>
         [MustTranslate] public string unheard;
+        /// <summary>
+        /// What the colony takes it to be, in plain words (one or two short sentences): its chapter of the colony's book opens
+        /// with it, in the keeper's hand and as held (Gods/GodLorePage.cs), once someone has told what it is. A belief, never a
+        /// truth told: "The mother of all roots and growing things. She guards the trees and the green."
+        /// </summary>
+        [MustTranslate] public string plain;
 
         /// <summary>Its names among the peoples, by age (the first of each is the one a speaker of that age uses), and its others.</summary>
         [MustTranslate] public List<string> tribalNames = new List<string>(), medievalNames = new List<string>(), industrialNames = new List<string>(), spacerNames = new List<string>();
@@ -108,6 +114,7 @@ namespace ColonyCouncil
             if (epithet.NullOrEmpty()) yield return "a god has an epithet (\"the Rootmother\", \"Old Croak\")";
             if (godOf.NullOrEmpty()) yield return "a god says what it is (godOf)";
             if (unheard.NullOrEmpty()) yield return "a god says what people see of it before they have heard of it (unheard)";
+            if (plain.NullOrEmpty()) yield return "a god has its plain line, what the colony takes it to be (plain)";
             if (tribalNames.NullOrEmpty() || medievalNames.NullOrEmpty() || industrialNames.NullOrEmpty() || spacerNames.NullOrEmpty())
                 yield return "a god has a name among the peoples of every age";
             if (whatItIs.NullOrEmpty() || howSeen.NullOrEmpty() || character.NullOrEmpty() || wants.NullOrEmpty()) yield return "a god has its lore: what it is, how it is seen, its character, what it wants";

@@ -3,11 +3,12 @@
 
   <!--
     Worship in the heart (Source/ColonyCouncil/Gods/Worship/; docs/design/gods.md, "Worship": the heart). Kept small, as the
-    balance targets ask: a prayer said and an offering carried give no mood but something else (RewardInstead: hope, a
-    little awe, a felt good moment); the god's dream gives awe; only an answer or a prayer that came good, and a kept vow,
-    are good moods, and they are rare (WorshipMath.AnswerChance, a few vows a colony-year). The setbacks are an unanswered
-    prayer that became a crisis of faith (about a third of the unanswered), a broken vow, and a scoffer's mockery; the
-    couples' bickering over whose god sent the rain is an opinion, not a mood. Modelled in Tools/Balance (Rates.Worship).
+    balance targets ask: a prayer said gives a little (+1 for half a day, +2 said at the god's own place), and an offering
+    carried a little for a day (+1), smaller than anything a god's answer gives (WorshipMath.PrayedMood and the like); the
+    god's dream gives awe instead of a mood; an answer or a prayer that came good, and a kept vow, are the larger good moods,
+    and they are rare (WorshipMath.AnswerChance, a few vows a colony-year). The setbacks are an unanswered prayer that
+    became a crisis of faith (about a third of the unanswered), a broken vow, and a scoffer's mockery; the couples'
+    bickering over whose god sent the rain is an opinion, not a mood. Modelled in Tools/Balance (Rates.Worship).
   -->
 
   <ThoughtDef ParentName="Council_MemoryBase">
@@ -17,23 +18,33 @@
       <li>
         <label>said a prayer</label>
         <description>I said what I needed to say to my god. Whether anyone heard it or not, I feel steadier for having said it.</description>
-        <baseMoodEffect>0</baseMoodEffect>
+        <baseMoodEffect>1</baseMoodEffect>
       </li>
     </stages>
-    <modExtensions><li Class="ColonyCouncil.RewardInstead"><feelings><li>Hope</li></feelings><felt>2</felt></li></modExtensions>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_Worship_PrayedAtShrine</defName>
+    <durationDays>0.5</durationDays>
+    <stages>
+      <li>
+        <label>prayed at the god's place</label>
+        <description>I went to my god's own place to pray, knelt there and said all of it. I came away lighter than I went.</description>
+        <baseMoodEffect>2</baseMoodEffect>
+      </li>
+    </stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Rimfolk_Worship_Offered</defName>
-    <durationDays>0.5</durationDays>
+    <durationDays>1</durationDays>
     <stages>
       <li>
         <label>left an offering</label>
         <description>I carried the gift out and set it down where the god would find it. It's a small thing, and it felt right.</description>
-        <baseMoodEffect>0</baseMoodEffect>
+        <baseMoodEffect>1</baseMoodEffect>
       </li>
     </stages>
-    <modExtensions><li Class="ColonyCouncil.RewardInstead"><feelings><li>Contentment</li></feelings><felt>1</felt></li></modExtensions>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">

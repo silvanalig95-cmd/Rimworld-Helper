@@ -9,6 +9,10 @@
     tale's, {OTHER} another god's name in the book, {SIGN} a sign in words, {KEEPER} the book's keeper.
   -->
   <CC_GodBook_Chapter>Chapter {NUM}</CC_GodBook_Chapter>
+  <!-- A chapter's plain line, under its head (Gods/GodLorePage.cs): what the colony takes the god to be, in the keeper's hand,
+       once someone has told what it is under that name; the god's own plain words (GodDef.plain) follow it. -->
+  <CC_GodBook_Plain>As the colony understands it, so {KEEPER} keeps it:</CC_GodBook_Plain>
+  <CC_GodBook_PlainNobody>As the colony understands it:</CC_GodBook_PlainNobody>
 
   <!-- The parts, in the order a chapter sets them down. -->
   <CC_GodBook_Part_Names>Of its names</CC_GodBook_Part_Names>

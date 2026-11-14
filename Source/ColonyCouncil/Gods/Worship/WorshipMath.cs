@@ -213,6 +213,24 @@ namespace ColonyCouncil
         public static float OfferingValueTarget(int colonists) => Math.Min(OfferingValueCap(colonists), 20f + 3f * Math.Max(1, colonists));
 
         /// <summary>
+        /// A work of art kept in the stores (a sculpture packed away, not on show) may be given: one piece, worth at most this
+        /// (two and a half times a gift's cap, never past 600), of good quality at most (0 awful to 6 legendary), and only while
+        /// the colony keeps at least one other piece in its stores. What stands on show is never taken from its place.
+        /// </summary>
+        public static float ArtValueCap(int colonists) => Math.Min(600f, 2.5f * OfferingValueCap(colonists));
+
+        public const int ArtBestQuality = 3, ArtKeptBack = 1;
+
+        public static bool ArtGiven(int quality, float value, int stored, int colonists) =>
+            quality <= ArtBestQuality && value <= ArtValueCap(colonists) && value >= OfferingValueMin && stored > ArtKeptBack;
+
+        /// <summary>
+        /// The small mood of worship (Rimfolk_Worship_Thoughts.xml): a prayer said gives a little (more said at the god's own
+        /// place), an offering carried a little for a day. Smaller than anything a god's answer gives.
+        /// </summary>
+        public const float PrayedMood = 1f, PrayedAtShrineMood = 2f, OfferedMood = 1f;
+
+        /// <summary>
         /// The favour an offering moves, before the god's nature and kind (Gods.AddFavour with FavourSource.Offering scales
         /// it): grows with its worth (a meal about 2, a hundred silver's worth about 3.5, five times that about 5), times
         /// how well it suits the god and its nature, a quarter more for the god the council honours this year, a fifth more
@@ -245,6 +263,31 @@ namespace ColonyCouncil
         {
             if (plain) return hoursWaited >= 1f;
             return hoursWaited >= 3f && hourOfDay >= 1 && hourOfDay <= 4;
+        }
+
+        /// <summary>
+        /// An offering gone in the night is noticed by day (6 to 20 o'clock) by someone of the colony who passes within
+        /// <see cref="NoticeRange"/> cells of the place, for <see cref="NoticeDays"/> days after: they say whose doing they
+        /// take it for, and the place glows a moment.
+        /// </summary>
+        public const float NoticeRange = 7f;
+
+        public const int NoticeDays = 2;
+
+        public static bool Notices(int hourOfDay, float daysSince) => hourOfDay >= 6 && hourOfDay <= 20 && daysSince >= 0f && daysSince <= NoticeDays;
+
+        /// <summary>
+        /// What a place's dedication card says the colony's people will do there (the keys' endings, CC_Wsh_Card_Do_*), as they
+        /// do it: leave gifts now and then where they carry any to this god (never to one that takes nothing), come to pray in
+        /// hard times (always), and keep its feast there where it keeps one. What they do, never what the god makes of it.
+        /// </summary>
+        public static List<string> ShrineDoings(bool gifts, bool festival)
+        {
+            var list = new List<string>();
+            if (gifts) list.Add("Gifts");
+            list.Add("Pray");
+            if (festival) list.Add("Feast");
+            return list;
         }
 
         // ================= Prayer =================

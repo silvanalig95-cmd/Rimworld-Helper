@@ -13209,6 +13209,68 @@ and "The colony's book"): only what the pawns know, each line as theirs, no favo
   saying, a piece of a tale) of the god picked. Tested in `GodBookTests` (the rules, nothing unearned, the words, the
   defs' lines, the seams, the page); `GodLore.verses` modelled in `Tools/save_estimate.py`.
 
+### The gods understood: fixes, signs, plain lines, shrines made clear (the player's go, 14 November 2026; released 0.232.0)
+
+The player, 14 November 2026: "the god signs are awesome, go ahead! should be seen in the book and on cards. also like
+the one-line meaning for the chapter ... gods effect should be noticeable"; rounds 0 and 1 of
+`docs/gods-next-proposals.md` (section H). The unseen rule holds: the sign is the colony's own drawing of what it
+believes, never a portrait; the plain line is what the colony takes the god to be, in the keeper's hand; a shrine says
+what the colony's people do there, never what the god makes of it.
+
+- **A work of art can be given** (round 0; `Offerings.Offered`, `WorshipMath.ArtGiven`): a sculpture packed away in the
+  stores (a minified art piece) is offered as the art inside it, so Cirrus (art first) and Smoulder (art second) get
+  more than cloth. One piece at a time, of good quality at most, worth at most two and a half times a gift's cap (600 at
+  the most, `ArtValueCap`), and only while the colony keeps another piece packed away (`ArtKeptBack`). Nothing on show
+  is taken from its place; anything else packed away (a table, a bed, a machine) is never offered, nor a place given to
+  a god. Its label is the piece's own, with its title ("wood small sculpture (good), "Lonely Moon"").
+- **Words for every gift** (round 0; `Rimfolk_Pool_Worship_Offer`): every line now says why this thing is brought, one
+  sentence: two for each kind (cloth had none), each god's own for the kinds its people give it (Ennu's "Cloth for the
+  guest bed, Ennu, whoever comes tonight."), a demand's and the Hunger's. No untagged line, so the words always fit
+  what lies there (tested: every god-and-kind line names a kind its worship def likes).
+- **A small mood** (round 0; `Rimfolk_Worship_Thoughts.xml`, `WorshipMath.PrayedMood` and the like): a prayer +1 for
+  half a day, +2 said at the god's own place (`Rimfolk_Worship_PrayedAtShrine`), carrying a gift +1 for a day; all
+  smaller than an answered prayer (+4). They were 0 with something else instead; modelled in `Tools/Balance`.
+- **The signs** (round 1; `Gods/GodSigns.cs`, `GodSignsMath`, `Tools/make_god_signs.py --textures`): each god's sign in
+  `Textures/ColonyCouncil/Gods/Signs/`: `<Key>.png`, the plain sign in the god's colours, and `<Key>_<Age>.png` in the
+  four ages' forms the sheet shows (scratched on a stone, painted on a shield, stamped on a badge, lit in a ring), all
+  128 by 128. The colony's own age (`Ages.Ours`, its means) picks the form. Shown:
+  - in the Gods' book, beside the chapter's name (56 px, the age's form) and small at the end of its row in the list
+    (the plain sign), once the chapter tells what the god is (`GodSignsMath.Tells`: a verse of what it is that isn't a
+    doubt, or the god seen plainly by the colony's own people) and for the god most of those verses are of
+    (`GodSignsMath.Believed`; on a tie the first told), so a chapter told of wrongly shows the wrong one, and a second
+    name not yet told of shows none: nothing gives away which names are one;
+  - on a god's card, over its name, only when the card names it and the colony knows its sign (`GodSigns.Known`); a
+    veiled card ("some say") shows none (`GodsWiring`, `GodPresence.Manifest`'s overload with a sign, `GodLetter.sign`);
+  - nowhere else: not on a shrine, not over a god on the map (the player's pick), and nowhere for a god the colony has
+    not heard of.
+- **The plain line** (round 1; `GodDef.plain`, `GodLorePage.PlainLine`): each chapter opens, under its head, with
+  "As the colony understands it, so Avila keeps it:" (the keeper's name, `CC_GodBook_Plain`; "As the colony understands
+  it:" with nobody keeping the book) and the believed god's plain line from section B of the doc ("The mother of all
+  roots and growing things. ..."), gated as the sign is. The page reads nothing else of a god's def.
+- **Shrines made clear** (round 1, section D; `Shrines.cs`, `Offerings.cs`):
+  - the dedication is a card now (`Tell.Letter`, titled "Ennu's chapel"): what was done, then "From now on this is
+    where the colony's people now and then leave Ennu a small gift the stores can spare, come to pray in hard times,
+    and keep the Open Door each winter. What Ennu makes of it, nobody here can say." (`Shrines.Doings`,
+    `WorshipMath.ShrineDoings`): gifts only for a god the colony carries any to (none for Helios), the feast only where
+    this home keeps it (`Festivals.GodsFor`, three at most); the place's button says the same once it is given;
+  - its inspect line: whose place it is, then the gift waiting there, or the last one ("Last left here: muffalo wool x16,
+    by Mira, 3 days ago; it was gone soon after.", `ShrineRecord.lastWhat` and the like, saved), then what someone of the
+    colony holds: the newest "what it loves" of the god's chapter as its holder holds it ("Mira holds that Ennu loves a
+    bowl set out for whoever comes."), else the words the last gift was set down with;
+  - the carrier's one sentence of why (above), said as it is set down and kept for the inspect line;
+  - a gift gone in the night is noticed by day (`Offerings.Notice`, `WorshipMath.Notices`, within two days, 6 to 20
+    o'clock): the first of the colony's people who passes within 7 cells in sight of the place, else from 9 o'clock its
+    carrier or one who holds the god walks over to look (`Rimfolk_Worship_Look`, `WorshipAct.Look`), stops, a small light
+    settles on the place, and they say whose doing they take it for (`Rimfolk_Pool_Worship_Noticed`: their own god's,
+    the place's as the others hold it, a doubter's maybe, a scoffer's fox, none of it the god's mind). Seen going
+    plainly, nobody needs to notice it;
+  - the small mood (above). The Almanac's page on the gods now says plainly what a shrine is for, as the colony's own
+    practice; the gods themselves stay unexplained.
+- Tested in `GodsUnderstoodTests` (the art rules, the words for every kind, the moods, the textures and their names, the
+  believed god, where the sign shows and where it never does, the plain lines, the card, the inspect line, the noticing,
+  the saved fields). Not done here (later rounds): each god's own way of taking a gift and its own signs after, the
+  fourteen presences, each pawn's belief (a colonist's god is still picked as before), the happenings, the saints.
+
 ### Four small asks (the player's request, 12 November 2026; released 0.222.0)
 
 - **Decrees rest less:** every decree waits 70 % of its own rest before it can be declared again (`DecreeMath.CooldownShare`,

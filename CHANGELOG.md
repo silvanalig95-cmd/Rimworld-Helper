@@ -5,6 +5,16 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## The gods understood
+
+*14 November 2026, version 0.232.0*
+
+- Each god now has its own sign, in the form of the colony's age: scratched on a stone, painted on a shield, stamped on a badge or lit in a ring. It shows beside its chapter in the Gods' book and on a god's card when the colony is sure who it was.
+- Each chapter of the Gods' book opens with what the colony takes the god to be, in plain words and in the keeper's hand.
+- Giving a place to a god brings a card saying what the colony's people will do there, and its inspect line shows the last gift, what became of it and what someone here believes.
+- Gifts are carried with a word of why, a sculpture packed away in the stores can be given too, and a gift gone in the night is noticed the next day.
+- Praying and leaving an offering now give a small good mood, a little more for a prayer at the god's own place.
+
 ## The best meals on the shelf
 
 *14 November 2026, version 0.231.2*

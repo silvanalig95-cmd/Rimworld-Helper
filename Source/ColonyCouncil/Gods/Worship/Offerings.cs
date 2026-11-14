@@ -76,6 +76,44 @@ namespace ColonyCouncil
             return false;
         }
 
+        /// <summary>A work of art: a sculpture, a statue, anything the game counts as art or that carries an artwork.</summary>
+        private static bool IsArt(Thing t) => t != null && (t.def.IsArt || t.TryGetComp<CompArt>() != null);
+
+        /// <summary>
+        /// What a god would be given from a stack in the stores: the thing itself; for a work of art packed away (minified), the
+        /// art inside it; null for anything never offered. Of what is packed away only art is ever given, and never a place
+        /// dedicated to a god: a packed table, a bed or a machine stays the colony's.
+        /// </summary>
+        public static Thing Offered(Thing t)
+        {
+            if (t == null) return null;
+            if (t is MinifiedThing m)
+            {
+                var inner = m.InnerThing;
+                if (!IsArt(inner) || Worship.Book?.ShrineOf(inner) != null) return null;
+                return inner;
+            }
+            return NeverOffered(t) ? null : t;
+        }
+
+        /// <summary>The works of art the colony keeps packed away in its stores on this map.</summary>
+        private static int ArtStored(Map map)
+        {
+            int n = 0;
+            foreach (var t in map.listerThings.ThingsInGroup(ThingRequestGroup.MinifiedThing))
+                if (t is MinifiedThing m && t.Spawned && IsArt(m.InnerThing) && t.IsInAnyStorage()) n++;
+            return n;
+        }
+
+        /// <summary>What an offering is called in the colony's words: the stack as the game labels it; a work of art by its own name and title.</summary>
+        private static string LabelOf(Thing t, Thing given, int count)
+        {
+            if (given == null || given == t) return GenLabel.ThingLabel(t.def, t.Stuff, count);
+            string title = given.TryGetComp<CompArt>() is CompArt art && art.Active ? art.Title : null;
+            string label = given.LabelNoCount;
+            return title.NullOrEmpty() ? label : "CC_Wsh_ArtTitled".Translate(label.Named("THING"), title.Named("TITLE")).Resolve();
+        }
+
         /// <summary>The colony keeps enough of it that a gift doesn't hurt: three times what is given, and for medicine, meals, silver and components a store besides.</summary>
         private static bool Spare(Map map, ThingDef d, int count, int colonists)
         {
@@ -112,20 +150,35 @@ namespace ColonyCouncil
             if (map == null || g == null || carrier == null) return null;
             int colonists = Math.Max(1, map.mapPawns.FreeColonistsSpawnedCount);
             float cap = WorshipMath.OfferingValueCap(colonists);
+            int art = -1;
             Thing best = null;
             float bestScore = 0f;
             foreach (var group in map.haulDestinationManager.AllGroupsListForReading)
             {
                 foreach (var t in group.HeldThings)
                 {
-                    if (t == null || !t.Spawned || NeverOffered(t) || t.IsForbidden(Faction.OfPlayer)) continue;
-                    var k = Kind(t.def);
+                    if (t == null || !t.Spawned || t.IsForbidden(Faction.OfPlayer)) continue;
+                    var given = Offered(t);
+                    if (given == null) continue;
+                    var k = Kind(given.def);
                     if (only.HasValue && k != only.Value) continue;
                     float f = GodWorshipDef.Fit(g, k);
                     if (f <= 0f || f < 0.9f && g.kind != GodKind.Hunger && !only.HasValue) continue;
-                    if (t.MarketValue > cap || t.MarketValue * t.stackCount < WorshipMath.OfferingValueMin) continue;
-                    int n = CountFor(t, colonists);
-                    if (!Spare(map, t.def, n, colonists)) continue;
+                    int n;
+                    if (given != t)
+                    {
+                        // A work of art packed away: one piece, of the quality and worth a gift of art may be, while another stays.
+                        if (art < 0) art = ArtStored(map);
+                        int quality = given.TryGetQuality(out var q) ? (int)q : -1;
+                        if (!WorshipMath.ArtGiven(quality, given.MarketValue, art, colonists)) continue;
+                        n = 1;
+                    }
+                    else
+                    {
+                        if (t.MarketValue > cap || t.MarketValue * t.stackCount < WorshipMath.OfferingValueMin) continue;
+                        n = CountFor(t, colonists);
+                        if (!Spare(map, t.def, n, colonists)) continue;
+                    }
                     float score = f * (0.8f + Rand.Value * 0.4f);
                     if (score <= bestScore) continue;
                     if (!carrier.CanReserveAndReach(t, PathEndMode.ClosestTouch, Danger.Some, 1, n)) continue;
@@ -167,6 +220,8 @@ namespace ColonyCouncil
         public static void Hourly(WorshipBook b, Map map, int now)
         {
             int key = Gods.HomeKey(map);
+            foreach (var o in b.offerings.Where(x => x != null && x.home == key && x.fate == OfferingFate.Taken && !x.noticed).ToList())
+                Notice(o, map, now);
             foreach (var o in b.offerings.Where(x => x != null && x.home == key && x.fate == OfferingFate.Waiting).ToList())
             {
                 if (o.shrine == null || o.shrine.Destroyed || !o.shrine.Spawned)
@@ -200,6 +255,66 @@ namespace ColonyCouncil
             }
         }
 
+        // ================= Noticed by day =================
+
+        /// <summary>
+        /// An offering gone in the night is noticed by day (WorshipMath.Notices): by the first of the colony's people who passes
+        /// near the place and can see it, else, from mid-morning, by its carrier or one who holds the god, who walks over to look
+        /// (WorshipJobs.LookJob). Let go once the days for it are past.
+        /// </summary>
+        private static void Notice(OfferingRecord o, Map map, int now)
+        {
+            var shrine = o.shrine;
+            float days = (now - Math.Max(0, o.placed)) / (float)GenDate.TicksPerDay;
+            if (shrine == null || !shrine.Spawned || shrine.Map != map || Gods.ById(o.god) == null || days > WorshipMath.NoticeDays + 1)
+            {
+                o.noticed = true;
+                return;
+            }
+            int hour = GenLocalDate.HourOfDay(map);
+            if (!WorshipMath.Notices(hour, days)) return;
+            foreach (var p in map.mapPawns.FreeColonistsSpawned)
+            {
+                if (!Worship.Ours(p) || !HeartActs.Safe(p, null) || p.Drafted) continue;
+                if (!p.Position.InHorDistOf(shrine.Position, WorshipMath.NoticeRange) || !GenSight.LineOfSight(p.Position, shrine.Position, map, true)) continue;
+                Noticed(p, shrine);
+                return;
+            }
+            if (hour < 9) return;
+            // Nobody passed: someone goes to look, once at a time.
+            if (map.mapPawns.FreeColonistsSpawned.Any(p => p.CurJobDef?.defName == WorshipJobs.LookJob && p.CurJob.targetA.Thing == shrine)) return;
+            var g = Gods.ById(o.god);
+            var who = new List<Pawn>();
+            if (o.carrier != null) who.Add(o.carrier);
+            who.AddRange(map.mapPawns.FreeColonistsSpawned.Where(p => Worship.GodOf(p) == g).OrderByDescending(Worship.Devout));
+            foreach (var p in who.Distinct())
+            {
+                if (p == null || p.Map != map || !Worship.Ours(p) || p.DevelopmentalStage.Baby() || Worship.Scoffer(p) || !WorshipJobs.Free(p)) continue;
+                if (!p.CanReach(shrine, PathEndMode.Touch, Danger.Some)) continue;
+                if (WorshipJobs.Start(p, WorshipJobs.At(WorshipJobs.LookJob, shrine, Rand.Range(180, 300)))) return;
+            }
+        }
+
+        /// <summary>
+        /// Someone sees the place empty where an offering lay: they stop and look, a small light settles on it (none for a
+        /// scoffer), and they say in one sentence whose doing they take it for: the god they hold, the place's god as some say,
+        /// or, for a scoffer, a fox. Theirs to say, never the god's.
+        /// </summary>
+        public static void Noticed(Pawn p, Thing shrine)
+        {
+            var b = Worship.Book;
+            var o = b?.offerings.LastOrDefault(x => x != null && x.shrine == shrine && x.fate == OfferingFate.Taken && !x.noticed);
+            if (o == null || p == null) return;
+            o.noticed = true;
+            var g = Gods.ById(o.god);
+            if (g == null) return;
+            bool scoffer = Worship.Scoffer(p);
+            p.rotationTracker?.FaceTarget(shrine);
+            string line = Worship.Line("Rimfolk_Pool_Worship_Noticed", p, g, null, Worship.GodOf(p) == g ? "mine" : "theirs");
+            if (!line.NullOrEmpty()) Speech.Say(p, line);
+            if (!scoffer) Worship.Glow(shrine.Map, shrine.Position, g);
+        }
+
         private static void Forget(WorshipBook b, OfferingRecord o)
         {
             if (o.thing != null && o.thing.Spawned && o.set) o.thing.SetForbidden(false, false);
@@ -228,12 +343,13 @@ namespace ColonyCouncil
                 var job = JobMaker.MakeJob(def, t, o.shrine);
                 job.count = count;
                 if (!WorshipJobs.Start(p, job)) continue;
+                var given = Offered(t) ?? t;
                 o.carrier = p;
                 o.thing = t;
-                o.kind = Kind(t.def);
-                o.label = GenLabel.ThingLabel(t.def, t.Stuff, count);
-                int quality = t.TryGetQuality(out var q) ? (int)q : -1;
-                float worth = t.MarketValue * count;
+                o.kind = Kind(given.def);
+                o.label = LabelOf(t, given, count);
+                int quality = given.TryGetQuality(out var q) ? (int)q : -1;
+                float worth = given.MarketValue * count;
                 o.favour = WorshipMath.OfferingFavour(worth, fit, WorshipMath.NatureFit(g.nature, o.kind, quality, Rand.Value), Worship.IsHonoured(g, map),
                     Worship.IsPriest(p));
                 return;
@@ -288,9 +404,21 @@ namespace ColonyCouncil
             o.placed = Worship.Now;
             lying.SetForbidden(true, false);
             var g = Gods.ById(o.god);
-            Worship.Say(p, "Rimfolk_Pool_Worship_Offer", g, null, "offer:" + o.kind.ToString().ToLowerInvariant(), o.demand ? "demand" : null);
+            // Why they bring this, in one sentence: every kind of thing has its words, and each god's own for what its people give it.
+            string words = Worship.Line("Rimfolk_Pool_Worship_Offer", p, g, null, "offer:" + o.kind.ToString().ToLowerInvariant(), o.demand ? "demand" : null);
+            if (!words.NullOrEmpty()) Speech.Say(p, words);
             Worship.PriestLight(p, shrine.Position);
             CouncilGameComponent.GiveThought(p, WorshipDefOf.Rimfolk_Worship_Offered);
+            // The place keeps what was left last, by whom and with what words, for its inspect line.
+            var s = b.ShrineOf(shrine);
+            if (s != null)
+            {
+                s.lastWhat = o.label;
+                s.lastBy = p.LabelShort;
+                s.lastWords = words;
+                s.lastAt = o.placed;
+                s.lastFate = OfferingFate.Waiting;
+            }
             // The colony's book: what was left, and by whom.
             if (g != null)
                 Worship.Witness(g, shrine.Map, GodActKind.Favour, "CC_Wsh_Book_Offered".Translate(p.LabelShort.Named("PAWN"), (o.label ?? "?").Named("WHAT"),
@@ -327,6 +455,10 @@ namespace ColonyCouncil
         {
             var g = Gods.ById(o.god);
             o.fate = fate;
+            // Seen going plainly, nobody needs to notice it gone later.
+            o.noticed = fate != OfferingFate.Taken || plain;
+            var s = b.ShrineOf(o.shrine);
+            if (s != null && s.lastAt == o.placed) s.lastFate = fate;
             if (g == null) return;
             if (!cell.IsValid || cell == default) cell = o.shrine?.Position ?? IntVec3.Invalid;
             if ((fate == OfferingFate.Spoiled || fate == OfferingFate.Returned) && o.thing != null && o.thing.Spawned) o.thing.SetForbidden(false, false);
