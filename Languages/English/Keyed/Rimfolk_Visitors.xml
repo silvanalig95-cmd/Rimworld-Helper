@@ -15,7 +15,13 @@
   <CC_Visit_Come_caravan>The great caravan's lead train is coming onto the far meadow for the night, with the beasts of {0}.</CC_Visit_Come_caravan>
   <CC_Visit_Come_trek>Households of {0} are coming along the road with their carts and their beasts.</CC_Visit_Come_trek>
 
-  <!-- They had to go before their business was done -->
-  <CC_Visit_Weather>The visitors from {0} couldn't stay out in this weather any longer, and have gone on.</CC_Visit_Weather>
+  <!-- They had to go before their business was done: dressed for the weather as they came (Visitors/WeatherDress.cs), only the extreme cold or heat, or hunger -->
+  <CC_Visit_Weather_cold>The visitors from {0} couldn't stand the extreme cold any longer, and have gone on.</CC_Visit_Weather_cold>
+  <CC_Visit_Weather_heat>The visitors from {0} couldn't stand the extreme heat any longer, and have gone on.</CC_Visit_Weather_heat>
+  <CC_Visit_Weather_hunger>The visitors from {0} had nothing left to eat, and have gone on.</CC_Visit_Weather_hunger>
+
+  <!-- The game's own groups (visitors, traders, allies, Hospitality's guests) leaving for the temperature; {0}: what their people call themselves, {1}: their people -->
+  <CC_WeatherLeave_Cold>{0} from {1} are leaving the map because of the extreme cold.</CC_WeatherLeave_Cold>
+  <CC_WeatherLeave_Heat>{0} from {1} are leaving the map because of the extreme heat.</CC_WeatherLeave_Heat>
 
 </LanguageData>

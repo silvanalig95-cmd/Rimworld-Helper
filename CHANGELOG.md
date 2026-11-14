@@ -5,6 +5,16 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## Dressed for the weather
+
+*14 November 2026, version 0.232.1*
+
+- Visitors, traders, guests and raiders now come dressed for the weather they will meet: parkas and tuques in a hard frost, dusters and cowboy hats in the heat, from every mod in your list.
+- Their armour, belts and gear stay on, and a raider's clothes are worth about what they would have been.
+- The road league's convoy and the drovers now stay the night on the far meadow in a -20 frost instead of turning back.
+- Only cold or heat past what their clothes can keep out sends a group away, and the message says it was the extreme cold or heat.
+- Visitors no longer turn up in a straitjacket or anything else that slows them down: they come in a plain coat of their own kind that keeps them as warm.
+
 ## The gods understood
 
 *14 November 2026, version 0.232.0*

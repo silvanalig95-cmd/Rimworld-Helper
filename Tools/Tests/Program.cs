@@ -535,6 +535,7 @@ Console.WriteLine($"Checked {InboxTests.Run(root, Check)} things about one inbox
         Console.WriteLine($"Checked {LetterRouteTests.Run(root, Check)} things about whom a letter goes to and the places heard of (every purpose's scope, who answers it for every kind of addressee, passing a town's matter on and the go-between's word, the window's words, an older save's letter, the marks' keep time and fading, Show on map, the seams).");
         Console.WriteLine($"Checked {LordsTests.Run(root, Check)} things about groups left with nobody in them (the game's rule, Rimfolk's own found in a save and ended, the game's and other mods' left, no place without the helper).");
         Console.WriteLine($"Checked {LettersClearTests.Run(root, Check)} things about letters and favours made clear (what the colony waits on for a letter and when another can go, Write back on the very answer, the road from when the carrier leaves the map, silence known only once an answer would have come, goods by who owes, a word with the peoples it would help, the short menu, the player's save, the words, the seams).");
+        Console.WriteLine($"Checked {WeatherDressTests.Run(root, Check)} things about people dressed for the weather as they come (who and who not, hard weather against the extremes, what comes off and goes on, the worth, the pick, why they still go, the player's save and pool, the seams).");
     }
 }
 
