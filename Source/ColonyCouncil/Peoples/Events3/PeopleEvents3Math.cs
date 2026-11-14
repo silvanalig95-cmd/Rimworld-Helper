@@ -87,6 +87,103 @@ namespace ColonyCouncil
             return Math.Min(total, (int)Math.Ceiling(total * k / (double)d));
         }
 
+        /// <summary>Each turn the road makes costs this much more than a straight step, so it runs straight where it can.</summary>
+        public const float TurnCost = 3f;
+
+        /// <summary>
+        /// The road's way across a map of <paramref name="w"/> by <paramref name="h"/> cells, from one cell to another, four
+        /// ways only (nobody lays a road on the diagonal), by the cheapest way: <paramref name="cost"/> of a cell (below zero: no
+        /// road there; at least one), a turn <see cref="TurnCost"/> dearer. Null when there's no way.
+        /// </summary>
+        public static List<(int x, int z)> Route(int w, int h, Func<int, int, float> cost, int sx, int sz, int tx, int tz)
+        {
+            if (w <= 0 || h <= 0 || cost == null || sx < 0 || sz < 0 || tx < 0 || tz < 0 || sx >= w || sz >= h || tx >= w || tz >= h) return null;
+            if (cost(sx, sz) < 0f || cost(tx, tz) < 0f) return null;
+            int[] dx = { 1, 0, -1, 0 }, dz = { 0, 1, 0, -1 };
+            int states = w * h * 4;
+            var g = new float[states];
+            var from = new int[states];
+            for (int i = 0; i < states; i++)
+            {
+                g[i] = float.MaxValue;
+                from[i] = -1;
+            }
+            var open = new SortedSet<(float f, int s)>();
+            float Heur(int x, int z) => Math.Abs(x - tx) + Math.Abs(z - tz);
+            for (int d = 0; d < 4; d++)
+            {
+                int s0 = (sz * w + sx) * 4 + d;
+                g[s0] = 0f;
+                open.Add((Heur(sx, sz), s0));
+            }
+            int end = -1;
+            while (open.Count > 0)
+            {
+                var top = open.Min;
+                open.Remove(top);
+                int s = top.s, cell = s / 4, dir = s % 4, x = cell % w, z = cell / w;
+                if (top.f - Heur(x, z) > g[s] + 1e-3f) continue;
+                if (x == tx && z == tz)
+                {
+                    end = s;
+                    break;
+                }
+                for (int d = 0; d < 4; d++)
+                {
+                    if (d == (dir + 2) % 4) continue;
+                    int nx = x + dx[d], nz = z + dz[d];
+                    if (nx < 0 || nz < 0 || nx >= w || nz >= h) continue;
+                    float c = cost(nx, nz);
+                    if (c < 0f || float.IsNaN(c)) continue;
+                    float step = Math.Max(1f, c) + (d == dir ? 0f : TurnCost);
+                    int ns = (nz * w + nx) * 4 + d;
+                    float ng = g[s] + step;
+                    if (ng >= g[ns]) continue;
+                    if (g[ns] < float.MaxValue) open.Remove((g[ns] + Heur(nx, nz), ns));
+                    g[ns] = ng;
+                    from[ns] = s;
+                    open.Add((ng + Heur(nx, nz), ns));
+                }
+            }
+            if (end < 0) return null;
+            var path = new List<(int x, int z)>();
+            for (int s = end; s >= 0; s = from[s])
+            {
+                int cell = s / 4;
+                var p = (cell % w, cell / w);
+                if (path.Count == 0 || path[path.Count - 1] != p) path.Add(p);
+                if (from[s] < 0) break;
+            }
+            path.Reverse();
+            return path;
+        }
+
+        /// <summary>
+        /// The road's cells in the order they are laid: each cell of its way and, for a road two wide, the one beside it on
+        /// its left as it goes (the first beside it that the map has), none twice.
+        /// </summary>
+        public static List<(int x, int z)> Widen(IList<(int x, int z)> way, int width, int w, int h)
+        {
+            var list = new List<(int x, int z)>();
+            if (way == null) return list;
+            var seen = new HashSet<(int, int)>();
+            for (int i = 0; i < way.Count; i++)
+            {
+                var p = way[i];
+                if (seen.Add(p)) list.Add(p);
+                if (width < 2) continue;
+                var q = way[i < way.Count - 1 ? i + 1 : Math.Max(0, i - 1)];
+                int ax = i < way.Count - 1 ? q.x - p.x : p.x - q.x, az = i < way.Count - 1 ? q.z - p.z : p.z - q.z;
+                var side = (x: p.x - az, z: p.z + ax);
+                if (side.x < 0 || side.z < 0 || side.x >= w || side.z >= h) side = (p.x + az, p.z - ax);
+                if (side.x >= 0 && side.z >= 0 && side.x < w && side.z < h && seen.Add(side)) list.Add(side);
+            }
+            return list;
+        }
+
+        /// <summary>A field in the road's way: this much dearer (they go round it unless let through).</summary>
+        public const float FieldCost = 40f;
+
         /// <summary>A road's cell is laid in this many ticks of work (a stretch of road a few hours a day).</summary>
         public const int RoadCellTicks = 420;
 
@@ -313,8 +410,19 @@ namespace ColonyCouncil
         /// <summary>The herders wait this long for the colony's hand before they do it alone.</summary>
         public const int HardWaitHours = 8;
 
-        /// <summary>Both live: by the helper's way with beasts, 45% and four points a level, within 45% and 95%.</summary>
-        public static float BirthOdds(int animals) => Clamp(0.45f + 0.04f * Clamp(animals, 0, 20), 0.45f, 0.95f);
+        /// <summary>
+        /// The mother lost, as the card's roll has it (the answer's risk, lowered by the best hand's way with beasts, three and a
+        /// half points a level, as every answer's risk is).
+        /// </summary>
+        public const float HardRisk = 0.55f;
+
+        /// <summary>Both live: one less the risk the helper's way with beasts leaves, within 5% and 95% either way.</summary>
+        public static float BirthOdds(int animals) => 1f - Clamp(HardRisk - 0.035f * Clamp(animals, 0, 20), 0.05f, 0.95f);
+
+        /// <summary>The herders seeing it through by themselves (their own hands, about eight at beasts): the risk on the card.</summary>
+        public const float HerdersRisk = 0.27f;
+
+        public static float HerdersOdds => 1f - HerdersRisk;
 
         /// <summary>Working the hard birth: an hour and a half.</summary>
         public const int BirthTicks = 3 * HourTicks / 2;
@@ -381,11 +489,11 @@ namespace ColonyCouncil
 
         // ================= 16. Two faiths at one table (the pilgrim fellowship) =================
 
-        /// <summary>
-        /// The blessing settles it: by the two speakers' Social, a third and two and a half points a level of the two
-        /// together, within a third and nine in ten.
-        /// </summary>
-        public static float SettleChance(int socialA, int socialB) => Clamp(0.33f + 0.025f * (Clamp(socialA, 0, 20) + Clamp(socialB, 0, 20)), 0.33f, 0.9f);
+        /// <summary>The split comes anyway, as the card's roll has it: the answer's risk, lowered by the better speaker's Social.</summary>
+        public const float SplitRisk = 0.67f;
+
+        /// <summary>The blessing settles it: one less the risk the better of the two speakers' Social leaves (3.5% a level), within 5% and 95%.</summary>
+        public static float SettleChance(int socialA, int socialB) => 1f - Clamp(SplitRisk - 0.035f * Clamp(Math.Max(socialA, socialB), 0, 20), 0.05f, 0.95f);
 
         /// <summary>Settled for a season: the faiths' clash asked no sooner than this.</summary>
         public const int SettledDays = 15;

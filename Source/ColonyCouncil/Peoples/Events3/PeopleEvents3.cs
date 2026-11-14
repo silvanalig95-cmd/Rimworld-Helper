@@ -1,4 +1,5 @@
 using System;
+using RimWorld;
 using Verse;
 
 namespace ColonyCouncil
@@ -29,6 +30,8 @@ namespace ColonyCouncil
                 case SpringCalving.BirthKind: return SpringCalving.BirthHour(v, now);
                 case OldShrine.WorkKind: return OldShrine.WorkHour(v, now);
                 case OldShrine.StopKind: return OldShrine.StopHour(v, now);
+                case TwoFaiths.BlessKind: return TwoFaiths.BlessHour(v, now);
+                case RoadGang.HandKind: return RoadGang.HandHour(v, now);
             }
             return false;
         }
@@ -50,6 +53,7 @@ namespace ColonyCouncil
                 Safe("the old shrines", () => OldShrine.Watch(map, now));
             }
             Safe("the thieves' trail", () => ThiefTrail.Hourly(now));
+            Safe("the palmer's table", TwoFaiths.Tidy);
             if (now % GenDate.TicksPerDay < GenDate.TicksPerHour) Safe("the league's pages", LeagueRedInk.Tidy);
         }
 

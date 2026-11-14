@@ -133,7 +133,8 @@ namespace ColonyCouncil
     {
         public override bool CanHappenNow(Map map)
         {
-            if (!Faiths.On || !base.CanHappenNow(map) || !FaithClash.Clashing()) return false;
+            // Not while a palmer's blessing at one table holds (Peoples/Events3/TwoFaiths.cs).
+            if (!Faiths.On || !base.CanHappenNow(map) || !FaithClash.Clashing() || TwoFaiths.Settled) return false;
             var largest = Faiths.Census().FirstOrDefault()?.ideo;
             return Rand.Chance(FaithCouncilMath.ClashChance(FaithClash.Quarrel(map, largest) != null, FaithEvenings.AnyPlace(map) != null));
         }

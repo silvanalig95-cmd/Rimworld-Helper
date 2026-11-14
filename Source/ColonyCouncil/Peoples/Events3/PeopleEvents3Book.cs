@@ -133,6 +133,12 @@ namespace ColonyCouncil
         public int sickRoomMap = -1, sickRoomUntil = -1;
         /// <summary>Two faiths settled at one table: until when the clash rests (-1: none).</summary>
         public int settledUntil = -1;
+        /// <summary>The palmer's evening waiting for its end: its gathering's id, what the roll gave, why, the two faiths by name, since when, the palmer, their people.</summary>
+        public int tablePlay = -1, tableSince = -1;
+        public bool tableSplit;
+        public string tableWhy, tableFaiths;
+        public Pawn tablePalmer;
+        public Faction tableFaction;
         /// <summary>When the litters last came, and the thieves' trail.</summary>
         public int lastLitters = -1, lastTrail = -1;
 
@@ -206,6 +212,13 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref sickRoomMap, "sickRoomMap", -1);
             Scribe_Values.Look(ref sickRoomUntil, "sickRoomUntil", -1);
             Scribe_Values.Look(ref settledUntil, "settledUntil", -1);
+            Scribe_Values.Look(ref tablePlay, "tablePlay", -1);
+            Scribe_Values.Look(ref tableSince, "tableSince", -1);
+            Scribe_Values.Look(ref tableSplit, "tableSplit");
+            Scribe_Values.Look(ref tableWhy, "tableWhy");
+            Scribe_Values.Look(ref tableFaiths, "tableFaiths");
+            Scribe_References.Look(ref tablePalmer, "tablePalmer");
+            Scribe_References.Look(ref tableFaction, "tableFaction");
             Scribe_Values.Look(ref lastLitters, "lastLitters", -1);
             Scribe_Values.Look(ref lastTrail, "lastTrail", -1);
             if (Scribe.mode == LoadSaveMode.PostLoadInit)

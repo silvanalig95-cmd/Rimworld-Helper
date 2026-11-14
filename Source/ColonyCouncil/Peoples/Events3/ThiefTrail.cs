@@ -119,7 +119,7 @@ namespace ColonyCouncil
         /// <summary>The beasts' kinds in a sentence: "two muffalo and a yak".</summary>
         public static string Kinds(IEnumerable<Pawn> beasts)
         {
-            var parts = beasts.Where(a => a != null).GroupBy(a => a.kindDef).Select(g => g.Count() == 1 ? g.Key.label.WithIndefiniteArticle() : g.Count() + " " + g.Key.GetLabelPlural())
+            var parts = beasts.Where(a => a != null).GroupBy(a => a.kindDef).Select(g => g.Count() == 1 ? Find.ActiveLanguageWorker.WithIndefiniteArticle(g.Key.label) : g.Count() + " " + g.Key.GetLabelPlural())
                 .ToList();
             return parts.Count == 0 ? "?" : TextUtil.JoinAnd(parts);
         }
@@ -524,7 +524,7 @@ namespace ColonyCouncil
             RideOff(riders);
             var f = r.herders;
             if (f != null && f.HasGoodwill && !f.IsPlayer) WorldSituationWorker.Goodwill(f, PeopleEvents3Math.TrailGoodwill, false);
-            if (f != null) FactionMemory.Note(f, "foughtBeside", "CC_PEv3_TrailDeed".Translate().Resolve());
+            if (f != null) FactionMemory.Note(f, "lentHands", "CC_PEv3_TrailDeed".Translate().Resolve());
             Tell.Message(NewsKind.World, Importance.Important, map,
                 (ours.Count > 0 ? "CC_PEv3_TrailWon" : "CC_PEv3_TrailWonNone").Translate((f?.Name ?? "?").Named("FACTION"), Kinds(ours).Named("BEASTS")).Resolve(),
                 ours.Count > 0 ? new LookTargets(ours) : LookTargets.Invalid, MessageTypeDefOf.PositiveEvent);
