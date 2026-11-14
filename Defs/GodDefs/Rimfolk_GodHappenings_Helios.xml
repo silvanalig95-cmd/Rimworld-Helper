@@ -2,7 +2,7 @@
 <Defs>
 
   <!--
-    Helios's own happenings (Source/ColonyCouncil/Gods/Happenings/Helios.cs; docs/gods-next-proposals.md, C 10): he looks
+    Helios's own happenings (Source/ColonyCouncil/Gods/OnMap/OwnHelios.cs; docs/gods-next-proposals.md, C 10): he looks
     back the day after an eclipse, the first fruit eaten in the sun on his feast, the sun's return after the longest night.
     Two small moods, modelled in Tools/Balance (Rates.cs). Tags: lookback, fruit, dawn (afterwalk the morning after the
     walk round the edge), named, scoffer.

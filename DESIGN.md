@@ -13750,6 +13750,153 @@ passes to anyone, and nothing reads a family.
   statues, the faiths' saints seen, who took the damned to heart, each with its cap: `Tools/save_estimate.py`). Tested in
   `SaintsTests`.
 
+### Each god's own happenings, batch 1 (the player's go, 14 November 2026; released 0.237.0)
+
+The player, 14 November 2026: "each God's events and interactions and effects, etc., you know, feel unique to the god,
+not like every god's effect is kind of similar, but it's just a different name attached to it ... each of the gods should
+feel really unique in what it does and whether or how it interacts with the world, what the impact is, how these things
+play out on the map"; "gods effect should be noticeable"; "the "Each god its own" proposals sounds great too! go ahead
+with all of this". Round 4 of `docs/gods-next-proposals.md` (section C, each god's happenings), batch 1: Hollin, Smoulder,
+Bellwether, Morel, Ennu, Pip and Cirrus; batch 2 (Hush, Undertow, Helios, Selene, Murmur, Ducat, and Tamiu's more)
+follows. Each god does things no other god does, every one played out on the map: who goes where, what is seen and heard,
+what changes. Built with the lore never built before: Hollin speaking through her dryads, Smoulder's bargains in dreams
+and the bargain at the shaft, Morel's mourner at the graveyard.
+
+- **The frame** (`Gods/OnMap/OwnHappenings.cs`, `OwnHappeningsMath.cs`; one file a god beside them, `Own<God>.cs`):
+  - `OwnHappening`, 29 happenings, each named for its god (`HollinRoots` ...); `OwnHappeningsMath` has every rule, pure.
+  - The pace every one keeps (`PaceOf`: a gap from its last, about how often once free and called for, how long its chance
+    grows; `DayChance` through `GodPaceMath`): never within its gap, never without a reason (`GodPaceMath.Trigger`; a
+    condition nearly always true is none, so nothing fires just because it is free), a strong reason likelier, its god's
+    nearness only a little more often (`GodNearMath.WorldFactor`). The ones that answer something on the map (a rising, a
+    sign, a death, a switch flicked, a fight) come only with it, at their own chance and gap. The rare ones far apart: the
+    bargain 45 days, the wounded thrumbo 45, the mourner 30, the dryads 20, the old tree once a year.
+  - Saved in `OwnHappeningsBook` (a GameComponent): when each last came (one entry a happening), what is under way (one of
+    each at a time), the few children who touched the horn (`HornKept`, 8) and the sky's watches (`MaxWatches`, 8). Its
+    steps run on a due tick only while something is under way; no Sched slot of its own (the gods' day and hour,
+    `GodsOnMapBook.Daily`, `Hourly`).
+  - Words: a card says what was seen, its title naming the god only where the colony knows it was that god
+    (`OwnHappenings.Card`, `GodsOnMapWords.Title`; `CC_GodO_<what>_Text`, `_Title`, `_TitleNamed`); someone of the colony
+    says it in one sentence (`Rimfolk_Pool_GodOwnSaid`, `Speech.Say`); the colony's book keeps it in its witness's words
+    (`CC_GodO_Saw_*` through `GodsOnMapWords.Saw`, so `Gods.Remember` finds who else saw it: the seam a pawn's belief
+    hooks). "Someone finds it": whoever can see the place says so at once, else the nearest walks over to look
+    (`OwnHappenings.Found`).
+  - Hooks, never forks: Hollin's rising (`GodRising.Rise`), Smoulder's turning (`GodWaking.Turned`), a god's own sign
+    (`GodOmens.Seen`), the gods' anger and kindness (`GodHealth.Wrath`, `Bless`, `Shunned`), the white beast's stay
+    (`SacredAnimal`), the stranger's judgement (`GodGifts.Outcome`), a festival kept (`Festivals.Kept`); and five game
+    hooks, each off with the deeper hooks setting: a tree felled (`Plant.PlantCollected`), one of the game's events
+    (thrumbos passing), a work of art made (`CompArt.JustCreatedBy`), a switch flicked (`CompFlickable.DoFlick`), a turret
+    about to fire (`Building_TurretGun.TryStartShootSomething`).
+- **Hollin** (`OwnHollin.cs`):
+  - *The roots remember.* A season of many trees felled and few planted (the Mossborn's ledger, `MossLedger`: 15 felled
+    with under a third planted back, strongly 40 with hardly any): for three mornings a floor tile breaks in the room
+    nearest the last tree felled, roots and brambles up through it, dirt about it; the first morning a line in the news,
+    each morning someone finds it and says so.
+  - *The dryads' word* (her lore: she speaks through her dryads a word at a time). With an anima or gauranlen tree, its
+    dryads (any mod's: the game's own mark, so Vanilla Ideology Expanded - Dryads' too) and something real to point at:
+    every dryad stops and turns to one colonist out of doors, one walks up to them, and they say they heard one word,
+    "spare" (trees marked to be cut), "wait" (the next season's frost while fields grow), "plant" (a field left bare in the
+    growing season) or "burn" (blight), the card pointing at the thing; a different word than last time where there is
+    one. Never without something to point at.
+  - *The green walk.* Her rising (half her risings in the growing season, more the nearer she is) rises twice more along a
+    line across the land an hour apart; new grass and wild flowers spring up between, the wild beasts nearby walk after her,
+    and the last place is a mark on the land.
+  - *The old tree spared.* The colony's oldest tree near it, noted; still standing in spring after fifty days and twenty
+    trees felled round it, it has a ring of wild healroot at its foot, found and said.
+- **Smoulder** (`OwnSmoulder.cs`):
+  - *The bargain at the shaft* (his lore: bargains in dreams). A colony holding silver with someone sleeping or mining
+    under thick rock: a miner dreams of a warm, reasonable voice and tells it at breakfast (the dream book, the journal);
+    a card asks what to do (`Rimfolk_Evt_GodBargain`, every age's words): carry all of it down, carry half and keep the
+    rest, or keep the silver. Carried, the dreamer takes it from the stores to the deepest cell under the mountain
+    (`Shaft`) and sets it down; it sinks into the rock with heat, rubble and a warm floor. Days later a vein comes up in the
+    rock beside the shaft: gold worth more than was thrown for a bargain kept to the letter, steel with a skin of gold
+    worth no more than what went down for one bent (the tale of the chief and the gilded lead). Its card, and someone finds
+    it. The silver asked: a seventh of what is held (600 at least), 150 to 400.
+  - *His proper name.* An artist who holds him (or a colony that has heard of him) may name a new sculpture for Aurelian
+    the Ninth (its title, said aloud, the journal); the next day a seam of silver glints in the rock face nearest where
+    they worked.
+  - *The heat from below.* On the turn before stone may first fall in the deep working (`GodWaking`), its floor grows hot
+    for four hours: heat pushed up each half hour, the air shimmering, a line in the news, the miner says so.
+  - *The stretching dream.* The night after his winged shadow crossed the land at noon, every miner (Mining 6, or a
+    passion for it) wakes from the same dream of something enormous stretching under the mountain.
+  - *Silver kept from the deep.* A hoard of 2000 unpaid for sixty days (a gift taken at his place or a bargain kept pays
+    it), or a bargain bent: a miner wakes from a warm dream with a burn across the palm, at the shared harm budget's rate
+    (`HarmKinds.GodBurn`), on a card; with harm off or the budget spent, only the dream.
+- **Bellwether** (`OwnBellwether.cs`):
+  - *His road.* On his last evening he stops at the colony's edge at dusk and lowers his head toward its youngest; at
+    dawn he takes his road through the colony to the far edge. Walls or fences across it (a wild beast can't open a door):
+    he walks as far as he can and waits there, and those who see him wait are ashamed (-2) until someone opens a way (a
+    gate held open) and he passes; after ten hours he turns back the way he came.
+  - *The child who touched the horn.* Remembered from then on (the newest eight); within the hour before the weather turns
+    wet they stop, look up at the sky and say the rain (or snow) is coming, and it comes: the weather's own next turn,
+    rolled and held to as a forecast is (`WeatherDynamics.Foreseen`, with the forecast setting on), each child six days apart
+    at least.
+  - *A wounded thrumbo at the edge.* Where thrumbos can live and none was killed lately (strongly after he was let pass
+    in peace): a wild thrumbo, bitten and clawed, comes in and lies down at the colony's edge; a card asks whether to tend
+    it (`Rimfolk_Evt_GodHurtBeast`). Sent, the colony's best with animals walks out, kneels by it and tends its wounds as
+    well as their hands allow; it gets up and goes its way, and the strange peace settles on the colony. Left, it limps
+    off by the next day.
+  - *The last of something.* The night after thrumbos pass (the game's own event), someone dreams of a white beast
+    searching the world for the rest of its kind.
+- **Morel** (`OwnMorel.cs`):
+  - *The mourner at the graveyard* (her lore, never built before). In the days after a death of the colony's, at dusk a
+    figure of pale threads stands at the edge of the graves, still, all night (`GodSky`, `SkySign.Mourner`), with the
+    moment's weight (her own presence, spore-fall, after it); those who saw it share the memory. At dawn it is gone, and a
+    ring of mushrooms stands where it was: a mark on the land.
+  - *The ring, pointing.* A ring of mushrooms comes up overnight round something real: a person's body left lying a day,
+    the stores going rotten (white threads round it, indoors), else, only when she is drawn near, on open ground over a
+    small thing buried long ago, which whoever goes to look kneels and digs up (gold, jade, silver).
+  - *White threads before the freezer fails.* Her anger (the cooler's breakdown, `GodHealth`) is forewarned: white threads
+    across the floor of the room the cooler keeps cold, and the breakdown comes the next day, in the small hours.
+  - *Spores in the breath.* Someone walking through one of her rings (the mourner's, the pointing ring, her sign's) may
+    hear her for a moment, soft and too close (-1 for a day), once in sixty days each.
+- **Ennu** (`OwnEnnu.cs`):
+  - *The small test.* While the stranger at the gate stays, it asks one small thing, a different one each time where it
+    can: a story by the fire in the evening, the name of whoever cooked, to be shown the graves, a coat in the cold (only
+    what the colony can answer). Someone of the colony answers it on the map: the best talker walks over to the fire and
+    tells a story, the cook goes and says their name, someone walks it out to the graves, someone carries a coat from the
+    stores and it puts it on. It thanks them by name, and it counts toward the welcome it judges (`StrangerStay.Credit`,
+    a kindness).
+  - *Tales by the fire.* In the evenings of its stay it sits by the colony's fire and tells a piece of another god's story
+    to whoever sits near (`GodTales.Tell`, at our fire), two at most a stay: it carries news between the gods.
+  - *The bowl set out.* On the Open Door night (its festival kept) and now and then in the ten days after a kind welcome,
+    the cook carries a meal to the table at dusk and leaves it; by morning it is empty, a smear of chalk on the table, and
+    the words "Thank you, (the cook)" read aloud by whoever finds it and on its card.
+  - *The kindest carries something.* For fifteen days after the Guest judged a welcome kind, a visitor on the land seeks
+    out its kindest and tells them the road's news.
+- **Pip** (`OwnPip.cs`; a colony with no machines never meets it):
+  - *The machine that would not stop.* Switched off, a machine (where Pip is known) may keep running an hour with a shudder
+    of sparks, and stop on its own.
+  - *Its message to the stars.* For a reason (the comms console used lately, Pip drawn near, an old terminal on the land:
+    Ideology's and Vanilla Furniture Expanded - Props and Decor's), the console comes on by itself in the small hours, and
+    an old terminal hums back; in the morning a half-written message to the stars is on its screen, the screen still lit,
+    its words on a card and read aloud by whoever comes to it.
+  - *The turret that held fire.* In a fight a turret of the colony's holds its fire a breath as a colonist crosses its
+    line, and the colonist says so (+3), six days apart at least.
+  - *Sulking, with a warning.* The day before its short circuit (its anger, the game's own) the colony's lights flicker
+    slow and sad for hours.
+  - *Mended overnight, shown.* Its kindness's mended machine winks its light as it comes back.
+- **Cirrus** (`OwnCirrus.cs`; no body, all of it out of the sky):
+  - *The star at the door.* Its kindness, the game's own meteorite, comes only to a colony that watches the sky (someone
+    at a telescope or lying out skygazing, the game's or Vanilla Social Interactions Expanded's, twice in ten days, or its
+    festival kept in fifteen), and the one who watched says they saw it fall.
+  - *The wrong-way star.* Whoever saw its sign dreams that night of something falling, and says which way; the next day
+    cargo pods (the game's own) come down just there.
+  - *The aurora on the coldest night.* A night colder than any for ten days and below -5, someone out of doors: the sky may
+    fill with light (the game's aurora) for five hours.
+  - *Dry thunder.* After six dry days with nothing of the sky's for twenty: thunder and lightning roll over the far hills
+    for a couple of hours, the sky clear, no rain, never on the colony.
+- **Harm, the ages, the mods.** The only hurt is Smoulder's burn, through the shared budget and on a card; the wounded
+  thrumbo's wounds are the wild's. Every age: what each needs is the colony's own (a floor or bare ground, a cooler, a
+  console, a turret, a coat of its age from its stores, a fire or a hearth), so a tribal colony's Pip does nothing and its
+  bargain's card speaks of the deep places; both cards have every age's words. The player's mods softly: any mod's dryads
+  by the game's mark, Vanilla Furniture Expanded - Props and Decor's terminal by name, Vanilla Social Interactions
+  Expanded's skygazing, A RimWorld of Magic's motes by name (green, blue and gray twinkles, heat, psionic current) with
+  Rimfolk's own light where it isn't loaded.
+- Dev mode: one action a happening, "Gods: <god>'s <happening> now" (and a few second steps: the vein, the mourner gone, the
+  bowl found), and "Gods: each god's own happenings (log)".
+- Tested in `OwnHappeningsTests` (the pace of each, every rule, the cards, the words, the lines, the seams, the save).
+  Not seen in a real game: see the handoff's entry.
+
 ### Each god's own happenings, the second seven (the player's go, 14 November 2026; round 4, batch 2; not released)
 
 The player: "each God's events and interactions and effects, etc., you know, feel unique to the god, not like every god's
@@ -13760,14 +13907,20 @@ second batch: Hush, Undertow, Helios, Selene, Murmur, Ducat, and two more for Ta
 Twenty-two happenings, each unlike any other god's, each played out on the map, each with its own card or news line and
 its line in the colony's book; none hurts anyone.
 
-- **The pace** (`Gods/Happenings/OwnHappeningsMath.cs`, pure, `PaceOf`, `Chance`): each happening its own gap, its chance
-  small at the end of the gap and growing over a long ramp (`GodPaceMath.DayChance`), weighed by its reason
-  (`GodPaceMath.Trigger`: none means never, however free) and its god's nearness (`NearFactor`, 0.6 to 1.4), looked at once
-  an hour, never above a third at a look. Five follow something else and have no chance of their own: the beasts keeping
-  away (a bargain), the look back (an eclipse), the first fruit (Helios's feast), the morning card (the moon's return), the
-  trail of coins (silver gone from a hoard). The rare ones far apart: the walk round the edge and the sun's return once a
+- **In the first seven's frame** (the section above): the twenty-two are entries of the same `OwnHappening` list (after
+  batch 1's, so a save's list of when each last came keeps its order; Tamiu's by her key, `MogThreshold`, `MogLostDead`),
+  with their pace in the same `OwnHappeningsMath.PaceOf`, their saved state in the same `OwnHappeningsBook` (a part of it,
+  `OwnSeven.cs`: one small record a god and the ruins' rooms heard), their hour and steps called from the frame's
+  (`OwnHappenings.Seven`, `SevenSteps`), their feasts from its `FestivalKept`, and the frame's `Came`, `Due`, `Acts`,
+  `Saw`, `Stand`, `GoTo`. Their own rules are a part of the same pure class (`Gods/OnMap/OwnSevenMath.cs`).
+- **The pace** (`PaceOf`, `DayChance`): each happening its own gap, its chance small at the end of the gap and growing over
+  a long ramp (`GodPaceMath.DayChance`), weighed by its reason (`GodPaceMath.Trigger`: none means never, however free)
+  and its god's nearness (`GodNearMath.WorldFactor`), looked at once an hour (`OwnHappenings.Calls`), only where its god
+  acts at the home (`Acts`). Six follow something else and have no chance of their own: the beasts keeping away (a
+  bargain), the hollow ear (a room of ruins, at its own chance), the look back (an eclipse), the first fruit (Helios's
+  feast), the morning card (the moon's return), the trail of coins (silver gone from a hoard). The rare ones far apart: the walk round the edge and the sun's return once a
   winter (40 days), the frogs once in 25 days at the soonest.
-- **Hush, the Long White** (`Gods/Happenings/Hush.cs`):
+- **Hush, the Long White** (`Gods/OnMap/OwnHush.cs`):
   - *The word in the frost* (gap 12 days; first light, frost outdoors): a word written in rime beside the colony's outer
     door (on a window where a mod adds one, Open The Windows' by name), pointing at something real (`Word`): WARM for
     someone with hypothermia or sleeping in a bedroom under 8 degrees, BREAD for fewer than four days of food, WOOD for a
@@ -13790,8 +13943,8 @@ its line in the colony's book; none hurts anyone.
     to waste): at dusk rime lies on the new grave and nowhere else, the music falls silent, and Hush's own white silence
     comes down in its hard form (its presence, round 2). Two to four days later the frost melts and a ring of mushrooms
     stands round the grave (Glowstool, Agarilux, Bryolux): the soft mother taking back what the cold kept whole, in both
-    gods' chapters.
-- **Undertow, the Hunger** (`Gods/Happenings/Undertow.cs`), never named on any card or line:
+    gods' chapters, and one of her rings for batch 1's "Morel's breath" (`OwnMorel.Remember`).
+- **Undertow, the Hunger** (`Gods/OnMap/OwnUndertow.cs`), never named on any card or line:
   - *The others turn away*: after a bargain (`GodVoid`, read from the world book's newest "take"), for eight days every
     beast that comes within five cells of the one who said yes (the colony's, the wild ones, the dryads, the cats) gets
     up and walks ten cells off, unhurried; someone who saw it says so once a day, and the first time a card.
@@ -13805,7 +13958,7 @@ its line in the colony's book; none hurts anyone.
   - *The hollow ear* (gap 12): someone of the colony standing for the first time in a room of old ruins (indoors, 600
     cells at most, holding a thing of the ancients not the colony's; thirty rooms remembered) stops with a hand to one ear,
     one time in three: a hollow ear for ten days (`Rimfolk_HollowEar`, psychic sensitivity +15 percent) and a card.
-- **Helios, the Giver** (`Gods/Happenings/Helios.cs`):
+- **Helios, the Giver** (`Gods/OnMap/OwnHelios.cs`):
   - *He looks back*: the day after an eclipse (the game's, Alpha Animals', Rimfolk's), from ten o'clock, his long noon in
     its hard form (eight degrees warmer, the light held white); everyone out of doors stops and shades their eyes, heat
     shimmer about them, someone says so; the card ("A white noon") is named where the colony has learned the eclipse as
@@ -13816,7 +13969,7 @@ its line in the colony's book; none hurts anyone.
     sun together and the news says there was none.
   - *The sun comes back* (gap 40; the morning after the longest night, or after Hush's walk): up to twelve of those up walk
     out to the east side of the colony and stand facing the sunrise, gold light lying on them; "the sun came back" (+3).
-- **Selene, the Mirror** (`Gods/Happenings/Selene.cs`):
+- **Selene, the Mirror** (`Gods/OnMap/OwnSelene.cs`):
   - *What came back, told plainly*: the morning after the moon returned someone's deed (`GodReturn`, read from the gods'
     short memory), once they are up, they walk to what was found or look at what changed, say it in one sentence, and a
     card says what was found and by whose bed (the newest thing there), a dream, a wound closed, frost about where they
@@ -13830,7 +13983,7 @@ its line in the colony's book; none hurts anyone.
   - *The dark face kept* (gap 14; a night with no moon): a night owl (else one who holds her, else whoever is up and free)
     goes and stands outside the colony's door facing out until three o'clock, says why, and "kept the dark face" (+2);
     while they stand, the dark that drifts does not come.
-- **Murmur, Old Croak** (`Gods/Happenings/Murmur.cs`):
+- **Murmur, Old Croak** (`Gods/OnMap/OwnMurmur.cs`):
   - *Sung back to* (his feast, the Singing at the Wells, or gap 12 in a dry spell of six days, strongly in a drought or
     ten, with two of the colony who hold him): at dusk up to eight walk to the well (Dubs Bad Hygiene's, any well of the
     colony's) or the still water or marsh and stand round it singing, the game's music notes over them; "sang at the water"
@@ -13844,7 +13997,7 @@ its line in the colony's book; none hurts anyone.
     walks down and finds it, a gift of the god they take it for (`PawnGods.Gift`), and a card.
   - *The frogs come in* (gap 25; the evening the rain breaks eight dry days): six to sixteen of Odyssey's bullfrogs up out
     of the wet ground all over the colony, croaking, gone off the land at first light; without Odyssey, only their croaking.
-- **Ducat, the Restless Gold** (`Gods/Happenings/Ducat.cs`):
+- **Ducat, the Restless Gold** (`Gods/OnMap/OwnDucat.cs`):
   - *The trail of coins*: its anger at a hoard (`GodHealth.Missing`, as before) now leaves the way it went: of the silver
     taken, up to 18 lie as single coins every three cells from the store out through the outer door to the nearest edge
     of the land, the last ones gone over it; in daylight the first one free walks to the first coin and looks along the
@@ -13856,7 +14009,7 @@ its line in the colony's book; none hurts anyone.
   - *The beetle that leads* (gap 15; traders or visitors on the land strongly, a hoard of 1000 ordinarily): a golden beetle
     walks off a table and across the floor (`GodSky.Crawl`) to where a gold coin lies that nobody dropped, 5 to 12 cells
     off; whoever saw it follows and finds the coin.
-- **Tamiu, the Keeper of the Threshold** (`Gods/Happenings/Tamiu.cs`; `MogsWays` keeps her stay, riddle, keepers and
+- **Tamiu, the Keeper of the Threshold** (`Gods/OnMap/OwnTamiu.cs`; `MogsWays` keeps her stay, riddle, keepers and
   wrapped dead):
   - *The cat at the threshold* (gap 6; one of the colony bleeding out within hours or a sickness all but won): a cat of the
     colony's (else a stray in from the edge) comes and stays beside them, never pulled from its own food or sleep; someone
@@ -13878,11 +14031,12 @@ its line in the colony's book; none hurts anyone.
 - **Words match the map:** each card says only what happened there (the cold coming down only where Hush's presence began,
   the walk all the way round only where it went all the way, the lamps burning low only where some did, the first fruit
   eaten only by those who ate).
-- **Where it plugs in** (one line each in shared files): `GodsOnMapBook.Hourly` (`OwnHappenings.Hourly`),
-  `Festivals.Kept` (`OwnHappenings.FestivalKept`), `GodHealth.Missing` (`DucatWays.Trail`). Saved in
-  `OwnHappeningsBook` (a GameComponent: when each last came, the ruins' rooms heard, each god's happening under way;
-  `Tools/save_estimate.py` models the lists); short steps on its own due tick, no Sched slot. Twenty-four dev actions
-  "Gods: <god>'s ... now". Tests: `Tools/Tests/OwnHappeningsTests.cs`. The twelve moods in `Tools/Balance/Rates.cs`.
+- **Where it plugs in:** the frame's hour, steps and feasts (`OwnHappenings.Hourly`, `Step`, `FestivalKept`: one line
+  each), `GodHealth.Missing` (`OwnDucat.Trail`: one line). Saved in the frame's `OwnHappeningsBook` (its `last`, one
+  entry a happening of both batches, and `ExposeSeven`: each god's record and the ruins' rooms; `Tools/save_estimate.py`
+  models them); short steps on the frame's due tick, no Sched slot. Twenty-four dev actions "Gods: <god>'s ... now"
+  (`Gods/OwnSevenDebug.cs`, out of the map's code as batch 1's are). Tests: `Tools/Tests/OwnHappeningsSevenTests.cs` (and batch 1's
+  `OwnHappeningsTests`, widened to both). The twelve moods in `Tools/Balance/Rates.cs`.
 
 ### Four small asks (the player's request, 12 November 2026; released 0.222.0)
 

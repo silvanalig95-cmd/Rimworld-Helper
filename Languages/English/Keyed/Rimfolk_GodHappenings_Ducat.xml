@@ -2,7 +2,7 @@
 <LanguageData>
 
   <!--
-    Ducat's own happenings (Source/ColonyCouncil/Gods/Happenings/Ducat.cs). The lines say only what was seen; the god is
+    Ducat's own happenings (Source/ColonyCouncil/Gods/OnMap/OwnDucat.cs). The lines say only what was seen; the god is
     never named in them. The CC_GodDucat_Saw_ and _Book_ lines are what the colony's book keeps.
   -->
 

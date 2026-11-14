@@ -4,110 +4,13 @@ using System.Collections.Generic;
 namespace ColonyCouncil
 {
     /// <summary>
-    /// Each god's own happenings, the second seven (round 4 of docs/gods-next-proposals.md, section C: Hush, Undertow,
-    /// Helios, Selene, Murmur, Ducat, and two more for Tamiu): the pure rules, with no game types, so Tools/Tests reads the
-    /// same numbers the game uses. Every happening keeps the gods' pace (GodPaceMath): its own gap, a chance that starts
-    /// small and grows over a long window once the gap is past, nothing at all without a reason in the world (a condition
-    /// that is nearly always true is none), and a near god a little likelier (GodNear). None of them hurts anyone.
+    /// Each god's own happenings, the second seven (round 4, batch 2 of docs/gods-next-proposals.md, section C: Hush,
+    /// Undertow, Helios, Selene, Murmur, Ducat, and two more for Tamiu): their own rules, beside the first seven's in the
+    /// same pure class (OwnHappeningsMath: the happenings, their pace, PaceOf), with no game types so Tools/Tests reads
+    /// the same numbers the game uses. What calls each, and how it plays out; none of them hurts anyone.
     /// </summary>
-    public static class OwnHappeningsMath
+    public static partial class OwnHappeningsMath
     {
-        // ================= The pace =================
-
-        /// <summary>How each happening is spaced: never within its gap (days), about every mean days with a reason once free, its chance ramped up over ramp days.</summary>
-        public struct Pace
-        {
-            public float gap, mean, ramp;
-
-            public Pace(float gap, float mean, float ramp)
-            {
-                this.gap = gap;
-                this.mean = mean;
-                this.ramp = ramp;
-            }
-        }
-
-        public const string HushWindow = "hush.window", HushVigil = "hush.vigil", HushWalk = "hush.walk", HushGrave = "hush.grave";
-        public const string UndertowShun = "undertow.shun", UndertowDrift = "undertow.drift", UndertowEar = "undertow.ear";
-        public const string HeliosLookBack = "helios.lookback", HeliosFruit = "helios.fruit", HeliosDawn = "helios.dawn";
-        public const string SeleneMorning = "selene.morning", SeleneWater = "selene.water", SeleneWatch = "selene.watch", SeleneDarkFace = "selene.darkface";
-        public const string MurmurSong = "murmur.song", MurmurGiveBack = "murmur.giveback", MurmurFrogs = "murmur.frogs";
-        public const string DucatTrail = "ducat.trail", DucatPurse = "ducat.purse", DucatBeetle = "ducat.beetle";
-        public const string TamiuThreshold = "mog.threshold", TamiuLostDead = "mog.lostdead";
-
-        /// <summary>Every happening of the seven, in the order they are told.</summary>
-        public static readonly string[] All =
-        {
-            HushWindow, HushVigil, HushWalk, HushGrave,
-            UndertowShun, UndertowDrift, UndertowEar,
-            HeliosLookBack, HeliosFruit, HeliosDawn,
-            SeleneMorning, SeleneWater, SeleneWatch, SeleneDarkFace,
-            MurmurSong, MurmurGiveBack, MurmurFrogs,
-            DucatTrail, DucatPurse, DucatBeetle,
-            TamiuThreshold, TamiuLostDead
-        };
-
-        /// <summary>
-        /// Each happening's spacing. The rare ones far apart (the frost walk and the sun's return once a winter, the frogs once
-        /// in a long while); the ones a hard moment calls for (a vigil in a cold snap, the cat at a deathbed, the dark to the
-        /// desperate) sooner once their moment comes; those that follow something else (the morning card after the moon's
-        /// return, the look back after an eclipse, the trail after silver gone) at that thing's own pace.
-        /// </summary>
-        public static Pace PaceOf(string key)
-        {
-            switch (key)
-            {
-                case HushWindow: return new Pace(12f, 14f, 20f);
-                case HushVigil: return new Pace(15f, 2f, 6f);
-                case HushWalk: return new Pace(40f, 3f, 10f);
-                case HushGrave: return new Pace(20f, 1.5f, 4f);
-                case UndertowShun: return new Pace(0f, 0f, 0f);
-                case UndertowDrift: return new Pace(10f, 3f, 8f);
-                case UndertowEar: return new Pace(12f, 2f, 6f);
-                case HeliosLookBack: return new Pace(0f, 0f, 0f);
-                case HeliosFruit: return new Pace(0f, 0f, 0f);
-                case HeliosDawn: return new Pace(40f, 1.5f, 4f);
-                case SeleneMorning: return new Pace(0f, 0f, 0f);
-                case SeleneWater: return new Pace(14f, 2f, 15f);
-                case SeleneWatch: return new Pace(6f, 4f, 8f);
-                case SeleneDarkFace: return new Pace(14f, 2f, 15f);
-                case MurmurSong: return new Pace(12f, 2f, 6f);
-                case MurmurGiveBack: return new Pace(20f, 4f, 10f);
-                case MurmurFrogs: return new Pace(25f, 1.5f, 10f);
-                case DucatTrail: return new Pace(0f, 0f, 0f);
-                case DucatPurse: return new Pace(15f, 5f, 10f);
-                case DucatBeetle: return new Pace(15f, 12f, 15f);
-                case TamiuThreshold: return new Pace(6f, 0.5f, 3f);
-                case TamiuLostDead: return new Pace(5f, 1f, 3f);
-                default: return new Pace(30f, 30f, 30f);
-            }
-        }
-
-        /// <summary>A happening that only ever follows something else (an eclipse, the moon's return, a festival, silver gone, a bargain): it has no chance of its own.</summary>
-        public static bool Follows(string key)
-        {
-            var p = PaceOf(key);
-            return p.mean <= 0f;
-        }
-
-        /// <summary>How much more likely a god drawn near makes its happening: 0.6 at nothing, 1.4 as near as a god comes.</summary>
-        public static float NearFactor(float near) => 0.6f + 0.8f * Clamp01(near);
-
-        /// <summary>
-        /// The chance a happening comes at one look (one of <paramref name="checks"/> a day): none within its gap or without a
-        /// reason, small at the end of its gap and growing over its ramp (GodPaceMath.DayChance), more for a strong reason
-        /// and a near god. Never above one in three at a look.
-        /// </summary>
-        public static float Chance(string key, float daysSince, GodPaceMath.Trigger t, float near, float checks)
-        {
-            if (Follows(key) || t == GodPaceMath.Trigger.None) return 0f;
-            var p = PaceOf(key);
-            float day = GodPaceMath.DayChance(daysSince, p.gap, p.mean, p.ramp) * GodPaceMath.Weight(t) * NearFactor(near);
-            return Math.Min(MaxLook, GodPaceMath.PerCheck(Math.Min(0.95f, day), checks));
-        }
-
-        public const float MaxLook = 0.34f;
-
         // ================= Hush =================
 
         /// <summary>The word on the door in the frost: what it points at, the strongest first.</summary>
@@ -131,7 +34,7 @@ namespace ColonyCouncil
         public const float WastingShare = 0.75f;
 
         /// <summary>The word only comes in frost: an outdoor temperature at or below this.</summary>
-        public const float FrostBelow = 2f;
+        public const float WordFrostBelow = 2f;
 
         /// <summary>A colonist eats about this much a day, for the days of food.</summary>
         public const float NutritionADay = 1.6f;
@@ -141,7 +44,7 @@ namespace ColonyCouncil
         /// <summary>The word the frost writes, by what is wrong (someone cold first, then food, wood, waste), and how strongly it calls; none in a thaw or with nothing wrong.</summary>
         public static (FrostWord word, GodPaceMath.Trigger trigger) Word(float outdoorTemp, bool hypothermia, bool coldRoom, float foodDays, bool burnsWood, float wood, bool rotting)
         {
-            if (float.IsNaN(outdoorTemp) || outdoorTemp > FrostBelow) return (FrostWord.None, GodPaceMath.Trigger.None);
+            if (float.IsNaN(outdoorTemp) || outdoorTemp > WordFrostBelow) return (FrostWord.None, GodPaceMath.Trigger.None);
             if (hypothermia) return (FrostWord.Warm, GodPaceMath.Trigger.Strong);
             if (foodDays < FoodVeryShortDays) return (FrostWord.Bread, GodPaceMath.Trigger.Strong);
             if (coldRoom) return (FrostWord.Warm, GodPaceMath.Trigger.Ordinary);
@@ -176,27 +79,27 @@ namespace ColonyCouncil
         public static bool LongestNight(bool winter, int dayOfSeason) => winter && dayOfSeason >= LongestFrom && dayOfSeason <= LongestTo;
 
         /// <summary>The walk comes on the longest night, or else on a night past this cold.</summary>
-        public const float WalkCold = -18f;
+        public const float RingCold = -18f;
 
-        public static GodPaceMath.Trigger WalkTrigger(bool longest, float outdoorTemp) =>
-            longest ? GodPaceMath.Trigger.Strong : !float.IsNaN(outdoorTemp) && outdoorTemp <= WalkCold ? GodPaceMath.Trigger.Ordinary : GodPaceMath.Trigger.None;
+        public static GodPaceMath.Trigger RingTrigger(bool longest, float outdoorTemp) =>
+            longest ? GodPaceMath.Trigger.Strong : !float.IsNaN(outdoorTemp) && outdoorTemp <= RingCold ? GodPaceMath.Trigger.Ordinary : GodPaceMath.Trigger.None;
 
         /// <summary>The walk begins in these hours of the night (from 22 to before 2, over midnight).</summary>
-        public static bool WalkHour(int hour) => hour >= 22 || hour < 2;
+        public static bool RingHour(int hour) => hour >= 22 || hour < 2;
 
         /// <summary>How far out from the colony's middle the figure walks: past its farthest building, kept within these.</summary>
-        public const int WalkPast = 7, WalkMin = 12, WalkMax = 45;
+        public const int RingPast = 7, RingMin = 12, RingMax = 45;
 
-        public static int WalkRadius(float farthest) => (int)Math.Max(WalkMin, Math.Min(WalkMax, Math.Round((float.IsNaN(farthest) ? 0f : farthest) + WalkPast)));
+        public static int RingRadius(float farthest) => (int)Math.Max(RingMin, Math.Min(RingMax, Math.Round((float.IsNaN(farthest) ? 0f : farthest) + RingPast)));
 
         /// <summary>One step of the walk: this many cells along the ring, every this many ticks; it moves this many steps on when anyone comes within reach.</summary>
-        public const int WalkStepCells = 4, WalkStepTicks = 300, WalkFlee = 3;
+        public const int RingStepCells = 4, RingStepTicks = 300, RingFlee = 3;
 
         /// <summary>Anyone this close and it moves on: twenty steps.</summary>
-        public const float WalkReach = 20f;
+        public const float RingReach = 20f;
 
         /// <summary>How many steps go all the way round a ring of this radius.</summary>
-        public static int WalkSteps(int radius) => Math.Max(8, (int)Math.Ceiling(2.0 * Math.PI * Math.Max(1, radius) / WalkStepCells));
+        public static int RingSteps(int radius) => Math.Max(8, (int)Math.Ceiling(2.0 * Math.PI * Math.Max(1, radius) / RingStepCells));
 
         /// <summary>The frost on a grave: a death this recent, in lean months (winter or food short), with food left to rot.</summary>
         public const float GraveWithinDays = 2f;
@@ -275,7 +178,7 @@ namespace ColonyCouncil
         public const int FruitFrom = 11, FruitTo = 15, FruitMost = 10;
 
         /// <summary>The sun's return after the longest night: at first light, these hours; this many people at most.</summary>
-        public const int DawnFrom = 6, DawnTo = 9, DawnMost = 12;
+        public const int SunBackFrom = 6, SunBackTo = 9, SunBackMost = 12;
 
         /// <summary>The morning after the longest night calls it strongly, and the morning after the frost walk the more.</summary>
         public static GodPaceMath.Trigger DawnTrigger(bool afterLongest, bool afterWalk) =>
@@ -284,7 +187,7 @@ namespace ColonyCouncil
         // ================= Selene =================
 
         /// <summary>What came back by night is told on a card in the morning, from this hour to before that one.</summary>
-        public const int MorningFrom = 6, MorningTo = 12;
+        public const int ReturnMorningFrom = 6, ReturnMorningTo = 12;
 
         /// <summary>Her face in still water: at the full moon, in these hours (from 22 to before 3, over midnight).</summary>
         public static bool WaterHour(int hour) => hour >= 22 || hour < 3;
@@ -391,7 +294,5 @@ namespace ColonyCouncil
 
         /// <summary>A happening that is walked to waits for its walker this long before it is given up.</summary>
         public const int WalkWaitTicks = 2500;
-
-        private static float Clamp01(float v) => float.IsNaN(v) ? 0f : Math.Max(0f, Math.Min(1f, v));
     }
 }

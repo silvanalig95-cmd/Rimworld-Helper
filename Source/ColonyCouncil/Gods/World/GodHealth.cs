@@ -104,6 +104,7 @@ namespace ColonyCouncil
         /// <summary>Bellwether's kin killed: word on the roads, every people near thinks the less of the colony, every god it knows turns colder.</summary>
         private static void Shunned(God g, Map map, Pawn victim, Pawn killer)
         {
+            OwnBellwether.KinKilled();
             foreach (var f in Find.FactionManager.AllFactionsListForReading.Where(Arrivals.Usable).ToList()) StoryChains.Goodwill(f, GodWorldMath.ShunnedGoodwill);
             string why = GodWorld.T("CC_GW_Shunned_Why", g, killer.Named("KILLER"), victim.def.label.Named("BEAST"));
             foreach (var x in GodWorld.Known.Where(x => x != g).ToList()) Gods.AddFavour(x, map, GodWorldMath.ShunnedFavour, why, FavourSource.Sacrilege);
@@ -235,6 +236,8 @@ namespace ColonyCouncil
         /// <summary>One act of a god's anger at a home in the shape given; false when it couldn't be (no crops, no machine, no storm).</summary>
         internal static bool Wrath(God g, Map map, GodWrath wrath)
         {
+            // A god's own warning the day before (Morel's white threads, Pip's slow lights: Gods/OnMap/OwnHappenings.cs).
+            if (OwnHappenings.Forewarn(g, map, wrath)) return true;
             switch (wrath)
             {
                 case GodWrath.Blight: return Incident(g, map, "CropBlight", "blight");
@@ -316,7 +319,7 @@ namespace ColonyCouncil
                 left -= n;
                 if (left <= 0) break;
             }
-            DucatWays.Trail(g, map, at, take - left);
+            OwnDucat.Trail(g, map, at, take - left);
             return Told(g, map, at, "missing", PresenceKind.Wrath, (take - left).Named("COUNT"));
         }
 
@@ -406,9 +409,12 @@ namespace ColonyCouncil
                     return at.IsValid && Told(g, map, at, "ore", ore.Named("ORE"));
                 case GodBlessing.Mend:
                     var mended = Mend(map, out bool repaired);
+                    // Shown as it comes back: its light winks (Gods/OnMap/OwnPip.cs).
+                    OwnPip.Wink(mended);
                     return mended != null && Told(g, map, mended.Position, repaired ? "mend" : "battery", mended.LabelNoCount.Named("THING"));
                 case GodBlessing.Meteor:
-                    return Incident(g, map, "MeteoriteImpact", "meteor");
+                    // The star at the door comes only to a colony that watches the sky, and the one who watched saw it fall (Gods/OnMap/OwnCirrus.cs).
+                    return OwnCirrus.Watches(map) && Incident(g, map, "MeteoriteImpact", "meteor") && OwnCirrus.StarFell(g, map);
                 case GodBlessing.Thaw:
                     var cold = map.gameConditionManager.GetActiveCondition(GameConditionDefOf.ColdSnap);
                     if (cold == null || cold.Permanent) return false;

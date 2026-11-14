@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using LudeonTK;
 using RimWorld;
 using UnityEngine;
 using Verse;
@@ -78,7 +77,7 @@ namespace ColonyCouncil
     /// a while.</item>
     /// </list>
     /// </summary>
-    public static class HeliosWays
+    public static class OwnHelios
     {
         public const string Key = "Helios";
         public const string Pool = "Rimfolk_Pool_GodHelios_Say";
@@ -105,13 +104,13 @@ namespace ColonyCouncil
                 s.lookedBack = false;
             }
             else if (s.eclipseMap == map && !s.lookedBack && OwnHappeningsMath.LookBackDue(s.eclipseDay, today) && hour >= OwnHappeningsMath.LookBackFrom
-                     && hour < OwnHappeningsMath.LookBackTo && !OwnHappenings.Raining(map))
+                     && hour < OwnHappeningsMath.LookBackTo && !OwnHappenings.Raining(map) && OwnHappenings.Acts(g, map))
                 LookBack(b, g, map);
             if (s.fruitMap == map && !s.fruitBegun && s.fruitDay == today && hour >= OwnHappeningsMath.FruitFrom && hour < OwnHappeningsMath.FruitTo
                 && map.skyManager.CurSkyGlow > 0.6f && !OwnHappenings.Raining(map) && !MapFacts.ThreatOn(map))
                 BeginFruit(b, map);
             if (s.fruitMap != null && !s.fruitBegun && s.fruitDay < today) s.fruitMap = null;
-            if (hour >= OwnHappeningsMath.DawnFrom && hour < OwnHappeningsMath.DawnTo && s.dawnUntil < 0 && !MapFacts.ThreatOn(map)) Dawn(b, g, map, now);
+            if (hour >= OwnHappeningsMath.SunBackFrom && hour < OwnHappeningsMath.SunBackTo && s.dawnUntil < 0 && !MapFacts.ThreatOn(map)) Dawn(b, g, map, now);
         }
 
         internal static void Step(OwnHappeningsBook b, int now)
@@ -144,12 +143,12 @@ namespace ColonyCouncil
                     FleckMaker.ThrowHeatGlow(c, map, Rand.Range(0.8f, 1.3f));
             }
             var speaker = outside.RandomElementWithFallback();
-            if (speaker != null) OwnHappenings.Say(speaker, Pool, g, "lookback");
+            if (speaker != null) OwnHappenings.SayFrom(speaker, Pool, g, "lookback");
             string text = "CC_GodHelios_LookBack_Text".Translate(Homes.Name(map).Named("HOME")).Resolve();
             var at = speaker?.Position ?? OwnHappenings.Middle(map);
-            OwnHappenings.CardBy(g, map, "Eclipse", "CC_GodHelios_LookBack_Title", "CC_GodHelios_LookBack_TitleNamed", text, new LookTargets(new TargetInfo(at, map)), LetterDefOf.NeutralEvent);
+            OwnHappenings.CardOf(g, map, "Eclipse", "CC_GodHelios_LookBack_Title", "CC_GodHelios_LookBack_TitleNamed", text, new LookTargets(new TargetInfo(at, map)), LetterDefOf.NeutralEvent);
             if (g != null) OwnHappenings.Saw(g, map, at, GodActKind.Act, speaker, "CC_GodHelios_Saw_LookBack");
-            OwnHappenings.Came(OwnHappenings.Book, OwnHappeningsMath.HeliosLookBack);
+            OwnHappenings.Came(OwnHappenings.Book, OwnHappening.HeliosLookBack, OwnHappenings.Now);
             return true;
         }
 
@@ -214,14 +213,14 @@ namespace ColonyCouncil
                         go.expiryInterval = GenDate.TicksPerHour * 2;
                         p.jobs.jobQueue.EnqueueLast(go);
                     }
-                    else OwnHappenings.Walk(p, to, GenDate.TicksPerHour * 2);
+                    else OwnHappenings.GoTo(p, to, GenDate.TicksPerHour * 2);
                 }
                 catch (Exception e)
                 {
                     CouncilLog.ErrorOnce("gods: out to the fields for the first fruit", e);
                 }
             }
-            OwnHappenings.Came(b, OwnHappeningsMath.HeliosFruit);
+            OwnHappenings.Came(b, OwnHappening.HeliosFruit, OwnHappenings.Now);
             b.Due(Now + 250);
             return true;
         }
@@ -246,7 +245,7 @@ namespace ColonyCouncil
                 if (Eat(p, map)) s.fruitEaten++;
                 OwnHappenings.Memory(p, FruitThought);
                 OwnHappenings.Glow(map, p.Position, Gold, 4, 0.8f, 0.35f);
-                if (first) OwnHappenings.Say(p, Pool, g, "fruit");
+                if (first) OwnHappenings.SayFrom(p, Pool, g, "fruit");
             }
             if (now > s.fruitUntil)
             {
@@ -303,8 +302,8 @@ namespace ColonyCouncil
             var se = GenLocalDate.Season(map);
             bool winter = se == Season.Winter || se == Season.PermanentWinter;
             bool afterLongest = OwnHappeningsMath.LongestNight(winter, GenLocalDate.DayOfSeason(map) - 1);
-            var t = OwnHappeningsMath.DawnTrigger(afterLongest, HushWays.WalkedLastNight(map));
-            if (map.skyManager.CurSkyGlow < 0.25f || !OwnHappenings.Roll(b, OwnHappeningsMath.HeliosDawn, t, g, map, now)) return;
+            var t = OwnHappeningsMath.DawnTrigger(afterLongest, OwnHush.WalkedLastNight(map));
+            if (map.skyManager.CurSkyGlow < 0.25f || !OwnHappenings.Calls(b, OwnHappening.HeliosDawn, t, g, map, now)) return;
             BeginDawn(b, map);
         }
 
@@ -330,12 +329,12 @@ namespace ColonyCouncil
             s.dawnUntil = Now + GenDate.TicksPerHour * 2;
             s.dawnSaw = null;
             s.dawnSent = null;
-            foreach (var p in map.mapPawns.FreeColonistsSpawned.Where(OwnHappenings.Free).Take(OwnHappeningsMath.DawnMost).ToList())
+            foreach (var p in map.mapPawns.FreeColonistsSpawned.Where(OwnHappenings.Free).Take(OwnHappeningsMath.SunBackMost).ToList())
             {
                 var to = CellFinder.RandomClosewalkCellNear(spot, map, 4, c => c.Standable(map) && !c.Roofed(map));
-                if (to.IsValid && OwnHappenings.Walk(p, to, GenDate.TicksPerHour * 2)) s.dawnSent = HeliosState.With(s.dawnSent, p);
+                if (to.IsValid && OwnHappenings.GoTo(p, to, GenDate.TicksPerHour * 2)) s.dawnSent = HeliosState.With(s.dawnSent, p);
             }
-            OwnHappenings.Came(b, OwnHappeningsMath.HeliosDawn);
+            OwnHappenings.Came(b, OwnHappening.HeliosDawn, OwnHappenings.Now);
             b.Due(Now + 250);
             return true;
         }
@@ -360,7 +359,7 @@ namespace ColonyCouncil
                 OwnHappenings.Stand(p, east, 600);
                 OwnHappenings.Memory(p, DawnThought);
                 OwnHappenings.Glow(map, p.Position, Gold, 6, 0.9f, 0.4f);
-                if (first) OwnHappenings.Say(p, Pool, g, "dawn", HushWays.WalkedLastNight(map) ? "afterwalk" : null);
+                if (first) OwnHappenings.SayFrom(p, Pool, g, "dawn", OwnHush.WalkedLastNight(map) ? "afterwalk" : null);
             }
             if (now > s.dawnUntil)
             {
@@ -379,39 +378,4 @@ namespace ColonyCouncil
         }
     }
 
-    /// <summary>Dev mode: Helios's happenings now (Debug actions, "Rimfolk", "Gods: Helios's ... now").</summary>
-    public static class HeliosDebug
-    {
-        private static void Say(string text) => Messages.Message("Gods: " + text, MessageTypeDefOf.SilentInput, false);
-
-        [DebugAction("Rimfolk", "Gods: Helios looks back now", allowedGameStates = AllowedGameStates.PlayingOnMap)]
-        private static void DebugLookBack()
-        {
-            var b = OwnHappenings.Book;
-            var map = Find.CurrentMap;
-            if (b == null || map == null) return;
-            HeliosWays.LookBack(b, HeliosWays.God, map);
-            Say("the day after the eclipse: his hard long noon, and those out of doors shade their eyes.");
-        }
-
-        [DebugAction("Rimfolk", "Gods: Helios's first fruit in the sun now", allowedGameStates = AllowedGameStates.PlayingOnMap)]
-        private static void DebugFruit()
-        {
-            var b = OwnHappenings.Book;
-            var map = Find.CurrentMap;
-            if (b == null || map == null) return;
-            b.helios.fruitBegun = false;
-            Say(HeliosWays.BeginFruit(b, map) ? "they take fruit from the stores and walk out to the fields (" + (HeliosWays.Fruit(map)?.LabelCap ?? "no fruit in the stores") + ")." : "no open ground.");
-        }
-
-        [DebugAction("Rimfolk", "Gods: Helios's sun comes back now", allowedGameStates = AllowedGameStates.PlayingOnMap)]
-        private static void DebugDawn()
-        {
-            var b = OwnHappenings.Book;
-            var map = Find.CurrentMap;
-            if (b == null || map == null) return;
-            b.helios.dawnUntil = -1;
-            Say(HeliosWays.BeginDawn(b, map) ? "those up walk out to the east side and face the sunrise." : "no open ground to the east.");
-        }
-    }
 }

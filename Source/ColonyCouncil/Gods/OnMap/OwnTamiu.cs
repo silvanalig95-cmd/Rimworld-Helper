@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using LudeonTK;
 using RimWorld;
 using UnityEngine;
 using Verse;
@@ -77,7 +76,7 @@ namespace ColonyCouncil
     /// forbidden, so it can be brought home).</item>
     /// </list>
     /// </summary>
-    public static class TamiuWays
+    public static class OwnTamiu
     {
         public const string Key = "Mog";
         public const string Pool = "Rimfolk_Pool_GodTamiu_Say";
@@ -95,13 +94,13 @@ namespace ColonyCouncil
             if (s.cat == null)
             {
                 var p = map.mapPawns.FreeColonistsSpawned.FirstOrDefault(x => OwnHappenings.Ours(x) && NearDeath(x));
-                if (p != null && OwnHappenings.Roll(b, OwnHappeningsMath.TamiuThreshold, OwnHappeningsMath.ThresholdTrigger(true), g, map, now)) Threshold(b, map, p);
+                if (p != null && OwnHappenings.Calls(b, OwnHappening.MogThreshold, OwnHappeningsMath.ThresholdTrigger(true), g, map, now)) Threshold(b, map, p);
             }
             int hour = GenLocalDate.HourOfDay(map);
             if (s.lostCat == null && hour >= 7 && hour < 18 && !MapFacts.ThreatOn(map))
             {
                 var body = LostBody(map, out var t);
-                if (body != null && OwnHappenings.Roll(b, OwnHappeningsMath.TamiuLostDead, t, g, map, now)) Lost(b, map, body);
+                if (body != null && OwnHappenings.Calls(b, OwnHappening.MogLostDead, t, g, map, now)) Lost(b, map, body);
             }
         }
 
@@ -137,7 +136,7 @@ namespace ColonyCouncil
             s.until = Now + GenDate.TicksPerDay;
             s.seen = s.died = false;
             OwnHappenings.Lead(cat, OwnHappenings.Beside(map, at, cat), GenDate.TicksPerHour);
-            OwnHappenings.Came(b, OwnHappeningsMath.TamiuThreshold, null, p.thingIDNumber.ToString());
+            OwnHappenings.Came(b, OwnHappening.MogThreshold, OwnHappenings.Now, null, p.thingIDNumber.ToString());
             b.Due(Now + 250);
             return true;
         }
@@ -162,7 +161,7 @@ namespace ColonyCouncil
                     s.diedAt = now;
                     var seer = OwnHappenings.Seer(map, c.Position, 18f);
                     // apart: said of the dead, by someone who sees the cat stay by them.
-                    if (seer != null) OwnHappenings.SayWith(seer, Pool, g, new[] { p.LabelShort.Named("OTHER") }, "died");
+                    if (seer != null) OwnHappenings.SayFromWith(seer, Pool, g, new[] { p.LabelShort.Named("OTHER") }, "died");
                     if (g != null) OwnHappenings.Saw(g, map, c.Position, GodActKind.Omen, seer, "CC_GodTamiu_Saw_Died", p.LabelShort.Named("DYING"));
                 }
                 // It stays by the body a while, then goes about its own way.
@@ -200,7 +199,7 @@ namespace ColonyCouncil
                 {
                     s.seen = true;
                     // apart: said of the one near death, by someone who sees the cat come to them.
-                    OwnHappenings.SayWith(seer, Pool, g, new[] { p.LabelShort.Named("OTHER") }, "threshold");
+                    OwnHappenings.SayFromWith(seer, Pool, g, new[] { p.LabelShort.Named("OTHER") }, "threshold");
                     if (g != null) OwnHappenings.Saw(g, map, c.Position, GodActKind.Omen, seer, "CC_GodTamiu_Saw_Threshold", p.LabelShort.Named("DYING"));
                 }
             }
@@ -217,7 +216,7 @@ namespace ColonyCouncil
             if (away.IsValid) OwnHappenings.Lead(c, away.ClampInsideMap(map), GenDate.TicksPerHour);
             OwnHappenings.Memory(p, LetGoThought);
             string text = "CC_GodTamiu_WentAway_Text".Translate(p.Named("PAWN"), c.KindLabel.Named("CAT")).Resolve();
-            OwnHappenings.Card(g, map, "CC_GodTamiu_WentAway_Title", "CC_GodTamiu_WentAway_TitleNamed", text, new LookTargets(p), LetterDefOf.PositiveEvent, p.Named("PAWN"));
+            OwnHappenings.CardOf(g, map, null, "CC_GodTamiu_WentAway_Title", "CC_GodTamiu_WentAway_TitleNamed", text, new LookTargets(p), LetterDefOf.PositiveEvent, p.Named("PAWN"));
             var seer = OwnHappenings.Seer(map, c.Position, 18f);
             if (g != null) OwnHappenings.Saw(g, map, c.Position, GodActKind.Blessing, seer, "CC_GodTamiu_Saw_WentAway", p.LabelShort.Named("DYING"));
             Leave(s);
@@ -265,7 +264,7 @@ namespace ColonyCouncil
             s.lastCry = -1;
             s.lostUntil = Now + GenDate.TicksPerDay;
             OwnHappenings.Lead(cat, OwnHappenings.Beside(map, body.Position, cat), GenDate.TicksPerHour * 2);
-            OwnHappenings.Came(b, OwnHappeningsMath.TamiuLostDead, null, body.InnerPawn.thingIDNumber.ToString());
+            OwnHappenings.Came(b, OwnHappening.MogLostDead, OwnHappenings.Now, null, body.InnerPawn.thingIDNumber.ToString());
             b.Due(Now + 300);
             return true;
         }
@@ -297,10 +296,10 @@ namespace ColonyCouncil
                 {
                     f = s.finder = map.mapPawns.FreeColonistsSpawned.Where(x => OwnHappenings.Free(x) && x.CanReach(body.Position, PathEndMode.Touch, Danger.Some))
                         .OrderBy(x => x.Position.DistanceToSquared(body.Position)).FirstOrDefault();
-                    if (f != null) OwnHappenings.Walk(f, OwnHappenings.Beside(map, body.Position, f), GenDate.TicksPerHour * 3);
+                    if (f != null) OwnHappenings.GoTo(f, OwnHappenings.Beside(map, body.Position, f), GenDate.TicksPerHour * 3);
                 }
                 else if (f.Position.InHorDistOf(body.Position, 3f)) Found(b, map, f, body, c);
-                else if (f.CurJobDef != JobDefOf.Goto && OwnHappenings.Free(f)) OwnHappenings.Walk(f, OwnHappenings.Beside(map, body.Position, f), GenDate.TicksPerHour * 3);
+                else if (f.CurJobDef != JobDefOf.Goto && OwnHappenings.Free(f)) OwnHappenings.GoTo(f, OwnHappenings.Beside(map, body.Position, f), GenDate.TicksPerHour * 3);
             }
             b.Due(now + 300);
         }
@@ -321,41 +320,13 @@ namespace ColonyCouncil
                 CouncilLog.ErrorOnce("gods: the body the cat found", e);
             }
             OwnHappenings.Stand(f, body.Position, 360);
-            OwnHappenings.SayWith(f, Pool, g, new[] { dead.Named("DEAD") }, "lost");
+            OwnHappenings.SayFromWith(f, Pool, g, new[] { dead.Named("DEAD") }, "lost");
             string text = "CC_GodTamiu_Lost_Text".Translate(dead.Named("DEAD"), f.Named("PAWN"), c.KindLabel.Named("CAT")).Resolve();
-            OwnHappenings.Card(g, map, "CC_GodTamiu_Lost_Title", "CC_GodTamiu_Lost_TitleNamed", text, new LookTargets(body), LetterDefOf.NeutralEvent, dead.Named("DEAD"));
+            OwnHappenings.CardOf(g, map, null, "CC_GodTamiu_Lost_Title", "CC_GodTamiu_Lost_TitleNamed", text, new LookTargets(body), LetterDefOf.NeutralEvent, dead.Named("DEAD"));
             if (g != null) OwnHappenings.Saw(g, map, body.Position, GodActKind.Omen, f, "CC_GodTamiu_Saw_Lost", dead.Named("DEAD"));
             // The cat stays by the body until it is carried off or the day is out.
             s.lostUntil = Math.Min(s.lostUntil, Now + GenDate.TicksPerHour * 8);
         }
     }
 
-    /// <summary>Dev mode: Tamiu's two new happenings now (Debug actions, "Rimfolk", "Gods: Tamiu's ... now").</summary>
-    public static class TamiuDebug
-    {
-        private static void Say(string text) => Messages.Message("Gods: " + text, MessageTypeDefOf.SilentInput, false);
-
-        [DebugAction("Rimfolk", "Gods: Tamiu's cat at the threshold now", allowedGameStates = AllowedGameStates.PlayingOnMap)]
-        private static void DebugThreshold()
-        {
-            var b = OwnHappenings.Book;
-            var map = Find.CurrentMap;
-            if (b == null || map == null) return;
-            var p = map.mapPawns.FreeColonistsSpawned.FirstOrDefault(TamiuWays.NearDeath) ?? map.mapPawns.FreeColonistsSpawned.FirstOrDefault(x => x.Downed || x.InBed());
-            b.tamiu.EndThreshold();
-            Say(p != null && TamiuWays.Threshold(b, map, p) ? "a cat comes to lie by " + p.LabelShort + " (it goes six hours after they are out of danger)." : "nobody down or abed here.");
-        }
-
-        [DebugAction("Rimfolk", "Gods: Tamiu's cat by the lost dead now", allowedGameStates = AllowedGameStates.PlayingOnMap)]
-        private static void DebugLost()
-        {
-            var b = OwnHappenings.Book;
-            var map = Find.CurrentMap;
-            if (b == null || map == null) return;
-            var body = TamiuWays.LostBody(map, out _) ?? map.listerThings.ThingsInGroup(ThingRequestGroup.Corpse).OfType<Corpse>()
-                .FirstOrDefault(c => c.Spawned && c.InnerPawn?.Faction == Faction.OfPlayer && c.InnerPawn.RaceProps.Humanlike);
-            b.tamiu.EndLost();
-            Say(body != null && TamiuWays.Lost(b, map, body) ? "a cat walks out to " + body.InnerPawn.LabelShort + "'s body and cries there until someone comes." : "no body of the colony's lying out.");
-        }
-    }
 }

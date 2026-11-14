@@ -2,7 +2,7 @@
 <Defs>
 
   <!--
-    Selene's own happenings (Source/ColonyCouncil/Gods/Happenings/Selene.cs; docs/gods-next-proposals.md, C 11): the
+    Selene's own happenings (Source/ColonyCouncil/Gods/OnMap/OwnSelene.cs; docs/gods-next-proposals.md, C 11): the
     morning after a return, her face in still water, the watch she keeps company, the dark face kept at the door. Three
     small moods, modelled in Tools/Balance (Rates.cs), and the watch's steadier aim. Tags: morning with
     morning:<found|gooddream|healed|nightmare|frost|animalback> ({THING}), water, watch, darkface, named, scoffer.

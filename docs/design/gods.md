@@ -558,16 +558,39 @@ For the contract:
   forsaken, the damned, the fallen), the relic's form the colony's age's.
 - No harm: the saints only add places to pray, a day kept and small good moods; the damned leave a believer uneasy, never
   more.
+
+### Each god's own happenings, batch 1 (the player's go, 14 November 2026; round 4)
+
+"each of the gods should feel really unique in what it does and whether or how it interacts with the world, what the
+impact is, how these things play out on the map"; "gods effect should be noticeable". DESIGN.md, "Each god's own
+happenings, batch 1", has the whole of it: Hollin, Smoulder, Bellwether, Morel, Ennu, Pip and Cirrus, 29 happenings, each
+a god's own and played out on the map, with the lore never built before (Hollin's dryads' word, Smoulder's bargain in a
+dream and at the shaft, Morel's mourner at the graveyard). For the contract:
+- Each god's own happenings are code of its own (`Gods/OnMap/Own<God>.cs`), each rule pure in `OwnHappeningsMath` and
+  every one on the gods' pace (`GodPaceMath`: its own gap, a chance growing after it, never on a condition nearly always
+  true, its god's nearness a little more often). They run in the gods' own day and hour and hook the seams already there
+  (a rising, the deep's turning, a god's own sign, its anger and kindness, the white beast's stay, the stranger's
+  judgement, a festival kept), never forking them: Morel's and Pip's anger now come the day after a warning of their own.
+- The unseen rule holds: a card says what was seen, and its title names the god only where the colony knows it was that
+  god (`GodsOnMapWords.Title`); someone says it in one sentence, as their own guess; the colony's book keeps it in its
+  witness's words (`GodsOnMapWords.Saw`, so `Gods.Remember` finds who else saw it). Nothing shows a rule, a favour or why.
+- Harm only through the shared budget and shown: Smoulder's warm dream's burn (`HarmKinds.GodBurn`); the wounded thrumbo's
+  wounds are the wild's, never the colony's.
+- Every age by what the colony has (a floor or bare ground, a cooler, a console, a turret, its stores' coats, a fire), and
+  the two cards (the warm voice's bargain, the wounded thrumbo) in every age's words.
+- Batch 2 (Hush, Undertow, Helios, Selene, Murmur, Ducat, and Tamiu's more) plugs into the same frame: an `OwnHappening`
+  value named for its god, its rules in `OwnHappeningsMath`, a file of its own, a dev action.
 ### Each god's own happenings, the second seven (the player, 14 November 2026; round 4, batch 2)
 
 "each God's events and interactions and effects ... feel unique to the god, not like every god's effect is kind of similar,
 but it's just a different name attached to it"; "gods effect should be noticeable". DESIGN.md, "Each god's own happenings,
 the second seven", has the whole of it (Hush, Undertow, Helios, Selene, Murmur, Ducat, two more for Tamiu). For the
 contract:
-- Each god's happenings are its own files (`Gods/Happenings/<God>.cs`, `Defs/GodDefs/Rimfolk_GodHappenings_<God>.xml`,
-  `Languages/English/Keyed/Rimfolk_GodHappenings_<God>.xml`), keyed by the god's key (`Gods.ByKey`), sharing only the
-  book and helpers of `OwnHappenings.cs` and the pure rules of `OwnHappeningsMath.cs`; a god missing from the pantheon
-  (or dead) has none.
+- They live in the first seven's frame: entries of the same `OwnHappening` list, paced by the same `PaceOf`, saved in the
+  same `OwnHappeningsBook`, called from the same hour and steps; each god's happenings in its own files
+  (`Gods/OnMap/Own<God>.cs`, `Defs/GodDefs/Rimfolk_GodHappenings_<God>.xml`, `Languages/English/Keyed/Rimfolk_GodHappenings_<God>.xml`),
+  keyed by the god's key (`Gods.ByKey`); a god missing from the pantheon (or dead) has none, and a drawn one comes only
+  where its god acts at the home (`OwnHappenings.Acts`).
 - The pace is the gods' own (`GodPaceMath`): no happening comes without a reason in the world, each keeps its gap and ramp,
   a near god a little likelier (`GodNear`); those that follow something (a bargain, an eclipse, a feast, the moon's return,
   silver gone) have no chance of their own.

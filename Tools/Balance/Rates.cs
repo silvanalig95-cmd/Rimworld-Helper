@@ -626,7 +626,7 @@ namespace Balance
             ("Rimfolk_Belief_FeastPassed", 0.004f),
             ("Rimfolk_Belief_Flinched", 0.002f),
             ("Rimfolk_Belief_WonOver", 0.001f),
-            // Each god's own happenings, the second seven (Gods/Happenings/): a vigil kept through a cold snap about once a
+            // Each god's own happenings, the second seven (Gods/OnMap/OwnHush.cs and beside it): a vigil kept through a cold snap about once a
             // colony-year (the keeper and the one kept warm); the dark drifting to someone at the edge of breaking every few
             // weeks at the most, reaching them about half the time, held off by a light or by company the rest; the first fruit
             // in the sun once a year where Helios's feast is kept (about a third of colonies), everyone; the sun's return once a

@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using LudeonTK;
 using RimWorld;
 using UnityEngine;
 using Verse;
@@ -103,7 +102,7 @@ namespace ColonyCouncil
     /// mushrooms (the soft mother taking back what the cold kept whole).</item>
     /// </list>
     /// </summary>
-    public static class HushWays
+    public static class OwnHush
     {
         public const string Key = "Hush";
         public const string Pool = "Rimfolk_Pool_GodHush_Say";
@@ -125,7 +124,7 @@ namespace ColonyCouncil
             if (MapFacts.ThreatOn(map)) return;
             if (hour >= OwnHappeningsMath.WindowFrom && hour < OwnHappeningsMath.WindowTo) Window(b, g, map, now);
             if (hour >= OwnHappeningsMath.VigilFrom && hour < OwnHappeningsMath.VigilTo) Vigil(b, g, map, now);
-            if (OwnHappeningsMath.WalkHour(hour)) Walk(b, g, map, now);
+            if (OwnHappeningsMath.RingHour(hour)) Walk(b, g, map, now);
             if (hour >= OwnHappeningsMath.GraveFrom && hour < OwnHappeningsMath.GraveTo) Grave(b, g, map, now);
         }
 
@@ -150,7 +149,7 @@ namespace ColonyCouncil
             var s = b.hush;
             if (s.wordMap != null) return;
             var w = WordNow(map, out _);
-            if (!OwnHappenings.Roll(b, OwnHappeningsMath.HushWindow, w.trigger, g, map, now)) return;
+            if (!OwnHappenings.Calls(b, OwnHappening.HushWord, w.trigger, g, map, now)) return;
             Write(b, g, map, w.word);
         }
 
@@ -211,8 +210,8 @@ namespace ColonyCouncil
             s.word = (int)word;
             s.wordUntil = Now + GenDate.TicksPerHour * 6;
             s.wordFinder = Finder(map, at);
-            if (s.wordFinder != null) OwnHappenings.Walk(s.wordFinder, OwnHappenings.Beside(map, at, s.wordFinder));
-            OwnHappenings.Came(b, OwnHappeningsMath.HushWindow, word.ToString());
+            if (s.wordFinder != null) OwnHappenings.GoTo(s.wordFinder, OwnHappenings.Beside(map, at, s.wordFinder));
+            OwnHappenings.Came(b, OwnHappening.HushWord, OwnHappenings.Now, word.ToString());
             b.Due(Now + 250);
             return true;
         }
@@ -244,14 +243,14 @@ namespace ColonyCouncil
             if (p == null || p.Dead || !p.Spawned || p.Map != map || !GodOmens.Awake(p))
             {
                 p = s.wordFinder = Finder(map, s.wordAt);
-                if (p != null) OwnHappenings.Walk(p, OwnHappenings.Beside(map, s.wordAt, p));
+                if (p != null) OwnHappenings.GoTo(p, OwnHappenings.Beside(map, s.wordAt, p));
             }
             else if (p.Position.InHorDistOf(s.wordAt, 2.5f))
             {
                 Found(b, map, p);
                 return;
             }
-            else if (p.CurJobDef != JobDefOf.Goto && OwnHappenings.Free(p)) OwnHappenings.Walk(p, OwnHappenings.Beside(map, s.wordAt, p));
+            else if (p.CurJobDef != JobDefOf.Goto && OwnHappenings.Free(p)) OwnHappenings.GoTo(p, OwnHappenings.Beside(map, s.wordAt, p));
             b.Due(now + 250);
         }
 
@@ -268,7 +267,7 @@ namespace ColonyCouncil
             WordNow(map, out var cold);
             string w = ("CC_GodHush_Word_" + word).Translate().Resolve();
             string fact = Fact(map, word, cold);
-            OwnHappenings.SayWith(p, Pool, g, new[] { w.Named("WORD") }, "word", "word:" + word.ToString().ToLowerInvariant());
+            OwnHappenings.SayFromWith(p, Pool, g, new[] { w.Named("WORD") }, "word", "word:" + word.ToString().ToLowerInvariant());
             var window = Window(map);
             string where = window != null && window.Position.InHorDistOf(at, 1.5f)
                 ? "CC_GodHush_Where_Window".Translate(window.LabelNoCount.Named("DOOR")).Resolve()
@@ -276,7 +275,7 @@ namespace ColonyCouncil
                     ? "CC_GodHush_Where_Door".Translate(d.LabelNoCount.Named("DOOR")).Resolve()
                     : "CC_GodHush_Where_Ground".Translate().Resolve();
             string text = "CC_GodHush_Word_Text".Translate(p.Named("PAWN"), w.Named("WORD"), where.Named("WHERE")).Resolve() + (fact.NullOrEmpty() ? "" : "\n\n" + fact);
-            OwnHappenings.Card(g, map, "CC_GodHush_Word_Title", "CC_GodHush_Word_TitleNamed", text, new LookTargets(new TargetInfo(at, map)), null, w.Named("WORD"));
+            OwnHappenings.CardOf(g, map, null, "CC_GodHush_Word_Title", "CC_GodHush_Word_TitleNamed", text, new LookTargets(new TargetInfo(at, map)), null, w.Named("WORD"));
             if (g != null) OwnHappenings.Saw(g, map, at, GodActKind.Omen, p, "CC_GodHush_Saw_Word", w.Named("WORD"));
         }
 
@@ -308,7 +307,7 @@ namespace ColonyCouncil
             if (s.keeper != null) return;
             bool snap = OwnHappenings.Condition(map, "ColdSnap") != null;
             var frail = snap ? Frail(map) : null;
-            if (!OwnHappenings.Roll(b, OwnHappeningsMath.HushVigil, OwnHappeningsMath.VigilTrigger(snap, frail != null), g, map, now)) return;
+            if (!OwnHappenings.Calls(b, OwnHappening.HushVigil, OwnHappeningsMath.VigilTrigger(snap, frail != null), g, map, now)) return;
             var keeper = Keeper(map, frail);
             if (keeper != null) BeginVigil(b, map, frail, keeper);
         }
@@ -340,8 +339,8 @@ namespace ColonyCouncil
             s.vigilFrom = s.vigilLast = Now;
             s.vigilSat = 0;
             s.vigilSaid = false;
-            OwnHappenings.Walk(keeper, OwnHappenings.Beside(map, frail.Position, keeper));
-            OwnHappenings.Came(b, OwnHappeningsMath.HushVigil, null, frail.thingIDNumber.ToString());
+            OwnHappenings.GoTo(keeper, OwnHappenings.Beside(map, frail.Position, keeper));
+            OwnHappenings.Came(b, OwnHappening.HushVigil, OwnHappenings.Now, null, frail.thingIDNumber.ToString());
             b.Due(Now + 250);
             return true;
         }
@@ -372,11 +371,11 @@ namespace ColonyCouncil
                 {
                     s.vigilSaid = true;
                     // together: the keeper has just sat down at the bedside of the one they say it of.
-                    OwnHappenings.SayWith(k, Pool, God, new[] { f.Named("OTHER") }, "vigil", "age" + OwnHappenings.Age);
+                    OwnHappenings.SayFromWith(k, Pool, God, new[] { f.Named("OTHER") }, "vigil", "age" + OwnHappenings.Age);
                 }
                 if (k.CurJobDef != JobDefOf.Wait_MaintainPosture && OwnHappenings.Yields(k)) OwnHappenings.Stand(k, f.Position, GenDate.TicksPerHour);
             }
-            else if (k.CurJobDef != JobDefOf.Goto && !k.InBed() && k.Awake() && OwnHappenings.Yields(k)) OwnHappenings.Walk(k, OwnHappenings.Beside(map, f.Position, k));
+            else if (k.CurJobDef != JobDefOf.Goto && !k.InBed() && k.Awake() && OwnHappenings.Yields(k)) OwnHappenings.GoTo(k, OwnHappenings.Beside(map, f.Position, k));
             s.vigilLast = now;
             int hour = GenLocalDate.HourOfDay(map);
             if (hour == OwnHappeningsMath.VigilDawn && now - s.vigilFrom > GenDate.TicksPerHour * 5)
@@ -412,11 +411,11 @@ namespace ColonyCouncil
             }
             OwnHappenings.Glow(map, f.Position, new Color(1f, 0.9f, 0.7f), 8, 1f, 0.4f);
             OwnHappenings.Memory(k, SatUpThought);
-            OwnHappenings.Memory(f, SatWithThought, k);
+            OwnHappenings.MemoryOf(f, SatWithThought, k);
             string warmth = ("CC_GodHush_Warmth_" + OwnHappenings.Age).Translate().Resolve();
             string text = "CC_GodHush_Thaw_Text".Translate(k.Named("KEEPER"), f.Named("FRAIL"), warmth.Named("WARMTH")).Resolve();
-            OwnHappenings.Card(g, map, "CC_GodHush_Thaw_Title", "CC_GodHush_Thaw_TitleNamed", text, new LookTargets(f), LetterDefOf.PositiveEvent);
-            OwnHappenings.Say(k, Pool, g, "thaw");
+            OwnHappenings.CardOf(g, map, null, "CC_GodHush_Thaw_Title", "CC_GodHush_Thaw_TitleNamed", text, new LookTargets(f), LetterDefOf.PositiveEvent);
+            OwnHappenings.SayFrom(k, Pool, g, "thaw");
             if (g != null) OwnHappenings.Saw(g, map, f.Position, GodActKind.Blessing, k, "CC_GodHush_Saw_Thaw", k.LabelShort.Named("KEEPER"), f.LabelShort.Named("FRAIL"));
         }
 
@@ -428,8 +427,8 @@ namespace ColonyCouncil
             if (s.walkUntil >= 0 || s.walkCardDue) return;
             bool winter = InSeason(map, RimWorld.Season.Winter);
             bool longest = OwnHappeningsMath.LongestNight(winter, GenLocalDate.DayOfSeason(map));
-            var t = OwnHappeningsMath.WalkTrigger(longest, map.mapTemperature.OutdoorTemp);
-            if (!OwnHappenings.Roll(b, OwnHappeningsMath.HushWalk, t, g, map, now)) return;
+            var t = OwnHappeningsMath.RingTrigger(longest, map.mapTemperature.OutdoorTemp);
+            if (!OwnHappenings.Calls(b, OwnHappening.HushEdge, t, g, map, now)) return;
             BeginWalk(b, map);
         }
 
@@ -444,16 +443,16 @@ namespace ColonyCouncil
                     far = Mathf.Max(far, x.Position.DistanceTo(mid));
             s.walkMap = map;
             s.walkCentre = mid;
-            s.walkRadius = OwnHappeningsMath.WalkRadius(Mathf.Min(far, 60f));
-            s.walkSteps = OwnHappeningsMath.WalkSteps(s.walkRadius);
+            s.walkRadius = OwnHappeningsMath.RingRadius(Mathf.Min(far, 60f));
+            s.walkSteps = OwnHappeningsMath.RingSteps(s.walkRadius);
             s.walkStep = 0;
             s.walkAngle = Rand.Range(0f, Mathf.PI * 2f);
-            s.walkUntil = Now + s.walkSteps * OwnHappeningsMath.WalkStepTicks + GenDate.TicksPerHour * 2;
+            s.walkUntil = Now + s.walkSteps * OwnHappeningsMath.RingStepTicks + GenDate.TicksPerHour * 2;
             s.walkLastCell = IntVec3.Invalid;
             s.walkNearSaid = false;
             s.walkSeers = null;
             s.walkCardDue = false;
-            OwnHappenings.Came(b, OwnHappeningsMath.HushWalk);
+            OwnHappenings.Came(b, OwnHappening.HushEdge, OwnHappenings.Now);
             b.Due(Now + 1);
             return true;
         }
@@ -483,7 +482,7 @@ namespace ColonyCouncil
             }
             var cell = RingCell(s, s.walkStep, map);
             // Anyone within twenty steps, and it has moved on: footprints where it stood, and then none.
-            var near = map.mapPawns.FreeColonistsSpawned.Where(p => p.Spawned && !p.Downed && p.Awake() && p.Position.InHorDistOf(cell, OwnHappeningsMath.WalkReach))
+            var near = map.mapPawns.FreeColonistsSpawned.Where(p => p.Spawned && !p.Downed && p.Awake() && p.Position.InHorDistOf(cell, OwnHappeningsMath.RingReach))
                 .OrderBy(p => p.Position.DistanceToSquared(cell)).FirstOrDefault();
             if (near != null)
             {
@@ -491,10 +490,10 @@ namespace ColonyCouncil
                 if (!s.walkNearSaid && GodOmens.Awake(near))
                 {
                     s.walkNearSaid = true;
-                    OwnHappenings.Say(near, Pool, God, "walk", "walk:near");
+                    OwnHappenings.SayFrom(near, Pool, God, "walk", "walk:near");
                     Seen(s, near);
                 }
-                s.walkStep = Math.Min(s.walkSteps, s.walkStep + OwnHappeningsMath.WalkFlee);
+                s.walkStep = Math.Min(s.walkSteps, s.walkStep + OwnHappeningsMath.RingFlee);
                 cell = RingCell(s, s.walkStep, map);
             }
             // The line of frost from where it was to where it is.
@@ -503,19 +502,19 @@ namespace ColonyCouncil
                     OwnHappenings.Rime(map, c, 0.45f);
             OwnHappenings.Rime(map, cell, 0.5f);
             s.walkLastCell = cell;
-            GodSky.Stay(map, SkySign.Figure, cell, OwnHappeningsMath.WalkStepTicks + 40, 6f);
+            GodSky.Stay(map, SkySign.Figure, cell, OwnHappeningsMath.RingStepTicks + 40, 6f);
             if (s.walkSeers.NullOrEmpty())
             {
                 var seer = map.mapPawns.FreeColonistsSpawned.Where(p => GodOmens.Awake(p) && !p.Position.Roofed(map) && p.Position.InHorDistOf(cell, 45f))
                     .OrderBy(p => p.Position.DistanceToSquared(cell)).FirstOrDefault();
                 if (seer != null)
                 {
-                    OwnHappenings.Say(seer, Pool, God, "walk", "walk:seen");
+                    OwnHappenings.SayFrom(seer, Pool, God, "walk", "walk:seen");
                     Seen(s, seer);
                 }
             }
             s.walkStep++;
-            b.Due(now + OwnHappeningsMath.WalkStepTicks);
+            b.Due(now + OwnHappeningsMath.RingStepTicks);
         }
 
         private static void Seen(HushState s, Pawn p)
@@ -557,7 +556,7 @@ namespace ColonyCouncil
                 ? "CC_GodHush_Walk_TextSeen".Translate(names.ToCommaList(true).Named("WHO"), Homes.Name(map).Named("HOME"), how.Named("HOW")).Resolve()
                 : "CC_GodHush_Walk_Text".Translate(Homes.Name(map).Named("HOME"), how.Named("HOW")).Resolve();
             var at = RingCell(s, 0, map);
-            OwnHappenings.Card(g, map, "CC_GodHush_Walk_Title", "CC_GodHush_Walk_TitleNamed", text, new LookTargets(new TargetInfo(at, map)));
+            OwnHappenings.CardOf(g, map, null, "CC_GodHush_Walk_Title", "CC_GodHush_Walk_TitleNamed", text, new LookTargets(new TargetInfo(at, map)), null);
             var witness = names.Count > 0 ? map.mapPawns.FreeColonistsSpawned.FirstOrDefault(p => p.LabelShort == names[0]) : null;
             if (g != null) OwnHappenings.Saw(g, map, at, names.Count > 0 ? GodActKind.Act : GodActKind.Mark, witness, names.Count > 0 ? "CC_GodHush_Saw_WalkSeen" : "CC_GodHush_Saw_Walk", how.Named("HOW"));
             s.walkMap = null;
@@ -579,7 +578,7 @@ namespace ColonyCouncil
             var grave = NewestGrave(map, out float days);
             if (grave == null) return;
             var t = OwnHappeningsMath.GraveTrigger(days, InSeason(map, RimWorld.Season.Winter), OwnHappenings.FoodDays(map), OwnHappenings.Wasting(map) != null);
-            if (!OwnHappenings.Roll(b, OwnHappeningsMath.HushGrave, t, g, map, now)) return;
+            if (!OwnHappenings.Calls(b, OwnHappening.HushGrave, t, g, map, now)) return;
             Lay(b, g, map, grave);
         }
 
@@ -630,14 +629,14 @@ namespace ColonyCouncil
                 cold = map.gameConditionManager.GetActiveCondition<GameCondition_GodPresence>() != null;
             }
             var seer = OwnHappenings.Seer(map, grave.Position, 25f);
-            if (seer != null) OwnHappenings.SayWith(seer, Pool, g, new[] { dead.Named("DEAD") }, "grave");
+            if (seer != null) OwnHappenings.SayFromWith(seer, Pool, g, new[] { dead.Named("DEAD") }, "grave");
             string text = (cold ? "CC_GodHush_Grave_Text" : "CC_GodHush_Grave_TextQuiet").Translate(dead.Named("DEAD"), Homes.Name(map).Named("HOME")).Resolve();
-            OwnHappenings.Card(g, map, "CC_GodHush_Grave_Title", "CC_GodHush_Grave_TitleNamed", text, new LookTargets(grave), LetterDefOf.NegativeEvent, dead.Named("DEAD"));
+            OwnHappenings.CardOf(g, map, null, "CC_GodHush_Grave_Title", "CC_GodHush_Grave_TitleNamed", text, new LookTargets(grave), LetterDefOf.NegativeEvent, dead.Named("DEAD"));
             if (g != null) OwnHappenings.Saw(g, map, grave.Position, GodActKind.Omen, seer, "CC_GodHush_Saw_Grave", dead.Named("DEAD"));
             s.grave = grave;
             s.graveDead = dead;
             s.meltAt = Now + Mathf.RoundToInt(Rand.Range(OwnHappeningsMath.MeltDaysMin, OwnHappeningsMath.MeltDaysMax) * GenDate.TicksPerDay);
-            OwnHappenings.Came(b, OwnHappeningsMath.HushGrave, null, grave.Corpse.InnerPawn.thingIDNumber.ToString());
+            OwnHappenings.Came(b, OwnHappening.HushGrave, OwnHappenings.Now, null, grave.Corpse.InnerPawn.thingIDNumber.ToString());
             return true;
         }
 
@@ -678,85 +677,16 @@ namespace ColonyCouncil
             OwnHappenings.Glow(map, grave.Position, new Color(0.7f, 0.85f, 0.6f), 6, 1.5f, 0.35f);
             var seer = OwnHappenings.Seer(map, grave.Position, 25f);
             var morel = OwnHappenings.God("Morel");
-            if (seer != null) OwnHappenings.SayWith(seer, Pool, morel, new[] { dead.Named("DEAD") }, "melt");
+            if (seer != null) OwnHappenings.SayFromWith(seer, Pool, morel, new[] { dead.Named("DEAD") }, "melt");
             OwnHappenings.Line(map, (placed > 0 ? "CC_GodHush_Melt_Text" : "CC_GodHush_Melt_TextBare").Translate(dead.Named("DEAD")).Resolve(), new LookTargets(grave));
             // In both chapters: the cold kept the dead whole, and the soft mother took them back.
             var hush = God;
             if (hush != null) OwnHappenings.Saw(hush, map, grave.Position, GodActKind.Mark, seer, "CC_GodHush_Saw_Melt", dead.Named("DEAD"));
             if (morel != null && placed > 0) OwnHappenings.Saw(morel, map, grave.Position, GodActKind.Omen, seer, "CC_GodHush_Saw_MeltRing", dead.Named("DEAD"));
+            // One of her rings like any other: someone walking through it may hear her (Morel's breath, batch 1).
+            if (placed > 0) OwnMorel.Remember(b, map, grave.Position);
             return true;
         }
     }
 
-    /// <summary>Dev mode: Hush's happenings now (Debug actions, "Rimfolk", "Gods: Hush's ... now").</summary>
-    public static class HushDebug
-    {
-        private static void Say(string text) => Messages.Message("Gods: " + text, MessageTypeDefOf.SilentInput, false);
-
-        [DebugAction("Rimfolk", "Gods: Hush's word in the frost now", allowedGameStates = AllowedGameStates.PlayingOnMap)]
-        private static void DebugWord()
-        {
-            var b = OwnHappenings.Book;
-            var map = Find.CurrentMap;
-            if (b == null || map == null) return;
-            var w = HushWays.WordNow(map, out _).word;
-            if (w == OwnHappeningsMath.FrostWord.None) w = OwnHappeningsMath.FrostWord.Bread;
-            b.hush.wordMap = null;
-            Say(HushWays.Write(b, HushWays.God, map, w) ? "the word " + w + " is in the frost; the first one up walks out to it." : "nowhere to write it.");
-        }
-
-        [DebugAction("Rimfolk", "Gods: Hush's vigil now", allowedGameStates = AllowedGameStates.PlayingOnMap)]
-        private static void DebugVigil()
-        {
-            var b = OwnHappenings.Book;
-            var map = Find.CurrentMap;
-            if (b == null || map == null) return;
-            var frail = HushWays.Frail(map) ?? map.mapPawns.FreeColonistsSpawned.FirstOrDefault(p => p.InBed());
-            var keeper = HushWays.Keeper(map, frail);
-            if (frail == null || keeper == null)
-            {
-                Say("nobody of the colony abed, or nobody free to sit with them.");
-                return;
-            }
-            b.hush.EndVigil();
-            HushWays.BeginVigil(b, map, frail, keeper);
-            Say(keeper.LabelShort + " sits up with " + frail.LabelShort + (OwnHappenings.Condition(map, "ColdSnap") == null ? " (no cold snap here: the vigil ends at once; start one with the game's dev tools)." : "; kept till five o'clock, the cold snap breaks."));
-        }
-
-        [DebugAction("Rimfolk", "Gods: Hush's walk round the edge now", allowedGameStates = AllowedGameStates.PlayingOnMap)]
-        private static void DebugWalk()
-        {
-            var b = OwnHappenings.Book;
-            var map = Find.CurrentMap;
-            if (b == null || map == null) return;
-            b.hush.walkCardDue = false;
-            HushWays.BeginWalk(b, map);
-            Say("the white figure walks round the colony at " + b.hush.walkRadius + " cells (by night only: it stops at five o'clock).");
-        }
-
-        [DebugAction("Rimfolk", "Gods: Hush's frost on the newest grave now", allowedGameStates = AllowedGameStates.PlayingOnMap)]
-        private static void DebugGrave()
-        {
-            var b = OwnHappenings.Book;
-            var map = Find.CurrentMap;
-            if (b == null || map == null) return;
-            var grave = HushWays.NewestGrave(map, out _);
-            if (grave == null)
-            {
-                Say("no grave of the colony's dead here.");
-                return;
-            }
-            b.hush.grave = null;
-            Say(HushWays.Lay(b, HushWays.God, map, grave) ? "frost on the grave; it melts into a ring of mushrooms in two to four days (\"Gods: Hush's frost melts now\")." : "it couldn't.");
-        }
-
-        [DebugAction("Rimfolk", "Gods: Hush's frost melts now", allowedGameStates = AllowedGameStates.PlayingOnMap)]
-        private static void DebugMelt()
-        {
-            var b = OwnHappenings.Book;
-            var map = Find.CurrentMap;
-            if (b == null || map == null) return;
-            Say(b.hush.grave != null && HushWays.Melt(b, map) ? "melted into a ring of mushrooms." : "no frost on a grave here.");
-        }
-    }
 }

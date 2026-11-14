@@ -2,7 +2,7 @@
 <Defs>
 
   <!--
-    Ducat's own happenings (Source/ColonyCouncil/Gods/Happenings/Ducat.cs; docs/gods-next-proposals.md, C 14): the trail of
+    Ducat's own happenings (Source/ColonyCouncil/Gods/OnMap/OwnDucat.cs; docs/gods-next-proposals.md, C 14): the trail of
     coins from a hoard out to the edge of the land, the open purse at a visitor's hand, the golden beetle that leads to a
     coin. No moods of their own (the purse is the colony's rite: the festival's and the rite's). Tags: trail, purse
     ({OTHER}), beetle, named, scoffer.

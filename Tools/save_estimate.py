@@ -384,12 +384,14 @@ MODEL = {
     "Gods/OnMap/GodsOnMapBook.cs:weatherHomes": ("fixed", 1, V, "one per home: when a god last answered in the weather there"),
     "Gods/OnMap/GodsOnMapBook.cs:weatherTicks": ("fixed", 1, V, "beside it, the tick"),
     "Gods/OnMap/GodsOnMapBook.cs:lately": ("fixed", const("Gods/GodPaceMath.cs", "Memory", 12), 40, "the gods' short memory of their last happenings ('return|Nightmare|1234'), GodPaceMath.Memory at most"),
-    # Each god's own happenings, the second seven (Gods/Happenings/OwnHappenings.cs): when each of the twenty-two last came
-    # (its key and its tick, side by side, one each at most), and the rooms of old ruins already stood in, a few kept.
-    "Gods/Happenings/OwnHappenings.cs:keys": ("fixed", 22, 30, "when each of the seven's happenings last came: its key, one each (OwnHappeningsMath.All)"),
-    "Gods/Happenings/OwnHappenings.cs:ticks": ("fixed", 22, V, "beside it, the tick"),
-    "Gods/Happenings/OwnHappenings.cs:ruins": ("fixed", const("Gods/Happenings/OwnHappeningsMath.cs", "RuinsHeldAtMost", 30), 35,
-                                               "rooms of old ruins someone has stood in ('map|x|z'), OwnHappeningsMath.RuinsHeldAtMost at most, the oldest let go"),
+    # Each god's own happenings (Gods/OnMap/OwnHappenings.cs): when each last came (one a happening, 29 in batch 1 and 22 in batch 2), the
+    # children who touched the white beast's horn (OwnHappeningsMath.HornKept at most), the sky watched lately (MaxWatches).
+    "Gods/OnMap/OwnHappenings.cs:last": ("fixed", 51, V, "when each god's own happening last came, one a happening"),
+    "Gods/OnMap/OwnHappenings.cs:horned": ("fixed", const("Gods/OnMap/OwnHappeningsMath.cs", "HornKept", 8), 40, "the children who touched the white beast's horn, OwnHappeningsMath.HornKept at most"),
+    "Gods/OnMap/OwnHappenings.cs:watches": ("fixed", const("Gods/OnMap/OwnHappenings.cs", "MaxWatches", 8), V, "the sky watched lately (a telescope, skygazing), OwnHappeningsBook.MaxWatches at most"),
+    # The second seven (Gods/OnMap/OwnSeven.cs): the rooms of old ruins someone of the colony has stood in, a few kept.
+    "Gods/OnMap/OwnSeven.cs:ruins": ("fixed", const("Gods/OnMap/OwnSevenMath.cs", "RuinsHeldAtMost", 30), 35,
+                                     "rooms of old ruins someone has stood in ('map|x|z'), OwnHappeningsMath.RuinsHeldAtMost at most, the oldest let go"),
     # The sacred beast's stay, while it lasts: its kin following at a distance (GodShapeDef.kinCount, three at most) and those
     # who sat near it (GodsOnMapMath.SittersAVisit).
     "Gods/OnMap/SacredAnimal.cs:kin": ("while", 3, P, "the beast's kin following at a distance, while it stays (a few times in a long game)"),

@@ -7,12 +7,12 @@ using System.Xml.Linq;
 using ColonyCouncil;
 
 /// <summary>
-/// Each god's own happenings, the second seven (round 4 of docs/gods-next-proposals.md, section C; the player, 14 November
-/// 2026: "each God's events and interactions and effects ... feel unique to the god", "gods effect should be noticeable"):
-/// Hush, Undertow, Helios, Selene, Murmur, Ducat, and two more for Tamiu. The pure rules (the pace each keeps, what calls
-/// each, how each plays out), the defs (each god's own lines, one sentence each, named only where the colony is sure; the
-/// small moods and the two hediffs), the words (every card and book line, the unseen rule, every age), the seams (the gods'
-/// hour, a festival kept, silver gone from a hoard, the colony's book and belief, saved and small), and the mods named.
+/// Each god's own happenings, round 4, batch 1 (the player, 14 November 2026: "each of the gods should feel really unique in
+/// what it does and whether or how it interacts with the world, what the impact is, how these things play out on the map";
+/// "gods effect should be noticeable"): Hollin, Smoulder, Bellwether, Morel, Ennu, Pip and Cirrus. The pure rules (the
+/// pace every happening keeps and each one's own reason, strength and outcome), the defs (the two cards, the thoughts, the
+/// lines), the words (every card and book line the code reaches, named only where the colony knows), and the seams (the
+/// gods' day and hour, each god's own hooks, the shared harm budget, nothing growing in the save, a dev action for each).
 /// </summary>
 public static class OwnHappeningsTests
 {
@@ -22,15 +22,11 @@ public static class OwnHappeningsTests
         void C(bool ok, string what)
         {
             n++;
-            check(ok, "each god's own happenings, the second seven: " + what);
+            check(ok, "each god's own happenings: " + what);
         }
         string src = Path.Combine(root, "Source", "ColonyCouncil");
-        string dir = Path.Combine(src, "Gods", "Happenings");
         string Read(string rel) => File.ReadAllText(Path.Combine(src, rel));
-        string[] gods = { "Hush", "Undertow", "Helios", "Selene", "Murmur", "Ducat", "Tamiu" };
-        var code = gods.ToDictionary(g => g, g => File.ReadAllText(Path.Combine(dir, g + ".cs")));
-        string shared = File.ReadAllText(Path.Combine(dir, "OwnHappenings.cs"));
-        string all = string.Join("\n", code.Values) + "\n" + shared;
+        XDocument Def(string rel) => XDocument.Load(Path.Combine(root, "Defs", rel));
         string keyedAll = string.Join("\n", Directory.GetFiles(Path.Combine(root, "Languages", "English", "Keyed"), "*.xml").Select(File.ReadAllText));
         var keyed = Regex.Matches(keyedAll, @"^\s*<([A-Za-z0-9_]+)>(.*?)</\1>\s*$", RegexOptions.Multiline).Cast<Match>()
             .GroupBy(m => m.Groups[1].Value).ToDictionary(g => g.Key, g => g.First().Groups[2].Value);
@@ -38,298 +34,260 @@ public static class OwnHappeningsTests
         var O = GodPaceMath.Trigger.Ordinary;
         var S = GodPaceMath.Trigger.Strong;
 
-        // ================= The happenings and their pace =================
+        // ================= Whose, and how many =================
 
-        C(OwnHappeningsMath.All.Length == 22 && OwnHappeningsMath.All.Distinct().Count() == 22, "twenty-two happenings, each its own key");
-        var per = OwnHappeningsMath.All.GroupBy(k => k.Split('.')[0]).ToDictionary(g => g.Key, g => g.Count());
-        C(new[] { "hush", "undertow", "helios", "selene", "murmur", "ducat" }.All(g => per.TryGetValue(g, out int c) && c >= 3 && c <= 5) && per["mog"] == 2,
-            "three to five for each of the six, two more for Tamiu");
-        foreach (var k in OwnHappeningsMath.All)
+        var all = OwnHappeningsMath.All;
+        C(all.All(h => OwnHappeningsMath.GodOf(h) != null) && OwnHappeningsMath.Gods.Length == 14
+          && OwnHappeningsMath.Gods.Take(7).SequenceEqual(new[] { "Hollin", "Smoulder", "Bellwether", "Morel", "Ennu", "Pip", "Cirrus" }),
+            "every happening is one of the fourteen gods' (this batch's seven first, then batch 2's: OwnHappeningsSevenTests)");
+        // Tamiu (key Mog) has two more beside the stay, riddle, keepers and wrapped dead she already had (MogsWays).
+        C(OwnHappeningsMath.Gods.All(g => OwnHappeningsMath.Of(g).Count >= (g == "Mog" ? 2 : 3) && OwnHappeningsMath.Of(g).Count <= 5),
+            "three to five each: " + string.Join(", ", OwnHappeningsMath.Gods.Select(g => g + " " + OwnHappeningsMath.Of(g).Count)));
+        C(all.Select(OwnHappeningsMath.Name).Distinct().Count() == all.Length, "no two gods share a happening's name: each is its own");
+        C(all.Contains(OwnHappening.HollinDryads) && all.Contains(OwnHappening.SmoulderBargain) && all.Contains(OwnHappening.MorelMourner)
+          && all.Contains(OwnHappening.BellwetherHorn) && all.Contains(OwnHappening.EnnuTest) && all.Contains(OwnHappening.EnnuTales)
+          && all.Contains(OwnHappening.PipWontStop) && all.Contains(OwnHappening.PipStars) && all.Contains(OwnHappening.CirrusStar),
+            "the lore never built and the asked ones are in: her dryads' word, the bargain at the shaft, the mourner, the horn child, the small tests and tales, the machine that won't stop and its message, the sky watchers' star");
+
+        // ================= The pace =================
+
+        foreach (var h in all)
         {
-            var p = OwnHappeningsMath.PaceOf(k);
-            bool follows = OwnHappeningsMath.Follows(k);
-            C(follows ? p.mean == 0f : p.gap >= 5f && p.mean > 0f && p.ramp > 0f, k + ": its own pace (" + (follows ? "follows something else" : "a gap of " + p.gap + " days") + ")");
-            C(OwnHappeningsMath.Chance(k, 999f, T, 1f, 24f) == 0f, k + ": nothing at all without a reason in the world, however long since and however near its god");
-            if (follows) continue;
-            C(OwnHappeningsMath.Chance(k, p.gap - 0.5f, S, 1f, 24f) == 0f, k + ": never within its gap");
-            float first = OwnHappeningsMath.Chance(k, p.gap, O, 0f, 24f), later = OwnHappeningsMath.Chance(k, p.gap + p.ramp, O, 0f, 24f);
-            C(first > 0f && first < later, k + ": the least likely right after its gap, more over its ramp");
-            C(OwnHappeningsMath.Chance(k, p.gap + p.ramp, S, 0f, 24f) > later && OwnHappeningsMath.Chance(k, p.gap + p.ramp, O, 1f, 24f) > later,
-                k + ": a strong reason and a near god make it likelier");
-            C(OwnHappeningsMath.Chance(k, 9999f, S, 1f, 1f) <= OwnHappeningsMath.MaxLook, k + ": never more than one in three at a look");
+            var p = OwnHappeningsMath.PaceOf(h);
+            if (p.mean <= 0f) continue;
+            C(OwnHappeningsMath.DayChance(h, p.gap - 0.5f, S, 1f) == 0f && OwnHappeningsMath.DayChance(h, p.gap + 100f, T, 1f) == 0f,
+                $"{h}: never within its gap ({p.gap} days), never without a reason");
+            float o = OwnHappeningsMath.DayChance(h, p.gap + p.ramp, O, 0f), s = OwnHappeningsMath.DayChance(h, p.gap + p.ramp, S, 0f);
+            float first = OwnHappeningsMath.DayChance(h, p.gap, O, 0f), nearer = OwnHappeningsMath.DayChance(h, p.gap + p.ramp, O, 1f);
+            C(o > 0f && s > o && first < o && nearer > o && nearer < o * 1.6f,
+                $"{h}: its chance starts small after the gap and grows, more for a strong reason, a little more the nearer its god is ({o:P1} a day once free)");
         }
-        C(new[] { OwnHappeningsMath.UndertowShun, OwnHappeningsMath.HeliosLookBack, OwnHappeningsMath.HeliosFruit, OwnHappeningsMath.SeleneMorning, OwnHappeningsMath.DucatTrail }
-              .All(OwnHappeningsMath.Follows),
-            "the ones that follow something (a bargain, an eclipse, his feast, the moon's return, silver gone) have no chance of their own");
-        C(OwnHappeningsMath.PaceOf(OwnHappeningsMath.HushWalk).gap >= 30f && OwnHappeningsMath.PaceOf(OwnHappeningsMath.HeliosDawn).gap >= 30f
-          && OwnHappeningsMath.PaceOf(OwnHappeningsMath.MurmurFrogs).gap >= 20f,
-            "the rare ones far apart: the walk round the edge and the sun's return once a winter, the frogs once in a long while");
-        C(OwnHappeningsMath.NearFactor(0f) < 1f && OwnHappeningsMath.NearFactor(1f) > 1f && OwnHappeningsMath.NearFactor(5f) == OwnHappeningsMath.NearFactor(1f),
-            "a god drawn near a little likelier, a god far a little less");
+        C(all.Count(h => OwnHappeningsMath.PaceOf(h).mean > 0f) >= 8 && OwnHappeningsMath.PaceOf(OwnHappening.SmoulderBargain).gap >= 40f
+          && OwnHappeningsMath.PaceOf(OwnHappening.BellwetherHurt).gap >= 40f && OwnHappeningsMath.PaceOf(OwnHappening.MorelMourner).gap >= 30f,
+            "the rare ones far apart: the bargain, the wounded thrumbo, the mourner");
+        C(OwnHappeningsMath.Free(OwnHappening.PipTurret, 6f) && !OwnHappeningsMath.Free(OwnHappening.PipTurret, 5.9f) && !OwnHappeningsMath.Free(OwnHappening.HollinWalk, float.NaN),
+            "the ones that answer something on the map keep their own gap too");
 
-        // ================= Hush =================
+        // ================= Hollin =================
 
-        C(OwnHappeningsMath.Word(5f, true, true, 0f, true, 0f, true).word == OwnHappeningsMath.FrostWord.None, "no word in the frost in a thaw");
-        C(OwnHappeningsMath.Word(-5f, false, false, 30f, false, 500f, false).trigger == T, "no word when nothing is wrong");
-        C(OwnHappeningsMath.Word(-5f, true, false, 1f, true, 0f, true) == (OwnHappeningsMath.FrostWord.Warm, S), "WARM first for someone with hypothermia");
-        C(OwnHappeningsMath.Word(-5f, false, true, 1f, false, 500f, false) == (OwnHappeningsMath.FrostWord.Bread, S), "BREAD, strongly, with the stores nearly bare");
-        C(OwnHappeningsMath.Word(-5f, false, true, 10f, false, 500f, false) == (OwnHappeningsMath.FrostWord.Warm, O), "WARM for a cold bedroom");
-        C(OwnHappeningsMath.Word(-5f, false, false, 3f, false, 500f, false) == (OwnHappeningsMath.FrostWord.Bread, O), "BREAD for the stores short");
-        C(OwnHappeningsMath.Word(-5f, false, false, 10f, true, 20f, false) == (OwnHappeningsMath.FrostWord.Wood, O)
-          && OwnHappeningsMath.Word(-5f, false, false, 10f, false, 20f, false).word != OwnHappeningsMath.FrostWord.Wood,
-            "WOOD only where the colony burns wood for warmth and has little left");
-        C(OwnHappeningsMath.Word(-5f, false, false, 10f, false, 500f, true) == (OwnHappeningsMath.FrostWord.Count, O), "COUNT for food let spoil");
-        C(Math.Abs(OwnHappeningsMath.FoodDays(16f, 5) - 2f) < 0.01f && OwnHappeningsMath.FoodDays(10f, 0) > 50f, "the days of food: nutrition over the people's daily eating");
-        C(OwnHappeningsMath.Frail(70f, false) && OwnHappeningsMath.Frail(1f, false) && OwnHappeningsMath.Frail(30f, true) && !OwnHappeningsMath.Frail(30f, false),
-            "the frail kept warm: the old, a baby, the sick abed");
-        C(OwnHappeningsMath.VigilTrigger(true, true) == S && OwnHappeningsMath.VigilTrigger(false, true) == T && OwnHappeningsMath.VigilTrigger(true, false) == T,
-            "a vigil only in a cold snap with the frail abed");
-        C(OwnHappeningsMath.VigilKept(7000, 10000) && !OwnHappeningsMath.VigilKept(6000, 10000) && !OwnHappeningsMath.VigilKept(5, 0),
-            "the cold breaks only when the keeper sat through most of the night");
-        C(OwnHappeningsMath.LongestNight(true, 7) && !OwnHappeningsMath.LongestNight(false, 7) && !OwnHappeningsMath.LongestNight(true, 2),
-            "the longest night: the middle of winter");
-        C(OwnHappeningsMath.WalkTrigger(true, 5f) == S && OwnHappeningsMath.WalkTrigger(false, -25f) == O && OwnHappeningsMath.WalkTrigger(false, -5f) == T,
-            "the walk on the longest night, or a bitter one, never on an ordinary cold night");
-        C(OwnHappeningsMath.WalkHour(23) && OwnHappeningsMath.WalkHour(1) && !OwnHappeningsMath.WalkHour(12), "the walk begins at night");
-        C(OwnHappeningsMath.WalkRadius(0f) == OwnHappeningsMath.WalkMin && OwnHappeningsMath.WalkRadius(200f) == OwnHappeningsMath.WalkMax && OwnHappeningsMath.WalkRadius(20f) == 27,
-            "it walks out past the colony's farthest building, within bounds");
-        C(OwnHappeningsMath.WalkSteps(30) * OwnHappeningsMath.WalkStepTicks < 2500 * 8 && OwnHappeningsMath.WalkSteps(1) >= 8, "it goes all the way round within a night");
-        C(OwnHappeningsMath.WalkReach == 20f && OwnHappeningsMath.WalkFlee >= 2, "it moves on when anyone comes within twenty steps");
-        C(OwnHappeningsMath.GraveTrigger(1f, true, 30f, true) == S && OwnHappeningsMath.GraveTrigger(1f, false, 2f, true) == S
-          && OwnHappeningsMath.GraveTrigger(1f, true, 30f, false) == T && OwnHappeningsMath.GraveTrigger(1f, false, 30f, true) == T
-          && OwnHappeningsMath.GraveTrigger(5f, true, 2f, true) == T,
-            "frost on a new grave only in lean months with food let rot");
-        C(OwnHappeningsMath.MeltDaysMin >= 1f && OwnHappeningsMath.MeltDaysMax >= OwnHappeningsMath.MeltDaysMin, "the frost melts into the ring days later");
+        C(OwnHappeningsMath.RootsTrigger(14, 0) == T && OwnHappeningsMath.RootsTrigger(30, 10) == T && OwnHappeningsMath.RootsTrigger(20, 2) == O
+          && OwnHappeningsMath.RootsTrigger(45, 3) == S && OwnHappeningsMath.RootsTrigger(45, 10) == O,
+            "the roots remember a season of felling with little planted back, strongly a great deal of it");
+        var words = OwnHappeningsMath.Words(3, true, true, true, 1);
+        C(words.SequenceEqual(new[] { DryadWord.Spare, DryadWord.Wait, DryadWord.Plant, DryadWord.Burn }) && OwnHappeningsMath.Words(2, true, false, false, 0).Count == 0,
+            "the dryads' words each point at something real: trees marked to cut, frost on growing fields, a bare field, blight; nothing to point at, no word");
+        C(OwnHappeningsMath.DryadsTrigger(0, 3, true) == T && OwnHappeningsMath.DryadsTrigger(2, 0, true) == T && OwnHappeningsMath.DryadsTrigger(1, 2, false) == O
+          && OwnHappeningsMath.DryadsTrigger(1, 2, true) == S, "the dryads speak only with something to say and a dryad to say it, more readily by an anima tree");
+        C(OwnHappeningsMath.FrostAhead(12f, -3f) && !OwnHappeningsMath.FrostAhead(12f, 8f) && !OwnHappeningsMath.FrostAhead(-4f, -10f) && !OwnHappeningsMath.FrostAhead(float.NaN, -3f),
+            "a frost ahead is the next season colder than the fields can stand while it is warm now");
+        C(OwnHappeningsMath.WalkChance(false, 1f) == 0f && OwnHappeningsMath.WalkChance(true, 0f) > 0.4f && OwnHappeningsMath.WalkChance(true, 1f) > OwnHappeningsMath.WalkChance(true, 0f)
+          && OwnHappeningsMath.WalkSteps >= 2 && OwnHappeningsMath.WalkSpacingMax > OwnHappeningsMath.WalkSpacingMin,
+            "her rising walks on in the growing season, more often the nearer she is, twice more along a line");
+        C(!OwnHappeningsMath.OldTreeSpared(60f, 30, false, true) && !OwnHappeningsMath.OldTreeSpared(60f, 30, true, false) && !OwnHappeningsMath.OldTreeSpared(30f, 30, true, true)
+          && !OwnHappeningsMath.OldTreeSpared(60f, 5, true, true) && OwnHappeningsMath.OldTreeSpared(60f, 30, true, true),
+            "the old tree spared: standing in spring after a long while of felling round it");
 
-        // ================= Undertow =================
+        // ================= Smoulder =================
 
-        C(OwnHappeningsMath.DriftTrigger(true, false) == S && OwnHappeningsMath.DriftTrigger(false, true) == O && OwnHappeningsMath.DriftTrigger(false, false) == T,
-            "the dark drifts toward someone at the edge of breaking, never for an ordinary low mood");
-        C(OwnHappeningsMath.Drift(1f, false, false) == OwnHappeningsMath.DriftEnd.Reached && OwnHappeningsMath.Drift(1f, true, false) == OwnHappeningsMath.DriftEnd.HeldByLight
-          && OwnHappeningsMath.Drift(1f, true, true) == OwnHappeningsMath.DriftEnd.HeldByCompany && OwnHappeningsMath.Drift(10f, false, false) == OwnHappeningsMath.DriftEnd.Drifting,
-            "a light beside them stops it, someone sitting with them stops it first, else it reaches them");
-        C(OwnHappeningsMath.DriftHour(23) && OwnHappeningsMath.DriftHour(2) && !OwnHappeningsMath.DriftHour(10) && OwnHappeningsMath.DarkMoonFactor > 1f,
-            "it comes at night, easier with no moon");
-        C(OwnHappeningsMath.ShunDays >= 5f && OwnHappeningsMath.ShunDays <= 10f && OwnHappeningsMath.ShunFlee > OwnHappeningsMath.ShunNear, "the beasts keep away for days, and walk well off");
-        C(OwnHappeningsMath.EarChance > 0f && OwnHappeningsMath.EarChance < 1f && OwnHappeningsMath.EarDays == 10f && OwnHappeningsMath.RuinsHeldAtMost <= 30,
-            "a hollow ear sometimes, the first time in a room of old ruins, for ten days");
-
-        // ================= Helios =================
-
-        C(OwnHappeningsMath.LookBackDue(10, 11) && !OwnHappeningsMath.LookBackDue(10, 10) && !OwnHappeningsMath.LookBackDue(10, 13) && !OwnHappeningsMath.LookBackDue(-1, 5),
-            "he looks back the day after an eclipse, only then");
-        C(OwnHappeningsMath.FruitFrom >= 11 && OwnHappeningsMath.FruitTo <= 15 && OwnHappeningsMath.FruitMost >= 4, "the first fruit at noon, the colony together");
-        C(OwnHappeningsMath.DawnTrigger(true, false) == S && OwnHappeningsMath.DawnTrigger(false, true) == S && OwnHappeningsMath.DawnTrigger(false, false) == T,
-            "the sun comes back the morning after the longest night or the walk round the edge, no other morning");
-
-        // ================= Selene =================
-
-        C(OwnHappeningsMath.WaterTrigger(true, true, true, true) == O && OwnHappeningsMath.WaterTrigger(false, true, true, true) == T
-          && OwnHappeningsMath.WaterTrigger(true, false, true, true) == T && OwnHappeningsMath.WaterTrigger(true, true, false, true) == T,
-            "her face in the water only at the full moon, on a clear night, by still water, with someone up");
-        C(OwnHappeningsMath.WatchTrigger(true, true, true, true) == S && OwnHappeningsMath.WatchTrigger(true, true, true, false) == O
-          && OwnHappeningsMath.WatchTrigger(false, true, true, true) == T && OwnHappeningsMath.WatchTrigger(true, false, true, true) == T,
-            "the watch kept company under a moon at least half full, a watch under arms the more");
-        C(OwnHappeningsMath.DarkFaceTrigger(true, true) == O && OwnHappeningsMath.DarkFaceTrigger(false, true) == T, "the dark face kept only on a night with no moon");
-
-        // ================= Murmur =================
-
-        C(OwnHappeningsMath.SongTrigger(6, false, 2) == O && OwnHappeningsMath.SongTrigger(12, false, 3) == S && OwnHappeningsMath.SongTrigger(1, true, 2) == S
-          && OwnHappeningsMath.SongTrigger(10, true, 1) == T && OwnHappeningsMath.SongTrigger(3, false, 5) == T,
-            "sung to in a dry spell by two or more who hold him");
-        C(OwnHappeningsMath.SongAnswered(true, 0f) > OwnHappeningsMath.SongAnswered(false, 0f) && OwnHappeningsMath.SongAnswered(false, 1f) > OwnHappeningsMath.SongAnswered(false, 0f)
-          && OwnHappeningsMath.SongAnswered(true, 9f) <= 1f && OwnHappeningsMath.SongAnswered(false, 0f) < 1f,
-            "the song is often answered, not always");
-        C(OwnHappeningsMath.GiveBackTrigger(3, false) == S && OwnHappeningsMath.GiveBackTrigger(2, false) == O && OwnHappeningsMath.GiveBackTrigger(1, false) == T,
-            "the water gives back only after a wet run");
-        C(OwnHappeningsMath.FrogsTrigger(8, false) == S && OwnHappeningsMath.FrogsTrigger(3, false) == T && OwnHappeningsMath.FrogsTrigger(0, true) == S,
-            "the frogs come with the rain that breaks a long dry spell");
-        C(OwnHappeningsMath.Frogs(10) == 6 && OwnHappeningsMath.Frogs(250 * 250) <= 16 && OwnHappeningsMath.Frogs(250 * 250) >= 6, "a dozen or so frogs, by the land's size");
-        C(OwnHappeningsMath.SilverBackMin > 0 && OwnHappeningsMath.SilverBackMax <= 50 && OwnHappeningsMath.OldThingWorth <= 300f && OwnHappeningsMath.OldThingWorn < 0.5f,
-            "what the water gives back is small: a little silver, an old worn thing");
-
-        // ================= Ducat =================
-
-        C(OwnHappeningsMath.TrailCoins(0) == 0 && OwnHappeningsMath.TrailCoins(10) == 5 && OwnHappeningsMath.TrailCoins(500) == OwnHappeningsMath.TrailMost,
-            "a trail of single coins from what was taken, never more than it");
-        C(OwnHappeningsMath.PurseTrigger(true, false, true) == S && OwnHappeningsMath.PurseTrigger(false, true, true) == O && OwnHappeningsMath.PurseTrigger(false, false, true) == T
-          && OwnHappeningsMath.PurseTrigger(true, true, false) == T,
-            "the open purse at its feast or by one devoted to it, and only with a visitor to give to");
-        C(OwnHappeningsMath.PurseMax <= 5 && OwnHappeningsMath.PurseGoodwill > 0 && OwnHappeningsMath.PurseGoodwill <= 3, "a few coins, a little goodwill");
-        C(OwnHappeningsMath.BeetleTrigger(true, 0) == S && OwnHappeningsMath.BeetleTrigger(false, 2000) == O && OwnHappeningsMath.BeetleTrigger(false, 200) == T,
-            "the beetle leads to a coin with traders on the land or a large hoard");
-
-        // ================= Tamiu =================
-
-        C(OwnHappeningsMath.ThresholdTrigger(true) == S && OwnHappeningsMath.ThresholdTrigger(false) == T, "a cat at the threshold only for someone near death");
-        C(OwnHappeningsMath.LostTrigger(20f, 40f, false) == S && OwnHappeningsMath.LostTrigger(5f, 40f, false) == T && OwnHappeningsMath.LostTrigger(20f, 10f, false) == T
-          && OwnHappeningsMath.LostTrigger(20f, 40f, true) == T,
-            "a cat finds a body of the colony's left lying far out, half a day or more");
-
-        // ================= The defs: lines, moods, hediffs =================
-
-        var docs = gods.ToDictionary(g => g, g => XDocument.Load(Path.Combine(root, "Defs", "GodDefs", "Rimfolk_GodHappenings_" + g + ".xml")));
-        var tagsUsed = new Dictionary<string, string[]>
+        C(OwnHappeningsMath.BargainSilver(599) == 0 && OwnHappeningsMath.BargainSilver(600) == 150 && OwnHappeningsMath.BargainSilver(2000) == 300 && OwnHappeningsMath.BargainSilver(50000) == 400
+          && OwnHappeningsMath.BargainSilver(1234) % 10 == 0, "the voice asks a seventh of the silver held, in tens, 150 to 400, nothing from a colony with little");
+        C(OwnHappeningsMath.BargainTrigger(500, true, 1f) == T && OwnHappeningsMath.BargainTrigger(1000, false, 1f) == T && OwnHappeningsMath.BargainTrigger(1000, true, 0f) == O
+          && OwnHappeningsMath.BargainTrigger(1000, true, 0.5f) == S, "a bargain only for silver held and someone under the mountain, likelier when the deep stirs");
+        C(OwnHappeningsMath.Kept(200, 200) && OwnHappeningsMath.Kept(250, 200) && !OwnHappeningsMath.Kept(100, 200) && !OwnHappeningsMath.Kept(0, 0), "kept to the letter: all that was promised went down");
+        float gold = 400f, steel = 76f;
+        bool keptPays = true, bentDoesnt = true;
+        foreach (int thrown in new[] { 150, 220, 300, 400 })
         {
-            ["Hush"] = new[] { "word", "vigil", "thaw", "walk", "grave", "melt" },
-            ["Undertow"] = new[] { "shun", "shunself", "drift", "voice", "ear" },
-            ["Helios"] = new[] { "lookback", "fruit", "dawn" },
-            ["Selene"] = new[] { "morning", "water", "watch", "darkface" },
-            ["Murmur"] = new[] { "song", "rain", "giveback", "frogs", "frogsheard" },
-            ["Ducat"] = new[] { "trail", "purse", "beetle" },
-            ["Tamiu"] = new[] { "threshold", "died", "lost" }
-        };
-        foreach (var g in gods)
-        {
-            var pool = docs[g].Root!.Elements("ColonyCouncil.FlavorPoolDef").FirstOrDefault();
-            string poolName = pool?.Element("defName")?.Value;
-            C(poolName == "Rimfolk_Pool_God" + g + "_Say" && code[g].Contains("\"" + poolName + "\""), g + ": its own pool of lines, used by its code");
-            var lines = pool?.Descendants("li").Select(l => l.Value).ToList() ?? new List<string>();
-            foreach (var t in tagsUsed[g])
-            {
-                int plain = lines.Count(l => Tags(l).Contains(t) && !Tags(l).Contains("named") && !Tags(l).Contains("scoffer"));
-                C(plain >= 1 && code[g].Contains("\"" + t + "\""), g + ": lines for '" + t + "', said by its code");
-            }
-            foreach (var l in lines)
-            {
-                string body = Regex.Replace(l, @"^\[[^\]]*\]\s*", "");
-                var tags = Tags(l);
-                C(tags.Count > 0, g + ": '" + body + "' is tagged");
-                C(FirstSentence(body) == body && body.Length <= 90 && !body.StartsWith("\"") && body.Count(c => c == '!') == 0 && !body.Contains("—"),
-                    g + ": '" + body + "' is one short sentence, plainly said");
-                C(!body.Contains("{GOD}") || tags.Contains("named"), g + ": '" + body + "' names the god only where the colony is sure (tagged named)");
-            }
-            if (g == "Undertow") C(lines.All(l => !Tags(l).Contains("named") && !l.Contains("{GOD}")), "Undertow: never named in anything said");
+            float back = OwnHappeningsMath.GoldCells(thrown, gold) * gold;
+            keptPays &= back >= thrown && back <= thrown * 3f;
+            int half = thrown / 2;
+            bentDoesnt &= OwnHappeningsMath.SteelCells(half, steel) * steel <= Math.Max(steel, half * 1.5f) && OwnHappeningsMath.SteelCells(half, steel) >= 1;
         }
-        C(docs["Hush"].Root!.Descendants("li").Count(l => Regex.IsMatch(l.Value, @"\[vigil,age[0-3]\]")) == 4, "Hush: the vigil said in every age's form");
+        C(keptPays && bentDoesnt && OwnHappeningsMath.GoldCells(0, gold) == 0 && OwnHappeningsMath.GoldCells(100000, gold) == OwnHappeningsMath.MaxVein && OwnHappeningsMath.GoldCells(100, float.NaN) == 0,
+            "a kept bargain's gold is worth more than the silver thrown (not past three times it); a bent one's steel no more than about what went down");
+        C(OwnHappeningsMath.VeinDaysMin >= 1f && OwnHappeningsMath.VeinDaysMax >= OwnHappeningsMath.VeinDaysMin && OwnHappeningsMath.KeptFavour > 0f && OwnHappeningsMath.BentFavour < 0f,
+            "the vein shows days later; a bent bargain displeases him (hidden)");
+        C(OwnHappeningsMath.NameChance(false, false, true, 1f) == 0f && OwnHappeningsMath.NameChance(true, false, false, 0f) > OwnHappeningsMath.NameChance(false, true, false, 0f)
+          && OwnHappeningsMath.NameChance(true, true, true, 0f) > OwnHappeningsMath.NameChance(true, true, false, 0f) && OwnHappeningsMath.NameChance(true, true, true, 1f) <= 1f,
+            "a sculpture named for his proper name only by one who holds him or knows of him, likelier for good work");
+        C(OwnHappeningsMath.HeatFirst(GodsOnMapMath.StoneFallsFrom - 1, GodsOnMapMath.StoneFallsFrom) && !OwnHappeningsMath.HeatFirst(GodsOnMapMath.StoneFallsFrom, GodsOnMapMath.StoneFallsFrom)
+          && !OwnHappeningsMath.HeatFirst(0, 1) && OwnHappeningsMath.HeatHours >= 2, "the heat from below comes on the turn before stone may first fall, for hours");
+        C(OwnHappeningsMath.BurnTrigger(100, 0f, true) == S && OwnHappeningsMath.BurnTrigger(5000, 10f, false) == T && OwnHappeningsMath.BurnTrigger(1000, 99f, false) == T
+          && OwnHappeningsMath.BurnTrigger(5000, 90f, false) == O, "a burn for a bargain bent, else for a hoard long unpaid; nothing for silver given back lately");
+        C(OwnHappeningsMath.BurnChance < 1f && OwnHappeningsMath.BurnHigh <= 5f && OwnHappeningsMath.BurnLow > 0f, "the burn is small, and may not come at all");
 
-        var thoughts = new Dictionary<string, (int min, int max)>
+        // ================= Bellwether =================
+
+        C(OwnHappeningsMath.HornSpeaks(1f, true, 10f, 0f) && !OwnHappeningsMath.HornSpeaks(1f, false, 10f, 0f) && !OwnHappeningsMath.HornSpeaks(3f, true, 10f, 0f)
+          && !OwnHappeningsMath.HornSpeaks(1f, true, 2f, 0f) && !OwnHappeningsMath.HornSpeaks(1f, true, 10f, 0.99f) && !OwnHappeningsMath.HornSpeaks(0f, true, 10f, 0f),
+            "a horn child speaks within the hour before the weather turns wet, each their own days apart");
+        C(OwnHappeningsMath.HornKept >= 4 && OwnHappeningsMath.HornKept <= 12, "the children who touched the horn are kept, a few at most");
+        C(OwnHappeningsMath.HurtTrigger(false, 999f, 999f) == T && OwnHappeningsMath.HurtTrigger(true, 10f, 999f) == T && OwnHappeningsMath.HurtTrigger(true, 999f, 999f) == O
+          && OwnHappeningsMath.HurtTrigger(true, 999f, 5f) == S, "a wounded thrumbo only where they live and none was killed lately, strongly after he passed in peace");
+        C(OwnHappeningsMath.WaitHoursMost >= 4f && OwnHappeningsMath.DuskTo > OwnHappeningsMath.DuskFrom && OwnHappeningsMath.DawnTo > OwnHappeningsMath.DawnFrom && OwnHappeningsMath.DawnTo <= 12,
+            "his road: the edge at dusk, through at dawn, a long wait at a fence before he turns back");
+
+        // ================= Morel =================
+
+        C(OwnHappeningsMath.MournerTrigger(0, 5) == T && OwnHappeningsMath.MournerTrigger(1, 0) == T && OwnHappeningsMath.MournerTrigger(1, 2) == O && OwnHappeningsMath.MournerTrigger(2, 2) == S,
+            "the mourner comes only after a death of the colony's, with graves to stand by");
+        C(OwnHappeningsMath.RingTrigger(true, false, 0f) == S && OwnHappeningsMath.RingTrigger(false, true, 0f) == O && OwnHappeningsMath.RingTrigger(false, false, 0.1f) == T
+          && OwnHappeningsMath.RingTrigger(false, false, 0.9f) == O, "her ring answers a body left lying, rot in the stores, or her drawing near; nothing else");
+        C(OwnHappeningsMath.RingPlace(true, true) == RingAt.Body && OwnHappeningsMath.RingPlace(false, true) == RingAt.Stores && OwnHappeningsMath.RingPlace(false, false) == RingAt.Buried,
+            "the ring points at the body first, then the rot, else at something buried");
+        C(OwnHappeningsMath.LeadHoursMin >= 12f && OwnHappeningsMath.LeadHoursMax <= 36f && OwnHappeningsMath.BreathChance < 1f && OwnHappeningsMath.BreathPawnDays >= 30f,
+            "the warning comes the day before; her breath is heard now and then, once in a long while each");
+
+        // ================= Ennu =================
+
+        C(OwnHappeningsMath.Tests(false, false, false, false).Count == 0
+          && OwnHappeningsMath.Tests(true, true, true, true).SequenceEqual(new[] { GuestTest.Story, GuestTest.Cook, GuestTest.Graves, GuestTest.Coat })
+          && OwnHappeningsMath.Tests(false, true, false, false).SequenceEqual(new[] { GuestTest.Story }),
+            "the Guest asks only what the colony can answer: a story with a fire, a name with a cook, graves to show, a coat in the cold");
+        C(OwnHappeningsMath.BowlTrigger(true, 999f) == S && OwnHappeningsMath.BowlTrigger(false, 3f) == O && OwnHappeningsMath.BowlTrigger(false, 30f) == T
+          && OwnHappeningsMath.BowlChance(S) == 1f && OwnHappeningsMath.BowlChance(O) < 0.5f && OwnHappeningsMath.BowlChance(T) == 0f,
+            "the bowl every Open Door night, now and then after a kind welcome, never otherwise");
+        C(OwnHappeningsMath.TestCredit > 0 && OwnHappeningsMath.TalesAStay >= 1 && OwnHappeningsMath.TalesAStay <= 3 && OwnHappeningsMath.KindestDays >= 10f,
+            "a test answered counts toward the welcome; a tale or two a stay; the kindest sought out for a season");
+
+        // ================= Pip =================
+
+        C(OwnHappeningsMath.FlickChance(99f, false, 1f) == 0f && OwnHappeningsMath.FlickChance(5f, true, 1f) == 0f && OwnHappeningsMath.FlickChance(99f, true, 1f) > OwnHappeningsMath.FlickChance(99f, true, 0f)
+          && OwnHappeningsMath.FlickChance(99f, true, 1f) <= 0.5f && OwnHappeningsMath.WontStopTicks == 2500, "a machine runs on now and then when switched off, only where Pip is known, an hour");
+        C(OwnHappeningsMath.StarsTrigger(false, 0f, true, 1f) == T && OwnHappeningsMath.StarsTrigger(true, 99f, false, 0f) == T && OwnHappeningsMath.StarsTrigger(true, 1f, false, 0f) == O
+          && OwnHappeningsMath.StarsTrigger(true, 99f, false, 0.5f) == O && OwnHappeningsMath.StarsTrigger(true, 99f, true, 0f) == S,
+            "the console calls the stars only for a reason: used lately, Pip drawn near, an old terminal to answer");
+        C(OwnHappeningsMath.CrossesLine(0, 0, 10, 0, 5, 0.5f) && !OwnHappeningsMath.CrossesLine(0, 0, 10, 0, 5, 2f) && !OwnHappeningsMath.CrossesLine(0, 0, 10, 0, 0.5f, 0f)
+          && !OwnHappeningsMath.CrossesLine(0, 0, 10, 0, 9.5f, 0f) && !OwnHappeningsMath.CrossesLine(0, 0, 0.5f, 0, 0.2f, 0f) && OwnHappeningsMath.CrossesLine(0, 0, 0, 10, 0.3f, 6f),
+            "across a turret's line is near the line, between the turret and its target");
+        C(OwnHappeningsMath.HoldTicks >= 60 && OwnHappeningsMath.HoldTicks <= 180 && OwnHappeningsMath.TurretChance < 1f, "a turret holds its fire a breath, now and then");
+
+        // ================= Cirrus =================
+
+        C(!OwnHappeningsMath.Watches(1, 99f) && OwnHappeningsMath.Watches(2, 99f) && OwnHappeningsMath.Watches(0, 5f), "a colony watches the sky: looked up lately, or its festival kept");
+        C(OwnHappeningsMath.Coldest(-12f, -8f, 12) && !OwnHappeningsMath.Coldest(-12f, -14f, 12) && !OwnHappeningsMath.Coldest(-12f, -8f, 5) && !OwnHappeningsMath.Coldest(-2f, 5f, 20),
+            "the coldest night: colder than any for days, and properly cold");
+        C(OwnHappeningsMath.ThunderTrigger(2, 99f) == T && OwnHappeningsMath.ThunderTrigger(8, 5f) == T && OwnHappeningsMath.ThunderTrigger(8, 30f) == O,
+            "dry thunder only after a long clear spell with nothing of the sky's lately");
+        C(OwnHappeningsMath.PodTo > OwnHappeningsMath.PodFrom && OwnHappeningsMath.FallChance < 1f && OwnHappeningsMath.AuroraHours >= 2, "the pods come by day; the aurora lasts hours");
+
+        // ================= The defs =================
+
+        var defs = Def("GodDefs/Rimfolk_GodOwnHappenings.xml").Root!;
+        var incidents = defs.Elements("IncidentDef").ToDictionary(d => d.Element("defName")!.Value);
+        foreach (var (name, worker, options) in new[] { ("Rimfolk_Evt_GodBargain", "ColonyCouncil.HappeningWorker_GodBargain", 3), ("Rimfolk_Evt_GodHurtBeast", "ColonyCouncil.HappeningWorker_GodHurtBeast", 2) })
         {
-            ["Rimfolk_Thought_Hush_SatUp"] = (1, 5), ["Rimfolk_Thought_Hush_SatWith"] = (1, 5), ["Rimfolk_Thought_Undertow_StoodOver"] = (-5, -1),
-            ["Rimfolk_Thought_Undertow_KeptOff"] = (1, 5), ["Rimfolk_Thought_Undertow_KeptOffMe"] = (1, 5), ["Rimfolk_Thought_Helios_FirstFruit"] = (1, 5),
-            ["Rimfolk_Thought_Helios_SunBack"] = (1, 5), ["Rimfolk_Thought_Selene_FaceInWater"] = (1, 5), ["Rimfolk_Thought_Selene_KeptCompany"] = (1, 5),
-            ["Rimfolk_Thought_Selene_KeptDarkFace"] = (1, 5), ["Rimfolk_Thought_Murmur_Sang"] = (1, 5), ["Rimfolk_Thought_Tamiu_CatWentAway"] = (1, 5)
-        };
-        var thoughtDefs = docs.Values.SelectMany(d => d.Root!.Elements("ThoughtDef")).ToDictionary(t => t.Element("defName")!.Value);
-        string rates = File.ReadAllText(Path.Combine(root, "Tools", "Balance", "Rates.cs"));
-        foreach (var (t, range) in thoughts)
-        {
-            bool has = thoughtDefs.TryGetValue(t, out var def);
-            int mood = has ? int.Parse(def!.Descendants("baseMoodEffect").First().Value) : 0;
-            float days = has ? float.Parse(def!.Element("durationDays")!.Value, System.Globalization.CultureInfo.InvariantCulture) : 0f;
-            C(has && mood >= range.min && mood <= range.max && days > 0f && days <= 3f && all.Contains("\"" + t + "\""), t + ": a small mood (" + mood + ") for a few days at most, given by the code");
-            C(rates.Contains("(\"" + t + "\""), t + " in the balance model");
+            var inc = incidents.TryGetValue(name, out var x) ? x : null;
+            var ext = inc?.Element("modExtensions")?.Element("li");
+            var texts = ext?.Element("texts")?.Elements("li").Select(l => l.Value).ToList() ?? new List<string>();
+            C(inc != null && inc.Element("baseChance")?.Value == "0" && inc.Element("workerClass")?.Value == worker && ext.Element("options")!.Elements("li").Count() == options
+              && Enumerable.Range(0, 4).All(a => texts.Any(t => t.StartsWith("[age" + a + "]"))),
+                $"{name}: fired only by its god's own, its answers, every age's words");
+            C(texts.All(t => !t.Contains("Smoulder") && !t.Contains("Bellwether") && !t.Contains("{GOD}")), $"{name}: the card never names the god");
         }
-        var hediffs = docs.Values.SelectMany(d => d.Root!.Elements("HediffDef")).ToDictionary(h => h.Element("defName")!.Value);
-        C(hediffs.TryGetValue("Rimfolk_HollowEar", out var ear) && ear.Descendants("PsychicSensitivity").Any() && ear.Descendants("disappearsAfterTicks").First().Value.StartsWith("600000"),
-            "the hollow ear: a mind more open for ten days, gone by itself");
-        C(hediffs.TryGetValue("Rimfolk_MoonlitWatch", out var watch) && watch.Descendants("AimingDelayFactor").Any() && watch.Descendants("capacity").Any(c => c.Value == "Sight"),
-            "the moonlit watch: sees further and aims steadier till dawn");
+        string skips = File.ReadAllText(Path.Combine(root, "Tools", "playout_skips.txt"));
+        C(skips.Contains("Rimfolk_Evt_GodBargain [option 0]") && skips.Contains("Rimfolk_Evt_GodHurtBeast [option 0]"), "the answers play out by the events' own code on the map (the play-out audit knows)");
+        var thoughts = defs.Elements("ThoughtDef").ToDictionary(d => d.Element("defName")!.Value);
+        foreach (var t in new[] { "Rimfolk_Thought_GodOwnDryadWord", "Rimfolk_Thought_GodOwnBurn", "Rimfolk_Thought_GodOwnMadeHimWait", "Rimfolk_Thought_GodOwnBreath", "Rimfolk_Thought_GodOwnThanked",
+                     "Rimfolk_Thought_GodOwnBowl", "Rimfolk_Thought_GodOwnTurretHeld" })
+            C(thoughts.TryGetValue(t, out var d) && d.Element("durationDays") != null && Math.Abs(float.Parse(d.Descendants("baseMoodEffect").First().Value)) <= 3f,
+                $"{t}: a small memory of what they saw or did");
+        var pool = defs.Elements("ColonyCouncil.FlavorPoolDef").Single(d => d.Element("defName")?.Value == "Rimfolk_Pool_GodOwnSaid").Descendants("li").Select(l => l.Value).ToList();
+        var bare = pool.Select(l => Regex.Replace(l, @"^\[[^\]]*\]\s*", "")).ToList();
+        C(bare.All(l => Regex.Matches(l, @"[.!?](\s|$)").Count == 1 && !l.Contains('!') && !l.Contains('—')), "every spoken line is one sentence, no exclamations, no em dashes");
+        var poolTags = new HashSet<string>(pool.Select(l => Regex.Match(l, @"^\[([^\]]*)\]").Groups[1].Value).SelectMany(t => t.Split(',')).Select(t => t.Trim()));
+        string code = string.Join("\n", Directory.GetFiles(Path.Combine(src, "Gods", "OnMap"), "Own*.cs").Select(File.ReadAllText));
+        var said = Regex.Matches(code, @"OwnHappenings\.Say\([^,]+, ""([a-z,:]+)""").Cast<Match>().Select(m => m.Groups[1].Value.Split(',')[0]).Distinct().ToList();
+        said.AddRange(Regex.Matches(code, @"Found\([^""]*""([a-z]+)""").Cast<Match>().Select(m => m.Groups[1].Value));
+        C(said.Count >= 40 && said.All(poolTags.Contains), "someone has words for every happening the code speaks of: " + string.Join(" ", said.Where(s => !poolTags.Contains(s)).Distinct()));
+        C(new[] { "spare", "wait", "plant", "burn" }.All(w => poolTags.Contains("word:" + w)) && new[] { "story", "cook", "graves", "coat" }.All(w => poolTags.Contains("test:" + w)),
+            "a line for each of the dryads' words and each of the Guest's tests");
 
         // ================= The words =================
 
-        var used = Regex.Matches(all, "\"(CC_God(?:Hush|Undertow|Helios|Selene|Murmur|Ducat|Tamiu)_[A-Za-z_]+)\"").Cast<Match>().Select(m => m.Groups[1].Value).Distinct().ToList();
-        var dynamic = new List<string>();
-        foreach (var w in new[] { "Warm", "Bread", "Wood", "Count" }) dynamic.Add("CC_GodHush_Word_" + w);
-        for (int a = 0; a < 4; a++) dynamic.Add("CC_GodHush_Warmth_" + a);
-        foreach (var k in new[] { "Found", "GoodDream", "Healed", "Nightmare", "Frost", "AnimalBack" }) dynamic.Add("CC_GodSelene_Morning_" + k);
-        foreach (var k in used.Where(k => !k.EndsWith("_")).Concat(dynamic))
-            C(keyed.ContainsKey(k), k + " is written");
-        var mine = keyed.Where(kv => Regex.IsMatch(kv.Key, "^CC_God(Hush|Undertow|Helios|Selene|Murmur|Ducat|Tamiu)_")).ToList();
-        C(mine.Count >= 80, $"the seven's words ({mine.Count})");
-        foreach (var kv in mine)
+        var cards = Regex.Matches(code, @"OwnHappenings\.Card\([^,]+, [^,]+, (?:[^?,]+\? )?""([A-Za-z]+)""(?: : ""([A-Za-z]+)"")?, (true|false|burned)").Cast<Match>()
+            // A card sent as a letter only one way (burned ? "Burn" : "BurnDream", burned): the second is a message.
+            .SelectMany(m => new[] { (m.Groups[1].Value, m.Groups[3].Value), (m.Groups[2].Value, m.Groups[3].Value == "burned" ? "false" : m.Groups[3].Value) })
+            .Where(x => x.Item1.Length > 0).Distinct().ToList();
+        foreach (var w in new[] { "Body", "Stores", "Buried" }) cards.Add(("Ring" + w, "false"));
+        C(cards.Count >= 22, $"the cards the code sends ({cards.Count})");
+        foreach (var (part, letter) in cards)
         {
-            C(!kv.Value.Contains("—") && !kv.Value.Contains("!"), kv.Key + ": no em dash and no exclamation mark");
-            bool title = kv.Key.Contains("_Title");
-            if (title) C(kv.Key.EndsWith("Named") == kv.Value.Contains("{GOD}"), kv.Key + ": a title names the god only in its named form");
-            else C(!kv.Value.Contains("{GOD}"), kv.Key + ": a card's text never names the god (only its title, where the colony is sure)");
+            bool has = keyed.TryGetValue("CC_GodO_" + part + "_Text", out var text);
+            bool titles = letter == "false" || keyed.TryGetValue("CC_GodO_" + part + "_Title", out var title) && keyed.TryGetValue("CC_GodO_" + part + "_TitleNamed", out var named)
+                          && !title.Contains("{GOD}") && named.Contains("{GOD}");
+            C(has && titles && !text.Contains("{GOD}"), $"{part}: its card says what was seen; a letter's title names the god only in its named form");
         }
-        C(!keyed.Keys.Any(k => k.StartsWith("CC_GodUndertow_") && k.EndsWith("Named")) && Regex.Matches(code["Undertow"], @"OwnHappenings\.Card\((\w+),").Cast<Match>().All(m => m.Groups[1].Value == "null"),
-            "Undertow is never named on a card: no named titles, every card unnamed");
-        C(code["Undertow"].Contains("SayWith(seer, Pool, null") && code["Undertow"].Contains("Say(p, Pool, null, \"ear\")"), "Undertow: its lines are said with no god to name");
-        C(keyed.TryGetValue("CC_GodHush_Warmth_0", out var w0) && keyed.TryGetValue("CC_GodHush_Warmth_3", out var w3) && w0 != w3, "Hush: keeping someone warm by the colony's age");
-
-        // ================= On the map, and nothing told that wasn't shown =================
-
-        C(code["Hush"].Contains("OwnHappenings.Rime(") && code["Hush"].Contains("SkySign.Figure") && code["Hush"].Contains("FleckMaker.PlaceFootprint") && code["Hush"].Contains("snap.End()"),
-            "Hush: rime written by the door, the figure walking with footprints that stop, the cold snap broken after the vigil");
-        C(code["Hush"].Contains("\"CC_GodHush_Grave_TextQuiet\"") && code["Hush"].Contains("\"CC_GodHush_Walk_Part\""), "Hush: the card says the cold came only when it did, the walk round only as far as it went");
-        C(code["Undertow"].Contains("SkySign.Dark") && code["Undertow"].Contains("GodOmens.Play(") && code["Undertow"].Contains("ShyFrom(") && code["Undertow"].Contains("SeleneWays.KeptTonight"),
-            "Undertow: the dark drawn drifting, the lamps it passes burning low, the beasts walking off, held at a door kept on a night with no moon");
-        C(code["Undertow"].Contains("driftDimmed") && code["Undertow"].Contains("PawnGods.Fear("), "Undertow: the lamps told only where they dimmed; dread for the one it stood over");
-        C(code["Helios"].Contains("PresenceKind.Wrath") && code["Helios"].Contains("JobDefOf.TakeInventory") && code["Helios"].Contains(".Ingested(") && code["Helios"].Contains("IntVec3.East"),
-            "Helios: his hard long noon, fruit taken from the stores and eaten out in the field, the sunrise faced to the east");
-        C(code["Selene"].Contains("SkySign.Moon") && code["Selene"].Contains("GodsOnMapBook.Instance") && code["Selene"].Contains("lastReturn") && code["Selene"].Contains("OuterDoor"),
-            "Selene: her light on the water and over the watch, the morning after the moon's own return, the door kept");
-        C(code["Murmur"].Contains("TransitionTo(") && code["Murmur"].Contains("\"DoubleRainbow\"") && code["Murmur"].Contains("\"Bullfrog\"") && code["Murmur"].Contains("OldThing()")
-          && code["Murmur"].Contains("\"Music\"") && code["Murmur"].Contains("SendOff("),
-            "Murmur: the song's notes, the rain and the rainbow after it, the old thing from the whole of the mods, the frogs gone at first light");
-        C(code["Ducat"].Contains("GenSight.PointsOnLineOfSight") && code["Ducat"].Contains("inventory.innerContainer.TryAdd") && code["Ducat"].Contains("StoryChains.Goodwill")
-          && code["Ducat"].Contains("GodSky.Crawl"),
-            "Ducat: single coins laid out along the way, coins pressed into a visitor's hand, the beetle crawling to the coin");
-        C(code["Tamiu"].Contains("ColonyCat(") && code["Tamiu"].Contains("StrayCat(") && code["Tamiu"].Contains("SetForbidden(false") && code["Tamiu"].Contains("\"Pawn_Cat_Call\""),
-            "Tamiu: a cat of the colony's or a stray, crying by the body until it is found and can be brought home");
-        C(!Regex.IsMatch(all, @"Harm\.(Injure|Ail|Roll|Fight)\("), "no hurt: none of the seven's happenings injures or sickens anyone");
+        var saws = Regex.Matches(code, @"""(CC_GodO_Saw_[A-Za-z]+)""").Cast<Match>().Select(m => m.Groups[1].Value).ToList();
+        saws.AddRange(new[] { "Body", "Stores", "Buried" }.Select(w => "CC_GodO_Saw_Ring" + w));
+        saws.AddRange(new[] { "Story", "Cook", "Graves", "Coat" }.Select(w => "CC_GodO_Saw_Test" + w));
+        C(saws.Distinct().Count() >= 40 && saws.All(k => keyed.TryGetValue(k, out var v) && v.Contains("{WHO}") && v.Contains("{HOME}") && !v.Contains("{GOD}")),
+            "the colony's book keeps every one in its witness's words, never the god's mind: " + string.Join(" ", saws.Where(k => !keyed.ContainsKey(k))));
+        var ownKeys = keyed.Where(kv => kv.Key.StartsWith("CC_GodO_")).ToList();
+        C(ownKeys.Count > 100 && ownKeys.All(kv => !kv.Value.Contains('!') && !kv.Value.Contains('—')), "the words have no exclamations and no em dashes");
+        C(Enumerable.Range(0, 6).All(i => keyed.ContainsKey("CC_GodO_StarsMessage_" + i)) && new[] { "Spare", "Wait", "Plant", "Burn" }.All(w => keyed.ContainsKey("CC_GodO_DryadWord_" + w))
+          && new[] { "North", "South", "East", "West", "NorthEast", "NorthWest", "SouthEast", "SouthWest" }.All(w => keyed.ContainsKey("CC_GodO_Way_" + w)),
+            "the messages to the stars, the dryads' words and the ways from the colony");
+        C(!Regex.IsMatch(string.Join(" ", ownKeys.Select(kv => kv.Value)), @"\bin \d+ (days|hours)\b|\btomorrow\b"), "no countdowns in the words");
 
         // ================= The seams =================
 
-        C(Read(Path.Combine("Gods", "OnMap", "GodsOnMapBook.cs")).Contains("OwnHappenings.Hourly(now)"), "the gods' hour looks at the seven's happenings");
-        C(Read(Path.Combine("Gods", "Worship", "Festivals.cs")).Contains("OwnHappenings.FestivalKept(g, map)") && shared.Contains("HeliosWays.Festival(") && shared.Contains("MurmurWays.Festival(")
-          && shared.Contains("DucatWays.Festival("),
-            "a feast kept: the first fruit (Helios), the singing at the wells (Murmur), the open purse (Ducat)");
-        C(Read(Path.Combine("Gods", "World", "GodHealth.cs")).Contains("DucatWays.Trail(g, map, at, take - left)"), "silver gone from a hoard leaves its trail");
-        C(Regex.Matches(all, @"OwnHappenings\.Saw\(").Count >= 20 && shared.Contains("GodsOnMapWords.Saw(") && all.Contains("Worship.Booked("),
-            "what was seen goes to the colony's book and each witness's belief (GodsOnMapWords.Saw), the colony's own rites as kept (Worship.Booked)");
-        C(all.Contains("PawnGods.Gift(") && all.Contains("PawnGods.RiteLed(") && all.Contains("PawnGods.Fear(") && all.Contains("PawnGods.HoldOf("),
-            "belief: a gift from the water, the rite of the purse and the song, dread of the dark, who holds whom");
-        C(shared.Contains("Gods.CardName(g, map, sign)") && shared.Contains("Gods.CardName(g, p.Map)") && code["Helios"].Contains("\"Eclipse\"") && code["Murmur"].Contains("\"Council_Evt_LongRains\""),
-            "a card is named only as Gods.CardName allows (the colony sure, or the sign learned as the god's)");
-        var fields = typeof(OwnHappeningsMath).GetFields().Where(f => f.IsLiteral && f.FieldType == typeof(string)).ToDictionary(f => (string)f.GetRawConstantValue()!, f => f.Name);
-        foreach (var k in OwnHappeningsMath.All)
-        {
-            string field = fields.TryGetValue(k, out var f) ? f : "?";
-            C(Regex.IsMatch(all, @"Came\((b|OwnHappenings\.Book), OwnHappeningsMath\." + field + @"\b"), k + ": marked as come when it comes (its gap starts)");
-        }
-        int devs = Regex.Matches(all, "\\[DebugAction\\(\"Rimfolk\", \"Gods: ").Count;
-        C(devs >= 22, $"a dev action for each happening ({devs})");
-        C(shared.Contains("class OwnHappeningsBook : GameComponent") && shared.Contains("Scribe_Collections.Look(ref keys") && shared.Contains("Scribe_Deep.Look(ref hush"),
-            "saved with the game: when each last came, each god's happening under way");
-        string est = File.ReadAllText(Path.Combine(root, "Tools", "save_estimate.py"));
-        C(est.Contains("Gods/Happenings/OwnHappenings.cs:keys") && est.Contains("Gods/Happenings/OwnHappenings.cs:ruins"), "the saved lists modelled in the save estimate");
-        C(!Regex.IsMatch(all, @"\bSched\."), "no clock slot of their own: the gods' hour and their own due steps");
-        C(File.ReadAllText(Path.Combine(root, "Tools", "Tests", "Tests.csproj")).Contains("OwnHappeningsMath.cs"), "the pure rules linked for the tests");
-
-        // ================= The player's mods, by name, softly =================
-
-        string catalogue = Defs(root);
-        foreach (var name in new[] { "Bullfrog", "Pawn_Frog_Call", "AG_Pawn_Frog_Call", "DoubleRainbow", "Mote_WhiteIce", "Mote_Ice", "Mote_ShadowCloud", "Music", "Cat", "Pawn_Cat_Call",
-                     "NightOwl", "Glowstool", "Rain", "SnowGentle" })
-            C(Regex.IsMatch(catalogue, @"\t" + Regex.Escape(name) + @"\t") && all.Contains("\"" + name + "\""), name + " is in the player's enabled mods (or the game) and named softly");
+        string book = Read("Gods/OnMap/GodsOnMapBook.cs");
+        C(book.Contains("OwnHappenings.Daily(now)") && book.Contains("OwnHappenings.Hourly(now)"), "they run in the gods' own day and hour, with no clock of their own");
+        string own = Read("Gods/OnMap/OwnHappenings.cs");
+        C(!Regex.IsMatch(code, @"Sched\.(Rare|Hourly|Every|Slice)") && Regex.Match(own, @"public override void GameComponentTick\(\)\s*\{(.*?)\n        \}", RegexOptions.Singleline).Groups[1].Value.Contains("if (now < nextDue) return;"),
+            "no Sched slot of their own; their steps only on a due tick while something is under way");
+        C(Read("Gods/OnMap/GodRising.cs").Contains("OwnHollin.Rose(map, god, at);") && Read("Gods/OnMap/GodWaking.cs").Contains("OwnSmoulder.Turned(god, map, at, miner, b.deepWarnings);")
+          && Read("Gods/OnMap/GodOmens.cs").Contains("OwnHappenings.Sign(god, map, at, kind, speaker);"),
+            "the round 2 seams: her rising walks on, the deep warns with heat, a god's own sign sets its happening going");
+        string health = Read("Gods/World/GodHealth.cs");
+        C(health.Contains("if (OwnHappenings.Forewarn(g, map, wrath)) return true;") && health.Contains("OwnCirrus.Watches(map) && Incident(g, map, \"MeteoriteImpact\", \"meteor\") && OwnCirrus.StarFell(g, map)")
+          && health.Contains("OwnPip.Wink(mended);") && health.Contains("OwnBellwether.KinKilled();"),
+            "the existing anger and kindness, not forked: Morel's and Pip's anger forewarned, the star only for watchers, the mended machine winks");
+        C(own.Contains("bypass = true;") && own.Contains("GodHealth.Wrath(g, map, b.warnWrath);") && own.Contains("g.Key == \"Morel\" && wrath == GodWrath.Breakdown") && own.Contains("g.Key == \"Pip\" && wrath == GodWrath.ShortCircuit"),
+            "a forewarned anger still comes, the game's own breakdown or short circuit, the day after its sign");
+        string sacred = Read("Gods/OnMap/SacredAnimal.cs");
+        C(sacred.Contains("else if (OwnBellwether.Road(s, a, now)) { }") && sacred.Contains("OwnBellwether.Touched(p);") && sacred.Contains("OwnBellwether.LetPass();"),
+            "the white beast's stay: his road, the horn child remembered, his peace remembered");
+        C(Read("Gods/OnMap/GodGifts.cs").Contains("OwnEnnu.Judged(god, map, t, kindest);") && Read("Gods/Worship/Festivals.cs").Contains("OwnHappenings.FestivalKept(g, map);"),
+            "the stranger's judgement and the festivals kept reach the Guest's and the sky's own");
+        string ennu = Read("Gods/OnMap/OwnEnnu.cs");
+        C(ennu.Contains("s.Credit(by, OwnHappeningsMath.TestCredit);") && ennu.Contains("s.kindnesses++;") && ennu.Contains("GodTales.Tell(x, listener, others, \"Fire\")") && ennu.Contains("Together.When(\"own-ennu-test|\""),
+            "a test answered is part of the welcome the stranger judges; its tales go through the stories' own telling; whoever answers walks over to it");
+        string smoulder = Read("Gods/OnMap/OwnSmoulder.cs");
+        C(smoulder.Contains("Harm.Roll(p, HarmKinds.GodBurn, OwnHappeningsMath.BurnChance)") && smoulder.Contains("Harm.Injure(p, HurtKind.Burn, HurtWhere.Hand")
+          && HarmKinds.GodBurn.system == "gods" && HarmKinds.All.Contains(HarmKinds.GodBurn) && !Regex.IsMatch(code.Replace(smoulder, ""), @"Harm\.Injure|TakeDamage\([^)]*Pawn"),
+            "the only hurt to the colony is the warm dream's burn, at the shared harm budget's rate, shown on its card");
+        C(smoulder.Contains("ThingDefOf.Silver") && smoulder.Contains("OwnHappenings.Carry(by, stack, shaft, want)") && smoulder.Contains("\"MineableGold\"") && smoulder.Contains("\"MineableSteel\""),
+            "the bargain plays out: the silver carried to the shaft and gone, gold or steel in the rock after");
+        string pip = Read("Gods/OnMap/OwnPip.cs");
+        C(pip.Contains("\"burstCooldownTicksLeft\"") && own.Contains("[HarmonyPatch(typeof(Building_TurretGun), \"TryStartShootSomething\")]") && own.Contains("[HarmonyPatch(typeof(CompFlickable), nameof(CompFlickable.DoFlick))]")
+          && own.Contains("[HarmonyPatch(typeof(CompArt), nameof(CompArt.JustCreatedBy))]") && own.Contains("[HarmonyPatch(typeof(Plant), nameof(Plant.PlantCollected))]"),
+            "their hooks into the game: the turret's shot, a switch, a work of art made, a tree felled, each off with the deeper hooks");
+        C(Regex.Matches(own, @"if \(!RimfolkPatches\.On").Count >= 4 && own.Contains("if (!__result || !RimfolkPatches.On || !Gods.On) return;"), "every hook stands down with the deeper game hooks setting");
+        C(Read("Weather/WeatherDynamics.cs").Contains("public static WeatherDef Foreseen(Map map, int within, out int left)") && Read("Gods/OnMap/OwnBellwether.cs").Contains("WeatherDynamics.Foreseen("),
+            "the horn child's rain is the weather's own next turn, held to as a forecast is, so what they say comes true");
+        string sky = Read("Gods/OnMap/GodSky.cs");
+        C(sky.Contains("Mourner") && sky.Contains("case SkySign.Mourner:") && Read("Gods/OnMap/OwnMorel.cs").Contains("GodSky.Stay(map, SkySign.Mourner"),
+            "the mourner is drawn at the graves from dusk to dawn");
+        C(code.Contains("PresenceSpec.For(g, map, PresenceKind.Appear, at)") && code.Contains("GodPresenceSeam.Call(spec)"), "the mourner's coming is a god's moment (the round 2 seam: her own presence after it)");
+        // Saved: the one-a-happening list, the horn children and the sky's watches, each kept in bounds.
+        var lists = Regex.Matches(own, @"Scribe_Collections\.Look\(ref (\w+)").Cast<Match>().Select(m => m.Groups[1].Value).ToList();
+        C(lists.SequenceEqual(new[] { "last", "horned", "watches" }) && code.Contains("while (b.horned.Count > OwnHappeningsMath.HornKept)") && code.Contains("while (b.watches.Count > OwnHappeningsBook.MaxWatches)"),
+            "nothing grows in the save: one entry a happening, a few horn children, a few watches of the sky");
+        string save = File.ReadAllText(Path.Combine(root, "Tools", "save_estimate.py"));
+        C(lists.All(l => save.Contains("\"Gods/OnMap/OwnHappenings.cs:" + l + "\"")), "every saved list is modelled in the save estimate");
+        // Batch 1's dev actions are in one file, batch 2's in another (Tamiu's by the name she is said by); what each brings
+        // about is named in its own god's file.
+        string dbg = Read("Gods/OwnHappeningsDebug.cs") + Read("Gods/OwnSevenDebug.cs") + string.Join("\n", new[] { "Hush", "Undertow", "Helios", "Selene", "Murmur", "Ducat", "Tamiu" }
+            .Select(g => Read("Gods/OnMap/Own" + g + ".cs")));
+        foreach (var h in all)
+            C(Regex.IsMatch(dbg, @"DebugAction\(""Rimfolk"", ""Gods: " + (OwnHappeningsMath.GodOf(h) == "Mog" ? "Tamiu" : OwnHappeningsMath.GodOf(h)) + @"'s [^""]+""")
+              && dbg.Contains("OwnHappening." + h),
+                $"{h}: a dev action brings it now");
+        C(Regex.Matches(dbg, @"DebugAction\(").Count >= all.Length, "a dev action for each happening");
+        C(Read("Gods/OnMap/OwnCirrus.cs").Contains("\"Skygaze\", \"UseTelescope\", \"VSIE_Skygaze\"") && Read("Gods/OnMap/OwnHollin.cs").Contains("p.RaceProps?.Dryad == true"),
+            "the player's mods softly: any mod's dryads (Vanilla Ideology Expanded - Dryads), Vanilla Social Interactions Expanded's skygazing, A RimWorld of Magic's motes by name");
         return n;
-    }
-
-    private static HashSet<string> Tags(string line)
-    {
-        var m = Regex.Match(line, @"^\[([^\]]*)\]");
-        return m.Success ? new HashSet<string>(m.Groups[1].Value.Split(',').Select(t => t.Trim())) : new HashSet<string>();
-    }
-
-    private static string FirstSentence(string s)
-    {
-        for (int i = 12; i < s.Length; i++)
-            if (s[i] == '.' || s[i] == '!' || s[i] == '?')
-                return s.Substring(0, i + 1);
-        return s;
-    }
-
-    private static string defsCache;
-
-    private static string Defs(string root)
-    {
-        if (defsCache != null) return defsCache;
-        using var gz = new System.IO.Compression.GZipStream(File.OpenRead(Path.Combine(root, "docs", "player-mods", "defs.tsv.gz")), System.IO.Compression.CompressionMode.Decompress);
-        using var r = new StreamReader(gz);
-        defsCache = string.Join("\n", r.ReadToEnd().Split('\n').Where(l => l.EndsWith("\tyes") || l.EndsWith("\tyes\r")));
-        return defsCache;
     }
 }

@@ -2,7 +2,7 @@
 <Defs>
 
   <!--
-    Tamiu's two new happenings (defName and key Mog; Source/ColonyCouncil/Gods/Happenings/Tamiu.cs): the cat at the
+    Tamiu's two new happenings (defName and key Mog; Source/ColonyCouncil/Gods/OnMap/OwnTamiu.cs): the cat at the
     threshold of death, the cat by the lost dead. One small mood, modelled in Tools/Balance (Rates.cs). Tags: threshold
     ({OTHER}), died ({OTHER}), lost ({DEAD}), named, scoffer.
   -->

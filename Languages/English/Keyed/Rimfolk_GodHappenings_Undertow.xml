@@ -2,7 +2,7 @@
 <LanguageData>
 
   <!--
-    The dark's own happenings (Source/ColonyCouncil/Gods/Happenings/Undertow.cs). It is never named: no title here has a
+    The dark's own happenings (Source/ColonyCouncil/Gods/OnMap/OwnUndertow.cs). It is never named: no title here has a
     named form, and nothing says whose it is. The cards say only what anyone could see. The CC_GodUndertow_Saw_ lines are
     what the colony's book keeps of it, in the witness's words ({WHO}).
   -->

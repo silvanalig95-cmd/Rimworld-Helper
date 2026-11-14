@@ -26,12 +26,15 @@ namespace ColonyCouncil
         /// <summary>Selene: the moon very large and close over the colony all night, its light pooled over the land.</summary>
         Moon,
         /// <summary>Ducat: a golden beetle walking across a table.</summary>
-        Beetle
+        Beetle,
+        /// <summary>Morel: a figure of pale threads standing still at the edge of the graves from dusk to dawn.</summary>
+        Mourner
     }
 
     /// <summary>
-    /// The gods' signs drawn on the map (GodOmens, GodRising): a shadow or a star passing over (on real seconds, so it is
-    /// seen at any speed), and a figure, a dark, threads or a shape of roots that stay a few hours of the game's. Soft
+    /// The gods' signs drawn on the map (GodOmens, GodRising, the gods' own happenings): a shadow or a star passing over (on
+    /// real seconds, so it is seen at any speed), and a figure, a dark, threads, a shape of roots or Morel's mourner that stay
+    /// a few hours of the game's. Soft
     /// shapes with no edge, darkened or tinted, never a picture. Nothing is saved: a load forgets a sign under way (what
     /// came of it, the remark, the mark and the memory, is kept elsewhere).
     /// </summary>
@@ -222,6 +225,16 @@ namespace ColonyCouncil
                     float alpha = Mathf.Clamp01((near - 12f) / 30f) * (1f - sky * 1.6f) * 0.55f;
                     at.y = AltitudeLayer.MetaOverlays.AltitudeFor();
                     Quad(Mat(ref figure, "Figure", ShaderDatabase.MoteGlow), at + new Vector3(0f, 0f, s.size * 0.4f), 0f, s.size * 0.3f, s.size * 1.2f, new Color(0.88f, 0.94f, 1f), alpha);
+                    break;
+                }
+                case SkySign.Mourner:
+                {
+                    // A person's height of pale threads, standing still, seen best in the dark; threads spread on the ground at its feet.
+                    float alpha = Mathf.Clamp01(1.1f - sky) * 0.6f;
+                    at.y = AltitudeLayer.Filth.AltitudeFor();
+                    Quad(Mat(ref threads, "Threads", ShaderDatabase.Transparent), at, s.cell.x * 53 % 360, s.size * 0.7f, s.size * 0.7f, new Color(0.9f, 0.92f, 0.82f), alpha);
+                    at.y = AltitudeLayer.MoteOverhead.AltitudeFor();
+                    Quad(Mat(ref figure, "Figure", ShaderDatabase.MoteGlow), at + new Vector3(0f, 0f, s.size * 0.35f), 0f, s.size * 0.32f, s.size * 0.9f, new Color(0.86f, 0.9f, 0.78f), alpha);
                     break;
                 }
                 case SkySign.Dark:

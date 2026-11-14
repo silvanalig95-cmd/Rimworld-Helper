@@ -188,6 +188,7 @@ namespace ColonyCouncil
             Safe("a late gift", () => GodGifts.LateGift(b, now));
             Safe("the marks", () => GodMarks.Daily(b, now));
             Safe("a new grave kept", () => MogsWays.Daily(now));
+            Safe("each god's own happenings", () => OwnHappenings.Daily(now));
         }
 
         /// <summary>The gods' hour (GodBook.Hourly): the omens, the coming, the stranger, the animal, the weather, the marks.</summary>
@@ -207,7 +208,7 @@ namespace ColonyCouncil
             Safe("the marks spoken of", () => GodMarks.Hourly(b, now));
             Safe("the gods' own presences", () => GodPresenceOwn.Hourly(now));
             Safe("the keeper of the dead", () => MogsWays.Hourly(now));
-            Safe("each god's own happenings, the second seven", () => OwnHappenings.Hourly(now));
+            Safe("each god's own happenings", () => OwnHappenings.Hourly(now));
         }
 
         internal static void Safe(string what, Action a)

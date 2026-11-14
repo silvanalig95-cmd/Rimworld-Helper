@@ -2,7 +2,7 @@
 <LanguageData>
 
   <!--
-    Helios's own happenings (Source/ColonyCouncil/Gods/Happenings/Helios.cs). The cards say only what was seen; he is
+    Helios's own happenings (Source/ColonyCouncil/Gods/OnMap/OwnHelios.cs). The cards say only what was seen; he is
     named only in the ...Named titles ({GOD}), where the colony knows it was him (or has learned the eclipse as his and
     the moon's). The CC_GodHelios_Saw_ and _Book_ lines are what the colony's book keeps.
   -->

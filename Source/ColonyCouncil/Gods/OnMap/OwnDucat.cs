@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using LudeonTK;
 using RimWorld;
 using UnityEngine;
 using Verse;
@@ -72,7 +71,7 @@ namespace ColonyCouncil
     /// lies that nobody dropped; whoever saw it follows it there and finds the coin (more often with traders on the land).</item>
     /// </list>
     /// </summary>
-    public static class DucatWays
+    public static class OwnDucat
     {
         public const string Key = "Ducat";
         public const string Pool = "Rimfolk_Pool_GodDucat_Say";
@@ -162,7 +161,7 @@ namespace ColonyCouncil
             s.trailDoor = door != null;
             s.trailFinder = null;
             s.trailUntil = Now + GenDate.TicksPerDay;
-            OwnHappenings.Came(b, OwnHappeningsMath.DucatTrail, null, laid.ToString());
+            OwnHappenings.Came(b, OwnHappening.DucatTrail, OwnHappenings.Now, null, laid.ToString());
             return true;
         }
 
@@ -181,7 +180,7 @@ namespace ColonyCouncil
                 .OrderBy(x => x.Position.DistanceToSquared(s.trailFrom)).FirstOrDefault();
             if (p == null) return;
             s.trailFinder = p;
-            OwnHappenings.Walk(p, OwnHappenings.Beside(map, s.trailFrom, p), GenDate.TicksPerHour * 2);
+            OwnHappenings.GoTo(p, OwnHappenings.Beside(map, s.trailFrom, p), GenDate.TicksPerHour * 2);
             b.Due(Now + 250);
         }
 
@@ -207,7 +206,7 @@ namespace ColonyCouncil
             {
                 var g = God;
                 OwnHappenings.Stand(p, s.trailEnd, 420);
-                OwnHappenings.Say(p, Pool, g, "trail");
+                OwnHappenings.SayFrom(p, Pool, g, "trail");
                 OwnHappenings.Line(map, "CC_GodDucat_Trail_Text".Translate(p.Named("PAWN"), s.trailCoins.Named("COUNT"), (s.trailDoor ? "CC_GodDucat_Way_Door" : "CC_GodDucat_Way_Open").Translate().Resolve().Named("WAY")).Resolve(),
                     new LookTargets(new[] { new TargetInfo(s.trailFrom, map), new TargetInfo(s.trailEnd, map) }));
                 if (g != null) OwnHappenings.Saw(g, map, s.trailFrom, GodActKind.Omen, p, "CC_GodDucat_Saw_Trail", s.trailCoins.Named("COUNT"));
@@ -216,7 +215,7 @@ namespace ColonyCouncil
                 s.trailFinder = null;
                 return;
             }
-            if (p.CurJobDef != JobDefOf.Goto && OwnHappenings.Free(p)) OwnHappenings.Walk(p, OwnHappenings.Beside(map, s.trailFrom, p), GenDate.TicksPerHour * 2);
+            if (p.CurJobDef != JobDefOf.Goto && OwnHappenings.Free(p)) OwnHappenings.GoTo(p, OwnHappenings.Beside(map, s.trailFrom, p), GenDate.TicksPerHour * 2);
             b.Due(now + 250);
         }
 
@@ -246,7 +245,7 @@ namespace ColonyCouncil
             bool devoted = giver != null && PawnGods.HoldOf(giver, g) >= PawnGodsMath.DevotedFrom;
             var t = OwnHappeningsMath.PurseTrigger(festival, devoted, visitor != null && Silver(map) >= OwnHappeningsMath.PurseMin);
             if (t == GodPaceMath.Trigger.None) return;
-            if (festival ? !Rand.Chance(0.35f) : !OwnHappenings.Roll(b, OwnHappeningsMath.DucatPurse, t, g, map, now)) return;
+            if (festival ? !Rand.Chance(0.35f) : !OwnHappenings.Calls(b, OwnHappening.DucatPurse, t, g, map, now)) return;
             BeginPurse(b, map, giver, visitor);
         }
 
@@ -268,8 +267,8 @@ namespace ColonyCouncil
             if (s.purseCoins <= 0) return false;
             s.purseUntil = Now + GenDate.TicksPerHour * 2;
             s.purseMap = null;
-            OwnHappenings.Walk(giver, OwnHappenings.Beside(map, visitor.Position, giver), GenDate.TicksPerHour);
-            OwnHappenings.Came(b, OwnHappeningsMath.DucatPurse, null, visitor.Faction?.loadID.ToString());
+            OwnHappenings.GoTo(giver, OwnHappenings.Beside(map, visitor.Position, giver), GenDate.TicksPerHour);
+            OwnHappenings.Came(b, OwnHappening.DucatPurse, OwnHappenings.Now, null, visitor.Faction?.loadID.ToString());
             b.Due(Now + 200);
             return true;
         }
@@ -291,7 +290,7 @@ namespace ColonyCouncil
                 return;
             }
             if ((p.CurJobDef != JobDefOf.Goto || !(p.CurJob?.targetA.Cell.InHorDistOf(v.Position, 2.5f) ?? false)) && (p.CurJobDef == JobDefOf.Goto || OwnHappenings.Yields(p)))
-                OwnHappenings.Walk(p, OwnHappenings.Beside(p.Map, v.Position, p), GenDate.TicksPerHour);
+                OwnHappenings.GoTo(p, OwnHappenings.Beside(p.Map, v.Position, p), GenDate.TicksPerHour);
             b.Due(now + 150);
         }
 
@@ -317,7 +316,7 @@ namespace ColonyCouncil
             s.giver = s.visitor = null;
             if (given <= 0) return;
             OwnHappenings.Stand(p, v.Position, 240);
-            string line = OwnHappenings.LineOf(p, Pool, g, new[] { v.Named("OTHER") }, "purse");
+            string line = OwnHappenings.LineFrom(p, Pool, g, new[] { v.Named("OTHER") }, "purse");
             if (!line.NullOrEmpty()) Speech.Say(p, line, v);
             FleckMaker.ThrowLightningGlow(v.DrawPos, map, 0.35f);
             if (v.Faction != null) StoryChains.Goodwill(v.Faction, OwnHappeningsMath.PurseGoodwill);
@@ -341,7 +340,7 @@ namespace ColonyCouncil
             if (t == GodPaceMath.Trigger.None) return;
             var table = GodOmens.Table(map);
             var seer = table == null ? null : Watcher(map, table);
-            if (seer == null || !OwnHappenings.Roll(b, OwnHappeningsMath.DucatBeetle, t, g, map, now)) return;
+            if (seer == null || !OwnHappenings.Calls(b, OwnHappening.DucatBeetle, t, g, map, now)) return;
             Lead(b, map, table, seer);
         }
 
@@ -374,7 +373,7 @@ namespace ColonyCouncil
             s.follower = seer;
             s.beetleUntil = Now + GenDate.TicksPerHour * 2;
             OwnHappenings.Stand(seer, table.Position, 200);
-            OwnHappenings.Came(b, OwnHappeningsMath.DucatBeetle);
+            OwnHappenings.Came(b, OwnHappening.DucatBeetle, OwnHappenings.Now);
             b.Due(Now + 220);
             return true;
         }
@@ -397,55 +396,14 @@ namespace ColonyCouncil
                 s.follower = null;
                 OwnHappenings.Stand(p, s.coinAt, 240);
                 FleckMaker.ThrowLightningGlow(s.coinAt.ToVector3Shifted(), map, 0.4f);
-                OwnHappenings.Say(p, Pool, g, "beetle");
+                OwnHappenings.SayFrom(p, Pool, g, "beetle");
                 OwnHappenings.Line(map, "CC_GodDucat_Beetle_Text".Translate(p.Named("PAWN")).Resolve(), new LookTargets(new TargetInfo(s.coinAt, map)));
                 if (g != null) OwnHappenings.Saw(g, map, s.coinAt, GodActKind.Omen, p, "CC_GodDucat_Saw_Beetle");
                 return;
             }
-            if (p.CurJobDef != JobDefOf.Goto && OwnHappenings.Free(p)) OwnHappenings.Walk(p, s.coinAt, GenDate.TicksPerHour);
+            if (p.CurJobDef != JobDefOf.Goto && OwnHappenings.Free(p)) OwnHappenings.GoTo(p, s.coinAt, GenDate.TicksPerHour);
             b.Due(now + 200);
         }
     }
 
-    /// <summary>Dev mode: Ducat's happenings now (Debug actions, "Rimfolk", "Gods: Ducat's ... now").</summary>
-    public static class DucatDebug
-    {
-        private static void Say(string text) => Messages.Message("Gods: " + text, MessageTypeDefOf.SilentInput, false);
-
-        [DebugAction("Rimfolk", "Gods: Ducat's trail of coins now", allowedGameStates = AllowedGameStates.PlayingOnMap)]
-        private static void DebugTrail()
-        {
-            var b = OwnHappenings.Book;
-            var map = Find.CurrentMap;
-            if (b == null || map == null) return;
-            var store = map.listerThings.ThingsOfDef(ThingDefOf.Silver).Where(t => t.Spawned).OrderByDescending(t => t.stackCount).FirstOrDefault();
-            var from = store?.Position ?? OwnHappenings.Middle(map);
-            b.ducat.trailUntil = -1;
-            Say(DucatWays.Lay(b, map, from, 30) ? "single coins lie from " + (store != null ? "the silver" : "the middle") + " out to the edge; in daylight the first one free follows them." : "no way out to lay them on.");
-        }
-
-        [DebugAction("Rimfolk", "Gods: Ducat's open purse now", allowedGameStates = AllowedGameStates.PlayingOnMap)]
-        private static void DebugPurse()
-        {
-            var b = OwnHappenings.Book;
-            var map = Find.CurrentMap;
-            if (b == null || map == null) return;
-            var giver = DucatWays.Giver(map, DucatWays.God, true);
-            var v = giver == null ? null : DucatWays.Visitor(map, giver);
-            b.ducat.purseUntil = -1;
-            Say(DucatWays.BeginPurse(b, map, giver, v) ? giver.LabelShort + " walks over to " + v.LabelShort + " with a few coins." : "no visitor on the land, nobody free, or no silver in the stores.");
-        }
-
-        [DebugAction("Rimfolk", "Gods: Ducat's beetle leads to a coin now", allowedGameStates = AllowedGameStates.PlayingOnMap)]
-        private static void DebugBeetle()
-        {
-            var b = OwnHappenings.Book;
-            var map = Find.CurrentMap;
-            if (b == null || map == null) return;
-            var table = GodOmens.Table(map);
-            var seer = table == null ? null : map.mapPawns.FreeColonistsSpawned.Where(OwnHappenings.Ours).OrderBy(p => p.Position.DistanceToSquared(table.Position)).FirstOrDefault();
-            b.ducat.beetleUntil = -1;
-            Say(DucatWays.Lead(b, map, table, seer) ? "a golden beetle walks off the table; " + seer.LabelShort + " follows it to a coin." : "no table, or nobody near one.");
-        }
-    }
 }

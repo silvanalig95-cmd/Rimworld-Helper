@@ -9,17 +9,13 @@ using Verse.AI;
 namespace ColonyCouncil
 {
     /// <summary>
-    /// Each god's own happenings, the second seven (round 4 of docs/gods-next-proposals.md, section C; the player, 14
-    /// November 2026: "each God's events and interactions and effects ... feel unique to the god ... how these things play out
-    /// on the map", "gods effect should be noticeable"), saved with the game: when each happening last came, the rooms of old
-    /// ruins already heard, and each god's happening under way (Hush's walk, the dark drifting, a vigil, a song at the well,
-    /// a cat at a bedside...). Short steps run on their own due tick, and nothing at all with none under way.
+    /// The second seven's part of the gods' own happenings book (round 4, batch 2: Hush, Undertow, Helios, Selene, Murmur,
+    /// Ducat, Tamiu): each god's happening under way, in a small record of its own (HushState and the rest, in each god's own
+    /// file), and the rooms of old ruins someone of the colony has already stood in. When each happening last came is the
+    /// shared list (<see cref="last"/>, one a happening).
     /// </summary>
-    public class OwnHappeningsBook : GameComponent
+    public partial class OwnHappeningsBook
     {
-        /// <summary>When each happening last came (two lists side by side: its key, "hush.window", and the tick).</summary>
-        public List<string> keys = new List<string>();
-        public List<int> ticks = new List<int>();
         /// <summary>The rooms of old ruins someone of the colony has already stood in ("map|x|z"), OwnHappeningsMath.RuinsHeldAtMost at most.</summary>
         public List<string> ruins = new List<string>();
 
@@ -31,83 +27,9 @@ namespace ColonyCouncil
         public DucatState ducat = new DucatState();
         public TamiuState tamiu = new TamiuState();
 
-        public OwnHappeningsBook(Game game)
+        /// <summary>Saved with the rest of the book (its ExposeData).</summary>
+        internal void ExposeSeven()
         {
-        }
-
-        private static OwnHappeningsBook cached;
-        private static Game cachedGame;
-
-        public static OwnHappeningsBook Instance
-        {
-            get
-            {
-                var game = Current.Game;
-                if (game == null) return null;
-                if (cachedGame != game || cached == null)
-                {
-                    cached = game.GetComponent<OwnHappeningsBook>();
-                    cachedGame = game;
-                }
-                return cached;
-            }
-        }
-
-        [Unsaved] private int nextDue = int.MaxValue;
-
-        /// <summary>Something under way has a step due at <paramref name="tick"/> (the earliest is kept).</summary>
-        public void Due(int tick)
-        {
-            if (tick < nextDue) nextDue = tick;
-        }
-
-        public override void GameComponentTick()
-        {
-            int now = Find.TickManager.TicksGame;
-            if (now < nextDue) return;
-            nextDue = int.MaxValue;
-            if (!Gods.On) return;
-            OwnHappenings.Safe("Hush's steps", () => HushWays.Step(this, now));
-            OwnHappenings.Safe("the dark's steps", () => UndertowWays.Step(this, now));
-            OwnHappenings.Safe("Helios's steps", () => HeliosWays.Step(this, now));
-            OwnHappenings.Safe("Selene's steps", () => SeleneWays.Step(this, now));
-            OwnHappenings.Safe("Murmur's steps", () => MurmurWays.Step(this, now));
-            OwnHappenings.Safe("Ducat's steps", () => DucatWays.Step(this, now));
-            OwnHappenings.Safe("Tamiu's steps", () => TamiuWays.Step(this, now));
-        }
-
-        public override void FinalizeInit()
-        {
-            base.FinalizeInit();
-            cached = this;
-            cachedGame = Current.Game;
-            nextDue = Find.TickManager.TicksGame + 1;
-        }
-
-        /// <summary>When a happening last came, or long ago.</summary>
-        public int Last(string key)
-        {
-            int i = keys.IndexOf(key);
-            return i >= 0 && i < ticks.Count ? ticks[i] : -999999;
-        }
-
-        /// <summary>A happening came now.</summary>
-        public void Came(string key, int tick)
-        {
-            int i = keys.IndexOf(key);
-            if (i >= 0 && i < ticks.Count) ticks[i] = tick;
-            else
-            {
-                keys.Add(key);
-                ticks.Add(tick);
-            }
-        }
-
-        public override void ExposeData()
-        {
-            base.ExposeData();
-            Scribe_Collections.Look(ref keys, "keys", LookMode.Value);
-            Scribe_Collections.Look(ref ticks, "ticks", LookMode.Value);
             Scribe_Collections.Look(ref ruins, "ruins", LookMode.Value);
             Scribe_Deep.Look(ref hush, "hush");
             Scribe_Deep.Look(ref undertow, "undertow");
@@ -118,13 +40,6 @@ namespace ColonyCouncil
             Scribe_Deep.Look(ref tamiu, "tamiu");
             if (Scribe.mode == LoadSaveMode.PostLoadInit)
             {
-                keys ??= new List<string>();
-                ticks ??= new List<int>();
-                if (keys.Count != ticks.Count)
-                {
-                    keys.Clear();
-                    ticks.Clear();
-                }
                 ruins ??= new List<string>();
                 hush ??= new HushState();
                 undertow ??= new UndertowState();
@@ -133,99 +48,64 @@ namespace ColonyCouncil
                 murmur ??= new MurmurState();
                 ducat ??= new DucatState();
                 tamiu ??= new TamiuState();
-                nextDue = 0;
             }
         }
     }
 
     /// <summary>
-    /// The seven's happenings in the gods' hour (GodsOnMapBook.Hourly) and their shared ways: the pace (OwnHappeningsMath),
-    /// a card named only where the colony is sure (Gods.CardName), what was seen kept for the colony's book and each
-    /// witness's belief (GodsOnMapWords.Saw), one sentence over a head (Speech.Say), a memory, and the small walks and waits
-    /// that put it on the map.
+    /// The second seven in the gods' own happenings' frame (OwnHappenings.cs): their hour at each home and their short steps,
+    /// called from the frame's own; their feasts (Helios's first fruit, Murmur's singing, Ducat's open purse); and the ways
+    /// they share beyond the frame's: a card named only where the colony is sure (Gods.CardName, with a sign the colony has
+    /// learned where one fits), each god's own lines (named only where the colony is sure), a memory of someone, who may be
+    /// asked, and the small things on the map (rime, a soft light, a beast led, a stray cat, a sound).
     /// </summary>
-    public static class OwnHappenings
+    public static partial class OwnHappenings
     {
-        public static OwnHappeningsBook Book => OwnHappeningsBook.Instance;
-
-        internal static int Now => Find.TickManager.TicksGame;
-
-        /// <summary>A god of the pantheon by its key, while it lives (Hush, Undertow, Helios, Selene, Murmur, Ducat, Mog).</summary>
-        public static God God(string key)
+        /// <summary>The gods' hour (the frame's Hourly): each of the seven's happenings looked at, at each home.</summary>
+        internal static void Seven(OwnHappeningsBook b, int now)
         {
-            var g = Gods.ByKey(key);
-            return g == null || g.kind == GodKind.Dead ? null : g;
-        }
-
-        /// <summary>The gods' hour: each of the seven's happenings looked at, at each home.</summary>
-        internal static void Hourly(int now)
-        {
-            var b = Book;
-            if (b == null || !Gods.On) return;
-            foreach (var map in Homes.All.ToList())
+            foreach (var map in HomeMaps)
             {
-                if (map == null || !map.IsPlayerHome) continue;
-                Safe("Hush's hour", () => HushWays.Hourly(b, map, now));
-                Safe("the dark's hour", () => UndertowWays.Hourly(b, map, now));
-                Safe("Helios's hour", () => HeliosWays.Hourly(b, map, now));
-                Safe("Selene's hour", () => SeleneWays.Hourly(b, map, now));
-                Safe("Murmur's hour", () => MurmurWays.Hourly(b, map, now));
-                Safe("Ducat's hour", () => DucatWays.Hourly(b, map, now));
-                Safe("Tamiu's hour", () => TamiuWays.Hourly(b, map, now));
+                Safe("Hush's hour", () => OwnHush.Hourly(b, map, now));
+                Safe("the dark's hour", () => OwnUndertow.Hourly(b, map, now));
+                Safe("Helios's hour", () => OwnHelios.Hourly(b, map, now));
+                Safe("Selene's hour", () => OwnSelene.Hourly(b, map, now));
+                Safe("Murmur's hour", () => OwnMurmur.Hourly(b, map, now));
+                Safe("Ducat's hour", () => OwnDucat.Hourly(b, map, now));
+                Safe("Tamiu's hour", () => OwnTamiu.Hourly(b, map, now));
             }
         }
 
-        /// <summary>A god's festival kept at a home (Festivals.Kept): its own happening that day, where it has one.</summary>
-        public static void FestivalKept(God g, Map map)
+        /// <summary>The steps between the hours (the frame's Step).</summary>
+        internal static void SevenSteps(OwnHappeningsBook b, int now)
         {
-            var b = Book;
+            Safe("Hush's steps", () => OwnHush.Step(b, now));
+            Safe("the dark's steps", () => OwnUndertow.Step(b, now));
+            Safe("Helios's steps", () => OwnHelios.Step(b, now));
+            Safe("Selene's steps", () => OwnSelene.Step(b, now));
+            Safe("Murmur's steps", () => OwnMurmur.Step(b, now));
+            Safe("Ducat's steps", () => OwnDucat.Step(b, now));
+            Safe("Tamiu's steps", () => OwnTamiu.Step(b, now));
+        }
+
+        /// <summary>A feast kept (the frame's FestivalKept): Helios's first fruit, Murmur's singing at the wells, Ducat's open purse.</summary>
+        internal static void SevenFestival(OwnHappeningsBook b, God g, Map map)
+        {
             if (b == null || g == null || map == null) return;
-            Safe("a festival's own happening", () =>
-            {
-                switch (g.Key)
-                {
-                    case HeliosWays.Key:
-                        HeliosWays.Festival(b, map);
-                        break;
-                    case MurmurWays.Key:
-                        MurmurWays.Festival(b, map);
-                        break;
-                    case DucatWays.Key:
-                        DucatWays.Festival(b, map);
-                        break;
-                }
-            });
+            if (g.Key == OwnHelios.Key) OwnHelios.Festival(b, map);
+            else if (g.Key == OwnMurmur.Key) OwnMurmur.Festival(b, map);
+            else if (g.Key == OwnDucat.Key) OwnDucat.Festival(b, map);
         }
 
-        internal static void Safe(string what, Action a)
+        /// <summary>
+        /// The hour's look for one of the seven's drawn happenings (the frame's Due, 24 looks a day), only where its god acts
+        /// at the home (the frame's Acts: held, heard of, or drawn near); <paramref name="factor"/> above one gives it a second look.
+        /// </summary>
+        public static bool Calls(OwnHappeningsBook b, OwnHappening h, GodPaceMath.Trigger t, God g, Map map, int now, float factor = 1f)
         {
-            try
-            {
-                a();
-            }
-            catch (Exception e)
-            {
-                CouncilLog.ErrorOnce("gods' own happenings: " + what, e);
-            }
-        }
-
-        // ================= The pace =================
-
-        public static float DaysSince(OwnHappeningsBook b, string key, int now) => b == null ? 9999f : GodPace.DaysSince(b.Last(key), now);
-
-        /// <summary>The gods' hour's roll for a happening: its pace, its reason, its god's nearness (OwnHappeningsMath.Chance, 24 looks a day).</summary>
-        public static bool Roll(OwnHappeningsBook b, string key, GodPaceMath.Trigger t, God g, Map map, int now, float factor = 1f)
-        {
-            if (b == null || t == GodPaceMath.Trigger.None) return false;
-            float c = OwnHappeningsMath.Chance(key, DaysSince(b, key, now), t, g == null ? 0f : GodNear.Of(g, map), 24f) * factor;
-            return c > 0f && Rand.Chance(Mathf.Min(OwnHappeningsMath.MaxLook, c));
-        }
-
-        /// <summary>A happening came: its gap starts, and the gods' short memory has it (GodPace).</summary>
-        public static void Came(OwnHappeningsBook b, string key, string form = null, string who = null)
-        {
-            b?.Came(key, Now);
-            GodPace.Note(key, form ?? "", who);
+            if (b == null || g == null || t == GodPaceMath.Trigger.None || !Acts(g, map)) return false;
+            if (Due(b, h, g, map, t, now, 24f)) return true;
+            return factor > 1f && Rand.Chance(factor - 1f) && Due(b, h, g, map, t, now, 24f);
         }
 
         // ================= Words =================
@@ -233,15 +113,12 @@ namespace ColonyCouncil
         /// <summary>The colony's age as 0 tribal, 1 medieval, 2 industrial, 3 spacer (the words' forms).</summary>
         public static int Age => GodStranger.Age;
 
-        /// <summary>A card: titled by the god's name only where the colony knows it was this god, else by what was seen; the text says only what was seen.</summary>
-        public static void Card(God g, Map map, string unnamedTitle, string namedTitle, string text, LookTargets look, LetterDef def = null, params NamedArgument[] args) =>
-            CardBy(g, map, null, unnamedTitle, namedTitle, text, look, def, args);
-
         /// <summary>
-        /// A card as <see cref="Card"/>, named also where the colony has learned <paramref name="sign"/> as the god's own (an
-        /// eclipse as the sun's and the moon's, the long rains as the toad's): Gods.CardName with the sign.
+        /// A card whose text is given (a word and its plain fact, who sat with whom): titled by the god's name only where the
+        /// colony knows it was this god, or has learned <paramref name="sign"/> as its own (an eclipse as the sun's and the
+        /// moon's, the long rains as the toad's): Gods.CardName with the sign; else by what was seen. The text never names it.
         /// </summary>
-        public static void CardBy(God g, Map map, string sign, string unnamedTitle, string namedTitle, string text, LookTargets look, LetterDef def, params NamedArgument[] args)
+        public static void CardOf(God g, Map map, string sign, string unnamedTitle, string namedTitle, string text, LookTargets look, LetterDef def, params NamedArgument[] args)
         {
             if (map == null || text.NullOrEmpty()) return;
             string name = g == null || namedTitle.NullOrEmpty() ? null : Gods.CardName(g, map, sign);
@@ -264,16 +141,16 @@ namespace ColonyCouncil
         }
 
         /// <summary>One sentence from a god's pool over someone's head (tagged with the moment, "named" where the colony is sure, "scoffer"); false when none fits.</summary>
-        public static bool Say(Pawn p, string pool, God g, params string[] tags) => SayWith(p, pool, g, null, tags);
+        public static bool SayFrom(Pawn p, string pool, God g, params string[] tags) => SayFromWith(p, pool, g, null, tags);
 
-        public static bool SayWith(Pawn p, string pool, God g, NamedArgument[] more, params string[] tags)
+        public static bool SayFromWith(Pawn p, string pool, God g, NamedArgument[] more, params string[] tags)
         {
-            string line = LineOf(p, pool, g, more, tags);
+            string line = LineFrom(p, pool, g, more, tags);
             return !line.NullOrEmpty() && Speech.Say(p, line);
         }
 
         /// <summary>A line from a pool for someone, with {PAWN}, {GOD} (the colony's name, only on lines tagged named) and <paramref name="more"/> filled; null when none fits.</summary>
-        public static string LineOf(Pawn p, string pool, God g, NamedArgument[] more, params string[] tags)
+        public static string LineFrom(Pawn p, string pool, God g, NamedArgument[] more, params string[] tags)
         {
             if (p == null || !p.Spawned) return null;
             var all = new List<string>();
@@ -288,15 +165,8 @@ namespace ColonyCouncil
             return line.Formatted(args.ToArray()).Resolve().CapitalizeFirst();
         }
 
-        /// <summary>What someone saw, for the colony's book and each witness's belief in the god they take it for (GodsOnMapWords.Saw).</summary>
-        public static void Saw(God g, Map map, IntVec3 cell, GodActKind kind, Pawn witness, string key, params NamedArgument[] more)
-        {
-            if (g == null || map == null) return;
-            GodsOnMapWords.Saw(g, map, cell, kind, witness, key, more);
-        }
-
-        /// <summary>A memory by its defName (none where the def or their mood is missing).</summary>
-        public static void Memory(Pawn p, string def, Pawn other = null)
+        /// <summary>A memory of someone by its defName (none where the def or their mood is missing).</summary>
+        public static void MemoryOf(Pawn p, string def, Pawn other)
         {
             var d = DefDatabase<ThoughtDef>.GetNamedSilentFail(def);
             if (d == null || p?.needs?.mood == null) return;
@@ -329,42 +199,6 @@ namespace ColonyCouncil
         }
 
         // ================= On the map =================
-
-        /// <summary>Sends someone walking to a cell (to arrive and then do what the step says), for at most <paramref name="ticks"/>.</summary>
-        public static bool Walk(Pawn p, IntVec3 to, int ticks = OwnHappeningsMath.WalkWaitTicks, LocomotionUrgency urgency = LocomotionUrgency.Walk)
-        {
-            if (p?.jobs == null || !to.IsValid || !p.Spawned || !p.CanReach(to, PathEndMode.OnCell, Danger.Some)) return false;
-            try
-            {
-                var j = JobMaker.MakeJob(JobDefOf.Goto, to);
-                j.locomotionUrgency = urgency;
-                j.expiryInterval = ticks;
-                p.jobs.StartJob(j, JobCondition.InterruptForced, null, true);
-                return true;
-            }
-            catch (Exception e)
-            {
-                CouncilLog.ErrorOnce("gods' own happenings: a walk", e);
-                return false;
-            }
-        }
-
-        /// <summary>Someone stands where they are, facing <paramref name="toward"/>, for <paramref name="ticks"/> (a vigil, a song, a look).</summary>
-        public static void Stand(Pawn p, IntVec3 toward, int ticks)
-        {
-            if (p?.jobs == null || !p.Spawned) return;
-            try
-            {
-                var w = JobMaker.MakeJob(JobDefOf.Wait_MaintainPosture);
-                w.expiryInterval = ticks;
-                if (toward.IsValid && toward != p.Position) w.overrideFacing = Rot4.FromIntVec3(toward - p.Position);
-                p.jobs.StartJob(w, JobCondition.InterruptForced, null, true);
-            }
-            catch (Exception e)
-            {
-                CouncilLog.ErrorOnce("gods' own happenings: standing", e);
-            }
-        }
 
         /// <summary>A beast walks to a cell, unhurried, and waits there (a cat to a bedside, to a body).</summary>
         public static void Lead(Pawn a, IntVec3 to, int ticks)

@@ -2,7 +2,7 @@
 <Defs>
 
   <!--
-    Murmur's own happenings (Source/ColonyCouncil/Gods/Happenings/Murmur.cs; docs/gods-next-proposals.md, C 13): sung back
+    Murmur's own happenings (Source/ColonyCouncil/Gods/OnMap/OwnMurmur.cs; docs/gods-next-proposals.md, C 13): sung back
     to at the well (and the rain it may bring, with Seasonal Weather's double rainbow after), what the water gives back after
     a wet run, the frogs that come in with the rain that breaks a dry spell (Odyssey's bullfrogs). One small mood, modelled
     in Tools/Balance (Rates.cs). Tags: song, rain, giveback ({WHAT}), frogs, frogsheard, named, scoffer.

@@ -1,0 +1,353 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Each god's own happenings, round 4, batch 1 (Source/ColonyCouncil/Gods/OnMap/OwnHappenings.cs and Own*.cs beside it;
+    docs/gods-next-proposals.md, section C): Hollin, Smoulder, Bellwether, Morel, Ennu, Pip and Cirrus. Two of them ask the
+    colony something (the warm voice's bargain, the wounded thrumbo); the rest only happen, are seen and are said. What is
+    written here says what was seen and heard, never why; a god is named only on a card's title where the colony knows it
+    was that god (the keyed ..._TitleNamed).
+  -->
+
+  <!-- ===================== The warm voice's bargain (Smoulder) ===================== -->
+
+  <!--
+    Only Smoulder's own fires it (OwnSmoulder.Ask: a miner's dream told at breakfast), never the storyteller: its chance is 0.
+    {A} is the one who dreamt it, {TALE} the silver the voice asked for (a number). Whatever is answered plays out on the map
+    by its own code (OwnSmoulder.Answered): A carries the silver from the stores to the deepest cell under the mountain,
+    all of it or half; the vein comes days later. The texts' tags are the colony's age (age0 to age3).
+  -->
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Rimfolk_Evt_GodBargain</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>a bargain in a dream</label>
+    <workerClass>ColonyCouncil.HappeningWorker_GodBargain</workerClass>
+    <baseChance>0</baseChance>
+    <minRefireDays>0</minRefireDays>
+    <earliestDay>0</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Nature</group>
+        <answerDays>0.6</answerDays>
+        <notable>false</notable>
+        <titles>
+          <li>A bargain in a dream</li>
+          <li>The warm voice under the mountain</li>
+        </titles>
+        <texts>
+          <li>{A_nameDef} told everyone at breakfast about a dream. A warm, reasonable voice from somewhere under the mountain offered a bargain: {TALE} silver dropped down the deepest shaft, and gold given back for it. {A_nameDef} wants to know what to do.</li>
+          <li>[age0] {A_nameDef} told everyone at the morning fire about a dream. A warm, reasonable voice from deep under the rock offered a bargain, as the old tribes say it does: {TALE} silver thrown down into the deep place, and gold given back for it. {A_nameDef} wants to know what to do.</li>
+          <li>[age1] {A_nameDef} told everyone at breakfast about a dream. A warm, courteous voice from under the mountain offered a bargain, the kind the old miners' songs warn of: {TALE} silver dropped down the deepest shaft, and gold given back for it. {A_nameDef} wants to know what to do.</li>
+          <li>[age2] {A_nameDef} told everyone at breakfast about a dream. A warm, reasonable voice from somewhere under the mountain offered a bargain, very politely: {TALE} silver dropped down the deepest shaft, and gold given back for it. {A_nameDef} laughed about it, and then asked what to do.</li>
+          <li>[age3] {A_nameDef} told everyone at breakfast about a dream. A warm, reasonable voice from deep in the rock under the base offered a bargain: {TALE} silver dropped down the deepest shaft, and gold given back for it. {A_nameDef} wants to know what to do.</li>
+        </texts>
+        <defaultOption>2</defaultOption>
+        <options>
+          <li>
+            <label>Carry all {TALE} silver down the deepest shaft</label>
+            <outcome>{A_nameDef} takes the silver from the stores and carries it down to the deepest shaft.</outcome>
+            <ways><tradition>1</tradition></ways>
+          </li>
+          <li>
+            <label>Carry half of it down, and keep the rest</label>
+            <outcome>{A_nameDef} takes half the silver from the stores and carries it down to the deepest shaft.</outcome>
+            <ways><generosity>-1</generosity></ways>
+          </li>
+          <li>
+            <label>Keep the silver</label>
+            <outcome>Nobody carries anything down. {A_nameDef} says the voice did not sound angry in the dream, only patient.</outcome>
+          </li>
+        </options>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ===================== A wounded thrumbo at the edge (Bellwether) ===================== -->
+
+  <!--
+    Only Bellwether's own fires it (OwnBellwether.Hurt), never the storyteller. {A} is the colony's best with animals, {BEAST}
+    the beast. Tended, A walks out and kneels by it, it gets up and goes its way and the strange peace follows; left, it lies
+    there a while and limps off (OwnBellwether.TendStep, HurtHour).
+  -->
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Rimfolk_Evt_GodHurtBeast</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>a wounded thrumbo at the edge</label>
+    <workerClass>ColonyCouncil.HappeningWorker_GodHurtBeast</workerClass>
+    <baseChance>0</baseChance>
+    <minRefireDays>0</minRefireDays>
+    <earliestDay>0</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Nature</group>
+        <answerDays>0.6</answerDays>
+        <notable>false</notable>
+        <titles>
+          <li>A wounded {BEAST}</li>
+          <li>A {BEAST} at the edge</li>
+        </titles>
+        <texts>
+          <li>A wild {BEAST} has come in from the edge of the land, bitten and clawed, and lain down at the edge of the colony. It doesn't get up when anyone comes near. {A_nameDef} thinks it could be tended.</li>
+          <li>[age0] A wild {BEAST} has come in from the edge of the land, bitten and clawed, and lain down by the camp. It doesn't get up when anyone comes near, and the old ones say a hurt thrumbo coming to people is never by chance. {A_nameDef} thinks it could be tended.</li>
+          <li>[age1] A wild {BEAST} has come in from the edge of the land, bitten and clawed, and lain down outside the walls. It doesn't get up when anyone comes near. {A_nameDef} thinks it could be tended.</li>
+          <li>[age2] A wild {BEAST} has come in from the edge of the land, bitten and clawed, and lain down at the edge of the colony. It doesn't get up when anyone comes near, which nobody has seen a thrumbo do. {A_nameDef} thinks it could be tended.</li>
+          <li>[age3] A wild {BEAST} has come in from the edge of the land, bitten and clawed, and lain down at the edge of the base. It doesn't get up when anyone comes near. {A_nameDef} thinks it could be tended.</li>
+        </texts>
+        <defaultOption>1</defaultOption>
+        <options>
+          <li>
+            <label>Send {A_nameDef} to tend it</label>
+            <outcome>{A_nameDef} walks out to the {BEAST} to tend its wounds.</outcome>
+            <ways><mercy>1</mercy></ways>
+          </li>
+          <li>
+            <label>Leave it be</label>
+            <outcome>Nobody goes out to it. The {BEAST} lies there a while longer, and then it gets up and limps away.</outcome>
+          </li>
+        </options>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ===================== What they remember ===================== -->
+
+  <!-- Hollin: a dryad walked up and said one word. -->
+  <ThoughtDef>
+    <defName>Rimfolk_Thought_GodOwnDryadWord</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
+    <durationDays>3</durationDays>
+    <stackLimit>1</stackLimit>
+    <stages>
+      <li>
+        <label>a dryad spoke to me</label>
+        <description>All the dryads stopped and turned to me, and one walked up and said one word. I keep hearing it.</description>
+        <baseMoodEffect>3</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <!-- Smoulder: woke from a warm dream with a burn across the hand. -->
+  <ThoughtDef>
+    <defName>Rimfolk_Thought_GodOwnBurn</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
+    <durationDays>2</durationDays>
+    <stackLimit>1</stackLimit>
+    <stages>
+      <li>
+        <label>woke with a burn</label>
+        <description>I dreamt of a warm voice under the mountain, and it was not pleased, and I woke with my hand burned.</description>
+        <baseMoodEffect>-3</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <!-- Bellwether: saw the white beast wait at the colony's fence (let go once a gate is opened). -->
+  <ThoughtDef>
+    <defName>Rimfolk_Thought_GodOwnMadeHimWait</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
+    <durationDays>0.5</durationDays>
+    <stackLimit>1</stackLimit>
+    <stages>
+      <li>
+        <label>made the white beast wait</label>
+        <description>The great white beast is standing at our fence, waiting to pass, and nobody has opened a gate for him.</description>
+        <baseMoodEffect>-2</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <!-- Morel: heard something soft and too close in one of her rings. -->
+  <ThoughtDef>
+    <defName>Rimfolk_Thought_GodOwnBreath</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
+    <durationDays>1</durationDays>
+    <stackLimit>1</stackLimit>
+    <stages>
+      <li>
+        <label>heard something in the ring</label>
+        <description>I walked through the ring of mushrooms and something spoke right by my ear, soft, and there was nobody there.</description>
+        <baseMoodEffect>-1</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <!-- Ennu: did the stranger's small thing and was thanked by name. -->
+  <ThoughtDef>
+    <defName>Rimfolk_Thought_GodOwnThanked</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
+    <durationDays>3</durationDays>
+    <stackLimit>1</stackLimit>
+    <stages>
+      <li>
+        <label>thanked by the stranger</label>
+        <description>The stranger asked for something small, and I did it, and they thanked me by my name as if they had always known it.</description>
+        <baseMoodEffect>2</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <!-- Ennu: the bowl set out was empty in the morning, and the cook thanked by name in chalk. -->
+  <ThoughtDef>
+    <defName>Rimfolk_Thought_GodOwnBowl</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
+    <durationDays>3</durationDays>
+    <stackLimit>1</stackLimit>
+    <stages>
+      <li>
+        <label>thanked in chalk</label>
+        <description>I set out a bowl last night for whoever came, and in the morning it was empty and someone had written my name on the table to thank me.</description>
+        <baseMoodEffect>3</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <!-- Pip: a turret held its fire as they crossed its line. -->
+  <ThoughtDef>
+    <defName>Rimfolk_Thought_GodOwnTurretHeld</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
+    <durationDays>2</durationDays>
+    <stackLimit>1</stackLimit>
+    <stages>
+      <li>
+        <label>the turret held its fire</label>
+        <description>I ran right across the turret's line in the fight, and it stopped firing until I was clear.</description>
+        <baseMoodEffect>3</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <!-- ===================== What people say ===================== -->
+
+  <!--
+    One sentence each, over the speaker's head (OwnHappenings.Say), by the happening's tag; doubt is for one who believes
+    little. {PAWN} is the speaker; the rest by tag: {WORD} the dryad's word, {NAME} his proper name, {COUNT} silver, {YOUNG}
+    the colony's youngest, {WHAT} what was found, {THING} a machine, {OTHER} the one spoken to, {PEOPLE} a visitor's people,
+    {WAY} which way from the colony. Never a god's mind; a god named only as the speaker's own guess.
+  -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_GodOwnSaid</defName>
+    <lines>
+      <plain>
+        <!-- Hollin -->
+        <li>[roots] There's a root come up through the floor in the {WHAT}, right through it.</li>
+        <li>[roots] Something broke the floor in the {WHAT} overnight, and it's roots.</li>
+        <li>[roots,doubt] Roots through the floor, that's what comes of clearing so close to the walls.</li>
+        <li>[dryadword,word:spare] It looked at me and said one word, spare, and I think it meant the trees.</li>
+        <li>[dryadword,word:wait] The dryad said wait, just that, and the fields are all still growing.</li>
+        <li>[dryadword,word:plant] It said plant, as plain as anything, and that field's still bare.</li>
+        <li>[dryadword,word:burn] It said burn, and there's blight in the crops.</li>
+        <li>[walk] It's risen again further off, and look at the grass behind it.</li>
+        <li>[walk] The beasts are walking after it, every one of them.</li>
+        <li>[walk,doubt] Something's making the ground heave out there, and the animals are following it.</li>
+        <li>[oldtree] There's healroot all round the old {WHAT}, a ring of it, and nobody planted that.</li>
+        <li>[oldtree] Somebody come and look at the foot of the old {WHAT}.</li>
+        <!-- Smoulder -->
+        <li>[bargainrefused] I told the voice no, and it only said it could wait.</li>
+        <li>[bargaincarry] All right, I'll take it down, and let's hope it keeps its word.</li>
+        <li>[bargaincarry] Down to the deepest shaft, then, like the old miners did.</li>
+        <li>[bargaindown] It went down into the rock like it was water, and the floor's warm now.</li>
+        <li>[bargaindown] I set it down and it was gone, and I felt the warm come up through my boots.</li>
+        <li>[vein] There's gold in the rock by the shaft where the silver went down.</li>
+        <li>[vein] It kept its word, there's a vein of gold right there.</li>
+        <li>[veinbent] It glints like gold, but under the skin of it it's only steel.</li>
+        <li>[veinbent] We kept half back, and it knew, it gave us steel painted gold.</li>
+        <li>[name] I've named it for {NAME}, and don't ask me why that name.</li>
+        <li>[name] This one is for {NAME}, it came to me while I worked.</li>
+        <li>[seam] There's a seam of silver in that rock face that wasn't there yesterday.</li>
+        <li>[seam] Silver, glinting right in the rock, look.</li>
+        <li>[heat] The floor down here is hot, like something's breathing under it.</li>
+        <li>[heat] You can feel it through your boots, the rock's warm.</li>
+        <li>[stretch] I dreamt something huge under the mountain stretching, slow, and the whole rock moved with it.</li>
+        <li>[stretch] Did anyone else dream of something stretching under the rock.</li>
+        <li>[burn] I dreamt the warm voice wasn't pleased, and I woke with my hand burned.</li>
+        <li>[burn] Look at my palm, it's burned, and I was asleep the whole night.</li>
+        <li>[burndream] I dreamt of a warm voice that wasn't pleased with us, not pleased at all.</li>
+        <!-- Bellwether -->
+        <li>[dusk] He's stopped at the edge and he's looking at {YOUNG}, only at {YOUNG}.</li>
+        <li>[dusk] Look how he lowers his head toward {YOUNG}.</li>
+        <li>[road] He's taking the road right through the middle of us.</li>
+        <li>[road] Let him pass, everyone, keep out of his way.</li>
+        <li>[roadwait] He's stopped at the fence, waiting, someone open a gate for him.</li>
+        <li>[roadwait] We've fenced his road, and he's just standing there waiting.</li>
+        <li>[roadopen] There, he's through, and he didn't even look back.</li>
+        <li>[horn,rain] Rain's coming, I can feel it in the sky.</li>
+        <li>[horn,rain] It's going to rain soon, I know it is.</li>
+        <li>[horn,rain] Get the washing in, the rain's on its way.</li>
+        <li>[horn,snow] Snow's coming, the sky's about to turn.</li>
+        <li>[horn,snow] It's going to snow soon, I can tell.</li>
+        <li>[tended] Easy now, you're all right, there.</li>
+        <li>[tended] It let me tend it, and it just looked at me the whole time.</li>
+        <li>[last] I dreamt of a white beast walking the whole world looking for others like it, and it never found any.</li>
+        <li>[last] There was a white beast in my dream, searching, and it was the last of its kind.</li>
+        <!-- Morel -->
+        <li>[mourner] There's someone standing at the edge of the graves, and they're not one of ours.</li>
+        <li>[mourner] Look at the graves, there's a figure there, and it's all threads.</li>
+        <li>[mourner,doubt] Somebody's standing by the graves in the dark, and I'm not going to go and ask who.</li>
+        <li>[mournergone] It's gone, and there's a ring of mushrooms where it stood.</li>
+        <li>[mournergone] Mushrooms, in a ring, right where the figure was standing.</li>
+        <li>[ringbody] There's a ring of mushrooms round {WHAT}, we should have buried them.</li>
+        <li>[ringbody] Mushrooms came up round {WHAT} in the night.</li>
+        <li>[ringstores] The {WHAT} in the stores has gone bad, and there are threads all round it.</li>
+        <li>[ringdig] There was something buried in the middle of the ring, look, {WHAT}.</li>
+        <li>[ringdig] I dug where the mushrooms came up and found {WHAT}.</li>
+        <li>[threads] There are white threads all across the freezer floor.</li>
+        <li>[threads] Something's grown over the floor in the freezer, white, like cobwebs.</li>
+        <li>[breath] Something said my name, right by my ear, and nobody's here.</li>
+        <li>[breath] I heard someone breathing next to me in the ring, soft and close.</li>
+        <!-- Ennu -->
+        <li>[testask,test:story] Would someone tell me a story by the fire tonight?</li>
+        <li>[testask,test:story] I'd give a lot for a story at the fire this evening.</li>
+        <li>[testask,test:cook] Who cooked that, I'd like to know their name.</li>
+        <li>[testask,test:cook] Whoever made that meal, I'd like to thank them.</li>
+        <li>[testask,test:graves] Would someone show me where you keep your dead?</li>
+        <li>[testask,test:graves] I'd like to see your graves, if it isn't too much to ask.</li>
+        <li>[testask,test:coat] It's bitter out, you wouldn't have a coat to spare?</li>
+        <li>[testask,test:coat] I came without a warm coat, and I'm feeling it.</li>
+        <li>[teststory] Sit down, I'll tell you one my grandmother told me.</li>
+        <li>[teststory] All right, here's one, it's about a well and a fool.</li>
+        <li>[testcook] I'm the one who cooked it, I'm {PAWN_nameDef}.</li>
+        <li>[testcook] That was me, and I'm glad you liked it.</li>
+        <li>[testgraves] Come on, I'll walk you out to them.</li>
+        <li>[testgraves] They're this way, we keep them as well as we can.</li>
+        <li>[testthanks] Thank you, {OTHER}, I won't forget it.</li>
+        <li>[testthanks,test:coat] Thank you, {OTHER}, it's a good warm coat.</li>
+        <li>[testthanks,test:story] That was a fine story, {OTHER}, thank you.</li>
+        <li>[testthanks,test:cook] Thank you for the meal, {OTHER}.</li>
+        <li>[testthanks,test:graves] Thank you for showing me, {OTHER}, they're well kept.</li>
+        <li>[bowlset] There, a bowl for whoever comes in the night.</li>
+        <li>[bowlset] It's the old custom, a bowl on the table for the one at the door.</li>
+        <li>[bowl] The bowl's empty, and somebody's written {WHAT}'s name on the table in chalk.</li>
+        <li>[bowl] Look at the table, there's chalk on it, it says thank you to {WHAT}.</li>
+        <li>[kindestnews] You'll want to hear what they're saying on the road, {OTHER}.</li>
+        <li>[kindestnews] {OTHER}, isn't it, they told me to look for you.</li>
+        <li>[kindestheard] They had news from the road, and they came looking for me to tell it.</li>
+        <li>[kindestheard] A traveller from {PEOPLE} sought me out with all the news.</li>
+        <!-- Pip -->
+        <li>[wontstop] I switched the {THING} off, and it's still running.</li>
+        <li>[wontstop] The {THING}'s switched off and it won't stop.</li>
+        <li>[stopped] The {THING} just stopped by itself.</li>
+        <li>[stopped] There, it's stopped, all on its own.</li>
+        <li>[starsnight] The comms console just came on by itself.</li>
+        <li>[starsnight] Who's at the console at this hour, nobody, it's on by itself.</li>
+        <li>[starsmorning] Somebody left a message on the console screen, and it's to the stars.</li>
+        <li>[starsmorning] Come and read this on the console, half a message to somebody up there.</li>
+        <li>[turret] The turret stopped firing while I was in front of it.</li>
+        <li>[turret] It held its fire for me, I swear the turret waited.</li>
+        <li>[sulk] The lights keep going out and coming back, slow, like they're sulking.</li>
+        <li>[sulk] Every lamp in here is flickering, and slowly.</li>
+        <!-- Cirrus -->
+        <li>[starfell] I saw it come down, I was watching that very star.</li>
+        <li>[starfell] I was looking up when it fell, and it came straight for us.</li>
+        <li>[falldream] I dreamt something fell out of the sky, {WAY} of here.</li>
+        <li>[falldream] Last night I dreamt of something falling, out {WAY}.</li>
+        <li>[pods] That's where I dreamt it, that's the very spot.</li>
+        <li>[pods] I told you something fell, didn't I.</li>
+        <li>[aurora] Look up, the whole sky is full of light.</li>
+        <li>[aurora] On a night this cold, and the sky's alight.</li>
+        <li>[drythunder] Thunder, and not a cloud in the sky.</li>
+        <li>[drythunder] Hear that, there's lightning over the hills and no rain at all.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+</Defs>

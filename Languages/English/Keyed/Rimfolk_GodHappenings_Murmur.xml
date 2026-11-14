@@ -2,7 +2,7 @@
 <LanguageData>
 
   <!--
-    Murmur's own happenings (Source/ColonyCouncil/Gods/Happenings/Murmur.cs). The cards say only what was seen and heard;
+    Murmur's own happenings (Source/ColonyCouncil/Gods/OnMap/OwnMurmur.cs). The cards say only what was seen and heard;
     he is named only in the ...Named titles ({GOD}), where the colony knows it was him (or has learned the long rains or the
     high water as his). The CC_GodMurmur_Saw_ and _Book_ lines are what the colony's book keeps.
   -->

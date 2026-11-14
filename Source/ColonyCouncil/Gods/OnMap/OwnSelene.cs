@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using LudeonTK;
 using RimWorld;
 using UnityEngine;
 using Verse;
@@ -84,7 +83,7 @@ namespace ColonyCouncil
     /// does not come in.</item>
     /// </list>
     /// </summary>
-    public static class SeleneWays
+    public static class OwnSelene
     {
         public const string Key = "Selene";
         public const string Pool = "Rimfolk_Pool_GodSelene_Say";
@@ -106,7 +105,7 @@ namespace ColonyCouncil
             var s = b.selene;
             int hour = GenLocalDate.HourOfDay(map);
             Returned(b);
-            if (s.morningMap == map && s.morningOf != null && hour >= OwnHappeningsMath.MorningFrom && hour < OwnHappeningsMath.MorningTo) Morning(b, g, map, hour);
+            if (s.morningMap == map && s.morningOf != null && hour >= OwnHappeningsMath.ReturnMorningFrom && hour < OwnHappeningsMath.ReturnMorningTo) Morning(b, g, map, hour);
             if (MapFacts.ThreatOn(map)) return;
             var face = GodOmens.MoonTonight;
             if (OwnHappeningsMath.WaterHour(hour) && s.waterUntil < 0) Water(b, g, map, now, face);
@@ -176,18 +175,18 @@ namespace ColonyCouncil
             if (look && p.Spawned)
             {
                 var spot = found != null ? OwnHappenings.Beside(map, found.Position, p) : at;
-                if (spot.IsValid && !p.Position.InHorDistOf(spot, 2f)) OwnHappenings.Walk(p, spot, 900);
+                if (spot.IsValid && !p.Position.InHorDistOf(spot, 2f)) OwnHappenings.GoTo(p, spot, 900);
                 else OwnHappenings.Stand(p, found?.Position ?? at, 300);
-                OwnHappenings.SayWith(p, Pool, g, new[] { (found?.LabelNoCount ?? "CC_GodSelene_Something".Translate().Resolve()).Named("THING") }, "morning", "morning:" + kind.ToLowerInvariant());
+                OwnHappenings.SayFromWith(p, Pool, g, new[] { (found?.LabelNoCount ?? "CC_GodSelene_Something".Translate().Resolve()).Named("THING") }, "morning", "morning:" + kind.ToLowerInvariant());
             }
             string key = "CC_GodSelene_Morning_" + kind;
             if (!key.CanTranslate()) return;
             string text = key.Translate(p.Named("PAWN"), (found?.LabelNoCount ?? "CC_GodSelene_Something".Translate().Resolve()).Named("THING")).Resolve();
             if (s.morningAgain) text += " " + "CC_GodSelene_Morning_Again".Translate(p.Named("PAWN")).Resolve();
             bool bad = kind == "Nightmare" || kind == "Frost" || kind == "AnimalBack";
-            OwnHappenings.Card(g, map, "CC_GodSelene_Morning_Title", "CC_GodSelene_Morning_TitleNamed", text, found != null ? new LookTargets(found) : new LookTargets(p),
+            OwnHappenings.CardOf(g, map, null, "CC_GodSelene_Morning_Title", "CC_GodSelene_Morning_TitleNamed", text, found != null ? new LookTargets(found) : new LookTargets(p),
                 bad ? LetterDefOf.NeutralEvent : LetterDefOf.PositiveEvent, p.Named("PAWN"));
-            OwnHappenings.Came(b, OwnHappeningsMath.SeleneMorning, kind, p.thingIDNumber.ToString());
+            OwnHappenings.Came(b, OwnHappening.SeleneMorning, OwnHappenings.Now, kind, p.thingIDNumber.ToString());
         }
 
         // ================= Her face in still water =================
@@ -212,7 +211,7 @@ namespace ColonyCouncil
             var water = StillWater(map);
             var seer = water.IsValid ? Seer(map, water) : null;
             var t = OwnHappeningsMath.WaterTrigger(true, water.IsValid, true, seer != null);
-            if (!OwnHappenings.Roll(b, OwnHappeningsMath.SeleneWater, t, g, map, now)) return;
+            if (!OwnHappenings.Calls(b, OwnHappening.SeleneWater, t, g, map, now)) return;
             BeginWater(b, map, water, seer);
         }
 
@@ -231,8 +230,8 @@ namespace ColonyCouncil
             s.waterUntil = Now + GenDate.TicksPerHour * 2;
             GodSky.Stay(map, SkySign.Moon, water, GenDate.TicksPerHour * 2, 3.5f);
             OwnHappenings.Glow(map, water, Silver, 10, 1.2f, 0.45f);
-            OwnHappenings.Walk(seer, OwnHappenings.Beside(map, water, seer));
-            OwnHappenings.Came(b, OwnHappeningsMath.SeleneWater);
+            OwnHappenings.GoTo(seer, OwnHappenings.Beside(map, water, seer));
+            OwnHappenings.Came(b, OwnHappening.SeleneWater, OwnHappenings.Now);
             b.Due(Now + 250);
             return true;
         }
@@ -254,7 +253,7 @@ namespace ColonyCouncil
                 Knelt(b, map, p);
                 return;
             }
-            if (p.CurJobDef != JobDefOf.Goto && GodOmens.Awake(p)) OwnHappenings.Walk(p, OwnHappenings.Beside(map, s.waterAt, p));
+            if (p.CurJobDef != JobDefOf.Goto && GodOmens.Awake(p)) OwnHappenings.GoTo(p, OwnHappenings.Beside(map, s.waterAt, p));
             b.Due(now + 250);
         }
 
@@ -268,9 +267,9 @@ namespace ColonyCouncil
             s.waterSeer = null;
             OwnHappenings.Stand(p, at, 1100);
             OwnHappenings.Memory(p, WaterThought);
-            OwnHappenings.Say(p, Pool, g, "water");
+            OwnHappenings.SayFrom(p, Pool, g, "water");
             string text = "CC_GodSelene_Water_Text".Translate(p.Named("PAWN")).Resolve();
-            OwnHappenings.Card(g, map, "CC_GodSelene_Water_Title", "CC_GodSelene_Water_TitleNamed", text, new LookTargets(p), LetterDefOf.PositiveEvent, p.Named("PAWN"));
+            OwnHappenings.CardOf(g, map, null, "CC_GodSelene_Water_Title", "CC_GodSelene_Water_TitleNamed", text, new LookTargets(p), LetterDefOf.PositiveEvent, p.Named("PAWN"));
             if (g != null) OwnHappenings.Saw(g, map, at, GodActKind.Omen, p, "CC_GodSelene_Saw_Water");
         }
 
@@ -281,7 +280,7 @@ namespace ColonyCouncil
             bool up = face == GodsOnMapMath.MoonFace.Full || face == GodsOnMapMath.MoonFace.Half;
             var p = Watcher(map);
             var t = OwnHappeningsMath.WatchTrigger(up, OwnHappenings.Clear(map), p != null, p?.Drafted == true);
-            if (!OwnHappenings.Roll(b, OwnHappeningsMath.SeleneWatch, t, g, map, now)) return;
+            if (!OwnHappenings.Calls(b, OwnHappening.SeleneWatch, t, g, map, now)) return;
             Company(b, map, p);
         }
 
@@ -302,10 +301,10 @@ namespace ColonyCouncil
             OwnHappenings.Glow(map, p.Position, Silver, 10, 1.4f, 0.4f);
             OwnHappenings.Memory(p, WatchThought);
             var g = God;
-            OwnHappenings.Say(p, Pool, g, "watch");
+            OwnHappenings.SayFrom(p, Pool, g, "watch");
             OwnHappenings.Line(map, "CC_GodSelene_Watch_Text".Translate(p.Named("PAWN")).Resolve(), new LookTargets(p));
             if (g != null) OwnHappenings.Saw(g, map, p.Position, GodActKind.Blessing, p, "CC_GodSelene_Saw_Watch");
-            OwnHappenings.Came(b, OwnHappeningsMath.SeleneWatch, null, p.thingIDNumber.ToString());
+            OwnHappenings.Came(b, OwnHappening.SeleneWatch, OwnHappenings.Now, null, p.thingIDNumber.ToString());
             b.Due(Now + 500);
             return true;
         }
@@ -330,7 +329,7 @@ namespace ColonyCouncil
         {
             var keeper = face == GodsOnMapMath.MoonFace.Gone ? Keeper(map) : null;
             var t = OwnHappeningsMath.DarkFaceTrigger(face == GodsOnMapMath.MoonFace.Gone, keeper != null);
-            if (!OwnHappenings.Roll(b, OwnHappeningsMath.SeleneDarkFace, t, g, map, now)) return;
+            if (!OwnHappenings.Calls(b, OwnHappening.SeleneDarkFace, t, g, map, now)) return;
             BeginDarkFace(b, map, keeper);
         }
 
@@ -361,8 +360,8 @@ namespace ColonyCouncil
             int hour = GenLocalDate.HourOfDay(map);
             int hours = hour >= 12 ? 24 - hour + OwnHappeningsMath.DarkFaceUntil : Math.Max(1, OwnHappeningsMath.DarkFaceUntil - hour);
             s.darkUntil = Now + hours * GenDate.TicksPerHour;
-            OwnHappenings.Walk(keeper, at);
-            OwnHappenings.Came(b, OwnHappeningsMath.SeleneDarkFace, null, keeper.thingIDNumber.ToString());
+            OwnHappenings.GoTo(keeper, at);
+            OwnHappenings.Came(b, OwnHappening.SeleneDarkFace, OwnHappenings.Now, null, keeper.thingIDNumber.ToString());
             b.Due(Now + 250);
             return true;
         }
@@ -403,67 +402,13 @@ namespace ColonyCouncil
                 if (!s.darkStood)
                 {
                     s.darkStood = true;
-                    OwnHappenings.Say(p, Pool, God, "darkface");
+                    OwnHappenings.SayFrom(p, Pool, God, "darkface");
                 }
                 if (p.CurJobDef != JobDefOf.Wait_MaintainPosture && OwnHappenings.Yields(p)) OwnHappenings.Stand(p, s.darkFacing, GenDate.TicksPerHour);
             }
-            else if (p.CurJobDef != JobDefOf.Goto && GodOmens.Awake(p) && !p.InBed() && OwnHappenings.Yields(p)) OwnHappenings.Walk(p, s.darkAt);
+            else if (p.CurJobDef != JobDefOf.Goto && GodOmens.Awake(p) && !p.InBed() && OwnHappenings.Yields(p)) OwnHappenings.GoTo(p, s.darkAt);
             b.Due(now + 400);
         }
     }
 
-    /// <summary>Dev mode: Selene's happenings now (Debug actions, "Rimfolk", "Gods: Selene's ... now").</summary>
-    public static class SeleneDebug
-    {
-        private static void Say(string text) => Messages.Message("Gods: " + text, MessageTypeDefOf.SilentInput, false);
-
-        private static readonly string[] Kinds = { "Found", "GoodDream", "Healed", "Nightmare", "Frost", "AnimalBack" };
-
-        [DebugAction("Rimfolk", "Gods: Selene's morning card now...", allowedGameStates = AllowedGameStates.PlayingOnMap)]
-        private static void DebugMorning()
-        {
-            var b = OwnHappenings.Book;
-            var map = Find.CurrentMap;
-            var p = map?.mapPawns.FreeColonistsSpawned.Where(OwnHappenings.Ours).RandomElementWithFallback();
-            if (b == null || p == null) return;
-            Find.WindowStack.Add(new FloatMenu(Kinds.Select(k => new FloatMenuOption(k, () =>
-            {
-                SeleneWays.Note(b.selene, p, k, false);
-                SeleneWays.TellMorning(b, SeleneWays.God, map, true);
-                Say("the morning card for " + p.LabelShort + " (" + k + "; with Found, the newest thing by their bed).");
-            })).ToList()));
-        }
-
-        [DebugAction("Rimfolk", "Gods: Selene's face in the water now", allowedGameStates = AllowedGameStates.PlayingOnMap)]
-        private static void DebugWater()
-        {
-            var b = OwnHappenings.Book;
-            var map = Find.CurrentMap;
-            if (b == null || map == null) return;
-            var water = SeleneWays.StillWater(map);
-            var p = water.IsValid ? map.mapPawns.FreeColonistsSpawned.Where(x => OwnHappenings.Ours(x) && x.Awake() && x.CanReach(water, PathEndMode.Touch, Danger.Some))
-                .OrderBy(x => x.Position.DistanceToSquared(water)).FirstOrDefault() : null;
-            Say(SeleneWays.BeginWater(b, map, water, p) ? p.LabelShort + " walks down to the water where the moon lies." : "no still water within reach (or nobody awake).");
-        }
-
-        [DebugAction("Rimfolk", "Gods: Selene keeps a watch company now", allowedGameStates = AllowedGameStates.PlayingOnMap)]
-        private static void DebugWatch()
-        {
-            var b = OwnHappenings.Book;
-            var map = Find.CurrentMap;
-            if (b == null || map == null) return;
-            var p = SeleneWays.Watcher(map) ?? map.mapPawns.FreeColonistsSpawned.FirstOrDefault(OwnHappenings.Ours);
-            Say(SeleneWays.Company(b, map, p) ? "the moonlight keeps " + p.LabelShort + " company till dawn." : "nobody to keep company.");
-        }
-
-        [DebugAction("Rimfolk", "Gods: Selene's dark face kept now", allowedGameStates = AllowedGameStates.PlayingOnMap)]
-        private static void DebugDarkFace()
-        {
-            var b = OwnHappenings.Book;
-            var map = Find.CurrentMap;
-            if (b == null || map == null) return;
-            var p = SeleneWays.Keeper(map);
-            Say(SeleneWays.BeginDarkFace(b, map, p) ? p.LabelShort + " goes to keep the door till three o'clock; the dark that drifts does not come in meanwhile." : "nobody free to keep it.");
-        }
-    }
 }

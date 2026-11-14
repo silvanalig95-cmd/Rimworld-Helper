@@ -2,7 +2,7 @@
 <LanguageData>
 
   <!--
-    Selene's own happenings (Source/ColonyCouncil/Gods/Happenings/Selene.cs). The cards say only what was found and seen;
+    Selene's own happenings (Source/ColonyCouncil/Gods/OnMap/OwnSelene.cs). The cards say only what was found and seen;
     she is named only in the ...Named titles ({GOD}), where the colony knows it was her. The CC_GodSelene_Saw_ lines are
     what the colony's book keeps of it, in the witness's words ({WHO}).
   -->

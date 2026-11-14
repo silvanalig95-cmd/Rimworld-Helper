@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using LudeonTK;
 using RimWorld;
 using UnityEngine;
 using Verse;
@@ -77,7 +76,7 @@ namespace ColonyCouncil
     /// open to the psychic for ten days).</item>
     /// </list>
     /// </summary>
-    public static class UndertowWays
+    public static class OwnUndertow
     {
         public const string Key = "Undertow";
         public const string Pool = "Rimfolk_Pool_GodUndertow_Say";
@@ -132,7 +131,7 @@ namespace ColonyCouncil
             s.shunUntil = Now + Mathf.RoundToInt(OwnHappeningsMath.ShunDays * GenDate.TicksPerDay);
             s.shunCarded = false;
             s.shunSaidDay = -1;
-            OwnHappenings.Came(b, OwnHappeningsMath.UndertowShun, null, p.thingIDNumber.ToString());
+            OwnHappenings.Came(b, OwnHappening.UndertowShun, OwnHappenings.Now, null, p.thingIDNumber.ToString());
             b.Due(Now + 60);
         }
 
@@ -201,13 +200,13 @@ namespace ColonyCouncil
             if (seer == null && s.shunCarded) return;
             s.shunSaidDay = day;
             var g = God;
-            if (seer != null) OwnHappenings.SayWith(seer, Pool, null, new[] { p.Named("OTHER"), a.KindLabel.Named("BEAST") }, "shun");
-            else if (GodOmens.Awake(p)) OwnHappenings.Say(p, Pool, null, "shunself");
+            if (seer != null) OwnHappenings.SayFromWith(seer, Pool, null, new[] { p.Named("OTHER"), a.KindLabel.Named("BEAST") }, "shun");
+            else if (GodOmens.Awake(p)) OwnHappenings.SayFrom(p, Pool, null, "shunself");
             if (!s.shunCarded)
             {
                 s.shunCarded = true;
                 // apart: what the beasts do around one person, told as seen; nobody is with anyone in it.
-                OwnHappenings.Card(null, map, "CC_GodUndertow_Shun_Title", null, "CC_GodUndertow_Shun_Text".Translate(p.Named("PAWN"), a.KindLabel.Named("BEAST")).Resolve(),
+                OwnHappenings.CardOf(null, map, null, "CC_GodUndertow_Shun_Title", null, "CC_GodUndertow_Shun_Text".Translate(p.Named("PAWN"), a.KindLabel.Named("BEAST")).Resolve(),
                     new LookTargets(p), null, p.Named("PAWN"));
             }
             if (g != null) OwnHappenings.Saw(g, map, p.Position, GodActKind.Omen, seer, "CC_GodUndertow_Saw_Shun", p.LabelShort.Named("SHUNNED"), a.KindLabel.Named("BEAST"));
@@ -218,10 +217,10 @@ namespace ColonyCouncil
         private static void Drift(OwnHappeningsBook b, God g, Map map, int now)
         {
             var s = b.undertow;
-            if (s.driftMap != null || SeleneWays.KeptTonight(map)) return;
+            if (s.driftMap != null || OwnSelene.KeptTonight(map)) return;
             var target = Desperate(map, out var t);
             float factor = GodOmens.MoonTonight == GodsOnMapMath.MoonFace.Gone ? OwnHappeningsMath.DarkMoonFactor : 1f;
-            if (target == null || !OwnHappenings.Roll(b, OwnHappeningsMath.UndertowDrift, t, g, map, now, factor)) return;
+            if (target == null || !OwnHappenings.Calls(b, OwnHappening.UndertowDrift, t, g, map, now, factor)) return;
             BeginDrift(b, map, target);
         }
 
@@ -267,7 +266,7 @@ namespace ColonyCouncil
             s.driftEnd = (int)OwnHappeningsMath.DriftEnd.Drifting;
             s.driftSeen = s.driftSpoke = false;
             s.driftUntil = Now + GenDate.TicksPerHour * 9;
-            OwnHappenings.Came(b, OwnHappeningsMath.UndertowDrift, null, target.thingIDNumber.ToString());
+            OwnHappenings.Came(b, OwnHappening.UndertowDrift, OwnHappenings.Now, null, target.thingIDNumber.ToString());
             b.Due(Now + 1);
             return true;
         }
@@ -321,7 +320,7 @@ namespace ColonyCouncil
                 {
                     s.driftSeen = true;
                     // apart: said of the one it drifts toward, by someone who sees the dark from a way off.
-                    OwnHappenings.SayWith(seer, Pool, null, new[] { p.Named("OTHER") }, "drift");
+                    OwnHappenings.SayFromWith(seer, Pool, null, new[] { p.Named("OTHER") }, "drift");
                 }
             }
             b.Due(now + OwnHappeningsMath.DriftTicks);
@@ -335,7 +334,7 @@ namespace ColonyCouncil
             var s = OwnHappenings.Book?.undertow;
             if (s == null || s.driftSpoke) return;
             s.driftSpoke = true;
-            if (p.Awake() && !p.Downed) OwnHappenings.Say(p, Pool, null, "voice");
+            if (p.Awake() && !p.Downed) OwnHappenings.SayFrom(p, Pool, null, "voice");
         }
 
         /// <summary>At dawn it is gone, and what it did is told as it was seen: it stood over them, or it stopped at a light, or at someone sitting with them.</summary>
@@ -356,12 +355,12 @@ namespace ColonyCouncil
                 case OwnHappeningsMath.DriftEnd.Reached:
                     OwnHappenings.Memory(p, StoodOverThought);
                     if (g != null) PawnGods.Fear(p, g, 10f, "CC_GodUndertow_Why_StoodOver".Translate(GodLorePage.Date(Now).Named("DATE")).Resolve());
-                    OwnHappenings.Card(null, map, "CC_GodUndertow_Drift_Title", null, "CC_GodUndertow_Drift_Text".Translate(p.Named("PAWN"), lamps.Named("LAMPS")).Resolve(), new LookTargets(p),
+                    OwnHappenings.CardOf(null, map, null, "CC_GodUndertow_Drift_Title", null, "CC_GodUndertow_Drift_Text".Translate(p.Named("PAWN"), lamps.Named("LAMPS")).Resolve(), new LookTargets(p),
                         LetterDefOf.NegativeEvent, p.Named("PAWN"));
                     if (g != null) OwnHappenings.Saw(g, map, p.Position, GodActKind.Omen, p, "CC_GodUndertow_Saw_Drift", p.LabelShort.Named("DESPERATE"));
                     break;
                 case OwnHappeningsMath.DriftEnd.HeldByLight:
-                    OwnHappenings.Card(null, map, "CC_GodUndertow_Light_Title", null, "CC_GodUndertow_Light_Text".Translate(p.Named("PAWN"), lamps.Named("LAMPS")).Resolve(), new LookTargets(p), null, p.Named("PAWN"));
+                    OwnHappenings.CardOf(null, map, null, "CC_GodUndertow_Light_Title", null, "CC_GodUndertow_Light_Text".Translate(p.Named("PAWN"), lamps.Named("LAMPS")).Resolve(), new LookTargets(p), null, p.Named("PAWN"));
                     if (g != null) OwnHappenings.Saw(g, map, at, GodActKind.Omen, p.Awake() ? p : null, "CC_GodUndertow_Saw_Light", p.LabelShort.Named("DESPERATE"));
                     break;
                 case OwnHappeningsMath.DriftEnd.HeldByCompany:
@@ -381,10 +380,10 @@ namespace ColonyCouncil
             if (holder != null && !holder.Dead)
             {
                 OwnHappenings.Memory(holder, KeptOffThought);
-                OwnHappenings.Memory(p, KeptOffMeThought, holder);
+                OwnHappenings.MemoryOf(p, KeptOffMeThought, holder);
             }
             string text = "CC_GodUndertow_Company_Text".Translate(p.Named("PAWN"), (holder?.LabelShort ?? "").Named("HOLDER")).Resolve();
-            OwnHappenings.Card(null, map, "CC_GodUndertow_Company_Title", null, text, new LookTargets(p), LetterDefOf.PositiveEvent, p.Named("PAWN"));
+            OwnHappenings.CardOf(null, map, null, "CC_GodUndertow_Company_Title", null, text, new LookTargets(p), LetterDefOf.PositiveEvent, p.Named("PAWN"));
             if (g != null) OwnHappenings.Saw(g, map, at, GodActKind.Omen, holder, "CC_GodUndertow_Saw_Company", p.LabelShort.Named("DESPERATE"));
         }
 
@@ -394,7 +393,7 @@ namespace ColonyCouncil
 
         private static void Ruins(OwnHappeningsBook b, God g, Map map, int now)
         {
-            if (OwnHappenings.DaysSince(b, OwnHappeningsMath.UndertowEar, now) < OwnHappeningsMath.PaceOf(OwnHappeningsMath.UndertowEar).gap) return;
+            if (!OwnHappeningsMath.Free(OwnHappening.UndertowEar, OwnHappenings.DaysSince(b, OwnHappening.UndertowEar, now)) || !OwnHappenings.Acts(g, map)) return;
             looked.Clear();
             looked.AddRange(map.mapPawns.FreeColonistsSpawned.Where(p => OwnHappenings.Ours(p) && GodOmens.Awake(p)));
             foreach (var p in looked)
@@ -427,48 +426,12 @@ namespace ColonyCouncil
             if (!p.health.hediffSet.HasHediff(def)) p.health.AddHediff(def);
             OwnHappenings.Stand(p, IntVec3.Invalid, 420);
             OwnHappenings.ModMote(map, p.Position, new Color(0.25f, 0.2f, 0.35f), 1.2f, "Mote_ShadowCloud", "Mote_Shadow");
-            OwnHappenings.Say(p, Pool, null, "ear");
-            OwnHappenings.Card(null, map, "CC_GodUndertow_Ear_Title", null, "CC_GodUndertow_Ear_Text".Translate(p.Named("PAWN")).Resolve(), new LookTargets(p), null, p.Named("PAWN"));
+            OwnHappenings.SayFrom(p, Pool, null, "ear");
+            OwnHappenings.CardOf(null, map, null, "CC_GodUndertow_Ear_Title", null, "CC_GodUndertow_Ear_Text".Translate(p.Named("PAWN")).Resolve(), new LookTargets(p), null, p.Named("PAWN"));
             if (g != null) OwnHappenings.Saw(g, map, p.Position, GodActKind.Omen, p, "CC_GodUndertow_Saw_Ear", p.LabelShort.Named("HEARER"));
-            OwnHappenings.Came(b, OwnHappeningsMath.UndertowEar, null, p.thingIDNumber.ToString());
+            OwnHappenings.Came(b, OwnHappening.UndertowEar, OwnHappenings.Now, null, p.thingIDNumber.ToString());
             return true;
         }
     }
 
-    /// <summary>Dev mode: the dark's happenings now (Debug actions, "Rimfolk", "Gods: Undertow's ... now"). Never named in play; named here for testing.</summary>
-    public static class UndertowDebug
-    {
-        private static void Say(string text) => Messages.Message("Gods: " + text, MessageTypeDefOf.SilentInput, false);
-
-        [DebugAction("Rimfolk", "Gods: Undertow's beasts keep away now", allowedGameStates = AllowedGameStates.PlayingOnMap)]
-        private static void DebugShun()
-        {
-            var b = OwnHappenings.Book;
-            var p = Find.CurrentMap?.mapPawns.FreeColonistsSpawned.Where(OwnHappenings.Ours).RandomElementWithFallback();
-            if (b == null || p == null) return;
-            UndertowWays.Shun(b, p);
-            Say("the beasts keep away from " + p.LabelShort + " for eight days.");
-        }
-
-        [DebugAction("Rimfolk", "Gods: Undertow's dark drifts now", allowedGameStates = AllowedGameStates.PlayingOnMap)]
-        private static void DebugDrift()
-        {
-            var b = OwnHappenings.Book;
-            var map = Find.CurrentMap;
-            if (b == null || map == null) return;
-            var p = UndertowWays.Desperate(map, out _) ?? map.mapPawns.FreeColonistsSpawned.Where(OwnHappenings.Ours).OrderBy(x => x.needs?.mood?.CurLevel ?? 1f).FirstOrDefault();
-            b.undertow.EndDrift();
-            Say(p != null && UndertowWays.BeginDrift(b, map, p) ? "the dark drifts toward " + p.LabelShort + " (at night only: it is gone at five o'clock)." : "nobody to drift to.");
-        }
-
-        [DebugAction("Rimfolk", "Gods: Undertow's hollow ear now", allowedGameStates = AllowedGameStates.PlayingOnMap)]
-        private static void DebugEar()
-        {
-            var b = OwnHappenings.Book;
-            var map = Find.CurrentMap;
-            var p = map?.mapPawns.FreeColonistsSpawned.Where(OwnHappenings.Ours).RandomElementWithFallback();
-            if (b == null || p == null) return;
-            Say(UndertowWays.Ear(b, UndertowWays.God, map, p) ? p.LabelShort + " has a hollow ear." : "it couldn't.");
-        }
-    }
 }

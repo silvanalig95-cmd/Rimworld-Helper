@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using LudeonTK;
 using RimWorld;
 using UnityEngine;
 using Verse;
@@ -74,7 +73,7 @@ namespace ColonyCouncil
     /// their dozens (Odyssey's bullfrogs; else only their croaking), croaking all night, and are gone at first light.</item>
     /// </list>
     /// </summary>
-    public static class MurmurWays
+    public static class OwnMurmur
     {
         public const string Key = "Murmur";
         public const string Pool = "Rimfolk_Pool_GodMurmur_Say";
@@ -103,18 +102,18 @@ namespace ColonyCouncil
                 else
                 {
                     var t = OwnHappeningsMath.SongTrigger(OwnHappenings.DryRun(map), OwnHappenings.Condition(map, "Drought") != null, Believers(map, g).Count);
-                    if (OwnHappenings.Roll(b, OwnHappeningsMath.MurmurSong, t, g, map, now)) BeginSong(b, map, false);
+                    if (OwnHappenings.Calls(b, OwnHappening.MurmurSong, t, g, map, now)) BeginSong(b, map, false);
                 }
             }
             if (s.giveUntil < 0 && hour >= 7 && hour < 12 && !OwnHappenings.Raining(map))
             {
                 var t = OwnHappeningsMath.GiveBackTrigger(OwnHappenings.WetRun(map), false);
-                if (OwnHappenings.Roll(b, OwnHappeningsMath.MurmurGiveBack, t, g, map, now)) GiveBack(b, map);
+                if (OwnHappenings.Calls(b, OwnHappening.MurmurGiveBack, t, g, map, now)) GiveBack(b, map);
             }
             if (OwnHappenings.Raining(map) && (hour >= 18 || hour < 3))
             {
                 var t = OwnHappeningsMath.FrogsTrigger(OwnHappenings.DryRun(map), false);
-                if (OwnHappenings.Roll(b, OwnHappeningsMath.MurmurFrogs, t, g, map, now)) Frogs(b, map);
+                if (OwnHappenings.Calls(b, OwnHappening.MurmurFrogs, t, g, map, now)) Frogs(b, map);
             }
         }
 
@@ -147,7 +146,7 @@ namespace ColonyCouncil
                 what = well.LabelNoCount;
                 return well.Position;
             }
-            var c = SeleneWays.StillWater(map);
+            var c = OwnSelene.StillWater(map);
             if (!c.IsValid) c = GodOmens.Wet(map);
             what = c.IsValid ? c.GetTerrain(map)?.label ?? "" : "";
             return c;
@@ -176,7 +175,7 @@ namespace ColonyCouncil
             foreach (var p in who)
             {
                 var to = CellFinder.RandomClosewalkCellNear(at, map, 4, c => c.Standable(map) && c != at && c.GetEdifice(map) == null);
-                if (to.IsValid && OwnHappenings.Walk(p, to, GenDate.TicksPerHour * 2)) s.sent = HeliosState.With(s.sent, p);
+                if (to.IsValid && OwnHappenings.GoTo(p, to, GenDate.TicksPerHour * 2)) s.sent = HeliosState.With(s.sent, p);
             }
             if (s.sent.NullOrEmpty())
             {
@@ -184,7 +183,7 @@ namespace ColonyCouncil
                 s.songMap = null;
                 return false;
             }
-            OwnHappenings.Came(b, OwnHappeningsMath.MurmurSong, festival ? "festival" : "dry");
+            OwnHappenings.Came(b, OwnHappening.MurmurSong, OwnHappenings.Now, festival ? "festival" : "dry");
             b.Due(Now + 250);
             return true;
         }
@@ -209,7 +208,7 @@ namespace ColonyCouncil
                     bool first = s.singers.NullOrEmpty();
                     s.singers = HeliosState.With(s.singers, p);
                     OwnHappenings.Stand(p, s.songAt, 1200);
-                    if (first) OwnHappenings.Say(p, Pool, g, "song");
+                    if (first) OwnHappenings.SayFrom(p, Pool, g, "song");
                 }
                 if (music != null) FleckMaker.Static(p.DrawPos + new Vector3(0f, 0f, 0.7f), map, music, 0.8f);
             }
@@ -265,10 +264,10 @@ namespace ColonyCouncil
             if (at.IsValid) OwnHappenings.Sound(map, at, 1f, Croaks);
             s.rainbowUntil = Now + GenDate.TicksPerDay * 2;
             string text = "CC_GodMurmur_Rain_Text".Translate(Homes.Name(map).Named("HOME")).Resolve();
-            OwnHappenings.CardBy(g, map, "Council_Evt_LongRains", "CC_GodMurmur_Rain_Title", "CC_GodMurmur_Rain_TitleNamed", text,
+            OwnHappenings.CardOf(g, map, "Council_Evt_LongRains", "CC_GodMurmur_Rain_Title", "CC_GodMurmur_Rain_TitleNamed", text,
                 at.IsValid ? new LookTargets(new TargetInfo(at, map)) : null, LetterDefOf.PositiveEvent);
             var seer = at.IsValid ? OwnHappenings.Seer(map, at, 40f) : null;
-            if (seer != null) OwnHappenings.Say(seer, Pool, g, "rain");
+            if (seer != null) OwnHappenings.SayFrom(seer, Pool, g, "rain");
             if (g != null) OwnHappenings.Saw(g, map, at, GodActKind.Blessing, seer, "CC_GodMurmur_Saw_Rain");
             return true;
         }
@@ -357,8 +356,8 @@ namespace ColonyCouncil
             s.giveUntil = Now + GenDate.TicksPerHour * 5;
             s.giveFinder = map.mapPawns.FreeColonistsSpawned.Where(p => OwnHappenings.Free(p) && p.CanReach(at, PathEndMode.Touch, Danger.Some))
                 .OrderBy(p => p.Position.DistanceToSquared(at)).FirstOrDefault();
-            if (s.giveFinder != null) OwnHappenings.Walk(s.giveFinder, OwnHappenings.Beside(map, at, s.giveFinder), GenDate.TicksPerHour * 2);
-            OwnHappenings.Came(b, OwnHappeningsMath.MurmurGiveBack);
+            if (s.giveFinder != null) OwnHappenings.GoTo(s.giveFinder, OwnHappenings.Beside(map, at, s.giveFinder), GenDate.TicksPerHour * 2);
+            OwnHappenings.Came(b, OwnHappening.MurmurGiveBack, OwnHappenings.Now);
             b.Due(Now + 250);
             return true;
         }
@@ -378,14 +377,14 @@ namespace ColonyCouncil
             {
                 p = s.giveFinder = map.mapPawns.FreeColonistsSpawned.Where(x => OwnHappenings.Free(x) && x.CanReach(s.giveAt, PathEndMode.Touch, Danger.Some))
                     .OrderBy(x => x.Position.DistanceToSquared(s.giveAt)).FirstOrDefault();
-                if (p != null) OwnHappenings.Walk(p, OwnHappenings.Beside(map, s.giveAt, p), GenDate.TicksPerHour * 2);
+                if (p != null) OwnHappenings.GoTo(p, OwnHappenings.Beside(map, s.giveAt, p), GenDate.TicksPerHour * 2);
             }
             else if (p.Position.InHorDistOf(s.giveAt, 2.5f))
             {
                 Found(b, map, p);
                 return;
             }
-            else if (p.CurJobDef != JobDefOf.Goto && OwnHappenings.Free(p)) OwnHappenings.Walk(p, OwnHappenings.Beside(map, s.giveAt, p), GenDate.TicksPerHour * 2);
+            else if (p.CurJobDef != JobDefOf.Goto && OwnHappenings.Free(p)) OwnHappenings.GoTo(p, OwnHappenings.Beside(map, s.giveAt, p), GenDate.TicksPerHour * 2);
             b.Due(now + 300);
         }
 
@@ -399,11 +398,11 @@ namespace ColonyCouncil
             s.giveMap = null;
             s.giveFinder = null;
             OwnHappenings.Stand(p, at, 360);
-            OwnHappenings.SayWith(p, Pool, g, new[] { what.Named("WHAT") }, "giveback");
+            OwnHappenings.SayFromWith(p, Pool, g, new[] { what.Named("WHAT") }, "giveback");
             if (g != null) PawnGods.Gift(p, g, what);
             Water(map, out string water);
             string text = "CC_GodMurmur_GiveBack_Text".Translate(p.Named("PAWN"), what.Named("WHAT")).Resolve();
-            OwnHappenings.CardBy(g, map, "SeasonalFlooding", "CC_GodMurmur_GiveBack_Title", "CC_GodMurmur_GiveBack_TitleNamed", text, new LookTargets(new TargetInfo(at, map)),
+            OwnHappenings.CardOf(g, map, "SeasonalFlooding", "CC_GodMurmur_GiveBack_Title", "CC_GodMurmur_GiveBack_TitleNamed", text, new LookTargets(new TargetInfo(at, map)),
                 LetterDefOf.PositiveEvent);
             if (g != null) OwnHappenings.Saw(g, map, at, GodActKind.Blessing, p, "CC_GodMurmur_Saw_GiveBack", what.Named("WHAT"));
         }
@@ -441,56 +440,13 @@ namespace ColonyCouncil
             if (came == 0 && !heard) return false;
             for (int i = 0; i < 3; i++) OwnHappenings.Sound(map, CellFinder.RandomClosewalkCellNear(mid, map, 20), 0.9f, Croaks);
             var seer = map.mapPawns.FreeColonistsSpawned.Where(p => GodOmens.Awake(p) && OwnHappenings.Ours(p)).RandomElementWithFallback();
-            if (seer != null) OwnHappenings.Say(seer, Pool, g, came > 0 ? "frogs" : "frogsheard");
+            if (seer != null) OwnHappenings.SayFrom(seer, Pool, g, came > 0 ? "frogs" : "frogsheard");
             OwnHappenings.Line(map, (came > 0 ? "CC_GodMurmur_Frogs_Text" : "CC_GodMurmur_Frogs_TextHeard").Translate(Homes.Name(map).Named("HOME")).Resolve(),
                 seer != null ? new LookTargets(seer) : null);
             if (g != null) OwnHappenings.Saw(g, map, IntVec3.Invalid, GodActKind.Blessing, seer, came > 0 ? "CC_GodMurmur_Saw_Frogs" : "CC_GodMurmur_Saw_FrogsHeard");
-            OwnHappenings.Came(b, OwnHappeningsMath.MurmurFrogs, came > 0 ? "seen" : "heard");
+            OwnHappenings.Came(b, OwnHappening.MurmurFrogs, OwnHappenings.Now, came > 0 ? "seen" : "heard");
             return true;
         }
     }
 
-    /// <summary>Dev mode: Murmur's happenings now (Debug actions, "Rimfolk", "Gods: Murmur's ... now").</summary>
-    public static class MurmurDebug
-    {
-        private static void Say(string text) => Messages.Message("Gods: " + text, MessageTypeDefOf.SilentInput, false);
-
-        [DebugAction("Rimfolk", "Gods: Murmur sung to at the well now", allowedGameStates = AllowedGameStates.PlayingOnMap)]
-        private static void DebugSong()
-        {
-            var b = OwnHappenings.Book;
-            var map = Find.CurrentMap;
-            if (b == null || map == null) return;
-            b.murmur.songUntil = -1;
-            Say(MurmurWays.BeginSong(b, map, true) ? "they walk to the water and sing; answered, the rain comes within the day (\"Gods: Murmur's rain now\")." : "no water, or nobody free.");
-        }
-
-        [DebugAction("Rimfolk", "Gods: Murmur's rain now", allowedGameStates = AllowedGameStates.PlayingOnMap)]
-        private static void DebugRain()
-        {
-            var b = OwnHappenings.Book;
-            var map = Find.CurrentMap;
-            if (b == null || map == null) return;
-            Say(MurmurWays.Rain(b, MurmurWays.God, map) ? "the rain comes; when it stops, the double rainbow (with Seasonal Weather)." : "it couldn't.");
-        }
-
-        [DebugAction("Rimfolk", "Gods: Murmur's water gives back now", allowedGameStates = AllowedGameStates.PlayingOnMap)]
-        private static void DebugGiveBack()
-        {
-            var b = OwnHappenings.Book;
-            var map = Find.CurrentMap;
-            if (b == null || map == null) return;
-            b.murmur.giveUntil = -1;
-            Say(MurmurWays.GiveBack(b, map) ? "things lie on the mud at the water's edge; someone walks down to them." : "no water's edge near the colony.");
-        }
-
-        [DebugAction("Rimfolk", "Gods: Murmur's frogs come in now", allowedGameStates = AllowedGameStates.PlayingOnMap)]
-        private static void DebugFrogs()
-        {
-            var b = OwnHappenings.Book;
-            var map = Find.CurrentMap;
-            if (b == null || map == null) return;
-            Say(MurmurWays.Frogs(b, map) ? "the frogs come in (Odyssey's bullfrogs; without it only their croaking), gone at first light." : "no frogs and no frog sound in this game.");
-        }
-    }
 }

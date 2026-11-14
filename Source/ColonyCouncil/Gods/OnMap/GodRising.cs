@@ -49,6 +49,8 @@ namespace ColonyCouncil
             if (!GodPresenceSeam.Call(spec)) Tell.Letter(NewsKind.Land, Importance.Important, map, spec.title, spec.text, LetterDefOf.NeutralEvent, new LookTargets(at, map));
             Remember(god, map, at, spec.veiled, "CC_GodM_Saw_Rising", "CC_GodM_Rising_Act", "CC_GodM_Memory_Rising");
             Said(god, map, at);
+            // Hollin's rising may walk on along a line across the land (Gods/OnMap/OwnHollin.cs, the green walk).
+            OwnHollin.Rose(map, god, at);
             return true;
         }
 

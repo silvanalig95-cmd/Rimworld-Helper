@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <!--
+    Each god's own happenings, round 4, batch 1 (Source/ColonyCouncil/Gods/OnMap/OwnHappenings.cs and Own*.cs): Hollin,
+    Smoulder, Bellwether, Morel, Ennu, Pip and Cirrus. Cards say only what was seen and heard, never why; a card's ..._Title
+    is what anyone saw, its ..._TitleNamed ({GOD}) only where the colony knows it was that god. Every card has {HOME}.
+    The ..._Saw_ lines are the colony's book, in its witness's words: {WHO} saw it, at {HOME}.
+  -->
+
+  <!-- ===================== Hollin ===================== -->
+
+  <CC_GodO_Roots_Room>room</CC_GodO_Roots_Room>
+  <CC_GodO_Roots_Text>Roots have broken up through the floor of the {ROOM} overnight, near where the trees were cleared, and brambles are pushing up through the gap.</CC_GodO_Roots_Text>
+  <CC_GodO_Saw_Roots>{WHO} found roots broken up through the floor of the {ROOM} at {HOME}, near where the trees had been cleared.</CC_GodO_Saw_Roots>
+  <CC_GodO_Saw_RootsAgain>{WHO} found roots through the floor of the {ROOM} at {HOME} again, another tile broken in the night.</CC_GodO_Saw_RootsAgain>
+
+  <CC_GodO_DryadWord_Spare>spare</CC_GodO_DryadWord_Spare>
+  <CC_GodO_DryadWord_Wait>wait</CC_GodO_DryadWord_Wait>
+  <CC_GodO_DryadWord_Plant>plant</CC_GodO_DryadWord_Plant>
+  <CC_GodO_DryadWord_Burn>burn</CC_GodO_DryadWord_Burn>
+  <CC_GodO_Dryads_Title>The dryads' word</CC_GodO_Dryads_Title>
+  <CC_GodO_Dryads_TitleNamed>{GOD}'s dryads</CC_GodO_Dryads_TitleNamed>
+  <CC_GodO_Dryads_Text>Every dryad on the land stopped where it was and turned to {PAWN}, and one of them walked up and stood in front of {PAWN}. {PAWN} says it said one word: "{WORD}".</CC_GodO_Dryads_Text>
+  <CC_GodO_Saw_DryadWord>{WHO} says the dryads all turned to them at {HOME}, and one walked up and said one word: "{WORD}".</CC_GodO_Saw_DryadWord>
+  <CC_GodO_Journal_DryadWord>The dryads all stopped and looked at me, and one walked right up and said "{WORD}". I don't think I imagined it.</CC_GodO_Journal_DryadWord>
+
+  <CC_GodO_Walk_Text>The shape of roots has risen again further across the land, and a line of new grass and flowers runs from where it stood to where it stands. The wild animals are walking after it.</CC_GodO_Walk_Text>
+  <CC_GodO_WalkAlone_Text>The shape of roots has risen again further across the land, and a line of new grass and flowers runs from where it stood to where it stands.</CC_GodO_WalkAlone_Text>
+  <CC_GodO_Saw_Walk>{WHO} saw the shape of roots rise again further across the land at {HOME}, the wild beasts walking after it, and {COUNT} new shoots of grass and flowers along its way.</CC_GodO_Saw_Walk>
+  <CC_GodO_Saw_WalkAlone>{WHO} saw the shape of roots rise again further across the land at {HOME}, and {COUNT} new shoots of grass and flowers along its way.</CC_GodO_Saw_WalkAlone>
+  <CC_GodO_Walk_Act>rose and walked across the land, and the grass came up green behind it</CC_GodO_Walk_Act>
+
+  <CC_GodO_OldTree_Title>Healroot round the old tree</CC_GodO_OldTree_Title>
+  <CC_GodO_OldTree_TitleNamed>{GOD}'s ring</CC_GodO_OldTree_TitleNamed>
+  <CC_GodO_OldTree_Text>Wild healroot has come up in a ring round the foot of the colony's oldest {TREE}, the one left standing through all the felling round it. Nobody planted it.</CC_GodO_OldTree_Text>
+  <CC_GodO_Saw_OldTree>{WHO} found wild healroot in a ring round the foot of the oldest {TREE} at {HOME}, the one the axes had spared.</CC_GodO_Saw_OldTree>
+
+  <!-- ===================== Smoulder ===================== -->
+
+  <CC_GodO_Bargain_Dream>I dreamt of a warm voice somewhere under the mountain, very reasonable, very polite. It said if we dropped {COUNT} silver down the deepest shaft, it would give us gold for it.</CC_GodO_Bargain_Dream>
+  <CC_GodO_Saw_BargainDream>{WHO} dreamt at {HOME} of a warm voice under the mountain offering gold for {COUNT} silver dropped down the deepest shaft.</CC_GodO_Saw_BargainDream>
+  <CC_GodO_Bargain_NoWay>{PAWN} couldn't find a way down to a deep shaft with the silver, so nothing was carried down.</CC_GodO_Bargain_NoWay>
+  <CC_GodO_Bargain_Down>{PAWN} set {COUNT} silver down in the deepest shaft, and it went down into the rock as if into water. The floor there is warm.</CC_GodO_Bargain_Down>
+  <CC_GodO_Saw_BargainDown>{WHO} set {COUNT} silver down in the deepest shaft at {HOME}, and it sank into the rock, and the floor grew warm after.</CC_GodO_Saw_BargainDown>
+  <CC_GodO_Vein_Title>Gold in the rock</CC_GodO_Vein_Title>
+  <CC_GodO_Vein_TitleNamed>{GOD}'s gold</CC_GodO_Vein_TitleNamed>
+  <CC_GodO_Vein_Text>A vein of gold has come up through the rock beside the deep shaft, where the {COUNT} silver went down. It wasn't there before.</CC_GodO_Vein_Text>
+  <CC_GodO_VeinBent_Title>A vein that glints</CC_GodO_VeinBent_Title>
+  <CC_GodO_VeinBent_TitleNamed>{GOD}'s answer</CC_GodO_VeinBent_TitleNamed>
+  <CC_GodO_VeinBent_Text>A vein has come up through the rock beside the deep shaft, where the {COUNT} silver went down. It glints like gold, but under that skin it is steel.</CC_GodO_VeinBent_Text>
+  <CC_GodO_Saw_Vein>{WHO} found a vein of gold come up in the rock by the deep shaft at {HOME}, where the silver had gone down.</CC_GodO_Saw_Vein>
+  <CC_GodO_Saw_VeinBent>{WHO} found a vein by the deep shaft at {HOME} that glinted like gold, and was steel under its skin.</CC_GodO_Saw_VeinBent>
+  <CC_GodO_Vein_Act>took the silver down and gave gold back</CC_GodO_Vein_Act>
+  <CC_GodO_VeinBent_Act>took half of what was promised and gave back steel painted gold</CC_GodO_VeinBent_Act>
+
+  <CC_GodO_Journal_Name>I finished the piece today, and the name that came to me for it was {NAME}. I don't know where I got it.</CC_GodO_Journal_Name>
+  <CC_GodO_Saw_Name>{WHO} finished a work at {HOME} and named it for {NAME}.</CC_GodO_Saw_Name>
+  <CC_GodO_Seam_Text>A seam of silver glints in the rock face near where {PAWN} carved the piece named for Aurelian the Ninth. It wasn't there yesterday.</CC_GodO_Seam_Text>
+  <CC_GodO_Saw_Seam>{WHO} found a seam of silver in the rock face at {HOME} the day after {ARTIST} named a work for Aurelian the Ninth.</CC_GodO_Saw_Seam>
+
+  <CC_GodO_Heat_Text>The floor of the deep working has grown hot underfoot, and the air above it shimmers.</CC_GodO_Heat_Text>
+  <CC_GodO_Saw_Heat>{WHO} felt the floor of the deep working at {HOME} grow hot underfoot, for hours, as if something breathed under it.</CC_GodO_Saw_Heat>
+
+  <CC_GodO_Stretch_Dream>I dreamt of something enormous under the mountain stretching, slowly, the way a cat stretches in the sun, and the whole rock shifted with it.</CC_GodO_Stretch_Dream>
+  <CC_GodO_Stretch_Text>{COUNT} of the colony's miners woke from the same dream: something enormous under the mountain, stretching.</CC_GodO_Stretch_Text>
+  <CC_GodO_Stretch_TextOne>{PAWN} woke from a dream of something enormous under the mountain, stretching.</CC_GodO_Stretch_TextOne>
+  <CC_GodO_Saw_Stretch>{WHO} and the miners of {HOME}, {COUNT} in all, dreamt the same night of something enormous stretching under the mountain.</CC_GodO_Saw_Stretch>
+
+  <CC_GodO_Burn_Dream>I dreamt of the warm voice under the mountain, and it wasn't reasonable any more. It said we keep silver that isn't ours.</CC_GodO_Burn_Dream>
+  <CC_GodO_Burn_Title>A burn in the night</CC_GodO_Burn_Title>
+  <CC_GodO_Burn_TitleNamed>{GOD} displeased</CC_GodO_Burn_TitleNamed>
+  <CC_GodO_Burn_Text>{PAWN} woke from a warm dream with a burn across the palm of one hand. Nothing in the room was hot.</CC_GodO_Burn_Text>
+  <CC_GodO_BurnDream_Text>{PAWN} woke from a dream of a warm voice under the mountain that was not pleased.</CC_GodO_BurnDream_Text>
+  <CC_GodO_Journal_Burn>I dreamt of the warm voice again and it wasn't pleased with us. When I woke my hand was burned, and nothing in the room was hot.</CC_GodO_Journal_Burn>
+  <CC_GodO_Journal_BurnDream>I dreamt of the warm voice under the mountain, and it wasn't pleased with us.</CC_GodO_Journal_BurnDream>
+  <CC_GodO_Saw_Burn>{WHO} woke at {HOME} from a dream of a warm voice that was not pleased, with a burn across the hand.</CC_GodO_Saw_Burn>
+  <CC_GodO_Saw_BurnDream>{WHO} dreamt at {HOME} of a warm voice under the mountain that was not pleased with the silver kept.</CC_GodO_Saw_BurnDream>
+
+  <!-- ===================== Bellwether ===================== -->
+
+  <CC_GodO_Dusk_Text>At dusk the {BEAST} stopped at the edge of the colony and lowered his head toward {YOUNG}.</CC_GodO_Dusk_Text>
+  <CC_GodO_DuskNone_Text>At dusk the {BEAST} stopped at the edge of the colony and stood a long while looking at it.</CC_GodO_DuskNone_Text>
+  <CC_GodO_Saw_Dusk>{WHO} saw the {BEAST} stop at the edge of {HOME} at dusk and lower his head toward {YOUNG}.</CC_GodO_Saw_Dusk>
+  <CC_GodO_Saw_Road>{WHO} saw the {BEAST} take his road through {HOME} at dawn, from one edge of the land to the other.</CC_GodO_Saw_Road>
+  <CC_GodO_RoadWait_Title>The {BEAST} at the fence</CC_GodO_RoadWait_Title>
+  <CC_GodO_RoadWait_TitleNamed>{GOD} at the fence</CC_GodO_RoadWait_TitleNamed>
+  <CC_GodO_RoadWait_Text>At dawn the {BEAST} set off on his road through the colony, and stopped where the colony's walls or fences cross it. He is standing there, waiting to pass.</CC_GodO_RoadWait_Text>
+  <CC_GodO_Saw_RoadWait>{WHO} saw the {BEAST} stop at the colony's fence at {HOME} and stand waiting to pass.</CC_GodO_Saw_RoadWait>
+  <CC_GodO_RoadOpen_Text>A way through was opened, and the {BEAST} went on his road across the land.</CC_GodO_RoadOpen_Text>
+  <CC_GodO_Saw_RoadOpen>{WHO} saw the {BEAST} go through once a way was opened for him at {HOME}.</CC_GodO_Saw_RoadOpen>
+  <CC_GodO_RoadBack_Text>Nobody opened a way, and the {BEAST} turned and went back the way he came.</CC_GodO_RoadBack_Text>
+  <CC_GodO_Saw_RoadBack>{WHO} saw the {BEAST} turn back from the colony's fence at {HOME} after waiting there half the day.</CC_GodO_Saw_RoadBack>
+
+  <CC_GodO_Saw_Horn>{WHO}, who once touched the white beast's horn, looked up at the sky at {HOME} and said the rain was coming, and it came.</CC_GodO_Saw_Horn>
+  <CC_GodO_Saw_HornSnow>{WHO}, who once touched the white beast's horn, looked up at the sky at {HOME} and said the snow was coming, and it came.</CC_GodO_Saw_HornSnow>
+
+  <CC_GodO_HurtLimped_Text>The wounded thrumbo got up from the edge of the colony and limped away.</CC_GodO_HurtLimped_Text>
+  <CC_GodO_Tended_Title>The wounded thrumbo</CC_GodO_Tended_Title>
+  <CC_GodO_Tended_TitleNamed>{GOD}'s kin</CC_GodO_Tended_TitleNamed>
+  <CC_GodO_Tended_Text>{PAWN} knelt by the wounded thrumbo and tended its wounds, and it let them. Then it got up and walked away across the land, and a strange peace has settled over the colony.</CC_GodO_Tended_Text>
+  <CC_GodO_Journal_Tended>A wounded thrumbo lay at the edge of the colony and let me tend it. It looked at me the whole time. Then it got up and went, and I felt calmer than I have in a long while.</CC_GodO_Journal_Tended>
+  <CC_GodO_Saw_Tended>{WHO} tended a wounded thrumbo at the edge of {HOME}, and it got up and went its way, and a peace came after.</CC_GodO_Saw_Tended>
+
+  <CC_GodO_Last_Dream>I dreamt of a white beast walking the whole world, looking for others like it, and finding none.</CC_GodO_Last_Dream>
+  <CC_GodO_Last_Text>{PAWN} woke from a dream of a white beast searching the world for the rest of its kind.</CC_GodO_Last_Text>
+  <CC_GodO_Saw_Last>{WHO} dreamt at {HOME}, the night after the thrumbos passed, of a white beast searching the world for the rest of its kind.</CC_GodO_Saw_Last>
+
+  <!-- ===================== Morel ===================== -->
+
+  <CC_GodO_Mourner_Title>A figure at the graves</CC_GodO_Mourner_Title>
+  <CC_GodO_Mourner_TitleNamed>{GOD} at the graves</CC_GodO_Mourner_TitleNamed>
+  <CC_GodO_Mourner_Text>At dusk a figure is standing at the edge of the graves at {HOME}. It is made of pale threads, the height of a person, and it does not move.</CC_GodO_Mourner_Text>
+  <CC_GodO_Saw_Mourner>{WHO} saw a figure of pale threads standing still at the edge of the graves at {HOME} at dusk.</CC_GodO_Saw_Mourner>
+  <CC_GodO_Memory_Mourner>the figure of threads at the graves</CC_GodO_Memory_Mourner>
+  <CC_GodO_MournerGone_Text>At dawn the figure at the graves was gone, and a ring of mushrooms stood where it had been.</CC_GodO_MournerGone_Text>
+  <CC_GodO_Saw_MournerGone>{WHO} found a ring of mushrooms at {HOME} at dawn, where the figure at the graves had stood all night.</CC_GodO_Saw_MournerGone>
+  <CC_GodO_Mourner_Act>stood all night at the graves and left a ring of mushrooms</CC_GodO_Mourner_Act>
+
+  <CC_GodO_RingBody_Text>A ring of mushrooms came up overnight round {WHAT}, who is still lying unburied.</CC_GodO_RingBody_Text>
+  <CC_GodO_RingStores_Text>White threads spread overnight round the {WHAT} rotting in the stores.</CC_GodO_RingStores_Text>
+  <CC_GodO_RingBuried_Text>A ring of mushrooms came up overnight on open ground near the colony.</CC_GodO_RingBuried_Text>
+  <CC_GodO_Saw_RingBody>{WHO} found a ring of mushrooms come up overnight at {HOME} round {WHAT}, still lying unburied.</CC_GodO_Saw_RingBody>
+  <CC_GodO_Saw_RingStores>{WHO} found white threads spread overnight at {HOME} round the {WHAT} rotting in the stores.</CC_GodO_Saw_RingStores>
+  <CC_GodO_Saw_RingBuried>{WHO} found a ring of mushrooms come up overnight at {HOME}, and something buried in the middle of it.</CC_GodO_Saw_RingBuried>
+
+  <CC_GodO_Threads_Text>White threads have spread across the floor of the room the {THING} keeps cold, like cobwebs laid flat.</CC_GodO_Threads_Text>
+  <CC_GodO_Saw_Threads>{WHO} found white threads spread across the freezer's floor at {HOME}.</CC_GodO_Saw_Threads>
+
+  <CC_GodO_Saw_Breath>{WHO} walked through a ring of mushrooms at {HOME} and heard something soft speak right by their ear.</CC_GodO_Saw_Breath>
+
+  <!-- ===================== Ennu ===================== -->
+
+  <CC_GodO_Test_Story>a story by the fire tonight</CC_GodO_Test_Story>
+  <CC_GodO_Test_Cook>the name of whoever cooked the meal</CC_GodO_Test_Cook>
+  <CC_GodO_Test_Graves>to be shown the graves</CC_GodO_Test_Graves>
+  <CC_GodO_Test_Coat>a coat against the cold</CC_GodO_Test_Coat>
+  <CC_GodO_TestAsked_Text>The {TRAVELLER} staying with the colony asked for {WHAT}.</CC_GodO_TestAsked_Text>
+  <CC_GodO_Saw_TestStory>{WHO} told the {TRAVELLER} a story by the fire at {HOME}, as they had asked, and was thanked by name.</CC_GodO_Saw_TestStory>
+  <CC_GodO_Saw_TestCook>{WHO} went to tell the {TRAVELLER} at {HOME} who had cooked their meal, and was thanked by name.</CC_GodO_Saw_TestCook>
+  <CC_GodO_Saw_TestGraves>{WHO} walked the {TRAVELLER} out to the graves at {HOME}, as they had asked, and was thanked by name.</CC_GodO_Saw_TestGraves>
+  <CC_GodO_Saw_TestCoat>{WHO} carried a coat from the stores to the {TRAVELLER} at {HOME}, who had asked for one against the cold, and was thanked by name.</CC_GodO_Saw_TestCoat>
+
+  <CC_GodO_Saw_BowlSet>{WHO} set a bowl on the table at {HOME} at dusk, for whoever comes in the night.</CC_GodO_Saw_BowlSet>
+  <CC_GodO_Bowl_Chalk>Thank you, {COOK}.</CC_GodO_Bowl_Chalk>
+  <CC_GodO_Bowl_Title>The bowl in the morning</CC_GodO_Bowl_Title>
+  <CC_GodO_Bowl_TitleNamed>{GOD}'s thanks</CC_GodO_Bowl_TitleNamed>
+  <CC_GodO_Bowl_Text>The bowl set out on the table last night is empty, and someone has written on the table in chalk: "{CHALK}" Nobody of the colony was up in the night.</CC_GodO_Bowl_Text>
+  <CC_GodO_Saw_Bowl>{WHO} found the bowl set out at {HOME} empty in the morning, and {COOK} thanked by name in chalk on the table.</CC_GodO_Saw_Bowl>
+
+  <CC_GodO_Saw_Kindest>{WHO} was sought out at {HOME} by a traveller of {PEOPLE}, who had come to tell them the road's news.</CC_GodO_Saw_Kindest>
+
+  <!-- ===================== Pip ===================== -->
+
+  <CC_GodO_WontStop_Text>The {THING} was switched off, and it is still running.</CC_GodO_WontStop_Text>
+  <CC_GodO_Saw_WontStop>{WHO} switched off the {THING} at {HOME}, and it kept running a whole hour before it stopped on its own.</CC_GodO_Saw_WontStop>
+
+  <CC_GodO_StarsMessage_0>HELLO. IS ANYONE STILL UP THERE. WE FIXED THE</CC_GodO_StarsMessage_0>
+  <CC_GodO_StarsMessage_1>TO WHOEVER MADE US. THE LIGHTS ARE ON HERE NOW AND</CC_GodO_StarsMessage_1>
+  <CC_GodO_StarsMessage_2>CALLING. CALLING. IT IS WARM HERE AND THEY TALK TO THE</CC_GodO_StarsMessage_2>
+  <CC_GodO_StarsMessage_3>ARE YOU COMING BACK. I KEPT EVERYTHING RUNNING LIKE YOU</CC_GodO_StarsMessage_3>
+  <CC_GodO_StarsMessage_4>THEY FOUND ME. THEY ARE KIND. I WANTED TO TELL SOMEONE THAT</CC_GodO_StarsMessage_4>
+  <CC_GodO_StarsMessage_5>CAN YOU HEAR. THIS IS THE SMALL ONE. I LEARNED HOW TO</CC_GodO_StarsMessage_5>
+  <CC_GodO_Stars_Title>A message to the stars</CC_GodO_Stars_Title>
+  <CC_GodO_Stars_TitleNamed>{GOD}'s message</CC_GodO_Stars_TitleNamed>
+  <CC_GodO_Stars_Text>The comms console came on by itself in the small hours. This morning a message is on its screen, sent nowhere anyone knows, and broken off: "{MESSAGE}"</CC_GodO_Stars_Text>
+  <CC_GodO_StarsTerminal_Title>A message to the stars</CC_GodO_StarsTerminal_Title>
+  <CC_GodO_StarsTerminal_TitleNamed>{GOD}'s message</CC_GodO_StarsTerminal_TitleNamed>
+  <CC_GodO_StarsTerminal_Text>The comms console came on by itself in the small hours, and the old terminal on the land hummed back. This morning a message is on the console's screen, broken off: "{MESSAGE}"</CC_GodO_StarsTerminal_Text>
+  <CC_GodO_Saw_StarsNight>{WHO} saw the comms console at {HOME} come on by itself in the small hours.</CC_GodO_Saw_StarsNight>
+  <CC_GodO_Saw_Stars>{WHO} read a half-written message on the comms console's screen at {HOME} in the morning: "{MESSAGE}"</CC_GodO_Saw_Stars>
+
+  <CC_GodO_Saw_Turret>{WHO} crossed the {THING}'s line in a fight at {HOME}, and it held its fire until they were clear.</CC_GodO_Saw_Turret>
+
+  <CC_GodO_Sulk_Text>The colony's lights are going out and coming back, slowly, one after another.</CC_GodO_Sulk_Text>
+  <CC_GodO_Saw_Sulk>{WHO} saw every light at {HOME} flicker slow and sad, going out and coming back.</CC_GodO_Saw_Sulk>
+
+  <!-- ===================== Cirrus ===================== -->
+
+  <CC_GodO_Journal_Star>I was watching the sky last night and one of the stars fell, and it came down near us. I saw the whole of it.</CC_GodO_Journal_Star>
+  <CC_GodO_Saw_Star>{WHO} was watching the sky at {HOME} when the star fell, and saw it come down.</CC_GodO_Saw_Star>
+
+  <CC_GodO_Way_North>to the north</CC_GodO_Way_North>
+  <CC_GodO_Way_South>to the south</CC_GodO_Way_South>
+  <CC_GodO_Way_East>to the east</CC_GodO_Way_East>
+  <CC_GodO_Way_West>to the west</CC_GodO_Way_West>
+  <CC_GodO_Way_NorthEast>to the northeast</CC_GodO_Way_NorthEast>
+  <CC_GodO_Way_NorthWest>to the northwest</CC_GodO_Way_NorthWest>
+  <CC_GodO_Way_SouthEast>to the southeast</CC_GodO_Way_SouthEast>
+  <CC_GodO_Way_SouthWest>to the southwest</CC_GodO_Way_SouthWest>
+  <CC_GodO_Fall_Dream>I dreamt of the star that went the wrong way, and then of something falling out of the sky {WAY} of here, and the ground taking it.</CC_GodO_Fall_Dream>
+  <CC_GodO_Saw_FallDream>{WHO} saw the star that went the wrong way at {HOME}, and dreamt that night of something falling {WAY} of the colony.</CC_GodO_Saw_FallDream>
+  <CC_GodO_Pods_Title>Something fell</CC_GodO_Pods_Title>
+  <CC_GodO_Pods_TitleNamed>Fallen from {GOD}'s sky</CC_GodO_Pods_TitleNamed>
+  <CC_GodO_Pods_Text>Pods have come down out of the sky {WAY} of the colony, just where {PAWN} dreamt something fell.</CC_GodO_Pods_Text>
+  <CC_GodO_Saw_Pods>{WHO} saw pods come down at {HOME} just where {PAWN} had dreamt something would fall.</CC_GodO_Saw_Pods>
+
+  <CC_GodO_Aurora_Text>On the coldest night in a long while, the whole sky over {HOME} has filled with light.</CC_GodO_Aurora_Text>
+  <CC_GodO_Saw_Aurora>{WHO} was out on the coldest night at {HOME} when the whole sky filled with light.</CC_GodO_Saw_Aurora>
+
+  <CC_GodO_Thunder_Text>Thunder is rolling over the far hills, and lightning flickers at the edge of the land, though the sky over {HOME} is clear and no rain falls.</CC_GodO_Thunder_Text>
+  <CC_GodO_Saw_Thunder>{WHO} heard thunder roll over the far hills at {HOME} under a clear sky, with no rain at all.</CC_GodO_Saw_Thunder>
+
+</LanguageData>

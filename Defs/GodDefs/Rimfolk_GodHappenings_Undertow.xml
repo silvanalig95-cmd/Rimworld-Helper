@@ -2,7 +2,7 @@
 <Defs>
 
   <!--
-    The dark's own happenings (Source/ColonyCouncil/Gods/Happenings/Undertow.cs; docs/gods-next-proposals.md, C 9): the
+    The dark's own happenings (Source/ColonyCouncil/Gods/OnMap/OwnUndertow.cs; docs/gods-next-proposals.md, C 9): the
     beasts keeping away from one who bargained, the dark that drifts toward the most desperate at night, the hollow ear from
     the old ruins. It is never named: no line here is tagged named, and none says {GOD}. Three small moods, modelled in
     Tools/Balance (Rates.cs). Tags: shun ({OTHER}, {BEAST}), shunself, drift ({OTHER}), voice, ear, scoffer.

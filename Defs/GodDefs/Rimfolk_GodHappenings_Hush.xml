@@ -2,7 +2,7 @@
 <Defs>
 
   <!--
-    Hush's own happenings (Source/ColonyCouncil/Gods/Happenings/Hush.cs; docs/gods-next-proposals.md, C 8; DESIGN.md "Each
+    Hush's own happenings (Source/ColonyCouncil/Gods/OnMap/OwnHush.cs; docs/gods-next-proposals.md, C 8; DESIGN.md "Each
     god's own happenings, the second seven"): the word in the frost by the door, the vigil that breaks a cold snap, the walk
     round the colony's edge on the longest night, the frost on a grave that melts into a ring of mushrooms. Two small moods
     for the vigil, modelled in Tools/Balance (Rates.cs). Lines are one sentence said over a head; a line names the god

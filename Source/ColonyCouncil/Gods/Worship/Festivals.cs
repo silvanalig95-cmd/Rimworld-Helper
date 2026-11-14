@@ -155,6 +155,7 @@ namespace ColonyCouncil
                     b.offerings.Add(new OfferingRecord { shrine = shrine, god = g.id, home = Gods.HomeKey(map), chosen = Worship.Now });
             }
             Visitors(g, map);
+            // The Guest's Open Door and the sky's night kept (Gods/OnMap/OwnHappenings.cs).
             OwnHappenings.FestivalKept(g, map);
         }
 

@@ -2,7 +2,7 @@
 <LanguageData>
 
   <!--
-    Hush's own happenings (Source/ColonyCouncil/Gods/Happenings/Hush.cs). The cards say only what was seen and the plain
+    Hush's own happenings (Source/ColonyCouncil/Gods/OnMap/OwnHush.cs). The cards say only what was seen and the plain
     facts anyone could see beside it, never why; the god is named only in the ...Named titles ({GOD}), where the colony
     knows it was Hush. The CC_GodHush_Saw_ lines are what the colony's book keeps of it, in the witness's words ({WHO}).
   -->
