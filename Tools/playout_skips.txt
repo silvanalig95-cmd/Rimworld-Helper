@@ -581,3 +581,6 @@ Rimfolk_Evt_NewsForSale [option 2] a refusal: the operator is sent on to the nex
 Rimfolk_Evt_SickRoom [option 2] a refusal: the sister is sent back the way they came (SendAway)
 Rimfolk_Evt_OldShrine [option 2] a refusal: the pilgrims are sent on their way (SendAway)
 Rimfolk_Evt_TwoFaiths [option 2] a refusal: the palmer is sent on (SendAway)
+Rimfolk_Evt_GodRiddle [option 0] done by the event's own code: the one sent walks out to the great cat and answers her there (MogsWays.Answered, Step, There)
+Rimfolk_Evt_GodRiddle [option 1] done by the event's own code: the one sent walks out to the great cat and answers her there (MogsWays.Answered, Step, There)
+Rimfolk_Evt_GodRiddle [option 2] done by the event's own code: she lies at the door a while longer and walks back to the graves (MogsWays.Keep)

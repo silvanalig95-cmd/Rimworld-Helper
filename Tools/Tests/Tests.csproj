@@ -118,6 +118,7 @@
     <Compile Include="../../Source/ColonyCouncil/Visitors/VisitorActsMath.cs" Link="VisitorActsMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Camps/CampLookMath.cs" Link="CampLookMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Camps/CampWeatherMath.cs" Link="CampWeatherMath.cs" />
+    <Compile Include="../../Source/ColonyCouncil/Visitors/WeatherDressMath.cs" Link="WeatherDressMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Camps/CampStoryMath.cs" Link="CampStoryMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Happenings/RegularMath.cs" Link="RegularMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Visitors/CallerMath.cs" Link="CallerMath.cs" />
@@ -328,6 +329,7 @@
     <Compile Include="../../Source/ColonyCouncil/Letters/LetterClickMath.cs" Link="LetterClickMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Gods/Presence/GodPresenceMath.cs" Link="GodPresenceMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Gods/OnMap/GodsOnMapMath.cs" Link="GodsOnMapMath.cs" />
+    <Compile Include="../../Source/ColonyCouncil/Gods/OnMap/MogMath.cs" Link="MogMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Gods/GodPaceMath.cs" Link="GodPaceMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Gods/GodNearMath.cs" Link="GodNearMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Story/StoryWaysMath.cs" Link="StoryWaysMath.cs" />

@@ -187,6 +187,7 @@ namespace ColonyCouncil
             Safe("a coming", () => GodComings.Daily(b, now));
             Safe("a late gift", () => GodGifts.LateGift(b, now));
             Safe("the marks", () => GodMarks.Daily(b, now));
+            Safe("a new grave kept", () => MogsWays.Daily(now));
         }
 
         /// <summary>The gods' hour (GodBook.Hourly): the omens, the coming, the stranger, the animal, the weather, the marks.</summary>
@@ -204,6 +205,7 @@ namespace ColonyCouncil
             Safe("the moon's return", () => GodReturn.Hourly(b, now));
             Safe("the weather", () => GodWeather.Hourly(b, now));
             Safe("the marks spoken of", () => GodMarks.Hourly(b, now));
+            Safe("the keeper of the dead", () => MogsWays.Hourly(now));
         }
 
         internal static void Safe(string what, Action a)

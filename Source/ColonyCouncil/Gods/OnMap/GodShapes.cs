@@ -111,7 +111,7 @@ namespace ColonyCouncil
             }
             var all = All;
             foreach (var s in all)
-                if (s.gods != null && s.gods.Count > 0 && (s.gods.Contains(g.name) || g.patron != null && s.gods.Contains(g.patron) || g.look != null && s.gods.Contains(g.look)))
+                if (s.gods != null && s.gods.Count > 0 && (s.gods.Contains(g.name) || s.gods.Contains(g.Key) || g.patron != null && s.gods.Contains(g.patron) || g.look != null && s.gods.Contains(g.look)))
                     return s;
             foreach (var s in all)
                 if (s.domains != null && s.domains.Contains(g.domain))

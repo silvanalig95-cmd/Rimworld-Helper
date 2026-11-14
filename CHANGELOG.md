@@ -5,6 +5,26 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## Tamiu, the Keeper of the Threshold
+
+*14 November 2026, version 0.233.0*
+
+- Mog is remade as Tamiu, the Keeper of the Threshold: a great sand-gold cat who keeps the dead, lies among the graves and has a new sign.
+- Now and then she lies across the way in and asks a riddle, and whoever answers well walks with her and has a lucky season.
+- A new grave may be kept the first night by one of her keepers with a cat, and the cat stays on the grave a day or two.
+- With Anomaly, the wrapped dead may stand up among the graves in a raid and turn on anything that comes near.
+- She has her own signs and her own presence on the land: the cats sit facing the graves and the rats run off.
+
+## Dressed for the weather
+
+*14 November 2026, version 0.232.1*
+
+- Visitors, traders, guests and raiders now come dressed for the weather they will meet: parkas and tuques in a hard frost, dusters and cowboy hats in the heat, from every mod in your list.
+- Their armour, belts and gear stay on, and a raider's clothes are worth about what they would have been.
+- The road league's convoy and the drovers now stay the night on the far meadow in a -20 frost instead of turning back.
+- Only cold or heat past what their clothes can keep out sends a group away, and the message says it was the extreme cold or heat.
+- Visitors no longer turn up in a straitjacket or anything else that slows them down: they come in a plain coat of their own kind that keeps them as warm.
+
 ## The gods understood
 
 *14 November 2026, version 0.232.0*

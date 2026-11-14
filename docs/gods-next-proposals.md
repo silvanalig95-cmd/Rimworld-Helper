@@ -350,7 +350,9 @@ rate, and is shown. Mod content is by name or `MayRequire` (active rows of `docs
 - **Replaces:** the shared presence; the shared healing look (her own: silver, a cool glow).
 
 ### 12. Mog, the Cat
-(The to-do of 13 November, Mog remade as an Egyptian cat god, is still held; everything below fits either.)
+(Built 14 November 2026, on the player's go: Mog remade as Tamiu, the Keeper of the Threshold, the great cat who keeps the
+dead, with her own walking form, riddle, keepers, wrapped dead, omens, presence and sign. DESIGN.md, "Tamiu, the Keeper of
+the Threshold", has what was built; what follows was the proposal before the remake.)
 - **Her presence: "a lazy warmth"** (named: "the Gray Lady about"), only while she is on the land. The warmest room
   stays warmer, cats follow her, rats and small vermin leave the land, colonists nap better, her chosen one is lucky.
 - **Her happenings:**
@@ -668,7 +670,7 @@ job report ("praying to Hollin"), their bubbles and a journal line.
   understood". A colonist's god is still picked as before, for round 3.
 
 **Still open (defined, not built):**
-- Mog remade as the Egyptian cat god (to-do, 13 November 2026, held).
+- Mog remade as the Egyptian cat god: built 14 November 2026 as Tamiu, the Keeper of the Threshold (not released yet).
 - More of Old Powers' kind, with the gods and A RimWorld of Magic (to-do, 13 November 2026, held).
 - Quests and storylines across quests, the gods among them (to-do, 13 November 2026, held).
 - Ideology, step 2 of the old plan (the faith's deities as its names for the gods): never built; F proposes saints

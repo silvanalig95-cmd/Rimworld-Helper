@@ -93,10 +93,12 @@ namespace ColonyCouncil
 
         private static List<GodWaysDef> All => all ??= DefDatabase<GodWaysDef>.AllDefsListForReading.ToList();
 
-        /// <summary>The key a god answers to in the ways defs: its short name.</summary>
-        public static string Key(God g) => g?.name;
+        /// <summary>The key a god answers to in the ways defs: its key (its short name, Mog for Tamiu).</summary>
+        public static string Key(God g) => g?.Key;
 
-        private static bool Names(GodWaysDef d, God g) => !d.gods.NullOrEmpty() && g?.name != null && d.gods.Any(n => string.Equals(n, g.name, StringComparison.OrdinalIgnoreCase));
+        private static bool Names(GodWaysDef d, God g) => !d.gods.NullOrEmpty() && g?.Key != null && d.gods.Any(n => Is(g, n));
+
+        private static bool Is(God g, string n) => string.Equals(n, g.Key, StringComparison.OrdinalIgnoreCase) || string.Equals(n, g.name, StringComparison.OrdinalIgnoreCase);
 
         /// <summary>The defs that speak for this god, its own first, then its domain's, then its second domain's.</summary>
         public static IEnumerable<GodWaysDef> For(God g)
@@ -118,7 +120,7 @@ namespace ColonyCouncil
         public static GodWaysDef Own(God g) => g == null ? null : All.FirstOrDefault(d => Names(d, g));
 
         /// <summary>A god of the pantheon by its short name, or null (the nine by name; any god of that name).</summary>
-        public static God Named(string name) => name.NullOrEmpty() ? null : Gods.All.FirstOrDefault(g => string.Equals(g.name, name, StringComparison.OrdinalIgnoreCase));
+        public static God Named(string name) => name.NullOrEmpty() ? null : Gods.All.FirstOrDefault(g => g != null && Is(g, name));
 
         private static List<string> First(God g, Func<GodWaysDef, List<string>> pick, Func<GodDomain, string[]> fallback)
         {
@@ -279,7 +281,7 @@ namespace ColonyCouncil
         {
             if (g == null) return Enumerable.Empty<string>();
             var tags = For(g).Where(d => d.mythTags != null).SelectMany(d => d.mythTags).ToList();
-            if (Own(g) != null && g.name != null) tags.Insert(0, "godkey:" + g.name.ToLowerInvariant());
+            if (Own(g) != null && g.Key != null) tags.Insert(0, "godkey:" + g.Key.ToLowerInvariant());
             return tags.Distinct();
         }
     }

@@ -77,6 +77,9 @@ namespace ColonyCouncil
                 case OmenKind.Whisper: return map.mapPawns.FreeColonistsSpawned.Count > 0;
                 case OmenKind.Croak: return Wet(map).IsValid;
                 case OmenKind.Beetle: return Table(map) != null;
+                case OmenKind.CatsFacing: return MogsWays.Cats(map, false).Count > 0;
+                case OmenKind.GoldEyes:
+                case OmenKind.Sand: return MogsWays.Tombs(map, true).Count > 0 || Open(map).IsValid;
                 default: return true;
             }
         }
@@ -381,6 +384,52 @@ namespace ColonyCouncil
                     var along = table.Rotation.IsHorizontal ? new Vector3(0f, 0f, table.def.size.x * 0.45f) : new Vector3(table.def.size.x * 0.45f, 0f, 0f);
                     GodSky.Crawl(map, mid - along, mid + along, 22f);
                     return true;
+                }
+                case OmenKind.CatsFacing:
+                {
+                    // Every cat on the land stops where it is and sits facing the graves (or the colony's middle, with none).
+                    var cats = MogsWays.Cats(map, false);
+                    var tombs = MogsWays.Tombs(map, true);
+                    at = tombs.Count > 0 ? MogsWays.Middle(tombs) : CampSite.ColonyCenter(map);
+                    if (cats.Count == 0 || !at.IsValid || MogsWays.CatsFace(map, at, 1200) == 0) return false;
+                    var near = cats.First().Position;
+                    speaker = Witness(map, near, 20f) ?? map.mapPawns.FreeColonistsSpawned.Where(Awake).OrderBy(p => p.Position.DistanceToSquared(near)).FirstOrDefault();
+                    return speaker != null;
+                }
+                case OmenKind.GoldEyes:
+                {
+                    // At night, two gold eyes low in the dark by the graves (or at the edge of the colony), and gone.
+                    if (!Night(map)) return false;
+                    var tombs = MogsWays.Tombs(map, true);
+                    at = tombs.Count > 0 ? tombs.RandomElement().Position : Open(map);
+                    if (!at.IsValid) return false;
+                    var c0 = at;
+                    speaker = map.mapPawns.FreeColonistsSpawned.Where(p => Awake(p) && p.Position.InHorDistOf(c0, 24f) && GenSight.LineOfSight(p.Position, c0, map, true)).FirstOrDefault();
+                    if (speaker == null) return false;
+                    var eye = at.ToVector3Shifted() + new Vector3(Rand.Range(-0.5f, 0.5f), 0f, Rand.Range(-0.5f, 0.5f));
+                    var mote = DefDatabase<FleckDef>.GetNamedSilentFail(GodFx.OwnMote);
+                    foreach (float side in new[] { -0.16f, 0.16f })
+                        GodFx.Throw(mote, eye + new Vector3(side, 0f, 0f), map, 0.22f, new Color(1f, 0.8f, 0.25f), 0f, 0f, 0f, 2.2f);
+                    return true;
+                }
+                case OmenKind.Sand:
+                {
+                    // Fine pale sand across a grave (or a doorstep), where no wind blows sand.
+                    var tombs = MogsWays.Tombs(map, true);
+                    at = tombs.Count > 0 ? tombs.RandomElement().Position : Open(map);
+                    if (!at.IsValid) return false;
+                    var sand = DefDatabase<ThingDef>.GetNamedSilentFail("Filth_Sand") ?? ThingDefOf.Filth_Dirt;
+                    var bits = DefDatabase<FleckDef>.GetNamedSilentFail("SandBits");
+                    int laid = 0;
+                    foreach (var c in GenRadial.RadialCellsAround(at, 1.9f, true).Where(c => c.InBounds(map) && c.Standable(map)))
+                    {
+                        if (FilthMaker.TryMakeFilth(c, map, sand, 1)) laid++;
+                        if (bits != null) FleckMaker.Static(c, map, bits, 1f);
+                    }
+                    if (laid == 0) return false;
+                    var c1 = at;
+                    speaker = Witness(map, at, 18f) ?? map.mapPawns.FreeColonistsSpawned.Where(Awake).OrderBy(p => p.Position.DistanceToSquared(c1)).FirstOrDefault();
+                    return speaker != null;
                 }
                 case OmenKind.Coin:
                 {

@@ -11,7 +11,8 @@ namespace ColonyCouncil
     /// <summary>
     /// Dev mode: the gods on the map ("Rimfolk", "Gods: ..."). The stranger at the gate now or after its omens, the
     /// stranger's stay ended now, the sacred animal now, someone following it, a god's answer in the weather, each omen
-    /// here, a walk to a god's mark, and what is under way and remembered (log).
+    /// here, a walk to a god's mark, and what is under way and remembered (log); Tamiu's riddle at the door, her keeper at
+    /// the newest grave, and the wrapped dead standing guard, now.
     /// </summary>
     public static class GodsOnMapDebug
     {
@@ -246,6 +247,54 @@ namespace ColonyCouncil
             }
             Log.Message(sb.ToString());
             Say("listed in the log.");
+        }
+
+        // ================= Tamiu (Mog remade): her riddle, a grave kept, the wrapped dead =================
+
+        [DebugAction("Rimfolk", "Gods: Tamiu's riddle at the door now", allowedGameStates = AllowedGameStates.PlayingOnMap)]
+        private static void DebugMogRiddle()
+        {
+            var s = GodsOnMapBook.Instance?.beast;
+            var b = MogsBook.Instance;
+            if (b == null || !SacredAnimal.IsMog(s) || s.map != Find.CurrentMap)
+            {
+                Say("Tamiu isn't on this land (\"Gods: a sacred animal now...\" brings her).");
+                return;
+            }
+            b.riddleOf = null;
+            b.RiddleDone();
+            Say(MogsWays.AskNow(b, s) ? "she lies across the way in, and her card has come." : "her riddle couldn't come now (no door to lie at, nobody able, or a fight on the map).");
+        }
+
+        [DebugAction("Rimfolk", "Gods: Tamiu's keeper at the newest grave now", allowedGameStates = AllowedGameStates.PlayingOnMap)]
+        private static void DebugMogGrave()
+        {
+            var map = Find.CurrentMap;
+            var b = MogsBook.Instance;
+            var god = MogsWays.Her;
+            var g = MogsWays.Tombs(map).OfType<Building_Grave>().Where(x => x.Corpse?.InnerPawn?.Faction == Faction.OfPlayer).OrderByDescending(x => x.Corpse.timeOfDeath)
+                .FirstOrDefault();
+            if (b == null || god == null || g == null)
+            {
+                Say("no grave of the colony's dead here.");
+                return;
+            }
+            b.atDusk = false;
+            Say(MogsWays.Keep(b, god, map, g) ? (b.keeper != null ? "her keeper comes in with a cat." : "a cat goes to keep the grave.") : "nobody could come to keep it.");
+        }
+
+        [DebugAction("Rimfolk", "Gods: the wrapped dead stand guard now", allowedGameStates = AllowedGameStates.PlayingOnMap)]
+        private static void DebugMogRisen()
+        {
+            var map = Find.CurrentMap;
+            var god = MogsWays.Her;
+            var tombs = MogsWays.Tombs(map);
+            if (god == null || !ModsConfig.AnomalyActive || tombs.Count < MogMath.MinTombs)
+            {
+                Say("they need Anomaly and two tombs holding the dead here.");
+                return;
+            }
+            Say(MogsWays.Rise(god, map, tombs, MogsWays.Middle(tombs)) ? "the wrapped dead stand up among the graves (they lie down an hour after no raider is left)." : "they couldn't rise.");
         }
     }
 }

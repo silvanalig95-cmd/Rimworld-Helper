@@ -117,8 +117,9 @@
         <li>[godkey:selene,offer:drink] A cup poured out for {GOD}, to drink by her own light.</li>
         <li>[godkey:selene,offer:art] Something bright for {GOD}, to shine back at her.</li>
         <li>[godkey:mog] Nobody asked for this, {GOD}, so it's yours if you want it.</li>
-        <li>[godkey:mog,offer:fish] Fish for {GOD}, the best of the catch, as any cat would want.</li>
-        <li>[godkey:mog,offer:textile] Something soft for {GOD} to curl up on somewhere warm.</li>
+        <li>[godkey:mog,offer:fish] Fish for {GOD}, the best of the catch, for the cats who keep the graves.</li>
+        <li>[godkey:mog,offer:textile] Linen for {GOD}, for wrapping the dead and keeping them whole.</li>
+        <li>[godkey:mog,offer:meat] Meat for {GOD}'s cats, so they sit with our dead a while longer.</li>
         <li>[godkey:murmur,offer:drink] A cup poured out for {GOD}, and a song with it, for the rain.</li>
         <li>[godkey:murmur,offer:plant] Grain for {GOD}, so the rain comes for the rest of it.</li>
         <li>[godkey:murmur,offer:fish] Fish for {GOD}, back to the water they came from.</li>

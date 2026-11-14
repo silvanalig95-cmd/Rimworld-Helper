@@ -53,17 +53,6 @@ tree at once, alongside whatever runs. Each piece is merged as its own release, 
     movement or a baby's cry within a few cells, the sound carrying through open doors and doorless openings but not
     through walls or closed doors, at most once in 300 ticks, and never from a lover, a pet or a bonded animal; so a
     guest walking past an open door or into the room wakes them, one outside a closed door does not.
-  - **Mog remade as an Egyptian cat god.** The player: "the cat card we have. Let's remake it into something new. Still a
-    cat card, but kind of one inspired by, you know, Egyptian mythology and the Sphinx, you know, with an Egyptian name.
-    And I don't know if we have like a god of the dead in that sense already, but maybe the cat god could be, you know,
-    with mummies and like Egyptian gear wearing zombies style followers, you know. Perhaps that is the god, and there's
-    also some sort of cult behind it. That would be interesting instead of this cat type". When asked: a new concept
-    and name, proposed first (the pantheon has no god of the dead as such: Morel is rot and the soft end, Undertow the
-    void); the cat god as the one who keeps the dead (a sphinx's riddles at the threshold, the dead wrapped and walking
-    in its service, a cult that tends tombs and keeps cats), with the unseen rule; drawn from the player's mods: Alpha
-    Memes' Kemetic style, mummification precept and ritual, Kemetic chant, Alpha Biomes' and Alpha Prefabs' Kemetic
-    temples, Vanilla Factions Expanded's sarcophagus props; Mog's existing parts (her chosen's luck, staring at Ennu) to
-    carry over or go, as the player picks.
   - **The animals, made more visible.** The player: "i must say that i can't really see a lot from the animal features we
     included, please add to to-do list to enhance and build up on these". When asked: list what Rimfolk's animal parts do
     now and what of it shows on the map (Animals/, the pets, herds, bonds, the beasts' encounters and dilemmas), propose
@@ -76,13 +65,6 @@ tree at once, alongside whatever runs. Each piece is merged as its own release, 
     are storylines across multiple quests". When asked: proposed first, a list of quests by the peoples, the gods and the
     region, and storylines that run over several quests (a chain whose next quest depends on how the last went), built
     on the game's own quests (QuestScriptDef) and Rimfolk's chains, letters and missions.
-- **Being built (14 November 2026, the player's go): visitors dressed for the weather.** The player: "so i just had an
-  event from the aracoier league that they use my meadow for a heard or something like this, and they appeared on the
-  map but left it again soon after due to "weather conditions". it was -20 degrees cold. in general i really want that
-  the people who spawn from events, visitors, caravans, camps etc. just dress appropriately for the weather, so that they
-  don't have to leave because of it. of course if it's super cold or any other extreme conditions that's fair, but not
-  when it's "hard weather" that they could however do well in proper clothing." (the same message ended "go ahead with
-  all of this").
 - **Being built (14 November 2026, the player's go): the gods, each their own.** Proposed in `docs/gods-next-proposals.md`
   with the draft sheet `docs/gods-symbols-draft.png` (the player's first words on it are in the handoff's history: "So
   for the gods, I still kind of want you to create an image or a symbol or use one for each god ..."). The player's
@@ -134,6 +116,141 @@ tree at once, alongside whatever runs. Each piece is merged as its own release, 
   ordering them off is ruder still), less when they were trouble (a thief, a brawler, a drunk); with Hospitality its
   own way for its guests; never a caravan mid-trade without the trade closed first, and never anyone downed or a
   prisoner.
+- 0.233.0, **Tamiu, the Keeper of the
+  Threshold: Mog remade as the cat who keeps the dead** (14 November 2026; the player's words, 13 November: "the cat card
+  we have. Let's remake it into something new. Still a cat card, but kind of one inspired by, you know, Egyptian
+  mythology and the Sphinx, you know, with an Egyptian name ... maybe the cat god could be, you know, with mummies and
+  like Egyptian gear wearing zombies style followers, you know. Perhaps that is the god, and there's also some sort of
+  cult behind it"; 14 November: "yes, remake mog and create a corresponding sign for it", "gods effect should be
+  noticeable"). DESIGN.md "Tamiu, the Keeper of the Threshold" has all of it; `docs/design/gods.md` its contract notes.
+  Her plain line: "A great cat who keeps the dead. She guards the graves, sets riddles at the threshold, and every cat is
+  hers." Kept from Mog: her luck (now the favour of whoever answers her riddle well, else who fed her), the stare at the
+  Guest, can't be tamed or kept, the cats leaving and the rats coming when a cat is harmed, a cat walking in as her sign,
+  no festival. Dropped: the gray cat, the warmest spot, the random chosen one, "two places in one day".
+  - Code map:
+    - `Defs/GodDefs/Rimfolk_Gods.xml`: her def (defName and key still `Rimfolk_God_Mog`/`Mog`; label Tamiu, epithet,
+      plain line, names by age with Mog among her others, lore, lines, six stories, ties: Morel and Undertow rivals,
+      Ennu rivals, Helios and Selene allies; domains Dead and Hearth; proud; her own look; revered by the river folk, the
+      Quiet Bell, the Tamers). `God.FromDef`: a god's name is its def's label (its key for the others); `GodShapes.Of`
+      and `GodWays` key a god by `God.Key`.
+    - `Defs/GodDefs/Rimfolk_GodsOnMap_Shapes.xml`: `Rimfolk_GodShape_Mog` (Vanilla Animals Expanded's lion, Alpha
+      Animals' sand lion, the game's cougar or lynx; cats as kin; her omens CatsFacing, GoldEyes, Sand; near with cats
+      and a death) and `Rimfolk_GodLook_Mog` (sand-gold, a lion's call and a gong, Alpha Memes' Kemetic chant as her
+      hum, Odyssey's sand rising).
+    - `Source/ColonyCouncil/Gods/OnMap/MogsWays.cs` (new): `MogsBook` (her state, no lists), `MogsWays` (her stay among
+      the graves, her favour, the riddle's ask, walk and answer, the grave kept at dusk, the wrapped dead), the
+      `GameCondition_MogPresence` (her own presence, `Rimfolk_GodPresence_Mog`), `HediffComp_WrappedDead`,
+      `HappeningWorker_GodRiddle`. `MogMath.cs` (new, pure, linked): every number and rule.
+    - `SacredAnimal.cs` (her hour goes to `MogsWays.Keep`, her coming makes for the graves and starts her presence, her
+      bowl gives her favour), `GodsOnMapBook.cs` (the gods' day and hour call her ways), `GodOmensOwn.cs` and
+      `GodsOnMapMath.OmenKind` (her three signs), `HarmBudgetMath.cs` (`GodRiddle`, `GodDead`, in the shared budget).
+    - `Defs/GodDefs/Rimfolk_GodsOnMap_Mog.xml` (new): the riddle's card `Rimfolk_Evt_GodRiddle` (chance 0, fired by
+      her stay), four thoughts, `Rimfolk_WrappedDead`, her presence's def, four line pools.
+      `Languages/English/Keyed/Rimfolk_GodsOnMap_Mog.xml` (new): her coming, her presence, sixteen riddles (four an
+      age), the answer's cards, the keeper's and the wrapped dead's cards by age, the book's lines. Her lines rewritten
+      in `Rimfolk_GodsOnMap_Lines.xml`, `Rimfolk_GodsWorld_Lines.xml`, `Rimfolk_GodsWorld_Ways.xml`,
+      `Rimfolk_Worship_Gods.xml` (fish, linen, meat; Kemetic chant) and `Rimfolk_Worship_Pools.xml` (her offering lines).
+    - Her sign: `mog()` in `Tools/make_god_signs.py` (a cat seated in profile on a tomb's door; `SHOWN` puts her name on
+      the sheet), `Textures/ColonyCouncil/Gods/Signs/Mog*.png` (`--textures --only Mog`), `docs/gods-symbols-draft.png`.
+    - Tests: `Tools/Tests/MogTests.cs` (new); `GodsTests`, `GodsOnMapTests`, `GodWorldTests`, `HarmBudgetTests` follow
+      her. `Tools/playout_skips.txt`: the riddle's answers play out in her own code.
+  - For round 2 (the presences, offerings and omens being built side by side): her presence is
+    `Rimfolk_GodPresence_Mog` (`GameCondition_MogPresence`: from her coming to her going; the rats run off, the cats sit
+    facing the graves every few hours; named only once the colony knows it is her); her omens are `OmenKind.CatsFacing`,
+    `GoldEyes`, `Sand`; her way of taking an offering is not built yet (the proposal: a cat eats it at dawn).
+  - Not seen in a real game (none of it could be): the lion drawn larger and tinted, lying across a door and among the
+    graves; the riddle's walk out and the cuff; the keeper's night at the grave and the cat on it; Anomaly's shamblers
+    made in code, dressed in cloth and kept to the graves by `LordJob_DefendPoint` (whether the shambler's own mind keeps
+    to the lord's duty, and how they look in the wraps); her presence's corner label.
+  - Try in the game (dev mode):
+    1. "Gods: the colony knows every god", then "Gods: a sacred animal now..." and pick Tamiu: a great sand-gold lion
+       (a cougar or lynx out of season) comes in from the edge with a card, cats following, and walks to the graves;
+       "the cats keeping watch" (named "Tamiu keeping watch" once the colony knows her) shows in the corner, the land's
+       rats run off and the cats go and sit facing the graves.
+    2. "Gods: Tamiu's riddle at the door now" (or wait: from her second day, in daylight): she lies across the way in
+       outside an outer door and the card "The great sand-gold cat at the door" gives her riddle, one of the colony's
+       age's; send the wits: they walk out, stand before her and say their answer; right, she puts her head under their
+       hand and walks at their heel, a card says so; wrong, she walks back to the graves, sometimes after a cuff across
+       the arm (a scratch, on its card).
+    3. Bury a colonist in a grave, then "Gods: Tamiu's keeper at the newest grave now" (or wait for a dusk after the
+       gods' day): a keeper of a people that holds her comes in with a cat (a card), sits by the grave all night with a
+       bell and a word over it, and goes at dawn; the cat sits on the grave a day or two; friends of the dead get "a
+       grave kept". With no such people at peace (or half the time), a cat of the colony's, else a stray, keeps it.
+    4. With Anomaly and two graves of the colony's dead, "Gods: the wrapped dead stand guard now" (or Tamiu on the land
+       and a raid that comes near the graves: half the raids, at the harm setting): two to four figures in gray cloth
+       stand up among the graves with a card, fight anyone who comes near them, and lie down as dust an hour after no
+       raider is left.
+    5. Her signs: "Gods: an omen here..." (CatsFacing, GoldEyes, Sand) for Tamiu shows the cats sitting facing the
+       graves, gold eyes in the dark by a grave at night, or sand across a grave, each said aloud and kept in the Gods'
+       book.
+- 0.232.1, **Dressed for the weather as they
+  come** (14 November 2026; the player's words: "so i just had an event from the aracoier league that they use my meadow
+  for a heard or something like this, and they appeared on the map but left it again soon after due to "weather
+  conditions". it was -20 degrees cold. in general i really want that the people who spawn from events, visitors,
+  caravans, camps etc. just dress appropriately for the weather, so that they don't have to leave because of it. of
+  course if it's super cold or any other extreme conditions that's fair, but not when it's "hard weather" that they could
+  however do well in proper clothing", then "make sure this weather resilience update is applied to all kinds of
+  occurences that make people come to my map, as long as the faction/type of event etc. reasonably allows this and makes
+  sense from a "realism" perspective", then "so for raiders it would also make sense if they come dressed for the
+  weather, assuming their faction actually fits the clothing"). DESIGN.md "Dressed for the weather as they come" (after
+  "Visitors on the map", whose "When they go" now says the night's forecast); the Almanac's visitors page ("When they
+  don't come, and when they go early", keywords unchanged).
+  - The cause, in their save (League of Toba, 14 November 2026, extracted in the session's scratchpad): the world event
+    *a great caravan* (`Rimfolk_WS_Variety3_Roads`, "the hauler convoy" of the road league named "Ararcoler League"),
+    its outriders' beat answered "The meadow is theirs for the night": `VisitEffect_Come` caravan, three people, four
+    yaks, the far spot, one night. Trip 3 (`VisitorTracker`, `LordJob_RimfolkVisit`, Lord_209): three
+    `Rimfolk_League_Wayfarer`, set out at 5962631, gone at 5965881 (1.3 hours), `end` Weather, never reached the meadow.
+    One (Human531639) wore a cloth sash, a fox-leather duster and a visage mask and had hypothermia 0.0525, past
+    Rimfolk's own line (`Visitors.Suffering`, 0.04), so the group turned back with "couldn't stay out in this weather"
+    (Rimfolk's message, not the game's; messages aren't kept in the save). The game dressed them for the season's
+    average at the tile and only safe at that average (`PawnApparelGenerator.ApparelWarmthNeededNow`), not for a -20 day
+    and its night; its free warm layer never gives an industrial people the parka (Neolithic by its age,
+    `CorrectFactionForApparel`) and gave another of them Vanilla Anomaly Expanded's straitjacket (Human531631) instead.
+    Rimfolk's own check for a night out wanted them safe eight degrees below the hour's temperature.
+  - Built: `Source/ColonyCouncil/Visitors/WeatherDressMath.cs` (pure, linked: `Qualifies` and its `Arrival`, `Came`,
+    `Who`; `ArrivalHours` 48, `VisitHours`, `Enough` 4 degrees, `Outcome` AsTheyAre, Dressed, PastTheirClothes;
+    `Armour` 0.45 of the material or 0.3 sharp of its own, `Kept`, `Offered`, `AgeFits`, `Fit`; `Room` with `FreeShare`
+    1.3, `PieceShare` 1.5, `HostileShare` 0.15; `Choose`, five layers, `MinGain` 0.5, `Tie` 2; `OutOfPlace` and `Swap`
+    for a piece that hinders; `Suffering` 0.04, `GameLeaves` 0.15, `Suffers`, `NightWhy`, `VisitKey`, `GameKey`). `Source/ColonyCouncil/Visitors/WeatherDress.cs`
+    (the pool, `Pairs`, each plain piece in its cheapest, warmest and coolest material; `IsArmour`, `Kept` with the
+    title's and role's apparel, `Fits`; `Stay` from `CampWeather.StayRange`; the plan and `Apply` with the kind's
+    colours, faith's style and quality, `EquipmentUtility.CanEquip`; `Layers` for camps, `ForStay` with the verdict;
+    `AskedFor` and `SwapHindering`, run first in `ForStay`; `HowCame`, `Arriving`, `OnSpawn`, `AsTheyCame`; `LeaveWords`; `Patch_ArrivalDress`, a prefix on `GenSpawn.Spawn`,
+    and `Patch_WeatherLeaveWords` on `TransitionAction_Message.DoAction`). `Visitors/Visitors.cs`: `MakePeople`
+    dresses a visit for its hours and nights (the robbed as they were left), `Suffering`/`SufferingFrom` through the
+    pure rule, `WeatherWhy`, `Night`, `SafeOvernight` by the forecast to first light out in the open.
+    `Visitors/VisitorWords.cs`: the message by why. `Camps/CampWeather.cs`: `Dress` through `WeatherDress.Layers`, the
+    winter folk's own clothes never over a kept piece. Keys in `Languages/English/Keyed/Rimfolk_Visitors.xml`
+    (`CC_Visit_Weather_cold`, `_heat`, `_hunger` in place of `CC_Visit_Weather`; `CC_WeatherLeave_Cold`, `_Heat`). Tests
+    `Tools/Tests/WeatherDressTests.cs` (who and who not, the line, the pieces, the age, the worth, the pick, the swap of
+    a piece that hinders, the player's save and pool, the seams). Nothing saved, no Sched slot, under the deeper game hooks setting.
+  - A piece that hinders them (the coordinator's follow-up of the same day, from the straitjacket the game's free warm
+    layer put on Human531631): whatever the weather, a piece someone came in that lowers their moving, work, aim, hit or
+    dodge, that their kind neither requires nor asks for by its tags (`apparelRequired`, `apparelTags`, a specific
+    requirement) and that isn't kept (armour, a title's or a role's apparel), is swapped first for a plain piece of their
+    age that takes exactly its place and keeps them as warm for the stay, their kind's first, within the same worth
+    budget, the old piece destroyed; with nothing as warm on offer it stays on.
+  - Covered, as they appear on a home map: the game's visitors, trade caravans, travellers, quest guests, lodgers,
+    refugees and beggars, Royalty's envoys and bestowers, allies, raids, sieges and ambushes (on foot, by pod or
+    shuttle), Hospitality's guests, other mods' arrivals through the game's spawning, all of Rimfolk's (visits, envoys,
+    herders, drovers, pilgrims, camps, riders, couriers, the peoples' events, war bands, bandits, the gods' strangers,
+    whose god's robes are locked so kept), a wanderer who joins. Left as they are: animals, insects, mechanoids,
+    entities and the walking dead, anyone down as they appear (crash survivors), prisoners and slaves, babies, the
+    factionless and the wild, peoples of no age with clothing, anyone already on the map or off one within the hour,
+    the colony's own coming home or bought and sent down in a pod, maps in space, the robbed merchant.
+  - Not run here: the hook in the game (every arrival kind above, with Hospitality and VE Events), the pick's choices
+    from the player's whole pool by each people's tags, the kind's colours on a new parka, Hospitality's lodgers and
+    the game's lodgers' own rules (`CanEquip`), the cost of a large raid arriving at once, the reworded game message.
+    Mods that would help: none; Rimfolk dresses them from what the player's mods already add.
+  - Try in the game: 1. In a hard frost (about -20 °C), let the road league's convoy rest on the far meadow, or answer
+    drovers asking for grass: they walk in wearing parkas (a teal one for the league's wayfarers) and tuques, reach the
+    meadow, stay the night and go on at first light. 2. A trade caravan, a visitor group and a raid in the same frost:
+    each comes in warm layers of its own age (tribes and outlanders alike in parkas or warm jackets), their flak
+    vests, plate and belts still on; a killed raider drops what they wore, worth about what it would have been. 3. A
+    heat wave: cowboy hats and dusters. 4. A cold snap far past anything their clothes keep out (say -60 °C): they come
+    as they are and leave, and the message says the extreme cold. 5. A crashed refugee pod in the frost: the survivor is
+    as the crash left them. 6. Mild weather: nobody changes, but for 7. 7. A visitor the game dressed in Vanilla Anomaly
+    Expanded's straitjacket comes in a plain coat of their kind instead: a jacket on a mild day, a parka in the frost.
 - 0.232.0, **The gods understood: the fixes,
   the signs, the plain lines and shrines made clear** (14 November 2026; the player's words: "the god signs are awesome,
   go ahead! should be seen in the book and on cards. also like the one-line meaning for the chapter ... gods effect
