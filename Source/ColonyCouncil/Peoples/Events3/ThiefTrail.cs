@@ -100,7 +100,7 @@ namespace ColonyCouncil
                 try
                 {
                     a.jobs?.StopAll();
-                    a.GetLord()?.RemovePawn(a);
+                    Lords.Leave(a);
                     a.SetFaction(thieves);
                     lord.AddPawn(a);
                     r.animals.Add(a);
@@ -151,7 +151,7 @@ namespace ColonyCouncil
                 // Left behind: the colony's again, where it stands.
                 try
                 {
-                    lord?.RemovePawn(a);
+                    Lords.Leave(lord, a);
                     if (a.Faction != Faction.OfPlayer) a.SetFaction(Faction.OfPlayer);
                     r.animals.Remove(a);
                     Tell.Message(NewsKind.World, Importance.Notable, map, "CC_PEv3_LeftBehind".Translate(a.Named("ANIMAL")).Resolve(), new LookTargets(a), MessageTypeDefOf.PositiveEvent);
@@ -300,7 +300,7 @@ namespace ColonyCouncil
             var list = party.Where(p => p != null && p.Spawned && !p.Dead && !p.Downed && p.Faction != Faction.OfPlayer).ToList();
             foreach (var g in list.GroupBy(p => new { p.Map, p.Faction }))
             {
-                foreach (var p in g) p.GetLord()?.RemovePawn(p);
+                Lords.Leave(g);
                 LordMaker.MakeNewLord(g.Key.Faction, new LordJob_ExitMapBest(LocomotionUrgency.Jog, false, true), g.Key.Map, g.ToList());
             }
             foreach (var p in party.Where(p => p != null && !p.Spawned && !p.Dead && !p.Discarded)) Arrivals.Release(p);

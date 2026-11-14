@@ -1077,7 +1077,7 @@ namespace ColonyCouncil
             {
                 if (c.Faction == null || c.Faction.HostileTo(Faction.OfPlayer)) c.SetFaction(t.faction ?? x.Faction);
                 var lord = x.GetLord();
-                c.GetLord()?.RemovePawn(c);
+                Lords.Leave(c);
                 if (lord != null && lord.CanAddPawn(c)) lord.AddPawn(c);
             }
             catch (Exception e)

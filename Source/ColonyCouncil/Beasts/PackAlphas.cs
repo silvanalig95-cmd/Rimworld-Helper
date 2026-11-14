@@ -372,7 +372,7 @@ namespace ColonyCouncil
                 try
                 {
                     if (m.InMentalState) m.MentalState?.RecoverFromState();
-                    m.GetLord()?.RemovePawn(m);
+                    Lords.Leave(m);
                     LordMaker.MakeNewLord(null, new LordJob_ExitMapNear(m.Position, LocomotionUrgency.Jog, 12f, false, false), map, new List<Pawn> { m });
                     n++;
                 }
@@ -492,7 +492,7 @@ namespace ColonyCouncil
         {
             if (m.jobs == null || !a.Spawned) return;
             if (!CellFinder.TryFindRandomCellNear(a.Position, a.Map, 3, c => c.Standable(a.Map) && m.CanReach(c, PathEndMode.OnCell, Danger.Deadly), out var cell)) cell = a.Position;
-            m.GetLord()?.RemovePawn(m);
+            Lords.Leave(m);
             var job = JobMaker.MakeJob(JobDefOf.Goto, cell);
             job.locomotionUrgency = LocomotionUrgency.Walk;
             job.expiryInterval = BeastsMath.HourTicks;

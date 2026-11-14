@@ -408,7 +408,7 @@ namespace ColonyCouncil
             if (party.Count == 0) return false;
             try
             {
-                foreach (var p in party) t.lord.RemovePawn(p);
+                Lords.Leave(t.lord, party);
                 t.spot = to;
                 t.lord = LordMaker.MakeNewLord(t.faction, new LordJob_RimfolkVisit(t.id, to, t.exit, indoors ? 2f : t.animals.Count > 2 ? 9f : 6f, indoors), t.map, party);
                 t.state = VisitState.Coming;
@@ -558,6 +558,7 @@ namespace ColonyCouncil
                     CouncilLog.ErrorOnce("visitor send-off", e);
                 }
             }
+            Lords.EndIfEmpty(t.lord);
             foreach (var g in walkers.Where(p => p.Spawned).GroupBy(p => p.Faction))
                 LordMaker.MakeNewLord(g.Key, new LordJob_ExitMapBest(Pace.Errand, false, true), t.map, g.ToList());
         }
@@ -617,7 +618,7 @@ namespace ColonyCouncil
         {
             try
             {
-                a.GetLord()?.RemovePawn(a);
+                Lords.Leave(a);
                 if (!a.Downed && ReachabilityUtility.CanReachMapEdge(a))
                     LordMaker.MakeNewLord(a.Faction, new LordJob_ExitMapBest(Pace.Errand, false, false), a.Map, new List<Pawn> { a });
             }

@@ -769,6 +769,8 @@ namespace ColonyCouncil
         {
             // Councils of homes lost long enough ago are let go (ColonyState.cs).
             Safe("colonies", ColoniesDaily);
+            // Any of Rimfolk's groups left with nobody in them some other way: ended as the game would (Lean/Lords.cs).
+            Safe("empty groups", () => Lords.Sweep());
             standings.Daily();
             var s = Settings;
             // Each colony's council in turn (ColonyState.cs): its people's standards by its decrees and steward, its

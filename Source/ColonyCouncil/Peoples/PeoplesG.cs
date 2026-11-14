@@ -90,7 +90,7 @@ namespace ColonyCouncil
         public static bool Errand(Pawn x, Map map, LocalTargetInfo first, List<LocalTargetInfo> rest, JobDef job, int ticks, float hours)
         {
             if (!Up(x, map) || job == null || !first.IsValid || !x.CanReach(first, PathEndMode.Touch, Danger.Some)) return false;
-            x.GetLord()?.RemovePawn(x);
+            Lords.Leave(x);
             LordMaker.MakeNewLord(x.Faction, new LordJob_VisitOnErrand(x.Faction, first.Cell, Mathf.RoundToInt(hours * GenDate.TicksPerHour)), map, new List<Pawn> { x });
             return PeoplesE.Start(x, job, first, rest, ticks);
         }
@@ -106,7 +106,7 @@ namespace ColonyCouncil
         {
             var list = pawns.Where(p => p != null && p.Spawned && !p.Dead && !p.Downed && p.Faction != null && !p.Faction.IsPlayer).Distinct().ToList();
             if (list.Count == 0) return;
-            foreach (var p in list) p.GetLord()?.RemovePawn(p);
+            Lords.Leave(list);
             foreach (var g in list.GroupBy(p => new { p.Map, p.Faction }))
                 LordMaker.MakeNewLord(g.Key.Faction, new LordJob_ExitMapBest(Pace.Errand, false, true), g.Key.Map, g.ToList());
         }
@@ -769,7 +769,7 @@ namespace ColonyCouncil
         public static bool Keep(Pawn mech, Pawn keeper, Faction f)
         {
             if (mech == null || mech.Dead || keeper == null) return false;
-            mech.GetLord()?.RemovePawn(mech);
+            Lords.Leave(mech);
             mech.SetFaction(Faction.OfPlayer);
             if (keeper.relations != null && MechanitorUtility.GetOverseer(mech) == null) keeper.relations.AddDirectRelation(PawnRelationDefOf.Overseer, mech);
             if (f != null && !f.IsPlayer && f.HasGoodwill) WorldSituationWorker.Goodwill(f, PeoplesGMath.KeptGoodwill);

@@ -136,7 +136,7 @@ namespace ColonyCouncil
                     if (camp.CanTalk) camp.Leave("hamlet");
                     foreach (var a in camp.herd.Where(a => a != null && a.Spawned).ToList())
                     {
-                        a.GetLord()?.RemovePawn(a);
+                        Lords.Leave(a);
                         a.DeSpawn();
                         Find.WorldPawns.PassToWorld(a, PawnDiscardDecideMode.Discard);
                     }
@@ -152,7 +152,7 @@ namespace ColonyCouncil
                 {
                     if (p.Spawned)
                     {
-                        p.GetLord()?.RemovePawn(p);
+                        Lords.Leave(p);
                         p.DeSpawn();
                     }
                     Arrivals.Hold(p);
@@ -167,9 +167,8 @@ namespace ColonyCouncil
             {
                 try
                 {
-                    var lord = camp.lord;
+                    // Its group, empty now, ends with it (Camp.Finish).
                     camp.Finish();
-                    if (lord != null && camp.map != null && camp.map.lordManager.lords.Contains(lord) && lord.ownedPawns.Count == 0) camp.map.lordManager.RemoveLord(lord);
                 }
                 catch (Exception e)
                 {

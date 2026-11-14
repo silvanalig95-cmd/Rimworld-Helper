@@ -100,7 +100,7 @@ namespace ColonyCouncil
             if (beast == null || beast.Dead || b == null || map == null) return;
             try
             {
-                beast.GetLord()?.RemovePawn(beast);
+                Lords.Leave(beast);
                 if (beast.Faction != Faction.OfPlayer) beast.SetFaction(Faction.OfPlayer, b);
                 if (beast.training != null)
                     foreach (string n in PeopleEventsMath.FirstTasks)
@@ -168,7 +168,7 @@ namespace ColonyCouncil
             int untilMorning = hours * GenDate.TicksPerHour;
             try
             {
-                x.GetLord()?.RemovePawn(x);
+                Lords.Leave(x);
                 var spot = PeoplesD.GateSpot(map) ?? x.Position;
                 LordMaker.MakeNewLord(x.Faction, new LordJob_VisitOnErrand(x.Faction, spot, untilMorning), map, new List<Pawn> { x });
                 CouncilGameComponent.Instance?.happenings?.AddVisit(SupperKind, ctx.incident, map, x, ctx.b, null, Find.TickManager.TicksGame + untilMorning);

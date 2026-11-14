@@ -76,12 +76,6 @@ tree at once, alongside whatever runs. Each piece is merged as its own release, 
     are storylines across multiple quests". When asked: proposed first, a list of quests by the peoples, the gods and the
     region, and storylines that run over several quests (a chain whose next quest depends on how the last went), built
     on the game's own quests (QuestScriptDef) and Rimfolk's chains, letters and missions.
-- **To do when the player asks (14 November 2026, found while fixing the guests): empty lords left in the save** (a bug
-  of Rimfolk's). Their save `League_of_Toba_4` holds four of Rimfolk's lords with nobody in them (two errand visits about
-  32 days old and two war bands): the game removes an empty lord only when a pawn is lost from it, and Rimfolk empties its
-  lords by moving their pawns out, so they stay in the save and keep ticking. When asked: wherever Rimfolk moves the last
-  pawn out of its own lord, end that lord (`map.lordManager.RemoveLord`), and on load and every so often end any of
-  Rimfolk's own lords left with no pawns; the game's and other mods' lords untouched.
 - **To do when the player asks (14 November 2026): the best meals on a reserved shelf** (a bug first). The player, with a
   screenshot of a wooden big shelf reserving "Any meals" (3 slots, 4 per stack): "i think the shelf reservation still
   don't prioritize the "best" meal, right? it's now filled with simple meals & bakes and i also have fine meals in the
@@ -154,6 +148,45 @@ tree at once, alongside whatever runs. Each piece is merged as its own release, 
   ordering them off is ruder still), less when they were trouble (a thief, a brawler, a drunk); with Hospitality its
   own way for its guests; never a caravan mid-trade without the trade closed first, and never anyone downed or a
   prisoner.
+- 0.230.2, **No empty groups left behind** (14 November 2026; the to-do of the same day, found while fixing the
+  guests, asked for now: "after Rimfolk removes pawns from a lord, if the lord now has no pawns and its job shouldn't
+  exist without them, remove it the game's way ... in one small shared helper used at every such place. Also clean up
+  lords already left empty in existing saves ... only Rimfolk's own lord jobs (namespace `ColonyCouncil`) with no pawns,
+  no owned buildings and `ShouldExistWithoutPawns` false").
+  - The cause, in their save of 13 November 2026 (upload `e8cfe489-League_of_Toba_4.7z`): the home map's `lordManager`
+    held four of Rimfolk's lords with no `ownedPawns`, two `ColonyCouncil.LordJob_VisitOnErrand` (loadIDs 79 and 80,
+    `ticksInToil` about 1.9 million, so about 32 days) and two `ColonyCouncil.LordJob_WarBand` (32 and 131). The game
+    (1.6, `Verse.AI.Group.Lord`) ends a lord whose `ShouldExist` is false only from `Notify_PawnLost`,
+    `Notify_BuildingLost` and the like; `Lord.RemovePawn` never does. Rimfolk moved pawns out of lords with `RemovePawn`
+    (then often `LordMaker.MakeNewLord`) in 83 places: a people's worker sent to a colonist (`PeopleWorkOn.Send`), a
+    visit moving to another spot (`VisitorTracker.Move`), a war band settling into a camp (`WarCamps.Settle`), anyone
+    sent away or home (`Arrivals.SendAway`, `PeoplesG.Home`) and the rest; each left its old group behind, empty and
+    ticking for good. The game's own lords it emptied (the Wardens' assault lord after the trail, a guest's visit, a
+    half-made Hospitality group) stayed the same way.
+  - Built: `Source/ColonyCouncil/Lean/Lords.cs` (new). `Lords.Leave(pawn)`, `Leave(lord, pawn)`, `Leave(pawns)` and
+    `Leave(lord, pawns)` take them out, then `Lords.EndIfEmpty(lord)` ends the lord with `lord.lordManager.RemoveLord(lord)`
+    when the game's own rule says it shouldn't exist (`Lean/LordsMath.cs`, `ShouldExist`: no pawns, the job's
+    `ShouldExistWithoutPawns` false, and no buildings it is kept for by `KeepExistingWhileHasAnyBuilding`), whoever's
+    lord it is, as the game ends one that lost its last pawn; a lord already ended is left, and a gathering anyone may
+    join (`LordJob_VoluntarilyJoinable` overrides `ShouldExistWithoutPawns`) may stand empty. Used in 79 of the 83
+    places; `VisitorTracker.SendOff` ends its lord after its loop, `Camp.SendOff` through `Camp.Finish`, which now ends
+    the camp's group if nobody is left in it (both of its ways out), so `HamletEscort.OffTheMap` no longer does it by
+    hand. Three keep a plain `RemovePawn`, the reason beside each: the Wardens' hunters out on the trail
+    (`PeopleCamps.Trail`: the camp's group waits for them, `Recall`), a camp's beasts led off inside its own flee or
+    fight transition (`CampBeasts.LeadOff`; the camp ends its group), and the play-out gathering (joinable, ends by its
+    clock). `SpringCalving` adds a calf back only to a camp group still alive (`c.LordAlive`).
+  - Older saves: `Lords.Sweep` ends every lord on any map whose job is Rimfolk's own (namespace `ColonyCouncil`) with no
+    pawns, no owned buildings and `ShouldExistWithoutPawns` false (`LordsMath.Swept`), and names each in the log
+    (`[Rimfolk] Ended 4 of Rimfolk's groups left with nobody in them: LordJob_VisitOnErrand (Lord_79), ...`). It runs on
+    loading (`CouncilGameComponent.FinalizeInit`) and once a day (`DailyFirst`, tick 502 of the day's first hour; the
+    DESIGN.md "Ticking" table says so). The game's and other mods' lords are never swept, and a camp still standing owns
+    its buildings, so it is left to its camp.
+  - Tests: `Tools/Tests/LordsTests.cs` (the game's rule; what is swept, the save's four among it; others' lords left; the
+    seams, among them that every `RemovePawn` on a lord outside the helper is one of the kept ones with its reason).
+  - Not checked against the save itself this time: the upload wasn't in the session's container. The four lords are as
+    the report gave them (Rimfolk's job types, no pawns, no buildings, no `ShouldExistWithoutPawns`), which is exactly
+    what `LordsMath.Swept` ends; on loading, the log line names what was ended.
+  - Mods that would help: none; a fix of Rimfolk's own, with nothing to look at or hear.
 - 0.230.1, **Guests keep out of bedrooms and the cold store**
   (13 November 2026; the player's report: "guests should not step into my pawns rooms when they're sleeping and also not
   into the fridge (even though my fridge is detected as kitchen because of the butcher's table in it.", then "you can go

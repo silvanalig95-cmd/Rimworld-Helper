@@ -119,7 +119,7 @@ namespace ColonyCouncil
                 var setup = tracker.Make(map, center, CampSite.ColonyCenter(map), kind, ctx.faction, hot, null, null, squad);
                 if (setup == null) return false;
                 setup.onMap = true;
-                foreach (var p in squad) p.GetLord()?.RemovePawn(p);
+                Lords.Leave(squad);
                 var camp = tracker.Start(setup);
                 if (camp == null)
                 {

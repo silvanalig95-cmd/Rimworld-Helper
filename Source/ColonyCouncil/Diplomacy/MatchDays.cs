@@ -390,7 +390,7 @@ namespace ColonyCouncil
                 Outsiders.Say(c, "matchfarewell", x);
                 Outsiders.Say(x, "matchescort", c);
                 if (c.Drafted && c.drafter != null) c.drafter.Drafted = false;
-                c.GetLord()?.RemovePawn(c);
+                Lords.Leave(c);
                 c.SetFaction(p.people);
                 l.AddPawn(c);
                 j.done = true;

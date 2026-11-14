@@ -246,7 +246,7 @@ namespace ColonyCouncil
             if (live && ours && calf != null)
             {
                 // The colony's hand brought it: the calf is the colony's.
-                calf.GetLord()?.RemovePawn(calf);
+                Lords.Leave(calf);
                 c.herd.Remove(calf);
                 st.calves.Remove(calf);
                 calf.SetFaction(Faction.OfPlayer);
@@ -389,7 +389,7 @@ namespace ColonyCouncil
             var aim = new IntVec3(c.center.x + Mathf.RoundToInt(away.x / len * Rand.Range(26f, 40f)) + Rand.RangeInclusive(-12, 12), 0,
                 c.center.z + Mathf.RoundToInt(away.z / len * Rand.Range(26f, 40f)) + Rand.RangeInclusive(-12, 12)).ClampInsideMap(map);
             if (!CellFinder.TryFindRandomCellNear(aim, map, 10, x => x.Standable(map) && !x.Fogged(map) && !x.Roofed(map) && calf.CanReach(x, PathEndMode.OnCell, Danger.Some), out var spot)) return;
-            calf.GetLord()?.RemovePawn(calf);
+            Lords.Leave(calf);
             c.herd.Remove(calf);
             st.lost = calf;
             st.lostCell = spot;
@@ -426,7 +426,7 @@ namespace ColonyCouncil
             st.lost = null;
             st.lostCell = IntVec3.Invalid;
             if (calf == null || calf.Dead || !calf.Spawned) return;
-            if (c.lord != null && calf.GetLord() == null) c.lord.AddPawn(calf);
+            if (c.LordAlive && calf.GetLord() == null) c.lord.AddPawn(calf);
             if (!c.herd.Contains(calf)) c.herd.Add(calf);
             if (by != null && by.Spawned)
             {
@@ -480,7 +480,7 @@ namespace ColonyCouncil
             // A calf still out there comes with them.
             if (st?.lost != null && st.lost.Spawned && !st.lost.Dead)
             {
-                if (c.lord != null && st.lost.GetLord() == null) c.lord.AddPawn(st.lost);
+                if (c.LordAlive && st.lost.GetLord() == null) c.lord.AddPawn(st.lost);
                 st.lost = null;
             }
             if (f == null || c.Hostile || c.tension >= 40f) return;

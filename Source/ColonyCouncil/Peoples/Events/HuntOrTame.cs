@@ -75,7 +75,7 @@ namespace ColonyCouncil
                 }
                 if (PeoplesG.Up(tamer, map))
                 {
-                    tamer.GetLord()?.RemovePawn(tamer);
+                    Lords.Leave(tamer);
                     LordMaker.MakeNewLord(tamer.Faction, new LordJob_VisitOnErrand(tamer.Faction, beast.Position, 30 * GenDate.TicksPerHour), map, new List<Pawn> { tamer });
                     var v = CouncilGameComponent.Instance?.happenings?.AddVisit(CoachKind, ctx.incident, map, tamer, b, null, Now + 30 * GenDate.TicksPerHour);
                     if (v != null) v.place = beast;
@@ -177,7 +177,7 @@ namespace ColonyCouncil
             if (!PeoplesG.Up(tamer, map) || !LegendBeasts.Here(beast, map)) return;
             try
             {
-                tamer.GetLord()?.RemovePawn(tamer);
+                Lords.Leave(tamer);
                 LordMaker.MakeNewLord(tamer.Faction, new LordJob_VisitOnErrand(tamer.Faction, beast.Position, (PeopleEventsMath.TameTries * PeopleEventsMath.TameTryHours + 4) * GenDate.TicksPerHour),
                     map, new List<Pawn> { tamer });
                 var v = CouncilGameComponent.Instance?.happenings?.AddVisit(TameKind, ctx.incident, map, tamer, null, null,

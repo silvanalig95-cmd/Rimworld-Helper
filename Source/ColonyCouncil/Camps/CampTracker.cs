@@ -841,7 +841,7 @@ namespace ColonyCouncil
                 if (p.Spawned)
                 {
                     // On the map already (a war party after its fight): out of its old group, into the camp's.
-                    p.GetLord()?.RemovePawn(p);
+                    Lords.Leave(p);
                     continue;
                 }
                 // Someone kept in the world to come back (CampMemory.cs) is taken out of it first.

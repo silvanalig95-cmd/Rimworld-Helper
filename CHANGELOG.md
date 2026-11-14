@@ -5,6 +5,14 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## No empty groups left behind
+
+*14 November 2026, version 0.230.2*
+
+- Visitors, war parties, camps and others moved from one group to another no longer leave the old group behind, empty and running in the background for the rest of the game.
+- Saves that already hold such empty groups of Rimfolk's are cleared when you load them, and the log names each group that was ended.
+- The game's own groups and other mods' groups are only ended when Rimfolk itself emptied them, the way the game ends a group that lost its last member.
+
 ## Doors kept for the colony
 
 *14 November 2026, version 0.230.1*

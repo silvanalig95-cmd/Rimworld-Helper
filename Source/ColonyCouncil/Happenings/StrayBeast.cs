@@ -137,7 +137,7 @@ namespace ColonyCouncil
                 lord.ReceiveMemo(LordJob_StrayBeast.MemoHome);
                 return;
             }
-            lord?.RemovePawn(x);
+            Lords.Leave(lord, x);
             x.DeSpawn();
             if (!Find.WorldPawns.Contains(x)) Find.WorldPawns.PassToWorld(x, PawnDiscardDecideMode.Decide);
         }
@@ -324,7 +324,7 @@ namespace ColonyCouncil
         {
             var x = StrayBeast.Here(ctx);
             if (x == null) return;
-            x.GetLord()?.RemovePawn(x);
+            Lords.Leave(x);
             x.SetFaction(Faction.OfPlayer);
         }
     }

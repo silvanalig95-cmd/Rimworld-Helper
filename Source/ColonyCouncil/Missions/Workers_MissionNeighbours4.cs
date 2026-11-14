@@ -573,7 +573,7 @@ namespace ColonyCouncil
                 var flag = drover?.GetLord()?.CurLordToil?.FlagLoc ?? IntVec3.Invalid;
                 bool there = drover != null && drover.Spawned && flag.IsValid && drover.Position.InHorDistOf(flag, 8f);
                 if (!there && now < m.due && drover != null && drover.Spawned && !drover.Dead) return;
-                x.GetLord()?.RemovePawn(x);
+                Lords.Leave(x);
                 x.SetFaction(Faction.OfPlayer);
                 if (drover != null && drover.Spawned) Arrivals.SendAway(new[] { drover });
                 m.stage = 2;

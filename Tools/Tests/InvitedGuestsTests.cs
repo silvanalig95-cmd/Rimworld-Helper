@@ -73,8 +73,8 @@ public static class InvitedGuestsTests
             "with what its own visitors carry: money for a bed and a meal, wares to sell");
         C(ig.Contains("\"Hospitality.LordJob_VisitColony\"") && ig.Contains("\"Hospitality.LordToil_VisitPoint\"") && ig.Contains("visitJob.IsInstanceOfType(l.LordJob)"),
             "its guests' group and their stay known by type name");
-        C(ig.Contains("if (Hosted(lord) && list.All(p => p.GetLord() == lord)) return lord;") && ig.Contains("p.GetLord()?.RemovePawn(p);"),
-            "only a group taken whole counts; a half-made one is let go for Rimfolk's own");
+        C(ig.Contains("if (Hosted(lord) && list.All(p => p.GetLord() == lord)) return lord;") && ig.Contains("Lords.Leave(p);"),
+            "only a group taken whole counts; a half-made one is let go for Rimfolk's own, and ended once empty");
         C(ig.Contains("public static bool On => RimfolkPatches.On && (ColonyCouncilMod.Settings?.invitedAsGuests ?? true) && People.ModActive(Guests.Mod);"),
             "behind the setting, the deeper game hooks and Hospitality loaded");
         int tries = System.Text.RegularExpressions.Regex.Matches(ig, @"\btry\b").Count, logs = System.Text.RegularExpressions.Regex.Matches(ig, @"CouncilLog\.ErrorOnce\(").Count;

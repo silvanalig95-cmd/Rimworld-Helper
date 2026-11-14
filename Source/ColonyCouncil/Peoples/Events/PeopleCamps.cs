@@ -169,7 +169,7 @@ namespace ColonyCouncil
             try
             {
                 c.herd.Remove(hound);
-                hound.GetLord()?.RemovePawn(hound);
+                Lords.Leave(hound);
                 if (hound.Faction != null) LordMaker.MakeNewLord(hound.Faction, new LordJob_ExitMapBest(LocomotionUrgency.Jog, false, false), c.map, new List<Pawn> { hound });
                 c.Note(c.Text("CC_PEv_PostHound", null, null, 0, hound.LabelShort), MessageTypeDefOf.NeutralEvent, Importance.Notable, hound);
             }
@@ -207,7 +207,7 @@ namespace ColonyCouncil
                 try
                 {
                     if (p.GetLord() == c.lord) continue;
-                    p.GetLord()?.RemovePawn(p);
+                    Lords.Leave(p);
                     if (c.LordAlive) c.lord.AddPawn(p);
                 }
                 catch (Exception e)
@@ -231,6 +231,8 @@ namespace ColonyCouncil
             if (hunters.Count == 0) return false;
             try
             {
+                // Out of the camp's group for the trail, the group kept for them even if it stands empty a while: they come
+                // back into it (Recall), and the camp ends its own group when it ends (Camp.Finish).
                 foreach (var h in hunters) h.GetLord()?.RemovePawn(h);
                 LordMaker.MakeNewLord(c.faction, new LordJob_AssaultThings(c.faction, new List<Thing> { beast }, 1f, false), c.map, hunters);
                 st.trail = hunters;

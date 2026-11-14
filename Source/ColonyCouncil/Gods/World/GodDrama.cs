@@ -258,7 +258,7 @@ namespace ColonyCouncil
             // They stay on: their visit's lord made long enough for the days they are hidden.
             try
             {
-                d.pawn.GetLord()?.RemovePawn(d.pawn);
+                Lords.Leave(d.pawn);
                 var spot = CampSite.ColonyCenter(map);
                 if (!spot.IsValid) spot = d.pawn.Position;
                 Verse.AI.Group.LordMaker.MakeNewLord(d.pawn.Faction, new LordJob_VisitOnErrand(d.pawn.Faction, spot, GodWorldMath.HiddenDays * GenDate.TicksPerDay + GenDate.TicksPerHour),

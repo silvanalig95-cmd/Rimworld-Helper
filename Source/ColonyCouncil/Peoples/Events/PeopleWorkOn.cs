@@ -132,7 +132,7 @@ namespace ColonyCouncil
             {
                 if (first || x.GetLord() == null)
                 {
-                    x.GetLord()?.RemovePawn(x);
+                    Lords.Leave(x);
                     var at = PlaceOf(v);
                     var spot = at.IsValid && (!at.HasThing || at.Thing.Spawned) ? at.Cell : on.Position;
                     LordMaker.MakeNewLord(x.Faction, new LordJob_VisitOnErrand(x.Faction, spot, Mathf.Max(GenDate.TicksPerHour, v.until - Now)), map, new List<Pawn> { x });

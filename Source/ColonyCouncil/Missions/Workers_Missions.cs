@@ -497,7 +497,7 @@ namespace ColonyCouncil
                 try
                 {
                     // Free of the colony first: no master to follow, no rope, no caravan or other group of ours.
-                    x.GetLord()?.RemovePawn(x);
+                    Lords.Leave(x);
                     x.roping?.BreakAllRopes();
                     if (x.playerSettings != null) x.playerSettings.Master = null;
                     x.SetFaction(m.faction);

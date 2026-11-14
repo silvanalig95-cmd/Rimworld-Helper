@@ -163,7 +163,7 @@ namespace ColonyCouncil
             v.text = bridge.defName + "|" + Encode(cells);
             try
             {
-                foreach (var p in boatmen) p.GetLord()?.RemovePawn(p);
+                Lords.Leave(boatmen);
                 var mid = cells[cells.Count / 2];
                 if (!CellFinder.TryFindRandomCellNear(cells.Last(), map, 3, c => c.Standable(map), out var rest)) rest = mid;
                 LordMaker.MakeNewLord(ctx.faction, new LordJob_VisitOnErrand(ctx.faction, rest, 2 * GenDate.TicksPerDay), map, boatmen);
@@ -504,7 +504,7 @@ namespace ColonyCouncil
             if (hours < 6) hours += 24;
             try
             {
-                foreach (var p in party) p.GetLord()?.RemovePawn(p);
+                Lords.Leave(party);
                 LordMaker.MakeNewLord(hc.faction, new LordJob_VisitOnErrand(hc.faction, hc.spot, hours * GenDate.TicksPerHour), map, party);
             }
             catch (Exception e)

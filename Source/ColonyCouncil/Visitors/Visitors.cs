@@ -551,7 +551,7 @@ namespace ColonyCouncil
                 if (!withAnimals || a.RaceProps.packAnimal && t.pack) continue;
                 try
                 {
-                    a.GetLord()?.RemovePawn(a);
+                    Lords.Leave(a);
                     a.SetFaction(Faction.OfPlayer);
                     result.Add(a);
                 }

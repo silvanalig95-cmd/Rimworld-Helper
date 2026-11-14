@@ -191,7 +191,8 @@ namespace ColonyCouncil
             try
             {
                 // Anyone the place has turned against since (the sun up over an open-air gathering, rain on a
-                // thalassophobe) goes (PlaySafety.cs).
+                // thalassophobe) goes (PlaySafety.cs). The gathering may stand empty while others can still join (the
+                // game's rule for a gathering anyone may join), and it ends by its own clock.
                 foreach (var p in lord.ownedPawns.ToList())
                     if (p != null && p.Spawned && !PlaySafety.Safe(p, spot, Map)) lord.RemovePawn(p);
                 if (serve && kind == PlayKind.Feast) Serve();

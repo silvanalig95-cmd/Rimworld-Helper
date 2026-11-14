@@ -344,7 +344,7 @@ namespace ColonyCouncil
             var beast = herd.Where(a => a != null && a.Spawned && !a.Dead && !a.Downed && GroupOf(a)?.follow != true).RandomElementWithFallback();
             if (beast == null) return false;
             var leg = beast.health.hediffSet.GetNotMissingParts().Where(x => x.def.tags.Contains(BodyPartTagDefOf.MovingLimbCore)).RandomElementWithFallback();
-            beast.GetLord()?.RemovePawn(beast);
+            Lords.Leave(beast);
             herd.Remove(beast);
             beast.SetFaction(Faction.OfPlayer);
             if (leg != null)

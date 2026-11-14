@@ -151,7 +151,7 @@ namespace ColonyCouncil
             // Hospitality's guests stay in Hospitality's hands: a story that sends its stranger away leaves a guest to their stay.
             var list = pawns.Where(p => p != null && p.Spawned && !p.Dead && !p.Downed && p.Faction != Faction.OfPlayer && !p.IsPrisoner && p.RaceProps.Humanlike
                                         && !Strangers.IsHospitalityGuest(p)).Distinct().ToList();
-            foreach (var p in list) p.GetLord()?.RemovePawn(p);
+            Lords.Leave(list);
             foreach (var g in list.GroupBy(p => new { p.Map, p.Faction }))
                 LordMaker.MakeNewLord(g.Key.Faction, new LordJob_ExitMapBest(Pace.Errand, false, true), g.Key.Map, g.ToList());
             foreach (var p in pawns.Where(p => p != null && !p.Spawned)) Release(p);
@@ -170,7 +170,7 @@ namespace ColonyCouncil
             }
             if (!x.Spawned && !Spawn(x, map, near)) return false;
             Find.WorldPawns.ForcefullyKeptPawns.Remove(x);
-            x.GetLord()?.RemovePawn(x);
+            Lords.Leave(x);
             if (x.Faction != Faction.OfPlayer)
             {
                 if (x.guest != null && x.guest.HostFaction != null) x.guest.SetGuestStatus(null);
