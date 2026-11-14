@@ -41,8 +41,12 @@ Work in progress and the next steps are in `docs/HANDOFF.md`: read it first.
 - Plain, neutral text (the player's rule since 14 November 2026): "when you write text for the mod, especially when it's
   supposed to be flavour, i'd like you to be more neutral, descriptive and "reasonable", over trying to make the text be
   creative, as this just most of the time sounds awkward." Say what happens, who does it and why, in ordinary words;
-  no poetic turns, riddling phrasing, invented idioms, lofty or archaic voice, or a twist at the end of a line. Speech
-  sounds like a person talking. Samples and rewrites: `docs/text-style-samples.md`.
+  no poetic turns, riddling phrasing, invented idioms, lofty voice, or a twist at the end of a line. Speech sounds like
+  a person talking. The one exception the player enjoys: old medieval writing ("the only thing i don't mind and even
+  enjoy, is old medieval writing", "especially the relitions", read as the religions), so the medieval voice stays
+  where it belongs, in the letters' `olde` lines ("needeth", "meaneth", "Most dear") and in the gods' and faiths' texts
+  (the Gods' book, sayings, prayers, sermons), still saying plainly what it means. Samples and rewrites:
+  `docs/text-style-samples.md`.
 
 ## Releases
 - `Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml` drives `CHANGELOG.md` (`python3 Tools/changelog.py`, then `--check`).

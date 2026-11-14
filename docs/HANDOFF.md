@@ -103,6 +103,11 @@ tree at once, alongside whatever runs. Each piece is merged as its own release, 
   kept, through the text checks: the gods; the letters (the archaic medieval voice to plain, slightly formal English);
   moods, memories and dreams; encounters and camps; the region, events and decrees; the peoples' talk and events (their
   faction descriptions are their own to-do above); bubbles and wishes; the Almanac and settings.
+  Then the player: "yes, please rewrite everything. the only thing i don't mind and even enjoy, is old medieval
+  writing", "especially the relitions" (read as the religions: the medieval voice stays in the letters' `olde` lines and
+  in the gods' and faiths' texts, still clear; CLAUDE.md says so), and "ok before you start, list me all the different
+  categories of text and i will tell where to start and what to leave": the categories were listed (about 21, with
+  line counts) and the pass waits for their pick of order and what to leave.
 - **Dropped (14 November 2026): sending visitors away.** The player: "so asking visitors to leave is not necessary, as i
   found the already imlpemented function".
 - **Being built (14 November 2026, the player's go: "do the one that visitors fill their idle hours, more old powers style events, making animals more visible first, but you can do as you like if simultanious tasks make more sense"): visitors busy with their own day.** The player: "guests should spend
