@@ -2729,16 +2729,102 @@ night, a lord's retinue staying by the gate).
 - **When they go** (`VisitorMath`, pure and tested): someone at the gate half an hour after the answer, or once an
   errand bringing them something has reached them (eight hours at most), or after two and a half days whatever
   happens; with nothing asked, after their hours. Guests at first light after their nights (`HoursToDawn`, at most
-  three), by the gate if every one of them is safe in the temperature there with a margin for the night, else in a
+  three), by the gate if every one of them, dressed as they are, is safe through the night to first light on the land's
+  own reckoning (`Visitors.SafeOvernight`; under a roof, the room's temperature with a margin), else in a
   corner of the colony's dining or rec room that is (`Visitors.IndoorsCell`, `Rimfolk_VisitIndoors`: they keep within
   four cells of it), else they go on. Anyone hypothermic,
-  heatstruck, starving or malnourished: they all go, with a message. A held beat (`holdBeat`: "the retinue stayed the
+  heatstruck, starving or malnourished: they all go, with a message saying it was the extreme cold, the extreme heat or
+  hunger (they came dressed for the weather: "Dressed for the weather as they come", below). A held beat (`holdBeat`: "the retinue stayed the
   night") waits until they've gone.
 - **Limits.** At most three groups on a map at once (`MaxHere`), six people and eight animals in a group, eight
   records kept (`MaxTrips`; the oldest still waiting is dropped). Ended records go once their people are gone, a day at
   most. What they were handed is cleared when they leave the map. Speech through `Speech.Say` (the pool
   `Rimfolk_VisitorLines`, by moment and what they are); messages through `Notify` only for a group coming along the
   road and for one the weather drove off.
+
+### Dressed for the weather as they come (the player's request, 14 November 2026; not released yet)
+
+The player: "so i just had an event from the aracoier league that they use my meadow for a heard or something like
+this, and they appeared on the map but left it again soon after due to "weather conditions". it was -20 degrees cold.
+in general i really want that the people who spawn from events, visitors, caravans, camps etc. just dress appropriately
+for the weather, so that they don't have to leave because of it. of course if it's super cold or any other extreme
+conditions that's fair, but not when it's "hard weather" that they could however do well in proper clothing"; then
+"make sure this weather resilience update is applied to all kinds of occurences that make people come to my map, as long
+as the faction/type of event etc. reasonably allows this and makes sense from a "realism" perspective"; and "so for
+raiders it would also make sense if they come dressed for the weather, assuming their faction actually fits the
+clothing".
+
+- **The cause** (their save, League of Toba, 14 November 2026). The world event *a great caravan*
+  (`Rimfolk_WS_Variety3_Roads`, "the hauler convoy" of the road league "Ararcoler League"): its outriders' beat asked
+  for the far meadow, and "The meadow is theirs for the night" sent `VisitEffect_Come` (caravan, three people, four yaks,
+  the far spot, one night). Trip 3 in `VisitorTracker`: three `Rimfolk_League_Wayfarer` under `LordJob_RimfolkVisit`
+  (Lord_209), set out at tick 5962631, gone at 5965881 (1.3 hours), end `Weather`, never at the meadow. One wore a cloth
+  sash, a fox-leather duster and a visage mask, and had hypothermia 0.0525: past Rimfolk's own line
+  (`Visitors.Suffering`, 0.04), so they all turned back with "couldn't stay out in this weather". The game had dressed
+  them for the season's average at the tile (`PawnApparelGenerator.ApparelWarmthNeededNow`, safe only at that average),
+  not for a -20 day and its night; its free warm layer never gives an industrial people the parka (tribal work by its
+  age, `CorrectFactionForApparel`), and gave another of them a Vanilla Anomaly Expanded straitjacket instead (any warm
+  torso piece cheap enough, tags unchecked). Rimfolk's arrival check for a night out also wanted every one of them safe
+  at eight degrees below the hour's temperature.
+- **One hook, everyone.** `Patch_ArrivalDress`, a prefix on `GenSpawn.Spawn` (the overload every other calls), looks at
+  each pawn about to appear on one of the colony's homes, before it shows, never on loading (`WeatherDress.OnSpawn`):
+  who, by `WeatherDressMath.Qualifies`, from how the game holds them that moment (`HowCame`: nothing or the world,
+  walked in; a drop pod or a falling thing; a shuttle; carried, in someone's pack, in something spawned on the map).
+  Dressed: the game's visitors, trade caravans and travellers, quest guests, lodgers, refugees and beggars, Royalty's
+  envoys and bestowers, allies sent to help, raids, sieges and ambushes (on foot, by pod or shuttle), Hospitality's
+  guests (its `SpawnVisitor` spawns through the game), other mods' arrivals that come through the game's spawning (VE
+  Events and the like), Rimfolk's own visits, envoys, herders, drovers, pilgrims, camps, riders, couriers, the peoples'
+  events, war bands and bandits, the gods' strangers (what a god puts on is locked, so kept), and a wanderer who joins,
+  new to the colony and walking or flying in. Left as they are: animals, insects and mechanoids (`NotAPerson`),
+  Anomaly's entities and the walking dead (`Entity`), anyone down as they appear (a crashed pod's survivor, someone
+  carried in: no time to dress), prisoners and slaves, babies, the factionless, the wild and peoples of no age with
+  clothing (`NoWays`), someone already on the map or off one within the hour (`AlreadyHere`: set down, out of a casket,
+  a growth vat or a jump), the colony's own coming home or bought and sent down in a pod (`OwnPeople`), anyone on a map
+  in space (the game's vacuum gear counts there), while the game starts or a map is made, and a visit's robbed merchant,
+  who comes as the robbers left them (`WeatherDress.AsTheyCame`).
+- **The line.** The stay's weather is the land's own reckoning of each hour ahead (`CampWeather.StayRange`, as the camps
+  read it, with what a cold snap or a heat wave adds now and three degrees more), two days ahead as they arrive
+  (`ArrivalHours`), a Rimfolk visit its hours and nights and half a day (`VisitHours` in `Visitors.MakePeople`, at least
+  two days, at most a season). Four degrees or less short of comfortable (the game's own line for dressing warmer): as
+  they are. Further: they are dressed as their people's age allows, and only if that keeps them safe through it (the
+  game's safe range, ten degrees past comfortable); past that, the extreme cold or heat, they come as they are and the
+  game's own leaving stays (`WeatherDressMath.Outcome`: `AsTheyAre`, `Dressed`, `PastTheirClothes`).
+- **What comes off, what goes on.** Never off: armour (the game's armour kinds or a mod's named so, a make armoured by
+  0.45 of its material or more, or 0.3 sharp armour of its own: a duster and a parka are 0.3 and 0.2, plate 0.9), belts,
+  gear (a shield, a jump pack, a piece with an ability), a mod's special kind of apparel, what is locked on them (the
+  gods' robes), what their title (the Empire keeps its own) or their role in the faith asks of them. On: plain layers
+  that keep out cold or heat, that the game itself would hand out for warmth and that people are made wearing, with no
+  armour, belt, gear or anything that slows or hinders (no straitjacket); from the whole loaded mod pool
+  (`WeatherDress.Pairs`: every such piece in its cheapest, warmest and coolest material, none dearer than a cloth parka
+  and a half), so the player's parkas, tuques, Vanilla Christmas Expanded's warm jackets and hats, Vanilla Apparel
+  Expanded's scarves and gloves, dusters and cowboy hats; theirs by size, age and shape, not barred to their kind, of
+  their people's age and the colony's era, with the game's rule against tribal hides for those past them unless the
+  piece carries their kind's own tags (a parka is tagged for outlanders: `AgeFits`). Their kind's tags count first, then
+  a look in their faith's style (`Fit`); each goes on in their kind's colours (the league's teal coat becomes a teal
+  parka) and the faith's style (`PawnApparelGenerator.PostProcessApparel`), at their kind's quality
+  (`PawnGenerator.PostProcessGeneratedGear`), only if the game lets them wear it (`EquipmentUtility.CanEquip`, so
+  another mod's race rules hold). What it replaces is gone, never dropped or packed: nothing is given to the colony.
+- **The worth.** New pieces less what came off, at most (`Room`): for anyone at peace, the game's own free parka and
+  tuque and a little more, or what their kind would have spent on clothes and didn't; for raiders a tuque's worth or
+  15% of what they wear, so a raid's loot is what it was.
+- **The pick** (`WeatherDressMath.Choose`), a layer at a time, five at most: each brings them at least half a degree
+  nearer comfortable, never takes off a kept piece and stays within the worth. Of those that would make them
+  comfortable enough, their kind's and then the cheapest; else the one that leaves them least short (within two degrees,
+  their kind's, then the cheapest). A layer of their own gives way only to one two degrees better. Camps dress through
+  the same pick (`CampWeather.Dress`, after their winter folk's own clothes, which now never go over armour).
+- **Still going for the weather.** Rimfolk's own visitors go on at 0.04 hypothermia or heatstroke and the game's own
+  groups at 0.15 (`Trigger_PawnExperiencingDangerousTemperatures`), as before; dressed for it, only the extremes get
+  that far. Rimfolk's night-out check follows the same line: safe through the night to first light on the forecast, as
+  dressed (`Visitors.SafeOvernight`, out in the open). The messages say it: Rimfolk's "couldn't stand the extreme cold
+  (heat) any longer" or "had nothing left to eat" (`Visitors.WeatherWhy`, `CC_Visit_Weather_cold`, `_heat`, `_hunger`);
+  the game's own "leaving the map because of dangerous temperature", for any group whose lord sends it, is said as the
+  extreme cold or the extreme heat, whichever has taken hold of them (`Patch_WeatherLeaveWords` on
+  `TransitionAction_Message.DoAction`, `CC_WeatherLeave_Cold`, `_Heat`). Nothing else is shown, and nothing is saved.
+- Code: `Visitors/WeatherDressMath.cs` (pure, linked: who, the line, the pieces, the age, the worth, the pick, the
+  leaving), `Visitors/WeatherDress.cs` (the pool, the pieces, the stay, the plan and putting it on, the arrival hook, the
+  words), `Visitors/Visitors.cs` (the visit's own dressing, `Suffering`, `WeatherWhy`, `SafeOvernight`),
+  `Visitors/VisitorWords.cs`, `Camps/CampWeather.cs`, `Languages/English/Keyed/Rimfolk_Visitors.xml`; tests
+  `Tools/Tests/WeatherDressTests.cs`. Under the deeper game hooks setting; no Sched slot.
 
 ### Guests who help out (the player's request, 10 November 2026; released 0.205.0)
 

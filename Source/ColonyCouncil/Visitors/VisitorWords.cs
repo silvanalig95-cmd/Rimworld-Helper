@@ -8,7 +8,7 @@ namespace ColonyCouncil
 {
     /// <summary>
     /// What visitors say (through Speech, from the pool Rimfolk_VisitorLines, by what they are and their people's ways),
-    /// and the few messages about them: a group coming along the road, and one that couldn't stay out in the weather.
+    /// and the few messages about them: a group coming along the road, and one that couldn't stay out in the extreme cold or heat.
     /// Someone at the gate with a letter needs no message: the letter points at them.
     /// </summary>
     public static class VisitorWords
@@ -91,13 +91,16 @@ namespace ColonyCouncil
             }
         }
 
-        /// <summary>They had to go before their business was done: too cold, too hot, too hungry to stay out.</summary>
+        /// <summary>
+        /// They had to go before their business was done: dressed for the weather as they came, only the extreme cold or the
+        /// extreme heat does that (or hunger), and the message says which (Visitors.WeatherWhy).
+        /// </summary>
         public static void LeftForWeather(VisitorTrip t)
         {
             if (t == null) return;
             try
             {
-                Notify.Message("CC_Visit_Weather".Translate(t.faction?.Name ?? "?").Resolve(), Look(t), MessageTypeDefOf.NeutralEvent, Importance.Notable);
+                Notify.Message(WeatherDressMath.VisitKey(Visitors.WeatherWhy(t)).Translate(t.faction?.Name ?? "?").Resolve(), Look(t), MessageTypeDefOf.NeutralEvent, Importance.Notable);
             }
             catch (Exception e)
             {

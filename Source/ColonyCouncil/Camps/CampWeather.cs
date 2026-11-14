@@ -13,8 +13,8 @@ namespace ColonyCouncil
     /// come from the land's own reckoning of each hour of the stay (its seasons, its days and nights, its run of warm
     /// and cold days), with what a heat wave or a cold snap adds now. Travellers dress for it: someone who wouldn't be
     /// comfortable through it puts on a warmer or a cooler layer of their own people's kind, nothing past their people's
-    /// craft or the colony's era and nothing dear (the game's own measure for a free warm layer: a plain parka's worth
-    /// and a little more). What they put on is what they wear on the map, and the camp's letter says so.
+    /// craft or the colony's era and nothing dear, their armour and gear left on (Visitors/WeatherDress.cs, the way
+    /// everyone who comes to the map dresses). What they put on is what they wear on the map, and the camp's letter says so.
     /// </summary>
     /// <summary>
     /// How a camp came dressed and pitched for its weather, for the letter that brings them (not saved): what they put on
@@ -78,97 +78,20 @@ namespace ColonyCouncil
             return usual;
         }
 
-        private static List<ThingStuffPair> pairs;
-        private static float maxPrice;
-
-        /// <summary>Every garment and what it can be made of, that the game may hand out against the cold or heat.</summary>
-        private static List<ThingStuffPair> Pairs
-        {
-            get
-            {
-                if (pairs == null)
-                {
-                    pairs = ThingStuffPair.AllWith(td => td.IsApparel && td.apparel.canBeGeneratedToSatisfyWarmth && !td.apparel.mechanitorApparel && !td.apparel.slaveApparel)
-                        .Where(pa => pa.InsulationCold > 0f || pa.InsulationHeat > 0f).ToList();
-                    maxPrice = StatDefOf.MarketValue.Worker.GetValueAbstract(ThingDefOf.Apparel_Parka, ThingDefOf.Cloth) * 1.5f;
-                }
-                return pairs;
-            }
-        }
-
-        /// <summary>Theirs to wear: their size, age and shape, of their people's craft and the colony's era, not dear.</summary>
-        private static bool Fits(ThingStuffPair pa, Pawn p, TechLevel tech)
-        {
-            var t = pa.thing;
-            if (pa.Price > maxPrice || !t.apparel.PawnCanWear(p, false) || !t.apparel.CorrectAgeForWearing(p) || !ApparelUtility.HasPartsToWear(p, t)) return false;
-            if (t.techLevel > tech) return false;
-            if (Avail.IsPreIndustrial && t.techLevel > TechLevel.Medieval) return false;
-            // The game's own rule: tribal hides for tribal folk, no furs of the tribes for those past them, unless meant for anyone.
-            if (!t.apparel.anyTechLevelCanUseForWarmth)
-            {
-                if (tech >= TechLevel.Industrial && t.techLevel == TechLevel.Neolithic) return false;
-                if (tech == TechLevel.Neolithic && t.techLevel >= TechLevel.Industrial) return false;
-            }
-            return true;
-        }
-
         /// <summary>
-        /// Dresses one of them for weather from <paramref name="low"/> to <paramref name="high"/>, a layer at a time,
-        /// as long as a layer brings them closer to comfortable through it. What they put on, in the order put on.
+        /// Dresses one of them for weather from <paramref name="low"/> to <paramref name="high"/>: their kind's own winter
+        /// clothes first, then plain layers of their people's age and kind, a layer at a time, as long as a layer brings them
+        /// nearer comfortable through it (Visitors/WeatherDress.cs, as everyone who comes to the map dresses; their armour,
+        /// belts and gear stay on). What they put on, in the order put on.
         /// </summary>
         public static List<Apparel> Dress(Pawn p, float low, float high, Faction f, CampKindDef kind = null)
         {
             var added = new List<Apparel>();
             if (p?.apparel == null || p.RaceProps?.Humanlike != true || f == null) return added;
             var tech = Peoples.TechOf(f) == TechLevel.Undefined ? TechLevel.Medieval : Peoples.TechOf(f);
-            var body = p.RaceProps.body;
             // Winter folk put on their own winter clothes first, when the stay is colder than they're comfortable in.
             if (kind?.Wears != null && low < p.ComfortableTemperatureRange().min) added.AddRange(WearOwn(p, kind, tech));
-            for (int step = 0; step < 4; step++)
-            {
-                var comfy = p.ComfortableTemperatureRange();
-                float shortNow = CampWeatherMath.Shortfall(comfy.min, comfy.max, low, high);
-                if (shortNow <= 0.5f) break;
-                bool needCold = comfy.min > low, needHeat = comfy.max < high;
-                var worn = p.apparel.WornApparel.ToList();
-                var cold = worn.Select(a => a.GetStatValue(StatDefOf.Insulation_Cold)).ToList();
-                var heat = worn.Select(a => a.GetStatValue(StatDefOf.Insulation_Heat)).ToList();
-                // Comfortable with nothing on, from what they are now with what they wear.
-                float bareMin = comfy.min + cold.Sum(), bareMax = comfy.max - heat.Sum();
-                ThingStuffPair best = default;
-                bool found = false;
-                float bestShort = shortNow - 0.5f;
-                foreach (var pa in Pairs)
-                {
-                    // Only what helps against what they're short of.
-                    if (!(needCold && pa.InsulationCold > 0f) && !(needHeat && pa.InsulationHeat > 0f)) continue;
-                    if (!Fits(pa, p, tech)) continue;
-                    float c = pa.InsulationCold, h = pa.InsulationHeat;
-                    for (int i = 0; i < worn.Count; i++)
-                    {
-                        if (!ApparelUtility.CanWearTogether(worn[i].def, pa.thing, body)) continue;
-                        c += cold[i];
-                        h += heat[i];
-                    }
-                    float s = CampWeatherMath.Shortfall(bareMin - c, bareMax + h, low, high);
-                    if (s < bestShort - 0.01f || (found && Mathf.Abs(s - bestShort) <= 0.01f && pa.Price < best.Price))
-                    {
-                        best = pa;
-                        bestShort = s;
-                        found = true;
-                    }
-                }
-                if (!found) break;
-                foreach (var w in worn.Where(w => !ApparelUtility.CanWearTogether(w.def, best.thing, body)))
-                {
-                    p.apparel.Remove(w);
-                    w.Destroy();
-                }
-                var ap = (Apparel)ThingMaker.MakeThing(best.thing, best.stuff);
-                PawnApparelGenerator.PostProcessApparel(ap, p);
-                p.apparel.Wear(ap, false);
-                added.Add(ap);
-            }
+            added.AddRange(WeatherDress.Layers(p, low, high, tech, f.HostileTo(Faction.OfPlayer)));
             // A layer swapped for a better one later is gone: only what they still wear.
             added.RemoveAll(a => a.Destroyed || a.Wearer != p);
             return added;
@@ -188,6 +111,8 @@ namespace ColonyCouncil
                 if (w == null || !w.ForAge(tech)) continue;
                 var def = w.Defs.FirstOrDefault(t => t.apparel.PawnCanWear(p, false) && t.apparel.CorrectAgeForWearing(p) && ApparelUtility.HasPartsToWear(p, t));
                 if (def == null || p.apparel.WornApparel.Any(a => a.def == def)) continue;
+                // Never over their armour, belt or gear.
+                if (p.apparel.WornApparel.Any(a => !ApparelUtility.CanWearTogether(a.def, def, body) && WeatherDress.Kept(a, p))) continue;
                 try
                 {
                     foreach (var old in p.apparel.WornApparel.Where(a => !ApparelUtility.CanWearTogether(a.def, def, body)).ToList())

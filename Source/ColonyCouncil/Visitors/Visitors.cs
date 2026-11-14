@@ -101,7 +101,23 @@ namespace ColonyCouncil
                     break;
                 }
                 if (p == null) continue;
-                if (t.robbed) Rob(p);
+                // Robbed on the road, they come as they were left; anyone else dressed for the weather of their visit (WeatherDress).
+                if (t.robbed)
+                {
+                    Rob(p);
+                    WeatherDress.AsTheyCame(p);
+                }
+                else
+                {
+                    try
+                    {
+                        WeatherDress.ForStay(p, map, WeatherDressMath.VisitHours(t.hours, t.stayNights));
+                    }
+                    catch (Exception e)
+                    {
+                        CouncilLog.ErrorOnce("visitor dressed for the weather", e);
+                    }
+                }
                 if (i == 0 && t.family && p.Name is NameTriple nt) lastName = nt.Last;
                 if (t.family) Relate(p, first, second, i);
                 if (first == null) first = p;
@@ -345,16 +361,55 @@ namespace ColonyCouncil
 
         // ---------------- How they are ----------------
 
-        /// <summary>The cold, the heat or hunger is getting to them: they should go while they still can.</summary>
-        public static bool Suffering(Pawn p)
+        /// <summary>
+        /// The cold, the heat or hunger is getting to them: they should go while they still can. Dressed for the weather as
+        /// they came (WeatherDress), only the extreme cold or heat does that.
+        /// </summary>
+        public static bool Suffering(Pawn p) => SufferingFrom(p) != WeatherDressMath.Why.None;
+
+        private static WeatherDressMath.Why SufferingFrom(Pawn p)
         {
-            if (p == null || p.Dead || p.health?.hediffSet == null) return false;
+            if (p == null || p.Dead || p.health?.hediffSet == null) return WeatherDressMath.Why.None;
             var hs = p.health.hediffSet;
-            if ((hs.GetFirstHediffOfDef(HediffDefOf.Hypothermia)?.Severity ?? 0f) >= 0.04f) return true;
-            if ((hs.GetFirstHediffOfDef(HediffDefOf.Heatstroke)?.Severity ?? 0f) >= 0.04f) return true;
-            if (hs.HasHediff(HediffDefOf.Malnutrition)) return true;
-            return p.needs?.food != null && p.needs.food.Starving;
+            return WeatherDressMath.Suffers(hs.GetFirstHediffOfDef(HediffDefOf.Hypothermia)?.Severity ?? 0f, hs.GetFirstHediffOfDef(HediffDefOf.Heatstroke)?.Severity ?? 0f,
+                hs.HasHediff(HediffDefOf.Malnutrition) || p.needs?.food != null && p.needs.food.Starving);
         }
+
+        /// <summary>
+        /// Why a group went for the weather, for its message: the cold, the heat or hunger that got to one of them, else
+        /// what tonight would have done to them out in the open.
+        /// </summary>
+        public static WeatherDressMath.Why WeatherWhy(VisitorTrip t)
+        {
+            var standing = t?.Standing ?? new List<Pawn>();
+            WeatherDressMath.Why why = WeatherDressMath.Why.None;
+            float worst = 0f;
+            foreach (var p in standing)
+            {
+                var w = SufferingFrom(p);
+                if (w == WeatherDressMath.Why.None) continue;
+                var hs = p.health.hediffSet;
+                float s = w == WeatherDressMath.Why.Cold ? hs.GetFirstHediffOfDef(HediffDefOf.Hypothermia)?.Severity ?? 0f
+                    : w == WeatherDressMath.Why.Heat ? hs.GetFirstHediffOfDef(HediffDefOf.Heatstroke)?.Severity ?? 0f : 0f;
+                if (why == WeatherDressMath.Why.None || s > worst)
+                {
+                    why = w;
+                    worst = s;
+                }
+            }
+            if (why != WeatherDressMath.Why.None || t?.map == null) return why == WeatherDressMath.Why.None ? WeatherDressMath.Why.Cold : why;
+            var (low, high) = Night(t.map);
+            foreach (var p in standing)
+            {
+                var w = WeatherDressMath.NightWhy(p.GetStatValue(StatDefOf.ComfyTemperatureMin), p.GetStatValue(StatDefOf.ComfyTemperatureMax), low, high);
+                if (w != WeatherDressMath.Why.None) return w;
+            }
+            return low < 0f ? WeatherDressMath.Why.Cold : WeatherDressMath.Why.Heat;
+        }
+
+        /// <summary>The coldest and hottest from now to a little past first light, on the land's own reckoning (WeatherDress.Stay).</summary>
+        private static (float low, float high) Night(Map map) =>
+            WeatherDress.Stay(map, VisitorMath.HoursToDawn(GenLocalDate.HourOfDay(map), 1) + 2);
 
         /// <summary>
         /// A corner inside for guests when a night out would hurt them: an open spot in the colony's dining room or rec
@@ -426,19 +481,27 @@ namespace ColonyCouncil
         }
 
         /// <summary>
-        /// A night out by this spot won't hurt them: every one of them is safe in the temperature there, with
-        /// <paramref name="margin"/> degrees for the night being colder than now (outdoors).
+        /// A night out by this spot won't hurt them: out in the open, every one of them safe, dressed as they are, from now
+        /// to first light on the land's own reckoning (the line they dressed for, WeatherDress); under a roof, safe in the
+        /// temperature there, with <paramref name="margin"/> degrees for the night being colder than now.
         /// </summary>
         public static bool SafeOvernight(IEnumerable<Pawn> party, IntVec3 at, Map map, float margin = 8f)
         {
+            bool open = !at.IsValid || !at.InBounds(map) || at.UsesOutdoorTemperature(map);
+            var night = open ? Night(map) : (0f, 0f);
             foreach (var p in party)
             {
                 if (p == null || p.Dead || !p.Spawned) continue;
                 try
                 {
-                    // The night will be colder than now: a few degrees of margin.
+                    if (open)
+                    {
+                        if (!WeatherDressMath.SafeThrough(p.GetStatValue(StatDefOf.ComfyTemperatureMin), p.GetStatValue(StatDefOf.ComfyTemperatureMax), night.Item1, night.Item2))
+                            return false;
+                        continue;
+                    }
                     var range = GenTemperature.SafeTemperatureRange(p);
-                    float t = at.IsValid && at.InBounds(map) ? at.GetTemperature(map) : map.mapTemperature.OutdoorTemp;
+                    float t = at.GetTemperature(map);
                     if (t - margin < range.min || t > range.max) return false;
                 }
                 catch (Exception e)
