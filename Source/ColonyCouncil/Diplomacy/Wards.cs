@@ -520,7 +520,7 @@ namespace ColonyCouncil
             var p = w.pawn;
             try
             {
-                p.GetLord()?.RemovePawn(p);
+                Lords.Leave(p);
                 if (!Arrivals.Join(p, map)) return;
                 StartQuest(w, map);
             }

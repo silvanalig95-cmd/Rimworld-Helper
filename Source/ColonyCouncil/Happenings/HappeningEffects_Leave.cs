@@ -93,7 +93,7 @@ namespace ColonyCouncil
                     var lord = p.GetLord();
                     if (c != null && !c.Dead && c.Spawned && c.Map == map && !c.Downed && c.Faction != Faction.OfPlayer)
                     {
-                        c.GetLord()?.RemovePawn(c);
+                        Lords.Leave(c);
                         if (lord != null && lord.faction == c.Faction) lord.AddPawn(c);
                         else Arrivals.SendAway(new[] { c });
                     }

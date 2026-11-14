@@ -1095,6 +1095,7 @@ namespace ColonyCouncil
                     CouncilLog.ErrorOnce("camp send-off", e);
                 }
             }
+            // Their group, empty now, is ended with the camp's books (Finish).
             if (walkers.Count > 0) LordMaker.MakeNewLord(faction ?? walkers[0].Faction, new LordJob_ExitMapBest(LocomotionUrgency.Jog, false, true), map, walkers);
             Finish();
         }
@@ -1143,6 +1144,7 @@ namespace ColonyCouncil
             {
                 // The map itself is gone, or no longer the colony's (abandoned, handed over): nothing to tell.
                 phase = CampPhase.Over;
+                if (LordAlive) Lords.EndIfEmpty(lord);
                 CampTracker.Instance?.Ended(this);
                 return;
             }
@@ -1178,6 +1180,8 @@ namespace ColonyCouncil
             {
                 CouncilLog.ErrorOnce("camp clearing up", e);
             }
+            // Their group, if nobody is left in it, ends with the camp (Lean/Lords.cs).
+            if (LordAlive) Lords.EndIfEmpty(lord);
             // What they left standing, nobody's, is an old camp's site that another may move into (CampGround.cs).
             CampGrounds.Left(this);
             phase = CampPhase.Over;

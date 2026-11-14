@@ -409,7 +409,7 @@ namespace ColonyCouncil
             var x = ctx.stranger;
             if (PlayOuts.On && PeoplesF.Up(x, map) && x.CanReach(site, PathEndMode.Touch, Danger.Some))
             {
-                x.GetLord()?.RemovePawn(x);
+                Lords.Leave(x);
                 LordMaker.MakeNewLord(x.Faction, new LordJob_VisitOnErrand(x.Faction, site, 5 * GenDate.TicksPerHour), map, new List<Pawn> { x });
                 if (PeoplesE.Start(x, PeoplesF.RaiseJob, site, null, 2 * GenDate.TicksPerHour)) return;
             }
@@ -533,7 +533,7 @@ namespace ColonyCouncil
             var x = ctx.stranger;
             if (PlayOuts.On && PeoplesF.Up(x, map) && x.CanReach(mast, PathEndMode.Touch, Danger.Some))
             {
-                x.GetLord()?.RemovePawn(x);
+                Lords.Leave(x);
                 LordMaker.MakeNewLord(x.Faction, new LordJob_VisitOnErrand(x.Faction, mast.Position, 4 * GenDate.TicksPerHour), map, new List<Pawn> { x });
                 if (PeoplesE.Start(x, PeoplesF.ClimbJob, mast, null, 1500)) return;
             }

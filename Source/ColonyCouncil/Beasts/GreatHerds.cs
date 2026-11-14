@@ -341,7 +341,7 @@ namespace ColonyCouncil
             Lord lord;
             try
             {
-                foreach (var h in runners) h.GetLord()?.RemovePawn(h);
+                Lords.Leave(runners);
                 lord = LordMaker.MakeNewLord(null, new LordJob_ExitMapNear(edge, LocomotionUrgency.Sprint, 12f, false, false), map, runners);
             }
             catch (System.Exception e)

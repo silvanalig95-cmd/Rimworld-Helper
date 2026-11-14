@@ -256,7 +256,7 @@ namespace ColonyCouncil
             }
             setup.onMap = true;
             // Out of the war band's group before they join the camp's.
-            foreach (var p in here) b.lord.RemovePawn(p);
+            Lords.Leave(b.lord, here);
             var camp = tracker.Start(setup);
             if (camp == null)
             {

@@ -146,7 +146,7 @@ namespace ColonyCouncil
             try
             {
                 if (x.InMentalState) x.MentalState?.RecoverFromState();
-                x.GetLord()?.RemovePawn(x);
+                Lords.Leave(x);
                 LordMaker.MakeNewLord(null, new LordJob_ExitMapNear(x.Position, LocomotionUrgency.Jog, 12f, false, false), x.Map, new List<Pawn> { x });
                 if (f == null)
                 {

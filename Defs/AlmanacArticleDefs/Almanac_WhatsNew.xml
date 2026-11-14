@@ -31,7 +31,7 @@ When you load a save after an update, a letter lists the newest round once. The 
     <rounds>
 
       <li>
-        <version>0.231.1</version>
+        <version>0.231.2</version>
         <date>14 November 2026</date>
         <title>The best meals on the shelf</title>
         <points>
@@ -39,6 +39,17 @@ When you load a save after an update, a letter lists the newest round once. The 
           <li>The best at hand now shows for meals too, with drinks, desserts and food eaten only when starving left out of the ranking.</li>
           <li>Meals are ranked the way colonists choose them, so a simple meal comes before a survival pack and a fine meal and a fine bake count alike.</li>
           <li>A reserved kind is now also brought from storage of the shelf's own priority, never from a higher one, and the shelf's list says when it is only kept in higher storage.</li>
+        </points>
+      </li>
+
+      <li>
+        <version>0.231.1</version>
+        <date>14 November 2026</date>
+        <title>No empty groups left behind</title>
+        <points>
+          <li>Visitors, war parties, camps and others moved from one group to another no longer leave the old group behind, empty and running in the background for the rest of the game.</li>
+          <li>Saves that already hold such empty groups of Rimfolk's are cleared when you load them, and the log names each group that was ended.</li>
+          <li>The game's own groups and other mods' groups are only ended when Rimfolk itself emptied them, the way the game ends a group that lost its last member.</li>
         </points>
       </li>
 

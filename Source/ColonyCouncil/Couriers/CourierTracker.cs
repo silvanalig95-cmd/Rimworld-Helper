@@ -588,7 +588,7 @@ namespace ColonyCouncil
             try
             {
                 x.jobs?.StopAll();
-                x.GetLord()?.RemovePawn(x);
+                Lords.Leave(x);
                 x.roping?.BreakAllRopes();
                 if (x.playerSettings != null && !x.RaceProps.Humanlike) x.playerSettings.Master = null;
                 if (t.fetchPrisoner)
@@ -624,7 +624,7 @@ namespace ColonyCouncil
                 else
                 {
                     // An animal given back walks off by itself.
-                    x.GetLord()?.RemovePawn(x);
+                    Lords.Leave(x);
                     x.roping?.BreakAllRopes();
                     if (x.playerSettings != null) x.playerSettings.Master = null;
                     var to = t.preferred ?? t.faction;
@@ -875,7 +875,7 @@ namespace ColonyCouncil
             foreach (var a in beasts)
             {
                 if (a == null || !a.Spawned || a.Dead || a.Downed || a.Faction == null || a.Faction == Faction.OfPlayer) continue;
-                a.GetLord()?.RemovePawn(a);
+                Lords.Leave(a);
                 LordMaker.MakeNewLord(a.Faction, new LordJob_ExitMapBest(Pace.Errand, false, true), a.Map, new List<Pawn> { a });
             }
         }

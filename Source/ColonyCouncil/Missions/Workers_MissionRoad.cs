@@ -139,7 +139,7 @@ namespace ColonyCouncil
                     // The pilgrim walks with the colony's caravan from here.
                     if (x.Spawned)
                     {
-                        x.GetLord()?.RemovePawn(x);
+                        Lords.Leave(x);
                         x.DeSpawn();
                     }
                     Arrivals.Hold(x);
@@ -478,7 +478,7 @@ namespace ColonyCouncil
                     Stories.LostFound(m, x, finder);
                     m.due = now + Mathf.RoundToInt(Rand.Range(0.3f, 0.6f) * GenDate.TicksPerDay);
                     // They follow their finder back to the colony and wait there for their family.
-                    x.GetLord()?.RemovePawn(x);
+                    Lords.Leave(x);
                     var spot = Avail.ColonyBuildings(map, d => d.defName == "PartySpot" || d.defName == "Campfire").FirstOrDefault()?.Position ?? finder.Position;
                     LordMaker.MakeNewLord(m.faction, new LordJob_VisitOnErrand(m.faction, spot, GenDate.TicksPerDay * 2), map, new List<Pawn> { x });
                     string line = Line(More?.ready, m, map, null, TextUtil.DaysString(m.due - now));
@@ -488,7 +488,7 @@ namespace ColonyCouncil
                 if (now >= m.deadline)
                 {
                     // Their own searchers found them first.
-                    x.GetLord()?.RemovePawn(x);
+                    Lords.Leave(x);
                     Arrivals.SendAway(new[] { x });
                     Missions.Goodwill(m, -m.penalty);
                     Missions.Finish(m, MissionState.Failed, "searchers", null);
@@ -509,7 +509,7 @@ namespace ColonyCouncil
             if (lord == null) foreach (var p in kin.Where(p => !p.Spawned)) Arrivals.Discard(p);
             if (x.Spawned && x.Map == map)
             {
-                x.GetLord()?.RemovePawn(x);
+                Lords.Leave(x);
                 if (lord != null && lord.CanAddPawn(x)) lord.AddPawn(x);
                 else Arrivals.SendAway(new[] { x });
             }

@@ -230,7 +230,7 @@ namespace ColonyCouncil
             {
                 if (x.HostFaction != Faction.OfPlayer)
                 {
-                    x.GetLord()?.RemovePawn(x);
+                    Lords.Leave(x);
                     x.guest?.SetGuestStatus(Faction.OfPlayer);
                 }
                 if (x.InBed() || x.CurJobDef == JobDefOf.LayDown) return;

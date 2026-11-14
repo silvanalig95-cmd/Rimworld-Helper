@@ -248,7 +248,7 @@ namespace ColonyCouncil
             if (!RCellFinder.TryFindBestExitSpot(bearer, out var edge, TraverseMode.ByPawn)) return false;
             try
             {
-                bearer.GetLord()?.RemovePawn(bearer);
+                Lords.Leave(bearer);
                 var j = JobMaker.MakeJob(job, what, edge);
                 j.count = 1;
                 bearer.jobs.StartJob(j, JobCondition.InterruptForced, null, false, true);
@@ -456,7 +456,7 @@ namespace ColonyCouncil
             if (bed == null) return;
             try
             {
-                p.GetLord()?.RemovePawn(p);
+                Lords.Leave(p);
                 p.jobs.StartJob(JobMaker.MakeJob(JobDefOf.LayDown, bed), JobCondition.InterruptForced, null, false, true);
             }
             catch (Exception e)
@@ -490,7 +490,7 @@ namespace ColonyCouncil
                         var job = FieldSickhouse.CarryInJob;
                         if (bed != null && job != null)
                         {
-                            bearer.GetLord()?.RemovePawn(bearer);
+                            Lords.Leave(bearer);
                             var j = JobMaker.MakeJob(job, p, bed);
                             j.count = 1;
                             bearer.jobs.StartJob(j, JobCondition.InterruptForced, null, false, true);

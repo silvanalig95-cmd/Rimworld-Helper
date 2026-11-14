@@ -68,7 +68,7 @@ namespace ColonyCouncil
                 if (mech != null && mech.Spawned && mech.Map == map)
                 {
                     v.group.Remove(mech);
-                    mech.GetLord()?.RemovePawn(mech);
+                    Lords.Leave(mech);
                     mech.SetFaction(Faction.OfPlayer);
                     if (on.relations != null && MechanitorUtility.GetOverseer(mech) == null) on.relations.AddDirectRelation(PawnRelationDefOf.Overseer, mech);
                 }

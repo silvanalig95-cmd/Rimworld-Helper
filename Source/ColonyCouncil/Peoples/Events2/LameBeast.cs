@@ -258,7 +258,7 @@ namespace ColonyCouncil
                 var young = hc.group.FirstOrDefault(p => p != null && p.RaceProps.Animal && p.Spawned && !p.Dead);
                 if (young != null)
                 {
-                    young.GetLord()?.RemovePawn(young);
+                    Lords.Leave(young);
                     young.SetFaction(Faction.OfPlayer);
                     if (hc.a != null && !hc.a.Dead && young.playerSettings != null) young.playerSettings.Master = hc.a;
                 }

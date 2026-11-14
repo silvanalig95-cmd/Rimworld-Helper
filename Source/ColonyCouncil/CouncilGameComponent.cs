@@ -266,6 +266,8 @@ namespace ColonyCouncil
                     CouncilLog.ErrorOnce("vegetarian and carnivore simple meals in older policies and storage", e);
                 }
             }
+            // Rimfolk's groups an older version left with nobody in them, ticking for good: ended now (Lean/Lords.cs).
+            Safe("empty groups left in the save", () => Lords.Sweep());
             // An older save's ties (grudges, guest kin, the scenario's debt) go into the world ledger, now the homes are known.
             try
             {

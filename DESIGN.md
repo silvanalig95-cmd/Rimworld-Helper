@@ -4784,7 +4784,7 @@ configured to store it"), and a stack marked to move out that no other storage t
   by the game's own words), the queued haul starting after the first job and its reservations held between, the haul
   aside's cell beside a shelf, the stack set down being left alone while the slot waits, and LWM's Deep Storage cells.
 
-**The best meals on a reserved shelf** (the player's report, 14 November 2026; released 0.231.1): "i think the shelf
+**The best meals on a reserved shelf** (the player's report, 14 November 2026; released 0.231.2): "i think the shelf
 reservation still don't prioritize the "best" meal, right? it's now filled with simple meals & bakes and i also have fine
 meals in the fridge. it should always take the best or the meal that pawns are going to prioritize". "Any meals" took
 whatever came first and nothing ever put a better kind in a lesser one's place; "the best at hand" never showed for
@@ -13417,7 +13417,7 @@ chains, nemeses, camps, play-outs, the fights pass and the worn-out episode read
 | 107 | The region's hour (World/Region/RegionBook.cs; with "New towns' faces" on, only while a town is being founded within reach; on a tick of the hour's first 250-tick stretch that no other pass uses, `Sched.HourlyOnCycle`, since the hour's own ticks are all taken 90 apart): each founding gets its founder (two made a day at most), its line in the news when begun, and its faces when built (its record, two founding families, the news line, the full welcome or the founder's letter) | per founding (six at most): a founder made now and then, a few ledger writes |
 | 157 | Council: fights and losses, decrees, wish upkeep, promises kept (every other hour), event wishes, new wishes | per home map (a fight going on?), per open wish, per granted wish still watched (its own check, and a look at plans being built only when something is missing); a new wish rolls once, and only when it comes does it ask every wish of every colonist |
 | 327 | A camp's hour (only while a camp is there) | the camp's members, trade, fees, its day's event |
-| 502 | Council's day, first half (first hour of the day only): trust, standards, decree trust and petitions, anniversaries, names, journals, offices | per colonist (their memories, for the journal) |
+| 502 | Council's day, first half (first hour of the day only): Rimfolk's groups found with nobody in them ended (Lean/Lords.cs, also on loading), trust, standards, decree trust and petitions, anniversaries, names, journals, offices | per lord on every map (three numbers each), per colonist (their memories, for the journal) |
 | 677 | Health stories, the colony's part (with convalescence or reputation on): the cases of dangerous illness; pruning in the first hour of the day | per case (each colonist's part runs in its slice, below) |
 | 852 | Council's day, second half (first hour of the day only): the social web, social events, life goals, secrets, vendettas, quirks, legacy, the colony's ways, marks on people's characters (illness, hunger, addiction, mastery, faith, peace), traits that change (the watches, then at most one change), the links between systems (the physician's rounds, the herdmaster, setbacks counted), the day's history sample, trust effects, bitter colonists | per pair of colonists (opinions, ties, circles), per colonist and quirk def |
 | 917 | Links with other mods (only with one there): water and mending for strain and recovery | per colonist |

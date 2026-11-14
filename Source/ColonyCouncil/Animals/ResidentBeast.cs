@@ -501,7 +501,7 @@ namespace ColonyCouncil
             if (x == null || x.Dead || !x.Spawned || x.Faction != null || x.Map == null) return;
             try
             {
-                x.GetLord()?.RemovePawn(x);
+                Lords.Leave(x);
                 LordMaker.MakeNewLord(null, new LordJob_ExitMapNear(x.Position, LocomotionUrgency.Jog, 14f), x.Map, new List<Pawn> { x });
             }
             catch (System.Exception e)

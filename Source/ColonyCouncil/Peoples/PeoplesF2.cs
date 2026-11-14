@@ -88,7 +88,7 @@ namespace ColonyCouncil
             if (PlayOuts.On && PeoplesF.Up(x, map) && stops.Count > 0)
             {
                 Census.Begin(x, ctx.faction, (ctx as HappeningContext)?.incident);
-                x.GetLord()?.RemovePawn(x);
+                Lords.Leave(x);
                 LordMaker.MakeNewLord(x.Faction, new LordJob_VisitOnErrand(x.Faction, PeoplesD.GateSpot(map) ?? stops[0].Cell, 6 * GenDate.TicksPerHour), map, new List<Pawn> { x });
                 if (PeoplesE.Start(x, PeoplesF.CountJob, stops[0], stops.Skip(1).ToList(), PeoplesFMath.CensusTicks)) return;
             }

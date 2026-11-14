@@ -322,7 +322,7 @@ namespace ColonyCouncil
             {
                 if (young != null && Rand.Chance(PeopleEvents3Math.YoungBeastChance))
                 {
-                    young.GetLord()?.RemovePawn(young);
+                    Lords.Leave(young);
                     v.group.Remove(young);
                     young.SetFaction(Faction.OfPlayer);
                     if (v.a != null && !v.a.Dead && young.playerSettings != null) young.playerSettings.Master = v.a;

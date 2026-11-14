@@ -471,7 +471,7 @@ namespace ColonyCouncil
             if (left.Count == 0) return;
             try
             {
-                foreach (var a in left) a.GetLord()?.RemovePawn(a);
+                Lords.Leave(left);
                 if (toColony)
                 {
                     foreach (var a in left) a.SetFaction(Faction.OfPlayer);
@@ -497,7 +497,7 @@ namespace ColonyCouncil
             if (a == null) return null;
             try
             {
-                a.GetLord()?.RemovePawn(a);
+                Lords.Leave(a);
                 herd.Remove(a);
                 caught.Remove(a);
                 a.SetFaction(Faction.OfPlayer);
@@ -1094,6 +1094,8 @@ namespace ColonyCouncil
             var camp = CampTracker.Instance?.All.FirstOrDefault(c => c.lord == lord);
             if (lord?.ownedPawns == null || camp == null) return;
             var beasts = lord.ownedPawns.Where(p => p?.RaceProps != null && !p.RaceProps.Humanlike).ToList();
+            // The group itself is not ended here even if only beasts were in it: this runs inside its own turn to flee or
+            // fight, and the camp ends its group when it ends (Camp.Finish).
             try
             {
                 foreach (var b in beasts)

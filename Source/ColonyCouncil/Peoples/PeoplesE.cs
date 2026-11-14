@@ -450,7 +450,7 @@ namespace ColonyCouncil
             var x = ctx.stranger;
             if (PlayOuts.On && PeoplesE.Up(x, map) && x.CanReach(hc.spot, PathEndMode.Touch, Danger.Some))
             {
-                x.GetLord()?.RemovePawn(x);
+                Lords.Leave(x);
                 Verse.AI.Group.LordMaker.MakeNewLord(x.Faction, new LordJob_VisitOnErrand(x.Faction, hc.spot, 4 * GenDate.TicksPerHour), map, new List<Pawn> { x });
                 if (PeoplesE.Start(x, PeoplesE.RodJob, hc.spot, null, 1200)) return;
             }
@@ -668,7 +668,7 @@ namespace ColonyCouncil
             if (PlayOuts.On && PeoplesE.Up(x, map))
             {
                 // Their visit stretched while they plant, and the work itself: one sapling after another.
-                x.GetLord()?.RemovePawn(x);
+                Lords.Leave(x);
                 Verse.AI.Group.LordMaker.MakeNewLord(x.Faction, new LordJob_VisitOnErrand(x.Faction, cells[0], 8 * GenDate.TicksPerHour), map, new List<Pawn> { x });
                 if (PeoplesE.Start(x, PeoplesE.PlantJob, cells[0], cells.Skip(1).Select(c => (LocalTargetInfo)c).ToList(), PeoplesEMath.PlantTicks)) return;
             }

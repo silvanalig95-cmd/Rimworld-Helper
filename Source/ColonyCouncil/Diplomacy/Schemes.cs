@@ -797,7 +797,7 @@ namespace ColonyCouncil
         {
             var map = agent.Map;
             if (map == null) return;
-            agent.GetLord()?.RemovePawn(agent);
+            Lords.Leave(agent);
             LordMaker.MakeNewLord(agent.Faction ?? f, new LordJob_ExitMapBest(LocomotionUrgency.Jog, false, true), map, new List<Pawn> { agent });
         }
 

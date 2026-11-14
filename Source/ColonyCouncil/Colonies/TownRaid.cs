@@ -490,7 +490,7 @@ namespace ColonyCouncil
             {
                 var up = map.mapPawns.SpawnedPawnsInFaction(enemy).Where(p => p.RaceProps.Humanlike && !p.Downed && !p.Dead && !p.IsPrisoner).ToList();
                 if (up.Count == 0) return;
-                foreach (var p in up) p.GetLord()?.RemovePawn(p);
+                Lords.Leave(up);
                 LordMaker.MakeNewLord(enemy, new LordJob_ExitMapBest(LocomotionUrgency.Jog, true, true), map, up);
             }
             catch (Exception e)

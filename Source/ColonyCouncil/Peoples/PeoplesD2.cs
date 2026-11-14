@@ -468,7 +468,7 @@ namespace ColonyCouncil
             var pet = ctx.pet;
             if (option == 2 && pet != null && pet.Spawned && !pet.Dead && pet.Faction != Faction.OfPlayer)
             {
-                pet.GetLord()?.RemovePawn(pet);
+                Lords.Leave(pet);
                 LordMaker.MakeNewLord(pet.Faction, new LordJob_ExitMapBest(Pace.Errand, false, true), pet.Map, new List<Pawn> { pet });
             }
             return outcome;
@@ -504,7 +504,7 @@ namespace ColonyCouncil
             if (pet == null || pet.Dead || !pet.Spawned) return;
             try
             {
-                pet.GetLord()?.RemovePawn(pet);
+                Lords.Leave(pet);
                 pet.SetFaction(Faction.OfPlayer);
                 if (ctx.a != null && !ctx.a.Dead && ctx.a.IsColonist && pet.playerSettings != null && pet.training != null && pet.training.HasLearned(TrainableDefOf.Obedience))
                     pet.playerSettings.Master = ctx.a;

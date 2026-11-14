@@ -124,7 +124,7 @@ namespace ColonyCouncil
             {
                 try
                 {
-                    p.GetLord()?.RemovePawn(p);
+                    Lords.Leave(p);
                 }
                 catch (Exception e)
                 {

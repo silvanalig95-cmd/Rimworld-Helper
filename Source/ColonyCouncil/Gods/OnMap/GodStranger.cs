@@ -284,7 +284,7 @@ namespace ColonyCouncil
                 try
                 {
                     var f = x.Faction;
-                    x.GetLord()?.RemovePawn(x);
+                    Lords.Leave(x);
                     hosted = InvitedGuests.HandOver(ArrivalWhy.NotableGuest, new List<Pawn> { x }, s.map, f, spot, hours + 3f);
                     if (hosted == null) LordMaker.MakeNewLord(f, new LordJob_VisitOnErrand(f, spot, Mathf.RoundToInt((hours + 3f) * GenDate.TicksPerHour)), s.map, new List<Pawn> { x });
                 }
@@ -300,7 +300,7 @@ namespace ColonyCouncil
                 try
                 {
                     var f = x.Faction;
-                    x.GetLord()?.RemovePawn(x);
+                    Lords.Leave(x);
                     LordMaker.MakeNewLord(f, new LordJob_VisitOnErrand(f, spot, Mathf.RoundToInt((hours + 3f) * GenDate.TicksPerHour)), s.map, new List<Pawn> { x });
                 }
                 catch (Exception e)
@@ -624,7 +624,7 @@ namespace ColonyCouncil
                 b.Due(s.phaseDue);
                 try
                 {
-                    x.GetLord()?.RemovePawn(x);
+                    Lords.Leave(x);
                     LordMaker.MakeNewLord(x.Faction, new LordJob_ExitMapBest(LocomotionUrgency.Walk, false, false), x.Map, new List<Pawn> { x });
                 }
                 catch (Exception e)
@@ -657,7 +657,7 @@ namespace ColonyCouncil
             // Drawn near: they stop, turn, and show who they were.
             try
             {
-                x.GetLord()?.RemovePawn(x);
+                Lords.Leave(x);
                 x.jobs?.StopAll();
                 var wait = JobMaker.MakeJob(JobDefOf.Wait, x);
                 wait.expiryInterval = GodsOnMapMath.FarewellTicks;
@@ -720,7 +720,7 @@ namespace ColonyCouncil
             {
                 try
                 {
-                    x.GetLord()?.RemovePawn(x);
+                    Lords.Leave(x);
                     x.jobs?.StopAll();
                 }
                 catch (Exception e)
@@ -781,7 +781,7 @@ namespace ColonyCouncil
                 var lord = x.GetLord();
                 if (lord != null && InvitedGuests.Hosted(lord) && InvitedGuests.Leave(lord)) return;
                 if (lord?.CurLordToil is LordToil_ExitMap) return;
-                lord?.RemovePawn(x);
+                Lords.Leave(lord, x);
                 LordMaker.MakeNewLord(x.Faction, new LordJob_ExitMapBest(Pace.Errand, false, true), x.Map, new List<Pawn> { x });
             }
             catch (Exception e)
@@ -799,7 +799,7 @@ namespace ColonyCouncil
                 if (x.Spawned)
                 {
                     FleckMaker.ThrowLightningGlow(x.DrawPos, x.Map, 2.5f);
-                    x.GetLord()?.RemovePawn(x);
+                    Lords.Leave(x);
                     x.DeSpawn();
                 }
                 if (!x.Dead) GodAvatar.Unmake(x);
