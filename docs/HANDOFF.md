@@ -76,6 +76,25 @@ tree at once, alongside whatever runs. Each piece is merged as its own release, 
     are storylines across multiple quests". When asked: proposed first, a list of quests by the peoples, the gods and the
     region, and storylines that run over several quests (a chain whose next quest depends on how the last went), built
     on the game's own quests (QuestScriptDef) and Rimfolk's chains, letters and missions.
+- **To do when the player asks (14 November 2026): the gods, each their own (proposal first).** The player: "So for the
+  gods, I still kind of want you to create an image or a symbol or use one for each god, because when I look at the gods
+  page now, I honestly, for most, I don't really understand what they're supposed to represent, since the text is also,
+  you know, not straightforward and sometimes a bit AI gibberishy." Then: the status of the gods and the to-dos left;
+  "each God's events and interactions and effects, etc., you know, feel unique to the god, not like every god's effect
+  is kind of similar, but it's just a different name attached to it" (the presence in the bottom right "is kind of the
+  same description for this effect for each different god": it is, one `Rimfolk_GodPresence` condition, "The sky has
+  taken a god's color, and the wind has died."); "I'm still a bit confused about the altars and what they do exactly
+  ... I had an event a few times already where I think buffalo wool is, I don't know, donated or something to a god at
+  an altar. I don't really know what comes of this event and why buffalo wool"; pawns who "develop kind of a
+  relationship in a way, or rather a belief to gods ... the more they pray and interact to a god, that they kind of,
+  yeah, get a stronger belief in that god"; "how we adapt the ideology system to integrate and relate to our gods
+  instead of ... the ones that are created by the game", or, if they can't be, the ideoligion's deities kept as "some
+  sort of saints or important characters ... a middle ground between God and the pawns and the ideology". Being
+  drafted: `docs/gods-next-proposals.md` (the facts, then A symbols with a draft sheet `docs/gods-symbols-draft.png`, B
+  plain words, C each god its own presence, happenings, impact and walking form, D shrines and offerings made clear, E
+  each pawn's belief in each god, F Ideology, G mods, H questions and rounds). Shown to the player first; nothing built
+  until they pick. Also open from before: Mog remade as an Egyptian cat god; more Old Powers-style events with the gods
+  and RoM (both in the 13 November entry above).
 - **To do when the player asks (14 November 2026): the peoples' descriptions rewritten.** The player: "i really like the
   different factions you created, but when i look at their faction and read the description text with their history
   etc., it really reads like AI gibberish and I don't understand what is really meant. also they all follow the same
