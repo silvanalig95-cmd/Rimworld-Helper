@@ -118,7 +118,12 @@ tree at once, alongside whatever runs. Each piece is merged as its own release, 
   one release each (file lists in the lead's scratchpad `textpass/`): event cards 1 to 3 (`Defs/IncidentDefs`, by
   size), messages and interface 1 to 4 (`Languages/English/Keyed`, the gods' files left for the gods' round), advice
   and building with the storytellers and scenarios (`RoomTemplateDefs`, `DefenseTemplateDefs`, `DefenseStepDefs`,
-  `AdvisorSignalDefs`, `MoodHintDefs`' advice, `StorytellerDefs`, `Scenarios`).
+  `AdvisorSignalDefs`, `MoodHintDefs`' advice, `StorytellerDefs`, `Scenarios`). The player added, with a screenshot of the top-of-screen
+  message "The council called a snow day, and the work waited. The yard was full of snowball fights by breakfast, and
+  of people warming their hands at the fire by noon." (`Council_Events_Land.xml`, event cards batch 1): "also pop ups up
+  here", so every message at the top of the screen is in the pass: those in Keyed and the event cards are in their
+  batches, and a ninth batch takes the rest (def text printed through `Tell.Message` or `Messages.Message` elsewhere,
+  such as the world situations' `<news>`).
 - **Dropped (14 November 2026): sending visitors away.** The player: "so asking visitors to leave is not necessary, as i
   found the already imlpemented function".
 - **Being built (14 November 2026, the player's go: "do the one that visitors fill their idle hours, more old powers style events, making animals more visible first, but you can do as you like if simultanious tasks make more sense"): visitors busy with their own day.** The player: "guests should spend
