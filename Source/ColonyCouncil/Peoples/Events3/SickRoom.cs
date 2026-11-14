@@ -78,7 +78,7 @@ namespace ColonyCouncil
         }
 
         /// <summary>The sick room set going: the sister keeps it three days.</summary>
-        public static Visit Begin(HappeningContext ctx)
+        public static Visit Begin(HappeningContext ctx, Pawn doctor = null)
         {
             var t = CouncilGameComponent.Instance?.happenings;
             var room = RoomFor(ctx?.map);
@@ -88,7 +88,7 @@ namespace ColonyCouncil
             var bed = Beds(room).FirstOrDefault();
             if (bed == null) return null;
             int until = Now + PeopleEvents3Math.SickRoomDays * GenDate.TicksPerDay;
-            var v = t.AddVisit(Kind, ctx.incident, ctx.map, x, null, null, until);
+            var v = t.AddVisit(Kind, ctx.incident, ctx.map, x, doctor, null, until);
             v.cell = bed.Position;
             v.text = ctx.faction.GetUniqueLoadID();
             b.sickRoomMap = ctx.map.uniqueID;
@@ -97,8 +97,7 @@ namespace ColonyCouncil
             {
                 Hosting.Provision(x, PeopleEvents3Math.SickRoomDays + 1f);
                 // Her stay stretched to the room's days, in it.
-                x.GetLord()?.RemovePawn(x);
-                Arrivals.Visit(new List<Pawn> { x }, ctx.map, ctx.faction, bed.Position, PeopleEvents3Math.SickRoomDays * 24f + 4f);
+                PeoplesD.Gather(new List<Pawn> { x }, ctx.faction, bed.Position, PeopleEvents3Math.SickRoomDays * 24f + 4f);
             }
             catch (Exception e)
             {
@@ -278,6 +277,8 @@ namespace ColonyCouncil
             {
                 if (f != null && f.HasGoodwill && !f.IsPlayer) WorldSituationWorker.Goodwill(f, PeopleEvents3Math.SickRoomGoodwill, false);
                 FactionMemory.Note(f, "relief", "CC_PEv3_SickRoomDeed".Translate().Resolve());
+                // The colony's doctor who walked the rounds with her learned the order's ways.
+                if (v.a != null && !v.a.Dead) v.a.skills?.Learn(SkillDefOf.Medicine, PeopleEvents3Math.RoundsXp, true);
                 PeoplesG.SayLine(x, v.incident, "goes");
                 Tell.Message(NewsKind.Health, Importance.Notable, v.map, "CC_PEv3_SickRoomOver".Translate(x.Named("SISTER"), (f?.Name ?? "?").Named("FACTION")).Resolve(),
                     new LookTargets(x), MessageTypeDefOf.PositiveEvent);
@@ -350,6 +351,9 @@ namespace ColonyCouncil
     /// <summary>The sick room given: three days of her rounds (SickRoom.Begin); from the industrial age she takes the colony's medicine too.</summary>
     public class DilemmaEffect_SickRoom : DilemmaEffect
     {
+        /// <summary>The colony's doctor (B) walks the rounds with her, and learns the order's ways by the end.</summary>
+        public bool doctor;
+
         public override bool ChanceEach => false;
 
         public override void Describe(DilemmaContext ctx, ImpactSheet sheet)
@@ -362,6 +366,7 @@ namespace ColonyCouncil
                 sheet.Add(ImpactKind.Health, -1, "CC_PEv3_Impact_SisterRisk".Translate(hc.stranger.LabelShort, Mathf.RoundToInt(Harm.Chance(HarmKinds.Physician, PeopleEvents3Math.SisterCatch) * 100f * PeopleEvents3Math.SickRoomDays)).Resolve(),
                     "CC_PEv3_Impact_SisterRiskBrief".Translate().Resolve(), "pev3sisterrisk");
             if (hc.faction != null) sheet.Goodwill(hc.faction, PeopleEvents3Math.SickRoomGoodwill);
+            if (doctor && hc.b != null) DilemmaImpact.Xp(sheet, hc.b.LabelShort, hc.b.ThingID, SkillDefOf.Medicine, PeopleEvents3Math.RoundsXp, false);
             if (PeopleEvents.AgeOf(hc.faction) >= 2 && PlayCarry.Have(hc.map, "medicine", null) > 0)
                 sheet.Goods(-1, PlayCarry.Label("medicine", null), Mathf.Min(PeopleEvents3Math.SickRoomMedicine, PlayCarry.Have(hc.map, "medicine", null)), "medicine");
         }
@@ -370,7 +375,7 @@ namespace ColonyCouncil
         {
             var hc = ctx as HappeningContext;
             if (hc?.map == null) return;
-            if (SickRoom.Begin(hc) == null || PeopleEvents.AgeOf(hc.faction) < 2) return;
+            if (SickRoom.Begin(hc, doctor ? hc.b : null) == null || PeopleEvents.AgeOf(hc.faction) < 2) return;
             // From the industrial age she works with the colony's own medicine, carried to her.
             int have = PlayCarry.Have(hc.map, "medicine", null);
             if (have <= 0) return;

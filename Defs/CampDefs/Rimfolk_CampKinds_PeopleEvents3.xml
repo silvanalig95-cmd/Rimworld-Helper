@@ -1,0 +1,484 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    The peoples' own camps of round 3 (Source/ColonyCouncil/Peoples/Events3/RoadGang.cs, FieldSickhouse.cs, SpringCalving.cs;
+    each a camp kind with ways of its own, Camps/CampWorker.cs): the road league's road gang laying a new road across the
+    colony's land (item 4), the hospitaller order's field sickhouse (item 8), and the herding folk's spring calving (item
+    13). None comes on the camps' own draw (weight 0): each comes when the colony answers its event (Rimfolk_Evt_RoadGang,
+    Rimfolk_Evt_FieldSickhouse, Rimfolk_Evt_SpringCalving).
+  -->
+
+  <!-- ===================== 4. The road gang (the road league) ===================== -->
+
+  <ColonyCouncil.CampKindDef>
+    <defName>Rimfolk_Camp_RoadGang</defName>
+    <label>road gang</label>
+    <workerClass>ColonyCouncil.CampWorker_RoadGang</workerClass>
+    <arrives>7~12</arrives>
+    <calling>traders</calling>
+    <weight>0</weight>
+    <people>5~6</people>
+    <days>8~12</days>
+    <ages>20~60</ages>
+    <chopsPerDay>0.4</chopsPerDay>
+    <hireChance>0.05</hireChance>
+    <joinChance>0.02</joinChance>
+    <helpChance>0.1</helpChance>
+    <help>
+      <li>tales</li>
+    </help>
+    <buys>
+      <li>Meal</li>
+      <li>RawFood</li>
+    </buys>
+    <pride>0.3</pride>
+    <breakTerms>0.05</breakTerms>
+    <tensionPerDay>0.5</tensionPerDay>
+    <extendChance>0.05</extendChance>
+    <situationKinds>
+      <li>road</li>
+    </situationKinds>
+    <structures>
+      <li><role>fire</role><defs><li>Campfire</li></defs></li>
+      <li><role>light</role><defs><li>TorchLamp</li></defs></li>
+    </structures>
+    <sleep>Tents</sleep>
+    <works><li>Chop</li><li>Haul</li></works>
+    <campGoods>
+      <li><defs><li>WoodLog</li></defs><count>20~40</count><at>wall</at></li>
+    </campGoods>
+    <titles>
+      <li>The road gang</li>
+      <li>[ws:road] A gang for {SITUATION}</li>
+    </titles>
+    <texts>
+      <li>{FACTION}'s road gang is walking in to the edge of the colony's land {PLACE}: {X_nameDef} the waymaster, the labourers with their tools, and two road wardens at the back. They will lay {FLOOR} a stretch a day.</li>
+      <li>[ws:road] With {SITUATION} going through the region, {FACTION}'s road gang has come to lay its stretch across the colony's land, camped at the edge {PLACE}.</li>
+    </texts>
+    <settled>
+      <li>The road gang's tents are up at the edge {PLACE}, the tools stacked, and the waymaster has paced out the first day's stretch of {FLOOR}.</li>
+      <li>{FACTION}'s road gang has made camp {PLACE}; the wardens walk the line while the labourers lay the first of the road.</li>
+    </settled>
+    <joinTexts>
+      <li>{X_nameDef} of the road gang has watched the colony's people at work, and asks whether it could use a hand who knows how to lay a road.</li>
+    </joinTexts>
+    <farewell>
+      <li>[done,spur] The road gang has gone on up the line, the road of {FLOOR} laid edge to edge across the colony's land and a spur to its gate.</li>
+      <li>[round] The road gang packed up and went, the road laid round the colony's land the long way, and {X_nameDef} did not look back at the gate.</li>
+      <li>[done,hand] {X_nameDef} shook hands with the colony's builder before the gang went on, the road laid edge to edge behind them.</li>
+      <li>[done] The road gang has gone on up the line, the road of {FLOOR} laid edge to edge across the colony's land.</li>
+      <li>The road gang's tents are struck and the gang gone on, and the road stays where they laid it.</li>
+    </farewell>
+    <lines>
+      <li>A stretch a day, rain or shine.</li>
+      <li>Straight as the waymaster's chain.</li>
+      <li>One for the ditch and one for the bed.</li>
+      <li>Mind the line, the wardens are watching it.</li>
+      <li>The carts will thank us for this.</li>
+    </lines>
+    <momentLines>
+      <li>[road] Another stretch down, and the next one waiting.</li>
+      <li>[road] Tamp it down, and then tamp it again.</li>
+    </momentLines>
+    <asks>
+      <li>
+        <key>food</key>
+        <label>Sell them a day's food (8 meals)</label>
+        <tip>One of the colony carries eight meals out to the road gang's camp, and they pay their worth and a tenth more, left at the edge of their camp.</tip>
+        <theyAsk>true</theyAsk>
+        <askTexts>
+          <li>{X_nameDef}, the road gang's waymaster, has come to the gate. Laying road is hungry work, {X_pronoun} says, and asks whether the colony would sell them a day's food: eight meals, at their worth and a tenth more.</li>
+        </askTexts>
+        <refuseLabel>We need them</refuseLabel>
+        <refused>
+          <li>{X_nameDef} says the gang will eat from the carts, then.</li>
+        </refused>
+        <refuseTension>2</refuseTension>
+        <tension>-3</tension>
+        <deed>traded</deed>
+        <outcomes>
+          <li>Eight meals are going out to the road gang's camp, and the silver will be left at its edge.</li>
+        </outcomes>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_RoadAsk"><what>food</what></li>
+        </effects>
+      </li>
+      <li>
+        <key>builder</key>
+        <label>Lend them {A_nameDef} for the day</label>
+        <tip>The colony's best builder works the rest of the day on the road beside the gang, and the waymaster pays a day's wage at its end. Practice at construction.</tip>
+        <theyAsk>true</theyAsk>
+        <skill>Construction</skill>
+        <askTexts>
+          <li>{X_nameDef}, the road gang's waymaster, has come to the gate. The gang is a pair of hands short, {X_pronoun} says, and asks whether the colony would lend {A_nameDef} for the day, for a day's wage.</li>
+        </askTexts>
+        <refuseLabel>We need {A_objective} here</refuseLabel>
+        <refused>
+          <li>{X_nameDef} says the gang will manage a shorter stretch, then.</li>
+        </refused>
+        <refuseTension>2</refuseTension>
+        <tension>-4</tension>
+        <warm>2</warm>
+        <deed>lentHands</deed>
+        <outcomes>
+          <li>{A_nameDef} is going out to the road to work beside the gang until evening.</li>
+        </outcomes>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_RoadAsk"><what>builder</what></li>
+        </effects>
+      </li>
+      <li>
+        <key>spur</key>
+        <label>A spur to our gate, for silver</label>
+        <tip>The gang lays a spur of road from the colony's gate to the new road once the day's stretch is down. The colony pays in silver, carried out to their camp.</tip>
+        <tension>-2</tension>
+        <deed>traded</deed>
+        <outcomes>
+          <li>The silver is going out to the road gang, and {X_nameDef} has paced out the spur from the colony's gate.</li>
+        </outcomes>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_RoadAsk"><what>spur</what></li>
+        </effects>
+      </li>
+      <li>
+        <key>spurStone</key>
+        <label>A spur to our gate, for stone</label>
+        <tip>The gang lays a spur of road from the colony's gate to the new road once the day's stretch is down. The colony pays in stone blocks, carried out to their camp.</tip>
+        <tension>-2</tension>
+        <deed>traded</deed>
+        <outcomes>
+          <li>The stone is going out to the road gang, and {X_nameDef} has paced out the spur from the colony's gate.</li>
+        </outcomes>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_RoadAsk"><what>spur</what><stone>true</stone></li>
+        </effects>
+      </li>
+    </asks>
+  </ColonyCouncil.CampKindDef>
+
+  <!-- ===================== 8. A field sickhouse (the hospitaller order) ===================== -->
+
+  <ColonyCouncil.CampKindDef>
+    <defName>Rimfolk_Camp_FieldSickhouse</defName>
+    <label>field sickhouse</label>
+    <workerClass>ColonyCouncil.CampWorker_Sickhouse</workerClass>
+    <arrives>8~14</arrives>
+    <calling>healers</calling>
+    <weight>0</weight>
+    <people>3~4</people>
+    <days>8~12</days>
+    <ages>24~65</ages>
+    <chopsPerDay>0.3</chopsPerDay>
+    <task>Council_CampTend</task>
+    <taskAt>fire</taskAt>
+    <hireChance>0.05</hireChance>
+    <joinChance>0.03</joinChance>
+    <helpChance>0.3</helpChance>
+    <help>
+      <li>medicine</li>
+      <li>tales</li>
+    </help>
+    <buys>
+      <li>Meal</li>
+      <li>RawFood</li>
+    </buys>
+    <pride>0.1</pride>
+    <breakTerms>0.02</breakTerms>
+    <tensionPerDay>0.3</tensionPerDay>
+    <canPay>false</canPay>
+    <extendChance>0.15</extendChance>
+    <leaves>Standing</leaves>
+    <situationKinds>
+      <li>sickness</li>
+      <li>war</li>
+    </situationKinds>
+    <structures>
+      <li><role>fire</role><defs><li>Campfire</li></defs></li>
+      <!-- Aldith's lamp, lit at the hut's door all night. -->
+      <li><role>light</role><defs><li>TorchLamp</li></defs></li>
+      <li><role>table</role></li>
+    </structures>
+    <sleep>Hut</sleep>
+    <works><li>Gather</li></works>
+    <titles>
+      <li>A field sickhouse</li>
+      <li>[ws:sickness] A sickhouse for {SITUATION}</li>
+      <li>A lamp at the door</li>
+    </titles>
+    <texts>
+      <li>Sisters of {FACTION} are walking in with poles and bedding to raise a field sickhouse {PLACE}, {X_nameDef} carrying the order's lamp. Nobody on a sickbed is anyone's enemy, {X_pronoun} told {A_nameDef}.</li>
+      <li>[ws:sickness] With {SITUATION} on the region, {FACTION}'s sisters have come to raise their field sickhouse {PLACE}, a long hut of beds and the lamp at its door.</li>
+    </texts>
+    <settled>
+      <li>The order's long hut stands {PLACE}, beds in a row inside and the lamp lit at its door; {X_nameDef} says it won't go out while they are here.</li>
+      <li>{FACTION}'s field sickhouse is up {PLACE}, and the sisters are boiling linen at the fire for the first of the sick.</li>
+    </settled>
+    <joinTexts>
+      <li>{X_nameDef} of the field sickhouse has seen how the colony treats the sick of strangers, and asks whether it could use someone who nurses.</li>
+    </joinTexts>
+    <farewell>
+      <li>[died] The sisters struck their sickhouse with one fewer than came to it, and blessed the colony's gate as they went; {PATIENTS} of the region's sick lay in the hut while they kept it.</li>
+      <li>[ward] The sisters left the long hut standing for whoever needs it next, and {X_nameDef} thanked the colony's doctor by name at the gate.</li>
+      <li>[helped,many] The order's sisters have gone, the hut left standing and the lamp taken down; {PATIENTS} of the region's sick and wounded were nursed in it, fed from the colony's stores.</li>
+      <li>The order's field sickhouse is quiet, its lamp out, the long hut left standing by the colony for anyone.</li>
+    </farewell>
+    <lines>
+      <li>Nobody on a sickbed is anyone's enemy.</li>
+      <li>The lamp stays lit tonight.</li>
+      <li>Boil it, and boil it again.</li>
+      <li>Three more beds by evening, I think.</li>
+      <li>Sleep now, and drink when you wake.</li>
+    </lines>
+    <momentLines>
+      <li>[round] Bed to bed, and the sickest first.</li>
+      <li>[gift] For the ward, and the lamp.</li>
+    </momentLines>
+    <asks>
+      <li>
+        <key>medicine</key>
+        <label>Send medicine to the ward (8)</label>
+        <tip>One of the colony carries eight of its medicine out to the order's sickhouse for the sick of the region.</tip>
+        <theyAsk>true</theyAsk>
+        <askTexts>
+          <li>{X_nameDef} of the field sickhouse has come to the gate. The order's stores are running thin, {X_pronoun} says, and asks whether the colony could spare medicine for the ward.</li>
+        </askTexts>
+        <refuseLabel>None to spare</refuseLabel>
+        <refused>
+          <li>{X_nameDef} says the order will make do with herbs and prayers.</li>
+        </refused>
+        <refuseTension>3</refuseTension>
+        <tension>-5</tension>
+        <warm>2</warm>
+        <deed>campHelped</deed>
+        <outcomes>
+          <li>Medicine is going out to the order's ward.</li>
+        </outcomes>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>medicine for the ward</label><what>medicine</what><count>8</count><to>Camp</to><who>None</who><steward>false</steward></li>
+          <li Class="ColonyCouncil.DilemmaEffect_SickhouseAsk"><what>medicine</what></li>
+        </effects>
+      </li>
+      <li>
+        <key>food</key>
+        <label>Send food to the ward (12)</label>
+        <tip>One of the colony carries twelve of its meals (or raw food) out to the order's sickhouse to feed the sick of the region. Each people whose sick the colony feeds thinks better of it when the sisters go.</tip>
+        <theyAsk>true</theyAsk>
+        <askTexts>
+          <li>{X_nameDef} of the field sickhouse has come to the gate with an empty pot. The sick eat little, {X_pronoun} says, but they must eat, and asks whether the colony could feed the ward.</li>
+        </askTexts>
+        <refuseLabel>We need it</refuseLabel>
+        <refused>
+          <li>{X_nameDef} says the sisters will share their own bread, then.</li>
+        </refused>
+        <refuseTension>3</refuseTension>
+        <tension>-5</tension>
+        <warm>2</warm>
+        <deed>campHelped</deed>
+        <outcomes>
+          <li>Food is going out to the order's ward.</li>
+        </outcomes>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>food for the ward</label><what>meals+rawfood</what><count>12</count><to>Camp</to><who>None</who><steward>false</steward></li>
+          <li Class="ColonyCouncil.DilemmaEffect_SickhouseAsk"><what>food</what></li>
+        </effects>
+      </li>
+      <li>
+        <key>cloth</key>
+        <label>Send clean cloth to the ward (30)</label>
+        <tip>One of the colony carries thirty cloth out to the order's sickhouse for bandages and bedding.</tip>
+        <theyAsk>true</theyAsk>
+        <askTexts>
+          <li>{X_nameDef} of the field sickhouse has come to the gate. The ward goes through linen faster than the sisters can boil it, {X_pronoun} says, and asks for clean cloth.</li>
+        </askTexts>
+        <refuseLabel>None to spare</refuseLabel>
+        <refused>
+          <li>{X_nameDef} says they will boil what they have twice over.</li>
+        </refused>
+        <refuseTension>2</refuseTension>
+        <tension>-3</tension>
+        <warm>1</warm>
+        <deed>campHelped</deed>
+        <outcomes>
+          <li>Cloth is going out to the order's ward.</li>
+        </outcomes>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>cloth for the ward</label><what>Cloth</what><count>30</count><to>Camp</to><who>None</who><steward>false</steward></li>
+          <li Class="ColonyCouncil.DilemmaEffect_SickhouseAsk"><what>cloth</what></li>
+        </effects>
+      </li>
+      <li>
+        <key>ward</key>
+        <label>Lend {A_nameDef} to the ward for a day</label>
+        <tip>The colony's best doctor works a day in the order's ward on rounds beside the sisters, and learns a great deal; the sickness there may come home with them.</tip>
+        <theyAsk>true</theyAsk>
+        <skill>Medicine</skill>
+        <needs>ward</needs>
+        <askTexts>
+          <li>{X_nameDef} of the field sickhouse has come to the gate. The ward has more sick than sisters, {X_pronoun} says, and asks whether {A_nameDef} would work a day on the rounds; there is a great deal to learn in a ward.</li>
+        </askTexts>
+        <refuseLabel>We can't spare {A_objective}</refuseLabel>
+        <refused>
+          <li>{X_nameDef} says the sisters will go round twice as often, then.</li>
+        </refused>
+        <refuseTension>2</refuseTension>
+        <tension>-6</tension>
+        <warm>3</warm>
+        <deed>lentHands</deed>
+        <outcomes>
+          <li>{A_nameDef} is going over to the order's ward for the day.</li>
+        </outcomes>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_SickhouseAsk"><what>ward</what></li>
+        </effects>
+      </li>
+      <li>
+        <key>ours</key>
+        <label>Ask them to take our sick in</label>
+        <tip>The colony's own sick go to the ward's beds and are dosed with the rest. With the colony's people in and out of the ward, a sickness there may cross to the colony.</tip>
+        <tension>-1</tension>
+        <outcomes>
+          <li>{X_nameDef} will make up beds in the ward for the colony's sick.</li>
+        </outcomes>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_SickhouseAsk"><what>ours</what></li>
+        </effects>
+      </li>
+    </asks>
+  </ColonyCouncil.CampKindDef>
+
+  <!-- ===================== 13. Spring calving (the herding folk) ===================== -->
+
+  <ColonyCouncil.CampKindDef>
+    <defName>Rimfolk_Camp_SpringCalving</defName>
+    <label>calving camp</label>
+    <workerClass>ColonyCouncil.CampWorker_Calving</workerClass>
+    <arrives>8~14</arrives>
+    <calling>herders</calling>
+    <weight>0</weight>
+    <maxAnimals>14</maxAnimals>
+    <people>3~5</people>
+    <days>8~12</days>
+    <ages>16~65</ages>
+    <seasons>
+      <li>Spring</li>
+    </seasons>
+    <chopsPerDay>0.3</chopsPerDay>
+    <task>Council_CampHerd</task>
+    <taskAt>herd</taskAt>
+    <hireChance>0.1</hireChance>
+    <joinChance>0.02</joinChance>
+    <helpChance>0.3</helpChance>
+    <help>
+      <li>milk</li>
+      <li>tales</li>
+    </help>
+    <buys>
+      <li>Feed</li>
+      <li>RoadFood</li>
+    </buys>
+    <pride>0.3</pride>
+    <breakTerms>0.05</breakTerms>
+    <tensionPerDay>0.5</tensionPerDay>
+    <extendChance>0.1</extendChance>
+    <situationKinds>
+      <li>herds</li>
+    </situationKinds>
+    <structures>
+      <li><role>fire</role><defs><li>Campfire</li></defs></li>
+    </structures>
+    <sleep>Tents</sleep>
+    <works><li>Gather</li></works>
+    <campGoods>
+      <li><defs><li>Hay</li></defs><count>20~40</count><at>wall</at></li>
+    </campGoods>
+    <!-- The beasts in calf (those that suit the weather here likelier), the rest of the herd, and the dogs at a herder's heels. -->
+    <animals>
+      <li><kinds><li>Cow</li><li>Muffalo</li><li>Yak</li><li>Goat</li><li>Sheep</li><li>Alpaca</li><li>Dromedary</li><li MayRequire="Ludeon.RimWorld.Odyssey">Muskox</li><li MayRequire="vanillaexpanded.vanillaanimalsexpanded">AEXP_Camel</li><li MayRequire="sarg.alphaanimals">AA_Thunderox</li><li MayRequire="spino.megafauna">Aurochs</li></kinds><count>6~8</count><at>pasture</at></li>
+      <li><kinds><li>Cow</li><li>Goat</li><li>Sheep</li><li>Horse</li></kinds><count>2~3</count><at>pasture</at></li>
+      <li><kinds><li>Husky</li><li>LabradorRetriever</li></kinds><count>1~2</count><follow>true</follow><named>true</named></li>
+    </animals>
+    <titles>
+      <li>Spring calving</li>
+      <li>Calves on the colony's ground</li>
+    </titles>
+    <texts>
+      <li>{FACTION}'s herders are bringing their beasts in calf onto the colony's sheltered ground {PLACE}, {X_nameDef} counting them through aloud.</li>
+      <li>[ws:herds] With {SITUATION} on the drove roads, {FACTION}'s herders have brought their beasts in calf to the colony's sheltered ground {PLACE}.</li>
+    </texts>
+    <settled>
+      <li>The calving camp is up {PLACE}: tents, a fire, and the heavy beasts lying in the lee of the ground, every head counted.</li>
+      <li>{FACTION}'s herders have made camp {PLACE}, and the beasts in calf are grazing quietly close by.</li>
+    </settled>
+    <joinTexts>
+      <li>{X_nameDef} of the calving camp has watched the colony's people with beasts, and asks whether it could use another herder.</li>
+    </joinTexts>
+    <farewell>
+      <li>[ours] The herders gathered the herd and went on, {CALVES} calves at their mothers' heels, and {X_nameDef} reminded the colony at the gate to count its own at dusk.</li>
+      <li>[calves,hay] {FACTION}'s herders went on fat with the colony's hay, {CALVES} calves among them, every head counted at the gate.</li>
+      <li>[calves] The calving camp is struck and the herd gone on, {CALVES} calves among them that were born on the colony's ground.</li>
+      <li>The herders' calving camp is empty, the grass trodden flat and the fire raked out.</li>
+    </farewell>
+    <lines>
+      <li>Count them again, slowly.</li>
+      <li>Any day now, that one.</li>
+      <li>Keep that one out of the wind.</li>
+      <li>Not one lost, not yet.</li>
+      <li>Easy, easy.</li>
+    </lines>
+    <momentLines>
+      <li>[herd] All here, every head.</li>
+      <li>[born] Up on its legs already, look at it.</li>
+      <li>[lost] We lost the mother, and the calf will need us now.</li>
+      <li>[search] Over here, I thought I heard it.</li>
+      <li>[found] There you are, and the lantern nearly out.</li>
+    </momentLines>
+    <helpTexts>
+      <li>[milk] {X_nameDef} milked one of the herd at the calving camp and carried what it gave over to the edge of the camp for the colony: {COUNT} {THING}.</li>
+      <li>[tales] {A_nameDef} sat at the calving camp's fire and heard how the herders count a herd at dusk, and why they never skip a night.</li>
+    </helpTexts>
+    <asks>
+      <li>
+        <key>hay</key>
+        <label>Send hay out to the herd (40 hay)</label>
+        <tip>One of the colony carries hay out to the calving camp for the beasts in calf.</tip>
+        <theyAsk>true</theyAsk>
+        <askTexts>
+          <li>{X_nameDef} of the calving camp has come to the gate. Beasts in calf eat for two, {X_pronoun} says, and the spring grass is thin yet; might the colony spare hay?</li>
+        </askTexts>
+        <refuseLabel>None to spare</refuseLabel>
+        <refused>
+          <li>{X_nameDef} says they will cut what the spring gives.</li>
+        </refused>
+        <refuseTension>3</refuseTension>
+        <tension>-5</tension>
+        <warm>2</warm>
+        <deed>campHelped</deed>
+        <outcomes>
+          <li>Hay is going out to the calving camp.</li>
+        </outcomes>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>hay for the herd</label><what>Hay</what><count>40</count><to>Camp</to><who>None</who><steward>false</steward></li>
+          <li Class="ColonyCouncil.DilemmaEffect_CalvingHay" />
+        </effects>
+      </li>
+      <li>
+        <key>milk</key>
+        <label>Buy the herd's milk: {THING}</label>
+        <tip>A herder milks every beast of the herd that has milk to give and carries the milk to the colony's gate. Once it's set down there, the colony pays what it comes to at its worth, and a colonist takes the silver over to their camp.</tip>
+        <once>false</once>
+        <price>milk</price>
+        <needs>herdMilk</needs>
+        <tension>-3</tension>
+        <deed>traded</deed>
+        <outcomes>
+          <li>{X_nameDef} has sent a herder out to the herd with a pail, and the milk will be set down by the colony's gate.</li>
+        </outcomes>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_CampMilkSale" />
+        </effects>
+      </li>
+    </asks>
+  </ColonyCouncil.CampKindDef>
+
+</Defs>

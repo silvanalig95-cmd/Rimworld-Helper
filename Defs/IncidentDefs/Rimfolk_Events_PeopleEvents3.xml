@@ -1,0 +1,759 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    The peoples' own events, round 3 (docs/peoples-events-proposals.md, items 2, 4, 6, 7, 8, 9, 11, 13, 15 and 16;
+    Source/ColonyCouncil/Peoples/Events3/). Each only from a people of its calling at peace with the colony, each played
+    out on the map. Three come only from code when their moment comes (base chance 0): the order's litters an hour or so
+    after a raid with raiders lying downed, the herders' riders the morning after raiders drove off the colony's beasts,
+    and a herder of the calving camp at the gate with a hard birth. {RELATION}, {BEAST} and {DEAD} carry what the event's
+    own code says they do (a toll, a floor, a faith); every other placeholder is the events' own.
+  -->
+
+  <!-- ===================== 2. Red ink (the road league) ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Rimfolk_Evt_RedInk</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>red ink</label>
+    <workerClass>ColonyCouncil.HappeningWorker_RedInk</workerClass>
+    <baseChance>0.6</baseChance>
+    <minRefireDays>30</minRefireDays>
+    <earliestDay>15</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Visitors</group>
+        <ages>35~70</ages>
+        <stayHours>4~6</stayHours>
+        <answerDays>0.4</answerDays>
+        <notable>false</notable>
+        <titles>
+          <li>Red ink</li>
+          <li>The Waystone Book</li>
+          <li>[again] The colony's page, again</li>
+        </titles>
+        <texts>
+          <li>[first] {X_nameDef}, a factor of {FACTION}, has come to the gate with the Waystone Book open at the colony's page. Written there in red: the colony {TALE}, and {ENEMY} were the ones wronged. {COUNT} silver pays them back, {X_pronoun} says, by the league's hand; or the colony may send someone to argue the entry, or refuse it, and every league will deal with it as the book says.</li>
+          <li>[first,lowtech] A factor of {FACTION} in a dusty coat, {X_nameDef}, has stopped at the gate and opened the Waystone Book on {X_possessive} knee. Fair dealers in good ink, robbers in red, {X_pronoun} reads, and the colony's page is red: it {TALE}, and {ENEMY} were the ones wronged. {COUNT} silver would pay them back.</li>
+          <li>[first,!lowtech] {X_nameDef} of {FACTION} has driven up to the gate with the league's ledger on the seat beside {X_objective}. The colony's page is in red ink: it {TALE}, against {ENEMY}. {COUNT} silver, carried to them by the league, would settle it; {A_nameDef} could argue the entry instead, if the colony thinks it wrong.</li>
+          <li>[first,war] {X_nameDef}, a factor of {FACTION}, has come to the gate with the Waystone Book. The colony {TALE}, and though {ENEMY} are its enemies now, the league writes what is done to traders on the road in red all the same. {COUNT} silver pays them back.</li>
+          <li>[again] {X_nameDef} of {FACTION} is back at the gate with the Waystone Book, open at the same red page: the colony {TALE}, against {ENEMY}, and it has not paid. {COUNT} silver settles it still, and every league deals with the colony at worse terms until it does.</li>
+          <li>[twice] {X_nameDef} of {FACTION} has come back with the Waystone Book, where the colony's wrong is written twice now: it {TALE}, against {ENEMY}. {COUNT} silver settles it, {X_pronoun} says, and nothing less.</li>
+        </texts>
+        <defaultOption>2</defaultOption>
+        <options>
+          <li>
+            <label>Pay {ENEMY} back ({COUNT} silver)</label>
+            <outcome>The silver is going out to {X_nameDef}, who writes the colony's page clean in good ink and will carry it to {ENEMY}.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>the silver for {ENEMY}</label><what>silver</what><steward>false</steward></li>
+              <li Class="ColonyCouncil.DilemmaEffect_RedInkPay" />
+            </effects>
+            <ways><mercy>1</mercy></ways>
+          </li>
+          <li>
+            <label>Send {A_nameDef} to argue the entry</label>
+            <outcome>{A_nameDef} argued the entry over the book at the gate, and {X_nameDef} struck it out.</outcome>
+            <riskChance>0.7</riskChance>
+            <riskSkill>Social</riskSkill>
+            <riskReplaces>true</riskReplaces>
+            <riskOutcome>{A_nameDef} argued the entry, and {X_nameDef} wrote it twice for the arguing: the colony owes double now.</riskOutcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_RedInkStruck" />
+            </effects>
+            <riskEffects>
+              <li Class="ColonyCouncil.DilemmaEffect_RedInkTwice" />
+            </riskEffects>
+          </li>
+          <li>
+            <label>Refuse the entry</label>
+            <outcome>{X_nameDef} closes the book on the red page and rides on, and the league will deal with the colony at worse terms until it pays.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_RedInkRefuse" />
+              <li Class="ColonyCouncil.DilemmaEffect_SendAway" />
+            </effects>
+          </li>
+        </options>
+        <lines>
+          <li>[paid] Good ink, then, and the road is open.</li>
+          <li>[struck] Struck out, and may I never have to write it again.</li>
+          <li>[twice] Twice in red, and the next page is worse.</li>
+          <li>[red] The book remembers, even when I forget.</li>
+        </lines>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ===================== 4. The road gang (the road league) ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Rimfolk_Evt_RoadGang</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>the road gang</label>
+    <workerClass>ColonyCouncil.HappeningWorker_RoadGang</workerClass>
+    <baseChance>0.7</baseChance>
+    <minRefireDays>40</minRefireDays>
+    <earliestDay>20</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Visitors</group>
+        <ages>35~65</ages>
+        <stayHours>4~6</stayHours>
+        <answerDays>0.4</answerDays>
+        <notable>false</notable>
+        <titles>
+          <li>The road gang</li>
+          <li>A road across the land</li>
+        </titles>
+        <texts>
+          <li>{X_nameDef}, a waymaster of {FACTION}, has walked up to the gate with a surveyor's chain over {X_possessive} shoulder. With {TALE} going through the region, the league would lay its stretch across the colony's land: a gang camped at the edge for some days, a stretch of {BEAST} a day. The line runs past the gate; {X_pronoun} asks the colony's leave.</li>
+          <li>[fields] A waymaster of {FACTION}, {X_nameDef}, has come to the gate with the line for {TALE} drawn on a map. It crosses the colony's ground and runs over its fields, {COUNT} cells of them, unless they go round; {X_pronoun} asks whether the gang may lay it through.</li>
+          <li>[age0] {X_nameDef} of {FACTION} has come to the gate with a staff notched for every day's stretch. The league's road for {TALE} is packed earth, rammed down by hand, and its line runs across the colony's land; {X_pronoun} asks the colony's leave to lay it there.</li>
+          <li>[age1] {X_nameDef}, a waymaster of {FACTION}, has come up the road with the gang's stone carts behind {X_objective}. They are laying {TALE} in flagstones of the land's own stone, and the line runs across the colony's land; {X_pronoun} asks the colony's leave.</li>
+          <li>[age2] A truck of {FACTION}'s road gang has pulled up short of the gate, and {X_nameDef}, the waymaster, has walked over with the plans. {TALE} goes down in concrete, a stretch a day, and its line crosses the colony's land; {X_pronoun} asks the colony's leave.</li>
+          <li>[age3] {X_nameDef} of {FACTION} has come to the gate with the line for {TALE} glowing on a slate: paved tile, a stretch a day, across the colony's land and past its gate. The league asks the colony's leave before it lays a single tile.</li>
+          <li>[their:grateful] The league writes the colony in good ink, and {X_nameDef} has come to ask its leave first: {TALE} would run across its land, laid by a gang camped at the edge, a stretch of {BEAST} a day.</li>
+        </texts>
+        <defaultOption>2</defaultOption>
+        <options>
+          <li>
+            <label>Lay it across our land, fields and all</label>
+            <outcome>{X_nameDef} goes back for the gang; the road will cross the colony's land the straightest way, over its fields where the line runs.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_RoadGang"><fields>true</fields></li>
+            </effects>
+            <ways><openness>1</openness></ways>
+          </li>
+          <li>
+            <label>Lay it across our land, round the fields</label>
+            <outcome>{X_nameDef} goes back for the gang; the road will cross the colony's land and go round its fields.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_RoadGang" />
+            </effects>
+            <ways><openness>1</openness></ways>
+          </li>
+          <li>
+            <label>Not across our land</label>
+            <outcome>{X_nameDef} rolls up the line without a word for it, and the gang will lay the road round the colony's land.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_RoadGang"><round>true</round></li>
+              <li Class="ColonyCouncil.DilemmaEffect_SendAway" />
+            </effects>
+          </li>
+        </options>
+        <lines>
+          <li>[leave] A stretch a day, and you'll watch it grow.</li>
+          <li>[leave] Edda Vane would have liked a road like this.</li>
+          <li>[round] Round it is, and the long way.</li>
+        </lines>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ===================== 6. Nobody on a sickbed is anyone's enemy (the hospitaller order) ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Rimfolk_Evt_SickbedLitters</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>nobody on a sickbed is anyone's enemy</label>
+    <workerClass>ColonyCouncil.HappeningWorker_SickbedLitters</workerClass>
+    <baseChance>0</baseChance>
+    <minRefireDays>15</minRefireDays>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Visitors</group>
+        <ages>24~65</ages>
+        <stayHours>6~10</stayHours>
+        <answerDays>0.25</answerDays>
+        <notable>false</notable>
+        <titles>
+          <li>Litters after the fight</li>
+          <li>Nobody on a sickbed</li>
+        </titles>
+        <texts>
+          <li>[litters] Hospitallers of {FACTION} have come up to the gate with litters on their shoulders, {X_nameDef} at their head. The fight is over, {X_pronoun} told {A_nameDef}, and {COUNT} of the raiders still lie where they fell; the order would carry them to its sickhouse, for nobody on a sickbed is anyone's enemy.</li>
+          <li>[cart] A stretcher cart of {FACTION}'s order has stopped at the gate, and {X_nameDef} has climbed down with the bearers. {COUNT} of the raiders lie downed on the colony's land; the order would carry them away to its sickhouse, if the colony lets them go.</li>
+          <li>[one] {X_nameDef} of {FACTION} has come to the gate with a litter and a bearer. One of the raiders still lies out there, and {X_pronoun} asks to carry {ENEMY}'s fallen to the order's sickhouse, for nobody on a sickbed is anyone's enemy.</li>
+          <li>[many] Hospitallers of {FACTION} are at the gate with litters, {X_nameDef} at their head. {COUNT} lie downed out there, of {ENEMY} and others; the order would carry every one of them to its sickhouse, and ask nothing for it.</li>
+          <li>[lowtech] {X_nameDef}, a hospitaller of {FACTION}, has come over the field with two bearers and a pair of poles and blankets. Aldith's lamp hangs over the sickhouse door for anyone, {X_pronoun} says, and {COUNT} of the raiders lie out there still.</li>
+        </texts>
+        <defaultOption>2</defaultOption>
+        <options>
+          <li>
+            <label>Let them carry them all away</label>
+            <outcome>The hospitallers are going out with their litters, and will carry every one of the fallen raiders off the colony's land.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Litters" />
+            </effects>
+            <ways><mercy>1</mercy></ways>
+          </li>
+          <li>
+            <label>Only the worst hurt</label>
+            <outcome>The hospitallers carry off the worst hurt of the raiders; the rest are the colony's to deal with.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Litters"><worst>true</worst></li>
+            </effects>
+          </li>
+          <li>
+            <label>They are the colony's to keep</label>
+            <outcome>{X_nameDef} says nothing, writes it down in the order's book, and leads the bearers away.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_LittersKept" />
+              <li Class="ColonyCouncil.DilemmaEffect_SendAway" />
+            </effects>
+          </li>
+        </options>
+        <lines>
+          <li>[carry] Lift together, gently, and mind the head.</li>
+          <li>[carry] Nobody on a sickbed is anyone's enemy.</li>
+          <li>[kept] It is written, and that is all.</li>
+          <li>[gone] The lamp is lit for them now.</li>
+        </lines>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ===================== 7. The sick room (the hospitaller order) ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Rimfolk_Evt_SickRoom</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>the sick room</label>
+    <workerClass>ColonyCouncil.HappeningWorker_SickRoom</workerClass>
+    <baseChance>0.7</baseChance>
+    <minRefireDays>30</minRefireDays>
+    <earliestDay>10</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Visitors</group>
+        <ages>28~65</ages>
+        <stayHours>4~6</stayHours>
+        <answerDays>0.25</answerDays>
+        <notable>false</notable>
+        <titles>
+          <li>The sick room</li>
+          <li>A sister at the gate</li>
+        </titles>
+        <texts>
+          <li>{X_nameDef}, a sister of {FACTION}, has come to the gate with a satchel of the order's. {TALE} is spreading in the colony, {A_nameDef} has it and {COUNT} in all, and {X_pronoun} asks for a sick room: the sick kept together in {PLACE}, the well staying out, and {X_objective} dosing them on rounds for three days.</li>
+          <li>[herbs] A sister of {FACTION}, {X_nameDef}, has come in with a bundle of herbs and boiled linen. Word of the colony's {TALE} reached the order, {X_pronoun} says; give {X_objective} {PLACE} for a sick room three days, and the sickness will have a harder road.</li>
+          <li>[masks] {X_nameDef} of {FACTION} has come to the gate in a mask, with a case of the order's. {TALE} is going round the colony, {COUNT} down with it; {X_pronoun} would keep a sick room in {PLACE} for three days, with the colony's own medicine.</li>
+          <li>[nodoctor] {X_nameDef}, a sister of {FACTION}, has heard the colony has {TALE} and nobody well enough to nurse it. {X_pronoun} asks for {PLACE} as a sick room, three days of rounds, and the well kept out.</li>
+          <li>[lowtech] A sister of {FACTION} has walked in over the fields, {X_nameDef}, with Aldith's lamp hung from {X_possessive} staff. Where {TALE} goes, {X_pronoun} says, a sick room follows: {PLACE} for three days, and {X_objective} to dose the sick on rounds.</li>
+          <li>[their:grateful] The order remembers the colony kindly, and {X_nameDef} has come as soon as word of its {TALE} came: three days of rounds in a sick room, {PLACE}, if the colony will have it.</li>
+        </texts>
+        <defaultOption>2</defaultOption>
+        <options>
+          <li>
+            <label>Give {X_objective} {PLACE} as a sick room</label>
+            <outcome>The sick are going to {PLACE}, and {X_nameDef} is setting out the order's things for the first round.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_SickRoom" />
+            </effects>
+            <ways><openness>1</openness></ways>
+          </li>
+          <li>
+            <label>Give {X_objective} {PLACE}, {B_nameDef} on the rounds too</label>
+            <outcome>The sick are going to {PLACE}, and {B_nameDef} will walk the rounds with {X_nameDef} and learn the order's ways.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_SickRoom"><doctor>true</doctor></li>
+            </effects>
+            <ways><openness>1</openness></ways>
+          </li>
+          <li>
+            <label>Thank {X_objective}; the colony will manage</label>
+            <outcome>{X_nameDef} leaves a little of the order's herbs at the gate and walks back the way {X_pronoun} came.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_SendAway" />
+            </effects>
+          </li>
+        </options>
+        <lines>
+          <li>[room] The well stay out, and the sick stay in, and we'll see.</li>
+          <li>[round] Drink this, all of it, and then sleep.</li>
+          <li>[caught] It has caught me too, and now I am the one in bed.</li>
+          <li>[goes] It has a harder road now, and I have a long one.</li>
+          <li>[thanks] Keep them warm and keep them apart.</li>
+        </lines>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ===================== 8. A field sickhouse (the hospitaller order) ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Rimfolk_Evt_FieldSickhouse</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>a field sickhouse</label>
+    <workerClass>ColonyCouncil.HappeningWorker_FieldSickhouse</workerClass>
+    <baseChance>0.7</baseChance>
+    <minRefireDays>40</minRefireDays>
+    <earliestDay>15</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Visitors</group>
+        <ages>28~65</ages>
+        <stayHours>4~6</stayHours>
+        <answerDays>0.4</answerDays>
+        <notable>false</notable>
+        <titles>
+          <li>A field sickhouse</li>
+          <li>A lamp at the door</li>
+        </titles>
+        <texts>
+          <li>{X_nameDef}, a sister of {FACTION}, has come to the gate. With {TALE} on the region, the order would pitch a field sickhouse by the colony: a long hut of beds, a lamp at its door all night, and the region's sick and wounded brought to it. They would ask for medicine, food and clean cloth, and maybe for the colony's doctor.</li>
+          <li>[plague] A sister of {FACTION}, {X_nameDef}, has walked up to the gate in a mask. {TALE} has the region by the throat, {X_pronoun} says, and the order needs ground for a sickhouse where the sick can reach it; the colony's is good ground.</li>
+          <li>[war] {X_nameDef} of {FACTION} has come to the gate after {TALE}, with the order's lamp unlit on a pole. The wounded of the region have nowhere to lie, {X_pronoun} says, and the order would raise a long hut of beds by the colony and light the lamp at its door.</li>
+          <li>[oursick] {X_nameDef}, a sister of {FACTION}, has come to the gate with a cart of bedding. With {TALE} on the region, the order would pitch a sickhouse by the colony, and the colony's own sick could lie in it too.</li>
+          <li>[lowtech] Sisters of {FACTION} have come up the road with poles and bedrolls, {X_nameDef} carrying Aldith's lamp. After {TALE}, they would raise a long hut by the colony for the region's sick, and hang the lamp at its door for anyone.</li>
+          <li>[their:grateful] The order remembers the colony kindly, and {X_nameDef} has come to ask its ground first: a field sickhouse by the colony while {TALE} lasts, the lamp lit at its door all night.</li>
+        </texts>
+        <defaultOption>2</defaultOption>
+        <options>
+          <li>
+            <label>Let them pitch it by the colony</label>
+            <outcome>{X_nameDef} goes back for the sisters, and the order will raise its sickhouse by the colony.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_SickhouseCamp" />
+            </effects>
+            <ways><mercy>1</mercy></ways>
+          </li>
+          <li>
+            <label>Let them, and take our sick in too</label>
+            <outcome>{X_nameDef} goes back for the sisters; the order will raise its sickhouse by the colony, and the colony's own sick will lie in it.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_SickhouseCamp"><takeOurs>true</takeOurs></li>
+            </effects>
+            <ways><mercy>1</mercy></ways>
+          </li>
+          <li>
+            <label>Not by our gate</label>
+            <outcome>{X_nameDef} nods, and goes to find the order other ground.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_SendAway" />
+            </effects>
+          </li>
+        </options>
+        <lines>
+          <li>[pitch] The lamp goes up tonight, and stays lit.</li>
+          <li>[thanks] Somewhere else, then, and soon.</li>
+          <li>[home] Home now, and gently.</li>
+          <li>[bell] One ring for the one who goes home.</li>
+        </lines>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ===================== 9. Grazing across the land (the herding folk) ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Rimfolk_Evt_DroveCrossing</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>grazing across the land</label>
+    <workerClass>ColonyCouncil.HappeningWorker_DroveCrossing</workerClass>
+    <baseChance>0.6</baseChance>
+    <minRefireDays>35</minRefireDays>
+    <earliestDay>12</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Visitors</group>
+        <ages>20~60</ages>
+        <stayHours>3~5</stayHours>
+        <answerDays>0.3</answerDays>
+        <notable>false</notable>
+        <titles>
+          <li>Grazing across the land</li>
+          <li>A drove at the edge</li>
+        </titles>
+        <texts>
+          <li>{X_nameDef}, a drover of {FACTION}, has walked up to the gate ahead of the herd. A drove of {COUNT} head of {TALE} would cross the colony's land, {X_pronoun} says, and graze it two or three days on the way, their fire at the far edge; they ask the colony's leave.</li>
+          <li>[fields] A drover of {FACTION}, {X_nameDef}, has come to the gate with a long stick and a dog at heel. {COUNT} head of {TALE} would cross the colony's land and graze as they go, and the colony's unfenced fields lie near their way; {X_pronoun} asks its leave all the same.</li>
+          <li>[ride] {X_nameDef} of {FACTION} has ridden up to the gate, the drove raising dust behind. {COUNT} head of {TALE}, two or three days across the colony's land and grazing it, their fire at the far edge; {X_pronoun} asks the colony's leave.</li>
+          <li>[lowtech] A drover of {FACTION}, {X_nameDef}, has walked to the gate barefoot, the drove lowing at the edge. A guest eats from the same pot, {X_pronoun} says, and asks to bring {COUNT} head of {TALE} across the colony's grass two or three days.</li>
+          <li>[their:grateful] The herding folk remember the colony kindly, and {X_nameDef} has come to ask it first: {COUNT} head of {TALE} across its land, two or three days, grazing as they go.</li>
+        </texts>
+        <defaultOption>2</defaultOption>
+        <options>
+          <li>
+            <label>Let them cross</label>
+            <outcome>{X_nameDef} goes back for the drove; it will cross the colony's land and graze its way to the far edge.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Drove" />
+            </effects>
+            <ways><generosity>1</generosity></ways>
+          </li>
+          <li>
+            <label>Let them cross, for a toll ({BEAST} silver)</label>
+            <outcome>{X_nameDef} counts out the toll at the gate without a word and goes back for the drove.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Drove"><toll>true</toll></li>
+            </effects>
+          </li>
+          <li>
+            <label>Turn them away</label>
+            <outcome>{X_nameDef} turns back to the drove, and the drovers will take it round the colony's land.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_DroveTurned" />
+              <li Class="ColonyCouncil.DilemmaEffect_SendAway" />
+            </effects>
+          </li>
+        </options>
+        <lines>
+          <li>[cross] Count them with us at dusk, if you like.</li>
+          <li>[round] Round it is, and the grass is thinner there.</li>
+          <li>[ride] Ride at the edge with me, and keep them moving.</li>
+          <li>[on] Up and on, every head of you.</li>
+        </lines>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ===================== 11. The thief on the drove road (the herding folk) ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Rimfolk_Evt_ThiefTrail</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>the thief on the drove road</label>
+    <workerClass>ColonyCouncil.HappeningWorker_ThiefTrail</workerClass>
+    <baseChance>0</baseChance>
+    <minRefireDays>10</minRefireDays>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Visitors</group>
+        <ages>20~55</ages>
+        <stayHours>3~5</stayHours>
+        <answerDays>0.25</answerDays>
+        <notable>false</notable>
+        <titles>
+          <li>The thief on the drove road</li>
+          <li>On the thieves' trail</li>
+        </titles>
+        <texts>
+          <li>{X_nameDef}, a warden of {FACTION}'s herders, has come to the gate at first light with riders behind. {ENEMY} drove off {TALE} of the colony's yesterday, and the herders found the trail at dawn. They would follow it to the thieves' camp; the colony could send {A_nameDef} with them, or let them go alone, and they would bring back what they can.</li>
+          <li>[ride] Herders of {FACTION} have ridden up to the gate in the morning, {X_nameDef} at their head. The thieves who took {TALE} from the colony left a trail a child could follow, {X_pronoun} says; {A_nameDef} could ride with them to the camp, or they could ride alone.</li>
+          <li>[many] {X_nameDef} of {FACTION} has come to the gate with riders: {ENEMY} drove off {COUNT} head of the colony's, {TALE}, and the herders count every beast at dusk, theirs or a friend's. They are on the trail now, and would have {A_nameDef} with them.</li>
+          <li>[!ride] Herders of {FACTION} have walked in on the thieves' trail at first light, {X_nameDef} with a spear and a coil of rope. {ENEMY} drove off {TALE} of the colony's, and they mean to follow; {A_nameDef} could walk with them, or they go alone.</li>
+          <li>[lowtech] A warden of {FACTION}'s herders, {X_nameDef}, is at the gate with riders and a dog that has the scent. {TALE} of the colony's went off with {ENEMY}, and the herders would have them back; {A_nameDef} could come along, or they go by themselves.</li>
+        </texts>
+        <defaultOption>2</defaultOption>
+        <options>
+          <li>
+            <label>{A_nameDef} rides with them</label>
+            <outcome>{A_nameDef} is going out with the herders' riders on the thieves' trail.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_ThiefRide" />
+            </effects>
+            <ways><toil>1</toil></ways>
+          </li>
+          <li>
+            <label>Let them ride alone</label>
+            <outcome>{X_nameDef} and the riders are off on the trail, and will bring back what they can.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_ThiefAlone" />
+            </effects>
+          </li>
+          <li>
+            <label>Let the beasts go</label>
+            <outcome>{X_nameDef} shakes {X_possessive} head over the lost beasts, and the riders go home.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_ThiefLetGo" />
+            </effects>
+          </li>
+        </options>
+        <lines>
+          <li>[together] Keep up, and keep low when we come close.</li>
+          <li>[alone] We count every head at dusk, and yours too.</li>
+          <li>[thanks] Lost beasts are lost, and the grass grows anyway.</li>
+          <li>[back] Here they are, and one stays with us for the trail.</li>
+          <li>[charge] Now, all together, and take the beasts first.</li>
+        </lines>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ===================== 13. Spring calving (the herding folk) ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Rimfolk_Evt_SpringCalving</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>spring calving</label>
+    <workerClass>ColonyCouncil.HappeningWorker_SpringCalving</workerClass>
+    <baseChance>0.7</baseChance>
+    <minRefireDays>40</minRefireDays>
+    <earliestDay>10</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Visitors</group>
+        <ages>40~75</ages>
+        <stayHours>3~5</stayHours>
+        <answerDays>0.4</answerDays>
+        <notable>false</notable>
+        <seasons>
+          <li>Spring</li>
+        </seasons>
+        <titles>
+          <li>Spring calving</li>
+          <li>Beasts in calf</li>
+        </titles>
+        <texts>
+          <li>{X_nameDef}, an elder of {FACTION}'s herders, has come to the gate. It is calving time, {X_pronoun} says, and the colony's ground is sheltered: they would bring {COUNT} beasts in calf to camp on it some days, until the calves are on their feet.</li>
+          <li>[age0] An old herder of {FACTION}, {X_nameDef}, has walked to the gate with a hand on a heavy cow's flank. {COUNT} of the herd are near their time, and the colony's ground is out of the wind; {X_pronoun} asks to camp on it until they have calved.</li>
+          <li>[lowtech] {X_nameDef} of {FACTION} has come to the gate with the spring. Every head is counted aloud at dusk in their camps, {X_pronoun} says, and soon there will be more to count: {COUNT} beasts in calf, some days on the colony's sheltered ground.</li>
+          <li>[!lowtech] {X_nameDef}, an elder of {FACTION}'s herders, has come to the gate with a ledger of the herd. {COUNT} beasts are due to calve this month, and {X_pronoun} asks to bring them to the colony's sheltered ground for it.</li>
+          <li>[their:grateful] The herding folk remember the colony kindly, and {X_nameDef} has brought their beasts in calf to it first this spring: {COUNT} of them, some days on its sheltered ground.</li>
+        </texts>
+        <defaultOption>2</defaultOption>
+        <options>
+          <li>
+            <label>Let them calve here</label>
+            <outcome>{X_nameDef} is going back for the herd, and the herders will camp on the colony's sheltered ground for the calving.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_CalvingCamp" />
+            </effects>
+            <ways><generosity>1</generosity></ways>
+          </li>
+          <li>
+            <label>Let them, for a toll ({BEAST} silver)</label>
+            <outcome>{X_nameDef} counts out the toll at the gate without a word and goes back for the herd.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_CalvingCamp"><toll>true</toll></li>
+            </effects>
+          </li>
+          <li>
+            <label>Not this spring</label>
+            <outcome>{X_nameDef} goes back to the herd to find other ground before the calves come.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_SendAway" />
+            </effects>
+          </li>
+        </options>
+        <lines>
+          <li>[calve] More to count at dusk, soon enough.</li>
+          <li>[thanks] They'll calve where they stand, then, and we'll manage.</li>
+        </lines>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Rimfolk_Evt_HardBirth</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>a hard birth</label>
+    <workerClass>ColonyCouncil.HappeningWorker_HardBirth</workerClass>
+    <baseChance>0</baseChance>
+    <minRefireDays>2</minRefireDays>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Visitors</group>
+        <ages>20~70</ages>
+        <answerDays>0.15</answerDays>
+        <notable>false</notable>
+        <titles>
+          <li>A hard birth</li>
+        </titles>
+        <texts>
+          <li>{X_nameDef} has come up from the calving camp at a run. One of their {TALE} is calving and it is going hard, {X_pronoun} says, and asks for the colony's best hand at beasts, {A_nameDef}, before it is too late.</li>
+          <li>[second] {X_nameDef} of the calving camp is at the gate, sleeves rolled. A {TALE} is stuck in a hard birth, and {X_pronoun} asks for {A_nameDef}; {B_nameDef} could come and learn from it too.</li>
+          <li>[lowtech] {X_nameDef} of {FACTION}'s herders has come to the gate with bloody hands. A {TALE} has been labouring since dawn, and the herders have done all they know; {X_pronoun} asks whether {A_nameDef} would come.</li>
+          <li>[!lowtech] {X_nameDef} has come up from the calving camp with a lamp and a coil of rope. A {TALE}'s calf is turned wrong, {X_pronoun} says, and asks for {A_nameDef}'s hands at it.</li>
+          <li>[their:grateful] {X_nameDef} of the calving camp has come to the gate: a {TALE} is in a hard birth, and the herders trust the colony's {A_nameDef} with it more than themselves.</li>
+        </texts>
+        <defaultOption>2</defaultOption>
+        <options>
+          <li>
+            <label>{A_nameDef} goes</label>
+            <outcome>{A_nameDef} is going down to the calving camp with {X_nameDef}.</outcome>
+            <riskChance>0.55</riskChance>
+            <riskSkill>Animals</riskSkill>
+            <riskReplaces>true</riskReplaces>
+            <riskOutcome>{A_nameDef} is going down to the calving camp with {X_nameDef}, though the birth is turned badly.</riskOutcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_HardBirth" />
+            </effects>
+            <riskEffects>
+              <li Class="ColonyCouncil.DilemmaEffect_HardBirth"><lost>true</lost></li>
+            </riskEffects>
+            <ways><mercy>1</mercy></ways>
+          </li>
+          <li>
+            <label>{A_nameDef} goes, {B_nameDef} beside {A_objective}</label>
+            <outcome>{A_nameDef} and {B_nameDef} are going down to the calving camp with {X_nameDef}.</outcome>
+            <riskChance>0.55</riskChance>
+            <riskSkill>Animals</riskSkill>
+            <riskReplaces>true</riskReplaces>
+            <riskOutcome>{A_nameDef} and {B_nameDef} are going down to the calving camp with {X_nameDef}, though the birth is turned badly.</riskOutcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_HardBirth"><who>ab</who></li>
+            </effects>
+            <riskEffects>
+              <li Class="ColonyCouncil.DilemmaEffect_HardBirth"><who>ab</who><lost>true</lost></li>
+            </riskEffects>
+          </li>
+          <li>
+            <label>The herders know their beasts</label>
+            <outcome>{X_nameDef} goes back down to the camp to see it through with the herders.</outcome>
+            <riskChance>0.27</riskChance>
+            <riskReplaces>true</riskReplaces>
+            <riskOutcome>{X_nameDef} goes back down to the camp to see it through with the herders, though it is turned badly.</riskOutcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_HardBirth"><who>herders</who></li>
+            </effects>
+            <riskEffects>
+              <li Class="ColonyCouncil.DilemmaEffect_HardBirth"><who>herders</who><lost>true</lost></li>
+            </riskEffects>
+          </li>
+        </options>
+        <lines>
+          <li>[come] Quick now, and warm your hands first.</li>
+          <li>[manage] We've done this since before the drove roads.</li>
+        </lines>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ===================== 15. An old shrine on the colony's ground (the pilgrim fellowship) ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Rimfolk_Evt_OldShrine</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>an old shrine</label>
+    <workerClass>ColonyCouncil.HappeningWorker_OldShrine</workerClass>
+    <baseChance>0.5</baseChance>
+    <minRefireDays>60</minRefireDays>
+    <earliestDay>20</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Visitors</group>
+        <ages>24~75</ages>
+        <stayHours>4~6</stayHours>
+        <answerDays>0.4</answerDays>
+        <notable>false</notable>
+        <titles>
+          <li>An old shrine</li>
+          <li>Stones and a lamp</li>
+        </titles>
+        <texts>
+          <li>Two pilgrims of {FACTION} have come to the gate, {X_nameDef} with a staff hung with shells. They have found something holy on the colony's ground, the {TALE}, and would set stones and a lamp beside it and bless it: three days' work, and an old shrine for the colony that pilgrims will stop at.</li>
+          <li>[ancient] {X_nameDef} of {FACTION} has stopped at the gate with another pilgrim. The {TALE} out on the colony's land is older than any of the peoples, {X_pronoun} says, and holy for it; they would set stones and a lamp beside it, and bless it.</li>
+          <li>[grave] Pilgrims of {FACTION} have come to the gate from the {TALE} on the colony's land, older than the colony. Nobody blessed it, {X_nameDef} says, and asks leave to set stones and a lamp beside it, and bless it.</li>
+          <li>[tree] {X_nameDef} and another pilgrim of {FACTION} have come in from the great old {TALE} on the colony's ground. A tree that old has heard a great many prayers, {X_pronoun} says; they would set stones and a lamp under it and bless it.</li>
+          <li>[landmark] Two pilgrims of {FACTION} have come to the gate from the far side of the colony's land. {TALE} is holy to the fellowship, {X_nameDef} says, and they would set stones and a lamp where it can be seen, and bless it.</li>
+          <li>[lowtech] {X_nameDef} of {FACTION}, nearly blind and led by a younger pilgrim, has stopped at the gate. Old Brannoc blessed every door, {X_pronoun} says, and a holy place on the colony's land has no stones yet; three days, and it would have stones and a lamp.</li>
+          <li>[second] Two pilgrims of {FACTION} have found the {TALE} on the colony's land and would set stones and a lamp beside it, three days' work, or two if {B_nameDef} worked beside them.</li>
+        </texts>
+        <defaultOption>2</defaultOption>
+        <options>
+          <li>
+            <label>Let them raise it</label>
+            <outcome>The pilgrims are walking out to the {TALE} with their stones, and will set them three days.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_OldShrine" />
+            </effects>
+            <ways><tradition>1</tradition></ways>
+          </li>
+          <li>
+            <label>Let them, {B_nameDef} working beside them</label>
+            <outcome>The pilgrims are walking out to the {TALE} with their stones, {B_nameDef} beside them, two days' work.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_OldShrine"><helped>true</helped></li>
+            </effects>
+            <ways><tradition>1</tradition></ways>
+          </li>
+          <li>
+            <label>Leave the place as it is</label>
+            <outcome>{X_nameDef} blesses the gate on the way out, open or shut, and the pilgrims walk on.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_SendAway" />
+            </effects>
+          </li>
+        </options>
+        <lines>
+          <li>[raise] A stone for every prayer said here before us.</li>
+          <li>[thanks] Bless this door, open or shut.</li>
+          <li>[day] Another course of stones, and the lamp tomorrow.</li>
+          <li>[bless] Blessed, and lit, and the colony's now.</li>
+          <li>[stop] A little for the road, and a little left here.</li>
+        </lines>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ===================== 16. Two faiths at one table (the pilgrim fellowship) ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Rimfolk_Evt_TwoFaiths</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>two faiths at one table</label>
+    <workerClass>ColonyCouncil.HappeningWorker_TwoFaiths</workerClass>
+    <baseChance>0.6</baseChance>
+    <minRefireDays>40</minRefireDays>
+    <earliestDay>20</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Visitors</group>
+        <ages>30~75</ages>
+        <stayHours>8~12</stayHours>
+        <answerDays>0.3</answerDays>
+        <notable>false</notable>
+        <mods>
+          <li>ludeon.rimworld.ideology</li>
+        </mods>
+        <titles>
+          <li>Two faiths at one table</li>
+          <li>A palmer at the gate</li>
+        </titles>
+        <texts>
+          <li>[clash] {X_nameDef}, a palmer of {FACTION}, has come to the gate with a shell on a cord. Word reached the fellowship that {TALE} and {DEAD} quarrel in the colony; {X_pronoun} would have everyone at one table this evening, {A_nameDef} to speak for the one and {B_nameDef} for the other, and bless it.</li>
+          <li>[split] A palmer of {FACTION}, {X_nameDef}, has stopped at the gate. {TALE} is near a split in the colony, {X_pronoun} has heard, its believers wavering; this evening at one table {A_nameDef} could speak for those who are sure and {B_nameDef} for those who are not, and the palmer would bless it.</li>
+          <li>[clash,lowtech] {X_nameDef} of {FACTION}, a palmer in a frayed cloak, has come in to the gate at dusk. Old Brannoc blessed every door, open or shut, {X_pronoun} says, and {TALE} and {DEAD} could share a table for one evening, {A_nameDef} and {B_nameDef} speaking.</li>
+          <li>[split,lowtech] {X_nameDef}, a palmer of {FACTION}, has walked to the gate with a staff hung with shells. A faith that wavers needs a table more than a sermon, {X_pronoun} says; {A_nameDef} and {B_nameDef} could speak for {TALE} this evening, and the palmer would bless the meal.</li>
+          <li>[their:grateful] The fellowship remembers the colony kindly, and {X_nameDef} has come as soon as word came of its faiths: one table this evening, {A_nameDef} and {B_nameDef} speaking, and a blessing over it.</li>
+        </texts>
+        <defaultOption>2</defaultOption>
+        <options>
+          <li>
+            <label>Gather this evening; {A_nameDef} and {B_nameDef} speak</label>
+            <outcome>The colony will gather at one table this evening, {A_nameDef} and {B_nameDef} to speak and {X_nameDef} to bless it.</outcome>
+            <riskChance>0.67</riskChance>
+            <riskSkill>Social</riskSkill>
+            <riskReplaces>true</riskReplaces>
+            <riskOutcome>The colony gathered at one table, and {A_nameDef} and {B_nameDef} spoke, but it did not hold.</riskOutcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Gathering"><label>two faiths at one table</label><spots><li>Dining</li><li>Fire</li><li>Gather</li><li>Outdoors</li></spots><hours>17~23</hours><duration>2~2.5</duration><guests>stranger</guests><guestCount>1</guestCount><lines><li>Bread for both sides of the table.</li><li>Let each speak, and the other listen.</li><li>One table, and one evening of it.</li></lines></li>
+              <li Class="ColonyCouncil.DilemmaEffect_TwoFaiths" />
+            </effects>
+            <riskEffects>
+              <li Class="ColonyCouncil.DilemmaEffect_Gathering"><label>two faiths at one table</label><spots><li>Dining</li><li>Fire</li><li>Gather</li><li>Outdoors</li></spots><hours>17~23</hours><duration>2~2.5</duration><guests>stranger</guests><guestCount>1</guestCount><lines><li>Bread for both sides of the table.</li><li>Let each speak, and the other listen.</li><li>One table, and one evening of it.</li></lines></li>
+              <li Class="ColonyCouncil.DilemmaEffect_TwoFaiths"><split>true</split></li>
+            </riskEffects>
+            <ways><openness>1</openness></ways>
+          </li>
+          <li>
+            <label>Let {X_objective} bless each side apart</label>
+            <outcome>{X_nameDef} will walk about the colony and bless the believers of each side one by one, no speeches.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_TwoFaithsApart" />
+            </effects>
+          </li>
+          <li>
+            <label>Thank {X_objective}, and send {X_objective} on</label>
+            <outcome>{X_nameDef} blesses the gate on the way out, open or shut, and walks on.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_SendAway" />
+            </effects>
+          </li>
+        </options>
+        <lines>
+          <li>[table] One table, and room at it for everyone.</li>
+          <li>[walk] Each in turn, then, and no speeches.</li>
+          <li>[thanks] Bless this door, open or shut.</li>
+          <li>[settled] It held, and may it hold a season.</li>
+          <li>[split] It did not hold, and that is said plainly.</li>
+          <li>[bless] Steady now, whatever you believe.</li>
+          <li>[apart] Every one of them blessed, and the road is long.</li>
+        </lines>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+</Defs>

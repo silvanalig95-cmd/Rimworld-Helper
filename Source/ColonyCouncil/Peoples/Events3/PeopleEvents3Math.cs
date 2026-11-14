@@ -257,6 +257,9 @@ namespace ColonyCouncil
         /// <summary>From the industrial age she works with the colony's own medicine: this much carried to her at most.</summary>
         public const int SickRoomMedicine = 6;
 
+        /// <summary>The colony's doctor who walked the rounds with her: practice at medicine by the end.</summary>
+        public const float RoundsXp = 1500f;
+
         /// <summary>The sick she sees to at most.</summary>
         public const int SickRoomMax = 6;
 

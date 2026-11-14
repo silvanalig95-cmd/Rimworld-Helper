@@ -259,8 +259,9 @@ namespace ColonyCouncil
                 FilthMaker.TryMakeFilth(mother.Position, map, ThingDefOf.Filth_Blood, 3);
                 mother.Kill(null);
             }
-            string key = live ? (ours ? "CC_PEv3_BirthOurs" : "CC_PEv3_BirthLive") : "CC_PEv3_BirthLost";
-            c.Note(c.Text(key, null, helper, 0, mother.KindLabel), live ? MessageTypeDefOf.PositiveEvent : MessageTypeDefOf.NegativeEvent, Importance.Notable, calf ?? (Thing)mother, true);
+            bool colony = helper != null && helper.IsColonist;
+            string key = live ? (ours ? "CC_PEv3_BirthOurs" : "CC_PEv3_BirthLive") : colony ? "CC_PEv3_BirthLostOurs" : "CC_PEv3_BirthLost";
+            c.Note(c.Text(key, colony ? null : helper, colony ? helper : null, 0, mother.KindLabel), live ? MessageTypeDefOf.PositiveEvent : MessageTypeDefOf.NegativeEvent, Importance.Notable, calf ?? (Thing)mother, true);
             var herder = c.Here.FirstOrDefault(x => x.RaceProps.Humanlike);
             if (herder != null) c.SayMoment(herder, live ? "born" : "lost");
         }

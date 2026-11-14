@@ -392,8 +392,9 @@ namespace ColonyCouncil
             }
             if (f.HasGoodwill && !f.IsPlayer) WorldSituationWorker.Goodwill(f, PeopleEvents3Math.AloneGoodwill, false);
             string text = home.Count == 0
-                ? "CC_PEv3_TrailNone".Translate(f.Name.Named("FACTION"), (due != null ? due.LabelIndefinite() : "").Named("DUE"), (due != null).Named("KEPT")).Resolve()
-                : "CC_PEv3_TrailBack".Translate(f.Name.Named("FACTION"), Kinds(home).Named("BEASTS"), (due != null ? due.LabelIndefinite() : "").Named("DUE"), (due != null).Named("KEPT")).Resolve();
+                ? (due != null ? "CC_PEv3_TrailOnlyDue".Translate(f.Name.Named("FACTION"), due.LabelIndefinite().Named("DUE")) : "CC_PEv3_TrailNone".Translate(f.Name.Named("FACTION"))).Resolve()
+                : "CC_PEv3_TrailBack".Translate(f.Name.Named("FACTION"), Kinds(home).Named("BEASTS")).Resolve()
+                  + (due != null ? " " + "CC_PEv3_TrailDue".Translate(due.LabelIndefinite().Named("DUE")).Resolve() : "");
             Tell.Message(NewsKind.World, Importance.Notable, map, text, home.Count > 0 ? new LookTargets(home) : LookTargets.Invalid,
                 home.Count > 0 ? MessageTypeDefOf.PositiveEvent : MessageTypeDefOf.NeutralEvent);
             Close(r);
@@ -684,9 +685,9 @@ namespace ColonyCouncil
         {
             var hc = ctx as HappeningContext;
             if (hc?.a == null) return;
-            sheet.Play("CC_PEv3_Impact_Ride".Translate(hc.a.LabelShort, hc.enemy?.Name ?? "?").Resolve(), "CC_PEv3_Impact_RideBrief".Translate().Resolve());
-            sheet.Add(ImpactKind.Health, -1, "CC_PEv3_Impact_RideFight".Translate(hc.a.LabelShort).Resolve(), "CC_PEv3_Impact_RideFightBrief".Translate().Resolve(), "pev3ridefight");
-            sheet.Add(ImpactKind.Goods, 1, "CC_PEv3_Impact_RideBeasts".Translate(hc.tale ?? "?").Resolve(), "CC_PEv3_Impact_RideBeastsBrief".Translate().Resolve(), "pev3ridebeasts");
+            sheet.Play("CC_PEv3_Impact_Trail".Translate(hc.a.LabelShort, hc.enemy?.Name ?? "?").Resolve(), "CC_PEv3_Impact_TrailBrief".Translate().Resolve());
+            sheet.Add(ImpactKind.Health, -1, "CC_PEv3_Impact_TrailFight".Translate(hc.a.LabelShort).Resolve(), "CC_PEv3_Impact_TrailFightBrief".Translate().Resolve(), "pev3trailfight");
+            sheet.Add(ImpactKind.Goods, 1, "CC_PEv3_Impact_TrailBeasts".Translate(hc.tale ?? "?").Resolve(), "CC_PEv3_Impact_TrailBeastsBrief".Translate().Resolve(), "pev3trailbeasts");
             if (hc.faction != null) sheet.Goodwill(hc.faction, PeopleEvents3Math.TrailGoodwill);
         }
 
