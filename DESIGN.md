@@ -2977,6 +2977,67 @@ stalls" (`marketVisitorsBuy`, on, Your other mods under RimMarket, with the deep
 - **Dev mode**: "Market: send this visitor to the stalls now" (the group's turn and the hours aside, everything else as
   always, why not in the log), "Market: every visitor and why (log)" (`Visitors/VisitorTradeDebug.cs`).
 
+### Guests keep out of bedrooms and the cold store (the player's request, 13 November 2026; not released yet)
+
+The player: "guests should not step into my pawns rooms when they're sleeping and also not into the fridge (even though
+my fridge is detected as kitchen because of the butcher's table in it.", then "you can go ahead with the guest fixes".
+In their save the guests were Hospitality's, with the Home area as their guest area, idling with the game's own colony
+wander: a random cell within seven of the colony's gathering spot (the hall's table), which took in the bedroom off the
+hall and, through the kitchen, the freezer; nothing in the game or in Hospitality asks whose room a cell is in or what
+the room holds. So the rule is Rimfolk's, for every visitor, and it is told by what a room is, never by the role the
+game gives it (a freezer with a butcher's table is a kitchen to the game). The pure rules are in
+`Visitors/KeepOutMath.cs` (`KeepOutTests`), the game side in `Visitors/KeepOut.cs`.
+
+- **Who keeps out** (`KeepOut.IsVisitor`): anyone of another people on a home map, not hostile, not the colony's
+  prisoner or slave, up and in their right mind: the game's visitors and caravans, Rimfolk's visits, callers, envoys,
+  feasts' and hosted guests and camps, Hospitality's guests, and their animals. Allies come to fight with the colony
+  (`LordJob_AssistColony`) are left to the fight.
+- **The rooms** (`KeepOutMath.Kind`): only a proper room (closed in, not out of doors, not huge). A **bedroom of the
+  colony's people**: a bed of a colonist's, a slave's or a child's stands in it; guest beds alone (the guests' own
+  room), sickbeds and cells don't make one. A **cold store**: below 5 degrees (`ColdBelow`), counted so until it warms
+  to 8 (`ColdLeaves`, so a cooler cycling or a door held open doesn't flip it), with a stockpile or shelf in it that
+  takes food (a meal, raw vegetables, raw meat or plant food: `AllowsFood`) or three stacks of food lying there
+  (`FoodStacks`; a meal on a cold table isn't a store). A room with a colony bed is a bedroom first.
+- **Who may go in** (`KeepOutMath.Barred`): nobody into a cold store. Into a bedroom, at any hour, only those whose bed
+  is in it (a guest bed given to them, a lover's place in their partner's bed, as the game or Rimfolk gives it), and,
+  while nobody of the colony sleeps in it, a doctor's work (`KeepOut.Care`: Rimfolk's round of doses for a patient in it,
+  the animal doctor's patients, a people's worker sent to a colonist or the bed of their work, a visitor already at the
+  game's own tending or rescue). Someone already inside (or in its doorway) always has the way out.
+- **How** (`Patch_KeepOutDoors`): a postfix on the game's `ForbidUtility.IsForbiddenToPass` makes the doors of such a
+  room forbidden to that visitor, as a forbidden door is to a colonist. The game's paths cost it as a wall, its reach
+  stops at it (so its wandering, a joy or a job inside, a chair or food inside are out of reach and passed over), and a
+  path through it is found again another way. One narrow hook for every kind of visitor, the doors of every mod that
+  are the game's doors underneath (Doors Expanded's, More Door Variants'), and Hospitality's own area untouched. Under
+  the deeper game hooks (`RimfolkPatches.On`); no setting of its own, as a fix.
+- **The look** (`KeepOut.Rare`, `KeepOutBook`, every 250 ticks on the visitors' tick of the cycle, `Sched.RareVisitors`,
+  timed as `Pass.RareKeepOut`; only on a home map with visitors on it): each room's kind, its cells and doorways, its
+  doors and a way out by each, whose bed is there, whether one of the colony sleeps in it, who a doctor's work lets in;
+  a `Snap` replaced whole, never changed after, since the game works out paths on worker threads and the door hook reads
+  only it. When what the doors allow changes (a visitor comes or goes, someone falls asleep or wakes, a room turns cold),
+  the game's reach, kept per pawn, is cleared (`Changed`); `KeepOut.Refresh` looks again at once (a people's worker sent
+  to a colonist, so their way in counts from the start).
+- **Walking out** (`WalkOutAll`): a visitor standing in a room they couldn't go into now (its owner fell asleep, it
+  turned cold, a reload) walks out to the nearest door's outside cell, with no words; not while asleep, in bed, at an
+  order of the player's or with the map in danger.
+- **Food brought out** (`KeepOut.Fetch`, `JobDriver_BringOutFood`, the job `Rimfolk_BringOutFood`): food a visitor may
+  not go in for is carried out by the nearest free colonist (`PlayOuts.CanTakePart`, able to haul): a meal, or enough of
+  the raw food for one, taken up in the cold store, walked over to the visitor and handed over into their pack, and they
+  eat it then (the game takes it to a table if one is near). Not handed over, it is set down where the colonist stands,
+  still the colony's. Where the colony serves its guests: a feast's guests (`PlayGuests.Keep`, `PlayOutLord.Serve`),
+  envoys and their party (`Envoys.Eat`, counted when the colonist sets off with it), a feast's visiting parties
+  (`Feasts`), the herders' rider's supper (`HerdersBeast`), all through `Hosting.Brought` in the order `Hosting.Meal` and
+  `Raw` pick; a meal shared with an outsider (`Outsiders.Portions` and `Meal`: the colonist brings the outsider's portion
+  first, then eats their own, `OutsiderMeal.brought` giving both longer to begin). And anyone starving with nothing of
+  their own and no food elsewhere in reach (`FeedHungry`: the game, and Hospitality for a starving guest, would have them
+  take the colony's food then), once in two hours at most.
+- **Rimfolk's own choices** never pick such a room (`KeepOut.IsKept`): a guest's corner for the night
+  (`VisitorServices.Fits`), a corner indoors (`Visitors.IndoorsCell`), Hospitality's guest beds for a visit
+  (`VisitorBeds.Free`), a spare bed for a hosted guest (`Hosting.Beds`: before, an empty bed in a barracks beside
+  sleeping colonists would do), a helping guest's work (`GuestHelp.Bad`, besides its rooms by role); and the market opens
+  only a stall's own place to Hospitality's guests, never one inside a kept room (`Patch_MarketGuestsReach`).
+- **Dev mode**: "Visitors: rooms kept from them (log)" and "Visitors: look at the kept rooms again now"
+  (`Visitors/KeepOutDebug.cs`).
+
 ### Neighbours' requests and callers at the gate (the player's request, 6 November 2026)
 
 "Do another big content update to existing mechanics": this part the neighbours and the people who come to the colony,
@@ -13193,6 +13254,7 @@ chains, nemeses, camps, play-outs, the fights pass and the worn-out episode read
 | 97 | The weather's push on the outdoor temperature, eased a tenth of the way toward what the weather makes it (Weather/WeatherDynamics.cs; with "The weather moves the temperature" on, or while a push is still easing off) | per map: the sun, the snow cover's total, the weather |
 | 113 | The welcome letter (only until it's sent); answers playing out on the map (only while one waits or runs) | one check; per play-out |
 | 131 | Visitors on the map: each visit waiting to come or under way (only while there are any) | per visit: its hour, danger, the weather, its letter, its people |
+| 131 | The rooms visitors keep out of (Visitors/KeepOut.cs; only on a home map with visitors on it, with the deeper hooks): each room's kind (a bedroom of the colony's people, a cold store), its doors and ways out, whose bed it is, who sleeps there, a doctor's work; the game's reach cleared when that changes; a visitor inside one walks out; a starving visitor brought food from the cold store | per home map with visitors: its rooms (beds, temperature; for a cold one its food and stores), its pawns twice; per visitor inside a kept room, a way out |
 | 149 | Things an answer keeps on the map for a while: lanterns for a night, a fire in a cold room, the pyre, a bolted door, an animal at someone's heels (only while there are any) | per thing kept: its hour, danger, its fuel, its people |
 | 139 | Health stories: one tenth of the colonists (by ID), each once an hour (with convalescence or reputation on) | per colonist in the slice: limbs lost, bed rest, setbacks |
 | 167 | The colony news: what waits goes out (as the evening's digest, around six) | the waiting news |

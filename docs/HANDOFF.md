@@ -48,14 +48,6 @@ tree at once, alongside whatever runs. Each piece is merged as its own release, 
   10. Between peoples 96 to 99; every people's art handed on, 100.
 - **To do when the player asks (13 November 2026, gathered while the usage limit was reached; the player: "gather all
   the comments since the limit is reached and add to to-do"):**
-  - **Guests out of sleeping colonists' rooms and the fridge** (a bug). The player, with their save (upload
-    `e8cfe489-League_of_Toba_4.7z`; untrusted: extract into its own scratchpad folder, read with `python3 -I`): "guests
-    should not step into my pawns rooms when they're sleeping and also not into the fridge (even though my fridge is
-    detected as kitchen because of the butcher's table in it." When asked: visitors and guests (the game's, Rimfolk's,
-    Hospitality's where it doesn't already) never path into a bedroom while its owner sleeps (and keep out of private
-    bedrooms at all hours unless invited), and never into a cold store, judged by what it is (a room kept cold for food,
-    whatever its role: a freezer with a butcher's table counts as a store, not a kitchen); find in the save why they go
-    there now (Rimfolk's visit duties' wander spots, the market or services, food).
   - **Disturbed sleep, as asked** ("do pawns also get the 'disturbed sleep' when something happens outside of their
     room? what triggers this?"): answered; the game's own (`Pawn.HearClamor`): a colonist asleep hears another pawn's
     movement or a baby's cry within a few cells, the sound carrying through open doors and doorless openings but not
@@ -114,6 +106,88 @@ tree at once, alongside whatever runs. Each piece is merged as its own release, 
   ordering them off is ruder still), less when they were trouble (a thief, a brawler, a drunk); with Hospitality its
   own way for its guests; never a caravan mid-trade without the trade closed first, and never anyone downed or a
   prisoner.
+- Not released: no version, no What's new round, About.xml and CHANGELOG untouched. **Guests keep out of bedrooms and the cold store**
+  (13 November 2026; the player's report: "guests should not step into my pawns rooms when they're sleeping and also not
+  into the fridge (even though my fridge is detected as kitchen because of the butcher's table in it.", then "you can go
+  ahead with the guest fixes"). DESIGN.md "Guests keep out of bedrooms and the cold store (the player's request, 13
+  November 2026; not released yet)"; the Almanac's visitors page ("Their own way", keywords unchanged).
+  - The cause, in their save (upload `e8cfe489-League_of_Toba_4.7z`, the game at 1.7): the guests were Hospitality's,
+    five of the Dark Elves (lord 173, `Hospitality.LordJob_VisitColony`, duty `Relax`), and a caravan of three of the
+    Republic was leaving (`LordJob_TravelAndExit`); Rimfolk's own visit lords there were empty, nobody of theirs on the
+    map. Hospitality's guest area for them was the Home area (its map default, `defaultAreaRestriction` Area_0_Home), and
+    every bedroom and the freezer are in it. Hospitality's guests idle with the game's own colony wander
+    (`JobGiver_WanderColony`): a root at one of the colony's gathering spots (here the hall's dining table at 68, 203,
+    the only one), or by a wall in the home area when there is none, then any cell within seven of it they can reach.
+    Nothing in the game or in Hospitality asks whose room it is or what it holds; only the guest area limits them. From
+    the hall's table that took them through the doors into Bautista and Darunia's room, five cells off (Biafyndar stood
+    in it, `StandAndBeSociallyActive`; the two sleep there at night, Aspen was asleep in hers along the hall), and
+    through the kitchen into the freezer, two cells off: cells 61 to 66 by 202 to 205, -6.25 degrees under a cooler set to
+    -9, raw food, hay and smokeleaf in seven baskets and a stockpile, and the butcher's table, which makes the game call
+    it a kitchen (28 for the table against 1 for each basket as a storeroom). Hospitality's food swiping goes to a
+    sleeping pawn's pack wherever they lie too, but these guests carried pemmican, so it didn't come to that. Rimfolk
+    sent nobody there in this save, but its own choices could have, going by the game's room roles only: a spare bed in
+    a barracks beside sleeping colonists or a guest bed in someone's room for a hosted guest, a freezer-kitchen as a
+    lodger's corner; and a guest helping out could work in the freezer.
+  - Built: every visitor (the game's visitors and caravans, Rimfolk's visits, callers, envoys, feasts' and hosted guests
+    and camps, Hospitality's guests, and their animals; not the colony's prisoners or slaves, enemies, or allies come
+    to fight) keeps out of two kinds of room, told by what the room is: a bedroom of the colony's people (a bed of a
+    colonist's, a slave's or a child's in it; guest beds, sickbeds and cells don't count), private at any hour; and a
+    cold store (below 5 degrees, and counted so until it warms to 8, with a stockpile or shelf in it that takes food or
+    three stacks of food lying there), whatever the game calls it. The doors of such a room are forbidden to them as a
+    forbidden door is to a colonist, so the game's paths, reach and wandering go round them and nothing inside is
+    theirs to take up. Only those whose bed is in the room go in (a guest bed given to them, a lover's place in their
+    partner's bed), and, while nobody of the colony sleeps there, a doctor's work (Rimfolk's round of doses, the animal
+    doctor, a people's worker sent to a colonist, the game's own tending or rescue); nobody goes into a cold store. Someone inside
+    such a room when it becomes one (its owner falls asleep, it turns cold, a reload) walks out to the nearest door. Food
+    they may not go in for is brought out: a free colonist carries a meal's worth out of the cold store, hands it over
+    into their pack, and they eat it (a feast's guests, envoys and hosted guests, the herders' rider's supper, a meal
+    shared with an outsider, and anyone starving with nothing of their own and nothing else in reach, when the game and
+    Hospitality would have them take the colony's food). Rimfolk's own choices never pick such a room: the guest's
+    corner for the night, the corner indoors, Hospitality's guest beds for a visit, a spare bed for a hosted guest, a
+    helping guest's work. Hospitality's guest area stays as Hospitality has it; the market still opens only a stall's
+    own place to its guests, and never one inside a kept room. No setting of its own: a fix, with the deeper game hooks.
+  - Code map: `Source/ColonyCouncil/Visitors/KeepOutMath.cs` (new, pure, linked: `KeptKind`, `ColdBelow` 5, `ColdLeaves`
+    8, `FoodStacks` 3, `Cold`, `HoldsFood`, `Kind`, `Barred`, `WalksOut`). `Visitors/KeepOut.cs` (new): `KeepOut` with the
+    look (`Rare`, `Refresh`, `Build`: a `Snap` for each home map with visitors on it, its visitors and its kept rooms
+    `Kept`, each with its cells and doorways, doors, ways out, bed owners, who sleeps there and a doctor's work, replaced
+    whole and read from the game's path threads; `Care`, `Sign`, `Changed` clearing the game's reach), `Barred` (the door),
+    `KeptFrom`, `KindOf` and `IsKept` (for Rimfolk's own choices), `WalkOutAll`, `Fetch`, `BringJob`, `Handed`,
+    `FeedHungry`, `Report`; `KeepOutBook` (a game component, saves nothing, on `Sched.RareVisitors`, timed as
+    `Pass.RareKeepOut`); `Patch_KeepOutDoors` (a postfix on `ForbidUtility.IsForbiddenToPass`, under `RimfolkPatches.On`);
+    `JobDriver_BringOutFood`. `Visitors/KeepOutDebug.cs` (two dev actions). Defs `Defs/Misc/Rimfolk_KeepOut.xml`
+    (`Rimfolk_BringOutFood`); Keyed `Rimfolk_KeepOut.xml` (the clock's name). Small hooks: `VisitorServices.Fits`,
+    `Visitors.IndoorsCell`, `VisitorBeds.Free`, `Hosting.Beds` and `GuestHelp.Bad` (never a kept room), `Hosting.Brought`
+    (new), `Envoys.Eat`, `Feasts` (a guest's evening, the table without play-outs), `HerdersBeast.SupperHour`,
+    `PlayGuests.Keep`, `PlayOutLord.Serve`, `Outsiders.Portions` and `Meal` (`OutsiderMeal.brought`, `BroughtWait`),
+    `PeopleWorkOn.Begin` (`KeepOut.Refresh`), `Patch_MarketGuestsReach`, `Lean/PassClockMath.cs`. Tests:
+    `Tools/Tests/KeepOutTests.cs` (the rules, the save's rooms, the seams); `OutsiderAutoTests` counts the meal's two new
+    jobs.
+  - Not run here (none of it could be): every play-out on the map: the doors forbidden to visitors on the game's path
+    threads and in its reach, the wander and Hospitality's guests going round them, someone walking out, the reach
+    worked out again as owners fall asleep and wake, a cold store found by its temperature and food (the hysteresis at 5
+    and 8 degrees), Doors Expanded's and More Door Variants' doors (both are the game's doors underneath, so they should
+    count), food carried out and handed over, a meal shared with an outsider whose portion is brought, the envoys' meals
+    counted, the dose doctor and a people's worker let into a colonist's room while nobody sleeps there.
+  - Try in the game (dev mode, the deeper game hooks on; "Debug actions, Rimfolk, Visitors: rooms kept from them (log)"
+    shows the look, "Visitors: look at the kept rooms again now" makes it now):
+    1. Their save with Hospitality's guests: the log lists the five bedrooms (Aspen's, Soot's, Guido and Eletha's,
+       Avila's, Bautista and Darunia's) and the freezer as a cold store ("the game calls it kitchen", -6 degrees, food
+       and its stockpile). Within a few seconds a guest standing in a bedroom walks out to the hall.
+    2. Watch the guests at speed 3 for an hour or two of the game: they wander the hall and the kitchen, never through
+       a bedroom door or the freezer's; the log's line for each says "outside every kept room".
+    3. Let a colonist go to bed: once asleep, their room's line says one of the colony is asleep in it.
+    4. Set the freezer's cooler to 21 and wait until the room passes 8 degrees: it leaves the list; set it back below 5
+       and it's a cold store again.
+    5. Put every meal of the colony in the freezer (or forbid the others), then start a feast, an envoy's stay, or leave
+       a Hospitality guest starving with an empty pack (in dev mode, their Needs tab's food bar clicked down to empty): a
+       colonist walks into the freezer, carries a meal out to the guest and hands it over, and the guest eats it at a
+       table.
+    6. Right-click a visitor, "Meal", with the meals only in the freezer: the colonist fetches the visitor's portion,
+       hands it over, then eats their own; the shared meal's memory follows as before.
+    7. A doctor's round of doses with a colonist awake in bed in their room goes in; with their partner asleep in it, the
+       doctor waits.
+    8. Turn the deeper game hooks off: the guests go where Hospitality's area lets them, as before.
+  - Mods that would help: none needed; nothing new to look at or hear.
 - 0.229.0, **The peoples' own events, round 2**
   (12 November 2026, the player's "you can go ahead on the todos"). Items 14, 22, 26, 59, 12, 25, 3, 20, 40 and 63 of
   `docs/peoples-events-proposals.md`; DESIGN.md "The peoples' own events, round 2"; README "The peoples' own events, the
