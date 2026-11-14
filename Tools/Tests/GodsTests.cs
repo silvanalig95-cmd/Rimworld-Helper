@@ -412,7 +412,7 @@ public static class GodsTests
         C(!Directory.Exists(Path.Combine(root, "Textures", "ColonyCouncil", "GodSymbols")) && !File.Exists(Path.Combine(root, "Tools", "make_god_symbols.py")) && !File.Exists(Path.Combine(src, "Gods", "GodSymbols.cs"))
           && !File.Exists(Path.Combine(root, "Textures", "ColonyCouncil", "Gods", "Aura", "Emblem.png")), "the gods' symbols, their script and the card's emblem are gone");
         string card = Read(Path.Combine("Gods", "Presence", "GodCard.cs"));
-        C(!card.Contains("Symbol") && !card.Contains("Emblem") && card.Contains("<size=28>"), "the god's card shows the god in words: its name set large in its color");
+        C(!card.Contains("Symbol") && !card.Contains("Emblem") && card.Contains("letter.godName ?? \"\").CapitalizeFirst(), 28, godColor"), "the god's card shows the god in words: its name set large in its color");
         C(!Read(Path.Combine("Gods", "Presence", "GodLookDef.cs")).Contains("Texture2D Symbol"), "a look has no symbol");
 
         // ================= The hands =================
@@ -525,7 +525,7 @@ public static class GodsTests
         C(lore.Contains("public void Connect(LoreName a, LoreName into, Pawn by, string teller)") && lore.Contains("GodLoreMath.TellerConnects"),
             "two names worked out to be one, by a colonist or a teller saying so");
         C(!page.Contains("Favour") && !page.Contains("FavourValue") && !page.Contains("ColorA") && !page.Contains(".colour"), "the book shows no favor, and no god's color that would give away which names are one");
-        C(page.Contains("<size=26>") && page.Contains("\"<i>\"") && page.Contains("Rule(") && page.Contains("public const float Column = 600f;") && page.Contains("CC_GodLore_Hand"),
+        C(page.Contains("title.CapitalizeFirst(), 26") && page.Contains("\"<i>\"") && page.Contains("Rule(") && page.Contains("public const float Column = 600f;") && page.Contains("CC_GodLore_Hand"),
             "type with character: a title set large, italics, rules, a readable column, the keeper's hand marked");
         C(Read("UI/MainTabWindow_World.cs").Contains("Own(RegionView.Gods, Icons.Journal ?? Icons.Chronicle, 40f, GodLorePage.Draw)"), "the book is its own tab of the region window");
         C(tales.Contains("Speech.Say(teller, text, listener)") && tales.Contains("GodLore.Heard(teller, g, text, how, key, piece, name)") && tales.Contains("Together.Can(teller, p)") && tales.Contains("Together.Can(v, c)"),

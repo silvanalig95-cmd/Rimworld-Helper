@@ -10,14 +10,14 @@ namespace ColonyCouncil
     /// The gods' signs (docs/gods-next-proposals.md, section A; the player, 14 November 2026: "the god signs are awesome, go
     /// ahead! should be seen in the book and on cards"): the colony's own holy sign for a god, what its people draw, carve or
     /// stitch for it, a belief made visible and never a portrait of the hidden god. Drawn by Tools/make_god_signs.py into
-    /// Textures/ColonyCouncil/Gods/Signs (GodSignsMath): the plain sign in the god's colours, and the sign in the form of each
-    /// age, which the colony's own age picks (its means: scratched on a stone, painted on a shield, stamped on a badge, lit in
-    /// a ring).
+    /// Textures/ColonyCouncil/Gods/Signs (GodSignsMath): the sign in the god's colours, as on the draft sheet the player chose
+    /// (the ages' grey forms were dropped on 14 November 2026: "these are not the icons you created here??").
     /// <para>
-    /// Where it shows: in a chapter of the colony's book, beside its name, once someone has told what the god is under that
-    /// name or the colony saw it plainly (GodSignsMath.Believed: the god the chapter holds itself to be about); and on a
-    /// god's card, only when the card names the god and the colony knows its sign so (<see cref="Known"/>). Never on a shrine, never over a god on
-    /// the map, and nowhere for a god the colony has not heard of.
+    /// Where it shows: above a chapter's name in the colony's book and small in its list, once someone has told what the god
+    /// is under that name or the colony saw it plainly (GodSignsMath.Believed: the god the chapter holds itself to be about);
+    /// until then the plain seal of a god nobody can yet say (<see cref="Unknown"/>), so every name has a picture and none
+    /// gives away which names are one god. On a god's card, only when the card names the god and the colony knows its sign
+    /// so (<see cref="Known"/>). Never on a shrine, never over a god on the map.
     /// </para>
     /// </summary>
     public static class GodSigns
@@ -46,21 +46,8 @@ namespace ColonyCouncil
         /// <summary>A god's plain sign in its colours, by its key ("Hollin"), or null.</summary>
         public static Texture2D Plain(string key) => key.NullOrEmpty() ? null : Get(GodSignsMath.PlainPath(key));
 
-        /// <summary>A god's sign in the form of the colony's own age (its means), by its key; the plain sign where that form is missing; or null.</summary>
-        public static Texture2D OfColony(string key)
-        {
-            if (key.NullOrEmpty()) return null;
-            int age;
-            try
-            {
-                age = (int)Ages.Ours;
-            }
-            catch
-            {
-                age = 1;
-            }
-            return Get(GodSignsMath.AgePath(key, age)) ?? Plain(key);
-        }
+        /// <summary>The seal of a god the colony can't yet say what it is (GodSignsMath.UnknownPath), or null.</summary>
+        public static Texture2D Unknown => Get(GodSignsMath.UnknownPath);
 
         /// <summary>A god's key, when it is one of Rimfolk's own with a sign.</summary>
         public static string KeyOf(God g) => g?.def != null && GodLoreMath.Keys.Contains(g.Key) ? g.Key : null;

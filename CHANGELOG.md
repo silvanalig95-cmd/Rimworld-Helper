@@ -5,6 +5,14 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## The Gods' book mended
+
+*14 November 2026, version 0.238.1*
+
+- The Gods' book shows each chapter's whole name again, and the large first letter of its first line is no longer cut.
+- Each god's sign now shows in its own colours, as on the draft sheet, over its chapter's name, in the book's list and on its cards.
+- A chapter whose god nobody can yet say shows a plain wax seal, so every name in the book has a picture without giving away which names are one god.
+
 ## The gods' own happenings, part two
 
 *14 November 2026, version 0.238.0*

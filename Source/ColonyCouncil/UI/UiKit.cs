@@ -187,6 +187,38 @@ namespace ColonyCouncil
     [StaticConstructorOnStartup]
     public static partial class UiKit
     {
+        private static readonly Dictionary<int, GUIStyle> sizedStyles = new Dictionary<int, GUIStyle>();
+
+        /// <summary>
+        /// The game's medium font at a size of its own, plain text (no tags), for large letters: measure and draw with the same
+        /// style. The game's own measuring (Text.CalcSize, Text.CalcHeight) strips size tags first, so text drawn with
+        /// "&lt;size=26&gt;" is measured at the small size and comes out cut or clipped.
+        /// </summary>
+        public static GUIStyle Sized(int size, TextAnchor anchor = TextAnchor.UpperLeft, bool wrap = true)
+        {
+            int key = size * 100 + (int)anchor * 2 + (wrap ? 1 : 0);
+            if (!sizedStyles.TryGetValue(key, out var style))
+            {
+                style = new GUIStyle(Text.fontStyles[(int)GameFont.Medium]) { fontSize = size, alignment = anchor, wordWrap = wrap, richText = false };
+                sizedStyles[key] = style;
+            }
+            return style;
+        }
+
+        /// <summary>Plain text in a <see cref="Sized"/> style at a width: its height, and drawn in a colour; the height drawn.</summary>
+        public static float SizedLabel(float x, float y, float w, string text, int size, Color color, TextAnchor anchor = TextAnchor.UpperLeft)
+        {
+            if (text.NullOrEmpty()) return 0f;
+            var style = Sized(size, anchor);
+            var content = new GUIContent(text.StripTags());
+            float h = style.CalcHeight(content, w);
+            var was = GUI.color;
+            GUI.color = color;
+            GUI.Label(new Rect(x, y, w, h), content, style);
+            GUI.color = was;
+            return h;
+        }
+
         // ---------------- Tokens ----------------
         // The colours by meaning (docs/design/interface.md, "Colour"), one set for every page and window: a page draws
         // with these and makes no colour of its own (Tools/Tests/LookTests.cs reads every file under UI/ for one). Colour

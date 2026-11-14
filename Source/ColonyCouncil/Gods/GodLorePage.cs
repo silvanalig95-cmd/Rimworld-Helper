@@ -178,7 +178,7 @@ namespace ColonyCouncil
                 {
                     var p = pages[i];
                     string sub = p.also.Count > 0 ? "CC_GodLore_AlsoShort".Translate(p.also.ToCommaList(true).Named("NAMES")).Resolve() : null;
-                    y = Row(y, w, p.title, p.title.CapitalizeFirst(), sub, GodBookMath.Roman(p.chapter), i, SignOf(p, false));
+                    y = Row(y, w, p.title, p.title.CapitalizeFirst(), sub, GodBookMath.Roman(p.chapter), i, SignOf(p));
                 }
                 if (unnamed.Count > 0)
                 {
@@ -270,28 +270,16 @@ namespace ColonyCouncil
             }
         }
 
-        /// <summary>The page's head: a title set large (with the colony's sign beside it, where it has one), an italic line under it, and a small italic note; then an ornament.</summary>
+        /// <summary>The page's head: the colony's sign (where it has one) over a title set large, an italic line under it, and a small italic note; then an ornament.</summary>
         private static float Title(float x, float y, float w, string title, string italic, string note, Texture2D sign = null)
         {
-            string big = "<size=26>" + title.CapitalizeFirst() + "</size>";
+            // The sign over the name, both in the middle of the column; the name whole, measured at the size it is drawn at.
             if (sign != null)
             {
-                // The sign beside the name, the two set together in the middle of the column.
-                Text.Font = GameFont.Medium;
-                float tw = Mathf.Min(Text.CalcSize(big).x, w - SignSize - 12f), th = Mathf.Max(Text.CalcHeight(big, tw), SignSize);
-                Text.Font = GameFont.Small;
-                float x0 = x + (w - SignSize - 12f - tw) / 2f;
-                GodSigns.Draw(new Rect(x0, y + (th - SignSize) / 2f, SignSize, SignSize), sign);
-                Text.Font = GameFont.Medium;
-                Text.Anchor = TextAnchor.MiddleLeft;
-                GUI.color = UiKit.Ink;
-                Widgets.Label(new Rect(x0 + SignSize + 12f, y, tw + 4f, th), big);
-                GUI.color = Color.white;
-                Text.Anchor = TextAnchor.UpperLeft;
-                Text.Font = GameFont.Small;
-                y += th + 4f;
+                GodSigns.Draw(new Rect(x + (w - SignSize) / 2f, y, SignSize, SignSize), sign);
+                y += SignSize + 4f;
             }
-            else y += Para(x, y, w, big, UiKit.Ink, GameFont.Medium, TextAnchor.UpperCenter) + 2f;
+            y += UiKit.SizedLabel(x, y, w, title.CapitalizeFirst(), 26, UiKit.Ink, TextAnchor.UpperCenter) + 4f;
             if (!italic.NullOrEmpty()) y += Para(x, y, w, "<i>" + italic + "</i>", UiKit.Faint, GameFont.Small, TextAnchor.UpperCenter) + 2f;
             if (!note.NullOrEmpty()) y += Para(x, y, w, "<i>" + note + "</i>", UiKit.Dim, GameFont.Tiny, TextAnchor.UpperCenter);
             return Ornament(x, y + 12f, w) + 14f;
@@ -307,7 +295,7 @@ namespace ColonyCouncil
             string first = p.name != null
                 ? "CC_GodLore_FirstHeard".Translate(Date(p.name.first).Named("DATE"), (p.name.from ?? "CC_GodLore_FromNowhere".Translate().ToString()).Named("FROM")).Resolve()
                 : null;
-            y = Title(x, y, w, p.title, also, first, SignOf(p, true));
+            y = Title(x, y, w, p.title, also, first, SignOf(p));
             y = PlainLine(x, y, w, p);
             marginBottom = y;
             GodLore.Keeper(out var voice);
@@ -395,11 +383,14 @@ namespace ColonyCouncil
             return GodSigns.KeyOf(g) != null ? g : null;
         }
 
-        /// <summary>The chapter's sign: in the colony's age's form beside its name, plain in the list; none while nobody has told what it is or seen it.</summary>
-        private static Texture2D SignOf(Page p, bool ofAge)
+        /// <summary>
+        /// The chapter's sign, over its name and small in the list: its god's sign in its colours once someone has told what it
+        /// is or it was seen plainly, and until then the seal of a god nobody can yet say (GodSigns.Unknown).
+        /// </summary>
+        private static Texture2D SignOf(Page p)
         {
             string key = GodSigns.KeyOf(BelievedGod(p));
-            return key == null ? null : ofAge ? GodSigns.OfColony(key) : GodSigns.Plain(key);
+            return key == null ? GodSigns.Unknown : GodSigns.Plain(key);
         }
 
         /// <summary>
@@ -667,12 +658,14 @@ namespace ColonyCouncil
         private static float DropCap(float x, float y, float w, string text, Color c)
         {
             if (text.NullOrEmpty() || text.Length < 3 || text.Contains("<")) return Para(x, y, w, text, c, GameFont.Small);
-            string cap = "<size=38>" + text.Substring(0, 1) + "</size>";
+            // The capital measured and drawn at its own size (the game's measuring strips size tags, which cut it before).
+            var capStyle = UiKit.Sized(38, TextAnchor.UpperLeft, false);
+            var capText = new GUIContent(text.Substring(0, 1));
+            var size = capStyle.CalcSize(capText);
             Text.Font = GameFont.Small;
-            var size = Text.CalcSize(cap);
             float capW = size.x + 4f, lineH = Text.LineHeight;
             GUI.color = UiKit.Gold;
-            Widgets.Label(new Rect(x, y - 7f, capW + 6f, size.y + 4f), cap);
+            GUI.Label(new Rect(x, y - 6f, size.x + 2f, size.y), capText, capStyle);
             GUI.color = Color.white;
             string rest = text.Substring(1);
             string k = rest + "|" + (int)w;

@@ -91,12 +91,12 @@ public static class GodsUnderstoodTests
 
         // ================= Round 1: the signs =================
 
-        C(GodSignsMath.PlainPath("Hollin") == "ColonyCouncil/Gods/Signs/Hollin" && GodSignsMath.AgePath("Hollin", 1) == "ColonyCouncil/Gods/Signs/Hollin_Medieval",
-            "the sign's textures by the god's key and the age's form");
-        C(GodSignsMath.AgeName(-1) == "Tribal" && GodSignsMath.AgeName(2) == "Industrial" && GodSignsMath.AgeName(9) == "Spacer"
-          && GodSignsMath.AgeNames.SequenceEqual(new[] { "Tribal", "Medieval", "Industrial", "Spacer" }), "the four ages' forms, in the order of the colony's ages");
+        C(GodSignsMath.PlainPath("Hollin") == "ColonyCouncil/Gods/Signs/Hollin" && GodSignsMath.UnknownPath == "ColonyCouncil/Gods/Signs/Unknown",
+            "the sign's texture by the god's key, and the seal of a god nobody can yet say");
+        var signDir = Path.Combine(root, "Textures", "ColonyCouncil", "Gods", "Signs");
+        C(!Directory.GetFiles(signDir, "*_*.png").Any(), "no ages' grey forms left in the game's textures (the player wanted the coloured signs)");
         foreach (var key in GodLoreMath.Keys)
-            foreach (var tex in new[] { key }.Concat(GodSignsMath.AgeNames.Select(a => key + "_" + a)))
+            foreach (var tex in new[] { key, "Unknown" })
             {
                 string png = Path.Combine(root, "Textures", "ColonyCouncil", "Gods", "Signs", tex + ".png");
                 bool ok = File.Exists(png);
@@ -109,8 +109,8 @@ public static class GodsUnderstoodTests
                 C(ok, $"the sign {tex}: 128 by 128, with its own transparency");
             }
         string script = File.ReadAllText(Path.Combine(root, "Tools", "make_god_signs.py"));
-        C(GodLoreMath.Keys.All(k => script.Contains("(\"" + k + "\", ")) && script.Contains("AGES = [\"Tribal\", \"Medieval\", \"Industrial\", \"Spacer\"]"),
-            "the script draws every god and every age's form under the names the game reads");
+        C(GodLoreMath.Keys.All(k => script.Contains("(\"" + k + "\", ")) && script.Contains("UNKNOWN = (\"Unknown\", unknown,"),
+            "the script draws every god and the unknown seal under the names the game reads");
 
         BookVerse V(BookPart part, int god, int tick, bool against = false) => new BookVerse { part = part, god = god, tick = tick, against = against, page = "X" };
         C(GodSignsMath.Believed(new List<BookVerse>()) == -1 && GodSignsMath.Believed(new[] { V(BookPart.Names, 3, 1), V(BookPart.Loves, 3, 2) }) == -1,
@@ -125,12 +125,16 @@ public static class GodsUnderstoodTests
         C(GodSignsMath.Believed(new[] { sighted }) == 7 && GodSignsMath.Believed(new[] { told }) == -1, "a god seen plainly by the colony tells it too; a sign of its hand alone does not");
 
         string signs = Read("Gods/GodSigns.cs"), page = Read("Gods/GodLorePage.cs"), card = Read("Gods/Presence/GodCard.cs"), wiring = Read("Gods/GodsWiring.cs");
-        C(signs.Contains("ContentFinder<Texture2D>.Get(path, false)") && signs.Contains("(int)Ages.Ours") && signs.Contains("v.god == g.id && GodSignsMath.Tells(v)"),
-            "the sign loaded softly, in the form of the colony's own age, known once the colony was told what the god is");
-        C(page.Contains("p.believed = GodSignsMath.Believed(p.verses);") && page.Contains("y = Title(x, y, w, p.title, also, first, SignOf(p, true));") && page.Contains("SignOf(p, false)"),
-            "the book: the sign beside the chapter's name in the age's form, and small beside it in the list");
+        C(signs.Contains("ContentFinder<Texture2D>.Get(path, false)") && !signs.Contains("Ages.Ours") && signs.Contains("v.god == g.id && GodSignsMath.Tells(v)"),
+            "the sign loaded softly, in its colours, known once the colony was told what the god is");
+        C(page.Contains("p.believed = GodSignsMath.Believed(p.verses);") && page.Contains("y = Title(x, y, w, p.title, also, first, SignOf(p));")
+          && page.Contains("return key == null ? GodSigns.Unknown : GodSigns.Plain(key);"),
+            "the book: the god's coloured sign over the chapter's name and small in the list, the unknown seal until someone has told what it is");
+        C(page.Contains("UiKit.SizedLabel(x, y, w, title.CapitalizeFirst(), 26") && page.Contains("UiKit.Sized(38, TextAnchor.UpperLeft, false)")
+          && !page.Contains("\"<size=38>\"") && !page.Contains("\"<size=26>\"") && !card.Contains("\"<size=28>\""),
+            "the chapter's name and its first capital measured at the size they are drawn at, so neither is cut (the game's measuring strips size tags)");
         C(!page.Contains("Favour") && !page.Contains(".colour") && !page.Contains("ColorA") && !page.Contains("new Color("), "the book still shows no favor and no god's colour of its own");
-        C(wiring.Contains("string sign = !veiled && GodSigns.Known(s.god) ? GodSigns.KeyOf(s.god) : null;") && card.Contains("GodSigns.OfColony(letter.sign)")
+        C(wiring.Contains("string sign = !veiled && GodSigns.Known(s.god) ? GodSigns.KeyOf(s.god) : null;") && card.Contains("GodSigns.Plain(letter.sign)")
           && card.Contains("sign = veiled ? null : sign") && card.Contains("Scribe_Values.Look(ref sign, \"sign\");"),
             "a card shows the sign only when it names the god and the colony was told what it is; never on a veiled card");
         C(!card.Contains("Symbol") && !card.Contains("Emblem"), "the card's sign is the colony's, not the old symbols");

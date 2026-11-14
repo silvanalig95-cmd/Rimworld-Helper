@@ -15,17 +15,14 @@ namespace ColonyCouncil
         /// <summary>The folder under Textures the signs are in.</summary>
         public const string Dir = "ColonyCouncil/Gods/Signs/";
 
-        /// <summary>The ages' forms, by the colony's age (0 tribal to 3 spacer, WorldAge): the textures' endings.</summary>
-        public static readonly string[] AgeNames = { "Tribal", "Medieval", "Industrial", "Spacer" };
-
-        /// <summary>An age's form (0 tribal to 3 spacer; anything past either end is the nearest).</summary>
-        public static string AgeName(int age) => AgeNames[age < 0 ? 0 : age > 3 ? 3 : age];
-
         /// <summary>The plain sign of a god by its key ("Hollin"): ColonyCouncil/Gods/Signs/Hollin.</summary>
         public static string PlainPath(string key) => Dir + key;
 
-        /// <summary>A god's sign in an age's form: ColonyCouncil/Gods/Signs/Hollin_Medieval.</summary>
-        public static string AgePath(string key, int age) => Dir + key + "_" + AgeName(age);
+        /// <summary>
+        /// The seal of a god the colony can't yet say what it is (ColonyCouncil/Gods/Signs/Unknown): one plain seal for every
+        /// such chapter, so every name in the book has a picture and none gives away which names are one god.
+        /// </summary>
+        public const string UnknownPath = Dir + "Unknown";
 
         /// <summary>
         /// A verse that tells the colony what a god is: a line of what it is as someone told it (a doubt doesn't), or the god

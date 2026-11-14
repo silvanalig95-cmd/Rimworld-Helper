@@ -21,9 +21,9 @@ Usage (from the repository root):
     python3 Tools/make_god_signs.py                  # writes the sheet, docs/gods-symbols-draft.png
     python3 Tools/make_god_signs.py --textures [DIR] # writes the game's textures instead, 128x128 RGBA, to DIR
                                                      # (default Textures/ColonyCouncil/Gods/Signs): <Key>.png, the plain
-                                                     # sign in the god's colours, and <Key>_<Age>.png for Tribal,
-                                                     # Medieval, Industrial and Spacer, each age's form
-    python3 Tools/make_god_signs.py --textures [DIR] --only Mog   # one god's five
+                                                     # sign in the god's colours, and Unknown.png, the seal of a god the
+                                                     # colony can't yet say what it is
+    python3 Tools/make_god_signs.py --textures [DIR] --only Mog   # one god's sign
 
 Needs Pillow (pip install pillow).
 """
@@ -369,6 +369,22 @@ def mog():
 SHOWN = {"Mog": "Tamiu"}
 
 
+def unknown():
+    """The seal of a god the colony can't yet say what it is: a plain wax seal, its edge pressed out in soft lobes and a
+    ring cut round its face, and nothing on the face, the mark the keeper leaves beside a name that is only a name so far."""
+    m = new()
+    circle(m, 64, 64, 44)
+    for k in range(16):
+        a = math.radians(k * 22.5)
+        circle(m, 64 + math.cos(a) * 44, 64 + math.sin(a) * 44, 8)
+    ring(m, 64, 64, 33, 3.2, OFF)
+    return m
+
+
+# The unknown seal's colour: the book's own gold, dimmed, with a faint grey glow.
+UNKNOWN = ("Unknown", unknown, (0.78, 0.7, 0.5), (0.5, 0.5, 0.5))
+
+
 def murmur():
     """A toad over ripples, with the rain it sings up falling."""
     m = new()
@@ -576,17 +592,19 @@ AGES = ["Tribal", "Medieval", "Industrial", "Spacer"]
 
 
 def textures(out_dir, only=None):
-    """Each god's five textures for the game (Gods/GodSigns.cs reads them by these names): the plain sign in its colours
-    with a soft glow of its second, and its four age forms as the sheet shows them."""
+    """The textures for the game (Gods/GodSigns.cs reads them by these names): each god's plain sign in its colours with a
+    soft glow of its second, and the unknown seal. The ages' forms stay on the draft sheet only (the player, 14 November
+    2026, wanted the coloured signs in the book)."""
     os.makedirs(out_dir, exist_ok=True)
     n = 0
     for key, _e, fn, a, b, _meaning in GODS:
         if only and key not in only:
             continue
-        mask = fn()
-        tinted(mask, OUT, a, b).save(os.path.join(out_dir, key + ".png"), optimize=True)
-        for k, age in enumerate(AGES):
-            frame_age(mask, k, OUT, a).save(os.path.join(out_dir, key + "_" + age + ".png"), optimize=True)
+        tinted(fn(), OUT, a, b).save(os.path.join(out_dir, key + ".png"), optimize=True)
+        n += 1
+    key, fn, a, b = UNKNOWN
+    if not only or key in only:
+        tinted(fn(), OUT, a, b).save(os.path.join(out_dir, key + ".png"), optimize=True)
         n += 1
     return n
 
@@ -601,7 +619,7 @@ def main(argv):
             j = argv.index("--only")
             only = set(argv[j + 1].split(",")) if j + 1 < len(argv) else None
         n = textures(out, only)
-        print("wrote the signs of", n, "gods (", n * (1 + len(AGES)), "textures ) to", os.path.relpath(out, ROOT))
+        print("wrote", n, "signs to", os.path.relpath(out, ROOT))
         return
     sheet(SHEET)
     print("wrote", os.path.relpath(SHEET, ROOT))

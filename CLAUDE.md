@@ -38,6 +38,11 @@ Work in progress and the next steps are in `docs/HANDOFF.md`: read it first.
 - Answers play out on the map; no countdowns in text. Speech goes through `Speech.Say` / `Together`.
 - Events and answers show on the map as accurately as possible: what the words say happens is what the player sees.
 - Spoken bubble lines are one sentence (ImmersionTests).
+- Plain, neutral text (the player's rule since 14 November 2026): "when you write text for the mod, especially when it's
+  supposed to be flavour, i'd like you to be more neutral, descriptive and "reasonable", over trying to make the text be
+  creative, as this just most of the time sounds awkward." Say what happens, who does it and why, in ordinary words;
+  no poetic turns, riddling phrasing, invented idioms, lofty or archaic voice, or a twist at the end of a line. Speech
+  sounds like a person talking. Samples and rewrites: `docs/text-style-samples.md`.
 
 ## Releases
 - `Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml` drives `CHANGELOG.md` (`python3 Tools/changelog.py`, then `--check`).

@@ -13328,18 +13328,22 @@ what the colony's people do there, never what the god makes of it.
   half a day, +2 said at the god's own place (`Rimfolk_Worship_PrayedAtShrine`), carrying a gift +1 for a day; all
   smaller than an answered prayer (+4). They were 0 with something else instead; modelled in `Tools/Balance`.
 - **The signs** (round 1; `Gods/GodSigns.cs`, `GodSignsMath`, `Tools/make_god_signs.py --textures`): each god's sign in
-  `Textures/ColonyCouncil/Gods/Signs/`: `<Key>.png`, the plain sign in the god's colours, and `<Key>_<Age>.png` in the
-  four ages' forms the sheet shows (scratched on a stone, painted on a shield, stamped on a badge, lit in a ring), all
-  128 by 128. The colony's own age (`Ages.Ours`, its means) picks the form. Shown:
-  - in the Gods' book, beside the chapter's name (56 px, the age's form) and small at the end of its row in the list
-    (the plain sign), once the chapter tells what the god is (`GodSignsMath.Tells`: a verse of what it is that isn't a
-    doubt, or the god seen plainly by the colony's own people) and for the god most of those verses are of
-    (`GodSignsMath.Believed`; on a tie the first told), so a chapter told of wrongly shows the wrong one, and a second
-    name not yet told of shows none: nothing gives away which names are one;
+  `Textures/ColonyCouncil/Gods/Signs/`: `<Key>.png`, the sign in the god's colours as on the draft sheet, 128 by 128, and
+  `Unknown.png`, a plain wax seal. (The ages' grey forms, stone, shield, badge and ring, were dropped in 0.238.1 at the
+  player's word, "these are not the icons you created here??": they stay on the draft sheet only.) Shown:
+  - in the Gods' book, over the chapter's name (56 px) and small at the end of its row in the list: the god's sign once
+    the chapter tells what the god is (`GodSignsMath.Tells`: a verse of what it is that isn't a doubt, or the god seen
+    plainly by the colony's own people) and for the god most of those verses are of (`GodSignsMath.Believed`; on a tie
+    the first told), so a chapter told of wrongly shows the wrong one; until then the unknown seal (`GodSigns.Unknown`),
+    one for every such chapter, so every name has a picture and nothing gives away which names are one;
   - on a god's card, over its name, only when the card names it and the colony knows its sign (`GodSigns.Known`); a
     veiled card ("some say") shows none (`GodsWiring`, `GodPresence.Manifest`'s overload with a sign, `GodLetter.sign`);
-  - nowhere else: not on a shrine, not over a god on the map (the player's pick), and nowhere for a god the colony has
-    not heard of.
+  - nowhere else: not on a shrine, not over a god on the map (the player's pick).
+- **Large letters measured at their size** (0.238.1): the chapter's name (26), the card's god name (28) and the
+  chapter's first capital (38) are drawn and measured with one style of the game's medium font at that size
+  (`UiKit.Sized`, `UiKit.SizedLabel`), since the game's own measuring (`Text.CalcSize`, `Text.CalcHeight`) strips size
+  tags first: drawn with "<size=26>" the name was measured at the small size, wrapped and cut to its first word ("The"
+  of "The Stranger"), and the capital was clipped to an L-shaped mark.
 - **The plain line** (round 1; `GodDef.plain`, `GodLorePage.PlainLine`): each chapter opens, under its head, with
   "As the colony understands it, so Avila keeps it:" (the keeper's name, `CC_GodBook_Plain`; "As the colony understands
   it:" with nobody keeping the book) and the believed god's plain line from section B of the doc ("The mother of all
@@ -13437,7 +13441,7 @@ under the world. Tamiu is the one who keeps the dead whole and lies across the d
   wrapping, meat; her keepers chant Alpha Memes' Kemetic chant; she keeps no calendar and never asks.
 - **Her sign** (`Tools/make_god_signs.py`, `mog()`): a cat seated in profile on a tomb's door, upright and watchful as the
   old kingdoms carved her, her eye cut bright and painted long, a collar at her neck, her tail curled up behind her; in
-  every age's form (`Textures/ColonyCouncil/Gods/Signs/Mog*.png`).
+  in her colours (`Textures/ColonyCouncil/Gods/Signs/Mog.png`).
 - Tested in `MogTests` (the pure rules, her def, shape and look, her omens and presence, the card, every age's words, the
   seams); `GodsTests`, `GodsOnMapTests`, `GodWorldTests` and `HarmBudgetTests` follow her. Not built: her own festival
   (she keeps none), a cult people of her own (her keepers come from the peoples that hold her).

@@ -191,19 +191,15 @@ namespace ColonyCouncil
             }
             else
             {
-                // The colony's sign of it, over its name, in the form of the colony's age.
-                var tex = GodSigns.OfColony(letter.sign);
+                // The colony's sign of it, over its name, in its colours.
+                var tex = GodSigns.Plain(letter.sign);
                 if (tex != null)
                 {
                     GodSigns.Draw(new Rect(inner.center.x - 32f, y - 6f, 64f, 64f), tex);
                     y += 62f;
                 }
-                Text.Font = GameFont.Medium;
-                GUI.color = godColor;
-                string name = "<size=28>" + (letter.godName ?? "").CapitalizeFirst() + "</size>";
-                float nh = Text.CalcHeight(name, inner.width);
-                Widgets.Label(new Rect(inner.x, y, inner.width, nh), name);
-                y += nh + 2f;
+                // The name measured at the size it is drawn at (the game's measuring strips size tags).
+                y += UiKit.SizedLabel(inner.x, y, inner.width, (letter.godName ?? "").CapitalizeFirst(), 28, godColor, TextAnchor.UpperCenter) + 2f;
                 if (!letter.epithet.NullOrEmpty())
                 {
                     Text.Font = GameFont.Small;
