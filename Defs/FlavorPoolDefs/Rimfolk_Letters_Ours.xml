@@ -10,7 +10,7 @@
     (v:blunt, v:plain, v:eloquent, v:kind, v:abrasive, v:cheerful, v:gloomy, v:learned, v:proud), how the colony stands
     with them (warm, cordial, cool, curt), war, the address. A line claims nothing about the colony beyond its own topic
     and what the facts service tags. Medieval English (olde) and an unschooled hand (u:none) have their own. The unschooled
-    lines' misspellings are deliberate.
+    lines are short and plain, spelled right.
   -->
   <ColonyCouncil.FlavorPoolDef>
     <defName>Rimfolk_Pool_LetterOurs</defName>
@@ -209,25 +209,25 @@
         <li>[olde,reply,k:invitation,no] I thank thee, but we cannot come this time.</li>
 
         <!-- ================= An unschooled hand (u:none) ================= -->
-        <li>[u:none,greetings] hello from all of us at {COLONY}. hope yor well</li>
-        <li>[u:none,condolences] we herd about yor lost (crossed out) loss. sory. reely</li>
-        <li>[u:none,warning] wach out. there is truble coming yor way. we herd</li>
-        <li>[u:none,warning] wach out for {TOPIC}. we herd it is bad</li>
-        <li>[u:none,news] wots the news out yor way. we dont here much</li>
-        <li>[u:none,invitation] come visit us. we wil cook sumthing</li>
-        <li>[u:none,help] we need {HELP}. plese. we wil pay you back</li>
-        <li>[u:none,help] we are short. plese send wot you can spare. we wil pay you back</li>
-        <li>[u:none,favour] you owe us one. we want it now plese</li>
-        <li>[u:none,pact] we want a pakt (crossed out) pact with you. fair for both</li>
-        <li>[u:none,truce] lets stop fiting. we are tired and so are you</li>
-        <li>[u:none,ransom] we got one of yors. they are fine. lets sort it out</li>
-        <li>[u:none,envoy] send yor envoy to us. we wil look after them gud</li>
-        <li>[u:none,ward] about a yung one living with the other lot for a year. we are for it</li>
-        <li>[u:none,match] we think one of ours and one of yors shud get together. wot do you think</li>
-        <li>[u:none,fealty] we wil swear to you if the terms are fair</li>
-        <li>[u:none,takeback] we want {TOWN} back. it was ours first</li>
-        <li>[u:none,dealing] we got sum bizness for the councel. fair terms</li>
-        <li>[u:none,reply] thanks for yor leter. it was gud</li>
+        <li>[u:none,greetings] Hello from all of us at {COLONY}. Hope you are well.</li>
+        <li>[u:none,condolences] We heard about your loss. Sorry. Really.</li>
+        <li>[u:none,warning] Watch out. There is trouble coming your way. We heard.</li>
+        <li>[u:none,warning] Watch out for {TOPIC}. We heard it is bad.</li>
+        <li>[u:none,news] What's the news out your way? We don't hear much.</li>
+        <li>[u:none,invitation] Come visit us. We will cook something.</li>
+        <li>[u:none,help] We need {HELP}. Please. We will pay you back.</li>
+        <li>[u:none,help] We are short. Please send what you can spare. We will pay you back.</li>
+        <li>[u:none,favour] You owe us one. We want it now, please.</li>
+        <li>[u:none,pact] We want a pact with you. Fair for both.</li>
+        <li>[u:none,truce] Let's stop fighting. We are tired, and so are you.</li>
+        <li>[u:none,ransom] We have one of yours. They are fine. Let's sort it out.</li>
+        <li>[u:none,envoy] Send your envoy to us. We will look after them well.</li>
+        <li>[u:none,ward] About a young one living with the other lot for a year. We are for it.</li>
+        <li>[u:none,match] We think one of ours and one of yours should get together. What do you think?</li>
+        <li>[u:none,fealty] We will swear to you if the terms are fair.</li>
+        <li>[u:none,takeback] We want {TOWN} back. It was ours first.</li>
+        <li>[u:none,dealing] We have some business for the council. Fair terms.</li>
+        <li>[u:none,reply] Thanks for your letter. It was good.</li>
       </plain>
     </lines>
   </ColonyCouncil.FlavorPoolDef>

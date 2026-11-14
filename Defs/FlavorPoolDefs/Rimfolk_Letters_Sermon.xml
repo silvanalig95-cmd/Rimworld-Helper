@@ -15,7 +15,7 @@
     unschooled: they have written it all down), zeal:true for a true believer; neither fits both. A sermon in a condolence
     is a consolation (tagged condolences); every other piece is tagged !condolences. {IDEO} is their faith's name, {DEITY}
     its god (only where it has one). Nothing here says a thing happened at their town or the colony: it is a sermon, not
-    news. Medieval English (olde), an unschooled hand (u:none, its misspellings deliberate), sv:deep, the eldritch, and
+    news. Medieval English (olde), an unschooled hand (u:none, in short plain words), sv:deep, the eldritch, and
     sv:hive, the many as one.
   -->
   <ColonyCouncil.FlavorPoolDef>
@@ -99,9 +99,9 @@
         <li>[olde,condolences,grave,sm:any] I will not tell thee it was meant, nor that there was a reason in it. I know it not, and neither doth any that saith so.\n\nThis much I know: those we lose are held, and while they are held, we that remain must hold one another, which is the harder task, and the only one left us. Do it, and suffer others to do it for thee.</li>
 
         <!-- ================= An unschooled hand (u:none) ================= -->
-        <li>[u:none,zeal:crank,!condolences,sm:any] i got to tel you sumthing. evrythin is conected. the wel and the wether and the goats. nobody here beleeves me.\n\nbut i kno. i rote it all down. wen the time comes you wil want to read it. i wil keep you a copy</li>
-        <li>[u:none,c:pious,!condolences] evry morning i go out and say thank you for the day. evry nite i say thank you agen for gettin thru it.\n\nyou shud try it. its free</li>
-        <li>[u:none,condolences,grave,sm:any] i dont kno why it hapend. nobody does. but they are held sumwhere. thats wot i think</li>
+        <li>[u:none,zeal:crank,!condolences,sm:any] I have to tell you something. Everything is connected. The well and the weather and the goats. Nobody here believes me.\n\nBut I know. I wrote it all down. When the time comes, you will want to read it. I will keep you a copy.</li>
+        <li>[u:none,c:pious,!condolences] Every morning I go out and say thank you for the day. Every night I say thank you again for getting through it.\n\nYou should try it. It's free.</li>
+        <li>[u:none,condolences,grave,sm:any] I don't know why it happened. Nobody does. But they are held somewhere. That's what I think.</li>
 
         <!-- ================= The eldritch (sv:deep) ================= -->
         <li>[sv:deep,!condolences,sm:any] Below the hill a thing is sleeping that was old when the hill was young. We do not wake it. We keep it company.\n\nYou will feel it too, if you are quiet. A weight, under the floor of the world. Do not be afraid. It is not hungry. Not yet. Not for you.</li>
@@ -163,8 +163,8 @@
         <li>[w:tribal,!condolences,sm:any] The old ones say: you are a guest in the world. Eat what is offered, thank the one who cooked, and do not move the furniture.\n\nThe young ones laugh. Then the young ones get old, and say it to their own young ones, who laugh. That is how you know it is true.</li>
         <li>[w:tribal,c:pious,!condolences] When the drum speaks at night, it is not speaking to us. It is speaking for us, to the ones above, who are old and hard of hearing.\n\nSo we drum loud, and we drum long, and in the morning the sky is clear, and we say: they heard. Sometimes the sky is not clear. Then we say: they are thinking about it.</li>
         <li>[w:tribal,condolences,grave,sm:any] Your friend has walked into the long grass, where the hunting is easy and the water is sweet. Do not call too loudly, or they will turn back, and they should not turn back.\n\nCall softly, once, so they know they were loved. Then let them go on.</li>
-        <li>[u:none,c:raider,!condolences] the strong take and the weak giv. thats the rule. its not a nice rule but its a rule\n\nbut you dont take from yor own crew. thats the uther rule. sumtimes peeple forget the uther rule. then thay are not crew no more</li>
-        <li>[u:none,c:highlife,!condolences,!p:sober] life is short so drink the good stuf first. thats wot i beleeve\n\nthe preest sez no. the preest is wrong. the preest drinks the good stuf to i seen him</li>
+        <li>[u:none,c:raider,!condolences] The strong take and the weak give. That's the rule. It's not a nice rule, but it's a rule.\n\nBut you don't take from your own crew. That's the other rule. Sometimes people forget the other rule. Then they are not crew any more.</li>
+        <li>[u:none,c:highlife,!condolences,!p:sober] Life is short, so drink the good stuff first. That's what I believe.\n\nThe priest says no. The priest is wrong. The priest drinks the good stuff too. I've seen him.</li>
         <li>[sv:hive,!condolences,sm:any] One is a mistake. Two is a quarrel. Many is a faith.\n\nWe do not pray. We hum. The hum is the prayer, and the hum is the answer, and the hum is us, and there is no space between them where doubt can live.</li>
         <li>[sv:hive,condolences,grave,sm:any] One of yours is gone. We know this feeling. We feel it in every cell when one of ours goes quiet.\n\nWe will hum for yours, if you will let us. It is the only thing we know how to give. It is a large thing, from many.</li>
         <li>[sv:deep,!condolences,sm:any] Patient, the dark is. Patient, we are. One day the lamps will go out, all of them, everywhere, and on that day you will know us, and we will not be strangers.\n\nWrite back before then. We like your letters. They are bright, and we keep them, in the dark, where they glow.</li>
@@ -175,7 +175,7 @@
         <li>[!condolences,sm:any,zeal:crank] I have noticed that everything bad happens on the days I forget to say my words in the morning. So I say them now four times a day, in case.\n\nNothing bad has happened since, except the neighbours, who have complained about the noise, which I count as a test.</li>
         <li>[olde,!condolences,sm:any,zeal:true] Be kind of set purpose. Any may be kind by chance, when it costeth naught and the sun shineth. The faith is to be kind when thou art weary, and cold, and in the right.</li>
         <li>[w:tribal,!condolences,sm:any] The river does not argue with the stone. It goes around. Be the river, the old ones say. Then they argue with each other for an hour about which of them is the stone.</li>
-        <li>[u:none,!condolences,sm:any,zeal:crank] i fink evrything is a sign. the crow, the rain, the way my soup tasted. its all telling me sumthing. i just dont kno wot yet</li>
+        <li>[u:none,!condolences,sm:any,zeal:crank] I think everything is a sign. The crow, the rain, the way my soup tasted. It's all telling me something. I just don't know what yet.</li>
         <!-- ================= Their god's sign, curse, war or myth (Gods/World/GodLetters.cs) ================= -->
         <li>[!condolences,sm:any,god:miracle] You will have heard that things go well with us, and I will tell you why, though you may laugh.
 

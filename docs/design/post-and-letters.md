@@ -101,7 +101,7 @@ letters"). Setting "Letters written out in full" (on).*
     friend, a trader angling, an official's duty, a wary neighbour, a proud one), hard times. A cool, curt or businesslike
     letter is never warm; jokes where the writer and situation allow them, a dry remark in a cool letter.
 17. **Who writes shapes how**: their age and people, their culture and kind (memes, xenotype), a medieval writer's
-    English (thee and thou), an unschooled hand (deliberate misspellings, a mark for a signature), the truly strange in a
+    English (thee and thou), an unschooled hand (short plain words, a mark for a signature), the truly strange in a
     voice of their own (an android's record, a hive's "we", a fairy's formula, the ancient's long postscript).
 18. **The colony's own letters written out** as the writer finishes them, in their voice, for its purpose and topic,
     true to what is so at home; kept, and read at the mailbag, from the answer's card and on the Diplomacy screen's People.
@@ -184,9 +184,9 @@ themes and the strange voices' new shapes in `LetterKindMath.cs`; DESIGN.md "Let
     parts, by age (tribal, medieval, industrial, spacer) and by people (every calling's own days).
 32. **Raids as they really were**: bandits on their road (wagons, not walls) and the colony's own attack told from their
     side, coldly, whole and by how it ended.
-33. **Voices**: medieval English kept to thee and thou; the unschooled spell badly and readably; the beast folk, plant
-    folk, machines, the hive, the ancient and the eldritch write poems, recipes, riddles, enclosures and diaries in their
-    own grammar.
+33. **Voices**: medieval English kept to thee and thou; the unschooled write short and plain, spelled right; the beast
+    folk, plant folk, machines, the hive, the ancient and the eldritch write poems, recipes, riddles, enclosures and
+    diaries in their own grammar.
 34. **Familiarity in the pieces**: lead-ins, codas, notes, enclosures, others' lines and diary entries for a new
     correspondent, an old friend and a cooled one.
 

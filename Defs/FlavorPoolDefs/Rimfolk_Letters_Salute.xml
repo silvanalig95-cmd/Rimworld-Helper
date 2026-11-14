@@ -14,16 +14,16 @@
       c:raider...) and kind (x:hulking, x:refined...);
     - the speech, which a writer draws from alone: none (plain English), olde (a medieval writer's: thou for the subject,
       thee for the object, thy before a consonant, thine before a vowel; thou art, thou hast; he hath), u:some (a barely
-      schooled hand, a slip or two, written so on purpose), u:none (an unschooled one, many slips, words crossed out and
-      written again, on purpose), sv:beast, sv:green, sv:fey, sv:ancient, sv:deep (strange voices; a hive and a machine
+      schooled hand, plain and a little stiff), u:none (an unschooled one, short sentences and simple words, warm and
+      direct; spelled right like every line), sv:beast, sv:green, sv:fey, sv:ancient, sv:deep (strange voices; a hive and a machine
       greet nobody);
     - the colony's writer's voice (ours): v:blunt, v:plain, v:eloquent, v:kind, v:abrasive, v:cheerful, v:gloomy.
     {TO} is the one written to, {FROM} the writer, {TOWN} their town, {COLONY} the colony, {PEOPLE} their people,
     {COUNCIL} their council ("the council of Ashford"), {TOTITLE} the office of the one written to (NotableBook.OfficeOf:
     none for one the colony knows only as a guest, a visitor, a captive set free). Who writes in their town: nr:head,
     nr:heir, nr:envoy, nr:trader, nr:acquaintance (a line that names the writer as their people's boss is the head's).
-    A line is chosen only when every placeholder in it has a value. The unschooled lines' misspellings are deliberate (DESIGN.md, "Letters that
-    read like letters": the exceptions), as are the strange voices' odd grammar.
+    A line is chosen only when every placeholder in it has a value. The unschooled lines are spelled right, only plainer;
+    the strange voices' odd grammar is deliberate (DESIGN.md, "Letters that read like letters": the exceptions).
   -->
   <ColonyCouncil.FlavorPoolDef>
     <defName>Rimfolk_Pool_LetterSalute</defName>
@@ -232,40 +232,40 @@
         <li>[ours,olde,a:council] To {COUNCIL}, greeting,</li>
         <li>[ours,olde,a:council] Unto the worthy members of {COUNCIL}, greeting from {COLONY},</li>
 
-        <!-- ================= A barely schooled hand (u:some): a slip or two ================= -->
-        <li>[u:some,warmly] Dear {TO}, hello from {TOWN} and evryone here,</li>
+        <!-- ================= A barely schooled hand (u:some): plain and a little stiff ================= -->
+        <li>[u:some,warmly] Dear {TO}, hello from {TOWN} and everyone here,</li>
         <li>[u:some,warm|cordial] Dear {TO},</li>
         <li>[theirs,u:some,cordial] To {TO} at {COLONY}, greetings,</li>
         <li>[theirs,u:some,cordial] Greetings to {TO} of {COLONY} from {TOWN},</li>
-        <li>[theirs,u:some,cordial|cool] To {TO} of {COLONY}, in anser to yor letter,</li>
+        <li>[theirs,u:some,cordial|cool] To {TO} of {COLONY}, in answer to your letter,</li>
         <li>[u:some,cool] To {TO},</li>
-        <li>[theirs,u:some,cool] To {TO} at {COLONY}, re your leter,</li>
+        <li>[theirs,u:some,cool] To {TO} at {COLONY}, regarding your letter,</li>
         <li>[u:some,curt|refusal] {TO}.</li>
-        <li>[theirs,u:some,curt|refusal] To {COLONY}, about yor letter:</li>
-        <li>[theirs,u:some,warm|cordial,a:war] To {TO} of {COLONY}, under the wite flag,</li>
+        <li>[theirs,u:some,curt|refusal] To {COLONY}, about your letter:</li>
+        <li>[theirs,u:some,warm|cordial,a:war] To {TO} of {COLONY}, under the white flag,</li>
 
-        <!-- ================= An unschooled hand (u:none): many slips, on purpose ================= -->
-        <li>[theirs,u:none,warmly] deer {TO} at {COLONY} hello</li>
-        <li>[u:none,warm|cordial] dear {TO}</li>
-        <li>[theirs,u:none,cordial] to {TO} at {COLONY}, gretings</li>
-        <li>[theirs,u:none,cordial|cool] to {TO} of {COLONY} or hoever reads it</li>
-        <li>[u:none,cool] {TO}</li>
-        <li>[theirs,u:none,cool] to the {COLONY} peple (crossed out) people</li>
-        <li>[theirs,u:none,curt] OI {COLONY}</li>
-        <li>[theirs,u:none,curt|refusal] to {COLONY} wot sent the leter</li>
-        <li>[theirs,u:none,refusal] {COLONY} lisen up</li>
-        <li>[theirs,u:none,curt|refusal,c:raider] to the walls at {COLONY} and the cowards behind them</li>
+        <!-- ================= An unschooled hand (u:none): short and plain ================= -->
+        <li>[theirs,u:none,warmly] Dear {TO} at {COLONY}, hello,</li>
+        <li>[u:none,warm|cordial] Dear {TO},</li>
+        <li>[theirs,u:none,cordial] To {TO} at {COLONY}, greetings,</li>
+        <li>[theirs,u:none,cordial|cool] To {TO} of {COLONY}, or whoever reads it,</li>
+        <li>[u:none,cool] {TO},</li>
+        <li>[theirs,u:none,cool] To the {COLONY} people,</li>
+        <li>[theirs,u:none,curt] Oi, {COLONY},</li>
+        <li>[theirs,u:none,curt|refusal] To {COLONY}, who sent the letter,</li>
+        <li>[theirs,u:none,refusal] {COLONY}, listen up.</li>
+        <li>[theirs,u:none,curt|refusal,c:raider] To the walls at {COLONY}, and the cowards behind them,</li>
 
-        <li>[theirs,u:some,warmly] Dear {TO}, our good frend at {COLONY},</li>
+        <li>[theirs,u:some,warmly] Dear {TO}, our good friend at {COLONY},</li>
         <li>[theirs,u:some,cordial|cool,c:raider,nr:head] To {TO} at {COLONY}, from the boss,</li>
         <li>[ours,u:some,warm|cordial] Dear {TO} at {TOWN},</li>
-        <li>[ours,u:some,cordial|cool] To {TO} of {TOWN}, gretings from all of us,</li>
+        <li>[ours,u:some,cordial|cool] To {TO} of {TOWN}, greetings from all of us,</li>
         <li>[ours,u:some,curt|refusal] {TO}.</li>
-        <li>[ours,u:none,warmly] deer {TO} hello from all of us</li>
-        <li>[ours,u:none,warm|cordial] dear {TO} at {TOWN}</li>
-        <li>[ours,u:none,cordial|cool] to {TO} of {TOWN}</li>
-        <li>[ours,u:none,curt|refusal] {TO} at {TOWN}</li>
-        <li>[ours,u:none,a:war] to {TO} under the wite flag</li>
+        <li>[ours,u:none,warmly] Dear {TO}, hello from all of us,</li>
+        <li>[ours,u:none,warm|cordial] Dear {TO} at {TOWN},</li>
+        <li>[ours,u:none,cordial|cool] To {TO} of {TOWN},</li>
+        <li>[ours,u:none,curt|refusal] {TO} at {TOWN},</li>
+        <li>[ours,u:none,a:war] To {TO}, under the white flag,</li>
 
         <!-- ================= Strange voices ================= -->
         <!-- Animal-like: smells and tracks -->

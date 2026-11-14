@@ -5,8 +5,8 @@
     A postscript (Letters/LetterFormMath.cs, PSChance and PSKind; the form puts "P.S." before it, a machine "ADDENDUM:").
     The tags are the asides' (Rimfolk_Letters_Aside.xml): kind (joke, everyday, serious), register, side, address,
     age, people, culture and kind, what the writer wants, speech. The colony's own claim nothing about the colony that
-    isn't so. The ancient's postscripts run longer than their letters, on purpose; the unschooled lines' misspellings are
-    deliberate.
+    isn't so. The ancient's postscripts run longer than their letters, on purpose; the unschooled lines are short and
+    plain, spelled right.
   -->
   <ColonyCouncil.FlavorPoolDef>
     <defName>Rimfolk_Pool_LetterPS</defName>
@@ -152,18 +152,18 @@
         <li>[theirs,olde,everyday,a:plain|a:friend,cordial|cool] The post rider cometh through every week or two, shouldst thou write again.</li>
 
         <!-- ================= Barely schooled and unschooled ================= -->
-        <li>[u:some,joke,warmly|cordial|cool] Sory about the spelling, the one who checks it was out.</li>
+        <li>[u:some,joke,warmly|cordial|cool] Forgive the plain words. The one who writes for us was out.</li>
         <li>[u:some,everyday,warmly|cordial|cool] Write back if you want.</li>
-        <li>[u:some,serious] Look after yourselfs.</li>
-        <li>[u:some,joke,warmly|cordial|cool,!jk:goat] The goat says hello. Well, not reely, but she would if she could.</li>
+        <li>[u:some,serious] Look after yourselves.</li>
+        <li>[u:some,joke,warmly|cordial|cool,!jk:goat] The goat says hello. Well, not really, but she would if she could.</li>
         <li>[u:some,everyday,cordial|cool] Our trader comes your way next month if you want anything.</li>
-        <li>[u:some,everyday,curt] Dont send that courier agin, he ate everything.</li>
-        <li>[u:some,serious] Things are hard. Keep your gate shut at nite.</li>
-        <li>[u:none,joke,warmly|cordial|cool,!jk:goat] the goat sez hello. the goat cant rite. nor can i much</li>
-        <li>[u:none,everyday,warmly|cordial|cool] rite back if you want. or dont</li>
-        <li>[u:none,everyday,curt] dont send that one wot came last time agin he ate all the bread</li>
-        <li>[u:none,serious] be carefull out there. its bad all over</li>
-        <li>[u:none,serious,c:raider] gold. we want gold. or goald. you no wot we meen.</li>
+        <li>[u:some,everyday,curt] Do not send that courier again. He ate everything.</li>
+        <li>[u:some,serious] Things are hard. Keep your gate shut at night.</li>
+        <li>[u:none,joke,warmly|cordial|cool,!jk:goat] The goat says hello. The goat can't write. Nor can I, much.</li>
+        <li>[u:none,everyday,warmly|cordial|cool] Write back if you want. Or don't.</li>
+        <li>[u:none,everyday,curt] Don't send the one who came last time again. He ate all the bread.</li>
+        <li>[u:none,serious] Be careful out there. It's bad all over.</li>
+        <li>[u:none,serious,c:raider] Gold. We want gold. You know what we mean.</li>
 
         <!-- ================= Strange voices ================= -->
         <li>[sv:machine,everyday,warmly|cordial|cool] This letter has been checked for errors. None were found. One was left in deliberately, as a courtesy.</li>

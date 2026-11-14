@@ -15,7 +15,7 @@
     {PLANT} one of its wild plants not a tree ("a sprig of {PLANT}"), {TREE} one of its trees; {TOWN} their town (such a
     line is tagged theirs). Ages: w:tribal for a tribe's tale as told at the fire; !w:tribal for anything a tribe would not
     have (a mill, a records office, a barn); w:industrial|w:spacer for machines. Speech: olde (medieval English), u:none
-    (an unschooled hand, its misspellings deliberate), sv:beast (smells and trails), sv:ancient (the long-lived, over
+    (an unschooled hand, in short plain words), sv:beast (smells and trails), sv:ancient (the long-lived, over
     centuries); any other writer draws the plain lines. A coda tagged by the correspondence's stage (Letters/LetterThreadMath.cs:
     fam:new, fam:familiar, fam:close) speaks to a new friend or an old one. The next content pass can add themes freely: a new theme needs
     its name in LetterKindMath.Themes and at least one opening, turn and ending in each speech it is written for.
@@ -202,31 +202,31 @@
         <li>[olde,st:joke,light] My cousin telleth it otherwise, but my cousin is wrong.</li>
 
         <!-- ================= An unschooled hand (u:none) ================= -->
-        <li>[u:none,st:open,st:hunt] there was a big {ANIMAL} by the fense and the hunters went after it</li>
-        <li>[u:none,st:open,st:hunt] me and two others went huntin {ANANIMAL}. a big won</li>
-        <li>[u:none,st:turn,st:hunt] it led us rond and rond for two days and then it was behind us the hole time</li>
-        <li>[u:none,st:turn,st:hunt] then it rained and we got lost and we herd it all nite</li>
-        <li>[u:none,st:end,st:hunt] we dint get it. but we got a gud storey</li>
-        <li>[u:none,st:end,st:hunt] we got it in the end and evryone ate gud</li>
-        <li>[u:none,st:open,st:feud] two famlys here dont talk becos of a fense</li>
-        <li>[u:none,st:open,st:feud] my nayber and me fell out over a goat</li>
-        <li>[u:none,st:turn,st:feud] then sumone thru a bucket at the wel and evryone thru stuff</li>
-        <li>[u:none,st:turn,st:feud] then it got bad and evryone took sides</li>
-        <li>[u:none,st:end,st:feud] now we nod but we dont talk. thats alrite</li>
-        <li>[u:none,st:end,st:feud] nobody remembers wot it was about now</li>
-        <li>[u:none,st:open,st:wedding] we had a weddin</li>
-        <li>[u:none,st:open,st:wedding] my cuzin got marryed and evryone came</li>
-        <li>[u:none,st:turn,st:wedding] then {ANANIMAL} came in and stood there in the middel</li>
-        <li>[u:none,st:turn,st:wedding] the uncel talked so long the food got cold and then it rained</li>
-        <li>[u:none,st:end,st:wedding] they are marryed anyway and its alrite</li>
-        <li>[u:none,st:end,st:wedding] nobody remembers the vows just the rest</li>
-        <li>[u:none,st:open,st:ghost] theres a lite on the old rode at nite</li>
-        <li>[u:none,st:open,st:ghost] the wel makes a nockin sound at nite</li>
-        <li>[u:none,st:turn,st:ghost] so we sat up with a jug to see it</li>
-        <li>[u:none,st:turn,st:ghost] then the old woman sed it hapend befor long ago</li>
-        <li>[u:none,st:end,st:ghost] nobody saw nuthin. the jug was empty tho</li>
-        <li>[u:none,st:end,st:ghost] we dont kno wot it was. i dont go that way at nite</li>
-        <li>[u:none,st:joke,light] thats a tru storey mostly</li>
+        <li>[u:none,st:open,st:hunt] There was a big {ANIMAL} by the fence, and the hunters went after it.</li>
+        <li>[u:none,st:open,st:hunt] Three of us went hunting {ANANIMAL}. A big one.</li>
+        <li>[u:none,st:turn,st:hunt] It led us round and round for two days, and then it was behind us the whole time.</li>
+        <li>[u:none,st:turn,st:hunt] Then it rained, and we got lost, and we heard it all night.</li>
+        <li>[u:none,st:end,st:hunt] We didn't get it. But we got a good story.</li>
+        <li>[u:none,st:end,st:hunt] We got it in the end, and everyone ate well.</li>
+        <li>[u:none,st:open,st:feud] Two families here don't talk because of a fence.</li>
+        <li>[u:none,st:open,st:feud] My neighbour and I fell out over a goat.</li>
+        <li>[u:none,st:turn,st:feud] Then someone threw a bucket at the well, and everyone threw stuff.</li>
+        <li>[u:none,st:turn,st:feud] Then it got bad, and everyone took sides.</li>
+        <li>[u:none,st:end,st:feud] Now we nod, but we don't talk. That's all right.</li>
+        <li>[u:none,st:end,st:feud] Nobody remembers what it was about now.</li>
+        <li>[u:none,st:open,st:wedding] We had a wedding.</li>
+        <li>[u:none,st:open,st:wedding] My cousin got married, and everyone came.</li>
+        <li>[u:none,st:turn,st:wedding] Then {ANANIMAL} came in and stood there in the middle.</li>
+        <li>[u:none,st:turn,st:wedding] The uncle talked so long the food got cold, and then it rained.</li>
+        <li>[u:none,st:end,st:wedding] They are married anyway, and it's all right.</li>
+        <li>[u:none,st:end,st:wedding] Nobody remembers the vows, just the rest.</li>
+        <li>[u:none,st:open,st:ghost] There's a light on the old road at night.</li>
+        <li>[u:none,st:open,st:ghost] The well makes a knocking sound at night.</li>
+        <li>[u:none,st:turn,st:ghost] So we sat up with a jug to see it.</li>
+        <li>[u:none,st:turn,st:ghost] Then the old woman said it happened before, long ago.</li>
+        <li>[u:none,st:end,st:ghost] Nobody saw anything. The jug was empty, though.</li>
+        <li>[u:none,st:end,st:ghost] We don't know what it was. I don't go that way at night.</li>
+        <li>[u:none,st:joke,light] That's a true story, mostly.</li>
 
         <!-- ================= Strange voices ================= -->
         <li>[sv:beast,st:open,st:hunt] The {ANIMAL} came to the edge of our ground at dusk, three dusks running, and left its scent on every post. A challenge, plainly.</li>
@@ -343,16 +343,16 @@
         <li>[st:turn,st:wedding,w:tribal] Halfway through the joining {ANANIMAL} came down to drink on the far bank and watched the whole thing, and the elders said it was a blessing, and the young ones said it was thirsty.</li>
         <li>[st:end,st:wedding,w:tribal] They are joined, and their hearth is warm, and the drums went on so long that the next day was declared a day of sleeping.</li>
 
-        <!-- ================= Round 2, part 2: an unschooled hand's tales (u:none, misspellings on purpose) ================= -->
-        <li>[u:none,st:open,st:fair] wunce ther was a fare and evryone went. me to</li>
-        <li>[u:none,st:turn,st:fair] sumone stole a pig. it wasnt me. i had a pie</li>
-        <li>[u:none,st:end,st:fair] good fare. best one. i dont rember the end of it</li>
-        <li>[u:none,st:open,st:lost,!w:tribal] my brother got lost in the hils wunce</li>
-        <li>[u:none,st:turn,st:lost,!w:tribal] we looked evrywere. we looked in the pub to</li>
-        <li>[u:none,st:end,st:lost,!w:tribal] he was in the pub</li>
-        <li>[u:none,st:open,st:contest] we had a contest who cud eat the most pies</li>
-        <li>[u:none,st:turn,st:contest] i was winning. then i wasnt</li>
-        <li>[u:none,st:end,st:contest] nobody won. evryone was sick. good day tho</li>
+        <!-- ================= Round 2, part 2: an unschooled hand's tales (u:none) ================= -->
+        <li>[u:none,st:open,st:fair] Once there was a fair, and everyone went. Me too.</li>
+        <li>[u:none,st:turn,st:fair] Someone stole a pig. It wasn't me. I had a pie.</li>
+        <li>[u:none,st:end,st:fair] Good fair. Best one. I don't remember the end of it.</li>
+        <li>[u:none,st:open,st:lost,!w:tribal] My brother got lost in the hills once.</li>
+        <li>[u:none,st:turn,st:lost,!w:tribal] We looked everywhere. We looked in the pub too.</li>
+        <li>[u:none,st:end,st:lost,!w:tribal] He was in the pub.</li>
+        <li>[u:none,st:open,st:contest] We had a contest to see who could eat the most pies.</li>
+        <li>[u:none,st:turn,st:contest] I was winning. Then I wasn't.</li>
+        <li>[u:none,st:end,st:contest] Nobody won. Everyone was sick. Good day, though.</li>
 
         <!-- ================= Round 2, part 2: by smell (sv:beast) and by the centuries (sv:ancient) ================= -->
         <li>[sv:beast,st:open,st:storm] The wind turned in the night and brought a smell none of us had smelled before: rain, but angry.</li>
@@ -448,14 +448,14 @@
         <li>[olde,st:turn,st:feast] The speeches ran so long that the children bore the food beneath the board and ate it there, and none marked it till the speeches ended.</li>
         <li>[olde,st:end,st:feast] It was a goodly feast. None remembereth what was eaten. All remember who fell asleep in the bread.</li>
         <li>[olde,st:end,st:feast] At morn all swore never again, and by evensong were planning the next.</li>
-        <li>[u:none,st:open,st:feast] we had a feest wunce. biggest one</li>
-        <li>[u:none,st:turn,st:feast] evryone brung pudding. just pudding</li>
-        <li>[u:none,st:end,st:feast] best day. i was sick after. wurth it</li>
+        <li>[u:none,st:open,st:feast] We had a feast once. The biggest one.</li>
+        <li>[u:none,st:turn,st:feast] Everyone brought pudding. Just pudding.</li>
+        <li>[u:none,st:end,st:feast] Best day. I was sick after. Worth it.</li>
 
         <!-- ================= Round 2, part 2: an unschooled hunt ================= -->
-        <li>[u:none,st:open,st:hunt] we went huntin for a {ANIMAL} wunce. big one</li>
-        <li>[u:none,st:turn,st:hunt] it hid. we lookd. it hid beter</li>
-        <li>[u:none,st:end,st:hunt] we et beans that nite. the {ANIMAL} is stil out ther laffing</li>
+        <li>[u:none,st:open,st:hunt] Once we went hunting for a big {ANIMAL}. A really big one.</li>
+        <li>[u:none,st:turn,st:hunt] It hid. We looked. It hid better.</li>
+        <li>[u:none,st:end,st:hunt] We ate beans that night. The {ANIMAL} is still out there laughing.</li>
         <!-- ================= Their god's sign, curse or myth (Gods/World/GodLetters.cs: god:miracle, god:curse, god:myth) =================
              Told only when their letter tells of their god ({SIGNGOD}) or of an old story of two gods ({MYTHGOD}, {MYTHOTHER}). -->
         <li>[st:open,st:god,god:miracle] The year the well ran low, the old women went up the hill to ask {SIGNGOD} for water.</li>

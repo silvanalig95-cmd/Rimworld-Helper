@@ -72,9 +72,6 @@ tree at once, alongside whatever runs. Each piece is merged as its own release, 
     Memes' Kemetic style, mummification precept and ritual, Kemetic chant, Alpha Biomes' and Alpha Prefabs' Kemetic
     temples, Vanilla Factions Expanded's sarcophagus props; Mog's existing parts (her chosen's luck, staring at Ennu) to
     carry over or go, as the player picks.
-  - **No more deliberate slips in letters.** The player: "you can remove these purposely placed typos in letter, they
-    don't really work", "to do". When asked: a barely or unschooled writer (`LetterFormMath.Schooling.Some`/`None`)
-    writes plainly and shortly instead of with misspellings; keep their simpler words and short sentences.
   - **The animals, made more visible.** The player: "i must say that i can't really see a lot from the animal features we
     included, please add to to-do list to enhance and build up on these". When asked: list what Rimfolk's animal parts do
     now and what of it shows on the map (Animals/, the pets, herds, bonds, the beasts' encounters and dilemmas), propose
@@ -114,6 +111,15 @@ tree at once, alongside whatever runs. Each piece is merged as its own release, 
   ordering them off is ruder still), less when they were trouble (a thief, a brawler, a drunk); with Hospitality its
   own way for its guests; never a caravan mid-trade without the trade closed first, and never anyone downed or a
   prisoner.
+- Not released: no version, no What's new round, About.xml and CHANGELOG untouched. **Letters without deliberate slips**
+  (14 November 2026; the player: "you can remove these purposely placed typos in letter, they don't really work", then
+  "you can go ahead with ... the small ones"). Every line of a barely schooled (`u:some`) or unschooled (`u:none`) hand
+  in `Defs/FlavorPoolDefs/Rimfolk_Letters_*.xml` is spelled and punctuated right, nothing crossed out (295 of 311 lines
+  rewritten, 16 were right already; tags and placeholders kept): the unschooled in short sentences and simple words, the
+  barely schooled plain and a little stiff; a line whose joke was the spelling keeps its spirit ("Forgive the plain
+  words. The one who writes for us was out."). Who writes in these hands is unchanged. Pool headers, `LetterFormMath`,
+  `LetterCultureMath`, DESIGN.md (*Schooling*), README and `docs/design/post-and-letters.md` say so; `LetterFormTests` and
+  `LetterShapeTests` now check for no misspellings, a capital to start and short sentences.
 - 0.229.0, **The peoples' own events, round 2**
   (12 November 2026, the player's "you can go ahead on the todos"). Items 14, 22, 26, 59, 12, 25, 3, 20, 40 and 63 of
   `docs/peoples-events-proposals.md`; DESIGN.md "The peoples' own events, round 2"; README "The peoples' own events, the

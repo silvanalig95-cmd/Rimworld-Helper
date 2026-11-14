@@ -13,7 +13,7 @@
     (home:coast) make a poem likelier for its writers; season:spring, :summer, :autumn, :winter where it says the season
     at their town. Slots: {ANIMAL}, {ANIMALS}, {PLANT}, {TREE} from the land round them, {DEITY} their faith's god,
     {TOWN} (tagged theirs), {COLONY} for the colony's own poet (tagged ours). A poem says nothing that happened: it is a
-    song. Medieval English (olde) keeps to thee and thou; u:none is an unschooled ditty, its misspellings deliberate;
+    song. Medieval English (olde) keeps to thee and thou; u:none is an unschooled ditty, in short plain words;
     sv:fey, sv:green, sv:machine, sv:ancient, sv:beast, sv:hive, sv:deep sing in their own way. empire for a court's verse
     (an Empire writer); fam:new, fam:familiar, fam:close by the correspondence's stage.
   -->
@@ -85,9 +85,9 @@
         <li>[olde,po:work,!condolences] Reap the field and bind the sheaf,\nthe sun is hot, the day is brief;\none for the lord and one for the mill,\none for the birds upon the sill,\nand one for him that laboureth least,\nthat he be quiet at the feast.</li>
 
         <!-- ================= An unschooled ditty (u:none) ================= -->
-        <li>[u:none,po:verse,!condolences] roses is red\nthe barn is too\ni rote this pome\nspeshly for you</li>
-        <li>[u:none,po:song] my mam sang this\nsleep now littel won\nthe nite is long\nthe fire is warm\nand so is the song</li>
-        <li>[u:none,po:nonsense,light] the goat ate the hat\nthe hat was mine\ni dont care\nthe goat is fine</li>
+        <li>[u:none,po:verse,!condolences] Roses are red,\nthe barn is too,\nI wrote this poem\njust for you.</li>
+        <li>[u:none,po:song] My mam sang this.\nSleep now, little one,\nthe night is long,\nthe fire is warm,\nand so is the song.</li>
+        <li>[u:none,po:nonsense,light] The goat ate the hat.\nThe hat was mine.\nI don't care.\nThe goat is fine.</li>
 
         <!-- ================= Strange voices ================= -->
         <li>[sv:fey,po:song] By root and ring, by dew and stone,\nthis song is yours, and yours alone;\nsing it once at the edge of night,\nand the ring will know you, and treat you right.\nBy stone and dew, by ring and root,\nwe close the song, and the song is mute.</li>
@@ -110,7 +110,7 @@
         <li>[olde,po:lament,grave,theirs] The bells of {TOWN} rang slow and low\nfor one that we did love;\nthe rooks went up, the rain came down,\nthe grey sky hung above.\n\nGo softly, friend, the road is long\nand thou art weary-shod;\nwe'll walk with thee unto the gate\nand lay thee in the sod.</li>
         <li>[olde,po:lament,grave] Here lieth one that mended nets\nand would not mend a quarrel;\nwho never won a single race,\nand never wanted laurel.</li>
         <li>[olde,po:lament,grave,their:fishers] The river took thee in the dark\nand gave thee back at morn;\nwe laid thee on the landing stage\nwhere first thy boat was borne.\n\nSleep, waterman, the tide is out,\nthe nets are hung to dry;\nthe river saith thy name each night,\nand so, each night, do I.</li>
-        <li>[u:none,po:lament,grave] we put him in the ground\nand sed sum wurds\nnot good wurds\nbut the best we had</li>
+        <li>[u:none,po:lament,grave] We put him in the ground\nand said some words,\nnot good words,\nbut the best we had.</li>
 
         <!-- ================= Round 2, part 2: drinking songs ================= -->
         <li>[po:drinking,light,!p:sober,!condolences,w:industrial|w:spacer] Here's to the boss, who is out of the room,\nhere's to the foreman, who's out of his head,\nhere's to the shift that is over at last,\nand here's to the morning, which waits by the bed.</li>
@@ -119,7 +119,7 @@
         <li>[po:drinking,light,!p:sober,!condolences,c:highlife] Pour the good bottle, the one that we keep,\nthe night is too young to be wasted on sleep;\nlet the wise ones be wise and the sober ones stand,\nwe'll be wise in the morning, with heads in our hands.</li>
         <li>[olde,po:drinking,light,!p:sober,!condolences] Bring in the jug and set it down,\nthe frost is on the thatch;\nthe miller's drunk, the reeve's in town,\nand none will mind the latch.\n\nSo drink to thee and drink to me,\nand drink to all the rest,\nand last of all unto the cask\nthat we do love the best.</li>
         <li>[olde,po:drinking,light,!p:sober,!condolences] Ale for the reaper and mead for the bride,\nwine for the friar, who saith he hath none;\nwater for horses, and all for the guest,\nand naught for the tax-man till all the work's done.</li>
-        <li>[u:none,po:drinking,light,!p:sober,!condolences,!nr:head] drink up drink up\nthe ale is free\nwell it isnt\nbut dont tel the boss</li>
+        <li>[u:none,po:drinking,light,!p:sober,!condolences,!nr:head] Drink up, drink up,\nthe ale is free.\nWell, it isn't,\nbut don't tell the boss.</li>
 
         <!-- ================= Round 2, part 2: hymns, by the writer's faith ================= -->
         <li>[po:hymn,c:pious,!condolences] {DEITY}, who keeps the lamps alight\nwhen all the world goes dark,\nkeep watch upon the road tonight\nand on the ones who walk.\n\nAnd if we stray, as strays the sheep,\nand if we fall, as falls the rain,\nbe patient with us while we sleep,\nand wake us up again.</li>
@@ -177,7 +177,7 @@
         <li>[po:war,!condolences,c:raider] Over the hill when the moon is gone,\ndown on the wagons before the dawn;\ntake what is heavy and leave what is slow,\nand be over the hill before the cocks crow.</li>
         <li>[po:nonsense,light,!condolences] The mayor of the moon came down for tea\nand sat on the cat, who objected;\nhe drank all the milk and he ate all the bread\nand left rather sooner than expected.</li>
         <li>[po:nonsense,light,!condolences] A pig in a hat and a cow in a coat\nwent sailing away in a leaky boat;\nthey sailed for a week and they sailed for a day,\nand they're sailing still, or so the pigs say.</li>
-        <li>[u:none,po:song,!condolences,!nr:head] oh the boss is a big man\nand the boss has a big hat\nand the boss is in the kichen\nand thats the end of that</li>
+        <li>[u:none,po:song,!condolences,!nr:head] Oh, the boss is a big man,\nand the boss has a big hat,\nand the boss is in the kitchen,\nand that's the end of that.</li>
 
         <!-- ================= Round 2, part 2: the peoples' own songs ================= -->
         <li>[po:song,!condolences,their:crew] Hold the line and hold the deck,\nthe ship is old, the ship's a wreck;\nbut every bolt is one we know,\nand someday, someday, up we go.</li>
@@ -232,7 +232,7 @@
         <li>[olde,po:song,!condolences,their:hunters] Trim the lamp and watch the wood,\nthe night is long, the light is good;\nwhat walketh out there walketh slow,\nand keepeth from the lantern's glow.</li>
 
         <!-- ================= Round 2, part 2: an unschooled raiders' song ================= -->
-        <li>[u:none,po:war,!condolences,c:raider] we are the lads from over the hil\nwe dont pay and we never wil\nwe take wot we like and we like a lot\nand we rote this song. its all we got</li>
+        <li>[u:none,po:war,!condolences,c:raider] We are the lads from over the hill,\nwe don't pay and we never will,\nwe take what we like and we like a lot,\nand we wrote this song. It's all we got.</li>
       </plain>
     </lines>
   </ColonyCouncil.FlavorPoolDef>

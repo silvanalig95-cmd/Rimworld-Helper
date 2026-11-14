@@ -7,7 +7,7 @@
     {TREE}, {ANIMAL} of the land round their town; theirs); the colony's own only by what the facts say is so at home
     (colony:children for a child's drawing, the season for a flower, colony:harvest for its grain, colony:animals; ours).
     A word of sympathy is tagged condolences, everything else !condolences. Ages: w:tribal, w:industrial, w:spacer,
-    !w:tribal for paper and print. Speech: olde, u:none (misspellings deliberate), sv:fey, sv:beast, sv:green, sv:machine,
+    !w:tribal for paper and print. Speech: olde, u:none (short and plain), sv:fey, sv:beast, sv:green, sv:machine,
     sv:ancient, sv:hive. fam:familiar|fam:close for what only an old friend would fold in.
   -->
   <ColonyCouncil.FlavorPoolDef>
@@ -46,9 +46,9 @@
         <li>[olde,en:line,ours,!condolences] Herewith a little map of the way to us, should thou ever pass.</li>
         <li>[olde,en:line,ours,condolences] Herewith a flower for the grave, from all of us.</li>
         <!-- ================= An unschooled hand (u:none) ================= -->
-        <li>[u:none,en:line,!condolences] i put in a fether</li>
-        <li>[u:none,en:line,!condolences] theres a rock in here. its a gud rock</li>
-        <li>[u:none,en:line,condolences] i put a flower in for the grave</li>
+        <li>[u:none,en:line,!condolences] I put in a feather.</li>
+        <li>[u:none,en:line,!condolences] There's a rock in here. It's a good rock.</li>
+        <li>[u:none,en:line,condolences] I put a flower in for the grave.</li>
         <!-- ================= Strange voices ================= -->
         <li>[sv:fey,en:line,!condolences] Enclosed: a ring of mushrooms, pressed. Do not step in it. Do not step out of it either, once you have.</li>
         <li>[sv:fey,en:line] Enclosed: one dewdrop, kept. It may have dried by the time you read this. That is its own kind of message.</li>
@@ -114,7 +114,7 @@
         <li>[en:line,ours,!condolences,colony:children] Enclosed: a drawing by one of our children of what they think {TOWN} looks like. You have, apparently, a castle and a dragon.</li>
 
         <!-- ================= Round 2, part 2: an unschooled enclosure ================= -->
-        <li>[u:none,en:line,!condolences] i put a nife in. its not a thret its a present. its a good nife</li>
+        <li>[u:none,en:line,!condolences] I put a knife in. It's not a threat. It's a present. It's a good knife.</li>
       </plain>
     </lines>
   </ColonyCouncil.FlavorPoolDef>

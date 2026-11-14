@@ -37,7 +37,7 @@
     the other side's last letter raised or took it up: "in your last letter"), at:ps (only as a P.S., a quick line), the
     age (w:tribal...), the colony's writer's voice (v:blunt...), the speech (olde, u:none, sv:...). A follow-up says only
     what the facts hold now; everything else is the writer's own life, plausible for their town, or the writing and
-    reading of the letters. No pronoun for {RE}: their name again, or none. The unschooled lines' misspellings are deliberate.
+    reading of the letters. No pronoun for {RE}: their name again, or none. The unschooled lines are short and plain, spelled right.
   -->
   <ColonyCouncil.FlavorPoolDef>
     <defName>Rimfolk_Pool_LetterThread</defName>
@@ -388,21 +388,21 @@
         <li>[re:slight:war,theirs,olde] Our peoples are at war, and yet I write. I know not what that maketh us.</li>
         <li>[re:slight:war,ours,olde] Our peoples are at war, and still I write to thee. Perhaps it shall count for somewhat, after.</li>
 
-        <!-- ================= An unschooled hand (u:none): misspellings on purpose ================= -->
-        <li>[re:ill:ask,ours,u:none] is {RE} beter yet</li>
-        <li>[re:ill:still,theirs,u:none] {RE} still sick. nuthin beter nuthin worse</li>
-        <li>[re:ill:better,theirs,u:none] {RE} is gud agin. eating lots</li>
-        <li>[re:ill:lost,theirs,u:none] {RE} died. sory to tell it</li>
-        <li>[re:war:still,theirs,u:none] still fiting {RE}. nobody winning</li>
-        <li>[re:war:peace,theirs,u:none] no more fiting with {RE}. we shook hands. sort of</li>
-        <li>[re:tell:ill,theirs,u:none] {ILL} is sick. we dont know wot of</li>
-        <li>[re:tell:war,theirs,u:none] we are fiting {WAR} now</li>
-        <li>[re:c:harvest:ask,theirs,u:none] how was yor harvist</li>
-        <li>[re:aid:hope,theirs,u:none] hope the {RE} we sent was good</li>
-        <li>[re:jk:goat:more,theirs,u:none] the goat got in the howse agin. she ate a boot</li>
-        <li>[re:recipe:hope,theirs,u:none] did you cook the thing i sent</li>
-        <li>[re:slight:harm,theirs,u:none] wot yous did is not forgot</li>
-        <li>[re:slight:war,theirs,u:none,!nr:head] we are at war but i am riting anyway. dont tell the boss</li>
+        <!-- ================= An unschooled hand (u:none): short and plain ================= -->
+        <li>[re:ill:ask,ours,u:none] Is {RE} better yet?</li>
+        <li>[re:ill:still,theirs,u:none] {RE} is still sick. No better, no worse.</li>
+        <li>[re:ill:better,theirs,u:none] {RE} is well again. Eating lots.</li>
+        <li>[re:ill:lost,theirs,u:none] {RE} died. Sorry to tell it.</li>
+        <li>[re:war:still,theirs,u:none] Still fighting {RE}. Nobody winning.</li>
+        <li>[re:war:peace,theirs,u:none] No more fighting with {RE}. We shook hands. Sort of.</li>
+        <li>[re:tell:ill,theirs,u:none] {ILL} is sick. We don't know what of.</li>
+        <li>[re:tell:war,theirs,u:none] We are fighting {WAR} now.</li>
+        <li>[re:c:harvest:ask,theirs,u:none] How was your harvest?</li>
+        <li>[re:aid:hope,theirs,u:none] Hope the {RE} we sent was good.</li>
+        <li>[re:jk:goat:more,theirs,u:none] The goat got in the house again. She ate a boot.</li>
+        <li>[re:recipe:hope,theirs,u:none] Did you cook the thing I sent?</li>
+        <li>[re:slight:harm,theirs,u:none] What you did is not forgotten.</li>
+        <li>[re:slight:war,theirs,u:none,!nr:head] We are at war, but I am writing anyway. Don't tell the boss.</li>
 
         <!-- ================= Strange voices ================= -->
         <li>[re:ill:still,theirs,sv:machine] Status of {RE}: unwell. Unchanged since the last report.</li>

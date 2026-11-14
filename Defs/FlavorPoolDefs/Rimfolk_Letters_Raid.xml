@@ -20,7 +20,7 @@
     :insects, :animals, :tribal, :people), that some fell (colony:raid:fallen; colony:death:battle {DEAD}).
 
     Ages and speech: w:tribal for a tribe, !w:tribal or w:industrial|w:spacer where it matters, olde (medieval English),
-    u:none (an unschooled bandit's boast or a plain unschooled account; the misspellings are deliberate), sv:machine (an
+    u:none (an unschooled bandit's boast or a plain unschooled account, in short plain words), sv:machine (an
     android's incident report), sv:beast (by smell). {RAIDERS} is who came when the record names them. A line about the
     town itself (its walls, gate, granary, houses) is !rd:road: bandits on the road never reached it; a line that only
     fits strangers coming is !rd:you, kept from the colony's own attack; a boast of a raiding people's boss is !nr:head.
@@ -160,24 +160,24 @@
         <li>[olde,rd:end,ours,rd:ours,rd:end:unknown] It is over now, and we are here yet.</li>
 
         <!-- ================= An unschooled hand (u:none) ================= -->
-        <li>[u:none,rd:come,rd:now,theirs] they come at nite, lots of them</li>
-        <li>[u:none,rd:stand,rd:now,theirs] we got on the wal with evrythin we had</li>
-        <li>[u:none,rd:burn,rd:now,rd:end:hurt|rd:end:sacked,theirs,!rd:road] they burnd the barn</li>
-        <li>[u:none,rd:fall,rd:now,rd:dead:none,theirs] nobody dyed. lucky</li>
-        <li>[u:none,rd:fall,rd:now,rd:dead:some|rd:dead:many,theirs] we lost sum</li>
-        <li>[u:none,rd:end,rd:now,rd:end:held,theirs] we run them off</li>
-        <li>[u:none,rd:end,rd:now,rd:end:hurt,theirs] they took the grane</li>
-        <li>[u:none,rd:end,rd:now,rd:end:sacked,theirs] they took evrythin</li>
-        <li>[u:none,rd:end,rd:now,rd:end:ongoing,theirs] they are stil out there</li>
-        <li>[u:none,rd:end,rd:now,rd:end:unknown,theirs] then it was over</li>
-        <li>[u:none,rd:come,rd:old] my granda sed they come wen he was littel</li>
-        <li>[u:none,rd:stand,rd:old] evryone got on the wal</li>
-        <li>[u:none,rd:end,rd:old] they burnd evrythin and went. thats wot he sed</li>
-        <li>[u:none,rd:come,rd:boast,theirs] rember wen we come to yor place. that was us</li>
-        <li>[u:none,rd:stand,rd:boast,theirs] you fot alrite. for farmers</li>
-        <li>[u:none,rd:end,rd:boast,theirs] you was lucky. next time you wont be</li>
-        <li>[u:none,rd:end,rd:boast,theirs] we stil laff about it round the fire</li>
-        <li>[u:none,rd:after,rd:boast,theirs] lock yor gate is all im sayin</li>
+        <li>[u:none,rd:come,rd:now,theirs] They came at night, lots of them.</li>
+        <li>[u:none,rd:stand,rd:now,theirs] We got on the wall with everything we had.</li>
+        <li>[u:none,rd:burn,rd:now,rd:end:hurt|rd:end:sacked,theirs,!rd:road] They burned the barn.</li>
+        <li>[u:none,rd:fall,rd:now,rd:dead:none,theirs] Nobody died. Lucky.</li>
+        <li>[u:none,rd:fall,rd:now,rd:dead:some|rd:dead:many,theirs] We lost some.</li>
+        <li>[u:none,rd:end,rd:now,rd:end:held,theirs] We ran them off.</li>
+        <li>[u:none,rd:end,rd:now,rd:end:hurt,theirs] They took the grain.</li>
+        <li>[u:none,rd:end,rd:now,rd:end:sacked,theirs] They took everything.</li>
+        <li>[u:none,rd:end,rd:now,rd:end:ongoing,theirs] They are still out there.</li>
+        <li>[u:none,rd:end,rd:now,rd:end:unknown,theirs] Then it was over.</li>
+        <li>[u:none,rd:come,rd:old] My grandad said they came when he was little.</li>
+        <li>[u:none,rd:stand,rd:old] Everyone got on the wall.</li>
+        <li>[u:none,rd:end,rd:old] They burned everything and went. That's what he said.</li>
+        <li>[u:none,rd:come,rd:boast,theirs] Remember when we came to your place? That was us.</li>
+        <li>[u:none,rd:stand,rd:boast,theirs] You fought all right. For farmers.</li>
+        <li>[u:none,rd:end,rd:boast,theirs] You were lucky. Next time you won't be.</li>
+        <li>[u:none,rd:end,rd:boast,theirs] We still laugh about it round the fire.</li>
+        <li>[u:none,rd:after,rd:boast,theirs] Lock your gate, is all I'm saying.</li>
 
         <!-- ================= An android's incident report (sv:machine) ================= -->
         <li>[sv:machine,rd:come,rd:now,theirs] 0412: HOSTILES OBSERVED AT PERIMETER. COUNT: SIGNIFICANT. IDENTIFIED AS {RAIDERS}.</li>
@@ -271,11 +271,11 @@
         <li>[rd:come,rd:old,w:tribal] When my grandmother was small, raiders came out of the east on painted horses, and the people ran to the cliffs.</li>
         <li>[rd:end,rd:old,w:tribal] The people came down from the cliffs when the raiders had gone, and built the camp again where it had always been, out of stubbornness.</li>
 
-        <!-- ================= Round 2, part 2: an unschooled raider's boast (rd:boast; misspellings on purpose) ================= -->
-        <li>[u:none,rd:come,rd:boast,theirs] we come for you wunce. you rember. we rember it beter</li>
-        <li>[u:none,rd:stand,rd:boast,theirs] yor walls are not that big. we lookd</li>
-        <li>[u:none,rd:end,rd:boast,theirs] next time we bring more of us and less of the stupid ones</li>
-        <li>[u:none,rd:after,rd:boast,theirs,!nr:head] the boss sez to say hello. its not a nice hello</li>
+        <!-- ================= Round 2, part 2: an unschooled raider's boast (rd:boast) ================= -->
+        <li>[u:none,rd:come,rd:boast,theirs] We came for you once. You remember. We remember it better.</li>
+        <li>[u:none,rd:stand,rd:boast,theirs] Your walls are not that big. We looked.</li>
+        <li>[u:none,rd:end,rd:boast,theirs] Next time we bring more of us and fewer of the stupid ones.</li>
+        <li>[u:none,rd:after,rd:boast,theirs,!nr:head] The boss says to say hello. It's not a nice hello.</li>
 
         <!-- ================= Round 2, part 2: more of real raids at their walls ================= -->
         <li>[rd:come,rd:now,rd:walls,theirs,!rd:you] They came in the rain, which nobody expected, because nobody in their right mind fights in the rain, and that was the whole point.</li>
@@ -291,12 +291,12 @@
         <li>[rd:after,rd:now,rd:end:hurt|rd:end:sacked,theirs,!rd:road] We are sleeping in the hall, all of us, until the houses are mended. It is crowded and loud, and somehow it helps.</li>
 
         <!-- ================= Round 2, part 2: more of an unschooled raider's boast ================= -->
-        <li>[u:none,rd:come,rd:boast,theirs] we cum over the hil at nite. wel it was mornin by the time we got ther. the hil is big</li>
-        <li>[u:none,rd:end,rd:boast,theirs] we wil be back. not soon. but we wil</li>
+        <li>[u:none,rd:come,rd:boast,theirs] We came over the hill at night. Well, it was morning by the time we got there. The hill is big.</li>
+        <li>[u:none,rd:end,rd:boast,theirs] We will be back. Not soon. But we will.</li>
 
         <!-- Round 2, part 2: what burned on the road, in the other speeches -->
         <li>[olde,rd:burn,rd:now,rd:road,rd:end:hurt|rd:end:sacked,theirs] They fired the wains they could not drive off, and the smoke of them was seen from the town ere any rider came.</li>
-        <li>[u:none,rd:burn,rd:now,rd:road,rd:end:hurt|rd:end:sacked,theirs] they set the carts on fire. the good cart to</li>
+        <li>[u:none,rd:burn,rd:now,rd:road,rd:end:hurt|rd:end:sacked,theirs] They set the carts on fire. The good cart too.</li>
         <li>[sv:machine,rd:burn,rd:now,rd:road,rd:end:hurt|rd:end:sacked,theirs] 0540: CARGO LOSSES: TWO WAGONS, BURNED. ONE WAGON, MISSING. ONE OX, UNACCOUNTED FOR, LATER FOUND EATING.</li>
       </plain>
     </lines>

@@ -8,7 +8,7 @@
     (the colony's to a council), reply (the colony's answer to a letter of theirs), council (a council's answer), first
     (they write first), thanks (their answer to the colony's reply), friendmade, friendfavour, raidword; light (a letter
     that may smile at itself) or grave. A line with no purpose fits any. The colony's own lines claim nothing about the
-    colony beyond the letter's own topic. The unschooled lines' misspellings are deliberate.
+    colony beyond the letter's own topic. The unschooled lines are short and plain, spelled right.
   -->
   <ColonyCouncil.FlavorPoolDef>
     <defName>Rimfolk_Pool_LetterOpen</defName>
@@ -319,34 +319,34 @@
         <li>[ours,olde,reply,v:blunt] Thy letter came.</li>
 
         <!-- ================= A barely schooled hand (u:some) ================= -->
-        <li>[theirs,u:some,warmly] Your leter came and I was very glad of it, I read it twice.</li>
-        <li>[theirs,u:some,warm|cordial] Thank you for your letter which came safe.</li>
-        <li>[theirs,u:some,cordial] We got your letter and red it, here is our anser.</li>
+        <li>[theirs,u:some,warmly] Your letter came, and I was very glad of it. I read it twice.</li>
+        <li>[theirs,u:some,warm|cordial] Thank you for your letter, which came safely.</li>
+        <li>[theirs,u:some,cordial] We got your letter and read it. Here is our answer.</li>
         <li>[theirs,u:some,cordial|cool] Your letter came to {TOWN} last week.</li>
         <li>[theirs,u:some,cool] We got your letter.</li>
-        <li>[theirs,u:some,cool] I am not much good at letters but here is mine.</li>
-        <li>[theirs,u:some,curt] Got your leter.</li>
-        <li>[theirs,u:some,refusal] We read it and here is wat we think.</li>
-        <li>[theirs,u:some,warmly] It was good to get your letter, evryone here was pleased.</li>
-        <li>[theirs,u:some,cordial] Your letter came safe and we have talked it over.</li>
-        <li>[theirs,u:some,cordial|cool] We had somone read your letter to us twice to be sure.</li>
-        <li>[theirs,u:some,cool,c:raider,!nr:head] Your letter came. The boss says to anser it so here it is.</li>
-        <li>[ours,u:some,warm|cordial] I hope this finds you well, I am not much of a writer.</li>
-        <li>[ours,u:some,cordial|cool] I am writing for all of us here, so forgive the speling.</li>
+        <li>[theirs,u:some,cool] I am not much good at letters, but here is mine.</li>
+        <li>[theirs,u:some,curt] Got your letter.</li>
+        <li>[theirs,u:some,refusal] We read it, and here is what we think.</li>
+        <li>[theirs,u:some,warmly] It was good to get your letter. Everyone here was pleased.</li>
+        <li>[theirs,u:some,cordial] Your letter came safely, and we have talked it over.</li>
+        <li>[theirs,u:some,cordial|cool] We had someone read your letter to us twice, to be sure.</li>
+        <li>[theirs,u:some,cool,c:raider,!nr:head] Your letter came. The boss says to answer it, so here it is.</li>
+        <li>[ours,u:some,warm|cordial] I hope this finds you well. I am not much of a writer.</li>
+        <li>[ours,u:some,cordial|cool] I am writing for all of us here, so forgive the plain words.</li>
         <li>[ours,u:some,curt|refusal] Here is our letter.</li>
 
         <!-- ================= An unschooled hand (u:none) ================= -->
-        <li>[theirs,u:none,warmly] we got yor leter and red it out loud and evryone was happy</li>
-        <li>[theirs,u:none,warm|cordial] got yor letter. good letter. here is ours</li>
-        <li>[theirs,u:none,cordial] we got yor leter (crossed out) letter and here is the anser</li>
-        <li>[theirs,u:none,cordial|cool] the one hoo can read sed wot yor letter sed</li>
-        <li>[theirs,u:none,cool] we got it</li>
-        <li>[theirs,u:none,cool,c:raider] we got yor leter. we used it to start the fire after but we red it first</li>
-        <li>[theirs,u:none,curt] got it</li>
-        <li>[theirs,u:none,refusal] we red yor leter and we sed no</li>
-        <li>[theirs,u:none,curt|refusal,a:war] yor leter came thru the lines. the boys wanted to shoot the one wot brought it. we didnt. yor welcum</li>
-        <li>[ours,u:none,warm|cordial] i am riting to you becos we sed someone shud</li>
-        <li>[ours,u:none,cordial|cool] this is the leter from us</li>
+        <li>[theirs,u:none,warmly] We got your letter and read it out loud, and everyone was happy.</li>
+        <li>[theirs,u:none,warm|cordial] Got your letter. Good letter. Here is ours.</li>
+        <li>[theirs,u:none,cordial] We got your letter. Here is the answer.</li>
+        <li>[theirs,u:none,cordial|cool] The one who can read told us what your letter said.</li>
+        <li>[theirs,u:none,cool] We got it.</li>
+        <li>[theirs,u:none,cool,c:raider] We got your letter. We used it to start the fire after, but we read it first.</li>
+        <li>[theirs,u:none,curt] Got it.</li>
+        <li>[theirs,u:none,refusal] We read your letter, and we said no.</li>
+        <li>[theirs,u:none,curt|refusal,a:war] Your letter came through the lines. The boys wanted to shoot the one who brought it. We didn't. You're welcome.</li>
+        <li>[ours,u:none,warm|cordial] I am writing to you because we said someone should.</li>
+        <li>[ours,u:none,cordial|cool] This is the letter from us.</li>
 
         <!-- ================= Strange voices ================= -->
         <li>[sv:machine,warmly] Your letter was received, read and found pleasing. Pleasing is not a word I use often.</li>

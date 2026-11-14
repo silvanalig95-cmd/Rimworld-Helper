@@ -628,8 +628,10 @@ public static class LetterShapeTests
                     if (tag.StartsWith("chs:")) C(LetterKindMath.Subjects.Contains(tag), "a known chronicle subject " + tag + ": " + name);
                     if (tag.StartsWith("po:")) C(LetterKindMath.Forms.Contains(tag), "a known poem form " + tag + ": " + name);
                 }
+            // An unschooled piece is plain, not misspelled: a capital to start and a sentence's end.
             if (LetterFormMath.SpeechOf(p) == LetterFormMath.NoSchool)
-                C(char.IsLower(p.text[0]) || p.text.Length < 25, "an unschooled piece shows it: " + name);
+                C(!char.IsLower(p.text[0]) && !p.text.Contains("(crossed out)") && (p.text.TrimEnd().EndsWith(".") || p.text.TrimEnd().EndsWith("?") || p.text.TrimEnd().EndsWith(":")),
+                    "an unschooled piece is plain, with a capital and a sentence's end: " + name);
             // A line of a piece in a speech the shape is never written in would never be drawn.
             if (part == LetterPart.Story || part == LetterPart.Raid || part == LetterPart.Poem || part == LetterPart.Sermon || part == LetterPart.Chronicle || part == LetterPart.Diary)
             {
@@ -1041,7 +1043,7 @@ public static class LetterShapeTests
         bandit.war = true;
         bandit.who.boast = true;
         bandit.values["FROM"] = "Knuckles";
-        bandit.heart = "got yor leter. we dont want peece";
+        bandit.heart = "Got your letter. We don't want peace.";
         bandit.sign = LetterFormMath.Signature(SignStyle.Mark, w, bandit.values);
         bandit.outcomes.Add("Their people are at war with the colony, and the answer shows it.");
         Show("An unschooled bandit's boast", bandit, LetterKind.Raid);

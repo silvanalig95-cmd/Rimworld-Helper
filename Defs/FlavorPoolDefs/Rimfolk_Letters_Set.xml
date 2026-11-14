@@ -14,7 +14,7 @@
     - A riddle (ri:riddle), whole, its answer after ~~ (kept, and given in the writer's next letter's P.S.); the line
       that the answer comes next time (ri:later); the P.S. that gives it (ri:answer, {ANSWER}).
     Chosen like any part of a letter (side, register, motive, age w:..., speech olde, u:none, sv:...). The unschooled
-    lines' misspellings are deliberate. Recipes in sv:machine, sv:green and sv:beast; riddles in sv:fey, sv:ancient,
+    lines are short and plain, spelled right. Recipes in sv:machine, sv:green and sv:beast; riddles in sv:fey, sv:ancient,
     sv:machine and sv:deep (each with its own ri:later and ri:answer).
   -->
   <ColonyCouncil.FlavorPoolDef>
@@ -30,8 +30,8 @@
         <li>[pe:body,ours,help] We, the people of {COLONY}, every one of us, ask our neighbours at {TOWN} for {HELP}, if it can be spared.\n\nWe know times are hard everywhere. We would do the same for you, and we will, when we can.</li>
         <li>[olde,pe:body,theirs,k:request] To the good folk of {COLONY}, from them whose names are set below, of {TOWN}:\n\nWe pray thee, as neighbours, to spare us {GOODS} this season, for we are in want, and know none nearer to ask. Whatsoever thou sendest shall be remembered, and repaid when we may.</li>
         <li>[olde,pe:body,ours,help] To the good folk of {TOWN}, from all of us at {COLONY}:\n\nWe lack {HELP}, and would be grateful for whatsoever thou canst spare. We ask it not lightly, and shall not forget it.</li>
-        <li>[u:none,pe:body,theirs,k:request] to {COLONY}. we need {GOODS}. evryone here sez so. plese send sum if you can</li>
-        <li>[u:none,pe:body,ours,help] to {TOWN}. we need {HELP}. evryone here sined. plese</li>
+        <li>[u:none,pe:body,theirs,k:request] To {COLONY}. We need {GOODS}. Everyone here says so. Please send some if you can.</li>
+        <li>[u:none,pe:body,ours,help] To {TOWN}. We need {HELP}. Everyone here signed. Please.</li>
         <!-- ================= A list or an account ================= -->
         <li>[ac:head] The account, as it stands:</li>
         <li>[ac:head,m:trade] What we have, what we want, and what it costs:</li>
@@ -72,13 +72,13 @@
         <li>[sv:machine,ac:item] SPARE PARTS: FEW. REQUESTS FOR SPARE PARTS: MANY.</li>
         <li>[sv:machine,ac:item,ac:asked,k:request] REQUIRED: {GOODS}. QUANTITY: ANY.</li>
         <li>[sv:machine,ac:end] TOTAL: AS LISTED. DISCREPANCIES: TO BE INVESTIGATED.</li>
-        <li>[u:none,ac:head] list</li>
-        <li>[u:none,ac:item] 3 chikens</li>
-        <li>[u:none,ac:item] won goat (mine)</li>
-        <li>[u:none,ac:item] nives 2</li>
-        <li>[u:none,ac:item] the cart (broke)</li>
-        <li>[u:none,ac:item,ac:asked,k:request] {GOODS} plese</li>
-        <li>[u:none,ac:end] thats all of it</li>
+        <li>[u:none,ac:head] A list:</li>
+        <li>[u:none,ac:item] 3 chickens.</li>
+        <li>[u:none,ac:item] One goat (mine).</li>
+        <li>[u:none,ac:item] Knives: 2.</li>
+        <li>[u:none,ac:item] The cart (broken).</li>
+        <li>[u:none,ac:item,ac:asked,k:request] {GOODS}, please.</li>
+        <li>[u:none,ac:end] That's all of it.</li>
         <!-- ================= Recipes and remedies ================= -->
         <li>[rc:recipe,theirs] Winter stew, the way we make it at {TOWN}.\n\nTake whatever meat you have, and twice as many onions as you think. Brown the meat in the pot, then the onions, then add water until it looks like too much. Throw in whatever roots are left in the cellar, a handful of salt, and anything green that is not poisonous. Let it sit at the back of the fire from noon until dark. Do not stir it more than twice; it knows what it is doing. Serve with bread and an argument about whether it needed more salt.</li>
         <li>[rc:recipe] Honey cakes, for when somebody needs cheering up.\n\nTwo cups of flour, one of honey, an egg if you have one and a spoonful of fat if you do not. Mix it until your arm is tired, then a little longer. Drop spoonfuls on a hot stone or a greased pan. They are done when they smell done. Hide two for yourself before anyone else comes in.</li>
@@ -138,7 +138,7 @@
         <li>[pe:body,theirs,k:request,w:tribal] All the people of {TOWN} have put their marks here, by the fire, in the ash. We ask {COLONY} for {GOODS}. The children are thin. We would not ask for ourselves.</li>
         <li>[pe:body,theirs,k:request,olde,grave] Unto the good folk of {COLONY}, the humble petition of the people of {TOWN}, being in sore need:\n\nThat it may please {COLONY} to spare us {GOODS} in this hard season, for which the petitioners shall ever be grateful, and shall remember it at every board.\n\nGiven under our hands, such as can write, and our marks, such as cannot.</li>
         <li>[pe:body,theirs,k:request,w:spacer] Formal request, {TOWN} to {COLONY}. Subject: {GOODS}. Urgency: real.\n\nSignatories below, in the order they reached the terminal.</li>
-        <li>[pe:body,theirs,k:request,u:none] we all of us at {TOWN} want {GOODS} plese. we put our names. sum of us put marks. one put a drawing of a pig, ignore him</li>
+        <li>[pe:body,theirs,k:request,u:none] All of us at {TOWN} want {GOODS}, please. We put our names. Some of us put marks. One put a drawing of a pig. Ignore him.</li>
         <li>[pe:body,ours,help,olde] We of {COLONY}, being in need, beseech our friends of {TOWN} for {HELP}, and set our names hereunder, every one, that it may be known how many shall remember it.</li>
 
         <!-- ================= Round 2, part 2: lists and accounts, by the peoples' callings ================= -->
@@ -167,7 +167,7 @@
         <li>[ac:end,their:scholars] Errors in this account: to be corrected in the next account, which will contain new errors.</li>
         <li>[ac:end,w:tribal] That is the count, as near as the fingers go.</li>
         <li>[ac:end,olde] Thus standeth the reckoning, and woe to them that dispute it.</li>
-        <li>[ac:item,u:none] fings we got: a pig a nife and sum rope. fings we need: evryfing els</li>
+        <li>[ac:item,u:none] Things we have: a pig, a knife and some rope. Things we need: everything else.</li>
 
         <!-- ================= Round 2, part 2: recipes and remedies ================= -->
         <li>[rc:recipe,olde] Pottage, as my grandam made it.\n\nTake whatsoever is in the garden, and a bone if thou hast one, and set it all in the great pot with water and a fistful of barley. Let it sit at the back of the fire from matins till vespers. Stir it when thou passest, and not else. Salt at the end, never the beginning, for so the old wives say, and the old wives have outlived all that doubted them.</li>
@@ -251,10 +251,10 @@
         <li>[ri:riddle,w:tribal] What can you catch but never throw? ~~ A cold.</li>
 
         <!-- ================= Round 2, part 2: an unschooled list ================= -->
-        <li>[u:none,ac:head] wot we got</li>
-        <li>[u:none,ac:item] sords: 3. good sords: 1. the uther 2 are more like sticks</li>
-        <li>[u:none,ac:item] peple in the gang: 9. peple who can rite: me. sort of</li>
-        <li>[u:none,ac:end,!nr:head] thats evryfing. dont tel the boss i counted rong</li>
+        <li>[u:none,ac:head] What we have:</li>
+        <li>[u:none,ac:item] Swords: 3. Good swords: 1. The other 2 are more like sticks.</li>
+        <li>[u:none,ac:item] People in the gang: 9. People who can write: me. Sort of.</li>
+        <li>[u:none,ac:end,!nr:head] That's everything. Don't tell the boss I counted wrong.</li>
       </plain>
     </lines>
   </ColonyCouncil.FlavorPoolDef>

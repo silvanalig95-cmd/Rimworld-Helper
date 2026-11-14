@@ -22,7 +22,7 @@
     {TONICK} a short name between old friends (only when their name gives one: LetterThreadMath.Nickname; of the
     colony's writer only when they usually write), {FROM} the writer, {TOWN} their town, {COLONY} the colony. The colony's
     own lines claim nothing about the colony beyond the writing and reading of the letters. Medieval English (olde) keeps
-    to thee and thou; the unschooled lines' misspellings are deliberate.
+    to thee and thou; the unschooled lines are short and plain, spelled right.
   -->
   <ColonyCouncil.FlavorPoolDef>
     <defName>Rimfolk_Pool_LetterFamiliar</defName>
@@ -415,28 +415,28 @@
         <li>[fa:salute,fam:familiar,theirs,olde,warmly] {TONICK}, good friend,</li>
         <li>[fa:open,fam:cooled,theirs,olde,cool|curt|refusal] I have thy letter. I shall be brief, and thou knowest why.</li>
 
-        <!-- ================= An unschooled hand (u:none): misspellings on purpose ================= -->
-        <li>[fa:salute,fam:new,theirs,u:none] to {TO} at {COLONY} wich i never rote to befor</li>
-        <li>[fa:salute,fam:known,theirs,u:none] {TO} agin</li>
-        <li>[fa:salute,fam:familiar|fam:close,theirs,u:none,warmly] {TO} my frend</li>
-        <li>[fa:salute,fam:close,theirs,u:none,warmly] {TONICK} you old dog</li>
-        <li>[fa:salute,fam:cooled,theirs,u:none] {COLONY}</li>
-        <li>[fa:open,fam:new,theirs,u:none] i never rote to yous befor. this is me. {FROM}</li>
-        <li>[fa:open,fam:known,theirs,u:none] got anuther leter from yous. thats two. or three. a few</li>
-        <li>[fa:open,fam:familiar,theirs,u:none,warmly] got yor leter. i can reed yor riting good now becos i had practis</li>
-        <li>[fa:open,fam:close,theirs,u:none,warmly] i keep all yor leters in a box. nobody touches the box</li>
-        <li>[fa:open,fam:cooled,theirs,u:none] got yor leter. not so frendly now are we</li>
-        <li>[fa:pen,pen:new,theirs,u:none,fam:known|fam:familiar|fam:close] difrent riting this time. say hello to {LASTPEN}</li>
-        <li>[fa:long,fam:long,theirs,u:none,fam:known|fam:familiar|fam:close] long time no leter. thort yous was ded</li>
-        <li>[fa:close,fam:new,theirs,u:none] rite back if you want</li>
-        <li>[fa:close,fam:known,theirs,u:none] rite agin</li>
-        <li>[fa:close,fam:familiar|fam:close,theirs,u:none,warmly] yor frend</li>
-        <li>[fa:close,fam:close,theirs,u:none,warmly] yor best frend reely</li>
-        <li>[fa:close,fam:cooled,theirs,u:none] thats all</li>
-        <li>[fa:salute,fam:new,ours,u:none] to {TO} at {TOWN}. we never rote befor</li>
-        <li>[fa:salute,fam:close,ours,u:none,warmly] {TONICK} hello</li>
-        <li>[fa:open,fam:familiar|fam:close,ours,u:none,warmly] we like yor leters. evryone here does</li>
-        <li>[fa:close,fam:familiar|fam:close,ours,u:none,warmly] yor frends</li>
+        <!-- ================= An unschooled hand (u:none): short and plain ================= -->
+        <li>[fa:salute,fam:new,theirs,u:none] To {TO} at {COLONY}, who I never wrote to before,</li>
+        <li>[fa:salute,fam:known,theirs,u:none] {TO}, again,</li>
+        <li>[fa:salute,fam:familiar|fam:close,theirs,u:none,warmly] {TO}, my friend,</li>
+        <li>[fa:salute,fam:close,theirs,u:none,warmly] {TONICK}, you old dog,</li>
+        <li>[fa:salute,fam:cooled,theirs,u:none] {COLONY},</li>
+        <li>[fa:open,fam:new,theirs,u:none] I never wrote to you before. This is me, {FROM}.</li>
+        <li>[fa:open,fam:known,theirs,u:none] Got another letter from you. That's two. Or three. A few.</li>
+        <li>[fa:open,fam:familiar,theirs,u:none,warmly] Got your letter. I can read your writing well now, because I had practice.</li>
+        <li>[fa:open,fam:close,theirs,u:none,warmly] I keep all your letters in a box. Nobody touches the box.</li>
+        <li>[fa:open,fam:cooled,theirs,u:none] Got your letter. Not so friendly now, are we?</li>
+        <li>[fa:pen,pen:new,theirs,u:none,fam:known|fam:familiar|fam:close] Different writing this time. Say hello to {LASTPEN}.</li>
+        <li>[fa:long,fam:long,theirs,u:none,fam:known|fam:familiar|fam:close] Long time, no letter. Thought you were dead.</li>
+        <li>[fa:close,fam:new,theirs,u:none] Write back if you want.</li>
+        <li>[fa:close,fam:known,theirs,u:none] Write again.</li>
+        <li>[fa:close,fam:familiar|fam:close,theirs,u:none,warmly] Your friend,</li>
+        <li>[fa:close,fam:close,theirs,u:none,warmly] Your best friend, really,</li>
+        <li>[fa:close,fam:cooled,theirs,u:none] That's all.</li>
+        <li>[fa:salute,fam:new,ours,u:none] To {TO} at {TOWN}. We never wrote before.</li>
+        <li>[fa:salute,fam:close,ours,u:none,warmly] {TONICK}, hello,</li>
+        <li>[fa:open,fam:familiar|fam:close,ours,u:none,warmly] We like your letters. Everyone here does.</li>
+        <li>[fa:close,fam:familiar|fam:close,ours,u:none,warmly] Your friends,</li>
 
         <!-- ================= Strange voices ================= -->
         <li>[fa:salute,fam:new,theirs,sv:beast] {TOFULL}. New scent. We write.</li>
