@@ -245,7 +245,7 @@ namespace ColonyCouncil
             }
             if (v.a != null && !v.a.Dead) v.a.skills?.Learn(SkillDefOf.Construction, 1200f, true);
             if (f != null && f.HasGoodwill && !f.IsPlayer) WorldSituationWorker.Goodwill(f, PeopleEvents3Math.ShrineGoodwill, false);
-            FactionMemory.Note(f, "gift", "CC_PEv3_ShrineDeed".Translate().Resolve());
+            FactionMemory.Note(f, "welcomed", "CC_PEv3_ShrineDeed".Translate().Resolve());
             Tell.Letter(NewsKind.World, Importance.Notable, map, "CC_PEv3_ShrineLabel".Translate().Resolve(),
                 ("CC_PEv3_ShrineBlessed_" + kind).Translate((f?.Name ?? "?").Named("FACTION"), holyName.Named("HOLY")).Resolve()
                 + (relic != null ? " " + "CC_PEv3_ShrineRelic".Translate(relic.Named("RELIC")).Resolve() : ""),
