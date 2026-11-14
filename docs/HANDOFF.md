@@ -93,6 +93,19 @@ tree at once, alongside whatever runs. Each piece is merged as its own release, 
   would remember one), different lengths and openings, and still true to what their lore already says on the map
   (`honours`, `fears`, `sayings`, leaders' titles, their events and letters); checked against the peoples' lore docs so
   nothing on the map contradicts the new text.
+- **To do when the player asks (14 November 2026): the Gods' book's signs and page, fixed** (a bug of 0.232.0). The
+  player, with a screenshot of chapter VI "The Stranger": "the gods' book is bugged and these are not the icons you
+  created here??". Found in `Source/ColonyCouncil/Gods/GodLorePage.cs`: (1) the chapter's name is cut to its first word
+  ("The" of "The Stranger"): `Title` measures the name at one font and draws it wrapped in a box one line high beside
+  the sign; (2) the first letter of the first verse is drawn broken ("Here" shows as an L-shaped mark and "ere"):
+  `DropCap`'s 38-size capital is measured with the small font and clipped; (3) the sign beside the chapter's name is the
+  colony's age form (`GodSigns.OfColony`: for an industrial colony the grey stamped badge), not the coloured sign of the
+  draft sheet, which shows only small in the list; (4) a chapter shows no sign until someone has told what the god is
+  or it was seen plainly (`GodSignsMath.Tells`), so Ducat, Smoulder, the moon, Hollin and Mog show none. When asked:
+  the name drawn whole on one line (no wrap, measured at its own size), the capital measured and drawn whole; the
+  coloured sign of the sheet beside the name and in the list (the age forms dropped, or only as a faint frame); and
+  every chapter with an image: its god's sign once the colony knows what it is, and until then one plain sign of an
+  unknown god (a blank seal), so the gods stay unseen and every name still has a picture.
 - **Dropped (14 November 2026): sending visitors away.** The player: "so asking visitors to leave is not necessary, as i
   found the already imlpemented function".
 - **Being built (14 November 2026, the player's go: "do the one that visitors fill their idle hours, more old powers style events, making animals more visible first, but you can do as you like if simultanious tasks make more sense"): visitors busy with their own day.** The player: "guests should spend
