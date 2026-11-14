@@ -17,7 +17,7 @@ namespace ColonyCouncil
     /// struck out, or written twice), or refuses: every league trades with it at worse terms until it pays, and the factor
     /// comes back to ask again. The same book in every age.
     /// </summary>
-    public static class RedInk
+    public static class LeagueRedInk
     {
         private static int Now => Find.TickManager.TicksGame;
 
@@ -28,7 +28,7 @@ namespace ColonyCouncil
         /// people the league isn't, within the book's reach in age (a "killed" deed that came with one stands for it when it is
         /// the bigger), not one the league has a page for already.
         /// </summary>
-        public static FactionDeed Find(Faction league)
+        public static FactionDeed WrongFor(Faction league)
         {
             var mem = FactionMemory.Instance;
             var b = PeopleEvents3Book.Instance;
@@ -109,15 +109,15 @@ namespace ColonyCouncil
         {
             var f = PeoplesD.Friendly(PeoplesMath.Traders);
             if (f == null || Colonists(map).Count == 0) return false;
-            RedInk.Tidy();
-            return RedInk.OpenPage != null || RedInk.Find(f) != null;
+            LeagueRedInk.Tidy();
+            return LeagueRedInk.OpenPage != null || LeagueRedInk.WrongFor(f) != null;
         }
 
         protected override bool Cast(HappeningContext ctx, HappeningExtension ext)
         {
             ctx.faction = PeoplesD.Friendly(PeoplesMath.Traders);
             if (ctx.faction == null) return false;
-            var open = RedInk.OpenPage;
+            var open = LeagueRedInk.OpenPage;
             var mem = FactionMemory.Instance;
             if (open != null)
             {
@@ -131,7 +131,7 @@ namespace ColonyCouncil
             }
             else
             {
-                var d = RedInk.Find(ctx.faction);
+                var d = LeagueRedInk.WrongFor(ctx.faction);
                 if (d == null) return false;
                 ctx.enemy = d.faction;
                 ctx.count = PeopleEvents3Math.Restitution(d.weight, d.count, LivingEvents.WealthFactor(ctx.map));
@@ -187,7 +187,7 @@ namespace ColonyCouncil
         public override void Apply(DilemmaContext ctx)
         {
             var hc = ctx as HappeningContext;
-            var r = RedInk.PageFor(hc);
+            var r = LeagueRedInk.PageFor(hc);
             var mem = FactionMemory.Instance;
             if (r == null || mem == null) return;
             var d = mem.ById(r.deed);
@@ -216,7 +216,7 @@ namespace ColonyCouncil
 
         public override void Apply(DilemmaContext ctx)
         {
-            var r = RedInk.PageFor(ctx as HappeningContext);
+            var r = LeagueRedInk.PageFor(ctx as HappeningContext);
             if (r == null) return;
             r.state = "struck";
             r.done = true;
@@ -237,7 +237,7 @@ namespace ColonyCouncil
 
         public override void Apply(DilemmaContext ctx)
         {
-            var r = RedInk.PageFor(ctx as HappeningContext);
+            var r = LeagueRedInk.PageFor(ctx as HappeningContext);
             if (r == null) return;
             r.owed = PeopleEvents3Math.Twice(r.owed);
             r.state = "twice";
@@ -256,7 +256,7 @@ namespace ColonyCouncil
 
         public override void Apply(DilemmaContext ctx)
         {
-            var r = RedInk.PageFor(ctx as HappeningContext);
+            var r = LeagueRedInk.PageFor(ctx as HappeningContext);
             if (r == null || r.state == "twice") return;
             r.state = "refused";
         }

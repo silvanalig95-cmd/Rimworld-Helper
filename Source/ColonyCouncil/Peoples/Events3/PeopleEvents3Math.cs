@@ -157,6 +157,9 @@ namespace ColonyCouncil
 
         public const int SickRoomGoodwill = 3;
 
+        /// <summary>From the industrial age she works with the colony's own medicine: this much carried to her at most.</summary>
+        public const int SickRoomMedicine = 6;
+
         /// <summary>The sick she sees to at most.</summary>
         public const int SickRoomMax = 6;
 
@@ -235,6 +238,24 @@ namespace ColonyCouncil
         };
 
         // ================= 11. The thief on the drove road (the herding folk) =================
+
+        /// <summary>
+        /// Raiders going off the map drive some of the colony's beasts off with them, once a raid at this chance: likelier
+        /// when they came with beasts of their own (Animal Husbandry Raids' drovers among them).
+        /// </summary>
+        public static float DriveOffChance(bool ownBeasts) => ownBeasts ? 0.3f : 0.12f;
+
+        /// <summary>How many they drive off, by a roll in [0, 1): one to three, those nearest them.</summary>
+        public static int DriveOffCount(float roll) => 1 + Clamp((int)Math.Floor(Clamp(roll, 0f, 0.999f) * 3f), 0, 2);
+
+        /// <summary>A beast within this many cells of a raider on the way out can be driven off.</summary>
+        public const float DriveReach = 22f;
+
+        /// <summary>A beast whose drovers fell or ran off without it, this far from any of them, is the colony's again.</summary>
+        public const float LeftBehind = 16f;
+
+        /// <summary>The thieves' camp stays on the world map this many days before the trail goes cold.</summary>
+        public const int CampDays = 6;
 
         /// <summary>The herders' riders come on the thieves' trail the next morning at this chance (the storytellers' lean on visitors on top).</summary>
         public const float TrailChance = 0.6f;

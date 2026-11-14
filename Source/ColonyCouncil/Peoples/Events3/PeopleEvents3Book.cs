@@ -38,7 +38,7 @@ namespace ColonyCouncil
     }
 
     /// <summary>A shrine the pilgrims raised on the colony's ground (item 15): where, at what, and how it is kept.</summary>
-    public class ShrineRecord : IExposable
+    public class OldShrineRecord : IExposable
     {
         public Map map;
         public Thing shrine;
@@ -66,28 +66,49 @@ namespace ColonyCouncil
         }
     }
 
-    /// <summary>Beasts of the colony driven off by raiders (item 11): by whom, when, and whether the herders' riders came.</summary>
+    /// <summary>
+    /// Beasts of the colony driven off by raiders (item 11): by whom, when, which, and how far the herders' riders took it.
+    /// Its stage: "driving" (the raiders still leading them across the map), "taken" (gone off the map with them),
+    /// "asked" (the riders at the gate), "alone" (the riders gone after them by themselves), "ride" (the colony's rider
+    /// with them, the thieves' camp on the world map), "over".
+    /// </summary>
     public class TheftRecord : IExposable
     {
+        public int id;
         public Map map;
         public Faction thieves;
         public List<Pawn> animals = new List<Pawn>();
         public int tick = -1, due = -1, tries;
+        public string stage = "driving";
+        /// <summary>The thieves' camp on the world map (a site's id), while the colony's rider is on the trail (-1: none).</summary>
+        public int site = -1;
+        /// <summary>The riders' people, once they came.</summary>
+        public Faction herders;
+        /// <summary>Whether the riders' coming was rolled (once a theft).</summary>
+        public bool rolled;
         public bool done;
+
+        public bool Open => !done && stage != "over";
 
         public void ExposeData()
         {
+            Scribe_Values.Look(ref id, "id");
             Scribe_References.Look(ref map, "map");
             Scribe_References.Look(ref thieves, "thieves");
+            Scribe_References.Look(ref herders, "herders");
             Scribe_Collections.Look(ref animals, "animals", LookMode.Reference);
             Scribe_Values.Look(ref tick, "tick", -1);
             Scribe_Values.Look(ref due, "due", -1);
             Scribe_Values.Look(ref tries, "tries");
+            Scribe_Values.Look(ref stage, "stage", "driving");
+            Scribe_Values.Look(ref site, "site", -1);
+            Scribe_Values.Look(ref rolled, "rolled");
             Scribe_Values.Look(ref done, "done");
             if (Scribe.mode == LoadSaveMode.PostLoadInit)
             {
                 animals ??= new List<Pawn>();
                 animals.RemoveAll(p => p == null);
+                stage ??= "over";
             }
         }
     }
@@ -103,8 +124,9 @@ namespace ColonyCouncil
     {
         public List<RedInkRecord> redInk = new List<RedInkRecord>();
         public int nextRedInk = 1;
-        public List<ShrineRecord> shrines = new List<ShrineRecord>();
+        public List<OldShrineRecord> shrines = new List<OldShrineRecord>();
         public List<TheftRecord> thefts = new List<TheftRecord>();
+        public int nextTheft = 1;
         /// <summary>The order's book: raiders it carried to the sickhouse from the colony, and raiders the colony kept.</summary>
         public int carried, kept;
         /// <summary>The sick room: its map's id and until when it stands (-1: none).</summary>
@@ -153,7 +175,7 @@ namespace ColonyCouncil
             return r;
         }
 
-        public void AddShrine(ShrineRecord r)
+        public void AddShrine(OldShrineRecord r)
         {
             if (r == null) return;
             shrines.Add(r);
@@ -164,6 +186,7 @@ namespace ColonyCouncil
         public TheftRecord AddTheft(TheftRecord r)
         {
             if (r == null) return null;
+            r.id = nextTheft++;
             thefts.Add(r);
             while (thefts.Count > PeopleEvents3Math.MaxThefts && thefts.Any(x => x.done)) thefts.Remove(thefts.First(x => x.done));
             while (thefts.Count > PeopleEvents3Math.MaxThefts) thefts.RemoveAt(0);
@@ -177,6 +200,7 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref nextRedInk, "nextRedInk", 1);
             Scribe_Collections.Look(ref shrines, "shrines", LookMode.Deep);
             Scribe_Collections.Look(ref thefts, "thefts", LookMode.Deep);
+            Scribe_Values.Look(ref nextTheft, "nextTheft", 1);
             Scribe_Values.Look(ref carried, "carried");
             Scribe_Values.Look(ref kept, "kept");
             Scribe_Values.Look(ref sickRoomMap, "sickRoomMap", -1);
@@ -188,7 +212,7 @@ namespace ColonyCouncil
             {
                 redInk ??= new List<RedInkRecord>();
                 redInk.RemoveAll(r => r == null);
-                shrines ??= new List<ShrineRecord>();
+                shrines ??= new List<OldShrineRecord>();
                 shrines.RemoveAll(r => r == null);
                 thefts ??= new List<TheftRecord>();
                 thefts.RemoveAll(r => r == null);

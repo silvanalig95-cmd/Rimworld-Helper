@@ -320,7 +320,7 @@ namespace ColonyCouncil
         {
             var b = PeopleEventsBook.Instance;
             // Red ink of round 3 (Peoples/Events3/RedInk.cs): worse terms with every league while the colony's page stands open.
-            float red = RedInk.Terms(f);
+            float red = LeagueRedInk.Terms(f);
             if (b == null || f == null || f.IsPlayer || b.goodInkUntil < 0 || Find.TickManager.TicksGame > b.goodInkUntil) return red;
             return (Peoples.CallingOf(f) == PeoplesMath.Traders ? PeopleEventsMath.GoodInkTerms : 0f) + red;
         }
