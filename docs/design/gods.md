@@ -539,6 +539,25 @@ and culture tab". DESIGN.md, "Each one's gods", has the whole of it. For the con
   that goes through them moves belief with no code of its own.
 - Only the colony's own people (`Worship.Ours`); no harm but the rare scuffle in a quarrel at the game's insult's rate.
 
+### The saints: a faith's deities and the colony's own (the player, 14 November 2026; round 5)
+
+"perhaps instead of these being the gods that are currently registered to an ideology, this could, for example, be some
+sort of saints or important characters. So kind of a middle ground between God and the pawns and the ideology, kind of
+saints or holy men or unholy men or whatever"; "let's go with saints then". DESIGN.md, "The saints", has the whole of it.
+For the contract:
+- Ideology's deities are read as the faith's saints or its damned (`Saints.Of`), never changed: no part writes to an
+  ideoligion's deities, name, memes or precepts. A deity is tied to one of the gods by its own words
+  (`GodsMath.DeityDomains`, `SaintsMath.GodFor`), as the faith's belief; the damned only to the dark gods, a saint never
+  to the Hunger.
+- The unseen rule holds: a saint is a person, named plainly; "of" a god (on the ideoligion screen, a statue's or a grave's
+  inspect line, the card, the book) only by the colony's name for it and only where the colony knows it (`Saints.OfGod`);
+  else nothing is said of the god at all. The book lists saints only under the chapter the colony keeps the god under.
+- The colony is the family: a saint is one person the council honoured; nothing of it passes to kin, no mood or mechanic
+  reads a family, and the card never speaks of one.
+- Every age: the word is the faith's by age and culture (ancestors, saints, exemplars; the venerated, martyrs; the
+  forsaken, the damned, the fallen), the relic's form the colony's age's.
+- No harm: the saints only add places to pray, a day kept and small good moods; the damned leave a believer uneasy, never
+  more.
 ### Each god's own happenings, the second seven (the player, 14 November 2026; round 4, batch 2)
 
 "each God's events and interactions and effects ... feel unique to the god, not like every god's effect is kind of similar,

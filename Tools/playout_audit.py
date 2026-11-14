@@ -75,6 +75,9 @@ PLAY = {
     # Worship of the gods (Gods/Worship/WorshipCouncil.cs): words said at a god's place, a beast walked out and let go,
     # a lesser offering carried to the god's place.
     "DilemmaEffect_ShrineWords": "words",
+    # The saints (Gods/Saints/SaintsCouncil.cs): words said at the fallen one's grave when the council names them a saint or
+    # honours them.
+    "DilemmaEffect_SaintWords": "words",
     "DilemmaEffect_GiveBeast": "beast given",
     "DilemmaEffect_LesserOffering": "offering carried",
     # The colony's own settings changed for a while and put back (Dilemmas/AnswerShifts.cs), and the game's own orders

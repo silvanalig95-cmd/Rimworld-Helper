@@ -677,6 +677,11 @@ job report ("praying to Hollin"), their bubbles and a journal line.
   effect each, every one different, Tamiu's folded in), each god's own way of taking a gift, Bellwether's and Ennu's own
   signs; declared per god (`GodDef.presence`, `GodWorshipDef.taking`, `GodShapeDef.omens`). DESIGN.md "The gods each their
   own".
+- Not released yet (14 November 2026, the player's go): round 5 of section H, section F option b. Ideology's deities read
+  (never changed) as the faith's saints or its damned, each tied to a god by its own words; "Deities" shown as the faith's
+  word; the council may name a fallen colonist a saint (never their kin); their grave, a statue raised to them and their
+  relic as places to pray, their day kept each year; a faith's saints leaning its believers toward their gods. Pawns on
+  Display not used (a seam left for it). DESIGN.md "The saints".
 
 **Still open (defined, not built):**
 - Mog remade as the Egyptian cat god: built 14 November 2026 as Tamiu, the Keeper of the Threshold (not released yet).

@@ -644,7 +644,14 @@ namespace Balance
             ("Rimfolk_Thought_Selene_KeptCompany", 0.008f),
             ("Rimfolk_Thought_Selene_KeptDarkFace", 0.004f),
             ("Rimfolk_Thought_Murmur_Sang", 0.012f),
-            ("Rimfolk_Thought_Tamiu_CatWentAway", 0.001f)
+            ("Rimfolk_Thought_Tamiu_CatWentAway", 0.001f),
+            // The saints (Gods/Saints/): one of the colony's own named a saint about once in a colony-year or two, for all but
+            // its scoffers; a prayer at a saint's place about once in two days at a home with one or two (SaintsMath.PrayChance),
+            // a few of them before a relic; a saint's day once a year a saint, for those devoted to them.
+            ("Rimfolk_Saint_Named", 0.012f),
+            ("Rimfolk_Saint_Prayed", 0.02f),
+            ("Rimfolk_Saint_PrayedRelic", 0.006f),
+            ("Rimfolk_Saint_FeastKept", 0.008f)
         };
 
         /// <summary>Setbacks a well-run colony mostly avoids and a neglected one keeps having: their rate follows the style squared.</summary>

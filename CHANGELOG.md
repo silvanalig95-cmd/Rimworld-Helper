@@ -5,6 +5,17 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## The saints
+
+*14 November 2026, version 0.236.0*
+
+- Your faiths' deities are now their saints: the ideoligion screen calls them by the faith's own word, and names the god each is held to belong to once your colony knows that god.
+- A faith's darker figures are its damned, feared and never prayed to, and they leave its believers uneasy.
+- When a colonist dies a remarkable death, such as carrying the wounded out of a fight or years of tending the sick, the council may name them a saint of the colony's own.
+- A saint's grave, any statue you raise to a saint and the relic set aside for them are places the devoted go to pray.
+- Each year on the day a saint died, the devoted keep their day with an hour of words at the grave.
+- The Gods' book lists each god's saints, and a neighbour's sermon may now name its faith's saint.
+
 ## Each one's gods
 
 *14 November 2026, version 0.235.0*

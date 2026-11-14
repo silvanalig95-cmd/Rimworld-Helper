@@ -146,6 +146,8 @@ namespace ColonyCouncil
                     GodsMath.ScorePrecepts(p.Ideo.PreceptsListForReading?.Select(x => x?.def?.defName), 0.5f, scores);
                     s.faith = PawnGodsMath.FaithLean(scores, Gods.All.Where(g => g.kind != GodKind.Dead).Select(g => (g.Key, g.domain, g.second)));
                     s.faithName = p.Ideo.name;
+                    // The faith's saints lean them toward their gods a little more (Gods/Saints/Saints.cs).
+                    Saints.Lean(p, s);
                 }
             }
             catch
