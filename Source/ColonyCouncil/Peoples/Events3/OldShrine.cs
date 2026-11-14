@@ -214,7 +214,8 @@ namespace ColonyCouncil
             Thing shrine = null;
             try
             {
-                if (def != null && Free(map, v.cell))
+                // Whoever stands there steps aside, and what lies there is cleared for the stones.
+                if (def != null && v.cell.InBounds(map) && v.cell.Standable(map) && v.cell.GetEdifice(map) == null && !(v.cell.GetTerrain(map)?.IsWater ?? true))
                 {
                     var made = ThingMaker.MakeThing(def, def.MadeFromStuff ? GenStuff.DefaultStuffFor(def) : null);
                     made.SetFaction(Faction.OfPlayer);

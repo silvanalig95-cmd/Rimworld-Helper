@@ -819,6 +819,26 @@ MODEL = {
                                                    "the blades the guild marked with a colonist's name, PeopleEvents2Math.MaxMarks kept"),
     "Peoples/Events2/EnclavePad.cs:pad": ("fixed", 25, V, "the enclave's pad's cells, while its camp stands"),
     "Peoples/Events2/EnclavePad.cs:stock": ("fixed", 8, 40, "the morning's stock come down by pod, until taken into their stalls"),
+    # The peoples' own events, round 3 (Peoples/Events3/PeopleEvents3Book.cs): the league's red ink, open pages and the last
+    # few closed, PeopleEvents3Math.MaxRedInk kept; the pilgrims' shrines, one a map, PeopleEvents3Math.MaxShrines kept; the
+    # beasts raiders drove off, PeopleEvents3Math.MaxThefts kept, each PeopleEvents3Math.MaxStolen beasts at most. The camps'
+    # own states live while the camp does: the road gang's road and spur, the sickhouse's ward, the calving's beasts.
+    "Peoples/Events3/PeopleEvents3Book.cs:redInk": ("cap", (const("Peoples/Events3/PeopleEvents3Math.cs", "MaxRedInk", 6), 1 / 90), 220,
+                                                    "the league's red ink: open pages and the last few closed, PeopleEvents3Math.MaxRedInk kept"),
+    "Peoples/Events3/PeopleEvents3Book.cs:shrines": ("cap", (const("Peoples/Events3/PeopleEvents3Math.cs", "MaxShrines", 6), 1 / 120), 260,
+                                                     "the old shrines the pilgrims raised, one a map, PeopleEvents3Math.MaxShrines kept"),
+    "Peoples/Events3/PeopleEvents3Book.cs:thefts": ("cap", (const("Peoples/Events3/PeopleEvents3Math.cs", "MaxThefts", 4), 1 / 60), 300,
+                                                    "the beasts raiders drove off and the herders' trail, PeopleEvents3Math.MaxThefts kept"),
+    "Peoples/Events3/PeopleEvents3Book.cs:animals": ("fixed", 3, 40, "per theft: the beasts driven off, one to three a raid, twelve at most (counted under thefts)"),
+    "Peoples/Events3/RoadGang.cs:road": ("fixed", 600, V, "the road gang's road, two wide across the map, while its camp stands"),
+    "Peoples/Events3/RoadGang.cs:spur": ("fixed", 60, V, "the spur from the colony's gate to the road, while the road gang's camp stands"),
+    "Peoples/Events3/FieldSickhouse.cs:patients": ("fixed", 6, 40, "the field sickhouse's patients, two to six, while its camp stands"),
+    "Peoples/Events3/FieldSickhouse.cs:beds": ("fixed", 6, 40, "the beds made up for them, while the camp stands"),
+    "Peoples/Events3/FieldSickhouse.cs:ours": ("fixed", 3, 40, "the colony's own sick in the ward, while the camp stands"),
+    "Peoples/Events3/FieldSickhouse.cs:fed": ("fixed", 6, V, "the peoples whose sick the colony fed, by id, while the camp stands"),
+    "Peoples/Events3/FieldSickhouse.cs:asked": ("fixed", 4, V, "the sickhouse's asks made, four at most, while the camp stands"),
+    "Peoples/Events3/SpringCalving.cs:inCalf": ("fixed", 7, 40, "the calving camp's beasts in calf, four to seven, while its camp stands"),
+    "Peoples/Events3/SpringCalving.cs:calves": ("fixed", 8, 40, "the calves born at the calving camp, while its camp stands"),
     # The gods (Gods/GodBook.cs): the pantheon, one record a god (its names, domains, form, kind and nature, colours, the
     # peoples and faiths that hold it), built once per world (30 to 70 in a world of a dozen to twenty peoples) and a few
     # more as peoples arise and newborns come (GodsMath.MaxNewborns); the ties between them, GodTiesMath.MaxTies a god at

@@ -18,7 +18,7 @@ namespace ColonyCouncil
         public int laid, spurLaid;
         public string floor;
         /// <summary>Let through the colony's fields; laid round the colony's land (the line refused); the spur paid for; the band rolled; asked once each.</summary>
-        public bool fields, round, spurPaid, bandRolled, foodAsked, handAsked;
+        public bool fields, round, spurPaid, spurPlanned, bandRolled, foodAsked, handAsked;
         public int hands;
 
         public override void ExposeData()
@@ -31,6 +31,7 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref fields, "fields");
             Scribe_Values.Look(ref round, "round");
             Scribe_Values.Look(ref spurPaid, "spurPaid");
+            Scribe_Values.Look(ref spurPlanned, "spurPlanned");
             Scribe_Values.Look(ref bandRolled, "bandRolled");
             Scribe_Values.Look(ref foodAsked, "foodAsked");
             Scribe_Values.Look(ref handAsked, "handAsked");
@@ -157,15 +158,15 @@ namespace ColonyCouncil
             foreach (var zone in map.zoneManager.AllZones.OfType<Zone_Growing>())
                 foreach (var c in zone.Cells)
                     zones[c.z * w + c.x] = true;
-            float Cost(int x, int z)
-            {
-                var c = new IntVec3(x, 0, z);
-                if (!Takes(map, c, floor)) return -1f;
-                int i = z * w + x;
-                if (near != null && near[i]) return -1f;
-                if (zones[i]) return fields ? 1.5f : PeopleEvents3Math.FieldCost;
-                return 1f;
-            }
+            // Each cell's cost worked out once, for the way's search and the road's cells.
+            var costs = new float[w * h];
+            for (int z = 0; z < h; z++)
+                for (int x = 0; x < w; x++)
+                {
+                    int i = z * w + x;
+                    costs[i] = !Takes(map, new IntVec3(x, 0, z), floor) || (near != null && near[i]) ? -1f : zones[i] ? (fields ? 1.5f : PeopleEvents3Math.FieldCost) : 1f;
+                }
+            float Cost(int x, int z) => x < 0 || z < 0 || x >= w || z >= h ? -1f : costs[z * w + x];
             // West to east or south to north, whichever runs nearer the colony's middle; the line past its gate, a little aside.
             List<(int x, int z)> way = null;
             foreach (bool eastWest in Rand.Bool ? new[] { true, false } : new[] { false, true })
@@ -340,7 +341,19 @@ namespace ColonyCouncil
                 cell.GetPlant(map)?.Destroy();
                 map.terrainGrid.SetTerrain(cell, floor);
                 FleckMaker.ThrowDustPuff(cell, map, 0.8f);
-                if (p.IsColonist) p.skills?.Learn(SkillDefOf.Construction, PeopleEvents3Math.RoadCellXp, true);
+                if (p.IsColonist)
+                {
+                    p.skills?.Learn(SkillDefOf.Construction, PeopleEvents3Math.RoadCellXp, true);
+                    // The colony's builder on their day with the gang goes straight on to the next cell.
+                    var v = CouncilGameComponent.Instance?.happenings?.visits?.FirstOrDefault(x => x != null && x.kind == HandKind && !x.done && x.x == p);
+                    var next = v != null && Now < v.until ? Next(c, st, p) : IntVec3.Invalid;
+                    if (next.IsValid && LayJob != null)
+                    {
+                        var j = JobMaker.MakeJob(LayJob, next);
+                        j.count = PeopleEvents3Math.RoadCellTicks;
+                        p.jobs.jobQueue.EnqueueFirst(j);
+                    }
+                }
             }
             catch (Exception e)
             {
@@ -402,7 +415,7 @@ namespace ColonyCouncil
             var st = StateOf(c);
             if (st == null || st.spurPaid) return;
             st.spurPaid = true;
-            st.spur = Spur(c.map, st, DefDatabase<TerrainDef>.GetNamedSilentFail(st.floor ?? ""));
+            if (st.spur.Count == 0) st.spur = Spur(c.map, st, DefDatabase<TerrainDef>.GetNamedSilentFail(st.floor ?? ""));
         }
 
         /// <summary>The colony's stone blocks it has most of (any stone's), for a spur paid in stone; null with none.</summary>
@@ -415,11 +428,14 @@ namespace ColonyCouncil
         }
 
         /// <summary>The spur's length if it were laid now (for the ask's price), from the gate to the road.</summary>
-        public static int SpurLength(Camp c)
+        public static int SpurLength(Camp c) => StateOf(c)?.spur.Count ?? 0;
+
+        /// <summary>The spur's way from the gate worked out once, their first hour settled (the asks' price and the laying read it).</summary>
+        public static void PlanSpur(Camp c, RoadState st)
         {
-            var st = StateOf(c);
-            if (st == null) return 0;
-            return st.spur.Count > 0 ? st.spur.Count : Spur(c.map, st, DefDatabase<TerrainDef>.GetNamedSilentFail(st.floor ?? "")).Count;
+            if (st == null || st.spurPlanned || st.road.Count == 0) return;
+            st.spurPlanned = true;
+            st.spur = Spur(c.map, st, DefDatabase<TerrainDef>.GetNamedSilentFail(st.floor ?? ""));
         }
     }
 
@@ -438,6 +454,7 @@ namespace ColonyCouncil
                 Started(c);
                 st = RoadGang.StateOf(c);
             }
+            if (c.Settled) RoadGang.PlanSpur(c, st);
             // Once a stay: a robber band comes against the camp, on top of the camps' own.
             if (!st.bandRolled && c.Settled && c.raidRolled)
             {

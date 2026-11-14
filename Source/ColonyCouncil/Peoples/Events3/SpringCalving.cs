@@ -616,6 +616,8 @@ namespace ColonyCouncil
             ctx.thing = st.hard.def;
             ctx.tale = st.hard.KindLabel;
             ctx.note = c.id.ToString();
+            // Asked once: the herders wait for this answer.
+            st.hardAsked = true;
             ctx.a = PeoplesD.Best(ctx.map, SkillDefOf.Animals);
             ctx.b = PeoplesD.Best(ctx.map, SkillDefOf.Animals, p => p != ctx.a);
             ctx.placeName = c.place;
@@ -645,6 +647,8 @@ namespace ColonyCouncil
         /// <summary>The herder is the camp's, not the event's: never sent off or discarded with it.</summary>
         protected override void Abort(HappeningContext ctx)
         {
+            var st = SpringCalving.StateOf(CampTracker.Instance?.ById(int.TryParse(ctx.note ?? "", out int id) ? id : -1));
+            if (st != null && !st.hardDone) st.hardAsked = false;
             ctx.stranger = null;
             ctx.group.Clear();
         }

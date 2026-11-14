@@ -692,7 +692,7 @@
       <li Class="ColonyCouncil.HappeningExtension">
         <group>Visitors</group>
         <ages>30~75</ages>
-        <stayHours>8~12</stayHours>
+        <stayHours>14~20</stayHours>
         <answerDays>0.3</answerDays>
         <notable>false</notable>
         <mods>
