@@ -117,6 +117,110 @@ tree at once, alongside whatever runs. Each piece is merged as its own release, 
   ordering them off is ruder still), less when they were trouble (a thief, a brawler, a drunk); with Hospitality its
   own way for its guests; never a caravan mid-trade without the trade closed first, and never anyone downed or a
   prisoner.
+- Not released: no version, no What's new round, About.xml and CHANGELOG untouched. **Each god's own happenings,
+  batch 1: Hollin, Smoulder, Bellwether, Morel, Ennu, Pip and Cirrus** (14 November 2026; the player's words: "each God's
+  events and interactions and effects, etc., you know, feel unique to the god, not like every god's effect is kind of
+  similar, but it's just a different name attached to it ... each of the gods should feel really unique in what it does
+  and whether or how it interacts with the world, what the impact is, how these things play out on the map"; "gods effect
+  should be noticeable"; "the "Each god its own" proposals sounds great too! go ahead with all of this"). Round 4 of
+  `docs/gods-next-proposals.md` (section C), batch 1; batch 2 (Hush, Undertow, Helios, Selene, Murmur, Ducat, and more for
+  Tamiu) follows. DESIGN.md "Each god's own happenings, batch 1" has all of it; `docs/design/gods.md` its contract note;
+  the Almanac's gods page says the colony's own practice of the bowl on the Open Door night (keywords unchanged).
+  - 29 happenings, each a god's own, each played out on the map, its card naming the god only where the colony knows,
+    someone saying it in one sentence, the colony's book keeping it in its witness's words:
+    - Hollin: the roots remember (a floor tile broken a morning, three mornings, after a season of felling with little
+      planted); her dryads' word (every dryad turns to one colonist, one walks up, one word pointing at something real:
+      spare, wait, plant, burn); the green walk (her rising twice more along a line, grass and flowers between, the beasts
+      after her); the old tree spared (healroot in a ring at its foot in spring).
+    - Smoulder: the bargain at the shaft (a miner's dream told at breakfast, the colony's answer, the silver carried to the
+      deepest shaft and gone into the rock, a vein days later: gold kept to the letter, steel under gold for half); his
+      proper name (a sculpture named for Aurelian the Ninth, a silver seam the next day); the heat from below (the deep
+      floor hot for hours on the turn before stone may fall); the stretching dream (every miner, the night after his
+      shadow); silver kept from the deep (a burn across the hand from a warm dream, the shared harm budget).
+    - Bellwether: his road (his last dusk at the colony's edge, head lowered to its youngest; at dawn through the colony,
+      waiting at a fence until a way is opened, those who see him wait ashamed; turning back after ten hours); the child who
+      touched the horn (says the rain is coming within the hour, and it comes); a wounded thrumbo at the edge (tend it or
+      not; tended, it goes and the strange peace follows); the last of its kind (a dream after thrumbos pass).
+    - Morel: the mourner at the graveyard (a figure of pale threads at the graves from dusk to dawn after a death, a ring
+      of mushrooms where it stood); her ring pointing (round a body left lying, rotting stores, or a small thing buried
+      that someone digs up); white threads before the freezer fails (her anger the next day); her breath in a ring.
+    - Ennu: the small test (a story at the fire, the cook's name, the graves, a coat in the cold, answered on the map and
+      counted in the welcome); tales by the fire (another god's story, piece by piece); the bowl set out (the Open Door
+      night, empty by morning, the cook thanked in chalk); its kindest sought out by visitors with the road's news.
+    - Pip: the machine that won't stop (an hour after it was switched off); its message to the stars (the console on in
+      the night, half a message on its screen by morning, an old terminal humming back); the turret that held fire; its
+      sulking lights the day before its short circuit (and its mended machine winking).
+    - Cirrus: the star at the door only for a colony that watches the sky (telescope, skygazing, its festival), the
+      watcher saw it fall; the wrong-way star's dream and the pods where it said; the aurora on the coldest night; dry
+      thunder over the far hills.
+  - Which should move a pawn's belief (round 3 hooks the witness seam `Gods.Remember` through `GodsOnMapWords.Saw`, and
+    the moment `Gods.Moment` through `GodPresenceSeam`): strengthen, for whoever saw it or was in it: the dryads' word (the
+    one spoken to most), the green walk, the old tree's ring, the bargain's gold (shaken by the bent vein), the silver seam,
+    the horn child's rain, the tended thrumbo's peace, the mourner and her ring, the bowl in the morning, a test answered
+    and thanked by name, the message to the stars, the turret that held fire, the star the watcher saw fall and the pods
+    where the dream said; shake or turn to dread: the warm dream's burn, the white threads before the freezer failed, the
+    slow lights before the short circuit, the roots through the floor, the breath in the ring. Each is kept with its
+    `GodActKind` (Blessing, Wrath, Omen, Act, Appear) for that.
+  - Code map:
+    - `Source/ColonyCouncil/Gods/OnMap/OwnHappeningsMath.cs` (new, pure, linked): `OwnHappening` (29), `DryadWord`,
+      `GuestTest`, `RingAt`; `PaceOf`, `Free`, `DayChance`, `CheckChance`; every happening's own rule and number.
+    - `OwnHappenings.cs` (new): `OwnHappeningsBook` (saved: `last`, one a happening; what is under way; `horned`, 8 at
+      most; `watches`, 8 at most; its steps on a due tick only), the frame (`Acts`, `Due`, `Came`, `Say`, `Saw`, `Card`,
+      `Found`, `Carry`, `Motes`, `Forewarn` and `Forewarned`, `Sign`, `FestivalKept`), and five game hooks
+      (`Patch_OwnTreeFelled`, `Patch_OwnEventHappened`, `Patch_OwnArtMade`, `Patch_OwnFlicked`, `Patch_OwnTurretHeld`).
+    - `OwnHollin.cs`, `OwnSmoulder.cs` (with `HappeningWorker_GodBargain`), `OwnBellwether.cs` (with
+      `HappeningWorker_GodHurtBeast`), `OwnMorel.cs`, `OwnEnnu.cs`, `OwnPip.cs`, `OwnCirrus.cs` (new): each god's own.
+    - `Source/ColonyCouncil/Gods/OwnHappeningsDebug.cs` (new): the dev actions.
+    - Seams touched (one line each): `GodsOnMapBook.Daily`, `Hourly`; `GodRising.Rise` (`OwnHollin.Rose`);
+      `GodWaking.Turned` (`OwnSmoulder.Turned`); `GodOmens.Seen` (`OwnHappenings.Sign`); `GodHealth.Wrath`
+      (`OwnHappenings.Forewarn`), `Bless` (the star only for watchers, `OwnCirrus.StarFell`; `OwnPip.Wink`), `Shunned`
+      (`OwnBellwether.KinKilled`); `SacredAnimal.Hourly` (`OwnBellwether.Road`), `SatBy` (`Touched`), `Departed`
+      (`LetPass`); `GodGifts.Outcome` (`OwnEnnu.Judged`); `Festivals.Kept` (`OwnHappenings.FestivalKept`);
+      `GodSky` (`SkySign.Mourner`); `Weather/WeatherDynamics.cs` (`Foreseen`, the next weather held to as a forecast is);
+      `Harm/HarmBudgetMath.cs` (`HarmKinds.GodBurn`).
+    - Defs: `Defs/GodDefs/Rimfolk_GodOwnHappenings.xml` (new: `Rimfolk_Evt_GodBargain`, `Rimfolk_Evt_GodHurtBeast`, seven
+      thoughts, `Rimfolk_Pool_GodOwnSaid`); `Languages/English/Keyed/Rimfolk_GodOwnHappenings.xml` (new);
+      `Defs/AlmanacArticleDefs/Almanac_Gods.xml` (one sentence).
+    - Tools: `Tools/Tests/OwnHappeningsTests.cs` (new); `HarmBudgetTests` counts the burn; `Tools/Tests/Tests.csproj`
+      links the math; `Tools/save_estimate.py` models the three lists; `Tools/playout_skips.txt` the two cards' answers;
+      `Tools/DefValidator/Program.cs` knows {YOUNG} and {WAY}.
+  - Mods used (active rows, by name or the game's own marks, vanilla fallback): A RimWorld of Magic's motes (green, blue
+    and gray twinkles, heat, psionic current), Vanilla Ideology Expanded - Dryads (any dryad, by the game's mark), Alpha
+    Biomes' flowers on her walk, Vanilla Social Interactions Expanded's skygazing, Vanilla Furniture Expanded - Props and
+    Decor's ancient terminal, Ideology's anima and gauranlen trees and terminals. Would help: nothing new is needed;
+    Ambient Rim ([3158997430](https://steamcommunity.com/sharedfiles/filedetails/?id=3158997430); tags 1.4 to 1.6, no 1.7
+    tag yet, updated July 2026), already proposed in 0.234.0, would put the land's own birds, owls and distant weather
+    under the dry thunder and the mourner's night. Vanilla Races Expanded - Fungoid (active) could later give the mourner
+    a body.
+  - Not seen in a real game (none of it could be): the mourner drawn at the graves at each zoom and in daylight; the
+    roots' floor tile removed and brambles on it; the dryad walking up to its colonist (and the anima tree's dryads
+    beholding); Bellwether walking his road through a real colony's walls and fences, a gate held open letting him through
+    (the game's reachability for a wild beast and an open door); the horn child's foretelling against the forecast's own
+    pin; the wounded thrumbo lying down (`LayDown` on a cell) and staying put while tended; the silver hauled to a
+    non-stockpile cell under the mountain and the vein replacing natural rock; a sculpture's title set by the art hook;
+    a switch's flick refused for an hour (the gizmo's state while it runs on); a turret's breath held mid-fight; the
+    Guest's coat carried and put on; the meal carried to a table and left; cargo pods from the game's resource pod set;
+    the game's aurora condition begun by hand; the far thunder's flashes.
+  - Try in the game (dev mode; "Gods: the colony knows every god" first so the cards can name them):
+    1. "Gods: Hollin's dryads' word now" with an anima or gauranlen tree and a dryad, and three trees marked to cut: the
+       dryads all turn to someone outside, one walks up, they say "spare", a card points at the trees.
+    2. "Gods: Hollin's green walk now" by day: her shape of roots rises, an hour later again further across the land with
+       grass and flowers between, the wild animals walking after it, and once more an hour after.
+    3. "Gods: Smoulder's bargain at the shaft now" with silver in storage and some cell under thick rock: the dreamer's
+       dream, the card; carry all of it: they take the silver to the deepest cell and it sinks with heat; "Gods: Smoulder's
+       vein after the bargain now": gold in the rock by the shaft (steel for half).
+    4. "Gods: Bellwether's road through the colony now": the white thrumbo comes, stops at the colony's edge facing its
+       youngest, then sets off through it; with walls in the way he stops and waits, colonists who see him get "made the
+       white beast wait"; hold a door open and he goes through.
+    5. "Gods: Morel's mourner at the graveyard now" with graves: a figure of pale threads at their edge, the moment, her
+       spore-fall; "Gods: Morel's mourner gone at dawn now": a ring of mushrooms where it stood; walk a colonist into it
+       and "Gods: Morel's breath in the ring now".
+    6. A stranger at the gate given a bed ("Gods: a stranger at the gate now..."), then "Gods: Ennu's small test now": it
+       asks aloud, and someone walks over to answer; "Gods: Ennu's tale by the fire now" with someone beside it.
+    7. "Gods: Pip's machine that won't stop now", "Gods: Pip's message to the stars now" with a powered comms console,
+       "Gods: Pip's turret holds its fire (the next crossing)" then a raid with a colonist running across a turret's line.
+    8. "Gods: Cirrus's wrong-way star dream now": the dream says which way; the pods come down there shortly after.
+    9. "Gods: each god's own happenings (log)" shows when each last came and what is under way.
 - 0.234.0, **The gods, each their own: their
   presences, their ways of taking a gift, Bellwether's and Ennu's signs** (14 November 2026; the player's words: "gods
   effect should be noticeable"; "the "Each god its own" proposals sounds great too! go ahead with all of this"; and their

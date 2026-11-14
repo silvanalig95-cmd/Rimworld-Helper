@@ -674,6 +674,11 @@ job report ("praying to Hollin"), their bubbles and a journal line.
   signs; declared per god (`GodDef.presence`, `GodWorshipDef.taking`, `GodShapeDef.omens`). DESIGN.md "The gods each their
   own".
 
+- Not released yet (14 November 2026, the player's go): round 4 of section H, batch 1. Each god's own happenings for
+  Hollin, Smoulder, Bellwether, Morel, Ennu, Pip and Cirrus (29, from section C), with Hollin's dryads' word, Smoulder's
+  bargains in dreams and at the shaft and Morel's mourner at the graveyard among them. DESIGN.md "Each god's own
+  happenings, batch 1". Batch 2 (Hush, Undertow, Helios, Selene, Murmur, Ducat, Tamiu) is next.
+
 **Still open (defined, not built):**
 - Mog remade as the Egyptian cat god: built 14 November 2026 as Tamiu, the Keeper of the Threshold (not released yet).
 - More of Old Powers' kind, with the gods and A RimWorld of Magic (to-do, 13 November 2026, held).
@@ -681,7 +686,7 @@ job report ("praying to Hollin"), their bubbles and a journal line.
 - Ideology, step 2 of the old plan (the faith's deities as its names for the gods): never built; F proposes saints
   instead.
 - From the gods' own lore, never built: Morel's mourner at the graveyard, Hollin speaking through her dryads a word at a
-  time, Smoulder's bargains in dreams.
+  time, Smoulder's bargains in dreams (all three built in round 4, batch 1, not released yet).
 - Set aside in the pantheon brainstorm (section E): the Going, the Walking Fire, the Silent Ones, Seven, the Echo, the
   Watching, the Queen Below, the Song, the Bones, the Wind That Laughs, the Small Ones, and a god born from the colony's
   own faith.

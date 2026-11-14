@@ -195,6 +195,9 @@ namespace ColonyCouncil
         /// <summary>The wrapped dead standing guard over a home's tombs in a raid (Gods/OnMap/MogsWays.cs): the game's shamblers, kept to the graves.</summary>
         public static readonly HarmKind GodDead = new HarmKind("godDead", "the wrapped dead standing guard in a raid (gods)", "gods", 0.004f, false);
 
+        /// <summary>A miner waking from a warm dream with a burn across the hand, for silver kept from the deep (Gods/OnMap/OwnSmoulder.cs).</summary>
+        public static readonly HarmKind GodBurn = new HarmKind("godBurn", "a warm dream's burn for silver kept from the deep (gods)", "gods", 0.003f, false);
+
         /// <summary>Every kind, in the order they were built.</summary>
         public static readonly HarmKind[] All =
         {
@@ -212,7 +215,7 @@ namespace ColonyCouncil
             WorstNight, FirstSteps, WorkingWrong,
             CampLeft,
             UnionDrill,
-            GodBeasts, GodLightning, GodPrice, GodRiddle, GodDead
+            GodBeasts, GodLightning, GodPrice, GodRiddle, GodDead, GodBurn
         };
 
         public static HarmKind Of(string key)

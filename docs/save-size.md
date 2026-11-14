@@ -7,8 +7,8 @@ colony of 20, with the game keeping 30 more people it knows and 5 more each year
 generous guesses; sizes are rough XML sizes. Caps named as constants are read from the source. "Counted under" rows are
 kept inside another record (a journal's lines, a heart's lists) and are already in that record's size.
 
-Saved collections found: 695; modelled: 695; growing without end: 0.
-Rimfolk's part of the save, roughly: **2,963 KB** after a year, **3,664 KB** after two, **4,093 KB** after five.
+Saved collections found: 698; modelled: 698; growing without end: 0.
+Rimfolk's part of the save, roughly: **2,965 KB** after a year, **3,665 KB** after two, **4,095 KB** after five.
 
 | Collection | Rule | Kind | 1 year | 2 years | 5 years | KB at 5 years |
 |---|---|---|---|---|---|---|
@@ -328,6 +328,7 @@ Rimfolk's part of the save, roughly: **2,963 KB** after a year, **3,664 KB** aft
 | `Social/Groups/GroupTracker.cs:newcomers` | newcomers, 40 days at most | cap | 5 | 5 | 5 | 0.7 |
 | `Social/Banishment.cs:fights` | social fights noted as they start (ids and the tick), kept 35 days, at most BanishTracker.MaxFights | window | 10 | 10 | 10 | 0.7 |
 | `Peoples/Events3/PeopleEvents3Book.cs:redInk` | the league's red ink: open pages and the last few closed, PeopleEvents3Math.MaxRedInk kept | cap | 1 | 1 | 3 | 0.7 |
+| `Gods/OnMap/OwnHappenings.cs:last` | when each god's own happening last came, one a happening | fixed | 29 | 29 | 29 | 0.7 |
 | `Annals.cs:tiesFormed` | the year in progress | yearly | 12 | 12 | 12 | 0.7 |
 | `Camps/Camp.cs:warmth` | while the camp stays | while | 8 | 8 | 8 | 0.7 |
 | `Colonies/HomesFounding.cs:asks` | those sent or kept against their wish who may ask once to move, for the season after a founding (FoundingMath.AskMoveToDays, 15 days) | while | 6 | 6 | 6 | 0.7 |
@@ -417,6 +418,7 @@ Rimfolk's part of the save, roughly: **2,963 KB** after a year, **3,664 KB** aft
 | `Camps/CampRaid.cs:pawns` | per band: its fighters, eight at most (CampRaids.MakeBand), while it is on the map | while | 8 | 8 | 8 | 0.3 |
 | `Camps/CampRequests.cs:errandPeople` | those of the camp on an errand into the colony, while it lasts | while | 8 | 8 | 8 | 0.3 |
 | `Couriers/CourierTrip.cs:things` | particular things a trip came for (a neighbour's cargo), while it lasts | while | 8 | 8 | 8 | 0.3 |
+| `Gods/OnMap/OwnHappenings.cs:horned` | the children who touched the white beast's horn, OwnHappeningsMath.HornKept at most | fixed | 8 | 8 | 8 | 0.3 |
 | `Peoples/Events2/EnclavePad.cs:stock` | the morning's stock come down by pod, until taken into their stalls | fixed | 8 | 8 | 8 | 0.3 |
 | `Peoples/Events3/SpringCalving.cs:calves` | the calves born at the calving camp, while its camp stands | fixed | 8 | 8 | 8 | 0.3 |
 | `PlayOut/PlayOutLord.cs:guests` | while the gathering lasts: guests from outside the colony | while | 8 | 8 | 8 | 0.3 |
@@ -452,6 +454,7 @@ Rimfolk's part of the save, roughly: **2,963 KB** after a year, **3,664 KB** aft
 | `CouncilGameComponent.cs:medicKits` | the medics Rimfolk set a medicine stock for, and those the player took over: three a home at most (Health/MedicKits.cs) | fixed | 9 | 9 | 9 | 0.2 |
 | `Camps/CampLook.cs:herd` | the camp's animals (CampLookMath.MaxAnimals), while it stays | while | 5 | 5 | 5 | 0.2 |
 | `Decrees/Decrees.cs:threatTicks` | DecreeTracker.MaxThreats: the big threats of the last half month, for how needed a decree is | fixed | 8 | 8 | 8 | 0.2 |
+| `Gods/OnMap/OwnHappenings.cs:watches` | the sky watched lately (a telescope, skygazing), OwnHappeningsBook.MaxWatches at most | fixed | 8 | 8 | 8 | 0.2 |
 | `Heart/HeartData.cs:goodRecent` | per heart: one per source of the good side | fixed | 8 | 8 | 8 | 0.2 |
 | `Heart/HeartData.cs:goodToday` | per heart: one per source of the good side | fixed | 8 | 8 | 8 | 0.2 |
 | `Heart/HeartData.cs:recentRelief` | per heart | fixed | 8 | 8 | 8 | 0.2 |

@@ -60,6 +60,8 @@ namespace ColonyCouncil
             GenTemperature.PushHeat(at, map, 30f);
             Gods.AddFavour(god, map, -1f, null, FavourSource.Neglect);
             GodOmens.Seen(god, map, at, OmenKind.Rumble, miner);
+            // Before stone ever falls, the floor of the deep working grows hot for hours (Gods/OnMap/OwnSmoulder.cs).
+            OwnSmoulder.Turned(god, map, at, miner, b.deepWarnings);
             if (GodsOnMapMath.StoneFalls(b.deepWarnings, Harm.ScaleFor(HarmKinds.Dangers), Rand.Value)
                 && Harm.Injure(miner, HurtKind.Bruise, HurtWhere.Any, 3f, 7f, HarmKinds.Dangers) != null)
                 Tell.Message(NewsKind.People, Importance.Important, map, "CC_GodM_StoneFell".Translate(miner.Named("PAWN")).Resolve(), new LookTargets(miner),

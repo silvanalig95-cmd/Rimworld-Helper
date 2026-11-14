@@ -584,3 +584,8 @@ Rimfolk_Evt_TwoFaiths [option 2] a refusal: the palmer is sent on (SendAway)
 Rimfolk_Evt_GodRiddle [option 0] done by the event's own code: the one sent walks out to the great cat and answers her there (MogsWays.Answered, Step, There)
 Rimfolk_Evt_GodRiddle [option 1] done by the event's own code: the one sent walks out to the great cat and answers her there (MogsWays.Answered, Step, There)
 Rimfolk_Evt_GodRiddle [option 2] done by the event's own code: she lies at the door a while longer and walks back to the graves (MogsWays.Keep)
+# Defs/GodDefs/Rimfolk_GodOwnHappenings.xml
+Rimfolk_Evt_GodBargain [option 0] done by the event's own code: the dreamer carries the silver from the stores to the deepest shaft, where it goes down (OwnSmoulder.Answered, CarryStep)
+Rimfolk_Evt_GodBargain [option 1] done by the event's own code: the dreamer carries half the silver to the deepest shaft, where it goes down (OwnSmoulder.Answered, CarryStep)
+Rimfolk_Evt_GodBargain [option 2] a refusal: nothing is carried down, and the dreamer says so (OwnSmoulder.Answered)
+Rimfolk_Evt_GodHurtBeast [option 0] done by the event's own code: the one sent walks out to the wounded thrumbo, kneels and tends it, and it goes its way (OwnBellwether.Answered, TendStep)

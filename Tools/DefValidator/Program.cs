@@ -574,6 +574,9 @@ wishPh.UnionWith(new[] { "KILLER", "OFFENDER", "GIFTED" });
 // A correspondence that builds up (Letters/LetterThreads.cs, Rimfolk_Letters_Familiar, _Thread): an earlier letter's
 // thread in words, the one written to by full name and by a short one, the colonist who usually wrote.
 wishPh.UnionWith(new[] { "RE", "TOFULL", "TONICK", "LASTPEN" });
+// Each god's own happenings (Gods/OnMap/Own*.cs, Rimfolk_Pool_GodOwnSaid): the colony's youngest the white beast bows to,
+// which way from the colony something fell.
+wishPh.UnionWith(new[] { "YOUNG", "WAY" });
 var pawnSuffixes = new HashSet<string> { "nameDef", "nameFull", "labelShort", "pronoun", "possessive", "objective", "label", "definite", "indefinite", "gender", "kind" };
 foreach (var (file, doc) in docs)
 {
