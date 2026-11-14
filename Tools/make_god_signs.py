@@ -1,8 +1,10 @@
 #!/usr/bin/env python3
 """
-Draws the gods' signs, the colony's own holy sign for each of the fourteen (a draft for docs/gods-next-proposals.md,
-section A): what its people draw for the god they believe in, never a portrait of the god. White on transparent,
-128x128 RGBA, tinted in the god's colours in game, in the manner of the retired Tools/make_god_symbols.py.
+Draws the gods' signs, the colony's own holy sign for each of the fourteen (docs/gods-next-proposals.md, section A):
+what its people draw for the god they believe in, never a portrait of the god. In the game (Gods/GodSigns.cs) each
+shows in the god's chapter of the colony's book and on its card when the colony is sure, in the form of the colony's
+age: scratched on a stone (tribal), painted on a shield (medieval), stamped on a badge (industrial), lit in a ring
+(spacer); the plain sign, in the god's colours, beside the chapter's name in the book's list.
 
     Hollin     a tree whose roots are as wide as its crown      Pip       a spark inside a small cog
     Smoulder   a mountain with a coil asleep under it           Cirrus    an eye over drifting cloud, a star apart
@@ -16,8 +18,12 @@ Each is drawn as a mask at 4x (512x512, in design units of 128) and scaled down,
 bold, with cutouts wide enough to read at 24 px.
 
 Usage (from the repository root):
-    python3 Tools/make_god_signs.py                  # writes the draft sheet, docs/gods-symbols-draft.png
-    python3 Tools/make_god_signs.py --textures DIR   # also each sign as DIR/<Key>.png (white on transparent)
+    python3 Tools/make_god_signs.py                  # writes the sheet, docs/gods-symbols-draft.png
+    python3 Tools/make_god_signs.py --textures [DIR] # writes the game's textures instead, 128x128 RGBA, to DIR
+                                                     # (default Textures/ColonyCouncil/Gods/Signs): <Key>.png, the plain
+                                                     # sign in the god's colours, and <Key>_<Age>.png for Tribal,
+                                                     # Medieval, Industrial and Spacer, each age's form
+    python3 Tools/make_god_signs.py --textures [DIR] --only Mog   # one god's five
 
 Needs Pillow (pip install pillow).
 """
@@ -550,23 +556,39 @@ def sheet(path):
     img.convert("RGB").save(path, optimize=True)
 
 
-def textures(out_dir):
+AGES = ["Tribal", "Medieval", "Industrial", "Spacer"]
+
+
+def textures(out_dir, only=None):
+    """Each god's five textures for the game (Gods/GodSigns.cs reads them by these names): the plain sign in its colours
+    with a soft glow of its second, and its four age forms as the sheet shows them."""
     os.makedirs(out_dir, exist_ok=True)
-    for key, _e, fn, *_rest in GODS:
-        m = small(fn(), OUT)
-        im = Image.new("RGBA", (OUT, OUT), (255, 255, 255, 0))
-        im.putalpha(m)
-        im.save(os.path.join(out_dir, key + ".png"), optimize=True)
+    n = 0
+    for key, _e, fn, a, b, _meaning in GODS:
+        if only and key not in only:
+            continue
+        mask = fn()
+        tinted(mask, OUT, a, b).save(os.path.join(out_dir, key + ".png"), optimize=True)
+        for k, age in enumerate(AGES):
+            frame_age(mask, k, OUT, a).save(os.path.join(out_dir, key + "_" + age + ".png"), optimize=True)
+        n += 1
+    return n
 
 
 def main(argv):
-    sheet(SHEET)
-    print("wrote", os.path.relpath(SHEET, ROOT))
     if "--textures" in argv:
         i = argv.index("--textures")
-        out = argv[i + 1] if i + 1 < len(argv) else os.path.join(ROOT, "Textures", "ColonyCouncil", "Gods", "Signs")
-        textures(out)
-        print("wrote", len(GODS), "signs to", out)
+        nxt = argv[i + 1] if i + 1 < len(argv) else None
+        out = nxt if nxt and not nxt.startswith("--") else os.path.join(ROOT, "Textures", "ColonyCouncil", "Gods", "Signs")
+        only = None
+        if "--only" in argv:
+            j = argv.index("--only")
+            only = set(argv[j + 1].split(",")) if j + 1 < len(argv) else None
+        n = textures(out, only)
+        print("wrote the signs of", n, "gods (", n * (1 + len(AGES)), "textures ) to", os.path.relpath(out, ROOT))
+        return
+    sheet(SHEET)
+    print("wrote", os.path.relpath(SHEET, ROOT))
 
 
 if __name__ == "__main__":

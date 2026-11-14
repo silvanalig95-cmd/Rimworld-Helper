@@ -16,7 +16,9 @@ namespace ColonyCouncil
         /// <summary>A prayer at a shrine, or where they stand.</summary>
         Pray,
         /// <summary>A festival's rite at the god's shrine, led by the priest or the keeper of the day.</summary>
-        Rite
+        Rite,
+        /// <summary>A look at a god's place where an offering lay, gone in the night: what they make of it, said there.</summary>
+        Look
     }
 
     /// <summary>The act a worship job's JobDef stands for (Defs/GodDefs/Rimfolk_Worship_Jobs.xml).</summary>
@@ -48,7 +50,7 @@ namespace ColonyCouncil
             God g = null;
             try
             {
-                g = Act == WorshipAct.Dedicate || Act == WorshipAct.Rite ? Shrines.GodAt(job.targetA.Thing) : Prayers.GodFor(pawn);
+                g = Act == WorshipAct.Dedicate || Act == WorshipAct.Rite || Act == WorshipAct.Look ? Shrines.GodAt(job.targetA.Thing) : Prayers.GodFor(pawn);
             }
             catch
             {
@@ -73,7 +75,7 @@ namespace ColonyCouncil
             {
                 if (job.targetA.HasThing) pawn.rotationTracker.FaceTarget(job.targetA);
                 // A small light now and then as they pray.
-                if (Act != WorshipAct.Dedicate && pawn.IsHashIntervalTick(400, delta))
+                if (Act != WorshipAct.Dedicate && Act != WorshipAct.Look && pawn.IsHashIntervalTick(400, delta))
                     FleckMaker.ThrowMetaIcon(pawn.Position, pawn.Map, FleckDefOf.Meditating);
             };
             stay.defaultCompleteMode = ToilCompleteMode.Delay;
@@ -112,6 +114,9 @@ namespace ColonyCouncil
                     case WorshipAct.Rite:
                         Festivals.RiteArrive(pawn, job.targetA.Thing);
                         break;
+                    case WorshipAct.Look:
+                        Offerings.Noticed(pawn, job.targetA.Thing);
+                        break;
                     default:
                         Prayers.Arrive(pawn, job.targetA.Thing);
                         break;
@@ -134,6 +139,8 @@ namespace ColonyCouncil
                         break;
                     case WorshipAct.Rite:
                         Festivals.RiteDone(pawn, job.targetA.Thing);
+                        break;
+                    case WorshipAct.Look:
                         break;
                     default:
                         Prayers.Prayed(pawn, job.targetA.Thing);
@@ -283,7 +290,7 @@ namespace ColonyCouncil
         public static JobDef Def(string name) => DefDatabase<JobDef>.GetNamedSilentFail(name);
 
         public const string DedicateJob = "Rimfolk_Worship_Dedicate", PrayJob = "Rimfolk_Worship_Pray", RiteJob = "Rimfolk_Worship_Rite",
-            OfferJob = "Rimfolk_Worship_Offer", PilgrimJob = "Rimfolk_Worship_Pilgrimage";
+            OfferJob = "Rimfolk_Worship_Offer", PilgrimJob = "Rimfolk_Worship_Pilgrimage", LookJob = "Rimfolk_Worship_Look";
 
         /// <summary>Up and about, safe, at home, at nobody's play-out or gathering; with <paramref name="freeTime"/>, in their free time too.</summary>
         public static bool Free(Pawn p, bool freeTime = true)

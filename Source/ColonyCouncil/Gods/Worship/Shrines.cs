@@ -225,11 +225,34 @@ namespace ColonyCouncil
             Worship.Glow(map, t.Position, g, false, plain);
             string text = ("CC_Wsh_Dedicated_" + Worship.Step(plain)).Translate((p?.LabelShort ?? "?").Named("PAWN"), t.LabelShort.Named("PLACE"), Worship.Called(g).Named("GOD"),
                 place.Named("SHRINE")).Resolve();
-            Tell.Minor(NewsKind.Colony, Importance.Notable, map, text, t);
+            // The card: what was done, and plainly what the colony's people will do here from now on.
+            Tell.Letter(NewsKind.Colony, Importance.Notable, map, place.CapitalizeFirst(), text + "\n\n" + Doings(g, map) + " " + "CC_Wsh_Card_Nobody".Translate(Worship.Called(g).Named("GOD")).Resolve(),
+                LetterDefOf.NeutralEvent, t);
             // The colony gave it to this god itself, and knows it: in the colony's book by those who saw the words said.
             Worship.Witness(g, map, GodActKind.Favour, text, t.Position);
             Worship.Booked(g, map, t.Position, text, p);
             if (p != null) CouncilGameComponent.Instance?.journals.WriteText(p, Worship.Line("Rimfolk_Pool_Worship_DedicateJournal", p, g) ?? why);
+        }
+
+        /// <summary>
+        /// What the colony's people will do at a god's place, in a sentence (WorshipMath.ShrineDoings): leave it small gifts
+        /// where they carry any to this god, pray in hard times, keep its feast there where they keep it at this home
+        /// (Festivals.GodsFor).
+        /// </summary>
+        public static string Doings(God g, Map map)
+        {
+            var parts = new List<string>();
+            bool feast = GodWorshipDef.KeepsFestival(g) && map != null && Festivals.GodsFor(map).Contains(g);
+            foreach (var d in WorshipMath.ShrineDoings(GodWorshipDef.TakesOfferings(g), feast))
+            {
+                if (d == "Feast")
+                {
+                    int season = Mathf.Clamp(Festivals.When(g).season, 0, 3);
+                    parts.Add("CC_Wsh_Card_Do_Feast".Translate(Festivals.Name(g).Named("FEAST"), ("CC_Wsh_Card_Season_" + season).Translate().Named("SEASON")).Resolve());
+                }
+                else parts.Add(("CC_Wsh_Card_Do_" + d).Translate(Worship.Called(g).Named("GOD")).Resolve());
+            }
+            return "CC_Wsh_Card_Doing".Translate(parts.ToCommaList(true).Named("DOINGS")).Resolve();
         }
 
         // ================= The button and the inspect line =================
@@ -244,7 +267,8 @@ namespace ColonyCouncil
                 : r.pending ? "CC_Wsh_Gizmo_Pending".Translate(Worship.Called(g).Named("GOD")).Resolve()
                 : "CC_Wsh_Gizmo_Dedicated".Translate(Worship.Called(g).Named("GOD")).Resolve();
             string desc = "CC_Wsh_Gizmo_Desc".Translate(Worship.ShrineWord.Named("SHRINE")).Resolve();
-            if (g != null && r.by != null && !r.pending) desc += "\n\n" + "CC_Wsh_Gizmo_Of".Translate(Worship.Called(g).Named("GOD"), (r.byName ?? "?").Named("PAWN")).Resolve();
+            if (g != null && r.by != null && !r.pending)
+                desc += "\n\n" + "CC_Wsh_Gizmo_Of".Translate(Worship.Called(g).Named("GOD"), (r.byName ?? "?").Named("PAWN")).Resolve() + " " + Doings(g, map);
             // The place's own picture: no god is drawn as a symbol.
             var cmd = new Command_Action
             {
@@ -288,7 +312,32 @@ namespace ColonyCouncil
                 (r.byName ?? "?").Named("PAWN")).Resolve();
             var waiting = Worship.Book.offerings.FirstOrDefault(o => o != null && o.set && o.fate == OfferingFate.Waiting && o.shrine == t);
             if (waiting != null) line += "\n" + "CC_Wsh_Inspect_Offering".Translate((waiting.label ?? "?").Named("WHAT")).Resolve();
+            else if (r.lastAt >= 0 && !r.lastWhat.NullOrEmpty() && r.lastFate != OfferingFate.Waiting)
+            {
+                string ago = "CC_Wsh_Inspect_Ago".Translate(Math.Max(0, Worship.Now - r.lastAt).ToStringTicksToPeriodVague().Named("TIME")).Resolve();
+                line += "\n" + "CC_Wsh_Inspect_Last".Translate(r.lastWhat.Named("WHAT"), (r.lastBy ?? "?").Named("PAWN"), ago.Named("AGO"),
+                    ("CC_Wsh_Inspect_Fate_" + r.lastFate).Translate().Named("FATE")).Resolve();
+            }
+            string held = Belief(g, r);
+            if (!held.NullOrEmpty()) line += "\n" + held;
             return line;
+        }
+
+        /// <summary>
+        /// What someone of the colony holds about the god of a place, as its inspect line puts it: the newest "what it loves"
+        /// in its chapter of the colony's book, as the one who holds it holds it (possibly wrong); else the words its last
+        /// offering was set down with, as they were said. Never the god's own mind.
+        /// </summary>
+        private static string Belief(God g, ShrineRecord r)
+        {
+            var lore = GodLore.Instance;
+            string chapter = lore?.PageOf(g)?.name;
+            var held = chapter == null ? null : lore.verses.LastOrDefault(v => v != null && v.part == BookPart.Loves && !v.against && v.page == chapter && !v.by.NullOrEmpty());
+            if (held != null)
+                return "CC_Wsh_Inspect_Belief".Translate(held.by.Named("BY"), chapter.Named("GOD"), held.text.Named("ITEM")).Resolve();
+            if (!r.lastWords.NullOrEmpty() && !r.lastBy.NullOrEmpty())
+                return "CC_Wsh_Inspect_Words".Translate(r.lastBy.Named("PAWN"), r.lastWords.Named("WORDS")).Resolve();
+            return null;
         }
     }
 

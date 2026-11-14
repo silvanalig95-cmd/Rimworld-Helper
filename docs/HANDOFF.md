@@ -134,6 +134,69 @@ tree at once, alongside whatever runs. Each piece is merged as its own release, 
   ordering them off is ruder still), less when they were trouble (a thief, a brawler, a drunk); with Hospitality its
   own way for its guests; never a caravan mid-trade without the trade closed first, and never anyone downed or a
   prisoner.
+- 0.232.0, **The gods understood: the fixes,
+  the signs, the plain lines and shrines made clear** (14 November 2026; the player's words: "the god signs are awesome,
+  go ahead! should be seen in the book and on cards. also like the one-line meaning for the chapter ... gods effect
+  should be noticeable ... go ahead with all of this"). Rounds 0 and 1 of `docs/gods-next-proposals.md` (the "Being
+  built" entry above has the player's picks). DESIGN.md "The gods understood" has all of it; `docs/design/gods.md`'s "No
+  symbols" rule notes the signs; the Almanac's page on the gods (prose only, keywords unchanged) says plainly what a
+  shrine is for.
+  - Round 0, the fixes: a stored (minified) work of art can be given (`Offerings.Offered`, `WorshipMath.ArtGiven`,
+    `ArtValueCap`: one piece of good quality at most, worth at most 2.5 times a gift's cap and never past 600, while
+    another stays packed away; nothing on show, nothing else packed away, never a god's own place), so Cirrus and
+    Smoulder get art, not only cloth; every kind of gift has its carrier's words (`Rimfolk_Pool_Worship_Offer`
+    rewritten: two lines a kind, each god's own for the kinds its people give it, no untagged line); a prayer gives +1
+    (half a day), +2 at the god's place (`Rimfolk_Worship_PrayedAtShrine`, new), a gift carried +1 for a day (they were
+    0 with something else instead; `Tools/Balance/Rates.cs` models them). A colonist's god is still picked as before
+    (by id number): left to round 3, each pawn's belief.
+  - Round 1, the signs: `Tools/make_god_signs.py --textures` (now writes the game's textures only; `--only Mog` for one
+    god) drew `Textures/ColonyCouncil/Gods/Signs/<Key>.png` (the plain sign in the god's colours) and
+    `<Key>_<Tribal|Medieval|Industrial|Spacer>.png` (the sheet's four forms), 70 in all, 128 by 128. Mog's are the
+    current gray cat, a placeholder: the Mog remake replaces `mog()` in the script and reruns it with `--only Mog`.
+    `Gods/GodSignsMath.cs` (new, pure, linked): the paths, the age's form, `Tells` (a verse of what it is that isn't a
+    doubt, or the god seen plainly) and `Believed` (the god a chapter's telling verses are of). `Gods/GodSigns.cs`
+    (new): the textures (soft, cached), the colony's age's form (`Ages.Ours`), `Known` for a card. Shown in the book
+    beside the chapter's name (age's form, 56 px) and small at the end of its row (plain sign), once the chapter tells
+    what the god is; on a god's card over its name only when the card names it and the colony knows the sign
+    (`GodsWiring` passes it, `GodPresence.Manifest` has an overload with the sign, `GodCard.Send`, `GodLetter.sign`
+    saved). Not on shrines, not on the map (the player's pick), nowhere for a god the colony hasn't heard of.
+  - Round 1, the plain lines: `GodDef.plain` (new, MustTranslate; the fourteen from section B of the doc; Mog's is the
+    current one, for the Mog remake to replace) opens each chapter under its head, in the keeper's hand
+    (`CC_GodBook_Plain`: "As the colony understands it, so Avila keeps it:"), for the chapter's believed god, gated as
+    the sign is (`GodLorePage.PlainLine`).
+  - Round 1, shrines made clear (`Worship/Shrines.cs`, `Offerings.cs`, `WorshipBook.cs`, `WorshipJobs.cs`): the
+    dedication is a card (`Tell.Letter`) saying what the colony's people will do there (`Shrines.Doings`,
+    `WorshipMath.ShrineDoings`: gifts where they carry any, prayer, the feast where this home keeps it), the place's
+    button the same; the inspect line adds the last gift, by whom, when and what became of it (`ShrineRecord.lastWhat`,
+    `lastBy`, `lastWords`, `lastAt`, `lastFate`, saved) and what someone holds the god loves (the newest of the chapter's
+    "what it loves", attributed), else the gift's words; the carrier's one sentence of why; a gift gone in the night is
+    noticed by day (`Offerings.Notice`, `Noticed`, `OfferingRecord.noticed`): someone passing within 7 cells, else from 9
+    o'clock its carrier or a believer walks over (`Rimfolk_Worship_Look`, new JobDef, `WorshipAct.Look`), a small light
+    settles on the place and they say whose doing they take it for (`Rimfolk_Pool_Worship_Noticed`, new).
+  - Tests: `Tools/Tests/GodsUnderstoodTests.cs` (new, 203 checks: the art rules, words for every kind, the moods, the 70
+    textures, the believed god, where the sign shows and where it never does, the plain lines, the card, the inspect
+    line, the noticing, the saved fields); `GodsTests` follows the seam's sign. `Tools/save_estimate.py` sizes a shrine
+    record larger.
+  - Not seen in a real game (none of it could be): the textures in the book at small window sizes and on the card, a
+    packed sculpture carried and set down, the look job walking over, the inspect pane with three lines added.
+  - Try in the game (dev mode):
+    1. "Gods: the colony knows every god", then "Gods: tell of a god here (testing)..." for Hollin: the Gods' book's
+       chapter for her opens with the tree sign beside her name (scratched on a stone for a tribal colony, painted on a
+       shield for a medieval one), "As the colony understands it, so ... keeps it:" and her plain line; the list shows
+       the small green tree at her row's end. A chapter nobody has told of yet shows neither.
+    2. Dedicate a sculpture to Ennu: a colonist walks over and says the words; a card titled "Ennu's chapel" (by the
+       colony's age) says what the colony's people will do there.
+    3. Pack away two small sculptures (normal quality) into a stockpile, dedicate a place to Cirrus, and use "Gods:
+       offerings at every shrine now": someone carries a sculpture over, sets it down beside the place and says why in
+       one sentence ("A carving set out where the sky can see it, Cirrus."); the place's inspect line says it waits there.
+    4. Let the night pass (it goes between 1 and 4 o'clock); the next morning someone passing (or, from 9 o'clock, the
+       carrier walking over) stops, a small light settles on the place, and they say whose doing they take it for; the
+       inspect line now says what was last left there and that it was gone soon after.
+    5. Pray at a shrine ("Gods: a prayer now..."): "prayed at the god's place" (+2) on their mood; a gift carried gives
+       "left an offering" (+1 for a day).
+    6. After step 1, "Gods: draw a god near (or let it be)..." Hollin at 1.0, then "Gods: a god rises from the land
+       now..." Hollin: her card names her and shows the tree sign over her name; at 0.0 a veiled card ("some say") shows
+       none.
 - 0.231.2, **The best meals on a reserved
   shelf** (14 November 2026; the player's words, with a screenshot of the Ballroom's wooden big shelf reserving "Any
   meals", 3 slots, 4 per stack, Always, and Wood: "i think the shelf reservation still don't prioritize the "best" meal,

@@ -603,10 +603,15 @@ namespace Balance
         /// (WorshipMath.AnswerChance), a raid's answer giving thanks with no mood of its own; unanswered most of the rest, a
         /// crisis of faith about a third of those (CrisisChance), a god answering at most once in ten days at a home
         /// (WorshipMath.AnswerGapDays, its will growing back after); a scoffer's mockery once in ten days a home at most, among
-        /// the believers near a sign; a few vows a colony-year, most kept.
+        /// the believers near a sign; a few vows a colony-year, most kept. The small moods of worship: a prayer said in about
+        /// half of those hard moments, a third of them at the god's own place; an offering carried about once in three days
+        /// at a home with a shrine or two, by one of six colonists or so.
         /// </summary>
         public static readonly (string thought, float perDay)[] Worship =
         {
+            ("Rimfolk_Worship_Prayed", 0.017f),
+            ("Rimfolk_Worship_PrayedAtShrine", 0.008f),
+            ("Rimfolk_Worship_Offered", 0.05f),
             ("Rimfolk_Worship_Answered", 0.009f),
             ("Rimfolk_Worship_Unanswered", 0.0022f),
             ("Rimfolk_Worship_Mocked", 0.005f),

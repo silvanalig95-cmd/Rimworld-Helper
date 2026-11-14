@@ -43,40 +43,109 @@
     </lines>
   </ColonyCouncil.FlavorPoolDef>
 
-  <!-- ===================== An offering set down ===================== -->
+  <!-- ===================== An offering set down =====================
+    Why they bring this thing, in one sentence, said as it is set down (Offerings.Placed): every line is for a kind of
+    thing (offer:meal and the like, OfferingKind), and each god's own (godkey:...) for the kinds its people give it, so the
+    words always fit what lies there. A demand met, and the Hunger's due, have their own. -->
   <ColonyCouncil.FlavorPoolDef>
     <defName>Rimfolk_Pool_Worship_Offer</defName>
     <lines>
       <plain>
-        <li>For you, {GOD}, with the colony's thanks.</li>
-        <li>It's not much, {GOD}, but it's the best we had to spare.</li>
-        <li>Take it, {GOD}, and remember who left it.</li>
         <li>[demand] You asked for this, {GOD}, and here it is.</li>
-        <li>[offer:meal] Eat with us, {GOD}, as you always have.</li>
-        <li>[offer:plant] The first and best of the fields, {GOD}.</li>
-        <li>[offer:pelt] The finest hide of the season, {GOD}, from a clean kill.</li>
-        <li>[offer:meat] Fresh meat for {GOD}, and the beast's thanks with it.</li>
-        <li>[offer:weapon] A blade for {GOD}, never yet drawn in anger.</li>
-        <li>[offer:silver] Silver for the road, {GOD}, wherever you walk it.</li>
-        <li>[offer:medicine] For the sick you watch over, {GOD}.</li>
-        <li>[offer:drink] A cup for {GOD}, and one for whoever is listening with you.</li>
-        <li>[offer:art] Something made with care, {GOD}, for you to look at.</li>
-        <li>[offer:component] Parts that work, {GOD}, which is more than we can say for most things.</li>
         <li>[kind:hunger] There, {GOD}, now leave us be a while.</li>
-        <li>[godkey:hollin] Grown, not cut, {GOD}, as you like it.</li>
-        <li>[godkey:smoulder] Silver for the deep, {GOD}, and every word of it praise.</li>
-        <li>[godkey:bellwether] Sweet grass for the road, {GOD}, and go in peace.</li>
+        <li>[offer:meal] Eat with us, {GOD}, as you always have.</li>
+        <li>[offer:meal] The best plate from the kitchen, {GOD}, because we ate well this week.</li>
+        <li>[offer:plant] The first and best of the fields, {GOD}.</li>
+        <li>[offer:plant] Some of the harvest for {GOD}, since the fields gave us plenty.</li>
+        <li>[offer:meat] Fresh meat for {GOD}, and the beast's thanks with it.</li>
+        <li>[offer:meat] Meat from the last hunt, {GOD}, so the next one goes as well.</li>
+        <li>[offer:fish] Fish for {GOD}, still cold from the water.</li>
+        <li>[offer:fish] A share of the catch for {GOD}, so the nets keep coming up full.</li>
+        <li>[offer:pelt] The finest hide of the season, {GOD}, from a clean kill.</li>
+        <li>[offer:pelt] A warm hide for {GOD}, for the cold nights ahead.</li>
+        <li>[offer:drink] A cup for {GOD}, and one for whoever is listening with you.</li>
+        <li>[offer:drink] Something to drink for {GOD}, poured from our own barrel.</li>
+        <li>[offer:drug] A little smoke for {GOD}, for the long nights.</li>
+        <li>[offer:drug] Something for the dreams, {GOD}, since that's where you speak to us.</li>
+        <li>[offer:medicine] For the sick you watch over, {GOD}.</li>
+        <li>[offer:medicine] Medicine for {GOD}, so the sick here get well again.</li>
+        <li>[offer:weapon] A blade for {GOD}, never yet drawn in anger.</li>
+        <li>[offer:weapon] A weapon for {GOD}, so ours can stay on the wall.</li>
+        <li>[offer:apparel] Something warm to wear, {GOD}, for whoever needs it most.</li>
+        <li>[offer:apparel] Good clothes for {GOD}, mended and clean.</li>
+        <li>[offer:art] Something made with care, {GOD}, for you to look at.</li>
+        <li>[offer:art] A carving from the stores, {GOD}, since it shouldn't sit in a crate.</li>
+        <li>[offer:silver] Silver for the road, {GOD}, wherever you walk it.</li>
+        <li>[offer:silver] Silver for {GOD}, because it does nobody any good in a chest.</li>
+        <li>[offer:metal] Good metal for {GOD}, the best we had in the stores.</li>
+        <li>[offer:metal] Metal for {GOD}, so our tools hold another year.</li>
+        <li>[offer:wood] Good dry wood for {GOD}, for a fire somewhere.</li>
+        <li>[offer:wood] Wood from the stack for {GOD}, since we have plenty to spare.</li>
+        <li>[offer:component] Parts that work, {GOD}, which is more than we can say for most things.</li>
+        <li>[offer:component] Parts for {GOD}, so the machines keep running.</li>
+        <li>[offer:textile] Cloth for {GOD}, for a bed or a coat or whatever is needed.</li>
+        <li>[offer:textile] Something soft for {GOD}, folded neat, since we had more than we needed.</li>
+        <li>[offer:craft] Something made by our own hands, {GOD}, and made well.</li>
+        <li>[offer:craft] A good piece of work for {GOD}, so you know we don't do things by halves.</li>
+        <li>[offer:other] It's not much, {GOD}, but it's the best we had to spare.</li>
+        <li>[offer:other] Take it, {GOD}, and remember who left it.</li>
+        <li>[godkey:hollin,offer:plant] Grown, not cut, {GOD}, as you like it.</li>
+        <li>[godkey:hollin,offer:medicine] Something for healing, {GOD}, since the green heals us first.</li>
+        <li>[godkey:hollin,offer:meal] A share of our table for {GOD}, grown in your ground.</li>
+        <li>[godkey:smoulder,offer:silver] Silver for the deep, {GOD}, and every word of it praise.</li>
+        <li>[godkey:smoulder,offer:art] Something fine for {GOD} to keep with the silver, down in the dark.</li>
+        <li>[godkey:smoulder,offer:metal] Good metal for {GOD}, given back to the rock it came from.</li>
+        <li>[godkey:bellwether,offer:plant] Sweet grass for the road, {GOD}, and go in peace.</li>
         <li>[godkey:morel] Let it go back to you, {GOD}, the way everything does.</li>
-        <li>[godkey:ennu] A bowl for whoever comes to the door tonight, {GOD}, whatever face you wear.</li>
-        <li>[godkey:pip] It hums again, {GOD}, I fixed it myself.</li>
-        <li>[godkey:cirrus] Something to look down on, {GOD}, if you ever look down.</li>
-        <li>[godkey:hush] Warm things for the lean months, {GOD}, and nothing wasted.</li>
+        <li>[godkey:morel,offer:meat] Meat for {GOD}, since all of it comes back to you in the end.</li>
+        <li>[godkey:morel,offer:wood] Old wood for {GOD}, to go soft and feed the mushrooms.</li>
+        <li>[godkey:ennu,offer:meal] A bowl for whoever comes to the door tonight, {GOD}, whatever face you wear.</li>
+        <li>[godkey:ennu,offer:textile] Cloth for the guest bed, {GOD}, whoever comes tonight.</li>
+        <li>[godkey:ennu,offer:drink] A cup for the traveller, {GOD}, in case you come thirsty.</li>
+        <li>[godkey:ennu,offer:apparel] A coat for whoever comes to the door cold, {GOD}.</li>
+        <li>[godkey:pip,offer:component] Parts that work, {GOD}, for whatever you're mending next.</li>
+        <li>[godkey:pip,offer:metal] Good steel for {GOD}, for the wires and the hum.</li>
+        <li>[godkey:pip,offer:craft] Something put together right, {GOD}, the way you like a thing to run.</li>
+        <li>[godkey:cirrus,offer:art] Something to look down on, {GOD}, if you ever look down.</li>
+        <li>[godkey:cirrus,offer:art] A carving set out where the sky can see it, {GOD}.</li>
+        <li>[godkey:cirrus,offer:textile] Light cloth for {GOD}, to lift on the wind if you want it.</li>
+        <li>[godkey:hush,offer:pelt] A thick pelt for {GOD}, against the lean months.</li>
+        <li>[godkey:hush,offer:apparel] Warm things for the lean months, {GOD}, and nothing wasted.</li>
+        <li>[godkey:hush,offer:medicine] Medicine for {GOD}, for the weak ones winter comes for first.</li>
         <li>[godkey:undertow] Take it, {GOD}, and nothing more than this.</li>
-        <li>[godkey:selene] Silver for the moon, {GOD}, from a good day.</li>
+        <li>[godkey:selene,offer:silver] Silver for the moon, {GOD}, from a good day.</li>
+        <li>[godkey:selene,offer:drink] A cup poured out for {GOD}, to drink by her own light.</li>
+        <li>[godkey:selene,offer:art] Something bright for {GOD}, to shine back at her.</li>
         <li>[godkey:mog] Nobody asked for this, {GOD}, so it's yours if you want it.</li>
-        <li>[godkey:mog] Linen for the wrapping and fish for the cats, {GOD}, and keep our dead.</li>
-        <li>[godkey:murmur] Clean water from the well, {GOD}, and a song with it.</li>
+        <li>[godkey:mog,offer:fish] Fish for {GOD}, the best of the catch, for the cats who keep the graves.</li>
+        <li>[godkey:mog,offer:textile] Linen for {GOD}, for wrapping the dead and keeping them whole.</li>
+        <li>[godkey:mog,offer:meat] Meat for {GOD}'s cats, so they sit with our dead a while longer.</li>
+        <li>[godkey:murmur,offer:drink] A cup poured out for {GOD}, and a song with it, for the rain.</li>
+        <li>[godkey:murmur,offer:plant] Grain for {GOD}, so the rain comes for the rest of it.</li>
+        <li>[godkey:murmur,offer:fish] Fish for {GOD}, back to the water they came from.</li>
         <li>[godkey:ducat] Here, {GOD}, it was never ours to keep.</li>
+        <li>[godkey:ducat,offer:silver] Silver for {GOD}, because coin should move, not sit.</li>
+        <li>[godkey:ducat,offer:art] Something fine for {GOD}, to pass on to someone else.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- ===================== An offering gone in the night, noticed by day =====================
+    Said by the one who notices the place empty (Offerings.Noticed): whose doing they take it for. Their own god (mine), the
+    place's as others hold it (theirs), a doubter's maybe, a scoffer's fox. Never what the god thought of it. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_Worship_Noticed</defName>
+    <lines>
+      <plain>
+        <li>[mine,!scoffer,!doubt] Gone in the night, so {GOD} came for it, I'd bet.</li>
+        <li>[mine,!scoffer,!doubt] It's gone, {GOD} took it while we slept, I'm sure of it.</li>
+        <li>[mine,!scoffer,!doubt] Not a crumb of it left, so {GOD} was here in the night.</li>
+        <li>[theirs,!scoffer,!doubt] The offering's gone, and the others will say {GOD} came for it.</li>
+        <li>[theirs,!scoffer,!doubt] Gone by morning, so {GOD} took it, if you believe what they say.</li>
+        <li>[doubt,!scoffer] It's gone, and maybe {GOD} took it, or maybe it was the rats.</li>
+        <li>[priest,!scoffer] {GOD} took it in the night, as the old words say.</li>
+        <li>[scoffer] Gone, and if {GOD} took it, {GOD} has a fox's teeth.</li>
+        <li>[scoffer] They'll say {GOD} took it, but I'd look for a thief first.</li>
       </plain>
     </lines>
   </ColonyCouncil.FlavorPoolDef>

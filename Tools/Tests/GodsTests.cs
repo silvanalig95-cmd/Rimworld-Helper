@@ -663,7 +663,7 @@ public static class GodsTests
             "a god's record keeps every field the parts read, with its def; an act its witnesses and teller");
         C(!Regex.IsMatch(string.Join("\n", Directory.GetFiles(Path.Combine(src, "Gods"), "*.cs").Select(File.ReadAllText)), @"\bclass GodLookDef\b"), "the core never defines GodLookDef");
         string wiring = Read(Path.Combine("Gods", "GodsWiring.cs"));
-        C(wiring.Contains("GodPresence.Manifest(LookOf(s.god), known ?? GodLore.LabelFor(Gods.Name(s.god)), null,") && wiring.Contains("s.god.colour, s.god.colour2);")
+        C(wiring.Contains("GodPresence.Manifest(LookOf(s.god), known ?? GodLore.LabelFor(Gods.Name(s.god)), null,") && wiring.Contains("s.god.colour, s.god.colour2, sign);")
           && wiring.Contains("bool veiled = s.veiled && known == null && s.kind != PresenceKind.Reveal;"),
             "the moment seam: the god's own look and colors, named only as the colony knows it, no epithet on its card");
         C(wiring.Contains("GodLookSeam.MakeAvatar = (p, god, disguised) => GodAvatar.Make(p, LookOf(god), Gods.Name(god), disguised, god.colour, god.colour2);"), "the avatar seam");

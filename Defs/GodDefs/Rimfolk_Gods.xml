@@ -14,6 +14,8 @@
     - whatLines and seenLines are what it is and how it is seen as people tell it, one sentence each, said over a head in
       order at the fire or at the gate and set down in the colony's book as told (its chapter's "Of what it is" and "Of
       how it is known").
+    - plain is what the colony takes the god to be, in plain words: its chapter in the colony's book opens with it, in
+      the keeper's hand and as held, once someone has told what it is (and its drawn sign beside the name).
     The lore paragraphs (whatItIs, howSeen, character, wants, pleases, angers) are what the parts write from.
     Who reveres a god: peoples by their FactionDef's name (Rimfolk's 23 and some of the player's mods'), the rest by kind
     (Tribal, Medieval, Industrial, Spacer, Raiders, Empire, Cannibal). Domains are the stage 2 parts' fallback key only.
@@ -28,6 +30,7 @@
     <gender>Female</gender>
     <godOf>the mother of every root under the world</godOf>
     <unheard>a shape of roots and moss</unheard>
+    <plain>The mother of all roots and growing things. She guards the trees and the green, and remembers every tree cut.</plain>
     <tribalNames><li>Grandmother Root</li></tribalNames>
     <medievalNames><li>the Green Lady</li></medievalNames>
     <industrialNames><li>the anima</li></industrialNames>
@@ -175,6 +178,7 @@
     <gender>Male</gender>
     <godOf>the dragon asleep under the mountains</godOf>
     <unheard>a great shadow</unheard>
+    <plain>A dragon asleep under the mountains. His dreams push up ore and heat; he loves silver and hates being woken.</plain>
     <tribalNames><li>Mountain-Breath</li></tribalNames>
     <medievalNames><li>the Coil</li></medievalNames>
     <industrialNames><li>Old Smoulder</li></industrialNames>
@@ -312,6 +316,7 @@
     <gender>Male</gender>
     <godOf>the first of all the thrumbos</godOf>
     <unheard>a great white thrumbo</unheard>
+    <plain>The first thrumbo, a great white beast that walks the whole world. Let him pass in peace; never hurt his kin.</plain>
     <tribalNames><li>Old Horn</li></tribalNames>
     <medievalNames><li>the White Grazer</li></medievalNames>
     <industrialNames><li>the old thrumbo</li></industrialNames>
@@ -438,6 +443,7 @@
     <gender>Female</gender>
     <godOf>the mother of rot and of every mushroom</godOf>
     <unheard>a figure of pale threads</unheard>
+    <plain>The mother of rot and mushrooms. Everything that dies goes back to her; she hates what is kept from rotting.</plain>
     <tribalNames><li>the Soft Mother</li></tribalNames>
     <medievalNames><li>the Undertaker's Lady</li></medievalNames>
     <industrialNames><li>Mother Mould</li></industrialNames>
@@ -567,6 +573,7 @@
     <gender>None</gender>
     <godOf>the guest at every door</godOf>
     <unheard>a stranger who shines</unheard>
+    <plain>A god who comes to the door as a stranger asking for shelter, and remembers how it was treated.</plain>
     <tribalNames><li>Shelter-Asker</li></tribalNames>
     <medievalNames><li>the Pilgrim</li></medievalNames>
     <industrialNames><li>the Stranger</li></industrialNames>
@@ -696,6 +703,7 @@
     <gender>None</gender>
     <godOf>the young god in the wires</godOf>
     <unheard>something in the wires</unheard>
+    <plain>A young spirit living in machines and wires. It mends them when it is fond of you and breaks them when it sulks.</plain>
     <tribalNames><li>the Humming Thing</li></tribalNames>
     <medievalNames><li>the Gremlin</li></medievalNames>
     <industrialNames><li>the Hum</li></industrialNames>
@@ -820,6 +828,7 @@
     <gender>None</gender>
     <godOf>the watcher in the high sky</godOf>
     <unheard>a shape in the high cloud</unheard>
+    <plain>Something vast in the high sky that hardly ever looks down. Storms, stars and falling rocks are its moods.</plain>
     <tribalNames><li>Sky-Eye</li></tribalNames>
     <medievalNames><li>the Vault</li></medievalNames>
     <industrialNames><li>the High Drift</li></industrialNames>
@@ -962,6 +971,7 @@
     <gender>None</gender>
     <godOf>the walker who comes with winter</godOf>
     <unheard>something in the snow</unheard>
+    <plain>The spirit of winter, cold and silence. It takes the weak first and spares those who prepare.</plain>
     <tribalNames><li>White-Breath</li></tribalNames>
     <medievalNames><li>Hush the Still</li></medievalNames>
     <industrialNames><li>the Winter Walker</li></industrialNames>
@@ -1077,6 +1087,7 @@
     <gender>None</gender>
     <godOf>the hunger under everything</godOf>
     <unheard>a darkness that stands</unheard>
+    <plain>Something in the dark under the world. It grants the desperate whatever they ask, and always takes more back.</plain>
     <tribalNames><li>what waits under</li></tribalNames>
     <medievalNames><li>the Hunger</li></medievalNames>
     <industrialNames><li>the Pull</li></industrialNames>
@@ -1221,6 +1232,7 @@
     <gender>Male</gender>
     <godOf>the sun, who gives without looking</godOf>
     <unheard>a light too bright to look at</unheard>
+    <plain>The sun. He gives light, warmth and harvest to everyone alike, and sometimes far too much.</plain>
     <tribalNames><li>Father Fire</li></tribalNames>
     <medievalNames><li>the Gift</li></medievalNames>
     <industrialNames><li>the sun</li></industrialNames>
@@ -1365,6 +1377,7 @@
     <gender>Female</gender>
     <godOf>the moon, who returns what was given</godOf>
     <unheard>a moon too large and too close</unheard>
+    <plain>The moon. At night she gives back what people did by day, good or bad, as much as her face is full.</plain>
     <tribalNames><li>the Pale Sister</li></tribalNames>
     <medievalNames><li>the Return</li></medievalNames>
     <industrialNames><li>the moon</li></industrialNames>
@@ -1529,6 +1542,7 @@
     <gender>Female</gender>
     <godOf>the great cat who keeps the dead</godOf>
     <unheard>a great sand-gold cat</unheard>
+    <plain>A great cat who keeps the dead. She guards the graves, sets riddles at the threshold, and every cat is hers.</plain>
     <tribalNames><li>the Grave-Cat</li></tribalNames>
     <medievalNames><li>the Lady of the Tombs</li></medievalNames>
     <industrialNames><li>the Cemetery Cat</li></industrialNames>
@@ -1714,6 +1728,7 @@
     <gender>None</gender>
     <godOf>the toad that sings up the rain</godOf>
     <unheard>a toad the size of a house</unheard>
+    <plain>A huge old toad in the wells and marshes. When it sings, it rains; when it falls silent, the land goes dry.</plain>
     <tribalNames><li>the Well-Toad</li></tribalNames>
     <medievalNames><li>Old Croak</li></medievalNames>
     <industrialNames><li>the Rain-Singer</li></industrialNames>
@@ -1846,6 +1861,7 @@
     <gender>None</gender>
     <godOf>the gold that will not stay still</godOf>
     <unheard>a glint of gold that moves</unheard>
+    <plain>The spirit in gold that wants to keep moving. It loves trade and giving, and hates a hoard.</plain>
     <tribalNames><li>the Coin-Spirit</li></tribalNames>
     <medievalNames><li>Lady Fortune</li></medievalNames>
     <industrialNames><li>the Glint</li></industrialNames>

@@ -4,7 +4,8 @@
   <!--
     The Almanac page on the gods, kept to the settings (docs/design/gods.md, "the contract"): the gods are an unseen
     presence, like a storyteller, so the Almanac names none of them and states none of their ways. What the colony knows of
-    them is in its own book of the gods, in the region window.
+    them is in its own book of the gods, in the region window. What the colony's own people do (shrines, gifts, prayer, the
+    signs they draw) is said plainly: it is theirs, not the gods'.
   -->
 
   <ColonyCouncil.AlmanacArticleDef>
@@ -14,7 +15,9 @@
     <order>19</order>
     <summary>The gods are not explained here. The colony learns of them the way its people do.</summary>
     <tip>The colony's own book of the gods is a tab of the region window: what its people saw, were told and believe.</tip>
-    <description>Whatever gods this world has, nobody explains them, and neither does this Almanac. Your colonists will see things, hear the old stories from visitors and neighbors, argue about what they mean, and sometimes be wrong; what they saw, were told and believe is written in the colony's own book of the gods, a tab of the region window. One setting, under The gods on the What's on page, decides whether the gods are there at all. How real they are is the same in every game: felt but never certain, though now and then one shows itself plainly, and what happens decides which.</description>
+    <description>Whatever gods this world has, nobody explains them, and neither does this Almanac. Your colonists will see things, hear the old stories from visitors and neighbors, argue about what they mean, and sometimes be wrong; what they saw, were told and believe is written in the colony's own book of the gods, a tab of the region window. One setting, under The gods on the What's on page, decides whether the gods are there at all. How real they are is the same in every game: felt but never certain, though now and then one shows itself plainly, and what happens decides which.
+
+What the colony's own people do for their gods is plain, though. Any altar, ritual place, sculpture or shrine of the colony's can be given to a god the colony knows (its button, Dedicate to a god): someone walks over and says the words, and a card says what the colony's people will do there from then on. They leave a small gift there now and then from what the stores can spare (a packed-away sculpture too, never one on show), come to pray there in hard times, and keep the god's feast day there. The place's inspect line shows what was last left there, what became of it, and what someone here holds the god loves; whoever finds a gift gone by morning says whose doing they take it for. A prayer gives a small good mood, a little more said at the god's own place, and carrying a gift a small one for a day. In the book, a god's chapter opens with what the colony takes it to be, the colony's own sign of it drawn beside its name, once someone has told what it is; the same sign is on a god's card when the colony is sure who it was.</description>
     <keywords><li>gods</li><li>pantheon</li><li>god</li><li>patron god</li><li>how real are the gods</li><li>archotech god</li></keywords>
     <seeAlso><li>Council_Alm_C_Peoples</li><li>Council_Alm_C_PeoplesG</li></seeAlso>
   </ColonyCouncil.AlmanacArticleDef>
