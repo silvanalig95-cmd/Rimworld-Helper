@@ -13368,6 +13368,80 @@ what the colony's people do there, never what the god makes of it.
   the saved fields). Not done here (later rounds): each god's own way of taking a gift and its own signs after, the
   fourteen presences, each pawn's belief (a colonist's god is still picked as before), the happenings, the saints.
 
+### Tamiu, the Keeper of the Threshold: Mog remade (the player's go, 14 November 2026; released 0.233.0)
+
+The player, 13 November 2026: "the cat card we have. Let's remake it into something new. Still a cat card, but kind of
+one inspired by, you know, Egyptian mythology and the Sphinx, you know, with an Egyptian name. And I don't know if we have
+like a god of the dead in that sense already, but maybe the cat god could be, you know, with mummies and like Egyptian
+gear wearing zombies style followers, you know. Perhaps that is the god, and there's also some sort of cult behind it";
+14 November 2026: "yes, remake mog and create a corresponding sign for it", "gods effect should be noticeable". The
+pantheon had no god of the dead as such: Morel is the rot that takes the body back into the earth, Undertow the hunger
+under the world. Tamiu is the one who keeps the dead whole and lies across the door between them and the living.
+
+- **Her name and what the colony takes her to be** (`Defs/GodDefs/Rimfolk_Gods.xml`): Tamiu ("the she-cat"), the Keeper
+  of the Threshold; her defName and key stay `Rimfolk_God_Mog` and `Mog`, so saves, the parts that key by her and her
+  textures keep her. Her plain line: "A great cat who keeps the dead. She guards the graves, sets riddles at the
+  threshold, and every cat is hers." Every age keeps her its own way: the Grave-Cat on the tribes' cairns, the Lady of
+  the Tombs carved at the old kingdoms' crypt doors, the Cemetery Cat the towns keep, the Sphinx of spacers' cold berths;
+  her old hearth-name Mog stays among her other names, so an older save's chapter of Mog is still hers. Domains Dead and
+  Hearth (the fallback key), proud, her own look. Ties: Morel's rival over the dead (the rot against the wrapping),
+  the Hunger's at the door of the dead, still staring at the Guest (Ennu), allied with Helios and Selene. Six stories (the
+  tomb robber, the riddle at the door, the cats she sends ahead, the stare, the quarrel over the dead, the cat at the door
+  of the dead), told by her name so a teller says their own. Revered by the river folk, the Quiet Bell and the Circuit
+  of Tamers, and by the tribal, medieval and industrial kinds.
+- **The god's name is its label** (`God.FromDef`): a god's short name people say is its def's label, its key for every
+  other god; parts that key by a god read its key (`GodShapes.Of`, `GodWays`), and `Gods.ByKey` finds it by either.
+- **Her walking form** (`Rimfolk_GodShape_Mog`, `Rimfolk_GodLook_Mog`): a great sand-gold cat, larger than any lion,
+  gold-eyed, with a collar of lapis and gold: Vanilla Animals Expanded's lion first, Alpha Animals' sand lion, else the
+  game's cougar or lynx, whichever is at ease in the season, drawn larger and tinted; sand rising off her (Odyssey's
+  `SandBits`), a lion's call and A RimWorld of Magic's gong at her coming, Alpha Memes' Kemetic chant while she is near.
+  The colony's cats follow her. She walks to the graves and keeps among them (`MogsWays.Keep`), lying beside one an hour
+  or two; she still trails a stranger at the gate and stares (`SacredAnimal.Stare`).
+- **Her favour, Mog's luck carried over** (`MogsWays.Favour`, `SacredAnimal.Lucky`): the one who answers her riddle well,
+  else the one who brought her a bowl, has her favour while she stays: she walks at their heel, a sickness passes them by
+  and Rimfolk's everyday hurts don't land (as Mog's chosen one before). Kept as it was: she can't be tamed or kept, and a
+  cat harmed sends the cats off in one night and brings the rats (`kinWrath`).
+- **The riddle at the threshold** (`MogsWays.Ask`, `HappeningWorker_GodRiddle`, `Rimfolk_Evt_GodRiddle`, `MogMath`): once
+  a stay at most, from her second day, in the day (`RiddleDue`: about three seasons in four), she lies across the way in
+  (outside the colony's outermost door) and a card puts her riddle, heard "in no voice at all", one of the colony's age's
+  four (`CC_Mog_RiddleQ_<age>_<i>`): send the sharpest wits (Intellectual), the best talker (Social), or let her lie.
+  The one sent walks out to her and says their answer aloud; it is wrong by the card's risk, at their own skill
+  (`WrongChance`: three in four with none, one in three at ten, one in ten from fifteen), told only when they reach her.
+  Right: she gets up, puts her head under their hand and walks at their heel (+6 for six days, a card). Wrong: she looks
+  at them a long while and walks back to the graves (-3), and at the shared harm budget's rate (`HarmKinds.GodRiddle`)
+  cuffs them across the arm first, a scratch, on a card that says so. Nobody sent: she lies a while longer and goes.
+- **A new grave kept, her cult** (`MogsWays.Daily`, `Graveside`): a colonist's new grave is kept the first night a fifth
+  of the time, more where the colony holds her and the nearer she is drawn (`KeptChance`). At dusk one of her keepers
+  comes in from the road, from a people at peace that holds her, in undyed linen with a cat at their heel (a plain card
+  in the age's words), sits the night by the grave, rings a small bell and says one sentence over it (the colony's book
+  has it, as heard at the gate), and goes at dawn; the cat stays on the grave a day or two and then goes its way. With no
+  keeper able to come, one of the colony's cats (else a stray in from the edge) keeps the grave instead, and someone who
+  sees it says so. Those fond of the dead are comforted (+3, "a grave kept").
+- **The wrapped dead stand guard** (with Anomaly; `MogsWays.Hourly`, `Rise`, `HediffComp_WrappedDead`): in a raid that
+  comes within 30 cells of a home's tombs (graves and sarcophagi holding the dead, Alpha Memes' mummies; two at least),
+  weighed once a raid, while she is on the land (half the raids) or drawn near (a little to a third), at the shared harm
+  budget's rate (`HarmKinds.GodDead`; never with hurts switched off), two to four of the land's old dead stand up among the
+  tombs: the game's shamblers, of the entities, wrapped in gray cloth (Ideology's broadwrap and headwrap, else the game's
+  robe or tribalwear and veil), with the game's rising effect. They keep to the graves (`LordJob_DefendPoint`) and turn
+  on anything that comes near them, raider or colonist; the card says so, in the age's words. They lie down as dust an
+  hour after the last raider is gone (or after half a day), and one that falls is dust too, so nothing of them is
+  stripped or butchered. Those who saw them stand: -4 for three days; the place is remembered as her mark.
+- **Her own signs** (`OmenKind.CatsFacing`, `GoldEyes`, `Sand`; `GodOmensOwn.cs`) in place of the shared ones: every cat
+  on the land sits facing the graves; at night, two gold eyes low in the dark by the graves, and gone; fine pale sand
+  across a grave where no wind blows sand. Each is said aloud and kept in the book.
+- **Her presence on the land** (`Rimfolk_GodPresence_Mog`, `GameCondition_MogPresence`), her own and apart from the shared
+  presence of a god's moment: from her coming to her going, "the cats keeping watch" (by the colony's name for her once it
+  knows it is her: "Tamiu keeping watch"). The land's rats and mice run off it as she comes, and every few hours the cats
+  go and sit facing the graves. Round 2's presence system can take it into the shared one.
+- **Her offerings and worship** (`Rimfolk_Worship_Mog`, `Rimfolk_Pool_Worship_Offer`): fish for her cats, linen for the
+  wrapping, meat; her keepers chant Alpha Memes' Kemetic chant; she keeps no calendar and never asks.
+- **Her sign** (`Tools/make_god_signs.py`, `mog()`): a cat seated in profile on a tomb's door, upright and watchful as the
+  old kingdoms carved her, her eye cut bright and painted long, a collar at her neck, her tail curled up behind her; in
+  every age's form (`Textures/ColonyCouncil/Gods/Signs/Mog*.png`).
+- Tested in `MogTests` (the pure rules, her def, shape and look, her omens and presence, the card, every age's words, the
+  seams); `GodsTests`, `GodsOnMapTests`, `GodWorldTests` and `HarmBudgetTests` follow her. Not built: her own festival
+  (she keeps none), a cult people of her own (her keepers come from the peoples that hold her).
+
 ### Four small asks (the player's request, 12 November 2026; released 0.222.0)
 
 - **Decrees rest less:** every decree waits 70 % of its own rest before it can be declared again (`DecreeMath.CooldownShare`,

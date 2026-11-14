@@ -304,12 +304,12 @@ public static class GodsTests
         C(godDefs.Count == 14 && GodLoreMath.Keys.Length == 14 && GodLoreMath.Keys.All(byKey.ContainsKey) && GodLoreMath.Keys.Distinct().Count() == 14,
             $"fourteen gods, one def each, keyed by their short names ({string.Join(", ", byKey.Keys)})");
         foreach (var k in new[] { "Hollin", "Smoulder", "Bellwether", "Morel", "Ennu", "Pip", "Cirrus", "Hush", "Undertow", "Helios", "Selene", "Mog", "Murmur", "Ducat" })
-            C(byKey.ContainsKey(k) && V(byKey[k], "defName") == "Rimfolk_God_" + k && V(byKey[k], "label") == k, $"{k}: Rimfolk_God_{k}, its short name its label");
+            C(byKey.ContainsKey(k) && V(byKey[k], "defName") == "Rimfolk_God_" + k && V(byKey[k], "label") == (k == "Mog" ? "Tamiu" : k), $"{k}: Rimfolk_God_{k}, its short name its label (Mog's remade as Tamiu, its key kept)");
         var domainsWanted = new Dictionary<string, (string, string)>
         {
             ["Hollin"] = ("Wild", "Harvest"), ["Smoulder"] = ("Craft", "Hearth"), ["Bellwether"] = ("Hunt", "Wild"), ["Morel"] = ("Dead", "Harvest"), ["Ennu"] = ("Way", "Hearth"),
             ["Pip"] = ("Machine", "Craft"), ["Cirrus"] = ("Storm", "Night"), ["Hush"] = ("Night", "Dead"), ["Undertow"] = ("Void", ""), ["Helios"] = ("Hearth", "Harvest"),
-            ["Selene"] = ("Night", "Healing"), ["Mog"] = ("Hearth", "Hunt"), ["Murmur"] = ("Waters", "Harvest"), ["Ducat"] = ("Way", "Craft")
+            ["Selene"] = ("Night", "Healing"), ["Mog"] = ("Dead", "Hearth"), ["Murmur"] = ("Waters", "Harvest"), ["Ducat"] = ("Way", "Craft")
         };
         foreach (var kv in domainsWanted)
             C(V(byKey[kv.Key], "domain") == kv.Value.Item1 && V(byKey[kv.Key], "second") == kv.Value.Item2, $"{kv.Key}: the fallback domains {kv.Value.Item1} and {kv.Value.Item2}");
@@ -318,7 +318,9 @@ public static class GodsTests
         string godsCode = Read("Gods/Gods.cs");
         C(godsCode.Contains("bool unmoved = g.def?.unmoved == true;") && godsCode.Contains("if (!unmoved) b.Move(g, key, a, out _, out _);") && godsCode.Contains("other.def?.unmoved == true) continue;"),
             "an unmoved god's favor goes only along its ties (to Selene)");
-        var looks = XDocument.Load(Path.Combine(root, "Defs", "GodDefs", "Rimfolk_GodLooks.xml")).Root!.Elements().Select(x => x.Element("defName")?.Value).ToHashSet();
+        // The presence part's looks, and a god's own beside its shape (Tamiu's: Rimfolk_GodsOnMap_Shapes.xml).
+        var looks = new[] { "Rimfolk_GodLooks.xml", "Rimfolk_GodsOnMap_Shapes.xml" }.SelectMany(f => XDocument.Load(Path.Combine(root, "Defs", "GodDefs", f)).Root!.Elements("ColonyCouncil.GodLookDef"))
+            .Select(x => x.Element("defName")?.Value).ToHashSet();
         HashSet<string> activeDefs = new HashSet<string>(), activeThings = new HashSet<string>(), activeFactions = new HashSet<string>(), activeIncidents = new HashSet<string>();
         using (var gz = new GZipStream(File.OpenRead(Path.Combine(root, "docs", "player-mods", "defs.tsv.gz")), CompressionMode.Decompress))
         using (var rd = new StreamReader(gz))

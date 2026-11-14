@@ -378,8 +378,9 @@ public static class GodsOnMapTests
           && bell.Element("harmIsWorst")?.Value == "true" && bell.Element("leads")?.Value == "false" && bell.Element("peace")?.Value == "true",
             "Bellwether: a white thrumbo with others following, someone may sit near him, his harm the worst thing, let pass a strange peace");
         var mog = Shape("Mog");
-        C(mog?.Element("beasts")?.Elements("li").Single().Value == "Cat" && mog.Element("kin")?.Value == "Cat" && mog.Element("stayDays") != null && mog.Element("feeds")?.Value == "true",
-            "Mog: a grey cat with cats following, staying a season, taking food she didn't ask for");
+        C(mog?.Element("beasts")?.Elements("li").First().Value == "AEXP_Lion" && mog.Element("beasts")!.Elements("li").Any(l => l.Value == "Cougar")
+          && mog.Element("kin")?.Value == "Cat" && mog.Element("stayDays") != null && mog.Element("feeds")?.Value == "true",
+            "Tamiu (Mog remade): a great sand-gold cat (the game's cougar the fallback) with cats following, staying a season, taking food she didn't ask for");
         // Mog's chosen one has a lucky season, and she sees Ennu for what it is (the brainstorm's Mog).
         C(!GodsOnMapMath.GuestInHerSeason(GodsOnMapMath.StrangerGapDays - 1, true, 0f) && !GodsOnMapMath.GuestInHerSeason(999, false, 0f)
           && GodsOnMapMath.GuestInHerSeason(GodsOnMapMath.StrangerGapDays, true, 0f) && !GodsOnMapMath.GuestInHerSeason(999, true, GodsOnMapMath.GuestInHerSeasonADay),

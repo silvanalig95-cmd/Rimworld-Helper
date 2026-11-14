@@ -11,7 +11,7 @@ age: scratched on a stone (tribal), painted on a shield (medieval), stamped on a
     Bellwether a single spiralled horn over grass               Hush      a frost star on a tall thin standing body
     Morel      a mushroom whose threads run down into the earth Undertow  a whirl pulling down into a hole
     Ennu       an open door with a light left in it             Helios    a sun whose rays all point outward
-    Selene     a crescent holding a small full disc             Mog       a seated cat facing you, eyes cut bright
+    Selene     a crescent holding a small full disc             Mog       Tamiu: a cat seated on a tomb's door, eye cut bright
     Murmur     a toad over ripples, rain falling                Ducat     a holed coin, moving
 
 Each is drawn as a mask at 4x (512x512, in design units of 128) and scaled down, which gives clean edges; the shapes are
@@ -335,23 +335,38 @@ def selene():
 
 
 def mog():
-    """A seated cat facing you, its eyes cut bright."""
+    """Tamiu (key Mog), the great cat who keeps the dead: seated in profile on a tomb's door, upright and watchful, the way
+    the old kingdoms carved her at their crypts, her eye cut bright and painted long, a collar at her neck, her tail
+    curled up behind her; the door under her is the threshold she keeps."""
     m = new()
-    ellipse(m, 34, 54, 94, 124)
-    rect(m, 30, 112, 98, 124, 0, OFF)
-    rect(m, 36, 108, 92, 120, 5)
-    circle(m, 64, 40, 21)
-    poly(m, [(45, 34), (44, 10), (60, 22)])
-    poly(m, [(83, 34), (84, 10), (68, 22)])
-    almond(m, 55, 40, 12, 7, OFF)
-    almond(m, 73, 40, 12, 7, OFF)
-    rect(m, 54, 38, 56, 42, 0, ON)
-    rect(m, 72, 38, 74, 42, 0, ON)
-    poly(m, [(61, 49), (67, 49), (64, 53)], OFF)
-    # The paws, and the tail round the front.
-    line(m, [(64, 104), (64, 120)], 2.4, OFF, round_caps=False)
-    curve(m, [(92, 112), (106, 104), (110, 86), (102, 76)], 6)
+    # The tomb under her: a stepped block with its door in the middle.
+    rect(m, 20, 104, 108, 124, 2)
+    rect(m, 28, 98, 100, 106, 1)
+    rect(m, 56, 108, 72, 124, 0, OFF)
+    circle(m, 64, 110, 8, OFF)
+    # The haunch and the long body sitting up.
+    ellipse(m, 52, 62, 92, 100)
+    poly(m, [(44, 44), (60, 36), (72, 64), (66, 98), (48, 98), (46, 70)])
+    # The front leg, straight down to the paw, set apart from the haunch by a cut.
+    rect(m, 44, 66, 56, 100, 3)
+    line(m, [(57, 72), (59, 96)], 2.2, OFF, round_caps=False)
+    # The head, the short muzzle to the left, two tall ears.
+    circle(m, 51, 32, 12)
+    ellipse(m, 37, 31, 49, 42)
+    poly(m, [(43, 25), (45, 5), (52, 21)])
+    poly(m, [(53, 21), (60, 7), (62, 27)])
+    # The eye cut bright, with its long painted line back toward the ear.
+    almond(m, 47, 31, 9, 5, OFF)
+    line(m, [(51, 31), (58, 28)], 1.6, OFF, round_caps=False)
+    # The collar, cut across the neck.
+    line(m, [(43, 48), (60, 40)], 2.6, OFF, round_caps=False)
+    # The tail, curled up behind her.
+    curve(m, [(88, 94), (98, 90), (104, 78), (100, 68), (94, 66)], 4.5)
     return m
+
+
+# The name a god is shown by on the sheet where it isn't its key (Mog is remade as Tamiu; her key and textures stay Mog).
+SHOWN = {"Mog": "Tamiu"}
 
 
 def murmur():
@@ -410,8 +425,8 @@ GODS = [
      "The sun. He gives light, warmth and harvest to everyone alike, and sometimes far too much."),
     ("Selene", "the Mirror", selene, (0.8, 0.84, 0.98), (0.92, 0.92, 1.0),
      "The moon. At night she gives back what people did by day, good or bad, as much as her face is full."),
-    ("Mog", "the Cat", mog, (0.78, 0.8, 0.84), (0.95, 0.88, 0.45),
-     "A gray cat who is a god. She chooses one person to bring luck to, and leaves if anyone harms a cat."),
+    ("Mog", "the Keeper of the Threshold", mog, (0.9, 0.76, 0.46), (0.3, 0.46, 0.82),
+     "A great cat who keeps the dead. She guards the graves, sets riddles at the threshold, and every cat is hers."),
     ("Murmur", "Old Croak", murmur, (0.48, 0.74, 0.6), (0.55, 0.62, 0.42),
      "A huge old toad in the wells and marshes. When it sings, it rains; when it falls silent, the land goes dry."),
     ("Ducat", "the Restless Gold", ducat, (0.96, 0.8, 0.32), (0.72, 0.56, 0.24),
@@ -544,8 +559,9 @@ def sheet(path):
         d.rounded_rectangle([x, y, x + cw, y + ch], radius=10, fill=CARD, outline=EDGE, width=2)
         sign = tinted(fn(), 150, a, b)
         img.alpha_composite(sign, (x + (cw - 150) // 2, y + 16))
-        tw = d.textlength(key, font=f_name)
-        d.text((x + (cw - tw) / 2, y + 176), key, font=f_name, fill=tuple(int(min(1.0, v * 1.08) * 255) for v in a))
+        shown = SHOWN.get(key, key)
+        tw = d.textlength(shown, font=f_name)
+        d.text((x + (cw - tw) / 2, y + 176), shown, font=f_name, fill=tuple(int(min(1.0, v * 1.08) * 255) for v in a))
         tw = d.textlength(epithet, font=f_epi)
         d.text((x + (cw - tw) / 2, y + 212), epithet, font=f_epi, fill=DIM)
         for j, ln in enumerate(wrap(d, meaning, f_text, cw - 34)):

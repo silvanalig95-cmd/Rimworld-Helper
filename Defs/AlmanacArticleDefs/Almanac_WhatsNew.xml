@@ -31,6 +31,19 @@ When you load a save after an update, a letter lists the newest round once. The 
     <rounds>
 
       <li>
+        <version>0.233.0</version>
+        <date>14 November 2026</date>
+        <title>Tamiu, the Keeper of the Threshold</title>
+        <points>
+          <li>Mog is remade as Tamiu, the Keeper of the Threshold: a great sand-gold cat who keeps the dead, lies among the graves and has a new sign.</li>
+          <li>Now and then she lies across the way in and asks a riddle, and whoever answers well walks with her and has a lucky season.</li>
+          <li>A new grave may be kept the first night by one of her keepers with a cat, and the cat stays on the grave a day or two.</li>
+          <li>With Anomaly, the wrapped dead may stand up among the graves in a raid and turn on anything that comes near.</li>
+          <li>She has her own signs and her own presence on the land: the cats sit facing the graves and the rats run off.</li>
+        </points>
+      </li>
+
+      <li>
         <version>0.232.1</version>
         <date>14 November 2026</date>
         <title>Dressed for the weather</title>

@@ -191,25 +191,34 @@
   </ColonyCouncil.GodShapeDef>
 
   <!--
-    Mog, the Cat: plainly on the map, a gray cat a little too large with too-bright eyes and all a god's presence. Other
-    cats follow her (her own and the colony's). She chooses one colonist and keeps to them for a season, takes food she
-    didn't ask for, can't be tamed or kept (marked to be tamed, she goes), and leaves if she or a cat is harmed.
+    Tamiu, the Keeper of the Threshold (defName and key Mog): plainly on the map, a great cat the color of desert sand,
+    larger than any lion, with gold eyes and all a god's presence (Vanilla Animals Expanded's lion first, Alpha Animals' sand
+    lion, else the game's cougar or lynx, whichever is at ease in the season). The colony's cats follow her and sit with
+    her. She walks to the graves and keeps among them (MogsWays); once a stay she may lie across the way in and ask a riddle;
+    she takes food she didn't ask for, can't be tamed or kept (marked to be tamed, she goes), and leaves if she or a cat is
+    harmed. Her own signs: the cats all sitting facing the graves, two gold eyes in the dark by the graves, fine sand on a
+    grave where no wind blows. A death on the land and the colony's cats draw her near.
   -->
   <ColonyCouncil.GodShapeDef>
     <defName>Rimfolk_GodShape_Mog</defName>
     <gods><li>Mog</li><li>Rimfolk_God_Mog</li></gods>
     <stranger>false</stranger>
-    <beasts><li>Cat</li></beasts>
+    <beasts>
+      <li>AEXP_Lion</li>
+      <li>AA_SandLion</li>
+      <li>Cougar</li>
+      <li>Lynx</li>
+    </beasts>
     <look>Rimfolk_GodLook_Mog</look>
     <kin>Cat</kin>
-    <kinCount>1~2</kinCount>
+    <kinCount>1~3</kinCount>
     <leads>false</leads>
     <feeds>true</feeds>
     <stayDays>10~15</stayDays>
     <weather>false</weather>
-    <omens><li>Restless</li><li>Calm</li><li>Dream</li></omens>
+    <omens><li>CatsFacing</li><li>GoldEyes</li><li>Sand</li></omens>
     <lineTag>mog</lineTag>
-    <nearWhen><li>Cats</li></nearWhen>
+    <nearWhen><li>Cats</li><li>Death</li></nearWhen>
   </ColonyCouncil.GodShapeDef>
 
   <!--
@@ -449,56 +458,72 @@
     </darkTracks>
   </ColonyCouncil.GodLookDef>
 
-  <!-- Mog's look: a gray cat, a little too large, with too-bright eyes; a faint pale light about her. Archotech age alone, so only her shape takes it. -->
+  <!--
+    Tamiu's look (defName Mog's): a great cat the color of desert sand with gold eyes, sand rising off her and a lion's roar
+    and a gong at her coming, Alpha Memes' Kemetic chant while she is near. Archotech age alone, so no domain's god takes it;
+    her own def and her shape name it.
+  -->
   <ColonyCouncil.GodLookDef>
     <defName>Rimfolk_GodLook_Mog</defName>
-    <label>gray cat</label>
-    <description>An ordinary-looking gray cat, perhaps a little too large, with eyes too bright for any cat's.</description>
-    <domain>Hearth</domain>
-    <sampleName>gray cat</sampleName>
+    <label>great sand-gold cat</label>
+    <description>A great cat the color of desert sand, larger than any lion, with gold eyes and a collar of lapis and gold that nobody put on her.</description>
+    <domain>Dead</domain>
+    <sampleName>great sand-gold cat</sampleName>
     <minTech>Archotech</minTech>
     <maxTech>Archotech</maxTech>
-    <colorA>(0.62, 0.63, 0.66)</colorA>
-    <colorB>(0.85, 0.95, 0.7)</colorB>
-    <glowColor>(0.9, 0.95, 1)</glowColor>
-    <glowRadius>3</glowRadius>
-    <size>1.3</size>
-    <skin>(0.62, 0.63, 0.66)</skin>
-    <hair>(0.55, 0.56, 0.6)</hair>
-    <eyes>(0.75, 1, 0.55)</eyes>
-    <animalTint>(0.82, 0.83, 0.86)</animalTint>
+    <colorA>(0.9, 0.76, 0.46)</colorA>
+    <colorB>(0.3, 0.46, 0.82)</colorB>
+    <glowColor>(1, 0.88, 0.6)</glowColor>
+    <glowRadius>3.5</glowRadius>
+    <size>1.4</size>
+    <skin>(0.86, 0.72, 0.48)</skin>
+    <hair>(0.2, 0.2, 0.26)</hair>
+    <eyes>(1, 0.82, 0.3)</eyes>
+    <animalTint>(0.96, 0.86, 0.62)</animalTint>
     <body><li>Apparel_Robe</li></body>
     <head><li>Apparel_Coronet</li></head>
     <trail>None</trail>
     <motes>
+      <li>SandBits</li>
+      <li>Mote_SpiritFlame</li>
       <li>Mote_Twinkle</li>
     </motes>
+    <flash>
+      <li>TM_SpiritPulseED</li>
+    </flash>
     <circle>
       <li>Mote_ArcaneCircle</li>
     </circle>
-    <sky>(0.92, 0.94, 1)</sky>
-    <still>0.85</still>
+    <sky>(0.98, 0.9, 0.72)</sky>
+    <still>0.9</still>
     <mark>None</mark>
     <wrathMark>Ash</wrathMark>
     <sting>
+      <li>AEXP_Pawn_Lion_Call</li>
+      <li>TM_Gong</li>
       <li>Bestowing_Start</li>
     </sting>
     <wrathSting>
-      <li>PsychicSootheGlobal</li>
+      <li>AEXP_Pawn_Lion_Angry</li>
+      <li>PsychicBanshee</li>
     </wrathSting>
     <omen>
       <li>TinyBell</li>
     </omen>
     <depart>
+      <li>TM_Gong</li>
       <li>Bestowing_Finished</li>
     </depart>
     <hum>
-      <li>RitualSustainer_Rustic</li>
+      <li>AM_RitualSustainer_Kemetic</li>
+      <li>RitualSustainer_Morbid</li>
     </hum>
     <tracks>
       <li>Wabi_Sabi</li>
+      <li>Abandoned_By_The_Light</li>
     </tracks>
     <darkTracks>
+      <li>Death_Pall_Rising</li>
       <li>A_Twisted_Path</li>
     </darkTracks>
   </ColonyCouncil.GodLookDef>

@@ -53,17 +53,6 @@ tree at once, alongside whatever runs. Each piece is merged as its own release, 
     movement or a baby's cry within a few cells, the sound carrying through open doors and doorless openings but not
     through walls or closed doors, at most once in 300 ticks, and never from a lover, a pet or a bonded animal; so a
     guest walking past an open door or into the room wakes them, one outside a closed door does not.
-  - **Mog remade as an Egyptian cat god.** The player: "the cat card we have. Let's remake it into something new. Still a
-    cat card, but kind of one inspired by, you know, Egyptian mythology and the Sphinx, you know, with an Egyptian name.
-    And I don't know if we have like a god of the dead in that sense already, but maybe the cat god could be, you know,
-    with mummies and like Egyptian gear wearing zombies style followers, you know. Perhaps that is the god, and there's
-    also some sort of cult behind it. That would be interesting instead of this cat type". When asked: a new concept
-    and name, proposed first (the pantheon has no god of the dead as such: Morel is rot and the soft end, Undertow the
-    void); the cat god as the one who keeps the dead (a sphinx's riddles at the threshold, the dead wrapped and walking
-    in its service, a cult that tends tombs and keeps cats), with the unseen rule; drawn from the player's mods: Alpha
-    Memes' Kemetic style, mummification precept and ritual, Kemetic chant, Alpha Biomes' and Alpha Prefabs' Kemetic
-    temples, Vanilla Factions Expanded's sarcophagus props; Mog's existing parts (her chosen's luck, staring at Ennu) to
-    carry over or go, as the player picks.
   - **The animals, made more visible.** The player: "i must say that i can't really see a lot from the animal features we
     included, please add to to-do list to enhance and build up on these". When asked: list what Rimfolk's animal parts do
     now and what of it shows on the map (Animals/, the pets, herds, bonds, the beasts' encounters and dilemmas), propose
@@ -127,6 +116,73 @@ tree at once, alongside whatever runs. Each piece is merged as its own release, 
   ordering them off is ruder still), less when they were trouble (a thief, a brawler, a drunk); with Hospitality its
   own way for its guests; never a caravan mid-trade without the trade closed first, and never anyone downed or a
   prisoner.
+- 0.233.0, **Tamiu, the Keeper of the
+  Threshold: Mog remade as the cat who keeps the dead** (14 November 2026; the player's words, 13 November: "the cat card
+  we have. Let's remake it into something new. Still a cat card, but kind of one inspired by, you know, Egyptian
+  mythology and the Sphinx, you know, with an Egyptian name ... maybe the cat god could be, you know, with mummies and
+  like Egyptian gear wearing zombies style followers, you know. Perhaps that is the god, and there's also some sort of
+  cult behind it"; 14 November: "yes, remake mog and create a corresponding sign for it", "gods effect should be
+  noticeable"). DESIGN.md "Tamiu, the Keeper of the Threshold" has all of it; `docs/design/gods.md` its contract notes.
+  Her plain line: "A great cat who keeps the dead. She guards the graves, sets riddles at the threshold, and every cat is
+  hers." Kept from Mog: her luck (now the favour of whoever answers her riddle well, else who fed her), the stare at the
+  Guest, can't be tamed or kept, the cats leaving and the rats coming when a cat is harmed, a cat walking in as her sign,
+  no festival. Dropped: the gray cat, the warmest spot, the random chosen one, "two places in one day".
+  - Code map:
+    - `Defs/GodDefs/Rimfolk_Gods.xml`: her def (defName and key still `Rimfolk_God_Mog`/`Mog`; label Tamiu, epithet,
+      plain line, names by age with Mog among her others, lore, lines, six stories, ties: Morel and Undertow rivals,
+      Ennu rivals, Helios and Selene allies; domains Dead and Hearth; proud; her own look; revered by the river folk, the
+      Quiet Bell, the Tamers). `God.FromDef`: a god's name is its def's label (its key for the others); `GodShapes.Of`
+      and `GodWays` key a god by `God.Key`.
+    - `Defs/GodDefs/Rimfolk_GodsOnMap_Shapes.xml`: `Rimfolk_GodShape_Mog` (Vanilla Animals Expanded's lion, Alpha
+      Animals' sand lion, the game's cougar or lynx; cats as kin; her omens CatsFacing, GoldEyes, Sand; near with cats
+      and a death) and `Rimfolk_GodLook_Mog` (sand-gold, a lion's call and a gong, Alpha Memes' Kemetic chant as her
+      hum, Odyssey's sand rising).
+    - `Source/ColonyCouncil/Gods/OnMap/MogsWays.cs` (new): `MogsBook` (her state, no lists), `MogsWays` (her stay among
+      the graves, her favour, the riddle's ask, walk and answer, the grave kept at dusk, the wrapped dead), the
+      `GameCondition_MogPresence` (her own presence, `Rimfolk_GodPresence_Mog`), `HediffComp_WrappedDead`,
+      `HappeningWorker_GodRiddle`. `MogMath.cs` (new, pure, linked): every number and rule.
+    - `SacredAnimal.cs` (her hour goes to `MogsWays.Keep`, her coming makes for the graves and starts her presence, her
+      bowl gives her favour), `GodsOnMapBook.cs` (the gods' day and hour call her ways), `GodOmensOwn.cs` and
+      `GodsOnMapMath.OmenKind` (her three signs), `HarmBudgetMath.cs` (`GodRiddle`, `GodDead`, in the shared budget).
+    - `Defs/GodDefs/Rimfolk_GodsOnMap_Mog.xml` (new): the riddle's card `Rimfolk_Evt_GodRiddle` (chance 0, fired by
+      her stay), four thoughts, `Rimfolk_WrappedDead`, her presence's def, four line pools.
+      `Languages/English/Keyed/Rimfolk_GodsOnMap_Mog.xml` (new): her coming, her presence, sixteen riddles (four an
+      age), the answer's cards, the keeper's and the wrapped dead's cards by age, the book's lines. Her lines rewritten
+      in `Rimfolk_GodsOnMap_Lines.xml`, `Rimfolk_GodsWorld_Lines.xml`, `Rimfolk_GodsWorld_Ways.xml`,
+      `Rimfolk_Worship_Gods.xml` (fish, linen, meat; Kemetic chant) and `Rimfolk_Worship_Pools.xml` (her offering lines).
+    - Her sign: `mog()` in `Tools/make_god_signs.py` (a cat seated in profile on a tomb's door; `SHOWN` puts her name on
+      the sheet), `Textures/ColonyCouncil/Gods/Signs/Mog*.png` (`--textures --only Mog`), `docs/gods-symbols-draft.png`.
+    - Tests: `Tools/Tests/MogTests.cs` (new); `GodsTests`, `GodsOnMapTests`, `GodWorldTests`, `HarmBudgetTests` follow
+      her. `Tools/playout_skips.txt`: the riddle's answers play out in her own code.
+  - For round 2 (the presences, offerings and omens being built side by side): her presence is
+    `Rimfolk_GodPresence_Mog` (`GameCondition_MogPresence`: from her coming to her going; the rats run off, the cats sit
+    facing the graves every few hours; named only once the colony knows it is her); her omens are `OmenKind.CatsFacing`,
+    `GoldEyes`, `Sand`; her way of taking an offering is not built yet (the proposal: a cat eats it at dawn).
+  - Not seen in a real game (none of it could be): the lion drawn larger and tinted, lying across a door and among the
+    graves; the riddle's walk out and the cuff; the keeper's night at the grave and the cat on it; Anomaly's shamblers
+    made in code, dressed in cloth and kept to the graves by `LordJob_DefendPoint` (whether the shambler's own mind keeps
+    to the lord's duty, and how they look in the wraps); her presence's corner label.
+  - Try in the game (dev mode):
+    1. "Gods: the colony knows every god", then "Gods: a sacred animal now..." and pick Tamiu: a great sand-gold lion
+       (a cougar or lynx out of season) comes in from the edge with a card, cats following, and walks to the graves;
+       "the cats keeping watch" (named "Tamiu keeping watch" once the colony knows her) shows in the corner, the land's
+       rats run off and the cats go and sit facing the graves.
+    2. "Gods: Tamiu's riddle at the door now" (or wait: from her second day, in daylight): she lies across the way in
+       outside an outer door and the card "The great sand-gold cat at the door" gives her riddle, one of the colony's
+       age's; send the wits: they walk out, stand before her and say their answer; right, she puts her head under their
+       hand and walks at their heel, a card says so; wrong, she walks back to the graves, sometimes after a cuff across
+       the arm (a scratch, on its card).
+    3. Bury a colonist in a grave, then "Gods: Tamiu's keeper at the newest grave now" (or wait for a dusk after the
+       gods' day): a keeper of a people that holds her comes in with a cat (a card), sits by the grave all night with a
+       bell and a word over it, and goes at dawn; the cat sits on the grave a day or two; friends of the dead get "a
+       grave kept". With no such people at peace (or half the time), a cat of the colony's, else a stray, keeps it.
+    4. With Anomaly and two graves of the colony's dead, "Gods: the wrapped dead stand guard now" (or Tamiu on the land
+       and a raid that comes near the graves: half the raids, at the harm setting): two to four figures in gray cloth
+       stand up among the graves with a card, fight anyone who comes near them, and lie down as dust an hour after no
+       raider is left.
+    5. Her signs: "Gods: an omen here..." (CatsFacing, GoldEyes, Sand) for Tamiu shows the cats sitting facing the
+       graves, gold eyes in the dark by a grave at night, or sand across a grave, each said aloud and kept in the Gods'
+       book.
 - 0.232.1, **Dressed for the weather as they
   come** (14 November 2026; the player's words: "so i just had an event from the aracoier league that they use my meadow
   for a heard or something like this, and they appeared on the map but left it again soon after due to "weather
