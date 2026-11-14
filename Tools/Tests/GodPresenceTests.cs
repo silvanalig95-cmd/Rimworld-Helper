@@ -408,7 +408,7 @@ public static class GodPresenceTests
         var drawPatch = Regex.Match(patches, @"class Patch_GodDrawParms.*?\n    }", RegexOptions.Singleline).Value;
         C(drawPatch.Length > 0 && !drawPatch.Contains("Time.") && !drawPatch.Contains("Find.") && avatar.Contains("public float DrawSize =>") && !Regex.Match(avatar, @"public float DrawSize =>[^;]*;").Value.Contains("Time."),
             "the drawing hook runs on the game's worker threads and touches nothing of the main thread's (the size is worked out each frame before)");
-        C(!all.Contains("MoteMaker.ThrowText") && !Regex.IsMatch(all.Replace(Code(root, "GodPresenceDebug.cs"), ""), @"Messages\.Message\("), "speech through Speech.Say, messages through the teller (the dev actions answer directly)");
+        C(!all.Contains("MoteMaker.ThrowText") && !Regex.IsMatch(all.Replace(Code(root, "GodPresenceDebug.cs"), "").Replace(Code(root, "GodPresenceOwnDebug.cs"), ""), @"Messages\.Message\("), "speech through Speech.Say, messages through the teller (the dev actions answer directly)");
         C(reactions.Contains("Speech.Say(p, line)") && card.Contains("Tell.Letter(") && presence.Contains("Tell.Message("), "lines said aloud, the card and an omen's line through the one voice");
         // The names the code reaches by itself (motes, filth, plants, chunks, a sting, the devout's traits): each in the player's mods.
         var codeNames = Regex.Matches(bare, @"""((?:Mote_|Filth_|Plant_|Chunk)\w+|GameStartSting)""").Cast<Match>().Select(m => m.Groups[1].Value).Distinct().ToList();

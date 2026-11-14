@@ -39,6 +39,9 @@ namespace ColonyCouncil
             public string name, epithet, title, text;
             /// <summary>The colony's sign of the god for its card (a god's key, GodSigns), or null.</summary>
             public string sign;
+            /// <summary>The god's own presence (its condition's def, GodDef.presence) and its key; null for the shared presence.</summary>
+            public GameConditionDef presence;
+            public string godKey;
             public Map map;
             public IntVec3 at;
             public PresenceKind kind;
@@ -67,7 +70,15 @@ namespace ColonyCouncil
 
         /// <summary>The same, with <paramref name="sign"/>: the colony's sign of the god (a god's key) shown on its card when the card names it.</summary>
         public static bool Manifest(GodLookDef look, string godName, string epithet, Map map, IntVec3 at, PresenceKind kind, Pawn avatar, string title, string text,
-            bool veiled, Color? colorA, Color? colorB, string sign)
+            bool veiled, Color? colorA, Color? colorB, string sign) =>
+            Manifest(look, godName, epithet, map, at, kind, avatar, title, text, veiled, colorA, colorB, sign, null, null);
+
+        /// <summary>
+        /// The same, with the god's own presence (<paramref name="presence"/>, its condition's def: GodDef.presence) and its key,
+        /// so the sky and the land after the moment are that god's own (GodPresenceOwn.cs); the shared presence when null.
+        /// </summary>
+        public static bool Manifest(GodLookDef look, string godName, string epithet, Map map, IntVec3 at, PresenceKind kind, Pawn avatar, string title, string text,
+            bool veiled, Color? colorA, Color? colorB, string sign, GameConditionDef presence, string godKey)
         {
             if (look == null || map == null) return false;
             if (avatar != null && avatar.Spawned && avatar.Map == map) at = avatar.Position;
@@ -87,6 +98,8 @@ namespace ColonyCouncil
                 avatar = avatar,
                 veiled = veiled,
                 sign = veiled ? null : sign,
+                presence = presence,
+                godKey = godKey,
                 music = MusicOn,
                 a = colorA ?? c?.ColorA ?? look.colorA,
                 b = colorB ?? c?.ColorB ?? look.colorB,
@@ -228,7 +241,7 @@ namespace ColonyCouncil
             if (c != null && m.kind == PresenceKind.Reveal && c.disguised) c.Show(true);
             if (m.avatar != null && m.avatar.Spawned) m.at = m.avatar.Position;
             GodFx.Flash(m.look, map, m.at, m.a, m.b, true);
-            GameCondition_GodPresence.Begin(map, m.kind, m.a, m.look.still, m.name, m.veiled);
+            GameCondition_GodPresence.Begin(map, m.kind, m.a, m.look.still, m.name, m.veiled, m.presence, m.godKey);
             GodReactions.Moment(map, m.at, m.avatar, m.veiled ? null : m.name, m.look.Domain, m.kind);
             GodTrails.Mark(GodPresenceMath.MarkFor(m.kind, m.look.mark, m.look.wrathMark), map, m.at, m.a);
         }

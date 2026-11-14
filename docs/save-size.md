@@ -8,7 +8,7 @@ generous guesses; sizes are rough XML sizes. Caps named as constants are read fr
 kept inside another record (a journal's lines, a heart's lists) and are already in that record's size.
 
 Saved collections found: 697; modelled: 697; growing without end: 0.
-Rimfolk's part of the save, roughly: **3,003 KB** after a year, **3,703 KB** after two, **4,132 KB** after five.
+Rimfolk's part of the save, roughly: **3,004 KB** after a year, **3,705 KB** after two, **4,134 KB** after five.
 
 | Collection | Rule | Kind | 1 year | 2 years | 5 years | KB at 5 years |
 |---|---|---|---|---|---|---|
@@ -66,6 +66,7 @@ Rimfolk's part of the save, roughly: **3,003 KB** after a year, **3,703 KB** aft
 | `Social/Groups/GroupTracker.cs:groups` | groups of 3 to 9, the dead and departed dropped daily, ended below two | cap | 6 | 6 | 6 | 14.6 |
 | `Social/Bonds.cs:pairs` | one short line per pair of colonists who met, pairs not both among the colony's people for 60 days dropped daily | pairs | 209 | 209 | 209 | 14.3 |
 | `CouncilGameComponent.cs:history` | a sample a day, 120 days | window | 60 | 120 | 120 | 14.1 |
+| `Gods/Worship/WorshipBook.cs:offerings` | offerings open and lately done, ten days after, with how far its god's own way has gone (a stage, a cat sent), WorshipBook.MaxOfferings | cap | 30 | 40 | 40 | 13.7 |
 | `Animals/AnimalBook.cs:marks` | a temperament for each named or bonded animal, AnimalNatureMath.MaxMarks at most, let go 120 days after last seen | cap | 30 | 60 | 150 | 13.2 |
 | `Gods/GodBook.cs:gods` | the pantheon: one record a god, built once per world, a few more as peoples arise and newborns come | cap | 3 | 6 | 15 | 13.2 |
 | `World/Ledger/LedgerRegion.cs:houses` | two founding families per new town in detail (RegionMath.HousesPerTown), going with the town's record (the colony's own houses of release 2d.1 went on 5 November 2026: an older save's are dropped as it loads) | cap | 12 | 24 | 60 | 12.9 |
@@ -73,7 +74,6 @@ Rimfolk's part of the save, roughly: **3,003 KB** after a year, **3,703 KB** aft
 | `Annals.cs:written` | Caps.AnnalsYears written years | cap | 1 | 2 | 5 | 12.2 |
 | `Building/Suggest/SameRules.cs:marked` | per step: the things it gave an order on (taken down, trees marked, a firebreak's brush) | fixed | 300 | 300 | 300 | 11.7 |
 | `CouncilGameComponent.cs:wishes` | open wishes only (one per colonist at most) | cap | 20 | 20 | 20 | 11.7 |
-| `Gods/Worship/WorshipBook.cs:offerings` | offerings open and lately done, ten days after, WorshipBook.MaxOfferings | cap | 30 | 40 | 40 | 11.7 |
 | `Letters/LetterBook.cs:used` | the long pieces written into letters, by their first words: LetterKindMath.MaxUsed at most, the oldest let go | cap | 30 | 60 | 150 | 11.7 |
 | `Peoples/PeopleAges.cs:ages` | one record a people of Rimfolk's (the fifteen at once, and each that arises), PeopleAgesMath.MaxRecords kept, gone peoples dropped | cap | 40 | 40 | 40 | 11.7 |
 | `Setbacks/SetbackTracker.cs:built` | what colonists built, while it stands and is recent | window | 60 | 60 | 60 | 11.7 |

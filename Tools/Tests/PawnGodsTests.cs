@@ -310,6 +310,15 @@ public static class PawnGodsTests
             "dreams, and what they were told (a tale's piece, what it is, a saying)");
         C(gods2.Contains("PawnGods.Saw(pawns, ByKey(taken), act.kind, false, act.text, act.cell, map);") && gods2.Contains("PawnGods.Saw(witnesses, taken, PawnGods.KindOf(spec.kind), plain, words, spec.cell, spec.map);")
           && Read("Gods/GodHands.cs").Contains("PawnGods.Saw(witnesses, taken,"), "what they saw, under the god they took it for (maybe wrongly), in acts, moments and the hands in events");
+        // Round 2's own seams: a god's own presence lived through, its own way of taking a gift found by day.
+        C(Read("Gods/Presence/GodPresenceCondition.cs").Contains("PawnGods.PresencePassed(GodPresenceOwn.GodOf(this), map, named, harsh, label);")
+          && pawnGods.Contains("var taken = named ? g : Gods.ByKey(GodLoreMath.Attribute(g.Key, known, Rand.Value));") && pawnGods.Contains("if (scoffer && !named) continue;"),
+            "a god's own presence lived through: the god where the colony was sure whose it was, else as each takes it; a scoffer only when sure");
+        C(pawnGods.Contains("if (harsh)") && pawnGods.Contains("BeliefEvent.LivedPresence, why") && PawnGodsMath.Amount(BeliefEvent.LivedPresence) > 0f
+          && PawnGodsMath.Strength(BeliefEvent.LivedPresence) > 0f && PawnGodsMath.Strength(BeliefEvent.LivedPresence) < PawnGodsMath.Strength(BeliefEvent.LivedThrough),
+            "a kind one grows belief and now and then wins someone over; one in anger leaves dread");
+        C(Read("Gods/Worship/Offerings.cs").Contains("if (!scoffer) PawnGods.SawTaken(p, g);") && PawnGodsMath.Amount(BeliefEvent.SawTaken) > 0f
+          && PawnGodsMath.Amount(BeliefEvent.SawTaken) < PawnGodsMath.WhyFrom, "a gift found taken in the god's own way: a little, for the god of the place");
         C(Read("Gods/World/GodWorldGifts.cs").Contains("PawnGods.Gift(p, g, label);") && pawnGods.Contains("GodLoreMath.Attribute(g.Key, lore.KnownOf(), Rand.Value)"),
             "a gift, under the god they take it for");
         C(worship.Contains("Safe(\"each one's gods\", () => PawnGods.Hourly(map, now));") && worship.Contains("Safe(\"each one's gods\", () => PawnGods.Daily(now));")

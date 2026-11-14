@@ -9,16 +9,24 @@
   -->
 
   <!--
-    Her presence on the land from her coming to her going (GameCondition_MogPresence), her own and apart from the shared one
-    of a god's moment: named as what anyone can see until the colony knows it is her. The land's rats run off as she comes,
-    and every few hours the cats go and sit facing the graves.
+    Her own presence on the land (GodDef.presence: the gods' own presences, Gods/Presence/GodPresenceOwn.cs; its effect
+    Watch): from her coming to her going, kept while she walks the land and ended once she has gone; named as what anyone
+    can see until the colony knows it is her. The land's rats run off as she comes, and every few hours the cats go and sit
+    facing the graves (MogsWays.CatsWatch).
   -->
-  <GameConditionDef>
+  <GameConditionDef ParentName="Rimfolk_GodPresenceOwnBase">
     <defName>Rimfolk_GodPresence_Mog</defName>
-    <conditionClass>ColonyCouncil.GameCondition_MogPresence</conditionClass>
     <label>the cats keeping watch</label>
-    <description>The cats sit with the graves, and the rats have gone.</description>
-    <canBePermanent>false</canBePermanent>
+    <description>A great sand-gold cat is on the land. The rats have run off it, every few hours the colony's cats go and sit facing the graves, and the air by the graves smells of warm stone and resin. Nobody can say why.</description>
+    <modExtensions>
+      <li Class="ColonyCouncil.OwnPresence">
+        <god>Mog</god>
+        <effect>Watch</effect>
+        <named>{NAME} keeping watch</named>
+        <namedText>{NAME} is on the land. The rats have run off it, every few hours the colony's cats go and sit facing the graves, and the air by the graves smells of warm stone and resin.</namedText>
+        <motes><li>Mote_Twinkle_grayscale</li></motes>
+      </li>
+    </modExtensions>
   </GameConditionDef>
 
   <!-- ===================== The riddle at the threshold ===================== -->

@@ -134,12 +134,18 @@ public static class MogTests
         var mapDefs = Def("GodDefs/Rimfolk_GodsOnMap_Mog.xml").Root!;
         var cond = mapDefs.Elements("GameConditionDef").SingleOrDefault(d => d.Element("defName")?.Value == "Rimfolk_GodPresence_Mog");
         string ways = Read("Gods/OnMap/MogsWays.cs");
-        C(cond?.Element("conditionClass")?.Value == "ColonyCouncil.GameCondition_MogPresence" && ways.Contains("class GameCondition_MogPresence : GameCondition")
-          && ways.Contains("GameCondition_MogPresence.Begin(a.Map, s.leaveAt)") && ways.Contains("c.End();") && ways.Contains("exitMapAfterTick = now + Rand.Range(60, 1200)"),
-            "her own presence from her coming to her going, apart from the shared one: the rats run off, the cats sit with the graves");
-        C(new[] { "CC_Mog_Presence", "CC_Mog_Presence_Named", "CC_Mog_Presence_Desc", "CC_Mog_Presence_NamedDesc" }.All(keyed.ContainsKey)
-          && !keyed["CC_Mog_Presence"].Contains("{NAME}") && !keyed["CC_Mog_Presence_Desc"].Contains("{NAME}") && keyed["CC_Mog_Presence_Named"].Contains("{NAME}")
-          && ways.Contains("Gods.CardName(Her, SingleMap)"),
+        // Her presence is one of the gods' own (round 2: GodDef.presence, Gods/Presence/GodPresenceOwn.cs), its effect her watch.
+        var condOwn = cond?.Element("modExtensions")?.Elements("li").FirstOrDefault(l => (string)l.Attribute("Class") == "ColonyCouncil.OwnPresence");
+        string shows = Read("Gods/Presence/GodPresenceShows.cs");
+        string ownMath = Read("Gods/Presence/GodPresenceOwnMath.cs");
+        C(cond?.Attribute("ParentName")?.Value == "Rimfolk_GodPresenceOwnBase" && condOwn?.Element("god")?.Value == "Mog" && condOwn.Element("effect")?.Value == "Watch"
+          && !ways.Contains("class GameCondition_MogPresence") && ways.Contains("GodPresenceOwn.Quiet(Her, a.Map)")
+          && shows.Contains("case PresenceEffect.Watch:") && shows.Contains("exitMapAfterTick = now + Rand.Range(60, 1200)") && shows.Contains("MogsWays.CatsWatch(map)")
+          && ownMath.Contains("e == PresenceEffect.Watch") && ownMath.Contains("EndsWhenGone"),
+            "her own presence from her coming to her going, one of the gods' own: the rats run off, the cats sit with the graves, ended once she has gone");
+        C(cond?.Element("label")?.Value == "the cats keeping watch" && !(cond.Element("description")?.Value ?? "{NAME}").Contains("{NAME}")
+          && (condOwn?.Element("named")?.Value ?? "").Contains("{NAME}") && (condOwn?.Element("namedText")?.Value ?? "").Contains("{NAME}")
+          && !keyed.ContainsKey("CC_Mog_Presence"),
             "her presence says what anyone can see, and names her only where the colony knows it is her");
 
         // ================= The riddle's card =================

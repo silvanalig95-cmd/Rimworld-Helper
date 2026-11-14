@@ -465,6 +465,50 @@ namespace ColonyCouncil
             if (Move(p, taken, BeliefEvent.Gift, why) != null) PawnGodsActs.MaybeWonOver(p, taken, BeliefEvent.Gift, why);
         }
 
+        /// <summary>
+        /// A gift found taken at the god's place by day, in the god's own way (Offerings.Noticed: a sapling where it lay, black
+        /// soil, a warm floor): the god of the place, which the colony gave it to itself.
+        /// </summary>
+        public static void SawTaken(Pawn p, God g) => Move(p, g, BeliefEvent.SawTaken, "CC_Belief_Why_SawTaken".Translate(Date(Now).Named("DATE")).Resolve());
+
+        /// <summary>
+        /// A god's own presence has passed (GameCondition_GodPresence.End): those of the colony who lived through it on the land
+        /// hold the god they take it for the more (the god itself where the colony was sure whose it was; else as they take it,
+        /// maybe wrongly, and a scoffer not at all), a kind one now and then winning someone over; a presence in anger leaves
+        /// dread instead, as an anger seen does.
+        /// </summary>
+        public static void PresencePassed(God g, Map map, bool named, bool harsh, string label)
+        {
+            var lore = GodLore.Instance;
+            if (g == null || map == null || lore == null || Book == null) return;
+            try
+            {
+                string what = (label ?? "").UncapitalizeFirst();
+                string why = "CC_Belief_Why_Lived".Translate(what.Named("WHAT"), Date(Now).Named("DATE")).Resolve();
+                var known = lore.KnownOf();
+                foreach (var p in map.mapPawns.FreeColonistsSpawned.ToList())
+                {
+                    if (!Worship.Ours(p)) continue;
+                    bool scoffer = Worship.Scoffer(p);
+                    if (scoffer && !named) continue;
+                    var taken = named ? g : Gods.ByKey(GodLoreMath.Attribute(g.Key, known, Rand.Value));
+                    if (!Usable(taken)) continue;
+                    if (harsh)
+                    {
+                        Fear(p, taken, PawnGodsMath.DreadAmount(false, false, HoldOf(p, taken)), "CC_Belief_Why_Dread".Translate(Date(Now).Named("DATE"), what.CapitalizeFirst().Named("WHAT")).Resolve());
+                        continue;
+                    }
+                    if (Dreads(p, taken)) continue;
+                    if (Move(p, taken, BeliefEvent.LivedPresence, why, scoffer ? 0.5f : 1f) != null && named)
+                        PawnGodsActs.MaybeWonOver(p, taken, BeliefEvent.LivedPresence, why);
+                }
+            }
+            catch (Exception e)
+            {
+                CouncilLog.ErrorOnce("gods: a belief, from a presence lived through", e);
+            }
+        }
+
         // ================= The seams: moments seen =================
 
         /// <summary>A god's moment (the presence part's) as an act's kind.</summary>

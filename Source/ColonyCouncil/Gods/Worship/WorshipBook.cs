@@ -68,10 +68,19 @@ namespace ColonyCouncil
         public bool demand;
         /// <summary>Taken in the night, and since noticed by day by someone passing (or let go after WorshipMath.NoticeDays).</summary>
         public bool noticed;
+        /// <summary>
+        /// How far its god's own way has gone with it while it waits (OfferingWays.Before): Hush's frost formed on it, Helios's
+        /// noon light lain on it, Tamiu's cat sent to eat it (1); nothing yet (0).
+        /// </summary>
+        public int stage;
+        /// <summary>Tamiu's cat sent to eat it at dawn (her way), while it goes.</summary>
+        public Pawn cat;
 
         public void ExposeData()
         {
             Scribe_Values.Look(ref noticed, "noticed");
+            Scribe_Values.Look(ref stage, "stage");
+            Scribe_References.Look(ref cat, "cat");
             Scribe_References.Look(ref thing, "thing");
             Scribe_References.Look(ref shrine, "shrine");
             Scribe_Values.Look(ref god, "god", -1);

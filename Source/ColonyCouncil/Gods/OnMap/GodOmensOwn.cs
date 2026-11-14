@@ -21,19 +21,19 @@ namespace ColonyCouncil
 
         private static bool Night(Map map) => map.skyManager.CurSkyGlow < 0.3f;
 
-        private static List<Thing> AnimaTrees(Map map)
+        internal static List<Thing> AnimaTrees(Map map)
         {
             var def = Thing("Plant_TreeAnima");
             return def == null ? new List<Thing>() : map.listerThings.ThingsOfDef(def).Where(t => t.Spawned).ToList();
         }
 
-        private static List<Pawn> Dryads(Map map) =>
+        internal static List<Pawn> Dryads(Map map) =>
             map.mapPawns.AllPawnsSpawned.Where(p => !p.Dead && !p.Downed && p.def.defName.StartsWith("Dryad_", StringComparison.Ordinal)).ToList();
 
         private static Building Console(Map map) => map.listerBuildings.allBuildingsColonist.FirstOrDefault(b => b is Building_CommsConsole && b.Spawned);
 
         /// <summary>The colony's powered lights: lit (for a flicker), or dark for want of power or a switch (for one that glows anyway).</summary>
-        private static List<ThingWithComps> Powered(Map map, bool lit) =>
+        internal static List<ThingWithComps> Powered(Map map, bool lit) =>
             map.listerBuildings.allBuildingsColonist.OfType<ThingWithComps>().Where(b => b.Spawned && b.GetComp<CompPowerTrader>() != null
                                                                                         && b.GetComp<CompGlower>() is CompGlower g && g.Glows == lit).ToList();
 
@@ -44,12 +44,12 @@ namespace ColonyCouncil
                 .FirstOrDefault();
 
         /// <summary>The most desperate of the colony awake: the lowest spirits, under four in ten.</summary>
-        private static Pawn Desperate(Map map) =>
+        internal static Pawn Desperate(Map map) =>
             map.mapPawns.FreeColonistsSpawned.Where(p => Awake(p) && (p.needs?.mood?.CurLevelPercentage ?? 1f) < 0.4f).OrderBy(p => p.needs.mood.CurLevelPercentage)
                 .FirstOrDefault();
 
         /// <summary>A cell under the mountain's thick rock, near where the colony is, or none.</summary>
-        private static IntVec3 UnderMountain(Map map)
+        internal static IntVec3 UnderMountain(Map map)
         {
             var thick = RoofDefOf.RoofRockThick;
             foreach (var p in map.mapPawns.FreeColonistsSpawned)
@@ -78,6 +78,9 @@ namespace ColonyCouncil
                 case OmenKind.Croak: return Wet(map).IsValid;
                 case OmenKind.Beetle: return Table(map) != null;
                 case OmenKind.CatsFacing: return MogsWays.Cats(map, false).Count > 0;
+                case OmenKind.ThrumbosFace: return Thrumbos(map).Count > 0;
+                case OmenKind.Knock: return OuterDoor(map) != null;
+                case OmenKind.DogsSilent: return Dogs(map).Count > 0;
                 case OmenKind.GoldEyes:
                 case OmenKind.Sand: return MogsWays.Tombs(map, true).Count > 0 || Open(map).IsValid;
                 default: return true;
@@ -385,6 +388,152 @@ namespace ColonyCouncil
                     GodSky.Crawl(map, mid - along, mid + along, 22f);
                     return true;
                 }
+                case OmenKind.ThrumbosFace:
+                {
+                    // Every thrumbo on the land stops and stands facing one way, toward the land's far edge, a long while.
+                    var herd = Thrumbos(map);
+                    var look = DefDatabase<JobDef>.GetNamedSilentFail(GodReactions.BeholdJob);
+                    if (herd.Count == 0 || look == null) return false;
+                    var toward = CellFinder.RandomEdgeCell(map);
+                    foreach (var t in herd)
+                    {
+                        try
+                        {
+                            var j = JobMaker.MakeJob(look, toward);
+                            j.count = 1800;
+                            j.expiryInterval = 2000;
+                            t.jobs.StartJob(j, JobCondition.InterruptForced);
+                        }
+                        catch (Exception e)
+                        {
+                            CouncilLog.ErrorOnce("gods: the thrumbos facing one way", e);
+                        }
+                    }
+                    at = herd[0].Position;
+                    var c0 = at;
+                    speaker = Witness(map, at, 35f) ?? map.mapPawns.FreeColonistsSpawned.Where(Awake).OrderBy(p => p.Position.DistanceToSquared(c0)).FirstOrDefault();
+                    return speaker != null;
+                }
+                case OmenKind.GrassBowed:
+                {
+                    // The grass bowed flat in one long line across the land, edge to edge, through near the colony: a pale
+                    // wave runs along it and the dust lifts, as if something very large had walked it.
+                    if (map.skyManager.CurSkyGlow < 0.3f) return false;
+                    var near = Open(map);
+                    if (!near.IsValid) return false;
+                    float angle = Rand.Range(0f, 180f) * Mathf.Deg2Rad;
+                    var dir = new Vector3(Mathf.Cos(angle), 0f, Mathf.Sin(angle));
+                    int bowed = 0;
+                    for (int i = -60; i <= 60; i += 2)
+                    {
+                        var c = (near.ToVector3Shifted() + dir * i).ToIntVec3();
+                        if (!c.InBounds(map) || c.Roofed(map) || c.GetPlant(map) == null) continue;
+                        FleckMaker.ThrowDustPuffThick(c.ToVector3Shifted(), map, Rand.Range(0.6f, 1f), new Color(0.62f, 0.66f, 0.45f, 0.5f));
+                        GodFx.Throw(DefDatabase<FleckDef>.GetNamedSilentFail(GodFx.OwnMote), c.ToVector3Shifted(), map, 0.4f, new Color(0.8f, 0.92f, 0.6f), angle * Mathf.Rad2Deg, 0.3f, 0f, 1.6f);
+                        bowed++;
+                    }
+                    if (bowed < 6) return false;
+                    at = near;
+                    speaker = Witness(map, at, 30f) ?? map.mapPawns.FreeColonistsSpawned.Where(p => Awake(p) && !p.Position.Roofed(map)).RandomElementWithFallback();
+                    return speaker != null;
+                }
+                case OmenKind.Hoofprint:
+                {
+                    // At dawn, a cloven hoofprint the size of a table near the colony's edge: carved in the snow, else in the earth.
+                    if (GenLocalDate.HourOfDay(map) > 9) return false;
+                    at = Open(map);
+                    if (!at.IsValid) return false;
+                    int laid = 0;
+                    // Two crescents side by side, a cell apart: the halves of a cloven hoof.
+                    foreach (var (dx, dz) in new[] { (-2, 0), (-2, 1), (-1, 2), (-2, -1), (-1, -2), (1, 2), (2, 1), (2, 0), (2, -1), (1, -2) })
+                    {
+                        var c = at + new IntVec3(dx, 0, dz);
+                        if (!c.InBounds(map) || !c.Standable(map) || c.Roofed(map)) continue;
+                        float d = map.snowGrid.GetDepth(c);
+                        if (d > 0.1f) map.snowGrid.SetDepth(c, 0f);
+                        else if (ThingDefOf.Filth_Dirt != null) FilthMaker.TryMakeFilth(c, map, ThingDefOf.Filth_Dirt);
+                        laid++;
+                    }
+                    if (laid < 5) return false;
+                    var c1 = at;
+                    speaker = Witness(map, at, 25f) ?? map.mapPawns.FreeColonistsSpawned.Where(Awake).OrderBy(p => p.Position.DistanceToSquared(c1)).FirstOrDefault();
+                    return speaker != null;
+                }
+                case OmenKind.Knock:
+                {
+                    // A knock at the colony's door and nobody there: the nearest one of the colony goes to look.
+                    var door = OuterDoor(map);
+                    if (door == null) return false;
+                    at = door.Position;
+                    var c0 = at;
+                    speaker = map.mapPawns.FreeColonistsSpawned.Where(p => Awake(p) && p.Position.InHorDistOf(c0, 30f) && (p.CurJob == null || p.CurJob.def.casualInterruptible))
+                        .OrderBy(p => p.Position.DistanceToSquared(c0)).FirstOrDefault();
+                    if (speaker == null) return false;
+                    for (int i = 0; i < 3; i++) GodSounds.Play(GodSounds.Sound("Door_CloseManual"), map, at, 0.4f)?.End();
+                    var outside = GenAdj.CellsAdjacentCardinal(door).Where(c => c.InBounds(map) && c.Standable(map) && !c.Roofed(map)).FirstOrDefault();
+                    if (outside.IsValid && outside != default && speaker.CanReach(outside, PathEndMode.OnCell, Danger.None))
+                    {
+                        var go = JobMaker.MakeJob(JobDefOf.Goto, outside);
+                        go.expiryInterval = 900;
+                        speaker.jobs.StartJob(go, JobCondition.InterruptForced, null, true);
+                    }
+                    return true;
+                }
+                case OmenKind.Footprints:
+                {
+                    // At dawn, footprints up to the colony's door from the edge of the land, and none going away.
+                    if (GenLocalDate.HourOfDay(map) > 9) return false;
+                    var door = OuterDoor(map);
+                    var to = door?.Position ?? Open(map);
+                    if (!to.IsValid) return false;
+                    var edges = new[] { new IntVec3(to.x, 0, 0), new IntVec3(to.x, 0, map.Size.z - 1), new IntVec3(0, 0, to.z), new IntVec3(map.Size.x - 1, 0, to.z) };
+                    var edge = edges.OrderBy(e => e.DistanceToSquared(to)).First();
+                    var dir = (edge - to).ToVector3().normalized;
+                    int laid = 0;
+                    for (int i = 2; i <= 22; i += 2)
+                    {
+                        var c = (to.ToVector3Shifted() + dir * i).ToIntVec3();
+                        if (!c.InBounds(map) || !c.Standable(map) || c.Roofed(map) || c.GetEdifice(map) != null) continue;
+                        float d = map.snowGrid.GetDepth(c);
+                        if (d > 0.1f) map.snowGrid.SetDepth(c, Mathf.Max(0f, d - 0.25f));
+                        else if (ThingDefOf.Filth_Dirt != null) FilthMaker.TryMakeFilth(c, map, ThingDefOf.Filth_Dirt);
+                        FleckMaker.PlaceFootprint(c.ToVector3Shifted(), map, Mathf.Atan2(-dir.x, -dir.z) * Mathf.Rad2Deg);
+                        laid++;
+                    }
+                    if (laid < 4) return false;
+                    at = to;
+                    speaker = Witness(map, to, 20f) ?? map.mapPawns.FreeColonistsSpawned.Where(Awake).OrderBy(p => p.Position.DistanceToSquared(to)).FirstOrDefault();
+                    return speaker != null;
+                }
+                case OmenKind.DogsSilent:
+                {
+                    // The colony's dogs stop where they are and stand silent, all facing the gate.
+                    var dogs = Dogs(map);
+                    var look = DefDatabase<JobDef>.GetNamedSilentFail(GodReactions.BeholdJob);
+                    if (dogs.Count == 0 || look == null) return false;
+                    var gate = OuterDoor(map)?.Position ?? CellFinder.RandomEdgeCell(map);
+                    int turned = 0;
+                    foreach (var d in dogs.Where(d => d.CurJob == null || d.CurJob.def.casualInterruptible))
+                    {
+                        try
+                        {
+                            var j = JobMaker.MakeJob(look, gate);
+                            j.count = 1200;
+                            j.expiryInterval = 1400;
+                            d.jobs.StartJob(j, JobCondition.InterruptForced);
+                            turned++;
+                        }
+                        catch (Exception e)
+                        {
+                            CouncilLog.ErrorOnce("gods: the dogs gone silent", e);
+                        }
+                    }
+                    if (turned == 0) return false;
+                    at = dogs[0].Position;
+                    var c0 = at;
+                    speaker = Witness(map, at, 20f) ?? map.mapPawns.FreeColonistsSpawned.Where(Awake).OrderBy(p => p.Position.DistanceToSquared(c0)).FirstOrDefault();
+                    return speaker != null;
+                }
                 case OmenKind.CatsFacing:
                 {
                     // Every cat on the land stops where it is and sits facing the graves (or the colony's middle, with none).
@@ -457,7 +606,7 @@ namespace ColonyCouncil
         }
 
         /// <summary>Wet ground near the colony's people (a marsh, mud, shallow water) or a well of the colony's, or none.</summary>
-        private static IntVec3 Wet(Map map)
+        internal static IntVec3 Wet(Map map)
         {
             var well = map.listerBuildings.allBuildingsColonist.FirstOrDefault(b => b.Spawned && b.def.defName.IndexOf("Well", StringComparison.OrdinalIgnoreCase) >= 0);
             if (well != null) return well.Position;
@@ -476,15 +625,38 @@ namespace ColonyCouncil
             return IntVec3.Invalid;
         }
 
+        /// <summary>The thrumbos on the land (any kind called a thrumbo: the game's and the player's mods'), not a god's own.</summary>
+        internal static List<Pawn> Thrumbos(Map map) =>
+            map.mapPawns.AllPawnsSpawned.Where(p => p.RaceProps.Animal && !p.Dead && !p.Downed && !p.InMentalState && !GodAvatar.Is(p)
+                                                    && p.def.defName.IndexOf("Thrumbo", StringComparison.OrdinalIgnoreCase) >= 0).ToList();
+
+        /// <summary>The colony's dogs (any of its animals called a dog, a hound, a husky, a retriever, a terrier, a wolf).</summary>
+        internal static List<Pawn> Dogs(Map map)
+        {
+            var words = new[] { "dog", "hound", "husky", "retriever", "terrier", "wolf", "warg" };
+            return map.mapPawns.SpawnedColonyAnimals.Where(p => !p.Dead && !p.Downed && !p.InMentalState && !GodAvatar.Is(p)
+                                                                && words.Any(w => (p.def.label ?? "").IndexOf(w, StringComparison.OrdinalIgnoreCase) >= 0
+                                                                                  || p.def.defName.IndexOf(w, StringComparison.OrdinalIgnoreCase) >= 0)).ToList();
+        }
+
+        /// <summary>A door of the colony's that opens to the outside (one side under the open sky), the nearest its people first.</summary>
+        internal static Building_Door OuterDoor(Map map)
+        {
+            var near = map.mapPawns.FreeColonistsSpawned.FirstOrDefault()?.Position ?? map.Center;
+            return map.listerBuildings.allBuildingsColonist.OfType<Building_Door>()
+                .Where(d => d.Spawned && GenAdj.CellsAdjacentCardinal(d).Any(c => c.InBounds(map) && !c.Roofed(map) && c.Standable(map)))
+                .OrderBy(d => d.Position.DistanceToSquared(near)).FirstOrDefault();
+        }
+
         /// <summary>A table of the colony's someone could watch a beetle cross, or null.</summary>
-        private static Building Table(Map map) =>
+        internal static Building Table(Map map) =>
             map.listerBuildings.allBuildingsColonist.Where(b => b.Spawned && b.def.IsTable && !b.Position.Fogged(map)).OrderByDescending(b => Colonists(map, b.Position, 10f)).FirstOrDefault();
 
         /// <summary>The moon's face tonight (Rimfolk's own calendar: GodsOnMapMath.Face, one round a season).</summary>
         internal static GodsOnMapMath.MoonFace MoonTonight => GodsOnMapMath.Face(Find.TickManager.TicksAbs / GenDate.TicksPerDay);
 
         /// <summary>An open cell of the colony's land outdoors near its people, for a sign with nothing else to point at.</summary>
-        private static IntVec3 Open(Map map)
+        internal static IntVec3 Open(Map map)
         {
             var near = map.mapPawns.FreeColonistsSpawned.FirstOrDefault(p => p.Spawned);
             if (near != null && RCellFinder.TryFindRandomSpotJustOutsideColony(near, out var spot)) return spot;
@@ -513,7 +685,7 @@ namespace ColonyCouncil
         }
 
         /// <summary>A ring of mushrooms overnight round something she wants noticed: a grave, a body left lying, else open ground.</summary>
-        private static bool FairyRing(Map map, out IntVec3 at, out Pawn speaker)
+        internal static bool FairyRing(Map map, out IntVec3 at, out Pawn speaker)
         {
             speaker = null;
             var grave = map.listerBuildings.allBuildingsColonist.FirstOrDefault(b => b is Building_Grave && !b.Position.Roofed(map));
@@ -575,7 +747,7 @@ namespace ColonyCouncil
             return true;
         }
 
-        private static void Rime(Map map, IntVec3 c)
+        internal static void Rime(Map map, IntVec3 c)
         {
             if (!c.InBounds(map) || c.Roofed(map)) return;
             map.snowGrid.AddDepth(c, 0.55f);

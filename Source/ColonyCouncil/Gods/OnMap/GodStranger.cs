@@ -274,6 +274,8 @@ namespace ColonyCouncil
             s.leaveAt = now + Mathf.RoundToInt(hours * GenDate.TicksPerHour);
             s.since = now;
             s.phase = StrangerPhase.Staying;
+            // Its own presence while it stays under the roof (the Guest's warm evening), named as the colony knows it: not at all, in disguise.
+            GodPresenceOwn.Quiet(Gods.ById(s.god), s.map);
             s.slaughterBase = Slaughtered(s.map);
             s.logSeen = LastLogId();
             var spot = s.gate;

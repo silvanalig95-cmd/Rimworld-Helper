@@ -59,6 +59,12 @@ namespace ColonyCouncil
         public float dreamFactor = 1f;
         /// <summary>People believe it keeps the rain (Murmur's song, Cirrus's sky): it may be said to ask for something, or the rain stays away.</summary>
         public bool rainKeeper;
+        /// <summary>
+        /// Its own way of taking what is left for it (Gods/Worship/OfferingWays.cs; docs/gods-next-proposals.md, D 5): a sapling
+        /// where Hollin's lay, Morel's rotted into black soil, Ducat's given to a visitor, Helios's never taken. Vanish (the
+        /// default) is the shared way: gone by morning, nobody saw it go.
+        /// </summary>
+        public OfferingWay taking = OfferingWay.Vanish;
 
         private static Dictionary<int, GodWorshipDef> cache;
         private static int cacheVersion = -1;
@@ -92,6 +98,16 @@ namespace ColonyCouncil
         /// <summary>It takes offerings at all: not an archotech or a dead god (WorshipMath), and not one whose own def says it takes nothing.</summary>
         public static bool TakesOfferings(God g) => g != null && WorshipMath.TakesOfferings(g.kind) && !(For(g)?.takesNoOfferings ?? false);
 
+        /// <summary>
+        /// The colony's people leave it gifts: every god that takes them, and Helios too, who takes none (they leave it all the
+        /// same, and see for themselves that it is never taken).
+        /// </summary>
+        public static bool GiftsLeft(God g) => TakesOfferings(g) || g != null && WorshipMath.TakesOfferings(g.kind) && For(g)?.taking == OfferingWay.Never;
+
+        /// <summary>What the colony believes a god likes given, for the carrier's choice: its own liking, or for one that takes nothing its domains' (what people would think it likes).</summary>
+        public static float Believed(God g, OfferingKind k) =>
+            TakesOfferings(g) ? Fit(g, k) : GiftsLeft(g) ? WorshipMath.Fit(k, g.domain, g.second, GodKind.Ordinary) : 0f;
+
         /// <summary>Worship moves it (not one whose def says it is unmoved).</summary>
         public static bool Moved(God g) => g != null && !(For(g)?.unmoved ?? false);
 
@@ -122,6 +138,7 @@ namespace ColonyCouncil
             if (festivalSeason > 3 || festivalDay > 14) yield return "a festival's season is 0 to 3 and its day 0 to 14";
             if (!festivalName.NullOrEmpty() && festivalName.StartsWith(" ")) yield return "a festival's name starts with a word";
             if (takesNoOfferings && !likes.NullOrEmpty()) yield return "a god that takes nothing likes nothing";
+            if (takesNoOfferings && taking != OfferingWay.Never && taking != OfferingWay.Vanish) yield return "a god that takes nothing has no way of taking but never";
             if (nightFactor <= 0f || dreamFactor <= 0f) yield return "night and dream factors are above zero";
         }
     }

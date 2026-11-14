@@ -58,7 +58,11 @@ namespace ColonyCouncil
         LivedThrough,
         Bickered,
         TurnedFrom,
-        TurnedTo
+        TurnedTo,
+        /// <summary>A gift left at the god's place found taken, in the god's own way (a sapling, black soil, a warm floor).</summary>
+        SawTaken,
+        /// <summary>A god's own presence lived through on the land (the green leaning, a white silence), to its end.</summary>
+        LivedPresence
     }
 
     /// <summary>The small rite each god's devotees keep (PawnGodsMath.RiteOf): where they go and what they do there.</summary>
@@ -421,6 +425,8 @@ namespace ColonyCouncil
             BeliefEvent.Bickered => 0.5f,
             BeliefEvent.TurnedFrom => -25f,
             BeliefEvent.TurnedTo => 20f,
+            BeliefEvent.SawTaken => 3f,
+            BeliefEvent.LivedPresence => 3f,
             _ => 0f
         };
 
@@ -466,6 +472,7 @@ namespace ColonyCouncil
             BeliefEvent.Answered => 0.6f,
             BeliefEvent.SawBlessing => 0.4f,
             BeliefEvent.LivedThrough => 0.3f,
+            BeliefEvent.LivedPresence => 0.15f,
             _ => 0f
         };
 

@@ -13429,10 +13429,10 @@ under the world. Tamiu is the one who keeps the dead whole and lies across the d
 - **Her own signs** (`OmenKind.CatsFacing`, `GoldEyes`, `Sand`; `GodOmensOwn.cs`) in place of the shared ones: every cat
   on the land sits facing the graves; at night, two gold eyes low in the dark by the graves, and gone; fine pale sand
   across a grave where no wind blows sand. Each is said aloud and kept in the book.
-- **Her presence on the land** (`Rimfolk_GodPresence_Mog`, `GameCondition_MogPresence`), her own and apart from the shared
-  presence of a god's moment: from her coming to her going, "the cats keeping watch" (by the colony's name for her once it
-  knows it is her: "Tamiu keeping watch"). The land's rats and mice run off it as she comes, and every few hours the cats
-  go and sit facing the graves. Round 2's presence system can take it into the shared one.
+- **Her presence on the land** (`Rimfolk_GodPresence_Mog`): from her coming to her going, "the cats keeping watch" (by the
+  colony's name for her once it knows it is her: "Tamiu keeping watch"). The land's rats and mice run off it as she comes,
+  and every few hours the cats go and sit facing the graves. Released as a condition of its own; since round 2 one of the
+  gods' own presences (`GodDef.presence`, effect `Watch`; "The gods each their own" below).
 - **Her offerings and worship** (`Rimfolk_Worship_Mog`, `Rimfolk_Pool_Worship_Offer`): fish for her cats, linen for the
   wrapping, meat; her keepers chant Alpha Memes' Kemetic chant; she keeps no calendar and never asks.
 - **Her sign** (`Tools/make_god_signs.py`, `mog()`): a cat seated in profile on a tomb's door, upright and watchful as the
@@ -13441,6 +13441,127 @@ under the world. Tamiu is the one who keeps the dead whole and lies across the d
 - Tested in `MogTests` (the pure rules, her def, shape and look, her omens and presence, the card, every age's words, the
   seams); `GodsTests`, `GodsOnMapTests`, `GodWorldTests` and `HarmBudgetTests` follow her. Not built: her own festival
   (she keeps none), a cult people of her own (her keepers come from the peoples that hold her).
+
+### The gods each their own: presences, ways of taking, own signs (the player's go, 14 November 2026; released 0.234.0)
+
+The player, 14 November 2026: "gods effect should be noticeable"; "the "Each god its own" proposals sounds great too! go
+ahead with all of this"; their complaint: "when a godly event happens, there is kind of a presence on the map, which is
+seen in the bottom right corner, and I think it's kind of the same description for this effect for each different god
+... each of the gods should feel really unique in what it does and whether or how it interacts with the world, what the
+impact is, how these things play out on the map". Round 2 of `docs/gods-next-proposals.md` (sections C and D). The unseen
+rule holds: a presence is named only when the colony is sure whose it is (`Gods.CardName`, looked at again as a long stay
+goes on), else by what anyone can see; its words say what is seen, its numbers are shown under its label as the game
+shows any condition's, never as a god's favour or mind.
+
+- **How a god plugs in** (declared per god, nothing in code by name):
+  - its presence: `GodDef.presence`, a GameConditionDef of class `GameCondition_GodPresence` (parent
+    `Rimfolk_GodPresenceOwnBase`) with an `OwnPresence` extension: `god` (its key), `effect` (one `PresenceEffect`),
+    `named` and `namedText` (with {NAME}), `neverNamed`, `motes` and `sounds` by name; the def's label and description
+    are the unnamed form. A god whose def names none keeps the shared `Rimfolk_GodPresence` (the sky and the stilled
+    wind), as every god did before. Checked when the defs load (`GodDef.ConfigErrors`);
+  - its way of taking: `GodWorshipDef.taking` (an `OfferingWay`; `Vanish`, the shared way, by default);
+  - its signs: `GodShapeDef.omens`, as before.
+  A new effect is a `PresenceEffect` value with its sizes in `GodPresenceOwnMath`, its show in `GodPresenceShows` and
+  any hook in `GodPresenceOwnPatches`; a new way an `OfferingWay` with its rules in `OfferingWayMath`, its taking in
+  `OfferingWays.Take` and its words (`CC_Wsh_Taken_Way_<Way>_<Felt|Plain|...>`, `CC_Wsh_Inspect_Fate_Way_<Way>`,
+  `Rimfolk_Pool_Worship_Way` lines tagged `way:<way>`).
+- **The presence** (`Gods/Presence/GodPresenceCondition.cs`, `GodPresenceOwn.cs`, `GodPresenceShows.cs`): a god's moment
+  (`GodPresence.Manifest` through the seam, `GodsWiring` passing `GodPresenceOwn.DefOf(god)` and its key) leaves the god's
+  own presence after it, one a map as before. Its strength by the moment (`GodPresenceOwnMath.Strength`: a blessing 1, a
+  coming or a reveal or a wrath 0.85, an act 0.7, a departure 0.4); a wrath (`Harsh`) turns its kindly side off and its
+  hard side up. Its length is the moment's (one to five hours) unless its nature asks for another (`Ticks`): Selene's
+  begun at night until seven in the morning, Murmur's six hours at least; the Old Horn's, the Guest's and Tamiu's held
+  while they walk the land (two hours left at least, `Held`; Tamiu's ended once she has gone, `EndsWhenGone`) and begun
+  again on the hour when another god's has passed (`GodPresenceOwn.Hourly`). The Guest's and Tamiu's begin quietly as they
+  come (`GodPresenceOwn.Quiet`, never in place of another's). Each shows at its start, as motes where the player is
+  looking (every 40 to 60 ticks on the map in view), at each of its turns (`Sched.RareGodPresence`, a waiting pass on
+  tick 91, timed by the clock) and on its hour; someone of the colony who sees it says so once (`Rimfolk_Pool_GodPO_Say`,
+  `notice:<effect>`, named lines only when the colony is sure). Its numbers are written under its words
+  (`GodPresenceOwn.NumberLines`, `CC_GodPO_Num_*`), and its stats' breakdowns name it by its label (`StatPart_GodPresence`).
+  The fourteen (at full strength):
+  - **Hollin, "the green leaning"** ("Hollin listening"): plants grow a third faster (`Plant.GrowthRate`, shown in the
+    plant's growth breakdown); green motes drift to one tree (the anima tree, else the oldest near the colony); the
+    dryads stand facing it; Alpha Biomes' petal storm in spring; a tree felled under it: "the axe felt wrong" (-2 a day,
+    -5 two days in her wrath) and a line. None of it in her wrath but the axe.
+  - **Smoulder, "warm stone"** ("Smoulder breathing"): 4 degrees warmer out of doors (7 in his wrath), heat pushed into
+    the rooms under thick rock each turn, snow melting off the rock, steam from the geysers and the foot of the rock, a
+    fine ash and ore glinting in the faces; mining yields a quarter more (`MiningYield`); at six someone who slept under
+    the mountain says a warm voice spoke in their dream (the dream book, the journal, the colony's book).
+  - **Bellwether, "the white beast grazing"** ("Bellwether passing"), while he is on the land: no animal turns
+    manhunter (`MentalStateHandler.TryStartMentalState`), one that had turned near him calms, wild beasts near him lie
+    down facing him (three a turn), insults half as likely and fights a quarter (`InteractionWorker_Insult`, `Slight`,
+    `SocialFightChance`), a thrumbo's call now and then.
+  - **Morel, "spore-fall"** ("Morel close"): pale spores drifting (glowing after dark), a ring of mushrooms at a grave or
+    a body; food out of the cold and the dead rot half again as fast (twice in her wrath; `CompRottable`), mushrooms
+    grow half again as fast, sicknesses pass 15 percent faster (`ImmunityGainSpeed`).
+  - **Ennu, "a warm evening"** ("Ennu under our roof"), from the stranger let in to the stranger gone: 2 degrees
+    warmer, hearths keep three fifths of what they burn and give more heat, insults half as likely and fights rarer, a
+    colony animal follows the guest a while, "a warm evening" (+2 for the colony's own, +5 for visitors). Nothing when
+    the Guest was wronged.
+  - **Pip, "a hum in the wires"** ("Pip awake"): the lights pulse in a pattern and the machines spark; batteries keep
+    half of what they give out (`CompPowerBattery.DrawPower`), powered benches a tenth faster
+    (`WorkTableWorkSpeedFactor`); one door won't open for one person (`Building_Door.PawnCanOpen`): they walk to it,
+    it won't budge, they say so; it ends when someone else opens it (`StartManualOpenBy`), within the hour, or at once
+    when they must pass (drafted, hungry, hurt, danger). Sulking (wrath): the lights flicker slow, nothing held.
+  - **Cirrus, "a sky too high"** ("Cirrus looking down"): the sky clears and is lighter, the weather holds (Clear; in
+    its wrath the weather as it was), the birds leave, the vast shadow passes, lightning and thunder far off with no
+    rain, looking at the sky twice as likely and half again as enjoyable (the condition's own skygazing factors), and a
+    stargazer "watched from very high" (+3).
+  - **Hush, "a white silence"** ("Hush near"): nobody starts a conversation (`TryInteractRandomly`) and nobody remarks on
+    it until it lifts, the music falls silent, 5 degrees colder (8 in its wrath), frost along the walls, a fine snow
+    (Seasonal Weather's fog-snow, else the game's) where it is cold and fog where it isn't, nothing out of doors rots,
+    and the old, the sick and babies feel the cold 4 degrees sooner (`ComfyTemperatureMin`).
+  - **Undertow, "the dark"** (never named): the sky darker, lamps reach a third less far (half in its wrath;
+    `CompGlower.GlowRadius`, the lamps re-lit as it comes and goes), the corner of the home ground farthest out stays
+    dark (the dark sign held there), shadow motes there, psychic sensitivity +20 percent, the most desperate hear a
+    sweet voice once by night.
+  - **Helios, "the long noon"** ("Helios staring"): the light of the hour it came holds (only when it came by day; the
+    night stays night), the shadows stand still, 4 degrees warmer (8 in his wrath), solar panels a quarter more
+    (`CompPowerPlantSolar`), crops a quarter faster (never in his wrath), heat shimmer, and night owls and those the sun
+    burns (Biotech's and Alpha Genes' UV sensitivity, Vanilla Races Expanded's photophobia) "the sun won't go down" (-3).
+  - **Selene, "a moon too close"** ("Selene watching"): the night as light as her face is full (up to dusk), silver over
+    the sleepers and on still water, wounds heal half again as fast in sleep (`InjuryHealingFactor`), and at six after a
+    full-moon night a true dream told at breakfast: a raid queued for the colony within two days, else visitors on
+    their way, else a beast with teeth on the land and where, else the stores going soft, else someone sadder than they
+    let on, else only the moon (`TrueDream`, read from the storyteller's queue and the map).
+  - **Tamiu (Mog), "the cats keeping watch"** ("Tamiu keeping watch"): folded in from 0.233.0's own condition (effect
+    `Watch`): from her coming to her going the rats and mice run off the land and every few hours the cats sit facing
+    the graves (`MogsWays.CatsWatch`).
+  - **Murmur, "a croaking in the wells"** ("Murmur singing"): water standing at the well, Odyssey's bullfrogs out on the
+    wet ground, a deep croak (the camera shakes, ripples, a frog's call) at its start and now and then, rain from its
+    first hour (Odyssey's torrent in his wrath), plants on wet ground three tenths faster, and with Dubs Bad Hygiene
+    nobody comes down with cholera, dysentery or diarrhoea on the map while it lasts (`AddHediff`, by name).
+  - **Ducat, "a glint"** ("Ducat going by"): coins glinting in the stores, the golden beetle across a table, a few single
+    coins out of the biggest store lying in a line toward the nearest edge (moved, not lost), traders deal 8 percent
+    better (`TradePriceImprovement`; 5 worse in its wrath).
+- **Each god's own way of taking** (`Gods/Worship/OfferingWays.cs`, `OfferingWayMath`; `GodWorshipDef.taking`), in place of
+  the shared "gone by morning ... Nobody saw it go" (which stays for a god whose worship names none): Hollin's sinks into
+  the soil and a young tree of the land stands there (else the soil turned dark); Smoulder's goes down a crack, rubble and
+  a warm floor; Bellwether's grazed, a hoofprint beside it; Morel's rots into black soil (rich soil where the ground is
+  natural) with a mushroom; Ennu's gone with footprints in from the land's edge and none away (in the snow, else the dirt);
+  Pip's part gone and the nearest broken machine mended (else a light winks three times); Cirrus's taken up by night in a
+  streak of light; Hush's frosted over in the night and gone at dawn; Undertow's gone and one to three of a stack beside
+  it with it; Helios's never taken: the noon light lies on it and at dusk it goes back to the stores, still there
+  (gifts are left for him now, as people don't know better: `GodWorshipDef.GiftsLeft`, chosen by what they believe he
+  likes, `Believed`); Selene's gone only on a night her moon shows (it waits out a dark week, then goes back); Murmur's
+  down into the well or the wet ground with a croak; Ducat's handed to the nearest visitor or trader by day and carried
+  off in their pack (after three days with nobody, back to the stores, counting for nothing); Tamiu's eaten at dawn by
+  the nearest cat, which walks over and eats it (else gone at dawn, paw prints where it lay). Plainly (a god drawn near),
+  each goes its own way before everyone's eyes with the god's moment. The news, the inspect line and the next day's
+  notice (round 1's sign, `Offerings.Notice`) say it in the way's own words (`Rimfolk_Pool_Worship_Way`); what was seen
+  going (a cat eating, a visitor given it) or never goes needs no noticing. Saved: `OfferingRecord.stage` and `cat`.
+- **Bellwether's and Ennu's own signs** (`OmenKind.ThrumbosFace`, `GrassBowed`, `Hoofprint`, `Knock`, `Footprints`,
+  `DogsSilent`; `GodOmensOwn.cs`), in place of the five shared ones: every thrumbo on the land standing facing one way; the
+  grass bowed flat in one long line across the land; at dawn a cloven hoofprint the size of a table near the colony's
+  edge; a knock at the colony's outer door at dusk and the nearest one walking out to find nobody; at dawn footprints up
+  to the door from the land's edge and none away; the colony's dogs gone silent, all facing the gate. Each said aloud
+  and kept in the book.
+- Dev mode: "Gods: a god's own presence here now..." (any god and kind, as the colony knows it or named), "Gods: end the
+  presence here", "Gods: the presence here (log)", "Gods: offerings here taken now, each god's own way".
+- Tested in `GodsOwnTests` (the sizes and lengths, the weather, the dreams, the fourteen declared and all different,
+  every name in the player's mods, every effect shown and said, the hooks, the slot, the saved fields, every way's rules,
+  words and show, the next day's notice, the new signs, how a god plugs in); `MogTests` follows her presence folded in.
+  Not seen in a real game (none of it could be): see the handoff's entry.
 
 ### Each one's gods: a colonist's own belief in each god (the player's go, 14 November 2026; round 3; not released)
 
@@ -13479,7 +13600,10 @@ nothing here.
   +12), a festival kept at home (+3, half for one who holds the god little), leading its rite (+5), their own small rite
   (+1.5), a god's moment seen (+4, plainly +10, a kindness +6, a sign +2), a gift of a god's (+12), a dream of it (+4), a
   tale, a line of what it is or a saying told to them (+1.5), something lived through (+6: the cold that nearly took them
-  for Hush, the heat for Helios, a deadly sickness got over for Morel, once a month each). A moment counts for the god its
+  for Hush, the heat for Helios, a deadly sickness got over for Morel, once a month each), a god's own presence lived
+  through on the land to its end (+3, and now and then won over, where the colony was sure whose it was; in anger, dread
+  instead: `PawnGods.PresencePassed` from `GameCondition_GodPresence.End`), a gift found taken by day in the god's own way
+  (+3, `PawnGods.SawTaken` from `Offerings.Noticed`). A moment counts for the god its
   witnesses took it for (`GodLoreMath.Attribute`, as the book does), so a belief can grow in the wrong god; a gift too, as
   the dream that brought it may not have named it. A scoffer is moved only by a god seen plainly, and half.
 - **How it fades** (`Fade`, `FadeDread`): unused twelve days, half a point a day, down to half of what their character
@@ -13539,11 +13663,13 @@ nothing here.
 - **The seams** (so round 2's presences, offering ways and omens plug in): `Prayers.Said`, `TryAnswer`, `Credit`;
   `FaithHeart.Unanswered`, `TurnAway`, `Mock`; `Offerings.Placed`; `Vows.End`; `Festivals.Kept`, `Passed`, `RiteDone`;
   `GodDreams`; `GodTales.Tell`, `WhatOf`, `Saying`; `GodHands.Show`; `GodWorldGifts.Give`; `Gods.Remember` and
-  `Gods.Moment` (every act and moment seen on the land). Kept in worship's own hour and day (`Worship.Hourly`, `Daily`):
+  `Gods.Moment` (every act and moment seen on the land, the gods' own omens among them); round 2's own presences
+  (`GameCondition_GodPresence.End`) and ways of taking (`Offerings.Noticed`, and a gift taken plainly through
+  `Worship.Sign`). Kept in worship's own hour and day (`Worship.Hourly`, `Daily`):
   no pass and no Sched slot of its own. Dev actions: "Gods: a colonist's own gods (log)", "Gods: set a colonist's
   belief...", "Gods: their small rite now", "Gods: win them over now...", "Gods: rival devotees bicker now".
 - Saved small: one record a colonist, six gods at most, the departed let go each day and the discarded at saving
-  (`Tools/save_estimate.py`). Tested in `PawnGodsTests`.
+  (`Tools/save_estimate.py`). Tested in `PawnGodsTests` (324 checks).
 
 ### Four small asks (the player's request, 12 November 2026; released 0.222.0)
 

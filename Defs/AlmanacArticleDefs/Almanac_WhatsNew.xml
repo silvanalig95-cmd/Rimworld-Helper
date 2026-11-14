@@ -31,6 +31,20 @@ When you load a save after an update, a letter lists the newest round once. The 
     <rounds>
 
       <li>
+        <version>0.234.0</version>
+        <date>14 November 2026</date>
+        <title>The gods, each their own</title>
+        <points>
+          <li>Each god now leaves its own presence on the map, with its own name, words and effect, from faster plants under Hollin to a white silence under Hush.</li>
+          <li>A god's presence is named only once the colony is sure whose it is, and its numbers show under its label.</li>
+          <li>Each god takes its offerings in its own way, from a sapling where Hollin's gift lay to Ducat's gift handed to a visitor.</li>
+          <li>Helios never takes what is left for him: the noon light lies on it, and at dusk it is still there.</li>
+          <li>Bellwether and Ennu send omens of their own, such as a great hoofprint at dawn or a knock at the door with nobody there.</li>
+          <li>Tamiu's watch over the graves is now one of the gods' own presences, and a cat eats her offerings at dawn.</li>
+        </points>
+      </li>
+
+      <li>
         <version>0.233.0</version>
         <date>14 November 2026</date>
         <title>Tamiu, the Keeper of the Threshold</title>

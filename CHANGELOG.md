@@ -5,6 +5,17 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## The gods, each their own
+
+*14 November 2026, version 0.234.0*
+
+- Each god now leaves its own presence on the map, with its own name, words and effect, from faster plants under Hollin to a white silence under Hush.
+- A god's presence is named only once the colony is sure whose it is, and its numbers show under its label.
+- Each god takes its offerings in its own way, from a sapling where Hollin's gift lay to Ducat's gift handed to a visitor.
+- Helios never takes what is left for him: the noon light lies on it, and at dusk it is still there.
+- Bellwether and Ennu send omens of their own, such as a great hoofprint at dawn or a knock at the door with nobody there.
+- Tamiu's watch over the graves is now one of the gods' own presences, and a cat eats her offerings at dawn.
+
 ## Tamiu, the Keeper of the Threshold
 
 *14 November 2026, version 0.233.0*

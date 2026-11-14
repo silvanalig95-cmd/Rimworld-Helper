@@ -49,6 +49,7 @@
   <CC_Belief_Why_Saw>Since {DATE}: {WHAT}</CC_Belief_Why_Saw>
   <CC_Belief_Why_Dread>Afraid since {DATE}: {WHAT}</CC_Belief_Why_Dread>
   <CC_Belief_Why_Lived>Since they came through {WHAT}, {DATE}.</CC_Belief_Why_Lived>
+  <CC_Belief_Why_SawTaken>Since they found a gift at its place taken, {DATE}.</CC_Belief_Why_SawTaken>
   <CC_Belief_Why_WonOver>Won over. {WHY}</CC_Belief_Why_WonOver>
   <CC_Belief_Lived_Cold>the cold that nearly took them</CC_Belief_Lived_Cold>
   <CC_Belief_Lived_Heat>the heat that nearly took them</CC_Belief_Lived_Heat>
