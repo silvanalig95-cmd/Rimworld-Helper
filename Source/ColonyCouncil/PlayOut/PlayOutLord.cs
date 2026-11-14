@@ -258,6 +258,10 @@ namespace ColonyCouncil
                         abstained.Add(p);
                         Beliefs.NoteNothingFit(p, label);
                     }
+                    // A visitor at the feast whose meal lies where visitors don't go (a cold store): one of the colony
+                    // brings it out to them (KeepOut).
+                    else if (KeepOut.IsVisitor(p) && KeepOut.Fetch(p, meals.Where(t => !t.IsForbidden(p) && !Beliefs.MindsEating(p, t)), out var brought) && brought != null)
+                        served.Add(p);
                     continue;
                 }
                 var job = JobMaker.MakeJob(JobDefOf.Ingest, meal);

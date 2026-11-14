@@ -187,6 +187,15 @@ namespace ColonyCouncil
             int hour = GenLocalDate.HourOfDay(v.map);
             if (hour < 17 || hour > 21 || x.InMentalState) return true;
             var meal = Hosting.Meal(x, false) ?? Hosting.Raw(x);
+            // What the colony has lies where visitors don't go (a cold store): one of the colony brings the rider's supper
+            // out to them, and they eat it when it's handed over (KeepOut).
+            if (meal == null && Hosting.Brought(x, false, true, out var brought))
+            {
+                if (brought == null) return true;
+                v.done = true;
+                PeoplesG.SayLine(x, v.incident, "supper");
+                return false;
+            }
             if (meal == null || !Hosting.Eat(x, meal, null)) return true;
             v.done = true;
             PeoplesG.SayLine(x, v.incident, "supper");

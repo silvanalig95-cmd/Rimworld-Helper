@@ -179,7 +179,9 @@ public static class OutsiderAutoTests
             "the talk job: turned away in bubbles only, its outcome told it began by themselves");
         C(jobs.Contains("why != null && job.playerForced"), "the gift job: turned away in bubbles only");
         string outcomes = Read("Outsiders", "OutsiderOutcomes.cs");
-        C(outcomes.Contains("if (byThemselvesNow && !StillTold(key)) return;") && Regex.Matches(outcomes, @"playerForced = !byThemselvesNow").Count == 3,
+        // Five: the meal, the lesson and the bout, and a meal whose outsider's portion is brought out of the cold store (the
+        // bringing and the colonist's own meal after it, Visitors/KeepOut.cs).
+        C(outcomes.Contains("if (byThemselvesNow && !StillTold(key)) return;") && Regex.Matches(outcomes, @"playerForced = !byThemselvesNow").Count == 5,
             "fewer messages by themselves; the meal, the lesson and the bout theirs, not an order");
         foreach (var k in new[] { "CC_Out_Msg_Friends", "CC_Out_Msg_Sweet", "CC_Out_Msg_Lovers", "CC_Out_Msg_InviteYes" })
             C(outcomes.Contains("key == \"" + k + "\""), $"{k} is still told");

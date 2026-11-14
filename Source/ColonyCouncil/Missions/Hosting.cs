@@ -96,6 +96,28 @@ namespace ColonyCouncil
             return PlaySpots.BestMeal(p, sorted, out _);
         }
 
+        /// <summary>
+        /// No meal of the colony's they may go and take (<see cref="Meal"/>, and with <paramref name="raw"/> no raw food
+        /// <see cref="Raw"/> either), because what there is lies in a room visitors keep out of (a cold store): a colonist
+        /// brings one of those out to them in the same order and hands it over, and they eat it then (KeepOut.Fetch). True
+        /// when someone set off (or already is on the way); <paramref name="food"/> what they went for.
+        /// </summary>
+        public static bool Brought(Pawn p, bool finestFirst, bool raw, out Thing food)
+        {
+            food = null;
+            var map = p?.Map;
+            if (map == null) return false;
+            var spot = p.Position;
+            var meals = PlaySpots.Meals(map).Where(Fresh);
+            IEnumerable<Thing> sorted = (finestFirst ? meals.OrderByDescending(t => (int)t.def.ingestible.preferability) : meals.OrderBy(t => (int)t.def.ingestible.preferability))
+                .ThenBy(t => t.Position.DistanceToSquared(spot));
+            if (raw)
+                sorted = sorted.Concat(Missions.Matching(map, "rawfood")
+                    .Where(t => !FoodUtility.IsHumanlikeCorpseOrHumanlikeMeatOrIngredient(t) && FoodUtility.WillEat(p, t, p) && Beliefs.FitForStock(p, t))
+                    .OrderByDescending(t => (int)t.def.ingestible.preferability).ThenBy(t => t.Position.DistanceToSquared(spot)));
+            return KeepOut.Fetch(p, sorted.Where(t => !t.IsForbidden(p) && !Beliefs.MindsEating(p, t)), out food);
+        }
+
         private static bool Fresh(Thing t)
         {
             var rot = t.TryGetComp<CompRottable>();
@@ -208,7 +230,8 @@ namespace ColonyCouncil
             if (map == null) return list;
             foreach (var room in RoomUtil.ColonyRooms(map))
             {
-                if (room.IsPrisonCell || room.OpenRoofCount > 0) continue;
+                // Never a spare bed in a room visitors keep out of: beside a colonist's own bed, or in a cold store (KeepOut).
+                if (room.IsPrisonCell || room.OpenRoofCount > 0 || KeepOut.IsKept(room)) continue;
                 foreach (var bed in room.ContainedBeds)
                     if (Usable(bed, ours, like)) list.Add(bed);
             }

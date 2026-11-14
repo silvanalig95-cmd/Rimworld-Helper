@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+  <!-- Visitors keep out of the colony's bedrooms and cold stores (Source/ColonyCouncil/Visitors/KeepOut.cs): food a
+       visitor may not go in for, carried out to them by a colonist and handed over. -->
+
+  <JobDef>
+    <defName>Rimfolk_BringOutFood</defName>
+    <driverClass>ColonyCouncil.JobDriver_BringOutFood</driverClass>
+    <reportString>bringing TargetA out to TargetB.</reportString>
+    <casualInterruptible>false</casualInterruptible>
+    <checkOverrideOnDamage>Always</checkOverrideOnDamage>
+  </JobDef>
+
+</Defs>

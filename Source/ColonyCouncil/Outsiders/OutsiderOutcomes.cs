@@ -24,6 +24,8 @@ namespace ColonyCouncil
         public int said;
         /// <summary>What is on each one's plate, as the table's lines are tagged (fare:awful, fare:simple, fare:fine, fare:lavish); null for a drink.</summary>
         public string fareC, fareX;
+        /// <summary>The outsider's portion is brought out of a cold store by the colonist first (KeepOut).</summary>
+        public bool brought;
     }
 
     /// <summary>A bout between a colonist (a) and an outsider (b), under way: who landed what, the terms, who watches (not saved).</summary>
@@ -772,6 +774,15 @@ namespace ColonyCouncil
                 if (forX == null && !Beliefs.MindsEating(x, t) && x.CanReach(t, PathEndMode.ClosestTouch, Danger.Some) && (t != forC || t.stackCount >= 2)) forX = t;
                 if (forC != null && forX != null) break;
             }
+            // Nothing for the outsider where they may go: their portion from where visitors don't go (a cold store), which the
+            // colonist brings out to them (KeepOut).
+            if (forC != null && forX == null)
+                foreach (var t in ordered)
+                    if (!Beliefs.MindsEating(x, t) && KeepOut.KeptFrom(x, t.Position) && c.CanReach(t, PathEndMode.ClosestTouch, Danger.Some) && (t != forC || t.stackCount >= 2))
+                    {
+                        forX = t;
+                        break;
+                    }
             return forC != null && forX != null;
         }
 
@@ -793,6 +804,24 @@ namespace ColonyCouncil
                 return null;
             }
             Say(x, drink ? "drinkyes" : "mealyes", c);
+            if (KeepOut.KeptFrom(x, fx.Position))
+            {
+                // The outsider's portion lies where visitors don't go (a cold store): the colonist brings it out and hands
+                // it over, and each eats at the table nearest, as the game picks; the colonist's own portion after.
+                meals.Add(new OutsiderMeal
+                {
+                    c = c, x = x, drink = drink, start = Now, foodC = c.needs?.food?.CurLevel ?? 0f, foodX = x.needs?.food?.CurLevel ?? 0f,
+                    fareC = drink ? null : Fare(fc), fareX = drink ? null : Fare(fx), brought = true
+                });
+                var own = JobMaker.MakeJob(JobDefOf.Ingest, fc);
+                own.count = 1;
+                own.playerForced = !byThemselvesNow;
+                // The talk job puts the bringing first, so the colonist's own meal comes after it.
+                c.jobs.jobQueue.EnqueueFirst(own, JobTag.Misc);
+                var bring = KeepOut.BringJob(fx, x);
+                bring.playerForced = !byThemselvesNow;
+                return bring;
+            }
             // The game's own eating, each with their portion from the stores: side by side at one table when there are
             // two chairs free at it, else each at the table nearest their food, as the game picks.
             bool seated = Seats(c, x, out var seatC, out var seatX);
@@ -852,6 +881,9 @@ namespace ColonyCouncil
 
         private static bool Eating(Pawn p) => p != null && p.Spawned && (p.CurJobDef == JobDefOf.Ingest || p.CurJobDef == OutsiderDefOf.Council_OutsiderMeal);
 
+        /// <summary>Ticks each may take to begin eating when the outsider's portion is brought out of the cold store first.</summary>
+        private const int BroughtWait = 4000;
+
         private static void MealsRare(int now)
         {
             foreach (var m in meals.ToList())
@@ -869,8 +901,10 @@ namespace ColonyCouncil
                     var by = Rand.Bool ? m.c : m.x;
                     Say(by, m.drink ? "drinktalk" : "mealtalk", by == m.c ? m.x : m.c, null, by == m.c ? m.fareC : m.fareX);
                 }
-                bool cOver = m.cDone || !m.cOn && now - m.start > 1200;
-                bool xOver = m.xDone || !m.xOn && now - m.start > 1200;
+                // A portion brought out of the cold store first: each begins later.
+                int wait = m.brought ? BroughtWait : 1200;
+                bool cOver = m.cDone || !m.cOn && now - m.start > wait;
+                bool xOver = m.xDone || !m.xOn && now - m.start > wait;
                 if (cOver && xOver || now - m.start > 6000 || m.c == null || m.x == null || m.c.Dead || m.x.Dead)
                 {
                     meals.Remove(m);

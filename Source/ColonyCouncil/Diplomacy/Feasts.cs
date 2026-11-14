@@ -1009,6 +1009,8 @@ namespace ColonyCouncil
                     {
                         var meal = Hosting.Meal(x, Empire(g)) ?? Hosting.Raw(x);
                         if (meal != null && Hosting.Eat(x, meal, null)) continue;
+                        // What the colony has lies where visitors don't go (a cold store): brought out to them (KeepOut).
+                        if (meal == null && Hosting.Brought(x, Empire(g), true, out _)) continue;
                         if (food < Hosting.PackBelow || sleepy)
                         {
                             var pack = Hosting.Pack(x);
@@ -1176,6 +1178,8 @@ namespace ColonyCouncil
                 {
                     var meal = g.pawn != null && Free(g.pawn) ? Hosting.Meal(g.pawn, Empire(g)) : null;
                     if (meal != null) Hosting.Eat(g.pawn, meal, null);
+                    // The colony's meals all lie where visitors don't go (a cold store): one brought out to them (KeepOut).
+                    else if (g.pawn != null && Free(g.pawn)) Hosting.Brought(g.pawn, Empire(g), false, out _);
                 }
                 return;
             }
