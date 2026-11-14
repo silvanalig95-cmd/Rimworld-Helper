@@ -872,6 +872,16 @@ MODEL = {
                                            "one per colonist of the colony's own, the departed let go daily and the discarded at saving"),
     "Gods/Belief/PawnGodsBook.cs:gods": ("fixed", const("Gods/Belief/PawnGodsMath.cs", "MaxHeld", 6), 330,
                                          "per colonist: their gods, PawnGodsMath.MaxHeld at most, the faded let go (counted under people)"),
+    # The saints (Gods/Saints/SaintsBook.cs): the colony's own, named by the council after a remarkable death (one in a season
+    # or two at most, SaintsMath.MaxSaints kept); the deaths waiting for the council's card, SaintsMath.CandidateDays each
+    # (SaintsMath.MaxWaiting at once); the statues raised to a saint, gone with the statue (SaintsMath.MaxPlaces); the
+    # colony's faiths' saints seen, for "kept no more" (SaintsMath.MaxSeen); who took their faith's damned to heart, once
+    # each person and damned (SaintsMath.MaxFeared).
+    "Gods/Saints/SaintsBook.cs:saints": ("cap", (const("Gods/Saints/SaintsMath.cs", "MaxSaints", 40), 0.02), 420, "the colony's own saints, by name only (never kin), SaintsMath.MaxSaints"),
+    "Gods/Saints/SaintsBook.cs:waiting": ("window", (const("Gods/Saints/SaintsMath.cs", "CandidateDays", 12), 0.03), 260, "remarkable deaths waiting for the council's card, SaintsMath.CandidateDays each, SaintsMath.MaxWaiting at once"),
+    "Gods/Saints/SaintsBook.cs:places": ("cap", (const("Gods/Saints/SaintsMath.cs", "MaxPlaces", 60), 0.02), 300, "statues raised to a saint, gone with the statue, SaintsMath.MaxPlaces"),
+    "Gods/Saints/SaintsBook.cs:seen": ("cap", (const("Gods/Saints/SaintsMath.cs", "MaxSeen", 40), 0.05), 220, "the colony's faiths' saints seen, for the book's kept no more, SaintsMath.MaxSeen"),
+    "Gods/Saints/SaintsBook.cs:feared": ("cap", (const("Gods/Saints/SaintsMath.cs", "MaxFeared", 200), 0.3), 40, "who took their faith's damned to heart, once each, SaintsMath.MaxFeared"),
     "Gods/God.cs:witnesses": ("fixed", 3, 20, "per act: the colonists who saw it, by name (counted under acts)"),
     # The colony's own book of the gods (Gods/GodLore.cs): its entries, each a few lines of text in the keeper's voice
     # with its witnesses' names, GodLoreMath.MaxEntries kept (the oldest let go), a few a week at most (the hands are weeks

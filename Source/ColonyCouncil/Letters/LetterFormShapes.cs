@@ -233,7 +233,8 @@ namespace ColonyCouncil
             {
                 var ideo = p.ideo.Ideo;
                 if (!ideo.name.NullOrEmpty()) s.values["IDEO"] = ideo.name;
-                string deity = ideo.KeyDeityName;
+                // Their faith's holy one, as the colony reads its deities: one of its saints (Gods/Saints/Saints.cs).
+                string deity = Saints.SermonName(ideo) ?? ideo.KeyDeityName;
                 if (!deity.NullOrEmpty()) s.values["DEITY"] = deity;
                 LetterCultureMath.ReadPrecepts(ideo.PreceptsListForReading?.Where(x => x?.def != null).Select(x => x.def.defName), s.tags);
             }

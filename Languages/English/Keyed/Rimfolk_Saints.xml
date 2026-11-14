@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <!-- The saints (Source/ColonyCouncil/Gods/Saints/). A saint is a person, named plainly; the god behind them is named only by
+       the colony's name for it and only where the colony knows it. A faith's tie of a saint to a god is the faith's belief,
+       said as theirs. A person honoured, never their kin. -->
+
+  <!-- The words of each age and culture (SaintsMath.WordSet, DamnedSet): a title, the word as a header, one of them, one of them of a god. -->
+  <CC_Saint_Title_Ancestors>Ancestor {NAME}</CC_Saint_Title_Ancestors>
+  <CC_Saint_Word_Ancestors>Ancestors</CC_Saint_Word_Ancestors>
+  <CC_Saint_A_Ancestors>an Ancestor</CC_Saint_A_Ancestors>
+  <CC_Saint_AOf_Ancestors>an Ancestor who walks with {GOD}</CC_Saint_AOf_Ancestors>
+  <CC_Saint_Title_Saints>Saint {NAME}</CC_Saint_Title_Saints>
+  <CC_Saint_Word_Saints>Saints</CC_Saint_Word_Saints>
+  <CC_Saint_A_Saints>a saint</CC_Saint_A_Saints>
+  <CC_Saint_AOf_Saints>a saint of {GOD}</CC_Saint_AOf_Saints>
+  <CC_Saint_Title_Exemplars>Exemplar {NAME}</CC_Saint_Title_Exemplars>
+  <CC_Saint_Word_Exemplars>Exemplars</CC_Saint_Word_Exemplars>
+  <CC_Saint_A_Exemplars>an exemplar</CC_Saint_A_Exemplars>
+  <CC_Saint_AOf_Exemplars>an exemplar of {GOD}</CC_Saint_AOf_Exemplars>
+  <CC_Saint_Title_Venerated>Venerated {NAME}</CC_Saint_Title_Venerated>
+  <CC_Saint_Word_Venerated>Venerated</CC_Saint_Word_Venerated>
+  <CC_Saint_A_Venerated>one of the Venerated</CC_Saint_A_Venerated>
+  <CC_Saint_AOf_Venerated>one of the Venerated of {GOD}</CC_Saint_AOf_Venerated>
+  <CC_Saint_Title_Martyrs>Martyr {NAME}</CC_Saint_Title_Martyrs>
+  <CC_Saint_Word_Martyrs>Martyrs</CC_Saint_Word_Martyrs>
+  <CC_Saint_A_Martyrs>a martyr</CC_Saint_A_Martyrs>
+  <CC_Saint_AOf_Martyrs>a martyr of {GOD}</CC_Saint_AOf_Martyrs>
+  <CC_Saint_Title_Forsaken>{NAME} the Forsaken</CC_Saint_Title_Forsaken>
+  <CC_Saint_Word_Forsaken>Forsaken</CC_Saint_Word_Forsaken>
+  <CC_Saint_Title_Damned>{NAME} the Damned</CC_Saint_Title_Damned>
+  <CC_Saint_Word_Damned>Damned</CC_Saint_Word_Damned>
+  <CC_Saint_Title_Fallen>{NAME} the Fallen</CC_Saint_Title_Fallen>
+  <CC_Saint_Word_Fallen>Fallen</CC_Saint_Word_Fallen>
+
+  <!-- Why one of the colony's own is a saint (SaintReason). -->
+  <CC_Saint_Deed_None>who is remembered here</CC_Saint_Deed_None>
+  <CC_Saint_Deed_Rescuer>who died carrying the wounded out of the fight</CC_Saint_Deed_Rescuer>
+  <CC_Saint_Deed_Defender>who held the line to the last</CC_Saint_Deed_Defender>
+  <CC_Saint_Deed_Healer>who kept the sick for years</CC_Saint_Deed_Healer>
+  <CC_Saint_Deed_Keeper>who kept the faith all their days</CC_Saint_Deed_Keeper>
+  <CC_Saint_Deed_Vow>who kept a vow to the very end</CC_Saint_Deed_Vow>
+
+  <!-- The council's card (Rimfolk_Dlm_Saint). -->
+  <CC_Saint_Impact_Named>{SAINT}: the grave becomes a place to pray, the day is kept each year by the devoted, and a relic is set aside</CC_Saint_Impact_Named>
+  <CC_Saint_Impact_NamedBrief>{SAINT} named</CC_Saint_Impact_NamedBrief>
+
+  <!-- Named (Saints.Name): the book, the relic. -->
+  <CC_Saint_Book_Named>The council named {DEAD} {ASAINT}, {DEED}.</CC_Saint_Book_Named>
+  <CC_Saint_RelicForm_0>a lock of hair bound in knotted cord</CC_Saint_RelicForm_0>
+  <CC_Saint_RelicForm_1>a small bone in a carved box</CC_Saint_RelicForm_1>
+  <CC_Saint_RelicForm_2>a lock of hair under glass</CC_Saint_RelicForm_2>
+  <CC_Saint_RelicForm_3>a recording of their voice sealed in a small case</CC_Saint_RelicForm_3>
+  <CC_Saint_RelicSet_Grave>A keepsake of {SAINT}'s was set aside by the grave, to be kept as a relic: {FORM}.</CC_Saint_RelicSet_Grave>
+  <CC_Saint_RelicSet>{PAWN} set a keepsake of {SAINT}'s aside, to be kept as a relic: {FORM}.</CC_Saint_RelicSet>
+  <CC_Saint_RelicLabel>relic of {SAINT}</CC_Saint_RelicLabel>
+  <CC_Saint_RelicInspect>A relic of {SAINT}, {DEED}: {FORM}.</CC_Saint_RelicInspect>
+
+  <!-- A faith's damned, taken to heart (a colonist's belief, the Culture tab's line of why). -->
+  <CC_Saint_Why_Damned>Their faith, {FAITH}, speaks of {SAINT} only with fear.</CC_Saint_Why_Damned>
+
+  <!-- The book (GodLorePage, Saints.BookLines). -->
+  <CC_Saint_Book_Part>Of its saints</CC_Saint_Book_Part>
+  <CC_Saint_Book_Hand>As {KEEPER} keeps them:</CC_Saint_Book_Hand>
+  <CC_Saint_Book_Nobody>As the colony keeps them:</CC_Saint_Book_Nobody>
+  <CC_Saint_Book_Ours>{SAINT}, {DEED}, named by the council on {DATE}. {DAY}</CC_Saint_Book_Ours>
+  <CC_Saint_Book_Day_Male>His day is kept each year on the day he died.</CC_Saint_Book_Day_Male>
+  <CC_Saint_Book_Day_Female>Her day is kept each year on the day she died.</CC_Saint_Book_Day_Female>
+  <CC_Saint_Book_Day_None>Their day is kept each year on the day they died.</CC_Saint_Book_Day_None>
+  <CC_Saint_Book_Faith>The faith of {FAITH} holds {SAINT} among its {WORD}.</CC_Saint_Book_Faith>
+  <CC_Saint_Book_Damned>The faith of {FAITH} fears {SAINT}, and never prays to them.</CC_Saint_Book_Damned>
+  <CC_Saint_Book_Gone>{SAINT}, kept no more by the faith of {FAITH}.</CC_Saint_Book_Gone>
+
+  <!-- A saint's day (SaintsPlaces.Keep). -->
+  <CC_Saint_FeastLabel>{SAINT}'s day</CC_Saint_FeastLabel>
+  <CC_Saint_Cause_Feast>{SAINT}'s day</CC_Saint_Cause_Feast>
+  <CC_Saint_FeastQuiet>{SAINT}'s day: {WHO} kept it quietly, each where they were.</CC_Saint_FeastQuiet>
+
+  <!-- Praying at a saint's place, raising a statue to a saint (SaintsPlaces). -->
+  <CC_Saint_Cause_Prayed>prayed to {SAINT}</CC_Saint_Cause_Prayed>
+  <CC_Saint_Report_Pray>praying to {SAINT}.</CC_Saint_Report_Pray>
+  <CC_Saint_Report_Raise>raising the statue to {SAINT}.</CC_Saint_Report_Raise>
+  <CC_Saint_Gizmo_Raise>Raise to a saint</CC_Saint_Gizmo_Raise>
+  <CC_Saint_Gizmo_Pending>Raising to {SAINT}</CC_Saint_Gizmo_Pending>
+  <CC_Saint_Gizmo_Raised>Raised to {SAINT}</CC_Saint_Gizmo_Raised>
+  <CC_Saint_Gizmo_Desc>Raise this statue to one of the saints: the colony's own, or one of its people's faiths'. Someone walks over and says the words, the art takes the saint's name, and from then on the devoted come here now and then to pray to them.</CC_Saint_Gizmo_Desc>
+  <CC_Saint_Gizmo_None>No saints yet: the council has named none of the colony's own, and its people's faiths have none.</CC_Saint_Gizmo_None>
+  <CC_Saint_Menu_Ours>{SAINT} (one of ours)</CC_Saint_Menu_Ours>
+  <CC_Saint_Menu_Faith>{SAINT} (of {FAITH})</CC_Saint_Menu_Faith>
+  <CC_Saint_Menu_Clear>To no saint</CC_Saint_Menu_Clear>
+  <CC_Saint_RaiseAsked>Someone will go to the {PLACE} and raise it to {SAINT}.</CC_Saint_RaiseAsked>
+  <CC_Saint_RaiseLetGo>Nobody came to say the words at the {PLACE}, so it stays as it was.</CC_Saint_RaiseLetGo>
+  <CC_Saint_Raised>{PAWN} said the words at the {PLACE}: it stands for {SAINT} now, and anyone may pray there.</CC_Saint_Raised>
+  <CC_Saint_Likeness>The {PLACE} is {SAINT}'s likeness, and people have begun to pray before it.</CC_Saint_Likeness>
+  <CC_Saint_Inspect_Pending>Waiting for someone to raise it to {SAINT}.</CC_Saint_Inspect_Pending>
+  <CC_Saint_Inspect_Statue>Raised to {SAINT} by {PAWN}: a place to pray to them.</CC_Saint_Inspect_Statue>
+  <CC_Saint_Inspect_Likeness>{SAINT}'s likeness: a place to pray to them.</CC_Saint_Inspect_Likeness>
+  <CC_Saint_Inspect_Grave>The grave of {SAINT}, {DEED}: a place to pray to them.</CC_Saint_Inspect_Grave>
+  <CC_Saint_Inspect_Of>Of {GOD}, as their faith holds.</CC_Saint_Inspect_Of>
+  <CC_Saint_Inspect_OfOurs>Of {GOD}, by the council's word.</CC_Saint_Inspect_OfOurs>
+
+  <!-- The ideoligion screen, under the deity box, in play (Patch_SaintsWord). -->
+  <CC_Saint_IdeoLine>As the colony holds them: {SAINTS}.</CC_Saint_IdeoLine>
+  <CC_Saint_IdeoHoly>{SAINT}, of {GOD}</CC_Saint_IdeoHoly>
+  <CC_Saint_IdeoDamned>{SAINT}, feared, of {GOD}</CC_Saint_IdeoDamned>
+
+</LanguageData>

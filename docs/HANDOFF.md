@@ -117,6 +117,80 @@ tree at once, alongside whatever runs. Each piece is merged as its own release, 
   ordering them off is ruder still), less when they were trouble (a thief, a brawler, a drunk); with Hospitality its
   own way for its guests; never a caravan mid-trade without the trade closed first, and never anyone downed or a
   prisoner.
+- 0.236.0, **The saints: a faith's deities and
+  the colony's own** (14 November 2026; round 5 of `docs/gods-next-proposals.md`, section F, option b; the player's words:
+  "And I guess in that regard, the whole ideology implementation, we can also think about how we adapt the ideology system
+  to integrate and relate to our gods instead of, you know, the ones that are created by the game. And one idea I thought,
+  maybe if we can, or if we need to reuse the god, so to say, or this, the way it's implemented now with ideology, perhaps
+  instead of these being the gods that are currently registered to an ideology, this could, for example, be some sort of
+  saints or important characters. So kind of a middle ground between God and the pawns and the ideology, kind of saints or
+  holy men or unholy men or whatever", then "let's go with saints then"). DESIGN.md "The saints" has all of it;
+  `docs/design/gods.md` "The saints" the contract; the Almanac's page on the gods (prose only, keywords unchanged) says what
+  the colony's people do with their saints.
+  - What it is: Ideology's deities read (never changed) as the faith's saints, or its damned (a dark meme, dark words, the
+    void), each tied to one of the gods by its own words (`GodsMath.DeityDomains`, then `SaintsMath.GodFor`; a saint never
+    to the Hunger, the damned only to the Hunger, Hush or Smoulder). The ideoligion screen's "Deities" reads as the faith's
+    word by age and culture (Saints, Ancestors, Exemplars, Venerated, Martyrs; Damned, Forsaken, Fallen where every one is
+    damned), and in play a line under the box names each one's god where the colony knows it. A neighbour's sermon names
+    its faith's saint ({DEITY}). After a remarkable death (carrying the wounded out under attack; holding the line, the
+    healer's years or two years devoted, with a year in the colony) the council's card may name the fallen a saint of the
+    colony's own: the person, never their kin. Their grave, a statue raised to a saint and their relic are lesser shrines
+    the devoted pray at; their day is kept each year at the grave; a god's chapter in the book lists its saints. A faith's
+    saints lean its believers toward their gods a little; its damned leave them uneasy.
+  - Code map: `Source/ColonyCouncil/Gods/Saints/SaintsMath.cs` (pure, linked in `Tools/Tests/Tests.csproj`: `Merit`
+    with `SaintDeath`, `MeritFrom` 2.5, `MinDays`, `YearDays`, `KeeperDays`, `Healer*`; `ReasonDomain`; `CandidateDays`
+    12, `MaxWaiting`; `DarkMemes`, `DarkWords`, `Damned`, `DarkGods`, `GodFor`, `Seed`; `WordSet`, `DamnedSet`,
+    `Cultures`, `Sets`, `HeaderSet`, `AgeOfTech`; `SaintLean`, `WithSaints`, `DamnedDread`; `FeastFrom`, `FeastTo`,
+    `FeastDue`; `PrayChance`, `PrayGapDays`, `PrayTicks`, `RaiseTicks`; `Statues`, `IsStatue`; the `Max*` caps).
+    `Gods/Saints/SaintsBook.cs` (the saved GameComponent: `ColonySaint`, `SaintCandidate`, `SaintPlace`, `FaithSaintSeen`;
+    `saints`, `waiting`, `places`, `seen`, `feared`). `Gods/Saints/Saints.cs` (`FaithSaint`, `SaintView`; `Of(ideo)`,
+    `AgeOf`, `ColonyFaiths`, `Title`, `Plural`, `HeaderWord`, `OfGod`, `ASaint`, `Deed`, `SermonName`, `Lean`, `Died`,
+    `Waiting`, `Name`, the relic, `Hourly`, `Daily`, `Seen`, `DamnedFeared`, `BookLines`, `ViewAt`, `View`, `RelicFaith`;
+    `SaintsDefOf`). `Gods/Saints/SaintsPlaces.cs` (`Devotee`, `On`, `Feasts`, `Keep`, `Prayers`, statues: `IsStatue`,
+    `Choices`, `Ask`, `Clear`, `Raisings`, `Raised`, `LikenessComps` (Odyssey's `CompStatue`, the seam for Pawns on
+    Display), `Likenesses`; `GizmoFor`, `InspectLine`; `JobDriver_SaintPlace`; `CompSaintRelic`).
+    `Gods/Saints/SaintsCouncil.cs` (`SaintDilemmaContext`, `DilemmaWorker_Saint`, `DilemmaEffect_NameSaint`,
+    `DilemmaEffect_SaintWords`). `Gods/Saints/SaintsPatches.cs` (`SaintDeaths.Read`; `Patch_SaintDeath` on `Pawn.Kill`;
+    `Patch_SaintsWord` on `IdeoFoundation_Deity.DoInfo` with Prepare and a finalizer; `Patch_SaintGizmo`,
+    `Patch_SaintInspect`). `Gods/Saints/SaintsDebug.cs` (five dev actions). The seams touched, one line or a few each:
+    `Worship.cs` (hour and day), `Belief/PawnGods.cs` (`Sketch`: `Saints.Lean`), `Letters/LetterFormShapes.cs`
+    ({DEITY}), `GodLorePage.cs` (`SaintsPart`). Defs `Defs/GodDefs/Rimfolk_Saints.xml` (the card `Rimfolk_Dlm_Saint`, four
+    moods, two JobDefs, the relic `Rimfolk_SaintRelic`, six pools); keys `Languages/English/Keyed/Rimfolk_Saints.xml`;
+    the relic's picture `Textures/ColonyCouncil/Things/SaintRelic.png` (`Tools/make_saint_relic.py`). Tests
+    `Tools/Tests/SaintsTests.cs`. `Tools/save_estimate.py` models the five collections; `Tools/Balance/Rates.cs` the four
+    moods; `Tools/DefValidator` knows {SAINT} and {ASAINT}; `Tools/playout_audit.py` counts `DilemmaEffect_SaintWords`.
+    No Sched slot: worship's hour and day.
+  - Not run here (none of it could be): the ideoligion screen's word (the key is found by the game's English text
+    "Deities"; if the game draws it some other way the word simply stays) and the line under the box at its size; the
+    card after a real raid's death and the timing of a death's facts (an enemy's hand, a rescue job, bleeding out); the
+    words at the grave as a play-out; prayers and the saint's day walking to a grave, a statue or a relic; a statue's art
+    title taken and given back; Odyssey's statue known as a likeness (a private field read by name); a sermon letter
+    naming a saint; the pace of prayers and cards over a long game.
+  - Mods that would help: Pawns on Display ([3446605621](https://steamcommunity.com/sharedfiles/filedetails/?id=3446605621);
+    tags 1.5, 1.6, 1.7; updated 12 October, as `docs/gods-next-proposals.md` section G found it) for a statue that copies the saint's own look (not in the player's list; the
+    player didn't answer, so nothing depends on it: its comp would go in `SaintsPlaces.LikenessComps`). Already in the
+    list and used: Alpha Memes' statues (2661356814; 1.6, 1.7), Vanilla Furniture Expanded - Art's (1968134023; 1.5 to
+    1.7), Odyssey's statue.
+  - Try in the game (dev mode, with Ideology):
+    1. Open a faith with deities on the ideoligion screen: its "Deities" reads "Saints" (a tribal colony's "Ancestors", a
+       raider faith's "Damned"). "Gods: the colony knows every god", reopen: under the box, "As the colony holds them:
+       Saint Aranea, of Bellwether; Vorgath the Damned, feared, of the Hunger."
+    2. "Gods: a faith's saints (log)" on a colonist: their faith's saints with the god each is tied to.
+    3. Let a colonist die (or click a colonist's corpse or grave with "Gods: a fallen colonist waits for the saint's card"),
+       then "Gods: the saint's card now": the council's card ("the honoured dead"). Name them: that evening the asker says
+       the words at the grave with those who come, a relic appears by the grave ("A keepsake of Saint Mira's was set aside by
+       the grave, to be kept as a relic: a small bone in a carved box."), everyone but the scoffers "one of ours named a
+       saint" +3, and the grave's inspect line reads "The grave of Saint Mira, who kept the sick for years: a place to pray
+       to them. Of Hollin, by the council's word."
+    4. Select a sculpture: "Raise to a saint", pick Saint Mira: someone walks over, says one sentence, the art's title is
+       "Saint Mira", the inspect line says so; "To no saint" gives the old title back.
+    5. "Gods: pray at a saint's place now" on a colonist who holds the saint's god: they walk to the grave, statue or relic,
+       say one sentence ("Saint Mira, put in a word with Hollin for us."), "prayed to a saint" +2 (+3 before the relic where
+       their faith has a relic precept); the job reads "praying to Saint Mira.".
+    6. "Gods: a saint's day kept now": the devoted gather at the grave for an hour of words about the saint, "kept a saint's
+       day" +3 for those who came.
+    7. Open the Gods' book at Hollin's chapter: "Of its saints", in the keeper's hand: Saint Mira's line, the faith's
+       saints tied to Hollin, the damned.
 - 0.235.0, **Each one's gods: a colonist's own
   belief in each god** (14 November 2026; round 3 of `docs/gods-next-proposals.md`, section E; the player's words: "and
   then also kind of the interactions between pawns and the gods, you know, I guess pawns should have and develop kind of
