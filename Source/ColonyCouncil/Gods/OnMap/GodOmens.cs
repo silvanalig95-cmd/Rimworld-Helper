@@ -182,6 +182,8 @@ namespace ColonyCouncil
             if (at.IsValid) GodPresenceSeam.Call(new PresenceSpec { god = god, map = map, cell = at, kind = PresenceKind.Omen, veiled = true });
             // The colony's book keeps it in the words of who saw it (or of someone at home, for a sign nobody stood near).
             GodsOnMapWords.Saw(god, map, at, GodActKind.Omen, speaker, "CC_GodM_Saw_" + kind);
+            // What a god's own sign sets going (Gods/OnMap/OwnHappenings.cs): the miners' dream, the wrong-way star's, her ring.
+            OwnHappenings.Sign(god, map, at, kind, speaker);
             if (speaker == null) return;
             // At night, the moon's face is in what they say of it.
             string face = map.skyManager.CurSkyGlow < 0.3f ? GodReturn.FaceTag() : null;

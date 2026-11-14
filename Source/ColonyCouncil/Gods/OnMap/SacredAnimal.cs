@@ -308,6 +308,8 @@ namespace ColonyCouncil
             // the graves.
             if (IsMog(s) && Stare(b.stranger, s, a, now)) { }
             else if (IsMog(s)) MogsWays.Keep(s, a, now);
+            // The Old Horn's road (Gods/OnMap/OwnBellwether.cs): his last dusk at the colony's edge, his dawn road through it.
+            else if (OwnBellwether.Road(s, a, now)) { }
             else if (GodsOnMapMath.Follows(a.BodySize)) Follow(s, a, now);
             else if (GodShapes.Leads(god) && !s.led && !s.beckoned && s.follower == null && now - s.since > GenDate.TicksPerDay / 2
                      && Rand.Chance(GodsOnMapMath.BeckonChanceADay / 24f))
@@ -418,6 +420,8 @@ namespace ColonyCouncil
                         var sky = Gods.All.FirstOrDefault(g => g != null && GodShapes.LineTag(g) == "cirrus");
                         if (sky != null) Gods.AddFavour(sky, s.map, 1f, null);
                         if (a.Spawned) FleckMaker.ThrowLightningGlow(a.DrawPos, a.Map, 1.2f);
+                        // From now on they look at the sky before rain (Gods/OnMap/OwnBellwether.cs).
+                        OwnBellwether.Touched(p);
                         break;
                     case GodsOnMapMath.SitChange.Grief:
                         what = grief.LabelCap;
@@ -899,7 +903,11 @@ namespace ColonyCouncil
             {
                 float favour = GodsOnMapMath.AnimalFavour(false, false, false, false);
                 Gods.AddFavour(god, map, favour, null);
-                if (GodShapes.Peace(god)) Peace(map);
+                if (GodShapes.Peace(god))
+                {
+                    Peace(map);
+                    OwnBellwether.LetPass();
+                }
             }
             // Its kin go their way with it.
             foreach (var k in s.kin.Where(k => k != null && k.Spawned && !k.Dead))

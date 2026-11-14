@@ -31,6 +31,8 @@ namespace ColonyCouncil
         public static void Outcome(God god, Map map, IntVec3 at, Treatment t, Pawn kindest, Pawn harmer, StrangerWelcome welcome)
         {
             if (god == null || map == null) return;
+            // The Guest's kind welcome remembered, its kindest marked for the road's people (Gods/OnMap/OwnEnnu.cs).
+            OwnEnnu.Judged(god, map, t, kindest);
             try
             {
                 Gods.AddFavour(god, map, GodsOnMapMath.FavourFor(t), null, GodsOnMapMath.SourceOf(t), GodsOnMapMath.OffenceOf(t));

@@ -5,6 +5,19 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## The gods' own happenings, part one
+
+*14 November 2026, version 0.237.0*
+
+- Seven gods now have happenings of their own on the map: Hollin, Smoulder, Bellwether, Morel, Ennu, Pip and Cirrus.
+- Hollin's dryads may turn to a colonist and give one word that points at something real, and her roots break up through the floors of a colony that fells too much.
+- A miner may dream of a warm voice offering gold for silver dropped down the deepest shaft; keep the bargain to the letter and gold comes up in the rock, bend it and the vein is steel under a skin of gold.
+- The white thrumbo bows to the colony's youngest at dusk and walks his road through the colony at dawn, waiting at your fences until someone opens a gate.
+- A figure of pale threads may stand at the graves on the night after a death, and Morel's rings of mushrooms come up round what was left to rot.
+- The Guest at the gate asks one small thing each visit and tells other gods' stories by the fire; on the Open Door night a bowl set out is empty by morning.
+- Pip keeps a switched-off machine running an hour and writes half a message to the stars on the comms console, and a turret may hold its fire as a colonist crosses its line.
+- Cirrus's falling star now comes only to a colony that watches the sky, and whoever sees the wrong-way star dreams where pods will fall.
+
 ## The saints
 
 *14 November 2026, version 0.236.0*

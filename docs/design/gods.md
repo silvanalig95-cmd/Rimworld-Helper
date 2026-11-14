@@ -558,3 +558,25 @@ For the contract:
   forsaken, the damned, the fallen), the relic's form the colony's age's.
 - No harm: the saints only add places to pray, a day kept and small good moods; the damned leave a believer uneasy, never
   more.
+
+### Each god's own happenings, batch 1 (the player's go, 14 November 2026; round 4)
+
+"each of the gods should feel really unique in what it does and whether or how it interacts with the world, what the
+impact is, how these things play out on the map"; "gods effect should be noticeable". DESIGN.md, "Each god's own
+happenings, batch 1", has the whole of it: Hollin, Smoulder, Bellwether, Morel, Ennu, Pip and Cirrus, 29 happenings, each
+a god's own and played out on the map, with the lore never built before (Hollin's dryads' word, Smoulder's bargain in a
+dream and at the shaft, Morel's mourner at the graveyard). For the contract:
+- Each god's own happenings are code of its own (`Gods/OnMap/Own<God>.cs`), each rule pure in `OwnHappeningsMath` and
+  every one on the gods' pace (`GodPaceMath`: its own gap, a chance growing after it, never on a condition nearly always
+  true, its god's nearness a little more often). They run in the gods' own day and hour and hook the seams already there
+  (a rising, the deep's turning, a god's own sign, its anger and kindness, the white beast's stay, the stranger's
+  judgement, a festival kept), never forking them: Morel's and Pip's anger now come the day after a warning of their own.
+- The unseen rule holds: a card says what was seen, and its title names the god only where the colony knows it was that
+  god (`GodsOnMapWords.Title`); someone says it in one sentence, as their own guess; the colony's book keeps it in its
+  witness's words (`GodsOnMapWords.Saw`, so `Gods.Remember` finds who else saw it). Nothing shows a rule, a favour or why.
+- Harm only through the shared budget and shown: Smoulder's warm dream's burn (`HarmKinds.GodBurn`); the wounded thrumbo's
+  wounds are the wild's, never the colony's.
+- Every age by what the colony has (a floor or bare ground, a cooler, a console, a turret, its stores' coats, a fire), and
+  the two cards (the warm voice's bargain, the wounded thrumbo) in every age's words.
+- Batch 2 (Hush, Undertow, Helios, Selene, Murmur, Ducat, and Tamiu's more) plugs into the same frame: an `OwnHappening`
+  value named for its god, its rules in `OwnHappeningsMath`, a file of its own, a dev action.

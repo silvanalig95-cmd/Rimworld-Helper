@@ -531,6 +531,35 @@ namespace ColonyCouncil
             return w != null && Commonality(wd, w) > 0f ? w : null;
         }
 
+        /// <summary>
+        /// What the weather does next on <paramref name="map"/> when it is due to change within <paramref name="within"/> ticks
+        /// (<paramref name="left"/>: how soon), with the forecast's setting on: the weather already foretold, else the game's
+        /// own choice rolled now and held to as a forecast is (Patch_WeatherForecastHeld). Null otherwise. For one who knows
+        /// the weather before it turns (Bellwether's horn child: Gods/OnMap/OwnBellwether.cs), so what they say comes true.
+        /// </summary>
+        public static WeatherDef Foreseen(Map map, int within, out int left)
+        {
+            left = -1;
+            if (map == null || !ForecastOn || !Applies(map) || ChooseMethod == null || WeatherMakerOn(map)) return null;
+            var wd = map.weatherDecider;
+            var wm = map.weatherManager;
+            if (wm?.curWeather == null || wd.ForcedWeather != null || TutorSystem.TutorialMode) return null;
+            var book = WeatherBook.Of(map);
+            if (book == null) return null;
+            left = DurationOf(wd) - wm.curWeatherAge;
+            if (left <= 0 || left > within) return null;
+            var st = book.dyn;
+            if (st.pin == null)
+            {
+                var next = ChooseMethod.Invoke(wd, null) as WeatherDef;
+                if (next == null || KindOf(next) == WeatherKind.Special) return null;
+                st.pin = next.defName;
+                st.during = wm.curWeather.defName;
+                st.forecastStart = Find.TickManager.TicksGame - wm.curWeatherAge;
+            }
+            return DefDatabase<WeatherDef>.GetNamedSilentFail(st.pin);
+        }
+
         /// <summary>The next weather has begun: a forecast came true or not, and a fog in the night or morning lifts by late morning.</summary>
         public static void Started(WeatherDecider wd)
         {
