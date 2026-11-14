@@ -7,8 +7,8 @@ colony of 20, with the game keeping 30 more people it knows and 5 more each year
 generous guesses; sizes are rough XML sizes. Caps named as constants are read from the source. "Counted under" rows are
 kept inside another record (a journal's lines, a heart's lists) and are already in that record's size.
 
-Saved collections found: 697; modelled: 697; growing without end: 0.
-Rimfolk's part of the save, roughly: **3,004 KB** after a year, **3,705 KB** after two, **4,134 KB** after five.
+Saved collections found: 700; modelled: 700; growing without end: 0.
+Rimfolk's part of the save, roughly: **3,007 KB** after a year, **3,707 KB** after two, **4,137 KB** after five.
 
 | Collection | Rule | Kind | 1 year | 2 years | 5 years | KB at 5 years |
 |---|---|---|---|---|---|---|
@@ -282,6 +282,7 @@ Rimfolk's part of the save, roughly: **3,004 KB** after a year, **3,705 KB** aft
 | `Harm/Harm.cs:kindLast` | the shared budget's memory: each kind's last hurt, kept thirty days (a handful of the thirty-odd kinds at once; ninety-five at most, one each) | fixed | 12 | 12 | 12 | 1.1 |
 | `Setbacks/SetbackTracker.cs:bestAt` | one per skill | fixed | 12 | 12 | 12 | 1.1 |
 | `Weather/WeatherBook.cs:quarters` | WeatherMath.MaxQuarters: three years of seasons, a short line each, per home map | fixed | 12 | 12 | 12 | 1.1 |
+| `Gods/Happenings/OwnHappenings.cs:ruins` | rooms of old ruins someone has stood in ('map|x|z'), OwnHappeningsMath.RuinsHeldAtMost at most, the oldest let go | fixed | 30 | 30 | 30 | 1.0 |
 | `Arcs/ArcTracker.cs:eulogies` | until given | cap | 3 | 5 | 5 | 1.0 |
 | `Building/BuildAhead.cs:queueCells` | per room step: the pieces it queued until the ground is clear | fixed | 40 | 40 | 40 | 1.0 |
 | `Camps/Camp.cs:owned` | the camp's goods, pruned of the gone at saving | while | 40 | 40 | 40 | 1.0 |
@@ -336,6 +337,7 @@ Rimfolk's part of the save, roughly: **3,004 KB** after a year, **3,705 KB** aft
 | `World/Notables.cs:seen` | visitors and traders seen at the colony until they're home, 6 at most, three days | fixed | 6 | 6 | 6 | 0.7 |
 | `Camps/CampTracker.cs:raids` | per colony: a band against a camp, while it is on the map (one per camp at a time, seldom more than one) | while | 1 | 1 | 1 | 0.7 |
 | `Health/HealthTracker.cs:worst` | hard times not over yet (hunger, cold, untended illness); known pawns only | known | 6 | 6 | 8 | 0.7 |
+| `Gods/Happenings/OwnHappenings.cs:keys` | when each of the seven's happenings last came: its key, one each (OwnHappeningsMath.All) | fixed | 22 | 22 | 22 | 0.6 |
 | `PlayOut/Stage.cs:cups` | life goals' toasts waiting for the next gathering, five days at most each (StageMath.CupLetGo) | fixed | 3 | 3 | 3 | 0.6 |
 | `Peoples/Events3/PeopleEvents3Book.cs:shrines` | the old shrines the pilgrims raised, one a map, PeopleEvents3Math.MaxShrines kept | cap | 0 | 1 | 2 | 0.6 |
 | `Building/Suggest/SameRules.cs:pieceDefs` | with the above: what each blueprint was | fixed | 16 | 16 | 16 | 0.6 |
@@ -350,6 +352,7 @@ Rimfolk's part of the save, roughly: **3,004 KB** after a year, **3,705 KB** aft
 | `Secrets/Vendettas.cs:known` | known pawns only | known | 11 | 12 | 15 | 0.6 |
 | `Visitors/Callers.cs:commissions` | a piece the collector is owed, until collected or for 60 days at most; at most Callers.MaxCommissions | cap | 1 | 2 | 3 | 0.6 |
 | `Gods/GodLore.cs:lastHand` | each god's last hand remarked on | fixed | 14 | 14 | 14 | 0.5 |
+| `Gods/Happenings/OwnHappenings.cs:ticks` | beside it, the tick | fixed | 22 | 22 | 22 | 0.5 |
 | `Apparel/ApparelPickBook.cs:notNow` | colonists whose clothes suggestions are set aside, ten days each, the ended pruned daily | colonists | 6 | 6 | 6 | 0.5 |
 | `Building/ShelfReserves.cs:entries` | per shelf: the kinds it keeps slots for, with how they're kept | while | 6 | 6 | 6 | 0.5 |
 | `Faith/FaithCouncilTracker.cs:faithEvenings` | each faith's last evening of faith: one per faith, gone after 60 days or with the faith | fixed | 6 | 6 | 6 | 0.5 |

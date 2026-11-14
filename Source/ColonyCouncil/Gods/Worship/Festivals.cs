@@ -155,6 +155,7 @@ namespace ColonyCouncil
                     b.offerings.Add(new OfferingRecord { shrine = shrine, god = g.id, home = Gods.HomeKey(map), chosen = Worship.Now });
             }
             Visitors(g, map);
+            OwnHappenings.FestivalKept(g, map);
         }
 
         public static void Passed(CalendarDay d, Map map)

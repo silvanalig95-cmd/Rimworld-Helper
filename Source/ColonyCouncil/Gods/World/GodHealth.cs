@@ -316,6 +316,7 @@ namespace ColonyCouncil
                 left -= n;
                 if (left <= 0) break;
             }
+            DucatWays.Trail(g, map, at, take - left);
             return Told(g, map, at, "missing", PresenceKind.Wrath, (take - left).Named("COUNT"));
         }
 

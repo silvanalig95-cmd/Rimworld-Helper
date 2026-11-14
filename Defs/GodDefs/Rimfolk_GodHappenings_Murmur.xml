@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Murmur's own happenings (Source/ColonyCouncil/Gods/Happenings/Murmur.cs; docs/gods-next-proposals.md, C 13): sung back
+    to at the well (and the rain it may bring, with Seasonal Weather's double rainbow after), what the water gives back after
+    a wet run, the frogs that come in with the rain that breaks a dry spell (Odyssey's bullfrogs). One small mood, modelled
+    in Tools/Balance (Rates.cs). Tags: song, rain, giveback ({WHAT}), frogs, frogsheard, named, scoffer.
+  -->
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_Thought_Murmur_Sang</defName>
+    <durationDays>1</durationDays>
+    <stackLimit>1</stackLimit>
+    <stages>
+      <li>
+        <label>sang at the water</label>
+        <description>We stood round the water at dusk and sang down into it, all of us together. Something down there was listening.</description>
+        <baseMoodEffect>3</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_GodMurmur_Say</defName>
+    <lines>
+      <plain>
+        <li>[song] Sing it down into the water, slow, the way the old ones did.</li>
+        <li>[song] All together now, low and deep, so it carries down.</li>
+        <li>[song] Sing for the rain, and mean it.</li>
+        <li>[song,named] Sing to {GOD}, and maybe {GOD} sings back.</li>
+        <li>[song,scoffer] I'll sing, but I'm watching the sky, not the well.</li>
+
+        <li>[rain] Listen to it, real rain, and the frogs are singing under it.</li>
+        <li>[rain] It came, it actually came, feel it.</li>
+        <li>[rain,named] {GOD} heard us, that's his rain.</li>
+        <li>[rain,scoffer] It was always going to rain sooner or later.</li>
+
+        <li>[giveback] The water left {WHAT} on the mud, and nobody here lost it.</li>
+        <li>[giveback] Look what came up when the water went down.</li>
+        <li>[giveback,named] {GOD} gives back what the water takes, my mother always said.</li>
+        <li>[giveback,scoffer] Floods shift things, someone upstream is missing these.</li>
+
+        <li>[frogs] There are frogs everywhere, hundreds of them, out of nowhere.</li>
+        <li>[frogs] Mind your feet, the whole yard is hopping.</li>
+        <li>[frogs,named] {GOD}'s children have come out to greet the rain.</li>
+        <li>[frogs,scoffer] Rain brings frogs, every child knows that.</li>
+        <li>[frogsheard] I can hear frogs all round us, and I can't see one.</li>
+        <li>[frogsheard] Listen, croaking from every puddle, but where are they.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+</Defs>

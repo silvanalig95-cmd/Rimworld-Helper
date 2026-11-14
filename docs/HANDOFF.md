@@ -117,6 +117,108 @@ tree at once, alongside whatever runs. Each piece is merged as its own release, 
   ordering them off is ruder still), less when they were trouble (a thief, a brawler, a drunk); with Hospitality its
   own way for its guests; never a caravan mid-trade without the trade closed first, and never anyone downed or a
   prisoner.
+- Not released: no version, no What's new round, About.xml and CHANGELOG untouched. **Each god's own happenings, the
+  second seven: Hush, Undertow, Helios, Selene, Murmur, Ducat and two more for Tamiu** (14 November 2026; round 4, batch 2
+  of `docs/gods-next-proposals.md`, section C; the player's words: "each God's events and interactions and effects, etc.,
+  you know, feel unique to the god, not like every god's effect is kind of similar, but it's just a different name attached
+  to it ... each of the gods should feel really unique in what it does and whether or how it interacts with the world, what
+  the impact is, how these things play out on the map", then "gods effect should be noticeable", "go ahead with all of
+  this"). Built beside batch 1 (Hollin to Cirrus) in its own files. DESIGN.md "Each god's own happenings, the second
+  seven" has all of it; `docs/design/gods.md` the contract note; the Almanac's gods page (prose only, keywords unchanged)
+  says what the colony's people may do of their own accord.
+  - What it is (twenty-two happenings, each played out on the map, its own card or news line and book line, none hurting
+    anyone; the pace of `GodPaceMath`, a reason or nothing, near gods a little likelier):
+    - Hush: the word in the frost (WARM, BREAD, WOOD or COUNT in rime by the door at first light, pointing at something
+      real, read aloud by the first one up; the card has the plain fact), the old man's fire (a vigil by the frail's bed in
+      a cold snap, kept through the night, breaks the snap at dawn), the walk round the edge (the white figure walks the
+      colony's edge on the longest night leaving a ring of frost, moves off from anyone within twenty steps, footprints
+      that stop), frost on the grave (a lean-month death with food let rot: rime on the new grave, its white silence; days
+      later it melts into Morel's ring of mushrooms).
+    - Undertow (never named): the beasts keep away from one who bargained, eight days; the dark drifts at night toward
+      someone at the edge of breaking, the lamps it passes burning low, held off by someone sitting with them or a lamp
+      beside them, else standing over them till dawn and speaking kindly (dread); a hollow ear from a room of old ruins
+      (psychic sensitivity +15 percent, ten days).
+    - Helios: he looks back the day after an eclipse (his hard long noon, everyone outside shading their eyes); the first
+      fruit eaten out in the noon sun on his feast (fruit taken from the stores, eaten in the field); the sun comes back the
+      morning after the longest night (the colony out on the east side facing it).
+    - Selene: the morning card of what came back and by whose bed (they go and look); her face in still water at the full
+      moon (someone walks down and stands at the water's edge); the watch she keeps company (moonlight about them, sight and
+      aim till dawn); the dark face kept at the door on a night with no moon (the dark doesn't come in).
+    - Murmur: sung back to at the well (his feast, or a dry spell with two who hold him; often rain within the day, a
+      drought ended, a double rainbow after with Seasonal Weather); the water gives back after a wet run (silver and an old
+      worn thing of the colony's age from the whole mod pool, found on the mud); the frogs come in with the rain that breaks
+      a dry spell (Odyssey's bullfrogs, gone at dawn).
+    - Ducat: the trail of coins (its anger at a hoard now leaves single coins from the store out the door to the edge); the
+      open purse (coins pressed into a visitor's hand, their people think better of the colony); the golden beetle that
+      leads to a coin.
+    - Tamiu: the cat at the threshold (a cat stays beside someone near death; walks off once they come through, a card); the
+      cat by the lost dead (a cat cries by a colonist's body lying far out until someone finds it, unforbidden).
+  - Code map: `Source/ColonyCouncil/Gods/Happenings/OwnHappeningsMath.cs` (new, pure, linked in `Tools/Tests/Tests.csproj`:
+    `All`, `PaceOf`, `Follows`, `NearFactor`, `Chance`, `MaxLook`; Hush's `Word`, `FoodDays`, `Frail`, `VigilTrigger`,
+    `VigilKept`, `LongestNight`, `WalkTrigger`, `WalkRadius`, `WalkSteps`, `GraveTrigger`; the dark's `DriftTrigger`, `Drift`,
+    `DriftEnd`; Helios's `LookBackDue`, `DawnTrigger`; Selene's `WaterTrigger`, `WatchTrigger`, `DarkFaceTrigger`; Murmur's
+    `SongTrigger`, `SongAnswered`, `GiveBackTrigger`, `FrogsTrigger`, `Frogs`; Ducat's `TrailCoins`, `PurseTrigger`,
+    `BeetleTrigger`; Tamiu's `ThresholdTrigger`, `LostTrigger`). `OwnHappenings.cs` (new: `OwnHappeningsBook`, the saved
+    GameComponent: `keys`/`ticks` when each last came, `ruins`, each god's state, a due tick for short steps; `OwnHappenings`:
+    the hour, `FestivalKept`, `Roll`, `Came`, `Card`/`CardBy`, `Say`/`LineOf`, `Saw`, `Memory`, `Yields`, `Free`, `Walk`,
+    `Stand`, `Lead`, `Glow`, `ModMote`, `Rime`, `ColonyCat`, `StrayCat`, `Wasting`). One file a god, each with its state
+    class and its dev actions: `Hush.cs`, `Undertow.cs`, `Helios.cs`, `Selene.cs`, `Murmur.cs`, `Ducat.cs`, `Tamiu.cs`. One
+    line each in `Gods/OnMap/GodsOnMapBook.cs` (`Hourly`), `Gods/Worship/Festivals.cs` (`Kept`), `Gods/World/GodHealth.cs`
+    (`Missing`). Defs `Defs/GodDefs/Rimfolk_GodHappenings_<God>.xml` (each god's line pool, twelve small moods, the hediffs
+    `Rimfolk_HollowEar` and `Rimfolk_MoonlitWatch`); keys `Languages/English/Keyed/Rimfolk_GodHappenings_<God>.xml`. Tests
+    `Tools/Tests/OwnHappeningsTests.cs`; `Tools/Balance/Rates.cs` the twelve moods; `Tools/save_estimate.py` the three
+    lists. No Sched slot, no new harm kind.
+  - Mods used (active rows, by name, vanilla fallback): Odyssey's bullfrogs and frog call (Alpha Genes' call as the
+    fallback), Seasonal Weather's double rainbow, A RimWorld of Magic's ice and shadow motes, Dubs Bad Hygiene's wells (any
+    well of the colony's, by name), Vanilla Animals Expanded's cats (any cat), the game's and the mods' weapons and clothes
+    for what the water gives back, Glowstool, Agarilux and Bryolux for the ring. Would help: [JPT] Open The Windows
+    ([1971860929](https://steamcommunity.com/sharedfiles/filedetails/?id=1971860929); tags 1.1 to 1.6, no 1.7 tag, updated
+    6 August 2025, Harmony; the page as fetched showed a removal notice, so check it is still listed): windows that let light
+    in, and Hush's word is then written on the window itself (Rimfolk takes any building of the colony's called a window, by
+    name). Nothing else is needed.
+  - Not run here (none of it could be): every walk and stand on a real map (the finder out to the word at first light, the
+    keeper at the bedside through the night with their needs, the singers round a Dubs Bad Hygiene well, the colony out to
+    the field and the east side, a giver reaching a moving visitor); the white figure's ring and its frost at each zoom, the
+    dark's drift past real lamps; the cold snap ended by `GameCondition.End`; the fruit taken into inventory and eaten
+    (`Thing.Ingested` outside the eating job); the bullfrogs leaving at dawn; the coins laid along a real path through the
+    door; a cat kept beside someone without starving it; the hollow ear's rooms in Real Ruins' and the game's ancient
+    complexes.
+  - Try in the game (dev mode; "Gods: the colony knows every god" first to see the named titles):
+    1. "Gods: Hush's word in the frost now": a row of rime by the outer door, white motes; the first one up walks out, reads
+       it ("It says BREAD in the frost, and the stores are nearly bare."), and a card "A word in the frost" says the word and
+       the plain fact.
+    2. Start a cold snap (the game's dev incidents), put an old colonist to bed, "Gods: Hush's vigil now": the keeper walks
+       to the bed, sits, says so; past five o'clock the snap ends, the frost runs off, "The cold broke at dawn".
+    3. At night, "Gods: Hush's walk round the edge now": the white figure walks round the colony leaving a ring of frost;
+       walk someone toward it and it moves on, footprints that stop; the card at first light.
+    4. Bury a colonist, "Gods: Hush's frost on the newest grave now", then "Gods: Hush's frost melts now": rime on the grave
+       and the white silence; then a ring of mushrooms.
+    5. "Gods: Undertow's beasts keep away now": animals walk off from that colonist; someone says so, a card.
+    6. At night, "Gods: Undertow's dark drifts now": a dark shape drifts in toward the lowest in mood, lamps guttering; sit
+       someone beside them (or light a lamp next to them) and it stops; the card at dawn says which.
+    7. "Gods: Undertow's hollow ear now": the hediff, a card.
+    8. "Gods: Helios looks back now": his hard long noon in the corner, those outside shade their eyes.
+    9. Fresh berries in a stockpile, "Gods: Helios's first fruit in the sun now": they take one each, walk out to the field
+       and eat it there; the news line.
+    10. "Gods: Helios's sun comes back now": those up walk out east and face the sunrise, gold motes.
+    11. "Gods: Selene's morning card now..." Found (drop an item by a colonist's bed first): they walk to it, the card.
+    12. With still water near and someone up at night, "Gods: Selene's face in the water now": a pale light on the water,
+        they walk down and stand there, a card. "Gods: Selene keeps a watch company now": moonlight about them, the hediff.
+    13. "Gods: Selene's dark face kept now": a night owl walks to the outer door and stands looking out till three; "Gods:
+        Undertow's dark drifts now" meanwhile does nothing.
+    14. "Gods: Murmur sung to at the well now": they stand round the well singing (notes); then "Gods: Murmur's rain now":
+        rain, a croak, the card; when it stops, the double rainbow.
+    15. "Gods: Murmur's water gives back now": silver (and maybe an old worn thing) on the mud; someone walks down, a card.
+    16. "Gods: Murmur's frogs come in now": bullfrogs all over the colony, gone at first light.
+    17. "Gods: Ducat's trail of coins now": single coins from the silver out the door to the edge; by day someone walks to
+        the first and looks along it.
+    18. With a visitor group on the map, "Gods: Ducat's open purse now": someone walks over, a word, coins into their pack,
+        goodwill +2.
+    19. "Gods: Ducat's beetle leads to a coin now": a gold glint crawls off the table to a gold coin; they follow and find it.
+    20. Down a colonist bleeding, "Gods: Tamiu's cat at the threshold now": a cat comes and stays beside them; tend them and
+        six hours after they're out of danger it walks off, "The cat walked away".
+    21. Leave a colonist's body far out, "Gods: Tamiu's cat by the lost dead now": a cat walks out to it crying, someone
+        follows and finds it, the body unforbidden, a card.
 - 0.235.0, **Each one's gods: a colonist's own
   belief in each god** (14 November 2026; round 3 of `docs/gods-next-proposals.md`, section E; the player's words: "and
   then also kind of the interactions between pawns and the gods, you know, I guess pawns should have and develop kind of

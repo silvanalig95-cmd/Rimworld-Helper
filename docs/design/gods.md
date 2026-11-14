@@ -538,3 +538,24 @@ and culture tab". DESIGN.md, "Each one's gods", has the whole of it. For the con
   hand, `Gods.Remember` and `Gods.Moment`, a god's own presence ending, a gift found taken in its own way), so a part
   that goes through them moves belief with no code of its own.
 - Only the colony's own people (`Worship.Ours`); no harm but the rare scuffle in a quarrel at the game's insult's rate.
+
+### Each god's own happenings, the second seven (the player, 14 November 2026; round 4, batch 2)
+
+"each God's events and interactions and effects ... feel unique to the god, not like every god's effect is kind of similar,
+but it's just a different name attached to it"; "gods effect should be noticeable". DESIGN.md, "Each god's own happenings,
+the second seven", has the whole of it (Hush, Undertow, Helios, Selene, Murmur, Ducat, two more for Tamiu). For the
+contract:
+- Each god's happenings are its own files (`Gods/Happenings/<God>.cs`, `Defs/GodDefs/Rimfolk_GodHappenings_<God>.xml`,
+  `Languages/English/Keyed/Rimfolk_GodHappenings_<God>.xml`), keyed by the god's key (`Gods.ByKey`), sharing only the
+  book and helpers of `OwnHappenings.cs` and the pure rules of `OwnHappeningsMath.cs`; a god missing from the pantheon
+  (or dead) has none.
+- The pace is the gods' own (`GodPaceMath`): no happening comes without a reason in the world, each keeps its gap and ramp,
+  a near god a little likelier (`GodNear`); those that follow something (a bargain, an eclipse, a feast, the moon's return,
+  silver gone) have no chance of their own.
+- The unseen rule holds: a card's title names the god only where `Gods.CardName` allows (with a sign the colony learned
+  where one fits); its text never; the Hunger nowhere. What is seen reaches the book and belief through
+  `GodsOnMapWords.Saw`; the colony's own rites through `Worship.Booked`; nothing else of the god is told.
+- No harm: none of the seven's happenings injures or sickens anyone (a hollow ear opens a mind a little, a hard noon or a
+  white silence is a round 2 presence's few degrees); nothing new in the harm or illness budgets.
+- Every age: each happening is the land's and the colony's own things, its words by the colony's age where the means
+  matter.

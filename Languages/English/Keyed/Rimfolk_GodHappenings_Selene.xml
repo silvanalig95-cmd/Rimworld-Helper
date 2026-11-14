@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <!--
+    Selene's own happenings (Source/ColonyCouncil/Gods/Happenings/Selene.cs). The cards say only what was found and seen;
+    she is named only in the ...Named titles ({GOD}), where the colony knows it was her. The CC_GodSelene_Saw_ lines are
+    what the colony's book keeps of it, in the witness's words ({WHO}).
+  -->
+
+  <!-- ===================== What came back, told in the morning ===================== -->
+
+  <CC_GodSelene_Morning_Title>What came back to {PAWN}</CC_GodSelene_Morning_Title>
+  <CC_GodSelene_Morning_TitleNamed>What {GOD} gave back to {PAWN}</CC_GodSelene_Morning_TitleNamed>
+  <CC_GodSelene_Morning_Found>By {PAWN}'s bed this morning: {THING}. Nobody in the colony owns it, and nobody brought it in the night.</CC_GodSelene_Morning_Found>
+  <CC_GodSelene_Morning_GoodDream>{PAWN} woke this morning from a dream of a silver road, smiling, and has told it to anyone who would listen.</CC_GodSelene_Morning_GoodDream>
+  <CC_GodSelene_Morning_Healed>{PAWN}'s worst wound closed in the night, as if days had passed instead of hours.</CC_GodSelene_Morning_Healed>
+  <CC_GodSelene_Morning_Nightmare>{PAWN} woke shaking from a dream about what {PAWN_pronoun} did yesterday, and won't talk about it.</CC_GodSelene_Morning_Nightmare>
+  <CC_GodSelene_Morning_Frost>Frost lay this morning all about the place where {PAWN} sleeps, and nowhere else.</CC_GodSelene_Morning_Frost>
+  <CC_GodSelene_Morning_AnimalBack>An animal stood at {PAWN}'s door at dawn, looking in, and wouldn't go away.</CC_GodSelene_Morning_AnimalBack>
+  <CC_GodSelene_Morning_Again>It has happened to {PAWN} before.</CC_GodSelene_Morning_Again>
+  <CC_GodSelene_Something>something</CC_GodSelene_Something>
+
+  <!-- ===================== Her face in still water ===================== -->
+
+  <CC_GodSelene_Water_Title>The moon in the water</CC_GodSelene_Water_Title>
+  <CC_GodSelene_Water_TitleNamed>{GOD}'s face in the water</CC_GodSelene_Water_TitleNamed>
+  <CC_GodSelene_Water_Text>At the full of the moon, {PAWN} found the moon lying in the still water by the colony, bright as a face, though the moon itself was behind {PAWN_objective}. {PAWN_pronoun} stood at the water's edge a long while.</CC_GodSelene_Water_Text>
+  <CC_GodSelene_Saw_Water>{WHO} saw the full moon lying in the still water at {HOME}, though the moon was behind them, and stood by it a long while.</CC_GodSelene_Saw_Water>
+
+  <!-- ===================== The watch she keeps company ===================== -->
+
+  <CC_GodSelene_Watch_Text>The moonlight is keeping {PAWN} company on {PAWN_possessive} watch tonight: {PAWN_pronoun} sees further than the night should allow, and {PAWN_possessive} aim is steadier.</CC_GodSelene_Watch_Text>
+  <CC_GodSelene_Saw_Watch>{WHO} kept the night out of doors at {HOME} with the moonlight about them like company.</CC_GodSelene_Saw_Watch>
+
+  <!-- ===================== The dark face kept ===================== -->
+
+  <CC_GodSelene_DarkFace_Text>There was no moon, so {PAWN} kept the night at the door until the small hours, looking out.</CC_GodSelene_DarkFace_Text>
+  <CC_GodSelene_Saw_DarkFace>{WHO} kept the door at {HOME} on a night with no moon.</CC_GodSelene_Saw_DarkFace>
+
+</LanguageData>

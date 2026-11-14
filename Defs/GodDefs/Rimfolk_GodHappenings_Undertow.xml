@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    The dark's own happenings (Source/ColonyCouncil/Gods/Happenings/Undertow.cs; docs/gods-next-proposals.md, C 9): the
+    beasts keeping away from one who bargained, the dark that drifts toward the most desperate at night, the hollow ear from
+    the old ruins. It is never named: no line here is tagged named, and none says {GOD}. Three small moods, modelled in
+    Tools/Balance (Rates.cs). Tags: shun ({OTHER}, {BEAST}), shunself, drift ({OTHER}), voice, ear, scoffer.
+  -->
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_Thought_Undertow_StoodOver</defName>
+    <durationDays>1</durationDays>
+    <stackLimit>1</stackLimit>
+    <stages>
+      <li>
+        <label>the dark stood over me</label>
+        <description>Something dark came in from the edge in the night and stood over me till dawn. It spoke to me, and it was kind, and I can't stop thinking about what it said.</description>
+        <baseMoodEffect>-4</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_Thought_Undertow_KeptOff</defName>
+    <durationDays>2</durationDays>
+    <stackLimit>1</stackLimit>
+    <stages>
+      <li>
+        <label>kept the dark off</label>
+        <description>I sat with someone at their worst, and the dark that came for them stopped a few steps away and waited. It didn't get any closer.</description>
+        <baseMoodEffect>3</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_Thought_Undertow_KeptOffMe</defName>
+    <durationDays>2</durationDays>
+    <stackLimit>1</stackLimit>
+    <stages>
+      <li>
+        <label>someone kept the dark off me</label>
+        <description>On my worst night something dark came looking for me, and someone sat with me so it couldn't come close.</description>
+        <baseMoodEffect>3</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <!-- The hollow ear: a quiet too deep in one ear since the old ruins, and something on the other side of it. -->
+  <HediffDef>
+    <defName>Rimfolk_HollowEar</defName>
+    <hediffClass>HediffWithComps</hediffClass>
+    <label>hollow ear</label>
+    <description>Since the old ruins, one ear hears a quiet deeper than quiet, and now and then something on the other side of it says their name. Their mind is more open than it was.</description>
+    <defaultLabelColor>(0.5, 0.45, 0.65)</defaultLabelColor>
+    <isBad>true</isBad>
+    <everCurableByItem>false</everCurableByItem>
+    <scenarioCanAdd>false</scenarioCanAdd>
+    <comps>
+      <li Class="HediffCompProperties_Disappears">
+        <disappearsAfterTicks>600000~600000</disappearsAfterTicks>
+        <showRemainingTime>true</showRemainingTime>
+      </li>
+    </comps>
+    <stages><li><statOffsets><PsychicSensitivity>0.15</PsychicSensitivity></statOffsets></li></stages>
+  </HediffDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_GodUndertow_Say</defName>
+    <lines>
+      <plain>
+        <li>[shun] Even the {BEAST} won't go near {OTHER} now.</li>
+        <li>[shun] Did you see the {BEAST} get up and walk off when {OTHER} came in?</li>
+        <li>[shun] The animals keep away from {OTHER}, ever since that night.</li>
+        <li>[shun,scoffer] Animals have moods, {OTHER} probably smells of something.</li>
+        <li>[shunself] They all walk away from me now, every one of them.</li>
+        <li>[shunself] Nothing with fur will come near me anymore.</li>
+        <li>[shunself] I said yes, and now even the animals know it.</li>
+
+        <li>[drift] There's a dark out there that the lamps don't touch, and it's moving.</li>
+        <li>[drift] Something dark is coming in from the edge, toward {OTHER}'s room.</li>
+        <li>[drift] The lamps are burning low wherever that shadow goes.</li>
+        <li>[drift,scoffer] It's a cloud over the moon, stop staring at it.</li>
+
+        <li>[voice] It's so kind, it says it can make all of this stop.</li>
+        <li>[voice] There's someone here who wants to help me, they say.</li>
+        <li>[voice] It knows my name, and it's not angry with me at all.</li>
+
+        <li>[ear] It's gone quiet in this ear, quieter than quiet.</li>
+        <li>[ear] There's a hush in here like the whole place is listening to me.</li>
+        <li>[ear] Something just said my name, from very far down.</li>
+        <li>[ear,scoffer] My ear's blocked, it's the damp in these old walls.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+</Defs>

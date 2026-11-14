@@ -625,7 +625,26 @@ namespace Balance
             ("Rimfolk_Belief_ShrineLost", 0.003f),
             ("Rimfolk_Belief_FeastPassed", 0.004f),
             ("Rimfolk_Belief_Flinched", 0.002f),
-            ("Rimfolk_Belief_WonOver", 0.001f)
+            ("Rimfolk_Belief_WonOver", 0.001f),
+            // Each god's own happenings, the second seven (Gods/Happenings/): a vigil kept through a cold snap about once a
+            // colony-year (the keeper and the one kept warm); the dark drifting to someone at the edge of breaking every few
+            // weeks at the most, reaching them about half the time, held off by a light or by company the rest; the first fruit
+            // in the sun once a year where Helios's feast is kept (about a third of colonies), everyone; the sun's return once a
+            // winter, most of those up; her face in still water once in a few moons, one person; the moonlit watch about once
+            // in two weeks, one person; the dark face kept once in a few moons, one person; the song at the water a few times a
+            // year where two hold Murmur, most of the colony; the cat walking away from someone who came through, rare.
+            ("Rimfolk_Thought_Hush_SatUp", 0.002f),
+            ("Rimfolk_Thought_Hush_SatWith", 0.002f),
+            ("Rimfolk_Thought_Undertow_StoodOver", 0.002f),
+            ("Rimfolk_Thought_Undertow_KeptOff", 0.001f),
+            ("Rimfolk_Thought_Undertow_KeptOffMe", 0.001f),
+            ("Rimfolk_Thought_Helios_FirstFruit", 0.006f),
+            ("Rimfolk_Thought_Helios_SunBack", 0.01f),
+            ("Rimfolk_Thought_Selene_FaceInWater", 0.003f),
+            ("Rimfolk_Thought_Selene_KeptCompany", 0.008f),
+            ("Rimfolk_Thought_Selene_KeptDarkFace", 0.004f),
+            ("Rimfolk_Thought_Murmur_Sang", 0.012f),
+            ("Rimfolk_Thought_Tamiu_CatWentAway", 0.001f)
         };
 
         /// <summary>Setbacks a well-run colony mostly avoids and a neglected one keeps having: their rate follows the style squared.</summary>

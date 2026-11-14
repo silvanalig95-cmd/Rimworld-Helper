@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <!--
+    Ducat's own happenings (Source/ColonyCouncil/Gods/Happenings/Ducat.cs). The lines say only what was seen; the god is
+    never named in them. The CC_GodDucat_Saw_ and _Book_ lines are what the colony's book keeps.
+  -->
+
+  <CC_GodDucat_Trail_Text>{PAWN} found single silver coins lying in a line from the store {WAY}, a few steps apart, {COUNT} of them. The last of them are gone.</CC_GodDucat_Trail_Text>
+  <CC_GodDucat_Way_Door>out through the door and on toward the edge of the land</CC_GodDucat_Way_Door>
+  <CC_GodDucat_Way_Open>on toward the edge of the land</CC_GodDucat_Way_Open>
+  <CC_GodDucat_Saw_Trail>{WHO} found {COUNT} coins lying in a line from the store at {HOME} out toward the edge of the land, as if the silver had walked off.</CC_GodDucat_Saw_Trail>
+
+  <CC_GodDucat_Purse_Text>{PAWN} pressed {COUNT} silver into {VISITOR}'s hand and wouldn't take it back. {PEOPLE} think the better of {HOME} for it.</CC_GodDucat_Purse_Text>
+  <CC_GodDucat_Book_Purse>{PAWN} pressed coins into the hand of {VISITOR}, a stranger at our gate, and would not take them back.</CC_GodDucat_Book_Purse>
+
+  <CC_GodDucat_Beetle_Text>A golden beetle walked across the table and down onto the floor, and {PAWN}, following it, found a gold coin where it stopped. Nobody dropped it.</CC_GodDucat_Beetle_Text>
+  <CC_GodDucat_Saw_Beetle>{WHO} followed a golden beetle across the floor at {HOME} and found a gold coin where it stopped.</CC_GodDucat_Saw_Beetle>
+
+</LanguageData>

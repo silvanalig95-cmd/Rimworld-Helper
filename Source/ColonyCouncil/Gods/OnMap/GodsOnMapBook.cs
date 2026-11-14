@@ -207,6 +207,7 @@ namespace ColonyCouncil
             Safe("the marks spoken of", () => GodMarks.Hourly(b, now));
             Safe("the gods' own presences", () => GodPresenceOwn.Hourly(now));
             Safe("the keeper of the dead", () => MogsWays.Hourly(now));
+            Safe("each god's own happenings, the second seven", () => OwnHappenings.Hourly(now));
         }
 
         internal static void Safe(string what, Action a)

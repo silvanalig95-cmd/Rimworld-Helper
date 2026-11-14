@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <!--
+    Tamiu's two new happenings (defName and key Mog; Source/ColonyCouncil/Gods/Happenings/Tamiu.cs). The cards say only
+    what the cats did; she is named only in the ...Named titles ({GOD}), where the colony knows it was her. The
+    CC_GodTamiu_Saw_ lines are what the colony's book keeps of it, in the witness's words ({WHO}).
+  -->
+
+  <CC_GodTamiu_WentAway_Title>The cat walked away</CC_GodTamiu_WentAway_Title>
+  <CC_GodTamiu_WentAway_TitleNamed>{GOD}'s cat let {PAWN} go</CC_GodTamiu_WentAway_TitleNamed>
+  <CC_GodTamiu_WentAway_Text>The {CAT} that stayed beside {PAWN} all through the worst of it has got up, stretched and walked off. {PAWN} is still with us.</CC_GodTamiu_WentAway_Text>
+  <CC_GodTamiu_Saw_Threshold>{WHO} saw a cat come and stay beside {DYING} at {HOME} when {DYING} was near death.</CC_GodTamiu_Saw_Threshold>
+  <CC_GodTamiu_Saw_Died>{WHO} saw the cat that lay by {DYING} at {HOME} stay with them to the end.</CC_GodTamiu_Saw_Died>
+  <CC_GodTamiu_Saw_WentAway>{WHO} saw the cat that lay by {DYING} at {HOME} get up and walk away once they came through.</CC_GodTamiu_Saw_WentAway>
+
+  <CC_GodTamiu_Lost_Title>A cat by {DEAD}'s body</CC_GodTamiu_Lost_Title>
+  <CC_GodTamiu_Lost_TitleNamed>{GOD}'s cat found {DEAD}</CC_GodTamiu_Lost_TitleNamed>
+  <CC_GodTamiu_Lost_Text>A {CAT} sat crying by {DEAD}'s body out on the far ground until {PAWN} came, and stayed beside it after. {DEAD} can be brought home now.</CC_GodTamiu_Lost_Text>
+  <CC_GodTamiu_Saw_Lost>{WHO} found {DEAD}'s body out on the land at {HOME}, where a cat sat crying beside it.</CC_GodTamiu_Saw_Lost>
+
+</LanguageData>

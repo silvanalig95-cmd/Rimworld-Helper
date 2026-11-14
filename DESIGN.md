@@ -13671,6 +13671,140 @@ nothing here.
 - Saved small: one record a colonist, six gods at most, the departed let go each day and the discarded at saving
   (`Tools/save_estimate.py`). Tested in `PawnGodsTests` (324 checks).
 
+### Each god's own happenings, the second seven (the player's go, 14 November 2026; round 4, batch 2; not released)
+
+The player: "each God's events and interactions and effects, etc., you know, feel unique to the god, not like every god's
+effect is kind of similar, but it's just a different name attached to it ... each of the gods should feel really unique in
+what it does and whether or how it interacts with the world, what the impact is, how these things play out on the map";
+then "gods effect should be noticeable", "go ahead with all of this". Section C of `docs/gods-next-proposals.md`, its
+second batch: Hush, Undertow, Helios, Selene, Murmur, Ducat, and two more for Tamiu (defName and key `Rimfolk_God_Mog`).
+Twenty-two happenings, each unlike any other god's, each played out on the map, each with its own card or news line and
+its line in the colony's book; none hurts anyone.
+
+- **The pace** (`Gods/Happenings/OwnHappeningsMath.cs`, pure, `PaceOf`, `Chance`): each happening its own gap, its chance
+  small at the end of the gap and growing over a long ramp (`GodPaceMath.DayChance`), weighed by its reason
+  (`GodPaceMath.Trigger`: none means never, however free) and its god's nearness (`NearFactor`, 0.6 to 1.4), looked at once
+  an hour, never above a third at a look. Five follow something else and have no chance of their own: the beasts keeping
+  away (a bargain), the look back (an eclipse), the first fruit (Helios's feast), the morning card (the moon's return), the
+  trail of coins (silver gone from a hoard). The rare ones far apart: the walk round the edge and the sun's return once a
+  winter (40 days), the frogs once in 25 days at the soonest.
+- **Hush, the Long White** (`Gods/Happenings/Hush.cs`):
+  - *The word in the frost* (gap 12 days; first light, frost outdoors): a word written in rime beside the colony's outer
+    door (on a window where a mod adds one, Open The Windows' by name), pointing at something real (`Word`): WARM for
+    someone with hypothermia or sleeping in a bedroom under 8 degrees, BREAD for fewer than four days of food, WOOD for a
+    colony that heats with wood and has under 60 logs, COUNT for food going to waste (a carcass rotting on the home ground,
+    a stack three quarters spoiled and not kept cold). The first one up walks out to it, reads it aloud and says what they
+    take it to mean; the card has the word and the plain fact beside it ("There are about 2 days of food left in the
+    stores."). Melted before anyone comes, nothing is told.
+  - *The old man's fire* (gap 15; at dusk in a cold snap, the old, a baby or the sick abed): the one of the colony fondest
+    of them (the kind, Hush's believers a little more) walks to the bed and sits up the night with them, saying so; kept
+    through most of the night (`VigilKept`, 70 percent) the cold snap ends at five o'clock, the frost on the ground runs
+    off, the keeper has "sat up through the cold" (+4) and the one kept warm "someone sat up with me" (+5). The card's
+    "keeping the fire fed" by the colony's age (`CC_GodHush_Warmth_0` to `_3`). The keeper is never pulled from food or
+    sleep (`OwnHappenings.Yields`): too tired, the vigil just ends.
+  - *The walk round the edge* (gap 40; the longest night, days 6 to 8 of winter, strongly; a night past -18 degrees
+    ordinarily; from 22 o'clock): Hush's tall white figure (`SkySign.Figure`) walks all the way round the colony out past
+    its farthest building, four cells every 300 ticks, leaving a line of rime an arm's width wide; anyone within twenty
+    steps and it moves on, footprints leading to where it stood and then none, said aloud once. At first light the card:
+    all the way round or part of the way, and who saw it. The morning after, Helios's sun comes back the likelier.
+  - *Frost on the grave* (gap 20; a death of the colony's within two days, in winter or with food short, with food going
+    to waste): at dusk rime lies on the new grave and nowhere else, the music falls silent, and Hush's own white silence
+    comes down in its hard form (its presence, round 2). Two to four days later the frost melts and a ring of mushrooms
+    stands round the grave (Glowstool, Agarilux, Bryolux): the soft mother taking back what the cold kept whole, in both
+    gods' chapters.
+- **Undertow, the Hunger** (`Gods/Happenings/Undertow.cs`), never named on any card or line:
+  - *The others turn away*: after a bargain (`GodVoid`, read from the world book's newest "take"), for eight days every
+    beast that comes within five cells of the one who said yes (the colony's, the wild ones, the dryads, the cats) gets
+    up and walks ten cells off, unhurried; someone who saw it says so once a day, and the first time a card.
+  - *The dark that drifts* (gap 10; at night, someone at the edge of an extreme break or bleeding out strongly, a major
+    break ordinarily; twice as likely on a night with no moon): a darkness (`SkySign.Dark`) comes in 28 cells from them
+    and drifts two cells every 250 ticks toward them, the lamps it passes guttering (`GodOmens.Play`). Someone awake
+    beside them stops it a few steps off; a lit lamp beside them stops it at the light's edge; else it reaches them,
+    stands over them till dawn and, awake, they hear it, kindly. At dawn the card says which: stood over ("the dark stood
+    over me" -4, and dread of it), held by the light, held by company (both "kept the dark off", +3). It never comes while
+    someone keeps the dark face at the door (Selene's).
+  - *The hollow ear* (gap 12): someone of the colony standing for the first time in a room of old ruins (indoors, 600
+    cells at most, holding a thing of the ancients not the colony's; thirty rooms remembered) stops with a hand to one ear,
+    one time in three: a hollow ear for ten days (`Rimfolk_HollowEar`, psychic sensitivity +15 percent) and a card.
+- **Helios, the Giver** (`Gods/Happenings/Helios.cs`):
+  - *He looks back*: the day after an eclipse (the game's, Alpha Animals', Rimfolk's), from ten o'clock, his long noon in
+    its hard form (eight degrees warmer, the light held white); everyone out of doors stops and shades their eyes, heat
+    shimmer about them, someone says so; the card ("A white noon") is named where the colony has learned the eclipse as
+    his.
+  - *The first fruit in the sun*: his feast kept (`Festivals.Kept`), at noon, up to ten of the colony take a piece of fresh
+    fruit from the stores (berries first) and walk out into the sun by the largest field, and eat it there (the game's own
+    eating sound and effect); "the first fruit in the sun" (+4). With no fresh fruit in the stores, they stand out in the
+    sun together and the news says there was none.
+  - *The sun comes back* (gap 40; the morning after the longest night, or after Hush's walk): up to twelve of those up walk
+    out to the east side of the colony and stand facing the sunrise, gold light lying on them; "the sun came back" (+3).
+- **Selene, the Mirror** (`Gods/Happenings/Selene.cs`):
+  - *What came back, told plainly*: the morning after the moon returned someone's deed (`GodReturn`, read from the gods'
+    short memory), once they are up, they walk to what was found or look at what changed, say it in one sentence, and a
+    card says what was found and by whose bed (the newest thing there), a dream, a wound closed, frost about where they
+    slept, an animal at their door; "It has happened to them before." when it has.
+  - *Her face in still water* (gap 14; the full moon, a clear night, still water within 45 cells, someone up): the moon's
+    light lies on the water (`SkySign.Moon`, small), the one up walks down to the water's edge and stands there a long
+    while; "her face in the water" (+5) and a card.
+  - *The watch she keeps company* (gap 6; the small hours under a moon at least half full, clear, someone up out of doors,
+    under arms strongly): the moonlight about them for an hour, "the moon kept me company" (+3) and a moonlit watch till
+    dawn (`Rimfolk_MoonlitWatch`: sight +10 percent, aiming time 15 percent shorter).
+  - *The dark face kept* (gap 14; a night with no moon): a night owl (else one who holds her, else whoever is up and free)
+    goes and stands outside the colony's door facing out until three o'clock, says why, and "kept the dark face" (+2);
+    while they stand, the dark that drifts does not come.
+- **Murmur, Old Croak** (`Gods/Happenings/Murmur.cs`):
+  - *Sung back to* (his feast, the Singing at the Wells, or gap 12 in a dry spell of six days, strongly in a drought or
+    ten, with two of the colony who hold him): at dusk up to eight walk to the well (Dubs Bad Hygiene's, any well of the
+    colony's) or the still water or marsh and stand round it singing, the game's music notes over them; "sang at the water"
+    (+3), the colony's book keeps the rite. Answered (`SongAnswered`: 0.5, at his feast 0.65, more the nearer he is drawn),
+    four to sixteen hours later the rain comes (snow in a frost), a drought ends, a deep croak comes up out of the water
+    (Odyssey's or Alpha Genes' frog call), a card named where the long rains are known as his; when it stops, Seasonal
+    Weather's double rainbow.
+  - *The water gives back* (gap 20; the morning after two or three wet days, the rain stopped): on the mud at the water's
+    edge near the colony, 12 to 40 silver and, half the time, an old worn thing of the colony's age at most from the
+    whole of the player's mods (a weapon or a piece of clothing worth 15 to 250, poor, 40 percent worn); the first one free
+    walks down and finds it, a gift of the god they take it for (`PawnGods.Gift`), and a card.
+  - *The frogs come in* (gap 25; the evening the rain breaks eight dry days): six to sixteen of Odyssey's bullfrogs up out
+    of the wet ground all over the colony, croaking, gone off the land at first light; without Odyssey, only their croaking.
+- **Ducat, the Restless Gold** (`Gods/Happenings/Ducat.cs`):
+  - *The trail of coins*: its anger at a hoard (`GodHealth.Missing`, as before) now leaves the way it went: of the silver
+    taken, up to 18 lie as single coins every three cells from the store out through the outer door to the nearest edge
+    of the land, the last ones gone over it; in daylight the first one free walks to the first coin and looks along the
+    line, and the news says so. The coins can be gathered back.
+  - *The open purse* (its feast, the Open Purse, or gap 15 with one of the colony devoted to it and a visitor on the land):
+    the giver takes one to five coins from the stores, walks over to a visitor, says a word and presses them into their
+    hand (into their pack); their people think 2 better of the colony, the colony's book keeps it, and the giver has led
+    the rite (`PawnGods.RiteLed`).
+  - *The beetle that leads* (gap 15; traders or visitors on the land strongly, a hoard of 1000 ordinarily): a golden beetle
+    walks off a table and across the floor (`GodSky.Crawl`) to where a gold coin lies that nobody dropped, 5 to 12 cells
+    off; whoever saw it follows and finds the coin.
+- **Tamiu, the Keeper of the Threshold** (`Gods/Happenings/Tamiu.cs`; `MogsWays` keeps her stay, riddle, keepers and
+  wrapped dead):
+  - *The cat at the threshold* (gap 6; one of the colony bleeding out within hours or a sickness all but won): a cat of the
+    colony's (else a stray in from the edge) comes and stays beside them, never pulled from its own food or sleep; someone
+    says so. Died, it stays by the body two hours; come through and out of danger six hours, it gets up, stretches and
+    walks off, "the cat let me go" (+4) and a card.
+  - *The cat by the lost dead* (gap 5; a body of the colony's lying unburied 25 cells or more from the colony's middle for
+    half a day): a cat walks out to it and sits by it crying (the game's cat call); the first one free goes to it and finds
+    the body, which is no longer forbidden, and a card says who it is.
+- **The unseen rule:** a card is titled by the god's name only where `Gods.CardName` allows (the colony saw it act plainly,
+  or has learned the sign named: the eclipse, the long rains, the seasonal flooding), else by what was seen; a card's
+  text never names it; Undertow is named nowhere. A line names the god (`{GOD}`) only when tagged named, which the code
+  gives where the colony is sure. What is seen goes to the colony's book in the witness's words and moves each witness's
+  belief in the god they take it for (`GodsOnMapWords.Saw`, so `Gods.Remember` and `PawnGods.Saw`); the colony's own rites
+  (the song, the first fruit, the purse) as kept (`Worship.Booked`); the dark's standing over someone as dread
+  (`PawnGods.Fear`); what the water gave back as a gift (`PawnGods.Gift`).
+- **Every age:** the frost, the dark, the sun, the moon, the water, the coins and the cats are every age's; where the
+  means matter the words take the age's form (the vigil's warmth, a tribal colony with no door has the word on the open
+  ground), and the old thing the water gives back is of the colony's age at most.
+- **Words match the map:** each card says only what happened there (the cold coming down only where Hush's presence began,
+  the walk all the way round only where it went all the way, the lamps burning low only where some did, the first fruit
+  eaten only by those who ate).
+- **Where it plugs in** (one line each in shared files): `GodsOnMapBook.Hourly` (`OwnHappenings.Hourly`),
+  `Festivals.Kept` (`OwnHappenings.FestivalKept`), `GodHealth.Missing` (`DucatWays.Trail`). Saved in
+  `OwnHappeningsBook` (a GameComponent: when each last came, the ruins' rooms heard, each god's happening under way;
+  `Tools/save_estimate.py` models the lists); short steps on its own due tick, no Sched slot. Twenty-four dev actions
+  "Gods: <god>'s ... now". Tests: `Tools/Tests/OwnHappeningsTests.cs`. The twelve moods in `Tools/Balance/Rates.cs`.
+
 ### Four small asks (the player's request, 12 November 2026; released 0.222.0)
 
 - **Decrees rest less:** every decree waits 70 % of its own rest before it can be declared again (`DecreeMath.CooldownShare`,

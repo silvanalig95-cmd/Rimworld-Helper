@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Helios's own happenings (Source/ColonyCouncil/Gods/Happenings/Helios.cs; docs/gods-next-proposals.md, C 10): he looks
+    back the day after an eclipse, the first fruit eaten in the sun on his feast, the sun's return after the longest night.
+    Two small moods, modelled in Tools/Balance (Rates.cs). Tags: lookback, fruit, dawn (afterwalk the morning after the
+    walk round the edge), named, scoffer.
+  -->
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_Thought_Helios_FirstFruit</defName>
+    <durationDays>2</durationDays>
+    <stackLimit>1</stackLimit>
+    <stages>
+      <li>
+        <label>the first fruit in the sun</label>
+        <description>We all walked out into the noon light and ate the first fruit of the year where it grew, and nobody asked for anything. It tasted like summer.</description>
+        <baseMoodEffect>4</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_Thought_Helios_SunBack</defName>
+    <durationDays>1</durationDays>
+    <stackLimit>1</stackLimit>
+    <stages>
+      <li>
+        <label>the sun came back</label>
+        <description>After the longest night we stood out in the cold and watched the sun come up, and it lay on us gold for a while.</description>
+        <baseMoodEffect>3</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_GodHelios_Say</defName>
+    <lines>
+      <plain>
+        <li>[lookback] The sun is staring right at us today, after yesterday.</li>
+        <li>[lookback] I can't look up, the whole sky is white with it.</li>
+        <li>[lookback] The shadows haven't moved since noon, and the stones are too hot to touch.</li>
+        <li>[lookback,named] {GOD} is looking back after the moon got in his way.</li>
+        <li>[lookback,scoffer] A hot day after a cold one, it's only the weather.</li>
+
+        <li>[fruit] Eat it here where it grew, that's how it's done.</li>
+        <li>[fruit] The first of the year, and the sun is on all of us alike.</li>
+        <li>[fruit,named] Nothing for {GOD}, he never wants anything, just eat it in his light.</li>
+        <li>[fruit,scoffer] Fine, it's a good excuse to sit in the sun.</li>
+
+        <li>[dawn] There it is, it came back after all.</li>
+        <li>[dawn] Look how gold it is on the snow.</li>
+        <li>[dawn,afterwalk] Whatever walked out there last night, the sun is up now.</li>
+        <li>[dawn,named] {GOD} came back, the longest night is over.</li>
+        <li>[dawn,scoffer] The sun rises every morning, I don't see why we're all out here.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+</Defs>

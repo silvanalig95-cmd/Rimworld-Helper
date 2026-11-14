@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <!--
+    The dark's own happenings (Source/ColonyCouncil/Gods/Happenings/Undertow.cs). It is never named: no title here has a
+    named form, and nothing says whose it is. The cards say only what anyone could see. The CC_GodUndertow_Saw_ lines are
+    what the colony's book keeps of it, in the witness's words ({WHO}).
+  -->
+
+  <!-- ===================== The others turn away ===================== -->
+
+  <CC_GodUndertow_Shun_Title>The animals keep away from {PAWN}</CC_GodUndertow_Shun_Title>
+  <CC_GodUndertow_Shun_Text>Since the night {PAWN} said yes to the voice, the animals won't come near {PAWN_objective}: a {BEAST} lying nearby got up when {PAWN_pronoun} came close and walked off without looking back.</CC_GodUndertow_Shun_Text>
+  <CC_GodUndertow_Saw_Shun>{WHO} saw a {BEAST} get up and walk away from {SHUNNED} at {HOME}, as the animals have done since {SHUNNED} said yes to the voice.</CC_GodUndertow_Saw_Shun>
+
+  <!-- ===================== The dark that drifts ===================== -->
+
+  <CC_GodUndertow_Drift_Title>Something stood over {PAWN}</CC_GodUndertow_Drift_Title>
+  <CC_GodUndertow_Drift_Text>A darkness came in from the edge of the colony in the night, slowly, as if it knew the way, and stood over {PAWN} until dawn.{LAMPS} {PAWN} says it spoke, and that it was kind.</CC_GodUndertow_Drift_Text>
+  <CC_GodUndertow_Light_Title>The dark stopped at the light</CC_GodUndertow_Light_Title>
+  <CC_GodUndertow_Light_Text>A darkness came in from the edge of the colony in the night toward {PAWN}, and at the lamplight near {PAWN_objective} it stopped, and waited there until dawn.{LAMPS}</CC_GodUndertow_Light_Text>
+  <CC_GodUndertow_Lamps> Every lamp it passed burned low.</CC_GodUndertow_Lamps>
+  <CC_GodUndertow_Company_Title>The dark stopped short</CC_GodUndertow_Company_Title>
+  <CC_GodUndertow_Company_Text>A darkness came in from the edge of the colony in the night toward {PAWN}, and stopped a few steps away, where {HOLDER} sat with {PAWN_objective}. It waited there until dawn and came no closer.</CC_GodUndertow_Company_Text>
+  <CC_GodUndertow_Gone_Text>A darkness drifted in from the edge of the colony in the night toward {PAWN}, and was gone at dawn.</CC_GodUndertow_Gone_Text>
+  <CC_GodUndertow_Why_StoodOver>Afraid since {DATE}: a darkness stood over them all night and spoke to them.</CC_GodUndertow_Why_StoodOver>
+  <CC_GodUndertow_Saw_Drift>{WHO} lay all night at {HOME} with a darkness standing over them that had come in from the edge, and it spoke to them kindly.</CC_GodUndertow_Saw_Drift>
+  <CC_GodUndertow_Saw_Light>A darkness came toward {DESPERATE} at {HOME} in the night and stopped at the edge of the lamplight.</CC_GodUndertow_Saw_Light>
+  <CC_GodUndertow_Saw_Company>{WHO} sat with {DESPERATE} at {HOME} through the night, and a darkness that came toward them stopped a few steps off.</CC_GodUndertow_Saw_Company>
+
+  <!-- ===================== The hollow ear ===================== -->
+
+  <CC_GodUndertow_Ear_Title>A hollow ear</CC_GodUndertow_Ear_Title>
+  <CC_GodUndertow_Ear_Text>{PAWN} stopped in the old ruins and pressed a hand over one ear. {PAWN_pronoun} says it went quiet in there, quieter than quiet, and now and then something on the other side of the quiet says {PAWN_possessive} name.</CC_GodUndertow_Ear_Text>
+  <CC_GodUndertow_Saw_Ear>{HEARER} stood in the old ruins at {HOME} and came away with a hollow ear, hearing a name said from very far down.</CC_GodUndertow_Saw_Ear>
+
+</LanguageData>
