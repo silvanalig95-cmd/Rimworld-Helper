@@ -13,7 +13,7 @@
     by the facts service (colony:harvest, colony:children, colony:newcomer {NEWCOMER}, colony:raid, colony:hungry, the cook
     {COOK}, the doctor {DOCTOR}...) or by the season and weather at home as it is written (season:..., weather:rain,
     weather:snow, weather:fog, weather:storm, weather:clear), or is about the writing itself. The speeches (olde, u:some,
-    u:none, the sv: voices) as in Rimfolk_Letters_Salute.xml; the unschooled lines' misspellings are deliberate.
+    u:none, the sv: voices) as in Rimfolk_Letters_Salute.xml; the unschooled lines are short and plain, spelled right.
   -->
   <ColonyCouncil.FlavorPoolDef>
     <defName>Rimfolk_Pool_LetterAside</defName>
@@ -383,24 +383,24 @@
         <li>[ours,olde,serious,a:plain|a:friend|a:war,colony:raid] Raiders came to our gate not long since. We held, but it cost us sleep and more.</li>
 
         <!-- ================= A barely schooled hand (u:some) and an unschooled one (u:none) ================= -->
-        <li>[theirs,u:some,joke,warmly|cordial|cool,!jk:goat] Our goat got out agin. Third time this week. She is smarter then all of us.</li>
-        <li>[theirs,u:some,everyday,warmly|cordial|cool] The harvest was alright this year, not grate but alright.</li>
+        <li>[theirs,u:some,joke,warmly|cordial|cool,!jk:goat] Our goat got out again. Third time this week. She is smarter than all of us.</li>
+        <li>[theirs,u:some,everyday,warmly|cordial|cool] The harvest was all right this year, not great but all right.</li>
         <li>[theirs,u:some,everyday,cordial|cool] Not much news here, just work and more work.</li>
-        <li>[theirs,u:some,serious] Things are hard here this year and I wont pretend they arent.</li>
-        <li>[theirs,u:some,joke,warmly|cordial|cool] I tried to rite this neat but the pen had other ideas.</li>
-        <li>[theirs,u:some,everyday,warmly|cordial|cool] We got a new well dug, the water is cold and clean.</li>
-        <li>[theirs,u:some,everyday,warmly] The children here are learning there letters, so maybe next time the spelling will be beter.</li>
-        <li>[theirs,u:some,joke,cordial|cool,c:raider] We found a cart on the road last week. It was empty when we found it. Honist.</li>
+        <li>[theirs,u:some,serious] Things are hard here this year, and I will not pretend they are not.</li>
+        <li>[theirs,u:some,joke,warmly|cordial|cool] I tried to write this neatly, but the pen had other ideas.</li>
+        <li>[theirs,u:some,everyday,warmly|cordial|cool] We have a new well dug. The water is cold and clean.</li>
+        <li>[theirs,u:some,everyday,warmly] The children here are learning their letters, so maybe next time one of them will write this for me.</li>
+        <li>[theirs,u:some,joke,cordial|cool,c:raider] We found a cart on the road last week. It was empty when we found it. Honest.</li>
         <li>[ours,u:some,everyday,warmly|cordial|cool] We are all well enough here, thank you for asking.</li>
-        <li>[ours,u:some,joke,warmly|cordial|cool] Sorry for the speling, our best writer was bizy.</li>
-        <li>[theirs,u:none,joke,warmly|cordial|cool,!jk:goat] the goat ate the frist leter i rote so this is the secund one</li>
-        <li>[theirs,u:none,joke,cordial|cool,c:raider] we got a new cart. dont ask were from</li>
-        <li>[theirs,u:none,everyday,warmly|cordial|cool] its rained all week here and the roof leeks</li>
-        <li>[theirs,u:none,everyday,cordial|cool] nothin much hapens here</li>
-        <li>[theirs,u:none,everyday,curt] we are bizzy</li>
-        <li>[theirs,u:none,serious] its bad here this year. wurse then last.</li>
-        <li>[ours,u:none,everyday,warmly|cordial|cool] we are alrite here mostly</li>
-        <li>[ours,u:none,joke,warmly|cordial|cool] sory about the speling. the one hoo spells gud was bizzy</li>
+        <li>[ours,u:some,joke,warmly|cordial|cool] Forgive the plain words. Our best writer was busy.</li>
+        <li>[theirs,u:none,joke,warmly|cordial|cool,!jk:goat] The goat ate the first letter I wrote. So this is the second one.</li>
+        <li>[theirs,u:none,joke,cordial|cool,c:raider] We got a new cart. Don't ask where from.</li>
+        <li>[theirs,u:none,everyday,warmly|cordial|cool] It rained all week here, and the roof leaks.</li>
+        <li>[theirs,u:none,everyday,cordial|cool] Not much happens here.</li>
+        <li>[theirs,u:none,everyday,curt] We are busy.</li>
+        <li>[theirs,u:none,serious] It's bad here this year. Worse than last.</li>
+        <li>[ours,u:none,everyday,warmly|cordial|cool] We are all right here, mostly.</li>
+        <li>[ours,u:none,joke,warmly|cordial|cool] Sorry the words are plain. The one who writes well was busy.</li>
 
         <!-- ================= Strange voices ================= -->
         <li>[sv:machine,everyday,warmly|cordial|cool] For context: our yard ran at ninety-four percent of capacity this season. This is good.</li>

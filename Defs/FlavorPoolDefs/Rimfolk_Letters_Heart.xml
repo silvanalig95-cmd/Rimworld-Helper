@@ -9,8 +9,8 @@
     m:duty, m:friend); their thanks for the colony's reply (thanks, the kind, yes or no); a friend's word (friendmade,
     friendfavour, raidword {RAIDERS}); and a medieval writer's (olde), an unschooled writer's (u:none) and a hive's
     (sv:hive) own answer to every purpose, by how they took it (warm, cordial, cool, curt, refusal; war; food or medicine
-    for help asked). What it brings is said under the letter by the narrator, never here. The unschooled lines'
-    misspellings are deliberate.
+    for help asked). What it brings is said under the letter by the narrator, never here. The unschooled lines
+    are short and plain, spelled right.
   -->
   <ColonyCouncil.FlavorPoolDef>
     <defName>Rimfolk_Pool_LetterHeart</defName>
@@ -185,29 +185,29 @@
         <li>[olde,truce,warm|cordial,war] Let it end, then, and let us both be glad of it.</li>
 
         <!-- ================= An unschooled hand (u:none) ================= -->
-        <li>[u:none,greetings,warm|cordial] good to here from you. evryone here sez hello back</li>
-        <li>[u:none,greetings,cool] got yor leter. we are alrite</li>
-        <li>[u:none,greetings,curt|refusal] we dont want yor leters</li>
-        <li>[u:none,condolences,warm|cordial] thank you for the kind wurds. it was a bad time and they helpt</li>
-        <li>[u:none,condolences,cool|curt|refusal] we dont need yor sory</li>
-        <li>[u:none,warning,warm|cordial] thanks for the warnin. we put more on the wall at nite</li>
-        <li>[u:none,warning,cool|curt|refusal] we no about it alredy</li>
-        <li>[u:none,news,warm|cordial|cool] you wanted news. ok here is wot we herd</li>
-        <li>[u:none,news,curt|refusal] we dont tell news to strangers</li>
-        <li>[u:none,invitation,warm|cordial] yes we wil come. save us sum food</li>
-        <li>[u:none,invitation,cool|curt|refusal] we cant come. to bizzy</li>
-        <li>[u:none,help,warm|cordial] ok. we send wot we can spare. dont say we never gave you nothin</li>
-        <li>[u:none,help,cool|curt|refusal] we got nothin to spare. sory</li>
-        <li>[u:none,truce,warm|cordial] ok we stop fiting if you stop fiting. deal</li>
-        <li>[u:none,truce,cool|curt|refusal] no truce. we wil burn yor walls. after the rain stops. it is raining a lot</li>
-        <li>[u:none,ransom] we got yor peple (crossed out) people. you want them back you pay. gold. or goald. the yellow kind</li>
-        <li>[u:none,ransom,curt|refusal] no deal. we keep them. they eat a lot tho</li>
-        <li>[u:none,ransom] {CAPTIVE} is alrite. we didnt hurt them much. you want {CAPTIVE} back send gold</li>
-        <li>[u:none,warm|cordial] good leter. we liked it. here is ours back</li>
-        <li>[u:none,cool] we red yor leter. here is the anser</li>
-        <li>[u:none,curt] no</li>
-        <li>[u:none,refusal] the anser is no. dont ask agin or we wil come over there. evenchually</li>
-        <li>[u:none,refusal,c:raider] we are the strongest band on the road and evryone nos it. so no. also we are a bit busy</li>
+        <li>[u:none,greetings,warm|cordial] Good to hear from you. Everyone here says hello back.</li>
+        <li>[u:none,greetings,cool] Got your letter. We are all right.</li>
+        <li>[u:none,greetings,curt|refusal] We don't want your letters.</li>
+        <li>[u:none,condolences,warm|cordial] Thank you for the kind words. It was a bad time, and they helped.</li>
+        <li>[u:none,condolences,cool|curt|refusal] We don't need you to say sorry.</li>
+        <li>[u:none,warning,warm|cordial] Thanks for the warning. We put more on the wall at night.</li>
+        <li>[u:none,warning,cool|curt|refusal] We know about it already.</li>
+        <li>[u:none,news,warm|cordial|cool] You wanted news. All right, here is what we heard.</li>
+        <li>[u:none,news,curt|refusal] We don't tell news to strangers.</li>
+        <li>[u:none,invitation,warm|cordial] Yes, we will come. Save us some food.</li>
+        <li>[u:none,invitation,cool|curt|refusal] We can't come. Too busy.</li>
+        <li>[u:none,help,warm|cordial] All right. We are sending what we can spare. Don't say we never gave you anything.</li>
+        <li>[u:none,help,cool|curt|refusal] We have nothing to spare. Sorry.</li>
+        <li>[u:none,truce,warm|cordial] All right. We stop fighting if you stop fighting. Deal.</li>
+        <li>[u:none,truce,cool|curt|refusal] No truce. We will burn your walls. After the rain stops. It is raining a lot.</li>
+        <li>[u:none,ransom] We have your people. You want them back, you pay. Gold. Real gold, not painted rocks.</li>
+        <li>[u:none,ransom,curt|refusal] No deal. We keep them. They eat a lot, though.</li>
+        <li>[u:none,ransom] {CAPTIVE} is all right. We didn't hurt them much. You want {CAPTIVE} back, send gold.</li>
+        <li>[u:none,warm|cordial] Good letter. We liked it. Here is ours back.</li>
+        <li>[u:none,cool] We read your letter. Here is the answer.</li>
+        <li>[u:none,curt] No.</li>
+        <li>[u:none,refusal] The answer is no. Don't ask again, or we will come over there. Eventually.</li>
+        <li>[u:none,refusal,c:raider] We are the strongest band on the road, and everyone knows it. So no. Also, we are a bit busy.</li>
 
         <!-- ================= A hive (sv:hive) ================= -->
         <li>[sv:hive,greetings,warm|cordial] We read your greeting. We greet back. All of us.</li>

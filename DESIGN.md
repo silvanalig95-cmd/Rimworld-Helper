@@ -9364,12 +9364,14 @@ and `LetterCultureMath.cs` (linked in Tests.csproj; `Tools/Tests/LetterFormTests
     tone, with their own hearts (`HeartSpeech`). Tested both ways: no "you" in a medieval line, no thee or thou in a plain one.
   - *Schooling* (`SchoolingOf`): Intellectual skill, four less for an outlaw people (the pirates, bandits and savage
     kingdoms of the player's factions), three for a slow learner, one for the tribal and medieval ages, six more for one
-    too smart or a scholar; 0 and under not at all (`u:none`: many slips, no capitals, a word crossed out and written again,
-    "gold" spelled two ways, a mark for a signature, a threat that undercuts itself), 1 or 2 barely (`u:some`: a slip or
-    two). A council and the Empire have scribes. Theirs a third of the time, the colony's half the time, written down for
-    them by someone a little better (`Helped`: the colony's free colonist of Intellectual 6 or more who writes best). The
-    misspellings are deliberate, written into the lines, never a corruption of text; the test only asks each such line to
-    show it, and no other check is loosened.
+    too smart or a scholar; 0 and under not at all (`u:none`: short sentences and simple words, warm and direct, a mark
+    for a signature, a threat that undercuts itself), 1 or 2 barely (`u:some`: plain and a little stiff). A council and
+    the Empire have scribes. Theirs a third of the time, the colony's half the time, written down for them by someone a
+    little better (`Helped`: the colony's free colonist of Intellectual 6 or more who writes best). Since the player's
+    "you can remove these purposely placed typos in letter, they don't really work" (13 November 2026) neither hand
+    makes deliberate slips: no misspellings, nothing crossed out, capitals and full stops like any line; the hand shows
+    in the plainness alone. Tested: no such line misspells a word, and an unschooled one starts with a capital and keeps
+    every sentence to 20 words or fewer.
   - *Strange voices* (`LetterCultureMath.Voices`, by xenotype or race, then meme): sv:machine (androids: a stamped record
     for a head, numbered points, "END OF LETTER.", an addendum), sv:hive (insectors, hivelings, Korg, a gestalt: "we",
     clipped, no salutation, signed as the many of their town, hearts of their own), sv:beast (lycans, wolfmen, saurids,

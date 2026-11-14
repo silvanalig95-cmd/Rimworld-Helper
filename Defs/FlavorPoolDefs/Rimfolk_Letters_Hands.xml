@@ -53,10 +53,10 @@
         <li>[olde,ha:line,ours,!condolences] Commend me to all at {TOWN}.</li>
         <li>[olde,ha:line,condolences] We grieve with thee, all of us.</li>
         <!-- ================= An unschooled hand (u:none) ================= -->
-        <li>[u:none,ha:line,!condolences] hello from me to</li>
-        <li>[u:none,ha:line,!condolences] rite back plese</li>
-        <li>[u:none,ha:line,theirs,!condolences] the goat sez hello</li>
-        <li>[u:none,ha:line,condolences] we are sory</li>
+        <li>[u:none,ha:line,!condolences] Hello from me too.</li>
+        <li>[u:none,ha:line,!condolences] Write back, please.</li>
+        <li>[u:none,ha:line,theirs,!condolences] The goat says hello.</li>
+        <li>[u:none,ha:line,condolences] We are sorry.</li>
 
         <!-- ================= Round 2, part 2: more lines from the others at home ================= -->
         <li>[ha:line,theirs,!condolences,fam:familiar|fam:close] Tell your writer I have given up trying to read the handwriting and now just enjoy the shapes.</li>
@@ -85,8 +85,8 @@
         <li>[olde,ha:line,theirs,condolences] We knew not thy friend, yet we grieve with thee, for thy sake.</li>
         <li>[olde,ha:line,ours,!condolences] I add my greeting to the rest, and ask that thou write again soon.</li>
         <li>[olde,ha:line,ours,condolences] We are sorry, every one of us, and set down our grief beside the rest.</li>
-        <li>[u:none,ha:line,!condolences] i rote this bit. its not much but its mine</li>
-        <li>[u:none,ha:line,!condolences,fam:familiar|fam:close] i like yor leters. the uthers read them to me</li>
+        <li>[u:none,ha:line,!condolences] I wrote this bit. It's not much, but it's mine.</li>
+        <li>[u:none,ha:line,!condolences,fam:familiar|fam:close] I like your letters. The others read them to me.</li>
 
         <!-- ================= Round 2, part 2: more added lines ================= -->
         <li>[ha:line,theirs,!condolences] The one writing this is too modest to say they stayed up half the night over it. So I am saying it.</li>
@@ -97,7 +97,7 @@
         <li>[ha:line,ours,!condolences,colony:animals] The animals here send their regards, through me, since none of them can hold a pen. Some have tried.</li>
 
         <!-- ================= Round 2, part 2: an unschooled line added ================= -->
-        <li>[u:none,ha:line,theirs,!condolences] i aded this bit myself. my bruther holds the pen rong</li>
+        <li>[u:none,ha:line,theirs,!condolences] I added this bit myself. My brother holds the pen wrong.</li>
       </plain>
     </lines>
   </ColonyCouncil.FlavorPoolDef>

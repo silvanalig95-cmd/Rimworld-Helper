@@ -14,7 +14,8 @@ namespace ColonyCouncil
     /// - a strange voice (sv:machine, sv:hive, sv:beast, sv:green, sv:fey, sv:ancient, sv:deep) for writers who are truly
     ///   different: their letters bend the form and are written in lines of their own;
     /// - how well they were schooled (LetterFormMath.SchoolingOf): an outlaw people, little Intellectual skill, a slow
-    ///   learner. Pure: no game types.
+    ///   learner. They write plainly and shortly, spelled right (the player, 13 November 2026: "you can remove these
+    ///   purposely placed typos in letter, they don't really work"). Pure: no game types.
     /// </summary>
     public static class LetterCultureMath
     {

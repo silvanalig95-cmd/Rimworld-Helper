@@ -3825,8 +3825,9 @@ duty, a wary neighbour sounding you out, a proud one who won't ask outright), th
 warm letter may crack a joke about a goat or the road, a cool one only a dry remark, a condolence or a letter at war
 none. Who writes shapes how: their age and people, their culture (pious, raiders, the proud, herders, tea lovers...),
 their xenotype (a hulking writer breaks pens, a refined one copies the letter out fair), a medieval writer's thee and
-thou, a bandit's spelling ("we wil burn yor walls. after the rain stops."), and the truly strange in a voice of their own
-(an android's numbered record, a hive's "we", a fairy's formula, the ancient's postscript longer than the letter). What
+thou, a bandit's short plain words ("We will burn your walls. After the rain stops."), and the truly strange in a
+voice of their own (an android's numbered record, a hive's "we", a fairy's formula, the ancient's postscript longer
+than the letter). What
 the answer brings, why it went badly and how far it moved them come under it as plain lines, set apart. A call reads as
 its transcript, a spoken message as words passed on by its carrier. Your colony's own letters are written out as your
 colonist finishes them, in their voice (Social and Intellectual, kind or abrasive, cheerful or gloomy, the purpose and

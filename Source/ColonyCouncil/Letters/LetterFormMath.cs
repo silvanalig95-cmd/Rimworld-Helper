@@ -113,13 +113,13 @@ namespace ColonyCouncil
         Short
     }
 
-    /// <summary>How well a writer was schooled: their letters read like it.</summary>
+    /// <summary>How well a writer was schooled: their letters read like it, always spelled right.</summary>
     public enum Schooling
     {
         Schooled,
-        /// <summary>Barely: a few slips.</summary>
+        /// <summary>Barely: plain words, a little stiff.</summary>
         Some,
-        /// <summary>Not at all: many.</summary>
+        /// <summary>Not at all: short sentences and simple words, and a mark for a signature.</summary>
         None
     }
 

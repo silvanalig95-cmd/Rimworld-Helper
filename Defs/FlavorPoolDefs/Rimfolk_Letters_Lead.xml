@@ -32,8 +32,8 @@
         <li>[olde,lk:story,theirs,lk:lead] Hearken, for here is a tale of {TOWN}, and I tell it as it was told to me.</li>
         <li>[olde,lk:story,lk:lead] Now I shall tell thee of a thing that befell us, and thou mayst judge it as thou wilt.</li>
         <li>[olde,lk:story,warmly,lk:lead] Sit thee down by thy fire, friend, for this is a tale for a long evening.</li>
-        <li>[u:none,lk:story,lk:lead] here is a storey</li>
-        <li>[u:none,lk:story,lk:lead] i wil tel you wot hapend</li>
+        <li>[u:none,lk:story,lk:lead] Here is a story.</li>
+        <li>[u:none,lk:story,lk:lead] I will tell you what happened.</li>
         <li>[sv:beast,lk:story,lk:lead] Here is a hunt-tale. Read it slowly, the way a trail is read.</li>
         <li>[sv:ancient,lk:story,lk:lead] Permit me a tale from my earlier centuries. I have trimmed it to the essentials, which took some decades.</li>
         <li>[lk:story,lk:after,theirs] Anyway. That is the news from {TOWN}, more or less.</li>
@@ -42,7 +42,7 @@
         <li>[lk:story,lk:after,warmly] I have told it badly, but you will forgive me, and tell it better yourself.</li>
         <li>[lk:story,lk:after,w:tribal] That is how it was told to me. Now it is yours to tell.</li>
         <li>[olde,lk:story,lk:after] Make of it what thou wilt; we are debating it at the well yet.</li>
-        <li>[u:none,lk:story,lk:after] thats the storey</li>
+        <li>[u:none,lk:story,lk:after] That's the story.</li>
         <!-- ================= A raid's account ================= -->
         <li>[lk:raid,rd:now,theirs,lk:lead] You will have heard rumours on the road. Here is what really happened.</li>
         <li>[lk:raid,rd:now,rd:fresh,theirs,lk:lead] Raiders came at us not ten days ago, and I want you to hear it from me before you hear it from the road.</li>
@@ -70,9 +70,9 @@
         <li>[sv:machine,lk:raid,rd:now,lk:lead] INCIDENT REPORT FOLLOWS. COMPILED FROM WITNESS ACCOUNTS AND OWN SENSORS.</li>
         <li>[sv:machine,lk:raid,rd:old,lk:lead] HISTORICAL INCIDENT FOLLOWS, FROM ARCHIVE. ACCURACY: AS RECORDED, WHICH IS TO SAY UNKNOWN.</li>
         <li>[sv:beast,lk:raid,lk:lead] The raiders came on the wind. We smelled them first. Here is how it went.</li>
-        <li>[u:none,lk:raid,rd:now,lk:lead] we had a fite</li>
-        <li>[u:none,lk:raid,rd:old,lk:lead] my granda tolde me this</li>
-        <li>[u:none,lk:raid,rd:boast,lk:lead] you rember us. we rember you</li>
+        <li>[u:none,lk:raid,rd:now,lk:lead] We had a fight.</li>
+        <li>[u:none,lk:raid,rd:old,lk:lead] My grandad told me this.</li>
+        <li>[u:none,lk:raid,rd:boast,lk:lead] You remember us. We remember you.</li>
         <li>[lk:raid,lk:after,rd:now|rd:old] That is all of it. Bar your gate at night.</li>
         <li>[lk:raid,lk:after,rd:now] I would not have written it if I did not think you should know.</li>
         <li>[lk:raid,lk:after,rd:boast] Think on that, next time.</li>
@@ -90,8 +90,8 @@
         <li>[olde,lk:poem,lk:lead] I have set down some few lines in verse, and pray thou wilt forgive the rhymes.</li>
         <li>[olde,lk:poem,theirs,lk:lead] Here is a song of our country, which the young folk sing at harvest and the old folk sing all year.</li>
         <li>[olde,lk:poem,condolences,lk:lead] I have no fit words of mine own, so here are older ones.</li>
-        <li>[u:none,lk:poem,lk:lead] i made a pome</li>
-        <li>[u:none,lk:poem,lk:lead] heres a song my mam sang</li>
+        <li>[u:none,lk:poem,lk:lead] I made a poem.</li>
+        <li>[u:none,lk:poem,lk:lead] Here's a song my mam sang.</li>
         <li>[sv:fey,lk:poem,lk:lead] A song, which is also the formula. Sing it back and the formula is closed.</li>
         <li>[sv:green,lk:poem,lk:lead] A slow song, as we sing them. Read it in the morning, when it is warmest.</li>
         <li>[sv:machine,lk:poem,lk:lead] ATTEMPT AT VERSE FOLLOWS. CONFIDENCE: LOW.</li>
@@ -111,7 +111,7 @@
         <li>[lk:sermon,ours,lk:lead] Forgive me a little preaching. It is on my mind, and you are a patient reader.</li>
         <li>[olde,lk:sermon,lk:lead] Suffer me to speak of holy things, for my heart is full of them.</li>
         <li>[olde,lk:sermon,theirs,lk:lead] Hear now what was preached at {TOWN} at the last gathering, for it was well said.</li>
-        <li>[u:none,lk:sermon,lk:lead] i got to tel you sumthing importent</li>
+        <li>[u:none,lk:sermon,lk:lead] I have to tell you something important.</li>
         <li>[sv:deep,lk:sermon,lk:lead] Listen. Not with the ears.</li>
         <li>[lk:sermon,lk:after] There. I feel better, and I hope that you do.</li>
         <li>[lk:sermon,lk:after,zeal:crank] Burn this if you like. It will still be true.</li>
@@ -131,14 +131,14 @@
         <li>[lk:petition,theirs,w:tribal,lk:lead] We sat in a circle and said what we wanted, and here it is, with all our marks.</li>
         <li>[lk:petition,ours,lk:lead] We talked it over at supper, and everyone signed.</li>
         <li>[olde,lk:petition,theirs,lk:lead] The good folk of {TOWN} have set their names to this, and bid me send it.</li>
-        <li>[u:none,lk:petition,lk:lead] evryone sined this</li>
+        <li>[u:none,lk:petition,lk:lead] Everyone signed this.</li>
         <!-- ================= A list or an account ================= -->
         <li>[lk:account,lk:lead] So that there is no confusion, here it is set out plainly.</li>
         <li>[lk:account,m:trade,lk:lead] A short account, since I know you like to see the numbers.</li>
         <li>[lk:account,k:request,lk:lead] Here is the list of what we need, so you can see it is not much.</li>
         <li>[olde,lk:account,lk:lead] Here followeth the reckoning, set down plainly.</li>
         <li>[sv:machine,lk:account,lk:lead] INVENTORY APPENDED.</li>
-        <li>[u:none,lk:account,lk:lead] i rote a list</li>
+        <li>[u:none,lk:account,lk:lead] I wrote a list.</li>
         <!-- ================= A recipe or a remedy ================= -->
         <li>[lk:recipe,theirs,lk:lead] Here is something to do with whatever is left in your pantry.</li>
         <li>[lk:recipe,theirs,warmly,lk:lead] My grandmother's recipe, which I am not supposed to give anyone, so please do not tell her.</li>

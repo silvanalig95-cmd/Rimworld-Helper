@@ -4,7 +4,7 @@
   <!--
     How a letter ends, just before the signature (Letters/LetterFormMath.cs; the signature follows on the next line). The
     tags are the salutations' (Rimfolk_Letters_Salute.xml): side, address, register, motive, age, people, culture and
-    kind, speech, the colony's writer's voice. The unschooled lines' misspellings are deliberate.
+    kind, speech, the colony's writer's voice. The unschooled lines are short and plain, spelled right.
   -->
   <ColonyCouncil.FlavorPoolDef>
     <defName>Rimfolk_Pool_LetterClose</defName>
@@ -235,29 +235,30 @@
         <li>[ours,olde,a:council] For {COLONY},</li>
 
         <!-- ================= A barely schooled hand (u:some) ================= -->
-        <li>[u:some,warmly] Yours with best wishes and evrything,</li>
-        <li>[u:some,warm|cordial] Yours sincerly,</li>
-        <li>[u:some,cordial] Regards from evryone,</li>
+        <li>[u:some,warmly] Yours, with best wishes and everything,</li>
+        <li>[u:some,warm|cordial] Yours sincerely,</li>
+        <li>[u:some,cordial] Regards from everyone,</li>
         <li>[u:some,cordial|cool] Yours,</li>
-        <li>[u:some,cool] Thats all for now,</li>
-        <li>[u:some,curt] Thats all.</li>
-        <li>[u:some,refusal] Dont write agin.</li>
-        <li>[u:some,a:war] Under the wite flag,</li>        <li>[u:some,warmly] Your frend,</li>
-        <li>[theirs,u:some,cordial|cool,c:raider,nr:head] From the boss, wich is me,</li>
-        <li>[u:some,curt|refusal] Thats our anser.</li>
+        <li>[u:some,cool] That is all for now,</li>
+        <li>[u:some,curt] That is all.</li>
+        <li>[u:some,refusal] Do not write again.</li>
+        <li>[u:some,a:war] Under the white flag,</li>
+        <li>[u:some,warmly] Your friend,</li>
+        <li>[theirs,u:some,cordial|cool,c:raider,nr:head] From the boss, who is me,</li>
+        <li>[u:some,curt|refusal] That is our answer.</li>
 
 
         <!-- ================= An unschooled hand (u:none) ================= -->
-        <li>[u:none,warmly] yors truly and i mean it</li>
-        <li>[u:none,warm|cordial] yors</li>
-        <li>[u:none,cordial] all the best from us</li>
-        <li>[u:none,cordial|cool] thats the leter (crossed out) letter done</li>
-        <li>[u:none,cool] thats it</li>
-        <li>[u:none,curt] thats all we got to say</li>
-        <li>[u:none,refusal] dont rite agin or else</li>
-        <li>[u:none,curt|refusal,c:raider] we wil burn yor walls. after the rain stops.</li>
-        <li>[u:none,curt|refusal] or else. we meen it. mostly.</li>
-        <li>[u:none,a:war] under the wite flag so dont shoot the one wot brings this</li>
+        <li>[u:none,warmly] Yours truly, and I mean it,</li>
+        <li>[u:none,warm|cordial] Yours,</li>
+        <li>[u:none,cordial] All the best from us,</li>
+        <li>[u:none,cordial|cool] That's the letter done.</li>
+        <li>[u:none,cool] That's it.</li>
+        <li>[u:none,curt] That's all we have to say.</li>
+        <li>[u:none,refusal] Don't write again, or else.</li>
+        <li>[u:none,curt|refusal,c:raider] We will burn your walls. After the rain stops.</li>
+        <li>[u:none,curt|refusal] Or else. We mean it. Mostly.</li>
+        <li>[u:none,a:war] Under the white flag, so don't shoot the one who brings this.</li>
 
         <!-- ================= Strange voices ================= -->
         <li>[sv:machine,warmly] END OF LETTER. Affection: noted, and returned.</li>

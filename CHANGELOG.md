@@ -5,6 +5,14 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## Plain words and a dinner forgiven
+
+*14 November 2026, version 0.229.1*
+
+- Letters from people with little or no schooling are spelled right now, with no misspelled or crossed-out words, just short and plain sentences.
+- The jokes that leaned on bad spelling are plain ones now, like the bandit who wants real gold and not painted rocks, or the writer who asks you to forgive the plain words.
+- Losing a dinner to an animal no longer costs a mood; the theft still plays out on the map, and it can still start a feud with the animal.
+
 ## The peoples' own events, round 2
 
 *12 November 2026, version 0.229.0*

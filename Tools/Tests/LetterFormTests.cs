@@ -199,7 +199,7 @@ public static class LetterFormTests
         C(LetterFormMath.SchoolingOf(3, true, false, false, WorldAge.Spacer, false, false) == Schooling.None, "a pirate of little learning can't write");
         C(LetterFormMath.SchoolingOf(6, true, false, false, WorldAge.Spacer, false, false) == Schooling.Some, "a pirate of some learning barely can");
         C(LetterFormMath.SchoolingOf(8, true, false, false, WorldAge.Spacer, false, false) == Schooling.Schooled, "a learned pirate writes well");
-        C(LetterFormMath.SchoolingOf(1, false, false, false, WorldAge.Industrial, false, false) == Schooling.Some, "little Intellectual skill: a few slips");
+        C(LetterFormMath.SchoolingOf(1, false, false, false, WorldAge.Industrial, false, false) == Schooling.Some, "little Intellectual skill: barely schooled");
         C(LetterFormMath.SchoolingOf(1, false, false, false, WorldAge.Medieval, false, false) == Schooling.None, "a medieval writer who never learnt letters");
         C(LetterFormMath.SchoolingOf(4, false, true, false, WorldAge.Industrial, false, false) == Schooling.Some, "a slow learner");
         C(LetterFormMath.SchoolingOf(3, true, true, true, WorldAge.Tribal, false, false) == Schooling.Some, "one too smart makes up for much");
@@ -487,11 +487,18 @@ public static class LetterFormTests
         // The machine's and the hive's own forms.
         var machine = Lines(LetterPart.Close).Where(l => LetterFormMath.SpeechOf(P(l)) == LetterCultureMath.Machine).ToList();
         C(machine.Count >= 3, "a machine closes its record");
-        // The unschooled write their slips on purpose: a few to a barely schooled line, many to an unschooled one.
-        var slips = new Regex(@"\b(yor|becos|wil|wiv|ritin|rite|leter|letter letter|peple|peeple|freind|frend|nuthin|nothin|wot|wen|sed|thay|ther|gud|plese|pleese|kno|nite|enuf|sumthing|tuff|wurd|wurds|sory|dont|cant|wont|gold|gould|goald)\b|\(crossed out\)", RegexOptions.IgnoreCase);
+        // The unschooled write plainly, with no slips (the player, 13 November 2026: "you can remove these purposely placed
+        // typos in letter, they don't really work"): a barely schooled line and an unschooled one are spelled right, with
+        // nothing crossed out; an unschooled one starts with a capital and keeps its sentences short.
+        var slips = new Regex(@"\b(yor|yors|yous|becos|wil|wiv|ritin|riting|leter|leters|letter letter|peple|peeple|freind|frend|frends|nuthin|nothin|wot|wots|sed|thay|ther|gud|plese|pleese|kno|nite|enuf|sumthing|sumone|wurd|wurds|sory|reely|agin|agen|evry\w*|storey|pome|sez|wunce|alrite|bizzy|gould|goald|dont|cant|wont|thats|isnt|didnt|wasnt|arent)\b|crossed out", RegexOptions.IgnoreCase);
+        foreach (var (part, line) in Ours().Where(x => LetterFormMath.SpeechOf(P(x.line)) == LetterFormMath.NoSchool || LetterFormMath.SpeechOf(P(x.line)) == LetterFormMath.SomeSchool))
+            C(!slips.IsMatch(P(line).text), "an unschooled or barely schooled line is spelled right: " + P(line).text);
         foreach (var (part, line) in Ours().Where(x => LetterFormMath.SpeechOf(P(x.line)) == LetterFormMath.NoSchool))
-            C(slips.Matches(P(line).text).Count >= 1 || P(line).text.Length < 25 || char.IsLower(P(line).text[0]), "an unschooled line shows it (a slip or no capital): " + P(line).text);
-        C(Ours().Count(x => LetterFormMath.SpeechOf(P(x.line)) == LetterFormMath.NoSchool && P(x.line).text.Contains("(crossed out)")) >= 3, "a word crossed out and written again");
+        {
+            string text = P(line).text;
+            C(!char.IsLower(text[0]) && Regex.Split(text.Replace("\\n", "\n"), @"[.?:\n]+").All(s => s.Split(' ', StringSplitOptions.RemoveEmptyEntries).Length <= 20),
+                "an unschooled line starts with a capital and keeps its sentences short: " + text);
+        }
     }
 
     // ================= Medieval English, and the plain kept apart =================

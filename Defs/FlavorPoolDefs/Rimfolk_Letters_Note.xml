@@ -10,7 +10,7 @@
     address (a:war, a:council, a:empire, a:friend), motive (m:duty, m:trade, m:wary, m:proud), the writer's age (w:tribal,
     w:industrial|w:spacer for the machine ages) and speech (olde for medieval English, u:none for an unschooled hand,
     sv:machine, sv:hive, sv:beast, sv:green, sv:fey, sv:deep; the ancient never write a bare note). Keep every line short:
-    a note that runs on is not a note. The unschooled lines' misspellings are deliberate. empire for an Empire writer;
+    a note that runs on is not a note. The unschooled lines are plain, spelled right. empire for an Empire writer;
     fam:familiar|fam:close for an old friend's few words, fam:cooled for a cooled correspondence's.
   -->
   <ColonyCouncil.FlavorPoolDef>
@@ -56,11 +56,11 @@
         <li>[olde,note:close,a:war] Look for no more from us while the war lasts.</li>
         <li>[olde,note:close,ours] All here commend themselves to thee.</li>
         <!-- ================= An unschooled hand (u:none) ================= -->
-        <li>[u:none,note:open,cordial|cool|curt] no time</li>
-        <li>[u:none,note:open,a:war] dont care for hello</li>
-        <li>[u:none,note:close,cordial|cool] thats all</li>
-        <li>[u:none,note:close,curt|refusal] dont rite agen</li>
-        <li>[u:none,note:close,a:war] we wil see you</li>
+        <li>[u:none,note:open,cordial|cool|curt] No time.</li>
+        <li>[u:none,note:open,a:war] No hellos from us.</li>
+        <li>[u:none,note:close,cordial|cool] That's all.</li>
+        <li>[u:none,note:close,curt|refusal] Don't write again.</li>
+        <li>[u:none,note:close,a:war] We will see you.</li>
         <!-- ================= Strange voices ================= -->
         <li>[sv:machine,note:close] END.</li>
         <li>[sv:machine,note:open] PRIORITY: LOW. LENGTH: MINIMAL.</li>
@@ -100,10 +100,10 @@
         <li>[olde,note:open,fam:cooled] Briefly, as is fitting.</li>
         <li>[olde,note:close,fam:cooled] No more.</li>
         <li>[olde,note:close,theirs,m:trade] Prices upon request.</li>
-        <li>[u:none,note:open,theirs] quik one</li>
-        <li>[u:none,note:close,theirs] bye</li>
-        <li>[u:none,note:close,warm|cordial] rite soon</li>
-        <li>[u:none,note:open,fam:cooled] not much to say to you</li>
+        <li>[u:none,note:open,theirs] Quick one.</li>
+        <li>[u:none,note:close,theirs] Bye.</li>
+        <li>[u:none,note:close,warm|cordial] Write soon.</li>
+        <li>[u:none,note:open,fam:cooled] Not much to say to you.</li>
         <li>[sv:machine,note:close] TRANSMISSION ENDS.</li>
         <li>[sv:machine,note:open,fam:cooled] FORMAL NOTICE FOLLOWS.</li>
         <li>[sv:beast,note:open] Quick. The wind is changing.</li>
@@ -123,11 +123,11 @@
         <li>[note:close,theirs,w:tribal,warm|cordial] More when the moon is new.</li>
         <li>[note:open,ours,v:plain] A short one, since there is not much to say this time:</li>
         <li>[olde,note:close,warm|cordial] More anon, when the candle alloweth.</li>
-        <li>[u:none,note:open,cool|curt] got yor leter. here</li>
+        <li>[u:none,note:open,cool|curt] Got your letter. Here.</li>
 
         <!-- ================= Round 2, part 2: an unschooled note ================= -->
-        <li>[u:none,note:open,theirs,a:war] oi</li>
-        <li>[u:none,note:close,theirs,refusal] no means no. thats it</li>
+        <li>[u:none,note:open,theirs,a:war] Oi.</li>
+        <li>[u:none,note:close,theirs,refusal] No means no. That's it.</li>
       </plain>
     </lines>
   </ColonyCouncil.FlavorPoolDef>
