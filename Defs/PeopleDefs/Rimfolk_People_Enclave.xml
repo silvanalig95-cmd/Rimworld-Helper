@@ -11,7 +11,7 @@
     down by the gate with goods, and comes by drop pod when bidden (Rimfolk_Evt_EnclaveLander). Busy orbital lanes and a
     ship come down come from them likeliest (Patches/Rimfolk_PeoplesC.xml). Their factor offers salvage from above for a
     share of its worth, dropped by pod at the colony's trade spot (Rimfolk_Evt_EnclaveSalvage), in every age. Their
-    founding (the description): Ines Okoro, purser of a downed ore hauler, who sold its cargo, passage and debts one
+    founding (told in the description, the founder named in their talk): Ines Okoro, purser of a downed ore hauler, who sold its cargo, passage and debts one
     bargain at a time; the hauler's manifest. What they honour, fear and say is in their template (on their card). They
     defend their markets and raid only when
     the colony has turned them hostile (raidCommonalityFromPointsCurve 0.15: few, and well armed). Listed once among the
@@ -24,7 +24,7 @@
   <FactionDef ParentName="OutlanderFactionBase">
     <defName>Rimfolk_Enclave</defName>
     <label>spacer enclave</label>
-    <description>An enclave of brokers who live between the planet's towns and the ships above it, buying from the one and selling to the other. They keep a few markets round their landing pads and come down by drop pod wherever there is trade to be had, with goods most towns have only heard of.\n\nTheir ways began with the crew of an ore hauler that came down with a dead drive and no way back up. Rather than sell the hull for scrap, its purser, Ines Okoro, sold its cargo, its passage and its debts to whoever would buy, one bargain at a time, until the crew owned a landing pad and a radio and the ships above were calling them. The exchange still keeps the hauler's manifest, every bargain the enclave has struck written in it, and on the night the ledger is read aloud the chair is called the purser.\n\nThey say "noted" where others would say thank you, and they never name a price they will not keep. They are polite, exact and very well armed, and their marshals wear the armour of another world. Each market is run by its pad master, and the enclave by the chair of the exchange.</description>
+    <description>The spacer enclave is a people of brokers who trade between the planet's towns and the ships in orbit, buying from one and selling to the other. They live in the spacer age and bring down goods most towns have only heard of. Their few towns are markets around landing pads. An industrial or spacer colony may get a radio call from their factor asking to land by its gate and trade, and in any age they sell salvage from orbit for part of its worth, dropped in by pod.\n\nThe enclave began as the crew of an ore hauler that crashed with a dead drive. Rather than sell the hull for scrap, they sold its cargo, its passage and its debts, one deal at a time, until they owned a landing pad and a radio and the ships above were calling them. Every deal the enclave has made since is written in the hauler's manifest.\n\nThey are polite, exact and well armed, and never name a price they will not honour.</description>
     <pawnSingular>broker</pawnSingular>
     <pawnsPlural>brokers</pawnsPlural>
     <leaderTitle>chair of the exchange</leaderTitle>

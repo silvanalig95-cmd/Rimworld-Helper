@@ -8,15 +8,20 @@ using ColonyCouncil;
 
 /// <summary>
 /// The seven peoples brought to the level of the new ones (docs/design/peoples-next.md; docs/design/peoples.md, "Their
-/// stories, sayings and touchpoints"; Peoples/PeoplesLore.cs, PeoplesLoreMath.cs): each has a founding story in its
-/// description, sayings, what it honours and fears (its card), and its voice in every pool their people speak in; its
+/// stories, sayings and touchpoints"; Peoples/PeoplesLore.cs, PeoplesLoreMath.cs): each has a description of its own (what
+/// they do, how they live and where their ways came from, in plain words and a shape of its own), a founding story in its
+/// talk and page, sayings, what it honours and fears (its card), and its voice in every pool their people speak in; its
 /// new touchpoints at the gate are wired to their calling and play out on the map; its faith is soft on every mod and
 /// sound (no two of its memes exclude each other, as the memes' own defs have it); the names of peoples that arise in its
 /// ways carry its signature; its Almanac page tells it; and the code keeps no clock, saves nothing and hurts nobody.
 /// </summary>
 public static class PeoplesLoreTests
 {
-    /// <summary>The founder each people's ways began with, as its description, page and talk name them.</summary>
+    /// <summary>
+    /// The founder each people's ways began with, as its page and talk name them. Its description tells its history in a
+    /// shape of its own and names the founder only where that people would (the player, 14 November 2026: "it's always one
+    /// named individual who started the faction somehow").
+    /// </summary>
     private static readonly Dictionary<string, string> Founders = new()
     {
         ["healers"] = "Aldith", ["herders"] = "Tamsa", ["traders"] = "Edda Vane", ["pilgrims"] = "Old Brannoc", ["scholars"] = "Ilse Varro",
@@ -118,9 +123,11 @@ public static class PeoplesLoreTests
         foreach (var (calling, f) in factions)
         {
             string name = Dn(f);
-            var paras = (f.Element("description")?.Value ?? "").Split(new[] { "\\n\\n" }, StringSplitOptions.None);
-            C(paras.Length == 3 && paras[1].StartsWith("Their ways began") && paras[1].Contains(Founders[calling]) && Regex.Matches(paras[1], @"[.]").Count >= 3,
-                $"{name}: its founding story, {Founders[calling]}'s, the middle of its description");
+            string desc = f.Element("description")?.Value ?? "";
+            var paras = desc.Split(new[] { "\\n\\n" }, StringSplitOptions.None);
+            C(paras.Length >= 2 && paras.All(para => Regex.IsMatch(para.TrimEnd(), @"[.]""?$")) && desc.Length <= 1200 && !desc.Contains("Their ways began")
+              && !desc.Contains('—') && !desc.Contains('!') && Regex.IsMatch(desc, @"\b(tribal|medieval|industrial|spacer)\b", RegexOptions.IgnoreCase),
+                $"{name}: a description of its own in plain words, no longer than it was, saying the age it lives in");
             C((f.Element("ideoDescription")?.Value ?? "").Length > 250, $"{name}: its creed tells something of its founding too");
             var ext = Ext(f, "PeopleExtension")!;
             string honours = ext.Element("honours")?.Value ?? "", fears = ext.Element("fears")?.Value ?? "";
@@ -130,6 +137,8 @@ public static class PeoplesLoreTests
             C(sayings.Count >= 4 && sayings.All(s => s.Length <= 60 && s.EndsWith(".") && Regex.Matches(s, @"[.?]").Count == 1 && !s.Contains('!') && !s.Contains('—')),
                 $"{name}: four sayings or more, one short sentence each");
         }
+        var openings = factions.Values.Select(f => string.Join(" ", (f.Element("description")?.Value ?? "").Split(' ').Take(3))).ToList();
+        C(openings.Distinct().Count() == openings.Count, "no two peoples' descriptions open the same way");
 
         // ================= Their voices =================
 

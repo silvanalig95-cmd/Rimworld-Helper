@@ -71,7 +71,8 @@ tree at once, alongside whatever runs. Each piece is merged as its own release, 
   3 each pawn's belief; 4 each god's happenings, two batches of 7; 5 saints. Pawns on Display was not answered, so it
   is not used. Rounds 0 and 1 are released (0.232.0), the Mog remake too (0.233.0); round 2 is built, not released (the
   entry below); rounds 3 to 5 are next.
-- **To do when the player asks (14 November 2026): the peoples' descriptions rewritten.** The player: "i really like the
+- **Done (built 15 November 2026, not released yet; the entry "The peoples' descriptions, each in its own words" below
+  the to-do list): the peoples' descriptions rewritten.** The player: "i really like the
   different factions you created, but when i look at their faction and read the description text with their history
   etc., it really reads like AI gibberish and I don't understand what is really meant. also they all follow the same
   structure and it's always one named individual who started the faction somehow. can you redo these descriptions and
@@ -84,7 +85,8 @@ tree at once, alongside whatever runs. Each piece is merged as its own release, 
   shape (a war, a place, a trade, a schism, a slow drift, a law, an accident; a named person only where the people
   would remember one), different lengths and openings, and still true to what their lore already says on the map
   (`honours`, `fears`, `sayings`, leaders' titles, their events and letters); checked against the peoples' lore docs so
-  nothing on the map contradicts the new text.
+  nothing on the map contradicts the new text. The player picked it on 15 November 2026 to run alongside two other
+  builds ("if it makes sense to run something in addition, also do that").
 - **To do when the player asks (the rest of it; the player's pick done 15 November 2026, 0.243.0 to 0.251.0): Rimfolk's text in plain words.** The player: "when you write
   text for the mod, especially when it's supposed to be flavour, i'd like you to be more neutral, descriptive and
   "reasonable", over trying to make the text be creative, as this just most of the time sounds awkward. look through a
@@ -188,6 +190,51 @@ tree at once, alongside whatever runs. Each piece is merged as its own release, 
   original has no 1.6 release, an unofficial 1.6 port exists), Fantasy Races and Factions (satyrs; updated for 1.6 in
   January 2026).
   The player's pick of name: "Revel sounds great": Revel, the Open Cup.
+- **To do when the player asks (15 November 2026): guests busy most of the day, with more to do.** The player: "guests
+  still just wait around most of the time it feels. they could read books, take walks, interact with my pets, write
+  letters, train, fish, work on and use items themselves etc." What 0.239.0 does now (`Visitors/IdleHoursMath.cs`):
+  where a visitor's duty would have them wander, a look now and then fills the time (a 75% chance by day and 30% at
+  night; Hospitality's guests only 45% of that, so about a third of the time by day, and only for what Hospitality's
+  recreation has nothing for, close to where they stand); each doing lasts a quarter to about one and a half hours
+  (`Stint`), and after one ends or nothing is found they wait 150 to 1000 ticks (`NextLook`). So a lot of their day is
+  still standing between doings, Hospitality's guests most of all. Proposed when asked: their waiting hours mostly
+  filled (a look at once when a doing ends, the chances raised to most of the day, Hospitality's guests near the
+  others), measured with the "idle hours of everyone here" log on a save; and new doings, none of them using up the
+  colony's things or working for it: reading (a book of their own, by their age: a tablet, a scroll, a book; or one of
+  the colony's books where it lies, put back), a walk (round the colony's paths, to a view, a garden, a grave), the
+  colony's pets (petting, playing fetch, a word to a dog or a cat; never taming or training them), a letter or a
+  journal written at a table, training (the colony's targets and training dummies from the mod pool, shadow sparring,
+  archery practice), fishing (Odyssey's fishing where there's water, the catch their own), their own gear (mending,
+  sharpening, oiling a bow, tending their pack animal), games of their own (cards, dice), and their own instruments.
+  In the player's active mods for these: Misc. Training (`haplo.miscellaneous.training`: `ArcheryTarget`,
+  `MartialArtsTarget`) for training, and Odyssey's fishing; no other mod needed.
+  The player, then: "ok looks like they already read books sometimes, but they generally just chill around the same
+  room (my eating room)". Why: for Hospitality's guests Rimfolk fills only warming up, shelter, prayer and animals
+  (`IdleHoursMath.ForHospitality`) and leaves the rest to Hospitality's own recreation, which keeps each guest in their
+  guest area (`guestArea_int`, set in Hospitality's guest tab) and draws them to the gathering spot, here the dining
+  room; and Rimfolk's own reach for them is "nearly where they stand". So when built: Hospitality's guests get Rimfolk's
+  doings too (walks, the fire, games, the garden, pets, books, training, fishing), within their guest area when one is
+  set, spread over the colony's rooms and grounds rather than the one room, and a word in the Almanac's visitors page
+  that the guest area in Hospitality's tab decides where they may go.
+  The player: "and yes, your suggestions all sound great": approved as proposed; it starts when one of the three
+  builds running now (the storytellers, the three fixes, the faction descriptions) is done.
+- **To do when the player asks (15 November 2026): colonists ride out to far work, and ride back.** The player, with
+  their save `League_of_Toba` (15 November, afternoon): "pawns should really use mounts whenever they walk away out of
+  the base range. sometimes they do, but sometimes they don't, i don't uinderstand. for example now avila did not mount
+  up despite going really far to mine. it should mount to go there, and mount back up aftr finishing work. same for all
+  other activities where they walk out further out of the base." Read from the save: the colony's riding is Giddy-Up 2
+  - Continued's (`memegoddess.giddyup`, its auto-mount), not Rimfolk's (Rimfolk mounts only its couriers and riders,
+  `GiddyUpMounts.MountUp`); nobody was mounted (its `ExtendedDataStorage` has every `mount` null); Avila was mining steel
+  at (93, 259) and Bautista at (137, 260), 70 to 90 cells from the base around (60, 200), on foot; free animals in the
+  pen around (55 to 80, 160 to 180): an adult horse, two titanis, a thunderox, an ankylosaurus (which of them
+  Giddy-Up lets be ridden is in its own settings, not the save). Proposed when asked: first read Giddy-Up 2 Continued's
+  own auto-mount rules (its source, Owlchemist's GiddyUp2 on GitHub and the continued fork) to say why it skipped
+  Avila (its minimum distance, how far the mount may be from the rider, an animal's hunger or rest, the job kind); then,
+  with Giddy-Up active (soft), Rimfolk fills the gap: a colonist (not drafted, not in a caravan) whose work lies well
+  outside the home area and who isn't mounted first fetches the nearest free animal Giddy-Up allows, rides out,
+  leaves it waiting nearby while working (Giddy-Up's own waiting), mounts it again when the work there is done and
+  rides back; the same for hauling, hunting, gathering, mining and any other job out past the base. Nothing changes
+  inside the base. The Almanac's animals page then says which Giddy-Up settings decide this.
 - **Dropped (14 November 2026): sending visitors away.** The player: "so asking visitors to leave is not necessary, as i
   found the already imlpemented function".
 - Not released: no version, no What's new round, About.xml and CHANGELOG untouched. **Six more ways to play, and Rise and
@@ -259,6 +306,33 @@ tree at once, alongside whatever runs. Each piece is merged as its own release, 
     softly when active: Vanilla Events Expanded, Vanilla Gravship Expanded, Hospitality, Alpha Animals, Vanilla Animals
     Expanded - Endangered, PokéWorld, Go Explore, Real Ruins, Vanilla Factions Expanded - Settlers, Medieval 2 and
     Empire, A RimWorld of Magic.
+- 0.252.0, **The peoples' descriptions, each in
+  its own words** (15 November 2026; the player's words, 14 November 2026: "it really reads like AI gibberish and I don't
+  understand what is really meant. also they all follow the same structure and it's always one named individual who
+  started the faction somehow. can you redo these descriptions and do a better job? each faction shoud have it's own
+  description & history, written and tailored for it exactly"). The `<description>` of all 23 FactionDefs in
+  `Defs/PeopleDefs/Rimfolk_People_*.xml`, rewritten in plain words: what they do, where and how they live, the age they
+  live in, what they want from their neighbours and how they treat outsiders (each one of their events, asks or trades on
+  the map), and a history in a shape of its own (a war's end, a vote, a crash, an abandoned lab, a drought, an order
+  never given, a flood, a battlefield, a pact at a ford, a plague, a quarrel over a shrine, a fire, a vow, a flight
+  from fire, and so on). A founder is named in six (Aldith, Tamsa, Old Brannoc, Captain Imre Sallow, Nessa Pell, Tobin
+  Garrow), where the people keep the name in a custom; the other seventeen tell what happened and never contradict the
+  founders their talk, faith and Almanac page name. No two open alike; about 140 to 190 words, each no longer than before.
+  Code map: the 23 people defs (the four header comments that said the description names the founder now say the talk
+  does); `Tools/Tests/PeoplesLoreTests.cs` (the old pin on "Their ways began" and the founder replaced by: two
+  paragraphs or more, at most 1200 characters, the age said, no em dash or exclamation mark, no two openings alike);
+  DESIGN.md, "The peoples' descriptions, each in its own words"; README (the seven's founding stories); a line in
+  `docs/design/peoples.md` and `docs/text-style-samples.md`. Nothing in code, nothing saved. Left as they were and
+  reported, since they are not the description: the Almanac's six peoples' pages, *Where their ways began* ("began
+  with" a named founder for most of the 23), each people's talk piece telling how their ways began (one named founder
+  each), and their faiths' descriptions (21 of 23 name their founder; the road league's and the
+  learned society's don't). The region window's Peoples page shows what they honour and fear and their news, never the
+  description or a founder. Can't
+  be checked without the game: how each text sits in the faction's info window. Try in the game: open the Factions tab
+  (or the world's list of factions when making a world), press the info button beside a Rimfolk people (the hospitaller
+  order, the Wheel, the Hollow Fleet) and read the description; then talk to one of their visitors at the gate until they
+  tell how their ways began, and check that the two agree. Mods that would help: none needed, it is text in the game's
+  own window.
 - 0.251.0, **Plain words: messages-elsewhere**
   (14 November 2026; the player's words: "when you write text for the mod, especially when it's supposed to be flavour,
   i'd like you to be more neutral, descriptive and "reasonable", over trying to make the text be creative", "the only
