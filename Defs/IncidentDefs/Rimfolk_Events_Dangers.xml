@@ -220,7 +220,7 @@
         <texts>
           <li>{A_nameDef} turned up something hard in the field and stopped dead: an old shell from a war before the colony's time, rusted, and still whole. Nobody has touched it since. It can be carried well out past the fields, set off where it lies from a safe distance, or left. A fire that reaches it will set it off wherever it is.</li>
           <li>[lowtech] There's a metal egg in the furrow, heavy as a stone and crusted with rust, with a cap on one end that {A_nameDef} won't touch. The elders say such things burst when they are struck or burned, and this one still might. {B_nameDef} could set it off from far away with a thrown stone or an arrow, or someone could carry it carefully a long way out.</li>
-          <li>[medieval] {A_nameDef}'s spade struck iron in the field: a great iron shell from some war of the old world, rusted shut. {B_nameDef} says to strike it from far off and let it burst where it lies. It could also be carried out to lie in the grass far from anyone, or left among the crops.</li>
+          <li>[medieval] {A_nameDef}'s spade struck iron in the field: a great iron shell from some war of the old world, rusted shut. {B_nameDef} says to strike it from far off and let it burst where it lies. It could also be carried out to the grass far from anyone, or left among the crops, where a fire would set it off.</li>
           <li>[!lowtech] {A_nameDef} found an unexploded shell in the field, an old high-explosive round in a crust of rust. {B_nameDef} can set it off from a safe distance, which will tear up the ground around it. Or it gets carried well out and left, or put in the stores for the mortars, if the colony has one.</li>
         </texts>
         <defaultOption>3</defaultOption>
