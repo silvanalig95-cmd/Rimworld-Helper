@@ -242,6 +242,22 @@ tree at once, alongside whatever runs. Each piece is merged as its own release, 
   original has no 1.6 release, an unofficial 1.6 port exists), Fantasy Races and Factions (satyrs; updated for 1.6 in
   January 2026).
   The player's pick of name: "Revel sounds great": Revel, the Open Cup.
+- **To do when the player asks (15 November 2026): guests busy most of the day, with more to do.** The player: "guests
+  still just wait around most of the time it feels. they could read books, take walks, interact with my pets, write
+  letters, train, fish, work on and use items themselves etc." What 0.239.0 does now (`Visitors/IdleHoursMath.cs`):
+  where a visitor's duty would have them wander, a look now and then fills the time (a 75% chance by day and 30% at
+  night; Hospitality's guests only 45% of that, so about a third of the time by day, and only for what Hospitality's
+  recreation has nothing for, close to where they stand); each doing lasts a quarter to about one and a half hours
+  (`Stint`), and after one ends or nothing is found they wait 150 to 1000 ticks (`NextLook`). So a lot of their day is
+  still standing between doings, Hospitality's guests most of all. Proposed when asked: their waiting hours mostly
+  filled (a look at once when a doing ends, the chances raised to most of the day, Hospitality's guests near the
+  others), measured with the "idle hours of everyone here" log on a save; and new doings, none of them using up the
+  colony's things or working for it: reading (a book of their own, by their age: a tablet, a scroll, a book; or one of
+  the colony's books where it lies, put back), a walk (round the colony's paths, to a view, a garden, a grave), the
+  colony's pets (petting, playing fetch, a word to a dog or a cat; never taming or training them), a letter or a
+  journal written at a table, training (the colony's targets and training dummies from the mod pool, shadow sparring,
+  archery practice), fishing (Odyssey's fishing where there's water, the catch their own), their own gear (mending,
+  sharpening, oiling a bow, tending their pack animal), games of their own (cards, dice), and their own instruments.
 - **Dropped (14 November 2026): sending visitors away.** The player: "so asking visitors to leave is not necessary, as i
   found the already imlpemented function".
 - 0.251.0, **Plain words: messages-elsewhere**
