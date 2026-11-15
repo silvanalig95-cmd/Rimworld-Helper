@@ -1461,8 +1461,11 @@ The herd and the pets are part of the colony's life, not only its larder and its
   herd follows its eldest out to fresh grazing, and on bitter nights it lies down close together; the herdmaster, or
   whoever is best with animals, goes round them in their free time; pets come in out of the rain and snow, turn and
   call out at raiders, keep close to their people when the sky turns strange, and lie by their person when they die.
-  Two of different kinds can now become friends in the barn. Ten of the animals' encounters happen on the map before
-  they are told, and every step of the animals' personal stories has something to see. No letters, nobody hurt.
+  Two of different kinds can now become friends in the barn. What is said comes as it is seen (the hello as the pet
+  reaches its person). Fifteen of the animals' encounters happen on the map before they are told, among them a grudge,
+  an old animal walking over slowly, a mother by her newborns, an animal standing between its person and a stranger and
+  a cry in the night, each only when what it speaks of is there; and every step of the animals' personal stories has
+  something to see. No letters, nobody hurt.
 - **Dreams** of the herd, of talking animals, of riding, of an old pet young again, and of a lost one coming back.
 - **Pets hunt for themselves** (the setting of that name, on by default): an animal whose kind hunts in real life (dogs,
   cats, foxes, wolves, bears, big cats, birds of prey, snakes, crocodiles; other kinds by what they are, from a table with

@@ -1408,7 +1408,9 @@ dusk prowler had a master, so everything that needed "its person" never happened
 door, the brave one's stand, five of the ten temperaments, grief, the old companion's story); six colonists filled six
 seats, so there was no herdmaster and none of the herdmaster's work; friendships needed two pets asleep side by side, and
 the three pets slept apart, so in 99 days not one pair formed; and the animals' encounters, which did come often (seventeen
-of them fired), were only words in the news, never anything on the map.
+of them fired), were only words in the news, never anything on the map, and some could say what wasn't so: the new litter
+(which fired) could be told of any animal, newborns or not, the animal on guard (which fired) with no stranger about, and
+the old friend slowing down of a young animal. There were no children, so a child's play could not come either.
 
 - **Every animal has its person** (`AnimalFacts.PersonOf`): the one it is bonded to, its master, else the colonist it is
   fond of (`AnimalFacts.FondOf`, `AnimalDaysMath.Favourite`). Among the colony's people living where it lives (and those
@@ -1426,30 +1428,47 @@ of them fired), were only words in the news, never anything on the map.
   on the map", 100% by default; all under "Pets as companions"):
   | Moment | What is seen | How often at 100% |
   |---|---|---|
-  | home again | its person back after four hours or more away (a caravan, a site), the animal runs to them and nuzzles them (the game's nuzzle, at a run), they say hello; the loyal ones have their own homecoming | 8 in 10 for a pet, 4 in 10 for the herd's ones, within three hours of their return |
-  | the foot of the bed | at bedtime (ten to one) a pet up to 1.6 body size goes into its person's room and sleeps on the cell past the sleeper's slot (`FootCell`, else beside the bed in the same room); they mention it when they wake (five to ten), a journal line now and then | about every three nights |
-  | a meal | a pet goes to sit at the elbow of someone eating (sat with their food), its own person first, facing them a while; they tell it no | about every two days, half again for a greedy one |
+  | home again | its person back after four hours or more away (a caravan, a site), the animal runs to them (`JobDriver_AnimalRunTo`, `Rimfolk_AnimalGreet`) and gives the game's nuzzle as it gets there, and they say hello then; the loyal ones have their own homecoming; out of danger only, the welcome waiting for it to pass | 8 in 10 for a pet, 4 in 10 for the herd's ones, within three hours of their return |
+  | the foot of the bed | at bedtime (ten to one) a pet up to 1.6 body size goes into its person's room and sleeps on the cell just past the foot end of the sleeper's place (`Building_Bed.GetFootSlotPos`, `AnimalDaysMath.FootCells`; a bed's own cells can't be stood on), else beside its foot, else beside the bed in the same room; they mention it when they wake (five to ten), a journal line now and then | about every three nights |
+  | a meal | a pet goes to sit at the elbow of someone eating (sat with their food), its own person first, facing them a while; they tell it no as it sits down, if still eating | about every two days, half again for a greedy one |
   | play | a child with free time and a calm animal within 25 cells (up to 2.5 body, no hunter over 1.2): the animal bounds about the child (`JobDriver_AnimalPlay`) and the child chases it (`JobDriver_PlayWithAnimal`, some recreation), both at a run, 1,200 ticks | about daily for each child |
   | the herd | in the early morning (six to nine) a herd of two or more grown of one kind (herd animals) follows its eldest, the herd's leader when it is one of them, to fresh grazing 5 to 30 cells off in its area and pen | about every day and a half for each kind |
-  | the rounds | in their free time the herdmaster, else whoever is best with animals and handles them, goes round up to five of the colony's animals, nearest next (`JobDriver_KeeperRound`), 300 ticks beside each while it holds still, a little handling practice; a word to the first (sick, hurt, in young) | about every two days, half again for a herdmaster |
-  | rain and snow | when rain or snow (rate 0.5 or more) comes on by day, up to three named pets out in it go in under a roof in the home area and lie down a while; in the snow up to two young ones play in it | when the weather turns |
+  | the rounds | in their free time the herdmaster, else whoever is best with animals and handles them, goes round up to five of the colony's animals, nearest next (`JobDriver_KeeperRound`), 300 ticks beside each while it holds still, a little handling practice and a little of the recreation the free time would have given; a word to the first (sick, hurt, in young) | about every two days, half again for a herdmaster |
+  | rain and snow | when rain or snow (rate 0.5 or more) comes on by day, up to three named pets out in it go in under a roof in the home area and lie down a while, the first remarked on as it lies down there; in the snow up to two young ones play in it | when the weather turns |
   | a bitter night | below -8 °C at night, each herd of one kind out in the open lies down close round its eldest | once a night |
   | raiders | as they come (the fight's 250-tick look), up to two named pets, never a timid one, turn to face the nearest and give their own call (`Pawn_CallTracker.DoCall`), and someone says where (`AnimalNatureMath.Compass`) | once a fight |
-  | a strange sky | a god's presence on the map (its condition, `GameCondition_GodPresence`): up to three pets go to keep close to their person a while, one cries out, someone says the animals are restless; the god is never named | once a presence |
-  | a death | when its person dies (`AnimalTempers.Hourly` sees it before another takes their place), the animal goes to lie by the body or the grave it is in (`Rimfolk_AnimalMourn`), cries out and stays 7,500 ticks, once the danger is past, within half a day; the bonded ones' grave visits go on as before | once a death |
+  | a strange sky | a god's presence on the map (its condition, `GameCondition_GodPresence`), out of danger: up to three pets go to keep close to their person a while (`Rimfolk_AnimalKeepClose`), the first crying out as it goes, and someone says the animals are restless once it is at their side; the god is never named | once a presence |
+  | a death | when its person dies (the animals' hour keeps whom each is with, `AnimalDays.Deaths`, and sees it before another takes their place, with or without temperaments), the animal goes to lie by the body or the grave it is in (`Rimfolk_AnimalMourn`), cries out as it lies down and every 1,500 ticks (the linger's `callEvery`), and stays 7,500 ticks, once the danger is past, within half a day; whoever sees it says so as it lies down; the bonded ones' grave visits go on as before | once a death |
 
   Each is noted on the animal's card ("lately") and said in one plain sentence (`Rimfolk_Pool_AnimalDays`, tagged by
   moment, temperament, family, body), through `Speech.Say` at the shared once-a-day rate. One of each a map an hour at
   most; nothing in danger but the alarm.
+- **Said as it is seen** (`AnimalArrivals`, `Animals/AnimalDayJobs.cs`): what is said about a moment waits for the animal
+  to get there, so the words and the sight come together: `AnimalDays.StartThen` sets what is said for the job's id before
+  the job starts (one already there arrives at once), and `JobDriver_AnimalLinger` (as it starts to stay),
+  `JobDriver_AnimalRunTo` (as it reaches them) and `JobDriver_SitWithAnimal` (as they sit down) say it. Jobs cut short
+  never arrive, and their words are never said; after a load the jobs play out without them.
 - **Encounters that happen on the map first** (`Animals/AnimalScenes.cs`): an encounter with an animal's scene
-  (`DilemmaEffect_AnimalScene`) is played out and only then told, its words, moods and journal line coming once it has
-  (`Strangers/Encounters.cs` calls `AnimalScenes.Begin`); one whose moment never comes is never told. The welcome (the
-  animal runs to them), warm feet (it sleeps at the foot of their bed that night, told in the morning), the stolen dinner
-  (at their next meal it sits at their elbow, then runs off), a child at play (chase), adopted by an animal and company at
-  work (it follows them about), comfort (it nuzzles them and stays at their side), a new trick (it bounds about in front of
-  them, and they stop to watch in their free time), the larder raid (it goes and eats from the stores, the game's own
-  eating, in place of food taken off the count), confiding in it (in their free time they sit with it a while). Their words
-  were rewritten to say only what the scene shows. A meal, a night and a free hour are waited for, a day and a half at most.
+  (`DilemmaEffect_AnimalScene`) is played out and only then told, its words, moods and journal line coming as it is seen
+  (`Strangers/Encounters.cs` calls `AnimalScenes.Begin`; told once at most); one whose moment never comes is never told.
+  Fifteen of the seventeen with the colony's animals: the welcome (it runs to them and nuzzles them, told as it reaches
+  them), warm feet (it sleeps at the foot of their bed that night, told in the morning), the stolen dinner (at their next
+  meal it sits at their elbow, told as it sits down, then runs off), a child at play (chase), adopted by an animal and
+  company at work (it keeps at their side a while, told as it reaches them), comfort (it walks over, nuzzles them and stays
+  at their side), a new trick (it bounds about in front of them, and they stop to watch in their free time), the larder
+  raid (it makes for the stores, never a table, and eats there, the game's own eating, in place of food taken off the
+  count; told as it sets off, its words saying that much), confiding in it (in their free time they sit with it a while,
+  told as they sit down), the grudge (it runs at their heels and off again, told as it reaches them), the old friend
+  slowing down (an animal old for its kind only, `moment` `x:oldanimal`: it walks over to them and stays at their side),
+  the new litter (only an animal with newborns of its own on the map, born within six days, `AnimalDaysMath.Newborn`, in
+  any season: it lies by them, they keep close to it, and the colonist comes over in their free time to look, told as they
+  get there), the animal on guard (only with a stranger, a visitor or trader, within 18 cells and in sight: it goes and
+  stands between them, facing the stranger, `Rimfolk_AnimalGuard`, told as it takes its place) and the noise in the night
+  (it goes a few steps further out under the open sky, faces the dark and cries out every 300 ticks, `Rimfolk_AnimalCry`,
+  told at its first cry). An encounter whose words need newborns or a stranger is cast only with them there
+  (`AnimalScenes.Fits`, in `Encounters.Cast`), so it is never told without them, scene or not. Their words were rewritten
+  to say only what the scene shows. A meal, a night and a free hour are waited for, a day and a half at most. Left as
+  words: the gift from the hunt and the chewed belongings, which would need things made or spoilt.
 - **The personal stories' steps, on the map**: every step of the animals' stories before the last now has something seen
   (the old companion at its person's heels; the orphan following them, then visited in the evening; the stray watched at
   dusk and visited before the handlers try it; the feud's ambushes, an evening in each other's company, then the animal at
@@ -1458,8 +1477,9 @@ of them fired), were only words in the news, never anything on the map.
   shepherd, Great Dane, poodle, pug, rottweiler, shih-tzu), the Maine coon, Odyssey's greatwolf and prairie dog, and the
   big grazers, small animals and snakes of the game, Odyssey and Vanilla Animals Expanded have their families
   (`AnimalNatureMath.Family`), so their lines and leans fit; a temperament already given is kept.
-- **Nothing saved**: the person is worked out; what waits (a homecoming, a morning's word, a scene, a death) is this
-  session's. No Sched slot: the animals' hour and the fight's look. No harm, no letter, no message.
+- **Nothing saved**: the person is worked out; what waits (a homecoming, a morning's word, a scene, a death, the words
+  for an arrival) is this session's; the jobs keep only their own timings (`until`, `about`, `nextCall`, `looked`). No Sched
+  slot: the animals' hour and the fight's look. No harm, no letter, no message.
 - **Dev mode** (`Animals/AnimalDaysDebug.cs`): whom each animal is with (bond, master, fond of), any daily moment now, an
   encounter's scene for a colonist and an animal picked.
 
