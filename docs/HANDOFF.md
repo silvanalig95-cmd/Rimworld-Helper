@@ -53,10 +53,6 @@ tree at once, alongside whatever runs. Each piece is merged as its own release, 
     movement or a baby's cry within a few cells, the sound carrying through open doors and doorless openings but not
     through walls or closed doors, at most once in 300 ticks, and never from a lover, a pet or a bonded animal; so a
     guest walking past an open door or into the room wakes them, one outside a closed door does not.
-  - **More of Old Powers' kind. (being built, the player's go of 14 November 2026)** The player: "i like the old powers storyteller and want you to do some more more events
-    in this style, including the gods and using ressources from rimworld of magic". When asked: a list of uncanny events
-    first (omens, strange nights, things in the earth, the gods drawing near, seers and pilgrims), with A RimWorld of
-    Magic's motes, sounds and effects (its textures are in the scratchpad's `rom_Motes`), for Old Powers and any way.
   - **Quests, and storylines across quests.** The player: "the next thing to include will be more quests, and quests that
     are storylines across multiple quests". When asked: proposed first, a list of quests by the peoples, the gods and the
     region, and storylines that run over several quests (a chain whose next quest depends on how the last went), built
@@ -224,6 +220,75 @@ tree at once, alongside whatever runs. Each piece is merged as its own release, 
     the old companion's story); one or the other, since Zoology has walks and fetch too. For the night's sounds under
     the cry in the dark, Ambient Rim ([3158997430](https://steamcommunity.com/sharedfiles/filedetails/?id=3158997430);
     tags 1.4 to 1.6, updated July 2026), already proposed for the gods.
+- 0.240.0, **More of Old Powers' kind: the old
+  powers' own strange happenings** (14 November 2026; the player's words: "i like the old powers storyteller and want
+  you to do some more more events in this style, including the gods and using ressources from rimworld of magic", then
+  "do ... more old powers style events"). Item 7 of `docs/storytellers-proposals.md` made into fourteen happenings of
+  their own. DESIGN.md "The old powers' own strange happenings" (after "Ways to play") has all of it; the README's ways
+  to play a paragraph; the Almanac's "ways to play" page, Old Powers' section and row (keywords unchanged); Old Powers'
+  description and its direction's note say so.
+  - What: fourteen uncanny happenings, each played out on the map with its card or news line, under every storyteller
+    (about one in three weeks at a home) and leaning to Old Powers and its story direction (each look three times as
+    likely, about one in ten days; the ways' new lever `uncanny`, 3 on Old Powers). The gods' pace (`GodPaceMath`): each
+    its own gap, a ramp, a reason needed (never when merely free), none within four days of another, one under way at a
+    time, never with a fight on. The seer of the season; everything faced one way; the humming stone; the sealed scroll;
+    the casters lit up; the wandering enchanter (its own question letter); the thing under the ground; the dead on the
+    road; pilgrims passing; another sky; the animal that spoke; a god going by (its own round 2 signs through the night,
+    then its own round 2 presence a while after dawn); the pale wolves (A RimWorld of Magic's spirit wolves running round
+    the colony under the full moon, no tracks at dawn); eyes in the dark (gone when someone walks out to them). Harm only
+    through the shared budget (`HarmKinds.Uncanny`): a caster's burned hands, the shamblers on the road, the dead from
+    under the ground (Anomaly), each shown. A god named only where the colony knows it (`Gods.CardName`). Each in the
+    colony's age's form.
+  - Code map: `Source/ColonyCouncil/OldPowers/OldPowersMath.cs` (pure, linked in `Tools/Tests/Tests.csproj`: `OldPower`,
+    `PaceOf`, `HoursOf`, `DayChance`, `CheckChance`, `Spaced`, `AssumedShare`, `Age`, each happening's trigger and rules,
+    `SeerWords`, `PickFind`, `BeastWordOf`, `PassLingers`, `PackAt`, `PackFacing`, the eyes' numbers). `OldPowers.cs` (the
+    frame: `Hourly`, `Call`, `Begin`, `Fire`, `Play`, `Step`, the words, `Line`, `Say`, `Card`, `Minor`, `Motes`,
+    `Drift`, `Sound`). `OldPowersBook.cs` (`OldPowersBook`, a game component: `last`, `lastAny`, `lately`, `searched`,
+    `play`; `OldPowerPlay`; `ChoiceLetter_OldPowers`). `OldPowersVisitors.cs` (seer, enchanter, pilgrims),
+    `OldPowersNight.cs` (one way, stone, casters, dead road, another sky and `GameCondition_OtherSky`, pale wolves, eyes),
+    `OldPowersFinds.cs` (scroll, under the ground, the animal, a god going by and its presence after), `OldPowersDebug.cs`
+    (a dev action each, the next step, the pace in the log). Seams: `HappeningTracker.Hourly` calls `OldPowers.Hourly`;
+    `StoryWaysMath.Uncanny`, `StoryLevers.uncanny`; `HarmKinds.Uncanny` and `Harm.cs`'s `oldPowers`; `AnswerMath.Sources`
+    and `EventCardMath.Kinds` for the enchanter's letter. Defs `Defs/IncidentDefs/Rimfolk_OldPowers.xml` (eleven small
+    moods, another sky, the letter), `Rimfolk_OldPowers_Lines.xml` (`Rimfolk_Pool_OldPowersSaid`, in `ImmersionTests`),
+    keys `Languages/English/Keyed/Rimfolk_OldPowers.xml`; `<uncanny>3</uncanny>` on Old Powers in
+    `Defs/StorytellerDefs/Rimfolk_Storytellers.xml`. Moods in `Tools/Balance/Rates.cs`; saved collections in
+    `Tools/save_estimate.py`. Tests `Tools/Tests/OldPowersTests.cs` (1288 checks, with a model of how often they come).
+    No `Sched` pass.
+  - Mods used (active rows, by name, the game's own as the fallback): A RimWorld of Magic's motes (casting circles,
+    runes, mana puffs, arcane waves, psionic current, ghosts, shadows, twinkles, holy light, earth cracks, spirit wolves),
+    sounds (gong, power-up, low vibration, low wind, soft explosion, wolf howl, its sermon), spell scrolls and grimoire,
+    raw magicyte and minor enchanting gems, the Chronomancer and Enchanter classes, the arcane fold, mana storm and surge;
+    Vanilla Events Expanded's and Vanilla Psycasts Expanded's psychic skies, the Archon's psychic storm; Anomaly's
+    shamblers and tomes; Royalty's psycasters. Would help: Ambient Rim
+    ([3158997430](https://steamcommunity.com/sharedfiles/filedetails/?id=3158997430); tags 1.4 to 1.6, no 1.7 tag yet,
+    kept up: a 1.6 fix in July 2026), already named for the gods' presences: night birds and owls in the trees and wind
+    on open ground, under the strange nights; nothing here needs it. The pale wolves' drawings come with A RimWorld of
+    Magic, already in the list.
+  - Not seen in a real game (none of it could be): the motes in view at each zoom (the wolves' drawings upright and
+    facing the way they run; the eyes as two small glints at the edge of the light), the seer's, enchanter's and
+    pilgrims' visits under their lords, the shamblers' letter under the old powers' words, the presence after dawn's
+    label on the card, everyone facing one way at once, and how often they come in a real colony.
+  - Try in the game (dev mode, "Rimfolk", "Old powers: ... now"; "Old powers: the next step now" skips a wait; "Old
+    powers: the pace now (log)" shows each one's call and chance):
+    1. The seer (morning): a seer walks in to the middle, someone sits with them, one word at a time over the seer's head,
+       then the card with the next season's warmth, crops, the stores and blades if a raid is queued.
+    2. Everything faces one way (at night): everyone and every animal awake turns the same way; at dawn someone walks
+       out that way and finds an old thing (after a death, everyone faces the grave and someone stands there at dawn).
+    3. The humming stone, the sealed scroll (with someone in a room of ruins), the casters lit up (a mage or psycaster in
+       the colony): each as its card says.
+    4. The wandering enchanter (a colonist carrying a weapon below masterwork, silver in the stores): its letter; yes,
+       the bearer walks over, an hour of light, the piece one grade better and the silver gone.
+    5. The thing under the ground: a knock, "the next step now" twice for the crack and the morning, the find.
+    6. The dead on the road at dusk, the pilgrims (they pray at the oldest grave and leave a carving), another sky at
+       night (violet, with green shadows), the animal that spoke (someone out of doors with a wild animal near).
+    7. A god going by: "Gods: the colony knows every god", then the action; signs through the night from ten, at six
+       the card titled with the god's name, and the god's own presence in the corner for a while (Hollin's "the green
+       leaning", say). Without the colony knowing the god: "Signs in the night", unnamed.
+    8. The pale wolves (at night): a howl, then pale wolves run once round the colony and off; animals and colonists
+       out of doors stop and watch; at dawn someone walks out and says there are no tracks.
+    9. Eyes in the dark (at night): pairs of small glints round the colony; those outside stop and look; after about a
+       minute someone walks out to the nearest pair, and every pair goes out as they get close.
 - 0.239.0, **Visitors fill their idle hours**
   (14 November 2026; the player: "guests should spend more of their time doing things. i don't want them to generate
   value for me, but it just looks a bit weird when they spend most of their day just standing and walking around. they

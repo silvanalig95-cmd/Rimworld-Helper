@@ -342,5 +342,6 @@
     <Compile Include="../../Source/ColonyCouncil/Gods/GodNearMath.cs" Link="GodNearMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Story/StoryWaysMath.cs" Link="StoryWaysMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Story/StoryLevers.cs" Link="StoryLevers.cs" />
+    <Compile Include="../../Source/ColonyCouncil/OldPowers/OldPowersMath.cs" Link="OldPowersMath.cs" />
   </ItemGroup>
 </Project>

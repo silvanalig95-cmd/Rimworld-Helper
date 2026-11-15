@@ -1014,7 +1014,7 @@
   <StorytellerDef ParentName="BaseStoryteller">
     <defName>Rimfolk_Story_OldPowers</defName>
     <label>Old Powers</label>
-    <description>The world feels watched. Raids come nearly at the classic pace, and stranger things make up the rest of it: psychic drones, maddened herds, things in the earth, and the void where its powers are awake. Nights are full of omens, eclipses and auroras; pilgrims and seers are more often on the road, the land and the sky stir more, and the region's word turns to strange skies.\n\nFor a game of omens and the unknown.\n\nIt leans toward these, never away from anything: every kind of event can still come.</description>
+    <description>The world feels watched. Raids come nearly at the classic pace, and stranger things make up the rest of it: psychic drones, maddened herds, things in the earth, and the void where its powers are awake. Nights are full of omens, eclipses and auroras; pilgrims and seers are more often on the road, the land and the sky stir more, the old powers' own strange happenings come about twice as often (a seer at the end of a season, a stone that hums, a night sky in other colours, an animal that speaks, pale wolves under the full moon), and the region's word turns to strange skies.\n\nFor a game of omens and the unknown.\n\nIt leans toward these, never away from anything: every kind of event can still come.</description>
     <portraitLarge>ColonyCouncil/Storytellers/OldPowers</portraitLarge>
     <portraitTiny>ColonyCouncil/Storytellers/OldPowersTiny</portraitTiny>
     <listOrder>65</listOrder>
@@ -1338,6 +1338,7 @@
           <pasts>1.2</pasts>
           <situations>1.2</situations>
           <fights>0.7</fights>
+          <uncanny>3</uncanny>
         </levers>
         <situationKinds><li>sky</li><li>comet</li><li>faith</li><li>wreck</li></situationKinds>
         <harmLean><li>sleepwalk</li><li>soldierNight</li><li>restlessWalk</li><li>worstNight</li><li>dawnWalk</li></harmLean>
