@@ -338,11 +338,14 @@ namespace ColonyCouncil
         /// the god's own (<paramref name="presence"/>, its condition's def) where it has one, doing its own thing in the
         /// world and lasting as its nature asks; the shared one otherwise.
         /// </summary>
-        internal static void Begin(Map map, PresenceKind kind, Color color, float still, string name, bool veiled, GameConditionDef presence = null, string godKey = null)
+        internal static void Begin(Map map, PresenceKind kind, Color color, float still, string name, bool veiled, GameConditionDef presence = null, string godKey = null,
+            int linger = 0)
         {
             var def = presence ?? DefDatabase<GameConditionDef>.GetNamedSilentFail(DefName);
             var effect = def?.GetModExtension<OwnPresence>()?.effect ?? PresenceEffect.None;
             int ticks = effect != PresenceEffect.None && map != null ? GodPresenceOwnMath.Ticks(effect, kind, GenLocalDate.HourOfDay(map)) : GodPresenceMath.ConditionTicks(kind);
+            // A presence that stays on the land for days (the gods' touch, Gods/Touch/): the sky only lightly in its colour, the wind as it is.
+            if (linger > 0) ticks = linger;
             if (map == null || ticks <= 0 || def == null) return;
             try
             {
@@ -351,9 +354,9 @@ namespace ColonyCouncil
                 old?.End();
                 var cond = (GameCondition_GodPresence)GameConditionMaker.MakeCondition(def, ticks);
                 cond.tint = color;
-                cond.tintStrength = GodPresenceMath.SkyTint(kind);
-                cond.darken = GodPresenceMath.Darken(kind);
-                cond.wind = GodPresenceMath.WindFactor(still, kind);
+                cond.tintStrength = linger > 0 ? GodPresenceMath.SkyTint(kind) * 0.2f : GodPresenceMath.SkyTint(kind);
+                cond.darken = linger > 0 ? 0f : GodPresenceMath.Darken(kind);
+                cond.wind = linger > 0 ? 1f : GodPresenceMath.WindFactor(still, kind);
                 cond.godName = name;
                 cond.veiled = veiled;
                 cond.godKey = godKey;

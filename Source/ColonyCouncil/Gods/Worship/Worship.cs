@@ -319,7 +319,7 @@ namespace ColonyCouncil
         /// Remembered among the god's acts, and in the colony's book through those who saw it.
         /// </summary>
         public static void Sign(God g, Map map, IntVec3 cell, PresenceKind kind, string title, string text, LookTargets look, bool letter, GodActKind act = GodActKind.Act,
-            bool? plain = null)
+            bool? plain = null, string what = null)
         {
             if (g == null || text.NullOrEmpty()) return;
             try
@@ -334,13 +334,15 @@ namespace ColonyCouncil
                     ? " " + "CC_GW_Hand_Plain".Translate(Called(g).Named("GOD")).Resolve()
                     : Hand(g, map, cell);
                 spec.text = text;
+                // What it was, for the gods' touch ("taken", "prayer", "council").
+                spec.what = what;
                 if (!GodPresenceSeam.Call(spec))
                 {
                     Glow(map, cell, g, kind == PresenceKind.Wrath, !spec.veiled);
                     if (letter) Tell.Letter(NewsKind.Colony, Importance.Notable, map, title, text, LetterDefOf.NeutralEvent, look);
                     else Tell.Minor(NewsKind.Colony, Importance.Notable, map, text, look);
                 }
-                Witness(g, map, act, seen, cell);
+                Witness(g, map, act, seen, cell, what);
             }
             catch (Exception e)
             {
@@ -415,10 +417,10 @@ namespace ColonyCouncil
         /// wrath) reaches the colony's book through those who saw it, as they took it; anything else (an offering left, a
         /// festival's favour, a vow) stays hidden. <paramref name="text"/> is what was seen, never why.
         /// </summary>
-        public static void Witness(God g, Map map, GodActKind kind, string text, IntVec3 cell = default)
+        public static void Witness(God g, Map map, GodActKind kind, string text, IntVec3 cell = default, string what = null)
         {
             if (g == null || text.NullOrEmpty()) return;
-            Gods.Remember(new GodAct { god = g.id, home = Gods.HomeKey(map), kind = kind, text = text, cell = cell == default ? IntVec3.Invalid : cell });
+            Gods.Remember(new GodAct { god = g.id, home = Gods.HomeKey(map), kind = kind, text = text, cell = cell == default ? IntVec3.Invalid : cell, what = what });
         }
 
         /// <summary>

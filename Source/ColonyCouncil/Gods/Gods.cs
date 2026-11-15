@@ -247,8 +247,13 @@ namespace ColonyCouncil
             if (act == null || b == null) return;
             b.Remember(act);
             if (act.booked || !SeenOnLand(act.kind)) return;
-            // A moment just written into the book (Moment) isn't written twice when its caller remembers it too.
-            if (act.god == momentGod && Now - momentAt < GenDate.TicksPerHour * 2) return;
+            // A moment just written into the book (Moment) isn't written twice when its caller remembers it too; what it was
+            // (its words key) still reaches the gods' touch, which takes the two as one occurrence.
+            if (act.god == momentGod && Now - momentAt < GenDate.TicksPerHour * 2)
+            {
+                GodTouch.Note(act, null, Homes.MapOf(act.home) ?? Homes.Seat, null);
+                return;
+            }
             try
             {
                 var map = Homes.MapOf(act.home) ?? Homes.Seat;
@@ -265,6 +270,8 @@ namespace ColonyCouncil
                 // A kindness or an anger seen: the believer among them comes to hold what the god they took it for loves or hates.
                 if (taken != null && (act.kind == GodActKind.Blessing || act.kind == GodActKind.Wrath))
                     GodLore.Inferred(GodLore.Believer(pawns), ByKey(taken), g, act.kind == GodActKind.Wrath);
+                // What it does to those who saw it, and what follows on the map (Gods/Touch/GodTouch.cs).
+                GodTouch.Note(act, pawns, map, ByKey(taken));
             }
             catch (Exception e)
             {
@@ -316,6 +323,8 @@ namespace ColonyCouncil
                     GodLore.Inferred(GodLore.Believer(witnesses), taken, spec.god, spec.kind == PresenceKind.Wrath);
                 // Each witness's own belief in the god they took it for, plainly seen the more (Gods/Belief/PawnGods.cs).
                 PawnGods.Saw(witnesses, taken, PawnGods.KindOf(spec.kind), plain, words, spec.cell, spec.map);
+                // What it does to those who saw it, and what follows on the map (Gods/Touch/GodTouch.cs).
+                GodTouch.NoteMoment(spec, witnesses, plain, taken);
                 momentGod = spec.god.id;
                 momentAt = Now;
             }

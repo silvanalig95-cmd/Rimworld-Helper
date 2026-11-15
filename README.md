@@ -1578,7 +1578,12 @@ walks in the look of its own:
   takes its colour and the wind dies for a few hours; a mark is left where it stood (a ring of flowers or scorched
   ground, a spring, a tree, frost, ash, slag or a standing stone); its track plays (Anomaly's, Odyssey's, Ideology's
   archonexus song, or your own); and its card comes, dark paper and gold with its symbol, plain or "some say". An omen
-  is small: a sound, a glimmer, someone looking up.
+  is small: a sound, a glimmer, someone looking up. Each god has its own look as it comes and wherever it acts: leaves
+  and green flashes, embers and heat, dust, pale spores, a skip flash and footprints, sparks, lightning glow, snow and
+  frost, dark rings and smoke, light shafts, pale rings, sand, water, gold glints (the game's own flecks, A RimWorld of
+  Magic's and Vanilla Psycasts Expanded's). The camera goes to every god's doing on the map: its moments, omens, its
+  own happenings, a gift left, the great cat and a notable effect that follows. Only the small touches, dreams and what
+  is only told leave the camera where you have it.
 
 Your own music for a god: put .ogg, .wav or .mp3 files in `Sounds/Rimfolk/Gods/<Domain>/` inside Rimfolk's folder (for
 example `Sounds/Rimfolk/Gods/Storm/`) and restart the game; they play before the look's own tracks. Settings: *Gods'
@@ -1611,6 +1616,19 @@ nobody can say for certain what it was or why. You see what the colonists see, a
   moon apart at least, and seldom the same twice; when it comes back to someone for the same deed again, it is talked
   about as happening again, and goes further. It's talked about at breakfast.
 - **The weather.** Sometimes the sky seems to answer, and someone outside always says so.
+- **What it leaves.** Whoever sees something of the gods feels it by what they believe: a believer of that god is glad
+  of its kindness (more when they saw it plainly) and comforted, someone in dread of it is afraid and strained, someone
+  with no strong belief is awed by a sight and a little uneasy at a sign, and a scoffer shrugs. And most of what happens
+  is followed by something of the god's own: usually something small (a day's help in its own work for those who saw it,
+  flowers where it stood, the fires burning full again, the machines mended, the sky clearing, the rats gone), now and
+  then something more (an inspiration, ore or silver or mushrooms where it happened, the crops grown on, game on the
+  land, travellers or a trader, a people thinking better of the colony, an aurora, the stores kept fresh, wounds healed,
+  a cat come to stay, fish on the bank), and rarely, a season or more apart, something the colony remembers (a god's
+  presence staying on the land for days, a seam of gold in the rock, animals or a person come to stay, the fields made
+  rich, a winter without the cold, a day of sun that grows every crop, an old wound gone, a spring welling up, gold on
+  the ground). The angry gods spoil, break and chill, never wound. None of it names a god; what you see is what happened.
+  The same thing seldom comes back soon: an offering is taken before everyone's eyes a month apart at most, and a god
+  that came often lately gives the others their turn.
 
 What people saw goes into the god's history in their own words, the chronicle, their journals and their shared memories.
 The places stay talked about for years: someone walks out to one on a quiet day, it comes up at supper, and visitors ask
@@ -1618,7 +1636,8 @@ about it. The gods are felt more than seen, but not all alike: what happens on y
 colony can draw one of them nearer, a drought, a deep mine, a hard winter, offerings or harm, and a god drawn near may
 show itself plainly, answer more strongly, or take its true form, while the others stay hidden. Nothing tells you how
 near a god is; you see what it does. None of this repeats on a schedule: each thing keeps its own pace, comes only for a
-reason, and never on a day you could name. Dev mode has *Gods: ...* actions to call each of these.
+reason, and never on a day you could name. Dev mode has *Gods: ...* actions to call each of these, and *Gods: a god's
+touch here now...* for any of what follows.
 
 ### Offices and elections
 Five council seats: **speaker** (chairs meetings, everyone's trust rises a little each day), **marshal** (drills

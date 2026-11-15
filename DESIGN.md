@@ -14615,6 +14615,154 @@ its line in the colony's book; none hurts anyone.
   (`Gods/OwnSevenDebug.cs`, out of the map's code as batch 1's are). Tests: `Tools/Tests/OwnHappeningsSevenTests.cs` (and batch 1's
   `OwnHappeningsTests`, widened to both). The twelve moods in `Tools/Balance/Rates.cs`.
 
+### The gods felt, and what follows them (the player's go, 15 November 2026; released 0.256.0)
+
+The player, with their save `League_of_Toba_2`: "so far i really like how the gods event appear, also with the sound,
+visual effect and camera centering! if there's other similarly impressive visual effects, include some variety. but also
+for many of the gods occurences i don't see any real game impact. it's a cool event but nothing rally comes from it, for
+example the stranger one at the altar i have and had three times already this event. there should be more ingame effect.
+also pawns seem to take no mood or heart/strain or other gameplay impact either. update this now"; then "effects can be all
+kinds of things, be creative, not just what you listed", and "the effect can be something more impactful also, remember
+these are gods. but keep it balanced, not that strong effects come up all the time. there should be range and variety".
+
+- **Why, from their save.** Ennu's offering at the Stranger's church was taken before everyone's eyes three times
+  (ticks 5767607, 6387607 and 6567607, the last two three days apart), each a full moment with the camera on it, because
+  the colony kept offering and Ennu stayed drawn near; nothing followed but a little belief. Over the save's last 43 days
+  about one occurrence of the gods a day was seen, and a mood came only to someone holding that god as their first
+  (`Rimfolk_Belief_GodActed`); the heart never moved.
+- **The frame** (`Gods/Touch/GodTouch.cs`, `GodTouchBook`): every occurrence someone of the colony saw reaches it through
+  the seams already there (`Gods.Remember` for an act on the land with its witnesses, `Gods.Moment` for a god's moment,
+  and an offering found taken); a moment and the words written of it a moment later are one occurrence (by god and
+  home, two hours). Each says what it was (`GodAct.what`, `PresenceSpec.what`: its words key, CC_GodO_Saw_Roots..., or
+  the part's own word, "world", "told", "taken", "prayer", "council", "vow", "mark"). It waits until the god's moment has
+  played out (`GodPresence.Busy`, an hour at most), then:
+  - **felt** by each who saw it (`GodTouch.Felt`, `GodTouchMath.MoodFor`), by how they stand toward the god they took it
+    for (`StanceOf`: a scoffer, in dread of it, holding to it, or neither) and what it was like (`ToneOf`: a blessing
+    kind, an anger dark, an omen a sign, a coming or a god at work a sight; the Hunger's signs and sights dark):
+
+    | | kindness | sight | sign | anger |
+    |---|---|---|---|---|
+    | holds to it | my god was good to us +4 (seen plainly: +6) | my god showed itself +3 (plainly +6) | +3 | something angry was here -3 |
+    | neither | saw something of the gods +2 (plainly: saw a god plainly +4) | +2 (+4) | an odd sign -1 | -3 |
+    | dreads it | nothing | the one I fear came near -3 (showed itself -5) | the belief round's flinch | -3 (-5) |
+    | scoffer | nothing | nothing | nothing | nothing |
+
+    The heart through its own API: strain eased for a believer (1 to 2.5) and a little for anyone at a kindness or a
+    sight (0.5 to 1), through the day's small joys and their cap (`HeartLogic.EaseJoys`); strain for one in dread when
+    it comes or is angry (1 to 2) and a little for anyone at an anger (0.5 to 1), through dread and its cap
+    (`HeartLogic.Build`, `StrainSource.Dread`). The kindness's mood takes the place of the belief round's smaller one.
+  - **followed**, for an occurrence with no effect of its own (`GodTouchMath.HasOwnEffect`: the moments in the world, a
+    prayer answered, the council's answers, the waking, the stranger's judgement, the weather's answer, the late gift,
+    the sacred beasts, the moon's return, the great cat, and the own happenings that carry one: the bargain and its
+    vein, the seam, the burn, the star and the pods, the aurora, the wounded thrumbo tended, the white beast kept
+    waiting, the old tree, the green walk, the ring dug up, the bowl found empty, the turret, the small tests, the
+    kindest's news, the sulk, the thaw, Murmur's rain, give-back and frogs, Ducat's trail and coin, the moonlit watch and
+    the dark's happenings; a letter's tale and a mark talked of are no occurrence at all), by one of its god's own
+    effects (`GodTouchMath.Table`, `GodTouchEffects`).
+- **Three strengths** (`GodTouchMath.Tier`): an occurrence brings an effect nine times in ten for a kindness, eight for
+  a sight, half for an anger and about a third for an omen; notable about a third of those (more for a god seen plainly
+  or a coming, less for an anger), great one in twenty-five (four times that for a coming seen plainly, half for an
+  anger, never for an omen); a god's small ones twice a day at most at a home, its notable 8 days apart and any god's 3,
+  its great 120 days apart and any god's 40; a tier whose wait isn't past falls to the one below. At about one
+  occurrence a day (as the save had) that comes to about 25 small, 6 notable and less than one great a colony-year, and
+  a third or so leave the moods only. The god's effect for the tier is leaned away from what it did lately at the home
+  (`GodPaceMath.Lean`), among those that can happen now (`GodTouchEffects.Can`); with none of a tier, one of the tier
+  below. A small effect is the god's own look at the place and a message; a notable one also a sound and the colony's
+  book; a great one is a god's moment of its own (its sound, the sky, the camera on it, its card, named only where the
+  colony knows the god) and everyone of the home who believes at all remembers it (+4, three days).
+- **Each god's own** (S small, N notable, G great, D an anger):
+  - Hollin: S a good day for growing (plant work +15%, harvest +8%, a day), S flowers in a ring where it happened (Vanilla
+    Plants Expanded - Flowers' first), S plants learned, N the crops near it grow on a fifth, N wild healroot, N an
+    inspiration (Vanilla Social Interactions Expanded's planting, A RimWorld of Magic's farming), G her green stays on the
+    land ten days; D brambles.
+  - Smoulder: S warm hands (labour and mining +12%), S the fires near it full again, S crafting learned, N ore where it
+    happened (steel, silver, a little gold), N an inspiration (creativity, mining), G a seam of gold in the rock nearby
+    (`OwnSmoulder.Seam`), G warm stone a week; D the fires near it go out.
+  - Bellwether: S a steady eye (hunting stealth, taming and training), S animals learned, N wild game of the land comes
+    onto it, N an inspiration (taming, shooting), G animals wander in and stay (the game's own), G his calm ten days; D
+    the wild game walks off.
+  - Morel: S shaking off sickness (immunity +15%), S medicine learned, N mushrooms where it happened, N the ground there
+    turned rich soil, G the fields' soil made rich; D food in the stores starts to go off (never to rotten).
+  - Ennu: S easy company (social impact, negotiation), S social learned, N travellers come (the game's visitors, or
+    Hospitality's), N a people at peace thinks better of the colony (+6, the game's goodwill), N a trader comes, N an
+    inspiration (recruitment, Vanilla Social Interactions Expanded's party), G someone comes to join (the game's
+    wanderer), G warm evenings a week.
+  - Pip: S a feel for machines (research +12%, building), S the machines near it mended and worn buildings whole, S every
+    battery full, N parts where it happened (by the colony's age: none before machines), N an inspiration (research,
+    work), G the hum in the wires five days; D a machine breaks down (the game's breakdown).
+  - Cirrus: S light on their feet (move speed), S the sky clears, N an aurora at night (the game's), N something falls
+    from the sky (the game's ship chunk), N an inspiration (going, shooting), G the high sky a week; D fog.
+  - Hush: S at ease in the cold (comfort 8 degrees colder), S snow where it is cold, N the stores' food set back two days
+    from spoiling, N a cold snap broken (the stores kept if there is none), G everyone frost-hardy a season (10
+    degrees); D the fires near it go out.
+  - The Hunger (Undertow, its kindnesses rare): S hearing too much (psychic sensitivity, learning, a little more brittle),
+    N an inspiration (learning, A RimWorld of Magic's enlightened); D the fires go out, D a tenth of a stack gone from the
+    stores (never all), G (dark) its dark stays two days.
+  - Helios: S sun-warmed (work +6%), S clear sky, N the crops near it grow on, N an inspiration (work), G every crop of
+    the home grows three tenths in a day and everyone is warmed through five days (work +8%). No anger of his own.
+  - Selene: S sleeping deeply (rest +25%, healing +25%), N the worst wounded's wounds heal four tenths, N an inspiration
+    (surgery), G an old wound (a scar) gone in the night, G her close moon five days; D a bad night for those who saw it.
+  - Tamiu: S calm (mental break threshold, pain shock), S the rats leave and the cats watch, N a cat walks in and stays,
+    N an inspiration (taming), G one who saw it kept calm a season (pain less, steadier). No anger of her own; her watch
+    is hers only while she walks the land, so it never stays.
+  - Murmur: S a clean hand in the kitchen (food poisoning halved, cooking faster), S rain where it isn't freezing, N the
+    crops near it grow on, N fish on the bank (Odyssey's), G a spring wells up where it happened (shallow water on open
+    natural ground away from buildings and fields), G his rain four days; D fog.
+  - Ducat: S a good eye for a bargain (trade price), N silver where it happened, N a trader (one in orbit for a colony with
+    comms), N an inspiration (trade), G gold where it happened (15 to 30), G his glint a week; D a tenth of the silver
+    gone.
+  The god's own presence staying (`Linger`) is its round 2 presence (`GodDef.presence`) after a great moment of its own,
+  for days (`PresenceSpec.lingerTicks`, `GameCondition_GodPresence.Begin`'s `linger`), its sky only lightly tinted and
+  the wind as it is; never the long noon, the white silence, the rot or Tamiu's watch.
+- **Less repetition.** An offering is taken before everyone's eyes (the god's moment, the camera on it) a month apart at
+  most a god at a home, and any god's a week and a day (`GodTouchMath.PlainTaking`, `GodTouch.PlainTakingAllowed`);
+  otherwise as the gods are felt, gone by morning in the god's own way, and what follows comes once someone sees it go
+  or finds the place empty (`GodTouch.Taken`). The same occurrence at a home within ten days (an offering taken, four
+  days a god) leaves the moods only (`SameKeyGapDays`). A god seen often at a home lately gives the others their turn:
+  its own happenings that much less likely (`GodTouchMath.Turn`, by its occurrences there in the last ten days, never
+  below a third; `OwnHappenings.Due`).
+- **More to see** (`Gods/Touch/GodTouchFx.cs`): each god its own look where it acts, the game's own flecks and effecters
+  and the player's mods' by name: Hollin's leaves and green flashes, Smoulder's embers and heat, Bellwether's dust,
+  Morel's pale spores, Ennu's skip flash and footprints, Pip's sparks, Cirrus's lightning glow and a flash over the land,
+  Hush's snow and frost on the ground, the Hunger's dark rings and smoke, Helios's light shafts and a flash, Selene's pale
+  rings and twinkles, Tamiu's sand, Murmur's water, Ducat's gold glints (A RimWorld of Magic's motes, Vanilla Psycasts
+  Expanded's cold glow, heat, sparks, black smoke and skip flash, Anomaly's and Biotech's flecks). Shown with every
+  god's big moment and omen (`GodFx.Flash` with the god's key) and with each of its effects, the more the stronger. The
+  camera goes to every god's doing but the small touches (0.256.1, "The camera for every god's doing" below).
+- **The unseen rule holds:** what follows is told as what was seen ("Flowers came up in a ring where it happened at
+  Mapa."), its words never name a god; a great one's card is named only where the colony knows the god; the blessings'
+  labels say what is felt ("warm hands"); the colony's book keeps the notable and great as those who saw them saw them
+  (`GodTouch.Write`). Nothing shows a favour or a rule.
+- **No harm:** the angers spoil, break, chill and frighten (brambles, a fire out, food going off, a breakdown, fog, a few
+  things gone, a bad night), never wound; nothing new in the harm or illness budgets.
+- **Every age:** the effects are the land's and the colony's own things (a fire or a hearth, a machine only where there
+  are machines, Pip's parts only from the industrial age, the find by the age), and the game's own incidents choose their
+  people by the world.
+- Saved in `GodTouchBook` (a GameComponent: `last`, a few keys a god and a home; `recent`, `GodTouchMath.RecentKept`;
+  `seen`, a season and `MaxSeen`; modelled in `Tools/save_estimate.py`); its steps on a due tick of its own, no Sched slot.
+  Dev mode: "Gods: a god's touch here now..." (any of a god's effects where the mouse is, or any of a tier, or an omen
+  seen) and "Gods: the gods' touch (log)". Tests: `Tools/Tests/GodTouchTests.cs`. The moods in `Tools/Balance/Rates.cs`.
+
+### The camera for every god's doing (the player's request, 15 November 2026; released 0.256.1)
+
+The player, after 0.256.0 had kept the camera for the big moments only: "The camera should move for all non-trivial god
+moments". `GodPresence.Look` (a place, or a card's first target) jumps the camera there, on a home's map only, and
+leaves the game's speed as it is; only a god's coming (`GodPresence.Begin`) also drops to normal speed and fades the
+music, as before.
+
+- **Every moment of a god** goes through `Begin` again: `PresenceSpec.quiet` is gone, so a prayer's answers (the one who
+  prayed comforted, a fighter given nerve in a raid) move the camera as every other moment does.
+- **An omen** (`GodPresence.Omen`): the camera to where it shows, before its sound and the god's look.
+- **The gods' own happenings**: every card of theirs (`OwnHappenings.Card`, letter or message, and `OwnHappenings.CardOf`
+  for the seven later gods), the late gift left at the gate (`GodGifts.LateGift`), and the great cat's doings (her
+  riddle answered right or wrong, a keeper at the grave, the wrapped dead risen: `MogsWays`).
+- **What follows** (the gods' touch): a notable effect moves the camera to its place before the god's look plays
+  (`GodTouchEffects.Show`); a great one is a moment of its own and already did.
+- **Left where the player has it**: the small touches (a day of better work, a skill, snow or rain), dreams (the
+  miners' dream, the last of its kind), what is only told (letters' tales, quarrels, marks remembered, the gods' hands
+  in the game's events), an offering taken quietly and found gone, and what follows from an order the player gave (the
+  silver set down in the shaft, the beast's road opened or not).
+
 ### Four small asks (the player's request, 12 November 2026; released 0.222.0)
 
 - **Decrees rest less:** every decree waits 70 % of its own rest before it can be declared again (`DecreeMath.CooldownShare`,

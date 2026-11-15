@@ -327,6 +327,8 @@ namespace ColonyCouncil
             if (!scoffer) Worship.Glow(shrine.Map, shrine.Position, g);
             // What they found where it lay, for their own belief in the god of the place (Gods/Belief/PawnGods.cs).
             if (!scoffer) PawnGods.SawTaken(p, g);
+            // What it does to whoever found it, and what follows on the map (Gods/Touch/GodTouch.cs).
+            GodTouch.Taken(g, shrine.Map, shrine.Position, new[] { p });
         }
 
         private static void Forget(WorshipBook b, OfferingRecord o)
@@ -471,7 +473,7 @@ namespace ColonyCouncil
             // light when the god is drawn near enough to show itself (the same for this offering at every look) and someone of
             // the colony is there to see it.
             bool plain = GodWorshipDef.TakesOfferings(g) && GodNearMath.Plain(GodNear.Of(g, map), Rand.ValueSeeded(o.chosen ^ (o.god * 7919)))
-                         && GodWorld.Witnessed(map, o.thing.Position);
+                         && GodWorld.Witnessed(map, o.thing.Position) && GodTouch.PlainTakingAllowed(g, map);
             if (OfferingWayMath.TakesNow(way, plain, hour, hours, GodsOnMapMath.MoonLight(GodOmens.MoonTonight), OfferingWays.BearerHere(way, map)))
                 Take(b, o, map, plain, way, false);
         }
@@ -530,13 +532,21 @@ namespace ColonyCouncil
             string text = key.Translate(what.Named("WHAT"), place.Named("SHRINE"), Worship.Called(g).Named("GOD"), (o.carrier?.LabelShort ?? "?").Named("PAWN"),
                 (extra ?? "").Named("EXTRA"), (extra2 ?? "").Named("FACTION")).Resolve();
             if (fate == OfferingFate.Taken && plain)
-                Worship.Sign(g, map, cell, PresenceKind.Act, "CC_Wsh_Taken_Title".Translate(place.Named("SHRINE")).Resolve(), text, new LookTargets(cell, map), false, GodActKind.Act, true);
+            {
+                // Before everyone's eyes: the god's moment, a month apart at most at a home (GodTouch.PlainTakingAllowed), and what follows it.
+                Worship.Sign(g, map, cell, PresenceKind.Act, "CC_Wsh_Taken_Title".Translate(place.Named("SHRINE")).Resolve(), text, new LookTargets(cell, map), false, GodActKind.Act, true,
+                    "taken");
+                GodTouch.PlainTaken(g, map);
+            }
             else
             {
                 // The shared way leaves a small light where it lay; a god's own way leaves its own sign (made as it took it).
                 if (fate == OfferingFate.Taken && !ownWords) Worship.Glow(map, cell, g);
                 Tell.Minor(NewsKind.Colony, Importance.Flavor, map, text, o.shrine != null && o.shrine.Spawned ? new LookTargets(o.shrine) : null);
                 Worship.Witness(g, map, GodActKind.Favour, text, cell);
+                // Seen going (a cat eating it, given to a visitor), or its own way noticed at once: what follows comes now; else
+                // once someone finds the place empty by day (Noticed).
+                if (fate == OfferingFate.Taken && o.noticed) GodTouch.Taken(g, map, cell, null);
             }
             // A demand in a dream met.
             if (o.demand) GodDreams.Met(b, g, map, o);

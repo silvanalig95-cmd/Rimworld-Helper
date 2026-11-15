@@ -333,7 +333,7 @@ namespace ColonyCouncil
                     if (imm != null) imm.immunity = Mathf.Min(1f, imm.immunity + WorshipMath.SicknessEase(near) * 0.6f);
                     string text = ("CC_Wsh_Answer_Sickness_" + step).Translate(sick.LabelShort.Named("SICK"), Worship.Called(g).Named("GOD"), h.LabelBase.Named("ILLNESS"),
                         p.LabelShort.Named("PAWN")).Resolve();
-                    Worship.Sign(g, map, sick.PositionHeld, PresenceKind.Blessing, title, text, sick, plain, GodActKind.Blessing, plain);
+                    Worship.Sign(g, map, sick.PositionHeld, PresenceKind.Blessing, title, text, sick, plain, GodActKind.Blessing, plain, "prayer");
                     return true;
                 }
                 case PrayerKind.Death:
@@ -341,7 +341,7 @@ namespace ColonyCouncil
                     Interplay.Ease(p, 8f, StrainRelief.Quiet);
                     GodDreams.QueueLost(p, g, r.aboutName);
                     string text = ("CC_Wsh_Answer_Death_" + step).Translate(p.LabelShort.Named("PAWN"), Worship.Called(g).Named("GOD"), (r.aboutName ?? "?").Named("DEAD")).Resolve();
-                    Worship.Sign(g, map, p.Position, PresenceKind.Act, title, text, p, false, GodActKind.Act, plain);
+                    Worship.Sign(g, map, p.Position, PresenceKind.Act, title, text, p, false, GodActKind.Act, plain, "prayer");
                     return true;
                 }
                 case PrayerKind.Raid:
@@ -350,7 +350,7 @@ namespace ColonyCouncil
                     if (frenzy == null || p.WorkTagIsDisabled(WorkTags.Violent) || p.Inspired || p.mindState?.inspirationHandler == null) return false;
                     if (!p.mindState.inspirationHandler.TryStartInspiration(frenzy, "CC_Wsh_Answer_RaidReason".Translate(p.LabelShort.Named("PAWN"), Worship.Called(g).Named("GOD")).Resolve())) return false;
                     string text = ("CC_Wsh_Answer_Raid_" + step).Translate(p.LabelShort.Named("PAWN"), Worship.Called(g).Named("GOD")).Resolve();
-                    Worship.Sign(g, map, p.Position, PresenceKind.Blessing, title, text, p, false, GodActKind.Blessing, plain);
+                    Worship.Sign(g, map, p.Position, PresenceKind.Blessing, title, text, p, false, GodActKind.Blessing, plain, "prayer");
                     return true;
                 }
                 default:
@@ -378,7 +378,7 @@ namespace ColonyCouncil
             map.weatherManager.TransitionTo(rain);
             string text = ("CC_Wsh_Answer_Drought_" + Worship.Step(plain)).Translate(Worship.Called(g).Named("GOD")).Resolve();
             Worship.Sign(g, map, map.Center, PresenceKind.Blessing, "CC_Wsh_Answer_Title".Translate().Resolve(), text, null,
-                plain, GodActKind.Blessing, plain);
+                plain, GodActKind.Blessing, plain, "prayer");
             FaithHeart.RainAfterDrought(map, g);
         }
 

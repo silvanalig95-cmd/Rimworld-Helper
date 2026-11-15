@@ -7,8 +7,8 @@ colony of 20, with the game keeping 30 more people it knows and 5 more each year
 generous guesses; sizes are rough XML sizes. Caps named as constants are read from the source. "Counted under" rows are
 kept inside another record (a journal's lines, a heart's lists) and are already in that record's size.
 
-Saved collections found: 712; modelled: 712; growing without end: 0.
-Rimfolk's part of the save, roughly: **3,012 KB** after a year, **3,714 KB** after two, **4,150 KB** after five.
+Saved collections found: 715; modelled: 715; growing without end: 0.
+Rimfolk's part of the save, roughly: **3,025 KB** after a year, **3,728 KB** after two, **4,164 KB** after five.
 
 | Collection | Rule | Kind | 1 year | 2 years | 5 years | KB at 5 years |
 |---|---|---|---|---|---|---|
@@ -85,6 +85,7 @@ Rimfolk's part of the save, roughly: **3,012 KB** after a year, **3,714 KB** aft
 | `Offices/Election.cs:entries` | two or three candidates a seat, with their platform, while it lasts | while | 42 | 42 | 42 | 10.7 |
 | `Couriers/CourierTracker.cs:trips` | trips waiting or under way: CourierMath.MaxTrips; ended ones dropped within two days | cap | 12 | 12 | 12 | 10.5 |
 | `Happenings/Happenings.cs:memos` | memos 3 years (children's 10), used ones a day | window | 18 | 36 | 54 | 10.5 |
+| `Gods/Touch/GodTouch.cs:last` | when each god's effects and each occurrence's last came at the home, one key each, overwritten | fixed | 119 | 119 | 119 | 10.5 |
 | `Standing.cs:asked` | per colonist, one per wish def asked for | colonists | 300 | 300 | 300 | 10.3 |
 | `Camps/CampTracker.cs:camps` | per colony: the camps visiting, one at the usual level, four at most on a huge map at "How many camps": Crowded (CampCrowdMath.MostAtOnce); each one's rows (members, plans...) are counted once above, a second to fourth adds as much again | while | 4 | 4 | 4 | 10.2 |
 | `CouncilGameComponent.cs:nextSteps` | the colony's next steps: the plan, at most 8 proposals, done ones for 5 days, let-go ones for 15 (Building/NextSteps.cs) | fixed | 40 | 40 | 40 | 10.2 |
@@ -233,6 +234,7 @@ Rimfolk's part of the save, roughly: **3,012 KB** after a year, **3,714 KB** aft
 | `CouncilGameComponent.cs:lastAtHome` | colonists still ours | colonists | 20 | 20 | 20 | 1.8 |
 | `Gods/GodLore.cs:retold` | the stories retold whole in a neighbour's letter, one a story | fixed | 60 | 60 | 60 | 1.8 |
 | `Gods/Saints/SaintsBook.cs:places` | statues raised to a saint, gone with the statue, SaintsMath.MaxPlaces | cap | 1 | 2 | 6 | 1.8 |
+| `Gods/Touch/GodTouch.cs:seen` | the occurrences seen lately ('home|god|tick'), a season at most and GodTouchBook.MaxSeen | fixed | 60 | 60 | 60 | 1.8 |
 | `Happenings/Happenings.cs:visits` | visits a month | window | 6 | 6 | 6 | 1.8 |
 | `Harm/Harm.cs:waiting` | hurts still to come (harm, part 4): a sickness caught showing in a day or two, a coughing guest while they stay, a sore loser's walk, a rematch owed within the year, a games day's contests | while | 6 | 6 | 6 | 1.8 |
 | `Integrations/ModLinks.cs:lastMend` | today and yesterday only | colonists | 20 | 20 | 20 | 1.8 |
@@ -249,6 +251,7 @@ Rimfolk's part of the save, roughly: **3,012 KB** after a year, **3,714 KB** aft
 | `Building/Automations.cs:droppedKeys` | bills the player removed, forgotten after a fortnight (AutomationMath.DroppedDays) | fixed | 40 | 40 | 40 | 1.6 |
 | `Building/BuildAhead.cs:queueDefs` | with the above: what each was | fixed | 40 | 40 | 40 | 1.6 |
 | `Calendar/CalendarWatch.cs:knownCrops` | one per crop the colony has grown (crop defs) | fixed | 40 | 40 | 40 | 1.6 |
+| `Gods/Touch/GodTouch.cs:recent` | the effects lately ('home|god|effect|tick'), GodTouchMath.RecentKept at most | fixed | 40 | 40 | 40 | 1.6 |
 | `Harm/Harm.cs:sick` | travellers' stays at a sick town and a sickness carried home: a caravan's people while the road home lasts (thirty days at most), then one until it shows | while | 4 | 4 | 4 | 1.6 |
 | `Camps/CampTracker.cs:grounds` | per colony: old camps' sites, the newest CampGroundMath.MostSites, let go once claimed, taken down or built over | fixed | 6 | 6 | 6 | 1.5 |
 | `Diplomacy/DiplomacyBook.cs:matches` | per home: matches under way, MatchMath.MaxPlans at most, each let go at the wedding or when called off | cap | 3 | 3 | 3 | 1.5 |

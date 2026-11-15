@@ -203,6 +203,8 @@ namespace ColonyCouncil
             {
                 spec.title = title;
                 spec.text = text;
+                // Its own effect is what the moment tells (a kindness or an anger in its shape, a gift): the gods' touch adds the moods only.
+                spec.what = "world";
                 shown = GodPresenceSeam.Call(spec);
             }
             catch (Exception e)
@@ -219,7 +221,7 @@ namespace ColonyCouncil
             }
             Gods.Remember(new GodAct
             {
-                god = g.id, home = Gods.HomeKey(home), tick = Now, kind = ActKind(kind), text = FirstSentence(text), cell = cell
+                god = g.id, home = Gods.HomeKey(home), tick = Now, kind = ActKind(kind), text = FirstSentence(text), cell = cell, what = "world"
             });
         }
 
@@ -258,7 +260,9 @@ namespace ColonyCouncil
         public static void Remember(God g, Map map, GodActKind kind, string text, God other = null, IntVec3? cell = null)
         {
             if (g == null || text.NullOrEmpty()) return;
-            Gods.Remember(new GodAct { god = g.id, other = other?.id ?? -1, home = Gods.HomeKey(HomeOr(map)), tick = Now, kind = kind, text = text, cell = cell ?? IntVec3.Invalid });
+            // Words only (a letter's tale, a quarrel told, the game's own event taken for the god's): no mood and no effect of the gods' touch.
+            Gods.Remember(new GodAct { god = g.id, other = other?.id ?? -1, home = Gods.HomeKey(HomeOr(map)), tick = Now, kind = kind, text = text, cell = cell ?? IntVec3.Invalid,
+                what = "told" });
         }
 
         /// <summary>A line for the colony's story (the one history).</summary>

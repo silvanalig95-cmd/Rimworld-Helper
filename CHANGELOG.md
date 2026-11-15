@@ -5,6 +5,24 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## The camera for every god's doing
+
+*15 November 2026, version 0.256.1*
+
+- The camera goes to every god's doing on the map again: its moments, omens, its own happenings, a gift left at the gate, the great cat's doings, and a notable effect that follows.
+- A prayer answered moves the camera to the one who prayed, as other moments do.
+- Only the small touches, dreams and what is only told leave the camera where you have it.
+
+## The gods felt, and what follows them
+
+*15 November 2026, version 0.256.0*
+
+- Whoever sees something of the gods now feels it, by what they believe: a believer is glad and comforted, someone in dread is afraid, a scoffer shrugs.
+- Most of the gods' doings are now followed by something of that god's own, usually small, sometimes more, and rarely something the colony remembers.
+- Each god has its own look on the map: leaves, embers, sparks, frost, water, sand, gold.
+- An offering is taken before everyone's eyes a month apart at most, and a god that came often lately gives the others their turn.
+- The camera now moves only for the big moments of the gods.
+
 ## Guests busy all day, all over the colony
 
 *15 November 2026, version 0.255.0*
