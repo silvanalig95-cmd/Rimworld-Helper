@@ -241,6 +241,7 @@ tree at once, alongside whatever runs. Each piece is merged as its own release, 
   1.6; its satyrs "delight in singing, dancing, feasting, and debauchery"), Roo's Satyr Xenotype (goat legs; the
   original has no 1.6 release, an unofficial 1.6 port exists), Fantasy Races and Factions (satyrs; updated for 1.6 in
   January 2026).
+  The player's pick of name: "Revel sounds great": Revel, the Open Cup.
 - **Dropped (14 November 2026): sending visitors away.** The player: "so asking visitors to leave is not necessary, as i
   found the already imlpemented function".
 - 0.251.0, **Plain words: messages-elsewhere**
