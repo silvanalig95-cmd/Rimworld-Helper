@@ -8,7 +8,7 @@
   <!-- Their words by both ages: a pact's kind, a truce's term and price, the colony's means of calling -->
   <CC_Pact_Kind_Defence>a defense pact</CC_Pact_Kind_Defence>
   <CC_Pact_Kind_Trade>a trade pact</CC_Pact_Kind_Trade>
-  <CC_Pact_What_Defence>A defense pact: each comes when the other is attacked. While a threat is on the colony, it can call {PEOPLE} once a season, and their band walks in some hours later. When a town of theirs is attacked, they may ask the colony for fighters.</CC_Pact_What_Defence>
+  <CC_Pact_What_Defence>A defense pact: each comes when the other is attacked. While enemies are on the colony's land, it can call {PEOPLE} once a season, and their band walks in some hours later. When a town of theirs is attacked, they may ask the colony for fighters.</CC_Pact_What_Defence>
   <CC_Pact_What_Trade>A trade pact: each season a trader caravan of {PEOPLE} comes to the colony, and a cart of the colony's surplus goes out to their porters, who pay for it in silver.</CC_Pact_What_Trade>
   <CC_Truce_Term_Season>for a season</CC_Truce_Term_Season>
   <CC_Truce_Term_Year>for a year</CC_Truce_Term_Year>
@@ -44,7 +44,7 @@
   <CC_Pact_Why_NoSurplus>the colony's stores hold no surplus to send each season</CC_Pact_Why_NoSurplus>
   <CC_Pact_Why_Nothing>there is nothing to say to {PEOPLE} about a pact now</CC_Pact_Why_Nothing>
   <CC_Pact_Why_NoDefence>the colony has no defense pact with {PEOPLE}</CC_Pact_Why_NoDefence>
-  <CC_Pact_Why_NoThreat>only while a threat is on the colony</CC_Pact_Why_NoThreat>
+  <CC_Pact_Why_NoThreat>only while enemies are on the colony's land</CC_Pact_Why_NoThreat>
   <CC_Pact_Why_Calling>the call is being made</CC_Pact_Why_Calling>
   <CC_Pact_Why_BandComing>the band of {PEOPLE} is on its way already</CC_Pact_Why_BandComing>
   <CC_Pact_Why_TheirCall>{PEOPLE} have called on the colony's fighters, and that waits first</CC_Pact_Why_TheirCall>
@@ -174,7 +174,7 @@
   <!-- Calling a defense pact in -->
   <CC_Pact_Act_Call>Call {PEOPLE}</CC_Pact_Act_Call>
   <CC_Pact_Act_CallShort>Call them</CC_Pact_Act_CallShort>
-  <CC_Pact_Act_Call_Tip>Call them to the colony's aid while a threat is on it: by the comms console if both sides can use one, else by a signal fire laid and lit by the gate where their watchers see it. Their band walks in some hours later, at most once a season.</CC_Pact_Act_Call_Tip>
+  <CC_Pact_Act_Call_Tip>Call them to the colony's aid while enemies are on its land, seen or not, awake or asleep: by the comms console if both sides can use one, else by a signal fire laid and lit by the gate where their watchers see it. Their band walks in some hours later, at most once a season.</CC_Pact_Act_Call_Tip>
   <CC_Pact_Call_Comms>{PAWN} goes to the comms console to call {PEOPLE}: {MEANS}.</CC_Pact_Call_Comms>
   <CC_Pact_Call_Fire>{PAWN} carries wood out to the gate for {MEANS}, so the watchers of {PEOPLE} see it.</CC_Pact_Call_Fire>
   <CC_Pact_Report_Call>calling {PEOPLE} for help</CC_Pact_Report_Call>

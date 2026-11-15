@@ -374,7 +374,7 @@ namespace ColonyCouncil
         public static string CallWhyNot(Tie t, Map home)
         {
             var f = PeopleOf(t);
-            if (home == null || !MapFacts.ThreatOn(home)) return PactWords.P("CC_Pact_Why_NoThreat");
+            if (home == null || !MapFacts.HostilesOn(home)) return PactWords.P("CC_Pact_Why_NoThreat");
             if (t.terms.goods == Calling) return PactWords.P("CC_Pact_Why_Calling");
             if (BandComing(t, out _)) return PactWords.P("CC_Pact_Why_BandComing", PactWords.People(f).Named("PEOPLE"));
             if (PactMath.ParseArms(t.terms.goods, out _, out _)) return PactWords.P("CC_Pact_Why_TheirCall", PactWords.People(f).Named("PEOPLE"));
@@ -497,7 +497,7 @@ namespace ColonyCouncil
             var form = words == "fealty" ? FealtyWords.Form(home, f) : words == "vassal" ? FealtyWords.LevyForm(home, f) : PactWords.PactForm(home, f);
             string keys = words == "fealty" ? "CC_Fealty_Band" : words == "vassal" ? "CC_Vassal_Band" : "CC_Pact_Band";
             string hist = words == "fealty" ? "CC_Fealty_Hist_Band" : words == "vassal" ? "CC_Vassal_Hist_Band" : "CC_Pact_Hist_Band";
-            if (!MapFacts.ThreatOn(home))
+            if (!MapFacts.HostilesOn(home))
             {
                 // apart: their band reached the colony's land after the fight; told in a message.
                 Tell.Message(NewsKind.World, Importance.Notable, home, PactWords.T(keys + "_Late", PactWords.People(f).Named("PEOPLE")), LookTargets.Invalid,

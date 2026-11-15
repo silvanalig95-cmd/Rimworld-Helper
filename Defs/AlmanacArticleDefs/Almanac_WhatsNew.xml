@@ -31,6 +31,16 @@ When you load a save after an update, a letter lists the newest round once. The 
     <rounds>
 
       <li>
+        <version>0.238.3</version>
+        <date>15 November 2026</date>
+        <title>Allies against every enemy</title>
+        <points>
+          <li>Allies can now be called in against any enemy on your land, including mechs that are asleep or still hidden in the unexplored fog.</li>
+          <li>A band called in this way hunts every enemy on the map, so it wakes and fights a sleeping mech group instead of turning back.</li>
+        </points>
+      </li>
+
+      <li>
         <version>0.238.2</version>
         <date>15 November 2026</date>
         <title>Every chapter its sign</title>

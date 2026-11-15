@@ -5,6 +5,13 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## Allies against every enemy
+
+*15 November 2026, version 0.238.3*
+
+- Allies can now be called in against any enemy on your land, including mechs that are asleep or still hidden in the unexplored fog.
+- A band called in this way hunts every enemy on the map, so it wakes and fights a sleeping mech group instead of turning back.
+
 ## Every chapter its sign
 
 *15 November 2026, version 0.238.2*

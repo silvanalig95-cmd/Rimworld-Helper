@@ -283,6 +283,18 @@ public static class PactTests
         C(alm.Contains("truce") && alm.Contains("defense pact") && alm.Contains("trade pact") && alm.Contains("signal fire"), "the Almanac's diplomacy page tells of pacts and truces");
         C(File.Exists(Path.Combine(root, "Defs", "DilemmaDefs", "Rimfolk_Dilemmas_Truce.xml")) && Code("Diplomacy/TruceObjection.cs").Contains("v.Active && v.faction == f"),
             "a truce with a people one of ours swore vengeance on comes to the council with the avenger's objection");
+        // Every enemy counts for calling allies in (the player, 15 November 2026, with sleeping pikemen and a drone by the base:
+        // "i can't call my allies ... all threats should count"): unseen and sleeping hostiles too.
+        string facts = Code("Lean/MapFacts.cs");
+        C(facts.Contains("public static bool HostilesOn(Map map)") && facts.Contains("TargetsHostileToFaction(player)") && facts.Contains("GenHostility.IsDefMechClusterThreat(thing.def)")
+          && !facts.Substring(facts.IndexOf("private static bool AnyHostile")).Split("public static bool HostilesOn")[0].Contains("Fogged"),
+            "any enemy on the map counts, seen or not, asleep or not, and a mech cluster's guns");
+        C(Code("Diplomacy/Pacts.cs").Contains("if (home == null || !MapFacts.HostilesOn(home)) return PactWords.P(\"CC_Pact_Why_NoThreat\");")
+          && Code("Diplomacy/Pacts.cs").Contains("if (!MapFacts.HostilesOn(home))")
+          && Code("Diplomacy/FavourCalls.cs").Contains("if (!MapFacts.HostilesOn(home)) return PactWords.P(\"CC_Pact_Why_NoThreat\");")
+          && Code("Diplomacy/Vassals.cs").Contains("if (home == null || !MapFacts.HostilesOn(home)) return PactWords.P(\"CC_Pact_Why_NoThreat\");")
+          && Code("Camps/WarCamp.cs").Contains("bool threat = MapFacts.HostilesOn(b.map);"),
+            "the pact's call, a debt's fighters and a vassal's levies go by any enemy on the land, and the band hunts every one of them");
         return n;
     }
 }

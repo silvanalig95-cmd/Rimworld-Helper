@@ -620,7 +620,7 @@ namespace ColonyCouncil
             if (v == null || TownOf(v) == null) return FealtyWords.P("CC_Fealty_Why_Gone");
             // Their people turned on the colony (the day's look ends the protection): no band of theirs is called in.
             if (v.people == null || Diplomacy.Hostile(v.people)) return DipWords.P("CC_Dip_Why_War", FealtyWords.People(v.people).Named("PEOPLE"));
-            if (home == null || !MapFacts.ThreatOn(home)) return PactWords.P("CC_Pact_Why_NoThreat");
+            if (home == null || !MapFacts.HostilesOn(home)) return PactWords.P("CC_Pact_Why_NoThreat");
             if (v.leviesDue >= 0) return FealtyWords.P("CC_Vassal_Why_LeviesComing", NameOf(v).Named("TOWN"));
             if (!FealtyMath.MayCallLevies(v.leviesAt, Now)) return FealtyWords.P("CC_Vassal_Why_LeviesSeason", NameOf(v).Named("TOWN"));
             if (CampTracker.WarBandAt(home) != null) return PactWords.P("CC_Pact_Why_BandHere");

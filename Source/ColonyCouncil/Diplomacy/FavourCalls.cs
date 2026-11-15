@@ -279,7 +279,7 @@ namespace ColonyCouncil
         public static string FightersWhy(Faction f, Map home)
         {
             if (home == null) return DipWords.P("CC_Dip_Why_NoHome");
-            if (!MapFacts.ThreatOn(home)) return PactWords.P("CC_Pact_Why_NoThreat");
+            if (!MapFacts.HostilesOn(home)) return PactWords.P("CC_Pact_Why_NoThreat");
             if (CampTracker.WarBandAt(home) != null) return PactWords.P("CC_Pact_Why_BandHere");
             if (f?.def?.pawnGroupMakers == null || !f.def.pawnGroupMakers.Any(m => m.kindDef == PawnGroupKindDefOf.Combat))
                 return DipWords.P("CC_Dip_Why_NoFighters", DipWords.People(f).Named("PEOPLE"));

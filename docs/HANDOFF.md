@@ -124,6 +124,28 @@ tree at once, alongside whatever runs. Each piece is merged as its own release, 
   here", so every message at the top of the screen is in the pass: those in Keyed and the event cards are in their
   batches, and a ninth batch takes the rest (def text printed through `Tell.Message` or `Messages.Message` elsewhere,
   such as the world situations' `<news>`).
+- **To do when the player asks (15 November 2026): the great caravan's hill road plays out, with a real effect** (a
+  bug). The player, with the council's answer list showing "A great caravan · Guido tells them the hill road · As
+  answered · Guido goes out to the rider at the gate and draws the old hill road in the dust, twice, until the rider has
+  it.": "just had this event but it didn't play out on the map and also there was no real effect from it?". Found: the
+  beat "Bandits in the hills" (`Defs/WorldSituationDefs/Rimfolk_WS_Variety3_Roads.xml`, `Rimfolk_WS_GreatCaravan`)
+  brings the rider by `VisitEffect_AtGate`, and the answer sends A to him by `DilemmaEffect_Visit` (to `Stranger`); in
+  their save (15 November) the situation's `ctx.stranger` is null, so the rider never came (most likely the -37° cold of
+  that day, or no way in) and the answer had nobody to walk to: only the words happened. Its effects are small and late:
+  +4 goodwill at once, then, when the train arrives, +4 more and +6 to the town's fortune. When asked: no answer whose
+  play-out needs the rider while there is none (the beat waits for the rider, or its words and answer take the form the
+  colony's means allow: a written route sent back with the messenger, a colonist riding out to meet the train), checked
+  for every beat that brings someone to the gate; the answer's effect shown on its card and, when the train comes
+  through, in a letter that says what the colony's road did for them and for the colony.
+- **To do when the player asks (15 November 2026): varied clothes against the weather.** The player: "regarding the
+  weather clothing, i'd want not everyone to just wear only a parka against cold, but the clothing should always be
+  varied. of course there should be parkas, but also other clothing combinations to counter the cold". How it is now
+  (0.232.1, `Visitors/WeatherDress*.cs`): each layer takes the warmest cheap piece that fits, and pieces within 2° count
+  as alike with the kind's own first, so most arrivals end in the same parka and tuque. When asked: the pick weighs
+  several combinations that keep them as warm (a parka; a duster or jacket over a shirt and sweater; a cape or cloak;
+  fur hats, scarves, wraps, earmuffs and boots from the player's mods, active rows only) and draws among those that are
+  warm enough, by each person and their people's own style and tags, so a group comes in mixed clothes; the same for
+  heat (light shirts, hats and wraps of different kinds).
 - **Dropped (14 November 2026): sending visitors away.** The player: "so asking visitors to leave is not necessary, as i
   found the already imlpemented function".
 - **Being built (14 November 2026, the player's go: "do the one that visitors fill their idle hours, more old powers style events, making animals more visible first, but you can do as you like if simultanious tasks make more sense"): visitors busy with their own day.** The player: "guests should spend
@@ -139,6 +161,21 @@ tree at once, alongside whatever runs. Each piece is merged as its own release, 
   looking at its art, a prayer at a shrine of their faith, tending their own animals, children playing, a smoke or a
   drink of their own; by their people's age and ways and the hour; given way to colonists at a joy thing; a guest of
   Hospitality left to its own recreation where it already has it.
+- 0.238.3, **Allies called against every enemy
+  on the land** (15 November 2026; the player, with pikemen and a drone by the base and "Call Stormriders" greyed "only
+  while a threat is on the colony": "i can't call my allies despite hving pikemen and a drone in the base, please fix
+  asap, all threats should count or i should just be able to call them in regardless of threat or not, assuming i plan
+  an attack or so"). Cause, from their save `League_of_Toba` (15 November): the three pikemen of Armmurd Mechhive stood
+  with the duty `SleepForever` (a sleeping mech group, `LordJob_SleepThenAssaultColony`/`SleepThenMechanoidsDefend`), and
+  the game's own threat test (`GenHostility.AnyHostileActiveThreatToPlayer`, which `MapFacts.ThreatOn` reads) leaves out
+  what is asleep or in the unexplored fog. Now `MapFacts.HostilesOn` (any hostile pawn up and about, seen or not, awake
+  or not, and a mech cluster's guns and buildings) decides the pact's call (`Pacts.CallWhyNot`), a debt's fighters
+  (`FavourCalls.FightersWhy`), a vassal's levies (`Vassals.LeviesWhyNot`), whether a called band still comes
+  (`Pacts.Arrive`) and how long it fights (`WarCamp`: it hunts every enemy, so a band called against a sleeping cluster
+  wakes and fights it). The alerts that offer the call still wait for an active threat, so a sleeping cluster doesn't
+  keep one up. Texts: "only while enemies are on the colony's land", the call's tooltip "seen or not, awake or asleep".
+  Tested in `PactTests`. Try in the game: with sleeping mechs on the map, the peoples' page offers "Call ..."; called,
+  the band walks in and attacks them.
 - 0.238.2, **Every chapter its god's sign**
   (15 November 2026; the player, with a screenshot of the Gods' book where Ducat, Smoulder, the moon, Hollin and Mog all
   showed the seal: "god's book still shows the same icon for many"). Cause: 0.238.1 showed a god's sign only once someone
