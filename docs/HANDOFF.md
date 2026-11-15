@@ -147,6 +147,18 @@ tree at once, alongside whatever runs. Each piece is merged as its own release, 
   to reach, for example in the "Colony news" corner on the right of the screen (`CC_News_Label`): "yes, please add to
   todo". Proposed: a line per running world event in the Colony news corner (its name and where, as the colony heard of
   it), hover for what it is and how it has gone, click to open the region window on it; none shown while none runs.
+- **To do when the player asks (15 November 2026): the storytellers, explained.** The player: "for to do. I really
+  like, you know, the concept of storytellers and how they can kind of shape the game. But I'd kind of like you to
+  explain me, how do storytellers work exactly, and how is it ensured that, you know, each kind of event from the game
+  and all different mods, etc., or occurrence is still able to appear". Explained in chat the same day: each way is a
+  whole storyteller on the game's `BaseStoryteller`, drawing the game's events by category (so every mod's event in a
+  category comes with it), with a route for each of the 16 categories in their mod list (StoryWaysTests reads
+  `docs/player-mods` and fails on a category nobody has routed); nothing disallowed but the raid beacon's own map;
+  Rimfolk's levers only on Rimfolk's own happenings, between a quarter and three times their rate (`StoryWaysMath.Floor`,
+  `MaxLever`), harm never above 1 and the threats at the classic pace or less; the shapes (seasons, deeds, the arc) under
+  the same floor; raids aimed by reason at most 85% of the time; the story direction setting puts a way's levers on any
+  storyteller. Nothing to build unless the player asks (an idea, if wanted: the same explanation on the Almanac's
+  storytellers page, with each way's levers as a table).
 - **Dropped (14 November 2026): sending visitors away.** The player: "so asking visitors to leave is not necessary, as i
   found the already imlpemented function".
 - 0.251.0, **Plain words: messages-elsewhere**
