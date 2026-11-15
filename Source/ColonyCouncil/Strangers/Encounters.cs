@@ -339,6 +339,15 @@ namespace ColonyCouncil
             // Tagged lines ([rain], [winter], [trait:Kind], [x:child]) only when they fit the moment and the people.
             string text = ctx.Format(Flavor.Pick(def.texts, LetterTags.For(ctx)) ?? Flavor.PickText(def.texts));
             ctx.cause = text;
+            // An animal's scene plays out on the map first (Animals/AnimalScenes.cs), and the moment is told once it has.
+            if (AnimalScenes.Begin(def, ctx, () => Told(def, comp, map, a, x, ctx, text))) return;
+            Told(def, comp, map, a, x, ctx, text);
+        }
+
+        /// <summary>The moment's effects, its words in the news and the social log, its chronicle line and journal.</summary>
+        private static void Told(EncounterDef def, CouncilGameComponent comp, Map map, Pawn a, Pawn x, DilemmaContext ctx, string text)
+        {
+            // together: Cast picked a colonist who is with the stranger (Meets), or an animal's scene brought them together.
             foreach (var e in def.effects)
             {
                 try

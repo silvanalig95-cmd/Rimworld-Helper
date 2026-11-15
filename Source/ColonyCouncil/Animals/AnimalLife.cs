@@ -14,7 +14,7 @@ namespace ColonyCouncil
     /// <item>A birth in the herd: the colony news, the first foal on the calendar, and the herdmaster coming to name it
     /// (Animals/AnimalHerdmaster.cs).</item>
     /// <item>Seen on screen: someone milking, shearing, taming, training or tending an animal says something to it, a child
-    /// at leisure talks to the animal beside them, and a bonded animal that has nothing to do follows its person about for
+    /// at leisure talks to the animal beside them, and a pet that has nothing to do follows its person about for
     /// a while. These share the once-a-day rate of everything said on screen (Touches/VisualTouches.cs).</item>
     /// <item>The pets' watch tells it when an animal fought beside its person (a champion's life goal counts it) and when a
     /// bonded animal died (a beloved animal's day on the calendar).</item>
@@ -53,6 +53,10 @@ namespace ColonyCouncil
             Safe("animals: temperaments", AnimalTempers.Hourly);
             Safe("animals: friends, rivals and grief", AnimalBonds.Hourly);
             Safe("animals: those that speak", AnimalVoices.Hourly);
+            // Their days, seen (Animals/AnimalDays.cs, AnimalScenes.cs): home again, the foot of the bed, meals, play, the
+            // herd, the rounds, the weather, a god near; and the encounters waiting to play out.
+            Safe("animals: their days", AnimalDays.Hourly);
+            Safe("animals: their scenes", AnimalScenes.Hourly);
         }
 
         public static void Daily(CouncilGameComponent comp)
@@ -234,8 +238,9 @@ namespace ColonyCouncil
         }
 
         /// <summary>
-        /// A bonded animal with nothing to do, near its person, falls in at their heels for a little while (the game's own
-        /// following), and they say something to it now and then. Not a roped or penned animal, nor one at work.
+        /// A pet with nothing to do (or a bonded animal of the herd), near its person, falls in at their heels for a little
+        /// while (the game's own following), and they say something to it now and then. Not a roped or penned animal, nor one
+        /// at work.
         /// </summary>
         private static bool Follow(VisualTouches vt, Map map, CellRect view, int now)
         {
@@ -244,10 +249,13 @@ namespace ColonyCouncil
                 if (!MoreHabits.Calm(a) || !view.Contains(a.Position) || a.roping != null && a.roping.IsRoped || a.RaceProps.Roamer) continue;
                 var job = a.CurJobDef;
                 if (job != JobDefOf.Wait_Wander && job != JobDefOf.GotoWander && job != JobDefOf.Wait) continue;
-                var person = a.relations?.DirectRelations.Where(r => r.def == PawnRelationDefOf.Bond).Select(r => r.otherPawn)
-                    .FirstOrDefault(o => o != null && o.Spawned && o.Map == map && !o.Dead && !o.Drafted && o.Awake() && o.IsColonist);
-                if (person == null || !person.Position.InHorDistOf(a.Position, 18f) || !Interplay.Ready("follow|" + a.thingIDNumber, 1f)) continue;
-                if (!a.CanReach(person, PathEndMode.Touch, Danger.None)) continue;
+                // A pet's person: bonded, its master, or the one it has taken to (AnimalFacts.PersonOf); the herd's ones only
+                // when bonded, as before.
+                var person = AnimalFacts.Pet(a) ? AnimalFacts.PersonOf(a) : a.relations?.DirectRelations.Where(r => r.def == PawnRelationDefOf.Bond).Select(r => r.otherPawn)
+                    .FirstOrDefault(o => o != null && o.Spawned && o.Map == map && !o.Dead && o.IsColonist);
+                if (person == null || !person.Spawned || person.Map != map || person.Drafted || !person.Awake() || !person.IsColonist) continue;
+                if (!person.Position.InHorDistOf(a.Position, 18f) || !a.CanReach(person, PathEndMode.Touch, Danger.None)) continue;
+                if (!Interplay.Ready("follow|" + a.thingIDNumber, 1f)) continue;
                 var follow = JobMaker.MakeJob(JobDefOf.FollowClose, person);
                 follow.followRadius = 2.5f;
                 follow.expiryInterval = Rand.Range(900, 1600);

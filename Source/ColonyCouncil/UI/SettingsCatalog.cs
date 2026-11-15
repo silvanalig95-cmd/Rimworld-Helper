@@ -252,7 +252,8 @@ namespace ColonyCouncil
             Slider("dreamFrequency", "CC_Settings_FreqDreams", "CC_SetNote_FreqDreams", 0.25f, 3f, 0.25f, "%");
             Choice("arcFrequency", "CC_Settings_Arcs", "CC_Settings_Arcs_Tip", "CC_Arcs_", "CC_SetNote_Arcs_", new[] { "Off", "Rare", "Normal", "Frequent" });
             Slider("daysBetweenPersonalTouches", "CC_Settings_DaysBetweenTouches", "CC_SetNote_DaysBetweenTouches", 1f, 30f, 1f, "0", "enablePersonalTouches");
-            // The animals' temperaments on the map (Animals/AnimalTempers.cs): the greedy one at the stores, the loyal one at the door.
+            // The animals' moments on the map (Animals/AnimalTempers.cs, AnimalDays.cs): the greedy one at the stores, the loyal one at
+            // the door, a pet at the foot of the bed, the herd moving off together.
             Slider("animalMoments", "CC_Settings_AnimalMoments", "CC_SetNote_AnimalMoments", 0f, 2f, 0.05f, "%", "petMoments,animalTempers");
             Slider("outsiderChatterFrequency", "CC_Settings_OutsiderChatterFrequency", "CC_SetNote_OutsiderChatterFrequency", 0.25f, 3f, 0.25f, "%",
                 "outsiderTalk,outsiderChatter");

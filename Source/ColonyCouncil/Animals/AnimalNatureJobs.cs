@@ -187,7 +187,7 @@ namespace ColonyCouncil
 
     /// <summary>
     /// One line under a named or bonded animal's inspect text, built at most every four seconds of game time:
-    /// "Temperament: loyal · sleeps beside Pepper · at odds with Whiskers", then its grief, its voice and what it did
+    /// "Temperament: loyal · fond of Guido · sleeps beside Pepper · at odds with Whiskers", then its grief, its voice and what it did
     /// lately, each when there is one (Animals/AnimalTempers.cs, AnimalBonds.cs, AnimalVoices.cs).
     /// </summary>
     [HarmonyPatch(typeof(Pawn), nameof(Pawn.GetInspectString))]
@@ -234,6 +234,9 @@ namespace ColonyCouncil
             var t = AnimalTempers.Of(a);
             if (t == null) return null;
             var parts = new List<string> { "CC_Temper_Inspect".Translate(AnimalTempers.Label(t.Value).Named("TEMPER")).Resolve() };
+            // Whom it has taken to, with no bond and no master (Animals/AnimalDays.cs).
+            string takes = AnimalDays.InspectPart(a);
+            if (!takes.NullOrEmpty()) parts.Add(takes);
             parts.AddRange(AnimalBonds.InspectParts(a));
             var sb = new StringBuilder(string.Join(" · ", parts));
             string grief = AnimalBonds.GriefLine(a);

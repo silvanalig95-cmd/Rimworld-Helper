@@ -121,17 +121,19 @@ namespace ColonyCouncil
                 {
                     int hour = GenLocalDate.HourOfDay(map);
                     var animals = map.mapPawns.SpawnedColonyAnimals.Where(AnimalTempers.Has).ToList();
-                    // Friends and feuds are the companions' (grief is anyone's with a temperament).
+                    // Feuds are the companions' (grief is anyone's with a temperament). Friends are any two that sleep side
+                    // by side, two companions or two of different kinds (the horse and the barn's goat), never two of the
+                    // herd's own kind (AnimalDaysMath.MayBefriend).
                     var companions = animals.Where(AnimalTempers.Companion).ToList();
                     if (animals.Count > 0)
                     {
-                        if (hour >= 22 || hour <= 4) Nights(book, companions, NightOf(map, hour));
-                        if (hour >= 19 && hour <= 23) BedDown(book, companions);
+                        if (hour >= 22 || hour <= 4) Nights(book, animals, NightOf(map, hour));
+                        if (hour >= 19 && hour <= 23) BedDown(book, animals);
                         bool calm = map.dangerWatcher.DangerRating == StoryDanger.None;
                         if (hour >= 6 && hour <= 19 && calm)
                         {
                             Day(book, companions);
-                            Moment(book, companions);
+                            Moment(book, animals);
                             if (hour >= 7 && hour <= 17) Grief(book, map, animals, false);
                         }
                     }
@@ -166,6 +168,7 @@ namespace ColonyCouncil
                     var x = asleep[i];
                     var y = asleep[j];
                     if (!x.Position.InHorDistOf(y.Position, AnimalNatureMath.SideBySide)) continue;
+                    if (!AnimalDaysMath.MayBefriend(AnimalTempers.Companion(x), AnimalTempers.Companion(y), x.def == y.def) && book.TieOf(x.thingIDNumber, y.thingIDNumber) == null) continue;
                     var t = book.TieFor(x, y);
                     if (t.kind == AnimalTie.Rivals) continue;
                     Rename(t, x);
