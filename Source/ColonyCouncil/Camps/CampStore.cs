@@ -82,6 +82,8 @@ namespace ColonyCouncil
         public Job StowJob(Pawn p)
         {
             if (p == null || p.WorkTagIsDisabled(WorkTags.Hauling) || p.DevelopmentalStage.Juvenile() || packingFor != null) return null;
+            // Nothing found to put away a little while ago: not looked for again until a quarter of an hour has passed.
+            if (Now < nextStowSearch) return null;
             var stores = Stores();
             if (stores.Count == 0) return null;
             if (Here.Count(o => o != p && o.CurJobDef == JobDefOf.HaulToCell && o.CurJob.haulMode == HaulMode.ToCellStorage) >= 2) return null;
@@ -90,8 +92,11 @@ namespace ColonyCouncil
                 var job = StowJobFor(p, t, stores);
                 if (job != null) return job;
             }
+            nextStowSearch = Now + GenDate.TicksPerHour / 4;
             return null;
         }
+
+        [Unsaved] private int nextStowSearch = -1;
 
         /// <summary>This one of their goods carried into their storage, if it goes there and a store of theirs has room; else null.</summary>
         public Job StowJobFor(Pawn p, Thing t, List<Building> stores = null)

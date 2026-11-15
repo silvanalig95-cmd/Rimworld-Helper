@@ -239,7 +239,7 @@ tree at once, alongside whatever runs. Each piece is merged as its own release, 
     their people have a faith, then a lean-to over the shelf; the stonecutter's table needs steel they don't carry, so it's
     passed over); the evening's news says what they put up. 3. Blood round their fire is
     cleaned in their free hours by day (the game's cleaning effect). 4. A new camp of drovers or a caravan: a pen of
-    fences round their beasts by the second day, the beasts inside it. 5. A long camp (refugees, woodcutters): watch it
+    fences by the second day, a caravan's pack beasts inside it, the drovers' herd in it at night. 5. A long camp (refugees, woodcutters): watch it
     add a thing a day or so apart and stop at its ceiling. 6. When a camp leaves in its own time: stools and the shelf
     packed, posts and fences left standing; an orderly kind cleans first; refuse only after a sour stay or a careless
     kind's hurry.

@@ -327,11 +327,14 @@ namespace ColonyCouncil
             bool night = hour >= 21 || hour < 6;
             // A beast the beast-catchers roped is kept at their picket with their own (CampKindsLand3.cs).
             var home = g == null || g.follow ? (IsCaught(a) ? Picket : FireCell) : Spot(g.at);
-            // Beasts kept at the picket live in their pen once it stands (CampGrow.cs): they rest and mill about inside it.
-            var pen = home == Picket && !(g != null && g.follow) ? PenCells() : null;
+            // Once their pen stands (CampGrow.cs), beasts kept at the picket live in it, resting and milling about inside;
+            // a herd that grazes beyond the camp by day sleeps in it at night.
+            bool penned = g != null && !g.follow && home == Picket;
+            var pen = g != null && !g.follow ? PenCells() : null;
             if (pen != null && pen.Count == 0) pen = null;
             var rest = a.needs?.rest;
-            if (rest != null && (rest.CurLevelPercentage < 0.25f || (night && rest.CurLevelPercentage < 0.9f))) return pen != null ? InPen(a, pen, true) ?? LieDown(a, home) : LieDown(a, home);
+            if (rest != null && (rest.CurLevelPercentage < 0.25f || (night && rest.CurLevelPercentage < 0.9f)))
+                return pen != null && (penned || night) ? InPen(a, pen, true) ?? LieDown(a, home) : LieDown(a, home);
             // Walked to the colony's water with the drovers, or strayed into its fields (CampRequests.cs): they mill about there.
             if (errandHerd && ErrandLive && !night && !(g != null && g.follow) && errandCell.IsValid)
             {
@@ -353,7 +356,7 @@ namespace ColonyCouncil
                 var graze = Graze(a, home);
                 if (graze != null) return graze;
             }
-            if (pen != null)
+            if (pen != null && penned)
             {
                 var inPen = InPen(a, pen, false);
                 if (inPen != null) return inPen;

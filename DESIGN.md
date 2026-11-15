@@ -4034,7 +4034,7 @@ then) and never set down again.
   |---|---|---|
   | seats round the fire | the kit's seat (VFE's cushion for a tribe, a stool), two to four | two cells out from the fire, a cell apart so it is never closed in, each looking at it; they sit there in the evening |
   | a lean-to | VFE Settlers' post, else a column; two to four | round the stash's ground and shelf, the corners first; the roof over the stash, the shelf and the posts, never over a tree or under the mountain; taken off before a post is taken down |
-  | a pen | VFE Architect's picket fence, else the game's fence | round a free patch three by three (four by three for four beasts or more) near the picket, a gap on the fire's side; their picket beasts rest and mill about inside it |
+  | a pen | VFE Architect's picket fence, else the game's fence | round a free patch three by three (four by three for four beasts or more) near the picket, a gap on the fire's side; their picket beasts rest and mill about inside it, a herd that grazes beyond the camp sleeps in it at night |
   | a drying rack | VFE Classical's meat drying rack | by the butcher's spot |
   | a stonecutter's table, a tailor's bench | the game's own (their age: medieval on) | near the fire, its front free; they make things at it as at their crafting spot (stone blocks from the rock they mined) |
   | a firewood rack | Deep Storage Plus's | near the fire, of the logs they cut |
