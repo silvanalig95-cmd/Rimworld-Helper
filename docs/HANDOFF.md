@@ -132,6 +132,12 @@ tree at once, alongside whatever runs. Each piece is merged as its own release, 
   the counter; pieces taken from the dead marked, since buyers think less of them. To find out first: whether a
   RimMarket line can be held to pieces above a condition ("only above 50%"), since RimMarket picks which piece the
   haulers bring. No mod needed.
+- **To do when the player asks (15 November 2026): world events running now, easy to see.** The player asked "do i
+  still see current world events somewhere?"; they show in the region window (the History page's strip of chips along
+  the top, marks on the region map, each people's card and the Peoples page), and asked whether they should be easier
+  to reach, for example in the "Colony news" corner on the right of the screen (`CC_News_Label`): "yes, please add to
+  todo". Proposed: a line per running world event in the Colony news corner (its name and where, as the colony heard of
+  it), hover for what it is and how it has gone, click to open the region window on it; none shown while none runs.
 - **Dropped (14 November 2026): sending visitors away.** The player: "so asking visitors to leave is not necessary, as i
   found the already imlpemented function".
 - Not released: no version, no What's new round, About.xml and CHANGELOG untouched. **Plain words: events-1** (14
