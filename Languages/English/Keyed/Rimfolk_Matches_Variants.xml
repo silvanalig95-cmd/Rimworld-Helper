@@ -22,11 +22,11 @@
   <!-- On the map -->
   <CC_Match_Arrive_2>{THEIRS} has come from {PEOPLE}, with the wedding's guests walking alongside, and has joined the colony at the gate. The wedding to {OURS} is today, while the light lasts, and the guests will stay for the feast. Their own people would hold it by {RITE}.</CC_Match_Arrive_2>
   <CC_Match_Escort_Comes_2>{PEOPLE} have sent a party to the gate: {THEIRS} and one of theirs, come from {TOWN} to take {OURS} home with them.</CC_Match_Escort_Comes_2>
-  <CC_Match_Leaves_2>{OURS} went out to the gate where {THEIRS} was waiting, and the two set off together for {TOWN}. {OURS} belongs to {PEOPLE} now, and the wedding will be there.</CC_Match_Leaves_2>
+  <CC_Match_Leaves_2>{OURS} went out to the gate where {THEIRS} was waiting, and the two set off together for {TOWN}. {OURS} will live among {PEOPLE} now, and the wedding will be there.</CC_Match_Leaves_2>
 
   <!-- The wedding -->
-  <CC_Match_Wed_2>{OURS} and {THEIRS} are married. Notables of {TOWN} came all the way to see {THEIRS} wed, and {PEOPLE} are bound to the colony now: {WORD}.</CC_Match_Wed_2>
-  <CC_Match_WedAway_2>A letter from {TOWN}: {OURS} and {THEIRS} are married, by {RITE}. {OURS} has settled in among {PEOPLE}, and they are bound to the colony now.</CC_Match_WedAway_2>
+  <CC_Match_Wed_2>{OURS} and {THEIRS} are married. Notables of {TOWN} came all the way to see {THEIRS} wed, and {PEOPLE} are allies of the colony by marriage now: {WORD}.</CC_Match_Wed_2>
+  <CC_Match_WedAway_2>A letter from {TOWN}: {OURS} and {THEIRS} are married, by {RITE}. {OURS} has settled in among {PEOPLE}, and they are allies of the colony by marriage now.</CC_Match_WedAway_2>
   <CC_Match_WedAway_3>{PEOPLE} write that the wedding at {TOWN} was held by {RITE}: {OURS} and {THEIRS} are married, and {OURS} lives among them.</CC_Match_WedAway_3>
 
   <!-- While it holds, and how it ends -->

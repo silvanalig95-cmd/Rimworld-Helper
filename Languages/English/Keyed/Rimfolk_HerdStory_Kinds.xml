@@ -3,7 +3,7 @@
 
   <!-- The herd's words by the animal's kind (Animals/HerdStory.cs, HerdStoryMath.BodyOf and YoungWord): a bird or a snake
        isn't gray at the muzzle, and a chick isn't a calf. {YOUNG} is the kind's own word for its young ("chick"). -->
-  <CC_Herd_Leader_Pens>The colony's herd goes where {PET_nameDef} goes. The old {KIND} has led them about the pens for a while without anyone saying so; today {PAWN_nameDef} said so, and gave {PET_objective} the name.\n\nThe herd will follow {PET_nameDef} until {PET_pronoun} is too old to lead it, and then one of {PET_possessive} own, if there is one.</CC_Herd_Leader_Pens>
+  <CC_Herd_Leader_Pens>The colony's herd goes where {PET_nameDef} goes. The old {KIND} has led them about the pens for a while without anyone remarking on it. Today {PAWN_nameDef} noticed, and named {PET_objective} the herd's leader.\n\nThe herd will follow {PET_nameDef} until {PET_pronoun} is too old to lead it, and then one of {PET_possessive} own, if there is one.</CC_Herd_Leader_Pens>
   <CC_Herd_LastSeason_Bird>{PET_nameDef}, who leads the colony's herd, is old now: ragged in the feather, slow off the roost, the herd keeping to {PET_possessive} pace. {PAWN_nameDef} thinks this is the old leader's last season, and means to make it a good one.\n\nWhen {PET_nameDef} goes, the herd will follow one of {PET_possessive} own, if there is one.</CC_Herd_LastSeason_Bird>
   <CC_Herd_LastSeason_Other>{PET_nameDef}, who leads the colony's herd, is old now: slow in everything, the herd keeping to {PET_possessive} pace. {PAWN_nameDef} thinks this is the old leader's last season, and means to make it a good one.\n\nWhen {PET_nameDef} goes, the herd will follow one of {PET_possessive} own, if there is one.</CC_Herd_LastSeason_Other>
 

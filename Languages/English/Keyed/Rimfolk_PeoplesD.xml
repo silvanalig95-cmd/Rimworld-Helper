@@ -7,8 +7,8 @@
   <CC_PeoplesD_BeastGone>{0} is no longer on the colony's land.</CC_PeoplesD_BeastGone>
   <CC_PeoplesD_NoHunter>Nobody at home can hunt it now.</CC_PeoplesD_NoHunter>
   <CC_PeoplesD_HuntSet>Wardens of {0} have gone after {1}.</CC_PeoplesD_HuntSet>
-  <CC_PeoplesD_HuntGivenUp>The Wardens of {0} have given up the hunt for {1} and are walking home; its page in their book stays open.</CC_PeoplesD_HuntGivenUp>
-  <CC_PeoplesD_Skinned>{PAWN_nameDef} of the Wardens skinned {BEAST} where it fell: the hide goes into their book, and {KEPT} is left there for the colony.</CC_PeoplesD_Skinned>
+  <CC_PeoplesD_HuntGivenUp>The Wardens of {0} have given up the hunt for {1} and are walking home. They have not crossed it off in their book.</CC_PeoplesD_HuntGivenUp>
+  <CC_PeoplesD_Skinned>{PAWN_nameDef} of the Wardens skinned {BEAST} where it fell and wrote the kill in their book. The hide goes with them, and {KEPT} is left there for the colony.</CC_PeoplesD_Skinned>
   <CC_PeoplesD_Nothing>nothing</CC_PeoplesD_Nothing>
   <CC_PeoplesD_Impact_HuntTogether>The Wardens and {1} go after {0} at once; if it falls, a Warden skins it there, the hide theirs and the meat the colony's.</CC_PeoplesD_Impact_HuntTogether>
   <CC_PeoplesD_Impact_HuntAlone>The Wardens go after {0} at once; if it falls, one of them skins it there, the hide theirs and the meat the colony's.</CC_PeoplesD_Impact_HuntAlone>
@@ -20,7 +20,7 @@
 
   <!-- The Circuit of Tamers -->
   <CC_PeoplesD_NoBout>Nobody can take the bout now.</CC_PeoplesD_NoBout>
-  <CC_PeoplesD_Impact_Bout>{0} spars with {1} by the Fighting-type spar's rules, practice blows each way, the bout's winner by {0}'s way with beasts and hands.</CC_PeoplesD_Impact_Bout>
+  <CC_PeoplesD_Impact_Bout>{0} spars with {1} by the rules of a Fighting-type spar, with practice blows on both sides; who wins depends on {0}'s Animals and Melee skills.</CC_PeoplesD_Impact_Bout>
   <CC_PeoplesD_Impact_BoutBrief>A friendly bout</CC_PeoplesD_Impact_BoutBrief>
   <CC_PeoplesD_Impact_BoutRisk>Now and then the companion's blow lands: {0} may take a bruise.</CC_PeoplesD_Impact_BoutRisk>
   <CC_PeoplesD_Impact_BoutRiskBrief>A bruise, maybe</CC_PeoplesD_Impact_BoutRiskBrief>

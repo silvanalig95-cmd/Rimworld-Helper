@@ -273,12 +273,16 @@ class Answer:
         self.path = path
 
 
+# A wording's tags ("[visitorGone]", "[!colony:Harsh]") pick which wording shows; they are not words the answer says.
+TAGS = re.compile(r"\[[^\]]*\]")
+
+
 def option_words(option):
     parts = [text_of(option.find("label")), text_of(option.find("outcome"))]
     for name in ("outcomes", "riskOutcomes"):
         parts += [text_of(li) for li in lis(option, name)]
     parts.append(text_of(option.find("riskOutcome")))
-    return " ".join(p for p in parts if p)
+    return TAGS.sub(" ", " ".join(p for p in parts if p))
 
 
 def walk():

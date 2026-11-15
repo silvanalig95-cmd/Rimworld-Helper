@@ -5,9 +5,9 @@
 
   <!-- The cold snap's hours (AnswerShiftMath.Cold) -->
   <CC_DlmV_HoursLabel_cold>the cold snap</CC_DlmV_HoursLabel_cold>
-  <CC_Impact_Hours_cold>{0}: lie in through the frost of the early morning (5 to 8) and go to bed early (19 to 21), until the cold snap ends</CC_Impact_Hours_cold>
+  <CC_Impact_Hours_cold>{0}: stay in bed through the frost of the early morning (5 to 8) and go to bed early (19 to 21), until the cold snap ends</CC_Impact_Hours_cold>
   <CC_Impact_HoursBrief_cold>{0} keep short days</CC_Impact_HoursBrief_cold>
-  <CC_DlmV_Hours_cold>{0} will keep short days until the cold snap ends: abed through the frost of the morning, and to bed early.</CC_DlmV_Hours_cold>
+  <CC_DlmV_Hours_cold>{0} will keep short days until the cold snap ends: in bed through the morning frost, and to bed early.</CC_DlmV_Hours_cold>
 
   <!-- Blight in the fields -->
   <CC_DlmE_NoBlight>The blight is gone from the fields.</CC_DlmE_NoBlight>

@@ -35,25 +35,25 @@
   <CC_PeoplesG_Impact_Keep>The {0} is the colony's, with {1} to oversee it.</CC_PeoplesG_Impact_Keep>
   <CC_PeoplesG_Impact_KeepBrief>A mech kept</CC_PeoplesG_Impact_KeepBrief>
   <CC_PeoplesG_Impact_MechHome>The {0} wanders off the map the way it came.</CC_PeoplesG_Impact_MechHome>
-  <CC_PeoplesG_Impact_MechHomeBrief>The mech lets go</CC_PeoplesG_Impact_MechHomeBrief>
+  <CC_PeoplesG_Impact_MechHomeBrief>The mech wanders off</CC_PeoplesG_Impact_MechHomeBrief>
   <CC_PeoplesG_Relinked>{PAWN} of the Lattice has relinked the {MECH}, and the two of them are walking home together.</CC_PeoplesG_Relinked>
   <CC_PeoplesG_Kept>The {MECH} is the colony's now, and {PAWN} oversees it. {FACTION} will not forgive it soon.</CC_PeoplesG_Kept>
   <CC_PeoplesG_MechParts>subcores and mech chips</CC_PeoplesG_MechParts>
   <CC_PeoplesG_PartsGone>The subcores and chips are no longer in the stores.</CC_PeoplesG_PartsGone>
   <CC_PeoplesG_NoTurretSite>There is no clear ground by the gate for it.</CC_PeoplesG_NoTurretSite>
-  <CC_PeoplesG_Impact_Turret>The engineer raises a {0} by the gate, the colony's from then on; it wants the colony's power to fire.</CC_PeoplesG_Impact_Turret>
+  <CC_PeoplesG_Impact_Turret>The engineer raises a {0} by the gate, the colony's from then on; it needs the colony's power to fire.</CC_PeoplesG_Impact_Turret>
   <CC_PeoplesG_Impact_TurretBrief>A turret by the gate</CC_PeoplesG_Impact_TurretBrief>
   <CC_PeoplesG_TurretRaised>{PAWN} of the Lattice has raised a turret by the gate. Connect it to the colony's power and it will watch the road.</CC_PeoplesG_TurretRaised>
 
   <!-- The Choir of the Spire: the listening, the art, the stay -->
   <CC_PeoplesG_ListenHum>the psychically sensitive the most</CC_PeoplesG_ListenHum>
   <CC_PeoplesG_ListenVoid>since the monolith woke</CC_PeoplesG_ListenVoid>
-  <CC_PeoplesG_Impact_Listen>The listeners sit in a ring in the colony's middle for a few hours, and then the colony feels it.</CC_PeoplesG_Impact_Listen>
+  <CC_PeoplesG_Impact_Listen>The listeners sit in a ring in the colony's middle for a few hours, and afterwards the colonists at home feel the effect.</CC_PeoplesG_Impact_Listen>
   <CC_PeoplesG_Impact_ListenBrief>The Choir listens</CC_PeoplesG_Impact_ListenBrief>
   <CC_PeoplesG_Impact_ListenFelt>The {0} others at home feel a calm (+4) or an unease (-3) afterwards, the psychically sensitive the most, the psychically deaf nothing.</CC_PeoplesG_Impact_ListenFelt>
   <CC_PeoplesG_Impact_ListenFeltBrief>A calm for some, an unease for others</CC_PeoplesG_Impact_ListenFeltBrief>
   <CC_PeoplesG_Nobody>nobody</CC_PeoplesG_Nobody>
-  <CC_PeoplesG_Heard>The listeners of {FACTION} have heard the colony. A calm came over {CALM}; an unease over {UNEASY}.</CC_PeoplesG_Heard>
+  <CC_PeoplesG_Heard>The listeners of {FACTION} have finished. Afterwards {CALM} felt calm, and {UNEASY} felt uneasy.</CC_PeoplesG_Heard>
   <CC_PeoplesG_Art>packed art</CC_PeoplesG_Art>
   <CC_PeoplesG_ArtGone>The art they asked for is no longer packed in the stores.</CC_PeoplesG_ArtGone>
   <CC_PeoplesG_OrdinarySays>So that is what this is for.</CC_PeoplesG_OrdinarySays>
@@ -61,15 +61,15 @@
   <CC_PeoplesG_Stay_Staying>{0} of the Choir is staying at the colony: {1} afternoons beside its people at work so far.</CC_PeoplesG_Stay_Staying>
 
   <!-- The Sunken Vault: supply, the craft and the child -->
-  <CC_PeoplesG_Impact_Supply>{0} remember the components and food as supply: given parts, the vault holds its age instead of falling back.</CC_PeoplesG_Impact_Supply>
-  <CC_PeoplesG_Impact_SupplyGift>{0} remember the components and food as a friend's supply, and more of it: given parts, the vault holds its age instead of falling back.</CC_PeoplesG_Impact_SupplyGift>
+  <CC_PeoplesG_Impact_Supply>{0} remember the components and food as supply: with the parts, the vault keeps its tech level instead of slipping back.</CC_PeoplesG_Impact_Supply>
+  <CC_PeoplesG_Impact_SupplyGift>{0} remember the components and food as a friend's supply, and more of it: with the parts, the vault keeps its tech level instead of slipping back.</CC_PeoplesG_Impact_SupplyGift>
   <CC_PeoplesG_Impact_SupplyBrief>The vault supplied</CC_PeoplesG_Impact_SupplyBrief>
   <CC_PeoplesG_BenchGone>The bench is no longer there.</CC_PeoplesG_BenchGone>
   <CC_PeoplesG_Impact_Teach>{0} teaches the vault's technician at the {1} for a few hours; the vault can make it again, and remembers who taught it.</CC_PeoplesG_Impact_Teach>
   <CC_PeoplesG_Impact_TeachBrief>A lost craft taught</CC_PeoplesG_Impact_TeachBrief>
   <CC_PeoplesG_CraftLearned>{PAWN} of {FACTION} has learned the work of the {CRAFT} again, and is taking it home to the vault.</CC_PeoplesG_CraftLearned>
   <CC_PeoplesG_Impact_Sky>{0} stands in the open by the gate a while, looking up.</CC_PeoplesG_Impact_Sky>
-  <CC_PeoplesG_Impact_SkyBrief>A first sky</CC_PeoplesG_Impact_SkyBrief>
+  <CC_PeoplesG_Impact_SkyBrief>A first sight of the sky</CC_PeoplesG_Impact_SkyBrief>
   <CC_PeoplesG_SkySays>It doesn't stop anywhere.</CC_PeoplesG_SkySays>
   <CC_PeoplesG_SawTheSky>{PAWN_nameDef} has stood under the open sky a long while, and keeps looking up.</CC_PeoplesG_SawTheSky>
 

@@ -5,7 +5,7 @@
 
   <CC_DefRole_beacon>trade beacon</CC_DefRole_beacon>
   <CC_Def_Drawn_SecondRank>{0} of them in a second rank, three rows behind the first.</CC_Def_Drawn_SecondRank>
-  <CC_DefLine_Killbox_SecondRank>This {0} was drawn for {1} shooters, and against raids this big it can take {2} now, the last of them in a second rank behind the first. Planned again, it gets that rank.</CC_DefLine_Killbox_SecondRank>
+  <CC_DefLine_Killbox_SecondRank>This {0} was drawn for {1} shooters, and against raids this big it can take {2} now, the last of them in a second rank behind the first. If it is planned again, it gets that rank.</CC_DefLine_Killbox_SecondRank>
 
   <!-- EMP for the mechanoids -->
   <CC_DefLadder_Emp_Make>EMP the colony can make, to fire from a distance: {0}.</CC_DefLadder_Emp_Make>

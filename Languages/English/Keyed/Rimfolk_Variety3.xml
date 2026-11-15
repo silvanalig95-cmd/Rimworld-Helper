@@ -27,9 +27,9 @@
   <CC_DlmE_StoveGone>The stove is gone, or can't be used now.</CC_DlmE_StoveGone>
   <CC_DlmE_FoodGone>The {0} is gone from the stores.</CC_DlmE_FoodGone>
   <CC_Impact_CookAll>{0} cooks all the {1} into simple meals today, first on the stove</CC_Impact_CookAll>
-  <CC_Impact_CookAllBrief>the {0} cooked before it turns</CC_Impact_CookAllBrief>
+  <CC_Impact_CookAllBrief>the {0} cooked before it spoils</CC_Impact_CookAllBrief>
   <CC_Impact_CookSupper>{0} cooks enough of the {1} for tonight's supper; the rest goes bad</CC_Impact_CookSupper>
-  <CC_Impact_CookSupperBrief>a supper of the {0}, the rest let go</CC_Impact_CookSupperBrief>
+  <CC_Impact_CookSupperBrief>a supper of the {0}, the rest left to spoil</CC_Impact_CookSupperBrief>
   <CC_DlmE_CookSet>The {STOVE} has a bill for {N} simple meals from the {FOOD}, first on the list.</CC_DlmE_CookSet>
 
   <!-- The stores in the rain -->
@@ -87,8 +87,8 @@
   <CC_Impact_AmbrosiaAllBrief>all the ambrosia picked</CC_Impact_AmbrosiaAllBrief>
   <CC_Impact_AmbrosiaNight>As many ambrosia bushes marked for harvest as the colony has people</CC_Impact_AmbrosiaNight>
   <CC_Impact_AmbrosiaNightBrief>ambrosia for one night</CC_Impact_AmbrosiaNightBrief>
-  <CC_Impact_AmbrosiaPull>Ambrosia pulls at some who eat it, as the game has it</CC_Impact_AmbrosiaPull>
-  <CC_Impact_AmbrosiaPullBrief>some may come to want it</CC_Impact_AmbrosiaPullBrief>
+  <CC_Impact_AmbrosiaPull>Some who eat ambrosia get addicted to it, as in the game</CC_Impact_AmbrosiaPull>
+  <CC_Impact_AmbrosiaPullBrief>some may get addicted</CC_Impact_AmbrosiaPullBrief>
   <CC_Evt_AmbrosiaMarked>{N} ripe ambrosia bushes are marked for harvest.</CC_Evt_AmbrosiaMarked>
   <CC_Evt_EggsGone>The eggs are gone.</CC_Evt_EggsGone>
   <CC_Evt_EggsNotFood>These eggs are no good for the kitchen without hatching first.</CC_Evt_EggsNotFood>

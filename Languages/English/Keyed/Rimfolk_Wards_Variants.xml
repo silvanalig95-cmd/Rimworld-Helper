@@ -12,11 +12,11 @@
 
   <!-- Their ward comes, and goes home -->
   <CC_Ward_Arrives_3>{WARD} of {PEOPLE} walked in through the gate with their kin and stayed when the kin turned back: a year here, {WORD}, to learn {SKILL}. Their people call it {RITE}.</CC_Ward_Arrives_3>
-  <CC_Ward_Home_Fine_2>{WARD} has gone home with their kin. It was a fine year, and {PEOPLE} will be told so at every table.</CC_Ward_Home_Fine_2>
+  <CC_Ward_Home_Fine_2>{WARD} has gone home with their kin. It was a fine year, and {PEOPLE} will hear all about it.</CC_Ward_Home_Fine_2>
   <CC_Ward_Home_Good_2>{WARD} has gone home with their kin, and they will speak well of the colony to {PEOPLE}.</CC_Ward_Home_Good_2>
   <CC_Ward_Home_Fair_2>{WARD} has gone home with their kin. Some of the year was good and some of it wasn't, and {PEOPLE} will hear both.</CC_Ward_Home_Fair_2>
-  <CC_Ward_Home_Poor_2>{WARD} has gone home, and the year they will describe to {PEOPLE} is not one the colony would want told.</CC_Ward_Home_Poor_2>
-  <CC_Ward_Died_Inside_2>{WARD} of {PEOPLE} is dead. They died under the colony's roof, and their people know it was kept as safe as anyone, but they sent a youth to learn and have lost them.</CC_Ward_Died_Inside_2>
+  <CC_Ward_Home_Poor_2>{WARD} has gone home, and what they tell {PEOPLE} about the year will not reflect well on the colony.</CC_Ward_Home_Poor_2>
+  <CC_Ward_Died_Inside_2>{WARD} of {PEOPLE} is dead. They died under the colony's roof, and their people know the colony kept them as safe as anyone, but they sent a youth to learn and have lost them.</CC_Ward_Died_Inside_2>
   <CC_Ward_Died_Outside_2>{WARD} of {PEOPLE} is dead, caught out in the open at the colony. Their people will ask why the colony didn't keep them inside.</CC_Ward_Died_Outside_2>
   <CC_Ward_Taken_2>{WARD} of {PEOPLE} has been carried off from the colony. Their people will want to know how it happened.</CC_Ward_Taken_2>
 
@@ -37,9 +37,9 @@
   <CC_Hostage_There_2>{HOSTAGE} is at {TOWN} now, kept among {PEOPLE} for the term: {RITE}.</CC_Hostage_There_2>
   <CC_Hostage_Homeward_2>{PEOPLE} have let {PAWN} go from {TOWN}, the term over, with food for the road. They are on their way home.</CC_Hostage_Homeward_2>
   <CC_Hostage_Home_Kept_2>{HOSTAGE} is free to go home to {PEOPLE}, the term over. The colony kept its side of {WORD}, and {PEOPLE} will remember it.</CC_Hostage_Home_Kept_2>
-  <CC_Hostage_Forfeit_2>{PEOPLE} have gone back on the word {HOSTAGE} stood surety for. {HOSTAGE} knows what that means as well as anyone: {WORD} is forfeit, and the colony decides what happens now.</CC_Hostage_Forfeit_2>
+  <CC_Hostage_Forfeit_2>{PEOPLE} have broken the agreement {HOSTAGE} was held as a guarantee for. {HOSTAGE} knows what that means: {WORD} is forfeit, and the colony decides what happens now.</CC_Hostage_Forfeit_2>
   <CC_Hostage_Held_2>The colony's word is broken, and {PEOPLE} hold {HOSTAGE} now, not as a hostage but as a prisoner.</CC_Hostage_Held_2>
   <CC_Hostage_Kept_2>{HOSTAGE} of {PEOPLE} is in the colony's cells now. If their people want them back, they will have to offer something.</CC_Hostage_Kept_2>
-  <CC_Hostage_Stayed_2>{HOSTAGE} will stay. {PEOPLE} broke their word with {HOSTAGE} at the colony, and {HOSTAGE} has decided where they belong.</CC_Hostage_Stayed_2>
+  <CC_Hostage_Stayed_2>{HOSTAGE} will stay. {PEOPLE} broke their word while {HOSTAGE} was at the colony, and {HOSTAGE} would rather live here now.</CC_Hostage_Stayed_2>
 
 </LanguageData>

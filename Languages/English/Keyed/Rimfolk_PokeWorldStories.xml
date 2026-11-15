@@ -7,7 +7,7 @@
   <CC_Beast_NoBelt>Nobody has a ball belt to throw with.</CC_Beast_NoBelt>
   <CC_PW_RumourHeld>The colony is keeping an eye out for a shiny {SPECIES}, for the next {DAYS}.</CC_PW_RumourHeld>
   <CC_PW_RumourFaded>Nobody saw the shiny {SPECIES} the rumour spoke of. It was a story after all, or someone else's catch.</CC_PW_RumourFaded>
-  <CC_PW_RumourShows>A {SPECIES} shining in the wrong colors has come onto the colony's land, as the rumour said.</CC_PW_RumourShows>
+  <CC_PW_RumourShows>A shiny {SPECIES}, in colors its kind doesn't usually have, has come onto the colony's land, as the rumour said.</CC_PW_RumourShows>
 
   <!-- Traveling trainers and their show (Integrations/PokeWorldCamp.cs). -->
   <CC_PW_ShowLabel>a friendly contest at the trainers' fire</CC_PW_ShowLabel>

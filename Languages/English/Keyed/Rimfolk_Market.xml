@@ -3,7 +3,7 @@
 
   <!-- RimMarket's colony stall sales table, Rimfolk's way (Source/ColonyCouncil/UI/Window_StallCounter.cs). -->
   <CC_Settings_MarketStallWindow>RimMarket's sales table, Rimfolk's way</CC_Settings_MarketStallWindow>
-  <CC_Settings_MarketStallWindow_Tip>With RimMarket: a colony stall's "Set up the stall" opens Rimfolk's sales table instead of RimMarket's. On the left the colony's goods by category, with a search and a sort; a click puts all of an article on the counter, a right-click asks how many. On the right only what is for sale, a card a line: how many, the quality range, the price on a slider with what it fetches each and for all, how well it sells, and what has sold and lies on the counter. One price for every line at once, and at the foot what it all comes to and how often shoppers come. It changes RimMarket's own sale lines, nothing else. Off: RimMarket's own window. Needs the deeper game hooks.</CC_Settings_MarketStallWindow_Tip>
+  <CC_Settings_MarketStallWindow_Tip>With RimMarket: a colony stall's "Set up the stall" opens Rimfolk's sales table instead of RimMarket's. The left side lists the colony's goods by category, with a search and a sort. A click puts all of an article on the counter, and a right-click asks how many. The right side shows only what is for sale, one card for each line: how many, the quality range, the price on a slider with what each and all of them would fetch, how well it sells, and what has sold or is waiting on the counter. One button sets the price of every line at once, and the bottom shows the total and how often shoppers come. It changes RimMarket's own sale lines, nothing else. Off: RimMarket's own window. Needs the deeper game hooks.</CC_Settings_MarketStallWindow_Tip>
   <CC_SetNote_MarketStallWindow>With RimMarket: the stall's sales table in two halves, the goods and the counter.</CC_SetNote_MarketStallWindow>
   <CC_Settings_MarketStallShips>RimMarket's stall goods for trade ships</CC_Settings_MarketStallShips>
   <CC_Settings_MarketStallShips_Tip>With RimMarket and a powered orbital trade beacon on the map: what lies on the counters of the colony's own stalls is offered to trade ships as well, beside what lies in the beacon's range. A ship buys from the stockpile first, and what it buys from a stall comes off that stall's sale line as if sold there. A stall doesn't stand in for a beacon: with none powered, ships see only what they always did. Off: a stall's goods are for its shoppers only. Needs the deeper game hooks.</CC_Settings_MarketStallShips_Tip>
@@ -67,7 +67,7 @@
   <CC_Stall_BargainTip>Every line at {0} of its sell value: a customer who fancies an article buys it {1} of the time, and word of the bargains brings shoppers more often.</CC_Stall_BargainTip>
   <CC_Stall_Fair>The usual ({0})</CC_Stall_Fair>
   <CC_Stall_FairTip>Every line at {0} of its sell value: a customer who fancies an article buys it {1} of the time.</CC_Stall_FairTip>
-  <CC_Stall_Dear>Dear ({0})</CC_Stall_Dear>
+  <CC_Stall_Dear>Expensive ({0})</CC_Stall_Dear>
   <CC_Stall_DearTip>Every line at {0} of its sell value: a customer who fancies an article buys it {1} of the time, and shoppers come less often.</CC_Stall_DearTip>
   <CC_Stall_SummaryNone>Nothing for sale yet.</CC_Stall_SummaryNone>
   <CC_Stall_Summary>{0} articles on {1} lines, about {2} silver if it all goes.</CC_Stall_Summary>

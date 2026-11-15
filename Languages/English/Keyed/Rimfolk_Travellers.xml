@@ -72,11 +72,11 @@
   <!-- News of far towns, told at their fire ({NEWS} is one of the lines below, as it goes into the town's "Heard lately") -->
   <CC_FarNews_Say>Have you heard what is happening in {TOWN}?</CC_FarNews_Say>
   <CC_FarNews_Told>{X_nameDef} of the {CAMP} told {A_nameDef} news of {TOWN}, {WHERE}: {NEWS}</CC_FarNews_Told>
-  <CC_FarNews_situation>The talk among {PEOPLE} is all of {WHAT}.</CC_FarNews_situation>
+  <CC_FarNews_situation>{PEOPLE} talk about little but {WHAT}.</CC_FarNews_situation>
   <CC_FarNews_war>{PEOPLE} have gone to war with {ENEMY}.</CC_FarNews_war>
   <CC_FarNews_peace>{PEOPLE} have made peace with {ENEMY}.</CC_FarNews_peace>
   <CC_FarNews_new>{TOWN} is new, raised by {PEOPLE} this year.</CC_FarNews_new>
-  <CC_FarNews_site>The road talks of {SITE}, {DIR} of {TOWN}.</CC_FarNews_site>
+  <CC_FarNews_site>Travelers on the road talk of {SITE}, {DIR} of {TOWN}.</CC_FarNews_site>
   <CC_FarNews_quest>{PEOPLE} are still looking for someone for "{QUEST}".</CC_FarNews_quest>
 
   <!-- The camp's page and the region map's panel -->

@@ -140,6 +140,32 @@ tree at once, alongside whatever runs. Each piece is merged as its own release, 
   it), hover for what it is and how it has gone, click to open the region window on it; none shown while none runs.
 - **Dropped (14 November 2026): sending visitors away.** The player: "so asking visitors to leave is not necessary, as i
   found the already imlpemented function".
+- 0.249.0, **Plain words: interface-4** (14
+  November 2026; the player's words: "when you write text for the mod, especially when it's supposed to be flavour, i'd
+  like you to be more neutral, descriptive and "reasonable"", "yes, please rewrite everything", "leave: what colonists
+  say, talk between colonists, moods and memories, dreams, character, neighbours talk, ailments, journals", "start with:
+  ... messages and interface"). The fourth and largest messages-and-interface batch, 182 files of
+  `Languages/English/Keyed` (settings and their tips, the council's and planning windows, the advisor, the colony news
+  and messages, harm and health, animals and the herd, peoples, camps and visitors, marriage, wards, fealty, renown,
+  schemes, the region, many colonies, letters' fixed words, scenarios). Read: 6,088 keyed lines; rewritten: 210, in 65
+  of the files; the rest were already plain and are left word for word. What changed: settings tips strung
+  together with semicolons are plain sentences (against their nature, renown, small acts by how they are, strong
+  feelings, visitors at the stalls, gatherings a week, a drink or a smoke before work, the stall's sales table); things
+  given will are plain (the food "wants" cold places, the land taking a ruin back, the road that talks, a feeling that
+  visits a grave, the scrap that spits, the storyteller direction where "the world feels watched"); wry last lines say
+  what happened ("It didn't take long", "It was close for a while, and then it wasn't", "a road goes two ways", "and
+  then the colony feels it", "the colony has one less of its own"); in-world phrases are explained where they stand (the
+  Conclave's glass is their storm glass, the Roll is the Banner's book of names, the Wardens' book, the Kiln Guild's
+  wander-year, a hard turn of the sky is bad weather); old words for plain ones ("dear" is expensive, "abed", "players"
+  for actors, "the one in town who has letters"); clipped impact lines ("a sheaf in ten", "never more", "plans taken off
+  the ground"). One number fixed to the code: `CC_Settings_GoodLife_Tip` (`Rimfolk_GoodLife.xml`, the older "Used to the
+  good life" tip) said the spoiled's line falls to 30, while `GoodLifeMath.LineFor` has 45, 35, 25 and 15; it now says
+  15, as `CC_Settings_Ordinary_Tip` does since interface-1. Left as written: everything spoken (bubbles, quoted lines,
+  toasts, the camps' and travellers' reported words), groups, gossip, talk, quirks, personas and marks, epithets and the
+  one name, trait changes, moods' causes and setbacks, shared memories, ailments and the illness budget, the heart's
+  good side bands the player approved, the age forms (`Rimfolk_Ages.xml`, already plain noun phrases), and every tag,
+  placeholder, number and chance; no god is named anywhere new. Unused keys with old numbers (`CC_Good_Band_*_Desc`,
+  `CC_Good_Explain`) are left as they were.
 - 0.248.0, **Plain words: interface-3** (14
   November 2026; the player's words: "when you write text for the mod, especially when it's supposed to be flavour, i'd
   like you to be more neutral, descriptive and "reasonable", over trying to make the text be creative", "the only thing

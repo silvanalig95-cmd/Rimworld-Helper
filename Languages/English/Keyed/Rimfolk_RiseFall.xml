@@ -27,7 +27,7 @@
   <CC_RiseFall_Empty>{MEANS}: the last families have left {TOWN}, {WHERE}. Nothing is left there but {RUIN}.</CC_RiseFall_Empty>
   <CC_RiseFall_Fell>{MEANS}: where {TOWN} of {PEOPLE} stood, {WHERE}, there is only {RUIN} now.</CC_RiseFall_Fell>
   <CC_RiseFall_Fell_Ours>Where {TOWN} of {PEOPLE} stood, {WHERE}, there is only {RUIN} now.</CC_RiseFall_Fell_Ours>
-  <CC_RiseFall_Faded>{MEANS}: hardly a wall of {TOWN} is left standing, {WHERE}, and the grass has the rest.</CC_RiseFall_Faded>
+  <CC_RiseFall_Faded>{MEANS}: hardly a wall of {TOWN} is left standing, {WHERE}, and grass has grown over the rest.</CC_RiseFall_Faded>
   <CC_RiseFall_Daughter>{MEANS}: settlers from {MOTHER} have founded {TOWN} of {PEOPLE}, {WHERE}, {RITE}.</CC_RiseFall_Daughter>
 
   <!-- A ruin settled again: its own people come back ({TOWN} the old name), or newcomers raise a town on it ({NEWNAME}) -->
@@ -47,7 +47,7 @@
   <!-- The history's lines -->
   <CC_RiseFall_H_GivenUp>{PEOPLE} gave up {TOWN} and left it a ruin.</CC_RiseFall_H_GivenUp>
   <CC_RiseFall_H_Fell>{TOWN} of {PEOPLE} fell in a fight, and only a ruin was left.</CC_RiseFall_H_Fell>
-  <CC_RiseFall_H_Faded>The last of the ruin of {TOWN} went to grass.</CC_RiseFall_H_Faded>
+  <CC_RiseFall_H_Faded>The last of the ruin of {TOWN} is overgrown and gone.</CC_RiseFall_H_Faded>
   <CC_RiseFall_H_Back>{PEOPLE} settled the old walls of {TOWN} again.</CC_RiseFall_H_Back>
   <CC_RiseFall_H_Renamed>{PEOPLE} settled the old walls of {TOWN} again, as {NEWNAME}.</CC_RiseFall_H_Renamed>
 
