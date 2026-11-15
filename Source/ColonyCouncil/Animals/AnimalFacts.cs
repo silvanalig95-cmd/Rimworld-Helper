@@ -49,6 +49,72 @@ namespace ColonyCouncil
             return null;
         }
 
+        // ---------------- Whom it takes to ----------------
+
+        private static readonly Dictionary<int, (int tick, Pawn person)> fond = new Dictionary<int, (int, Pawn)>();
+        private static Game fondGame;
+
+        /// <summary>
+        /// The colonist an animal is with: the one it's bonded to, else its master, else the one it has taken to
+        /// (<see cref="FondOf"/>). Most of a colony's animals have neither a bond nor a master; each still has its person.
+        /// </summary>
+        public static Pawn PersonOf(Pawn a) => PetTracker.PersonOf(a) ?? FondOf(a);
+
+        /// <summary>
+        /// The one a named animal with no bond and no master has taken to (AnimalDaysMath.Favourite): among the colony's own
+        /// people living where it lives (or away from there with a caravan), likelier a good hand with animals, one who loves
+        /// them, a child or a kind soul, and fixed for the pair, so it keeps to the same one while they're here. Worked out at
+        /// most once an hour. Null for an animal with a bond or a master, an unnamed one, or none at all.
+        /// </summary>
+        public static Pawn FondOf(Pawn a)
+        {
+            if (!Ours(a) || !AnimalTempers.Has(a) || PetTracker.PersonOf(a) != null) return null;
+            if (fondGame != Current.Game)
+            {
+                fondGame = Current.Game;
+                fond.Clear();
+            }
+            int now = Find.TickManager?.TicksGame ?? 0;
+            if (fond.TryGetValue(a.thingIDNumber, out var c) && Fresh.Holds(c.tick, now, GenDate.TicksPerHour) && (c.person == null || !c.person.Dead)) return c.person;
+            Pawn found = null;
+            try
+            {
+                var home = a.MapHeld;
+                var people = new List<Pawn>();
+                foreach (var p in PawnsFinder.AllMapsCaravansAndTravellingTransporters_Alive_FreeColonists)
+                {
+                    if (p == null || p.Dead || !People.HasInnerLife(p) || p.DevelopmentalStage.Baby()) continue;
+                    // Those of its own home, and those away from it (on the road, at a site), not another colony's.
+                    if (p.MapHeld != null && p.MapHeld != home && p.MapHeld.IsPlayerHome) continue;
+                    people.Add(p);
+                }
+                var ids = new List<int>();
+                var weights = new List<float>();
+                foreach (var p in people)
+                {
+                    var sk = p.skills?.GetSkill(SkillDefOf.Animals);
+                    ids.Add(p.thingIDNumber);
+                    weights.Add(AnimalDaysMath.FondWeight(sk?.Level ?? 0, sk != null && People.Passionate(sk), p.DevelopmentalStage.Child(),
+                        p.story?.traits?.HasTrait(TraitDefOf.Kind) ?? false, p.WorkTypeIsDisabled(WorkTypeDefOf.Handling)));
+                }
+                int id = AnimalDaysMath.Favourite(a.thingIDNumber, ids, weights);
+                found = people.FirstOrDefault(p => p.thingIDNumber == id);
+            }
+            catch (Exception e)
+            {
+                CouncilLog.ErrorOnce("an animal's person", e);
+            }
+            if (fond.Count > 600) fond.Clear();
+            fond[a.thingIDNumber] = (now, found);
+            return found;
+        }
+
+        /// <summary>The animal has taken to this colonist (no bond, no master: <see cref="FondOf"/>).</summary>
+        public static bool TakesTo(Pawn a, Pawn p) => p != null && FondOf(a) == p;
+
+        /// <summary>A pet rather than the herd's: bonded to someone, or not livestock (AnimalTempers.Companion, for one with a temperament).</summary>
+        public static bool Pet(Pawn a) => Ours(a) && (AnimalTempers.BondedToSomeone(a) || !Livestock(a));
+
         /// <summary>What the animal is ("muffalo", "Eevee"): its kind's label.</summary>
         public static string KindLabel(Pawn a) => a?.kindDef?.label ?? a?.def?.label ?? "?";
 

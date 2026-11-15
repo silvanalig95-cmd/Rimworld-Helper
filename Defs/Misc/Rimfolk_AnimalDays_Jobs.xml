@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    The animals' days on the map (Source/ColonyCouncil/Animals/AnimalDays.cs, AnimalScenes.cs, AnimalDayJobs.cs): a pet at
+    someone's elbow at a meal and a pet sheltering from the weather (JobDriver_AnimalLinger, as the natures' own), an animal
+    at play (JobDriver_AnimalPlay), a colonist playing chase with one (JobDriver_PlayWithAnimal), sitting with one or
+    stopping to watch it (JobDriver_SitWithAnimal), and the keeper's round of the animals (JobDriver_KeeperRound). Each is
+    ended by danger.
+  -->
+
+  <JobDef>
+    <defName>Rimfolk_AnimalBeg</defName>
+    <driverClass>ColonyCouncil.JobDriver_AnimalLinger</driverClass>
+    <reportString>begging from TargetB.</reportString>
+    <checkOverrideOnDamage>Always</checkOverrideOnDamage>
+    <modExtensions>
+      <li Class="ColonyCouncil.AnimalLingerExtension">
+        <report>CC_AnimalJob_Beg</report>
+      </li>
+    </modExtensions>
+  </JobDef>
+
+  <JobDef>
+    <defName>Rimfolk_AnimalShelter</defName>
+    <driverClass>ColonyCouncil.JobDriver_AnimalLinger</driverClass>
+    <reportString>sheltering from the weather.</reportString>
+    <checkOverrideOnDamage>Always</checkOverrideOnDamage>
+    <modExtensions>
+      <li Class="ColonyCouncil.AnimalLingerExtension">
+        <lie>true</lie>
+      </li>
+    </modExtensions>
+  </JobDef>
+
+  <JobDef>
+    <defName>Rimfolk_AnimalMourn</defName>
+    <driverClass>ColonyCouncil.JobDriver_AnimalLinger</driverClass>
+    <reportString>lying by TargetB.</reportString>
+    <checkOverrideOnDamage>Always</checkOverrideOnDamage>
+    <modExtensions>
+      <li Class="ColonyCouncil.AnimalLingerExtension">
+        <lie>true</lie>
+        <report>CC_AnimalJob_Mourn</report>
+      </li>
+    </modExtensions>
+  </JobDef>
+
+  <JobDef>
+    <defName>Rimfolk_AnimalPlay</defName>
+    <driverClass>ColonyCouncil.JobDriver_AnimalPlay</driverClass>
+    <reportString>playing.</reportString>
+    <checkOverrideOnDamage>Always</checkOverrideOnDamage>
+  </JobDef>
+
+  <JobDef>
+    <defName>Rimfolk_PlayWithAnimal</defName>
+    <driverClass>ColonyCouncil.JobDriver_PlayWithAnimal</driverClass>
+    <reportString>playing chase with TargetA.</reportString>
+    <casualInterruptible>true</casualInterruptible>
+    <checkOverrideOnDamage>Always</checkOverrideOnDamage>
+    <joyKind>Social</joyKind>
+  </JobDef>
+
+  <JobDef>
+    <defName>Rimfolk_SitWithAnimal</defName>
+    <driverClass>ColonyCouncil.JobDriver_SitWithAnimal</driverClass>
+    <reportString>sitting with TargetA.</reportString>
+    <casualInterruptible>true</casualInterruptible>
+    <checkOverrideOnDamage>Always</checkOverrideOnDamage>
+    <joyKind>Social</joyKind>
+  </JobDef>
+
+  <JobDef>
+    <defName>Rimfolk_KeeperRound</defName>
+    <driverClass>ColonyCouncil.JobDriver_KeeperRound</driverClass>
+    <reportString>looking over the animals.</reportString>
+    <casualInterruptible>true</casualInterruptible>
+    <checkOverrideOnDamage>Always</checkOverrideOnDamage>
+  </JobDef>
+
+</Defs>

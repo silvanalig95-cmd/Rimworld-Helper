@@ -10,7 +10,7 @@
     <order>13</order>
     <summary>What the colony's people want for their animals, the stories and choices that come of them, and the herd's year.</summary>
     <tip>Give the old dog the warm spot by the fire. Someone will notice.</tip>
-    <description>The colony's animals are part of its life in Rimfolk, not only its larder and its guard. Someone milking or taming talks to the animal in front of them, a bonded dog falls in at its person's heels, a birth in the herd is news, and an old companion's death is grieved and remembered. Colonists who love animals ask for things that help the herd and their own animals; the council faces hard choices about them in hungry weeks and bad nights; and the herdmaster looks after the people who look after them.
+    <description>The colony's animals are part of its life in Rimfolk, not only its larder and its guard. Someone milking or taming talks to the animal in front of them, a dog falls in at its person's heels, a birth in the herd is news, and an old companion's death is grieved and remembered. Colonists who love animals ask for things that help the herd and their own animals; the council faces hard choices about them in hungry weeks and bad nights; and the herdmaster looks after the people who look after them.
 
 The everyday parts follow the setting "Pets as companions" (People). With PokéWorld, Pokémon count as the colony's animals everywhere on this page, and have a page of their own besides. Their temperaments, their friendships, feuds and grief, and the few that speak are on the page "the animals' natures".</description>
     <sections>
@@ -19,7 +19,7 @@ The everyday parts follow the setting "Pets as companions" (People). With PokéW
         <table>
           <li>What | When</li>
           <li>A word to an animal | Someone milking, shearing, taming, training, tending, feeding or roping an animal in view says something to it, and a child at leisure talks to the animal beside them. These share the once-a-day rate of everything said on screen.</li>
-          <li>At its person's heels | A bonded animal with nothing to do, near its person, follows them about for a while (not one roped, penned or at work).</li>
+          <li>At its person's heels | A pet with nothing to do, near its person, follows them about for a while (not one roped, penned or at work). Its person is the one it is bonded to, its master, or else the one it is fond of: its card says "fond of" whom.</li>
           <li>A birth in the herd | News, with the mother's name. The colony's first is a day on the calendar.</li>
           <li>A death | A named animal's death gets a farewell from the one who loved it, with lines of their own for an old animal that died at the end of a long life and for a Pokémon.</li>
           <li>Talk between colonists | Two people who keep animals talk shop (some practice for both), two with bonded animals swap stories, and a child asks a keeper about the animals. Face to face, as all such moments are.</li>
@@ -28,8 +28,26 @@ The everyday parts follow the setting "Pets as companions" (People). With PokéW
         </table>
       </li>
       <li>
+        <heading>Their days on the map</heading>
+        <table>
+          <li>What | On the map</li>
+          <li>Home again | Someone back after four hours or more away (a caravan, a site): their animal runs over and nuzzles them, and they say hello to it.</li>
+          <li>At the foot of the bed | At bedtime a pet up to a big dog's size goes into its person's room and sleeps at the foot of their bed; in the morning they mention it. About every three nights.</li>
+          <li>At a meal | A pet sits at the elbow of someone eating (its own person first) and watches them eat, and they tell it no, or give it a bite. About every two days.</li>
+          <li>Play | A child with free time plays chase with an animal near them (up to a horse's size, not a large hunter): the two run about together for a while. About every day.</li>
+          <li>The herd | In the early morning a herd of two or more of one kind follows its eldest (the herd's leader, when it is one of them) out to fresh grazing in its area.</li>
+          <li>The rounds | In their free time the herdmaster, or whoever is best with animals when there is none, goes round up to five of the colony's animals, stopping to look each one over. A little handling practice.</li>
+          <li>Rain and snow | When rain or snow comes on by day, up to three pets out in it go in under a roof; in the snow the young ones play in it.</li>
+          <li>A bitter night | Below -8 °C at night, a herd out in the open lies down close together around its eldest.</li>
+          <li>Raiders | As raiders come, up to two pets (never a timid one) turn toward them and call out, and someone says where they are.</li>
+          <li>A strange sky | When the sky takes on a strange colour and the wind drops, the pets go and keep close to their people for a while, and one cries out.</li>
+          <li>A death | When its person dies, an animal goes to lie by the body (or the grave it is in) and cries.</li>
+        </table>
+        <after>None of it sends a letter or a message, and nobody is hurt. What each did lately shows on its card. The setting "Animals' moments on the map" (How much happens) sets the pace, as for their temperaments. Ten of the animals' encounters now happen on the map before they are told (a welcome, the foot of the bed, a bite at a meal, a child at play, an animal following someone or keeping them company when they are low, a trick, a raid on the stores, sitting with it a while), and the animals' personal stories have a step on the map at each stage.</after>
+      </li>
+      <li>
         <heading>The herdmaster</heading>
-        <text>With "Systems talk to each other" on, the herdmaster goes down to the pens within the day to give each newborn a name, if it has none. When someone's animal is sick or hurt, the herdmaster finds them in their free time and tells them how it's doing, face to face: their strain eases a little and the two grow a little closer. About once a week, someone keen on animals who is four levels or more behind the herdmaster is taken along for the day's work, a lesson on the map. Besides, as before, the herdmaster sits with anyone whose named animal dies and minds the animals of those away.</text>
+        <text>With "Systems talk to each other" on, the herdmaster goes down to the pens within the day to give each newborn a name, if it has none. When someone's animal is sick or hurt, the herdmaster finds them in their free time and tells them how it's doing, face to face: their strain eases a little and the two grow a little closer. About once a week, someone keen on animals who is four levels or more behind the herdmaster is taken along for the day's work, a lesson on the map. Besides, as before, the herdmaster sits with anyone whose named animal dies and minds the animals of those away, and goes round the animals in their free time (the rounds, above).</text>
       </li>
       <li>
         <heading>Wishes</heading>

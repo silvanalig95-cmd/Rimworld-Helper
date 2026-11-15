@@ -25,6 +25,8 @@ public static class ImmersionTests
         // The family's life together (Social/FamilyLife.cs).
         "Council_Pool_SayNewCouple", "Council_Pool_SayMatchDoubt", "Council_Pool_SayParentNewPartner", "Council_Pool_SayEngaged", "Council_Pool_SayProposalComfort", "Council_Pool_SayExpecting",
         "Council_Pool_SayGrandchild", "Council_Pool_PlayGrowth",
+        // The colony's animals' days, seen (Animals/AnimalDays.cs).
+        "Rimfolk_Pool_AnimalDays",
         // The family's days together (Social/FamilyBonds.cs).
         "Council_Pool_PlayFamilySupper", "Council_Pool_SaySiblingClose", "Council_Pool_SaySiblingRival",
         // Habits shown on the map (Immersion/QuirkHabits.cs, HabitBubbles.cs).

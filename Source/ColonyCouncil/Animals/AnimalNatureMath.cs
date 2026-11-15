@@ -74,22 +74,28 @@ namespace ColonyCouncil
             ["dog"] = "canine", ["dogs"] = "canine", ["husky"] = "canine", ["labrador"] = "canine", ["retriever"] = "canine", ["wolf"] = "canine", ["warg"] = "canine",
             ["fox"] = "canine", ["coyote"] = "canine", ["jackal"] = "canine", ["hound"] = "canine", ["terrier"] = "canine", ["yorkshire"] = "canine",
             ["dingo"] = "canine", ["hyena"] = "canine", ["canine"] = "canine", ["manwolf"] = "canine",
+            // Vanilla Animals Expanded's dogs, by their breeds.
+            ["beagle"] = "canine", ["chihuahua"] = "canine", ["corgi"] = "canine", ["bulldog"] = "canine", ["shepherd"] = "canine",
+            ["dane"] = "canine", ["poodle"] = "canine", ["pug"] = "canine", ["rottweiler"] = "canine", ["shih"] = "canine", ["greatwolf"] = "canine",
             ["cat"] = "feline", ["cats"] = "feline", ["lynx"] = "feline", ["cougar"] = "feline", ["panther"] = "feline", ["lion"] = "feline", ["tiger"] = "feline",
             ["leopard"] = "feline", ["jaguar"] = "feline", ["puma"] = "feline", ["cheetah"] = "feline", ["serval"] = "feline", ["ocelot"] = "feline",
-            ["feline"] = "feline", ["smilodon"] = "feline",
+            ["feline"] = "feline", ["smilodon"] = "feline", ["coon"] = "feline",
             ["horse"] = "hoofed", ["pony"] = "hoofed", ["donkey"] = "hoofed", ["zebra"] = "hoofed", ["mule"] = "hoofed", ["camel"] = "hoofed",
             ["dromedary"] = "hoofed", ["alpaca"] = "hoofed", ["llama"] = "hoofed", ["equine"] = "hoofed", ["demigryph"] = "hoofed",
             ["muffalo"] = "grazer", ["cow"] = "grazer", ["cattle"] = "grazer", ["bison"] = "grazer", ["yak"] = "grazer", ["buffalo"] = "grazer",
             ["ox"] = "grazer", ["sheep"] = "grazer", ["goat"] = "grazer", ["ibex"] = "grazer", ["elk"] = "grazer", ["deer"] = "grazer",
             ["caribou"] = "grazer", ["gazelle"] = "grazer", ["boar"] = "grazer", ["pig"] = "grazer", ["elephant"] = "grazer", ["mammoth"] = "grazer",
-            ["dromedaries"] = "grazer", ["manffalo"] = "grazer",
+            ["dromedaries"] = "grazer", ["manffalo"] = "grazer", ["moose"] = "grazer", ["muskox"] = "grazer", ["mastodon"] = "grazer",
+            ["wildebeest"] = "grazer", ["giraffe"] = "grazer", ["tapir"] = "grazer", ["rhinoceros"] = "grazer", ["hippo"] = "grazer",
             ["bear"] = "ursine", ["ursine"] = "ursine", ["manbear"] = "ursine",
             ["thrumbo"] = "thrumbo",
             ["lizard"] = "reptile", ["iguana"] = "reptile", ["tortoise"] = "reptile", ["turtle"] = "reptile", ["snake"] = "reptile", ["cobra"] = "reptile",
             ["crocodile"] = "reptile", ["alligator"] = "reptile", ["monitor"] = "reptile", ["gecko"] = "reptile", ["komodo"] = "reptile",
             ["rat"] = "small", ["squirrel"] = "small", ["rabbit"] = "small", ["hare"] = "small", ["capybara"] = "small", ["chinchilla"] = "small",
             ["hamster"] = "small", ["mouse"] = "small", ["ferret"] = "small", ["raccoon"] = "small", ["hedgehog"] = "small", ["marmot"] = "small",
-            ["guinea"] = "small", ["fennec"] = "small", ["boomrat"] = "small"
+            ["guinea"] = "small", ["fennec"] = "small", ["boomrat"] = "small", ["otter"] = "small", ["mink"] = "small", ["badger"] = "small",
+            ["armadillo"] = "small", ["porcupine"] = "small", ["beaver"] = "small", ["lemur"] = "small",
+            ["anaconda"] = "reptile", ["rattlesnake"] = "reptile", ["gila"] = "reptile", ["prairie"] = "small"
         };
 
         /// <summary>The words of a name: split on anything not a letter and before a capital ("YorkshireTerrier", "snow_hare").</summary>

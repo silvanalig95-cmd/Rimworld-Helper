@@ -33,6 +33,9 @@
         <chronicle>
           <li>{PET_nameDef} won't come when {PAWN_nameDef} calls. Trainer and Pokémon, so far, in name only.</li>
         </chronicle>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Follow"><hours>24</hours></li>
+        </effects>
         <gate><kind>Hold</kind><hold>Near</hold><hours>12</hours><minDays>1</minDays><timeoutDays>20</timeoutDays><timeoutPasses>true</timeoutPasses></gate>
       </li>
       <li>
@@ -107,6 +110,9 @@
         <chronicle>
           <li>{PET_nameDef} has come round to {PAWN_nameDef} at last.</li>
         </chronicle>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Visit"><whom>Pet</whom><hours>13~18</hours><duration>1~1.5</duration></li>
+        </effects>
         <gate><kind>Custom</kind><minDays>1</minDays><timeoutDays>30</timeoutDays><timeoutPasses>true</timeoutPasses></gate>
       </li>
       <li>
