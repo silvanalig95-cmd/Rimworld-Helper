@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+  <!--
+    A war band on the colony's map (Camps/WarCamp.cs, Camps/WarBandOrders.cs): bands called on a pact, a favour, fealty
+    or a vassal's levies, and those come of their own. The game's own hunt, with what it lacks: going with the colony's
+    drafted fighters, and an enemy asleep (a mech cluster, an ancient danger), which the game's hunt never goes after.
+  -->
+  <DutyDef>
+    <defName>Rimfolk_WarBandHunt</defName>
+    <alwaysShowWeapon>true</alwaysShowWeapon>
+    <thinkNode Class="ThinkNode_Priority">
+      <subNodes>
+        <li Class="JobGiver_TakeCombatEnhancingDrug" />
+        <!-- an awake enemy near: the game's own fight -->
+        <li Class="JobGiver_AIFightEnemies">
+          <targetAcquireRadius>65</targetAcquireRadius>
+          <targetKeepRadius>72</targetKeepRadius>
+        </li>
+        <!-- a colonist drafted: with the nearest one -->
+        <li Class="ColonyCouncil.JobGiver_WarBandWithColony" />
+        <!-- an awake enemy further off: the game's own -->
+        <li Class="JobGiver_AIGotoNearestHostile" />
+        <!-- a sleeping enemy in reach: wait out of its waking range, then go in -->
+        <li Class="ColonyCouncil.JobGiver_WarBandSleepers" />
+        <!-- the enemy shut away out of reach: stand by just outside the colony -->
+        <li Class="JobGiver_WanderNearDutyLocation">
+          <wanderRadius>6</wanderRadius>
+        </li>
+      </subNodes>
+    </thinkNode>
+  </DutyDef>
+</Defs>

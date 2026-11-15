@@ -10265,6 +10265,24 @@ its rules pure and tested (`PactMath.cs`; `Tools/Tests/PactTests.cs`).
   for fighters (`FavourAsk.Fighters`) brings a band the same way. A trade pact: `IncidentDefOf.TraderCaravanArrival` for
   them each season, and the cart carried out to the gate (`DilemmaEffect_CarryOut`, their porters waiting) and paid for
   (`Couriers.PaySilver`, four fifths of its worth).
+- **A war band on the map** (`Camps/WarBandOrders.cs`, the duty `Rimfolk_WarBandHunt` set by `LordToil_WarBandHunt`, a
+  subclass of the game's `LordToil_HuntEnemies` so saved groups load unchanged; the player, 15 November 2026: "the
+  delegation came but is neither attacking the enemies nor following my pawns"). Every band (a pact's, a debt's, a
+  liege's, a vassal's levies, one come of its own) fights the game's way, with what the game's hunt lacks: it only goes
+  after enemies that are awake, so a band called against a sleeping mech cluster stood idle at the map's edge. In order:
+  an awake enemy within 65 cells (the game's `JobGiver_AIFightEnemies`); while any colonist on the map is drafted, they go
+  with the nearest one and stand ready beside them (`JobGiver_WarBandWithColony`, the game's follow job, radius 5); an
+  awake enemy further off (`JobGiver_AIGotoNearestHostile`); a sleeping enemy they can see and walk to
+  (`WarBandOrders.Asleep`: a duty that disables threats, an inactive mind, a dormant mechanoid) has them wait
+  `CampStoryMath.MusterDistance` (36) cells from it on the line toward the colony (`MusterPoint`), past the 30 cells at
+  which mechanoids wake, and once they have waited `SleepersWaitHours` (6) with nobody drafted (`GoIn`, the band's
+  `asleepSince` and `goIn`) they go in and attack the nearest one, which wakes them (`WarBandOrders.Attack`: melee, the
+  game's static attack, or a cast position first); with no enemy in reach (shut away in the fog), they stand by just
+  outside the colony (the duty's focus). Messages: "found ... asleep and wait out of their waking range" as they come,
+  "go in on their own" when they do, "can't find a way to ... for now and stand by near the colony" (`CC_WarBand_*`).
+  The band's hour (`WarCamps.Watch`): once only enemies out of their reach are left after they had one in reach
+  (`AnyInReach`, `metEnemy`), the fight they could have is over and they make camp; a band that never had one in reach
+  goes home after `FightGiveUpDays` with "the enemy stayed shut away out of their reach" (`CC_WarCamp_Waited`).
 - **Calls to arms** (`CallsToArms`): a partner's town within reach attacked (a Faction Territories invasion,
   `Territories.InvasionAt`, or a running bad war world event within 10 tiles) brings a defense partner's letter (once a
   day, a third of the time) or a debt's call (`FavourNeed.Fighters`); answered by a caravan of two grown colonists or more

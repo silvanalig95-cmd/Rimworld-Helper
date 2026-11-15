@@ -5,6 +5,14 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## Called fighters go with yours
+
+*15 November 2026, version 0.241.1*
+
+- Fighters called by a pact, a debt, a liege or a vassal now go with your drafted colonists and stand ready beside them.
+- Against a sleeping enemy, such as a mech cluster, they wait out of its waking range on the colony's side and say so, and if nobody comes for some hours they go in on their own and wake it.
+- With the enemy shut away out of reach, they stand by near the colony, and once the fight they could reach is over they make camp.
+
 ## The colony's animals, seen on the map
 
 *15 November 2026, version 0.241.0*

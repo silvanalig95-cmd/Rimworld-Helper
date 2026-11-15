@@ -25,6 +25,16 @@ namespace ColonyCouncil
         public bool holdBack, dismissed;
         /// <summary>Called by the colony (Diplomacy/Pacts.cs): "pact" a defence pact, "favour" a debt of honour; null for a band come of its own.</summary>
         public string called;
+        /// <summary>
+        /// With only sleeping enemies they can reach (Camps/WarBandOrders.cs): when they began to wait near them for the
+        /// colony's fighters (-1 while none), whether the colony was told, and whether they have gone in on their own.
+        /// </summary>
+        public int asleepSince = -1;
+        public bool toldAsleep, goIn;
+        /// <summary>Whether an enemy was ever in their reach (seen and a way to it), and whether the colony was told none is.</summary>
+        public bool metEnemy, toldShut;
+        /// <summary>Where they wait near the sleeping enemy, worked out each hour (not saved).</summary>
+        [Unsaved] public IntVec3 muster = IntVec3.Invalid;
 
         private static int Now => Find.TickManager.TicksGame;
 
@@ -54,6 +64,11 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref holdBack, "holdBack");
             Scribe_Values.Look(ref dismissed, "dismissed");
             Scribe_Values.Look(ref called, "called");
+            Scribe_Values.Look(ref asleepSince, "asleepSince", -1);
+            Scribe_Values.Look(ref toldAsleep, "toldAsleep");
+            Scribe_Values.Look(ref goIn, "goIn");
+            Scribe_Values.Look(ref metEnemy, "metEnemy");
+            Scribe_Values.Look(ref toldShut, "toldShut");
             if (Scribe.mode == LoadSaveMode.PostLoadInit)
             {
                 pawns ??= new List<Pawn>();
@@ -195,6 +210,8 @@ namespace ColonyCouncil
                 return null;
             }
             tracker.HomeOf(map).warBand = band;
+            // An enemy asleep or out of reach: they say where they wait for the colony's fighters, as they walk in.
+            WarBandOrders.Hour(band, WarBandOrders.AnyInReach(band));
             return band;
         }
 
@@ -223,12 +240,24 @@ namespace ColonyCouncil
                 return;
             }
             if (b.dismissed) return;
-            // Every enemy counts, seen or not, asleep or not: a band called in against a mech cluster in the fog hunts it.
+            // Every enemy counts, seen or not, asleep or not: a band called in against a mech cluster in the fog waits for it.
             bool threat = MapFacts.HostilesOn(b.map);
             if (threat)
             {
-                // A fight that drags on (a siege they can't break): they give up and go home.
-                if (b.Days >= CampStoryMath.FightGiveUpDays) GoHome(b, tracker, "CC_WarCamp_GaveUp");
+                WarBandOrders.Refresh(b);
+                bool inReach = WarBandOrders.AnyInReach(b);
+                if (inReach) b.metEnemy = true;
+                // Only enemies shut away out of their reach (sealed in the fog) are left after the fight they could have:
+                // that fight is over.
+                if (!inReach && b.metEnemy)
+                {
+                    Settle(b, tracker);
+                    return;
+                }
+                WarBandOrders.Hour(b, inReach);
+                // A fight that drags on (a siege they can't break), or an enemy that stays out of their reach all along:
+                // they give up and go home.
+                if (b.Days >= CampStoryMath.FightGiveUpDays) GoHome(b, tracker, inReach ? "CC_WarCamp_GaveUp" : "CC_WarCamp_Waited");
                 return;
             }
             // The fight is over: a camp to rest in, or the road home.
@@ -349,7 +378,8 @@ namespace ColonyCouncil
         public override StateGraph CreateGraph()
         {
             var graph = new StateGraph();
-            var hunt = new LordToil_HuntEnemies(entry);
+            // The game's hunt, with Rimfolk's orders for an enemy asleep and for going with the colony's drafted fighters.
+            var hunt = new LordToil_WarBandHunt(entry);
             graph.StartingToil = hunt;
             var hold = new LordToil_DefendPoint(entry, 10f, 6f);
             graph.AddToil(hold);

@@ -31,6 +31,17 @@ When you load a save after an update, a letter lists the newest round once. The 
     <rounds>
 
       <li>
+        <version>0.241.1</version>
+        <date>15 November 2026</date>
+        <title>Called fighters go with yours</title>
+        <points>
+          <li>Fighters called by a pact, a debt, a liege or a vassal now go with your drafted colonists and stand ready beside them.</li>
+          <li>Against a sleeping enemy, such as a mech cluster, they wait out of its waking range on the colony's side and say so, and if nobody comes for some hours they go in on their own and wake it.</li>
+          <li>With the enemy shut away out of reach, they stand by near the colony, and once the fight they could reach is over they make camp.</li>
+        </points>
+      </li>
+
+      <li>
         <version>0.241.0</version>
         <date>15 November 2026</date>
         <title>The colony's animals, seen on the map</title>

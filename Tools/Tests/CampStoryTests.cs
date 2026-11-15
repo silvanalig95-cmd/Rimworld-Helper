@@ -66,6 +66,17 @@ public static class CampStoryTests
         C(CampStoryMath.WarChance(0, false) > 0.15f && CampStoryMath.WarChance(100, true) <= 0.6f, "help is likelier from close friends with an old quarrel, never certain");
         C(CampStoryMath.WarChance(-50, false) >= 0.1f, "and never quite impossible");
         C(CampStoryMath.HelperWeight(50, true) == 3f * CampStoryMath.HelperWeight(50, false), "a people at odds with the attacker is three times as likely to come");
+
+        // A band facing a sleeping enemy (the player, 15 November 2026: "neither attacking the enemies nor following my pawns")
+        C(CampStoryMath.MusterDistance > 30, "they wait beyond the 30 cells at which mechanoids wake");
+        C(CampStoryMath.MusterPoint(0, 0, 100, 0) == (36, 0), "they wait on the line from the enemy toward the colony, out of its waking range");
+        var diag = CampStoryMath.MusterPoint(10, 10, 110, 110);
+        C(Math.Abs(Math.Sqrt((diag.x - 10) * (diag.x - 10) + (diag.z - 10) * (diag.z - 10)) - CampStoryMath.MusterDistance) < 1.0, "at the same distance on a slant");
+        C(CampStoryMath.MusterPoint(0, 0, 20, 5) == (20, 5), "with the colony nearer than that, they wait at the colony");
+        C(!CampStoryMath.GoIn(-1, 999999), "a band not waiting never goes in on its own");
+        C(!CampStoryMath.GoIn(1000, 1000 + CampStoryMath.SleepersWaitHours * 2500 - 1), "they wait the hours first");
+        C(CampStoryMath.GoIn(1000, 1000 + CampStoryMath.SleepersWaitHours * 2500), "then go in on their own");
+        C(CampStoryMath.SleepersWaitHours * 2500 < CampStoryMath.FightGiveUpDays * 60000, "they go in on their own well before they would give up and go home");
         return n;
     }
 }

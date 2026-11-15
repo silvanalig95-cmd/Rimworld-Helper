@@ -181,6 +181,30 @@ namespace ColonyCouncil
         public const float RestDays = 1.5f;
         public const float FightGiveUpDays = 2f;
 
+        /// <summary>
+        /// With only sleeping enemies in its reach, a war band waits this many hours near them for the colony's fighters,
+        /// then goes in on its own (Camps/WarBandOrders.cs).
+        /// </summary>
+        public const int SleepersWaitHours = 6;
+
+        /// <summary>How far from a sleeping enemy the band waits: past the 30 cells within which a mechanoid wakes to someone close.</summary>
+        public const int MusterDistance = 36;
+
+        /// <summary>Whether a band that began waiting at <paramref name="sinceTick"/> has waited long enough to go in on its own (-1: not waiting).</summary>
+        public static bool GoIn(int sinceTick, int now) => sinceTick >= 0 && now - sinceTick >= SleepersWaitHours * 2500;
+
+        /// <summary>
+        /// Where the band waits for the colony's fighters: on the line from the sleeping enemy (<paramref name="ex"/>,
+        /// <paramref name="ez"/>) toward the colony (<paramref name="cx"/>, <paramref name="cz"/>), <paramref name="dist"/>
+        /// cells from the enemy; at the colony itself when the colony is nearer than that.
+        /// </summary>
+        public static (int x, int z) MusterPoint(int ex, int ez, int cx, int cz, int dist = MusterDistance)
+        {
+            double dx = cx - ex, dz = cz - ez, len = Math.Sqrt(dx * dx + dz * dz);
+            if (len <= dist) return (cx, cz);
+            return ((int)Math.Round(ex + dx / len * dist), (int)Math.Round(ez + dz / len * dist));
+        }
+
         private static float Clamp(float v, float lo, float hi) => v < lo ? lo : v > hi ? hi : v;
         private static int Clamp(int v, int lo, int hi) => v < lo ? lo : v > hi ? hi : v;
     }

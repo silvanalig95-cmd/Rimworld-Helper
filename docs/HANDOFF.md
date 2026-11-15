@@ -149,6 +149,22 @@ tree at once, alongside whatever runs. Each piece is merged as its own release, 
   standing by the goods.
 - **Dropped (14 November 2026): sending visitors away.** The player: "so asking visitors to leave is not necessary, as i
   found the already imlpemented function".
+- 0.241.1, **Called fighters go with the
+  colony's fighters, and wake a sleeping enemy** (15 November 2026; the player, with their save `League_of_Toba_2`: "the
+  delegation came but is neither attacking the enemies nor following my pawns"). Cause: two Darkshards of Faction_25,
+  called on a pact against the sleeping guards of a psychic droner ship part (two lancers, a pikeman and a legionary
+  fusilier, duty `SleepForever`), stood on `Wait_Wander` at the map's east edge: the game's `HuntEnemiesIndividual` only
+  goes after enemies that are awake (`ThreatDisabled`), so it gave them nothing to do. 0.238.3 said the band "hunts every
+  enemy ... wakes and fights it"; it didn't. Now DESIGN.md "A war band on the map" (after "Pacts"): they fight awake
+  enemies as before, go with the nearest drafted colonist, wait 36 cells from a sleeping enemy on the colony's side and
+  go in on their own after six hours with nobody drafted, and stand by near the colony when the enemy is shut away out
+  of reach; once only shut-away enemies are left after a fight in reach, they make camp. Code: `Camps/WarBandOrders.cs`,
+  `Defs/Misc/Rimfolk_WarBand.xml`, `WarCamp.cs` (`WarBand.asleepSince`, `goIn`, `metEnemy`, `Watch`),
+  `CampStoryMath.MusterPoint`/`GoIn`, tests in `CampStoryTests`. Try in the game: load the save; within the hour the
+  two walk to a spot about 36 cells east of the ship part and the message says they wait; draft a colonist and they come
+  to them; leave nobody drafted for six hours and they go in and the guards wake. The player also asked how to beat the
+  mechs; the advice was given in chat (close in, maces against mech armour, Darunia first, doctors back, EMP grenades
+  later).
 - 0.241.0, **The colony's animals, seen on the
   map** (14 November 2026; the player's words: "i must say that i can't really see a lot from the animal features we
   included, please add to to-do list to enhance and build up on these", then "do ... making animals more visible").

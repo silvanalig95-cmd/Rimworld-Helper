@@ -75,6 +75,10 @@
   <CC_WarCamp_GoneTitle>The fighters of {FACTION} go home</CC_WarCamp_GoneTitle>
   <CC_WarCamp_Gone>With the fight against {ENEMY} over, the fighters of {FACTION} gathered their own and set off for home. {COUNT} came; {FELL} fell. Their people will remember who they fought beside.</CC_WarCamp_Gone>
   <CC_WarCamp_GaveUp>The fighters of {FACTION} have given up on the fight against {ENEMY}: it has dragged on past what they came for, and they have their own homes to think of. {COUNT} came; {FELL} fell. They go with no hard feelings.</CC_WarCamp_GaveUp>
+  <CC_WarCamp_Waited>The fighters of {FACTION} have waited as long as they can for the fight against {ENEMY}, but the enemy stayed shut away out of their reach, and they go home. {COUNT} came; {FELL} fell. They go with no hard feelings.</CC_WarCamp_Waited>
+  <CC_WarBand_WaitAsleep>The fighters of {PEOPLE} found {ENEMY} asleep and wait out of their waking range for the colony's fighters. Draft colonists and the band goes with them; if nobody comes for some hours, they go in on their own.</CC_WarBand_WaitAsleep>
+  <CC_WarBand_GoIn>The fighters of {PEOPLE} have waited long enough for the colony's fighters and go in on their own against {ENEMY} while they sleep.</CC_WarBand_GoIn>
+  <CC_WarBand_StandBy>The fighters of {PEOPLE} can't find a way to {ENEMY} for now and stand by near the colony. Draft colonists and the band goes with them.</CC_WarBand_StandBy>
   <CC_WarCamp_Again>Enemies on the land again: the fighters of {FACTION} camped {PLACE} take up their weapons.</CC_WarCamp_Again>
   <CC_WarCamp_NotHere>They're gone already.</CC_WarCamp_NotHere>
   <CC_WarCamp_Chronicle>fighters of {0} stood with the colony</CC_WarCamp_Chronicle>
