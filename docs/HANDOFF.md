@@ -140,6 +140,25 @@ tree at once, alongside whatever runs. Each piece is merged as its own release, 
   it), hover for what it is and how it has gone, click to open the region window on it; none shown while none runs.
 - **Dropped (14 November 2026): sending visitors away.** The player: "so asking visitors to leave is not necessary, as i
   found the already imlpemented function".
+- Not released: no version, no What's new round, About.xml and CHANGELOG untouched. **Plain words: events-2** (14
+  November 2026; the player's words: "yes, please rewrite everything", "leave: what colonists say, talk between
+  colonists, moods and memories, dreams, character, neighbours talk, ailments, journals", "start with: event cards").
+  The second of the three event-card batches, 18 files of `Defs/IncidentDefs`: the peoples' events (rounds 1 and 3, D,
+  F, G and their touchpoints), roots, neighbours, hard times, callers, the remembered peoples, variety, the
+  storyteller's home events, and the Variants files of the challenges, the neighbours, the storyteller and the most
+  frequent events. Read: 2,237 lines of card text (titles, texts, answers, outcomes, follow-up lines); rewritten: 359;
+  the rest were already plain and are left word for word. What changed: long chains of colons and semicolons are plain
+  sentences; in-world phrases are explained where they stand (the Waystone Book's good ink and red ink, Aldith's lamp
+  and the Book of the Spared, the Mossborn's ledger of trees felled and planted, the Wardens' book and lantern, the
+  Bell's words, Old Brannoc's blessing of every door; "a guest eats from the same pot" and "never wrong, never sure"
+  dropped from the narration); things given will are plain again (a fire that walks, the ground or the void that
+  listens, a signal calling to itself, a road that swallows a wheel); wry last lines say what happened instead ("the
+  colony hardly knows itself", "no refunds", "ate better", "the work isn't getting done"). Two event labels: "a beast
+  the grass chose" is "a young beast from the herders", "the ground is listening" is "something stirring underground"
+  (with their titles). Left: the visitors' 303 spoken lines (`<lines>` bubbles, the gatherings' and vigils' lines),
+  speech and letters quoted inside the cards, journals, every tag, placeholder, number and effect, and the answer "ask
+  weregild", which the Almanac's world-memory page names; `docs/design/peoples.md` still calls the Bell's warning by
+  its old title.
 - 0.242.0, **The great caravan's rider comes,
   his answer plays out, and everyone comes in varied clothes, as warm as they can** (15 November 2026; the player's
   words: with the council's answer list showing "A great caravan · Guido tells them the hill road · As answered · Guido
