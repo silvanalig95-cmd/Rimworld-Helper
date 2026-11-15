@@ -215,7 +215,7 @@
   <CC_Dil_Went_TookPlace>Took place</CC_Dil_Went_TookPlace>
   <CC_Dil_Went_TookPlace_Tip>What the answer set going ({0}) took place, and those who were there have the moods it promised.</CC_Dil_Went_TookPlace_Tip>
   <CC_Dil_Went_FellThrough>Never came about</CC_Dil_Went_FellThrough>
-  <CC_Dil_Went_FellThrough_Tip>What the answer set going ({0}) never came about in its time. Everyone it was meant for got its moods anyway.</CC_Dil_Went_FellThrough_Tip>
+  <CC_Dil_Went_FellThrough_Tip>What the answer set going ({0}) never came about in its time, so nobody has its moods.</CC_Dil_Went_FellThrough_Tip>
 
   <!-- Settings: where the council window opens -->
   <CC_SetLabel_CouncilOpensOn>Council window opens on</CC_SetLabel_CouncilOpensOn>

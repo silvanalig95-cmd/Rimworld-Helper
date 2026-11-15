@@ -37,7 +37,7 @@
   <!-- ===================== Beast nemeses ===================== -->
   <CC_BeastNem_FledAgain>{X_nameDef} has run off into the wild again, badly hurt.</CC_BeastNem_FledAgain>
   <CC_BeastNem_BloodTitle>{X_nameDef} is back</CC_BeastNem_BloodTitle>
-  <CC_BeastNem_Blood>{X_nameDef}, the animal that {DEED}, has come back to the colony's land, and it has come for blood.</CC_BeastNem_Blood>
+  <CC_BeastNem_Blood>{X_nameDef}, the animal that {DEED}, has come back to the colony's land, and this time it is attacking.</CC_BeastNem_Blood>
   <CC_BeastNem_Sworn>{PAWN_nameDef} has sworn to bring down {X_nameDef}, the animal that {DEED}.</CC_BeastNem_Sworn>
   <CC_BeastNem_Fury>{X_nameDef} is near, and {PAWN_nameDef} remembers the oath.</CC_BeastNem_Fury>
   <CC_BeastNem_OathKept>{PAWN_nameDef} has kept the oath: {X} is dead, brought down by {PAWN_possessive} own hand, for {VICTIM}.</CC_BeastNem_OathKept>

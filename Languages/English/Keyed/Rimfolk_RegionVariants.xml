@@ -20,7 +20,7 @@
   <CC_Post_Warned_Text_NoName_2>The {TITLE} at {POST} has written. Unless things mend between {PEOPLE} and {COLONY}, the {KIND} will close.</CC_Post_Warned_Text_NoName_2>
   <CC_Post_Mended_2>Things have mended between {PEOPLE} and {COLONY}, and {KEEPER} writes from {POST} that the {KIND} will stay open.</CC_Post_Mended_2>
   <CC_Post_Mended_NoName_2>{POST} will stay open, now that {PEOPLE} and {COLONY} are on better terms again.</CC_Post_Mended_NoName_2>
-  <CC_Post_Sacked_Text_2>{POST} has been sacked. Raiders of {ENEMY}, at war with {PEOPLE}, came on the {KIND} {WHERE} and stripped it, and what they could not carry they broke. Its people are still there and mean to stay, but it will be poorer for a long while.</CC_Post_Sacked_Text_2>
+  <CC_Post_Sacked_Text_2>{POST} has been sacked. Raiders of {ENEMY}, at war with {PEOPLE}, attacked the {KIND} {WHERE}, took what they could carry and broke the rest. Its people are still there and mean to stay, but it will be poorer for a long while.</CC_Post_Sacked_Text_2>
   <CC_Post_Closed_Soured_2>Things never mended between {PEOPLE} and {COLONY}, and {POST}, their {KIND} {WHERE}, is closed. Its people have gone home with what they could carry, and left {LEFT}.</CC_Post_Closed_Soured_2>
   <CC_Post_Closed_War_2>{PEOPLE} and {COLONY} are at war, and no {KIND} of theirs stays open for an enemy. {POST}, {WHERE}, has been packed up and left. There is nothing there now but {LEFT}.</CC_Post_Closed_War_2>
   <CC_Post_Closed_Sacked_2>Raiders of {ENEMY} have sacked {POST}, the {KIND} {PEOPLE} kept {WHERE}, and it will not be rebuilt. Its families are on the road home, and nothing is left there but {LEFT}.</CC_Post_Closed_Sacked_2>
@@ -33,9 +33,9 @@
   <CC_Hamlet_Harvest_Left_2>{HAMLET}'s carters have left {GOODS} at the colony's gate, the first of what their fields gave this year.</CC_Hamlet_Harvest_Left_2>
   <CC_Hamlet_Help_Food_2>{LEADER} sends word that the families at {HAMLET} have started eating their seed. If the colony could spare {GOODS}, carried down to their carter at the gate, they could keep the rest for planting.</CC_Hamlet_Help_Food_2>
   <CC_Hamlet_Help_Doctor_2>A sickness has gone through {HAMLET}, and the families have nothing to treat it with. {LEADER} asks whether the colony's doctor could bring {GOODS} down to their carter at the gate, and say how it should be used.</CC_Hamlet_Help_Doctor_2>
-  <CC_Hamlet_Help_Tools_2>A hard season has found {HAMLET} short of everything at once. {LEADER} asks for {GOODS}, carried down to their carter at the gate, to keep the place standing until it turns.</CC_Hamlet_Help_Tools_2>
+  <CC_Hamlet_Help_Tools_2>{HAMLET} has had a hard season and is short of everything at once. {LEADER} asks for {GOODS}, carried down to their carter at the gate, to get the hamlet through until things improve.</CC_Hamlet_Help_Tools_2>
   <CC_Hamlet_Refused_2>{LEADER} has the colony's answer, and {HAMLET} will get through this season without its help.</CC_Hamlet_Refused_2>
-  <CC_Hamlet_NotYet_2>{HAMLET} will wait for its oath, and {LEADER} will ask again when the colony is ready.</CC_Hamlet_NotYet_2>
+  <CC_Hamlet_NotYet_2>{HAMLET} will wait to swear its oath, and {LEADER} will ask again when the colony is ready.</CC_Hamlet_NotYet_2>
   <CC_Hamlet_End_Broken_2>Twice this season {HAMLET} asked the colony for help, and twice it was refused. {LEADER} has told the families not to look to the colony again. The tie is broken, and {HAMLET} is simply a town of {PEOPLE} now.</CC_Hamlet_End_Broken_2>
   <CC_Hamlet_End_Failed_2>{HAMLET} could not last. Its people are giving up the hamlet the colony took under its protection, and its families are leaving.</CC_Hamlet_End_Failed_2>
 
@@ -49,7 +49,7 @@
   <CC_RiseFall_Empty_3>{MEANS}: the road out of {TOWN}, {WHERE}, is quiet again. {PEOPLE} have gone, and left {RUIN} behind them.</CC_RiseFall_Empty_3>
   <CC_RiseFall_Fell_2>{MEANS}: {TOWN} of {PEOPLE}, {WHERE}, did not come through the fighting. All that stands there now is {RUIN}.</CC_RiseFall_Fell_2>
   <CC_RiseFall_Fell_Ours_2>{TOWN} of {PEOPLE}, {WHERE}, is {RUIN} now, after the colony's people were done there.</CC_RiseFall_Fell_Ours_2>
-  <CC_RiseFall_Faded_2>{MEANS}: the ruin of {TOWN}, {WHERE}, has gone back to the land, and travelers no longer turn aside for it.</CC_RiseFall_Faded_2>
+  <CC_RiseFall_Faded_2>{MEANS}: the ruin of {TOWN}, {WHERE}, is overgrown now, and travelers no longer turn aside to see it.</CC_RiseFall_Faded_2>
   <CC_RiseFall_Faded_3>{MEANS}: the last walls of {TOWN}, {WHERE}, have come down, and the place is hard to find now.</CC_RiseFall_Faded_3>
   <CC_RiseFall_Daughter_2>{MEANS}: {MOTHER} has grown too full for its families, and some have gone out to found {TOWN} of {PEOPLE}, {WHERE}, {RITE}.</CC_RiseFall_Daughter_2>
   <CC_RiseFall_Back_Tribal_2>{MEANS}: {PEOPLE} have gone back to {TOWN}, {WHERE}. The old hearths there burn again, and the elders have blessed the stones.</CC_RiseFall_Back_Tribal_2>
@@ -60,10 +60,10 @@
   <CC_RiseFall_Newcomers_Medieval_2>{MEANS}: {PEOPLE} have taken up the empty town of {TOWN}, {WHERE}. The new families keep its old name, and have already raised a market cross.</CC_RiseFall_Newcomers_Medieval_2>
   <CC_RiseFall_Newcomers_Industrial_2>{MEANS}: new settlers of {PEOPLE} are living in the old streets of {TOWN}, {WHERE}, under its old name, and the first shops are open.</CC_RiseFall_Newcomers_Industrial_2>
   <CC_RiseFall_Newcomers_Spacer_2>{MEANS}: {PEOPLE} have registered the derelict colony at {TOWN}, {WHERE}, as their own, keeping its old name on the charts.</CC_RiseFall_Newcomers_Spacer_2>
-  <CC_RiseFall_Renamed_Tribal_2>{MEANS}: a clan of {PEOPLE} lives in the old walls of {TOWN}, {WHERE}, now. The place is {NEWNAME} at their fires.</CC_RiseFall_Renamed_Tribal_2>
+  <CC_RiseFall_Renamed_Tribal_2>{MEANS}: a clan of {PEOPLE} lives in the old walls of {TOWN}, {WHERE}, now. They call the place {NEWNAME}.</CC_RiseFall_Renamed_Tribal_2>
   <CC_RiseFall_Renamed_Medieval_2>{MEANS}: the old walls of {TOWN}, {WHERE}, have new families of {PEOPLE} in them and a new name, {NEWNAME}.</CC_RiseFall_Renamed_Medieval_2>
   <CC_RiseFall_Renamed_Industrial_2>{MEANS}: {TOWN}, {WHERE}, is called {NEWNAME} now. Settlers of {PEOPLE} have moved into its empty streets and painted over the old signs.</CC_RiseFall_Renamed_Industrial_2>
-  <CC_RiseFall_Renamed_Spacer_2>{MEANS}: the derelict colony at {TOWN}, {WHERE}, is {NEWNAME} now, chartered to {PEOPLE} and lit again.</CC_RiseFall_Renamed_Spacer_2>
+  <CC_RiseFall_Renamed_Spacer_2>{MEANS}: the derelict colony at {TOWN}, {WHERE}, is {NEWNAME} now, registered to {PEOPLE} and powered up again.</CC_RiseFall_Renamed_Spacer_2>
 
   <!-- ================= New towns (Rimfolk_Region.xml) ================= -->
 

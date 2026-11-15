@@ -16,7 +16,7 @@
   <CC_Bar_WishGrant>Granting it: {0}.</CC_Bar_WishGrant>
   <CC_Bar_WishLapse>If it lapses: about {0} mood for {1} days, and less trust in the council.</CC_Bar_WishLapse>
   <CC_Bar_WishLapsePromised>If it lapses, the promise is broken: about {0} mood for {1} days, and much less trust in the council.</CC_Bar_WishLapsePromised>
-  <CC_Bar_WishLapseGentle>If it lapses, nothing worse than a chance missed.</CC_Bar_WishLapseGentle>
+  <CC_Bar_WishLapseGentle>If it lapses, nothing bad happens beyond a missed chance.</CC_Bar_WishLapseGentle>
   <CC_Bar_Strain>{PAWN_nameDef} is {BAND}: strain {STRAIN} of 100. {DESC}</CC_Bar_Strain>
   <CC_Bar_Strain_Help>Sleep, recreation, quiet hours, friends and gatherings ease strain. The Mood tab's Heart section shows what builds it.</CC_Bar_Strain_Help>
   <CC_Bar_Faith>{PAWN_nameDef} is wavering in {FAITH}: {CERTAINTY} certain. Under {WAVERING} {PAWN_pronoun} is open to another ideoligion, and when {PAWN_possessive} certainty runs out {PAWN_pronoun} takes up the ideoligion of whoever wore it down.</CC_Bar_Faith>

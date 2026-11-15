@@ -48,17 +48,17 @@
   <CC_Fam_Reason>{PAWN_nameDef} is a mage without a familiar, and wants {PET_nameDef} bound to {PAWN_objective}.</CC_Fam_Reason>
   <CC_Fam_Promise>{FOR_nameDef} will spend a quiet hour of the day with {OTHER_nameDef}, and bind it as a familiar.</CC_Fam_Promise>
   <CC_Fam_Cause_Bound>bound {PET_nameDef} as a familiar</CC_Fam_Cause_Bound>
-  <CC_Fam_Bound>{PAWN_nameDef} stayed with {PET_nameDef} through the hour, and it is {PAWN_possessive} familiar now: it glows faintly, and lends {PAWN_objective} a little while it is near.</CC_Fam_Bound>
+  <CC_Fam_Bound>{PAWN_nameDef} stayed with {PET_nameDef} through the hour, and it is {PAWN_possessive} familiar now: it glows faintly, and gives {PAWN_objective} a little mana and protection while it is near.</CC_Fam_Bound>
   <CC_Fam_Chronicle_Bound>{PAWN_nameDef} bound {PET_nameDef} as a familiar.</CC_Fam_Chronicle_Bound>
   <CC_Fam_Cause_Died>my familiar {NAME} died</CC_Fam_Cause_Died>
-  <CC_Fam_Died>{NAME}, {PAWN_nameDef}'s familiar, is dead. {PAWN_nameDef} felt it go: {PAWN_possessive} mana is gone, and the magic sits cold and heavy in {PAWN_objective} for a while.</CC_Fam_Died>
-  <CC_Fam_Chronicle_Died>{NAME}, the familiar of {PAWN_nameDef}, died, and {PAWN_nameDef} felt it go.</CC_Fam_Chronicle_Died>
+  <CC_Fam_Died>{NAME}, {PAWN_nameDef}'s familiar, is dead. {PAWN_nameDef} felt it die: {PAWN_possessive} mana is gone, and the loss leaves {PAWN_objective} weak in magic for a while.</CC_Fam_Died>
+  <CC_Fam_Chronicle_Died>{NAME}, the familiar of {PAWN_nameDef}, died, and {PAWN_nameDef} felt it die.</CC_Fam_Chronicle_Died>
   <CC_Fam_Gone>{NAME} is no longer {PAWN_nameDef}'s familiar: it isn't the colony's any more.</CC_Fam_Gone>
 
   <!-- ===================== Omens (Animals/OmenAnimals.cs): {PET} the newborn, named; {KIND} its kind; {DAY} the day kept ===================== -->
   <CC_Omen_Born_eclipse>{PET_nameDef}, a newborn {KIND}, came into the world while the sun was eclipsed, and everyone who saw the sky go dark is calling it a sign.</CC_Omen_Born_eclipse>
   <CC_Omen_Born_aurora>{PET_nameDef}, a newborn {KIND}, was born under the aurora, and the colony is calling it a sign.</CC_Omen_Born_aurora>
-  <CC_Omen_Born_shiny>{PET_nameDef}, a newborn {KIND}, came out shining in colors none of its kind has, and the colony is calling it a sign.</CC_Omen_Born_shiny>
+  <CC_Omen_Born_shiny>{PET_nameDef}, a newborn {KIND}, was born a rare shiny color, and the colony is calling it a sign.</CC_Omen_Born_shiny>
   <CC_Omen_Born_keptday>{PET_nameDef}, a newborn {KIND}, was born on {DAY}, a day the colony keeps, and the colony is calling it a sign.</CC_Omen_Born_keptday>
   <CC_Omen_NamedBy>{PAWN_nameDef} named it.</CC_Omen_NamedBy>
   <CC_Omen_Cause_eclipse>{PET_nameDef}, born under the eclipse</CC_Omen_Cause_eclipse>
@@ -73,10 +73,10 @@
   <CC_Omen_CauseDied_aurora>{NAME}, born under the aurora, died</CC_Omen_CauseDied_aurora>
   <CC_Omen_CauseDied_shiny>{NAME}, born shining, died</CC_Omen_CauseDied_shiny>
   <CC_Omen_CauseDied_keptday>{NAME}, born on {DAY}, died</CC_Omen_CauseDied_keptday>
-  <CC_Omen_Died_eclipse>{NAME}, the {KIND} born under the eclipse, is dead. Nobody likes what it means.</CC_Omen_Died_eclipse>
-  <CC_Omen_Died_aurora>{NAME}, the {KIND} born under the aurora, is dead. Nobody likes what it means.</CC_Omen_Died_aurora>
-  <CC_Omen_Died_shiny>{NAME}, the shining {KIND}, is dead. Nobody likes what it means.</CC_Omen_Died_shiny>
-  <CC_Omen_Died_keptday>{NAME}, the {KIND} born on {DAY}, is dead. Nobody likes what it means.</CC_Omen_Died_keptday>
+  <CC_Omen_Died_eclipse>{NAME}, the {KIND} born under the eclipse, is dead. People take it as a bad omen.</CC_Omen_Died_eclipse>
+  <CC_Omen_Died_aurora>{NAME}, the {KIND} born under the aurora, is dead. People take it as a bad omen.</CC_Omen_Died_aurora>
+  <CC_Omen_Died_shiny>{NAME}, the shining {KIND}, is dead. People take it as a bad omen.</CC_Omen_Died_shiny>
+  <CC_Omen_Died_keptday>{NAME}, the {KIND} born on {DAY}, is dead. People take it as a bad omen.</CC_Omen_Died_keptday>
   <CC_Omen_Chronicle_Died>{NAME}, the {KIND} born under a sign, died: a bad omen, the colony says.</CC_Omen_Chronicle_Died>
   <CC_Omen_Thrives_Label>{PET_nameDef} thrives</CC_Omen_Thrives_Label>
   <CC_Omen_Thrives_Desc_eclipse>{PET_nameDef}, born under the eclipse, is doing well, and things go right while it does.</CC_Omen_Thrives_Desc_eclipse>

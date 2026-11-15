@@ -7,7 +7,7 @@
   <CC_Ahead_FromRecord>Use measured over the last {0} days.</CC_Ahead_FromRecord>
   <CC_Ahead_FromSoon>Use estimated until the colony's record covers a day.</CC_Ahead_FromSoon>
   <CC_Ahead_FromOff>Use estimated: the record of use needs the deeper game hooks (Interface settings).</CC_Ahead_FromOff>
-  <CC_Ahead_None>Nothing to plan ahead right now: the stocks hold and the fields keep up.</CC_Ahead_None>
+  <CC_Ahead_None>Nothing to plan ahead right now: there is enough in store and the fields grow enough.</CC_Ahead_None>
 
   <!-- The stock rows. -->
   <CC_Ahead_Col_Good>Stock</CC_Ahead_Col_Good>
@@ -129,7 +129,7 @@
   <CC_Ahead_State_Done>Done.</CC_Ahead_State_Done>
   <CC_Ahead_NotYet_BillGone>the bill is gone.</CC_Ahead_NotYet_BillGone>
   <CC_Ahead_NotYet_Eaten>the bench made some, but it was eaten as fast as it was made.</CC_Ahead_NotYet_Eaten>
-  <CC_Ahead_NotYet_Nothing>nothing was made yet, and nothing in the way could be named.</CC_Ahead_NotYet_Nothing>
+  <CC_Ahead_NotYet_Nothing>nothing was made yet, and no reason could be found.</CC_Ahead_NotYet_Nothing>
   <CC_Ahead_NotYet_Sown>{0} of the {1} cells are sown.</CC_Ahead_NotYet_Sown>
 
   <!-- Why it's stuck, and the fixes. -->
