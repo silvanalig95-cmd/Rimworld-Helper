@@ -41,11 +41,11 @@
   <CC_Match_Why_NoneFits>Nobody of {PEOPLE} the colony knows would fit anyone at this home.</CC_Match_Why_NoneFits>
   <CC_Match_Why_NoneFitsThem>Nobody at this home would fit {OTHER}.</CC_Match_Why_NoneFitsThem>
   <CC_Match_Why_Refused>{PEOPLE} turned a match of the colony's down this season, and won't hear of another so soon.</CC_Match_Why_Refused>
-  <CC_Match_Why_Bar_Regard>A match is sought only on great terms, and the head of {PEOPLE} doesn't think warmly enough of the colony.</CC_Match_Why_Bar_Regard>
-  <CC_Match_Why_Bar_Goodwill>A match is sought only on great terms, and {PEOPLE} aren't on good enough terms with the colony.</CC_Match_Why_Bar_Goodwill>
+  <CC_Match_Why_Bar_Regard>A match is made only between peoples on very good terms, and the head of {PEOPLE} doesn't think warmly enough of the colony.</CC_Match_Why_Bar_Regard>
+  <CC_Match_Why_Bar_Goodwill>A match is made only between peoples on very good terms, and {PEOPLE} aren't on good enough terms with the colony.</CC_Match_Why_Bar_Goodwill>
   <CC_Match_Why_Bar_RegardCourted>The head of {PEOPLE} thinks too little of the colony for a match, even for two who courted.</CC_Match_Why_Bar_RegardCourted>
   <CC_Match_Why_Bar_GoodwillCourted>{PEOPLE} are on too poor terms with the colony for a match, even for two who courted.</CC_Match_Why_Bar_GoodwillCourted>
-  <CC_Match_Why_Fresh>{HEAD} would choose someone of their town for the colony only when they hold it dear; propose someone of {PEOPLE} the colony knows.</CC_Match_Why_Fresh>
+  <CC_Match_Why_Fresh>{HEAD} would choose someone of their town for the colony only if they thought very highly of it; propose someone of {PEOPLE} the colony knows.</CC_Match_Why_Fresh>
   <CC_Match_Why_Over>That match is no longer under way.</CC_Match_Why_Over>
   <CC_Match_Why_AlreadyHere>Their kin are here already.</CC_Match_Why_AlreadyHere>
 
@@ -196,7 +196,7 @@
   <CC_Match_Card_What_Empire>While it holds, the notables of {PEOPLE} think {REGARD} better of the colony, their town sends a gift each season, and they write when trouble is coming. It is no pact: the Empire makes none. It ends with the marriage.</CC_Match_Card_What_Empire>
   <CC_Match_Card_Pact>It stands as a defense pact with {PEOPLE}, renewed while the marriage holds.</CC_Match_Card_Pact>
   <CC_Match_Card_NoPact>No defense pact with {PEOPLE} now; the marriage makes one again a year after the last one closed.</CC_Match_Card_NoPact>
-  <CC_Match_Card_Grudge>{HOLDER} hold it against the colony for {NAME}, a spouse from among {PEOPLE} that it wronged. The grudge is their people's, and is handed down no line.</CC_Match_Card_Grudge>
+  <CC_Match_Card_Grudge>{HOLDER} hold it against the colony for {NAME}, a spouse from among {PEOPLE} that it wronged. The grudge belongs to their people as a whole, not to any one family.</CC_Match_Card_Grudge>
   <CC_Match_Card_Fits>Could be matched with {NAMES}.</CC_Match_Card_Fits>
   <CC_Match_Act_Write>Write to their people</CC_Match_Act_Write>
   <CC_Match_Act_Write_Tip>A letter or a call to their head, for any purpose.</CC_Match_Act_Write_Tip>

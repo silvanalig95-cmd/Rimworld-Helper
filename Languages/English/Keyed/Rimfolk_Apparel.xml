@@ -149,9 +149,9 @@
   <!-- Protection by body part. -->
   <CC_Apparel_Sec_Protection>Protection by body part</CC_Apparel_Sec_Protection>
   <CC_Apparel_Armour_Sharp>Sharp</CC_Apparel_Armour_Sharp>
-  <CC_Apparel_Armour_Sharp_Tip>Its armour against bullets, arrows, blades and claws, with its stuff and quality, held at the game's 200%. Each hit rolls it less the hit's piercing: up to half of it turns the hit away, the rest of it halves the damage.</CC_Apparel_Armour_Sharp_Tip>
+  <CC_Apparel_Armour_Sharp_Tip>Its armour against bullets, arrows, blades and claws, with its material and quality, capped at the game's 200%. For each hit the game takes off the hit's armour piercing and rolls against what is left: a roll within the first half of it deflects the hit, a roll within the rest halves the damage.</CC_Apparel_Armour_Sharp_Tip>
   <CC_Apparel_Armour_Blunt>Blunt</CC_Apparel_Armour_Blunt>
-  <CC_Apparel_Armour_Blunt_Tip>Its armour against clubs, fists, kicks and blasts, and against a sharp hit it halved, which goes on as blunt.</CC_Apparel_Armour_Blunt_Tip>
+  <CC_Apparel_Armour_Blunt_Tip>Its armour against clubs, fists, kicks and blasts, and against a sharp hit that the sharp armour halved, which then counts as blunt.</CC_Apparel_Armour_Blunt_Tip>
   <CC_Apparel_Armour_Heat>Heat</CC_Apparel_Armour_Heat>
   <CC_Apparel_Armour_Heat_Tip>Its armour against fire and burns.</CC_Apparel_Armour_Heat_Tip>
   <CC_Apparel_Region_Head>Head</CC_Apparel_Region_Head>

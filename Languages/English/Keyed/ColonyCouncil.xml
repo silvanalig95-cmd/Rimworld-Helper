@@ -220,12 +220,12 @@
   <CC_Reason_Artist>{PAWN_nameDef} is an artist at heart.</CC_Reason_Artist>
   <CC_Reason_BlandWalls>{PAWN_nameDef} finds the common rooms drab.</CC_Reason_BlandWalls>
   <CC_Reason_Brawler>{PAWN_nameDef} is a brawler and hates being stuck with a ranged weapon.</CC_Reason_Brawler>
-  <CC_Reason_Fighter>{PAWN_nameDef} lives to fight and wants a weapon worthy of it.</CC_Reason_Fighter>
+  <CC_Reason_Fighter>{PAWN_nameDef} loves fighting and wants a better weapon.</CC_Reason_Fighter>
   <CC_Reason_Chemical>{PAWN_nameDef} has a chemical interest and likes a strong drink.</CC_Reason_Chemical>
-  <CC_Reason_Gourmand>{PAWN_nameDef} is a gourmand, and talks about food even while eating.</CC_Reason_Gourmand>
+  <CC_Reason_Gourmand>{PAWN_nameDef} is a gourmand and wants fine meals more often.</CC_Reason_Gourmand>
   <CC_Reason_AteRaw>{PAWN_nameDef} has been eating raw food or paste.</CC_Reason_AteRaw>
   <CC_Reason_AteRotten>{PAWN_nameDef} just ate rotten food.</CC_Reason_AteRotten>
-  <CC_Reason_CookFreezer>{PAWN_nameDef} cooks, and watches the ingredients spoil.</CC_Reason_CookFreezer>
+  <CC_Reason_CookFreezer>{PAWN_nameDef} cooks, and keeps seeing ingredients go bad before they can be used.</CC_Reason_CookFreezer>
   <CC_Reason_Clothes_dead>{PAWN_nameDef} is wearing clothes taken from the dead.</CC_Reason_Clothes_dead>
   <CC_Reason_Clothes_tattered>{PAWN_nameDef}'s clothes are falling apart.</CC_Reason_Clothes_tattered>
   <CC_Reason_Clothes_naked>{PAWN_nameDef} has nothing to wear.</CC_Reason_Clothes_naked>
@@ -290,7 +290,7 @@
   <CC_Ambition_Chosen>The council takes up {1}'s idea: {0}.</CC_Ambition_Chosen>
   <CC_Ambition_ChosenSpeech>They picked my idea!</CC_Ambition_ChosenSpeech>
   <CC_Ambition_AchievedTitle>Ambition achieved: {0}</CC_Ambition_AchievedTitle>
-  <CC_Ambition_AchievedText>It took {1} days to see "{0}" through. Every colonist is in better spirits for it, and whoever proposed it most of all.</CC_Ambition_AchievedText>
+  <CC_Ambition_AchievedText>It took {1} days to finish "{0}". Every colonist's mood is better for it, most of all the one who proposed it.</CC_Ambition_AchievedText>
   <CC_Ambition_Inspired>{PAWN_nameDef} is inspired after seeing {PAWN_possessive} proposal come true.</CC_Ambition_Inspired>
   <CC_Ambition_Failed>Time ran out on "{0}" with {1} of it done. The council will meet again soon.</CC_Ambition_Failed>
   <CC_Meeting_BusyAmbition>The colony is already working on an ambition.</CC_Meeting_BusyAmbition>
@@ -436,8 +436,8 @@
   <CC_Meeting_Att_NeverCame>{0} never made it.</CC_Meeting_Att_NeverCame>
   <CC_Meeting_Att_StayedAtWork>{0} didn't stop working to come.</CC_Meeting_Att_StayedAtWork>
   <CC_Meeting_Att_Skipped>{0} didn't bother to come.</CC_Meeting_Att_Skipped>
-  <CC_Meeting_Att_Thin>With only {0} of {1} there, it was decided by few.</CC_Meeting_Att_Thin>
-  <CC_Meeting_Att_ThinAgain>It had already been put off once for want of people. With only {0} of {1} there this time, they decided anyway.</CC_Meeting_Att_ThinAgain>
+  <CC_Meeting_Att_Thin>Only {0} of {1} were there, so few people decided it.</CC_Meeting_Att_Thin>
+  <CC_Meeting_Att_ThinAgain>It had already been put off once because too few came. Only {0} of {1} were there this time, and they decided anyway.</CC_Meeting_Att_ThinAgain>
   <CC_Log_SettledAlone>the council decided without meeting</CC_Log_SettledAlone>
   <CC_Log_DecidedWithoutMe>their idea was turned down while they were away</CC_Log_DecidedWithoutMe>
   <CC_World_Meeting>Council meeting</CC_World_Meeting>
@@ -590,8 +590,8 @@
   <CC_Plan_Warn_Zone>{0} growing-zone cell(s) will be removed from the field.</CC_Plan_Warn_Zone>
   <CC_Plan_Warn_Mine>{0} cell(s) to mine first.</CC_Plan_Warn_Mine>
   <CC_Plan_Warn_Deconstruct>{0} of your buildings will be taken down.</CC_Plan_Warn_Deconstruct>
-  <CC_Plan_Warn_Fog>{0} cell(s) lie in unexplored ground. They're dug out as the colonists reach them: rock in the walls stays as the wall, and the rest follows as the ground comes to light.</CC_Plan_Warn_Fog>
-  <CC_Plan_Warn_Waiting>{0} piece(s) wait until the way is clear, then go down by themselves.</CC_Plan_Warn_Waiting>
+  <CC_Plan_Warn_Fog>{0} cell(s) lie in unexplored ground. They're dug out as the colonists reach them: rock where a wall goes stays as the wall, and the rest is built once that ground has been uncovered.</CC_Plan_Warn_Fog>
+  <CC_Plan_Warn_Waiting>{0} piece(s) wait until the way is clear, then are placed automatically.</CC_Plan_Warn_Waiting>
   <CC_Plan_Warn_FurnitureBlocked>{0} piece(s) of furniture don't fit here and will be left out.</CC_Plan_Warn_FurnitureBlocked>
   <CC_Plan_Warn_DoorFacesWall>The door opens onto a wall. Move the door or turn the room.</CC_Plan_Warn_DoorFacesWall>
   <CC_Planner_Size>{0} x {1} inside, walls around it</CC_Planner_Size>
@@ -840,7 +840,7 @@
   <CC_Adv_Cond_VolcanicWinter_Title>Volcanic winter</CC_Adv_Cond_VolcanicWinter_Title>
   <CC_Adv_Cond_VolcanicWinter_Detail>Ash dims the sun for a long while ({0} left): it's colder and crops grow slower. Stock extra food and fuel.</CC_Adv_Cond_VolcanicWinter_Detail>
   <CC_Adv_Cond_SolarFlare_Title>Solar flare</CC_Adv_Cond_SolarFlare_Title>
-  <CC_Adv_Cond_SolarFlare_Detail>Electrical devices are dead ({0} left). Freezers warm up, hydroponics wither and turrets fall silent. Keep the freezer door shut and fighters ready.</CC_Adv_Cond_SolarFlare_Detail>
+  <CC_Adv_Cond_SolarFlare_Detail>Electrical devices stop working ({0} left). Freezers warm up, hydroponic plants wither and turrets stop firing. Keep the freezer door shut and fighters ready.</CC_Adv_Cond_SolarFlare_Detail>
   <CC_Adv_Cond_HeatWave_Title>Heat wave</CC_Adv_Cond_HeatWave_Title>
   <CC_Adv_Cond_HeatWave_Detail>Dangerous heat ({0} left). Keep colonists indoors in cooled rooms during the hottest hours, watch for heatstroke, and keep the freezer closed.</CC_Adv_Cond_HeatWave_Detail>
   <CC_Adv_Cond_HeatWave_DetailLow>Dangerous heat ({0} left). Keep colonists in the shade and indoors through the hottest hours, watch for heatstroke, and eat the food that spoils first.</CC_Adv_Cond_HeatWave_DetailLow>
@@ -849,7 +849,7 @@
   <CC_Adv_Cond_Flashstorm_Title>Flashstorm</CC_Adv_Cond_Flashstorm_Title>
   <CC_Adv_Cond_Flashstorm_Detail>Lightning without rain ({0} left): fires will start. Keep firefighters at home and stay clear of dry brush.</CC_Adv_Cond_Flashstorm_Detail>
   <CC_Adv_Cond_PsychicDrone_Title>Psychic drone</CC_Adv_Cond_PsychicDrone_Title>
-  <CC_Adv_Cond_PsychicDrone_Detail>A drone grinds on the minds of one gender ({0} left). Watch moods: give recreation time, good food and rest to those affected.</CC_Adv_Cond_PsychicDrone_Detail>
+  <CC_Adv_Cond_PsychicDrone_Detail>A psychic drone lowers the mood of one gender ({0} left). Watch moods: give recreation time, good food and rest to those affected.</CC_Adv_Cond_PsychicDrone_Detail>
   <CC_Adv_Cond_NoxiousHaze_Title>Noxious haze</CC_Adv_Cond_NoxiousHaze_Title>
   <CC_Adv_Cond_NoxiousHaze_Detail>Polluted haze ({0} left). Keep people indoors where you can; it harms lungs over time.</CC_Adv_Cond_NoxiousHaze_Detail>
   <CC_Adv_Cond_VEE_Drought_Title>Drought</CC_Adv_Cond_VEE_Drought_Title>
@@ -874,7 +874,7 @@
   <CC_Adv_Cond_Eclipse_Detail>The sun is gone for a while ({0} left). Solar panels are useless and outdoor crops stall; lean on batteries and other power.</CC_Adv_Cond_Eclipse_Detail>
   <CC_Adv_Cond_Eclipse_DetailLow>The sun is gone for a while ({0} left). Outdoor crops stop growing and the dark sets people on edge; keep the torches lit and the work indoors.</CC_Adv_Cond_Eclipse_DetailLow>
   <CC_Adv_Cond_Aurora_Title>Aurora</CC_Adv_Cond_Aurora_Title>
-  <CC_Adv_Cond_Aurora_Detail>Lights dance across the sky ({0} left). Colonists who see them get a mood boost, so it's a good night to be outdoors.</CC_Adv_Cond_Aurora_Detail>
+  <CC_Adv_Cond_Aurora_Detail>Bright lights fill the night sky ({0} left). Colonists who see them get a mood boost, so it's a good night to be outdoors.</CC_Adv_Cond_Aurora_Detail>
 
   <!-- Extra wishes -->
   <CC_Reason_Wedding>{PAWN_nameDef} and {OTHER_nameDef} are engaged.</CC_Reason_Wedding>
@@ -892,7 +892,7 @@
   <CC_Reason_Tidy>{PAWN_nameDef} counted {COUNT} patches of filth in the home area and wants them cleaned up.</CC_Reason_Tidy>
   <CC_Progress_Filth>{0} pieces of filth (goal: {1} or fewer)</CC_Progress_Filth>
   <CC_SelfHelp_Tidy>{PAWN_nameDef} picked up a broom and made cleaning {PAWN_possessive} top priority. You can change it back in the Work tab.</CC_SelfHelp_Tidy>
-  <CC_Reason_Music>{PAWN_nameDef} has music in {PAWN_objective} and nothing to play it on.</CC_Reason_Music>
+  <CC_Reason_Music>{PAWN_nameDef} loves music, and there is nothing for {PAWN_objective} to play.</CC_Reason_Music>
   <CC_Reason_Armor>{PAWN_nameDef} fights for the colony with no real armor, and the colony could make some.</CC_Reason_Armor>
   <CC_SelfHelp_Wedding>{PAWN_nameDef} marked out a marriage spot for {PAWN_objective} and {OTHER_nameDef}. Once it's built, the wedding can happen.</CC_SelfHelp_Wedding>
 
@@ -929,7 +929,7 @@
   <CC_Floor_CostLine>{0} {1} for the room (have {2})</CC_Floor_CostLine>
 
   <!-- Justice, mercy, parties, rescues, hunts -->
-  <CC_Reason_Justice>{PAWN_nameDef} hasn't forgiven the raid, and {OTHER_nameDef} is the only raider still breathing.</CC_Reason_Justice>
+  <CC_Reason_Justice>{PAWN_nameDef} hasn't forgiven the raid, and {OTHER_nameDef} is the only raider still alive.</CC_Reason_Justice>
   <CC_Reason_JusticeBlood>{PAWN_nameDef} is bloodthirsty, and {OTHER_nameDef} is still alive in a cell.</CC_Reason_JusticeBlood>
   <CC_Reason_JusticeGrief>{PAWN_nameDef} is grieving, and blames {OTHER_nameDef}'s people for it.</CC_Reason_JusticeGrief>
   <CC_Reason_JusticeCold>{PAWN_nameDef} sees no use in feeding {OTHER_nameDef} any longer.</CC_Reason_JusticeCold>
@@ -950,7 +950,7 @@
   <CC_Reason_Rescue>{OTHER_nameDef} was carried off by {FACTION}, and {PAWN_nameDef} can't stop thinking about it.</CC_Reason_Rescue>
   <CC_Progress_Rescue>{OTHER_nameDef} is held by {FACTION}. Bring {OTHER_objective} home by rescue, ransom or trade.</CC_Progress_Rescue>
   <CC_Reason_Hunt>{PAWN_nameDef} loves to shoot and has been eyeing the wildlife.</CC_Reason_Hunt>
-  <CC_Reason_HuntBlood>{PAWN_nameDef} is bloodthirsty and wants something to kill. Better an animal than a colonist.</CC_Reason_HuntBlood>
+  <CC_Reason_HuntBlood>{PAWN_nameDef} is bloodthirsty and wants to kill something, and a hunt would give that an outlet.</CC_Reason_HuntBlood>
   <CC_Progress_Hunt>Mark an animal for hunting and let {PAWN_nameDef} do the Hunting work.</CC_Progress_Hunt>
   <CC_Promise_Hunt>The council marks a wild {SUBJECT} for {PAWN_nameDef} to hunt. Make sure {PAWN_pronoun} is allowed to hunt in the Work tab.</CC_Promise_Hunt>
   <CC_SelfHelp_Hunt>{PAWN_nameDef} picked out a {SUBJECT}, marked it for hunting and set off after it.</CC_SelfHelp_Hunt>
@@ -975,9 +975,9 @@ Granting one of {PAWN_possessive} wishes, or keeping a promise, can win {PAWN_ob
   <!-- Rising standards -->
   <CC_Settings_CouncilLife>Council life</CC_Settings_CouncilLife>
   <CC_Settings_Standards>Rising standards: the happy grow harder to please</CC_Settings_Standards>
-  <CC_Settings_Standards_Tip>While colonists are happy, their standards creep up: the line past which their good things grow ordinary falls, letdowns sting more, and wishes come more often and ask for more. Hard times, and the austerity decree, bring standards back down.</CC_Settings_Standards_Tip>
+  <CC_Settings_Standards_Tip>While colonists are happy, their standards slowly rise: good moods start counting for less sooner, letdowns hurt more, and wishes come more often and ask for more. Hard times, and the austerity decree, bring standards back down.</CC_Settings_Standards_Tip>
   <CC_Settings_StandardsComforts>Standards cover the game's comforts</CC_Settings_StandardsComforts>
-  <CC_Settings_StandardsComforts_Tip>Rising standards also shrink the good moods from the base game and other mods, not only the council's: comfortable colonists feel them at 90%, particular ones at 80% and spoiled ones at 70%. Only the first 10 points of each count for less, so a wedding or a catharsis still lands. Bad moods are never touched. One of the deeper game hooks.</CC_Settings_StandardsComforts_Tip>
+  <CC_Settings_StandardsComforts_Tip>Rising standards also shrink the good moods from the base game and other mods, not only the council's: comfortable colonists feel them at 90%, particular ones at 80% and spoiled ones at 70%. Only the first 10 points of each count for less, so a big good mood such as a wedding or a catharsis keeps most of its effect. Bad moods are never touched. One of the deeper game hooks.</CC_Settings_StandardsComforts_Tip>
   <CC_Settings_GoodTimes>Getting used to good times</CC_Settings_GoodTimes>
   <CC_Settings_GoodTimes_Tip>A colonist whose mood is already above 75% keeps Rimfolk's new good memories for less time, down to half their usual time from 90% mood. In hard times good things last their full length, and how good they feel never changes. One of the deeper game hooks.</CC_Settings_GoodTimes_Tip>
   <CC_Settings_SmallJoys>Good moods add up slowly</CC_Settings_SmallJoys>
@@ -990,7 +990,7 @@ Granting one of {PAWN_possessive} wishes, or keeping a promise, can win {PAWN_ob
   <CC_GoodTimes_RimfolkNow>Rimfolk's good moods {0}</CC_GoodTimes_RimfolkNow>
   <CC_GoodTimes_Sooner>{0} fading sooner</CC_GoodTimes_Sooner>
   <CC_GoodTimes_Comforts>the game's comforts {0} of {1} ({2})</CC_GoodTimes_Comforts>
-  <CC_GoodTimes_Tip>How a good life turns ordinary, without taking anything away. One rule: good moods (the game's, other mods' and Rimfolk's) count in full up to a line set by standards, 45 points for the modest down to 15 for the spoiled. Above it, half of the first 20 points over the line and three quarters of the rest no longer lift them: most of that comes off everyday comforts and what they've had often lately, least off something new, which counts for more again as the days go by, and nothing off a life goal reached. It eases in hard times, to nothing near a break.\n\nBad moods are never touched. Small joys and small letdowns each read as one row, and what they'd weigh beyond the moment goes to the heart. One setting: Good things grow ordinary.</CC_GoodTimes_Tip>
+  <CC_GoodTimes_Tip>How a good life comes to feel ordinary: good moods lift less, and nothing is taken away. One rule: good moods (the game's, other mods' and Rimfolk's) count in full up to a line set by standards, 45 points for the modest down to 15 for the spoiled. Above it, half of the first 20 points over the line and three quarters of the rest no longer lift them. Most of that comes off everyday comforts and what they've had often lately, the least off something new (though more as the days go by), and nothing off a life goal reached. The rule eases in hard times and takes nothing at all near the minor break line.\n\nBad moods are never touched. Small joys and small letdowns each show as one row, and their lasting effect goes into the heart instead. One setting: Good things grow ordinary.</CC_GoodTimes_Tip>
   <CC_Reason_Standards>{PAWN_nameDef} has grown used to comfort, and the bedroom doesn't feel good enough anymore.</CC_Reason_Standards>
   <CC_Reason_StandardsFood>{PAWN_nameDef} has grown used to good food, and simple meals aren't enough anymore.</CC_Reason_StandardsFood>
   <CC_Standards_Modest>modest</CC_Standards_Modest>
@@ -1003,7 +1003,7 @@ Granting one of {PAWN_possessive} wishes, or keeping a promise, can win {PAWN_ob
   <!-- Decrees -->
   <CC_Tab_Decrees>Decrees</CC_Tab_Decrees>
   <CC_Decrees_Header>Decrees</CC_Decrees_Header>
-  <CC_Decrees_Sub>Spend the colony's good mood on what it needs, or the other way around. Up to {0} decrees at a time. Everyone reacts according to their nature, and living under a decree they hate wears down their trust.</CC_Decrees_Sub>
+  <CC_Decrees_Sub>Trade some of the colony's good mood for what it needs, or some of what it has for a better mood. Up to {0} decrees at a time. Everyone reacts according to their nature, and living under a decree they hate wears down their trust.</CC_Decrees_Sub>
   <CC_Decrees_State>Average mood: {0}. Standards: {1}.</CC_Decrees_State>
   <CC_Decree_InForce>(in force, {0} left)</CC_Decree_InForce>
   <CC_Decree_Enact>Enact for {0}</CC_Decree_Enact>
@@ -1013,14 +1013,14 @@ Granting one of {PAWN_possessive} wishes, or keeping a promise, can win {PAWN_ob
   <CC_Decree_CooldownSooner>Possible again in {0}, sooner than usual because it's needed</CC_Decree_CooldownSooner>
   <!-- A decree needed now and wanted (Decrees/Decrees.cs, NeedOf): its card says why; {0} is the reasons, {1} who wants it. -->
   <CC_Decree_NeedLine>Needed now: {0}. {1}</CC_Decree_NeedLine>
-  <CC_Decree_NeedWantedMost>Most want it, so it can come again sooner, and a repeat is minded less.</CC_Decree_NeedWantedMost>
-  <CC_Decree_NeedWantedSome>Some want it, so it can come again a little sooner, and a repeat is minded a little less.</CC_Decree_NeedWantedSome>
+  <CC_Decree_NeedWantedMost>Most want it, so it can come again sooner, and people mind a repeat less.</CC_Decree_NeedWantedMost>
+  <CC_Decree_NeedWantedSome>Some want it, so it can come again a little sooner, and people mind a repeat a little less.</CC_Decree_NeedWantedSome>
   <CC_Decree_NeedWantedFew>Few want it, but the need lets it come again a little sooner.</CC_Decree_NeedWantedFew>
   <CC_Decree_NeedPatience>It has been declared {0} times this month, so patience is wearing thin and the need counts for half.</CC_Decree_NeedPatience>
   <CC_Decree_Need_FoodLow>food is running low</CC_Decree_Need_FoodLow>
   <CC_Decree_Need_FoodLow_Strong>the food is nearly gone</CC_Decree_Need_FoodLow_Strong>
   <CC_Decree_Need_RecentThreat>the colony has been fighting</CC_Decree_Need_RecentThreat>
-  <CC_Decree_Need_RecentThreat_Strong>fight has followed fight</CC_Decree_Need_RecentThreat_Strong>
+  <CC_Decree_Need_RecentThreat_Strong>there has been one fight after another</CC_Decree_Need_RecentThreat_Strong>
   <CC_Decree_Need_Grief>someone is grieving</CC_Decree_Need_Grief>
   <CC_Decree_Need_Grief_Strong>several are grieving</CC_Decree_Need_Grief_Strong>
   <CC_Decree_Need_ColonyHappy>spirits are high</CC_Decree_Need_ColonyHappy>
@@ -1038,7 +1038,7 @@ Granting one of {PAWN_possessive} wishes, or keeping a promise, can win {PAWN_ob
   <CC_Decree_Need_Winter>it's winter</CC_Decree_Need_Winter>
   <CC_Decree_Need_Newcomer>someone new has joined</CC_Decree_Need_Newcomer>
   <CC_Decree_Need_Plenty>the stores are full</CC_Decree_Need_Plenty>
-  <CC_Decree_Need_Situation>the hard times it answers have come to the region</CC_Decree_Need_Situation>
+  <CC_Decree_Need_Situation>the region is going through the hard times it is meant for</CC_Decree_Need_Situation>
   <CC_Decree_Need_Wounded>many are hurt</CC_Decree_Need_Wounded>
   <CC_Decree_Need_Wounded_Strong>half the colony is hurt</CC_Decree_Need_Wounded_Strong>
   <CC_Decree_TooMany>{0} decrees already in force</CC_Decree_TooMany>
@@ -1237,7 +1237,7 @@ Granting one of {PAWN_possessive} wishes, or keeping a promise, can win {PAWN_ob
   <CC_Tie_Formed_Mentor>{A_nameDef} has taken {B_nameDef} under {A_possessive} wing to teach {B_objective} {SKILL}.</CC_Tie_Formed_Mentor>
   <CC_Tie_Ended_Friends>{A_nameDef} and {B_nameDef} have drifted apart and are no longer close.</CC_Tie_Ended_Friends>
   <CC_Tie_Ended_Rivals>{A_nameDef} and {B_nameDef} have let their rivalry go.</CC_Tie_Ended_Rivals>
-  <CC_Tie_Ended_Comrades>The battles {A_nameDef} and {B_nameDef} shared are fading into the past.</CC_Tie_Ended_Comrades>
+  <CC_Tie_Ended_Comrades>{A_nameDef} and {B_nameDef} haven't fought side by side in a long time, and are no longer comrades.</CC_Tie_Ended_Comrades>
   <CC_Tie_Ended_Mentor>{A_nameDef} has stopped teaching {B_nameDef} {SKILL}.</CC_Tie_Ended_Mentor>
   <CC_Tie_Battle>Fighting side by side has brought {0} closer together.</CC_Tie_Battle>
   <CC_Tie_Graduated>{B_nameDef} has learned everything {A_nameDef} had to teach about {SKILL}.</CC_Tie_Graduated>
@@ -1313,7 +1313,7 @@ Granting one of {PAWN_possessive} wishes, or keeping a promise, can win {PAWN_ob
   <CC_Asp_FulfilledLabel>Life goal reached: {0}</CC_Asp_FulfilledLabel>
   <CC_Asp_FulfilledText>{PAWN_nameDef} set out to {GOAL}, and now {PAWN_pronoun} has.</CC_Asp_FulfilledText>
   <CC_Asp_DeedPlain>did what they set out to do</CC_Asp_DeedPlain>
-  <CC_Asp_Reward_Toast>A glass will be raised to {PAWN_objective} at the colony's next gathering, by the one who thinks best of {PAWN_objective}.</CC_Asp_Reward_Toast>
+  <CC_Asp_Reward_Toast>At the colony's next gathering, the person who thinks most highly of {PAWN_objective} will raise a toast to {PAWN_objective}.</CC_Asp_Reward_Toast>
   <CC_Asp_Reward_Mark>{PAWN_nameDef} won't lose the knack for {SKILL} now, and learns it a little faster.</CC_Asp_Reward_Mark>
   <CC_Asp_Reward_Lesson>{OTHER_nameDef}, who shares the passion, will spend some hours learning {SKILL} at {PAWN_possessive} side.</CC_Asp_Reward_Lesson>
   <CC_Asp_Reward_Title>The colony will remember {PAWN_objective} as the one who {DEED}.</CC_Asp_Reward_Title>
@@ -1353,7 +1353,7 @@ Granting one of {PAWN_possessive} wishes, or keeping a promise, can win {PAWN_ob
   <CC_Settings_Secrets>Secrets</CC_Settings_Secrets>
   <CC_Settings_Secrets_Tip>Some colonists carry a secret, often from their past: a raider's life, noble blood, a child left behind, a debt, a hidden kindness. They may confide in a close friend (you'll only see that they did). Friends can let it slip, rivals will, and when it comes out everyone reacts according to their nature. Sometimes the council has to decide what to do about it.</CC_Settings_Secrets_Tip>
   <CC_Settings_Vendettas>Vendettas</CC_Settings_Vendettas>
-  <CC_Settings_Vendettas_Tip>When raiders kill or carry off someone, the people who loved them swear vengeance on that faction: a weight they carry, fury when that faction attacks again, satisfaction when enough of them fall, and outrage if the council makes peace with the killers.</CC_Settings_Vendettas_Tip>
+  <CC_Settings_Vendettas_Tip>When raiders kill or carry off someone, the people who loved them swear vengeance on that faction. It weighs on their mood, they are furious when that faction attacks again, satisfied when enough of its people fall, and outraged if the council makes peace with the killers.</CC_Settings_Vendettas_Tip>
   <CC_Settings_Eulogies>Eulogies</CC_Settings_Eulogies>
   <CC_Settings_Eulogies_Tip>When a colonist dies, the person closest to them speaks at the grave, in their own voice.</CC_Settings_Eulogies_Tip>
 
@@ -1374,7 +1374,7 @@ Granting one of {PAWN_possessive} wishes, or keeping a promise, can win {PAWN_ob
 
   <CC_Vendetta_Sworn>{0} swore vengeance on {FACTION} for {LOST_nameDef}.</CC_Vendetta_Sworn>
   <CC_Vendetta_SwornTaken>{FACTION} carried off {LOST_nameDef}, and {0} means to make them pay.</CC_Vendetta_SwornTaken>
-  <CC_Vendetta_Fury>{0} recognized the colors of {FACTION}. This fight is personal.</CC_Vendetta_Fury>
+  <CC_Vendetta_Fury>{0} recognized the colors of {FACTION} and remembered the vow of vengeance.</CC_Vendetta_Fury>
   <CC_Vendetta_Avenged>{PAWN_nameDef} has avenged {LOST} on {FACTION}.</CC_Vendetta_Avenged>
   <CC_Log_PeaceWithKillers>peace with {0}</CC_Log_PeaceWithKillers>
   <CC_Social_Vendettas>Vendettas</CC_Social_Vendettas>
@@ -1489,7 +1489,7 @@ Granting one of {PAWN_possessive} wishes, or keeping a promise, can win {PAWN_ob
   <CC_Settings_ComingOfAge_Tip>When a child grows up, the colony marks it, and the council helps choose their path: an apprenticeship with the colony's best, the defenses, or their own way.</CC_Settings_ComingOfAge_Tip>
   <CC_Heirloom_Passed>{PAWN_nameDef} will keep {OTHER_nameDef}'s {ITEM}.</CC_Heirloom_Passed>
   <CC_ComingOfAge_Label>Coming of age: {0}</CC_ComingOfAge_Label>
-  <CC_ComingOfAge_Text>{PAWN_nameDef} is grown. The child who ran between the buildings is an adult now, with a say at the council and a life to choose.</CC_ComingOfAge_Text>
+  <CC_ComingOfAge_Text>{PAWN_nameDef} has grown up and is an adult now, with a say at the council and a path in life to choose.</CC_ComingOfAge_Text>
 
   <!-- Council window layout -->
   <CC_Section_Colony>Colony</CC_Section_Colony>
@@ -1597,7 +1597,7 @@ It's still out there somewhere. Hunting it down would settle the matter.</CC_Nem
   <CC_Nemesis_SlainBy>{X_nameDef}, who {DEED}, is dead. {SLAYER_nameDef} struck the last blow.</CC_Nemesis_SlainBy>
   <CC_Nemesis_Dead>{X_nameDef}, who {DEED}, is dead.</CC_Nemesis_Dead>
   <CC_Nemesis_End_Vanished>Never seen again.</CC_Nemesis_End_Vanished>
-  <CC_Nemesis_End_Paid>Paid back in full. {0} counted every coin and called it square.</CC_Nemesis_End_Paid>
+  <CC_Nemesis_End_Paid>Paid back in full: {0} counted the silver and called the debt settled.</CC_Nemesis_End_Paid>
   <CC_Nemesis_End_Joined>{X_nameDef} is one of the colony's own now, and eats at the same table as the people {X_pronoun} once hurt.</CC_Nemesis_End_Joined>
   <CC_Nemesis_Status_Joined>one of us now</CC_Nemesis_Status_Joined>
   <CC_Nemesis_Status_Loose>still out there</CC_Nemesis_Status_Loose>
@@ -1722,16 +1722,16 @@ Those against it ({WHO}) will trust the council less and resent it more than usu
   <CC_Ways_RenownedLabel>Renowned as {0}</CC_Ways_RenownedLabel>
   <CC_Ways_Known>The council's choices have added up, and the colony is becoming known as {0}.</CC_Ways_Known>
   <CC_Ways_Renowned>The colony is renowned as {0}. Travelers talk about it wherever they stop, and the colonists hear it said of them.</CC_Ways_Renowned>
-  <CC_Ways_Meaning_Mercy_Pos>Kind souls are proud of it; the bloodthirsty think the colony has gone soft. Desperate strangers may come looking for sanctuary.</CC_Ways_Meaning_Mercy_Pos>
-  <CC_Ways_Meaning_Mercy_Neg>The bloodthirsty approve; kind souls are troubled by it. Some will think twice before crossing the colony, and some will never trust it.</CC_Ways_Meaning_Mercy_Neg>
-  <CC_Ways_Meaning_Generosity_Pos>Kind and simple souls approve; the greedy grumble. Neighbors warm to the colony over time, and those in need remember it.</CC_Ways_Meaning_Generosity_Pos>
+  <CC_Ways_Meaning_Mercy_Pos>Kind people are proud of it; the bloodthirsty think the colony has gone soft. Desperate strangers may come looking for sanctuary.</CC_Ways_Meaning_Mercy_Pos>
+  <CC_Ways_Meaning_Mercy_Neg>The bloodthirsty approve; kind people are troubled by it. Some will think twice before crossing the colony, and some will never trust it.</CC_Ways_Meaning_Mercy_Neg>
+  <CC_Ways_Meaning_Generosity_Pos>Kind and simple people approve; the greedy grumble. Neighbors warm to the colony over time, and those in need remember it.</CC_Ways_Meaning_Generosity_Pos>
   <CC_Ways_Meaning_Generosity_Neg>The greedy approve; the kind find it mean. Neighbors cool toward a colony that keeps everything for itself.</CC_Ways_Meaning_Generosity_Neg>
   <CC_Ways_Meaning_Tradition_Pos>The old are glad of it; the young find it stifling. Customs and celebrations matter more here.</CC_Ways_Meaning_Tradition_Pos>
   <CC_Ways_Meaning_Tradition_Neg>The young love it; the old miss how things were. Old habits get dropped and new ones tried.</CC_Ways_Meaning_Tradition_Neg>
-  <CC_Ways_Meaning_Openness_Pos>Kind and sociable souls approve; the abrasive don't. Neighbors warm to the colony, and more strangers stop by.</CC_Ways_Meaning_Openness_Pos>
-  <CC_Ways_Meaning_Openness_Neg>The abrasive approve; kind and sociable souls feel hemmed in. Neighbors cool a little, and strangers keep their distance.</CC_Ways_Meaning_Openness_Neg>
+  <CC_Ways_Meaning_Openness_Pos>Kind and sociable people approve; the abrasive don't. Neighbors warm to the colony, and more strangers stop by.</CC_Ways_Meaning_Openness_Pos>
+  <CC_Ways_Meaning_Openness_Neg>The abrasive approve; kind and sociable people feel hemmed in. Neighbors cool a little, and strangers keep their distance.</CC_Ways_Meaning_Openness_Neg>
   <CC_Ways_Meaning_Toil_Pos>The industrious are proud of it; the lazy feel ground down.</CC_Ways_Meaning_Toil_Pos>
-  <CC_Ways_Meaning_Toil_Neg>The lazy love it; the industrious wonder when anyone gets anything done.</CC_Ways_Meaning_Toil_Neg>
+  <CC_Ways_Meaning_Toil_Neg>The lazy love it; the industrious think too little gets done.</CC_Ways_Meaning_Toil_Neg>
   <CC_Ways_Fading>People have stopped calling the colony {0}.</CC_Ways_Fading>
   <CC_Ways_WordGood>Word of the colony's {1} ways reached {0}. Goodwill {2}.</CC_Ways_WordGood>
   <CC_Ways_WordBad>{0} heard the colony is {1}. Goodwill {2}.</CC_Ways_WordBad>
@@ -1813,7 +1813,7 @@ Those against it ({WHO}) will trust the council less and resent it more than usu
   <CC_Settings_Frictions_Tip>The small irritations of living close together, like dishes left in the basin, a snoring bunkmate or advice nobody asked for. A messy or cramped home brings its own, like a leaking roof, a sticking door or a smoky room. Each costs a point or two of mood for half a day to a day and a half. A tidy, roomy colony has far fewer of them.</CC_Settings_Frictions_Tip>
   <!-- Everyday pressures (Source/ColonyCouncil/Pressures/) -->
   <CC_Settings_Life>Life's ups and downs</CC_Settings_Life>
-  <CC_Settings_Life_Tip>Everyday pressures a well-run colony has to keep up with, like the same meal again and again, the same work for days, someone dear away for long, a packed dining or rec room, or half-built work left standing. Each is small, says what causes it and what helps, and goes away once that's dealt with. A varied table gives a small lift. The same setting covers setbacks in the colony's life: work wrecked or torn down, a crop lost, a friend fallen ill, a feast that ran out.</CC_Settings_Life_Tip>
+  <CC_Settings_Life_Tip>Everyday pressures a well-run colony has to keep up with, like the same meal again and again, the same work for days, someone close to them away for a long time, a packed dining or rec room, or half-built work left standing. Each is small, says what causes it and what helps, and goes away once that's dealt with. A varied table gives a small lift. The same setting covers setbacks in the colony's life: work wrecked or torn down, a crop lost, a friend fallen ill, a feast that ran out.</CC_Settings_Life_Tip>
   <CC_Life_Gentle>Gentle</CC_Life_Gentle>
   <CC_Life_Gentle_Tip>Pressures at half strength, never less than 1, and the colony's small frictions at 70%. Half-built work isn't minded, and high standards don't make small frictions sting more.</CC_Life_Gentle_Tip>
   <CC_Life_Normal>Normal</CC_Life_Normal>
@@ -1922,13 +1922,13 @@ Those against it ({WHO}) will trust the council less and resent it more than usu
   <CC_Evt_ContestWon>{A_nameDef} beat {X_nameDef} at {2} while the colonists cheered.</CC_Evt_ContestWon>
   <CC_Evt_ContestWonStake>{A_nameDef} beat {X_nameDef} at {2} and won the colony {3} silver.</CC_Evt_ContestWonStake>
   <CC_Evt_ContestLost>{X_nameDef} beat {A_nameDef} at {2}, fair and square. {A_nameDef} shook hands on it, and came away knowing a good deal more than before.</CC_Evt_ContestLost>
-  <CC_Evt_ContestLostStake>{X_nameDef} beat {A_nameDef} at {2}, fair and square, and walked off with the colony's {3} silver. {A_nameDef} watched every move, and won't lose the same way twice.</CC_Evt_ContestLostStake>
+  <CC_Evt_ContestLostStake>{X_nameDef} beat {A_nameDef} at {2}, fair and square, and walked off with the colony's {3} silver. {A_nameDef} watched every move and learned from it.</CC_Evt_ContestLostStake>
   <CC_Evt_BeastSlainTitle>{0} is dead</CC_Evt_BeastSlainTitle>
   <CC_Evt_BeastSlain>{PAWN_nameDef} has brought down {0}, the great beast. The colonists will be telling this one for years.</CC_Evt_BeastSlain>
   <CC_Evt_BeastDied>{0}, the great beast, is dead.</CC_Evt_BeastDied>
   <CC_Evt_BeastGone>{0}, the great beast, has moved on into the wilds.</CC_Evt_BeastGone>
   <CC_Evt_BeastTamedTitle>{0} is tamed</CC_Evt_BeastTamedTitle>
-  <CC_Evt_BeastTamed>{0}, the great beast that outlived every hunter, has been tamed. It answers to {PAWN} now.</CC_Evt_BeastTamed>
+  <CC_Evt_BeastTamed>{0}, the great beast no hunter could bring down, has been tamed. It answers to {PAWN} now.</CC_Evt_BeastTamed>
   <CC_Cause_Beast>{0}, the great beast.</CC_Cause_Beast>
   <CC_Evt_TreasureTitle>The map was true</CC_Evt_TreasureTitle>
   <CC_Evt_TreasureText>Under a foot of earth, right where the map's X was, the colonists found a cache. It held {0}.</CC_Evt_TreasureText>
@@ -2090,9 +2090,9 @@ Those against it ({WHO}) will trust the council less and resent it more than usu
   <CC_Scen_HuntOver_joined>{FOE} is one of the colony now. Strange as that is, it means {FACTION} have stopped coming.</CC_Scen_HuntOver_joined>
   <CC_Scen_HuntOver_enslaved>{FOE} wears the colony's collar now, and with no one left to follow, {FACTION} have stopped coming.</CC_Scen_HuntOver_enslaved>
   <CC_Scen_HuntOver_peace>{FACTION} have made peace with the colony. Whatever {FOE} wants, {FACTION} won't be fighting for it anymore.</CC_Scen_HuntOver_peace>
-  <CC_Scen_HuntOver_defeated>{FACTION} are no more, and the hunt died with them.</CC_Scen_HuntOver_defeated>
+  <CC_Scen_HuntOver_defeated>{FACTION} have been wiped out, and the hunt is over.</CC_Scen_HuntOver_defeated>
   <CC_Scen_HuntOver_gaveup>{FACTION} seem to have given up on the colony. {FOE} is still out there somewhere, but the attacks have stopped.</CC_Scen_HuntOver_gaveup>
-  <CC_Scen_HuntOver_settled>{FACTION} have taken what they think they're owed out of the colony's hide. As far as they're concerned, the debt is settled.</CC_Scen_HuntOver_settled>
+  <CC_Scen_HuntOver_settled>{FACTION} have taken from the colony what they think they're owed. As far as they're concerned, the debt is settled.</CC_Scen_HuntOver_settled>
 
   <!-- Scenarios: debts -->
   <CC_Scen_DebtHalf>Paying half now leaves about {0} silver owed, with their interest, due in about three weeks.</CC_Scen_DebtHalf>
