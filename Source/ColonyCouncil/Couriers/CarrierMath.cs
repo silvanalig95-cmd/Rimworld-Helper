@@ -100,6 +100,19 @@ namespace ColonyCouncil
         /// <summary>Close enough to get straight on (cells: beside them, or under them).</summary>
         public const float MountNowDistance = 1.5f;
 
+        /// <summary>
+        /// With no way in to the spot at all, they look this far round it (cells) for the nearest place they can walk to, and
+        /// set the goods down there (CarrierSpots.Nearest).
+        /// </summary>
+        public const float ShutOutRadius = 30f;
+
+        /// <summary>
+        /// The walk in is over for a group that can't get in (the player, 15 November 2026: porters left the goods outside the
+        /// killbox): none of the people can reach the spot by any way at all, and none is still walking (each stands as near to
+        /// it as they can get). Their business starts there, rather than after the walk's five hours.
+        /// </summary>
+        public static bool ShutOut(int people, int canReach, int walking) => people > 0 && canReach == 0 && walking == 0;
+
         // ---------------- Where ----------------
 
         /// <summary>Where they do their business: the colony's mailbag when there is one, else its gate, else where traders leave goods.</summary>

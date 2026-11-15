@@ -529,6 +529,25 @@ from a week to a month long, and on Rimfolk's own rhythm rather than the storyte
   his band breaks up without plunder, or the colony ends it at home. His people's raids are stronger and likelier while
   he rises (Harmony, behind the deeper hooks), and he walks in with some of them.
 
+### World events running now, above the letters (the player's request, 15 November 2026; released 0.254.0)
+
+The player asked "do i still see current world events somewhere?" (they were in the region window: the History page's
+strip of chips along its top, the region map's marks, each people's card) and, offered a line in the corner on the right
+of the screen where the evening's Colony news comes in, said "yes, please add to todo", then asked for it. Now each world
+event running now has a line in that corner (`UI/WorldEventsCorner.cs`): just above the letters, in the alerts' column
+and as wide as it, against the right edge, a world-event icon and its name with where it is, as the colony heard of it
+("Plague in the region, at Kettleford"; just the name when it has no place). Resting on a line gives what the History
+page's chips give (`WorldHistoryPage.RunningTip`, shared now: its name, `WorldSituationsPanel.Summary`, what the colony has
+done so far, where it is); a click opens the region window where it is (`Cards.ShowOnMap`: the region map with the place
+picked) or, with no place, on its History page. Three lines at most: past three, two lines and "and N more world events"
+(`WorldEventsCornerMath`, tested in `PagesTests`), its tooltip naming the rest and a click opening History. Nothing shows
+while none runs, with world events off, or with the setting "World events in the corner" off (`worldEventsCorner`, How
+you're told, under the Colony news, on, needs world events). Drawn after the letters (`Patch_WorldEventsCorner`, a
+postfix on `LetterStack.LettersOnGUI`), and the letters' top (`LetterStack.lastTopYInt`, by name) raised past the lines,
+so the game's alerts and Rimfolk's alerts panel, which stack on the letters' top, move up to make room; if that field
+isn't there the corner stays empty. Built at most every two seconds. No world event names a god (none of their defs or
+workers do), so the gods stay unseen here too.
+
 ## Layer 7: The heart (feelings and strain)
 
 Comfort is easy to buy in RimWorld, so mood alone stops meaning much once a colony is rich. The heart adds a slower,
@@ -3257,6 +3276,27 @@ stalls" (`marketVisitorsBuy`, on, Your other mods under RimMarket, with the deep
   of goods and the buyer; campers and market days hear it too).
 - **Dev mode**: "Market: send this visitor to the stalls now" (the group's turn and the hours aside, everything else as
   always, why not in the log), "Market: every visitor and why (log)" (`Visitors/VisitorTradeDebug.cs`).
+
+### The stall shows how worn weapons and apparel are (the player's request, 15 November 2026; released 0.254.0)
+
+The player, with RimMarket's sales table open in Rimfolk's window (`UI/Window_StallCounter.cs`): "the market ui should
+show how much health that armor and weapons still have". Now every weapon and piece of apparel shows its health on both
+sides: on the left, each article's row has a pill "health 62%" (one piece, or several alike) or "health 45-100%" (the
+lowest and highest of several), in plain grey from 80%, amber from 50%, red below, and a red "tainted" or "2 tainted"
+pill for apparel taken from the dead (the game's own `Apparel.WornByCorpse`); its tooltip adds what they mean (worn
+pieces sell for less, a tainted one for a tenth of its price, as the game's `StatPart_WornByCorpse` makes it, and
+colonists don't like to wear one). On the right, a line's card has the same pills for the pieces it covers: those on the
+counter and those in the colony in its quality range, each told apart in the tooltip. The pure part is
+`StallCounterMath.Wear` (`Add`, by piece and merged), `Percent` (never 100% for a piece that has lost any, never 0% for
+one with some left), `HealthText` and `HealthTone` (`StallCounterTests`); the counting is in the window's own count every
+two seconds (`Good.wearOnMap` by quality slot, `Good.wearHeld` for the counter).
+
+A line held to pieces above a condition ("only above 50%") is not offered: RimMarket 1.0.13's sale line
+(`RimMarket.Buildings.StallOrder`) keeps a quality range and nothing else, and `StallOrder.Allows(Thing)`, which both its
+stocking (`Building_MarketStall.Accepts`, the haulers' `WorkGiver_StockColonyStall`, the nearest piece first) and its
+trimming of the counter (`TrimStock`) ask, checks quality only. The card's tooltip says so: the haulers bring the nearest
+pieces in the range, worn or not. Rimfolk could add its own floor with a patch on `StallOrder.Allows` and a value of its
+own for each line; not built.
 
 ### Guests keep out of bedrooms and the cold store (the player's request, 13 November 2026; released 0.230.1)
 
@@ -9404,6 +9444,40 @@ What it does now:
   three jobs as done in the saddle, and its "parking" no longer happening; the rider getting off at the bag for the
   stores and back on as they leave, by both ways; the tameness letting Giddy-Up's own remount take; goods round the bag;
   the variety of kinds and beasts on the player's own peoples and mods.
+
+### Porters reach the mailbag, or say why not (the player's report, 15 November 2026; released 0.254.0)
+
+The player, with a screenshot of goods left just outside their killbox: "porters placed the material just before my
+killbox instead of walking to the mailbag. is this because of the traps? i'll build a door in the wall now". Not the
+traps: the game's visitors know the colony's traps and step round or over them, and the game's reach ignores them.
+
+What caused it: every reach the carriers' jobs checked in `Couriers/` (the walk to their place, the drop, the pack animal,
+the stores, someone to fetch, a rider's beast) asked for a way that keeps out of what the game counts as deadly for the
+pawn (`Danger.Some`: cold or heat far past what they can stand, or a vacuum), while the game's own travel takes any way in
+(`Danger.Deadly`). And with no way in at all (a wall with no door in it, a door they can't open) they waited where they
+were stopped and, after the walk's five hours, set the load down there with no word why (`JobGiver_CourierWork`: "where
+they stand if they can't get there").
+
+What it does now:
+- **Any way in.** Every reach in `Couriers/` takes any way in that exists, as the game's travel does (`Danger.Deadly`):
+  `CarrierJobs.ToPlace`, `CarrierSpots.StandCell`, `CarrierMounts.Step`, `JobGiver_CourierWork` (the drop, the pack
+  animal, the fetch), `JobGiver_CourierWork.Stack` (the stores) and `CourierTracker.StepBearer` (an event's own visitor).
+  The weather dressing (Visitors/WeatherDress.cs) keeps them warm on the way, and the cold or the heat getting to one of
+  them still sends the trip home (`Visitors.WeatherHurts`).
+- **No way in at all.** Each walks to the free cell nearest the spot that they can reach, within 30 cells, one cell each
+  (`CarrierSpots.Nearest`, `CarrierJobs.NearestOf`, `CarrierMath.ShutOutRadius`), and waits there. Once none of them can
+  reach the spot and none is still walking (`CarrierMath.ShutOut`), their business starts there rather than after the
+  walk's five hours (`CourierTracker.StepHere`, the travel toil's own "TravelArrived"). They set the goods down where they
+  stand, and the first one to do so says why: a message, "The porters from X found no way in to the mailbag, so they set
+  down 40 steel as near to it as they could get. A door or an opening in the wall would let them through."
+  (`CC_Courier_ShutOut`, `CourierWords.ShutOut`, important, with the porter and the goods to look at), once a trip
+  (`CourierTrip.shutOut`, `shutTold`, saved). Their own done message for a plain delivery is then left out; for an
+  exchange it says "as near to the colony as they could get" rather than "by the mailbag".
+- **Unchanged.** A trip that can't come at all (no way in from the edge) is settled the old way, as before; the post's
+  own reaches in `Post/` (who takes the letters from the bag) are as they were.
+- **Dev mode:** "Couriers: porters bring 50 silver now" (`Couriers/CourierDebug.cs`).
+- **Not run in the game:** the walk round to the nearest cell outside a closed wall and the message as it reads; the trip
+  starting its business there.
 
 ### Supplies for the colony's own rider (the player's request, 10 November 2026; released 0.210.0)
 

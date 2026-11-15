@@ -31,6 +31,19 @@ When you load a save after an update, a letter lists the newest round once. The 
     <rounds>
 
       <li>
+        <version>0.254.0</version>
+        <date>15 November 2026</date>
+        <title>Porters at the mailbag, worn gear at the stall, world events at a glance</title>
+        <points>
+          <li>Porters and couriers walk to the mailbag by any way in, even through hard cold or heat.</li>
+          <li>When there is no way in to the mailbag at all, porters set the goods down as near to it as they can get, and a message says why and that a door or an opening in the wall would let them in.</li>
+          <li>The market stall's table shows the health of weapons and apparel, on the colony's goods and on the counter, and how many pieces are tainted.</li>
+          <li>The world events running now have a line each on the right of the screen, just above the letters: hover for what they mean, click to open the region window where they are.</li>
+          <li>A new setting, "World events in the corner", turns those lines off.</li>
+        </points>
+      </li>
+
+      <li>
         <version>0.253.0</version>
         <date>15 November 2026</date>
         <title>Six more storytellers</title>

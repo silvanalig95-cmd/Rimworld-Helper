@@ -733,6 +733,9 @@ of those sent on the road (caravan hands and guards, villagers, settlers, as tha
 with Giddy-Up a medieval or industrial people's couriers and the post rider ride in on one of their caravans' beasts the
 land and season allow (a horse otherwise). A rider hands mail and goods over at the bag from the saddle, gets off only to
 go into the stores or fetch someone, and gets back on before riding off; a beast whose rider can't come leaves by itself.
+They take any way in there is, however cold or hot. When there is none at all (a wall with no door in it, a door they
+can't open), they set the goods down as near to the mailbag as they can get, and a message says why and that a door or an
+opening in the wall would let them through.
 
 **Visitors on the map.** The people a world event's letter speaks of are there too. The rider waiting at the gate for
 the colony's answer walks in with the letter and stands by the gate until you answer; what you send is carried out to
@@ -3712,7 +3715,9 @@ after locusts or a drought, and after a hard year the colony looked away from, a
 
 The **World** page shows what's going on at the top, under "In the world": each world event with the people it's
 about, what it means for the colony, what the colony has done so far, and how long it may last (hover for what it
-makes likelier or rarer). The chronicle records how each began and ended, and the colony's part in it. Settings →
+makes likelier or rarer). The world events running now also have a line each on the right of the screen, just above the
+letters: its name and where; hover for what it means and what the colony has done, click to open the region window where
+it is (three lines at most, the last "and N more" past that; the setting "World events in the corner"). The chronicle records how each began and ended, and the colony's part in it. Settings →
 **World events** turns them off or changes how often they come; in dev mode, **Debug actions → Rimfolk** can start,
 hurry or end any of them. Modders can add more with a def and no code (see `WorldSituationDef` in
 `Source/ColonyCouncil/World/`).
@@ -5577,7 +5582,9 @@ page, so a new setting needs a row there, and that every field before the five p
   it sells (and, with RimMarket 1.0.13 or later, its Refill and Keep home: Refill keeps that many on the counter for
   good, Keep home stops the haulers once the colony is down to that many, and changing a line's count, quality or price
   keeps both as they were); one price for every line at once; and what
-  it all comes to and how often shoppers come. It reads and sets RimMarket's own sale lines, by name, with the old
+  it all comes to and how often shoppers come. Weapons and apparel show their health on both sides ("health 62%", or
+  "health 45-100%" for several), and how many are tainted (taken from the dead, which sells for a tenth); RimMarket's
+  lines go by quality only, so a line can't be held to pieces above a condition. It reads and sets RimMarket's own sale lines, by name, with the old
   RimMarket and the new, and RimMarket's window opens if they're not what Rimfolk expects. People from a camp on the
   colony's land walk over to the stalls by day and buy what suits them, paying at the stall (setting "Campers buy at
   RimMarket's stalls"), and **market days**, a world event, bring buyers from a friendly people up the road for a

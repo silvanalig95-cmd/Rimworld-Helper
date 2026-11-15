@@ -13,7 +13,9 @@ namespace ColonyCouncil
     /// goods by category, with a search and a sort, each a click away from the counter (right-click for how many); on
     /// the right only what is for sale, a card a line, with the count, the quality range, the price on a slider with what
     /// it fetches each and for all and how well it sells, and what has sold and lies on the counter; one price for every
-    /// line at once; and at the foot what it all comes to and how often shoppers come at these prices. Every change goes
+    /// line at once; and at the foot what it all comes to and how often shoppers come at these prices. Weapons and apparel
+    /// show their health on both sides (the player, 15 November 2026: "the market ui should show how much health that armor
+    /// and weapons still have"), and how many were taken from the dead (the game's "tainted"). Every change goes
     /// straight to the stall through RimMarket's own sale lines. The goods are counted at most every two seconds. In
     /// Rimfolk's frame (key "Stall"), the stall's name in the title bar.
     /// </summary>
@@ -32,6 +34,10 @@ namespace ColonyCouncil
             public ThingCategoryDef category;
             public int onMapTotal;
             public float worthOnMap;
+            /// <summary>A weapon or apparel: how worn its pieces are is shown, those in the colony by quality slot and those on the counter.</summary>
+            public bool worn;
+            public readonly StallCounterMath.Wear[] wearOnMap = new StallCounterMath.Wear[Slots];
+            public StallCounterMath.Wear wearHeld;
 
             public void Clear()
             {
@@ -40,9 +46,20 @@ namespace ColonyCouncil
                     onMap[i] = 0;
                     all[i] = 0;
                     worth[i] = 0f;
+                    wearOnMap[i] = default;
                 }
                 onMapTotal = 0;
                 worthOnMap = 0f;
+                wearHeld = default;
+            }
+
+            /// <summary>How worn the colony's pieces are (in a quality range), not counting those on the counter.</summary>
+            public StallCounterMath.Wear WearOnMap(QualityRange? range)
+            {
+                var w = default(StallCounterMath.Wear);
+                for (int i = 0; i < Slots; i++)
+                    if (range == null || InRange(range.Value, i)) w.Add(wearOnMap[i]);
+                return w;
             }
         }
 
@@ -152,7 +169,7 @@ namespace ColonyCouncil
         private Good GoodFor(ThingDef def)
         {
             if (goods.TryGetValue(def, out var g)) return g;
-            g = new Good { def = def, hasQuality = def.HasComp(typeof(CompQuality)), category = TopCategory(def) };
+            g = new Good { def = def, hasQuality = def.HasComp(typeof(CompQuality)), category = TopCategory(def), worn = def.useHitPoints && (def.IsWeapon || def.IsApparel) };
             goods[def] = g;
             return g;
         }
@@ -169,6 +186,14 @@ namespace ColonyCouncil
             }
             g.all[slot] += t.stackCount;
             g.worth[slot] += value;
+            if (!g.worn || !t.def.useHitPoints || t.MaxHitPoints <= 0) return;
+            float health = t.HitPoints / (float)t.MaxHitPoints;
+            bool tainted = t is Apparel a && a.WornByCorpse;
+            for (int i = 0; i < t.stackCount; i++)
+            {
+                if (onMap) g.wearOnMap[slot].Add(health, tainted);
+                else g.wearHeld.Add(health, tainted);
+            }
         }
 
         /// <summary>The article's category under the root: food, manufactured, weapons, apparel...</summary>
@@ -384,9 +409,13 @@ namespace ColonyCouncil
                 UiKit.Pill(right - pw, r.y + (r.height - UiKit.PillHeight) / 2f, pill, UiKit.Good);
                 right -= pw + 6f;
             }
+            // How worn the colony's pieces are, and how many were taken from the dead.
+            var wear = g.worn ? g.WearOnMap(null) : default;
+            right = WearPills(right, r.y + (r.height - UiKit.PillHeight) / 2f, wear, Mathf.Max(0f, right - r.x - 34f - 60f));
             UiKit.LabelFit(new Rect(r.x + 34f, r.y, Mathf.Max(0f, right - r.x - 34f), r.height), g.def.LabelCap, on ? UiKit.Faint : Color.white);
             string tip = (on ? "CC_Stall_GoodTipOn" : "CC_Stall_GoodTip").Translate(g.onMapTotal).Resolve();
             if (g.hasQuality) tip += "\n\n" + Breakdown(g);
+            if (wear.count > 0) tip += "\n\n" + WearTip(wear);
             TooltipHandler.TipRegion(r, tip);
             var e = Event.current;
             if (e.type == EventType.MouseDown && e.button == 1 && Mouse.IsOver(r))
@@ -414,6 +443,40 @@ namespace ColonyCouncil
                 options.Add(new FloatMenuOption((count == have ? "CC_Stall_SellAll" : "CC_Stall_SellN").Translate(count).Resolve(), () => Put(g, count)));
             }
             if (options.Count > 0) Find.WindowStack.Add(new FloatMenu(options));
+        }
+
+        /// <summary>
+        /// The health pill ("health 45-100%", its colour by the most worn piece) and the tainted pill, drawn leftward from
+        /// <paramref name="right"/> within <paramref name="room"/>; returns the new right edge. Nothing for none.
+        /// </summary>
+        private static float WearPills(float right, float y, StallCounterMath.Wear wear, float room, string tip = null)
+        {
+            if (wear.count <= 0) return right;
+            if (wear.tainted > 0)
+            {
+                string taint = wear.tainted == 1 && wear.count == 1 ? "CC_Stall_Tainted".Translate().ToString() : "CC_Stall_TaintedN".Translate(wear.tainted).Resolve();
+                float tw = UiKit.PillWidth(taint);
+                if (tw <= room)
+                {
+                    UiKit.Pill(right - tw, y, taint, UiKit.Bad, null, tip);
+                    right -= tw + 6f;
+                    room -= tw + 6f;
+                }
+            }
+            string health = "CC_Stall_Health".Translate(StallCounterMath.HealthText(wear)).Resolve();
+            float hw = UiKit.PillWidth(health);
+            if (hw > room) return right;
+            int tone = StallCounterMath.HealthTone(wear);
+            UiKit.Pill(right - hw, y, health, tone == 2 ? UiKit.Bad : tone == 1 ? UiKit.Warn : UiKit.Neutral, null, tip);
+            return right - hw - 6f;
+        }
+
+        /// <summary>What the health and the tainted pills mean, in a line or two.</summary>
+        private static string WearTip(StallCounterMath.Wear wear)
+        {
+            string s = "CC_Stall_HealthTip".Translate(StallCounterMath.HealthText(wear)).Resolve();
+            if (wear.tainted > 0) s += "\n\n" + "CC_Stall_TaintedTip".Translate(wear.tainted).Resolve();
+            return s;
         }
 
         private static string Breakdown(Good g)
@@ -501,6 +564,22 @@ namespace ColonyCouncil
             }
             Widgets.InfoCardButton(right - 24f, r.y + 5f, l.def);
             right -= 30f;
+            // How worn the pieces of this line are: those on the counter and those in the colony in its quality range.
+            if (g.worn)
+            {
+                var inColony = g.WearOnMap(l.quality);
+                var wear = g.wearHeld;
+                wear.Add(inColony);
+                if (wear.count > 0)
+                {
+                    var tip = new List<string>();
+                    if (g.wearHeld.count > 0) tip.Add("CC_Stall_HealthHeld".Translate(StallCounterMath.HealthText(g.wearHeld)).Resolve());
+                    if (inColony.count > 0) tip.Add((g.hasQuality ? "CC_Stall_HealthColonyRange" : "CC_Stall_HealthColony").Translate(StallCounterMath.HealthText(inColony)).Resolve());
+                    tip.Add(WearTip(wear));
+                    tip.Add("CC_Stall_HealthPick".Translate());
+                    right = WearPills(right, r.y + 5f + (22f - UiKit.PillHeight) / 2f, wear, Mathf.Max(0f, right - x - 80f), string.Join("\n\n", tip));
+                }
+            }
             UiKit.LabelFit(new Rect(x, r.y + 4f, Mathf.Max(0f, right - x), 24f), l.def.LabelCap, Color.white);
             // What has happened so far, and what it all fetches.
             var parts = new List<string>();

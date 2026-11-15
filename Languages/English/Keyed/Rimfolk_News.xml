@@ -28,5 +28,15 @@
   <CC_Settings_NewsOnlyWhenItMatters>Only on days that matter</CC_Settings_NewsOnlyWhenItMatters>
   <CC_Settings_NewsOnlyWhenItMatters_Tip>The evening's Colony news comes as a letter only when one of the day's lines is important or bad news. On a quiet day (a wish granted, a new friend, someone back at their work) the lines go to the message log in the History tab without a letter.</CC_Settings_NewsOnlyWhenItMatters_Tip>
   <CC_SetNote_NewsOnlyWhenItMatters>On: a Colony news letter only on a day with something important or bad. Off: a letter every evening there is news.</CC_SetNote_NewsOnlyWhenItMatters>
+  <CC_Settings_WorldEventsCorner>World events in the corner</CC_Settings_WorldEventsCorner>
+  <CC_Settings_WorldEventsCorner_Tip>The world events running now, a line each on the right of the screen just above the letters, where the evening's Colony news comes in: what it is and where. Rest the mouse on a line for what it means for the colony and what the colony has done so far. Click it to open the region window where it is, or on its History page. Three lines at most; past that the last says how many more there are. Nothing shows while no world event is running.</CC_Settings_WorldEventsCorner_Tip>
+  <CC_SetNote_WorldEventsCorner>A line for each world event running now, above the letters on the right of the screen.</CC_SetNote_WorldEventsCorner>
+
+  <!-- The world events running now, a line each above the letters (Source/ColonyCouncil/UI/WorldEventsCorner.cs) -->
+  <CC_WorldCorner_LineAt>{LABEL}, at {PLACE}</CC_WorldCorner_LineAt>
+  <CC_WorldCorner_More>and {0} more world events</CC_WorldCorner_More>
+  <CC_WorldCorner_MoreTip>Also running: {0}.</CC_WorldCorner_MoreTip>
+  <CC_WorldCorner_ClickPlace>Click to open the region window where it is.</CC_WorldCorner_ClickPlace>
+  <CC_WorldCorner_ClickHistory>Click to open the region window's History, which lists every world event running now.</CC_WorldCorner_ClickHistory>
 
 </LanguageData>

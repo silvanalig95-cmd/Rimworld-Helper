@@ -244,6 +244,9 @@ namespace ColonyCouncil
                 }
                 else
                 {
+                    // No way in to the spot at all, and they stand as near to it as they can get: their business starts
+                    // there now, rather than after the walk's five hours.
+                    if (t.lord.CurLordToil is LordToil_CarrierTravel && ShutOut(t)) t.lord.ReceiveMemo("TravelArrived");
                     // A day's walk at most from when they set out (a trip that waited for better weather set out late).
                     if (t.setOut < 0) t.setOut = now;
                     if (now - t.setOut > CourierMath.TicksPerDay) End(t, CourierEnd.TimedOut);
@@ -278,6 +281,21 @@ namespace ColonyCouncil
             }
             int limit = t.kind == CourierKind.Await && !t.received ? CourierMath.AwaitTicks : CourierMath.WorkTicks;
             if (CourierMath.WorkOver(now, t.arrived, limit)) End(t, CourierEnd.TimedOut);
+        }
+
+        /// <summary>None of the trip's people can get to the spot by any way at all, and none is still walking (CarrierMath.ShutOut).</summary>
+        private static bool ShutOut(CourierTrip t)
+        {
+            if (!t.spot.IsValid) return false;
+            var people = t.Bearers;
+            int reach = 0, walking = 0;
+            foreach (var p in people)
+            {
+                if (p.pather != null && p.pather.Moving) walking++;
+                else if (p.CanReach(t.spot, PathEndMode.ClosestTouch, Danger.Deadly)) reach++;
+                if (walking > 0 || reach > 0) break;
+            }
+            return CarrierMath.ShutOut(people.Count, reach, walking);
         }
 
         private static bool BusinessDone(CourierTrip t)
@@ -333,7 +351,7 @@ namespace ColonyCouncil
             if (now < t.nextTry || x.CurJobDef == CourierDefOf.Council_CourierDrop || !x.Awake() || t.map.dangerWatcher.DangerRating != StoryDanger.None) return;
             if (!Couriers.AtColony(x) && !(t.spot.IsValid && x.Position.InHorDistOf(t.spot, 25f))) return;
             t.nextTry = now + CourierMath.TicksPerHour;
-            var at = t.spot.IsValid && t.spot.InBounds(t.map) && x.CanReach(t.spot, PathEndMode.OnCell, Danger.Some) ? t.spot : x.Position;
+            var at = t.spot.IsValid && t.spot.InBounds(t.map) && x.CanReach(t.spot, PathEndMode.OnCell, Danger.Deadly) ? t.spot : x.Position;
             var job = JobMaker.MakeJob(CourierDefOf.Council_CourierDrop, at);
             job.locomotionUrgency = Pace.Errand;
             x.jobs.StartJob(job, JobCondition.InterruptForced, null, false, true);
@@ -537,17 +555,24 @@ namespace ColonyCouncil
                 return;
             }
             if (from == null || !t.toUnload.Contains(from)) return;
-            int n = DropAll(t, from, at);
+            var down = t.shutOut && !t.shutTold ? new List<Thing>() : null;
+            int n = DropAll(t, from, at, down);
             t.toUnload.Remove(from);
             t.unloaded += n;
             if (by != null && n > 0) CourierWords.Say(by, t, "deliver");
+            // Set down short of the mailbag for want of a way in: the message says why, once a trip, the porter standing by it.
+            if (down != null && n > 0)
+            {
+                t.shutTold = true;
+                CourierWords.ShutOut(t, by ?? from, down);
+            }
         }
 
         /// <summary>
         /// Everything in someone's pack set down near a cell (theirs, for a courier, is all the trip's); how many things. At
         /// the colony's mailbag, on the cells beside it (a pile of stacks goes round it), never on the bag itself.
         /// </summary>
-        private static int DropAll(CourierTrip t, Pawn p, IntVec3 at)
+        private static int DropAll(CourierTrip t, Pawn p, IntVec3 at, List<Thing> placed = null)
         {
             var inv = p?.inventory?.innerContainer;
             var map = p?.MapHeld ?? t.map;
@@ -563,6 +588,7 @@ namespace ColonyCouncil
                 if (down)
                 {
                     lying?.SetForbidden(false, false);
+                    if (lying != null) placed?.Add(lying);
                     n += count;
                 }
             }

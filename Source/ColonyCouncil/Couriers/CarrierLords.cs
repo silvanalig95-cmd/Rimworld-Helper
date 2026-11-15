@@ -53,7 +53,7 @@ namespace ColonyCouncil
             bool ok = rider.Spawned && !rider.Dead && !rider.Downed && !rider.InMentalState
                       && mount.Spawned && !mount.Dead && !mount.Downed && !mount.InMentalState && mount.Map == rider.Map && mount.Faction == rider.Faction
                       && lord != null && mount.GetLord() == lord && !(mount.roping?.IsRopedByPawn ?? false);
-            bool reach = ok && rider.CanReach(mount, PathEndMode.Touch, Danger.Some);
+            bool reach = ok && rider.CanReach(mount, PathEndMode.Touch, Danger.Deadly);
             float distance = ok ? rider.Position.DistanceTo(mount.Position) : float.MaxValue;
             return CarrierMath.Remount(GiddyUpMounts.On, true, riding, ok, reach, distance, lord?.ticksInToil ?? 0);
         }
@@ -219,6 +219,16 @@ namespace ColonyCouncil
             return CarrierSpots.StandCell(pawn?.Map, spot, i, pawn);
         }
 
+        /// <summary>
+        /// With no way in to the spot at all, where a pawn of a carriers' group stands (and sets down what they carry): the
+        /// <c>i</c>th of the reachable places nearest it (CarrierSpots.Nearest).
+        /// </summary>
+        public static IntVec3 NearestOf(Pawn pawn, IntVec3 spot)
+        {
+            var lord = pawn?.GetLord();
+            return CarrierSpots.Nearest(pawn, spot, lord != null ? Math.Max(0, lord.ownedPawns.IndexOf(pawn)) : 0);
+        }
+
         /// <summary>Straight to their place (an errand's pace); there, a wait facing the spot.</summary>
         public static Job ToPlace(Pawn pawn, int expiry)
         {
@@ -228,11 +238,17 @@ namespace ColonyCouncil
             var place = PlaceOf(pawn, spot);
             if (!place.IsValid) return null;
             if (pawn.Position == place || pawn.Position.AdjacentTo8WayOrInside(place) && pawn.Position.InHorDistOf(spot, 2.9f)) return Wait();
-            if (!pawn.CanReach(place, PathEndMode.OnCell, Danger.Some))
+            // Any way in that exists, however cold or hot (the game's own travel looks for one the same way).
+            if (!pawn.CanReach(place, PathEndMode.OnCell, Danger.Deadly))
             {
-                // Shut out (a door locked meanwhile): they wait where they are, and the group's clock moves them on.
-                if (!pawn.CanReach(spot, PathEndMode.ClosestTouch, Danger.Some)) return Wait();
-                place = spot;
+                if (pawn.CanReach(spot, PathEndMode.ClosestTouch, Danger.Deadly)) place = spot;
+                else
+                {
+                    // No way in at all (a wall with no door, a door they can't open): as near to it as they can get, and
+                    // they wait there; the trip starts their business where they stand (CourierTracker.StepHere).
+                    place = NearestOf(pawn, spot);
+                    if (!place.IsValid || pawn.Position == place) return Wait();
+                }
             }
             var go = JobMaker.MakeJob(JobDefOf.Goto, place);
             go.locomotionUrgency = Pace.Errand;

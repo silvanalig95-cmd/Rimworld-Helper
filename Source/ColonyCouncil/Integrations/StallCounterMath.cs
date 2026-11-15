@@ -6,8 +6,8 @@ namespace ColonyCouncil
     /// <summary>
     /// The arithmetic of Rimfolk's sales table for RimMarket's colony stalls (Integrations/RimMarketStall.cs,
     /// UI/Window_StallCounter.cs): prices kept as RimMarket keeps them (a share of the article's sell value, 50% to 300%
-    /// in steps of 5%), how many of an article can go on the counter, the quick amounts offered for an article, and how
-    /// well a price sells. No game types, so Tools/Tests checks it.
+    /// in steps of 5%), how many of an article can go on the counter, the quick amounts offered for an article, how well a
+    /// price sells, and how worn the weapons and apparel are. No game types, so Tools/Tests checks it.
     /// </summary>
     public static class StallCounterMath
     {
@@ -45,5 +45,67 @@ namespace ColonyCouncil
 
         /// <summary>A line's worth if it all goes: the price each, as shown, times the count.</summary>
         public static int LineWorth(int priceEach, int count) => Math.Max(0, priceEach) * Math.Max(0, count);
+
+        // ---------------- How worn ----------------
+
+        /// <summary>
+        /// How worn the colony's weapons or apparel of one kind are (the player, 15 November 2026: "the market ui should show
+        /// how much health that armor and weapons still have"): how many pieces, the lowest and highest share of their hit
+        /// points left, and how many are tainted (taken from the dead: the game's own "tainted", which sells for a tenth).
+        /// </summary>
+        public struct Wear
+        {
+            public int count, tainted;
+            public float low, high;
+
+            public void Add(float health, bool taint)
+            {
+                float h = health < 0f ? 0f : health > 1f ? 1f : health;
+                if (count == 0) low = high = h;
+                else
+                {
+                    if (h < low) low = h;
+                    if (h > high) high = h;
+                }
+                count++;
+                if (taint) tainted++;
+            }
+
+            public void Add(Wear other)
+            {
+                if (other.count <= 0) return;
+                if (count == 0)
+                {
+                    low = other.low;
+                    high = other.high;
+                }
+                else
+                {
+                    if (other.low < low) low = other.low;
+                    if (other.high > high) high = other.high;
+                }
+                count += other.count;
+                tainted += other.tainted;
+            }
+        }
+
+        /// <summary>A share of hit points as a whole percent: never 100 for a piece that has lost any (99.6% is "99%", as worn), never 0 for one that has some left.</summary>
+        public static int Percent(float health)
+        {
+            if (health >= 1f) return 100;
+            if (health <= 0f) return 0;
+            return Math.Max(1, Math.Min(99, (int)Math.Round(health * 100f)));
+        }
+
+        /// <summary>The health of the pieces: "62%" for one (or several alike), "45-100%" for several; null for none.</summary>
+        public static string HealthText(Wear w)
+        {
+            if (w.count <= 0) return null;
+            int lo = Percent(w.low), hi = Percent(w.high);
+            return lo == hi ? lo + "%" : lo + "-" + hi + "%";
+        }
+
+        /// <summary>How the health reads at a glance, by the most worn piece: 0 fine (80% or more), 1 worn (50%), 2 badly worn.</summary>
+        public static int HealthTone(Wear w) => w.count <= 0 || w.low >= 0.8f ? 0 : w.low >= 0.5f ? 1 : 2;
     }
 }

@@ -201,6 +201,9 @@ public static class CarrierTests
 
     private static void Remounts(Action<bool, string> C)
     {
+        C(CarrierMath.ShutOut(2, 0, 0) && !CarrierMath.ShutOut(2, 1, 0) && !CarrierMath.ShutOut(2, 0, 1) && !CarrierMath.ShutOut(0, 0, 0),
+            "shut out: none of them can get to the spot by any way and none is still walking (nobody there: not shut out)");
+        C(CarrierMath.ShutOutRadius >= 10f && CarrierMath.ShutOutRadius <= 56f, "shut out, they look round the spot for the nearest place they can get to, within the game's radial pattern");
         C(CarrierMath.Remount(false, true, false, true, true, 5f, 0) == RemountStep.None, "without Giddy-Up nobody rides: nothing to do");
         C(CarrierMath.Remount(true, false, false, true, true, 5f, 0) == RemountStep.None, "no mount: nothing to do");
         C(CarrierMath.Remount(true, true, true, true, true, 0f, 0) == RemountStep.None, "already in the saddle: nothing to do");
@@ -390,5 +393,22 @@ public static class CarrierTests
         foreach (var k in new[] { "CC_Courier_Arrive_Await_One", "CC_Courier_Arrive_Await_Many", "CC_Courier_Arrive_AwaitPay_One", "CC_Courier_Arrive_AwaitPay_Many" })
             C(keys.TryGetValue(k, out var t) && t.Contains("walking up to {4}") && !t.Contains("the gate"), $"{k} names where they walk up to");
         C(!keys["CC_Settings_GoodsComeAndGo_Tip"].Contains("They stay a little") && keys["CC_Settings_GoodsComeAndGo_Tip"].Contains("mailbag"), "the setting's tip says the mailbag, and no lingering");
+
+        // Porters reach the mailbag, or say why not (the player, 15 November 2026: "porters placed the material just before
+        // my killbox instead of walking to the mailbag").
+        var carriers = Directory.GetFiles(Path.Combine(src, "Couriers"), "*.cs").ToDictionary(Path.GetFileName, f => Regex.Replace(File.ReadAllText(f), @"//[^\n]*", ""));
+        foreach (var kv in carriers)
+            C(!kv.Value.Contains("Danger.Some"), $"{kv.Key}: every reach takes any way in that exists (Danger.Deadly, as the game's own travel), never one that turns back for the cold");
+        C(jobs.Contains("if (t.spot.IsValid) t.shutOut = true;") && jobs.Contains("CarrierJobs.NearestOf(pawn, t.spot)") && lords.Contains("place = NearestOf(pawn, spot);")
+          && spots.Contains("public static IntVec3 Nearest(Pawn pawn, IntVec3 spot, int index)"),
+            "no way in at all: they set it down as near to the spot as they can get, where they wait");
+        C(tracker.Contains("var down = t.shutOut && !t.shutTold ? new List<Thing>() : null;") && tracker.Contains("CourierWords.ShutOut(t, by ?? from, down);")
+          && words.Contains("\"CC_Courier_ShutOut\".Translate(") && words.Contains("MessageTypeDefOf.CautionInput, Importance.Important"),
+            "and a message says why, once a trip, with the porter and the goods to look at");
+        C(tracker.Contains("t.lord.CurLordToil is LordToil_CarrierTravel && ShutOut(t)") && tracker.Contains("CarrierMath.ShutOut(people.Count, reach, walking)"),
+            "shut out, their business starts where they stand rather than after the walk's five hours");
+        C(trip.Contains("Scribe_Values.Look(ref shutOut, \"shutOut\");") && trip.Contains("Scribe_Values.Look(ref shutTold, \"shutTold\");"), "the trip keeps that it was shut out, and told");
+        C(keys.TryGetValue("CC_Courier_ShutOut", out var shut) && shut.Contains("{0}") && shut.Contains("{2}") && shut.Contains("{3}") && shut.Contains("door"),
+            "the message names who, where they couldn't get to, what they set down, and what would let them in");
     }
 }

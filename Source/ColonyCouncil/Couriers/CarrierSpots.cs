@@ -50,10 +50,31 @@ namespace ColonyCouncil
                 CarrierMath.RingOffset(Math.Max(0, index) + k, out int dx, out int dz);
                 var c = new IntVec3(spot.x + dx, 0, spot.z + dz);
                 if (!Standing(c, map, spot)) continue;
-                if (pawn != null && !pawn.CanReach(c, PathEndMode.OnCell, Danger.Some)) continue;
+                if (pawn != null && !pawn.CanReach(c, PathEndMode.OnCell, Danger.Deadly)) continue;
                 return c;
             }
             return spot;
+        }
+
+        /// <summary>
+        /// Where the <paramref name="index"/>th of a group stands when there is no way in to <paramref name="spot"/> at all (a
+        /// wall with no door in it, a door they can't open): the free cells nearest the spot that they can walk to, within
+        /// <see cref="CarrierMath.ShutOutRadius"/>, one each; else where they stand. Any way in that exists counts, however
+        /// cold or hot (Danger.Deadly, as the game's own travel looks for one).
+        /// </summary>
+        public static IntVec3 Nearest(Pawn pawn, IntVec3 spot, int index)
+        {
+            var map = pawn?.Map;
+            if (map == null || !spot.IsValid || !spot.InBounds(map)) return pawn?.Position ?? IntVec3.Invalid;
+            int skip = Math.Max(0, index), n = GenRadial.NumCellsInRadius(CarrierMath.ShutOutRadius);
+            for (int i = 0; i < n; i++)
+            {
+                var c = spot + GenRadial.RadialPattern[i];
+                if (!Standing(c, map, spot) || !pawn.CanReach(c, PathEndMode.OnCell, Danger.Deadly)) continue;
+                if (skip-- > 0) continue;
+                return c;
+            }
+            return pawn.Position;
         }
 
         /// <summary>

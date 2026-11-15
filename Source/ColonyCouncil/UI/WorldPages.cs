@@ -447,14 +447,24 @@ namespace ColonyCouncil
             foreach (var s in ws.Running.OrderBy(s => s.startTick))
             {
                 var thing = !s.place.IsNone ? ThingRef.From(s.place) : s.ctx?.faction != null ? ThingRefs.Of(s.ctx.faction) : ThingRef.None;
-                var tip = new List<string> { s.Label };
-                string summary = WorldSituationsPanel.Summary(s);
-                if (!summary.NullOrEmpty()) tip.Add(summary);
-                if (s.deeds.Count > 0) tip.Add("CC_WS_ColonyPart".Translate(TextUtil.JoinAnd(s.deeds.Distinct().ToList())).Resolve());
-                if (!s.ctx.placeName.NullOrEmpty()) tip.Add("CC_WHist_EventAt".Translate(s.ctx.placeName.Named("PLACE")).Resolve());
                 string label = s.Label;
-                running.Add(new Running { label = label, tip = string.Join("\n\n", tip), thing = thing, width = UiKit.KeptWidth(label, GameFont.Tiny) + 30f });
+                running.Add(new Running { label = label, tip = RunningTip(s), thing = thing, width = UiKit.KeptWidth(label, GameFont.Tiny) + 30f });
             }
+        }
+
+        /// <summary>
+        /// What a running world event is and how it has gone, as the colony knows it: its name, the line on what it means for
+        /// the colony, what the colony has done so far, and where it is. The strip's chips and the corner above the letters
+        /// (UI/WorldEventsCorner.cs) say the same.
+        /// </summary>
+        public static string RunningTip(WorldSituation s)
+        {
+            var tip = new List<string> { s.Label };
+            string summary = WorldSituationsPanel.Summary(s);
+            if (!summary.NullOrEmpty()) tip.Add(summary);
+            if (s.deeds.Count > 0) tip.Add("CC_WS_ColonyPart".Translate(TextUtil.JoinAnd(s.deeds.Distinct().ToList())).Resolve());
+            if (!s.ctx.placeName.NullOrEmpty()) tip.Add("CC_WHist_EventAt".Translate(s.ctx.placeName.Named("PLACE")).Resolve());
+            return string.Join("\n\n", tip);
         }
 
         /// <summary>The world's events running now, as chips along the top: a click leads to where each is (or to its people). Returns the height used.</summary>

@@ -127,28 +127,10 @@ tree at once, alongside whatever runs. Each piece is merged as its own release, 
   camp at the end of its patience leaves, it doesn't attack; a decree enacted again within a month is resented more).
   Still to pick, when the player asks: the gods and faith, the letters, wishes and ambitions, personal stories,
   council questions, the peoples, camps and visitors, the region map, council and decrees, the Almanac, What's new.
-- **To do when the player asks (15 November 2026): porters reach the mailbag, or say why not.** The player, with a
-  screenshot of goods left just outside their killbox: "porters placed the material just before my killbox instead of
-  walking to the mailbag. is this because of the traps? i'll build a door in the wall now". Found: not the traps (the
-  game's visitors know the colony's traps and step round or over them; reach ignores them). `CourierTracker` sets the
-  load down where the porter stands once at the colony when `CanReach(spot, OnCell, Danger.Some)` fails: no open way
-  in (no door in the wall, a locked one), or a way through cold that is deadly for an underdressed porter (the region's
-  danger). When asked: they take any way in that exists (`Danger.Deadly` for the walk, the 0.232.1 dressing keeping them
-  warm), and if there truly is none, the drop says why in a message ("no way in past the wall"), with the porter
-  standing by the goods.
-- **To do when the player asks (15 November 2026): the market stall shows how worn armour and weapons are.** The
-  player, with the stall's sales table open (Window_StallCounter: the colony's goods on the left, the counter's cards on
-  the right): "the market ui should show how much health that armor and weapons still have". Proposed: on the left, each
-  weapon and piece of apparel shows its condition ("worn 62%", or a range "45-100%" for several); the same on its card on
-  the counter; pieces taken from the dead marked, since buyers think less of them. To find out first: whether a
-  RimMarket line can be held to pieces above a condition ("only above 50%"), since RimMarket picks which piece the
-  haulers bring. No mod needed.
-- **To do when the player asks (15 November 2026): world events running now, easy to see.** The player asked "do i
-  still see current world events somewhere?"; they show in the region window (the History page's strip of chips along
-  the top, marks on the region map, each people's card and the Peoples page), and asked whether they should be easier
-  to reach, for example in the "Colony news" corner on the right of the screen (`CC_News_Label`): "yes, please add to
-  todo". Proposed: a line per running world event in the Colony news corner (its name and where, as the colony heard of
-  it), hover for what it is and how it has gone, click to open the region window on it; none shown while none runs.
+- **Done (15 November 2026, the player's go: "alright, i'd like the storytellers and fixes/small improvements"; built,
+  not released): porters reach the mailbag, or say why not; the market stall shows how worn armour and weapons are;
+  world events running now, easy to see.** The three entries, with the player's words, are now one entry above the
+  newest release line ("Three fixes: porters reach the mailbag, the stall's health, world events above the letters").
 - **To do when the player asks (15 November 2026): a new god of drugs, drink and revelry.** The player: "Here's an
   idea for a new god to be added to the to-do list. So it's kind of a god of, it should be kind of a god of drugs, the
   god of excess partying, and so to say, of pleasures. So, you know, smoke leaf, alcohol, loving, all that kind of
@@ -237,6 +219,72 @@ tree at once, alongside whatever runs. Each piece is merged as its own release, 
   inside the base. The Almanac's animals page then says which Giddy-Up settings decide this.
 - **Dropped (14 November 2026): sending visitors away.** The player: "so asking visitors to leave is not necessary, as i
   found the already imlpemented function".
+- 0.254.0, **Three fixes: porters reach the
+  mailbag, the stall's health, world events above the letters** (15 November 2026; the player's words: "alright, i'd
+  like the storytellers and fixes/small improvements", for the three entries gathered that day). DESIGN.md has each:
+  "Porters reach the mailbag, or say why not" (after "Straight to the mailbag"), "The stall shows how worn weapons and
+  apparel are" (before "Guests keep out of bedrooms") and "World events running now, above the letters" (end of Layer 6);
+  README (the couriers' paragraph, RimMarket under the optional mods, the World events section); the Almanac's couriers
+  page ("Doors and stockpiles"), RimMarket page (the sales table) and world events page (prose only, keywords unchanged).
+  - **Porters reach the mailbag, or say why not.** The player, with a screenshot of goods left just outside their
+    killbox: "porters placed the material just before my killbox instead of walking to the mailbag. is this because of
+    the traps? i'll build a door in the wall now". Not the traps (the game's visitors know them and step round; reach
+    ignores them). Every reach in `Couriers/` asked for a way that keeps out of what the game counts as deadly for the
+    pawn (`Danger.Some`), while the game's own travel takes any way (`Danger.Deadly`); and with no way in at all they
+    waited where they were stopped and after five hours set the load down there without a word. Now: every reach there
+    takes any way in (`CarrierJobs.ToPlace`, `CarrierSpots.StandCell`, `CarrierMounts.Step`, `JobGiver_CourierWork`'s
+    drop, pack animal, fetch and stores, `CourierTracker.StepBearer`); with none at all, each walks to the free cell
+    nearest the spot they can reach (within 30, one each: `CarrierSpots.Nearest`, `CarrierJobs.NearestOf`), their
+    business starts once none can reach it and none is walking (`CarrierMath.ShutOut`, the travel toil's "TravelArrived"
+    from `CourierTracker.StepHere`), they set the goods down where they stand, and the first drop sends an important
+    message with the porter and the goods to look at (`CourierWords.ShutOut`, `CC_Courier_ShutOut`: "The porters from X
+    found no way in to the mailbag, so they set down 40 steel as near to it as they could get. A door or an opening in
+    the wall would let them through."), once a trip (`CourierTrip.shutOut`, `shutTold`, saved as two bools). A plain
+    delivery told that way sends no done message after; an exchange's says "as near to the colony as they could get".
+    Left as they were: `Post/`'s reaches for who takes the letters from the bag, and a trip that can't come at all
+    (settled the old way). Dev mode: "Couriers: porters bring 50 silver now" (`Couriers/CourierDebug.cs`). Tests:
+    `CarrierTests` (the rule, no `Danger.Some` left in `Couriers/`, the seams, the message's words).
+  - **The stall shows how worn armour and weapons are.** The player, with the sales table open: "the market ui should
+    show how much health that armor and weapons still have". On the left, each weapon and apparel row has "health 62%"
+    or "health 45-100%" (grey from 80%, amber from 50%, red below) and a red "tainted" / "2 tainted" pill for apparel
+    taken from the dead (`Apparel.WornByCorpse`), the tooltip saying what they mean; on a line's card the same pills for
+    the pieces on the counter and in the colony in its quality range, told apart in the tooltip. Pure: `StallCounterMath.Wear`,
+    `Percent`, `HealthText`, `HealthTone` (`StallCounterTests`); counted in `Window_StallCounter.Count` (`Good.wearOnMap`
+    by quality slot, `Good.wearHeld`). **RimMarket can't hold a line to pieces above a condition**, so it isn't offered:
+    read in RimMarket 1.0.13's own code (decompiled from the player's 1.7 build in the lead's scratchpad), its sale line
+    `StallOrder` keeps `def`, `toSell`, `priceFactor`, `sold`, `quality`, `refill` and `reserve`, and
+    `StallOrder.Allows(Thing)` checks quality only; stocking (`Building_MarketStall.Accepts`, the haulers'
+    `WorkGiver_StockColonyStall`, which takes the nearest piece the line accepts) and trimming (`TrimStock`) both ask it.
+    The card's tooltip says the haulers bring the nearest pieces in the range, worn or not. If the player wants the
+    floor, Rimfolk could add its own with a postfix on `StallOrder.Allows` and a value per line kept by Rimfolk (a small
+    saved map from stall and article to the floor) and a choice on the card; not built.
+  - **World events running now, easy to see.** The player: "do i still see current world events somewhere?", then "yes,
+    please add to todo" to a line each in the corner on the right of the screen. There was no Colony news widget in that
+    corner (`CC_News_Label` is the evening letter's label, which arrives in the letter stack there), so the lines go just
+    above the letters, in the alerts' column and as wide as it (`UI/WorldEventsCorner.cs`, `Patch_WorldEventsCorner`, a
+    postfix on `LetterStack.LettersOnGUI`; the letters' top, the private `lastTopYInt` read by name and present in 1.6 and
+    1.7, raised past the lines so the game's alerts and Rimfolk's alerts panel move up). Each: the world-event icon, its
+    name and where ("Plague in the region, at Kettleford"); hover gives the History chips' words (`WorldHistoryPage.RunningTip`,
+    now shared); a click opens the region window on the region map with the place picked (`Cards.ShowOnMap`), or on its
+    History page when it has no place. Past three, two lines and "and N more world events" (`WorldEventsCornerMath`,
+    `PagesTests`). Nothing while none runs, with world events off, or with the new setting "World events in the corner"
+    (`worldEventsCorner`, How you're told under the Colony news, on, needs world events). No world event's def or worker
+    names a god, so none is named.
+  - Can't be checked without the game: the porters' walk round to the nearest cell outside a closed wall, the trip
+    starting there, and how the message reads with real names; the pills' fit on a narrow window and their colours;
+    the corner's place between the letters and the alerts (and with Rimfolk's alerts panel), its tooltip, and the click
+    landing on the place on the region map.
+  - Try in the game: 1. By day, dev mode "Couriers: porters bring 50 silver now"; once they are walking in, close the
+    last way to the mailbag with god mode (a wall across the gap, no door): they walk as near to the bag as they can
+    get, set the silver down at their feet, and the message says there was no way in; open a door in the wall and do it
+    again: they walk to the bag. (A mailbag with no way in from the map's edge at all, before they set out, is settled
+    the old way, as before: the silver where traders leave goods and "came by another road".) 2. In deep cold with an
+    open way: they walk in to the bag. 3. Open a colony stall's table with worn
+    and tainted armour and weapons in the colony: the rows show health and tainted; put one on the counter, its card
+    shows both, hover for the counter's and the colony's. 4. Dev mode "Start world event..." two or three times: a line
+    each above the letters; hover, click (the region map on the place, or History); with four running, two lines and
+    "and 2 more world events"; Settings, How you're told, "World events in the corner" off: gone.
+  - Mods that would help: none needed for these three (the stall already uses RimMarket, in the player's list).
 - 0.253.0, **Six more ways to play, and Rise and
   Fall a year each way** (15 November 2026; the player's words: "alright, i'd like the storytellers and fixes/small
   improvements"; before it "I would like to have some more additional storytellers ... I like to kind of change the
