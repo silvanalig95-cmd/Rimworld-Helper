@@ -172,34 +172,6 @@ tree at once, alongside whatever runs. Each piece is merged as its own release, 
   original has no 1.6 release, an unofficial 1.6 port exists), Fantasy Races and Factions (satyrs; updated for 1.6 in
   January 2026).
   The player's pick of name: "Revel sounds great": Revel, the Open Cup.
-- **To do when the player asks (15 November 2026): guests busy most of the day, with more to do.** The player: "guests
-  still just wait around most of the time it feels. they could read books, take walks, interact with my pets, write
-  letters, train, fish, work on and use items themselves etc." What 0.239.0 does now (`Visitors/IdleHoursMath.cs`):
-  where a visitor's duty would have them wander, a look now and then fills the time (a 75% chance by day and 30% at
-  night; Hospitality's guests only 45% of that, so about a third of the time by day, and only for what Hospitality's
-  recreation has nothing for, close to where they stand); each doing lasts a quarter to about one and a half hours
-  (`Stint`), and after one ends or nothing is found they wait 150 to 1000 ticks (`NextLook`). So a lot of their day is
-  still standing between doings, Hospitality's guests most of all. Proposed when asked: their waiting hours mostly
-  filled (a look at once when a doing ends, the chances raised to most of the day, Hospitality's guests near the
-  others), measured with the "idle hours of everyone here" log on a save; and new doings, none of them using up the
-  colony's things or working for it: reading (a book of their own, by their age: a tablet, a scroll, a book; or one of
-  the colony's books where it lies, put back), a walk (round the colony's paths, to a view, a garden, a grave), the
-  colony's pets (petting, playing fetch, a word to a dog or a cat; never taming or training them), a letter or a
-  journal written at a table, training (the colony's targets and training dummies from the mod pool, shadow sparring,
-  archery practice), fishing (Odyssey's fishing where there's water, the catch their own), their own gear (mending,
-  sharpening, oiling a bow, tending their pack animal), games of their own (cards, dice), and their own instruments.
-  In the player's active mods for these: Misc. Training (`haplo.miscellaneous.training`: `ArcheryTarget`,
-  `MartialArtsTarget`) for training, and Odyssey's fishing; no other mod needed.
-  The player, then: "ok looks like they already read books sometimes, but they generally just chill around the same
-  room (my eating room)". Why: for Hospitality's guests Rimfolk fills only warming up, shelter, prayer and animals
-  (`IdleHoursMath.ForHospitality`) and leaves the rest to Hospitality's own recreation, which keeps each guest in their
-  guest area (`guestArea_int`, set in Hospitality's guest tab) and draws them to the gathering spot, here the dining
-  room; and Rimfolk's own reach for them is "nearly where they stand". So when built: Hospitality's guests get Rimfolk's
-  doings too (walks, the fire, games, the garden, pets, books, training, fishing), within their guest area when one is
-  set, spread over the colony's rooms and grounds rather than the one room, and a word in the Almanac's visitors page
-  that the guest area in Hospitality's tab decides where they may go.
-  The player: "and yes, your suggestions all sound great": approved as proposed; it starts when one of the three
-  builds running now (the storytellers, the three fixes, the faction descriptions) is done.
 - **To do when the player asks (15 November 2026): colonists ride out to far work, and ride back.** The player, with
   their save `League_of_Toba` (15 November, afternoon): "pawns should really use mounts whenever they walk away out of
   the base range. sometimes they do, but sometimes they don't, i don't uinderstand. for example now avila did not mount
@@ -219,6 +191,66 @@ tree at once, alongside whatever runs. Each piece is merged as its own release, 
   inside the base. The Almanac's animals page then says which Giddy-Up settings decide this.
 - **Dropped (14 November 2026): sending visitors away.** The player: "so asking visitors to leave is not necessary, as i
   found the already imlpemented function".
+- 0.255.0, **Guests busy most of the day,
+  over the colony** (15 November 2026; the player's words: "guests still just wait around most of the time it feels.
+  they could read books, take walks, interact with my pets, write letters, train, fish, work on and use items themselves
+  etc.", then "ok looks like they already read books sometimes, but they generally just chill around the same room (my
+  eating room)", and to the proposal "and yes, your suggestions all sound great"). The second round of 0.239.0's idle
+  hours; DESIGN.md "Visitors' idle hours, round two: busy most of the day, over the colony" (after the first round's
+  section, whose changed bullets point to it), README (a paragraph after "Visitors do what their letters say"), the
+  Almanac's visitors page ("Their idle hours", prose only, keywords unchanged) and the setting's tooltip.
+  - **Why they waited**: a look only now and then (75% by day, Hospitality's guests 45% of that), 150 to 1,000 ticks of
+    wandering after every stint, and Hospitality's guests filled only with warming, shelter, prayer and animals within six
+    cells, while Hospitality's own `Relax` duty has them stand about being sociable a third of the time and wander the
+    colony once its recreation is done (its `JobGiver_Relax` gives jobs only below 90% recreation), drawn to the dining
+    room. Read from Hospitality's own source (`1.6/Defs/DutyDefs/Duties_Visit.xml`, `JobGiver_Relax.cs`,
+    `Patches/Reachability_Patch.cs`, `CompGuest.cs`).
+  - **Built**: nine looks in ten by day and six at night (Hospitality's guests nine tenths of that), the next look the
+    moment a stint ends (a stint over within 250 ticks waits 300 to 700), longer stints where they fit, a quieter night
+    (the fire, a seat, the stars, a little talk, sleep). Hospitality's guests get every doing but the night's sleep, after
+    Hospitality's own recreation (only its wander and its standing about are filled), within their guest area (its
+    `CompGuest.guestArea_int`, by name), reaching 50 cells over the colony. Every place is ranked by `PlaceScore` (near,
+    another room than the one they're in, away from the others, a little chance), so they spread over the rooms and
+    grounds. New doings, each its own job, words and look: a book of their own or the colony's (carried open, put back
+    where it lay, no outcomes), a walk round the paths to a garden, a grave or a view, the colony's pets petted or a stick
+    thrown for a dog (the game's own `Goto`, nothing trained), a letter or a journal at a table, training at Misc.
+    Training's and Medieval 2's targets and dummies or shadow sparring, archery with their own bow (Misc. Training's
+    arrow), fishing (Odyssey's line, the catch into their pack, the colony's stock untouched), mending worn clothes (a
+    tenth of the hit points back), a blade sharpened, a bow oiled or a gun cleaned, cards, dice or stones with one of
+    their own, a song, and a night's sleep on the ground for the game's visitors and caravans. The log ("Visitors: idle
+    hours of everyone here") gives a line for the map (up and about, at something, standing about, the share of idle
+    time filled this session) and each visitor's share, what they're at and what's about for the new doings.
+  - **Code map**: `Visitors/IdleHoursMath.cs` (the new doings, `IdleFacts`' new facts, `ForHospitality`, `FillChance`,
+    `Reach`, `PlaceScore`, `Stint`, `NextLook`, `NextLookAfter`, `FilledShare`, `Forms`, `Moment`, the gear and pet rules,
+    `SparTargets`, `ArcheryTargets`), `Visitors/IdleHours.cs` (`Places`' books, bookcases, tables, targets, graves,
+    gardens, paths, views and fishing places from `Grounds`; `GuestArea`; `Others`, `Score`, `Spread`; `Gear`, `Books`,
+    `Pets`, `WalkEnds`; `ReadJob`, `WalkJob`, `SleepCell`, `OpenGround`, `TableSeat`, `TargetCell`; `Asked` and the
+    tallies; `Report`), `Visitors/IdleHoursJobs.cs` (`JobDriver_VisitIdle`'s `ReadToils`, `PutBookAway`, `WalkToils`,
+    `Fetch`, `Blows`, `ShootArrow`, `ForcedBodyOffset`, `Catch`, `Mended`; `JobDriver_VisitNap` for the night's sleep;
+    `Patch_VisitorsIdle` taking Hospitality's standing about too), `Defs/Misc/Rimfolk_VisitorIdle.xml` (twelve new jobs),
+    `Defs/FlavorPoolDefs/Rimfolk_Pool_VisitorIdle.xml` (the new moments), `Languages/English/Keyed/Rimfolk_VisitorIdle.xml`
+    (the reports), `Tools/Tests/IdleHoursTests.cs` (573 checks). Nothing new is saved.
+  - **Can't be checked without the game**: how the arrow from Misc. Training's mote flies (its rotation and speed are set
+    as its own archery would, unseen); a dog's fetch (two `Goto` jobs on the colony's animal, the second queued); the book
+    drawn open while carried (`Book.IsOpen`, as the game's reading) and put back into the bookcase; Hospitality's guest area
+    read by name; the shadow sparring's lunge (`ForcedBodyOffset`); Odyssey's fishing line at a water cell; how much of
+    their day is really filled (the log's share) and whether Hospitality's guests now spread out on the player's map; the
+    cost with many guests (each look gathers the map's visitors once for the spread).
+  - **Try in the game**: with visitors or Hospitality's guests on the map, Dev mode, Debug actions, Rimfolk, "Visitors:
+    idle hours of everyone here (log)": the first line should show most of those up and about at something of their own,
+    and the share filled rising over an hour or two. Watch Hospitality's guests: after a stint in the dining room they go
+    elsewhere; set a guest area in Hospitality's tab and they keep inside it. Leave a book on a shelf or in a bookcase
+    near them: one reads it on a seat and it goes back where it was. An idle dog in the yard: a visitor pets it or throws a
+    stick and the dog runs after it and comes back. With Misc. Training's martial arts target and archery target built, a
+    visitor strikes the target and one with a bow shoots arrows at it; send a colonist to the target and the visitor gets
+    up. Water with fish near their spot: one fishes from the bank and a fish turns up in their gear. A visitor in worn
+    clothes mends them (the piece's hit points go up a little). At night the game's visitors lie down outside near their
+    spot when tired. "Visitors: fill this visitor's idle hour now" starts one at once.
+  - **Mods that would help** (already in their list: Misc. Training, Vanilla Factions Expanded - Medieval 2's targets,
+    Vanilla Books Expanded's books, Vanilla Fishing Expanded, Odyssey): Misc. Training Medieval Retexture
+    (https://steamcommunity.com/sharedfiles/filedetails/?id=3271602770; in their list, not active; tagged 1.4 to 1.6, not
+    1.7) gives the training and archery targets a medieval look. No mod in their list adds an instrument a person
+    carries, and I know of none confirmed for 1.6 or 1.7, so a visitor's own music is a song for now.
 - 0.254.0, **Three fixes: porters reach the
   mailbag, the stall's health, world events above the letters** (15 November 2026; the player's words: "alright, i'd
   like the storytellers and fixes/small improvements", for the three entries gathered that day). DESIGN.md has each:

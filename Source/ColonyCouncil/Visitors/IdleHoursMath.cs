@@ -41,7 +41,31 @@ namespace ColonyCouncil
         /// <summary>A pipe of their own leaf.</summary>
         Pipe,
         /// <summary>Whittling a bit of wood of their own.</summary>
-        Carve
+        Carve,
+        /// <summary>A book: one of their own from their pack, or one of the colony's where it lies, put back where it was after.</summary>
+        Read,
+        /// <summary>A walk round the colony's paths, ending at a garden, a grave or a view.</summary>
+        Walk,
+        /// <summary>One of the colony's pets petted, or a dog played fetch with; never tamed or trained.</summary>
+        Pet,
+        /// <summary>A letter, or their journal, written at one of the colony's tables.</summary>
+        Write,
+        /// <summary>Training at one of the colony's training targets or dummies, or shadow sparring in the open.</summary>
+        Train,
+        /// <summary>Archery practice with their own bow at the colony's archery target.</summary>
+        Archery,
+        /// <summary>Fishing at the water's edge, the catch their own.</summary>
+        Fish,
+        /// <summary>Mending a worn piece of their own clothes.</summary>
+        Mend,
+        /// <summary>Seeing to their own weapon: a blade sharpened, a bow oiled and restrung, a gun cleaned.</summary>
+        Sharpen,
+        /// <summary>A game of their own with one of their own: cards, dice, or a game of stones.</summary>
+        Cards,
+        /// <summary>A song of their own, sung quietly to themselves.</summary>
+        Sing,
+        /// <summary>A night's sleep on the ground near their spot, when tired.</summary>
+        Sleep
     }
 
     /// <summary>The kind of group a visitor is with, for their idle hours.</summary>
@@ -116,6 +140,24 @@ namespace ColonyCouncil
         public bool canTalk = true, canHandle = true, canSee = true;
         // What is about, by distance only: the way there is checked once one is picked.
         public bool fire, seat, roof, shade, game, music, stars, art, shrine, animal, companion, colonist;
+        /// <summary>One of the colony's books where it lies (or in its bookcase), and one of their own in their pack.</summary>
+        public bool book, ownBook;
+        /// <summary>Somewhere to walk to: a garden, a grave, a view, the colony's paths.</summary>
+        public bool walk;
+        /// <summary>One of the colony's pets, calm and idle.</summary>
+        public bool pet;
+        /// <summary>One of the colony's tables with a free seat at it, to write at.</summary>
+        public bool table;
+        /// <summary>One of the colony's training targets or dummies, free; open ground to spar on in fair weather.</summary>
+        public bool trainTarget, openGround;
+        /// <summary>The colony's archery target, free, and a bow of their own in hand.</summary>
+        public bool archeryTarget, bow;
+        /// <summary>Water with fish in it at the edge of their reach, off the colony's own fishing spots; their faith allows fishing.</summary>
+        public bool water, fishingAllowed = true;
+        /// <summary>A worn piece of their own clothes to mend.</summary>
+        public bool worn;
+        /// <summary>Their own weapon, by what seeing to it is (<see cref="IdleHoursMath.WeaponKind"/>): 0 none, 1 a blade, 2 a bow, 3 a gun.</summary>
+        public int weaponKind;
     }
 
     /// <summary>
@@ -306,10 +348,76 @@ namespace ColonyCouncil
             return OwnDrugKind.None;
         }
 
+
+        // ---------------- Their own things ----------------
+
+        /// <summary>
+        /// What seeing to their own weapon is (<see cref="IdleFacts.weaponKind"/>): a blade sharpened (1), a bow oiled and
+        /// restrung (2), a gun cleaned (3); a club or a fist has nothing to see to (0).
+        /// </summary>
+        public static int WeaponKind(bool has, bool melee, bool sharp, bool arrows)
+        {
+            if (!has) return 0;
+            if (melee) return sharp ? 1 : 0;
+            return arrows ? 2 : 3;
+        }
+
+        /// <summary>A bow or a crossbow: it shoots arrows or bolts of the old kind, or is called a bow.</summary>
+        public static bool IsBow(string weaponDef, string projectileDef)
+        {
+            if (!string.IsNullOrEmpty(projectileDef) && projectileDef.IndexOf("Arrow", StringComparison.OrdinalIgnoreCase) >= 0) return true;
+            return !string.IsNullOrEmpty(weaponDef) && weaponDef.IndexOf("Bow", StringComparison.OrdinalIgnoreCase) >= 0
+                                                    && weaponDef.IndexOf("Elbow", StringComparison.OrdinalIgnoreCase) < 0;
+        }
+
+        /// <summary>A piece of clothing worn enough to mend: below four fifths of its hit points.</summary>
+        public static bool Worn(int hitPoints, int maxHitPoints) => maxHitPoints > 0 && hitPoints < maxHitPoints * 0.8f;
+
+        /// <summary>What a stint of mending gives back: a tenth of the piece's hit points, at least one, never past its full.</summary>
+        public static int MendBy(int hitPoints, int maxHitPoints) => Math.Max(0, Math.Min(maxHitPoints - hitPoints, Math.Max(1, (int)Math.Round(maxHitPoints * 0.1f))));
+
+        /// <summary>
+        /// The colony's training things in the player's mods (docs/player-mods, active): a target or a dummy to strike (Misc.
+        /// Training's martial arts target, Vanilla Factions Expanded - Medieval 2's training dummy), and a target to shoot
+        /// arrows at (Misc. Training's archery target, the same Medieval 2's). By name, so a missing mod costs nothing.
+        /// </summary>
+        public static readonly string[] SparTargets = { "MartialArtsTarget", "VFEM2_TrainingDummy" };
+
+        public static readonly string[] ArcheryTargets = { "ArcheryTarget", "VFEM2_ArcheryTarget" };
+
+        public static bool IsSparTarget(string defName) => Array.IndexOf(SparTargets, defName) >= 0;
+
+        public static bool IsArcheryTarget(string defName) => Array.IndexOf(ArcheryTargets, defName) >= 0;
+
+        /// <summary>
+        /// One of the colony's animals a visitor may pet: a small one (a dog, a cat, a guinea pig; not a horse or a yak), a pet
+        /// by the game's own measure (its petness) or one that nuzzles. Tame, it doesn't turn on them, predator or not.
+        /// </summary>
+        public static bool IsPet(float petness, float nuzzleMtbHours, float bodySize) =>
+            bodySize <= 1.3f && (petness >= 0.3f || nuzzleMtbHours > 0f);
+
+        private static readonly string[] FetchWords =
+            { "Dog", "Husky", "Retriever", "Labrador", "Shepherd", "Hound", "Collie", "Terrier", "Corgi", "Poodle", "Mastiff", "Spaniel", "Alaunt", "Wolf" };
+
+        /// <summary>A dog (or a tame wolf), by its kind's name: one that runs after a thrown stick.</summary>
+        public static bool PlaysFetch(string defName)
+        {
+            if (string.IsNullOrEmpty(defName)) return false;
+            foreach (var w in FetchWords)
+                if (defName.IndexOf(w, StringComparison.OrdinalIgnoreCase) >= 0) return true;
+            return false;
+        }
+
+        /// <summary>A book they don't read idly: one that can break the reader's mind (a dark tome).</summary>
+        public static bool BookOk(bool readable, float mentalBreakChancePerHour) => readable && mentalBreakChancePerHour <= 0f;
+
         // ---------------- Who may do what ----------------
 
-        /// <summary>Hospitality's guests have its own recreation for the rest: only these are filled for them.</summary>
-        public static bool ForHospitality(IdleDoing d) => d == IdleDoing.Warm || d == IdleDoing.Shelter || d == IdleDoing.Pray || d == IdleDoing.Animal;
+        /// <summary>
+        /// Hospitality's guests get Rimfolk's doings too, alongside its own recreation (which comes first: Rimfolk fills only
+        /// the moments Hospitality would have them stand or wander). Their nights are Hospitality's, in its guest beds.
+        /// </summary>
+        public static bool ForHospitality(IdleDoing d) => d != IdleDoing.None && d != IdleDoing.Sleep;
 
         /// <summary>Why this doing isn't for them at all, whatever is about, or null: their group, their role, a child or a titled one.</summary>
         public static string NotFor(IdleDoing d, IdleFacts f)
@@ -352,6 +460,51 @@ namespace ColonyCouncil
                     if (!grown) return "a child";
                     if (f.titled) return "a titled one";
                     return f.canHandle ? null : "can't handle a knife";
+                case IdleDoing.Read:
+                    if (!grown) return "a child";
+                    if (f.role == IdleRole.Guard) return "on watch";
+                    return f.canSee ? null : "can't see";
+                case IdleDoing.Walk:
+                    if (!grown) return "a child (they run about instead)";
+                    return f.role != IdleRole.Plain ? "on duty" : null;
+                case IdleDoing.Pet:
+                    if (f.role == IdleRole.Guard) return "on watch";
+                    return f.canHandle ? null : "can't use their hands";
+                case IdleDoing.Write:
+                    if (!grown) return "a child";
+                    if (f.age <= 0) return "not their people's way (a tribal people keeps no letters)";
+                    if (f.role == IdleRole.Guard) return "on watch";
+                    return f.canHandle && f.canSee ? null : "can't write";
+                case IdleDoing.Train:
+                case IdleDoing.Archery:
+                    if (!grown) return "a child";
+                    if (f.role != IdleRole.Plain) return "on duty";
+                    if (!f.canHandle) return "can't use their hands";
+                    return d == IdleDoing.Archery && !f.canSee ? "can't see" : null;
+                case IdleDoing.Fish:
+                    if (!grown) return "a child";
+                    if (f.role != IdleRole.Plain) return "on duty";
+                    if (!f.fishingAllowed) return "their faith forbids fishing";
+                    return f.canHandle ? null : "can't use their hands";
+                case IdleDoing.Mend:
+                    if (!grown) return "a child";
+                    if (f.titled) return "a titled one";
+                    return f.canHandle ? null : "can't use their hands";
+                case IdleDoing.Sharpen:
+                    if (!grown) return "a child";
+                    return f.canHandle ? null : "can't use their hands";
+                case IdleDoing.Cards:
+                    if (!grown) return "a child";
+                    if (f.role == IdleRole.Guard) return "on watch";
+                    return f.canHandle ? null : "can't use their hands";
+                case IdleDoing.Sing:
+                    if (f.role == IdleRole.Guard) return "on watch";
+                    return f.canTalk ? null : "can't sing";
+                case IdleDoing.Sleep:
+                    // The game's visitors and a caravan's people sleep on the ground; Rimfolk's visits, envoys and Hospitality's
+                    // guests have beds or a bedtime of their own.
+                    if (f.group != IdleGroup.GameVisit && f.group != IdleGroup.Caravan) return "their own beds or bedtime";
+                    return f.role != IdleRole.Plain ? "on duty (the trader stays up for the trade, a guard on watch)" : null;
                 default:
                     return null;
             }
@@ -374,6 +527,7 @@ namespace ColonyCouncil
         {
             int h = f.hour;
             bool night = Night(h);
+            bool fair = !f.rain && !Cold(f.temperature) && f.temperature <= 35f;
             float x;
             switch (d)
             {
@@ -444,39 +598,100 @@ namespace ColonyCouncil
                     if (night) return 0f;
                     x = f.age <= 1 ? 0.8f : f.age == 2 ? 0.3f : 0.1f;
                     break;
+                case IdleDoing.Read:
+                    // A tribal people reads only what they carry themselves; the colony's books are for the lettered ages.
+                    if (!(f.ownBook || f.book && f.age >= 1) || night || h < 6) return 0f;
+                    x = 0.9f;
+                    if (f.ownBook) x *= 1.3f;
+                    if (Evening(h)) x *= 1.2f;
+                    break;
+                case IdleDoing.Walk:
+                    if (!f.walk || !Day(h) || h >= 20 || !fair) return 0f;
+                    x = 0.7f;
+                    if (h < 10 || h >= 17) x *= 1.4f;
+                    break;
+                case IdleDoing.Pet:
+                    if (!f.pet || night || h < 6) return 0f;
+                    x = f.child ? 1.6f : 0.7f;
+                    break;
+                case IdleDoing.Write:
+                    if (!f.table || night || h < 7) return 0f;
+                    x = 0.5f;
+                    if (Evening(h)) x *= 1.4f;
+                    break;
+                case IdleDoing.Train:
+                    if (!Day(h) || h >= 19) return 0f;
+                    if (f.trainTarget) x = 0.8f;
+                    else if (f.openGround && fair) x = 0.2f;
+                    else return 0f;
+                    break;
+                case IdleDoing.Archery:
+                    if (!f.bow || !f.archeryTarget || !Day(h) || h >= 19 || f.rain) return 0f;
+                    x = 1.4f;
+                    break;
+                case IdleDoing.Fish:
+                    if (!f.water || h < 5 || h >= 21) return 0f;
+                    x = 0.8f;
+                    if (h < 9) x *= 1.4f;
+                    break;
+                case IdleDoing.Mend:
+                    if (!f.worn || night) return 0f;
+                    x = 0.6f;
+                    if (Evening(h)) x *= 1.3f;
+                    break;
+                case IdleDoing.Sharpen:
+                    if (f.weaponKind == 0 || night) return 0f;
+                    x = 0.35f;
+                    if (Evening(h)) x *= 1.3f;
+                    break;
+                case IdleDoing.Cards:
+                    if (!f.companion || night || h < 9) return 0f;
+                    x = 0.7f;
+                    if (Evening(h)) x *= 1.8f;
+                    break;
+                case IdleDoing.Sing:
+                    if (night || h < 9) return 0f;
+                    x = Evening(h) ? 0.4f : 0.12f;
+                    break;
+                case IdleDoing.Sleep:
+                    // The night is for sleep: a tired visitor lies down near their spot rather than standing about till they drop.
+                    return (night || h >= 22) && f.rest < SleepsBelow ? 3f : 0f;
                 default:
                     return 0f;
             }
             return x * CallingFactor(d, f.calling);
         }
 
-        /// <summary>What a people's calling draws them to: herders and hunters their animals, pilgrims and seers their prayers, scholars the stars and the art.</summary>
+        /// <summary>What a people's calling draws them to: herders and hunters their animals, pilgrims and seers their prayers, scholars the stars, the art and books.</summary>
         public static float CallingFactor(IdleDoing d, string calling)
         {
             switch (calling)
             {
                 case "herders":
                 case "tamers":
+                    return d == IdleDoing.Animal ? 2f : d == IdleDoing.Pet ? 1.5f : 1f;
                 case "hunters":
-                    return d == IdleDoing.Animal ? 2f : 1f;
+                    return d == IdleDoing.Animal || d == IdleDoing.Archery ? 2f : d == IdleDoing.Train || d == IdleDoing.Sharpen ? 1.5f : d == IdleDoing.Fish ? 1.3f : 1f;
                 case "pilgrims":
                 case "seers":
                 case "sextons":
                 case "listeners":
                 case "grovekeepers":
-                    return d == IdleDoing.Pray ? 2f : d == IdleDoing.Music ? 1.3f : 1f;
+                    return d == IdleDoing.Pray || d == IdleDoing.Sing ? 2f : d == IdleDoing.Music || d == IdleDoing.Walk ? 1.3f : 1f;
                 case "scholars":
                 case "editors":
-                    return d == IdleDoing.Stars || d == IdleDoing.Art ? 2f : d == IdleDoing.Game ? 1.3f : 1f;
+                    return d == IdleDoing.Stars || d == IdleDoing.Art || d == IdleDoing.Read || d == IdleDoing.Write ? 2f : d == IdleDoing.Game ? 1.3f : 1f;
                 case "artisans":
-                    return d == IdleDoing.Art ? 2f : d == IdleDoing.Carve ? 1.5f : 1f;
+                    return d == IdleDoing.Art ? 2f : d == IdleDoing.Carve || d == IdleDoing.Mend ? 1.5f : 1f;
                 case "traders":
                 case "brokers":
-                    return d == IdleDoing.Game || d == IdleDoing.Company ? 1.5f : 1f;
+                    return d == IdleDoing.Game || d == IdleDoing.Company || d == IdleDoing.Cards ? 1.5f : d == IdleDoing.Write ? 1.3f : 1f;
                 case "mercenaries":
-                    return d == IdleDoing.Game || d == IdleDoing.OwnDrug ? 1.5f : 1f;
+                    return d == IdleDoing.Game || d == IdleDoing.OwnDrug || d == IdleDoing.Cards ? 1.5f : d == IdleDoing.Train || d == IdleDoing.Sharpen ? 2f : 1f;
                 case "healers":
-                    return d == IdleDoing.Company ? 1.3f : 1f;
+                    return d == IdleDoing.Company ? 1.3f : d == IdleDoing.Read ? 1.3f : 1f;
+                case "fishers":
+                    return d == IdleDoing.Fish ? 3f : d == IdleDoing.Mend ? 1.3f : 1f;
                 default:
                     return 1f;
             }
@@ -502,60 +717,109 @@ namespace ColonyCouncil
         }
 
         /// <summary>
-        /// How often an idle wander becomes something of their own: most of the day, less at night (the tired sleep anyway),
-        /// less for Hospitality's guests, whose own recreation fills the rest.
+        /// How often an idle moment becomes something of their own: nine in ten by day, six in ten at night (quieter things
+        /// then: the fire, a seat, sleep); Hospitality's guests nearly as often, its own recreation having come first.
         /// </summary>
         public static float FillChance(IdleGroup g, int hour)
         {
             if (g == IdleGroup.None) return 0f;
-            float x = Night(hour) ? 0.3f : 0.75f;
-            return g == IdleGroup.Hospitality ? x * 0.45f : x;
+            float x = Night(hour) ? 0.6f : 0.9f;
+            return g == IdleGroup.Hospitality ? x * 0.9f : x;
         }
 
-        /// <summary>How far from their spot they walk for it: the game's visitors about as far as they wander, Rimfolk's visits keep close, Hospitality's guests nearly where they stand.</summary>
+        /// <summary>
+        /// How far from their spot they go for it: the game's visitors about as far as they wander, Rimfolk's visits keep
+        /// close, envoys about the colony, and Hospitality's guests over the colony's rooms and grounds (their guest area,
+        /// when one is set, decides where).
+        /// </summary>
         public static float Reach(IdleGroup g, IdleRole r)
         {
             if (r == IdleRole.Trader) return 9f;
             switch (g)
             {
-                case IdleGroup.GameVisit: return 20f;
+                case IdleGroup.GameVisit: return 24f;
                 case IdleGroup.Caravan: return 16f;
                 case IdleGroup.RimfolkVisit: return 14f;
-                case IdleGroup.Envoys: return 24f;
-                case IdleGroup.Hospitality: return 6f;
+                case IdleGroup.Envoys: return 30f;
+                case IdleGroup.Hospitality: return HospitalityReach;
                 default: return 0f;
             }
         }
 
-        /// <summary>How long one stint lasts, in ticks (an hour is 2500).</summary>
+        /// <summary>How far over the colony a guest of Hospitality's goes from where they stand.</summary>
+        public const float HospitalityReach = 50f;
+
+        /// <summary>
+        /// How good a place is for them, lower better: near rather than far (by their reach), somewhere other than the room
+        /// they are in (Hospitality's guests most: so they don't all sit in the one room), away from others of the visitors
+        /// already there, and a little chance, so not everyone picks the same one.
+        /// </summary>
+        public static float PlaceScore(float distance, float reach, bool sameRoom, int othersNear, bool hospitality, float roll)
+        {
+            float s = Math.Max(0f, distance) / Math.Max(1f, reach);
+            if (sameRoom) s += hospitality ? 0.8f : 0.25f;
+            s += 0.3f * Math.Max(0, othersNear);
+            return s + 0.4f * Math.Max(0f, Math.Min(1f, roll));
+        }
+
+        /// <summary>How long one stint lasts, in ticks (an hour is 2500); a night's sleep lasts till they are rested.</summary>
         public static (int min, int max) Stint(IdleDoing d)
         {
             switch (d)
             {
-                case IdleDoing.Chat: return (600, 1200);
-                case IdleDoing.Company: return (500, 900);
-                case IdleDoing.Fire: return (1500, 2500);
-                case IdleDoing.Warm: return (600, 1200);
-                case IdleDoing.Seat: return (1200, 2400);
-                case IdleDoing.Shelter: return (1500, 3000);
+                case IdleDoing.Chat: return (800, 1600);
+                case IdleDoing.Company: return (600, 1200);
+                case IdleDoing.Fire: return (1800, 3200);
+                case IdleDoing.Warm: return (700, 1400);
+                case IdleDoing.Seat: return (1500, 3000);
+                case IdleDoing.Shelter: return (2000, 3500);
                 case IdleDoing.Snack: return (400, 700);
                 case IdleDoing.Nap: return (1500, 3500);
-                case IdleDoing.Game: return (1500, 3000);
-                case IdleDoing.Music: return (1200, 2400);
-                case IdleDoing.Stars: return (1200, 2400);
-                case IdleDoing.Art: return (400, 900);
-                case IdleDoing.Pray: return (600, 1200);
-                case IdleDoing.Animal: return (600, 1200);
-                case IdleDoing.Play: return (900, 1800);
+                case IdleDoing.Game: return (1800, 3400);
+                case IdleDoing.Music: return (1500, 2800);
+                case IdleDoing.Stars: return (1500, 3000);
+                case IdleDoing.Art: return (500, 1100);
+                case IdleDoing.Pray: return (700, 1400);
+                case IdleDoing.Animal: return (700, 1400);
+                case IdleDoing.Play: return (1200, 2400);
                 case IdleDoing.OwnDrug: return (600, 900);
-                case IdleDoing.Pipe: return (900, 1500);
-                case IdleDoing.Carve: return (1200, 2400);
+                case IdleDoing.Pipe: return (1000, 1800);
+                case IdleDoing.Carve: return (1500, 3000);
+                case IdleDoing.Read: return (2000, 3500);
+                case IdleDoing.Walk: return (1500, 3000);
+                case IdleDoing.Pet: return (500, 1100);
+                case IdleDoing.Write: return (1500, 3000);
+                case IdleDoing.Train: return (1200, 2400);
+                case IdleDoing.Archery: return (1500, 3000);
+                case IdleDoing.Fish: return (2000, 3500);
+                case IdleDoing.Mend: return (1200, 2400);
+                case IdleDoing.Sharpen: return (900, 1800);
+                case IdleDoing.Cards: return (1500, 3000);
+                case IdleDoing.Sing: return (600, 1200);
+                case IdleDoing.Sleep: return (GenDateTicksPerHour * 4, GenDateTicksPerHour * 8);
                 default: return (600, 1200);
             }
         }
 
-        /// <summary>Ticks to the next look: soon after a stint (a little wandering between), longer when nothing came of it.</summary>
-        public static (int min, int max) NextLook(bool found) => found ? (150, 400) : (500, 1000);
+        private const int GenDateTicksPerHour = 2500;
+
+        /// <summary>
+        /// Ticks to the next look: at once after a stint (the moment it ends, so they go straight on to something else),
+        /// longer when nothing came of a look or the chance said no.
+        /// </summary>
+        public static (int min, int max) NextLook(bool found) => found ? (0, 0) : (300, 700);
+
+        /// <summary>A stint that ended almost as it began (the place was taken, the way blocked): the next look waits, so nobody starts and stops over and over.</summary>
+        public const int ShortStint = 250;
+
+        /// <summary>The wait to the next look once a stint of <paramref name="ran"/> ticks is over.</summary>
+        public static (int min, int max) NextLookAfter(int ran) => NextLook(ran >= ShortStint);
+
+        /// <summary>The longest stretch of standing or wandering counted as one idle moment, for the log's share of time filled.</summary>
+        public const int IdleMomentCap = 1000;
+
+        /// <summary>The share of their idle time filled with something of their own, from the ticks at stints and the ticks left standing about.</summary>
+        public static float FilledShare(int stintTicks, int idleTicks) => stintTicks + idleTicks <= 0 ? 0f : (float)Math.Max(0, stintTicks) / (Math.Max(0, stintTicks) + Math.Max(0, idleTicks));
 
         /// <summary>Hours a visitor leaves a joy thing alone after giving way to someone of the colony.</summary>
         public const int GiveWayHours = 4;
@@ -563,14 +827,53 @@ namespace ColonyCouncil
         /// <summary>How near (in cells) someone of the colony must stay for a visitor to keep them company.</summary>
         public const float CompanyNear = 4f;
 
+        // ---------------- The forms a doing takes ----------------
+
+        /// <summary>How many forms a doing has (its job's count): a book their own or the colony's, a walk's end, petting or fetch, a letter or a journal, a target or shadow sparring, a blade, a bow or a gun, cards, dice or stones.</summary>
+        public static int Forms(IdleDoing d)
+        {
+            switch (d)
+            {
+                case IdleDoing.Read:
+                case IdleDoing.Pet:
+                case IdleDoing.Write:
+                case IdleDoing.Train:
+                    return 2;
+                case IdleDoing.Sharpen:
+                case IdleDoing.Cards:
+                    return 3;
+                case IdleDoing.Walk:
+                    return 4;
+                default:
+                    return 1;
+            }
+        }
+
+        /// <summary>The forms of a read: the colony's book where it lies, or one of their own.</summary>
+        public const int ReadColony = 0, ReadOwn = 1;
+
+        /// <summary>The ends of a walk: round the paths, to a garden, to a grave, to a view.</summary>
+        public const int WalkPaths = 0, WalkGarden = 1, WalkGrave = 2, WalkView = 3;
+
+        /// <summary>The forms of a game of their own by their people's age: a tribal people's game of stones, dice among the medieval most, cards.</summary>
+        public static int CardsForm(int age, float roll)
+        {
+            if (age <= 0) return 2;
+            if (age == 1) return roll < 0.5f ? 1 : 0;
+            return roll < 0.2f ? 1 : 0;
+        }
+
+        /// <summary>Seeing to their weapon, by its kind: a blade sharpened (0), a bow oiled and restrung (1), a gun cleaned (2).</summary>
+        public static int SharpenForm(int weaponKind) => weaponKind == 2 ? 1 : weaponKind == 3 ? 2 : 0;
+
         // ---------------- What's said ----------------
 
         /// <summary>
         /// The moment a line is picked for (Rimfolk_Pool_VisitorIdle), or null when nothing is said. <paramref name="drink"/>:
         /// their own is a drink, not a smoke; <paramref name="watch"/>: the colony's thing is watched or listened to (a screen,
-        /// a radio), not played.
+        /// a radio), not played; <paramref name="form"/>: which form of the doing (<see cref="Forms"/>).
         /// </summary>
-        public static string Moment(IdleDoing d, bool drink, bool watch = false)
+        public static string Moment(IdleDoing d, bool drink, bool watch = false, int form = 0)
         {
             switch (d)
             {
@@ -590,12 +893,38 @@ namespace ColonyCouncil
                 case IdleDoing.OwnDrug: return drink ? "drink" : "smoke";
                 case IdleDoing.Pipe: return "pipe";
                 case IdleDoing.Carve: return "carve";
+                case IdleDoing.Read: return form == ReadOwn ? "readown" : "read";
+                case IdleDoing.Walk: return form == WalkGarden ? "garden" : form == WalkGrave ? "grave" : form == WalkView ? "view" : "walk";
+                case IdleDoing.Pet: return form == 1 ? "fetch" : "pet";
+                case IdleDoing.Write: return form == 1 ? "journal" : "letter";
+                case IdleDoing.Train: return form == 1 ? "spar" : "train";
+                case IdleDoing.Archery: return "archery";
+                case IdleDoing.Fish: return "fish";
+                case IdleDoing.Mend: return "mend";
+                case IdleDoing.Sharpen: return form == 1 ? "bow" : form == 2 ? "gun" : "sharpen";
+                case IdleDoing.Cards: return form == 1 ? "dice" : form == 2 ? "stones" : "cards";
+                case IdleDoing.Sing: return "sing";
                 default: return null;
             }
         }
 
-        /// <summary>The chance of a line as a stint begins (a greeting to someone of the colony more often).</summary>
-        public static float LineChance(IdleDoing d) => d == IdleDoing.Company ? 0.5f : d == IdleDoing.Chat || d == IdleDoing.Nap ? 0f : 0.2f;
+        /// <summary>The chance of a line as a stint begins (a greeting to someone of the colony more often, a word to a pet, nothing asleep).</summary>
+        public static float LineChance(IdleDoing d)
+        {
+            switch (d)
+            {
+                case IdleDoing.Company: return 0.5f;
+                case IdleDoing.Pet: return 0.4f;
+                case IdleDoing.Chat:
+                case IdleDoing.Nap:
+                case IdleDoing.Sleep:
+                    return 0f;
+                default: return 0.2f;
+            }
+        }
+
+        /// <summary>The chance of a word when a fishing stint ends with a catch.</summary>
+        public const float CatchLineChance = 0.4f;
 
         /// <summary>The chance of a word on giving a joy thing up to someone of the colony.</summary>
         public const float GiveWayLineChance = 0.5f;

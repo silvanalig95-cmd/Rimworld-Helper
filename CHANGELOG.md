@@ -5,6 +5,16 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## Guests busy all day, all over the colony
+
+*15 November 2026, version 0.255.0*
+
+- Visitors are busy most of the day: when one thing ends they go straight on to the next, and at night they sit by the fire or sleep.
+- Hospitality's guests do everything other visitors do, after Hospitality's own recreation, and spread out over the colony within their guest area instead of sitting in the dining room.
+- Visitors read a book of their own or one of yours and put it back, take walks to a garden, a grave or a view, and write letters at your tables.
+- They pet your dogs and cats or throw a stick for a dog, train at your training targets or spar with their shadow, and shoot their own bows at your archery target.
+- They fish from the bank and keep the catch, mend their clothes, see to their weapons, play cards or dice among themselves, and sing.
+
 ## Porters at the mailbag, worn gear at the stall, world events at a glance
 
 *15 November 2026, version 0.254.0*

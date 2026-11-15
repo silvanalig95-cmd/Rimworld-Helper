@@ -1,5 +1,7 @@
 using System;
 using System.IO;
+using System.Collections.Generic;
+using System.IO.Compression;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Xml.Linq;
@@ -9,12 +11,32 @@ using ColonyCouncil;
 /// Visitors' idle hours (Source/ColonyCouncil/Visitors/IdleHoursMath.cs, IdleHours.cs, IdleHoursJobs.cs): what fits whom by
 /// their people's age, the hour, the weather, their calling and who they are; the colony's joy things by the game's joy
 /// givers, free of the colony's people and of the visitor's age, the player's mod pool's games in and its baths and
-/// shooting ranges out; Hospitality's guests filled only where its recreation has nothing; the stints, the reach, the
-/// next look and the words; and the code's seams: the hook after the market's, nothing reserved and giving way, the
-/// trader's pack, the leftovers, the jobs, the pool and the setting.
+/// shooting ranges out; Hospitality's guests filled as the others, after its own recreation and within their guest area;
+/// the spread over the colony; the new doings (a book, a walk, the pets, a letter, training, archery, fishing, mending, a
+/// weapon seen to, cards, a song, a night's sleep) and the quieter night; the stints, the reach, the next look at once and
+/// the words; and the code's seams: the hook after the market's, nothing reserved and giving way, the trader's pack, the
+/// leftovers, the book put back, the catch their own, the pets never trained, the jobs, the pool and the setting.
 /// </summary>
 public static class IdleHoursTests
 {
+    private static HashSet<string> pool;
+
+    /// <summary>Every def name of the player's enabled mods (docs/player-mods/defs.tsv.gz, the active rows).</summary>
+    private static HashSet<string> Pool(string root)
+    {
+        if (pool != null) return pool;
+        pool = new HashSet<string>();
+        using var gz = new GZipStream(File.OpenRead(Path.Combine(root, "docs", "player-mods", "defs.tsv.gz")), CompressionMode.Decompress);
+        using var r = new StreamReader(gz);
+        string line;
+        while ((line = r.ReadLine()) != null)
+        {
+            var t = line.Split('\t');
+            if (t.Length >= 4 && t[3] == "yes") pool.Add(t[1]);
+        }
+        return pool;
+    }
+
     public static int Run(string root, Action<bool, string> check)
     {
         int n = 0;
@@ -113,10 +135,11 @@ public static class IdleHoursTests
 
         // ---------- Who may do what ----------
         foreach (var d in IdleHoursMath.All)
-            C(IdleHoursMath.ForHospitality(d) == (d == IdleDoing.Warm || d == IdleDoing.Shelter || d == IdleDoing.Pray || d == IdleDoing.Animal),
-                $"{d}: for Hospitality's guests only where its recreation has nothing");
-        C(IdleHoursMath.NotFor(IdleDoing.Game, F(f => f.group = IdleGroup.Hospitality)) != null && IdleHoursMath.NotFor(IdleDoing.Warm, F(f => f.group = IdleGroup.Hospitality)) == null,
-            "Hospitality's guest plays by Hospitality's rules, warms their hands by Rimfolk's");
+            C(IdleHoursMath.ForHospitality(d) == (d != IdleDoing.None && d != IdleDoing.Sleep),
+                $"{d}: Hospitality's guests get Rimfolk's doings too, alongside its own recreation, their nights in its beds");
+        C(IdleHoursMath.NotFor(IdleDoing.Game, F(f => f.group = IdleGroup.Hospitality)) == null && IdleHoursMath.NotFor(IdleDoing.Warm, F(f => f.group = IdleGroup.Hospitality)) == null
+          && IdleHoursMath.NotFor(IdleDoing.Sleep, F(f => f.group = IdleGroup.Hospitality)) != null,
+            "Hospitality's guest plays the colony's games and warms their hands by Rimfolk's rules, and sleeps in Hospitality's beds");
         C(IdleHoursMath.NotFor(IdleDoing.Game, F(f => f.child = true)) != null && IdleHoursMath.NotFor(IdleDoing.Play, F(f => f.child = true)) == null
           && IdleHoursMath.NotFor(IdleDoing.Play, F()) != null, "children play, the grown play the colony's games");
         C(IdleHoursMath.NotFor(IdleDoing.Game, F(f => f.role = IdleRole.Guard)) != null && IdleHoursMath.NotFor(IdleDoing.Nap, F(f => f.role = IdleRole.Guard)) != null
@@ -135,7 +158,8 @@ public static class IdleHoursTests
 
         // ---------- What fits, by what is about, the hour and the weather ----------
         var bare = IdleHoursMath.Weights(F());
-        C(IdleHoursMath.All.Where(d => bare[(int)d] > 0f).All(d => d == IdleDoing.Pipe || d == IdleDoing.Carve), "with nothing about, only what they carry themselves: a pipe, a bit of whittling");
+        C(IdleHoursMath.All.Where(d => bare[(int)d] > 0f).All(d => d == IdleDoing.Pipe || d == IdleDoing.Carve || d == IdleDoing.Sing),
+            "with nothing about, only what they have themselves: a pipe, a bit of whittling, a song");
         C(W(IdleDoing.Shelter, F(f => { f.rain = true; f.underSky = true; f.roof = true; })) == 4f && W(IdleDoing.Shelter, F(f => { f.underSky = true; f.roof = true; })) == 0f
           && W(IdleDoing.Shelter, F(f => { f.rain = true; f.underSky = false; f.roof = true; })) == 0f, "out of the rain when it rains on them, and only then");
         var wet = IdleHoursMath.Weights(F(f => { f.rain = true; f.underSky = true; f.roof = true; f.fire = true; f.seat = true; f.game = true; }));
@@ -178,8 +202,9 @@ public static class IdleHoursTests
         {
             f.group = IdleGroup.Hospitality; f.fire = true; f.temperature = -5f; f.seat = true; f.game = true; f.art = true; f.companion = true; f.colonist = true; f.animal = true;
         }));
-        C(IdleHoursMath.All.Where(d => hosp[(int)d] > 0f).All(IdleHoursMath.ForHospitality) && hosp[(int)IdleDoing.Warm] > 0f && hosp[(int)IdleDoing.Animal] > 0f,
-            "Hospitality's guest: only the fire in the cold and their animals here, the rest is Hospitality's");
+        C(IdleHoursMath.All.Where(d => hosp[(int)d] > 0f).All(IdleHoursMath.ForHospitality) && hosp[(int)IdleDoing.Warm] > 0f && hosp[(int)IdleDoing.Animal] > 0f
+          && hosp[(int)IdleDoing.Game] > 0f && hosp[(int)IdleDoing.Seat] > 0f && hosp[(int)IdleDoing.Chat] > 0f && hosp[(int)IdleDoing.Company] > 0f,
+            "Hospitality's guest: the fire in the cold, their animals, the colony's games, a seat, a talk, as the others");
 
         // ---------- The pick ----------
         C(IdleHoursMath.Pick(new float[IdleHoursMath.All.Length], 0.5f) == IdleDoing.None, "nothing fits: nothing picked");
@@ -199,17 +224,111 @@ public static class IdleHoursTests
         // ---------- How often, how far, how long ----------
         C(IdleHoursMath.FillChance(IdleGroup.None, 12) == 0f && IdleHoursMath.FillChance(IdleGroup.GameVisit, 12) > IdleHoursMath.FillChance(IdleGroup.GameVisit, 2)
           && IdleHoursMath.FillChance(IdleGroup.Hospitality, 12) < IdleHoursMath.FillChance(IdleGroup.GameVisit, 12), "filled most of the day, less at night and for Hospitality's guests");
+        C(IdleHoursMath.FillChance(IdleGroup.GameVisit, 12) >= 0.85f && IdleHoursMath.FillChance(IdleGroup.GameVisit, 2) >= 0.5f
+          && IdleHoursMath.FillChance(IdleGroup.Hospitality, 12) >= 0.8f, "most of their waiting time filled: nine looks in ten by day, Hospitality's guests near the others, more than half at night");
         C(IdleHoursMath.Reach(IdleGroup.Caravan, IdleRole.Trader) < IdleHoursMath.Reach(IdleGroup.Caravan, IdleRole.Plain)
           && IdleHoursMath.Reach(IdleGroup.RimfolkVisit, IdleRole.Plain) < IdleHoursMath.Reach(IdleGroup.GameVisit, IdleRole.Plain)
           && IdleHoursMath.Reach(IdleGroup.GameVisit, IdleRole.Plain) < IdleHoursMath.Reach(IdleGroup.Envoys, IdleRole.Plain)
-          && IdleHoursMath.Reach(IdleGroup.Hospitality, IdleRole.Plain) <= 6f && IdleHoursMath.Reach(IdleGroup.None, IdleRole.Plain) == 0f,
-            "the trader near the trade, Rimfolk's visits close to their spot, envoys about the colony, Hospitality's guests nearly where they stand");
-        foreach (var d in IdleHoursMath.All)
+          && IdleHoursMath.Reach(IdleGroup.Hospitality, IdleRole.Plain) >= 40f && IdleHoursMath.Reach(IdleGroup.Hospitality, IdleRole.Plain) > IdleHoursMath.Reach(IdleGroup.Envoys, IdleRole.Plain)
+          && IdleHoursMath.Reach(IdleGroup.None, IdleRole.Plain) == 0f,
+            "the trader near the trade, Rimfolk's visits close to their spot, envoys about the colony, Hospitality's guests over the colony's rooms and grounds");
+        foreach (var d in IdleHoursMath.All.Where(d => d != IdleDoing.Sleep))
         {
             var (lo, hi) = IdleHoursMath.Stint(d);
             C(lo >= 120 && lo < hi && hi <= 3600, $"{d}: a stint of {lo} to {hi} ticks, an hour and a half at most");
         }
+        C(IdleHoursMath.Stint(IdleDoing.Sleep).min >= 4 * 2500 && IdleHoursMath.Stint(IdleDoing.Sleep).max <= 10 * 2500, "a night's sleep lasts hours (till they're rested, the game's own waking)");
+        C(IdleHoursMath.Stint(IdleDoing.Fire).max >= 3000 && IdleHoursMath.Stint(IdleDoing.Read).max >= 3000 && IdleHoursMath.Stint(IdleDoing.Fish).max >= 3000,
+            "longer stints where it fits: an evening at the fire, a book, fishing");
         C(IdleHoursMath.NextLook(true).max < IdleHoursMath.NextLook(false).min + 500 && IdleHoursMath.NextLook(true).min < IdleHoursMath.NextLook(false).min, "a short wander between stints, a longer one when nothing came of a look");
+        C(IdleHoursMath.NextLook(true) == (0, 0), "a look at once when a doing ends");
+        C(IdleHoursMath.NextLookAfter(IdleHoursMath.ShortStint - 1) == IdleHoursMath.NextLook(false) && IdleHoursMath.NextLookAfter(1500) == IdleHoursMath.NextLook(true),
+            "a stint that ended as it began waits for the next look, so nobody starts and stops over and over");
+        C(Math.Abs(IdleHoursMath.FilledShare(3000, 1000) - 0.75f) < 0.001f && IdleHoursMath.FilledShare(0, 0) == 0f && IdleHoursMath.FilledShare(0, 500) == 0f,
+            "the log's share of idle time filled");
+
+        // ---------- Spread over the colony ----------
+        C(IdleHoursMath.PlaceScore(10f, 50f, false, 0, true, 0.5f) < IdleHoursMath.PlaceScore(10f, 50f, true, 0, true, 0.5f),
+            "a Hospitality guest goes to another room rather than staying in the one they're in");
+        C(IdleHoursMath.PlaceScore(30f, 50f, false, 0, true, 0.5f) < IdleHoursMath.PlaceScore(3f, 50f, true, 2, true, 0.5f),
+            "the far side of the colony beats the crowded dining room");
+        C(IdleHoursMath.PlaceScore(5f, 20f, false, 0, false, 0.5f) < IdleHoursMath.PlaceScore(15f, 20f, false, 0, false, 0.5f), "otherwise nearer first");
+        C(IdleHoursMath.PlaceScore(5f, 20f, false, 0, false, 0.5f) < IdleHoursMath.PlaceScore(5f, 20f, false, 2, false, 0.5f), "and away from the others");
+        C(IdleHoursMath.PlaceScore(5f, 20f, true, 0, true, 0f) - IdleHoursMath.PlaceScore(5f, 20f, true, 0, false, 0f) > 0.4f, "Hospitality's guests leave their room most");
+
+        // ---------- The new doings ----------
+        C(W(IdleDoing.Read, F(f => { f.book = true; f.age = 1; })) > 0f && W(IdleDoing.Read, F(f => { f.book = true; f.age = 0; })) == 0f
+          && W(IdleDoing.Read, F(f => { f.ownBook = true; f.age = 0; })) > 0f, "the colony's books for the lettered ages, their own book for anyone who carries one");
+        C(W(IdleDoing.Read, F(f => { f.book = true; f.child = true; })) == 0f && W(IdleDoing.Read, F(f => { f.book = true; f.hour = 2; })) == 0f
+          && W(IdleDoing.Read, F(f => { f.book = true; f.calling = "scholars"; })) > W(IdleDoing.Read, F(f => f.book = true)), "not the children, not at night, scholars most");
+        C(W(IdleDoing.Walk, F(f => f.walk = true)) > 0f && W(IdleDoing.Walk, F(f => { f.walk = true; f.rain = true; })) == 0f && W(IdleDoing.Walk, F(f => { f.walk = true; f.temperature = -5f; })) == 0f
+          && W(IdleDoing.Walk, F(f => { f.walk = true; f.role = IdleRole.Trader; })) == 0f && W(IdleDoing.Walk, F(f => { f.walk = true; f.hour = 22; })) == 0f,
+            "a walk by day in fair weather, never for the one minding the trade");
+        C(W(IdleDoing.Walk, F(f => { f.walk = true; f.hour = 8; })) > W(IdleDoing.Walk, F(f => f.walk = true)), "a morning or an evening walk most");
+        C(W(IdleDoing.Pet, F(f => f.pet = true)) > 0f && W(IdleDoing.Pet, F(f => { f.pet = true; f.child = true; })) > W(IdleDoing.Pet, F(f => f.pet = true))
+          && W(IdleDoing.Pet, F(f => { f.pet = true; f.hour = 2; })) == 0f && W(IdleDoing.Pet, F(f => { f.pet = true; f.canHandle = false; })) == 0f,
+            "the colony's pets petted by day, the children most");
+        C(W(IdleDoing.Write, F(f => { f.table = true; f.age = 1; })) > 0f && W(IdleDoing.Write, F(f => { f.table = true; f.age = 0; })) == 0f && W(IdleDoing.Write, F(f => f.age = 1)) == 0f,
+            "a letter at a table from the lettered ages on");
+        C(W(IdleDoing.Train, F(f => f.trainTarget = true)) > W(IdleDoing.Train, F(f => f.openGround = true)) && W(IdleDoing.Train, F(f => f.openGround = true)) > 0f
+          && W(IdleDoing.Train, F(f => { f.openGround = true; f.rain = true; })) == 0f && W(IdleDoing.Train, F()) == 0f,
+            "training at the colony's target, or shadow sparring on open ground in fair weather");
+        C(W(IdleDoing.Train, F(f => { f.trainTarget = true; f.calling = "mercenaries"; })) > W(IdleDoing.Train, F(f => f.trainTarget = true))
+          && W(IdleDoing.Train, F(f => { f.trainTarget = true; f.child = true; })) == 0f && W(IdleDoing.Train, F(f => { f.trainTarget = true; f.role = IdleRole.Guard; })) == 0f,
+            "the mercenaries train most; not the children, not a guard on watch");
+        C(W(IdleDoing.Archery, F(f => { f.bow = true; f.archeryTarget = true; })) > 0f && W(IdleDoing.Archery, F(f => f.archeryTarget = true)) == 0f
+          && W(IdleDoing.Archery, F(f => f.bow = true)) == 0f && W(IdleDoing.Archery, F(f => { f.bow = true; f.archeryTarget = true; f.rain = true; })) == 0f
+          && W(IdleDoing.Archery, F(f => { f.bow = true; f.archeryTarget = true; f.calling = "hunters"; })) > W(IdleDoing.Archery, F(f => { f.bow = true; f.archeryTarget = true; })),
+            "archery with their own bow at the colony's target, the hunters most");
+        C(W(IdleDoing.Fish, F(f => f.water = true)) > 0f && W(IdleDoing.Fish, F(f => { f.water = true; f.calling = "fishers"; })) == 3f * W(IdleDoing.Fish, F(f => f.water = true))
+          && W(IdleDoing.Fish, F(f => { f.water = true; f.fishingAllowed = false; })) == 0f && W(IdleDoing.Fish, F(f => { f.water = true; f.hour = 23; })) == 0f,
+            "fishing where there's water, the river folk most, never against their faith or after dark");
+        C(W(IdleDoing.Mend, F(f => f.worn = true)) > 0f && W(IdleDoing.Mend, F()) == 0f && W(IdleDoing.Mend, F(f => { f.worn = true; f.titled = true; })) == 0f,
+            "a worn piece of their own clothes mended, not by a titled one");
+        C(W(IdleDoing.Sharpen, F(f => f.weaponKind = 1)) > 0f && W(IdleDoing.Sharpen, F()) == 0f && W(IdleDoing.Sharpen, F(f => { f.weaponKind = 1; f.role = IdleRole.Guard; })) > 0f,
+            "their own weapon seen to, a guard's too");
+        C(W(IdleDoing.Cards, F(f => f.companion = true)) > 0f && W(IdleDoing.Cards, F(f => { f.companion = true; f.hour = 19; })) > W(IdleDoing.Cards, F(f => f.companion = true))
+          && W(IdleDoing.Cards, F()) == 0f && W(IdleDoing.Cards, F(f => { f.companion = true; f.child = true; })) == 0f && W(IdleDoing.Cards, F(f => { f.companion = true; f.role = IdleRole.Guard; })) == 0f,
+            "a game of their own with one of their own, of an evening most");
+        C(W(IdleDoing.Sing, F(f => f.hour = 19)) > W(IdleDoing.Sing, F()) && W(IdleDoing.Sing, F(f => f.hour = 2)) == 0f && W(IdleDoing.Sing, F(f => f.canTalk = false)) == 0f,
+            "a song of their own of an evening, never when people sleep");
+        var tired = F(f => { f.hour = 23; f.rest = 0.6f; });
+        C(W(IdleDoing.Sleep, tired) > 0f && W(IdleDoing.Sleep, F(f => { f.hour = 14; f.rest = 0.6f; })) == 0f && W(IdleDoing.Sleep, F(f => f.hour = 23)) == 0f,
+            "a tired visitor sleeps at night, not by day, not when rested");
+        foreach (var g in new[] { IdleGroup.Hospitality, IdleGroup.RimfolkVisit, IdleGroup.Envoys })
+            C(IdleHoursMath.NotFor(IdleDoing.Sleep, F(f => { f.group = g; f.hour = 23; f.rest = 0.6f; })) != null, $"{g}: their own beds or bedtime, not the ground");
+        C(IdleHoursMath.NotFor(IdleDoing.Sleep, F(f => f.group = IdleGroup.Caravan)) == null, "a caravan's people sleep on the ground");
+        var night = IdleHoursMath.Weights(F(f =>
+        {
+            f.hour = 2; f.rest = 0.6f; f.fire = true; f.seat = true; f.companion = true; f.colonist = true; f.game = true; f.book = true; f.age = 2; f.walk = true; f.pet = true;
+            f.table = true; f.trainTarget = true; f.water = true; f.worn = true; f.weaponKind = 1; f.animal = true; f.art = true; f.ownDrug = true;
+        }));
+        var quiet = new[] { IdleDoing.Fire, IdleDoing.Warm, IdleDoing.Seat, IdleDoing.Shelter, IdleDoing.Stars, IdleDoing.Chat, IdleDoing.Sleep };
+        C(IdleHoursMath.All.Where(d => night[(int)d] > 0f).All(d => quiet.Contains(d)) && night[(int)IdleDoing.Sleep] > night[(int)IdleDoing.Fire],
+            "the night is quieter: they sleep, or sit by the fire, on a seat, under the stars, or talk a little");
+        var day = IdleHoursMath.Weights(F(f => { f.seat = true; f.walk = true; f.age = 1; }));
+        C(day.Sum() > 1.5f, "an ordinary afternoon has plenty for them (a seat, a walk, a pipe, whittling)");
+
+        // ---------- Their own things ----------
+        C(IdleHoursMath.WeaponKind(true, true, true, false) == 1 && IdleHoursMath.WeaponKind(true, true, false, false) == 0 && IdleHoursMath.WeaponKind(true, false, false, true) == 2
+          && IdleHoursMath.WeaponKind(true, false, false, false) == 3 && IdleHoursMath.WeaponKind(false, false, false, false) == 0, "a blade sharpened, a club left alone, a bow oiled, a gun cleaned");
+        C(IdleHoursMath.SharpenForm(1) == 0 && IdleHoursMath.SharpenForm(2) == 1 && IdleHoursMath.SharpenForm(3) == 2, "each seen to its own way, with its own words");
+        C(IdleHoursMath.IsBow("Bow_Recurve", "Arrow_Recurve") && IdleHoursMath.IsBow("Bow_Short", null) && IdleHoursMath.IsBow("DankPyon_Crossbow", "Bolt")
+          && !IdleHoursMath.IsBow("Gun_Revolver", "Bullet_Revolver") && !IdleHoursMath.IsBow("ElbowBlade", null), "bows and crossbows by their arrows or their names");
+        C(IdleHoursMath.Worn(70, 100) && !IdleHoursMath.Worn(85, 100) && !IdleHoursMath.Worn(0, 0), "clothes below four fifths worn enough to mend");
+        C(IdleHoursMath.MendBy(50, 100) == 10 && IdleHoursMath.MendBy(95, 100) == 5 && IdleHoursMath.MendBy(100, 100) == 0 && IdleHoursMath.MendBy(3, 5) == 1,
+            "a stint of mending gives back a tenth, never past full");
+        C(IdleHoursMath.IsPet(1f, -1f, 0.9f) && IdleHoursMath.IsPet(0f, 4f, 0.2f) && !IdleHoursMath.IsPet(0.6f, -1f, 2.4f) && !IdleHoursMath.IsPet(0.1f, -1f, 1f),
+            "a dog, a cat or a nuzzler is a pet; a horse or a yak isn't");
+        C(IdleHoursMath.PlaysFetch("Husky") && IdleHoursMath.PlaysFetch("LabradorRetriever") && IdleHoursMath.PlaysFetch("YorkshireTerrier") && !IdleHoursMath.PlaysFetch("Cat")
+          && !IdleHoursMath.PlaysFetch(null), "a dog runs after a stick, a cat doesn't");
+        C(IdleHoursMath.BookOk(true, 0f) && !IdleHoursMath.BookOk(true, 0.02f) && !IdleHoursMath.BookOk(false, 0f), "no dark tome read idly");
+        C(IdleHoursMath.CardsForm(0, 0.9f) == 2 && IdleHoursMath.CardsForm(1, 0.1f) == 1 && IdleHoursMath.CardsForm(1, 0.9f) == 0 && IdleHoursMath.CardsForm(3, 0.9f) == 0,
+            "a tribal people's game of stones, dice among the medieval, cards");
+        foreach (var t in IdleHoursMath.SparTargets.Concat(IdleHoursMath.ArcheryTargets))
+            C(Pool(root).Contains(t), $"{t}: a training target in the player's mods (docs/player-mods, active)");
+        C(Pool(root).Contains("Mote_ArcheryArrow"), "Misc. Training's arrow, to show the arrows flying, is in the player's mods");
+        C(IdleHoursMath.IsSparTarget("MartialArtsTarget") && IdleHoursMath.IsArcheryTarget("ArcheryTarget") && !IdleHoursMath.IsSparTarget("ArcheryTarget"), "a target to strike, a target to shoot at");
 
         // ---------- The words ----------
         string poolFile = Path.Combine(root, "Defs", "FlavorPoolDefs", "Rimfolk_Pool_VisitorIdle.xml");
@@ -219,13 +338,25 @@ public static class IdleHoursTests
         foreach (var d in IdleHoursMath.All)
         {
             foreach (bool drink in new[] { false, true })
-            {
-                string m = IdleHoursMath.Moment(d, drink);
-                if (d == IdleDoing.None || d == IdleDoing.Chat || d == IdleDoing.Nap) C(m == null, $"{d}: nothing said (the game's own chats, asleep)");
-                else C(m != null && Said(m) >= 2, $"{d}: a moment of its own ({m}) with lines for it");
-            }
+                for (int form = 0; form < IdleHoursMath.Forms(d); form++)
+                {
+                    string m = IdleHoursMath.Moment(d, drink, false, form);
+                    if (d == IdleDoing.None || d == IdleDoing.Chat || d == IdleDoing.Nap || d == IdleDoing.Sleep) C(m == null, $"{d}: nothing said (the game's own chats, asleep)");
+                    else C(m != null && Said(m) >= 2, $"{d}, form {form}: a moment of its own ({m}) with lines for it");
+                }
         }
         C(Said("giveway") >= 2, "a word to one of the colony's people they give way to");
+        C(Said("catch") >= 2, "a word now and then when a fish comes out");
+        C(IdleHoursMath.Moment(IdleDoing.Read, false, false, IdleHoursMath.ReadOwn) == "readown" && IdleHoursMath.Moment(IdleDoing.Walk, false, false, IdleHoursMath.WalkGrave) == "grave"
+          && IdleHoursMath.Moment(IdleDoing.Cards, false, false, 2) == "stones" && IdleHoursMath.Moment(IdleDoing.Sharpen, false, false, 2) == "gun",
+            "each form its own words: their own book, a grave, a game of stones, a gun cleaned");
+        C(IdleHoursMath.LineChance(IdleDoing.Sleep) == 0f && IdleHoursMath.LineChance(IdleDoing.Pet) > IdleHoursMath.LineChance(IdleDoing.Read), "a word to a pet more often; nothing said asleep");
+        // Every line one plain sentence, no exclamation marks or dashes (the player's rule on plain text, ImmersionTests).
+        foreach (var l in lines)
+        {
+            string text = Regex.Replace(l, @"^\[[^\]]*\]\s*", "");
+            C(!text.Contains("!") && !text.Contains("—") && Regex.Matches(text.TrimEnd('.', '?'), @"[.?]\s").Count == 0, $"one plain sentence: \"{text}\"");
+        }
         C(IdleHoursMath.Moment(IdleDoing.OwnDrug, true) == "drink" && IdleHoursMath.Moment(IdleDoing.OwnDrug, false) == "smoke", "a drink or a smoke, by what it is");
         C(IdleHoursMath.Moment(IdleDoing.Game, false, true) == "watch" && IdleHoursMath.Moment(IdleDoing.Game, false) == "game" && Said("watch") >= 2,
             "a screen or a radio is watched, with words of its own, not played");
@@ -242,8 +373,28 @@ public static class IdleHoursTests
         string idle = File.ReadAllText(Path.Combine(dir, "IdleHours.cs"));
         C(jobs.Contains("[HarmonyPatch(typeof(ThinkNode_Duty), nameof(ThinkNode_Duty.TryIssueJobPackage))]") && jobs.Contains("[HarmonyPriority(Priority.Low)]"),
             "the hook is on the duty's job, after the market's");
-        C(jobs.Contains("job.def != JobDefOf.GotoWander && job.def != JobDefOf.Wait_Wander") && jobs.Contains("pawn.Faction.IsPlayer"),
+        C(jobs.Contains("job.def == JobDefOf.GotoWander || job.def == JobDefOf.Wait_Wander") && jobs.Contains("pawn.Faction.IsPlayer"),
             "only an idle wander becomes an idle stint, and never a colonist's");
+        C(jobs.Contains("job.def == JobDefOf.StandAndBeSociallyActive") && idle.Contains("if (why == null && standing && group != IdleGroup.Hospitality) return null;"),
+            "Hospitality's standing about (its own idle moment, after its recreation) is filled for its guests only");
+        C(idle.Contains("AccessTools.Field(guestComp, \"guestArea_int\")") && idle.Contains("(l.area == null || c.InBounds(l.map) && l.area[c])"),
+            "Hospitality's guest area (found by name, as the market finds it) decides where its guests may go");
+        C(idle.Contains("IdleHoursMath.PlaceScore(") && idle.Contains("Spread(l, l.seats") && idle.Contains("Spread(l, list,"), "the seats, the games and the rest picked over the colony by the spread");
+        C(jobs.Contains("PutBookAway(") && jobs.Contains("bc.GetDirectlyHeldThings()") && jobs.Contains("ThingPlaceMode.Direct"),
+            "a book of the colony's goes back into its bookcase or onto the cell it lay on");
+        C(!Regex.IsMatch(jobs, @"OnBookReadTick|BookUtility|\.Learn\(|GainResearch"), "a book read idly gives nothing to the colony (no research, no lessons)");
+        C(Regex.IsMatch(jobs, @"void Catch\(\)[\s\S]*?pawn\.inventory\.innerContainer\.TryAdd\(t\)") && !Regex.IsMatch(jobs, @"void Catch\(\)[\s\S]*?Notify_Fished"),
+            "the catch goes into their own pack, the colony's fish stock left as it was");
+        C(!Regex.IsMatch(jobs, @"Tame|TrainableUtility|training\.Train|\.training\."), "the colony's pets are never tamed or trained, only petted or thrown a stick");
+        C(Regex.IsMatch(jobs, @"void Fetch\(\)[\s\S]*?JobDefOf\.Goto"), "a dog fetches by the game's own going somewhere");
+        C(jobs.Contains("IdleHours.ArrowMote") && idle.Contains("GetNamedSilentFail(\"Mote_ArcheryArrow\")") && idle.Contains("if (f.weaponKind == 2 && ArrowMote != null)"),
+            "no archery where nothing would show the arrows (Misc. Training's arrow)");
+        string keyed = File.ReadAllText(Path.Combine(root, "Languages", "English", "Keyed", "Rimfolk_VisitorIdle.xml"));
+        // Whole keys only; a key with its form added (Walk0 to Walk3 and the like) is checked below.
+        foreach (Match m in Regex.Matches(jobs, "\"(CC_Idle_Report_\\w+)\"(?!\\s*\\+)"))
+            C(keyed.Contains("<" + m.Groups[1].Value + ">"), $"{m.Groups[1].Value}: the words are there");
+        foreach (var k in new[] { "Walk0", "Walk1", "Walk2", "Walk3", "Sharpen0", "Sharpen1", "Sharpen2", "Cards0", "Cards1", "Cards2" })
+            C(keyed.Contains("<CC_Idle_Report_" + k + ">"), $"CC_Idle_Report_{k}: the words for each form");
         C(jobs.Contains("idle.lord = job.lord;") && jobs.Contains("idle.dutyTag = job.dutyTag;"), "the stint keeps the lord's own lord and duty tag");
         C(Regex.IsMatch(jobs, @"class JobDriver_VisitIdle[\s\S]*?TryMakePreToilReservations\(bool errorOnFailed\) => true;"), "nothing reserved: the colony's people find it all free");
         C(jobs.Contains("GiveWayIfWanted()") && idle.Contains("rm.TryGetReserver(t, player, out who)") && idle.Contains("FirstReserverOf(c, player)"),

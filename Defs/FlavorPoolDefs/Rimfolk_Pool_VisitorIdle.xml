@@ -5,8 +5,11 @@
     What a visitor says now and then as they start something of their own in an idle hour (Source/ColonyCouncil/Visitors/
     IdleHours.cs), over their head through Speech: one plain sentence each. The moments: company (said to one of the
     colony's people they stand beside), fire, warm, seat, shelter, snack, game, watch (a screen or a radio), music, stars,
-    art, pray, animal, play (a child), drink, smoke, pipe, carve, and giveway (said to one of the colony's people they give
-    a game or a seat up to).
+    art, pray, animal, play (a child), drink, smoke, pipe, carve, read (one of the colony's books), readown (their own),
+    walk, garden, grave, view (where a walk ends), pet, fetch (a stick thrown for a dog), letter, journal, train (at a
+    target), spar (with their shadow), archery, fish, catch (said when a fish comes out), mend, sharpen (a blade), bow, gun,
+    cards, dice, stones (a tribal people's game), sing, and giveway (said to one of the colony's people they give a game or
+    a seat up to).
     Tagged by their people's age (theirLowtech, theirHightech) and calling (their:herders), as Rimfolk_VisitorLines.
   -->
   <ColonyCouncil.FlavorPoolDef>
@@ -72,6 +75,69 @@
         <li>[carve] I carve a little whenever we stop.</li>
         <li>[carve] Whittling helps me pass the time.</li>
         <li>[carve] I like to keep my hands busy when we stop for a while.</li>
+        <li>[read] Do you mind if I read this while I wait?</li>
+        <li>[read] I'll read a few pages and put it back where I found it.</li>
+        <li>[read] I haven't had a book in my hands for weeks.</li>
+        <li>[read,their:scholars] We have a copy of this in our archive, but I never got round to it.</li>
+        <li>[readown] I always carry a book with me for the road.</li>
+        <li>[readown] I'll read a bit more of my book while we're stopped.</li>
+        <li>[readown,theirLowtech] I've read this one so often the pages are coming loose.</li>
+        <li>[walk] I'm going to stretch my legs and have a look round.</li>
+        <li>[walk] It's a nice day for a walk.</li>
+        <li>[walk] I'd like to see a bit more of the place while we're here.</li>
+        <li>[garden] Someone here keeps a good garden.</li>
+        <li>[garden] I wanted to have a closer look at these flowers.</li>
+        <li>[grave] I always stop at a grave when I pass one.</li>
+        <li>[grave] I'll stand here a moment for whoever is buried here.</li>
+        <li>[grave,their:sextons] Someone should ring for these dead too.</li>
+        <li>[view] You can see a long way from here.</li>
+        <li>[view] It's a good spot to stand and look out.</li>
+        <li>[view] I like to look at the land when we stop somewhere new.</li>
+        <li>[pet] Hello there, can I give you a scratch?</li>
+        <li>[pet] You're a friendly one, aren't you?</li>
+        <li>[pet] Come here and let me pet you.</li>
+        <li>[pet,young] Can I pet you, please?</li>
+        <li>[fetch] Go on, fetch it.</li>
+        <li>[fetch] Here, catch, bring it back.</li>
+        <li>[fetch] Do you want me to throw it again?</li>
+        <li>[letter] I promised to write home, so I'd better do it now.</li>
+        <li>[letter] I'll write a letter while I have a table to sit at.</li>
+        <li>[letter] My family will want to know where we've got to.</li>
+        <li>[journal] I'll write down what we've seen today.</li>
+        <li>[journal] I try to write a little in my journal every day.</li>
+        <li>[train] I don't want to get out of practice while we travel.</li>
+        <li>[train] Nobody is using this, so I'll get a little training in.</li>
+        <li>[train,their:mercenaries] Our captain expects us to train every day, wherever we are.</li>
+        <li>[spar] I need to keep in practice, even on the road.</li>
+        <li>[spar] A little sparring keeps me ready.</li>
+        <li>[archery] I'll shoot a few arrows while the target is free.</li>
+        <li>[archery] Let's see if I can still hit the middle.</li>
+        <li>[archery,their:hunters] A hunter who doesn't practise goes hungry.</li>
+        <li>[fish] I'll see if anything is biting.</li>
+        <li>[fish] I could do with some fresh fish for the road.</li>
+        <li>[fish,their:fishers] I can never pass water without putting a line in.</li>
+        <li>[catch] That's one for the pot.</li>
+        <li>[catch] Not a bad catch.</li>
+        <li>[catch] I'll take this one with me.</li>
+        <li>[mend] This has torn again, so I'd better fix it.</li>
+        <li>[mend] I'll mend this while I have the time.</li>
+        <li>[mend] It won't last the road if I don't fix it now.</li>
+        <li>[sharpen] I'll put an edge back on this.</li>
+        <li>[sharpen] A blunt blade is no use to anyone.</li>
+        <li>[bow] The string is wearing thin, so I'll put a new one on.</li>
+        <li>[bow] A little oil keeps the wood from cracking.</li>
+        <li>[gun] I'll clean this before the dust gets into it.</li>
+        <li>[gun] It's been a while since I last cleaned it.</li>
+        <li>[cards] Do you want a game of cards?</li>
+        <li>[cards] Sit down, I'll deal.</li>
+        <li>[cards] One hand, and then we'll see.</li>
+        <li>[dice] Let's roll the dice and pass the time.</li>
+        <li>[dice] Do you want a game of dice?</li>
+        <li>[stones] Do you want to play stones while we wait?</li>
+        <li>[stones] I'll throw first this time.</li>
+        <li>[sing] I'll sing something quietly, I hope nobody minds.</li>
+        <li>[sing] This is a song we sing at home.</li>
+        <li>[sing,theirLowtech] My mother used to sing this one to us.</li>
         <li>[giveway] Go ahead, it's yours, I was only using it while it was free.</li>
         <li>[giveway] Sorry, I'll get out of your way.</li>
         <li>[giveway] Here, you have it, I'm done.</li>

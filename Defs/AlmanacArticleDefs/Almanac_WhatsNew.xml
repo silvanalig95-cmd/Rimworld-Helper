@@ -31,6 +31,19 @@ When you load a save after an update, a letter lists the newest round once. The 
     <rounds>
 
       <li>
+        <version>0.255.0</version>
+        <date>15 November 2026</date>
+        <title>Guests busy all day, all over the colony</title>
+        <points>
+          <li>Visitors are busy most of the day: when one thing ends they go straight on to the next, and at night they sit by the fire or sleep.</li>
+          <li>Hospitality's guests do everything other visitors do, after Hospitality's own recreation, and spread out over the colony within their guest area instead of sitting in the dining room.</li>
+          <li>Visitors read a book of their own or one of yours and put it back, take walks to a garden, a grave or a view, and write letters at your tables.</li>
+          <li>They pet your dogs and cats or throw a stick for a dog, train at your training targets or spar with their shadow, and shoot their own bows at your archery target.</li>
+          <li>They fish from the bank and keep the catch, mend their clothes, see to their weapons, play cards or dice among themselves, and sing.</li>
+        </points>
+      </li>
+
+      <li>
         <version>0.254.0</version>
         <date>15 November 2026</date>
         <title>Porters at the mailbag, worn gear at the stall, world events at a glance</title>
