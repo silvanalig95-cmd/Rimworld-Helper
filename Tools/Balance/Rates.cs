@@ -651,7 +651,21 @@ namespace Balance
             ("Rimfolk_Saint_Named", 0.012f),
             ("Rimfolk_Saint_Prayed", 0.02f),
             ("Rimfolk_Saint_PrayedRelic", 0.006f),
-            ("Rimfolk_Saint_FeastKept", 0.008f)
+            ("Rimfolk_Saint_FeastKept", 0.008f),
+            // The old powers' own strange happenings (OldPowers/), about one in two to four weeks at a home under most storytellers
+            // and one a week under Old Powers (a mean between): the seer heard by one person; everything turning one way, most of
+            // those awake; the humming stone touched by one and dreamt of by a few sleepers near it; the casters lit up, the few
+            // casters or sensitive ones; the dead on the road seen by those out at dusk; pilgrims praying, one or two who see it;
+            // another sky, most of those out of doors; the animal's word, one person.
+            ("Rimfolk_Thought_OldP_Seer", 0.0015f),
+            ("Rimfolk_Thought_OldP_OneWay", 0.004f),
+            ("Rimfolk_Thought_OldP_Stone", 0.0015f),
+            ("Rimfolk_Thought_OldP_StoneDream", 0.002f),
+            ("Rimfolk_Thought_OldP_Charged", 0.002f),
+            ("Rimfolk_Thought_OldP_DeadRoad", 0.002f),
+            ("Rimfolk_Thought_OldP_Pilgrims", 0.002f),
+            ("Rimfolk_Thought_OldP_OtherSky", 0.004f),
+            ("Rimfolk_Thought_OldP_BeastSpoke", 0.0015f)
         };
 
         /// <summary>Setbacks a well-run colony mostly avoids and a neglected one keeps having: their rate follows the style squared.</summary>

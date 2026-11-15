@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    The old powers' own strange happenings (Source/ColonyCouncil/OldPowers/): their small moods (modelled in
+    Tools/Balance, Rates.cs), another sky's condition, and the enchanter's question as a letter kind of its own. Their
+    words are in Languages/English/Keyed/Rimfolk_OldPowers.xml and their lines in Rimfolk_OldPowers_Lines.xml.
+  -->
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_Thought_OldP_Seer</defName>
+    <durationDays>2</durationDays>
+    <stackLimit>1</stackLimit>
+    <stages>
+      <li>
+        <label>heard the seer's reading</label>
+        <description>A seer sat with me and told me what the next season will bring. It is good to know what is coming.</description>
+        <baseMoodEffect>2</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_Thought_OldP_OneWay</defName>
+    <durationDays>1</durationDays>
+    <stackLimit>1</stackLimit>
+    <stages>
+      <li>
+        <label>turned the same way as everything</label>
+        <description>At midnight I stopped and turned to face the same way as everyone else and every animal, and I don't know why I did it.</description>
+        <baseMoodEffect>-2</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_Thought_OldP_Stone</defName>
+    <durationDays>1</durationDays>
+    <stackLimit>1</stackLimit>
+    <stages>
+      <li>
+        <label>put my hand on the humming stone</label>
+        <description>I put my hand on the stone while it was humming and felt it in my arm. It was strange, but it calmed me.</description>
+        <baseMoodEffect>3</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_Thought_OldP_StoneDream</defName>
+    <durationDays>1</durationDays>
+    <stackLimit>1</stackLimit>
+    <stages>
+      <li>
+        <label>dreamt about the humming stone</label>
+        <description>I slept near the stone while it was humming and dreamt about it all night. It was not a bad dream.</description>
+        <baseMoodEffect>1</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_Thought_OldP_Charged</defName>
+    <durationDays>1</durationDays>
+    <stackLimit>1</stackLimit>
+    <stages>
+      <li>
+        <label>filled with power</label>
+        <description>Last night the sky was full of power and some of it went into me. I feel stronger for it.</description>
+        <baseMoodEffect>4</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_Thought_OldP_DeadRoad</defName>
+    <durationDays>2</durationDays>
+    <stackLimit>1</stackLimit>
+    <stages>
+      <li>
+        <label>saw the dead walk past</label>
+        <description>At dusk I saw pale figures walking across the land in a line, and they looked like the dead. I keep thinking about it.</description>
+        <baseMoodEffect>-3</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_Thought_OldP_Pilgrims</defName>
+    <durationDays>1.5</durationDays>
+    <stackLimit>1</stackLimit>
+    <stages>
+      <li>
+        <label>pilgrims prayed here</label>
+        <description>Pilgrims on the road stopped at our place to pray before they went on. It was good to see.</description>
+        <baseMoodEffect>2</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_Thought_OldP_OtherSky</defName>
+    <durationDays>1</durationDays>
+    <stackLimit>1</stackLimit>
+    <stages>
+      <li>
+        <label>saw another sky</label>
+        <description>Last night the sky was the wrong colour and the stars were not where they should be. It was strange, and very beautiful.</description>
+        <baseMoodEffect>3</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_Thought_OldP_BeastSpoke</defName>
+    <durationDays>3</durationDays>
+    <stackLimit>1</stackLimit>
+    <stages>
+      <li>
+        <label>an animal spoke to me</label>
+        <description>A wild animal walked up to me and said something, and I heard it clearly. I don't know what to make of it.</description>
+        <baseMoodEffect>-1</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <GameConditionDef>
+    <defName>Rimfolk_OldP_OtherSky</defName>
+    <conditionClass>ColonyCouncil.GameCondition_OtherSky</conditionClass>
+    <label>another sky</label>
+    <description>At night the sky has different colours and the stars are not where they should be. Colonists stargaze more often, and enjoy it more.</description>
+    <endMessage>The night sky looks as it should again.</endMessage>
+    <canBePermanent>false</canBePermanent>
+  </GameConditionDef>
+
+  <LetterDef>
+    <defName>Rimfolk_OldPowersLetter</defName>
+    <letterClass>ColonyCouncil.ChoiceLetter_OldPowers</letterClass>
+    <color>(170, 150, 215)</color>
+    <flashColor>(200, 185, 240)</flashColor>
+    <flashInterval>90</flashInterval>
+    <arriveSound>LetterArrive</arriveSound>
+    <bounce>true</bounce>
+  </LetterDef>
+
+</Defs>
