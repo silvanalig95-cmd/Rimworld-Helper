@@ -24,7 +24,7 @@
           <li>2. Clear the field of fire | Trees cut, chunks hauled from the ground in front | The ground is bare rock or floor</li>
           <li>3. Cover behind the gate | A sandbag or barricade line with firing positions | You built the gate with its own sandbag lines</li>
           <li>4. Traps on the way in | A trap corridor in front of the gate | Traps are off in your difficulty settings</li>
-          <li>5. Guns that never sleep | A turret nest, or an archers' post | You have neither turrets nor archers to spare</li>
+          <li>5. Turrets behind the gate | A turret nest, or an archers' post | You have neither turrets nor archers to spare</li>
           <li>6. The killbox | A small killbox, a killbox or a tunnel killbox | Raids are still well under 700 points</li>
           <li>7. Harden the line | Walls two thick, stone for wood, embrasures | The rock is the wall already</li>
           <li>8. A line to fall back to | A wall and a door between this line and the beds | A keep among the beds will do for now</li>
@@ -50,7 +50,7 @@
 The helper lays the lane on the way raiders actually walk up to the gate, its near end a couple of cells out and leading straight to it, inside the passage, with the rock or your own walls as its sides where they fit. It never puts it on or behind the line's own wall or gate, prefers ground you've seen to unexplored ground and as little digging as it can, and says where it put it and why ("On the way to the gate, 2 cells out, using the rock on both sides"), or why it doesn't fit and what would make room. If its walls would make another gap the easier way in, it says so first and offers it with its sides left open.</text>
       </li>
       <li>
-        <heading>5. Guns that never sleep</heading>
+        <heading>5. Turrets behind the gate</heading>
         <text>A turret nest behind the gate, two turrets with walls between them; in a colony without power, an archers' post further back for the longest bows. They come once the colony has power and steel to keep turrets going, or archers to spare. A turret fires at anything hostile in reach while it has power and someone repairs it, and every one adds wealth, which makes the next raid bigger. Skip turrets if your settings turn them off, and the post if nobody can be spared to stand in it.</text>
       </li>
       <li>

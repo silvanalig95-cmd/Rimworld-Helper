@@ -17,7 +17,7 @@
   <ColonyCouncil.MoodHintDef>
     <defName>Council_Mood_RF_SetbackMeeting</defName>
     <thoughts><li>Council_Setback_IdeaPassedOver</li><li>Council_Setback_OutVoted</li></thoughts>
-    <fix>A meeting has to choose one idea. It fades within three days. Choosing the idea most of the meeting backed avoids the bigger sting, and their idea can come back at the next meeting.</fix>
+    <fix>A meeting has to choose one idea. It fades within three days. Choosing the idea most of the meeting backed avoids the bigger bad mood, and their idea can come back at the next meeting.</fix>
     <act>Their idea can come back</act>
     <actionable>false</actionable>
     <article>Council_Alm_C_Setbacks</article>
@@ -101,7 +101,7 @@
     <defName>Council_Mood_RF_SetbackCraft</defName>
     <thoughts><li>Council_Setback_BotchedBuild</li><li>Council_Setback_ShoddyWork</li><li>Council_Setback_MakingDo</li></thoughts>
     <fix>Give the work to whoever is best at it, and build a proper workbench where the colony can; a crafting spot is slow and makeshift. Only those who care about the craft mind.</fix>
-    <act>Let the best hand do it</act>
+    <act>Give it to the best crafter</act>
     <actionable>false</actionable>
     <article>Council_Alm_C_Setbacks</article>
     <signal>Council_Adv_Work</signal>
@@ -157,7 +157,7 @@
   <ColonyCouncil.MoodHintDef>
     <defName>Council_Mood_RF_SetbackSold</defName>
     <thoughts><li>Council_Setback_ArtSold</li><li>Council_Setback_AnimalSold</li></thoughts>
-    <fix>Their art, or an animal they looked after, was sold. It fades in a few days. Art by people no longer here, or by the greedy, can be sold without hurt feelings; an animal with a master is missed by them, so sell the ones that answer to nobody.</fix>
+    <fix>Their art, or an animal they looked after, was sold. It fades in a few days. Art by people no longer here, or by the greedy, can be sold without hurt feelings; an animal with a master is missed by them, so sell the ones that have no master.</fix>
     <act>Fades in a few days</act>
     <actionable>false</actionable>
     <article>Council_Alm_C_Setbacks</article>

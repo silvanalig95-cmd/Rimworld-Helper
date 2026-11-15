@@ -631,7 +631,7 @@
     <defName>Council_Mood_RF_Secrets</defName>
     <workers><li>ThoughtWorker_Vendetta</li></workers>
     <nameContains><li>council_secret</li><li>council_vendetta</li></nameContains>
-    <fix>Secrets fade with time. A vendetta ends when the score is settled, or when it's laid down.</fix>
+    <fix>Secrets fade with time. A vendetta ends when the score is settled, or when it's forgiven.</fix>
     <act>Passes, or settle the score</act>
     <actionable>false</actionable>
     <article>Council_Alm_C_Secrets</article>
@@ -780,10 +780,10 @@
   <ColonyCouncil.MoodHintDef>
     <defName>Council_Mood_RF_Names</defName>
     <thoughts><li>Council_Epithet</li><li>Council_EpithetDubious</li><li>Council_EpithetLost</li></thoughts>
-    <fix>A name they're not proud of, or one they lost. It fades; deeds earn better names.</fix>
-    <act>Deeds earn better names</act>
+    <fix>A name they're not proud of, or one they lost. It fades, and doing something notable can earn them a better name.</fix>
+    <act>Let them earn a better name</act>
     <actionable>false</actionable>
-    <keep>They earned a name and they wear it proudly.</keep>
+    <keep>They earned a name and are proud of it.</keep>
     <article>Council_Alm_C_Names</article>
     <councilTab>Roster</councilTab>
   </ColonyCouncil.MoodHintDef>
@@ -864,7 +864,7 @@
   <ColonyCouncil.MoodHintDef>
     <defName>Council_Mood_RF_EvtHomeLost</defName>
     <thoughts><li>Council_Evt_HomeLost</li></thoughts>
-    <fix>Grief for the home they came from. Nothing to fix; friends, recreation and a good room help them carry it.</fix>
+    <fix>Grief for the home they came from. Nothing to fix; friends, recreation and a good room help them cope with it.</fix>
     <act>Company helps</act>
     <actionable>false</actionable>
   </ColonyCouncil.MoodHintDef>

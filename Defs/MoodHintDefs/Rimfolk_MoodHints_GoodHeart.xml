@@ -6,7 +6,7 @@
   <ColonyCouncil.MoodHintDef>
     <defName>Rimfolk_Mood_GoodHeart</defName>
     <thoughtClasses><li>Thought_HeartGood</li></thoughtClasses>
-    <keep>It holds while the heart's good side does: friends close by, a purpose, gatherings and good talks keep it filled, a hard knock spends some of it, and it fades slowly. The Heart section of their Mood tab says what filled it.</keep>
+    <keep>It lasts while the good side of their heart stays full. Friends close by, a purpose, gatherings and good talks fill it, hardship uses some of it up, and it slowly fades on its own. The Heart section of their Mood tab says what filled it.</keep>
     <article>Council_Alm_C_Heart</article>
   </ColonyCouncil.MoodHintDef>
 

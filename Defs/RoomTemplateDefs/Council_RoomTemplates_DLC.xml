@@ -133,7 +133,7 @@
     <defName>Council_GeneLab</defName>
     <label>gene lab</label>
     <description>A gene assembler against the back wall, two gene banks beside it, a gene processor and a light.</description>
-    <purpose>Genes from genepacks, combined into xenogerms: the colony's own xenotypes, made here.</purpose>
+    <purpose>Here genes from genepacks are combined into xenogerms, so the colony can make its own xenotypes.</purpose>
     <order>38</order>
     <group>Work</group>
     <size>(7,5)</size>

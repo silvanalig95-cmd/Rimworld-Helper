@@ -22,7 +22,7 @@
   <ColonyCouncil.MoodHintDef>
     <defName>Council_Mood_RF_EvtFrost</defName>
     <thoughts><li>Council_Evt_FrostTook</li></thoughts>
-    <fix>A frost killed the crops they had been growing. It fades within a week. When a frost is coming, sending hands to bring in what's ripe saves both the crop and the grower's mood.</fix>
+    <fix>A frost killed the crops they had been growing. It fades within a week. When a frost is coming, sending people to harvest what's ripe saves both the crop and the grower's mood.</fix>
     <act>Passes with time</act>
     <actionable>false</actionable>
     <article>Council_Alm_C_WorldEvents</article>

@@ -2169,7 +2169,7 @@ cover.
 **Defense lines** build one gap up a step at a time with the helper. Make a line from a gap's advice, from **New
 defense line** (the gaps without one, busiest first, or a spot picked on the map), or by putting a gate on a gap; say
 what it should become (hold a gate, a killbox, a turret line, an archers' wall), and it climbs an **eight-step
-ladder**: close the gap, clear the field of fire, cover behind the gate, traps on the way in, guns that never sleep
+ladder**: close the gap, clear the field of fire, cover behind the gate, traps on the way in, turrets behind the gate
 (turrets, or an archers' post), the killbox (once raids reach about 700 points, at once for a killbox line: the small,
 full or tunnel killbox as the place allows, tried at the gate first and, if it doesn't fit, where it would), harden
 the line, a line to fall back to. Three more steps join the ladder only while their threat can come and the colony can
@@ -3110,7 +3110,7 @@ favours asked, missions, world events, friends in a fight, omens, and who a raid
 - **Crossroads**: the colony as a market. Traders twice as often, visitors and travellers more, favours and debts;
   raids at the classic pace, larger as it grows rich.
 
-**Every kind of event can still come.** A way leans toward something, never away from anything: nothing of Rimfolk's
+**Every kind of event can still come.** A way shifts the odds toward something but shuts nothing out: nothing of Rimfolk's
 comes at less than a quarter of its own rate, every one of the game's kinds of event (the DLCs' and your mods' among
 them) keeps a route under every way, and no way rules any event out. Harm keeps the game's own rate: each way's threats
 come at the classic storyteller's pace or less over a year or an arc, its sickness about as often as the game's own,

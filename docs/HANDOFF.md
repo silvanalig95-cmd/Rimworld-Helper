@@ -140,6 +140,35 @@ tree at once, alongside whatever runs. Each piece is merged as its own release, 
   it), hover for what it is and how it has gone, click to open the region window on it; none shown while none runs.
 - **Dropped (14 November 2026): sending visitors away.** The player: "so asking visitors to leave is not necessary, as i
   found the already imlpemented function".
+- 0.250.0, **Plain words: advice-storytellers**
+  (14 November 2026; the player's words: "when you write text for the mod, especially when it's supposed to be flavour,
+  i'd like you to be more neutral, descriptive and "reasonable", over trying to make the text be creative", "start with:
+  event cards, advice and building, messages and interface, storytellers"). The advice-and-building batch with the
+  storytellers and scenarios: 65 files (`AdvisorSignalDefs`, `DefenseStepDefs`, `DefenseTemplateDefs`, `MoodHintDefs`,
+  `RoomTemplateDefs`, `Scenarios`, `StorytellerDefs`). About 1,950 lines read (tips, steps, plans' purposes and tips,
+  mood hints' fixes, keeps and short actions, room plans, scenario texts, the eight storytellers), 138 rewritten: things
+  given a will ("guns that never sleep", now the step "turrets behind the gate"; "the faithful drift", "a workshop
+  works", "each tires of being used", "the void where its powers are awake"), riddling or clipped lines ("Only three.",
+  "Nobody needs to.", "The place itself.", "A sour talk."), wry endings ("a line people only find in the middle of a raid
+  is no line", "which is what art is for", "and the rest of the afternoon"), in-world phrases explained ("the others'
+  circles", "the heart's good side", "feuding watches" as Bad Blood's two crews, "the region's word" as news from the
+  region, "laid down" as a vendetta forgiven) and the storytellers' colon and semicolon chains as plain sentences, each
+  storyteller keeping its character ("The calendar decides" is "The seasons shape the year"; "The world calls the colony
+  out" is the approved sample). Each storyteller now ends "It shifts the odds this way but shuts nothing out: every kind
+  of event can still come." (StoryWaysTests checks "shuts nothing out"; "never away from anything" read as untrue beside
+  Lean Years' fewer traders). Found and fixed against the code: the camp advice said a camp whose tension boils over
+  "turns on the colony", while `Camp.CheckTension` has it leave on bad terms and cost 8 goodwill (and
+  `CC_Camp_TensionHigh` says so); it now says that. The decree advice said a decree enacted again soon "wears thinner",
+  while `Decrees.cs` keeps its effect and makes people resent it more within 30 days (`FatigueDays`); it now says "within
+  a month ... is resented more". The sweat room's tip on a campfire now says what `SeasonWishMath.SaunaHotEnough` does.
+  The numbers checked against the code and the thoughts' durations held (a third sooner in bed, 40 strain off a day to
+  themselves, five days and half the trust to make a taken wish right, a tradition after three years, the burned dish
+  one in four to one in fifty, envy within two grades, 60 days for torn-down work). Left as they were: every line
+  already plain (most of the advisor, the defense plans' tips, the room plans, the hints' short actions), the order's
+  saying in The Quiet House ("a house that feeds people is a house people come to"), the lender's quoted message and the
+  great-aunt's letter, every placeholder, number, defName and tag. Still worded the old way elsewhere, for their own
+  rounds: the Almanac's defense lines page ("5. Guns that never sleep") and storytellers page, `CC_Def_Adv_Turrets`,
+  DESIGN.md's note on how each storyteller's description ends.
 - 0.249.0, **Plain words: interface-4** (14
   November 2026; the player's words: "when you write text for the mod, especially when it's supposed to be flavour, i'd
   like you to be more neutral, descriptive and "reasonable"", "yes, please rewrite everything", "leave: what colonists

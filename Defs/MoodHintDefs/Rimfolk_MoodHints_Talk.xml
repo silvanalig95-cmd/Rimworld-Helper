@@ -6,7 +6,7 @@
   <ColonyCouncil.MoodHintDef>
     <defName>Rimfolk_Mood_TalkArgued</defName>
     <thoughts><li>Rimfolk_Talk_Argued</li><li>Rimfolk_Talk_TeasedStung</li></thoughts>
-    <fix>A sour talk. It fades in a couple of days. Two who keep arguing hold opposite views on something (the Views section of their character pages); time apart and a peacemaker on the council smooth it over, and a later, warmer talk can bring one of them round.</fix>
+    <fix>A talk that turned into an argument. It fades in a couple of days. Two who keep arguing hold opposite views on something (the Views section of their character pages); time apart and a peacemaker on the council smooth it over, and a later, warmer talk can bring one of them round.</fix>
     <act>Give them time apart</act>
     <actionable>false</actionable>
     <article>Council_Alm_C_Talk</article>

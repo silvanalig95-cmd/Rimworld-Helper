@@ -177,7 +177,7 @@
       <li>In a raid, hold both gates of the airlock open; to keep animals or a raid out, shut the outer one first.</li>
       <li>A door every fifteen to twenty-five cells lets your people out to chase off a breacher or take a shot.</li>
       <li>A door is weaker than the wall beside it. Put doors where someone can see them, and repair them first after a raid.</li>
-      <li>[lowtech]Wood goes up fastest and burns. Raise it now if you must, and follow it with stone a stretch at a time.</li>
+      <li>[lowtech]Wood is the fastest to build, but it burns. Build in wood now if you must, and replace it with stone a section at a time.</li>
       <li>Against raids of 3000 points and more, with more shooters than the lines hold, a second rank stands three rows behind each line's outer end, behind sandbags of its own. A shot never strikes anyone it passes within five cells of the shooter, so the first rank doesn't catch the second's shots.</li>
     </tips>
   </ColonyCouncil.DefenseTemplateDef>
@@ -201,7 +201,7 @@
       <li>When a raid comes, hold both gates open. One shut door is all it takes for them to start on the wall.</li>
       <li>Not behind embrasures: the archers need those cells to stand in.</li>
       <li>Stone, not wood. A second layer of wood still burns.</li>
-      <li>[lowtech]Stone takes long to raise: start beside the gate and work outward.</li>
+      <li>[lowtech]Stone takes a long time to build: start beside the gate and work outward.</li>
     </tips>
   </ColonyCouncil.DefenseTemplateDef>
 
@@ -256,7 +256,7 @@
     <defName>Rimfolk_Defense_Killbox</defName>
     <label>killbox</label>
     <description>A wall with a single opening, a narrow entrance that turns twice and then runs straight for five cells, traps in the entrance, a deep bare box with decoy turrets to either side of its middle, and at the far end a firing position in a pocket for each of your shooters, with a gap in the middle. Double walls past bows.</description>
-    <purpose>Raiders take the easiest way in, and this is it: they come round the turns one at a time into open ground under every gun the colony has. The way through stays open, so they keep coming rather than breaking walls elsewhere. Nobody at the last corner can see the shooters, the doorway gives a raider no cover from them, and they stand more than a grenade's throw from it. The decoys draw the fire where nobody at the last corner can see them; a big turret stands behind the line beside the gap, out of that corner's sight and its own blast's reach of anyone.</purpose>
+    <purpose>Raiders take the easiest way in, and this is it: they come round the turns one at a time into open ground under every gun the colony has. The way through stays open, so they keep coming rather than breaking walls elsewhere. Nobody at the last corner can see the shooters, the doorway gives a raider no cover from them, and they stand more than a grenade's throw from it. The decoys draw the raiders' fire, placed where nobody at the last corner can see them; a big turret stands behind the line beside the gap, out of sight of that corner and far enough from everyone that its blast reaches nobody.</purpose>
     <kind>killbox</kind>
     <order>30</order>
     <line>0</line>
@@ -398,7 +398,7 @@
     <defName>Rimfolk_Defense_TurretNest</defName>
     <label>turret nest</label>
     <description>Turrets side by side, each further from the next than its blast reaches (four cells for a mini-turret, seven for an autocannon), sandbags in front of the small ones, and a wall on each flank.</description>
-    <purpose>Turrets are guns that never sleep, as long as they have power and someone repairs them. Spaced this far, one that blows up doesn't take the next with it. Raiders shoot first at what shoots at them, so a nest in front of or beside the line draws their fire from your people.</purpose>
+    <purpose>Turrets keep firing day and night, as long as they have power and someone repairs them. Spaced this far, one that blows up doesn't take the next with it. Raiders shoot first at what shoots at them, so a nest in front of or beside the line draws their fire from your people.</purpose>
     <kind>nest</kind>
     <order>50</order>
     <placeAt>behind</placeAt>
@@ -417,7 +417,7 @@
       <li>A badly damaged turret sparks for about four seconds before it blows: repair turrets first after a raid, and whoever is repairing one should step back once it sparks.</li>
       <li>An autocannon measures its blast from its bottom-left cell: nobody stands within six cells of it.</li>
       <li>A solar flare silences every powered turret. Arm your people as if the turrets weren't there.</li>
-      <li>EMP stuns a turret and, unlike a mechanoid, a turret never gets used to it.</li>
+      <li>EMP stuns a turret and, unlike a mechanoid, a turret never becomes immune to it.</li>
       <li>Every turret is wealth, and wealth makes the next raid bigger. Build the ones you'll use.</li>
       <li>[!lowtech]Mini-turrets close in; an autocannon can't hit anything within about nine cells, so it goes further back. Sandbags in front help a mini-turret but not a big one.</li>
       <li>[lowtech]A ballista or a scorpio fires only while someone mans it. Decide before the raid who goes to which.</li>
@@ -474,7 +474,7 @@
       <li>...........</li>
     </layout>
     <tips>
-      <li>Say in advance who falls back and when: a line people only find in the middle of a raid is no line.</li>
+      <li>Say in advance who falls back and when: a line nobody knows about until the raid is of little use.</li>
       <li>Keep the shelf stocked with medicine and spare weapons; set it to take only those.</li>
       <li>A second line also stops a drop pod raid that lands on the far side of it from reaching the beds.</li>
       <li>Breachers and sappers make for a bed. Put this line round the bedrooms, kept close together, and it is the wall they reach.</li>
@@ -504,10 +504,10 @@
       <li>WWWWWWWWW</li>
     </layout>
     <tips>
-      <li>Food for a day or two, medicine and something to pass the time: a keep people break down in is no keep.</li>
+      <li>Food for a day or two, medicine and something to pass the time: people shut in without them may break down.</li>
       <li>Under overhead mountain, nothing falls on it: no mortar shell and no drop pod.</li>
       <li>Raiders go for the door. Give it your best builder to repair it from inside.</li>
-      <li>Built, it wants thick walls, four layers if you can; dug into a mountain, a door that holds, and more of them behind it.</li>
+      <li>Built in the open, it needs thick walls, four layers if you can; dug into a mountain, it needs a strong door, and more doors behind it.</li>
     </tips>
   </ColonyCouncil.DefenseTemplateDef>
 
@@ -515,7 +515,7 @@
     <defName>Rimfolk_Defense_MortarPit</defName>
     <label>mortar pit</label>
     <description>Two mortars eight cells apart with a wall beside each, sandbags in front for the gunners, and a shelf for the shells six cells from the nearest, behind a wall.</description>
-    <purpose>A siege digs in out of reach and shells you; a mortar answers from anywhere on the map. Two make their misses overlap. A mortar that blows up reaches five cells: the walls and the distance keep it from setting off the other or the shells.</purpose>
+    <purpose>A siege camps out of reach and shells you; a mortar can shell it back from anywhere on the map. Two make their misses overlap. A mortar that blows up reaches five cells: the walls and the distance keep it from setting off the other or the shells.</purpose>
     <kind>mortar</kind>
     <order>90</order>
     <placeAt>core</placeAt>
@@ -572,7 +572,7 @@
       <li>A palisade burns. Keep a firebreak of bare ground or stone two cells wide in front of it, and move to stone as soon as you can.</li>
       <li>Embrasures let archers shoot over the wall while it covers most of them.</li>
       <li>The yard is where raiders come out one at a time: that's where the arrows go. Keep it bare.</li>
-      <li>Hold both gates open when a raid comes. Shut, they make raiders start on the palisade wherever they please.</li>
+      <li>Hold both gates open when a raid comes. If they are shut, raiders break into the palisade wherever they like.</li>
       <li>Put your melee fighters behind the gate in the corner: whoever crosses the yard meets them there one at a time.</li>
     </tips>
   </ColonyCouncil.DefenseTemplateDef>
@@ -608,7 +608,7 @@
       <li>...........</li>
     </layout>
     <tips>
-      <li>Stone takes long to raise. Build the gate first and the wall outward from it.</li>
+      <li>Stone takes a long time to build. Build the gate first and the wall outward from it.</li>
       <li>Embrasures let archers shoot over the wall while it covers most of them.</li>
       <li>The yard is where raiders come out one at a time: that's where the arrows go. Keep it bare.</li>
       <li>Hold both gates open when a raid comes, so they walk into the yard instead of starting on the wall.</li>

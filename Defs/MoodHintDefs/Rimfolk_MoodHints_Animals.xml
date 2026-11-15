@@ -7,7 +7,7 @@
   <ColonyCouncil.MoodHintDef>
     <defName>Council_Mood_RF_AnimalFeud</defName>
     <thoughts><li>Council_Arc_FeudWithAnimal</li></thoughts>
-    <fix>One of the colony's animals and this colonist have taken against each other, often after it stole their food. It passes in a few days, and the feud usually ends in a grudging truce. Eating at a table, with the food put away, gives the animal fewer chances.</fix>
+    <fix>One of the colony's animals and this colonist have come to dislike each other, often after it stole their food. It passes in a few days, and the two usually settle into an uneasy truce. Eating at a table, with the food put away, gives the animal fewer chances.</fix>
     <act>Passes in a few days</act>
     <actionable>false</actionable>
     <article>Council_Alm_C_Animals</article>
@@ -25,7 +25,7 @@
   <ColonyCouncil.MoodHintDef>
     <defName>Council_Mood_RF_CropsGrazed</defName>
     <thoughts><li>Council_DlmA_LetItGraze</li></thoughts>
-    <fix>A wild animal ate the crops they'd grown. It passes in a few days. A fence round the fields keeps grazers out, and a hunt or a night's watch settles the next one.</fix>
+    <fix>A wild animal ate the crops they'd grown. It passes in a few days. A fence round the fields keeps grazers out, and hunting the animal or keeping watch at night deals with the next one.</fix>
     <act>Fence the fields</act>
     <actionable>false</actionable>
     <article>Council_Alm_C_Animals</article>
@@ -43,7 +43,7 @@
   <ColonyCouncil.MoodHintDef>
     <defName>Council_Mood_RF_BondAndFaith</defName>
     <thoughts><li>Council_DlmA_BondShamed</li><li>Council_DlmA_GaveUpMyAnimal</li><li>Council_DlmA_FaithBrushedAside</li></thoughts>
-    <fix>The council settled a quarrel between a bond with an animal and an ideoligion that frowns on it. It fades in a few days, except giving the animal to someone else, which hurts its person for eight. Keeping the animal out of the believer's way hurts nobody much.</fix>
+    <fix>The council settled a quarrel between a bond with an animal and an ideoligion that frowns on it. It fades in a few days, except giving the animal to someone else, which hurts its person for eight days. Keeping the animal out of the believer's way hurts nobody much.</fix>
     <act>Passes in a few days</act>
     <actionable>false</actionable>
     <article>Council_Alm_C_Animals</article>
