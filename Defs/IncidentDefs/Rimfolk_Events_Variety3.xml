@@ -25,7 +25,7 @@
         </titles>
         <texts>
           <li>There's a {X_kind} on the colony's land who has never lived under a roof, and keeps to the edges where the colony's people can see. {A_nameDef} has watched {X_objective} take food left out and says {X_pronoun} could be brought in, slowly, the way an animal is. {B_nameDef} doesn't like being watched, and would see {X_objective} sent on.</li>
-          <li>[lowtech] The {X_kind} has been seen again at the edge of the trees, the one who lives like the deer do. The old people say such a one can be gentled with food and patience, though some bite the hand. {A_nameDef} would try. {B_nameDef} says leave {X_objective} to the wild, or chase {X_objective} off.</li>
+          <li>[lowtech] The {X_kind} has been seen again at the edge of the trees, the one who lives like the deer do. The old people say such a person can be won over with food and patience, though some lash out. {A_nameDef} would try. {B_nameDef} says leave {X_objective} to the wild, or chase {X_objective} off.</li>
           <li>[!lowtech] A {X_kind}, no faction and no words anyone has heard, has been living off the colony's edges for days. {A_nameDef}, the colony's best with animals, thinks {X_pronoun} could be tamed like one. {B_nameDef} wants {X_objective} off the land.</li>
           <li>[land:forest] Someone has been sleeping under the trees past the colony and slipping away at dawn: a {X_kind}, {A_nameDef} says, watching the colony as warily as the colony watches {X_objective}.</li>
         </texts>
@@ -82,8 +82,8 @@
         </titles>
         <texts>
           <li>The storm took down a stretch of the pen's {THING}, and {A_nameDef} found the gap at first light with the {BEAST} already nosing at it. {B_nameDef} can put it back today. {A_nameDef} says let them out a while: there's grazing past the pen, and the crops are close too.</li>
-          <li>[big] {COUNT} animals in the pen, and a gap in its {THING} where the storm leaned on it. {B_nameDef} wants it mended before they find it. {A_nameDef} says a few days on the open grass would do the {BEAST} good, if they keep out of the fields.</li>
-          <li>[lowtech] The wind in the night brought down part of the pen's {THING}. The {BEAST} have found the gap and stand looking out of it. {B_nameDef} has the tools ready to mend it; {A_nameDef} would let them graze outside for a while.</li>
+          <li>[big] There are {COUNT} animals in the pen, and the storm has knocked a gap in its {THING}. {B_nameDef} wants it mended before they find it. {A_nameDef} says a few days on the open grass would do the {BEAST} good, if they keep out of the fields.</li>
+          <li>[lowtech] The wind in the night brought down part of the pen's {THING}. The {BEAST} have found the gap and stand looking out of it. {B_nameDef} has the tools ready to mend it, but {A_nameDef} would let them graze outside for a while.</li>
           <li>[!lowtech] Storm damage: a section of the pen's {THING} is down, and the {BEAST} can walk out through it. {B_nameDef} can rebuild it. {A_nameDef} points out the grass beyond is better than the pen's.</li>
         </texts>
         <defaultOption>1</defaultOption>
@@ -127,7 +127,7 @@
           <li>Sweet fruit {PLACE}</li>
         </titles>
         <texts>
-          <li>The wild ambrosia {PLACE} is ripe, {COUNT} bushes heavy with it, and {A_nameDef} came back with sticky hands. It's worth a great deal, and it's a joy to eat. {B_nameDef} says it pulls at some people who eat it, and would leave it on the bush.</li>
+          <li>The wild ambrosia {PLACE} is ripe, {COUNT} bushes heavy with it, and {A_nameDef} came back with sticky hands. It's worth a great deal, and it's a joy to eat. {B_nameDef} says some people who eat it can't stop, and would leave it on the bush.</li>
           <li>[teetotal] {COUNT} ambrosia bushes are ripe {PLACE}. {A_nameDef} wants them picked for the stores. {B_nameDef} has never touched anything of the kind, and says the colony would be better off if nobody did.</li>
           <li>[lowtech] The sweet fruit the elders call a gift is ripe on {COUNT} bushes {PLACE}. {A_nameDef} would pick it all. {B_nameDef} says some who eat it want nothing else after, and that a little, for one night, is enough.</li>
           <li>[!lowtech] The ambrosia {PLACE} is ripe: {COUNT} bushes, worth good silver, and sweet enough that some eaters come back for more than they should. {A_nameDef} wants it in the stores. {B_nameDef} would pick only enough for one night.</li>
@@ -185,10 +185,10 @@
           <li>Eggs {PLACE}</li>
         </titles>
         <texts>
-          <li>{A_nameDef} nearly stepped on them: {COUNT} eggs in a scrape in the grass {PLACE}, still warm, and no {BEAST} anywhere near. {B_nameDef} says kept warm they'll hatch, and the young would be the colony's to raise. {A_nameDef} says eggs are eggs, and the cooks would thank them.</li>
-          <li>[lowtech] A {BEAST}'s nest with {COUNT} eggs in it, {PLACE}, and the mother gone. The old way is to take one and leave the rest. {B_nameDef} would take them all and hatch them by the fire; {A_nameDef} would take them for the pot.</li>
+          <li>{A_nameDef} nearly stepped on them: {COUNT} eggs in a scrape in the grass {PLACE}, still warm, and no {BEAST} anywhere near. {B_nameDef} says kept warm they'll hatch, and the young would be the colony's to raise. {A_nameDef} says they're only eggs, and the cooks could use them.</li>
+          <li>[lowtech] A {BEAST}'s nest with {COUNT} eggs in it, {PLACE}, and the mother gone. The old way is to take one and leave the rest. {B_nameDef} would take them all and hatch them by the fire, while {A_nameDef} would take them for the pot.</li>
           <li>[!lowtech] {A_nameDef} found a clutch of {COUNT} {BEAST} eggs {PLACE}, abandoned and still warm. {B_nameDef} says they'd hatch in the warm stores. {A_nameDef} says the kitchen would make better use of them.</li>
-          <li>[land:grassland] Out in the long grass {PLACE}, {A_nameDef} found {COUNT} {BEAST} eggs in a hollow, the nest left. {B_nameDef} wants to see what hatches; {A_nameDef} wants an omelette.</li>
+          <li>[land:grassland] Out in the long grass {PLACE}, {A_nameDef} found {COUNT} {BEAST} eggs in a hollow, the nest abandoned. {B_nameDef} wants to see what hatches, but {A_nameDef} wants an omelette.</li>
         </texts>
         <defaultOption>2</defaultOption>
         <options>

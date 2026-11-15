@@ -17,7 +17,7 @@
     <texts>
       <li>[tale,winter] {X_nameDef}, a storyteller of {FACTION}, came in out of the snow asking for a seat near the hearth, and offers a winter's worth of stories in exchange. One of them is about this colony: "{TALE}"</li>
       <li>[notale,summer] With a sunburned nose and a hat full of feathers, {X_nameDef}, a storyteller of {FACTION}, would like to spend the evening. There'll be stories in the yard after supper, while it's still light enough to see faces.</li>
-      <li>[notale,skill:Social] {X_nameDef} of {FACTION} tells stories for a living, and has already found {A_nameDef}, who tells them for nothing. They've agreed to take turns tonight, and to argue about the endings.</li>
+      <li>[notale,skill:Social] {X_nameDef} of {FACTION} tells stories for a living, and has already met {A_nameDef}, who likes telling them too. They've agreed to take turns tonight.</li>
       <li>[tale,lowtech] A bard of {FACTION} named {X_nameDef} has come to the gate with a harp on {X_possessive} back. {X_nameDef} has made a song about the colony out of what people say on the road, and wants to try it on the people it's about: "{TALE}"</li>
       <li>[tale,!lowtech] {X_nameDef} of {FACTION} collects stories from the settlements and tells them at the next one. The colony is in {X_possessive} collection now, told like this: "{TALE}" {X_nameDef} would like supper and a bed, and to hear the colony's side.</li>
       <li>[notale,colony:Open] {X_nameDef}, a storyteller of {FACTION}, heard on the road that this colony welcomes travelers, and has come to see. {X_nameDef} will pay for supper and a bed in stories, as many as anyone wants to hear.</li>
@@ -66,7 +66,7 @@
         <option>1</option>
         <lines>
           <li>[winter] The pilgrims bowed and went back out into the cold, hungry.</li>
-          <li>The pilgrims thanked the colony for nothing, very politely, and walked on.</li>
+          <li>The pilgrims thanked the colony politely anyway, and walked on hungry.</li>
         </lines>
       </li>
     </outcomes>
@@ -109,10 +109,10 @@
     </titles>
     <texts>
       <li>[!lowtech] {X_nameDef}, barely grown, has come up the road with a pack and a list of questions about {SKILL}, all of them for {A_nameDef}. {X_nameDef} heard about {A_nameDef} from a trader and asks to stay and learn.</li>
-      <li>[Cooking] {X_nameDef}, a young cook from somewhere with worse food, has come a long way to learn from {A_nameDef}. {X_nameDef} brought {X_possessive} own knife, and is ready to start with the peeling.</li>
+      <li>[Cooking] {X_nameDef}, a young cook, has come a long way to learn from {A_nameDef}. {X_nameDef} brought {X_possessive} own knife, and is ready to start with the peeling.</li>
       <li>[Medicine] {X_nameDef} wants to be a healer, and has heard that {A_nameDef} is the best for miles around. {X_nameDef} asks to stay and learn, and promises to boil every bandage.</li>
       <li>[Construction] {X_nameDef} has watched {A_nameDef}'s walls go up from the road for a week, and today walked up to the gate and asked to learn how. {X_nameDef} wants to stay as {A_nameDef}'s apprentice.</li>
-      <li>[Plants] {X_nameDef}, a farm hand who wants more than hand work, has heard that nothing dies in {A_nameDef}'s fields. {X_nameDef} asks to stay and learn from {A_nameDef}, and has brought {X_possessive} own hoe.</li>
+      <li>[Plants] {X_nameDef}, a farm hand who wants more than hand work, has heard that {A_nameDef}'s crops always do well. {X_nameDef} asks to stay and learn from {A_nameDef}, and has brought {X_possessive} own hoe.</li>
       <li>[Crafting] {X_nameDef} has a sack of things {X_pronoun} made and wants {A_nameDef} to say what's wrong with every one of them. {X_nameDef} asks to stay as {A_nameDef}'s apprentice and learn {SKILL} properly.</li>
     </texts>
     <outcomes>
@@ -137,7 +137,7 @@
     <incident>Council_Evt_QuietStranger</incident>
     <texts>
       <li>[winter] A stranger has been sheltering against the colony wall since the snow started, and asks to come in and stay. {X_nameDef} gives a name and nothing else. {A_nameDef} found {X_objective} first, half frozen, and thinks {X_nameDef} is running from something.</li>
-      <li>[outlaw] {A_nameDef} knows the look of someone running from the law, having worn it once. {X_nameDef} has it. {X_nameDef} turned up at the gate this morning, asks to stay, and won't say where from.</li>
+      <li>[outlaw] {A_nameDef} was on the run once, and can tell that {X_nameDef} is running from the law. {X_nameDef} turned up at the gate this morning, asks to stay, and won't say where from.</li>
       <li>[soldier] {X_nameDef} walked in and asked to stay, standing straight the whole time like someone trained to it for years. {A_nameDef}, who soldiered once, noticed. {X_nameDef} won't talk about the past.</li>
       <li>[colony:Open] Word on the road is that this colony takes people in. {X_nameDef} heard it and has come to ask to stay. {X_nameDef} is polite and strong, and says almost nothing about where {X_pronoun} has been.</li>
     </texts>
@@ -182,7 +182,7 @@
       <li>
         <option>0</option>
         <lines>
-          <li>[child] The {THING} sleeps in {A_nameDef}'s bed now. The council was never asked about that part.</li>
+          <li>[child] The {THING} sleeps in {A_nameDef}'s bed now, and nobody has made it move.</li>
           <li>The {THING} ate two bowls of scraps and fell asleep in a patch of sun. It lives here now.</li>
         </lines>
       </li>

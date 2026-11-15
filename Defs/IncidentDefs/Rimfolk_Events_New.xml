@@ -176,7 +176,7 @@
           <li>A game for a stake</li>
         </titles>
         <texts>
-          <li>[chess] {X_nameDef} of {FACTION} has been looking at the colony's chess table all morning, and has finally asked who here plays. The answer is {A_nameDef}.\n\n{X_nameDef} would like a game, and would like it more for {COUNT} silver.</li>
+          <li>[chess] {X_nameDef} of {FACTION} has been looking at the colony's chess table all morning, and has finally asked who here plays. The answer is {A_nameDef}.\n\n{X_nameDef} would like a game, preferably for {COUNT} silver.</li>
           <li>[poker] {X_nameDef} of {FACTION} has sat down at the colony's poker table, shuffled the deck twice, and asked who will play. {A_nameDef} is the one the others point at.\n\n{X_nameDef} suggests a stake of {COUNT} silver, to keep it interesting.</li>
           <li>[game] {X_nameDef} of {FACTION} has challenged the colony's best to a game at its table, and the colony's best is {A_nameDef}. A stake of {COUNT} silver, {X_nameDef} suggests, or just for the pleasure of it.</li>
         </texts>
@@ -228,7 +228,7 @@
         <texts>
           <li>[patron] {FACTION} were so pleased with the last piece that they have written again. They want a {THING}, made at the colony's own bench by {A_nameDef}, of good quality or better, for {COUNT} silver.\n\nAt plain quality they would still take it, for {TALE}.</li>
           <li>[apparel] Someone of {FACTION} has seen the colony's work and wants a {THING} of their own, cut and sewn by {A_nameDef}. Of good quality or better, they will pay {COUNT} silver for it. At plain quality, {TALE}.\n\nTheir rider will come for it when it's ready.</li>
-          <li>[weapon] {FACTION} want a {THING} made for one of their people, and they have heard that {A_nameDef} makes them well. Of good quality or better, {COUNT} silver; at plain quality, {TALE}.\n\nTheir rider will come for it when it's ready.</li>
+          <li>[weapon] {FACTION} want a {THING} made for one of their people, and they have heard that {A_nameDef} makes them well. They will pay {COUNT} silver for one of good quality or better, or {TALE} at plain quality.\n\nTheir rider will come for it when it's ready.</li>
         </texts>
         <defaultOption>2</defaultOption>
         <options>

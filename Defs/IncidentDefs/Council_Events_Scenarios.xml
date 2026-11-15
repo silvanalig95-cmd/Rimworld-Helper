@@ -31,9 +31,9 @@
         </titles>
         <texts>
           <li>[loan,!late,!lowtech] The loan has come due. {ENEMY} are on the comms, very politely, about the {COUNT} silver the colony owes them. Everything it landed with was bought with their money, and they would like it back.</li>
-          <li>[loan,!late,lowtech] A rider of {ENEMY} has come to the gate with a ledger under one arm. The colony's debt of {COUNT} silver is due, and the rider would like it paid. {ENEMY} are polite about these things, the first time.</li>
+          <li>[loan,!late,lowtech] A rider of {ENEMY} has come to the gate with a ledger under one arm. The colony's debt of {COUNT} silver is due, and the rider would like it paid. {ENEMY} are polite about it this time, but won't be if it isn't paid.</li>
           <li>[loan,late,!lowtech] {ENEMY} are back on the comms about the debt, now {COUNT} silver with their interest. They're noticeably less polite this time.</li>
-          <li>[loan,late,lowtech] The rider of {ENEMY} is back at the gate, with the ledger open at the colony's page. Owed, with interest: {COUNT} silver. The rider has stopped smiling.</li>
+          <li>[loan,late,lowtech] The rider of {ENEMY} is back at the gate, with the ledger open at the colony's page. With interest, the colony now owes {COUNT} silver, and the rider has stopped smiling.</li>
           <li>[heist,boss,!late,!lowtech] {X_nameDef} of {ENEMY} has found the colony, and the message is short. "{COUNT} silver. Mine. Every coin of it back, and I might call it square. Otherwise I come and take it."</li>
           <li>[heist,boss,!late,lowtech] A rider in the colors of {ENEMY} brings word from {X_nameDef}, who knows exactly where {X_possessive} {COUNT} silver went. {X_nameDef} wants all of it back, and might call it square then. Otherwise {X_nameDef} will come and take it.</li>
           <li>[heist,!boss] The {COUNT} silver the colony is carrying was taken from one of {ENEMY}'s own, and {ENEMY} want every coin of it back. Pay, they say, and they might call it square. Don't, and they'll come and take it.</li>

@@ -29,8 +29,8 @@
           <li>[lowtech] {A_nameDef} went white at the sound of {A_possessive} own name. Riders in the colors of {ENEMY} have been asking for a deserter at every village and crossroads, and today they asked at the colony's gate. They want {A_objective} back to answer for it.\n\nThey'll take {COUNT} silver in {A_possessive} place. Otherwise they'll take {A_objective}, by force.</li>
           <li>[!lowtech,tribalfoe] A runner of {ENEMY} came out of the trees with a short message. They know {A_nameDef} is here, and a warrior who runs from the war band still belongs to it. The colony can hand {A_objective} over, buy out {A_possessive} oath for {COUNT} silver, or watch them come and take {A_objective}.</li>
           <li>[!lowtech,!tribalfoe] "Deserter {A_nameDef} is to be returned to the unit to answer for desertion. Compensation of {COUNT} silver will be accepted in lieu. Failing either, the unit will recover {A_objective} by force."\n\nThe message came over the comms from {ENEMY}, and the signal cut before anyone could answer.</li>
-          <li>[winter] Three riders of {ENEMY} came through the snow under a white rag and asked for {A_nameDef} by name. They know {A_pronoun} ran, and they mean to take {A_objective} back, or take {COUNT} silver for {A_possessive} service. Refused both, they'll come back with more riders.</li>
-          <li>[trait:Nervous] {A_nameDef} has been sleeping badly for weeks, and today the reason rode up to the gate: an officer of {ENEMY}, with the old muster roll and {A_nameDef}'s name on it. Hand {A_objective} over, buy out {A_possessive} service for {COUNT} silver, or {ENEMY} will take {A_objective} by force.</li>
+          <li>[winter] Three riders of {ENEMY} came through the snow under a white rag and asked for {A_nameDef} by name. They know {A_pronoun} ran, and they mean to take {A_objective} back, or take {COUNT} silver for {A_possessive} service. If the colony refuses both, they'll come back with more riders.</li>
+          <li>[trait:Nervous] {A_nameDef} has been sleeping badly for weeks, afraid of this. Today an officer of {ENEMY} rode up to the gate with the old muster roll, and {A_nameDef}'s name is on it. Hand {A_objective} over, buy out {A_possessive} service for {COUNT} silver, or {ENEMY} will take {A_objective} by force.</li>
         </texts>
         <defaultOption>0</defaultOption>
         <options>
@@ -106,8 +106,8 @@
         </titles>
         <texts>
           <li>A young traveler of {FACTION} has come asking for {A_nameDef} by name, and it takes {A_nameDef} a moment to place the face. It's {X_nameDef}, the lost child the colony once took home, all grown up. {X_nameDef} has brought a gift, and would like to know if there's room here to stay.</li>
-          <li>[lowtech] A head taller now and brown from the road, but after a long look {A_nameDef} knew {X_nameDef}, the lost child the colony walked home years ago. {X_nameDef} of {FACTION} has come back with a pack and a gift.\n\nAnd a question. {X_nameDef} wonders whether there's room here to stay.</li>
-          <li>[!lowtech] {A_nameDef} didn't know the voice, but knew the grin. {X_nameDef} of {FACTION} came in along the trade road with a duffel bag over one shoulder and asked for {A_nameDef} by name. It's the lost child from years ago, grown up.\n\n{X_nameDef} has brought a gift, and would like to know if there's a place here.</li>
+          <li>[lowtech] {X_nameDef} is a head taller now and brown from the road, but after a long look {A_nameDef} recognized {X_objective} as the lost child the colony walked home years ago. {X_nameDef} of {FACTION} has come back with a pack and a gift.\n\n{X_nameDef} would also like to know whether there's room here to stay.</li>
+          <li>[!lowtech] {A_nameDef} didn't recognize the voice, but recognized the grin. {X_nameDef} of {FACTION} came in along the trade road with a duffel bag over one shoulder and asked for {A_nameDef} by name. It's the lost child from years ago, grown up.\n\n{X_nameDef} has brought a gift, and would like to know if there's a place here.</li>
           <li>[trait:Kind] {X_nameDef}, the lost child {A_nameDef} found by the fields years ago, is back, grown and taller than {A_nameDef}. The first thing {X_nameDef} did was hug {A_objective}. The second was to hand over a gift.\n\n{X_nameDef} would like to know if there's a place here, or at least a bed for the night.</li>
           <li>[winter] {X_nameDef} came in out of the snow, stamping {X_possessive} boots at the gate: the lost child the colony once walked home, grown up now. {X_nameDef} still remembers the soup {A_nameDef} made that first night, and has brought a gift in return.\n\n{X_nameDef} asks if there might be room here.</li>
         </texts>
@@ -157,7 +157,7 @@
             <outcome>{B_nameDef} spent the day at the workbench with {X_nameDef}, showing {X_objective} how the colony makes what it makes. {X_nameDef} left in the morning with sore hands, a new trade and a tool {B_nameDef} gave {X_objective} to keep.</outcome>
             <outcomes>
               <li>[b:trait:Kind] {B_nameDef} spent the day at the workbench with {X_nameDef}, patient with every mistake. {X_nameDef} left in the morning with a new trade and a promise to come back and show {B_objective} what {X_pronoun} has made.</li>
-              <li>[b:trait:Abrasive] {B_nameDef} spent the day at the workbench with {X_nameDef}, grumbling at every slip and then showing {X_objective} again. {X_nameDef} left in the morning knowing more than {X_pronoun} expected to, and liking {B_nameDef} more than {B_pronoun} would admit to liking {X_objective}.</li>
+              <li>[b:trait:Abrasive] {B_nameDef} spent the day at the workbench with {X_nameDef}, grumbling at every slip and then showing {X_objective} again. {X_nameDef} left in the morning knowing more than {X_pronoun} expected to, and the two of them parted on good terms.</li>
             </outcomes>
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_Needs"><skill>Crafting</skill><minLevel>8</minLevel><target>Colony</target><asB>true</asB><reason>Nobody here is a good enough crafter to teach.</reason></li>
@@ -206,7 +206,7 @@
             <label>Accept: {COUNT} silver on {A_nameDef}</label>
             <outcome>The rematch is on, with silver riding on it. It starts in a couple of hours.</outcome>
             <outcomes>
-              <li>The rematch is on, and the silver is counted out on a barrel head where everyone can see it. Two hours to go.</li>
+              <li>The rematch is on, and the silver is counted out on a barrel head where everyone can see it. It starts in about two hours.</li>
             </outcomes>
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_Contest"><stake>true</stake></li>

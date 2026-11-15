@@ -39,7 +39,7 @@
     <defName>Council_Var_Evt_OldFlame</defName>
     <incident>Council_Evt_OldFlame</incident>
     <texts>
-      <li>[lowtech] Sweethearts once, in another village, before everything went wrong. Now {X_nameDef} is on the road below the colony with a bundle on {X_possessive} back, asking for {A_nameDef}, with no one else to go to.</li>
+      <li>[lowtech] {X_nameDef} and {A_nameDef} were sweethearts once, in another village, before everything went wrong. Now {X_nameDef} is on the road below the colony with a bundle on {X_possessive} back, asking for {A_nameDef}, with no one else to go to.</li>
       <li>[!lowtech,partner] {X_nameDef} is outside the colony, asking for {A_nameDef}. They lived together once, before the colony, and parted badly. {A_nameDef}'s partner was in the room when the name was said, and hasn't said a word since.</li>
     </texts>
   </ColonyCouncil.LetterVariantsDef>
@@ -57,7 +57,7 @@
     <defName>Council_Var_Evt_Creditor</defName>
     <incident>Council_Evt_Creditor</incident>
     <texts>
-      <li>[trader,!lowtech] A man in a good suit and bad boots has come up the road with a ledger. {A_nameDef} owes his employers {COUNT} silver from a deal that went sour years ago, and the interest, he says, has been very patient.</li>
+      <li>[trader,!lowtech] A man in a good suit and bad boots has come up the road with a ledger. {A_nameDef} owes his employers {COUNT} silver from a deal that went sour years ago, and he says they have waited long enough.</li>
       <li>[outlaw,lowtech] A one-eyed stranger on the road has been asking for {A_nameDef}, and {A_nameDef} went pale when told what the stranger looks like. {A_nameDef} owes {COUNT} silver to the band {A_pronoun} used to ride with, and they've sent someone to collect.</li>
     </texts>
   </ColonyCouncil.LetterVariantsDef>
@@ -79,7 +79,7 @@
       <li>[Cooking] A letter has come for {A_nameDef} from the cook who taught {A_objective}, years ago, to make bread. It's mostly a recipe, with corrections, and a line at the bottom saying {A_nameDef} never measured the salt.</li>
       <li>[Medicine] {A_nameDef}'s old teacher of medicine has sent a letter, much traveled, asking whether {A_nameDef} still boils {A_possessive} needles. There are three pages of new remedies after that.</li>
       <li>[Construction] A note has reached {A_nameDef} from the builder who taught {A_objective} the trade. It says only: "Heard you're building walls now. Mind the corners." {A_nameDef} has read it many times.</li>
-      <li>[Shooting] {A_nameDef}'s old shooting instructor has sent word, by way of a passing hunter: still alive, still sure {A_nameDef} flinches, and proud anyway.</li>
+      <li>[Shooting] {A_nameDef}'s old shooting instructor has sent word by a passing hunter. The instructor is still alive, still thinks {A_nameDef} flinches, and is proud of {A_objective} anyway.</li>
     </texts>
   </ColonyCouncil.LetterVariantsDef>
 

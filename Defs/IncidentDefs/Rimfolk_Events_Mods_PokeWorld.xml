@@ -38,7 +38,7 @@
         <options>
           <li>
             <label>Everyone out to see it</label>
-            <outcome>A handful of colonists crept out together and lay flat in the grass to watch the rare one go about its business. They came back with grass stains, and a story that grew on the way home.</outcome>
+            <outcome>A handful of colonists crept out together and lay flat in the grass to watch the rare one go about its business. They came back with grass stains and a lot to tell.</outcome>
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_Procession"><label>a look at the rare one</label><to>Stranger</to><count>5</count><hours>8~18</hours></li>
               <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_PW_SawRareOne</thought><chance>0.6</chance></li>
@@ -95,7 +95,7 @@
         <texts>
           <li>[new] A trainer of {FACTION}, {X_nameDef}, has stopped at the gate with a story: a {TALE} in the wrong colors, shining like a coin, seen twice this season a few days from here and never caught. Every trainer on the road is looking for it. The colony has never caught a {TALE} of any color.
 
-{X_nameDef} will be moving on in a few hours, after the rumour and in front of it.</li>
+{X_nameDef} will be moving on in a few hours to keep looking for it.</li>
           <li>[known] {X_nameDef}, a trainer of {FACTION}, has stopped at the gate with a story the colony has half heard already: a shiny {TALE}, seen in the region twice this season and caught by nobody. The colony has a {TALE} of its own, of the ordinary color.
 
 {X_nameDef} is moving on in a few hours, to look.</li>

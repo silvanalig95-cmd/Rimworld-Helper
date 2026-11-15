@@ -16,7 +16,7 @@
       <li>
         <option>0</option>
         <lines>
-          <li>[colony:Open] Travelers are welcome here, as the road already knows. They'll camp {PLACE} for a while.</li>
+          <li>[colony:Open] Travelers are welcome here, as people on the road already know. They'll camp {PLACE} for a while.</li>
           <li>[skill:Social] {A_nameDef} sends word down that they're welcome, and asks where they've come from. They'll camp {PLACE} for a while.</li>
         </lines>
       </li>

@@ -26,7 +26,7 @@
           <li>Finders, keepers?</li>
         </titles>
         <texts>
-          <li>[!lowtech] A cargo pod streaked down and thumped into the ground beyond the colony's fields. The markings say it belongs to {FACTION}, and a message from them is already waiting: it went astray, and they'd like it back, please. The colony could, of course, simply not have seen it.</li>
+          <li>[!lowtech] A cargo pod streaked down and thumped into the ground beyond the colony's fields. The markings say it belongs to {FACTION}, and a message from them is already waiting: it went astray, and they would like it back. The colony could return it, or keep it and say it never saw the pod.</li>
           <li>[lowtech] "Brown mule, white blaze, about so high. Bolted with half our load on its back." The rider from {FACTION} who came asking at the gate is still out of breath.\n\nThe mule is long gone over the hills, but its load is lying on the colony's land where it shed it. The colony can send the goods back, or keep them and say nothing.</li>
         </texts>
         <defaultOption>1</defaultOption>
@@ -41,7 +41,7 @@
           </li>
           <li>
             <label>Keep it</label>
-            <outcome>The colony keeps the cargo. {FACTION} have their suspicions, and they're right.</outcome>
+            <outcome>The colony keeps the cargo. {FACTION} suspect the colony took it.</outcome>
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_EventGoodwill"><amount>-8</amount></li>
             </effects>
@@ -52,7 +52,7 @@
             <outcome>{B_nameDef} sent the cargo back with a polite note about the colony's trouble, and {FACTION} paid {COUNT} silver as a finder's fee.</outcome>
             <outcomes>
               <li>[lowtech] {B_nameDef} told {FACTION}'s rider where the load lay, mentioning the long walk out to it more than once. They paid {COUNT} silver for the trouble.</li>
-              <li>[b:past:trader] {B_nameDef} has been on the other side of this kind of deal, and knew what to ask. {FACTION} got their cargo back and paid {COUNT} silver for the favor.</li>
+              <li>[b:past:trader] {B_nameDef} has traded for a living and knew what to ask. {FACTION} got their cargo back and paid {COUNT} silver for the favor.</li>
             </outcomes>
             <riskChance>0.4</riskChance>
             <riskSkill>Social</riskSkill>
@@ -91,7 +91,7 @@
         </titles>
         <texts>
           <li>[!lowtech] A recruiter from {FACTION}, with polished boots and a polished smile, has heard about {A_nameDef}'s {SKILL}. {FACTION} would pay the colony {COUNT} silver to take over {A_possessive} contract, and pay {A_objective} a fine wage besides. The recruiter is very sure {A_nameDef} will say yes.</li>
-          <li>[lowtech,!tribal] "My lord has heard of the {SKILL} of one {A_nameDef}, and would take {A_objective} into service." The steward of {FACTION} says it as if reading it, and perhaps is.\n\nThe lord offers the colony {COUNT} silver for {A_nameDef}, and {A_nameDef} a good post in a great house, with room and board.</li>
+          <li>[lowtech,!tribal] "My lord has heard of the {SKILL} of one {A_nameDef}, and would take {A_objective} into service." The steward of {FACTION} says it in a flat voice, as if reading it out.\n\nThe lord offers the colony {COUNT} silver for {A_nameDef}, and {A_nameDef} a good post in a great house, with room and board.</li>
           <li>[tribal] Word has come from the elders of {FACTION}, who have heard of {A_nameDef}'s {SKILL}. If {A_nameDef} will come to live among them and teach their young, they'll give the colony {COUNT} silver.</li>
         </texts>
         <defaultOption>2</defaultOption>
