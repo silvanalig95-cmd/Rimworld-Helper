@@ -5,6 +5,14 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## The peoples, each described in its own words
+
+*15 November 2026, version 0.252.0*
+
+- Each of Rimfolk's 23 peoples has a new description on its faction page, in plain words: what they do, how they live, the age they live in and what they want from their neighbours.
+- Each people's history now has a shape of its own, such as a war, a vote, a flood, a fire or a vow, and a founder is named only where that people keeps the name in a custom.
+- The descriptions match what each people does on the map, and they are shorter than before, with no two beginning the same way.
+
 ## Messages at the top of the screen in plain words
 
 *15 November 2026, version 0.251.0*
