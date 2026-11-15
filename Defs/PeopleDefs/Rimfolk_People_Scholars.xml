@@ -10,7 +10,7 @@
     no more often than another people's. A copyist of theirs asks to copy the colony's records for the archive
     (Rimfolk_Evt_ScholarCopyist); a travelling scholar, a book swapper, the old vault opened and the comet come from them
     likeliest (Patches/Rimfolk_PeoplesC.xml); once a year a fellow holds the night of the fire's disputation at the colony's
-    gathering place (Rimfolk_Evt_Disputation). Their founding (the description): Ilse Varro, who carried eleven books
+    gathering place (Rimfolk_Evt_Disputation). Their founding (told in the description, the founder named in their talk): Ilse Varro, who carried eleven books
     and a ledger out of the burning archive at Hesk and copied them for the rest of her life. What they honour, fear and
     say is in their template (on their card). They defend their archives and raid only when the colony has turned them
     hostile (raidCommonalityFromPointsCurve 0.2). Listed once among the world's peoples when a world is made, never
@@ -23,7 +23,7 @@
   <FactionDef ParentName="OutlanderFactionBase">
     <defName>Rimfolk_Scholars</defName>
     <label>learned society</label>
-    <description>A society of scholars, copyists and booksellers who keep an archive of everything written down in the region: histories, ledgers, letters, plans of machines and lists of the stars. They buy books, sell copies, and send their copyists to any town that keeps records of its own.\n\nTheir ways began the night the old archive at Hesk burned. A clerk named Ilse Varro carried out what she could in a handcart, eleven books and a ledger, and spent the rest of her life copying them for any town that would trade her a meal for a copy; the society is the people who learned to read from her pages. Every year on the night of the fire the fellows argue until dawn about what the archive held that nobody saved, and a scholar's first oath is to copy one thing that would otherwise be lost.\n\nThey are precise, digressive and fond of the word "strictly," and they never leave a question unasked. They would rather argue than fight, but their proctors keep rifles for the archive's sake. Each archive is kept by its archivist, and the society by its provost.</description>
+    <description>The learned society keeps an archive of everything written down in the region, from histories and ledgers to plans of machines and charts of the stars. Its scholars, copyists and booksellers live in the industrial age. They buy books, sell copies, and send copyists to any town or colony that keeps records, to copy them for the archive.\n\nThe society was formed after a fire. When the old archive at Hesk burned, a clerk saved eleven books and a ledger in a handcart and spent the rest of her life copying them for any town that would give her a meal for a copy. The people who learned to read from those copies became the society. Once a year, on the night of the fire, its fellows argue until dawn about what the archive held that nobody saved, and a fellow on the road may ask to hold the argument where a colony gathers.\n\nThey would rather argue than fight, though their proctors keep rifles to guard the archives. An archivist runs each archive, and the provost the society.</description>
     <pawnSingular>scholar</pawnSingular>
     <pawnsPlural>scholars</pawnsPlural>
     <leaderTitle>provost</leaderTitle>

@@ -8676,6 +8676,44 @@ pure rules in `PeoplesMath.cs` (`Tools/Tests/PeoplesTests.cs`, "peoples: ").
     shrines, thefts, the table) and the camps' states, modelled in `Tools/save_estimate.py`. Dev actions "Peoples' events 3:
     ...". The Almanac's peoples' pages, *Of their own: gifts, trust and camps*.
 
+### The peoples' descriptions, each in its own words (the player's request, 14 November 2026; not released yet)
+
+The player's words (14 November 2026): "i really like the different factions you created, but when i look at their
+faction and read the description text with their history etc., it really reads like AI gibberish and I don't understand
+what is really meant. also they all follow the same structure and it's always one named individual who started the
+faction somehow. can you redo these descriptions and do a better job? each faction shoud have it's own description &
+history, written and tailored for it exactly." Built 15 November 2026.
+
+- **Where.** The `<description>` of each of the 23 FactionDefs in `Defs/PeopleDefs/Rimfolk_People_*.xml`, the text of the
+  faction's info window (a people that arose in their ways shows its template's). Only the descriptions changed: the
+  peoples' talk, faiths, sayings, events, letters and Almanac pages keep their founding stories and founders as they were.
+- **How each is written.** In plain words (CLAUDE.md, "Plain, neutral text"): what they do, where and how they live, the
+  age they live in, said plainly, what they want from their neighbours and how they treat outsiders, each of those one of
+  their events, asks or trades on the map. Their history has a shape of its own: the end of a king's war (the Ashen
+  Banner), a place that changed its people over generations (the Choir of the Spire), a vote (the Deepwell Union), a crash
+  and a trade (the spacer enclave), an abandoned lab (the Helix Works), a drought and a custom (the herders), an order
+  never given (the Hollow Fleet), a flood and an oath (the Kiln Guild), a battlefield (the Lattice), a pact at a ford (the
+  road league), a war and a replanting (the Mossborn), a plague (the hospitallers), a quarrel over a shrine (the pilgrims),
+  a war's unburied dead (the Quiet Bell), a collapse and a broadcast (the Last Republic), a flood (the river folk), a fire
+  (the learned society), a war that cut the roads (the Signal Line), a three-hundred-year record (the Stormglass Conclave),
+  an opening and a decline (the Sunken Vault), a contest (the Circuit of Tamers), a vow (the Lantern Wardens), and a
+  flight from fire (the Wheel). A founder is named only where the people keep the name in a custom (Aldith's lamp, Tamsa's
+  count, Old Brannoc's walk, Captain Imre Sallow's order, Nessa Pell's challenges, Tobin Garrow's lantern); the others are
+  told by what happened, never against the founders their talk, faith and page name. No two open the same way; they run
+  from about 140 to 190 words, each no longer than it was, with leaders' titles where they help, said differently each
+  time.
+- **Checked against the map.** Each claim against the people's honours, fears, sayings, titles, faith, events, letters,
+  camps, towns and code: the Banner's Roll is read for any colonist who died holding a wall (`Rimfolk_Evt_BannerRoll`),
+  the Wheel's towns move a few tiles every 30 days (`WheelTowns`, where the old text said it circled the region every few
+  years), the Republic's broadcast is heard with a comms console or the Line's mast (`RepublicRadio`), the Conclave's
+  runner comes ahead of a cold snap, heat wave or fallout (`Rimfolk_Evt_GlassReading`). The river folk's free crossing on
+  the night of the flood, which nothing in the game plays, is left out; their knot night (`Rimfolk_Evt_KnotNight`) is in.
+- **Test.** `Tools/Tests/PeoplesLoreTests.cs` pinned the old shape (three paragraphs, the middle one opening "Their ways
+  began" with the founder). Now: two paragraphs or more, each ending a sentence, at most 1200 characters, no "Their ways
+  began", no em dash or exclamation mark, the age said, and no two descriptions opening with the same three words. The
+  founders' list stays for the talk's check (one piece of each people's talk tells how their ways began).
+- **What can't be checked without the game:** how each text sits in the faction's info window.
+
 ### Magic among the peoples, seen (the player's request, 12 November 2026; released 0.225.0)
 
 The player: "one thing i want to ask whether you integrate rimworld of magic "classes" & spells into our custom made

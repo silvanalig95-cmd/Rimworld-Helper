@@ -10,8 +10,8 @@
     raidCommonalityFromPointsCurve 0.35). Listed once among the world's peoples when a world is made, never required.
     Gear from the game's tags and the mods' (their kinds, below): a coat dyed the league's teal on every wayfarer, the
     teal duster in its guards' one kit. When the snow closes the roads a caravan of theirs asks to winter by the colony's
-    wall (Rimfolk_Camp_LeagueWinter), and after a stay that went well leaves a waystone at the gate. Their founding (the
-    description): Edda Vane, who took nine waymasters' wagons through Harrow Ford under their flags; the Waystone Book.
+    wall (Rimfolk_Camp_LeagueWinter), and after a stay that went well leaves a waystone at the gate. Their founding (told in the
+    description, the founder named in their talk): Edda Vane, who took nine waymasters' wagons through Harrow Ford under their flags; the Waystone Book.
     What they honour, fear and say is in their template (on their card). Faith (Ideology): a fixed creed of the
     collective and of trade (VE Memes' trader and republic where loaded), the rustic style. Kind of people (Biotech): seven in ten baseliners; hussars on guard,
     genies keeping the books, highmates, dirtmoles, neanderthals, starjacks (Odyssey), boglegs, stoneborn, Vanilla Races
@@ -21,7 +21,7 @@
   <FactionDef ParentName="OutlanderFactionBase">
     <defName>Rimfolk_League</defName>
     <label>road league</label>
-    <description>A league of caravan masters, carters and waystation keepers who live by the roads between other peoples' towns. They keep few towns of their own, only walled waystations where the roads meet, and send their caravans everywhere, well stocked and well guarded.\n\nTheir ways began at Harrow Ford, where the road belonged to whoever had the most rifles. A carter named Edda Vane lost three wagons and a brother there in one summer, and instead of hiring more guns she rode to every waymaster on the road and asked each for one guard and one wagon; the first caravan of the league went through the ford under nine flags, and nobody fired. The league still keeps the Waystone Book, where every fair dealer on the roads is written in good ink and every robber in red, and a word given at a waystone is never broken.\n\nThey talk prices the way other people talk weather, and a wayfarer's highest praise is "good ink." They deal fairly, keep their word and expect the same, and they remember who robbed them. Their towns are run by waymasters, and the league by a warden of the roads.</description>
+    <description>At Harrow Ford, the road once belonged to whoever had the most rifles. The road league began when nine waymasters along that road each sent one guard and one wagon through the ford together, under nine flags, and nobody fired on them. Since then the waymasters have run the road together, and the warden of the roads speaks for them all.\n\nThey are an industrial-age people of caravan masters, carters and waystation keepers who live by carrying goods between other peoples' towns. They have few towns of their own, only walled waystations where roads meet, but their caravans are the most common on the roads, and in winter one may ask to camp by a colony's wall until the snow clears.\n\nThey keep the Waystone Book, which lists every fair dealer in black ink and every robber in red. "Good ink" is the best thing a wayfarer can say about anyone. A colony that robs or kills traders is written in red, and a league factor will come to ask it to make amends. They deal fairly and expect the same.</description>
     <pawnSingular>wayfarer</pawnSingular>
     <pawnsPlural>wayfarers</pawnsPlural>
     <leaderTitle>warden of the roads</leaderTitle>
