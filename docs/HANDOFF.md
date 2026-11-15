@@ -169,7 +169,7 @@ tree at once, alongside whatever runs. Each piece is merged as its own release, 
   regarding the rewriting of text concept we discussed earlier on. So just kind of give a straightforward, clear
   description. I mean, you don't have to go into percentages and stuff like that, but I have an understanding what the
   impact is going to be or how it's going to play out, and not have it kind of be this AI gibberish attempt of making
-  creative writing." Proposed in chat the same day, waiting for their pick:
+  creative writing." Proposed in chat the same day:
   - Rules for all: nothing below the game's base rate (the floor goes from a quarter to the base rate: Lean Years'
     fewer traders, camps and visitors, the fights levers under 1 in Neighbours, Old Powers and Lean Years, and What You
     Sow's thinner roads for a cruel colony all go back to base); threats at the classic pace in every storyteller (they
@@ -188,6 +188,19 @@ tree at once, alongside whatever runs. Each piece is merged as its own release, 
     ruins and stashes to explore, gifts); Sellswords (fighting for others: calls to arms, missions against bandit camps,
     bounties, champions' challenges, sellsword companies); Feast Days (festivals: the colony's feasts and games, the
     peoples' fairs and festivals nearby, performers and storytellers visiting).
+  The player's answer: "Okay, actually, rise and fall, just do 1 year rise and 1 year fall. It still sounds
+  interesting, and we shouldn't remove it for no reason. And the turning year you can leave as it is. And I like all
+  the new proposals, storytellers. So add them to the to-do list." So, when asked to build:
+  - All six new storytellers as proposed (Open Gate, Home and Hearth, The Wilds, Windfalls, Sellswords, Feast Days):
+    nothing below the base rate, threats at the classic pace, no pattern longer than a season, plain descriptions
+    (the drafts in chat are the starting point).
+  - Rise and Fall: one year of rise and one year of fall (now an arc of 120 days in four phases: growth 55, omens 25,
+    trouble 20, rebuilding 20). Make the halves the two years of the arc (the rise year: growth and plenty; the fall
+    year: the warning, the trouble and the rebuilding at its end) and say so plainly in its description.
+  - The Turning Year as it is.
+  - Still open (ask when building): whether the other below-base levers of the eight go back to the base rate (Lean
+    Years' fewer traders, camps and visitors; the fights levers under 1 in Neighbours, Old Powers and Lean Years; What
+    You Sow's thinner roads for a cruel colony).
 - **Dropped (14 November 2026): sending visitors away.** The player: "so asking visitors to leave is not necessary, as i
   found the already imlpemented function".
 - 0.251.0, **Plain words: messages-elsewhere**
