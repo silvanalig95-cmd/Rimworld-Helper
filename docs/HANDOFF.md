@@ -189,7 +189,7 @@ tree at once, alongside whatever runs. Each piece is merged as its own release, 
   leaves it waiting nearby while working (Giddy-Up's own waiting), mounts it again when the work there is done and
   rides back; the same for hauling, hunting, gathering, mining and any other job out past the base. Nothing changes
   inside the base. The Almanac's animals page then says which Giddy-Up settings decide this.
-- **To do when the player asks (15 November 2026): camps clean up round their campsite.** The player: "camps should
+- **To do when the player asks (15 November 2026): camps clean up round their campsite, and grow over their stay.** The player: "camps should
   also clean up around their campsite". Now: camps make filth (their butchering's blood, and on leaving, refuse and ash
   round the old fire after a long, crowded or sour stay, `CampPackMath` `Leftover.Refuse`, `CampPack.cs`) and never
   clean any. Proposed when asked: while they stay, in their idle hours, camp people sweep and clean the filth on their
@@ -197,6 +197,18 @@ tree at once, alongside whatever runs. Each piece is merged as its own release, 
   shown on the map (the game's own cleaning look), the orderly kinds more than the careless; and before they leave, the
   orderly ones tidy the site (the refuse left behind only after a stay gone sour, as a sign of it, or by a careless kind
   in a hurry; a question for the player when building: keep that or drop it).
+  The player, then: "and also build additional things over their stay, appropriate to the faction, type of camp etc.
+  not that the just fill up the map, but also not that they only build a couple things at first and then stay like
+  this for days on end". Now: a camp builds its whole layout when it sets up (`CampBuildMath`, `CampSite.SpecFor`: the
+  fire, beds or tents or a shelter, and the mods' buildings by its kind) and then stays as it is. Proposed when asked:
+  the camp grows over its stay in steps, a day or so apart, by its kind, its people's age (tech level) and the land's
+  room: what a camp of that kind would add as it settles in (a drying rack or a smokehouse spot, a woodpile and a
+  chopping block, a pen for their beasts, a work spot for their trade, a table and seats round the fire, a lean-to
+  against the weather, a shrine of their faith, storage for their goods, a sign or banner at the edge, a latrine), from
+  the full mod pool (soft), each building raised by their own hands on the map from what they carry or gather, never the
+  colony's; a ceiling by the camp's size and how long it means to stay, so a short camp stays small and a long one grows
+  to a settled look without filling the map; nothing built on the colony's ground; all of it packed or left by the
+  leftover rules when they go.
 - **Dropped (14 November 2026): sending visitors away.** The player: "so asking visitors to leave is not necessary, as i
   found the already imlpemented function".
 - 0.255.0, **Guests busy most of the day,
