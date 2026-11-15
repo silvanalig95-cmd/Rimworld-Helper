@@ -281,7 +281,7 @@
           </li>
           <li>
             <label>Feed their carters before the road home (a cook, 15 raw food)</label>
-            <outcome>{B_nameDef} cooks for the people from {PLACE}, and they eat like people who've been on the road since dawn, which they have. They leave the {THING}, and a good word for the colony.</outcome>
+            <outcome>{B_nameDef} cooks for the people from {PLACE}, who have been on the road since dawn and eat hungrily. They leave the {THING}, and a good word for the colony.</outcome>
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_Needs"><target>Colony</target><skill>Cooking</skill><minLevel>4</minLevel><asB>true</asB></li>
               <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>rawfood</what><count>15</count></li>
@@ -336,7 +336,7 @@
           <li>{X_nameDef} waits beyond the fields with both hands open and held away from {X_possessive} sides. The envoy is old, and so is the feud between {FACTION} and the colony. Half the young people at home, {X_nameDef} says, couldn't tell you what it was about.\n\n{FACTION} offer peace, and ask nothing for it.</li>
           <li>[ourwrong] Alone and on foot, {X_nameDef} of {FACTION} has come as far as the edge of the colony's land, and no further. {FACTION} have not forgotten that the colony {TALE}, {X_nameDef} says, and they don't ask the colony to forget what they did either. But the young ones who swore the feud are going gray now.\n\n{FACTION} offer peace, and ask nothing for it.</li>
           <li>[theirwrong] {FACTION} {TALE}. {X_nameDef} says so first, before anything else, standing at the edge of the colony's land, with no excuses and no talk of what the colony did back. {FACTION} want it ended.\n\nThey offer peace, freely.</li>
-          <li>[killedours] {DEAD}. {X_nameDef} of {FACTION} knows that name; among {FACTION}, everyone does. The envoy waits outside the colony under a white cloth, and says {FACTION} want the feud to end with this generation, and not pass to the next.\n\n{FACTION} offer peace. {A_nameDef} thinks the colony could ask for more than words.</li>
+          <li>[killedours] {X_nameDef} of {FACTION} knows the name {DEAD}; among {FACTION}, everyone does. The envoy waits outside the colony under a white cloth, and says {FACTION} want the feud to end with this generation, and not pass to the next.\n\n{FACTION} offer peace. {A_nameDef} thinks the colony could ask for more than words.</li>
           <li>[their:foe] {X_nameDef} of {FACTION} has come to the edge of the colony's land under a white cloth. {FACTION} have not forgotten {FOE}, {X_nameDef} says plainly, and never will; but they would rather the feud ended than went on for one name.\n\n{FACTION} offer peace, and ask nothing for it.</li>
           <li>[tribal] A pipe-bearer of {FACTION}, {X_nameDef}, has sat down in the grass beyond the fields with a carved pipe across {X_possessive} knees. The pipe is unlit. There has been no blood between {FACTION} and the colony for many moons, and {FACTION} would like to light it together.\n\nThey ask nothing for peace.</li>
           <li>[theirHightech] "The present council of {FACTION} regards the old hostilities as closed." {X_nameDef}, their negotiator, reads it off a card at the edge of the colony's land, unarmed, then puts the card away. "They want peace," {X_nameDef} says. "No conditions. I'd take it."</li>
@@ -462,7 +462,7 @@
             <outcome>{B_nameDef} hears both sides out until the lamp burns low, asks the same questions twice, and splits it down the middle. Both envoys grumble, and both shake on it.</outcome>
             <outcomes>
               <li>[b:trait:Kind] {B_nameDef} lets each envoy talk until there's nothing left to say, then asks each of them what the other wants. By morning they've worked most of it out themselves, and both thank {B_nameDef} for it.</li>
-              <li>[b:office:Speaker] {B_nameDef}, the colony's speaker, runs it like a council meeting: each side in turn, no interrupting, a vote at the end. The envoys find this so strange that they agree to the judgment.</li>
+              <li>[b:office:Speaker] {B_nameDef}, the colony's speaker, runs it like a council meeting: each side in turn, no interrupting, a vote at the end. The envoys are not used to it, but they agree to the judgment.</li>
             </outcomes>
             <riskChance>0.4</riskChance>
             <riskSkill>Social</riskSkill>

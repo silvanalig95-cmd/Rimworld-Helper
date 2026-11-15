@@ -15,7 +15,7 @@
     <incident>Council_Evt_OldAdventurer</incident>
     <texts>
       <li>[summer] At midday {X_nameDef} of {FACTION} came in with {X_possessive} coat over one arm and an old pack on {X_possessive} back, asked for water first, and then whether the colony buys gear.\n\nThe pack and everything in it goes for {COUNT} silver. {X_nameDef} would like to be rid of the weight before the road gets any hotter.</li>
-      <li>[colony:Hospitable] Travelers on the road say this colony feeds anyone who knocks, so {X_nameDef} of {FACTION} knocked. The pack {X_pronoun} set down inside the door holds forty years of other people's fights.\n\nAll of it is for sale, for {COUNT} silver. {X_nameDef} is in no hurry to leave the table.</li>
+      <li>[colony:Hospitable] Travelers on the road say this colony feeds anyone who knocks, so {X_nameDef} of {FACTION} knocked. The pack {X_pronoun} set down inside the door holds gear collected over forty years of fighting.\n\nAll of it is for sale, for {COUNT} silver. {X_nameDef} is in no hurry to leave the table.</li>
       <li>[past:outlaw] {X_nameDef} of {FACTION} and {A_nameDef} looked at each other a long moment at the gate, the way two people do who once worked the same roads from different sides. Then {X_nameDef} laughed and put the pack down.\n\nThe kit is for sale, {COUNT} silver for the lot. {X_nameDef} swears every piece of it was paid for.</li>
     </texts>
     <outcomes>
@@ -105,7 +105,7 @@
       <li>
         <option>1</option>
         <lines>
-          <li>{A_nameDef} and {X_nameDef} sit together through the afternoon, watching the same patch of ground. When {A_nameDef} gets up, {A_pronoun} looks like someone who has slept.</li>
+          <li>{A_nameDef} and {X_nameDef} sit together through the afternoon, watching the same patch of ground. When {A_nameDef} gets up, {A_pronoun} looks rested and calmer.</li>
         </lines>
       </li>
       <li>
@@ -189,7 +189,7 @@
       <li>
         <option>1</option>
         <lines>
-          <li>{X_nameDef} is let out of the cells and leaves the colony's land without looking back, in case it changes its mind. {FACTION} will hear of it.</li>
+          <li>{X_nameDef} is let out of the cells and leaves the colony's land quickly, before the colony can change its mind. {FACTION} will hear of it.</li>
         </lines>
       </li>
       <li>
@@ -207,7 +207,7 @@
     <incident>Council_Evt_WoundedStranger</incident>
     <texts>
       <li>[fall] {A_nameDef} went out for the last of the berries and found {X_nameDef} instead, lying under the bushes in a bed of wet leaves with a wound in {X_possessive} side and a weapon in {X_possessive} hand. {X_nameDef} asks for a place to lie low, and nothing else.\n\nWhoever did this hasn't been seen. That doesn't mean they're gone.</li>
-      <li>[past:healer] {A_nameDef} found {X_nameDef} past the fields and had the wound looked at before thinking to be afraid of the weapon. It's a deep cut, cleanly made, and {X_nameDef} won't say by whom.\n\nIt will heal with care. Whoever made it may come to see that it doesn't.</li>
+      <li>[past:healer] {A_nameDef} found {X_nameDef} past the fields and had the wound looked at before thinking to be afraid of the weapon. It's a deep cut, cleanly made, and {X_nameDef} won't say by whom.\n\nIt will heal with care, but whoever made it may come looking for {X_nameDef}.</li>
     </texts>
     <outcomes>
       <li>
@@ -228,7 +228,7 @@
       <li>
         <option>2</option>
         <lines>
-          <li>{A_nameDef} leaves {X_nameDef} where {X_pronoun} lay, with the weapon and the silence, and goes back to the fields.</li>
+          <li>{A_nameDef} leaves {X_nameDef} where {X_pronoun} lay and goes back to the fields.</li>
         </lines>
       </li>
     </outcomes>
@@ -261,7 +261,7 @@
           <li>{A_nameDef} names every boundary stone between here and {PLACE}, and asks whose seal is on each. {X_nameDef} closes the ledger with a sigh and says the lord will be told the claim is in doubt.</li>
         </lines>
         <riskLines>
-          <li>{A_nameDef} argues well, but {X_nameDef} has the seal, the witnesses and a second ledger. The colony pays the tithe and a fine for the reeve's afternoon.</li>
+          <li>{A_nameDef} argues well, but {X_nameDef} has the seal, the witnesses and a second ledger. The colony pays the tithe and a fine for the reeve's wasted time.</li>
         </riskLines>
       </li>
       <li>
@@ -357,7 +357,7 @@
       <li>
         <option>2</option>
         <lines>
-          <li>The set is turned down, and the signal is left calling to itself until it stops.</li>
+          <li>The set is turned down, and nobody listens to the signal until it stops.</li>
         </lines>
       </li>
     </outcomes>

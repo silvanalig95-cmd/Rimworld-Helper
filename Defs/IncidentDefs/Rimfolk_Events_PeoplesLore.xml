@@ -45,9 +45,9 @@
         </titles>
         <texts>
           <li>Word that {A_nameDef} is down with {TALE} reached the order's sickhouse at {PLACE}, and {X_nameDef}, a hospitaller of {FACTION}, has come to the gate to see to {A_objective}. {X_nameDef} would go from bed to bed tonight with the order's care and stay until morning, and asks nothing for it.\n\nWe were spared, and so we owe, {X_nameDef} says, as every hospitaller does.</li>
-          <li>[many] {A_nameDef} is down with {TALE}, and {A_pronoun} is not the only one in the colony with a fever. {X_nameDef}, a hospitaller of {FACTION}, came up the road at a fast walk the moment the sickhouse at {PLACE} heard, and asks to be let in to go from bed to bed tonight.\n\nThe order keeps its lamp lit for whoever is sick, {X_nameDef} says, and the colony's sick are sick.</li>
-          <li>[lowtech] {X_nameDef}, a hospitaller of {FACTION}, has walked up to the gate with willow bark, honey and clean linen in a satchel, having heard that {A_nameDef} lies burning with {TALE}. The order would see to every fevered bed in the colony tonight, freely, as Aldith did in the fever years.</li>
-          <li>[!lowtech] {X_nameDef}, a hospitaller of {FACTION}, has come to the gate having heard of {A_nameDef}'s {TALE}. The colony's medicine is good, {X_nameDef} says politely, but a fever wants someone to look in on it all night, and the order would do that for nothing.</li>
+          <li>[many] {A_nameDef} is down with {TALE}, and {A_pronoun} is not the only one in the colony with a fever. {X_nameDef}, a hospitaller of {FACTION}, came up the road at a fast walk the moment the sickhouse at {PLACE} heard, and asks to be let in to go from bed to bed tonight.\n\n{X_nameDef} says the order keeps its lamp lit for anyone who is sick, whoever they are.</li>
+          <li>[lowtech] {X_nameDef}, a hospitaller of {FACTION}, has walked up to the gate with willow bark, honey and clean linen in a satchel, having heard that {A_nameDef} lies in a fever with {TALE}. The order would see to every fevered bed in the colony tonight, freely, as its founder Aldith did in the fever years.</li>
+          <li>[!lowtech] {X_nameDef}, a hospitaller of {FACTION}, has come to the gate having heard of {A_nameDef}'s {TALE}. {X_nameDef} says politely that the colony's medicine is good, but someone with a fever should be checked on through the night, and the order would do that for nothing.</li>
           <li>[their:grateful] The order remembers the colony kindly, and the moment the sickhouse at {PLACE} heard that {A_nameDef} was down with {TALE}, it sent {X_nameDef} to the gate to see to the colony's fevered tonight.</li>
         </texts>
         <defaultOption>0</defaultOption>
@@ -79,7 +79,7 @@
           </li>
           <li>
             <label>Thank {X_objective}, but the colony will manage</label>
-            <outcome>{X_nameDef} wishes the fevered a quick turn and goes back down the road to the sickhouse.</outcome>
+            <outcome>{X_nameDef} wishes the sick a quick recovery and goes back down the road to the sickhouse.</outcome>
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_SendAway" />
             </effects>
@@ -212,10 +212,10 @@
           <li>A disputation at the colony</li>
         </titles>
         <texts>
-          <li>{X_nameDef}, a fellow of {FACTION}, has come up the road with a satchel of notes and the look of someone who expects not to sleep. Tonight is the society's night of the fire, when every archive argues until dawn about what was lost when the old archive at Hesk burned, and a fellow on the road holds the disputation wherever the night finds them. {X_nameDef} asks to hold it where the colony gathers, with {A_nameDef} to argue the other side.</li>
-          <li>[tribal] {X_nameDef}, a fellow of {FACTION}, has walked a long way to the colony with a bundle of written pages and a question. Once a year the society argues until dawn about the stories that were lost when an old house of books burned, and tonight is that night; {X_nameDef} asks to hold the argument at the colony's fire, with {A_nameDef} to answer for the colony's own stories.</li>
+          <li>{X_nameDef}, a fellow of {FACTION}, has come up the road with a satchel of notes, ready for a long night. Tonight is the society's night of the fire: once a year its members argue until dawn about what was lost when the old archive at Hesk burned, and a fellow who is travelling holds the debate wherever they happen to be. {X_nameDef} asks to hold it where the colony gathers, with {A_nameDef} arguing the other side.</li>
+          <li>[tribal] {X_nameDef}, a fellow of {FACTION}, has walked a long way to the colony with a bundle of written pages and a question. Once a year the society argues until dawn about the stories that were lost when an old house of books burned, and tonight is that night. {X_nameDef} asks to hold the argument at the colony's fire, with {A_nameDef} to answer for the colony's own stories.</li>
           <li>[industrial|spacer] {X_nameDef}, a fellow of {FACTION}, is at the gate with a case of notes and a thermos. It is the night of the fire, when the society argues until dawn over what the archive at Hesk held that nobody saved, and {X_nameDef} would hold the disputation where the colony gathers tonight, with {A_nameDef} arguing against {X_objective}, if the colony will have it.</li>
-          <li>[their:grateful] The society thinks well of the colony, and {X_nameDef}, one of its fellows, has come on purpose to hold the night of the fire's disputation where the colony gathers, with {A_nameDef} to argue the other side, as between friends of the archive.</li>
+          <li>[their:grateful] The society thinks well of the colony, and {X_nameDef}, one of its fellows, has come on purpose to hold the night of the fire debate where the colony gathers, with {A_nameDef} arguing the other side.</li>
         </texts>
         <defaultOption>0</defaultOption>
         <options>
@@ -349,7 +349,7 @@
         <texts>
           <li>[fish] Boatmen of {FACTION} have come up from the river with their nets over their shoulders, wet and torn, and {X_nameDef} asks whether they might spread them on the colony's bank to dry and mend them today, as the river folk do wherever a bank is good. They would leave {COUNT} {THING} of the morning's catch for it.</li>
           <li>[!fish] Boatmen of {FACTION} have come up from the river with their nets over their shoulders, wet and torn, and {X_nameDef} asks whether they might spread them on the colony's bank to dry and mend them today. They would leave {COUNT} lengths of good net cloth for it.</li>
-          <li>[fish,tribal] Boatmen of {FACTION} have come along the water with nets of twisted fibre heaped over their shoulders, and {X_nameDef}, who leads them, asks for the colony's bank to dry and mend them on today. Every knot in a river net is someone pulled from the water, {X_nameDef} says, and theirs have a great many. They would leave {COUNT} {THING} for it.</li>
+          <li>[fish,tribal] Boatmen of {FACTION} have come along the water with nets of twisted fibre heaped over their shoulders, and {X_nameDef}, who leads them, asks to use the colony's bank to dry and mend them today. {X_nameDef} says the river folk tie a knot in their nets for every person they pull from the water, and these nets have a great many. They would leave {COUNT} {THING} for it.</li>
           <li>[fish,industrial|spacer] Boatmen of {FACTION} have come up from the river with nylon nets over their shoulders and a box of twine, and {X_nameDef} asks to spread them on the colony's bank to dry and mend them for the day. They would leave {COUNT} {THING} from the catch for the use of it.</li>
           <li>[their:grateful] The river folk of {FACTION} remember the colony kindly, and {X_nameDef}'s boatmen have come up to dry and mend their nets on its bank today rather than anyone else's. They would leave {COUNT} {THING} for it, as between friends.</li>
         </texts>

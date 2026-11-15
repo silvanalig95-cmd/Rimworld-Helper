@@ -35,7 +35,7 @@
       <li>
         <option>1</option>
         <lines>
-          <li>{X_nameDef} wrapped the deck in its cloth, wished the colony luck it hadn't paid for, and left in the morning.</li>
+          <li>{X_nameDef} wrapped the deck in its cloth, wished the colony luck anyway, and left in the morning.</li>
         </lines>
       </li>
       <li>
@@ -88,9 +88,9 @@
     <defName>Council_Var2_Evt_Stranded</defName>
     <incident>Council_Evt_Stranded</incident>
     <texts>
-      <li>[lowtech,!tribal,fall] Mud to the hubs and a wheel in two pieces: merchants of {FACTION} are stuck on the track below the colony, with the autumn rain coming down and a load of grain going damp. {A_nameDef} could have them rolling by dark. Otherwise they'll buy {TALE} for {COUNT} silver and manage themselves.</li>
+      <li>[lowtech,!tribal,fall] Merchants of {FACTION} are stuck in deep mud on the track below the colony with a broken wheel, while the autumn rain comes down and their load of grain gets damp. {A_nameDef} could have them rolling by dark. Otherwise they'll buy {TALE} for {COUNT} silver and manage themselves.</li>
       <li>[tribal,winter] A sledge of {FACTION} lies tipped on its side in the snow below the colony, its runner snapped clean through. The traders are stamping round it, blowing on their hands. They'd welcome {A_nameDef}, or pay {COUNT} silver for {TALE} to cut a new runner.</li>
-      <li>[!lowtech,spring] The road thawed under a caravan of {FACTION} and swallowed a wheel to the axle, and the axle didn't come out whole. They've sent someone up to ask for {A_nameDef}'s hands, or for {TALE} at {COUNT} silver.</li>
+      <li>[!lowtech,spring] The thawing road gave way under a caravan of {FACTION}, and a wheel sank to the axle and broke it. They've sent someone up to ask for {A_nameDef}'s hands, or for {TALE} at {COUNT} silver.</li>
     </texts>
     <outcomes>
       <li>
@@ -121,7 +121,7 @@
     </titles>
     <texts>
       <li>[!lowtech] A printed handbill nailed to the colony's gatepost: HARVEST FAIR AT {PLACE}. LIVESTOCK, PRODUCE, JUDGING. {FACTION}'s carts will take the colony's goods if it wants to send any. A cart of {TALE} would sell well, and {A_nameDef} is already sorting the best from the rest.</li>
-      <li>[lowtech] Carts have been going past on the road all morning, loaded high, toward the harvest fair at {PLACE}. One of {FACTION}'s drivers stopped long enough to say there's room for the colony's {TALE}, if it wants to sell, and that the judging is on the last day. {A_nameDef} heard "judging" and nothing else.</li>
+      <li>[lowtech] Carts have been going past on the road all morning, loaded high, toward the harvest fair at {PLACE}. One of {FACTION}'s drivers stopped long enough to say there's room for the colony's {TALE}, if it wants to sell, and that the judging is on the last day. {A_nameDef} is keen to enter the judging.</li>
       <li>[colony:Hardworking] {FACTION} know how hard the colony works its fields, and have asked it to the harvest fair at {PLACE} to show what came of it. A cart of {TALE} would sell, and {A_nameDef} says the best of it could take the ribbon.</li>
     </texts>
     <outcomes>
@@ -178,7 +178,7 @@
     </titles>
     <texts>
       <li>[winter] {X_nameDef} of {FACTION} came in from the snow with a pack that smells of smoke and dried peppers. Cooking for whoever will have {X_objective} is how {X_nameDef} gets through the winter, and the offer is the usual one: the colony's kitchen and stores for a day, and a supper to remember.\n\nOr {COUNT} silver, and {X_nameDef} will teach the colony's cook.</li>
-      <li>[summer] It's too hot to cook, say most people, but {X_nameDef} of {FACTION} isn't most people. {X_nameDef} wants the run of the colony's kitchen for one day and promises a supper served outside after sundown, cold soup and all.\n\nFor {COUNT} silver, {X_nameDef} will teach instead.</li>
+      <li>[summer] Most people think it's too hot to cook, but {X_nameDef} of {FACTION} doesn't agree. {X_nameDef} wants the run of the colony's kitchen for one day and promises a supper served outside after sundown, cold soup and all.\n\nFor {COUNT} silver, {X_nameDef} will teach instead.</li>
       <li>[trait:Ascetic] {A_nameDef} eats the same plain thing every day and is proud of it, which {X_nameDef}, a traveling cook of {FACTION}, has taken as a personal challenge. {X_nameDef} offers a feast from the colony's stores tonight, or a day teaching the colony's cook for {COUNT} silver.</li>
       <li>[lowtech] {X_nameDef} of {FACTION} carries a blackened pot strapped to {X_possessive} back like a shell, and cooks along the roads for food and a bed. Give {X_nameDef} the colony's stores for a day and the colony eats like lords tonight. Or {COUNT} silver buys the colony's cook a day of lessons.</li>
     </texts>
@@ -199,7 +199,7 @@
       <li>
         <option>2</option>
         <lines>
-          <li>{X_nameDef} ate the colony's supper with the polite face of a professional and left at dawn, leaving a pinch of something in the salt jar.</li>
+          <li>{X_nameDef} ate supper with the colony, politely, and left at dawn.</li>
         </lines>
       </li>
     </outcomes>

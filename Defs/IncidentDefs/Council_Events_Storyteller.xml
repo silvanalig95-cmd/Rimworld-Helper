@@ -35,10 +35,10 @@
           <li>An old adventurer</li>
         </titles>
         <texts>
-          <li>[tribal] {X_nameDef}, a gray-haired hunter of {FACTION}, has walked every trail between here and the sea, and says the one that led to this camp was the last. The pack {X_pronoun} dropped by the fire clanks like a cookpot.\n\nEverything in it is for sale, for {COUNT} silver, and most of it has been mended more than once.</li>
-          <li>[medieval] Forty years of other lords' wars, says {X_nameDef}, an old sellsword of {FACTION} on the road home. What {X_pronoun} wants now is a garden and a chair in the sun, and the kit would only rust there.\n\n{X_nameDef} unrolls it on the table piece by piece and asks {COUNT} silver for the lot.</li>
-          <li>[!lowtech] Thirty years a hired gun, and {X_nameDef} of {FACTION} has a scar for most of them. {X_nameDef} showed a few at the gate without being asked.\n\nThe work is over, and the kit is for sale to anyone who'll keep it oiled. {X_nameDef} wants {COUNT} silver for the lot.</li>
-          <li>{X_nameDef} of {FACTION} has more stories than teeth, and a pack of old gear to sell before {X_pronoun} settles somewhere for good. {COUNT} silver buys the lot.</li>
+          <li>[tribal] {X_nameDef}, a gray-haired hunter of {FACTION}, has walked every trail between here and the sea, and says the one that led to this camp is the last {X_pronoun} means to travel. The pack {X_pronoun} set down by the fire is full of old gear.\n\nEverything in it is for sale, for {COUNT} silver, and most of it has been mended more than once.</li>
+          <li>[medieval] {X_nameDef}, an old sellsword of {FACTION} on the road home, has fought in other lords' wars for forty years. What {X_pronoun} wants now is a garden and a chair in the sun, and the kit would only rust there.\n\n{X_nameDef} unrolls it on the table piece by piece and asks {COUNT} silver for the lot.</li>
+          <li>[!lowtech] {X_nameDef} of {FACTION} worked as a hired gun for thirty years and has the scars to show for it, and showed a few at the gate without being asked.\n\nThe work is over, and the kit is for sale to anyone who'll keep it oiled. {X_nameDef} wants {COUNT} silver for the lot.</li>
+          <li>{X_nameDef} of {FACTION} is an old adventurer with a great many stories, and a pack of old gear to sell before {X_pronoun} settles somewhere for good. {COUNT} silver buys the lot.</li>
         </texts>
         <defaultOption>2</defaultOption>
         <options>
@@ -115,7 +115,7 @@
         <texts>
           <li>[lowtech] A measuring chain forty paces long rattled out of {X_nameDef}'s satchel when {X_pronoun} set it on the table. {X_nameDef} makes maps for {FACTION}, and would make one of the colony's land too: every slope and cliff, and whatever shows in the rock.\n\nFor {COUNT} silver it would be done properly. With {A_nameDef} along to show the way, {X_nameDef} would go over the land for nothing, faster and rougher, and promise nothing.</li>
           <li>[!lowtech] {X_nameDef} of {FACTION} has a theodolite strapped to {X_possessive} pack and a tablet full of contour lines, and the colony's hills aren't on it yet. A proper survey would cost {COUNT} silver, and {X_nameDef} says there's always ore somewhere in hills like these.\n\nIf {A_nameDef} comes along to save time, the survey is free. It will also be rough, and might find nothing.</li>
-          <li>{X_nameDef} of {FACTION} draws maps for a living, and has asked to draw the colony's. For {COUNT} silver the survey will be thorough. With {A_nameDef} as a guide it costs nothing, and may come to nothing.</li>
+          <li>{X_nameDef} of {FACTION} draws maps for a living, and has asked to draw the colony's. For {COUNT} silver the survey will be thorough. With {A_nameDef} as a guide it costs nothing, but may find nothing.</li>
         </texts>
         <defaultOption>2</defaultOption>
         <options>
@@ -204,7 +204,7 @@
           </li>
           <li>
             <label>Ask {X_objective} to sit with {A_nameDef}</label>
-            <outcome>{X_nameDef} and {A_nameDef} sit side by side for hours without a word between them. {A_nameDef} comes away with {A_possessive} shoulders down, and yawning.</outcome>
+            <outcome>{X_nameDef} and {A_nameDef} sit side by side for hours without a word between them. {A_nameDef} comes away more relaxed, and ready to sleep.</outcome>
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_Thought"><thought>Council_Evt_SatWithMonk</thought></li>
               <li Class="ColonyCouncil.DilemmaEffect_Visit"><to>Stranger</to><duration>4~5</duration><sit>true</sit></li>
@@ -257,7 +257,7 @@
         </titles>
         <!-- {TALE}: the limb on offer; {PLACE}: the same price in materials (wood before electricity, steel after). -->
         <texts>
-          <li>[leg] A cart came into the yard with legs hanging from its frame like hams in a smokehouse, in every size. {X_nameDef} of {FACTION} makes them, and took one look at {A_nameDef} crossing the yard before offering a {TALE}, measured and fitted before {X_pronoun} leaves.\n\n{COUNT} silver, {X_nameDef} says, or {PLACE} in materials.</li>
+          <li>[leg] A cart came into the yard with artificial legs of every size hanging from its frame. {X_nameDef} of {FACTION} makes them, and took one look at {A_nameDef} crossing the yard before offering a {TALE}, measured and fitted before {X_pronoun} leaves.\n\n{COUNT} silver, {X_nameDef} says, or {PLACE} in materials.</li>
           <li>[foot] {X_nameDef}, a limb-maker of {FACTION}, watched {A_nameDef} limp across the yard and already has the measurements in {X_possessive} head. A {TALE} could be carved and fitted before supper.\n\nIt costs {COUNT} silver, or {PLACE} in materials.</li>
           <li>[arm] {X_nameDef} of {FACTION} has fitted a few hundred arms in {X_possessive} time, and remembers most of the people wearing them. {X_nameDef} would like to fit {A_nameDef} with a {TALE} before moving on.\n\nThe price is {COUNT} silver, or {PLACE} in materials if the colony would rather.</li>
           <li>[jaw] For {COUNT} silver, or {PLACE} in materials, {X_nameDef}, a maker of false parts from {FACTION}, will fit {A_nameDef} with a {TALE} while {X_pronoun} waits. {A_nameDef} hasn't eaten anything chewier than porridge in a long time.</li>
@@ -341,10 +341,10 @@
           <li>A merchant's venture</li>
         </titles>
         <texts>
-          <li>"Salt," said {X_nameDef} of {FACTION}, before even sitting down. "On the coast they all but give it away, and inland they'll pay anything for it." A caravan leaves soon, and {X_nameDef} wants backers: twice the stake back in about ten days.\n\n{A_nameDef} heard the whole pitch out without a word. Caravans get lost, and not every merchant is one.</li>
+          <li>"Salt," said {X_nameDef} of {FACTION}, before even sitting down. "On the coast they all but give it away, and inland they'll pay anything for it." A caravan leaves soon, and {X_nameDef} wants backers: twice the stake back in about ten days.\n\n{A_nameDef} heard the whole pitch out without a word. Caravans get lost, and not everyone who calls themselves a merchant is honest.</li>
           <li>[trader] {X_nameDef} of {FACTION} knew {A_nameDef} in the trading days, and greeted {A_objective} at the gate like a cousin. Now {X_nameDef} is putting a caravan together and wants the colony in on it, for twice the stake back in about ten days.\n\n{A_nameDef} says {X_nameDef} paid {X_possessive} debts back then, though not always on the day.</li>
-          <li>[!lowtech] {X_nameDef} of {FACTION} wants backers for a trade run, and has the terms written on a card.\n\nTwo trucks, one run across the wastes.\nBack in about ten days.\nTwice the stake to every backer.\n\n{A_nameDef} has read the card three times and is now reading {X_nameDef}.</li>
-          <li>[lowtech] {X_nameDef}, a merchant of {FACTION}, is buying a string of pack mules for a run to the river towns with wool, and needs backers. {X_nameDef} offers twice the stake back in about ten days, sealed with a handshake and a scratched receipt.\n\n{A_nameDef} went out to look at the mules, and they're real. What the rest is worth, {A_nameDef} can't say.</li>
+          <li>[!lowtech] {X_nameDef} of {FACTION} wants backers for a trade run, and has the terms written on a card.\n\nTwo trucks, one run across the wastes.\nBack in about ten days.\nTwice the stake to every backer.\n\n{A_nameDef} has read the card three times and is trying to decide whether {X_nameDef} can be trusted.</li>
+          <li>[lowtech] {X_nameDef}, a merchant of {FACTION}, is buying a string of pack mules for a run to the river towns with wool, and needs backers. {X_nameDef} offers twice the stake back in about ten days, sealed with a handshake and a scratched receipt.\n\n{A_nameDef} went out to look at the mules, and they're real. Whether the rest of it is honest, {A_nameDef} can't say.</li>
         </texts>
         <defaultOption>2</defaultOption>
         <options>
@@ -385,17 +385,17 @@
           <li>[lost] A venture gone wrong</li>
         </doneTitles>
         <done>
-          <li>[good] Every pack on {TALE}'s caravan came home empty, the way a merchant likes them. {TALE} has sent the colony its share: {COUNT} silver, about twice what went in.</li>
+          <li>[good] {TALE}'s caravan sold everything it carried. {TALE} has sent the colony its share: {COUNT} silver, about twice what went in.</li>
           <li>[good,lowtech] {COUNT} silver in a knotted sack has come from {FACTION}'s lands, the colony's share of {TALE}'s venture. Tied to the knot is a strip of bark with three words cut into it: sold it all.</li>
           <li>[lost] A storm caught {TALE}'s caravan in the passes and sent half the goods down the mountainside. What {TALE} could save of the colony's stake has come back with an apology, {COUNT} silver of it.</li>
-          <li>[lost] Bandits stopped {TALE}'s caravan in its second week on the road and kept most of it. {TALE} got away with the strongbox, or what was left in it, and has sent the colony {COUNT} silver, its share of very little.</li>
+          <li>[lost] Bandits stopped {TALE}'s caravan in its second week on the road and kept most of it. {TALE} got away with the strongbox, or what was left in it, and has sent the colony {COUNT} silver, its share of what was saved.</li>
         </done>
         <failTitles>
           <li>A venture that never was</li>
         </failTitles>
         <fail>
           <li>{TALE}'s caravan is days overdue, and {FACTION}'s people have never heard of {TALE}, or of any caravan at all. The colony's silver is gone.</li>
-          <li>The receipt {TALE} wrote out has turned out to be worth exactly the paper it's on. There was never any caravan, and there won't be any silver.</li>
+          <li>The receipt {TALE} wrote out has turned out to be worthless. There was never any caravan, and there won't be any silver.</li>
         </fail>
       </li>
     </modExtensions>
@@ -424,7 +424,7 @@
         <texts>
           <li>{FACTION} want the colony's prisoner, {X_nameDef} of {ENEMY}, and have sent riders to say so. {X_nameDef} raided one of their villages last year, they say. They'll pay {COUNT} silver and take {X_objective} back to stand trial.\n\nThey don't say what kind of trial.</li>
           <li>[lowtech] "That one burned a farm of ours and killed the herdsman," said the rider from {FACTION} at the gate, loud enough for {X_nameDef} of {ENEMY} to hear it in the cells.\n\n{FACTION} will pay {COUNT} silver to have {X_objective} handed over. {X_nameDef} has gone very quiet.</li>
-          <li>[!lowtech] {FACTION} have sent their offer over the comms, in the clipped way of people who give orders for a living.\n\nPrisoner: {X_nameDef}, of {ENEMY}.\nWanted: one year, for raiding.\nOffered: {COUNT} silver on transfer.\nCollection: today.\n\nThe message ends there.</li>
+          <li>[!lowtech] {FACTION} have sent their offer over the comms, in short, formal lines.\n\nPrisoner: {X_nameDef}, of {ENEMY}.\nWanted: one year, for raiding.\nOffered: {COUNT} silver on transfer.\nCollection: today.\n\nThe message ends there.</li>
         </texts>
         <defaultOption>2</defaultOption>
         <options>
@@ -488,7 +488,7 @@
         </titles>
         <texts>
           <li>{A_nameDef} followed a trail of blood into the brush beyond the fields and found {X_nameDef} at the end of it, half-conscious, with a bad wound and a weapon {X_pronoun} won't let go of. {X_nameDef} won't say who did it or why. A place to lie low is all {X_pronoun} asks for.\n\nSomeone did this on purpose, and may want to finish it.</li>
-          <li>[winter] Out on the land, {A_nameDef} found tracks in the snow, then blood, then {X_nameDef}, curled up under a ledge and shaking. {X_nameDef} is hurt and armed, and won't say how {X_pronoun} got hurt.\n\nLeft out there tonight, {X_nameDef} may not see morning.</li>
+          <li>[winter] Out on the land, {A_nameDef} found tracks in the snow, then blood, then {X_nameDef}, curled up under a ledge and shaking. {X_nameDef} is hurt and armed, and won't say how {X_pronoun} got hurt.\n\nLeft out there tonight, {X_nameDef} may not survive until morning.</li>
           <li>[lowtech] {A_nameDef} came back from the woods at a run. A stranger, {X_nameDef}, is lying hurt in a hollow by the stream, with a blade in {X_possessive} fist that {X_pronoun} won't put down.\n\n"Who did this?" {A_nameDef} asked. "Better you don't know," said {X_nameDef}.</li>
           <li>[!lowtech] {A_nameDef} found {X_nameDef} slumped against a rock beyond the fields, a field dressing soaked through and a rifle across {X_possessive} knees. The barrel was still warm.\n\n{X_nameDef} asks for a place to lie low, and answers no questions.</li>
         </texts>
@@ -567,7 +567,7 @@
           <li>[tribal] A pipe-bearer of {ENEMY} has come alone and sat down in the grass beyond the fields with a carved pipe across {X_possessive} knees. {X_nameDef} has come to talk of ending the feud.\n\nThe price of peace is {COUNT} silver, or {TALE}. The pipe stays unlit until it's paid.</li>
           <li>[medieval] A herald of {ENEMY} waits on the road below the colony under a white flag, and recites the offer to anyone who will come down to hear it.\n\n"For {COUNT} silver, or {TALE} from your stores, {ENEMY} will put up their swords, and the blood between us is paid in full."\n\nThe herald, {X_nameDef}, has said it four times now, word for word.</li>
           <li>[!lowtech] {ENEMY} have sent an envoy, {X_nameDef}, who waits outside the colony under a white flag with empty hands held where the colony's guards can see them. The offer is short: {COUNT} silver, or {TALE}, and the fighting stops.</li>
-          <li>{ENEMY} are tired of the feud. So says {X_nameDef}, who walked up the road unarmed to say it, and named the price of peace: {COUNT} silver, or {TALE}.</li>
+          <li>{X_nameDef} walked up the road unarmed to say that {ENEMY} are tired of the feud, and named the price of peace: {COUNT} silver, or {TALE}.</li>
         </texts>
         <defaultOption>2</defaultOption>
         <options>
@@ -634,9 +634,9 @@
           <li>{FACTION} want their due</li>
         </titles>
         <texts>
-          <li>[their:grudge] The tithe {FACTION} want this year has grown, and {X_nameDef}, their lord's reeve, doesn't pretend otherwise. There is bad blood between {FACTION} and the colony, and it has found its way into the ledger: {COUNT} silver, or {TALE} in kind, to be carried to {PLACE}.\n\n{A_nameDef} doubts the colony's land was ever in anyone's ledger, and would like to say so.</li>
+          <li>[their:grudge] The tithe {FACTION} want this year is higher than before, and {X_nameDef}, their lord's reeve, doesn't pretend otherwise. There is bad blood between {FACTION} and the colony, and the reeve has raised the sum because of it: {COUNT} silver, or {TALE} in kind, to be carried to {PLACE}.\n\n{A_nameDef} doubts the colony's land was ever part of any lord's estate, and would like to say so.</li>
           <li>{X_nameDef}, reeve to a lord of {FACTION}, unrolled the claim at the gate and read it out.\n\n"The fields below the hill lie within my lord's lands, and my lord's lands owe their tithe. Let {COUNT} silver, or {TALE} in kind, be carried to {PLACE} before the month is out."\n\n{A_nameDef} asked whose seal was on the deed. The reeve's answer was long, and didn't name one.</li>
-          <li>[fall] The harvest is in, and so is {X_nameDef}, reeve to a lord of {FACTION}, come to collect the tithe on it. The colony owes {COUNT} silver, {X_nameDef} says, or {TALE} from its stores, for land the lord's grandfather once rode across.\n\n{A_nameDef} would very much like to see the deed.</li>
+          <li>[fall] The harvest is in, and {X_nameDef}, reeve to a lord of {FACTION}, has come to collect the tithe on it. The colony owes {COUNT} silver, {X_nameDef} says, or {TALE} from its stores, for land the lord's grandfather once rode across.\n\n{A_nameDef} would very much like to see the deed.</li>
           <li>{X_nameDef} wears the badge of a lord of {FACTION} and has come to collect a tithe for {PLACE}: {COUNT} silver, or {TALE} in kind. The colony has never paid anyone a tithe.\n\n{A_nameDef} thinks it shouldn't start now, and is ready to argue the point.</li>
         </texts>
         <defaultOption>3</defaultOption>
@@ -667,7 +667,7 @@
             <outcome>{A_nameDef} argues the boundaries stone by stone until {X_nameDef} gives up and shuts the ledger. The lord, {X_nameDef} says, will look into it.</outcome>
             <riskChance>0.6</riskChance>
             <riskReplaces>true</riskReplaces>
-            <riskOutcome>{A_nameDef} argues, but {X_nameDef} has the deed, the seal and all afternoon. The colony pays the tithe, and a fine on top for wasting the reeve's time.</riskOutcome>
+            <riskOutcome>{A_nameDef} argues, but {X_nameDef} has the deed and the seal to back the claim. The colony pays the tithe, and a fine on top for wasting the reeve's time.</riskOutcome>
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_Thought"><thought>Council_Evt_WonArgument</thought></li>
               <li Class="ColonyCouncil.DilemmaEffect_Learn"><skill>Social</skill><xp>500</xp></li>
@@ -791,8 +791,8 @@
         </titles>
         <texts>
           <li>[!lowtech] The comms have been repeating the same transmission every hour since it started: a call sign, eleven numbers, and four seconds of silence before it begins again. {A_nameDef} has written the numbers down. They never change.\n\nAnswering would tell whoever is listening where the colony is. {A_nameDef} could try to trace it and keep the colony's own set silent.</li>
-          <li>[spacer] A looped call for help is coming through on the comms in an old spacer code, weak and patient. It could be a survivor. It could be a beacon that has outlived its ship, or bait.\n\n{A_nameDef} can try to trace it without answering, or the colony can answer it.</li>
-          <li>[!lowtech] Three words, over and over, on a frequency nobody has used in years. {A_nameDef} has been listening at the comms since breakfast and still isn't sure what the words are. The voice sounds tired.\n\nThe colony could answer. {A_nameDef} could also try to find where it's coming from without giving the colony away.</li>
+          <li>[spacer] A looped call for help is coming through on the comms in an old spacer code, weak but steady. It could be a survivor. It could be a beacon that has outlived its ship, or bait.\n\n{A_nameDef} can try to trace it without answering, or the colony can answer it.</li>
+          <li>[!lowtech] Someone is repeating three words over and over on a frequency nobody has used in years. {A_nameDef} has been listening at the comms since breakfast and still isn't sure what the words are. The voice sounds tired.\n\nThe colony could answer. {A_nameDef} could also try to find where it's coming from without giving the colony away.</li>
         </texts>
         <defaultOption>2</defaultOption>
         <options>
@@ -807,7 +807,7 @@
                 <points>0.35~0.55</points>
                 <delayHours>8~20</delayHours>
                 <label>{ENEMY} answer back</label>
-                <text>The signal was bait. {ENEMY} traced the colony's answer, and have come to see what they caught.</text>
+                <text>The signal was a trap. {ENEMY} traced the colony's reply and have come to attack.</text>
               </li>
             </riskEffects>
             <ways><openness>2</openness></ways>

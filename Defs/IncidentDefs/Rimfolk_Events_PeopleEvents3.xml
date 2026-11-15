@@ -33,18 +33,18 @@
           <li>[again] The colony's page, again</li>
         </titles>
         <texts>
-          <li>[first] {X_nameDef}, a factor of {FACTION}, has come to the gate with the Waystone Book open at the colony's page. Written there in red: the colony {TALE}, and {ENEMY} were the ones wronged. {COUNT} silver pays them back, {X_pronoun} says, by the league's hand; or the colony may send someone to argue the entry, or refuse it, and every league will deal with it as the book says.</li>
-          <li>[first,lowtech] A factor of {FACTION} in a dusty coat, {X_nameDef}, has stopped at the gate and opened the Waystone Book on {X_possessive} knee. Fair dealers in good ink, robbers in red, {X_pronoun} reads, and the colony's page is red: it {TALE}, and {ENEMY} were the ones wronged. {COUNT} silver would pay them back.</li>
-          <li>[first,!lowtech] {X_nameDef} of {FACTION} has driven up to the gate with the league's ledger on the seat beside {X_objective}. The colony's page is in red ink: it {TALE}, against {ENEMY}. {COUNT} silver, carried to them by the league, would settle it; {A_nameDef} could argue the entry instead, if the colony thinks it wrong.</li>
-          <li>[first,war] {X_nameDef}, a factor of {FACTION}, has come to the gate with the Waystone Book. The colony {TALE}, and though {ENEMY} are its enemies now, the league writes what is done to traders on the road in red all the same. {COUNT} silver pays them back.</li>
-          <li>[again] {X_nameDef} of {FACTION} is back at the gate with the Waystone Book, open at the same red page: the colony {TALE}, against {ENEMY}, and it has not paid. {COUNT} silver settles it still, and every league deals with the colony at worse terms until it does.</li>
+          <li>[first] {X_nameDef}, a factor of {FACTION}, has come to the gate with the Waystone Book, where the league writes down who deals fairly on the roads and who does not. The colony's page is written in red: the colony {TALE}, and {ENEMY} were the ones wronged. {X_nameDef} says {COUNT} silver, carried to them by the league, would pay them back. The colony can also send someone to dispute the entry, or refuse it, and every league will deal with the colony according to what the book says.</li>
+          <li>[first,lowtech] {X_nameDef}, a factor of {FACTION} in a dusty coat, has stopped at the gate and opened the Waystone Book on {X_possessive} knee. The league writes fair dealers in it in black ink and robbers in red, and the colony's page is in red: it {TALE}, and {ENEMY} were the ones wronged. {COUNT} silver would pay them back.</li>
+          <li>[first,!lowtech] {X_nameDef} of {FACTION} has driven up to the gate with the league's ledger on the seat beside {X_objective}. The colony's page is in red ink, which the league uses for those who wrong traders: it {TALE}, against {ENEMY}. {COUNT} silver, carried to them by the league, would settle it. If the colony thinks the entry is wrong, {A_nameDef} could dispute it instead.</li>
+          <li>[first,war] {X_nameDef}, a factor of {FACTION}, has come to the gate with the Waystone Book. The colony {TALE}. {ENEMY} are the colony's enemies now, but the league still writes any wrong done to traders on the road in red. {COUNT} silver would pay them back.</li>
+          <li>[again] {X_nameDef} of {FACTION} is back at the gate with the Waystone Book, open at the same page in red: the colony {TALE}, against {ENEMY}, and has not paid. {COUNT} silver would still settle it, and until the colony pays, every league gives it worse terms.</li>
           <li>[twice] {X_nameDef} of {FACTION} has come back with the Waystone Book, where the colony's wrong is written twice now: it {TALE}, against {ENEMY}. {COUNT} silver settles it, {X_pronoun} says, and nothing less.</li>
         </texts>
         <defaultOption>2</defaultOption>
         <options>
           <li>
             <label>Pay {ENEMY} back ({COUNT} silver)</label>
-            <outcome>The silver is going out to {X_nameDef}, who writes the colony's page clean in good ink and will carry it to {ENEMY}.</outcome>
+            <outcome>Someone is carrying the silver out to {X_nameDef}, who clears the colony's page in the book and will take the silver to {ENEMY}.</outcome>
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>the silver for {ENEMY}</label><what>silver</what><steward>false</steward></li>
               <li Class="ColonyCouncil.DilemmaEffect_RedInkPay" />
@@ -53,11 +53,11 @@
           </li>
           <li>
             <label>Send {A_nameDef} to argue the entry</label>
-            <outcome>{A_nameDef} argued the entry over the book at the gate, and {X_nameDef} struck it out.</outcome>
+            <outcome>{A_nameDef} disputed the entry at the gate, and {X_nameDef} agreed to strike it out.</outcome>
             <riskChance>0.7</riskChance>
             <riskSkill>Social</riskSkill>
             <riskReplaces>true</riskReplaces>
-            <riskOutcome>{A_nameDef} argued the entry, and {X_nameDef} wrote it twice for the arguing: the colony owes double now.</riskOutcome>
+            <riskOutcome>{A_nameDef} disputed the entry, and {X_nameDef} took offence and wrote it in a second time. The colony now owes double.</riskOutcome>
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_RedInkStruck" />
             </effects>
@@ -67,7 +67,7 @@
           </li>
           <li>
             <label>Refuse the entry</label>
-            <outcome>{X_nameDef} closes the book on the red page and rides on, and the league will deal with the colony at worse terms until it pays.</outcome>
+            <outcome>{X_nameDef} closes the book and leaves. The league will give the colony worse terms until it pays.</outcome>
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_RedInkRefuse" />
               <li Class="ColonyCouncil.DilemmaEffect_SendAway" />
@@ -106,13 +106,13 @@
           <li>A road across the land</li>
         </titles>
         <texts>
-          <li>{X_nameDef}, a waymaster of {FACTION}, has walked up to the gate with a surveyor's chain over {X_possessive} shoulder. With {TALE} going through the region, the league would lay its stretch across the colony's land: a gang camped at the edge for some days, a stretch of {BEAST} a day. The line runs past the gate; {X_pronoun} asks the colony's leave.</li>
-          <li>[fields] A waymaster of {FACTION}, {X_nameDef}, has come to the gate with the line for {TALE} drawn on a map. It crosses the colony's ground and runs over its fields, {COUNT} cells of them, unless they go round; {X_pronoun} asks whether the gang may lay it through.</li>
-          <li>[age0] {X_nameDef} of {FACTION} has come to the gate with a staff notched for every day's stretch. The league's road for {TALE} is packed earth, rammed down by hand, and its line runs across the colony's land; {X_pronoun} asks the colony's leave to lay it there.</li>
-          <li>[age1] {X_nameDef}, a waymaster of {FACTION}, has come up the road with the gang's stone carts behind {X_objective}. They are laying {TALE} in flagstones of the land's own stone, and the line runs across the colony's land; {X_pronoun} asks the colony's leave.</li>
-          <li>[age2] A truck of {FACTION}'s road gang has pulled up short of the gate, and {X_nameDef}, the waymaster, has walked over with the plans. {TALE} goes down in concrete, a stretch a day, and its line crosses the colony's land; {X_pronoun} asks the colony's leave.</li>
-          <li>[age3] {X_nameDef} of {FACTION} has come to the gate with the line for {TALE} glowing on a slate: paved tile, a stretch a day, across the colony's land and past its gate. The league asks the colony's leave before it lays a single tile.</li>
-          <li>[their:grateful] The league writes the colony in good ink, and {X_nameDef} has come to ask its leave first: {TALE} would run across its land, laid by a gang camped at the edge, a stretch of {BEAST} a day.</li>
+          <li>{X_nameDef}, a waymaster of {FACTION}, has walked up to the gate with a surveyor's chain over {X_possessive} shoulder. The league is laying {TALE} through the region and would like to lay its stretch across the colony's land. A road gang would camp at the edge of the land for some days and lay a stretch of {BEAST} each day, on a line that runs past the gate. {X_nameDef} asks for the colony's permission.</li>
+          <li>[fields] {X_nameDef}, a waymaster of {FACTION}, has come to the gate with the route of {TALE} drawn on a map. It crosses the colony's land and runs over {COUNT} cells of its fields, unless the road goes round them. {X_nameDef} asks whether the road gang may lay it straight through.</li>
+          <li>[age0] {X_nameDef} of {FACTION} has come to the gate with a staff that has a notch for every day's stretch of road. The league is making {TALE} of packed earth, rammed down by hand, and its route runs across the colony's land. {X_nameDef} asks for the colony's permission to lay it there.</li>
+          <li>[age1] {X_nameDef}, a waymaster of {FACTION}, has come up the road with the road gang's stone carts behind {X_objective}. They are laying {TALE} in flagstones cut from the local stone, and its route runs across the colony's land. {X_nameDef} asks for the colony's permission.</li>
+          <li>[age2] A truck from {FACTION}'s road gang has stopped near the gate, and {X_nameDef}, the waymaster, has walked over with the plans. {TALE} is being laid in concrete, a stretch a day, and its route crosses the colony's land. {X_nameDef} asks for the colony's permission.</li>
+          <li>[age3] {X_nameDef} of {FACTION} has come to the gate with the route of {TALE} shown on a data slate. It is to be paved tile, laid a stretch a day, across the colony's land and past its gate. The league asks for the colony's permission before it lays any of it.</li>
+          <li>[their:grateful] The league counts the colony as a fair dealer, so {X_nameDef} has come to ask its permission first. {TALE} would run across the colony's land, laid a stretch of {BEAST} a day by a road gang camped at the edge.</li>
         </texts>
         <defaultOption>2</defaultOption>
         <options>
@@ -134,7 +134,7 @@
           </li>
           <li>
             <label>Not across our land</label>
-            <outcome>{X_nameDef} rolls up the line without a word for it, and the gang will lay the road round the colony's land.</outcome>
+            <outcome>{X_nameDef} rolls up the map without comment, and the road gang will lay the road round the colony's land.</outcome>
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_RoadGang"><round>true</round></li>
               <li Class="ColonyCouncil.DilemmaEffect_SendAway" />
@@ -168,14 +168,14 @@
         <notable>false</notable>
         <titles>
           <li>Litters after the fight</li>
-          <li>Nobody on a sickbed</li>
+          <li>Hospitallers at the gate</li>
         </titles>
         <texts>
-          <li>[litters] Hospitallers of {FACTION} have come up to the gate with litters on their shoulders, {X_nameDef} at their head. The fight is over, {X_pronoun} told {A_nameDef}, and {COUNT} of the raiders still lie where they fell; the order would carry them to its sickhouse, for nobody on a sickbed is anyone's enemy.</li>
+          <li>[litters] Hospitallers of {FACTION} have come up to the gate carrying litters, led by {X_nameDef}. {X_nameDef} told {A_nameDef} that the fight is over and {COUNT} of the raiders still lie where they fell. The order would carry them to its sickhouse, since it holds that nobody on a sickbed is anyone's enemy.</li>
           <li>[cart] A stretcher cart of {FACTION}'s order has stopped at the gate, and {X_nameDef} has climbed down with the bearers. {COUNT} of the raiders lie downed on the colony's land; the order would carry them away to its sickhouse, if the colony lets them go.</li>
-          <li>[one] {X_nameDef} of {FACTION} has come to the gate with a litter and a bearer. One of the raiders still lies out there, and {X_pronoun} asks to carry {ENEMY}'s fallen to the order's sickhouse, for nobody on a sickbed is anyone's enemy.</li>
-          <li>[many] Hospitallers of {FACTION} are at the gate with litters, {X_nameDef} at their head. {COUNT} lie downed out there, of {ENEMY} and others; the order would carry every one of them to its sickhouse, and ask nothing for it.</li>
-          <li>[lowtech] {X_nameDef}, a hospitaller of {FACTION}, has come over the field with two bearers and a pair of poles and blankets. Aldith's lamp hangs over the sickhouse door for anyone, {X_pronoun} says, and {COUNT} of the raiders lie out there still.</li>
+          <li>[one] {X_nameDef} of {FACTION} has come to the gate with a litter and a bearer. One of the raiders is still lying out there, and {X_nameDef} asks to carry this fighter of {ENEMY} to the order's sickhouse. The order holds that nobody on a sickbed is anyone's enemy.</li>
+          <li>[many] Hospitallers of {FACTION} are at the gate with litters, led by {X_nameDef}. {COUNT} raiders of {ENEMY} and others are lying downed out there. The order would carry every one of them to its sickhouse and ask nothing for it.</li>
+          <li>[lowtech] {X_nameDef}, a hospitaller of {FACTION}, has come over the field with two bearers carrying poles and blankets. {X_nameDef} says the order's sickhouses take in anyone, as their founder Aldith did, and {COUNT} of the raiders are still lying out there.</li>
         </texts>
         <defaultOption>2</defaultOption>
         <options>
@@ -235,12 +235,12 @@
           <li>A sister at the gate</li>
         </titles>
         <texts>
-          <li>{X_nameDef}, a sister of {FACTION}, has come to the gate with a satchel of the order's. {TALE} is spreading in the colony, {A_nameDef} has it and {COUNT} in all, and {X_pronoun} asks for a sick room: the sick kept together in {PLACE}, the well staying out, and {X_objective} dosing them on rounds for three days.</li>
-          <li>[herbs] A sister of {FACTION}, {X_nameDef}, has come in with a bundle of herbs and boiled linen. Word of the colony's {TALE} reached the order, {X_pronoun} says; give {X_objective} {PLACE} for a sick room three days, and the sickness will have a harder road.</li>
-          <li>[masks] {X_nameDef} of {FACTION} has come to the gate in a mask, with a case of the order's. {TALE} is going round the colony, {COUNT} down with it; {X_pronoun} would keep a sick room in {PLACE} for three days, with the colony's own medicine.</li>
-          <li>[nodoctor] {X_nameDef}, a sister of {FACTION}, has heard the colony has {TALE} and nobody well enough to nurse it. {X_pronoun} asks for {PLACE} as a sick room, three days of rounds, and the well kept out.</li>
-          <li>[lowtech] A sister of {FACTION} has walked in over the fields, {X_nameDef}, with Aldith's lamp hung from {X_possessive} staff. Where {TALE} goes, {X_pronoun} says, a sick room follows: {PLACE} for three days, and {X_objective} to dose the sick on rounds.</li>
-          <li>[their:grateful] The order remembers the colony kindly, and {X_nameDef} has come as soon as word of its {TALE} came: three days of rounds in a sick room, {PLACE}, if the colony will have it.</li>
+          <li>{X_nameDef}, a sister of {FACTION}, has come to the gate with one of the order's satchels. {TALE} is spreading in the colony: {A_nameDef} has it, and {COUNT} people in all. {X_nameDef} asks to set up a sick room in {PLACE} for three days, with the sick kept together there, the healthy kept out, and {X_objective} giving them medicine on regular rounds.</li>
+          <li>[herbs] {X_nameDef}, a sister of {FACTION}, has come in with a bundle of herbs and boiled linen. The order heard about the {TALE} in the colony. If the colony lets {X_objective} use {PLACE} as a sick room for three days, the sickness will spread less easily.</li>
+          <li>[masks] {X_nameDef} of {FACTION} has come to the gate wearing a mask and carrying one of the order's cases. {TALE} is going round the colony and {COUNT} people are down with it. {X_nameDef} offers to run a sick room in {PLACE} for three days, using the colony's own medicine.</li>
+          <li>[nodoctor] {X_nameDef}, a sister of {FACTION}, has heard that the colony has {TALE} and nobody well enough to nurse the sick. {X_nameDef} asks to use {PLACE} as a sick room for three days, doing rounds there and keeping the healthy out.</li>
+          <li>[lowtech] {X_nameDef}, a sister of {FACTION}, has walked in over the fields with a lamp hung from {X_possessive} staff, the sign of the order. {X_nameDef} says that wherever {TALE} goes, the order sets up a sick room, and asks for {PLACE} for three days, with {X_objective} giving the sick their medicine on rounds.</li>
+          <li>[their:grateful] The order remembers the colony kindly, and {X_nameDef} came as soon as the order heard about the {TALE}. {X_nameDef} offers to run a sick room in {PLACE} for three days, if the colony agrees.</li>
         </texts>
         <defaultOption>2</defaultOption>
         <options>
@@ -298,15 +298,15 @@
         <notable>false</notable>
         <titles>
           <li>A field sickhouse</li>
-          <li>A lamp at the door</li>
+          <li>A sickhouse by the colony</li>
         </titles>
         <texts>
-          <li>{X_nameDef}, a sister of {FACTION}, has come to the gate. With {TALE} on the region, the order would pitch a field sickhouse by the colony: a long hut of beds, a lamp at its door all night, and the region's sick and wounded brought to it. They would ask for medicine, food and clean cloth, and maybe for the colony's doctor.</li>
-          <li>[plague] A sister of {FACTION}, {X_nameDef}, has walked up to the gate in a mask. {TALE} has the region by the throat, {X_pronoun} says, and the order needs ground for a sickhouse where the sick can reach it; the colony's is good ground.</li>
-          <li>[war] {X_nameDef} of {FACTION} has come to the gate after {TALE}, with the order's lamp unlit on a pole. The wounded of the region have nowhere to lie, {X_pronoun} says, and the order would raise a long hut of beds by the colony and light the lamp at its door.</li>
-          <li>[oursick] {X_nameDef}, a sister of {FACTION}, has come to the gate with a cart of bedding. With {TALE} on the region, the order would pitch a sickhouse by the colony, and the colony's own sick could lie in it too.</li>
-          <li>[lowtech] Sisters of {FACTION} have come up the road with poles and bedrolls, {X_nameDef} carrying Aldith's lamp. After {TALE}, they would raise a long hut by the colony for the region's sick, and hang the lamp at its door for anyone.</li>
-          <li>[their:grateful] The order remembers the colony kindly, and {X_nameDef} has come to ask its ground first: a field sickhouse by the colony while {TALE} lasts, the lamp lit at its door all night.</li>
+          <li>{X_nameDef}, a sister of {FACTION}, has come to the gate. Because of {TALE} in the region, the order would like to set up a field sickhouse next to the colony: a long hut of beds with a lamp lit at its door all night, where the region's sick and wounded would be brought. The sisters would ask the colony for medicine, food and clean cloth, and perhaps for its doctor.</li>
+          <li>[plague] {X_nameDef}, a sister of {FACTION}, has walked up to the gate wearing a mask. {X_nameDef} says {TALE} is hitting the region hard, and the order needs a place for a sickhouse that the sick can reach. The colony's land would suit.</li>
+          <li>[war] {X_nameDef} of {FACTION} has come to the gate after {TALE}, carrying the order's lamp, unlit, on a pole. {X_nameDef} says the region's wounded have nowhere to lie, and the order would like to put up a long hut of beds next to the colony and light the lamp at its door.</li>
+          <li>[oursick] {X_nameDef}, a sister of {FACTION}, has come to the gate with a cart of bedding. Because of {TALE} in the region, the order would like to set up a sickhouse next to the colony, and the colony's own sick could be treated there too.</li>
+          <li>[lowtech] Sisters of {FACTION} have come up the road with poles and bedrolls, and {X_nameDef} is carrying the lamp of Aldith, the order's founder. After {TALE}, they would like to put up a long hut next to the colony for the region's sick, with the lamp hung at its door as a sign that anyone may come.</li>
+          <li>[their:grateful] The order remembers the colony kindly, so {X_nameDef} has come to ask the colony first. The order would like to set up a field sickhouse next to the colony while {TALE} lasts, with a lamp lit at its door all night.</li>
         </texts>
         <defaultOption>2</defaultOption>
         <options>
@@ -320,7 +320,7 @@
           </li>
           <li>
             <label>Let them, and take our sick in too</label>
-            <outcome>{X_nameDef} goes back for the sisters; the order will raise its sickhouse by the colony, and the colony's own sick will lie in it.</outcome>
+            <outcome>{X_nameDef} goes back for the sisters. The order will put up its sickhouse next to the colony, and the colony's own sick will be treated in it.</outcome>
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_SickhouseCamp"><takeOurs>true</takeOurs></li>
             </effects>
@@ -328,7 +328,7 @@
           </li>
           <li>
             <label>Not by our gate</label>
-            <outcome>{X_nameDef} nods, and goes to find the order other ground.</outcome>
+            <outcome>{X_nameDef} nods and leaves to find another place for the sickhouse.</outcome>
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_SendAway" />
             </effects>
@@ -366,11 +366,11 @@
           <li>A drove at the edge</li>
         </titles>
         <texts>
-          <li>{X_nameDef}, a drover of {FACTION}, has walked up to the gate ahead of the herd. A drove of {COUNT} head of {TALE} would cross the colony's land, {X_pronoun} says, and graze it two or three days on the way, their fire at the far edge; they ask the colony's leave.</li>
-          <li>[fields] A drover of {FACTION}, {X_nameDef}, has come to the gate with a long stick and a dog at heel. {COUNT} head of {TALE} would cross the colony's land and graze as they go, and the colony's unfenced fields lie near their way; {X_pronoun} asks its leave all the same.</li>
-          <li>[ride] {X_nameDef} of {FACTION} has ridden up to the gate, the drove raising dust behind. {COUNT} head of {TALE}, two or three days across the colony's land and grazing it, their fire at the far edge; {X_pronoun} asks the colony's leave.</li>
-          <li>[lowtech] A drover of {FACTION}, {X_nameDef}, has walked to the gate barefoot, the drove lowing at the edge. A guest eats from the same pot, {X_pronoun} says, and asks to bring {COUNT} head of {TALE} across the colony's grass two or three days.</li>
-          <li>[their:grateful] The herding folk remember the colony kindly, and {X_nameDef} has come to ask it first: {COUNT} head of {TALE} across its land, two or three days, grazing as they go.</li>
+          <li>{X_nameDef}, a drover of {FACTION}, has walked up to the gate ahead of the herd. {X_nameDef} asks for the colony's permission to bring a drove of {COUNT} head of {TALE} across its land. They would graze on the way for two or three days and camp at the far edge.</li>
+          <li>[fields] {X_nameDef}, a drover of {FACTION}, has come to the gate with a long stick and a dog. {X_nameDef} would like to bring {COUNT} head of {TALE} across the colony's land, grazing as they go. The colony's unfenced fields are close to their route, so {X_nameDef} asks for permission first.</li>
+          <li>[ride] {X_nameDef} of {FACTION} has ridden up to the gate, with the drove raising dust behind. {X_nameDef} asks for the colony's permission to take {COUNT} head of {TALE} across its land over two or three days, grazing on the way and camping at the far edge.</li>
+          <li>[lowtech] {X_nameDef}, a drover of {FACTION}, has walked barefoot to the gate while the drove waits at the edge of the land. {X_nameDef} asks to graze {COUNT} head of {TALE} across the colony's land for two or three days.</li>
+          <li>[their:grateful] The herding folk remember the colony kindly, so {X_nameDef} has come to ask it first. They would like to take {COUNT} head of {TALE} across its land over two or three days, grazing as they go.</li>
         </texts>
         <defaultOption>2</defaultOption>
         <options>
@@ -429,11 +429,11 @@
           <li>On the thieves' trail</li>
         </titles>
         <texts>
-          <li>{X_nameDef}, a warden of {FACTION}'s herders, has come to the gate at first light with riders behind. {ENEMY} drove off {TALE} of the colony's yesterday, and the herders found the trail at dawn. They would follow it to the thieves' camp; the colony could send {A_nameDef} with them, or let them go alone, and they would bring back what they can.</li>
-          <li>[ride] Herders of {FACTION} have ridden up to the gate in the morning, {X_nameDef} at their head. The thieves who took {TALE} from the colony left a trail a child could follow, {X_pronoun} says; {A_nameDef} could ride with them to the camp, or they could ride alone.</li>
-          <li>[many] {X_nameDef} of {FACTION} has come to the gate with riders: {ENEMY} drove off {COUNT} head of the colony's, {TALE}, and the herders count every beast at dusk, theirs or a friend's. They are on the trail now, and would have {A_nameDef} with them.</li>
-          <li>[!ride] Herders of {FACTION} have walked in on the thieves' trail at first light, {X_nameDef} with a spear and a coil of rope. {ENEMY} drove off {TALE} of the colony's, and they mean to follow; {A_nameDef} could walk with them, or they go alone.</li>
-          <li>[lowtech] A warden of {FACTION}'s herders, {X_nameDef}, is at the gate with riders and a dog that has the scent. {TALE} of the colony's went off with {ENEMY}, and the herders would have them back; {A_nameDef} could come along, or they go by themselves.</li>
+          <li>{X_nameDef}, a warden of {FACTION}'s herders, has come to the gate at first light with riders behind. {ENEMY} drove off {TALE} of the colony's yesterday, and the herders found the trail at dawn. They would follow it to the thieves' camp. The colony could send {A_nameDef} with them or let them go alone, and they would bring back what they can.</li>
+          <li>[ride] Herders of {FACTION} have ridden up to the gate in the morning, led by {X_nameDef}. {X_nameDef} says the thieves who took {TALE} from the colony left an easy trail to follow. {A_nameDef} could ride with them to the thieves' camp, or they could ride alone.</li>
+          <li>[many] {X_nameDef} of {FACTION} has come to the gate with riders. {ENEMY} drove off {COUNT} of the colony's animals ({TALE}), and the herders take the loss of a friend's animals as seriously as their own. They are on the trail now and would like {A_nameDef} to come with them.</li>
+          <li>[!ride] Herders of {FACTION} have walked in at first light following the thieves' trail, {X_nameDef} with a spear and a coil of rope. {ENEMY} drove off {TALE} of the colony's, and the herders mean to follow them. {A_nameDef} could go with them, or they will go alone.</li>
+          <li>[lowtech] {X_nameDef}, a warden of {FACTION}'s herders, is at the gate with riders and a tracking dog. {ENEMY} took {TALE} of the colony's, and the herders want to get them back. {A_nameDef} could come along, or they will go by themselves.</li>
         </texts>
         <defaultOption>2</defaultOption>
         <options>
@@ -496,11 +496,11 @@
           <li>Beasts in calf</li>
         </titles>
         <texts>
-          <li>{X_nameDef}, an elder of {FACTION}'s herders, has come to the gate. It is calving time, {X_pronoun} says, and the colony's ground is sheltered: they would bring {COUNT} beasts in calf to camp on it some days, until the calves are on their feet.</li>
-          <li>[age0] An old herder of {FACTION}, {X_nameDef}, has walked to the gate with a hand on a heavy cow's flank. {COUNT} of the herd are near their time, and the colony's ground is out of the wind; {X_pronoun} asks to camp on it until they have calved.</li>
-          <li>[lowtech] {X_nameDef} of {FACTION} has come to the gate with the spring. Every head is counted aloud at dusk in their camps, {X_pronoun} says, and soon there will be more to count: {COUNT} beasts in calf, some days on the colony's sheltered ground.</li>
+          <li>{X_nameDef}, an elder of {FACTION}'s herders, has come to the gate. It is calving time and the colony's land is sheltered, so the herders would like to bring {COUNT} pregnant animals and camp there for some days, until the calves are on their feet.</li>
+          <li>[age0] {X_nameDef}, an old herder of {FACTION}, has come to the gate. {COUNT} of the herd are close to giving birth, and the colony's land is out of the wind. {X_nameDef} asks to camp there until they have calved.</li>
+          <li>[lowtech] {X_nameDef} of {FACTION} has come to the gate now that it is spring. {X_nameDef} asks to bring {COUNT} pregnant animals to the colony's sheltered land for some days while they give birth.</li>
           <li>[!lowtech] {X_nameDef}, an elder of {FACTION}'s herders, has come to the gate with a ledger of the herd. {COUNT} beasts are due to calve this month, and {X_pronoun} asks to bring them to the colony's sheltered ground for it.</li>
-          <li>[their:grateful] The herding folk remember the colony kindly, and {X_nameDef} has brought their beasts in calf to it first this spring: {COUNT} of them, some days on its sheltered ground.</li>
+          <li>[their:grateful] The herding folk remember the colony kindly, so {X_nameDef} has come to the colony first this spring. The herders would like to keep {COUNT} pregnant animals on its sheltered land for some days while they give birth.</li>
         </texts>
         <defaultOption>2</defaultOption>
         <options>
@@ -552,11 +552,11 @@
           <li>A hard birth</li>
         </titles>
         <texts>
-          <li>{X_nameDef} has come up from the calving camp at a run. One of their {TALE} is calving and it is going hard, {X_pronoun} says, and asks for the colony's best hand at beasts, {A_nameDef}, before it is too late.</li>
-          <li>[second] {X_nameDef} of the calving camp is at the gate, sleeves rolled. A {TALE} is stuck in a hard birth, and {X_pronoun} asks for {A_nameDef}; {B_nameDef} could come and learn from it too.</li>
-          <li>[lowtech] {X_nameDef} of {FACTION}'s herders has come to the gate with bloody hands. A {TALE} has been labouring since dawn, and the herders have done all they know; {X_pronoun} asks whether {A_nameDef} would come.</li>
-          <li>[!lowtech] {X_nameDef} has come up from the calving camp with a lamp and a coil of rope. A {TALE}'s calf is turned wrong, {X_pronoun} says, and asks for {A_nameDef}'s hands at it.</li>
-          <li>[their:grateful] {X_nameDef} of the calving camp has come to the gate: a {TALE} is in a hard birth, and the herders trust the colony's {A_nameDef} with it more than themselves.</li>
+          <li>{X_nameDef} has hurried up from the calving camp. One of their {TALE} is having a difficult birth, and {X_nameDef} asks for {A_nameDef}, the colony's best hand with animals, before it is too late.</li>
+          <li>[second] {X_nameDef} from the calving camp is at the gate. A {TALE} is having a difficult birth, and {X_nameDef} asks for {A_nameDef}'s help. {B_nameDef} could come too and learn from it.</li>
+          <li>[lowtech] {X_nameDef} of {FACTION}'s herders has come to the gate with bloody hands. A {TALE} has been in labour since dawn, and the herders have done all they can. {X_nameDef} asks whether {A_nameDef} would come and help.</li>
+          <li>[!lowtech] {X_nameDef} has come up from the calving camp with a lamp and a coil of rope. A {TALE}'s calf is lying the wrong way round, and {X_nameDef} asks for {A_nameDef}'s help to deliver it.</li>
+          <li>[their:grateful] {X_nameDef} from the calving camp has come to the gate. A {TALE} is having a difficult birth, and the herders trust {A_nameDef} with it more than they trust themselves.</li>
         </texts>
         <defaultOption>2</defaultOption>
         <options>
@@ -566,7 +566,7 @@
             <riskChance>0.55</riskChance>
             <riskSkill>Animals</riskSkill>
             <riskReplaces>true</riskReplaces>
-            <riskOutcome>{A_nameDef} is going down to the calving camp with {X_nameDef}, though the birth is turned badly.</riskOutcome>
+            <riskOutcome>{A_nameDef} is going down to the calving camp with {X_nameDef}, but the calf is lying the wrong way and the birth is going badly.</riskOutcome>
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_HardBirth" />
             </effects>
@@ -581,7 +581,7 @@
             <riskChance>0.55</riskChance>
             <riskSkill>Animals</riskSkill>
             <riskReplaces>true</riskReplaces>
-            <riskOutcome>{A_nameDef} and {B_nameDef} are going down to the calving camp with {X_nameDef}, though the birth is turned badly.</riskOutcome>
+            <riskOutcome>{A_nameDef} and {B_nameDef} are going down to the calving camp with {X_nameDef}, but the calf is lying the wrong way and the birth is going badly.</riskOutcome>
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_HardBirth"><who>ab</who></li>
             </effects>
@@ -594,7 +594,7 @@
             <outcome>{X_nameDef} goes back down to the camp to see it through with the herders.</outcome>
             <riskChance>0.27</riskChance>
             <riskReplaces>true</riskReplaces>
-            <riskOutcome>{X_nameDef} goes back down to the camp to see it through with the herders, though it is turned badly.</riskOutcome>
+            <riskOutcome>{X_nameDef} goes back down to the camp to see it through with the herders, but the calf is lying the wrong way and the birth is going badly.</riskOutcome>
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_HardBirth"><who>herders</who></li>
             </effects>
@@ -630,22 +630,22 @@
         <notable>false</notable>
         <titles>
           <li>An old shrine</li>
-          <li>Stones and a lamp</li>
+          <li>A shrine on the colony's land</li>
         </titles>
         <texts>
-          <li>Two pilgrims of {FACTION} have come to the gate, {X_nameDef} with a staff hung with shells. They have found something holy on the colony's ground, the {TALE}, and would set stones and a lamp beside it and bless it: three days' work, and an old shrine for the colony that pilgrims will stop at.</li>
-          <li>[ancient] {X_nameDef} of {FACTION} has stopped at the gate with another pilgrim. The {TALE} out on the colony's land is older than any of the peoples, {X_pronoun} says, and holy for it; they would set stones and a lamp beside it, and bless it.</li>
-          <li>[grave] Pilgrims of {FACTION} have come to the gate from the {TALE} on the colony's land, older than the colony. Nobody blessed it, {X_nameDef} says, and asks leave to set stones and a lamp beside it, and bless it.</li>
-          <li>[tree] {X_nameDef} and another pilgrim of {FACTION} have come in from the great old {TALE} on the colony's ground. A tree that old has heard a great many prayers, {X_pronoun} says; they would set stones and a lamp under it and bless it.</li>
+          <li>Two pilgrims of {FACTION} have come to the gate, {X_nameDef} carrying a staff hung with shells. They believe the {TALE} on the colony's land is a holy place, and would like to set stones and a lamp beside it and bless it. It would take three days, and the colony would have an old shrine that passing pilgrims will stop at.</li>
+          <li>[ancient] {X_nameDef} of {FACTION} has stopped at the gate with another pilgrim. {X_nameDef} says the {TALE} on the colony's land is older than any of the peoples here, and holy because of it. They would like to set stones and a lamp beside it and bless it.</li>
+          <li>[grave] Pilgrims of {FACTION} have come to the gate from the {TALE} on the colony's land, which is older than the colony. {X_nameDef} says nobody ever blessed it, and asks permission to set stones and a lamp beside it and bless it.</li>
+          <li>[tree] {X_nameDef} and another pilgrim of {FACTION} have come in from the great old {TALE} on the colony's land. {X_nameDef} says many people must have prayed under a tree that old, and they would like to set stones and a lamp under it and bless it.</li>
           <li>[landmark] Two pilgrims of {FACTION} have come to the gate from the far side of the colony's land. {TALE} is holy to the fellowship, {X_nameDef} says, and they would set stones and a lamp where it can be seen, and bless it.</li>
-          <li>[lowtech] {X_nameDef} of {FACTION}, nearly blind and led by a younger pilgrim, has stopped at the gate. Old Brannoc blessed every door, {X_pronoun} says, and a holy place on the colony's land has no stones yet; three days, and it would have stones and a lamp.</li>
-          <li>[second] Two pilgrims of {FACTION} have found the {TALE} on the colony's land and would set stones and a lamp beside it, three days' work, or two if {B_nameDef} worked beside them.</li>
+          <li>[lowtech] {X_nameDef} of {FACTION}, nearly blind and led by a younger pilgrim, has stopped at the gate. {X_nameDef} says Old Brannoc, who founded the fellowship, blessed every door he came to, and there is a holy place on the colony's land that nobody has marked. In three days they could set stones and a lamp there.</li>
+          <li>[second] Two pilgrims of {FACTION} have found the {TALE} on the colony's land and would like to set stones and a lamp beside it. It would take three days, or two if {B_nameDef} helped them.</li>
         </texts>
         <defaultOption>2</defaultOption>
         <options>
           <li>
             <label>Let them raise it</label>
-            <outcome>The pilgrims are walking out to the {TALE} with their stones, and will set them three days.</outcome>
+            <outcome>The pilgrims are walking out to the {TALE} with their stones, and will spend three days setting them.</outcome>
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_OldShrine" />
             </effects>
@@ -653,7 +653,7 @@
           </li>
           <li>
             <label>Let them, {B_nameDef} working beside them</label>
-            <outcome>The pilgrims are walking out to the {TALE} with their stones, {B_nameDef} beside them, two days' work.</outcome>
+            <outcome>The pilgrims are walking out to the {TALE} with their stones, and {B_nameDef} is going with them. It will take two days.</outcome>
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_OldShrine"><helped>true</helped></li>
             </effects>
@@ -661,7 +661,7 @@
           </li>
           <li>
             <label>Leave the place as it is</label>
-            <outcome>{X_nameDef} blesses the gate on the way out, open or shut, and the pilgrims walk on.</outcome>
+            <outcome>{X_nameDef} blesses the gate on the way out anyway, as pilgrims do whether a door is opened to them or not, and the pilgrims walk on.</outcome>
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_SendAway" />
             </effects>
@@ -703,11 +703,11 @@
           <li>A palmer at the gate</li>
         </titles>
         <texts>
-          <li>[clash] {X_nameDef}, a palmer of {FACTION}, has come to the gate with a shell on a cord. Word reached the fellowship that {TALE} and {DEAD} quarrel in the colony; {X_pronoun} would have everyone at one table this evening, {A_nameDef} to speak for the one and {B_nameDef} for the other, and bless it.</li>
-          <li>[split] A palmer of {FACTION}, {X_nameDef}, has stopped at the gate. {TALE} is near a split in the colony, {X_pronoun} has heard, its believers wavering; this evening at one table {A_nameDef} could speak for those who are sure and {B_nameDef} for those who are not, and the palmer would bless it.</li>
-          <li>[clash,lowtech] {X_nameDef} of {FACTION}, a palmer in a frayed cloak, has come in to the gate at dusk. Old Brannoc blessed every door, open or shut, {X_pronoun} says, and {TALE} and {DEAD} could share a table for one evening, {A_nameDef} and {B_nameDef} speaking.</li>
-          <li>[split,lowtech] {X_nameDef}, a palmer of {FACTION}, has walked to the gate with a staff hung with shells. A faith that wavers needs a table more than a sermon, {X_pronoun} says; {A_nameDef} and {B_nameDef} could speak for {TALE} this evening, and the palmer would bless the meal.</li>
-          <li>[their:grateful] The fellowship remembers the colony kindly, and {X_nameDef} has come as soon as word came of its faiths: one table this evening, {A_nameDef} and {B_nameDef} speaking, and a blessing over it.</li>
+          <li>[clash] {X_nameDef}, a palmer of {FACTION}, has come to the gate with a shell on a cord. The fellowship heard that the followers of {TALE} and {DEAD} are quarrelling in the colony. {X_nameDef} would like everyone to eat at one table this evening, with {A_nameDef} speaking for one faith and {B_nameDef} for the other, and would bless the meal.</li>
+          <li>[split] {X_nameDef}, a palmer of {FACTION}, has stopped at the gate. {X_nameDef} has heard that the colony's followers of {TALE} are close to splitting, with some of them wavering. {X_nameDef} suggests a meal at one table this evening, where {A_nameDef} would speak for those who are sure and {B_nameDef} for those who are not, and would bless it.</li>
+          <li>[clash,lowtech] {X_nameDef} of {FACTION}, a palmer in a frayed cloak, has come to the gate. {X_nameDef} says Old Brannoc blessed every door, whether it opened to him or not, and suggests that the followers of {TALE} and {DEAD} share a table for one evening, with {A_nameDef} and {B_nameDef} speaking for each side.</li>
+          <li>[split,lowtech] {X_nameDef}, a palmer of {FACTION}, has walked to the gate with a staff hung with shells. {X_nameDef} says a faith whose followers are wavering is helped more by a shared meal than by a sermon. {A_nameDef} and {B_nameDef} could speak for {TALE} at supper this evening, and {X_nameDef} would bless the meal.</li>
+          <li>[their:grateful] The fellowship remembers the colony kindly, and {X_nameDef} came as soon as they heard about the trouble between its faiths. {X_nameDef} suggests a meal at one table this evening, with {A_nameDef} and {B_nameDef} speaking and a blessing over it.</li>
         </texts>
         <defaultOption>2</defaultOption>
         <options>
@@ -717,7 +717,7 @@
             <riskChance>0.67</riskChance>
             <riskSkill>Social</riskSkill>
             <riskReplaces>true</riskReplaces>
-            <riskOutcome>The colony gathered at one table, and {A_nameDef} and {B_nameDef} spoke, but it did not hold.</riskOutcome>
+            <riskOutcome>The colony gathered at one table and {A_nameDef} and {B_nameDef} spoke, but it did not bring the two sides together.</riskOutcome>
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_Gathering"><label>two faiths at one table</label><spots><li>Dining</li><li>Fire</li><li>Gather</li><li>Outdoors</li></spots><hours>17~23</hours><duration>2~2.5</duration><guests>stranger</guests><guestCount>1</guestCount><lines><li>Bread for both sides of the table.</li><li>Let each speak, and the other listen.</li><li>One table, and one evening of it.</li></lines></li>
               <li Class="ColonyCouncil.DilemmaEffect_TwoFaiths" />
@@ -737,7 +737,7 @@
           </li>
           <li>
             <label>Thank {X_objective}, and send {X_objective} on</label>
-            <outcome>{X_nameDef} blesses the gate on the way out, open or shut, and walks on.</outcome>
+            <outcome>{X_nameDef} blesses the gate on the way out anyway, as pilgrims do whether a door is opened to them or not, and walks on.</outcome>
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_SendAway" />
             </effects>

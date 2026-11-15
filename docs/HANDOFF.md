@@ -159,6 +159,48 @@ tree at once, alongside whatever runs. Each piece is merged as its own release, 
   and every line already plain (most of the advisor, the planner, the defense steps and the weapon and apparel cards).
   Found, not in this batch: `CC_Settings_Ordinary_Tip` (`Rimfolk_OneHeart.xml`) says the line falls "to 21 for the
   spoiled", while `GoodLifeMath.LineFor` and `CC_GoodTimes_Tip` give 15.
+- 0.245.0, **Plain words: events-2** (14
+  November 2026; the player's words: "yes, please rewrite everything", "leave: what colonists say, talk between
+  colonists, moods and memories, dreams, character, neighbours talk, ailments, journals", "start with: event cards").
+  The second of the three event-card batches, 18 files of `Defs/IncidentDefs`: the peoples' events (rounds 1 and 3, D,
+  F, G and their touchpoints), roots, neighbours, hard times, callers, the remembered peoples, variety, the
+  storyteller's home events, and the Variants files of the challenges, the neighbours, the storyteller and the most
+  frequent events. Read: 2,237 lines of card text (titles, texts, answers, outcomes, follow-up lines); rewritten: 359;
+  the rest were already plain and are left word for word. What changed: long chains of colons and semicolons are plain
+  sentences; in-world phrases are explained where they stand (the Waystone Book's good ink and red ink, Aldith's lamp
+  and the Book of the Spared, the Mossborn's ledger of trees felled and planted, the Wardens' book and lantern, the
+  Bell's words, Old Brannoc's blessing of every door; "a guest eats from the same pot" and "never wrong, never sure"
+  dropped from the narration); things given will are plain again (a fire that walks, the ground or the void that
+  listens, a signal calling to itself, a road that swallows a wheel); wry last lines say what happened instead ("the
+  colony hardly knows itself", "no refunds", "ate better", "the work isn't getting done"). Two event labels: "a beast
+  the grass chose" is "a young beast from the herders", "the ground is listening" is "something stirring underground"
+  (with their titles). Left: the visitors' 303 spoken lines (`<lines>` bubbles, the gatherings' and vigils' lines),
+  speech and letters quoted inside the cards, journals, every tag, placeholder, number and effect, and the answer "ask
+  weregild", which the Almanac's world-memory page names; `docs/design/peoples.md` still calls the Bell's warning by
+  its old title.
+- 0.244.0, **Plain words: events-1** (14
+  November 2026; the player's words: "when you write text for the mod, especially when it's supposed to be flavour, i'd
+  like you to be more neutral, descriptive and "reasonable", over trying to make the text be creative", "start with:
+  event cards"). The first batch of event cards, nine files in `Defs/IncidentDefs`: `Council_Events_Stories.xml`,
+  `_Stories_More.xml`, `_Stories_Seasons.xml` (the story chains: the door in the hill, the fugitive's debt, bad blood,
+  the preacher, the lost expedition, the lost letters, the stranger's seeds, the play, the apprentice, the fever),
+  `Council_Events_Living.xml`, `_Land.xml`, `_Callers.xml`, `_Storyteller.xml`, and the peoples' events
+  `Rimfolk_Events_PeopleEvents2.xml` and `Rimfolk_Events_PeoplesE.xml`. About 2,320 lines read and 342 rewritten
+  (titles, letter texts, answers and their outcomes, endings and chronicle lines, World page lines, raid and message
+  texts); the rest were already plain and are unchanged. Rewritten: cut-short and riddling openings ("Crates. Row on row
+  of them", "Hatch 7. That's all the stencil says"), similes and things given will ("dry as bone", "like embers", "the
+  marsh has come up to meet the rain", "the snow lets go"), the wry last line ("Some mornings {X_nameDef} still asks
+  what year it is", "The tired faces at breakfast say otherwise"), and the peoples' in-world phrases said plainly or
+  explained once ("writes the colony in good ink" is the league's book of fair dealers, "to the last digit" is the
+  enclave keeping bargains exactly, Edda Vane, Ilse Varro and Nessa Pell named as their peoples' founders, the Roll as
+  the Banner's book of names; the peoples' own titles kept, such as the enclave's factor, which is the visitor's label
+  on the map). The snow day the player showed now says what plays out: nobody has to work, and people spend it in the
+  snow or by the fire. Left as written: everything spoken (the `<lines>` the visitors and colonists say, the toasts,
+  feast and vigil lines, quoted speech and quoted letters inside the cards), the journals (`<journal>` pools), the
+  tribal, medieval and faith beliefs told as what a people says (the sky-wolf, the fire kept high on the longest night
+  so the sun can find its way back, the spirit-singer's spirits, the Mossborn's dead becoming the grove), titles and
+  option labels that were already plain, every tag, placeholder, number, chance and effect. No test pinned these words;
+  playout_audit is as before (one new candidate from the word "everyone" was reworded away).
 - 0.243.0, **Plain words: events-3** (14
   November 2026; the player's words: "when you write text for the mod, especially when it's supposed to be flavour, i'd
   like you to be more neutral, descriptive and "reasonable", over trying to make the text be creative", "the only thing
