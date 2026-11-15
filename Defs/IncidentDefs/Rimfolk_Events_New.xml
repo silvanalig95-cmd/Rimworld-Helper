@@ -16,6 +16,7 @@
     <earliestDay>5</earliestDay>
     <modExtensions>
       <li Class="ColonyCouncil.HappeningExtension">
+        <leans><li>beasts</li></leans>
         <group>Nature</group>
         <answerDays>0.5</answerDays>
         <titles>
@@ -70,6 +71,7 @@
     <earliestDay>10</earliestDay>
     <modExtensions>
       <li Class="ColonyCouncil.HappeningExtension">
+        <leans><li>beasts</li></leans>
         <group>Nature</group>
         <answerDays>0.5</answerDays>
         <titles>
@@ -167,6 +169,7 @@
     <earliestDay>8</earliestDay>
     <modExtensions>
       <li Class="ColonyCouncil.HappeningExtension">
+        <leans><li>feasts</li></leans>
         <group>Visitors</group>
         <answerDays>0.3</answerDays>
         <titles>

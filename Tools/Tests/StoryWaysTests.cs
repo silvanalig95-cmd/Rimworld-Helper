@@ -10,12 +10,14 @@ using System.Xml.Linq;
 using ColonyCouncil;
 
 /// <summary>
-/// The eight ways to play and the story direction (Source/ColonyCouncil/Story/, Defs/StorytellerDefs/Rimfolk_Storytellers.xml;
+/// The fourteen ways to play and the story direction (Source/ColonyCouncil/Story/, Defs/StorytellerDefs/Rimfolk_Storytellers.xml;
 /// DESIGN.md "Ways to play"): the levers' math (the floor, harm never above 1, the shapes' means over a year and an arc, the
-/// arc's phases and troubles, the deeds, the reasons for a raid, the tilt of the hurts within the same budget); every
-/// storyteller def (its comps, every kind of event with a route, nothing shut out, its plate, its description saying how
-/// it plays, its levers at the floor or above, its threats at the classic pace or less); every direction choice; and the
-/// seams where Rimfolk's schedulers read the levers.
+/// arc's two years, its phases and troubles, the deeds, the reasons for a raid, the tilt of the hurts within the same budget,
+/// an event's kinds, the joiners' share); every storyteller def (its comps, every kind of event with a route, nothing shut
+/// out, its plate, its description saying how it plays, its levers at the floor or above, its threats at the classic pace
+/// or less; the six after the first eight at the game's own rate or more, on the classic cycle, with no shape, their picks
+/// and quests real and soft); Rimfolk's events leaned by their kinds; every direction choice; and the seams where
+/// Rimfolk's schedulers read the levers.
 /// </summary>
 public static class StoryWaysTests
 {
@@ -33,9 +35,13 @@ public static class StoryWaysTests
 
         // ================= The ways =================
 
-        C(StoryWaysMath.Ways.Length == 8 && StoryWaysMath.Ways.Distinct().Count() == 8 && !StoryWaysMath.Ways.Contains(StoryWay.None),
-            "eight ways, Small Hours and The Frontier left out");
-        C(Enum.GetValues(typeof(StoryWay)).Length == 9, "the direction offers none and the eight");
+        C(StoryWaysMath.Ways.Length == 14 && StoryWaysMath.Ways.Distinct().Count() == 14 && !StoryWaysMath.Ways.Contains(StoryWay.None),
+            "fourteen ways, Small Hours and The Frontier left out");
+        C(Enum.GetValues(typeof(StoryWay)).Length == 15, "the direction offers none and the fourteen");
+        // Saves and settings keep a way by its number: the first eight keep theirs, the six after come at the end.
+        C((int)StoryWay.Crossroads == 8 && (int)StoryWay.OpenGate == 9 && (int)StoryWay.FeastDays == 14 && StoryWaysMath.Ways.Take(8).Select(w => (int)w).SequenceEqual(Enumerable.Range(1, 8)),
+            "the first eight keep their numbers, the six after come at the end");
+        C(StoryWaysMath.AtBaseOrMore.Length == 6 && StoryWaysMath.AtBaseOrMore.SequenceEqual(StoryWaysMath.Ways.Skip(8)), "the six after the first eight are the ones at the game's rate or more");
         foreach (var w in StoryWaysMath.Ways) C(StoryWaysMath.WayOf(StoryWaysMath.DefName(w)) == w, w + ": its def name reads back");
         C(StoryWaysMath.DefName(StoryWay.None) == null && StoryWaysMath.WayOf("Cassandra") == StoryWay.None && StoryWaysMath.WayOf(null) == StoryWay.None,
             "none has no def; the game's storytellers are no way");
@@ -58,6 +64,21 @@ public static class StoryWaysTests
             C(StoryWaysMath.Clamp(key, 10f) <= (StoryWaysMath.IsHarm(key) ? 1f : StoryWaysMath.MaxLever), key + (StoryWaysMath.IsHarm(key) ? ": harm, never above 1" : ": never past three times"));
         }
         C(StoryWaysMath.HarmKeys.All(StoryWaysMath.IsKey) && StoryWaysMath.IsHarm(StoryWaysMath.Fights) && StoryWaysMath.IsHarm(StoryWaysMath.Schemes), "fights and schemes are the levers on harm");
+        C(StoryWaysMath.Keys.Distinct().Count() == StoryWaysMath.Keys.Length && StoryWaysMath.LeanKeys.All(StoryWaysMath.IsKey) && !StoryWaysMath.LeanKeys.Any(StoryWaysMath.IsHarm)
+          && !StoryWaysMath.IsLeanKey(StoryWaysMath.Fights) && !StoryWaysMath.IsLeanKey(StoryWaysMath.Joiners) && StoryWaysMath.IsKey(StoryWaysMath.Joiners),
+            "an event's kinds are levers of the ways, none on harm; joiners read from who may join");
+
+        // An event's kinds: its group's lever times the strongest of its kinds', within the floor and three times.
+        C(StoryWaysMath.HappeningLean(1.3f, new float[0]) == 1.3f && StoryWaysMath.HappeningLean(1.3f, null) == 1.3f, "an event of no kind takes its group's lever");
+        C(Math.Abs(StoryWaysMath.HappeningLean(1f, new[] { 2.5f }) - 2.5f) < 1e-6 && Math.Abs(StoryWaysMath.HappeningLean(1.2f, new[] { 2f, 1f }) - 2.4f) < 1e-5,
+            "a kind's lever times the group's");
+        C(Math.Abs(StoryWaysMath.HappeningLean(1f, new[] { 2f, 2f }) - 2f) < 1e-6, "an event of two kinds is not counted twice");
+        C(StoryWaysMath.HappeningLean(2f, new[] { 3f }) == StoryWaysMath.MaxLever && StoryWaysMath.HappeningLean(0.25f, new[] { 0.25f }) == StoryWaysMath.Floor
+          && StoryWaysMath.HappeningLean(float.NaN, new[] { float.NaN }) == 1f, "an event's lever stays within the floor and three times");
+        // The joiners' share: the game's sense of how many people the colony should have thins them, never past every time.
+        C(StoryWaysMath.PickAccept(new[] { 1f, 1f }, new[] { 1f, 1f }) == 1f && Math.Abs(StoryWaysMath.PickAccept(new[] { 1f, 1f }, new[] { 1f, 0.05f }) - 0.525f) < 1e-4
+          && StoryWaysMath.PickAccept(new[] { 1f }, new[] { 3f }) == 1f && StoryWaysMath.PickAccept(new float[0], new float[0]) == 0f && StoryWaysMath.PickAccept(null, null) == 1f,
+            "picks that bring people come less to a colony big enough, the rest as ever");
 
         // The shapes: a quarter at least, harm 1 or less over its cycle, the rest about 1.
         foreach (var key in StoryWaysMath.SeasonKeys)
@@ -105,10 +126,24 @@ public static class StoryWaysTests
         }
 
         // The arc's phases, troubles and omen.
-        C(StoryWaysMath.PhaseAt(0f) == ArcPhase.Growth && StoryWaysMath.PhaseAt(54.9f) == ArcPhase.Growth && StoryWaysMath.PhaseAt(55f) == ArcPhase.Omen
+        C(StoryWaysMath.PhaseAt(0f) == ArcPhase.Growth && StoryWaysMath.PhaseAt(59.9f) == ArcPhase.Growth && StoryWaysMath.PhaseAt(60f) == ArcPhase.Omen
           && StoryWaysMath.PhaseAt(80f) == ArcPhase.Trouble && StoryWaysMath.PhaseAt(100f) == ArcPhase.Rebuild && StoryWaysMath.PhaseAt(120f) == ArcPhase.Growth
           && StoryWaysMath.PhaseAt(float.NaN) == ArcPhase.Growth, "an arc: growth, omens, trouble, rebuilding, then the next");
         C(Enum.GetValues(typeof(ArcPhase)).Cast<ArcPhase>().Sum(p => StoryWaysMath.PhaseDays(p)) == StoryWaysMath.ArcDays, "the phases fill the arc");
+        // The player, 15 November 2026: "rise and fall, just do 1 year rise and 1 year fall".
+        bool riseYear = true, fallYear = true;
+        for (float d = 0f; d < StoryWaysMath.ArcDays * 3f; d += 0.5f)
+        {
+            bool fall = StoryWaysMath.ArcDay(d) >= StoryWaysMath.YearDays;
+            if (fall != StoryWaysMath.FallYear(d)) riseYear = false;
+            if (!fall && StoryWaysMath.PhaseAt(d) != ArcPhase.Growth) riseYear = false;
+            if (fall && StoryWaysMath.PhaseAt(d) == ArcPhase.Growth) fallYear = false;
+        }
+        C(StoryWaysMath.YearDays == 60f && StoryWaysMath.ArcDays == 2f * StoryWaysMath.YearDays && StoryWaysMath.PhaseDays(ArcPhase.Growth) == StoryWaysMath.YearDays && riseYear,
+            "the rise: the arc's first year, all growth");
+        C(StoryWaysMath.PhaseDays(ArcPhase.Omen) + StoryWaysMath.PhaseDays(ArcPhase.Trouble) + StoryWaysMath.PhaseDays(ArcPhase.Rebuild) == StoryWaysMath.YearDays && fallYear
+          && StoryWaysMath.PhaseStart(ArcPhase.Rebuild) < StoryWaysMath.ArcDays && StoryWaysMath.PhaseDays(ArcPhase.Rebuild) > 0f,
+            "the fall: the arc's second year, the omens, the trouble and the rebuilding at its end");
         bool varied = true, allFive = true;
         for (int seed = -20; seed < 60; seed++)
         {
@@ -152,11 +187,13 @@ public static class StoryWaysTests
         if (!File.Exists(path)) return n;
         var doc = XDocument.Load(path);
         var defs = doc.Root!.Elements("StorytellerDef").ToList();
-        C(defs.Count == 8, "eight storyteller defs");
+        C(defs.Count == 14, "fourteen storyteller defs");
         var labels = new Dictionary<StoryWay, string>
         {
             [StoryWay.LongRoad] = "The Long Road", [StoryWay.Neighbours] = "Neighbours", [StoryWay.TurningYear] = "The Turning Year", [StoryWay.WhatYouSow] = "What You Sow",
-            [StoryWay.OldPowers] = "Old Powers", [StoryWay.LeanYears] = "Lean Years", [StoryWay.RiseAndFall] = "Rise and Fall", [StoryWay.Crossroads] = "Crossroads"
+            [StoryWay.OldPowers] = "Old Powers", [StoryWay.LeanYears] = "Lean Years", [StoryWay.RiseAndFall] = "Rise and Fall", [StoryWay.Crossroads] = "Crossroads",
+            [StoryWay.OpenGate] = "Open Gate", [StoryWay.HomeAndHearth] = "Home and Hearth", [StoryWay.TheWilds] = "The Wilds", [StoryWay.Windfalls] = "Windfalls",
+            [StoryWay.Sellswords] = "Sellswords", [StoryWay.FeastDays] = "Feast Days"
         };
         var pool = Pool(root);
         var categories = pool.Where(r => r.type == "IncidentCategoryDef" && r.active).Select(r => r.name).Distinct().ToList();
@@ -181,6 +218,14 @@ public static class StoryWaysTests
             ["OrbitalTraderArrival"] = "OrbitalVisitor", ["StrangerInBlackJoin"] = "Special", ["AnimalInsanityMass"] = "ThreatBig", ["Infestation"] = "ThreatBig",
             ["SightstealerSwarm"] = "ThreatBig", ["UnnaturalDarkness"] = "ThreatBig", ["DeathPall"] = "ThreatBig", ["BloodRain"] = "ThreatBig", ["HateChanters"] = "ThreatBig", ["VREA_PsychicStorm"] = "ThreatBig"
         };
+        // The game's and the mods' own threats and hurts by name, which the six after the first eight never name: they bring
+        // more of their own kind of thing and leave the threats to the classic cycle.
+        var threatPicks = new HashSet<string>
+        {
+            "ManhunterPack", "AnimalInsanityMass", "AnimalInsanitySingle", "Infestation", "RaidEnemy", "PsychicDrone", "MechCluster", "ToxicFallout",
+            "VolcanicWinter", "Flashstorm", "SolarFlare", "HeatWave", "ColdSnap", "CropBlight", "Alphabeavers", "ShortCircuit", "VEE_WandererJoinsTraitor",
+            "VRE_ChestburstWandererJoinQuest", "CreepJoinerJoin", "CreepJoinerJoin_Metalhorror", "WanderingLich", "RG_Rimclaw_RimclawsPasses", "VEE_ShuttleCrash"
+        };
         // Fired by hand in the game, never by chance: no way names them.
         var manual = new[] { "Drought", "DroughtInitial", "WanderersSkylantern", "HarbingerTreeSpawn", "MechCluster", "Infestation_Jelly", "StrangerInBlackJoin" };
         // The classic storyteller's big threats a day: its cycle of 4.6 days on and 6 off, one or two each.
@@ -192,7 +237,8 @@ public static class StoryWaysTests
             string defName = d.Element("defName")?.Value ?? "?";
             var way = StoryWaysMath.WayOf(defName);
             string w = defName;
-            C(way != StoryWay.None && way == StoryWaysMath.Ways[Math.Min(i, 7)], w + ": a way, in the list's order");
+            C(way != StoryWay.None && i < StoryWaysMath.Ways.Length && way == StoryWaysMath.Ways[i], w + ": a way, in the list's order");
+            bool atBase = StoryWaysMath.AtBaseOrMore.Contains(way);
             C(d.Attribute("ParentName")?.Value == "BaseStoryteller", w + ": a whole storyteller on the game's own base (its endgame and DLC parts, its difficulty settings)");
             C(labels.TryGetValue(way, out var label) && d.Element("label")?.Value == label, w + ": named for what it does");
             int lo = int.Parse(d.Element("listOrder")?.Value ?? "0", Inv);
@@ -201,7 +247,10 @@ public static class StoryWaysTests
 
             // The description says plainly how it plays, with no character.
             string desc = d.Element("description")?.Value ?? "";
-            C(desc.Length >= 250 && desc.Contains("classic pace") && desc.Contains("For a game "), w + ": the description says how it plays and its threats against the classic pace");
+            C(desc.Length >= 250 && (atBase ? desc.Contains("as in the base game") : desc.Contains("classic pace")) && desc.Contains("For a game "),
+                w + (atBase ? ": the description says what comes more often and that the rest comes as in the base game" : ": the description says how it plays and its threats against the classic pace"));
+            C(desc.EndsWith("\\n\\nIt shifts the odds this way but shuts nothing out: every kind of event can still come.", StringComparison.Ordinal), w + ": the description ends with the same last line as every way");
+            C(!desc.Contains('\n'), w + ": its breaks written as the game reads them in a def");
             C(desc.Contains("shuts nothing out") && desc.Contains("every kind of event can still come"), w + ": the description says it leans, never shuts anything out");
             C(!Regex.IsMatch(desc, @"\b(she|he|her|his|him|hers)\b", RegexOptions.IgnoreCase), w + ": no character in the description");
             C(!desc.Contains('—') && !desc.Contains('!'), w + ": no em dash, no exclamation mark");
@@ -296,6 +345,49 @@ public static class StoryWaysTests
                 C(F(p, "weight") > 0f, w + ": " + name + " has a weight");
             }
 
+            // The way's own named quests: the game's or an active mod's quest scripts, offered by chance, soft by their package.
+            foreach (var c in comps.Where(c => Cls(c).EndsWith("_WayQuests")))
+            {
+                C(F(c, "mtbDays") > 0f && c.Element("allowedTargetTags")?.Elements("li").Select(x => x.Value).SequenceEqual(new[] { "World" }) == true,
+                    w + ": its quests come to the world, as the game's own random quests do");
+                foreach (var q in c.Element("quests")!.Elements("li"))
+                {
+                    var qe = q.Element("quest")!;
+                    string name = qe.Value, may = qe.Attribute("MayRequire")?.Value?.ToLowerInvariant();
+                    var rows = pool.Where(r => r.type == "QuestScriptDef" && r.name == name && r.active).ToList();
+                    C(rows.Count > 0, w + ": the quest " + name + " is in the game or the player's active mods");
+                    C(rows.Any(r => may == null ? r.mod == "ludeon.rimworld" : r.mod == may), w + ": the quest " + name + (may == null ? " is the base game's" : " is guarded by its own package"));
+                    C(F(q, "weight") > 0f, w + ": the quest " + name + " has a weight");
+                }
+            }
+
+            // The six after the first eight: the game's own rate or more, nothing longer than a season, the threats on the classic cycle.
+            if (atBase)
+            {
+                C(!comps.Any(c => Cls(c).EndsWith("_WayCycle") || Cls(c).EndsWith("_WayDisease") || Cls(c).EndsWith("_WayVisits") || Cls(c).EndsWith("_WayOmen")),
+                    w + ": no part shaped by the season, the deeds or the arc");
+                var big2 = comps.Where(c => Cls(c).EndsWith("_OnOffCycle") && c.Element("category")?.Value == "ThreatBig").ToList();
+                var small2 = comps.Where(c => Cls(c).EndsWith("_OnOffCycle") && c.Element("category")?.Value == "ThreatSmall").ToList();
+                C(big2.Count == 1 && F(big2[0], "onDays") == 4.6f && F(big2[0], "offDays") == 6f && big2[0].Element("numIncidentsRange")?.Value == "1~2",
+                    w + ": big threats on the classic cycle, no more and no fewer");
+                C(small2.Count == 1 && F(small2[0], "onDays") == 4.6f && F(small2[0], "offDays") == 6f && small2[0].Element("numIncidentsRange")?.Value == "0.2~1",
+                    w + ": small threats on the classic cycle");
+                C(comps.Count(c => Cls(c).EndsWith("_Disease") && !Cls(c).Contains("Way")) == 2, w + ": the game's own sickness");
+                float PerYear(string incident) => comps.Where(c => Cls(c).EndsWith("_FactionInteraction") && c.Element("incident")?.Value == incident).Sum(c => F(c, "baseIncidentsPerYear"));
+                C(PerYear("TraderCaravanArrival") >= 5f && PerYear("VisitorGroup") >= 4f && PerYear("TravelerGroup") >= 6f && PerYear("RaidFriendly") >= 15f,
+                    w + ": traders, visitors, travellers and friends at least as often as the classic storyteller's");
+                C(comps.Any(c => Cls(c).EndsWith("_CategoryMTB") && c.Element("category")?.Value == "Misc" && F(c, "mtbDays") <= 4.8f
+                                 && c.Element("allowedTargetTags")?.Elements("li").Any(li => li.Value == "Map_PlayerHome") == true),
+                    w + ": the home's misc happenings at least as often as the classic storyteller's");
+                foreach (var p in comps.Where(c => Cls(c).EndsWith("_WayPicks")).SelectMany(c => c.Element("picks")!.Elements("li")))
+                {
+                    string name = p.Element("incident")!.Value;
+                    C(p.Element("seasons") == null && p.Element("phases") == null && p.Element("troubles") == null, w + ": " + name + " comes at any time of year");
+                    C(!threatPicks.Contains(name) && !(incidentCategory.TryGetValue(name, out var cat) && cat.StartsWith("Threat", StringComparison.Ordinal)),
+                        w + ": " + name + " is no threat (predators, maddened animals and raids come as in the base game)");
+                }
+            }
+
             // The levers.
             var ext = d.Element("modExtensions")?.Elements("li").FirstOrDefault(e => e.Attribute("Class")?.Value == "ColonyCouncil.StoryWayExtension");
             C(ext != null && ext.Element("way")?.Value == tail, w + ": its levers name its way");
@@ -325,6 +417,13 @@ public static class StoryWaysTests
                 if (StoryWaysMath.IsHarm(key) && shapeOf != StoryShape.Seasons && shapeOf != StoryShape.Arc && now > 1.0001f) harmOk = false;
             }
             C(floored, w + ": as a storyteller and as the direction, every lever keeps a quarter at least at every season, deed and phase");
+            if (atBase)
+            {
+                C(shapeOf == StoryShape.None, w + ": no shape, so nothing runs longer than a season");
+                C(StoryWaysMath.Keys.Where(k => k != StoryWaysMath.RaidReasons).All(k => values.Get(k) >= 1f), w + ": every lever at the game's own rate or more");
+                C(StoryWaysMath.HarmKeys.All(k => values.Get(k) == 1f) && values.Get(StoryWaysMath.RaidReasons) == 0f, w + ": harm exactly at the game's rate, and no raid aimed");
+                C(StoryWaysMath.Keys.Any(k => !StoryWaysMath.IsHarm(k) && k != StoryWaysMath.RaidReasons && values.Get(k) > 1f), w + ": it leans toward its own kind of thing");
+            }
             C(harmOk, w + ": harm never above 1 but where a shape moves it about within its year or arc");
             foreach (var k in ext.Element("situationKinds")?.Elements("li").Select(x => x.Value) ?? Enumerable.Empty<string>())
                 C(situationKinds.Contains(k), w + ": world situations of the kind " + k + " exist");
@@ -342,11 +441,35 @@ public static class StoryWaysTests
         foreach (StoryTrouble t in Enum.GetValues(typeof(StoryTrouble)))
             C(StoryWaysMath.TroubleKinds(t).Any(k => t == StoryTrouble.Void ? situationKinds.Contains(k) : badKinds.Contains(k)), t + ": a world situation foretells it (a hard one, or a strange sky)");
 
+        // ================= Rimfolk's events by their kinds =================
+
+        var happenings = Directory.GetFiles(Path.Combine(root, "Defs", "IncidentDefs"), "*.xml").Concat(Directory.GetFiles(Path.Combine(root, "Defs", "MissionDefs"), "*.xml"))
+            .SelectMany(f => XDocument.Load(f).Root!.Elements().Where(e => e.Name.LocalName == "IncidentDef")).ToList();
+        var leaned = new Dictionary<string, List<string>>();
+        foreach (var h in happenings)
+        {
+            var he = h.Element("modExtensions")?.Elements("li").FirstOrDefault(e => e.Attribute("Class")?.Value == "ColonyCouncil.HappeningExtension");
+            var leans = he?.Element("leans")?.Elements("li").Select(x => x.Value).ToList();
+            if (leans == null) continue;
+            string hn = h.Element("defName")?.Value ?? "?";
+            foreach (var k in leans)
+            {
+                C(StoryWaysMath.IsLeanKey(k), hn + ": leans " + k + ", one of the ways' kinds");
+                if (!leaned.ContainsKey(k)) leaned[k] = new List<string>();
+                leaned[k].Add(hn);
+            }
+            C(he!.Element("battle")?.Value != "true" && he.Element("group")?.Value != "Battle", hn + ": an event that may end in a fight is never leaned by its kind (harm keeps the fights lever)");
+            C(leans.Distinct().Count() == leans.Count, hn + ": each kind once");
+        }
+        foreach (var k in StoryWaysMath.LeanKeys)
+            C(leaned.TryGetValue(k, out var hs) && hs.Count >= 5, $"the kind {k}: Rimfolk's events of it to lean ({(leaned.TryGetValue(k, out var l2) ? l2.Count : 0)})");
+        C(happenings.Count(h => h.Descendants("addsPeople").Any(x => x.Value == "true")) >= 10, "the joiners: Rimfolk's events in which someone may join");
+
         // ================= The direction setting =================
 
         var row = SettingsCatalog.Find("storyDirection");
         C(row != null && row.page == SettingsPage.WhatsOn && row.notePrefix != null && row.options != null
-          && row.options.SequenceEqual(Enum.GetNames(typeof(StoryWay))), "the story direction: none or one of the eight, with a note per choice");
+          && row.options.SequenceEqual(Enum.GetNames(typeof(StoryWay))), "the story direction: none or one of the fourteen, with a note per choice");
         var keyed = XDocument.Load(Path.Combine(root, "Languages", "English", "Keyed", "Rimfolk_Story.xml")).Root!.Elements().ToDictionary(e => e.Name.LocalName, e => e.Value);
         foreach (var name in Enum.GetNames(typeof(StoryWay)))
         {
@@ -371,6 +494,19 @@ public static class StoryWaysTests
             "the raids' reasons: a patch on the game's choice, with the deeper hooks, only when the raid's people is not set");
         C(Src("Happenings/Happenings.cs").Split("StoryDirection.HappeningFactor(ext)").Length == 3, "Rimfolk's events, in the storyteller's pools and on Rimfolk's own timer");
         C(Src("World/FactionMemory.cs").Contains("StoryDirection.Factor(StoryWaysMath.Memory)"), "the peoples' memory");
+        string direction = Src("Story/StoryDirection.cs");
+        C(direction.Contains("if (ext.addsPeople) kinds.Add(Factor(StoryWaysMath.Joiners))") && direction.Contains("StoryWaysMath.HappeningLean(group, kinds)")
+          && StoryWaysMath.LeanKeys.All(k => direction.Contains("ext.leans.Contains(StoryWaysMath." + char.ToUpperInvariant(k[0]) + k.Substring(1) + ")")),
+            "an event's kinds: who may join, and each kind its def leans");
+        C(Src("Strangers/Encounters.cs").Contains("StoryDirection.Factor(StoryWaysMath.Beasts)") && Src("Strangers/Encounters.cs").Contains("k == StrangerKind.Pet || k == StrangerKind.Wild ? beasts : 1f"),
+            "the colonists' moments with animals, by the beasts lever");
+        C(Src("Diplomacy/Feasts.cs").Contains("Rand.Value / Math.Max(0.01f, StoryDirection.Factor(StoryWaysMath.Feasts))"), "the steward's feast, by the feasts lever");
+        C(Src("Diplomacy/CallsToArms.cs").Contains("StoryDirection.Factor(StoryWaysMath.Favours) * StoryDirection.Factor(StoryWaysMath.Arms)"), "a people's call to arms, by the favours and arms levers");
+        string comps2 = Src("Story/StoryComps.cs");
+        C(comps2.Contains("IncidentChanceFactor_CurrentPopulation(def) * IncidentChanceFactor_PopulationIntent(def)") && comps2.Contains("StoryWaysMath.PickAccept(weights"),
+            "a way's picks that bring people follow the game's sense of how many the colony should have");
+        C(comps2.Contains("NaturalRandomQuestChooser.GetNaturalRandomSelectionWeight(q, parms.points, target.StoryState)") && comps2.Contains("parms.questScriptDef = pick.q")
+          && comps2.Contains("IncidentDefOf.GiveQuest_Random"), "a way's quests: the game's own weight for each, offered through the game's own random quest");
         C(!Src("Lean/Sched.cs").Contains("StoryDirection") && !Src("Lean/Sched.cs").Contains("StoryWay"), "no new pass: the ways read the world when asked, and the storyteller's parts run on the game's own clock");
         return n;
     }

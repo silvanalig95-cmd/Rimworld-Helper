@@ -170,9 +170,9 @@ namespace ColonyCouncil
         /// <summary>How likely each of them is, compared with one of the game's own events.</summary>
         public float storytellerEventWeight = 1f;
         /// <summary>
-        /// The story direction (Story/StoryDirection.cs): one of Rimfolk's eight ways to play leaning whichever storyteller is
+        /// The story direction (Story/StoryDirection.cs): one of Rimfolk's fourteen ways to play leaning whichever storyteller is
         /// playing, through Rimfolk's own happenings and the reasons raids come for; none leaves the storyteller as it is
-        /// (and one of the eight storytellers leans its own way).
+        /// (and one of Rimfolk's storytellers leans its own way).
         /// </summary>
         public StoryWay storyDirection = StoryWay.None;
         /// <summary>World events: rare, region-wide situations that last a while (a plague, a warlord, a succession).</summary>

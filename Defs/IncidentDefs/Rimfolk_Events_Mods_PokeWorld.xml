@@ -19,6 +19,7 @@
     <earliestDay>8</earliestDay>
     <modExtensions>
       <li Class="ColonyCouncil.HappeningExtension">
+        <leans><li>beasts</li></leans>
         <group>Nature</group>
         <days>2~3</days>
         <answerDays>0.5</answerDays>

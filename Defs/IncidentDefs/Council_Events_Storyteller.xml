@@ -413,6 +413,7 @@
     <earliestDay>10</earliestDay>
     <modExtensions>
       <li Class="ColonyCouncil.HappeningExtension">
+        <leans><li>arms</li></leans>
         <group>Challenge</group>
         <answerDays>1</answerDays>
         <value>100~220</value>
@@ -713,6 +714,7 @@
     <earliestDay>10</earliestDay>
     <modExtensions>
       <li Class="ColonyCouncil.HappeningExtension">
+        <leans><li>finds</li></leans>
         <group>Challenge</group>
         <answerDays>1</answerDays>
         <value>60~140</value>

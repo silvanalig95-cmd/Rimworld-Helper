@@ -25,6 +25,12 @@ namespace ColonyCouncil
         public float schemes = 1f;
         public float uncanny = 1f;
         public float raidReasons;
+        public float joiners = 1f;
+        public float beasts = 1f;
+        public float finds = 1f;
+        public float feasts = 1f;
+        public float performers = 1f;
+        public float arms = 1f;
 
         /// <summary>A lever by its key (StoryWaysMath.Keys); 1 for a key it doesn't know.</summary>
         public float Get(string key)
@@ -49,6 +55,12 @@ namespace ColonyCouncil
                 case StoryWaysMath.Schemes: return schemes;
                 case StoryWaysMath.Uncanny: return uncanny;
                 case StoryWaysMath.RaidReasons: return raidReasons;
+                case StoryWaysMath.Joiners: return joiners;
+                case StoryWaysMath.Beasts: return beasts;
+                case StoryWaysMath.Finds: return finds;
+                case StoryWaysMath.Feasts: return feasts;
+                case StoryWaysMath.Performers: return performers;
+                case StoryWaysMath.Arms: return arms;
                 default: return 1f;
             }
         }

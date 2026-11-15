@@ -237,6 +237,7 @@
     <earliestDay>20</earliestDay>
     <modExtensions>
       <li Class="ColonyCouncil.HappeningExtension">
+        <leans><li>finds</li></leans>
         <group>Past</group>
         <answerDays>1</answerDays>
         <journal>Council_Journal_Evt_OldMap</journal>
@@ -289,6 +290,7 @@
     <minRefireDays>45</minRefireDays>
     <modExtensions>
       <li Class="ColonyCouncil.HappeningExtension">
+        <leans><li>finds</li></leans>
         <group>Nature</group>
         <minColonists>2</minColonists>
         <answerDays>1</answerDays>
@@ -349,6 +351,7 @@
     <minRefireDays>30</minRefireDays>
     <modExtensions>
       <li Class="ColonyCouncil.HappeningExtension">
+        <leans><li>finds</li></leans>
         <group>Nature</group>
         <letter>PositiveEvent</letter>
         <notable>false</notable>
@@ -379,6 +382,7 @@
     <minRefireDays>50</minRefireDays>
     <modExtensions>
       <li Class="ColonyCouncil.HappeningExtension">
+        <leans><li>finds</li></leans>
         <group>Challenge</group>
         <answerDays>1</answerDays>
         <value>120~220</value>

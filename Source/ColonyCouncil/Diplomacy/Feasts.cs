@@ -1540,7 +1540,9 @@ namespace ColonyCouncil
                 var friend = Candidates(home).FirstOrDefault(n => InviteWhyNot(n, home) == null && NotableBook.Opinion(n) >= FeastMath.SuggestRegard);
                 int colonists = home.mapPawns.FreeColonistsSpawnedCount;
                 bool fed = MealsInStores(home) >= colonists + 3;
-                if (!FeastMath.Suggests(PlanWhyNot(home) == null, h.feastSuggested, now, friend != null, fed, !MapFacts.ThreatOn(home), Rand.Value)) continue;
+                // The way to play leaning the game: the steward thinks of a feast sooner under Home and Hearth and Feast Days (Story/StoryDirection.cs).
+                float roll = Rand.Value / Math.Max(0.01f, StoryDirection.Factor(StoryWaysMath.Feasts));
+                if (!FeastMath.Suggests(PlanWhyNot(home) == null, h.feastSuggested, now, friend != null, fed, !MapFacts.ThreatOn(home), roll)) continue;
                 h.feastSuggested = now;
                 Suggest(home, steward, friend);
                 return;

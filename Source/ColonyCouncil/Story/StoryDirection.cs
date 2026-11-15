@@ -46,7 +46,7 @@ namespace ColonyCouncil
     /// <summary>
     /// The reader of the ways' levers (the player's request, 12 November 2026): <see cref="Factor"/> is the lever of the way
     /// that leans the game now, the story direction when one is chosen in Rimfolk's settings, else the storyteller's own when
-    /// it is one of the eight, else 1 (nothing changes). Rimfolk's schedulers multiply their own chances by it where each way
+    /// it is one of Rimfolk's, else 1 (nothing changes). Rimfolk's schedulers multiply their own chances by it where each way
     /// needs them (StoryWaysMath lists the levers and DESIGN.md "Ways to play" the seams). Nothing is saved: the season,
     /// the deeds and the arc are read off the game when asked.
     /// </summary>
@@ -57,7 +57,7 @@ namespace ColonyCouncil
         /// <summary>The direction chosen in the settings, or none.</summary>
         public static StoryWay Direction => S?.storyDirection ?? StoryWay.None;
 
-        /// <summary>The storyteller's own way, when it is one of the eight.</summary>
+        /// <summary>The storyteller's own way, when it is one of Rimfolk's.</summary>
         public static StoryWay StorytellerWay => Find.Storyteller?.def?.GetModExtension<StoryWayExtension>()?.way ?? StoryWay.None;
 
         /// <summary>A way's levers, from its StorytellerDef; null for none or a def that isn't loaded.</summary>
@@ -101,19 +101,46 @@ namespace ColonyCouncil
             }
         }
 
-        /// <summary>The lever on one of Rimfolk's happenings by its group: visitors, challenges, pasts, the land and sky, and those that may end in a fight.</summary>
+        /// <summary>
+        /// The lever on one of Rimfolk's happenings: by its group (visitors, challenges, pasts, the land and sky), times the
+        /// strongest lever of its kinds (someone may join; beasts, finds, feasts, performers and arms as its def leans); one
+        /// that may end in a fight takes the fights lever alone.
+        /// </summary>
         public static float HappeningFactor(HappeningExtension ext)
         {
             if (ext == null) return 1f;
             if (ext.battle || ext.group == HappeningGroup.Battle) return Factor(StoryWaysMath.Fights);
+            float group;
             switch (ext.group)
             {
-                case HappeningGroup.Visitors: return Factor(StoryWaysMath.Visitors);
-                case HappeningGroup.Challenge: return Factor(StoryWaysMath.Challenges);
-                case HappeningGroup.Past: return Factor(StoryWaysMath.Pasts);
-                case HappeningGroup.Nature: return Factor(StoryWaysMath.Nature);
-                default: return 1f;
+                case HappeningGroup.Visitors:
+                    group = Factor(StoryWaysMath.Visitors);
+                    break;
+                case HappeningGroup.Challenge:
+                    group = Factor(StoryWaysMath.Challenges);
+                    break;
+                case HappeningGroup.Past:
+                    group = Factor(StoryWaysMath.Pasts);
+                    break;
+                case HappeningGroup.Nature:
+                    group = Factor(StoryWaysMath.Nature);
+                    break;
+                default:
+                    group = 1f;
+                    break;
             }
+            if (!ext.addsPeople && ext.leans.NullOrEmpty()) return group;
+            var kinds = new List<float>(2);
+            if (ext.addsPeople) kinds.Add(Factor(StoryWaysMath.Joiners));
+            if (ext.leans != null)
+            {
+                if (ext.leans.Contains(StoryWaysMath.Beasts)) kinds.Add(Factor(StoryWaysMath.Beasts));
+                if (ext.leans.Contains(StoryWaysMath.Finds)) kinds.Add(Factor(StoryWaysMath.Finds));
+                if (ext.leans.Contains(StoryWaysMath.Feasts)) kinds.Add(Factor(StoryWaysMath.Feasts));
+                if (ext.leans.Contains(StoryWaysMath.Performers)) kinds.Add(Factor(StoryWaysMath.Performers));
+                if (ext.leans.Contains(StoryWaysMath.Arms)) kinds.Add(Factor(StoryWaysMath.Arms));
+            }
+            return StoryWaysMath.HappeningLean(group, kinds);
         }
 
         // ================= The season =================
@@ -232,7 +259,7 @@ namespace ColonyCouncil
             return sb.ToString();
         }
 
-        /// <summary>The eight ways' defs that are loaded, for the dev tools and the self-check.</summary>
+        /// <summary>The ways' defs that are loaded, for the dev tools and the self-check.</summary>
         public static IEnumerable<StorytellerDef> Defs => StoryWaysMath.Ways.Select(w => DefDatabase<StorytellerDef>.GetNamedSilentFail(StoryWaysMath.DefName(w))).Where(d => d != null);
     }
 }

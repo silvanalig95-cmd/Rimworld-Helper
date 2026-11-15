@@ -14,6 +14,7 @@
     <minRefireDays>25</minRefireDays>
     <modExtensions>
       <li Class="ColonyCouncil.HappeningExtension">
+        <leans><li>performers</li></leans>
         <letter>PositiveEvent</letter>
         <group>Visitors</group>
         <ages>25~70</ages>
@@ -426,6 +427,7 @@
     <minRefireDays>40</minRefireDays>
     <modExtensions>
       <li Class="ColonyCouncil.HappeningExtension">
+        <leans><li>beasts</li></leans>
         <group>Visitors</group>
         <notable>false</notable>
         <journal>Council_Journal_Evt_Stray</journal>

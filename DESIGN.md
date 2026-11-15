@@ -14398,7 +14398,7 @@ can still come."
 
 **The levers** (`Story/StoryLevers.cs`, `StoryWaysMath.Keys`), each a factor on Rimfolk's own rate, read through
 `StoryDirection.Factor(key)`: the direction's when one is chosen in the settings, else the storyteller's when it is one
-of the eight, else 1 (the raids' reasons 0). The season, the deeds or the arc shape it as the way is
+of Rimfolk's, else 1 (the raids' reasons 0). The season, the deeds or the arc shape it as the way is
 (`StoryWaysMath.Combine`). The seams:
 
 | Lever | What it moves | Where |
@@ -14416,6 +14416,7 @@ of the eight, else 1 (the raids' reasons 0). The season, the deeds or the arc sh
 | allies | a people at peace sending fighters | `WarCamps.Hourly` |
 | schemes | a scheme against the colony | `Schemes.Daily` |
 | raidReasons | the share of the storyteller's raids sent without a people that come from the one with the most reason | `Patch_Story_RaidReasons` on `IncidentWorker_RaidEnemy.TryResolveRaidFaction` (with the deeper hooks) |
+| joiners, beasts, finds, feasts, performers, arms | Rimfolk's events by their kind (15 November 2026; the section below): someone may join (`addsPeople`), and the kinds a def `leans`; beasts also the colonists' moments with animals, feasts the steward's feast, arms a people's call to arms | `StoryDirection.HappeningFactor`, `EncounterTracker.HourAt`, `Feasts.Daily`, `CallsToArms.PactHour` |
 
 The everyday hurts: a way's `harmLean` tilts the shared budget's weight toward its kinds (`Harm.Reckon`, the tilt in
 the shared weight and in each pass), so the hurts move between kinds and their total stays the budget.
@@ -14451,7 +14452,7 @@ the same twice running) are read when asked.
 | What You Sow | `WayCycle` by the deeds on the classic cycle; friends 24, traders 8, visitors 7 at their peak by the deeds | memory 1.4, raidReasons 0.75; by the deeds: visitors, traders, camps, allies, favours, letters, missions up for kindness and down toward the floor for cruelty, fights and schemes only ever lower |
 | Old Powers | threats 4.6 on, 10 off; strange threats every 25 days (psychic drones, maddened herds, infestations, Anomaly's own where its content is on); omens every 8 days (eclipse, aurora, psychic calm, ambrosia, thrumbos, a meteorite, spores) | gods 1.8, nature 1.4, pasts 1.2, situations 1.2, fights 0.7; skies, comets, faith, wrecks; hurts: sleepwalking, the soldier's nightmare, restless walks, the worst night, dawn walks |
 | Lean Years | threats 4.6 on, 11 off; a hardship every 7 days (blight, cold, heat, storms, flares, alphabeavers, gill rot; now and then fallout or a volcanic winter); traders 2.5 a year, orbital traders 7 on, 14 off | traders 0.5, camps and visitors 0.8, situations 1.2, fights 0.7; hunger, drought, scarcity, sickness, weather; hurts: hungry hands, the cold, the sick at work, dirty water, ailments of the land |
-| Rise and Fall | `WayCycle` by the arc (2 to 3.8 at the peak); the trouble's own every 5 days in its 20 days (blight and gill rot for a famine, cold for a winter, drones and darkness for a void); `WayOmen`; `WayDisease` by the arc; friends 18, traders 9, visitors 6 by the arc | arcs 1.3, raidReasons 0.6; by the phase (growth, omens, trouble, rebuilding): visitors, traders, camps, missions, letters, gods, nature, allies, favours, situations, fights, schemes, raidReasons; growth's trade and fairs, the trouble's kinds, the rebuilding's |
+| Rise and Fall | `WayCycle` by the arc (2 to 3.8 at the peak; a year of growth, then a year of 20 days of omens, 20 of trouble, 20 of rebuilding); the trouble's own every 5 days in its 20 days (blight and gill rot for a famine, cold for a winter, drones and darkness for a void); `WayOmen`; `WayDisease` by the arc; friends 18, traders 9, visitors 6 by the arc | arcs 1.3, raidReasons 0.6; by the phase (growth, omens, trouble, rebuilding): visitors, traders, camps, missions, letters, gods, nature, allies, favours, situations, fights, schemes, raidReasons; growth's trade and fairs, the trouble's kinds, the rebuilding's |
 | Crossroads | `WayCycle` with the classic cycle by threat points (300: half, 1500: 0.85, 4000: all); traders 12, visitors 7, travellers 10 a year; orbital traders 5 on, 5 off | traders 2, camps and visitors 1.3, letters 1.2, favours 1.3, missions 1.1, raidReasons 0.35; trade, fairs, roads, rushes, tolls, sellswords; hurts: traders and guests, the gambler |
 
 From the player's own mods, softly (`MayRequire` on each pick's incident, checked by poolcheck against docs/player-mods'
@@ -14463,8 +14464,8 @@ skylantern (a ritual's), Anomaly's harbinger tree (the monolith's), Royalty's me
 eclipse and the blood moon (no chance of their own), Factional War's assault (a battle on the home map: harm).
 
 **The direction** (`CouncilSettings.storyDirection`, a dropdown on What's on, "Story direction": none or one of the
-eight, a note per choice) leans any storyteller with the way's levers, its shape, its world situations, its hurts and
-its raids' reasons; the storyteller keeps its own parts and pace. With one of the eight as the storyteller, a direction
+fourteen, a note per choice) leans any storyteller with the way's levers, its shape, its world situations, its hurts and
+its raids' reasons; the storyteller keeps its own parts and pace. With one of Rimfolk's as the storyteller, a direction
 chosen leans instead of the storyteller's own. Both apply at once in a running game.
 
 **Old Powers and the gods.** The gods are unseen: the way only leans the world toward the uncanny. Its description,
@@ -14482,6 +14483,93 @@ Years) to 11 and 12 (Crossroads) against 4.6 and 5. A way above the classic pace
 **What only the game can show**: the storyteller screen with the plates, each comp's firings in a real colony
 (Rimfolk's parts follow the game's own rules, checked by the tests and the balance tool but not run in the game), the
 raid aimed by reason and its letter's line, the omen's world situation, and the direction changing a running game.
+
+### Six more ways to play, and Rise and Fall a year each way (the player's request, 15 November 2026; not released yet)
+
+The player: "I would like to have some more additional storytellers and perhaps also improving potentially the one we
+already created ... I like to kind of change the storyteller up every now and then. So if something like this is
+integrated, then only think of maybe a season as the biggest time frame ... I'm not really looking for some with fewer
+rates. You can always just use the base rate level, and the description should be kind of informative about what the
+impact is"; then "rise and fall, just do 1 year rise and 1 year fall ... And the turning year you can leave as it is.
+And I like all the new proposals, storytellers"; and the go, "alright, i'd like the storytellers and fixes/small
+improvements". The Turning Year and the other seven's levers are as they were (whether the eight's below-base levers go
+back to base is still the player's open question).
+
+**The six** (`StoryWay.OpenGate` to `FeastDays`, added at the end of the enum so saves and settings keep the first
+eight's numbers; `StoryWaysMath.AtBaseOrMore`; `listOrder` 69 to 74; their plates by `Tools/make_storyteller_plates.py`).
+Each is a whole storyteller on `BaseStoryteller` with every part the eight have (every kind of event routed, nothing
+disallowed but the raid beacon's own map), and stricter rules, which StoryWaysTests holds them to: every lever 1 or more,
+the harm levers exactly 1 and no raid aimed by reason; no shape (nothing longer than a season: no `WayCycle`,
+`WayDisease`, `WayVisits` or `WayOmen`, no pick held to a season or a phase); the big and small threats on the classic
+cycle exactly (4.6 days on, 6 off), the game's own sickness, traders, visitors, travellers and friends at the classic
+storyteller's numbers or more; their picks never a threat (no predators, maddened animals or raids by name). What they
+change is how often their own kind of thing comes:
+
+| Way | Its own parts (beside the classic ones) | Rimfolk's levers and world events |
+|---|---|---|
+| Open Gate | joiners every 10 days (`WayPicks`: the wanderer, the refugee pod, the wild man, Royalty's wanderer with abasia, Vanilla Events Expanded's wild men, Vanilla Gravship Expanded's escape pod, Hospitality's happy guest who joins), weighed by the game's sense of how many people the colony should have; quests every 20 days (`WayQuests`: Royalty's guests who stay and join and refugees to shelter, the downed refugee); visitors 6 a year | visitors 1.3, joiners 2.5 |
+| Home and Hearth | none | arcs 2, pasts 2, challenges 1.6, feasts 2 |
+| The Wilds | the land's animals every 6 days (herds, thrumbos, farm animals, self-taming, ambrosia; Vanilla Events Expanded's caravan and battle animals and wild crops; Alpha Animals' behemoth; Vanilla Animals Expanded - Endangered's extinct animals; PokéWorld's herds and young) | nature 1.8, beasts 2.5; herds, beast, drove |
+| Windfalls | what falls every 8 days (cargo pods, ship chunks, a meteorite; Vanilla Events Expanded's apparel and weapon pods); ruins found every 30 days (Go Explore's lost city, Real Ruins' pristine ruins); quests every 15 days (the item stash, Ideology's ancient complex, Real Ruins' abandoned base, Odyssey's gravship wreckage, orbital stash and orbital wreck) | finds 2.5; wreck, ruins |
+| Sellswords | quests every 15 days (the bandit camp, Royalty's mission against one, Vanilla Factions Expanded - Settlers' wanted outlaw, Medieval 2's skirmish and siege camp, A RimWorld of Magic's arcane bandits, Empire's deserters' hideout); Go Explore's prison camp every 40 days | arms 2.5; sellswords |
+| Feast Days | none | feasts 2.5, performers 2.5; fair, moot, harvest, songs |
+
+**The new levers** (`StoryWaysMath`: `Joiners`, `Beasts`, `Finds`, `Feasts`, `Performers`, `Arms`; `StoryLevers`;
+`LeanKeys`). Rimfolk's events say their kind: `HappeningExtension.addsPeople` (someone may join) and the new
+`HappeningExtension.leans` (a list of `beasts`, `finds`, `feasts`, `performers`, `arms`; a config error names any other).
+`StoryDirection.HappeningFactor` takes the group's lever times the strongest lever of its kinds
+(`StoryWaysMath.HappeningLean`, within the floor and three times; an event of two kinds counted once; one that may end
+in a fight still takes the fights lever alone). Tagged (70 events and missions): beasts 29 (the great beast and its
+young, the strange creature, the omen beast, the rut, the birds' return, the thirsty herd, orphaned young, the wild one
+at the pens, strays, the herd crossing, the wild one, the clutch, hunt or tame, the herders' young beast, the lame
+beast, the egg-trader, the tamer's bout and stray, spring calving, the drove crossing and drovers, the animal doctor,
+the Wardens' hunt, the rare Pokémon, the runaway, a young beast to raise, the Circuit's foal); finds 20 (the treasure
+map, the buried cache, the sealed crate, lost cargo, the crashed drone, the door in the hill, the old map, star iron,
+starfall, a child's and a pet's find, the wild harvest, an inheritance, and the gifts: food from the allies, help from
+old friends, an old debt repaid, old friends' seed, kindness repaid, the plague's thanks, the first harvest shared);
+feasts 9 (the camp's feast, the harvest fair, the table game, the gambler, a wedding at the colony, the ice fair, the
+longest night, a neighbour's great day, a town's day); performers 6 (the storyteller, the players, the fiddler, the
+spirit-singer, the fortune teller, the play about the colony); arms 6 (the champion, the rematch, the wanted prisoner,
+the Banner's squad, the Republic's call, the Banner's muster). Left out on purpose: the pen raider (a predator), the
+old shell and the twitching scrap (harm), the signal (a lure), the rich seam (the deep's nests). Other seams: beasts
+also the encounters with pets and calm wild animals (`EncounterTracker.HourAt`, their hourly chance); feasts the
+steward's suggestion of a feast with guests (`Feasts.Daily`, the roll over the lever; still once a season, with offices
+on); arms a people's call to arms (`CallsToArms.PactHour`, `ArmsDaily` times favours times arms).
+
+**Rimfolk's two new parts of a storyteller** (`Story/StoryComps.cs`). `WayPicks` now weighs each pick by the game's own
+population factors (`IncidentChanceFactor_CurrentPopulation`, `IncidentChanceFactor_PopulationIntent`; 1 for the
+eight's picks, none of which brings people) and comes only that share of the time (`StoryWaysMath.PickAccept`, the sum
+after against the sum before, never past every time), so Open Gate's joiners thin out as the game's own do for a
+colony it thinks big enough. `WayQuests` (new): about every `mtbDays` one of its named quest scripts (soft by
+`MayRequire`) that is a natural random quest the game can run now (`QuestScriptDef.CanRun`), by its weight times the
+game's own (`NaturalRandomQuestChooser.GetNaturalRandomSelectionWeight`: points, earliest day, refire, recency), one
+that brings people times the game's own share for it (`PopulationIncreasingQuestChance`, a third counting as every
+time), fired as the game's own `GiveQuest_Random` with `parms.questScriptDef` set: offered, accepted or not, played and
+ended as any random quest.
+
+**Rise and Fall a year each way.** The arc stays 120 days; the rise is its first year (`GrowthEnd` = `YearDays` = 60,
+growth throughout), the fall its second: 20 days of omens (the trouble's word a few days in, `OmenDay` 2 to 10), 20 of
+trouble, 20 of rebuilding at its end (`OmenEnd` 80, `TroubleEnd` 100; `StoryWaysMath.FallYear`). Its tables are as they
+were; over the arc its threats average 0.50 of the peak (the test's 0.4 to 0.6, the classic pace or less), sickness 0.93
+of the game's own (0.9 to 1.05), fights 0.82 and schemes 0.87. Its description says it plainly ("one year of growth,
+then one year of trouble").
+
+**The Almanac's page** ("ways to play", keywords unchanged) explains how a storyteller works (parts as clocks for kinds of
+event, each drawing from every event of its kind by its own chance, so a mod's events come with their kind) and how
+every kind keeps its chance (the base storyteller, a route for each kind with the rare kinds' long clocks, nothing
+forbidden, the levers' floor and ceiling, harm at the game's rate, raids aimed at most 85%), a table of all fourteen,
+and a section for each. The old number 55 (the growth's old length) is gone from it on purpose.
+
+**Balance** (`Tools/Balance -- --storytellers`, 400 runs; `WayQuests` now counted with the quests): big threats a year
+in the first year and the two after, against the classic 7.4 and 8.2: Rise and Fall 6.6 and 8.3; the six 7.4 to 7.6 and
+8.2 to 8.3 (the classic cycle); their own picks a year: Open Gate 5.0 and 5.8 (before the game's population factors,
+which only the game knows), The Wilds 8.6 and 9.4, Windfalls 8.1 and 8.9, Sellswords 1.0 and 1.5; quests a year: Open
+Gate 10.4 and 13.0, Windfalls 10.8 and 14.0, Sellswords 10.7 and 14.0 against the classic 8.1 and 10.0.
+
+**What only the game can show**: the six on the storyteller screen with their plates; each part's firings in a real
+colony (the picks' and quests' `CanFireNow` and `CanRun`, which only the game knows: an escape pod only where Vanilla
+Gravship Expanded allows it, an orbital quest only with a way to orbit, the Banner's squad only with the Banner in the
+world); the population factors thinning Open Gate's joiners; the direction changing a running game.
 
 ### The old powers' own strange happenings (the player's go, 14 November 2026; released 0.240.0)
 
@@ -14737,7 +14825,7 @@ chains, nemeses, camps, play-outs, the fights pass and the worn-out episode read
 | every 300 ticks | A council meeting in session talks (its lord job) | the attendees |
 | every 250 ticks of a gathering | An answer playing out: a feast's plates, a toast's cups, its touches | those not yet served: the meals, found and sorted once for all of them, each colonist asked in that order only until one fits |
 | every 1000 ticks, tick 433 | Other mods' people: new play-log lines and tales; who changed (Big & Small, an editor, a xenogerm) | the new entries only; a few fields per free colonist |
-| every 1000 ticks, the game's storyteller interval (no tick of Rimfolk's clock) | The ways to play's own storyteller parts (Story/StoryComps.cs; only while one of the eight is the storyteller): a shaped threat cycle, sickness, picks and visits for each target; Rise and Fall's omen once for the seat, in the omens' days only | per comp and target: the shape's share (a season, the deeds read once a day, the arc from the day), then the game's own cycle or roll |
+| every 1000 ticks, the game's storyteller interval (no tick of Rimfolk's clock) | The ways to play's own storyteller parts (Story/StoryComps.cs; only while one of Rimfolk's is the storyteller): a shaped threat cycle, sickness, picks, quests and visits for each target; Rise and Fall's omen once for the seat, in the omens' days only | per comp and target: the shape's share (a season, the deeds read once a day, the arc from the day), then the game's own cycle or roll |
 | every 30 ticks of a camp's toil | A camp's lord: hunters' jobs; every 2,500 a camp without a record leaves | per camp member |
 | every 200 ticks per hediff | Ailment comps: incubation and treatment course (immunizable); severity per day (medicine, course, recovery, diet), read by the game | the colonist with the ailment |
 | every 250 ticks per pawn | The heart's worn-out episode (a mental state): ends on danger, a wound, cold or heat | the colonist in it |

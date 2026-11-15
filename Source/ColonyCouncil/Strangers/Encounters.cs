@@ -224,8 +224,11 @@ namespace ColonyCouncil
             {
                 float none = 1f;
                 float freq = Mathf.Clamp(S.encounterFrequency, 0.1f, 4f);
+                // The way to play leaning the game: more moments with animals under The Wilds (Story/StoryDirection.cs).
+                float beasts = StoryDirection.Factor(StoryWaysMath.Beasts);
                 foreach (var k in present)
-                    if (HourlyChance.TryGetValue(k, out float c)) none *= 1f - Mathf.Min(0.9f, c * freq);
+                    if (HourlyChance.TryGetValue(k, out float c))
+                        none *= 1f - Mathf.Min(0.9f, c * freq * (k == StrangerKind.Pet || k == StrangerKind.Wild ? beasts : 1f));
                 if (!Rand.Chance(1f - none)) return;
                 h.dueSince = now;
             }

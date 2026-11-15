@@ -13,6 +13,7 @@
     <earliestDay>40</earliestDay>
     <modExtensions>
       <li Class="ColonyCouncil.HappeningExtension">
+        <leans><li>finds</li></leans>
         <group>Visitors</group>
         <ages>20~55</ages>
         <count>60~120</count>

@@ -12,6 +12,7 @@
     <earliestDay>4</earliestDay>
     <modExtensions>
       <li Class="ColonyCouncil.HappeningExtension">
+        <leans><li>finds</li></leans>
         <letter>PositiveEvent</letter>
         <group>Nature</group>
         <seasons>
@@ -175,6 +176,7 @@
     <minRefireDays>40</minRefireDays>
     <modExtensions>
       <li Class="ColonyCouncil.HappeningExtension">
+        <leans><li>finds</li></leans>
         <letter>PositiveEvent</letter>
         <group>Nature</group>
         <value>250~650</value>

@@ -147,60 +147,6 @@ tree at once, alongside whatever runs. Each piece is merged as its own release, 
   to reach, for example in the "Colony news" corner on the right of the screen (`CC_News_Label`): "yes, please add to
   todo". Proposed: a line per running world event in the Colony news corner (its name and where, as the colony heard of
   it), hover for what it is and how it has gone, click to open the region window on it; none shown while none runs.
-- **To do when the player asks (15 November 2026): the storytellers, explained.** The player: "for to do. I really
-  like, you know, the concept of storytellers and how they can kind of shape the game. But I'd kind of like you to
-  explain me, how do storytellers work exactly, and how is it ensured that, you know, each kind of event from the game
-  and all different mods, etc., or occurrence is still able to appear". Explained in chat the same day: each way is a
-  whole storyteller on the game's `BaseStoryteller`, drawing the game's events by category (so every mod's event in a
-  category comes with it), with a route for each of the 16 categories in their mod list (StoryWaysTests reads
-  `docs/player-mods` and fails on a category nobody has routed); nothing disallowed but the raid beacon's own map;
-  Rimfolk's levers only on Rimfolk's own happenings, between a quarter and three times their rate (`StoryWaysMath.Floor`,
-  `MaxLever`), harm never above 1 and the threats at the classic pace or less; the shapes (seasons, deeds, the arc) under
-  the same floor; raids aimed by reason at most 85% of the time; the story direction setting puts a way's levers on any
-  storyteller. Nothing to build unless the player asks (an idea, if wanted: the same explanation on the Almanac's
-  storytellers page, with each way's levers as a table).
-- **To do when the player asks (15 November 2026): more storytellers, and the eight improved.** The player: "Because
-  yeah, I would like to have some more additional storytellers and perhaps also improving potentially the one we
-  already created. I think there is one where there is like a good year and a bad year. While this sounds interesting,
-  I don't think I ever want something on this time scale, you know. I, like to kind of change the storyteller up every
-  now and then. So if something like this is integrated, then only think of maybe a season as the biggest time frame.
-  But yeah, I would like to have some more storytellers. Again, I'm not really looking for some with fewer rates. You
-  can always just use the base rate level, and the description should be kind of informative about what the impact is
-  regarding the rewriting of text concept we discussed earlier on. So just kind of give a straightforward, clear
-  description. I mean, you don't have to go into percentages and stuff like that, but I have an understanding what the
-  impact is going to be or how it's going to play out, and not have it kind of be this AI gibberish attempt of making
-  creative writing." Proposed in chat the same day:
-  - Rules for all: nothing below the game's base rate (the floor goes from a quarter to the base rate: Lean Years'
-    fewer traders, camps and visitors, the fights levers under 1 in Neighbours, Old Powers and Lean Years, and What You
-    Sow's thinner roads for a cruel colony all go back to base); threats at the classic pace in every storyteller (they
-    change which threats and who sends them, never how many); a season (15 days) the longest any pattern runs; plain
-    descriptions saying what comes more often and what stays as in the base game.
-  - Rise and Fall reworked to the season: each season is a good one (more traders, visitors, camps and finds) or a hard
-    one (the season's threats come from one trouble: a war with one people, a sickness going round, a hard cold or heat,
-    a blight), told by the region's news as the season begins.
-  - The Turning Year, a choice: (a) threats at the base pace all year, the seasons bring more of their own good things
-    and choose which threats come (cold in winter, heat and blight in summer), or (b) keep quiet springs and hard
-    winters as now (the same over a year).
-  - New: Open Gate (more people come to join: wanderers, refugees, escape pods, guests who ask to stay); Home and Hearth
-    (the colonists' own lives: personal stories, pasts catching up, challenges and wagers, feasts and gatherings);
-    The Wilds (animals and the land: herds passing, animals wandering in and joining, rare beasts, the land's finds,
-    Rimfolk's beasts and creature encounters); Windfalls (finds and treasure: cargo pods, ship chunks, treasure maps,
-    ruins and stashes to explore, gifts); Sellswords (fighting for others: calls to arms, missions against bandit camps,
-    bounties, champions' challenges, sellsword companies); Feast Days (festivals: the colony's feasts and games, the
-    peoples' fairs and festivals nearby, performers and storytellers visiting).
-  The player's answer: "Okay, actually, rise and fall, just do 1 year rise and 1 year fall. It still sounds
-  interesting, and we shouldn't remove it for no reason. And the turning year you can leave as it is. And I like all
-  the new proposals, storytellers. So add them to the to-do list." So, when asked to build:
-  - All six new storytellers as proposed (Open Gate, Home and Hearth, The Wilds, Windfalls, Sellswords, Feast Days):
-    nothing below the base rate, threats at the classic pace, no pattern longer than a season, plain descriptions
-    (the drafts in chat are the starting point).
-  - Rise and Fall: one year of rise and one year of fall (now an arc of 120 days in four phases: growth 55, omens 25,
-    trouble 20, rebuilding 20). Make the halves the two years of the arc (the rise year: growth and plenty; the fall
-    year: the warning, the trouble and the rebuilding at its end) and say so plainly in its description.
-  - The Turning Year as it is.
-  - Still open (ask when building): whether the other below-base levers of the eight go back to the base rate (Lean
-    Years' fewer traders, camps and visitors; the fights levers under 1 in Neighbours, Old Powers and Lean Years; What
-    You Sow's thinner roads for a cruel colony).
 - **To do when the player asks (15 November 2026): a new god of drugs, drink and revelry.** The player: "Here's an
   idea for a new god to be added to the to-do list. So it's kind of a god of, it should be kind of a god of drugs, the
   god of excess partying, and so to say, of pleasures. So, you know, smoke leaf, alcohol, loving, all that kind of
@@ -244,6 +190,75 @@ tree at once, alongside whatever runs. Each piece is merged as its own release, 
   The player's pick of name: "Revel sounds great": Revel, the Open Cup.
 - **Dropped (14 November 2026): sending visitors away.** The player: "so asking visitors to leave is not necessary, as i
   found the already imlpemented function".
+- Not released: no version, no What's new round, About.xml and CHANGELOG untouched. **Six more ways to play, and Rise and
+  Fall a year each way** (15 November 2026; the player's words: "alright, i'd like the storytellers and fixes/small
+  improvements"; before it "I would like to have some more additional storytellers ... I like to kind of change the
+  storyteller up every now and then. So if something like this is integrated, then only think of maybe a season as the
+  biggest time frame ... I'm not really looking for some with fewer rates. You can always just use the base rate level,
+  and the description should be kind of informative about what the impact is", "rise and fall, just do 1 year rise and 1
+  year fall ... And the turning year you can leave as it is. And I like all the new proposals, storytellers", and "how do
+  storytellers work exactly, and how is it ensured that, you know, each kind of event from the game and all different
+  mods, etc., or occurrence is still able to appear"). DESIGN.md "Six more ways to play, and Rise and Fall a year each
+  way" (after "Ways to play") has all of it; README "Ways to play: fourteen storytellers and the story direction"; the
+  Almanac's "ways to play" page (keywords unchanged). The two to-do entries ("the storytellers, explained", "more
+  storytellers, and the eight improved") are built and gone from the list.
+  - What: six new storytellers after the eight on the storyteller screen, each also a story direction: **Open Gate**
+    (more people come to join), **Home and Hearth** (the colonists' own lives), **The Wilds** (animals and the land),
+    **Windfalls** (the colony finds more), **Sellswords** (fighting for others), **Feast Days** (festivals). None takes
+    anything below the game's own rate (every lever 1 or more, harm exactly 1, no raid aimed), none runs anything longer
+    than a season (no shape), their threats are the classic cycle exactly; each event plays out as it always does. Their
+    descriptions are plain, start from the drafts the player saw, say only what the code brings more often and end with
+    the eight's last line. **Rise and Fall**: the arc's first year is all growth (60 days), its second the omens, the
+    trouble and the rebuilding at its end (20 days each); its description says "one year of growth, then one year of
+    trouble". The Turning Year and the other seven's levers as they were. The Almanac's page explains how a storyteller
+    works and how every kind of event keeps its chance, with a table of all fourteen and a section for each.
+  - Code map: `Story/StoryWaysMath.cs` (the enum's six at its end, `Ways` 14, `AtBaseOrMore`, the levers `Joiners`,
+    `Beasts`, `Finds`, `Feasts`, `Performers`, `Arms`, `LeanKeys`, `HappeningLean`, `PickAccept`, `YearDays`,
+    `GrowthEnd` 60, `FallYear`); `Story/StoryLevers.cs`; `Story/StoryDirection.cs` (`HappeningFactor`: the group's lever
+    times the strongest of its kinds'); `Story/StoryComps.cs` (`WayPicks` by the game's population factors, the new
+    `WayQuests`: named quest scripts through the game's `GiveQuest_Random`); `Happenings/Happenings.cs`
+    (`HappeningExtension.leans`), 70 events and missions tagged in `Defs/IncidentDefs` and `Defs/MissionDefs`; the seams
+    `Strangers/Encounters.cs` (beasts: moments with animals), `Diplomacy/Feasts.cs` (feasts: the steward's feast),
+    `Diplomacy/CallsToArms.cs` (arms); `Defs/StorytellerDefs/Rimfolk_Storytellers.xml` (six defs, `listOrder` 69 to 74;
+    Rise and Fall's description); `UI/SettingsCatalog.cs` and `Languages/English/Keyed/Rimfolk_Story.xml` (the direction's
+    fourteen, a note each); `Tools/make_storyteller_plates.py` and the six plates; `Defs/AlmanacArticleDefs/
+    Almanac_Storytellers.xml`; `Tools/Tests/StoryWaysTests.cs` (the six's rules, their picks and quests real, active and
+    soft by their package in docs/player-mods, the kinds' tags, the two years of the arc, the seams);
+    `Tools/Balance/StorytellerSim.cs` (a way's quests counted). Nothing saved (no save model needed).
+  - Decided here: the new levers lean Rimfolk's events by a tag on each (`leans`) rather than a list in code; only
+    events that hurt no one by themselves are tagged (left out: the pen raider, the old shell, the twitching scrap, the
+    signal, the rich seam; nothing of the Battle group); The Wilds names no predator and no maddened animal, Open Gate
+    no joiner that brings harm with it (Vanilla Events Expanded's traitor, the insector's chestburster, Anomaly's
+    creepjoiners: those come at the game's own rate); Go Explore's intercepted message is left out (what it leads to is
+    not certain from its defs); Open Gate's joiners and quests follow the game's population factors so a big colony is
+    not flooded (a change to `WayPicks` for every way, but none of the eight's picks brings people, so theirs are as
+    they were); Rise and Fall's fall year is three even parts (the omens 25 to 20 days, the trouble and the rebuilding
+    20 as before); the Almanac page's number 55 (the growth's old length) is gone, so `almanaccheck --base` against the
+    commit before this build reports it lost, on purpose. Home and Hearth's "gatherings" are its feasts, fairs and games
+    (Rimfolk's events and the steward's feast): the colony's own evenings keep the player's "Gatherings a week" pace.
+  - Still open, for the player to answer: whether the eight's below-base levers go back to the base rate (Lean Years'
+    fewer traders, camps and visitors; the fights levers under 1 in Neighbours, Old Powers and Lean Years; What You
+    Sow's thinner roads for a cruel colony). Left as they are until then.
+  - Not checkable without the game: the six on the storyteller screen with their plates; each part firing in a real
+    colony (the picks' `CanFireNow` and the quests' `CanRun`: an escape pod only where Vanilla Gravship Expanded allows
+    it, the orbital quests only with a way to orbit, the Banner's squad only with the Banner in the world); the
+    population factors thinning Open Gate's joiners; a quest given through `GiveQuest_Random` with its script set showing
+    the game's own letter; Rise and Fall's omen arriving in the second year's first days.
+  - Try in the game: 1. A new game: the storyteller screen lists the six after Crossroads, each with its plate and
+    description. 2. A game on Open Gate (Options, Gameplay, Change storyteller), dev action "Rimfolk", "Ways to play:
+    show the levers now (log)": joiners 2.50, visitors 1.30; over a few fast-forwarded seasons wanderers and refugee pods
+    come more often than under the classic storyteller, fewer once the colony is big. 3. Rimfolk's settings, What's on,
+    Story direction: the dropdown has fourteen, each with its note; pick The Wilds and show the levers: beasts 2.50,
+    nature 1.80. 4. Windfalls or Sellswords as the storyteller: within a season or two an item stash or a bandit camp is
+    offered in the quest tab with the game's own letter. 5. Rise and Fall: the levers' log shows the arc's day and phase,
+    Growth up to day 59 of each arc and Omen from day 60; "Ways to play: Rise and Fall's omen now" still brings the
+    trouble's word. 6. The Almanac's "ways to play": the explanation, the table of fourteen and a section for each.
+  - Mods that would help: none needed (the plates stay plain, at the player's word). Optional for Feast Days and Home
+    and Hearth: Tavern (ods.tavern, https://steamcommunity.com/sharedfiles/filedetails/?id=3775694305, tagged 1.6 and
+    1.7, in their list but not active) for tavern tables, counters and drinks at the colony's feasts. Already used
+    softly when active: Vanilla Events Expanded, Vanilla Gravship Expanded, Hospitality, Alpha Animals, Vanilla Animals
+    Expanded - Endangered, PokéWorld, Go Explore, Real Ruins, Vanilla Factions Expanded - Settlers, Medieval 2 and
+    Empire, A RimWorld of Magic.
 - 0.251.0, **Plain words: messages-elsewhere**
   (14 November 2026; the player's words: "when you write text for the mod, especially when it's supposed to be flavour,
   i'd like you to be more neutral, descriptive and "reasonable", over trying to make the text be creative", "the only

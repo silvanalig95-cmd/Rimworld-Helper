@@ -661,6 +661,7 @@
     <earliestDay>10</earliestDay>
     <modExtensions>
       <li Class="ColonyCouncil.HappeningExtension">
+        <leans><li>feasts</li></leans>
         <group>Challenge</group>
         <seasons>
           <li>Fall</li>

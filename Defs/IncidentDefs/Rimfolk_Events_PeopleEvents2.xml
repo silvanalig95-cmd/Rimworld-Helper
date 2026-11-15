@@ -673,6 +673,7 @@
     <earliestDay>12</earliestDay>
     <modExtensions>
       <li Class="ColonyCouncil.HappeningExtension">
+        <leans><li>beasts</li></leans>
         <group>Visitors</group>
         <ages>28~65</ages>
         <stayHours>8~12</stayHours>

@@ -651,6 +651,7 @@
     <earliestDay>30</earliestDay>
     <modExtensions>
       <li Class="ColonyCouncil.HappeningExtension">
+        <leans><li>performers</li></leans>
         <group>Visitors</group>
         <minColonists>3</minColonists>
         <answerDays>0.8</answerDays>

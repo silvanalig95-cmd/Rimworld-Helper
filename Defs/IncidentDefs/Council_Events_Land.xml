@@ -372,6 +372,7 @@
     <earliestDay>12</earliestDay>
     <modExtensions>
       <li Class="ColonyCouncil.HappeningExtension">
+        <leans><li>feasts</li></leans>
         <weather>
           <li>frost:5/7</li>
         </weather>
@@ -457,6 +458,7 @@
     <earliestDay>8</earliestDay>
     <modExtensions>
       <li Class="ColonyCouncil.HappeningExtension">
+        <leans><li>beasts</li></leans>
         <group>Nature</group>
         <seasons>
           <li>Spring</li>
@@ -528,6 +530,7 @@
     <earliestDay>10</earliestDay>
     <modExtensions>
       <li Class="ColonyCouncil.HappeningExtension">
+        <leans><li>beasts</li></leans>
         <group>Nature</group>
         <seasons>
           <li>Fall</li>
@@ -675,6 +678,7 @@
     <earliestDay>12</earliestDay>
     <modExtensions>
       <li Class="ColonyCouncil.HappeningExtension">
+        <leans><li>feasts</li></leans>
         <group>Nature</group>
         <seasons>
           <li>Winter</li>

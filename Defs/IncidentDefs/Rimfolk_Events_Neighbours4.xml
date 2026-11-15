@@ -97,6 +97,7 @@
     <earliestDay>10</earliestDay>
     <modExtensions>
       <li Class="ColonyCouncil.HappeningExtension">
+        <leans><li>beasts</li></leans>
         <group>Visitors</group>
         <count>2~3</count>
         <ages>18~55</ages>

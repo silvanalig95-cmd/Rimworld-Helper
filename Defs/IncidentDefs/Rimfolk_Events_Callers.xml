@@ -139,6 +139,7 @@
     <earliestDay>25</earliestDay>
     <modExtensions>
       <li Class="ColonyCouncil.HappeningExtension">
+        <leans><li>feasts</li></leans>
         <group>Visitors</group>
         <stayHours>28~34</stayHours>
         <answerDays>0.5</answerDays>
@@ -443,6 +444,7 @@
     <earliestDay>10</earliestDay>
     <modExtensions>
       <li Class="ColonyCouncil.HappeningExtension">
+        <leans><li>beasts</li></leans>
         <group>Visitors</group>
         <regular>vet</regular>
         <ages>28~60</ages>

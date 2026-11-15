@@ -20,7 +20,7 @@
 //   dotnet run -c Release --project Tools/Balance -- --illness [repo root] [--runs N] [--interval F]
 // The gods' happenings a colony-year, each by its own rules, as a check (GodsSim.cs, printed; exit code 1 when one comes too often):
 //   dotnet run -c Release --project Tools/Balance -- --gods [--runs N] [--seed S]
-// The eight ways to play a colony-year each beside the classic storyteller: threats and their points, the ways' own
+// The fourteen ways to play a colony-year each beside the classic storyteller: threats and their points, the ways' own
 // happenings, sickness, traders and visitors, then Rimfolk's levers (StorytellerSim.cs, printed; exit code 1 when a way's
 // threats come above the classic pace):
 //   dotnet run -c Release --project Tools/Balance -- --storytellers [repo root] [--runs N] [--seed S]

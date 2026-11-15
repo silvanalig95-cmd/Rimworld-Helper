@@ -14,6 +14,7 @@
     <minRefireDays>30</minRefireDays>
     <modExtensions>
       <li Class="ColonyCouncil.HappeningExtension">
+        <leans><li>finds</li></leans>
         <group>Challenge</group>
         <value>300~800</value>
         <answerDays>1</answerDays>

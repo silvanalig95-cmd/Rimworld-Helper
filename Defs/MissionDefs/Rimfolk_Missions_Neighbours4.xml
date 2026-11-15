@@ -607,6 +607,7 @@
     <earliestDay>20</earliestDay>
     <modExtensions>
       <li Class="ColonyCouncil.HappeningExtension">
+        <leans><li>beasts</li></leans>
         <group>Challenge</group>
         <answerDays>2</answerDays>
         <notable>false</notable>

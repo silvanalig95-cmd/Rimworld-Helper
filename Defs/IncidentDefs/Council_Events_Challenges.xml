@@ -16,6 +16,7 @@
     <minRefireDays>25</minRefireDays>
     <modExtensions>
       <li Class="ColonyCouncil.HappeningExtension">
+        <leans><li>arms</li></leans>
         <group>Challenge</group>
         <ages>20~45</ages>
         <stayHours>20~28</stayHours>
@@ -90,6 +91,7 @@
     <earliestDay>10</earliestDay>
     <modExtensions>
       <li Class="ColonyCouncil.HappeningExtension">
+        <leans><li>beasts</li></leans>
         <letter>NeutralEvent</letter>
         <group>Challenge</group>
         <days>4~6</days>
@@ -134,6 +136,7 @@
     <minRefireDays>30</minRefireDays>
     <modExtensions>
       <li Class="ColonyCouncil.HappeningExtension">
+        <leans><li>finds</li></leans>
         <group>Challenge</group>
         <amount>120~300</amount>
         <answerDays>0.5</answerDays>

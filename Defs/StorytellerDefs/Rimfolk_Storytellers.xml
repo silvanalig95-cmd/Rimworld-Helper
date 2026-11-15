@@ -2,8 +2,12 @@
 <Defs>
 
   <!--
-    Rimfolk's ways to play (the player's request, 12 November 2026; docs/storytellers-proposals.md): eight storytellers,
+    Rimfolk's ways to play (the player's request, 12 November 2026; docs/storytellers-proposals.md): fourteen storytellers,
     each named for what it does, with no character and no portrait (a plain plate with its name, Tools/make_storyteller_plates.py).
+    The first eight came on 12 November 2026, the six after Crossroads on 15 November 2026 ("I would like to have some more
+    additional storytellers ... I'm not really looking for some with fewer rates"): those six take nothing below the game's
+    own rate, run nothing longer than a season and keep the threats on the classic cycle; they only bring more of their
+    own kind of thing.
     Each is a whole storyteller with the game's own difficulty settings: the game's parts (BaseStoryteller's endgame and
     DLC quests, then its own threats, sickness, traders, visitors, caravans and quests), Rimfolk's own parts where the
     game's can't say the way (Source/ColonyCouncil/Story/StoryComps.cs), and Rimfolk's levers on its own happenings
@@ -1639,17 +1643,18 @@
     </modExtensions>
   </StorytellerDef>
 
-  <!-- 7. Rise and Fall: long arcs of growth, a trouble foretold, the trouble, the rebuilding. About the classic pace over an arc. -->
+  <!-- 7. Rise and Fall: two-year arcs, a year of growth (the rise), then a year of trouble (the fall): the trouble foretold,
+       the trouble, the rebuilding. About the classic pace over an arc. -->
   <StorytellerDef ParentName="BaseStoryteller">
     <defName>Rimfolk_Story_RiseAndFall</defName>
     <label>Rise and Fall</label>
-    <description>The story runs in long arcs of about two years. First comes a year of growth and plenty, with few raids and many traders, visitors and camps. Then news comes from the region of a great trouble (a war among the peoples, a plague, a famine, a hard winter or a darkness in the sky), and about a season later the trouble itself arrives: the war's raids, the plague's sickness, the famine's blights, the winter's cold. Then comes a quiet time of rebuilding, with friends at hand, and the next arc begins. Over an arc, threats and sickness come about as often as at the classic pace.\n\nFor a game of long stories with an ending to each.\n\nIt shifts the odds this way but shuts nothing out: every kind of event can still come.</description>
+    <description>The story runs in arcs of two years: one year of growth, then one year of trouble. In the first year raids come a little less often than at the classic pace, and traders, visitors and camps come in plenty. Early in the second year news comes from the region of a great trouble (a war among the peoples, a plague, a famine, a hard winter or a darkness in the sky), and about a season later the trouble itself arrives: the war's raids, the plague's sickness, the famine's blights, the winter's cold. The second year ends with a quiet time of rebuilding, with friends at hand, and then the next arc begins. Over the two years, threats and sickness come about as often as at the classic pace.\n\nFor a game of long stories with an ending to each.\n\nIt shifts the odds this way but shuts nothing out: every kind of event can still come.</description>
     <portraitLarge>ColonyCouncil/Storytellers/RiseAndFall</portraitLarge>
     <portraitTiny>ColonyCouncil/Storytellers/RiseAndFallTiny</portraitTiny>
     <listOrder>67</listOrder>
     <comps>
       <li Class="StorytellerCompProperties_ClassicIntro"/>
-      <!-- Threats by the arc: a third of the peak in the good years, all of it in a war -->
+      <!-- Threats by the arc: under half the peak in the year of growth, all of it in a war -->
       <li Class="ColonyCouncil.StorytellerCompProperties_WayCycle">
         <category>ThreatBig</category>
         <shape>Arc</shape>
@@ -2196,6 +2201,1576 @@
         </levers>
         <situationKinds><li>trade</li><li>fair</li><li>road</li><li>roads</li><li>rush</li><li>toll</li><li>sellswords</li></situationKinds>
         <harmLean><li>hatedTrader</li><li>storesVisitor</li><li>guestNight</li><li>gamblerTurns</li><li>rankEnemy</li><li>gateSickness</li></harmLean>
+      </li>
+    </modExtensions>
+  </StorytellerDef>
+
+  <!-- 9. Open Gate: more people come to join. Threats on the classic cycle; joiners follow the game's sense of the colony's size. -->
+  <StorytellerDef ParentName="BaseStoryteller">
+    <defName>Rimfolk_Story_OpenGate</defName>
+    <label>Open Gate</label>
+    <description>More people come to join the colony. Wanderers ask to join, refugees and escape pods arrive, wild people wander in, and more visitors come. Guests more often ask to stay a while, and some of them stay for good. Rimfolk's events in which someone may join come more often. How many come still follows the storyteller's sense of how big the colony should be. Raids and everything else come as in the base game.\n\nFor a game of a growing colony.\n\nIt shifts the odds this way but shuts nothing out: every kind of event can still come.</description>
+    <portraitLarge>ColonyCouncil/Storytellers/OpenGate</portraitLarge>
+    <portraitTiny>ColonyCouncil/Storytellers/OpenGateTiny</portraitTiny>
+    <listOrder>69</listOrder>
+    <comps>
+      <li Class="StorytellerCompProperties_ClassicIntro"/>
+      <!-- Threats on the classic cycle -->
+      <li Class="StorytellerCompProperties_OnOffCycle">
+        <category>ThreatBig</category>
+        <minDaysPassed>11.0</minDaysPassed>
+        <onDays>4.6</onDays>
+        <offDays>6.0</offDays>
+        <minSpacingDays>1.9</minSpacingDays>
+        <numIncidentsRange>1~2</numIncidentsRange>
+        <forceRaidEnemyBeforeDaysPassed>20</forceRaidEnemyBeforeDaysPassed>
+        <disallowedTargetTags>
+          <li>Map_RaidBeacon</li>
+        </disallowedTargetTags>
+      </li>
+      <li Class="StorytellerCompProperties_ThreatsGenerator">
+        <allowedTargetTags>
+          <li>Map_RaidBeacon</li>
+        </allowedTargetTags>
+        <parms>
+          <allowedThreats>Raids</allowedThreats>
+          <onDays>1.0</onDays>
+          <offDays>0.5</offDays>
+          <minSpacingDays>0.04</minSpacingDays>
+          <numIncidentsRange>1~2</numIncidentsRange>
+          <minThreatPoints>500</minThreatPoints>
+        </parms>
+      </li>
+      <li Class="StorytellerCompProperties_OnOffCycle">
+        <category>ThreatSmall</category>
+        <minDaysPassed>11.0</minDaysPassed>
+        <onDays>4.6</onDays>
+        <offDays>6.0</offDays>
+        <numIncidentsRange>0.2~1</numIncidentsRange>
+        <acceptPercentFactorPerThreatPointsCurve>
+          <points>
+            <li>(800, 1)</li>
+            <li>(2800, 0)</li>
+          </points>
+        </acceptPercentFactorPerThreatPointsCurve>
+      </li>
+      <li Class="StorytellerCompProperties_CategoryMTB">
+        <category>Misc</category>
+        <allowedTargetTags>
+          <li>Map_PlayerHome</li>
+        </allowedTargetTags>
+        <minDaysPassed>5</minDaysPassed>
+        <mtbDays>4.8</mtbDays>
+      </li>
+      <li Class="StorytellerCompProperties_ShipChunkDrop"/>
+      <li Class="StorytellerCompProperties_Disease">
+        <category>DiseaseHuman</category>
+        <minDaysPassed>9</minDaysPassed>
+      </li>
+      <li Class="StorytellerCompProperties_Disease">
+        <category>DiseaseAnimal</category>
+        <minDaysPassed>9</minDaysPassed>
+      </li>
+      <!-- Joiners: the game's own, the DLCs' and the player's mods', each as the game plays it -->
+      <li Class="ColonyCouncil.StorytellerCompProperties_WayPicks">
+        <minDaysPassed>8</minDaysPassed>
+        <mtbDays>10</mtbDays>
+        <allowedTargetTags>
+          <li>Map_PlayerHome</li>
+        </allowedTargetTags>
+        <picks>
+          <li>
+            <incident>WandererJoin</incident>
+            <weight>1.0</weight>
+          </li>
+          <li>
+            <incident>RefugeePodCrash</incident>
+            <weight>1.0</weight>
+          </li>
+          <li>
+            <incident>WildManWandersIn</incident>
+            <weight>0.6</weight>
+          </li>
+          <li>
+            <incident MayRequire="Ludeon.RimWorld.Royalty">WandererJoinAbasia</incident>
+            <weight>0.4</weight>
+          </li>
+          <li>
+            <incident MayRequire="VanillaExpanded.VEE">VEE_WildMenWanderIn</incident>
+            <weight>0.4</weight>
+          </li>
+          <li>
+            <incident MayRequire="vanillaexpanded.gravship">VGE_EscapePodCrash</incident>
+            <weight>0.5</weight>
+          </li>
+          <li>
+            <incident MayRequire="orion.hospitality">HappyGuestJoins</incident>
+            <weight>1.0</weight>
+          </li>
+        </picks>
+      </li>
+      <li Class="StorytellerCompProperties_FactionInteraction">
+        <incident>RaidFriendly</incident>
+        <baseIncidentsPerYear>15</baseIncidentsPerYear>
+        <minSpacingDays>0.4</minSpacingDays>
+        <fullAlliesOnly>true</fullAlliesOnly>
+        <minDanger>High</minDanger>
+      </li>
+      <li Class="StorytellerCompProperties_FactionInteraction">
+        <incident>TraderCaravanArrival</incident>
+        <minDaysPassed>5</minDaysPassed>
+        <baseIncidentsPerYear>5</baseIncidentsPerYear>
+        <minSpacingDays>6</minSpacingDays>
+        <allowedTargetTags>
+          <li>Map_PlayerHome</li>
+        </allowedTargetTags>
+      </li>
+      <li Class="StorytellerCompProperties_FactionInteraction">
+        <incident>VisitorGroup</incident>
+        <minDaysPassed>3</minDaysPassed>
+        <baseIncidentsPerYear>6</baseIncidentsPerYear>
+        <minSpacingDays>4</minSpacingDays>
+        <allowedTargetTags>
+          <li>Map_PlayerHome</li>
+        </allowedTargetTags>
+      </li>
+      <li Class="StorytellerCompProperties_FactionInteraction">
+        <incident>TravelerGroup</incident>
+        <minDaysPassed>1</minDaysPassed>
+        <baseIncidentsPerYear>6</baseIncidentsPerYear>
+        <minSpacingDays>1</minSpacingDays>
+        <allowedTargetTags>
+          <li>Map_PlayerHome</li>
+        </allowedTargetTags>
+      </li>
+      <!-- Guests who ask to stay a while, refugees to take in -->
+      <li Class="ColonyCouncil.StorytellerCompProperties_WayQuests">
+        <minDaysPassed>15</minDaysPassed>
+        <mtbDays>20</mtbDays>
+        <allowedTargetTags>
+          <li>World</li>
+        </allowedTargetTags>
+        <quests>
+          <li>
+            <quest MayRequire="Ludeon.RimWorld.Royalty">Hospitality_Joiners</quest>
+            <weight>2.0</weight>
+          </li>
+          <li>
+            <quest MayRequire="Ludeon.RimWorld.Royalty">Hospitality_Refugee</quest>
+            <weight>1.0</weight>
+          </li>
+          <li>
+            <quest>OpportunitySite_DownedRefugee</quest>
+            <weight>1.0</weight>
+          </li>
+        </quests>
+      </li>
+      <li Class="StorytellerCompProperties_CategoryIndividualMTBByBiome">
+        <category>Misc</category>
+        <allowedTargetTags>
+          <li>Caravan</li>
+          <li>Map_TempIncident</li>
+        </allowedTargetTags>
+      </li>
+      <li Class="StorytellerCompProperties_CategoryIndividualMTBByBiome">
+        <category>ThreatSmall</category>
+        <applyCaravanVisibility>true</applyCaravanVisibility>
+        <allowedTargetTags>
+          <li>Caravan</li>
+          <li>Map_TempIncident</li>
+        </allowedTargetTags>
+      </li>
+      <li Class="StorytellerCompProperties_CategoryIndividualMTBByBiome">
+        <category>ThreatBig</category>
+        <applyCaravanVisibility>true</applyCaravanVisibility>
+        <allowedTargetTags>
+          <li>Caravan</li>
+          <li>Map_TempIncident</li>
+        </allowedTargetTags>
+      </li>
+      <li Class="StorytellerCompProperties_RandomQuest">
+        <category>GiveQuest</category>
+        <allowedTargetTags>
+          <li>World</li>
+        </allowedTargetTags>
+        <onDays>10</onDays>
+        <numIncidentsRange>1</numIncidentsRange>
+        <acceptFractionByDaysPassedCurve>
+          <points>
+            <li>(8, 0)</li>
+            <li>(15, 1)</li>
+          </points>
+        </acceptFractionByDaysPassedCurve>
+        <minSpacingDays>3</minSpacingDays>
+        <disableIfAnyModActive>
+          <li>Ludeon.RimWorld.Royalty</li>
+        </disableIfAnyModActive>
+      </li>
+      <li Class="StorytellerCompProperties_RandomQuest">
+        <category>GiveQuest</category>
+        <allowedTargetTags>
+          <li>World</li>
+        </allowedTargetTags>
+        <onDays>12</onDays>
+        <numIncidentsRange>2</numIncidentsRange>
+        <acceptFractionByDaysPassedCurve>
+          <points>
+            <li>(8, 0)</li>
+            <li>(15, 1)</li>
+          </points>
+        </acceptFractionByDaysPassedCurve>
+        <minSpacingDays>3</minSpacingDays>
+        <enableIfAnyModActive>
+          <li>Ludeon.RimWorld.Royalty</li>
+        </enableIfAnyModActive>
+      </li>
+      <li Class="StorytellerCompProperties_CategoryMTB">
+        <category>Misc</category>
+        <allowedTargetTags>
+          <li>World</li>
+        </allowedTargetTags>
+        <minDaysPassed>15</minDaysPassed>
+        <mtbDays>15</mtbDays>
+      </li>
+      <li Class="StorytellerCompProperties_OnOffCycle">
+        <incident>OrbitalTraderArrival</incident>
+        <onDays>7</onDays>
+        <offDays>8</offDays>
+        <numIncidentsRange>1</numIncidentsRange>
+      </li>
+      <!-- Every kind keeps a chance: the rest of the faction arrivals and orbital visitors (the DLCs' and mods' own), and
+           the Settlers' protection fee by its own category, each at a long interval -->
+      <li Class="StorytellerCompProperties_CategoryMTB">
+        <category>FactionArrival</category>
+        <allowedTargetTags>
+          <li>Map_PlayerHome</li>
+        </allowedTargetTags>
+        <minDaysPassed>3</minDaysPassed>
+        <mtbDays>25</mtbDays>
+      </li>
+      <li Class="StorytellerCompProperties_CategoryMTB">
+        <category>OrbitalVisitor</category>
+        <allowedTargetTags>
+          <li>Map_PlayerHome</li>
+        </allowedTargetTags>
+        <minDaysPassed>5</minDaysPassed>
+        <mtbDays>40</mtbDays>
+      </li>
+      <li Class="StorytellerCompProperties_CategoryMTB">
+        <category MayRequire="OskarPotocki.VanillaFactionsExpanded.SettlersModule">LTS</category>
+        <allowedTargetTags>
+          <li>Map_PlayerHome</li>
+        </allowedTargetTags>
+        <minDaysPassed>10</minDaysPassed>
+        <mtbDays>60</mtbDays>
+        <enableIfAnyModActive>
+          <li>OskarPotocki.VanillaFactionsExpanded.SettlersModule</li>
+        </enableIfAnyModActive>
+      </li>
+      <li Class="StorytellerCompProperties_Triggered">
+        <incident>StrangerInBlackJoin</incident>
+        <delayTicks>180</delayTicks>
+      </li>
+    </comps>
+    <modExtensions>
+      <li Class="ColonyCouncil.StoryWayExtension">
+        <way>OpenGate</way>
+        <shape>None</shape>
+        <levers>
+          <visitors>1.3</visitors>
+          <joiners>2.5</joiners>
+        </levers>
+      </li>
+    </modExtensions>
+  </StorytellerDef>
+
+  <!-- 10. Home and Hearth: the colonists' own lives. Threats on the classic cycle; Rimfolk's personal stories, pasts, challenges and feasts. -->
+  <StorytellerDef ParentName="BaseStoryteller">
+    <defName>Rimfolk_Story_HomeAndHearth</defName>
+    <label>Home and Hearth</label>
+    <description>The story stays at home with the colonists. Their personal stories start about twice as often, their pasts catch up with them more often, and Rimfolk's challenges and wagers come more often. Feasts, fairs and games come more often, and the steward thinks of holding a feast with guests sooner. Raids and everything else come as in the base game.\n\nFor a game about the colonists' own lives.\n\nIt shifts the odds this way but shuts nothing out: every kind of event can still come.</description>
+    <portraitLarge>ColonyCouncil/Storytellers/HomeAndHearth</portraitLarge>
+    <portraitTiny>ColonyCouncil/Storytellers/HomeAndHearthTiny</portraitTiny>
+    <listOrder>70</listOrder>
+    <comps>
+      <li Class="StorytellerCompProperties_ClassicIntro"/>
+      <!-- Threats on the classic cycle -->
+      <li Class="StorytellerCompProperties_OnOffCycle">
+        <category>ThreatBig</category>
+        <minDaysPassed>11.0</minDaysPassed>
+        <onDays>4.6</onDays>
+        <offDays>6.0</offDays>
+        <minSpacingDays>1.9</minSpacingDays>
+        <numIncidentsRange>1~2</numIncidentsRange>
+        <forceRaidEnemyBeforeDaysPassed>20</forceRaidEnemyBeforeDaysPassed>
+        <disallowedTargetTags>
+          <li>Map_RaidBeacon</li>
+        </disallowedTargetTags>
+      </li>
+      <li Class="StorytellerCompProperties_ThreatsGenerator">
+        <allowedTargetTags>
+          <li>Map_RaidBeacon</li>
+        </allowedTargetTags>
+        <parms>
+          <allowedThreats>Raids</allowedThreats>
+          <onDays>1.0</onDays>
+          <offDays>0.5</offDays>
+          <minSpacingDays>0.04</minSpacingDays>
+          <numIncidentsRange>1~2</numIncidentsRange>
+          <minThreatPoints>500</minThreatPoints>
+        </parms>
+      </li>
+      <li Class="StorytellerCompProperties_OnOffCycle">
+        <category>ThreatSmall</category>
+        <minDaysPassed>11.0</minDaysPassed>
+        <onDays>4.6</onDays>
+        <offDays>6.0</offDays>
+        <numIncidentsRange>0.2~1</numIncidentsRange>
+        <acceptPercentFactorPerThreatPointsCurve>
+          <points>
+            <li>(800, 1)</li>
+            <li>(2800, 0)</li>
+          </points>
+        </acceptPercentFactorPerThreatPointsCurve>
+      </li>
+      <li Class="StorytellerCompProperties_CategoryMTB">
+        <category>Misc</category>
+        <allowedTargetTags>
+          <li>Map_PlayerHome</li>
+        </allowedTargetTags>
+        <minDaysPassed>5</minDaysPassed>
+        <mtbDays>4.8</mtbDays>
+      </li>
+      <li Class="StorytellerCompProperties_ShipChunkDrop"/>
+      <li Class="StorytellerCompProperties_Disease">
+        <category>DiseaseHuman</category>
+        <minDaysPassed>9</minDaysPassed>
+      </li>
+      <li Class="StorytellerCompProperties_Disease">
+        <category>DiseaseAnimal</category>
+        <minDaysPassed>9</minDaysPassed>
+      </li>
+      <li Class="StorytellerCompProperties_FactionInteraction">
+        <incident>RaidFriendly</incident>
+        <baseIncidentsPerYear>15</baseIncidentsPerYear>
+        <minSpacingDays>0.4</minSpacingDays>
+        <fullAlliesOnly>true</fullAlliesOnly>
+        <minDanger>High</minDanger>
+      </li>
+      <li Class="StorytellerCompProperties_FactionInteraction">
+        <incident>TraderCaravanArrival</incident>
+        <minDaysPassed>5</minDaysPassed>
+        <baseIncidentsPerYear>5</baseIncidentsPerYear>
+        <minSpacingDays>6</minSpacingDays>
+        <allowedTargetTags>
+          <li>Map_PlayerHome</li>
+        </allowedTargetTags>
+      </li>
+      <li Class="StorytellerCompProperties_FactionInteraction">
+        <incident>VisitorGroup</incident>
+        <minDaysPassed>3</minDaysPassed>
+        <baseIncidentsPerYear>4</baseIncidentsPerYear>
+        <minSpacingDays>5</minSpacingDays>
+        <allowedTargetTags>
+          <li>Map_PlayerHome</li>
+        </allowedTargetTags>
+      </li>
+      <li Class="StorytellerCompProperties_FactionInteraction">
+        <incident>TravelerGroup</incident>
+        <minDaysPassed>1</minDaysPassed>
+        <baseIncidentsPerYear>6</baseIncidentsPerYear>
+        <minSpacingDays>1</minSpacingDays>
+        <allowedTargetTags>
+          <li>Map_PlayerHome</li>
+        </allowedTargetTags>
+      </li>
+      <li Class="StorytellerCompProperties_CategoryIndividualMTBByBiome">
+        <category>Misc</category>
+        <allowedTargetTags>
+          <li>Caravan</li>
+          <li>Map_TempIncident</li>
+        </allowedTargetTags>
+      </li>
+      <li Class="StorytellerCompProperties_CategoryIndividualMTBByBiome">
+        <category>ThreatSmall</category>
+        <applyCaravanVisibility>true</applyCaravanVisibility>
+        <allowedTargetTags>
+          <li>Caravan</li>
+          <li>Map_TempIncident</li>
+        </allowedTargetTags>
+      </li>
+      <li Class="StorytellerCompProperties_CategoryIndividualMTBByBiome">
+        <category>ThreatBig</category>
+        <applyCaravanVisibility>true</applyCaravanVisibility>
+        <allowedTargetTags>
+          <li>Caravan</li>
+          <li>Map_TempIncident</li>
+        </allowedTargetTags>
+      </li>
+      <li Class="StorytellerCompProperties_RandomQuest">
+        <category>GiveQuest</category>
+        <allowedTargetTags>
+          <li>World</li>
+        </allowedTargetTags>
+        <onDays>10</onDays>
+        <numIncidentsRange>1</numIncidentsRange>
+        <acceptFractionByDaysPassedCurve>
+          <points>
+            <li>(8, 0)</li>
+            <li>(15, 1)</li>
+          </points>
+        </acceptFractionByDaysPassedCurve>
+        <minSpacingDays>3</minSpacingDays>
+        <disableIfAnyModActive>
+          <li>Ludeon.RimWorld.Royalty</li>
+        </disableIfAnyModActive>
+      </li>
+      <li Class="StorytellerCompProperties_RandomQuest">
+        <category>GiveQuest</category>
+        <allowedTargetTags>
+          <li>World</li>
+        </allowedTargetTags>
+        <onDays>12</onDays>
+        <numIncidentsRange>2</numIncidentsRange>
+        <acceptFractionByDaysPassedCurve>
+          <points>
+            <li>(8, 0)</li>
+            <li>(15, 1)</li>
+          </points>
+        </acceptFractionByDaysPassedCurve>
+        <minSpacingDays>3</minSpacingDays>
+        <enableIfAnyModActive>
+          <li>Ludeon.RimWorld.Royalty</li>
+        </enableIfAnyModActive>
+      </li>
+      <li Class="StorytellerCompProperties_CategoryMTB">
+        <category>Misc</category>
+        <allowedTargetTags>
+          <li>World</li>
+        </allowedTargetTags>
+        <minDaysPassed>15</minDaysPassed>
+        <mtbDays>15</mtbDays>
+      </li>
+      <li Class="StorytellerCompProperties_OnOffCycle">
+        <incident>OrbitalTraderArrival</incident>
+        <onDays>7</onDays>
+        <offDays>8</offDays>
+        <numIncidentsRange>1</numIncidentsRange>
+      </li>
+      <!-- Every kind keeps a chance: the rest of the faction arrivals and orbital visitors (the DLCs' and mods' own), and
+           the Settlers' protection fee by its own category, each at a long interval -->
+      <li Class="StorytellerCompProperties_CategoryMTB">
+        <category>FactionArrival</category>
+        <allowedTargetTags>
+          <li>Map_PlayerHome</li>
+        </allowedTargetTags>
+        <minDaysPassed>3</minDaysPassed>
+        <mtbDays>25</mtbDays>
+      </li>
+      <li Class="StorytellerCompProperties_CategoryMTB">
+        <category>OrbitalVisitor</category>
+        <allowedTargetTags>
+          <li>Map_PlayerHome</li>
+        </allowedTargetTags>
+        <minDaysPassed>5</minDaysPassed>
+        <mtbDays>40</mtbDays>
+      </li>
+      <li Class="StorytellerCompProperties_CategoryMTB">
+        <category MayRequire="OskarPotocki.VanillaFactionsExpanded.SettlersModule">LTS</category>
+        <allowedTargetTags>
+          <li>Map_PlayerHome</li>
+        </allowedTargetTags>
+        <minDaysPassed>10</minDaysPassed>
+        <mtbDays>60</mtbDays>
+        <enableIfAnyModActive>
+          <li>OskarPotocki.VanillaFactionsExpanded.SettlersModule</li>
+        </enableIfAnyModActive>
+      </li>
+      <li Class="StorytellerCompProperties_Triggered">
+        <incident>StrangerInBlackJoin</incident>
+        <delayTicks>180</delayTicks>
+      </li>
+    </comps>
+    <modExtensions>
+      <li Class="ColonyCouncil.StoryWayExtension">
+        <way>HomeAndHearth</way>
+        <shape>None</shape>
+        <levers>
+          <arcs>2.0</arcs>
+          <pasts>2.0</pasts>
+          <challenges>1.6</challenges>
+          <feasts>2.0</feasts>
+        </levers>
+      </li>
+    </modExtensions>
+  </StorytellerDef>
+
+  <!-- 11. The Wilds: animals and the land. Threats on the classic cycle; herds, animals joining, rare beasts, the land's finds. -->
+  <StorytellerDef ParentName="BaseStoryteller">
+    <defName>Rimfolk_Story_TheWilds</defName>
+    <label>The Wilds</label>
+    <description>Animals and the land are the story. Herds pass through more often, animals wander in and join, thrumbos and other rare beasts pass by, and the land turns up more finds, such as ambrosia and wild crops. Rimfolk's events of animals and great beasts, and of the land and the sky, come more often, and so do the colonists' moments with animals. News from the region turns to herds and beasts. Predators, maddened animals, raids and everything else come as in the base game.\n\nFor a game of hunting, taming and the land.\n\nIt shifts the odds this way but shuts nothing out: every kind of event can still come.</description>
+    <portraitLarge>ColonyCouncil/Storytellers/TheWilds</portraitLarge>
+    <portraitTiny>ColonyCouncil/Storytellers/TheWildsTiny</portraitTiny>
+    <listOrder>71</listOrder>
+    <comps>
+      <li Class="StorytellerCompProperties_ClassicIntro"/>
+      <!-- Threats on the classic cycle -->
+      <li Class="StorytellerCompProperties_OnOffCycle">
+        <category>ThreatBig</category>
+        <minDaysPassed>11.0</minDaysPassed>
+        <onDays>4.6</onDays>
+        <offDays>6.0</offDays>
+        <minSpacingDays>1.9</minSpacingDays>
+        <numIncidentsRange>1~2</numIncidentsRange>
+        <forceRaidEnemyBeforeDaysPassed>20</forceRaidEnemyBeforeDaysPassed>
+        <disallowedTargetTags>
+          <li>Map_RaidBeacon</li>
+        </disallowedTargetTags>
+      </li>
+      <li Class="StorytellerCompProperties_ThreatsGenerator">
+        <allowedTargetTags>
+          <li>Map_RaidBeacon</li>
+        </allowedTargetTags>
+        <parms>
+          <allowedThreats>Raids</allowedThreats>
+          <onDays>1.0</onDays>
+          <offDays>0.5</offDays>
+          <minSpacingDays>0.04</minSpacingDays>
+          <numIncidentsRange>1~2</numIncidentsRange>
+          <minThreatPoints>500</minThreatPoints>
+        </parms>
+      </li>
+      <li Class="StorytellerCompProperties_OnOffCycle">
+        <category>ThreatSmall</category>
+        <minDaysPassed>11.0</minDaysPassed>
+        <onDays>4.6</onDays>
+        <offDays>6.0</offDays>
+        <numIncidentsRange>0.2~1</numIncidentsRange>
+        <acceptPercentFactorPerThreatPointsCurve>
+          <points>
+            <li>(800, 1)</li>
+            <li>(2800, 0)</li>
+          </points>
+        </acceptPercentFactorPerThreatPointsCurve>
+      </li>
+      <li Class="StorytellerCompProperties_CategoryMTB">
+        <category>Misc</category>
+        <allowedTargetTags>
+          <li>Map_PlayerHome</li>
+        </allowedTargetTags>
+        <minDaysPassed>5</minDaysPassed>
+        <mtbDays>4.8</mtbDays>
+      </li>
+      <li Class="StorytellerCompProperties_ShipChunkDrop"/>
+      <li Class="StorytellerCompProperties_Disease">
+        <category>DiseaseHuman</category>
+        <minDaysPassed>9</minDaysPassed>
+      </li>
+      <li Class="StorytellerCompProperties_Disease">
+        <category>DiseaseAnimal</category>
+        <minDaysPassed>9</minDaysPassed>
+      </li>
+      <!-- Animals and the land's finds: the game's own and the player's mods'; no predators or maddened animals -->
+      <li Class="ColonyCouncil.StorytellerCompProperties_WayPicks">
+        <minDaysPassed>5</minDaysPassed>
+        <mtbDays>6</mtbDays>
+        <allowedTargetTags>
+          <li>Map_PlayerHome</li>
+        </allowedTargetTags>
+        <picks>
+          <li>
+            <incident>HerdMigration</incident>
+            <weight>1.5</weight>
+          </li>
+          <li>
+            <incident>ThrumboPasses</incident>
+            <weight>0.8</weight>
+          </li>
+          <li>
+            <incident>FarmAnimalsWanderIn</incident>
+            <weight>1.2</weight>
+          </li>
+          <li>
+            <incident>SelfTame</incident>
+            <weight>1.0</weight>
+          </li>
+          <li>
+            <incident>AmbrosiaSprout</incident>
+            <weight>0.6</weight>
+          </li>
+          <li>
+            <incident MayRequire="VanillaExpanded.VEE">VEE_CaravanAnimalsWanderIn</incident>
+            <weight>0.6</weight>
+          </li>
+          <li>
+            <incident MayRequire="VanillaExpanded.VEE">VEE_BattleAnimalsWanderIn</incident>
+            <weight>0.3</weight>
+          </li>
+          <li>
+            <incident MayRequire="VanillaExpanded.VEE">VEE_CropSprout</incident>
+            <weight>0.5</weight>
+          </li>
+          <li>
+            <incident MayRequire="sarg.alphaanimals">AA_BehemothPasses</incident>
+            <weight>0.4</weight>
+          </li>
+          <li>
+            <incident MayRequire="vanillaexpanded.vaeendandext">AEXP_ExtintAnimalsPasses</incident>
+            <weight>0.4</weight>
+          </li>
+          <li>
+            <incident MayRequire="themoonitself.pokeworld">PW_PokemonHerdMigration</incident>
+            <weight>0.6</weight>
+          </li>
+          <li>
+            <incident MayRequire="themoonitself.pokeworld">PW_BabyPokemonWanderIn</incident>
+            <weight>0.4</weight>
+          </li>
+        </picks>
+      </li>
+      <li Class="StorytellerCompProperties_FactionInteraction">
+        <incident>RaidFriendly</incident>
+        <baseIncidentsPerYear>15</baseIncidentsPerYear>
+        <minSpacingDays>0.4</minSpacingDays>
+        <fullAlliesOnly>true</fullAlliesOnly>
+        <minDanger>High</minDanger>
+      </li>
+      <li Class="StorytellerCompProperties_FactionInteraction">
+        <incident>TraderCaravanArrival</incident>
+        <minDaysPassed>5</minDaysPassed>
+        <baseIncidentsPerYear>5</baseIncidentsPerYear>
+        <minSpacingDays>6</minSpacingDays>
+        <allowedTargetTags>
+          <li>Map_PlayerHome</li>
+        </allowedTargetTags>
+      </li>
+      <li Class="StorytellerCompProperties_FactionInteraction">
+        <incident>VisitorGroup</incident>
+        <minDaysPassed>3</minDaysPassed>
+        <baseIncidentsPerYear>4</baseIncidentsPerYear>
+        <minSpacingDays>5</minSpacingDays>
+        <allowedTargetTags>
+          <li>Map_PlayerHome</li>
+        </allowedTargetTags>
+      </li>
+      <li Class="StorytellerCompProperties_FactionInteraction">
+        <incident>TravelerGroup</incident>
+        <minDaysPassed>1</minDaysPassed>
+        <baseIncidentsPerYear>6</baseIncidentsPerYear>
+        <minSpacingDays>1</minSpacingDays>
+        <allowedTargetTags>
+          <li>Map_PlayerHome</li>
+        </allowedTargetTags>
+      </li>
+      <li Class="StorytellerCompProperties_CategoryIndividualMTBByBiome">
+        <category>Misc</category>
+        <allowedTargetTags>
+          <li>Caravan</li>
+          <li>Map_TempIncident</li>
+        </allowedTargetTags>
+      </li>
+      <li Class="StorytellerCompProperties_CategoryIndividualMTBByBiome">
+        <category>ThreatSmall</category>
+        <applyCaravanVisibility>true</applyCaravanVisibility>
+        <allowedTargetTags>
+          <li>Caravan</li>
+          <li>Map_TempIncident</li>
+        </allowedTargetTags>
+      </li>
+      <li Class="StorytellerCompProperties_CategoryIndividualMTBByBiome">
+        <category>ThreatBig</category>
+        <applyCaravanVisibility>true</applyCaravanVisibility>
+        <allowedTargetTags>
+          <li>Caravan</li>
+          <li>Map_TempIncident</li>
+        </allowedTargetTags>
+      </li>
+      <li Class="StorytellerCompProperties_RandomQuest">
+        <category>GiveQuest</category>
+        <allowedTargetTags>
+          <li>World</li>
+        </allowedTargetTags>
+        <onDays>10</onDays>
+        <numIncidentsRange>1</numIncidentsRange>
+        <acceptFractionByDaysPassedCurve>
+          <points>
+            <li>(8, 0)</li>
+            <li>(15, 1)</li>
+          </points>
+        </acceptFractionByDaysPassedCurve>
+        <minSpacingDays>3</minSpacingDays>
+        <disableIfAnyModActive>
+          <li>Ludeon.RimWorld.Royalty</li>
+        </disableIfAnyModActive>
+      </li>
+      <li Class="StorytellerCompProperties_RandomQuest">
+        <category>GiveQuest</category>
+        <allowedTargetTags>
+          <li>World</li>
+        </allowedTargetTags>
+        <onDays>12</onDays>
+        <numIncidentsRange>2</numIncidentsRange>
+        <acceptFractionByDaysPassedCurve>
+          <points>
+            <li>(8, 0)</li>
+            <li>(15, 1)</li>
+          </points>
+        </acceptFractionByDaysPassedCurve>
+        <minSpacingDays>3</minSpacingDays>
+        <enableIfAnyModActive>
+          <li>Ludeon.RimWorld.Royalty</li>
+        </enableIfAnyModActive>
+      </li>
+      <li Class="StorytellerCompProperties_CategoryMTB">
+        <category>Misc</category>
+        <allowedTargetTags>
+          <li>World</li>
+        </allowedTargetTags>
+        <minDaysPassed>15</minDaysPassed>
+        <mtbDays>15</mtbDays>
+      </li>
+      <li Class="StorytellerCompProperties_OnOffCycle">
+        <incident>OrbitalTraderArrival</incident>
+        <onDays>7</onDays>
+        <offDays>8</offDays>
+        <numIncidentsRange>1</numIncidentsRange>
+      </li>
+      <!-- Every kind keeps a chance: the rest of the faction arrivals and orbital visitors (the DLCs' and mods' own), and
+           the Settlers' protection fee by its own category, each at a long interval -->
+      <li Class="StorytellerCompProperties_CategoryMTB">
+        <category>FactionArrival</category>
+        <allowedTargetTags>
+          <li>Map_PlayerHome</li>
+        </allowedTargetTags>
+        <minDaysPassed>3</minDaysPassed>
+        <mtbDays>25</mtbDays>
+      </li>
+      <li Class="StorytellerCompProperties_CategoryMTB">
+        <category>OrbitalVisitor</category>
+        <allowedTargetTags>
+          <li>Map_PlayerHome</li>
+        </allowedTargetTags>
+        <minDaysPassed>5</minDaysPassed>
+        <mtbDays>40</mtbDays>
+      </li>
+      <li Class="StorytellerCompProperties_CategoryMTB">
+        <category MayRequire="OskarPotocki.VanillaFactionsExpanded.SettlersModule">LTS</category>
+        <allowedTargetTags>
+          <li>Map_PlayerHome</li>
+        </allowedTargetTags>
+        <minDaysPassed>10</minDaysPassed>
+        <mtbDays>60</mtbDays>
+        <enableIfAnyModActive>
+          <li>OskarPotocki.VanillaFactionsExpanded.SettlersModule</li>
+        </enableIfAnyModActive>
+      </li>
+      <li Class="StorytellerCompProperties_Triggered">
+        <incident>StrangerInBlackJoin</incident>
+        <delayTicks>180</delayTicks>
+      </li>
+    </comps>
+    <modExtensions>
+      <li Class="ColonyCouncil.StoryWayExtension">
+        <way>TheWilds</way>
+        <shape>None</shape>
+        <levers>
+          <nature>1.8</nature>
+          <beasts>2.5</beasts>
+        </levers>
+        <situationKinds><li>herds</li><li>beast</li><li>drove</li></situationKinds>
+      </li>
+    </modExtensions>
+  </StorytellerDef>
+
+  <!-- 12. Windfalls: the colony finds more. Threats on the classic cycle, still growing with wealth; pods, chunks, stashes, ruins and gifts. -->
+  <StorytellerDef ParentName="BaseStoryteller">
+    <defName>Rimfolk_Story_Windfalls</defName>
+    <label>Windfalls</label>
+    <description>The colony finds more. Cargo pods, ship chunks and meteorites fall more often, and peoples send gifts more often. Treasure maps, buried caches, sealed crates and old vaults turn up, and the region offers more stashes, ruins and wrecks to explore. News from the region turns to wrecks and opened vaults. Raids come as in the base game and still grow with the colony's wealth.\n\nFor a game of scavenging and exploring.\n\nIt shifts the odds this way but shuts nothing out: every kind of event can still come.</description>
+    <portraitLarge>ColonyCouncil/Storytellers/Windfalls</portraitLarge>
+    <portraitTiny>ColonyCouncil/Storytellers/WindfallsTiny</portraitTiny>
+    <listOrder>72</listOrder>
+    <comps>
+      <li Class="StorytellerCompProperties_ClassicIntro"/>
+      <!-- Threats on the classic cycle -->
+      <li Class="StorytellerCompProperties_OnOffCycle">
+        <category>ThreatBig</category>
+        <minDaysPassed>11.0</minDaysPassed>
+        <onDays>4.6</onDays>
+        <offDays>6.0</offDays>
+        <minSpacingDays>1.9</minSpacingDays>
+        <numIncidentsRange>1~2</numIncidentsRange>
+        <forceRaidEnemyBeforeDaysPassed>20</forceRaidEnemyBeforeDaysPassed>
+        <disallowedTargetTags>
+          <li>Map_RaidBeacon</li>
+        </disallowedTargetTags>
+      </li>
+      <li Class="StorytellerCompProperties_ThreatsGenerator">
+        <allowedTargetTags>
+          <li>Map_RaidBeacon</li>
+        </allowedTargetTags>
+        <parms>
+          <allowedThreats>Raids</allowedThreats>
+          <onDays>1.0</onDays>
+          <offDays>0.5</offDays>
+          <minSpacingDays>0.04</minSpacingDays>
+          <numIncidentsRange>1~2</numIncidentsRange>
+          <minThreatPoints>500</minThreatPoints>
+        </parms>
+      </li>
+      <li Class="StorytellerCompProperties_OnOffCycle">
+        <category>ThreatSmall</category>
+        <minDaysPassed>11.0</minDaysPassed>
+        <onDays>4.6</onDays>
+        <offDays>6.0</offDays>
+        <numIncidentsRange>0.2~1</numIncidentsRange>
+        <acceptPercentFactorPerThreatPointsCurve>
+          <points>
+            <li>(800, 1)</li>
+            <li>(2800, 0)</li>
+          </points>
+        </acceptPercentFactorPerThreatPointsCurve>
+      </li>
+      <li Class="StorytellerCompProperties_CategoryMTB">
+        <category>Misc</category>
+        <allowedTargetTags>
+          <li>Map_PlayerHome</li>
+        </allowedTargetTags>
+        <minDaysPassed>5</minDaysPassed>
+        <mtbDays>4.8</mtbDays>
+      </li>
+      <li Class="StorytellerCompProperties_ShipChunkDrop"/>
+      <li Class="StorytellerCompProperties_Disease">
+        <category>DiseaseHuman</category>
+        <minDaysPassed>9</minDaysPassed>
+      </li>
+      <li Class="StorytellerCompProperties_Disease">
+        <category>DiseaseAnimal</category>
+        <minDaysPassed>9</minDaysPassed>
+      </li>
+      <!-- What falls from the sky -->
+      <li Class="ColonyCouncil.StorytellerCompProperties_WayPicks">
+        <minDaysPassed>5</minDaysPassed>
+        <mtbDays>8</mtbDays>
+        <allowedTargetTags>
+          <li>Map_PlayerHome</li>
+        </allowedTargetTags>
+        <picks>
+          <li>
+            <incident>ResourcePodCrash</incident>
+            <weight>2.0</weight>
+          </li>
+          <li>
+            <incident>ShipChunkDrop</incident>
+            <weight>1.0</weight>
+          </li>
+          <li>
+            <incident>MeteoriteImpact</incident>
+            <weight>0.6</weight>
+          </li>
+          <li>
+            <incident MayRequire="VanillaExpanded.VEE">VEE_Cargopodsapparel</incident>
+            <weight>0.7</weight>
+          </li>
+          <li>
+            <incident MayRequire="VanillaExpanded.VEE">VEE_Cargopodsweapons</incident>
+            <weight>0.7</weight>
+          </li>
+        </picks>
+      </li>
+      <!-- Ruins found in the region (the player's mods) -->
+      <li Class="ColonyCouncil.StorytellerCompProperties_WayPicks">
+        <minDaysPassed>15</minDaysPassed>
+        <mtbDays>30</mtbDays>
+        <allowedTargetTags>
+          <li>World</li>
+        </allowedTargetTags>
+        <picks>
+          <li>
+            <incident MayRequire="albion.goexplore">LostCityLGE</incident>
+            <weight>1.0</weight>
+          </li>
+          <li>
+            <incident MayRequire="woolstrand.realruins">Quest_PristineRuins</incident>
+            <weight>1.0</weight>
+          </li>
+        </picks>
+      </li>
+      <!-- Stashes, ruins and wrecks to explore -->
+      <li Class="ColonyCouncil.StorytellerCompProperties_WayQuests">
+        <minDaysPassed>15</minDaysPassed>
+        <mtbDays>15</mtbDays>
+        <allowedTargetTags>
+          <li>World</li>
+        </allowedTargetTags>
+        <quests>
+          <li>
+            <quest>OpportunitySite_ItemStash</quest>
+            <weight>2.0</weight>
+          </li>
+          <li>
+            <quest MayRequire="Ludeon.RimWorld.Ideology">OpportunitySite_AncientComplex</quest>
+            <weight>1.0</weight>
+          </li>
+          <li>
+            <quest MayRequire="woolstrand.realruins">RealRuins_AbandonedBase</quest>
+            <weight>1.0</weight>
+          </li>
+          <li>
+            <quest MayRequire="Ludeon.RimWorld.Odyssey">GravshipWreckage</quest>
+            <weight>1.0</weight>
+          </li>
+          <li>
+            <quest MayRequire="Ludeon.RimWorld.Odyssey">OpportunitySite_OrbitalItemStash</quest>
+            <weight>0.5</weight>
+          </li>
+          <li>
+            <quest MayRequire="Ludeon.RimWorld.Odyssey">OpportunitySite_OrbitalWreck</quest>
+            <weight>0.5</weight>
+          </li>
+        </quests>
+      </li>
+      <li Class="StorytellerCompProperties_FactionInteraction">
+        <incident>RaidFriendly</incident>
+        <baseIncidentsPerYear>15</baseIncidentsPerYear>
+        <minSpacingDays>0.4</minSpacingDays>
+        <fullAlliesOnly>true</fullAlliesOnly>
+        <minDanger>High</minDanger>
+      </li>
+      <li Class="StorytellerCompProperties_FactionInteraction">
+        <incident>TraderCaravanArrival</incident>
+        <minDaysPassed>5</minDaysPassed>
+        <baseIncidentsPerYear>5</baseIncidentsPerYear>
+        <minSpacingDays>6</minSpacingDays>
+        <allowedTargetTags>
+          <li>Map_PlayerHome</li>
+        </allowedTargetTags>
+      </li>
+      <li Class="StorytellerCompProperties_FactionInteraction">
+        <incident>VisitorGroup</incident>
+        <minDaysPassed>3</minDaysPassed>
+        <baseIncidentsPerYear>4</baseIncidentsPerYear>
+        <minSpacingDays>5</minSpacingDays>
+        <allowedTargetTags>
+          <li>Map_PlayerHome</li>
+        </allowedTargetTags>
+      </li>
+      <li Class="StorytellerCompProperties_FactionInteraction">
+        <incident>TravelerGroup</incident>
+        <minDaysPassed>1</minDaysPassed>
+        <baseIncidentsPerYear>6</baseIncidentsPerYear>
+        <minSpacingDays>1</minSpacingDays>
+        <allowedTargetTags>
+          <li>Map_PlayerHome</li>
+        </allowedTargetTags>
+      </li>
+      <li Class="StorytellerCompProperties_CategoryIndividualMTBByBiome">
+        <category>Misc</category>
+        <allowedTargetTags>
+          <li>Caravan</li>
+          <li>Map_TempIncident</li>
+        </allowedTargetTags>
+      </li>
+      <li Class="StorytellerCompProperties_CategoryIndividualMTBByBiome">
+        <category>ThreatSmall</category>
+        <applyCaravanVisibility>true</applyCaravanVisibility>
+        <allowedTargetTags>
+          <li>Caravan</li>
+          <li>Map_TempIncident</li>
+        </allowedTargetTags>
+      </li>
+      <li Class="StorytellerCompProperties_CategoryIndividualMTBByBiome">
+        <category>ThreatBig</category>
+        <applyCaravanVisibility>true</applyCaravanVisibility>
+        <allowedTargetTags>
+          <li>Caravan</li>
+          <li>Map_TempIncident</li>
+        </allowedTargetTags>
+      </li>
+      <li Class="StorytellerCompProperties_RandomQuest">
+        <category>GiveQuest</category>
+        <allowedTargetTags>
+          <li>World</li>
+        </allowedTargetTags>
+        <onDays>10</onDays>
+        <numIncidentsRange>1</numIncidentsRange>
+        <acceptFractionByDaysPassedCurve>
+          <points>
+            <li>(8, 0)</li>
+            <li>(15, 1)</li>
+          </points>
+        </acceptFractionByDaysPassedCurve>
+        <minSpacingDays>3</minSpacingDays>
+        <disableIfAnyModActive>
+          <li>Ludeon.RimWorld.Royalty</li>
+        </disableIfAnyModActive>
+      </li>
+      <li Class="StorytellerCompProperties_RandomQuest">
+        <category>GiveQuest</category>
+        <allowedTargetTags>
+          <li>World</li>
+        </allowedTargetTags>
+        <onDays>12</onDays>
+        <numIncidentsRange>2</numIncidentsRange>
+        <acceptFractionByDaysPassedCurve>
+          <points>
+            <li>(8, 0)</li>
+            <li>(15, 1)</li>
+          </points>
+        </acceptFractionByDaysPassedCurve>
+        <minSpacingDays>3</minSpacingDays>
+        <enableIfAnyModActive>
+          <li>Ludeon.RimWorld.Royalty</li>
+        </enableIfAnyModActive>
+      </li>
+      <li Class="StorytellerCompProperties_CategoryMTB">
+        <category>Misc</category>
+        <allowedTargetTags>
+          <li>World</li>
+        </allowedTargetTags>
+        <minDaysPassed>15</minDaysPassed>
+        <mtbDays>15</mtbDays>
+      </li>
+      <li Class="StorytellerCompProperties_OnOffCycle">
+        <incident>OrbitalTraderArrival</incident>
+        <onDays>7</onDays>
+        <offDays>8</offDays>
+        <numIncidentsRange>1</numIncidentsRange>
+      </li>
+      <!-- Every kind keeps a chance: the rest of the faction arrivals and orbital visitors (the DLCs' and mods' own), and
+           the Settlers' protection fee by its own category, each at a long interval -->
+      <li Class="StorytellerCompProperties_CategoryMTB">
+        <category>FactionArrival</category>
+        <allowedTargetTags>
+          <li>Map_PlayerHome</li>
+        </allowedTargetTags>
+        <minDaysPassed>3</minDaysPassed>
+        <mtbDays>25</mtbDays>
+      </li>
+      <li Class="StorytellerCompProperties_CategoryMTB">
+        <category>OrbitalVisitor</category>
+        <allowedTargetTags>
+          <li>Map_PlayerHome</li>
+        </allowedTargetTags>
+        <minDaysPassed>5</minDaysPassed>
+        <mtbDays>40</mtbDays>
+      </li>
+      <li Class="StorytellerCompProperties_CategoryMTB">
+        <category MayRequire="OskarPotocki.VanillaFactionsExpanded.SettlersModule">LTS</category>
+        <allowedTargetTags>
+          <li>Map_PlayerHome</li>
+        </allowedTargetTags>
+        <minDaysPassed>10</minDaysPassed>
+        <mtbDays>60</mtbDays>
+        <enableIfAnyModActive>
+          <li>OskarPotocki.VanillaFactionsExpanded.SettlersModule</li>
+        </enableIfAnyModActive>
+      </li>
+      <li Class="StorytellerCompProperties_Triggered">
+        <incident>StrangerInBlackJoin</incident>
+        <delayTicks>180</delayTicks>
+      </li>
+    </comps>
+    <modExtensions>
+      <li Class="ColonyCouncil.StoryWayExtension">
+        <way>Windfalls</way>
+        <shape>None</shape>
+        <levers>
+          <finds>2.5</finds>
+        </levers>
+        <situationKinds><li>wreck</li><li>ruins</li></situationKinds>
+      </li>
+    </modExtensions>
+  </StorytellerDef>
+
+  <!-- 13. Sellswords: fighting for others. Raids on the colony on the classic cycle; calls to arms, bandit camps, bounties, champions, sellswords. -->
+  <StorytellerDef ParentName="BaseStoryteller">
+    <defName>Rimfolk_Story_Sellswords</defName>
+    <label>Sellswords</label>
+    <description>The colony is asked to fight for others. Allies call it to arms more often, bandit camps to clear and outlaws with a price on their heads are offered more often, and travelling champions come more often to challenge the colony's best. Sellsword companies look for work in the region more often and come to the gate to be hired. Raids on the colony come as in the base game.\n\nFor a game of fighting for pay and for friends.\n\nIt shifts the odds this way but shuts nothing out: every kind of event can still come.</description>
+    <portraitLarge>ColonyCouncil/Storytellers/Sellswords</portraitLarge>
+    <portraitTiny>ColonyCouncil/Storytellers/SellswordsTiny</portraitTiny>
+    <listOrder>73</listOrder>
+    <comps>
+      <li Class="StorytellerCompProperties_ClassicIntro"/>
+      <!-- Threats on the classic cycle -->
+      <li Class="StorytellerCompProperties_OnOffCycle">
+        <category>ThreatBig</category>
+        <minDaysPassed>11.0</minDaysPassed>
+        <onDays>4.6</onDays>
+        <offDays>6.0</offDays>
+        <minSpacingDays>1.9</minSpacingDays>
+        <numIncidentsRange>1~2</numIncidentsRange>
+        <forceRaidEnemyBeforeDaysPassed>20</forceRaidEnemyBeforeDaysPassed>
+        <disallowedTargetTags>
+          <li>Map_RaidBeacon</li>
+        </disallowedTargetTags>
+      </li>
+      <li Class="StorytellerCompProperties_ThreatsGenerator">
+        <allowedTargetTags>
+          <li>Map_RaidBeacon</li>
+        </allowedTargetTags>
+        <parms>
+          <allowedThreats>Raids</allowedThreats>
+          <onDays>1.0</onDays>
+          <offDays>0.5</offDays>
+          <minSpacingDays>0.04</minSpacingDays>
+          <numIncidentsRange>1~2</numIncidentsRange>
+          <minThreatPoints>500</minThreatPoints>
+        </parms>
+      </li>
+      <li Class="StorytellerCompProperties_OnOffCycle">
+        <category>ThreatSmall</category>
+        <minDaysPassed>11.0</minDaysPassed>
+        <onDays>4.6</onDays>
+        <offDays>6.0</offDays>
+        <numIncidentsRange>0.2~1</numIncidentsRange>
+        <acceptPercentFactorPerThreatPointsCurve>
+          <points>
+            <li>(800, 1)</li>
+            <li>(2800, 0)</li>
+          </points>
+        </acceptPercentFactorPerThreatPointsCurve>
+      </li>
+      <li Class="StorytellerCompProperties_CategoryMTB">
+        <category>Misc</category>
+        <allowedTargetTags>
+          <li>Map_PlayerHome</li>
+        </allowedTargetTags>
+        <minDaysPassed>5</minDaysPassed>
+        <mtbDays>4.8</mtbDays>
+      </li>
+      <li Class="StorytellerCompProperties_ShipChunkDrop"/>
+      <li Class="StorytellerCompProperties_Disease">
+        <category>DiseaseHuman</category>
+        <minDaysPassed>9</minDaysPassed>
+      </li>
+      <li Class="StorytellerCompProperties_Disease">
+        <category>DiseaseAnimal</category>
+        <minDaysPassed>9</minDaysPassed>
+      </li>
+      <!-- Bandit camps to clear, outlaws with a bounty, allies' fights abroad -->
+      <li Class="ColonyCouncil.StorytellerCompProperties_WayQuests">
+        <minDaysPassed>20</minDaysPassed>
+        <mtbDays>15</mtbDays>
+        <allowedTargetTags>
+          <li>World</li>
+        </allowedTargetTags>
+        <quests>
+          <li>
+            <quest>OpportunitySite_BanditCamp</quest>
+            <weight>2.0</weight>
+          </li>
+          <li>
+            <quest MayRequire="Ludeon.RimWorld.Royalty">Mission_BanditCamp</quest>
+            <weight>2.0</weight>
+          </li>
+          <li>
+            <quest MayRequire="OskarPotocki.VanillaFactionsExpanded.SettlersModule">VFES_Wanted</quest>
+            <weight>1.5</weight>
+          </li>
+          <li>
+            <quest MayRequire="OskarPotocki.VFE.Medieval2">VFEM2_OpportunitySite_Skirmish</quest>
+            <weight>1.0</weight>
+          </li>
+          <li>
+            <quest MayRequire="OskarPotocki.VFE.Medieval2">VFEM2_OpportunitySite_SiegeCamp</quest>
+            <weight>0.7</weight>
+          </li>
+          <li>
+            <quest MayRequire="Torann.ARimworldOfMagic">TM_OpportunitySite_ArcaneBandits</quest>
+            <weight>0.7</weight>
+          </li>
+          <li>
+            <quest MayRequire="oskarpotocki.vfe.empire">VFEE_DeserterHideout</quest>
+            <weight>0.5</weight>
+          </li>
+        </quests>
+      </li>
+      <!-- A prison camp to free (Go Explore) -->
+      <li Class="ColonyCouncil.StorytellerCompProperties_WayPicks">
+        <minDaysPassed>20</minDaysPassed>
+        <mtbDays>40</mtbDays>
+        <allowedTargetTags>
+          <li>World</li>
+        </allowedTargetTags>
+        <picks>
+          <li>
+            <incident MayRequire="albion.goexplore">PrisonCampLGE</incident>
+            <weight>1.0</weight>
+          </li>
+        </picks>
+      </li>
+      <li Class="StorytellerCompProperties_FactionInteraction">
+        <incident>RaidFriendly</incident>
+        <baseIncidentsPerYear>15</baseIncidentsPerYear>
+        <minSpacingDays>0.4</minSpacingDays>
+        <fullAlliesOnly>true</fullAlliesOnly>
+        <minDanger>High</minDanger>
+      </li>
+      <li Class="StorytellerCompProperties_FactionInteraction">
+        <incident>TraderCaravanArrival</incident>
+        <minDaysPassed>5</minDaysPassed>
+        <baseIncidentsPerYear>5</baseIncidentsPerYear>
+        <minSpacingDays>6</minSpacingDays>
+        <allowedTargetTags>
+          <li>Map_PlayerHome</li>
+        </allowedTargetTags>
+      </li>
+      <li Class="StorytellerCompProperties_FactionInteraction">
+        <incident>VisitorGroup</incident>
+        <minDaysPassed>3</minDaysPassed>
+        <baseIncidentsPerYear>4</baseIncidentsPerYear>
+        <minSpacingDays>5</minSpacingDays>
+        <allowedTargetTags>
+          <li>Map_PlayerHome</li>
+        </allowedTargetTags>
+      </li>
+      <li Class="StorytellerCompProperties_FactionInteraction">
+        <incident>TravelerGroup</incident>
+        <minDaysPassed>1</minDaysPassed>
+        <baseIncidentsPerYear>6</baseIncidentsPerYear>
+        <minSpacingDays>1</minSpacingDays>
+        <allowedTargetTags>
+          <li>Map_PlayerHome</li>
+        </allowedTargetTags>
+      </li>
+      <li Class="StorytellerCompProperties_CategoryIndividualMTBByBiome">
+        <category>Misc</category>
+        <allowedTargetTags>
+          <li>Caravan</li>
+          <li>Map_TempIncident</li>
+        </allowedTargetTags>
+      </li>
+      <li Class="StorytellerCompProperties_CategoryIndividualMTBByBiome">
+        <category>ThreatSmall</category>
+        <applyCaravanVisibility>true</applyCaravanVisibility>
+        <allowedTargetTags>
+          <li>Caravan</li>
+          <li>Map_TempIncident</li>
+        </allowedTargetTags>
+      </li>
+      <li Class="StorytellerCompProperties_CategoryIndividualMTBByBiome">
+        <category>ThreatBig</category>
+        <applyCaravanVisibility>true</applyCaravanVisibility>
+        <allowedTargetTags>
+          <li>Caravan</li>
+          <li>Map_TempIncident</li>
+        </allowedTargetTags>
+      </li>
+      <li Class="StorytellerCompProperties_RandomQuest">
+        <category>GiveQuest</category>
+        <allowedTargetTags>
+          <li>World</li>
+        </allowedTargetTags>
+        <onDays>10</onDays>
+        <numIncidentsRange>1</numIncidentsRange>
+        <acceptFractionByDaysPassedCurve>
+          <points>
+            <li>(8, 0)</li>
+            <li>(15, 1)</li>
+          </points>
+        </acceptFractionByDaysPassedCurve>
+        <minSpacingDays>3</minSpacingDays>
+        <disableIfAnyModActive>
+          <li>Ludeon.RimWorld.Royalty</li>
+        </disableIfAnyModActive>
+      </li>
+      <li Class="StorytellerCompProperties_RandomQuest">
+        <category>GiveQuest</category>
+        <allowedTargetTags>
+          <li>World</li>
+        </allowedTargetTags>
+        <onDays>12</onDays>
+        <numIncidentsRange>2</numIncidentsRange>
+        <acceptFractionByDaysPassedCurve>
+          <points>
+            <li>(8, 0)</li>
+            <li>(15, 1)</li>
+          </points>
+        </acceptFractionByDaysPassedCurve>
+        <minSpacingDays>3</minSpacingDays>
+        <enableIfAnyModActive>
+          <li>Ludeon.RimWorld.Royalty</li>
+        </enableIfAnyModActive>
+      </li>
+      <li Class="StorytellerCompProperties_CategoryMTB">
+        <category>Misc</category>
+        <allowedTargetTags>
+          <li>World</li>
+        </allowedTargetTags>
+        <minDaysPassed>15</minDaysPassed>
+        <mtbDays>15</mtbDays>
+      </li>
+      <li Class="StorytellerCompProperties_OnOffCycle">
+        <incident>OrbitalTraderArrival</incident>
+        <onDays>7</onDays>
+        <offDays>8</offDays>
+        <numIncidentsRange>1</numIncidentsRange>
+      </li>
+      <!-- Every kind keeps a chance: the rest of the faction arrivals and orbital visitors (the DLCs' and mods' own), and
+           the Settlers' protection fee by its own category, each at a long interval -->
+      <li Class="StorytellerCompProperties_CategoryMTB">
+        <category>FactionArrival</category>
+        <allowedTargetTags>
+          <li>Map_PlayerHome</li>
+        </allowedTargetTags>
+        <minDaysPassed>3</minDaysPassed>
+        <mtbDays>25</mtbDays>
+      </li>
+      <li Class="StorytellerCompProperties_CategoryMTB">
+        <category>OrbitalVisitor</category>
+        <allowedTargetTags>
+          <li>Map_PlayerHome</li>
+        </allowedTargetTags>
+        <minDaysPassed>5</minDaysPassed>
+        <mtbDays>40</mtbDays>
+      </li>
+      <li Class="StorytellerCompProperties_CategoryMTB">
+        <category MayRequire="OskarPotocki.VanillaFactionsExpanded.SettlersModule">LTS</category>
+        <allowedTargetTags>
+          <li>Map_PlayerHome</li>
+        </allowedTargetTags>
+        <minDaysPassed>10</minDaysPassed>
+        <mtbDays>60</mtbDays>
+        <enableIfAnyModActive>
+          <li>OskarPotocki.VanillaFactionsExpanded.SettlersModule</li>
+        </enableIfAnyModActive>
+      </li>
+      <li Class="StorytellerCompProperties_Triggered">
+        <incident>StrangerInBlackJoin</incident>
+        <delayTicks>180</delayTicks>
+      </li>
+    </comps>
+    <modExtensions>
+      <li Class="ColonyCouncil.StoryWayExtension">
+        <way>Sellswords</way>
+        <shape>None</shape>
+        <levers>
+          <arms>2.5</arms>
+        </levers>
+        <situationKinds><li>sellswords</li></situationKinds>
+      </li>
+    </modExtensions>
+  </StorytellerDef>
+
+  <!-- 14. Feast Days: festivals. Threats on the classic cycle; Rimfolk's feasts, fairs and games, performers, the region's fairs and moots. -->
+  <StorytellerDef ParentName="BaseStoryteller">
+    <defName>Rimfolk_Story_FeastDays</defName>
+    <label>Feast Days</label>
+    <description>Festivals fill the calendar. Rimfolk's feasts, fairs and games come more often, and the steward thinks of holding a feast with guests sooner. Performers and storytellers visit more often: players, fiddlers, spirit-singers and fortune tellers. News from the region turns to great fairs, moots of the peoples, bumper harvests and seasons of songs. Raids and everything else come as in the base game.\n\nFor a game of feasts and good company.\n\nIt shifts the odds this way but shuts nothing out: every kind of event can still come.</description>
+    <portraitLarge>ColonyCouncil/Storytellers/FeastDays</portraitLarge>
+    <portraitTiny>ColonyCouncil/Storytellers/FeastDaysTiny</portraitTiny>
+    <listOrder>74</listOrder>
+    <comps>
+      <li Class="StorytellerCompProperties_ClassicIntro"/>
+      <!-- Threats on the classic cycle -->
+      <li Class="StorytellerCompProperties_OnOffCycle">
+        <category>ThreatBig</category>
+        <minDaysPassed>11.0</minDaysPassed>
+        <onDays>4.6</onDays>
+        <offDays>6.0</offDays>
+        <minSpacingDays>1.9</minSpacingDays>
+        <numIncidentsRange>1~2</numIncidentsRange>
+        <forceRaidEnemyBeforeDaysPassed>20</forceRaidEnemyBeforeDaysPassed>
+        <disallowedTargetTags>
+          <li>Map_RaidBeacon</li>
+        </disallowedTargetTags>
+      </li>
+      <li Class="StorytellerCompProperties_ThreatsGenerator">
+        <allowedTargetTags>
+          <li>Map_RaidBeacon</li>
+        </allowedTargetTags>
+        <parms>
+          <allowedThreats>Raids</allowedThreats>
+          <onDays>1.0</onDays>
+          <offDays>0.5</offDays>
+          <minSpacingDays>0.04</minSpacingDays>
+          <numIncidentsRange>1~2</numIncidentsRange>
+          <minThreatPoints>500</minThreatPoints>
+        </parms>
+      </li>
+      <li Class="StorytellerCompProperties_OnOffCycle">
+        <category>ThreatSmall</category>
+        <minDaysPassed>11.0</minDaysPassed>
+        <onDays>4.6</onDays>
+        <offDays>6.0</offDays>
+        <numIncidentsRange>0.2~1</numIncidentsRange>
+        <acceptPercentFactorPerThreatPointsCurve>
+          <points>
+            <li>(800, 1)</li>
+            <li>(2800, 0)</li>
+          </points>
+        </acceptPercentFactorPerThreatPointsCurve>
+      </li>
+      <li Class="StorytellerCompProperties_CategoryMTB">
+        <category>Misc</category>
+        <allowedTargetTags>
+          <li>Map_PlayerHome</li>
+        </allowedTargetTags>
+        <minDaysPassed>5</minDaysPassed>
+        <mtbDays>4.8</mtbDays>
+      </li>
+      <li Class="StorytellerCompProperties_ShipChunkDrop"/>
+      <li Class="StorytellerCompProperties_Disease">
+        <category>DiseaseHuman</category>
+        <minDaysPassed>9</minDaysPassed>
+      </li>
+      <li Class="StorytellerCompProperties_Disease">
+        <category>DiseaseAnimal</category>
+        <minDaysPassed>9</minDaysPassed>
+      </li>
+      <li Class="StorytellerCompProperties_FactionInteraction">
+        <incident>RaidFriendly</incident>
+        <baseIncidentsPerYear>15</baseIncidentsPerYear>
+        <minSpacingDays>0.4</minSpacingDays>
+        <fullAlliesOnly>true</fullAlliesOnly>
+        <minDanger>High</minDanger>
+      </li>
+      <li Class="StorytellerCompProperties_FactionInteraction">
+        <incident>TraderCaravanArrival</incident>
+        <minDaysPassed>5</minDaysPassed>
+        <baseIncidentsPerYear>5</baseIncidentsPerYear>
+        <minSpacingDays>6</minSpacingDays>
+        <allowedTargetTags>
+          <li>Map_PlayerHome</li>
+        </allowedTargetTags>
+      </li>
+      <li Class="StorytellerCompProperties_FactionInteraction">
+        <incident>VisitorGroup</incident>
+        <minDaysPassed>3</minDaysPassed>
+        <baseIncidentsPerYear>4</baseIncidentsPerYear>
+        <minSpacingDays>5</minSpacingDays>
+        <allowedTargetTags>
+          <li>Map_PlayerHome</li>
+        </allowedTargetTags>
+      </li>
+      <li Class="StorytellerCompProperties_FactionInteraction">
+        <incident>TravelerGroup</incident>
+        <minDaysPassed>1</minDaysPassed>
+        <baseIncidentsPerYear>6</baseIncidentsPerYear>
+        <minSpacingDays>1</minSpacingDays>
+        <allowedTargetTags>
+          <li>Map_PlayerHome</li>
+        </allowedTargetTags>
+      </li>
+      <li Class="StorytellerCompProperties_CategoryIndividualMTBByBiome">
+        <category>Misc</category>
+        <allowedTargetTags>
+          <li>Caravan</li>
+          <li>Map_TempIncident</li>
+        </allowedTargetTags>
+      </li>
+      <li Class="StorytellerCompProperties_CategoryIndividualMTBByBiome">
+        <category>ThreatSmall</category>
+        <applyCaravanVisibility>true</applyCaravanVisibility>
+        <allowedTargetTags>
+          <li>Caravan</li>
+          <li>Map_TempIncident</li>
+        </allowedTargetTags>
+      </li>
+      <li Class="StorytellerCompProperties_CategoryIndividualMTBByBiome">
+        <category>ThreatBig</category>
+        <applyCaravanVisibility>true</applyCaravanVisibility>
+        <allowedTargetTags>
+          <li>Caravan</li>
+          <li>Map_TempIncident</li>
+        </allowedTargetTags>
+      </li>
+      <li Class="StorytellerCompProperties_RandomQuest">
+        <category>GiveQuest</category>
+        <allowedTargetTags>
+          <li>World</li>
+        </allowedTargetTags>
+        <onDays>10</onDays>
+        <numIncidentsRange>1</numIncidentsRange>
+        <acceptFractionByDaysPassedCurve>
+          <points>
+            <li>(8, 0)</li>
+            <li>(15, 1)</li>
+          </points>
+        </acceptFractionByDaysPassedCurve>
+        <minSpacingDays>3</minSpacingDays>
+        <disableIfAnyModActive>
+          <li>Ludeon.RimWorld.Royalty</li>
+        </disableIfAnyModActive>
+      </li>
+      <li Class="StorytellerCompProperties_RandomQuest">
+        <category>GiveQuest</category>
+        <allowedTargetTags>
+          <li>World</li>
+        </allowedTargetTags>
+        <onDays>12</onDays>
+        <numIncidentsRange>2</numIncidentsRange>
+        <acceptFractionByDaysPassedCurve>
+          <points>
+            <li>(8, 0)</li>
+            <li>(15, 1)</li>
+          </points>
+        </acceptFractionByDaysPassedCurve>
+        <minSpacingDays>3</minSpacingDays>
+        <enableIfAnyModActive>
+          <li>Ludeon.RimWorld.Royalty</li>
+        </enableIfAnyModActive>
+      </li>
+      <li Class="StorytellerCompProperties_CategoryMTB">
+        <category>Misc</category>
+        <allowedTargetTags>
+          <li>World</li>
+        </allowedTargetTags>
+        <minDaysPassed>15</minDaysPassed>
+        <mtbDays>15</mtbDays>
+      </li>
+      <li Class="StorytellerCompProperties_OnOffCycle">
+        <incident>OrbitalTraderArrival</incident>
+        <onDays>7</onDays>
+        <offDays>8</offDays>
+        <numIncidentsRange>1</numIncidentsRange>
+      </li>
+      <!-- Every kind keeps a chance: the rest of the faction arrivals and orbital visitors (the DLCs' and mods' own), and
+           the Settlers' protection fee by its own category, each at a long interval -->
+      <li Class="StorytellerCompProperties_CategoryMTB">
+        <category>FactionArrival</category>
+        <allowedTargetTags>
+          <li>Map_PlayerHome</li>
+        </allowedTargetTags>
+        <minDaysPassed>3</minDaysPassed>
+        <mtbDays>25</mtbDays>
+      </li>
+      <li Class="StorytellerCompProperties_CategoryMTB">
+        <category>OrbitalVisitor</category>
+        <allowedTargetTags>
+          <li>Map_PlayerHome</li>
+        </allowedTargetTags>
+        <minDaysPassed>5</minDaysPassed>
+        <mtbDays>40</mtbDays>
+      </li>
+      <li Class="StorytellerCompProperties_CategoryMTB">
+        <category MayRequire="OskarPotocki.VanillaFactionsExpanded.SettlersModule">LTS</category>
+        <allowedTargetTags>
+          <li>Map_PlayerHome</li>
+        </allowedTargetTags>
+        <minDaysPassed>10</minDaysPassed>
+        <mtbDays>60</mtbDays>
+        <enableIfAnyModActive>
+          <li>OskarPotocki.VanillaFactionsExpanded.SettlersModule</li>
+        </enableIfAnyModActive>
+      </li>
+      <li Class="StorytellerCompProperties_Triggered">
+        <incident>StrangerInBlackJoin</incident>
+        <delayTicks>180</delayTicks>
+      </li>
+    </comps>
+    <modExtensions>
+      <li Class="ColonyCouncil.StoryWayExtension">
+        <way>FeastDays</way>
+        <shape>None</shape>
+        <levers>
+          <feasts>2.5</feasts>
+          <performers>2.5</performers>
+        </levers>
+        <situationKinds><li>fair</li><li>moot</li><li>harvest</li><li>songs</li></situationKinds>
       </li>
     </modExtensions>
   </StorytellerDef>
