@@ -125,6 +125,13 @@ tree at once, alongside whatever runs. Each piece is merged as its own release, 
   danger). When asked: they take any way in that exists (`Danger.Deadly` for the walk, the 0.232.1 dressing keeping them
   warm), and if there truly is none, the drop says why in a message ("no way in past the wall"), with the porter
   standing by the goods.
+- **To do when the player asks (15 November 2026): the market stall shows how worn armour and weapons are.** The
+  player, with the stall's sales table open (Window_StallCounter: the colony's goods on the left, the counter's cards on
+  the right): "the market ui should show how much health that armor and weapons still have". Proposed: on the left, each
+  weapon and piece of apparel shows its condition ("worn 62%", or a range "45-100%" for several); the same on its card on
+  the counter; pieces taken from the dead marked, since buyers think less of them. To find out first: whether a
+  RimMarket line can be held to pieces above a condition ("only above 50%"), since RimMarket picks which piece the
+  haulers bring. No mod needed.
 - **Dropped (14 November 2026): sending visitors away.** The player: "so asking visitors to leave is not necessary, as i
   found the already imlpemented function".
 - 0.242.0, **The great caravan's rider comes,
