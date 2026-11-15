@@ -164,9 +164,9 @@
           </li>
           <li>
             <label>Blankets over the windows, beds at the usual hour</label>
-            <outcome>The windows are blacked out with blankets and the council keeps the usual hours. Most people sleep, more or less.</outcome>
+            <outcome>The windows are blacked out with blankets and the council keeps the usual hours. Most people manage to sleep.</outcome>
             <outcomes>
-              <li>[industrial|spacer] Blackout sheets go up in every window, the lights-out bell rings at the usual hour, and by midnight the barracks is dark, though not everyone is asleep.</li>
+              <li>[industrial|spacer] Blackout sheets go up in every window, the lights-out bell rings at the usual hour, and by midnight the barracks is dark, though some are still awake.</li>
               <li>[trait:Industrious] The council keeps the usual hours. {A_nameDef} approves, and is up at dawn anyway.</li>
             </outcomes>
             <ways><toil>1</toil></ways>
@@ -391,7 +391,7 @@
           <li>Frost fair</li>
         </titles>
         <texts>
-          <li>The cold has held long enough that the river has frozen bank to bank. {A_nameDef} walked out on it this morning and jumped, and it didn't so much as creak.\n\nWord has come from {FACTION}: when the river freezes this hard, they hold a fair on the ice below {PLACE}, and the colony is welcome to come.</li>
+          <li>The cold has held long enough that the river has frozen bank to bank. {A_nameDef} walked out on it this morning and jumped, and it didn't even creak.\n\nWord has come from {FACTION}: when the river freezes this hard, they hold a fair on the ice below {PLACE}, and the colony is welcome to come.</li>
           <li>[lowtech] The river has frozen hard from bank to bank, and people can walk on it like a road. In {FACTION}'s country, the first hard freeze means a frost fair: stalls on the ice, fires on iron sheets, races on bone skates. A rider has come to say the fair is on at {PLACE}, and the colony is invited.</li>
           <li>[!lowtech] The river froze solid overnight. {A_nameDef} measured the ice with a drill and a tape and announced, very seriously, that it would hold a truck.\n\nA courier from {FACTION} came across it an hour later to say they're holding their winter fair on the ice near {PLACE}, and the colony is invited.</li>
           <li>[children] The children found out about the ice before the grown-ups did, and the council had to send someone to fetch them in for supper. Then word came from {FACTION}: there's a fair on the ice near {PLACE} this week, and the colony is welcome, children and all.</li>

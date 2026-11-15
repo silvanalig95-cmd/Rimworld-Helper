@@ -174,14 +174,14 @@
         <texts>
           <li>Towards evening {X_nameDef}, a reader of {FACTION}, has come to the gate with a stormglass and a lamp. {X_nameDef} has heard that {A_nameDef} keeps watch on the colony's weather, and the Conclave teaches anyone who will learn. After an evening at the glass, comparing it with the clouds as the light fades, {A_nameDef} would be able to read the weather for a season, as the Conclave's readers do.</li>
           <li>[newreader] Towards evening {X_nameDef}, a reader of {FACTION}, has come to the gate with a stormglass and a lamp. {A_nameDef} has the best hands at the colony's fields, {X_nameDef} says, and people who know the soil learn the sky quickly. After an evening at the glass, {A_nameDef} would be able to tell what the weather will do for a season, as the Conclave's readers do.</li>
-          <li>[lowtech] {X_nameDef} of {FACTION} has come to the gate as the light goes, a glass vial wrapped in wool under one arm. The sky is read, not guessed, {X_nameDef} says, and {X_pronoun} would teach {A_nameDef} to read it tonight, the clouds against the glass, so that for a season the colony knows its weather.</li>
+          <li>[lowtech] {X_nameDef} of {FACTION} has come to the gate at dusk, a glass vial wrapped in wool under one arm. The sky is read, not guessed, {X_nameDef} says, and {X_pronoun} would teach {A_nameDef} to read it tonight, the clouds against the glass, so that for a season the colony knows its weather.</li>
           <li>[their:grateful] The Conclave thinks well of the colony, and {X_nameDef} has walked from {PLACE} at dusk to teach {A_nameDef} the glass: an evening at it, and a season of reading the weather after.</li>
         </texts>
         <defaultOption>0</defaultOption>
         <options>
           <li>
             <label>Teach {A_nameDef} to read the glass</label>
-            <outcome>{A_nameDef} is sitting with {X_nameDef} and the glass as the light goes, learning to compare the glass with the sky.</outcome>
+            <outcome>{A_nameDef} is sitting with {X_nameDef} and the glass at dusk, learning to compare the glass with the sky.</outcome>
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_Lesson"><label>the glass</label><teacher>X</teacher><student>A</student><skill>Plants</skill><hours>17~23</hours><duration>1.5~2</duration></li>
               <li Class="ColonyCouncil.DilemmaEffect_GlassTaught" />

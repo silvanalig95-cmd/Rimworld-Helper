@@ -745,7 +745,7 @@
           <li>[!lowtech] A traveler came up the road at dusk, alone, with frost on {X_possessive} collar and a pack frozen stiff. {X_nameDef} of {FACTION} won't reach home tonight, and it's already {TALE}.\n\n{X_nameDef} asks to sleep somewhere warm and be gone in the morning.</li>
           <li>[supper] It's the season of the midwinter supper, and at dusk a stranger knocked at the gate: {X_nameDef} of {FACTION}, alone on the road and chilled through. It's {TALE} outside.\n\nThere's room at the table, if the colony wants to set another place.</li>
           <li>[bitter] Someone knocked slowly at the gate. It's {TALE} tonight, cold enough to kill, and {X_nameDef} of {FACTION} lost the road in the snow and followed the colony's lights in.\n\n{X_nameDef} asks only to get warm and stay until morning.</li>
-          <li>[meal] {X_nameDef} of {FACTION} came to the gate as the light went, half frozen, on the way home from somewhere further than {X_pronoun} meant to go. It's {TALE} outside.\n\nThere's {THING} in the stores, enough to share, and {X_nameDef} asks only for a corner to sleep in.</li>
+          <li>[meal] {X_nameDef} of {FACTION} came to the gate at dusk, half frozen, on the way home from somewhere further than {X_pronoun} meant to go. It's {TALE} outside.\n\nThere's {THING} in the stores, enough to share, and {X_nameDef} asks only for a corner to sleep in.</li>
         </texts>
         <defaultOption>0</defaultOption>
         <options>
@@ -830,8 +830,8 @@
           <li>The snow melts</li>
         </titles>
         <texts>
-          <li>[first] The colony's first spring in the {PLACE}. The drifts have gone soft and gray, the ground under them is mud, and people keep finding reasons to work outside.\n\n{A_nameDef} turned up {TALE} in the melt, lost by some traveler over the winter.</li>
-          <li>[again] Meltwater is running off every roof, the paths are mud to the ankle, and there's green showing where the drifts were deepest. After the long winter, the colony is glad of it, mud and all.\n\nOut by the road the melt gave up {TALE}. {A_nameDef} was the one who spotted it.</li>
+          <li>[first] The colony's first spring in the {PLACE}. The drifts have gone soft and gray, the ground under them is mud, and people keep finding reasons to work outside.\n\n{A_nameDef} found {TALE} in the melting snow, lost by some traveler over the winter.</li>
+          <li>[again] Meltwater is running off every roof, the paths are mud to the ankle, and there's green showing where the drifts were deepest. After the long winter, the colony is glad of it, mud and all.\n\nOut by the road the melting snow uncovered {TALE}. {A_nameDef} was the one who spotted it.</li>
           <li>[nameyear] The snow is going, and at supper people have started discussing what to call the new year.\n\n{A_nameDef} has found {TALE} half-buried in the last of the snow.</li>
           <li>[child] {A_nameDef} came running in with muddy knees to say the snow by the gate had melted down to grass. The thaw has come.\n\n{A_nameDef} also found {TALE} in the mud, and is very proud of it.</li>
         </texts>

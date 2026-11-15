@@ -36,7 +36,7 @@
         </titles>
         <texts>
           <li>A board propped by the gate says, in careful chalk, "Letters written and read. Fair hand, fair price." It belongs to {X_nameDef}, a scribe of {FACTION}, who has set up at the colony's table with quills, ink and a stack of good paper.\n\nFor {COUNT} silver, {X_nameDef} will write a letter for anyone who wants one, to anywhere a road goes, and see it carried by the next rider. {A_nameDef} has already started thinking about who to write to.</li>
-          <li>A scribe of {FACTION} named {X_nameDef} has come up the road with a writing desk strapped on like a peddler's pack. Most folk can't read or write, {X_nameDef} says, and most folk have someone they'd like to tell something to. For {COUNT} silver, anyone here can send word home.</li>
+          <li>A scribe of {FACTION} named {X_nameDef} has come up the road with a writing desk strapped to {X_possessive} back. Most folk can't read or write, {X_nameDef} says, and most folk have someone they'd like to tell something to. For {COUNT} silver, anyone here can send word home.</li>
           <li>[winter] {X_nameDef}, a scribe of {FACTION}, came in out of the snow with the ink frozen in its pot and asked to sit by the hearth until it thawed. In return, for {COUNT} silver, {X_nameDef} offers to write the colony's letters, one for anyone who wants to send word somewhere.</li>
           <li>[colony:Traditional] Word on the road is that the colony keeps its customs and its records. So {X_nameDef}, a scribe of {FACTION}, has come to offer a fair copy of the colony's own story, or letters home for anyone who wants them, for {COUNT} silver.</li>
           <li>[trait:TooSmart] {X_nameDef}, a traveling scribe of {FACTION}, has set up at the colony's table. {A_nameDef} has already read everything {X_nameDef} brought and pointed out two spelling mistakes. For {COUNT} silver, {X_nameDef} will write the colony's letters.</li>
@@ -466,7 +466,7 @@
             <label>Pay {X_objective} ({COUNT} silver)</label>
             <outcome>{X_nameDef} sat {A_nameDef} down at the table and gave {A_objective} the whole afternoon, with a great deal of advice besides. {A_nameDef} already feels better, and has the advice written down somewhere.</outcome>
             <outcomes>
-              <li>[ail:StrainedBack] {X_nameDef} sat {A_nameDef} down at the table, found the knot in {A_possessive} back with two thumbs and did something that made a noise like a branch snapping. {A_nameDef} stood up straight for the first time in days.</li>
+              <li>[ail:StrainedBack] {X_nameDef} sat {A_nameDef} down at the table, found the knot in {A_possessive} back with two thumbs and pressed until something cracked loudly. {A_nameDef} stood up straight for the first time in days.</li>
               <li>[ail:Toothache] {X_nameDef} took the tooth out in one pull while {A_nameDef} was still deciding whether to be brave. The swelling's going down already.</li>
               <li>[spacer] {X_nameDef} gave {A_nameDef} an injection and told {A_objective} to take things easier for a while.</li>
             </outcomes>

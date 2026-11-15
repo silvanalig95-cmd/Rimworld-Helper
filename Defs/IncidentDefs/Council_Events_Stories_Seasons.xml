@@ -279,7 +279,7 @@
         <options>
           <li>
             <label>{A_nameDef} has a long talk with {X_objective}</label>
-            <outcome>{A_nameDef} took {X_nameDef} out to the woodpile and talked, and mostly listened, until the light went. {X_nameDef} will be at the bench next week.</outcome>
+            <outcome>{A_nameDef} took {X_nameDef} out to the woodpile and talked, and mostly listened, until dark. {X_nameDef} will be at the bench next week.</outcome>
             <outcomes>
               <li>[gifted] {A_nameDef} told {X_nameDef} the guild would still be there in spring, and the season wasn't over. {X_nameDef}'s family grumbled, and agreed to wait.</li>
               <li>[homesick] {A_nameDef} and {X_nameDef} talked until dark about home, mostly {X_nameDef}'s. {X_nameDef} unpacked the bundle and stayed for supper.</li>
@@ -288,11 +288,11 @@
             <riskChance>0.4</riskChance>
             <riskSkill>Social</riskSkill>
             <riskReplaces>true</riskReplaces>
-            <riskOutcome>{A_nameDef} talked until the light went, and {X_nameDef} listened politely, and at the end of it nothing had changed.</riskOutcome>
+            <riskOutcome>{A_nameDef} talked until dark, and {X_nameDef} listened politely, and at the end of it nothing had changed.</riskOutcome>
             <riskOutcomes>
-              <li>[gifted] {A_nameDef} talked until the light went. {X_nameDef} cried, and is going to the guild.</li>
-              <li>[homesick] {A_nameDef} talked until the light went, and in the morning {X_nameDef} picked up the bundle and went home.</li>
-              <li>[restless] {A_nameDef} talked until the light went, and {X_nameDef} nodded at all of it and went off toward {PLACE} without looking back.</li>
+              <li>[gifted] {A_nameDef} talked until dark. {X_nameDef} cried, and is going to the guild.</li>
+              <li>[homesick] {A_nameDef} talked until dark, and in the morning {X_nameDef} picked up the bundle and went home.</li>
+              <li>[restless] {A_nameDef} talked until dark, and {X_nameDef} nodded at all of it and went off toward {PLACE} without looking back.</li>
             </riskOutcomes>
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_Visit"><label>{A_nameDef}'s talk with {X_nameDef}</label><to>Stranger</to><hours>9~20</hours><duration>1.5~2.5</duration></li>
@@ -595,7 +595,7 @@
           <li>[relapse] {X_nameDef} came back up the road on a borrowed mule, gray and shaking. The fever came back two days out of {PLACE}, worse than before, and the healer there sent {X_objective} straight back to the one who treated {X_objective} first.</li>
           <li>[lingering] {X_nameDef} of {FACTION} is mending, but so slowly that the family at {PLACE} has given up waiting. {X_nameDef} walked back up to the colony leaning on a stick, to ask {A_nameDef} what else can be done.</li>
           <li>[relapse,sent] Last time, the colony gave {X_nameDef} medicine and a corner outside the wall. The fever came back on the road, and {X_nameDef} is at the gate again, worse, asking for more than a corner this time.</li>
-          <li>[lingering,nursed] {A_nameDef} pulled {X_nameDef} through the first night, but the fever never quite let go. {X_nameDef} has come back up from {PLACE} thin and slow, to see the doctor who started the job.</li>
+          <li>[lingering,nursed] {A_nameDef} pulled {X_nameDef} through the first night, but the fever never fully went away. {X_nameDef} has come back up from {PLACE} thin and slow, to see the doctor who started the job.</li>
         </texts>
         <defaultOption>2</defaultOption>
         <options>
@@ -668,7 +668,7 @@
         <options>
           <li>
             <label>Let {X_objective} work off the debt</label>
-            <outcome>{X_nameDef} took an axe to the treeline and didn't stop until the light went. There's a good start on the winter's firewood lying where the trees came down, and {X_nameDef} says the debt is half paid.</outcome>
+            <outcome>{X_nameDef} took an axe to the treeline and didn't stop until dark. There's a good start on the winter's firewood lying where the trees came down, and {X_nameDef} says the debt is half paid.</outcome>
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_Felled"><count>60</count><near>Stranger</near></li>
             </effects>
