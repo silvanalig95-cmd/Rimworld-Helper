@@ -31,6 +31,19 @@ When you load a save after an update, a letter lists the newest round once. The 
     <rounds>
 
       <li>
+        <version>0.239.0</version>
+        <date>15 November 2026</date>
+        <title>Visitors' own day</title>
+        <points>
+          <li>Visitors now fill their idle hours with things of their own: they talk, sit by a fire or on a bench, warm their hands in the cold and get out of the rain.</li>
+          <li>Guests play your games and instruments, watch your screens and use your telescope only while none of your colonists want them, and get up as soon as one heads over.</li>
+          <li>Visitors eat, drink and smoke only from their own packs, never from your stores; a trader never touches the goods for sale.</li>
+          <li>What they do depends on the hour, the weather and their people's tech level: a tribal guest plays horseshoes, not chess, and a noble does not nap on the ground.</li>
+          <li>Hospitality's guests keep Hospitality's own recreation and only come to a fire in the cold or under a roof in the rain.</li>
+        </points>
+      </li>
+
+      <li>
         <version>0.238.3</version>
         <date>15 November 2026</date>
         <title>Allies against every enemy</title>

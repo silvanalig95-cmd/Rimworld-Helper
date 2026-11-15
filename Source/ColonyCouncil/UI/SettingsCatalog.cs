@@ -493,6 +493,8 @@ namespace ColonyCouncil
             // The right-click's things done by the colonists themselves at a good moment (Outsiders/OutsiderAuto.cs).
             Choice("outsiderAuto", "CC_Settings_OutsiderAuto", "CC_Settings_OutsiderAuto_Tip", "CC_OutsiderAuto_", "CC_SetNote_OutsiderAuto_",
                 new[] { "Off", "FreeOnly", "WithinLimits" }, "outsiderTalk");
+            // Visitors fill their idle hours with things of their own, none of it work for the colony (Visitors/IdleHours.cs).
+            Toggle("visitorsIdle", "CC_Settings_VisitorsIdle", "CC_SetNote_VisitorsIdle", "deepHooks");
             Section("CC_SetSec_Journeys");
             Toggle("journeys", "CC_Settings_Journeys", "CC_SetNote_Journeys");
             Toggle("journeyShiftSleep", "CC_Settings_JourneySleep", "CC_SetNote_JourneySleep", "journeys");

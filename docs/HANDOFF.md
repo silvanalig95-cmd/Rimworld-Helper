@@ -148,19 +148,53 @@ tree at once, alongside whatever runs. Each piece is merged as its own release, 
   heat (light shirts, hats and wraps of different kinds).
 - **Dropped (14 November 2026): sending visitors away.** The player: "so asking visitors to leave is not necessary, as i
   found the already imlpemented function".
-- **Being built (14 November 2026, the player's go: "do the one that visitors fill their idle hours, more old powers style events, making animals more visible first, but you can do as you like if simultanious tasks make more sense"): visitors busy with their own day.** The player: "guests should spend
-  more of their time doing things. i don't want them to generate value for me, but it just looks a bit weird when they
-  spend most of their day just standing and walking around. they can talk, do actions, recreation, many things that
-  don't make them work for me", then "to do later". How it is now: the game's visitor groups wander their lord's spot;
-  Rimfolk's own visits have their duties (`Rimfolk_VisitWait`, `Rimfolk_VisitWork`), the market, services, guests who
-  help out (`GuestHelp`, work for the colony, which this is not) and small habits (`Immersion/MoreHabits`,
-  `SmallHabits`). When asked: a visitor's idle hours filled with things of their own, none of it work or value for the
-  colony: talking with each other and with colonists nearby (the game's social interactions, Rimfolk's outsider talk),
-  sitting by a fire or on a bench, warming their hands in the cold, sheltering from rain, eating from their own packs,
-  a nap in the shade, the colony's games and joy things where free (horseshoes, chess, an instrument, a telescope),
-  looking at its art, a prayer at a shrine of their faith, tending their own animals, children playing, a smoke or a
-  drink of their own; by their people's age and ways and the hour; given way to colonists at a joy thing; a guest of
-  Hospitality left to its own recreation where it already has it.
+- 0.239.0, **Visitors fill their idle hours**
+  (14 November 2026; the player: "guests should spend more of their time doing things. i don't want them to generate
+  value for me, but it just looks a bit weird when they spend most of their day just standing and walking around. they
+  can talk, do actions, recreation, many things that don't make them work for me", then "do the one that visitors fill
+  their idle hours"). DESIGN.md "Visitors' idle hours: their own day" (after "Guests keep out of bedrooms and the cold
+  store") has all of it; the Almanac's visitors page a section, *Their idle hours* (keywords unchanged).
+  - What: where a visitor's duty would have them wander about their spot, the game's visitors and traders, Rimfolk's
+    visits between their duties (out of doors), envoys, and Hospitality's guests (only what Hospitality's recreation has
+    nothing for) now and then do something of their own: talk with one of their own, keep a colonist at leisure company,
+    sit by a fire or on a free seat, warm their hands in the cold, shelter from rain, a bite from their own pack at a meal
+    hour, a nap in a tree's shade at midday, the colony's games, instruments, screens and telescope while nobody of the
+    colony wants them, its art, a prayer at their god's shrine or a shared faith's altar, their own animals, children's
+    play, a smoke or a drink of their own, a pipe, whittling. By the hour, the weather, who they are (children, titled,
+    guards, traders, the devout and scoffers, teetotallers), their people's age (a thing of the colony's fits them when
+    it is of their age or older) and calling. Nothing made, hauled, cleaned or built for the colony, nothing of its
+    stores used, nothing reserved: they give way the moment a colonist reserves or walks to the thing, the cell or the
+    seat, and leave it four hours. Never in bedrooms, cold stores (`KeepOut`), cells, sickrooms, barracks or on the
+    colony's buildings' work spots. Not covered: quest lodgers (the colony's own for their stay, with its recreation),
+    callers, camps, feasts' and hosted guests, stories' strangers.
+  - Code map: `Source/ColonyCouncil/Visitors/IdleHoursMath.cs` (pure, linked in `Tools/Tests/Tests.csproj`: `IdleDoing`,
+    `IdleGroup`, `IdleRole`, `IdleFacts`; the hours, the weather, `AgeOf`, `ThingAge`, `Fits`, `Excluded`, `IsMusic`,
+    `SitByFire`, `ShapeOf`, `ThrowOf`, `Free`, `DrugKindOf`, `ForHospitality`, `NotFor`, `Weights`, `CallingFactor`,
+    `Pick`, `FillChance`, `Reach`, `Stint`, `NextLook`, `Moment`, `LineChance`, `MaySpeak`). `Visitors/IdleHours.cs`
+    (`IdleDefOf`; `On`; per session `nextLook`, `gaveWay`, `saidBy`/`saidOn`, `busy`; `JoyThings` from every
+    `JoyGiver_InteractBuilding`'s buildings; `PlacesOf` once an hour per map; `GroupOf`, `AtStay`, `WhyNot`, `Still`;
+    `LookFor`, `Gather`, `Shrines`, `Pack`; `JobFor`, `Make`; `StandOk`, `ColonyWho`, `FreeJoy`, `JoyCell`, `RingCell`,
+    `ViewCell`, `ShelterCell`, `ShadeCell`, `RestCell`, `PlayRoute`; `Started`, `Ended`, `GaveWay`, `Say`, `Report`).
+    `Visitors/IdleHoursJobs.cs` (`VisitIdleExtension`; `JobDriver_VisitIdle`, `IdleCheck`, `JobDriver_VisitNap`,
+    `JobDriver_VisitIdlePlay`; `Patch_VisitorsIdle`, a low-priority postfix on `ThinkNode_Duty.TryIssueJobPackage`
+    after `Patch_VisitorsShop`). `Visitors/IdleHoursDebug.cs` (two dev actions). `VisitorTrade.HeldByStory` split out of
+    the market's `GuestWhyNot` (`VisitorTradeGuests.cs`) and shared. Defs `Defs/Misc/Rimfolk_VisitorIdle.xml` (18
+    JobDefs, the effecter `Rimfolk_Whittle`), `Defs/FlavorPoolDefs/Rimfolk_Pool_VisitorIdle.xml` (the lines, in
+    `ImmersionTests`), keys `Languages/English/Keyed/Rimfolk_VisitorIdle.xml`; the setting `visitorsIdle`
+    (`CouncilSettings`, `SettingsCatalog`: What's on, Neighbours and letters, under the deeper game hooks). Tests
+    `Tools/Tests/IdleHoursTests.cs`. No `Sched` pass and nothing saved but the game's own job.
+  - Try in the game: 1. With a trade caravan or the game's visitors waiting, watch them for an hour: most of them sit,
+    talk, warm up or play rather than stand about; "Visitors: idle hours of everyone here (log)" says what fits each.
+    2. Build a campfire and a bench near where they wait: of an evening some sit round the fire; in a frost they stand
+    right by it, "warming their hands at the fire."; a cook going to the campfire's spot finds it free. 3. Set a colonist
+    to recreation at a horseshoes pin or a chess table a visitor is using: the visitor gets up as the colonist walks over
+    (now and then with "Sorry, I'll get out of your way.") and doesn't come back to it for a few hours. 4. A tribal
+    visitor uses horseshoes or the game of Ur but not the chess table or a television. 5. Let it rain on visitors standing
+    outside: they go under the nearest roof that isn't a bedroom or a freezer. 6. Midday in fair weather: a tired visitor
+    lies down under a tree and naps, and gets up after an hour or so. 7. A visitor with beer or a joint in their pack
+    drinks or smokes it of an evening (the game's own effect, one gone from their pack); a trader never touches the
+    goods. 8. With Hospitality, its guests keep to Hospitality's recreation and only come to a fire in the cold or under a
+    roof in the rain. 9. Turn the setting off: they stand about and wander as before.
 - 0.238.3, **Allies called against every enemy
   on the land** (15 November 2026; the player, with pikemen and a drone by the base and "Call Stormriders" greyed "only
   while a threat is on the colony": "i can't call my allies despite hving pikemen and a drone in the base, please fix

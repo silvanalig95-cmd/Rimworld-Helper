@@ -149,6 +149,16 @@ namespace ColonyCouncil
         {
             if (Strangers.IsHospitalityGuest(p) || p.IsQuestLodger() || QuestUtility.IsReservedByQuestOrQuestBeingGenerated(p)) return true;
             if (p.carryTracker?.CarriedThing != null || Outsiders.TradingNow(p) || OutsiderTalk.Busy(p)) return true;
+            return HeldByStory(p);
+        }
+
+        /// <summary>
+        /// A story holds them where they are: an answer the colony still owes them (a question's letter about them waiting), a
+        /// caller's work or a happening's visit under way, a god's stranger or the gods' affairs in the world. Their idle hours
+        /// leave them to it too (IdleHours).
+        /// </summary>
+        internal static bool HeldByStory(Pawn p)
+        {
             var letters = Find.LetterStack?.LettersListForReading;
             if (letters != null)
                 foreach (var l in letters)
