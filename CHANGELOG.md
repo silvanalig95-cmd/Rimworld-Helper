@@ -5,6 +5,14 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## Planning, the post and the peoples' ages in plain words
+
+*15 November 2026, version 0.248.0*
+
+- Planning, the base review, the post and the colony's automations now say what they do in plain words, without riddles or little twists.
+- Letters about the peoples, their changing ages, wards, camps and the Signal Line's mast say plainly what happened and why.
+- The Dilemmas page now says correctly that an answer which never came about gives nobody its moods.
+
 ## Panels, letters and the peoples in plain words
 
 *15 November 2026, version 0.247.0*

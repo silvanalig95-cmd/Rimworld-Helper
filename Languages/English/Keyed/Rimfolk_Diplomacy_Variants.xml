@@ -73,7 +73,7 @@
   <CC_Truce_BrokenByUs_3>{PEOPLE} will say the colony broke the truce first, and they will be right: {HOW}.</CC_Truce_BrokenByUs_3>
 
   <!-- Their answer to a pact proposed, or ended -->
-  <CC_Pact_Ans_No_3>{PEOPLE} are not ready for {KIND} with the colony. They say so kindly, and leave the door open.</CC_Pact_Ans_No_3>
+  <CC_Pact_Ans_No_3>{PEOPLE} are not ready for {KIND} with the colony. They say so kindly, and may agree another time.</CC_Pact_Ans_No_3>
   <CC_Pact_Ans_No_4>{PEOPLE} decided against {KIND} this year. By their ways it would have been {RITE}, and they are not ready to swear it.</CC_Pact_Ans_No_4>
   <CC_Pact_Ans_Yes_4>{PEOPLE} agree to {KIND} for a year. They will swear it by their ways, {RITE}, and the colony counts it {WORD}.</CC_Pact_Ans_Yes_4>
   <CC_Pact_Ans_Yes_5>Yes from {PEOPLE}: {KIND}, for a year. To them it is {RITE}, and to the colony {WORD}.</CC_Pact_Ans_Yes_5>
@@ -92,7 +92,7 @@
   <CC_Pact_Coming_4>{PEOPLE} keep the pact. In answer to {MEANS}, their fighters are on the road to the colony.</CC_Pact_Coming_4>
   <CC_Pact_Band_3>The band of {PEOPLE} is here, {COUNT} of them, and they have come to fight {ENEMY}.</CC_Pact_Band_3>
   <CC_Pact_Band_4>{COUNT} fighters of {PEOPLE} walk onto the colony's land and go looking for {ENEMY}, as the pact asks.</CC_Pact_Band_4>
-  <CC_Pact_Band_Late_3>The band of {PEOPLE} came and found nothing left to fight. They turned for home, and nobody blames them for the road.</CC_Pact_Band_Late_3>
+  <CC_Pact_Band_Late_3>The band of {PEOPLE} came and found nothing left to fight. They turned for home, and nobody blames them for arriving late.</CC_Pact_Band_Late_3>
 
   <!-- A trade pact's season -->
   <CC_Pact_Season_3>As the season turns, a trader caravan of {PEOPLE} sets out for the colony, as the trade pact provides.</CC_Pact_Season_3>

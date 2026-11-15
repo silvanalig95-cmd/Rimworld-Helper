@@ -51,13 +51,13 @@
   <CC_Envoy_Msg_Letter_Content_3>A runner of {PEOPLE} is carrying {ENVOY}'s letter home, and the colony comes off well in it.</CC_Envoy_Msg_Letter_Content_3>
   <CC_Envoy_Msg_Letter_Cool_2>{ENVOY} sent a letter home with a runner of {PEOPLE}. It finds the colony adequate, and not much more.</CC_Envoy_Msg_Letter_Cool_2>
   <CC_Envoy_Msg_Letter_Cool_3>A runner of {PEOPLE} took {ENVOY}'s letter home. It is polite, as far as anyone here can tell.</CC_Envoy_Msg_Letter_Cool_3>
-  <CC_Envoy_Msg_Letter_Offended_2>{ENVOY}'s letter home is a long one, and it went off with a runner of {PEOPLE}. The colony can guess what fills it.</CC_Envoy_Msg_Letter_Offended_2>
+  <CC_Envoy_Msg_Letter_Offended_2>{ENVOY}'s letter home is a long one, and it went off with a runner of {PEOPLE}. It is probably full of complaints.</CC_Envoy_Msg_Letter_Offended_2>
   <CC_Envoy_Msg_Letter_Offended_3>A runner of {PEOPLE} is carrying {ENVOY}'s complaints home, sealed.</CC_Envoy_Msg_Letter_Offended_3>
 
   <!-- The end of their stay -->
   <CC_Envoy_Leaves_Content_3>The season is done, and {ENVOY} is walking home to {PEOPLE}. Their report will be a warm one, and their head will think better of the colony for it.</CC_Envoy_Leaves_Content_3>
   <CC_Envoy_Leaves_Content_4>{ENVOY} leaves content. {PEOPLE} will hear that the colony kept its guest well.</CC_Envoy_Leaves_Content_4>
-  <CC_Envoy_Leaves_Cool_3>{ENVOY} is going home to {PEOPLE} after a season that was neither warm nor cold. The report will be polite, and short.</CC_Envoy_Leaves_Cool_3>
+  <CC_Envoy_Leaves_Cool_3>{ENVOY} is going home to {PEOPLE} after a season that went neither well nor badly. The report will be polite, and short.</CC_Envoy_Leaves_Cool_3>
   <CC_Envoy_Leaves_Offended_3>{ENVOY} is going home to {PEOPLE} with complaints, and they will be heard. Their head will think less of the colony.</CC_Envoy_Leaves_Offended_3>
   <CC_Envoy_Leaves_Offended_4>{ENVOY} is going home offended, and {PEOPLE} will hear exactly why from the report.</CC_Envoy_Leaves_Offended_4>
   <CC_Envoy_Leaves_SeenOff_2>{ENVOY} has been sent home from the colony before the season's end. {PEOPLE} will count it a slight.</CC_Envoy_Leaves_SeenOff_2>

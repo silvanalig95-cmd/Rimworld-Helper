@@ -134,8 +134,8 @@
   <CC_Mail_Msg_RiderOutNoFood>{PAWN} has set out for {TOWN} with the letter and no food for the {ROAD} days there and back: they will go hungry on the road.</CC_Mail_Msg_RiderOutNoFood>
   <CC_Mail_Msg_RiderStoresShort>The stores are short of {WHAT} for {PAWN}'s road to {TOWN}: they go without it.</CC_Mail_Msg_RiderStoresShort>
   <CC_Mail_Msg_PackLeft>{PAWN} is home with what is left of the supplies ({LEFT}), and it goes back into the stores.</CC_Mail_Msg_PackLeft>
-  <CC_Mail_Msg_RiderHomeward>{PAWN} has the answer and has turned for home from {TOWN}.</CC_Mail_Msg_RiderHomeward>
-  <CC_Mail_Msg_RiderNoAnswer>{PAWN} is home from {TOWN}: they heard the letter out and sent nothing back.</CC_Mail_Msg_RiderNoAnswer>
+  <CC_Mail_Msg_RiderHomeward>{PAWN} has the answer and is on the way home from {TOWN}.</CC_Mail_Msg_RiderHomeward>
+  <CC_Mail_Msg_RiderNoAnswer>{PAWN} is home from {TOWN}: they received the letter but sent no answer.</CC_Mail_Msg_RiderNoAnswer>
   <CC_Mail_Msg_RiderLost>{PAWN} never came home from the road to {TOWN}, and the letter is lost with them.</CC_Mail_Msg_RiderLost>
   <CC_Mail_RiderBrought>{PAWN} brought this answer home by hand.</CC_Mail_RiderBrought>
 

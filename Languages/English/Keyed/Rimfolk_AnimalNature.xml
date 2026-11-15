@@ -91,8 +91,8 @@
   <CC_Voice_Inspect_Mind>Speaks to {PAWN_nameDef} in the mind.</CC_Voice_Inspect_Mind>
   <CC_Voice_Inspect_Commune>Speaks with {PAWN_nameDef}, who communes with it.</CC_Voice_Inspect_Commune>
   <CC_Voice_Inspect_Psylink>{PAWN_nameDef} hears it through the psylink.</CC_Voice_Inspect_Psylink>
-  <CC_Voice_Inspect_Hybrid>Speaks, as its making allows; mostly to {PAWN_nameDef}.</CC_Voice_Inspect_Hybrid>
-  <CC_Voice_Inspect_HybridAnyone>Speaks, as its making allows, to whoever is near.</CC_Voice_Inspect_HybridAnyone>
+  <CC_Voice_Inspect_Hybrid>Speaks, as far as its hybrid body allows; mostly to {PAWN_nameDef}.</CC_Voice_Inspect_Hybrid>
+  <CC_Voice_Inspect_HybridAnyone>Speaks, as far as its hybrid body allows, to whoever is near.</CC_Voice_Inspect_HybridAnyone>
   <CC_Voice_Inspect_Spirit>A spirit animal: it speaks to {PAWN_nameDef} in dreams.</CC_Voice_Inspect_Spirit>
   <CC_Voice_DilemmaWord>{PET_nameDef}, at {PAWN_nameDef}'s side, has a word: "{LINE}"</CC_Voice_DilemmaWord>
 

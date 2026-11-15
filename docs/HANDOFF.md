@@ -140,6 +140,36 @@ tree at once, alongside whatever runs. Each piece is merged as its own release, 
   it), hover for what it is and how it has gone, click to open the region window on it; none shown while none runs.
 - **Dropped (14 November 2026): sending visitors away.** The player: "so asking visitors to leave is not necessary, as i
   found the already imlpemented function".
+- 0.248.0, **Plain words: interface-3** (14
+  November 2026; the player's words: "when you write text for the mod, especially when it's supposed to be flavour, i'd
+  like you to be more neutral, descriptive and "reasonable", over trying to make the text be creative", "the only thing
+  i don't mind and even enjoy, is old medieval writing", "start with: ... messages and interface"). The third
+  messages-and-interface batch: 41 files in `Languages/English/Keyed` (planning ahead and building ahead, the base
+  review, hauling, the post, the heart's time off and advice, the colonist bar, answers on the map, the council's
+  automations, the week and dilemmas pages, the region and its variants, trading posts, raiders' camps, camps and their
+  crowds, the peoples' ages and release F's peoples, wards, ransom, diplomacy and fealty variants, renown, faction
+  memory, the town after the hand-over, banishment, beasts, animals' natures and powers, weather, fields, calendar,
+  rooms, journeys, the settings pages, windows). About 4,200 entries (5,230 lines) read, 145 rewritten: things given a
+  will or a voice ("the mast is singing", "the river gives what it always gave", "Bedrooms away from the noise sleep
+  better", "Quiet heals"), riddling or cut-short lines ("the roads are the same roads, walked in better boots", "the way
+  is the way", "whatever the roads hold, the roads hold", "Side by side, the kitchen hands straight through"), wry last
+  lines ("which said enough", "with a look that had already been refused in other places", "and still bows to the cook
+  out of habit", "Nobody likes what it means"), and in-world phrases said plainly ("the Roll" as their roll of the dead,
+  "the book" as the union's book of members, "hold of them" as bound to them, "the glass" read for the weather, "made
+  fast" as secured), the approved sample from `docs/text-style-samples.md` for the ward in the archive. The cute
+  settings notes of the automations ("Research never stands idle", "Odds and ends find a home") now say what each does.
+  Found and fixed: `CC_Dil_Went_FellThrough_Tip` (`Rimfolk_Week.xml`) said an answer that never came about gave its
+  moods anyway, while `PlayOutTracker` gives them only with the setting off and StageTests pins "gives nobody its
+  moods"; it now says nobody has them (the comment on `DilemmaWent.FellThrough` in `UI/DilemmaLog.cs`, which said the
+  old way, was put right on merging). Left as they were: everything spoken (the `_Say` lines, the radio broadcasts and other quoted speech, the
+  toasts), the moods (the omen animals' thriving mood, the familiar's death cause), the natures and persona marks
+  (`Rimfolk_Nature_Variants.xml` whole), the founders' letters in their peoples' own voices, the medieval words of the
+  feudal oaths, the faiths' sayings among the peoples' heads' words (the grove, the Spire),
+  the unused first parting wordings (`CC_Camp_Parting*`, which the code no longer reads), every placeholder, number and
+  fact, and every line already plain (16 files needed nothing: the election, faction memory, camp crowds, weather,
+  Colony Manager and the shopping list, windows, settings pages, building ahead, calendar, rooms, journey advice,
+  trading posts, fields, realistic ways to die, raiders' camps, natures). No test pinned these words; the label,
+  Almanac, save, interaction and play-out audits are as before.
 - 0.247.0, **Plain words: interface-2** (14
   November 2026; the player's words: "when you write text for the mod, especially when it's supposed to be flavour, i'd
   like you to be more neutral, descriptive and "reasonable", over trying to make the text be creative", "the only thing

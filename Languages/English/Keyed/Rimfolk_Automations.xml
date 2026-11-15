@@ -21,26 +21,26 @@
   <CC_SetNote_AutoBillChains>What the building and the bills wait on gets made, down to the parts.</CC_SetNote_AutoBillChains>
   <CC_Settings_AutoPlan>Urgent steps go straight into the plan</CC_Settings_AutoPlan>
   <CC_Settings_AutoPlan_Tip>A step the council proposes at a high level or above is taken into the plan at once, in its place by urgency, instead of waiting for you on the Plan page. Let it go there like any other if you disagree.</CC_Settings_AutoPlan_Tip>
-  <CC_SetNote_AutoPlan>The plan fills itself with what presses.</CC_SetNote_AutoPlan>
+  <CC_SetNote_AutoPlan>Urgent steps are added to the plan without waiting for you.</CC_SetNote_AutoPlan>
   <CC_Settings_AutoResearch>An idle research bench takes up the next project</CC_Settings_AutoResearch>
   <CC_Settings_AutoResearch_Tip>With a research bench and no project chosen, the cheapest project of the colony's own era is started (never one that pushes the colony into the next era). Pick another in the research tab whenever you like; the council waits a day before choosing again.</CC_Settings_AutoResearch_Tip>
-  <CC_SetNote_AutoResearch>Research never stands idle.</CC_SetNote_AutoResearch>
+  <CC_SetNote_AutoResearch>A research project is always under way.</CC_SetNote_AutoResearch>
   <CC_Settings_AutoStockpile>Goods nobody stores get a stockpile</CC_Settings_AutoStockpile>
   <CC_Settings_AutoStockpile_Tip>When the stores review finds a fair amount of goods lying about that no store accepts, the stockpile it would lay out by the store room is made, set to take exactly those goods, every five days at most. An ordinary zone afterwards.</CC_Settings_AutoStockpile_Tip>
-  <CC_SetNote_AutoStockpile>Odds and ends find a home.</CC_SetNote_AutoStockpile>
+  <CC_SetNote_AutoStockpile>Goods nobody stores get a stockpile of their own.</CC_SetNote_AutoStockpile>
   <CC_Settings_AutoTakeDown>What serves nothing is taken down</CC_Settings_AutoTakeDown>
   <CC_Settings_AutoTakeDown_Tip>The base review's take-down findings get their deconstruct orders: wall stubs that separate nothing, dead conduit and pipe ends, doors with the same room on both sides. Cancel an order on the map like any other; a finding is acted on every two days at most.</CC_Settings_AutoTakeDown_Tip>
-  <CC_SetNote_AutoTakeDown>Stubs, dead ends and pointless doors go.</CC_SetNote_AutoTakeDown>
+  <CC_SetNote_AutoTakeDown>Wall stubs, dead ends and pointless doors are taken down.</CC_SetNote_AutoTakeDown>
   <CC_Settings_AutoLamps>Dark bedrooms and benches get lamps and chairs planned</CC_Settings_AutoLamps>
   <CC_Settings_AutoLamps_Tip>What the advisor's "plan the lamps" and "plan chairs and lamps" buttons do, done once a day when the advice stands: blueprints for a lamp in a bedroom too dark to see by, a chair at a bench with none. Cancel a blueprint like any other.</CC_Settings_AutoLamps_Tip>
   <CC_SetNote_AutoLamps>Lamps and chairs are planned where they are missing.</CC_SetNote_AutoLamps>
   <CC_Settings_AutoFirewood>Trees are marked for chopping when firewood runs short</CC_Settings_AutoFirewood>
-  <CC_Settings_AutoFirewood_Tip>When the advisor says the woodpile won't see the cold through, the nearest mature trees outside your growing zones are marked for chopping, five to twelve by how short the wood is, once a day at most. Unmark any on the map.</CC_Settings_AutoFirewood_Tip>
-  <CC_SetNote_AutoFirewood>The woodpile is seen to before the cold.</CC_SetNote_AutoFirewood>
+  <CC_Settings_AutoFirewood_Tip>When the advisor says the woodpile won't last through the cold, the nearest mature trees outside your growing zones are marked for chopping, five to twelve by how short the wood is, once a day at most. Unmark any on the map.</CC_Settings_AutoFirewood_Tip>
+  <CC_SetNote_AutoFirewood>Trees are cut for firewood before the cold.</CC_SetNote_AutoFirewood>
 
-  <CC_Settings_AutoGrow>A thing a plant yields gets sown for</CC_Settings_AutoGrow>
+  <CC_Settings_AutoGrow>Sow crops for what plants yield</CC_Settings_AutoGrow>
   <CC_Settings_AutoGrow_Tip>A link of a chain on the Making page that no bench makes but a plant the colony can sow yields (cotton for cloth, healroot for herbal medicine), with no zone growing it yet: that many cells are sown for it, beside the fields on fertile, open ground, once every ten days per thing. An ordinary zone afterwards.</CC_Settings_AutoGrow_Tip>
-  <CC_SetNote_AutoGrow>The fields grow what the chains want.</CC_SetNote_AutoGrow>
+  <CC_SetNote_AutoGrow>The fields grow what the chains need.</CC_SetNote_AutoGrow>
   <CC_Settings_AutoBudget>Materials budget a day for what the automations plan</CC_Settings_AutoBudget>
   <CC_Settings_AutoBudget_Tip>The blueprints the automations place in a day (lamps, chairs) are worth at most this much, as the things are worth built. Once it is spent, nothing more is planned until the next day.</CC_Settings_AutoBudget_Tip>
   <CC_SetNote_AutoBudget>Blueprints worth up to this much a day.</CC_SetNote_AutoBudget>

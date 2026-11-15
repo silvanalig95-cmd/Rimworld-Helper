@@ -19,16 +19,16 @@
 
   <!-- Their ward comes, and their year ends -->
   <CC_Ward_Arrives_4>{WARD} of {PEOPLE} is here for the year. Their kin turned back at the gate, and {WARD} walked in alone to learn {SKILL}: {RITE} by their ways, {WORD} by the colony's.</CC_Ward_Arrives_4>
-  <CC_Ward_Home_Fine_3>{WARD} walked out to their kin at the gate and went home to {PEOPLE}. As years of {WORD} go, it could hardly have gone better.</CC_Ward_Home_Fine_3>
+  <CC_Ward_Home_Fine_3>{WARD} walked out to their kin at the gate and went home to {PEOPLE}. It was as good a year of {WORD} as anyone could have hoped for.</CC_Ward_Home_Fine_3>
   <CC_Ward_Home_Good_3>{WARD} is on the road home to {PEOPLE} with their kin, and will speak well of {WORD} with the colony.</CC_Ward_Home_Good_3>
   <CC_Ward_Home_Fair_3>{WARD} has gone home with their kin. {PEOPLE} will hear of a year with good days and bad ones.</CC_Ward_Home_Fair_3>
-  <CC_Ward_Home_Poor_3>{WARD} went home with their kin, glad to be going, and {PEOPLE} will hear why.</CC_Ward_Home_Poor_3>
-  <CC_Ward_Died_Colony_2>{WARD} of {PEOPLE} died at the hands of one of the colony's own. Their people sent a youth to learn, and they will have a feud instead.</CC_Ward_Died_Colony_2>
-  <CC_Ward_Died_Inside_3>{WARD} of {PEOPLE} has died at the colony, under its roof. {PEOPLE} will grieve, though they will grant that the colony kept them where it kept its own.</CC_Ward_Died_Inside_3>
-  <CC_Ward_Died_Outside_3>{WARD} of {PEOPLE} has died out in the open at the colony. When {PEOPLE} ask where the colony's walls were, there won't be a good answer.</CC_Ward_Died_Outside_3>
+  <CC_Ward_Home_Poor_3>{WARD} went home with their kin, glad to leave, and will tell {PEOPLE} why.</CC_Ward_Home_Poor_3>
+  <CC_Ward_Died_Colony_2>{WARD} of {PEOPLE} died at the hands of one of the colony's own. Their people sent a youth here to learn, and now there will be a feud between them and the colony.</CC_Ward_Died_Colony_2>
+  <CC_Ward_Died_Inside_3>{WARD} of {PEOPLE} has died at the colony, under its roof. {PEOPLE} will grieve, though they will accept that the colony kept them as safe as its own people.</CC_Ward_Died_Inside_3>
+  <CC_Ward_Died_Outside_3>{WARD} of {PEOPLE} has died out in the open at the colony. {PEOPLE} will ask why the colony did not keep them safe inside its walls, and there is no good answer.</CC_Ward_Died_Outside_3>
   <CC_Ward_End_Arrested_2>{WARD} of {PEOPLE} is a prisoner of the colony now. {PEOPLE} sent a ward, not a captive, and they count it a wrong.</CC_Ward_End_Arrested_2>
   <CC_Ward_End_SentAway_2>{WARD} of {PEOPLE} is going home before the year is out. However it is explained, {PEOPLE} will take it as a slight.</CC_Ward_End_SentAway_2>
-  <CC_Ward_Taken_3>{WARD} of {PEOPLE} has been carried off by raiders. The colony had their family's trust, and {PEOPLE} will remember how it was kept.</CC_Ward_Taken_3>
+  <CC_Ward_Taken_3>{WARD} of {PEOPLE} has been carried off by raiders. Their family trusted the colony with them, and {PEOPLE} will remember that it let them down.</CC_Ward_Taken_3>
 
   <!-- The colony's youth abroad -->
   <CC_Ward_There_3>{PAWN} has arrived at {TOWN}. For a year they will live among {PEOPLE} and learn {SKILL}, {RITE} by the town's ways.</CC_Ward_There_3>
@@ -41,17 +41,17 @@
   <CC_Ward_Letter_Medieval_5>{PAWN} writes that the youths of {TOWN} sleep in the loft and rise with the bell, and that their master in {SKILL} has stopped shouting at them.</CC_Ward_Letter_Medieval_5>
   <CC_Ward_Letter_Industrial_3>{PAWN} writes from {TOWN}: the hours are long, the pay is bed and board, and their teachers in {SKILL} expect a great deal.</CC_Ward_Letter_Industrial_3>
   <CC_Ward_Letter_Industrial_4>A letter from {PAWN} at {TOWN}, with a smudge of oil on one corner: {HEAD} keeps them busy, and they have learned to fix what they break.</CC_Ward_Letter_Industrial_4>
-  <CC_Ward_Letter_Industrial_5>{PAWN} writes that {PEOPLE} work hard and argue harder, and that {HEAD} has asked twice whether the colony has more like them.</CC_Ward_Letter_Industrial_5>
+  <CC_Ward_Letter_Industrial_5>{PAWN} writes that {PEOPLE} work hard and argue a lot, and that {HEAD} has asked twice whether the colony has more like them.</CC_Ward_Letter_Industrial_5>
   <CC_Ward_Letter_Spacer_3>{PAWN} sends a message from {TOWN}: their days are scheduled to the minute, their lessons in {SKILL} are recorded, and {HEAD} has approved their progress.</CC_Ward_Letter_Spacer_3>
-  <CC_Ward_Letter_Spacer_4>A short message from {PAWN} at {TOWN}: the food is strange, the work is precise, and {PEOPLE} measure everything, including them.</CC_Ward_Letter_Spacer_4>
-  <CC_Ward_Letter_Spacer_5>{PAWN} writes from {TOWN} that {HEAD} has let them into the archive, and that they have read more this season than they have slept.</CC_Ward_Letter_Spacer_5>
-  <CC_Ward_Letter_Page_3>{PAWN} writes from {TOWN}: they have learned to pour without a sound and to stand behind a chair for a whole dinner. {HEAD}'s steward says they will do.</CC_Ward_Letter_Page_3>
-  <CC_Ward_Letter_Page_4>A letter from {PAWN}, page in {HEAD}'s household at {TOWN}: they carried a message to a baron today and did not drop it.</CC_Ward_Letter_Page_4>
+  <CC_Ward_Letter_Spacer_4>A short message from {PAWN} at {TOWN}: the food is strange, the work is precise, and {PEOPLE} keep exact records of everything, including their progress.</CC_Ward_Letter_Spacer_4>
+  <CC_Ward_Letter_Spacer_5>{PAWN} writes from {TOWN} that {HEAD} has given them access to the archive, and that they have been reading a great deal.</CC_Ward_Letter_Spacer_5>
+  <CC_Ward_Letter_Page_3>{PAWN} writes from {TOWN}: they have learned to pour without a sound and to stand behind a chair for a whole dinner. {HEAD}'s steward says they are doing well enough.</CC_Ward_Letter_Page_3>
+  <CC_Ward_Letter_Page_4>A letter from {PAWN}, page in {HEAD}'s household at {TOWN}: today they carried a message to a baron without a mistake.</CC_Ward_Letter_Page_4>
   <CC_Ward_Letter_Page_5>{PAWN} writes that court is all forms and titles, and that they now know which fork goes with which. The household speaks kindly of the colony.</CC_Ward_Letter_Page_5>
   <CC_Ward_Homeward_3>The year is done. {PAWN} has said goodbye at {TOWN} and is on the road home, with food from {PEOPLE} in their pack.</CC_Ward_Homeward_3>
   <CC_Ward_Back_3>{PAWN} is home again, a year older and full of the ways of {PEOPLE}.</CC_Ward_Back_3>
   <CC_Ward_Back_4>{PAWN} is back at the colony after a year at {TOWN}, with stories about {PEOPLE} for anyone who'll listen.</CC_Ward_Back_4>
-  <CC_Ward_Back_Page_3>{PAWN} is back from {TOWN}, a year as a page behind them, and still bows to the cook out of habit.</CC_Ward_Back_Page_3>
+  <CC_Ward_Back_Page_3>{PAWN} is back from {TOWN} after a year as a page, and still bows to people out of habit.</CC_Ward_Back_Page_3>
   <CC_Ward_DiedAway_2>{PAWN} will not come home. They died among {PEOPLE}, or on the road to them.</CC_Ward_DiedAway_2>
 
   <!-- Hostages -->

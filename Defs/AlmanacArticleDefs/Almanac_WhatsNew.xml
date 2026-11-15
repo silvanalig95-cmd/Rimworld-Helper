@@ -31,6 +31,17 @@ When you load a save after an update, a letter lists the newest round once. The 
     <rounds>
 
       <li>
+        <version>0.248.0</version>
+        <date>15 November 2026</date>
+        <title>Planning, the post and the peoples' ages in plain words</title>
+        <points>
+          <li>Planning, the base review, the post and the colony's automations now say what they do in plain words, without riddles or little twists.</li>
+          <li>Letters about the peoples, their changing ages, wards, camps and the Signal Line's mast say plainly what happened and why.</li>
+          <li>The Dilemmas page now says correctly that an answer which never came about gives nobody its moods.</li>
+        </points>
+      </li>
+
+      <li>
         <version>0.247.0</version>
         <date>15 November 2026</date>
         <title>Panels, letters and the peoples in plain words</title>

@@ -4,35 +4,35 @@
   <!-- Release F's peoples at the gate (Source/ColonyCouncil/Peoples/PeoplesF.cs, PeoplesF2.cs, PeoplesFPatches.cs). -->
 
   <!-- The Signal Line: the relay mast -->
-  <CC_PeoplesF_MastSings>The mast is singing: the colony's letters go down the line in half the days, and the line warns of raids.</CC_PeoplesF_MastSings>
-  <CC_PeoplesF_MastQuiet>The mast is quiet: mend it past half its strength, with the Signal Line at peace, and it sings again.</CC_PeoplesF_MastQuiet>
+  <CC_PeoplesF_MastSings>The mast is working: the colony's letters go down the line in half the days, and the line warns of raids.</CC_PeoplesF_MastSings>
+  <CC_PeoplesF_MastQuiet>The mast is not working: mend it past half its strength, with the Signal Line at peace, and it works again.</CC_PeoplesF_MastQuiet>
   <CC_PeoplesF_MastRaised>{PAWN} has raised the Signal Line's mast. The colony's letters go down the line now, and the line will call a warning up it when raiders are on the road.</CC_PeoplesF_MastRaised>
-  <CC_PeoplesF_MastWentQuiet>The storm has worn the colony's relay mast past half its strength, and it has gone quiet: no letters down the line and no warnings until it is mended.</CC_PeoplesF_MastWentQuiet>
-  <CC_PeoplesF_MastKept>{PAWN} has made the colony's mast fast against the storm, and it is singing again at its full strength.</CC_PeoplesF_MastKept>
+  <CC_PeoplesF_MastWentQuiet>The storm has worn the colony's relay mast past half its strength, and it has stopped working: no letters down the line and no warnings until it is mended.</CC_PeoplesF_MastWentQuiet>
+  <CC_PeoplesF_MastKept>{PAWN} has secured the colony's mast against the storm, and it is working again at its full strength.</CC_PeoplesF_MastKept>
   <CC_PeoplesF_MastHill>on the hillside above the colony</CC_PeoplesF_MastHill>
   <CC_PeoplesF_MastRise>on the highest ground near the colony</CC_PeoplesF_MastRise>
   <CC_PeoplesF_MastThere>The colony has a mast already.</CC_PeoplesF_MastThere>
   <CC_PeoplesF_MastGone>The colony's mast is gone.</CC_PeoplesF_MastGone>
-  <CC_PeoplesF_MastQuietNow>gone quiet, half torn down by the wind</CC_PeoplesF_MastQuietNow>
+  <CC_PeoplesF_MastQuietNow>not working, half torn down by the wind</CC_PeoplesF_MastQuietNow>
   <CC_PeoplesF_MastWearing>shaking in the wind and losing its guy wires</CC_PeoplesF_MastWearing>
-  <CC_PeoplesF_Impact_Mast>The lineman raises a relay mast {0}. While it sings, the colony's letters reach their readers in half the days, and the line warns of a raid a little before it comes. A thunderstorm wears it; under half its strength it is quiet until mended.</CC_PeoplesF_Impact_Mast>
+  <CC_PeoplesF_Impact_Mast>The lineman raises a relay mast {0}. While it works, the colony's letters reach their readers in half the days, and the line warns of a raid a little before it comes. A thunderstorm wears it; under half its strength it stops working until mended.</CC_PeoplesF_Impact_Mast>
   <CC_PeoplesF_Impact_MastBrief>A relay mast raised</CC_PeoplesF_Impact_MastBrief>
   <CC_PeoplesF_RaidWarnLabel>Raiders on the road</CC_PeoplesF_RaidWarnLabel>
-  <CC_PeoplesF_RaidWarn>The linemen down the line have called it up the colony's mast: {WHO} are on the road toward the colony, armed, and coming fast. {LINE} heard it from the next mast along, and say they will be here soon. There is a little time to get ready.</CC_PeoplesF_RaidWarn>
+  <CC_PeoplesF_RaidWarn>Linemen further down the line have passed a warning up to the colony's mast: {WHO} are on the road toward the colony, armed, and coming fast. {LINE} heard it from the next mast along, and say they will be here soon. There is a little time to get ready.</CC_PeoplesF_RaidWarn>
   <CC_PeoplesF_RaidWarnSomeone>armed men</CC_PeoplesF_RaidWarnSomeone>
 
   <!-- The Signal Line: the wire-trader and the storm -->
   <CC_PeoplesF_WireCount>{0} components</CC_PeoplesF_WireCount>
   <CC_PeoplesF_WireGone>The components are no longer in the stores.</CC_PeoplesF_WireGone>
-  <CC_PeoplesF_Impact_Climb>The lineman climbs the colony's mast in the storm and makes it fast, mending it to its full strength.</CC_PeoplesF_Impact_Climb>
-  <CC_PeoplesF_Impact_ClimbBrief>The mast made fast</CC_PeoplesF_Impact_ClimbBrief>
+  <CC_PeoplesF_Impact_Climb>The lineman climbs the colony's mast in the storm and secures it, mending it to its full strength.</CC_PeoplesF_Impact_Climb>
+  <CC_PeoplesF_Impact_ClimbBrief>The mast secured</CC_PeoplesF_Impact_ClimbBrief>
 
   <!-- The Deepwell Union: the drill and the goods -->
   <CC_PeoplesF_Impact_Drill>The union's driller works the seam six hours where it lies, the crew standing by; of the {0} {1} that comes up, {2} is left at the drill for the colony and the rest goes with the union.</CC_PeoplesF_Impact_Drill>
   <CC_PeoplesF_Impact_DrillBrief>The seam drilled for a share</CC_PeoplesF_Impact_DrillBrief>
   <CC_PeoplesF_Impact_DrillRisk>{0} works the rig beside them: a drill is heavy work, and one shift in twenty someone at it is hurt.</CC_PeoplesF_Impact_DrillRisk>
   <CC_PeoplesF_Impact_DrillRiskBrief>A mishap at the drill</CC_PeoplesF_Impact_DrillRiskBrief>
-  <CC_PeoplesF_Drilled>The union's drill brought up {0} {1}. The colony's share, {2}, lies at the drill; {FACTION} have the rest, and the seam is the less by it.</CC_PeoplesF_Drilled>
+  <CC_PeoplesF_Drilled>The union's drill brought up {0} {1}. The colony's share, {2}, lies at the drill; {FACTION} have the rest, and the seam has that much less left in it.</CC_PeoplesF_Drilled>
   <CC_PeoplesF_DrillMishap>The rig kicked as {PAWN} worked it beside the union's crew, and caught {PAWN_objective} on the {PART}.</CC_PeoplesF_DrillMishap>
   <CC_PeoplesF_GroundRead>{PAWN} walked the ground with the union's assayer: there is {ORE} under it, about {COUNT} of it, too deep for a pick.</CC_PeoplesF_GroundRead>
 
@@ -48,7 +48,7 @@
   <CC_PeoplesF_Impact_Census>The census-taker walks the colony from bed to bed with the roll, a while at each, and writes all {0} of its people into it.</CC_PeoplesF_Impact_Census>
   <CC_PeoplesF_Impact_CensusBrief>The colony counted</CC_PeoplesF_Impact_CensusBrief>
   <CC_PeoplesF_CensusLabel>Counted by {0}</CC_PeoplesF_CensusLabel>
-  <CC_PeoplesF_CensusWritten>{TAKER} has finished the census of the colony for {FACTION}, and written {COUNT} people into the Republic's roll: {NAMES}.\n\nThe Republic thinks the better of a people it can count.</CC_PeoplesF_CensusWritten>
+  <CC_PeoplesF_CensusWritten>{TAKER} has finished the census of the colony for {FACTION}, and written {COUNT} people into the Republic's roll: {NAMES}.\n\nThe Republic thinks better of people who let themselves be counted.</CC_PeoplesF_CensusWritten>
   <CC_PeoplesF_PapersGranted>The colony holds the citizenship papers of {0} for the year: their traders deal with it on a citizen's terms, {1} better, and it owes the Republic its duty when it calls.</CC_PeoplesF_PapersGranted>
   <CC_PeoplesF_PapersStruck>{0} have struck the colony's citizenship papers for refusing the Republic's call.</CC_PeoplesF_PapersStruck>
   <CC_PeoplesF_PapersLapsed>The colony's citizenship papers of {0} have run their year. The Republic may offer them again.</CC_PeoplesF_PapersLapsed>
@@ -60,7 +60,7 @@
   <!-- The Last Republic: the conscript -->
   <CC_PeoplesF_Impact_Conscript>{0} is away {1} days in the Republic's service at {2}, and the days of the road both ways.</CC_PeoplesF_Impact_Conscript>
   <CC_PeoplesF_Impact_ConscriptBrief>{0} away for a season</CC_PeoplesF_Impact_ConscriptBrief>
-  <CC_PeoplesF_Impact_ConscriptRoad>{0} takes the Guard's rations, walks out and goes by the world's own roads as a caravan of one, there and back: whatever the roads hold, the roads hold.</CC_PeoplesF_Impact_ConscriptRoad>
+  <CC_PeoplesF_Impact_ConscriptRoad>{0} takes the Guard's rations, walks out and goes by the world's own roads as a caravan of one, there and back, and meets whatever is on the roads like any traveller.</CC_PeoplesF_Impact_ConscriptRoad>
   <CC_PeoplesF_NoConscript>Nobody can go for the Republic now.</CC_PeoplesF_NoConscript>
   <CC_PeoplesF_ConscriptSettingOut>{PAWN} is taking the Civic Guard's rations and setting out for the Republic's service at {TOWN}.</CC_PeoplesF_ConscriptSettingOut>
   <CC_PeoplesF_ConscriptSetOut>{PAWN} has set out for {TOWN} on the open road.</CC_PeoplesF_ConscriptSetOut>

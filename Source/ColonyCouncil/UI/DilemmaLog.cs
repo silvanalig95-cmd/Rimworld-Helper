@@ -18,7 +18,7 @@ namespace ColonyCouncil
         UnderWay,
         /// <summary>What it set going took place.</summary>
         TookPlace,
-        /// <summary>What it set going never came about (its moods were given anyway).</summary>
+        /// <summary>What it set going never came about: nobody has its moods (PlayOutTracker gives them only with the setting off).</summary>
         FellThrough
     }
 

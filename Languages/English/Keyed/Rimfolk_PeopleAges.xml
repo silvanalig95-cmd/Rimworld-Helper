@@ -29,8 +29,8 @@
   <CC_PeopleAge_Rise_1_2>{MEANS}: the smiths of {PEOPLE} have learned to work iron and the masons to set stone with mortar, and they live in the medieval age now.</CC_PeopleAge_Rise_1_2>
   <CC_PeopleAge_Rise_2>{MEANS}: {PEOPLE} have learned to bore a rifle's barrel, to keep an engine turning and to print a page, and they live in the industrial age now.</CC_PeopleAge_Rise_2>
   <CC_PeopleAge_Rise_2_2>{MEANS}: the smiths of {PEOPLE} have learned to work steel on a lathe and to make a cartridge, and they live in the industrial age now.</CC_PeopleAge_Rise_2_2>
-  <CC_PeopleAge_Rise_3>{MEANS}: {PEOPLE} have learned to work plasteel, to fire a charge weapon and to speak across the sky, and they live in the spacer age now.</CC_PeopleAge_Rise_3>
-  <CC_PeopleAge_Rise_3_2>{MEANS}: the workshops of {PEOPLE} have learned to make what the ships above make, and they live in the spacer age now.</CC_PeopleAge_Rise_3_2>
+  <CC_PeopleAge_Rise_3>{MEANS}: {PEOPLE} have learned to work plasteel, to fire a charge weapon and to talk with ships in orbit, and they live in the spacer age now.</CC_PeopleAge_Rise_3>
+  <CC_PeopleAge_Rise_3_2>{MEANS}: the workshops of {PEOPLE} have learned to make the same goods as the ships in orbit carry, and they live in the spacer age now.</CC_PeopleAge_Rise_3_2>
   <!-- What they lost, by the age they fell back to. -->
   <CC_PeopleAge_Fall_0>{MEANS}: the forges of {PEOPLE} have gone cold and nobody is left who can read their laws, and they live as the tribes do now.</CC_PeopleAge_Fall_0>
   <CC_PeopleAge_Fall_1>{MEANS}: the last engines of {PEOPLE} have stopped and their guns hang on the wall for want of cartridges, and they live in the medieval age again.</CC_PeopleAge_Fall_1>
@@ -38,59 +38,59 @@
 
   <!-- Their head's words, by their calling. -->
   <CC_PeopleAge_Voice_traders_Rise>Their {LEADER} says the roads brought it to them first, as the roads always do.</CC_PeopleAge_Voice_traders_Rise>
-  <CC_PeopleAge_Voice_traders_Fall>Their {LEADER} says the roads have gone quiet, and a waystation forgets what no caravan brings it.</CC_PeopleAge_Voice_traders_Fall>
-  <CC_PeopleAge_Voice_healers_Rise>Their {LEADER} says the sickhouse will be the better for it, and the lamp at the gate burns on.</CC_PeopleAge_Voice_healers_Rise>
+  <CC_PeopleAge_Voice_traders_Fall>Their {LEADER} says few caravans come by any more, and without them the waystation is losing what it learned.</CC_PeopleAge_Voice_traders_Fall>
+  <CC_PeopleAge_Voice_healers_Rise>Their {LEADER} says the sickhouse will be better for it, and the lamp at the gate stays lit.</CC_PeopleAge_Voice_healers_Rise>
   <CC_PeopleAge_Voice_healers_Fall>Their {LEADER} says the sickhouse makes do with herbs and clean hands again, and the lamp at the gate still burns.</CC_PeopleAge_Voice_healers_Fall>
-  <CC_PeopleAge_Voice_herders_Rise>Their {LEADER} says the herd does not care what age it is, but the young ones are glad of it.</CC_PeopleAge_Voice_herders_Rise>
-  <CC_PeopleAge_Voice_herders_Fall>Their {LEADER} says they have gone back to the old ways, which the herd never left.</CC_PeopleAge_Voice_herders_Fall>
-  <CC_PeopleAge_Voice_pilgrims_Rise>Their {LEADER} says the roads are the same roads, walked in better boots.</CC_PeopleAge_Voice_pilgrims_Rise>
-  <CC_PeopleAge_Voice_pilgrims_Fall>Their {LEADER} says the way is the way, and they walk it with less.</CC_PeopleAge_Voice_pilgrims_Fall>
+  <CC_PeopleAge_Voice_herders_Rise>Their {LEADER} says it makes no difference to the herds, but the young people are glad of it.</CC_PeopleAge_Voice_herders_Rise>
+  <CC_PeopleAge_Voice_herders_Fall>Their {LEADER} says they have gone back to the old ways, and the herding goes on as it always has.</CC_PeopleAge_Voice_herders_Fall>
+  <CC_PeopleAge_Voice_pilgrims_Rise>Their {LEADER} says they walk the same roads as before, only better equipped.</CC_PeopleAge_Voice_pilgrims_Rise>
+  <CC_PeopleAge_Voice_pilgrims_Fall>Their {LEADER} says their pilgrimage goes on as before, with less to carry.</CC_PeopleAge_Voice_pilgrims_Fall>
   <CC_PeopleAge_Voice_scholars_Rise>Their {LEADER} says they have copied it all twice already, and would like to ask the colony a question about it.</CC_PeopleAge_Voice_scholars_Rise>
   <CC_PeopleAge_Voice_scholars_Fall>Their {LEADER} says that whatever they can no longer make, they have at least written down, twice.</CC_PeopleAge_Voice_scholars_Fall>
-  <CC_PeopleAge_Voice_brokers_Rise>Their {LEADER} says the new terms are better, to the last digit.</CC_PeopleAge_Voice_brokers_Rise>
-  <CC_PeopleAge_Voice_brokers_Fall>Their {LEADER} says the pad sees fewer ships, and every bargain is struck closer to the ground.</CC_PeopleAge_Voice_brokers_Fall>
-  <CC_PeopleAge_Voice_fishers_Rise>Their {LEADER} says the river has not changed, but the boats have.</CC_PeopleAge_Voice_fishers_Rise>
-  <CC_PeopleAge_Voice_fishers_Fall>Their {LEADER} says the river gives what it always gave, and they take it the old way.</CC_PeopleAge_Voice_fishers_Fall>
-  <CC_PeopleAge_Voice_hunters_Rise>Their {LEADER} says the book's empty pages will be filled faster now.</CC_PeopleAge_Voice_hunters_Rise>
-  <CC_PeopleAge_Voice_hunters_Fall>Their {LEADER} says the lanterns are still lit, whatever else has gone out.</CC_PeopleAge_Voice_hunters_Fall>
+  <CC_PeopleAge_Voice_brokers_Rise>Their {LEADER} says the new terms are better, and they have worked out exactly by how much.</CC_PeopleAge_Voice_brokers_Rise>
+  <CC_PeopleAge_Voice_brokers_Fall>Their {LEADER} says fewer ships land at their pad, and their deals are smaller now.</CC_PeopleAge_Voice_brokers_Fall>
+  <CC_PeopleAge_Voice_fishers_Rise>Their {LEADER} says the river is the same, but they have better boats now.</CC_PeopleAge_Voice_fishers_Rise>
+  <CC_PeopleAge_Voice_fishers_Fall>Their {LEADER} says the river has as many fish as ever, and they catch them the old way again.</CC_PeopleAge_Voice_fishers_Fall>
+  <CC_PeopleAge_Voice_hunters_Rise>Their {LEADER} says the empty pages in their book of beasts will be filled faster now.</CC_PeopleAge_Voice_hunters_Rise>
+  <CC_PeopleAge_Voice_hunters_Fall>Their {LEADER} says their lanterns are still lit, whatever else they have lost.</CC_PeopleAge_Voice_hunters_Fall>
   <CC_PeopleAge_Voice_sextons_Rise>Their {LEADER} says the dead are buried the same way in any age, and the bell is rung once for each.</CC_PeopleAge_Voice_sextons_Rise>
   <CC_PeopleAge_Voice_sextons_Fall>Their {LEADER} says they have less than they had, and the dead are owed the same as ever.</CC_PeopleAge_Voice_sextons_Fall>
-  <CC_PeopleAge_Voice_tamers_Rise>Their {LEADER} says the bond is the same bond, and the stables are better kept.</CC_PeopleAge_Voice_tamers_Rise>
-  <CC_PeopleAge_Voice_tamers_Fall>Their {LEADER} says a bond needs no machine, and the bouts go on.</CC_PeopleAge_Voice_tamers_Fall>
+  <CC_PeopleAge_Voice_tamers_Rise>Their {LEADER} says their bond with their beasts is the same as ever, and the stables are better kept.</CC_PeopleAge_Voice_tamers_Rise>
+  <CC_PeopleAge_Voice_tamers_Fall>Their {LEADER} says a bond with a beast needs no machines, and the bouts go on.</CC_PeopleAge_Voice_tamers_Fall>
   <CC_PeopleAge_Voice_salvagers_Rise>Their {LEADER} says they had it in pieces on the yard floor before anyone else knew what it was.</CC_PeopleAge_Voice_salvagers_Rise>
-  <CC_PeopleAge_Voice_salvagers_Fall>Their {LEADER} says what they can't mend they will carry until they can, and the wheels still turn.</CC_PeopleAge_Voice_salvagers_Fall>
-  <CC_PeopleAge_Voice_seers_Rise>Their {LEADER} says the glass reads truer with the new instruments beside it.</CC_PeopleAge_Voice_seers_Rise>
-  <CC_PeopleAge_Voice_seers_Fall>Their {LEADER} says the instruments have failed, but the glass still reads the sky.</CC_PeopleAge_Voice_seers_Fall>
+  <CC_PeopleAge_Voice_salvagers_Fall>Their {LEADER} says they will carry what they can't mend until they can mend it, and the town keeps moving.</CC_PeopleAge_Voice_salvagers_Fall>
+  <CC_PeopleAge_Voice_seers_Rise>Their {LEADER} says the readings from the glass are more accurate with the new instruments beside it.</CC_PeopleAge_Voice_seers_Rise>
+  <CC_PeopleAge_Voice_seers_Fall>Their {LEADER} says the instruments have failed, but they can still read the weather in the glass.</CC_PeopleAge_Voice_seers_Fall>
   <CC_PeopleAge_Voice_grovekeepers_Rise>Their {LEADER} says the grove allows it, and every tree it costs will be paid back with a seedling.</CC_PeopleAge_Voice_grovekeepers_Rise>
   <CC_PeopleAge_Voice_grovekeepers_Fall>Their {LEADER} says the forest is glad of it.</CC_PeopleAge_Voice_grovekeepers_Fall>
-  <CC_PeopleAge_Voice_mercenaries_Rise>Their {LEADER} says the company has drawn new arms from the quartermaster, and the Roll is read as before.</CC_PeopleAge_Voice_mercenaries_Rise>
-  <CC_PeopleAge_Voice_mercenaries_Fall>Their {LEADER} says the company makes do with the arms it can keep, and the Roll is read as before.</CC_PeopleAge_Voice_mercenaries_Fall>
-  <CC_PeopleAge_Voice_artisans_Rise>Their {LEADER} says the journeymen brought it home from their wander-years, and the guild mark will be cut into that work too.</CC_PeopleAge_Voice_artisans_Rise>
+  <CC_PeopleAge_Voice_mercenaries_Rise>Their {LEADER} says the company has drawn new arms from the quartermaster, and the Roll of their dead is read as before.</CC_PeopleAge_Voice_mercenaries_Rise>
+  <CC_PeopleAge_Voice_mercenaries_Fall>Their {LEADER} says the company makes do with the arms it can keep, and the Roll of their dead is read as before.</CC_PeopleAge_Voice_mercenaries_Fall>
+  <CC_PeopleAge_Voice_artisans_Rise>Their {LEADER} says the journeymen brought it home from their years of travel, and the guild mark will be cut into that work too.</CC_PeopleAge_Voice_artisans_Rise>
   <CC_PeopleAge_Voice_artisans_Fall>Their {LEADER} says the guild keeps what can be made by hand, and marks it as before.</CC_PeopleAge_Voice_artisans_Fall>
   <!-- Release F's peoples (Peoples/PeoplesF.cs, PeoplesF2.cs). -->
   <CC_PeopleAge_Voice_linesmen_Rise>Their {LEADER} says the new ways came down the line before anyone else had heard of them, and every mast will carry them.</CC_PeopleAge_Voice_linesmen_Rise>
-  <CC_PeopleAge_Voice_linesmen_Fall>Their {LEADER} says the line will carry what it can on what it has left, and the masts are still singing.</CC_PeopleAge_Voice_linesmen_Fall>
-  <CC_PeopleAge_Voice_drillers_Rise>Their {LEADER} says the union voted to learn the new tools at the face, and everyone is still up at the end of the shift.</CC_PeopleAge_Voice_drillers_Rise>
-  <CC_PeopleAge_Voice_drillers_Fall>Their {LEADER} says the union digs with what it can mend, and the book is read as before.</CC_PeopleAge_Voice_drillers_Fall>
+  <CC_PeopleAge_Voice_linesmen_Fall>Their {LEADER} says the line will carry what it can with what it has left, and the masts are still working.</CC_PeopleAge_Voice_linesmen_Fall>
+  <CC_PeopleAge_Voice_drillers_Rise>Their {LEADER} says the union voted to learn the new tools at the face, and everyone still comes up safe at the end of the shift.</CC_PeopleAge_Voice_drillers_Rise>
+  <CC_PeopleAge_Voice_drillers_Fall>Their {LEADER} says the union digs with what it can mend, and the union's book of members is read as before.</CC_PeopleAge_Voice_drillers_Fall>
   <CC_PeopleAge_Voice_citizens_Rise>Their {LEADER} says the archives have been opened at last, and the Republic calls it a restoration.</CC_PeopleAge_Voice_citizens_Rise>
   <CC_PeopleAge_Voice_citizens_Fall>Their {LEADER} says the Republic has fewer of its old means than it used to, and has not fallen.</CC_PeopleAge_Voice_citizens_Fall>
   <CC_PeopleAge_Voice_crew_Rise>Their {LEADER} says the ship's own logs taught them what they had forgotten, and the watch is kept as before.</CC_PeopleAge_Voice_crew_Rise>
   <CC_PeopleAge_Voice_crew_Fall>Their {LEADER} says the last of the ship's parts have failed, and the crew holds position with what it can make.</CC_PeopleAge_Voice_crew_Fall>
 
   <!-- Release G's peoples (Peoples/PeoplesG.cs, PeoplesG2.cs). -->
-  <CC_PeopleAge_Voice_editors_Rise>Their {LEADER} says the ledger holds a new kind of edit now, asked for and marked as every edit is.</CC_PeopleAge_Voice_editors_Rise>
+  <CC_PeopleAge_Voice_editors_Rise>Their {LEADER} says the Works can make a new kind of edit now, and like every edit it is only done when asked for and is written in the ledger.</CC_PeopleAge_Voice_editors_Rise>
   <CC_PeopleAge_Voice_editors_Fall>Their {LEADER} says the Works edit with what instruments still work, and ask first as before.</CC_PeopleAge_Voice_editors_Fall>
-  <CC_PeopleAge_Voice_mechanitors_Rise>Their {LEADER} says the lattice learned it all at once, every mind together, and the yards are humming with it.</CC_PeopleAge_Voice_mechanitors_Rise>
+  <CC_PeopleAge_Voice_mechanitors_Rise>Their {LEADER} says every linked mind in the lattice learned it at once, and the yards are busy with it.</CC_PeopleAge_Voice_mechanitors_Rise>
   <CC_PeopleAge_Voice_mechanitors_Fall>Their {LEADER} says the lattice keeps what links it can, and no mind is left alone.</CC_PeopleAge_Voice_mechanitors_Fall>
   <CC_PeopleAge_Voice_listeners_Rise>Their {LEADER} says the Spire thought of something new, and the Choir has been listening to it.</CC_PeopleAge_Voice_listeners_Rise>
   <CC_PeopleAge_Voice_listeners_Fall>Their {LEADER} says the Choir uses less of what the Spire gave, and listens as before.</CC_PeopleAge_Voice_listeners_Fall>
-  <CC_PeopleAge_Voice_vaultfolk_Rise>Their {LEADER} says the vault has its old machines working again, every cell counted, and remembers who sent the parts.</CC_PeopleAge_Voice_vaultfolk_Rise>
+  <CC_PeopleAge_Voice_vaultfolk_Rise>Their {LEADER} says the vault has its old machines working again, every cell counted, and the dwellers remember who sent the parts.</CC_PeopleAge_Voice_vaultfolk_Rise>
   <CC_PeopleAge_Voice_vaultfolk_Fall>Their {LEADER} says another of the vault's machines has stopped for good, and the dwellers make do with what they can make.</CC_PeopleAge_Voice_vaultfolk_Fall>
 
   <!-- What of it was the colony's doing, or why they fell back. -->
-  <CC_PeopleAge_Letter_trade>The colony's trade with them carried much of it to them.</CC_PeopleAge_Letter_trade>
+  <CC_PeopleAge_Letter_trade>Much of it came to them through their trade with the colony.</CC_PeopleAge_Letter_trade>
   <CC_PeopleAge_Letter_gifts>The colony's gifts of books and tools did much of it.</CC_PeopleAge_Letter_gifts>
-  <CC_PeopleAge_Letter_teaching>What theirs learned at the colony did much of it.</CC_PeopleAge_Letter_teaching>
+  <CC_PeopleAge_Letter_teaching>Much of it came from what their people learned at the colony.</CC_PeopleAge_Letter_teaching>
   <CC_PeopleAge_Letter_ally>Their alliance with the colony did much of it.</CC_PeopleAge_Letter_ally>
   <CC_PeopleAge_Letter_pact>Their pact with the colony did its part.</CC_PeopleAge_Letter_pact>
   <CC_PeopleAge_Letter_alone>Nobody has traded with them for years.</CC_PeopleAge_Letter_alone>
@@ -126,7 +126,7 @@
   <CC_PeopleAge_Why_unsupplied>short of components and parts</CC_PeopleAge_Why_unsupplied>
   <CC_PeopleAge_Why_supplied>kept supplied with parts</CC_PeopleAge_Why_supplied>
   <CC_PeopleAge_Why_settled>settled in its ways</CC_PeopleAge_Why_settled>
-  <CC_PeopleAge_Why_height>at the height of what anyone knows</CC_PeopleAge_Why_height>
+  <CC_PeopleAge_Why_height>the most advanced there is</CC_PeopleAge_Why_height>
 
   <!-- ================= A gift of learning, as they remember it ================= -->
   <CC_PeopleAge_Gift_books>books</CC_PeopleAge_Gift_books>
