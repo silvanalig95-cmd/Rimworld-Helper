@@ -221,6 +221,8 @@ namespace ColonyCouncil
                 case "campLeft": return CampTracker.Enabled;
                 // The gods in the world (Gods/World/): their beasts, their lightning, a gift's price in blood.
                 case "gods": return Gods.On;
+                // The old powers' strange happenings (OldPowers/), with Rimfolk's world events.
+                case "oldPowers": return s.worldEvents;
                 case "courierSick": return Couriers.On && s.worldSituations && Interplay.On;
                 case "patientIll": return HealthTracker.ReputationOn && AilmentTracker.SeriousOn;
                 case "badBatch": return true;

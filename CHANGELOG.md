@@ -5,6 +5,18 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## The old powers stir
+
+*15 November 2026, version 0.240.0*
+
+- Old Powers has fourteen strange happenings of its own, each played out on the map: a seer at the end of a season, a night when everyone turns to face one way, a stone that hums in a storm, a sealed scroll in old ruins, and more.
+- Pale wolves run once round the colony under the full moon, and in the morning someone finds no tracks where they ran.
+- On foggy or moonless nights, eyes watch the colony from the edge of the dark until someone walks out to them.
+- A god drawn near may go by in the night: its own signs one after another, then its own presence for a while after dawn, named only when the colony knows it.
+- A wandering enchanter offers to work a piece of the colony's gear up a grade for silver, and the bearer stands with them while it is done.
+- They come under every storyteller about once in three weeks, and about once in ten days under Old Powers or its story direction.
+- A RimWorld of Magic's effects, sounds, scrolls, spirit wolves and classes are used where it is in your list; harm is rare, shared with the rest of Rimfolk's, and always shown.
+
 ## Visitors' own day
 
 *15 November 2026, version 0.239.0*

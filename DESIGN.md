@@ -14281,6 +14281,123 @@ Years) to 11 and 12 (Crossroads) against 4.6 and 5. A way above the classic pace
 (Rimfolk's parts follow the game's own rules, checked by the tests and the balance tool but not run in the game), the
 raid aimed by reason and its letter's line, the omen's world situation, and the direction changing a running game.
 
+### The old powers' own strange happenings (the player's go, 14 November 2026; released 0.240.0)
+
+The player: "i like the old powers storyteller and want you to do some more more events in this style, including the gods
+and using ressources from rimworld of magic", then "do ... more old powers style events". Item 7 of
+`docs/storytellers-proposals.md` made into happenings of its own: fourteen uncanny happenings, each played out on the map,
+fewer threats but stranger ones, under every storyteller and leaning to Old Powers. The gods stay unseen, harm stays in
+the shared budget, and every one takes the colony's age's form.
+
+- **The frame** (`Source/ColonyCouncil/OldPowers/OldPowers.cs`): looked at in the world events' hour
+  (`HappeningTracker.Hourly`, `OldPowers.Hourly`), with Rimfolk's world events on, at each home on the ground with no
+  fight on. With nothing under way and the last of any at least four days back (`OldPowersMath.SpacingDays`), each
+  happening whose hours it is (`HoursOf`: the seer and the pilgrims in the morning, the beast and the dead at dusk, most at
+  night) and whose call holds has its chance, one at most. One under way at a time (`OldPowersBook.play`, an
+  `OldPowerPlay`), its short steps on their own due tick (`OldPowersBook.Due`; nothing at all ticks with none under way), let
+  go when it ends so nothing of it stays in the save. Words through `OldPowers.T` and `Aged` (the colony's age, tribal to
+  spacer, `CC_OldP_..._0` to `_3`), lines through the pool `Rimfolk_Pool_OldPowersSaid` (`OldPowers.Line`: only lines
+  tagged with every tag of the moment, in the colony's era; one sentence over the head, `Speech.Say`), cards through
+  `Tell.Letter`, news lines through `Tell.Minor`.
+- **The pace** (`OldPowersMath.PaceOf`, `DayChance`, `CheckChance`): the gods' rules (`GodPaceMath`): each its own gap (18
+  to 36 days), its chance small at the end of the gap and growing over a ramp, nothing on a call that is nearly always
+  true (`GodPaceMath.Trigger`: none means never, however free), a strong reason 2.2 times as likely. The ways' lever
+  `StoryWaysMath.Uncanny` (`StoryLevers.uncanny`) makes each look three times as likely under Old Powers or its story
+  direction (`<uncanny>3</uncanny>`), 1 under every other way and storyteller; with the gaps and the spacing that comes to
+  about one in three weeks at a home under any storyteller and one in ten days under Old Powers (the tests' model).
+- **The fourteen** (`OldPowersMath.OldPower`, saved in this order):
+  - *The seer of the season* (`OldPowersVisitors.cs`; a season's last two days, strongly with a frost or the heat coming):
+    a seer of a people at peace (A RimWorld of Magic's arcane fold, `Seers`, six times likelier; a people of seers next)
+    walks in on a visit, with the Chronomancer class where the mod has it, sits at the colony's middle and casts in the
+    age's way (bones in the ashes, painted cards, a pendulum over a map, readings on a screen); someone free sits to
+    listen; one word at a time over the seer's head, then the card with each word and its plain fact, all true
+    (`SeerWords`: the next season's warmth from the map's twelfths, whether crops grow, the stores short or enough, blades
+    when the storyteller's queue holds a fight within fifteen days).
+  - *Everything faced one way* (`OldPowersNight.cs`; midnight, strongly the night after a death of the colony, else a
+    clear night with no moon): everyone and every beast awake stops and faces one way for ten seconds, shadows running
+    out that way; after a death toward where the dead lie (at dawn someone goes and stands there), else toward the edge
+    of the land (at dawn someone walks out and finds an old worn thing of the colony's age there, `OwnMurmur.OldThing`).
+  - *The humming stone* (dusk, a psychic sky strongly, a thunderstorm): a stone chunk near the middle, else the rock face
+    nearest, hums till five in the morning; the beasts keep away; someone lays a hand on it (a mage's mana filled); those
+    asleep within fourteen cells dream of it.
+  - *The sealed scroll* (`OldPowersFinds.cs`; someone of the colony in a room of the old ruins not searched before):
+    something sealed lies in the dust and they walk over and kneel by it: A RimWorld of Magic's spell scroll or now and
+    then its grimoire; else a tome (Anomaly) or a textbook in an older colony, a schematic or a textbook in a newer one.
+    Each room gives one at most (`OldPowersBook.searched`).
+  - *The casters lit up* (A RimWorld of Magic's mana storm or surge, Vanilla Events Expanded's psychic bloom,
+    stimulation or overdrive strongly, an aurora): the colony's mages (their mana filled), psycasters (half their
+    psyfocus) and those psychically sensitive enough light up where they stand; at the shared budget's rate one is
+    burned across the hands by the light (`Harm.Injure`, `HarmKinds.Uncanny`), and the card says so.
+  - *The wandering enchanter* (a season's first three days, never in winter, strongly with a caster in the colony, only
+    with a piece below masterwork and the silver for it): an enchanter (A RimWorld of Magic's Enchanter class where the
+    mod has it; in the age's form, a rune-carver to a nanite smith) offers to work the colony's finest carried weapon or
+    worn piece up one grade (`EnchantPrice`: 60 to 600 silver); asked by its own letter (`ChoiceLetter_OldPowers`,
+    `Rimfolk_OldPowersLetter`) when the letters' gap allows, it walks on unanswered; yes, the bearer walks over, the two
+    stand an hour over it with the light running along it, the silver comes out of the stores.
+  - *The thing under the ground* (a long wet run strongly, a shorter one or the thaw): a knock under open earth near the
+    middle one night, the ground cracking the next, and on the third morning it comes up (`PickFind`, leaning from the
+    last finds): an old cache (silver and an old worn thing), something precious of the colony's age (`ThingRoles`, the
+    player's whole pool), A RimWorld of Magic's raw magicyte (with a minor enchanting gem now and then); or with Anomaly,
+    harm on and the shared budget's roll, one or two of the game's shamblers climbing out and coming for the colony (a
+    small threat's card). Someone walks over to look.
+  - *The dead on the road* (dusk, strongly within three days of a death of the colony, else a night with no moon while
+    the void is awake or the dead lie unburied): a line of pale figures walks a road across the land past the colony and
+    off it; those who see it stop and watch. With Anomaly, harm on and the shared budget's roll, the game's small
+    shambler swarm walks it instead (a small share of the threat points, its own letter under the old powers' words).
+  - *Pilgrims passing* (`OldPowersVisitors.cs`; spring's or autumn's first three days, strongly under an eclipse or an
+    aurora): three to five pilgrims of a people at peace (a people of pilgrims likelier) stop at the colony's oldest grave,
+    else its oldest tree, else its middle, pray there in turn, leave a carving of their people's age from the player's
+    whole pool, and walk on.
+  - *Another sky* (a clear night in the deep of summer or winter, strongly under an aurora): till five in the morning the
+    night sky is violet with green-white shadows (`GameCondition_OtherSky`, `Rimfolk_OldP_OtherSky`), stars wrong,
+    stargazing three times as likely and the gladder; those out of doors stop and look up.
+  - *The animal that spoke* (`OldPowersFinds.cs`; dusk, strongly after the colony's hunters took four beasts in five days,
+    else a full moon): a wild animal walks up to someone out of doors, stands before them and says one true sentence
+    (`BeastWordOf`: the beasts taken, a fight coming, that they are sick, hungry, worn out or unhappy, else that something
+    old is watching), then walks off like any other animal.
+  - *A god going by* (evening, strongly a god of the colony drawn very near, else drawn near on a night with no moon; never
+    while a coming, a presence or omens are under way): the god's own signs (round 2, `GodShapes.Omens`) one after another
+    from ten at night, two hours apart, through the gods' own omens; at dawn the one who keeps it most looks out and says
+    it went by, the colony's book keeps what they saw (`GodsOnMapWords.Saw`), and its own presence (round 2) stays a while
+    as it goes (`PresenceKind.Depart`, `OldPowersMath.PassLingers`: where it has one that isn't held only while the god
+    walks the land, and no other presence is on), named as the colony knows it, as the gods' own quiet presence is.
+  - *The pale wolves* (`OldPowersNight.cs`; a full moon on a clear night, strongly in winter or with snow lying): a wolf
+    howls far off (A RimWorld of Magic's `TM_WolfHowl`, else the game's warg), and five to eight pale wolves (its spirit
+    wolves, `Mote_SpiritWolf_North` to `_West`, each drawn running the way it runs; else a pale light) run once round the
+    colony 22 cells out and off the land; the beasts near stand and watch, those of the colony out of doors who see them
+    stop and look ("saw the pale wolves", +2). At dawn someone walks out to where they ran and looks: no tracks, the snow
+    smooth where there is snow.
+  - *Eyes in the dark* (`OldPowersNight.cs`; a foggy night strongly, else a night with no moon in autumn or winter): three
+    to six pairs of eyes catch the light at the edge of the dark 14 to 24 cells round the colony (two small glints side by
+    side, low to the ground, A RimWorld of Magic's grey twinkle tinted), on places the colony's light doesn't reach;
+    those out of doors who can see a pair stop and look ("felt watched", -2). After about a minute the one handiest in a
+    fight, awake and free, walks out to the nearest pair, and as they come close every pair goes out, with nothing there;
+    unwalked to, they go out at first light or after four hours.
+- **Harm** (`HarmKinds.Uncanny`, "something uncanny that turns on someone (old powers)", system `oldPowers`, on with the
+  world events, weight 0.004): the caster's burn, the shamblers on the road, the dead from under the ground, each rolled
+  through `Harm.Roll` against the shared budget at the game's rate and told on a card. Nothing else hurts anyone; the
+  pale wolves and the eyes never do.
+- **The gods unseen**: a card names a god only through `Gods.CardName` (the colony knows it was that god) and
+  `GodsOnMapWords.Title`; else "Signs in the night" and "some say something went past"; the presence after dawn is
+  veiled unless the colony knows the god. The animal's "something old is watching" names nothing.
+- **Ages**: the seer's casting, the ruin the scroll lies in, the enchanter's trade and another sky's stars each have four
+  forms (`Aged`); the lines carry era tags where an age speaks its own way; the finds are of the colony's age.
+- **The player's mods** (by name, the active rows of `docs/player-mods`, the game's own where one isn't loaded): A
+  RimWorld of Magic's motes (casting circles, glowing runes, mana puffs, arcane waves, psionic current, ghosts, shadows,
+  twinkles, holy light, earth cracks, its spirit wolves), sounds (gong, power-up, low vibration, low wind, soft
+  explosion, wolf howl, its sermon), scrolls and grimoire, raw magicyte and minor enchanting gems, its Chronomancer and
+  Enchanter classes, its arcane fold, its mana storm and surge; Vanilla Events Expanded's and Vanilla Psycasts Expanded's
+  psychic skies, the Archon's psychic storm; Anomaly's shamblers and tomes; Royalty's psycasters and anima sound.
+- **Dev actions** ("Rimfolk", `OldPowersDebug.cs`): one a happening ("Old powers: ... now"), the next step now, and the
+  pace in the log.
+- **Saved**: `OldPowersBook` (a game component): when each last came (fourteen), the last of any, the short memory of the
+  forms (`GodPaceMath.Memory`), the ruins' rooms searched (`RuinsKept`), the one under way (its pilgrims, five at most,
+  and the eyes' places, six at most). Modelled in `Tools/save_estimate.py`.
+- **What only the game can show**: the motes in view (the wolves' drawings upright and running the right way, the
+  eyes' glints at the edge of the light), the seer's and the enchanter's visits with their lords, the bearer and the
+  enchanter standing an hour, everything facing one way at once, the shamblers' letter under the old powers' words, the
+  presence after dawn, and how often they come in a real colony.
+
 ### Checking a new game version
 
 One DLL serves every supported version: it is built against the 1.6 references into `1.6/Assemblies`, and on 1.7
