@@ -39,10 +39,10 @@
           <li>The Signal Line's relay</li>
         </titles>
         <texts>
-          <li>{X_nameDef}, a lineman of {FACTION}, has come to the gate in a signal orange oilskin, leading a mule loaded with a lattice mast in sections and a coil of wire. The Line would raise a relay mast {TALE}, {X_nameDef} says, for nothing: from then the colony's letters go down the line from mast to mast and reach their readers in half the days, and when the linemen down the line hear of armed men on the road toward the colony, they call it up the mast before they arrive.</li>
-          <li>[hill] {X_nameDef}, a lineman of {FACTION}, has been looking at the hills round the colony as {X_pronoun} came up the road, a mast in sections on the mule behind. The ground {TALE} is the best height for miles, {X_nameDef} says, and the Line would raise a relay mast there: letters down the line in half the days, and a warning called up it when raiders are on the road.</li>
-          <li>[lowtech] A lineman of {FACTION} named {X_nameDef} has walked from {PLACE} with a mule and a tall frame of metal in pieces. It is a mast, {X_nameDef} says, that talks to the next mast and the next, and the Line would raise one {TALE}: the colony's letters would travel by it in half the time, and the linemen would call a warning up it when armed men are on the road.</li>
-          <li>[their:grateful] The Signal Line thinks well of the colony, and {X_nameDef} has brought a mast from {PLACE} to raise {TALE}: letters down the line in half the days, and the line's warning of a raid, as between friends.</li>
+          <li>{X_nameDef}, a lineman of {FACTION}, has come to the gate in a bright orange oilskin, leading a mule loaded with a lattice mast in sections and a coil of wire. {X_nameDef} says the Line would put up a relay mast {TALE} for free. After that, the colony's letters would be passed from mast to mast and reach their readers in half the time. And when linemen further along the line hear of armed men on the road toward the colony, they would send a warning up the mast before the raiders arrive.</li>
+          <li>[hill] {X_nameDef}, a lineman of {FACTION}, has come up the road with a mast in sections on the mule behind {X_objective}, looking at the hills around the colony on the way. {X_nameDef} says the ground {TALE} is the highest for miles, and the Line would like to put up a relay mast there. The colony's letters would arrive in half the time, and the Line would send a warning when raiders are on the road.</li>
+          <li>[lowtech] {X_nameDef}, a lineman of {FACTION}, has walked from {PLACE} with a mule and a tall metal frame in pieces. {X_nameDef} says it is a mast that sends messages to the next mast along the line, and the Line would like to put one up {TALE}. The colony's letters would travel in half the time, and the linemen would send a warning along it when armed men are on the road.</li>
+          <li>[their:grateful] The Signal Line thinks well of the colony, and {X_nameDef} has brought a mast from {PLACE} to put up {TALE}. The colony's letters would arrive in half the time, and the Line would warn the colony of raids, as it does for friends.</li>
         </texts>
         <defaultOption>0</defaultOption>
         <options>
@@ -106,9 +106,9 @@
           <li>Parts for the line</li>
         </titles>
         <texts>
-          <li>{X_nameDef}, a wire-trader of {FACTION}, has come to the gate with a lineman and an empty pack. The masts eat components, {X_nameDef} says, and the colony has {TALE} in its stores: the Line would pay {COUNT} silver for them. Or for fifty silver {X_pronoun} would sell the colony what the line has heard of a trader caravan on the road nearby, and tell the caravan about the colony.</li>
-          <li>[lowtech] A wire-trader of {FACTION} named {X_nameDef} is at the gate, looking at the colony's stores. The Line needs the little machine parts the colony keeps, {TALE}, and would pay {COUNT} silver for them. Or {X_nameDef} would sell the colony the news the masts carried of traders on the road, fifty silver, and send them this way.</li>
-          <li>[their:grateful] The Signal Line thinks well of the colony, and {X_nameDef} has come from {PLACE} for the colony's components, {TALE}, at {COUNT} silver, a good price. Or the line's news of a caravan on the road nearby, fifty silver, as between friends.</li>
+          <li>{X_nameDef}, a wire-trader of {FACTION}, has come to the gate with a lineman and an empty pack. {X_nameDef} says the masts use up a lot of components, and the Line would pay {COUNT} silver for the {TALE} in the colony's stores. Or, for fifty silver, {X_nameDef} would tell the colony what the Line has heard about a trader caravan on the road nearby, and send word to the caravan about the colony.</li>
+          <li>[lowtech] {X_nameDef}, a wire-trader of {FACTION}, is at the gate, looking at the colony's stores. The Line needs the small machine parts the colony keeps, {TALE}, and would pay {COUNT} silver for them. Or, for fifty silver, {X_nameDef} would tell the colony what the masts have heard about traders on the road, and send them this way.</li>
+          <li>[their:grateful] The Signal Line thinks well of the colony, and {X_nameDef} has come from {PLACE} to buy the colony's components, {TALE}, for {COUNT} silver, a good price. Or, for fifty silver, {X_nameDef} would pass on the Line's news of a caravan on the road nearby.</li>
         </texts>
         <defaultOption>2</defaultOption>
         <options>
@@ -166,12 +166,12 @@
         <answerDays>0.2</answerDays>
         <titles>
           <li>A lineman in the storm</li>
-          <li>Keeping the mast singing</li>
+          <li>A mast in the storm</li>
         </titles>
         <texts>
-          <li>{X_nameDef}, a lineman of {FACTION}, has come up the road through the storm, oilskin streaming, a coil of rope over one shoulder. The colony's mast is {TALE}, {X_nameDef} says, and the Line keeps every mast singing in any weather: {X_pronoun} would climb it now and make it fast.</li>
-          <li>[quiet] {X_nameDef}, a lineman of {FACTION}, came up the road through the storm because the colony's mast went quiet on the line. It is {TALE}, {X_nameDef} says, wiping the rain out of {X_possessive} eyes, and {X_pronoun} would climb it now and set it right before the wind takes it.</li>
-          <li>[lowtech] A lineman of {FACTION}, {X_nameDef}, has walked through the storm to the gate with rope and tools. The tall mast is {TALE}, {X_nameDef} says, and {X_pronoun} has climbed worse than this: {X_pronoun} would go up it now and make it fast against the wind.</li>
+          <li>{X_nameDef}, a lineman of {FACTION}, has come up the road through the storm in a dripping oilskin, with a coil of rope over one shoulder. {X_nameDef} says the colony's mast is {TALE}, and the Line keeps every mast working in any weather. {X_nameDef} would like to climb it now and secure it.</li>
+          <li>[quiet] {X_nameDef}, a lineman of {FACTION}, came up the road through the storm because the colony's mast stopped sending. {X_nameDef} says it is {TALE}, and would like to climb it now and fix it before the wind brings it down.</li>
+          <li>[lowtech] {X_nameDef}, a lineman of {FACTION}, has walked through the storm to the gate with rope and tools. {X_nameDef} says the tall mast is {TALE}, and offers to climb it now and secure it against the wind.</li>
         </texts>
         <defaultOption>0</defaultOption>
         <options>
@@ -233,10 +233,10 @@
           <li>A drill for a share</li>
         </titles>
         <texts>
-          <li>A drill crew of {FACTION} has come to the gate with a rig on a cart, {X_nameDef} at its head with the union's red armband on. There is {THING} deep under the colony's ground, {X_nameDef} says, and the union would drill it for a share: six hours at the seam, and of the {COUNT} that comes up, {TALE} left at the drill for the colony and the rest for the union's book.</li>
-          <li>[scanned] A drill crew of {FACTION}, {X_nameDef} doing the talking, has come to the gate: they heard the colony found {THING} deep under its ground and has no drill on it yet. Six hours of the union's rig and {COUNT} of it comes up, {TALE} left for the colony, the rest for the union.</li>
-          <li>[lowtech] {X_nameDef} and a crew of {FACTION} have dragged a strange iron rig up to the gate. There is {THING} far under the colony's ground, {X_nameDef} says, deeper than any pick can reach, and the union's rig can bring {COUNT} of it up in an afternoon: {TALE} for the colony, the rest for the union.</li>
-          <li>[their:grateful] The Deepwell Union thinks well of the colony, and {X_nameDef}'s crew has come from {PLACE} to drill the {THING} under the colony's ground: {COUNT} of it up in six hours, {TALE} for the colony, as between friends.</li>
+          <li>A drill crew of {FACTION} has come to the gate with a rig on a cart, led by {X_nameDef}, who wears the union's red armband. {X_nameDef} says there is {THING} deep under the colony's land, and the union would drill for it in exchange for a share. It would take six hours, and of the {COUNT} that comes up, {TALE} would be left at the drill for the colony and the rest would go to the union.</li>
+          <li>[scanned] A drill crew of {FACTION} has come to the gate, and {X_nameDef} is doing the talking. They heard the colony found {THING} deep under its land and has not drilled for it yet. In six hours the union's rig would bring up {COUNT} of it, leaving {TALE} for the colony and the rest for the union.</li>
+          <li>[lowtech] {X_nameDef} and a crew of {FACTION} have dragged a strange iron rig up to the gate. {X_nameDef} says there is {THING} far under the colony's land, deeper than any pick can reach, and the union's rig can bring {COUNT} of it up in an afternoon. The colony would get {TALE}, and the union the rest.</li>
+          <li>[their:grateful] The Deepwell Union thinks well of the colony, and {X_nameDef}'s crew has come from {PLACE} to drill for the {THING} under the colony's land. In six hours they would bring up {COUNT} of it, and leave {TALE} for the colony, a friend's share.</li>
         </texts>
         <defaultOption>0</defaultOption>
         <options>
@@ -301,9 +301,9 @@
         </titles>
         <texts>
           <li>{X_nameDef}, an assayer of {FACTION}, has come to the gate with a miner and a cart. The union has a crate to sell from its pits, {TALE}, for {COUNT} silver. Or {X_nameDef} would walk the colony's ground with its best miner and say what lies under it.</li>
-          <li>[seam] {X_nameDef}, an assayer of {FACTION}, has come to the gate with a crate on a cart: {TALE}, {COUNT} silver. {X_pronoun} has a nose for ground, {X_nameDef} says, and the colony's has something in it worth knowing about, if its miner would walk it with {X_objective}.</li>
-          <li>[lowtech] An assayer of {FACTION} named {X_nameDef} has come to the gate with a cart of metal and strange charges: {TALE}, all of it for {COUNT} silver. Or {X_pronoun} would walk the colony's ground and say what is under it.</li>
-          <li>[their:grateful] The Deepwell Union thinks well of the colony, and {X_nameDef} has brought it the pick of the pits' crate, {TALE}, for {COUNT} silver, as between friends.</li>
+          <li>[seam] {X_nameDef}, an assayer of {FACTION}, has come to the gate with a crate on a cart, {TALE}, for {COUNT} silver. {X_nameDef} says {X_pronoun} can tell what lies under the ground, and the colony's land has something in it worth knowing about, if the colony's miner would walk it with {X_objective}.</li>
+          <li>[lowtech] {X_nameDef}, an assayer of {FACTION}, has come to the gate with a cart of metal and strange explosive charges: {TALE}, all of it for {COUNT} silver. Or {X_nameDef} would walk the colony's land and say what is under it.</li>
+          <li>[their:grateful] The Deepwell Union thinks well of the colony, and {X_nameDef} has brought it the best of the pits' goods, {TALE}, for {COUNT} silver, a friend's price.</li>
         </texts>
         <defaultOption>2</defaultOption>
         <options>
@@ -364,9 +364,9 @@
           <li>A shift-captain at the gate</li>
         </titles>
         <texts>
-          <li>{X_nameDef}, a shift-captain of {FACTION}, has come to the gate with the union's red armband on and an empty sack. The union is on strike at {PLACE}, voted on and held, and nothing has moved out of the pits since: no carts, no caravans. The picket line is hungry, {X_nameDef} says. With {COUNT} of the colony's raw food the union could hold out to a fair deal and go back; or the colony's best talker could sit down with {X_objective} and help talk it through.</li>
-          <li>[lowtech] A shift-captain of {FACTION}, {X_nameDef}, has walked from {PLACE}: the miners have laid down their picks by vote, and nobody will buy or sell until it is settled. The picket line needs food, {COUNT} of it, to hold to a fair end, or someone who can talk to both sides.</li>
-          <li>[their:grateful] The Deepwell Union thinks well of the colony, and {X_nameDef} has come to it first: the strike at {PLACE} needs {COUNT} raw food for the picket line, or a fair voice to help settle it.</li>
+          <li>{X_nameDef}, a shift-captain of {FACTION}, has come to the gate wearing the union's red armband and carrying an empty sack. The union voted to strike at {PLACE}, and nothing has left the pits since, neither carts nor caravans. {X_nameDef} says the strikers are going hungry. With {COUNT} of the colony's raw food the union could hold out until it gets a fair deal and goes back to work. Or the colony's best talker could sit down with {X_objective} and help work out a settlement.</li>
+          <li>[lowtech] {X_nameDef}, a shift-captain of {FACTION}, has walked from {PLACE}. The miners have voted to stop work, and nobody there will buy or sell until it is settled. The strikers need {COUNT} food to hold out for a fair deal, or someone who can talk to both sides.</li>
+          <li>[their:grateful] The Deepwell Union thinks well of the colony, so {X_nameDef} has come to it first. The strikers at {PLACE} need {COUNT} raw food, or a fair-minded person to help settle the strike.</li>
         </texts>
         <defaultOption>2</defaultOption>
         <options>
@@ -426,8 +426,8 @@
           <li>A census-taker at the gate</li>
         </titles>
         <texts>
-          <li>{X_nameDef}, a census-taker of {FACTION}, has come to the gate with a guard of the Civic Guard and a bound roll under one arm. The Republic counts everyone it can, {X_nameDef} says: {X_pronoun} would walk the colony from bed to bed and write its {COUNT} people into the roll, every name, as the law requires.</li>
-          <li>[citizens] {X_nameDef}, a census-taker of {FACTION}, has come for the colony's count: as citizens of the Republic, its {COUNT} people are owed a place in the roll. {X_pronoun} would walk the colony from bed to bed with the guard and write every one of them down.</li>
+          <li>{X_nameDef}, a census-taker of {FACTION}, has come to the gate with a member of the Civic Guard and a bound roll under one arm. {X_nameDef} says the Republic counts everyone it can, and would like to walk through the colony from bed to bed and write the names of all {COUNT} of its people into the roll, as the Republic's law requires.</li>
+          <li>[citizens] {X_nameDef}, a census-taker of {FACTION}, has come to count the colony. As citizens of the Republic, its {COUNT} people are entitled to a place in the roll. {X_nameDef} would walk the colony from bed to bed with the guard and write every one of them down.</li>
           <li>[lowtech] A clerk of {FACTION} named {X_nameDef} has come to the gate with a guard and a great book. The Republic writes down everyone, {X_nameDef} says, and would walk through the colony, bed by bed, until all {COUNT} of its people are in the book.</li>
           <li>[their:grateful] The Last Republic thinks well of the colony, and {X_nameDef} has come from {PLACE} to count its {COUNT} people into the roll, bed by bed, as a courtesy between friends.</li>
         </texts>
@@ -490,9 +490,9 @@
           <li>The Republic's offer</li>
         </titles>
         <texts>
-          <li>{X_nameDef}, a clerk of {FACTION}, has come to the gate with a satchel of stamped papers. The Republic would make the colony its citizens, {X_nameDef} says, for a year: its traders would deal with the colony on a citizen's terms, {TALE} better, and in return the colony owes the Republic its duty. When the Republic calls for a conscript, a citizen answers.</li>
-          <li>[lowtech] A clerk of {FACTION} named {X_nameDef} is at the gate with papers sealed in wax. The colony could be citizens of the Republic for a year, {X_nameDef} says: better dealings with the Republic's traders, {TALE} better, and a duty to answer when the Republic calls for a fighter.</li>
-          <li>[their:grateful] The Last Republic thinks well of the colony, and {X_nameDef} has brought its citizenship papers from {PLACE}: a year of a citizen's terms with its traders, {TALE} better, and the duty that comes with them.</li>
+          <li>{X_nameDef}, a clerk of {FACTION}, has come to the gate with a satchel of stamped papers. {X_nameDef} offers to make the colony citizens of the Republic for a year. Its traders would give the colony citizens' prices, {TALE} better, and in return the colony would owe the Republic service: when the Republic calls for a conscript, the colony must send one.</li>
+          <li>[lowtech] {X_nameDef}, a clerk of {FACTION}, is at the gate with papers sealed in wax. {X_nameDef} offers to make the colony citizens of the Republic for a year. The Republic's traders would give the colony better prices, {TALE} better, and the colony would have to send a fighter when the Republic calls for one.</li>
+          <li>[their:grateful] The Last Republic thinks well of the colony, and {X_nameDef} has brought citizenship papers from {PLACE}. For a year the Republic's traders would give the colony citizens' prices, {TALE} better, and the colony would owe the Republic a citizen's service.</li>
         </texts>
         <defaultOption>2</defaultOption>
         <options>
@@ -550,9 +550,9 @@
           <li>A conscript for a season</li>
         </titles>
         <texts>
-          <li>{X_nameDef}, a sergeant of the Civic Guard of {FACTION}, has come to the gate in the Guard's navy with a list. The Republic needs one good fighter of the colony for a season at {PLACE}, {TALE} away: {A_nameDef}, by the look of things. They would serve on its walls and streets and come home with the pay and the drill, by the roads both ways, as the roads allow. Or the colony may pay {COUNT} silver to be excused.</li>
-          <li>[citizens] {X_nameDef}, a sergeant of the Civic Guard of {FACTION}, has come for the duty the colony owes as a citizen: one fighter for a season at {PLACE}, {TALE} away, and {A_nameDef} would do. They would come home with the pay and the drill, by the roads both ways. The colony may pay {COUNT} silver instead; refused outright, the Republic strikes its papers.</li>
-          <li>[lowtech] A soldier of {FACTION} named {X_nameDef} has come to the gate with a list of names: the Republic wants a fighter of the colony for a season at {PLACE}, {TALE} on foot, and has {A_nameDef} in mind. They would walk there and back on the open road, and come home paid. Or the colony pays {COUNT} silver to be left alone.</li>
+          <li>{X_nameDef}, a sergeant of the Civic Guard of {FACTION}, has come to the gate in the Guard's navy uniform with a list. The Republic needs one good fighter from the colony to serve for a season at {PLACE}, {TALE} away, and has {A_nameDef} in mind. {A_nameDef} would guard its walls and streets, travel there and back by road, and come home paid and better trained. Or the colony can pay {COUNT} silver to be excused.</li>
+          <li>[citizens] {X_nameDef}, a sergeant of the Civic Guard of {FACTION}, has come for the service the colony owes as a citizen: one fighter for a season at {PLACE}, {TALE} away, and {A_nameDef} would do. {A_nameDef} would travel there and back by road and come home paid and better trained. The colony can pay {COUNT} silver instead. If it refuses outright, the Republic will cancel its citizenship.</li>
+          <li>[lowtech] {X_nameDef}, a soldier of {FACTION}, has come to the gate with a list of names. The Republic wants a fighter from the colony for a season at {PLACE}, {TALE} away on foot, and has {A_nameDef} in mind. {A_nameDef} would walk there and back on the open road and come home paid. Or the colony can pay {COUNT} silver to be excused.</li>
         </texts>
         <defaultOption>2</defaultOption>
         <options>
@@ -609,10 +609,10 @@
           <li>A shuttle from the hull</li>
         </titles>
         <texts>
-          <li>The colony's radio has picked up a call from {FACTION}: their quartermaster asks leave to bring the ship's shuttle down by the gate with goods from the hull, and trade. They also have a cryptosleep casket from the sleepers' hold the ship can spare, for {COUNT} silver, which would come down in the shuttle's hold.</li>
-          <li>[pods] The colony's radio has picked up a call from {FACTION}: their quartermaster asks leave to come down by drop pod beside the gate with goods from the hull, and trade. A cryptosleep casket the ship can spare would come down with them, for {COUNT} silver.</li>
-          <li>[nocasket] The colony's radio has picked up a call from {FACTION}: their quartermaster asks leave to bring the ship's shuttle down by the gate with goods from the hull, and trade.</li>
-          <li>[their:grateful] {FACTION} thinks well of the colony, and their quartermaster calls on the radio to ask leave to bring the shuttle down by the gate and trade, and to offer a cryptosleep casket from the hull for {COUNT} silver, as between friends.</li>
+          <li>The colony's radio has picked up a call from {FACTION}. Their quartermaster asks permission to land the ship's shuttle by the gate with goods from the ship to trade. They can also spare a cryptosleep casket from the ship's sleeper hold for {COUNT} silver, which would come down in the shuttle.</li>
+          <li>[pods] The colony's radio has picked up a call from {FACTION}. Their quartermaster asks permission to come down by drop pod beside the gate with goods from the ship to trade. They could also bring down a cryptosleep casket the ship can spare, for {COUNT} silver.</li>
+          <li>[nocasket] The colony's radio has picked up a call from {FACTION}. Their quartermaster asks permission to land the ship's shuttle by the gate with goods from the ship to trade.</li>
+          <li>[their:grateful] {FACTION} thinks well of the colony, and their quartermaster has called on the radio asking permission to land the shuttle by the gate and trade. As a friend, the quartermaster also offers a cryptosleep casket from the ship for {COUNT} silver.</li>
         </texts>
         <defaultOption>0</defaultOption>
         <options>
@@ -667,10 +667,10 @@
           <li>The Fleet's quartermaster</li>
         </titles>
         <texts>
-          <li>{X_nameDef}, a quartermaster of {FACTION}, has come to the gate in the ship's grey with two deckhands and a sled. The ship needs what the colony has salvaged, {TALE}, and the Fleet would pay {COUNT} silver for it: the parts carried out to them, the chunks cut apart where they lie and hauled off on the sled.</li>
-          <li>[chunks] {X_nameDef}, a quartermaster of {FACTION}, has come to the gate with two deckhands and cutting gear: the colony has {TALE} lying on its ground, and every plate of it is a plate the ship lacks. {COUNT} silver for the lot, and the deckhands cut the chunks apart where they lie.</li>
+          <li>{X_nameDef}, a quartermaster of {FACTION}, has come to the gate in the ship's grey uniform with two deckhands and a sled. The ship needs what the colony has salvaged, {TALE}, and the Fleet would pay {COUNT} silver for it. The parts would be carried out to them, and the deckhands would cut the large chunks apart where they lie and haul them off on the sled.</li>
+          <li>[chunks] {X_nameDef}, a quartermaster of {FACTION}, has come to the gate with two deckhands and cutting gear. The colony has {TALE} lying on its land, and the ship needs every plate of it. They would pay {COUNT} silver for the lot, and the deckhands would cut the chunks apart where they lie.</li>
           <li>[lowtech] {X_nameDef} of {FACTION}, in a grey uniform older than anything in the colony, has come to the gate with two deckhands. They want {TALE}, fallen from the sky or kept in the colony's stores, and would pay {COUNT} silver, cutting up the big pieces where they lie.</li>
-          <li>[their:grateful] {FACTION} thinks well of the colony, and {X_nameDef} has come straight to it for {TALE}: {COUNT} silver, a fair price, as between friends.</li>
+          <li>[their:grateful] {FACTION} thinks well of the colony, and {X_nameDef} has come straight to it to buy {TALE} for {COUNT} silver, a fair price.</li>
         </texts>
         <defaultOption>2</defaultOption>
         <options>
@@ -732,7 +732,7 @@
         </titles>
         <texts>
           <li>Towards evening someone has come to the gate in a ship's uniform two hundred years out of date, pale and unsteady from the long sleep: {X_nameDef}, a sleeper from the caskets of {FACTION}. They went to sleep {COUNT} years ago expecting to wake on a new world with everyone they knew, {X_nameDef} says, and woke to strangers keeping watch on a ship that never moved. The crew had no place for them. They ask the colony for shelter.</li>
-          <li>[theirfoe] Towards evening a sleeper from the caskets of {FACTION}, {X_nameDef}, has come to the gate, still sick from {COUNT} years of cryptosleep. They walked away from the hull the day they woke, {X_nameDef} says, and want nothing of the Fleet or its quarrels: only somewhere to belong.</li>
+          <li>[theirfoe] Towards evening a sleeper from the caskets of {FACTION}, {X_nameDef}, has come to the gate, still sick from {COUNT} years of cryptosleep. {X_nameDef} says they left the ship the day they woke and want nothing to do with the Fleet or its quarrels, only somewhere to belong.</li>
           <li>[lowtech] Towards evening a pale stranger in strange grey clothes has come to the gate: {X_nameDef}, who says they slept {COUNT} years in a cold box in the belly of the great hull of {FACTION}, and woke to find everyone they loved dead and the ship still on the ground. They ask the colony for shelter.</li>
         </texts>
         <defaultOption>1</defaultOption>

@@ -41,19 +41,19 @@
           <li>[legend] The Wardens come for {BEAST}</li>
         </titles>
         <texts>
-          <li>[alpha] Wardens of {FACTION} have come to the gate with soot-black lanterns at their belts and red cords knotted to the sleeve, {X_nameDef} at their head. They have followed the pack that runs with {BEAST} from crossroads to crossroads, and they would hunt it on the colony's land, beside the colony's best shot if the colony likes. Their share would be its hide, for their book; the meat would be the colony's.</li>
-          <li>[nemesis] {X_nameDef} and the Wardens with {X_objective} have come to the gate because {BEAST} is on the colony's land again. There is a page in their book for every beast that has hurt someone, {X_nameDef} says, and this one's page is still open. They would hunt it now, beside the colony's best shot if the colony likes, for its hide; the meat would be the colony's.</li>
-          <li>[legend] Wardens of {FACTION} have come to the gate the moment they heard {BEAST} was on the colony's land. The region tells stories about it, and the Wardens have kept an empty page for it for years. {X_nameDef} asks leave to hunt it here, beside the colony's best shot if the colony likes, for its hide; the meat would be the colony's.</li>
-          <li>[manhunter] {X_nameDef} and the Wardens with {X_objective} have come up the road at a run, because {BEAST} is loose on the colony's land and in a killing mood. They would go after it at once, alone or beside the colony's best shot, for nothing but its hide.</li>
-          <li>[lowtech] {X_nameDef}, a Warden of {FACTION} with a boar-spear over one shoulder, has come to the gate with the others behind {X_objective}. Where a lantern burns, someone was taken, {X_nameDef} says, and {BEAST} is on the colony's land. The Wardens would hunt it, beside the colony's best if the colony likes, for its hide.</li>
-          <li>[!lowtech] {X_nameDef} of {FACTION} has come to the gate with a crossbow, a book under one arm and the others behind. They track the great beasts of the region from road to road, and {BEAST} is on the colony's land. They would hunt it, beside the colony's best shot if the colony likes, for its hide; the meat would be the colony's.</li>
-          <li>[their:grateful] The Wardens remember the colony kindly, and {X_nameDef} has come to say so: {BEAST} is on the colony's land, and they would hunt it with the colony's best shot for its hide alone.</li>
+          <li>[alpha] Wardens of {FACTION} have come to the gate with lanterns at their belts, led by {X_nameDef}. They have followed the pack that runs with {BEAST} across the region, and would like to hunt it on the colony's land, with the colony's best shot if the colony likes. They would keep its hide for their book of hunted beasts, and the meat would be the colony's.</li>
+          <li>[nemesis] {X_nameDef} and the Wardens with {X_objective} have come to the gate because {BEAST} is on the colony's land again. {X_nameDef} says the Wardens keep a page in their book for every animal that has hurt someone, and this one has never been killed. They would hunt it now, with the colony's best shot if the colony likes, for its hide. The meat would be the colony's.</li>
+          <li>[legend] Wardens of {FACTION} came to the gate as soon as they heard {BEAST} was on the colony's land. It is famous across the region, and the Wardens have been trying to hunt it for years. {X_nameDef} asks permission to hunt it here, with the colony's best shot if the colony likes, for its hide. The meat would be the colony's.</li>
+          <li>[manhunter] {X_nameDef} and the Wardens with {X_objective} have hurried up the road, because {BEAST} is loose on the colony's land and attacking people. They would go after it at once, alone or with the colony's best shot, and want nothing but its hide.</li>
+          <li>[lowtech] {X_nameDef}, a Warden of {FACTION} with a boar-spear over one shoulder, has come to the gate with the others behind {X_objective}. {X_nameDef} says {BEAST} is on the colony's land, and the Wardens would like to hunt it, with the colony's best hunter if the colony likes, for its hide.</li>
+          <li>[!lowtech] {X_nameDef} of {FACTION} has come to the gate with a crossbow, a book under one arm and the others behind. They track the great beasts of the region from road to road, and {BEAST} is on the colony's land. They would hunt it, with the colony's best shot if the colony likes, for its hide. The meat would be the colony's.</li>
+          <li>[their:grateful] The Wardens remember the colony kindly, and {X_nameDef} has come to tell it that {BEAST} is on its land. They would hunt it with the colony's best shot and take only its hide.</li>
         </texts>
         <defaultOption>2</defaultOption>
         <options>
           <li>
             <label>Hunt it beside them, {A_nameDef} with them</label>
-            <outcome>The Wardens and {A_nameDef} have gone after {BEAST}. If it falls, one of them will skin it where it lies: the hide goes into their book, the meat stays with the colony.</outcome>
+            <outcome>The Wardens and {A_nameDef} have gone after {BEAST}. If they kill it, one of the Wardens will skin it where it lies. They keep the hide, and the meat stays with the colony.</outcome>
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_WardensHunt"><together>true</together></li>
               <li Class="ColonyCouncil.DilemmaEffect_Learn"><target>A</target><skill>Shooting</skill><xp>300</xp></li>
@@ -63,7 +63,7 @@
           </li>
           <li>
             <label>Let them hunt it alone</label>
-            <outcome>The Wardens have gone after {BEAST} on their own. If it falls, one of them will skin it where it lies, and the meat will be left for the colony.</outcome>
+            <outcome>The Wardens have gone after {BEAST} on their own. If they kill it, one of them will skin it where it lies, and the meat will be left for the colony.</outcome>
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_WardensHunt" />
               <li Class="ColonyCouncil.DilemmaEffect_EventGoodwill"><amount>3</amount></li>
@@ -111,13 +111,13 @@
         <notable>false</notable>
         <titles>
           <li>The pelt-buyer</li>
-          <li>Pelts at the book's rate</li>
+          <li>Pelts at a good price</li>
         </titles>
         <texts>
-          <li>{X_nameDef}, the pelt-buyer of {FACTION}'s lodge at {PLACE}, has come to the gate with a tracker and an empty pack beast, having heard the colony has hides to sell. The Wardens pay the book's rate for good pelts, a little over their worth: {COUNT} silver for {TALE}.\n\nThe tracker with {X_objective} would teach {A_nameDef} to read a trail while they deal, if the colony likes.</li>
-          <li>[lowtech] {X_nameDef} of {FACTION} has walked in from the lodge at {PLACE} to buy pelts, with a tracker and a string of dried meat. The book's rate is fair and a little over, {X_nameDef} says: {COUNT} silver for {TALE}, and the tracker would show {A_nameDef} how to follow a beast by what it leaves behind.</li>
-          <li>[industrial|spacer] {X_nameDef}, a pelt-buyer of {FACTION}, is at the gate with a tracker and a tally book. The lodge at {PLACE} needs hides, and the colony has them: {COUNT} silver for {TALE}, the book's rate. The tracker would spend the afternoon with {A_nameDef} on tracks, if the colony likes.</li>
-          <li>[their:grateful] The Wardens think well of the colony, and their pelt-buyer {X_nameDef} has come straight to its gate: {COUNT} silver for {TALE}, the book's rate, and a lesson in tracking for {A_nameDef} as between friends.</li>
+          <li>{X_nameDef}, the pelt-buyer of {FACTION}'s lodge at {PLACE}, has come to the gate with a tracker and an empty pack beast, having heard the colony has hides to sell. The Wardens pay a fixed rate for good pelts, a little over their worth: {COUNT} silver for {TALE}.\n\nIf the colony likes, the tracker with {X_objective} would teach {A_nameDef} to follow a trail while they deal.</li>
+          <li>[lowtech] {X_nameDef} of {FACTION} has walked in from the lodge at {PLACE} with a tracker to buy pelts. {X_nameDef} offers {COUNT} silver for {TALE}, a little over their worth, and the tracker would show {A_nameDef} how to follow an animal by the signs it leaves.</li>
+          <li>[industrial|spacer] {X_nameDef}, a pelt-buyer of {FACTION}, is at the gate with a tracker and a tally book. The lodge at {PLACE} needs hides, and {X_nameDef} offers {COUNT} silver for the colony's {TALE}, the Wardens' usual rate. The tracker would spend a few hours teaching {A_nameDef} tracking, if the colony likes.</li>
+          <li>[their:grateful] The Wardens think well of the colony, and their pelt-buyer {X_nameDef} has come straight to its gate. {X_nameDef} offers {COUNT} silver for {TALE}, the Wardens' usual rate, and a tracking lesson for {A_nameDef} as a favour between friends.</li>
         </texts>
         <defaultOption>2</defaultOption>
         <options>
@@ -131,7 +131,7 @@
           </li>
           <li>
             <label>Sell them, and have the tracker teach {A_nameDef}</label>
-            <outcome>The pelts are going out to {X_nameDef}, and {B_nameDef} is walking the colony's edges with {A_nameDef}, reading the ground.</outcome>
+            <outcome>The pelts are going out to {X_nameDef}, and {B_nameDef} is walking the edges of the colony's land with {A_nameDef}, looking for tracks.</outcome>
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>the pelts for {X_nameDef}</label><variant>true</variant></li>
               <li Class="ColonyCouncil.DilemmaEffect_Lesson"><teacher>B</teacher><student>A</student><skill>Animals</skill><duration>2~3</duration></li>
@@ -179,16 +179,16 @@
           <li>A Warden at the gate</li>
         </titles>
         <texts>
-          <li>{X_nameDef}, a Warden of {FACTION}, has come to the gate with a lantern and a red cord. Word of {DEAD} reached the lodge at {PLACE}: {BEAST} took {DEAD}, and where a beast takes someone a Warden lights a lantern at the crossroads, as the first Warden did for his brother. {X_nameDef} would light one at the colony's gate tonight, and stand the night beside it with whoever would stand it too.</li>
-          <li>[ended] {X_nameDef}, a Warden of {FACTION}, has come to the gate with a lantern for {DEAD}, whom {BEAST} took. The beast is dead already, {X_nameDef} has heard, but the Wardens light a lantern for everyone a beast takes, so that the page in their book has its ending written. {X_nameDef} would light it at the colony's gate and stand its first night there.</li>
-          <li>[lowtech] {X_nameDef} of {FACTION} has walked from the lodge at {PLACE} with a soot-black lantern for {DEAD}, whom {BEAST} took. A lantern at the crossroads, {X_nameDef} says, so everyone on the road knows someone was taken here and the Wardens know it too.</li>
-          <li>[their:grateful] The Wardens think well of the colony, and {X_nameDef} has come from {PLACE} with a lantern for {DEAD}, whom {BEAST} took, to light at the gate tonight.</li>
+          <li>{X_nameDef}, a Warden of {FACTION}, has come to the gate with a lantern and a red cord. The lodge at {PLACE} heard that {BEAST} killed {DEAD}. When an animal kills someone, the Wardens light a lantern at the nearest crossroads, as the first Warden did for his brother. {X_nameDef} would like to light one at the colony's gate tonight and keep watch beside it through the night, with anyone who wants to join.</li>
+          <li>[ended] {X_nameDef}, a Warden of {FACTION}, has come to the gate with a lantern for {DEAD}, who was killed by {BEAST}. {X_nameDef} has heard that the animal is already dead, but the Wardens light a lantern for everyone an animal kills, and write the end of the story in their book. {X_nameDef} would light it at the colony's gate and keep watch beside it the first night.</li>
+          <li>[lowtech] {X_nameDef} of {FACTION} has walked from the lodge at {PLACE} with a lantern for {DEAD}, who was killed by {BEAST}. {X_nameDef} says the Wardens light such a lantern at a crossroads so that everyone on the road knows someone was killed there.</li>
+          <li>[their:grateful] The Wardens think well of the colony, and {X_nameDef} has come from {PLACE} with a lantern for {DEAD}, who was killed by {BEAST}, to light at the gate tonight.</li>
         </texts>
         <defaultOption>1</defaultOption>
         <options>
           <li>
             <label>Light it with them, and stand its first night</label>
-            <outcome>The lantern goes up at the gate as the dark comes, and those who loved {DEAD} will stand its first hours there with {X_nameDef}.</outcome>
+            <outcome>The lantern will be lit at the gate at dusk, and those who were close to {DEAD} will keep watch beside it for the first hours with {X_nameDef}.</outcome>
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_Lanterns"><count>1</count><at>gate</at></li>
               <li Class="ColonyCouncil.DilemmaEffect_Vigil"><label>the lantern for {DEAD}</label><target>CloseToA</target><count>3</count><to>Gate</to><hours>18~22</hours><duration>1~1.5</duration><lines><li>Keep it lit until it is done.</li><li>Where a lantern burns, someone was taken.</li></lines></li>
@@ -199,7 +199,7 @@
           </li>
           <li>
             <label>Let them light it at the gate</label>
-            <outcome>{X_nameDef} lights the lantern at the gate as the dark comes, and stands beside it through the night.</outcome>
+            <outcome>{X_nameDef} will light the lantern at the gate at dusk and stand beside it through the night.</outcome>
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_Lanterns"><count>1</count><at>gate</at></li>
               <li Class="ColonyCouncil.DilemmaEffect_EventGoodwill"><amount>3</amount></li>
@@ -207,7 +207,7 @@
           </li>
           <li>
             <label>Thank them, but no lantern</label>
-            <outcome>{X_nameDef} says the page stays open all the same, and goes back to the road.</outcome>
+            <outcome>{X_nameDef} says the Wardens will still write the death in their book, and goes back to the road.</outcome>
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_SendAway" />
             </effects>
@@ -244,16 +244,16 @@
           <li>The Quiet Bell at the gate</li>
         </titles>
         <texts>
-          <li>[!nobeast] Bell-keepers of {FACTION} have come to the gate in their grey habits, {X_nameDef} at their head, with spades and a beast to carry. The raiders still lie where they fell, and everyone is owed a bell, {X_nameDef} says, even the ones who came over the wall. They would give each a grave beyond the wall, or carry them back to the grave-garden at {PLACE}, and say the Bell's words over every one. They ask nothing for it.</li>
-          <li>[nobeast] Bell-keepers of {FACTION} have come to the gate in their grey habits with their spades, {X_nameDef} at their head. The raiders still lie where they fell, and they would give each a grave beyond the wall and say the Bell's words over every one, as the Bell does for friend and foe alike. They ask nothing for it.</li>
-          <li>[theirpeople,!nobeast] Bell-keepers of {FACTION} in grey habits have come to the gate with spades and a beast to carry, {X_nameDef} at their head, to see to the raiders still lying where they fell: a grave each beyond the wall, or the walk to the grave-garden at {PLACE}, and the Bell's words over every one. Word will reach the raiders' own people that someone rang for their dead, {X_nameDef} says quietly, and people remember who did.</li>
-          <li>[lowtech] Grey habits and long spades: the bell-keepers of {FACTION} go wherever the dead lie unburied, and {X_nameDef} says the ones by the colony have lain long enough. Graves beyond the wall, or the walk to the grave-garden at {PLACE}, and the Bell's words for each either way.</li>
+          <li>[!nobeast] Bell-keepers of {FACTION} in grey habits have come to the gate, led by {X_nameDef}, with spades and a pack animal. The raiders' bodies still lie where they fell, and {X_nameDef} says everyone deserves a funeral, even those who attacked the colony. They would bury each one beyond the wall, or carry them back to the grave-garden at {PLACE}, and say their funeral words over every one. They ask nothing for it.</li>
+          <li>[nobeast] Bell-keepers of {FACTION} in grey habits have come to the gate with spades, led by {X_nameDef}. The raiders' bodies still lie where they fell, and the bell-keepers would bury each one beyond the wall and say their funeral words over every one, as they do for friend and enemy alike. They ask nothing for it.</li>
+          <li>[theirpeople,!nobeast] Bell-keepers of {FACTION} in grey habits have come to the gate with spades and a pack animal, led by {X_nameDef}. They would see to the raiders' bodies: either a grave each beyond the wall, or the walk to the grave-garden at {PLACE}, with their funeral words said over every one. {X_nameDef} says the raiders' own people will hear that someone gave their dead a funeral, and will remember who did.</li>
+          <li>[lowtech] The bell-keepers of {FACTION}, in grey habits and with long spades, go wherever the dead lie unburied, and {X_nameDef} says the bodies near the colony have lain there long enough. They would bury them beyond the wall or carry them to the grave-garden at {PLACE}, and say their funeral words for each either way.</li>
         </texts>
         <defaultOption>2</defaultOption>
         <options>
           <li>
-            <label>Graves beyond the wall, and the Bell's words for each</label>
-            <outcome>{X_nameDef}'s bell-keepers dug a row of graves beyond the gate, laid the raiders in them one to a grave, the Bell's words said over every one.</outcome>
+            <label>Graves beyond the wall, with funeral words for each</label>
+            <outcome>{X_nameDef}'s bell-keepers dug a row of graves beyond the gate, buried the raiders one to a grave, and said their funeral words over every one.</outcome>
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_UndertakersBury" />
               <li Class="ColonyCouncil.DilemmaEffect_BellForTheDead" />
@@ -273,7 +273,7 @@
           </li>
           <li>
             <label>We will see to them ourselves</label>
-            <outcome>{X_nameDef} says everyone is owed a bell all the same, and the Bell goes on its way.</outcome>
+            <outcome>{X_nameDef} says the dead deserve a funeral all the same, and the bell-keepers go on their way.</outcome>
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_SendAway" />
             </effects>
@@ -314,16 +314,16 @@
           <li>The bell-keeper</li>
         </titles>
         <texts>
-          <li>{X_nameDef}, a bell-keeper of {FACTION}, has come to {DEAD}'s grave in a grey habit with a small bronze bell on a cord. Word of the death reached the grave-garden at {PLACE}, and the Bell leads the funeral of anyone who will have it, {X_nameDef} says gently: the colony gathered at the graveside and the old words said. Or a quiet while at the grave with one of the colony, if the colony would rather.</li>
-          <li>[lowtech] A bell-keeper of {FACTION} named {X_nameDef} has walked from {PLACE} to stand at {DEAD}'s grave. Everyone the ground takes is owed a bell, the Bell says, and {X_nameDef} would lead the colony through the burying words if it likes.</li>
-          <li>[industrial|spacer] {X_nameDef}, a bell-keeper of {FACTION}, is waiting quietly by {DEAD}'s grave. The Bell has led funerals in grave-gardens and on battlefields and in the back rooms of towns, {X_nameDef} says, and would lead this one, or simply stand a while at the grave.</li>
-          <li>[their:grateful] The Quiet Bell remembers the colony kindly, and {X_nameDef} came to {DEAD}'s grave the moment the grave-garden at {PLACE} heard, to lead the funeral as for one of their own.</li>
+          <li>{X_nameDef}, a bell-keeper of {FACTION} in a grey habit, has come to {DEAD}'s grave with a small bronze bell on a cord. The grave-garden at {PLACE} heard of the death, and {X_nameDef} says the bell-keepers lead the funeral of anyone whose people want it: the colony would gather at the graveside and {X_nameDef} would say the old words. If the colony would rather, {X_nameDef} could instead stand quietly at the grave for a while with one of the colonists.</li>
+          <li>[lowtech] {X_nameDef}, a bell-keeper of {FACTION}, has walked from {PLACE} to stand at {DEAD}'s grave. The bell-keepers believe everyone who dies deserves a funeral, and {X_nameDef} would lead the colony through the funeral words if it likes.</li>
+          <li>[industrial|spacer] {X_nameDef}, a bell-keeper of {FACTION}, is waiting quietly by {DEAD}'s grave. {X_nameDef} says the bell-keepers have led funerals in grave-gardens, on battlefields and in the back rooms of towns, and offers to lead this one, or simply to stand a while at the grave.</li>
+          <li>[their:grateful] The Quiet Bell remembers the colony kindly, and {X_nameDef} came to {DEAD}'s grave as soon as the grave-garden at {PLACE} heard of the death, to lead the funeral as if {DEAD} were one of their own.</li>
         </texts>
         <defaultOption>1</defaultOption>
         <options>
           <li>
             <label>The funeral, {X_nameDef} leading it</label>
-            <outcome>The colony is gathering at {DEAD}'s grave, and {X_nameDef} will say the Bell's words when everyone is there.</outcome>
+            <outcome>The colony is gathering at {DEAD}'s grave, and {X_nameDef} will say the funeral words when everyone is there.</outcome>
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_Vigil"><label>{DEAD}'s funeral</label><target>Colony</target><count>8</count><to>Grave</to><pool>Rimfolk_Pool_PlayBellFuneral</pool><hours>16~20</hours><duration>1~1.5</duration></li>
               <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Rimfolk_Evt_BellFuneral</thought></li>
@@ -342,7 +342,7 @@
           </li>
           <li>
             <label>We will mourn our own way</label>
-            <outcome>{X_nameDef} says the ground keeps what it is given, and goes.</outcome>
+            <outcome>{X_nameDef} nods and leaves the colony to mourn in its own way.</outcome>
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_SendAway" />
             </effects>
@@ -362,7 +362,7 @@
   <IncidentDef ParentName="Council_EventBase">
     <defName>Rimfolk_Evt_BellVoidSigns</defName>
     <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
-    <label>the ground is listening</label>
+    <label>something stirring underground</label>
     <workerClass>ColonyCouncil.HappeningWorker_BellVoidSigns</workerClass>
     <baseChance>0.8</baseChance>
     <minRefireDays>30</minRefireDays>
@@ -378,13 +378,13 @@
         <answerDays>0.3</answerDays>
         <notable>false</notable>
         <titles>
-          <li>The ground is listening</li>
+          <li>Something stirring underground</li>
           <li>A bell-keeper's warning</li>
         </titles>
         <texts>
-          <li>{X_nameDef}, an old bell-keeper of {FACTION}, has come to the gate with a bell muffled in grey cloth. The Bell listens to the ground, {X_nameDef} says, and near the colony something under it is awake. It is not here yet and may never be, but it is better met with lights at the doors and someone watching the walls tonight. {X_nameDef} would stand at the gate till morning.</li>
-          <li>[lowtech] A bell-keeper of {FACTION} named {X_nameDef} has walked from {PLACE} with a muffled bell to say what the Bell hears in the ground near the colony: something is awake under it. Keep a light at every door tonight and a watch on the wall, {X_nameDef} says, and the Bell will stand at the gate.</li>
-          <li>[industrial|spacer] {X_nameDef} of {FACTION} is at the gate with a bell wrapped in grey cloth and no wish to come in. The grave-garden at {PLACE} hears the ground the way others hear the weather, {X_nameDef} says, and the ground near the colony is listening back. A watch on the walls tonight, and lamps at the doors, would be wise.</li>
+          <li>{X_nameDef}, an old bell-keeper of {FACTION}, has come to the gate with a bell wrapped in grey cloth. {X_nameDef} says the bell-keepers can sense what moves under the ground, and something under the colony's land has woken up. It may never come to the surface, but it would be wise to keep lights at the doors and a watch on the walls tonight. {X_nameDef} offers to stand at the gate until morning.</li>
+          <li>[lowtech] {X_nameDef}, a bell-keeper of {FACTION}, has walked from {PLACE} with a muffled bell to warn the colony that the bell-keepers sense something awake under the ground nearby. {X_nameDef} advises a light at every door tonight and a watch on the wall, and offers to stand at the gate.</li>
+          <li>[industrial|spacer] {X_nameDef} of {FACTION} is at the gate with a bell wrapped in grey cloth, and does not want to come in. {X_nameDef} says the bell-keepers at {PLACE} watch for signs under the ground the way others watch the weather, and they have seen signs of something stirring near the colony. A watch on the walls tonight, and lamps at the doors, would be wise.</li>
         </texts>
         <defaultOption>1</defaultOption>
         <options>
@@ -408,7 +408,7 @@
           </li>
           <li>
             <label>Thank them and send them on</label>
-            <outcome>{X_nameDef} says the Bell will listen all the same, and goes.</outcome>
+            <outcome>{X_nameDef} says the bell-keepers will keep watching for signs all the same, and leaves.</outcome>
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_SendAway" />
             </effects>
@@ -445,10 +445,10 @@
           <li>A friendly bout</li>
         </titles>
         <texts>
-          <li>{X_nameDef}, a roaming tamer of {FACTION}, has come to the gate with {BEAST} at heel and a braided violet sash heavy with tokens. {X_nameDef} has heard the colony keeps beasts, and challenges its best hand with them, {A_nameDef}, to a friendly bout with {BEAST}: practice blows, nobody hurt on purpose, and a token on the sash for whoever wins fairly. To be beaten fairly by a stranger is the Circuit's highest honour, {X_nameDef} says, grinning.</li>
-          <li>[pokemon] {X_nameDef}, a roaming tamer of {FACTION}, has come to the gate with {BEAST} trotting beside {X_objective}, a Fighting type that wants nothing more than a bout. {X_nameDef} challenges {A_nameDef}, the colony's best with beasts, to step into a ring with it, fairly and in friendship, for a token on the sash.</li>
-          <li>[lowtech] {X_nameDef} of {FACTION} has walked in with {BEAST} at heel and a sash of knotted tokens, and asks for the colony's best keeper of beasts. A bond is not a leash, {X_nameDef} says, and the only way to know a keeper is to see them face a beast in the ring, in friendship: {A_nameDef} against {BEAST}, practice blows, and a token for the winner.</li>
-          <li>[their:grateful] The Circuit thinks well of the colony, and {X_nameDef} has come out of the way to challenge {A_nameDef} to a friendly bout with {BEAST}, as between old rivals.</li>
+          <li>{X_nameDef}, a travelling tamer of {FACTION}, has come to the gate with {BEAST} and a braided violet sash covered in tokens. {X_nameDef} has heard the colony keeps animals, and challenges {A_nameDef}, its best animal handler, to a friendly bout against {BEAST}. It would be practice blows only, with nobody hurt on purpose, and the winner gets a token for the sash. {X_nameDef} says that being fairly beaten by a stranger is the greatest honour among the Circuit's tamers.</li>
+          <li>[pokemon] {X_nameDef}, a travelling tamer of {FACTION}, has come to the gate with {BEAST}, a Fighting type that is eager for a bout. {X_nameDef} challenges {A_nameDef}, the colony's best animal handler, to a fair and friendly bout against it, with a token for the winner.</li>
+          <li>[lowtech] {X_nameDef} of {FACTION} has walked in with {BEAST} and a sash of knotted tokens, and asks for the colony's best animal handler. {X_nameDef} says the best way to judge someone with animals is a friendly bout, and challenges {A_nameDef} to face {BEAST} with practice blows, a token going to the winner.</li>
+          <li>[their:grateful] The Circuit thinks well of the colony, and {X_nameDef} has gone out of {X_possessive} way to challenge {A_nameDef} to a friendly bout against {BEAST}, as old rivals do.</li>
         </texts>
         <defaultOption>1</defaultOption>
         <options>
@@ -512,10 +512,10 @@
           <li>Eggs from the hatchery</li>
         </titles>
         <texts>
-          <li>{X_nameDef}, an egg-trader of {FACTION}, has come to the gate with a basket kept warm in straw: {TALE} from the Circuit's hatchery at {PLACE}, a kind the colony doesn't keep. Every egg is a road not walked yet, {X_nameDef} says, and would swap them for one of the colony's own fertile eggs, or sell them for {COUNT} silver.</li>
-          <li>[!ours] {X_nameDef}, an egg-trader of {FACTION}, has come to the gate with {TALE} in a straw-lined basket, from the hatchery at {PLACE}. The colony has no fertile eggs to swap, {X_nameDef} sees, but would sell them for {COUNT} silver.</li>
-          <li>[pokemon] {X_nameDef}, an egg-trader of {FACTION}, has brought {TALE} from the Circuit's hatchery, warm in a padded box and humming faintly. A swap for one of the colony's own fertile eggs, or {COUNT} silver, and whatever hatches will be the colony's to raise.</li>
-          <li>[their:grateful] The Circuit thinks well of the colony, and {X_nameDef} has brought {TALE} from the hatchery at {PLACE}, a swap or {COUNT} silver, as between friends.</li>
+          <li>{X_nameDef}, an egg-trader of {FACTION}, has come to the gate with a basket kept warm in straw. It holds {TALE} from the Circuit's hatchery at {PLACE}, a kind the colony doesn't keep. {X_nameDef} would swap them for one of the colony's own fertile eggs, or sell them for {COUNT} silver.</li>
+          <li>[!ours] {X_nameDef}, an egg-trader of {FACTION}, has come to the gate with {TALE} in a straw-lined basket, from the hatchery at {PLACE}. The colony has no fertile eggs to swap, but {X_nameDef} would sell them for {COUNT} silver.</li>
+          <li>[pokemon] {X_nameDef}, an egg-trader of {FACTION}, has brought {TALE} from the Circuit's hatchery, kept warm in a padded box that hums faintly. {X_nameDef} would swap them for one of the colony's own fertile eggs or sell them for {COUNT} silver, and whatever hatches will be the colony's to raise.</li>
+          <li>[their:grateful] The Circuit thinks well of the colony, and {X_nameDef} has brought {TALE} from the hatchery at {PLACE}. As a friend, {X_nameDef} would swap them for one of the colony's eggs or sell them for {COUNT} silver.</li>
         </texts>
         <defaultOption>2</defaultOption>
         <options>
@@ -573,8 +573,8 @@
           <li>{BEAST} at the gate</li>
         </titles>
         <texts>
-          <li>{X_nameDef}, a ranger of {FACTION}, has walked up to the gate with {BEAST} on a lead. The Circuit's rangers know every beast on the region's roads, and this one is the colony's, {X_nameDef} says: it strayed, and has been living rough. {A_nameDef} would know it anywhere.</li>
-          <li>[wild] {X_nameDef}, a ranger of {FACTION}, has come to the gate leading {BEAST}, who went wild from the colony months ago. It took {X_nameDef} a week of patience to win it back, and it would rather be home, {X_nameDef} thinks. {A_nameDef} would know it anywhere.</li>
+          <li>{X_nameDef}, a ranger of {FACTION}, has walked up to the gate with {BEAST} on a lead. The Circuit's rangers know the animals along the region's roads, and {X_nameDef} says this one belongs to the colony: it strayed and has been living wild. {A_nameDef} would know it anywhere.</li>
+          <li>[wild] {X_nameDef}, a ranger of {FACTION}, has come to the gate leading {BEAST}, which went wild and left the colony months ago. It took {X_nameDef} a week to win its trust again, and {X_nameDef} thinks it would like to come home. {A_nameDef} would know it anywhere.</li>
           <li>[their:grateful] The Circuit thinks well of the colony, and {X_nameDef}, one of its rangers, has brought {BEAST} home, found wandering far from the colony's land.</li>
         </texts>
         <defaultOption>0</defaultOption>
@@ -637,16 +637,16 @@
           <li>Mending at the gate</li>
         </titles>
         <texts>
-          <li>{X_nameDef}, a fixer of {FACTION}, has pulled up at the gate on a cart hung with tools, a brass cog stitched to the shoulder of a coat patched a dozen ways. Nothing is broken, only waiting, {X_nameDef} says: for {COUNT} silver every worn coat and nicked blade in the colony will be sound by morning, and the Wheel moves on tomorrow.</li>
-          <li>[lowtech] {X_nameDef} of {FACTION} has drawn a cart up to the gate, its sides hung with awls, files and pots of glue, and offers to go through everything the colony wears or fights with for {COUNT} silver before the Wheel rolls on.</li>
-          <li>[industrial|spacer] {X_nameDef}, a fixer of {FACTION}, has a portable grinder and a welding mask on the cart and a price ready: {COUNT} silver, and every worn coat and battered weapon in the colony mended before the Wheel's yard moves on.</li>
-          <li>[their:grateful] The Wheel thinks well of the colony, and {X_nameDef} names a friend's price: {COUNT} silver, every piece mended, and a lesson thrown in if anyone wants one.</li>
+          <li>{X_nameDef}, a fixer of {FACTION}, has pulled up at the gate on a cart hung with tools, wearing a much-patched coat with a brass cog stitched to the shoulder. For {COUNT} silver, {X_nameDef} offers to mend every worn coat and damaged weapon in the colony by morning, before the Wheel moves on tomorrow.</li>
+          <li>[lowtech] {X_nameDef} of {FACTION} has drawn a cart up to the gate, its sides hung with awls, files and pots of glue, and offers to mend everything the colony wears or fights with for {COUNT} silver before the Wheel moves on.</li>
+          <li>[industrial|spacer] {X_nameDef}, a fixer of {FACTION}, has a portable grinder and a welding mask on the cart, and offers to mend every worn coat and battered weapon in the colony for {COUNT} silver before the Wheel's yard moves on.</li>
+          <li>[their:grateful] The Wheel thinks well of the colony, and {X_nameDef} offers a friend's price: {COUNT} silver to mend every piece, with a lesson thrown in if anyone wants one.</li>
         </texts>
         <defaultOption>1</defaultOption>
         <options>
           <li>
             <label>Pay {COUNT} silver</label>
-            <outcome>{X_nameDef} worked through the pile one piece at a time, and every piece is mended: seams closed, straps riveted, edges ground true, each a little differently.</outcome>
+            <outcome>{X_nameDef} worked through the pile one piece at a time and mended every piece, closing seams, riveting straps and sharpening edges.</outcome>
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>the silver for {X_nameDef}</label><what>silver</what></li>
               <li Class="ColonyCouncil.DilemmaEffect_EventGoodwill"><amount>2</amount></li>
@@ -661,7 +661,7 @@
           </li>
           <li>
             <label>Pay a little to have {X_objective} teach {A_nameDef}</label>
-            <outcome>{X_nameDef} spent the evening showing {A_nameDef} the Wheel's tricks, how to patch so the patch outlasts the coat, and left the mending to {A_objective}.</outcome>
+            <outcome>{X_nameDef} spent the evening showing {A_nameDef} how the Wheel mends things, such as patching a coat so that the patch lasts longer than the coat, and left the mending itself to {A_objective}.</outcome>
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>silver</what><factor>0.35</factor><by>Outsiders</by></li>
               <li Class="ColonyCouncil.DilemmaEffect_Learn"><skill>Crafting</skill><xp>1500</xp></li>
@@ -707,10 +707,10 @@
           <li>Scrap bought at the gate</li>
         </titles>
         <texts>
-          <li>Scrap-runners of {FACTION} have come to the gate with an empty cart, {X_nameDef} doing the talking. The Wheel buys what others throw away, {X_nameDef} says, and the colony has {TALE} lying about. All of it for {COUNT} silver, or traded for a {THING} the Wheel mended back to new.</li>
+          <li>Scrap-runners of {FACTION} have come to the gate with an empty cart, and {X_nameDef} is doing the talking. {X_nameDef} says the Wheel buys what others throw away, and the colony has {TALE} lying about. They would pay {COUNT} silver for all of it, or trade a {THING} that the Wheel has repaired to as good as new.</li>
           <li>[nopiece] Scrap-runners of {FACTION} have come to the gate with an empty cart, {X_nameDef} doing the talking. The colony has {TALE} lying about, and the Wheel would give {COUNT} silver for the lot.</li>
-          <li>[lowtech] {X_nameDef} and the scrap-runners of {FACTION} have pushed a handcart up to the gate and want {TALE}: the Wheel melts, mends and sells everything again. {COUNT} silver for the lot, or a {THING} of theirs, as good as new.</li>
-          <li>[their:grateful] The Wheel thinks well of the colony, and {X_nameDef}'s runners have come straight to it for {TALE}: {COUNT} silver, or a {THING} mended back to new, as between friends.</li>
+          <li>[lowtech] {X_nameDef} and the scrap-runners of {FACTION} have pushed a handcart up to the gate and want to buy {TALE}, since the Wheel melts down, mends and resells everything. They offer {COUNT} silver for the lot, or a {THING} of theirs, repaired to as good as new.</li>
+          <li>[their:grateful] The Wheel thinks well of the colony, and {X_nameDef}'s runners have come straight to it to buy {TALE}. As friends, they offer {COUNT} silver, or a {THING} repaired to as good as new.</li>
         </texts>
         <defaultOption>2</defaultOption>
         <options>
@@ -770,15 +770,15 @@
           <li>Runners for the wreck</li>
         </titles>
         <texts>
-          <li>Runners of {FACTION} have come up the road as fast as their beasts would carry them, {X_nameDef} out in front: the Wheel heard there is a wrecked {BEAST} {PLACE}, and a mechanoid's wreck is the best scrap there is. They would strip it where it lies and split the parts, half for the colony, or buy it whole for {COUNT} silver and take everything.</li>
-          <li>[lowtech] {X_nameDef} and the runners of {FACTION} came at a run when they heard of the dead machine {PLACE}. The Wheel knows how to take one apart, {X_nameDef} says: half the metal and parts for the colony and half for the Wheel, or {COUNT} silver for the whole of it.</li>
-          <li>[their:grateful] The Wheel thinks well of the colony, and {X_nameDef}'s runners came the moment they heard of the wrecked {BEAST} {PLACE}: stripped where it lies, half for the colony, or {COUNT} silver for the lot.</li>
+          <li>Runners of {FACTION} have hurried up the road, led by {X_nameDef}. The Wheel heard there is a wrecked {BEAST} {PLACE}, and a wrecked mechanoid is the best scrap there is. They would strip it where it lies and give half the parts to the colony, or buy it whole for {COUNT} silver and take everything.</li>
+          <li>[lowtech] {X_nameDef} and the runners of {FACTION} hurried over when they heard of the wrecked machine {PLACE}. {X_nameDef} says the Wheel knows how to take one apart, and offers either to split the metal and parts half and half with the colony, or to pay {COUNT} silver for all of it.</li>
+          <li>[their:grateful] The Wheel thinks well of the colony, and {X_nameDef}'s runners came as soon as they heard of the wrecked {BEAST} {PLACE}. They would strip it where it lies and give half to the colony, or pay {COUNT} silver for the lot.</li>
         </texts>
         <defaultOption>2</defaultOption>
         <options>
           <li>
             <label>Let them strip it, half for us</label>
-            <outcome>The runners are at the wreck with their tools, sparks flying, and half of what comes off it will be left where it lay for the colony.</outcome>
+            <outcome>The runners are at the wreck with their tools, and half of what they take off it will be left there for the colony.</outcome>
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_WheelStrip" />
               <li Class="ColonyCouncil.DilemmaEffect_EventGoodwill"><amount>3</amount></li>

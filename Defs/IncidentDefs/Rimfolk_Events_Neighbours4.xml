@@ -51,7 +51,7 @@
             <label>Let {X_objective} gather, with {B_nameDef} along</label>
             <outcome>{X_nameDef} walked the treeline with {B_nameDef} at {X_possessive} elbow, naming each plant and what it does, which leaves heal and which do harm. {B_nameDef} came back with a head full of it.</outcome>
             <outcomes>
-              <li>[b:office:Physician] The colony's physician, {B_nameDef}, went along with {X_nameDef} and argued about every second root. {X_nameDef} won most of the arguments, and {B_nameDef} wrote the rest down.</li>
+              <li>[b:office:Physician] The colony's physician, {B_nameDef}, went along with {X_nameDef} and argued about every second root. {X_nameDef} was right most of the time, and {B_nameDef} wrote down what {B_pronoun} learned.</li>
             </outcomes>
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_Lesson"><teacher>X</teacher><student>B</student><skill>Plants</skill><duration>2~3</duration></li>
@@ -409,7 +409,7 @@
           </li>
           <li>
             <label>A meal, and good luck to {X_objective}</label>
-            <outcome>{A_nameDef} carried out a meal and listened while {X_nameDef} ate it at the gate, then wished {X_objective} well. {X_nameDef} went home no wiser, but fed.</outcome>
+            <outcome>{A_nameDef} carried out a meal and listened while {X_nameDef} ate it at the gate, then wished {X_objective} well. {X_nameDef} went home fed, but without any advice.</outcome>
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><what>meals</what><count>1</count><to>Stranger</to><label>a meal for {X_nameDef}</label><eat>true</eat></li>
               <li Class="ColonyCouncil.DilemmaEffect_SendAway" />
@@ -473,7 +473,7 @@
           </li>
           <li>
             <label>Let {B_nameDef} swap secrets with {X_objective}</label>
-            <outcome>{B_nameDef} spent an hour with {X_nameDef} by the cart, tasting and arguing over what makes a good brew. {B_nameDef} came back to the kitchen with three new ideas and a slight headache.</outcome>
+            <outcome>{B_nameDef} spent an hour with {X_nameDef} by the cart, tasting and arguing over what makes a good brew. {B_nameDef} came back to the kitchen with three new ideas to try.</outcome>
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_Lesson"><teacher>X</teacher><student>B</student><skill>Cooking</skill><duration>1.5~2.5</duration></li>
               <li Class="ColonyCouncil.DilemmaEffect_EventGoodwill"><amount>2</amount></li>

@@ -169,16 +169,16 @@
   <!-- Spirits rising greatly. -->
   <CC_ImpactFlavour_MoodUpBig_1>It {WOULD} mean a lot to {0}</CC_ImpactFlavour_MoodUpBig_1>
   <CC_ImpactFlavour_MoodUpBig_2>{0} {WOULD} be delighted</CC_ImpactFlavour_MoodUpBig_2>
-  <CC_ImpactFlavour_MoodUpBig_3>{0} {WOULD} walk taller for it</CC_ImpactFlavour_MoodUpBig_3>
+  <CC_ImpactFlavour_MoodUpBig_3>{0} {WOULD} be very pleased</CC_ImpactFlavour_MoodUpBig_3>
   <CC_ImpactFlavour_MoodUpBig_4>{0} {WOULD} be overjoyed</CC_ImpactFlavour_MoodUpBig_4>
   <CC_ImpactFlavour_MoodUpBig_5>Nothing {WOULD} please {0} more</CC_ImpactFlavour_MoodUpBig_5>
-  <CC_ImpactFlavour_MoodUpBig_6>{0} {WOULD} take real heart from it</CC_ImpactFlavour_MoodUpBig_6>
-  <CC_ImpactFlavour_MoodUpBig_7>It {WOULD} make the season for {0}</CC_ImpactFlavour_MoodUpBig_7>
+  <CC_ImpactFlavour_MoodUpBig_6>It {WOULD} cheer {0} up a great deal</CC_ImpactFlavour_MoodUpBig_6>
+  <CC_ImpactFlavour_MoodUpBig_7>It {WOULD} make {0} very happy</CC_ImpactFlavour_MoodUpBig_7>
   <CC_ImpactFlavour_MoodUpBig_Many_1>It {WOULD} mean a lot to {0}</CC_ImpactFlavour_MoodUpBig_Many_1>
   <CC_ImpactFlavour_MoodUpBig_Many_2>{0} {WOULD} be delighted</CC_ImpactFlavour_MoodUpBig_Many_2>
   <CC_ImpactFlavour_MoodUpBig_Many_3>It {WOULD} lift {0} for days</CC_ImpactFlavour_MoodUpBig_Many_3>
-  <CC_ImpactFlavour_MoodUpBig_Many_4>{0} {WOULD} take real heart from it</CC_ImpactFlavour_MoodUpBig_Many_4>
-  <CC_ImpactFlavour_MoodUpBig_Many_5>It {WOULD} warm {0} for days</CC_ImpactFlavour_MoodUpBig_Many_5>
+  <CC_ImpactFlavour_MoodUpBig_Many_4>It {WOULD} cheer {0} up a great deal</CC_ImpactFlavour_MoodUpBig_Many_4>
+  <CC_ImpactFlavour_MoodUpBig_Many_5>It {WOULD} cheer {0} up for days</CC_ImpactFlavour_MoodUpBig_Many_5>
   <CC_ImpactFlavour_MoodUpBig_Many_6>It {WOULD} do {0} a world of good</CC_ImpactFlavour_MoodUpBig_Many_6>
 
   <!-- Spirits falling, a little or noticeably. -->
@@ -187,8 +187,8 @@
   <CC_ImpactFlavour_MoodDown_3>{0} {WOULD} take it badly</CC_ImpactFlavour_MoodDown_3>
   <CC_ImpactFlavour_MoodDown_4>It {WOULD} weigh on {0}</CC_ImpactFlavour_MoodDown_4>
   <CC_ImpactFlavour_MoodDown_5>{0} {WOULD} feel it</CC_ImpactFlavour_MoodDown_5>
-  <CC_ImpactFlavour_MoodDown_6>It {WOULD} sit ill with {0}</CC_ImpactFlavour_MoodDown_6>
-  <CC_ImpactFlavour_MoodDown_7>{0} {WOULD} go about sour for a while</CC_ImpactFlavour_MoodDown_7>
+  <CC_ImpactFlavour_MoodDown_6>It {WOULD} bother {0}</CC_ImpactFlavour_MoodDown_6>
+  <CC_ImpactFlavour_MoodDown_7>{0} {WOULD} be unhappy for a while</CC_ImpactFlavour_MoodDown_7>
   <CC_ImpactFlavour_MoodDown_8>It {WOULD} spoil the day for {0}</CC_ImpactFlavour_MoodDown_8>
   <CC_ImpactFlavour_MoodDown_Many_1>It {WOULD} not sit well with {0}</CC_ImpactFlavour_MoodDown_Many_1>
   <CC_ImpactFlavour_MoodDown_Many_2>It {WOULD} sting {0}</CC_ImpactFlavour_MoodDown_Many_2>
@@ -200,17 +200,17 @@
 
   <!-- Spirits falling greatly. -->
   <CC_ImpactFlavour_MoodDownBig_1>{0} {WOULD} take it hard</CC_ImpactFlavour_MoodDownBig_1>
-  <CC_ImpactFlavour_MoodDownBig_2>It {WOULD} cut {0} deep</CC_ImpactFlavour_MoodDownBig_2>
-  <CC_ImpactFlavour_MoodDownBig_3>{0} {WOULD} be stung to the quick</CC_ImpactFlavour_MoodDownBig_3>
+  <CC_ImpactFlavour_MoodDownBig_2>It {WOULD} hurt {0} badly</CC_ImpactFlavour_MoodDownBig_2>
+  <CC_ImpactFlavour_MoodDownBig_3>{0} {WOULD} be deeply hurt</CC_ImpactFlavour_MoodDownBig_3>
   <CC_ImpactFlavour_MoodDownBig_4>It {WOULD} hit {0} hard</CC_ImpactFlavour_MoodDownBig_4>
   <CC_ImpactFlavour_MoodDownBig_5>{0} {WOULD} carry it for days</CC_ImpactFlavour_MoodDownBig_5>
-  <CC_ImpactFlavour_MoodDownBig_6>It {WOULD} leave {0} smarting for days</CC_ImpactFlavour_MoodDownBig_6>
+  <CC_ImpactFlavour_MoodDownBig_6>It {WOULD} upset {0} for days</CC_ImpactFlavour_MoodDownBig_6>
   <CC_ImpactFlavour_MoodDownBig_7>{0} {WOULD} be badly shaken</CC_ImpactFlavour_MoodDownBig_7>
   <CC_ImpactFlavour_MoodDownBig_Many_1>{0} {WOULD} take it hard</CC_ImpactFlavour_MoodDownBig_Many_1>
   <CC_ImpactFlavour_MoodDownBig_Many_2>It {WOULD} hit {0} hard</CC_ImpactFlavour_MoodDownBig_Many_2>
-  <CC_ImpactFlavour_MoodDownBig_Many_3>It {WOULD} cast a shadow over {0}</CC_ImpactFlavour_MoodDownBig_Many_3>
+  <CC_ImpactFlavour_MoodDownBig_Many_3>It {WOULD} leave {0} unhappy</CC_ImpactFlavour_MoodDownBig_Many_3>
   <CC_ImpactFlavour_MoodDownBig_Many_4>{0} {WOULD} feel it for days</CC_ImpactFlavour_MoodDownBig_Many_4>
-  <CC_ImpactFlavour_MoodDownBig_Many_5>It {WOULD} leave {0} smarting for days</CC_ImpactFlavour_MoodDownBig_Many_5>
+  <CC_ImpactFlavour_MoodDownBig_Many_5>It {WOULD} upset {0} for days</CC_ImpactFlavour_MoodDownBig_Many_5>
   <CC_ImpactFlavour_MoodDownBig_Many_6>It {WOULD} weigh heavily on {0}</CC_ImpactFlavour_MoodDownBig_Many_6>
 
   <!-- Trust in the council rising, said as how they would see the council. -->
@@ -220,7 +220,7 @@
   <CC_ImpactFlavour_TrustUp_4>{0} {WOULD} think well of the council for it</CC_ImpactFlavour_TrustUp_4>
   <CC_ImpactFlavour_TrustUp_5>{0} {WOULD} feel backed by the council</CC_ImpactFlavour_TrustUp_5>
   <CC_ImpactFlavour_TrustUp_6>{0} {WOULD} count it in the council's favour</CC_ImpactFlavour_TrustUp_6>
-  <CC_ImpactFlavour_TrustUp_7>{0} {WOULD} see the council kept faith</CC_ImpactFlavour_TrustUp_7>
+  <CC_ImpactFlavour_TrustUp_7>{0} {WOULD} see the council kept its word</CC_ImpactFlavour_TrustUp_7>
   <CC_ImpactFlavour_TrustUp_Many_1>{0} {WOULD} feel heard</CC_ImpactFlavour_TrustUp_Many_1>
   <CC_ImpactFlavour_TrustUp_Many_2>It {WOULD} win {0} over</CC_ImpactFlavour_TrustUp_Many_2>
   <CC_ImpactFlavour_TrustUp_Many_3>{0} {WOULD} think well of the council for it</CC_ImpactFlavour_TrustUp_Many_3>
@@ -282,7 +282,7 @@
   <CC_ImpactFlavour_Fight_1>{0} and {1} {WOULD} come to blows</CC_ImpactFlavour_Fight_1>
   <CC_ImpactFlavour_Fight_2>Fists {WOULD} fly between {0} and {1}</CC_ImpactFlavour_Fight_2>
   <CC_ImpactFlavour_Fight_3>It {WOULD} end with {0} and {1} fighting</CC_ImpactFlavour_Fight_3>
-  <CC_ImpactFlavour_Fight_4>{0} and {1} {WOULD} not keep their hands to themselves</CC_ImpactFlavour_Fight_4>
+  <CC_ImpactFlavour_Fight_4>{0} and {1} {WOULD} start hitting each other</CC_ImpactFlavour_Fight_4>
   <CC_ImpactFlavour_Fight_5>There {WOULD} be a fight between {0} and {1}</CC_ImpactFlavour_Fight_5>
   <CC_ImpactFlavour_Fight_6>{0} and {1} {WOULD} end up trading blows</CC_ImpactFlavour_Fight_6>
   <CC_ImpactFlavour_Fight_7>It {WOULD} come to a scuffle between {0} and {1}</CC_ImpactFlavour_Fight_7>
@@ -291,13 +291,13 @@
   <CC_ImpactFlavour_Hurt_1>Someone {WOULD} come away the worse for wear</CC_ImpactFlavour_Hurt_1>
   <CC_ImpactFlavour_Hurt_2>It {WOULD} take a toll on someone</CC_ImpactFlavour_Hurt_2>
   <CC_ImpactFlavour_Hurt_3>Someone {WOULD} not come out of it unscathed</CC_ImpactFlavour_Hurt_3>
-  <CC_ImpactFlavour_Hurt_4>Someone {WOULD} pay for it in aches</CC_ImpactFlavour_Hurt_4>
+  <CC_ImpactFlavour_Hurt_4>Someone {WOULD} end up sore or hurt</CC_ImpactFlavour_Hurt_4>
   <CC_ImpactFlavour_Hurt_5>It {WOULD} leave someone the worse for it</CC_ImpactFlavour_Hurt_5>
 
   <!-- Someone who breaks down. -->
   <CC_ImpactFlavour_Break_1>It {WOULD} be too much for {0}</CC_ImpactFlavour_Break_1>
-  <CC_ImpactFlavour_Break_2>{0} {WOULD} come apart over it</CC_ImpactFlavour_Break_2>
-  <CC_ImpactFlavour_Break_3>{0} {WOULD} not hold together</CC_ImpactFlavour_Break_3>
+  <CC_ImpactFlavour_Break_2>{0} {WOULD} break down over it</CC_ImpactFlavour_Break_2>
+  <CC_ImpactFlavour_Break_3>{0} {WOULD} not cope with it</CC_ImpactFlavour_Break_3>
   <CC_ImpactFlavour_Break_4>{0} {WOULD} break under it</CC_ImpactFlavour_Break_4>
   <CC_ImpactFlavour_Break_5>It {WOULD} push {0} over the edge</CC_ImpactFlavour_Break_5>
 
@@ -328,9 +328,9 @@
   <CC_ImpactFlavour_GambleOn_2>If it goes wrong, {0} pays for it</CC_ImpactFlavour_GambleOn_2>
   <CC_ImpactFlavour_GambleOn_3>It could go badly for {0}</CC_ImpactFlavour_GambleOn_3>
   <CC_ImpactFlavour_GambleOn_4>{0} would bear the brunt if it goes wrong</CC_ImpactFlavour_GambleOn_4>
-  <CC_ImpactFlavour_GambleOn_5>A gamble, with {0} the one to lose by it</CC_ImpactFlavour_GambleOn_5>
+  <CC_ImpactFlavour_GambleOn_5>A gamble, and {0} would be the one to lose</CC_ImpactFlavour_GambleOn_5>
   <CC_ImpactFlavour_GambleOn_6>It may yet turn against {0}</CC_ImpactFlavour_GambleOn_6>
-  <CC_ImpactFlavour_GambleOn_7>If it sours, it sours on {0}</CC_ImpactFlavour_GambleOn_7>
+  <CC_ImpactFlavour_GambleOn_7>{0} would suffer most if it fails</CC_ImpactFlavour_GambleOn_7>
 
   <!-- A gamble that may simply come to nothing. -->
   <CC_ImpactFlavour_Fizzle_1>It may come to nothing</CC_ImpactFlavour_Fizzle_1>
@@ -347,7 +347,7 @@
   <CC_ImpactFlavour_Cost_6>Someone {WOULD} have to open the stores for it</CC_ImpactFlavour_Cost_6>
   <CC_ImpactFlavour_CostBig_1>The stores {WOULD} feel it badly</CC_ImpactFlavour_CostBig_1>
   <CC_ImpactFlavour_CostBig_2>It {WOULD} take a big bite out of the stores</CC_ImpactFlavour_CostBig_2>
-  <CC_ImpactFlavour_CostBig_3>It {WOULD} cost the colony dear</CC_ImpactFlavour_CostBig_3>
+  <CC_ImpactFlavour_CostBig_3>It {WOULD} cost the colony a lot</CC_ImpactFlavour_CostBig_3>
   <CC_ImpactFlavour_CostBig_4>The stores {WOULD} run low</CC_ImpactFlavour_CostBig_4>
   <CC_ImpactFlavour_CostBig_5>It {WOULD} leave the stores thin</CC_ImpactFlavour_CostBig_5>
 
@@ -367,7 +367,7 @@
 
   <!-- Something it costs the colony the line has no words of its own for. -->
   <CC_ImpactFlavour_Bad_1>It {WOULD} cost the colony something</CC_ImpactFlavour_Bad_1>
-  <CC_ImpactFlavour_Bad_2>It is not without its price</CC_ImpactFlavour_Bad_2>
+  <CC_ImpactFlavour_Bad_2>It comes at a price</CC_ImpactFlavour_Bad_2>
   <CC_ImpactFlavour_Bad_3>There {WOULD} be a price to pay</CC_ImpactFlavour_Bad_3>
   <CC_ImpactFlavour_Bad_4>The colony {WOULD} pay for it one way or another</CC_ImpactFlavour_Bad_4>
   <CC_ImpactFlavour_Bad_5>It {WOULD} not come free</CC_ImpactFlavour_Bad_5>
@@ -378,7 +378,7 @@
   <CC_ImpactFlavour_Work_3>The chores {WOULD} have to wait</CC_ImpactFlavour_Work_3>
   <CC_ImpactFlavour_Work_4>Work {WOULD} stand still for a while</CC_ImpactFlavour_Work_4>
   <CC_ImpactFlavour_Work_5>Some work {WOULD} be left for later</CC_ImpactFlavour_Work_5>
-  <CC_ImpactFlavour_Work_6>The tools {WOULD} be set down for it</CC_ImpactFlavour_Work_6>
+  <CC_ImpactFlavour_Work_6>People {WOULD} put down their tools for it</CC_ImpactFlavour_Work_6>
 
   <!-- A gathering ({0}: when, "in the evening"). -->
   <CC_ImpactFlavour_Gather_1>People {WOULD} gather {0}</CC_ImpactFlavour_Gather_1>
@@ -427,7 +427,7 @@
   <CC_ImpactFlavour_NeighboursUp_3>It {WOULD} stand the colony in good stead with {0}</CC_ImpactFlavour_NeighboursUp_3>
   <CC_ImpactFlavour_NeighboursUp_4>{0} {WOULD} think the better of the colony</CC_ImpactFlavour_NeighboursUp_4>
   <CC_ImpactFlavour_NeighboursUp_5>{0} {WOULD} warm to the colony</CC_ImpactFlavour_NeighboursUp_5>
-  <CC_ImpactFlavour_NeighboursDown_1>{0} {WOULD} take it ill</CC_ImpactFlavour_NeighboursDown_1>
+  <CC_ImpactFlavour_NeighboursDown_1>{0} {WOULD} take it badly</CC_ImpactFlavour_NeighboursDown_1>
   <CC_ImpactFlavour_NeighboursDown_2>Word {WOULD} reach {0}, and they would not like it</CC_ImpactFlavour_NeighboursDown_2>
   <CC_ImpactFlavour_NeighboursDown_3>It {WOULD} not sit well with {0}</CC_ImpactFlavour_NeighboursDown_3>
   <CC_ImpactFlavour_NeighboursDown_4>{0} {WOULD} think the less of the colony</CC_ImpactFlavour_NeighboursDown_4>
@@ -452,7 +452,7 @@
   <!-- Someone leaving the colony for good ({0}). -->
   <CC_ImpactFlavour_Leaves_1>{0} {WOULD} be gone from the colony</CC_ImpactFlavour_Leaves_1>
   <CC_ImpactFlavour_Leaves_2>The colony {WOULD} lose {0}</CC_ImpactFlavour_Leaves_2>
-  <CC_ImpactFlavour_Leaves_3>It {WOULD} mean a parting with {0}</CC_ImpactFlavour_Leaves_3>
+  <CC_ImpactFlavour_Leaves_3>It {WOULD} mean saying goodbye to {0}</CC_ImpactFlavour_Leaves_3>
   <CC_ImpactFlavour_Leaves_4>{0} {WOULD} not be staying</CC_ImpactFlavour_Leaves_4>
 
   <!-- A custom kept ({0}: its name). -->
@@ -470,7 +470,7 @@
   <!-- Someone's health the better for it. -->
   <CC_ImpactFlavour_HealthUp_1>Someone {WOULD} feel better for it</CC_ImpactFlavour_HealthUp_1>
   <CC_ImpactFlavour_HealthUp_2>It {WOULD} do someone good</CC_ImpactFlavour_HealthUp_2>
-  <CC_ImpactFlavour_HealthUp_3>Someone {WOULD} mend the faster for it</CC_ImpactFlavour_HealthUp_3>
+  <CC_ImpactFlavour_HealthUp_3>Someone {WOULD} heal faster for it</CC_ImpactFlavour_HealthUp_3>
   <CC_ImpactFlavour_HealthUp_4>It {WOULD} set someone on the mend</CC_ImpactFlavour_HealthUp_4>
 
   <!-- Recreation, rest or comfort. -->
@@ -485,11 +485,11 @@
   <CC_ImpactFlavour_Learns_2>{0} {WOULD} come away the wiser</CC_ImpactFlavour_Learns_2>
   <CC_ImpactFlavour_Learns_3>{0} {WOULD} pick up a thing or two</CC_ImpactFlavour_Learns_3>
   <CC_ImpactFlavour_Learns_4>It {WOULD} teach {0} something</CC_ImpactFlavour_Learns_4>
-  <CC_ImpactFlavour_Learns_5>{0} {WOULD} be the better hand for it</CC_ImpactFlavour_Learns_5>
+  <CC_ImpactFlavour_Learns_5>{0} {WOULD} get better at it</CC_ImpactFlavour_Learns_5>
 
   <!-- An inspiration. -->
   <CC_ImpactFlavour_Inspired_1>It {WOULD} spark something in {0}</CC_ImpactFlavour_Inspired_1>
-  <CC_ImpactFlavour_Inspired_2>{0} {WOULD} find fresh fire for the work</CC_ImpactFlavour_Inspired_2>
+  <CC_ImpactFlavour_Inspired_2>{0} {WOULD} be eager to get to work</CC_ImpactFlavour_Inspired_2>
   <CC_ImpactFlavour_Inspired_3>{0} {WOULD} come away inspired</CC_ImpactFlavour_Inspired_3>
   <CC_ImpactFlavour_Inspired_4>It {WOULD} set {0} thinking</CC_ImpactFlavour_Inspired_4>
 
@@ -507,21 +507,21 @@
   <!-- Certainty in their faith, steadied or shaken. -->
   <CC_ImpactFlavour_FaithUp_1>{0} {WOULD} feel surer in the faith</CC_ImpactFlavour_FaithUp_1>
   <CC_ImpactFlavour_FaithUp_2>It {WOULD} steady {0} in the faith</CC_ImpactFlavour_FaithUp_2>
-  <CC_ImpactFlavour_FaithUp_3>{0} {WOULD} hold to the faith the closer</CC_ImpactFlavour_FaithUp_3>
+  <CC_ImpactFlavour_FaithUp_3>{0} {WOULD} hold more closely to the faith</CC_ImpactFlavour_FaithUp_3>
   <CC_ImpactFlavour_FaithDown_1>It {WOULD} shake {0} in the faith</CC_ImpactFlavour_FaithDown_1>
   <CC_ImpactFlavour_FaithDown_2>{0} {WOULD} have doubts about the faith</CC_ImpactFlavour_FaithDown_2>
   <CC_ImpactFlavour_FaithDown_3>{0} {WOULD} waver in the faith</CC_ImpactFlavour_FaithDown_3>
 
   <!-- Standards rising (harder to please) or falling. -->
   <CC_ImpactFlavour_ExpectMore_1>{0} {WOULD} come to expect more</CC_ImpactFlavour_ExpectMore_1>
-  <CC_ImpactFlavour_ExpectMore_2>{0} {WOULD} be the harder to satisfy after</CC_ImpactFlavour_ExpectMore_2>
-  <CC_ImpactFlavour_ExpectMore_3>It {WOULD} raise what {0} asks of life</CC_ImpactFlavour_ExpectMore_3>
+  <CC_ImpactFlavour_ExpectMore_2>{0} {WOULD} be harder to satisfy afterwards</CC_ImpactFlavour_ExpectMore_2>
+  <CC_ImpactFlavour_ExpectMore_3>It {WOULD} raise {0}'s expectations</CC_ImpactFlavour_ExpectMore_3>
   <CC_ImpactFlavour_ExpectLess_1>{0} {WOULD} make do with less</CC_ImpactFlavour_ExpectLess_1>
   <CC_ImpactFlavour_ExpectLess_2>{0} {WOULD} be easier to please after</CC_ImpactFlavour_ExpectLess_2>
   <CC_ImpactFlavour_ExpectLess_3>It {WOULD} teach {0} to want less</CC_ImpactFlavour_ExpectLess_3>
 
   <CC_Impact_Header>What this answer does</CC_Impact_Header>
-  <CC_Impact_Nothing>Nothing you can see changes: it is the council's word, and the story goes on from it.</CC_Impact_Nothing>
+  <CC_Impact_Nothing>Nothing you can see changes. The council has given its answer, and the story goes on from there.</CC_Impact_Nothing>
   <CC_Impact_More>more on hover</CC_Impact_More>
 
   <CC_Impact_Kind_Map>On the map</CC_Impact_Kind_Map>
@@ -534,7 +534,7 @@
   <CC_Impact_Kind_Goods>Goods and silver</CC_Impact_Kind_Goods>
   <CC_Impact_Kind_People>Who comes and goes</CC_Impact_Kind_People>
   <CC_Impact_Kind_Goodwill>Other peoples</CC_Impact_Kind_Goodwill>
-  <CC_Impact_Kind_Other>Besides</CC_Impact_Kind_Other>
+  <CC_Impact_Kind_Other>Other</CC_Impact_Kind_Other>
   <CC_Impact_Kind_Ways>The colony's ways</CC_Impact_Kind_Ways>
 
   <!-- Chances -->
@@ -594,8 +594,8 @@
   <CC_Impact_Tie>{0} and {1}: their bond as {2} {3}</CC_Impact_Tie>
   <CC_Impact_TieBrief>{0} and {1} closer as {2}</CC_Impact_TieBrief>
   <CC_Impact_SharedMemory>{0} and {1} share a memory of it, something to talk about</CC_Impact_SharedMemory>
-  <CC_Impact_HeldBack>{0} stays and longs for what they asked: a low mood that grows over {1} days, until it comes to them or, after {2} days, they make their peace with it</CC_Impact_HeldBack>
-  <CC_Impact_HeldBackBrief>{0} kept, and longing</CC_Impact_HeldBackBrief>
+  <CC_Impact_HeldBack>{0} stays and still wants what they asked for: a low mood that grows over {1} days, until they get it or, after {2} days, they accept it</CC_Impact_HeldBack>
+  <CC_Impact_HeldBackBrief>{0} stays, unhappy</CC_Impact_HeldBackBrief>
 
   <!-- What a memory gives instead of mood (Moods/RewardInstead.cs) -->
   <CC_Impact_InsteadJoy>{0}: recreation {1}</CC_Impact_InsteadJoy>
@@ -696,7 +696,7 @@
   <CC_Impact_RoadPaid>Paid for when the carters come back through</CC_Impact_RoadPaid>
   <CC_Impact_NeedsStores>Needs {0} {1} in the stores (not used up)</CC_Impact_NeedsStores>
   <CC_Impact_Helper>{0} does it ({1} {2})</CC_Impact_Helper>
-  <CC_Impact_CampFee>The camp's fee is settled this way: the next falls due five days on</CC_Impact_CampFee>
+  <CC_Impact_CampFee>This pays the camp's fee; the next one is due in five days</CC_Impact_CampFee>
   <CC_Impact_CampGoods_meat>meat</CC_Impact_CampGoods_meat>
   <CC_Impact_CampGoods_wood>wood</CC_Impact_CampGoods_wood>
   <CC_Impact_CampGoods_leather>leather</CC_Impact_CampGoods_leather>
@@ -810,7 +810,7 @@
   <CC_Impact_WeddingBrief>the wedding planned</CC_Impact_WeddingBrief>
   <CC_Impact_PokemonShow>A friendly show at the {0}'s fire, our best Pokémon against theirs</CC_Impact_PokemonShow>
   <CC_Impact_PokemonShowBrief>a Pokémon show</CC_Impact_PokemonShowBrief>
-  <CC_Impact_Catch>{0} goes out to {1} with a ball at the belt; the throw is yours</CC_Impact_Catch>
+  <CC_Impact_Catch>{0} goes out to {1} with a ball; you make the throw yourself</CC_Impact_Catch>
   <CC_Impact_CatchBrief>a catch tried</CC_Impact_CatchBrief>
   <CC_Impact_MilkSale>The {0}'s drovers milk their herd and bring it over</CC_Impact_MilkSale>
   <CC_Impact_MilkSaleBrief>milk bought</CC_Impact_MilkSaleBrief>
@@ -927,7 +927,7 @@
   <CC_Impact_VendettaAsk>{0} decides whether the vendetta against {1} ends, by their nature</CC_Impact_VendettaAsk>
   <CC_Impact_VendettaBrief>the vendetta settled</CC_Impact_VendettaBrief>
   <CC_Impact_SettleVendetta>{0} lays down the vendetta against {1}</CC_Impact_SettleVendetta>
-  <CC_Impact_Patient>{0} sees {1}: tended, and remembered by their people</CC_Impact_Patient>
+  <CC_Impact_Patient>{0} tends {1}, and {1}'s people will remember it</CC_Impact_Patient>
 
   <!-- Besides -->
   <CC_Impact_Research>{0} research toward {1}</CC_Impact_Research>

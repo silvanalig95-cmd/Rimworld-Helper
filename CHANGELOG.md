@@ -5,6 +5,31 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## Messages and tooltips in plain words: the council, defenses and dealings
+
+*15 November 2026, version 0.246.0*
+
+- Messages, tooltips and wish reasons for the council, the defenses and dealings with other peoples now say plainly what happens, without wry endings or old turns of phrase.
+- The short line under each answer uses everyday words, such as "would be deeply hurt" in place of "stung to the quick".
+- Tooltips that were hard to follow, such as how good things grow ordinary, how armour stops a hit and what happens when tribute falls short, are now written in full sentences.
+- The setting for good things growing ordinary now gives the right line for the spoiled, 15 points, as the game counts it.
+
+## Event cards in plain words: the peoples and the neighbours
+
+*15 November 2026, version 0.245.0*
+
+- About 360 more lines of event cards now say plainly what happens: the peoples' visitors, the neighbours, hard times, callers and the events the peoples remember.
+- The peoples' own phrases are explained where they come up, such as the Waystone Book's good ink and red ink, Aldith's lamp, the Mossborn's ledger and the Wardens' lantern.
+- Two events have clearer names: a young beast from the herders, and something stirring underground.
+
+## Event cards in plain words: stories, seasons and callers
+
+*15 November 2026, version 0.244.0*
+
+- Event cards in plain words, next batch: the story chains, the land and the seasons, callers, the storyteller's events and the peoples' visits now say what happens, who does it and why, without riddles or a wry last line.
+- The peoples' own phrases on their event cards are explained once: the league's book of fair dealers, the enclave's exact bargains, the Banner's Roll and each people's founder by name.
+- The snow day message now says what really happens: nobody has to work, and people spend the day in the snow or by the fire.
+
 ## Event cards in plain words: pasts, visitors and the land
 
 *15 November 2026, version 0.243.0*
